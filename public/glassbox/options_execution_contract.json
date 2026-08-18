@@ -1,5 +1,5 @@
 {
-  "schema": "alphaforge.options-execution-contract.v9",
+  "schema": "alphaforge.options-execution-contract.v12",
   "classification": "engineering capability; not return or admission evidence",
   "status": "DOMAIN_PRIMITIVES_ONLY",
   "trial_accounting": {
@@ -29,6 +29,10 @@
     "net debit or minimum-credit package limits, ratio-preserving IOC partial fills, and atomic FOK rejection",
     "optional point-in-time per-leg OPEN/HALTED/OUTAGE/AUCTION_ONLY/CLOSE_ONLY package status replay with fail-closed missing coverage",
     "close-only package execution only after integer-contract position evidence proves every requested leg reduces without increasing or flipping exposure",
+    "strict source-byte-bound reviewed status manifests with separate publication, observation, availability, capture, and review timestamps",
+    "exact dual-reviewed official-exchange versus vendor status reconciliation usable for OPTION instrument identities",
+    "reconciliation-only status coverage preflight for explicit OPTION instrument intervals with missing and future-known gaps published exactly",
+    "source-reconciled status providers refuse uncovered requested intervals and return a deterministic coverage-audit hash for run artifacts",
     "exact-decimal point-in-time option fee schedule revisions keyed by venue, account class, product group, and premium currency",
     "side-, liquidity-, and event-scoped per-contract and premium-rate fees, minima, caps, rebates, explicit component rounding, exercise fees, and assignment fees",
     "complete-matrix exact-decimal internal option scenario margin with cross-leg P&L netting and locked model/input artifact hashes",
@@ -48,6 +52,8 @@
     "occ_source_archive": "memo URL identities are allowlisted; immutable manifests bind observation time, HTTP metadata, exact SHA-256 bytes, and a reverified content-addressed blob",
     "displayed_package_execution": "positive ratios cross asks, negative ratios cross strictly positive bids, the smallest whole-number displayed leg capacity controls every leg, and execution records require one premium currency and reconcile premium cash to net package debit",
     "option_market_status": "when status replay is required, every executable leg must have an effective, known status; halts, outages, and continuous fills in auction-only state block, while close-only permits only pre-validated reduce-only packages",
+    "market_status_ingest": "unknown fields, source-digest mismatch, impossible timestamp order, identity collision, future-known use, missing dual review, and cross-source status/scope/interval disagreement fail closed",
+    "market_status_coverage": "source silence never implies OPEN; instrument status keeps precedence over venue status, future-known specific status cannot fall back to venue coverage, and covered plus gap durations must equal every explicit requirement",
     "option_fee_assessment": "only a schedule revision both effective and available at assessment may apply; trade fees consume accepted leg executions and exact fee lines must reconcile to their Decimal total after declared component rounding, minima, and caps",
     "internal_scenario_margin": "every scenario must price every position exactly once in one premium currency; future, stale, incomplete, or malformed matrices fail closed and every reported requirement component reconciles to its recorded policy parameters; the snapshot model id must equal the policy risk method"
   },
@@ -56,12 +62,12 @@
     "operational unattended OCC acquisition (the live endpoint returned a Cloudflare HTTP 403 managed challenge to direct and headless-browser clients on 2026-08-18), automated PDF text extraction, a reviewed historical memo corpus, and a production vendor-terms adapter",
     "implied-volatility fitting, put-call parity/rate-dividend checks, arbitrage repair, and surface interpolation",
     "dividend, rates, borrow, early-exercise, and assignment-probability models",
-    "a content-verified historical venue/account/product fee corpus and production fee adapter; beyond-displayed-size impact, queue position, complex-order-book price improvement, and complex-order auction execution; historical option status ingestion and live outage polling/failover",
+    "a content-verified historical venue/account/product fee corpus and production fee adapter; beyond-displayed-size impact, queue position, complex-order-book price improvement, and complex-order auction execution; a content-verified historical option-status corpus, production status adapters, broad coverage evidence, and live outage polling/failover",
     "broker/OCC/regulatory margin equivalence, a validated option stress repricer and calibrated scenario corpus, opening-premium collateral integration, margin calls, forced liquidation, and live broker margin reconciliation",
     "end-to-end options backtest ledger integration",
     "options broker routing, exercise instructions, or live reconciliation"
   ],
-  "claim_boundary": "These primitives make option quote, cross-strike integrity, adjusted-deliverable normalization/reconciliation, source-byte archival, displayed-size package crossing, exact fee-assessment semantics, internal scenario-margin arithmetic, and lifecycle assumptions explicit. Internal scenario margin is not broker, clearinghouse, exchange, or regulatory margin and does not include opening premium cash. No historical fee schedule corpus or calibrated venue rates are bundled. The package replay is an atomic crossing assumption over independently displayed legs, not evidence of simultaneous market fillability. Status replay consumes supplied PIT events but has no historical option status corpus or live venue polling. The archive accepts an injectable transport, but current live OCC access is challenge-blocked. These primitives do not constitute a historical OCC corpus, prove adjustment coverage, actual package fillability, fill probability, or price improvement; create a fitted surface, an executable options strategy, or a sleeve-admission case.",
+  "claim_boundary": "These primitives make option quote, cross-strike integrity, adjusted-deliverable normalization/reconciliation, source-byte archival, displayed-size package crossing, exact fee-assessment semantics, internal scenario-margin arithmetic, and lifecycle assumptions explicit. Internal scenario margin is not broker, clearinghouse, exchange, or regulatory margin and does not include opening premium cash. No historical fee schedule corpus or calibrated venue rates are bundled. The package replay is an atomic crossing assumption over independently displayed legs, not evidence of simultaneous market fillability. Reviewed status manifests can normalize and reconcile supplied PIT records and audit explicitly supplied interval coverage, but no historical option-status corpus, production adapter, broad-market coverage evidence, or live venue polling is bundled. The archive accepts an injectable transport, but current live OCC access is challenge-blocked. These primitives do not constitute a historical OCC corpus, prove adjustment coverage, actual package fillability, fill probability, or price improvement; create a fitted surface, an executable options strategy, or a sleeve-admission case.",
   "source_sha256": {
     "implementation": "1758c2a0574eea4143f94a974d9ee3c618f7e8546dd57c030e14ceb629e69c64",
     "tests": "a50696062b636d9d05e1831f6cabbd32775d3d288ee6523022374f5b92cf43c6",
@@ -76,7 +82,9 @@
     "fee_assessment_implementation": "8fb43265a101001a1ea4ec7a975266a8b7be1f405d82016fd909a49178dc67f3",
     "fee_assessment_tests": "ab5a1086ec6dfc24fe879bb8eee07bd90998416b35c8133191cef653260d9adf",
     "scenario_margin_implementation": "1bdf492e64f801a2788c7501eb24e616c901e681a5ec35a07b71047372df4d91",
-    "scenario_margin_tests": "4d5d741232adf559d95160fb6df46873e17d78773a97b78529c8be7f46b36212"
+    "scenario_margin_tests": "4d5d741232adf559d95160fb6df46873e17d78773a97b78529c8be7f46b36212",
+    "market_status_ingest_implementation": "97559540e3366f1cd4f64cc899f4aad60fced481e169adc49faff12125f0a4e3",
+    "market_status_ingest_tests": "f1c5860a3e83f7758b013f6275951589b39ea9b9b5217cfb303891870c0499ba"
   },
-  "content_hash": "sha256:cd32e0e611ca385306f21a39cf8c67cdfceb132e48f703c9f598c6108457e287"
+  "content_hash": "sha256:fd58e9f8a9617f6f26c27bda66ade3b0b04c793b28a2e0dca80db2763d316520"
 }

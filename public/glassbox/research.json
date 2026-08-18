@@ -246,8 +246,8 @@
         }
       }
     },
-    "generated_at": "2026-08-18T13:06:30.721016+00:00",
-    "content_hash": "sha256:39b927f8117ceb0d16435dc7d2067b16214a5617531ba419e36ba76130ff4f48"
+    "generated_at": "2026-08-18T17:49:22.077215+00:00",
+    "content_hash": "sha256:fc8e6a03947fda893a637da00bfcc9ac64f47e0c5d85252f17ef98e5665f0758"
   },
   "factor_research": {
     "summary": "Most ideas die. We publish every test with its real net-of-cost Sharpe and its real Rank-IC. 2 kept, 8 killed. The Rank-IC is the cross-sectional information coefficient with a Newey-West t-stat; the net Sharpe is the purged walk-forward result after the conservative cost model.",
@@ -722,8 +722,8 @@
     "live_status": "LIVE",
     "live_source": "go-live seed (no realized marks have accrued yet)",
     "live_nav_baseline_usd": 100000.0,
-    "live_nav_current_usd": 100044.8,
-    "live_return_pct": 0.0448,
+    "live_nav_current_usd": 100072.3,
+    "live_return_pct": 0.0723,
     "research_curve_label": "SIMULATION (research backtest, NOT realized trading)",
     "research_curve_start": {
       "date": "2023-07-07",
@@ -751,7 +751,7 @@
       "CORRECTION 2026-07-05 \u2014 the crypto sleeve was signal-dead, not 'carry compressed'. From go-live (06-23) to 07-05 AlphaForge held cash and we published that funding carry was compressed. An internal audit found the true cause: a wiring bug blended equity-fundamental alphas (undefined on crypto) into the live signal, invalidating it every cycle \u2014 the validated carry-only configuration was never what ran live. Fixed same day (the loop now runs the exact blessed walk-forward config: carry_fund_21, weekly rebalance, with per-cycle signal-health logging so a dead signal can never masquerade as a quiet hold again). The $100k cash equity curve was genuine; the published EXPLANATION was wrong. Per our append-only posture this correction is added to the record, not swapped into it.",
       "We red-team our own record. On 2026-06-27 our publishing pipeline emitted a future-dated (2026-06-29) paper mark that briefly reached the public sites and was anchored into seq 0 of the signed transparency chain. We caught it the same day, added a fail-closed guard, and appended the corrected seq 1 \u2014 the append-only chain shows BOTH, because we don't get to delete our mistakes. That is the trust system working, not failing.",
       "AlphaTrend (managed-futures trend) was the FIRST sleeve we took genuinely live: its 17-ETF book transacts on Alpaca paper, not in a simulator. We published DSR 0.83 for it and called it the first sleeve to CLEAR multiple-testing deflation, statistically real rather than a backtest fluke. RE-DERIVED 2026-08-07 at honest N=133 and pooled V[SR]=7.96e-04, its DSR is 0.000: the LOWEST of the six sleeves we have measured, not the highest. The old 0.83 rested on a variance input roughly 80x too small and a trial count of 5 while its siblings were graded at N=101, so it was marked on an easier exam and then called the soundest. Net Sharpe 0.25 over its full 5,179-day history. It is folded into ALPHAC at equal quarters for MEASURED drawdown reduction, not for a demonstrated edge. The screen suggested 0.73; the honest engine says 0.33 on the live window. We published every one of those numbers.",
-      "STRUCTURAL VERDICT 2026-08-05 \u2014 the crypto sleeve's venue unreachability is STRUCTURAL, and we said we would say so. The 2026-07-20 note above promised: 'if it proves persistent it is a STRUCTURAL problem for a sleeve built on a single venue, and we will say that too.' It has proved persistent, so here is the number we had not put on the record until now: across its entire live history the hourly loop has completed 434 of 1205 expected cycles \u2014 an uptime of 36.0%. It has been dark for roughly 772 hours of a 50.2-day record, with 8 separate outages longer than a day and a longest single outage of 165 hours. As of this publish it has been dark 0 hours; its last observed cycle was 2026-08-18 12:00 UTC. WHAT THIS MEANS, stated plainly rather than buried: this sleeve carries 40% of the flagship's weight, so for most of the forward record our largest single position has not been managed. The published curve is not wrong \u2014 we never roll forward a mark we did not observe, so the sleeve's line simply stops when the venue does \u2014 but a 40%-weight sleeve that is dark most of the time is not meaningfully 'live', and describing it as live without this number attached would have been a half-truth. The forward track record is the whole basis on which this book asks to be believed, and it is being accrued on a book whose biggest sleeve is mostly absent. WHAT WE ARE DOING: the diagnosis is unchanged and venue-specific (the general internet and our equity broker respond normally from the same machine while the exchange endpoint fails on connect). Two fixes are real \u2014 hosting the loop somewhere with unobstructed access, and removing the single-venue dependency altogether by adding a second exchange. We flag the first honestly: our own deploy runbook records that reaching a venue from a different region is a COMPLIANCE decision and not merely an operations one, so it will not be done as a silent infrastructure tweak. Until one of those lands, read this sleeve's contribution to the live record as what it is \u2014 36.0% of the intended trading.",
+      "STRUCTURAL VERDICT 2026-08-05 \u2014 the crypto sleeve's venue unreachability is STRUCTURAL, and we said we would say so. The 2026-07-20 note above promised: 'if it proves persistent it is a STRUCTURAL problem for a sleeve built on a single venue, and we will say that too.' It has proved persistent, so here is the number we had not put on the record until now: across its entire live history the hourly loop has completed 439 of 1210 expected cycles \u2014 an uptime of 36.3%. It has been dark for roughly 772 hours of a 50.4-day record, with 8 separate outages longer than a day and a longest single outage of 165 hours. As of this publish it has been dark 0 hours; its last observed cycle was 2026-08-18 17:00 UTC. WHAT THIS MEANS, stated plainly rather than buried: this sleeve carries 40% of the flagship's weight, so for most of the forward record our largest single position has not been managed. The published curve is not wrong \u2014 we never roll forward a mark we did not observe, so the sleeve's line simply stops when the venue does \u2014 but a 40%-weight sleeve that is dark most of the time is not meaningfully 'live', and describing it as live without this number attached would have been a half-truth. The forward track record is the whole basis on which this book asks to be believed, and it is being accrued on a book whose biggest sleeve is mostly absent. WHAT WE ARE DOING: the diagnosis is unchanged and venue-specific (the general internet and our equity broker respond normally from the same machine while the exchange endpoint fails on connect). Two fixes are real \u2014 hosting the loop somewhere with unobstructed access, and removing the single-venue dependency altogether by adding a second exchange. We flag the first honestly: our own deploy runbook records that reaching a venue from a different region is a COMPLIANCE decision and not merely an operations one, so it will not be done as a silent infrastructure tweak. Until one of those lands, read this sleeve's contribution to the live record as what it is \u2014 36.3% of the intended trading.",
       "CORRECTION 2026-08-06 \u2014 our crypto carry sleeve is a strategy that earns funding, and its LIVE paper account has never once booked funding. We found this ourselves and are publishing it before the fix rather than after. The mechanism, stated plainly so anyone can check it: funding is applied in exactly one place in this codebase, Ledger.apply_funding, and it is called from exactly one call site, the BACKTEST engine. The live paper broker's cash moves on one line and only one line, a fill: cash - qty*price - fee. No funding cashflow can reach the live account by any path. The size of what is missing is not marginal. Our committed walk-forward artifact for this sleeve reports funding_net of $19,500 against a total return of $38,236 on a $100k book over 2022-02 to 2026-06: about HALF of everything this strategy has ever earned is the funding it is designed to harvest. Removing it takes the sleeve's backtested Sharpe from 0.653 to roughly 0.30. So AlphaForge's live record has been running against a hard ceiling of about half its validated Sharpe, and every live number we have published for this sleeve should be read in that light. What we are NOT doing: we are not restating the historical live curve. The marks we published were the marks we observed, and this record is append-only, so the fix applies FORWARD from the day it ships and the understated period stays visible in the chain. One number we are deliberately NOT putting on the record yet: our internal estimate of what funding would have added over the live window is dominated by a single name that redenominated roughly 100x inside the window, which makes the naive figure meaningless. We would rather publish no number than a number we cannot stand behind, so that one waits for the corrected accounting. This is the fourth time a defect in our plumbing, not our strategy, has moved a published number, and the lesson we wrote down in July holds: a fix is not done until a test pins the path that actually runs.",
       "CORRECTION 2026-08-06 \u2014 a factual claim in our 2026-07-20 incident note above is now false and we are marking it rather than editing it. That note said 'Bybit responds' as evidence the Binance failure was venue-specific. Re-measured from the same network on 2026-08-06: Bybit does NOT respond, and neither do Kraken or Deribit. Binance, Bybit and Kraken all fail on connection reset in under a tenth of a second and Deribit times out. The conclusion the original note drew is unchanged and if anything strengthened, since the block is clearly broader than one venue, but the supporting fact it cited is no longer true and a reader checking our work today would find it wrong. One venue does answer: OKX responds normally and serves funding rates, 436 perpetual instruments and hourly candles. We are evaluating it, and we note in advance that moving venue is not a configuration change: the same carry signal computed on OKX has a cross-sectional rank correlation of only about 0.64 with the Binance one, so it would be a materially different strategy wearing the same name, and we will not splice the two curves together and call it one continuous record.",
       "FIXED 2026-08-06 \u2014 the funding gap disclosed above is now closed in the live path, forward only. Earlier today we published that our crypto carry sleeve had never once booked funding in live paper, which is roughly half of everything that strategy has ever earned. That is fixed: the live broker gained a funding path with the identical sign convention the backtest ledger uses (payment = -position * mark * rate, longs pay shorts on a positive rate), and the live loop now settles every stored funding event for the window just closed, before the strategy re-decides, so a settlement is charged against the position that was actually held through it. It is point-in-time by construction: the reader filters on each event's stored publication time, never on the settlement time, so a rate not yet knowable at the moment of the cycle stays invisible. Nine tests pin the running path rather than the intention, including one that asserts the live broker and the backtest ledger return identical figures for the same event, because two conventions would be worse than none. Three things we are deliberately NOT doing. We are not restating the historical curve: the marks we published are the marks we observed, the understated period stays in the signed chain, and the fix applies from today. We are not claiming an improvement yet: the sleeve has been dark on venue unreachability since 2026-08-03, so this books nothing until it trades again, and any future gain will show up in the forward record or not at all. And we are not putting a number on what it would have earned over the live window, because our own measurement of that is dominated by a single instrument that redenominated roughly 100x inside the window, which makes the figure meaningless. We would rather publish no number than one we cannot stand behind.",
@@ -17299,7 +17299,7 @@
         "command": "ruff check <scope> --output-format json",
         "scopes": {
           "production": {
-            "python_files": 161,
+            "python_files": 162,
             "violations": 0,
             "files_with_violations": 0,
             "safe_autofixes_available": 0,
@@ -17308,7 +17308,7 @@
             "by_file": {}
           },
           "tests": {
-            "python_files": 247,
+            "python_files": 249,
             "violations": 0,
             "files_with_violations": 0,
             "safe_autofixes_available": 0,
@@ -17317,14 +17317,15 @@
             "by_file": {}
           },
           "historical_scripts": {
-            "python_files": 163,
-            "violations": 360,
-            "files_with_violations": 49,
-            "safe_autofixes_available": 107,
+            "python_files": 165,
+            "violations": 363,
+            "files_with_violations": 51,
+            "safe_autofixes_available": 109,
             "unsafe_autofixes_available": 60,
             "by_rule": {
               "B007": 4,
               "B023": 5,
+              "B904": 1,
               "B905": 12,
               "C401": 2,
               "C408": 15,
@@ -17338,12 +17339,12 @@
               "E702": 7,
               "E741": 3,
               "F401": 6,
-              "F541": 7,
+              "F541": 8,
               "F841": 8,
               "I001": 2,
               "RUF001": 2,
               "RUF005": 1,
-              "RUF010": 5,
+              "RUF010": 6,
               "RUF023": 1,
               "RUF034": 1,
               "RUF046": 36,
@@ -17356,9 +17357,11 @@
               "UP031": 1
             },
             "by_file": {
+              "scripts/analyze_breadth_acquisition.py": 2,
               "scripts/analyze_feasible_frontier.py": 1,
               "scripts/analyze_sleeve_scaling.py": 8,
               "scripts/analyze_target_2p5.py": 5,
+              "scripts/capture_eia930_vintages.py": 1,
               "scripts/check_retracted_claims.py": 2,
               "scripts/collect_cef.py": 8,
               "scripts/collect_multivenue_funding.py": 7,
@@ -17414,10 +17417,12 @@
           "returns_evaluated": false
         },
         "source_sha256": {
-          "pyproject.toml": "11ce9d79beb9841b62504806de586bd2206179fd7cd31d9bee0f4a66fa99890f",
+          "pyproject.toml": "39ea6f59d52750ab804f73633c6b9b6493b1b0a2bcd540bd304e096edcad3685",
+          "scripts/analyze_breadth_acquisition.py": "3cb68af3ef082685243b07783047bf7c3de0d4c65c76097765b07fcb826b7d46",
           "scripts/analyze_feasible_frontier.py": "92934d65f1a180120cffc16f3182af5d2ebe6343d552cc9a7f9fe040eb1c9f5d",
           "scripts/analyze_sleeve_scaling.py": "fc624a3b3a301e4778dab5240f784b71de145543514c7c29f1eaf0f302c6f2f1",
           "scripts/analyze_target_2p5.py": "018faf228615df7627bfeec2857fb53e6dd85c0bffb6101090720c7d4b5288fc",
+          "scripts/capture_eia930_vintages.py": "8fee721f5f19374ce213f21c47b0c8c55bbe8ca66086047141d8ad718dfb7ea6",
           "scripts/check_retracted_claims.py": "3d06644a9bd7f3cca9ffe76db1f52497493f258b8536f068a1e52888267c5343",
           "scripts/collect_cef.py": "c86f2891e54527bea9740d6562cc24885ac270b32910ae7da199ce93bb3cba71",
           "scripts/collect_multivenue_funding.py": "0724a91f94b85f4958c8530fc4dbd81f11dd2d7581d26e0b667dfd875b0d419e",
@@ -17465,9 +17470,9 @@
           "scripts/vps/collect_venues.py": "54870d67f99fa677486b71eae1e0ca4f6579b29e6b9facba6f37f4bdee523b69",
           "scripts/vps/stale_lock.py": "f40b992005f87b733ea6e71a447219a55d8200585c388ac06e13394cb0195a54"
         },
-        "content_hash": "sha256:1781ff7287cca92f7df4de4466ec3b0a50945722110f19cdf7e4bb129055e971"
+        "content_hash": "sha256:059e6c6e0d5d680128b464ff068f83388974394b5179b1697dc0fd4ab49de277"
       },
-      "source_sha256": "a7ef725671bd627328f5d5e6a856ad5c1e6490da498d26d350b1e1a05e04b1db",
+      "source_sha256": "48d4925d3e459383882af40f8ed8113d80dc592b266e48e56e367c1a86e2b2ab",
       "public_path": "/glassbox/lint_debt_contract.json",
       "book_path": "/research/engineering-quality.md",
       "source_path": "artifacts/engineering/lint_debt_contract.json"
@@ -17506,23 +17511,23 @@
         "claim_boundary": "The event-driven engine can replay fully covered financing schedules and persist their cash effects. No historical rate coverage is bundled, and this does not prove broker-specific margin, collateral, or live statement parity.",
         "source_sha256": {
           "financing_domain": "4e7627ec97e6d49d82210fff5877382c7bc4af54d9cc77b0ea3a791a7b9dbf1b",
-          "event_driven_engine": "710cf74e6783511144059d5c434106e23749459225f1ac0c005a4dc2126c93c7",
+          "event_driven_engine": "fe2b70d304a615f44eb7cf87bb3381f383cb526fc987f2a0569db7faa4535103",
           "ledger": "89d524b11ecb8863f3342a0aeed20d9229bc2194364c319fd306f0de8786e1d7",
           "result_artifact": "fc51670733ba7605cd214ff2a06b40fb8b4515ce78fbf47cdd145386525a6c31",
           "domain_tests": "4a82b163634b2e6e4277a77399b011bbfa77f09540df161891f82242eec50c30",
           "ledger_tests": "5fe43c9974bd1b691555005f615ca83f0a4f29b7bf58625c218d2ce788233d3f",
-          "engine_tests": "4fcb02ea69e7e5382bc10d49fb22f3ee6b49e9219cec38f31e80263a72849b06"
+          "engine_tests": "496a6837e81ee976c31ba5d1e9f60540b3992a78e9f6a672d0070cbce23e4655"
         },
-        "content_hash": "sha256:f4c621c43e51cd1e20db248d9ed541f644f6fd5a0e0bd62d1fe33090e484d429"
+        "content_hash": "sha256:9b74d47d0e73c4ca91ae76fc8360592d3a81141666180aad0088e37314caa621"
       },
-      "source_sha256": "12a7e909a85c49132aa413cb44c131c0297a88ee8f8d2ae27ff1f305a0fa92f0",
+      "source_sha256": "2d0a68900d4fc4b807794da7518c21cd00eac12b00b4205f0f7b46d5e9f19f6a",
       "public_path": "/glassbox/financing_contract.json",
       "book_path": "/research/financing-replay.md",
       "source_path": "artifacts/engineering/financing_contract.json"
     },
     "corporate_action_lifecycle": {
       "contract": {
-        "schema": "alphaforge.corporate-action-contract.v1",
+        "schema": "alphaforge.corporate-action-contract.v2",
         "classification": "engineering capability; not return or admission evidence",
         "status": "EVENT_DRIVEN_BACKTEST_INTEGRATED",
         "trial_accounting": {
@@ -17538,7 +17543,8 @@
           "signed cash-dividend accrual for long and short ex-date holdings",
           "persisted corporate_actions.parquet cashflow and transformation ledger",
           "delisting liquidation only with explicit SCD2 delisted_ts support",
-          "fail-closed terminal price history for instruments still marked active"
+          "fail-closed terminal price history for instruments still marked active",
+          "lake NaN split-cash normalization to null at the engine boundary while non-finite cash-dividend amounts still fail closed"
         ],
         "not_implemented": [
           "payable-date cash settlement and withholding-tax conventions",
@@ -17551,16 +17557,17 @@
         "claim_boundary": "The event-driven engine now accounts for source-bound splits, cash dividends, and metadata-confirmed delistings. It does not establish historical coverage completeness, model complex reorganizations, or prove live broker handling.",
         "source_sha256": {
           "corporate_action_domain": "5fdb7e4caeecaba304b337b664d72661d77c6c2dd5b94095c54a026633aaa238",
-          "event_driven_engine": "710cf74e6783511144059d5c434106e23749459225f1ac0c005a4dc2126c93c7",
+          "event_driven_engine": "fe2b70d304a615f44eb7cf87bb3381f383cb526fc987f2a0569db7faa4535103",
           "ledger": "89d524b11ecb8863f3342a0aeed20d9229bc2194364c319fd306f0de8786e1d7",
           "result_artifact": "fc51670733ba7605cd214ff2a06b40fb8b4515ce78fbf47cdd145386525a6c31",
           "domain_tests": "d00b138f80d97cf8ccb863417b0eb680b18e87739f43b5bb982ba60637c4b6f3",
-          "engine_tests": "4fcb02ea69e7e5382bc10d49fb22f3ee6b49e9219cec38f31e80263a72849b06",
-          "integration_tests": "9f7543d9ee382b0a394b0638e013822b5bc1f457847f4c51e3e2ade2feaf6952"
+          "engine_tests": "496a6837e81ee976c31ba5d1e9f60540b3992a78e9f6a672d0070cbce23e4655",
+          "integration_tests": "9f7543d9ee382b0a394b0638e013822b5bc1f457847f4c51e3e2ade2feaf6952",
+          "nan_boundary_tests": "114fbbc7722c519f592494e7c8aa5388eef3b561044f34c4d6edefdf12ed4897"
         },
-        "content_hash": "sha256:32ee562dad6d082554409597571d8aa3f900ed2b02914208320f97bc34b8ef29"
+        "content_hash": "sha256:00838562b8ab5c816621e0312c292919298d33ef9dc9d602bbaace437d929b9c"
       },
-      "source_sha256": "6d9ed8aed58fcb2ff9ba616e9b3b2c53e271d38cf720b100666c88c42a4c77ea",
+      "source_sha256": "afc4ba95ad06343fb95e17d8662dcb7dc014ecf2470a3a5efba934d7ca44aad2",
       "public_path": "/glassbox/corporate_action_contract.json",
       "book_path": "/research/corporate-action-lifecycle.md",
       "source_path": "artifacts/engineering/corporate_action_contract.json"
@@ -17608,12 +17615,12 @@
         "source_sha256": {
           "implementation": "dc0f6c51824063106a162671f0a4f24fa4f3648faffbe9f9105c5ab6fa18180d",
           "tests": "c6cab19c6663d9cd202819b40114c0beb01766e2eb291e653fa25ad83e444eb5",
-          "event_driven_engine": "710cf74e6783511144059d5c434106e23749459225f1ac0c005a4dc2126c93c7",
-          "event_driven_tests": "4fcb02ea69e7e5382bc10d49fb22f3ee6b49e9219cec38f31e80263a72849b06"
+          "event_driven_engine": "fe2b70d304a615f44eb7cf87bb3381f383cb526fc987f2a0569db7faa4535103",
+          "event_driven_tests": "496a6837e81ee976c31ba5d1e9f60540b3992a78e9f6a672d0070cbce23e4655"
         },
-        "content_hash": "sha256:e47bbeb014e065b1eac3066ca3aa3603598bae769c26003fec282a58d5647c08"
+        "content_hash": "sha256:03ea8f703518bc906f9fef5889886b35ceb4a44c7827625e3bf8c4a1c4028f70"
       },
-      "source_sha256": "0ec4a7d2c857f39c0bef62bda0b1590930f86c65b061081c07be74cd9f3885a4",
+      "source_sha256": "363baf2c891914289a329dfd4f86e52a3cfd123f82dfa97b97c931d1da75127e",
       "public_path": "/glassbox/borrow_execution_contract.json",
       "book_path": "/research/borrow-execution-foundation.md",
       "source_path": "artifacts/engineering/borrow_execution_contract.json"
@@ -17761,9 +17768,10 @@
     },
     "market_status_replay": {
       "contract": {
-        "schema": "alphaforge.market-status-contract.v1",
+        "schema": "alphaforge.market-status-contract.v4",
         "classification": "engineering capability; not return or admission evidence",
         "status": "EVENT_DRIVEN_BACKTEST_INTEGRATED",
+        "coverage_status": "REVIEWED_INGEST_AND_BOUND_PREFLIGHT_NO_BUNDLED_CORPUS",
         "trial_accounting": {
           "market_data_opened": false,
           "returns_evaluated": false,
@@ -17774,36 +17782,52 @@
           "explicit OPEN, HALTED, OUTAGE, AUCTION_ONLY, and CLOSE_ONLY states",
           "future-known status rejection and per-scope overlap rejection",
           "instrument status precedence over venue status",
-          "coverage-complete fill-time enforcement in the event-driven backtester",
+          "coverage-complete run-level preflight for every instrument over the full backtest interval before bars are read",
           "halt, outage, and auction-only execution blocking even when a bar exists",
           "close-only risk-increase blocking with reduce-only permission",
-          "no-provider compatibility path preserved"
+          "no-provider compatibility path preserved",
+          "strict reviewed manifests bound to the exact SHA-256 digest of supplied source bytes",
+          "separate source publication, event observation, historical availability, local capture, and review timestamps",
+          "dual-review qualification and collision-checked source-record identities",
+          "exact official-exchange versus vendor reconciliation of status, scope, and effective interval",
+          "reconciliation-only pre-run coverage audit over explicit required instrument intervals without treating source silence as OPEN",
+          "instrument-over-venue precedence, future-known blocking without fallback, exact covered/gap duration reconciliation, and lineage-bearing coverage segments",
+          "reviewed provider construction refuses disclosed gaps and binds each requested run to a deterministic source-reconciled coverage-audit hash"
         ],
+        "invariants": {
+          "source_lineage": "unknown manifest fields, source-byte digest mismatch, identity collisions, credential-bearing/non-HTTPS URLs, and impossible timestamp order fail closed",
+          "historical_availability": "replay knowledge is bounded by the source-disclosed available_at timestamp; local capture and review remain separately auditable",
+          "independent_confirmation": "reconciliation requires dual-reviewed official and vendor observations with distinct source identities and bytes and exact economic agreement",
+          "coverage_preflight": "every required millisecond must resolve to an effective reconciled event already available at that decision boundary; missing and future-known intervals are published explicitly and durations must reconcile exactly",
+          "engine_binding": "enabling market-status replay requires full run-interval coverage before any bar or strategy decision; reviewed runs record the exact coverage-audit hash"
+        },
         "not_implemented": [
-          "historical exchange-status feed ingestion and cross-source reconciliation",
+          "a bundled content-verified historical exchange-status corpus, production feed adapters, automated capture, and empirical broad-market coverage evidence",
           "auction imbalance, queue position, and auction-price formation",
           "cancel/replace state for resting orders across outage boundaries",
           "cross-venue smart routing and venue-specific failover",
           "live broker/exchange status polling and reconciliation",
           "restart persistence for outage-blocked strategy intents"
         ],
-        "claim_boundary": "Explicit status replay can block impossible fills; it does not create historical status coverage, model auction prices, or prove live venue failover.",
+        "claim_boundary": "Explicit status replay can block impossible fills, and reviewed source-bound manifests can normalize and exactly reconcile supplied official/vendor records. A preflight audit proves completeness for explicitly supplied requirements and reconciliations and is bound to each reviewed run. No historical status corpus or production adapter is bundled; this does not prove broad-market coverage, model auction prices, or establish live venue failover.",
         "source_sha256": {
-          "status_implementation": "977d8d466ee464f411ba2b680e43f0ba4c57f77bf911726c10139ba80d376949",
-          "status_tests": "9cf66281069b97c385e574a2f3a7d6ec18088c19131ab1167768f0f525f29e73",
-          "event_driven_engine": "710cf74e6783511144059d5c434106e23749459225f1ac0c005a4dc2126c93c7",
-          "event_driven_tests": "4fcb02ea69e7e5382bc10d49fb22f3ee6b49e9219cec38f31e80263a72849b06"
+          "status_implementation": "91c4ec27018353ddea72d06d83c9ebba0e017dc0215ebb4587bacc4a86455e6a",
+          "status_tests": "dbafe152a9849cb53960ada7e28d4341a45c940c5411e8eb490f661559ba33f5",
+          "ingest_implementation": "97559540e3366f1cd4f64cc899f4aad60fced481e169adc49faff12125f0a4e3",
+          "ingest_tests": "f1c5860a3e83f7758b013f6275951589b39ea9b9b5217cfb303891870c0499ba",
+          "event_driven_engine": "fe2b70d304a615f44eb7cf87bb3381f383cb526fc987f2a0569db7faa4535103",
+          "event_driven_tests": "496a6837e81ee976c31ba5d1e9f60540b3992a78e9f6a672d0070cbce23e4655"
         },
-        "content_hash": "sha256:cce4db11205292aefa85d760251a7b44795eb043a1c454e0cc05494c99880efd"
+        "content_hash": "sha256:318d2c00aa80780543dbc1d05fcb966be3aef1491a28c7a7430b8d8b2340c6c1"
       },
-      "source_sha256": "69a9f4fe7d9358b752d8d90d6bda9c8ad518236bb3e59f95f1d8b8c76b8ecee2",
+      "source_sha256": "d299e30d0e3e7376e61a3cba81261dd206999274026498a24202f2e3350e4b38",
       "public_path": "/glassbox/market_status_contract.json",
       "book_path": "/research/market-status-replay.md",
       "source_path": "artifacts/engineering/market_status_contract.json"
     },
     "options_execution": {
       "contract": {
-        "schema": "alphaforge.options-execution-contract.v9",
+        "schema": "alphaforge.options-execution-contract.v12",
         "classification": "engineering capability; not return or admission evidence",
         "status": "DOMAIN_PRIMITIVES_ONLY",
         "trial_accounting": {
@@ -17833,6 +17857,10 @@
           "net debit or minimum-credit package limits, ratio-preserving IOC partial fills, and atomic FOK rejection",
           "optional point-in-time per-leg OPEN/HALTED/OUTAGE/AUCTION_ONLY/CLOSE_ONLY package status replay with fail-closed missing coverage",
           "close-only package execution only after integer-contract position evidence proves every requested leg reduces without increasing or flipping exposure",
+          "strict source-byte-bound reviewed status manifests with separate publication, observation, availability, capture, and review timestamps",
+          "exact dual-reviewed official-exchange versus vendor status reconciliation usable for OPTION instrument identities",
+          "reconciliation-only status coverage preflight for explicit OPTION instrument intervals with missing and future-known gaps published exactly",
+          "source-reconciled status providers refuse uncovered requested intervals and return a deterministic coverage-audit hash for run artifacts",
           "exact-decimal point-in-time option fee schedule revisions keyed by venue, account class, product group, and premium currency",
           "side-, liquidity-, and event-scoped per-contract and premium-rate fees, minima, caps, rebates, explicit component rounding, exercise fees, and assignment fees",
           "complete-matrix exact-decimal internal option scenario margin with cross-leg P&L netting and locked model/input artifact hashes",
@@ -17852,6 +17880,8 @@
           "occ_source_archive": "memo URL identities are allowlisted; immutable manifests bind observation time, HTTP metadata, exact SHA-256 bytes, and a reverified content-addressed blob",
           "displayed_package_execution": "positive ratios cross asks, negative ratios cross strictly positive bids, the smallest whole-number displayed leg capacity controls every leg, and execution records require one premium currency and reconcile premium cash to net package debit",
           "option_market_status": "when status replay is required, every executable leg must have an effective, known status; halts, outages, and continuous fills in auction-only state block, while close-only permits only pre-validated reduce-only packages",
+          "market_status_ingest": "unknown fields, source-digest mismatch, impossible timestamp order, identity collision, future-known use, missing dual review, and cross-source status/scope/interval disagreement fail closed",
+          "market_status_coverage": "source silence never implies OPEN; instrument status keeps precedence over venue status, future-known specific status cannot fall back to venue coverage, and covered plus gap durations must equal every explicit requirement",
           "option_fee_assessment": "only a schedule revision both effective and available at assessment may apply; trade fees consume accepted leg executions and exact fee lines must reconcile to their Decimal total after declared component rounding, minima, and caps",
           "internal_scenario_margin": "every scenario must price every position exactly once in one premium currency; future, stale, incomplete, or malformed matrices fail closed and every reported requirement component reconciles to its recorded policy parameters; the snapshot model id must equal the policy risk method"
         },
@@ -17860,12 +17890,12 @@
           "operational unattended OCC acquisition (the live endpoint returned a Cloudflare HTTP 403 managed challenge to direct and headless-browser clients on 2026-08-18), automated PDF text extraction, a reviewed historical memo corpus, and a production vendor-terms adapter",
           "implied-volatility fitting, put-call parity/rate-dividend checks, arbitrage repair, and surface interpolation",
           "dividend, rates, borrow, early-exercise, and assignment-probability models",
-          "a content-verified historical venue/account/product fee corpus and production fee adapter; beyond-displayed-size impact, queue position, complex-order-book price improvement, and complex-order auction execution; historical option status ingestion and live outage polling/failover",
+          "a content-verified historical venue/account/product fee corpus and production fee adapter; beyond-displayed-size impact, queue position, complex-order-book price improvement, and complex-order auction execution; a content-verified historical option-status corpus, production status adapters, broad coverage evidence, and live outage polling/failover",
           "broker/OCC/regulatory margin equivalence, a validated option stress repricer and calibrated scenario corpus, opening-premium collateral integration, margin calls, forced liquidation, and live broker margin reconciliation",
           "end-to-end options backtest ledger integration",
           "options broker routing, exercise instructions, or live reconciliation"
         ],
-        "claim_boundary": "These primitives make option quote, cross-strike integrity, adjusted-deliverable normalization/reconciliation, source-byte archival, displayed-size package crossing, exact fee-assessment semantics, internal scenario-margin arithmetic, and lifecycle assumptions explicit. Internal scenario margin is not broker, clearinghouse, exchange, or regulatory margin and does not include opening premium cash. No historical fee schedule corpus or calibrated venue rates are bundled. The package replay is an atomic crossing assumption over independently displayed legs, not evidence of simultaneous market fillability. Status replay consumes supplied PIT events but has no historical option status corpus or live venue polling. The archive accepts an injectable transport, but current live OCC access is challenge-blocked. These primitives do not constitute a historical OCC corpus, prove adjustment coverage, actual package fillability, fill probability, or price improvement; create a fitted surface, an executable options strategy, or a sleeve-admission case.",
+        "claim_boundary": "These primitives make option quote, cross-strike integrity, adjusted-deliverable normalization/reconciliation, source-byte archival, displayed-size package crossing, exact fee-assessment semantics, internal scenario-margin arithmetic, and lifecycle assumptions explicit. Internal scenario margin is not broker, clearinghouse, exchange, or regulatory margin and does not include opening premium cash. No historical fee schedule corpus or calibrated venue rates are bundled. The package replay is an atomic crossing assumption over independently displayed legs, not evidence of simultaneous market fillability. Reviewed status manifests can normalize and reconcile supplied PIT records and audit explicitly supplied interval coverage, but no historical option-status corpus, production adapter, broad-market coverage evidence, or live venue polling is bundled. The archive accepts an injectable transport, but current live OCC access is challenge-blocked. These primitives do not constitute a historical OCC corpus, prove adjustment coverage, actual package fillability, fill probability, or price improvement; create a fitted surface, an executable options strategy, or a sleeve-admission case.",
         "source_sha256": {
           "implementation": "1758c2a0574eea4143f94a974d9ee3c618f7e8546dd57c030e14ceb629e69c64",
           "tests": "a50696062b636d9d05e1831f6cabbd32775d3d288ee6523022374f5b92cf43c6",
@@ -17880,16 +17910,18 @@
           "fee_assessment_implementation": "8fb43265a101001a1ea4ec7a975266a8b7be1f405d82016fd909a49178dc67f3",
           "fee_assessment_tests": "ab5a1086ec6dfc24fe879bb8eee07bd90998416b35c8133191cef653260d9adf",
           "scenario_margin_implementation": "1bdf492e64f801a2788c7501eb24e616c901e681a5ec35a07b71047372df4d91",
-          "scenario_margin_tests": "4d5d741232adf559d95160fb6df46873e17d78773a97b78529c8be7f46b36212"
+          "scenario_margin_tests": "4d5d741232adf559d95160fb6df46873e17d78773a97b78529c8be7f46b36212",
+          "market_status_ingest_implementation": "97559540e3366f1cd4f64cc899f4aad60fced481e169adc49faff12125f0a4e3",
+          "market_status_ingest_tests": "f1c5860a3e83f7758b013f6275951589b39ea9b9b5217cfb303891870c0499ba"
         },
-        "content_hash": "sha256:cd32e0e611ca385306f21a39cf8c67cdfceb132e48f703c9f598c6108457e287"
+        "content_hash": "sha256:fd58e9f8a9617f6f26c27bda66ade3b0b04c793b28a2e0dca80db2763d316520"
       },
-      "source_sha256": "bccdbaf6c12553ef6fdaa1920fb96c2dc85ffe065ffa8f3516ef75420cb8a7a8",
+      "source_sha256": "62294044ea3cffcdcee6c7f50e892950b36e55d68863cf8c00ff7750385ccd7c",
       "public_path": "/glassbox/options_execution_contract.json",
       "book_path": "/research/options-execution-foundation.md",
       "source_path": "artifacts/engineering/options_execution_contract.json"
     }
   },
-  "generated_at": "2026-08-18T13:06:30.728546+00:00",
-  "content_hash": "sha256:418f56374ca845394e13df96ed0326ad933a4ecc60be12dc12e5ba0099ff4fad"
+  "generated_at": "2026-08-18T17:49:22.085132+00:00",
+  "content_hash": "sha256:d9fc3a6519fbf1945b561aa36eee103e468520e11aaf24b1a4b8b07abc4e35e6"
 }

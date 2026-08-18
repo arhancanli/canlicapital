@@ -4,7 +4,7 @@
   "command": "ruff check <scope> --output-format json",
   "scopes": {
     "production": {
-      "python_files": 161,
+      "python_files": 162,
       "violations": 0,
       "files_with_violations": 0,
       "safe_autofixes_available": 0,
@@ -13,7 +13,7 @@
       "by_file": {}
     },
     "tests": {
-      "python_files": 247,
+      "python_files": 249,
       "violations": 0,
       "files_with_violations": 0,
       "safe_autofixes_available": 0,
@@ -22,14 +22,15 @@
       "by_file": {}
     },
     "historical_scripts": {
-      "python_files": 163,
-      "violations": 360,
-      "files_with_violations": 49,
-      "safe_autofixes_available": 107,
+      "python_files": 165,
+      "violations": 363,
+      "files_with_violations": 51,
+      "safe_autofixes_available": 109,
       "unsafe_autofixes_available": 60,
       "by_rule": {
         "B007": 4,
         "B023": 5,
+        "B904": 1,
         "B905": 12,
         "C401": 2,
         "C408": 15,
@@ -43,12 +44,12 @@
         "E702": 7,
         "E741": 3,
         "F401": 6,
-        "F541": 7,
+        "F541": 8,
         "F841": 8,
         "I001": 2,
         "RUF001": 2,
         "RUF005": 1,
-        "RUF010": 5,
+        "RUF010": 6,
         "RUF023": 1,
         "RUF034": 1,
         "RUF046": 36,
@@ -61,9 +62,11 @@
         "UP031": 1
       },
       "by_file": {
+        "scripts/analyze_breadth_acquisition.py": 2,
         "scripts/analyze_feasible_frontier.py": 1,
         "scripts/analyze_sleeve_scaling.py": 8,
         "scripts/analyze_target_2p5.py": 5,
+        "scripts/capture_eia930_vintages.py": 1,
         "scripts/check_retracted_claims.py": 2,
         "scripts/collect_cef.py": 8,
         "scripts/collect_multivenue_funding.py": 7,
@@ -119,10 +122,12 @@
     "returns_evaluated": false
   },
   "source_sha256": {
-    "pyproject.toml": "11ce9d79beb9841b62504806de586bd2206179fd7cd31d9bee0f4a66fa99890f",
+    "pyproject.toml": "39ea6f59d52750ab804f73633c6b9b6493b1b0a2bcd540bd304e096edcad3685",
+    "scripts/analyze_breadth_acquisition.py": "3cb68af3ef082685243b07783047bf7c3de0d4c65c76097765b07fcb826b7d46",
     "scripts/analyze_feasible_frontier.py": "92934d65f1a180120cffc16f3182af5d2ebe6343d552cc9a7f9fe040eb1c9f5d",
     "scripts/analyze_sleeve_scaling.py": "fc624a3b3a301e4778dab5240f784b71de145543514c7c29f1eaf0f302c6f2f1",
     "scripts/analyze_target_2p5.py": "018faf228615df7627bfeec2857fb53e6dd85c0bffb6101090720c7d4b5288fc",
+    "scripts/capture_eia930_vintages.py": "8fee721f5f19374ce213f21c47b0c8c55bbe8ca66086047141d8ad718dfb7ea6",
     "scripts/check_retracted_claims.py": "3d06644a9bd7f3cca9ffe76db1f52497493f258b8536f068a1e52888267c5343",
     "scripts/collect_cef.py": "c86f2891e54527bea9740d6562cc24885ac270b32910ae7da199ce93bb3cba71",
     "scripts/collect_multivenue_funding.py": "0724a91f94b85f4958c8530fc4dbd81f11dd2d7581d26e0b667dfd875b0d419e",
@@ -170,5 +175,5 @@
     "scripts/vps/collect_venues.py": "54870d67f99fa677486b71eae1e0ca4f6579b29e6b9facba6f37f4bdee523b69",
     "scripts/vps/stale_lock.py": "f40b992005f87b733ea6e71a447219a55d8200585c388ac06e13394cb0195a54"
   },
-  "content_hash": "sha256:1781ff7287cca92f7df4de4466ec3b0a50945722110f19cdf7e4bb129055e971"
+  "content_hash": "sha256:059e6c6e0d5d680128b464ff068f83388974394b5179b1697dc0fd4ab49de277"
 }
