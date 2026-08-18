@@ -1,0 +1,40 @@
+{
+  "schema": "canli.feasibility.pre-fomc-announcement-drift.v1",
+  "candidate": "pre_fomc_announcement_drift",
+  "generated_at": "2026-08-15T21:11:30.934495+00:00",
+  "return_data_opened": false,
+  "return_hypotheses_spent": 0,
+  "scheduled_events": 79,
+  "period_start": "2016-01-27",
+  "period_end": "2025-12-10",
+  "year_counts": {
+    "2016": 8,
+    "2017": 8,
+    "2018": 8,
+    "2019": 8,
+    "2020": 7,
+    "2021": 8,
+    "2022": 8,
+    "2023": 8,
+    "2024": 8,
+    "2025": 8
+  },
+  "years_with_eight_regular_decisions": 9,
+  "documented_2020_regular_decisions": 7,
+  "release_time_coverage_rate": 1.0,
+  "release_at_2pm_et_rate": 1.0,
+  "point_in_time_schedule_revision_lineage_rate": 0.0,
+  "decision": "CALENDAR_LINEAGE_REQUIRED",
+  "blockers": [
+    "point_in_time_schedule_revision_lineage"
+  ],
+  "reason": "Official archives identify regular decision dates and release clocks, but the live calendar says future meetings are tentative until confirmed at the preceding meeting. The ex-post pages do not provide a complete first-known/revision history. Returns remain locked.",
+  "source_manifest_sha256": "a1a5196803cc7dea80a59f20120522b6057fabca0a3bdd13ce12f99aa011945c",
+  "events_sha256": "049b20e54e32376ade4e2366a83dc5cb83e3ceca134779009da066bd2bdb77f5",
+  "method": {
+    "official_sources_only": true,
+    "regular_meetings_only": true,
+    "conference_calls_excluded": true,
+    "prices_or_returns_read": false
+  }
+}

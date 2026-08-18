@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="en" data-page="open">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Canli Capital / Proven in the open, the glass-box record</title>
+  <meta name="description" content="The glass box. Canli Capital publishes every number from a real engine artifact: the live paper track record as it accrues from go-live, the kill log of strategies that failed with their real net-of-cost numbers, the pre-registered trial budget, the honest deflation verdict (a C+ no-deploy on crypto alone), and the byte-reproducible backtest. Zero fabrication. Simulation and paper only, no real capital, no claimed returns." />
+  <meta name="theme-color" content="#0A0B0D" />
+  <meta name="color-scheme" content="dark" />
+  <link rel="canonical" href="https://canlicapital.com/open" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Canli Capital" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:title" content="Canli Capital / Proven in the open" />
+  <meta property="og:description" content="The glass box: live paper track record accruing from go-live, the kill log with real negative numbers, pre-registration, the honest deflation verdict (C+, no-deploy on crypto alone), and a byte-reproducible backtest. Every figure read from a real artifact. No claimed returns." />
+  <meta property="og:url" content="https://canlicapital.com/open" />
+  <meta property="og:image" content="https://canlicapital.com/og.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:alt" content="Canli Capital. A multi-signal quant engine, proven in the open. Simulation and live paper only, no real capital, no claimed return." />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Canli Capital / Proven in the open" />
+  <meta name="twitter:description" content="The glass box: live paper track record accruing from go-live, the kill log with real negative numbers, pre-registration, the honest deflation verdict, and a byte-reproducible backtest. Every figure read from a real artifact." />
+  <meta name="twitter:image" content="https://canlicapital.com/og.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@300..700&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@300..700&display=swap" />
+
+  <link rel="stylesheet" href="./css/styles.css" />
+  <link rel="stylesheet" href="./css/motion.css" />
+  <link rel="stylesheet" href="./css/shell.css" />
+  <link rel="stylesheet" href="./css/waitlist.css" />
+  <!-- Page-specific layer for /open ONLY: the standfirst banner, the live track-
+       record frame + curve, the kill-log ledger, the pre-registration slot grid,
+       the deflation gauge, and the reproducibility tablet. Loaded LAST so it only
+       ADDS components on top of the single design system; it never redefines a
+       token, a type class, an easing, the cursor, the rail, or the grain. -->
+  <link rel="stylesheet" href="./css/open.css" />
+
+  <!-- Favicon set (the brand mark: one signal dot on the void). The SVG is the
+       primary, scalable icon; the .ico is the legacy fallback; the PNG sizes serve
+       iOS home-screen and PWA install. All long-cached as static assets. -->
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="/favicon.ico" sizes="32x32" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/manifest.webmanifest" />
+
+  <!-- Organization schema (JSON-LD). States only what is true: the firm, the brand,
+       the flagship engine, and the disclaimer that nothing here is investment
+       advice. No performance claim. -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Canli Capital",
+    "url": "https://canlicapital.com/",
+    "logo": "https://canlicapital.com/icon-512.png",
+    "image": "https://canlicapital.com/og.png",
+    "description": "A quantitative research platform building ALPHAC: a paper-traded, cross-asset book of four equal-quarter sleeves spanning equity momentum, managed-futures trend, funding carry and point-in-time macro surprise. Methods, failures and corrections are published in the open. No real capital and no claimed returns.",
+    "foundingDate": "2026",
+    "founder": { "@type": "Person", "name": "Arhan Canli" },
+    "slogan": "Institutional discipline, made legible.",
+    "disclaimer": "Nothing on this site is investment advice, an offer, or a solicitation. The algorithms are in simulation and live paper trading. No statement describes live capital performance, and no return is claimed."
+  }
+  </script>
+
+  <style>
+    .skip-link {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 200;
+      transform: translateY(-120%);
+      margin: 12px;
+      padding: 10px 16px;
+      background: #0A0B0D;
+      color: #F4F1EA;
+      font: 500 13px/1 "Space Grotesk", system-ui, sans-serif;
+      letter-spacing: 0.04em;
+      text-decoration: none;
+      border: 1px solid #C8553D;
+      border-radius: 2px;
+      transition: transform 180ms ease;
+    }
+    .skip-link:focus { transform: translateY(0); }
+    .skip-link:focus-visible { outline: 2px solid #F4F1EA; outline-offset: 3px; }
+  </style>
+
+  <script>document.documentElement.classList.add("js");</script>
+
+  <!-- Per-page config for the shared bootstrap. /open is the proof / disclosure
+       chapter of the one manifold: the camera sits in the resolved, settled band
+       (high convergence, restrained, never triumphant), because the page's whole
+       posture is honest standing, not a victory lap. The chapter labels feed the
+       living rail counter, indexed by each section's data-section. See
+       page-config.js. This must run before main.js. -->
+  <script>
+    window.__MERIDIAN_PAGE = {
+      id: "open",
+      chapters: [
+        "Glass box", "Track record", "Kill log", "Pre-registration",
+        "Deflation", "Capacity", "Reproducibility", "Colophon"
+      ],
+      sceneBand: [0.74, 0.98],
+      sceneStill: 0.8
+    };
+  </script>
+</head>
+
+<body>
+
+  <a href="#content" class="skip-link">Skip to content</a>
+
+
+  </div>
+
+  <canvas id="scene" class="scene" aria-hidden="true"></canvas>
+  <div class="scene-fallback" id="sceneFallback" aria-hidden="true"></div>
+
+
+  <nav class="rail" id="rail" aria-label="Section navigation">
+    <span class="rail__line" aria-hidden="true"><span class="rail__fill" id="railFill"></span></span>
+    <div class="rail__head" id="railHead" aria-hidden="true">
+      <span class="rail__index mono-label" id="railIndex">00</span>
+      <span class="rail__chapter label" id="railName">Glass box</span>
+    </div>
+    <ul class="rail__list">
+      <li><a href="#hero" class="rail__item" data-rail="0"><span class="rail__num mono-label">00</span></a></li>
+      <li><a href="#track" class="rail__item" data-rail="1"><span class="rail__num mono-label">01</span></a></li>
+      <li><a href="#killlog" class="rail__item" data-rail="2"><span class="rail__num mono-label">02</span></a></li>
+      <li><a href="#prereg" class="rail__item" data-rail="3"><span class="rail__num mono-label">03</span></a></li>
+      <li><a href="#deflation" class="rail__item" data-rail="4"><span class="rail__num mono-label">04</span></a></li>
+      <li><a href="#capacity" class="rail__item" data-rail="5"><span class="rail__num mono-label">05</span></a></li>
+      <li><a href="#reproduce" class="rail__item" data-rail="6"><span class="rail__num mono-label">06</span></a></li>
+    </ul>
+  </nav>
+
+  <!-- Shared top nav: js/shell.js renders the links + CTA into this .nav__links
+       and marks the current page (data-page="open"). -->
+  <header class="nav" id="nav">
+    <div class="nav__inner">
+      <a href="/" class="nav__brand label" data-brand aria-label="Canli Capital, home">Canli Capital</a>
+      <nav class="nav__links" aria-label="Primary"></nav>
+    </div>
+  </header>
+
+  <main id="content" class="content" tabindex="-1">
+
+    <!-- =================================================================== -->
+    <!-- (00) HERO / THE GLASS-BOX MANIFESTO                                   -->
+    <!-- =================================================================== -->
+    <section class="open-hero hero section" id="hero" data-section="0" aria-labelledby="open-hero-word">
+      <div class="hero__status mono-label" aria-label="Disclosure status">
+        <span class="dot dot--pulse ridge-accent" aria-hidden="true"></span>
+        <span>Glass box</span>
+        <span class="hero__status-sep" aria-hidden="true">&middot;</span>
+        <span class="hero__status-val">Every number read from a real artifact</span>
+      </div>
+
+      <div class="open-hero__ghost" aria-hidden="true">Open</div>
+
+      <div class="hero__body">
+        <p class="eyebrow label reveal-line"><span class="idx mono-label">00 /</span> The glass box</p>
+        <h1 class="hero__word display-xl" id="open-hero-word" data-parallax="0.12">
+          <span class="mask" data-chars><span class="mask__inner">Proven in</span></span>
+          <span class="mask" data-chars><span class="mask__inner">the open.</span></span>
+        </h1>
+        <p class="open-hero__lede display-m reveal-fade">
+          Including the strategies that failed, with their real numbers.
+        </p>
+        <p class="hero__sub body-l reveal-fade">
+          Every figure here is read straight from a real engine artifact, never typed
+          by hand, down to the sleeves we killed and the grade we did not pass.
+        </p>
+        <ul class="open-hero__pledge reveal-fade" aria-label="The honesty pledge">
+          <li><span class="open-hero__k">Zero fabrication.</span> If a value is not available, the element is omitted, never invented.</li>
+          <li><span class="open-hero__k">No fake history.</span> The live track record accrues from go-live. It claims no history it did not live.</li>
+          <li><span class="open-hero__k">Failures published.</span> Killed sleeves, the C+ deflation null, all in full.</li>
+          <li><span class="open-hero__k">Reproducible.</span> The backtest is content-hashed and reproduces byte-for-byte: re-run the engine, get the same numbers.</li>
+        </ul>
+        <p class="open-hero__proof mono-label reveal-fade" aria-label="The glass box in numbers" aria-live="polite">
+          <span data-kpi="killed">--</span> killed
+          <span class="open-hero__proof-sep" aria-hidden="true">&middot;</span>
+          <span data-kpi="survived">--</span> survived
+          <span class="open-hero__proof-sep" aria-hidden="true">&middot;</span>
+          <span data-kpi="grade">--</span> deflation grade
+          <span class="open-hero__proof-sep" aria-hidden="true">&middot;</span>
+          <span data-kpi="liveDays">--</span> accruing
+        </p>
+      </div>
+
+      <a href="#track" class="hero__scroll mono-label" aria-label="Scroll to the live track record">
+        <span>Scroll</span>
+        <span class="hero__scroll-line" aria-hidden="true"></span>
+      </a>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- (01) VERIFIABLE LIVE TRACK RECORD                                     -->
+    <!-- =================================================================== -->
+    <section class="track section section--ink" id="track" data-section="1" aria-labelledby="track-head">
+      <span class="section__rule" aria-hidden="true"></span>
+      <div class="track__head">
+        <p class="eyebrow label"><span class="idx mono-label">01 /</span> <span data-tr="title">Live track record</span></p>
+        <h2 class="track__title display-l" id="track-head">
+          <span class="mask" data-chars><span class="mask__inner">We publish no return</span></span>
+          <span class="mask" data-chars><span class="mask__inner">until it is earned</span></span>
+          <span class="mask" data-chars><span class="mask__inner">in the open.</span></span>
+        </h2>
+        <p class="track__lead body-l reveal-fade" data-tr="summary">
+          The live paper record begins at go-live and is shown only as it accrues.
+        </p>
+      </div>
+
+      <div class="track__frame reveal-fade">
+        <div class="track__frame-head">
+          <div class="track__status">
+            <span class="dot dot--pulse" aria-hidden="true"></span>
+            <span class="track__status-label mono-label">Status</span>
+            <span class="track__status-val mono-label" data-tr="status">--</span>
+          </div>
+          <div class="track__day">
+            <span class="track__day-val mono-data" data-tr="liveDays">--</span>
+            <span class="track__day-unit mono-label">days accruing</span>
+          </div>
+        </div>
+
+        <div class="track__plot" role="img" aria-label="Equity curve. A labelled simulation history and the live paper record accruing from go-live.">
+          <canvas class="track__canvas" id="trackCanvas" aria-hidden="true"></canvas>
+          <div class="track__plot-pending" id="trackPending" hidden>
+            <span class="track__plot-dot" aria-hidden="true"></span>
+            <span class="track__plot-cap mono-label">The curve is drawn from the live state artifact. It stays empty until one exists.</span>
+          </div>
+          <div class="track__legend mono-label" aria-hidden="true">
+            <span class="track__legend-item track__legend-item--sim"><span class="track__swatch"></span> <span data-tr="researchLabel">Simulation</span></span>
+            <span class="track__legend-item track__legend-item--live"><span class="track__swatch"></span> Live paper, accruing</span>
+          </div>
+        </div>
+
+        <dl class="track__fields">
+          <div class="track__field">
+            <dt class="track__field-label mono-label">Go-live</dt>
+            <dd class="track__field-value mono-data" data-tr="goLive">--</dd>
+          </div>
+          <div class="track__field track__field--primary">
+            <dt class="track__field-label mono-label">Live NAV</dt>
+            <dd class="track__field-value mono-data"><span data-tr="liveNav">--</span></dd>
+          </div>
+          <div class="track__field">
+            <dt class="track__field-label mono-label">Live return</dt>
+            <dd class="track__field-value mono-data" data-tr="liveReturn">--</dd>
+          </div>
+          <div class="track__field">
+            <dt class="track__field-label mono-label">Baseline</dt>
+            <dd class="track__field-value mono-data" data-tr="baseline">--</dd>
+          </div>
+        </dl>
+        <p class="track__source mono-label" data-tr="liveSource">--</p>
+      </div>
+
+      <ul class="track__policy reveal-fade" aria-label="Honesty policy" data-tr-policy>
+        <!-- honesty_policy[] lines are appended here by open.js -->
+      </ul>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- (02) PUBLIC KILL LOG / THE RESEARCH GRAVEYARD                         -->
+    <!-- =================================================================== -->
+    <section class="killlog section" id="killlog" data-section="2" aria-labelledby="killlog-head">
+      <span class="section__rule" aria-hidden="true"></span>
+      <div class="killlog__head">
+        <p class="eyebrow label"><span class="idx mono-label">02 /</span> <span data-kl="title">The kill log</span></p>
+        <h2 class="killlog__title display-l" id="killlog-head">
+          <span class="mask" data-chars><span class="mask__inner">Most ideas die.</span></span>
+          <span class="mask" data-chars><span class="mask__inner">We publish ours,</span></span>
+          <span class="mask" data-chars><span class="mask__inner">with their real numbers.</span></span>
+        </h2>
+        <p class="killlog__lead body-l reveal-fade" data-kl="summary">
+          The strategies that failed, with their real net-of-cost Sharpe.
+        </p>
+        <p class="killlog__note body reveal-fade">
+          <span class="comment mono-label">//</span>
+          <span data-kl="honestyNote">--</span>
+        </p>
+      </div>
+
+      <!-- Tally strip: killed vs survived vs the gate they had to clear. -->
+      <ul class="killlog__tally reveal-fade" aria-label="Kill-log tally">
+        <li class="killlog__tally-item">
+          <span class="killlog__tally-val mono-data" data-kl="killed">--</span>
+          <span class="killlog__tally-label mono-label">Killed</span>
+        </li>
+        <li class="killlog__tally-item">
+          <span class="killlog__tally-val mono-data killlog__tally-val--keep" data-kl="survived">--</span>
+          <span class="killlog__tally-label mono-label">Survived</span>
+        </li>
+        <li class="killlog__tally-item">
+          <span class="killlog__tally-val mono-data" data-kl="gate">--</span>
+          <span class="killlog__tally-label mono-label">Minimum Sharpe gate</span>
+        </li>
+      </ul>
+
+      <p class="killlog__caption mono-label reveal-fade">
+        Select a row to see why it lived or died. Killed sleeves leave the book
+        and are not re-tuned.
+      </p>
+
+      <!-- The ledger. Header row + one row per strategy, hairline-row idiom. The
+           rows are built by open.js from kill_log.json (killed first, then the
+           two survivors). data-empty until the artifact loads. -->
+      <div class="ledger" aria-label="Strategy kill log">
+        <div class="ledger__row ledger__row--head" aria-hidden="true">
+          <span class="ledger__cell ledger__cell--name label">Strategy</span>
+          <span class="ledger__cell ledger__cell--num label">Net Sharpe</span>
+          <span class="ledger__cell ledger__cell--num label">Return</span>
+          <span class="ledger__cell ledger__cell--num label">Max DD</span>
+          <span class="ledger__cell ledger__cell--num label">Period</span>
+          <span class="ledger__cell ledger__cell--verdict label">Verdict</span>
+        </div>
+        <div class="ledger__body" id="ledgerBody" data-empty="1">
+          <!-- rows injected by open.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- (03) PRE-REGISTRATION / COMMITTED BEFORE WE KNEW                      -->
+    <!-- =================================================================== -->
+    <section class="prereg section section--ink" id="prereg" data-section="3" aria-labelledby="prereg-head">
+      <span class="section__rule" aria-hidden="true"></span>
+      <div class="prereg__head">
+        <p class="eyebrow label"><span class="idx mono-label">03 /</span> <span data-pr="title">Pre-registration</span></p>
+        <h2 class="prereg__title display-l" id="prereg-head">
+          <span class="mask" data-chars><span class="mask__inner">We committed the</span></span>
+          <span class="mask" data-chars><span class="mask__inner">trial budget before</span></span>
+          <span class="mask" data-chars><span class="mask__inner">we touched the data.</span></span>
+        </h2>
+        <p class="prereg__lead body-l reveal-fade" data-pr="summary">
+          The trial budget was committed to git before any sleeve touched the lake.
+        </p>
+      </div>
+
+      <div class="prereg__grid">
+        <div class="prereg__meta reveal-fade">
+          <dl class="prereg__meta-list">
+            <div class="prereg__meta-row">
+              <dt class="prereg__meta-label mono-label">Trial budget, hard ceiling</dt>
+              <dd class="prereg__meta-val mono-data" data-pr="ceiling">--</dd>
+            </div>
+            <div class="prereg__meta-row">
+              <dt class="prereg__meta-label mono-label">Document</dt>
+              <dd class="prereg__meta-val mono-label" data-pr="docPath">--</dd>
+            </div>
+          </dl>
+          <p class="prereg__protocol body">
+            <span class="prereg__protocol-head label">Measure-once protocol</span>
+            Budget and test design were fixed before the data was touched. The final
+            count cannot be cherry-picked.
+            <span data-pr="protocol">--</span>
+          </p>
+          <div class="prereg__outcomes">
+            <p class="prereg__outcome">
+              <span class="prereg__outcome-label label">Expected</span>
+              <span class="prereg__outcome-val body" data-pr="expected">--</span>
+            </p>
+            <p class="prereg__outcome prereg__outcome--actual">
+              <span class="prereg__outcome-label label">Actual</span>
+              <span class="prereg__outcome-val body" data-pr="actual">--</span>
+            </p>
+          </div>
+        </div>
+
+        <ol class="prereg__slots" id="preregSlots" aria-label="Pre-registered slots" data-empty="1">
+          <!-- slot rows injected by open.js from pre_registration.json -->
+        </ol>
+      </div>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- (04) LIVE DEFLATION DASHBOARD                                         -->
+    <!-- =================================================================== -->
+    <section class="deflation section" id="deflation" data-section="4" aria-labelledby="deflation-head">
+      <span class="section__rule" aria-hidden="true"></span>
+      <div class="deflation__head">
+        <p class="eyebrow label"><span class="idx mono-label">04 /</span> <span data-df="title">The deflation verdict</span></p>
+        <h2 class="deflation__title display-l" id="deflation-head">
+          <span class="mask" data-chars><span class="mask__inner">Crypto alone did not</span></span>
+          <span class="mask" data-chars><span class="mask__inner">clear the bar. We</span></span>
+          <span class="mask" data-chars><span class="mask__inner">publish the null in full.</span></span>
+        </h2>
+        <p class="deflation__lead body-l reveal-fade" data-df="summary">
+          The grade on crypto alone, read straight from the artifact.
+        </p>
+      </div>
+
+      <div class="deflation__board">
+        <!-- The two gauges: DSR and PBO, each against its gate, honest. -->
+        <div class="deflation__gauges reveal-fade">
+          <figure class="gauge" data-gauge="dsr">
+            <figcaption class="gauge__head">
+              <span class="gauge__name label">Deflated Sharpe (shared)</span>
+              <span class="gauge__verdict mono-label gauge__verdict--fail" data-df="dsrState">--</span>
+            </figcaption>
+            <div class="gauge__track" aria-hidden="true">
+              <span class="gauge__fill" data-df-fill="dsr"></span>
+              <span class="gauge__gate" data-df-gate="dsr"></span>
+            </div>
+            <div class="gauge__readout">
+              <span class="gauge__val mono-data" data-df="dsrVal">--</span>
+              <span class="gauge__gate-label mono-label">gate <span data-df="dsrGate">--</span></span>
+            </div>
+          </figure>
+
+          <figure class="gauge" data-gauge="pbo">
+            <figcaption class="gauge__head">
+              <span class="gauge__name label">Prob. of backtest overfitting</span>
+              <span class="gauge__verdict mono-label gauge__verdict--fail" data-df="pboState">--</span>
+            </figcaption>
+            <div class="gauge__track" aria-hidden="true">
+              <span class="gauge__fill" data-df-fill="pbo"></span>
+              <span class="gauge__gate" data-df-gate="pbo"></span>
+            </div>
+            <div class="gauge__readout">
+              <span class="gauge__val mono-data" data-df="pboVal">--</span>
+              <span class="gauge__gate-label mono-label">gate &lt; <span data-df="pboGate">--</span></span>
+            </div>
+          </figure>
+        </div>
+
+        <!-- The capacity decay: SR shrinks as capital grows, honest finite alpha. -->
+        <div class="deflation__capacity reveal-fade">
+          <p class="deflation__capacity-head label">Capacity decay, annualised Sharpe by deployed capital</p>
+          <ul class="capbar" id="capacityBars" data-empty="1" aria-label="Capacity curve">
+            <!-- bars injected by open.js from capacity_curve[] -->
+          </ul>
+        </div>
+      </div>
+
+      <!-- The verdict block: the C+ no-deploy null, stated plainly as strength. -->
+      <div class="deflation__verdict reveal-fade">
+        <div class="deflation__verdict-grade">
+          <span class="deflation__grade-val display-l" data-df="grade">--</span>
+          <span class="deflation__grade-label label">Deflation grade</span>
+        </div>
+        <div class="deflation__verdict-body">
+          <p class="deflation__outcome mono-label" data-df="outcome">--</p>
+          <p class="deflation__reason body" data-df="reason">--</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- (05) CAPACITY & SCALABILITY                                           -->
+    <!-- The honest decay of edge with size. Bound LIVE from capacity.json     -->
+    <!-- (the AlphaForge capacity_export artifact, sibling to the other        -->
+    <!-- glassbox views). Two figures, no wall: a clean Sharpe-vs-AUM curve    -->
+    <!-- and a four-row book table ($1M / $10M / $100M / $1B) showing the      -->
+    <!-- forward book Sharpe, the natural-vol return, the drawdown assumption  -->
+    <!-- and what is DRIVING it as the crypto satellite decays into the equity -->
+    <!-- core. Every figure carries a MEASURED / MODELED / FORWARD badge from  -->
+    <!-- the artifact's own basis fields. No number is typed here; open.js     -->
+    <!-- binds it or leaves the reserved (--) state, never invents.            -->
+    <!-- =================================================================== -->
+    <section class="capacity-sim section" id="capacity" data-section="5" aria-labelledby="capacity-head">
+      <span class="section__rule" aria-hidden="true"></span>
+      <div class="capacity-sim__head">
+        <p class="eyebrow label"><span class="idx mono-label">05 /</span> <span data-cap="title">Capacity &amp; scalability</span></p>
+        <h2 class="capacity-sim__title display-l" id="capacity-head">
+          <span class="mask" data-chars><span class="mask__inner">Size has a price.</span></span>
+          <span class="mask" data-chars><span class="mask__inner">The crypto carry caps</span></span>
+          <span class="mask" data-chars><span class="mask__inner">near $10M.</span></span>
+        </h2>
+        <p class="capacity-sim__lead body-l reveal-fade" data-cap="summary">
+          How much capital this book can run before the edge decays, told straight.
+        </p>
+      </div>
+
+      <div class="capacity-sim__board">
+        <!-- The curve: forward book Sharpe against deployed AUM, log-x. The crypto
+             carry sleeve is the MEASURED finite-capacity alpha; above its cliff the
+             book IS the equity core. Painted by open.js into the canvas as the
+             section reveals; reduced-motion draws the final frame at once. -->
+        <figure class="capcurve reveal-fade" aria-labelledby="capcurve-cap">
+          <figcaption class="capcurve__head">
+            <span class="capcurve__title label">Forward book Sharpe by deployed capital</span>
+            <span class="capcurve__axes mono-label" id="capcurve-cap">AUM (log) to deflated forward Sharpe</span>
+          </figcaption>
+          <div class="capcurve__plot" role="img" aria-label="Forward book Sharpe decays as deployed capital grows from one million to one billion dollars">
+            <canvas class="capcurve__canvas" id="capacityCurveCanvas" aria-hidden="true"></canvas>
+            <div class="capcurve__pending" id="capacityCurvePending">
+              <span class="capcurve__pending-dot" aria-hidden="true"></span>
+              <span class="capcurve__pending-cap mono-label">The capacity curve is drawn from a validated artifact. It stays empty until one loads.</span>
+            </div>
+          </div>
+          <figure class="capcurve__legend" aria-hidden="true">
+            <span class="capcurve__legend-item"><span class="capcurve__swatch capcurve__swatch--book"></span> Book forward Sharpe</span>
+            <span class="capcurve__legend-item"><span class="capcurve__swatch capcurve__swatch--crypto"></span> Crypto sleeve (measured)</span>
+          </figure>
+        </figure>
+
+        <!-- The cliff + threshold callouts: the two structural facts that frame the
+             table, read straight from the artifact. -->
+        <div class="capacity-sim__facts reveal-fade">
+          <div class="capfact">
+            <span class="capfact__k mono-label">Crypto carry capacity</span>
+            <span class="capfact__v mono-data" data-cap="cliffCap">--</span>
+            <span class="capfact__badge" data-cap="cliffBasis">--</span>
+            <p class="capfact__note body" data-cap="cliffNote">--</p>
+          </div>
+          <div class="capfact">
+            <span class="capfact__k mono-label">Equity-core threshold</span>
+            <span class="capfact__v mono-data" data-cap="coreThreshold">--</span>
+            <span class="capfact__badge" data-cap="coreBasis">--</span>
+            <p class="capfact__note body" data-cap="coreNote">--</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- The four-row book table: $1M / $10M / $100M / $1B. Forward Sharpe,
+           natural-vol return, drawdown assumption, the capacity-bucket split,
+           and the binding constraint. Rows injected by open.js from
+           book_capacity_curve[]; honest (--) until they load. -->
+      <div class="captable reveal-fade">
+        <div class="captable__head" aria-hidden="true">
+          <span class="captable__col captable__col--aum">AUM</span>
+          <span class="captable__col captable__col--num">Book Sharpe (fwd)</span>
+          <span class="captable__col captable__col--num">Return, nat. vol</span>
+          <span class="captable__col captable__col--num">Max DD (assumed)</span>
+          <span class="captable__col captable__col--drive">What is driving it</span>
+        </div>
+        <ul class="captable__body" id="capacityTableBody" data-empty="1" aria-label="Book capacity by deployed capital">
+          <!-- rows injected by open.js from book_capacity_curve[] -->
+        </ul>
+      </div>
+
+      <!-- The honesty note + the deflated forward expectation, both from the
+           artifact. This is the load-bearing label: never the 1.46 in-sample
+           headline, always the deflated 0.7 to 1.0 forward. -->
+      <div class="capacity-sim__forward reveal-fade">
+        <p class="capacity-sim__honesty body">
+          <span class="comment mono-label">//</span>
+          <span data-cap="honesty">--</span>
+        </p>
+        <dl class="capacity-sim__expect">
+          <div class="capacity-sim__expect-row">
+            <dt class="capacity-sim__expect-label mono-label">Deflated forward Sharpe</dt>
+            <dd class="capacity-sim__expect-val mono-data"><span data-cap="fwdFloor">--</span> to <span data-cap="fwdCeiling">--</span><span class="capacity-sim__expect-mid"> &middot; central <span data-cap="fwdCentral">--</span></span></dd>
+          </div>
+          <div class="capacity-sim__expect-row">
+            <dt class="capacity-sim__expect-label mono-label">Net return, 14% vol-target</dt>
+            <dd class="capacity-sim__expect-val mono-data"><span data-cap="fwdReturn">--</span></dd>
+          </div>
+        </dl>
+      </div>
+
+      <!-- The signed capacity COMMITMENT: how we pledge to treat capacity, Ed25519-signed with the
+           transparency key so we cannot quietly walk it back. Pledges + signature line injected by
+           open.js from capacity_commitment.json (data-commit hooks). -->
+      <div class="capacity-sim__commitment reveal-fade">
+        <p class="capacity-sim__honesty body" style="margin-top:0">
+          <span class="comment mono-label">//</span>
+          Our commitment about all of this, signed so we cannot quietly walk it back:
+        </p>
+        <ul class="open-hero__pledge" id="capacityCommitment" data-empty="1" aria-label="Capacity commitment"></ul>
+        <p class="capcommit__sig mono-label" data-commit="sig" style="color:var(--grey-700)">--</p>
+      </div>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- (06) REPRODUCIBILITY / REPRODUCE OUR NUMBERS                          -->
+    <!-- =================================================================== -->
+    <section class="reproduce section section--ink" id="reproduce" data-section="6" aria-labelledby="reproduce-head">
+      <span class="section__rule" aria-hidden="true"></span>
+      <div class="reproduce__head">
+        <p class="eyebrow label"><span class="idx mono-label">06 /</span> <span data-rp="title">Reproducibility</span></p>
+        <h2 class="reproduce__title display-l" id="reproduce-head">
+          <span class="mask" data-chars><span class="mask__inner">Content-hashed.</span></span>
+          <span class="mask" data-chars><span class="mask__inner">Byte-reproducible.</span></span>
+          <span class="mask" data-chars><span class="mask__inner">Reproduce our numbers.</span></span>
+        </h2>
+        <p class="reproduce__lead body-l reveal-fade" data-rp="summary">
+          A golden-master test asserts every fill, fee and funding payment from
+          hand-written arithmetic.
+        </p>
+      </div>
+
+      <!-- The reproducibility kit: one command an outsider runs to verify the whole record, with
+           nothing but Python and our public files. Three levels: content hashes (no install),
+           Ed25519 signatures, and the golden master (engine determinism, in the repo). -->
+      <div class="reproduce__kit reveal-fade">
+        <p class="reproduce__verify-head label">Verify us in one command</p>
+        <p class="reproduce__noahead body" style="margin-top:0">
+          <span class="comment mono-label">//</span>
+          Download our published files and our verifier, and check every number yourself. No install,
+          no data, no taking our word: it recomputes each artifact's content hash, re-checks the
+          Ed25519 signatures, and (in the repo) reruns the golden master.
+        </p>
+        <pre class="reproduce__cmd mono-data" tabindex="0" aria-label="Reproduce command"><code>curl -sO https://canlicapital.com/glassbox/reproduce.py
+for f in capacity deflation track_record kill_log pre_registration \
+         red_team reproducibility research capacity_commitment; do
+  curl -sO https://canlicapital.com/glassbox/$f.json
+done
+python3 reproduce.py --dir .   # -> ALL CHECKS REPRODUCED</code></pre>
+      </div>
+
+      <div class="reproduce__grid">
+        <!-- The claim, stated and bounded: what we do claim, what we do not. -->
+        <div class="reproduce__claim reveal-fade">
+          <p class="reproduce__claim-yes">
+            <span class="reproduce__claim-mark reproduce__claim-mark--yes" aria-hidden="true"></span>
+            <span class="reproduce__claim-text body"><span class="reproduce__claim-key">We claim.</span> <span data-rp="claim">--</span></span>
+          </p>
+          <p class="reproduce__claim-no">
+            <span class="reproduce__claim-mark reproduce__claim-mark--no" aria-hidden="true"></span>
+            <span class="reproduce__claim-text body"><span class="reproduce__claim-key">We do not claim.</span> <span data-rp="notClaimed">--</span></span>
+          </p>
+        </div>
+
+        <!-- The golden-master tablet: file, line count, three-part coverage. -->
+        <div class="reproduce__tablet reveal-fade">
+          <div class="reproduce__tablet-head">
+            <span class="reproduce__tablet-file mono-label" data-rp="testFile">--</span>
+            <span class="reproduce__tablet-lines mono-label"><span data-rp="testLines">--</span> lines</span>
+          </div>
+          <p class="reproduce__tablet-purpose mono-label" data-rp="testPurpose">--</p>
+          <ol class="reproduce__coverage" id="reproCoverage" data-empty="1" aria-label="Golden-master test coverage">
+            <!-- coverage[] injected by open.js -->
+          </ol>
+        </div>
+      </div>
+
+      <!-- VERIFIABILITY: one block where the exact tolerances and the cryptographic
+           hashes read as a single artifact. The precision facts (the small, exact
+           numbers that make the golden master real) sit above the content hashes the
+           page actually loaded, so code coverage and cryptographic proof stand
+           together. -->
+      <div class="reproduce__verify reveal-fade">
+        <p class="reproduce__verify-head label">Verifiability</p>
+        <dl class="reproduce__facts">
+          <div class="reproduce__fact">
+            <dt class="reproduce__fact-label mono-label">Fill-price tolerance</dt>
+            <dd class="reproduce__fact-val mono-data" data-rp="fillTol">--</dd>
+          </div>
+          <div class="reproduce__fact">
+            <dt class="reproduce__fact-label mono-label">Funding settlements, real BTC week</dt>
+            <dd class="reproduce__fact-val mono-data" data-rp="settlements">--</dd>
+          </div>
+          <div class="reproduce__fact">
+            <dt class="reproduce__fact-label mono-label">Registered factors</dt>
+            <dd class="reproduce__fact-val mono-data" data-rp="factors">--</dd>
+          </div>
+        </dl>
+        <ul class="reproduce__hash-list mono-label" id="hashList" data-empty="1" aria-label="Content hashes of the loaded artifacts">
+          <!-- one row per loaded JSON, injected by open.js -->
+        </ul>
+
+        <!-- Tamper-evident track record: the live record is a SIGNED append-only hash chain.
+             Change any past day and every signature after it breaks. Bound from
+             transparency_log.json by open.js (data-tx hooks). -->
+        <div class="reproduce__transparency reveal-fade">
+          <p class="reproduce__verify-head label">Tamper-evident track record</p>
+          <p class="reproduce__noahead body" style="margin-top:0">
+            <span class="comment mono-label">//</span>
+            Every published day is hashed, chained to the day before, and Ed25519-signed.
+            Change any past day and every signature after it breaks. The chain head is also
+            stamped into the Bitcoin blockchain, a clock we don't control, so we can't backdate
+            it either. That proves when the record existed, never whether the numbers are good.
+            Don't trust us. Verify us.
+          </p>
+          <dl class="reproduce__facts">
+            <div class="reproduce__fact">
+              <dt class="reproduce__fact-label mono-label">Signed chain</dt>
+              <dd class="reproduce__fact-val mono-data"><span data-tx="entries">--</span> days &middot; head <span data-tx="chainHead">--</span></dd>
+            </div>
+            <div class="reproduce__fact">
+              <dt class="reproduce__fact-label mono-label">Public key (Ed25519)</dt>
+              <dd class="reproduce__fact-val mono-data" data-tx="pubKey">--</dd>
+            </div>
+            <div class="reproduce__fact">
+              <dt class="reproduce__fact-label mono-label">Verify it yourself</dt>
+              <dd class="reproduce__fact-val mono-data" data-tx="verifyCmd">--</dd>
+            </div>
+            <div class="reproduce__fact">
+              <dt class="reproduce__fact-label mono-label">External anchor (Bitcoin)</dt>
+              <dd class="reproduce__fact-val mono-data" data-tx="anchor">--</dd>
+            </div>
+            <div class="reproduce__fact">
+              <dt class="reproduce__fact-label mono-label">Founder skin-in-the-game</dt>
+              <dd class="reproduce__fact-val mono-data" data-tx="founder">--</dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+
+      <p class="reproduce__noahead body reveal-fade">
+        <span class="comment mono-label">//</span>
+        <span data-rp="noLookAhead">--</span>
+      </p>
+
+      <div class="reproduce__forward reveal-fade">
+        <a href="/performance" class="open-link label">The full methodology</a>
+        <a href="/#waitlist" class="open-cta label" data-magnetic>Join the waitlist</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer is the Colophon chapter (index 7 in the per-page chapters array), so
+       the living rail head reads "07 / Colophon" when the footer is in view. -->
+  <footer class="footer" id="footer" data-section="7"></footer>
+
+  <script type="module" src="./js/waitlist.js"></script>
+  <script type="module" src="./js/open.js"></script>
+  <script type="module" src="./js/main.js"></script>
+</body>
+</html>

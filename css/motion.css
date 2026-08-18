@@ -1,0 +1,523 @@
+/* =============================================================================
+   MERIDIAN / motion.css
+   Companion to styles.css. Owns the cinematic motion layer driven by scroll.js:
+   per-character headline clip-rise with variable-font weight settle, mono
+   "type-in" data lines, word/line reveal mechanics, the living rail chapter
+   counter, the Discipline recession beat, the System focus pull, the signal
+   word draw-on underline, and parallax / velocity-skew layer prep.
+
+   Discipline notes:
+   - Transform / opacity / font-variation-settings only. No layout props animate.
+   - Everything degrades: reduced-motion and mobile fall back to static, fully
+     visible states. No content is ever hidden without a guaranteed reveal.
+   - House easing tokens reused from styles.css (--ease-out / --ease-in-out);
+     the snap-settle curve for type is defined locally as --ease-settle.
+   ============================================================================= */
+
+:root {
+  --ease-settle: cubic-bezier(0.22, 1, 0.36, 1);
+  /* The filmic ease, reserved for exactly two moments on the whole page: the
+     intro curtain lift and the Convergence camera settle. A heavier curve so
+     those beats read as different from every other transition on the site. */
+  --ease-cinema: cubic-bezier(0.83, 0, 0.17, 1);
+  /* P0-C 18: ONE cursor transition token. Every cursor-owned CSS transition (the
+     dot/ring/caption fades, the magnet glow release) references this single value
+     so the pointer's feel is tuned in one place, never re-pasted per rule. It is
+     the house ease-out by design (the cursor never deviates from the property's
+     one curve); naming it makes the cursor's grammar explicit and consolidated. */
+  --cursor-ease: var(--ease-out);
+}
+
+/* ---------------------------------------------------------------------------
+   0. CINEMATIC INTRO -> HERO CURTAIN HANDOFF
+   The intro base + .is-done live in styles.css and fade by opacity/visibility.
+   motion.css loads after styles.css, so these rules win by source order and
+   turn the dismissal into a curtain LIFT that exposes the already-live manifold
+   beneath, rather than a cross-fade onto a static frame. The hero char cascade
+   (scroll.js onIntroDone) fires as the curtain clears.
+
+   Honors the one-shot heroRevealed guard + 6s failsafe in main.js: we only
+   change HOW .is-done looks, never WHEN it is applied.
+   --------------------------------------------------------------------------- */
+.js .intro {
+  /* override the styles.css opacity/visibility transition with the lift.
+     keep visibility in the transition so the layer is removed from the a11y
+     tree and pointer flow once lifted. */
+  transition: transform 0.9s var(--ease-cinema), visibility 0s linear 0.9s;
+  will-change: transform;
+}
+.js .intro.is-done {
+  /* lift the whole panel up and off, revealing the moving scene behind it */
+  opacity: 1;
+  transform: translateY(-101%);
+  visibility: hidden;
+  pointer-events: none;
+}
+/* The brand mark tightening into focus is the load "calibrating" read; slow it
+   to match the more deliberate curtain (main.js keeps the class timing). */
+.js .intro__mark {
+  transition: letter-spacing 0.9s var(--ease-cinema);
+}
+
+/* one honest calibration token cycles under the bracket as the bar fills.
+   main.js writes the text into #introCalib; no fake metrics, mono, recessed. */
+.intro__calib {
+  min-height: 1.1em;
+  color: var(--grey-600);
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 0.4s var(--ease-out), transform 0.4s var(--ease-out);
+  letter-spacing: 0.1em;
+}
+.intro__calib.is-shown { opacity: 1; transform: translateY(0); }
+/* a soft swap when the token changes (main.js toggles .is-swapping briefly) */
+.intro__calib.is-swapping { opacity: 0.25; transform: translateY(3px); }
+
+@media (prefers-reduced-motion: reduce) {
+  /* keep the original instant fade; no lift, no calibration motion */
+  .js .intro { transition: opacity 0.3s linear; }
+  .js .intro.is-done { opacity: 0; transform: none; visibility: hidden; }
+  .js .intro__mark { transition: none; }
+  .intro__calib { transition: none; opacity: 1; transform: none; }
+}
+
+/* ---------------------------------------------------------------------------
+   1. PER-CHARACTER HEADLINE REVEAL (variable-font settle)
+   The host .mask already clips overflow. Each .char sits on its own line box
+   so it can clip-rise. As the line settles, the inner climbs Fraunces weight
+   from light to its rest value, an optical-size/weight settle that reads as
+   the type "developing" rather than merely sliding in.
+   --------------------------------------------------------------------------- */
+.mask__inner.has-chars {
+  display: block;
+  /* settle target: the display class supplies the rest weight; we start light
+     and transition up. Using font-variation-settings transition is GPU-cheap
+     and does not trigger layout when only "wght" changes within a fixed box. */
+  transition: font-variation-settings 0.9s var(--ease-settle);
+}
+/* light starting weight while the characters are still rising */
+.js .mask__inner.has-chars:not(.is-settled) {
+  font-variation-settings: "opsz" 144, "wght" 280, "SOFT" 0, "slnt" 0;
+}
+/* settled: hand control back to the display class's own rest weight */
+.mask__inner.has-chars.is-settled {
+  font-variation-settings: revert;
+}
+
+/* Each word's glyphs are grouped in an atomic .word so a wrapping headline breaks
+   ONLY at the spaces between words, never mid-word (the per-glyph .char spans alone
+   would otherwise wrap between any two letters). The wrapper is layout-only; the
+   .char reveal inside is unchanged. */
+.has-chars .word {
+  display: inline-block;
+  white-space: nowrap;
+}
+.char {
+  display: inline-block;
+  will-change: transform, opacity;
+  /* each glyph lives in the mask's clipped box; transform handles the rise */
+  transform: translate3d(0, 0, 0);
+}
+
+/* ---------------------------------------------------------------------------
+   2. MONO "TYPE-IN" DATA LINES
+   Characters reveal left to right. While typing, the line carries a faint
+   signal cast on its leading edge for a terminal-readout feel; it relaxes to
+   the line's resting color once written.
+   --------------------------------------------------------------------------- */
+.mchar {
+  display: inline;
+  will-change: opacity;
+}
+.type-mono.is-typing { color: var(--paper-dim); }
+/* a thin caret while writing, on the typing line only */
+.type-mono.is-typing::after {
+  content: "";
+  display: inline-block;
+  width: 0.5ch;
+  height: 1em;
+  margin-left: 0.1ch;
+  vertical-align: -0.12em;
+  background: var(--signal);
+  opacity: 0.9;
+  animation: meridian-caret 0.7s steps(1) infinite;
+}
+@keyframes meridian-caret { 50% { opacity: 0; } }
+
+/* ---------------------------------------------------------------------------
+   3. WORD / LINE REVEAL MECHANICS
+   The word spans need inline-block + will-change so the JS rise composites.
+   (scroll.js no longer sets these inline; CSS owns the rendering hints.)
+   --------------------------------------------------------------------------- */
+.word {
+  display: inline-block;
+  will-change: transform, opacity;
+}
+
+/* ---------------------------------------------------------------------------
+   4. SIGNAL WORD DRAW-ON UNDERLINE
+   When a .signal-word enters (scroll.js adds .is-lit) a hairline draws under
+   it left to right, synced to the 3D ridge pulse. Restrained, one accent.
+   --------------------------------------------------------------------------- */
+.signal-word {
+  position: relative;
+  /* P0-C 16: on hover a faint signal text-shadow blooms on top of the underline
+     draw, so a signal word reads as live under the pointer (one accent pixel, the
+     same hue, never a second color). The hover bloom stays quick (0.3s); the COLOR
+     fade is synced to the underline draw (both 0.8s ease-out) so the word lighting
+     and its hairline land as one gesture. */
+  transition: text-shadow 0.3s var(--ease-out), color 0.8s var(--ease-out);
+}
+@media (hover: hover) {
+  .signal-word:hover { text-shadow: 0 0 12px var(--signal); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .signal-word { transition: none; }
+  .signal-word:hover { text-shadow: none; }
+}
+.signal-word::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0;
+  bottom: -0.08em;
+  height: var(--hairline-power);
+  background: var(--signal);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.8s var(--ease-out);
+  pointer-events: none;
+}
+.signal-word.is-lit::after { transform: scaleX(1); }
+@media (prefers-reduced-motion: reduce) {
+  .signal-word::after { transition: none; }
+}
+
+/* ---------------------------------------------------------------------------
+   5. LIVING RAIL CHAPTER COUNTER
+   The rail gains a typographic head that ticks 00 / Overview -> 01 / Thesis
+   as chapters cross. scroll.js toggles .is-ticking for the brief blur/slide.
+   Markup hooks (director adds these inside .rail, above .rail__list):
+     <div class="rail__head" id="railHead">
+       <span class="rail__index mono-label" id="railIndex">00</span>
+       <span class="rail__chapter label" id="railName">Overview</span>
+     </div>
+   --------------------------------------------------------------------------- */
+.rail__head {
+  position: relative;
+  margin-bottom: var(--s-4, 1.5rem);
+  padding-left: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25em;
+  pointer-events: none;
+  /* written vertically along the spine to stay out of the content column */
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  transform-origin: center;
+  max-height: 14rem;
+}
+.rail__index {
+  color: var(--signal);
+  font-size: 0.9rem;
+  letter-spacing: 0.16em;
+}
+.rail__chapter {
+  color: var(--paper-dim);
+  font-size: 0.8rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+/* the tick: a brief blur + slide as the label swaps */
+.rail__head.is-ticking .rail__index,
+.rail__head.is-ticking .rail__chapter {
+  animation: rail-tick 0.36s var(--ease-settle);
+}
+@keyframes rail-tick {
+  0%   { opacity: 0.2; filter: blur(2px); transform: translateY(6px); }
+  100% { opacity: 1;   filter: blur(0);   transform: translateY(0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .rail__head.is-ticking .rail__index,
+  .rail__head.is-ticking .rail__chapter { animation: none; }
+}
+
+/* ---------------------------------------------------------------------------
+   6. SYSTEM PIN: focus pull on the active step
+   When pinned (scroll.js adds .is-pinned), inactive steps recede a touch more
+   and the active step reads sharpest. We tighten the cross-fade easing and add
+   a subtle scale-settle so each step "focuses" in rather than hard-cutting.
+   Builds on the .step / .is-active rules in styles.css (does not redefine the
+   base layout, only enriches the active transition + adds a focus offset).
+   --------------------------------------------------------------------------- */
+.system.is-pinned .step {
+  /* focus-pull, tuned per property so the cross-fade reads as a lens settling:
+     opacity leads (0.5s ease-out), the defocus resolves a touch quicker (blur
+     0.4s), and the scale/position settles on the snap-settle curve (0.5s). The
+     active step's signal left rule fades in on the same 0.5s. */
+  transition: opacity 0.5s var(--ease-out),
+              transform 0.5s var(--ease-settle),
+              filter 0.4s var(--ease-out),
+              border-color 0.5s var(--ease-out);
+}
+.system.is-pinned .step:not(.is-active) {
+  filter: blur(1.5px);
+  opacity: 0; /* keep fully out so blur edges never ghost the active step */
+}
+.system.is-pinned .step.is-active {
+  filter: blur(0);
+  /* the active step's resting transparent 2px left rule (styles.css) lights to
+     the single signal hue: the one tell that THIS is the step in focus. */
+  border-left-color: var(--signal);
+}
+/* steps already passed sit a hair higher than upcoming ones for direction */
+.system .step.is-prev { transform: translateY(-18px); }
+@media (prefers-reduced-motion: reduce) {
+  .system.is-pinned .step { filter: none; transition: none; }
+}
+
+/* ---------------------------------------------------------------------------
+   7. DISCIPLINE RECESSION BEAT
+   When the Discipline pin is active (scroll.js adds .is-recessed) the section
+   sinks to its darkest, most recessed read and the focused tenet steps
+   forward while its neighbours dim. The tonal recession contrasts the camera
+   flight elsewhere on the page. Color/opacity only.
+   --------------------------------------------------------------------------- */
+.discipline {
+  transition: background-color 0.9s var(--ease-in-out);
+}
+.discipline.is-recessed { background-color: #060709; }
+.discipline .tenet {
+  transition: opacity 0.6s var(--ease-out),
+              transform 0.6s var(--ease-out);
+}
+.discipline.is-recessed .tenet { opacity: 0.42; }
+.discipline.is-recessed .tenet.is-focus {
+  opacity: 1;
+  transform: translateX(6px);
+}
+/* the focused tenet's roman ghost brightens AND gains a touch of weight, so the
+   active idea carries a little more presence than its neighbours. */
+.discipline.is-recessed .tenet.is-focus .tenet__ghost {
+  color: var(--grey-700);
+  transform: scale(1.04);
+}
+.tenet__ghost {
+  transition: color 0.6s var(--ease-out), transform 0.6s var(--ease-out);
+  will-change: transform;
+  transform-origin: left center;
+}
+@media (prefers-reduced-motion: reduce) {
+  .discipline, .discipline .tenet, .tenet__ghost { transition: none; }
+  .discipline.is-recessed .tenet { opacity: 1; }
+  .discipline.is-recessed .tenet.is-focus .tenet__ghost { transform: none; }
+}
+
+/* ---------------------------------------------------------------------------
+   7b. CURSOR-REACTIVE RIDGE ECHO (P0-C 17)
+   The live signal indicator (the hero status dot) carries .ridge-accent. When the
+   reader rides the pointer onto the 3D signal spine (scene.getCursorRidge() > 0.5,
+   read in cursor.js), the JS adds .is-echo and the dot runs one quiet 0.4s sine
+   scale loop (1.0 -> 1.15 -> 1.0), so the UI ECHOES the manifold waking under the
+   cursor: the on-page "live" mark and the 3D spine breathe together. Transform +
+   box-shadow only (composited), one accent hue, removed when the pointer leaves the
+   spine. Reuses the existing indicator, never a new decoration. Off under reduced
+   motion (the static poster owns one frame) and where the pulse is already disabled.
+   --------------------------------------------------------------------------- */
+.ridge-accent { will-change: transform; transform-origin: center; }
+.ridge-accent.is-echo {
+  animation: ridge-echo 0.4s var(--ease-in-out) infinite;
+}
+@keyframes ridge-echo {
+  0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(200, 85, 61, 0.4); }
+  50%      { transform: scale(1.15); box-shadow: 0 0 6px 2px rgba(200, 85, 61, 0.5); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ridge-accent.is-echo { animation: none; transform: none; }
+}
+
+/* ---------------------------------------------------------------------------
+   8. PARALLAX + VELOCITY SKEW LAYER PREP
+   scroll.js drives yPercent on [data-parallax] and skewY on [data-skew]. We
+   only declare the compositor hints here so the transforms stay on the GPU.
+   --------------------------------------------------------------------------- */
+[data-parallax],
+.footer__wordmark { will-change: transform; }
+[data-skew] { will-change: transform; transform-origin: center top; }
+
+/* P0-C 15: while the page is in fast scroll (scroll.js adds .is-scrolling-fast on
+   <html> above a velocity threshold, relaxing ~220ms after), the drawn chapter
+   seams brighten one rung (--grey-850 -> --paper-dim) so the structure reads as
+   momentarily "charged" by the momentum, then settles back. Color-only, the single
+   shared consumer of the flag, on the house ease. Off under reduced motion. */
+html.is-scrolling-fast .section__rule.is-drawn {
+  background: var(--paper-dim);
+}
+.section__rule.is-drawn { transition: transform 0.8s var(--ease-out), background 0.5s var(--ease-out); }
+@media (prefers-reduced-motion: reduce) {
+  html.is-scrolling-fast .section__rule.is-drawn { background: var(--grey-850); }
+}
+
+/* ---------------------------------------------------------------------------
+   8b. CHAPTER BOUNDARY HAIRLINE
+   A single full-bleed 1px rule draws left-to-right as a chaptered section that
+   follows a tonal change enters, marking the seam between chapters with one
+   composited gesture. Mirrors the [data-brand-fill] draw pattern: scroll.js
+   adds .is-drawn on enter. One per boundary, transform-only.
+
+   Markup hook (integrator adds, first child of #thesis #discipline #proof
+   #house): <span class="section__rule" aria-hidden="true"></span>
+   --------------------------------------------------------------------------- */
+.section__rule {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: var(--hairline-power);
+  background: var(--grey-850);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.8s var(--ease-out);
+  pointer-events: none;
+  /* the seam dissolves into the void at its ends rather than stopping hard at the
+     margins: a horizontal fade (edges 0.7, a touch past center 1.0, far edge 0.5)
+     so the chapter boundary reads as drawn-and-fading, never a boxed line. Shared,
+     so every chapter seam on all four pages gains the same dissolve (one hand). */
+  -webkit-mask-image: linear-gradient(90deg,
+    rgba(0,0,0,0.7) 0%, rgba(0,0,0,1) 45%, rgba(0,0,0,0.5) 100%);
+  mask-image: linear-gradient(90deg,
+    rgba(0,0,0,0.7) 0%, rgba(0,0,0,1) 45%, rgba(0,0,0,0.5) 100%);
+}
+.section__rule.is-drawn { transform: scaleX(1); }
+/* the rule needs a positioning context; the sections are already padded blocks,
+   so anchor it to the section box without disturbing flow. */
+.section { position: relative; }
+
+/* ---------------------------------------------------------------------------
+   8c. SYSTEM CONVERGENCE STATE
+   During the System pin scroll.js adds .is-converging alongside .is-pinned and
+   drives the 3D uConverge. The visual page stays restrained here: the only CSS
+   tell is that competing motion is calmed (handled in JS by gating reveals).
+   --------------------------------------------------------------------------- */
+.system.is-converging { will-change: auto; }
+
+/* THE CONVERGENCE PAYOFF BEAT.
+   scroll.js adds .is-resolved on the System the moment the final step locks and
+   the field has gathered onto one ridge. To stop the tentpole moment competing
+   with the dense step paragraph that sits over the same zone, we settle the
+   final step's body + data copy a touch (they have already been read) so the
+   converged ridge brightens into the cleared space and becomes the hero of the
+   frame, then hands off to "What is true today." The kicker + title stay fully
+   legible so the closing line ("Next open, never this one.") still lands.
+   Opacity-only, GPU-cheap, fully reversible (removed on scroll-up). */
+.system.is-resolved .step.is-active .step__body,
+.system.is-resolved .step.is-active .step__data {
+  transition: opacity 0.85s var(--ease-cinema);
+  opacity: 0.32;
+}
+/* the running counter's signal numeral brightens as the resolution lands, the
+   one quiet tell that the chain has closed onto a single signal. */
+.system.is-resolved .system__counter #stepCurrent {
+  transition: color 0.85s var(--ease-cinema), text-shadow 0.85s var(--ease-cinema);
+  color: var(--signal);
+  text-shadow: 0 0 18px rgba(200, 85, 61, 0.35);
+}
+@media (prefers-reduced-motion: reduce) {
+  .system.is-resolved .step.is-active .step__body,
+  .system.is-resolved .step.is-active .step__data { transition: none; opacity: 1; }
+  .system.is-resolved .system__counter #stepCurrent { transition: none; text-shadow: none; }
+}
+
+/* ---------------------------------------------------------------------------
+   8d. POST-PERFORMANCE TAIL MOTION PREP (OWNER FIX B)
+   scroll.js drives the closing chapters (#progress / #founder / #waitlist /
+   #footer) so the motion stays rich and consistent to the foot of the page,
+   matching the early sections: scrubbed parallax on the tail section heads, a
+   left-assemble on the roadmap rows, and a settle + closing convergence flare on
+   the footer columns + wordmark. This block only declares the GPU compositor
+   hints so those transforms stay off the main thread; the values are owned by JS.
+   Transform / opacity only. Off under reduced motion + mobile (the static poster
+   and the plain reveals own those readers; see Section 9 below).
+   --------------------------------------------------------------------------- */
+.house__head,
+.founder__id,
+.waitlist__head,
+.footer__col { will-change: transform; }
+/* the roadmap rows assemble from the left (scrubbed x + opacity in scroll.js);
+   the hint keeps the per-row transform composited as the table builds. */
+.roadmap__row:not(.roadmap__row--head) { will-change: transform, opacity; }
+@media (max-width: 768px) {
+  /* mobile keeps the rows as a plain stacked list: no transform hint needed and
+     the scrubbed assemble is gated off in scroll.js, so clear the will-change. */
+  .roadmap__row:not(.roadmap__row--head) { will-change: auto; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .house__head, .founder__id, .waitlist__head,
+  .footer__col, .roadmap__row:not(.roadmap__row--head) {
+    will-change: auto; transform: none !important;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   9. THE MICRO-PULSE SIGNATURE (the one new motion identity)
+   On a MAJOR reveal completing (the headline lands, a stat hits its final
+   value, a key CTA enters) the element gives one restrained micro-pulse: a
+   0.15s scale settle (1 -> 1.04 -> 1) and an optional faint 0.2s --signal glow
+   flare. The JS (landing.js / main.js / page-config-driven scroll.js) sets a
+   [data-pulse] attribute on the element AT reveal-completion; we key the
+   animation off that attribute's PRESENCE, and the JS removes it after the
+   beat so it can fire again on a later reveal. Alive, never busy: this is the
+   single tell that the page is "live", reused on exactly the page's three or
+   four hero moments, never decoration.
+
+   Two flavours, both off the same attribute:
+     [data-pulse]            scale-only settle (default, the quiet form)
+     [data-pulse="glow"]     scale settle + a faint signal glow flare (CTAs)
+   The scale keeps transform-origin center so it reads as a breath in place,
+   never a shift. The glow is a box-shadow flare on the one signal hue at the
+   --signal-glow alpha, so it never introduces a second colour or a hard ring.
+   Composited props only (transform + box-shadow); fully gated under reduced
+   motion (no scale, no glow, the attribute is inert). */
+[data-pulse] {
+  will-change: transform;
+  animation: signal-micropulse 0.15s var(--ease-out);
+}
+@keyframes signal-micropulse {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.04); }
+  100% { transform: scale(1); }
+}
+[data-pulse="glow"] {
+  animation: signal-micropulse 0.15s var(--ease-out),
+             signal-glowflare 0.2s var(--ease-out);
+}
+@keyframes signal-glowflare {
+  0%   { box-shadow: 0 0 0 0 var(--signal-faint); }
+  45%  { box-shadow: 0 0 14px 1px var(--signal-glow); }
+  100% { box-shadow: 0 0 0 0 var(--signal-faint); }
+}
+@media (prefers-reduced-motion: reduce) {
+  [data-pulse],
+  [data-pulse="glow"] {
+    animation: none;
+    will-change: auto;
+    transform: none;
+    box-shadow: none;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   9. MOBILE + REDUCED-MOTION SAFETY
+   On small screens the cinematic layer steps back: no rail head, no skew, no
+   parallax offset left applied, type reveals collapse to static.
+   --------------------------------------------------------------------------- */
+@media (max-width: 768px) {
+  .rail__head { display: none; }
+  [data-parallax] { transform: none !important; }
+  [data-skew] { transform: none !important; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .char { transform: none !important; opacity: 1 !important; }
+  .mchar { opacity: 1 !important; }
+  .word { transform: none !important; }
+  .mask__inner.has-chars { transition: none; font-variation-settings: revert; }
+  .type-mono.is-typing::after { display: none; }
+}

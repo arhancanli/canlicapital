@@ -1,0 +1,39 @@
+/* ===========================================================================
+   MERIDIAN / shell.css
+   ---------------------------------------------------------------------------
+   The shared cross-page chrome layer: the additions the unified nav and footer
+   need to read as ONE component across all four pages. This file ONLY ADDS
+   classes; it never redefines a token, an easing, the type scale, the cursor,
+   the rail, or the grain (those live in styles.css / cursor.css / motion.css and
+   are the single design system). It is loaded last, after the three base sheets,
+   on every page, so the cross-page state is identical everywhere.
+
+   What it adds:
+     1. The current-page nav state (.nav__link.is-current): the resting-lit
+        treatment the design system requires for the active page (paper text +
+        the signal underline shown at rest), so a visitor always knows which of
+        the four pages they are on. Pairs with aria-current="page" set by
+        js/shell.js.
+
+   Everything else the nav and footer need is already styled in styles.css; this
+   sheet is deliberately small. Restraint over decoration.
+   =========================================================================== */
+
+/* The active page's nav link sits lit at rest: paper text and the signal
+   underline already drawn, distinguishing it from the resting (dim, no
+   underline) links. Uses the SAME signal underline mechanism as the hover
+   state in styles.css, just held open, so it is one motion language, not a new
+   one. The underline is drawn from the left (the secondary, body-link sweep);
+   the center-out sweep stays reserved for the CTA, per the cursor contract. */
+.nav__link.is-current {
+  color: var(--paper);
+}
+.nav__link.is-current::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+/* Hovering the current link is a no-op visually (it is already fully lit), which
+   keeps it feeling pinned rather than re-animating under the pointer. */
+.nav__link.is-current:hover::after {
+  transform: scaleX(1);
+}

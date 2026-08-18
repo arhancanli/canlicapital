@@ -1,0 +1,92 @@
+{
+  "schema": "canli.feasibility.customer-supplier-propagation.v1",
+  "generated_at": "2026-08-16T03:11:54.809672+00:00",
+  "stage": "official_10k_relationship_source_no_prices_no_returns",
+  "decision": "DATA_GATED",
+  "return_data_opened": false,
+  "market_data_opened": false,
+  "return_hypotheses_spent": 0,
+  "protocol": "docs/design/FEASIBILITY_CUSTOMER_SUPPLIER_PROPAGATION.md",
+  "protocol_sha256": "f071e2a4425e6e265b32ce25df978f61583f42fb89dd2c2143a49a1755f87061",
+  "literature_review": "docs/design/LITERATURE_CUSTOMER_SUPPLIER_PROPAGATION.md",
+  "manifest": {
+    "path": "artifacts/ingest/earnings_narrative_change/filings_manifest.parquet",
+    "sha256": "7228eef1a2493152355da5b0e84cc620a3c15707279caecc7f45041941dfa651",
+    "rows_in_period": 36424,
+    "rows_by_year": {
+      "2016": 3873,
+      "2017": 3756,
+      "2018": 3677,
+      "2019": 3621,
+      "2020": 3553,
+      "2021": 3637,
+      "2022": 3764,
+      "2023": 3657,
+      "2024": 3489,
+      "2025": 3397
+    }
+  },
+  "source_audit": {
+    "documents_present_and_decompressible": 36243,
+    "source_coverage": 0.9950307489567318,
+    "concentration_candidates": 29220,
+    "candidates_by_year": {
+      "2016": 3138,
+      "2017": 3035,
+      "2018": 2972,
+      "2019": 2969,
+      "2020": 2869,
+      "2021": 2910,
+      "2022": 2964,
+      "2023": 2909,
+      "2024": 2802,
+      "2025": 2652
+    }
+  },
+  "sample_audit": {
+    "rows": 300,
+    "rows_by_year": {
+      "2016": 30,
+      "2017": 30,
+      "2018": 30,
+      "2019": 30,
+      "2020": 30,
+      "2021": 30,
+      "2022": 30,
+      "2023": 30,
+      "2024": 30,
+      "2025": 30
+    },
+    "documents_with_strict_name_candidate": 106,
+    "strict_named_document_rate": 0.35333333333333333,
+    "strict_name_candidates": 248
+  },
+  "gates": {
+    "source_coverage_at_least_99pct": true,
+    "at_least_500_concentration_candidates": true,
+    "at_least_25_candidates_each_year": true,
+    "exactly_30_sample_rows_each_year": true,
+    "strict_named_document_rate_at_least_50pct": false,
+    "sample_lineage_complete": true
+  },
+  "artifacts": {
+    "candidate_manifest": {
+      "path": "artifacts/feasibility/customer_supplier_propagation/candidate_manifest.parquet",
+      "sha256": "ed1a3b1f2e7e0627e44982d4b6de027daac4061efd9c0516512816c65f34bd8b",
+      "rows": 29220
+    },
+    "document_sample": {
+      "path": "artifacts/feasibility/customer_supplier_propagation/document_sample.parquet",
+      "sha256": "58bd589b87dfa558d40d972a6a824b7579adf16167d448b9573b462d2762a880",
+      "rows": 300
+    }
+  },
+  "remaining_gates": [
+    "blind_human_extraction_accuracy",
+    "historical_public_issuer_resolution",
+    "relationship_expiry_and_amendment_lineage",
+    "customer_event_identity_preregistration",
+    "market_data_and_execution_validation"
+  ],
+  "claim_boundary": "No relationship-resolution, sign, horizon, return, Sharpe, drawdown, correlation, capacity, or sleeve-admission claim is authorized."
+}

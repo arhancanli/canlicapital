@@ -1,0 +1,42 @@
+{
+  "schema": "canli.feasibility.cftc-hedging-pressure.v1",
+  "generated_at": "2026-08-15T20:31:11.690654+00:00",
+  "stage": "official_metadata_only_no_positions_no_prices_no_returns",
+  "dataset_id": "72hh-3qpy",
+  "source_url": "https://publicreporting.cftc.gov/resource/72hh-3qpy.json",
+  "metadata_rows": 183676,
+  "raw_sha256": "61ddb56a6eb7ce58cbac841ecc2b149eb65d516dd3337e8edf01f1c01012a607",
+  "first_report_date": "2006-06-13",
+  "last_report_date": "2026-08-11",
+  "history_years": 21,
+  "contract_markets": 650,
+  "core_field_completeness": {
+    "event_identity": 1.0,
+    "report_date": 1.0,
+    "contract_market_code": 1.0,
+    "contract_market_name": 1.0,
+    "commodity_code": 1.0,
+    "commodity_name": 1.0,
+    "commodity_group_name": 1.0
+  },
+  "unique_event_identity_rate": 1.0,
+  "tuesday_report_date_rate": 0.9890459287005379,
+  "exact_release_timestamp_lineage_rate": 0.0,
+  "stable_market_code_name_rate": 0.9938461538461538,
+  "gates": {
+    "minimum_metadata_rows": true,
+    "minimum_history_years": true,
+    "core_field_completeness": true,
+    "unique_event_identity": true,
+    "report_date_is_tuesday": true,
+    "exact_historical_release_lineage": false,
+    "fixed_tradable_contract_mapping": false
+  },
+  "decision": "DATA_GATED",
+  "blocking_reasons": [
+    "exact_historical_release_lineage",
+    "fixed_tradable_contract_mapping"
+  ],
+  "return_hypotheses_spent": 0,
+  "manifest_sha256": "8dcc786360279c0448c9600f4d7e7bf4f120a64fa3bbcd4b525ab6d44b7843a8"
+}

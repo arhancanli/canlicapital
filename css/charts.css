@@ -1,0 +1,170 @@
+/* =============================================================================
+   MERIDIAN / charts.css
+   -----------------------------------------------------------------------------
+   The stylesheet for the data-viz module (js/charts.js). Loaded LAST on any page
+   that mounts a chart (after the shared sheets and after landing.css /
+   performance.css), so it only layers on top.
+
+   It ADDS classes only. It never redefines a token, an ease, a type class, or a
+   shared component. Every color is one of the four reused variables (--signal,
+   --signal-faint, --grey-850, --grey-900, --grey-700, --paper-dim). It is
+   geometry and those variables, nothing more. ZERO em dashes.
+
+   The whole pending state is STATIC by design: a void-transparent ground (the
+   page shows through), a faint axis frame, one soft signal node, true words. The
+   draw-in motion is GSAP-driven (native stroke-dashoffset), so this sheet carries
+   no keyframes for it; the @media (prefers-reduced-motion) block is belt and
+   suspenders (draw() already skips the tween).
+   ============================================================================= */
+
+/* the mount wrapper: fills its host, sits behind the host's own text and links. */
+.chart {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  display: block;
+}
+
+/* the svg: geometry is in viewBox units so a pure CSS resize needs no re-render. */
+.chart__svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* the faint axis / plot frame: the resting hairline tier, visible but quiet. */
+.chart__axis {
+  stroke: var(--grey-850);
+  stroke-width: 1;
+  fill: none;
+  vector-effect: non-scaling-stroke;
+}
+
+/* the faintest frame elements (capacity log-decade gridlines): one rung deeper. */
+.chart__grid {
+  stroke: var(--grey-900);
+  stroke-width: 1;
+  fill: none;
+  vector-effect: non-scaling-stroke;
+}
+
+/* the data stroke: the one signal line, 1.5px, crisp at any scale. */
+.chart__line {
+  stroke: var(--signal);
+  stroke-width: 1.5;
+  fill: none;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+  vector-effect: non-scaling-stroke;
+}
+
+/* the gauntlet filled segment: same signal stroke, the value reach of a track. */
+.chart__fill {
+  stroke: var(--signal);
+  stroke-width: 2;
+}
+
+/* the optional drawdown shade: the faintest signal tint under the curve. */
+.chart__shade {
+  fill: var(--signal-faint);
+  stroke: none;
+}
+
+/* nodes: the powered-on pending node and the live end node. Centered scale so
+   the GSAP pulse grows from the node center, never the viewBox origin. */
+.chart__node {
+  fill: var(--signal);
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+/* the pending node carries a soft signal halo so it reads as "live and waiting",
+   not a stray dot. The halo is a static drop-shadow on the accent, not animated. */
+.chart__node--pending {
+  filter: drop-shadow(0 0 6px var(--signal-glow));
+}
+
+/* the traveling crest (equity pending only): a fainter signal node that GSAP
+   sweeps along the resting baseline, the "powered on, scanning" tell. Fill is the
+   accent at reduced presence; opacity is driven entirely by the loop tween (it
+   rests at 0 in markup), so a no-JS / reduced-motion read never shows it. The halo
+   sells it as a soft pulse passing through, not a hard dot. */
+.chart__node--scan {
+  fill: var(--signal);
+  filter: drop-shadow(0 0 5px var(--signal-glow));
+  transform-box: fill-box;
+  transform-origin: center;
+}
+@media (prefers-reduced-motion: reduce) {
+  /* belt and suspenders: the crest is never created under reduced motion (draw()
+     early-returns), but if it ever exists it stays invisible. */
+  .chart__node--scan { opacity: 0 !important; }
+}
+
+.chart__node--end {
+  filter: drop-shadow(0 0 5px var(--signal-glow));
+}
+
+/* the gauntlet gate marker: hollow (the bar to clear), so it never reads as a
+   placed value. The value node (.chart__node--end) is solid. */
+.chart__node--gate {
+  fill: none;
+  stroke: var(--signal);
+  stroke-width: 1.5;
+  opacity: 0.55;
+}
+
+/* the gauntlet track rail (a flatter, quieter axis than the curve frame). */
+.chart__track {
+  stroke: var(--grey-850);
+}
+
+/* in-svg mono labels (the capacity knee figure, the gauntlet measure labels). */
+.chart__label {
+  font-family: var(--mono);
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  fill: var(--grey-700);
+}
+
+/* the gauntlet verdict chip text, set in mono. One hue: pass is paper-bright,
+   hold is paper-dim, reserved is the grey floor. No red-versus-green theatre. */
+.chart__chip {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.chart__chip--pass { fill: var(--signal); }
+.chart__chip--hold { fill: var(--paper-dim); }
+.chart__chip--reserved { fill: var(--grey-700); }
+
+/* the visually-hidden table fallback: the standard SR-only pattern. Defined here
+   because styles.css does not ship one; if a shared .visually-hidden is added
+   later, this remains a compatible, scoped duplicate inside .chart only. */
+.chart .visually-hidden,
+.visually-hidden.chart__table {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* belt and suspenders: draw() is GSAP-driven and skips the tween under reduced
+   motion, but ensure nothing in this sheet introduces a transition either. */
+@media (prefers-reduced-motion: reduce) {
+  .chart__line,
+  .chart__fill,
+  .chart__node,
+  .chart__shade,
+  .chart__label,
+  .chart__chip {
+    transition: none;
+  }
+}

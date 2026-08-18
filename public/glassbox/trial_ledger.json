@@ -1,0 +1,202 @@
+{
+  "schema": "glassbox.trial-ledger/2",
+  "claim_boundary": "This ledger proves what was measured and how selection N is counted. It does not prove that any identity is profitable, independent, or admissible.",
+  "accounting_equation": "immutable execution records - window-only remeasurements - cross-profile duplicate identities = distinct union hypothesis identities",
+  "immutable_execution_records": 229,
+  "distinct_config_hashes": 229,
+  "window_only_remeasurements": 67,
+  "cross_profile_duplicate_identities": 0,
+  "distinct_hypothesis_identities": 162,
+  "selection_statistics": {
+    "unit": "first_immutable_record_per_hypothesis",
+    "n_hypotheses": 162,
+    "sharpe_variance": 0.0009605968552560768,
+    "audit_raw_record_sharpe_variance": 0.0007349521849715131,
+    "interpretation": "Operational window remeasurements remain public but cannot alter selection N or selection V[SR]."
+  },
+  "ledger_profiles": 4,
+  "hypothesis_identity_budget": 160,
+  "budget_remaining": -2,
+  "budget_status": "PAUSE_RESEARCH",
+  "research_status": "PAUSED_BUDGET_REVIEW",
+  "definitions": {
+    "immutable_execution_record": "One append-only, config-hash-unique measurement row. Rolling-window remeasurements remain records.",
+    "hypothesis_identity": "A distinct economic or parameter identity after removing only start and end measurement-window keys.",
+    "window_only_remeasurement": "A later record whose config differs from an existing identity only in start or end. It remains public but does not inflate DSR selection N."
+  },
+  "budget_review": {
+    "hypothesis_identities_at_review": 162,
+    "immutable_execution_records_at_review": 229,
+    "ledger_profiles_at_review": 4,
+    "new_identities_since_prior_135_ceiling": [
+      "insider_purchase_clusters_preliminary",
+      "insider_purchase_clusters_corrected_simple_return_contract",
+      "eia_petroleum_inventory",
+      "earnings_narrative_change"
+    ],
+    "forensic_debt_charged_at_review": [
+      "8 complete alphamax_construction walk-forward arms",
+      "16 persisted alphamax_weighting parameter-grid cells"
+    ],
+    "decision": "All prior identities remain charged and 24 proven historical screen identities were appended from immutable local artifacts. Legacy raw-row DSR code has been eliminated and all twelve historical paths are union-aligned or fail closed. The fixed 160-identity campaign budget was not raised. New return-hypothesis registration remains paused pending a formal budget decision.",
+    "next_tripwire": "No new return identity may be recorded until a formal review either closes the campaign at 162 identities or authorizes a prospective budget with documented rationale. Engineering, data-lineage, execution, publication, and exact reproduction work may continue."
+  },
+  "profiles": [
+    {
+      "profile": "var",
+      "source_path": "var/experiments.jsonl",
+      "immutable_execution_records": 172,
+      "distinct_config_hashes": 172,
+      "hypothesis_identities": 136,
+      "window_only_remeasurements": 36,
+      "latest_recorded_at": "2026-08-17T07:52:42.849000+00:00"
+    },
+    {
+      "profile": "var_fut_real",
+      "source_path": "var_fut_real/experiments.jsonl",
+      "immutable_execution_records": 1,
+      "distinct_config_hashes": 1,
+      "hypothesis_identities": 1,
+      "window_only_remeasurements": 0,
+      "latest_recorded_at": "2026-06-28T20:13:53.117000+00:00"
+    },
+    {
+      "profile": "var_mf",
+      "source_path": "var_mf/experiments.jsonl",
+      "immutable_execution_records": 44,
+      "distinct_config_hashes": 44,
+      "hypothesis_identities": 13,
+      "window_only_remeasurements": 31,
+      "latest_recorded_at": "2026-08-15T05:30:29.870000+00:00"
+    },
+    {
+      "profile": "var_sharadar",
+      "source_path": "var_sharadar/experiments.jsonl",
+      "immutable_execution_records": 12,
+      "distinct_config_hashes": 12,
+      "hypothesis_identities": 12,
+      "window_only_remeasurements": 0,
+      "latest_recorded_at": "2026-07-11T19:41:42.107000+00:00"
+    }
+  ],
+  "recent_hypothesis_identities": [
+    {
+      "hypothesis_key": "eef46f796cdbb646",
+      "config_hash": "34067635abce9cf9",
+      "label": "forensic_alphamax_weighting",
+      "ledger_profile": "var",
+      "first_recorded_at": "2026-08-17T00:00:00.023000+00:00",
+      "observations": 5428,
+      "annualized_sharpe_observed": -0.018761
+    },
+    {
+      "hypothesis_key": "5dd5372deac0882f",
+      "config_hash": "d7561b05e7624193",
+      "label": "forensic_alphamax_weighting",
+      "ledger_profile": "var",
+      "first_recorded_at": "2026-08-17T00:00:00.022000+00:00",
+      "observations": 5428,
+      "annualized_sharpe_observed": -0.012095
+    },
+    {
+      "hypothesis_key": "1521380bbfea6b18",
+      "config_hash": "15b78eaf0b3d4820",
+      "label": "forensic_alphamax_weighting",
+      "ledger_profile": "var",
+      "first_recorded_at": "2026-08-17T00:00:00.021000+00:00",
+      "observations": 5428,
+      "annualized_sharpe_observed": -0.054936
+    },
+    {
+      "hypothesis_key": "944daf4d5888647d",
+      "config_hash": "103beae582dee892",
+      "label": "forensic_alphamax_weighting",
+      "ledger_profile": "var",
+      "first_recorded_at": "2026-08-17T00:00:00.020000+00:00",
+      "observations": 5428,
+      "annualized_sharpe_observed": -0.030261
+    },
+    {
+      "hypothesis_key": "1700ddbeaf47d3eb",
+      "config_hash": "069c86acc068a4d5",
+      "label": "forensic_alphamax_weighting",
+      "ledger_profile": "var",
+      "first_recorded_at": "2026-08-17T00:00:00.019000+00:00",
+      "observations": 5428,
+      "annualized_sharpe_observed": 0.066016
+    },
+    {
+      "hypothesis_key": "2cfbbeea11dd0e2e",
+      "config_hash": "3cc8b915abefa48a",
+      "label": "forensic_alphamax_weighting",
+      "ledger_profile": "var",
+      "first_recorded_at": "2026-08-17T00:00:00.018000+00:00",
+      "observations": 5428,
+      "annualized_sharpe_observed": -0.292825
+    },
+    {
+      "hypothesis_key": "3096d43484ea2745",
+      "config_hash": "57fa40c3ea31b530",
+      "label": "forensic_alphamax_weighting",
+      "ledger_profile": "var",
+      "first_recorded_at": "2026-08-17T00:00:00.017000+00:00",
+      "observations": 5428,
+      "annualized_sharpe_observed": 0.014885
+    },
+    {
+      "hypothesis_key": "8e0d269423afaeb7",
+      "config_hash": "9584c5e969d4b39a",
+      "label": "forensic_alphamax_weighting",
+      "ledger_profile": "var",
+      "first_recorded_at": "2026-08-17T00:00:00.016000+00:00",
+      "observations": 5428,
+      "annualized_sharpe_observed": -0.002788
+    },
+    {
+      "hypothesis_key": "f350a08ec0da47d5",
+      "config_hash": "ff8fefa17679b51b",
+      "label": "forensic_alphamax_weighting",
+      "ledger_profile": "var",
+      "first_recorded_at": "2026-08-17T00:00:00.015000+00:00",
+      "observations": 5428,
+      "annualized_sharpe_observed": -0.053703
+    },
+    {
+      "hypothesis_key": "0c17b616473d3e37",
+      "config_hash": "b332501af87f95b6",
+      "label": "forensic_alphamax_weighting",
+      "ledger_profile": "var",
+      "first_recorded_at": "2026-08-17T00:00:00.014000+00:00",
+      "observations": 5428,
+      "annualized_sharpe_observed": -0.050382
+    }
+  ],
+  "policy_source_path": "config/trial_accounting.json",
+  "trial_debt_reconciliation": {
+    "source_path": "artifacts/audit/trial_debt_reconciliation.json",
+    "source_sha256": "5ff87cc863c7ce1301f95798d82feb9b5486332eb8a1b2a58258967e14b34630"
+  },
+  "legacy_dsr_debt": {
+    "status": "CODE_RESOLVED_HISTORICAL_CLAIMS_RETIRED",
+    "historical_exception_paths": 12,
+    "executable_debt_paths": 0,
+    "resolved_code_paths": 12,
+    "union_registration_paths": 7,
+    "claim_boundary": "No executable raw-row DSR implementation remains. Historical summary-only DSR claims stay retired because their exact return series were not preserved; code repair does not rehabilitate those artifacts.",
+    "source_path": "config/legacy_dsr_exceptions.json",
+    "source_sha256": "df0fdfef765f5933ea90e89d131b70ce120c486a792278d07cbbe7326a364e36",
+    "restatement": {
+      "source_path": "artifacts/audit/legacy_dsr_restatement.json",
+      "source_sha256": "3e634254e99ecb8e29eb4f0d807b19e29d54a05f2fc66e2e4493c4a88b49a202",
+      "summary": {
+        "historical_exception_families": 12,
+        "restated_families": 5,
+        "restated_variants": 33,
+        "restated_variants_clearing_dsr_0_95": 0,
+        "retired_families": 7
+      }
+    }
+  },
+  "generated_at": "2026-08-18T13:06:30.721016+00:00",
+  "content_hash": "sha256:39b927f8117ceb0d16435dc7d2067b16214a5617531ba419e36ba76130ff4f48"
+}

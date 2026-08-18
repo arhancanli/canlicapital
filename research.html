@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="en" data-page="research">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Canli Capital / Open research book</title>
+  <meta name="description" content="The open ALPHAC research book: four current sleeves, a governed 240-cell multi-asset atlas, every rejected result, locked validation gates, execution evidence and reproducible artifacts. The 2.0 to 2.5 Sharpe range is a research objective, never a promised result. Paper trading only; no client capital or claimed return." />
+  <meta name="theme-color" content="#0A0B0D" />
+  <meta name="color-scheme" content="dark" />
+  <link rel="canonical" href="https://canlicapital.com/research" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Canli Capital" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:title" content="Canli Capital / Open research book" />
+  <meta property="og:description" content="Four current sleeves, a lineage-reconciled 40-family and 240-cell coverage atlas, every rejection, and the locked gates that decide what enters ALPHAC." />
+  <meta property="og:url" content="https://canlicapital.com/research" />
+  <meta property="og:image" content="https://canlicapital.com/og.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:alt" content="Canli Capital. A multi-signal quant engine, proven in the open. Simulation and live paper only, no real capital, no claimed return." />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Canli Capital / Open research book" />
+  <meta name="twitter:description" content="The ALPHAC sleeve ledger, 240-cell lineage-reconciled coverage atlas, rejected results and locked validation gates, published with reproducible evidence." />
+  <meta name="twitter:image" content="https://canlicapital.com/og.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@300..700&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@300..700&display=swap" />
+
+  <link rel="stylesheet" href="./css/styles.css" />
+  <link rel="stylesheet" href="./css/motion.css" />
+  <link rel="stylesheet" href="./css/shell.css" />
+  <link rel="stylesheet" href="./css/waitlist.css" />
+  <!-- Page-specific layer for /research ONLY: the research hero + executive proof
+       strip, the asset-class-filtered factor ledger (every test, real Sharpe +
+       Rank-IC, expandable), the survivors / combined-book panel, the deflation
+       gauntlet board, the plain-language methodology cards, and the roadmap.
+       Loaded LAST so it only ADDS components on top of the single design system;
+       it never redefines a token, a type class, an easing, the cursor, the rail,
+       or the grain. Reuses the gauge + capbar + ledger idioms from open.css. -->
+  <link rel="stylesheet" href="./css/research.css" />
+
+  <!-- Favicon set (the brand mark: one signal dot on the void). The SVG is the
+       primary, scalable icon; the .ico is the legacy fallback; the PNG sizes serve
+       iOS home-screen and PWA install. All long-cached as static assets. -->
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="/favicon.ico" sizes="32x32" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/manifest.webmanifest" />
+
+  <!-- Organization schema (JSON-LD). States only what is true: the firm, the brand,
+       the flagship engine, and the disclaimer that nothing here is investment
+       advice. No performance claim. -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Canli Capital",
+    "url": "https://canlicapital.com/",
+    "logo": "https://canlicapital.com/icon-512.png",
+    "image": "https://canlicapital.com/og.png",
+    "description": "A quantitative research platform building ALPHAC: a paper-traded, cross-asset book of four equal-quarter sleeves spanning equity momentum, managed-futures trend, funding carry and point-in-time macro surprise. Methods, failures and corrections are published in the open. No real capital and no claimed returns.",
+    "foundingDate": "2026",
+    "founder": { "@type": "Person", "name": "Arhan Canli" },
+    "slogan": "Institutional discipline, made legible.",
+    "disclaimer": "Nothing on this site is investment advice, an offer, or a solicitation. Canli Capital is in simulation and live paper trading. No statement describes live capital performance, and no return is claimed."
+  }
+  </script>
+
+  <style>
+    .skip-link {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 200;
+      transform: translateY(-120%);
+      margin: 12px;
+      padding: 10px 16px;
+      background: #0A0B0D;
+      color: #F4F1EA;
+      font: 500 13px/1 "Space Grotesk", system-ui, sans-serif;
+      letter-spacing: 0.04em;
+      text-decoration: none;
+      border: 1px solid #C8553D;
+      border-radius: 2px;
+      transition: transform 180ms ease;
+    }
+    .skip-link:focus { transform: translateY(0); }
+    .skip-link:focus-visible { outline: 2px solid #F4F1EA; outline-offset: 3px; }
+  </style>
+
+  <script>document.documentElement.classList.add("js");</script>
+
+  <!-- Per-page config for the shared bootstrap. /research is the method / findings
+       chapter of the one manifold: the camera sits in the same resolved, settled
+       band as /open and /performance (high convergence, restrained, never
+       triumphant), because the page's whole posture is honest disclosure of the
+       full gauntlet, not a victory lap. The chapter labels feed the living rail
+       counter, indexed by each section's data-section. This must run before
+       main.js. -->
+  <script>
+    window.__MERIDIAN_PAGE = {
+      id: "research",
+      chapters: [
+        "The research", "Factor tests", "What survived", "Methodology",
+        "Crypto alone", "Research frontier", "Roadmap", "Colophon"
+      ],
+      sceneBand: [0.72, 0.97],
+      sceneStill: 0.8
+    };
+  </script>
+</head>
+
+<body>
+
+  <a href="#content" class="skip-link">Skip to content</a>
+
+  <canvas id="scene" class="scene" aria-hidden="true"></canvas>
+  <div class="scene-fallback" id="sceneFallback" aria-hidden="true"></div>
+
+
+  <nav class="rail" id="rail" aria-label="Section navigation">
+    <span class="rail__line" aria-hidden="true"><span class="rail__fill" id="railFill"></span></span>
+    <div class="rail__head" id="railHead" aria-hidden="true">
+      <span class="rail__index mono-label" id="railIndex">00</span>
+      <span class="rail__chapter label" id="railName">The research</span>
+    </div>
+    <ul class="rail__list">
+      <li><a href="#hero" class="rail__item" data-rail="0"><span class="rail__num mono-label">00</span></a></li>
+      <li><a href="#factors" class="rail__item" data-rail="1"><span class="rail__num mono-label">01</span></a></li>
+      <li><a href="#book" class="rail__item" data-rail="2"><span class="rail__num mono-label">02</span></a></li>
+      <li><a href="#method" class="rail__item" data-rail="3"><span class="rail__num mono-label">03</span></a></li>
+      <li><a href="#gauntlet" class="rail__item" data-rail="4"><span class="rail__num mono-label">04</span></a></li>
+      <li><a href="#frontier" class="rail__item" data-rail="5"><span class="rail__num mono-label">05</span></a></li>
+      <li><a href="#roadmap" class="rail__item" data-rail="6"><span class="rail__num mono-label">06</span></a></li>
+    </ul>
+  </nav>
+
+  <!-- Shared top nav: js/shell.js renders the links + CTA into this .nav__links
+       and marks the current page (data-page="research"). -->
+  <header class="nav" id="nav">
+    <div class="nav__inner">
+      <a href="/" class="nav__brand label" data-brand aria-label="Canli Capital, home">Canli Capital</a>
+      <nav class="nav__links" aria-label="Primary"></nav>
+    </div>
+  </header>
+
+  <main id="content" class="content" tabindex="-1">
+
+    <!-- =================================================================== -->
+    <!-- (00) HERO / THE RESEARCH                                              -->
+    <!-- =================================================================== -->
+    <section class="research-hero hero section" id="hero" data-section="0" aria-labelledby="research-hero-word">
+      <div class="hero__status mono-label" aria-label="Research status">
+        <span class="dot dot--pulse ridge-accent" aria-hidden="true"></span>
+        <span>The research</span>
+        <span class="hero__status-sep" aria-hidden="true">&middot;</span>
+        <span class="hero__status-val">Every test, including the kills</span>
+      </div>
+
+      <div class="research-hero__ghost" aria-hidden="true">Research</div>
+
+      <div class="hero__body">
+        <p class="eyebrow label reveal-line"><span class="idx mono-label">00 /</span> The research</p>
+        <h1 class="hero__word display-xl" id="research-hero-word" data-parallax="0.12">
+          <span class="mask" data-chars><span class="mask__inner">How we</span></span>
+          <span class="mask" data-chars><span class="mask__inner">got here.</span></span>
+        </h1>
+        <p class="research-hero__lede display-m reveal-fade">
+          Most ideas die. We publish them anyway, including the ones that did.
+        </p>
+        <p class="hero__sub body-l reveal-fade" data-es="description">
+          Every factor we tested, across crypto and US equities, with its real
+          net-of-cost Sharpe and what we did with it. Two survived. Most we killed.
+        </p>
+        <p class="research-hero__proof mono-label reveal-fade" aria-label="The research in numbers" aria-live="polite">
+          <span data-es="factors">--</span> factors tested
+          <span class="research-hero__proof-sep" aria-hidden="true">&middot;</span>
+          <span data-es="kept">--</span> survived
+          <span class="research-hero__proof-sep" aria-hidden="true">&middot;</span>
+          <span data-es="killed">--</span> killed
+          <span class="research-hero__proof-sep" aria-hidden="true">&middot;</span>
+          across <span data-es="tested">--</span> families
+          <span class="research-hero__proof-sep" aria-hidden="true">&middot;</span>
+          forward <span data-es="forwardSharpe">--</span> Sharpe
+          <span class="research-hero__proof-sep" aria-hidden="true">&middot;</span>
+          grade <span data-es="grade">--</span>
+        </p>
+      </div>
+
+      <a href="#factors" class="hero__scroll mono-label" aria-label="Scroll to the factor tests">
+        <span>Scroll</span>
+        <span class="hero__scroll-line" aria-hidden="true"></span>
+      </a>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- (01) FACTOR TESTS / THE FULL LEDGER                                   -->
+    <!-- =================================================================== -->
+    <section class="factors section section--ink" id="factors" data-section="1" aria-labelledby="factors-head">
+      <span class="section__rule" aria-hidden="true"></span>
+      <div class="factors__head">
+        <p class="eyebrow label"><span class="idx mono-label">01 /</span> Factor tests</p>
+        <h2 class="factors__title display-l" id="factors-head">
+          <span class="mask" data-chars><span class="mask__inner">Every test, its</span></span>
+          <span class="mask" data-chars><span class="mask__inner">real Sharpe, and</span></span>
+          <span class="mask" data-chars><span class="mask__inner">its real Rank-IC.</span></span>
+        </h2>
+        <p class="factors__lead body-l reveal-fade" data-fr="summary">
+          Every test we ran, with its net-of-cost Sharpe and Rank-IC.
+        </p>
+        <p class="factors__note body reveal-fade">
+          <span class="comment mono-label">//</span>
+          Rank-IC is the cross-sectional information coefficient with a
+          Newey-West t-stat. Net Sharpe is the purged walk-forward result after
+          the cost model. Select a row for its full performance, its Rank-IC by
+          horizon, and the source artifact.
+        </p>
+      </div>
+
+      <!-- Tally strip: tested / survived / killed, read from factor_research so it
+           cannot drift from the table below. -->
+      <ul class="factors__tally reveal-fade" aria-label="Factor research tally">
+        <li class="factors__tally-item">
+          <span class="factors__tally-val mono-data" data-es="factors">--</span>
+          <span class="factors__tally-label mono-label">Factors tested</span>
+        </li>
+        <li class="factors__tally-item">
+          <span class="factors__tally-val mono-data factors__tally-val--keep" data-fr="kept">--</span>
+          <span class="factors__tally-label mono-label">Survived net of cost</span>
+        </li>
+        <li class="factors__tally-item">
+          <span class="factors__tally-val mono-data" data-fr="killed">--</span>
+          <span class="factors__tally-label mono-label">Killed, never re-tuned</span>
+        </li>
+      </ul>
+
+      <!-- Asset-class filter: presentational only, never changes a number. -->
+      <div class="factors__filter reveal-fade" role="group" aria-label="Filter factors by asset class">
+        <span class="factors__filter-label mono-label">Filter</span>
+        <button type="button" class="factors__filter-chip is-active" data-filter="all" aria-pressed="true">All</button>
+        <button type="button" class="factors__filter-chip" data-filter="equity" aria-pressed="false">Equity</button>
+        <button type="button" class="factors__filter-chip" data-filter="crypto" aria-pressed="false">Crypto</button>
+      </div>
+
+      <!-- Expandable disclosures laid out as a ledger. Native buttons own the
+           interaction; this intentionally avoids a false ARIA table hierarchy. -->
+      <div class="factors__table">
+        <div class="factor__row factor__row--head" aria-hidden="true">
+          <span class="factor__cell factor__cell--name label">Factor</span>
+          <span class="factor__cell factor__cell--family label">Family</span>
+          <span class="factor__cell factor__cell--num label">Net Sharpe</span>
+          <span class="factor__cell factor__cell--num factor__cell--ic label">Rank-IC (t)</span>
+          <span class="factor__cell factor__cell--verdict label">Verdict</span>
+        </div>
+        <div class="factor__body" id="factorBody" data-empty="1">
+          <!-- rows injected by research.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- (02) WHAT SURVIVED / THE COMBINED BOOK                                -->
+    <!-- =================================================================== -->
+    <section class="book section" id="book" data-section="2" aria-labelledby="book-head">
+      <span class="section__rule" aria-hidden="true"></span>
+      <div class="book__head">
+        <p class="eyebrow label"><span class="idx mono-label">02 /</span> What survived</p>
+        <h2 class="book__title display-l" id="book-head">
+          <span class="mask" data-chars><span class="mask__inner">Four sleeves. One neutral core.</span></span>
+          <span class="mask" data-chars><span class="mask__inner">Real, decorrelated,</span></span>
+          <span class="mask" data-chars><span class="mask__inner">and honestly modest.</span></span>
+        </h2>
+        <p class="book__lead body-l reveal-fade" data-cb="style">
+          AlphaForge, AlphaMax, AlphaTrend, and AlphaVintage span funding carry,
+          equity momentum, managed futures, and point-in-time macro. Equal-quarter
+          sleeve weights form ALPHAC's neutral core; the disclosed +10% strategic
+          beta overlay remains a separate line and is not called alpha.
+        </p>
+      </div>
+
+      <!-- Current sleeves: cards with weight bar + standalone Sharpe. -->
+      <div class="book__sleeves" id="bookSleeves" data-empty="1" role="list" aria-label="The four current sleeves">
+        <!-- sleeve cards injected by research.js -->
+      </div>
+
+      <!-- Correlation note: the structural reason the book is real. -->
+      <div class="book__corr reveal-fade">
+        <div class="book__corr-figures">
+          <div class="book__corr-fig">
+            <span class="book__corr-val mono-data" data-cb="correlation">--</span>
+            <span class="book__corr-label mono-label">Full-sample correlation</span>
+          </div>
+          <div class="book__corr-fig">
+            <span class="book__corr-val mono-data" data-cb="corrDown">--</span>
+            <span class="book__corr-label mono-label">On equity down-days</span>
+          </div>
+          <div class="book__corr-fig">
+            <span class="book__corr-val mono-data" data-cb="corrStress">--</span>
+            <span class="book__corr-label mono-label">Stress union</span>
+          </div>
+        </div>
+        <p class="book__corr-note body" data-cb="correlationNote">--</p>
+      </div>
+
+      <!-- The honesty pivot: labelled in-sample card vs the deflated forward card.
+           The label discipline is the whole point of the page. -->
+      <div class="book__expectations">
+        <article class="expect expect--insample reveal-fade" aria-labelledby="expect-is-head">
+          <header class="expect__head">
+            <h3 class="expect__name label" id="expect-is-head">In-sample, research window</h3>
+            <span class="expect__flag mono-label" data-cb="isLabel">NOT the forward expectation</span>
+          </header>
+          <p class="expect__window mono-label" data-cb="isWindow">--</p>
+          <dl class="expect__metrics">
+            <div class="expect__metric">
+              <dt class="expect__metric-label mono-label">Sharpe</dt>
+              <dd class="expect__metric-val mono-data" data-cb="isSharpe">--</dd>
+            </div>
+            <div class="expect__metric">
+              <dt class="expect__metric-label mono-label">CAGR</dt>
+              <dd class="expect__metric-val mono-data" data-cb="isCagr">--</dd>
+            </div>
+            <div class="expect__metric">
+              <dt class="expect__metric-label mono-label">Max DD</dt>
+              <dd class="expect__metric-val mono-data" data-cb="isDd">--</dd>
+            </div>
+          </dl>
+        </article>
+
+        <article class="expect expect--forward reveal-fade" aria-labelledby="expect-fwd-head">
+          <header class="expect__head">
+            <h3 class="expect__name label" id="expect-fwd-head">Honest forward expectation</h3>
+            <span class="expect__flag expect__flag--signal mono-label">After multiple-testing deflation</span>
+          </header>
+          <dl class="expect__metrics">
+            <div class="expect__metric">
+              <dt class="expect__metric-label mono-label">Sharpe</dt>
+              <dd class="expect__metric-val mono-data expect__metric-val--signal" data-cb="fwdSharpe">--</dd>
+            </div>
+            <div class="expect__metric">
+              <dt class="expect__metric-label mono-label">Return (vol-targeted)</dt>
+              <dd class="expect__metric-val mono-data" data-cb="fwdReturn">--</dd>
+            </div>
+            <div class="expect__metric">
+              <dt class="expect__metric-label mono-label">Worst DD</dt>
+              <dd class="expect__metric-val mono-data" data-cb="fwdDd">--</dd>
+            </div>
+          </dl>
+          <p class="expect__reason body" data-cb="fwdReason">--</p>
+        </article>
+      </div>
+
+      <!-- The deflation summary table + the ceilings, stated as features. -->
+      <div class="book__verdict">
+        <div class="book__deflation reveal-fade">
+          <p class="book__deflation-head label">Combined-book deflation</p>
+          <dl class="book__deflation-rows">
+            <div class="book__deflation-row">
+              <dt class="book__deflation-label mono-label">Combined DSR (N=69)</dt>
+              <dd class="book__deflation-val mono-data" data-cb="dsrN69">--</dd>
+            </div>
+            <div class="book__deflation-row">
+              <dt class="book__deflation-label mono-label">Combined DSR (N=518)</dt>
+              <dd class="book__deflation-val mono-data" data-cb="dsrN518">--</dd>
+            </div>
+            <div class="book__deflation-row">
+              <dt class="book__deflation-label mono-label">DSR gate</dt>
+              <dd class="book__deflation-val mono-data" data-cb="dsrGate">--</dd>
+            </div>
+            <div class="book__deflation-row">
+              <dt class="book__deflation-label mono-label">Standalone equity DSR</dt>
+              <dd class="book__deflation-val mono-data" data-cb="dsrEquity">--</dd>
+            </div>
+            <div class="book__deflation-row">
+              <dt class="book__deflation-label mono-label">Standalone crypto DSR</dt>
+              <dd class="book__deflation-val mono-data" data-cb="dsrCrypto">--</dd>
+            </div>
+          </dl>
+          <p class="book__deflation-note body" data-cb="deflationNote">--</p>
+        </div>
+
+        <div class="book__grade reveal-fade">
+          <div class="book__grade-mark">
+            <span class="book__grade-val display-l" data-cb="grade">--</span>
+            <span class="book__grade-label label">Honest grade</span>
+          </div>
+          <p class="book__grade-note body" data-cb="gradeNote">--</p>
+          <ul class="book__ceilings" aria-label="Capacity and breadth ceilings">
+            <li class="book__ceiling">
+              <span class="book__ceiling-label mono-label">Equity capacity</span>
+              <span class="book__ceiling-val body" data-cb="ceilEquity">--</span>
+            </li>
+            <li class="book__ceiling">
+              <span class="book__ceiling-label mono-label">Crypto carry capacity</span>
+              <span class="book__ceiling-val body" data-cb="ceilCrypto">--</span>
+            </li>
+            <li class="book__ceiling">
+              <span class="book__ceiling-label mono-label">BTC-correlation cap</span>
+              <span class="book__ceiling-val body" data-cb="ceilBtc">--</span>
+            </li>
+            <li class="book__ceiling">
+              <span class="book__ceiling-label mono-label">Equity survivors</span>
+              <span class="book__ceiling-val body" data-cb="ceilSurvivor">--</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- (03) METHODOLOGY / HOW WE VALIDATE                                    -->
+    <!-- =================================================================== -->
+    <section class="method section section--ink" id="method" data-section="3" aria-labelledby="method-head">
+      <span class="section__rule" aria-hidden="true"></span>
+      <div class="method__head-block">
+        <p class="eyebrow label"><span class="idx mono-label">03 /</span> Methodology</p>
+        <h2 class="method__title-head display-l" id="method-head">
+          <span class="mask" data-chars><span class="mask__inner">The data layer blocks</span></span>
+          <span class="mask" data-chars><span class="mask__inner">leaks at the source,</span></span>
+          <span class="mask" data-chars><span class="mask__inner">not after the fact.</span></span>
+        </h2>
+        <p class="method__lead body-l reveal-fade">
+          The validation method in plain language: point-in-time data, purged
+          walk-forward, deflation gates, pre-registration, and a byte-reproducible
+          backtest.
+        </p>
+        <a href="/research/execution-realism.md" class="research-link label">
+          Read the execution-model boundary
+        </a>
+        <a href="/research/engineering-quality.md" class="research-link label">
+          Engineering quality boundary <span aria-hidden="true">↗</span>
+        </a>
+        <a href="/glassbox/lint_debt_contract.json" class="research-link label">
+          Machine-readable lint debt <span aria-hidden="true">↗</span>
+        </a>
+        <a href="/glassbox/execution_models_benchmark.json" class="research-link label">
+          Inspect the local execution benchmark
+        </a>
+        <a href="/research/futures-execution-foundation.md" class="research-link label">
+          Read the dated-futures execution foundation
+        </a>
+        <a href="/research/options-execution-foundation.md" class="research-link label">
+          Read the options surface and lifecycle foundation
+        </a>
+        <a href="/research/borrow-execution-foundation.md" class="research-link label">
+          Read the securities-borrow foundation
+        </a>
+        <a href="/research/market-status-replay.md" class="research-link label">
+          Read the market-status and outage replay contract
+        </a>
+        <a href="/research/crowding-risk-foundation.md" class="research-link label">
+          Read the crowding and stressed-capacity contract
+        </a>
+        <a href="/research/corporate-action-lifecycle.md" class="research-link label">
+          Read the corporate-action and delisting lifecycle contract
+        </a>
+      </div>
+
+      <aside class="capreg" aria-labelledby="capreg-head">
+        <div class="capreg__head">
+          <div>
+            <p class="mono-label">Implementation register / source-bound</p>
+            <h3 class="display-m" id="capreg-head">Controls, not claims.</h3>
+          </div>
+          <p class="body">
+            A filled checkpoint means that layer is enforced in code. An open checkpoint means it
+            is not claimed. These contracts are engineering evidence only and do not qualify a
+            sleeve or establish historical coverage.
+          </p>
+        </div>
+        <div class="capreg__legend mono-label" aria-hidden="true">
+          <span>Capability</span><span>Enforcement checkpoints</span><span>Evidence boundary</span>
+        </div>
+        <div class="capreg__register">
+          <article class="capreg__row">
+            <div class="capreg__identity">
+              <h4>Dated futures</h4>
+              <p>Rolls, notices, limits, margin</p>
+              <span class="mono-label">Domain primitives only</span>
+            </div>
+            <div class="capreg__rail" aria-label="Dated futures enforcement checkpoints">
+              <span class="is-implemented"><i aria-hidden="true"></i><b>Primitive</b></span>
+              <span><i aria-hidden="true"></i><b>Backtest</b></span>
+              <span><i aria-hidden="true"></i><b>Pre-trade</b></span>
+              <span><i aria-hidden="true"></i><b>Live</b></span>
+            </div>
+            <div class="capreg__boundary">
+              <p>Lifecycle primitives are implemented. No dated-contract ingestion, end-to-end ledger integration, or live futures routing is claimed.</p>
+              <nav aria-label="Dated futures evidence"><a href="/research/futures-execution-foundation.md">Boundary</a><a href="/glassbox/futures_execution_contract.json">Contract</a></nav>
+            </div>
+          </article>
+          <article class="capreg__row">
+            <div class="capreg__identity">
+              <h4>Options surface &amp; lifecycle</h4>
+              <p>PIT surface, package, fee, margin &amp; status controls</p>
+              <span class="mono-label">Domain primitives only</span>
+            </div>
+            <div class="capreg__rail" aria-label="Options surface and lifecycle enforcement checkpoints">
+              <span class="is-implemented"><i aria-hidden="true"></i><b>Primitive</b></span>
+              <span><i aria-hidden="true"></i><b>Backtest</b></span>
+              <span><i aria-hidden="true"></i><b>Pre-trade</b></span>
+              <span><i aria-hidden="true"></i><b>Live</b></span>
+            </div>
+            <div class="capreg__boundary">
+              <p>Point-in-time surfaces, adjusted baskets, and lifecycle assumptions are explicit. No historical surface or adjustment coverage, package fillability, executable options strategy, or live routing is claimed.</p>
+              <nav aria-label="Options surface and lifecycle evidence"><a href="/research/options-execution-foundation.md">Boundary</a><a href="/glassbox/options_execution_contract.json">Contract</a></nav>
+            </div>
+          </article>
+          <article class="capreg__row">
+            <div class="capreg__identity">
+              <h4>Securities borrow</h4>
+              <p>Locates, fees, recalls, forced buy-ins</p>
+              <span class="mono-label">Event-driven backtest integrated</span>
+            </div>
+            <div class="capreg__rail" aria-label="Securities borrow enforcement checkpoints">
+              <span class="is-implemented"><i aria-hidden="true"></i><b>Primitive</b></span>
+              <span class="is-implemented"><i aria-hidden="true"></i><b>Backtest</b></span>
+              <span><i aria-hidden="true"></i><b>Pre-trade</b></span>
+              <span><i aria-hidden="true"></i><b>Live</b></span>
+            </div>
+            <div class="capreg__boundary">
+              <p>The replay path enforces locates, fees, recalls, and buy-in escalation when PIT inputs are supplied. Historical locatability and live broker polling are not proven.</p>
+              <nav aria-label="Securities borrow evidence"><a href="/research/borrow-execution-foundation.md">Boundary</a><a href="/glassbox/borrow_execution_contract.json">Contract</a></nav>
+            </div>
+          </article>
+          <article class="capreg__row">
+            <div class="capreg__identity">
+              <h4>Venue status</h4>
+              <p>Halts, outages, auctions, close-only</p>
+              <span class="mono-label">Event-driven backtest integrated</span>
+            </div>
+            <div class="capreg__rail" aria-label="Venue status enforcement checkpoints">
+              <span class="is-implemented"><i aria-hidden="true"></i><b>Primitive</b></span>
+              <span class="is-implemented"><i aria-hidden="true"></i><b>Backtest</b></span>
+              <span><i aria-hidden="true"></i><b>Pre-trade</b></span>
+              <span><i aria-hidden="true"></i><b>Live</b></span>
+            </div>
+            <div class="capreg__boundary">
+              <p>Explicit status replay blocks impossible fills when coverage is supplied. Historical status ingestion, auction formation, and live venue failover are not claimed.</p>
+              <nav aria-label="Venue status evidence"><a href="/research/market-status-replay.md">Boundary</a><a href="/glassbox/market_status_contract.json">Contract</a></nav>
+            </div>
+          </article>
+          <article class="capreg__row">
+            <div class="capreg__identity">
+              <h4>Cash financing</h4>
+              <p>Credit, margin debit, short collateral</p>
+              <span class="mono-label">Event-driven backtest integrated / no historical coverage</span>
+            </div>
+            <div class="capreg__rail" aria-label="Cash financing enforcement checkpoints">
+              <span class="is-implemented"><i aria-hidden="true"></i><b>Primitive</b></span>
+              <span class="is-implemented"><i aria-hidden="true"></i><b>Backtest</b></span>
+              <span><i aria-hidden="true"></i><b>Pre-trade</b></span>
+              <span><i aria-hidden="true"></i><b>Live</b></span>
+            </div>
+            <div class="capreg__boundary">
+              <p>Explicit PIT rates accrue cash credit, margin debit, and segregated short-sale proceeds. Historical schedules, multicurrency collateral, margin calls, and live broker financing are not claimed.</p>
+              <nav aria-label="Cash financing evidence"><a href="/research/financing-replay.md">Boundary</a><a href="/glassbox/financing_contract.json">Contract</a></nav>
+            </div>
+          </article>
+          <article class="capreg__row">
+            <div class="capreg__identity">
+              <h4>Corporate actions</h4>
+              <p>Splits, dividends, delisting boundaries</p>
+              <span class="mono-label">Event-driven backtest integrated</span>
+            </div>
+            <div class="capreg__rail" aria-label="Corporate-action enforcement checkpoints">
+              <span class="is-implemented"><i aria-hidden="true"></i><b>Primitive</b></span>
+              <span class="is-implemented"><i aria-hidden="true"></i><b>Backtest</b></span>
+              <span><i aria-hidden="true"></i><b>Pre-trade</b></span>
+              <span><i aria-hidden="true"></i><b>Live</b></span>
+            </div>
+            <div class="capreg__boundary">
+              <p>Source-bound splits, cash dividends, and metadata-confirmed delistings are replayed. Complex reorganizations, coverage completeness, and live broker handling are not claimed.</p>
+              <nav aria-label="Corporate-action evidence"><a href="/research/corporate-action-lifecycle.md">Boundary</a><a href="/glassbox/corporate_action_contract.json">Contract</a></nav>
+            </div>
+          </article>
+          <article class="capreg__row">
+            <div class="capreg__identity">
+              <h4>Crowding risk</h4>
+              <p>PIT inputs, liquidation stress, risk rejection</p>
+              <span class="mono-label">Pre-trade integrated / no historical coverage</span>
+            </div>
+            <div class="capreg__rail" aria-label="Crowding risk enforcement checkpoints">
+              <span class="is-implemented"><i aria-hidden="true"></i><b>Primitive</b></span>
+              <span><i aria-hidden="true"></i><b>Backtest</b></span>
+              <span class="is-implemented"><i aria-hidden="true"></i><b>Pre-trade</b></span>
+              <span><i aria-hidden="true"></i><b>Live</b></span>
+            </div>
+            <div class="capreg__boundary">
+              <p>The pre-trade gate and stress arithmetic are implemented. Historical portfolios remain unassessable until every required PIT input is supplied.</p>
+              <nav aria-label="Crowding risk evidence"><a href="/research/crowding-risk-foundation.md">Boundary</a><a href="/glassbox/crowding_risk_contract.json">Contract</a></nav>
+            </div>
+          </article>
+        </div>
+      </aside>
+
+      <div class="method__grid" id="methodList" data-empty="1" aria-label="Validation methodology">
+        <!-- method cards injected by research.js -->
+      </div>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- (04) CRYPTO ALONE / THE DEFLATION GAUNTLET                            -->
+    <!-- =================================================================== -->
+    <section class="gauntlet section" id="gauntlet" data-section="4" aria-labelledby="gauntlet-head">
+      <span class="section__rule" aria-hidden="true"></span>
+      <div class="gauntlet__head">
+        <p class="eyebrow label"><span class="idx mono-label">04 /</span> Crypto alone</p>
+        <h2 class="gauntlet__title display-l" id="gauntlet-head">
+          <span class="mask" data-chars><span class="mask__inner">Crypto alone is a</span></span>
+          <span class="mask" data-chars><span class="mask__inner">null net of cost.</span></span>
+          <span class="mask" data-chars><span class="mask__inner">Here is the proof.</span></span>
+        </h2>
+        <p class="gauntlet__lead body-l reveal-fade">
+          Before the equity ballast, we ran crypto perpetuals through the
+          deflation gates on their own. The result is NO-DEPLOY. The edge is too
+          thin to survive cost.
+        </p>
+        <p class="gauntlet__meta mono-label reveal-fade" aria-label="Gauntlet configuration">
+          <span data-gt="config">--</span>
+          <span class="gauntlet__meta-sep" aria-hidden="true">&middot;</span>
+          <span data-gt="window">--</span>
+          <span class="gauntlet__meta-sep" aria-hidden="true">&middot;</span>
+          <span data-gt="trials">--</span> trials
+          <span class="gauntlet__meta-sep" aria-hidden="true">&middot;</span>
+          best config <span data-gt="bestName">--</span>
+        </p>
+      </div>
+
+      <div class="gauntlet__board">
+        <!-- The two gauges: DSR and PBO, each against its gate. Reuses the open.css
+             .gauge idiom (loaded design system); research.css adds nothing new. -->
+        <div class="gauntlet__gauges reveal-fade">
+          <figure class="gauge" data-gauge="dsr">
+            <figcaption class="gauge__head">
+              <span class="gauge__name label">Deflated Sharpe (shared)</span>
+              <span class="gauge__verdict mono-label gauge__verdict--fail" data-gt="dsrState">--</span>
+            </figcaption>
+            <div class="gauge__track" aria-hidden="true">
+              <span class="gauge__fill" data-gt-fill="dsr"></span>
+              <span class="gauge__gate" data-gt-gate="dsr"></span>
+            </div>
+            <div class="gauge__readout">
+              <span class="gauge__val mono-data" data-gt="dsrVal">--</span>
+              <span class="gauge__gate-label mono-label">gate <span data-gt="dsrGate">--</span></span>
+            </div>
+          </figure>
+
+          <figure class="gauge" data-gauge="pbo">
+            <figcaption class="gauge__head">
+              <span class="gauge__name label">Prob. of backtest overfitting</span>
+              <span class="gauge__verdict mono-label gauge__verdict--fail" data-gt="pboState">--</span>
+            </figcaption>
+            <div class="gauge__track" aria-hidden="true">
+              <span class="gauge__fill" data-gt-fill="pbo"></span>
+              <span class="gauge__gate" data-gt-gate="pbo"></span>
+            </div>
+            <div class="gauge__readout">
+              <span class="gauge__val mono-data" data-gt="pboVal">--</span>
+              <span class="gauge__gate-label mono-label">gate &lt; <span data-gt="pboGate">--</span></span>
+            </div>
+          </figure>
+        </div>
+
+        <!-- The capacity decay: SR shrinks as capital grows; the finite-alpha cliff.
+             Reuses the open.css .capbar idiom. -->
+        <div class="gauntlet__capacity reveal-fade">
+          <p class="gauntlet__capacity-head label">Capacity decay, annualised Sharpe by deployed capital</p>
+          <ul class="capbar" id="capacityBars" data-empty="1" aria-label="Capacity curve">
+            <!-- bars injected by research.js -->
+          </ul>
+          <p class="gauntlet__capacity-note body" data-gt="capacityNote">--</p>
+        </div>
+      </div>
+
+      <div class="gauntlet__verdict reveal-fade">
+        <p class="gauntlet__outcome mono-label" data-gt="outcome">--</p>
+        <p class="gauntlet__reason body" data-gt="reason">--</p>
+      </div>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- (05) RESEARCH FRONTIER / ACTIVE DISCOVERY LEDGER                     -->
+    <!-- =================================================================== -->
+    <section class="frontier section section--ink" id="frontier" data-section="5" aria-labelledby="frontier-head">
+      <span class="section__rule" aria-hidden="true"></span>
+      <div class="frontier__head">
+        <p class="eyebrow label"><span class="idx mono-label">05 /</span> Research frontier</p>
+        <h2 class="frontier__title display-l" id="frontier-head">
+          <span class="mask" data-chars><span class="mask__inner">A target is not</span></span>
+          <span class="mask" data-chars><span class="mask__inner">a result.</span></span>
+        </h2>
+        <p class="frontier__lead body-l reveal-fade" data-sd="objective">
+          The next sleeves must add independent economic return sources and survive the same gauntlet.
+        </p>
+        <p class="frontier__note body reveal-fade">
+          <span class="comment mono-label">//</span>
+          Feasibility comes before returns. A data-gated result is published as a constraint,
+          not quietly removed from the queue. Credentials are requested only after a specific
+          candidate clears its key-free evidence screen.
+        </p>
+        <a href="/research/alphavintage-missing-release-correction.md" class="research-link label">
+          Read the sealed AlphaVintage missing-release correction
+        </a>
+      </div>
+
+      <dl class="frontier__gates reveal-fade" aria-label="Sleeve admission gates">
+        <div><dt class="mono-label">Deflated Sharpe</dt><dd class="mono-data" data-sd="dsr">--</dd></div>
+        <div><dt class="mono-label">PBO</dt><dd class="mono-data" data-sd="pbo">--</dd></div>
+        <div><dt class="mono-label">Average correlation</dt><dd class="mono-data" data-sd="correlation">--</dd></div>
+        <div><dt class="mono-label">Target breadth</dt><dd class="mono-data" data-sd="breadth">--</dd></div>
+      </dl>
+
+      <div class="frontier__head reveal-fade" aria-labelledby="atlas-head">
+        <p class="eyebrow label"><span class="idx mono-label">ATLAS /</span> Stage-zero breadth</p>
+        <h3 class="frontier__title display-m" id="atlas-head" data-sa="title">
+          240 coverage cells. Zero sleeves claimed.
+        </h3>
+        <p class="frontier__lead body-l" data-sa="boundary">
+          Every identity is screened before returns. Taxonomy is not performance evidence.
+        </p>
+        <dl class="frontier__gates" aria-label="Sleeve atlas audit">
+          <div><dt class="mono-label">Economic families</dt><dd class="mono-data" data-sa="families">--</dd></div>
+          <div><dt class="mono-label">Coverage cells</dt><dd class="mono-data" data-sa="cells">--</dd></div>
+          <div><dt class="mono-label">Novel atlas families</dt><dd class="mono-data" data-sa="novel">--</dd></div>
+          <div><dt class="mono-label">Active feasibility</dt><dd class="mono-data" data-sa="active">--</dd></div>
+          <div><dt class="mono-label">Retired / killed</dt><dd class="mono-data" data-sa="retired">--</dd></div>
+          <div><dt class="mono-label">Overlap review</dt><dd class="mono-data" data-sa="overlap">--</dd></div>
+          <div><dt class="mono-label">Lineage audit</dt><dd class="mono-data" data-sa="lineageDecision">--</dd></div>
+          <div><dt class="mono-label">Gate evaluations</dt><dd class="mono-data" data-sa="evaluations">--</dd></div>
+          <div><dt class="mono-label">New sleeves admitted</dt><dd class="mono-data" data-sa="admitted">--</dd></div>
+          <div><dt class="mono-label">Checks per survivor</dt><dd class="mono-data" data-sa="contractChecks">--</dd></div>
+          <div><dt class="mono-label">Execution dimensions</dt><dd class="mono-data" data-sa="executionChecks">--</dd></div>
+        </dl>
+        <p class="frontier__note body" data-sa="decisions">--</p>
+        <p>
+          <a class="research-link label" href="/glassbox/sleeve_atlas.json">Inspect all 240 identities</a>
+          <span aria-hidden="true"> / </span>
+          <a class="research-link label" href="/glassbox/sleeve_atlas_audit.json">Inspect all 2,880 gate evaluations</a>
+          <span aria-hidden="true"> / </span>
+          <a class="research-link label" href="/glassbox/sleeve_family_lineage_audit.json">Inspect source-bound lineage</a>
+          <span aria-hidden="true"> / </span>
+          <a class="research-link label" href="/glassbox/sleeve_admission_contract.json">Inspect the admission contract</a>
+        </p>
+      </div>
+
+      <div class="frontier__probe-results" id="frontierProbeResults" hidden aria-label="Completed locked return probes"></div>
+
+      <div class="frontier__ledger" id="frontierLedger" data-empty="1" aria-live="polite">
+        <!-- candidate rows injected by research.js from the public discovery artifact -->
+      </div>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- (06) ROADMAP / THE HONEST PATH                                        -->
+    <!-- =================================================================== -->
+    <section class="roadmap section section--ink" id="roadmap" data-section="6" aria-labelledby="roadmap-head">
+      <span class="section__rule" aria-hidden="true"></span>
+      <div class="roadmap__head">
+        <p class="eyebrow label"><span class="idx mono-label">06 /</span> Roadmap</p>
+        <h2 class="roadmap__title display-l" id="roadmap-head">
+          <span class="mask" data-chars><span class="mask__inner">The binding constraint</span></span>
+          <span class="mask" data-chars><span class="mask__inner">is sample length,</span></span>
+          <span class="mask" data-chars><span class="mask__inner">not idea count.</span></span>
+        </h2>
+        <p class="roadmap__lead body-l reveal-fade" data-rm="summary">
+          The constraint is trustworthy evidence, not idea count. From here, three steps.
+        </p>
+      </div>
+
+      <ol class="roadmap__steps" id="roadmapSteps" data-empty="1" aria-label="The three-step roadmap">
+        <!-- step rows injected by research.js -->
+      </ol>
+
+      <p class="roadmap__prearm body reveal-fade">
+        <span class="comment mono-label">//</span>
+        <span data-rm="preArm">--</span>
+      </p>
+
+      <!-- Colophon / verifiability: the content hash + schema of THIS artifact, so
+           the page's own provenance is legible, and the cross-links. -->
+      <div class="roadmap__colophon reveal-fade">
+        <p class="roadmap__colophon-head label">This export</p>
+        <dl class="roadmap__facts">
+          <div class="roadmap__fact">
+            <dt class="roadmap__fact-label mono-label">Schema</dt>
+            <dd class="roadmap__fact-val mono-label" data-co="schema">--</dd>
+          </div>
+          <div class="roadmap__fact">
+            <dt class="roadmap__fact-label mono-label">Generated</dt>
+            <dd class="roadmap__fact-val mono-label" data-co="generated">--</dd>
+          </div>
+          <div class="roadmap__fact roadmap__fact--hash">
+            <dt class="roadmap__fact-label mono-label">Content hash</dt>
+            <dd class="roadmap__fact-val mono-label" data-co="hash">--</dd>
+          </div>
+        </dl>
+        <p class="roadmap__honesty body">
+          <span class="comment mono-label">//</span>
+          <span data-rs="honestyNote">--</span>
+        </p>
+      </div>
+
+      <div class="roadmap__forward reveal-fade">
+        <a href="/open" class="research-link label">See it proven in the open</a>
+        <a href="/#waitlist" class="research-cta label" data-magnetic>Join the waitlist</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer is the Colophon chapter (index 7 in the per-page chapters array). -->
+  <footer class="footer" id="footer" data-section="7"></footer>
+
+  <script type="module" src="./js/waitlist.js"></script>
+  <script type="module" src="./js/research.js"></script>
+  <script type="module" src="./js/main.js"></script>
+</body>
+</html>

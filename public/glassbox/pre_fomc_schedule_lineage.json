@@ -1,0 +1,47 @@
+{
+  "schema": "canli.feasibility.pre-fomc-schedule-lineage.v1",
+  "generated_at": "2026-08-16T02:11:33.824827+00:00",
+  "stage": "official_annual_schedule_lineage_no_prices_no_returns",
+  "target_years": [
+    2016,
+    2025
+  ],
+  "annual_schedule_sources": 10,
+  "scheduled_slots": 80,
+  "completed_regular_decisions": 79,
+  "explicit_cancellations": 1,
+  "schedule_only_dates": [
+    "2020-03-18"
+  ],
+  "completed_only_dates": [],
+  "minimum_initial_publication_lead_sessions": 117,
+  "cancellation": {
+    "scheduled_decision_date": "2020-03-18",
+    "public_trigger_date": "2020-03-15",
+    "public_trigger_release_time": "5:00 p.m. EDT",
+    "sessions_before_scheduled_decision": 2,
+    "historical_page_url": "https://www.federalreserve.gov/monetarypolicy/fomchistorical2020.htm",
+    "historical_page_sha256": "037c20d73716262822b33bec32ad1c70dfc7f7489d215fc8ee5015bd3388761e",
+    "trigger_url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20200315a.htm",
+    "trigger_sha256": "b6ac647ab8a4dadf2c019f039b86d500a88bab0a7669ef70af185758bf3e1149",
+    "required_return_state": "CANCELLED_NO_ENTRY_OR_FLATTEN_AT_NEXT_ELIGIBLE_OPEN"
+  },
+  "gates": {
+    "ten_annual_schedule_sources_hash_bound": true,
+    "eight_scheduled_slots_per_year": true,
+    "every_completed_regular_decision_in_initial_schedule": true,
+    "only_schedule_without_regular_statement_is_cancelled_2020_meeting": true,
+    "official_history_marks_2020_meeting_cancelled": true,
+    "cancellation_trigger_timestamp_bound": true,
+    "all_initial_schedule_dates_published_before_target_year": true,
+    "return_data_unopened": true,
+    "return_hypotheses_unspent": true
+  },
+  "decision": "PASS_TO_RETURN_PREREGISTRATION",
+  "return_identity_requirement": "Use all 80 scheduled slots and preserve March 17-18, 2020 as a cancellation; do not test only the 79 ex-post completed statements.",
+  "return_data_opened": false,
+  "return_hypotheses_spent": 0,
+  "events_file": "artifacts/feasibility/pre_fomc_announcement_drift/annual_schedule_events.parquet",
+  "events_sha256": "1a3cb2fa355311936be32679b227fe4bfbaed27bc15864247548734c4e176be2",
+  "completed_event_manifest_sha256": "e17c322f15615b3189151394e981e707ca432e47a51a30d8d6ae4b475f4236a1"
+}

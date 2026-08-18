@@ -1,0 +1,1281 @@
+/* =============================================================================
+   MERIDIAN / design system
+   Austere. Precise. Inevitable. Near-monochrome with one signal-light.
+   ========================================================================== */
+
+/* ---- 1. TOKENS ----------------------------------------------------------- */
+:root {
+  color-scheme: dark;
+  /* palette */
+  --void: #0A0B0D;
+  --ink: #070809;
+  --paper: #F4F1EA;
+  /* secondary text tier. Lifted from #B7B4AC to #C4C0B8 (~5.3:1 on --void, still
+     clearly muted below --paper) so long-form body, leads, and sub-copy read
+     cleanly over the manifold without competing with the paper headlines. This is
+     a token lift, not a fork: every --paper-dim consumer across all four pages
+     rises one honest rung by construction. */
+  --paper-dim: #C4C0B8;
+  /* readable label/eyebrow text. Lifted from #7C7E84 (which sat at the 4.85:1 AA
+     floor and dipped below when composited over the lighter parts of the manifold
+     canvas) to #888A90, ~5.7:1 on --void and ~5.8:1 on --ink, for a safe margin
+     above AA while staying recessed and austere. */
+  --grey-700: #888A90;
+  /* purely-decorative dim (rail idle numbers, ghost separators): NOT for body text */
+  --grey-600: #5C5E63;
+  --grey-850: #222428;
+  /* one mid-tone between 850 and 700, reserved for the active/hovered hairline
+     state only, so an element responds to attention without raising the resting
+     border weight of the page. Composited (border-color), never layout. */
+  --grey-825: #2A2C30;
+  --grey-900: #15171A;
+  --signal: #D97964;
+  --signal-deep: #7E3324;
+  /* faint signal washes for the convergence / hairline tints. The 3D scene owns
+     its own accent; these are the CSS-side companions, never a second hue. */
+  --signal-glow: rgba(200, 85, 61, 0.14);
+  --signal-faint: rgba(200, 85, 61, 0.06);
+
+  /* spacing (8px base, geometric). --s-9/--s-10 tightened from 272/440 to 240/360
+     so chapter rhythm reads composed rather than stretched: long pages no longer
+     open dead bands between proof and act. The <=768px shrink (below) is unchanged. */
+  --s-1: 4px;  --s-2: 8px;  --s-3: 16px; --s-4: 24px; --s-5: 40px;
+  --s-6: 64px; --s-7: 104px; --s-8: 168px; --s-9: 240px; --s-10: 360px;
+
+  /* type */
+  --serif: "Fraunces", Georgia, "Times New Roman", serif;
+  --ui: "Space Grotesk", system-ui, -apple-system, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, "SF Mono", monospace;
+
+  /* grid */
+  --max: 1440px;
+  --margin: clamp(24px, 6vw, 120px);
+  --gutter: 24px;
+
+  /* motion */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+
+  /* THE POWER HAIRLINE. One reserved weight (1.5px) for the page's *drawn* signal
+     rules: the brand-fill underline, the signal-word underlines, and the
+     chapter / pipeline-spine seams. These are the rules that ANIMATE (draw, light,
+     fill) as a reward; giving them a touch more body than the structural 1px
+     borders/separators lets them read as deliberate gestures rather than incidental
+     hairlines. Structural 1px rules (nav seam, table/row separators, idle borders)
+     stay 1px by construction; they do not reference this token. */
+  --hairline-power: 1.5px;
+}
+
+/* ---- 2. RESET ------------------------------------------------------------ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  scroll-behavior: auto; /* Lenis owns scroll */
+}
+
+body {
+  background: var(--void);
+  color: var(--paper);
+  font-family: var(--ui);
+  font-weight: 350;
+  line-height: 1.6;
+  overflow-x: hidden;
+  font-feature-settings: "ss01", "cv01";
+}
+
+/* Native-cursor hiding (body.has-cursor) is owned by css/cursor.css with a
+   broadened, correct version, including the input I-beam exception. */
+
+img, canvas { display: block; max-width: 100%; }
+ul, ol { list-style: none; }
+a { color: inherit; text-decoration: none; }
+a, button { touch-action: manipulation; -webkit-tap-highlight-color: rgba(217, 121, 100, 0.18); }
+button { font: inherit; color: inherit; background: none; border: none; }
+[id] { scroll-margin-top: 90px; }
+::selection { background: var(--signal); color: var(--paper); }
+/* selecting data feels different from selecting prose: the deep accent backs
+   mono, so a numeral or a kicker reads as a value being lifted out. */
+.mono-data::selection,
+.mono-label::selection,
+.type-mono::selection { background: var(--signal-deep); color: var(--paper); }
+
+/* keyboard focus only */
+:focus { outline: none; }
+:focus-visible {
+  outline: 1px solid var(--signal);
+  outline-offset: 4px;
+}
+/* the ring hugs the controls it can actually surround */
+.hero__cta:focus-visible,
+.nav__cta:focus-visible,
+.waitlist__submit:focus-visible { border-radius: 2px; }
+
+/* ---- 3. TYPE CLASSES ----------------------------------------------------- */
+.display-xl {
+  font-family: var(--serif);
+  font-optical-sizing: auto;
+  /* 280 at 144 opsz reads more expensive than 300 and matches the settle target
+     in motion.css, removing the weight snap as the headline lands. */
+  font-variation-settings: "opsz" 144, "wght" 280, "SOFT" 0, "slnt" 0;
+  /* D1/D2 2026-08-06: was clamp(4.5rem, 11vw, 13rem) / -0.035em. 208px is a design-
+     portfolio wordmark; a firm sets its name smaller than its argument. The tighter
+     tracking also collided the serif terminals once the size came down. */
+  font-size: clamp(3.25rem, 7vw, 7.5rem);
+  letter-spacing: -0.018em;
+  line-height: 0.9;
+  font-weight: 280;
+  font-feature-settings: "ss01", "cv01", "lnum";
+}
+.display-l {
+  font-family: var(--serif);
+  font-optical-sizing: auto;
+  font-variation-settings: "opsz" 110, "wght" 330;
+  /* D3 2026-08-06: was clamp(2.75rem, 6vw, 6rem). Compresses the scale toward the
+     copy so headings stop competing with the wordmark. */
+  font-size: clamp(2.25rem, 4vw, 4rem);
+  letter-spacing: -0.025em;
+  line-height: 1.0;
+  font-weight: 330;
+}
+.display-m {
+  font-family: var(--serif);
+  font-optical-sizing: auto;
+  font-variation-settings: "opsz" 60, "wght" 400;
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  letter-spacing: -0.015em;
+  line-height: 1.05;
+  font-weight: 400;
+}
+.serif-quote {
+  font-family: var(--serif);
+  font-style: italic;
+  font-optical-sizing: auto;
+  font-variation-settings: "opsz" 48, "wght" 300;
+  font-size: clamp(1.5rem, 2.6vw, 2.4rem);
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+  font-weight: 300;
+}
+/* The single display moment: the Discipline close line. The largest italic on
+   the page after the wordmarks. One held, slanted statement. */
+.display-quote {
+  font-family: var(--serif);
+  font-style: italic;
+  font-optical-sizing: auto;
+  font-variation-settings: "opsz" 72, "wght" 300, "slnt" -4;
+  font-size: clamp(2rem, 4.5vw, 3.75rem);
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  font-weight: 300;
+  max-width: 20ch;
+}
+
+/* WORD INTEGRITY (single source of truth). Display type and every prose
+   heading/title in the property are whole-word: a word never splits mid-character
+   at any width. The only legitimate place to break inside a token is a mono
+   hash/path/URL, which opts in explicitly (overflow-wrap: anywhere / word-break:
+   break-all) at its own selector; prose headings never do. This rule forbids the
+   owner-reported "...the t / ruth." defect everywhere by construction. Pair this
+   with text columns whose min track is min-content (never 0) so a heading column
+   can never starve below its longest word. */
+.display-xl, .display-l, .display-m, .serif-quote, .display-quote {
+  overflow-wrap: normal;
+  word-break: normal;
+  hyphens: none;
+}
+/* CANONICAL MEASURE STANDARD (single source of truth for secondary copy).
+   Two measures, two jobs, one hand across the whole property:
+     .body-l = the SUB-LEAD measure (a section's lead/sub/intro line). 50ch.
+     .body   = the LONG-PROSE measure (multi-sentence body). 62ch.
+   Section lead-ins (hero__sub, *__lead, *__intro) all compose .body-l and may
+   set a per-section max-width for a hand-placed broken-grid tell, but they
+   inherit THIS as the default. 50ch is the cluster center the sections already
+   converge on (proof/house/waitlist), so any future section that adopts .body-l
+   with no override lands on the established rhythm by construction. Do not add a
+   third secondary-copy measure; tune a section by overriding from this base. */
+.body-l {
+  font-family: var(--ui);
+  font-size: clamp(1.125rem, 1.4vw, 1.375rem);
+  font-weight: 350;
+  line-height: 1.5;
+  max-width: 46ch;
+}
+.body {
+  font-family: var(--ui);
+  font-size: 1.0625rem;
+  font-weight: 350;
+  letter-spacing: 0.005em;
+  line-height: 1.58;
+  max-width: 56ch;
+}
+/* The eyebrow tier. CANONICAL EYEBROW->HEADLINE RHYTHM: the gap from a section
+   eyebrow/label to its headline is owned by the section title's top margin and is
+   ONE value property-wide: var(--s-3) (16px). Every section title composes
+   `margin: var(--s-3) 0 var(--s-5)` (discipline/house/proof/waitlist titles, and
+   the hero/flagship lead-ins follow the same s-3 lead-in beat). New sections must
+   reuse this rhythm: var(--s-3) above the headline, var(--s-5) below it. */
+.label {
+  font-family: var(--ui);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  line-height: 1.2;
+  color: var(--grey-700);
+}
+.mono-data {
+  font-family: var(--mono);
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1.0;
+  font-variant-numeric: tabular-nums lining-nums;
+}
+/* D5 2026-08-06: was 0.75rem in --grey-700, the least legible text on the site, and
+   it is exactly where every honest caveat is set. A caveat a reader cannot read is a
+   caveat that was not published. */
+.mono-label {
+  font-family: var(--mono);
+  font-size: 0.8125rem;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  line-height: 1.4;
+  font-variant-numeric: tabular-nums lining-nums;
+  color: var(--paper-dim);
+}
+/* the elevated subhead tier: the in-between voice between a .label eyebrow and a
+   .display-m statement, for a section's lead-in name line that should read brighter
+   and slightly larger than body without taking a display moment. Shared so any page
+   can adopt it (e.g. systems .sys-subhead / .method__name) and the tier stays one
+   value property-wide. ADDED class, never a redefinition of an existing type class. */
+.subhead {
+  font-family: var(--ui);
+  font-size: 1.125rem;
+  color: var(--paper);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  margin: var(--s-6) 0 var(--s-4);
+}
+
+/* shared accents */
+.signal-word { color: var(--signal); font-style: inherit; }
+.comment { color: var(--grey-700); margin-right: 0.5em; }
+/* chapter numbering carries a faint accent thread down the page: the slash idx
+   sits at half-strength signal so the numbering reads as one system, one pixel
+   of intent repeated, never loud. */
+.idx { color: var(--signal); margin-right: 0.6em; letter-spacing: 0.06em; }
+.eyebrow .idx { opacity: 1; }
+.eyebrow { display: flex; align-items: baseline; gap: 0.2em; }
+
+/* ONE signal-indicator dot size property-wide: 6px. The shared .dot element
+   (used as <span class="dot"> across index/systems/progress/open) and the
+   per-page pseudo-dot indicators (performance .chip::before / .standfirst::before)
+   now read at the same 6px so the signal indicator is one size everywhere. */
+.dot {
+  display: inline-block;
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--signal);
+  vertical-align: middle;
+}
+.dot--pulse { animation: pulse 2.8s var(--ease-in-out) infinite; }
+@keyframes pulse {
+  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(200, 85, 61, 0.4); }
+  50% { opacity: 0.55; box-shadow: 0 0 0 5px rgba(200, 85, 61, 0); }
+}
+
+
+/* ---- 5. 3D CANVAS -------------------------------------------------------- */
+.scene {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 1.4s var(--ease-out);
+}
+.scene.is-ready { opacity: 1; }
+
+.scene-fallback {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  display: none;
+  background:
+    radial-gradient(120% 80% at 30% 95%, rgba(200,85,61,0.05), transparent 45%),
+    radial-gradient(140% 100% at 70% 110%, rgba(244,241,234,0.04), transparent 50%),
+    var(--void);
+}
+.scene-fallback::after {
+  content: "";
+  position: absolute; inset: 0;
+  background-image:
+    repeating-linear-gradient(0deg, transparent 0 38px, rgba(244,241,234,0.03) 38px 39px),
+    repeating-linear-gradient(90deg, transparent 0 60px, rgba(244,241,234,0.02) 60px 61px);
+  mask-image: radial-gradient(120% 90% at 50% 110%, #000 20%, transparent 75%);
+}
+body.no-webgl .scene { display: none; }
+body.no-webgl .scene-fallback { display: block; }
+
+/* ---- 6. CUSTOM CURSOR ---------------------------------------------------- */
+/* Owned entirely by css/cursor.css (loaded after this file) and js/cursor.js.
+   The previous inline cursor block lived here; it was removed during the
+   integration so the premium pointer module is the single source of truth. */
+
+
+/* ---- 8. LEFT INDEX RAIL -------------------------------------------------- */
+.rail {
+  position: fixed;
+  top: 0; left: 0;
+  height: 100vh;
+  z-index: 40;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* sit the index column in the gutter, just LEFT of the spine (at --margin),
+     so the numbers and the chapter head never reach into the content column.
+     Previously the column straddled the spine and the head crowded the eyebrow
+     and the wordmark descenders. */
+  padding-left: calc(var(--margin) - 48px);
+  pointer-events: none;
+}
+.rail__line {
+  position: absolute;
+  top: 0; left: var(--margin);
+  width: 1.5px; height: 100%;
+  background: var(--grey-850);
+}
+.rail__fill {
+  position: absolute;
+  top: 0; left: 0;
+  width: 1.5px; height: 0%;
+  background: linear-gradient(180deg, var(--signal-faint), var(--paper-dim));
+  transform-origin: top;
+}
+.rail__list {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-5);
+  pointer-events: auto;
+}
+.rail__item {
+  display: block;
+  padding: 4px 8px;
+}
+.rail__num {
+  color: var(--grey-600);
+  transition: color 0.4s var(--ease-out), transform 0.4s var(--ease-out);
+  display: inline-block;
+}
+.rail__item:hover .rail__num,
+.rail__item.is-active .rail__num { color: var(--paper); }
+.rail__item.is-active .rail__num { transform: translateX(4px); }
+
+/* ---- 9. TOP NAV ---------------------------------------------------------- */
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 50;
+  transition: transform 0.5s var(--ease-out), opacity 0.5s var(--ease-out);
+}
+.nav.is-hidden { transform: translateY(-100%); opacity: 0; }
+.nav::after {
+  content: "";
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 1px;
+  background: var(--grey-850);
+  opacity: 0;
+  transition: opacity 0.5s var(--ease-out);
+}
+.nav.is-scrolled { backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); background: rgba(10, 11, 13, 0.55); }
+.nav.is-scrolled::after { opacity: 1; }
+.nav__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* vertical padding yields to the now-bordered CTA box (16px 24px) so the bar
+     stays tight rather than ballooning; horizontal margin is unchanged. */
+  padding: var(--s-3) var(--margin);
+  max-width: var(--max);
+  margin: 0 auto;
+}
+.nav__brand { color: var(--paper); font-weight: 500; letter-spacing: 0.22em; }
+.nav__links { display: flex; align-items: center; gap: var(--s-5); }
+.nav__link, .nav__cta {
+  position: relative;
+  color: var(--paper-dim);
+  transition: color 0.3s var(--ease-out);
+}
+/* SECONDARY-LINK SIGNATURE (one grammar property-wide): .nav__link, .hero__link,
+   .bridge__link, .footer__link, and every page's *-link all sweep a 1px signal
+   hairline LEFT-origin at 0.3s var(--ease-out). The .nav__cta is deliberately NOT
+   in this group: as a PRIMARY action it carries the CENTER-out sweep
+   (.nav__cta::before, cursor.css), the emphatic primary-affordance signature.
+   Scoping the left-sweep to .nav__link only removes the prior double-underline
+   (the CTA was drawing both a left ::after here and a center ::before in cursor.css
+   on hover, at mismatched 0.3s/0.4s), so primary vs secondary now read distinctly. */
+.nav__link::after {
+  content: "";
+  position: absolute;
+  left: 0; bottom: -5px;
+  width: 100%; height: 1px;
+  background: var(--signal);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s var(--ease-out);
+}
+.nav__link:hover, .nav__cta:hover { color: var(--paper); }
+.nav__link:hover::after { transform: scaleX(1); }
+.nav__cta {
+  color: var(--paper);
+  font-size: 14px;
+  padding: 16px 24px;
+  border: 1px solid var(--signal-faint);
+  transition: color 0.3s var(--ease-out),
+              background 0.3s var(--ease-out),
+              border-color 0.3s var(--ease-out);
+}
+.nav__cta:hover { background: var(--signal-faint); border-color: var(--signal); }
+
+/* ---- 10. LAYOUT / SECTIONS ----------------------------------------------- */
+/* CANONICAL VERTICAL RHYTHM: the chapter boundary is var(--s-9) (240px) top and
+   bottom, set on .section below. Dark/anchored sections that open immediately
+   after a transition step down ONE rung to var(--s-8) (168px) on the leading
+   edge only (discipline). Hero (min-height:100vh) and #system (padding:0, owns
+   its own internal frame) are the two intentional deviations. Do NOT introduce a
+   third boundary value; all chapter spacing is s-9, or s-8 for a leading edge.
+
+   CANONICAL BROKEN-GRID RATIO: the page's two-column "hand-placed" signature is a
+   deliberately-broken grid, never a clean 1fr/1fr. The proven anchor is #system's
+   1fr / 1.45fr (locked, do not touch). Sibling sections echo this asymmetry as
+   one intentional signature: flagship 1.15fr/0.85fr (giant word holds the wider
+   column), founder 1fr/1.4fr (id column under-weighted to the bio). Any new
+   two-column section must pick a hand ratio in this family (roughly 1 : 1.4-1.45,
+   or its inverse), never an even split, so the whole page reads as one hand. */
+.content { position: relative; z-index: 1; }
+/* D8 2026-08-06: was --s-9 (240px). With the copy cut by roughly two thirds, a 240px
+   band stops reading as rhythm and starts reading as a missing section. */
+.section {
+  position: relative;
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: var(--s-8) var(--margin);
+}
+.section--ink {
+  background: var(--ink);
+  max-width: none;
+  margin: 0;
+}
+.section--ink > * { max-width: var(--max); margin-left: auto; margin-right: auto; }
+
+/* mask reveal mechanics */
+.mask { display: block; overflow: hidden; padding-bottom: 0.12em; }
+.mask__inner { display: block; will-change: transform; }
+.reveal-line, .reveal-fade { will-change: transform, opacity; }
+
+/* No-JS / JS-failure safety: reveal elements are ONLY hidden when JavaScript is
+   present (html.js) AND motion is allowed. If the module never runs, throws, or
+   a ScrollTrigger never fires, content stays fully visible by default. */
+.js .reveal-fade,
+.js .reveal-line,
+.js .pillar,
+.js .tenet,
+.js .roadmap__row:not(.roadmap__row--head) { opacity: 0; }
+@media (prefers-reduced-motion: reduce) {
+  .js .reveal-fade,
+  .js .reveal-line,
+  .js .pillar,
+  .js .tenet,
+  .js .roadmap__row:not(.roadmap__row--head) { opacity: 1; }
+}
+
+/* ---- 11. HERO ------------------------------------------------------------ */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding-bottom: var(--s-7);
+  padding-top: var(--s-8);
+}
+.hero__status {
+  position: absolute;
+  top: calc(var(--s-7) + var(--s-2));
+  right: var(--margin);
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+  color: var(--grey-700);
+}
+.hero__status-val { color: var(--paper-dim); }
+.hero__body {
+  display: grid;
+  gap: var(--s-4);
+  /* a 2px signal-faint left rule marks the hero copy as the page's opening spine,
+     echoing the method-spine and active-step rules (one structural hand). The
+     matching left pad keeps the wordmark and statement in register with the rule. */
+  border-left: 2px solid var(--signal-faint);
+  padding-left: var(--s-4);
+}
+.hero .eyebrow { margin-bottom: var(--s-2); }
+.hero__word {
+  color: var(--paper);
+  margin-left: -0.04em;
+}
+/* The brand wordmark's one bespoke gesture: a hairline signal rule draws
+   left-to-right beneath the mark after the intro settles, synced to the
+   manifold's first ridge pulse. Keyed off [data-brand-fill] so the owner can
+   move or remove the treatment with the attribute alone. */
+.hero__word[data-brand-fill] {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 0.14em;
+}
+.hero__word[data-brand-fill]::after {
+  content: "";
+  position: absolute;
+  left: 0.02em;
+  bottom: 0.04em;
+  width: calc(100% - 0.04em);
+  height: var(--hairline-power);
+  background: var(--signal);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 1.2s var(--ease-out);
+}
+.hero__word[data-brand-fill].is-drawn::after { transform: scaleX(1); }
+.hero__statement {
+  color: var(--paper);
+  /* the column holds every authored line; widened from 18ch so the longest line
+     ("AlphaForge is the") is never starved into a wrap that would clip in its
+     overflow-hidden mask. */
+  max-width: 26ch;
+  margin-top: var(--s-2);
+}
+/* Each statement line is an authored single line. Because the headline is split
+   into per-character inline-block .char atoms, a normal wrap would break BETWEEN
+   characters (the "algorith / m" defect). Holding each line on one row keeps every
+   word whole; the column above is sized so it never needs to wrap on desktop, and
+   the mobile clamp below scales the type so it still fits one row per line. */
+.hero__statement .mask__inner { white-space: nowrap; }
+.hero__sub {
+  color: var(--paper-dim);
+  /* left-aligned under the copy column: the wordmark, statement and eyebrow are
+     all left, so the sub-copy sits with them. (Removed justify-self: end, which
+     pushed this block right and made the whole hero read lopsided.) */
+  max-width: 42ch;
+  text-align: left;
+  margin-top: var(--s-2);
+}
+/* Hero actions: the single primary action (waitlist) and a quiet secondary
+   link. Revealed last in the cascade so the eye lands story -> product -> act. */
+.hero__actions {
+  /* left-aligned with the rest of the copy column (see .hero__sub note). The
+     two-button pair is tightened to --s-4 so it reads as one CTA unit, matching
+     the mobile gap for rhythm continuity. */
+  display: flex;
+  align-items: center;
+  gap: var(--s-4);
+  margin-top: var(--s-4);
+  flex-wrap: wrap;
+}
+.hero__cta {
+  color: var(--paper);
+  font-size: 14px;
+  padding: 16px 24px;
+  border: 1px solid var(--signal-faint);
+  transition: background 0.35s var(--ease-out),
+              border-color 0.35s var(--ease-out),
+              color 0.35s var(--ease-out);
+}
+.hero__cta:hover {
+  background: var(--signal-faint);
+  border-color: var(--signal);
+  color: var(--paper);
+}
+.hero__link {
+  position: relative;
+  color: var(--paper-dim);
+  transition: color 0.3s var(--ease-out);
+}
+.hero__link::after {
+  content: "";
+  position: absolute;
+  left: 0; bottom: -4px;
+  width: 100%; height: 1px;
+  background: var(--signal);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s var(--ease-out);
+}
+.hero__link:hover { color: var(--paper); }
+.hero__link:hover::after { transform: scaleX(1); }
+.hero__status-sep { color: var(--grey-600); margin: 0 0.2em; }
+.hero__scroll {
+  position: absolute;
+  bottom: var(--s-5);
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--s-2);
+  color: var(--grey-700);
+}
+.hero__scroll-line {
+  width: 1px; height: 40px;
+  background: var(--grey-850);
+  position: relative;
+  overflow: hidden;
+}
+.hero__scroll-line::after {
+  content: "";
+  position: absolute;
+  top: -100%; left: 0;
+  width: 1px; height: 100%;
+  background: var(--paper);
+  animation: scrollDraw 2.2s var(--ease-in-out) infinite;
+}
+@keyframes scrollDraw {
+  0% { transform: translateY(-100%); }
+  60%, 100% { transform: translateY(200%); }
+}
+
+/* Short-viewport hero compression. On the most common laptop heights the full
+   stack (huge wordmark + statement + sub + actions) overflows the fold and the
+   single primary action plus the scroll cue fall out of view. These height-based
+   rules tighten the vertical rhythm and cap the display sizes so the CTA row and
+   the scroll affordance clear the fold on 1366x768 / 1280x800 / 1440x900, without
+   touching the wide-and-tall composition where there is room to breathe. Pure
+   spacing/type scale: no layout reflow, no element hidden. */
+@media (min-width: 769px) and (max-height: 920px) {
+  .hero { padding-top: var(--s-7); padding-bottom: var(--s-6); }
+  .hero__word { font-size: clamp(4rem, 8.2vw, 8.5rem); }
+  .hero__body { gap: var(--s-3); }
+  .hero__statement { margin-top: 0; }
+  .hero__sub { margin-top: var(--s-2); }
+  .hero__actions { margin-top: var(--s-3); }
+  .hero__scroll { bottom: var(--s-3); }
+}
+@media (min-width: 769px) and (max-height: 800px) {
+  .hero { padding-top: var(--s-6); }
+  .hero__word { font-size: clamp(3.5rem, 7vw, 7rem); }
+  .hero__statement.display-m { font-size: clamp(1.75rem, 3.2vw, 2.6rem); }
+  .hero__status { top: var(--s-5); }
+}
+
+/* ---- 12. THESIS ---------------------------------------------------------- */
+/* Aligned to the property-wide chapter boundary (--s-9 240px). It previously used
+   --s-10 (360px), a 1.5x outlier vs every other chapter, which broke hero->thesis
+   continuity and made the section read floated low. */
+.thesis { padding-top: var(--s-9); padding-bottom: var(--s-9); }
+.thesis__line {
+  color: var(--paper);
+  max-width: 22ch;
+  margin-bottom: var(--s-6);
+}
+.thesis__aside { color: var(--grey-700); }
+
+/* ---- 13. FLAGSHIP -------------------------------------------------------- */
+.flagship__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: var(--s-6);
+}
+.flagship__tag { color: var(--paper-dim); display: flex; align-items: center; gap: 0.5em; }
+.flagship__intro {
+  display: grid;
+  /* deliberately broken from a clean 1fr/1fr: the giant word holds the wider
+     column and the lead settles under its descender. The hand-placed tell. */
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: var(--s-6) var(--s-7);
+  align-items: end;
+  margin-bottom: var(--s-9);
+}
+.flagship__word { color: var(--paper); grid-column: 1 / 2; }
+.flagship__sub { color: var(--paper-dim); grid-column: 1 / 2; max-width: 20ch; }
+.flagship__lead {
+  grid-column: 2 / 3;
+  color: var(--paper);
+  max-width: 46ch;
+  align-self: end;
+  padding-bottom: 0.4em;
+}
+/* Below 1200px the hand-placed 1.15/0.85 broken grid starves the lead column and
+   it reads cramped under the giant word. Fall to an even 1fr/1fr (still the same
+   two-column composition, just unstarved). The 1.15/0.85 hand-tell is preserved
+   above 1200px where there is room for it. */
+@media (max-width: 1200px) {
+  .flagship__intro { grid-template-columns: 1fr 1fr; }
+}
+
+.pillars {
+  display: grid;
+  gap: var(--s-5);
+  /* broken-grid: overhang the right margin */
+  margin-right: calc(var(--margin) * -0.5);
+}
+.pillar {
+  display: grid;
+  /* tightened index column (90px -> 70px) and widened the title measure
+     (26ch -> 28ch) so the numeral sits closer to its title and the pillar
+     headlines get room before the description column. */
+  grid-template-columns: 70px minmax(min-content, 28ch) 1fr;
+  gap: var(--s-5);
+  align-items: start;
+  /* tighter vertical rhythm: the five pillars read as one ledger, not five
+     loose cards. */
+  padding: var(--s-4) 0;
+  border-top: 1px solid var(--grey-850);
+  transition: background 0.4s var(--ease-out), border-color 0.4s var(--ease-out);
+}
+.pillar:last-child { border-bottom: 1px solid var(--grey-850); }
+.pillar:hover {
+  background: linear-gradient(90deg, var(--grey-900), transparent 80%);
+  border-top-color: var(--grey-825);
+}
+.pillar:hover + .pillar { border-top-color: var(--grey-825); }
+.pillar__idx {
+  color: var(--grey-700);
+  padding-top: 0.4em;
+  transition: color 0.4s var(--ease-out);
+}
+.pillar:hover .pillar__idx { color: var(--paper); }
+.pillar__title { color: var(--paper); }
+.pillar__desc { color: var(--paper-dim); }
+
+/* ---- 14. STAT BAND ------------------------------------------------------- */
+.statband {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: var(--s-7) var(--margin);
+  border-top: 1px solid var(--grey-850);
+  border-bottom: 1px solid var(--grey-850);
+}
+.statband__list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--s-5);
+  /* lift the row off the lower hairline so the big numerals and their labels are
+     not pressed against the band's bottom edge */
+  align-items: end;
+  margin-bottom: var(--s-2);
+}
+/* The footnote ledger: the four big numbers are the statement; these three are
+   the fine print that proves them. Reframed from "three more stats" into a
+   right-aligned, smaller, tighter footnote row under a hairline rule. */
+.statband__list--secondary,
+.statband__list[data-statband="footnote"] {
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: var(--s-3) var(--s-6);
+  margin-top: var(--s-5);
+  padding-top: var(--s-5);
+  border-top: 1px solid var(--grey-850);
+}
+.statband__list--secondary .stat,
+.statband__list[data-statband="footnote"] .stat {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6em;
+  text-align: left;
+}
+/* values drop from mono-data scale to mono-label scale: fine print, not headline */
+.statband__list--secondary .stat__val,
+.statband__list[data-statband="footnote"] .stat__val {
+  font-size: 1rem;
+  letter-spacing: 0;
+  color: var(--paper-dim);
+}
+.statband__list--secondary .stat__label,
+.statband__list[data-statband="footnote"] .stat__label {
+  max-width: none;
+  white-space: nowrap;
+}
+/* the primary four stats: the big numeral sits over its label with enough air
+   that the label reads as a caption, not a crowded subscript. The footnote
+   ledger keeps its own tight baseline rhythm (set above). */
+.statband__list:not(.statband__list--secondary):not([data-statband="footnote"]) .stat { gap: var(--s-4); }
+.stat { display: grid; gap: var(--s-3); }
+.stat__val { color: var(--paper); }
+.stat__label { color: var(--grey-700); max-width: 18ch; line-height: 1.45; }
+.stat__strike { position: relative; display: inline-block; }
+.stat__strike::after {
+  content: "";
+  position: absolute;
+  left: -0.1em; right: -0.1em; top: 50%;
+  height: 1px;
+  background: var(--signal);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.6s var(--ease-out) 0.3s;
+}
+.stat--zero.is-in .stat__strike::after { transform: scaleX(1); }
+
+/* ---- 15. SYSTEM (pinned) ------------------------------------------------- */
+/* OWNER FIX A: full-width step detail. The pin was a 2-column grid (header on the
+   left, the active step squeezed into a 1.15fr right column that read as "a narrow
+   vertical thing"). It is now a VERTICAL composition: a slim masthead strip across
+   the top (the section header on the left, the 01/05 counter + horizontal step
+   chain on the right), and the active step DETAIL running the FULL content width
+   below it. The scroll-driven step swap is untouched: .step still toggles
+   is-active / is-prev exactly as scroll.js drives it, and the chain still mirrors
+   that state; only the spatial frame changed (half-column -> full page width). */
+.system { padding: 0; max-width: none; }
+.system__sticky {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: var(--s-8) var(--margin);
+  display: grid;
+  /* side-by-side, BALANCED about the centre: a comfortable left column (header reads
+     in 2-3 lines, not a cramped tower) and a slightly larger right detail column that
+     still has generous space. Both columns vertically centred so the row is even. */
+  grid-template-columns: 1fr 1.45fr;
+  gap: var(--s-8);
+  min-height: 100vh;
+  align-items: center;
+}
+/* THE MASTHEAD STRIP. Two stacked bands: the header band (eyebrow + headline +
+   sub), then the stage nav rail (the 01/05 counter + the horizontal step chain)
+   spanning the full width. The whole top is a single slim masthead that hands off
+   to the full-width detail beneath it. */
+.system__left {
+  position: relative;
+  display: grid;
+  grid-template-rows: auto auto;
+  gap: var(--s-6);
+  align-self: center;
+}
+.system__intro { max-width: var(--max); }
+.system__head {
+  color: var(--paper);
+  margin: var(--s-3) 0 var(--s-3);
+  max-width: 22ch;
+}
+.system__sub { color: var(--paper-dim); max-width: 60ch; }
+/* the stage nav rail: a full-width horizontal strip. The 01/05 counter holds the
+   left, then the horizontal step chain runs to the right (js/landing.js injects
+   .sys-chain right after the counter; the chain's horizontal layout is in
+   css/landing.css). align-items:center keeps the counter and the chain dots on one
+   line. */
+.system__nav {
+  position: relative;
+}
+.system__counter {
+  font-size: 1rem;
+  display: flex;
+  gap: 0.4em;
+  color: var(--grey-700);
+  flex: none;
+  margin-bottom: var(--s-4);
+}
+.system__counter .signal-word { font-size: 1.5rem; }
+.system__counter-sep { color: var(--grey-600); }
+
+/* THE FULL-WIDTH DETAIL FRAME. The right container fills the remaining pin row and
+   centers the active step in it. The .step children stay position:absolute;
+   inset:0 (they own their own align-content:center), so the flex centering here is
+   the law for the stacked steps and the absolute swap is preserved. */
+.system__right {
+  position: relative;
+  min-height: 42vh;
+  display: flex;
+  align-items: center;
+}
+.steps { position: relative; width: 100%; }
+.step {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  gap: var(--s-4);
+  align-content: center;
+  opacity: 0;
+  transform: translateY(24px);
+  pointer-events: none;
+  /* a transparent 2px left rule at rest holds the box constant for every step, so
+     the active step's signal left border (motion.css focus-pull) only changes
+     COLOUR and never reflows the step content (all steps share the same 2px inset). */
+  border-left: 2px solid transparent;
+  transition: opacity 0.6s var(--ease-out), transform 0.6s var(--ease-out),
+              border-color 0.5s var(--ease-out);
+}
+.step.is-active { opacity: 1; transform: none; pointer-events: auto; }
+.step__kicker { color: var(--signal); }
+/* full page width: the title runs across the content column at display scale, the
+   body keeps a sane reading measure so the long line stays legible, and the data
+   readout caps under the body. The title is the full-width hero of the frame now,
+   not a 18ch column. */
+.step__title { color: var(--paper); max-width: none; }
+.step__body { color: var(--paper-dim); max-width: 68ch; }
+.step__data {
+  color: var(--grey-700);
+  padding-top: var(--s-3);
+  border-top: 1px solid var(--grey-850);
+  text-transform: uppercase;
+}
+
+/* ---- 16. DISCIPLINE ------------------------------------------------------ */
+.discipline { padding-top: var(--s-8); padding-bottom: var(--s-9); }
+.discipline__head { margin-bottom: var(--s-8); max-width: var(--max); }
+.discipline__title { color: var(--paper); margin: var(--s-3) 0 var(--s-5); max-width: 14ch; }
+.discipline__lead { color: var(--paper-dim); max-width: 44ch; }
+.tenets { display: grid; gap: 0; }
+.tenet {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr minmax(0, 52ch);
+  gap: var(--s-6);
+  align-items: start;
+  padding: var(--s-5) 0;
+  border-top: 1px solid var(--grey-850);
+  /* P0-C 14: the global LIST-ROW hover language (one micro-interaction grammar
+     across the whole property: tenets, offer rows, sys-fam, gauntlet rows, phase
+     bars, ledger rows). A row answers on hover with a small lift, a signal-faint
+     wash, and a color lift to --paper, on the type-settle ease. transform +
+     background + color only (composited / cheap). */
+  transition: border-color 0.4s var(--ease-out),
+              transform 0.4s var(--ease-settle),
+              background-color 0.4s var(--ease-settle);
+}
+.tenet:last-child { border-bottom: 1px solid var(--grey-850); }
+.tenet:hover { border-top-color: var(--grey-825); }
+.tenet:hover + .tenet { border-top-color: var(--grey-825); }
+/* the hover lift is suppressed while the Discipline pin is active (.is-recessed),
+   because the recession beat (motion.css) owns the tenet transform then; the two
+   must never fight for the same property. Outside the pin, the row lifts + tints. */
+.discipline:not(.is-recessed) .tenet:hover {
+  transform: translateY(-2px);
+  background-color: var(--signal-faint);
+}
+.discipline:not(.is-recessed) .tenet:hover .tenet__title { color: var(--paper); }
+.discipline:not(.is-recessed) .tenet:hover .tenet__body { color: var(--paper); }
+@media (prefers-reduced-motion: reduce) {
+  .tenet { transition: none; }
+  .discipline:not(.is-recessed) .tenet:hover { transform: none; }
+}
+.tenet__ghost {
+  font-family: var(--serif);
+  font-variation-settings: "opsz" 144, "wght" 300;
+  font-size: clamp(5rem, 12vw, 11rem);
+  line-height: 0.8;
+  color: var(--grey-850);
+  user-select: none;
+  align-self: start;
+  min-width: 5rem;
+}
+.tenet__title { color: var(--paper); grid-column: 2 / 3; max-width: 22ch; transition: color 0.4s var(--ease-settle); }
+.tenet__body { color: var(--paper-dim); grid-column: 2 / 3; margin-top: var(--s-4); transition: color 0.4s var(--ease-settle); }
+.discipline__close {
+  color: var(--paper);
+  text-align: center;
+  margin-top: var(--s-8);
+  margin-left: auto;
+  margin-right: auto;
+}
+/* when the close carries the display moment, the slanted measure governs and it
+   centers as the largest italic on the page after the wordmarks */
+.discipline__close.display-quote { max-width: 22ch; }
+
+/* ---- 17. HOUSE ----------------------------------------------------------- */
+.house__head { margin-bottom: var(--s-8); }
+.house__title { color: var(--paper); margin: var(--s-3) 0 var(--s-5); }
+.house__lead { color: var(--paper-dim); max-width: 50ch; }
+.roadmap { margin-bottom: var(--s-6); }
+.roadmap__row {
+  display: grid;
+  grid-template-columns: 140px 1fr 1.1fr 180px;
+  gap: var(--s-4);
+  align-items: center;
+  padding: var(--s-4) 0;
+  border-top: 1px solid var(--grey-850);
+  transition: border-color 0.4s var(--ease-out);
+}
+.roadmap__row:last-child { border-bottom: 1px solid var(--grey-850); }
+.roadmap__row:not(.roadmap__row--head):hover { border-top-color: var(--grey-825); }
+.roadmap__row:not(.roadmap__row--head):hover + .roadmap__row { border-top-color: var(--grey-825); }
+/* the head row carries no top hairline (it is the legend, not a ledger entry) but
+   takes a faint BOTTOM hairline so the column labels read as a structured header
+   over the rows. We keep the label color at --grey-700 (the readable label tier);
+   --grey-600 is the decorative-dim token and is not used for text. */
+.roadmap__row--head { color: var(--grey-700); border-top: none; border-bottom: 1px solid var(--grey-850); padding-bottom: var(--s-3); }
+.roadmap__name {
+  font-family: var(--serif);
+  font-variation-settings: "opsz" 40, "wght" 400;
+  font-size: 1.5rem;
+  color: var(--paper);
+}
+.roadmap__name--reserved { color: var(--grey-700); font-variation-settings: "opsz" 40, "wght" 300; }
+.roadmap__mkt { color: var(--paper-dim); }
+.roadmap__status { color: var(--grey-700); display: flex; align-items: center; gap: 0.5em; }
+.roadmap__row--live .roadmap__status { color: var(--paper-dim); }
+.house__aside { color: var(--grey-700); }
+
+/* ---- 18. STATUS / PROOF -------------------------------------------------- */
+/* The honest pre-launch facts chapter. It hosts the stat band (moved here from
+   its old standalone position) and frames it as "what is true today". The
+   statband rules live in section 14; this section only owns its head/lead/aside
+   and the spacing of the band within it. */
+.proof__head { margin-bottom: var(--s-7); }
+.proof__title { color: var(--paper); margin: var(--s-3) 0 var(--s-5); }
+.proof__lead { color: var(--paper-dim); max-width: 50ch; }
+.proof .statband { margin: var(--s-6) 0 var(--s-6); padding-left: 0; padding-right: 0; }
+.proof__aside { color: var(--grey-700); max-width: 56ch; }
+
+/* ---- 18b. WAITLIST SECTION ----------------------------------------------- */
+/* Section chrome plus the form's BASE visual rules. The .waitlist__row /
+   .waitlist__input / .waitlist__submit base layout was referenced as living
+   here but was never authored: the input rendered borderless and the row did
+   not behave as a row. These rules are the canonical base; waitlist.css layers
+   the in-flight / disabled / done refinements and cursor.css layers the hover
+   sweeps (the submit's center-out fill). Do not duplicate those here. */
+.waitlist__head { margin-bottom: var(--s-7); }
+.waitlist__title { color: var(--paper); margin: var(--s-3) 0 var(--s-5); }
+.waitlist__intro { color: var(--paper-dim); max-width: 50ch; }
+.waitlist__aside { color: var(--grey-700); max-width: 56ch; margin-top: var(--s-6); }
+
+/* the form sits in a measured column under the heading. The heading, intro, and
+   aside are all left-anchored at the section margin, so the form LEFT-aligns to
+   the same edge: it reads as a continuation of the heading column, not a centered
+   island floating away from its own copy. (Centering it within --max divorced it
+   from the left-set head; left-alignment keeps the whole conversion block as one
+   coherent column, which is the brief's stated goal.) */
+.waitlist__cta { margin-top: var(--s-7); max-width: 620px; }
+
+.waitlist__row {
+  display: flex;
+  gap: var(--s-3);
+  align-items: stretch;
+  max-width: 620px;
+}
+.waitlist__input {
+  flex: 1;
+  min-width: 0;
+  padding: var(--s-3) var(--s-4);
+  background: transparent;
+  border: 1px solid var(--grey-825);
+  color: var(--paper);
+  border-radius: 2px;
+  transition: border-color 0.3s var(--ease-out);
+}
+.waitlist__input::placeholder { color: var(--grey-600); }
+.waitlist__input:focus { border-color: var(--signal); }
+.waitlist__submit {
+  padding: var(--s-3) var(--s-5);
+  border: 1px solid var(--signal);
+  color: var(--paper);
+  white-space: nowrap;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+/* ---- 19. FOOTER ---------------------------------------------------------- */
+.footer {
+  position: relative;
+  padding: var(--s-8) var(--margin) var(--s-5);
+  overflow: hidden;
+}
+.footer > * { max-width: var(--max); margin-left: auto; margin-right: auto; position: relative; z-index: 1; }
+.footer__status { color: var(--paper-dim); display: flex; align-items: center; gap: 0.6em; margin-bottom: var(--s-8); }
+.footer__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--s-6);
+  margin-bottom: var(--s-8);
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.footer__col { display: grid; gap: var(--s-3); align-content: start; }
+.footer__col-head { color: var(--grey-700); margin-bottom: var(--s-2); }
+.footer__link { color: var(--paper-dim); width: fit-content; position: relative; transition: color 0.3s var(--ease-out); }
+.footer__link::after {
+  content: ""; position: absolute; left: 0; bottom: -3px;
+  width: 100%; height: 1px; background: var(--signal);
+  transform: scaleX(0); transform-origin: left;
+  transition: transform 0.3s var(--ease-out);
+}
+.footer__link:hover { color: var(--paper); }
+.footer__link:hover::after { transform: scaleX(1); }
+.footer__legal { color: var(--grey-700); max-width: 70ch; line-height: 1.7; margin-bottom: var(--s-9); }
+.footer__wordmark {
+  position: absolute;
+  bottom: -0.22em;
+  left: var(--margin);
+  color: var(--grey-900);
+  z-index: 0;
+  font-size: clamp(6rem, 24vw, 26rem);
+  line-height: 0.8;
+  pointer-events: none;
+  max-width: none;
+  margin: 0;
+}
+.footer__tagline {
+  color: var(--paper-dim);
+  position: relative;
+  z-index: 1;
+  margin-bottom: var(--s-3);
+  letter-spacing: 0.18em;
+}
+.footer__colophon { color: var(--grey-700); position: relative; z-index: 1; }
+
+/* ---- 20. RESPONSIVE ------------------------------------------------------ */
+@media (max-width: 1024px) {
+  /* The left index rail is a desktop spine. On tablets it sat in the 769-1024px
+     range jammed against the content column (rail numbers bled under the eyebrow,
+     hero statement, and every System kicker). It is presentational only, so hide
+     it across the whole tablet range, not just at the phone breakpoint. */
+  .rail { display: none; }
+  .flagship__intro { grid-template-columns: 1fr; gap: var(--s-5); align-items: start; }
+  .flagship__word, .flagship__sub, .flagship__lead { grid-column: 1 / -1; }
+  .pillars { margin-right: 0; }
+  .pillar { grid-template-columns: 64px 1fr; }
+  .pillar__desc { grid-column: 2 / 3; }
+  /* tablet: the masthead chain is hidden (landing.css), so the nav rail collapses
+     to the counter alone; the full-width detail is unchanged. */
+  .system__sticky { gap: var(--s-6); }
+  .tenet { grid-template-columns: 1fr; gap: var(--s-3); }
+  .tenet__title, .tenet__body { grid-column: 1 / -1; }
+  .tenet__ghost { font-size: clamp(4rem, 16vw, 7rem); }
+  /* the slanted close auto-margins to a 22ch measure on desktop; at this range the
+     short measure plus the centering rags the line, so left-align it under the
+     tenets and drop the auto margin (the type clamp itself is owned in the base). */
+  .discipline__close { text-align: left; margin-left: 0; margin-right: 0; }
+}
+
+@media (max-width: 768px) {
+  :root { --s-9: 168px; --s-10: 200px; }
+  .rail { display: none; }
+  .nav__links { gap: var(--s-4); }
+  /* mobile nav: brand on the left, the one primary action on the right. Every
+     deep link (including AlphaForge) is hidden here: AlphaForge collided flush
+     against the wordmark ("MeridianAlphaForge") with no room for a gap on a phone,
+     and it is already reachable from the hero "Read how it works" link and the
+     footer. The CTA stays on a single line so it never breaks across two rows. */
+  .nav__link { display: none; }
+  .nav__cta { display: inline; white-space: nowrap; }
+  .mobile-progress {
+    position: fixed; top: 0; left: 0; right: 0; height: 2px;
+    z-index: 60; background: var(--grey-850);
+  }
+  .mobile-progress__fill { height: 100%; width: 0%; background: var(--signal); transform-origin: left; }
+
+  /* On phones the statement holds its single-line-per-row contract by scaling the
+     type down so the longest line ("AlphaForge is the first algorithm.") fits the
+     available column without wrapping (and so without breaking mid-word, since the
+     line is per-character inline-block atoms). The clamp tracks viewport width and
+     stays comfortably inside the narrowest phones. */
+  .hero__statement { max-width: none; }
+  .hero__statement.display-m { font-size: clamp(1.2rem, 5.9vw, 1.75rem); }
+  .hero__sub { justify-self: start; }
+  .hero__status { top: calc(var(--s-7)); font-size: 0.6875rem; }
+
+  .statband__list { grid-template-columns: repeat(2, 1fr); gap: var(--s-6) var(--s-4); }
+  /* footnote ledger left-aligns and stacks on small screens so it never crowds */
+  .statband__list--secondary,
+  .statband__list[data-statband="footnote"] {
+    justify-content: flex-start;
+    gap: var(--s-3) var(--s-5);
+  }
+
+  .flagship__head { flex-direction: column; align-items: flex-start; gap: var(--s-3); }
+
+  /* SYSTEM on phones: the pinned single-step reveal is gated off on mobile in
+     scroll.js, so the five steps must read as a plain vertical list. Without this
+     they stay absolutely stacked on top of each other (all forced visible by the
+     boot failsafe) in an illegible jumble. This mirrors the reduced-motion
+     fallback: relative flow, full opacity, one below the next. */
+  .system__sticky { min-height: 0; align-items: start; grid-template-columns: 1fr; }
+  .system__right { min-height: 0; }
+  .steps { display: grid; gap: var(--s-6); }
+  .step {
+    position: relative;
+    inset: auto;
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+  }
+  /* full-width detail already runs the column width on phones; relax the desktop
+     reading caps so the body uses the available width rather than a short measure. */
+  .step__title, .step__body { max-width: none; }
+  /* the "01 / 05" counter narrates a sequence that no longer exists once every
+     step is shown at once; retire it on mobile so it cannot read as stuck on 01.
+     With the chain also hidden under 1024px, the whole nav rail is empty, so drop
+     it entirely to avoid a stray gap above the stacked steps. */
+  .system__counter { display: none; }
+  .system__nav { display: none; }
+  .system__left { border-bottom: 0; padding-bottom: 0; }
+
+  .tenet { padding: var(--s-4) 0; }
+  .roadmap__row, .roadmap__row--head { grid-template-columns: 1fr; gap: var(--s-1); padding: var(--s-4) 0; }
+  .roadmap__row--head { display: none; }
+  .roadmap__name { font-size: 1.75rem; }
+
+  .hero__actions { justify-self: start; gap: var(--s-4); }
+
+  /* footer on phones: tighten the vertical rhythm so the colophon does not float
+     in a large void below the legal text, and let the watermark sit as an
+     intentional partial bleed behind the closing lines rather than a stray crop. */
+  .footer { padding-top: var(--s-7); }
+  .footer__status { margin-bottom: var(--s-6); }
+  .footer__grid { grid-template-columns: 1fr; gap: var(--s-5); margin-bottom: var(--s-6); }
+  .footer__legal { margin-bottom: var(--s-7); }
+  .footer__wordmark { font-size: clamp(4.5rem, 30vw, 9rem); bottom: -0.16em; opacity: 0.9; }
+  .discipline__close { text-align: left; }
+
+  /* the input row stacks: input over a full-width submit, each its own line */
+  .waitlist__row { flex-direction: column; align-items: stretch; max-width: none; }
+  .waitlist__cta { max-width: none; }
+  .waitlist__submit { width: 100%; }
+}
+
+@media (max-width: 420px) {
+  :root { --margin: 20px; }
+  .hero { padding-bottom: var(--s-6); }
+  .pillar { grid-template-columns: 1fr; gap: var(--s-2); }
+  .pillar__desc { grid-column: 1 / -1; }
+  /* tighten the prose leading at the narrowest column so long-form body does not
+     read as over-spaced lines on a phone. Type tier and color unchanged. */
+  .body { line-height: 1.5; }
+}
+
+/* ---- 21. REDUCED MOTION -------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+  .scene { opacity: 0.65; }
+  .mask__inner { transform: none !important; }
+  .step { position: relative; opacity: 1; transform: none; pointer-events: auto; inset: auto; margin-bottom: var(--s-7); }
+  .step__title, .step__body { max-width: none; }
+  .steps { display: grid; gap: var(--s-7); }
+  /* reduced motion: no pin holds the frame open, so the detail row must not stretch
+     to fill a 100vh grid; collapse the sticky to content height and stack. */
+  .system__sticky { min-height: 0; grid-template-columns: 1fr; }
+  .system__right { min-height: 0; }
+  .hero__scroll-line::after { display: none; }
+  .dot--pulse { animation: none; }
+  /* cursor reduced-motion handling is owned by css/cursor.css */
+}
+
+/* The forward band must never appear without its qualifier. The published artifact
+   says "0.3 to 0.9 ... with a real chance of ~0 in year one"; the landing carried only
+   the band until 2026-08-06, which reads as a floor rather than a distribution. */
+.algos__caveat {
+  display: block;
+  margin-top: 0.35em;
+  color: var(--paper-dim);
+  text-transform: none;
+  letter-spacing: 0.02em;
+}

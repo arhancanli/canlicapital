@@ -1,0 +1,43 @@
+{
+  "schema": "canli.feasibility.spin-off-form10-lineage.v1",
+  "generated_at": "2026-08-16T02:31:43.972083+00:00",
+  "stage": "sec_full_index_lineage_no_documents_no_prices_no_returns",
+  "protocol": "docs/design/FEASIBILITY_SPIN_OFF_DISLOCATION.md",
+  "period": [
+    2016,
+    2025
+  ],
+  "quarter_indexes": 40,
+  "retained_form_rows": 690,
+  "initial_10_12b_registrations": 204,
+  "amendment_10_12b_a_rows": 486,
+  "unique_ciks": 223,
+  "initial_registrations_by_year": {
+    "2016": 33,
+    "2017": 10,
+    "2018": 25,
+    "2019": 36,
+    "2020": 16,
+    "2021": 20,
+    "2022": 20,
+    "2023": 19,
+    "2024": 17,
+    "2025": 8
+  },
+  "source_manifest_sha256": "be11ab4b19e46a336775dfe0713878828ee2c8eacfd8a7d8248b36d6e6a1510d",
+  "filings_manifest_sha256": "6bfd91467ef1637f7f4a0e0511e8daf0aae300c608a29e7372e532396c869531",
+  "gates": {
+    "exactly_40_quarter_indexes_hash_bound": true,
+    "all_quarter_indexes_parsed": true,
+    "all_retained_rows_have_canonical_accessions": true,
+    "filing_identities_unique": true,
+    "each_year_has_initial_registration": true,
+    "at_least_50_initial_registrations": true,
+    "market_data_unopened": true,
+    "return_hypotheses_unspent": true
+  },
+  "decision": "PASS_TO_DOCUMENT_SCHEMA_AUDIT",
+  "market_data_opened": false,
+  "return_data_opened": false,
+  "return_hypotheses_spent": 0
+}

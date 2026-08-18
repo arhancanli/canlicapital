@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en" data-page="performance">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Canli Capital / Performance, methodology and honest results</title>
+  <meta name="description" content="How Canli Capital measures whether an edge is real: purged walk-forward, Deflated and Probabilistic Sharpe, Probability of Backtest Overfitting, a must-beat-baseline gate. The honest result so far: the crypto-only edge did not clear the bar, and we publish it in full. The path forward is breadth. No claimed return; simulation and paper only." />
+  <meta name="theme-color" content="#0A0B0D" />
+  <meta name="color-scheme" content="dark" />
+  <link rel="canonical" href="https://canlicapital.com/performance" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Canli Capital" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:title" content="Canli Capital / Performance" />
+  <meta property="og:description" content="The methodology and the validation gauntlet: purged walk-forward, Deflated and Probabilistic Sharpe, PBO, a must-beat-baseline gate. The honest result so far: the crypto-only edge has not cleared the bar, and we report it. Simulation and paper trading only. No real capital, no claimed returns." />
+  <meta property="og:url" content="https://canlicapital.com/performance" />
+  <meta property="og:image" content="https://canlicapital.com/og.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:alt" content="Canli Capital. A multi-signal quant engine, proven in the open. Simulation and live paper only, no real capital, no claimed return." />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Canli Capital / Performance" />
+  <meta name="twitter:description" content="The methodology and the validation gauntlet. The honest result so far: the crypto-only edge has not cleared the bar, and we report it. Simulation and paper trading only. No real capital, no claimed returns." />
+  <meta name="twitter:image" content="https://canlicapital.com/og.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@300..700&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@300..700&display=swap" />
+
+  <link rel="stylesheet" href="./css/styles.css" />
+  <link rel="stylesheet" href="./css/motion.css" />
+  <link rel="stylesheet" href="./css/shell.css" />
+  <link rel="stylesheet" href="./css/waitlist.css" />
+  <!-- Page-specific layer: adds the gauntlet ledger, the reserved results panel,
+       the capacity panel, and the gauntlet pin. Loaded LAST so it only ADDS to
+       the single design system above; it never redefines a token or an easing. -->
+  <link rel="stylesheet" href="./css/performance.css" />
+
+  <!-- Favicon set (the brand mark: one signal dot on the void). The SVG is the
+       primary, scalable icon; the .ico is the legacy fallback; the PNG sizes serve
+       iOS home-screen and PWA install. All long-cached as static assets. -->
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="/favicon.ico" sizes="32x32" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/manifest.webmanifest" />
+
+  <!-- Organization schema (JSON-LD). States only what is true: the firm, the brand,
+       the flagship engine, and the disclaimer that nothing here is investment
+       advice. No performance claim. -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Canli Capital",
+    "url": "https://canlicapital.com/",
+    "logo": "https://canlicapital.com/icon-512.png",
+    "image": "https://canlicapital.com/og.png",
+    "description": "A quantitative research platform building ALPHAC: a paper-traded, cross-asset book of four equal-quarter sleeves spanning equity momentum, managed-futures trend, funding carry and point-in-time macro surprise. Methods, failures and corrections are published in the open. No real capital and no claimed returns.",
+    "foundingDate": "2026",
+    "founder": { "@type": "Person", "name": "Arhan Canli" },
+    "slogan": "Institutional discipline, made legible.",
+    "disclaimer": "Nothing on this site is investment advice, an offer, or a solicitation. Canli Capital is in simulation and live paper trading. No statement describes live capital performance, and no return is claimed."
+  }
+  </script>
+
+  <style>
+    .skip-link {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 200;
+      transform: translateY(-120%);
+      margin: 12px;
+      padding: 10px 16px;
+      background: #0A0B0D;
+      color: #F4F1EA;
+      font: 500 13px/1 "Space Grotesk", system-ui, sans-serif;
+      letter-spacing: 0.04em;
+      text-decoration: none;
+      border: 1px solid #C8553D;
+      border-radius: 2px;
+      transition: transform 180ms ease;
+    }
+    .skip-link:focus { transform: translateY(0); }
+    .skip-link:focus-visible { outline: 2px solid #F4F1EA; outline-offset: 3px; }
+  </style>
+
+  <script>document.documentElement.classList.add("js");</script>
+
+  <!-- Per-page config for the shared bootstrap. /performance is the tightening /
+       validation chapter of the one manifold: the camera sits dead-on, close to
+       the single resolved ridge (high-convergence band ~0.3 to 0.9). The bloom is
+       restrained, not triumphant, because the honest result is that the crypto-only
+       edge has not yet cleared the bar. The chapter labels feed the living rail
+       counter; they are indexed by each section's data-section. See page-config.js.
+       This must run before main.js. -->
+  <script>
+    window.__MERIDIAN_PAGE = {
+      id: "performance",
+      chapters: [
+        "Overview", "What we measure", "The facts", "Results",
+        "Capacity", "Standing", "Current book", "Colophon"
+      ],
+      sceneBand: [0.7, 0.97],
+      sceneStill: 0.78
+    };
+  </script>
+</head>
+
+<body>
+
+  <a href="#content" class="skip-link">Skip to content</a>
+
+
+  </div>
+
+  <canvas id="scene" class="scene" aria-hidden="true"></canvas>
+  <div class="scene-fallback" id="sceneFallback" aria-hidden="true"></div>
+
+
+  <nav class="rail" id="rail" aria-label="Section navigation">
+    <span class="rail__line" aria-hidden="true"><span class="rail__fill" id="railFill"></span></span>
+    <div class="rail__head" id="railHead" aria-hidden="true">
+      <span class="rail__index mono-label" id="railIndex">00</span>
+      <span class="rail__chapter label" id="railName">Overview</span>
+    </div>
+    <ul class="rail__list">
+      <li><a href="#hero" class="rail__item" data-rail="0"><span class="rail__num mono-label">00</span></a></li>
+      <li><a href="#measures" class="rail__item" data-rail="1"><span class="rail__num mono-label">01</span></a></li>
+      <li><a href="#facts" class="rail__item" data-rail="2"><span class="rail__num mono-label">02</span></a></li>
+      <li><a href="#results" class="rail__item" data-rail="3"><span class="rail__num mono-label">03</span></a></li>
+      <li><a href="#capacity" class="rail__item" data-rail="4"><span class="rail__num mono-label">04</span></a></li>
+      <li><a href="#standing" class="rail__item" data-rail="5"><span class="rail__num mono-label">05</span></a></li>
+      <li><a href="#book" class="rail__item" data-rail="6"><span class="rail__num mono-label">06</span></a></li>
+    </ul>
+  </nav>
+
+  <!-- Shared top nav: js/shell.js renders the links + CTA into this .nav__links
+       and marks the current page. -->
+  <header class="nav" id="nav">
+    <div class="nav__inner">
+      <a href="/" class="nav__brand label" data-brand aria-label="Canli Capital, home">Canli Capital</a>
+      <nav class="nav__links" aria-label="Primary"></nav>
+    </div>
+  </header>
+
+  <main id="content" class="content" tabindex="-1">
+
+    <!-- =================================================================== -->
+    <!-- (00) HERO / OVERVIEW                                                  -->
+    <!-- =================================================================== -->
+    <section class="hero perf-hero section" id="hero" data-section="0" aria-labelledby="performance-word">
+      <span class="hero__ghost" aria-hidden="true">Method</span>
+      <div class="hero__body">
+        <p class="eyebrow label reveal-line"><span class="idx mono-label">00 /</span> Performance</p>
+        <h1 class="hero__word display-l" id="performance-word">
+          <span class="mask" data-chars><span class="mask__inner">We would rather show you</span></span>
+          <span class="mask" data-chars><span class="mask__inner">the method than a number</span></span>
+          <span class="mask" data-chars><span class="mask__inner">we cannot defend.</span></span>
+        </h1>
+        <p class="hero__sub body-l reveal-fade">
+          Most platforms lead with a curve. We lead with how the curve is judged,
+          because a curve is only as honest as the test behind it. This page shows
+          exactly how we decide whether an edge is real, and reports the result in
+          full: the crypto-only edge did not clear the bar, and we say so.
+        </p>
+        <p class="standfirst mono-label reveal-fade">
+          <span>Paper only, no real capital, no claimed return.</span>
+        </p>
+      </div>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- (01) METHODOLOGY                                                      -->
+    <!-- =================================================================== -->
+
+    <!-- =================================================================== -->
+    <!-- (02) WHAT THE GAUNTLET MEASURES + THE GAUNTLET PIN (tentpole)        -->
+    <!-- =================================================================== -->
+    <section class="perf-chapter section" id="measures" data-section="1" aria-labelledby="measures-head">
+      <span class="section__rule" aria-hidden="true"></span>
+      <div class="perf-chapter__head">
+        <p class="eyebrow label"><span class="idx mono-label">02 /</span> What we measure</p>
+        <h2 class="perf-chapter__title display-l" id="measures-head">
+          <span class="mask" data-chars><span class="mask__inner">Six ways to</span></span>
+          <span class="mask" data-chars><span class="mask__inner">catch ourselves out.</span></span>
+        </h2>
+        <p class="perf-chapter__intro body reveal-fade">
+          Search enough ideas and one will look brilliant by luck. These six tests
+          separate that from a real edge. Each asks the same question a different
+          way: would this survive if the world had not been so kind?
+        </p>
+      </div>
+
+      <!-- The gauntlet ledger: six measure rows rendered from the data contract by
+           js/performance.js. Labels, gates, and the honest sentences are real and
+           final; the measured value and verdict are reserved until a validated
+           artifact is wired (no fabricated numbers). -->
+      <div class="gauntlet" id="gauntletList" role="list" aria-label="The validation gauntlet">
+        <!-- rows injected by js/performance.js from GAUNTLET in performance_data.js -->
+      </div>
+
+      <!-- The gauntlet's DESIGN parameters, as a terminal-readout dataline. These
+           are facts about how the test is built (train/test windowing, purge and
+           embargo, rebalance cadence, the honest trial count fed into the
+           deflation, the literal baseline it must beat). They are true today and
+           name no result: the quant's request to see the rigor named, satisfied
+           without fabricating a single measurement. Written by js/performance.js
+           from GAUNTLET_PARAMS and revealed left to right as a mono type-in. -->
+      <p class="gauntlet__params mono-label type-mono" id="gauntletParams" aria-label="Gauntlet design parameters"></p>
+    </section>
+
+    <!-- THE PIN: the page's one tentpole beat. The six measures cross-fade inside a
+         pinned frame while the manifold tightens onto its single ridge. Reduced
+         motion / mobile: the steps stack as a plain list. -->
+    <section class="gpin" id="gpin">
+      <div class="gpin__sticky">
+        <div class="gpin__left">
+          <p class="eyebrow label"><span class="idx mono-label">02 /</span> The gauntlet</p>
+          <h2 class="gpin__head display-l">One question, asked six ways.</h2>
+          <p class="gpin__sub body-l">
+            The same field of signals, run through every test in turn, until one
+            verdict remains or the edge fails.
+          </p>
+          <p class="gpin__counter mono-label" aria-hidden="true">
+            <span id="gstepCurrent" class="signal-word">01</span>
+            <span class="gpin__counter-sep">/</span>
+            <span id="gstepTotal">06</span>
+          </p>
+        </div>
+
+        <div class="gpin__right">
+          <ol class="gsteps" aria-label="The gauntlet, measure by measure">
+            <li class="gstep is-active" data-gstep="0">
+              <p class="gstep__kicker mono-label">01 / Purged walk-forward</p>
+              <h3 class="gstep__title display-m">Always out-of-sample.</h3>
+              <p class="gstep__body body">
+                The backbone. Train on the past, test on an unseen future, with a
+                purge and embargo around every boundary. If an edge exists only
+                in-sample, this is exactly where it disappears.
+              </p>
+              <p class="gstep__gate mono-label">Gate / positive and stable out-of-sample</p>
+            </li>
+            <li class="gstep" data-gstep="1">
+              <p class="gstep__kicker mono-label">02 / Deflated Sharpe Ratio</p>
+              <h3 class="gstep__title display-m">Discounted for how hard we looked.</h3>
+              <p class="gstep__body body">
+                A Sharpe ratio discounted for the number of trials behind it and for
+                the non-normal shape of real returns. Given how hard we searched,
+                how impressed should we actually be.
+              </p>
+              <p class="gstep__gate mono-label">Gate / above zero after deflation</p>
+            </li>
+            <li class="gstep" data-gstep="2">
+              <p class="gstep__kicker mono-label">03 / Probabilistic Sharpe Ratio</p>
+              <h3 class="gstep__title display-m">A confidence, not a point estimate.</h3>
+              <p class="gstep__body body">
+                The probability that the true Sharpe sits above a chosen threshold,
+                given the sample we have. A statement of confidence rather than a
+                single flattering number.
+              </p>
+              <p class="gstep__gate mono-label">Gate / high confidence above threshold</p>
+            </li>
+            <li class="gstep" data-gstep="3">
+              <p class="gstep__kicker mono-label">04 / Probability of Backtest Overfitting</p>
+              <h3 class="gstep__title display-m">The signature of a curve-fit.</h3>
+              <p class="gstep__body body">
+                Estimated by combinatorially symmetric cross-validation: the chance
+                the configuration that looked best in-sample is no better than the
+                median out-of-sample. Lower is better. A high reading is the classic
+                tell of a curve-fit.
+              </p>
+              <p class="gstep__gate mono-label">Gate / low, well below 0.5</p>
+            </li>
+            <li class="gstep" data-gstep="4">
+              <p class="gstep__kicker mono-label">05 / Combinatorially-purged cross-validation</p>
+              <h3 class="gstep__title display-m">Not one lucky path through history.</h3>
+              <p class="gstep__body body">
+                Performance estimated across many purged train and test
+                combinations, so the headline figure is the behaviour of the method
+                across histories, not the single kindest route through the past.
+              </p>
+              <p class="gstep__gate mono-label">Gate / consistent across folds</p>
+            </li>
+            <li class="gstep" data-gstep="5">
+              <p class="gstep__kicker mono-label">06 / Must-beat-baseline gate</p>
+              <h3 class="gstep__title display-m">Beating zero is not the bar.</h3>
+              <p class="gstep__body body">
+                Every configuration we tried is counted and fed into the deflation,
+                and the strategy must beat a simple honest baseline by a meaningful
+                margin. A result that only beats doing nothing has not earned a
+                dollar of risk.
+              </p>
+              <p class="gstep__gate mono-label">Gate / beats a simple honest baseline by a meaningful margin</p>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </section><!-- /#gpin -->
+
+    <!-- =================================================================== -->
+    <!-- (03) THE VERIFIED FACTS (stat band, shared component)                -->
+    <!-- =================================================================== -->
+    <section class="proof perf-chapter section" id="facts" data-section="2" aria-labelledby="facts-head">
+      <span class="section__rule" aria-hidden="true"></span>
+      <div class="proof__head perf-chapter__head">
+        <p class="eyebrow label"><span class="idx mono-label">03 /</span> The facts</p>
+        <h2 class="proof__title perf-chapter__title display-m" id="facts-head">
+          <span class="mask" data-chars><span class="mask__inner">What is true today.</span></span>
+        </h2>
+        <p class="proof__lead perf-chapter__lead body-l reveal-fade">
+          These are the only numbers on this page. Every one is a property of the
+          engine and its data, not a performance claim. Hold us to them.
+        </p>
+      </div>
+
+      <div class="statband" aria-label="Verified system facts">
+        <ul class="statband__list" id="statList">
+          <!-- stats rendered by main.js from config/brand.js STATS -->
+        </ul>
+        <ul class="statband__list statband__list--secondary" data-statband="footnote">
+          <li class="stat stat--zero">
+            <span class="stat__val mono-data"><span class="stat__strike">0</span></span>
+            <span class="stat__label mono-label">No look-ahead</span>
+          </li>
+          <li class="stat">
+            <span class="stat__val mono-data">1</span>
+            <span class="stat__label mono-label">Cost authority, research and paper</span>
+          </li>
+          <li class="stat">
+            <span class="stat__val mono-data" data-fact="cryptoSince">2020</span>
+            <span class="stat__label mono-label">Crypto history starts</span>
+          </li>
+        </ul>
+      </div>
+
+      <p class="proof__aside perf-chapter__close body reveal-fade">
+        <span class="comment mono-label">//</span>
+        Performance is absent from this ledger on purpose.
+        <span data-brand>Canli Capital</span> has not traded real capital. There is
+        no live return to report, and a backtest is not one.
+      </p>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- (04) RESULTS, RESERVED (the load-bearing transparency moment)        -->
+    <!-- =================================================================== -->
+    <section class="perf-chapter section" id="results" data-section="3" aria-labelledby="results-head">
+      <span class="section__rule" aria-hidden="true"></span>
+      <div class="perf-chapter__head">
+        <p class="eyebrow label"><span class="idx mono-label">04 /</span> Results</p>
+        <h2 class="perf-chapter__title display-m" id="results-head">
+          <span class="mask" data-chars><span class="mask__inner">Here is the curve,</span></span>
+          <span class="mask" data-chars><span class="mask__inner">and what it did not clear.</span></span>
+        </h2>
+        <p class="perf-chapter__lead body reveal-fade">
+          This is the validated out-of-sample result for
+          AlphaForge: the equity curve, the Deflated and
+          Probabilistic Sharpe ratios, the Probability of Backtest Overfitting, the
+          trial count behind them, and the baseline it had to beat. It did not clear
+          the bar, and we publish it in full.
+        </p>
+      </div>
+
+      <!-- The reserved results panel. Built so a future builder wires real values
+           from a validated artifact (via js/performance_data.js) without
+           redesigning the page. While reserved it renders its honest empty state:
+           the axis grid reads as "a chart, pending"; the six fields are labeled
+           and empty. NO fabricated tick values, NO sample curve, NO placeholder
+           Sharpe. The data-results-src hook is reserved for the artifact wiring. -->
+      <div class="results">
+        <div class="results__panel" data-results-src="">
+          <div class="results__panel-head">
+            <span class="results__panel-title label">Out-of-sample evidence</span>
+            <span class="results__state mono-label" id="resultsState">[ validated, did not clear ]</span>
+          </div>
+          <div class="results__body">
+            <div class="results__chart" role="img" aria-label="Out-of-sample equity curve, the validated crypto-only result that did not clear the gate">
+              <canvas class="results__canvas" id="resultsCanvas" aria-hidden="true"></canvas>
+              <div class="results__pending" id="resultsPending">
+                <span class="results__pending-dot" aria-hidden="true"></span>
+                <span class="results__pending-cap mono-label" id="resultsPendingCap">[ validated result, did not clear the gate ]</span>
+              </div>
+            </div>
+            <div class="results__fields" id="resultFields" aria-label="Validated result fields">
+              <!-- fields injected by js/performance.js from RESULTS_FIELDS -->
+            </div>
+          </div>
+        </div>
+        <p class="results__note mono-label" id="resultsNote">
+          This is a real, validated result. It did not clear purged walk-forward and
+          the deflation, and we publish it in full. The path forward is breadth.
+        </p>
+        <!-- The reserved cadence line. While reserved this reads as "actively
+             pending": the test is configured, it re-runs on every engine change,
+             and these are the trials fed into the deflation. It names no result.
+             When a validated artifact is wired, js/performance.js swaps this for
+             the honest source/as-of line. -->
+        <p class="results__cadence mono-label" id="resultsCadence" aria-live="polite"></p>
+        <p class="results__source mono-label" id="resultsSource" aria-live="polite"></p>
+      </div>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- (05) CAPACITY (reserved interactive frame)                           -->
+    <!-- =================================================================== -->
+    <section class="perf-chapter section" id="capacity" data-section="4" aria-labelledby="capacity-head">
+      <span class="section__rule" aria-hidden="true"></span>
+      <div class="perf-chapter__head">
+        <p class="eyebrow label"><span class="idx mono-label">05 /</span> Capacity</p>
+        <h2 class="perf-chapter__title display-m" id="capacity-head">
+          <span class="mask" data-chars><span class="mask__inner">Size has a price.</span></span>
+        </h2>
+        <p class="perf-chapter__lead body reveal-fade">
+          An edge that exists at one notional may not exist at ten. The capacity
+          curve traces expected return net of cost against deployed capital, so the
+          point where size starts to erode the edge through impact and funding is
+          visible, not assumed. It draws from a validated artifact or it stays
+          blank.
+        </p>
+      </div>
+
+      <!-- The capacity panel: a labeled, dormant frame. Wires from CAPACITY_CURVE
+           in the data contract when an artifact exists; until then it renders the
+           honest reserved state (axis grid + caption, no fabricated knee point). -->
+      <div class="capacity">
+        <div class="capacity__panel" data-capacity-src="">
+          <div class="capacity__panel-head">
+            <span class="capacity__panel-title label">Capacity curve</span>
+            <span class="capacity__axes mono-label">Deployed capital to net-of-cost edge</span>
+          </div>
+          <div class="capacity__plot" role="img" aria-label="Capacity curve, awaiting validated artifact">
+            <canvas class="capacity__canvas" id="capacityCanvas" aria-hidden="true"></canvas>
+            <div class="capacity__pending" id="capacityPending">
+              <span class="capacity__pending-dot" aria-hidden="true"></span>
+              <span class="capacity__pending-cap mono-label" id="capacityPendingCap">
+                The capacity curve is drawn from a validated artifact. It is dormant until one exists.
+              </span>
+            </div>
+          </div>
+        </div>
+        <p class="capacity__note mono-label" id="capacityNote">
+          The capacity curve is drawn from a validated artifact. It is dormant until one exists.
+        </p>
+      </div>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- (06) THE HONEST STANDING                                              -->
+    <!-- =================================================================== -->
+    <section class="standing section section--ink" id="standing" data-section="5" aria-labelledby="standing-head">
+      <span class="section__rule" aria-hidden="true"></span>
+      <div class="standing__head">
+        <p class="eyebrow label"><span class="idx mono-label">06 /</span> Standing</p>
+        <h2 class="standing__title display-l" id="standing-head">
+          <span class="mask" data-chars><span class="mask__inner">The crypto-only edge has</span></span>
+          <span class="mask" data-chars><span class="mask__inner">not cleared the bar. We</span></span>
+          <span class="mask" data-chars><span class="mask__inner">are telling you on purpose.</span></span>
+        </h2>
+        <p class="standing__body body-l reveal-fade">
+          AlphaForge, tested on crypto
+          perpetual futures alone, does not clear our validation gauntlet. After
+          deflation and cost, the signal is not strong enough to stake capital on.
+          So we report it instead of dressing a backtest as a promise.
+          <span data-brand>Canli Capital</span> does not claim to always win. It runs
+          the test in the open and reports what
+          <span class="signal-word">passes</span> and what does not.
+        </p>
+      </div>
+
+      <!-- The emotional payoff. Held italic display-quote with a slow word reveal,
+           and as it enters the manifold settles to its stillest, most disciplined
+           pose (the camera stops breathing for a beat): stillness, here, IS the
+           immersion. The settle is wired by js/performance.js via a single
+           non-pinning ScrollTrigger that drives setConverge to a full gather and
+           holds it; guarded so a null / no-WebGL scene is a silent no-op. -->
+      <p class="standing__close display-quote" id="standingClose">
+        <span class="reveal-words">
+          We would rather post a null than a number we cannot defend.
+        </span>
+      </p>
+
+      <p class="standing__body body reveal-fade">
+        The deployed book pairs the crypto sleeve with a US equity momentum sleeve
+        that does clear the bar; the two are near-uncorrelated, and that is the
+        edge. Breadth beyond the pair is the road forward, and it is on the
+        progress page.
+      </p>
+      <div class="standing__forward reveal-fade">
+        <a href="/progress#equity-breadth" class="perf-link label">See the roadmap</a>
+        <a href="/#waitlist" class="perf-cta label" data-magnetic>Join the waitlist</a>
+      </div>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- (07) THE CURRENT BOOK                                                 -->
+    <!-- =================================================================== -->
+    <!-- The live current book, by algorithm: the four algorithms presented
+         coherently, then the real positions the equity sleeve holds today. This
+         is a genuine transparency surface, a quant book showing its actual
+         current positions, and it is held to the same restraint as the rest of
+         the page. The figures are filled from paper-state.json by js/holdings.js
+         (the SAME artifact the dashboard reads); nothing is hardcoded. The lead
+         is the deflated honest forward (0.3 to 0.9); the in-sample 1.46 is struck
+         in the same breath so the headline figure is never the flattering one.
+         The long side carries the one signal accent; the short side is the
+         recessed grey voice. AlphaForge is shown honestly flat. ALPHAC, the
+         cross-asset book, carries the equity sleeve's book today and says so
+         rather than reprinting the same names. The ledger is a tickered ledger,
+         top per side plus a quiet "and N more", never the full 177. -->
+    <section class="perf-chapter book section" id="book" data-section="6" aria-labelledby="book-head">
+      <span class="section__rule" aria-hidden="true"></span>
+      <div class="perf-chapter__head">
+        <p class="eyebrow label"><span class="idx mono-label">07 /</span> The current book</p>
+        <h2 class="perf-chapter__title display-m" id="book-head">
+          <span class="mask" data-chars><span class="mask__inner">What the algorithms</span></span>
+          <span class="mask" data-chars><span class="mask__inner">are holding, right now.</span></span>
+        </h2>
+        <p class="perf-chapter__lead body reveal-fade">
+          The house runs four sleeves: AlphaForge (crypto funding carry), AlphaMax
+          (US-equity 12-1 momentum), AlphaTrend (managed-futures trend) and
+          AlphaVintage (point-in-time macro surprise), combined into ALPHAC at equal
+          quarters. AlphaTrend is carried for its MEASURED drawdown reduction, not for a
+          demonstrated edge: re-derived on 2026-08-07 at honest trial count, its deflated
+          Sharpe is 0.00, the lowest of the sleeves we have measured. We previously
+          published 0.83 for it and called it the first sleeve to clear deflation; that
+          rested on a variance input roughly 80x too small, and it is withdrawn.
+          In-sample validation reads 1.46. Corrected for every strategy we
+          tried, it deflates to a forward of 0.3 to 0.9. That is the number to lead
+          with. Below are the live positions the book carries today:
+          the real names, top per side, with counts, gross, and net.
+        </p>
+        <p class="book__forward mono-label reveal-fade">
+          Honest forward Sharpe <span class="signal-word">0.3 to 0.9</span>
+          <span class="book__struck">in-sample 1.46</span>
+        </p>
+      </div>
+
+      <!-- AlphaMax: the equity sleeve's live long/short book. The summary row
+           leads; the two-column ticker ledger follows. Filled by holdings.js. -->
+      <div class="book-block" id="bookAlphamax">
+        <div class="book-block__head">
+          <span class="book-block__name">AlphaMax</span>
+          <span class="book-block__asset mono-label">US-equity 12-1 momentum, dollar-neutral</span>
+        </div>
+        <div class="book-summary" data-book="summary" aria-label="Book summary"></div>
+        <div class="book-ledger" data-book="ledger" aria-label="AlphaMax long and short book"></div>
+      </div>
+
+      <!-- AlphaForge: the honest flat state. Holding cash. Flat is the truthful
+           state, not missing data, and it is stated plainly. -->
+      <div class="book-block book-block--flat" id="bookAlphaforge">
+        <div class="book-block__head">
+          <span class="book-block__name">AlphaForge</span>
+          <span class="book-block__asset mono-label">Crypto funding carry, market-neutral perpetuals</span>
+        </div>
+        <p class="book-flat">
+          <span class="dot" aria-hidden="true"></span>
+          <span class="book-flat__state mono-label" data-book="state">Holding cash, no open positions</span>
+        </p>
+        <p class="book-flat__note body">
+          The funding-carry loop stands aside when carry does not clear costs;
+          when it does, it trades a market-neutral book. The state above is
+          read live from the record, in whichever state the sleeve is in.
+        </p>
+      </div>
+
+      <!-- ALPHAC: the flagship is FOUR sleeves at equal quarters, plus a disclosed
+           +10% strategic net-long overlay. The composition + tilt are read live
+           from state.book by js/holdings.js (renderAlphac).
+           Corrected 2026-08-12: this block said "THREE sleeves at fixed 40/40/20"
+           and "+20%", and its body asserted that decorrelation "is the edge" — a
+           claim this site RETRACTED on 2026-08-06 in the transparency log, because
+           the -0.04 behind it averaged in a strategy we do not trade. Leaving the
+           retracted claim standing on the page while the log says we withdrew it
+           is the worst of both: it reads as correction theatre. -->
+      <div class="book-block book-block--flagship" id="bookAlphac">
+        <div class="book-block__head">
+          <span class="book-block__name">ALPHAC <span class="book-block__badge mono-label">Flagship</span></span>
+          <span class="book-block__asset mono-label">Cross-asset book, four sleeves at equal quarters plus a disclosed strategic overlay</span>
+        </div>
+        <p class="book-carry body">
+          The book combines <span class="book-carry__fig mono-data" data-book="carry"></span>.
+          The four sleeves are near-uncorrelated — their average pairwise correlation
+          measures +0.0274, which is POSITIVE. We used to call that decorrelation
+          &ldquo;the edge&rdquo; and we withdrew the claim: the diversification is
+          real but smaller than we said. The disclosed overlay is commoditized beta,
+          held as a separate labelled line, never blended into the neutral core.
+        </p>
+      </div>
+
+      <p class="book__source mono-label reveal-fade">
+        <span class="comment">//</span>
+        These are the live paper positions, refreshed daily, drawn from the same
+        ledger the engine acts on. No real money is in play. No name is shown that
+        the book does not hold.
+      </p>
+    </section>
+  </main>
+
+  <!-- Footer is the Colophon chapter (index 8 in the per-page chapters array), so
+       the living rail head reads "08 / Colophon" when the footer is in view,
+       matching the landing's footer-as-last-chapter behaviour. -->
+  <footer class="footer" id="footer" data-section="8"></footer>
+
+  <script type="module" src="./js/waitlist.js"></script>
+  <script type="module" src="./js/performance.js"></script>
+  <!-- The live current book, filled from paper-state.json. Self-contained; reads
+       the same artifact the dashboard reads. See js/holdings.js. -->
+  <script type="module" src="./js/holdings.js"></script>
+  <script type="module" src="./js/main.js"></script>
+</body>
+</html>

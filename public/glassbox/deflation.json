@@ -1,0 +1,65 @@
+{
+  "schema": "glassbox.deflation/1",
+  "title": "The Deflation Verdict",
+  "summary": "We graded crypto-perps alone against an honest multiple-testing benchmark. It is noise. We publish the failure as a feature, not a footnote.",
+  "tested_window": {
+    "start_date": "2021-01-01",
+    "end_date": "2026-06-01",
+    "note": "Clean crypto-perp window, UTC, exclusive end. No look-ahead."
+  },
+  "crypto_perp_grid_trials": 8,
+  "cumulative_strategy_families_searched": "35+ (FX, factor-zoo, managed-futures, VRP, PEAD, COT, on-chain, residual-momentum, cross-asset carry/value, crypto-basis, two 2026-06 adversarial campaigns) \u2014 most published as nulls in the kill log; deflate against the FULL N",
+  "gates": {
+    "dsr_shared_min": 0.95,
+    "pbo_max": 0.2,
+    "rule": "deploy iff DSR(shared-SR*) >= 0.95 AND PBO < 0.20 AND beats baseline"
+  },
+  "best_config": {
+    "name": "A_blend",
+    "psr": 0.5355,
+    "dsr_shared": 0.2112,
+    "sr_ann": 0.0424,
+    "max_dd": 0.1359,
+    "turnover_ann": 39.743,
+    "clears_dsr_gate": false,
+    "beats_baseline": false
+  },
+  "pbo_matrix": 0.8818,
+  "capacity_curve": [
+    {
+      "initial_cash_usd": 100000,
+      "sr_ann": 0.4009,
+      "dsr_shared": 0.4803,
+      "max_dd": 0.1314,
+      "final_equity_usd": 118509.86
+    },
+    {
+      "initial_cash_usd": 1000000,
+      "sr_ann": 0.0424,
+      "dsr_shared": 0.2112,
+      "max_dd": 0.1359,
+      "final_equity_usd": 993219.39
+    },
+    {
+      "initial_cash_usd": 10000000,
+      "sr_ann": -0.372,
+      "dsr_shared": 0.046,
+      "max_dd": 0.2269,
+      "final_equity_usd": 8043578.96
+    }
+  ],
+  "capacity_note": "The edge decays as capital grows: at $10M the realized Sharpe is negative as market impact consumes the thin signal. Crypto carry is finite-capacity alpha.",
+  "verdict": {
+    "pass": false,
+    "outcome": "NO-DEPLOY (honest null)",
+    "gauntlet_grade": "C+",
+    "gauntlet_status": "real but modest; no sleeve clears the multiple-testing gate in-sample, so the only credible next evidence is a live record where the full book transacts through a risk-off episode",
+    "reason": "Best config DSR 0.2112 < 0.95 gate AND PBO 0.8818 > 0.20 gate. No variant beats baseline and clears deflation simultaneously. Crypto-perps alone is a thin cross-sectional signal that does not survive honest deflation net of cost; the equity sleeve is required as ballast."
+  },
+  "source_paths": [
+    "artifacts/grand_backtest/20260616T143620Z/verdict.md",
+    "data/paper/state.json"
+  ],
+  "generated_at": "2026-08-18T12:25:26.601911+00:00",
+  "content_hash": "sha256:beb896e504bad3ac3148a95f72df10d3b4e50670946a43968522395bc2c8a0c2"
+}

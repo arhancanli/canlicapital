@@ -1,0 +1,73 @@
+{
+  "schema": "canli.feasibility.bond-etf-nav-dislocation.v1",
+  "generated_at": "2026-08-16T03:21:27.826967+00:00",
+  "stage": "official_source_metadata_no_market_records_no_returns",
+  "decision": "DATA_GATED",
+  "return_data_opened": false,
+  "market_data_opened": false,
+  "market_records_opened": 0,
+  "return_hypotheses_spent": 0,
+  "protocol": "docs/design/FEASIBILITY_BOND_ETF_NAV_DISLOCATION.md",
+  "protocol_sha256": "b93f6cdb6dda1fe97f7cfcf76cb367246b1683e937aff2d160b665ddbb903da3",
+  "literature_review": "docs/design/LITERATURE_BOND_ETF_NAV_DISLOCATION.md",
+  "funds": [
+    "HYG",
+    "LQD"
+  ],
+  "research_period": [
+    "2016-01-01",
+    "2025-12-31"
+  ],
+  "premium_discount_coverage": {
+    "HYG": {
+      "expected_xnys_sessions": 2514,
+      "issuer_dates_in_period": 249,
+      "coverage": 0.09904534606205251,
+      "first_available": "2025-01-02",
+      "last_available": "2026-08-14"
+    },
+    "LQD": {
+      "expected_xnys_sessions": 2514,
+      "issuer_dates_in_period": 249,
+      "coverage": 0.09904534606205251,
+      "first_available": "2025-01-02",
+      "last_available": "2026-08-14"
+    }
+  },
+  "historical_holdings_snapshots": {
+    "HYG": 1,
+    "LQD": 1
+  },
+  "required_historical_holdings_snapshots_each": 120,
+  "trace_metadata": {
+    "agreement_required": true,
+    "fees_required": true,
+    "transaction_records_requested": 0
+  },
+  "gates": {
+    "issuer_premium_discount_coverage_at_least_98pct_each": false,
+    "monthly_historical_holdings_120_each": false,
+    "trace_transaction_route_contractually_available": true,
+    "constituent_valuation_timestamps_available": false,
+    "synchronized_etf_and_bond_execution_data_available": false
+  },
+  "artifacts": {
+    "issuer_premium_discount_manifest": {
+      "path": "artifacts/feasibility/bond_etf_nav_dislocation/issuer_premium_discount_manifest.parquet",
+      "sha256": "3c50bc07711b6bbc53a29fe92d731b4a24f34349ddaa2a9f9f4ede85e45ead42",
+      "rows": 808
+    },
+    "source_probe_manifest": {
+      "path": "artifacts/feasibility/bond_etf_nav_dislocation/source_probe_manifest.parquet",
+      "sha256": "de7dcf570662c67c0505badd2d37e1a6521c3abb328ee1fb8193fd803a601676",
+      "rows": 5
+    }
+  },
+  "blocking_reasons": [
+    "issuer_premium_discount_coverage_at_least_98pct_each",
+    "monthly_historical_holdings_120_each",
+    "constituent_valuation_timestamps_available",
+    "synchronized_etf_and_bond_execution_data_available"
+  ],
+  "claim_boundary": "Issuer NAV gaps cannot distinguish stale bond marks from ETF mispricing. No sign, threshold, return, Sharpe, drawdown, correlation, capacity, or admission claim exists."
+}

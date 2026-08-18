@@ -1,0 +1,820 @@
+{
+  "schema": "canli.alphac-sleeve-family-lineage-audit.v1",
+  "stage": "NO_RETURN_IDENTITY_LINEAGE",
+  "claim_boundary": "This audit proves registry consistency against the enumerated internal ledgers. It does not prove global economic novelty, returns, or sleeve admission.",
+  "summary": {
+    "decision": "PASS",
+    "families_audited": 40,
+    "family_failures": 0,
+    "current_book_exact_match": true,
+    "current_sleeves": 4,
+    "kill_ledger_identities": 46,
+    "kill_identities_mapped_to_atlas": 12,
+    "kill_identities_outside_atlas": 34,
+    "classifications": {
+      "ACTIVE_FEASIBILITY": 6,
+      "DUPLICATE_OVERLAP": 7,
+      "IDENTITY_REDESIGN_REQUIRED": 2,
+      "NOVEL_ATLAS": 20,
+      "RETIRED_KILLED": 5
+    },
+    "return_data_opened": 0,
+    "return_hypotheses_spent": 0,
+    "family_return_data_opened": 1,
+    "family_return_hypotheses_spent": 1
+  },
+  "failed_families": [],
+  "current_book": {
+    "actual": [
+      "alphaforge",
+      "alphamax",
+      "alphavintage",
+      "managed_futures"
+    ],
+    "registered": [
+      "alphaforge",
+      "alphamax",
+      "alphavintage",
+      "managed_futures"
+    ]
+  },
+  "unmapped_kill_identities": [
+    "alphamax_betaneutral",
+    "alphamax_short_margin_floor",
+    "alphamax_shorttail",
+    "alphamax_volscale",
+    "alphamax_weightgrid",
+    "crypto_lowvol_720",
+    "crypto_short_tsmom",
+    "deephist_quality_top800",
+    "econtrend",
+    "eq_52whigh",
+    "eq_mom_margin",
+    "eq_quality_gp",
+    "eq_value_btp",
+    "equity_pead",
+    "fx_carry_ratediff",
+    "fx_carry_trend_overlay",
+    "fx_trend_cs",
+    "insider_purchase_clusters",
+    "intraday_mom",
+    "letf_eod_flow",
+    "mechflow_tom",
+    "mf_realfutures_breadth",
+    "mf_realfutures_fasttrend",
+    "onchain_carry_filter",
+    "pm_odds_signal",
+    "prereg_bab",
+    "prereg_momentum",
+    "prereg_quality",
+    "prereg_value",
+    "rates_curve_carry",
+    "residual_momentum",
+    "tail_overlay",
+    "xasset_value",
+    "xs_seasonality"
+  ],
+  "family_results": [
+    {
+      "family_id": "active_ownership_escalation",
+      "classification": "NOVEL_ATLAS",
+      "aliases": [],
+      "evidence": [],
+      "gates": {
+        "aliases_required_when_historical": true,
+        "historical_aliases_exist_in_kill_ledger": true,
+        "evidence_declared_when_non_novel": true,
+        "evidence_resolves": true,
+        "novel_family_has_no_historical_alias": true,
+        "forward_experiment_is_explicit": true,
+        "direct_return_outcome_valid": true
+      },
+      "pass": true
+    },
+    {
+      "family_id": "analyst_revision_drift",
+      "classification": "NOVEL_ATLAS",
+      "aliases": [],
+      "evidence": [],
+      "gates": {
+        "aliases_required_when_historical": true,
+        "historical_aliases_exist_in_kill_ledger": true,
+        "evidence_declared_when_non_novel": true,
+        "evidence_resolves": true,
+        "novel_family_has_no_historical_alias": true,
+        "forward_experiment_is_explicit": true,
+        "direct_return_outcome_valid": true
+      },
+      "pass": true
+    },
+    {
+      "family_id": "bond_etf_nav_dislocation",
+      "classification": "ACTIVE_FEASIBILITY",
+      "aliases": [],
+      "evidence": [
+        "docs/design/LITERATURE_BOND_ETF_NAV_DISLOCATION.md",
+        "docs/design/FEASIBILITY_BOND_ETF_NAV_DISLOCATION.md",
+        "artifacts/feasibility/bond_etf_nav_dislocation/result.json"
+      ],
+      "gates": {
+        "aliases_required_when_historical": true,
+        "historical_aliases_exist_in_kill_ledger": true,
+        "evidence_declared_when_non_novel": true,
+        "evidence_resolves": true,
+        "novel_family_has_no_historical_alias": true,
+        "forward_experiment_is_explicit": true,
+        "direct_return_outcome_valid": true
+      },
+      "pass": true
+    },
+    {
+      "family_id": "carbon_allowance_carry",
+      "classification": "NOVEL_ATLAS",
+      "aliases": [],
+      "evidence": [],
+      "gates": {
+        "aliases_required_when_historical": true,
+        "historical_aliases_exist_in_kill_ledger": true,
+        "evidence_declared_when_non_novel": true,
+        "evidence_resolves": true,
+        "novel_family_has_no_historical_alias": true,
+        "forward_experiment_is_explicit": true,
+        "direct_return_outcome_valid": true
+      },
+      "pass": true
+    },
+    {
+      "family_id": "catastrophe_bond_event_risk",
+      "classification": "NOVEL_ATLAS",
+      "aliases": [],
+      "evidence": [],
+      "gates": {
+        "aliases_required_when_historical": true,
+        "historical_aliases_exist_in_kill_ledger": true,
+        "evidence_declared_when_non_novel": true,
+        "evidence_resolves": true,
+        "novel_family_has_no_historical_alias": true,
+        "forward_experiment_is_explicit": true,
+        "direct_return_outcome_valid": true
+      },
+      "pass": true
+    },
+    {
+      "family_id": "cftc_hedging_pressure",
+      "classification": "RETIRED_KILLED",
+      "aliases": [
+        "cot_positioning"
+      ],
+      "evidence": [
+        "public_kill_ledger#screen_stage_kills:cot_positioning"
+      ],
+      "gates": {
+        "aliases_required_when_historical": true,
+        "historical_aliases_exist_in_kill_ledger": true,
+        "evidence_declared_when_non_novel": true,
+        "evidence_resolves": true,
+        "novel_family_has_no_historical_alias": true,
+        "forward_experiment_is_explicit": true,
+        "direct_return_outcome_valid": true
+      },
+      "pass": true
+    },
+    {
+      "family_id": "closed_end_fund_discount",
+      "classification": "RETIRED_KILLED",
+      "aliases": [
+        "cef_discount"
+      ],
+      "evidence": [
+        "public_kill_ledger#screen_stage_kills:cef_discount"
+      ],
+      "gates": {
+        "aliases_required_when_historical": true,
+        "historical_aliases_exist_in_kill_ledger": true,
+        "evidence_declared_when_non_novel": true,
+        "evidence_resolves": true,
+        "novel_family_has_no_historical_alias": true,
+        "forward_experiment_is_explicit": true,
+        "direct_return_outcome_valid": true
+      },
+      "pass": true
+    },
+    {
+      "family_id": "commodity_calendar_seasonality",
+      "classification": "DUPLICATE_OVERLAP",
+      "aliases": [
+        "futcarry_xs",
+        "xasset_carry"
+      ],
+      "evidence": [
+        "public_kill_ledger#screen_stage_kills:futcarry_xs",
+        "public_kill_ledger#screen_stage_kills:xasset_carry"
+      ],
+      "gates": {
+        "aliases_required_when_historical": true,
+        "historical_aliases_exist_in_kill_ledger": true,
+        "evidence_declared_when_non_novel": true,
+        "evidence_resolves": true,
+        "novel_family_has_no_historical_alias": true,
+        "forward_experiment_is_explicit": true,
+        "direct_return_outcome_valid": true
+      },
+      "pass": true
+    },
+    {
+      "family_id": "credit_equity_relative_value",
+      "classification": "NOVEL_ATLAS",
+      "aliases": [],
+      "evidence": [],
+      "gates": {
+        "aliases_required_when_historical": true,
+        "historical_aliases_exist_in_kill_ledger": true,
+        "evidence_declared_when_non_novel": true,
+        "evidence_resolves": true,
+        "novel_family_has_no_historical_alias": true,
+        "forward_experiment_is_explicit": true,
+        "direct_return_outcome_valid": true
+      },
+      "pass": true
+    },
+    {
+      "family_id": "cross_currency_basis",
+      "classification": "NOVEL_ATLAS",
+      "aliases": [],
+      "evidence": [],
+      "gates": {
+        "aliases_required_when_historical": true,
+        "historical_aliases_exist_in_kill_ledger": true,
+        "evidence_declared_when_non_novel": true,
+        "evidence_resolves": true,
+        "novel_family_has_no_historical_alias": true,
+        "forward_experiment_is_explicit": true,
+        "direct_return_outcome_valid": true
+      },
+      "pass": true
+    },
+    {
+      "family_id": "crypto_cross_venue_basis",
+      "classification": "RETIRED_KILLED",
+      "aliases": [
+        "multivenue_funding",
+        "crypto_dated_basis",
+        "funding_termstructure"
+      ],
+      "evidence": [
+        "public_kill_ledger#screen_stage_kills:multivenue_funding",
+        "public_kill_ledger#screen_stage_kills:crypto_dated_basis",
+        "public_kill_ledger#screen_stage_kills:funding_termstructure"
+      ],
+      "gates": {
+        "aliases_required_when_historical": true,
+        "historical_aliases_exist_in_kill_ledger": true,
+        "evidence_declared_when_non_novel": true,
+        "evidence_resolves": true,
+        "novel_family_has_no_historical_alias": true,
+        "forward_experiment_is_explicit": true,
+        "direct_return_outcome_valid": true
+      },
+      "pass": true
+    },
+    {
+      "family_id": "crypto_liquidation_pressure",
+      "classification": "NOVEL_ATLAS",
+      "aliases": [],
+      "evidence": [],
+      "gates": {
+        "aliases_required_when_historical": true,
+        "historical_aliases_exist_in_kill_ledger": true,
+        "evidence_declared_when_non_novel": true,
+        "evidence_resolves": true,
+        "novel_family_has_no_historical_alias": true,
+        "forward_experiment_is_explicit": true,
+        "direct_return_outcome_valid": true
+      },
+      "pass": true
+    },
+    {
+      "family_id": "crypto_options_surface",
+      "classification": "DUPLICATE_OVERLAP",
+      "aliases": [
+        "crypto_vrp"
+      ],
+      "evidence": [
+        "public_kill_ledger#screen_stage_kills:crypto_vrp"
+      ],
+      "gates": {
+        "aliases_required_when_historical": true,
+        "historical_aliases_exist_in_kill_ledger": true,
+        "evidence_declared_when_non_novel": true,
+        "evidence_resolves": true,
+        "novel_family_has_no_historical_alias": true,
+        "forward_experiment_is_explicit": true,
+        "direct_return_outcome_valid": true
+      },
+      "pass": true
+    },
+    {
+      "family_id": "customer_supplier_propagation",
+      "classification": "ACTIVE_FEASIBILITY",
+      "aliases": [],
+      "evidence": [
+        "docs/design/LITERATURE_CUSTOMER_SUPPLIER_PROPAGATION.md",
+        "docs/design/FEASIBILITY_CUSTOMER_SUPPLIER_PROPAGATION.md",
+        "artifacts/feasibility/customer_supplier_propagation/result.json"
+      ],
+      "gates": {
+        "aliases_required_when_historical": true,
+        "historical_aliases_exist_in_kill_ledger": true,
+        "evidence_declared_when_non_novel": true,
+        "evidence_resolves": true,
+        "novel_family_has_no_historical_alias": true,
+        "forward_experiment_is_explicit": true,
+        "direct_return_outcome_valid": true
+      },
+      "pass": true
+    },
+    {
+      "family_id": "dealer_gamma_pressure",
+      "classification": "NOVEL_ATLAS",
+      "aliases": [],
+      "evidence": [],
+      "gates": {
+        "aliases_required_when_historical": true,
+        "historical_aliases_exist_in_kill_ledger": true,
+        "evidence_declared_when_non_novel": true,
+        "evidence_resolves": true,
+        "novel_family_has_no_historical_alias": true,
+        "forward_experiment_is_explicit": true,
+        "direct_return_outcome_valid": true
+      },
+      "pass": true
+    },
+    {
+      "family_id": "earnings_narrative_change",
+      "classification": "RETIRED_KILLED",
+      "aliases": [],
+      "evidence": [
+        "docs/design/PREREG_EARNINGS_NARRATIVE_CHANGE.md",
+        "artifacts/probe/earnings_narrative_change/result.json"
+      ],
+      "gates": {
+        "aliases_required_when_historical": true,
+        "historical_aliases_exist_in_kill_ledger": true,
+        "evidence_declared_when_non_novel": true,
+        "evidence_resolves": true,
+        "novel_family_has_no_historical_alias": true,
+        "forward_experiment_is_explicit": true,
+        "direct_return_outcome_valid": true
+      },
+      "pass": true
+    },
+    {
+      "family_id": "electricity_load_weather_spread",
+      "classification": "ACTIVE_FEASIBILITY",
+      "aliases": [],
+      "evidence": [
+        "config/sleeve_discovery.json#candidates:electricity_load_weather_spread",
+        "docs/design/LITERATURE_ELECTRICITY_LOAD_WEATHER.md",
+        "docs/design/FEASIBILITY_ELECTRICITY_LOAD_WEATHER.md",
+        "artifacts/feasibility/electricity_load_weather/result.json"
+      ],
+      "gates": {
+        "aliases_required_when_historical": true,
+        "historical_aliases_exist_in_kill_ledger": true,
+        "evidence_declared_when_non_novel": true,
+        "evidence_resolves": true,
+        "novel_family_has_no_historical_alias": true,
+        "forward_experiment_is_explicit": true,
+        "direct_return_outcome_valid": true
+      },
+      "pass": true
+    },
+    {
+      "family_id": "fallen_angel_flow",
+      "classification": "NOVEL_ATLAS",
+      "aliases": [],
+      "evidence": [],
+      "gates": {
+        "aliases_required_when_historical": true,
+        "historical_aliases_exist_in_kill_ledger": true,
+        "evidence_declared_when_non_novel": true,
+        "evidence_resolves": true,
+        "novel_family_has_no_historical_alias": true,
+        "forward_experiment_is_explicit": true,
+        "direct_return_outcome_valid": true
+      },
+      "pass": true
+    },
+    {
+      "family_id": "freight_derivative_dislocation",
+      "classification": "NOVEL_ATLAS",
+      "aliases": [],
+      "evidence": [],
+      "gates": {
+        "aliases_required_when_historical": true,
+        "historical_aliases_exist_in_kill_ledger": true,
+        "evidence_declared_when_non_novel": true,
+        "evidence_resolves": true,
+        "novel_family_has_no_historical_alias": true,
+        "forward_experiment_is_explicit": true,
+        "direct_return_outcome_valid": true
+      },
+      "pass": true
+    },
+    {
+      "family_id": "fx_option_risk_reversal",
+      "classification": "NOVEL_ATLAS",
+      "aliases": [],
+      "evidence": [],
+      "gates": {
+        "aliases_required_when_historical": true,
+        "historical_aliases_exist_in_kill_ledger": true,
+        "evidence_declared_when_non_novel": true,
+        "evidence_resolves": true,
+        "novel_family_has_no_historical_alias": true,
+        "forward_experiment_is_explicit": true,
+        "direct_return_outcome_valid": true
+      },
+      "pass": true
+    },
+    {
+      "family_id": "index_reconstitution_flow",
+      "classification": "NOVEL_ATLAS",
+      "aliases": [],
+      "evidence": [],
+      "gates": {
+        "aliases_required_when_historical": true,
+        "historical_aliases_exist_in_kill_ledger": true,
+        "evidence_declared_when_non_novel": true,
+        "evidence_resolves": true,
+        "novel_family_has_no_historical_alias": true,
+        "forward_experiment_is_explicit": true,
+        "direct_return_outcome_valid": true
+      },
+      "pass": true
+    },
+    {
+      "family_id": "inflation_breakeven_relative_value",
+      "classification": "NOVEL_ATLAS",
+      "aliases": [],
+      "evidence": [],
+      "gates": {
+        "aliases_required_when_historical": true,
+        "historical_aliases_exist_in_kill_ledger": true,
+        "evidence_declared_when_non_novel": true,
+        "evidence_resolves": true,
+        "novel_family_has_no_historical_alias": true,
+        "forward_experiment_is_explicit": true,
+        "direct_return_outcome_valid": true
+      },
+      "pass": true
+    },
+    {
+      "family_id": "merger_arbitrage",
+      "classification": "NOVEL_ATLAS",
+      "aliases": [],
+      "evidence": [],
+      "gates": {
+        "aliases_required_when_historical": true,
+        "historical_aliases_exist_in_kill_ledger": true,
+        "evidence_declared_when_non_novel": true,
+        "evidence_resolves": true,
+        "novel_family_has_no_historical_alias": true,
+        "forward_experiment_is_explicit": true,
+        "direct_return_outcome_valid": true
+      },
+      "pass": true
+    },
+    {
+      "family_id": "mortgage_convexity_pressure",
+      "classification": "NOVEL_ATLAS",
+      "aliases": [],
+      "evidence": [],
+      "gates": {
+        "aliases_required_when_historical": true,
+        "historical_aliases_exist_in_kill_ledger": true,
+        "evidence_declared_when_non_novel": true,
+        "evidence_resolves": true,
+        "novel_family_has_no_historical_alias": true,
+        "forward_experiment_is_explicit": true,
+        "direct_return_outcome_valid": true
+      },
+      "pass": true
+    },
+    {
+      "family_id": "municipal_taxable_basis",
+      "classification": "NOVEL_ATLAS",
+      "aliases": [],
+      "evidence": [],
+      "gates": {
+        "aliases_required_when_historical": true,
+        "historical_aliases_exist_in_kill_ledger": true,
+        "evidence_declared_when_non_novel": true,
+        "evidence_resolves": true,
+        "novel_family_has_no_historical_alias": true,
+        "forward_experiment_is_explicit": true,
+        "direct_return_outcome_valid": true
+      },
+      "pass": true
+    },
+    {
+      "family_id": "natural_gas_storage_weather",
+      "classification": "DUPLICATE_OVERLAP",
+      "aliases": [
+        "commodity_inventory_seasonal"
+      ],
+      "evidence": [
+        "artifacts/probe/eia_petroleum_inventory/result.json",
+        "docs/design/LITERATURE_NATURAL_GAS_STORAGE_WEATHER.md",
+        "docs/design/FEASIBILITY_NATURAL_GAS_STORAGE_WEATHER.md",
+        "artifacts/feasibility/natural_gas_storage_weather/result.json"
+      ],
+      "gates": {
+        "aliases_required_when_historical": true,
+        "historical_aliases_exist_in_kill_ledger": true,
+        "evidence_declared_when_non_novel": true,
+        "evidence_resolves": true,
+        "novel_family_has_no_historical_alias": true,
+        "forward_experiment_is_explicit": true,
+        "direct_return_outcome_valid": true
+      },
+      "pass": true
+    },
+    {
+      "family_id": "options_dispersion",
+      "classification": "ACTIVE_FEASIBILITY",
+      "aliases": [],
+      "evidence": [
+        "config/sleeve_discovery.json#candidates:options_dispersion",
+        "docs/design/LITERATURE_OPTIONS_DISPERSION.md",
+        "docs/design/FEASIBILITY_OPTIONS_DISPERSION.md"
+      ],
+      "gates": {
+        "aliases_required_when_historical": true,
+        "historical_aliases_exist_in_kill_ledger": true,
+        "evidence_declared_when_non_novel": true,
+        "evidence_resolves": true,
+        "novel_family_has_no_historical_alias": true,
+        "forward_experiment_is_explicit": true,
+        "direct_return_outcome_valid": true
+      },
+      "pass": true
+    },
+    {
+      "family_id": "options_skew_carry",
+      "classification": "DUPLICATE_OVERLAP",
+      "aliases": [
+        "equity_vrp"
+      ],
+      "evidence": [
+        "public_kill_ledger#screen_stage_kills:equity_vrp"
+      ],
+      "gates": {
+        "aliases_required_when_historical": true,
+        "historical_aliases_exist_in_kill_ledger": true,
+        "evidence_declared_when_non_novel": true,
+        "evidence_resolves": true,
+        "novel_family_has_no_historical_alias": true,
+        "forward_experiment_is_explicit": true,
+        "direct_return_outcome_valid": true
+      },
+      "pass": true
+    },
+    {
+      "family_id": "options_term_structure",
+      "classification": "DUPLICATE_OVERLAP",
+      "aliases": [
+        "equity_vrp"
+      ],
+      "evidence": [
+        "public_kill_ledger#screen_stage_kills:equity_vrp"
+      ],
+      "gates": {
+        "aliases_required_when_historical": true,
+        "historical_aliases_exist_in_kill_ledger": true,
+        "evidence_declared_when_non_novel": true,
+        "evidence_resolves": true,
+        "novel_family_has_no_historical_alias": true,
+        "forward_experiment_is_explicit": true,
+        "direct_return_outcome_valid": true
+      },
+      "pass": true
+    },
+    {
+      "family_id": "pre_fomc_announcement_drift",
+      "classification": "ACTIVE_FEASIBILITY",
+      "aliases": [],
+      "evidence": [
+        "config/sleeve_discovery.json#candidates:pre_fomc_announcement_drift"
+      ],
+      "gates": {
+        "aliases_required_when_historical": true,
+        "historical_aliases_exist_in_kill_ledger": true,
+        "evidence_declared_when_non_novel": true,
+        "evidence_resolves": true,
+        "novel_family_has_no_historical_alias": true,
+        "forward_experiment_is_explicit": true,
+        "direct_return_outcome_valid": true
+      },
+      "pass": true
+    },
+    {
+      "family_id": "repurchase_issuance_flow",
+      "classification": "DUPLICATE_OVERLAP",
+      "aliases": [
+        "eq_net_issuance"
+      ],
+      "evidence": [
+        "public_kill_ledger#screen_stage_kills:eq_net_issuance",
+        "docs/design/LITERATURE_REPURCHASE_ISSUANCE_FLOW.md",
+        "docs/design/FEASIBILITY_REPURCHASE_ISSUANCE_FLOW.md",
+        "artifacts/feasibility/repurchase_issuance_flow/identity_overlap_audit.json"
+      ],
+      "gates": {
+        "aliases_required_when_historical": true,
+        "historical_aliases_exist_in_kill_ledger": true,
+        "evidence_declared_when_non_novel": true,
+        "evidence_resolves": true,
+        "novel_family_has_no_historical_alias": true,
+        "forward_experiment_is_explicit": true,
+        "direct_return_outcome_valid": true
+      },
+      "pass": true
+    },
+    {
+      "family_id": "securities_lending_supply",
+      "classification": "NOVEL_ATLAS",
+      "aliases": [],
+      "evidence": [],
+      "gates": {
+        "aliases_required_when_historical": true,
+        "historical_aliases_exist_in_kill_ledger": true,
+        "evidence_declared_when_non_novel": true,
+        "evidence_resolves": true,
+        "novel_family_has_no_historical_alias": true,
+        "forward_experiment_is_explicit": true,
+        "direct_return_outcome_valid": true
+      },
+      "pass": true
+    },
+    {
+      "family_id": "short_interest_revision",
+      "classification": "RETIRED_KILLED",
+      "aliases": [
+        "equity_short_interest_dtc"
+      ],
+      "evidence": [
+        "public_kill_ledger#screen_stage_kills:equity_short_interest_dtc"
+      ],
+      "gates": {
+        "aliases_required_when_historical": true,
+        "historical_aliases_exist_in_kill_ledger": true,
+        "evidence_declared_when_non_novel": true,
+        "evidence_resolves": true,
+        "novel_family_has_no_historical_alias": true,
+        "forward_experiment_is_explicit": true,
+        "direct_return_outcome_valid": true
+      },
+      "pass": true
+    },
+    {
+      "family_id": "sovereign_cds_fx_dislocation",
+      "classification": "NOVEL_ATLAS",
+      "aliases": [],
+      "evidence": [],
+      "gates": {
+        "aliases_required_when_historical": true,
+        "historical_aliases_exist_in_kill_ledger": true,
+        "evidence_declared_when_non_novel": true,
+        "evidence_resolves": true,
+        "novel_family_has_no_historical_alias": true,
+        "forward_experiment_is_explicit": true,
+        "direct_return_outcome_valid": true
+      },
+      "pass": true
+    },
+    {
+      "family_id": "spin_off_dislocation",
+      "classification": "IDENTITY_REDESIGN_REQUIRED",
+      "aliases": [],
+      "evidence": [
+        "docs/design/LITERATURE_SPIN_OFF_DISLOCATION.md",
+        "docs/design/FEASIBILITY_SPIN_OFF_DISLOCATION.md",
+        "docs/design/FEASIBILITY_SPIN_OFF_DOCUMENT_SCHEMA.md",
+        "artifacts/feasibility/spin_off_dislocation/document_schema_result.json"
+      ],
+      "gates": {
+        "aliases_required_when_historical": true,
+        "historical_aliases_exist_in_kill_ledger": true,
+        "evidence_declared_when_non_novel": true,
+        "evidence_resolves": true,
+        "novel_family_has_no_historical_alias": true,
+        "forward_experiment_is_explicit": true,
+        "direct_return_outcome_valid": true
+      },
+      "pass": true
+    },
+    {
+      "family_id": "stablecoin_dislocation",
+      "classification": "ACTIVE_FEASIBILITY",
+      "aliases": [],
+      "evidence": [
+        "config/sleeve_discovery.json#feasibility_reviews:stablecoin_dislocation",
+        "docs/design/LITERATURE_STABLECOIN_DISLOCATION.md",
+        "docs/design/FEASIBILITY_STABLECOIN_DISLOCATION.md"
+      ],
+      "gates": {
+        "aliases_required_when_historical": true,
+        "historical_aliases_exist_in_kill_ledger": true,
+        "evidence_declared_when_non_novel": true,
+        "evidence_resolves": true,
+        "novel_family_has_no_historical_alias": true,
+        "forward_experiment_is_explicit": true,
+        "direct_return_outcome_valid": true
+      },
+      "pass": true
+    },
+    {
+      "family_id": "swap_spread_dislocation",
+      "classification": "NOVEL_ATLAS",
+      "aliases": [],
+      "evidence": [],
+      "gates": {
+        "aliases_required_when_historical": true,
+        "historical_aliases_exist_in_kill_ledger": true,
+        "evidence_declared_when_non_novel": true,
+        "evidence_resolves": true,
+        "novel_family_has_no_historical_alias": true,
+        "forward_experiment_is_explicit": true,
+        "direct_return_outcome_valid": true
+      },
+      "pass": true
+    },
+    {
+      "family_id": "tender_offer_spread",
+      "classification": "NOVEL_ATLAS",
+      "aliases": [],
+      "evidence": [],
+      "gates": {
+        "aliases_required_when_historical": true,
+        "historical_aliases_exist_in_kill_ledger": true,
+        "evidence_declared_when_non_novel": true,
+        "evidence_resolves": true,
+        "novel_family_has_no_historical_alias": true,
+        "forward_experiment_is_explicit": true,
+        "direct_return_outcome_valid": true
+      },
+      "pass": true
+    },
+    {
+      "family_id": "treasury_auction_concession",
+      "classification": "IDENTITY_REDESIGN_REQUIRED",
+      "aliases": [],
+      "evidence": [
+        "docs/design/FEASIBILITY_TREASURY_AUCTION_CONCESSION.md",
+        "docs/design/FEASIBILITY_TREASURY_AUCTION_IDENTITY_TIMING.md",
+        "artifacts/feasibility/treasury_auction_concession/calendar_revision_audit.json"
+      ],
+      "gates": {
+        "aliases_required_when_historical": true,
+        "historical_aliases_exist_in_kill_ledger": true,
+        "evidence_declared_when_non_novel": true,
+        "evidence_resolves": true,
+        "novel_family_has_no_historical_alias": true,
+        "forward_experiment_is_explicit": true,
+        "direct_return_outcome_valid": true
+      },
+      "pass": true
+    },
+    {
+      "family_id": "volatility_futures_curve",
+      "classification": "DUPLICATE_OVERLAP",
+      "aliases": [
+        "equity_vrp",
+        "xasset_carry"
+      ],
+      "evidence": [
+        "public_kill_ledger#screen_stage_kills:equity_vrp",
+        "public_kill_ledger#screen_stage_kills:xasset_carry"
+      ],
+      "gates": {
+        "aliases_required_when_historical": true,
+        "historical_aliases_exist_in_kill_ledger": true,
+        "evidence_declared_when_non_novel": true,
+        "evidence_resolves": true,
+        "novel_family_has_no_historical_alias": true,
+        "forward_experiment_is_explicit": true,
+        "direct_return_outcome_valid": true
+      },
+      "pass": true
+    }
+  ],
+  "source_sha256": {
+    "registry": "56d34aba34281dc1832b989b8b0ea2b6e2be3979f1012e32f17b997d307662e1",
+    "kill_ledger": "60938ebcb83401d5307cfe6078ee3b37ce0fc4953d6e808e4c1f7f896ad46b82",
+    "current_book": "144ea1aba783144d186e6f3333dd09abb0486b8b5a7bf80cd5782552787d46a0",
+    "discovery": "654f831e3ea4122437e5c48f066d6d37ba6cbcf8d1c7119395d104c5aa6cc225"
+  },
+  "content_hash": "sha256:1a4f3b22fe89ee1b9b040657b4d31e0cd58f0b01bed60393444f46e3bd9c2aef",
+  "generated_at": "2026-08-16T03:22:56.058440+00:00"
+}

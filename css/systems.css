@@ -1,0 +1,971 @@
+/* =============================================================================
+   MERIDIAN / systems.css
+   ---------------------------------------------------------------------------
+   Page-specific layout for /systems ONLY. Loaded last, after the shared sheets
+   (styles, cursor, motion, shell, waitlist), exclusively by systems.html. It
+   NEVER redefines a token, the type scale, the cursor, the rail, the grain, or
+   an easing: those live in the shared design system and are the single source
+   of truth. This sheet adds the chaptered architecture layout, the scroll-driven
+   pipeline spine, and the per-chapter diagram chrome, all built from the same
+   palette, hairline language, and motion vocabulary as the landing.
+
+   Sections:
+     1. Page scaffold (chapter rhythm, the shared eyebrow/kicker grammar reused)
+     2. The pipeline spine (fixed left-of-content stage tracker, desktop)
+     3. The systems hero
+     4. Chapter layout (kicker, head, body column, the data line)
+     5. The factor families ledger (reuses the pillar row grammar, extended)
+     6. The portfolio + the gauntlet diagram chrome
+     7. The closing CTA
+     8. Responsive + reduced-motion parity
+   ========================================================================== */
+
+/* ---- 1. PAGE SCAFFOLD ----------------------------------------------------- */
+/* The systems page is a numbered document like the landing: a column of
+   chaptered sections, each opening on the same eyebrow + slash-index grammar.
+   We only add the per-chapter rhythm and the diagram scaffolding here. */
+
+.sys-chapter {
+  position: relative;
+  /* a touch tighter than the landing's --s-9 tentpoles so six dense chapters
+     read as one continuous build, not six landing pages stacked. */
+  padding: var(--s-8) var(--margin);
+  max-width: var(--max);
+  margin: 0 auto;
+}
+.sys-chapter--ink {
+  background: var(--ink);
+  max-width: none;
+  margin: 0;
+  padding-left: 0;
+  padding-right: 0;
+}
+.sys-chapter--ink > .sys-chapter__inner {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0 var(--margin);
+}
+
+/* The two-column chapter: a sticky kicker/head rail on the left, the prose and
+   the diagram on the right. On the landing the flagship uses a broken grid; we
+   echo that asymmetry here so the page feels hand-set, not templated. */
+.sys-chapter__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
+  /* the inter-column gap breathes fluidly with the viewport (was a fixed --s-7),
+     so the aside and prose hold an even, composed gutter across widths. */
+  gap: var(--s-6) clamp(60px, 8vw, 120px);
+  /* P0-B: the row centers its columns against each other, so the right prose no
+     longer tops out against the sticky header. NUANCE (Builder A's note): the aside
+     is position:sticky and keeps align-self:start so the grid centering never fights
+     its sticky travel; only the right column (.sys-chapter__main) re-takes the row's
+     vertical midpoint via align-self:center below. ONE centering hand with the pins. */
+  align-items: center;
+}
+.sys-chapter__aside {
+  position: sticky;
+  top: var(--s-7);
+  /* stays start-aligned so the sticky header pins to the top of the chapter as the
+     prose scrolls past, exactly as before; the grid's align-items:center does not
+     apply to it because of this explicit override. */
+  align-self: start;
+}
+.sys-chapter__kicker {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5em;
+  margin-bottom: var(--s-4);
+  color: var(--grey-700);
+}
+.sys-chapter__head {
+  color: var(--paper);
+  max-width: 16ch;
+  margin-bottom: var(--s-4);
+}
+/* P0-B: the right prose column sits at the row's vertical midpoint (align-self:center)
+   so a short chapter body centers against the sticky header rather than gluing to the
+   top. A tall chapter still defines the row height, so this is inert for long copy and
+   the centering only shows where it matters: the shorter chapters. */
+.sys-chapter__main { display: grid; gap: var(--s-5); align-self: center; }
+.sys-body { color: var(--paper-dim); max-width: 64ch; }
+.sys-body strong,
+.sys-body b { color: var(--paper); font-weight: 500; }
+/* .sys-subhead now ADOPTS the shared .subhead tier (font/size/weight/tracking,
+   added to the markup), and only tightens the bottom margin so the subhead sits
+   directly on its body paragraph. No type values are re-authored here. */
+.sys-subhead { margin-bottom: var(--s-2); }
+
+/* The mono data line that closes each chapter (the `type-mono` terminal readout),
+   set in a hairlined tray so it reads as the system reporting its own spec. */
+.sys-dataline {
+  margin-top: var(--s-3);
+  /* a touch more room below so the per-chapter readout does not crowd the rule
+     that opens the next chapter. */
+  padding: var(--s-3) var(--s-4) var(--s-4);
+  border: 1px solid var(--grey-850);
+  border-left: 2px solid var(--signal-deep);
+  background: linear-gradient(90deg, var(--signal-faint), transparent 70%);
+  color: var(--paper-dim);
+  overflow-wrap: anywhere;
+}
+.sys-dataline .signal-word { color: var(--signal); }
+
+/* The honest scope tag, reused verbatim from the brand microcopy. Sits under the
+   hero so the page states its truth before any architecture detail. */
+.sys-scope {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6em;
+  padding: var(--s-2) var(--s-3);
+  border: 1px solid var(--grey-850);
+  color: var(--paper-dim);
+}
+.sys-scope .dot { background: var(--signal); }
+
+/* ---- 2. THE PIPELINE SPINE ------------------------------------------------ */
+/* A fixed, desktop-only tracker pinned just inside the right margin: the six
+   stages of the architecture as a vertical chain of custody. As each chapter
+   becomes the active one (driven by js/systems-page.js via IntersectionObserver),
+   its node lights to the signal accent and the connecting flow fills down to it.
+   This is the page's interactive diagram: one unbroken line from data to fill,
+   that the reader watches assemble as they descend. It mirrors the rail's
+   typographic-counter language on the opposite edge, never a second system. */
+.sys-pipe {
+  position: fixed;
+  top: 50%;
+  right: clamp(20px, 3.5vw, 56px);
+  transform: translateY(-50%);
+  z-index: 6;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.6s var(--ease-out);
+}
+.sys-pipe.is-ready { opacity: 1; }
+.sys-pipe__node {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--s-3);
+  height: 46px;
+  pointer-events: auto;
+  cursor: none;
+}
+/* the role group: the stage label and its one-line whisper, stacked so the whisper
+   reads as a quiet subtitle beneath the stage name on hover/focus/active. */
+.sys-pipe__role {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 1px;
+}
+.sys-pipe__whisper {
+  font-family: var(--mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.04em;
+  color: var(--grey-700);
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateX(6px);
+  transition: opacity 0.4s var(--ease-out), transform 0.4s var(--ease-out);
+}
+/* the visible keyboard ring: the shared focus-visible language (1px signal, 4px
+   offset), so the spine is reachable and legible without a pointer. */
+.sys-pipe__node:focus-visible {
+  outline: 1px solid var(--signal);
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+/* focus surfaces the role + whisper exactly as hover does (keyboard parity). */
+.sys-pipe__node:focus-visible .sys-pipe__label,
+.sys-pipe__node:focus-visible .sys-pipe__whisper { opacity: 1; transform: translateX(0); }
+.sys-pipe__node:focus-visible .sys-pipe__label { color: var(--paper); }
+/* the connector segment that runs between consecutive nodes; the active fill
+   scales from the top so the flow reads as descending with the reader. */
+.sys-pipe__node::before {
+  content: "";
+  position: absolute;
+  right: 4px;
+  top: -23px;
+  /* the pipeline spine is a drawn/igniting rule, so it carries the power-hairline
+     weight (matches the landing mini-pipe spine; one hand across pages). */
+  width: var(--hairline-power);
+  height: 46px;
+  background: var(--grey-850);
+}
+.sys-pipe__node:first-child::before { display: none; }
+.sys-pipe__node::after {
+  content: "";
+  position: absolute;
+  right: 4px;
+  top: -23px;
+  width: var(--hairline-power);
+  height: 46px;
+  background: var(--signal);
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 0.5s var(--ease-out);
+}
+.sys-pipe__node.is-filled::after { transform: scaleY(1); }
+.sys-pipe__dot {
+  position: relative;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  border: 1px solid var(--grey-600);
+  background: var(--void);
+  flex: none;
+  transition: border-color 0.4s var(--ease-out), background 0.4s var(--ease-out),
+              box-shadow 0.4s var(--ease-out);
+}
+.sys-pipe__label {
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--grey-700);
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateX(6px);
+  transition: opacity 0.4s var(--ease-out), transform 0.4s var(--ease-out),
+              color 0.4s var(--ease-out);
+}
+.sys-pipe__num {
+  font-family: var(--mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.08em;
+  color: var(--grey-600);
+  white-space: nowrap;
+}
+/* active stage: dot ignites, label and index resolve in. */
+.sys-pipe__node.is-active .sys-pipe__dot {
+  border-color: var(--signal);
+  background: var(--signal);
+  box-shadow: 0 0 0 4px var(--signal-faint), 0 0 10px var(--signal-glow);
+}
+.sys-pipe__node.is-active .sys-pipe__label {
+  opacity: 1;
+  transform: translateX(0);
+  color: var(--paper);
+}
+/* the active stage also surfaces its whisper, so the descending reader always sees
+   the one-line role of the stage they are on, not just on hover. */
+.sys-pipe__node.is-active .sys-pipe__whisper { opacity: 1; transform: translateX(0); }
+.sys-pipe__node.is-active .sys-pipe__num { color: var(--paper-dim); }
+/* hover whisper, gated to fine pointers so touch never traps a hover-only label. */
+@media (hover: hover) {
+  .sys-pipe__node:hover .sys-pipe__label {
+    opacity: 1;
+    transform: translateX(0);
+    color: var(--paper);
+  }
+  .sys-pipe__node:hover .sys-pipe__whisper { opacity: 1; transform: translateX(0); }
+}
+/* a passed (above the current) stage stays lit but recedes, so the chain reads
+   as "built so far". */
+.sys-pipe__node.is-past .sys-pipe__dot {
+  border-color: var(--signal-deep);
+  background: var(--signal-deep);
+}
+
+/* P0-C 6: the ACTIVE stage dot breathes a slow signal pulse (a 0.6s opacity loop on a
+   ring shadow, transform/opacity only), so the stage the reader is on reads as a live
+   node in the chain, not a static tick. Composited, off under reduced motion. */
+.sys-pipe__node.is-active .sys-pipe__dot {
+  animation: sys-pipe-pulse 1.6s var(--ease-in-out) infinite;
+}
+@keyframes sys-pipe-pulse {
+  0%, 100% { box-shadow: 0 0 0 4px var(--signal-faint), 0 0 10px var(--signal-glow); }
+  50%      { box-shadow: 0 0 0 6px var(--signal-faint), 0 0 16px var(--signal-glow); }
+}
+/* P0-C 6: hover ignites a node anywhere in the spine (not only the active one), so the
+   whole chain is tactile under the pointer. The dot brightens to the live accent and
+   its label + whisper resolve in (handled by the hover rule above). Gated to fine
+   pointers so touch never traps the hover-only ignition. */
+@media (hover: hover) {
+  .sys-pipe__node:hover .sys-pipe__dot {
+    border-color: var(--signal);
+    box-shadow: 0 0 0 4px var(--signal-faint), 0 0 12px var(--signal-glow);
+  }
+  .sys-pipe__node:hover .sys-pipe__num { color: var(--paper-dim); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .sys-pipe__node.is-active .sys-pipe__dot { animation: none; }
+}
+
+/* P0-C 8: two-way spine to chapter linkage. When a spine node is hovered, JS adds
+   .is-spotlit to the matching chapter section; the chapter answers with a whisper-faint
+   signal wash and lifts its head + kicker to full strength, so the reader sees which
+   chapter a stage belongs to. The wash is a full-bleed pseudo-element that fades its
+   opacity (composites OVER void or ink alike, smooth fade, margin-agnostic, zero
+   reflow). One hue, reversible, opacity + color only. */
+.sys-chapter::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--signal-faint);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.45s var(--ease-out);
+  z-index: 0;
+}
+.sys-chapter.is-spotlit::before { opacity: 1; }
+.sys-chapter.is-spotlit .sys-chapter__head { color: var(--paper); }
+.sys-chapter.is-spotlit .sys-chapter__kicker { color: var(--paper-dim); }
+.sys-chapter__head,
+.sys-chapter__kicker { transition: color 0.45s var(--ease-out); }
+/* keep the chapter content above the wash pseudo-element. */
+.sys-chapter > .sys-chapter__grid,
+.sys-chapter > .section__rule,
+.sys-chapter__inner { position: relative; z-index: 1; }
+@media (prefers-reduced-motion: reduce) {
+  .sys-chapter::before,
+  .sys-chapter__head,
+  .sys-chapter__kicker { transition: none; }
+}
+
+/* ---- 3. HERO -------------------------------------------------------------- */
+.sys-hero {
+  min-height: 92vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: var(--s-9) var(--margin) var(--s-7);
+  max-width: var(--max);
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+}
+.sys-hero__body { display: grid; gap: var(--s-4); max-width: 90%; position: relative; z-index: 1; }
+
+/* The ghost wordmark: route (a) of the polish brief, reusing the footer's
+   oversized --grey-900 watermark device so entering this sub-page renews the
+   landing's display moment without forking a second type treatment. One per
+   page, behind the headline, aria-hidden, drawn from the page's own subject.
+   The clip-rise reveal on .sys-hero__head is untouched: this sits strictly
+   behind. Identical rule body to the other two sub-pages (one hand). */
+.hero__ghost {
+  position: absolute;
+  z-index: 0;
+  pointer-events: none;
+  font-family: var(--serif);
+  font-optical-sizing: auto;
+  font-variation-settings: "opsz" 144, "wght" 280, "SOFT" 0, "slnt" 0;
+  font-weight: 280;
+  font-size: clamp(7rem, 26vw, 26rem);
+  line-height: 0.8;
+  letter-spacing: -0.04em;
+  color: var(--grey-900);
+  left: var(--margin);
+  bottom: var(--s-7);
+  max-width: none;
+  margin: 0;
+  user-select: none;
+  white-space: nowrap;
+}
+.js .hero__ghost {
+  opacity: 0;
+  transform: translateY(2%);
+  transition: opacity 1.1s var(--ease-out), transform 1.1s var(--ease-out);
+}
+.js .hero__ghost.is-shown { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  .js .hero__ghost { opacity: 1; transform: none; transition: none; }
+}
+.sys-hero .eyebrow { margin-bottom: var(--s-2); }
+.sys-hero__head {
+  color: var(--paper);
+  max-width: 18ch;
+  margin-left: -0.02em;
+}
+.sys-hero__sub {
+  color: var(--paper-dim);
+  max-width: 52ch;
+}
+.sys-hero__sub strong { color: var(--paper); font-weight: 500; }
+.sys-hero__index {
+  margin-top: var(--s-3);
+  color: var(--paper-dim);
+  overflow-wrap: anywhere;
+}
+/* the mono index line ("data -> factors -> ...") uses an arrow glyph drawn in
+   CSS-safe ascii; the chevrons carry the half-strength signal thread. */
+.sys-hero__index .flow {
+  color: var(--signal);
+  opacity: 0.55;
+  margin: 0 0.5em;
+}
+.sys-hero__scope { margin-top: var(--s-4); }
+
+/* ---- 4. CHAPTER DIAGRAM CHROME -------------------------------------------- */
+/* Each chapter carries a small, true schematic rendered in markup (no images):
+   labelled hairline cells that animate in on enter. These are the "scroll-driven
+   diagrams" the brief asks for, built from the palette so they read as part of
+   the one system. */
+
+/* A flow strip: input -> process -> output, three hairlined cells joined by a
+   signal connector. Used for the data lineage and the paper loop. */
+.sys-flow {
+  position: relative;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+  align-items: stretch;
+  gap: 0;
+  /* the connector thread (below) needs room to run up from the prose above into the
+     diagram top, so the schematic hangs a touch lower than the rest of the column. */
+  margin-top: var(--s-4);
+  border: 1px solid var(--grey-850);
+}
+/* Connector thread: a faint 1px signal hairline that runs from the last prose line
+   down into the schematic's top edge, so each chapter's prose visibly HANDS to its
+   diagram. It reinforces "one unbroken chain", and reads most clearly in the mobile
+   single column where the chain runs straight down the page. Pure decoration:
+   aria-hidden by being a pseudo-element, transform/opacity-free, no reflow. */
+.sys-flow::before {
+  content: "";
+  position: absolute;
+  left: var(--s-4);
+  top: calc(var(--s-4) * -1);
+  width: 1px;
+  height: var(--s-4);
+  background: var(--signal);
+  /* P0-D 16: a touch more present so the prose-to-diagram hand-off reads clearly. */
+  opacity: 0.5;
+}
+.sys-flow__cell {
+  position: relative;
+  padding: var(--s-4);
+  border-right: 1px solid var(--grey-850);
+  display: grid;
+  gap: var(--s-1);
+  align-content: start;
+}
+.sys-flow__cell:last-child { border-right: none; }
+.sys-flow__cell-kicker {
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.14em;
+  line-height: 1.4;
+  text-transform: uppercase;
+  color: var(--signal);
+  opacity: 0.7;
+}
+.sys-flow__cell-title {
+  font-family: var(--ui);
+  font-weight: 500;
+  font-size: 0.9375rem;
+  color: var(--paper);
+}
+.sys-flow__cell-note {
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.04em;
+  color: var(--grey-700);
+  line-height: 1.5;
+}
+/* the connector chevron between cells, drawn in the gutter */
+.sys-flow__cell:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  right: -5px;
+  top: 50%;
+  width: 9px;
+  height: 9px;
+  border-top: 1px solid var(--signal);
+  border-right: 1px solid var(--signal);
+  transform: translateY(-50%) rotate(45deg);
+  background: var(--void);
+  opacity: 0.6;
+}
+.sys-chapter--ink .sys-flow__cell:not(:last-child)::after { background: var(--ink); }
+
+/* ---- 5. FACTOR FAMILIES LEDGER -------------------------------------------- */
+/* Reuses the .pillar row grammar (hairline-separated rows, mono index, serif
+   title, body description) for the six factor families, so it is the same ledger
+   language as the flagship pillars on the landing. Marked .sys-fam so the
+   js/systems-page.js stagger can target it without touching the landing's
+   .pillar reveal. */
+.sys-fam-list {
+  display: grid;
+  gap: 0;
+  margin-top: var(--s-3);
+  margin-right: calc(var(--margin) * -0.4);
+}
+.sys-fam {
+  display: grid;
+  grid-template-columns: 64px minmax(min-content, 22ch) 1fr;
+  gap: var(--s-4) var(--s-5);
+  align-items: start;
+  padding: var(--s-4) 0;
+  border-top: 1px solid var(--grey-850);
+  transition: background 0.4s var(--ease-out), border-color 0.4s var(--ease-out);
+}
+.sys-fam:last-child { border-bottom: 1px solid var(--grey-850); }
+.sys-fam:hover {
+  background: linear-gradient(90deg, var(--grey-900), transparent 82%);
+  border-top-color: var(--grey-825);
+}
+.sys-fam:hover + .sys-fam { border-top-color: var(--grey-825); }
+.sys-fam__idx { color: var(--signal); padding-top: 0.35em; }
+.sys-fam__name {
+  font-family: var(--serif);
+  font-variation-settings: "opsz" 36, "wght" 420;
+  font-size: clamp(1.15rem, 2.5vw, 1.4rem);
+  letter-spacing: 0.02em;
+  line-height: 1.2;
+  color: var(--paper);
+  /* whole-word: a factor family name never splits mid-character (see the word
+     integrity rule in styles.css). Paired with the min-content grid floor above. */
+  overflow-wrap: normal;
+  word-break: normal;
+  hyphens: none;
+}
+/* lifted to full paper: these are the substance of the chapter, not a caption. */
+.sys-fam__desc { color: var(--paper); font-size: 0.9375rem; line-height: 1.55; max-width: 52ch; }
+.sys-fam__desc .signal-word { color: var(--signal); }
+
+/* The single closing line under the families: one score per instrument. */
+.sys-fam-close {
+  margin-top: var(--s-5);
+  color: var(--paper);
+  max-width: 46ch;
+}
+
+/* P0-C 10: THE FACTOR-DEPTH PANEL. A semantic <details> that expands to show how the
+   full library is organized, ranked by measured predictive content. Built from the
+   palette as a quiet hairlined tray: a summary toggle with a rotating chevron, then a
+   staggered family grid whose per-family hover surfaces an honest IC note. Works with
+   JS off (native <details>) and under reduced motion (no stagger, instant open). */
+.sys-depth {
+  margin-top: var(--s-5);
+  border: 1px solid var(--grey-850);
+  background: var(--void);
+}
+.sys-chapter--ink .sys-depth { background: var(--ink); }
+.sys-depth__summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-4);
+  padding: var(--s-4) var(--s-4);
+  cursor: none;
+  list-style: none;
+  color: var(--grey-700);
+  transition: color 0.3s var(--ease-out), background 0.3s var(--ease-out);
+}
+.sys-depth__summary::-webkit-details-marker { display: none; }
+.sys-depth__summary:hover { color: var(--paper); background: var(--signal-faint); }
+.sys-depth[open] .sys-depth__summary { color: var(--paper); border-bottom: 1px solid var(--grey-850); }
+.sys-depth__summary:focus-visible { outline: 1px solid var(--signal); outline-offset: 2px; }
+/* the chevron: a small caret that rotates 90deg when the panel opens. */
+.sys-depth__summary-chev {
+  width: 8px; height: 8px;
+  border-right: 1px solid var(--signal);
+  border-bottom: 1px solid var(--signal);
+  transform: rotate(45deg);
+  flex: none;
+  transition: transform 0.4s var(--ease-out);
+}
+.sys-depth[open] .sys-depth__summary-chev { transform: rotate(-135deg); }
+.sys-depth__body { padding: var(--s-4); display: grid; gap: var(--s-4); }
+.sys-depth__lead { color: var(--grey-700); line-height: 1.7; max-width: 64ch; }
+.sys-depth__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: var(--s-2);
+}
+.sys-depth__fam {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-1);
+  padding: var(--s-3);
+  border: 1px solid var(--grey-850);
+  cursor: none;
+  /* the global LIST-ROW hover language: a small lift, a signal-faint wash, a color
+     lift to --paper. ONE micro-interaction grammar with the tenets / sys-fam / rows. */
+  transition: transform 0.4s var(--ease-settle),
+              background-color 0.4s var(--ease-settle),
+              border-color 0.4s var(--ease-out);
+}
+.sys-depth__fam:hover {
+  transform: translateY(-2px);
+  background-color: var(--signal-faint);
+  border-color: var(--grey-825);
+}
+.sys-depth__fam-name { color: var(--paper-dim); font-family: var(--ui); font-weight: 500; font-size: 0.9375rem; transition: color 0.4s var(--ease-out); }
+.sys-depth__fam:hover .sys-depth__fam-name { color: var(--paper); }
+.sys-depth__fam-rank { color: var(--signal); opacity: 0.7; }
+.sys-depth__note { color: var(--grey-700); min-height: 1.4em; transition: color 0.3s var(--ease-out); }
+/* JS layer: stagger the families open. Hidden only when JS is present + motion allowed
+   (mirrors the .reveal-* contract); native <details> + reduced motion show them. */
+.js .sys-depth[open] .sys-depth__fam { opacity: 0; }
+@media (prefers-reduced-motion: reduce) {
+  .js .sys-depth[open] .sys-depth__fam { opacity: 1; }
+  .sys-depth__summary-chev,
+  .sys-depth__fam { transition: none; }
+  .sys-depth__fam:hover { transform: none; }
+}
+
+/* ---- 6. PORTFOLIO STACK + THE GAUNTLET ------------------------------------ */
+/* The portfolio "brakes" pair: covariance/optimizer on one side, the drawdown
+   ladder + kill switch on the other, as two hairlined panels. */
+.sys-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--s-5);
+  margin-top: var(--s-3);
+}
+.sys-panel {
+  padding: var(--s-5);
+  border: 1px solid var(--grey-850);
+  display: grid;
+  gap: var(--s-2);
+  align-content: start;
+}
+.sys-panel__label {
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--signal);
+  opacity: 0.75;
+}
+/* the panel title is a display-m element held one tier down from the chapter
+   head, the same size for every panel on the page; authored once here so the four
+   panels never carry a divergent inline size. */
+.sys-panel__title { color: var(--paper); font-size: clamp(1.25rem, 2vw, 1.6rem); }
+.sys-panel__body { color: var(--paper-dim); font-size: 0.9375rem; line-height: 1.55; }
+
+/* The drawdown ladder: descending hairline rungs that shorten, a literal
+   step-down of gross exposure, with the kill switch as the terminal rung. */
+.sys-ladder { display: grid; gap: var(--s-1); margin-top: var(--s-2); }
+.sys-ladder__rung {
+  height: 8px;
+  background: var(--grey-850);
+  position: relative;
+  overflow: hidden;
+}
+.sys-ladder__rung::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--signal);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.6s var(--ease-out);
+}
+.sys-ladder.is-in .sys-ladder__rung::after { transform: scaleX(1); }
+.sys-ladder.is-in .sys-ladder__rung:nth-child(1)::after { transition-delay: 0.05s; }
+.sys-ladder.is-in .sys-ladder__rung:nth-child(2)::after { transition-delay: 0.13s; }
+.sys-ladder.is-in .sys-ladder__rung:nth-child(3)::after { transition-delay: 0.21s; }
+.sys-ladder.is-in .sys-ladder__rung:nth-child(4)::after { transition-delay: 0.29s; }
+.sys-ladder__rung:nth-child(1) { width: 100%; }
+.sys-ladder__rung:nth-child(2) { width: 78%; }
+.sys-ladder__rung:nth-child(3) { width: 56%; }
+.sys-ladder__rung:nth-child(4) { width: 34%; background: var(--signal-deep); }
+.sys-ladder__rung:nth-child(4)::after { background: var(--signal); }
+
+/* THE GAUNTLET. The prestige centerpiece: a recessed, emphasized block holding
+   the six validation tests as a numbered ledger. It sits in its own ink band so
+   it reads as the hardest room in the house. One flareBloom fires on the scene
+   when this chapter's headline lands (wired in js/systems-page.js). */
+.sys-gauntlet {
+  margin-top: var(--s-6);
+  /* prestige lift: a touch more room so the hardest room in the house breathes. */
+  padding: clamp(24px, 4vw, 56px);
+  border: 1px solid var(--grey-825);
+  /* the corner wash reaches wider and a step warmer (signal-faint to signal-glow),
+     its origin pulled just off the top-left corner, so the block reads as lit from
+     within rather than merely tinted. Still one hue, still restrained. */
+  background:
+    radial-gradient(140% 100% at -10% -10%, var(--signal-glow), transparent 55%),
+    var(--ink);
+  position: relative;
+}
+.sys-gauntlet::before {
+  /* the one drawn seam: a hairline that fills left-to-right as the block enters,
+     mirroring the .section__rule gesture (js adds .is-drawn). */
+  content: "";
+  position: absolute;
+  top: -1px; left: 0;
+  height: 2px;
+  width: 100%;
+  background: var(--signal);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 1s var(--ease-out);
+}
+.sys-gauntlet.is-drawn::before { transform: scaleX(1); }
+.sys-gauntlet__label {
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--signal);
+  display: flex;
+  align-items: center;
+  gap: 0.6em;
+  margin-bottom: var(--s-3);
+}
+.sys-gauntlet__head {
+  color: var(--paper);
+  /* the one intentional emphasis above the chapter-head display-m: the prestige
+     centerpiece runs a step larger. Authored here, never inline, so the page has a
+     single type source. */
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  margin-bottom: var(--s-4);
+  max-width: 20ch;
+}
+.sys-gauntlet__intro { color: var(--paper-dim); max-width: 60ch; margin-bottom: var(--s-5); }
+.sys-gauntlet__list { display: grid; gap: 0; }
+.sys-test {
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  gap: var(--s-4);
+  align-items: start;
+  padding: var(--s-4) 0;
+  border-top: 1px solid var(--grey-850);
+}
+.sys-test:last-child { border-bottom: 1px solid var(--grey-850); }
+.sys-test__idx { color: var(--signal); opacity: 0.55; font-family: var(--mono); font-size: 0.8125rem; padding-top: 0.2em; }
+.sys-test__name { color: var(--paper); font-weight: 500; font-size: clamp(0.95rem, 1.8vw, 1.15rem); margin-bottom: 0.2em; }
+.sys-test__desc { color: var(--paper-dim); font-size: 0.9375rem; line-height: 1.55; max-width: 64ch; }
+.sys-gauntlet__close {
+  margin-top: var(--s-5);
+  color: var(--paper);
+  font-style: italic;
+  max-width: 52ch;
+}
+
+/* ---- 7. CLOSING CTA ------------------------------------------------------- */
+.sys-close {
+  padding: var(--s-9) var(--margin);
+  max-width: var(--max);
+  margin: 0 auto;
+  display: grid;
+  gap: var(--s-5);
+}
+.sys-close__quote { color: var(--paper); }
+.sys-close__sub { color: var(--paper-dim); max-width: 48ch; }
+.sys-close__links {
+  display: flex;
+  align-items: center;
+  gap: var(--s-5);
+  flex-wrap: wrap;
+  margin-top: var(--s-2);
+}
+.sys-cta {
+  color: var(--paper);
+  padding: var(--s-3) var(--s-5);
+  border: 1px solid var(--signal);
+  transition: background 0.35s var(--ease-out), color 0.35s var(--ease-out);
+}
+.sys-cta:hover { background: var(--signal); color: var(--void); }
+.sys-link {
+  position: relative;
+  color: var(--paper-dim);
+  transition: color 0.3s var(--ease-out);
+}
+.sys-link::after {
+  content: "";
+  position: absolute;
+  left: 0; bottom: -4px;
+  width: 100%; height: 1px;
+  background: var(--signal);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s var(--ease-out);
+}
+.sys-link:hover { color: var(--paper); }
+.sys-link:hover::after { transform: scaleX(1); }
+
+/* ---- 7b. THE CHAIN-OF-CUSTODY PIN (the page's ONE tentpole beat) ----------- */
+/* Mirrors the landing System pin, /performance's gauntlet pin, and /progress's
+   roadmap pin in STRUCTURE exactly (the shared .gpin / .rpin grammar, renamed
+   .cpin so it never collides): a pinned two-column frame where the six engine
+   stages cross-fade one at a time on the right while the manifold's lattice
+   visibly tightens behind them. The paper loop is the climax: it locks lit with
+   one RESTRAINED flareBloom. No new tokens, no new easing, no new hue, no second
+   broken-grid asymmetry (the chapter grid above owns the page's one asymmetry;
+   this pin reuses the sibling pages' 1fr / 1.15fr split for one-hand parity).
+
+   With JS truly off (the .js gate absent), the six chapters above are the
+   complete, canonical reference; this pin is a strict cinematic restatement of
+   the same six stages, so we hide it rather than show the content twice. Reduced
+   motion / mobile keep .js (set by the inline head script regardless of motion),
+   so they get the stacked stages; only no-JS hides the section. */
+.cpin { display: none; }
+.js .cpin { display: block; padding: 0; max-width: none; position: relative; }
+.cpin__sticky {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: var(--s-8) var(--margin);
+  display: grid;
+  grid-template-columns: 1fr 1.15fr;
+  gap: var(--s-7);
+  min-height: 100vh;
+  align-items: center;
+}
+.cpin__left { position: relative; align-self: center; }
+.cpin__head { color: var(--paper); margin: var(--s-3) 0 var(--s-4); max-width: 13ch; }
+.cpin__sub { color: var(--paper-dim); max-width: 34ch; }
+.cpin__counter {
+  margin-top: var(--s-6);
+  font-size: 1rem;
+  display: flex;
+  gap: 0.4em;
+  color: var(--grey-700);
+}
+.cpin__counter .signal-word { font-size: 1.5rem; }
+.cpin__counter-sep { color: var(--grey-600); }
+
+/* P0-B shared right-column centering law (identical to .system__right / .gpin__right /
+   .rpin__right): the right container is a flex box that centers its content vertically,
+   so short stage content sits at the row's midpoint instead of topping out. The .cstage
+   children stay position:absolute; inset:0 with their own align-content:center, so this
+   flex is the law for short content and inert for the absolute cross-fade stack. */
+.cpin__right { position: relative; min-height: 50vh; display: flex; align-items: center; }
+/* width:100% so the .cstages track fills the flex right-column (a flex child with
+   absolutely-positioned descendants would otherwise collapse its width). */
+.cstages { position: relative; width: 100%; margin: 0; padding: 0; list-style: none; }
+/* Base (no-JS, but the section is hidden then anyway) + reduced-motion / mobile
+   state: every stage is visible, stacked, as a plain list. The .js gate promotes
+   them into the absolutely-positioned cross-fade stack the pin drives. */
+.cstage {
+  display: grid;
+  gap: var(--s-4);
+  align-content: center;
+  margin-bottom: var(--s-6);
+}
+.cstage:last-child { margin-bottom: 0; }
+
+.js .cstages { min-height: 50vh; }
+.js .cstage {
+  position: absolute;
+  inset: 0;
+  margin-bottom: 0;
+  opacity: 0;
+  transform: translateY(24px);
+  pointer-events: none;
+  transition: opacity 0.6s var(--ease-out), transform 0.6s var(--ease-out);
+}
+.js .cstage.is-active { opacity: 1; transform: none; pointer-events: auto; }
+.cstage__slot { color: var(--signal); }
+.cstage__name { color: var(--paper); max-width: 20ch; }
+.cstage__body { color: var(--paper-dim); max-width: 46ch; }
+
+/* pin focus pull (mirrors motion.css section 6 + the gpin / rpin focus pull):
+   inactive stages blur and recede so the active one reads sharpest, like the
+   lattice resolving onto the one stage the reader is on. */
+.cpin.is-pinned .cstage {
+  transition: opacity 0.7s var(--ease-in-out),
+              transform 0.7s var(--ease-out),
+              filter 0.7s var(--ease-out);
+}
+.cpin.is-pinned .cstage:not(.is-active) { filter: blur(1.5px); opacity: 0; }
+.cpin.is-pinned .cstage.is-active { filter: blur(0); }
+.cpin .cstage.is-prev { transform: translateY(-18px); }
+
+/* the resolution beat: when the paper loop (the last stage) locks, the signal
+   counter brightens, the one quiet tell that the chain has resolved end to end.
+   Restrained, color only, reversible. The forming chapter never glorifies; the
+   verdict belongs to /performance. */
+.cpin.is-resolved .cpin__counter #cstepCurrent {
+  transition: color 0.85s var(--ease-cinema);
+  color: var(--signal);
+}
+
+/* ---- 8. RESPONSIVE + REVEAL SAFETY ---------------------------------------- */
+/* The diagram primitives are only HIDDEN when JS is present and motion allowed,
+   exactly like the shared .reveal-* contract, so a JS failure or reduced motion
+   never strands a diagram blank. js/systems-page.js adds .is-in / .is-drawn. */
+.js .sys-fam,
+.js .sys-flow__cell,
+.js .sys-panel,
+.js .sys-test { opacity: 0; }
+@media (prefers-reduced-motion: reduce) {
+  .js .sys-fam,
+  .js .sys-flow__cell,
+  .js .sys-panel,
+  .js .sys-test { opacity: 1; }
+  .sys-ladder .sys-ladder__rung::after { transform: scaleX(1); }
+  .sys-gauntlet::before { transform: scaleX(1); }
+  .sys-chapter__aside { position: static; }
+
+  /* the chain pin never runs (js gate in systems-page.js); show every stage
+     stacked so the thesis is legible frozen, exactly like the gauntlet / roadmap
+     pin's reduced-motion path. */
+  .js .cstages { min-height: 0; }
+  .js .cstage {
+    position: relative; inset: auto; opacity: 1; transform: none;
+    pointer-events: auto; margin-bottom: var(--s-7);
+  }
+  .cpin__right { min-height: 0; }
+  .cpin.is-resolved .cpin__counter #cstepCurrent { transition: none; }
+}
+
+/* Tablet: collapse the two-column chapter to a single column and drop the
+   sticky aside (it becomes a normal stacked header). The pipeline spine hides
+   below the rail's own breakpoint so the two edge trackers never crowd. */
+@media (max-width: 1100px) {
+  .sys-chapter__grid { grid-template-columns: 1fr; gap: var(--s-5); }
+  .sys-chapter__aside { position: static; top: auto; }
+  .sys-chapter__head { max-width: 22ch; }
+  .sys-pair { grid-template-columns: 1fr; }
+}
+@media (max-width: 1024px) {
+  /* the chain pin collapses to a single column (the sleeve stack below the
+     header), matching the gauntlet / roadmap pin tablet fallback. */
+  .cpin__sticky { grid-template-columns: 1fr; gap: var(--s-6); }
+  /* match the rail's desktop-only rule: the pipeline spine is a desktop
+     affordance, replaced on small screens by the top progress bar + the inline
+     diagrams, so nothing essential is lost. */
+  .sys-pipe { display: none; }
+}
+/* Tablet semi-sticky aside (768 to 1024px): in the single-column tablet layout the
+   chapter header (kicker + head) sticks just below the top nav as the prose scrolls
+   beneath it, so the reader keeps the chapter's name in view through dense copy.
+   Below 768 it returns to fully static (the next media block), where a sticky header
+   would crowd the tighter mobile column. */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .sys-chapter__aside {
+    position: sticky;
+    top: calc(var(--s-7) + 60px);
+    align-self: start;
+    z-index: 2;
+  }
+}
+@media (max-width: 768px) {
+  .sys-chapter,
+  .sys-hero { padding-left: var(--margin); padding-right: var(--margin); }
+  .sys-chapter { padding-top: var(--s-7); padding-bottom: var(--s-7); }
+  .sys-flow { grid-auto-flow: row; grid-auto-columns: auto; }
+  .sys-flow__cell { border-right: none; border-bottom: 1px solid var(--grey-850); }
+  .sys-flow__cell:last-child { border-bottom: none; }
+  .sys-flow__cell:not(:last-child)::after {
+    right: 50%; top: auto; bottom: -5px;
+    transform: translateX(50%) rotate(135deg);
+  }
+  .sys-fam { grid-template-columns: 48px 1fr; }
+  .sys-fam__name { grid-column: 2; }
+  .sys-fam__desc { grid-column: 1 / -1; }
+  .sys-gauntlet { padding: var(--s-5) var(--s-4); }
+  .sys-test { grid-template-columns: 40px 1fr; }
+
+  /* the chain pin is gated off on mobile in js/systems-page.js; the stages must
+     read as a plain vertical list (the six chapters above carry the full
+     reference). Mirrors the gauntlet / roadmap pin mobile fallback. */
+  .cpin__sticky { min-height: 0; align-items: start; }
+  .cpin__right { min-height: 0; }
+  .js .cstages { min-height: 0; }
+  .js .cstage {
+    position: relative; inset: auto; opacity: 1; transform: none;
+    pointer-events: auto; margin-bottom: var(--s-6);
+  }
+  .js .cstage:last-child { margin-bottom: 0; }
+  .cpin__counter { display: none; }
+}

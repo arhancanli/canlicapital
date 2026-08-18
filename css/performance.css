@@ -1,0 +1,829 @@
+/* ===========================================================================
+   MERIDIAN / performance.css
+   ---------------------------------------------------------------------------
+   Page-specific layer for /performance ONLY. It does NOT redefine a token, a
+   type class, an easing, the cursor, the rail, the grain, or the shared section
+   chrome. Those are the single design system (styles.css / motion.css /
+   cursor.css / shell.css) and are loaded before this sheet. This file ADDS the
+   components the methodology page needs and nothing else:
+
+     1. The standfirst banner (paper/simulation/no-capital, signal hairline).
+     2. The methodology chapter spacing.
+     3. The gauntlet ledger: six measure rows, the same hairline-row idiom as the
+        landing's pillars (one ledger, hover lifts the border), plus a verdict
+        chip column that shows the honest state (reserved / pass / hold).
+     4. The reserved results panel: the load-bearing transparency moment. A
+        bordered frame holding the empty equity-chart slot (reusing the
+        scene-fallback axis-grid language so it reads as "a chart, pending") and
+        the six labeled, empty result fields.
+     5. The capacity panel: a labeled, dormant frame for the capacity curve that
+        wires from a validated artifact later.
+     6. The standing chapter: the honest result stated as strength.
+
+   Every value here is built from --tokens. ZERO em dashes. Restraint over
+   decoration: the reserved states are quiet and intentional, never apologetic.
+   =========================================================================== */
+
+/* ---------------------------------------------------------------------------
+   0. PAGE HERO
+   The sub-page hero is shorter than the landing's (no full-height fold), so the
+   methodology starts reading quickly. It still uses the shared .hero mechanics
+   and the char-mask reveal; we only tune the measure and the standfirst banner.
+   --------------------------------------------------------------------------- */
+.perf-hero { min-height: auto; padding-top: var(--s-9); padding-bottom: var(--s-7); position: relative; overflow: hidden; }
+.perf-hero .hero__body { position: relative; z-index: 1; }
+.perf-hero .hero__word { max-width: 20ch; }
+.perf-hero .hero__sub { justify-self: start; max-width: 56ch; margin-top: var(--s-4); }
+
+/* The ghost wordmark: route (a) of the polish brief, reusing the footer's
+   oversized --grey-900 watermark device so entering this sub-page renews the
+   landing's display moment without forking a second type treatment. One per
+   page, behind the headline, aria-hidden, drawn from the page's own subject.
+   The clip-rise reveal on .hero__word is untouched: this sits strictly behind. */
+.hero__ghost {
+  position: absolute;
+  z-index: 0;
+  pointer-events: none;
+  font-family: var(--serif);
+  font-optical-sizing: auto;
+  font-variation-settings: "opsz" 144, "wght" 280, "SOFT" 0, "slnt" 0;
+  font-weight: 280;
+  font-size: clamp(7rem, 26vw, 26rem);
+  line-height: 0.8;
+  letter-spacing: -0.04em;
+  color: var(--grey-900);
+  left: var(--margin);
+  bottom: var(--s-6);
+  max-width: none;
+  margin: 0;
+  user-select: none;
+  white-space: nowrap;
+}
+.js .hero__ghost {
+  opacity: 0;
+  /* starts a touch high and SETTLES DOWNWARD into rest, a slower 1.2s fade, so the
+     ghost word reads as grounding rather than lifting away: the page's tone is the
+     honest, grounded result, and the wordmark settles to meet it. */
+  transform: translateY(-3%);
+  transition: opacity 1.2s var(--ease-out), transform 1.2s var(--ease-out);
+}
+.js .hero__ghost.is-shown { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  .js .hero__ghost { opacity: 1; transform: none; transition: none; }
+}
+
+/* The standfirst: the honest scope, stated up front, in the one signal accent.
+   A hairline-bracketed mono line, not a loud badge. */
+.standfirst {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-3);
+  margin-top: var(--s-5);
+  padding: var(--s-2) 0;
+  color: var(--paper-dim);
+  border-top: 1px solid var(--signal-faint);
+  border-bottom: 1px solid var(--signal-faint);
+}
+.standfirst::before {
+  content: "";
+  /* one signal-indicator dot size property-wide (6px), matching .chip::before */
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--signal);
+  flex: none;
+}
+.standfirst__sep { color: var(--grey-600); }
+
+/* ---------------------------------------------------------------------------
+   1. CHAPTER HEADS (shared rhythm with the landing's chapter heads)
+   --------------------------------------------------------------------------- */
+.perf-chapter { position: relative; }
+.perf-chapter__head { margin-bottom: var(--s-7); }
+.perf-chapter__title { color: var(--paper); margin: var(--s-3) 0 var(--s-5); }
+.perf-chapter__lead { color: var(--paper-dim); max-width: 60ch; }
+.perf-chapter__intro { color: var(--paper-dim); max-width: 56ch; margin-top: var(--s-4); }
+.perf-chapter__close { color: var(--grey-700); max-width: 56ch; margin-top: var(--s-6); }
+.perf-pull {
+  color: var(--paper);
+  max-width: 28ch;
+  margin: var(--s-6) 0;
+}
+
+/* ---------------------------------------------------------------------------
+   2. METHODOLOGY: a compact three-step honest spine of the process.
+   Uses the staggered-ledger idiom (hairline rows). Optional, restrained.
+   --------------------------------------------------------------------------- */
+.method__points { display: grid; gap: 0; margin-top: var(--s-6); }
+.method__point {
+  display: grid;
+  grid-template-columns: 90px minmax(min-content, 22ch) 1fr;
+  gap: var(--s-5);
+  align-items: start;
+  padding: var(--s-4) 0;
+  border-top: 1px solid var(--grey-850);
+  transition: background 0.4s var(--ease-out), border-color 0.4s var(--ease-out);
+}
+/* the method ledger closes on a heavier 2px --grey-850 seam after row 3, so the
+   three principles read as one bounded group rather than trailing into the page. */
+.method__point:last-child { border-bottom: 2px solid var(--grey-850); }
+/* SPINE HIERARCHY: the first method point is the out-of-sample backbone, the move
+   the other two refine. A 2px signal-faint left rule marks it as the spine, read
+   heavier than the details, with a matching left pad so the index column stays in
+   register. Scoped to the first row only. */
+.method__point:first-child {
+  border-left: 2px solid var(--signal-faint);
+  padding-left: var(--s-3);
+}
+.method__point:hover {
+  background: linear-gradient(90deg, var(--grey-900), transparent 80%);
+  border-top-color: var(--grey-825);
+}
+.method__point:hover + .method__point { border-top-color: var(--grey-825); }
+.method__idx { color: var(--grey-700); padding-top: 0.35em; transition: color 0.4s var(--ease-out); }
+.method__point:hover .method__idx { color: var(--paper); }
+.method__name { color: var(--paper); }
+.method__desc { color: var(--paper-dim); }
+
+/* ---------------------------------------------------------------------------
+   3. THE GAUNTLET LEDGER
+   Six measure rows, the workhorse hairline-row idiom. Each row: an index, the
+   metric name + gate, the honest sentence, and a verdict chip. Built so a future
+   `value` (from a validated artifact) drops into .gauntlet__value without any
+   redesign. While reserved the value column shows the honest dash + chip.
+   --------------------------------------------------------------------------- */
+.gauntlet { display: grid; gap: 0; margin-top: var(--s-6); }
+.gauntlet__row {
+  display: grid;
+  grid-template-columns: 64px minmax(min-content, 30ch) 1fr 132px;
+  gap: var(--s-5);
+  align-items: start;
+  padding: var(--s-5) 0;
+  border-top: 1px solid var(--grey-850);
+  transition: background 0.45s var(--ease-out), border-color 0.45s var(--ease-out);
+}
+.gauntlet__row:last-child { border-bottom: 1px solid var(--grey-850); }
+.gauntlet__row:hover {
+  background: linear-gradient(90deg, var(--grey-900), transparent 82%);
+  border-top-color: var(--grey-825);
+}
+.gauntlet__row:hover + .gauntlet__row { border-top-color: var(--grey-825); }
+.gauntlet__idx { color: var(--grey-700); padding-top: 0.5em; transition: color 0.45s var(--ease-out); }
+.gauntlet__row:hover .gauntlet__idx { color: var(--paper); }
+.gauntlet__name { color: var(--paper); }
+.gauntlet__gate {
+  display: block;
+  margin-top: var(--s-2);
+  color: var(--grey-700);
+}
+.gauntlet__blurb { color: var(--paper-dim); align-self: start; }
+.gauntlet__verdict {
+  display: grid;
+  gap: var(--s-2);
+  justify-items: start;
+  align-content: start;
+}
+/* the measured value slot: empty (an em-free placeholder dash) while reserved,
+   a tabular mono number once a validated artifact is wired. */
+.gauntlet__value {
+  font-family: var(--mono);
+  font-size: 1.125rem;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums lining-nums;
+  letter-spacing: -0.01em;
+  color: var(--paper);
+}
+.gauntlet__value[data-empty="1"] { color: var(--grey-600); }
+
+/* The gauntlet DESIGN parameters dataline: a single terminal-readout line naming
+   how the test is built (windowing, purge/embargo, trial count, baseline). These
+   are facts, not results. Sits as a quiet annotation under the ledger, hairline
+   above it, in the recessed mono tier. The .type-mono reveal is wired by scroll.js;
+   the leading comment glyph keeps it reading as annotation, never a claim. */
+.gauntlet__params {
+  margin-top: var(--s-5);
+  /* two tiers (3 + 3 params) set as one labeled block: a faint signal skim and a
+     hairline frame the block so the windowing row sits over the validation row as a
+     single readout, not a run-on line. */
+  padding: var(--s-4);
+  border: 1px solid var(--signal-faint);
+  border-left: 2px solid var(--signal-deep);
+  background: linear-gradient(90deg, var(--signal-faint), transparent 70%);
+  color: var(--grey-700);
+  letter-spacing: 0.04em;
+  line-height: 1.7;
+  word-spacing: 0.04em;
+  display: grid;
+  gap: var(--s-1);
+}
+.gauntlet__params-tier { display: block; overflow-wrap: anywhere; }
+
+/* verdict chip: the honest tri-state. reserved = a quiet bracketed label;
+   pass = signal; hold = paper-dim. No green/red traffic lights (off-brand). */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  padding: 3px 10px;
+  border: 1px solid var(--grey-825);
+  border-radius: 2px;
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--grey-700);
+  white-space: nowrap;
+}
+.chip::before {
+  content: "";
+  /* one signal-indicator dot size property-wide (6px), matching .standfirst::before */
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--grey-600);
+  flex: none;
+}
+.chip--reserved { color: var(--grey-700); border-color: var(--grey-825); }
+.chip--reserved::before { background: var(--grey-600); }
+.chip--pass { color: var(--paper); border-color: var(--signal); }
+.chip--pass::before { background: var(--signal); }
+.chip--hold { color: var(--paper-dim); border-color: var(--grey-825); }
+.chip--hold::before { background: var(--paper-dim); }
+
+/* ---------------------------------------------------------------------------
+   4. THE RESERVED RESULTS PANEL (the load-bearing transparency moment)
+   A bordered frame that says "the numbers go here, and they are not here yet,"
+   and looks intentional rather than broken. The chart slot reuses the
+   scene-fallback axis-grid language so it reads as "a chart, pending."
+   --------------------------------------------------------------------------- */
+.results { margin-top: var(--s-6); }
+.results__panel {
+  border: 1px solid var(--grey-850);
+  border-radius: 3px;
+  background:
+    radial-gradient(120% 90% at 50% 0%, var(--signal-faint), transparent 55%),
+    var(--ink);
+  overflow: hidden;
+}
+.results__panel-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-4);
+  padding: var(--s-4) var(--s-5);
+  border-bottom: 1px solid var(--grey-850);
+  flex-wrap: wrap;
+}
+.results__panel-title { color: var(--paper-dim); }
+.results__state {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6em;
+  color: var(--grey-700);
+}
+
+.results__body {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 0;
+  /* P0-B: the default align-items:stretch lets the chart's full-height border-right
+     run the panel seam; the fields column then self-centers below (align-self:center)
+     so the six verdict/metadata cells sit at the chart's vertical midpoint rather than
+     topping out, without shortening the chart's divider. ONE centering hand. */
+  align-items: stretch;
+}
+/* P0-B: the verdict/metadata column centers against the taller chart. Applied to the
+   column itself (not the grid) so the chart keeps stretching and its border-right seam
+   spans the full panel height. */
+.results__fields { align-self: center; }
+
+/* The chart slot: the honest empty equity frame. The faint axis grid is drawn in
+   CSS, reusing the scene-fallback masked grid so it reads as the same world. No
+   fabricated line, no tick values. */
+.results__chart {
+  position: relative;
+  min-height: 340px;
+  border-right: 1px solid var(--grey-850);
+  background:
+    repeating-linear-gradient(0deg, transparent 0 38px, rgba(244,241,234,0.03) 38px 39px),
+    repeating-linear-gradient(90deg, transparent 0 60px, rgba(244,241,234,0.02) 60px 61px);
+  -webkit-mask-image: radial-gradient(130% 100% at 50% 60%, #000 35%, transparent 88%);
+  mask-image: radial-gradient(130% 100% at 50% 60%, #000 35%, transparent 88%);
+}
+/* axis anchor lines (one baseline, one left axis) so the frame reads as a plot */
+.results__chart::before,
+.results__chart::after {
+  content: "";
+  position: absolute;
+  background: var(--grey-825);
+}
+.results__chart::before { left: var(--s-5); right: var(--s-5); bottom: var(--s-6); height: 1px; }
+.results__chart::after { left: var(--s-5); top: var(--s-5); bottom: var(--s-6); width: 1px; }
+
+/* the live canvas (drawn only when STATUS === "live"); absolutely fills the slot
+   above the grid. Hidden/empty while reserved. */
+.results__canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+/* the reserved caption, centered in the empty plot. A single faint signal node
+   over a mono bracket: a chart that is waiting, not a chart that is missing. */
+.results__pending {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: var(--s-3);
+  text-align: center;
+  pointer-events: none;
+}
+.results__pending-dot {
+  width: 9px; height: 9px;
+  border-radius: 50%;
+  background: var(--signal);
+  box-shadow: 0 0 0 0 rgba(200, 85, 61, 0.35);
+  animation: pulse 2.8s var(--ease-in-out) infinite;
+}
+.results__pending-cap { color: var(--grey-700); letter-spacing: 0.18em; }
+
+/* the six fields, grouped into two columns with a clear hierarchy. Column-major
+   flow (3 rows) so the three load-bearing statistical verdicts (Deflated Sharpe,
+   Probabilistic Sharpe, PBO, marked --primary) own the LEFT column at a larger mono
+   tier, and the three contextual metadata fields fill the RIGHT column. A single
+   --signal-faint hairline divides the two columns, so the panel reads as
+   "the verdicts, then the context", not a flat 2x3 of equal cells. */
+.results__fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: repeat(3, 1fr);
+  grid-auto-flow: column;
+  align-content: start;
+  position: relative;
+}
+/* the column divider: a faint signal hairline between the verdict and metadata
+   columns. Drawn as a pseudo-element so it needs no extra cell or reflow. */
+.results__fields::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: var(--s-5);
+  bottom: var(--s-5);
+  width: 1px;
+  background: var(--signal-faint);
+  pointer-events: none;
+}
+.results__field {
+  padding: var(--s-4) var(--s-5);
+  border-bottom: 1px solid var(--grey-850);
+  display: grid;
+  gap: var(--s-1);
+  align-content: start;
+}
+/* the column seam is the single signal divider (::before above); rows are separated
+   by grey hairlines, and the last cell in each column drops its bottom border so the
+   two columns read as two clean stacks divided by the one signal line. */
+.results__field:nth-child(3),
+.results__field:nth-child(6) { border-bottom: none; }
+.results__field-label { color: var(--grey-700); }
+.results__field-value {
+  font-family: var(--mono);
+  font-size: 1.5rem;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums lining-nums;
+  letter-spacing: -0.01em;
+  color: var(--paper);
+  line-height: 1.1;
+}
+/* the emphasized verdict tier: the three statistical measures read a step larger. */
+.results__field--primary .results__field-value { font-size: 1.875rem; }
+.results__field-value[data-empty="1"] { color: var(--grey-600); font-size: 1.25rem; }
+.results__field--primary .results__field-value[data-empty="1"] { font-size: 1.5rem; }
+/* the unit caption: the gate / span / qualifier, recessed under the number. */
+.results__field-unit { color: var(--grey-700); margin-top: 1px; }
+
+.results__note { color: var(--grey-700); margin-top: var(--s-4); }
+/* the reserved cadence line: "actively pending", not "indefinitely blank". A faint
+   signal dot leads it so the empty frame reads as an instrument that is configured
+   and re-running, never broken. Hidden (empty text) when live; the source line
+   below carries provenance then. */
+.results__cadence {
+  display: flex;
+  align-items: center;
+  gap: 0.7em;
+  color: var(--grey-700);
+  margin-top: var(--s-3);
+  letter-spacing: 0.04em;
+}
+.results__cadence:empty { display: none; }
+.results__cadence::before {
+  content: "";
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--signal);
+  flex: none;
+  opacity: 0.85;
+  box-shadow: 0 0 0 0 rgba(200, 85, 61, 0.3);
+  animation: pulse 3.2s var(--ease-in-out) infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .results__cadence::before { animation: none; }
+}
+.results__source { color: var(--grey-700); margin-top: var(--s-2); }
+.results__source:empty { display: none; }
+
+/* ---------------------------------------------------------------------------
+   5. THE CAPACITY PANEL
+   A labeled, dormant frame for the capacity curve (deployed capital vs. expected
+   net-of-cost edge). Same panel language as the results frame so the page reads
+   as one document. Renders a faint axis grid + reserved caption until a
+   validated artifact is wired.
+   --------------------------------------------------------------------------- */
+.capacity { margin-top: var(--s-6); }
+.capacity__panel {
+  border: 1px solid var(--grey-850);
+  border-radius: 3px;
+  background: var(--ink);
+  overflow: hidden;
+}
+.capacity__panel-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--s-4);
+  padding: var(--s-4) var(--s-5);
+  border-bottom: 1px solid var(--grey-850);
+  flex-wrap: wrap;
+}
+.capacity__panel-title { color: var(--paper-dim); }
+.capacity__axes { color: var(--grey-700); }
+.capacity__plot {
+  position: relative;
+  min-height: 280px;
+  background:
+    repeating-linear-gradient(0deg, transparent 0 34px, rgba(244,241,234,0.03) 34px 35px),
+    repeating-linear-gradient(90deg, transparent 0 54px, rgba(244,241,234,0.02) 54px 55px);
+  -webkit-mask-image: radial-gradient(130% 100% at 50% 55%, #000 40%, transparent 90%);
+  mask-image: radial-gradient(130% 100% at 50% 55%, #000 40%, transparent 90%);
+}
+.capacity__canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+.capacity__pending {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: var(--s-3);
+  text-align: center;
+  pointer-events: none;
+}
+/* parity with the results frame: a faint pulsing node says "powered on, dormant",
+   sitting above the caption. The idle waveform behind it (drawn by performance.js)
+   carries the living breath; this is the single bright point. */
+.capacity__pending-dot {
+  width: 9px; height: 9px;
+  border-radius: 50%;
+  background: var(--signal);
+  box-shadow: 0 0 0 0 rgba(200, 85, 61, 0.35);
+  /* offset 0.2s behind the results pending dot so the two reserved frames read as
+     two instruments breathing slightly out of phase, never one frame copied twice. */
+  animation: pulse 2.8s var(--ease-in-out) -0.2s infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .capacity__pending-dot { animation: none; }
+}
+.capacity__pending-cap { color: var(--grey-700); letter-spacing: 0.16em; max-width: 40ch; }
+.capacity__note { color: var(--grey-700); margin-top: var(--s-4); }
+
+/* ---------------------------------------------------------------------------
+   6. THE STANDING CHAPTER (honest result as strength)
+   Recessed ink ground, the display headline, the pull quote, forward links. The
+   tonal recession is the page's quiet tell, never an apology.
+   --------------------------------------------------------------------------- */
+.standing { padding-top: var(--s-9); padding-bottom: var(--s-9); }
+.standing__head { margin-bottom: var(--s-6); max-width: var(--max); }
+.standing__title { color: var(--paper); margin: var(--s-3) 0 var(--s-5); max-width: 20ch; }
+.standing__body { color: var(--paper-dim); max-width: 60ch; }
+
+/* THE PAGE'S ONE HAND-PLACED ASYMMETRY (the broken-grid tell). On desktop the
+   standing headline (the honest verdict, the page's climax) hangs ~14px into the
+   left margin so it sits a beat left of the body, and the body aligns to that same
+   offset line. One deliberate asymmetry, quiet, the signature that a person
+   composed this. Disabled below the broken-grid breakpoint (single column). */
+@media (min-width: 1025px) {
+  .standing__title { margin-left: -14px; }
+  .standing__body { margin-left: -14px; }
+  .standing__close { margin-left: -14px; }
+}
+.standing__close {
+  color: var(--paper);
+  text-align: left;
+  margin: var(--s-8) 0 var(--s-6);
+}
+.standing__forward {
+  display: flex;
+  align-items: center;
+  gap: var(--s-5);
+  flex-wrap: wrap;
+  margin-top: var(--s-5);
+}
+.perf-link {
+  position: relative;
+  color: var(--paper-dim);
+  transition: color 0.3s var(--ease-out);
+}
+.perf-link::after {
+  content: "";
+  position: absolute;
+  left: 0; bottom: -4px;
+  width: 100%; height: 1px;
+  background: var(--signal);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s var(--ease-out);
+}
+.perf-link:hover { color: var(--paper); }
+.perf-link:hover::after { transform: scaleX(1); }
+/* the primary forward action mirrors the hero CTA treatment */
+.perf-cta {
+  color: var(--paper);
+  padding: var(--s-3) var(--s-5);
+  border: 1px solid var(--signal);
+  border-radius: 2px;
+  transition: background 0.35s var(--ease-out), color 0.35s var(--ease-out);
+}
+.perf-cta:hover { background: var(--signal); color: var(--void); }
+
+/* ---------------------------------------------------------------------------
+   7. THE GAUNTLET PIN (the page's ONE tentpole beat)
+   The six measures cross-fade inside a pinned frame while the manifold tightens
+   onto its single ridge (high-convergence band). Mirrors the landing's System
+   pin STRUCTURE. The base layout below matches the .step idiom so the JS reuses
+   the same active/blur grammar. Reduced motion / mobile: the steps stack as a
+   plain list (rules at the bottom).
+   --------------------------------------------------------------------------- */
+.gpin { padding: 0; max-width: none; position: relative; }
+.gpin__sticky {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: var(--s-8) var(--margin);
+  display: grid;
+  grid-template-columns: 1fr 1.15fr;
+  gap: var(--s-7);
+  min-height: 100vh;
+  align-items: center;
+}
+.gpin__left { position: relative; align-self: center; }
+.gpin__head { color: var(--paper); margin: var(--s-3) 0 var(--s-4); max-width: 13ch; }
+.gpin__sub { color: var(--paper-dim); max-width: 34ch; }
+.gpin__counter {
+  margin-top: var(--s-6);
+  font-size: 1rem;
+  display: flex;
+  gap: 0.4em;
+  color: var(--grey-700);
+}
+.gpin__counter .signal-word { font-size: 1.5rem; }
+.gpin__counter-sep { color: var(--grey-600); }
+
+/* P0-B shared right-column centering law (identical to .system__right / .cpin__right /
+   .rpin__right): the right container centers its content vertically so short step
+   content sits at the row's midpoint. The .gstep children stay position:absolute;
+   inset:0 with align-content:center, so this flex governs short content and is inert
+   for the absolute cross-fade stack. ONE hand across all four pins. */
+.gpin__right { position: relative; min-height: 50vh; display: flex; align-items: center; }
+.gsteps { position: relative; width: 100%; }
+.gstep {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  gap: var(--s-4);
+  align-content: center;
+  opacity: 0;
+  transform: translateY(24px);
+  pointer-events: none;
+  transition: opacity 0.6s var(--ease-out), transform 0.6s var(--ease-out);
+}
+.gstep.is-active { opacity: 1; transform: none; pointer-events: auto; }
+.gstep__kicker { color: var(--signal); }
+.gstep__title { color: var(--paper); max-width: 20ch; }
+.gstep__body { color: var(--paper-dim); max-width: 46ch; }
+.gstep__gate {
+  color: var(--grey-700);
+  padding-top: var(--s-3);
+  border-top: 1px solid var(--grey-850);
+  text-transform: uppercase;
+}
+
+/* pin focus pull (mirrors motion.css section 6 for .step) */
+.gpin.is-pinned .gstep {
+  transition: opacity 0.7s var(--ease-in-out),
+              transform 0.7s var(--ease-out),
+              filter 0.7s var(--ease-out);
+}
+.gpin.is-pinned .gstep:not(.is-active) { filter: blur(1.5px); opacity: 0; }
+.gpin.is-pinned .gstep.is-active { filter: blur(0); }
+.gpin .gstep.is-prev { transform: translateY(-18px); }
+
+/* the resolution beat: when the last measure locks, the verdict STICKS the landing.
+   The final step holds at full opacity (it is the honest result, the thing the page
+   exists to say, so it must read sharpest at the climax, not fade), and the counter
+   index resolves to the one signal accent. Restrained, not triumphant: the bloom is
+   muted and the only change is the counter taking the hue. Reversible on scroll-up. */
+.gpin.is-resolved .gstep.is-active .gstep__body,
+.gpin.is-resolved .gstep.is-active .gstep__gate {
+  transition: opacity 0.85s var(--ease-cinema);
+  opacity: 1;
+}
+.gpin.is-resolved .gpin__counter #gstepCurrent {
+  transition: color 0.85s var(--ease-cinema);
+  color: var(--signal);
+}
+
+/* ---------------------------------------------------------------------------
+   7b. THE CURRENT BOOK (.book / .book-block / .book-ledger)
+   ---------------------------------------------------------------------------
+   The live book, by algorithm. It composes the exact ledger grammar the page
+   already uses (the .algos / .roadmap hand: faint grey-850 hairlines, a serif
+   name, a left-anchored hover wash, one signal accent), at a new selector. It
+   forks no token, color, or keyframe; the row-enter is the shared fade + lift
+   stagger from js/holdings.js (the SAME grammar research.js / open.js use).
+
+   ONE signal hue: the long side carries the single signal accent (the long
+   count, and the LONG header); the short side stays in the recessed grey voice.
+   AlphaForge is the honest flat state. ALPHAC is the flagship, marked with the
+   one signal left edge the page allows.
+   ------------------------------------------------------------------------- */
+.book__forward { color: var(--paper-dim); margin-top: var(--s-4); }
+.book__struck {
+  color: var(--grey-700);
+  text-decoration: line-through;
+  margin-left: 0.8em;
+}
+
+.book-block { margin-top: var(--s-6); }
+.book-block__head {
+  display: flex;
+  align-items: baseline;
+  gap: var(--s-3) var(--s-4);
+  flex-wrap: wrap;
+  padding-bottom: var(--s-3);
+  border-bottom: 1px solid var(--grey-850);
+  margin-bottom: var(--s-4);
+}
+.book-block__name {
+  font-family: var(--serif);
+  font-variation-settings: "opsz" 40, "wght" 400;
+  font-size: 1.5rem;
+  color: var(--paper);
+  display: flex;
+  align-items: baseline;
+  gap: 0.6em;
+}
+.book-block__asset { color: var(--grey-700); }
+.book-block__badge {
+  color: var(--signal);
+  border: 1px solid var(--signal-faint);
+  border-radius: 2px;
+  padding: 0.2em 0.6em;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+/* the flagship block: the one signal left edge, drawn with box-shadow so it does
+   not shift the grid (matching the .algos flagship row treatment). */
+.book-block--flagship {
+  box-shadow: inset 2px 0 0 0 var(--signal);
+  padding-left: var(--s-4);
+}
+
+/* AlphaMax summary row: long / short / gross / net. The long figure carries the
+   signal accent (via .signal-word from holdings.js); the rest is paper voice. */
+.book-summary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-5);
+  margin-bottom: var(--s-5);
+}
+.book-stat { display: flex; flex-direction: column; gap: var(--s-1); }
+.book-stat__k { color: var(--grey-700); }
+.book-stat__v { color: var(--paper); font-size: 1.25rem; }
+
+/* the two-column long / short ticker ledger */
+.book-ledger {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--s-5);
+}
+.book-col { min-width: 0; }
+.book-col__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--s-3);
+  padding-bottom: var(--s-3);
+  border-bottom: 1px solid var(--grey-850);
+  margin-bottom: var(--s-2);
+}
+.book-col__side { letter-spacing: 0.08em; text-transform: uppercase; }
+/* ONE signal hue: long is the single accent, short is recessed grey. */
+.book-col__side[data-side="long"] { color: var(--signal); }
+.book-col__side[data-side="short"] { color: var(--grey-700); }
+.book-col__count { color: var(--grey-700); }
+
+.book-pos {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: var(--s-3);
+  align-items: baseline;
+  padding: var(--s-2) 0;
+  border-top: 1px solid var(--grey-900);
+  transition: background 0.4s var(--ease-out);
+}
+.book-pos:first-of-type { border-top: none; }
+.book-pos:hover { background: linear-gradient(90deg, var(--grey-900), transparent 80%); }
+.book-pos__ticker { color: var(--paper); letter-spacing: 0.02em; }
+.book-pos__weight { color: var(--paper-dim); }
+.book-pos--more {
+  color: var(--grey-700);
+  border-top: 1px solid var(--grey-850);
+  margin-top: var(--s-2);
+  padding-top: var(--s-3);
+}
+
+/* AlphaForge honest flat state */
+.book-flat {
+  display: flex;
+  align-items: center;
+  gap: 0.6em;
+  margin-bottom: var(--s-3);
+}
+.book-flat .dot { background: var(--grey-700); }
+.book-flat__state { color: var(--grey-700); letter-spacing: 0.06em; }
+.book-flat__note { color: var(--paper-dim); max-width: 60ch; }
+
+/* ALPHAC carry line */
+.book-carry { color: var(--paper-dim); max-width: 60ch; }
+.book-carry__fig { color: var(--paper); }
+
+.book__source { color: var(--paper-dim); margin-top: var(--s-6); max-width: 64ch; }
+.book__source .comment { color: var(--grey-700); }
+
+/* ---------------------------------------------------------------------------
+   8. RESPONSIVE
+   --------------------------------------------------------------------------- */
+@media (max-width: 1024px) {
+  .method__point { grid-template-columns: 56px 1fr; gap: var(--s-4); }
+  .method__desc { grid-column: 2 / 3; }
+  /* TABLET DENSITY: tighten the gauntlet/method row gap (--s-5 -> --s-4) so the
+     two-column tablet layout does not wrap awkwardly between the index and the
+     metric copy. */
+  .gauntlet__row { grid-template-columns: 48px 1fr; grid-auto-rows: min-content; gap: var(--s-4); }
+  .gauntlet__blurb { grid-column: 2 / 3; }
+  .gauntlet__verdict { grid-column: 2 / 3; flex-direction: row; }
+  .results__body { grid-template-columns: 1fr; }
+  .results__chart { border-right: none; border-bottom: 1px solid var(--grey-850); }
+  .gpin__sticky { grid-template-columns: 1fr; gap: var(--s-6); }
+}
+
+@media (max-width: 768px) {
+  .standfirst { flex-wrap: wrap; gap: var(--s-2) var(--s-3); }
+  .gauntlet__row { padding: var(--s-4) 0; }
+  /* mobile: a single stacked column. The column-flow / divider / per-column borders
+     all collapse to one straight ledger so the fields read top to bottom. */
+  .results__fields { grid-template-columns: 1fr; grid-template-rows: none; grid-auto-flow: row; }
+  .results__fields::before { display: none; }
+  .results__field:nth-child(-n+3) { border-right: none; }
+  .results__field { border-bottom: 1px solid var(--grey-850); }
+  .results__field:nth-child(3) { border-bottom: 1px solid var(--grey-850); }
+  .results__field:last-child { border-bottom: none; }
+  .results__chart { min-height: 240px; }
+  .capacity__plot { min-height: 220px; }
+
+  /* the gauntlet pin is gated off on mobile in performance.js; the measures must
+     read as a plain vertical list. Mirrors the landing System mobile fallback. */
+  .gpin__sticky { min-height: 0; align-items: start; }
+  .gpin__right { min-height: 0; }
+  .gsteps { display: grid; gap: var(--s-6); }
+  .gstep { position: relative; inset: auto; opacity: 1; transform: none; pointer-events: auto; }
+  .gpin__counter { display: none; }
+  .standing__forward { gap: var(--s-3) var(--s-5); }
+
+  /* the current book: stack the two-column ledger to one column, and let the
+     summary stats wrap to a tighter rhythm. The long column reads first (signal),
+     then short, top to bottom, the same way the .algos ledger stacks on mobile. */
+  .book-ledger { grid-template-columns: 1fr; gap: var(--s-5); }
+  .book-summary { gap: var(--s-4) var(--s-5); }
+  .book-block__name { font-size: 1.35rem; }
+}
+
+/* ---------------------------------------------------------------------------
+   9. REDUCED MOTION
+   --------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .results__pending-dot { animation: none; }
+  .gstep {
+    position: relative; inset: auto; opacity: 1; transform: none;
+    pointer-events: auto; margin-bottom: var(--s-7);
+  }
+  .gsteps { display: grid; gap: var(--s-7); }
+  .gpin__right { min-height: 0; }
+  .gpin.is-resolved .gstep.is-active .gstep__body,
+  .gpin.is-resolved .gstep.is-active .gstep__gate { transition: none; opacity: 1; }
+}

@@ -1,0 +1,133 @@
+{
+  "schema": "canli.feasibility.natural-gas-storage-weather.v1",
+  "generated_at": "2026-08-16T02:53:19.135168+00:00",
+  "stage": "eia_noaa_cme_metadata_no_market_records_no_returns",
+  "protocol": "docs/design/FEASIBILITY_NATURAL_GAS_STORAGE_WEATHER.md",
+  "family_trial_account": "commodity_inventory_weather",
+  "prior_family_return_trials": 1,
+  "minimum_family_trials_if_returns_open": 2,
+  "expected_eia_periods": 469,
+  "wayback_capture_rows": 93,
+  "successful_wayback_capture_rows": 93,
+  "unique_first_release_periods_bound": 84,
+  "first_release_capture_coverage": 0.1791044776119403,
+  "official_original_data_rows": 469,
+  "official_original_data_coverage": 1.0,
+  "original_values_differing_from_current_history": 53,
+  "original_data_redesign_note": "EIA revisions.xls original_data covers the panel but was not the frozen first-release source for this identity; using it requires a new source preregistration.",
+  "noaa_object_probes": 938,
+  "noaa_periods_with_both_endpoints": 468,
+  "noaa_endpoint_coverage": 0.997867803837953,
+  "noaa_endpoint_coverage_by_year": {
+    "2017": 0.9807692307692307,
+    "2018": 1.0,
+    "2019": 1.0,
+    "2020": 1.0,
+    "2021": 1.0,
+    "2022": 1.0,
+    "2023": 1.0,
+    "2024": 1.0,
+    "2025": 1.0
+  },
+  "cme_metadata": {
+    "credential_present": true,
+    "metadata_access": true,
+    "dataset": "GLBX.MDP3",
+    "range": {
+      "start": "2010-06-06T00:00:00.000000000Z",
+      "end": "2026-08-15T18:53:18.448323000Z",
+      "schema": {
+        "mbo": {
+          "start": "2017-05-21T00:00:00.000000000Z",
+          "end": "2026-08-15T18:53:18.448323000Z"
+        },
+        "mbp-1": {
+          "start": "2010-06-06T00:00:00.000000000Z",
+          "end": "2026-08-15T18:53:18.448323000Z"
+        },
+        "mbp-10": {
+          "start": "2010-06-06T00:00:00.000000000Z",
+          "end": "2026-08-15T18:53:18.448323000Z"
+        },
+        "tbbo": {
+          "start": "2010-06-06T00:00:00.000000000Z",
+          "end": "2026-08-15T18:53:18.448323000Z"
+        },
+        "trades": {
+          "start": "2010-06-06T00:00:00.000000000Z",
+          "end": "2026-08-15T18:53:18.448323000Z"
+        },
+        "bbo-1s": {
+          "start": "2010-06-06T00:00:00.000000000Z",
+          "end": "2026-08-15T18:53:18.448323000Z"
+        },
+        "bbo-1m": {
+          "start": "2010-06-06T00:00:00.000000000Z",
+          "end": "2026-08-15T18:53:18.448323000Z"
+        },
+        "ohlcv-1s": {
+          "start": "2010-06-06T00:00:00.000000000Z",
+          "end": "2026-08-15T18:53:18.448323000Z"
+        },
+        "ohlcv-1m": {
+          "start": "2010-06-06T00:00:00.000000000Z",
+          "end": "2026-08-15T18:53:18.448323000Z"
+        },
+        "ohlcv-1h": {
+          "start": "2010-06-06T00:00:00.000000000Z",
+          "end": "2026-08-15T18:53:18.448323000Z"
+        },
+        "ohlcv-1d": {
+          "start": "2010-06-06T00:00:00.000000000Z",
+          "end": "2026-08-15T18:53:18.448323000Z"
+        },
+        "definition": {
+          "start": "2010-06-06T00:00:00.000000000Z",
+          "end": "2026-08-15T18:53:18.448323000Z"
+        },
+        "statistics": {
+          "start": "2010-06-06T00:00:00.000000000Z",
+          "end": "2026-08-15T18:53:18.448323000Z"
+        },
+        "status": {
+          "start": "2010-06-06T00:00:00.000000000Z",
+          "end": "2026-08-15T18:53:18.448323000Z"
+        }
+      }
+    },
+    "schemas": [
+      "mbo",
+      "mbp-1",
+      "mbp-10",
+      "tbbo",
+      "trades",
+      "bbo-1s",
+      "bbo-1m",
+      "ohlcv-1s",
+      "ohlcv-1m",
+      "ohlcv-1h",
+      "ohlcv-1d",
+      "definition",
+      "statistics",
+      "status"
+    ],
+    "market_records_requested": 0
+  },
+  "source_sha256": {
+    "ngshistory_xls": "7973c8f5721c1addb2f8df496134aa0697a98f1f4eb9b075223f19f12f513b18",
+    "revisions_xls": "ee7c703c6d30176d0253b879aa4c8c6dc0178b411c36d73036d89aeff412dd3c",
+    "wayback_cdx": "109bcc1576ca83ebbbbc2848d6df19c34519c2f11d4ef892af9ef4653d720cdb"
+  },
+  "gates": {
+    "at_least_450_unique_expected_eia_periods": true,
+    "wayback_first_release_capture_coverage_gte_0_90": false,
+    "noaa_gefs_endpoint_coverage_gte_0_95": true,
+    "cme_metadata_covers_period_with_daily_and_book_schema": true,
+    "market_records_unopened": true,
+    "return_hypotheses_unspent": true
+  },
+  "decision": "DATA_GATED",
+  "market_data_opened": false,
+  "return_data_opened": false,
+  "return_hypotheses_spent": 0
+}

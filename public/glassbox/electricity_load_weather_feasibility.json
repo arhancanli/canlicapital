@@ -1,0 +1,14 @@
+{
+  "schema": "canli.feasibility.electricity-load-weather.v1",
+  "generated_at": "2026-08-16T01:29:19.045615+00:00",
+  "stage": "official_load_forecast_collection_no_prices_no_returns",
+  "source_url": "https://api.eia.gov/v2/electricity/rto/region-data/data/",
+  "source_collection_complete": false,
+  "decision": "DATA_GATED",
+  "blocking_reasons": [
+    "official_eia_collection_rate_limited_or_unavailable"
+  ],
+  "collection_error_type": "RuntimeError",
+  "return_data_opened": false,
+  "return_hypotheses_spent": 0
+}

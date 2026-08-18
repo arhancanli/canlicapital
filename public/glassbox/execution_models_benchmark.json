@@ -1,0 +1,75 @@
+{
+  "schema": "alphaforge.execution-model-benchmark.v1",
+  "generated_at": "2026-08-17T10:07:31.335886+00:00",
+  "classification": "local engineering microbenchmark; not return evidence",
+  "workload": {
+    "synthetic": true,
+    "market_data_opened": false,
+    "hypotheses_spent": 0,
+    "expected_full_fill_qty": 100.0,
+    "expected_capped_fill_qty": 50.0,
+    "inputs": {
+      "adv_quote": 100000000.0,
+      "sigma_daily": 0.02,
+      "max_bar_participation": 0.1,
+      "order_qty": 100.0,
+      "open": 100.0,
+      "quote_volume": 50000.0
+    }
+  },
+  "runtime": {
+    "python": "3.12.13",
+    "implementation": "CPython",
+    "architecture": "arm64",
+    "system": "Darwin"
+  },
+  "source_sha256": {
+    "benchmark": "57513fe382e9c34cc7d66e75e53098955a25af9ec9e86c5b098b465396b4caf2",
+    "fills": "a65cf39822ad37876b7c19e02a2a2138529644b9b8a72c17487a4c6276d91c7d",
+    "cost_model": "565963aebe5270c2e38fbd076702bbb35eea813d312d68ee3f8bbafe36721c85"
+  },
+  "cases": [
+    {
+      "name": "next_open_full_fill",
+      "calls_per_repeat": 100000,
+      "repeats": 7,
+      "warmup_calls": 10000,
+      "elapsed_ns_samples": [
+        89146083,
+        88679209,
+        88597792,
+        88722250,
+        88913500,
+        88727125,
+        88740791
+      ],
+      "ns_per_call_median": 887.27125,
+      "ns_per_call_min": 885.97792,
+      "deterministic_checksum": 20506825.0000191
+    },
+    {
+      "name": "participation_capped_partial_fill",
+      "calls_per_repeat": 100000,
+      "repeats": 7,
+      "warmup_calls": 10000,
+      "elapsed_ns_samples": [
+        201171000,
+        199786209,
+        200082541,
+        200363541,
+        200288750,
+        200410458,
+        201094959
+      ],
+      "ns_per_call_median": 2003.63541,
+      "ns_per_call_min": 1997.86209,
+      "deterministic_checksum": 15256062.068928257
+    }
+  ],
+  "participation_capped_to_baseline_median_ratio": 2.258199406325856,
+  "interpretation_guardrails": [
+    "Timings describe this local runtime and synthetic workload only.",
+    "The benchmark measures fill-model call overhead, not end-to-end backtest throughput.",
+    "Checksums verify deterministic executed outputs; timing samples are expected to vary."
+  ]
+}

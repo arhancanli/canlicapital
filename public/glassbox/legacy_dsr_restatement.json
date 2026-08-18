@@ -1,0 +1,957 @@
+{
+  "claim_boundary": "This restates DSR only. It does not upgrade data quality, validation grade, sleeve admissibility or investment performance, and it does not alter original artifacts.",
+  "code_status": {
+    "enforcement": "tests/unit/test_no_raw_row_dsr_paths.py fails on any unlisted executable path and on stale exception entries.",
+    "executable_debt_paths": [],
+    "resolved_paths": [
+      "scripts/exp2_crypto_vrp.py",
+      "scripts/probe_alphamax_betaneutral.py",
+      "scripts/probe_alphamax_construction.py",
+      "scripts/probe_alphamax_constructions.py",
+      "scripts/probe_alphamax_hyst_live.py",
+      "scripts/probe_alphamax_shorttail.py",
+      "scripts/probe_alphamax_turnover.py",
+      "scripts/probe_alphamax_volscale.py",
+      "scripts/probe_alphamax_weighting.py",
+      "scripts/probe_alphatrend_arp.py",
+      "scripts/probe_alphatrend_breadth.py",
+      "scripts/probe_econtrend.py"
+    ],
+    "union_registration_paths": [
+      "scripts/exp2_crypto_vrp.py",
+      "scripts/probe_alphamax_hyst_live.py",
+      "scripts/probe_alphamax_turnover.py",
+      "scripts/probe_alphamax_volscale.py",
+      "scripts/probe_alphamax_weighting.py",
+      "scripts/probe_alphatrend_arp.py",
+      "scripts/probe_alphatrend_breadth.py"
+    ]
+  },
+  "generated_at": "2026-08-17T09:54:47.988797+00:00",
+  "restated_variants": [
+    {
+      "clears_dsr_0_95": false,
+      "family": "alphamax_betaneutral",
+      "historical_artifact_path": "artifacts/probe/alphamax_betaneutral/report.json",
+      "historical_artifact_sha256": "4368fd9e70a6c0788286005d877bd6a6f8da6bceeac6804d8a87e307369a36b1",
+      "historical_dsr": 0.18318518260818883,
+      "historical_dsr_contexts": {
+        "var": {
+          "N": 114,
+          "dsr": 0.18318518260818883,
+          "psr": 0.9074916922615688
+        },
+        "var_sharadar": {
+          "N": 12,
+          "dsr": 0.6151906920206774,
+          "psr": 0.9074916922615688
+        }
+      },
+      "n_obs": 770,
+      "restated_dsr": 0.16580442555393188,
+      "restated_expected_max_sr_per_period": 0.08355562253155972,
+      "restated_psr": 0.9074916922615678,
+      "restated_sharpe_ann_252": 0.7656098890844911,
+      "return_contract": "persisted_simple_daily_returns",
+      "returns_path": "artifacts/probe/alphamax_betaneutral/net_returns_LIVE_REPLICA_k30_dn_63.csv",
+      "returns_sha256": "c24f53d944942f3dd5677bf57411e175d9c2f6b8729a1cea1aa8982e074b1125",
+      "status": "RESTATED_CURRENT_UNION",
+      "variant": "LIVE-REPLICA k30_dn_63/BASE"
+    },
+    {
+      "clears_dsr_0_95": false,
+      "family": "alphamax_betaneutral",
+      "historical_artifact_path": "artifacts/probe/alphamax_betaneutral/report.json",
+      "historical_artifact_sha256": "4368fd9e70a6c0788286005d877bd6a6f8da6bceeac6804d8a87e307369a36b1",
+      "historical_dsr": 0.13499322501616817,
+      "historical_dsr_contexts": {
+        "var": {
+          "N": 114,
+          "dsr": 0.13499322501616817,
+          "psr": 0.872467055515878
+        },
+        "var_sharadar": {
+          "N": 12,
+          "dsr": 0.5397338518183166,
+          "psr": 0.872467055515878
+        }
+      },
+      "n_obs": 770,
+      "restated_dsr": 0.12078792406733818,
+      "restated_expected_max_sr_per_period": 0.08355562253155972,
+      "restated_psr": 0.8724670555158758,
+      "restated_sharpe_ann_252": 0.6537457127025781,
+      "return_contract": "persisted_simple_daily_returns",
+      "returns_path": "artifacts/probe/alphamax_betaneutral/net_returns_LIVE_REPLICA_k30_dn_63.csv",
+      "returns_sha256": "c24f53d944942f3dd5677bf57411e175d9c2f6b8729a1cea1aa8982e074b1125",
+      "status": "RESTATED_CURRENT_UNION",
+      "variant": "LIVE-REPLICA k30_dn_63/BASE_asis"
+    },
+    {
+      "clears_dsr_0_95": false,
+      "family": "alphamax_betaneutral",
+      "historical_artifact_path": "artifacts/probe/alphamax_betaneutral/report.json",
+      "historical_artifact_sha256": "4368fd9e70a6c0788286005d877bd6a6f8da6bceeac6804d8a87e307369a36b1",
+      "historical_dsr": 0.06900091368211388,
+      "historical_dsr_contexts": {
+        "var": {
+          "N": 114,
+          "dsr": 0.06900091368211388,
+          "psr": 0.7743681055473242
+        },
+        "var_sharadar": {
+          "N": 12,
+          "dsr": 0.3886239400101171,
+          "psr": 0.7743681055473242
+        }
+      },
+      "n_obs": 770,
+      "restated_dsr": 0.060439365969330396,
+      "restated_expected_max_sr_per_period": 0.08355562253155972,
+      "restated_psr": 0.7743681055473217,
+      "restated_sharpe_ann_252": 0.4336013613047105,
+      "return_contract": "persisted_simple_daily_returns",
+      "returns_path": "artifacts/probe/alphamax_betaneutral/net_returns_LIVE_REPLICA_k30_dn_63.csv",
+      "returns_sha256": "c24f53d944942f3dd5677bf57411e175d9c2f6b8729a1cea1aa8982e074b1125",
+      "status": "RESTATED_CURRENT_UNION",
+      "variant": "LIVE-REPLICA k30_dn_63/CTRL_NETLONG"
+    },
+    {
+      "clears_dsr_0_95": false,
+      "family": "alphamax_betaneutral",
+      "historical_artifact_path": "artifacts/probe/alphamax_betaneutral/report.json",
+      "historical_artifact_sha256": "4368fd9e70a6c0788286005d877bd6a6f8da6bceeac6804d8a87e307369a36b1",
+      "historical_dsr": 0.07894503348502518,
+      "historical_dsr_contexts": {
+        "var": {
+          "N": 114,
+          "dsr": 0.07894503348502518,
+          "psr": 0.7944971438212405
+        },
+        "var_sharadar": {
+          "N": 12,
+          "dsr": 0.41564495715495825,
+          "psr": 0.7944971438212405
+        }
+      },
+      "n_obs": 770,
+      "restated_dsr": 0.06944227947578989,
+      "restated_expected_max_sr_per_period": 0.08355562253155972,
+      "restated_psr": 0.7944971438212391,
+      "restated_sharpe_ann_252": 0.4736885938628595,
+      "return_contract": "persisted_simple_daily_returns",
+      "returns_path": "artifacts/probe/alphamax_betaneutral/net_returns_LIVE_REPLICA_k30_dn_63.csv",
+      "returns_sha256": "c24f53d944942f3dd5677bf57411e175d9c2f6b8729a1cea1aa8982e074b1125",
+      "status": "RESTATED_CURRENT_UNION",
+      "variant": "LIVE-REPLICA k30_dn_63/V1_betaneutral"
+    },
+    {
+      "clears_dsr_0_95": false,
+      "family": "alphamax_betaneutral",
+      "historical_artifact_path": "artifacts/probe/alphamax_betaneutral/report.json",
+      "historical_artifact_sha256": "4368fd9e70a6c0788286005d877bd6a6f8da6bceeac6804d8a87e307369a36b1",
+      "historical_dsr": 0.10746522312237888,
+      "historical_dsr_contexts": {
+        "var": {
+          "N": 114,
+          "dsr": 0.10746522312237888,
+          "psr": 0.8394869523478339
+        },
+        "var_sharadar": {
+          "N": 12,
+          "dsr": 0.4832647227407316,
+          "psr": 0.8394869523478339
+        }
+      },
+      "n_obs": 770,
+      "restated_dsr": 0.09546728048145464,
+      "restated_expected_max_sr_per_period": 0.08355562253155972,
+      "restated_psr": 0.839486952347831,
+      "restated_sharpe_ann_252": 0.5722441554796375,
+      "return_contract": "persisted_simple_daily_returns",
+      "returns_path": "artifacts/probe/alphamax_betaneutral/net_returns_LIVE_REPLICA_k30_dn_63.csv",
+      "returns_sha256": "c24f53d944942f3dd5677bf57411e175d9c2f6b8729a1cea1aa8982e074b1125",
+      "status": "RESTATED_CURRENT_UNION",
+      "variant": "LIVE-REPLICA k30_dn_63/V2_betahedged"
+    },
+    {
+      "clears_dsr_0_95": false,
+      "family": "alphamax_betaneutral",
+      "historical_artifact_path": "artifacts/probe/alphamax_betaneutral/report.json",
+      "historical_artifact_sha256": "4368fd9e70a6c0788286005d877bd6a6f8da6bceeac6804d8a87e307369a36b1",
+      "historical_dsr": 0.11062585594085239,
+      "historical_dsr_contexts": {
+        "var": {
+          "N": 114,
+          "dsr": 0.11062585594085239,
+          "psr": 0.8438313655612051
+        },
+        "var_sharadar": {
+          "N": 12,
+          "dsr": 0.4902365855764164,
+          "psr": 0.8438313655612051
+        }
+      },
+      "n_obs": 770,
+      "restated_dsr": 0.09836282333856755,
+      "restated_expected_max_sr_per_period": 0.08355562253155972,
+      "restated_psr": 0.8438313655612024,
+      "restated_sharpe_ann_252": 0.5823341068316541,
+      "return_contract": "persisted_simple_daily_returns",
+      "returns_path": "artifacts/probe/alphamax_betaneutral/net_returns_LIVE_REPLICA_k30_dn_63.csv",
+      "returns_sha256": "c24f53d944942f3dd5677bf57411e175d9c2f6b8729a1cea1aa8982e074b1125",
+      "status": "RESTATED_CURRENT_UNION",
+      "variant": "LIVE-REPLICA k30_dn_63/V2m_hedge_21d"
+    },
+    {
+      "clears_dsr_0_95": false,
+      "family": "alphamax_betaneutral",
+      "historical_artifact_path": "artifacts/probe/alphamax_betaneutral/report.json",
+      "historical_artifact_sha256": "4368fd9e70a6c0788286005d877bd6a6f8da6bceeac6804d8a87e307369a36b1",
+      "historical_dsr": 4.7503766763392075e-08,
+      "historical_dsr_contexts": {
+        "var": {
+          "N": 114,
+          "dsr": 4.7503766763392075e-08,
+          "psr": 0.7301569007035208
+        },
+        "var_sharadar": {
+          "N": 12,
+          "dsr": 0.016054557271363172,
+          "psr": 0.7301569007035208
+        }
+      },
+      "n_obs": 5427,
+      "restated_dsr": 1.7297702002307746e-08,
+      "restated_expected_max_sr_per_period": 0.08355562253155972,
+      "restated_psr": 0.7301569007035122,
+      "restated_sharpe_ann_252": 0.13270876813082638,
+      "return_contract": "persisted_simple_daily_returns",
+      "returns_path": "artifacts/probe/alphamax_betaneutral/net_returns_RESEARCH_top_2000_K_100.csv",
+      "returns_sha256": "4d7c45f7698bc8b626b5b464f2b9ab5fb47904b9d6cee3cd5f9e0c4bcac7f3ef",
+      "status": "RESTATED_CURRENT_UNION",
+      "variant": "RESEARCH top-2000 K=100/BASE"
+    },
+    {
+      "clears_dsr_0_95": false,
+      "family": "alphamax_betaneutral",
+      "historical_artifact_path": "artifacts/probe/alphamax_betaneutral/report.json",
+      "historical_artifact_sha256": "4368fd9e70a6c0788286005d877bd6a6f8da6bceeac6804d8a87e307369a36b1",
+      "historical_dsr": 4.799554029703357e-11,
+      "historical_dsr_contexts": {
+        "var": {
+          "N": 114,
+          "dsr": 4.799554029703357e-11,
+          "psr": 0.3150143079184563
+        },
+        "var_sharadar": {
+          "N": 12,
+          "dsr": 0.0005619005168545621,
+          "psr": 0.3150143079184563
+        }
+      },
+      "n_obs": 5427,
+      "restated_dsr": 1.4182429054140459e-11,
+      "restated_expected_max_sr_per_period": 0.08355562253155972,
+      "restated_psr": 0.3150143079184477,
+      "restated_sharpe_ann_252": -0.10349869757970698,
+      "return_contract": "persisted_simple_daily_returns",
+      "returns_path": "artifacts/probe/alphamax_betaneutral/net_returns_RESEARCH_top_2000_K_100.csv",
+      "returns_sha256": "4d7c45f7698bc8b626b5b464f2b9ab5fb47904b9d6cee3cd5f9e0c4bcac7f3ef",
+      "status": "RESTATED_CURRENT_UNION",
+      "variant": "RESEARCH top-2000 K=100/BASE_asis"
+    },
+    {
+      "clears_dsr_0_95": false,
+      "family": "alphamax_betaneutral",
+      "historical_artifact_path": "artifacts/probe/alphamax_betaneutral/report.json",
+      "historical_artifact_sha256": "4368fd9e70a6c0788286005d877bd6a6f8da6bceeac6804d8a87e307369a36b1",
+      "historical_dsr": 7.46388626630024e-08,
+      "historical_dsr_contexts": {
+        "var": {
+          "N": 114,
+          "dsr": 7.46388626630024e-08,
+          "psr": 0.7557814072384476
+        },
+        "var_sharadar": {
+          "N": 12,
+          "dsr": 0.019598140946863362,
+          "psr": 0.7557814072384476
+        }
+      },
+      "n_obs": 5427,
+      "restated_dsr": 2.758891266642376e-08,
+      "restated_expected_max_sr_per_period": 0.08355562253155972,
+      "restated_psr": 0.7557814072384397,
+      "restated_sharpe_ann_252": 0.1499909464477643,
+      "return_contract": "persisted_simple_daily_returns",
+      "returns_path": "artifacts/probe/alphamax_betaneutral/net_returns_RESEARCH_top_2000_K_100.csv",
+      "returns_sha256": "4d7c45f7698bc8b626b5b464f2b9ab5fb47904b9d6cee3cd5f9e0c4bcac7f3ef",
+      "status": "RESTATED_CURRENT_UNION",
+      "variant": "RESEARCH top-2000 K=100/CTRL_NETLONG"
+    },
+    {
+      "clears_dsr_0_95": false,
+      "family": "alphamax_betaneutral",
+      "historical_artifact_path": "artifacts/probe/alphamax_betaneutral/report.json",
+      "historical_artifact_sha256": "4368fd9e70a6c0788286005d877bd6a6f8da6bceeac6804d8a87e307369a36b1",
+      "historical_dsr": 2.7610207012570956e-06,
+      "historical_dsr_contexts": {
+        "var": {
+          "N": 114,
+          "dsr": 2.7610207012570956e-06,
+          "psr": 0.9160016161717004
+        },
+        "var_sharadar": {
+          "N": 12,
+          "dsr": 0.08608204366379385,
+          "psr": 0.9160016161717004
+        }
+      },
+      "n_obs": 5427,
+      "restated_dsr": 1.1590618565471144e-06,
+      "restated_expected_max_sr_per_period": 0.08355562253155972,
+      "restated_psr": 0.9160016161716971,
+      "restated_sharpe_ann_252": 0.29967554636583743,
+      "return_contract": "persisted_simple_daily_returns",
+      "returns_path": "artifacts/probe/alphamax_betaneutral/net_returns_RESEARCH_top_2000_K_100.csv",
+      "returns_sha256": "4d7c45f7698bc8b626b5b464f2b9ab5fb47904b9d6cee3cd5f9e0c4bcac7f3ef",
+      "status": "RESTATED_CURRENT_UNION",
+      "variant": "RESEARCH top-2000 K=100/V1_betaneutral"
+    },
+    {
+      "clears_dsr_0_95": false,
+      "family": "alphamax_betaneutral",
+      "historical_artifact_path": "artifacts/probe/alphamax_betaneutral/report.json",
+      "historical_artifact_sha256": "4368fd9e70a6c0788286005d877bd6a6f8da6bceeac6804d8a87e307369a36b1",
+      "historical_dsr": 1.627080365266942e-07,
+      "historical_dsr_contexts": {
+        "var": {
+          "N": 114,
+          "dsr": 1.627080365266942e-07,
+          "psr": 0.7977156637807301
+        },
+        "var_sharadar": {
+          "N": 12,
+          "dsr": 0.027475075717917387,
+          "psr": 0.7977156637807301
+        }
+      },
+      "n_obs": 5427,
+      "restated_dsr": 6.173836095342205e-08,
+      "restated_expected_max_sr_per_period": 0.08355562253155972,
+      "restated_psr": 0.7977156637807237,
+      "restated_sharpe_ann_252": 0.18059247697513695,
+      "return_contract": "persisted_simple_daily_returns",
+      "returns_path": "artifacts/probe/alphamax_betaneutral/net_returns_RESEARCH_top_2000_K_100.csv",
+      "returns_sha256": "4d7c45f7698bc8b626b5b464f2b9ab5fb47904b9d6cee3cd5f9e0c4bcac7f3ef",
+      "status": "RESTATED_CURRENT_UNION",
+      "variant": "RESEARCH top-2000 K=100/V2_betahedged"
+    },
+    {
+      "clears_dsr_0_95": false,
+      "family": "alphamax_betaneutral",
+      "historical_artifact_path": "artifacts/probe/alphamax_betaneutral/report.json",
+      "historical_artifact_sha256": "4368fd9e70a6c0788286005d877bd6a6f8da6bceeac6804d8a87e307369a36b1",
+      "historical_dsr": 1.372002418123303e-07,
+      "historical_dsr_contexts": {
+        "var": {
+          "N": 114,
+          "dsr": 1.372002418123303e-07,
+          "psr": 0.7887940552105417
+        },
+        "var_sharadar": {
+          "N": 12,
+          "dsr": 0.025532888943566482,
+          "psr": 0.7887940552105417
+        }
+      },
+      "n_obs": 5427,
+      "restated_dsr": 5.176058330343882e-08,
+      "restated_expected_max_sr_per_period": 0.08355562253155972,
+      "restated_psr": 0.788794055210535,
+      "restated_sharpe_ann_252": 0.1737965309591083,
+      "return_contract": "persisted_simple_daily_returns",
+      "returns_path": "artifacts/probe/alphamax_betaneutral/net_returns_RESEARCH_top_2000_K_100.csv",
+      "returns_sha256": "4d7c45f7698bc8b626b5b464f2b9ab5fb47904b9d6cee3cd5f9e0c4bcac7f3ef",
+      "status": "RESTATED_CURRENT_UNION",
+      "variant": "RESEARCH top-2000 K=100/V2m_hedge_21d"
+    },
+    {
+      "clears_dsr_0_95": false,
+      "family": "alphamax_construction",
+      "historical_artifact_path": "artifacts/sweep/alphamax_construction/arms.json",
+      "historical_artifact_sha256": "17884a560fc913b8e5b387b283074914d476f84314eeaea987fca28d55558124",
+      "historical_dsr": 0.1503872922614043,
+      "historical_dsr_contexts": null,
+      "n_obs": 728,
+      "restated_dsr": 0.1389669670284981,
+      "restated_expected_max_sr_per_period": 0.08355562253155972,
+      "restated_psr": 0.8728535360640715,
+      "restated_sharpe_ann_252": 0.6795997994735763,
+      "return_contract": "persisted_simple_daily_returns",
+      "returns_path": "artifacts/sweep/alphamax_construction/wf_A1/equity.parquet",
+      "returns_sha256": "a4e2c1f6cb1b313ef0cf0656f46fe8b3f938065fb75395182e9f8c236ac5e304",
+      "status": "RESTATED_CURRENT_UNION",
+      "variant": "A1"
+    },
+    {
+      "clears_dsr_0_95": false,
+      "family": "alphamax_construction",
+      "historical_artifact_path": "artifacts/sweep/alphamax_construction/arms.json",
+      "historical_artifact_sha256": "17884a560fc913b8e5b387b283074914d476f84314eeaea987fca28d55558124",
+      "historical_dsr": 0.20972277192259448,
+      "historical_dsr_contexts": null,
+      "n_obs": 728,
+      "restated_dsr": 0.19554333251002132,
+      "restated_expected_max_sr_per_period": 0.08355562253155972,
+      "restated_psr": 0.9146949249228429,
+      "restated_sharpe_ann_252": 0.8157928391719825,
+      "return_contract": "persisted_simple_daily_returns",
+      "returns_path": "artifacts/sweep/alphamax_construction/wf_A2/equity.parquet",
+      "returns_sha256": "ae26d7bd755d02411789e184bdf724561ec78ca46a2881cbb55453733d9faa89",
+      "status": "RESTATED_CURRENT_UNION",
+      "variant": "A2"
+    },
+    {
+      "clears_dsr_0_95": false,
+      "family": "alphamax_construction",
+      "historical_artifact_path": "artifacts/sweep/alphamax_construction/arms.json",
+      "historical_artifact_sha256": "17884a560fc913b8e5b387b283074914d476f84314eeaea987fca28d55558124",
+      "historical_dsr": 0.29472584782171063,
+      "historical_dsr_contexts": null,
+      "n_obs": 615,
+      "restated_dsr": 0.27904577823119403,
+      "restated_expected_max_sr_per_period": 0.08355562253155972,
+      "restated_psr": 0.9272073818601756,
+      "restated_sharpe_ann_252": 0.9457804807572249,
+      "return_contract": "persisted_simple_daily_returns",
+      "returns_path": "artifacts/sweep/alphamax_construction/wf_G1/equity.parquet",
+      "returns_sha256": "e8707f72006ca09026f391e4c3d50d781943bbf3c0d26e39c7606aa81370cd4d",
+      "status": "RESTATED_CURRENT_UNION",
+      "variant": "G1"
+    },
+    {
+      "clears_dsr_0_95": false,
+      "family": "alphamax_construction",
+      "historical_artifact_path": "artifacts/sweep/alphamax_construction/arms.json",
+      "historical_artifact_sha256": "17884a560fc913b8e5b387b283074914d476f84314eeaea987fca28d55558124",
+      "historical_dsr": 0.5292155440828338,
+      "historical_dsr_contexts": null,
+      "n_obs": 728,
+      "restated_dsr": 0.5092982941909121,
+      "restated_expected_max_sr_per_period": 0.08355562253155972,
+      "restated_psr": 0.9874207979981424,
+      "restated_sharpe_ann_252": 1.3403586496178599,
+      "return_contract": "persisted_simple_daily_returns",
+      "returns_path": "artifacts/sweep/alphamax_construction/wf_I1/equity.parquet",
+      "returns_sha256": "06ef8601de84016a8358d04a53b5fa5ec8b1c2da10146218438b223d8552fcb9",
+      "status": "RESTATED_CURRENT_UNION",
+      "variant": "I1"
+    },
+    {
+      "clears_dsr_0_95": false,
+      "family": "alphamax_construction",
+      "historical_artifact_path": "artifacts/sweep/alphamax_construction/arms.json",
+      "historical_artifact_sha256": "17884a560fc913b8e5b387b283074914d476f84314eeaea987fca28d55558124",
+      "historical_dsr": 0.14176094350557894,
+      "historical_dsr_contexts": null,
+      "n_obs": 728,
+      "restated_dsr": 0.1307591054317177,
+      "restated_expected_max_sr_per_period": 0.08355562253155972,
+      "restated_psr": 0.8664336121550483,
+      "restated_sharpe_ann_252": 0.6593045846835399,
+      "return_contract": "persisted_simple_daily_returns",
+      "returns_path": "artifacts/sweep/alphamax_construction/wf_I2/equity.parquet",
+      "returns_sha256": "6cd5b37861c0e442370effa68ccd5ce204bc214a1cb2f3f1e5b90b59412e9fd1",
+      "status": "RESTATED_CURRENT_UNION",
+      "variant": "I2"
+    },
+    {
+      "clears_dsr_0_95": false,
+      "family": "alphamax_construction",
+      "historical_artifact_path": "artifacts/sweep/alphamax_construction/arms.json",
+      "historical_artifact_sha256": "17884a560fc913b8e5b387b283074914d476f84314eeaea987fca28d55558124",
+      "historical_dsr": 0.024886487578582524,
+      "historical_dsr_contexts": null,
+      "n_obs": 728,
+      "restated_dsr": 0.022066605588134693,
+      "restated_expected_max_sr_per_period": 0.08355562253155972,
+      "restated_psr": 0.5963160186893377,
+      "restated_sharpe_ann_252": 0.14331346323106478,
+      "return_contract": "persisted_simple_daily_returns",
+      "returns_path": "artifacts/sweep/alphamax_construction/wf_I3/equity.parquet",
+      "returns_sha256": "4adcffbe1363eabc5a68a3875ad3efcbbc04e812f15d3740eaa59d10ef1530c1",
+      "status": "RESTATED_CURRENT_UNION",
+      "variant": "I3"
+    },
+    {
+      "clears_dsr_0_95": false,
+      "family": "alphamax_construction",
+      "historical_artifact_path": "artifacts/sweep/alphamax_construction/arms.json",
+      "historical_artifact_sha256": "17884a560fc913b8e5b387b283074914d476f84314eeaea987fca28d55558124",
+      "historical_dsr": 0.15648593914630993,
+      "historical_dsr_contexts": null,
+      "n_obs": 728,
+      "restated_dsr": 0.1447758393317125,
+      "restated_expected_max_sr_per_period": 0.08355562253155972,
+      "restated_psr": 0.8772762859863852,
+      "restated_sharpe_ann_252": 0.6937769470347184,
+      "return_contract": "persisted_simple_daily_returns",
+      "returns_path": "artifacts/sweep/alphamax_construction/wf_I4/equity.parquet",
+      "returns_sha256": "9ef5ceaa277fb28a8a73604f4122981bea52c8b8ec07af5c35936f83f50afd9b",
+      "status": "RESTATED_CURRENT_UNION",
+      "variant": "I4"
+    },
+    {
+      "clears_dsr_0_95": false,
+      "family": "alphamax_construction",
+      "historical_artifact_path": "artifacts/sweep/alphamax_construction/arms.json",
+      "historical_artifact_sha256": "17884a560fc913b8e5b387b283074914d476f84314eeaea987fca28d55558124",
+      "historical_dsr": 0.1503872922614043,
+      "historical_dsr_contexts": null,
+      "n_obs": 728,
+      "restated_dsr": 0.1389669670284981,
+      "restated_expected_max_sr_per_period": 0.08355562253155972,
+      "restated_psr": 0.8728535360640715,
+      "restated_sharpe_ann_252": 0.6795997994735763,
+      "return_contract": "persisted_simple_daily_returns",
+      "returns_path": "artifacts/sweep/alphamax_construction/wf_R0/equity.parquet",
+      "returns_sha256": "a4e2c1f6cb1b313ef0cf0656f46fe8b3f938065fb75395182e9f8c236ac5e304",
+      "status": "RESTATED_CURRENT_UNION",
+      "variant": "R0"
+    },
+    {
+      "clears_dsr_0_95": false,
+      "family": "alphamax_constructions",
+      "historical_artifact_path": "artifacts/probe/alphamax_constructions/gauntlet_eq_52whigh_252/walkforward.json",
+      "historical_artifact_sha256": "0cfd1d53e1eb4cfb9b759178bb4a4c509b94e1f300d9aae8191540957a0102eb",
+      "historical_dsr": 2.0245783579259363e-05,
+      "historical_dsr_contexts": null,
+      "n_obs": 5384,
+      "restated_dsr": 7.679235557346654e-15,
+      "restated_expected_max_sr_per_period": 0.08355562253155972,
+      "restated_psr": 0.11907670211650934,
+      "restated_sharpe_ann_252": -0.24053372113418137,
+      "return_contract": "persisted_simple_daily_returns",
+      "returns_path": "artifacts/probe/alphamax_constructions/gauntlet_eq_52whigh_252/equity.parquet",
+      "returns_sha256": "e202df499036ecbd46d6eef383131e51a8671a80fcb617ca945721802c765c96",
+      "status": "RESTATED_CURRENT_UNION",
+      "variant": "gauntlet_eq_52whigh_252"
+    },
+    {
+      "clears_dsr_0_95": false,
+      "family": "alphamax_shorttail",
+      "historical_artifact_path": "artifacts/probe/alphamax_shorttail/report.json",
+      "historical_artifact_sha256": "022d843a1295f3cbae2fc3054e3618388184a86114efa561296855867ed9b436",
+      "historical_dsr": 8.822227373534252e-11,
+      "historical_dsr_contexts": {
+        "var": {
+          "N": 114,
+          "dsr": 8.822227373534252e-11,
+          "psr": 0.3465281508141569
+        },
+        "var_sharadar": {
+          "N": 12,
+          "dsr": 0.0007675223794841921,
+          "psr": 0.3465281508141569
+        }
+      },
+      "n_obs": 5428,
+      "restated_dsr": 2.6532361560277838e-11,
+      "restated_expected_max_sr_per_period": 0.08355562253155972,
+      "restated_psr": 0.34652815081414157,
+      "restated_sharpe_ann_252": -0.08488980419340714,
+      "return_contract": "persisted_simple_daily_returns",
+      "returns_path": "artifacts/probe/alphamax_shorttail/net_returns.csv",
+      "returns_sha256": "3005b9866a872e8524c69518608606ce4d127877bf93e532a125ebe32bee3d15",
+      "status": "RESTATED_CURRENT_UNION",
+      "variant": "baseline"
+    },
+    {
+      "clears_dsr_0_95": false,
+      "family": "alphamax_shorttail",
+      "historical_artifact_path": "artifacts/probe/alphamax_shorttail/report.json",
+      "historical_artifact_sha256": "022d843a1295f3cbae2fc3054e3618388184a86114efa561296855867ed9b436",
+      "historical_dsr": 7.842875880125914e-11,
+      "historical_dsr_contexts": {
+        "var": {
+          "N": 114,
+          "dsr": 7.842875880125914e-11,
+          "psr": 0.3410572042377854
+        },
+        "var_sharadar": {
+          "N": 12,
+          "dsr": 0.0007255420064717984,
+          "psr": 0.3410572042377854
+        }
+      },
+      "n_obs": 5428,
+      "restated_dsr": 2.3496725903002413e-11,
+      "restated_expected_max_sr_per_period": 0.08355562253155972,
+      "restated_psr": 0.3410572042377683,
+      "restated_sharpe_ann_252": -0.08804161704706592,
+      "return_contract": "persisted_simple_daily_returns",
+      "returns_path": "artifacts/probe/alphamax_shorttail/net_returns.csv",
+      "returns_sha256": "3005b9866a872e8524c69518608606ce4d127877bf93e532a125ebe32bee3d15",
+      "status": "RESTATED_CURRENT_UNION",
+      "variant": "cap_1.25x"
+    },
+    {
+      "clears_dsr_0_95": false,
+      "family": "alphamax_shorttail",
+      "historical_artifact_path": "artifacts/probe/alphamax_shorttail/report.json",
+      "historical_artifact_sha256": "022d843a1295f3cbae2fc3054e3618388184a86114efa561296855867ed9b436",
+      "historical_dsr": 3.2147444198833034e-11,
+      "historical_dsr_contexts": {
+        "var": {
+          "N": 114,
+          "dsr": 3.2147444198833034e-11,
+          "psr": 0.2946568486732076
+        },
+        "var_sharadar": {
+          "N": 12,
+          "dsr": 0.0004554833550054771,
+          "psr": 0.2946568486732076
+        }
+      },
+      "n_obs": 5428,
+      "restated_dsr": 9.393912243562637e-12,
+      "restated_expected_max_sr_per_period": 0.08355562253155972,
+      "restated_psr": 0.29465684867319164,
+      "restated_sharpe_ann_252": -0.11595100744972474,
+      "return_contract": "persisted_simple_daily_returns",
+      "returns_path": "artifacts/probe/alphamax_shorttail/net_returns.csv",
+      "returns_sha256": "3005b9866a872e8524c69518608606ce4d127877bf93e532a125ebe32bee3d15",
+      "status": "RESTATED_CURRENT_UNION",
+      "variant": "cap_1.5x"
+    },
+    {
+      "clears_dsr_0_95": false,
+      "family": "alphamax_shorttail",
+      "historical_artifact_path": "artifacts/probe/alphamax_shorttail/report.json",
+      "historical_artifact_sha256": "022d843a1295f3cbae2fc3054e3618388184a86114efa561296855867ed9b436",
+      "historical_dsr": 2.1769220759488347e-11,
+      "historical_dsr_contexts": {
+        "var": {
+          "N": 114,
+          "dsr": 2.1769220759488347e-11,
+          "psr": 0.27549860260206493
+        },
+        "var_sharadar": {
+          "N": 12,
+          "dsr": 0.0003705788537395945,
+          "psr": 0.27549860260206493
+        }
+      },
+      "n_obs": 5428,
+      "restated_dsr": 6.293543234303767e-12,
+      "restated_expected_max_sr_per_period": 0.08355562253155972,
+      "restated_psr": 0.27549860260205106,
+      "restated_sharpe_ann_252": -0.1280371106473736,
+      "return_contract": "persisted_simple_daily_returns",
+      "returns_path": "artifacts/probe/alphamax_shorttail/net_returns.csv",
+      "returns_sha256": "3005b9866a872e8524c69518608606ce4d127877bf93e532a125ebe32bee3d15",
+      "status": "RESTATED_CURRENT_UNION",
+      "variant": "cap_2.0x"
+    },
+    {
+      "clears_dsr_0_95": false,
+      "family": "alphamax_shorttail",
+      "historical_artifact_path": "artifacts/probe/alphamax_shorttail/report.json",
+      "historical_artifact_sha256": "022d843a1295f3cbae2fc3054e3618388184a86114efa561296855867ed9b436",
+      "historical_dsr": 2.8411187807587575e-12,
+      "historical_dsr_contexts": {
+        "var": {
+          "N": 114,
+          "dsr": 2.8411187807587575e-12,
+          "psr": 0.1895303837408352
+        },
+        "var_sharadar": {
+          "N": 12,
+          "dsr": 0.00012461513640246255,
+          "psr": 0.1895303837408352
+        }
+      },
+      "n_obs": 5428,
+      "restated_dsr": 7.770282675189196e-13,
+      "restated_expected_max_sr_per_period": 0.08355562253155972,
+      "restated_psr": 0.18953038374082581,
+      "restated_sharpe_ann_252": -0.1884898468040332,
+      "return_contract": "persisted_simple_daily_returns",
+      "returns_path": "artifacts/probe/alphamax_shorttail/net_returns.csv",
+      "returns_sha256": "3005b9866a872e8524c69518608606ce4d127877bf93e532a125ebe32bee3d15",
+      "status": "RESTATED_CURRENT_UNION",
+      "variant": "daily_reset"
+    },
+    {
+      "clears_dsr_0_95": false,
+      "family": "alphamax_shorttail",
+      "historical_artifact_path": "artifacts/probe/alphamax_shorttail/report.json",
+      "historical_artifact_sha256": "022d843a1295f3cbae2fc3054e3618388184a86114efa561296855867ed9b436",
+      "historical_dsr": 1.0772097576996695e-11,
+      "historical_dsr_contexts": {
+        "var": {
+          "N": 114,
+          "dsr": 1.0772097576996695e-11,
+          "psr": 0.24319572815781254
+        },
+        "var_sharadar": {
+          "N": 12,
+          "dsr": 0.00025498629494836837,
+          "psr": 0.24319572815781254
+        }
+      },
+      "n_obs": 5428,
+      "restated_dsr": 3.0547306113654032e-12,
+      "restated_expected_max_sr_per_period": 0.08355562253155972,
+      "restated_psr": 0.24319572815779678,
+      "restated_sharpe_ann_252": -0.14936977092137294,
+      "return_contract": "persisted_simple_daily_returns",
+      "returns_path": "artifacts/probe/alphamax_shorttail/net_returns.csv",
+      "returns_sha256": "3005b9866a872e8524c69518608606ce4d127877bf93e532a125ebe32bee3d15",
+      "status": "RESTATED_CURRENT_UNION",
+      "variant": "stop_100"
+    },
+    {
+      "clears_dsr_0_95": false,
+      "family": "alphamax_shorttail",
+      "historical_artifact_path": "artifacts/probe/alphamax_shorttail/report.json",
+      "historical_artifact_sha256": "022d843a1295f3cbae2fc3054e3618388184a86114efa561296855867ed9b436",
+      "historical_dsr": 1.273194953546501e-09,
+      "historical_dsr_contexts": {
+        "var": {
+          "N": 114,
+          "dsr": 1.273194953546501e-09,
+          "psr": 0.50606486964832
+        },
+        "var_sharadar": {
+          "N": 12,
+          "dsr": 0.002957892524689815,
+          "psr": 0.50606486964832
+        }
+      },
+      "n_obs": 5428,
+      "restated_dsr": 4.1365344282823984e-10,
+      "restated_expected_max_sr_per_period": 0.08355562253155972,
+      "restated_psr": 0.5060648696483006,
+      "restated_sharpe_ann_252": 0.003276348473192958,
+      "return_contract": "persisted_simple_daily_returns",
+      "returns_path": "artifacts/probe/alphamax_shorttail/net_returns.csv",
+      "returns_sha256": "3005b9866a872e8524c69518608606ce4d127877bf93e532a125ebe32bee3d15",
+      "status": "RESTATED_CURRENT_UNION",
+      "variant": "stop_30"
+    },
+    {
+      "clears_dsr_0_95": false,
+      "family": "alphamax_shorttail",
+      "historical_artifact_path": "artifacts/probe/alphamax_shorttail/report.json",
+      "historical_artifact_sha256": "022d843a1295f3cbae2fc3054e3618388184a86114efa561296855867ed9b436",
+      "historical_dsr": 7.009781804618152e-11,
+      "historical_dsr_contexts": {
+        "var": {
+          "N": 114,
+          "dsr": 7.009781804618152e-11,
+          "psr": 0.3349038295840412
+        },
+        "var_sharadar": {
+          "N": 12,
+          "dsr": 0.0006841357933388738,
+          "psr": 0.3349038295840412
+        }
+      },
+      "n_obs": 5428,
+      "restated_dsr": 2.093569972040187e-11,
+      "restated_expected_max_sr_per_period": 0.08355562253155972,
+      "restated_psr": 0.33490382958402154,
+      "restated_sharpe_ann_252": -0.09165533070983371,
+      "return_contract": "persisted_simple_daily_returns",
+      "returns_path": "artifacts/probe/alphamax_shorttail/net_returns.csv",
+      "returns_sha256": "3005b9866a872e8524c69518608606ce4d127877bf93e532a125ebe32bee3d15",
+      "status": "RESTATED_CURRENT_UNION",
+      "variant": "stop_50"
+    },
+    {
+      "clears_dsr_0_95": false,
+      "family": "alphamax_shorttail",
+      "historical_artifact_path": "artifacts/probe/alphamax_shorttail/report.json",
+      "historical_artifact_sha256": "022d843a1295f3cbae2fc3054e3618388184a86114efa561296855867ed9b436",
+      "historical_dsr": 2.3771534025323603e-12,
+      "historical_dsr_contexts": {
+        "var": {
+          "N": 114,
+          "dsr": 2.3771534025323603e-12,
+          "psr": 0.18314224242272253
+        },
+        "var_sharadar": {
+          "N": 12,
+          "dsr": 0.00011320210846673789,
+          "psr": 0.18314224242272253
+        }
+      },
+      "n_obs": 5428,
+      "restated_dsr": 6.469853388482527e-13,
+      "restated_expected_max_sr_per_period": 0.08355562253155972,
+      "restated_psr": 0.1831422424227046,
+      "restated_sharpe_ann_252": -0.19354717407470712,
+      "return_contract": "persisted_simple_daily_returns",
+      "returns_path": "artifacts/probe/alphamax_shorttail/net_returns.csv",
+      "returns_sha256": "3005b9866a872e8524c69518608606ce4d127877bf93e532a125ebe32bee3d15",
+      "status": "RESTATED_CURRENT_UNION",
+      "variant": "stop_50_dn"
+    },
+    {
+      "clears_dsr_0_95": false,
+      "family": "alphamax_shorttail",
+      "historical_artifact_path": "artifacts/probe/alphamax_shorttail/report.json",
+      "historical_artifact_sha256": "022d843a1295f3cbae2fc3054e3618388184a86114efa561296855867ed9b436",
+      "historical_dsr": 1.9020132450252145e-08,
+      "historical_dsr_contexts": {
+        "var": {
+          "N": 114,
+          "dsr": 1.9020132450252145e-08,
+          "psr": 0.6793794770095137
+        },
+        "var_sharadar": {
+          "N": 12,
+          "dsr": 0.010782107638242841,
+          "psr": 0.6793794770095137
+        }
+      },
+      "n_obs": 5428,
+      "restated_dsr": 6.710339498883172e-09,
+      "restated_expected_max_sr_per_period": 0.08355562253155972,
+      "restated_psr": 0.6793794770094969,
+      "restated_sharpe_ann_252": 0.10055292566020828,
+      "return_contract": "persisted_simple_daily_returns",
+      "returns_path": "artifacts/probe/alphamax_shorttail/net_returns.csv",
+      "returns_sha256": "3005b9866a872e8524c69518608606ce4d127877bf93e532a125ebe32bee3d15",
+      "status": "RESTATED_CURRENT_UNION",
+      "variant": "svol"
+    },
+    {
+      "clears_dsr_0_95": false,
+      "family": "alphamax_shorttail",
+      "historical_artifact_path": "artifacts/probe/alphamax_shorttail/report.json",
+      "historical_artifact_sha256": "022d843a1295f3cbae2fc3054e3618388184a86114efa561296855867ed9b436",
+      "historical_dsr": 1.2410381553782038e-09,
+      "historical_dsr_contexts": {
+        "var": {
+          "N": 114,
+          "dsr": 1.2410381553782038e-09,
+          "psr": 0.5045345336921802
+        },
+        "var_sharadar": {
+          "N": 12,
+          "dsr": 0.0029219971908661323,
+          "psr": 0.5045345336921802
+        }
+      },
+      "n_obs": 5428,
+      "restated_dsr": 4.028814738657393e-10,
+      "restated_expected_max_sr_per_period": 0.08355562253155972,
+      "restated_psr": 0.5045345336921516,
+      "restated_sharpe_ann_252": 0.002449451755601358,
+      "return_contract": "persisted_simple_daily_returns",
+      "returns_path": "artifacts/probe/alphamax_shorttail/net_returns.csv",
+      "returns_sha256": "3005b9866a872e8524c69518608606ce4d127877bf93e532a125ebe32bee3d15",
+      "status": "RESTATED_CURRENT_UNION",
+      "variant": "svol_dn"
+    },
+    {
+      "clears_dsr_0_95": false,
+      "family": "econtrend",
+      "historical_artifact_path": "artifacts/sweep/econtrend_probe/econtrend_result.json",
+      "historical_artifact_sha256": "fcf3494fdae367eca599d9dbd8cbe9050c905a975087d20cd42bfd990073baae",
+      "historical_dsr": 0.0,
+      "historical_dsr_contexts": null,
+      "n_obs": 5166,
+      "restated_dsr": 1.1068740039777166e-07,
+      "restated_expected_max_sr_per_period": 0.08355562253155972,
+      "restated_psr": 0.7893455306303433,
+      "restated_sharpe_ann_252": 0.1782298620057883,
+      "return_contract": "persisted_simple_daily_returns",
+      "returns_path": "artifacts/sweep/econtrend_probe/oos_daily_returns.parquet",
+      "returns_sha256": "0b5cd2267673898a4936f0df2aa55234b28ac1787d2f9135bf3bed036399ed05",
+      "status": "RESTATED_CURRENT_UNION",
+      "variant": "locked_primary_oos"
+    }
+  ],
+  "retired_families": [
+    {
+      "family": "exp2_crypto_vrp",
+      "historical_artifact_path": "artifacts/exp2/20260625T094710Z/exp2_metrics.json",
+      "historical_artifact_sha256": "f39839b1e05b33e718563984228ee4dba64e94bdbf10c1b174426c0bd880d3a4",
+      "reason": "The persisted artifact contains summary statistics but no variant-level return series. DSR depends on observations, skew and kurtosis; it cannot be honestly reconstructed from annualized Sharpe.",
+      "required_to_restate": "Reproduce the already-tested locked configuration and persist its exact net simple-return series; this does not authorize parameter changes or a new holdout.",
+      "status": "RETIRED_MISSING_RETURN_SERIES"
+    },
+    {
+      "family": "alphamax_hyst_live",
+      "historical_artifact_path": "artifacts/probe/alphamax_hyst_live/report.json",
+      "historical_artifact_sha256": "4f7a9f87898f0975824921bd703e1fdf407565c0bab6079ba70381ad274dd175",
+      "reason": "The persisted artifact contains summary statistics but no variant-level return series. DSR depends on observations, skew and kurtosis; it cannot be honestly reconstructed from annualized Sharpe.",
+      "required_to_restate": "Reproduce the already-tested locked configuration and persist its exact net simple-return series; this does not authorize parameter changes or a new holdout.",
+      "status": "RETIRED_MISSING_RETURN_SERIES"
+    },
+    {
+      "family": "alphamax_turnover",
+      "historical_artifact_path": "artifacts/probe/alphamax_turnover/report.json",
+      "historical_artifact_sha256": "57407cfe5a318eea3362e2894218b11a9580f5fe7372425489edaf55afa78ec2",
+      "reason": "The persisted artifact contains summary statistics but no variant-level return series. DSR depends on observations, skew and kurtosis; it cannot be honestly reconstructed from annualized Sharpe.",
+      "required_to_restate": "Reproduce the already-tested locked configuration and persist its exact net simple-return series; this does not authorize parameter changes or a new holdout.",
+      "status": "RETIRED_MISSING_RETURN_SERIES"
+    },
+    {
+      "family": "alphamax_volscale",
+      "historical_artifact_path": "artifacts/probe_volscale/report.json",
+      "historical_artifact_sha256": "64d10f696a04dcba2ee5ff44414f9061ca652debc5195f1da3dfe29b2f67ad83",
+      "reason": "The persisted artifact contains summary statistics but no variant-level return series. DSR depends on observations, skew and kurtosis; it cannot be honestly reconstructed from annualized Sharpe.",
+      "required_to_restate": "Reproduce the already-tested locked configuration and persist its exact net simple-return series; this does not authorize parameter changes or a new holdout.",
+      "status": "RETIRED_MISSING_RETURN_SERIES"
+    },
+    {
+      "family": "alphamax_weighting",
+      "historical_artifact_path": "artifacts/probe/alphamax_weighting/report.json",
+      "historical_artifact_sha256": "4eb3a9dc4ad8e991679d2409c29c17925d52ddd7a97c4a36fb43e8ace2646f50",
+      "reason": "The persisted artifact contains summary statistics but no variant-level return series. DSR depends on observations, skew and kurtosis; it cannot be honestly reconstructed from annualized Sharpe.",
+      "required_to_restate": "Reproduce the already-tested locked configuration and persist its exact net simple-return series; this does not authorize parameter changes or a new holdout.",
+      "status": "RETIRED_MISSING_RETURN_SERIES"
+    },
+    {
+      "family": "alphatrend_arp",
+      "historical_artifact_path": "artifacts/sweep/alphatrend_arp/report.json",
+      "historical_artifact_sha256": "303b643d0cbbc5628f638061bdfda8a5635562f771c24d138e7942f0fa582fa8",
+      "reason": "The persisted artifact contains summary statistics but no variant-level return series. DSR depends on observations, skew and kurtosis; it cannot be honestly reconstructed from annualized Sharpe.",
+      "required_to_restate": "Reproduce the already-tested locked configuration and persist its exact net simple-return series; this does not authorize parameter changes or a new holdout.",
+      "status": "RETIRED_MISSING_RETURN_SERIES"
+    },
+    {
+      "family": "alphatrend_breadth",
+      "historical_artifact_path": "artifacts/sweep/alphatrend_breadth/report.json",
+      "historical_artifact_sha256": "c9eb52113b13647d468957136732792051b96ce9ec2437337298049bacaf0244",
+      "reason": "The persisted artifact contains summary statistics but no variant-level return series. DSR depends on observations, skew and kurtosis; it cannot be honestly reconstructed from annualized Sharpe.",
+      "required_to_restate": "Reproduce the already-tested locked configuration and persist its exact net simple-return series; this does not authorize parameter changes or a new holdout.",
+      "status": "RETIRED_MISSING_RETURN_SERIES"
+    }
+  ],
+  "schema": "alphac.legacy-dsr-restatement.v1",
+  "selection_context": {
+    "ledger_paths": [
+      "var/experiments.jsonl",
+      "var_fut_real/experiments.jsonl",
+      "var_mf/experiments.jsonl",
+      "var_sharadar/experiments.jsonl"
+    ],
+    "n_hypotheses": 162,
+    "sharpe_variance": 0.0009605968552560768,
+    "unit": "first_immutable_record_per_hypothesis"
+  },
+  "summary": {
+    "historical_exception_families": 12,
+    "restated_families": 5,
+    "restated_variants": 33,
+    "restated_variants_clearing_dsr_0_95": 0,
+    "retired_families": 7
+  }
+}

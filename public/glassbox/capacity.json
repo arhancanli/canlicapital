@@ -1,0 +1,277 @@
+{
+  "schema": "glassbox.capacity/1",
+  "title": "Capacity & Scalability",
+  "summary": "How much capital this book can run before the edge decays, told straight. The crypto carry sleeve is MEASURED finite-capacity alpha: its realized Sharpe goes negative by $10M as market impact consumes the thin signal. The equity momentum core scales much further (MODELED), so above ~$100M AUM the book IS the equity core. Forward Sharpe is the deflated 0.3-0.9 expectation (lowered from 0.7-1.0 on 2026-07-29; this artifact carried the superseded band until 2026-08-06), never the in-sample headline.",
+  "honesty_note": "Every figure is labelled MEASURED (read from a real artifact), MODELED (derived from the committed transaction-cost model), or FORWARD (the deflated honest expectation). Crypto capacity is MEASURED at three AUM points (verdict.md). Equity capacity is MODELED: the pre-registered equity sleeves are not yet live, so its decay is the cost model's sqrt-impact law on a stated ADV anchor, not a measurement. Nothing between/above measured points is dressed up as measured.",
+  "basis_legend": {
+    "MEASURED": "read directly from a real backtest artifact",
+    "MODELED": "computed from the committed cost model + a stated ADV anchor",
+    "FORWARD": "deflated honest forward expectation (DSR 0.44 at N=69, central ~0.7)",
+    "NOT_MEASURED": "no artifact exists at this point; value omitted, not invented"
+  },
+  "crypto_capacity_curve_measured": [
+    {
+      "aum_label": "100k",
+      "aum_usd": 100000.0,
+      "sr_ann": 0.4009,
+      "dsr_shared": 0.4803,
+      "max_dd": 0.1314,
+      "turnover_ann": 44.5311,
+      "final_equity_usd": 118509.86
+    },
+    {
+      "aum_label": "1M",
+      "aum_usd": 1000000.0,
+      "sr_ann": 0.0424,
+      "dsr_shared": 0.2112,
+      "max_dd": 0.1359,
+      "turnover_ann": 39.743,
+      "final_equity_usd": 993219.39
+    },
+    {
+      "aum_label": "10M",
+      "aum_usd": 10000000.0,
+      "sr_ann": -0.372,
+      "dsr_shared": 0.046,
+      "max_dd": 0.2269,
+      "turnover_ann": 44.3149,
+      "final_equity_usd": 8043578.96
+    }
+  ],
+  "crypto_capacity_cliff": {
+    "cap_usd": 10000000.0,
+    "basis": "MEASURED + STRUCTURAL",
+    "note": "Crypto-carry capacity is approximately $10M. The MEASURED sweep shows sr_ann decaying 0.4009 ($100k) -> 0.0424 ($1M) -> -0.3720 ($10M) as notional/ADV cost scaling lifts realized transaction cost until the thin edge is consumed. Above the cap the satellite's DEPLOYED weight decays to zero (capacity-proportional, PRE_REGISTRATION.md l.82), scale-honest, never extrapolated as positive."
+  },
+  "equity_core_threshold": {
+    "aum_usd": 100000000.0,
+    "basis": "STRUCTURAL",
+    "note": "Above ~$100M AUM the book IS the equity core (CROSS_ASSET_BOOK.md l.85). The crypto satellite weight is zero past its cliff; what remains is the equity momentum portfolio scaled for ~14% vol within the Reg-T 2.0x gross cap."
+  },
+  "equity_impact_model": {
+    "formula": "impact_frac = Y * sigma_daily * sqrt(notional / ADV)",
+    "impact_coef_Y": 1.0,
+    "sigma_daily": 0.008234,
+    "sigma_daily_source": "k30_dn_63 walk-forward MEASURED vol_ann de-annualized by sqrt(252)",
+    "adv_anchor_usd": 5000000000.0,
+    "adv_anchor_source": "top-200 large-cap dollar-ADV anchor (GROUND recon; AAPL ~$35B, XOM ~$10B; conservative blended median ~$5B). EQUITIES_SLEEVE.md: ADV = 30d median daily quote-volume.",
+    "pretrade_adv_cap": 0.01,
+    "hard_fail_adv_cap": 0.05,
+    "note": "The cost model hard-fails above 5% ADV and pre-trade checks reject above 1% ADV (costs/model.py l.200-216). Equity impact decay is MODELED on this law; it is NOT a measured capacity sweep."
+  },
+  "book_capacity_curve": [
+    {
+      "aum_usd": 1000000.0,
+      "aum_label": "$1M",
+      "book_sharpe_forward": {
+        "low": 0.7,
+        "high": 0.8,
+        "basis": "FORWARD",
+        "note": "Book FORWARD Sharpe is the deflated 0.70-0.80 blend (CROSS_ASSET_BOOK.md l.66, uncorrelated ceiling sqrt(SUM S^2) ~0.80 haircut by rho-bar +0.13, PRE_REGISTRATION.md l.91-94). Crypto sr_ann 0.0424 is MEASURED at $1M (verdict.md); equity is MODELED."
+      },
+      "book_return_natural_vol_pct": {
+        "low": 5.6,
+        "high": 6.4,
+        "basis": "FORWARD"
+      },
+      "book_return_14pct_voltarget_pct": {
+        "low": 10.5,
+        "high": 12.0,
+        "basis": "FORWARD",
+        "note": "Reg-T-feasible ~14% vol-target, capped by the venue gross cap (equity 2.0x). Quoted band, not a point."
+      },
+      "max_dd_assumption": {
+        "value": -0.025,
+        "basis": "FORWARD",
+        "note": "Sized against a single-sleeve crypto blow-up at small AUM (CROSS_ASSET_BOOK.md l.69-72); equity-core drawdown at large AUM."
+      },
+      "book_weight": {
+        "crypto": 0.5,
+        "equity": 0.5
+      },
+      "crypto_sleeve": {
+        "sr_ann": 0.0424,
+        "basis": "MEASURED",
+        "source": "verdict.md capacity sweep",
+        "deployed_weight": 0.5,
+        "capacity_status": "LIVE"
+      },
+      "equity_sleeve": {
+        "per_name_notional_usd": 8333.33,
+        "adv_anchor_usd": 5000000000.0,
+        "participation_pct_adv": 0.00017,
+        "modeled_impact_oneway_bps": 0.106,
+        "impact_basis": "MODELED",
+        "impact_formula": "Y*sigma_daily*sqrt(notional/ADV), Y=1.0 (costs/model.py)",
+        "within_pretrade_1pct_adv_cap": true,
+        "note": "Equity-sleeve capacity is MODELED, not measured: the pre-registered equity sleeves are not yet live (PRE_REGISTRATION.md l.124-126). Impact shown is the liquid top-200 anchor case; mid-cap tilt costs more."
+      },
+      "binding_constraint": "Cost negligible on the top-200 anchor; both sleeves live. Crypto carry is 100% of the proven LIVE edge; equity is the MODELED ballast (not yet live)."
+    },
+    {
+      "aum_usd": 10000000.0,
+      "aum_label": "$10M",
+      "book_sharpe_forward": {
+        "low": 0.5,
+        "high": 0.55,
+        "basis": "FORWARD",
+        "note": "Crypto sr_ann -0.3720 is MEASURED (verdict.md). Book is now the equity momentum core; the 0.50-0.55 range is the MODELED standalone momentum forward (PRE_REGISTRATION.md l.34 target >=0.40; book holds ~1.0 only with full breadth, here equity-alone)."
+      },
+      "book_return_natural_vol_pct": {
+        "low": 4.0,
+        "high": 4.4,
+        "basis": "FORWARD"
+      },
+      "book_return_14pct_voltarget_pct": {
+        "low": 7.5,
+        "high": 8.3,
+        "basis": "FORWARD",
+        "note": "Reg-T-feasible ~14% vol-target, capped by the venue gross cap (equity 2.0x). Quoted band, not a point."
+      },
+      "max_dd_assumption": {
+        "value": -0.035,
+        "basis": "FORWARD",
+        "note": "Sized against a single-sleeve crypto blow-up at small AUM (CROSS_ASSET_BOOK.md l.69-72); equity-core drawdown at large AUM."
+      },
+      "book_weight": {
+        "crypto": 0.0,
+        "equity": 1.0
+      },
+      "crypto_sleeve": {
+        "sr_ann": -0.372,
+        "basis": "MEASURED",
+        "source": "verdict.md capacity sweep",
+        "deployed_weight": 0.0,
+        "capacity_status": "DECAYED_TO_ZERO"
+      },
+      "equity_sleeve": {
+        "per_name_notional_usd": 83333.33,
+        "adv_anchor_usd": 5000000000.0,
+        "participation_pct_adv": 0.00167,
+        "modeled_impact_oneway_bps": 0.336,
+        "impact_basis": "MODELED",
+        "impact_formula": "Y*sigma_daily*sqrt(notional/ADV), Y=1.0 (costs/model.py)",
+        "within_pretrade_1pct_adv_cap": true,
+        "note": "Equity-sleeve capacity is MODELED, not measured: the pre-registered equity sleeves are not yet live (PRE_REGISTRATION.md l.124-126). Impact shown is the liquid top-200 anchor case; mid-cap tilt costs more."
+      },
+      "binding_constraint": "Crypto capacity cliff: at $10M the MEASURED crypto sr_ann is -0.3720 (impact-dead); its book weight decays to zero by the capacity-proportional satellite rule. Equity impact still well under the 1% ADV pre-trade cap."
+    },
+    {
+      "aum_usd": 100000000.0,
+      "aum_label": "$100M",
+      "book_sharpe_forward": {
+        "low": 0.45,
+        "high": 0.5,
+        "basis": "FORWARD",
+        "note": "Crypto weight zero (capacity-proportional rule, PRE_REGISTRATION.md l.82). Equity Sharpe MODELED with minor sqrt-impact drag from the cost model; not yet measured on the Sharadar lake."
+      },
+      "book_return_natural_vol_pct": {
+        "low": 3.6,
+        "high": 4.0,
+        "basis": "FORWARD"
+      },
+      "book_return_14pct_voltarget_pct": {
+        "low": 6.8,
+        "high": 7.5,
+        "basis": "FORWARD",
+        "note": "Reg-T-feasible ~14% vol-target, capped by the venue gross cap (equity 2.0x). Quoted band, not a point."
+      },
+      "max_dd_assumption": {
+        "value": -0.05,
+        "basis": "FORWARD",
+        "note": "Sized against a single-sleeve crypto blow-up at small AUM (CROSS_ASSET_BOOK.md l.69-72); equity-core drawdown at large AUM."
+      },
+      "book_weight": {
+        "crypto": 0.0,
+        "equity": 1.0
+      },
+      "crypto_sleeve": {
+        "sr_ann": null,
+        "basis": "NOT_MEASURED",
+        "source": "no measured capacity point at this AUM; crypto curve is measured only at $100k / $1M / $10M (verdict.md)",
+        "deployed_weight": 0.0,
+        "capacity_status": "DECAYED_TO_ZERO"
+      },
+      "equity_sleeve": {
+        "per_name_notional_usd": 833333.33,
+        "adv_anchor_usd": 5000000000.0,
+        "participation_pct_adv": 0.01667,
+        "modeled_impact_oneway_bps": 1.063,
+        "impact_basis": "MODELED",
+        "impact_formula": "Y*sigma_daily*sqrt(notional/ADV), Y=1.0 (costs/model.py)",
+        "within_pretrade_1pct_adv_cap": true,
+        "note": "Equity-sleeve capacity is MODELED, not measured: the pre-registered equity sleeves are not yet live (PRE_REGISTRATION.md l.124-126). Impact shown is the liquid top-200 anchor case; mid-cap tilt costs more."
+      },
+      "binding_constraint": "Above ~$100M AUM the book IS the equity core (CROSS_ASSET_BOOK.md l.85); crypto satellite weight = 0. Per-name participation still <0.5% ADV on the top-200 anchor; Reg-T 2.0x equity gross cap is active."
+    },
+    {
+      "aum_usd": 1000000000.0,
+      "aum_label": "$1B",
+      "book_sharpe_forward": {
+        "low": 0.3,
+        "high": 0.4,
+        "basis": "FORWARD",
+        "note": "Equity Sharpe MODELED via the committed sqrt-impact law on the stated ADV anchor; the 0.30-0.40 range reflects the impact-decay band, NOT a measurement. Deployment cap is anchored here (PRE_REGISTRATION.md l.35-36, l.95)."
+      },
+      "book_return_natural_vol_pct": {
+        "low": 2.4,
+        "high": 3.2,
+        "basis": "FORWARD"
+      },
+      "book_return_14pct_voltarget_pct": {
+        "low": 4.5,
+        "high": 6.0,
+        "basis": "FORWARD",
+        "note": "Reg-T-feasible ~14% vol-target, capped by the venue gross cap (equity 2.0x). Quoted band, not a point."
+      },
+      "max_dd_assumption": {
+        "value": -0.1,
+        "basis": "FORWARD",
+        "note": "Sized against a single-sleeve crypto blow-up at small AUM (CROSS_ASSET_BOOK.md l.69-72); equity-core drawdown at large AUM."
+      },
+      "book_weight": {
+        "crypto": 0.0,
+        "equity": 1.0
+      },
+      "crypto_sleeve": {
+        "sr_ann": null,
+        "basis": "NOT_MEASURED",
+        "source": "no measured capacity point at this AUM; crypto curve is measured only at $100k / $1M / $10M (verdict.md)",
+        "deployed_weight": 0.0,
+        "capacity_status": "DECAYED_TO_ZERO"
+      },
+      "equity_sleeve": {
+        "per_name_notional_usd": 8333333.33,
+        "adv_anchor_usd": 5000000000.0,
+        "participation_pct_adv": 0.16667,
+        "modeled_impact_oneway_bps": 3.362,
+        "impact_basis": "MODELED",
+        "impact_formula": "Y*sigma_daily*sqrt(notional/ADV), Y=1.0 (costs/model.py)",
+        "within_pretrade_1pct_adv_cap": true,
+        "note": "Equity-sleeve capacity is MODELED, not measured: the pre-registered equity sleeves are not yet live (PRE_REGISTRATION.md l.124-126). Impact shown is the liquid top-200 anchor case; mid-cap tilt costs more."
+      },
+      "binding_constraint": "Pure equity momentum core. Per-name participation rises toward the 1% ADV pre-trade cap on many names; the portfolio must tilt to the most-liquid anchors to stay inside it. Reg-T 2.0x gross cap is the hard limit. 10-15% MODELED impact drag if forced into mid-caps; the liquid-anchor cost-model drag alone is far smaller (see equity_sleeve)."
+    }
+  ],
+  "forward_expectation": {
+    "central_sharpe": 0.7,
+    "plan_around_sharpe": 1.0,
+    "floor_sharpe": 0.4,
+    "ceiling_sharpe": 1.2,
+    "basis": "FORWARD",
+    "net_return_natural_vol_pct": "7-10",
+    "net_return_14pct_voltarget_pct": "13-16",
+    "resilience": "If the crypto carry edge decays to zero the book still holds ~1.0 with full equity breadth (momentum is the ballast). The dominant forward tail is a carry SIGN-FLIP year (a 2022 repeat -> book ~-13% DD). Size the vol-target against a -15/-20% single-sleeve crypto blow-up, not the benign -4.7% realized DD.",
+    "deflation": "Combined-book DSR is 0.44 at N=69 honest trials vs the 0.95 gate; the in-sample Sharpe does not survive the search that produced it. The honest forward is the deflated 0.3-0.9, with a real chance of ~0 in year one.",
+    "source": "CROSS_ASSET_BOOK.md l.66-72; PRE_REGISTRATION.md l.91-96"
+  },
+  "source_paths": [
+    "artifacts/grand_backtest/20260616T143620Z/verdict.md",
+    "docs/design/CROSS_ASSET_BOOK.md",
+    "docs/design/PRE_REGISTRATION.md",
+    "src/alphaforge/costs/model.py",
+    "artifacts/walkforward/k30_dn_63/summary.txt"
+  ],
+  "generated_at": "2026-08-18T10:38:39.071588+00:00",
+  "content_hash": "sha256:93d823d9c1c0daa650c99b30925a79307f97bea2833f49ea9e5f8e08c3fc7c0f"
+}

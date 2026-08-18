@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en" data-page="progress">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Canli Capital / Progress, the build in the open</title>
+  <meta name="description" content="Built in the open, phase by phase. Four algorithms running live on paper - crypto carry, equity momentum, managed-futures trend, PIT macro surprise, and their flagship ALPHAC. Honest about what works, what does not, and why depth matters." />
+  <meta name="theme-color" content="#0A0B0D" />
+  <meta name="color-scheme" content="dark" />
+  <link rel="canonical" href="https://canlicapital.com/progress" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Canli Capital" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:title" content="Canli Capital / Progress" />
+  <meta property="og:description" content="Built in the open, phase by phase. Four algorithms running live on paper - crypto carry, equity momentum, managed-futures trend, PIT macro surprise, and their flagship ALPHAC. Honest about what works, what does not, and why depth matters." />
+  <meta property="og:url" content="https://canlicapital.com/progress" />
+  <meta property="og:image" content="https://canlicapital.com/og.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:alt" content="Canli Capital. A multi-signal quant engine, proven in the open. Simulation and live paper only, no real capital, no claimed return." />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Canli Capital / Progress" />
+  <meta name="twitter:description" content="Built in the open, phase by phase. Four algorithms running live on paper - crypto carry, equity momentum, managed-futures trend, PIT macro surprise, and their flagship ALPHAC. Honest about what works, what does not, and why depth matters." />
+  <meta name="twitter:image" content="https://canlicapital.com/og.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@300..700&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@300..700&display=swap" />
+
+  <link rel="stylesheet" href="./css/styles.css" />
+  <link rel="stylesheet" href="./css/motion.css" />
+  <link rel="stylesheet" href="./css/shell.css" />
+  <link rel="stylesheet" href="./css/waitlist.css" />
+  <link rel="stylesheet" href="./css/progress.css" />
+
+  <!-- Favicon set (the brand mark: one signal dot on the void). The SVG is the
+       primary, scalable icon; the .ico is the legacy fallback; the PNG sizes serve
+       iOS home-screen and PWA install. All long-cached as static assets. -->
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="/favicon.ico" sizes="32x32" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/manifest.webmanifest" />
+
+  <!-- Organization schema (JSON-LD). States only what is true: the firm, the brand,
+       the flagship engine, and the disclaimer that nothing here is investment
+       advice. No performance claim. -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Canli Capital",
+    "url": "https://canlicapital.com/",
+    "logo": "https://canlicapital.com/icon-512.png",
+    "image": "https://canlicapital.com/og.png",
+    "description": "A quantitative research platform running four sleeves in paper: AlphaForge in crypto funding carry, AlphaMax in US equity momentum, AlphaTrend in managed-futures trend, and AlphaVintage in point-in-time macro surprise, combined at equal quarters into ALPHAC, the flagship the firm reports on. No sleeve currently clears our deflation bar. Validated in simulation and live paper trading. No real capital, no claimed returns.",
+    "foundingDate": "2026",
+    "founder": { "@type": "Person", "name": "Arhan Canli" },
+    "slogan": "Institutional discipline, made legible.",
+    "disclaimer": "Nothing on this site is investment advice, an offer, or a solicitation. The algorithms are in simulation and live paper trading. No statement describes live capital performance, and no return is claimed."
+  }
+  </script>
+
+  <style>
+    .skip-link {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 200;
+      transform: translateY(-120%);
+      margin: 12px;
+      padding: 10px 16px;
+      background: #0A0B0D;
+      color: #F4F1EA;
+      font: 500 13px/1 "Space Grotesk", system-ui, sans-serif;
+      letter-spacing: 0.04em;
+      text-decoration: none;
+      border: 1px solid #C8553D;
+      border-radius: 2px;
+      transition: transform 180ms ease;
+    }
+    .skip-link:focus { transform: translateY(0); }
+    .skip-link:focus-visible { outline: 2px solid #F4F1EA; outline-offset: 3px; }
+  </style>
+
+  <script>document.documentElement.classList.add("js");</script>
+
+  <!-- Per-page config. /progress is the plurality chapter: the camera pulls back
+       and up so the surfaces fan out as a fleet of future sleeves (release band
+       ~0.0 to 0.4). One proven, more to come. The chapter spine matches the six
+       content sections plus the colophon so the rail counter narrates this page.
+       Read by js/page-config.js; runs before main.js. -->
+  <script>
+    window.__MERIDIAN_PAGE = {
+      id: "progress",
+      chapters: [
+        "Progress", "The build", "Edge status", "Roadmap", "Colophon"
+      ],
+      sceneBand: [0.0, 0.4],
+      sceneStill: 0.4
+    };
+  </script>
+</head>
+
+<body>
+
+  <a href="#content" class="skip-link">Skip to content</a>
+
+
+  </div>
+
+  <canvas id="scene" class="scene" aria-hidden="true"></canvas>
+  <div class="scene-fallback" id="sceneFallback" aria-hidden="true"></div>
+
+
+  <nav class="rail" id="rail" aria-label="Section navigation">
+    <span class="rail__line" aria-hidden="true"><span class="rail__fill" id="railFill"></span></span>
+    <div class="rail__head" id="railHead" aria-hidden="true">
+      <span class="rail__index mono-label" id="railIndex">00</span>
+      <span class="rail__chapter label" id="railName">Progress</span>
+    </div>
+    <ul class="rail__list">
+      <li><a href="#hero" class="rail__item" data-rail="0"><span class="rail__num mono-label">00</span></a></li>
+      <li><a href="#build" class="rail__item" data-rail="1"><span class="rail__num mono-label">01</span></a></li>
+      <li><a href="#edge-status" class="rail__item" data-rail="2"><span class="rail__num mono-label">02</span></a></li>
+      <li><a href="#roadmap" class="rail__item" data-rail="3"><span class="rail__num mono-label">03</span></a></li>
+    </ul>
+  </nav>
+
+  <!-- Shared top nav: js/shell.js renders the links + CTA into this .nav__links
+       and marks /progress as the current page. -->
+  <header class="nav" id="nav">
+    <div class="nav__inner">
+      <a href="/" class="nav__brand label" data-brand aria-label="Canli Capital, home">Canli Capital</a>
+      <nav class="nav__links" aria-label="Primary"></nav>
+    </div>
+  </header>
+
+  <main id="content" class="content" tabindex="-1">
+
+    <!-- =================================================================== -->
+    <!-- (00) HERO                                                            -->
+    <!-- =================================================================== -->
+    <section class="hero section" id="hero" data-section="0" aria-labelledby="progress-word">
+      <span class="hero__ghost" aria-hidden="true">Open</span>
+      <div class="hero__status mono-label" aria-label="Launch status">
+        <span class="dot dot--pulse" aria-hidden="true"></span>
+        <span>Pre-launch</span>
+        <span class="hero__status-sep" aria-hidden="true">&middot;</span>
+        <span class="hero__status-val">Built in the open, phase by phase</span>
+      </div>
+
+      <div class="hero__body">
+        <p class="eyebrow label reveal-line"><span class="idx mono-label">00 /</span> Progress</p>
+        <h1 class="hero__word display-l" id="progress-word">
+          <span class="mask" data-chars><span class="mask__inner">Built in the open,</span></span>
+          <span class="mask" data-chars><span class="mask__inner">phase by phase.</span></span>
+        </h1>
+        <p class="hero__sub body-l reveal-fade">
+          <span data-brand>Canli Capital</span> is a company you can audit. The engine
+          is <span data-fact="phases">12</span> phases deep, each tested before the
+          next began. This page tracks what is proven, what is not, and what is next.
+        </p>
+
+        <p class="pstrip type-mono" aria-label="Verified build facts">
+          <span class="pstrip__item"><span class="pstrip__num" data-fact="phases">12</span> phases shipped</span>
+          <span class="pstrip__sep" aria-hidden="true">/</span>
+          <span class="pstrip__item"><span class="pstrip__num" data-fact="tests">2,820+</span> automated tests</span>
+          <span class="pstrip__sep" aria-hidden="true">/</span>
+          <span class="pstrip__item">mypy --strict</span>
+          <span class="pstrip__sep" aria-hidden="true">/</span>
+          <span class="pstrip__item">continuous integration</span>
+        </p>
+      </div>
+
+      <a href="#build" class="hero__scroll mono-label" aria-label="Scroll to the build">
+        <span>Scroll</span>
+        <span class="hero__scroll-line" aria-hidden="true"></span>
+      </a>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- (01) HOW IT WAS BUILT                                                -->
+    <!-- =================================================================== -->
+    <section class="section" id="build" data-section="1" aria-labelledby="build-head">
+      <span class="section__rule" aria-hidden="true"></span>
+      <div class="progress__head">
+        <p class="eyebrow label"><span class="idx mono-label">01 /</span> The build</p>
+        <h2 class="progress__title display-l" id="build-head">
+          <span class="mask" data-chars><span class="mask__inner">The integrity</span></span>
+          <span class="mask" data-chars><span class="mask__inner">came first.</span></span>
+        </h2>
+        <p class="progress__lead body-l reveal-fade">
+          The order of the work is the thesis. The data integrity, the cost
+          authority, the validation gauntlet, and the crash-safe execution loop
+          were built before any serious effort went into chasing return, because a
+          good backtest only means something on top of a process honest enough to
+          <span class="signal-word">trust</span>. The engine is statically typed
+          under mypy strict, every phase is covered by tests that must pass in
+          continuous integration before the next phase starts, and research and
+          live code share one path. Nothing here is a prototype dressed up as a
+          product.
+        </p>
+      </div>
+      <p class="progress__data mono-label type-mono">
+        <span data-fact="phases">12</span> phases / <span data-fact="tests">2,820+</span> tests, green / mypy --strict / CI on every change
+      </p>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- (02) THE TWELVE PHASES (interactive explorer)                        -->
+    <!-- =================================================================== -->
+
+    <!-- =================================================================== -->
+    <!-- (03) THE EDGE STATUS                                                 -->
+    <!-- =================================================================== -->
+    <section class="section section--ink" id="edge-status" data-section="2" aria-labelledby="edge-head">
+      <span class="section__rule" aria-hidden="true"></span>
+      <div class="progress__head">
+        <p class="eyebrow label"><span class="idx mono-label">03 /</span> Edge status</p>
+        <h2 class="progress__title display-l" id="edge-head">
+          <span class="mask" data-chars><span class="mask__inner">What the build has</span></span>
+          <span class="mask" data-chars><span class="mask__inner">and has not proven.</span></span>
+        </h2>
+        <p class="progress__lead body-l reveal-fade">
+          Twelve phases produced a system that is hard to fool: leak-proof data, real
+          costs, and tests most strategies never survive. The engineering is proven.
+          A standalone crypto edge is <span class="signal-word">not yet proven</span>;
+          the live record is too young to claim one. A test that comes back empty is
+          still a test that ran.
+        </p>
+      </div>
+
+      <div class="ledger" aria-label="Edge status ledger">
+        <div class="ledger__row ledger__row--proven">
+          <span class="ledger__state">
+            <span class="dot" aria-hidden="true"></span>
+            <span class="ledger__mark">Proven</span>
+          </span>
+          <span class="ledger__what body-l">
+            The engineering and the integrity.
+            <span class="small body">Leak-proof, point-in-time data. One cost authority across research and paper. A validation gauntlet built to catch us out. A crash-safe loop that resumes exactly where it stopped.</span>
+          </span>
+        </div>
+        <div class="ledger__row ledger__row--proven">
+          <span class="ledger__state">
+            <span class="dot" aria-hidden="true"></span>
+            <span class="ledger__mark">Proven, modest</span>
+          </span>
+          <span class="ledger__what body-l">
+            Four algorithms, live in paper.
+            <span class="small body">AlphaMax in US equity momentum (standalone Sharpe 0.91) and AlphaForge in crypto funding carry (0.68), near-uncorrelated, combined into ALPHAC. AlphaTrend (managed-futures trend, 0.33) joined 2026-06-27 and AlphaVintage (PIT macro surprise, 0.34) on 2026-08-10, taking the book to four sleeves at equal quarters. We called AlphaTrend the first new sleeve to clear deflation at DSR 0.83; re-derived at an honest trial count on 2026-08-07 its DSR is 0.00, the lowest of the sleeves we have measured, and that claim is withdrawn. It is carried for measured drawdown reduction, not for a demonstrated edge.</span>
+          </span>
+        </div>
+        <div class="ledger__row ledger__row--pending">
+          <span class="ledger__state">
+            <span class="dot" aria-hidden="true"></span>
+            <span class="ledger__mark">Not yet</span>
+          </span>
+          <span class="ledger__what body-l">
+            The standalone crypto edge.
+            <span class="small body">Tested rigorously on crypto perpetual futures alone, the signal is real enough to be interesting and not yet strong enough, after deflation and cost, to stake capital on. We say so plainly.</span>
+          </span>
+        </div>
+      </div>
+
+      <p class="progress__aside body reveal-fade">
+        <span class="comment mono-label">//</span>
+        A platform that never reports a strategy failing its own bar is not
+        running the bar.
+      </p>
+
+      <!-- THE STANDING CALLOUT (honesty load-bearing): the depth of the data
+           investment is what makes "breadth is the answer" a credible engineering
+           claim, and the live paper state is the literal "build in the open". Both
+           are folded into one mono / tabular block in the page's terminal voice.
+           Every numeral is bound via data-fact to config/brand.js (the single
+           source of truth), so the figures can never drift from the engine or be
+           conflated with the crypto bar count. -->
+      <div class="estate reveal-fade" aria-label="The data lake and live paper status">
+        <dl class="estate__grid">
+          <div class="estate__cell">
+            <dt class="estate__k mono-label">Daily bars, equity lake</dt>
+            <dd class="estate__v mono-data" data-fact="bars">24M+</dd>
+          </div>
+          <div class="estate__cell">
+            <dt class="estate__k mono-label">US stocks, survivorship-free</dt>
+            <dd class="estate__v mono-data"><span data-fact="equityStocks">8,436</span><span class="estate__v-since mono-label"><span data-fact="equitySince">1997</span> to 2026</span></dd>
+          </div>
+          <div class="estate__cell">
+            <dt class="estate__k mono-label">Point-in-time fundamentals</dt>
+            <dd class="estate__v mono-data" data-fact="fundamentals">392K+</dd>
+          </div>
+          <div class="estate__cell">
+            <dt class="estate__k mono-label">Crypto instrument universe (live + delisted)</dt>
+            <dd class="estate__v mono-data" data-fact="instruments">94</dd>
+          </div>
+        </dl>
+        <p class="estate__line mono-label">
+          <span class="comment">//</span>
+          Running 24/7 on paper across the live and delisted book. No real capital in
+          play. The build in the open.
+        </p>
+      </div>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- (04) THE ROADMAP                                                     -->
+    <!-- =================================================================== -->
+    <section class="section roadmap-section" id="roadmap" data-section="3" aria-labelledby="roadmap-head">
+      <span class="section__rule" aria-hidden="true"></span>
+      <div class="progress__head">
+        <p class="eyebrow label"><span class="idx mono-label">04 /</span> Roadmap</p>
+        <h2 class="progress__title display-l" id="roadmap-head">
+          <span class="mask" data-chars><span class="mask__inner">The way forward</span></span>
+          <span class="mask" data-chars><span class="mask__inner">is breadth.</span></span>
+        </h2>
+        <p class="progress__lead body-l reveal-fade">
+          A single asset class is one bet on one market staying inefficient one way.
+          The answer to a thin standalone edge is more lowly correlated sources of
+          return through the same machine. The equity momentum sleeve is already live
+          in the book. The next breadth would be managed-futures trend, but that needs
+          futures data we have not yet invested in, so for now it stays a research question,
+          not a commitment. The engine was built
+          multi-asset from the first line: one data contract, one cost authority, one
+          validation library, one execution loop. A new strategy inherits that
+          <span class="signal-word">discipline</span> and clears the same gauntlet
+          before it earns a dollar.
+        </p>
+      </div>
+
+    </section>
+
+    <!-- THE ROADMAP PIN: this page's one tentpole beat (mirrors the landing's
+         System pin and /performance's gauntlet pin in STRUCTURE). The four
+         algorithm sleeves reveal one at a time inside a pinned frame while the
+         manifold fans out behind them (the plurality chapter: one proven, more to
+         come). AlphaForge is the climax: it locks lit, with a single restrained
+         flareBloom. js/progress.js gates the cinematic cross-fade off on mobile and
+         reduced motion, where the sleeves fall back to a plain stacked list; with
+         JS off the same stacked list is the canonical roadmap reference (it is the
+         sole exhibit now that the static table is retired). -->
+
+  </main>
+
+  <footer class="footer" id="footer" data-section="99"></footer>
+
+  <!-- Shared waitlist + boot. The progress-only phase explorer is loaded as its
+       own small module; it self-inits and no-ops if there are no phases. -->
+  <script type="module" src="./js/waitlist.js"></script>
+  <script type="module" src="./js/progress.js"></script>
+  <script type="module" src="./js/main.js"></script>
+</body>
+</html>

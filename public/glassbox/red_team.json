@@ -1,0 +1,64 @@
+{
+  "schema": "glassbox.red_team/1",
+  "title": "We Red-Team Ourselves",
+  "summary": "On 2026-06-27 an adversarial red-team attacked our own published record harder than any allocator would, and found it was flattering us in several ways. We publish every finding, its severity, and its fix. A fund that publishes the defects it found in itself is the one you can verify. 5 of 8 findings already fixed.",
+  "findings": [
+    {
+      "severity": "critical",
+      "status": "FIXED",
+      "weakness": "A future-dated (2026-06-29) paper loss leaked into the public record and was sealed into seq 0 of the signed transparency chain (read_fwd_curve had no <= today guard).",
+      "fix": "clamp_live() drops any mark dated after today (UTC) before publish + anchor; a fail-closed guard was added; the corrected state was anchored as seq 1. The append-only chain shows BOTH seq 0 and seq 1 \u2014 we don't delete mistakes."
+    },
+    {
+      "severity": "critical",
+      "status": "FIXED",
+      "weakness": "The headline -4.7% max drawdown excluded every crisis (the book curve starts 2023-07, no 2020/2022). It understated risk badly.",
+      "fix": "Crisis-inclusive worst case (-15 to -18%) is now the headline; -4.7% is labeled 'live-overlap only, not a risk estimate'."
+    },
+    {
+      "severity": "high",
+      "status": "FIXED",
+      "weakness": "Sleeves were mislabeled: crypto carry (46% weight) has been FLAT since go-live but was billed 'live broker-loop'; equity & MF were billed 'realized next-open fills' but are walk-forward SIMULATIONS, not broker-executed.",
+      "fix": "Relabeled honestly (crypto = live loop currently flat / holding cash; equity & MF = walk-forward simulation, not broker-executed). Making them genuinely live is the next build."
+    },
+    {
+      "severity": "high",
+      "status": "FIXED",
+      "weakness": "Standalone Sharpes were recent-window-flattered: crypto 0.68 hides a -19.6% 2022 (FTX) drawdown; equity 0.91 is the TOP of a 0.07-1.17 band whose deep-history forward is ~0.08 (DSR 0.17 at the current N=102 ledger; 0.34 when first published at N=27 \u2014 fails deflation either way, and deflation tightens as our own experiment count grows).",
+      "fix": "Per-sleeve caveats attached; the book forward expectation lowered from 0.7-1.0 to 0.3-0.9 with a stated real chance of ~0 in year one."
+    },
+    {
+      "severity": "high",
+      "status": "FIXED",
+      "weakness": "Deflation N was framed as 'honest trial count = 8' when 35+ strategy families have been searched across the program (screen-stage kills bypassed the ledger).",
+      "fix": "Renamed to crypto_perp_grid_trials; exposed cumulative_strategy_families_searched (35+). Wiring every screen into the shared ledger is the remaining engineering step."
+    },
+    {
+      "severity": "high",
+      "status": "DISCLOSED",
+      "weakness": "Sleeve correlations spike from ~0 (calm) to +0.6 to +0.9 in risk-off \u2014 the diversification benefit shrinks exactly in the left tail.",
+      "fix": "Disclosed in the published metrics + transparency; sizing the equal-risk combiner on the stressed matrix is the remaining engineering step."
+    },
+    {
+      "severity": "medium",
+      "status": "OPEN",
+      "weakness": "The cost model uses a flat half-spread regardless of regime (it never widens in stress); the two deployed sleeves lack a published 2-3x cost-survival rerun.",
+      "fix": "Vol/regime-scaled half-spread + a published 2x/3x cost rerun of the live sleeves. Tracked."
+    },
+    {
+      "severity": "low",
+      "status": "OPEN",
+      "weakness": "go-live date overstated 1-2 days vs first real activity; the verifier checks the published JSON, not the raw jsonl source-of-truth.",
+      "fix": "Per-sleeve effective go-live = first real activity; verifier to accept the raw jsonl. Tracked."
+    }
+  ],
+  "what_held_up": [
+    "Point-in-time / leakage discipline is genuinely sound (decide-at-close, fill-next-open, available_at lags, PIT universe membership, realized historical funding).",
+    "The directional TrendVolTarget allocator, the vol-target overlay, and the reduce-only de-risk path were adversarially exercised and held.",
+    "AlphaTrend genuinely survives 2008/2020/2022 on the 17 real ETFs \u2014 as a drawdown profile. Its DSR was re-derived to 0.000 on 2026-08-07, so 'survives the crises' is a statement about its shape, NOT the edge claim the withdrawn 0.83 implied.",
+    "The public state honestly labels the 1.46 figure as in-sample and deflates it."
+  ],
+  "report": "artifacts/campaigns/red_team_self_audit_2026-06-27.md",
+  "generated_at": "2026-08-18T12:25:26.928093+00:00",
+  "content_hash": "sha256:ee808de6278bd00eae95e3b59e7370fbebf3a13f114c227b798acd937b799491"
+}

@@ -1,0 +1,565 @@
+/* =============================================================================
+   MERIDIAN / progress.css
+   -----------------------------------------------------------------------------
+   Page-scoped layer for /progress only. It introduces NO new design tokens, NO
+   new fonts, and NO second motion language: every rule here composes the shared
+   primitives from styles.css / motion.css (the --void / --paper / --signal
+   palette, the --s-* spacing scale, the .display-* / .mono-* type classes, the
+   .reveal-* and .mask reveal mechanics) into the components this page needs:
+
+     - a mono stat strip under the hero (12 phases / ~2,500 tests / mypy / CI)
+     - the interactive 12-phase explorer: four arcs, each a column of phase rows
+       that expand on hover / focus / click to reveal the component they shipped
+     - the honest edge-status block (a two-state ledger: proven / not yet proven)
+     - the roadmap table is the SHARED .roadmap component (no override needed)
+     - the closing CTA pair
+
+   Loaded after the shared sheets so it can lean on their cascade. Scoped under
+   [data-page="progress"] so it can never bleed onto the landing or a sibling
+   sub-page. Zero em dashes, like every file in this property.
+   ========================================================================== */
+
+/* ---- shared sub-page hero rhythm ---------------------------------------- */
+/* The sub-page hero is a quiet title block, not the landing's full-bleed
+   statement. Give it room and a measured column so the long sub reads well. */
+[data-page="progress"] .hero { min-height: 88vh; position: relative; overflow: hidden; }
+[data-page="progress"] .hero__body { position: relative; z-index: 1; }
+[data-page="progress"] .hero__word { margin: var(--s-3) 0 var(--s-5); color: var(--paper); }
+[data-page="progress"] .hero__sub { max-width: 58ch; }
+
+/* The ghost wordmark: route (a) of the polish brief, reusing the footer's
+   oversized --grey-900 watermark device so entering this sub-page renews the
+   landing's display moment without forking a second type treatment. One per
+   page, behind the headline, aria-hidden, drawn from the page's own subject.
+   The clip-rise reveal on .hero__word is untouched: this sits strictly behind. */
+.hero__ghost {
+  position: absolute;
+  z-index: 0;
+  pointer-events: none;
+  font-family: var(--serif);
+  font-optical-sizing: auto;
+  font-variation-settings: "opsz" 144, "wght" 280, "SOFT" 0, "slnt" 0;
+  font-weight: 280;
+  font-size: clamp(7rem, 26vw, 26rem);
+  line-height: 0.8;
+  letter-spacing: -0.04em;
+  color: var(--grey-900);
+  left: var(--margin);
+  bottom: var(--s-6);
+  max-width: none;
+  margin: 0;
+  user-select: none;
+  white-space: nowrap;
+}
+/* fade in once the page module says it is safe (after the curtain begins to
+   lift), so it never flashes as unstyled text. The .js gate plus the .is-shown
+   toggle keeps it visible with JS off and under reduced motion. */
+.js .hero__ghost {
+  opacity: 0;
+  transform: translateY(2%);
+  transition: opacity 1.1s var(--ease-out), transform 1.1s var(--ease-out);
+}
+.js .hero__ghost.is-shown { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  .js .hero__ghost { opacity: 1; transform: none; transition: none; }
+}
+
+/* The mono stat strip: four verified facts, hairline-separated, set in the
+   data face. Reuses .type-mono so it writes itself in left to right on enter. */
+.pstrip {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--s-3) var(--s-4);
+  margin-top: var(--s-6);
+  color: var(--paper-dim);
+}
+.pstrip__item { display: inline-flex; align-items: center; gap: 0.5em; white-space: nowrap; }
+.pstrip__item .dot { flex: none; }
+.pstrip__sep { color: var(--grey-600); user-select: none; }
+.pstrip__num { color: var(--signal); }
+
+/* ---- section heads (reuse the proof/house head rhythm) ------------------ */
+.progress__head { margin-bottom: var(--s-7); max-width: 64ch; }
+.progress__title { color: var(--paper); margin: var(--s-3) 0 var(--s-5); }
+.progress__lead { color: var(--paper-dim); max-width: 58ch; }
+.progress__lead + .progress__lead { margin-top: var(--s-4); }
+.progress__aside { color: var(--grey-700); max-width: 60ch; margin-top: var(--s-6); }
+.progress__data { color: var(--paper-dim); margin-top: var(--s-5); }
+
+/* =============================================================================
+   THE PHASE EXPLORER
+   -----------------------------------------------------------------------------
+   The interactive centerpiece. Twelve phases are grouped into the four arcs in
+   which they had to come (Foundations, Signal, Portfolio and proof, Intelligence
+   and live paper). Each arc is a labelled column; each phase is a row that
+   carries a mono index, a serif title, and a body the reader can open.
+
+   The interaction is progressive and accessible: the title is a real <button>
+   that toggles aria-expanded; the detail is a grid-rows transition (no JS height
+   measurement, no layout thrash). Hover previews on a pointer device; focus and
+   click drive it everywhere, including keyboard. With JS off or reduced motion,
+   every detail is shown (the [hidden]-free markup degrades to a static ledger).
+   ========================================================================== */
+.phases__head { margin-bottom: var(--s-7); max-width: 64ch; }
+
+.arcs {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--s-7) var(--s-6);
+}
+.arc { display: grid; gap: var(--s-4); align-content: start; }
+.arc__head {
+  display: flex;
+  align-items: baseline;
+  gap: 0.7em;
+  padding-bottom: var(--s-3);
+  border-bottom: 1px solid var(--grey-850);
+}
+.arc__idx { color: var(--signal); opacity: 0.6; letter-spacing: 0.06em; }
+.arc__name { color: var(--paper); font-variation-settings: "opsz" 40, "wght" 500; overflow-wrap: normal; word-break: normal; hyphens: none; }
+.arc__count { color: var(--grey-700); margin-left: auto; }
+
+/* a phase row */
+.phase {
+  position: relative;
+  border-top: 1px solid var(--grey-900);
+  transition: border-color 0.4s var(--ease-out);
+}
+.phase:first-of-type { border-top: none; }
+.phase:hover { border-top-color: var(--grey-825); }
+
+/* the row header is the toggle: index + serif title + a state mark */
+.phase__bar {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: baseline;
+  gap: var(--s-3);
+  width: 100%;
+  padding: var(--s-4) 0;
+  background: none;
+  border: none;
+  text-align: left;
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+}
+.phase__num {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  color: var(--grey-700);
+}
+.phase__title {
+  font-family: var(--serif);
+  font-variation-settings: "opsz" 40, "wght" 400;
+  font-size: clamp(1.1rem, 1.8vw, 1.4rem);
+  line-height: 1.2;
+  color: var(--paper);
+  /* whole-word: phase titles carry compound terms (leak-proof, cost-honest,
+     survivorship-bias-free) that must never split mid-character at any width. */
+  overflow-wrap: normal;
+  word-break: normal;
+  hyphens: none;
+}
+.phase__mark {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45em;
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--grey-700);
+  white-space: nowrap;
+}
+/* the shipped dot reuses the shared .dot language; lit because every phase here
+   is shipped. A small chevron rotates as the row opens. */
+.phase__chev {
+  display: inline-block;
+  width: 8px; height: 8px;
+  border-right: 1px solid var(--grey-600);
+  border-bottom: 1px solid var(--grey-600);
+  transform: rotate(45deg);
+  transition: transform 0.4s var(--ease-out), border-color 0.4s var(--ease-out);
+  margin-left: 0.3em;
+}
+.phase__bar:hover .phase__title { color: var(--paper); }
+.phase__bar:hover .phase__num,
+.phase__bar:hover .phase__chev { border-color: var(--signal); color: var(--paper-dim); }
+.phase__bar:focus-visible { outline: 1px solid var(--signal); outline-offset: 4px; border-radius: 2px; }
+
+/* the detail: a grid-rows collapse so there is no measured height and no
+   reflow jank. Open = 1fr, closed = 0fr; the inner clips with overflow.
+
+   IMPORTANT (no-content-loss contract): the DEFAULT state is OPEN. The page is
+   readable with every phase shown, so if the explorer module never loads (a CDN
+   reject, a script error) no body copy is ever stranded behind a toggle that
+   cannot open. The explorer JS opts each row into collapsibility by adding
+   .is-collapsible to the host .phase, at which point the closed state below
+   takes over and the rows become toggleable. With JS off, none of that happens
+   and the ledger stays fully expanded. */
+.phase__detail {
+  display: grid;
+  grid-template-rows: 1fr;
+  transition: grid-template-rows 0.5s var(--ease-out);
+}
+.phase__detail-inner { overflow: hidden; min-height: 0; }
+.phase__body {
+  color: var(--paper-dim);
+  max-width: 46ch;
+  padding-bottom: var(--s-4);
+  transition: opacity 0.4s var(--ease-out), transform 0.4s var(--ease-out);
+}
+
+/* collapsible (JS active): closed by default, open when .is-open is set. */
+.phase.is-collapsible .phase__detail { grid-template-rows: 0fr; }
+.phase.is-collapsible .phase__body { opacity: 0; transform: translateY(6px); }
+.phase.is-collapsible.is-open .phase__detail { grid-template-rows: 1fr; }
+.phase.is-collapsible.is-open .phase__body { opacity: 1; transform: none; }
+.phase.is-collapsible.is-open .phase__chev { transform: rotate(-135deg); border-color: var(--signal); }
+.phase.is-collapsible.is-open .phase__num { color: var(--signal); }
+
+/* the toggle affordance (chevron) is only meaningful when collapsible: hide it
+   when the rows are statically open so it does not read as a dead control. */
+.phase:not(.is-collapsible) .phase__chev { display: none; }
+.phase:not(.is-collapsible) .phase__bar { cursor: default; }
+
+/* Hover preview (desktop pointer only): a closed, collapsible row reveals the
+   first one to two lines of its body on hover WITHOUT opening, so a reader can
+   skim the page before committing a click. Click still toggles the full detail;
+   focus opens nothing extra (the focus-visible ring already signals operability),
+   and a fully open row suppresses the preview so the two never stack. We reveal a
+   clamped slice of the SAME .phase__body inside the collapsed grid by easing its
+   row track to a small fixed height and line-clamping the prose; transform/opacity
+   plus a height token only, no measured reflow. Gated behind hover:hover so a
+   touch device (which fires :hover on tap) is a pure no-op. Reduced motion keeps
+   the transition off but still allows the static peek. */
+@media (hover: hover) and (pointer: fine) {
+  .phase.is-collapsible:not(.is-open):hover .phase__detail {
+    grid-template-rows: 1fr;
+  }
+  .phase.is-collapsible:not(.is-open):hover .phase__body {
+    opacity: 1;
+    transform: none;
+    transition: opacity 0.2s var(--ease-out), transform 0.2s var(--ease-out);
+    /* clamp the peek to two lines so a hover is a preview, not a full open */
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    color: var(--grey-700);
+  }
+  /* the chevron leans toward open on hover to signal "click for more" */
+  .phase.is-collapsible:not(.is-open):hover .phase__chev { border-color: var(--signal); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .phase.is-collapsible:not(.is-open):hover .phase__body { transition: none; }
+}
+
+/* phases note line beneath the arcs */
+.phases__note { color: var(--grey-700); margin-top: var(--s-6); max-width: 64ch; }
+
+/* =============================================================================
+   THE EDGE STATUS LEDGER
+   -----------------------------------------------------------------------------
+   Two honest rows: what the build HAS proven (the engineering and the integrity)
+   and what it has NOT yet proven (the standalone crypto edge). The "not yet"
+   row is the brand's defining moment, stated as strength, so it is given the
+   signal hairline rather than hidden. No fabricated numbers live here.
+   ========================================================================== */
+.ledger { display: grid; gap: 0; margin: var(--s-6) 0; }
+.ledger__row {
+  display: grid;
+  /* the state column sizes to its label (Proven / Not yet) and breathes, giving
+     the copy the rest of the runway; also avoids a hard tablet break. */
+  grid-template-columns: minmax(140px, auto) 1fr;
+  gap: var(--s-5);
+  align-items: baseline;
+  padding: var(--s-5) 0;
+  border-top: 1px solid var(--grey-850);
+}
+.ledger__row:last-child { border-bottom: 1px solid var(--grey-850); }
+.ledger__state {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6em;
+  color: var(--paper-dim);
+}
+.ledger__row--proven .ledger__state { color: var(--paper); }
+.ledger__row--pending .ledger__state { color: var(--signal); }
+.ledger__mark {
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.ledger__what { color: var(--paper); }
+.ledger__what .small { display: block; color: var(--paper-dim); margin-top: var(--s-2); max-width: 52ch; }
+
+/* =============================================================================
+   THE STANDING CALLOUT: DATA LAKE + LIVE PAPER STATUS (honesty load-bearing)
+   -----------------------------------------------------------------------------
+   The depth of the data investment is what turns "breadth is the answer" from a
+   slogan into an engineering claim a reader can audit, and the live paper state is
+   the literal in-the-open condition. Both fold into one quiet mono / tabular block:
+   a four-fact grid, every numeral bound via data-fact so it can never drift from
+   the engine, closed by a single terminal-voice status line. Reuses the page
+   palette, .mono-data / .mono-label type tiers, and the --s-* scale; introduces no
+   token, font, hue, or easing.
+   ========================================================================== */
+.estate {
+  margin-top: var(--s-7);
+  padding-top: var(--s-5);
+  border-top: 1px solid var(--grey-850);
+}
+.estate__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--s-5) var(--s-4);
+  margin: 0;
+}
+.estate__cell {
+  display: grid;
+  gap: var(--s-2);
+  align-content: start;
+  padding-left: var(--s-3);
+  border-left: 1px solid var(--grey-850);
+}
+.estate__k { color: var(--grey-700); margin: 0; max-width: 16ch; }
+.estate__v {
+  /* the numerals carry the data face but at a calmer scale than the hero stat
+     band: this is supporting evidence, not the headline. */
+  color: var(--paper);
+  font-size: clamp(1.6rem, 3.2vw, 2.4rem);
+  margin: 0;
+  display: flex;
+  align-items: baseline;
+  gap: 0.5em;
+  flex-wrap: wrap;
+}
+.estate__v-since { color: var(--grey-700); letter-spacing: 0.08em; }
+/* the live paper status: one mono line in the terminal voice, closing the block. */
+.estate__line {
+  margin-top: var(--s-6);
+  color: var(--paper-dim);
+  max-width: 64ch;
+  line-height: 1.7;
+}
+.estate__line .comment { color: var(--signal); opacity: 0.7; margin-right: 0.5em; }
+
+/* ---- roadmap section spacing (the static table is retired; the pin is the
+   sole exhibit, so this only tunes the section head rhythm) ----------------- */
+.roadmap-section .progress__head { margin-bottom: var(--s-6); }
+
+/* =============================================================================
+   THE ROADMAP PIN (the page's ONE tentpole beat)
+   -----------------------------------------------------------------------------
+   Mirrors the landing System pin and /performance gauntlet pin STRUCTURE exactly
+   (same .gpin grammar, renamed .rpin so it never collides): a pinned two-column
+   frame where the four algorithm sleeves cross-fade one at a time on the right
+   while the manifold fans out behind them. AlphaForge is the climax: it locks lit
+   with a single restrained flareBloom. Reduced motion / mobile: the sleeves stack
+   as a plain list (rules at the bottom) and the static .roadmap table above is the
+   full reference, so nothing is lost. No new tokens, no new easing, no new hue.
+   ========================================================================== */
+/* The static roadmap table is retired, so this pin is now the SOLE roadmap
+   exhibit. With JS truly off (the .js gate absent), the sleeves render as a plain
+   stacked list inside the page column so the four-sleeve roadmap is never lost;
+   reduced-motion users carry .js (set by the inline head script regardless of
+   motion) and get the same stacked list. The .js gate below promotes the sleeves
+   into the absolutely-positioned cross-fade stack the pinned beat drives. */
+.rpin {
+  display: block;
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: var(--s-8) var(--margin);
+  position: relative;
+}
+.js .rpin { display: block; padding: 0; max-width: none; }
+.js .rpin__sticky { padding: var(--s-8) var(--margin); }
+.rpin__sticky {
+  max-width: var(--max);
+  margin: 0 auto;
+  /* no-JS: the outer .rpin owns the page padding (it is the sole roadmap exhibit),
+     so the sticky frame sits flush; the .js rule below restores the pinned padding. */
+  padding: 0;
+  display: grid;
+  /* the page's one hand-placed asymmetry sits on the flagship/.roadmap; this pin
+     reuses the gpin's 1fr / 1.15fr split so the sleeve column holds the wider
+     side, matching the gauntlet pin on the sibling page (one hand, one document). */
+  grid-template-columns: 1fr 1.15fr;
+  gap: var(--s-7);
+  align-items: center;
+}
+/* the full-viewport pin height only applies when JS drives the cross-fade; the
+   no-JS stacked list sizes to its content so it never leaves a tall empty frame. */
+.js .rpin__sticky { min-height: 100vh; }
+.rpin__left { position: relative; align-self: center; }
+.rpin__head { color: var(--paper); margin: var(--s-3) 0 var(--s-4); max-width: 13ch; }
+.rpin__sub { color: var(--paper-dim); max-width: 34ch; }
+.rpin__counter {
+  margin-top: var(--s-6);
+  font-size: 1rem;
+  display: flex;
+  gap: 0.4em;
+  color: var(--grey-700);
+}
+.rpin__counter .signal-word { font-size: 1.5rem; }
+.rpin__counter-sep { color: var(--grey-600); }
+
+.rpin__right { position: relative; min-height: 50vh; }
+.rsleeves { position: relative; margin: 0; padding: 0; list-style: none; }
+/* Base (no-JS) state: every sleeve is visible, stacked, as a plain list, so the
+   roadmap is fully legible without JS (this pin is now the sole roadmap exhibit).
+   Only the .js gate below promotes them into the absolutely-positioned cross-fade
+   stack the pin drives, mirroring the systems page's .js-gated reveal contract. */
+.rsleeve {
+  display: grid;
+  gap: var(--s-3);
+  align-content: center;
+  margin-bottom: var(--s-6);
+}
+.rsleeve:last-child { margin-bottom: 0; }
+
+/* JS active: the sleeves become the pin's cross-fade stack (one shown at a time). */
+.js .rsleeves { min-height: 50vh; }
+.js .rsleeve {
+  position: absolute;
+  inset: 0;
+  margin-bottom: 0;
+  opacity: 0;
+  transform: translateY(24px);
+  pointer-events: none;
+  transition: opacity 0.6s var(--ease-out), transform 0.6s var(--ease-out);
+}
+.js .rsleeve.is-active { opacity: 1; transform: none; pointer-events: auto; }
+.rsleeve__slot { color: var(--signal); }
+.rsleeve__name { color: var(--paper); max-width: 18ch; }
+/* the three reserved sleeves read recessed: they are seats, not yet built. */
+.rsleeve__name--reserved { color: var(--paper-dim); }
+.rsleeve__mkt { color: var(--grey-700); }
+/* the one-line description of each reserved sleeve, recessed and capped at 50ch
+   so the future lanes stay supporting cast under the live AlphaForge row. */
+.rsleeve__desc { color: var(--paper-dim); max-width: 50ch; }
+.rsleeve__status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  margin-top: var(--s-2);
+  padding-top: var(--s-3);
+  border-top: 1px solid var(--grey-850);
+  color: var(--grey-700);
+  text-transform: uppercase;
+  width: fit-content;
+}
+/* Honesty in the geometry (IMMERSION_VISION 3.4): only the PROVEN sleeve
+   (AlphaForge, the first row, live on paper) carries the signal dot. The three
+   reserved sleeves are future lanes that have not cleared the gauntlet, so their
+   status dot stays unlit grey, the same untinted recession the fan-out gives the
+   future surfaces. The accent earns its moment only where a real signal runs. */
+.rsleeve__status .dot { background: var(--grey-600); }
+.rsleeve[data-rstep="0"] .rsleeve__status .dot { background: var(--signal); }
+.rsleeve__status--next { color: var(--signal); }
+
+/* pin focus pull (mirrors motion.css section 6 + the gpin focus pull): inactive
+   sleeves blur and recede so the active one reads sharpest, like a fleet receding
+   into depth. */
+.rpin.is-pinned .rsleeve {
+  transition: opacity 0.7s var(--ease-in-out),
+              transform 0.7s var(--ease-out),
+              filter 0.7s var(--ease-out);
+}
+.rpin.is-pinned .rsleeve:not(.is-active) { filter: blur(1.5px); opacity: 0; }
+.rpin.is-pinned .rsleeve.is-active { filter: blur(0); }
+.rpin .rsleeve.is-prev { transform: translateY(-18px); }
+
+/* the resolution beat: when the page returns to AlphaForge as the climax, the
+   signal counter brightens (the one quiet tell the chain has resolved onto the one
+   proven sleeve). Restrained, opacity/color only, reversible. */
+.rpin.is-resolved .rpin__counter #rstepCurrent {
+  transition: color 0.85s var(--ease-cinema);
+  color: var(--signal);
+}
+
+/* ---- closing CTA --------------------------------------------------------- */
+.progress__close {
+  color: var(--paper);
+  max-width: 24ch;
+  margin: var(--s-8) 0 var(--s-5);
+}
+.progress__close-sub { color: var(--paper-dim); max-width: 52ch; margin-bottom: var(--s-5); }
+.progress__links { display: flex; flex-wrap: wrap; gap: var(--s-3) var(--s-5); align-items: center; }
+.progress__link {
+  position: relative;
+  color: var(--paper-dim);
+  width: fit-content;
+  transition: color 0.3s var(--ease-out);
+}
+.progress__link::after {
+  content: ""; position: absolute; left: 0; bottom: -3px;
+  width: 100%; height: 1px; background: var(--signal);
+  transform: scaleX(0); transform-origin: left;
+  transition: transform 0.3s var(--ease-out);
+}
+.progress__link:hover { color: var(--paper); }
+.progress__link:hover::after { transform: scaleX(1); }
+.progress__link--cta {
+  color: var(--paper);
+  padding: var(--s-3) var(--s-5);
+  border: 1px solid var(--signal);
+  border-radius: 2px;
+}
+.progress__link--cta::after { display: none; }
+.progress__link--cta:hover { background: var(--signal); color: var(--void); }
+
+/* =============================================================================
+   RESPONSIVE
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .arcs { grid-template-columns: 1fr; gap: var(--s-6); }
+  .ledger__row { grid-template-columns: 1fr; gap: var(--s-3); }
+  .rpin__sticky { grid-template-columns: 1fr; gap: var(--s-6); }
+  /* the standing-callout grid folds to two columns on tablet so each numeral keeps
+     room and the tabular figures stay aligned. */
+  .estate__grid { grid-template-columns: repeat(2, 1fr); gap: var(--s-5) var(--s-5); }
+}
+
+@media (max-width: 768px) {
+  [data-page="progress"] .hero { min-height: 0; padding-top: var(--s-8); }
+  .pstrip { gap: var(--s-2) var(--s-3); }
+  /* the standing-callout grid stacks to a single column on phones; each cell keeps
+     its left hairline so the four facts read as one ledger. */
+  .estate__grid { grid-template-columns: 1fr; gap: var(--s-4); }
+  /* hide the inline separators on the wrapped phone strip so each fact reads as
+     its own line-fragment rather than a broken row of slashes */
+  .pstrip__sep { display: none; }
+  .arc__count { margin-left: auto; }
+  /* the ghost wordmark would overflow a phone; shrink and clip it to the gutter */
+  .hero__ghost { font-size: clamp(5rem, 34vw, 11rem); bottom: var(--s-4); opacity: 0.9; }
+
+  /* the roadmap pin is gated off on mobile in js/progress.js; the sleeves must
+     read as a plain vertical list (the static .roadmap table already carries the
+     full reference above). Mirrors the gauntlet pin mobile fallback. */
+  .rpin__sticky { min-height: 0; align-items: start; }
+  .rpin__right { min-height: 0; }
+  .js .rsleeves { min-height: 0; }
+  .js .rsleeve {
+    position: relative; inset: auto; opacity: 1; transform: none;
+    pointer-events: auto; margin-bottom: var(--s-6);
+  }
+  .js .rsleeve:last-child { margin-bottom: 0; }
+  .rpin__counter { display: none; }
+}
+
+/* reduced motion: the pin never runs (js gate); show every sleeve stacked so the
+   thesis is legible frozen, exactly like the gauntlet pin's reduced-motion path. */
+@media (prefers-reduced-motion: reduce) {
+  .js .rsleeves { min-height: 0; }
+  .js .rsleeve {
+    position: relative; inset: auto; opacity: 1; transform: none;
+    pointer-events: auto; margin-bottom: var(--s-7);
+  }
+  .rpin__right { min-height: 0; }
+  .rpin.is-resolved .rpin__counter #rstepCurrent { transition: none; }
+}

@@ -1,0 +1,26 @@
+{
+  "schema": "canli.feasibility.treasury-auction-identity-timing.v1",
+  "generated_at": "2026-08-16T00:59:56.467429+00:00",
+  "stage": "announcement_timing_only_no_prices_no_returns",
+  "source_manifest_sha256": "594cd1df7acbb6b91c3a778cfea0abd7bdec290d418b073c954ead858b22c285",
+  "published_pre_auction_sessions": 10,
+  "two_year_note_auctions": 319,
+  "announcement_lead_calendar_days": {
+    "minimum": 0,
+    "median": 5.0,
+    "maximum": 8,
+    "at_least_2_calendar_days": 0.9968652037617555,
+    "at_least_5_calendar_days": 0.5736677115987461,
+    "at_least_7_calendar_days": 0.09404388714733543,
+    "at_least_10_calendar_days": 0.0
+  },
+  "formal_announcements_with_at_least_ten_calendar_days": 0,
+  "gates": {
+    "minimum_two_year_events": true,
+    "formal_notice_supports_published_ten_session_entry": false,
+    "point_in_time_tentative_schedule_archive_sealed": false
+  },
+  "decision": "CALENDAR_LINEAGE_REQUIRED",
+  "next_required_artifact": "Point-in-time archive of six-month tentative auction schedules released at each Treasury quarterly refunding.",
+  "return_hypotheses_spent": 0
+}

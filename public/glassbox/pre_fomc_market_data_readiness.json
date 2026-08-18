@@ -1,0 +1,63 @@
+{
+  "schema": "canli.feasibility.pre-fomc-market-data-readiness.v1",
+  "generated_at": "2026-08-16T02:25:36.475376+00:00",
+  "stage": "polygon_sip_metadata_plus_two_one_byte_transport_probes_no_records_no_returns",
+  "provider": "Polygon US Stocks SIP flat files",
+  "source_prefix": "us_stocks_sip/quotes_v1",
+  "scheduled_slots": 80,
+  "completed_events": 79,
+  "cancelled_slots": 1,
+  "required_control_windows": 312,
+  "minimum_controls_per_completed_event": 3,
+  "required_unique_session_files": 782,
+  "listed_required_session_files": 782,
+  "missing_session_files": [],
+  "compressed_bytes_if_all_required_full_day_files_downloaded": 3226909635090,
+  "compressed_gib_if_all_required_full_day_files_downloaded": 3005.294,
+  "maximum_bounded_flatfile_route_gib": 50.0,
+  "one_byte_range_verified_keys": [],
+  "transport_probe_errors": [
+    {
+      "object_key": "us_stocks_sip/quotes_v1/2015/12/2015-12-29.csv.gz",
+      "code": "403",
+      "message": "Forbidden"
+    },
+    {
+      "object_key": "us_stocks_sip/quotes_v1/2025/12/2025-12-10.csv.gz",
+      "code": "403",
+      "message": "Forbidden"
+    }
+  ],
+  "rest_server_filtered_probe": {
+    "status_code": 403,
+    "api_status": "NOT_AUTHORIZED",
+    "message": "You are not entitled to this data. Please upgrade your plan at https://massive.com/pricing",
+    "results_count": 0,
+    "result_fields": [],
+    "authorized": false
+  },
+  "provider_route_diagnostics": {
+    "flatfile_transport_authorized": false,
+    "flatfile_volume_bounded": false,
+    "rest_server_filtered_authorized": false
+  },
+  "credential_state": "NO_USABLE_QUOTE_DOWNLOAD_ROUTE",
+  "windows_file": "artifacts/feasibility/pre_fomc_announcement_drift/market_data_windows.parquet",
+  "windows_sha256": "570922590cedf881e4d20841ea4ad50dda2f824165ca36827e664ec6bae7dda6",
+  "inventory_file": "artifacts/feasibility/pre_fomc_announcement_drift/polygon_quote_inventory.parquet",
+  "inventory_sha256": "cc3670c526ac00ded22983bc7e8b714fa6543ab610c4f86a9bda3d8b05f4fa07",
+  "gates": {
+    "all_80_scheduled_slots_accounted": true,
+    "79_completed_events_accounted": true,
+    "cancelled_slot_preserved_without_market_window": true,
+    "at_least_three_locked_controls_per_completed_event": true,
+    "every_required_session_object_listed": true,
+    "practical_server_filtered_or_bounded_download_route": false,
+    "quote_records_not_decompressed_or_parsed": true,
+    "market_returns_unopened": true,
+    "return_hypotheses_unspent": true
+  },
+  "decision": "DATA_GATED",
+  "return_data_opened": false,
+  "return_hypotheses_spent": 0
+}

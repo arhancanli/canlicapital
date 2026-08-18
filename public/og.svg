@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="Canli Capital. Systematic investment research proven in the open. Simulation and live paper only, no real capital, no claimed return.">
+  <!-- CANLI CAPITAL social card, 1200x630.
+       No figure appears on this card by design. A number baked into a rasterized
+       PNG cannot be bound to a live artifact the way the pages are, so it goes
+       stale silently. Positioning and the disclaimer only; the reader goes to the
+       page for figures. Fonts are Georgia and system sans so any rasterizer
+       reproduces it without embedding the web fonts. Zero em dashes. -->
+  <defs>
+    <radialGradient id="floor" cx="28%" cy="118%" r="85%">
+      <stop offset="0%" stop-color="#C8553D" stop-opacity="0.10"/>
+      <stop offset="45%" stop-color="#C8553D" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="paperFloor" cx="74%" cy="125%" r="80%">
+      <stop offset="0%" stop-color="#F4F1EA" stop-opacity="0.05"/>
+      <stop offset="50%" stop-color="#F4F1EA" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="#0A0B0D"/>
+  <rect width="1200" height="630" fill="url(#floor)"/>
+  <rect width="1200" height="630" fill="url(#paperFloor)"/>
+
+  <g stroke="#F4F1EA" stroke-opacity="0.06" stroke-width="1">
+    <line x1="0" y1="520" x2="1200" y2="520"/>
+    <line x1="0" y1="556" x2="1200" y2="556"/>
+    <line x1="0" y1="594" x2="1200" y2="594"/>
+  </g>
+  <path d="M 0 596 L 300 590 L 540 560 L 720 470 L 860 540 L 1040 588 L 1200 592"
+        fill="none" stroke="#C8553D" stroke-opacity="0.55" stroke-width="2"/>
+  <circle cx="720" cy="470" r="5" fill="#C8553D"/>
+
+  <!-- the convergence mark: four independent paths, one governed output -->
+  <g transform="translate(84 78)" fill="none" stroke="#F4F1EA" stroke-width="1.6">
+    <path d="M2 3h7l12 11h13M2 9h8l11 5M2 19h8l11-5M2 25h7l12-11"/>
+  </g>
+  <circle cx="105" cy="92" r="2.8" fill="#C8553D"/>
+  <text x="132" y="99" font-family="'Space Grotesk', system-ui, sans-serif" font-size="26" letter-spacing="3" fill="#C4C0B8">CANLI CAPITAL</text>
+
+  <!-- the wordmark -->
+  <text x="92" y="248" font-family="Georgia, 'Times New Roman', serif" font-size="94" font-weight="500" letter-spacing="-2" fill="#F4F1EA">Proven in the open.</text>
+
+  <!-- the positioning. No count, so it cannot go stale when a sleeve is added. -->
+  <text x="96" y="324" font-family="Georgia, 'Times New Roman', serif" font-size="38" fill="#C4C0B8">Systematic investment research with a market-neutral core.</text>
+
+  <!-- the standing. No figure appears anywhere on this card, by design. -->
+  <text x="96" y="404" font-family="'JetBrains Mono', ui-monospace, monospace" font-size="22" letter-spacing="1" fill="#888A90">SIMULATION + LIVE PAPER  /  NO REAL CAPITAL  /  NO CLAIMED RETURN</text>
+  <text x="96" y="442" font-family="'JetBrains Mono', ui-monospace, monospace" font-size="22" letter-spacing="1" fill="#888A90">EVERY RESULT DEFLATED. EVERY DEAD IDEA PUBLISHED.</text>
+
+  <!-- the glass-box reference, bottom-right -->
+  <text x="1104" y="99" text-anchor="end" font-family="'JetBrains Mono', ui-monospace, monospace" font-size="18" letter-spacing="2" fill="#888A90">THE GLASS BOX</text>
+  <text x="1104" y="123" text-anchor="end" font-family="'JetBrains Mono', ui-monospace, monospace" font-size="14" letter-spacing="1" fill="#5C5E63">every figure from a real artifact</text>
+</svg>

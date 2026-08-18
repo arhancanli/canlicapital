@@ -1,0 +1,1053 @@
+/* ===========================================================================
+   MERIDIAN / open.css
+   ---------------------------------------------------------------------------
+   Page-specific layer for /open ONLY, the public glass-box hub ("Proven in the
+   Open"). It does NOT redefine a token, a type class, an easing, the cursor, the
+   rail, the grain, or the shared section chrome. Those are the single design
+   system (styles.css / motion.css / cursor.css / shell.css) and are loaded
+   before this sheet. This file ADDS the components the disclosure page needs and
+   nothing else:
+
+     0. The glass-box hero: an oversized ghost wordmark + honesty pledge.
+     1. The live track-record frame: a bordered tablet holding the equity-curve
+        slot (the same reserved-frame idiom as performance's results panel), the
+        "Day N accruing" readout, four labelled fields, the honesty policy.
+     2. The kill-log ledger: a six-column hairline-row table (the landing/pillars
+        and performance/gauntlet row idiom), killed rows then the two survivors,
+        each expandable to its reason. A killed/survived/gate tally strip.
+     3. The pre-registration grid: a meta column + the numbered slot ledger, each
+        slot carrying a PASSED / FAILED / DROPPED / RESERVED state chip.
+     4. The deflation board: two gauges (DSR, PBO) drawn against their gates, a
+        capacity-decay bar chart, and the honest C+ no-deploy verdict block.
+     5. The reproducibility tablet: a claim / not-claimed pair, the golden-master
+        coverage list, the precision facts, and the loaded artifacts' hashes.
+
+   Every value here is built from --tokens (--void, --ink, --paper, --paper-dim,
+   --grey-*, --signal, --s-*, --ease-*). The single signal hue earns its few
+   moments (the live curve, the KEEP chips, the grade); the failure states are
+   stated in calm grey, never apologetic, never loud. ZERO em dashes. Fully
+   responsive. Reduced-motion safe (no motion is authored here that the shared
+   reveal grammar does not already gate).
+   =========================================================================== */
+
+/* ---------------------------------------------------------------------------
+   SHARED SMALL PARTS (page-scoped link + cta, reused across sections)
+   The same in-section link/cta language as performance's .perf-link/.perf-cta,
+   kept page-local so the property does not grow a global variant.
+   --------------------------------------------------------------------------- */
+.open-link,
+.open-cta {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  color: var(--paper-dim);
+  padding-bottom: 4px;
+  transition: color 0.4s var(--ease-out);
+}
+.open-link::after,
+.open-cta::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s var(--ease-out);
+}
+.open-link:hover,
+.open-cta:hover { color: var(--paper); }
+.open-cta { color: var(--signal); }
+.open-cta:hover { color: var(--signal); }
+.open-link:hover::after,
+.open-cta:hover::after { transform: scaleX(1); }
+
+/* ---------------------------------------------------------------------------
+   0. HERO / THE GLASS-BOX MANIFESTO
+   The sub-page hero is shorter than the landing's full fold so the disclosure
+   reads quickly. It reuses the shared .hero mechanics + char-mask reveal; this
+   only tunes measure, the lede, the pledge, and the ghost wordmark.
+   --------------------------------------------------------------------------- */
+.open-hero { min-height: auto; padding-top: var(--s-9); padding-bottom: var(--s-7); position: relative; overflow: hidden; }
+.open-hero .hero__body { position: relative; z-index: 1; }
+.open-hero .hero__word { max-width: 14ch; }
+.open-hero .hero__sub { justify-self: start; max-width: 58ch; margin-top: var(--s-4); }
+
+/* The ghost wordmark, reusing the footer/performance oversized --grey-900
+   watermark device so entering this page renews the display moment without
+   forking a second type treatment. One per page, behind the headline. */
+.open-hero__ghost {
+  position: absolute;
+  z-index: 0;
+  pointer-events: none;
+  font-family: var(--serif);
+  font-optical-sizing: auto;
+  font-variation-settings: "opsz" 144, "wght" 280, "SOFT" 0, "slnt" 0;
+  font-weight: 280;
+  font-size: clamp(9rem, 34vw, 32rem);
+  line-height: 0.8;
+  letter-spacing: -0.04em;
+  color: var(--grey-900);
+  right: var(--margin);
+  bottom: var(--s-5);
+  user-select: none;
+  white-space: nowrap;
+}
+
+.open-hero__lede {
+  color: var(--paper);
+  max-width: 22ch;
+  margin-top: var(--s-3);
+}
+.open-hero__lede::before {
+  content: "";
+  display: block;
+  width: 40px;
+  height: 2px;
+  background: var(--signal);
+  margin-bottom: var(--s-4);
+}
+
+.open-hero__pledge {
+  display: grid;
+  gap: var(--s-3);
+  margin-top: var(--s-2);
+  max-width: 62ch;
+}
+.open-hero__pledge li {
+  position: relative;
+  padding-left: var(--s-4);
+  color: var(--paper-dim);
+  font-size: 1.0625rem;
+  line-height: 1.55;
+}
+.open-hero__pledge li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.62em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--signal);
+  opacity: 0.7;
+}
+.open-hero__k { color: var(--paper); font-weight: 500; }
+
+.open-hero__proof {
+  color: var(--grey-700);
+  margin-top: var(--s-2);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.4em;
+}
+.open-hero__proof [data-kpi] { color: var(--paper-dim); }
+.open-hero__proof-sep { color: var(--grey-600); }
+
+/* ---------------------------------------------------------------------------
+   SHARED SECTION HEADS (track / killlog / prereg / deflation / reproduce)
+   One head rhythm across the page: eyebrow -> display-l title -> lead, on the
+   canonical s-3 / s-5 beat owned by styles.css.
+   --------------------------------------------------------------------------- */
+.track__head,
+.killlog__head,
+.prereg__head,
+.deflation__head,
+.capacity-sim__head,
+.reproduce__head { max-width: 64ch; }
+.track__title,
+.killlog__title,
+.prereg__title,
+.deflation__title,
+.capacity-sim__title,
+.reproduce__title { margin: var(--s-3) 0 var(--s-5); color: var(--paper); }
+.track__lead,
+.killlog__lead,
+.prereg__lead,
+.deflation__lead,
+.capacity-sim__lead,
+.reproduce__lead { color: var(--paper-dim); }
+
+/* ---------------------------------------------------------------------------
+   1. LIVE TRACK RECORD
+   A bordered tablet (the reserved-frame idiom): frame head (status + Day N),
+   the curve plot, four fields, a source line, and the honesty policy list.
+   --------------------------------------------------------------------------- */
+.track__frame {
+  margin-top: var(--s-7);
+  border: 1px solid var(--grey-850);
+  background: linear-gradient(180deg, rgba(255,255,255,0.012), transparent 40%);
+}
+.track__frame-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-4);
+  padding: var(--s-4) var(--s-5);
+  border-bottom: 1px solid var(--grey-850);
+}
+.track__status { display: flex; align-items: center; gap: var(--s-2); }
+.track__status-label { color: var(--grey-700); }
+.track__status-val { color: var(--signal); letter-spacing: 0.14em; }
+.track__day { display: flex; align-items: baseline; gap: var(--s-2); }
+.track__day-val { font-size: clamp(1.75rem, 3vw, 2.5rem); color: var(--paper); }
+.track__day-unit { color: var(--grey-700); }
+
+.track__plot {
+  position: relative;
+  height: clamp(220px, 38vw, 420px);
+  padding: var(--s-5);
+}
+.track__plot::before,
+.track__plot::after {
+  content: "";
+  position: absolute;
+  background: var(--grey-900);
+  pointer-events: none;
+}
+/* a quiet baseline + left axis, the same axis-grid language as the scene
+   fallback, so the slot reads as "a chart" even before paint */
+.track__plot::before { left: var(--s-5); right: var(--s-5); bottom: var(--s-6); height: 1px; }
+.track__plot::after { left: var(--s-5); top: var(--s-5); bottom: var(--s-6); width: 1px; }
+.track__canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+.track__plot-pending {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--s-2);
+  text-align: center;
+  padding: var(--s-5);
+}
+.track__plot-pending[hidden] { display: none; }
+.track__plot-dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--grey-600);
+  animation: pulse 2.8s var(--ease-in-out) infinite;
+}
+.track__plot-cap { color: var(--grey-700); max-width: 42ch; }
+
+.track__legend {
+  position: absolute;
+  top: var(--s-4);
+  right: var(--s-5);
+  display: flex;
+  gap: var(--s-4);
+}
+.track__legend-item { display: inline-flex; align-items: center; gap: 0.5em; color: var(--grey-700); }
+.track__swatch { width: 14px; height: 2px; display: inline-block; background: var(--grey-600); }
+.track__legend-item--sim .track__swatch { background: var(--grey-600); }
+.track__legend-item--live .track__swatch { background: var(--signal); height: 3px; }
+.track__legend-item--live { color: var(--paper-dim); }
+
+.track__fields {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-top: 1px solid var(--grey-850);
+}
+.track__field {
+  padding: var(--s-4) var(--s-5);
+  border-right: 1px solid var(--grey-850);
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-2);
+}
+.track__field:last-child { border-right: none; }
+.track__field-label { color: var(--grey-700); }
+.track__field-value { font-size: 1.5rem; color: var(--paper); }
+.track__field--primary .track__field-value { font-size: 1.875rem; }
+.track__field-value[data-empty="1"] { color: var(--grey-600); font-size: 1.25rem; }
+
+.track__source {
+  color: var(--grey-700);
+  padding: var(--s-3) var(--s-5);
+  border-top: 1px solid var(--grey-850);
+}
+
+.track__policy {
+  margin-top: var(--s-5);
+  display: grid;
+  gap: var(--s-2);
+  max-width: 70ch;
+}
+.track__policy li {
+  position: relative;
+  padding-left: var(--s-4);
+  color: var(--paper-dim);
+  font-family: var(--mono);
+  font-size: 0.8125rem;
+  line-height: 1.6;
+}
+.track__policy li::before {
+  content: "//";
+  position: absolute;
+  left: 0;
+  color: var(--grey-600);
+}
+
+/* ---------------------------------------------------------------------------
+   2. KILL-LOG LEDGER
+   Tally strip + a six-column hairline-row table. The whole table reads as one
+   ledger; hovering a row lifts its border (the established gauntlet idiom).
+   --------------------------------------------------------------------------- */
+.killlog__note { color: var(--paper-dim); margin-top: var(--s-4); }
+.killlog__note [data-kl] { color: var(--paper-dim); }
+
+.killlog__tally {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--s-4);
+  margin: var(--s-6) 0 var(--s-6);
+  border-top: 1px solid var(--grey-850);
+  border-bottom: 1px solid var(--grey-850);
+}
+.killlog__tally-item {
+  padding: var(--s-4) var(--s-4) var(--s-4) 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-2);
+}
+.killlog__tally-val { font-size: clamp(2rem, 4vw, 3rem); color: var(--paper); }
+.killlog__tally-val--keep { color: var(--signal); }
+.killlog__tally-label { color: var(--grey-700); }
+
+.ledger { border-top: 1px solid var(--grey-850); }
+.ledger__row {
+  display: grid;
+  grid-template-columns: 1.6fr 0.9fr 0.9fr 0.9fr 1.1fr 0.8fr;
+  align-items: center;
+  gap: var(--s-3);
+  padding: var(--s-3) var(--s-2);
+  border-bottom: 1px solid var(--grey-850);
+}
+.ledger__row--head { padding-top: var(--s-2); padding-bottom: var(--s-3); }
+.ledger__row--head .ledger__cell { color: var(--grey-700); }
+.ledger__cell { font-family: var(--mono); font-size: 0.8125rem; line-height: 1.3; }
+.ledger__cell--num { text-align: right; font-variant-numeric: tabular-nums lining-nums; }
+.ledger__cell--name { color: var(--paper-dim); }
+.ledger__cell--verdict { text-align: right; }
+
+/* a data row is a button so the reason can expand; resets button chrome */
+.ledger__entry {
+  display: block;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  border-bottom: 1px solid var(--grey-850);
+  transition: background 0.35s var(--ease-out);
+}
+.ledger__entry:last-child { border-bottom: none; }
+.ledger__entry:hover,
+.ledger__entry[aria-expanded="true"] { background: rgba(255,255,255,0.018); }
+.ledger__entry .ledger__row { border-bottom: none; }
+.ledger__entry:hover .ledger__cell--name,
+.ledger__entry[aria-expanded="true"] .ledger__cell--name { color: var(--paper); }
+
+.ledger__name {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.ledger__name-readable { color: var(--paper); font-size: 0.875rem; }
+.ledger__name-key { color: var(--grey-600); font-size: 0.6875rem; letter-spacing: 0.06em; }
+.ledger__entry:hover .ledger__name-readable { color: var(--paper); }
+
+.ledger__num--neg { color: var(--paper-dim); }
+.ledger__num--pos { color: var(--paper); }
+
+.ledger__chip {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border: 1px solid var(--grey-825);
+  border-radius: 2px;
+  color: var(--grey-700);
+}
+.ledger__chip--killed { color: var(--grey-700); border-color: var(--grey-825); }
+.ledger__chip--keep {
+  color: var(--signal);
+  border-color: var(--signal-deep);
+  background: var(--signal-faint);
+}
+
+/* the reason, hidden until the row is opened; a CSS grid-rows expand so there
+   is no measured-height JS, and it is reduced-motion safe by being instant */
+.ledger__reason {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.45s var(--ease-out);
+}
+.ledger__entry[aria-expanded="true"] .ledger__reason { grid-template-rows: 1fr; }
+.ledger__reason-inner { overflow: hidden; }
+.ledger__reason-text {
+  padding: 0 var(--s-2) var(--s-4);
+  color: var(--paper-dim);
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  max-width: 80ch;
+}
+.ledger__reason-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-4);
+  padding: 0 var(--s-2) var(--s-4);
+  color: var(--grey-700);
+  font-family: var(--mono);
+  font-size: 0.75rem;
+}
+.ledger__reason-meta b { color: var(--paper-dim); font-weight: 500; }
+@media (prefers-reduced-motion: reduce) {
+  .ledger__reason { transition: none; }
+}
+
+/* the caption now sits ABOVE the ledger (after the tally), so the reader knows the
+   rows are interactive before meeting them; a quiet whisper, smaller than the body. */
+.killlog__caption { color: var(--grey-700); margin-bottom: var(--s-4); font-size: 0.75rem; }
+
+/* ---------------------------------------------------------------------------
+   3. PRE-REGISTRATION
+   A broken-grid two column: the meta/protocol column (under-weighted) and the
+   numbered slot ledger.
+   --------------------------------------------------------------------------- */
+.prereg__grid {
+  margin-top: var(--s-7);
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: var(--s-6);
+  align-items: start;
+}
+
+.prereg__meta-list { border-top: 1px solid var(--grey-850); }
+.prereg__meta-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--s-3);
+  padding: var(--s-3) 0;
+  border-bottom: 1px solid var(--grey-850);
+}
+.prereg__meta-label { color: var(--grey-700); }
+.prereg__meta-val { color: var(--paper); font-size: 1.25rem; }
+.prereg__meta-val.mono-label { font-size: 0.75rem; color: var(--paper-dim); text-align: right; }
+
+.prereg__protocol { margin-top: var(--s-5); color: var(--paper-dim); }
+.prereg__protocol-head { display: block; margin-bottom: var(--s-2); color: var(--grey-700); }
+
+.prereg__outcomes { margin-top: var(--s-5); display: grid; gap: var(--s-4); }
+.prereg__outcome-label { display: block; margin-bottom: var(--s-2); color: var(--grey-700); }
+.prereg__outcome-val { color: var(--paper-dim); }
+.prereg__outcome--actual { padding-left: var(--s-3); border-left: 2px solid var(--signal); }
+.prereg__outcome--actual .prereg__outcome-val { color: var(--paper); }
+
+.prereg__slots { border-top: 1px solid var(--grey-850); }
+.prereg__slot {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: baseline;
+  gap: var(--s-3);
+  padding: var(--s-4) 0;
+  border-bottom: 1px solid var(--grey-850);
+}
+.prereg__slot-idx { color: var(--signal); opacity: 0.6; font-family: var(--mono); font-size: 0.8125rem; letter-spacing: 0.06em; }
+.prereg__slot-main { display: flex; flex-direction: column; gap: var(--s-2); }
+.prereg__slot-name { color: var(--paper); font-size: 1.0625rem; font-weight: 500; }
+.prereg__slot-note { color: var(--paper-dim); font-size: 0.9375rem; line-height: 1.55; max-width: 60ch; }
+/* the per-slot Sharpe is outcome data, not a label, so it reads at --paper-dim
+   rather than the recessed grey of a caption; the bold figure lifts to --paper. */
+.prereg__slot-sharpe { color: var(--paper-dim); font-family: var(--mono); font-size: 0.75rem; }
+.prereg__slot-sharpe b { color: var(--paper); font-weight: 500; }
+.prereg__slot-state {
+  justify-self: end;
+  font-family: var(--mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border: 1px solid var(--grey-825);
+  border-radius: 2px;
+  color: var(--grey-700);
+  white-space: nowrap;
+}
+.prereg__slot-state--passed { color: var(--signal); border-color: var(--signal-deep); background: var(--signal-faint); }
+.prereg__slot-state--failed,
+.prereg__slot-state--dropped,
+.prereg__slot-state--reserved { color: var(--grey-700); }
+.prereg__slot-state--null { color: var(--paper-dim); border-color: var(--grey-700); }
+
+/* ---------------------------------------------------------------------------
+   4. DEFLATION BOARD
+   Two gauges + a capacity bar chart, then the verdict block.
+   --------------------------------------------------------------------------- */
+.deflation__board {
+  margin-top: var(--s-7);
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: var(--s-6);
+  align-items: start;
+}
+
+.deflation__gauges { display: grid; gap: var(--s-5); }
+.gauge {
+  border: 1px solid var(--grey-850);
+  padding: var(--s-4) var(--s-5) var(--s-5);
+}
+.gauge__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--s-3);
+  margin-bottom: var(--s-4);
+}
+.gauge__name { color: var(--paper-dim); }
+.gauge__verdict { letter-spacing: 0.12em; }
+.gauge__verdict--fail { color: var(--grey-700); }
+.gauge__verdict--pass { color: var(--signal); }
+
+.gauge__track {
+  position: relative;
+  height: 8px;
+  background: var(--grey-900);
+  border-radius: 1px;
+  overflow: hidden;
+}
+.gauge__fill {
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 0;
+  background: var(--paper-dim);
+  transition: width 0.9s var(--ease-out);
+}
+.gauge[data-gauge].is-fail .gauge__fill { background: var(--grey-600); }
+.gauge[data-gauge].is-pass .gauge__fill { background: var(--signal); }
+/* the gate marker: a hairline the value must reach (DSR) or stay under (PBO) */
+.gauge__gate {
+  position: absolute;
+  top: -3px; bottom: -3px;
+  width: 2px;
+  background: var(--signal);
+  left: 0;
+  transition: left 0.9s var(--ease-out);
+}
+.gauge__gate::after {
+  content: "gate";
+  position: absolute;
+  top: -16px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--mono);
+  font-size: 0.5625rem;
+  letter-spacing: 0.1em;
+  color: var(--signal);
+  white-space: nowrap;
+}
+.gauge__readout {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--s-3);
+  margin-top: var(--s-4);
+}
+.gauge__val { font-size: clamp(1.75rem, 3.4vw, 2.5rem); color: var(--paper); }
+.gauge__gate-label { color: var(--grey-700); }
+.gauge__gate-label [data-df] { color: var(--paper-dim); }
+@media (prefers-reduced-motion: reduce) {
+  .gauge__fill, .gauge__gate { transition: none; }
+}
+
+.deflation__capacity { border: 1px solid var(--grey-850); padding: var(--s-5); }
+.deflation__capacity-head { color: var(--grey-700); margin-bottom: var(--s-5); display: block; }
+.capbar { display: grid; gap: var(--s-4); }
+.capbar__row { display: grid; gap: var(--s-2); }
+.capbar__top {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--s-3);
+}
+.capbar__cap { color: var(--paper-dim); font-family: var(--mono); font-size: 0.8125rem; }
+.capbar__sr { color: var(--paper); font-family: var(--mono); font-size: 0.9375rem; font-variant-numeric: tabular-nums; }
+.capbar__sr--neg { color: var(--grey-700); }
+.capbar__track {
+  position: relative;
+  height: 6px;
+  background: var(--grey-900);
+  border-radius: 1px;
+  overflow: hidden;
+}
+/* zero sits at a fixed midline so a negative bar reads as a genuine loss */
+.capbar__zero { position: absolute; top: -2px; bottom: -2px; width: 1px; background: var(--grey-700); }
+.capbar__fill {
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 0;
+  background: var(--paper-dim);
+  transition: width 0.9s var(--ease-out), left 0.9s var(--ease-out);
+}
+.capbar__fill--neg { background: var(--signal-deep); }
+@media (prefers-reduced-motion: reduce) { .capbar__fill { transition: none; } }
+
+.deflation__verdict {
+  margin-top: var(--s-6);
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--s-6);
+  align-items: center;
+  padding-top: var(--s-6);
+  border-top: 1px solid var(--grey-850);
+}
+.deflation__verdict-grade { display: flex; flex-direction: column; gap: var(--s-2); }
+.deflation__grade-val { color: var(--signal); line-height: 0.9; }
+.deflation__grade-label { color: var(--grey-700); }
+.deflation__outcome { color: var(--paper); letter-spacing: 0.12em; margin-bottom: var(--s-3); }
+.deflation__reason { color: var(--paper-dim); max-width: 68ch; }
+
+/* ---------------------------------------------------------------------------
+   5. CAPACITY & SCALABILITY
+   A clean Sharpe-vs-AUM curve + two structural callouts (the crypto cliff and
+   the equity-core threshold) up top, then a four-row book table. Restraint by
+   design: a single line in the signal hue, faint grey crypto markers, and a
+   table whose only colour is the MEASURED basis badge. No wall. Every part is
+   built from the shared tokens and the same hairline-border idiom as the
+   gauges / capbars above. Reduced-motion safe (the curve draws its final frame
+   at once; the rows simply rest visible).
+   --------------------------------------------------------------------------- */
+
+/* The basis badge: a tiny mono chip with a leading dot. MEASURED earns the one
+   signal hue; MODELED and FORWARD stay calm grey; NOT_MEASURED is the faintest. */
+.capbadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  font-family: var(--mono);
+  font-size: 0.5625rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--grey-700);
+  white-space: nowrap;
+}
+.capbadge::before {
+  content: "";
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--grey-600);
+  flex: none;
+}
+.capbadge--measured { color: var(--paper-dim); }
+.capbadge--measured::before { background: var(--signal); }
+.capbadge--modeled::before { background: var(--paper-dim); }
+.capbadge--forward::before { background: var(--grey-700); }
+.capbadge--none { color: var(--grey-600); }
+.capbadge--none::before { background: var(--grey-850); }
+
+.capacity-sim__board {
+  margin-top: var(--s-7);
+  display: grid;
+  grid-template-columns: 1.25fr 1fr;
+  gap: var(--s-6);
+  align-items: start;
+}
+
+/* The curve frame: the same bordered, dormant-until-loaded plot idiom as the
+   track record and performance results panels. */
+.capcurve {
+  border: 1px solid var(--grey-850);
+  padding: var(--s-5);
+}
+.capcurve__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--s-3);
+  margin-bottom: var(--s-4);
+  flex-wrap: wrap;
+}
+.capcurve__title { color: var(--paper-dim); }
+.capcurve__axes { color: var(--grey-700); letter-spacing: 0.1em; }
+.capcurve__plot {
+  position: relative;
+  width: 100%;
+  min-height: 240px;
+  aspect-ratio: 16 / 9;
+}
+.capcurve__canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+.capcurve__pending {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--s-3);
+  text-align: center;
+}
+.capcurve__pending[hidden] { display: none; }
+.capcurve__pending-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--signal);
+  opacity: 0.6;
+  animation: capPulse 2.4s var(--ease-out) infinite;
+}
+@keyframes capPulse { 0%, 100% { opacity: 0.25; } 50% { opacity: 0.7; } }
+@media (prefers-reduced-motion: reduce) { .capcurve__pending-dot { animation: none; } }
+.capcurve__pending-cap { color: var(--grey-700); letter-spacing: 0.14em; max-width: 40ch; }
+.capcurve__legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-4);
+  margin: var(--s-4) 0 0;
+}
+.capcurve__legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6em;
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.08em;
+  color: var(--grey-700);
+}
+.capcurve__swatch { width: 16px; height: 0; border-top-width: 2px; border-top-style: solid; }
+.capcurve__swatch--book { border-top-color: var(--signal); }
+.capcurve__swatch--crypto { border-top: 0; width: 6px; height: 6px; border-radius: 50%; background: var(--paper-dim); opacity: 0.5; }
+
+/* The two structural facts, stacked beside the curve. */
+/* min-width:0 added 2026-08-06. Grid and flex children default to min-width:auto, which
+   refuses to shrink below their content, so this block measured 509px inside a 390px
+   viewport and widened the whole document (the fixed-position progress bar then sized to
+   the widened document, which made it look like a second bug). */
+.capacity-sim__facts { display: grid; gap: var(--s-5); align-content: start; min-width: 0; }
+.capfact {
+  border: 1px solid var(--grey-850);
+  padding: var(--s-4) var(--s-5) var(--s-5);
+  display: grid;
+  gap: var(--s-2);
+}
+.capfact__k { color: var(--grey-700); }
+.capfact__v { color: var(--paper); font-size: clamp(1.5rem, 3vw, 2rem); line-height: 1; }
+.capfact__badge:not(.capbadge) { display: none; } /* placeholder before bind */
+.capfact .capbadge { margin-top: var(--s-1); }
+.capfact__note { color: var(--paper-dim); margin-top: var(--s-2); font-size: 0.875rem; }
+
+/* The four-row book table. A hairline-row table in the same language as the
+   kill-log ledger, but read-only (no expand). Columns: AUM / Book Sharpe (fwd) /
+   Return / Max DD / what is driving it. */
+.captable { margin-top: var(--s-6); }
+.captable__head,
+.captable__row {
+  display: grid;
+  grid-template-columns: 0.7fr 1fr 1fr 0.8fr 1.8fr;
+  gap: var(--s-4);
+  align-items: baseline;
+}
+.captable__head {
+  padding: 0 0 var(--s-3);
+  border-bottom: 1px solid var(--grey-850);
+}
+.captable__head .captable__col {
+  font-family: var(--mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--grey-700);
+}
+.captable__head .captable__col--num,
+.captable__head .captable__col--dd { text-align: right; }
+.captable__body { display: block; }
+.captable__row {
+  padding: var(--s-4) 0;
+  border-bottom: 1px solid var(--grey-900);
+}
+.captable__col { min-width: 0; }
+.captable__col--num,
+.captable__col--dd {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--s-1);
+  text-align: right;
+}
+.captable__aum {
+  font-family: var(--mono);
+  font-size: 1.0625rem;
+  color: var(--paper);
+  font-variant-numeric: tabular-nums;
+}
+.captable__num {
+  font-family: var(--mono);
+  font-size: 0.9375rem;
+  color: var(--paper);
+  font-variant-numeric: tabular-nums;
+}
+.captable__num--neg { color: var(--grey-700); }
+.captable__col--drive { display: grid; gap: var(--s-3); }
+.captable__split { display: grid; gap: var(--s-2); }
+.captable__bar {
+  display: flex;
+  height: 4px;
+  background: var(--grey-900);
+  border-radius: 1px;
+  overflow: hidden;
+}
+.captable__bar-seg { height: 100%; }
+.captable__bar-seg--crypto { background: var(--signal); }
+.captable__bar-seg--equity { background: var(--grey-600); }
+.captable__split-label { color: var(--grey-700); letter-spacing: 0.08em; }
+.captable__drive-note { color: var(--paper-dim); font-size: 0.8125rem; line-height: 1.5; }
+
+/* The honesty note + the deflated forward expectation, the load-bearing label. */
+.capacity-sim__forward {
+  margin-top: var(--s-6);
+  padding-top: var(--s-6);
+  border-top: 1px solid var(--grey-850);
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: var(--s-6);
+  align-items: start;
+}
+.capacity-sim__honesty { color: var(--paper-dim); max-width: 68ch; }
+.capacity-sim__expect { display: grid; gap: var(--s-4); align-content: start; }
+.capacity-sim__expect-row {
+  display: grid;
+  gap: var(--s-2);
+  padding-left: var(--s-3);
+  border-left: 2px solid var(--signal);
+}
+.capacity-sim__expect-label { color: var(--grey-700); }
+.capacity-sim__expect-val { color: var(--paper); font-size: 1.0625rem; font-variant-numeric: tabular-nums; }
+.capacity-sim__expect-mid { color: var(--grey-700); }
+
+@media (max-width: 900px) {
+  .capacity-sim__board { grid-template-columns: 1fr; }
+  .capacity-sim__forward { grid-template-columns: 1fr; }
+  .captable__head { display: none; }
+  .captable__row {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--s-3) var(--s-4);
+    padding: var(--s-5) 0;
+  }
+  .captable__col--aum { grid-column: 1 / -1; }
+  .captable__col--num,
+  .captable__col--dd { align-items: flex-start; text-align: left; }
+  .captable__col--drive { grid-column: 1 / -1; }
+}
+
+/* ---------------------------------------------------------------------------
+   6. REPRODUCIBILITY
+   A claim/not-claimed pair + the golden-master coverage tablet, then the
+   precision facts, the no-look-ahead note, and the loaded artifact hashes.
+   --------------------------------------------------------------------------- */
+.reproduce__grid {
+  margin-top: var(--s-7);
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: var(--s-6);
+  align-items: start;
+}
+
+.reproduce__claim { display: grid; gap: var(--s-5); min-width: 0; }
+.reproduce__claim-yes,
+.reproduce__claim-no { display: flex; gap: var(--s-3); align-items: flex-start; }
+.reproduce__claim-mark {
+  flex: none;
+  width: 18px; height: 18px;
+  margin-top: 4px;
+  border-radius: 2px;
+  position: relative;
+}
+.reproduce__claim-mark--yes { border: 1.5px solid var(--signal); }
+/* the check + minus are sized proportionally to the mark so they stay centered at
+   any mark size, rather than the old hard-coded px that broke when the box scaled. */
+.reproduce__claim-mark--yes::after {
+  content: "";
+  position: absolute;
+  left: 27%; top: 22%;
+  width: 40%; height: 60%;
+  border-right: 1.5px solid var(--signal);
+  border-bottom: 1.5px solid var(--signal);
+  transform: rotate(40deg);
+}
+.reproduce__claim-mark--no { border: 1.5px solid var(--grey-700); }
+.reproduce__claim-mark--no::after {
+  content: "";
+  position: absolute;
+  left: 22%; right: 22%; top: 50%;
+  height: 1.5px;
+  background: var(--grey-700);
+  transform: translateY(-50%);
+}
+.reproduce__claim-text { color: var(--paper-dim); }
+.reproduce__claim-key { color: var(--paper); font-weight: 500; display: block; margin-bottom: 2px; }
+
+.reproduce__tablet { border: 1px solid var(--grey-850); min-width: 0; }
+.reproduce__tablet-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-3);
+  padding: var(--s-3) var(--s-4);
+  border-bottom: 1px solid var(--grey-850);
+  background: rgba(255,255,255,0.012);
+}
+.reproduce__tablet-file { color: var(--signal); letter-spacing: 0.04em; min-width: 0; overflow-wrap: anywhere; }
+.reproduce__tablet-lines { color: var(--grey-700); flex: none; }
+.reproduce__tablet-purpose { color: var(--grey-700); padding: var(--s-3) var(--s-4); border-bottom: 1px solid var(--grey-850); }
+.reproduce__coverage { padding: var(--s-4); display: grid; gap: var(--s-4); counter-reset: cov; }
+.reproduce__coverage li {
+  position: relative;
+  padding-left: var(--s-5);
+  color: var(--paper-dim);
+  font-size: 0.9375rem;
+  line-height: 1.6;
+}
+.reproduce__coverage li::before {
+  counter-increment: cov;
+  content: counter(cov);
+  position: absolute;
+  left: 0; top: 0.15em;
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  color: var(--signal);
+  opacity: 0.6;
+}
+
+/* VERIFIABILITY: one block where the precision facts and the loaded-artifact
+   hashes read as a single proof. The facts run as a 3-up tabular grid, the hashes
+   sit directly beneath them. */
+.reproduce__verify { margin-top: var(--s-6); }
+.reproduce__verify-head { color: var(--grey-700); display: block; margin-bottom: var(--s-4); }
+.reproduce__facts {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-top: 1px solid var(--grey-850);
+  margin: 0;
+}
+.reproduce__fact {
+  padding: var(--s-4) var(--s-4) var(--s-4) 0;
+  border-right: 1px solid var(--grey-850);
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-2);
+}
+.reproduce__fact:last-child { border-right: none; padding-right: 0; }
+.reproduce__fact-label { color: var(--grey-700); }
+/* 2026-08-06: this cell renders verbatim shell commands. One of them ('uv run python
+   scripts/verify_transparency.py ...') is a single unbreakable token that pushed the page
+   1,545px wider than the viewport, so the whole document scrolled sideways. Caught by a
+   headless render check; invisible to any source-level lint. */
+.reproduce__fact-val {
+  font-size: clamp(1.5rem, 2.6vw, 2rem);
+  color: var(--paper);
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  min-width: 0;
+}
+
+/* the content hashes the page actually loaded, sitting under the facts as the
+   cryptographic half of the same verifiability block. */
+.reproduce__hash-list { display: grid; gap: var(--s-2); margin-top: var(--s-5); padding-top: var(--s-5); border-top: 1px solid var(--grey-850); }
+
+.reproduce__noahead { color: var(--paper-dim); margin-top: var(--s-6); max-width: 80ch; }
+.reproduce__hash-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: var(--s-3);
+  align-items: baseline;
+  color: var(--grey-700);
+  padding: var(--s-2) 0;
+  border-bottom: 1px solid var(--grey-900);
+}
+.reproduce__hash-file { color: var(--paper-dim); }
+.reproduce__hash-val { color: var(--grey-600); font-size: 0.6875rem; word-break: break-all; text-align: right; }
+
+.reproduce__forward {
+  margin-top: var(--s-7);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-5);
+  align-items: center;
+}
+
+/* ---------------------------------------------------------------------------
+   RESPONSIVE
+   The two-column broken grids collapse to one column; the four-up field rows
+   become two-up; the ledger keeps its columns down to tablet, then drops the
+   period column on phones. Nothing here forks a token; it only restacks.
+   --------------------------------------------------------------------------- */
+@media (max-width: 1024px) {
+  .prereg__grid,
+  .deflation__board,
+  .reproduce__grid { grid-template-columns: 1fr; gap: var(--s-6); }
+  /* the verdict (grade + reason) stacks once the board goes single-column, with a
+     tightened gap so the grade and its reason still read as one statement. */
+  .deflation__verdict { grid-template-columns: 1fr; gap: var(--s-4); }
+}
+
+@media (max-width: 768px) {
+  .open-hero__ghost { font-size: clamp(7rem, 44vw, 14rem); opacity: 0.7; }
+  .track__frame-head { flex-direction: column; align-items: flex-start; gap: var(--s-3); }
+  .track__legend { position: static; margin-top: var(--s-3); }
+  .track__fields { grid-template-columns: repeat(2, 1fr); }
+  .track__field:nth-child(2n) { border-right: none; }
+  .track__field:nth-child(-n+2) { border-bottom: 1px solid var(--grey-850); }
+  .killlog__tally { grid-template-columns: 1fr; gap: 0; }
+  .killlog__tally-item { border-bottom: 1px solid var(--grey-850); flex-direction: row; align-items: baseline; justify-content: space-between; }
+  .killlog__tally-item:last-child { border-bottom: none; }
+  .ledger__row {
+    grid-template-columns: 1.4fr 0.8fr 0.8fr 0.9fr;
+    gap: var(--s-2);
+  }
+  /* drop the dedicated max-DD + period columns on phones; they stay in the
+     expanded reason meta so nothing is lost */
+  .ledger__cell--dd,
+  .ledger__cell--period { display: none; }
+  /* the three precision facts stack to a single column on phones, each keeping its
+     top hairline so they read as one ledger. */
+  .reproduce__facts { grid-template-columns: 1fr; }
+  .reproduce__fact { border-right: none; padding-right: 0; border-top: 1px solid var(--grey-850); padding-top: var(--s-4); }
+  .reproduce__facts { border-top: none; }
+}
+
+@media (max-width: 560px) {
+  .ledger__row { grid-template-columns: 1.6fr 0.7fr 0.9fr; }
+  .ledger__cell--return { display: none; }
+  .reproduce__hash-row { grid-template-columns: 1fr; }
+  .reproduce__hash-val { text-align: left; }
+  .track__field { padding: var(--s-4); min-width: 0; }
+  .track__field--primary .track__field-value { font-size: 1.5rem; }
+}
+
+/* 2026-08-06 — the page scrolled sideways by 1,545px on desktop and 1,240px on mobile.
+   Cause: the reproduce block is a <pre><code> holding multi-line shell commands. It had NO
+   rule of its own, so it inherited `white-space: pre`, measured 2,899px wide, and pushed the
+   whole document. Found by a headless render check at two breakpoints; no source-level lint
+   could see it, because the markup is correct and the defect is purely computed layout.
+   The commands must NOT reflow (a wrapped command is a broken copy-paste, and this block
+   exists so a stranger can re-run our backtest verbatim), so the block scrolls inside its own
+   box instead. The page never scrolls; the snippet does. */
+.reproduce__cmd {
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  white-space: pre;
+}
+.reproduce__cmd code { display: block; min-width: 0; }
+
+/* 2026-08-06 — open.html still scrolled 139px sideways on a 390px phone after the <pre> fix.
+   The capacity board correctly collapses to one column under 900px, but a grid item will not
+   shrink below its own content unless min-width:0 says it may, and this one holds a canvas
+   sized in device pixels. Verified with a headless render at 390px: nav__inner, .capcurve and
+   .capacity-sim__facts all measured 509-529px inside a 390px viewport, which widened the
+   document and dragged the fixed-position progress bar with it. */
+.capacity-sim__board > * { min-width: 0; }
+.capcurve { min-width: 0; }
+.capcurve canvas,
+.capcurve svg { max-width: 100%; height: auto; display: block; }

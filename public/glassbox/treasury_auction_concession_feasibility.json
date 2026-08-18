@@ -1,0 +1,47 @@
+{
+  "schema": "canli.feasibility.treasury-auction-concession.v1",
+  "generated_at": "2026-08-16T00:59:51.460214+00:00",
+  "stage": "official_metadata_only_no_prices_no_returns",
+  "source_url": "https://api.fiscaldata.treasury.gov/services/api/fiscal_service/v1/accounting/od/auctions_query",
+  "source_rows": 7831,
+  "raw_sha256": "05ce5ca4016bd2c372d62e6cd149d37e06c858b82adcc19301491350f83eeceb",
+  "coupon_auction_events": 2037,
+  "post_2013_events": 1377,
+  "first_auction_date": "2000-01-12",
+  "last_auction_date": "2026-08-20",
+  "security_type_counts": {
+    "Note": 1681,
+    "Bond": 356
+  },
+  "floating_rate_counts": {
+    "No": 1884,
+    "Yes": 153
+  },
+  "core_field_completeness": {
+    "event_identity": 1.0,
+    "announcement_date": 1.0,
+    "auction_date": 1.0,
+    "issue_date": 1.0,
+    "cusip": 1.0,
+    "security_type": 1.0,
+    "security_term": 1.0,
+    "floating_rate": 1.0,
+    "offering_amount_usd": 1.0,
+    "reopening": 1.0
+  },
+  "announcement_not_after_auction_rate": 1.0,
+  "at_least_one_day_notice_rate": 0.9955817378497791,
+  "unique_event_identity_rate": 1.0,
+  "announcement_pdf_filename_rate": 1.0,
+  "gates": {
+    "minimum_events": true,
+    "minimum_post_publication_events": true,
+    "core_field_completeness": true,
+    "announcement_not_after_auction": true,
+    "at_least_one_day_notice": true,
+    "unique_event_identity": true
+  },
+  "decision": "PASS_TO_RETURN_PREREGISTRATION",
+  "return_hypotheses_spent": 0,
+  "manifest_sha256": "594cd1df7acbb6b91c3a778cfea0abd7bdec290d418b073c954ead858b22c285"
+}

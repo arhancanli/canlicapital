@@ -1,0 +1,40 @@
+{
+  "schema": "glassbox.reproducibility/1",
+  "title": "Reproducibility",
+  "summary": "The backtest is content-hashed and byte-reproducible. A golden-master test asserts every fill price, fee, funding payment and the final equity from hand-written arithmetic to 1e-9 precision. We do not claim blockchain anchoring; we do not need it.",
+  "reproducibility_claim": "content-hashed + byte-reproducible backtest",
+  "not_claimed": "NOT blockchain-anchored; no chain-of-custody proofs",
+  "registered_factors": 52,
+  "golden_master_test": {
+    "file": "tests/integration/test_golden_master.py",
+    "lines": 636,
+    "purpose": "Phase-5 FULL acceptance gate (execDesign.md section 4.5)",
+    "coverage": [
+      "Part 1: a 3-instrument 30-bar scripted run (opens, an add, a partial close, a long-to-short flip, a gap-drop, mixed 8h/4h funding). EVERY fill price, fee, funding payment and the final equity asserted to abs=1e-9.",
+      "Part 2: the engine's local ADV/sigma (LakeCostInputs) asserted numerically EQUAL to the registered feature-library adv_quote_30d / sigma_daily, so the backtester and the feature library never fork the formula.",
+      "Part 3: real Binance BTCUSDT 2024-03-01..2024-03-08. The stored funding table must hold exactly 21 settlements (the 8h schedule) and a week-long long must settle exactly those events (rel=1e-12 on each payment)."
+    ]
+  },
+  "fill_price_precision": {
+    "unit": "float64",
+    "assertion_tolerance": "abs=1e-9 (pytest.approx)",
+    "rounding_policy": "full internal precision; rounding only at report render"
+  },
+  "factor_parity": {
+    "adv_quote_30d": "engine ADV == feature-library adv_quote_30d (EXACT, abs=0.0)",
+    "sigma_daily": "engine sigma == feature-library sigma_daily (rel=1e-12, same EWMA)"
+  },
+  "funding_reproduction": {
+    "instrument": "BINANCE:PERP:BTCUSDT",
+    "window": "2024-03-01 to 2024-03-08 (7 days, 8-hour cadence)",
+    "expected_settlements": 21,
+    "formula": "payment_quote = -qty * mark_price * rate",
+    "precision": "rel=1e-12"
+  },
+  "no_look_ahead": "Every weight and leverage applied to a forward day is a pure function of returns strictly before that day, enforced by the PIT reader and a truncation-invariance test.",
+  "source_paths": [
+    "tests/integration/test_golden_master.py"
+  ],
+  "generated_at": "2026-08-18T12:25:26.927606+00:00",
+  "content_hash": "sha256:15f3e174c4ea7245b8b5f2481cebc11e68d3c8f04d5038602c9f794768a6cec1"
+}

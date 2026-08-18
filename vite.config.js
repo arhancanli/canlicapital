@@ -1,0 +1,87 @@
+// =============================================================================
+// CANLI CAPITAL / vite.config.js
+// -----------------------------------------------------------------------------
+// Self-hosted build for the pre-launch site. All animation/3D tooling
+// (three, gsap incl. the now-free ScrollTrigger/SplitText/Flip, lenis) is
+// installed in node_modules and bundled here via bare specifiers. Nothing is
+// fetched at runtime. The existing file layout is preserved exactly: index.html
+// at the root, js/, css/, config/, api/ untouched.
+//
+// What this config guarantees:
+//   - The HTML entries (index, systems, performance, progress, open, research)
+//     are crawled, bundled, and fingerprinted. They all reference the SAME shared
+//     CSS and the SAME main.js entry, so the design system, cursor, scroll feel,
+//     and manifold scene are byte-identical across pages (one system, not forks).
+//     Vite emits systems.html / performance.html / progress.html / open.html /
+//     research.html alongside index.html; Vercel's cleanUrls maps /systems to
+//     systems.html, /research to research.html, etc.
+//   - Dynamic imports (scene.js, scroll.js) become code-split chunks.
+//   - three / gsap / lenis are tree-shaken into the bundle, never fetched.
+//   - api/ is a Vercel serverless function, NOT part of the Vite graph. It is
+//     not referenced by index.html, so Vite never touches it. We also keep it
+//     out of any copy path by not using it as the public dir.
+//   - Output goes to dist/ with base '/' so Vercel can serve it as the site
+//     root while still routing /api/* to the serverless function.
+// =============================================================================
+
+import { defineConfig } from "vite";
+import { fileURLToPath } from "node:url";
+import { dirname, resolve } from "node:path";
+
+const root = dirname(fileURLToPath(import.meta.url));
+
+export default defineConfig({
+  root,
+  base: "/",
+
+  // public/ holds ONLY the glass-box data layer: the read-only JSON artifacts the
+  // /open page fetches at runtime (public/glassbox/*.json, emitted by the
+  // AlphaForge exporter from real artifacts). Vite copies public/ verbatim into
+  // dist/ so those land at /glassbox/*.json in production. api/ is NOT under
+  // public/ (it is a separate Vercel serverless function), so nothing extra is
+  // copied. Everything else shipped is still reachable from the HTML entries.
+  publicDir: "public",
+
+  build: {
+    outDir: "dist",
+    emptyOutDir: true,
+    target: "es2020",
+    // Keep the relationship between bundle size and craft visible. three is the
+    // heavy module; this raises the warn ceiling so a normal three build is not
+    // flagged as a problem, without hiding genuinely large regressions.
+    chunkSizeWarningLimit: 900,
+    rollupOptions: {
+      // Multi-page app: one HTML entry per route. Keys produce stable output
+      // names so cleanUrls resolves /systems -> systems.html (etc.). All four
+      // share the same JS/CSS graph, so there is exactly one design system.
+      input: {
+        index: resolve(root, "index.html"),
+        systems: resolve(root, "systems.html"),
+        performance: resolve(root, "performance.html"),
+        progress: resolve(root, "progress.html"),
+        open: resolve(root, "open.html"),
+        research: resolve(root, "research.html"),
+      },
+      output: {
+        // Split the heavy, stable vendor (three) into its own long-cache chunk
+        // so the app code can change without re-downloading the renderer.
+        manualChunks(id) {
+          if (id.includes("node_modules/three")) return "three";
+          if (id.includes("node_modules/gsap")) return "gsap";
+          if (id.includes("node_modules/lenis")) return "lenis";
+          return undefined;
+        },
+      },
+    },
+  },
+
+  server: {
+    port: 5173,
+    host: true,
+  },
+
+  preview: {
+    port: 4173,
+    host: true,
+  },
+});

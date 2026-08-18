@@ -1,0 +1,65 @@
+{
+  "schema": "canli.alphac-canonical-diversification.v1",
+  "family_trial_account": "earnings_narrative_change",
+  "return_identity_id": "earnings_narrative_change_v1",
+  "alignment": {
+    "common_start": "2023-07-07",
+    "common_end": "2025-12-31",
+    "common_days": 625,
+    "candidate_days_before_common_start": 1889,
+    "candidate_days_after_common_end": 0,
+    "internal_missing_by_series": {},
+    "stress_rule": "bottom decile of pre-existing equal-weight ALPHAC book returns",
+    "stress_threshold": -0.0029209982781373905
+  },
+  "report": {
+    "observations": 625,
+    "stressed_observations": 63,
+    "candidate_weight": 0.1,
+    "pairwise_correlations": {
+      "AlphaForge": 0.027363289857848628,
+      "AlphaMax": -0.0031904059584526236,
+      "AlphaTrend": 0.09206850512626046,
+      "AlphaVintage": -0.02227350828279907
+    },
+    "stressed_pairwise_correlations": {
+      "AlphaForge": 0.09622158729587794,
+      "AlphaMax": -0.023465977072076035,
+      "AlphaTrend": -0.062254268463610145,
+      "AlphaVintage": -0.21459094485231342
+    },
+    "pairwise_correlation_upper_95": {
+      "AlphaForge": 0.08991533232471595,
+      "AlphaMax": 0.07751918183073866,
+      "AlphaTrend": 0.15567657761041956,
+      "AlphaVintage": 0.06044739085381425
+    },
+    "stressed_pairwise_correlation_upper_95": {
+      "AlphaForge": 0.28850503710468095,
+      "AlphaMax": 0.19150693678253047,
+      "AlphaTrend": 0.07400161175056885,
+      "AlphaVintage": -0.07980996518038512
+    },
+    "average_pairwise_correlation": 0.023491970185714348,
+    "max_pairwise_correlation": 0.09206850512626046,
+    "max_stressed_pairwise_correlation": 0.09622158729587794,
+    "max_pairwise_correlation_upper_95": 0.15567657761041956,
+    "max_stressed_pairwise_correlation_upper_95": 0.28850503710468095,
+    "candidate_mean_on_book_es_days": 0.0016391154295390697,
+    "stressed_joint_loss_rate": 0.42857142857142855,
+    "book_sharpe_delta": 0.10808280649169133,
+    "minimum_leave_one_period_out_book_sharpe_delta": 0.043468206710754576,
+    "leave_one_period_out_book_sharpe_deltas": {
+      "2023": 0.18677697281590033,
+      "2024": 0.06253915623212492,
+      "2025": 0.043468206710754576
+    },
+    "book_max_drawdown_delta": 0.008491689674688607,
+    "book_expected_shortfall_delta": 0.0005029890111476415,
+    "bootstrap_samples": 2000,
+    "bootstrap_block_size": 21,
+    "bootstrap_seed": 20260816,
+    "return_data_opened": true
+  },
+  "content_hash": "sha256:478a92db51cd0db4b324ca627770112927836cba62a1f134e03e731e12839286"
+}

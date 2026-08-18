@@ -1,0 +1,1279 @@
+/* =============================================================================
+   MERIDIAN / landing.css
+   -----------------------------------------------------------------------------
+   Page-specific additions for the landing (index.html) ONLY. Per
+   docs/DESIGN_SYSTEM.md section 0.2, a page stylesheet may only ADD classes; it
+   never redefines a token, an easing, a type class, the cursor, the nav, the
+   rail, the grain, or any shared component. Everything here is built from the
+   existing tokens (--signal, --grey-*, --paper-dim, --s-*, --ease-out) and the
+   established motion grammar (.reveal-fade is animated by js/scroll.js). It is
+   loaded LAST in the head, after the shared sheets, so it only layers on top.
+
+   What it owns:
+     1. The cross-page teaser bridge link (.bridge / .bridge__link), the
+        consistent "verb + destination" affordance that carries the reader from a
+        landing teaser out to its deep sub-page. It is the SECONDARY link grammar
+        (left-anchored underline sweep, matching .hero__link / .footer__link),
+        distinguished only by a thin drawn arrow that extends on hover.
+     2. The zero-footprint .anchor-mark used to keep #systems / #performance as
+        valid in-page scroll targets while the sections themselves carry the
+        id (#system / #proof) that the shared pin choreography keys off.
+   ========================================================================== */
+
+/* The bridge sits at the foot of a teaser chapter, set apart from the body
+   measure with a little air above so it reads as "the way out of this chapter",
+   not another paragraph. .reveal-fade (in the markup) gives it the shared
+   rise-and-fade on enter; this only owns its resting layout. */
+.bridge {
+  margin-top: var(--s-6);
+}
+
+/* The Systems teaser lives in the pinned .system section, which is padding-less
+   (its inner .system__sticky owns the gutter). A bridge placed directly in that
+   section would otherwise run to the viewport edge, so re-center it to the same
+   max-width and gutter the rest of the page uses. The flagship / proof / house
+   bridges sit inside normal .section blocks and already inherit the gutter. */
+.system > .bridge {
+  max-width: var(--max);
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 var(--margin);
+  /* clear the tail of the pinned sequence before the chapter hands off */
+  margin-top: var(--s-7);
+  margin-bottom: var(--s-7);
+}
+
+/* The link itself: label-cased like the eyebrows it answers to, in paper-dim at
+   rest and lifting to paper on hover, exactly like the secondary links elsewhere
+   on the page. inline-flex so the arrow rides the baseline of the text. */
+.bridge__link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.9em;
+  color: var(--paper-dim);
+  transition: color 0.3s var(--ease-out);
+}
+.bridge__link:hover { color: var(--paper); }
+
+/* The underline sweep: left-anchored (the secondary signature; the CTAs sweep
+   from center). Same hairline, same signal, same ease as .hero__link::after, so
+   the affordance is identical in feel to the rest of the property. */
+.bridge__link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  /* underline spans only the text, not the trailing arrow, so the sweep tracks
+     the words it belongs to. The arrow has its own gesture. */
+  width: calc(100% - 1.9em);
+  height: 1px;
+  background: var(--signal);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s var(--ease-out);
+  pointer-events: none;
+}
+.bridge__link:hover::after { transform: scaleX(1); }
+
+/* The arrow: a thin signal shaft with a chevron head, drawn in borders (no glyph,
+   no icon font, nothing fetched). It extends to the right on hover, the single
+   small mechanical tell that this link goes SOMEWHERE rather than scrolling. The
+   accent is one pixel of intent, consistent with the house restraint. */
+.bridge__arrow {
+  position: relative;
+  display: inline-block;
+  width: 1.4em;
+  height: 1px;
+  background: var(--signal);
+  flex: none;
+  transform-origin: left center;
+  transition: transform 0.3s var(--ease-out);
+}
+.bridge__arrow::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 50%;
+  width: 0.42em;
+  height: 0.42em;
+  border-top: 1px solid var(--signal);
+  border-right: 1px solid var(--signal);
+  transform: translateY(-50%) rotate(45deg);
+  transform-origin: center;
+}
+.bridge__link:hover .bridge__arrow { transform: scaleX(1.4); }
+
+/* The anchor mark: a zero-size, non-interactive in-flow marker that gives
+   #systems / #performance a valid scroll destination at the very top of the
+   chapter whose section element carries the choreography id (#system / #proof).
+   It contributes no box, takes no space, and is invisible to the cursor and to
+   assistive tech (aria-hidden in the markup). */
+.anchor-mark {
+  display: block;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* ---------------------------------------------------------------------------
+   HERO EXIT CHOREOGRAPHY (the entrance read in reverse).
+   scroll.js scrubs .hero__body and .hero__scroll on the hero's own exit: as the
+   first viewport scrolls away, the giant wordmark column lifts, recedes, and
+   dissolves into the void while the Thesis rises beneath it, so the move out of
+   the hero reads as the camera pulling back THROUGH the wordmark into the world
+   rather than a flat scroll-away. This is the hero's exit, NOT a second pinned
+   tentpole and NOT a second cinematic beat: it reuses the existing parallax /
+   transform grammar (transform + opacity + filter only) and is fully gated off
+   under reduced motion and on mobile (where the hero stays static and legible).
+   GSAP manages will-change during the scrub (auto-added on tween start, cleared
+   when it completes), so we do NOT pin it here: a persistent filter will-change on
+   the huge wordmark would hold a GPU layer for the whole page. The hint is scoped
+   to transform/opacity only, the cheap composited pair. */
+.js .hero__body,
+.js .hero__scroll { backface-visibility: hidden; }
+
+@media (max-width: 768px) {
+  /* mobile: no exit scrub (scroll.js gates it off); make sure nothing is left
+     mid-transform if the page is resized across the breakpoint. */
+  .hero__body,
+  .hero__scroll { transform: none !important; opacity: 1 !important; filter: none !important; will-change: auto; }
+}
+
+/* ---------------------------------------------------------------------------
+   THE SYSTEM PIN "CHAIN OF CUSTODY" SPINE (js/landing.js builds + drives it).
+   A node column that sits in the pinned frame's left rail, under the running
+   counter. As scroll.js advances the pinned steps, landing.js mirrors the active
+   step onto these nodes and fills the connector down to it, so the five-stage
+   chain visibly assembles as the field converges onto one ridge. It reuses the
+   EXACT node grammar of the /systems pipeline spine (dot ignites on active,
+   signal connector fills from the top, past stages recede to signal-deep), so it
+   reads as the same hand, never a second device. Built from the existing tokens
+   and the house ease-out; transform/opacity/color only. It does NOT redefine the
+   shared .step rules; it is a separate spatial read alongside the numeric one.
+   --------------------------------------------------------------------------- */
+.sys-chain {
+  list-style: none;
+  margin: var(--s-5) 0 0;
+  padding: 0;
+  display: grid;
+  gap: 0;
+  /* fade in once landing.js has built + seeded the nodes (mirrors .sys-pipe) */
+  opacity: 0;
+  transition: opacity 0.6s var(--ease-out);
+}
+.sys-chain.is-ready { opacity: 1; }
+.sys-chain__node {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+  height: 38px;
+  padding-left: 5px;
+}
+/* the connector segment between consecutive nodes; the signal fill scales from
+   the top so the chain reads as filling downward with the reader (matches the
+   /systems pipeline connector exactly: same width, same origin, same ease). */
+.sys-chain__node::before {
+  content: "";
+  position: absolute;
+  left: 4px;
+  top: -19px;
+  width: 1px;
+  height: 38px;
+  background: var(--grey-850);
+}
+.sys-chain__node:first-child::before { display: none; }
+.sys-chain__node::after {
+  content: "";
+  position: absolute;
+  left: 4px;
+  top: -19px;
+  width: 1px;
+  height: 38px;
+  background: var(--signal);
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 0.5s var(--ease-out);
+}
+.sys-chain__node.is-filled::after { transform: scaleY(1); }
+.sys-chain__dot {
+  position: relative;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  border: 1px solid var(--grey-600);
+  background: var(--void);
+  flex: none;
+  transition: border-color 0.4s var(--ease-out), background 0.4s var(--ease-out),
+              box-shadow 0.4s var(--ease-out);
+}
+/* VISIBILITY (S7.1): the idle chain numerals and labels were at rung 2 / floor x
+   0.55, so the upcoming links of the chain-of-custody read were nearly invisible
+   and the chain did not read AS a chain. Numerals lift rung 2 -> rung 3
+   (--grey-600 -> --grey-700, content the reader scans), and the idle label resting
+   opacity lifts 0.55 -> 0.7 so the not-yet-active links sit at roughly the floor,
+   faintly readable. The active state's contrast jump to --paper (below) is
+   preserved, so the brightest link is still unmistakably the active one. The idle
+   DOT border stays --grey-600 (a true placeholder glyph; the ignition contrast is
+   the point). Numerals/labels are content and rise; the dot is decoration and does
+   not. */
+.sys-chain__num {
+  color: var(--grey-700);
+  font-size: 0.625rem;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+  transition: color 0.4s var(--ease-out);
+}
+.sys-chain__label {
+  color: var(--grey-700);
+  white-space: nowrap;
+  opacity: 0.7;
+  transform: translateX(4px);
+  transition: opacity 0.4s var(--ease-out), transform 0.4s var(--ease-out),
+              color 0.4s var(--ease-out);
+}
+/* active stage: dot ignites, num + label resolve in, mirroring the pipeline. A
+   one-shot glow pulse rides the ignition (0 -> 1 -> 0.5 over 0.4s, EASE.out) so the
+   moment a node LANDS active reads as it lighting up, not just switching state. The
+   resting box-shadow below is the floor the pulse settles to; the keyframe overshoots
+   it once. box-shadow only (composited), gated to the motion path. */
+.sys-chain__node.is-active .sys-chain__dot {
+  border-color: var(--signal);
+  background: var(--signal);
+  box-shadow: 0 0 0 4px var(--signal-faint), 0 0 10px var(--signal-glow);
+}
+.js .sys-chain__node.is-active .sys-chain__dot {
+  animation: sysChainIgnite 0.4s var(--ease-out) 1;
+}
+@keyframes sysChainIgnite {
+  0%   { box-shadow: 0 0 0 2px var(--signal-faint), 0 0 0 var(--signal-glow); }
+  55%  { box-shadow: 0 0 0 6px var(--signal-glow), 0 0 16px var(--signal); }
+  100% { box-shadow: 0 0 0 4px var(--signal-faint), 0 0 10px var(--signal-glow); }
+}
+/* hover-light a FUTURE (not-yet-reached) node so the chain reads as explorable: the
+   dot brightens a notch and the label lifts to --paper-dim, the same "peek ahead"
+   affordance the brief asks for. Gated to fine pointers; a touched node is no-op. The
+   active and past nodes own their own brighter states, so this only colours the
+   upcoming links. */
+@media (hover: hover) {
+  .sys-chain__node:not(.is-active):not(.is-past):hover .sys-chain__dot {
+    border-color: var(--signal-deep);
+  }
+  .sys-chain__node:not(.is-active):not(.is-past):hover .sys-chain__label {
+    color: var(--paper-dim);
+    opacity: 1;
+  }
+}
+.sys-chain__node.is-active .sys-chain__num { color: var(--paper-dim); }
+.sys-chain__node.is-active .sys-chain__label {
+  color: var(--paper);
+  opacity: 1;
+  transform: translateX(0);
+}
+/* a passed (above current) stage stays lit but recedes: "built so far". */
+.sys-chain__node.is-past .sys-chain__dot {
+  border-color: var(--signal-deep);
+  background: var(--signal-deep);
+}
+.sys-chain__node.is-past .sys-chain__num { color: var(--grey-700); }
+/* the static read (reduced motion / mobile, where the steps stack as a list):
+   the whole chain renders lit and the final node active, so it reads as the
+   closed chain, a finished diagram, not a mid-animation frame. */
+.sys-chain.is-static .sys-chain__node::after { transform: scaleY(1); }
+.sys-chain.is-static .sys-chain__dot {
+  border-color: var(--signal-deep);
+  background: var(--signal-deep);
+}
+.sys-chain.is-static .sys-chain__node.is-active .sys-chain__dot {
+  border-color: var(--signal);
+  background: var(--signal);
+}
+/* Side-by-side layout: the step chain stays VERTICAL in the left nav column (the
+   base .sys-chain rules above). The maximized right column holds the active step
+   detail (styles.css .system__sticky grid-template-columns). */
+
+/* below the rail breakpoint the pinned frame collapses to a single column and
+   the steps stack; the spine would crowd the stacked content, so hide it (the
+   numeric counter still carries the stage read). Matches /systems hiding its
+   fixed spine under the rail breakpoint. */
+@media (max-width: 1024px) {
+  .sys-chain { display: none; }
+}
+
+/* ---------------------------------------------------------------------------
+   THE WAITLIST ARRIVAL BEAT (js/landing.js adds .is-lit on chapter enter).
+   As the conversion chapter enters view, a single hairline signal underline
+   draws beneath the form label, the quiet tell that the page has arrived at its
+   decision. It reuses the left-anchored underline-draw idiom of the secondary
+   links (same hairline, same signal, same ease), so it adds no new device; it is
+   the same gesture .signal-word / .bridge__link already use, applied once to the
+   one label that opens the act of joining. Transform-only. The pulse that rides
+   with it lives on the manifold (scene.pulseRidge), not in CSS.
+   --------------------------------------------------------------------------- */
+.waitlist__label {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 6px;
+}
+.waitlist__label::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 2.4em;
+  height: 1px;
+  background: var(--signal);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.8s var(--ease-out);
+  pointer-events: none;
+}
+.waitlist__label.is-lit::after { transform: scaleX(1); }
+
+@media (prefers-reduced-motion: reduce) {
+  .bridge__link,
+  .bridge__link::after,
+  .bridge__arrow { transition: none; }
+  /* the hero stays a composed, fully-legible poster with motion off */
+  .hero__body,
+  .hero__scroll { transform: none !important; opacity: 1 !important; filter: none !important; will-change: auto; }
+  /* the chain and the waitlist underline are shown in their final state with no
+     transition (the static composed read), per the reduced-motion contract. */
+  .sys-chain,
+  .sys-chain__node::after,
+  .sys-chain__dot,
+  .sys-chain__num,
+  .sys-chain__label { transition: none; }
+  .js .sys-chain__node.is-active .sys-chain__dot { animation: none; }
+  .waitlist__label::after { transition: none; }
+}
+
+/* ========================================================================= */
+/* V2 CONVERSION SECTIONS (hero points, offer block, honest equity slot, the  */
+/* discipline attribution). All additive, built on the shared tokens.         */
+/* ========================================================================= */
+
+/* ---------------------------------------------------------------------------
+   HERO SCANNABLE BULLETS
+   The page's first scannable promise, so they carry both the VISIBILITY lift
+   (LANDING10_VISIBILITY S2.1: parity with .body) and the MOTION-READY per-bullet
+   marker draw (LANDING10_MOTION 2.0: each signal tick extends as its line lands,
+   the same hairline-draw idiom as .signal-word). landing.js toggles .is-in per
+   <li> on the hero cascade stagger; the marker draws on that class. The <li> TEXT
+   opacity is owned by the GSAP reveal (scroll.js / landing.js), never hidden here,
+   so the bullets stay legible even if the stagger never runs (the failsafe read).
+   --------------------------------------------------------------------------- */
+.hero__points {
+  list-style: none;
+  margin: var(--s-4) 0 var(--s-5);
+  padding: 0;
+  display: grid;
+  /* S2.1: a touch more air so the four promises read as a list, not a block. */
+  gap: var(--s-3);
+  /* S2.1: 46ch -> 48ch to avoid mid-promise wraps that hurt scannability. */
+  max-width: 48ch;
+}
+.hero__points li {
+  position: relative;
+  padding-left: var(--s-4);
+  /* S2.1: lift from 0.98rem/1.5 to .body parity (1.05rem) and slightly airier
+     line-height so each promise breathes. Kept at --paper-dim (rung 4, correct
+     body tier); legibility comes from size + the firm 400 weight, not flooding
+     to --paper (which would compete with the wordmark). */
+  font: 400 1.05rem/1.6 var(--ui);
+  color: var(--paper-dim);
+}
+/* the one signal pixel per bullet: a hairline tick. Widened 10px -> 12px and
+   re-centered to the larger cap height (top 0.66em) so it reads as engineered,
+   not bulleted. FAILSAFE-FIRST: the tick is VISIBLE at rest (scaleX 1), so the
+   list is correct with no JS and never depends on a toggle that might not run.
+   The draw-in (scaleX 0 -> 1 as each bullet lands) is opt-in: the hero cascade
+   layer arms it by adding `.is-stagger` to the <ul>, then toggles `.is-in` per
+   <li>. Until armed, the marker simply rests drawn. This is the same
+   enhancement-on-a-correct-base discipline scroll.js uses for its reveals. */
+.hero__points li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.66em;
+  width: 12px;
+  height: 1px;
+  background: var(--signal);
+  transform: scaleX(1);
+  transform-origin: left center;
+  transition: transform 0.6s var(--ease-out);
+}
+/* armed (JS will drive the stagger): start hidden, draw on .is-in */
+.js .hero__points.is-stagger li::before { transform: scaleX(0); }
+.js .hero__points.is-stagger li.is-in::before { transform: scaleX(1); }
+
+/* ---------------------------------------------------------------------------
+   THE OFFER BLOCK (#what-it-is): the densest new section, brought to pillar
+   density. VISIBILITY (S4): visible row dividers (the ledger idiom), legible
+   qualifying notes, a real section boundary. MOTION-READY (2.3): drawn column
+   hairlines, igniting denial dots, the shared ledger hover wash, all on the
+   .is-in stagger landing.js toggles. The row/denial TEXT opacity is owned by the
+   GSAP reveal; only the markers/hairlines draw on .is-in here.
+   --------------------------------------------------------------------------- */
+.offer {
+  position: relative;
+  margin-top: var(--s-9);
+  padding-top: var(--s-7);
+  /* S4.5 + MOTION B2: a major section boundary inside the flagship now draws as a
+     `.section__rule` seam (the chapter-seam grammar every other boundary uses),
+     not a static border. The rule is the positioned first child; scroll.js draws
+     it on enter and shows it static under reduced motion. The FAILSAFE is the rule
+     itself: .section__rule rests at scaleX(0) only on .js pages, and the
+     reduced-motion / no-ScrollTrigger paths set .is-drawn immediately, so the seam
+     is present whenever the section is read. */
+}
+.offer__eyebrow {
+  color: var(--signal);
+  margin-bottom: var(--s-3);
+}
+.offer__head {
+  margin-bottom: var(--s-4);
+  /* the head is now a char mask (index.html); give the mask a clean baseline. */
+  color: var(--paper);
+}
+.offer__lead {
+  max-width: 60ch;
+  color: var(--paper-dim);
+  margin-bottom: var(--s-5);
+}
+.offer__denials {
+  list-style: none;
+  margin: 0 0 var(--s-7);
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  /* S4.1: more air between the honesty statements (row gap --s-2 -> --s-3). */
+  gap: var(--s-3) var(--s-5);
+}
+/* On tablet and up, hold the three "this is NOT" denials on one triadic line so
+   they read as a single honest statement rather than wrapping into a ragged
+   block. Below 761px the base flex-wrap stacks them. */
+@media (min-width: 761px) {
+  .offer__denials { flex-wrap: nowrap; }
+}
+.offer__denials li {
+  position: relative;
+  padding-left: var(--s-4);
+  /* each denial holds a composed measure (45ch) so the triadic row reads as three
+     even columns rather than one stretching wider than its neighbours. */
+  max-width: 45ch;
+  /* the sharp "this is NOT" facts are the brightest copy in the block. */
+  color: var(--paper);
+}
+/* the 5px signal disc. FAILSAFE-FIRST: visible (scale 1) at rest so the denials
+   read correctly with no JS. When the offer reveal layer arms the stagger
+   (`.is-stagger` on the <ul>), each disc IGNITES (scale 0 -> 1) as its denial
+   lands, the per-line reward; the denial TEXT opacity is owned by the GSAP
+   reveal, never hidden here. */
+.offer__denials li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.5em;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--signal);
+  transform: scale(1);
+  transform-origin: center;
+  transition: transform 0.5s var(--ease-out);
+}
+.js .offer__denials.is-stagger li::before { transform: scale(0); }
+.js .offer__denials.is-stagger li.is-in::before { transform: scale(1); }
+
+.offer__cols {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: var(--s-6) var(--gutter);
+  /* P0-B: vertically center the two columns against each other. The "What early
+     access includes" column carries an extra qualifying note, so without this the
+     "Who it is for" column read glued to the top of the taller row. The columns now
+     sit at the row's vertical midpoint. The .offer__col hover scaleY(0.98) uses
+     transform-origin: top center, which composes cleanly on a centered grid item. */
+  align-items: center;
+}
+/* EDITORIAL TRIM: the offer collapsed from two dense columns to ONE three-item
+   ledger (Watch / Reports / Simulate). With a single column there is no split to
+   balance, so it spans the page measure and the list caps at the house ~38ch so the
+   dense copy stays scannable in the wide column. */
+.offer__cols--single {
+  grid-template-columns: 1fr;
+  align-items: start;
+}
+.offer__cols--single .offer__list li { max-width: 64ch; }
+.offer__col-head {
+  color: var(--paper);
+  padding-bottom: var(--s-2);
+  margin-bottom: var(--s-3);
+  /* the bottom hairline becomes a DRAWN seam (2.3): a positioned pseudo-rule so
+     it can scaleX from the left on enter, the seam-draw idiom. The static border
+     is replaced by this ::after so the column reads as composed, not boxed. */
+  position: relative;
+}
+.offer__col-head::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 1px;
+  background: var(--grey-850);
+  /* FAILSAFE-FIRST: the column-head rule is VISIBLE at rest (scaleX 1) so the
+     columns are correctly delineated with no JS. When armed by the offer reveal
+     layer (`.is-stagger` on .offer__cols), it draws left-to-right on .is-in. */
+  transform: scaleX(1);
+  transform-origin: left;
+  transition: transform 0.7s var(--ease-out);
+}
+.js .offer__cols.is-stagger .offer__col-head::after { transform: scaleX(0); }
+.js .offer__cols.is-stagger .offer__col-head.is-in::after { transform: scaleX(1); }
+.offer__list { list-style: none; margin: 0; padding: 0; }
+.offer__list li {
+  position: relative;
+  padding: var(--s-3) 0;
+  color: var(--paper-dim);
+  max-width: 52ch;
+  /* the ledger hover wash, identical to the pillars/tenets/roadmap, so the dense
+     list feels like every other ledger on the property: the resting separators
+     stay quiet, but the row answers on hover. */
+  transition: background 0.4s var(--ease-out);
+}
+.offer__list li:hover {
+  background: linear-gradient(90deg, var(--grey-900), transparent 80%);
+}
+/* when the reader is reading ONE column (hovering a row in it), recede the OTHER
+   column a touch (opacity 0.6 + a hair of scaleY) so attention follows the eye, the
+   same "focus one, dim the rest" grammar the offer rows already use on hover. Fine
+   pointers only, and only at the two-column layout (>=761px); a single column never
+   dims itself. transform/opacity only; the dim transition is declared on the column. */
+.offer__col {
+  transition: opacity 0.4s var(--ease-out), transform 0.4s var(--ease-out);
+  transform-origin: top center;
+}
+@media (hover: hover) and (min-width: 761px) {
+  /* the focus-one-dim-the-other read is a TWO-column behavior; excluded on the
+     single-column ledger (where :first-child and :last-child are the same element,
+     so the rule would dim the column the reader is hovering). */
+  .offer__cols:not(.offer__cols--single):has(.offer__col:first-child .offer__list li:hover) .offer__col:last-child,
+  .offer__cols:not(.offer__cols--single):has(.offer__col:last-child .offer__list li:hover) .offer__col:first-child {
+    opacity: 0.6;
+    transform: scaleY(0.98);
+  }
+}
+/* S4.2 (P1): the top hairline was --grey-900 (rung 1, invisible) so the rows
+   merged into a soft block. Moved to --grey-850 (the page's resting-hairline
+   standard). FAILSAFE-FIRST: the divider is VISIBLE at rest (scaleX 1) so the
+   list reads as a ledger with no JS and never loses its dividers to an absent
+   toggle. When armed by the offer reveal layer (`.is-stagger` on the <ul>), each
+   seam draws left-to-right with its row on .is-in. */
+.offer__list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 1px;
+  background: var(--grey-850);
+  transform: scaleX(1);
+  transform-origin: left;
+  transition: transform 0.6s var(--ease-out), background 0.4s var(--ease-out);
+}
+.js .offer__list.is-stagger li::before { transform: scaleX(0); }
+.js .offer__list.is-stagger li.is-in::before { transform: scaleX(1); }
+/* the first row's seam is suppressed (the column head's drawn rule is its top
+   boundary), matching the original first-child border reset. */
+.offer__list li:first-child::before { content: none; }
+.offer__list li:hover::before { background: var(--grey-825); }
+.offer__k { color: var(--paper); font-weight: 500; }
+
+/* ---------------------------------------------------------------------------
+   THE INTERACTIVE MINI-PIPELINE (js/landing.js builds + drives it).
+   A five-stage spine, DATA -> SIGNALS -> PORTFOLIO -> RISK -> EXECUTION, the
+   landing's "interactive element." It reuses the EXACT node grammar of the
+   /systems pipeline + the .sys-chain spine (dot ignites on active, signal tint,
+   label resolves), so it reads as the same hand, never a second device. Hovering /
+   focusing a stage lights it and swaps the one explanation line below. Built from
+   the existing tokens + the house ease-out; transform/opacity/color only. The TEXT
+   is never hidden (the note always carries a sentence), so the row is legible with
+   no JS (failsafe-first). --------------------------------------------------------------------------- */
+.mini-pipe {
+  margin-top: var(--s-6);
+  /* a quiet drawn seam above so it reads as the chapter's closing diagram, the
+     same hairline density as the rest of the property. */
+  padding-top: var(--s-5);
+  border-top: 1px solid var(--grey-850);
+}
+.mini-pipe__row {
+  list-style: none;
+  margin: 0 0 var(--s-5);
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: var(--gutter);
+}
+.mini-pipe__stage {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-2);
+  padding: var(--s-3) 0 var(--s-3) var(--s-3);
+  cursor: pointer;
+  /* the lift on hover/active, transform-only (composited). */
+  transition: transform 0.4s var(--ease-out);
+}
+/* the connector thread runs along the top of the row, signal-deep at rest, drawing
+   to full signal under the active stage (the spine "fills" to the lit node), the
+   same connector idiom as .sys-chain. */
+.mini-pipe__stage::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  /* the pipeline-spine connector is a DRAWN/igniting rule (fills to signal under
+     the active stage), so it carries the power-hairline weight, not the 1px of a
+     structural border. */
+  width: var(--hairline-power);
+  height: 100%;
+  background: var(--grey-850);
+  transition: background 0.4s var(--ease-out);
+}
+.mini-pipe__dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  border: 1px solid var(--grey-600);
+  background: var(--void);
+  flex: none;
+  transition: border-color 0.4s var(--ease-out), background 0.4s var(--ease-out),
+              box-shadow 0.4s var(--ease-out);
+}
+.mini-pipe__num {
+  color: var(--grey-700);
+  font-size: 0.625rem;
+  letter-spacing: 0.08em;
+  transition: color 0.4s var(--ease-out);
+}
+.mini-pipe__label {
+  color: var(--grey-700);
+  white-space: nowrap;
+  transition: color 0.4s var(--ease-out);
+}
+/* active (hovered / focused): the stage lifts, its connector + dot ignite, its
+   label resolves to paper, mirroring the pipeline's active state exactly. */
+.mini-pipe__stage.is-active { transform: translateY(-2px); }
+.mini-pipe__stage.is-active::before { background: var(--signal); }
+.mini-pipe__stage.is-active .mini-pipe__dot {
+  border-color: var(--signal);
+  background: var(--signal);
+  box-shadow: 0 0 0 4px var(--signal-faint), 0 0 10px var(--signal-glow);
+}
+.mini-pipe__stage.is-active .mini-pipe__num { color: var(--paper-dim); }
+.mini-pipe__stage.is-active .mini-pipe__label { color: var(--paper); }
+@media (hover: hover) {
+  .mini-pipe__stage:not(.is-active):hover .mini-pipe__dot { border-color: var(--signal-deep); }
+  .mini-pipe__stage:not(.is-active):hover .mini-pipe__label { color: var(--paper-dim); }
+}
+/* keyboard focus ring: the house 1px signal at a 4px offset (matches the brief's
+   focus-ring law), so a focused stage is unmistakable. */
+.mini-pipe__stage:focus-visible {
+  outline: 1px solid var(--signal);
+  outline-offset: 4px;
+}
+/* the one explanation line: body tier, swaps with a brief de-emphasis (the rail-tick
+   settle idiom) as the active stage changes. Reserve its height so the swap never
+   reflows the page. */
+.mini-pipe__note {
+  color: var(--paper-dim);
+  max-width: 60ch;
+  min-height: 3.2em;
+  transition: opacity 0.3s var(--ease-out), transform 0.3s var(--ease-out);
+}
+.mini-pipe__note.is-swapping { opacity: 0.25; transform: translateY(3px); }
+@media (max-width: 760px) {
+  .mini-pipe__row { grid-template-columns: repeat(2, 1fr); gap: var(--s-3) var(--gutter); }
+  .mini-pipe__note { min-height: 4.4em; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .mini-pipe__stage,
+  .mini-pipe__stage::before,
+  .mini-pipe__dot,
+  .mini-pipe__num,
+  .mini-pipe__label,
+  .mini-pipe__note { transition: none; }
+}
+
+/* ---------------------------------------------------------------------------
+   THE HONEST EQUITY SLOT (#equity-slot / .proof__curve): "an instrument powered
+   on and waiting," never a dead grey box, never a fabricated curve. VISIBILITY
+   (S6): a visible graticule, a live signal label with a pulse, a clearly readable
+   honesty caption. The js/charts.js module renders the flat baseline + traveling
+   crest INTO this host slot in its reserved state; this CSS owns the host frame
+   and the powered-on look, charts.css owns the chart internals (.chart__*).
+   --------------------------------------------------------------------------- */
+.proof__curve {
+  position: relative;
+  /* it lands as a distinct composed artifact: standard inter-block lead above,
+     a fuller s-7 gap below so it reads as its own panel before the aside, not a
+     floating callout. The full 1px --grey-850 border already frames it as a panel. */
+  margin: var(--s-6) 0 var(--s-7);
+  padding: var(--s-7) var(--s-5);
+  /* S6.1: lift 200px -> 260px so it has the presence of a chart frame, not a
+     callout banner. */
+  min-height: 260px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--s-3);
+  text-align: center;
+  border: 1px solid var(--grey-850);
+  border-radius: 2px;
+  overflow: hidden;
+  /* a faint inner vignette so the panel reads as a recessed screen, not a flat
+     card. The darkening stop is the --void channels (10, 11, 13), NOT pure black,
+     so it honors the no-pure-black rule (DESIGN_SYSTEM S9) while reading the same:
+     void-on-void, no new color. Opacity tuned to match the prior perceived depth. */
+  background:
+    radial-gradient(120% 80% at 50% 50%, transparent 55%, rgba(10, 11, 13, 0.55) 100%);
+}
+/* the host grid is the always-on faint BACKDROP graticule (js/landing.js mounts
+   the charts component, whose own axis frame draws the single LIVE graticule on
+   top via stroke-dashoffset). Keeping the backdrop visible at rest means the slot
+   reads as a powered instrument the instant it scrolls in, AND it is the failsafe:
+   if the chart module fails to mount, the honest copy still sits on a visible
+   graticule, never a dead box. .is-powered (added by charts.js on enter, if it
+   chooses to) lifts the slot one notch further: a slightly fuller grid + a faint
+   signal-tinted frame edge, the "screen energizes" tell. transform/opacity-adjacent
+   only; border-color on a single element is cheap and not a layout prop. */
+/* powered: the frame edge takes the signal-deep tint and reads a touch heavier (an
+   inset hairline doubles the 1px border to ~1.5px without animating border-width, so
+   no layout reflow). The "screen energizes" tell, transform/opacity/shadow only. */
+.proof__curve.is-powered {
+  border-color: var(--signal-deep);
+  box-shadow: inset 0 0 0 0.5px var(--signal-deep);
+}
+.proof__curve-grid {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    /* S6.2: the graticule lifts --grey-900 -> --grey-850 so it is perceptible,
+       turning "dead box" into "oscilloscope at rest." */
+    linear-gradient(var(--grey-850) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grey-850) 1px, transparent 1px);
+  background-size: 44px 44px;
+  -webkit-mask-image: radial-gradient(120% 90% at 50% 50%, #000 35%, transparent 100%);
+  mask-image: radial-gradient(120% 90% at 50% 50%, #000 35%, transparent 100%);
+  /* visible at rest (the backdrop) but restrained so it never competes with the
+     signal label or the chart's own live frame. NO will-change: it is a static
+     masked background (LANDING10_PERF S5.3: promoting it would pin a page layer).
+     resting 0.5 -> 0.65 / powered 0.65 -> 0.8 so the oscilloscope-at-rest reads as
+     a live instrument the instant the slot scrolls in, then energizes on power-on. */
+  opacity: 0.65;
+  transition: opacity 0.6s var(--ease-out);
+}
+.proof__curve.is-powered .proof__curve-grid { opacity: 0.8; }
+.proof__curve-label {
+  /* S6.3: the one place the signal label feels alive. The live dot (markup) and
+     the charts pulse own the heartbeat; here we give the label a hair more size
+     so it reads as the instrument's readout, above the grid. */
+  color: var(--signal);
+  font-size: 0.8125rem;
+  letter-spacing: 0.08em;
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;   /* wrap the live readout on very narrow phones (<=360px) instead of overflowing */
+  gap: 0.7em;
+  z-index: 1;
+}
+.proof__curve-caption {
+  /* S6.4 (P1) -> keystone raise: the honest-null explanation is the radical-
+     transparency line of the whole page, so it must be the CLEAREST text in the
+     panel, brighter than its own --signal label and well above the --grey-700
+     floor. Lifted from --paper-dim to --paper: the integrity statement reads first. */
+  color: var(--paper);
+  max-width: 48ch;
+  line-height: 1.7;
+  z-index: 1;
+}
+.proof__curve-link { z-index: 1; margin-top: var(--s-2); }
+
+/* ---------------------------------------------------------------------------
+   THE DISCIPLINE ATTRIBUTION (#discipline): the founder section was folded into the
+   discipline close in the editorial pass (the page's trust voice now lives as the
+   founding-principle display-quote + this attribution line, one arc: tenets ->
+   close -> attribution). A recessed mono credit under the close, set apart with a
+   little air, never competing with the held quote above it.
+   --------------------------------------------------------------------------- */
+.discipline__attrib {
+  color: var(--grey-700);
+  margin-top: var(--s-4);
+  letter-spacing: 0.06em;
+  text-align: center;
+}
+/* below the broken-grid breakpoint the close left-aligns (styles.css), so the
+   attribution follows it to the left for one consistent hand. */
+@media (max-width: 1024px) {
+  .discipline__attrib { text-align: left; }
+}
+
+@media (max-width: 760px) {
+  .offer__cols { grid-template-columns: 1fr; }
+}
+
+/* ---------------------------------------------------------------------------
+   REDUCED MOTION (the V2 sections): every drawn marker / hairline / rule renders
+   in its FINAL composed state with no transition, so the sections read as fully
+   resolved diagrams, never a mid-animation frame. The equity slot shows its
+   graticule and the founder rule are drawn; nothing is hidden behind motion.
+   --------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .hero__points li::before,
+  .offer__denials li::before,
+  .offer__col-head::after,
+  .offer__list li::before,
+  .offer__col,
+  .proof__curve-grid,
+  .proof__curve { transition: none; }
+  /* force every drawn marker / hairline / rule to its FINAL visible state,
+     overriding the armed (.is-stagger) from-state, so a reduced-motion reader
+     sees the composed diagram, never a mid-animation or hidden frame. */
+  .js .hero__points.is-stagger li::before,
+  .js .offer__cols.is-stagger .offer__col-head::after,
+  .js .offer__list.is-stagger li::before { transform: scaleX(1); }
+  .js .offer__denials.is-stagger li::before { transform: scale(1); }
+  .proof__curve-grid { opacity: 0.65; }
+}
+
+/* ===========================================================================
+   PAGE-WIDE VISIBILITY RAISES (LANDING10_VISIBILITY S3.1, S2.3, S9)
+   Token-respecting contrast raises that bring the OLDER sections to the same
+   legibility level as the newly-polished V2 sections, so the whole landing reads
+   at one contrast tier. Every selector below is a LANDING-ONLY class (it appears
+   nowhere on the sub-pages), so scoping here, in the last-loaded landing sheet,
+   raises legibility on the landing only and never touches a shared token or the
+   sub-pages. Each move is one honest rung up the ladder; the hierarchy gaps stay
+   wide (headline --paper > body --paper-dim > caption --grey-700).
+   ======================================================================== */
+
+/* S3.1 / S9.3: an aside SENTENCE is readable body prose, not a caption, so it
+   earns rung 4 (--paper-dim). The // .comment marker stays at the floor
+   (--grey-700, the deliberately recessed terminal mark; the contrast between the
+   dim marker and the brighter sentence is the texture). This one rule fixes every
+   landing aside consistently. (styles.css sets these at --grey-700; this sheet
+   loads after, so it wins by source order for the landing only.) */
+.thesis__aside,
+.house__aside,
+.waitlist__aside {
+  color: var(--paper-dim);
+}
+.thesis__aside .comment,
+.house__aside .comment,
+.waitlist__aside .comment {
+  color: var(--grey-700);
+}
+
+/* S2.3 / S8.3: the hero status separator (&middot;) between two readable status
+   facts was at --grey-600 (rung 2, decorative-only) and read as a gap, not a
+   divider. It is a meaningful separator between values, so it earns the floor
+   (rung 3). Scoped to the hero so the global glyph is untouched. */
+.hero .hero__status-sep { color: var(--grey-700); }
+
+/* lift the WHOLE hero status line to the body tier (--paper-dim): "Pre-launch" was
+   at the floor (--grey-700) while the value beside it sat brighter, so the line read
+   half-lit. The pre-launch state is a live, readable fact, so the full line earns
+   rung 4. Scoped to the landing hero (the shared token rule is untouched). */
+.hero .hero__status { color: var(--paper-dim); }
+
+/* ---------------------------------------------------------------------------
+   THE THREE ALGORITHMS (.algos)
+   ---------------------------------------------------------------------------
+   A ledger that presents the book by algorithm inside the flagship chapter:
+   AlphaForge and AlphaMax (the two standalone sleeves) and ALPHAC (their
+   equal-risk combination, the flagship). It reuses the exact ledger grammar the
+   page already uses for the roadmap and the pillars: a four-column grid, faint
+   grey-850 hairlines, a serif name, a left-anchored hover wash, and one signal
+   accent reserved for the flagship row. Nothing here forks a token or a
+   component; it only composes the existing system at a new selector.
+
+   Motion is the shared .reveal-fade (the rows carry it in the markup, scroll.js
+   animates them generically), so this sheet owns layout only, never a keyframe.
+   ------------------------------------------------------------------------- */
+.algos {
+  /* the algos block opens a fresh ledger after the pillars, with the same air
+     the offer block takes above its own drawn seam. */
+  margin-top: var(--s-7);
+  padding-top: var(--s-5);
+  /* clear the right-margin overhang the pillars take, so the ledger sits on the
+     content measure like the roadmap does. */
+  margin-right: 0;
+}
+
+/* head row: the eyebrow on the left, the honest forward figure on the right, so
+   the deflated number is the first figure the eye meets in this block (never the
+   in-sample one). */
+.algos__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--s-4);
+  flex-wrap: wrap;
+  margin-bottom: var(--s-4);
+}
+.algos__forward { color: var(--paper-dim); }
+/* the in-sample figure is shown but struck, so it is on the record yet visibly
+   demoted beneath the honest forward beside it. The strike uses the floor tier
+   and a line-through, the same "shown, not led with" treatment the proof stat
+   band uses for its zero. */
+.algos__struck {
+  color: var(--grey-700);
+  text-decoration: line-through;
+  margin-left: 0.8em;
+}
+
+.algos__lead { color: var(--paper-dim); max-width: 62ch; margin-bottom: var(--s-5); }
+
+/* the ledger: same column hand as .roadmap (name / asset / figure / status),
+   tuned so the serif name and the figure each get room. */
+.algos__ledger { margin-bottom: var(--s-5); }
+.algos__row {
+  display: grid;
+  grid-template-columns: 200px 1fr 200px 220px;
+  gap: var(--s-4);
+  align-items: center;
+  padding: var(--s-4) 0;
+  border-top: 1px solid var(--grey-850);
+  transition: background 0.4s var(--ease-out), border-color 0.4s var(--ease-out);
+}
+.algos__row:last-child { border-bottom: 1px solid var(--grey-850); }
+.algos__row:not(.algos__row--head):hover {
+  background: linear-gradient(90deg, var(--grey-900), transparent 80%);
+  border-top-color: var(--grey-825);
+}
+.algos__row:not(.algos__row--head):hover + .algos__row { border-top-color: var(--grey-825); }
+/* the head row is the legend: no top hairline, a faint bottom one, label tier. */
+.algos__row--head {
+  color: var(--grey-700);
+  border-top: none;
+  border-bottom: 1px solid var(--grey-850);
+  padding-bottom: var(--s-3);
+}
+
+.algos__name {
+  font-family: var(--serif);
+  font-variation-settings: "opsz" 40, "wght" 400;
+  font-size: 1.5rem;
+  color: var(--paper);
+  display: flex;
+  align-items: baseline;
+  gap: 0.6em;
+  flex-wrap: wrap;
+}
+.algos__asset { color: var(--paper-dim); }
+
+/* the standalone Sharpe, in the data voice but sized down from the display
+   mono-data figure so it reads as a ledger cell, not a headline number. */
+.algos__sharpe {
+  font-size: 1.5rem;
+  color: var(--paper);
+}
+/* ALPHAC has no standalone Sharpe (it is the combination), so the cell reads
+   "Combined" in the recessed label voice rather than a fabricated figure. */
+.algos__sharpe--combined {
+  font-size: 0.95rem;
+  color: var(--grey-700);
+  letter-spacing: 0.04em;
+}
+
+.algos__live {
+  color: var(--grey-700);
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+}
+
+/* the flagship row: ALPHAC is the headline, marked with the one signal accent
+   the page allows. A left signal hairline and a lifted name tier, never a loud
+   fill, so it reads as "this is the one that matters" within the house
+   restraint. The .algos__badge is the in-line flagship tag. */
+.algos__row--flagship {
+  /* the signal rests on a left edge drawn with box-shadow so it does not shift
+     the grid the way a border would, matching how the offer-card accent is
+     drawn elsewhere. */
+  box-shadow: inset 2px 0 0 0 var(--signal);
+  padding-left: var(--s-4);
+}
+.algos__row--flagship .algos__name { color: var(--paper); }
+.algos__badge {
+  color: var(--signal);
+  border: 1px solid var(--signal-faint);
+  border-radius: 2px;
+  padding: 0.2em 0.6em;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.algos__row--flagship .algos__live { color: var(--paper-dim); }
+
+.algos__aside { color: var(--paper-dim); margin-top: var(--s-5); }
+.algos__aside .comment { color: var(--grey-700); }
+
+/* ---------------------------------------------------------------------------
+   THE LIVE BOOK TEASER (.algos__book)
+   ---------------------------------------------------------------------------
+   A compact taste of the current book beneath the algorithms ledger: the equity
+   sleeve's counts and gross on one line (the long count carrying the one signal
+   accent), the crypto sleeve's honest flat state on the next, and a quiet bridge
+   to the full long/short ledger on the performance page. It composes the same
+   tokens and the same mono voices the ledger above it uses; it forks nothing.
+   ------------------------------------------------------------------------- */
+.algos__book {
+  margin-top: var(--s-6);
+  padding-top: var(--s-5);
+  border-top: 1px solid var(--grey-850);
+}
+.algos__book-eyebrow {
+  color: var(--grey-700);
+  display: flex;
+  align-items: baseline;
+  gap: var(--s-3);
+  flex-wrap: wrap;
+  margin-bottom: var(--s-4);
+}
+.algos__book-asof { color: var(--grey-700); }
+.algos__book-line {
+  display: flex;
+  align-items: baseline;
+  gap: var(--s-3);
+  flex-wrap: wrap;
+  color: var(--paper-dim);
+  padding: var(--s-2) 0;
+}
+.algos__book-line + .algos__book-line { border-top: 1px solid var(--grey-900); }
+.algos__book-name {
+  font-family: var(--serif);
+  font-variation-settings: "opsz" 28, "wght" 400;
+  font-size: 1.15rem;
+  color: var(--paper);
+  min-width: 7.5em;
+}
+.algos__book-fig { color: var(--paper-dim); }
+/* the one signal accent in the teaser: the long count. .signal-word must win over
+   the .algos__book-fig paper-dim default, so it is re-asserted at this selector
+   (same hue, no new token). */
+.algos__book-fig.signal-word { color: var(--signal); }
+.algos__book-sep { color: var(--grey-700); }
+.algos__book-flat { color: var(--grey-700); }
+.algos__book-bridge { margin-top: var(--s-4); }
+
+@media (max-width: 720px) {
+  .algos__book-name { min-width: 0; flex-basis: 100%; }
+}
+
+/* tablet: relax the fixed figure columns before the full mobile collapse. */
+@media (max-width: 980px) {
+  .algos__row {
+    grid-template-columns: 1fr 1.3fr 1fr 1fr;
+    gap: var(--s-3);
+  }
+}
+
+/* mobile: stack the ledger the same way the roadmap stacks, one field per line,
+   head row hidden (the values carry their own meaning when stacked). */
+@media (max-width: 720px) {
+  .algos { margin-top: var(--s-6); }
+  .algos__row,
+  .algos__row--head {
+    grid-template-columns: 1fr;
+    gap: var(--s-1);
+    padding: var(--s-4) 0;
+    align-items: start;
+  }
+  .algos__row--head { display: none; }
+  .algos__name { font-size: 1.75rem; }
+  .algos__row--flagship { padding-left: var(--s-3); }
+}
+
+/* ===========================================================================
+   HERO PROOF STRIP (#heroProof): one quiet mono line of live, signed facts,
+   bound by holdings.js (omit-on-null). It sits below the actions as the
+   instrument readout of the hero: days signed, strategies killed, the honest
+   grade, the truncated chain head. Recessed grey voice with the one signal
+   accent on the C+ grade; the separators are the gutter dot. Built from
+   existing tokens only; .reveal-fade (in markup) gives the shared enter.
+   =========================================================================== */
+.hero__proof {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.55em 0.7em;
+  margin-top: var(--s-5);
+  color: var(--grey-700);
+  /* a hairline above sets it apart from the CTA pair as a separate, factual
+     readout, the way the algos forward line is ruled off from its head. */
+  padding-top: var(--s-4);
+  border-top: 1px solid var(--grey-850);
+  max-width: 56ch;
+}
+.hero__proof-item { color: var(--paper-dim); white-space: nowrap; }
+.hero__proof-item .signal-word { color: var(--signal); }
+.hero__proof-sep { color: var(--grey-600); }
+.hero__proof-item[hidden],
+.hero__proof-sep[hidden] { display: none; }
+
+/* the "Don't trust us, verify us" line in the hero sub: the thesis register, set
+   a touch brighter than the surrounding sub-copy so it lands as the closing
+   imperative, never an exclamation. One accent, on the verb of the brand. */
+.hero__sub-emph {
+  display: inline;
+  color: var(--paper);
+}
+
+/* ===========================================================================
+   THE PROOF LIVE READOUT (#proofLive): the proud true fact, stated first in the
+   Performance chapter, above the honest-null curve. Bound from track_record.json
+   (omit-on-null, hidden until live). A recessed panel with a live dot; the one
+   signal accent rests on the go-live date. Reuses the panel grammar of
+   .proof__curve (1px --grey-850 frame, faint inner depth) so the two read as one
+   instrument stack: live record, then the published null.
+   =========================================================================== */
+.proof__live {
+  margin: var(--s-6) 0 0;
+  padding: var(--s-5);
+  border: 1px solid var(--grey-850);
+  border-radius: 2px;
+  background:
+    radial-gradient(120% 90% at 0% 0%, rgba(200, 85, 61, 0.04), transparent 55%);
+}
+.proof__live[hidden] { display: none; }
+.proof__live-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6em;
+  color: var(--signal);
+  letter-spacing: 0.08em;
+}
+.proof__live-status > span:not(.dot) { color: var(--signal); }
+.proof__live-status > span:last-child { color: var(--grey-700); }
+.proof__live-sep { color: var(--grey-600); }
+.proof__live-line {
+  color: var(--paper-dim);
+  max-width: 62ch;
+  margin-top: var(--s-3);
+  line-height: 1.6;
+}
+.proof__live-line .signal-word { color: var(--signal); }
+/* .mono-data is the large STAT-figure voice (clamp 2.5-4.5rem); inside these
+   sentences we want the mono digits set at the surrounding text size, just with
+   the tabular/lining numerals and mono family the class already gives. Reset the
+   inherited stat size so an inline figure never blows up its paragraph. */
+.proof__live-line .mono-data { font-size: inherit; font-weight: 500; line-height: inherit; letter-spacing: -0.01em; color: var(--paper); }
+.proof__live-line .mono-data.signal-word { color: var(--signal); }
+
+/* ===========================================================================
+   THE GLASS BOX (#open / .glass): the promoted keystone chapter. Recessed --ink
+   canvas (the section carries .section--ink) gives the most allocator-convincing
+   screen its weight. The four trust facts are a typeset ledger (definition list),
+   not a bento grid: each is a hairline-separated row, the key in the mono label
+   voice, the value in body, with the single signal accent reserved for the chain
+   head. Built entirely from existing tokens and the .reveal-fade enter grammar.
+   =========================================================================== */
+.glass__head { margin-bottom: var(--s-7); max-width: var(--max); }
+.glass__title { color: var(--paper); margin-top: var(--s-3); }
+.glass__title .mask__inner { white-space: nowrap; }
+.glass__lead {
+  color: var(--paper-dim);
+  max-width: 60ch;
+  margin-top: var(--s-5);
+  line-height: 1.58;
+}
+
+/* the trust ledger: hairline-ruled rows, an asymmetric two-column grid (the key
+   sits in a narrow left column, the value takes the wide measure) so it reads as
+   a typeset document, never equal-weight cards. */
+.glass__facts {
+  display: grid;
+  gap: 0;
+  max-width: var(--max);
+  margin: 0;
+}
+.glass__fact {
+  display: grid;
+  grid-template-columns: minmax(180px, 0.32fr) 1fr;
+  gap: var(--s-4) var(--s-6);
+  padding: var(--s-5) 0;
+  border-top: 1px solid var(--grey-850);
+  align-items: baseline;
+  transition: border-color 0.4s var(--ease-out);
+}
+.glass__fact:last-child { border-bottom: 1px solid var(--grey-850); }
+.glass__fact:hover { border-top-color: var(--grey-825); }
+.glass__fact:hover + .glass__fact { border-top-color: var(--grey-825); }
+.glass__fact-k {
+  color: var(--grey-700);
+  align-self: start;
+}
+.glass__fact-v {
+  color: var(--paper-dim);
+  max-width: 58ch;
+  line-height: 1.6;
+}
+/* inline mono figures sit at the sentence's size (see the .proof__live note):
+   the class gives the mono family + tabular numerals; we reset the stat-scale
+   font-size so the chain head, entry count, etc. read as inline data, not a
+   headline. The chain head keeps its single signal accent via .signal-word. */
+.glass__fact-v .mono-data {
+  font-size: inherit;
+  font-weight: 500;
+  line-height: inherit;
+  letter-spacing: -0.01em;
+  color: var(--paper-dim);
+}
+.glass__fact-v .mono-data.signal-word { color: var(--signal); }
+.glass__fact-v .signal-word { color: var(--signal); }
+.glass__cmd {
+  display: inline-block;
+  color: var(--paper);
+  background: var(--signal-faint);
+  padding: 0.15em 0.5em;
+  border-radius: 2px;
+  /* the command stays at sentence size (mono family already applied); reset the
+     stat-scale font-size .mono-data carries, then nudge it a hair smaller. */
+  font-size: 0.9em;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: inherit;
+  /* the command must stay readable and copyable on narrow screens */
+  word-break: break-word;
+}
+.glass__aside {
+  color: var(--paper-dim);
+  max-width: 62ch;
+  margin-top: var(--s-6);
+  line-height: 1.6;
+}
+.glass__aside .comment { color: var(--grey-700); }
+.glass__aside .mono-data {
+  font-size: inherit;
+  font-weight: 500;
+  line-height: inherit;
+  letter-spacing: -0.01em;
+  color: var(--paper-dim);
+}
+
+/* mobile: the trust ledger stacks key-over-value, one field per row, matching the
+   algos/roadmap stack so the whole page collapses with one hand. */
+@media (max-width: 760px) {
+  .glass__fact {
+    grid-template-columns: 1fr;
+    gap: var(--s-2);
+    padding: var(--s-4) 0;
+  }
+  .glass__title .mask__inner { white-space: normal; }
+}

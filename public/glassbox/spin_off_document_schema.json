@@ -1,0 +1,30 @@
+{
+  "schema": "canli.feasibility.spin-off-document-schema.v1",
+  "generated_at": "2026-08-16T02:35:18.890645+00:00",
+  "stage": "official_initial_form10_document_schema_no_prices_no_returns",
+  "protocol": "docs/design/FEASIBILITY_SPIN_OFF_DOCUMENT_SCHEMA.md",
+  "parser_version": "sec-filing-sections-v2",
+  "sample_rows": 98,
+  "successful_rows": 98,
+  "explicit_spin_or_separation_language": 68,
+  "explicit_spin_or_separation_language_rate": 0.6938775510204082,
+  "pro_rata_distribution_language": 16,
+  "pro_rata_distribution_language_rate": 0.16326530612244897,
+  "ratio_mentions": 8,
+  "record_date_mentions": 4,
+  "distribution_date_mentions": 0,
+  "gates": {
+    "exactly_98_frozen_filings": true,
+    "all_filing_indexes_and_exact_primary_links": true,
+    "all_acceptance_timestamps": true,
+    "all_primary_documents_hash_bound": true,
+    "explicit_spin_or_separation_language_rate_gte_0_50": true,
+    "pro_rata_distribution_language_rate_gte_0_30": false,
+    "market_data_unopened": true,
+    "return_hypotheses_unspent": true
+  },
+  "decision": "DATA_GATED",
+  "market_data_opened": false,
+  "return_data_opened": false,
+  "return_hypotheses_spent": 0
+}

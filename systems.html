@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="en" data-page="systems">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Canli Capital / Systems, the architecture of the engine</title>
+  <meta name="description" content="How the engine works, end to end: a leak-proof, point-in-time data lake, an IC-weighted factor library, a risk-aware portfolio, a cost-honest backtester, an ML and regime overlay, and a 24/7 paper-trading loop. Built in the open, in simulation and paper only." />
+  <meta name="theme-color" content="#0A0B0D" />
+  <meta name="color-scheme" content="dark" />
+  <link rel="canonical" href="https://canlicapital.com/systems" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Canli Capital" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:title" content="Systems / Canli Capital" />
+  <meta property="og:description" content="The architecture of the engine, end to end. A research process that happens to trade, built leak-proof and cost-honest. Simulation and paper trading only. No real capital, no claimed returns." />
+  <meta property="og:url" content="https://canlicapital.com/systems" />
+  <meta property="og:image" content="https://canlicapital.com/og.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:alt" content="Canli Capital. A multi-signal quant engine, proven in the open. Simulation and live paper only, no real capital, no claimed return." />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Systems / Canli Capital" />
+  <meta name="twitter:description" content="The architecture of the engine, end to end. A research process that happens to trade, built leak-proof and cost-honest. Simulation and paper trading only. No real capital, no claimed returns." />
+  <meta name="twitter:image" content="https://canlicapital.com/og.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@300..700&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@300..700&display=swap" />
+
+  <link rel="stylesheet" href="./css/styles.css" />
+  <link rel="stylesheet" href="./css/motion.css" />
+  <link rel="stylesheet" href="./css/shell.css" />
+  <link rel="stylesheet" href="./css/waitlist.css" />
+  <!-- Page-specific layout for /systems only: the chaptered architecture story,
+       the pipeline spine, and the per-chapter schematics. Loaded last, adds only
+       (never redefines a token, the cursor, the rail, or an easing). -->
+  <link rel="stylesheet" href="./css/systems.css" />
+
+  <!-- Favicon set (the brand mark: one signal dot on the void). The SVG is the
+       primary, scalable icon; the .ico is the legacy fallback; the PNG sizes serve
+       iOS home-screen and PWA install. All long-cached as static assets. -->
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="/favicon.ico" sizes="32x32" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/manifest.webmanifest" />
+
+  <!-- Organization schema (JSON-LD). States only what is true: the firm, the brand,
+       the flagship engine, and the disclaimer that nothing here is investment
+       advice. No performance claim. -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Canli Capital",
+    "url": "https://canlicapital.com/",
+    "logo": "https://canlicapital.com/icon-512.png",
+    "image": "https://canlicapital.com/og.png",
+    "description": "A quantitative research platform building ALPHAC: a paper-traded, cross-asset book of four equal-quarter sleeves spanning equity momentum, managed-futures trend, funding carry and point-in-time macro surprise. Methods, failures and corrections are published in the open. No real capital and no claimed returns.",
+    "foundingDate": "2026",
+    "founder": { "@type": "Person", "name": "Arhan Canli" },
+    "slogan": "Institutional discipline, made legible.",
+    "disclaimer": "Nothing on this site is investment advice, an offer, or a solicitation. The algorithms are in simulation and live paper trading. No statement describes live capital performance, and no return is claimed."
+  }
+  </script>
+
+  <style>
+    .skip-link {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 200;
+      transform: translateY(-120%);
+      margin: 12px;
+      padding: 10px 16px;
+      background: #0A0B0D;
+      color: #F4F1EA;
+      font: 500 13px/1 "Space Grotesk", system-ui, sans-serif;
+      letter-spacing: 0.04em;
+      text-decoration: none;
+      border: 1px solid #C8553D;
+      border-radius: 2px;
+      transition: transform 180ms ease;
+    }
+    .skip-link:focus { transform: translateY(0); }
+    .skip-link:focus-visible { outline: 2px solid #F4F1EA; outline-offset: 3px; }
+  </style>
+
+  <script>document.documentElement.classList.add("js");</script>
+
+  <!-- Per-page config for the shared bootstrap. /systems is the coalescing +
+       lattice chapter of the one manifold: the camera studies the structure
+       forming (mid-convergence band ~0.25 to 0.6), then the closing chapter eases
+       it apart again for the paper loop. The rail spine and the scene band are
+       read by js/page-config.js; this runs before main.js. The rail chapter
+       labels match the sitemap's /systems spine exactly. -->
+  <script>
+    window.__MERIDIAN_PAGE = {
+      id: "systems",
+      chapters: [
+        "Overview", "Data", "Factors", "Portfolio",
+        "Backtester", "Overlays", "Paper loop", "Colophon"
+      ],
+      sceneBand: [0.22, 0.80],
+      sceneStill: 0.42
+    };
+  </script>
+</head>
+
+<body>
+
+  <a href="#content" class="skip-link">Skip to content</a>
+
+
+  </div>
+
+  <canvas id="scene" class="scene" aria-hidden="true"></canvas>
+  <div class="scene-fallback" id="sceneFallback" aria-hidden="true"></div>
+
+
+  <!-- The left index rail: same typographic-counter spine as every page, fed the
+       /systems chapter labels via __MERIDIAN_PAGE. Eight data-section anchors,
+       one per chapter, drive the living chapter counter in scroll.js. -->
+  <nav class="rail" id="rail" aria-label="Section navigation">
+    <span class="rail__line" aria-hidden="true"><span class="rail__fill" id="railFill"></span></span>
+    <div class="rail__head" id="railHead" aria-hidden="true">
+      <span class="rail__index mono-label" id="railIndex">00</span>
+      <span class="rail__chapter label" id="railName">Overview</span>
+    </div>
+    <ul class="rail__list">
+      <li><a href="#hero" class="rail__item" data-rail="0"><span class="rail__num mono-label">00</span></a></li>
+      <li><a href="#data" class="rail__item" data-rail="1"><span class="rail__num mono-label">01</span></a></li>
+      <li><a href="#factors" class="rail__item" data-rail="2"><span class="rail__num mono-label">02</span></a></li>
+      <li><a href="#portfolio" class="rail__item" data-rail="3"><span class="rail__num mono-label">03</span></a></li>
+      <li><a href="#backtester" class="rail__item" data-rail="4"><span class="rail__num mono-label">04</span></a></li>
+      <li><a href="#overlays" class="rail__item" data-rail="5"><span class="rail__num mono-label">05</span></a></li>
+      <li><a href="#paper-loop" class="rail__item" data-rail="6"><span class="rail__num mono-label">06</span></a></li>
+      <li><a href="#footer" class="rail__item" data-rail="7"><span class="rail__num mono-label">07</span></a></li>
+    </ul>
+  </nav>
+
+  <!-- The right-edge pipeline spine: the interactive chain-of-custody tracker.
+       js/systems-page.js builds its nodes from the chapters that carry
+       data-stage, then lights the active stage as the reader descends, filling
+       the connector down the pipe. Desktop-only, mirrors the rail on the far
+       edge. aria-hidden: the rail is the accessible nav; this is a visual echo. -->
+  <nav class="sys-pipe" id="sysPipe" aria-hidden="true"></nav>
+
+  <!-- Shared top nav: js/shell.js renders the links + CTA into this .nav__links
+       and marks /systems as the current page. -->
+  <header class="nav" id="nav">
+    <div class="nav__inner">
+      <a href="/" class="nav__brand label" data-brand aria-label="Canli Capital, home">Canli Capital</a>
+      <nav class="nav__links" aria-label="Primary"></nav>
+    </div>
+  </header>
+
+  <main id="content" class="content" tabindex="-1">
+
+    <!-- =================================================================== -->
+    <!-- (00) SYSTEMS HERO                                                    -->
+    <!-- =================================================================== -->
+    <section class="sys-hero section" id="hero" data-section="0" aria-labelledby="sys-hero-head">
+      <span class="hero__ghost" aria-hidden="true">Engine</span>
+      <div class="sys-hero__body">
+        <p class="eyebrow label reveal-line"><span class="idx mono-label">00 /</span> Systems</p>
+        <h1 class="sys-hero__head display-l" id="sys-hero-head">
+          <span class="mask" data-chars><span class="mask__inner">The machine, with the cover off.</span></span>
+        </h1>
+        <p class="sys-hero__sub body-l reveal-fade">
+          The same system does the research and places the trades.
+          <strong>Six components</strong> carry one decision from raw market data to a
+          costed fill. Here is each, in order.
+        </p>
+        <p class="sys-hero__index mono-label type-mono reveal-fade">
+          data <span class="flow">to</span> factors <span class="flow">to</span>
+          portfolio <span class="flow">to</span> backtester <span class="flow">to</span>
+          overlays <span class="flow">to</span> paper loop
+        </p>
+        <p class="sys-scope sys-hero__scope mono-label reveal-fade">
+          <span class="dot" aria-hidden="true"></span>
+          Paper and simulation only. No real capital.
+        </p>
+      </div>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- (01) DATA INTEGRITY                                                  -->
+    <!-- =================================================================== -->
+    <section class="sys-chapter section" id="data" data-section="1"
+             data-stage data-stage-label="Data" data-stage-whisper="Controls what is knowable"
+             aria-labelledby="data-head">
+      <span class="section__rule" aria-hidden="true"></span>
+      <div class="sys-chapter__grid">
+        <div class="sys-chapter__aside">
+          <p class="sys-chapter__kicker label"><span class="idx mono-label">01 /</span> Data integrity</p>
+          <h2 class="sys-chapter__head display-m" id="data-head">
+            <span class="mask" data-chars><span class="mask__inner">Point-in-time, or it does not count.</span></span>
+          </h2>
+        </div>
+        <div class="sys-chapter__main">
+          <p class="sys-body body">
+            Every bar is stamped to the millisecond it became knowable. A decision
+            made at one o'clock reads only what existed at one o'clock. One reader
+            sits in front of every query and blocks anything that looks
+            <span class="signal-word">ahead</span>. Research and live trading read the
+            same store, so a backtest and a real decision can't quietly drift apart.
+          </p>
+
+          <!-- The lineage schematic: one store, two readers, one contract. -->
+          <div class="sys-flow" data-parallax="0.12" aria-label="Data lineage">
+            <div class="sys-flow__cell">
+              <span class="sys-flow__cell-kicker">Source</span>
+              <span class="sys-flow__cell-title">Point-in-time lake</span>
+              <span class="sys-flow__cell-note">every bar stamped to the millisecond it was knowable</span>
+            </div>
+            <div class="sys-flow__cell">
+              <span class="sys-flow__cell-kicker">Gate</span>
+              <span class="sys-flow__cell-title">One reader</span>
+              <span class="sys-flow__cell-note">enforces as-of access on every query, no leak permitted</span>
+            </div>
+            <div class="sys-flow__cell">
+              <span class="sys-flow__cell-kicker">Consumers</span>
+              <span class="sys-flow__cell-title">Research and paper</span>
+              <span class="sys-flow__cell-note">one contract, shared by research and paper</span>
+            </div>
+          </div>
+
+          <div>
+            <p class="subhead sys-subhead">The universe includes the graveyard.</p>
+            <p class="sys-body body">
+              The universe is survivorship-bias-free. Listing and delisting are
+              recorded as historical facts. A backtest cannot drop the names that
+              went to zero and keep only the winners.
+            </p>
+          </div>
+
+          <div>
+            <p class="subhead sys-subhead">Research and live code share one path.</p>
+            <p class="sys-body body">
+              There is no second implementation that drifts. What the backtester
+              runs is what the paper loop runs. The parity is structural, not a
+              promise to keep two codebases in step.
+            </p>
+          </div>
+
+          <p class="sys-dataline mono-label type-mono">
+            <span data-fact="cryptoBars">3.5M+</span> hourly bars, crypto / from <span data-fact="cryptoSince">2020</span> /
+            <span data-fact="instruments">94</span> instruments, live and delisted /
+            <span class="signal-word">zero</span> look-ahead
+          </p>
+          <p class="sys-dataline mono-label type-mono">
+            <span data-fact="bars">24M+</span> daily bars, equity lake / <span data-fact="equityStocks">8,436</span> US stocks, survivorship-free /
+            <span data-fact="equitySince">1997</span> to 2026 (<span data-fact="equityYears">25</span> years) / <span data-fact="fundamentals">392K+</span> point-in-time fundamentals
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- (02) THE FACTOR LIBRARY                                              -->
+    <!-- =================================================================== -->
+    <section class="sys-chapter sys-chapter--ink" id="factors" data-section="2"
+             data-stage data-stage-label="Factors" data-stage-whisper="Generate the signals"
+             aria-labelledby="factors-head">
+      <div class="sys-chapter__inner">
+        <span class="section__rule" aria-hidden="true"></span>
+        <div class="sys-chapter__grid">
+          <div class="sys-chapter__aside">
+            <p class="sys-chapter__kicker label"><span class="idx mono-label">02 /</span> The factor library</p>
+            <h2 class="sys-chapter__head display-m" id="factors-head">
+              <span class="mask" data-chars><span class="mask__inner">Many signals, measured before they vote.</span></span>
+            </h2>
+          </div>
+          <div class="sys-chapter__main">
+            <p class="sys-body body">
+              The engine scores every instrument across
+              <span data-fact="factors">50</span> factors drawn from the published
+              anomaly literature and from market microstructure: momentum, reversal,
+              funding carry, low-volatility anomalies. The blend is
+              information-coefficient weighted. A factor earns its weight by its
+              measured correlation with future returns, not by how good its story
+              sounds. What does not earn its place is shrunk toward zero, and a signal
+              that can't be <span class="signal-word">defended</span> trades nothing.
+            </p>
+
+            <ol class="sys-fam-list" aria-label="Factor families">
+              <li class="sys-fam">
+                <span class="sys-fam__idx mono-label">01</span>
+                <h3 class="sys-fam__name">Momentum, two kinds.</h3>
+                <p class="sys-fam__desc">
+                  Cross-sectional, which names lead the pack, and time-series, whether
+                  a name trends against its own past. Held on a short leash, the factor
+                  most prone to crowding.
+                </p>
+              </li>
+              <li class="sys-fam">
+                <span class="sys-fam__idx mono-label">02</span>
+                <h3 class="sys-fam__name">Residual reversal.</h3>
+                <p class="sys-fam__desc">
+                  The short-horizon tendency of a name to revert after it moves away
+                  from what its peers and its own structure imply it should be.
+                </p>
+              </li>
+              <li class="sys-fam">
+                <span class="sys-fam__idx mono-label">03</span>
+                <h3 class="sys-fam__name">Funding carry.</h3>
+                <p class="sys-fam__desc">
+                  The funding rate paid between longs and shorts on a perpetual, read as
+                  a carry signal to harvest rather than noise to ignore.
+                </p>
+              </li>
+              <li class="sys-fam">
+                <span class="sys-fam__idx mono-label">04</span>
+                <h3 class="sys-fam__name">Low-volatility and low-beta.</h3>
+                <p class="sys-fam__desc">
+                  The persistent tendency of calmer, lower-beta instruments to deliver
+                  better risk-adjusted returns than their racier peers.
+                </p>
+              </li>
+              <li class="sys-fam">
+                <span class="sys-fam__idx mono-label">05</span>
+                <h3 class="sys-fam__name">Volatility estimators.</h3>
+                <p class="sys-fam__desc">
+                  Yang-Zhang and Parkinson estimators that use the full
+                  open-high-low-close bar, not just closes, for a less noisy read on
+                  risk.
+                </p>
+              </li>
+              <li class="sys-fam">
+                <span class="sys-fam__idx mono-label">06</span>
+                <h3 class="sys-fam__name">Liquidity measures.</h3>
+                <p class="sys-fam__desc">
+                  Amihud illiquidity and the Corwin-Schultz spread estimator, so the
+                  engine knows what a position will actually cost to hold and to exit.
+                </p>
+              </li>
+            </ol>
+
+            <p class="sys-fam-close body-l">
+              The output is one score per instrument, per hour. A single number that
+              the rest of the system can size, constrain, and fill against.
+            </p>
+
+            <!-- P0-C 10: the factor-depth panel. The six families above are the named
+                 chapter; this expands to show how the full library is organized, so a
+                 curious reader can open the cover further. Honest framing: families are
+                 ranked by ACTUAL measured predictive content (IC), never an invented
+                 number. A semantic <details> works with JS off and reduced motion; the
+                 JS layer staggers the grid open and surfaces the per-family note on hover. -->
+            <details class="sys-depth" id="factorDepth">
+              <summary class="sys-depth__summary">
+                <span class="sys-depth__summary-label label">See how the library is organized</span>
+                <span class="sys-depth__summary-chev" aria-hidden="true"></span>
+              </summary>
+              <div class="sys-depth__body">
+                <p class="sys-depth__lead mono-label">
+                  // <span data-fact="factors">50</span> factors, grouped into families,
+                  each weighted by its measured information coefficient, the correlation
+                  with future returns. Families with more predictive content carry more
+                  weight; the rest are shrunk toward zero.
+                </p>
+                <ul class="sys-depth__grid" aria-label="Factor families, ranked by measured predictive content">
+                  <li class="sys-depth__fam" data-note="Cross-sectional and time-series, held on a short leash: the factor most prone to crowding.">
+                    <span class="sys-depth__fam-name">Momentum</span>
+                    <span class="sys-depth__fam-rank mono-label">IC-weighted</span>
+                  </li>
+                  <li class="sys-depth__fam" data-note="Short-horizon reversion after a name moves away from what its peers and structure imply.">
+                    <span class="sys-depth__fam-name">Residual reversal</span>
+                    <span class="sys-depth__fam-rank mono-label">IC-weighted</span>
+                  </li>
+                  <li class="sys-depth__fam" data-note="The funding rate paid between longs and shorts on a perpetual, read as carry rather than noise.">
+                    <span class="sys-depth__fam-name">Funding carry</span>
+                    <span class="sys-depth__fam-rank mono-label">IC-weighted</span>
+                  </li>
+                  <li class="sys-depth__fam" data-note="The persistent tendency of calmer, lower-beta instruments to deliver better risk-adjusted returns.">
+                    <span class="sys-depth__fam-name">Low-volatility and low-beta</span>
+                    <span class="sys-depth__fam-rank mono-label">IC-weighted</span>
+                  </li>
+                  <li class="sys-depth__fam" data-note="Yang-Zhang and Parkinson estimators that read the full open-high-low-close bar, not just closes.">
+                    <span class="sys-depth__fam-name">Volatility estimators</span>
+                    <span class="sys-depth__fam-rank mono-label">IC-weighted</span>
+                  </li>
+                  <li class="sys-depth__fam" data-note="Amihud illiquidity and the Corwin-Schultz spread, so the engine knows what a position costs to hold and exit.">
+                    <span class="sys-depth__fam-name">Liquidity measures</span>
+                    <span class="sys-depth__fam-rank mono-label">IC-weighted</span>
+                  </li>
+                </ul>
+                <p class="sys-depth__note mono-label" id="factorDepthNote" aria-live="polite">
+                  Hover a family to read how it earns its weight.
+                </p>
+              </div>
+            </details>
+
+            <p class="sys-dataline mono-label type-mono">
+              <span data-fact="factors">50</span> factors / IC-weighted blend /
+              one score per instrument, per hour
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- (03) PORTFOLIO AND RISK                                              -->
+    <!-- =================================================================== -->
+    <section class="sys-chapter section" id="portfolio" data-section="3"
+             data-stage data-stage-label="Portfolio" data-stage-whisper="Sizes the positions"
+             aria-labelledby="portfolio-head">
+      <span class="section__rule" aria-hidden="true"></span>
+      <div class="sys-chapter__grid">
+        <div class="sys-chapter__aside">
+          <p class="sys-chapter__kicker label"><span class="idx mono-label">03 /</span> Portfolio and risk</p>
+          <h2 class="sys-chapter__head display-m" id="portfolio-head">
+            <span class="mask" data-chars><span class="mask__inner">A portfolio, not a pile of trades.</span></span>
+          </h2>
+        </div>
+        <div class="sys-chapter__main">
+          <p class="sys-body body">
+            Scores become positions through a step that treats correlated bets as one
+            bet. Covariance is estimated with an EWMA on recent data and Ledoit-Wolf
+            shrinkage toward a stable target, so it stays usable on short history.
+            Positions solve by mean-variance optimization through the Clarabel conic
+            solver, with a rank and inverse-volatility fallback when no clean solution
+            exists.
+          </p>
+
+          <div class="sys-pair">
+            <div class="sys-panel">
+              <span class="sys-panel__label">Construct</span>
+              <h3 class="sys-panel__title display-m">Sized by covariance.</h3>
+              <p class="sys-panel__body">
+                EWMA plus Ledoit-Wolf shrinkage gives a usable covariance on short
+                history. Mean-variance optimization through Clarabel solves the book,
+                with a rank and inverse-volatility fallback when no clean solution
+                exists. A volatility-target overlay holds the book at a chosen risk.
+              </p>
+            </div>
+            <div class="sys-panel">
+              <span class="sys-panel__label">Protect</span>
+              <h3 class="sys-panel__title display-m">The brakes are the engine.</h3>
+              <p class="sys-panel__body">
+                A drawdown ladder reduces gross exposure in steps as losses
+                accumulate, and a kill switch stands behind it for the case the
+                ladder is not enough. The system does less when the market gives it
+                less, and fails toward safety when something is wrong.
+              </p>
+              <!-- the drawdown ladder, drawn: descending rungs that shorten, the
+                   kill switch as the terminal rung. Fills on enter (.is-in). -->
+              <div class="sys-ladder" data-parallax="0.12" aria-hidden="true">
+                <span class="sys-ladder__rung"></span>
+                <span class="sys-ladder__rung"></span>
+                <span class="sys-ladder__rung"></span>
+                <span class="sys-ladder__rung"></span>
+              </div>
+            </div>
+          </div>
+
+          <p class="sys-dataline mono-label type-mono">
+            EWMA + Ledoit-Wolf covariance / Clarabel MVO, rank fallback /
+            vol-target overlay / drawdown ladder + <span class="signal-word">kill switch</span>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- (04) THE TRUTH BACKTESTER + THE VALIDATION GAUNTLET                  -->
+    <!-- =================================================================== -->
+    <section class="sys-chapter sys-chapter--ink" id="backtester" data-section="4"
+             data-stage data-stage-label="Backtester" data-stage-whisper="Prices the truth"
+             aria-labelledby="backtester-head">
+      <div class="sys-chapter__inner">
+        <span class="section__rule" aria-hidden="true"></span>
+        <div class="sys-chapter__grid">
+          <div class="sys-chapter__aside">
+            <p class="sys-chapter__kicker label"><span class="idx mono-label">04 /</span> The truth backtester</p>
+            <h2 class="sys-chapter__head display-m" id="backtester-head">
+              <span class="mask" data-chars><span class="mask__inner">Costs that tell the truth.</span></span>
+            </h2>
+          </div>
+          <div class="sys-chapter__main">
+            <p class="sys-body body">
+              The backtester is event-driven and removes the two ways a backtest
+              flatters itself. Timing: a signal computed at a bar's close fills at the
+              next bar's open, so nothing looks ahead. Cost: spreads, exchange fees,
+              and perpetual funding are charged exactly as they would be live. Funding
+              is modeled as the discrete cash flow it is, not smeared into an average.
+              One transaction-cost authority prices every fill, research and paper
+              alike.
+            </p>
+
+            <!-- the timing schematic: signal at close, fill at next open. -->
+            <div class="sys-flow" data-parallax="0.12" aria-label="Backtester timing">
+              <div class="sys-flow__cell">
+                <span class="sys-flow__cell-kicker">Bar close</span>
+                <span class="sys-flow__cell-title">Signal computed</span>
+                <span class="sys-flow__cell-note">decision made on what was knowable at the close</span>
+              </div>
+              <div class="sys-flow__cell">
+                <span class="sys-flow__cell-kicker">Next open</span>
+                <span class="sys-flow__cell-title">Order filled</span>
+                <span class="sys-flow__cell-note">filled at the next open, no look-ahead</span>
+              </div>
+              <div class="sys-flow__cell">
+                <span class="sys-flow__cell-kicker">Every fill</span>
+                <span class="sys-flow__cell-title">One cost authority</span>
+                <span class="sys-flow__cell-note">spreads, fees, event-driven funding, research and paper alike</span>
+              </div>
+            </div>
+
+            <!-- THE GAUNTLET: the prestige centerpiece, its own emphasized block.
+                 Its seam draws and the scene fires its single flareBloom here. -->
+            <div class="sys-gauntlet" data-parallax="0.06" aria-labelledby="gauntlet-head">
+              <p class="sys-gauntlet__label"><span class="dot" aria-hidden="true"></span> The validation gauntlet</p>
+              <h3 class="sys-gauntlet__head display-m" id="gauntlet-head">
+                Survive this, or the number means nothing.
+              </h3>
+              <p class="sys-gauntlet__intro body">
+                A good backtest is easy to fake and easy to fool yourself with. Before
+                a result is trusted it clears a validation gauntlet. Each test asks the
+                same question a different way: would this survive if the world had not
+                been so kind?
+              </p>
+
+              <ol class="sys-gauntlet__list" aria-label="Validation tests">
+                <li class="sys-test">
+                  <span class="sys-test__idx">01</span>
+                  <div>
+                    <p class="sys-test__name">Purged walk-forward.</p>
+                    <p class="sys-test__desc">
+                      Train on the past, test on a future the model never saw, with a
+                      purge and embargo so no information bleeds across the boundary,
+                      then roll forward and repeat.
+                    </p>
+                  </div>
+                </li>
+                <li class="sys-test">
+                  <span class="sys-test__idx">02</span>
+                  <div>
+                    <p class="sys-test__name">Deflated and Probabilistic Sharpe.</p>
+                    <p class="sys-test__desc">
+                      A Sharpe is discounted for how many strategies were tried to find
+                      it and for the non-normal shape of returns, so a number that
+                      survives is one that is unlikely to be luck.
+                    </p>
+                  </div>
+                </li>
+                <li class="sys-test">
+                  <span class="sys-test__idx">03</span>
+                  <div>
+                    <p class="sys-test__name">Probability of Backtest Overfitting, via CSCV.</p>
+                    <p class="sys-test__desc">
+                      Combinatorially symmetric cross-validation estimates the chance
+                      that the strategy that looked best in-sample is actually no
+                      better than the median out-of-sample.
+                    </p>
+                  </div>
+                </li>
+                <li class="sys-test">
+                  <span class="sys-test__idx">04</span>
+                  <div>
+                    <p class="sys-test__name">Combinatorially-purged cross-validation.</p>
+                    <p class="sys-test__desc">
+                      Many train and test splits, each purged, so the estimate of
+                      performance is not a single lucky path through history.
+                    </p>
+                  </div>
+                </li>
+                <li class="sys-test">
+                  <span class="sys-test__idx">05</span>
+                  <div>
+                    <p class="sys-test__name">Honest trial counts.</p>
+                    <p class="sys-test__desc">
+                      We count the number of configurations tested and feed that count
+                      into the deflation, rather than pretending we only ever tried
+                      one.
+                    </p>
+                  </div>
+                </li>
+                <li class="sys-test">
+                  <span class="sys-test__idx">06</span>
+                  <div>
+                    <p class="sys-test__name">A must-beat-baseline gate.</p>
+                    <p class="sys-test__desc">
+                      A strategy must beat a simple baseline by a meaningful
+                      margin, or it does not pass. Beating zero is not the bar.
+                    </p>
+                  </div>
+                </li>
+              </ol>
+
+              <p class="sys-gauntlet__close serif-quote">
+                Most strategies never survive a gauntlet this severe. That is the
+                point: what survives, you can trust.
+              </p>
+            </div>
+
+            <p class="sys-dataline mono-label type-mono">
+              signal-at-close to fill-at-next-open / event-driven funding /
+              one cost authority / purged WFV + DSR + PBO + baseline gate
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- (05) THE INTELLIGENCE OVERLAYS                                       -->
+    <!-- =================================================================== -->
+    <section class="sys-chapter section" id="overlays" data-section="5"
+             data-stage data-stage-label="Overlays" data-stage-whisper="Scale conviction, gate exposure"
+             aria-labelledby="overlays-head">
+      <span class="section__rule" aria-hidden="true"></span>
+      <div class="sys-chapter__grid">
+        <div class="sys-chapter__aside">
+          <p class="sys-chapter__kicker label"><span class="idx mono-label">05 /</span> The overlays</p>
+          <h2 class="sys-chapter__head display-m" id="overlays-head">
+            <span class="mask" data-chars><span class="mask__inner">Conviction, scaled. Exposure, gated.</span></span>
+          </h2>
+        </div>
+        <div class="sys-chapter__main">
+          <div>
+            <p class="subhead sys-subhead">Meta-labeling scales conviction. It never flips a signal.</p>
+            <p class="sys-body body">
+              A gradient-boosted classifier sits on the factor signal as a
+              meta-labeler. It trains on triple-barrier labels: did a position hit its
+              profit target, its stop, or its time limit first, net of costs. Its
+              target is the live outcome a trade would have had, not a raw forward
+              return. Its probabilities are isotonically calibrated, so a stated
+              seventy percent means roughly seventy percent and conviction sizes
+              against it. The model only
+              <span class="signal-word">scales</span> conviction. The factor engine
+              decides direction; the meta-labeler decides how much to believe it.
+            </p>
+          </div>
+
+          <div>
+            <p class="subhead sys-subhead">A regime gate throttles exposure in adverse states.</p>
+            <p class="sys-body body">
+              A hand-rolled Gaussian hidden-Markov model reads the market's latent
+              regime. A sharp shift in the joint behaviour of returns and volatility
+              means the market has changed state, and an edge measured in one state
+              should not be trusted at full size in another. When the latent state
+              turns adverse, the model throttles gross exposure. It runs filtered,
+              with no lookahead, so its view uses only what was knowable then.
+            </p>
+          </div>
+
+          <div class="sys-pair">
+            <div class="sys-panel">
+              <span class="sys-panel__label">Meta-labeler</span>
+              <h3 class="sys-panel__title display-m">Scales, never flips.</h3>
+              <p class="sys-panel__body">
+                Triple-barrier labels, a gradient-boosted classifier, isotonic
+                calibration. It sits inside a decision the factor engine has already
+                made and adjusts only how much to believe it.
+              </p>
+            </div>
+            <div class="sys-panel">
+              <span class="sys-panel__label">Regime gate</span>
+              <h3 class="sys-panel__title display-m">Carries less when hostile.</h3>
+              <p class="sys-panel__body">
+                A filtered Gaussian hidden-Markov model with no lookahead. When the
+                latent regime turns adverse, gross exposure is throttled down.
+              </p>
+            </div>
+          </div>
+
+          <!-- The overlay schematic: the factor signal enters with a direction, the
+               meta-labeler scales conviction, the regime gate sets the ceiling on
+               exposure. The same .sys-flow primitive the other five chapters use, so
+               the overlays chapter reaches diagram parity with the rest of the page. -->
+          <div class="sys-flow" data-parallax="0.12" aria-label="The overlay chain">
+            <div class="sys-flow__cell">
+              <span class="sys-flow__cell-kicker">Signal</span>
+              <span class="sys-flow__cell-title">Direction, from the factors</span>
+              <span class="sys-flow__cell-note">the factor engine decides which way, the overlays never overrule it</span>
+            </div>
+            <div class="sys-flow__cell">
+              <span class="sys-flow__cell-kicker">Meta-labeler</span>
+              <span class="sys-flow__cell-title">Conviction, scaled</span>
+              <span class="sys-flow__cell-note">a calibrated probability sizes how much to believe the signal</span>
+            </div>
+            <div class="sys-flow__cell">
+              <span class="sys-flow__cell-kicker">Regime gate</span>
+              <span class="sys-flow__cell-title">Exposure, ceilinged</span>
+              <span class="sys-flow__cell-note">an adverse latent state throttles gross exposure down</span>
+            </div>
+          </div>
+
+          <p class="sys-fam-close body-l">
+            Neither overlay is a black box bolted to the front. Both sit inside a
+            decision the factor engine has already made. Both can only make the engine
+            more careful.
+          </p>
+
+          <p class="sys-dataline mono-label type-mono">
+            triple-barrier labels / gradient-boosted + isotonic calibration /
+            scales conviction, never flips / Gaussian HMM regime gate
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- (06) THE PAPER-TRADING LOOP                                          -->
+    <!-- =================================================================== -->
+    <section class="sys-chapter sys-chapter--ink" id="paper-loop" data-section="6"
+             data-stage data-stage-label="Paper loop" data-stage-whisper="Runs the same system live"
+             aria-labelledby="paper-head">
+      <div class="sys-chapter__inner">
+        <span class="section__rule" aria-hidden="true"></span>
+        <div class="sys-chapter__grid">
+          <div class="sys-chapter__aside">
+            <p class="sys-chapter__kicker label"><span class="idx mono-label">06 /</span> The paper loop</p>
+            <h2 class="sys-chapter__head display-m" id="paper-head">
+              <span class="mask" data-chars><span class="mask__inner">The same system, run live, on paper.</span></span>
+            </h2>
+          </div>
+          <div class="sys-chapter__main">
+            <p class="sys-body body">
+              Research and paper trading are one system, run twice. A 24/7 loop walks
+              the live order book to estimate realistic fills, places idempotent orders
+              so a retry can never double-count, reconciles its ledger against the
+              venue, and runs off a single authoritative clock so every component
+              agrees on what was knowable. State is written down, so a process killed
+              mid-decision resumes where it stopped, with no lost position and no
+              double fill. This is where an edge meets a real market, built for the
+              moment things go <span class="signal-word">wrong</span>.
+            </p>
+
+            <!-- the loop schematic: walk the book, place idempotent, reconcile. -->
+            <div class="sys-flow" data-parallax="0.12" aria-label="Paper-trading loop">
+              <div class="sys-flow__cell">
+                <span class="sys-flow__cell-kicker">Read</span>
+                <span class="sys-flow__cell-title">Walk the order book</span>
+                <span class="sys-flow__cell-note">realistic fills estimated against live depth</span>
+              </div>
+              <div class="sys-flow__cell">
+                <span class="sys-flow__cell-kicker">Act</span>
+                <span class="sys-flow__cell-title">Idempotent orders</span>
+                <span class="sys-flow__cell-note">a retry can never double-count, on one authoritative clock</span>
+              </div>
+              <div class="sys-flow__cell">
+                <span class="sys-flow__cell-kicker">Reconcile</span>
+                <span class="sys-flow__cell-title">Books against the venue</span>
+                <span class="sys-flow__cell-note">crash-safe, resumable, no lost position, no double fill</span>
+              </div>
+            </div>
+
+            <p class="sys-fam-close body-l">
+              No real capital touches this loop. It runs as long as it takes before a
+              live stage.
+            </p>
+
+            <p class="sys-body body">
+              The same six-stage architecture runs the four paper sleeves:
+              AlphaForge in crypto funding carry, AlphaMax in US equity momentum, AlphaTrend in
+              managed-futures trend across a 17-market ETF basket, and AlphaVintage in a
+              point-in-time CPI-surprise size spread. ALPHAC combines those four at equal-quarter
+              core weights; its separately disclosed 10% directional overlay is not counted as a
+              fifth sleeve. The equities layer is trained on
+              <span data-fact="equityYears">25</span> years of leak-proof market data
+              across <span data-fact="equityStocks">8,436</span> survivorship-free US
+              stocks, and breadth research continues. What the live paper record has
+              earned so far is reported in full on the performance page.
+            </p>
+
+            <p class="sys-body body">
+              A separate read-only sentinel runs every five minutes on the always-on research
+              host. It verifies timer state, cycle freshness and status, maker-shadow accrual,
+              Deribit research freshness, disk headroom, and kill-switch state. The sentinel can
+              write only its own atomic telemetry file; it cannot place orders or alter research,
+              broker, or signed records. Independent paging and broader public-host/signature
+              parity remain explicit work in progress.
+            </p>
+
+            <p class="sys-dataline mono-label type-mono">
+              order-book-walking fills / idempotent orders / reconciliation /
+              one authoritative clock / crash-safe, resumable / five-minute read-only sentinel
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- THE CHAIN-OF-CUSTODY PIN: this page's one tentpole beat (mirrors the
+         landing's System pin, /performance's gauntlet pin, and /progress's roadmap
+         pin in STRUCTURE). The six engine stages reveal one at a time inside a
+         pinned frame while the manifold's lattice visibly TIGHTENS, the reader
+         watches the architecture assemble and resolve, stage by stage, into one
+         decision. Because /systems is the FORMING chapter (not the resolved one),
+         the gather ramps to a MID value (~0.55), never a full 1.0: the structure
+         takes shape here, but the verdict is settled on /performance. The paper
+         loop (the last stage) is the culmination: it locks lit with a single
+         RESTRAINED flareBloom ("the engine is whole"). The six chapters above are
+         the canonical, no-JS reference; this beat re-presents the same six stages
+         cinematically, so it is hidden with JS off (the .js gate) and stacks as a
+         plain list under reduced motion / mobile (js/systems-page.js gates it).
+         The stage copy distills each chapter above verbatim so the two never drift. -->
+  </main>
+
+  <footer class="footer" id="footer" data-section="99"></footer>
+
+  <script type="module" src="./js/waitlist.js"></script>
+  <script type="module" src="./js/main.js"></script>
+  <!-- The /systems interactive layer: pipeline spine, schematic reveals, the
+       drawdown ladder, the gauntlet seam draw, and the single flareBloom. Loaded
+       after main.js so the shared scene + scroll are wired first. -->
+  <script type="module" src="./js/systems-page.js"></script>
+</body>
+</html>

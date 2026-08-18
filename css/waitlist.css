@@ -1,0 +1,132 @@
+/* =============================================================================
+   MERIDIAN / waitlist.css
+   -----------------------------------------------------------------------------
+   Style hooks for the pre-launch conversion (#waitlist), matching the austere
+   finance aesthetic of styles.css. Loaded AFTER styles.css and cursor.css so it
+   refines the shared .waitlist__* base rules rather than redefining them.
+
+   Scope discipline: this file owns the NEW contract hooks (the honeypot, the
+   single status element and its state colors, the section frame, and the
+   terminal done state). It reuses the existing tokens and never introduces a
+   new color, font, or motion curve. Zero dashes anywhere.
+   ========================================================================== */
+
+/* ---- section frame ------------------------------------------------------- */
+/* The waitlist is the destination, not a busy screen. Give it air and a quiet
+   confident center column so the form reads as the one action on the page. */
+.waitlist-section {
+  position: relative;
+}
+.waitlist__head {
+  margin-bottom: var(--s-7);
+}
+.waitlist__title {
+  color: var(--paper);
+  margin: var(--s-3) 0 var(--s-5);
+}
+.waitlist__supporting {
+  color: var(--paper-dim);
+  max-width: 52ch;
+}
+
+/* The form sits in a measured column, never edge-to-edge, so it feels placed
+   rather than stretched. */
+.waitlist {
+  margin-top: var(--s-7);
+  max-width: 680px;
+}
+
+/* ---- field label --------------------------------------------------------- */
+/* Visible and screen-reader friendly. When the terminal done state hides it,
+   the [hidden] attribute (set by the JS) takes it out of flow cleanly. */
+.waitlist__label {
+  display: block;
+  color: var(--grey-700);
+  margin-bottom: var(--s-3);
+}
+.waitlist__label[hidden] { display: none; }
+
+/* ---- input row ----------------------------------------------------------- */
+/* Base .waitlist__row / .waitlist__input / .waitlist__submit live in
+   styles.css. These refinements tighten the in-flight and disabled states for
+   the rewritten flow. */
+.waitlist__row[hidden] { display: none; }
+
+.waitlist__input {
+  width: 100%;
+  min-width: 0;
+}
+.waitlist__input:disabled {
+  color: var(--grey-700);
+}
+
+.waitlist__submit:disabled {
+  cursor: default;
+  color: var(--grey-700);
+  border-color: var(--grey-850);
+  opacity: 0.7;
+}
+/* While disabled, neutralize the hover fill so a busy or done button looks
+   settled rather than inviting another press. */
+.waitlist__submit:disabled:hover {
+  background: none;
+  color: var(--grey-700);
+  border-color: var(--grey-850);
+}
+.waitlist__submit:disabled::before { transform: scaleX(0); }
+
+/* ---- honeypot ------------------------------------------------------------ */
+/* Visually removed, NOT display:none (some bots skip display:none fields). It
+   is taken out of the visual flow and the tab order while staying in the DOM
+   so a script that auto-fills text inputs trips it. Never given `required`. */
+.waitlist__hp {
+  position: absolute;
+  left: -9999px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ---- status line --------------------------------------------------------- */
+/* One element carries error and success. It reserves a line of height so the
+   layout does not jump when a message appears. Color is keyed by state class. */
+.waitlist__status {
+  min-height: 1.4em;
+  margin-top: var(--s-3);
+  color: var(--grey-700);
+  transition: color 0.3s var(--ease-out);
+}
+.waitlist__status.is-error { color: var(--signal); }
+.waitlist__status.is-success { color: var(--paper-dim); }
+
+/* ---- reassurance + aside ------------------------------------------------- */
+.waitlist__sub {
+  color: var(--grey-700);
+  margin-top: var(--s-3);
+}
+.waitlist__aside {
+  color: var(--grey-700);
+  /* an explicit 60px gap sets the CTA form apart from the closing note that leads
+     into the footer links, so the destination ends on a measured, deliberate beat. */
+  margin-top: 60px;
+}
+
+/* ---- responsive ---------------------------------------------------------- */
+/* The existing 768px rule in styles.css already stacks .waitlist__row to a
+   single column and left-aligns the submit. This keeps the new section frame
+   reflowing to one column at the same breakpoint. */
+@media (max-width: 768px) {
+  .waitlist { max-width: none; }
+  .waitlist__supporting { max-width: none; }
+}
+
+/* ---- reduced motion ------------------------------------------------------ */
+/* The form must be fully usable with reduced motion. The global reset in
+   styles.css already neutralizes transitions; this is an explicit guard so the
+   status color is applied instantly and nothing depends on a transition firing. */
+@media (prefers-reduced-motion: reduce) {
+  .waitlist__status { transition: none; }
+}

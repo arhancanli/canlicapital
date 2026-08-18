@@ -1,0 +1,159 @@
+{
+  "schema": "canli.feasibility.treasury-calendar-revisions.v1",
+  "generated_at": "2026-08-16T02:02:34.793409+00:00",
+  "stage": "calendar_revision_classification_no_prices_no_returns",
+  "unresolved_auction_dates": 11,
+  "classifications": {
+    "TENTATIVE_DATE_CHANGED": 5,
+    "EXACT_DATE_ONLY_LATE_CAPTURE": 2,
+    "EXACT_DATE_ONLY_POST_EVENT_CAPTURE": 3,
+    "NO_CAPTURED_MONTH_SCHEDULE": 1
+  },
+  "cases": [
+    {
+      "auction_date": "2013-01-28",
+      "announcement_date": "2013-01-24",
+      "announcement_lead_sessions": 2,
+      "maximum_exact_archive_lead_sessions": 8,
+      "alternate_tentative_dates": [],
+      "classification": "EXACT_DATE_ONLY_LATE_CAPTURE"
+    },
+    {
+      "auction_date": "2013-12-17",
+      "announcement_date": "2013-12-12",
+      "announcement_lead_sessions": 3,
+      "maximum_exact_archive_lead_sessions": null,
+      "alternate_tentative_dates": [
+        {
+          "tentative_auction_date": "2013-12-16",
+          "maximum_capture_lead_sessions_to_actual": 83,
+          "sources": [
+            "archived_pdf"
+          ]
+        }
+      ],
+      "classification": "TENTATIVE_DATE_CHANGED"
+    },
+    {
+      "auction_date": "2014-02-25",
+      "announcement_date": "2014-02-20",
+      "announcement_lead_sessions": 3,
+      "maximum_exact_archive_lead_sessions": 0,
+      "alternate_tentative_dates": [],
+      "classification": "EXACT_DATE_ONLY_POST_EVENT_CAPTURE"
+    },
+    {
+      "auction_date": "2014-03-25",
+      "announcement_date": "2014-03-20",
+      "announcement_lead_sessions": 3,
+      "maximum_exact_archive_lead_sessions": 0,
+      "alternate_tentative_dates": [],
+      "classification": "EXACT_DATE_ONLY_POST_EVENT_CAPTURE"
+    },
+    {
+      "auction_date": "2015-01-28",
+      "announcement_date": "2015-01-22",
+      "announcement_lead_sessions": 4,
+      "maximum_exact_archive_lead_sessions": null,
+      "alternate_tentative_dates": [
+        {
+          "tentative_auction_date": "2015-01-27",
+          "maximum_capture_lead_sessions_to_actual": 78,
+          "sources": [
+            "archived_pdf",
+            "archived_xml"
+          ]
+        }
+      ],
+      "classification": "TENTATIVE_DATE_CHANGED"
+    },
+    {
+      "auction_date": "2015-11-04",
+      "announcement_date": "2015-10-30",
+      "announcement_lead_sessions": 3,
+      "maximum_exact_archive_lead_sessions": null,
+      "alternate_tentative_dates": [
+        {
+          "tentative_auction_date": "2015-11-23",
+          "maximum_capture_lead_sessions_to_actual": 41,
+          "sources": [
+            "archived_pdf",
+            "archived_xml"
+          ]
+        }
+      ],
+      "classification": "TENTATIVE_DATE_CHANGED"
+    },
+    {
+      "auction_date": "2016-06-20",
+      "announcement_date": "2016-06-16",
+      "announcement_lead_sessions": 2,
+      "maximum_exact_archive_lead_sessions": 0,
+      "alternate_tentative_dates": [
+        {
+          "tentative_auction_date": "2016-06-27",
+          "maximum_capture_lead_sessions_to_actual": 92,
+          "sources": [
+            "archived_pdf"
+          ]
+        }
+      ],
+      "classification": "TENTATIVE_DATE_CHANGED"
+    },
+    {
+      "auction_date": "2016-09-26",
+      "announcement_date": "2016-09-22",
+      "announcement_lead_sessions": 2,
+      "maximum_exact_archive_lead_sessions": 7,
+      "alternate_tentative_dates": [
+        {
+          "tentative_auction_date": "2016-09-27",
+          "maximum_capture_lead_sessions_to_actual": 67,
+          "sources": [
+            "archived_pdf"
+          ]
+        }
+      ],
+      "classification": "TENTATIVE_DATE_CHANGED"
+    },
+    {
+      "auction_date": "2017-11-27",
+      "announcement_date": "2017-11-22",
+      "announcement_lead_sessions": 2,
+      "maximum_exact_archive_lead_sessions": 3,
+      "alternate_tentative_dates": [],
+      "classification": "EXACT_DATE_ONLY_LATE_CAPTURE"
+    },
+    {
+      "auction_date": "2018-08-27",
+      "announcement_date": "2018-08-23",
+      "announcement_lead_sessions": 2,
+      "maximum_exact_archive_lead_sessions": 0,
+      "alternate_tentative_dates": [],
+      "classification": "EXACT_DATE_ONLY_POST_EVENT_CAPTURE"
+    },
+    {
+      "auction_date": "2018-09-24",
+      "announcement_date": "2018-09-20",
+      "announcement_lead_sessions": 2,
+      "maximum_exact_archive_lead_sessions": null,
+      "alternate_tentative_dates": [],
+      "classification": "NO_CAPTURED_MONTH_SCHEDULE"
+    }
+  ],
+  "gates": {
+    "all_unresolved_dates_classified": true,
+    "all_formal_announcements_below_ten_session_entry": true,
+    "exact_ten_session_identity_observable_for_all_dates": false,
+    "return_data_unopened": true,
+    "return_hypotheses_unspent": true
+  },
+  "decision": "IDENTITY_NOT_OBSERVABLE_AS_PREREGISTERED",
+  "required_redesign": "A point-in-time schedule-revision state machine with explicit cancel, roll, and late-announcement behavior; otherwise retire the ten-session identity.",
+  "return_data_opened": false,
+  "return_hypotheses_spent": 0,
+  "source_manifest_sha256": "594cd1df7acbb6b91c3a778cfea0abd7bdec290d418b073c954ead858b22c285",
+  "source_combined_audit_sha256": "3ca94a00f6df8585cb5e3122dbcee9be7b08423b778ed7239791ce43371156d3",
+  "archive_corpus_sha256": "53de6a6cee2d77da54b2564e904b38ad08c64cecd5ea70fddb2b84d166e9a3bc",
+  "archive_evidence_rows": 251
+}

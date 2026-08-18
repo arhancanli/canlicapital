@@ -1,0 +1,5628 @@
+{
+  "generated_at": "2026-08-18T12:25:33.755947+00:00",
+  "go_live_date": "2026-08-07",
+  "rebaseline": {
+    "v1": {
+      "go_live": "2026-06-21",
+      "ended": "2026-06-29",
+      "result": "flat, $0 realized ($100k -> $100k); crypto carry held cash, equity/MF days-old at baseline",
+      "config": "market-neutral, net beta ~0, no strategic tilt"
+    },
+    "v2": {
+      "go_live": "2026-06-29",
+      "ended": "2026-08-07",
+      "config": "3-sleeve market-neutral core (AlphaForge + AlphaMax + AlphaTrend, equal quarters) + DISCLOSED +20% strategic net-long overlay (0.5 BTC + 0.5 SPY), held as a separate labelled line",
+      "result": "39 days. AlphaMax $1,000,000 -> $932,338 on its own account; AlphaTrend $100,000 -> $100,603. Both accounts still EXIST at the broker (PA397834GG9R, PA3IQC5B7BC2) and remain independently checkable; the full record is frozen read-only in artifacts/archive/."
+    },
+    "v3": {
+      "go_live": "2026-08-07",
+      "config": "every sleeve moved to its OWN fresh $1,000,000 Alpaca paper account (AlphaMax PA3ECIF9O942, AlphaTrend PA31FJRJQK69, AlphaLedger PA3DYIG9B4AL), so equal book weights are a real dollar allocation rather than a reporting convention",
+      "why": "the v2 seeds were mismatched ($932k / $100k), which made the published 40/40/20 weights describe a dollar split that was really ~9:1, and $100k is too small for a wide dollar-neutral book: whole-share truncation on shorts cost AlphaMax 8.79% of its short notional and pushed it +2.40% NET LONG. At $1M that is 0.37% and +0.10%."
+    },
+    "disclosure": "v1 (2026-06-21..06-29) ran flat at the $100k baseline and is SUPERSEDED, NOT deleted: it remains in the signed transparency chain (seq 0..4, Bitcoin-anchored). v2 (2026-06-29..08-07) ran 39 days and is likewise superseded, not deleted: its accounts are still open at the broker and its full record is frozen with a published manifest digest. v3 restarts the forward record on 2026-08-07 on equal $1M accounts. Each re-baseline RESETS the forward record rather than splicing it: v2's last mark and v3's first mark are NOT one day's return, and reporting them as such would have invented +7.26% for AlphaMax and +894% for AlphaTrend. We re-baseline in the open; we never silently rewrite 'live since'."
+  },
+  "algorithms": [
+    {
+      "key": "alphac",
+      "name": "ALPHAC",
+      "rank": 1,
+      "flagship": true,
+      "asset": "Cross-asset book (4 near-uncorrelated sleeves, measured pairwise +0.0274, + disclosed strategic long)",
+      "desc": "AlphaForge + AlphaMax + AlphaTrend + AlphaVintage combined at equal quarters \u2014 carry / equity momentum / managed-futures trend / PIT macro surprise. We used to call these 'near-uncorrelated' and call that decorrelation 'the edge'. Their average pairwise correlation is +0.0274 \u2014 POSITIVE. The diversification is real but smaller than we said. AlphaVintage joined 2026-08-10 and is the reason that number improved from +0.0723: it is the only sleeve reading a revision-aware macro release rather than price, funding or a balance sheet, and it earns its share by being uncorrelated, NOT by being better \u2014 its own net Sharpe is 0.34 and does not clear our 0.95 deflation gate either. AlphaTrend's re-derived DSR is 0.000, not the 0.83 we published: it is the WORST of them on the deflation measure, not the best. We keep it for measured drawdown reduction (removing it makes the book's max DD 22.7% worse: -3.68% -> -4.51% on the current four-sleeve book; we previously published 69% and that figure does not reproduce under any configuration we can find), not for a demonstrated edge. PLUS a DISCLOSED +10% strategic net-long overlay (0.5 BTC + 0.5 SPY) held as a SEPARATE labelled line \u2014 commoditized beta that adds bull-market participation but DILUTES risk-adjusted return and adds crash tail-risk; never blended into the neutral sleeves.",
+      "standalone_sharpe": null,
+      "sharpe_caveat": null,
+      "book_weight": null,
+      "live_kind": "Derived: equal quarters combination of the 4 live sleeves + the disclosed +10% beta overlay.",
+      "go_live": "2026-08-07",
+      "live_days": 11,
+      "research_curve": [
+        {
+          "date": "2023-07-07",
+          "equity": 100138.45
+        },
+        {
+          "date": "2023-07-12",
+          "equity": 100531.46
+        },
+        {
+          "date": "2023-07-17",
+          "equity": 100480.5
+        },
+        {
+          "date": "2023-07-22",
+          "equity": 100051.59
+        },
+        {
+          "date": "2023-07-27",
+          "equity": 99647.3
+        },
+        {
+          "date": "2023-08-01",
+          "equity": 99732.03
+        },
+        {
+          "date": "2023-08-06",
+          "equity": 99313.81
+        },
+        {
+          "date": "2023-08-11",
+          "equity": 98857.29
+        },
+        {
+          "date": "2023-08-16",
+          "equity": 99035.21
+        },
+        {
+          "date": "2023-08-21",
+          "equity": 98466.56
+        },
+        {
+          "date": "2023-08-26",
+          "equity": 99131.71
+        },
+        {
+          "date": "2023-08-31",
+          "equity": 99502.55
+        },
+        {
+          "date": "2023-09-05",
+          "equity": 99585.32
+        },
+        {
+          "date": "2023-09-10",
+          "equity": 99883.47
+        },
+        {
+          "date": "2023-09-15",
+          "equity": 100370.43
+        },
+        {
+          "date": "2023-09-20",
+          "equity": 100608.69
+        },
+        {
+          "date": "2023-09-25",
+          "equity": 100179.76
+        },
+        {
+          "date": "2023-09-30",
+          "equity": 99582.96
+        },
+        {
+          "date": "2023-10-05",
+          "equity": 100966.96
+        },
+        {
+          "date": "2023-10-10",
+          "equity": 101308.17
+        },
+        {
+          "date": "2023-10-15",
+          "equity": 101866.18
+        },
+        {
+          "date": "2023-10-20",
+          "equity": 101899.62
+        },
+        {
+          "date": "2023-10-25",
+          "equity": 101771.18
+        },
+        {
+          "date": "2023-10-30",
+          "equity": 101830.4
+        },
+        {
+          "date": "2023-11-04",
+          "equity": 102372.91
+        },
+        {
+          "date": "2023-11-09",
+          "equity": 102366.03
+        },
+        {
+          "date": "2023-11-14",
+          "equity": 103712.09
+        },
+        {
+          "date": "2023-11-19",
+          "equity": 103791.48
+        },
+        {
+          "date": "2023-11-24",
+          "equity": 103953.75
+        },
+        {
+          "date": "2023-11-29",
+          "equity": 103802.96
+        },
+        {
+          "date": "2023-12-04",
+          "equity": 104715.33
+        },
+        {
+          "date": "2023-12-09",
+          "equity": 104797.66
+        },
+        {
+          "date": "2023-12-14",
+          "equity": 105507.81
+        },
+        {
+          "date": "2023-12-19",
+          "equity": 105181.07
+        },
+        {
+          "date": "2023-12-24",
+          "equity": 104999.51
+        },
+        {
+          "date": "2023-12-29",
+          "equity": 104587.01
+        },
+        {
+          "date": "2024-01-03",
+          "equity": 104211.13
+        },
+        {
+          "date": "2024-01-08",
+          "equity": 104544.72
+        },
+        {
+          "date": "2024-01-13",
+          "equity": 104274.5
+        },
+        {
+          "date": "2024-01-18",
+          "equity": 104781.7
+        },
+        {
+          "date": "2024-01-23",
+          "equity": 104918.29
+        },
+        {
+          "date": "2024-01-28",
+          "equity": 105079.02
+        },
+        {
+          "date": "2024-02-02",
+          "equity": 105481.15
+        },
+        {
+          "date": "2024-02-07",
+          "equity": 106045.49
+        },
+        {
+          "date": "2024-02-12",
+          "equity": 106997.86
+        },
+        {
+          "date": "2024-02-17",
+          "equity": 107751.13
+        },
+        {
+          "date": "2024-02-22",
+          "equity": 106880.52
+        },
+        {
+          "date": "2024-02-27",
+          "equity": 108483.0
+        },
+        {
+          "date": "2024-03-03",
+          "equity": 109583.51
+        },
+        {
+          "date": "2024-03-08",
+          "equity": 110476.81
+        },
+        {
+          "date": "2024-03-13",
+          "equity": 111943.14
+        },
+        {
+          "date": "2024-03-18",
+          "equity": 111115.29
+        },
+        {
+          "date": "2024-03-23",
+          "equity": 111173.4
+        },
+        {
+          "date": "2024-03-28",
+          "equity": 111810.2
+        },
+        {
+          "date": "2024-04-02",
+          "equity": 111078.84
+        },
+        {
+          "date": "2024-04-07",
+          "equity": 111221.87
+        },
+        {
+          "date": "2024-04-12",
+          "equity": 112464.4
+        },
+        {
+          "date": "2024-04-17",
+          "equity": 111856.62
+        },
+        {
+          "date": "2024-04-22",
+          "equity": 111778.36
+        },
+        {
+          "date": "2024-04-27",
+          "equity": 111601.54
+        },
+        {
+          "date": "2024-05-02",
+          "equity": 110445.08
+        },
+        {
+          "date": "2024-05-07",
+          "equity": 110951.54
+        },
+        {
+          "date": "2024-05-12",
+          "equity": 110481.37
+        },
+        {
+          "date": "2024-05-17",
+          "equity": 110965.11
+        },
+        {
+          "date": "2024-05-22",
+          "equity": 111653.53
+        },
+        {
+          "date": "2024-05-27",
+          "equity": 111728.67
+        },
+        {
+          "date": "2024-06-01",
+          "equity": 111537.32
+        },
+        {
+          "date": "2024-06-06",
+          "equity": 112029.95
+        },
+        {
+          "date": "2024-06-11",
+          "equity": 111332.6
+        },
+        {
+          "date": "2024-06-16",
+          "equity": 111627.68
+        },
+        {
+          "date": "2024-06-21",
+          "equity": 111529.1
+        },
+        {
+          "date": "2024-06-26",
+          "equity": 110903.94
+        },
+        {
+          "date": "2024-07-01",
+          "equity": 112090.15
+        },
+        {
+          "date": "2024-07-06",
+          "equity": 111810.07
+        },
+        {
+          "date": "2024-07-11",
+          "equity": 113087.38
+        },
+        {
+          "date": "2024-07-16",
+          "equity": 114695.55
+        },
+        {
+          "date": "2024-07-21",
+          "equity": 113935.7
+        },
+        {
+          "date": "2024-07-26",
+          "equity": 114830.73
+        },
+        {
+          "date": "2024-07-31",
+          "equity": 114248.5
+        },
+        {
+          "date": "2024-08-05",
+          "equity": 111599.8
+        },
+        {
+          "date": "2024-08-10",
+          "equity": 111969.32
+        },
+        {
+          "date": "2024-08-15",
+          "equity": 111098.4
+        },
+        {
+          "date": "2024-08-20",
+          "equity": 111046.71
+        },
+        {
+          "date": "2024-08-25",
+          "equity": 111597.77
+        },
+        {
+          "date": "2024-08-30",
+          "equity": 111018.57
+        },
+        {
+          "date": "2024-09-04",
+          "equity": 110660.63
+        },
+        {
+          "date": "2024-09-09",
+          "equity": 110118.55
+        },
+        {
+          "date": "2024-09-14",
+          "equity": 111436.03
+        },
+        {
+          "date": "2024-09-19",
+          "equity": 112107.92
+        },
+        {
+          "date": "2024-09-24",
+          "equity": 113273.38
+        },
+        {
+          "date": "2024-09-29",
+          "equity": 113202.85
+        },
+        {
+          "date": "2024-10-04",
+          "equity": 113487.77
+        },
+        {
+          "date": "2024-10-09",
+          "equity": 113528.23
+        },
+        {
+          "date": "2024-10-14",
+          "equity": 114699.69
+        },
+        {
+          "date": "2024-10-19",
+          "equity": 114665.52
+        },
+        {
+          "date": "2024-10-24",
+          "equity": 114962.48
+        },
+        {
+          "date": "2024-10-29",
+          "equity": 114644.97
+        },
+        {
+          "date": "2024-11-03",
+          "equity": 113773.02
+        },
+        {
+          "date": "2024-11-08",
+          "equity": 115538.14
+        },
+        {
+          "date": "2024-11-13",
+          "equity": 116172.89
+        },
+        {
+          "date": "2024-11-18",
+          "equity": 116064.17
+        },
+        {
+          "date": "2024-11-23",
+          "equity": 117019.08
+        },
+        {
+          "date": "2024-11-28",
+          "equity": 116854.09
+        },
+        {
+          "date": "2024-12-03",
+          "equity": 118495.38
+        },
+        {
+          "date": "2024-12-08",
+          "equity": 118532.57
+        },
+        {
+          "date": "2024-12-13",
+          "equity": 118436.41
+        },
+        {
+          "date": "2024-12-18",
+          "equity": 118974.09
+        },
+        {
+          "date": "2024-12-23",
+          "equity": 119290.81
+        },
+        {
+          "date": "2024-12-28",
+          "equity": 119415.38
+        },
+        {
+          "date": "2025-01-02",
+          "equity": 118800.74
+        },
+        {
+          "date": "2025-01-07",
+          "equity": 119769.29
+        },
+        {
+          "date": "2025-01-12",
+          "equity": 119469.16
+        },
+        {
+          "date": "2025-01-17",
+          "equity": 120165.19
+        },
+        {
+          "date": "2025-01-22",
+          "equity": 120703.14
+        },
+        {
+          "date": "2025-01-27",
+          "equity": 120792.66
+        },
+        {
+          "date": "2025-02-01",
+          "equity": 120779.89
+        },
+        {
+          "date": "2025-02-06",
+          "equity": 121187.27
+        },
+        {
+          "date": "2025-02-11",
+          "equity": 120995.9
+        },
+        {
+          "date": "2025-02-16",
+          "equity": 120876.71
+        },
+        {
+          "date": "2025-02-21",
+          "equity": 120508.12
+        },
+        {
+          "date": "2025-02-26",
+          "equity": 118551.59
+        },
+        {
+          "date": "2025-03-03",
+          "equity": 119709.39
+        },
+        {
+          "date": "2025-03-08",
+          "equity": 119094.88
+        },
+        {
+          "date": "2025-03-13",
+          "equity": 118988.44
+        },
+        {
+          "date": "2025-03-18",
+          "equity": 118903.36
+        },
+        {
+          "date": "2025-03-23",
+          "equity": 119063.03
+        },
+        {
+          "date": "2025-03-28",
+          "equity": 119511.89
+        },
+        {
+          "date": "2025-04-02",
+          "equity": 119457.02
+        },
+        {
+          "date": "2025-04-07",
+          "equity": 118784.64
+        },
+        {
+          "date": "2025-04-12",
+          "equity": 119425.44
+        },
+        {
+          "date": "2025-04-17",
+          "equity": 119931.94
+        },
+        {
+          "date": "2025-04-22",
+          "equity": 120492.72
+        },
+        {
+          "date": "2025-04-27",
+          "equity": 119140.58
+        },
+        {
+          "date": "2025-05-02",
+          "equity": 119341.29
+        },
+        {
+          "date": "2025-05-07",
+          "equity": 119368.23
+        },
+        {
+          "date": "2025-05-12",
+          "equity": 120090.96
+        },
+        {
+          "date": "2025-05-17",
+          "equity": 119359.01
+        },
+        {
+          "date": "2025-05-22",
+          "equity": 120020.59
+        },
+        {
+          "date": "2025-05-27",
+          "equity": 120350.39
+        },
+        {
+          "date": "2025-06-01",
+          "equity": 120005.22
+        },
+        {
+          "date": "2025-06-06",
+          "equity": 119736.83
+        },
+        {
+          "date": "2025-06-11",
+          "equity": 119033.41
+        },
+        {
+          "date": "2025-06-16",
+          "equity": 119488.05
+        },
+        {
+          "date": "2025-06-21",
+          "equity": 119779.94
+        },
+        {
+          "date": "2025-06-26",
+          "equity": 120524.63
+        },
+        {
+          "date": "2025-07-01",
+          "equity": 120982.4
+        },
+        {
+          "date": "2025-07-06",
+          "equity": 120818.33
+        },
+        {
+          "date": "2025-07-11",
+          "equity": 120757.53
+        },
+        {
+          "date": "2025-07-16",
+          "equity": 120804.32
+        },
+        {
+          "date": "2025-07-21",
+          "equity": 121364.92
+        },
+        {
+          "date": "2025-07-26",
+          "equity": 122084.83
+        },
+        {
+          "date": "2025-07-31",
+          "equity": 121991.76
+        },
+        {
+          "date": "2025-08-05",
+          "equity": 122071.47
+        },
+        {
+          "date": "2025-08-10",
+          "equity": 123275.39
+        },
+        {
+          "date": "2025-08-15",
+          "equity": 123125.8
+        },
+        {
+          "date": "2025-08-20",
+          "equity": 122235.48
+        },
+        {
+          "date": "2025-08-25",
+          "equity": 122147.42
+        },
+        {
+          "date": "2025-08-30",
+          "equity": 121938.05
+        },
+        {
+          "date": "2025-09-04",
+          "equity": 121912.82
+        },
+        {
+          "date": "2025-09-09",
+          "equity": 120270.02
+        },
+        {
+          "date": "2025-09-14",
+          "equity": 120881.1
+        },
+        {
+          "date": "2025-09-19",
+          "equity": 121109.17
+        },
+        {
+          "date": "2025-09-24",
+          "equity": 121625.36
+        },
+        {
+          "date": "2025-09-29",
+          "equity": 121559.41
+        },
+        {
+          "date": "2025-10-04",
+          "equity": 122203.4
+        },
+        {
+          "date": "2025-10-09",
+          "equity": 122505.42
+        },
+        {
+          "date": "2025-10-14",
+          "equity": 122721.57
+        },
+        {
+          "date": "2025-10-19",
+          "equity": 121956.69
+        },
+        {
+          "date": "2025-10-24",
+          "equity": 121652.25
+        },
+        {
+          "date": "2025-10-29",
+          "equity": 122201.35
+        },
+        {
+          "date": "2025-11-03",
+          "equity": 122622.48
+        },
+        {
+          "date": "2025-11-08",
+          "equity": 122034.05
+        },
+        {
+          "date": "2025-11-13",
+          "equity": 121848.16
+        },
+        {
+          "date": "2025-11-18",
+          "equity": 120863.55
+        },
+        {
+          "date": "2025-11-23",
+          "equity": 120773.85
+        },
+        {
+          "date": "2025-11-28",
+          "equity": 122224.97
+        },
+        {
+          "date": "2025-12-03",
+          "equity": 122977.52
+        },
+        {
+          "date": "2025-12-08",
+          "equity": 122932.27
+        },
+        {
+          "date": "2025-12-13",
+          "equity": 123218.16
+        },
+        {
+          "date": "2025-12-18",
+          "equity": 121565.75
+        },
+        {
+          "date": "2025-12-23",
+          "equity": 122104.0
+        },
+        {
+          "date": "2025-12-28",
+          "equity": 122159.61
+        },
+        {
+          "date": "2026-01-02",
+          "equity": 122395.65
+        },
+        {
+          "date": "2026-01-07",
+          "equity": 123173.86
+        },
+        {
+          "date": "2026-01-12",
+          "equity": 123426.21
+        },
+        {
+          "date": "2026-01-17",
+          "equity": 124068.96
+        },
+        {
+          "date": "2026-01-22",
+          "equity": 124509.95
+        },
+        {
+          "date": "2026-01-27",
+          "equity": 124333.67
+        },
+        {
+          "date": "2026-02-01",
+          "equity": 124623.15
+        },
+        {
+          "date": "2026-02-06",
+          "equity": 123245.69
+        },
+        {
+          "date": "2026-02-11",
+          "equity": 123767.09
+        },
+        {
+          "date": "2026-02-16",
+          "equity": 123705.12
+        },
+        {
+          "date": "2026-02-21",
+          "equity": 124340.21
+        },
+        {
+          "date": "2026-02-26",
+          "equity": 125168.3
+        },
+        {
+          "date": "2026-03-03",
+          "equity": 124293.83
+        },
+        {
+          "date": "2026-03-08",
+          "equity": 123483.43
+        },
+        {
+          "date": "2026-03-13",
+          "equity": 124072.4
+        },
+        {
+          "date": "2026-03-18",
+          "equity": 125100.39
+        },
+        {
+          "date": "2026-03-23",
+          "equity": 124690.0
+        },
+        {
+          "date": "2026-03-28",
+          "equity": 123893.2
+        },
+        {
+          "date": "2026-04-02",
+          "equity": 124652.72
+        },
+        {
+          "date": "2026-04-07",
+          "equity": 125344.68
+        },
+        {
+          "date": "2026-04-12",
+          "equity": 125807.17
+        },
+        {
+          "date": "2026-04-17",
+          "equity": 126751.22
+        },
+        {
+          "date": "2026-04-22",
+          "equity": 126745.96
+        },
+        {
+          "date": "2026-04-27",
+          "equity": 127578.74
+        },
+        {
+          "date": "2026-05-02",
+          "equity": 127414.01
+        },
+        {
+          "date": "2026-05-07",
+          "equity": 128744.05
+        },
+        {
+          "date": "2026-05-12",
+          "equity": 129950.17
+        },
+        {
+          "date": "2026-05-17",
+          "equity": 130411.54
+        },
+        {
+          "date": "2026-05-22",
+          "equity": 129441.37
+        },
+        {
+          "date": "2026-05-27",
+          "equity": 130280.22
+        },
+        {
+          "date": "2026-06-01",
+          "equity": 130536.33
+        }
+      ],
+      "live_curve": [
+        {
+          "date": "2026-08-07",
+          "equity": 100000.0
+        },
+        {
+          "date": "2026-08-08",
+          "equity": 100000.0
+        },
+        {
+          "date": "2026-08-11",
+          "equity": 100021.62
+        },
+        {
+          "date": "2026-08-12",
+          "equity": 99918.75
+        },
+        {
+          "date": "2026-08-13",
+          "equity": 100103.25
+        },
+        {
+          "date": "2026-08-14",
+          "equity": 99931.91
+        },
+        {
+          "date": "2026-08-15",
+          "equity": 99964.85
+        },
+        {
+          "date": "2026-08-16",
+          "equity": 99976.53
+        },
+        {
+          "date": "2026-08-17",
+          "equity": 99948.49
+        },
+        {
+          "date": "2026-08-18",
+          "equity": 100044.8
+        }
+      ],
+      "holdings": {
+        "as_of": "2026-08-17",
+        "long_count": 84,
+        "short_count": 97,
+        "gross_pct": 31.0,
+        "net_pct": 2.2,
+        "long": [
+          {
+            "ticker": "STX",
+            "weight_pct": 0.95
+          },
+          {
+            "ticker": "MU",
+            "weight_pct": 0.95
+          },
+          {
+            "ticker": "WDC",
+            "weight_pct": 0.5
+          },
+          {
+            "ticker": "CIEN",
+            "weight_pct": 0.42
+          },
+          {
+            "ticker": "TER",
+            "weight_pct": 0.41
+          },
+          {
+            "ticker": "REPL",
+            "weight_pct": 0.37
+          },
+          {
+            "ticker": "LRCX",
+            "weight_pct": 0.33
+          },
+          {
+            "ticker": "GLW",
+            "weight_pct": 0.32
+          },
+          {
+            "ticker": "ONTO",
+            "weight_pct": 0.32
+          },
+          {
+            "ticker": "COHR",
+            "weight_pct": 0.32
+          },
+          {
+            "ticker": "MKSI",
+            "weight_pct": 0.3
+          },
+          {
+            "ticker": "TTMI",
+            "weight_pct": 0.27
+          },
+          {
+            "ticker": "NBIS",
+            "weight_pct": 0.27
+          },
+          {
+            "ticker": "APGE",
+            "weight_pct": 0.26
+          },
+          {
+            "ticker": "SIMO",
+            "weight_pct": 0.26
+          }
+        ],
+        "short": [
+          {
+            "ticker": "BYND",
+            "weight_pct": 1.07
+          },
+          {
+            "ticker": "IT",
+            "weight_pct": 0.35
+          },
+          {
+            "ticker": "INTU",
+            "weight_pct": 0.34
+          },
+          {
+            "ticker": "CHTR",
+            "weight_pct": 0.3
+          },
+          {
+            "ticker": "DUOL",
+            "weight_pct": 0.26
+          },
+          {
+            "ticker": "CSGP",
+            "weight_pct": 0.25
+          },
+          {
+            "ticker": "SMPL",
+            "weight_pct": 0.23
+          },
+          {
+            "ticker": "SHAK",
+            "weight_pct": 0.22
+          },
+          {
+            "ticker": "HUBS",
+            "weight_pct": 0.22
+          },
+          {
+            "ticker": "CBZ",
+            "weight_pct": 0.21
+          },
+          {
+            "ticker": "FISV",
+            "weight_pct": 0.21
+          },
+          {
+            "ticker": "POWL",
+            "weight_pct": 0.21
+          },
+          {
+            "ticker": "BKNG",
+            "weight_pct": 0.21
+          },
+          {
+            "ticker": "HDB",
+            "weight_pct": 0.21
+          },
+          {
+            "ticker": "PRGO",
+            "weight_pct": 0.2
+          }
+        ]
+      }
+    },
+    {
+      "key": "alphamax",
+      "name": "AlphaMax",
+      "rank": 2,
+      "flagship": false,
+      "asset": "US-equity 12-1 momentum",
+      "desc": "12-1 cross-sectional momentum, dollar-neutral long/short, split-adjusted, survivorship-free.",
+      "standalone_sharpe": 0.91,
+      "sharpe_caveat": "Genuinely broker-executed as of 2026-08-07 on its own Alpaca account, but the live record is only days old. 0.91 is the TOP of a 0.07-1.17 construction band; the deep-history forward is ~0.08 with DSR 0.34 (does NOT clear the deflation gate). The honest central estimate is ~0.5-0.6, not 0.91 \u2014 the live book will settle it. A few unshortable / non-fractionable small-caps are skipped, so the live book is a close tradable proxy of the research strategy, not an exact replica.",
+      "book_weight": 0.25,
+      "live_kind": "LIVE broker-executed \u2014 its long/short book (the ~170 of 176 Alpaca-tradable names) is submitted to a dedicated Alpaca paper account daily, fills at the US open.",
+      "go_live": "2026-08-07",
+      "live_days": 11,
+      "research_curve": [
+        {
+          "date": "2023-07-06",
+          "equity": 100000.0
+        },
+        {
+          "date": "2023-07-12",
+          "equity": 99928.76
+        },
+        {
+          "date": "2023-07-18",
+          "equity": 101551.33
+        },
+        {
+          "date": "2023-07-24",
+          "equity": 99899.72
+        },
+        {
+          "date": "2023-07-28",
+          "equity": 100199.17
+        },
+        {
+          "date": "2023-08-03",
+          "equity": 100121.66
+        },
+        {
+          "date": "2023-08-09",
+          "equity": 100612.34
+        },
+        {
+          "date": "2023-08-15",
+          "equity": 100077.9
+        },
+        {
+          "date": "2023-08-21",
+          "equity": 99962.32
+        },
+        {
+          "date": "2023-08-25",
+          "equity": 100209.8
+        },
+        {
+          "date": "2023-08-31",
+          "equity": 100422.78
+        },
+        {
+          "date": "2023-09-07",
+          "equity": 100972.52
+        },
+        {
+          "date": "2023-09-13",
+          "equity": 100016.71
+        },
+        {
+          "date": "2023-09-19",
+          "equity": 99634.94
+        },
+        {
+          "date": "2023-09-25",
+          "equity": 99540.98
+        },
+        {
+          "date": "2023-09-29",
+          "equity": 100528.46
+        },
+        {
+          "date": "2023-10-05",
+          "equity": 101079.53
+        },
+        {
+          "date": "2023-10-11",
+          "equity": 101143.74
+        },
+        {
+          "date": "2023-10-17",
+          "equity": 100565.62
+        },
+        {
+          "date": "2023-10-23",
+          "equity": 100878.12
+        },
+        {
+          "date": "2023-10-27",
+          "equity": 99673.2
+        },
+        {
+          "date": "2023-11-02",
+          "equity": 101603.03
+        },
+        {
+          "date": "2023-11-08",
+          "equity": 102467.42
+        },
+        {
+          "date": "2023-11-14",
+          "equity": 104246.95
+        },
+        {
+          "date": "2023-11-20",
+          "equity": 103377.41
+        },
+        {
+          "date": "2023-11-27",
+          "equity": 103184.13
+        },
+        {
+          "date": "2023-12-01",
+          "equity": 102120.86
+        },
+        {
+          "date": "2023-12-07",
+          "equity": 100663.06
+        },
+        {
+          "date": "2023-12-13",
+          "equity": 102486.95
+        },
+        {
+          "date": "2023-12-19",
+          "equity": 102010.77
+        },
+        {
+          "date": "2023-12-26",
+          "equity": 101111.26
+        },
+        {
+          "date": "2024-01-02",
+          "equity": 101149.43
+        },
+        {
+          "date": "2024-01-08",
+          "equity": 100069.25
+        },
+        {
+          "date": "2024-01-12",
+          "equity": 102280.74
+        },
+        {
+          "date": "2024-01-19",
+          "equity": 103098.82
+        },
+        {
+          "date": "2024-01-25",
+          "equity": 104288.67
+        },
+        {
+          "date": "2024-01-31",
+          "equity": 104763.56
+        },
+        {
+          "date": "2024-02-06",
+          "equity": 105972.85
+        },
+        {
+          "date": "2024-02-12",
+          "equity": 108594.05
+        },
+        {
+          "date": "2024-02-16",
+          "equity": 110073.78
+        },
+        {
+          "date": "2024-02-23",
+          "equity": 108558.31
+        },
+        {
+          "date": "2024-02-29",
+          "equity": 109343.08
+        },
+        {
+          "date": "2024-03-06",
+          "equity": 109733.31
+        },
+        {
+          "date": "2024-03-12",
+          "equity": 108907.6
+        },
+        {
+          "date": "2024-03-18",
+          "equity": 108965.11
+        },
+        {
+          "date": "2024-03-22",
+          "equity": 109738.81
+        },
+        {
+          "date": "2024-03-28",
+          "equity": 109644.6
+        },
+        {
+          "date": "2024-04-04",
+          "equity": 108790.96
+        },
+        {
+          "date": "2024-04-10",
+          "equity": 107999.33
+        },
+        {
+          "date": "2024-04-16",
+          "equity": 108502.14
+        },
+        {
+          "date": "2024-04-22",
+          "equity": 107064.49
+        },
+        {
+          "date": "2024-04-26",
+          "equity": 108348.09
+        },
+        {
+          "date": "2024-05-02",
+          "equity": 107229.77
+        },
+        {
+          "date": "2024-05-08",
+          "equity": 107357.26
+        },
+        {
+          "date": "2024-05-14",
+          "equity": 106275.42
+        },
+        {
+          "date": "2024-05-20",
+          "equity": 106498.7
+        },
+        {
+          "date": "2024-05-24",
+          "equity": 107966.84
+        },
+        {
+          "date": "2024-05-31",
+          "equity": 108094.42
+        },
+        {
+          "date": "2024-06-06",
+          "equity": 107345.83
+        },
+        {
+          "date": "2024-06-12",
+          "equity": 106920.38
+        },
+        {
+          "date": "2024-06-18",
+          "equity": 108766.43
+        },
+        {
+          "date": "2024-06-25",
+          "equity": 107571.4
+        },
+        {
+          "date": "2024-07-01",
+          "equity": 108734.58
+        },
+        {
+          "date": "2024-07-08",
+          "equity": 108965.82
+        },
+        {
+          "date": "2024-07-12",
+          "equity": 108318.27
+        },
+        {
+          "date": "2024-07-18",
+          "equity": 104161.59
+        },
+        {
+          "date": "2024-07-24",
+          "equity": 105376.24
+        },
+        {
+          "date": "2024-07-30",
+          "equity": 103481.43
+        },
+        {
+          "date": "2024-08-05",
+          "equity": 102971.58
+        },
+        {
+          "date": "2024-08-09",
+          "equity": 104128.93
+        },
+        {
+          "date": "2024-08-15",
+          "equity": 104734.63
+        },
+        {
+          "date": "2024-08-21",
+          "equity": 104220.43
+        },
+        {
+          "date": "2024-08-27",
+          "equity": 103672.23
+        },
+        {
+          "date": "2024-09-03",
+          "equity": 103860.26
+        },
+        {
+          "date": "2024-09-09",
+          "equity": 102118.15
+        },
+        {
+          "date": "2024-09-13",
+          "equity": 103866.91
+        },
+        {
+          "date": "2024-09-19",
+          "equity": 103862.76
+        },
+        {
+          "date": "2024-09-25",
+          "equity": 105630.24
+        },
+        {
+          "date": "2024-10-01",
+          "equity": 105456.48
+        },
+        {
+          "date": "2024-10-07",
+          "equity": 106237.09
+        },
+        {
+          "date": "2024-10-11",
+          "equity": 106489.43
+        },
+        {
+          "date": "2024-10-17",
+          "equity": 107233.44
+        },
+        {
+          "date": "2024-10-23",
+          "equity": 107619.93
+        },
+        {
+          "date": "2024-10-29",
+          "equity": 107043.93
+        },
+        {
+          "date": "2024-11-04",
+          "equity": 106366.62
+        },
+        {
+          "date": "2024-11-08",
+          "equity": 107779.45
+        },
+        {
+          "date": "2024-11-14",
+          "equity": 108898.38
+        },
+        {
+          "date": "2024-11-20",
+          "equity": 109633.98
+        },
+        {
+          "date": "2024-11-26",
+          "equity": 108958.11
+        },
+        {
+          "date": "2024-12-03",
+          "equity": 108949.32
+        },
+        {
+          "date": "2024-12-09",
+          "equity": 108931.48
+        },
+        {
+          "date": "2024-12-13",
+          "equity": 107076.44
+        },
+        {
+          "date": "2024-12-19",
+          "equity": 106940.39
+        },
+        {
+          "date": "2024-12-26",
+          "equity": 107294.67
+        },
+        {
+          "date": "2025-01-02",
+          "equity": 106593.33
+        },
+        {
+          "date": "2025-01-08",
+          "equity": 106899.17
+        },
+        {
+          "date": "2025-01-15",
+          "equity": 106222.29
+        },
+        {
+          "date": "2025-01-22",
+          "equity": 108352.51
+        },
+        {
+          "date": "2025-01-28",
+          "equity": 105992.07
+        },
+        {
+          "date": "2025-02-03",
+          "equity": 109125.96
+        },
+        {
+          "date": "2025-02-07",
+          "equity": 110679.32
+        },
+        {
+          "date": "2025-02-13",
+          "equity": 109973.29
+        },
+        {
+          "date": "2025-02-20",
+          "equity": 109919.31
+        },
+        {
+          "date": "2025-02-26",
+          "equity": 105203.46
+        },
+        {
+          "date": "2025-03-04",
+          "equity": 105115.12
+        },
+        {
+          "date": "2025-03-10",
+          "equity": 102834.2
+        },
+        {
+          "date": "2025-03-14",
+          "equity": 102749.87
+        },
+        {
+          "date": "2025-03-20",
+          "equity": 103624.39
+        },
+        {
+          "date": "2025-03-26",
+          "equity": 105541.7
+        },
+        {
+          "date": "2025-04-01",
+          "equity": 103259.68
+        },
+        {
+          "date": "2025-04-07",
+          "equity": 102411.81
+        },
+        {
+          "date": "2025-04-11",
+          "equity": 103175.03
+        },
+        {
+          "date": "2025-04-17",
+          "equity": 103569.83
+        },
+        {
+          "date": "2025-04-24",
+          "equity": 103871.1
+        },
+        {
+          "date": "2025-04-30",
+          "equity": 103889.29
+        },
+        {
+          "date": "2025-05-06",
+          "equity": 105170.12
+        },
+        {
+          "date": "2025-05-12",
+          "equity": 103608.53
+        },
+        {
+          "date": "2025-05-16",
+          "equity": 103295.07
+        },
+        {
+          "date": "2025-05-22",
+          "equity": 104460.62
+        },
+        {
+          "date": "2025-05-29",
+          "equity": 106239.54
+        },
+        {
+          "date": "2025-06-04",
+          "equity": 106067.57
+        },
+        {
+          "date": "2025-06-10",
+          "equity": 104927.91
+        },
+        {
+          "date": "2025-06-16",
+          "equity": 104069.28
+        },
+        {
+          "date": "2025-06-23",
+          "equity": 104738.95
+        },
+        {
+          "date": "2025-06-27",
+          "equity": 104727.96
+        },
+        {
+          "date": "2025-07-03",
+          "equity": 104438.95
+        },
+        {
+          "date": "2025-07-10",
+          "equity": 104204.1
+        },
+        {
+          "date": "2025-07-16",
+          "equity": 105074.79
+        },
+        {
+          "date": "2025-07-22",
+          "equity": 106296.86
+        },
+        {
+          "date": "2025-07-28",
+          "equity": 106228.67
+        },
+        {
+          "date": "2025-08-01",
+          "equity": 108102.73
+        },
+        {
+          "date": "2025-08-07",
+          "equity": 108848.07
+        },
+        {
+          "date": "2025-08-13",
+          "equity": 109137.08
+        },
+        {
+          "date": "2025-08-19",
+          "equity": 107931.69
+        },
+        {
+          "date": "2025-08-25",
+          "equity": 107240.46
+        },
+        {
+          "date": "2025-08-29",
+          "equity": 107721.63
+        },
+        {
+          "date": "2025-09-05",
+          "equity": 108160.48
+        },
+        {
+          "date": "2025-09-11",
+          "equity": 109096.11
+        },
+        {
+          "date": "2025-09-17",
+          "equity": 110254.83
+        },
+        {
+          "date": "2025-09-23",
+          "equity": 112128.04
+        },
+        {
+          "date": "2025-09-29",
+          "equity": 110863.23
+        },
+        {
+          "date": "2025-10-03",
+          "equity": 110510.15
+        },
+        {
+          "date": "2025-10-09",
+          "equity": 110397.15
+        },
+        {
+          "date": "2025-10-15",
+          "equity": 112289.03
+        },
+        {
+          "date": "2025-10-21",
+          "equity": 110228.14
+        },
+        {
+          "date": "2025-10-27",
+          "equity": 109640.04
+        },
+        {
+          "date": "2025-10-31",
+          "equity": 110725.96
+        },
+        {
+          "date": "2025-11-06",
+          "equity": 110220.31
+        },
+        {
+          "date": "2025-11-12",
+          "equity": 109120.47
+        },
+        {
+          "date": "2025-11-18",
+          "equity": 105921.44
+        },
+        {
+          "date": "2025-11-24",
+          "equity": 103900.3
+        },
+        {
+          "date": "2025-12-01",
+          "equity": 106871.01
+        },
+        {
+          "date": "2025-12-05",
+          "equity": 107944.48
+        },
+        {
+          "date": "2025-12-11",
+          "equity": 107652.07
+        },
+        {
+          "date": "2025-12-17",
+          "equity": 104812.11
+        },
+        {
+          "date": "2025-12-23",
+          "equity": 105939.71
+        },
+        {
+          "date": "2025-12-30",
+          "equity": 104389.41
+        },
+        {
+          "date": "2026-01-06",
+          "equity": 105063.12
+        },
+        {
+          "date": "2026-01-12",
+          "equity": 104958.37
+        },
+        {
+          "date": "2026-01-16",
+          "equity": 105916.41
+        },
+        {
+          "date": "2026-01-23",
+          "equity": 106749.81
+        },
+        {
+          "date": "2026-01-29",
+          "equity": 109938.46
+        },
+        {
+          "date": "2026-02-04",
+          "equity": 109525.05
+        },
+        {
+          "date": "2026-02-10",
+          "equity": 108835.35
+        },
+        {
+          "date": "2026-02-17",
+          "equity": 107564.11
+        },
+        {
+          "date": "2026-02-23",
+          "equity": 108068.58
+        },
+        {
+          "date": "2026-02-27",
+          "equity": 108959.17
+        },
+        {
+          "date": "2026-03-05",
+          "equity": 108228.08
+        },
+        {
+          "date": "2026-03-11",
+          "equity": 108366.32
+        },
+        {
+          "date": "2026-03-17",
+          "equity": 109339.32
+        },
+        {
+          "date": "2026-03-23",
+          "equity": 109267.71
+        },
+        {
+          "date": "2026-03-27",
+          "equity": 107872.94
+        },
+        {
+          "date": "2026-04-02",
+          "equity": 108993.0
+        },
+        {
+          "date": "2026-04-09",
+          "equity": 112365.65
+        },
+        {
+          "date": "2026-04-15",
+          "equity": 113741.13
+        },
+        {
+          "date": "2026-04-21",
+          "equity": 113168.59
+        },
+        {
+          "date": "2026-04-27",
+          "equity": 116024.4
+        },
+        {
+          "date": "2026-05-01",
+          "equity": 115487.98
+        },
+        {
+          "date": "2026-05-07",
+          "equity": 119800.37
+        },
+        {
+          "date": "2026-05-13",
+          "equity": 121822.45
+        },
+        {
+          "date": "2026-05-19",
+          "equity": 118983.64
+        },
+        {
+          "date": "2026-05-26",
+          "equity": 122323.93
+        },
+        {
+          "date": "2026-06-01",
+          "equity": 124536.21
+        }
+      ],
+      "live_curve": [
+        {
+          "date": "2026-08-07",
+          "equity": 100000.0
+        },
+        {
+          "date": "2026-08-08",
+          "equity": 100000.0
+        },
+        {
+          "date": "2026-08-11",
+          "equity": 99441.99
+        },
+        {
+          "date": "2026-08-12",
+          "equity": 99423.02
+        },
+        {
+          "date": "2026-08-13",
+          "equity": 100275.2
+        },
+        {
+          "date": "2026-08-14",
+          "equity": 99678.16
+        },
+        {
+          "date": "2026-08-15",
+          "equity": 100237.9
+        },
+        {
+          "date": "2026-08-18",
+          "equity": 100425.9
+        }
+      ],
+      "holdings": {
+        "as_of": "2026-08-17",
+        "long_count": 84,
+        "short_count": 97,
+        "gross_pct": 31.0,
+        "net_pct": 2.2,
+        "long": [
+          {
+            "ticker": "STX",
+            "weight_pct": 0.95
+          },
+          {
+            "ticker": "MU",
+            "weight_pct": 0.95
+          },
+          {
+            "ticker": "WDC",
+            "weight_pct": 0.5
+          },
+          {
+            "ticker": "CIEN",
+            "weight_pct": 0.42
+          },
+          {
+            "ticker": "TER",
+            "weight_pct": 0.41
+          },
+          {
+            "ticker": "REPL",
+            "weight_pct": 0.37
+          },
+          {
+            "ticker": "LRCX",
+            "weight_pct": 0.33
+          },
+          {
+            "ticker": "GLW",
+            "weight_pct": 0.32
+          },
+          {
+            "ticker": "ONTO",
+            "weight_pct": 0.32
+          },
+          {
+            "ticker": "COHR",
+            "weight_pct": 0.32
+          },
+          {
+            "ticker": "MKSI",
+            "weight_pct": 0.3
+          },
+          {
+            "ticker": "TTMI",
+            "weight_pct": 0.27
+          },
+          {
+            "ticker": "NBIS",
+            "weight_pct": 0.27
+          },
+          {
+            "ticker": "APGE",
+            "weight_pct": 0.26
+          },
+          {
+            "ticker": "SIMO",
+            "weight_pct": 0.26
+          }
+        ],
+        "short": [
+          {
+            "ticker": "BYND",
+            "weight_pct": 1.07
+          },
+          {
+            "ticker": "IT",
+            "weight_pct": 0.35
+          },
+          {
+            "ticker": "INTU",
+            "weight_pct": 0.34
+          },
+          {
+            "ticker": "CHTR",
+            "weight_pct": 0.3
+          },
+          {
+            "ticker": "DUOL",
+            "weight_pct": 0.26
+          },
+          {
+            "ticker": "CSGP",
+            "weight_pct": 0.25
+          },
+          {
+            "ticker": "SMPL",
+            "weight_pct": 0.23
+          },
+          {
+            "ticker": "SHAK",
+            "weight_pct": 0.22
+          },
+          {
+            "ticker": "HUBS",
+            "weight_pct": 0.22
+          },
+          {
+            "ticker": "CBZ",
+            "weight_pct": 0.21
+          },
+          {
+            "ticker": "FISV",
+            "weight_pct": 0.21
+          },
+          {
+            "ticker": "POWL",
+            "weight_pct": 0.21
+          },
+          {
+            "ticker": "BKNG",
+            "weight_pct": 0.21
+          },
+          {
+            "ticker": "HDB",
+            "weight_pct": 0.21
+          },
+          {
+            "ticker": "PRGO",
+            "weight_pct": 0.2
+          }
+        ]
+      }
+    },
+    {
+      "key": "managed_futures",
+      "name": "AlphaTrend",
+      "rank": 3,
+      "flagship": false,
+      "asset": "Managed-futures trend",
+      "desc": "Time-series momentum across a 17-market basket (equity-index, rates, commodities, FX via liquid ETFs), long/short on each market's own trend, inverse-vol weighted. THE RE-DERIVATION IS DONE (2026-08-07) AND IT WENT AGAINST US: at the honest trial count (N=133) and the pooled trial variance, its DSR is 0.000 \u2014 not the 0.83 we published, and the WORST of the 4 sleeves rather than the best. The old 0.83 rested on a V[SR] input ~80x too small and n_trials=5 while AlphaMax was graded at N=101; it was marked on an easier exam and then called the soundest. Net Sharpe 0.25 over its full 5,179-day history. Positive skew, two-decade stable, near-uncorrelated to equities. We keep it because removing it measurably worsens book drawdown, not because its edge is established.",
+      "standalone_sharpe": 0.33,
+      "sharpe_caveat": "We called this 'the soundest sleeve'. On the re-derived numbers that was wrong: its DSR is 0.000 at honest N=133, the lowest of the three. It IS genuinely broker-executed on Alpaca paper and it does survive 2008/2020/2022 with ~0 equity correlation. As of the v2 restart (2026-08-07) it is FOLDED INTO the flagship ALPHAC book at a 20% weight. The case for keeping it is measured drawdown reduction, plus the fact that its recent 3 years (-0.23) are a small and unrepresentative slice of a 20.6-year record (+0.25 full, +0.28 over 15y) \u2014 judging a trend sleeve on its worst window is the most documented allocator error there is. The case against it is that 0.000 is 0.000. Both are stated because both are true.",
+      "book_weight": 0.25,
+      "live_kind": "LIVE broker-executed \u2014 its 17-ETF book is submitted to Alpaca paper daily (fills at the US open). Genuine fills, not a simulation.",
+      "go_live": "2026-08-07",
+      "live_days": 11,
+      "research_curve": [
+        {
+          "date": "2006-01-04",
+          "equity": 100000.0
+        },
+        {
+          "date": "2006-02-14",
+          "equity": 100035.57
+        },
+        {
+          "date": "2006-03-27",
+          "equity": 100811.49
+        },
+        {
+          "date": "2006-05-05",
+          "equity": 103842.31
+        },
+        {
+          "date": "2006-06-15",
+          "equity": 100050.41
+        },
+        {
+          "date": "2006-07-26",
+          "equity": 100924.2
+        },
+        {
+          "date": "2006-09-05",
+          "equity": 100012.26
+        },
+        {
+          "date": "2006-10-13",
+          "equity": 99152.35
+        },
+        {
+          "date": "2006-11-22",
+          "equity": 98152.82
+        },
+        {
+          "date": "2007-01-05",
+          "equity": 98432.87
+        },
+        {
+          "date": "2007-02-15",
+          "equity": 98148.35
+        },
+        {
+          "date": "2007-03-28",
+          "equity": 97221.87
+        },
+        {
+          "date": "2007-05-08",
+          "equity": 96284.47
+        },
+        {
+          "date": "2007-06-18",
+          "equity": 96853.7
+        },
+        {
+          "date": "2007-07-27",
+          "equity": 96526.73
+        },
+        {
+          "date": "2007-09-06",
+          "equity": 96521.86
+        },
+        {
+          "date": "2007-10-16",
+          "equity": 94990.83
+        },
+        {
+          "date": "2007-11-26",
+          "equity": 97684.34
+        },
+        {
+          "date": "2008-01-07",
+          "equity": 97888.24
+        },
+        {
+          "date": "2008-02-15",
+          "equity": 101037.26
+        },
+        {
+          "date": "2008-03-28",
+          "equity": 103286.84
+        },
+        {
+          "date": "2008-05-07",
+          "equity": 100564.72
+        },
+        {
+          "date": "2008-06-17",
+          "equity": 100838.0
+        },
+        {
+          "date": "2008-07-28",
+          "equity": 101348.02
+        },
+        {
+          "date": "2008-09-05",
+          "equity": 100049.4
+        },
+        {
+          "date": "2008-10-15",
+          "equity": 101940.28
+        },
+        {
+          "date": "2008-11-24",
+          "equity": 110508.13
+        },
+        {
+          "date": "2009-01-06",
+          "equity": 107658.43
+        },
+        {
+          "date": "2009-02-17",
+          "equity": 110511.16
+        },
+        {
+          "date": "2009-03-27",
+          "equity": 108034.86
+        },
+        {
+          "date": "2009-05-07",
+          "equity": 106524.84
+        },
+        {
+          "date": "2009-06-17",
+          "equity": 105325.88
+        },
+        {
+          "date": "2009-07-28",
+          "equity": 106205.0
+        },
+        {
+          "date": "2009-09-04",
+          "equity": 106327.51
+        },
+        {
+          "date": "2009-10-15",
+          "equity": 107512.95
+        },
+        {
+          "date": "2009-11-24",
+          "equity": 108135.07
+        },
+        {
+          "date": "2010-01-06",
+          "equity": 108334.21
+        },
+        {
+          "date": "2010-02-17",
+          "equity": 106903.54
+        },
+        {
+          "date": "2010-03-29",
+          "equity": 108625.09
+        },
+        {
+          "date": "2010-05-07",
+          "equity": 106932.31
+        },
+        {
+          "date": "2010-06-17",
+          "equity": 106607.98
+        },
+        {
+          "date": "2010-07-28",
+          "equity": 106613.62
+        },
+        {
+          "date": "2010-09-07",
+          "equity": 107917.11
+        },
+        {
+          "date": "2010-10-15",
+          "equity": 109040.03
+        },
+        {
+          "date": "2010-11-24",
+          "equity": 108747.7
+        },
+        {
+          "date": "2011-01-05",
+          "equity": 109293.17
+        },
+        {
+          "date": "2011-02-15",
+          "equity": 111157.74
+        },
+        {
+          "date": "2011-03-28",
+          "equity": 109763.27
+        },
+        {
+          "date": "2011-05-06",
+          "equity": 107958.29
+        },
+        {
+          "date": "2011-06-16",
+          "equity": 107019.0
+        },
+        {
+          "date": "2011-07-27",
+          "equity": 106299.25
+        },
+        {
+          "date": "2011-09-06",
+          "equity": 108705.19
+        },
+        {
+          "date": "2011-10-14",
+          "equity": 107307.68
+        },
+        {
+          "date": "2011-11-23",
+          "equity": 106701.02
+        },
+        {
+          "date": "2012-01-05",
+          "equity": 108154.92
+        },
+        {
+          "date": "2012-02-15",
+          "equity": 108560.87
+        },
+        {
+          "date": "2012-03-27",
+          "equity": 109401.22
+        },
+        {
+          "date": "2012-05-07",
+          "equity": 108410.99
+        },
+        {
+          "date": "2012-06-15",
+          "equity": 109002.5
+        },
+        {
+          "date": "2012-07-26",
+          "equity": 107576.41
+        },
+        {
+          "date": "2012-09-05",
+          "equity": 105361.01
+        },
+        {
+          "date": "2012-10-15",
+          "equity": 104484.42
+        },
+        {
+          "date": "2012-11-27",
+          "equity": 104090.93
+        },
+        {
+          "date": "2013-01-08",
+          "equity": 104642.36
+        },
+        {
+          "date": "2013-02-19",
+          "equity": 105694.62
+        },
+        {
+          "date": "2013-04-01",
+          "equity": 105035.67
+        },
+        {
+          "date": "2013-05-09",
+          "equity": 105910.23
+        },
+        {
+          "date": "2013-06-19",
+          "equity": 106098.96
+        },
+        {
+          "date": "2013-07-30",
+          "equity": 106573.15
+        },
+        {
+          "date": "2013-09-09",
+          "equity": 106150.12
+        },
+        {
+          "date": "2013-10-17",
+          "equity": 106519.53
+        },
+        {
+          "date": "2013-11-26",
+          "equity": 107425.59
+        },
+        {
+          "date": "2014-01-08",
+          "equity": 107606.25
+        },
+        {
+          "date": "2014-02-19",
+          "equity": 106834.19
+        },
+        {
+          "date": "2014-03-31",
+          "equity": 106666.11
+        },
+        {
+          "date": "2014-05-09",
+          "equity": 106320.11
+        },
+        {
+          "date": "2014-06-19",
+          "equity": 105824.17
+        },
+        {
+          "date": "2014-07-30",
+          "equity": 106266.94
+        },
+        {
+          "date": "2014-09-09",
+          "equity": 107666.7
+        },
+        {
+          "date": "2014-10-17",
+          "equity": 108180.82
+        },
+        {
+          "date": "2014-11-26",
+          "equity": 109944.7
+        },
+        {
+          "date": "2015-01-08",
+          "equity": 113299.75
+        },
+        {
+          "date": "2015-02-19",
+          "equity": 113746.02
+        },
+        {
+          "date": "2015-03-31",
+          "equity": 115406.99
+        },
+        {
+          "date": "2015-05-11",
+          "equity": 114344.14
+        },
+        {
+          "date": "2015-06-19",
+          "equity": 113869.89
+        },
+        {
+          "date": "2015-07-30",
+          "equity": 115411.91
+        },
+        {
+          "date": "2015-09-09",
+          "equity": 114500.05
+        },
+        {
+          "date": "2015-10-19",
+          "equity": 114411.66
+        },
+        {
+          "date": "2015-11-27",
+          "equity": 115359.45
+        },
+        {
+          "date": "2016-01-08",
+          "equity": 115900.45
+        },
+        {
+          "date": "2016-02-19",
+          "equity": 116332.31
+        },
+        {
+          "date": "2016-03-31",
+          "equity": 115052.59
+        },
+        {
+          "date": "2016-05-10",
+          "equity": 114915.47
+        },
+        {
+          "date": "2016-06-20",
+          "equity": 114862.9
+        },
+        {
+          "date": "2016-07-29",
+          "equity": 115916.08
+        },
+        {
+          "date": "2016-09-08",
+          "equity": 116115.49
+        },
+        {
+          "date": "2016-10-18",
+          "equity": 114240.43
+        },
+        {
+          "date": "2016-11-28",
+          "equity": 113865.64
+        },
+        {
+          "date": "2017-01-09",
+          "equity": 113320.89
+        },
+        {
+          "date": "2017-02-17",
+          "equity": 113266.82
+        },
+        {
+          "date": "2017-03-30",
+          "equity": 112734.02
+        },
+        {
+          "date": "2017-05-10",
+          "equity": 113405.95
+        },
+        {
+          "date": "2017-06-20",
+          "equity": 112851.84
+        },
+        {
+          "date": "2017-07-31",
+          "equity": 112822.83
+        },
+        {
+          "date": "2017-09-08",
+          "equity": 112816.51
+        },
+        {
+          "date": "2017-10-18",
+          "equity": 112942.74
+        },
+        {
+          "date": "2017-11-28",
+          "equity": 113061.07
+        },
+        {
+          "date": "2018-01-09",
+          "equity": 114564.75
+        },
+        {
+          "date": "2018-02-20",
+          "equity": 115584.65
+        },
+        {
+          "date": "2018-04-02",
+          "equity": 114696.21
+        },
+        {
+          "date": "2018-05-10",
+          "equity": 115044.92
+        },
+        {
+          "date": "2018-06-20",
+          "equity": 114715.63
+        },
+        {
+          "date": "2018-07-31",
+          "equity": 114839.9
+        },
+        {
+          "date": "2018-09-10",
+          "equity": 115735.51
+        },
+        {
+          "date": "2018-10-18",
+          "equity": 115401.02
+        },
+        {
+          "date": "2018-11-28",
+          "equity": 115603.58
+        },
+        {
+          "date": "2019-01-10",
+          "equity": 115291.31
+        },
+        {
+          "date": "2019-02-21",
+          "equity": 114230.12
+        },
+        {
+          "date": "2019-04-02",
+          "equity": 114618.55
+        },
+        {
+          "date": "2019-05-13",
+          "equity": 115157.95
+        },
+        {
+          "date": "2019-06-21",
+          "equity": 115149.17
+        },
+        {
+          "date": "2019-08-01",
+          "equity": 115487.74
+        },
+        {
+          "date": "2019-09-11",
+          "equity": 116513.19
+        },
+        {
+          "date": "2019-10-21",
+          "equity": 116025.7
+        },
+        {
+          "date": "2019-11-29",
+          "equity": 115395.77
+        },
+        {
+          "date": "2020-01-10",
+          "equity": 115707.52
+        },
+        {
+          "date": "2020-02-21",
+          "equity": 116902.19
+        },
+        {
+          "date": "2020-04-01",
+          "equity": 120831.55
+        },
+        {
+          "date": "2020-05-12",
+          "equity": 120999.65
+        },
+        {
+          "date": "2020-06-22",
+          "equity": 118722.31
+        },
+        {
+          "date": "2020-07-31",
+          "equity": 119733.93
+        },
+        {
+          "date": "2020-09-10",
+          "equity": 119663.96
+        },
+        {
+          "date": "2020-10-20",
+          "equity": 119058.0
+        },
+        {
+          "date": "2020-11-30",
+          "equity": 120068.23
+        },
+        {
+          "date": "2021-01-11",
+          "equity": 121839.05
+        },
+        {
+          "date": "2021-02-22",
+          "equity": 123388.64
+        },
+        {
+          "date": "2021-04-01",
+          "equity": 124205.88
+        },
+        {
+          "date": "2021-05-12",
+          "equity": 124438.19
+        },
+        {
+          "date": "2021-06-22",
+          "equity": 123605.66
+        },
+        {
+          "date": "2021-08-02",
+          "equity": 123038.54
+        },
+        {
+          "date": "2021-09-10",
+          "equity": 123858.54
+        },
+        {
+          "date": "2021-10-20",
+          "equity": 124510.84
+        },
+        {
+          "date": "2021-11-30",
+          "equity": 124678.2
+        },
+        {
+          "date": "2022-01-10",
+          "equity": 124566.26
+        },
+        {
+          "date": "2022-02-18",
+          "equity": 125532.55
+        },
+        {
+          "date": "2022-03-31",
+          "equity": 128780.51
+        },
+        {
+          "date": "2022-05-11",
+          "equity": 133351.1
+        },
+        {
+          "date": "2022-06-22",
+          "equity": 135514.46
+        },
+        {
+          "date": "2022-08-02",
+          "equity": 131566.57
+        },
+        {
+          "date": "2022-09-12",
+          "equity": 134208.05
+        },
+        {
+          "date": "2022-10-20",
+          "equity": 135975.44
+        },
+        {
+          "date": "2022-11-30",
+          "equity": 132371.63
+        },
+        {
+          "date": "2023-01-11",
+          "equity": 130502.83
+        },
+        {
+          "date": "2023-02-22",
+          "equity": 130426.65
+        },
+        {
+          "date": "2023-04-03",
+          "equity": 128904.44
+        },
+        {
+          "date": "2023-05-12",
+          "equity": 129534.29
+        },
+        {
+          "date": "2023-06-23",
+          "equity": 128576.5
+        },
+        {
+          "date": "2023-08-03",
+          "equity": 127749.8
+        },
+        {
+          "date": "2023-09-13",
+          "equity": 128024.62
+        },
+        {
+          "date": "2023-10-23",
+          "equity": 128118.31
+        },
+        {
+          "date": "2023-12-01",
+          "equity": 126540.64
+        },
+        {
+          "date": "2024-01-12",
+          "equity": 126282.43
+        },
+        {
+          "date": "2024-02-23",
+          "equity": 128672.21
+        },
+        {
+          "date": "2024-04-04",
+          "equity": 129404.41
+        },
+        {
+          "date": "2024-05-14",
+          "equity": 129727.4
+        },
+        {
+          "date": "2024-06-25",
+          "equity": 129524.95
+        },
+        {
+          "date": "2024-08-05",
+          "equity": 128739.2
+        },
+        {
+          "date": "2024-09-13",
+          "equity": 127728.97
+        },
+        {
+          "date": "2024-10-23",
+          "equity": 126841.63
+        },
+        {
+          "date": "2024-12-03",
+          "equity": 126519.4
+        },
+        {
+          "date": "2025-01-15",
+          "equity": 127461.01
+        },
+        {
+          "date": "2025-02-26",
+          "equity": 126103.38
+        },
+        {
+          "date": "2025-04-07",
+          "equity": 127759.92
+        },
+        {
+          "date": "2025-05-16",
+          "equity": 123439.46
+        },
+        {
+          "date": "2025-06-27",
+          "equity": 123892.46
+        },
+        {
+          "date": "2025-08-07",
+          "equity": 123744.32
+        },
+        {
+          "date": "2025-09-17",
+          "equity": 124566.93
+        },
+        {
+          "date": "2025-10-27",
+          "equity": 126187.34
+        },
+        {
+          "date": "2025-12-05",
+          "equity": 126155.58
+        },
+        {
+          "date": "2026-01-16",
+          "equity": 128702.81
+        },
+        {
+          "date": "2026-02-27",
+          "equity": 128877.52
+        },
+        {
+          "date": "2026-04-09",
+          "equity": 124514.35
+        },
+        {
+          "date": "2026-05-19",
+          "equity": 126141.62
+        },
+        {
+          "date": "2026-06-01",
+          "equity": 125597.75
+        }
+      ],
+      "live_curve": [
+        {
+          "date": "2026-08-07",
+          "equity": 100000.0
+        },
+        {
+          "date": "2026-08-08",
+          "equity": 100000.0
+        },
+        {
+          "date": "2026-08-11",
+          "equity": 99966.06
+        },
+        {
+          "date": "2026-08-12",
+          "equity": 100005.81
+        },
+        {
+          "date": "2026-08-13",
+          "equity": 100138.7
+        },
+        {
+          "date": "2026-08-14",
+          "equity": 100140.71
+        },
+        {
+          "date": "2026-08-15",
+          "equity": 100221.16
+        },
+        {
+          "date": "2026-08-18",
+          "equity": 100352.54
+        }
+      ],
+      "holdings": {
+        "as_of": "2026-08-17",
+        "long_count": 10,
+        "short_count": 7,
+        "gross_pct": 98.8,
+        "net_pct": 32.08,
+        "long": [
+          {
+            "ticker": "SHY",
+            "weight_pct": 33.97
+          },
+          {
+            "ticker": "UUP",
+            "weight_pct": 8.11
+          },
+          {
+            "ticker": "DBA",
+            "weight_pct": 4.44
+          },
+          {
+            "ticker": "EFA",
+            "weight_pct": 3.54
+          },
+          {
+            "ticker": "DBC",
+            "weight_pct": 3.2
+          },
+          {
+            "ticker": "SPY",
+            "weight_pct": 3.09
+          },
+          {
+            "ticker": "EEM",
+            "weight_pct": 2.7
+          },
+          {
+            "ticker": "IWM",
+            "weight_pct": 2.67
+          },
+          {
+            "ticker": "QQQ",
+            "weight_pct": 2.33
+          },
+          {
+            "ticker": "USO",
+            "weight_pct": 1.41
+          }
+        ],
+        "short": [
+          {
+            "ticker": "IEF",
+            "weight_pct": 10.28
+          },
+          {
+            "ticker": "FXE",
+            "weight_pct": 7.81
+          },
+          {
+            "ticker": "FXY",
+            "weight_pct": 5.63
+          },
+          {
+            "ticker": "TLT",
+            "weight_pct": 4.83
+          },
+          {
+            "ticker": "GLD",
+            "weight_pct": 2.55
+          },
+          {
+            "ticker": "SLV",
+            "weight_pct": 1.35
+          },
+          {
+            "ticker": "UNG",
+            "weight_pct": 0.91
+          }
+        ]
+      }
+    },
+    {
+      "key": "alphavintage",
+      "name": "AlphaVintage",
+      "rank": 4,
+      "flagship": false,
+      "asset": "PIT macro-surprise size spread (IWM/SPY)",
+      "desc": "Point-in-time CPI surprise \u2014 the standardized AR(3) residual of headline (PCPI) and core (PCPIX) inflation, differenced WITHIN a single ALFRED vintage \u2014 traded as a dollar-neutral IWM-minus-SPY size spread, monthly.",
+      "standalone_sharpe": 0.34,
+      "sharpe_caveat": "Live since 2026-08-10, so the record is DAYS old and proves nothing yet. Net Sharpe 0.3403 with Newey-West t 1.82 over 5,996 days does NOT clear our 0.95 deflation gate \u2014 it earns its quarter of the book by being UNCORRELATED (-0.065 to equity momentum, -0.046 to managed futures), not by being better. Two disclosures: it runs at HALF the researched notional (gross 1.0x not 2.0x) because 2.0x breaches our own runaway brake and this account's Reg T limit \u2014 Sharpe is unchanged by scaling, dollar return is halved; and the research modelled NO short-borrow cost while the live sleeve is short SPY ~95% of days, a drag we now charge at 50bp/yr (0.3403 -> ~0.3060).",
+      "book_weight": 0.25,
+      "live_kind": "LIVE broker-executed \u2014 the two-leg spread is submitted to a dedicated Alpaca paper account (PA39G6N49JRY); first fills 2026-08-10 at the US open.",
+      "go_live": "2026-08-07",
+      "live_days": 11,
+      "research_curve": [
+        {
+          "date": "2001-06-29",
+          "equity": 100000.0
+        },
+        {
+          "date": "2001-08-17",
+          "equity": 99073.5
+        },
+        {
+          "date": "2001-10-11",
+          "equity": 97057.98
+        },
+        {
+          "date": "2001-11-29",
+          "equity": 99582.53
+        },
+        {
+          "date": "2002-01-18",
+          "equity": 101459.05
+        },
+        {
+          "date": "2002-03-11",
+          "equity": 102521.24
+        },
+        {
+          "date": "2002-04-29",
+          "equity": 100205.22
+        },
+        {
+          "date": "2002-06-17",
+          "equity": 100730.52
+        },
+        {
+          "date": "2002-08-05",
+          "equity": 96786.13
+        },
+        {
+          "date": "2002-09-23",
+          "equity": 94833.84
+        },
+        {
+          "date": "2002-11-08",
+          "equity": 99938.38
+        },
+        {
+          "date": "2002-12-30",
+          "equity": 100082.04
+        },
+        {
+          "date": "2003-02-19",
+          "equity": 98942.56
+        },
+        {
+          "date": "2003-04-08",
+          "equity": 98416.71
+        },
+        {
+          "date": "2003-05-28",
+          "equity": 102721.56
+        },
+        {
+          "date": "2003-07-16",
+          "equity": 101423.73
+        },
+        {
+          "date": "2003-09-03",
+          "equity": 100425.26
+        },
+        {
+          "date": "2003-10-21",
+          "equity": 99966.21
+        },
+        {
+          "date": "2003-12-09",
+          "equity": 100070.58
+        },
+        {
+          "date": "2004-01-29",
+          "equity": 102996.33
+        },
+        {
+          "date": "2004-03-18",
+          "equity": 103064.43
+        },
+        {
+          "date": "2004-05-06",
+          "equity": 104427.39
+        },
+        {
+          "date": "2004-06-25",
+          "equity": 105305.86
+        },
+        {
+          "date": "2004-08-13",
+          "equity": 103162.57
+        },
+        {
+          "date": "2004-10-01",
+          "equity": 107143.01
+        },
+        {
+          "date": "2004-11-18",
+          "equity": 105542.04
+        },
+        {
+          "date": "2005-01-07",
+          "equity": 100832.3
+        },
+        {
+          "date": "2005-02-28",
+          "equity": 101442.22
+        },
+        {
+          "date": "2005-04-18",
+          "equity": 102833.13
+        },
+        {
+          "date": "2005-06-06",
+          "equity": 104760.03
+        },
+        {
+          "date": "2005-07-25",
+          "equity": 107612.67
+        },
+        {
+          "date": "2005-09-12",
+          "equity": 104724.23
+        },
+        {
+          "date": "2005-10-28",
+          "equity": 106366.52
+        },
+        {
+          "date": "2005-12-16",
+          "equity": 106281.81
+        },
+        {
+          "date": "2006-02-07",
+          "equity": 109665.92
+        },
+        {
+          "date": "2006-03-28",
+          "equity": 109969.65
+        },
+        {
+          "date": "2006-05-16",
+          "equity": 111938.58
+        },
+        {
+          "date": "2006-07-05",
+          "equity": 113095.52
+        },
+        {
+          "date": "2006-08-22",
+          "equity": 112647.3
+        },
+        {
+          "date": "2006-10-10",
+          "equity": 112697.29
+        },
+        {
+          "date": "2006-11-28",
+          "equity": 112327.6
+        },
+        {
+          "date": "2007-01-19",
+          "equity": 112450.28
+        },
+        {
+          "date": "2007-03-09",
+          "equity": 110283.56
+        },
+        {
+          "date": "2007-04-27",
+          "equity": 109741.74
+        },
+        {
+          "date": "2007-06-15",
+          "equity": 109923.04
+        },
+        {
+          "date": "2007-08-03",
+          "equity": 107743.74
+        },
+        {
+          "date": "2007-09-21",
+          "equity": 109258.68
+        },
+        {
+          "date": "2007-11-08",
+          "equity": 110000.73
+        },
+        {
+          "date": "2007-12-28",
+          "equity": 107606.27
+        },
+        {
+          "date": "2008-02-19",
+          "equity": 111736.18
+        },
+        {
+          "date": "2008-04-08",
+          "equity": 114330.21
+        },
+        {
+          "date": "2008-05-27",
+          "equity": 114876.26
+        },
+        {
+          "date": "2008-07-15",
+          "equity": 114995.06
+        },
+        {
+          "date": "2008-09-02",
+          "equity": 109325.69
+        },
+        {
+          "date": "2008-10-20",
+          "equity": 100673.92
+        },
+        {
+          "date": "2008-12-08",
+          "equity": 95190.07
+        },
+        {
+          "date": "2009-01-28",
+          "equity": 95692.21
+        },
+        {
+          "date": "2009-03-18",
+          "equity": 97010.45
+        },
+        {
+          "date": "2009-05-06",
+          "equity": 94247.79
+        },
+        {
+          "date": "2009-06-24",
+          "equity": 93125.44
+        },
+        {
+          "date": "2009-08-12",
+          "equity": 91923.67
+        },
+        {
+          "date": "2009-09-30",
+          "equity": 95444.6
+        },
+        {
+          "date": "2009-11-17",
+          "equity": 93255.5
+        },
+        {
+          "date": "2010-01-07",
+          "equity": 93393.78
+        },
+        {
+          "date": "2010-02-26",
+          "equity": 93429.64
+        },
+        {
+          "date": "2010-04-16",
+          "equity": 96402.95
+        },
+        {
+          "date": "2010-06-04",
+          "equity": 95505.01
+        },
+        {
+          "date": "2010-07-23",
+          "equity": 94975.96
+        },
+        {
+          "date": "2010-09-10",
+          "equity": 94102.58
+        },
+        {
+          "date": "2010-10-28",
+          "equity": 93602.35
+        },
+        {
+          "date": "2010-12-16",
+          "equity": 95103.89
+        },
+        {
+          "date": "2011-02-04",
+          "equity": 96283.61
+        },
+        {
+          "date": "2011-03-25",
+          "equity": 95061.75
+        },
+        {
+          "date": "2011-05-13",
+          "equity": 94539.55
+        },
+        {
+          "date": "2011-07-01",
+          "equity": 94731.31
+        },
+        {
+          "date": "2011-08-19",
+          "equity": 91913.06
+        },
+        {
+          "date": "2011-10-07",
+          "equity": 90830.31
+        },
+        {
+          "date": "2011-11-25",
+          "equity": 89463.85
+        },
+        {
+          "date": "2012-01-17",
+          "equity": 91386.6
+        },
+        {
+          "date": "2012-03-06",
+          "equity": 92884.23
+        },
+        {
+          "date": "2012-04-24",
+          "equity": 92673.44
+        },
+        {
+          "date": "2012-06-12",
+          "equity": 92194.23
+        },
+        {
+          "date": "2012-07-31",
+          "equity": 94039.82
+        },
+        {
+          "date": "2012-09-18",
+          "equity": 95236.43
+        },
+        {
+          "date": "2012-11-07",
+          "equity": 96075.81
+        },
+        {
+          "date": "2012-12-27",
+          "equity": 98158.71
+        },
+        {
+          "date": "2013-02-15",
+          "equity": 100017.48
+        },
+        {
+          "date": "2013-04-08",
+          "equity": 102200.41
+        },
+        {
+          "date": "2013-05-24",
+          "equity": 105128.61
+        },
+        {
+          "date": "2013-07-15",
+          "equity": 105092.88
+        },
+        {
+          "date": "2013-08-30",
+          "equity": 105022.79
+        },
+        {
+          "date": "2013-10-18",
+          "equity": 106119.49
+        },
+        {
+          "date": "2013-12-06",
+          "equity": 106166.36
+        },
+        {
+          "date": "2014-01-28",
+          "equity": 105839.37
+        },
+        {
+          "date": "2014-03-18",
+          "equity": 106645.55
+        },
+        {
+          "date": "2014-05-06",
+          "equity": 105386.24
+        },
+        {
+          "date": "2014-06-24",
+          "equity": 105004.41
+        },
+        {
+          "date": "2014-08-12",
+          "equity": 106250.27
+        },
+        {
+          "date": "2014-09-30",
+          "equity": 101386.75
+        },
+        {
+          "date": "2014-11-17",
+          "equity": 104475.35
+        },
+        {
+          "date": "2015-01-07",
+          "equity": 104801.64
+        },
+        {
+          "date": "2015-02-26",
+          "equity": 104880.34
+        },
+        {
+          "date": "2015-04-16",
+          "equity": 104995.85
+        },
+        {
+          "date": "2015-06-04",
+          "equity": 106123.62
+        },
+        {
+          "date": "2015-07-23",
+          "equity": 105814.07
+        },
+        {
+          "date": "2015-09-10",
+          "equity": 105943.04
+        },
+        {
+          "date": "2015-10-28",
+          "equity": 102852.98
+        },
+        {
+          "date": "2015-12-16",
+          "equity": 103638.19
+        },
+        {
+          "date": "2016-02-05",
+          "equity": 102034.66
+        },
+        {
+          "date": "2016-03-28",
+          "equity": 101239.28
+        },
+        {
+          "date": "2016-05-13",
+          "equity": 101574.39
+        },
+        {
+          "date": "2016-07-01",
+          "equity": 100277.13
+        },
+        {
+          "date": "2016-08-19",
+          "equity": 100490.27
+        },
+        {
+          "date": "2016-10-07",
+          "equity": 100914.63
+        },
+        {
+          "date": "2016-11-25",
+          "equity": 101479.43
+        },
+        {
+          "date": "2017-01-17",
+          "equity": 101413.78
+        },
+        {
+          "date": "2017-03-07",
+          "equity": 103519.95
+        },
+        {
+          "date": "2017-04-25",
+          "equity": 104772.35
+        },
+        {
+          "date": "2017-06-13",
+          "equity": 102607.63
+        },
+        {
+          "date": "2017-08-01",
+          "equity": 102787.94
+        },
+        {
+          "date": "2017-09-19",
+          "equity": 103164.44
+        },
+        {
+          "date": "2017-11-06",
+          "equity": 101455.94
+        },
+        {
+          "date": "2017-12-26",
+          "equity": 101455.2
+        },
+        {
+          "date": "2018-02-14",
+          "equity": 101384.7
+        },
+        {
+          "date": "2018-04-05",
+          "equity": 99773.46
+        },
+        {
+          "date": "2018-05-23",
+          "equity": 100742.3
+        },
+        {
+          "date": "2018-07-12",
+          "equity": 101154.47
+        },
+        {
+          "date": "2018-08-29",
+          "equity": 100874.66
+        },
+        {
+          "date": "2018-10-17",
+          "equity": 98988.79
+        },
+        {
+          "date": "2018-12-06",
+          "equity": 98855.75
+        },
+        {
+          "date": "2019-01-28",
+          "equity": 99925.11
+        },
+        {
+          "date": "2019-03-18",
+          "equity": 99617.74
+        },
+        {
+          "date": "2019-05-06",
+          "equity": 98986.21
+        },
+        {
+          "date": "2019-06-24",
+          "equity": 98034.51
+        },
+        {
+          "date": "2019-08-12",
+          "equity": 97837.17
+        },
+        {
+          "date": "2019-09-30",
+          "equity": 95681.6
+        },
+        {
+          "date": "2019-11-15",
+          "equity": 95530.16
+        },
+        {
+          "date": "2020-01-07",
+          "equity": 95305.86
+        },
+        {
+          "date": "2020-02-26",
+          "equity": 94482.98
+        },
+        {
+          "date": "2020-04-15",
+          "equity": 94282.92
+        },
+        {
+          "date": "2020-06-03",
+          "equity": 100740.57
+        },
+        {
+          "date": "2020-07-22",
+          "equity": 100902.81
+        },
+        {
+          "date": "2020-09-09",
+          "equity": 101969.06
+        },
+        {
+          "date": "2020-10-27",
+          "equity": 100507.52
+        },
+        {
+          "date": "2020-12-15",
+          "equity": 111833.0
+        },
+        {
+          "date": "2021-02-04",
+          "equity": 110771.66
+        },
+        {
+          "date": "2021-03-25",
+          "equity": 112200.71
+        },
+        {
+          "date": "2021-05-13",
+          "equity": 115241.12
+        },
+        {
+          "date": "2021-07-01",
+          "equity": 113063.33
+        },
+        {
+          "date": "2021-08-19",
+          "equity": 118942.35
+        },
+        {
+          "date": "2021-10-07",
+          "equity": 124914.23
+        },
+        {
+          "date": "2021-11-24",
+          "equity": 127959.94
+        },
+        {
+          "date": "2022-01-13",
+          "equity": 135152.86
+        },
+        {
+          "date": "2022-03-04",
+          "equity": 135026.15
+        },
+        {
+          "date": "2022-04-22",
+          "equity": 135776.02
+        },
+        {
+          "date": "2022-06-10",
+          "equity": 139953.85
+        },
+        {
+          "date": "2022-08-01",
+          "equity": 137207.69
+        },
+        {
+          "date": "2022-09-19",
+          "equity": 132187.43
+        },
+        {
+          "date": "2022-11-04",
+          "equity": 131611.19
+        },
+        {
+          "date": "2022-12-23",
+          "equity": 130667.2
+        },
+        {
+          "date": "2023-02-14",
+          "equity": 133902.61
+        },
+        {
+          "date": "2023-04-04",
+          "equity": 140577.37
+        },
+        {
+          "date": "2023-05-23",
+          "equity": 137938.96
+        },
+        {
+          "date": "2023-07-13",
+          "equity": 138813.08
+        },
+        {
+          "date": "2023-08-30",
+          "equity": 136384.42
+        },
+        {
+          "date": "2023-10-18",
+          "equity": 139241.53
+        },
+        {
+          "date": "2023-12-06",
+          "equity": 142495.72
+        },
+        {
+          "date": "2024-01-26",
+          "equity": 144567.96
+        },
+        {
+          "date": "2024-03-15",
+          "equity": 145226.09
+        },
+        {
+          "date": "2024-05-03",
+          "equity": 145246.74
+        },
+        {
+          "date": "2024-06-24",
+          "equity": 143904.03
+        },
+        {
+          "date": "2024-08-12",
+          "equity": 144299.49
+        },
+        {
+          "date": "2024-09-30",
+          "equity": 144103.9
+        },
+        {
+          "date": "2024-11-15",
+          "equity": 143920.44
+        },
+        {
+          "date": "2025-01-07",
+          "equity": 144425.39
+        },
+        {
+          "date": "2025-02-27",
+          "equity": 147038.18
+        },
+        {
+          "date": "2025-04-16",
+          "equity": 143918.55
+        },
+        {
+          "date": "2025-06-05",
+          "equity": 143875.09
+        },
+        {
+          "date": "2025-07-25",
+          "equity": 144243.42
+        },
+        {
+          "date": "2025-09-12",
+          "equity": 143343.8
+        },
+        {
+          "date": "2025-10-30",
+          "equity": 138644.03
+        },
+        {
+          "date": "2025-12-18",
+          "equity": 139583.38
+        },
+        {
+          "date": "2026-02-09",
+          "equity": 141100.02
+        },
+        {
+          "date": "2026-03-30",
+          "equity": 140679.71
+        },
+        {
+          "date": "2026-05-18",
+          "equity": 143572.61
+        },
+        {
+          "date": "2026-07-08",
+          "equity": 139907.93
+        },
+        {
+          "date": "2026-07-15",
+          "equity": 139763.86
+        }
+      ],
+      "live_curve": [
+        {
+          "date": "2026-08-11",
+          "equity": 100000.0
+        },
+        {
+          "date": "2026-08-12",
+          "equity": 100327.62
+        },
+        {
+          "date": "2026-08-13",
+          "equity": 100489.95
+        },
+        {
+          "date": "2026-08-14",
+          "equity": 100271.83
+        },
+        {
+          "date": "2026-08-15",
+          "equity": 100633.19
+        },
+        {
+          "date": "2026-08-18",
+          "equity": 100795.72
+        }
+      ],
+      "holdings": null
+    },
+    {
+      "key": "alphaforge",
+      "name": "AlphaForge",
+      "rank": 5,
+      "flagship": false,
+      "asset": "Crypto funding carry",
+      "desc": "Funding-rate carry on Binance USDT-M perpetuals, market-neutral.",
+      "standalone_sharpe": 0.68,
+      "sharpe_caveat": "0.68 is the FULL-HISTORY figure and hides the tail: -1.63 Sharpe / -19.6% drawdown in 2022 (FTX). Carry compresses with size/crowding. CORRECTION (2026-07-05): from go-live to 07-05 this sleeve was flat and we published 'funding carry compressed, holding cash' \u2014 that explanation was WRONG. The real cause was a signal-wiring bug: the live blend included equity-fundamental alphas that are undefined on crypto, which invalidated every signal; the validated carry-only configuration was not what was deployed. Found in an internal audit and fixed the same day \u2014 the loop now runs the exact blessed walk-forward configuration (carry_fund_21, weekly rebalance). No money was misreported (the sleeve genuinely held cash at $100k); the published explanation was wrong, and we correct it here rather than rewrite it.",
+      "book_weight": 0.25,
+      "live_kind": "Live broker-loop (hourly, paper). Trading since 2026-07-05, when a signal-wiring bug was found and fixed (see the dated correction).",
+      "go_live": "2026-08-07",
+      "live_days": 11,
+      "research_curve": [
+        {
+          "date": "2022-02-08",
+          "equity": 100000.0
+        },
+        {
+          "date": "2022-02-16",
+          "equity": 98605.93
+        },
+        {
+          "date": "2022-02-25",
+          "equity": 96479.52
+        },
+        {
+          "date": "2022-03-06",
+          "equity": 94204.36
+        },
+        {
+          "date": "2022-03-14",
+          "equity": 91273.31
+        },
+        {
+          "date": "2022-03-23",
+          "equity": 91221.32
+        },
+        {
+          "date": "2022-04-01",
+          "equity": 91000.43
+        },
+        {
+          "date": "2022-04-10",
+          "equity": 91234.96
+        },
+        {
+          "date": "2022-04-18",
+          "equity": 91247.44
+        },
+        {
+          "date": "2022-04-27",
+          "equity": 91776.22
+        },
+        {
+          "date": "2022-05-06",
+          "equity": 92543.63
+        },
+        {
+          "date": "2022-05-14",
+          "equity": 87561.89
+        },
+        {
+          "date": "2022-05-23",
+          "equity": 87404.25
+        },
+        {
+          "date": "2022-06-01",
+          "equity": 87491.03
+        },
+        {
+          "date": "2022-06-09",
+          "equity": 87260.59
+        },
+        {
+          "date": "2022-06-18",
+          "equity": 89278.17
+        },
+        {
+          "date": "2022-06-27",
+          "equity": 88007.71
+        },
+        {
+          "date": "2022-07-06",
+          "equity": 88458.14
+        },
+        {
+          "date": "2022-07-14",
+          "equity": 87737.33
+        },
+        {
+          "date": "2022-07-23",
+          "equity": 87122.13
+        },
+        {
+          "date": "2022-08-01",
+          "equity": 87559.48
+        },
+        {
+          "date": "2022-08-09",
+          "equity": 87245.63
+        },
+        {
+          "date": "2022-08-18",
+          "equity": 85583.25
+        },
+        {
+          "date": "2022-08-27",
+          "equity": 85583.25
+        },
+        {
+          "date": "2022-09-05",
+          "equity": 84739.06
+        },
+        {
+          "date": "2022-09-13",
+          "equity": 85012.57
+        },
+        {
+          "date": "2022-09-22",
+          "equity": 83844.26
+        },
+        {
+          "date": "2022-10-01",
+          "equity": 84071.9
+        },
+        {
+          "date": "2022-10-09",
+          "equity": 85665.02
+        },
+        {
+          "date": "2022-10-18",
+          "equity": 86185.93
+        },
+        {
+          "date": "2022-10-27",
+          "equity": 84709.75
+        },
+        {
+          "date": "2022-11-05",
+          "equity": 84055.37
+        },
+        {
+          "date": "2022-11-13",
+          "equity": 84712.98
+        },
+        {
+          "date": "2022-11-22",
+          "equity": 82646.45
+        },
+        {
+          "date": "2022-12-01",
+          "equity": 81422.56
+        },
+        {
+          "date": "2022-12-09",
+          "equity": 82904.68
+        },
+        {
+          "date": "2022-12-18",
+          "equity": 83095.05
+        },
+        {
+          "date": "2022-12-27",
+          "equity": 83218.33
+        },
+        {
+          "date": "2023-01-04",
+          "equity": 85399.39
+        },
+        {
+          "date": "2023-01-13",
+          "equity": 88221.23
+        },
+        {
+          "date": "2023-01-22",
+          "equity": 91293.68
+        },
+        {
+          "date": "2023-01-31",
+          "equity": 90106.17
+        },
+        {
+          "date": "2023-02-08",
+          "equity": 88542.65
+        },
+        {
+          "date": "2023-02-17",
+          "equity": 87160.74
+        },
+        {
+          "date": "2023-02-26",
+          "equity": 89070.86
+        },
+        {
+          "date": "2023-03-06",
+          "equity": 88593.21
+        },
+        {
+          "date": "2023-03-15",
+          "equity": 89827.53
+        },
+        {
+          "date": "2023-03-24",
+          "equity": 90295.68
+        },
+        {
+          "date": "2023-04-02",
+          "equity": 89118.14
+        },
+        {
+          "date": "2023-04-10",
+          "equity": 90052.6
+        },
+        {
+          "date": "2023-04-19",
+          "equity": 89956.37
+        },
+        {
+          "date": "2023-04-28",
+          "equity": 91242.45
+        },
+        {
+          "date": "2023-05-06",
+          "equity": 90960.23
+        },
+        {
+          "date": "2023-05-15",
+          "equity": 90793.6
+        },
+        {
+          "date": "2023-05-24",
+          "equity": 92238.93
+        },
+        {
+          "date": "2023-06-02",
+          "equity": 91353.01
+        },
+        {
+          "date": "2023-06-10",
+          "equity": 91778.85
+        },
+        {
+          "date": "2023-06-19",
+          "equity": 91167.31
+        },
+        {
+          "date": "2023-06-28",
+          "equity": 89099.69
+        },
+        {
+          "date": "2023-07-06",
+          "equity": 88412.37
+        },
+        {
+          "date": "2023-07-15",
+          "equity": 88864.54
+        },
+        {
+          "date": "2023-07-24",
+          "equity": 87949.4
+        },
+        {
+          "date": "2023-08-01",
+          "equity": 86303.26
+        },
+        {
+          "date": "2023-08-10",
+          "equity": 84942.66
+        },
+        {
+          "date": "2023-08-19",
+          "equity": 86609.94
+        },
+        {
+          "date": "2023-08-28",
+          "equity": 88854.32
+        },
+        {
+          "date": "2023-09-05",
+          "equity": 89606.04
+        },
+        {
+          "date": "2023-09-14",
+          "equity": 92968.87
+        },
+        {
+          "date": "2023-09-23",
+          "equity": 93279.74
+        },
+        {
+          "date": "2023-10-01",
+          "equity": 91705.29
+        },
+        {
+          "date": "2023-10-10",
+          "equity": 94319.09
+        },
+        {
+          "date": "2023-10-19",
+          "equity": 93410.53
+        },
+        {
+          "date": "2023-10-28",
+          "equity": 91137.36
+        },
+        {
+          "date": "2023-11-05",
+          "equity": 91890.5
+        },
+        {
+          "date": "2023-11-14",
+          "equity": 93082.67
+        },
+        {
+          "date": "2023-11-23",
+          "equity": 93229.25
+        },
+        {
+          "date": "2023-12-01",
+          "equity": 93473.3
+        },
+        {
+          "date": "2023-12-10",
+          "equity": 93512.39
+        },
+        {
+          "date": "2023-12-19",
+          "equity": 92551.62
+        },
+        {
+          "date": "2023-12-28",
+          "equity": 91516.93
+        },
+        {
+          "date": "2024-01-05",
+          "equity": 90827.12
+        },
+        {
+          "date": "2024-01-14",
+          "equity": 89625.86
+        },
+        {
+          "date": "2024-01-23",
+          "equity": 90043.47
+        },
+        {
+          "date": "2024-01-31",
+          "equity": 88346.28
+        },
+        {
+          "date": "2024-02-09",
+          "equity": 88752.65
+        },
+        {
+          "date": "2024-02-18",
+          "equity": 88250.13
+        },
+        {
+          "date": "2024-02-26",
+          "equity": 88917.78
+        },
+        {
+          "date": "2024-03-06",
+          "equity": 91193.36
+        },
+        {
+          "date": "2024-03-15",
+          "equity": 93947.29
+        },
+        {
+          "date": "2024-03-24",
+          "equity": 93734.86
+        },
+        {
+          "date": "2024-04-01",
+          "equity": 94014.76
+        },
+        {
+          "date": "2024-04-10",
+          "equity": 95273.86
+        },
+        {
+          "date": "2024-04-19",
+          "equity": 96974.96
+        },
+        {
+          "date": "2024-04-27",
+          "equity": 96036.11
+        },
+        {
+          "date": "2024-05-06",
+          "equity": 93919.55
+        },
+        {
+          "date": "2024-05-15",
+          "equity": 92281.64
+        },
+        {
+          "date": "2024-05-24",
+          "equity": 93687.52
+        },
+        {
+          "date": "2024-06-01",
+          "equity": 93867.79
+        },
+        {
+          "date": "2024-06-10",
+          "equity": 95502.81
+        },
+        {
+          "date": "2024-06-19",
+          "equity": 96578.08
+        },
+        {
+          "date": "2024-06-27",
+          "equity": 95926.35
+        },
+        {
+          "date": "2024-07-06",
+          "equity": 98147.65
+        },
+        {
+          "date": "2024-07-15",
+          "equity": 98535.73
+        },
+        {
+          "date": "2024-07-24",
+          "equity": 101640.69
+        },
+        {
+          "date": "2024-08-01",
+          "equity": 103338.24
+        },
+        {
+          "date": "2024-08-10",
+          "equity": 101285.19
+        },
+        {
+          "date": "2024-08-19",
+          "equity": 98561.66
+        },
+        {
+          "date": "2024-08-27",
+          "equity": 98739.46
+        },
+        {
+          "date": "2024-09-05",
+          "equity": 99246.61
+        },
+        {
+          "date": "2024-09-14",
+          "equity": 99351.56
+        },
+        {
+          "date": "2024-09-22",
+          "equity": 101068.5
+        },
+        {
+          "date": "2024-10-01",
+          "equity": 101963.97
+        },
+        {
+          "date": "2024-10-10",
+          "equity": 103927.28
+        },
+        {
+          "date": "2024-10-19",
+          "equity": 104733.26
+        },
+        {
+          "date": "2024-10-27",
+          "equity": 104313.17
+        },
+        {
+          "date": "2024-11-05",
+          "equity": 101926.57
+        },
+        {
+          "date": "2024-11-14",
+          "equity": 101061.09
+        },
+        {
+          "date": "2024-11-22",
+          "equity": 104695.99
+        },
+        {
+          "date": "2024-12-01",
+          "equity": 105102.97
+        },
+        {
+          "date": "2024-12-10",
+          "equity": 109359.73
+        },
+        {
+          "date": "2024-12-19",
+          "equity": 111307.0
+        },
+        {
+          "date": "2024-12-27",
+          "equity": 112848.57
+        },
+        {
+          "date": "2025-01-05",
+          "equity": 113685.78
+        },
+        {
+          "date": "2025-01-14",
+          "equity": 115661.18
+        },
+        {
+          "date": "2025-01-22",
+          "equity": 114840.06
+        },
+        {
+          "date": "2025-01-31",
+          "equity": 115126.92
+        },
+        {
+          "date": "2025-02-09",
+          "equity": 115713.2
+        },
+        {
+          "date": "2025-02-18",
+          "equity": 113893.57
+        },
+        {
+          "date": "2025-02-26",
+          "equity": 113919.88
+        },
+        {
+          "date": "2025-03-07",
+          "equity": 116386.49
+        },
+        {
+          "date": "2025-03-16",
+          "equity": 118596.33
+        },
+        {
+          "date": "2025-03-24",
+          "equity": 117979.77
+        },
+        {
+          "date": "2025-04-02",
+          "equity": 120160.05
+        },
+        {
+          "date": "2025-04-11",
+          "equity": 122021.96
+        },
+        {
+          "date": "2025-04-19",
+          "equity": 122700.2
+        },
+        {
+          "date": "2025-04-28",
+          "equity": 118950.04
+        },
+        {
+          "date": "2025-05-07",
+          "equity": 118134.59
+        },
+        {
+          "date": "2025-05-16",
+          "equity": 118011.79
+        },
+        {
+          "date": "2025-05-24",
+          "equity": 116674.76
+        },
+        {
+          "date": "2025-06-02",
+          "equity": 116256.89
+        },
+        {
+          "date": "2025-06-11",
+          "equity": 114662.34
+        },
+        {
+          "date": "2025-06-19",
+          "equity": 117702.17
+        },
+        {
+          "date": "2025-06-28",
+          "equity": 118645.17
+        },
+        {
+          "date": "2025-07-07",
+          "equity": 118116.12
+        },
+        {
+          "date": "2025-07-16",
+          "equity": 114164.78
+        },
+        {
+          "date": "2025-07-24",
+          "equity": 118104.62
+        },
+        {
+          "date": "2025-08-02",
+          "equity": 119135.55
+        },
+        {
+          "date": "2025-08-11",
+          "equity": 120515.22
+        },
+        {
+          "date": "2025-08-19",
+          "equity": 120151.13
+        },
+        {
+          "date": "2025-08-28",
+          "equity": 119357.67
+        },
+        {
+          "date": "2025-09-06",
+          "equity": 117826.79
+        },
+        {
+          "date": "2025-09-15",
+          "equity": 110943.8
+        },
+        {
+          "date": "2025-09-23",
+          "equity": 111464.88
+        },
+        {
+          "date": "2025-10-02",
+          "equity": 112036.78
+        },
+        {
+          "date": "2025-10-11",
+          "equity": 114688.68
+        },
+        {
+          "date": "2025-10-19",
+          "equity": 115055.8
+        },
+        {
+          "date": "2025-10-28",
+          "equity": 117465.63
+        },
+        {
+          "date": "2025-11-06",
+          "equity": 118396.49
+        },
+        {
+          "date": "2025-11-14",
+          "equity": 121723.08
+        },
+        {
+          "date": "2025-11-23",
+          "equity": 124065.63
+        },
+        {
+          "date": "2025-12-02",
+          "equity": 125620.2
+        },
+        {
+          "date": "2025-12-11",
+          "equity": 125722.13
+        },
+        {
+          "date": "2025-12-19",
+          "equity": 126649.47
+        },
+        {
+          "date": "2025-12-28",
+          "equity": 124678.99
+        },
+        {
+          "date": "2026-01-06",
+          "equity": 128462.45
+        },
+        {
+          "date": "2026-01-14",
+          "equity": 126572.71
+        },
+        {
+          "date": "2026-01-23",
+          "equity": 129506.04
+        },
+        {
+          "date": "2026-02-01",
+          "equity": 130358.0
+        },
+        {
+          "date": "2026-02-10",
+          "equity": 132211.96
+        },
+        {
+          "date": "2026-02-18",
+          "equity": 131062.74
+        },
+        {
+          "date": "2026-02-27",
+          "equity": 135275.45
+        },
+        {
+          "date": "2026-03-08",
+          "equity": 133685.11
+        },
+        {
+          "date": "2026-03-16",
+          "equity": 135987.8
+        },
+        {
+          "date": "2026-03-25",
+          "equity": 137815.95
+        },
+        {
+          "date": "2026-04-03",
+          "equity": 139036.8
+        },
+        {
+          "date": "2026-04-12",
+          "equity": 137949.43
+        },
+        {
+          "date": "2026-04-20",
+          "equity": 138510.48
+        },
+        {
+          "date": "2026-04-29",
+          "equity": 135975.0
+        },
+        {
+          "date": "2026-05-08",
+          "equity": 135517.09
+        },
+        {
+          "date": "2026-05-16",
+          "equity": 135217.09
+        },
+        {
+          "date": "2026-05-25",
+          "equity": 135177.49
+        },
+        {
+          "date": "2026-06-01",
+          "equity": 138236.27
+        }
+      ],
+      "live_curve": [
+        {
+          "date": "2026-08-08",
+          "equity": 100000.0
+        },
+        {
+          "date": "2026-08-11",
+          "equity": 100742.33
+        },
+        {
+          "date": "2026-08-12",
+          "equity": 99926.52
+        },
+        {
+          "date": "2026-08-13",
+          "equity": 99374.17
+        },
+        {
+          "date": "2026-08-14",
+          "equity": 99538.54
+        },
+        {
+          "date": "2026-08-15",
+          "equity": 98672.13
+        },
+        {
+          "date": "2026-08-16",
+          "equity": 98718.24
+        },
+        {
+          "date": "2026-08-17",
+          "equity": 98607.51
+        },
+        {
+          "date": "2026-08-18",
+          "equity": 98514.12
+        }
+      ],
+      "holdings": {
+        "as_of": "2026-08-18",
+        "long_count": 5,
+        "short_count": 4,
+        "long": [
+          {
+            "ticker": "ADA"
+          },
+          {
+            "ticker": "BZ"
+          },
+          {
+            "ticker": "CL"
+          },
+          {
+            "ticker": "SUI"
+          },
+          {
+            "ticker": "TAO"
+          }
+        ],
+        "short": [
+          {
+            "ticker": "HYPE"
+          },
+          {
+            "ticker": "LAB"
+          },
+          {
+            "ticker": "LINK"
+          },
+          {
+            "ticker": "ZEC"
+          }
+        ],
+        "flat": false
+      },
+      "cycle_uptime": {
+        "cycles_completed": 434,
+        "cycles_expected": 1205,
+        "uptime_pct": 36.0,
+        "dark_hours": 772,
+        "record_days": 50.2,
+        "longest_outage_hours": 165,
+        "outages_over_24h": 8,
+        "dark_since_hours": 0,
+        "last_cycle_utc": "2026-08-18 12:00"
+      }
+    }
+  ],
+  "metrics": {
+    "in_sample_sharpe": 1.78,
+    "neutral_core_in_sample_sharpe": 1.38,
+    "honest_forward_sharpe": "0.3 to 0.9 (the +10% beta does NOT improve this \u2014 it adds bull upside + crash risk, not risk-adjusted quality; real chance of ~0 yr1)",
+    "in_sample_cagr_pct": 9.6,
+    "honest_forward_return_pct": "0 to 14 (vol-targeted; lower bound is real)",
+    "max_drawdown_pct": -4.5,
+    "max_drawdown_note": "live-overlap window only (2023-07+); EXCLUDES 2022 & Covid \u2014 NOT a risk estimate",
+    "realistic_worst_dd_pct": "-22 to -28 (incl. the +10% strategic-long overlay's crash tail)",
+    "correlation_value": 0.0274,
+    "correlation": "Measured +0.0274 average pairwise correlation across the four live sleeves \u2014 POSITIVE. The prior three-sleeve book measured +0.0723; AlphaVintage lowered it without improving any standalone edge claim. In risk-off the pairwise correlations can spike, so the diversification benefit may shrink exactly in the left tail. We size on the stressed matrix.",
+    "gauntlet_grade": "C+",
+    "gauntlet_pass": "real but modest; no sleeve clears the multiple-testing gate in-sample, so the only credible next evidence is a live record where the full book transacts through a risk-off episode",
+    "live_days": 11
+  },
+  "transparency": [
+    "Research curves are simulations. No real capital has been deployed.",
+    "2026-06-29 RE-BASELINE (v1 -> v2): on this date the flagship ALPHAC (a) folded AlphaTrend (managed-futures trend) into the book as a 3rd decorrelated sleeve at a modest 20% weight (equal quarters), and (b) gained a DISCLOSED +20% strategic net-long overlay (0.5 BTC + 0.5 SPY); all four tracks were restarted clean. v1 (2026-06-21..06-29) ran market-neutral and FLAT ($100k -> $100k, $0 realized \u2014 crypto held cash, equity/MF were days-old at baseline) and is SUPERSEDED, not deleted: it stays in the signed transparency chain (seq 0..4, Bitcoin-anchored). We re-baseline in the open and never silently rewrite 'live since'. The change is sealed into the chain itself.",
+    "About the +20% tilt \u2014 said plainly: it is COMMODITIZED BETA (you could buy 0.5 BTC + 0.5 SPY yourself for ~free), so it DILUTES risk-adjusted return (~-0.2 Sharpe vs the neutral core) and ADDS crash tail-risk (a crypto-50%/equity-20% crash costs the overlay ~-7% on top of the neutral book). It is NOT alpha and is held as a SEPARATE labelled line \u2014 the two sleeves (AlphaForge, AlphaMax) remain genuinely market-neutral. It exists to add bull-market participation for near-term capital; the pure-neutral core stays the institutional franchise.",
+    "What is actually live: TWO sleeves are now genuinely broker-executed on their own Alpaca paper accounts. AlphaTrend (managed-futures) submits its 17-ETF book daily; AlphaMax (equity momentum) submits its ~170-of-176 tradable long/short book daily; both fill at the US open. Crypto carry runs a real hourly broker loop but has been FLAT since go-live (the funding edge is compressed \u2014 it is honestly holding cash). Every live record here is only days old, so the headline Sharpes (0.33/0.83 for AlphaTrend, 0.91 for AlphaMax) stay BACKTEST figures until the live books confirm them. We will not call a simulation a realized record, nor a days-old live record a track record.",
+    "Honest worst-case risk: the live-overlap curve starts 2023-07 and contains no 2022 bear or 2020 crash, so its -4.7% drawdown is a coverage artifact, NOT a risk estimate. The crisis-inclusive worst drawdown is -15% to -18%, and sleeve correlations rise to +0.6 to +0.9 in risk-off. We publish the worse number as the headline.",
+    "Honest forward expectation is 0.3 to 0.9, NOT 0.7 to 1.0 \u2014 with a real chance of ~0 in year one. Crypto carry's standalone 0.68 hides a -19.6% 2022 drawdown; equity momentum's 0.91 is the top of a 0.07-1.17 band whose deep-history forward is ~0.08 (DSR 0.17 at the current N=102 trial ledger \u2014 it was 0.34 when first published at N=27; deflation tightens as experiments accumulate, and it fails the 0.95 gate either way). The honest central estimates are lower than the headline figures.",
+    "DISCLOSURE 2026-07-11 \u2014 the equity sleeve's deflated confidence has decayed with our own research, and we say so: DSR 0.34 was computed at N=27 logged trials; the ledger now stands at N=102 and the same equity curve deflates to DSR 0.17. Nothing about the sleeve changed \u2014 running more experiments mechanically lowers every number's deflated confidence, including our own live record's. Also from the same campaign: six documented momentum improvements (Barroso-Santa-Clara / Daniel-Moskowitz vol-scaling x3, residual momentum, 12-7 intermediate, sector-neutral) were built and tested against the live AlphaMax construction \u2014 ALL null or worse. Vol-scaling is redundant with the book-level vol target already running (incremental alpha t between -1.64 and +0.81 across 5 configs); residual momentum screens weaker than plain 12-1 (t 2.11 vs 2.49 monthly); 12-7 and sector-neutral screen weaker than what we run (t 0.92 / 1.28 vs 1.73). The frozen 12-1 construction stays. One pre-registered follow-up (52-week-high, screen t 2.01) is in its deep-history walk-forward now; its result will be published either way.",
+    "GATE AUDIT 2026-07-12 \u2014 we audited our own deploy gate for whether it flatters us. The deflated-Sharpe formula already corrects for fat tails and skew, but it assumed returns are serially independent; trend and momentum are not. We added the standard serial-correlation correction (Lo-2002 HAC) and re-graded every sleeve. Result: nothing crosses the 0.95 gate, and if anything the old formula was slightly too HARSH on the trend/momentum sleeves \u2014 AlphaTrend's deflated Sharpe nudges UP (~0.80 to ~0.83) because its daily returns are mildly mean-reverting, so its average is known a little better than the naive formula assumed. We are not being flattered by an assumption; the safe direction to be wrong is the one we were wrong in. No change to the live gate was warranted, so none was made. (This audit becomes load-bearing only for a future slow/smoothed signal graded near the gate, where the correction would pull a Sharpe DOWN; we will run it before deploying any such candidate.)",
+    "DISCLOSURE 2026-08-01 \u2014 the evidence base we publish for the equity sleeve is stale in two separate ways, and both are ours to say. FIRST, the figures on the record (net Sharpe 0.907, DSR 0.341) describe the frozen k30_dn_63 walk-forward artifact. Re-run on today's data lake, that same construction measures net Sharpe 0.818, and deflated against the trial ledger as it now stands (N=111; those figures were computed at N=27) its DSR is about 0.15. Nothing about the construction changed \u2014 the lake grew, the ledger grew, and the number came down. SECOND, and the part that matters more: that construction is NOT what the live sleeve trades. The live tick runs the equity profile's default construction \u2014 a different rebalance cadence, K per side, universe and leg grid (seven parameters differ) \u2014 which is the recipe drift we disclosed on 2026-07-19 and have not closed. So our published evidence blesses one thing and our account trades another. We then ran the head-to-head we owed: both constructions re-measured from scratch on ONE matched window (the same 2022-07..2026-06 span, the same 12-leg grid, the same committed cost model). The evidenced construction scores 0.818 and the live one 0.982, and a paired bootstrap on the daily returns puts P(the evidenced construction is the better one) at about 0.37-0.39 across seeds, with a 95% interval on the Sharpe difference of roughly -1.3 to +0.9. That interval straddles zero by a mile: on the evidence we have the two are statistically INDISTINGUISHABLE. The honest statement is therefore that the drift was never shown to be a downgrade \u2014 and it was never shown to be an upgrade either. We are NOT claiming the live construction is better, and one matched window does not settle it. Separately, from the same audit: the in-sample Sharpe this state emits for the flagship now reads 1.85 \u2014 that is the book carrying the disclosed +20% net-long overlay through a bull window \u2014 while the market-neutral core, emitted alongside it, reads 1.46. At the time of writing the public pages still carry 1.46 as their struck in-sample headline, so the figure moved 1.46 -> 1.85 and the pages have not caught up. Both are in-sample and neither is earned; the honest forward band is unchanged at 0.3 to 0.9. We publish the drift, the lower re-measurement and the null head-to-head together, because reporting only the ones that flatter us is how an evidence base rots.",
+    "PRESENTATION 2026-08-01 \u2014 we changed the order the four algorithms are listed in, and we note it so a verifier diffing the signed chain sees a documented reason rather than an unexplained reshuffle. The flagship ALPHAC now leads; the three sleeves that compose it follow (AlphaMax, AlphaTrend, AlphaForge). Previously AlphaForge led, purely because it was built first \u2014 which put our smallest-capacity sleeve (~$10M measured capacity cliff, and the one knocked out by venue unreachability in two multi-day outages between 2026-07-18 and 2026-07-29 \u2014 see the open incident below) at the top of the page and the book our published forward record actually describes at the bottom. No number, weight, cadence or metric changed with the reorder; the book's composition weights (equal quarters) and every curve are byte-identical to before it.",
+    "OPEN INCIDENT 2026-07-20 \u2014 the crypto sleeve is HALTED on venue unreachability, and we are saying so while it is still unresolved rather than after. Since 2026-07-18 13:00 UTC the hourly carry loop has completed ZERO cycles: Binance is unreachable from our network. This is venue-specific, not a general outage and not a DNS fault \u2014 DNS resolves normally, the general internet and our other venues are fine (Bybit responds, the equity broker responds), and the failure persists when we bypass DNS entirely and connect by IP with SNI, which points to network-level filtering or an edge geo-restriction rather than a transient blip. Consequences, stated plainly: the sleeve's positions are FROZEN as of the last successful cycle and are not being managed, and its published curve stops at 2026-07-18 \u2014 we do NOT roll forward a mark we did not observe, so the book you see is stale by design, not live. We are determining whether this is transient or a persistent regional restriction. If it proves persistent it is a STRUCTURAL problem for a sleeve built on a single venue, and we will say that too \u2014 venue access is exactly the kind of risk that quietly kills a strategy, and it belongs on the record while it is inconvenient, not once it is tidy.",
+    "CORRECTION 2026-07-19 \u2014 a reverse split was mismarked and it cost us real money and a week of half-size trading; here is everything. During the equity sleeve's July drawdown (itself genuine: a momentum junk-rally squeeze, every construction of the factor lost on the same days, and the signal verified alive \u2014 longs 97th momentum percentile, shorts 6th), an audit found the nightly simulation had marked a 1-for-20 reverse split (ALIT) at raw prices: it fabricated a -4.95% simulation day that never happened, leaked about -1.45% of real loss into the live account via an oversized short, and falsely tripped the -10% drawdown brake \u2014 so the live book traded at roughly HALF its intended size for over a week on a phantom loss. The corrected curve's true worst day is -2.49% and its maximum drawdown -7.1%; the brake should never have fired and releases on the corrected numbers at the next session. Two more defects found and fixed in the same audit: crypto perpetuals had leaked into the equity book's record through Jun 11 (~+$323 of crypto PnL inside the published equity record \u2014 the same unscoped-universe class as the 2026-07-05 crypto bug, now guarded at two layers), and the live recipe had drifted from the exact configuration our published evidence blesses (disclosed here; the strategy itself is unchanged). Fixes: split-aware marking with a sanity guard against bogus records, universe scoped to equities, an asset-class guard in the order path, and regression tests pinning the RUNNING path \u2014 because this is the third time a data defect dressed up as performance, and the lesson is permanent: it is never the strategy, always the plumbing, and a fix is not done until a test pins the path that runs.",
+    "CORRECTION 2026-07-05 \u2014 the crypto sleeve was signal-dead, not 'carry compressed'. From go-live (06-23) to 07-05 AlphaForge held cash and we published that funding carry was compressed. An internal audit found the true cause: a wiring bug blended equity-fundamental alphas (undefined on crypto) into the live signal, invalidating it every cycle \u2014 the validated carry-only configuration was never what ran live. Fixed same day (the loop now runs the exact blessed walk-forward config: carry_fund_21, weekly rebalance, with per-cycle signal-health logging so a dead signal can never masquerade as a quiet hold again). The $100k cash equity curve was genuine; the published EXPLANATION was wrong. Per our append-only posture this correction is added to the record, not swapped into it.",
+    "We red-team our own record. On 2026-06-27 our publishing pipeline emitted a future-dated (2026-06-29) paper mark that briefly reached the public sites and was anchored into seq 0 of the signed transparency chain. We caught it the same day, added a fail-closed guard, and appended the corrected seq 1 \u2014 the append-only chain shows BOTH, because we don't get to delete our mistakes. That is the trust system working, not failing.",
+    "AlphaTrend (managed-futures trend) was the FIRST sleeve we took genuinely live: its 17-ETF book transacts on Alpaca paper, not in a simulator. We published DSR 0.83 for it and called it the first sleeve to CLEAR multiple-testing deflation, statistically real rather than a backtest fluke. RE-DERIVED 2026-08-07 at honest N=133 and pooled V[SR]=7.96e-04, its DSR is 0.000: the LOWEST of the six sleeves we have measured, not the highest. The old 0.83 rested on a variance input roughly 80x too small and a trial count of 5 while its siblings were graded at N=101, so it was marked on an easier exam and then called the soundest. Net Sharpe 0.25 over its full 5,179-day history. It is folded into ALPHAC at equal quarters for MEASURED drawdown reduction, not for a demonstrated edge. The screen suggested 0.73; the honest engine says 0.33 on the live window. We published every one of those numbers.",
+    "STRUCTURAL VERDICT 2026-08-05 \u2014 the crypto sleeve's venue unreachability is STRUCTURAL, and we said we would say so. The 2026-07-20 note above promised: 'if it proves persistent it is a STRUCTURAL problem for a sleeve built on a single venue, and we will say that too.' It has proved persistent, so here is the number we had not put on the record until now: across its entire live history the hourly loop has completed 434 of 1205 expected cycles \u2014 an uptime of 36.0%. It has been dark for roughly 772 hours of a 50.2-day record, with 8 separate outages longer than a day and a longest single outage of 165 hours. As of this publish it has been dark 0 hours; its last observed cycle was 2026-08-18 12:00 UTC. WHAT THIS MEANS, stated plainly rather than buried: this sleeve carries 40% of the flagship's weight, so for most of the forward record our largest single position has not been managed. The published curve is not wrong \u2014 we never roll forward a mark we did not observe, so the sleeve's line simply stops when the venue does \u2014 but a 40%-weight sleeve that is dark most of the time is not meaningfully 'live', and describing it as live without this number attached would have been a half-truth. The forward track record is the whole basis on which this book asks to be believed, and it is being accrued on a book whose biggest sleeve is mostly absent. WHAT WE ARE DOING: the diagnosis is unchanged and venue-specific (the general internet and our equity broker respond normally from the same machine while the exchange endpoint fails on connect). Two fixes are real \u2014 hosting the loop somewhere with unobstructed access, and removing the single-venue dependency altogether by adding a second exchange. We flag the first honestly: our own deploy runbook records that reaching a venue from a different region is a COMPLIANCE decision and not merely an operations one, so it will not be done as a silent infrastructure tweak. Until one of those lands, read this sleeve's contribution to the live record as what it is \u2014 36.0% of the intended trading.",
+    "CORRECTION 2026-08-06 \u2014 our crypto carry sleeve is a strategy that earns funding, and its LIVE paper account has never once booked funding. We found this ourselves and are publishing it before the fix rather than after. The mechanism, stated plainly so anyone can check it: funding is applied in exactly one place in this codebase, Ledger.apply_funding, and it is called from exactly one call site, the BACKTEST engine. The live paper broker's cash moves on one line and only one line, a fill: cash - qty*price - fee. No funding cashflow can reach the live account by any path. The size of what is missing is not marginal. Our committed walk-forward artifact for this sleeve reports funding_net of $19,500 against a total return of $38,236 on a $100k book over 2022-02 to 2026-06: about HALF of everything this strategy has ever earned is the funding it is designed to harvest. Removing it takes the sleeve's backtested Sharpe from 0.653 to roughly 0.30. So AlphaForge's live record has been running against a hard ceiling of about half its validated Sharpe, and every live number we have published for this sleeve should be read in that light. What we are NOT doing: we are not restating the historical live curve. The marks we published were the marks we observed, and this record is append-only, so the fix applies FORWARD from the day it ships and the understated period stays visible in the chain. One number we are deliberately NOT putting on the record yet: our internal estimate of what funding would have added over the live window is dominated by a single name that redenominated roughly 100x inside the window, which makes the naive figure meaningless. We would rather publish no number than a number we cannot stand behind, so that one waits for the corrected accounting. This is the fourth time a defect in our plumbing, not our strategy, has moved a published number, and the lesson we wrote down in July holds: a fix is not done until a test pins the path that actually runs.",
+    "CORRECTION 2026-08-06 \u2014 a factual claim in our 2026-07-20 incident note above is now false and we are marking it rather than editing it. That note said 'Bybit responds' as evidence the Binance failure was venue-specific. Re-measured from the same network on 2026-08-06: Bybit does NOT respond, and neither do Kraken or Deribit. Binance, Bybit and Kraken all fail on connection reset in under a tenth of a second and Deribit times out. The conclusion the original note drew is unchanged and if anything strengthened, since the block is clearly broader than one venue, but the supporting fact it cited is no longer true and a reader checking our work today would find it wrong. One venue does answer: OKX responds normally and serves funding rates, 436 perpetual instruments and hourly candles. We are evaluating it, and we note in advance that moving venue is not a configuration change: the same carry signal computed on OKX has a cross-sectional rank correlation of only about 0.64 with the Binance one, so it would be a materially different strategy wearing the same name, and we will not splice the two curves together and call it one continuous record.",
+    "FIXED 2026-08-06 \u2014 the funding gap disclosed above is now closed in the live path, forward only. Earlier today we published that our crypto carry sleeve had never once booked funding in live paper, which is roughly half of everything that strategy has ever earned. That is fixed: the live broker gained a funding path with the identical sign convention the backtest ledger uses (payment = -position * mark * rate, longs pay shorts on a positive rate), and the live loop now settles every stored funding event for the window just closed, before the strategy re-decides, so a settlement is charged against the position that was actually held through it. It is point-in-time by construction: the reader filters on each event's stored publication time, never on the settlement time, so a rate not yet knowable at the moment of the cycle stays invisible. Nine tests pin the running path rather than the intention, including one that asserts the live broker and the backtest ledger return identical figures for the same event, because two conventions would be worse than none. Three things we are deliberately NOT doing. We are not restating the historical curve: the marks we published are the marks we observed, the understated period stays in the signed chain, and the fix applies from today. We are not claiming an improvement yet: the sleeve has been dark on venue unreachability since 2026-08-03, so this books nothing until it trades again, and any future gain will show up in the forward record or not at all. And we are not putting a number on what it would have earned over the live window, because our own measurement of that is dominated by a single instrument that redenominated roughly 100x inside the window, which makes the figure meaningless. We would rather publish no number than one we cannot stand behind.",
+    "RE-DERIVATION 2026-08-06 \u2014 we said we would recompute our deflated Sharpes honestly and publish whatever came back. Here it is, and it is bad. Deflated Sharpe is the probability a result beats what the best of N random trials would produce, so it needs two inputs we had both got wrong: N, and the variance of Sharpe across our own trials. Using the honest N of 127 distinct hypotheses and a V[SR] of 7.96e-04 pooled across all 171 trials in every ledger, on each sleeve's full history: **AlphaMax 0.213** (annual Sharpe 0.699 over 728 days), **AlphaForge 0.052** (0.512 over 1,574 days), and **AlphaTrend 0.000** (0.249 over 5,177 days). Our deploy gate is 0.95. Nothing is close. AlphaTrend deserves the full explanation because its published 0.83 was the single best number on this site. We reproduced it exactly from its original inputs, n_trials=5 and V[SR]=1.0e-05, which returns 0.805. Then we corrected one input at a time. Holding N at 5 and using the honest pooled variance instead takes it to **0.098**; using the honest N as well takes it to **0.000**. So that 0.83 was not mainly about trial count. It rested on a Sharpe-variance input roughly EIGHTY TIMES smaller than the one measured across our own trial history, and a smaller variance means a lower bar to clear. Our other sleeves were graded against the larger, correct-order variance. We were, without noticing, grading one sleeve on an easier exam and then calling it the soundest. The honest position: **not one of our three sleeves is statistically distinguishable from luck once its own search is accounted for**, and the sleeve we called 'statistically real, not a backtest fluke' scores zero. That does not mean the strategies are worthless; it means our BACKTEST evidence cannot carry them, which is why the only thing that can settle it is a long forward record we have not yet earned. We publish this in full because a number that only survives on a favourable input is not evidence, and finding that out about our own best figure is exactly what this record exists to make impossible to hide.",
+    "CORRECTION 2026-08-06 \u2014 we have been counting our own experiments in one place while running them in four, so every deflated Sharpe we publish is more flattering than it should be. Our honesty machinery penalises a result for how many ideas we tried before we picked it, and that count is read from a trial ledger. It reads ONE ledger, var/experiments.jsonl, which holds 127 rows and 101 distinct hypotheses. But research run under other data profiles writes to its own ledger, and those were never totalled anywhere: 35 more rows under the managed-futures profile, 12 under Sharadar, 1 under futures. Deduplicated across all four, the honest count is **127 distinct hypotheses, not 101** \u2014 our real search was 26% larger than the number we deflate against. Which directory a trial landed in is a filing convention. Multiple-testing correction does not care about filing conventions: those were all real hypotheses about the same markets, spent by the same researcher, hunting sleeves for the same book. The consequence is one-directional and it is against us: an undercounted N makes a deflated Sharpe look better, so every DSR on this record computed against N=101 (and the earlier N=93, and the N=27 our equity sleeve was first published at) reads better than the truth. We are not restating those figures today because re-deriving each one properly is its own piece of work and we would rather publish the error immediately than a hasty replacement. Treat every DSR on this site as an upper bound until they are re-derived. Fixed at the source: the audit now counts the union of every ledger, which also closes the evasion this revealed \u2014 a future search can no longer duck the budget by writing to a directory nobody adds up.",
+    "CORRECTION 2026-08-06 \u2014 our social card has been advertising a forward Sharpe we stopped believing weeks ago. The image that unfurls whenever this site is shared on LinkedIn, X, Slack or anywhere else read 'FORWARD EXPECTATION 0.7 TO 1.0 SHARPE, AFTER DEFLATION'. Our published expectation is 0.3 to 0.9, so the FLOOR was overstated by a factor of 2.3, and the words 'after deflation' made it a specific technical claim rather than loose marketing. The same card said 'three quant algorithms' when we publish four, and called the book market-neutral without mentioning the +20% net-long overlay we disclose everywhere else. It went stale when we lowered the band on 2026-07-29 and nothing pointed at it, because it is an image rather than a number in an artifact, and our freshness checks only ever look at artifacts. Replaced with a card that carries NO performance figure at all: a picture that travels across the internet for months and cannot be corrected in a reader's cache has no business quoting a Sharpe ratio. Note for anyone verifying: the social platforms cache these aggressively, so the old card may keep appearing on previously-shared links for some time. That is the clearest possible argument for never putting a number on one. Also corrected in the same pass: our app manifest still named the firm 'Canli Capital / AlphaForge' and described it as an engine for crypto perpetual futures, which describes ONE 40% sleeve rather than the book.",
+    "CORRECTION 2026-08-06 \u2014 the decorrelation we call 'the edge' was measured on a basket containing a strategy we do not trade, and correcting it removes our headline claim. We publish an average pairwise sleeve correlation of -0.04 and describe this book as 'three near-uncorrelated sleeves; that decorrelation is the edge'. That -0.04 was computed over FOUR equity curves, and one of them, prereg_investment, is not a sleeve. The book is and always has been three sleeves: AlphaForge, AlphaMax and AlphaTrend. The script's own comment described its inputs as 'the four curves that make up the live book', which was simply not true of the book. Recomputed on the three sleeves we actually trade, over the identical 728-day window: average pairwise correlation is **+0.072, positive**, not -0.040; average sleeve Sharpe is 0.529; and the worst pair, AlphaMax against AlphaTrend, correlates at **+0.21** because momentum and trend are close cousins and always were. Why this matters more than a third decimal place: a book of N sleeves has effective breadth N/(1+(N-1)*rho), which converges to 1/rho, so its Sharpe can never exceed s/sqrt(rho). At a NEGATIVE rho that ceiling does not exist, and we have been reasoning and planning as though it did not. At the true +0.072 the ceiling is **1.97** \u2014 meaning no number of additional sleeves of this quality, not fifty and not two hundred, can take this book past a Sharpe of about 2. Our stated goal is 2.5. On the correlation we have now measured rather than assumed, that goal is unreachable by adding sleeves, and it was our own measurement error that hid the ceiling. Fixed at the source, and the corrected figure is now what the analysis emits. We are stating this in full because it is the single most load-bearing number in our research, we got it wrong, and the error ran in the direction that flattered the plan.",
+    "CORRECTION 2026-08-06 \u2014 for six weeks our two public sites published two different track records for the same book, and the stale one was the flattering one. app.canlicapital.com was serving glass-box artifacts last generated 2026-06-24: a track record reading 0.00% return over '3 days live' with NAV at a clean $100,000, while canlicapital.com served the truth for the identical book, -2.54% over 38 days with NAV $97,459. Anyone who opened the dashboard saw a flat, unblemished record. Anyone who opened the landing page saw a loss. Both were live at the same time. The cause was mundane and that is the point: our publisher copies paper-state.json to both sites but the three glass-box exporters wrote only to the landing site's directory, so the dashboard's copies simply stopped updating on 2026-06-24 and nothing alerted. Our health check verifies that both hosts serve the same paper-state.json; it never checked the glass-box files, so the gap was invisible to the monitor built to catch exactly this. Fixed at the source: all three exporters now write one stamped string to both directories, so the two hosts are byte-identical by construction and cannot disagree even about a content hash. We are stating this plainly because a firm whose entire claim is that its record cannot be quietly re-picked was, for six weeks, publishing two different inception stories on two different hosts, and the more favourable one was the one that was wrong.",
+    "CORRECTION 2026-08-06 \u2014 we have said AlphaTrend 'CLEARED multiple-testing deflation' and it did not. Our deploy gate is DSR >= 0.95. AlphaTrend's DSR is 0.83. **0.83 does not clear 0.95**, and the sentence on this record calling it 'the FIRST sleeve to CLEAR multiple-testing deflation, statistically real, not a backtest fluke' was wrong when we wrote it and has been wrong every day since. What is true is narrower and we should have written it: AlphaTrend scores far better on that measure than anything else we have built, and it was the closest any sleeve had come. That is not the same as clearing. There is a second problem behind the first. AlphaTrend's 0.83 was computed at n_trials=5, while AlphaMax was graded against N=101 on the same record. Those two numbers are not comparable, and presenting them side by side flattered the one graded against fewer trials. Re-graded against the ledger as it actually stands the figure falls, and we are re-deriving it before we publish a replacement rather than quoting a number we have not recomputed. Until that lands, treat AlphaTrend's DSR on this site as WITHDRAWN rather than merely caveated.",
+    "DISCLOSURE 2026-08-06 \u2014 our sleeve-admission gate is not calibrated, and we have been applying it in a way that protects what we already own. Two facts sit badly together. First, to clear DSR >= 0.95 on a 21-year daily sample at our current trial ledger, a candidate must print an annualised net Sharpe of about **1.64** (and about 1.11 even at the nine trials we originally pre-registered). Essentially nothing in the published factor literature is that strong; the best-documented effects sit under 0.8. We ran the nine canonical, 25-year-replicated effects through our own gate and not one of them passes at any trial count. Second, **both sleeves we actually run also fail it** \u2014 AlphaMax at DSR 0.17, AlphaTrend at 0.83 \u2014 and we deployed them anyway, while using the same gate to kill four whole asset classes at the design stage before spending a single trial on them. A bar that incumbents are exempt from and challengers are not is not a standard, it is an incumbency advantage, and we are naming it as ours. Two construction defects behind the gate compound this and are also ours to state: there is NO beta hedge implemented anywhere in this codebase, yet our own pre-registration mandates one for betting-against-beta and kills the candidate if realised beta exceeds 0.2, so that kill was guaranteed before any data was loaded; and our fundamentals screen was run with no positive control, which means its eight null results cannot distinguish 'these factors do not work' from 'this harness does not work'. We are rebuilding the admission test to separate the two questions it currently conflates, significance of a pre-registered candidate versus deflation of a book selected from many. We will publish the replacement and re-grade every sleeve against it, including the ones we already own, and we expect that to make our own numbers look worse rather than better.",
+    "DISCLOSURE 2026-08-06 \u2014 the sleeve we call 'crypto funding carry' is 20% commodities, and two sleeves we present as decorrelated are trading the same metals and the same crude. Our universe rule ranks Binance perpetuals purely on 30-day median quote volume and has no predicate on what the contract actually tracks. Binance lists perps on commodities, and they are liquid enough to rank in. Four of AlphaForge's twenty current members are therefore not crypto at all: XAU (gold) and XAG (silver), which entered 2026-03-01, and CL (WTI) and BZ (Brent), which entered 2026-06-01. Their prices confirm what they are \u2014 gold marks near $4,543, silver near $75.62, WTI near $89.35, Brent near $93.00. Meanwhile AlphaTrend, the sleeve we hold BECAUSE it is decorrelated, currently holds GLD, SLV, USO, DBC, DBA and UNG. So gold, silver and crude sit on both sides of a book whose entire construction rests on those sides being independent. We are not claiming this has hurt returns; carry on a gold perp may be a perfectly good trade. Two things about it are nonetheless wrong and are ours to say. First, our public description of this sleeve says 'crypto', and for a fifth of its universe that is not accurate. Second, and more consequential: the -0.04 average pairwise sleeve correlation we publish was measured on a window ending 2026-06-01, which is the very day the crude perps entered and only three months after the metals did. That figure therefore describes a book with less overlap than the one we are running now, and the honest reading is that our measured decorrelation is likely to be better than our future decorrelation. Since average correlation is the binding constraint on everything this book is trying to become, that error runs in the direction that flatters us, which is the direction we have committed to publishing fastest.",
+    "DISCLOSURE 2026-08-06 \u2014 our crypto universe has not rebalanced since 2026-06-01 and we did not notice until we went looking for something else. The universe rebuilds monthly at a month boundary inside the live cycle. Membership rows exist for 2025-11-01 through 2026-06-01 without a gap, and then stop: the 2026-07-01 and 2026-08-01 rebalances both failed to run, because the sleeve was dark for most of that period on the venue unreachability documented above. This is a second-order cost of an outage that we had only accounted for in missed cycles: the sleeve did not merely stop trading, it froze its own definition of what it trades, and has spent over two months holding a universe selected against two-month-old liquidity. We are recording it here rather than quietly rebuilding, because an outage that silently changes what a strategy IS matters more than one that merely pauses it.",
+    "CORRECTION 2026-08-11 \u2014 this site published a 300% one-day gain that never happened, and it stood for three days. Our flagship live curve read 100,000.00 on 2026-08-07 and 400,207.73 on 2026-08-08. ALPHAC is market-neutral and runs gross at or below 1.0x; it cannot quadruple in a session, and it did not. The cause was mundane and entirely ours. On 2026-08-07 the book moved to fresh $1M accounts, and the routine that records broker equity wrote history with INSERT OR REPLACE \u2014 merging each account's history into whatever was already stored rather than replacing it. Rows written while a profile still pointed at the SUPERSEDED account therefore survived at any timestamp the new account's history did not happen to cover. AlphaTrend's curve ended up holding $1,000,000 marks from the new account interleaved with a $100,681.45 mark from the old $100k one. The reader rebased on the first mark, turning that row into 10,068, and the step to the next day published as a +893% return; at one third weight that is +297% on the book. Two compounding defects: several marks a day meant two points shared a date, so a 'daily return' was computed between two marks of the same afternoon; and nothing rejected a step that is arithmetically impossible for the strategy. Both are fixed. The writer now REPLACES the curve, since a broker's full history is authoritative on its own and merging into it is unsound \u2014 which also self-healed the stored data, taking two sleeve curves from 68 and 52 mixed marks down to 4 and 4 clean ones. The reader keeps one mark per day and refuses to splice a superseded account into a current record. Six tests pin the exact marks that produced 400,207, and one asserts a genuine -10% day is NOT mistaken for an account switch, because a guard that trimmed real drawdowns would flatter this record rather than protect it. The corrected figure for the same window is 99,887.94, i.e. -0.11%. We are stating the wrong number here in full rather than replacing it quietly: it was public, it was flattering, and anyone who looked at this site in those three days saw it.",
+    "ADDED 2026-08-10 \u2014 AlphaVintage joins the book as a fourth live sleeve and the weights move to equal quarters. It trades the IWM/SPY size spread off the point-in-time CPI surprise (the standardized AR(3) residual of headline and core inflation, differenced WITHIN a single ALFRED vintage), and it is the only sleeve here reading a revision-aware macro release rather than price, funding or a balance sheet. Two things must be said plainly. First, it does NOT clear our deflation gate: net Sharpe 0.3403 with a Newey-West t of 1.82 over 5,996 days. It earns its quarter by being uncorrelated (-0.065 to equity momentum, -0.046 to managed futures), not by being better \u2014 adding it cut the book's average pairwise correlation from +0.0723 to +0.0274. Second, it runs at HALF the researched notional: the pre-registered spec sizes each leg at 1.0x NAV for 2.0x gross, which exceeds our own runaway brake and equals this account's Reg T overnight limit exactly, leaving no cushion on a month-long hold. Sharpe is scale-invariant so the validated figure still applies; the dollar return, the volatility and the drawdown are all halved. A third disclosure we owe: the research modelled NO short-borrow cost while the live sleeve is short SPY on about 95% of days. Charged at 50bp/yr that is 0.3403 -> roughly 0.3060, and the live sleeve is therefore held to a harsher standard than the study that justified it. The days before 2026-08-10 continue to compound at equal thirds; we appended a dated weight entry rather than restating three already-published days.",
+    "CHANGE 2026-08-12 \u2014 we cut the strategic beta overlay from +20% to +10%, on measurement rather than taste, and we are showing the numbers that decided it. The overlay was never claimed to be alpha; what nobody had done was measure what it does to the book. Measured on the 4-sleeve research book over its 1,061-day common window, and then stressed by replaying the market factor's worst equal-length stretch under an UNCHANGED neutral core so that only the overlay varies. Measured window / crash stress, by overlay size: 0% gives 1.396 / 1.396; 5% gives 1.667 / 1.308; 10% gives 1.784 / 1.192; 12.5% gives 1.799 / 1.128; 20% gives 1.760 / 0.929; 30% gives 1.651 / 0.686. The SHAPE decides it, not any one cell: measured-window Sharpe is FLAT from 5% to 15% while crash-stress Sharpe falls monotonically with size and the worst day grows steadily (-0.90% at 0%, -1.26% at 10%, -2.02% at 20%). When one axis is flat and the other is monotone you take the lower number \u2014 the same upside for strictly less tail. Cutting 20% to 10% therefore costs nothing measurable in the window (1.760 to 1.784, marginally higher) while recovering +0.26 of stress Sharpe and cutting the worst day roughly in half. WE DELIBERATELY DID NOT PICK THE PEAK: 12.5% maximises the measured window, and choosing the argmax of a curve fitted to one window is the selection trap our own deflation discipline exists to prevent. And we correct ourselves in passing: an earlier internal note claimed 10% would halve the upside to 1.578. That figure was a linear interpolation, never measured, and it was wrong \u2014 the upside is essentially unchanged. We did NOT cut it to zero: equity beta has positive long-run drift and this capital is explicitly stated to want participation, so removing it entirely would trade real expected return for a cleaner-looking ratio. TWO CAVEATS THAT BOTH CUT THE SAME WAY, stated because they make our own prior numbers look better than they should. First, the crash stress ran at effectively HALF weight: the market factor is 0.5 BTC + 0.5 SPY and a missing leg contributes zero, but our BTC series begins 2020-01-01, so the pre-2020 stress was SPY-only. A real crash in which both legs fall together costs more than the -0.47 Sharpe we measured. Second, the window in which the overlay LOOKED good rose +121.6% with a worst drawdown of -28.2%, against -54.4% available in that same factor's own history \u2014 the upside is measured in a bull market and the downside is not. Every published figure that carried the +20% overlay, including the in-sample 1.80, describes a configuration we no longer run; the neutral-core figure (1.396 on the current four sleeves) is unchanged and always was the honest one.",
+    "CORRECTION 2026-08-12 \u2014 the number we use to justify keeping AlphaTrend does not reproduce, and it overstated the case by about 3x. We publish that AlphaTrend is held 'for measured drawdown reduction (removing it makes the book's max DD 69% worse), not for a demonstrated edge'. Re-measured on the current four-sleeve book, removing it takes max drawdown from -3.68% to -4.51%, i.e. 22.7% worse \u2014 not 69%. We looked for a configuration that yields 69% and could not find one: on the three-sleeve book we previously ran at 40/40/20 it is 16.6%, at equal thirds 20.5%, and with the beta overlay applied it falls to 4.4-7.0%. The rest of the sleeve's disclosure stands and is if anything harsher than before: leave-one-out on the current book shows AlphaTrend CONTRIBUTES -0.092 Sharpe (removing it would raise the book from 1.396 to 1.488), its standalone Sharpe of 0.248 is the weakest of the four, and its re-derived DSR is 0.000. So it is held for a real but materially smaller diversification benefit than we claimed. WHAT WE DID NOT DO: change its weight. A weight sweep shows a clean monotone trade \u2014 roughly 0.13 Sharpe per 1 percentage point of drawdown, with no optimum anywhere \u2014 so any weight we picked off that curve would be a risk preference dressed as a measurement, and choosing the in-sample argmax is the selection trap our deflation discipline exists to prevent. Equal weights remain what the evidence supports: no sleeve's deflated Sharpe justifies more capital than any other's, which is exactly why they are equal."
+  ],
+  "holdings": {
+    "alphamax": {
+      "as_of": "2026-08-17",
+      "long_count": 84,
+      "short_count": 97,
+      "gross_pct": 31.0,
+      "net_pct": 2.2,
+      "long": [
+        {
+          "ticker": "STX",
+          "weight_pct": 0.95
+        },
+        {
+          "ticker": "MU",
+          "weight_pct": 0.95
+        },
+        {
+          "ticker": "WDC",
+          "weight_pct": 0.5
+        },
+        {
+          "ticker": "CIEN",
+          "weight_pct": 0.42
+        },
+        {
+          "ticker": "TER",
+          "weight_pct": 0.41
+        },
+        {
+          "ticker": "REPL",
+          "weight_pct": 0.37
+        },
+        {
+          "ticker": "LRCX",
+          "weight_pct": 0.33
+        },
+        {
+          "ticker": "GLW",
+          "weight_pct": 0.32
+        },
+        {
+          "ticker": "ONTO",
+          "weight_pct": 0.32
+        },
+        {
+          "ticker": "COHR",
+          "weight_pct": 0.32
+        },
+        {
+          "ticker": "MKSI",
+          "weight_pct": 0.3
+        },
+        {
+          "ticker": "TTMI",
+          "weight_pct": 0.27
+        },
+        {
+          "ticker": "NBIS",
+          "weight_pct": 0.27
+        },
+        {
+          "ticker": "APGE",
+          "weight_pct": 0.26
+        },
+        {
+          "ticker": "SIMO",
+          "weight_pct": 0.26
+        }
+      ],
+      "short": [
+        {
+          "ticker": "BYND",
+          "weight_pct": 1.07
+        },
+        {
+          "ticker": "IT",
+          "weight_pct": 0.35
+        },
+        {
+          "ticker": "INTU",
+          "weight_pct": 0.34
+        },
+        {
+          "ticker": "CHTR",
+          "weight_pct": 0.3
+        },
+        {
+          "ticker": "DUOL",
+          "weight_pct": 0.26
+        },
+        {
+          "ticker": "CSGP",
+          "weight_pct": 0.25
+        },
+        {
+          "ticker": "SMPL",
+          "weight_pct": 0.23
+        },
+        {
+          "ticker": "SHAK",
+          "weight_pct": 0.22
+        },
+        {
+          "ticker": "HUBS",
+          "weight_pct": 0.22
+        },
+        {
+          "ticker": "CBZ",
+          "weight_pct": 0.21
+        },
+        {
+          "ticker": "FISV",
+          "weight_pct": 0.21
+        },
+        {
+          "ticker": "POWL",
+          "weight_pct": 0.21
+        },
+        {
+          "ticker": "BKNG",
+          "weight_pct": 0.21
+        },
+        {
+          "ticker": "HDB",
+          "weight_pct": 0.21
+        },
+        {
+          "ticker": "PRGO",
+          "weight_pct": 0.2
+        }
+      ]
+    },
+    "alphaforge": {
+      "as_of": "2026-08-18",
+      "long_count": 5,
+      "short_count": 4,
+      "long": [
+        {
+          "ticker": "ADA"
+        },
+        {
+          "ticker": "BZ"
+        },
+        {
+          "ticker": "CL"
+        },
+        {
+          "ticker": "SUI"
+        },
+        {
+          "ticker": "TAO"
+        }
+      ],
+      "short": [
+        {
+          "ticker": "HYPE"
+        },
+        {
+          "ticker": "LAB"
+        },
+        {
+          "ticker": "LINK"
+        },
+        {
+          "ticker": "ZEC"
+        }
+      ],
+      "flat": false
+    }
+  },
+  "book": {
+    "name": "ALPHAC Cross-Asset Book",
+    "style": "Market-neutral core (equity momentum + crypto funding carry + managed-futures trend + PIT macro surprise, four near-uncorrelated sleeves at equal quarters, measured average pairwise correlation +0.0274) PLUS a disclosed +10% strategic net-long overlay",
+    "strategic_tilt": {
+      "pct": 0.1,
+      "mix": {
+        "BTC": 0.5,
+        "SPY": 0.5
+      },
+      "kind": "disclosed net-long market beta (commoditized), separate labelled line, NOT blended into the neutral sleeves",
+      "honest_note": "beta dilutes risk-adjusted return and adds crash tail-risk; it buys bull-market participation, not quality. The pure-neutral core is the institutional franchise; the tilt is for near-term/family capital."
+    },
+    "sleeves": [
+      {
+        "key": "alphaforge",
+        "name": "AlphaForge",
+        "desc": "Funding-rate carry on Binance USDT-M perpetuals, market-neutral.",
+        "standalone_sharpe": 0.68,
+        "weight": 0.25
+      },
+      {
+        "key": "alphamax",
+        "name": "AlphaMax",
+        "desc": "12-1 cross-sectional momentum, dollar-neutral long/short, split-adjusted, survivorship-free.",
+        "standalone_sharpe": 0.91,
+        "weight": 0.25
+      },
+      {
+        "key": "managed_futures",
+        "name": "AlphaTrend",
+        "desc": "Time-series momentum across a 17-market basket (equity-index, rates, commodities, FX via liquid ETFs), long/short on each market's own trend, inverse-vol weighted. THE RE-DERIVATION IS DONE (2026-08-07) AND IT WENT AGAINST US: at the honest trial count (N=133) and the pooled trial variance, its DSR is 0.000 \u2014 not the 0.83 we published, and the WORST of the 4 sleeves rather than the best. The old 0.83 rested on a V[SR] input ~80x too small and n_trials=5 while AlphaMax was graded at N=101; it was marked on an easier exam and then called the soundest. Net Sharpe 0.25 over its full 5,179-day history. Positive skew, two-decade stable, near-uncorrelated to equities. We keep it because removing it measurably worsens book drawdown, not because its edge is established.",
+        "standalone_sharpe": 0.33,
+        "weight": 0.25
+      },
+      {
+        "key": "alphavintage",
+        "name": "AlphaVintage",
+        "desc": "Point-in-time CPI surprise \u2014 the standardized AR(3) residual of headline (PCPI) and core (PCPIX) inflation, differenced WITHIN a single ALFRED vintage \u2014 traded as a dollar-neutral IWM-minus-SPY size spread, monthly.",
+        "standalone_sharpe": 0.34,
+        "weight": 0.25
+      }
+    ]
+  },
+  "research_curve": [
+    {
+      "date": "2023-07-07",
+      "equity": 100138.45
+    },
+    {
+      "date": "2023-07-12",
+      "equity": 100531.46
+    },
+    {
+      "date": "2023-07-17",
+      "equity": 100480.5
+    },
+    {
+      "date": "2023-07-22",
+      "equity": 100051.59
+    },
+    {
+      "date": "2023-07-27",
+      "equity": 99647.3
+    },
+    {
+      "date": "2023-08-01",
+      "equity": 99732.03
+    },
+    {
+      "date": "2023-08-06",
+      "equity": 99313.81
+    },
+    {
+      "date": "2023-08-11",
+      "equity": 98857.29
+    },
+    {
+      "date": "2023-08-16",
+      "equity": 99035.21
+    },
+    {
+      "date": "2023-08-21",
+      "equity": 98466.56
+    },
+    {
+      "date": "2023-08-26",
+      "equity": 99131.71
+    },
+    {
+      "date": "2023-08-31",
+      "equity": 99502.55
+    },
+    {
+      "date": "2023-09-05",
+      "equity": 99585.32
+    },
+    {
+      "date": "2023-09-10",
+      "equity": 99883.47
+    },
+    {
+      "date": "2023-09-15",
+      "equity": 100370.43
+    },
+    {
+      "date": "2023-09-20",
+      "equity": 100608.69
+    },
+    {
+      "date": "2023-09-25",
+      "equity": 100179.76
+    },
+    {
+      "date": "2023-09-30",
+      "equity": 99582.96
+    },
+    {
+      "date": "2023-10-05",
+      "equity": 100966.96
+    },
+    {
+      "date": "2023-10-10",
+      "equity": 101308.17
+    },
+    {
+      "date": "2023-10-15",
+      "equity": 101866.18
+    },
+    {
+      "date": "2023-10-20",
+      "equity": 101899.62
+    },
+    {
+      "date": "2023-10-25",
+      "equity": 101771.18
+    },
+    {
+      "date": "2023-10-30",
+      "equity": 101830.4
+    },
+    {
+      "date": "2023-11-04",
+      "equity": 102372.91
+    },
+    {
+      "date": "2023-11-09",
+      "equity": 102366.03
+    },
+    {
+      "date": "2023-11-14",
+      "equity": 103712.09
+    },
+    {
+      "date": "2023-11-19",
+      "equity": 103791.48
+    },
+    {
+      "date": "2023-11-24",
+      "equity": 103953.75
+    },
+    {
+      "date": "2023-11-29",
+      "equity": 103802.96
+    },
+    {
+      "date": "2023-12-04",
+      "equity": 104715.33
+    },
+    {
+      "date": "2023-12-09",
+      "equity": 104797.66
+    },
+    {
+      "date": "2023-12-14",
+      "equity": 105507.81
+    },
+    {
+      "date": "2023-12-19",
+      "equity": 105181.07
+    },
+    {
+      "date": "2023-12-24",
+      "equity": 104999.51
+    },
+    {
+      "date": "2023-12-29",
+      "equity": 104587.01
+    },
+    {
+      "date": "2024-01-03",
+      "equity": 104211.13
+    },
+    {
+      "date": "2024-01-08",
+      "equity": 104544.72
+    },
+    {
+      "date": "2024-01-13",
+      "equity": 104274.5
+    },
+    {
+      "date": "2024-01-18",
+      "equity": 104781.7
+    },
+    {
+      "date": "2024-01-23",
+      "equity": 104918.29
+    },
+    {
+      "date": "2024-01-28",
+      "equity": 105079.02
+    },
+    {
+      "date": "2024-02-02",
+      "equity": 105481.15
+    },
+    {
+      "date": "2024-02-07",
+      "equity": 106045.49
+    },
+    {
+      "date": "2024-02-12",
+      "equity": 106997.86
+    },
+    {
+      "date": "2024-02-17",
+      "equity": 107751.13
+    },
+    {
+      "date": "2024-02-22",
+      "equity": 106880.52
+    },
+    {
+      "date": "2024-02-27",
+      "equity": 108483.0
+    },
+    {
+      "date": "2024-03-03",
+      "equity": 109583.51
+    },
+    {
+      "date": "2024-03-08",
+      "equity": 110476.81
+    },
+    {
+      "date": "2024-03-13",
+      "equity": 111943.14
+    },
+    {
+      "date": "2024-03-18",
+      "equity": 111115.29
+    },
+    {
+      "date": "2024-03-23",
+      "equity": 111173.4
+    },
+    {
+      "date": "2024-03-28",
+      "equity": 111810.2
+    },
+    {
+      "date": "2024-04-02",
+      "equity": 111078.84
+    },
+    {
+      "date": "2024-04-07",
+      "equity": 111221.87
+    },
+    {
+      "date": "2024-04-12",
+      "equity": 112464.4
+    },
+    {
+      "date": "2024-04-17",
+      "equity": 111856.62
+    },
+    {
+      "date": "2024-04-22",
+      "equity": 111778.36
+    },
+    {
+      "date": "2024-04-27",
+      "equity": 111601.54
+    },
+    {
+      "date": "2024-05-02",
+      "equity": 110445.08
+    },
+    {
+      "date": "2024-05-07",
+      "equity": 110951.54
+    },
+    {
+      "date": "2024-05-12",
+      "equity": 110481.37
+    },
+    {
+      "date": "2024-05-17",
+      "equity": 110965.11
+    },
+    {
+      "date": "2024-05-22",
+      "equity": 111653.53
+    },
+    {
+      "date": "2024-05-27",
+      "equity": 111728.67
+    },
+    {
+      "date": "2024-06-01",
+      "equity": 111537.32
+    },
+    {
+      "date": "2024-06-06",
+      "equity": 112029.95
+    },
+    {
+      "date": "2024-06-11",
+      "equity": 111332.6
+    },
+    {
+      "date": "2024-06-16",
+      "equity": 111627.68
+    },
+    {
+      "date": "2024-06-21",
+      "equity": 111529.1
+    },
+    {
+      "date": "2024-06-26",
+      "equity": 110903.94
+    },
+    {
+      "date": "2024-07-01",
+      "equity": 112090.15
+    },
+    {
+      "date": "2024-07-06",
+      "equity": 111810.07
+    },
+    {
+      "date": "2024-07-11",
+      "equity": 113087.38
+    },
+    {
+      "date": "2024-07-16",
+      "equity": 114695.55
+    },
+    {
+      "date": "2024-07-21",
+      "equity": 113935.7
+    },
+    {
+      "date": "2024-07-26",
+      "equity": 114830.73
+    },
+    {
+      "date": "2024-07-31",
+      "equity": 114248.5
+    },
+    {
+      "date": "2024-08-05",
+      "equity": 111599.8
+    },
+    {
+      "date": "2024-08-10",
+      "equity": 111969.32
+    },
+    {
+      "date": "2024-08-15",
+      "equity": 111098.4
+    },
+    {
+      "date": "2024-08-20",
+      "equity": 111046.71
+    },
+    {
+      "date": "2024-08-25",
+      "equity": 111597.77
+    },
+    {
+      "date": "2024-08-30",
+      "equity": 111018.57
+    },
+    {
+      "date": "2024-09-04",
+      "equity": 110660.63
+    },
+    {
+      "date": "2024-09-09",
+      "equity": 110118.55
+    },
+    {
+      "date": "2024-09-14",
+      "equity": 111436.03
+    },
+    {
+      "date": "2024-09-19",
+      "equity": 112107.92
+    },
+    {
+      "date": "2024-09-24",
+      "equity": 113273.38
+    },
+    {
+      "date": "2024-09-29",
+      "equity": 113202.85
+    },
+    {
+      "date": "2024-10-04",
+      "equity": 113487.77
+    },
+    {
+      "date": "2024-10-09",
+      "equity": 113528.23
+    },
+    {
+      "date": "2024-10-14",
+      "equity": 114699.69
+    },
+    {
+      "date": "2024-10-19",
+      "equity": 114665.52
+    },
+    {
+      "date": "2024-10-24",
+      "equity": 114962.48
+    },
+    {
+      "date": "2024-10-29",
+      "equity": 114644.97
+    },
+    {
+      "date": "2024-11-03",
+      "equity": 113773.02
+    },
+    {
+      "date": "2024-11-08",
+      "equity": 115538.14
+    },
+    {
+      "date": "2024-11-13",
+      "equity": 116172.89
+    },
+    {
+      "date": "2024-11-18",
+      "equity": 116064.17
+    },
+    {
+      "date": "2024-11-23",
+      "equity": 117019.08
+    },
+    {
+      "date": "2024-11-28",
+      "equity": 116854.09
+    },
+    {
+      "date": "2024-12-03",
+      "equity": 118495.38
+    },
+    {
+      "date": "2024-12-08",
+      "equity": 118532.57
+    },
+    {
+      "date": "2024-12-13",
+      "equity": 118436.41
+    },
+    {
+      "date": "2024-12-18",
+      "equity": 118974.09
+    },
+    {
+      "date": "2024-12-23",
+      "equity": 119290.81
+    },
+    {
+      "date": "2024-12-28",
+      "equity": 119415.38
+    },
+    {
+      "date": "2025-01-02",
+      "equity": 118800.74
+    },
+    {
+      "date": "2025-01-07",
+      "equity": 119769.29
+    },
+    {
+      "date": "2025-01-12",
+      "equity": 119469.16
+    },
+    {
+      "date": "2025-01-17",
+      "equity": 120165.19
+    },
+    {
+      "date": "2025-01-22",
+      "equity": 120703.14
+    },
+    {
+      "date": "2025-01-27",
+      "equity": 120792.66
+    },
+    {
+      "date": "2025-02-01",
+      "equity": 120779.89
+    },
+    {
+      "date": "2025-02-06",
+      "equity": 121187.27
+    },
+    {
+      "date": "2025-02-11",
+      "equity": 120995.9
+    },
+    {
+      "date": "2025-02-16",
+      "equity": 120876.71
+    },
+    {
+      "date": "2025-02-21",
+      "equity": 120508.12
+    },
+    {
+      "date": "2025-02-26",
+      "equity": 118551.59
+    },
+    {
+      "date": "2025-03-03",
+      "equity": 119709.39
+    },
+    {
+      "date": "2025-03-08",
+      "equity": 119094.88
+    },
+    {
+      "date": "2025-03-13",
+      "equity": 118988.44
+    },
+    {
+      "date": "2025-03-18",
+      "equity": 118903.36
+    },
+    {
+      "date": "2025-03-23",
+      "equity": 119063.03
+    },
+    {
+      "date": "2025-03-28",
+      "equity": 119511.89
+    },
+    {
+      "date": "2025-04-02",
+      "equity": 119457.02
+    },
+    {
+      "date": "2025-04-07",
+      "equity": 118784.64
+    },
+    {
+      "date": "2025-04-12",
+      "equity": 119425.44
+    },
+    {
+      "date": "2025-04-17",
+      "equity": 119931.94
+    },
+    {
+      "date": "2025-04-22",
+      "equity": 120492.72
+    },
+    {
+      "date": "2025-04-27",
+      "equity": 119140.58
+    },
+    {
+      "date": "2025-05-02",
+      "equity": 119341.29
+    },
+    {
+      "date": "2025-05-07",
+      "equity": 119368.23
+    },
+    {
+      "date": "2025-05-12",
+      "equity": 120090.96
+    },
+    {
+      "date": "2025-05-17",
+      "equity": 119359.01
+    },
+    {
+      "date": "2025-05-22",
+      "equity": 120020.59
+    },
+    {
+      "date": "2025-05-27",
+      "equity": 120350.39
+    },
+    {
+      "date": "2025-06-01",
+      "equity": 120005.22
+    },
+    {
+      "date": "2025-06-06",
+      "equity": 119736.83
+    },
+    {
+      "date": "2025-06-11",
+      "equity": 119033.41
+    },
+    {
+      "date": "2025-06-16",
+      "equity": 119488.05
+    },
+    {
+      "date": "2025-06-21",
+      "equity": 119779.94
+    },
+    {
+      "date": "2025-06-26",
+      "equity": 120524.63
+    },
+    {
+      "date": "2025-07-01",
+      "equity": 120982.4
+    },
+    {
+      "date": "2025-07-06",
+      "equity": 120818.33
+    },
+    {
+      "date": "2025-07-11",
+      "equity": 120757.53
+    },
+    {
+      "date": "2025-07-16",
+      "equity": 120804.32
+    },
+    {
+      "date": "2025-07-21",
+      "equity": 121364.92
+    },
+    {
+      "date": "2025-07-26",
+      "equity": 122084.83
+    },
+    {
+      "date": "2025-07-31",
+      "equity": 121991.76
+    },
+    {
+      "date": "2025-08-05",
+      "equity": 122071.47
+    },
+    {
+      "date": "2025-08-10",
+      "equity": 123275.39
+    },
+    {
+      "date": "2025-08-15",
+      "equity": 123125.8
+    },
+    {
+      "date": "2025-08-20",
+      "equity": 122235.48
+    },
+    {
+      "date": "2025-08-25",
+      "equity": 122147.42
+    },
+    {
+      "date": "2025-08-30",
+      "equity": 121938.05
+    },
+    {
+      "date": "2025-09-04",
+      "equity": 121912.82
+    },
+    {
+      "date": "2025-09-09",
+      "equity": 120270.02
+    },
+    {
+      "date": "2025-09-14",
+      "equity": 120881.1
+    },
+    {
+      "date": "2025-09-19",
+      "equity": 121109.17
+    },
+    {
+      "date": "2025-09-24",
+      "equity": 121625.36
+    },
+    {
+      "date": "2025-09-29",
+      "equity": 121559.41
+    },
+    {
+      "date": "2025-10-04",
+      "equity": 122203.4
+    },
+    {
+      "date": "2025-10-09",
+      "equity": 122505.42
+    },
+    {
+      "date": "2025-10-14",
+      "equity": 122721.57
+    },
+    {
+      "date": "2025-10-19",
+      "equity": 121956.69
+    },
+    {
+      "date": "2025-10-24",
+      "equity": 121652.25
+    },
+    {
+      "date": "2025-10-29",
+      "equity": 122201.35
+    },
+    {
+      "date": "2025-11-03",
+      "equity": 122622.48
+    },
+    {
+      "date": "2025-11-08",
+      "equity": 122034.05
+    },
+    {
+      "date": "2025-11-13",
+      "equity": 121848.16
+    },
+    {
+      "date": "2025-11-18",
+      "equity": 120863.55
+    },
+    {
+      "date": "2025-11-23",
+      "equity": 120773.85
+    },
+    {
+      "date": "2025-11-28",
+      "equity": 122224.97
+    },
+    {
+      "date": "2025-12-03",
+      "equity": 122977.52
+    },
+    {
+      "date": "2025-12-08",
+      "equity": 122932.27
+    },
+    {
+      "date": "2025-12-13",
+      "equity": 123218.16
+    },
+    {
+      "date": "2025-12-18",
+      "equity": 121565.75
+    },
+    {
+      "date": "2025-12-23",
+      "equity": 122104.0
+    },
+    {
+      "date": "2025-12-28",
+      "equity": 122159.61
+    },
+    {
+      "date": "2026-01-02",
+      "equity": 122395.65
+    },
+    {
+      "date": "2026-01-07",
+      "equity": 123173.86
+    },
+    {
+      "date": "2026-01-12",
+      "equity": 123426.21
+    },
+    {
+      "date": "2026-01-17",
+      "equity": 124068.96
+    },
+    {
+      "date": "2026-01-22",
+      "equity": 124509.95
+    },
+    {
+      "date": "2026-01-27",
+      "equity": 124333.67
+    },
+    {
+      "date": "2026-02-01",
+      "equity": 124623.15
+    },
+    {
+      "date": "2026-02-06",
+      "equity": 123245.69
+    },
+    {
+      "date": "2026-02-11",
+      "equity": 123767.09
+    },
+    {
+      "date": "2026-02-16",
+      "equity": 123705.12
+    },
+    {
+      "date": "2026-02-21",
+      "equity": 124340.21
+    },
+    {
+      "date": "2026-02-26",
+      "equity": 125168.3
+    },
+    {
+      "date": "2026-03-03",
+      "equity": 124293.83
+    },
+    {
+      "date": "2026-03-08",
+      "equity": 123483.43
+    },
+    {
+      "date": "2026-03-13",
+      "equity": 124072.4
+    },
+    {
+      "date": "2026-03-18",
+      "equity": 125100.39
+    },
+    {
+      "date": "2026-03-23",
+      "equity": 124690.0
+    },
+    {
+      "date": "2026-03-28",
+      "equity": 123893.2
+    },
+    {
+      "date": "2026-04-02",
+      "equity": 124652.72
+    },
+    {
+      "date": "2026-04-07",
+      "equity": 125344.68
+    },
+    {
+      "date": "2026-04-12",
+      "equity": 125807.17
+    },
+    {
+      "date": "2026-04-17",
+      "equity": 126751.22
+    },
+    {
+      "date": "2026-04-22",
+      "equity": 126745.96
+    },
+    {
+      "date": "2026-04-27",
+      "equity": 127578.74
+    },
+    {
+      "date": "2026-05-02",
+      "equity": 127414.01
+    },
+    {
+      "date": "2026-05-07",
+      "equity": 128744.05
+    },
+    {
+      "date": "2026-05-12",
+      "equity": 129950.17
+    },
+    {
+      "date": "2026-05-17",
+      "equity": 130411.54
+    },
+    {
+      "date": "2026-05-22",
+      "equity": 129441.37
+    },
+    {
+      "date": "2026-05-27",
+      "equity": 130280.22
+    },
+    {
+      "date": "2026-06-01",
+      "equity": 130536.33
+    }
+  ],
+  "live_curve": [
+    {
+      "date": "2026-08-07",
+      "equity": 100000.0
+    },
+    {
+      "date": "2026-08-08",
+      "equity": 100000.0
+    },
+    {
+      "date": "2026-08-11",
+      "equity": 100021.62
+    },
+    {
+      "date": "2026-08-12",
+      "equity": 99918.75
+    },
+    {
+      "date": "2026-08-13",
+      "equity": 100103.25
+    },
+    {
+      "date": "2026-08-14",
+      "equity": 99931.91
+    },
+    {
+      "date": "2026-08-15",
+      "equity": 99964.85
+    },
+    {
+      "date": "2026-08-16",
+      "equity": 99976.53
+    },
+    {
+      "date": "2026-08-17",
+      "equity": 99948.49
+    },
+    {
+      "date": "2026-08-18",
+      "equity": 100044.8
+    }
+  ]
+}

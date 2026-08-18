@@ -1,0 +1,25 @@
+{
+  "schema": "glassbox.capacity_commitment/1",
+  "title": "Capacity commitment",
+  "summary": "How we promise to treat capacity, so the edge you read is the edge you get. A fund earns fees on assets; we commit to not earning them on a dead edge.",
+  "pledge": [
+    "We will never advertise a capacity figure above our own published capacity model (glassbox/capacity.json). The model is the ceiling, not marketing.",
+    "Crypto funding carry is MEASURED finite-capacity alpha: realized Sharpe decays from 0.40 at $100k to 0.04 at $1M and turns negative by $10M. We commit to not scaling the crypto sleeve past the point our own measured sweep shows the edge largely consumed, and never past its ~$10M structural cliff. We would rather cap the sleeve than collect a fee on a dead edge.",
+    "At every capital milestone we will publish the REALIZED capacity decay beside the modeled curve, so the gap between model and reality is visible, never hidden.",
+    "Above ~$100M the book IS the equity core (the crypto satellite weight is zero past its cliff). We will say so plainly rather than imply the crypto edge scales.",
+    "If we ever close to new capital, we will publish the level and the reason."
+  ],
+  "grounded_in": {
+    "crypto_cliff_usd": 10000000.0,
+    "crypto_sr_decay": "0.40 @ $100k -> 0.04 @ $1M -> -0.37 @ $10M (MEASURED, verdict.md sweep)",
+    "equity_core_threshold_usd": 100000000.0,
+    "forward_sharpe": "0.7 central, 0.4 floor, 1.2 ceiling",
+    "source": "glassbox/capacity.json sha256:93d823d9c1c0daa650c99b30925a79307f97bea2833f49ea9e5f8e08c3fc7c0f"
+  },
+  "honest_scope": "A governance pledge about how we will treat capacity, signed so it cannot be quietly edited. NOT investment advice, an offer, or a solicitation. Crypto capacity is MEASURED; equity capacity is MODELED (the equity sleeve is not yet at scale). See glassbox/capacity.json for the full basis labels.",
+  "as_of": "2026-08-18",
+  "payload_sha256": "4d54f2157718356e187a7ddd1caf87acda665d1262531f745d41ecd9d734c9d7",
+  "signature_ed25519": "b955098556c54e2420c17de28384a2712deed279e24040ea41c03803dd2743ec386bfb839e6b149bb7de4f0ac9e667d54e1880c2c4e8e600164e0b7fa153fe0b",
+  "public_key_ed25519_hex": "0c6606a6b0c5b66fbf3b78521c85e72019484e0177d04a873a651179175ac095",
+  "verify": "Take this object, remove the 4 fields {payload_sha256, signature_ed25519, public_key_ed25519_hex, verify}, serialize the rest as canonical JSON (sorted keys, compact separators), sha256 it (must equal payload_sha256), then check the Ed25519 signature over that hash against the public key. Same key as the transparency chain."
+}

@@ -1,0 +1,84 @@
+{
+  "schema": "glassbox.pre_registration/1",
+  "title": "Pre-Registration",
+  "summary": "The trial budget was committed to git before any sleeve touched the data lake. Every config that could have been measured counts toward the deflation denominator, so a tiny budget measured once is the only honest path to a clean grade.",
+  "document_committed": true,
+  "document_path": "docs/design/PRE_REGISTRATION.md",
+  "commit_basis": "the git commit hash of the document is its timestamp of record",
+  "trial_budget_hard_ceiling": 9,
+  "measure_once_protocol": "No re-runs, no re-windowing, no cadence search, no sign-flips, no subset search over sleeve combinations, no MVO, no static scheme in the deployable path. KILL = exclude, never re-tune.",
+  "slots": [
+    {
+      "slot": 1,
+      "name": "Momentum (12-1)",
+      "decision": "KEEP",
+      "outcome": "PASSED",
+      "deployed_sharpe": 0.9071,
+      "note": "Deployed as the frozen 2023+ k30_dn_63 sleeve at Sharpe 0.9071. The deep-history pre-reg variant scored -0.0493 and failed the DSR gate; the clean sleeve is used."
+    },
+    {
+      "slot": 2,
+      "name": "Value (composite)",
+      "decision": "KEEP",
+      "outcome": "FAILED",
+      "measured_sharpe": -0.5994,
+      "note": "Net Sharpe -0.5994 below the 0.30 gate. Killed."
+    },
+    {
+      "slot": 3,
+      "name": "Quality (GP/A + ROE)",
+      "decision": "KEEP",
+      "outcome": "FAILED",
+      "measured_sharpe": -0.8316,
+      "note": "Net Sharpe -0.8316 below the 0.30 gate. Killed."
+    },
+    {
+      "slot": 4,
+      "name": "Betting-Against-Beta (low-risk)",
+      "decision": "KEEP",
+      "outcome": "FAILED",
+      "measured_sharpe": -0.0679,
+      "note": "Net Sharpe -0.0679, failed the DSR >= 0.95 gate. Killed."
+    },
+    {
+      "slot": 5,
+      "name": "Short-term reversal (1-month)",
+      "decision": "EXPECTED-KILL",
+      "outcome": "DROPPED",
+      "note": "Dropped pre-registration: 20x turnover capacity liability."
+    },
+    {
+      "slot": 6,
+      "name": "Combined book (one fixed combiner)",
+      "decision": "KEEP",
+      "outcome": "HONEST-NULL",
+      "note": "Structure survives (PIT-clean, decorrelated) but the in-sample magnitude fails multiple-testing deflation. Recorded as the honest null; the path is forward live evidence, not a re-combine."
+    },
+    {
+      "slot": 7,
+      "name": "Crypto-carry satellite (re-measured once)",
+      "decision": "KEEP",
+      "outcome": "PASSED",
+      "measured_sharpe": 0.6766,
+      "note": "Net Sharpe 0.6766, kept as a capacity-capped satellite (finite ~$100k to $1M, decays above ~$100M AUM)."
+    },
+    {
+      "slot": "8-9",
+      "name": "Contingency reserves",
+      "decision": "RESERVED",
+      "outcome": "UNSPENT",
+      "note": "Spendable only against a structural trigger logged before its result is seen."
+    }
+  ],
+  "gates": {
+    "equity_momentum": "DSR >= 0.95 AND net Sharpe >= 0.40 AND rank-IC NW t >= 3.0 AND PBO < 0.5 AND SPA p < 0.05 AND positive in >= 3 of 4 sub-periods",
+    "value": "net Sharpe >= 0.30 AND mean-return NW t >= 2.0 AND rank-IC >= 0.015 (t >= 2.0) AND positive in BOTH pre/post-2013 halves",
+    "quality": "net Sharpe >= 0.30 AND DSR >= 0.95 AND PBO < 0.5 AND rank-IC NW t >= 2.0",
+    "bab": "beta-hedged return NW t >= 2.0 AND DSR >= 0.95 AND net Sharpe >= 0.35",
+    "book": "DSR >= 0.95 AND PBO < 0.5 AND SPA p < 0.05 AND market-neutral (|beta_SPY|, |beta_BTC| t < 2)"
+  },
+  "expected_outcome": "B+ to A-, honest combined Sharpe ~0.75-0.85 net (NOT 1.46)",
+  "actual_outcome": "C+ honest null. The free-breadth path is exhausted: value and quality do not replicate on the narrow universe; crypto-perp alone fails honest deflation. The deployed book is the two survivors, awaiting forward live proof.",
+  "generated_at": "2026-08-18T12:25:26.599984+00:00",
+  "content_hash": "sha256:7da839070aeb72ea58e5deffd6e1645917a90fd16bfd5a9933eb227f83b1d057"
+}
