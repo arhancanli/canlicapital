@@ -1,0 +1,26 @@
+name: Factual or research correction
+description: Challenge a published claim, number, source, or methodological statement
+title: "correction: "
+labels: ["correction"]
+body:
+  - type: textarea
+    id: claim
+    attributes:
+      label: Claim and location
+      description: Quote or link to the exact claim or artifact field.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Corrective evidence
+      description: Link a primary source, ALPHAC artifact, or reproducible test.
+    validations:
+      required: true
+  - type: checkboxes
+    id: privacy
+    attributes:
+      label: Privacy
+      options:
+        - label: This report contains no credentials, subscriber data, or proprietary information.
+          required: true

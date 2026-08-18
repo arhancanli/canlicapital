@@ -1,0 +1,25 @@
+name: Site bug
+description: Report a reproducible rendering, accessibility, or behavior defect
+title: "bug: "
+labels: ["bug"]
+body:
+  - type: textarea
+    id: defect
+    attributes:
+      label: Defect
+      description: What happened, and what did you expect?
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Browser and device
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction
+      description: Give exact steps and a safe screenshot or console output when useful.
+    validations:
+      required: true

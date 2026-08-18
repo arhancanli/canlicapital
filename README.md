@@ -3,6 +3,10 @@
 The public site for **Canli Capital**, and the surface where **ALPHAC** — a four-sleeve
 cross-asset quant book — publishes its record while it is still small enough to be embarrassing.
 
+**Created and maintained by [Arhan Canli](https://github.com/arhancanli) for Canli Capital.**
+Development uses reviewed AI-assisted tooling, while project ownership, research decisions,
+published claims, and release responsibility remain with Arhan Canli.
+
 The engine that produces every number here is open too:
 **[github.com/arhancanli/alphac](https://github.com/arhancanli/alphac)**.
 
