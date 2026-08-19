@@ -246,8 +246,8 @@
         }
       }
     },
-    "generated_at": "2026-08-18T17:49:22.077215+00:00",
-    "content_hash": "sha256:fc8e6a03947fda893a637da00bfcc9ac64f47e0c5d85252f17ef98e5665f0758"
+    "generated_at": "2026-08-19T21:39:25.663028+00:00",
+    "content_hash": "sha256:34eca79b89e1d90f25ca72a4109d6032a345b4f420b4d1754c94d7c2174feb3e"
   },
   "factor_research": {
     "summary": "Most ideas die. We publish every test with its real net-of-cost Sharpe and its real Rank-IC. 2 kept, 8 killed. The Rank-IC is the cross-sectional information coefficient with a Newey-West t-stat; the net Sharpe is the purged walk-forward result after the conservative cost model.",
@@ -669,7 +669,7 @@
         "key": "alphavintage",
         "name": "AlphaVintage",
         "description": "Point-in-time CPI surprise \u2014 the standardized AR(3) residual of headline (PCPI) and core (PCPIX) inflation, differenced WITHIN a single ALFRED vintage \u2014 traded as a dollar-neutral IWM-minus-SPY size spread, monthly.",
-        "standalone_sharpe": 0.34,
+        "standalone_sharpe": 0.23,
         "weight_pct": 25.0
       }
     ],
@@ -718,12 +718,12 @@
   "track_record": {
     "summary": "The live paper record begins at go-live and is shown only as it accrues. We publish no return until it is earned in the open.",
     "go_live_date": "2026-08-07",
-    "live_days_accrued": 11,
+    "live_days_accrued": 12,
     "live_status": "LIVE",
     "live_source": "go-live seed (no realized marks have accrued yet)",
     "live_nav_baseline_usd": 100000.0,
-    "live_nav_current_usd": 100072.3,
-    "live_return_pct": 0.0723,
+    "live_nav_current_usd": 99411.62,
+    "live_return_pct": -0.5884,
     "research_curve_label": "SIMULATION (research backtest, NOT realized trading)",
     "research_curve_start": {
       "date": "2023-07-07",
@@ -751,7 +751,7 @@
       "CORRECTION 2026-07-05 \u2014 the crypto sleeve was signal-dead, not 'carry compressed'. From go-live (06-23) to 07-05 AlphaForge held cash and we published that funding carry was compressed. An internal audit found the true cause: a wiring bug blended equity-fundamental alphas (undefined on crypto) into the live signal, invalidating it every cycle \u2014 the validated carry-only configuration was never what ran live. Fixed same day (the loop now runs the exact blessed walk-forward config: carry_fund_21, weekly rebalance, with per-cycle signal-health logging so a dead signal can never masquerade as a quiet hold again). The $100k cash equity curve was genuine; the published EXPLANATION was wrong. Per our append-only posture this correction is added to the record, not swapped into it.",
       "We red-team our own record. On 2026-06-27 our publishing pipeline emitted a future-dated (2026-06-29) paper mark that briefly reached the public sites and was anchored into seq 0 of the signed transparency chain. We caught it the same day, added a fail-closed guard, and appended the corrected seq 1 \u2014 the append-only chain shows BOTH, because we don't get to delete our mistakes. That is the trust system working, not failing.",
       "AlphaTrend (managed-futures trend) was the FIRST sleeve we took genuinely live: its 17-ETF book transacts on Alpaca paper, not in a simulator. We published DSR 0.83 for it and called it the first sleeve to CLEAR multiple-testing deflation, statistically real rather than a backtest fluke. RE-DERIVED 2026-08-07 at honest N=133 and pooled V[SR]=7.96e-04, its DSR is 0.000: the LOWEST of the six sleeves we have measured, not the highest. The old 0.83 rested on a variance input roughly 80x too small and a trial count of 5 while its siblings were graded at N=101, so it was marked on an easier exam and then called the soundest. Net Sharpe 0.25 over its full 5,179-day history. It is folded into ALPHAC at equal quarters for MEASURED drawdown reduction, not for a demonstrated edge. The screen suggested 0.73; the honest engine says 0.33 on the live window. We published every one of those numbers.",
-      "STRUCTURAL VERDICT 2026-08-05 \u2014 the crypto sleeve's venue unreachability is STRUCTURAL, and we said we would say so. The 2026-07-20 note above promised: 'if it proves persistent it is a STRUCTURAL problem for a sleeve built on a single venue, and we will say that too.' It has proved persistent, so here is the number we had not put on the record until now: across its entire live history the hourly loop has completed 439 of 1210 expected cycles \u2014 an uptime of 36.3%. It has been dark for roughly 772 hours of a 50.4-day record, with 8 separate outages longer than a day and a longest single outage of 165 hours. As of this publish it has been dark 0 hours; its last observed cycle was 2026-08-18 17:00 UTC. WHAT THIS MEANS, stated plainly rather than buried: this sleeve carries 40% of the flagship's weight, so for most of the forward record our largest single position has not been managed. The published curve is not wrong \u2014 we never roll forward a mark we did not observe, so the sleeve's line simply stops when the venue does \u2014 but a 40%-weight sleeve that is dark most of the time is not meaningfully 'live', and describing it as live without this number attached would have been a half-truth. The forward track record is the whole basis on which this book asks to be believed, and it is being accrued on a book whose biggest sleeve is mostly absent. WHAT WE ARE DOING: the diagnosis is unchanged and venue-specific (the general internet and our equity broker respond normally from the same machine while the exchange endpoint fails on connect). Two fixes are real \u2014 hosting the loop somewhere with unobstructed access, and removing the single-venue dependency altogether by adding a second exchange. We flag the first honestly: our own deploy runbook records that reaching a venue from a different region is a COMPLIANCE decision and not merely an operations one, so it will not be done as a silent infrastructure tweak. Until one of those lands, read this sleeve's contribution to the live record as what it is \u2014 36.3% of the intended trading.",
+      "STRUCTURAL VERDICT 2026-08-05 \u2014 the crypto sleeve's venue unreachability is STRUCTURAL, and we said we would say so. The 2026-07-20 note above promised: 'if it proves persistent it is a STRUCTURAL problem for a sleeve built on a single venue, and we will say that too.' It has proved persistent, so here is the number we had not put on the record until now: across its entire live history the hourly loop has completed 467 of 1239 expected cycles \u2014 an uptime of 37.7%. It has been dark for roughly 773 hours of a 51.6-day record, with 8 separate outages longer than a day and a longest single outage of 165 hours. As of this publish it has been dark 1 hours; its last observed cycle was 2026-08-19 21:00 UTC. WHAT THIS MEANS, stated plainly rather than buried: this sleeve carries 40% of the flagship's weight, so for most of the forward record our largest single position has not been managed. The published curve is not wrong \u2014 we never roll forward a mark we did not observe, so the sleeve's line simply stops when the venue does \u2014 but a 40%-weight sleeve that is dark most of the time is not meaningfully 'live', and describing it as live without this number attached would have been a half-truth. The forward track record is the whole basis on which this book asks to be believed, and it is being accrued on a book whose biggest sleeve is mostly absent. WHAT WE ARE DOING: the diagnosis is unchanged and venue-specific (the general internet and our equity broker respond normally from the same machine while the exchange endpoint fails on connect). Two fixes are real \u2014 hosting the loop somewhere with unobstructed access, and removing the single-venue dependency altogether by adding a second exchange. We flag the first honestly: our own deploy runbook records that reaching a venue from a different region is a COMPLIANCE decision and not merely an operations one, so it will not be done as a silent infrastructure tweak. Until one of those lands, read this sleeve's contribution to the live record as what it is \u2014 37.7% of the intended trading.",
       "CORRECTION 2026-08-06 \u2014 our crypto carry sleeve is a strategy that earns funding, and its LIVE paper account has never once booked funding. We found this ourselves and are publishing it before the fix rather than after. The mechanism, stated plainly so anyone can check it: funding is applied in exactly one place in this codebase, Ledger.apply_funding, and it is called from exactly one call site, the BACKTEST engine. The live paper broker's cash moves on one line and only one line, a fill: cash - qty*price - fee. No funding cashflow can reach the live account by any path. The size of what is missing is not marginal. Our committed walk-forward artifact for this sleeve reports funding_net of $19,500 against a total return of $38,236 on a $100k book over 2022-02 to 2026-06: about HALF of everything this strategy has ever earned is the funding it is designed to harvest. Removing it takes the sleeve's backtested Sharpe from 0.653 to roughly 0.30. So AlphaForge's live record has been running against a hard ceiling of about half its validated Sharpe, and every live number we have published for this sleeve should be read in that light. What we are NOT doing: we are not restating the historical live curve. The marks we published were the marks we observed, and this record is append-only, so the fix applies FORWARD from the day it ships and the understated period stays visible in the chain. One number we are deliberately NOT putting on the record yet: our internal estimate of what funding would have added over the live window is dominated by a single name that redenominated roughly 100x inside the window, which makes the naive figure meaningless. We would rather publish no number than a number we cannot stand behind, so that one waits for the corrected accounting. This is the fourth time a defect in our plumbing, not our strategy, has moved a published number, and the lesson we wrote down in July holds: a fix is not done until a test pins the path that actually runs.",
       "CORRECTION 2026-08-06 \u2014 a factual claim in our 2026-07-20 incident note above is now false and we are marking it rather than editing it. That note said 'Bybit responds' as evidence the Binance failure was venue-specific. Re-measured from the same network on 2026-08-06: Bybit does NOT respond, and neither do Kraken or Deribit. Binance, Bybit and Kraken all fail on connection reset in under a tenth of a second and Deribit times out. The conclusion the original note drew is unchanged and if anything strengthened, since the block is clearly broader than one venue, but the supporting fact it cited is no longer true and a reader checking our work today would find it wrong. One venue does answer: OKX responds normally and serves funding rates, 436 perpetual instruments and hourly candles. We are evaluating it, and we note in advance that moving venue is not a configuration change: the same carry signal computed on OKX has a cross-sectional rank correlation of only about 0.64 with the Binance one, so it would be a materially different strategy wearing the same name, and we will not splice the two curves together and call it one continuous record.",
       "FIXED 2026-08-06 \u2014 the funding gap disclosed above is now closed in the live path, forward only. Earlier today we published that our crypto carry sleeve had never once booked funding in live paper, which is roughly half of everything that strategy has ever earned. That is fixed: the live broker gained a funding path with the identical sign convention the backtest ledger uses (payment = -position * mark * rate, longs pay shorts on a positive rate), and the live loop now settles every stored funding event for the window just closed, before the strategy re-decides, so a settlement is charged against the position that was actually held through it. It is point-in-time by construction: the reader filters on each event's stored publication time, never on the settlement time, so a rate not yet knowable at the moment of the cycle stays invisible. Nine tests pin the running path rather than the intention, including one that asserts the live broker and the backtest ledger return identical figures for the same event, because two conventions would be worse than none. Three things we are deliberately NOT doing. We are not restating the historical curve: the marks we published are the marks we observed, the understated period stays in the signed chain, and the fix applies from today. We are not claiming an improvement yet: the sleeve has been dark on venue unreachability since 2026-08-03, so this books nothing until it trades again, and any future gain will show up in the forward record or not at all. And we are not putting a number on what it would have earned over the live window, because our own measurement of that is dominated by a single instrument that redenominated roughly 100x inside the window, which makes the figure meaningless. We would rather publish no number than one we cannot stand behind.",
@@ -765,7 +765,7 @@
       "DISCLOSURE 2026-08-06 \u2014 the sleeve we call 'crypto funding carry' is 20% commodities, and two sleeves we present as decorrelated are trading the same metals and the same crude. Our universe rule ranks Binance perpetuals purely on 30-day median quote volume and has no predicate on what the contract actually tracks. Binance lists perps on commodities, and they are liquid enough to rank in. Four of AlphaForge's twenty current members are therefore not crypto at all: XAU (gold) and XAG (silver), which entered 2026-03-01, and CL (WTI) and BZ (Brent), which entered 2026-06-01. Their prices confirm what they are \u2014 gold marks near $4,543, silver near $75.62, WTI near $89.35, Brent near $93.00. Meanwhile AlphaTrend, the sleeve we hold BECAUSE it is decorrelated, currently holds GLD, SLV, USO, DBC, DBA and UNG. So gold, silver and crude sit on both sides of a book whose entire construction rests on those sides being independent. We are not claiming this has hurt returns; carry on a gold perp may be a perfectly good trade. Two things about it are nonetheless wrong and are ours to say. First, our public description of this sleeve says 'crypto', and for a fifth of its universe that is not accurate. Second, and more consequential: the -0.04 average pairwise sleeve correlation we publish was measured on a window ending 2026-06-01, which is the very day the crude perps entered and only three months after the metals did. That figure therefore describes a book with less overlap than the one we are running now, and the honest reading is that our measured decorrelation is likely to be better than our future decorrelation. Since average correlation is the binding constraint on everything this book is trying to become, that error runs in the direction that flatters us, which is the direction we have committed to publishing fastest.",
       "DISCLOSURE 2026-08-06 \u2014 our crypto universe has not rebalanced since 2026-06-01 and we did not notice until we went looking for something else. The universe rebuilds monthly at a month boundary inside the live cycle. Membership rows exist for 2025-11-01 through 2026-06-01 without a gap, and then stop: the 2026-07-01 and 2026-08-01 rebalances both failed to run, because the sleeve was dark for most of that period on the venue unreachability documented above. This is a second-order cost of an outage that we had only accounted for in missed cycles: the sleeve did not merely stop trading, it froze its own definition of what it trades, and has spent over two months holding a universe selected against two-month-old liquidity. We are recording it here rather than quietly rebuilding, because an outage that silently changes what a strategy IS matters more than one that merely pauses it.",
       "CORRECTION 2026-08-11 \u2014 this site published a 300% one-day gain that never happened, and it stood for three days. Our flagship live curve read 100,000.00 on 2026-08-07 and 400,207.73 on 2026-08-08. ALPHAC is market-neutral and runs gross at or below 1.0x; it cannot quadruple in a session, and it did not. The cause was mundane and entirely ours. On 2026-08-07 the book moved to fresh $1M accounts, and the routine that records broker equity wrote history with INSERT OR REPLACE \u2014 merging each account's history into whatever was already stored rather than replacing it. Rows written while a profile still pointed at the SUPERSEDED account therefore survived at any timestamp the new account's history did not happen to cover. AlphaTrend's curve ended up holding $1,000,000 marks from the new account interleaved with a $100,681.45 mark from the old $100k one. The reader rebased on the first mark, turning that row into 10,068, and the step to the next day published as a +893% return; at one third weight that is +297% on the book. Two compounding defects: several marks a day meant two points shared a date, so a 'daily return' was computed between two marks of the same afternoon; and nothing rejected a step that is arithmetically impossible for the strategy. Both are fixed. The writer now REPLACES the curve, since a broker's full history is authoritative on its own and merging into it is unsound \u2014 which also self-healed the stored data, taking two sleeve curves from 68 and 52 mixed marks down to 4 and 4 clean ones. The reader keeps one mark per day and refuses to splice a superseded account into a current record. Six tests pin the exact marks that produced 400,207, and one asserts a genuine -10% day is NOT mistaken for an account switch, because a guard that trimmed real drawdowns would flatter this record rather than protect it. The corrected figure for the same window is 99,887.94, i.e. -0.11%. We are stating the wrong number here in full rather than replacing it quietly: it was public, it was flattering, and anyone who looked at this site in those three days saw it.",
-      "ADDED 2026-08-10 \u2014 AlphaVintage joins the book as a fourth live sleeve and the weights move to equal quarters. It trades the IWM/SPY size spread off the point-in-time CPI surprise (the standardized AR(3) residual of headline and core inflation, differenced WITHIN a single ALFRED vintage), and it is the only sleeve here reading a revision-aware macro release rather than price, funding or a balance sheet. Two things must be said plainly. First, it does NOT clear our deflation gate: net Sharpe 0.3403 with a Newey-West t of 1.82 over 5,996 days. It earns its quarter by being uncorrelated (-0.065 to equity momentum, -0.046 to managed futures), not by being better \u2014 adding it cut the book's average pairwise correlation from +0.0723 to +0.0274. Second, it runs at HALF the researched notional: the pre-registered spec sizes each leg at 1.0x NAV for 2.0x gross, which exceeds our own runaway brake and equals this account's Reg T overnight limit exactly, leaving no cushion on a month-long hold. Sharpe is scale-invariant so the validated figure still applies; the dollar return, the volatility and the drawdown are all halved. A third disclosure we owe: the research modelled NO short-borrow cost while the live sleeve is short SPY on about 95% of days. Charged at 50bp/yr that is 0.3403 -> roughly 0.3060, and the live sleeve is therefore held to a harsher standard than the study that justified it. The days before 2026-08-10 continue to compound at equal thirds; we appended a dated weight entry rather than restating three already-published days.",
+      "ADDED 2026-08-10 \u2014 AlphaVintage joins the book as a fourth live sleeve and the weights move to equal quarters. It trades the IWM/SPY size spread off the point-in-time CPI surprise (the standardized AR(3) residual of headline and core inflation, differenced WITHIN a single ALFRED vintage), and it is the only sleeve here reading a revision-aware macro release rather than price, funding or a balance sheet. Two things must be said plainly. First, it does NOT clear our deflation gate, and the figures we published for it are WITHDRAWN: we said net Sharpe 0.3403 with a Newey-West t of 1.82 over 5,996 days; the calendar-corrected re-run of 2026-08-16 measures 0.2298 with a t of 1.267 over 6,296 portfolio days, which FAILS the t>=1.5 bar this candidate pre-registered and is recorded in its own artifact as verdict KILLED. We deployed it on 2026-08-10, six days before that correction existed, and left the superseded numbers on this page until 2026-08-19. It earns its quarter by being uncorrelated (-0.065 to equity momentum, -0.046 to managed futures), not by being better \u2014 adding it cut the book's average pairwise correlation from +0.0723 to +0.0274. Second, it runs at HALF the researched notional: the pre-registered spec sizes each leg at 1.0x NAV for 2.0x gross, which exceeds our own runaway brake and equals this account's Reg T overnight limit exactly, leaving no cushion on a month-long hold. Sharpe is scale-invariant so the measured figure applies at either notional; the dollar return, the volatility and the drawdown are all halved. A third disclosure we owe: the research modelled NO short-borrow cost while the live sleeve is short SPY on about 95% of days, and we charge it at 50bp/yr. The adjustment we published for that charge was 0.3403 -> roughly 0.3060; it is WITHDRAWN along with the figure it was computed from. We have NOT re-derived the borrow drag against the corrected 0.2298, because the calendar correction changed the day count the volatility is measured over -- 6,296 portfolio days rather than 5,998 active ones -- and rescaling the old adjustment by hand would be a number we invented rather than measured. The live sleeve is still held to a harsher standard than the study that justified it. The days before 2026-08-10 continue to compound at equal thirds; we appended a dated weight entry rather than restating three already-published days.",
       "CHANGE 2026-08-12 \u2014 we cut the strategic beta overlay from +20% to +10%, on measurement rather than taste, and we are showing the numbers that decided it. The overlay was never claimed to be alpha; what nobody had done was measure what it does to the book. Measured on the 4-sleeve research book over its 1,061-day common window, and then stressed by replaying the market factor's worst equal-length stretch under an UNCHANGED neutral core so that only the overlay varies. Measured window / crash stress, by overlay size: 0% gives 1.396 / 1.396; 5% gives 1.667 / 1.308; 10% gives 1.784 / 1.192; 12.5% gives 1.799 / 1.128; 20% gives 1.760 / 0.929; 30% gives 1.651 / 0.686. The SHAPE decides it, not any one cell: measured-window Sharpe is FLAT from 5% to 15% while crash-stress Sharpe falls monotonically with size and the worst day grows steadily (-0.90% at 0%, -1.26% at 10%, -2.02% at 20%). When one axis is flat and the other is monotone you take the lower number \u2014 the same upside for strictly less tail. Cutting 20% to 10% therefore costs nothing measurable in the window (1.760 to 1.784, marginally higher) while recovering +0.26 of stress Sharpe and cutting the worst day roughly in half. WE DELIBERATELY DID NOT PICK THE PEAK: 12.5% maximises the measured window, and choosing the argmax of a curve fitted to one window is the selection trap our own deflation discipline exists to prevent. And we correct ourselves in passing: an earlier internal note claimed 10% would halve the upside to 1.578. That figure was a linear interpolation, never measured, and it was wrong \u2014 the upside is essentially unchanged. We did NOT cut it to zero: equity beta has positive long-run drift and this capital is explicitly stated to want participation, so removing it entirely would trade real expected return for a cleaner-looking ratio. TWO CAVEATS THAT BOTH CUT THE SAME WAY, stated because they make our own prior numbers look better than they should. First, the crash stress ran at effectively HALF weight: the market factor is 0.5 BTC + 0.5 SPY and a missing leg contributes zero, but our BTC series begins 2020-01-01, so the pre-2020 stress was SPY-only. A real crash in which both legs fall together costs more than the -0.47 Sharpe we measured. Second, the window in which the overlay LOOKED good rose +121.6% with a worst drawdown of -28.2%, against -54.4% available in that same factor's own history \u2014 the upside is measured in a bull market and the downside is not. Every published figure that carried the +20% overlay, including the in-sample 1.80, describes a configuration we no longer run; the neutral-core figure (1.396 on the current four sleeves) is unchanged and always was the honest one.",
       "CORRECTION 2026-08-12 \u2014 the number we use to justify keeping AlphaTrend does not reproduce, and it overstated the case by about 3x. We publish that AlphaTrend is held 'for measured drawdown reduction (removing it makes the book's max DD 69% worse), not for a demonstrated edge'. Re-measured on the current four-sleeve book, removing it takes max drawdown from -3.68% to -4.51%, i.e. 22.7% worse \u2014 not 69%. We looked for a configuration that yields 69% and could not find one: on the three-sleeve book we previously ran at 40/40/20 it is 16.6%, at equal thirds 20.5%, and with the beta overlay applied it falls to 4.4-7.0%. The rest of the sleeve's disclosure stands and is if anything harsher than before: leave-one-out on the current book shows AlphaTrend CONTRIBUTES -0.092 Sharpe (removing it would raise the book from 1.396 to 1.488), its standalone Sharpe of 0.248 is the weakest of the four, and its re-derived DSR is 0.000. So it is held for a real but materially smaller diversification benefit than we claimed. WHAT WE DID NOT DO: change its weight. A weight sweep shows a clean monotone trade \u2014 roughly 0.13 Sharpe per 1 percentage point of drawdown, with no optimum anywhere \u2014 so any weight we picked off that curve would be a risk preference dressed as a measurement, and choosing the in-sample argmax is the selection trap our deflation discipline exists to prevent. Equal weights remain what the evidence supports: no sleeve's deflated Sharpe justifies more capital than any other's, which is exactly why they are equal."
     ],
@@ -16217,19 +16217,19 @@
       "stage": "NO_RETURN_IDENTITY_LINEAGE",
       "claim_boundary": "This audit proves registry consistency against the enumerated internal ledgers. It does not prove global economic novelty, returns, or sleeve admission.",
       "summary": {
-        "decision": "PASS",
+        "decision": "FAIL_CLOSED",
         "families_audited": 40,
-        "family_failures": 0,
+        "family_failures": 1,
         "current_book_exact_match": true,
         "current_sleeves": 4,
         "kill_ledger_identities": 46,
         "kill_identities_mapped_to_atlas": 12,
         "kill_identities_outside_atlas": 34,
         "classifications": {
-          "ACTIVE_FEASIBILITY": 6,
+          "ACTIVE_FEASIBILITY": 9,
           "DUPLICATE_OVERLAP": 7,
           "IDENTITY_REDESIGN_REQUIRED": 2,
-          "NOVEL_ATLAS": 20,
+          "NOVEL_ATLAS": 17,
           "RETIRED_KILLED": 5
         },
         "return_data_opened": 0,
@@ -16237,7 +16237,9 @@
         "family_return_data_opened": 1,
         "family_return_hypotheses_spent": 1
       },
-      "failed_families": [],
+      "failed_families": [
+        "tender_offer_spread"
+      ],
       "current_book": {
         "actual": [
           "alphaforge",
@@ -16291,9 +16293,16 @@
       "family_results": [
         {
           "family_id": "active_ownership_escalation",
-          "classification": "NOVEL_ATLAS",
+          "classification": "ACTIVE_FEASIBILITY",
           "aliases": [],
-          "evidence": [],
+          "evidence": [
+            "config/sleeve_discovery.json#candidates:active_ownership_escalation",
+            "docs/design/FEASIBILITY_ACTIVE_OWNERSHIP_13D.md",
+            "docs/design/FEASIBILITY_ACTIVE_OWNERSHIP_13D_SCHEMA_V2.md",
+            "docs/design/FEASIBILITY_ACTIVE_OWNERSHIP_13D_ITEM4.md",
+            "docs/design/FEASIBILITY_ACTIVE_OWNERSHIP_13D_ITEM4_V2.md",
+            "artifacts/feasibility/active_ownership_13d_item4_v2/result.json"
+          ],
           "gates": {
             "aliases_required_when_historical": true,
             "historical_aliases_exist_in_kill_ledger": true,
@@ -16685,9 +16694,13 @@
         },
         {
           "family_id": "merger_arbitrage",
-          "classification": "NOVEL_ATLAS",
+          "classification": "ACTIVE_FEASIBILITY",
           "aliases": [],
-          "evidence": [],
+          "evidence": [
+            "config/sleeve_discovery.json#candidates:merger_arbitrage",
+            "docs/design/FEASIBILITY_MERGER_ARBITRAGE.md",
+            "artifacts/feasibility/merger_arbitrage/result.json"
+          ],
           "gates": {
             "aliases_required_when_historical": true,
             "historical_aliases_exist_in_kill_ledger": true,
@@ -16966,19 +16979,23 @@
         },
         {
           "family_id": "tender_offer_spread",
-          "classification": "NOVEL_ATLAS",
+          "classification": "ACTIVE_FEASIBILITY",
           "aliases": [],
-          "evidence": [],
+          "evidence": [
+            "config/sleeve_discovery.json#candidates:merger_arbitrage.tender_only_document_feasibility",
+            "docs/design/FEASIBILITY_TENDER_OFFER_SPREAD.md",
+            "artifacts/feasibility/tender_offer_spread/result.json"
+          ],
           "gates": {
             "aliases_required_when_historical": true,
             "historical_aliases_exist_in_kill_ledger": true,
             "evidence_declared_when_non_novel": true,
-            "evidence_resolves": true,
+            "evidence_resolves": false,
             "novel_family_has_no_historical_alias": true,
             "forward_experiment_is_explicit": true,
             "direct_return_outcome_valid": true
           },
-          "pass": true
+          "pass": false
         },
         {
           "family_id": "treasury_auction_concession",
@@ -17024,13 +17041,13 @@
         }
       ],
       "source_sha256": {
-        "registry": "56d34aba34281dc1832b989b8b0ea2b6e2be3979f1012e32f17b997d307662e1",
-        "kill_ledger": "60938ebcb83401d5307cfe6078ee3b37ce0fc4953d6e808e4c1f7f896ad46b82",
-        "current_book": "144ea1aba783144d186e6f3333dd09abb0486b8b5a7bf80cd5782552787d46a0",
+        "registry": "6a54ef0c0bda0d1353b1fa8175ab900313b31594084cc5c8810b4de069ef3e04",
+        "kill_ledger": "ca931a0b01ae28cf18430154c1c409c50e03dce42d22ad9d74e3d5b58a1c3d79",
+        "current_book": "11aa33347d9626e4407e770036ec0c0b165f896600acf2a9b42f11d75f526b09",
         "discovery": "654f831e3ea4122437e5c48f066d6d37ba6cbcf8d1c7119395d104c5aa6cc225"
       },
-      "content_hash": "sha256:1a4f3b22fe89ee1b9b040657b4d31e0cd58f0b01bed60393444f46e3bd9c2aef",
-      "generated_at": "2026-08-16T03:22:56.058440+00:00"
+      "generated_at": "2026-08-19T21:31:36.531048+00:00",
+      "content_hash": "sha256:1bf75ab489dbd94ba1d7e3431d81524cfc48ffd6ef33bfdf7e1c229da3ceae92"
     },
     "atlas_public_path": "/glassbox/sleeve_atlas.json",
     "audit_public_path": "/glassbox/sleeve_atlas_audit.json",
@@ -17308,7 +17325,7 @@
             "by_file": {}
           },
           "tests": {
-            "python_files": 249,
+            "python_files": 253,
             "violations": 0,
             "files_with_violations": 0,
             "safe_autofixes_available": 0,
@@ -17317,10 +17334,10 @@
             "by_file": {}
           },
           "historical_scripts": {
-            "python_files": 165,
-            "violations": 363,
-            "files_with_violations": 51,
-            "safe_autofixes_available": 109,
+            "python_files": 168,
+            "violations": 364,
+            "files_with_violations": 52,
+            "safe_autofixes_available": 110,
             "unsafe_autofixes_available": 60,
             "by_rule": {
               "B007": 4,
@@ -17339,7 +17356,7 @@
               "E702": 7,
               "E741": 3,
               "F401": 6,
-              "F541": 8,
+              "F541": 9,
               "F841": 8,
               "I001": 2,
               "RUF001": 2,
@@ -17360,6 +17377,7 @@
               "scripts/analyze_breadth_acquisition.py": 2,
               "scripts/analyze_feasible_frontier.py": 1,
               "scripts/analyze_sleeve_scaling.py": 8,
+              "scripts/analyze_stressed_correlation.py": 1,
               "scripts/analyze_target_2p5.py": 5,
               "scripts/capture_eia930_vintages.py": 1,
               "scripts/check_retracted_claims.py": 2,
@@ -17417,13 +17435,14 @@
           "returns_evaluated": false
         },
         "source_sha256": {
-          "pyproject.toml": "39ea6f59d52750ab804f73633c6b9b6493b1b0a2bcd540bd304e096edcad3685",
+          "pyproject.toml": "3e29ac474080d46cea4c39abbcbae24ce4c903e4e8842ad5d36f6845819b270b",
           "scripts/analyze_breadth_acquisition.py": "3cb68af3ef082685243b07783047bf7c3de0d4c65c76097765b07fcb826b7d46",
           "scripts/analyze_feasible_frontier.py": "92934d65f1a180120cffc16f3182af5d2ebe6343d552cc9a7f9fe040eb1c9f5d",
           "scripts/analyze_sleeve_scaling.py": "fc624a3b3a301e4778dab5240f784b71de145543514c7c29f1eaf0f302c6f2f1",
+          "scripts/analyze_stressed_correlation.py": "713ffc94d9e78cb216239f77d4c4a47f675299ccc5624e9f99f4ece514f50081",
           "scripts/analyze_target_2p5.py": "018faf228615df7627bfeec2857fb53e6dd85c0bffb6101090720c7d4b5288fc",
           "scripts/capture_eia930_vintages.py": "8fee721f5f19374ce213f21c47b0c8c55bbe8ca66086047141d8ad718dfb7ea6",
-          "scripts/check_retracted_claims.py": "3d06644a9bd7f3cca9ffe76db1f52497493f258b8536f068a1e52888267c5343",
+          "scripts/check_retracted_claims.py": "19ad39f54529b61a92081f3c893cc365e717387ba7af9d676164a2b22742e19e",
           "scripts/collect_cef.py": "c86f2891e54527bea9740d6562cc24885ac270b32910ae7da199ce93bb3cba71",
           "scripts/collect_multivenue_funding.py": "0724a91f94b85f4958c8530fc4dbd81f11dd2d7581d26e0b667dfd875b0d419e",
           "scripts/databento_build_continuous.py": "058c0b15e4abd1fc48aa34985939406234d4890bdcd23093b065936cc74780f8",
@@ -17470,9 +17489,9 @@
           "scripts/vps/collect_venues.py": "54870d67f99fa677486b71eae1e0ca4f6579b29e6b9facba6f37f4bdee523b69",
           "scripts/vps/stale_lock.py": "f40b992005f87b733ea6e71a447219a55d8200585c388ac06e13394cb0195a54"
         },
-        "content_hash": "sha256:059e6c6e0d5d680128b464ff068f83388974394b5179b1697dc0fd4ab49de277"
+        "content_hash": "sha256:c1b1884b058aaf58b9e09b3243ba459bd5c2ca8b4f63343c34a77709ec48005d"
       },
-      "source_sha256": "48d4925d3e459383882af40f8ed8113d80dc592b266e48e56e367c1a86e2b2ab",
+      "source_sha256": "19e347abba39415e047702f9b65c2226fbec654ec151e34fb91574b153bc0450",
       "public_path": "/glassbox/lint_debt_contract.json",
       "book_path": "/research/engineering-quality.md",
       "source_path": "artifacts/engineering/lint_debt_contract.json"
@@ -17922,6 +17941,6 @@
       "source_path": "artifacts/engineering/options_execution_contract.json"
     }
   },
-  "generated_at": "2026-08-18T17:49:22.085132+00:00",
-  "content_hash": "sha256:d9fc3a6519fbf1945b561aa36eee103e468520e11aaf24b1a4b8b07abc4e35e6"
+  "generated_at": "2026-08-19T21:39:25.667123+00:00",
+  "content_hash": "sha256:b19dae5cbc5a136d1772b8fdd3eed341b778d41461ab58dc8e5ccadfcf007bdc"
 }
