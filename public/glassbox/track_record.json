@@ -3,12 +3,12 @@
   "title": "Live Track Record",
   "summary": "The live paper record begins at go-live and is shown only as it accrues. We publish no return until it is earned in the open.",
   "go_live_date": "2026-08-07",
-  "live_days_accrued": 12,
+  "live_days_accrued": 13,
   "live_status": "LIVE",
   "live_source": "go-live seed (no realized marks have accrued yet)",
   "live_nav_baseline_usd": 100000.0,
-  "live_nav_current_usd": 99411.62,
-  "live_return_pct": -0.5884,
+  "live_nav_current_usd": 99154.48,
+  "live_return_pct": -0.8455,
   "live_curve": [
     {
       "date": "2026-08-07",
@@ -44,21 +44,25 @@
     },
     {
       "date": "2026-08-17",
-      "nav_usd": 99948.49
+      "nav_usd": 99924.86
     },
     {
       "date": "2026-08-18",
-      "nav_usd": 100048.61
+      "nav_usd": 100108.02
     },
     {
       "date": "2026-08-19",
-      "nav_usd": 99411.62
+      "nav_usd": 99164.78
+    },
+    {
+      "date": "2026-08-20",
+      "nav_usd": 99154.48
     }
   ],
   "research_curve_label": "SIMULATION (research backtest, NOT realized trading)",
   "research_curve_start": {
     "date": "2023-07-07",
-    "nav_usd": 100138.45
+    "nav_usd": 100138.46
   },
   "research_curve_end": {
     "date": "2026-06-01",
@@ -68,7 +72,7 @@
   "research_curve": [
     {
       "date": "2023-07-07",
-      "nav_usd": 100138.45
+      "nav_usd": 100138.46
     },
     {
       "date": "2023-07-12",
@@ -220,7 +224,7 @@
     },
     {
       "date": "2024-01-13",
-      "nav_usd": 104274.5
+      "nav_usd": 104274.51
     },
     {
       "date": "2024-01-18",
@@ -268,7 +272,7 @@
     },
     {
       "date": "2024-03-13",
-      "nav_usd": 111943.14
+      "nav_usd": 111943.13
     },
     {
       "date": "2024-03-18",
@@ -344,7 +348,7 @@
     },
     {
       "date": "2024-06-16",
-      "nav_usd": 111627.68
+      "nav_usd": 111627.69
     },
     {
       "date": "2024-06-21",
@@ -408,7 +412,7 @@
     },
     {
       "date": "2024-09-04",
-      "nav_usd": 110660.63
+      "nav_usd": 110660.62
     },
     {
       "date": "2024-09-09",
@@ -424,7 +428,7 @@
     },
     {
       "date": "2024-09-24",
-      "nav_usd": 113273.38
+      "nav_usd": 113273.39
     },
     {
       "date": "2024-09-29",
@@ -436,7 +440,7 @@
     },
     {
       "date": "2024-10-09",
-      "nav_usd": 113528.23
+      "nav_usd": 113528.24
     },
     {
       "date": "2024-10-14",
@@ -456,7 +460,7 @@
     },
     {
       "date": "2024-11-03",
-      "nav_usd": 113773.02
+      "nav_usd": 113773.03
     },
     {
       "date": "2024-11-08",
@@ -500,7 +504,7 @@
     },
     {
       "date": "2024-12-28",
-      "nav_usd": 119415.38
+      "nav_usd": 119415.39
     },
     {
       "date": "2025-01-02",
@@ -648,7 +652,7 @@
     },
     {
       "date": "2025-07-01",
-      "nav_usd": 120982.4
+      "nav_usd": 120982.41
     },
     {
       "date": "2025-07-06",
@@ -660,7 +664,7 @@
     },
     {
       "date": "2025-07-16",
-      "nav_usd": 120804.32
+      "nav_usd": 120804.33
     },
     {
       "date": "2025-07-21",
@@ -756,7 +760,7 @@
     },
     {
       "date": "2025-11-13",
-      "nav_usd": 121848.16
+      "nav_usd": 121848.17
     },
     {
       "date": "2025-11-18",
@@ -780,7 +784,7 @@
     },
     {
       "date": "2025-12-13",
-      "nav_usd": 123218.16
+      "nav_usd": 123218.17
     },
     {
       "date": "2025-12-18",
@@ -812,7 +816,7 @@
     },
     {
       "date": "2026-01-22",
-      "nav_usd": 124509.95
+      "nav_usd": 124509.96
     },
     {
       "date": "2026-01-27",
@@ -864,7 +868,7 @@
     },
     {
       "date": "2026-03-28",
-      "nav_usd": 123893.2
+      "nav_usd": 123893.21
     },
     {
       "date": "2026-04-02",
@@ -935,7 +939,7 @@
     "CORRECTION 2026-07-05 \u2014 the crypto sleeve was signal-dead, not 'carry compressed'. From go-live (06-23) to 07-05 AlphaForge held cash and we published that funding carry was compressed. An internal audit found the true cause: a wiring bug blended equity-fundamental alphas (undefined on crypto) into the live signal, invalidating it every cycle \u2014 the validated carry-only configuration was never what ran live. Fixed same day (the loop now runs the exact blessed walk-forward config: carry_fund_21, weekly rebalance, with per-cycle signal-health logging so a dead signal can never masquerade as a quiet hold again). The $100k cash equity curve was genuine; the published EXPLANATION was wrong. Per our append-only posture this correction is added to the record, not swapped into it.",
     "We red-team our own record. On 2026-06-27 our publishing pipeline emitted a future-dated (2026-06-29) paper mark that briefly reached the public sites and was anchored into seq 0 of the signed transparency chain. We caught it the same day, added a fail-closed guard, and appended the corrected seq 1 \u2014 the append-only chain shows BOTH, because we don't get to delete our mistakes. That is the trust system working, not failing.",
     "AlphaTrend (managed-futures trend) was the FIRST sleeve we took genuinely live: its 17-ETF book transacts on Alpaca paper, not in a simulator. We published DSR 0.83 for it and called it the first sleeve to CLEAR multiple-testing deflation, statistically real rather than a backtest fluke. RE-DERIVED 2026-08-07 at honest N=133 and pooled V[SR]=7.96e-04, its DSR is 0.000: the LOWEST of the six sleeves we have measured, not the highest. The old 0.83 rested on a variance input roughly 80x too small and a trial count of 5 while its siblings were graded at N=101, so it was marked on an easier exam and then called the soundest. Net Sharpe 0.25 over its full 5,179-day history. It is folded into ALPHAC at equal quarters for MEASURED drawdown reduction, not for a demonstrated edge. The screen suggested 0.73; the honest engine says 0.33 on the live window. We published every one of those numbers.",
-    "STRUCTURAL VERDICT 2026-08-05 \u2014 the crypto sleeve's venue unreachability is STRUCTURAL, and we said we would say so. The 2026-07-20 note above promised: 'if it proves persistent it is a STRUCTURAL problem for a sleeve built on a single venue, and we will say that too.' It has proved persistent, so here is the number we had not put on the record until now: across its entire live history the hourly loop has completed 467 of 1239 expected cycles \u2014 an uptime of 37.7%. It has been dark for roughly 773 hours of a 51.6-day record, with 8 separate outages longer than a day and a longest single outage of 165 hours. As of this publish it has been dark 1 hours; its last observed cycle was 2026-08-19 21:00 UTC. WHAT THIS MEANS, stated plainly rather than buried: this sleeve carries 40% of the flagship's weight, so for most of the forward record our largest single position has not been managed. The published curve is not wrong \u2014 we never roll forward a mark we did not observe, so the sleeve's line simply stops when the venue does \u2014 but a 40%-weight sleeve that is dark most of the time is not meaningfully 'live', and describing it as live without this number attached would have been a half-truth. The forward track record is the whole basis on which this book asks to be believed, and it is being accrued on a book whose biggest sleeve is mostly absent. WHAT WE ARE DOING: the diagnosis is unchanged and venue-specific (the general internet and our equity broker respond normally from the same machine while the exchange endpoint fails on connect). Two fixes are real \u2014 hosting the loop somewhere with unobstructed access, and removing the single-venue dependency altogether by adding a second exchange. We flag the first honestly: our own deploy runbook records that reaching a venue from a different region is a COMPLIANCE decision and not merely an operations one, so it will not be done as a silent infrastructure tweak. Until one of those lands, read this sleeve's contribution to the live record as what it is \u2014 37.7% of the intended trading.",
+    "STRUCTURAL VERDICT 2026-08-05 \u2014 the crypto sleeve's venue unreachability is STRUCTURAL, and we said we would say so. The 2026-07-20 note above promised: 'if it proves persistent it is a STRUCTURAL problem for a sleeve built on a single venue, and we will say that too.' It has proved persistent, so here is the number we had not put on the record until now: across its entire live history the hourly loop has completed 486 of 1257 expected cycles \u2014 an uptime of 38.7%. It has been dark for roughly 772 hours of a 52.4-day record, with 8 separate outages longer than a day and a longest single outage of 165 hours. As of this publish it has been dark 0 hours; its last observed cycle was 2026-08-20 16:00 UTC. WHAT THIS MEANS, stated plainly rather than buried: this sleeve carries 40% of the flagship's weight, so for most of the forward record our largest single position has not been managed. The published curve is not wrong \u2014 we never roll forward a mark we did not observe, so the sleeve's line simply stops when the venue does \u2014 but a 40%-weight sleeve that is dark most of the time is not meaningfully 'live', and describing it as live without this number attached would have been a half-truth. The forward track record is the whole basis on which this book asks to be believed, and it is being accrued on a book whose biggest sleeve is mostly absent. WHAT WE ARE DOING: the diagnosis is unchanged and venue-specific (the general internet and our equity broker respond normally from the same machine while the exchange endpoint fails on connect). Two fixes are real \u2014 hosting the loop somewhere with unobstructed access, and removing the single-venue dependency altogether by adding a second exchange. We flag the first honestly: our own deploy runbook records that reaching a venue from a different region is a COMPLIANCE decision and not merely an operations one, so it will not be done as a silent infrastructure tweak. Until one of those lands, read this sleeve's contribution to the live record as what it is \u2014 38.7% of the intended trading.",
     "CORRECTION 2026-08-06 \u2014 our crypto carry sleeve is a strategy that earns funding, and its LIVE paper account has never once booked funding. We found this ourselves and are publishing it before the fix rather than after. The mechanism, stated plainly so anyone can check it: funding is applied in exactly one place in this codebase, Ledger.apply_funding, and it is called from exactly one call site, the BACKTEST engine. The live paper broker's cash moves on one line and only one line, a fill: cash - qty*price - fee. No funding cashflow can reach the live account by any path. The size of what is missing is not marginal. Our committed walk-forward artifact for this sleeve reports funding_net of $19,500 against a total return of $38,236 on a $100k book over 2022-02 to 2026-06: about HALF of everything this strategy has ever earned is the funding it is designed to harvest. Removing it takes the sleeve's backtested Sharpe from 0.653 to roughly 0.30. So AlphaForge's live record has been running against a hard ceiling of about half its validated Sharpe, and every live number we have published for this sleeve should be read in that light. What we are NOT doing: we are not restating the historical live curve. The marks we published were the marks we observed, and this record is append-only, so the fix applies FORWARD from the day it ships and the understated period stays visible in the chain. One number we are deliberately NOT putting on the record yet: our internal estimate of what funding would have added over the live window is dominated by a single name that redenominated roughly 100x inside the window, which makes the naive figure meaningless. We would rather publish no number than a number we cannot stand behind, so that one waits for the corrected accounting. This is the fourth time a defect in our plumbing, not our strategy, has moved a published number, and the lesson we wrote down in July holds: a fix is not done until a test pins the path that actually runs.",
     "CORRECTION 2026-08-06 \u2014 a factual claim in our 2026-07-20 incident note above is now false and we are marking it rather than editing it. That note said 'Bybit responds' as evidence the Binance failure was venue-specific. Re-measured from the same network on 2026-08-06: Bybit does NOT respond, and neither do Kraken or Deribit. Binance, Bybit and Kraken all fail on connection reset in under a tenth of a second and Deribit times out. The conclusion the original note drew is unchanged and if anything strengthened, since the block is clearly broader than one venue, but the supporting fact it cited is no longer true and a reader checking our work today would find it wrong. One venue does answer: OKX responds normally and serves funding rates, 436 perpetual instruments and hourly candles. We are evaluating it, and we note in advance that moving venue is not a configuration change: the same carry signal computed on OKX has a cross-sectional rank correlation of only about 0.64 with the Binance one, so it would be a materially different strategy wearing the same name, and we will not splice the two curves together and call it one continuous record.",
     "FIXED 2026-08-06 \u2014 the funding gap disclosed above is now closed in the live path, forward only. Earlier today we published that our crypto carry sleeve had never once booked funding in live paper, which is roughly half of everything that strategy has ever earned. That is fixed: the live broker gained a funding path with the identical sign convention the backtest ledger uses (payment = -position * mark * rate, longs pay shorts on a positive rate), and the live loop now settles every stored funding event for the window just closed, before the strategy re-decides, so a settlement is charged against the position that was actually held through it. It is point-in-time by construction: the reader filters on each event's stored publication time, never on the settlement time, so a rate not yet knowable at the moment of the cycle stays invisible. Nine tests pin the running path rather than the intention, including one that asserts the live broker and the backtest ledger return identical figures for the same event, because two conventions would be worse than none. Three things we are deliberately NOT doing. We are not restating the historical curve: the marks we published are the marks we observed, the understated period stays in the signed chain, and the fix applies from today. We are not claiming an improvement yet: the sleeve has been dark on venue unreachability since 2026-08-03, so this books nothing until it trades again, and any future gain will show up in the forward record or not at all. And we are not putting a number on what it would have earned over the live window, because our own measurement of that is dominated by a single instrument that redenominated roughly 100x inside the window, which makes the figure meaningless. We would rather publish no number than one we cannot stand behind.",
@@ -957,6 +961,6 @@
     "data/paper/state.json",
     "var/trading.sqlite"
   ],
-  "generated_at": "2026-08-19T21:39:24.783723+00:00",
-  "content_hash": "sha256:320c0199bb64f1119fe4d7d04c075648116f3c887325ed3985b36eb443b9b8c2"
+  "generated_at": "2026-08-20T16:25:34.955395+00:00",
+  "content_hash": "sha256:87dd93b49ff2be9bd6e237b21c1d411fedf9fbc5aa701f6ecc60bd7e0390d0ad"
 }

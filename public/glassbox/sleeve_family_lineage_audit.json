@@ -3,9 +3,9 @@
   "stage": "NO_RETURN_IDENTITY_LINEAGE",
   "claim_boundary": "This audit proves registry consistency against the enumerated internal ledgers. It does not prove global economic novelty, returns, or sleeve admission.",
   "summary": {
-    "decision": "FAIL_CLOSED",
+    "decision": "PASS",
     "families_audited": 40,
-    "family_failures": 1,
+    "family_failures": 0,
     "current_book_exact_match": true,
     "current_sleeves": 4,
     "kill_ledger_identities": 46,
@@ -23,9 +23,7 @@
     "family_return_data_opened": 1,
     "family_return_hypotheses_spent": 1
   },
-  "failed_families": [
-    "tender_offer_spread"
-  ],
+  "failed_families": [],
   "current_book": {
     "actual": [
       "alphaforge",
@@ -776,12 +774,12 @@
         "aliases_required_when_historical": true,
         "historical_aliases_exist_in_kill_ledger": true,
         "evidence_declared_when_non_novel": true,
-        "evidence_resolves": false,
+        "evidence_resolves": true,
         "novel_family_has_no_historical_alias": true,
         "forward_experiment_is_explicit": true,
         "direct_return_outcome_valid": true
       },
-      "pass": false
+      "pass": true
     },
     {
       "family_id": "treasury_auction_concession",
@@ -828,10 +826,10 @@
   ],
   "source_sha256": {
     "registry": "6a54ef0c0bda0d1353b1fa8175ab900313b31594084cc5c8810b4de069ef3e04",
-    "kill_ledger": "ca931a0b01ae28cf18430154c1c409c50e03dce42d22ad9d74e3d5b58a1c3d79",
-    "current_book": "11aa33347d9626e4407e770036ec0c0b165f896600acf2a9b42f11d75f526b09",
+    "kill_ledger": "a40ebbb0acc80d1463bc3379aed25fd32c0c4bed11d527e2a382d0c54a168f7c",
+    "current_book": "775465c29720bd4e2a3cec7e171f5c9b7404d0936caf0b3864754285e55e2c19",
     "discovery": "654f831e3ea4122437e5c48f066d6d37ba6cbcf8d1c7119395d104c5aa6cc225"
   },
-  "generated_at": "2026-08-19T21:31:36.531048+00:00",
-  "content_hash": "sha256:1bf75ab489dbd94ba1d7e3431d81524cfc48ffd6ef33bfdf7e1c229da3ceae92"
+  "generated_at": "2026-08-20T16:25:35.411025+00:00",
+  "content_hash": "sha256:ba6b5801656cf29d4ef6869693ae0af26978cc52fb29365188285ed1ccbcb538"
 }
