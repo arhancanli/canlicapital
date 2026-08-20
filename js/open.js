@@ -661,6 +661,17 @@ function buildCapacity(curve) {
 // =============================================================================
 function bindTransparency(d, anchors) {
   if (!d) return;
+  // DAYS != ENTRIES. The chain gains an entry on every PUBLISH and the tick publishes hourly, so
+  // the entry count runs ~8x the number of calendar dates covered. This rendered entry_count into
+  // a slot labelled "days" under the heading "Signed chain" — 371 entries read as "371 days" while
+  // the record actually spanned 47 dates and the live book was 13 days old. On the page that says
+  // "don't trust us, verify us", that is the worst possible place to overstate.
+  // Both are shown now, and days is derived from the entries themselves when the exporter is older
+  // than this page, so a stale bundle degrades to the TRUE number rather than the flattering one.
+  const distinctDays = Number.isFinite(d.distinct_days)
+    ? d.distinct_days
+    : (Array.isArray(d.entries) ? new Set(d.entries.map((e) => e && e.date)).size : null);
+  setHook("tx", "days", distinctDays);
   setHook("tx", "entries", d.entry_count);
   if (d.head && d.head.chain_hash) setHook("tx", "chainHead", shortHash(d.head.chain_hash));
   if (d.public_key_ed25519_hex) {
