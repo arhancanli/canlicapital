@@ -665,8 +665,8 @@ python3 reproduce.py --dir .   # -> ALL CHECKS REPRODUCED</code></pre>
           <p class="reproduce__verify-head label">Tamper-evident track record</p>
           <p class="reproduce__noahead body" style="margin-top:0">
             <span class="comment mono-label">//</span>
-            Every published day is hashed, chained to the day before, and Ed25519-signed.
-            Change any past day and every signature after it breaks. The chain head is also
+            Every published state is hashed, chained to the one before, and Ed25519-signed.
+            Change any past entry and every signature after it breaks. The chain head is also
             stamped into the Bitcoin blockchain, a clock we don't control, so we can't backdate
             it either. That proves when the record existed, never whether the numbers are good.
             Don't trust us. Verify us.
@@ -674,7 +674,7 @@ python3 reproduce.py --dir .   # -> ALL CHECKS REPRODUCED</code></pre>
           <dl class="reproduce__facts">
             <div class="reproduce__fact">
               <dt class="reproduce__fact-label mono-label">Signed chain</dt>
-              <dd class="reproduce__fact-val mono-data"><span data-tx="entries">--</span> days &middot; head <span data-tx="chainHead">--</span></dd>
+              <dd class="reproduce__fact-val mono-data"><span data-tx="days">--</span> days &middot; <span data-tx="entries">--</span> entries &middot; head <span data-tx="chainHead">--</span></dd>
             </div>
             <div class="reproduce__fact">
               <dt class="reproduce__fact-label mono-label">Public key (Ed25519)</dt>

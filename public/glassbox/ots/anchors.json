@@ -4,28 +4,37 @@
   "what_it_proves": "An independent, un-forgeable timestamp. The signed chain proves the record was not edited since publication; this proves it was not BACKDATED either. We hold the Ed25519 key, but we do not control Bitcoin, so we cannot regenerate or pre-date the record without these anchors disagreeing. Pending anchors are calendar-attested and harden into a Bitcoin block over a few hours.",
   "how_to_verify": [
     "pip install opentimestamps-client",
-    "Download a head file and its proof from this folder, e.g. seq0333_4b6566254073.head.txt and seq0333_4b6566254073.head.txt.ots",
+    "Download a head file and its proof from this folder, e.g. seq0353_5adebb4e9727.head.txt and seq0353_5adebb4e9727.head.txt.ots",
     "Run:  ots verify <file>.head.txt.ots   (it reports the Bitcoin block + time the head was committed)",
     "Confirm the chain_hash inside the head file matches the head in transparency_log.json.",
     "Or upload the .ots proof at https://opentimestamps.org"
   ],
   "head_anchor": {
-    "seq": 333,
-    "date": "2026-08-18",
-    "chain_hash": "4b6566254073db53b44bd2b1452cd657279cf3c491cd844ee8442f15ab64e13f",
-    "head_file": "seq0333_4b6566254073.head.txt",
-    "ots_file": "seq0333_4b6566254073.head.txt.ots",
+    "seq": 353,
+    "date": "2026-08-19",
+    "chain_hash": "5adebb4e97273fb19878f053f5004f549c7e5cb844d37268fdfd21dce6702935",
+    "head_file": "seq0353_5adebb4e9727.head.txt",
+    "ots_file": "seq0353_5adebb4e9727.head.txt.ots",
     "status": "pending"
   },
-  "anchor_count": 45,
+  "anchor_count": 46,
   "anchors": [
+    {
+      "seq": 353,
+      "date": "2026-08-19",
+      "chain_hash": "5adebb4e97273fb19878f053f5004f549c7e5cb844d37268fdfd21dce6702935",
+      "head_file": "seq0353_5adebb4e9727.head.txt",
+      "ots_file": "seq0353_5adebb4e9727.head.txt.ots",
+      "status": "pending"
+    },
     {
       "seq": 333,
       "date": "2026-08-18",
       "chain_hash": "4b6566254073db53b44bd2b1452cd657279cf3c491cd844ee8442f15ab64e13f",
       "head_file": "seq0333_4b6566254073.head.txt",
       "ots_file": "seq0333_4b6566254073.head.txt.ots",
-      "status": "pending"
+      "status": "bitcoin",
+      "bitcoin_block_height": 963030
     },
     {
       "seq": 320,

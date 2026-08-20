@@ -2,16 +2,16 @@
   "schema": "glassbox.trial-ledger/2",
   "claim_boundary": "This ledger proves what was measured and how selection N is counted. It does not prove that any identity is profitable, independent, or admissible.",
   "accounting_equation": "immutable execution records - window-only remeasurements - cross-profile duplicate identities = distinct union hypothesis identities",
-  "immutable_execution_records": 229,
-  "distinct_config_hashes": 229,
-  "window_only_remeasurements": 67,
+  "immutable_execution_records": 230,
+  "distinct_config_hashes": 230,
+  "window_only_remeasurements": 68,
   "cross_profile_duplicate_identities": 0,
   "distinct_hypothesis_identities": 162,
   "selection_statistics": {
     "unit": "first_immutable_record_per_hypothesis",
     "n_hypotheses": 162,
     "sharpe_variance": 0.0009605968552560768,
-    "audit_raw_record_sharpe_variance": 0.0007349521849715131,
+    "audit_raw_record_sharpe_variance": 0.0007323769859770803,
     "interpretation": "Operational window remeasurements remain public but cannot alter selection N or selection V[SR]."
   },
   "ledger_profiles": 4,
@@ -63,11 +63,11 @@
     {
       "profile": "var_mf",
       "source_path": "var_mf/experiments.jsonl",
-      "immutable_execution_records": 44,
-      "distinct_config_hashes": 44,
+      "immutable_execution_records": 45,
+      "distinct_config_hashes": 45,
       "hypothesis_identities": 13,
-      "window_only_remeasurements": 31,
-      "latest_recorded_at": "2026-08-15T05:30:29.870000+00:00"
+      "window_only_remeasurements": 32,
+      "latest_recorded_at": "2026-08-20T05:30:18.376000+00:00"
     },
     {
       "profile": "var_sharadar",
@@ -197,6 +197,6 @@
       }
     }
   },
-  "generated_at": "2026-08-18T17:49:22.077215+00:00",
-  "content_hash": "sha256:fc8e6a03947fda893a637da00bfcc9ac64f47e0c5d85252f17ef98e5665f0758"
+  "generated_at": "2026-08-20T16:25:38.018702+00:00",
+  "content_hash": "sha256:090c5dfb0dc06cb174e77333a45161bc47823cb0b75a254281201bc558da2bc1"
 }
