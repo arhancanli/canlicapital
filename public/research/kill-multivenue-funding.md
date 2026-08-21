@@ -13,7 +13,7 @@ This died at the screen stage, before a full walk-forward was ever run. Screenin
 
 | Measure | Value |
 |---|---|
-| Screen net Sharpe | 0.0000 |
+| Screen net Sharpe | not separately measured |
 
 ## What this does and does not say
 

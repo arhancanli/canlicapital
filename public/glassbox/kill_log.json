@@ -330,7 +330,7 @@
     {
       "name": "crypto_dated_basis",
       "readable_name": "Crypto Dated-Futures Basis (campaign)",
-      "screen_net_sharpe": 0.0,
+      "screen_net_sharpe": null,
       "stage": "screen_prototype",
       "verdict": "KILLED",
       "reason": "Screened at an apparent 1.47 but refuted 3x and reproduced from scratch: the 8.2%/yr 'carry' is a roll-accounting fiction \u2014 the kept days (+0.55) and the dropped roll days (-0.55) cancel; honest all-days P&L telescopes to ~0%/yr, skew -6.84. A construction-fitting artifact (the 'edge' is earned by deleting the days it loses money). KILLED."
@@ -354,7 +354,7 @@
     {
       "name": "pm_odds_signal",
       "readable_name": "Prediction-Market Odds as Macro Signal (probe)",
-      "screen_net_sharpe": 0.0,
+      "screen_net_sharpe": null,
       "stage": "screen_prototype",
       "verdict": "KILLED",
       "reason": "Do Polymarket-implied probabilities lead tradable markets? No \u2014 they lag them. The forward lead is null across 5 macro markets x 5 ETFs; the reverse is strong: bonds reprice a Fed move first and the odds catch up the NEXT day (corr +0.40 to TLT). Only ~2 years of usable history, all one easing cycle. The free odds are a slower, noisier copy of prices we already see. KILLED at feasibility."
@@ -402,7 +402,7 @@
     {
       "name": "intraday_mom",
       "readable_name": "Intraday Flow-Momentum, first-30m predicts last-30m (probe)",
-      "screen_net_sharpe": 0.0,
+      "screen_net_sharpe": null,
       "stage": "screen_prototype",
       "verdict": "KILLED",
       "reason": "The twice-JFE-documented effect (Gao-Han-Li-Zhou) is fully DECAYED post-publication on SPY/QQQ/IWM: dead-zero in 2023-2026, and significantly INVERTED in 2020-2022 (a textbook publish-then-arbitrage overshoot). The only statistically-alive cell (TLT overnight, t=2.9) makes +1.2 bps/day gross against a >=2bp round-trip \u2014 a mirage economically. KILLED at screen."
@@ -434,7 +434,7 @@
     {
       "name": "multivenue_funding",
       "readable_name": "Crypto Multi-Venue Funding Aggregation (probe)",
-      "screen_net_sharpe": 0.0,
+      "screen_net_sharpe": null,
       "stage": "screen_prototype",
       "verdict": "KILLED",
       "reason": "Would aggregating funding across exchanges beat our Binance-only carry signal? No \u2014 null by its own pre-registered rule (promote required +0.10 Sharpe at 90% bootstrap confidence). The reason is structural: Binance and Bybit annualized funding are 0.94 correlated across 12,425 instrument-weeks, so there is almost no independent information to aggregate. The adjacent 'harvest on the best-paying venue' idea dies on arithmetic too \u2014 a median cross-venue gap of ~2.4%/yr against a four-legged ~30bp round trip implies a 22-day breakeven hold, marginal before you even price second-tier venue custody risk. The live sleeve stays Binance-only on its blessed config. Byproduct kept: a multi-exchange funding lake (Bybit deep history via mirror; OKX public history is depth-capped at ~90 days, a data finding worth recording). Reproduce: scripts/probe_multivenue_funding.py."
@@ -554,6 +554,6 @@
     "artifacts/analysis/null_fundamentals_rerun/result.json",
     "artifacts/feasibility/repurchase_issuance_flow/identity_overlap_audit.json"
   ],
-  "generated_at": "2026-08-21T14:36:28.562008+00:00",
-  "content_hash": "sha256:aa911efb7592eef193837492f23b1d283f1a4bb36791431ef406350dc53c3ea6"
+  "generated_at": "2026-08-21T15:30:30.352019+00:00",
+  "content_hash": "sha256:b8c568ff6cd824e48c516afcea7c0d3badcffc01ef4b27c7de3443972d2311fb"
 }
