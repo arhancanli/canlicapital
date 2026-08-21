@@ -1,0 +1,180 @@
+{
+  "claim_boundary": "A property of the ESTIMATOR, derived from its exact weighting and verified against the production function by unit impulse. Reads no market data, runs no backtest, registers no hypothesis identity, and recommends no halflife. 0 trials.",
+  "ledoit_wolf_intensity_mismatch": {
+    "description": "ledoit_wolf_cc computes its shrinkage intensity delta* with T = the number of rows passed, and production passes the full unweighted 720-row window while the matrix being shrunk is the EWMA. That approximation is documented and was conservative while the EWMA's effective sample EXCEEDED 720. It stops being conservative at a short halflife.",
+    "effective_sample_by_request": {
+      "crypto_H1": {
+        "126d": 297.06124008702557,
+        "21d": 618.523035704582,
+        "252d": 267.48514752418106,
+        "63d": 361.6845247874969,
+        "720d": 249.37508855247322
+      },
+      "equity_D1": {
+        "126d": 362.61045701821024,
+        "21d": 60.59869278555086,
+        "252d": 635.1724445300547,
+        "63d": 181.78254985328257,
+        "720d": 514.4376414409439
+      }
+    },
+    "site": "src/alphaforge/portfolio/strategy.py, the ledoit_wolf_cc call",
+    "status": "OPEN \u2014 flagged, not fixed; no study has measured it"
+  },
+  "production": {
+    "cov_min_periods": 240,
+    "cov_window_bars": 720,
+    "estimator": "alphaforge.portfolio.covariance.ewma_cov",
+    "legacy_cov_halflife_bars": 720
+  },
+  "schema": "canli.alphac-live-covariance-memory.v1",
+  "sleeves": {
+    "crypto_H1": {
+      "bars_per_day": 24.0,
+      "by_requested_days": [
+        {
+          "effective_sample_rows": 618.523035704582,
+          "halflife_bars": 504.0,
+          "halflife_days": 21.0,
+          "lambda": 0.998625653255761,
+          "mean_weight_age_days": 17.203018066214934,
+          "median_weight_age_days": 20.291666666666668,
+          "seed_block_weight": 0.5167788915035059,
+          "truncation_absorbed_fraction": 0.03373015873015872,
+          "untruncated_equivalent_halflife_days": 20.291666666666668
+        },
+        {
+          "effective_sample_rows": 361.6845247874969,
+          "halflife_bars": 1512.0,
+          "halflife_days": 63.0,
+          "lambda": 0.999541674388313,
+          "mean_weight_age_days": 21.94400599798556,
+          "median_weight_age_days": 23.75,
+          "seed_block_weight": 0.8024813019603448,
+          "truncation_absorbed_fraction": 0.623015873015873,
+          "untruncated_equivalent_halflife_days": 23.75
+        },
+        {
+          "effective_sample_rows": 297.06124008702557,
+          "halflife_bars": 3024.0,
+          "halflife_days": 126.0,
+          "lambda": 0.9997708109303417,
+          "mean_weight_age_days": 23.39726374027089,
+          "median_weight_age_days": 24.416666666666668,
+          "seed_block_weight": 0.895813207069628,
+          "truncation_absorbed_fraction": 0.8062169312169312,
+          "untruncated_equivalent_halflife_days": 24.416666666666668
+        },
+        {
+          "effective_sample_rows": 267.48514752418106,
+          "halflife_bars": 6048.0,
+          "halflife_days": 252.0,
+          "lambda": 0.9998853988984646,
+          "mean_weight_age_days": 24.17137073378422,
+          "median_weight_age_days": 24.708333333333332,
+          "seed_block_weight": 0.9464740921280574,
+          "truncation_absorbed_fraction": 0.9019510582010581,
+          "untruncated_equivalent_halflife_days": 24.708333333333332
+        },
+        {
+          "effective_sample_rows": 249.37508855247322,
+          "halflife_bars": 17280.0,
+          "halflife_days": 720.0,
+          "lambda": 0.9999598881204428,
+          "mean_weight_age_days": 24.692506031842868,
+          "median_weight_age_days": 24.875,
+          "seed_block_weight": 0.980930087668921,
+          "truncation_absorbed_fraction": 0.9654513888888889,
+          "untruncated_equivalent_halflife_days": 24.875
+        }
+      ],
+      "legacy_setting": {
+        "effective_sample_rows": 514.4376414409439,
+        "halflife_bars": 720,
+        "halflife_days": 30.0,
+        "lambda": 0.9990377588337834,
+        "mean_weight_age_days": 19.144593996088407,
+        "means_days": 30.0,
+        "median_weight_age_days": 22.041666666666668,
+        "seed_block_weight": 0.6299605249474489,
+        "truncation_absorbed_fraction": 0.2652777777777777,
+        "untruncated_equivalent_halflife_days": 22.041666666666668
+      }
+    },
+    "equity_D1": {
+      "bars_per_day": 1.0,
+      "by_requested_days": [
+        {
+          "effective_sample_rows": 60.59869278555086,
+          "halflife_bars": 21.0,
+          "halflife_days": 21.0,
+          "lambda": 0.9675317785238916,
+          "mean_weight_age_days": 29.799358198971127,
+          "median_weight_age_days": 20.0,
+          "seed_block_weight": 1.3161772652552104e-07,
+          "truncation_absorbed_fraction": 0.04761904761904767,
+          "untruncated_equivalent_halflife_days": 20.0
+        },
+        {
+          "effective_sample_rows": 181.78254985328257,
+          "halflife_bars": 63.0,
+          "halflife_days": 63.0,
+          "lambda": 0.9890579681360733,
+          "mean_weight_age_days": 90.53877537230811,
+          "median_weight_age_days": 62.0,
+          "seed_block_weight": 0.005086723465207836,
+          "truncation_absorbed_fraction": 0.015873015873015928,
+          "untruncated_equivalent_halflife_days": 62.0
+        },
+        {
+          "effective_sample_rows": 362.61045701821024,
+          "halflife_bars": 126.0,
+          "halflife_days": 126.0,
+          "lambda": 0.9945139356168285,
+          "mean_weight_age_days": 176.87380316534677,
+          "median_weight_age_days": 126.0,
+          "seed_block_weight": 0.07132126937462727,
+          "truncation_absorbed_fraction": 0.0,
+          "untruncated_equivalent_halflife_days": 126.0
+        },
+        {
+          "effective_sample_rows": 635.1724445300547,
+          "halflife_bars": 252.0,
+          "halflife_days": 252.0,
+          "lambda": 0.9972531953404955,
+          "mean_weight_age_days": 298.01430867146826,
+          "median_weight_age_days": 251.0,
+          "seed_block_weight": 0.2670604227035989,
+          "truncation_absorbed_fraction": 0.003968253968253954,
+          "untruncated_equivalent_halflife_days": 251.0
+        },
+        {
+          "effective_sample_rows": 514.4376414409439,
+          "halflife_bars": 720.0,
+          "halflife_days": 720.0,
+          "lambda": 0.9990377588337834,
+          "mean_weight_age_days": 459.47025590612174,
+          "median_weight_age_days": 529.0,
+          "seed_block_weight": 0.6299605249474489,
+          "truncation_absorbed_fraction": 0.2652777777777777,
+          "untruncated_equivalent_halflife_days": 529.0
+        }
+      ],
+      "legacy_setting": {
+        "effective_sample_rows": 514.4376414409439,
+        "halflife_bars": 720,
+        "halflife_days": 720.0,
+        "lambda": 0.9990377588337834,
+        "mean_weight_age_days": 459.47025590612174,
+        "means_days": 720.0,
+        "median_weight_age_days": 529.0,
+        "seed_block_weight": 0.6299605249474489,
+        "truncation_absorbed_fraction": 0.2652777777777777,
+        "untruncated_equivalent_halflife_days": 529.0
+      }
+    }
+  },
+  "the_headline": "Asking for a 21-day halflife gives the CRYPTO sleeve an effective memory of 20.3 days, not 21, because 51.7% of the estimate is still the flat seed block. On the EQUITY sleeve the same request gives 20.0 days, and the legacy 720-bar setting there means 720 days requested and 529.0 days of actual memory. One parameter, two calendars, and neither delivers what it says.",
+  "what_this_does_not_say": "It does not say which halflife is right. It says what the estimator DOES with each one, which is the mapping a halflife decision needs and did not have. Choosing a value still requires a drawdown study run through this estimator rather than through an untruncated simulation of it.",
+  "why_the_parameter_is_not_the_memory": "ewma_cov sees only cov_window_bars rows and seeds S_0 with the EQUALLY WEIGHTED sample covariance of the oldest cov_min_periods rows, decayed by lambda^k. The seed block is therefore a flat slab of old data the recursion cannot forget inside the window, and the shorter the requested halflife the smaller that slab -- but it never vanishes. The sweep that set overlay policy simulated an untruncated recursion, so its halflife ladder and this estimator's memory are different quantities."
+}

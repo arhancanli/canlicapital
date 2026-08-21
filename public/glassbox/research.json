@@ -250,8 +250,8 @@
         }
       }
     },
-    "generated_at": "2026-08-21T18:22:25.534642+00:00",
-    "content_hash": "sha256:dced45c87c476376bdc4801b13dfeeac1ae809eb2ad4071f09f628f09cab8415"
+    "generated_at": "2026-08-21T19:00:35.595704+00:00",
+    "content_hash": "sha256:0975f4b623db22debf2fb5b0fed6de9b79b366bd637dabea5e380dd92aab1794"
   },
   "factor_research": {
     "summary": "Most ideas die. We publish every test with its real net-of-cost Sharpe and its real Rank-IC. 2 kept, 8 killed. The Rank-IC is the cross-sectional information coefficient with a Newey-West t-stat; the net Sharpe is the purged walk-forward result after the conservative cost model.",
@@ -726,8 +726,8 @@
     "live_status": "LIVE",
     "live_source": "go-live seed (no realized marks have accrued yet)",
     "live_nav_baseline_usd": 100000.0,
-    "live_nav_current_usd": 98905.28,
-    "live_return_pct": -1.0947,
+    "live_nav_current_usd": 98949.42,
+    "live_return_pct": -1.0506,
     "research_curve_label": "SIMULATION (research backtest, NOT realized trading)",
     "research_curve_start": {
       "date": "2023-07-07",
@@ -755,7 +755,7 @@
       "CORRECTION 2026-07-05 \u2014 the crypto sleeve was signal-dead, not 'carry compressed'. From go-live (06-23) to 07-05 AlphaForge held cash and we published that funding carry was compressed. An internal audit found the true cause: a wiring bug blended equity-fundamental alphas (undefined on crypto) into the live signal, invalidating it every cycle \u2014 the validated carry-only configuration was never what ran live. Fixed same day (the loop now runs the exact blessed walk-forward config: carry_fund_21, weekly rebalance, with per-cycle signal-health logging so a dead signal can never masquerade as a quiet hold again). The $100k cash equity curve was genuine; the published EXPLANATION was wrong. Per our append-only posture this correction is added to the record, not swapped into it.",
       "We red-team our own record. On 2026-06-27 our publishing pipeline emitted a future-dated (2026-06-29) paper mark that briefly reached the public sites and was anchored into seq 0 of the signed transparency chain. We caught it the same day, added a fail-closed guard, and appended the corrected seq 1 \u2014 the append-only chain shows BOTH, because we don't get to delete our mistakes. That is the trust system working, not failing.",
       "AlphaTrend (managed-futures trend) was the FIRST sleeve we took genuinely live: its 17-ETF book transacts on Alpaca paper, not in a simulator. We published DSR 0.83 for it and called it the first sleeve to CLEAR multiple-testing deflation, statistically real rather than a backtest fluke. RE-DERIVED 2026-08-07 at honest N=133 and pooled V[SR]=7.96e-04, its DSR is 0.000: the LOWEST of the six sleeves we have measured, not the highest. The old 0.83 rested on a variance input roughly 80x too small and a trial count of 5 while its siblings were graded at N=101, so it was marked on an easier exam and then called the soundest. Net Sharpe 0.25 over its full 5,179-day history. It is folded into ALPHAC at equal quarters for MEASURED drawdown reduction, not for a demonstrated edge. The screen suggested 0.73; the honest engine says 0.33 on the live window. We published every one of those numbers.",
-      "STRUCTURAL VERDICT 2026-08-05 \u2014 the crypto sleeve's venue unreachability is STRUCTURAL, and we said we would say so. The 2026-07-20 note above promised: 'if it proves persistent it is a STRUCTURAL problem for a sleeve built on a single venue, and we will say that too.' It has proved persistent, so here is the number we had not put on the record until now: across its entire live history the hourly loop has completed 511 of 1283 expected cycles \u2014 an uptime of 39.8%. It has been dark for roughly 773 hours of a 53.5-day record, with 8 separate outages longer than a day and a longest single outage of 165 hours. As of this publish it has been dark 1 hours; its last observed cycle was 2026-08-21 17:00 UTC. WHAT THIS MEANS, stated plainly rather than buried: this sleeve carries 40% of the flagship's weight, so for most of the forward record our largest single position has not been managed. The published curve is not wrong \u2014 we never roll forward a mark we did not observe, so the sleeve's line simply stops when the venue does \u2014 but a 40%-weight sleeve that is dark most of the time is not meaningfully 'live', and describing it as live without this number attached would have been a half-truth. The forward track record is the whole basis on which this book asks to be believed, and it is being accrued on a book whose biggest sleeve is mostly absent. WHAT WE ARE DOING: the diagnosis is unchanged and venue-specific (the general internet and our equity broker respond normally from the same machine while the exchange endpoint fails on connect). Two fixes are real \u2014 hosting the loop somewhere with unobstructed access, and removing the single-venue dependency altogether by adding a second exchange. We flag the first honestly: our own deploy runbook records that reaching a venue from a different region is a COMPLIANCE decision and not merely an operations one, so it will not be done as a silent infrastructure tweak. Until one of those lands, read this sleeve's contribution to the live record as what it is \u2014 39.8% of the intended trading.",
+      "STRUCTURAL VERDICT 2026-08-05 \u2014 the crypto sleeve's venue unreachability is STRUCTURAL, and we said we would say so. The 2026-07-20 note above promised: 'if it proves persistent it is a STRUCTURAL problem for a sleeve built on a single venue, and we will say that too.' It has proved persistent, so here is the number we had not put on the record until now: across its entire live history the hourly loop has completed 512 of 1284 expected cycles \u2014 an uptime of 39.9%. It has been dark for roughly 773 hours of a 53.5-day record, with 8 separate outages longer than a day and a longest single outage of 165 hours. As of this publish it has been dark 1 hours; its last observed cycle was 2026-08-21 18:00 UTC. WHAT THIS MEANS, stated plainly rather than buried: this sleeve carries 40% of the flagship's weight, so for most of the forward record our largest single position has not been managed. The published curve is not wrong \u2014 we never roll forward a mark we did not observe, so the sleeve's line simply stops when the venue does \u2014 but a 40%-weight sleeve that is dark most of the time is not meaningfully 'live', and describing it as live without this number attached would have been a half-truth. The forward track record is the whole basis on which this book asks to be believed, and it is being accrued on a book whose biggest sleeve is mostly absent. WHAT WE ARE DOING: the diagnosis is unchanged and venue-specific (the general internet and our equity broker respond normally from the same machine while the exchange endpoint fails on connect). Two fixes are real \u2014 hosting the loop somewhere with unobstructed access, and removing the single-venue dependency altogether by adding a second exchange. We flag the first honestly: our own deploy runbook records that reaching a venue from a different region is a COMPLIANCE decision and not merely an operations one, so it will not be done as a silent infrastructure tweak. Until one of those lands, read this sleeve's contribution to the live record as what it is \u2014 39.9% of the intended trading.",
       "CORRECTION 2026-08-06 \u2014 our crypto carry sleeve is a strategy that earns funding, and its LIVE paper account has never once booked funding. We found this ourselves and are publishing it before the fix rather than after. The mechanism, stated plainly so anyone can check it: funding is applied in exactly one place in this codebase, Ledger.apply_funding, and it is called from exactly one call site, the BACKTEST engine. The live paper broker's cash moves on one line and only one line, a fill: cash - qty*price - fee. No funding cashflow can reach the live account by any path. The size of what is missing is not marginal. Our committed walk-forward artifact for this sleeve reports funding_net of $19,500 against a total return of $38,236 on a $100k book over 2022-02 to 2026-06: about HALF of everything this strategy has ever earned is the funding it is designed to harvest. Removing it takes the sleeve's backtested Sharpe from 0.653 to roughly 0.30. So AlphaForge's live record has been running against a hard ceiling of about half its validated Sharpe, and every live number we have published for this sleeve should be read in that light. What we are NOT doing: we are not restating the historical live curve. The marks we published were the marks we observed, and this record is append-only, so the fix applies FORWARD from the day it ships and the understated period stays visible in the chain. One number we are deliberately NOT putting on the record yet: our internal estimate of what funding would have added over the live window is dominated by a single name that redenominated roughly 100x inside the window, which makes the naive figure meaningless. We would rather publish no number than a number we cannot stand behind, so that one waits for the corrected accounting. This is the fourth time a defect in our plumbing, not our strategy, has moved a published number, and the lesson we wrote down in July holds: a fix is not done until a test pins the path that actually runs.",
       "CORRECTION 2026-08-06 \u2014 a factual claim in our 2026-07-20 incident note above is now false and we are marking it rather than editing it. That note said 'Bybit responds' as evidence the Binance failure was venue-specific. Re-measured from the same network on 2026-08-06: Bybit does NOT respond, and neither do Kraken or Deribit. Binance, Bybit and Kraken all fail on connection reset in under a tenth of a second and Deribit times out. The conclusion the original note drew is unchanged and if anything strengthened, since the block is clearly broader than one venue, but the supporting fact it cited is no longer true and a reader checking our work today would find it wrong. One venue does answer: OKX responds normally and serves funding rates, 436 perpetual instruments and hourly candles. We are evaluating it, and we note in advance that moving venue is not a configuration change: the same carry signal computed on OKX has a cross-sectional rank correlation of only about 0.64 with the Binance one, so it would be a materially different strategy wearing the same name, and we will not splice the two curves together and call it one continuous record.",
       "FIXED 2026-08-06 \u2014 the funding gap disclosed above is now closed in the live path, forward only. Earlier today we published that our crypto carry sleeve had never once booked funding in live paper, which is roughly half of everything that strategy has ever earned. That is fixed: the live broker gained a funding path with the identical sign convention the backtest ledger uses (payment = -position * mark * rate, longs pay shorts on a positive rate), and the live loop now settles every stored funding event for the window just closed, before the strategy re-decides, so a settlement is charged against the position that was actually held through it. It is point-in-time by construction: the reader filters on each event's stored publication time, never on the settlement time, so a rate not yet knowable at the moment of the cycle stays invisible. Nine tests pin the running path rather than the intention, including one that asserts the live broker and the backtest ledger return identical figures for the same event, because two conventions would be worse than none. Three things we are deliberately NOT doing. We are not restating the historical curve: the marks we published are the marks we observed, the understated period stays in the signed chain, and the fix applies from today. We are not claiming an improvement yet: the sleeve has been dark on venue unreachability since 2026-08-03, so this books nothing until it trades again, and any future gain will show up in the forward record or not at all. And we are not putting a number on what it would have earned over the live window, because our own measurement of that is dominated by a single instrument that redenominated roughly 100x inside the window, which makes the figure meaningless. We would rather publish no number than one we cannot stand behind.",
@@ -17085,12 +17085,12 @@
       ],
       "source_sha256": {
         "registry": "6a54ef0c0bda0d1353b1fa8175ab900313b31594084cc5c8810b4de069ef3e04",
-        "kill_ledger": "b37922e0f1d5798383baeb6cb834a54cc64568f0455460c9481ee9fdad1136e9",
-        "current_book": "5022cfecfaaf80235b6a68c5626d7374a4ef7ad0147c738402ba30b0f3eb91de",
+        "kill_ledger": "1096c3d1548c53a57071d9a03335ab41ccc1db89a07d82e4f3afaa1f6d51544d",
+        "current_book": "432ec3acb91538bed77b3612770ef267dade728c6024725f2488ced9b57453f9",
         "discovery": "654f831e3ea4122437e5c48f066d6d37ba6cbcf8d1c7119395d104c5aa6cc225"
       },
-      "generated_at": "2026-08-21T18:22:24.739286+00:00",
-      "content_hash": "sha256:65f9d1d1b0b32e089a558f176674b8b58181a3cd385345894293e055b2423e06"
+      "generated_at": "2026-08-21T19:00:34.716261+00:00",
+      "content_hash": "sha256:40b2ecba4f1d4588a7de33dace8b8f57fa5a6c5a29e25c26f445fc161f90c02c"
     },
     "atlas_public_path": "/glassbox/sleeve_atlas.json",
     "audit_public_path": "/glassbox/sleeve_atlas_audit.json",
@@ -17253,6 +17253,186 @@
         "AlphaTrend"
       ]
     }
+  },
+  "live_covariance_memory": {
+    "claim_boundary": "A property of the ESTIMATOR, derived from its exact weighting and verified against the production function by unit impulse. Reads no market data, runs no backtest, registers no hypothesis identity, and recommends no halflife. 0 trials.",
+    "ledoit_wolf_intensity_mismatch": {
+      "description": "ledoit_wolf_cc computes its shrinkage intensity delta* with T = the number of rows passed, and production passes the full unweighted 720-row window while the matrix being shrunk is the EWMA. That approximation is documented and was conservative while the EWMA's effective sample EXCEEDED 720. It stops being conservative at a short halflife.",
+      "effective_sample_by_request": {
+        "crypto_H1": {
+          "126d": 297.06124008702557,
+          "21d": 618.523035704582,
+          "252d": 267.48514752418106,
+          "63d": 361.6845247874969,
+          "720d": 249.37508855247322
+        },
+        "equity_D1": {
+          "126d": 362.61045701821024,
+          "21d": 60.59869278555086,
+          "252d": 635.1724445300547,
+          "63d": 181.78254985328257,
+          "720d": 514.4376414409439
+        }
+      },
+      "site": "src/alphaforge/portfolio/strategy.py, the ledoit_wolf_cc call",
+      "status": "OPEN \u2014 flagged, not fixed; no study has measured it"
+    },
+    "production": {
+      "cov_min_periods": 240,
+      "cov_window_bars": 720,
+      "estimator": "alphaforge.portfolio.covariance.ewma_cov",
+      "legacy_cov_halflife_bars": 720
+    },
+    "schema": "canli.alphac-live-covariance-memory.v1",
+    "sleeves": {
+      "crypto_H1": {
+        "bars_per_day": 24.0,
+        "by_requested_days": [
+          {
+            "effective_sample_rows": 618.523035704582,
+            "halflife_bars": 504.0,
+            "halflife_days": 21.0,
+            "lambda": 0.998625653255761,
+            "mean_weight_age_days": 17.203018066214934,
+            "median_weight_age_days": 20.291666666666668,
+            "seed_block_weight": 0.5167788915035059,
+            "truncation_absorbed_fraction": 0.03373015873015872,
+            "untruncated_equivalent_halflife_days": 20.291666666666668
+          },
+          {
+            "effective_sample_rows": 361.6845247874969,
+            "halflife_bars": 1512.0,
+            "halflife_days": 63.0,
+            "lambda": 0.999541674388313,
+            "mean_weight_age_days": 21.94400599798556,
+            "median_weight_age_days": 23.75,
+            "seed_block_weight": 0.8024813019603448,
+            "truncation_absorbed_fraction": 0.623015873015873,
+            "untruncated_equivalent_halflife_days": 23.75
+          },
+          {
+            "effective_sample_rows": 297.06124008702557,
+            "halflife_bars": 3024.0,
+            "halflife_days": 126.0,
+            "lambda": 0.9997708109303417,
+            "mean_weight_age_days": 23.39726374027089,
+            "median_weight_age_days": 24.416666666666668,
+            "seed_block_weight": 0.895813207069628,
+            "truncation_absorbed_fraction": 0.8062169312169312,
+            "untruncated_equivalent_halflife_days": 24.416666666666668
+          },
+          {
+            "effective_sample_rows": 267.48514752418106,
+            "halflife_bars": 6048.0,
+            "halflife_days": 252.0,
+            "lambda": 0.9998853988984646,
+            "mean_weight_age_days": 24.17137073378422,
+            "median_weight_age_days": 24.708333333333332,
+            "seed_block_weight": 0.9464740921280574,
+            "truncation_absorbed_fraction": 0.9019510582010581,
+            "untruncated_equivalent_halflife_days": 24.708333333333332
+          },
+          {
+            "effective_sample_rows": 249.37508855247322,
+            "halflife_bars": 17280.0,
+            "halflife_days": 720.0,
+            "lambda": 0.9999598881204428,
+            "mean_weight_age_days": 24.692506031842868,
+            "median_weight_age_days": 24.875,
+            "seed_block_weight": 0.980930087668921,
+            "truncation_absorbed_fraction": 0.9654513888888889,
+            "untruncated_equivalent_halflife_days": 24.875
+          }
+        ],
+        "legacy_setting": {
+          "effective_sample_rows": 514.4376414409439,
+          "halflife_bars": 720,
+          "halflife_days": 30.0,
+          "lambda": 0.9990377588337834,
+          "mean_weight_age_days": 19.144593996088407,
+          "means_days": 30.0,
+          "median_weight_age_days": 22.041666666666668,
+          "seed_block_weight": 0.6299605249474489,
+          "truncation_absorbed_fraction": 0.2652777777777777,
+          "untruncated_equivalent_halflife_days": 22.041666666666668
+        }
+      },
+      "equity_D1": {
+        "bars_per_day": 1.0,
+        "by_requested_days": [
+          {
+            "effective_sample_rows": 60.59869278555086,
+            "halflife_bars": 21.0,
+            "halflife_days": 21.0,
+            "lambda": 0.9675317785238916,
+            "mean_weight_age_days": 29.799358198971127,
+            "median_weight_age_days": 20.0,
+            "seed_block_weight": 1.3161772652552104e-07,
+            "truncation_absorbed_fraction": 0.04761904761904767,
+            "untruncated_equivalent_halflife_days": 20.0
+          },
+          {
+            "effective_sample_rows": 181.78254985328257,
+            "halflife_bars": 63.0,
+            "halflife_days": 63.0,
+            "lambda": 0.9890579681360733,
+            "mean_weight_age_days": 90.53877537230811,
+            "median_weight_age_days": 62.0,
+            "seed_block_weight": 0.005086723465207836,
+            "truncation_absorbed_fraction": 0.015873015873015928,
+            "untruncated_equivalent_halflife_days": 62.0
+          },
+          {
+            "effective_sample_rows": 362.61045701821024,
+            "halflife_bars": 126.0,
+            "halflife_days": 126.0,
+            "lambda": 0.9945139356168285,
+            "mean_weight_age_days": 176.87380316534677,
+            "median_weight_age_days": 126.0,
+            "seed_block_weight": 0.07132126937462727,
+            "truncation_absorbed_fraction": 0.0,
+            "untruncated_equivalent_halflife_days": 126.0
+          },
+          {
+            "effective_sample_rows": 635.1724445300547,
+            "halflife_bars": 252.0,
+            "halflife_days": 252.0,
+            "lambda": 0.9972531953404955,
+            "mean_weight_age_days": 298.01430867146826,
+            "median_weight_age_days": 251.0,
+            "seed_block_weight": 0.2670604227035989,
+            "truncation_absorbed_fraction": 0.003968253968253954,
+            "untruncated_equivalent_halflife_days": 251.0
+          },
+          {
+            "effective_sample_rows": 514.4376414409439,
+            "halflife_bars": 720.0,
+            "halflife_days": 720.0,
+            "lambda": 0.9990377588337834,
+            "mean_weight_age_days": 459.47025590612174,
+            "median_weight_age_days": 529.0,
+            "seed_block_weight": 0.6299605249474489,
+            "truncation_absorbed_fraction": 0.2652777777777777,
+            "untruncated_equivalent_halflife_days": 529.0
+          }
+        ],
+        "legacy_setting": {
+          "effective_sample_rows": 514.4376414409439,
+          "halflife_bars": 720,
+          "halflife_days": 720.0,
+          "lambda": 0.9990377588337834,
+          "mean_weight_age_days": 459.47025590612174,
+          "means_days": 720.0,
+          "median_weight_age_days": 529.0,
+          "seed_block_weight": 0.6299605249474489,
+          "truncation_absorbed_fraction": 0.2652777777777777,
+          "untruncated_equivalent_halflife_days": 529.0
+        }
+      }
+    },
+    "the_headline": "Asking for a 21-day halflife gives the CRYPTO sleeve an effective memory of 20.3 days, not 21, because 51.7% of the estimate is still the flat seed block. On the EQUITY sleeve the same request gives 20.0 days, and the legacy 720-bar setting there means 720 days requested and 529.0 days of actual memory. One parameter, two calendars, and neither delivers what it says.",
+    "what_this_does_not_say": "It does not say which halflife is right. It says what the estimator DOES with each one, which is the mapping a halflife decision needs and did not have. Choosing a value still requires a drawdown study run through this estimator rather than through an untruncated simulation of it.",
+    "why_the_parameter_is_not_the_memory": "ewma_cov sees only cov_window_bars rows and seeds S_0 with the EQUALLY WEIGHTED sample covariance of the oldest cov_min_periods rows, decayed by lambda^k. The seed block is therefore a flat slab of old data the recursion cannot forget inside the window, and the shorter the requested halflife the smaller that slab -- but it never vanishes. The sweep that set overlay policy simulated an untruncated recursion, so its halflife ladder and this estimator's memory are different quantities."
   },
   "feasibility_gate_reachability": {
     "claim_boundary": "Asks only whether each near-miss gate is reachable by repairing extraction. Opens no market data, registers no hypothesis identity, proposes no threshold change and authorizes no candidate. 0 trials.",
@@ -17559,6 +17739,11 @@
           "cost_basis_did_not_correspond": "The sweep is a DAILY simulation, so its cov=720 cell is a 720-DAY halflife. The live crypto sleeve ran 720 BARS on H1, which is 30 days. Pricing the change against the 720 cell therefore measured a 2.86-year to 21-day move and published it as the cost of a 30-day to 21-day one. Interpolating the artifact's own cells at rho_stress 0.50 puts the crypto sleeve's real improvement near 0.5pp, not 3.98pp.",
           "estimator_does_not_match_the_simulation": "ewma_cov is windowed at cov_window_bars=720 and seeds S_0 with an equally weighted sample covariance over the oldest min_periods=240 rows, so a large share of the estimate is a flat block the recursion cannot forget inside the window. The sweep simulated an untruncated recursion. The mapping from a swept halflife to the live estimator's effective memory is therefore not one-to-one and was never measured.",
           "also_unresolved": "ledoit_wolf_cc is passed the full unweighted 720-row window to compute its shrinkage intensity. That was conservative while the EWMA's effective sample exceeded 720; at a short halflife it is not, and the shrinkage would be materially too weak.",
+          "the_mapping_is_now_measured": {
+            "evidence": "artifacts/analysis/live_covariance_memory/result.json",
+            "finding": "The estimator's memory is bounded by cov_window_bars, not by the halflife. On the crypto H1 sleeve a 720-bar window is 30 DAYS, so every halflife from 21 to 720 days yields an effective memory between 20.3 and 24.9 days: the parameter is nearly inert there, and the drawdown improvement the sweep attributed to it is not available through it. On the equity D1 sleeve the same parameter is faithful at short halflives and truncated at long ones, and the legacy 720-bar setting means 720 days requested against 529 days of actual memory.",
+            "consequence": "Shortening the covariance halflife is the wrong lever on crypto; shortening cov_window_bars is the one that would move it, and no study has measured that. On equity the lever works, and that is also where the Ledoit-Wolf intensity mismatch is largest: at a 21-day halflife the effective sample is 60.6 rows while the shrinkage is computed with T=720."
+          },
           "what_would_make_it_shippable": "Measure the halflife on the LIVE estimator per sleeve, on each sleeve's own calendar, with the window, the seed and the shrinkage in the loop, and pass the value explicitly at the profile that measured it rather than as a global default."
         },
         "halflife_unit_defect": {
@@ -17634,7 +17819,7 @@
         "minimum_oos_observations_reason": "Raised to three years because the binding constraint of this whole programme is an average pairwise correlation, and a correlation measured over 252 observations carries a sampling error near 0.063 -- twice the size of the -0.03 effect the objective turns on. Gating a number the sample cannot resolve is not a strict gate. Paired with average_pairwise_correlation_upper_95_max, which gates the bound rather than the point estimate."
       }
     },
-    "source_sha256": "7feca1f6861cf1946b767d78ec79970b10fc9fde074bb3d0b82116b12bd09827",
+    "source_sha256": "8616b8f8df1a3312a12d7cffdfef2d594736a2d2e03b12e681a84d4eaddd0151",
     "public_path": "/glassbox/sleeve_admission_contract.json",
     "source_path": "config/sleeve_admission_contract.json"
   },
@@ -17737,7 +17922,7 @@
             "by_file": {}
           },
           "tests": {
-            "python_files": 262,
+            "python_files": 263,
             "violations": 0,
             "files_with_violations": 0,
             "safe_autofixes_available": 0,
@@ -17746,7 +17931,7 @@
             "by_file": {}
           },
           "historical_scripts": {
-            "python_files": 178,
+            "python_files": 179,
             "violations": 363,
             "files_with_violations": 52,
             "safe_autofixes_available": 110,
@@ -17901,9 +18086,9 @@
           "scripts/vps/collect_venues.py": "54870d67f99fa677486b71eae1e0ca4f6579b29e6b9facba6f37f4bdee523b69",
           "scripts/vps/stale_lock.py": "f40b992005f87b733ea6e71a447219a55d8200585c388ac06e13394cb0195a54"
         },
-        "content_hash": "sha256:3314fe16e1ff92ec7a251e705c832985b28c01a16074ab2228d4371b7c1fce84"
+        "content_hash": "sha256:98b00a67b71efa7c1a11484c5bf4bd57307e508cf74eb736f8dd8103578c76bd"
       },
-      "source_sha256": "a94ee3ac28bbc209d979bfb159397641ae358c9fdef82d53aa5f15c91be77b59",
+      "source_sha256": "8bc76dd80498454208a2f33c6bfbccda963b41b50d1b873d8bf04138e599d1f2",
       "public_path": "/glassbox/lint_debt_contract.json",
       "book_path": "/research/engineering-quality.md",
       "source_path": "artifacts/engineering/lint_debt_contract.json"
@@ -18353,6 +18538,6 @@
       "source_path": "artifacts/engineering/options_execution_contract.json"
     }
   },
-  "generated_at": "2026-08-21T18:22:25.541261+00:00",
-  "content_hash": "sha256:e8ee1ff8876b6d04b977f7e0a2166188e491ed759d72df8549675923ef03fef9"
+  "generated_at": "2026-08-21T19:00:35.602249+00:00",
+  "content_hash": "sha256:dc52ac69d9fa8ec5a58c05a3c098d4c6f4ec19ef361108c1eb200fc569098cb5"
 }
