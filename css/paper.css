@@ -1,0 +1,238 @@
+/* ===========================================================================
+   CANLI CAPITAL / paper.css
+   ---------------------------------------------------------------------------
+   The reading surface for research documents at /research/<slug>.
+
+   Deliberately self-contained and small. The marketing pages carry a WebGL
+   manifold, GSAP and Lenis; a research paper needs none of it, and loading half
+   a megabyte of renderer in front of a document a reader arrived at from a
+   search result would be the wrong trade twice over -- once for them, once for
+   the Core Web Vitals that decide whether the next reader arrives at all.
+
+   It redeclares only the tokens it uses, with the same values as home.css, so a
+   paper page reads as the same publication without depending on 51KB of
+   stylesheet written for a different job.
+   =========================================================================== */
+
+:root {
+  color-scheme: dark;
+  --void: #090c11;
+  --void-raised: #10151c;
+  --ink: #f2eee5;
+  --paper-tone: #e7e0d2;
+  --muted: #9ba4ad;
+  --faint: #7f8a96;
+  --line: rgba(231, 224, 210, 0.16);
+  --line-strong: rgba(231, 224, 210, 0.3);
+  --oxide: #d56b48;
+  --signal-blue: #8bb8cb;
+  --display: "Newsreader", Georgia, "Times New Roman", serif;
+  --body: "Instrument Sans", system-ui, -apple-system, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SF Mono", monospace;
+  --measure: 74ch;
+  --pad: clamp(22px, 4.4vw, 72px);
+}
+
+* { box-sizing: border-box; }
+
+html { background: var(--void); -webkit-text-size-adjust: 100%; }
+
+body.paper {
+  margin: 0;
+  background: var(--void);
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: 17px;
+  line-height: 1.62;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection { color: var(--void); background: var(--signal-blue); }
+:focus-visible { outline: 2px solid var(--signal-blue); outline-offset: 3px; }
+
+.paper__skip {
+  position: fixed;
+  z-index: 100;
+  top: 10px;
+  left: 10px;
+  padding: 12px 16px;
+  transform: translateY(-150%);
+  background: var(--paper-tone);
+  color: var(--void);
+  text-decoration: none;
+}
+.paper__skip:focus { transform: translateY(0); }
+
+/* --- masthead ----------------------------------------------------------- */
+
+.paper__masthead {
+  position: sticky;
+  z-index: 30;
+  top: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 24px;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 68px;
+  padding: 10px var(--pad);
+  border-bottom: 1px solid var(--line);
+  background: rgba(9, 12, 17, 0.92);
+  backdrop-filter: blur(18px);
+}
+.paper__brand {
+  color: var(--ink);
+  font-family: var(--display);
+  font-size: 19px;
+  letter-spacing: -0.01em;
+  text-decoration: none;
+}
+.paper__nav {
+  display: flex;
+  gap: clamp(14px, 2vw, 28px);
+  font: 500 11px/1 var(--mono);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.paper__nav a { color: var(--muted); text-decoration: none; transition: color 160ms ease; }
+.paper__nav a:hover { color: var(--ink); }
+
+/* --- article ------------------------------------------------------------ */
+
+.paper__main { padding: clamp(48px, 7vw, 96px) var(--pad) clamp(72px, 9vw, 128px); }
+.paper__article { max-width: var(--measure); margin: 0 auto; }
+
+.paper__eyebrow {
+  margin: 0 0 20px;
+  font: 500 11px/1 var(--mono);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.paper__eyebrow a { color: var(--oxide); text-decoration: none; }
+.paper__eyebrow a:hover { text-decoration: underline; }
+
+.paper__title {
+  margin: 0;
+  max-width: 22ch;
+  font: 400 clamp(38px, 5.2vw, 62px)/1.03 var(--display);
+  letter-spacing: -0.032em;
+  text-wrap: balance;
+}
+
+.paper__byline {
+  margin: 22px 0 0;
+  color: var(--faint);
+  font: 400 12px/1.5 var(--mono);
+  letter-spacing: 0.02em;
+}
+
+.paper__body { margin-top: clamp(40px, 5vw, 64px); }
+.paper__body > :first-child { margin-top: 0; }
+
+.paper__body h2 {
+  margin: clamp(48px, 6vw, 76px) 0 18px;
+  padding-top: 22px;
+  border-top: 1px solid var(--line);
+  font: 400 clamp(25px, 2.6vw, 33px)/1.2 var(--display);
+  letter-spacing: -0.022em;
+}
+.paper__body h3 {
+  margin: 40px 0 14px;
+  font: 600 18px/1.35 var(--body);
+  letter-spacing: -0.008em;
+}
+.paper__body h4 {
+  margin: 32px 0 12px;
+  color: var(--muted);
+  font: 500 12px/1.4 var(--mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.paper__body p { margin: 0 0 22px; color: #d9d5cc; }
+.paper__body strong { color: var(--ink); font-weight: 600; }
+.paper__body em { font-style: italic; }
+
+.paper__body a { color: var(--signal-blue); text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+.paper__body a:hover { color: var(--oxide); }
+
+.paper__body ul, .paper__body ol { margin: 0 0 24px; padding-left: 22px; color: #d9d5cc; }
+.paper__body li { margin-bottom: 10px; }
+.paper__body li::marker { color: var(--faint); }
+
+.paper__body blockquote {
+  margin: 28px 0;
+  padding: 4px 0 4px 22px;
+  border-left: 2px solid var(--oxide);
+  color: var(--muted);
+}
+.paper__body blockquote p:last-child { margin-bottom: 0; }
+
+.paper__body code {
+  padding: 2px 5px;
+  border: 1px solid var(--line);
+  background: var(--void-raised);
+  font: 400 0.86em/1.4 var(--mono);
+  word-break: break-word;
+}
+.paper__body pre {
+  margin: 26px 0;
+  padding: 18px 20px;
+  overflow-x: auto;          /* wide code scrolls in its own box, never the page */
+  border: 1px solid var(--line);
+  background: var(--void-raised);
+  font: 400 13px/1.6 var(--mono);
+}
+.paper__body pre code { padding: 0; border: 0; background: none; font-size: inherit; }
+
+/* Tables carry most of the numeric evidence in these documents, so they get the
+   same care as the prose: they scroll inside their own box rather than pushing
+   the page sideways on a phone. */
+.paper__body table {
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+  margin: 28px 0;
+  border-collapse: collapse;
+  font: 400 14px/1.5 var(--mono);
+  white-space: nowrap;
+}
+.paper__body th, .paper__body td {
+  padding: 10px 16px 10px 0;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  vertical-align: top;
+}
+.paper__body th {
+  color: var(--muted);
+  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.paper__body hr { margin: 44px 0; border: 0; border-top: 1px solid var(--line); }
+.paper__body img { max-width: 100%; height: auto; }
+
+/* --- footer ------------------------------------------------------------- */
+
+.paper__footer {
+  margin-top: clamp(56px, 7vw, 88px);
+  padding-top: 28px;
+  border-top: 1px solid var(--line-strong);
+}
+.paper__links { margin: 0 0 16px; font: 500 12px/1.6 var(--mono); letter-spacing: 0.02em; }
+.paper__links a { color: var(--muted); text-decoration: none; }
+.paper__links a:hover { color: var(--oxide); text-decoration: underline; }
+.paper__boundary { margin: 0; max-width: 62ch; color: var(--faint); font-size: 13px; line-height: 1.6; }
+
+@media (max-width: 640px) {
+  body.paper { font-size: 16px; }
+  .paper__title { max-width: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}

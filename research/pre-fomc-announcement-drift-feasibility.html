@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Pre-FOMC announcement drift — no-return feasibility protocol — Canli Capital</title>
+<meta name="description" content="Can the scheduled FOMC decision calendar and exact statement-release clock be reconstructed from official Federal Reserve sources without using market prices or learning which events were profitable?" />
+<link rel="canonical" href="https://canlicapital.com/research/pre-fomc-announcement-drift-feasibility" />
+<meta name="author" content="Arhan Canli" />
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="Canli Capital" />
+<meta property="og:title" content="Pre-FOMC announcement drift — no-return feasibility protocol" />
+<meta property="og:description" content="Can the scheduled FOMC decision calendar and exact statement-release clock be reconstructed from official Federal Reserve sources without using market prices or learning which events were profitable?" />
+<meta property="og:url" content="https://canlicapital.com/research/pre-fomc-announcement-drift-feasibility" />
+<meta property="og:image" content="https://canlicapital.com/og.png" />
+<meta property="article:author" content="Arhan Canli" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Pre-FOMC announcement drift — no-return feasibility protocol" />
+<meta name="twitter:description" content="Can the scheduled FOMC decision calendar and exact statement-release clock be reconstructed from official Federal Reserve sources without using market prices or learning which events were profitable?" />
+<meta name="twitter:image" content="https://canlicapital.com/og.png" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="icon" href="/favicon.ico" sizes="any" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=swap" />
+<link rel="stylesheet" href="../css/paper.css" />
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"ScholarlyArticle","headline":"Pre-FOMC announcement drift — no-return feasibility protocol","description":"Can the scheduled FOMC decision calendar and exact statement-release clock be reconstructed from official Federal Reserve sources without using market prices or learning which events were profitable?","url":"https://canlicapital.com/research/pre-fomc-announcement-drift-feasibility","inLanguage":"en","isAccessibleForFree":true,"author":{"@type":"Person","@id":"https://canlicapital.com/#arhan-canli","name":"Arhan Canli","jobTitle":"Founder and Quantitative Researcher","url":"https://canlicapital.com/","sameAs":["https://github.com/arhancanli"],"affiliation":{"@type":"Organization","@id":"https://canlicapital.com/#organization","name":"Canli Capital","url":"https://canlicapital.com/"}},"publisher":{"@type":"Organization","@id":"https://canlicapital.com/#organization","name":"Canli Capital","url":"https://canlicapital.com/","logo":{"@type":"ImageObject","url":"https://canlicapital.com/brand-mark.svg"}},"isPartOf":{"@type":"Periodical","name":"Canli Capital Research","url":"https://canlicapital.com/research"},"encodingFormat":"text/html","associatedMedia":{"@type":"MediaObject","contentUrl":"https://canlicapital.com/research/pre-fomc-announcement-drift-feasibility.md","encodingFormat":"text/markdown"}}</script>
+</head>
+<body class="paper">
+<a class="paper__skip" href="#content">Skip to content</a>
+<header class="paper__masthead">
+  <a class="paper__brand" href="/">Canli Capital</a>
+  <nav class="paper__nav" aria-label="Primary">
+    <a href="/systems">Systems</a>
+    <a href="/performance">Evidence</a>
+    <a href="/research">Research</a>
+    <a href="/open">Glass box</a>
+  </nav>
+</header>
+<main class="paper__main" id="content">
+  <article class="paper__article">
+    <p class="paper__eyebrow"><a href="/research">Research</a></p>
+    <h1 class="paper__title">Pre-FOMC announcement drift — no-return feasibility protocol</h1>
+    <p class="paper__byline">By <span rel="author">Arhan Canli</span>, Canli Capital</p>
+    <div class="paper__body">
+<p><strong>Declared:</strong> 2026-08-16<br><strong>Return data:</strong> unopened<br><strong>Hypotheses spent:</strong> zero</p>
+<h2>Question</h2>
+<p>Can the scheduled FOMC decision calendar and exact statement-release clock be reconstructed from
+official Federal Reserve sources without using market prices or learning which events were
+profitable?</p>
+<h2>Locked audit</h2>
+<ul>
+<li>Official Federal Reserve current calendar for 2021 onward.</li>
+<li>Official per-year historical meeting pages for 2016–2020.</li>
+<li>Regular meetings only; emergency conference calls and unscheduled actions are excluded.</li>
+<li>Exact HTML statement URL, decision date, release-time text, source hash, and retrieval lineage.</li>
+<li>No intraday bars, closes, spreads, returns, signals, positions, or performance statistics.</li>
+</ul>
+<h2>Gates before any return identity</h2>
+<ol>
+<li>Eight regular scheduled decisions in ordinary complete years. The March 17–18, 2020 regular
+meeting was superseded during the emergency period; the unscheduled March 2/3 and March 15
+actions are excluded because a pre-announcement window was not knowable from the regular
+calendar. The resulting statement-event corpus should contain 79 decisions: eight in nine
+years and seven in 2020.</li>
+<li>Statement release-time metadata coverage must be 100%.</li>
+<li>The 2:00 p.m. ET release convention must be measured, not assumed.</li>
+<li>Point-in-time schedule revisions/confirmations must be reconstructable. The current Federal
+Reserve calendar says each future meeting date is tentative until confirmed at the immediately
+preceding meeting; an ex-post list of final dates is not sufficient lineage.</li>
+</ol>
+<p>Failure of gate 4 yields <code>CALENDAR_LINEAGE_REQUIRED</code>, not permission to open returns.</p>
+<h2>Resolved schedule lineage</h2>
+<p>The follow-up audit binds ten official annual schedule press releases for 2016–2025. Each page
+contains eight target-year meeting slots, is SHA-256 bound, and was published before the target
+year. The minimum lead is 117 XNYS sessions. All 79 completed regular decisions match those 80
+initially scheduled slots.</p>
+<p>The sole schedule-only slot is March 17–18, 2020. The official 2020 history marks it cancelled,
+and the March 15 emergency statement is bound at 5:00 p.m. EDT, two XNYS sessions before the
+scheduled decision date. Dropping this event would create ex-post selection. Any return identity
+must preserve it as <code>CANCELLED_NO_ENTRY_OR_FLATTEN_AT_NEXT_ELIGIBLE_OPEN</code>.</p>
+<p>Decision: <code>PASS_TO_RETURN_PREREGISTRATION</code>. This is not return evidence. The single identity is
+locked separately in <code>PREREG_PRE_FOMC_ANNOUNCEMENT_DRIFT.md</code>; returns remain unopened until the
+market-input manifest and runner enforce that contract.</p>
+<h2>Market-data readiness result</h2>
+<p>The locked event/control expansion produces 312 valid matched-control windows and 782 unique XNYS
+session files. Every required object is visible in the Polygon SIP quote archive; no required date
+is missing, and every completed event retains at least three controls. The cancelled March 2020
+slot has no market window.</p>
+<p>The available provider routes nevertheless fail implementation feasibility:</p>
+<ul>
+<li>The required full-day SIP quote files total 3,005.294 GiB compressed, far beyond the locked
+50 GiB ceiling for a bounded single-instrument research ingest.</li>
+<li>The configured flat-file credentials can list objects but return HTTP 403 to one-byte endpoint
+retrieval probes.</li>
+<li>The server-filtered Polygon historical SPY quote endpoint returns HTTP 403 <code>NOT_AUTHORIZED</code>.</li>
+<li>Databento consolidated US-equity depth begins in 2023 and cannot cover the frozen 2016–2025
+panel; single-venue history beginning in 2018 is not a substitute for consolidated NBBO.</li>
+</ul>
+<p>Decision: <code>DATA_GATED</code>. No quote record was decompressed or parsed, no return was computed, and no
+hypothesis was spent. Progress requires a server-filtered historical SIP quote entitlement (or a
+vendor-supplied SPY-only export) covering 2015-12-29 through 2025-12-10 with bid, ask, sizes,
+timestamps, conditions, sequence/order lineage, and corrections. Alpaca shadow data cannot replace
+this historical research feed.</p>
+
+    </div>
+    <footer class="paper__footer">
+      <p class="paper__links">
+        <a href="/research/pre-fomc-announcement-drift-feasibility.md">Read the unrendered source</a>
+        <span aria-hidden="true"> / </span>
+        <a href="/open">Inspect the underlying artifacts</a>
+        <span aria-hidden="true"> / </span>
+        <a href="/research">All research</a>
+      </p>
+      <p class="paper__boundary">
+        Published as evidence, not as a claim about future performance. The figures quoted here
+        are reproducible from the artifacts linked above.
+      </p>
+    </footer>
+  </article>
+</main>
+</body>
+</html>

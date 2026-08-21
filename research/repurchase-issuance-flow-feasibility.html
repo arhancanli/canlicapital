@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Repurchase and issuance flow: no-return SEC feasibility protocol — Canli Capital</title>
+<meta name="description" content="Can completed repurchases and completed issuance be reconstructed from information available at each SEC filing acceptance time, with enough coverage and semantic stability to justify exactly one later return preregistration?" />
+<link rel="canonical" href="https://canlicapital.com/research/repurchase-issuance-flow-feasibility" />
+<meta name="author" content="Arhan Canli" />
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="Canli Capital" />
+<meta property="og:title" content="Repurchase and issuance flow: no-return SEC feasibility protocol" />
+<meta property="og:description" content="Can completed repurchases and completed issuance be reconstructed from information available at each SEC filing acceptance time, with enough coverage and semantic stability to justify exactly one later return preregistration?" />
+<meta property="og:url" content="https://canlicapital.com/research/repurchase-issuance-flow-feasibility" />
+<meta property="og:image" content="https://canlicapital.com/og.png" />
+<meta property="article:author" content="Arhan Canli" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Repurchase and issuance flow: no-return SEC feasibility protocol" />
+<meta name="twitter:description" content="Can completed repurchases and completed issuance be reconstructed from information available at each SEC filing acceptance time, with enough coverage and semantic stability to justify exactly one later return preregistration?" />
+<meta name="twitter:image" content="https://canlicapital.com/og.png" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="icon" href="/favicon.ico" sizes="any" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=swap" />
+<link rel="stylesheet" href="../css/paper.css" />
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"ScholarlyArticle","headline":"Repurchase and issuance flow: no-return SEC feasibility protocol","description":"Can completed repurchases and completed issuance be reconstructed from information available at each SEC filing acceptance time, with enough coverage and semantic stability to justify exactly one later return preregistration?","url":"https://canlicapital.com/research/repurchase-issuance-flow-feasibility","inLanguage":"en","isAccessibleForFree":true,"author":{"@type":"Person","@id":"https://canlicapital.com/#arhan-canli","name":"Arhan Canli","jobTitle":"Founder and Quantitative Researcher","url":"https://canlicapital.com/","sameAs":["https://github.com/arhancanli"],"affiliation":{"@type":"Organization","@id":"https://canlicapital.com/#organization","name":"Canli Capital","url":"https://canlicapital.com/"}},"publisher":{"@type":"Organization","@id":"https://canlicapital.com/#organization","name":"Canli Capital","url":"https://canlicapital.com/","logo":{"@type":"ImageObject","url":"https://canlicapital.com/brand-mark.svg"}},"isPartOf":{"@type":"Periodical","name":"Canli Capital Research","url":"https://canlicapital.com/research"},"encodingFormat":"text/html","associatedMedia":{"@type":"MediaObject","contentUrl":"https://canlicapital.com/research/repurchase-issuance-flow-feasibility.md","encodingFormat":"text/markdown"}}</script>
+</head>
+<body class="paper">
+<a class="paper__skip" href="#content">Skip to content</a>
+<header class="paper__masthead">
+  <a class="paper__brand" href="/">Canli Capital</a>
+  <nav class="paper__nav" aria-label="Primary">
+    <a href="/systems">Systems</a>
+    <a href="/performance">Evidence</a>
+    <a href="/research">Research</a>
+    <a href="/open">Glass box</a>
+  </nav>
+</header>
+<main class="paper__main" id="content">
+  <article class="paper__article">
+    <p class="paper__eyebrow"><a href="/research">Research</a></p>
+    <h1 class="paper__title">Repurchase and issuance flow: no-return SEC feasibility protocol</h1>
+    <p class="paper__byline">By <span rel="author">Arhan Canli</span>, Canli Capital</p>
+    <div class="paper__body">
+<p><strong>Declared:</strong> 2026-08-16<br><strong>Return data:</strong> prohibited<br><strong>Hypotheses spent:</strong> zero<br><strong>Family trial account:</strong> <code>corporate_equity_supply</code><br><strong>Prior return configurations:</strong> three (<code>eq_net_issuance</code>)<br><strong>Minimum family trial count if one completed-flow return identity is opened:</strong> four<br><strong>Independent-sleeve count:</strong> prohibited; this is a same-family measurement refinement</p>
+<h2>Question</h2>
+<p>Can completed repurchases and completed issuance be reconstructed from information available at
+each SEC filing acceptance time, with enough coverage and semantic stability to justify exactly
+one later return preregistration?</p>
+<p>This audit measures data feasibility only. It may inspect filing metadata, XBRL facts, Item 703
+tables, taxonomies, contexts, amendments, and extraction errors. It may not read prices, returns,
+future delistings, signals, positions, portfolio correlations, or performance statistics.</p>
+<h2>Frozen source and sample</h2>
+<ul>
+<li>Official SEC <code>company_tickers.json</code>, Submissions API, Company Facts API, and immutable filing
+documents. No vendor-derived fundamentals.</li>
+<li>Forms 10-Q, 10-Q/A, 10-K, and 10-K/A filed from 2013-01-01 through 2025-12-31.</li>
+<li>A deterministic 600-CIK schema sample: canonical current SEC ticker rows, one row per CIK,
+ordered by <code>sha256(&quot;repurchase_issuance_flow_v1|CIK##########&quot;)</code>, first 600. This current roster
+is allowed only for schema feasibility and cannot become a historical return universe.</li>
+<li>A deterministic 240-filing Item 703 document sample from those CIKs, balanced by filing year
+where documents exist. Selection is by the same sealed hash rule, never by extraction success.</li>
+<li>Every raw response stores URL, retrieval time, byte count, SHA-256, CIK, accession, acceptance
+time, form, fiscal period, taxonomy tag, unit, start/end dates, <code>filed</code>, <code>frame</code>, and source file.</li>
+</ul>
+<h2>Frozen fact families</h2>
+<p>The parser records, but does not combine or optimize, these standard-tag families:</p>
+<ul>
+<li>completed cash repurchases: <code>PaymentsForRepurchaseOfCommonStock</code> and direct successor tags with
+identical taxonomy definitions;</li>
+<li>completed common-stock issuance cash proceeds: <code>ProceedsFromIssuanceOfCommonStock</code> and direct
+successor tags with identical definitions;</li>
+<li>shares issued or repurchased/retired during the period where standard tags exist;</li>
+<li>weighted-average and period-end shares only as reconciliation diagnostics;</li>
+<li>stock-option exercise proceeds, share-based compensation, acquisition consideration, stock
+splits, tender offers, and non-cash issuance as explicit contamination flags, never silently
+merged into ordinary issuance.</li>
+</ul>
+<p>Custom extension tags are preserved and counted but cannot be auto-mapped from text similarity.
+Any successor mapping requires identical definitions and a published mapping table.</p>
+<h2>Point-in-time rules</h2>
+<ol>
+<li>A fact becomes knowable at the filing&#39;s accepted timestamp, never at fiscal period end.</li>
+<li>The first accepted filing is the historical value. An amendment is a new state from its own
+acceptance time and cannot rewrite earlier observations.</li>
+<li>Cumulative year-to-date duration facts may be quarterized only by differencing facts that were
+both knowable at that decision time, share the same fiscal year and unit, and pass context
+lineage. Missing predecessors remain missing.</li>
+<li>Company Facts frames are not used as historical truth because their “last filed” aggregation
+can incorporate later submissions.</li>
+<li>Restatements, duplicate contexts, dimensions, unit changes, and conflicting tags are explicit
+failure states. No best-looking value is selected.</li>
+<li>Item 703 tables are parsed from the immutable filing document tied to the accession. The
+vacated 2023 daily disclosure format is not assumed.</li>
+</ol>
+<h2>Locked gates</h2>
+<p>All gates must pass before a return protocol can be written:</p>
+<ol>
+<li>100% raw-response hashes and accession/acceptance lineage.</li>
+<li>At least 95% of sampled periodic filings join uniquely to SEC submissions metadata.</li>
+<li>At least 70% of sampled issuer-years expose either a standard completed-repurchase cash fact or
+an accession-bound Item 703 table; Wilson 95% lower bound must be at least 65%.</li>
+<li>At least 60% of sampled issuer-years expose a standard completed-issuance cash/share fact or an
+explicit contamination-resolved reconciliation; Wilson 95% lower bound at least 55%.</li>
+<li>At least 85% Item 703 extraction precision and 80% recall on a frozen 60-document hand-label
+set selected before parser evaluation.</li>
+<li>At least 95% of accepted facts have unambiguous unit, period, and form context.</li>
+<li>Amendment replay is slice-invariant: truncating the corpus before an amendment reproduces the
+exact pre-amendment state hash.</li>
+<li>Quarterization fails closed whenever a predecessor, unit, context, or fiscal-year identity is
+ambiguous; zero is never imputed.</li>
+<li>Stock splits, stock compensation, acquisition issuance, tender offers, and custom tags each
+receive explicit coverage/error counts.</li>
+<li>Return data opened and return identities spent both remain exactly zero.</li>
+</ol>
+<h2>Decisions</h2>
+<ul>
+<li><code>PASS_TO_RETURN_PREREGISTRATION</code>: every gate passes and the complete manifest is hashed.</li>
+<li><code>DATA_GATED</code>: coverage or semantic lineage is inadequate but a named vendor could resolve it.</li>
+<li><code>KILL_FEASIBILITY</code>: actual repurchases and issuance cannot be separated reproducibly enough to
+support the economic identity.</li>
+<li><code>REJECT_GOVERNANCE</code>: any return data was opened, the deterministic samples changed, or a missing
+value was inferred from future information.</li>
+</ul>
+<p>Passing permits one separately sealed family-wise return identity. It does not choose a sign,
+horizon, universe, threshold, or sleeve weight and does not create an ALPHAC sleeve.</p>
+<h2>Identity-overlap decision</h2>
+<p><code>artifacts/feasibility/repurchase_issuance_flow/identity_overlap_audit.json</code> reconciles this
+proposal against the historical <code>eq_net_issuance</code> campaign. The prior signal measured the
+year-over-year change in split-adjusted shares with the same long-repurchaser/short-issuer economic
+thesis. Three distinct configurations are already in the union ledgers; results include a null,
+Sharpe <code>-0.1289</code>, and Sharpe <code>-0.3113</code> with DSR <code>0.00010</code>, while a separate source-correct
+full-window rerun reported <code>+0.1481</code>. That instability is prior family evidence, not a clean slate.</p>
+<p>Completed cash flows are a distinct and potentially better measurement, but they remain in the
+same corporate-equity-supply family. A later return protocol, if feasibility passes, must inherit
+all prior trials, residualize against the frozen broad issuance signal, prove positive mean-zero
+marginal book contribution, and use an untouched holdout. It may qualify only as a same-family
+replacement or refinement and cannot count toward the ten new independent sleeves.</p>
+<h2>Implemented pipeline and current state</h2>
+<p>The complete no-return collection, semantic-audit, blind-extraction, and combined-decision path
+is implemented and covered by 48 focused tests. Official SEC collection and semantics are now
+complete. The family is stopped at the intended blind-label gate: all 240 frozen documents are
+sealed, no document has been parsed, and none of the 60 labels has been opened by the parser.</p>
+<ol>
+<li><code>scripts/build_repurchase_issuance_manifest.py</code> creates the deterministic 600-CIK sample and
+binds it to the raw SEC ticker-map hash.</li>
+<li><code>scripts/collect_repurchase_issuance_companyfacts.py</code> stores deterministic gzip responses,
+preserves every original and amended fact, writes immutable Parquet parts, and can resume by
+parser-version-qualified CIK identity.</li>
+<li><code>scripts/collect_repurchase_issuance_submissions.py</code> independently collects all eligible
+periodic filings so coverage is measured against real filing denominators rather than only
+companies with convenient tags.</li>
+<li><code>scripts/audit_repurchase_issuance_companyfacts.py</code> verifies both collection seals and part
+hashes, joins facts to accessions, computes context completeness and Wilson bounds, and can
+return only <code>ITEM703_AUDIT_REQUIRED</code> or <code>DATA_GATED</code>. It cannot pass full feasibility.</li>
+<li><code>scripts/audit_repurchase_issuance_semantics.py</code> independently replays amendment prefixes,
+proves slice invariance, quarterizes only same-year/same-unit/same-context facts known by that
+acceptance time, records every fail-closed reason, and reports all contamination categories.</li>
+<li><code>scripts/build_repurchase_item703_manifest.py</code> creates immutable year-balanced 240-document
+and 60-label samples from completed periodic filings, excluding amendments from selection.</li>
+<li><code>scripts/collect_repurchase_item703_documents.py</code> retrieves only the frozen filing documents,
+verifies the exact accession set, and stores deterministic gzip bodies and immutable statuses.</li>
+<li>The 60 frozen documents are labeled independently in <code>labels.csv</code>. The labeler records table
+presence, month-row count, total-row presence, and notes without opening parser output.</li>
+<li><code>scripts/seal_repurchase_item703_labels.py</code> validates exact identities and complete labels,
+refuses to run after any parser output exists, and binds the labels to the parser-source hash.</li>
+<li><code>scripts/parse_repurchase_item703_documents.py</code> verifies every raw hash and the pre-evaluation
+parser hash, parses all 240 documents without reading labels, preserves tender-offer mention
+counts, and writes one immutable result.</li>
+<li><code>scripts/audit_repurchase_item703_extraction.py</code> opens the labels only after parsing, reports
+the full confusion matrix plus row-shape diagnostics, and enforces precision at least 85% and
+recall at least 80%. Passing still cannot admit the family or authorize a return probe.</li>
+<li><code>scripts/audit_repurchase_issuance_feasibility.py</code> revalidates every current part against the
+full cryptographic chain, computes conservative union coverage on the frozen document-sample
+issuer-years, applies every locked empirical and governance gate, and is the only stage allowed to
+emit <code>PASS_TO_RETURN_PREREGISTRATION</code>. Any missing or failed gate exits nonzero.</li>
+</ol>
+<p>Company Facts parser v3 also makes semantic exclusions explicit. Stock compensation, option
+exercise proceeds, acquisition issuance, mixed common/preferred facts, repurchase authorizations,
+and split diagnostics have separate families and cannot count as direct ordinary issuance.
+Balance-sheet <code>CommonStockSharesIssued</code> is reconciliation data, not a completed-period flow.
+Custom extensions stay in immutable raw responses and receive explicit namespace, tag, and row
+counts, but are never mapped by text similarity. The parser records official Company Facts 404s
+as terminal <code>not_available_404</code> outcomes, never as successful payloads and never as retryable
+silence. Those issuers remain in the frozen denominator.</p>
+<h3>Empirical checkpoint: stopped before parser evaluation</h3>
+<ul>
+<li>The SEC ticker manifest contains exactly 600 unique CIKs. Company Facts returned 520 payloads;
+80 manifested issuers had reproducible official 404s, and collection had zero unresolved errors.
+All 600 identities are explicitly accounted for.</li>
+<li>The independent submissions collection contains 15,009 periodic filings. Of 150,570 relevant
+facts, 99.993% join to an accession and 99.489% have complete unit/period/form context.</li>
+<li>Standard tags alone cover 46.45% of 3,903 issuer-years for completed repurchases (Wilson lower
+bound 44.89%) and 43.35% for completed issuance (Wilson lower bound 41.80%). These figures do
+not clear the locked combined coverage gates; they prove the Item 703 lane is necessary.</li>
+<li>Amendment replay is slice-invariant across 2,407 amendment facts. Quarterization derives 35,792
+quarters and fails closed on 19,087 facts, including 18,321 missing predecessors; zero values
+are imputed.</li>
+<li>The frozen Item 703 sample is 240/240 collected with exact accession identity. The year-balanced
+60-document <code>labels.csv</code> is blank by design. No parser output or return data exists.</li>
+</ul>
+<p>The only authorized next action is an independent reviewer completing
+<code>artifacts/feasibility/repurchase_issuance_flow/item703/labels.csv</code> from the linked filing documents
+without inspecting parser output. The seal command must run before parsing. Until then the honest
+decision is <code>BLIND_ITEM703_LABELING_REQUIRED</code>, not pass, kill, or return authorization.</p>
+<pre><code class="language-bash">uv run python scripts/build_repurchase_issuance_manifest.py
+uv run python scripts/collect_repurchase_issuance_companyfacts.py
+uv run python scripts/collect_repurchase_issuance_submissions.py
+uv run python scripts/audit_repurchase_issuance_companyfacts.py
+uv run python scripts/audit_repurchase_issuance_semantics.py
+uv run python scripts/build_repurchase_item703_manifest.py
+uv run python scripts/collect_repurchase_item703_documents.py
+# Complete the frozen labels.csv independently; do not run or inspect parser output.
+uv run python scripts/seal_repurchase_item703_labels.py
+uv run python scripts/parse_repurchase_item703_documents.py
+uv run python scripts/audit_repurchase_item703_extraction.py
+uv run python scripts/audit_repurchase_issuance_feasibility.py
+</code></pre>
+
+    </div>
+    <footer class="paper__footer">
+      <p class="paper__links">
+        <a href="/research/repurchase-issuance-flow-feasibility.md">Read the unrendered source</a>
+        <span aria-hidden="true"> / </span>
+        <a href="/open">Inspect the underlying artifacts</a>
+        <span aria-hidden="true"> / </span>
+        <a href="/research">All research</a>
+      </p>
+      <p class="paper__boundary">
+        Published as evidence, not as a claim about future performance. The figures quoted here
+        are reproducible from the artifacts linked above.
+      </p>
+    </footer>
+  </article>
+</main>
+</body>
+</html>

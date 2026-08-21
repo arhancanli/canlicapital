@@ -27,12 +27,63 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "Canli Capital",
-    "url": "https://canlicapital.com/",
-    "logo": "https://canlicapital.com/brand-mark.svg",
-    "founder": { "@type": "Person", "name": "Arhan Canli" },
-    "description": "A systematic research firm building ALPHAC, a cross-asset paper-traded portfolio, with open methods and reproducible evidence."
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://canlicapital.com/#organization",
+        "name": "Canli Capital",
+        "url": "https://canlicapital.com/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://canlicapital.com/brand-mark.svg"
+        },
+        "founder": {
+          "@id": "https://canlicapital.com/#arhan-canli"
+        },
+        "knowsAbout": [
+          "Systematic trading",
+          "Quantitative research",
+          "Portfolio construction",
+          "Deflated Sharpe ratio",
+          "Walk-forward validation",
+          "Reproducible research"
+        ],
+        "description": "A systematic research firm building ALPHAC, a cross-asset paper-traded portfolio, with open methods, published kill logs, and reproducible evidence."
+      },
+      {
+        "@type": "Person",
+        "@id": "https://canlicapital.com/#arhan-canli",
+        "name": "Arhan Canli",
+        "givenName": "Arhan",
+        "familyName": "Canli",
+        "jobTitle": "Founder and Quantitative Researcher",
+        "url": "https://canlicapital.com/",
+        "worksFor": {
+          "@id": "https://canlicapital.com/#organization"
+        },
+        "sameAs": [
+          "https://github.com/arhancanli"
+        ],
+        "knowsAbout": [
+          "Systematic trading",
+          "Quantitative research",
+          "Multiple-testing correction",
+          "Point-in-time data",
+          "Market-neutral portfolio construction"
+        ],
+        "description": "Founder of Canli Capital and author of its published research record, including the literature reviews, feasibility protocols, pre-registrations and corrections behind the ALPHAC book."
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://canlicapital.com/#website",
+        "url": "https://canlicapital.com/",
+        "name": "Canli Capital",
+        "publisher": {
+          "@id": "https://canlicapital.com/#organization"
+        },
+        "inLanguage": "en"
+      }
+    ]
   }
   </script>
 </head>

@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>AlphaVintage missing-release correction protocol — Canli Capital</title>
+<meta name="description" content="The point-in-time RTDSM lake has no October 2025 headline or core CPI level. The December 15, 2025 vintage contains November, but its immediately preceding October level is null. The locked signal function computed monthly log differences, dropped null differences, and selected the last remaining..." />
+<link rel="canonical" href="https://canlicapital.com/research/alphavintage-missing-release-correction" />
+<meta name="author" content="Arhan Canli" />
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="Canli Capital" />
+<meta property="og:title" content="AlphaVintage missing-release correction protocol" />
+<meta property="og:description" content="The point-in-time RTDSM lake has no October 2025 headline or core CPI level. The December 15, 2025 vintage contains November, but its immediately preceding October level is null. The locked signal function computed monthly log differences, dropped null differences, and selected the last remaining..." />
+<meta property="og:url" content="https://canlicapital.com/research/alphavintage-missing-release-correction" />
+<meta property="og:image" content="https://canlicapital.com/og.png" />
+<meta property="article:author" content="Arhan Canli" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="AlphaVintage missing-release correction protocol" />
+<meta name="twitter:description" content="The point-in-time RTDSM lake has no October 2025 headline or core CPI level. The December 15, 2025 vintage contains November, but its immediately preceding October level is null. The locked signal function computed monthly log differences, dropped null differences, and selected the last remaining..." />
+<meta name="twitter:image" content="https://canlicapital.com/og.png" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="icon" href="/favicon.ico" sizes="any" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=swap" />
+<link rel="stylesheet" href="../css/paper.css" />
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"ScholarlyArticle","headline":"AlphaVintage missing-release correction protocol","description":"The point-in-time RTDSM lake has no October 2025 headline or core CPI level. The December 15, 2025 vintage contains November, but its immediately preceding October level is null. The locked signal function computed monthly log differences, dropped null differences, and selected the last remaining...","url":"https://canlicapital.com/research/alphavintage-missing-release-correction","inLanguage":"en","isAccessibleForFree":true,"author":{"@type":"Person","@id":"https://canlicapital.com/#arhan-canli","name":"Arhan Canli","jobTitle":"Founder and Quantitative Researcher","url":"https://canlicapital.com/","sameAs":["https://github.com/arhancanli"],"affiliation":{"@type":"Organization","@id":"https://canlicapital.com/#organization","name":"Canli Capital","url":"https://canlicapital.com/"}},"publisher":{"@type":"Organization","@id":"https://canlicapital.com/#organization","name":"Canli Capital","url":"https://canlicapital.com/","logo":{"@type":"ImageObject","url":"https://canlicapital.com/brand-mark.svg"}},"isPartOf":{"@type":"Periodical","name":"Canli Capital Research","url":"https://canlicapital.com/research"},"encodingFormat":"text/html","associatedMedia":{"@type":"MediaObject","contentUrl":"https://canlicapital.com/research/alphavintage-missing-release-correction.md","encodingFormat":"text/markdown"}}</script>
+</head>
+<body class="paper">
+<a class="paper__skip" href="#content">Skip to content</a>
+<header class="paper__masthead">
+  <a class="paper__brand" href="/">Canli Capital</a>
+  <nav class="paper__nav" aria-label="Primary">
+    <a href="/systems">Systems</a>
+    <a href="/performance">Evidence</a>
+    <a href="/research">Research</a>
+    <a href="/open">Glass box</a>
+  </nav>
+</header>
+<main class="paper__main" id="content">
+  <article class="paper__article">
+    <p class="paper__eyebrow"><a href="/research">Research</a></p>
+    <h1 class="paper__title">AlphaVintage missing-release correction protocol</h1>
+    <p class="paper__byline">By <span rel="author">Arhan Canli</span>, Canli Capital</p>
+    <div class="paper__body">
+<p><strong>Declared:</strong> 2026-08-16<br><strong>Status:</strong> REVISED RETURNS SEALED / VERDICT KILLED<br><strong>Hypothesis-ledger impact:</strong> zero new hypotheses; this repairs an existing identity.</p>
+<h2>Confirmed defect</h2>
+<p>The point-in-time RTDSM lake has no October 2025 headline or core CPI level.  The December 15,
+2025 vintage contains November, but its immediately preceding October level is null.  The locked
+signal function computed monthly log differences, dropped null differences, and selected the last
+remaining difference as the newly released surprise.  Consequently an older computable change
+could be repeated under a later vintage date even though no new month-over-month CPI change was
+computable.  This is fail-open behavior and can splice a stale signal into a new holding period.</p>
+<h2>Correction locked before revised performance</h2>
+<p>For every monthly vintage dated <code>V</code>:</p>
+<ol>
+<li>The newly released observation must be the calendar month immediately preceding <code>V</code>.</li>
+<li>That observation and its immediately preceding calendar month must both exist and be finite.</li>
+<li>If either check fails, the vintage emits no signal.  No fill, interpolation, carry-forward, or
+substitution is permitted.</li>
+<li>Interior gaps remain missing; only adjacent finite monthly changes enter the AR history.</li>
+<li>The signal may resume only when two adjacent latest monthly levels exist again.</li>
+</ol>
+<p>The live writer imports the research signal function directly, so this one correction governs
+both paths.  Regression tests must pin the exact November-present/October-missing shape before any
+revised curve is generated.</p>
+<h2>Re-evaluation rule</h2>
+<p>After code and tests pass, regenerate the existing AlphaVintage result once under the corrected
+data rule.  Do not tune AR lags, sign, clip, costs, entry timing, instruments, scale, or gates.  The
+revised result replaces the invalid result whether it improves or worsens.  Publish the before/after
+metrics, changed vintage count, curve hash, code hash, and unchanged hypothesis count.  If any
+admission gate no longer clears, remove the sleeve from research-validated/book arithmetic; do not
+respecify it.</p>
+<h2>Calendar-integrity defect found during re-evaluation</h2>
+<p>The prior curve persisted only <code>net[w.abs() &gt; 0]</code>. That deleted zero-exposure trading sessions
+inside the first-to-last activity window, including the monthly transition dates. An active-day
+sample is not a portfolio return calendar and inflates annualization. The corrected curve retains
+every trading session between first and last exposure and records an explicit zero when the sleeve
+has no position. No return-bearing observation was added, removed, or tuned.</p>
+<h2>Sealed outcome</h2>
+<p>The unchanged identity was regenerated once after both corrections. Calendar-correct net Sharpe is
+<code>0.2298358829</code>, Newey-West t is <code>1.2673190577</code>, and maximum drawdown is approximately <code>-25.1%</code>
+over 6,296 portfolio sessions (5,998 active sessions). The superseded active-day Sharpe was
+<code>0.3382071994</code>. Gate <code>b_nw_t_ge_1p5</code> fails, so the final preregistered verdict is <code>KILLED</code> and
+AlphaVintage is not research-admitted. This correction adds zero hypotheses.</p>
+<ul>
+<li>Curve SHA-256: <code>d277c63ddf2bed6e9314aa863dbbf6adf3f4adb55bd89e8166aee4a19aab415f</code></li>
+<li>Result SHA-256: <code>686654b4617efb8322f6fda37f2e71a375423aecc6de03477a0186cf2844e509</code></li>
+<li>Runner SHA-256: <code>80b55488c7caab97dcf121c7d0f744a05d80981f75aaa6529dc17613808c48ed</code></li>
+</ul>
+
+    </div>
+    <footer class="paper__footer">
+      <p class="paper__links">
+        <a href="/research/alphavintage-missing-release-correction.md">Read the unrendered source</a>
+        <span aria-hidden="true"> / </span>
+        <a href="/open">Inspect the underlying artifacts</a>
+        <span aria-hidden="true"> / </span>
+        <a href="/research">All research</a>
+      </p>
+      <p class="paper__boundary">
+        Published as evidence, not as a claim about future performance. The figures quoted here
+        are reproducible from the artifacts linked above.
+      </p>
+    </footer>
+  </article>
+</main>
+</body>
+</html>

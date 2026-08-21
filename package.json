@@ -13,7 +13,10 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "papers": "node scripts/build-papers.mjs",
+    "prebuild": "node scripts/build-papers.mjs",
+    "verify": "node scripts/verify-papers.mjs"
   },
   "engines": {
     "node": "22.x"
@@ -24,6 +27,7 @@
     "three": "^0.184.0"
   },
   "devDependencies": {
+    "marked": "^18.0.10",
     "vite": "^8.0.16"
   }
 }

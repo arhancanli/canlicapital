@@ -838,6 +838,35 @@ function bindFrontier(d) {
     }
   }
 
+  // The research library. Rendered from public/research-index.json, which scripts/build-papers.mjs
+  // derives from the documents that actually exist -- so a new paper appears here by being
+  // written, and a list that quietly stops matching the corpus is not possible.
+  const libraryWrap = $("#researchLibrary");
+  const libraryList = $("#researchLibraryList");
+  if (libraryWrap && libraryList) {
+    fetch("/research-index.json", { cache: "no-cache" })
+      .then((response) => (response.ok ? response.json() : null))
+      .then((index) => {
+        const papers = index && Array.isArray(index.papers) ? index.papers : [];
+        if (!papers.length) return;
+        libraryWrap.hidden = false;
+        setHook("rl", "title", `${papers.length} research documents. Published whole.`);
+        libraryList.textContent = "";
+        papers.forEach((paper) => {
+          const item = el("li", "research-library__item");
+          const link = el("a", "research-library__link");
+          link.href = paper.path;
+          link.appendChild(el("span", "research-library__title", paper.title));
+          if (paper.description) {
+            link.appendChild(el("span", "research-library__desc", paper.description));
+          }
+          item.appendChild(link);
+          libraryList.appendChild(item);
+        });
+      })
+      .catch(() => {});
+  }
+
   const probeWrap = $("#frontierProbeResults");
   const probes = Array.isArray(d.active_probe_results) ? d.active_probe_results : [];
   if (probeWrap && probes.length) {

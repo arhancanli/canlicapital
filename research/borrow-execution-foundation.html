@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Point-in-time securities-borrow foundation — Canli Capital</title>
+<meta name="description" content="AlphaForge now has tested primitives for security-level borrow availability, locates, fees, recalls, and forced-buy-in deadlines, plus optional event-driven integration for locate caps, dynamic fees, and recall cover orders. This is engineering evidence, not historical borrow coverage, return evi..." />
+<link rel="canonical" href="https://canlicapital.com/research/borrow-execution-foundation" />
+<meta name="author" content="Arhan Canli" />
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="Canli Capital" />
+<meta property="og:title" content="Point-in-time securities-borrow foundation" />
+<meta property="og:description" content="AlphaForge now has tested primitives for security-level borrow availability, locates, fees, recalls, and forced-buy-in deadlines, plus optional event-driven integration for locate caps, dynamic fees, and recall cover orders. This is engineering evidence, not historical borrow coverage, return evi..." />
+<meta property="og:url" content="https://canlicapital.com/research/borrow-execution-foundation" />
+<meta property="og:image" content="https://canlicapital.com/og.png" />
+<meta property="article:author" content="Arhan Canli" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Point-in-time securities-borrow foundation" />
+<meta name="twitter:description" content="AlphaForge now has tested primitives for security-level borrow availability, locates, fees, recalls, and forced-buy-in deadlines, plus optional event-driven integration for locate caps, dynamic fees, and recall cover orders. This is engineering evidence, not historical borrow coverage, return evi..." />
+<meta name="twitter:image" content="https://canlicapital.com/og.png" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="icon" href="/favicon.ico" sizes="any" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=swap" />
+<link rel="stylesheet" href="../css/paper.css" />
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"ScholarlyArticle","headline":"Point-in-time securities-borrow foundation","description":"AlphaForge now has tested primitives for security-level borrow availability, locates, fees, recalls, and forced-buy-in deadlines, plus optional event-driven integration for locate caps, dynamic fees, and recall cover orders. This is engineering evidence, not historical borrow coverage, return evi...","url":"https://canlicapital.com/research/borrow-execution-foundation","inLanguage":"en","isAccessibleForFree":true,"author":{"@type":"Person","@id":"https://canlicapital.com/#arhan-canli","name":"Arhan Canli","jobTitle":"Founder and Quantitative Researcher","url":"https://canlicapital.com/","sameAs":["https://github.com/arhancanli"],"affiliation":{"@type":"Organization","@id":"https://canlicapital.com/#organization","name":"Canli Capital","url":"https://canlicapital.com/"}},"publisher":{"@type":"Organization","@id":"https://canlicapital.com/#organization","name":"Canli Capital","url":"https://canlicapital.com/","logo":{"@type":"ImageObject","url":"https://canlicapital.com/brand-mark.svg"}},"isPartOf":{"@type":"Periodical","name":"Canli Capital Research","url":"https://canlicapital.com/research"},"encodingFormat":"text/html","associatedMedia":{"@type":"MediaObject","contentUrl":"https://canlicapital.com/research/borrow-execution-foundation.md","encodingFormat":"text/markdown"}}</script>
+</head>
+<body class="paper">
+<a class="paper__skip" href="#content">Skip to content</a>
+<header class="paper__masthead">
+  <a class="paper__brand" href="/">Canli Capital</a>
+  <nav class="paper__nav" aria-label="Primary">
+    <a href="/systems">Systems</a>
+    <a href="/performance">Evidence</a>
+    <a href="/research">Research</a>
+    <a href="/open">Glass box</a>
+  </nav>
+</header>
+<main class="paper__main" id="content">
+  <article class="paper__article">
+    <p class="paper__eyebrow"><a href="/research">Research</a></p>
+    <h1 class="paper__title">Point-in-time securities-borrow foundation</h1>
+    <p class="paper__byline">By <span rel="author">Arhan Canli</span>, Canli Capital</p>
+    <div class="paper__body">
+<p>AlphaForge now has tested primitives for security-level borrow availability, locates, fees,
+recalls, and forced-buy-in deadlines, plus optional event-driven integration for locate caps,
+dynamic fees, and recall cover orders. This is engineering evidence, not historical borrow
+coverage, return evidence, or a sleeve-admission result. No market returns were opened and no
+research hypothesis was spent.</p>
+<h2>What is enforced</h2>
+<ul>
+<li>Borrow quotes carry observation, availability, and exact validity timestamps.</li>
+<li>Easy, hard, and unavailable states are explicit. An unavailable quote cannot report lendable
+quantity.</li>
+<li>Locates may be granted, quantity-capped, or denied; a grant cannot exceed requested or observed
+availability.</li>
+<li>The required locate covers only incremental short exposure after netting long inventory and
+existing shorts.</li>
+<li>Security-level fees accrue on ACT/365 only when one quote covers the entire interval.</li>
+<li>Recall notices are point-in-time and cover no more than the recalled quantity or remaining short.</li>
+<li>A missed cover deadline becomes an explicit forced-buy-in instruction. No execution price or fill
+is fabricated.</li>
+</ul>
+<p>When a borrow provider is supplied to the event-driven backtester, incremental short orders are
+denied or quantity-capped from the PIT locate, and open shorts accrue the security-level fee whose
+quote covers the complete holding interval. With no provider, the existing general-collateral path
+and golden master remain unchanged.</p>
+<p>Known recalls become reduce-only next-bar cover orders. Conflicting strategy orders are
+superseded, deadline breaches are labeled <code>forced_buy_in</code>, and an obligation is reduced only by
+the quantity actually filled. Dropped or partial orders therefore retry on later bars.</p>
+<h2>Deliberate boundary</h2>
+<p>The platform does not yet ingest a historical securities-lending feed, reserve broker locates,
+model rebates/collateral, persist outstanding obligations across process restarts, allocate
+partial recalls across strategies, simulate buy-in auctions, or route and reconcile live orders.
+Existing general-collateral assumptions and current broker
+<code>easy_to_borrow</code> flags are not historical evidence.</p>
+<p>The machine-readable capability statement is published at
+<a href="/glassbox/borrow_execution_contract.json"><code>/glassbox/borrow_execution_contract.json</code></a>.</p>
+
+    </div>
+    <footer class="paper__footer">
+      <p class="paper__links">
+        <a href="/research/borrow-execution-foundation.md">Read the unrendered source</a>
+        <span aria-hidden="true"> / </span>
+        <a href="/open">Inspect the underlying artifacts</a>
+        <span aria-hidden="true"> / </span>
+        <a href="/research">All research</a>
+      </p>
+      <p class="paper__boundary">
+        Published as evidence, not as a claim about future performance. The figures quoted here
+        are reproducible from the artifacts linked above.
+      </p>
+    </footer>
+  </article>
+</main>
+</body>
+</html>

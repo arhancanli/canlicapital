@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Point-in-time market-status and outage replay — Canli Capital</title>
+<meta name="description" content="AlphaForge can now replay explicit venue and instrument market-status intervals inside the event-driven backtester. This is engineering evidence, not historical outage coverage or return evidence. No market returns were opened and no hypothesis was spent." />
+<link rel="canonical" href="https://canlicapital.com/research/market-status-replay" />
+<meta name="author" content="Arhan Canli" />
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="Canli Capital" />
+<meta property="og:title" content="Point-in-time market-status and outage replay" />
+<meta property="og:description" content="AlphaForge can now replay explicit venue and instrument market-status intervals inside the event-driven backtester. This is engineering evidence, not historical outage coverage or return evidence. No market returns were opened and no hypothesis was spent." />
+<meta property="og:url" content="https://canlicapital.com/research/market-status-replay" />
+<meta property="og:image" content="https://canlicapital.com/og.png" />
+<meta property="article:author" content="Arhan Canli" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Point-in-time market-status and outage replay" />
+<meta name="twitter:description" content="AlphaForge can now replay explicit venue and instrument market-status intervals inside the event-driven backtester. This is engineering evidence, not historical outage coverage or return evidence. No market returns were opened and no hypothesis was spent." />
+<meta name="twitter:image" content="https://canlicapital.com/og.png" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="icon" href="/favicon.ico" sizes="any" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=swap" />
+<link rel="stylesheet" href="../css/paper.css" />
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"ScholarlyArticle","headline":"Point-in-time market-status and outage replay","description":"AlphaForge can now replay explicit venue and instrument market-status intervals inside the event-driven backtester. This is engineering evidence, not historical outage coverage or return evidence. No market returns were opened and no hypothesis was spent.","url":"https://canlicapital.com/research/market-status-replay","inLanguage":"en","isAccessibleForFree":true,"author":{"@type":"Person","@id":"https://canlicapital.com/#arhan-canli","name":"Arhan Canli","jobTitle":"Founder and Quantitative Researcher","url":"https://canlicapital.com/","sameAs":["https://github.com/arhancanli"],"affiliation":{"@type":"Organization","@id":"https://canlicapital.com/#organization","name":"Canli Capital","url":"https://canlicapital.com/"}},"publisher":{"@type":"Organization","@id":"https://canlicapital.com/#organization","name":"Canli Capital","url":"https://canlicapital.com/","logo":{"@type":"ImageObject","url":"https://canlicapital.com/brand-mark.svg"}},"isPartOf":{"@type":"Periodical","name":"Canli Capital Research","url":"https://canlicapital.com/research"},"encodingFormat":"text/html","associatedMedia":{"@type":"MediaObject","contentUrl":"https://canlicapital.com/research/market-status-replay.md","encodingFormat":"text/markdown"}}</script>
+</head>
+<body class="paper">
+<a class="paper__skip" href="#content">Skip to content</a>
+<header class="paper__masthead">
+  <a class="paper__brand" href="/">Canli Capital</a>
+  <nav class="paper__nav" aria-label="Primary">
+    <a href="/systems">Systems</a>
+    <a href="/performance">Evidence</a>
+    <a href="/research">Research</a>
+    <a href="/open">Glass box</a>
+  </nav>
+</header>
+<main class="paper__main" id="content">
+  <article class="paper__article">
+    <p class="paper__eyebrow"><a href="/research">Research</a></p>
+    <h1 class="paper__title">Point-in-time market-status and outage replay</h1>
+    <p class="paper__byline">By <span rel="author">Arhan Canli</span>, Canli Capital</p>
+    <div class="paper__body">
+<p>AlphaForge can now replay explicit venue and instrument market-status intervals inside the
+event-driven backtester. This is engineering evidence, not historical outage coverage or return
+evidence. No market returns were opened and no hypothesis was spent.</p>
+<h2>Enforced behavior</h2>
+<ul>
+<li>Enabling status replay triggers a pre-run proof of explicit point-in-time coverage for every
+instrument and every millisecond in the complete backtest interval, before bars are read.</li>
+<li>Instrument-specific status overrides venue-wide status.</li>
+<li>Future-known records and overlapping intervals within one scope fail closed.</li>
+<li><code>HALTED</code>, <code>OUTAGE</code>, and <code>AUCTION_ONLY</code> block execution even if an OHLCV bar exists.</li>
+<li><code>CLOSE_ONLY</code> blocks risk increases while permitting reduce-only orders, including recall covers.</li>
+<li>Blocks are labeled and counted; no synthetic fill is substituted.</li>
+<li>With no status provider, the existing compatibility path and golden master are unchanged.</li>
+</ul>
+<h2>Reviewed ingestion and source lineage</h2>
+<p>The ingestion boundary accepts strict normalized manifests only when the supplied raw source bytes
+match the declared SHA-256 digest. It records source publication, event observation, historical
+availability, local capture, and review as separate timestamps rather than collapsing them into a
+single misleading date. Unknown fields, impossible timestamp order, digest mismatch, duplicate or
+relabeled source identities, non-HTTPS URLs, and future-known use fail closed.</p>
+<p>A source row remains visible with one reviewer but cannot qualify for replay. Exact reconciliation
+requires dual-reviewed official-exchange and vendor observations with distinct source identities
+and bytes. Status, venue/instrument scope, and the complete effective interval must agree. The
+reconciled event uses the later observation and availability timestamps, preserving the more
+conservative point-in-time boundary.</p>
+<h2>Coverage preflight</h2>
+<p>Before a run relies on status replay, the coverage auditor requires explicit half-open intervals
+for each canonical instrument. It accepts reconciled events only and sweeps every effective and
+availability boundary. Instrument-specific status retains precedence over venue-wide status. If a
+specific event was effective but not yet available, that interval is labeled
+<code>status_not_yet_available</code>; the auditor does not fall back to a venue-wide OPEN event. If no event
+is effective, the interval is labeled <code>no_effective_status</code>. Source silence never means OPEN.</p>
+<p>Covered segments retain the reconciliation content hash and both source keys. Missing and covered
+durations must sum exactly to required milliseconds, and the complete audit is deterministically
+content-hashed. This proves completeness only for the explicit requirements and reconciliations in
+that artifact; it is not evidence that a broad historical corpus exists.</p>
+<p>The source-reconciled provider refuses construction when its declared corpus has gaps and reruns
+the audit against the exact instruments and <code>[start, end)</code> requested by the engine. A run outside
+the reviewed evidence fails before data loading or strategy execution. Passing reviewed runs retain
+the deterministic coverage-audit hash in their configuration; synthetic providers must still prove
+complete intervals but cannot claim source-reviewed lineage.</p>
+<h2>Deliberate boundary</h2>
+<p>The platform does not bundle a content-verified historical status corpus, production exchange or
+vendor adapter, automated source capture, or empirical broad-market coverage evidence. It also
+does not model auction price formation or queue position, preserve resting orders across outages,
+route across venues, or poll and reconcile live exchange status. Reviewed ingestion, coverage
+preflight, and explicit replay prevent impossible fills only when qualified coverage is supplied;
+they do not prove that broad coverage exists.</p>
+<p>The machine-readable contract is available at
+<a href="/glassbox/market_status_contract.json"><code>/glassbox/market_status_contract.json</code></a>.</p>
+
+    </div>
+    <footer class="paper__footer">
+      <p class="paper__links">
+        <a href="/research/market-status-replay.md">Read the unrendered source</a>
+        <span aria-hidden="true"> / </span>
+        <a href="/open">Inspect the underlying artifacts</a>
+        <span aria-hidden="true"> / </span>
+        <a href="/research">All research</a>
+      </p>
+      <p class="paper__boundary">
+        Published as evidence, not as a claim about future performance. The figures quoted here
+        are reproducible from the artifacts linked above.
+      </p>
+    </footer>
+  </article>
+</main>
+</body>
+</html>
