@@ -250,8 +250,8 @@
         }
       }
     },
-    "generated_at": "2026-08-21T18:05:36.099568+00:00",
-    "content_hash": "sha256:d246ac59944b7e52c40616b8ff4fbd079066e25602fc93a48ca2bc5cdcdaeb43"
+    "generated_at": "2026-08-21T18:22:25.534642+00:00",
+    "content_hash": "sha256:dced45c87c476376bdc4801b13dfeeac1ae809eb2ad4071f09f628f09cab8415"
   },
   "factor_research": {
     "summary": "Most ideas die. We publish every test with its real net-of-cost Sharpe and its real Rank-IC. 2 kept, 8 killed. The Rank-IC is the cross-sectional information coefficient with a Newey-West t-stat; the net Sharpe is the purged walk-forward result after the conservative cost model.",
@@ -17085,12 +17085,12 @@
       ],
       "source_sha256": {
         "registry": "6a54ef0c0bda0d1353b1fa8175ab900313b31594084cc5c8810b4de069ef3e04",
-        "kill_ledger": "848a8368e6f10193236a383a319102740d84b2104389281ed85daf19228b1ff5",
-        "current_book": "d21561f0061b9f70a571ba5866b0be26432f2ab40a272c70c06de88ef9b86ef7",
+        "kill_ledger": "b37922e0f1d5798383baeb6cb834a54cc64568f0455460c9481ee9fdad1136e9",
+        "current_book": "5022cfecfaaf80235b6a68c5626d7374a4ef7ad0147c738402ba30b0f3eb91de",
         "discovery": "654f831e3ea4122437e5c48f066d6d37ba6cbcf8d1c7119395d104c5aa6cc225"
       },
-      "generated_at": "2026-08-21T18:05:35.234123+00:00",
-      "content_hash": "sha256:9dbcaf36b15116305a48cb16ccbddd7d73f660d236dbfcbe3273874ae082a433"
+      "generated_at": "2026-08-21T18:22:24.739286+00:00",
+      "content_hash": "sha256:65f9d1d1b0b32e089a558f176674b8b58181a3cd385345894293e055b2423e06"
     },
     "atlas_public_path": "/glassbox/sleeve_atlas.json",
     "audit_public_path": "/glassbox/sleeve_atlas_audit.json",
@@ -17253,6 +17253,47 @@
         "AlphaTrend"
       ]
     }
+  },
+  "feasibility_gate_reachability": {
+    "claim_boundary": "Asks only whether each near-miss gate is reachable by repairing extraction. Opens no market data, registers no hypothesis identity, proposes no threshold change and authorizes no candidate. 0 trials.",
+    "companion": "artifacts/analysis/spinoff_prorata_gate/result.json",
+    "families": {
+      "customer_supplier_propagation": {
+        "a_hypothesis_this_measurement_REFUTED": "Five window excerpts read by eye from the misses were generic business and risk-factor text, which suggested the denominator was inflated with documents that disclose no concentration at all. Measured across all 300, that is wrong: 93.3% do carry real concentration language, and correcting the denominator moves the rate from 0.3533 to 0.3714 -- about two points, against a 15-point shortfall. Five excerpts were an unrepresentative sample and the hypothesis they suggested is recorded here as refuted rather than dropped.",
+        "documents_sampled": 300,
+        "documents_with_genuine_concentration_language": 280,
+        "gate": "strict_named_document_rate_at_least_50pct",
+        "gate_threshold": 0.5,
+        "genuine_concentration_share": 0.9333333333333333,
+        "naming_rate_among_genuine_disclosures": 0.37142857142857144,
+        "published_rate": 0.35333333333333333,
+        "verdict": "GATE_UNREACHABLE_BY_DETECTOR_REPAIR",
+        "why": "An issuer may disclose a material customer concentration WITHOUT naming the customer, and most do. Among documents that genuinely carry concentration language, only 104/280 name the customer (37.1%) against a gate of 50%. The shortfall is what the filings contain, not what the parser reads."
+      },
+      "merger_arbitrage": {
+        "blended_rate": 0.6702290076335878,
+        "by_form": {
+          "DEFM14A": {
+            "anchors": 1523,
+            "clears_0_80": false,
+            "prior_item101_8k_rate": 0.613263296126067
+          },
+          "SC 14D9": {
+            "anchors": 442,
+            "clears_0_80": true,
+            "prior_item101_8k_rate": 0.8665158371040724
+          }
+        },
+        "gate": "prior_item101_8k_rate_gte_0_80",
+        "gate_threshold": 0.8,
+        "sc_to_t_note": "SC TO-T appears in counts_by_year_form (521 filings) and not in the anchor timeline. That is deliberate and correct: TARGET_FORMS is {DEFM14A, SC 14D9} because SC TO-T is the bidder's filing, not the target's. Checked rather than assumed.",
+        "verdict": "GATE_BLENDS_TWO_POPULATIONS",
+        "why": "The threshold is applied across deal structures with different filing obligations. A tender offer's SC 14D9 follows a contemporaneous merger agreement, so its prior Item 1.01 8-K is nearly always present; a definitive merger proxy can be filed long after the agreement and by issuers who announced it otherwise. Measured separately, SC 14D9 clears 0.80 outright and DEFM14A does not come close. The blended figure describes neither population.",
+        "\u26a0\ufe0f_this_is_not_permission_to_narrow_the_universe": "Restricting to tender offers AFTER observing that they pass is selection, and the 0.8665 above is now in-sample for that decision and cannot serve as its evidence. A tender-offer-scoped identity is a legitimate REDESIGN, and it needs its own pre-registration with its threshold and universe fixed before anything is measured again. What this analysis establishes is that the CURRENT protocol mis-specified its population, not that a narrower one works."
+      }
+    },
+    "schema": "canli.alphac-feasibility-gate-reachability.v1",
+    "summary": "Of the three families one gate from feasibility, none is blocked by extraction. spin_off_dislocation and customer_supplier_propagation ask for language the filings do not contain at the assumed rate; merger_arbitrage applies one threshold to two populations with different filing obligations. All three need identity redesign with fresh pre-registration, not a better parser. That is a slower answer than 'one gate away' implied, and it is the true one."
   },
   "spinoff_prorata_gate": {
     "any_pro_rata_token_rate": 0.11224489795918367,
@@ -17705,7 +17746,7 @@
             "by_file": {}
           },
           "historical_scripts": {
-            "python_files": 177,
+            "python_files": 178,
             "violations": 363,
             "files_with_violations": 52,
             "safe_autofixes_available": 110,
@@ -17860,9 +17901,9 @@
           "scripts/vps/collect_venues.py": "54870d67f99fa677486b71eae1e0ca4f6579b29e6b9facba6f37f4bdee523b69",
           "scripts/vps/stale_lock.py": "f40b992005f87b733ea6e71a447219a55d8200585c388ac06e13394cb0195a54"
         },
-        "content_hash": "sha256:37781dc04604414868fcff57aff23e5f4cc83e69b73e0bded5c32b7bb8a897f4"
+        "content_hash": "sha256:3314fe16e1ff92ec7a251e705c832985b28c01a16074ab2228d4371b7c1fce84"
       },
-      "source_sha256": "07dee448cc9881f576d2df7795ce1d009daead7c8696b40f7b9117b89c09ac74",
+      "source_sha256": "a94ee3ac28bbc209d979bfb159397641ae358c9fdef82d53aa5f15c91be77b59",
       "public_path": "/glassbox/lint_debt_contract.json",
       "book_path": "/research/engineering-quality.md",
       "source_path": "artifacts/engineering/lint_debt_contract.json"
@@ -18312,6 +18353,6 @@
       "source_path": "artifacts/engineering/options_execution_contract.json"
     }
   },
-  "generated_at": "2026-08-21T18:05:36.103910+00:00",
-  "content_hash": "sha256:e6b71e59051dd974e34583c25f41332d10f8e8e617a223eaac4788bf5cbef2ed"
+  "generated_at": "2026-08-21T18:22:25.541261+00:00",
+  "content_hash": "sha256:e8ee1ff8876b6d04b977f7e0a2166188e491ed759d72df8549675923ef03fef9"
 }
