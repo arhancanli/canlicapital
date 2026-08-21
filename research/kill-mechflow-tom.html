@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Turn-of-Month / Rebalancing Flow (probe): a killed candidate — Canli Capital</title>
+<meta name="description" content="The calendar flow is real — SPY earns 5.65bp/day in the last-1-plus-first-3 window vs 3.96bp outside, and the footprint replicates on QQQ — but monetized standalone it sits in cash 76% of days: net Sharpe 0.27, below buy-and-hold SPY (0.58) and the screen bar, DSR 0.035 across 43 configs. The 60/..." />
+<link rel="canonical" href="https://canlicapital.com/research/kill-mechflow-tom" />
+<meta name="author" content="Arhan Canli" />
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="Canli Capital" />
+<meta property="og:title" content="Turn-of-Month / Rebalancing Flow (probe): a killed candidate" />
+<meta property="og:description" content="The calendar flow is real — SPY earns 5.65bp/day in the last-1-plus-first-3 window vs 3.96bp outside, and the footprint replicates on QQQ — but monetized standalone it sits in cash 76% of days: net Sharpe 0.27, below buy-and-hold SPY (0.58) and the screen bar, DSR 0.035 across 43 configs. The 60/..." />
+<meta property="og:url" content="https://canlicapital.com/research/kill-mechflow-tom" />
+<meta property="og:image" content="https://canlicapital.com/og.png" />
+<meta property="article:author" content="Arhan Canli" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Turn-of-Month / Rebalancing Flow (probe): a killed candidate" />
+<meta name="twitter:description" content="The calendar flow is real — SPY earns 5.65bp/day in the last-1-plus-first-3 window vs 3.96bp outside, and the footprint replicates on QQQ — but monetized standalone it sits in cash 76% of days: net Sharpe 0.27, below buy-and-hold SPY (0.58) and the screen bar, DSR 0.035 across 43 configs. The 60/..." />
+<meta name="twitter:image" content="https://canlicapital.com/og.png" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="icon" href="/favicon.ico" sizes="any" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=swap" />
+<link rel="stylesheet" href="../css/paper.css" />
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"ScholarlyArticle","headline":"Turn-of-Month / Rebalancing Flow (probe): a killed candidate","description":"The calendar flow is real — SPY earns 5.65bp/day in the last-1-plus-first-3 window vs 3.96bp outside, and the footprint replicates on QQQ — but monetized standalone it sits in cash 76% of days: net Sharpe 0.27, below buy-and-hold SPY (0.58) and the screen bar, DSR 0.035 across 43 configs. The 60/...","url":"https://canlicapital.com/research/kill-mechflow-tom","inLanguage":"en","isAccessibleForFree":true,"author":{"@type":"Person","@id":"https://canlicapital.com/#arhan-canli","name":"Arhan Canli","jobTitle":"Founder and Quantitative Researcher","url":"https://canlicapital.com/","sameAs":["https://github.com/arhancanli"],"affiliation":{"@type":"Organization","@id":"https://canlicapital.com/#organization","name":"Canli Capital","url":"https://canlicapital.com/"}},"publisher":{"@type":"Organization","@id":"https://canlicapital.com/#organization","name":"Canli Capital","url":"https://canlicapital.com/","logo":{"@type":"ImageObject","url":"https://canlicapital.com/brand-mark.svg"}},"isPartOf":{"@type":"Periodical","name":"Canli Capital Research","url":"https://canlicapital.com/research"},"encodingFormat":"text/html","associatedMedia":{"@type":"MediaObject","contentUrl":"https://canlicapital.com/research/kill-mechflow-tom.md","encodingFormat":"text/markdown"}}</script>
+</head>
+<body class="paper">
+<a class="paper__skip" href="#content">Skip to content</a>
+<header class="paper__masthead">
+  <a class="paper__brand" href="/">Canli Capital</a>
+  <nav class="paper__nav" aria-label="Primary">
+    <a href="/systems">Systems</a>
+    <a href="/performance">Evidence</a>
+    <a href="/research">Research</a>
+    <a href="/open">Glass box</a>
+  </nav>
+</header>
+<main class="paper__main" id="content">
+  <article class="paper__article">
+    <p class="paper__eyebrow"><a href="/research">Research</a></p>
+    <h1 class="paper__title">Turn-of-Month / Rebalancing Flow (probe): a killed candidate</h1>
+    <p class="paper__byline">By <span rel="author">Arhan Canli</span>, Canli Capital</p>
+    <div class="paper__body">
+<p><strong>Verdict:</strong> KILLED  <strong>Stage:</strong> screen prototype<br><strong>Identity:</strong> <code>mechflow_tom</code></p>
+<p>The calendar flow is real — SPY earns 5.65bp/day in the last-1-plus-first-3 window vs 3.96bp outside, and the footprint replicates on QQQ — but monetized standalone it sits in cash 76% of days: net Sharpe 0.27, below buy-and-hold SPY (0.58) and the screen bar, DSR 0.035 across 43 configs. The 60/40 month-end rebalance-fade variant decayed negative after 2018. A real effect that is an execution tilt, not a sleeve. KILLED as standalone. RE-EXAMINED 2026-08-03 because that first reason was BAD ARITHMETIC: a candidate need not beat the book to improve it, only clear own_SR &gt; rho x S_b. Re-tested as a diversifier on ONE pre-registered config (no sweep, so no search penalty). The reframe was right about correlation — rho to the live book is +0.010, dropping the bar to +0.006 — and it still fails: own Sharpe -0.56 over the book&#39;s own window, and over 25 years / 6,309 sessions the full-history Sharpe of +0.278 carries a Newey-West t of only +1.42, with no decade reaching t=2 (best +1.32). A near-zero bar lowers what you must BEAT, never what you must PROVE. Adding it hurt the book at every weight (-0.03 to -0.15), and 87-96% of that harm came from the mean, not from variance. KILLED on the correct bar — this one is final.</p>
+<h2>Why it was worth testing</h2>
+<p>This died at the screen stage, before a full walk-forward was ever run. Screening exists so that ideas which cannot clear a coarse, cost-aware bar do not consume the far more expensive machinery behind it. A screen kill is a cheap kill, and it is published for the same reason as an expensive one: the trial was still spent, and it still raises the evidence bar for everything already in the book.</p>
+<h2>The result</h2>
+<table>
+<thead>
+<tr>
+<th>Measure</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Screen net Sharpe</td>
+<td>0.2700</td>
+</tr>
+</tbody></table>
+<h2>What this does and does not say</h2>
+<p>It says this configuration, on this data, net of the costs we charge, did not clear the bar it pre-registered. It does not say the underlying economic effect does not exist, that no implementation of it works, or that someone with different data or different execution would reach the same conclusion. A null is evidence about a test, not a proof about a market.</p>
+<p>It also does not say the trial was free. Every hypothesis tested raises the deflated-Sharpe hurdle for every sleeve already in the book, including the ones that survived. That is why the kill count is published beside the survivor count rather than behind it.</p>
+
+    </div>
+    <footer class="paper__footer">
+      <p class="paper__links">
+        <a href="/research/kill-mechflow-tom.md">Read the unrendered source</a>
+        <span aria-hidden="true"> / </span>
+        <a href="/open">Inspect the underlying artifacts</a>
+        <span aria-hidden="true"> / </span>
+        <a href="/research">All research</a>
+      </p>
+      <p class="paper__boundary">
+        Published as evidence, not as a claim about future performance. The figures quoted here
+        are reproducible from the artifacts linked above.
+      </p>
+    </footer>
+  </article>
+</main>
+</body>
+</html>

@@ -19,14 +19,17 @@
     "point_in_time_data": true,
     "net_of_costs": true,
     "walk_forward_only": true,
-    "deflated_sharpe_min": 0.95,
+    "requires_capacity_curve": true,
+    "requires_kill_criteria": true,
+    "book_deflated_sharpe_min": 0.95,
     "pbo_max": 0.2,
     "average_pairwise_correlation_max": 0.0,
+    "average_pairwise_correlation_upper_95_max": 0.1,
     "pairwise_correlation_max": 0.35,
     "stressed_pairwise_correlation_max": 0.5,
     "minimum_oos_observations": 756,
-    "requires_capacity_curve": true,
-    "requires_kill_criteria": true
+    "net_sharpe_min": 0.15,
+    "capacity_usd_min": 500000
   },
   "credential_policy": {
     "storage": "environment variables or managed secret store only",
@@ -933,6 +936,9 @@
       "reason": "The one-shot petroleum proxy was exceptionally orthogonal but had strongly negative OOS returns, failed both standalone product checks, failed mean-zero and leave-one-year-out book stability, and was severely capacity-constrained by UGA. The sign is not inverted and the parameters are not retuned."
     }
   ],
+  "retired_admission_gates": {
+    "deflated_sharpe_min": "Retired as a per-sleeve GATE in contract v6 and replaced by book_deflated_sharpe_min at the same 0.95 against the complete union of hypothesis identities. A 0.95 per-sleeve floor required an annualized Sharpe of 1.184 even at the least deflation the formula permits, about eight times the declared net Sharpe floor, and no sleeve in this book clears it. The per-sleeve figure is still measured and published for every candidate; evidence that omits it fails closed."
+  },
   "admission_contract_schema": "canli.alphac-sleeve-admission-contract.v6",
   "admission_contract_public_path": "/glassbox/sleeve_admission_contract.json",
   "frontier_arithmetic": {

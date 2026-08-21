@@ -749,7 +749,10 @@ function bindFrontier(d) {
       `${auditSummary.ready_for_key_free_feasibility || 0} cells may proceed only to key-free feasibility; ${auditSummary.literature_review_required || 0} remain stopped for cited literature review; ${auditSummary.overlap_review_required || 0} require identity-level overlap resolution; ${auditSummary.retired_killed || 0} are retired/killed and ${auditSummary.forward_only_monitoring || 0} are monitoring a sealed forward-only continuation. Return data opened: ${auditSummary.return_data_opened || 0}. Return identities spent: ${auditSummary.return_hypotheses_spent || 0}.`,
     );
   }
-  setHook("sd", "dsr", Number.isFinite(gates.deflated_sharpe_min) ? `>= ${gates.deflated_sharpe_min.toFixed(2)}` : null);
+  const deflationGate = Number.isFinite(gates.book_deflated_sharpe_min)
+    ? gates.book_deflated_sharpe_min
+    : gates.deflated_sharpe_min;
+  setHook("sd", "dsr", Number.isFinite(deflationGate) ? `>= ${deflationGate.toFixed(2)}` : null);
   setHook("sd", "pbo", Number.isFinite(gates.pbo_max) ? `< ${gates.pbo_max.toFixed(2)}` : null);
   setHook(
     "sd",
