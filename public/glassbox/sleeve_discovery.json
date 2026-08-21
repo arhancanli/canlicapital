@@ -956,20 +956,20 @@
     "gate_permits_objective_ceiling": false,
     "quality_precondition_at_the_gate": {
       "note": "What the tightened correlation gate alone does NOT buy. At the gate exactly, reaching each end of the objective band requires at least this average standalone Sharpe across fourteen sleeves.",
-      "s_bar_required_for_2.0": 0.5345224838248488,
-      "s_bar_required_for_2.5": 0.6681531047810609,
+      "s_bar_required_for_2.25": 0.6013377943029549,
+      "s_bar_required_for_3.0": 0.8017837257372732,
       "s_bar_measured_traded_basis": 0.529,
       "s_bar_measured_four_curve_basis": 0.464
     },
     "correlation_required_at_measured_quality": {
       "note": "The other route to the same place: hold quality where it is measured today and read off the average pairwise correlation each end of the band demands.",
       "traded_basis": {
-        "rho_bar_required_for_2.0": -0.001581269230769229,
-        "rho_bar_required_for_2.5": -0.02870432
+        "rho_bar_required_for_2.25": -0.017393747388414055,
+        "rho_bar_required_for_3.0": -0.04343782905982906
       },
       "four_curve_basis": {
-        "rho_bar_required_for_2.0": -0.018958769230769223,
-        "rho_bar_required_for_2.5": -0.039825919999999994
+        "rho_bar_required_for_2.25": -0.031124117758784424,
+        "rho_bar_required_for_3.0": -0.05116116239316239
       }
     },
     "honest_reading": "Tightening the correlation ceiling from 0.15 to 0.00 removes a ceiling that sat BELOW the objective at every plausible quality, which is why the v4 gate could not have produced the objective at any sleeve count. It does not on its own deliver the objective. At the gate exactly, fourteen sleeves of today's measured quality reach the figure recorded above, and the remaining distance has to be bought with per-sleeve quality, genuinely negative correlation, or both. Publishing this is the point: a target sitting beside a gate that forbids it is not a stretch goal."

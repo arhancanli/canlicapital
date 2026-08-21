@@ -1,6 +1,99 @@
 {
   "generated_by": "scripts/build-papers.mjs",
   "count": 80,
+  "topics": [
+    {
+      "slug": "killed-candidates",
+      "label": "Killed candidates",
+      "count": 46,
+      "path": "/research/topics/killed-candidates",
+      "blurb": "Every strategy that failed, published in full with the numbers it died on. Almost nobody publishes these, which is exactly why they are here: a kill log is a table, a paper is the reasoning another researcher can use."
+    },
+    {
+      "slug": "literature-reviews",
+      "label": "Literature reviews",
+      "count": 9,
+      "path": "/research/topics/literature-reviews",
+      "blurb": "What the published evidence actually supports for each mechanism, with citations, and where our reading of it stops."
+    },
+    {
+      "slug": "feasibility-protocols",
+      "label": "Feasibility protocols",
+      "count": 10,
+      "path": "/research/topics/feasibility-protocols",
+      "blurb": "Whether a mechanism can be tested at all — point-in-time data lineage, execution realism and document coverage — decided before any return data is opened."
+    },
+    {
+      "slug": "engineering-foundations",
+      "label": "Engineering foundations",
+      "count": 12,
+      "path": "/research/topics/engineering-foundations",
+      "blurb": "The machinery underneath the research: execution realism, borrow and financing replay, corporate-action lifecycle, and the quality contracts that gate what gets published."
+    },
+    {
+      "slug": "equities",
+      "label": "Equities",
+      "count": 23,
+      "path": "/research/topics/equities",
+      "blurb": "Cross-sectional equity research: momentum construction, quality and value replication on a survivorship-free universe, and the filing-derived signals tested against it."
+    },
+    {
+      "slug": "crypto",
+      "label": "Crypto",
+      "count": 8,
+      "path": "/research/topics/crypto",
+      "blurb": "Perpetual-futures funding carry, basis, venue structure and stablecoin dislocation — the sleeve family where this book has the longest live record."
+    },
+    {
+      "slug": "options-and-volatility",
+      "label": "Options and volatility",
+      "count": 7,
+      "path": "/research/topics/options-and-volatility",
+      "blurb": "Variance risk premium, index-versus-constituent dispersion and dealer positioning: mechanisms that are well documented and expensive to implement honestly."
+    },
+    {
+      "slug": "rates-and-treasuries",
+      "label": "Rates and treasuries",
+      "count": 7,
+      "path": "/research/topics/rates-and-treasuries",
+      "blurb": "Auction concession, pre-FOMC drift, swap-spread dislocation and curve carry — including the identities that turned out not to be observable as pre-registered."
+    },
+    {
+      "slug": "credit",
+      "label": "Credit",
+      "count": 4,
+      "path": "/research/topics/credit",
+      "blurb": "Bond-ETF NAV dislocation, fallen-angel flow and credit-equity relative value, and the licensed-data boundaries that gate them."
+    },
+    {
+      "slug": "commodities",
+      "label": "Commodities",
+      "count": 5,
+      "path": "/research/topics/commodities",
+      "blurb": "Inventory surprise, storage and weather: official point-in-time vintages, first-release capture, and what happens to a seasonal signal net of cost."
+    },
+    {
+      "slug": "event-driven",
+      "label": "Event-driven",
+      "count": 5,
+      "path": "/research/topics/event-driven",
+      "blurb": "Merger arbitrage, spin-off dislocation, tender offers and activist escalation — mechanisms whose feasibility turns on what regulatory filings actually contain."
+    },
+    {
+      "slug": "macro-surprise",
+      "label": "Macro surprise",
+      "count": 3,
+      "path": "/research/topics/macro-surprise",
+      "blurb": "Point-in-time macro releases traded as cross-sectional spreads, and the vintage discipline that makes the surprise real rather than hindsight."
+    },
+    {
+      "slug": "execution-and-market-structure",
+      "label": "Execution and market structure",
+      "count": 7,
+      "path": "/research/topics/execution-and-market-structure",
+      "blurb": "Borrow availability and fees, financing, corporate actions, market-status replay and fill modelling — the costs that decide whether a paper edge survives contact."
+    }
+  ],
   "papers": [
     {
       "slug": "alphavintage-missing-release-correction",
@@ -96,14 +189,14 @@
     {
       "slug": "kill-alphamax-short-margin-floor",
       "title": "AlphaMax Short-Leg Margin Floor (disclosure, not a strategy): a killed candidate",
-      "description": "A disclosure against our own published number rather than a tested idea. The equity sleeve's backtest has never modelled the broker's $5.",
+      "description": "A disclosure against our own published number rather than a tested idea.",
       "path": "/research/kill-alphamax-short-margin-floor",
       "source_path": "/research/kill-alphamax-short-margin-floor.md"
     },
     {
       "slug": "kill-alphamax-shorttail",
       "title": "Short-Leg Tail Controls (campaign): a killed candidate",
-      "description": "Nine construction-side short-leg controls (per-name stop-outs at 30/50/100%, gross caps at 1.25x/1.5x/2.",
+      "description": "Nine construction-side short-leg controls (per-name stop-outs at 30/50/100%, gross caps at 1.25x/1.5x/2.0x, short-leg vol targeting, with and without…",
       "path": "/research/kill-alphamax-shorttail",
       "source_path": "/research/kill-alphamax-shorttail.md"
     },
@@ -124,7 +217,7 @@
     {
       "slug": "kill-cef-discount",
       "title": "Closed-End-Fund Deep-Discount + Activist Catalyst (probe): a killed candidate",
-      "description": "The five-decade anomaly is REAL in free data and we could see it: entry-cohort funds genuinely narrow their discount versus the universe (+1.17pts at 4w t=5.",
+      "description": "The five-decade anomaly is REAL in free data and we could see it: entry-cohort funds genuinely narrow their discount versus the universe (+1.17pts at 4w…",
       "path": "/research/kill-cef-discount",
       "source_path": "/research/kill-cef-discount.md"
     },
@@ -145,7 +238,7 @@
     {
       "slug": "kill-crypto-dated-basis",
       "title": "Crypto Dated-Futures Basis (campaign): a killed candidate",
-      "description": "Screened at an apparent 1.47 but refuted 3x and reproduced from scratch: the 8.2%/yr 'carry' is a roll-accounting fiction — the kept days (+0.",
+      "description": "Screened at an apparent 1.47 but refuted 3x and reproduced from scratch: the 8.2%/yr 'carry' is a roll-accounting fiction — the kept days (+0.55) and the…",
       "path": "/research/kill-crypto-dated-basis",
       "source_path": "/research/kill-crypto-dated-basis.md"
     },
@@ -159,14 +252,14 @@
     {
       "slug": "kill-crypto-short-tsmom",
       "title": "Crypto Short-Horizon Trend (campaign): a killed candidate",
-      "description": "The strong 0.60 screen lives entirely in the untradeable 2016-18 illiquid era; modern crypto is flat-to-dead with a catastrophic -4.",
+      "description": "The strong 0.60 screen lives entirely in the untradeable 2016-18 illiquid era; modern crypto is flat-to-dead with a catastrophic -4.88 skew (crash-day…",
       "path": "/research/kill-crypto-short-tsmom",
       "source_path": "/research/kill-crypto-short-tsmom.md"
     },
     {
       "slug": "kill-crypto-vrp",
       "title": "Crypto Variance-Risk-Premium (campaign): a killed candidate",
-      "description": "Pitched at 2.15 Sharpe — the headline was a 252-vs-365 vol-annualization error inventing a phantom 15-vol-point premium. Honest measurement: net Sharpe -0.",
+      "description": "Pitched at 2.15 Sharpe — the headline was a 252-vs-365 vol-annualization error inventing a phantom 15-vol-point premium.",
       "path": "/research/kill-crypto-vrp",
       "source_path": "/research/kill-crypto-vrp.md"
     },
@@ -187,7 +280,7 @@
     {
       "slug": "kill-eq-52whigh",
       "title": "52-Week-High Momentum (campaign): a killed candidate",
-      "description": "The one AlphaMax construction variant whose cheap screen cleared the bar (t 2.01 vs plain momentum's 1.",
+      "description": "The one AlphaMax construction variant whose cheap screen cleared the bar (t 2.01 vs plain momentum's 1.73), so we honored the pre-registration and ran the…",
       "path": "/research/kill-eq-52whigh",
       "source_path": "/research/kill-eq-52whigh.md"
     },
@@ -208,21 +301,21 @@
     {
       "slug": "kill-eq-quality-gp",
       "title": "Equity Quality (Gross Profitability): a killed candidate",
-      "description": "Quality via GP/A + ROE fails on the narrow top-200 / 5-year slice. Net Sharpe below the 0.",
+      "description": "Quality via GP/A + ROE fails on the narrow top-200 / 5-year slice. Net Sharpe below the 0.30 gate; needs the wide Sharadar fundamentals universe (20yr /…",
       "path": "/research/kill-eq-quality-gp",
       "source_path": "/research/kill-eq-quality-gp.md"
     },
     {
       "slug": "kill-eq-value-btp",
       "title": "Equity Value (Book-to-Price): a killed candidate",
-      "description": "Value premium inverted across the 2022-2026 window. Net Sharpe below the 0.",
+      "description": "Value premium inverted across the 2022-2026 window. Net Sharpe below the 0.30 gate; the narrow top-200 universe is too small for the small/mid-cap value…",
       "path": "/research/kill-eq-value-btp",
       "source_path": "/research/kill-eq-value-btp.md"
     },
     {
       "slug": "kill-equity-pead",
       "title": "Post-Earnings-Announcement Drift (campaign): a killed candidate",
-      "description": "Clean null on a tradable top-1000 universe: the drift is the WRONG sign net of cost; the published PEAD edge lives only in untradeable micro-caps. Corr 0.",
+      "description": "Clean null on a tradable top-1000 universe: the drift is the WRONG sign net of cost; the published PEAD edge lives only in untradeable micro-caps.",
       "path": "/research/kill-equity-pead",
       "source_path": "/research/kill-equity-pead.md"
     },
@@ -236,14 +329,14 @@
     {
       "slug": "kill-equity-vrp",
       "title": "Equity-Index VRP / short-vol (campaign): a killed candidate",
-      "description": "The premium is REAL (VIX minus realized = +4 vol pts, t=57) but UNHARVESTABLE: negative in every crisis, skew -1.8 to -2.2, corr +0.45 to +0.",
+      "description": "The premium is REAL (VIX minus realized = +4 vol pts, t=57) but UNHARVESTABLE: negative in every crisis, skew -1.8 to -2.2, corr +0.45 to +0.66 to SPY —…",
       "path": "/research/kill-equity-vrp",
       "source_path": "/research/kill-equity-vrp.md"
     },
     {
       "slug": "kill-funding-termstructure",
       "title": "Funding Term-Structure / Slope (campaign): a killed candidate",
-      "description": "The decorrelated residual is noise (worked pre-2023, inverted after: +1.11 then -1.",
+      "description": "The decorrelated residual is noise (worked pre-2023, inverted after: +1.11 then -1.43); the only version that makes money is leaked carry-LEVEL — a…",
       "path": "/research/kill-funding-termstructure",
       "source_path": "/research/kill-funding-termstructure.md"
     },
@@ -257,7 +350,7 @@
     {
       "slug": "kill-fx-carry-ratediff",
       "title": "FX Carry (rate differential): a killed candidate",
-      "description": "Long high-rate / short low-rate currencies. Net Sharpe 0.18 but skew -2.",
+      "description": "Long high-rate / short low-rate currencies. Net Sharpe 0.18 but skew -2.74: the carry premium does not pay for its crash risk (carry 'picks up pennies in…",
       "path": "/research/kill-fx-carry-ratediff",
       "source_path": "/research/kill-fx-carry-ratediff.md"
     },
@@ -299,7 +392,7 @@
     {
       "slug": "kill-mechflow-tom",
       "title": "Turn-of-Month / Rebalancing Flow (probe): a killed candidate",
-      "description": "The calendar flow is real — SPY earns 5.65bp/day in the last-1-plus-first-3 window vs 3.",
+      "description": "The calendar flow is real — SPY earns 5.65bp/day in the last-1-plus-first-3 window vs 3.96bp outside, and the footprint replicates on QQQ — but monetized…",
       "path": "/research/kill-mechflow-tom",
       "source_path": "/research/kill-mechflow-tom.md"
     },
@@ -320,7 +413,7 @@
     {
       "slug": "kill-multivenue-funding",
       "title": "Crypto Multi-Venue Funding Aggregation (probe): a killed candidate",
-      "description": "Would aggregating funding across exchanges beat our Binance-only carry signal? No — null by its own pre-registered rule (promote required +0.",
+      "description": "Would aggregating funding across exchanges beat our Binance-only carry signal?",
       "path": "/research/kill-multivenue-funding",
       "source_path": "/research/kill-multivenue-funding.md"
     },
@@ -390,7 +483,7 @@
     {
       "slug": "kill-xasset-carry",
       "title": "Cross-Asset Carry (campaign): a killed candidate",
-      "description": "5 constructions. The COMBINED cross-asset book is net-NEGATIVE (3 of 4 legs lose); the one positive leg (oil backwardation, +0.",
+      "description": "5 constructions. The COMBINED cross-asset book is net-NEGATIVE (3 of 4 legs lose); the one positive leg (oil backwardation, +0.37) is a single-instrument…",
       "path": "/research/kill-xasset-carry",
       "source_path": "/research/kill-xasset-carry.md"
     },

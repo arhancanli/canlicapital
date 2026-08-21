@@ -717,7 +717,7 @@ function bindFrontier(d) {
     setHook(
       "sd",
       "objective",
-      `The locked research objective is ${count} evidence-backed sleeves, including at least ${objective.minimum_new_sleeves || 10} new admissions, with an honest out-of-sample portfolio Sharpe of ${target[0].toFixed(1)} to ${target[1].toFixed(1)}${drawdown}. Targets never lower an admission gate.`,
+      `The objective is an honest FORWARD portfolio Sharpe of ${(objective.honest_forward_sharpe_target || 1.5).toFixed(1)} across ${count} evidence-backed sleeves, including at least ${objective.minimum_new_sleeves || 10} new admissions${drawdown}. This book's own measured gap between backtest and honest forward is 1.5x to 3x, so that target implies an in-sample ${target[0].toFixed(2)} to ${target[1].toFixed(2)}. Both are published because they are different numbers. Targets never lower an admission gate.`,
     );
     setHook("sd", "breadth", `${count} sleeves / >= ${objective.minimum_new_sleeves || 10} new`);
   } else if (Array.isArray(target) && target.length === 2 && Array.isArray(count) && count.length === 2) {
@@ -854,6 +854,19 @@ function bindFrontier(d) {
         if (!papers.length) return;
         libraryWrap.hidden = false;
         setHook("rl", "title", `${papers.length} research documents. Published whole.`);
+        // Topic hubs, rendered from the same generated index. Without a route in from here the
+        // hubs exist only in the sitemap, which is a crawl path and not a reading one.
+        const topicsWrap = $("#researchTopics");
+        if (topicsWrap && Array.isArray(index.topics)) {
+          topicsWrap.textContent = "";
+          index.topics.forEach((topic) => {
+            const link = el("a", "research-topics__link");
+            link.href = topic.path;
+            link.appendChild(el("span", "research-topics__label", topic.label));
+            link.appendChild(el("span", "research-topics__count", String(topic.count)));
+            topicsWrap.appendChild(link);
+          });
+        }
         libraryList.textContent = "";
         papers.forEach((paper) => {
           const item = el("li", "research-library__item");

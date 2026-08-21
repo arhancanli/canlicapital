@@ -31,6 +31,11 @@ const sources = readdirSync(resolve(ROOT, "public/research")).filter((n) => n.en
 const pages = existsSync(resolve(DIST, "research"))
   ? readdirSync(resolve(DIST, "research")).filter((n) => n.endsWith(".html"))
   : [];
+// Topic hubs are CollectionPage, not ScholarlyArticle, and carry a different canonical path.
+// Checked SEPARATELY rather than exempted: an exemption is how a page stops being checked at all.
+const hubs = existsSync(resolve(DIST, "research", "topics"))
+  ? readdirSync(resolve(DIST, "research", "topics")).filter((n) => n.endsWith(".html"))
+  : [];
 
 // A guard whose inputs are empty passes silently, which is the shape of the defect itself.
 check(sources.length > 0, "no research documents found in public/research");
@@ -87,6 +92,33 @@ for (const page of pages) {
   );
 }
 
+// 4b. Every topic hub is a real page: metadata, its own canonical, and in the sitemap.
+check(hubs.length > 0, "no topic hubs found in dist/research/topics — the taxonomy did not build");
+for (const hub of hubs) {
+  const slug = basename(hub, ".html");
+  const html = readFileSync(resolve(DIST, "research", "topics", hub), "utf8");
+  const title = html.match(/<title>([^<]*)<\/title>/);
+  const description = html.match(/<meta name="description" content="([^"]*)"/);
+
+  check(Boolean(title && title[1].trim()), `topic ${slug} has no <title>`);
+  check(
+    Boolean(description && description[1].trim().length >= 60),
+    `topic ${slug} has no usable meta description`,
+  );
+  check(
+    html.includes(`<link rel="canonical" href="${ORIGIN}/research/topics/${slug}"`),
+    `topic ${slug} has no canonical URL`,
+  );
+  check(html.includes('"@type":"CollectionPage"'), `topic ${slug} has no CollectionPage schema`);
+  check(
+    sitemap.includes(`<loc>${ORIGIN}/research/topics/${slug}</loc>`),
+    `topic ${slug} is not in sitemap.xml, so it will not be discovered`,
+  );
+  // A hub whose members are not linked from it is a doorway page.
+  const links = (html.match(/href="\/research\/[a-z0-9-]+"/g) || []).length;
+  check(links >= 3, `topic ${slug} links only ${links} papers — a hub that thin is a doorway page`);
+}
+
 // 5. The library index the hub page renders from covers the whole corpus.
 const index = JSON.parse(readFileSync(resolve(DIST, "research-index.json"), "utf8"));
 check(
@@ -103,5 +135,9 @@ if (failures.length) {
 console.log(
   `verified ${pages.length} research pages: title, description, canonical, ScholarlyArticle, ` +
     `author entity, Open Graph, stylesheet, sitemap entry`,
+);
+console.log(
+  `verified ${hubs.length} topic hubs: title, description, canonical, CollectionPage, ` +
+    `sitemap entry, and at least three linked members`,
 );
 console.log(`sitemap covers ${sitemapUrls} URLs`);

@@ -38,11 +38,21 @@ const root = dirname(fileURLToPath(import.meta.url));
 const paperEntries = () => {
   const dir = resolve(root, "research");
   if (!existsSync(dir)) return {};
-  return Object.fromEntries(
-    readdirSync(dir)
-      .filter((name) => name.endsWith(".html"))
-      .map((name) => [`paper-${name.slice(0, -5)}`, resolve(dir, name)]),
-  );
+  const entries = readdirSync(dir)
+    .filter((name) => name.endsWith(".html"))
+    .map((name) => [`paper-${name.slice(0, -5)}`, resolve(dir, name)]);
+  // Topic hubs live one level down. They were missed on the first pass, which would have built
+  // the sitemap entries and not the pages they point at — a 404 for every hub, discovered only
+  // in production.
+  const hubDir = resolve(dir, "topics");
+  if (existsSync(hubDir)) {
+    entries.push(
+      ...readdirSync(hubDir)
+        .filter((name) => name.endsWith(".html"))
+        .map((name) => [`topic-${name.slice(0, -5)}`, resolve(hubDir, name)]),
+    );
+  }
+  return Object.fromEntries(entries);
 };
 
 export default defineConfig({

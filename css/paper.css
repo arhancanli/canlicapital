@@ -236,3 +236,80 @@ body.paper {
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
 }
+
+/* ---------------------------------------------------------------------------
+   TOPIC HUB LISTING
+   The hub pages load THIS stylesheet, not research.css, so the library classes
+   have to exist here too. Without them the title and description spans collapse
+   inline — "…a killed candidateScreened at an apparent 1.47…" — and the whole
+   list inherits the prose bullet and underline treatment. Caught in a rendered
+   screenshot, which is the only place it is visible.
+   --------------------------------------------------------------------------- */
+
+.paper__body .research-library {
+  margin: clamp(28px, 4vw, 40px) 0 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--line);
+}
+.paper__body .research-library__item {
+  margin: 0;
+  border-bottom: 1px solid var(--line);
+}
+.paper__body .research-library__item::marker { content: none; }
+.paper__body .research-library__link {
+  display: grid;
+  gap: 6px;
+  padding: 20px 0;
+  color: inherit;
+  text-decoration: none;
+  transition: opacity 160ms ease;
+}
+.paper__body .research-library__link:hover { opacity: 0.75; }
+.paper__body .research-library__link:hover .research-library__title { color: var(--oxide); }
+.research-library__title {
+  font-family: var(--display);
+  font-size: clamp(18px, 1.7vw, 22px);
+  line-height: 1.25;
+  letter-spacing: -0.018em;
+  color: var(--ink);
+  transition: color 160ms ease;
+}
+.research-library__desc {
+  max-width: 88ch;
+  color: var(--faint);
+  font-size: 14px;
+  line-height: 1.55;
+}
+@media (max-width: 640px) {
+  .research-library__desc { display: none; }
+}
+
+
+/* Moved here from research.css: paper pages load THIS stylesheet, and the same mistake
+   (styling a paper-page component in the marketing stylesheet) has now been made twice.
+   If a class starts with .paper__ or renders inside .paper__body, it belongs in this file. */
+/* Related-work navigation on a paper page: the internal link graph that makes eighty documents
+   a body of work rather than eighty orphans. */
+.paper__related {
+  margin: clamp(48px, 6vw, 72px) 0 0;
+  padding-top: 26px;
+  border-top: 1px solid var(--line, rgba(231, 224, 210, 0.16));
+}
+.paper__related-kicker {
+  margin: 0 0 10px;
+  color: var(--faint, #7f8a96);
+  font: 500 11px/1 var(--mono, "IBM Plex Mono", monospace);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.paper__related-kicker + .paper__links { margin-bottom: 28px; }
+.paper__related-list { margin: 0; padding-left: 18px; }
+.paper__related-list li { margin-bottom: 8px; }
+.paper__related-list a {
+  color: var(--muted, #9ba4ad);
+  text-decoration: none;
+  text-underline-offset: 3px;
+}
+.paper__related-list a:hover { color: var(--oxide, #d56b48); text-decoration: underline; }
+.research-library--hub { border-top: 0; }

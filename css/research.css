@@ -1011,3 +1011,28 @@
 @media (max-width: 640px) {
   .research-library__desc { display: none; }
 }
+
+
+
+/* Topic hubs on the research page. A crawl path is not a reading path — these exist so a human
+   can enter the corpus by subject rather than scrolling eighty alphabetical titles. */
+.research-topics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: clamp(24px, 3vw, 36px) 0 0;
+}
+.research-topics__link {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 9px;
+  padding: 9px 15px;
+  border: 1px solid var(--line, rgba(231, 224, 210, 0.16));
+  color: var(--muted, #9ba4ad);
+  font: 500 12px/1 var(--mono, "IBM Plex Mono", monospace);
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  transition: border-color 160ms ease, color 160ms ease;
+}
+.research-topics__link:hover { border-color: var(--oxide, #d56b48); color: var(--ink, #f2eee5); }
+.research-topics__count { color: var(--faint, #7f8a96); font-size: 11px; }
