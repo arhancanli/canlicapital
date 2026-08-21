@@ -250,8 +250,8 @@
         }
       }
     },
-    "generated_at": "2026-08-21T15:30:31.385444+00:00",
-    "content_hash": "sha256:688e8d8d5454fda53b938778880725ddf8d895823e98590fdae7b741d7be616e"
+    "generated_at": "2026-08-21T15:49:33.777353+00:00",
+    "content_hash": "sha256:3664b292bd5cf17de03b8b0e5f3ccdf1bb7ebd93756ddcfdb2b206b63f498dff"
   },
   "factor_research": {
     "summary": "Most ideas die. We publish every test with its real net-of-cost Sharpe and its real Rank-IC. 2 kept, 8 killed. The Rank-IC is the cross-sectional information coefficient with a Newey-West t-stat; the net Sharpe is the purged walk-forward result after the conservative cost model.",
@@ -17085,12 +17085,12 @@
       ],
       "source_sha256": {
         "registry": "6a54ef0c0bda0d1353b1fa8175ab900313b31594084cc5c8810b4de069ef3e04",
-        "kill_ledger": "1e0241204907253a37f28c3b040c39db91133f66fbf2a2bab5d480970e7da8a6",
-        "current_book": "030bdcee7f0dcde7b4ac1f993955a57599ce62ac8a3062470d574b09e4c73ef3",
+        "kill_ledger": "04818b01b9bc4d42e9dde96e10fa21a6756dd85be1b3a76b5434862aa80303f2",
+        "current_book": "2208e3ad075c12dce6217f11b9c413d81898f5c53b1aeb66844a5ab06c750d95",
         "discovery": "654f831e3ea4122437e5c48f066d6d37ba6cbcf8d1c7119395d104c5aa6cc225"
       },
-      "generated_at": "2026-08-21T15:30:30.540281+00:00",
-      "content_hash": "sha256:ad187aef3cf47a546a728e4629376ba62b5775f42c5f091d245a24de3300572d"
+      "generated_at": "2026-08-21T15:49:32.977226+00:00",
+      "content_hash": "sha256:9bb28e8606064b09ccd2f72a8dbb1f1c1d1d7dfe11a431eb95b909e19c83b1fd"
     },
     "atlas_public_path": "/glassbox/sleeve_atlas.json",
     "audit_public_path": "/glassbox/sleeve_atlas_audit.json",
@@ -17098,6 +17098,66 @@
     "atlas_source_path": "artifacts/discovery/sleeve_atlas.json",
     "audit_source_path": "artifacts/discovery/sleeve_atlas_audit.json",
     "lineage_audit_source_path": "artifacts/discovery/sleeve_family_lineage_audit.json"
+  },
+  "admission_dry_run": {
+    "result": {
+      "book_sleeves": [
+        "AlphaForge",
+        "AlphaMax",
+        "AlphaTrend"
+      ],
+      "candidate": "AlphaVintage (cpi_surprise_size)",
+      "checks_evaluated": 85,
+      "claim_boundary": "Admissibility MECHANICS on already-registered identities. Registers no hypothesis identity, proposes no sleeve, and makes no claim about any candidate's edge. Capacity and execution evidence are left EMPTY on purpose so their failures are visible as evidence-gathering work rather than hidden behind a fabricated bundle.",
+      "common_window_days": 728,
+      "curve_provenance": {
+        "AlphaForge": {
+          "file_modified": "2026-06-20",
+          "last_observation": "2026-06-01",
+          "path": "artifacts/walkforward/crypto_carry_wk/equity.parquet"
+        },
+        "AlphaMax": {
+          "file_modified": "2026-06-20",
+          "last_observation": "2026-06-01",
+          "path": "artifacts/walkforward/k30_dn_63/equity.parquet"
+        },
+        "AlphaTrend": {
+          "file_modified": "2026-08-21",
+          "last_observation": "2026-08-21",
+          "path": "artifacts/walkforward/mf_live_fwd/equity.parquet"
+        }
+      },
+      "decision": "REJECT_OR_REMEDIATE",
+      "honest_reading": "The numeric failures are the interesting ones: they are what a real candidate cannot talk its way out of. Missing-evidence failures are work not yet done, not a verdict.",
+      "measured": {
+        "average_pairwise_correlation": -0.020296226817491592,
+        "average_pairwise_correlation_upper_95": 0.008420689938888492,
+        "book_expected_shortfall_delta": 0.0014969796640609372,
+        "book_max_drawdown_delta": 0.00019556272489407167,
+        "book_sharpe_delta": -0.006293487015595733,
+        "max_pairwise_correlation": 0.04554952785731474,
+        "net_sharpe": 0.1973903171690239,
+        "stressed_sharpe": 1.4858723920703958
+      },
+      "missing_evidence_failures_count": 28,
+      "numeric_gate_failures": [
+        "threshold:statistics.oos_observations:728<756",
+        "threshold:diversification.correlation_observations:728<756",
+        "threshold:portfolio.book_sharpe_delta:-0.006293487015595733<=0.0",
+        "threshold:portfolio.minimum_leave_one_period_out_book_sharpe_delta:-0.1373311397081478<=0.0",
+        "threshold:portfolio.book_expected_shortfall_delta:0.0014969796640609372>0.0",
+        "threshold:statistics.book_deflated_sharpe:0.0<0.95",
+        "threshold:portfolio.book_sharpe_delta_lower_95:-0.006293487015595733<=0.0"
+      ],
+      "schema": "canli.alphac-admission-dry-run.v1",
+      "the_observation_gate_is_bounded_by_the_BOOK": "correlation_observations is capped by the common window of candidate AND book, so minimum_oos_observations constrains admission through the BOOK's history as well as the candidate's. On the window measured here that cap is 728 days, below the 756 the contract requires. This is a real property of the gate, not a defect in the candidate: a book whose own common history is short cannot admit anything, however long the candidate's record. Recorded rather than lowered -- a correlation is the quantity this whole programme turns on, and measuring it on one year is the reason the minimum was raised in the first place.",
+      "window_end": "2026-06-01",
+      "window_is_bounded_by": "AlphaForge",
+      "window_start": "2023-07-07"
+    },
+    "public_path": "/glassbox/admission_dry_run.json",
+    "source_path": "artifacts/analysis/admission_dry_run/result.json",
+    "source_sha256": "f6eab9769a99cd10d9b96cc0d140f139eff14080b353fdb9c583c966ac02806a"
   },
   "sleeve_admission_contract": {
     "contract": {
@@ -17512,7 +17572,7 @@
             "by_file": {}
           },
           "historical_scripts": {
-            "python_files": 174,
+            "python_files": 175,
             "violations": 363,
             "files_with_violations": 52,
             "safe_autofixes_available": 110,
@@ -17667,9 +17727,9 @@
           "scripts/vps/collect_venues.py": "54870d67f99fa677486b71eae1e0ca4f6579b29e6b9facba6f37f4bdee523b69",
           "scripts/vps/stale_lock.py": "f40b992005f87b733ea6e71a447219a55d8200585c388ac06e13394cb0195a54"
         },
-        "content_hash": "sha256:f5e2d2575d04717fa7b88d8f3bc6c39534f8e0150b288a01e6681adad73a2f7b"
+        "content_hash": "sha256:c99cf31bff8261054182edcbdcd1b2243345bafbd28055d1cdfa51234cd1e275"
       },
-      "source_sha256": "e53a75c3a45b70fe7c0e82426a9543cc37e5f3601a7a6c7d802fa31547429f6b",
+      "source_sha256": "7bd3f545b00b21f6b858ef6fb8756d7af82d2724478d7d368ace39a4d3bb1def",
       "public_path": "/glassbox/lint_debt_contract.json",
       "book_path": "/research/engineering-quality.md",
       "source_path": "artifacts/engineering/lint_debt_contract.json"
@@ -18119,6 +18179,6 @@
       "source_path": "artifacts/engineering/options_execution_contract.json"
     }
   },
-  "generated_at": "2026-08-21T15:30:31.391046+00:00",
-  "content_hash": "sha256:bc558fe2de5cdd9c695c00c281373e759db9fb327502dd18cb4ce8c4a007f684"
+  "generated_at": "2026-08-21T15:49:33.781561+00:00",
+  "content_hash": "sha256:42b2adb23bf13e3ab75dc31f960300b041f694472660893ea8a25426ae65d9f1"
 }
