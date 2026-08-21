@@ -85,10 +85,36 @@ function extractMeta(markdown, slug) {
     const plain = toPlainText(text);
     if (plain.length < 60) continue;
     if (plain.endsWith(":")) continue;
-    description = plain.length > 300 ? `${plain.slice(0, 297).trimEnd()}...` : plain;
+    description = fitDescription(plain);
     break;
   }
   return { title, description, slug };
+}
+
+const DESCRIPTION_MAX = 158;
+
+/** Trim to something that survives a search result: whole sentences first, whole words second. */
+function fitDescription(text) {
+  if (text.length <= DESCRIPTION_MAX) return text;
+  const sentences = text.match(/[^.!?]+[.!?]+/g) || [];
+  let built = "";
+  for (const sentence of sentences) {
+    if ((built + sentence).trim().length > DESCRIPTION_MAX) break;
+    built += sentence;
+  }
+  built = built.trim();
+  if (built.length >= 70) return built;
+  const cut = text.slice(0, DESCRIPTION_MAX - 1);
+  return `${cut.slice(0, cut.lastIndexOf(" ")).trimEnd()}\u2026`;
+}
+
+// A title is truncated in results around 65 characters, and the site name is the least
+// informative part of it. Drop the suffix rather than the subject when they do not both fit.
+const TITLE_MAX = 65;
+const SUFFIX = ` \u2014 ${PUBLISHER}`;
+
+function fitTitle(title) {
+  return title.length + SUFFIX.length <= TITLE_MAX ? `${title}${SUFFIX}` : title;
 }
 
 function pageHtml({ title, description, slug, body, sourceFile }) {
@@ -136,7 +162,7 @@ function pageHtml({ title, description, slug, body, sourceFile }) {
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>${escapeHtml(title)} — ${PUBLISHER}</title>
+<title>${escapeHtml(fitTitle(title))}</title>
 <meta name="description" content="${escapeHtml(description)}" />
 <link rel="canonical" href="${url}" />
 <meta name="author" content="${AUTHOR}" />
