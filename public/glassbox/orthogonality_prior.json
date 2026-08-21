@@ -1,0 +1,529 @@
+{
+  "by_prior": {
+    "LIKELY_CORRELATED_SHARES_A_FACTOR_WITH_A_LIVE_SLEEVE": [
+      "analyst_revision_drift",
+      "carbon_allowance_carry",
+      "catastrophe_bond_event_risk",
+      "inflation_breakeven_relative_value",
+      "securities_lending_supply"
+    ],
+    "STRONGLY_ORTHOGONAL_DRIVEN_BY_SOMETHING_OTHER_THAN_PRICE": [
+      "index_reconstitution_flow"
+    ],
+    "UNCERTAIN_SHARES_THE_CRISIS_DIRECTION_OF_A_LIVE_SLEEVE": [
+      "active_ownership_escalation",
+      "credit_equity_relative_value",
+      "cross_currency_basis",
+      "crypto_liquidation_pressure",
+      "dealer_gamma_pressure",
+      "fallen_angel_flow",
+      "freight_derivative_dislocation",
+      "fx_option_risk_reversal",
+      "merger_arbitrage",
+      "mortgage_convexity_pressure",
+      "municipal_taxable_basis",
+      "sovereign_cds_fx_dislocation",
+      "swap_spread_dislocation",
+      "tender_offer_spread"
+    ]
+  },
+  "claim_boundary": "A PRIOR, stated before measurement and labelled as such in every row. No candidate correlation is measured, no hypothesis identity is registered, no return data is opened and no candidate is authorised. Nothing here is evidence about any family's correlation; it is an ordering to be tested and, where wrong, published as wrong. 0 trials.",
+  "families": [
+    {
+      "crisis_direction": "NEUTRAL",
+      "driver": "ORDER_FLOW",
+      "evidence_status": "PRIOR_NOT_A_MEASUREMENT",
+      "factor_family": "FLOW",
+      "family": "index_reconstitution_flow",
+      "notes": [
+        "The only family here that reaches the strongest prior, and it is also one of the licence-restricted ones. The most orthogonal thing left is the thing we may not be permitted to publish research on."
+      ],
+      "prior": "STRONGLY_ORTHOGONAL_DRIVEN_BY_SOMETHING_OTHER_THAN_PRICE",
+      "reasoning": "The trade is against a mandated, pre-announced order flow. What creates the opportunity is a rulebook rather than a market state, so it shares neither a factor nor an event.",
+      "shares_crisis_direction_with": [],
+      "shares_factor_with": [],
+      "what_the_prior_means": "Shares no factor family and no crisis direction with any live sleeve, and what moves it is not a price. The strongest prior this rule can express, and still a prior."
+    },
+    {
+      "crisis_direction": "DIRECTIONAL",
+      "driver": "TIMETABLE",
+      "evidence_status": "PRIOR_NOT_A_MEASUREMENT",
+      "factor_family": "EVENT",
+      "family": "active_ownership_escalation",
+      "notes": [],
+      "prior": "UNCERTAIN_SHARES_THE_CRISIS_DIRECTION_OF_A_LIVE_SLEEVE",
+      "reasoning": "The 13D timetable drives entry, but the names are small and the position carries beta, which is AlphaMax's and AlphaVintage's crisis direction.",
+      "shares_crisis_direction_with": [
+        "AlphaMax",
+        "AlphaVintage"
+      ],
+      "shares_factor_with": [],
+      "what_the_prior_means": "No shared factor, but it loses money in the same event as a live sleeve. Correlation measured over a calm window will understate it, and the window that would show it is the window nobody has enough of."
+    },
+    {
+      "crisis_direction": "SHORT_LIQUIDITY",
+      "driver": "PRICE",
+      "evidence_status": "PRIOR_NOT_A_MEASUREMENT",
+      "factor_family": "BASIS",
+      "family": "credit_equity_relative_value",
+      "notes": [],
+      "prior": "UNCERTAIN_SHARES_THE_CRISIS_DIRECTION_OF_A_LIVE_SLEEVE",
+      "reasoning": "A basis between two claims on one issuer. No shared factor, but the basis widens in exactly the liquidity event AlphaForge is short.",
+      "shares_crisis_direction_with": [
+        "AlphaForge"
+      ],
+      "shares_factor_with": [],
+      "what_the_prior_means": "No shared factor, but it loses money in the same event as a live sleeve. Correlation measured over a calm window will understate it, and the window that would show it is the window nobody has enough of."
+    },
+    {
+      "crisis_direction": "SHORT_LIQUIDITY",
+      "driver": "PRICE",
+      "evidence_status": "PRIOR_NOT_A_MEASUREMENT",
+      "factor_family": "BASIS",
+      "family": "cross_currency_basis",
+      "notes": [],
+      "prior": "UNCERTAIN_SHARES_THE_CRISIS_DIRECTION_OF_A_LIVE_SLEEVE",
+      "reasoning": "The canonical funding basis. It is a direct measure of dollar funding stress, which is the event AlphaForge's carry is short.",
+      "shares_crisis_direction_with": [
+        "AlphaForge"
+      ],
+      "shares_factor_with": [],
+      "what_the_prior_means": "No shared factor, but it loses money in the same event as a live sleeve. Correlation measured over a calm window will understate it, and the window that would show it is the window nobody has enough of."
+    },
+    {
+      "crisis_direction": "SHORT_LIQUIDITY",
+      "driver": "ORDER_FLOW",
+      "evidence_status": "PRIOR_NOT_A_MEASUREMENT",
+      "factor_family": "FLOW",
+      "family": "crypto_liquidation_pressure",
+      "notes": [
+        "Asset class is not in the rule, but here it compounds the crisis axis rather than standing in for it: same venues, same cascade, same hour."
+      ],
+      "prior": "UNCERTAIN_SHARES_THE_CRISIS_DIRECTION_OF_A_LIVE_SLEEVE",
+      "reasoning": "Taking the other side of forced liquidations is liquidity provision at its most literal, in the same venues and the same cascades that set AlphaForge's funding.",
+      "shares_crisis_direction_with": [
+        "AlphaForge"
+      ],
+      "shares_factor_with": [],
+      "what_the_prior_means": "No shared factor, but it loses money in the same event as a live sleeve. Correlation measured over a calm window will understate it, and the window that would show it is the window nobody has enough of."
+    },
+    {
+      "crisis_direction": "SHORT_LIQUIDITY",
+      "driver": "ORDER_FLOW",
+      "evidence_status": "PRIOR_NOT_A_MEASUREMENT",
+      "factor_family": "FLOW",
+      "family": "dealer_gamma_pressure",
+      "notes": [],
+      "prior": "UNCERTAIN_SHARES_THE_CRISIS_DIRECTION_OF_A_LIVE_SLEEVE",
+      "reasoning": "Trading ahead of mechanical dealer hedging. The flow is predictable in calm and reverses violently in the tail, which is the liquidity event again.",
+      "shares_crisis_direction_with": [
+        "AlphaForge"
+      ],
+      "shares_factor_with": [],
+      "what_the_prior_means": "No shared factor, but it loses money in the same event as a live sleeve. Correlation measured over a calm window will understate it, and the window that would show it is the window nobody has enough of."
+    },
+    {
+      "crisis_direction": "SHORT_LIQUIDITY",
+      "driver": "ORDER_FLOW",
+      "evidence_status": "PRIOR_NOT_A_MEASUREMENT",
+      "factor_family": "FLOW",
+      "family": "fallen_angel_flow",
+      "notes": [],
+      "prior": "UNCERTAIN_SHARES_THE_CRISIS_DIRECTION_OF_A_LIVE_SLEEVE",
+      "reasoning": "The trade takes the other side of a forced, rule-driven sale. Liquidity provision by another name, and it is worst paid when it is most needed.",
+      "shares_crisis_direction_with": [
+        "AlphaForge"
+      ],
+      "shares_factor_with": [],
+      "what_the_prior_means": "No shared factor, but it loses money in the same event as a live sleeve. Correlation measured over a calm window will understate it, and the window that would show it is the window nobody has enough of."
+    },
+    {
+      "crisis_direction": "SHORT_LIQUIDITY",
+      "driver": "PHYSICAL",
+      "evidence_status": "PRIOR_NOT_A_MEASUREMENT",
+      "factor_family": "BASIS",
+      "family": "freight_derivative_dislocation",
+      "notes": [],
+      "prior": "UNCERTAIN_SHARES_THE_CRISIS_DIRECTION_OF_A_LIVE_SLEEVE",
+      "reasoning": "Paper against physical route economics. Physically driven, but the dislocation it harvests closes when someone can no longer fund the physical leg.",
+      "shares_crisis_direction_with": [
+        "AlphaForge"
+      ],
+      "shares_factor_with": [],
+      "what_the_prior_means": "No shared factor, but it loses money in the same event as a live sleeve. Correlation measured over a calm window will understate it, and the window that would show it is the window nobody has enough of."
+    },
+    {
+      "crisis_direction": "SHORT_LIQUIDITY",
+      "driver": "PRICE",
+      "evidence_status": "PRIOR_NOT_A_MEASUREMENT",
+      "factor_family": "VOL",
+      "family": "fx_option_risk_reversal",
+      "notes": [],
+      "prior": "UNCERTAIN_SHARES_THE_CRISIS_DIRECTION_OF_A_LIVE_SLEEVE",
+      "reasoning": "Selling the option risk premium, in whichever direction the skew pays. Short convexity, so it loses where AlphaTrend gains and where AlphaForge also loses.",
+      "shares_crisis_direction_with": [
+        "AlphaForge"
+      ],
+      "shares_factor_with": [],
+      "what_the_prior_means": "No shared factor, but it loses money in the same event as a live sleeve. Correlation measured over a calm window will understate it, and the window that would show it is the window nobody has enough of."
+    },
+    {
+      "crisis_direction": "SHORT_LIQUIDITY",
+      "driver": "TIMETABLE",
+      "evidence_status": "PRIOR_NOT_A_MEASUREMENT",
+      "factor_family": "EVENT",
+      "family": "merger_arbitrage",
+      "notes": [],
+      "prior": "UNCERTAIN_SHARES_THE_CRISIS_DIRECTION_OF_A_LIVE_SLEEVE",
+      "reasoning": "The deal timetable is not a price, but the position is paid to hold spread risk and it gaps when financing dries up \u2014 the same event AlphaForge's funding carry is short.",
+      "shares_crisis_direction_with": [
+        "AlphaForge"
+      ],
+      "shares_factor_with": [],
+      "what_the_prior_means": "No shared factor, but it loses money in the same event as a live sleeve. Correlation measured over a calm window will understate it, and the window that would show it is the window nobody has enough of."
+    },
+    {
+      "crisis_direction": "SHORT_LIQUIDITY",
+      "driver": "ORDER_FLOW",
+      "evidence_status": "PRIOR_NOT_A_MEASUREMENT",
+      "factor_family": "FLOW",
+      "family": "mortgage_convexity_pressure",
+      "notes": [],
+      "prior": "UNCERTAIN_SHARES_THE_CRISIS_DIRECTION_OF_A_LIVE_SLEEVE",
+      "reasoning": "Hedging flow from negative convexity. The flow is the signal, and it is largest when rates gap, which is when liquidity is worst.",
+      "shares_crisis_direction_with": [
+        "AlphaForge"
+      ],
+      "shares_factor_with": [],
+      "what_the_prior_means": "No shared factor, but it loses money in the same event as a live sleeve. Correlation measured over a calm window will understate it, and the window that would show it is the window nobody has enough of."
+    },
+    {
+      "crisis_direction": "SHORT_LIQUIDITY",
+      "driver": "PRICE",
+      "evidence_status": "PRIOR_NOT_A_MEASUREMENT",
+      "factor_family": "BASIS",
+      "family": "municipal_taxable_basis",
+      "notes": [],
+      "prior": "UNCERTAIN_SHARES_THE_CRISIS_DIRECTION_OF_A_LIVE_SLEEVE",
+      "reasoning": "A tax-driven basis in a market whose bid disappears under stress.",
+      "shares_crisis_direction_with": [
+        "AlphaForge"
+      ],
+      "shares_factor_with": [],
+      "what_the_prior_means": "No shared factor, but it loses money in the same event as a live sleeve. Correlation measured over a calm window will understate it, and the window that would show it is the window nobody has enough of."
+    },
+    {
+      "crisis_direction": "SHORT_LIQUIDITY",
+      "driver": "PRICE",
+      "evidence_status": "PRIOR_NOT_A_MEASUREMENT",
+      "factor_family": "BASIS",
+      "family": "sovereign_cds_fx_dislocation",
+      "notes": [],
+      "prior": "UNCERTAIN_SHARES_THE_CRISIS_DIRECTION_OF_A_LIVE_SLEEVE",
+      "reasoning": "A basis between two expressions of one sovereign risk, and both legs gap together in the event that makes the basis interesting.",
+      "shares_crisis_direction_with": [
+        "AlphaForge"
+      ],
+      "shares_factor_with": [],
+      "what_the_prior_means": "No shared factor, but it loses money in the same event as a live sleeve. Correlation measured over a calm window will understate it, and the window that would show it is the window nobody has enough of."
+    },
+    {
+      "crisis_direction": "SHORT_LIQUIDITY",
+      "driver": "PRICE",
+      "evidence_status": "PRIOR_NOT_A_MEASUREMENT",
+      "factor_family": "BASIS",
+      "family": "swap_spread_dislocation",
+      "notes": [],
+      "prior": "UNCERTAIN_SHARES_THE_CRISIS_DIRECTION_OF_A_LIVE_SLEEVE",
+      "reasoning": "A basis between a swap and its deliverable, funded. Its historical blow-ups are funding events.",
+      "shares_crisis_direction_with": [
+        "AlphaForge"
+      ],
+      "shares_factor_with": [],
+      "what_the_prior_means": "No shared factor, but it loses money in the same event as a live sleeve. Correlation measured over a calm window will understate it, and the window that would show it is the window nobody has enough of."
+    },
+    {
+      "crisis_direction": "SHORT_LIQUIDITY",
+      "driver": "TIMETABLE",
+      "evidence_status": "PRIOR_NOT_A_MEASUREMENT",
+      "factor_family": "EVENT",
+      "family": "tender_offer_spread",
+      "notes": [],
+      "prior": "UNCERTAIN_SHARES_THE_CRISIS_DIRECTION_OF_A_LIVE_SLEEVE",
+      "reasoning": "Same shape as merger arbitrage and the same crisis exposure.",
+      "shares_crisis_direction_with": [
+        "AlphaForge"
+      ],
+      "shares_factor_with": [],
+      "what_the_prior_means": "No shared factor, but it loses money in the same event as a live sleeve. Correlation measured over a calm window will understate it, and the window that would show it is the window nobody has enough of."
+    },
+    {
+      "crisis_direction": "DIRECTIONAL",
+      "driver": "PRICE",
+      "evidence_status": "PRIOR_NOT_A_MEASUREMENT",
+      "factor_family": "MOMENTUM",
+      "family": "analyst_revision_drift",
+      "notes": [],
+      "prior": "LIKELY_CORRELATED_SHARES_A_FACTOR_WITH_A_LIVE_SLEEVE",
+      "reasoning": "Revision drift and price momentum are the textbook overlapping pair: the revision is what the price is already drifting on. Shares AlphaMax's factor outright.",
+      "shares_crisis_direction_with": [
+        "AlphaMax",
+        "AlphaVintage"
+      ],
+      "shares_factor_with": [
+        "AlphaMax",
+        "AlphaTrend"
+      ],
+      "what_the_prior_means": "Trades the same idea as a live sleeve in different clothes. This is the one structural feature that produced a large measured correlation in this book."
+    },
+    {
+      "crisis_direction": "SHORT_LIQUIDITY",
+      "driver": "PRICE",
+      "evidence_status": "PRIOR_NOT_A_MEASUREMENT",
+      "factor_family": "CARRY",
+      "family": "carbon_allowance_carry",
+      "notes": [
+        "The clearest illustration of why asset class is not in the rule: nothing about European carbon resembles crypto perpetuals, and the position is the same trade."
+      ],
+      "prior": "LIKELY_CORRELATED_SHARES_A_FACTOR_WITH_A_LIVE_SLEEVE",
+      "reasoning": "Named carry and structured as carry: paid to hold and store an allowance. Same factor as AlphaForge in a market that has no relation to crypto, which is exactly the case the asset-class intuition gets wrong.",
+      "shares_crisis_direction_with": [
+        "AlphaForge"
+      ],
+      "shares_factor_with": [
+        "AlphaForge"
+      ],
+      "what_the_prior_means": "Trades the same idea as a live sleeve in different clothes. This is the one structural feature that produced a large measured correlation in this book."
+    },
+    {
+      "crisis_direction": "SHORT_LIQUIDITY",
+      "driver": "PRICE",
+      "evidence_status": "PRIOR_NOT_A_MEASUREMENT",
+      "factor_family": "CARRY",
+      "family": "catastrophe_bond_event_risk",
+      "notes": [],
+      "prior": "LIKELY_CORRELATED_SHARES_A_FACTOR_WITH_A_LIVE_SLEEVE",
+      "reasoning": "Paid a spread to bear a defined event. Structurally a carry, and the market's bid vanishes on exactly the event it is paid for.",
+      "shares_crisis_direction_with": [
+        "AlphaForge"
+      ],
+      "shares_factor_with": [
+        "AlphaForge"
+      ],
+      "what_the_prior_means": "Trades the same idea as a live sleeve in different clothes. This is the one structural feature that produced a large measured correlation in this book."
+    },
+    {
+      "crisis_direction": "DIRECTIONAL",
+      "driver": "PRICE",
+      "evidence_status": "PRIOR_NOT_A_MEASUREMENT",
+      "factor_family": "MACRO_SURPRISE",
+      "family": "inflation_breakeven_relative_value",
+      "notes": [
+        "The collision that matters most. This is the ONE family the obtainability screen found reachable today on data already held, and it is also the one sharing a factor with a live sleeve. The cheapest family to work on is not the most diversifying, and an ordering that only looked at obtainability would have put it first."
+      ],
+      "prior": "LIKELY_CORRELATED_SHARES_A_FACTOR_WITH_A_LIVE_SLEEVE",
+      "reasoning": "Priced off CPI, which is precisely what AlphaVintage trades. Same factor family, and the same release drives both.",
+      "shares_crisis_direction_with": [
+        "AlphaMax",
+        "AlphaVintage"
+      ],
+      "shares_factor_with": [
+        "AlphaVintage"
+      ],
+      "what_the_prior_means": "Trades the same idea as a live sleeve in different clothes. This is the one structural feature that produced a large measured correlation in this book."
+    },
+    {
+      "crisis_direction": "SHORT_LIQUIDITY",
+      "driver": "PRICE",
+      "evidence_status": "PRIOR_NOT_A_MEASUREMENT",
+      "factor_family": "CARRY",
+      "family": "securities_lending_supply",
+      "notes": [
+        "Both axes fire at once \u2014 the strongest correlation warning in the set."
+      ],
+      "prior": "LIKELY_CORRELATED_SHARES_A_FACTOR_WITH_A_LIVE_SLEEVE",
+      "reasoning": "A borrow fee IS a carry: a recurring payment for holding a position that gaps when the borrow is recalled. Same factor as AlphaForge and the same crisis direction.",
+      "shares_crisis_direction_with": [
+        "AlphaForge"
+      ],
+      "shares_factor_with": [
+        "AlphaForge"
+      ],
+      "what_the_prior_means": "Trades the same idea as a live sleeve in different clothes. This is the one structural feature that produced a large measured correlation in this book."
+    }
+  ],
+  "headline": "1 of 20 remaining families are structurally orthogonal to this book on the stated rule. 5 share a factor family with a live sleeve outright, and 14 lose money in the same event as the sleeve that carries this book's largest single source of return. Breadth measured in asset classes is not breadth.",
+  "live_sleeves": {
+    "AlphaForge": {
+      "crisis": "SHORT_LIQUIDITY",
+      "factor": "CARRY",
+      "mechanism": "crypto funding-rate carry"
+    },
+    "AlphaMax": {
+      "crisis": "DIRECTIONAL",
+      "factor": "MOMENTUM",
+      "mechanism": "US equity cross-sectional momentum"
+    },
+    "AlphaTrend": {
+      "crisis": "LONG_TAIL",
+      "factor": "MOMENTUM",
+      "mechanism": "multi-asset time-series momentum"
+    },
+    "AlphaVintage": {
+      "crisis": "DIRECTIONAL",
+      "factor": "MACRO_SURPRISE",
+      "mechanism": "PIT CPI-surprise equity size spread"
+    }
+  },
+  "measured_structure": {
+    "n_days": 1061,
+    "pairs": [
+      {
+        "crisis_directions": [
+          "DIRECTIONAL",
+          "LONG_TAIL"
+        ],
+        "factors": [
+          "MOMENTUM",
+          "MOMENTUM"
+        ],
+        "pair": "AlphaMax|AlphaTrend",
+        "resolved_at_95": true,
+        "rho": 0.21002198225676125,
+        "shares_factor_family": true,
+        "standard_errors_from_zero": 6.93
+      },
+      {
+        "crisis_directions": [
+          "DIRECTIONAL",
+          "DIRECTIONAL"
+        ],
+        "factors": [
+          "MOMENTUM",
+          "MACRO_SURPRISE"
+        ],
+        "pair": "AlphaMax|AlphaVintage",
+        "resolved_at_95": true,
+        "rho": -0.06216919926552442,
+        "shares_factor_family": false,
+        "standard_errors_from_zero": 2.02
+      },
+      {
+        "crisis_directions": [
+          "SHORT_LIQUIDITY",
+          "DIRECTIONAL"
+        ],
+        "factors": [
+          "CARRY",
+          "MACRO_SURPRISE"
+        ],
+        "pair": "AlphaForge|AlphaVintage",
+        "resolved_at_95": false,
+        "rho": 0.04554952785731474,
+        "shares_factor_family": false,
+        "standard_errors_from_zero": 1.48
+      },
+      {
+        "crisis_directions": [
+          "LONG_TAIL",
+          "DIRECTIONAL"
+        ],
+        "factors": [
+          "MOMENTUM",
+          "MACRO_SURPRISE"
+        ],
+        "pair": "AlphaTrend|AlphaVintage",
+        "resolved_at_95": false,
+        "rho": -0.04426900904426509,
+        "shares_factor_family": false,
+        "standard_errors_from_zero": 1.44
+      },
+      {
+        "crisis_directions": [
+          "SHORT_LIQUIDITY",
+          "LONG_TAIL"
+        ],
+        "factors": [
+          "CARRY",
+          "MOMENTUM"
+        ],
+        "pair": "AlphaForge|AlphaTrend",
+        "resolved_at_95": false,
+        "rho": 0.02285646544202205,
+        "shares_factor_family": false,
+        "standard_errors_from_zero": 0.74
+      },
+      {
+        "crisis_directions": [
+          "SHORT_LIQUIDITY",
+          "DIRECTIONAL"
+        ],
+        "factors": [
+          "CARRY",
+          "MOMENTUM"
+        ],
+        "pair": "AlphaForge|AlphaMax",
+        "resolved_at_95": false,
+        "rho": -0.015769890554217854,
+        "shares_factor_family": false,
+        "standard_errors_from_zero": 0.51
+      }
+    ],
+    "resolved_pairs": 2,
+    "rho_bar": 0.026036646115348446,
+    "standard_error_per_pair": 0.0307,
+    "the_axis_with_no_local_evidence": "Crisis direction. This book holds one SHORT_LIQUIDITY sleeve, so no pair isolates it and nothing here tests it. It decides fourteen of the twenty rankings below, and that is the single weakest joint in this artifact.",
+    "unresolved_pairs": 4,
+    "what_it_cannot_support": "One informative pair per structural cell. That is a direction, not a coefficient, and any weighting fitted to it would be fitted to a single observation. The prior is published UNCALIBRATED.",
+    "what_it_supports": "Of six pairs, two resolve against sampling error. The pair sharing a factor family is the largest correlation in the book; the pair sharing an asset class is negative. The four sharing neither are indistinguishable from zero.",
+    "what_would_calibrate_it": "A book of eight sleeves gives twenty-eight pairs instead of six. Calibration is a consequence of breadth, not a route to it \u2014 which is the uncomfortable ordering: the prior is least testable exactly while it is most needed."
+  },
+  "prior_meanings": {
+    "LIKELY_CORRELATED_SHARES_A_FACTOR_WITH_A_LIVE_SLEEVE": "Trades the same idea as a live sleeve in different clothes. This is the one structural feature that produced a large measured correlation in this book.",
+    "LIKELY_ORTHOGONAL_NO_SHARED_FACTOR_OR_CRISIS_DIRECTION": "Shares no factor family and no crisis direction, but is price-driven, so it inherits whatever the market inherits when everything moves together.",
+    "STRONGLY_ORTHOGONAL_DRIVEN_BY_SOMETHING_OTHER_THAN_PRICE": "Shares no factor family and no crisis direction with any live sleeve, and what moves it is not a price. The strongest prior this rule can express, and still a prior.",
+    "UNCERTAIN_SHARES_THE_CRISIS_DIRECTION_OF_A_LIVE_SLEEVE": "No shared factor, but it loses money in the same event as a live sleeve. Correlation measured over a calm window will understate it, and the window that would show it is the window nobody has enough of."
+  },
+  "ranking": [
+    "STRONGLY_ORTHOGONAL_DRIVEN_BY_SOMETHING_OTHER_THAN_PRICE",
+    "LIKELY_ORTHOGONAL_NO_SHARED_FACTOR_OR_CRISIS_DIRECTION",
+    "UNCERTAIN_SHARES_THE_CRISIS_DIRECTION_OF_A_LIVE_SLEEVE",
+    "LIKELY_CORRELATED_SHARES_A_FACTOR_WITH_A_LIVE_SLEEVE"
+  ],
+  "rho_bar_under_stress": {
+    "measured": {
+      "ALL": 0.026038361360768824,
+      "CALM:S1_DRAWDOWN": 0.0344250450093976,
+      "CALM:S2_TAIL": 0.02840908405179665,
+      "STRESS:S1_DRAWDOWN": -0.10988131867480626,
+      "STRESS:S2_TAIL": 0.04766146738901758
+    },
+    "note": "Published for the crisis axis it bears on and NOT used to score anything: the stress windows are predeclared but the book still holds one SHORT_LIQUIDITY sleeve, so these numbers describe the existing four rather than testing the axis."
+  },
+  "schema": "canli.alphac-orthogonality-prior.v1",
+  "the_rule": {
+    "1_shares_a_factor_family_with_a_live_sleeve": "LIKELY_CORRELATED_SHARES_A_FACTOR_WITH_A_LIVE_SLEEVE",
+    "2_else_shares_a_crisis_direction_with_a_live_sleeve": "UNCERTAIN_SHARES_THE_CRISIS_DIRECTION_OF_A_LIVE_SLEEVE",
+    "3_else_driven_by_something_other_than_price": "STRONGLY_ORTHOGONAL_DRIVEN_BY_SOMETHING_OTHER_THAN_PRICE",
+    "4_else": "LIKELY_ORTHOGONAL_NO_SHARED_FACTOR_OR_CRISIS_DIRECTION",
+    "asset_class_is_deliberately_absent": "The one measured pair sharing an asset class is NEGATIVE (-0.062) and the one sharing a factor family is the largest in the book (+0.210). Scoring asset class would encode the intuition the evidence contradicts. This is the most attackable choice here and it is stated first rather than buried.",
+    "stated_before_scoring": true
+  },
+  "what_the_ordering_is_for": {
+    "contract_correlation_gate": 0.0,
+    "extends": "artifacts/analysis/breadth_acquisition/result.json, which reached the same conclusion against the superseded 0.15 gate.",
+    "forward_sharpe_at_that_rho_bar_optimistic_haircut": 1.157,
+    "forward_sharpe_at_the_objective_optimistic_haircut": 1.498,
+    "in_sample_sharpe_at_that_rho_bar": 1.736,
+    "in_sample_sharpe_at_the_objective": 2.247,
+    "objective_rho_bar": -0.03,
+    "pairs_new": 85,
+    "pairs_now": 6,
+    "required_average_over_the_new_pairs": -0.03396,
+    "rho_bar_if_every_new_pair_sits_exactly_at_the_gate": 0.001717,
+    "rho_bar_now": 0.026036646115348446,
+    "sleeves_now": 4,
+    "sleeves_target": 14,
+    "the_gap": "Every new pair landing exactly on the +0.00 gate gives a book average of +0.0017 and a forward Sharpe of 1.16 on this book's own optimistic haircut. The gate is necessary and it is not sufficient, and the shortfall is 0.34 of forward Sharpe. Ordering by expected orthogonality is the only lever that acts on the difference, because the gate cannot."
+  }
+}
