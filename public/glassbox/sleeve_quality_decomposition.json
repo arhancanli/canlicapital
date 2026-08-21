@@ -1,0 +1,95 @@
+{
+  "claim_boundary": "A FIRST-ORDER decomposition from published artifacts, read-only. Each dollar component is converted to an annualised return on starting equity and then to Sharpe points by dividing by realised annual vol, ignoring compounding interaction between components. Registers no hypothesis identity and opens no return data. 0 trials.",
+  "largest_cost_burden": "AlphaForge",
+  "largest_recoverable_component": {
+    "sharpe_points": 0.27452927826105317,
+    "sleeve": "AlphaForge",
+    "turnover_ann": 33.221809,
+    "what_recovering_half_would_be_worth": [
+      0.13726463913052658,
+      "Sharpe points on that sleeve, which is roughly a third of that on s_bar across three sleeves."
+    ],
+    "why": "Transaction cost is the only component here that better execution could give back. Signal is construction and funding is a market fact; neither is recovered by executing better. This sleeve carries the largest cost burden by a wide margin, and it is the turnover that drives it."
+  },
+  "s_bar_basis_note": "s_bar_measured here is the mean of these three FULL-HISTORY backtest Sharpes, each on its own window. It is NOT the 0.469 measured across the four live sleeves on their 1,061-day common window in artifacts/analysis/book_without_alphavintage, and the two must not be compared. Different sleeves, different windows.",
+  "s_bar_measured": 0.6368226666666666,
+  "schema": "canli.alphac-sleeve-quality-decomposition.v1",
+  "sleeves": [
+    {
+      "asset_class": "equity",
+      "commission_bps_realised": 1.0000000000000002,
+      "commission_dollars_MEASURED": 86.58514275560611,
+      "commission_sharpe_points_MEASURED": 0.0033187712860535787,
+      "funding_dollars_MEASURED": 0.0,
+      "funding_sharpe_points_MEASURED": 0.0,
+      "half_spread_bps_used": 5.0,
+      "market_impact": "NOT SEPARABLE \u2014 see claim boundary",
+      "net_sharpe_published": 0.907084,
+      "notional_traded_total": 865851.427556061,
+      "realised_vol_ann": 0.130716,
+      "residual_signal_sharpe": 0.9269966277163215,
+      "sleeve": "AlphaMax",
+      "spread_dollars_MODELLED": 432.9257137780305,
+      "spread_sharpe_points_MODELLED": 0.01659385643026789,
+      "turnover_ann": 4.111369,
+      "walkforward": "k30_dn_63",
+      "years": 1.995893223819302
+    },
+    {
+      "asset_class": "crypto",
+      "commission_bps_realised": 4.999999999999999,
+      "commission_dollars_MEASURED": 7372.717709488012,
+      "commission_sharpe_points_MEASURED": 0.14448909382160693,
+      "funding_dollars_MEASURED": 19500.019816,
+      "funding_sharpe_points_MEASURED": 0.38215761185204505,
+      "half_spread_bps_used": 4.5,
+      "market_impact": "NOT SEPARABLE \u2014 see claim boundary",
+      "net_sharpe_published": 0.67661,
+      "notional_traded_total": 14745435.418976026,
+      "realised_vol_ann": 0.118332,
+      "residual_signal_sharpe": 0.5689816664090082,
+      "sleeve": "AlphaForge",
+      "spread_dollars_MODELLED": 6635.445938539211,
+      "spread_sharpe_points_MODELLED": 0.13004018443944623,
+      "turnover_ann": 33.221809,
+      "walkforward": "crypto_carry_wk",
+      "years": 4.312114989733059
+    },
+    {
+      "asset_class": "equity",
+      "commission_bps_realised": 0.9999999999999998,
+      "commission_dollars_MEASURED": 1566.954815484263,
+      "commission_sharpe_points_MEASURED": 0.020755020953943153,
+      "funding_dollars_MEASURED": 0.0,
+      "funding_sharpe_points_MEASURED": 0.0,
+      "half_spread_bps_used": 5.0,
+      "market_impact": "NOT SEPARABLE \u2014 see claim boundary",
+      "net_sharpe_published": 0.326774,
+      "notional_traded_total": 15669548.154842634,
+      "realised_vol_ann": 0.053132,
+      "residual_signal_sharpe": 0.45130412572365897,
+      "sleeve": "AlphaTrend",
+      "spread_dollars_MODELLED": 7834.774077421316,
+      "spread_sharpe_points_MODELLED": 0.10377510476971578,
+      "turnover_ann": 9.693324,
+      "walkforward": "mf_live_fwd",
+      "years": 14.209445585215606
+    }
+  ],
+  "the_finding": "AlphaTrend is the weakest at 0.327 net Sharpe. Its total modelled-plus-measured cost burden is 0.125 Sharpe points, so recovering ALL of its transaction cost would still leave it at 0.451 before spread and impact are re-charged. The drag is construction, not execution.",
+  "weakest_sleeve": "AlphaTrend",
+  "what_is_measured_and_what_is_not": {
+    "MEASURED": [
+      "commission \u2014 summed from the `fee` column of every fill",
+      "funding \u2014 the walk-forward's own funding_net"
+    ],
+    "MODELLED": [
+      "half-spread and latency \u2014 turnover x notional x the DECLARED bps, because the spread is applied to the FILL PRICE and never recorded as a line item"
+    ],
+    "NOT SEPARABLE": [
+      "market impact \u2014 same reason as spread, and it depends on ADV per name per day, which the published fills do not carry. It is inside the residual."
+    ],
+    "the_trap": "`fees_paid` in every summary.txt is COMMISSION ONLY. Reading it as total transaction cost understates the cost component badly: measured commission is about 1bp against a declared 3bp equity half-spread plus a 2bp latency add-on plus impact. This decomposition reports a RESIDUAL rather than pretending to a full attribution."
+  },
+  "what_this_does_not_settle": "Whether the modelled spread is the spread actually paid. That is B5's question and it needs the live fills, which the forward record is currently too short to answer."
+}

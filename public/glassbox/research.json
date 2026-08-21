@@ -250,8 +250,8 @@
         }
       }
     },
-    "generated_at": "2026-08-21T20:42:30.825134+00:00",
-    "content_hash": "sha256:db474b4e55a06f7cc6ab1c199e073f9305541618c8e8c53c8507da89e88d9e44"
+    "generated_at": "2026-08-21T23:25:36.935659+00:00",
+    "content_hash": "sha256:51260097ff4a60637a941332b0ed4fde44e4751b0482f1435d97ee313d3815a9"
   },
   "factor_research": {
     "summary": "Most ideas die. We publish every test with its real net-of-cost Sharpe and its real Rank-IC. 2 kept, 8 killed. The Rank-IC is the cross-sectional information coefficient with a Newey-West t-stat; the net Sharpe is the purged walk-forward result after the conservative cost model.",
@@ -726,8 +726,8 @@
     "live_status": "LIVE",
     "live_source": "go-live seed (no realized marks have accrued yet)",
     "live_nav_baseline_usd": 100000.0,
-    "live_nav_current_usd": 98810.09,
-    "live_return_pct": -1.1899,
+    "live_nav_current_usd": 98804.49,
+    "live_return_pct": -1.1955,
     "research_curve_label": "SIMULATION (research backtest, NOT realized trading)",
     "research_curve_start": {
       "date": "2023-07-07",
@@ -755,7 +755,7 @@
       "CORRECTION 2026-07-05 \u2014 the crypto sleeve was signal-dead, not 'carry compressed'. From go-live (06-23) to 07-05 AlphaForge held cash and we published that funding carry was compressed. An internal audit found the true cause: a wiring bug blended equity-fundamental alphas (undefined on crypto) into the live signal, invalidating it every cycle \u2014 the validated carry-only configuration was never what ran live. Fixed same day (the loop now runs the exact blessed walk-forward config: carry_fund_21, weekly rebalance, with per-cycle signal-health logging so a dead signal can never masquerade as a quiet hold again). The $100k cash equity curve was genuine; the published EXPLANATION was wrong. Per our append-only posture this correction is added to the record, not swapped into it.",
       "We red-team our own record. On 2026-06-27 our publishing pipeline emitted a future-dated (2026-06-29) paper mark that briefly reached the public sites and was anchored into seq 0 of the signed transparency chain. We caught it the same day, added a fail-closed guard, and appended the corrected seq 1 \u2014 the append-only chain shows BOTH, because we don't get to delete our mistakes. That is the trust system working, not failing.",
       "AlphaTrend (managed-futures trend) was the FIRST sleeve we took genuinely live: its 17-ETF book transacts on Alpaca paper, not in a simulator. We published DSR 0.83 for it and called it the first sleeve to CLEAR multiple-testing deflation, statistically real rather than a backtest fluke. RE-DERIVED 2026-08-07 at honest N=133 and pooled V[SR]=7.96e-04, its DSR is 0.000: the LOWEST of the six sleeves we have measured, not the highest. The old 0.83 rested on a variance input roughly 80x too small and a trial count of 5 while its siblings were graded at N=101, so it was marked on an easier exam and then called the soundest. Net Sharpe 0.25 over its full 5,179-day history. It is folded into ALPHAC at equal quarters for MEASURED drawdown reduction, not for a demonstrated edge. The screen suggested 0.73; the honest engine says 0.33 on the live window. We published every one of those numbers.",
-      "STRUCTURAL VERDICT 2026-08-05 \u2014 the crypto sleeve's venue unreachability is STRUCTURAL, and we said we would say so. The 2026-07-20 note above promised: 'if it proves persistent it is a STRUCTURAL problem for a sleeve built on a single venue, and we will say that too.' It has proved persistent, so here is the number we had not put on the record until now: across its entire live history the hourly loop has completed 514 of 1286 expected cycles \u2014 an uptime of 40.0%. It has been dark for roughly 773 hours of a 53.6-day record, with 8 separate outages longer than a day and a longest single outage of 165 hours. As of this publish it has been dark 1 hours; its last observed cycle was 2026-08-21 20:00 UTC. WHAT THIS MEANS, stated plainly rather than buried: this sleeve carries 40% of the flagship's weight, so for most of the forward record our largest single position has not been managed. The published curve is not wrong \u2014 we never roll forward a mark we did not observe, so the sleeve's line simply stops when the venue does \u2014 but a 40%-weight sleeve that is dark most of the time is not meaningfully 'live', and describing it as live without this number attached would have been a half-truth. The forward track record is the whole basis on which this book asks to be believed, and it is being accrued on a book whose biggest sleeve is mostly absent. WHAT WE ARE DOING: the diagnosis is unchanged and venue-specific (the general internet and our equity broker respond normally from the same machine while the exchange endpoint fails on connect). Two fixes are real \u2014 hosting the loop somewhere with unobstructed access, and removing the single-venue dependency altogether by adding a second exchange. We flag the first honestly: our own deploy runbook records that reaching a venue from a different region is a COMPLIANCE decision and not merely an operations one, so it will not be done as a silent infrastructure tweak. Until one of those lands, read this sleeve's contribution to the live record as what it is \u2014 40.0% of the intended trading.",
+      "STRUCTURAL VERDICT 2026-08-05 \u2014 the crypto sleeve's venue unreachability is STRUCTURAL, and we said we would say so. The 2026-07-20 note above promised: 'if it proves persistent it is a STRUCTURAL problem for a sleeve built on a single venue, and we will say that too.' It has proved persistent, so here is the number we had not put on the record until now: across its entire live history the hourly loop has completed 517 of 1288 expected cycles \u2014 an uptime of 40.1%. It has been dark for roughly 772 hours of a 53.7-day record, with 8 separate outages longer than a day and a longest single outage of 165 hours. As of this publish it has been dark 0 hours; its last observed cycle was 2026-08-21 23:00 UTC. WHAT THIS MEANS, stated plainly rather than buried: this sleeve carries 40% of the flagship's weight, so for most of the forward record our largest single position has not been managed. The published curve is not wrong \u2014 we never roll forward a mark we did not observe, so the sleeve's line simply stops when the venue does \u2014 but a 40%-weight sleeve that is dark most of the time is not meaningfully 'live', and describing it as live without this number attached would have been a half-truth. The forward track record is the whole basis on which this book asks to be believed, and it is being accrued on a book whose biggest sleeve is mostly absent. WHAT WE ARE DOING: the diagnosis is unchanged and venue-specific (the general internet and our equity broker respond normally from the same machine while the exchange endpoint fails on connect). Two fixes are real \u2014 hosting the loop somewhere with unobstructed access, and removing the single-venue dependency altogether by adding a second exchange. We flag the first honestly: our own deploy runbook records that reaching a venue from a different region is a COMPLIANCE decision and not merely an operations one, so it will not be done as a silent infrastructure tweak. Until one of those lands, read this sleeve's contribution to the live record as what it is \u2014 40.1% of the intended trading.",
       "CORRECTION 2026-08-06 \u2014 our crypto carry sleeve is a strategy that earns funding, and its LIVE paper account has never once booked funding. We found this ourselves and are publishing it before the fix rather than after. The mechanism, stated plainly so anyone can check it: funding is applied in exactly one place in this codebase, Ledger.apply_funding, and it is called from exactly one call site, the BACKTEST engine. The live paper broker's cash moves on one line and only one line, a fill: cash - qty*price - fee. No funding cashflow can reach the live account by any path. The size of what is missing is not marginal. Our committed walk-forward artifact for this sleeve reports funding_net of $19,500 against a total return of $38,236 on a $100k book over 2022-02 to 2026-06: about HALF of everything this strategy has ever earned is the funding it is designed to harvest. Removing it takes the sleeve's backtested Sharpe from 0.653 to roughly 0.30. So AlphaForge's live record has been running against a hard ceiling of about half its validated Sharpe, and every live number we have published for this sleeve should be read in that light. What we are NOT doing: we are not restating the historical live curve. The marks we published were the marks we observed, and this record is append-only, so the fix applies FORWARD from the day it ships and the understated period stays visible in the chain. One number we are deliberately NOT putting on the record yet: our internal estimate of what funding would have added over the live window is dominated by a single name that redenominated roughly 100x inside the window, which makes the naive figure meaningless. We would rather publish no number than a number we cannot stand behind, so that one waits for the corrected accounting. This is the fourth time a defect in our plumbing, not our strategy, has moved a published number, and the lesson we wrote down in July holds: a fix is not done until a test pins the path that actually runs.",
       "CORRECTION 2026-08-06 \u2014 a factual claim in our 2026-07-20 incident note above is now false and we are marking it rather than editing it. That note said 'Bybit responds' as evidence the Binance failure was venue-specific. Re-measured from the same network on 2026-08-06: Bybit does NOT respond, and neither do Kraken or Deribit. Binance, Bybit and Kraken all fail on connection reset in under a tenth of a second and Deribit times out. The conclusion the original note drew is unchanged and if anything strengthened, since the block is clearly broader than one venue, but the supporting fact it cited is no longer true and a reader checking our work today would find it wrong. One venue does answer: OKX responds normally and serves funding rates, 436 perpetual instruments and hourly candles. We are evaluating it, and we note in advance that moving venue is not a configuration change: the same carry signal computed on OKX has a cross-sectional rank correlation of only about 0.64 with the Binance one, so it would be a materially different strategy wearing the same name, and we will not splice the two curves together and call it one continuous record.",
       "FIXED 2026-08-06 \u2014 the funding gap disclosed above is now closed in the live path, forward only. Earlier today we published that our crypto carry sleeve had never once booked funding in live paper, which is roughly half of everything that strategy has ever earned. That is fixed: the live broker gained a funding path with the identical sign convention the backtest ledger uses (payment = -position * mark * rate, longs pay shorts on a positive rate), and the live loop now settles every stored funding event for the window just closed, before the strategy re-decides, so a settlement is charged against the position that was actually held through it. It is point-in-time by construction: the reader filters on each event's stored publication time, never on the settlement time, so a rate not yet knowable at the moment of the cycle stays invisible. Nine tests pin the running path rather than the intention, including one that asserts the live broker and the backtest ledger return identical figures for the same event, because two conventions would be worse than none. Three things we are deliberately NOT doing. We are not restating the historical curve: the marks we published are the marks we observed, the understated period stays in the signed chain, and the fix applies from today. We are not claiming an improvement yet: the sleeve has been dark on venue unreachability since 2026-08-03, so this books nothing until it trades again, and any future gain will show up in the forward record or not at all. And we are not putting a number on what it would have earned over the live window, because our own measurement of that is dominated by a single instrument that redenominated roughly 100x inside the window, which makes the figure meaningless. We would rather publish no number than one we cannot stand behind.",
@@ -773,6 +773,14 @@
       "CHANGE 2026-08-12 \u2014 we cut the strategic beta overlay from +20% to +10%, on measurement rather than taste, and we are showing the numbers that decided it. The overlay was never claimed to be alpha; what nobody had done was measure what it does to the book. Measured on the 4-sleeve research book over its 1,061-day common window, and then stressed by replaying the market factor's worst equal-length stretch under an UNCHANGED neutral core so that only the overlay varies. Measured window / crash stress, by overlay size: 0% gives 1.396 / 1.396; 5% gives 1.667 / 1.308; 10% gives 1.784 / 1.192; 12.5% gives 1.799 / 1.128; 20% gives 1.760 / 0.929; 30% gives 1.651 / 0.686. The SHAPE decides it, not any one cell: measured-window Sharpe is FLAT from 5% to 15% while crash-stress Sharpe falls monotonically with size and the worst day grows steadily (-0.90% at 0%, -1.26% at 10%, -2.02% at 20%). When one axis is flat and the other is monotone you take the lower number \u2014 the same upside for strictly less tail. Cutting 20% to 10% therefore costs nothing measurable in the window (1.760 to 1.784, marginally higher) while recovering +0.26 of stress Sharpe and cutting the worst day roughly in half. WE DELIBERATELY DID NOT PICK THE PEAK: 12.5% maximises the measured window, and choosing the argmax of a curve fitted to one window is the selection trap our own deflation discipline exists to prevent. And we correct ourselves in passing: an earlier internal note claimed 10% would halve the upside to 1.578. That figure was a linear interpolation, never measured, and it was wrong \u2014 the upside is essentially unchanged. We did NOT cut it to zero: equity beta has positive long-run drift and this capital is explicitly stated to want participation, so removing it entirely would trade real expected return for a cleaner-looking ratio. TWO CAVEATS THAT BOTH CUT THE SAME WAY, stated because they make our own prior numbers look better than they should. First, the crash stress ran at effectively HALF weight: the market factor is 0.5 BTC + 0.5 SPY and a missing leg contributes zero, but our BTC series begins 2020-01-01, so the pre-2020 stress was SPY-only. A real crash in which both legs fall together costs more than the -0.47 Sharpe we measured. Second, the window in which the overlay LOOKED good rose +121.6% with a worst drawdown of -28.2%, against -54.4% available in that same factor's own history \u2014 the upside is measured in a bull market and the downside is not. Every published figure that carried the +20% overlay, including the in-sample 1.80, describes a configuration we no longer run; the neutral-core figure (1.396 on the current four sleeves) is unchanged and always was the honest one.",
       "CORRECTION 2026-08-12 \u2014 the number we use to justify keeping AlphaTrend does not reproduce, and it overstated the case by about 3x. We publish that AlphaTrend is held 'for measured drawdown reduction (removing it makes the book's max DD 69% worse), not for a demonstrated edge'. Re-measured on the current four-sleeve book, removing it takes max drawdown from -3.68% to -4.51%, i.e. 22.7% worse \u2014 not 69%. We looked for a configuration that yields 69% and could not find one: on the three-sleeve book we previously ran at 40/40/20 it is 16.6%, at equal thirds 20.5%, and with the beta overlay applied it falls to 4.4-7.0%. The rest of the sleeve's disclosure stands and is if anything harsher than before: leave-one-out on the current book shows AlphaTrend CONTRIBUTES -0.092 Sharpe (removing it would raise the book from 1.396 to 1.488), its standalone Sharpe of 0.248 is the weakest of the four, and its re-derived DSR is 0.000. So it is held for a real but materially smaller diversification benefit than we claimed. WHAT WE DID NOT DO: change its weight. A weight sweep shows a clean monotone trade \u2014 roughly 0.13 Sharpe per 1 percentage point of drawdown, with no optimum anywhere \u2014 so any weight we picked off that curve would be a risk preference dressed as a measurement, and choosing the in-sample argmax is the selection trap our deflation discipline exists to prevent. Equal weights remain what the evidence supports: no sleeve's deflated Sharpe justifies more capital than any other's, which is exactly why they are equal."
     ],
+    "live_config": {
+      "fingerprint": "sha256:ec06c65b7f43ce76e3ab0aa21fa60b1b361e1b53a68cefc00f885636efbded3e",
+      "declared_fingerprint": "sha256:ec06c65b7f43ce76e3ab0aa21fa60b1b361e1b53a68cefc00f885636efbded3e",
+      "matches_declaration": true,
+      "declared_in": "config/live_change_contract.json",
+      "what_it_covers": "Every setting that decides how the live book trades: the BlendStrategy defaults that reach production because no call site overrides them; the overlay, drawdown ladder and per-name clip that the strategy reads off Settings; and the book's sleeve composition, weights and disclosed tilt. Derived from inspect.signature, Settings and the published state, never from a hand-maintained list.",
+      "why": "A record that cannot say which configuration produced it cannot be read as one experiment. This stamp is what lets a reader tell a continuous forward test from a curve that changed underneath itself."
+    },
     "source_path": "data/paper/state.json"
   },
   "corrections": [
@@ -17085,12 +17093,12 @@
       ],
       "source_sha256": {
         "registry": "6a54ef0c0bda0d1353b1fa8175ab900313b31594084cc5c8810b4de069ef3e04",
-        "kill_ledger": "3278bc65f8308573b36f86256f21096763b33241d6ba38435dc1d69e7ba97300",
-        "current_book": "a9af02a04cdf4e948ca0e89fab57f32c8be8caee368fdf6483807ef8336055f8",
+        "kill_ledger": "8378700176ef017b5188c08ce2efd68ec0b43a54e1e3cc96e4d39a34bde8ad59",
+        "current_book": "bc96cf955a48b5cb9ee728c7f24e17a66cab08951cbc5c28e8691c8864cddc7a",
         "discovery": "654f831e3ea4122437e5c48f066d6d37ba6cbcf8d1c7119395d104c5aa6cc225"
       },
-      "generated_at": "2026-08-21T20:42:30.027355+00:00",
-      "content_hash": "sha256:d8f4176461f3d15a5cf88c20a495646a98c04b87a376c4a832b053c05dec8371"
+      "generated_at": "2026-08-21T23:25:33.198004+00:00",
+      "content_hash": "sha256:efe9300b4a811caa1b56c16a72c7f3dfe6eaa10d741f52a9b30bd6be6112949a"
     },
     "atlas_public_path": "/glassbox/sleeve_atlas.json",
     "audit_public_path": "/glassbox/sleeve_atlas_audit.json",
@@ -17253,6 +17261,849 @@
         "AlphaTrend"
       ]
     }
+  },
+  "cost_model_realism": {
+    "claim_boundary": "Reads the live trading databases read-only. Registers no hypothesis identity, opens no return data, and changes no cost parameter. 0 trials.",
+    "crypto_sleeve": {
+      "all_taker": true,
+      "book_exhausted_count": 0,
+      "database_exists": true,
+      "fills_since_go_live": 0,
+      "fills_total": 24,
+      "modelled_taker_bps": 5.0,
+      "notional_total": 159576.53698200002,
+      "realised_commission_bps_MEASURED": 5.0,
+      "slippage_bps_MEASURED": {
+        "max": -1.2820381337678106,
+        "mean": -3.1810392368418583,
+        "median": -3.3283485071064653,
+        "min": -4.409572260682257,
+        "note": "Recorded against `modeled_price`, so this IS a real execution measurement \u2014 the only one in the book. Negative is favourable. All 24 fills are taker and none exhausted the book."
+      },
+      "window": [
+        "2026-07-05",
+        "2026-07-30"
+      ]
+    },
+    "equity_sleeves": {
+      "AlphaMax": {
+        "commission": "NOT MEASURABLE \u2014 no fee column in this fills table",
+        "database_exists": true,
+        "fills_since_go_live": 1063,
+        "fills_total": 3075,
+        "notional_since_go_live": 748509.4702382392,
+        "slippage_vs_decision_price": "NOT MEASURABLE \u2014 the fills record limit_price, a PADDED marketable limit, not the price the decision was taken at. A fill that beats it is beating the padding.",
+        "submit_to_fill_latency_seconds": {
+          "median": 19884.673,
+          "median_hours": 5.523520277777777,
+          "p90": 20458.357200000002
+        }
+      },
+      "AlphaTrend": {
+        "commission": "NOT MEASURABLE \u2014 no fee column in this fills table",
+        "database_exists": true,
+        "fills_since_go_live": 98,
+        "fills_total": 311,
+        "notional_since_go_live": 842220.8265962057,
+        "slippage_vs_decision_price": "NOT MEASURABLE \u2014 the fills record limit_price, a PADDED marketable limit, not the price the decision was taken at. A fill that beats it is beating the padding.",
+        "submit_to_fill_latency_seconds": {
+          "median": 19828.5255,
+          "median_hours": 5.50792375,
+          "p90": 20017.0711
+        }
+      },
+      "AlphaVintage": {
+        "commission": "NOT MEASURABLE \u2014 no fee column in this fills table",
+        "database_exists": true,
+        "fills_since_go_live": 15,
+        "fills_total": 15,
+        "notional_since_go_live": 1028168.6236568228,
+        "slippage_vs_decision_price": "NOT MEASURABLE \u2014 the fills record limit_price, a PADDED marketable limit, not the price the decision was taken at. A fill that beats it is beating the padding.",
+        "submit_to_fill_latency_seconds": {
+          "median": 19855.94,
+          "median_hours": 5.515538888888888,
+          "p90": 19966.2726
+        }
+      }
+    },
+    "go_live_date": "2026-08-07",
+    "modelled_parameters": {
+      "crypto_taker_bps": 5.0,
+      "default_half_spread_bps": 2.5,
+      "equity_borrow_bps_annual": 50.0,
+      "equity_commission_bps": 1.0,
+      "equity_half_spread_bps": 3.0,
+      "equity_taker_bps": 1.0,
+      "impact_coef": 1.0,
+      "latency_addon_bps": 2.0
+    },
+    "schema": "canli.alphac-cost-model-realism.v1",
+    "verdict": "The one checkable component MATCHES exactly. The rest is not checkable from what is recorded, and the latency component is modelled as the wrong kind of quantity. No cost parameter should move on this evidence; the schema should.",
+    "what_cannot_be_asked_and_the_fix": "Slippage against the decision price is not computable for the equity sleeves: the fills record `limit_price`, a PADDED marketable limit, so a fill beating it by 54bp is beating the padding, not the market. Equity commission is not computable either \u2014 there is no fee column. THE FIX IS ONE FIELD: record the reference mid at `submitted_ts` on every order. That single addition turns implementation shortfall from unanswerable into a daily measurement, and it costs nothing to capture at the moment the order is built.",
+    "what_matched": "Crypto commission. Measured 5.00bp against a modelled taker fee of 5.0bp \u2014 exact. The one cost component in the book that can be checked against reality checks out.",
+    "\u26a0\ufe0f_crypto_has_not_traded_since_go_live": {
+      "fills_since_go_live": 0,
+      "last_fill_window": [
+        "2026-07-05",
+        "2026-07-30"
+      ],
+      "note": "Zero crypto fills since the 2026-08-07 re-baseline, with the last on 2026-07-30, against a weekly rebalance cadence over a fifteen-day record. The sleeve is marking equity but not trading. Surfaced, not diagnosed \u2014 it may be a no-trade band holding, and it may not."
+    },
+    "\u26a0\ufe0f_the_latency_finding": {
+      "median_submit_to_fill_hours": 5.515538888888888,
+      "modelled_latency_addon_bps": 2.0,
+      "why_this_matters": "Median submit-to-fill latency across the equity sleeves is about 5.5 HOURS, not seconds \u2014 orders are submitted after the close and fill at the next open. The cost model represents latency as a flat 2bp add-on, which is a microstructure quantity. An overnight gap is not a spread: it is unhedged exposure to whatever happens between submission and fill, and its cost is a distribution with a fat tail rather than a constant. This is not evidence the model is wrong by a specific amount \u2014 it is evidence that this component is modelled as the wrong KIND of thing, and nothing here measures its size."
+    }
+  },
+  "execution_gap_power": {
+    "any_gap_detectable_today": false,
+    "claim_boundary": "Reads trading databases and walk-forward curves read-only. Registers no hypothesis identity and opens no return data. 0 trials.",
+    "go_live_date": "2026-08-07",
+    "schema": "canli.alphac-execution-gap-power.v1",
+    "sleeves": [
+      {
+        "calendar_days_required_to_detect_1pct": 2446.6434985490123,
+        "common_days": 5,
+        "daily_tracking_sd": 0.0008318286844294201,
+        "days_required_to_detect": {
+          "0.5%": 6752.133186960724,
+          "1.0%": 1688.033296740181,
+          "2.0%": 422.00832418504524,
+          "5.0%": 67.52133186960724
+        },
+        "measurable": false,
+        "observed_annualised_gap": -0.11812065834455232,
+        "observed_over_stderr": -1.1269935263895376,
+        "return_observations": 4,
+        "sleeve": "AlphaMax",
+        "standard_error_of_that_gap": 0.10481041423810693,
+        "walkforward": "equity_live_fwd",
+        "window": [
+          "2026-08-07",
+          "2026-08-14"
+        ]
+      },
+      {
+        "calendar_days_required_to_detect_1pct": 3356.0783653198646,
+        "common_days": 9,
+        "daily_tracking_sd": 0.0009742369397852844,
+        "days_required_to_detect": {
+          "0.5%": 9261.94932852135,
+          "1.0%": 2315.4873321303376,
+          "2.0%": 578.8718330325844,
+          "5.0%": 92.6194932852135
+        },
+        "measurable": false,
+        "observed_annualised_gap": -0.028409575853535318,
+        "observed_over_stderr": -0.32729894849721064,
+        "return_observations": 8,
+        "sleeve": "AlphaTrend",
+        "standard_error_of_that_gap": 0.08680008287218019,
+        "walkforward": "mf_live_fwd",
+        "window": [
+          "2026-08-07",
+          "2026-08-21"
+        ]
+      }
+    ],
+    "the_answer": "THE RECORD IS TOO SHORT. Overlap between the live marks and a walk-forward that extends into the live period exists for two sleeves and is 5 and 9 days \u2014 four and eight return observations. No execution gap is distinguishable from noise at that length, and the observed divergences below are OBSERVATIONS, not estimates.",
+    "the_quantity_that_answers_it_soonest": "The TRACKING DIFFERENCE d = r_live - r_backtest, not either Sharpe. The two run the same signal on the same days, so their returns are strongly correlated and the difference series is far less noisy than either level. The record needed to detect an execution gap is therefore much shorter than the record needed to establish the edge itself \u2014 which is the useful thing to know.",
+    "verdict": "NOT MEASURABLE YET \u2014 publish the power, not a number",
+    "what_would_change_this": "Time, and nothing else. The days_required figures below are the honest answer to 'when can we ask'. They also depend on the tracking sd being estimated from four and eight observations, which is itself a very noisy estimate \u2014 treat them as an order of magnitude, not a date.",
+    "when_to_look_again": {
+      "a_1pct_annual_gap": {
+        "AlphaMax": "6.7 years",
+        "AlphaTrend": "9.2 years"
+      },
+      "a_5pct_annual_gap": {
+        "AlphaMax": "3 months",
+        "AlphaTrend": "4 months"
+      },
+      "note": "The useful output is not a number today but a date. Converted from return observations at 252 trading days a year, and rounded outward because the tracking sd behind them is itself estimated from four and eight observations.",
+      "the_practical_reading": "A LARGE execution gap \u2014 5% of equity a year \u2014 becomes visible in roughly three to four months, so that is when this is worth re-running. A 1% gap needs the better part of a decade and is not answerable by waiting. If a gap that small matters, it has to be attacked by measuring fills directly against their decision prices, not by comparing equity curves."
+    },
+    "why_only_two_sleeves": "A comparison needs a backtest that covers the live days. The BLESSED research curves (crypto_carry_wk, k30_dn_63) are frozen by disclosure protocol and end 2026-06-01, before go-live, so they cannot answer this question at any record length. Only the live-forward walk-forwards, regenerated by the daily ticks, overlap at all."
+  },
+  "sleeve_quality_decomposition": {
+    "claim_boundary": "A FIRST-ORDER decomposition from published artifacts, read-only. Each dollar component is converted to an annualised return on starting equity and then to Sharpe points by dividing by realised annual vol, ignoring compounding interaction between components. Registers no hypothesis identity and opens no return data. 0 trials.",
+    "largest_cost_burden": "AlphaForge",
+    "largest_recoverable_component": {
+      "sharpe_points": 0.27452927826105317,
+      "sleeve": "AlphaForge",
+      "turnover_ann": 33.221809,
+      "what_recovering_half_would_be_worth": [
+        0.13726463913052658,
+        "Sharpe points on that sleeve, which is roughly a third of that on s_bar across three sleeves."
+      ],
+      "why": "Transaction cost is the only component here that better execution could give back. Signal is construction and funding is a market fact; neither is recovered by executing better. This sleeve carries the largest cost burden by a wide margin, and it is the turnover that drives it."
+    },
+    "s_bar_basis_note": "s_bar_measured here is the mean of these three FULL-HISTORY backtest Sharpes, each on its own window. It is NOT the 0.469 measured across the four live sleeves on their 1,061-day common window in artifacts/analysis/book_without_alphavintage, and the two must not be compared. Different sleeves, different windows.",
+    "s_bar_measured": 0.6368226666666666,
+    "schema": "canli.alphac-sleeve-quality-decomposition.v1",
+    "sleeves": [
+      {
+        "asset_class": "equity",
+        "commission_bps_realised": 1.0000000000000002,
+        "commission_dollars_MEASURED": 86.58514275560611,
+        "commission_sharpe_points_MEASURED": 0.0033187712860535787,
+        "funding_dollars_MEASURED": 0.0,
+        "funding_sharpe_points_MEASURED": 0.0,
+        "half_spread_bps_used": 5.0,
+        "market_impact": "NOT SEPARABLE \u2014 see claim boundary",
+        "net_sharpe_published": 0.907084,
+        "notional_traded_total": 865851.427556061,
+        "realised_vol_ann": 0.130716,
+        "residual_signal_sharpe": 0.9269966277163215,
+        "sleeve": "AlphaMax",
+        "spread_dollars_MODELLED": 432.9257137780305,
+        "spread_sharpe_points_MODELLED": 0.01659385643026789,
+        "turnover_ann": 4.111369,
+        "walkforward": "k30_dn_63",
+        "years": 1.995893223819302
+      },
+      {
+        "asset_class": "crypto",
+        "commission_bps_realised": 4.999999999999999,
+        "commission_dollars_MEASURED": 7372.717709488012,
+        "commission_sharpe_points_MEASURED": 0.14448909382160693,
+        "funding_dollars_MEASURED": 19500.019816,
+        "funding_sharpe_points_MEASURED": 0.38215761185204505,
+        "half_spread_bps_used": 4.5,
+        "market_impact": "NOT SEPARABLE \u2014 see claim boundary",
+        "net_sharpe_published": 0.67661,
+        "notional_traded_total": 14745435.418976026,
+        "realised_vol_ann": 0.118332,
+        "residual_signal_sharpe": 0.5689816664090082,
+        "sleeve": "AlphaForge",
+        "spread_dollars_MODELLED": 6635.445938539211,
+        "spread_sharpe_points_MODELLED": 0.13004018443944623,
+        "turnover_ann": 33.221809,
+        "walkforward": "crypto_carry_wk",
+        "years": 4.312114989733059
+      },
+      {
+        "asset_class": "equity",
+        "commission_bps_realised": 0.9999999999999998,
+        "commission_dollars_MEASURED": 1566.954815484263,
+        "commission_sharpe_points_MEASURED": 0.020755020953943153,
+        "funding_dollars_MEASURED": 0.0,
+        "funding_sharpe_points_MEASURED": 0.0,
+        "half_spread_bps_used": 5.0,
+        "market_impact": "NOT SEPARABLE \u2014 see claim boundary",
+        "net_sharpe_published": 0.326774,
+        "notional_traded_total": 15669548.154842634,
+        "realised_vol_ann": 0.053132,
+        "residual_signal_sharpe": 0.45130412572365897,
+        "sleeve": "AlphaTrend",
+        "spread_dollars_MODELLED": 7834.774077421316,
+        "spread_sharpe_points_MODELLED": 0.10377510476971578,
+        "turnover_ann": 9.693324,
+        "walkforward": "mf_live_fwd",
+        "years": 14.209445585215606
+      }
+    ],
+    "the_finding": "AlphaTrend is the weakest at 0.327 net Sharpe. Its total modelled-plus-measured cost burden is 0.125 Sharpe points, so recovering ALL of its transaction cost would still leave it at 0.451 before spread and impact are re-charged. The drag is construction, not execution.",
+    "weakest_sleeve": "AlphaTrend",
+    "what_is_measured_and_what_is_not": {
+      "MEASURED": [
+        "commission \u2014 summed from the `fee` column of every fill",
+        "funding \u2014 the walk-forward's own funding_net"
+      ],
+      "MODELLED": [
+        "half-spread and latency \u2014 turnover x notional x the DECLARED bps, because the spread is applied to the FILL PRICE and never recorded as a line item"
+      ],
+      "NOT SEPARABLE": [
+        "market impact \u2014 same reason as spread, and it depends on ADV per name per day, which the published fills do not carry. It is inside the residual."
+      ],
+      "the_trap": "`fees_paid` in every summary.txt is COMMISSION ONLY. Reading it as total transaction cost understates the cost component badly: measured commission is about 1bp against a declared 3bp equity half-spread plus a 2bp latency add-on plus impact. This decomposition reports a RESIDUAL rather than pretending to a full attribution."
+    },
+    "what_this_does_not_settle": "Whether the modelled spread is the spread actually paid. That is B5's question and it needs the live fills, which the forward record is currently too short to answer."
+  },
+  "drawdown_live_estimator": {
+    "best_expected_max_drawdown": {
+      "expected_max_drawdown": 0.07961651142754178,
+      "halflife_bars": 7,
+      "max_drawdown_stderr": 0.002651750174587392,
+      "median_max_drawdown": 0.07296828964913477,
+      "overlay_gross_turnover_per_year": 3.5728097679213637,
+      "p95_max_drawdown": 0.1353666307587787,
+      "realized_book_sharpe": 1.869413899839946,
+      "realized_book_vol": 0.09986931273260134,
+      "seed_rows": 240,
+      "window_bars": 720
+    },
+    "claim_boundary": "A simulation through a vectorized twin of the PRODUCTION covariance estimator, asserted equal to ewma_cov on real states before any result was reported. It changes nothing, registers no hypothesis identity and opens no return data. 0 trials.",
+    "cost_of_each_configuration": [
+      {
+        "drawdown_bought_pp": 0.0,
+        "extra_turnover_per_year": 0.0,
+        "halflife_bars": 720,
+        "sharpe_cost_at_10bp": 0.0,
+        "sharpe_cost_at_30bp": 0.0,
+        "window_bars": 720
+      },
+      {
+        "drawdown_bought_pp": -0.4751127125058083,
+        "extra_turnover_per_year": -0.020834479078943313,
+        "halflife_bars": 252,
+        "sharpe_cost_at_10bp": -0.0002083447907894331,
+        "sharpe_cost_at_30bp": -0.0006250343723682993,
+        "window_bars": 720
+      },
+      {
+        "drawdown_bought_pp": 0.8013124720823162,
+        "extra_turnover_per_year": 0.3041766016270506,
+        "halflife_bars": 63,
+        "sharpe_cost_at_10bp": 0.0030417660162705058,
+        "sharpe_cost_at_30bp": 0.009125298048811518,
+        "window_bars": 720
+      },
+      {
+        "drawdown_bought_pp": 1.87071389262375,
+        "extra_turnover_per_year": 1.0332741740282807,
+        "halflife_bars": 21,
+        "sharpe_cost_at_10bp": 0.010332741740282807,
+        "sharpe_cost_at_30bp": 0.03099822522084842,
+        "window_bars": 720
+      },
+      {
+        "drawdown_bought_pp": 2.2895046587195544,
+        "extra_turnover_per_year": 3.063045227741844,
+        "halflife_bars": 7,
+        "sharpe_cost_at_10bp": 0.030630452277418438,
+        "sharpe_cost_at_30bp": 0.0918913568322553,
+        "window_bars": 720
+      },
+      {
+        "drawdown_bought_pp": 0.2485757353727594,
+        "extra_turnover_per_year": 0.16843077622081482,
+        "halflife_bars": 360,
+        "sharpe_cost_at_10bp": 0.001684307762208148,
+        "sharpe_cost_at_30bp": 0.005052923286624444,
+        "window_bars": 360
+      },
+      {
+        "drawdown_bought_pp": 1.4143917993503508,
+        "extra_turnover_per_year": 0.2915860944494787,
+        "halflife_bars": 63,
+        "sharpe_cost_at_10bp": 0.002915860944494787,
+        "sharpe_cost_at_30bp": 0.00874758283348436,
+        "window_bars": 360
+      },
+      {
+        "drawdown_bought_pp": 0.9861983377253594,
+        "extra_turnover_per_year": 1.1163060739739294,
+        "halflife_bars": 21,
+        "sharpe_cost_at_10bp": 0.011163060739739295,
+        "sharpe_cost_at_30bp": 0.03348918221921788,
+        "window_bars": 360
+      },
+      {
+        "drawdown_bought_pp": -0.7849388214015041,
+        "extra_turnover_per_year": 0.29547541975862956,
+        "halflife_bars": 240,
+        "sharpe_cost_at_10bp": 0.0029547541975862954,
+        "sharpe_cost_at_30bp": 0.008864262592758887,
+        "window_bars": 240
+      },
+      {
+        "drawdown_bought_pp": 1.4164208018368665,
+        "extra_turnover_per_year": 1.0560626579273902,
+        "halflife_bars": 21,
+        "sharpe_cost_at_10bp": 0.010560626579273901,
+        "sharpe_cost_at_30bp": 0.0316818797378217,
+        "window_bars": 240
+      },
+      {
+        "drawdown_bought_pp": 1.7344947853635593,
+        "extra_turnover_per_year": 1.0529678005468286,
+        "halflife_bars": 21,
+        "sharpe_cost_at_10bp": 0.010529678005468286,
+        "sharpe_cost_at_30bp": 0.03158903401640486,
+        "window_bars": 168
+      }
+    ],
+    "cost_unit_warning": "Turnover is a MULTIPLE OF EQUITY per year; a round-trip cost in basis points is a fraction of the NOTIONAL TRADED. The annual drag is turnover * bps/10000 of equity. Dividing by 100 instead overstates it a hundredfold, which has happened once in this project already.",
+    "excluded_deliberately": "Ledoit-Wolf shrinkage. artifacts/analysis/ledoit_wolf_effective_sample measured it separately: immaterial at the production setting (0.36% ex-ante vol error) and material at a short halflife (4.46% mean, 38% worst). Folding it in here would conflate two effects in one number. It is a PRECONDITION on acting on this result, not a term inside it.",
+    "grid": [
+      {
+        "expected_max_drawdown": 0.10251155801473733,
+        "halflife_bars": 720,
+        "max_drawdown_stderr": 0.004873668252574118,
+        "median_max_drawdown": 0.09495320055081719,
+        "overlay_gross_turnover_per_year": 0.5097645401795198,
+        "p95_max_drawdown": 0.1876321103559252,
+        "realized_book_sharpe": 1.3467484690997482,
+        "realized_book_vol": 0.10412475476117108,
+        "seed_rows": 240,
+        "window_bars": 720
+      },
+      {
+        "expected_max_drawdown": 0.10726268513979541,
+        "halflife_bars": 252,
+        "max_drawdown_stderr": 0.005246189846945475,
+        "median_max_drawdown": 0.09805592597689172,
+        "overlay_gross_turnover_per_year": 0.48893006110057646,
+        "p95_max_drawdown": 0.18547684267059092,
+        "realized_book_sharpe": 1.3819064333885525,
+        "realized_book_vol": 0.10361856858548037,
+        "seed_rows": 240,
+        "window_bars": 720
+      },
+      {
+        "expected_max_drawdown": 0.09449843329391416,
+        "halflife_bars": 63,
+        "max_drawdown_stderr": 0.004205644237410449,
+        "median_max_drawdown": 0.08678554494525914,
+        "overlay_gross_turnover_per_year": 0.8139411418065704,
+        "p95_max_drawdown": 0.17477634837432465,
+        "realized_book_sharpe": 1.6359588919998083,
+        "realized_book_vol": 0.10092585240893277,
+        "seed_rows": 240,
+        "window_bars": 720
+      },
+      {
+        "expected_max_drawdown": 0.08380441908849982,
+        "halflife_bars": 21,
+        "max_drawdown_stderr": 0.003365052560020317,
+        "median_max_drawdown": 0.07590414604693296,
+        "overlay_gross_turnover_per_year": 1.5430387142078004,
+        "p95_max_drawdown": 0.15387138275195533,
+        "realized_book_sharpe": 1.6975692009825112,
+        "realized_book_vol": 0.0988791496963738,
+        "seed_rows": 240,
+        "window_bars": 720
+      },
+      {
+        "expected_max_drawdown": 0.07961651142754178,
+        "halflife_bars": 7,
+        "max_drawdown_stderr": 0.002651750174587392,
+        "median_max_drawdown": 0.07296828964913477,
+        "overlay_gross_turnover_per_year": 3.5728097679213637,
+        "p95_max_drawdown": 0.1353666307587787,
+        "realized_book_sharpe": 1.869413899839946,
+        "realized_book_vol": 0.09986931273260134,
+        "seed_rows": 240,
+        "window_bars": 720
+      },
+      {
+        "expected_max_drawdown": 0.10002580066100973,
+        "halflife_bars": 360,
+        "max_drawdown_stderr": 0.004965037062146933,
+        "median_max_drawdown": 0.08993423675888412,
+        "overlay_gross_turnover_per_year": 0.6781953164003346,
+        "p95_max_drawdown": 0.1873039269633,
+        "realized_book_sharpe": 1.5805220498273702,
+        "realized_book_vol": 0.10470193705253028,
+        "seed_rows": 120,
+        "window_bars": 360
+      },
+      {
+        "expected_max_drawdown": 0.08836764002123382,
+        "halflife_bars": 63,
+        "max_drawdown_stderr": 0.003684007812551513,
+        "median_max_drawdown": 0.07849974226776613,
+        "overlay_gross_turnover_per_year": 0.8013506346289985,
+        "p95_max_drawdown": 0.15500654319061646,
+        "realized_book_sharpe": 1.6386426682084407,
+        "realized_book_vol": 0.0999479553713626,
+        "seed_rows": 120,
+        "window_bars": 360
+      },
+      {
+        "expected_max_drawdown": 0.09264957463748373,
+        "halflife_bars": 21,
+        "max_drawdown_stderr": 0.0033497726508776387,
+        "median_max_drawdown": 0.09086853861878114,
+        "overlay_gross_turnover_per_year": 1.6260706141534493,
+        "p95_max_drawdown": 0.15851599819246504,
+        "realized_book_sharpe": 1.7488662087667057,
+        "realized_book_vol": 0.09935458220267125,
+        "seed_rows": 120,
+        "window_bars": 360
+      },
+      {
+        "expected_max_drawdown": 0.11036094622875237,
+        "halflife_bars": 240,
+        "max_drawdown_stderr": 0.00527749857813107,
+        "median_max_drawdown": 0.09803232041775495,
+        "overlay_gross_turnover_per_year": 0.8052399599381493,
+        "p95_max_drawdown": 0.21339175198527244,
+        "realized_book_sharpe": 1.4274014935316939,
+        "realized_book_vol": 0.10926499195588939,
+        "seed_rows": 80,
+        "window_bars": 240
+      },
+      {
+        "expected_max_drawdown": 0.08834734999636866,
+        "halflife_bars": 21,
+        "max_drawdown_stderr": 0.003511521984416597,
+        "median_max_drawdown": 0.08091952347671505,
+        "overlay_gross_turnover_per_year": 1.5658271981069098,
+        "p95_max_drawdown": 0.1508661647735639,
+        "realized_book_sharpe": 1.6748436943525815,
+        "realized_book_vol": 0.1001410419424532,
+        "seed_rows": 80,
+        "window_bars": 240
+      },
+      {
+        "expected_max_drawdown": 0.08516661016110173,
+        "halflife_bars": 21,
+        "max_drawdown_stderr": 0.0031722480208055247,
+        "median_max_drawdown": 0.07933900941022692,
+        "overlay_gross_turnover_per_year": 1.5627323407263483,
+        "p95_max_drawdown": 0.14495240787696834,
+        "realized_book_sharpe": 1.692588089591904,
+        "realized_book_vol": 0.09964641315037287,
+        "seed_rows": 56,
+        "window_bars": 168
+      }
+    ],
+    "improvement_vs_production": 0.022895046587195544,
+    "p95_still_misses_the_objective": "No configuration holds the 95th percentile at or under 11%. The best is 13.5% at 720/7. The drawdown objective is an EXPECTED maximum drawdown, and both figures are always published together.",
+    "parameters": {
+      "mean_run_days": 40.0,
+      "min_periods_fraction": 0.3333333333333333,
+      "paths": 96,
+      "rho_calm": -0.02,
+      "rho_stress": 0.5,
+      "s_bar": 0.469,
+      "seed": 20260822,
+      "sleeves": 14,
+      "stress_share": 0.12,
+      "vol_target": 0.1,
+      "years": 2
+    },
+    "path_count_caveat": "96 paths, so each expected maximum drawdown carries a standard error of roughly the value reported in max_drawdown_stderr. Configurations share their shocks, so the RANKING is far better determined than any single level, and the ranking is what this analysis is for.",
+    "precondition_before_acting": "At a 21-bar halflife the Ledoit-Wolf shrinkage error measured in artifacts/analysis/ledoit_wolf_effective_sample is 4.46% of ex-ante vol, and at 7 it would be worse \u2014 the effective sample shrinks further. That error must be fixed BEFORE the halflife is shortened, not after. And any change to it is a live-book change: owner-gated, and it VOIDS the forward pre-registration draft.",
+    "production_setting": {
+      "expected_max_drawdown": 0.10251155801473733,
+      "halflife_bars": 720,
+      "max_drawdown_stderr": 0.004873668252574118,
+      "median_max_drawdown": 0.09495320055081719,
+      "overlay_gross_turnover_per_year": 0.5097645401795198,
+      "p95_max_drawdown": 0.1876321103559252,
+      "realized_book_sharpe": 1.3467484690997482,
+      "realized_book_vol": 0.10412475476117108,
+      "seed_rows": 240,
+      "window_bars": 720
+    },
+    "schema": "canli.alphac-drawdown-live-estimator.v1",
+    "the_finding": "THE HALFLIFE IS THE LEVER AND THE WINDOW IS NOT. Shortening the halflife inside the production 720-bar window improves expected maximum drawdown monotonically: 10.25% at 720, 9.45% at 63, 8.38% at 21, 7.96% at 7. Shortening the WINDOW buys nothing on top of it \u2014 168/21 gives 8.52% against 720/21's 8.38%, inside the standard error. This corrects a claim published earlier the same day that named the window as the only lever; that came from sampling only halflives at or above 21 days, where the window truncates everything into one narrow band.",
+    "twin_verification": [
+      {
+        "halflife": 720,
+        "max_abs_error": 1.0842021724855044e-19,
+        "seed": 240,
+        "window": 720
+      },
+      {
+        "halflife": 252,
+        "max_abs_error": 8.131516293641283e-20,
+        "seed": 240,
+        "window": 720
+      },
+      {
+        "halflife": 63,
+        "max_abs_error": 6.776263578034403e-20,
+        "seed": 240,
+        "window": 720
+      },
+      {
+        "halflife": 21,
+        "max_abs_error": 1.3552527156068805e-20,
+        "seed": 240,
+        "window": 720
+      },
+      {
+        "halflife": 7,
+        "max_abs_error": 2.710505431213761e-20,
+        "seed": 240,
+        "window": 720
+      },
+      {
+        "halflife": 360,
+        "max_abs_error": 1.3552527156068805e-19,
+        "seed": 120,
+        "window": 360
+      },
+      {
+        "halflife": 63,
+        "max_abs_error": 5.421010862427522e-20,
+        "seed": 120,
+        "window": 360
+      },
+      {
+        "halflife": 21,
+        "max_abs_error": 1.3552527156068805e-20,
+        "seed": 120,
+        "window": 360
+      },
+      {
+        "halflife": 240,
+        "max_abs_error": 2.710505431213761e-20,
+        "seed": 80,
+        "window": 240
+      },
+      {
+        "halflife": 21,
+        "max_abs_error": 1.3552527156068805e-20,
+        "seed": 80,
+        "window": 240
+      },
+      {
+        "halflife": 21,
+        "max_abs_error": 1.3552527156068805e-20,
+        "seed": 56,
+        "window": 168
+      }
+    ],
+    "why_the_original_sweep_does_not_transfer": "analyze_frontier_14.py updates covariance with an UNTRUNCATED recursion \u2014 infinite memory, no window, no seed block. Production's ewma_cov is windowed at cov_window_bars and seeded with an equally weighted block of the oldest cov_min_periods rows, so the window BOUNDS the memory and a halflife longer than the window cannot be delivered. A halflife sweep on an untruncated estimator answers a question about a system this book does not run."
+  },
+  "ledoit_wolf_effective_sample": {
+    "any_non_conservative": true,
+    "baskets": [
+      {
+        "basket": "managed_futures_17_etf",
+        "instruments": 17,
+        "ladder": [
+          {
+            "conservative": false,
+            "delta_star_as_coded": 0.01830762159876317,
+            "delta_star_reestimated_on_effective_window": 0.14851580315893076,
+            "delta_star_rescaled_to_effective_T": 0.21752098841070172,
+            "effective_sample_rows": 60.59869278555086,
+            "halflife_bars": 21,
+            "inverse_vol_weights_are_invariant": true,
+            "max_ex_ante_vol_shift": 0.38077340016702277,
+            "mean_ex_ante_vol_shift": 0.0446014452492797,
+            "median_ex_ante_vol_shift": 0.03119630070740637,
+            "rescale_clipped_at_one": false,
+            "rows_passed_in_production": 720,
+            "understatement_factor_pure_T": 11.881444415772556
+          },
+          {
+            "conservative": false,
+            "delta_star_as_coded": 0.016583376957771484,
+            "delta_star_reestimated_on_effective_window": 0.1469334079829104,
+            "delta_star_rescaled_to_effective_T": 0.06568304504052955,
+            "effective_sample_rows": 181.78254985328257,
+            "halflife_bars": 63,
+            "inverse_vol_weights_are_invariant": true,
+            "max_ex_ante_vol_shift": 0.07916299305399614,
+            "mean_ex_ante_vol_shift": 0.009210205275552996,
+            "median_ex_ante_vol_shift": 0.006112136234757426,
+            "rescale_clipped_at_one": false,
+            "rows_passed_in_production": 720,
+            "understatement_factor_pure_T": 3.9607762163151237
+          },
+          {
+            "conservative": false,
+            "delta_star_as_coded": 0.023909302574604042,
+            "delta_star_reestimated_on_effective_window": 0.07898914668453927,
+            "delta_star_rescaled_to_effective_T": 0.04747435580119078,
+            "effective_sample_rows": 362.61045701821024,
+            "halflife_bars": 126,
+            "inverse_vol_weights_are_invariant": true,
+            "max_ex_ante_vol_shift": 0.025426120853380904,
+            "mean_ex_ante_vol_shift": 0.003720108840731909,
+            "median_ex_ante_vol_shift": 0.002637821476289738,
+            "rescale_clipped_at_one": false,
+            "rows_passed_in_production": 720,
+            "understatement_factor_pure_T": 1.985601865761532
+          },
+          {
+            "conservative": false,
+            "delta_star_as_coded": 0.04101455623742832,
+            "delta_star_reestimated_on_effective_window": 0.05086066325704736,
+            "delta_star_rescaled_to_effective_T": 0.04649206801280103,
+            "effective_sample_rows": 635.1724445300547,
+            "halflife_bars": 252,
+            "inverse_vol_weights_are_invariant": true,
+            "max_ex_ante_vol_shift": 0.005112097374998409,
+            "mean_ex_ante_vol_shift": 0.00067440695911878,
+            "median_ex_ante_vol_shift": 0.00048537771290490107,
+            "rescale_clipped_at_one": false,
+            "rows_passed_in_production": 720,
+            "understatement_factor_pure_T": 1.1335504337451332
+          },
+          {
+            "conservative": false,
+            "delta_star_as_coded": 0.06737510164995188,
+            "delta_star_reestimated_on_effective_window": 0.08761750558376746,
+            "delta_star_rescaled_to_effective_T": 0.07842888686062562,
+            "effective_sample_rows": 618.523035704582,
+            "halflife_bars": 504,
+            "inverse_vol_weights_are_invariant": true,
+            "max_ex_ante_vol_shift": 0.006610018411988283,
+            "mean_ex_ante_vol_shift": 0.0012448709916552158,
+            "median_ex_ante_vol_shift": 0.0009717397437041391,
+            "rescale_clipped_at_one": false,
+            "rows_passed_in_production": 720,
+            "understatement_factor_pure_T": 1.1640633548592447
+          },
+          {
+            "conservative": false,
+            "delta_star_as_coded": 0.08160884576903019,
+            "delta_star_reestimated_on_effective_window": 0.1479878967604686,
+            "delta_star_rescaled_to_effective_T": 0.1142186423005888,
+            "effective_sample_rows": 514.4376414409439,
+            "halflife_bars": 720,
+            "inverse_vol_weights_are_invariant": true,
+            "max_ex_ante_vol_shift": 0.0383437117537494,
+            "mean_ex_ante_vol_shift": 0.003607870569932673,
+            "median_ex_ante_vol_shift": 0.0026170917598008856,
+            "rescale_clipped_at_one": false,
+            "rows_passed_in_production": 720,
+            "understatement_factor_pure_T": 1.3995865426629246
+          }
+        ],
+        "rows": 720
+      }
+    ],
+    "claim_boundary": "Measures an approximation's error on real price data. Changes nothing, registers no hypothesis identity, and opens no return data on any untested identity. 0 trials.",
+    "non_conservative_halflives": [
+      21,
+      63,
+      126,
+      252,
+      504,
+      720
+    ],
+    "production_setting": {
+      "conservative": false,
+      "delta_star_as_coded": 0.08160884576903019,
+      "delta_star_reestimated_on_effective_window": 0.1479878967604686,
+      "delta_star_rescaled_to_effective_T": 0.1142186423005888,
+      "effective_sample_rows": 514.4376414409439,
+      "halflife_bars": 720,
+      "inverse_vol_weights_are_invariant": true,
+      "max_ex_ante_vol_shift": 0.0383437117537494,
+      "mean_ex_ante_vol_shift": 0.003607870569932673,
+      "median_ex_ante_vol_shift": 0.0026170917598008856,
+      "rescale_clipped_at_one": false,
+      "rows_passed_in_production": 720,
+      "understatement_factor_pure_T": 1.3995865426629246
+    },
+    "schema": "canli.alphac-ledoit-wolf-effective-sample.v1",
+    "the_approximation": "ledoit_wolf_cc computes delta* = clip((pi - rho)/(gamma*T), 0, 1) with T = the rows PASSED. Production passes the full unweighted 720-row window while the matrix being shrunk is the EWMA covariance. Documented in the function's own docstring as the closest admissible sample.",
+    "the_channel_the_error_travels": "NOT position sizing. The constant-correlation target shares S's diagonal, so this shrinkage cannot change a variance and inverse-vol weights \u2014 what the production `rank` allocator sizes on \u2014 are mathematically invariant to it. The error reaches the book only through quantities that use the off-diagonal: the overlay's ex-ante vol sqrt(w' Sigma w), which scales the whole book, and the MVO allocator, which is not the production default.",
+    "verdict": "NOT CONSERVATIVE AT ANY HALFLIFE, BUT IMMATERIAL AT THE PRODUCTION SETTING (0.36% mean ex-ante vol error). It becomes MATERIAL at a short halflife: 4.46% mean and 38.1% worst case at 21 bars. Fix it BEFORE shortening the covariance halflife, not after.",
+    "what_this_does_not_do": "It does not change the live path. Production runs the legacy 720-bar covariance halflife, and any change to it is gated by the live-change ceremony and is the owner's. This measures what a future halflife decision would be walking into.",
+    "why_it_is_never_conservative": "The documented reasoning \u2014 that the unweighted window is the closest admissible sample \u2014 assumed the EWMA's effective sample could EXCEED the window. It cannot: ewma_cov is windowed at cov_window_bars, so its effective sample is bounded by the window at every halflife. Measured here it peaks at 635 rows against a T of 720 and falls to 514 at the production setting, so delta* is understated everywhere rather than only at short halflives.",
+    "why_it_was_conservative": "A larger true T means a smaller true delta*, so using 720 when the estimator's effective sample EXCEEDS 720 over-shrinks slightly \u2014 and over-shrinking is the safe direction for a covariance estimate. The concern is the opposite case.",
+    "worst_case_in_ladder": {
+      "conservative": false,
+      "delta_star_as_coded": 0.01830762159876317,
+      "delta_star_reestimated_on_effective_window": 0.14851580315893076,
+      "delta_star_rescaled_to_effective_T": 0.21752098841070172,
+      "effective_sample_rows": 60.59869278555086,
+      "halflife_bars": 21,
+      "inverse_vol_weights_are_invariant": true,
+      "max_ex_ante_vol_shift": 0.38077340016702277,
+      "mean_ex_ante_vol_shift": 0.0446014452492797,
+      "median_ex_ante_vol_shift": 0.03119630070740637,
+      "rescale_clipped_at_one": false,
+      "rows_passed_in_production": 720,
+      "understatement_factor_pure_T": 11.881444415772556
+    }
+  },
+  "record_continuity": {
+    "as_of": "2026-08-21",
+    "claim_boundary": "Reads the per-sleeve trading databases read-only. Opens no market data, registers no hypothesis identity and changes nothing. 0 trials.",
+    "days_since_go_live": 15,
+    "go_live_date": "2026-08-07",
+    "how_a_gap_is_classified": "A weekend absence is LEGITIMATE for a sleeve that does not trade weekends and a REAL gap for one that trades around the clock. Classified per sleeve, because counting them the same way makes a closed market and a broken loop look identical.",
+    "max_gap_rate_threshold": 0.2,
+    "passes": true,
+    "schema": "canli.alphac-record-continuity.v1",
+    "sleeves": {
+      "alphaforge": {
+        "database": "var/trading_crypto_perp.sqlite",
+        "database_exists": true,
+        "days_expected": 15,
+        "days_marked": 12,
+        "days_since_go_live": 15,
+        "gap_rate": 0.2,
+        "legitimate_absence_days": [],
+        "legitimate_absences": 0,
+        "longest_consecutive_gap": 2,
+        "real_gap_days": [
+          "2026-08-07",
+          "2026-08-09",
+          "2026-08-10"
+        ],
+        "real_gaps": 3,
+        "trades_24_7": true
+      },
+      "alphamax": {
+        "database": "var/trading_equity.sqlite",
+        "database_exists": true,
+        "days_expected": 11,
+        "days_marked": 11,
+        "days_since_go_live": 15,
+        "gap_rate": 0.18181818181818182,
+        "legitimate_absence_days": [
+          "2026-08-09",
+          "2026-08-16"
+        ],
+        "legitimate_absences": 2,
+        "longest_consecutive_gap": 1,
+        "real_gap_days": [
+          "2026-08-10",
+          "2026-08-17"
+        ],
+        "real_gaps": 2,
+        "trades_24_7": false
+      },
+      "alphavintage": {
+        "database": "var/trading_alphavintage.sqlite",
+        "database_exists": true,
+        "days_expected": 11,
+        "days_marked": 11,
+        "days_since_go_live": 15,
+        "gap_rate": 0.18181818181818182,
+        "legitimate_absence_days": [
+          "2026-08-09",
+          "2026-08-16"
+        ],
+        "legitimate_absences": 2,
+        "longest_consecutive_gap": 1,
+        "real_gap_days": [
+          "2026-08-10",
+          "2026-08-17"
+        ],
+        "real_gaps": 2,
+        "trades_24_7": false
+      },
+      "managed_futures": {
+        "database": "var/trading_managed_futures.sqlite",
+        "database_exists": true,
+        "days_expected": 11,
+        "days_marked": 11,
+        "days_since_go_live": 15,
+        "gap_rate": 0.18181818181818182,
+        "legitimate_absence_days": [
+          "2026-08-09",
+          "2026-08-16"
+        ],
+        "legitimate_absences": 2,
+        "longest_consecutive_gap": 1,
+        "real_gap_days": [
+          "2026-08-10",
+          "2026-08-17"
+        ],
+        "real_gaps": 2,
+        "trades_24_7": false
+      }
+    },
+    "systemic_gap_days": [
+      "2026-08-10"
+    ],
+    "systemic_note": "Days missing on EVERY sleeve are systemic \u2014 the tick did not run or did not mark \u2014 rather than a fault in any one sleeve.",
+    "threshold_basis": "Declared, not fitted. A threshold derived from today's gap rate would pass whatever the gap rate happens to be, which is not a threshold.",
+    "what_this_does_not_measure": "Whether a mark is CORRECT \u2014 only whether one exists. A sleeve marking the same equity every day would show a perfect continuity record and a frozen curve. That is the publish gate's job (check_published_state), not this one's.",
+    "worst_gap_rate": 0.2
   },
   "live_covariance_memory": {
     "claim_boundary": "A property of the ESTIMATOR, derived from its exact weighting and verified against the production function by unit impulse. Reads no market data, runs no backtest, registers no hypothesis identity, and recommends no halflife. 0 trials.",
@@ -17668,6 +18519,79 @@
       "hits_with_no_pro_rata_language_at_all": 6,
       "shipped_hits": 16
     }
+  },
+  "reachability_harness": {
+    "claim_boundary": "Reads frozen feasibility artifacts read-only. Registers no hypothesis identity, opens no return data, and authorises no candidate. 0 trials.",
+    "families": [
+      {
+        "ceiling_basis": "documents containing a pro-rata token in ANY written form \u2014 hyphenated, non-breaking, or spaced. A detector cannot find language that is absent.",
+        "ceiling_rate": 0.11224489795918367,
+        "family": "spin_off_dislocation",
+        "gate": "pro_rata_distribution_language_rate_gte_0_30",
+        "headroom_over_threshold": -0.1877551020408163,
+        "measured_rate": 0.16326530612244897,
+        "strata": {},
+        "strata_clearing_alone": [],
+        "threshold": 0.3,
+        "verdict": "GATE_UNREACHABLE_BY_DETECTOR_REPAIR",
+        "what_the_verdict_means": "A perfect detector reaches less than the gate requires. The shortfall is what the documents contain, not what the parser reads, and no extraction work will close it. The identity needs a redesign that names the document carrying the evidence before it names a threshold.",
+        "\u26a0\ufe0f_if_blended": null
+      },
+      {
+        "ceiling_basis": "the naming rate among documents that genuinely carry concentration language. An issuer may disclose a material customer concentration without naming the customer, and most do.",
+        "ceiling_rate": 0.37142857142857144,
+        "family": "customer_supplier_propagation",
+        "gate": "strict_named_document_rate_at_least_50pct",
+        "headroom_over_threshold": -0.12857142857142856,
+        "measured_rate": 0.35333333333333333,
+        "strata": {},
+        "strata_clearing_alone": [],
+        "threshold": 0.5,
+        "verdict": "GATE_UNREACHABLE_BY_DETECTOR_REPAIR",
+        "what_the_verdict_means": "A perfect detector reaches less than the gate requires. The shortfall is what the documents contain, not what the parser reads, and no extraction work will close it. The identity needs a redesign that names the document carrying the evidence before it names a threshold.",
+        "\u26a0\ufe0f_if_blended": null
+      },
+      {
+        "ceiling_basis": "not applicable \u2014 the filing either exists or it does not, so there is no detector to improve. The question is which population the threshold was written for.",
+        "ceiling_rate": 0.6702290076335878,
+        "family": "merger_arbitrage",
+        "gate": "prior_item101_8k_rate_gte_0_80",
+        "headroom_over_threshold": -0.1297709923664122,
+        "measured_rate": 0.6702290076335878,
+        "strata": {
+          "DEFM14A": {
+            "n": 1523,
+            "rate": 0.613263296126067
+          },
+          "SC 14D9": {
+            "n": 442,
+            "rate": 0.8665158371040724
+          }
+        },
+        "strata_clearing_alone": [
+          "SC 14D9"
+        ],
+        "threshold": 0.8,
+        "verdict": "GATE_BLENDS_TWO_POPULATIONS",
+        "what_the_verdict_means": "One threshold is applied across populations that do not share the obligation it tests. The blended rate describes none of them.",
+        "\u26a0\ufe0f_if_blended": "A subgroup clearing the gate is NOT permission to narrow the universe. Selecting it after observing that it passes is selection, and its rate is then in-sample for that decision and cannot be its evidence. It is a REDESIGN needing its own pre-registration with threshold and universe fixed before anything is measured again."
+      }
+    ],
+    "how_to_add_a_family": "Write a probe returning a Reachability with its own ceiling_rate and ceiling_basis, register it, and add its expected verdict to PUBLISHED_VERDICTS if it has already been worked by hand. The harness refuses to run if any registered family stops reproducing its published answer.",
+    "purpose": "Run BEFORE a protocol is written for any family. A near-miss gate invites exactly one move \u2014 widen the detector until the number clears \u2014 which is tuning a measurement to agree with a target. This asks the opposite question first.",
+    "reproduces_published_answers": true,
+    "schema": "canli.alphac-reachability-harness.v1",
+    "verdict_meanings": {
+      "GATE_ALREADY_CLEARS": "The gate already passes as measured; nothing to reach.",
+      "GATE_BLENDS_TWO_POPULATIONS": "One threshold is applied across populations that do not share the obligation it tests. The blended rate describes none of them.",
+      "GATE_UNREACHABLE_BY_DETECTOR_REPAIR": "A perfect detector reaches less than the gate requires. The shortfall is what the documents contain, not what the parser reads, and no extraction work will close it. The identity needs a redesign that names the document carrying the evidence before it names a threshold.",
+      "REACHABLE_BY_DETECTOR_REPAIR": "A perfect detector would clear the gate, so the shortfall IS extraction and the work is worth doing. This is the only verdict that justifies parser effort."
+    },
+    "what_does_not_generalise": "The CEILING PROBE. What a perfect detector would find is a property of the mechanism, so every family must supply its own; the harness makes that a required argument rather than inventing one. A harness that guessed the ceiling would be a rubber stamp.",
+    "what_generalises": [
+      "the decision logic: measured rate vs gate vs ceiling, and the verdict that follows",
+      "the heterogeneity test: whether a blended rate hides a subgroup that clears alone"
+    ]
   },
   "sleeve_admission_contract": {
     "contract": {
@@ -18103,7 +19027,7 @@
             "by_file": {}
           },
           "tests": {
-            "python_files": 264,
+            "python_files": 267,
             "violations": 0,
             "files_with_violations": 0,
             "safe_autofixes_available": 0,
@@ -18112,7 +19036,7 @@
             "by_file": {}
           },
           "historical_scripts": {
-            "python_files": 181,
+            "python_files": 188,
             "violations": 363,
             "files_with_violations": 52,
             "safe_autofixes_available": 110,
@@ -18267,9 +19191,9 @@
           "scripts/vps/collect_venues.py": "54870d67f99fa677486b71eae1e0ca4f6579b29e6b9facba6f37f4bdee523b69",
           "scripts/vps/stale_lock.py": "f40b992005f87b733ea6e71a447219a55d8200585c388ac06e13394cb0195a54"
         },
-        "content_hash": "sha256:0b0582a35c6b638500ed9e09eba2bc38d39b2bbfa004e68bab8d58b8207da7fd"
+        "content_hash": "sha256:2d28f989f18ba897abae2f5d457afc75934277c4ba9bd3f030c51ac0d17e610e"
       },
-      "source_sha256": "02131902639022ad3edd756cb99c2486aad20dfbefbcb79f62666181eea29dd3",
+      "source_sha256": "434f89123ca68fd470f144296ac2f5b26778ebb56c03e87f489bafe4773d8ab6",
       "public_path": "/glassbox/lint_debt_contract.json",
       "book_path": "/research/engineering-quality.md",
       "source_path": "artifacts/engineering/lint_debt_contract.json"
@@ -18719,6 +19643,6 @@
       "source_path": "artifacts/engineering/options_execution_contract.json"
     }
   },
-  "generated_at": "2026-08-21T20:42:30.829043+00:00",
-  "content_hash": "sha256:8534f7e64ef1a1fb04dec71a6563b22055e20dc7b8265e1903ef6cf0d422dc3d"
+  "generated_at": "2026-08-21T23:25:36.952265+00:00",
+  "content_hash": "sha256:58d1f7bb096d050937b76a337c4e4bcbadc17183acf30c24e262688766c42530"
 }
