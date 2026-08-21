@@ -757,6 +757,87 @@ function bindFrontier(d) {
     Number.isFinite(gates.average_pairwise_correlation_max) ? `<= ${gates.average_pairwise_correlation_max.toFixed(2)}` : null,
   );
 
+  // The breadth arithmetic, published beside the gate it describes. For most of this programme's
+  // life the page showed a portfolio objective and a correlation ceiling next to each other and
+  // said nothing about the relationship between them -- and the relationship was the whole story:
+  // the ceiling then in force capped the book BELOW the objective at every plausible quality. The
+  // verdict below is read from the bundle, never asserted here, so it flips on its own when the
+  // arithmetic changes.
+  // Look a value up by its numeric suffix rather than by rebuilding the key as a string. The
+  // contract's keys are written from Python floats ("..._for_2.0"); reconstructing that suffix in
+  // JavaScript makes the page depend on two languages formatting a float identically, which they
+  // do not for 2.25 or 1.0. Matching on the parsed number cannot drift.
+  const byTarget = (obj, prefix, value) => {
+    if (!obj || !Number.isFinite(value)) return null;
+    const hit = Object.keys(obj).find(
+      (key) => key.startsWith(prefix) && Number.parseFloat(key.slice(prefix.length)) === value,
+    );
+    return hit ? obj[hit] : null;
+  };
+  const frontier = discovery.frontier_arithmetic;
+  const ceilingWrap = $("#frontierCeiling");
+  if (ceilingWrap && frontier && frontier.book_sharpe_ceiling_at_the_gate) {
+    const n = frontier.target_sleeve_count;
+    const gate = frontier.correlation_gate_in_force;
+    const ceiling = frontier.book_sharpe_ceiling_at_the_gate.s_bar_traded_basis;
+    const quality = frontier.quality_precondition_at_the_gate || {};
+    const measured = quality.s_bar_measured_traded_basis;
+    const low = Array.isArray(target) && target.length === 2 ? target[0] : null;
+    const high = Array.isArray(target) && target.length === 2 ? target[1] : null;
+    const permits = frontier.gate_permits_objective_floor === true;
+
+    if (Number.isFinite(ceiling) && Number.isFinite(low)) {
+      ceilingWrap.hidden = false;
+      setHook(
+        "fa",
+        "headline",
+        permits
+          ? `The gate now reaches ${low.toFixed(1)}.`
+          : `The gate alone reaches ${ceiling.toFixed(2)}, not ${low.toFixed(1)}.`,
+      );
+      setHook(
+        "fa",
+        "identity",
+        `A book's Sharpe is bounded by its own arithmetic: S = s\u0304 \u00d7 \u221a(N / (1 + (N \u2212 1)\u03c1\u0304)). Every figure below follows from that identity at ${n} sleeves and the correlation ceiling actually in force, and is rebuilt from the contract each time it is published.`,
+      );
+      setHook("fa", "ceiling", `${ceiling.toFixed(2)} at ${n} sleeves`);
+      setHook("fa", "floor", low.toFixed(1));
+      setHook("fa", "verdict", permits ? "Yes" : "No \u2014 not on its own");
+      const qualityNeeded = byTarget(quality, "s_bar_required_for_", low);
+      if (Number.isFinite(qualityNeeded)) {
+        setHook(
+          "fa",
+          "quality",
+          `s\u0304 >= ${qualityNeeded.toFixed(3)} (measured ${Number.isFinite(measured) ? measured.toFixed(3) : "--"})`,
+        );
+      }
+      const required = (frontier.correlation_required_at_measured_quality || {}).traded_basis || {};
+      const rhoLow = byTarget(required, "rho_bar_required_for_", low);
+      const rhoHigh = byTarget(required, "rho_bar_required_for_", high);
+      if (Number.isFinite(rhoLow)) {
+        setHook(
+          "fa",
+          "rho",
+          Number.isFinite(rhoHigh)
+            ? `\u03c1\u0304 <= ${rhoLow.toFixed(4)} for ${low.toFixed(1)}, ${rhoHigh.toFixed(4)} for ${high.toFixed(1)}`
+            : `\u03c1\u0304 <= ${rhoLow.toFixed(4)}`,
+        );
+      }
+      if (Number.isFinite(frontier.psd_floor_at_target_n)) {
+        setHook(
+          "fa",
+          "psd",
+          `\u03c1\u0304 >= ${frontier.psd_floor_at_target_n.toFixed(4)} at ${n} sleeves`,
+        );
+      }
+      setHook(
+        "fa",
+        "reading",
+        `${frontier.honest_reading || ""} The gate in force is \u03c1\u0304 <= ${Number.isFinite(gate) ? gate.toFixed(2) : "--"}.`,
+      );
+    }
+  }
+
   const probeWrap = $("#frontierProbeResults");
   const probes = Array.isArray(d.active_probe_results) ? d.active_probe_results : [];
   if (probeWrap && probes.length) {

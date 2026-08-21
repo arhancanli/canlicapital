@@ -51,16 +51,16 @@
     "schema": "glassbox.trial-ledger/2",
     "claim_boundary": "This ledger proves what was measured and how selection N is counted. It does not prove that any identity is profitable, independent, or admissible.",
     "accounting_equation": "immutable execution records - window-only remeasurements - cross-profile duplicate identities = distinct union hypothesis identities",
-    "immutable_execution_records": 230,
-    "distinct_config_hashes": 230,
-    "window_only_remeasurements": 68,
+    "immutable_execution_records": 231,
+    "distinct_config_hashes": 231,
+    "window_only_remeasurements": 69,
     "cross_profile_duplicate_identities": 0,
     "distinct_hypothesis_identities": 162,
     "selection_statistics": {
       "unit": "first_immutable_record_per_hypothesis",
       "n_hypotheses": 162,
       "sharpe_variance": 0.0009605968552560768,
-      "audit_raw_record_sharpe_variance": 0.0007323769859770803,
+      "audit_raw_record_sharpe_variance": 0.0007298247125209039,
       "interpretation": "Operational window remeasurements remain public but cannot alter selection N or selection V[SR]."
     },
     "ledger_profiles": 4,
@@ -112,11 +112,11 @@
       {
         "profile": "var_mf",
         "source_path": "var_mf/experiments.jsonl",
-        "immutable_execution_records": 45,
-        "distinct_config_hashes": 45,
+        "immutable_execution_records": 46,
+        "distinct_config_hashes": 46,
         "hypothesis_identities": 13,
-        "window_only_remeasurements": 32,
-        "latest_recorded_at": "2026-08-20T05:30:18.376000+00:00"
+        "window_only_remeasurements": 33,
+        "latest_recorded_at": "2026-08-21T05:30:30.254000+00:00"
       },
       {
         "profile": "var_sharadar",
@@ -246,8 +246,8 @@
         }
       }
     },
-    "generated_at": "2026-08-20T16:25:38.018702+00:00",
-    "content_hash": "sha256:090c5dfb0dc06cb174e77333a45161bc47823cb0b75a254281201bc558da2bc1"
+    "generated_at": "2026-08-21T13:06:08.075228+00:00",
+    "content_hash": "sha256:b93291ab7a0b45ee9f0b9a4ae5e8d82506abc4b042cba5e18b507da1e72ad729"
   },
   "factor_research": {
     "summary": "Most ideas die. We publish every test with its real net-of-cost Sharpe and its real Rank-IC. 2 kept, 8 killed. The Rank-IC is the cross-sectional information coefficient with a Newey-West t-stat; the net Sharpe is the purged walk-forward result after the conservative cost model.",
@@ -718,16 +718,16 @@
   "track_record": {
     "summary": "The live paper record begins at go-live and is shown only as it accrues. We publish no return until it is earned in the open.",
     "go_live_date": "2026-08-07",
-    "live_days_accrued": 13,
+    "live_days_accrued": 14,
     "live_status": "LIVE",
     "live_source": "go-live seed (no realized marks have accrued yet)",
     "live_nav_baseline_usd": 100000.0,
-    "live_nav_current_usd": 99154.48,
-    "live_return_pct": -0.8455,
+    "live_nav_current_usd": 99058.64,
+    "live_return_pct": -0.9414,
     "research_curve_label": "SIMULATION (research backtest, NOT realized trading)",
     "research_curve_start": {
       "date": "2023-07-07",
-      "nav_usd": 100138.46
+      "nav_usd": 100138.45
     },
     "research_curve_end": {
       "date": "2026-06-01",
@@ -751,7 +751,7 @@
       "CORRECTION 2026-07-05 \u2014 the crypto sleeve was signal-dead, not 'carry compressed'. From go-live (06-23) to 07-05 AlphaForge held cash and we published that funding carry was compressed. An internal audit found the true cause: a wiring bug blended equity-fundamental alphas (undefined on crypto) into the live signal, invalidating it every cycle \u2014 the validated carry-only configuration was never what ran live. Fixed same day (the loop now runs the exact blessed walk-forward config: carry_fund_21, weekly rebalance, with per-cycle signal-health logging so a dead signal can never masquerade as a quiet hold again). The $100k cash equity curve was genuine; the published EXPLANATION was wrong. Per our append-only posture this correction is added to the record, not swapped into it.",
       "We red-team our own record. On 2026-06-27 our publishing pipeline emitted a future-dated (2026-06-29) paper mark that briefly reached the public sites and was anchored into seq 0 of the signed transparency chain. We caught it the same day, added a fail-closed guard, and appended the corrected seq 1 \u2014 the append-only chain shows BOTH, because we don't get to delete our mistakes. That is the trust system working, not failing.",
       "AlphaTrend (managed-futures trend) was the FIRST sleeve we took genuinely live: its 17-ETF book transacts on Alpaca paper, not in a simulator. We published DSR 0.83 for it and called it the first sleeve to CLEAR multiple-testing deflation, statistically real rather than a backtest fluke. RE-DERIVED 2026-08-07 at honest N=133 and pooled V[SR]=7.96e-04, its DSR is 0.000: the LOWEST of the six sleeves we have measured, not the highest. The old 0.83 rested on a variance input roughly 80x too small and a trial count of 5 while its siblings were graded at N=101, so it was marked on an easier exam and then called the soundest. Net Sharpe 0.25 over its full 5,179-day history. It is folded into ALPHAC at equal quarters for MEASURED drawdown reduction, not for a demonstrated edge. The screen suggested 0.73; the honest engine says 0.33 on the live window. We published every one of those numbers.",
-      "STRUCTURAL VERDICT 2026-08-05 \u2014 the crypto sleeve's venue unreachability is STRUCTURAL, and we said we would say so. The 2026-07-20 note above promised: 'if it proves persistent it is a STRUCTURAL problem for a sleeve built on a single venue, and we will say that too.' It has proved persistent, so here is the number we had not put on the record until now: across its entire live history the hourly loop has completed 486 of 1257 expected cycles \u2014 an uptime of 38.7%. It has been dark for roughly 772 hours of a 52.4-day record, with 8 separate outages longer than a day and a longest single outage of 165 hours. As of this publish it has been dark 0 hours; its last observed cycle was 2026-08-20 16:00 UTC. WHAT THIS MEANS, stated plainly rather than buried: this sleeve carries 40% of the flagship's weight, so for most of the forward record our largest single position has not been managed. The published curve is not wrong \u2014 we never roll forward a mark we did not observe, so the sleeve's line simply stops when the venue does \u2014 but a 40%-weight sleeve that is dark most of the time is not meaningfully 'live', and describing it as live without this number attached would have been a half-truth. The forward track record is the whole basis on which this book asks to be believed, and it is being accrued on a book whose biggest sleeve is mostly absent. WHAT WE ARE DOING: the diagnosis is unchanged and venue-specific (the general internet and our equity broker respond normally from the same machine while the exchange endpoint fails on connect). Two fixes are real \u2014 hosting the loop somewhere with unobstructed access, and removing the single-venue dependency altogether by adding a second exchange. We flag the first honestly: our own deploy runbook records that reaching a venue from a different region is a COMPLIANCE decision and not merely an operations one, so it will not be done as a silent infrastructure tweak. Until one of those lands, read this sleeve's contribution to the live record as what it is \u2014 38.7% of the intended trading.",
+      "STRUCTURAL VERDICT 2026-08-05 \u2014 the crypto sleeve's venue unreachability is STRUCTURAL, and we said we would say so. The 2026-07-20 note above promised: 'if it proves persistent it is a STRUCTURAL problem for a sleeve built on a single venue, and we will say that too.' It has proved persistent, so here is the number we had not put on the record until now: across its entire live history the hourly loop has completed 506 of 1278 expected cycles \u2014 an uptime of 39.6%. It has been dark for roughly 773 hours of a 53.3-day record, with 8 separate outages longer than a day and a longest single outage of 165 hours. As of this publish it has been dark 1 hours; its last observed cycle was 2026-08-21 12:00 UTC. WHAT THIS MEANS, stated plainly rather than buried: this sleeve carries 40% of the flagship's weight, so for most of the forward record our largest single position has not been managed. The published curve is not wrong \u2014 we never roll forward a mark we did not observe, so the sleeve's line simply stops when the venue does \u2014 but a 40%-weight sleeve that is dark most of the time is not meaningfully 'live', and describing it as live without this number attached would have been a half-truth. The forward track record is the whole basis on which this book asks to be believed, and it is being accrued on a book whose biggest sleeve is mostly absent. WHAT WE ARE DOING: the diagnosis is unchanged and venue-specific (the general internet and our equity broker respond normally from the same machine while the exchange endpoint fails on connect). Two fixes are real \u2014 hosting the loop somewhere with unobstructed access, and removing the single-venue dependency altogether by adding a second exchange. We flag the first honestly: our own deploy runbook records that reaching a venue from a different region is a COMPLIANCE decision and not merely an operations one, so it will not be done as a silent infrastructure tweak. Until one of those lands, read this sleeve's contribution to the live record as what it is \u2014 39.6% of the intended trading.",
       "CORRECTION 2026-08-06 \u2014 our crypto carry sleeve is a strategy that earns funding, and its LIVE paper account has never once booked funding. We found this ourselves and are publishing it before the fix rather than after. The mechanism, stated plainly so anyone can check it: funding is applied in exactly one place in this codebase, Ledger.apply_funding, and it is called from exactly one call site, the BACKTEST engine. The live paper broker's cash moves on one line and only one line, a fill: cash - qty*price - fee. No funding cashflow can reach the live account by any path. The size of what is missing is not marginal. Our committed walk-forward artifact for this sleeve reports funding_net of $19,500 against a total return of $38,236 on a $100k book over 2022-02 to 2026-06: about HALF of everything this strategy has ever earned is the funding it is designed to harvest. Removing it takes the sleeve's backtested Sharpe from 0.653 to roughly 0.30. So AlphaForge's live record has been running against a hard ceiling of about half its validated Sharpe, and every live number we have published for this sleeve should be read in that light. What we are NOT doing: we are not restating the historical live curve. The marks we published were the marks we observed, and this record is append-only, so the fix applies FORWARD from the day it ships and the understated period stays visible in the chain. One number we are deliberately NOT putting on the record yet: our internal estimate of what funding would have added over the live window is dominated by a single name that redenominated roughly 100x inside the window, which makes the naive figure meaningless. We would rather publish no number than a number we cannot stand behind, so that one waits for the corrected accounting. This is the fourth time a defect in our plumbing, not our strategy, has moved a published number, and the lesson we wrote down in July holds: a fix is not done until a test pins the path that actually runs.",
       "CORRECTION 2026-08-06 \u2014 a factual claim in our 2026-07-20 incident note above is now false and we are marking it rather than editing it. That note said 'Bybit responds' as evidence the Binance failure was venue-specific. Re-measured from the same network on 2026-08-06: Bybit does NOT respond, and neither do Kraken or Deribit. Binance, Bybit and Kraken all fail on connection reset in under a tenth of a second and Deribit times out. The conclusion the original note drew is unchanged and if anything strengthened, since the block is clearly broader than one venue, but the supporting fact it cited is no longer true and a reader checking our work today would find it wrong. One venue does answer: OKX responds normally and serves funding rates, 436 perpetual instruments and hourly candles. We are evaluating it, and we note in advance that moving venue is not a configuration change: the same carry signal computed on OKX has a cross-sectional rank correlation of only about 0.64 with the Binance one, so it would be a materially different strategy wearing the same name, and we will not splice the two curves together and call it one continuous record.",
       "FIXED 2026-08-06 \u2014 the funding gap disclosed above is now closed in the live path, forward only. Earlier today we published that our crypto carry sleeve had never once booked funding in live paper, which is roughly half of everything that strategy has ever earned. That is fixed: the live broker gained a funding path with the identical sign convention the backtest ledger uses (payment = -position * mark * rate, longs pay shorts on a positive rate), and the live loop now settles every stored funding event for the window just closed, before the strategy re-decides, so a settlement is charged against the position that was actually held through it. It is point-in-time by construction: the reader filters on each event's stored publication time, never on the settlement time, so a rate not yet knowable at the moment of the cycle stays invisible. Nine tests pin the running path rather than the intention, including one that asserts the live broker and the backtest ledger return identical figures for the same event, because two conventions would be worse than none. Three things we are deliberately NOT doing. We are not restating the historical curve: the marks we published are the marks we observed, the understated period stays in the signed chain, and the fix applies from today. We are not claiming an improvement yet: the sleeve has been dark on venue unreachability since 2026-08-03, so this books nothing until it trades again, and any future gain will show up in the forward record or not at all. And we are not putting a number on what it would have earned over the live window, because our own measurement of that is dominated by a single instrument that redenominated roughly 100x inside the window, which makes the figure meaningless. We would rather publish no number than one we cannot stand behind.",
@@ -922,10 +922,10 @@
       "walk_forward_only": true,
       "deflated_sharpe_min": 0.95,
       "pbo_max": 0.2,
-      "average_pairwise_correlation_max": 0.15,
+      "average_pairwise_correlation_max": 0.0,
       "pairwise_correlation_max": 0.35,
       "stressed_pairwise_correlation_max": 0.5,
-      "minimum_oos_observations": 252,
+      "minimum_oos_observations": 756,
       "requires_capacity_curve": true,
       "requires_kill_criteria": true
     },
@@ -1834,6 +1834,41 @@
         "reason": "The one-shot petroleum proxy was exceptionally orthogonal but had strongly negative OOS returns, failed both standalone product checks, failed mean-zero and leave-one-year-out book stability, and was severely capacity-constrained by UGA. The sign is not inverted and the parameters are not retuned."
       }
     ],
+    "admission_contract_schema": "canli.alphac-sleeve-admission-contract.v6",
+    "admission_contract_public_path": "/glassbox/sleeve_admission_contract.json",
+    "frontier_arithmetic": {
+      "claim_boundary": "Derived from the governing identity alone. Reads no data, runs no backtest, spends no hypothesis, and claims no candidate's correlation, sign or return.",
+      "identity": "S_book = s_bar * sqrt(N / (1 + (N - 1) * rho_bar))",
+      "target_sleeve_count": 14,
+      "psd_floor_at_target_n": -0.07692307692307693,
+      "psd_floor_note": "Average pairwise correlation cannot fall below -1/(N-1) for any real correlation matrix. At fourteen sleeves that floor is far from binding, which is why a negative average is arithmetically available here and is not at 250 sleeves.",
+      "correlation_gate_in_force": 0.0,
+      "book_sharpe_ceiling_at_the_gate": {
+        "s_bar_traded_basis": 1.979336757603415,
+        "s_bar_four_curve_basis": 1.736129027463109
+      },
+      "gate_permits_objective_floor": false,
+      "gate_permits_objective_ceiling": false,
+      "quality_precondition_at_the_gate": {
+        "note": "What the tightened correlation gate alone does NOT buy. At the gate exactly, reaching each end of the objective band requires at least this average standalone Sharpe across fourteen sleeves.",
+        "s_bar_required_for_2.0": 0.5345224838248488,
+        "s_bar_required_for_2.5": 0.6681531047810609,
+        "s_bar_measured_traded_basis": 0.529,
+        "s_bar_measured_four_curve_basis": 0.464
+      },
+      "correlation_required_at_measured_quality": {
+        "note": "The other route to the same place: hold quality where it is measured today and read off the average pairwise correlation each end of the band demands.",
+        "traded_basis": {
+          "rho_bar_required_for_2.0": -0.001581269230769229,
+          "rho_bar_required_for_2.5": -0.02870432
+        },
+        "four_curve_basis": {
+          "rho_bar_required_for_2.0": -0.018958769230769223,
+          "rho_bar_required_for_2.5": -0.039825919999999994
+        }
+      },
+      "honest_reading": "Tightening the correlation ceiling from 0.15 to 0.00 removes a ceiling that sat BELOW the objective at every plausible quality, which is why the v4 gate could not have produced the objective at any sleeve count. It does not on its own deliver the objective. At the gate exactly, fourteen sleeves of today's measured quality reach the figure recorded above, and the remaining distance has to be bought with per-sleeve quality, genuinely negative correlation, or both. Publishing this is the point: a target sitting beside a gate that forbids it is not a stretch goal."
+    },
     "source_path": "config/sleeve_discovery.json"
   },
   "sleeve_atlas": {
@@ -17040,12 +17075,12 @@
       ],
       "source_sha256": {
         "registry": "6a54ef0c0bda0d1353b1fa8175ab900313b31594084cc5c8810b4de069ef3e04",
-        "kill_ledger": "a40ebbb0acc80d1463bc3379aed25fd32c0c4bed11d527e2a382d0c54a168f7c",
-        "current_book": "775465c29720bd4e2a3cec7e171f5c9b7404d0936caf0b3864754285e55e2c19",
+        "kill_ledger": "d1b5097aeb4c5d63f584b4fb6afe986086207bed790dd9336f539550005faf6e",
+        "current_book": "cf68fe7a4a1c2951d94642c2fcd1ca277a84ba286ee23bcf81ef168f4f71d2a3",
         "discovery": "654f831e3ea4122437e5c48f066d6d37ba6cbcf8d1c7119395d104c5aa6cc225"
       },
-      "generated_at": "2026-08-20T16:25:35.411025+00:00",
-      "content_hash": "sha256:ba6b5801656cf29d4ef6869693ae0af26978cc52fb29365188285ed1ccbcb538"
+      "generated_at": "2026-08-21T13:04:42.590879+00:00",
+      "content_hash": "sha256:caf8c2d393468ca8177ee8ab15c77582d4fbbe465705c1974007913762d3ffd5"
     },
     "atlas_public_path": "/glassbox/sleeve_atlas.json",
     "audit_public_path": "/glassbox/sleeve_atlas_audit.json",
@@ -17056,8 +17091,8 @@
   },
   "sleeve_admission_contract": {
     "contract": {
-      "schema": "canli.alphac-sleeve-admission-contract.v4",
-      "evidence_checks_per_candidate": 75,
+      "schema": "canli.alphac-sleeve-admission-contract.v6",
+      "evidence_checks_per_candidate": 85,
       "objective": {
         "target_total_sleeves": 14,
         "minimum_new_sleeves": 10,
@@ -17066,18 +17101,23 @@
           2.5
         ],
         "portfolio_max_drawdown_target": 0.11,
-        "targets_are_admission_evidence": false
+        "targets_are_admission_evidence": false,
+        "portfolio_max_drawdown_statistic": "expected_maximum_drawdown",
+        "portfolio_p95_max_drawdown_is_gated": false,
+        "portfolio_p95_max_drawdown_must_be_published": true,
+        "average_pairwise_correlation_objective": -0.03,
+        "average_pairwise_correlation_objective_note": "An objective, not a gate. -0.03 is the average pairwise correlation at which fourteen sleeves of measured quality reach 2.5. Thresholds are gates and live in 'thresholds'; anything that is not enforced must not sit there wearing a gate's costume."
       },
       "thresholds": {
-        "minimum_oos_observations": 252,
+        "minimum_oos_observations": 756,
         "minimum_stressed_oos_observations": 63,
-        "net_sharpe_min": 0.4,
-        "stressed_sharpe_min": 0.4,
-        "newey_west_t_min": 2.0,
+        "net_sharpe_min": 0.15,
+        "stressed_sharpe_min": 0.15,
+        "newey_west_t_min": 0.25,
         "deflated_sharpe_min": 0.95,
         "pbo_max": 0.2,
         "absolute_beta_max": 0.1,
-        "average_pairwise_correlation_max": 0.15,
+        "average_pairwise_correlation_max": 0.0,
         "ordinary_pairwise_correlation_max": 0.35,
         "stressed_pairwise_correlation_max": 0.5,
         "pairwise_correlation_upper_95_max": 0.35,
@@ -17086,10 +17126,18 @@
         "minimum_leave_one_period_out_book_sharpe_delta_exclusive": 0.0,
         "book_max_drawdown_delta_max": 0.01,
         "book_expected_shortfall_delta_max": 0.0,
-        "capacity_usd_min": 5000000,
+        "capacity_usd_min": 500000,
         "capacity_curve_min_points": 3,
         "capacity_minimum_stressed_fill_ratio": 0.95,
-        "minimum_execution_scenarios_per_dimension": 3
+        "minimum_execution_scenarios_per_dimension": 3,
+        "book_sharpe_delta_lower_95_min_exclusive": 0.0,
+        "book_deflated_sharpe_min": 0.95,
+        "covariance_halflife_days_max": 21,
+        "realized_vol_halflife_days_max": 240,
+        "book_expected_max_drawdown_max": 0.11,
+        "realized_vol_leg_must_be_unlevered": true,
+        "newey_west_t_ratio_min": 0.6,
+        "average_pairwise_correlation_upper_95_max": 0.1
       },
       "required_lineage": [
         "preregistration_sha256",
@@ -17121,7 +17169,9 @@
         "tail_co_loss",
         "execution_replay",
         "capacity_stress",
-        "canonical_diversification_report"
+        "canonical_diversification_report",
+        "book_level_deflation",
+        "overlay_replay"
       ],
       "execution_dimensions": [
         "commissions",
@@ -17218,9 +17268,100 @@
         "single_identity_value_must_be_null": true,
         "never_report_not_defined_as_zero": true
       },
-      "claim_boundary": "Passing this contract makes a result technically eligible for an explicit admission decision. It does not guarantee a sleeve, future performance, the target Sharpe, or the target drawdown. Point estimates cannot override confidence-bound, crisis-conditional, tail-loss, execution-evidence, or capacity-reconciliation failures."
+      "claim_boundary": "Passing this contract makes a result technically eligible for an explicit admission decision. It does not guarantee a sleeve, future performance, the target Sharpe, or the target drawdown. Point estimates cannot override confidence-bound, crisis-conditional, tail-loss, execution-evidence, or capacity-reconciliation failures. v6 additionally refuses to load if its own significance floors cannot all be satisfied at once, gates the average pairwise correlation on its upper confidence bound as well as its point estimate, and publishes the arithmetic relating the correlation gate to the portfolio objective -- including the distance the gate does not close.",
+      "status": "IN_FORCE",
+      "derived_from": "canli.alphac-sleeve-admission-contract.v5-proposed",
+      "rationale": "docs/design/ADMISSION_V6.md",
+      "evidence": "artifacts/analysis/frontier_14/result.json",
+      "deflation_policy": {
+        "per_sleeve_selection_unit": "family_trial_account",
+        "per_sleeve_threshold_key": "deflated_sharpe_min",
+        "book_selection_unit": "complete_union_hypothesis_identities",
+        "book_threshold_key": "book_deflated_sharpe_min",
+        "reason": "DSR deflates for the trials the selection was drawn from. A pre-registered, direction-locked candidate in a new family was not selected from other families' trials. The published claim is the book's, so the book carries the full union.",
+        "book_deflation_is_strictly_additional": true
+      },
+      "overlay_policy": {
+        "mandatory_vol_target_overlay": true,
+        "implementation": "alphaforge.portfolio.overlay.vol_target",
+        "sigma_hat_rule": "max(ex_ante, realized)",
+        "annualized_vol_target": 0.1,
+        "covariance_halflife_days_max": 21,
+        "realized_vol_halflife_days_max": 240,
+        "halflife_pending_execution_costing": true,
+        "reason": "Permitted stressed pairwise correlation of 0.50 implies an expected maximum drawdown near 20% with no overlay and 16.4% with the overlay as shipped today. Correcting the realized-leg scale and shortening the covariance halflife to 21 holds it at 10.2%. The overlay, not a tighter correlation ceiling, is what holds the drawdown objective.",
+        "realized_vol_leg_must_be_unlevered": true,
+        "production_cov_halflife_today": 720,
+        "production_realized_vol_halflife_today": 240,
+        "known_defect": {
+          "site": "src/alphaforge/portfolio/strategy.py (_realized_vol_ann)",
+          "description": "The realized leg was measured on the post-overlay account equity curve while the ex-ante leg used pre-overlay optimizer weights. The book runs de-levered, so the realized leg lost max() essentially always and the fast regime detector never fired.",
+          "measured_bind_fraction_as_shipped": 0.000193,
+          "measured_bind_fraction_if_fixed": 0.817626,
+          "expected_max_drawdown_cost_at_permitted_stressed_rho": 0.0217,
+          "status": "RESOLVED in production. The realized leg is now de-levered per bar before comparison, and tests/unit/test_overlay_realized_leg_scale.py pins the caller's value rather than the function's intention."
+        },
+        "realized_vol_halflife_note": "240 is production's value and the value every sweep cell used. No shorter realized-leg halflife was tested, so none is required; this threshold bounds regression, not design.",
+        "covariance_halflife_note": "21 is the only tested covariance halflife that holds expected max drawdown at or under the objective at the permitted stressed correlation. Provisional pending execution costing.",
+        "remaining_gap_to_the_drawdown_objective": "Production still runs cov_halflife_bars=720. The measured study holds expected maximum drawdown at 10.2% only with BOTH the realized-leg scale correction (shipped) and the covariance halflife shortened to 21 (not shipped). Either alone is insufficient. The objective is an EXPECTED maximum drawdown; no tested configuration held the 95th percentile at or under 11%, and the best was 13.8%. Both figures are published."
+      },
+      "additional_required_portfolio_evidence": [
+        "book_sharpe_delta_lower_95",
+        "book_expected_max_drawdown"
+      ],
+      "frontier_arithmetic": {
+        "claim_boundary": "Derived from the governing identity alone. Reads no data, runs no backtest, spends no hypothesis, and claims no candidate's correlation, sign or return.",
+        "identity": "S_book = s_bar * sqrt(N / (1 + (N - 1) * rho_bar))",
+        "target_sleeve_count": 14,
+        "psd_floor_at_target_n": -0.07692307692307693,
+        "psd_floor_note": "Average pairwise correlation cannot fall below -1/(N-1) for any real correlation matrix. At fourteen sleeves that floor is far from binding, which is why a negative average is arithmetically available here and is not at 250 sleeves.",
+        "correlation_gate_in_force": 0.0,
+        "book_sharpe_ceiling_at_the_gate": {
+          "s_bar_traded_basis": 1.979336757603415,
+          "s_bar_four_curve_basis": 1.736129027463109
+        },
+        "gate_permits_objective_floor": false,
+        "gate_permits_objective_ceiling": false,
+        "quality_precondition_at_the_gate": {
+          "note": "What the tightened correlation gate alone does NOT buy. At the gate exactly, reaching each end of the objective band requires at least this average standalone Sharpe across fourteen sleeves.",
+          "s_bar_required_for_2.0": 0.5345224838248488,
+          "s_bar_required_for_2.5": 0.6681531047810609,
+          "s_bar_measured_traded_basis": 0.529,
+          "s_bar_measured_four_curve_basis": 0.464
+        },
+        "correlation_required_at_measured_quality": {
+          "note": "The other route to the same place: hold quality where it is measured today and read off the average pairwise correlation each end of the band demands.",
+          "traded_basis": {
+            "rho_bar_required_for_2.0": -0.001581269230769229,
+            "rho_bar_required_for_2.5": -0.02870432
+          },
+          "four_curve_basis": {
+            "rho_bar_required_for_2.0": -0.018958769230769223,
+            "rho_bar_required_for_2.5": -0.039825919999999994
+          }
+        },
+        "honest_reading": "Tightening the correlation ceiling from 0.15 to 0.00 removes a ceiling that sat BELOW the objective at every plausible quality, which is why the v4 gate could not have produced the objective at any sleeve count. It does not on its own deliver the objective. At the gate exactly, fourteen sleeves of today's measured quality reach the figure recorded above, and the remaining distance has to be bought with per-sleeve quality, genuinely negative correlation, or both. Publishing this is the point: a target sitting beside a gate that forbids it is not a stretch goal."
+      },
+      "capacity_policy": {
+        "capacity_usd_min_previous": 5000000,
+        "capacity_usd_min": 500000,
+        "reason": "A 5,000,000 USD floor per sleeve implies a 70,000,000 USD book at fourteen sleeves. It was written for a fund that does not exist yet, and it did not reject candidates uniformly: the return sources most likely to be genuinely anti-correlated with a momentum-and-carry book -- catastrophe bonds, municipal basis, freight, power, sovereign dislocation -- are structurally thin. The floor therefore selected AGAINST the diversification the objective depends on, which is the opposite of what a capacity gate is for.",
+        "what_this_does_not_relax": "The capacity CURVE, its monotonicity reconciliation, and the stressed fill-ratio floor are unchanged. A candidate must still show Sharpe decaying and cost rising with capital, and must still reconcile its reported capacity to that curve.",
+        "review_trigger": "Re-raise per sleeve when deployed capital per sleeve exceeds one fifth of this floor. Capacity is a property of the strategy, but the FLOOR is a property of the book, and a floor that outruns the book is a constraint that costs edge for nothing."
+      },
+      "significance_policy": {
+        "newey_west_t_min": 0.25,
+        "newey_west_t_min_role": "sign gate",
+        "newey_west_t_ratio_min": 0.6,
+        "newey_west_t_ratio_role": "autocorrelation-inflation gate",
+        "primary_significance_gate": "book_sharpe_delta_lower_95_min_exclusive",
+        "reason": "v4 declared net_sharpe_min 0.40, newey_west_t_min 2.0 and minimum_oos_observations 252 together. Because t is approximately Sharpe * sqrt(years), a candidate at the declared Sharpe floor needed 25 years of out-of-sample data to clear the t floor, and at the declared 252-observation minimum the pair demanded a standalone Sharpe of 2.0 -- five times the floor a reader of the config would see. v5 lowered the Sharpe floor to 0.15 and left the t floor at 2.0, raising the hidden requirement to 178 years. The t floor, not the Sharpe floor, had been doing the rejecting all along. It is now set where it does what it is for -- excluding wrong-signed and indistinguishable-from-zero results -- and load_admission_contract refuses any contract whose three significance floors cannot all be met at once, so this class of error cannot recur.",
+        "why_a_standalone_bar_is_the_wrong_instrument": "When correlation binds, standalone Sharpe does not rank a candidate's portfolio value: a Sharpe 0.25 sleeve at correlation -0.05 beats a Sharpe 0.60 sleeve at +0.30. The gate that decides admission is therefore the bootstrap LOWER bound on the book-Sharpe improvement, which prices edge and correlation together, and it is strictly harder to game than either input alone.",
+        "minimum_oos_observations_raised_from": 252,
+        "minimum_oos_observations_reason": "Raised to three years because the binding constraint of this whole programme is an average pairwise correlation, and a correlation measured over 252 observations carries a sampling error near 0.063 -- twice the size of the -0.03 effect the objective turns on. Gating a number the sample cannot resolve is not a strict gate. Paired with average_pairwise_correlation_upper_95_max, which gates the bound rather than the point estimate."
+      }
     },
-    "source_sha256": "c977a82442eb75834b7b4733a1842bccb02eca7228f2d3968343967d699a36d3",
+    "source_sha256": "2c7b9d3b6bf39ad8c8c8ccf11e0d5e2e9a13b25b792953b6faa5083e8b0ebd9d",
     "public_path": "/glassbox/sleeve_admission_contract.json",
     "source_path": "config/sleeve_admission_contract.json"
   },
@@ -17323,7 +17464,7 @@
             "by_file": {}
           },
           "tests": {
-            "python_files": 254,
+            "python_files": 258,
             "violations": 0,
             "files_with_violations": 0,
             "safe_autofixes_available": 0,
@@ -17332,11 +17473,11 @@
             "by_file": {}
           },
           "historical_scripts": {
-            "python_files": 169,
-            "violations": 364,
+            "python_files": 170,
+            "violations": 363,
             "files_with_violations": 52,
             "safe_autofixes_available": 110,
-            "unsafe_autofixes_available": 60,
+            "unsafe_autofixes_available": 59,
             "by_rule": {
               "B007": 4,
               "B023": 5,
@@ -17363,7 +17504,7 @@
               "RUF023": 1,
               "RUF034": 1,
               "RUF046": 36,
-              "RUF059": 13,
+              "RUF059": 12,
               "RUF100": 36,
               "SIM105": 2,
               "SIM115": 12,
@@ -17386,7 +17527,7 @@
               "scripts/freeze_universe_allowlist.py": 2,
               "scripts/fx_carry_screen.py": 1,
               "scripts/glassbox_export.py": 45,
-              "scripts/health_check.py": 64,
+              "scripts/health_check.py": 63,
               "scripts/ingest_sec_fundamentals.py": 2,
               "scripts/ingest_short_interest.py": 5,
               "scripts/managed_futures_screen.py": 1,
@@ -17433,7 +17574,7 @@
           "returns_evaluated": false
         },
         "source_sha256": {
-          "pyproject.toml": "3e29ac474080d46cea4c39abbcbae24ce4c903e4e8842ad5d36f6845819b270b",
+          "pyproject.toml": "d6f2e223388c97a500f4e8ee9faa5329c900f9e22a7de2ff8d7a13f9c9acf2c4",
           "scripts/analyze_breadth_acquisition.py": "3cb68af3ef082685243b07783047bf7c3de0d4c65c76097765b07fcb826b7d46",
           "scripts/analyze_feasible_frontier.py": "92934d65f1a180120cffc16f3182af5d2ebe6343d552cc9a7f9fe040eb1c9f5d",
           "scripts/analyze_sleeve_scaling.py": "fc624a3b3a301e4778dab5240f784b71de145543514c7c29f1eaf0f302c6f2f1",
@@ -17448,7 +17589,7 @@
           "scripts/freeze_universe_allowlist.py": "469edb8db010e45136263fa0909278b6e03ebe21d3a265d3f0abccd319b160d6",
           "scripts/fx_carry_screen.py": "4b67884540f35bb29214d1ec2d6ece532839b7477d5db20d711d110710a064f2",
           "scripts/glassbox_export.py": "b33908d39ba735e6f1e977e0185de096ec32d549e06bdefa6a915baaaaf4eb74",
-          "scripts/health_check.py": "6700b1106c5dcbbf3572212d543a4dc4af89277db6ec1444e4b4fbc062104fe6",
+          "scripts/health_check.py": "3d633e2c3c0f18e12e5b317e92d472b6683f13be180e534dde4082221409f6d1",
           "scripts/ingest_sec_fundamentals.py": "4e84985ece735c0099ff31f44f6d409a85a07468e5237656658733752d87afc4",
           "scripts/ingest_short_interest.py": "c2b17bd2b1de7e3b4a5efded5121cd999a1cd195be2ec0ef1677e0cb90e2f150",
           "scripts/managed_futures_screen.py": "4b3ce844e346b6d3280f76779f59a934c264f1d5e7c9698dd56f83065ea397ba",
@@ -17487,9 +17628,9 @@
           "scripts/vps/collect_venues.py": "54870d67f99fa677486b71eae1e0ca4f6579b29e6b9facba6f37f4bdee523b69",
           "scripts/vps/stale_lock.py": "f40b992005f87b733ea6e71a447219a55d8200585c388ac06e13394cb0195a54"
         },
-        "content_hash": "sha256:1a99e79abb6bd80137c6f79530c11ca01d879e5a407a301b907a2635812d552e"
+        "content_hash": "sha256:e75d2ad6c8cca073aee9d8307eba65981bea84744cfc1b6e8cd3f9cf9c6ef024"
       },
-      "source_sha256": "b3082e958dcc8d5683dc544805afc7cedb39f876b97cf1869f2f46f3f01b062a",
+      "source_sha256": "3bcbfb0dd1e74ea18eaf2889b5375b5700ebbbe3714018dcbdafc42d7950f51d",
       "public_path": "/glassbox/lint_debt_contract.json",
       "book_path": "/research/engineering-quality.md",
       "source_path": "artifacts/engineering/lint_debt_contract.json"
@@ -17939,6 +18080,6 @@
       "source_path": "artifacts/engineering/options_execution_contract.json"
     }
   },
-  "generated_at": "2026-08-20T16:25:38.034429+00:00",
-  "content_hash": "sha256:e4d8e870fa28ffd06a8e54b5de0d60b6be3c3f50592f5f856c75be8e9aa6ccc7"
+  "generated_at": "2026-08-21T13:06:08.085176+00:00",
+  "content_hash": "sha256:fe4015bc28683126cd62183b12e15678c429a38ea165bd6382619baa898d7552"
 }

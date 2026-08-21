@@ -21,10 +21,10 @@
     "walk_forward_only": true,
     "deflated_sharpe_min": 0.95,
     "pbo_max": 0.2,
-    "average_pairwise_correlation_max": 0.15,
+    "average_pairwise_correlation_max": 0.0,
     "pairwise_correlation_max": 0.35,
     "stressed_pairwise_correlation_max": 0.5,
-    "minimum_oos_observations": 252,
+    "minimum_oos_observations": 756,
     "requires_capacity_curve": true,
     "requires_kill_criteria": true
   },
@@ -932,5 +932,40 @@
       "capacity_p05_usd_at_1pct_adv": 14919.439128870974,
       "reason": "The one-shot petroleum proxy was exceptionally orthogonal but had strongly negative OOS returns, failed both standalone product checks, failed mean-zero and leave-one-year-out book stability, and was severely capacity-constrained by UGA. The sign is not inverted and the parameters are not retuned."
     }
-  ]
+  ],
+  "admission_contract_schema": "canli.alphac-sleeve-admission-contract.v6",
+  "admission_contract_public_path": "/glassbox/sleeve_admission_contract.json",
+  "frontier_arithmetic": {
+    "claim_boundary": "Derived from the governing identity alone. Reads no data, runs no backtest, spends no hypothesis, and claims no candidate's correlation, sign or return.",
+    "identity": "S_book = s_bar * sqrt(N / (1 + (N - 1) * rho_bar))",
+    "target_sleeve_count": 14,
+    "psd_floor_at_target_n": -0.07692307692307693,
+    "psd_floor_note": "Average pairwise correlation cannot fall below -1/(N-1) for any real correlation matrix. At fourteen sleeves that floor is far from binding, which is why a negative average is arithmetically available here and is not at 250 sleeves.",
+    "correlation_gate_in_force": 0.0,
+    "book_sharpe_ceiling_at_the_gate": {
+      "s_bar_traded_basis": 1.979336757603415,
+      "s_bar_four_curve_basis": 1.736129027463109
+    },
+    "gate_permits_objective_floor": false,
+    "gate_permits_objective_ceiling": false,
+    "quality_precondition_at_the_gate": {
+      "note": "What the tightened correlation gate alone does NOT buy. At the gate exactly, reaching each end of the objective band requires at least this average standalone Sharpe across fourteen sleeves.",
+      "s_bar_required_for_2.0": 0.5345224838248488,
+      "s_bar_required_for_2.5": 0.6681531047810609,
+      "s_bar_measured_traded_basis": 0.529,
+      "s_bar_measured_four_curve_basis": 0.464
+    },
+    "correlation_required_at_measured_quality": {
+      "note": "The other route to the same place: hold quality where it is measured today and read off the average pairwise correlation each end of the band demands.",
+      "traded_basis": {
+        "rho_bar_required_for_2.0": -0.001581269230769229,
+        "rho_bar_required_for_2.5": -0.02870432
+      },
+      "four_curve_basis": {
+        "rho_bar_required_for_2.0": -0.018958769230769223,
+        "rho_bar_required_for_2.5": -0.039825919999999994
+      }
+    },
+    "honest_reading": "Tightening the correlation ceiling from 0.15 to 0.00 removes a ceiling that sat BELOW the objective at every plausible quality, which is why the v4 gate could not have produced the objective at any sleeve count. It does not on its own deliver the objective. At the gate exactly, fourteen sleeves of today's measured quality reach the figure recorded above, and the remaining distance has to be bought with per-sleeve quality, genuinely negative correlation, or both. Publishing this is the point: a target sitting beside a gate that forbids it is not a stretch goal."
+  }
 }
