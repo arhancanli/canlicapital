@@ -250,8 +250,8 @@
         }
       }
     },
-    "generated_at": "2026-08-21T17:49:08.020780+00:00",
-    "content_hash": "sha256:6a7485d03da166413163416eb4af271002d885e4a0858e5f4cee927331ddc582"
+    "generated_at": "2026-08-21T18:05:36.099568+00:00",
+    "content_hash": "sha256:d246ac59944b7e52c40616b8ff4fbd079066e25602fc93a48ca2bc5cdcdaeb43"
   },
   "factor_research": {
     "summary": "Most ideas die. We publish every test with its real net-of-cost Sharpe and its real Rank-IC. 2 kept, 8 killed. The Rank-IC is the cross-sectional information coefficient with a Newey-West t-stat; the net Sharpe is the purged walk-forward result after the conservative cost model.",
@@ -17085,12 +17085,12 @@
       ],
       "source_sha256": {
         "registry": "6a54ef0c0bda0d1353b1fa8175ab900313b31594084cc5c8810b4de069ef3e04",
-        "kill_ledger": "c06b2e4950ff5e1d0418e552a62a1b8d1aaa803b581722d56d7d40d73c302101",
-        "current_book": "4c045d5cbfd98aaa769aa6e63fde8dd9490a199ea372fe96add219ebd7c528d0",
+        "kill_ledger": "848a8368e6f10193236a383a319102740d84b2104389281ed85daf19228b1ff5",
+        "current_book": "d21561f0061b9f70a571ba5866b0be26432f2ab40a272c70c06de88ef9b86ef7",
         "discovery": "654f831e3ea4122437e5c48f066d6d37ba6cbcf8d1c7119395d104c5aa6cc225"
       },
-      "generated_at": "2026-08-21T17:49:07.139366+00:00",
-      "content_hash": "sha256:09548463286f3129ea934c78bdcc8551a9f70a368bd518fb88cff97d8d233288"
+      "generated_at": "2026-08-21T18:05:35.234123+00:00",
+      "content_hash": "sha256:9dbcaf36b15116305a48cb16ccbddd7d73f660d236dbfcbe3273874ae082a433"
     },
     "atlas_public_path": "/glassbox/sleeve_atlas.json",
     "audit_public_path": "/glassbox/sleeve_atlas_audit.json",
@@ -17252,6 +17252,42 @@
         "AlphaMax",
         "AlphaTrend"
       ]
+    }
+  },
+  "spinoff_prorata_gate": {
+    "any_pro_rata_token_rate": 0.11224489795918367,
+    "claim_boundary": "A measurement of document LANGUAGE on 98 frozen Form 10 filings, every one hash-verified against the feasibility artifact. Opens no market data, registers no hypothesis identity, and proposes no change to the pre-registered threshold. 0 trials.",
+    "documents": 98,
+    "documents_containing_any_pro_rata_token": 11,
+    "false_negatives_reviewed": {
+      "count": 1,
+      "documents": [
+        "0000950123-17-006934.htm.gz"
+      ],
+      "note": "Each was read. They are preemptive-rights and similar boilerplate uses of 'pro rata share', not a spin-off distribution, so they are correct negatives for the intended meaning rather than misses."
+    },
+    "gate": "pro_rata_distribution_language_rate_gte_0_30",
+    "gate_threshold": 0.3,
+    "hash_verified_against_artifact": 98,
+    "schema": "canli.alphac-spinoff-prorata-gate.v1",
+    "shipped_detector_rate": 0.16326530612244897,
+    "tolerant_near_distribution_rate": 0.05102040816326531,
+    "verdict": "GATE_UNREACHABLE_BY_DETECTOR_REPAIR",
+    "what_this_implies": "The identity is not observable as pre-registered, which is the same classification already applied to treasury_auction_concession. The next step is an identity REDESIGN with its own pre-registration -- an initial Form 10 evidently does not carry distribution mechanics at the rate this protocol assumed, and any redesign must name the document that does before it names a threshold. Lowering the threshold on the existing protocol would be fitting the gate to the result.",
+    "why": "Only 11 of 98 documents contain a pro-rata token in ANY written form (11.2%), and only 5 contain one near a distribution reference (5.1%). The gate asks for 30%. A perfect detector therefore reaches at most 11.2%: the shortfall is not extraction, it is that this language is not in these documents. Widening the pattern until the number cleared would have been tuning a measurement to agree with a target.",
+    "\u26a0\ufe0f_the_shipped_detector_OVERSTATES_the_rate": {
+      "affected_documents": [
+        "0001193125-20-060717.htm.gz",
+        "0001213900-21-056422.htm.gz",
+        "0001445866-17-000049.htm.gz",
+        "0001709179-17-000007.HTM.gz",
+        "0001721868-20-000002.htm.gz",
+        "0001826466-20-000015.htm.gz"
+      ],
+      "cause": "PRO_RATA_PATTERN's second alternative matches 'distribut...' followed by 'holders of' or 'stockholders of' with NO pro-rata text required. So a field named pro_rata_distribution_language fires on documents that never say pro rata, and the published 0.1633 is higher than the true rate of 0.1122. The gate fails either way, and it fails harder than recorded.",
+      "documents_with_any_pro_rata_token": 11,
+      "hits_with_no_pro_rata_language_at_all": 6,
+      "shipped_hits": 16
     }
   },
   "sleeve_admission_contract": {
@@ -17669,7 +17705,7 @@
             "by_file": {}
           },
           "historical_scripts": {
-            "python_files": 176,
+            "python_files": 177,
             "violations": 363,
             "files_with_violations": 52,
             "safe_autofixes_available": 110,
@@ -17824,9 +17860,9 @@
           "scripts/vps/collect_venues.py": "54870d67f99fa677486b71eae1e0ca4f6579b29e6b9facba6f37f4bdee523b69",
           "scripts/vps/stale_lock.py": "f40b992005f87b733ea6e71a447219a55d8200585c388ac06e13394cb0195a54"
         },
-        "content_hash": "sha256:80495318208a2e5f7da0b03cbdd0d2a363c4f5d132cd22ed33af01bf2eb43643"
+        "content_hash": "sha256:37781dc04604414868fcff57aff23e5f4cc83e69b73e0bded5c32b7bb8a897f4"
       },
-      "source_sha256": "86d8b1847c0dfb6b44a76fd41752ec9add8031c358aa841a1a2841781d0c2ce0",
+      "source_sha256": "07dee448cc9881f576d2df7795ce1d009daead7c8696b40f7b9117b89c09ac74",
       "public_path": "/glassbox/lint_debt_contract.json",
       "book_path": "/research/engineering-quality.md",
       "source_path": "artifacts/engineering/lint_debt_contract.json"
@@ -18276,6 +18312,6 @@
       "source_path": "artifacts/engineering/options_execution_contract.json"
     }
   },
-  "generated_at": "2026-08-21T17:49:08.026428+00:00",
-  "content_hash": "sha256:17c70d47ab0f6db21ea25ad442c69061a1a9d27f5fdadc7a8edc4c061835e4ba"
+  "generated_at": "2026-08-21T18:05:36.103910+00:00",
+  "content_hash": "sha256:e6b71e59051dd974e34583c25f41332d10f8e8e617a223eaac4788bf5cbef2ed"
 }
