@@ -71,6 +71,7 @@ export const NAV = [
   { page: "research", label: "The research", href: "/research", anchor: "#research" },
   { page: "performance", label: "Performance", href: "/performance", anchor: "#performance" },
   { page: "progress", label: "Progress", href: "/progress", anchor: "#progress" },
+  { page: "measurements", label: "Measurements", href: "/measurements", anchor: "#measurements" },
   { page: "open", label: "Proven in the open", href: "/open", anchor: "#open" },
 ];
 
@@ -85,6 +86,7 @@ export const FOOTER_COLS = [
       { label: "The research", href: "/research", anchor: "#research" },
       { label: "Performance", href: "/performance", anchor: "#performance" },
       { label: "Progress", href: "/progress", anchor: "#progress" },
+      { label: "Every measurement", href: "/measurements", anchor: "#measurements" },
       { label: "Proven in the open", href: "/open", anchor: "#open" },
       { label: "Join the waitlist", href: "/#waitlist", anchor: "#waitlist" },
     ],

@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Ledoit wolf effective sample / Canli Capital</title>
+<meta name="description" content="Measures an approximation&#39;s error on real price data. Changes nothing, registers no hypothesis identity, and opens no return data on any untested identity. 0 trials." />
+<link rel="canonical" href="https://canlicapital.com/measurements/ledoit-wolf-effective-sample" />
+<meta name="author" content="Arhan Canli" />
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="Canli Capital" />
+<meta property="og:title" content="Ledoit wolf effective sample / Canli Capital" />
+<meta property="og:description" content="Measures an approximation&#39;s error on real price data. Changes nothing, registers no hypothesis identity, and opens no return data on any untested identity. 0 trials." />
+<meta property="og:url" content="https://canlicapital.com/measurements/ledoit-wolf-effective-sample" />
+<meta property="og:image" content="https://canlicapital.com/og.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Ledoit wolf effective sample / Canli Capital" />
+<meta name="twitter:description" content="Measures an approximation&#39;s error on real price data. Changes nothing, registers no hypothesis identity, and opens no return data on any untested identity. 0 trials." />
+<meta name="twitter:image" content="https://canlicapital.com/og.png" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="icon" href="/favicon.ico" sizes="any" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=swap" />
+<link rel="stylesheet" href="../css/paper.css" />
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"Ledoit wolf effective sample","description":"Measures an approximation's error on real price data. Changes nothing, registers no hypothesis identity, and opens no return data on any untested identity. 0 trials.","url":"https://canlicapital.com/measurements/ledoit-wolf-effective-sample","creator":{"@type":"Person","name":"Arhan Canli"},"publisher":{"@type":"Organization","name":"Canli Capital","url":"https://canlicapital.com/"},"isAccessibleForFree":true,"distribution":{"@type":"DataDownload","encodingFormat":"application/json","contentUrl":"https://canlicapital.com/glassbox/ledoit_wolf_effective_sample.json"}}</script>
+</head>
+<body class="paper">
+<a class="paper__skip" href="#content">Skip to content</a>
+<header class="paper__masthead">
+  <a class="paper__brand" href="/">Canli Capital</a>
+  <nav class="paper__nav" aria-label="Primary">
+    <a href="/systems">Systems</a>
+    <a href="/performance">Evidence</a>
+    <a href="/research">Research</a>
+    <a href="/measurements">Measurements</a>
+    <a href="/open">Glass box</a>
+  </nav>
+</header>
+<main class="paper__main" id="content">
+  <article class="paper__article">
+    <p class="paper__eyebrow"><a href="/measurements">Measurements</a></p>
+    <h1 class="paper__title">Ledoit wolf effective sample</h1>
+    <p class="paper__byline">By <span rel="author">Arhan Canli</span>, Canli Capital</p>
+    <div class="paper__body">
+<p class="measure__lead">Ledoit wolf effective sample is one of 21 measurements this
+engine publishes in full. It is regenerated from a real run rather than transcribed, and it
+is shown here with its own claim boundary so the number and its limits arrive together.</p>
+<aside class="measure__boundary"><h2>What this measurement does and does not claim</h2><p>Measures an approximation&#39;s error on real price data. Changes nothing, registers no hypothesis identity, and opens no return data on any untested identity. 0 trials.</p></aside>
+<section class="measure__section"><h2>The measurement</h2>
+<dl class="measure__facts">
+<div class="measure__row"><dt>Any non conservative</dt><dd>yes</dd></div>
+<div class="measure__row"><dt>Schema</dt><dd>canli.alphac-ledoit-wolf-effective-sample.v1</dd></div>
+</dl>
+<p class="measure__label">Baskets</p><p class="measure__deep">Nested beyond what this page renders. <a href="/glassbox/ledoit_wolf_effective_sample.json">Read it in the artifact</a>.</p>
+<p class="measure__label">Non conservative halflives</p><ul class="measure__list"><li>21</li><li>63</li><li>126</li><li>252</li><li>504</li><li>720</li></ul>
+<section class="measure__sub"><h3>Production setting</h3>
+<dl class="measure__facts">
+<div class="measure__row"><dt>Conservative</dt><dd>no</dd></div>
+<div class="measure__row"><dt>Delta star as coded</dt><dd>0.081609</dd></div>
+<div class="measure__row"><dt>Delta star reestimated on effective window</dt><dd>0.147988</dd></div>
+<div class="measure__row"><dt>Delta star rescaled to effective T</dt><dd>0.114219</dd></div>
+<div class="measure__row"><dt>Effective sample rows</dt><dd>514.437641</dd></div>
+<div class="measure__row"><dt>Halflife bars</dt><dd>720</dd></div>
+<div class="measure__row"><dt>Inverse vol weights are invariant</dt><dd>yes</dd></div>
+<div class="measure__row"><dt>Max ex ante vol shift</dt><dd>0.038344</dd></div>
+<div class="measure__row"><dt>Mean ex ante vol shift</dt><dd>0.003608</dd></div>
+<div class="measure__row"><dt>Median ex ante vol shift</dt><dd>0.002617</dd></div>
+<div class="measure__row"><dt>Rescale clipped at one</dt><dd>no</dd></div>
+<div class="measure__row"><dt>Rows passed in production</dt><dd>720</dd></div>
+<div class="measure__row"><dt>Understatement factor pure T</dt><dd>1.399587</dd></div>
+</dl>
+</section>
+<p class="measure__prose"><strong>The approximation.</strong> ledoit_wolf_cc computes delta* = clip((pi - rho)/(gamma*T), 0, 1) with T = the rows PASSED. Production passes the full unweighted 720-row window while the matrix being shrunk is the EWMA covariance. Documented in the function&#39;s own docstring as the closest admissible sample.</p>
+<p class="measure__prose"><strong>The channel the error travels.</strong> NOT position sizing. The constant-correlation target shares S&#39;s diagonal, so this shrinkage cannot change a variance and inverse-vol weights — what the production `rank` allocator sizes on — are mathematically invariant to it. The error reaches the book only through quantities that use the off-diagonal: the overlay&#39;s ex-ante vol sqrt(w&#39; Sigma w), which scales the whole book, and the MVO allocator, which is not the production default.</p>
+<p class="measure__prose"><strong>Verdict.</strong> NOT CONSERVATIVE AT ANY HALFLIFE, BUT IMMATERIAL AT THE PRODUCTION SETTING (0.36% mean ex-ante vol error). It becomes MATERIAL at a short halflife: 4.46% mean and 38.1% worst case at 21 bars. Fix it BEFORE shortening the covariance halflife, not after.</p>
+<p class="measure__prose"><strong>What this does not do.</strong> It does not change the live path. Production runs the legacy 720-bar covariance halflife, and any change to it is gated by the live-change ceremony and is the owner&#39;s. This measures what a future halflife decision would be walking into.</p>
+<p class="measure__prose"><strong>Why it is never conservative.</strong> The documented reasoning — that the unweighted window is the closest admissible sample — assumed the EWMA&#39;s effective sample could EXCEED the window. It cannot: ewma_cov is windowed at cov_window_bars, so its effective sample is bounded by the window at every halflife. Measured here it peaks at 635 rows against a T of 720 and falls to 514 at the production setting, so delta* is understated everywhere rather than only at short halflives.</p>
+<p class="measure__prose"><strong>Why it was conservative.</strong> A larger true T means a smaller true delta*, so using 720 when the estimator&#39;s effective sample EXCEEDS 720 over-shrinks slightly — and over-shrinking is the safe direction for a covariance estimate. The concern is the opposite case.</p>
+<section class="measure__sub"><h3>Worst case in ladder</h3>
+<dl class="measure__facts">
+<div class="measure__row"><dt>Conservative</dt><dd>no</dd></div>
+<div class="measure__row"><dt>Delta star as coded</dt><dd>0.018308</dd></div>
+<div class="measure__row"><dt>Delta star reestimated on effective window</dt><dd>0.148516</dd></div>
+<div class="measure__row"><dt>Delta star rescaled to effective T</dt><dd>0.217521</dd></div>
+<div class="measure__row"><dt>Effective sample rows</dt><dd>60.598693</dd></div>
+<div class="measure__row"><dt>Halflife bars</dt><dd>21</dd></div>
+<div class="measure__row"><dt>Inverse vol weights are invariant</dt><dd>yes</dd></div>
+<div class="measure__row"><dt>Max ex ante vol shift</dt><dd>0.380773</dd></div>
+<div class="measure__row"><dt>Mean ex ante vol shift</dt><dd>0.044601</dd></div>
+<div class="measure__row"><dt>Median ex ante vol shift</dt><dd>0.031196</dd></div>
+<div class="measure__row"><dt>Rescale clipped at one</dt><dd>no</dd></div>
+<div class="measure__row"><dt>Rows passed in production</dt><dd>720</dd></div>
+<div class="measure__row"><dt>Understatement factor pure T</dt><dd>11.881444</dd></div>
+</dl>
+</section>
+</section>
+<section class="measure__section"><h2>Check it yourself</h2>
+<p>Every figure above is read from <a href="/glassbox/ledoit_wolf_effective_sample.json"><code>/glassbox/ledoit_wolf_effective_sample.json</code></a>, the
+artifact the engine wrote. Nothing on this page is typed by hand: the page is generated from that
+file, so a figure that moves in the artifact moves here and a figure that is not in the artifact
+cannot appear here at all.</p>
+<p><a href="/measurements">All 21 measurements</a> &middot;
+<a href="/open">The glass box</a> &middot;
+<a href="/research">The research library</a></p>
+</section>
+    </div>
+  </article>
+</main>
+</body>
+</html>

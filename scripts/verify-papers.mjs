@@ -126,6 +126,90 @@ check(
   `research-index.json lists ${index.papers.length} papers but ${pages.length} pages exist`,
 );
 
+// ---------------------------------------------------------------------------
+// 6. MEASUREMENT PAGES. The same defect class as the papers, on a different
+//    corpus: twenty-one artifacts were published as raw JSON that nothing
+//    rendered and nothing linked. The check runs against the SAME discovery rule
+//    the builder uses, applied here to the SHIPPED research.json, so a page that
+//    stops being generated fails here rather than going quietly missing.
+// ---------------------------------------------------------------------------
+const isArtifact = (value) =>
+  value !== null &&
+  typeof value === "object" &&
+  !Array.isArray(value) &&
+  ("claim_boundary" in value ||
+    (typeof value.schema === "string" && value.schema.startsWith("canli.")));
+
+const discoverArtifacts = (research) => {
+  const found = [];
+  for (const [key, value] of Object.entries(research)) {
+    if (value === null || typeof value !== "object" || Array.isArray(value)) continue;
+    if (isArtifact(value)) {
+      found.push(key);
+      continue;
+    }
+    for (const [childKey, childValue] of Object.entries(value)) {
+      if (isArtifact(childValue)) found.push(`${key}.${childKey}`);
+    }
+  }
+  return found.sort();
+};
+
+const research = JSON.parse(readFileSync(resolve(DIST, "glassbox/research.json"), "utf8"));
+const artifacts = discoverArtifacts(research);
+const measurementPages = existsSync(resolve(DIST, "measurements"))
+  ? readdirSync(resolve(DIST, "measurements")).filter((n) => n.endsWith(".html"))
+  : [];
+
+// A floor, for the same reason the papers have one: an empty corpus makes every assertion below
+// pass without checking anything, which is the exact shape of the bug being guarded.
+check(
+  artifacts.length >= 12,
+  `discovery found only ${artifacts.length} artifacts in research.json — the rule has stopped ` +
+    `matching and every check below would pass vacuously`,
+);
+check(
+  measurementPages.length === artifacts.length,
+  `${artifacts.length} artifacts in research.json but ${measurementPages.length} measurement pages`,
+);
+
+const measurementIndex = resolve(DIST, "measurements.html");
+check(existsSync(measurementIndex), "no /measurements index page was built");
+const indexHtml = existsSync(measurementIndex) ? readFileSync(measurementIndex, "utf8") : "";
+
+for (const path of artifacts) {
+  const slug = path.replace(/[._]/g, "-").toLowerCase();
+  const file = resolve(DIST, "measurements", `${slug}.html`);
+  check(existsSync(file), `artifact ${path} has no page at /measurements/${slug}`);
+  if (!existsSync(file)) continue;
+  const html = readFileSync(file, "utf8");
+  check(
+    html.includes(`<link rel="canonical" href="${ORIGIN}/measurements/${slug}"`),
+    `measurement ${slug} has no self-canonical`,
+  );
+  check(/"@type":"Dataset"/.test(html), `measurement ${slug} is not marked up as a Dataset`);
+  // The whole reason these pages exist: a number without its limits is the failure this record
+  // is built to avoid, so the boundary block is not optional.
+  check(
+    html.includes("What this measurement does and does not claim"),
+    `measurement ${slug} renders no claim boundary`,
+  );
+  check(
+    sitemap.includes(`<loc>${ORIGIN}/measurements/${slug}</loc>`),
+    `measurement ${slug} is not in the sitemap`,
+  );
+  // Two clicks from /research: the index links every page, and /research links the index.
+  check(
+    indexHtml.includes(`href="/measurements/${slug}"`),
+    `measurement ${slug} is not linked from the /measurements index — it is an orphan`,
+  );
+}
+
+check(
+  sitemap.includes(`<loc>${ORIGIN}/measurements</loc>`),
+  "the /measurements index is not in the sitemap",
+);
+
 const sitemapUrls = (sitemap.match(/<loc>/g) || []).length;
 if (failures.length) {
   console.error(`\nFAILED (${failures.length}):`);
@@ -139,5 +223,10 @@ console.log(
 console.log(
   `verified ${hubs.length} topic hubs: title, description, canonical, CollectionPage, ` +
     `sitemap entry, and at least three linked members`,
+);
+console.log(
+  `verified ${measurementPages.length} measurement pages: one per artifact discovered in ` +
+    `research.json, each with a self-canonical, Dataset markup, a rendered claim boundary, ` +
+    `a sitemap entry, and a link from the index`,
 );
 console.log(`sitemap covers ${sitemapUrls} URLs`);

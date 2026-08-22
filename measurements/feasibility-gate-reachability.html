@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Feasibility gate reachability / Canli Capital</title>
+<meta name="description" content="Asks only whether each near-miss gate is reachable by repairing extraction." />
+<link rel="canonical" href="https://canlicapital.com/measurements/feasibility-gate-reachability" />
+<meta name="author" content="Arhan Canli" />
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="Canli Capital" />
+<meta property="og:title" content="Feasibility gate reachability / Canli Capital" />
+<meta property="og:description" content="Asks only whether each near-miss gate is reachable by repairing extraction." />
+<meta property="og:url" content="https://canlicapital.com/measurements/feasibility-gate-reachability" />
+<meta property="og:image" content="https://canlicapital.com/og.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Feasibility gate reachability / Canli Capital" />
+<meta name="twitter:description" content="Asks only whether each near-miss gate is reachable by repairing extraction." />
+<meta name="twitter:image" content="https://canlicapital.com/og.png" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="icon" href="/favicon.ico" sizes="any" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=swap" />
+<link rel="stylesheet" href="../css/paper.css" />
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"Feasibility gate reachability","description":"Asks only whether each near-miss gate is reachable by repairing extraction.","url":"https://canlicapital.com/measurements/feasibility-gate-reachability","creator":{"@type":"Person","name":"Arhan Canli"},"publisher":{"@type":"Organization","name":"Canli Capital","url":"https://canlicapital.com/"},"isAccessibleForFree":true,"distribution":{"@type":"DataDownload","encodingFormat":"application/json","contentUrl":"https://canlicapital.com/glassbox/feasibility_gate_reachability.json"}}</script>
+</head>
+<body class="paper">
+<a class="paper__skip" href="#content">Skip to content</a>
+<header class="paper__masthead">
+  <a class="paper__brand" href="/">Canli Capital</a>
+  <nav class="paper__nav" aria-label="Primary">
+    <a href="/systems">Systems</a>
+    <a href="/performance">Evidence</a>
+    <a href="/research">Research</a>
+    <a href="/measurements">Measurements</a>
+    <a href="/open">Glass box</a>
+  </nav>
+</header>
+<main class="paper__main" id="content">
+  <article class="paper__article">
+    <p class="paper__eyebrow"><a href="/measurements">Measurements</a></p>
+    <h1 class="paper__title">Feasibility gate reachability</h1>
+    <p class="paper__byline">By <span rel="author">Arhan Canli</span>, Canli Capital</p>
+    <div class="paper__body">
+<p class="measure__lead">Feasibility gate reachability is one of 21 measurements this
+engine publishes in full. It is regenerated from a real run rather than transcribed, and it
+is shown here with its own claim boundary so the number and its limits arrive together.</p>
+<aside class="measure__boundary"><h2>What this measurement does and does not claim</h2><p>Asks only whether each near-miss gate is reachable by repairing extraction. Opens no market data, registers no hypothesis identity, proposes no threshold change and authorizes no candidate. 0 trials.</p></aside>
+<section class="measure__section"><h2>The measurement</h2>
+<dl class="measure__facts">
+<div class="measure__row"><dt>Companion</dt><dd>artifacts/analysis/spinoff_prorata_gate/result.json</dd></div>
+<div class="measure__row"><dt>Schema</dt><dd>canli.alphac-feasibility-gate-reachability.v1</dd></div>
+</dl>
+<section class="measure__sub"><h3>Families</h3>
+<section class="measure__sub"><h4>Customer supplier propagation</h4>
+<dl class="measure__facts">
+<div class="measure__row"><dt>Documents sampled</dt><dd>300</dd></div>
+<div class="measure__row"><dt>Documents with genuine concentration language</dt><dd>280</dd></div>
+<div class="measure__row"><dt>Gate</dt><dd>strict_named_document_rate_at_least_50pct</dd></div>
+<div class="measure__row"><dt>Gate threshold</dt><dd>0.500000</dd></div>
+<div class="measure__row"><dt>Genuine concentration share</dt><dd>0.933333</dd></div>
+<div class="measure__row"><dt>Naming rate among genuine disclosures</dt><dd>0.371429</dd></div>
+<div class="measure__row"><dt>Published rate</dt><dd>0.353333</dd></div>
+<div class="measure__row"><dt>Verdict</dt><dd>GATE_UNREACHABLE_BY_DETECTOR_REPAIR</dd></div>
+</dl>
+<p class="measure__prose"><strong>A hypothesis this measurement REFUTED.</strong> Five window excerpts read by eye from the misses were generic business and risk-factor text, which suggested the denominator was inflated with documents that disclose no concentration at all. Measured across all 300, that is wrong: 93.3% do carry real concentration language, and correcting the denominator moves the rate from 0.3533 to 0.3714 -- about two points, against a 15-point shortfall. Five excerpts were an unrepresentative sample and the hypothesis they suggested is recorded here as refuted rather than dropped.</p>
+<p class="measure__prose"><strong>Why.</strong> An issuer may disclose a material customer concentration WITHOUT naming the customer, and most do. Among documents that genuinely carry concentration language, only 104/280 name the customer (37.1%) against a gate of 50%. The shortfall is what the filings contain, not what the parser reads.</p>
+</section>
+<section class="measure__sub"><h4>Merger arbitrage</h4>
+<dl class="measure__facts">
+<div class="measure__row"><dt>Blended rate</dt><dd>0.670229</dd></div>
+<div class="measure__row"><dt>Gate</dt><dd>prior_item101_8k_rate_gte_0_80</dd></div>
+<div class="measure__row"><dt>Gate threshold</dt><dd>0.800000</dd></div>
+<div class="measure__row"><dt>Verdict</dt><dd>GATE_BLENDS_TWO_POPULATIONS</dd></div>
+</dl>
+<p class="measure__label">By form</p><p class="measure__deep">2 further fields. <a href="/glassbox/feasibility_gate_reachability.json">Read them in the artifact</a>.</p>
+<p class="measure__prose"><strong>Sc to t note.</strong> SC TO-T appears in counts_by_year_form (521 filings) and not in the anchor timeline. That is deliberate and correct: TARGET_FORMS is {DEFM14A, SC 14D9} because SC TO-T is the bidder&#39;s filing, not the target&#39;s. Checked rather than assumed.</p>
+<p class="measure__prose"><strong>Why.</strong> The threshold is applied across deal structures with different filing obligations. A tender offer&#39;s SC 14D9 follows a contemporaneous merger agreement, so its prior Item 1.01 8-K is nearly always present; a definitive merger proxy can be filed long after the agreement and by issuers who announced it otherwise. Measured separately, SC 14D9 clears 0.80 outright and DEFM14A does not come close. The blended figure describes neither population.</p>
+<p class="measure__prose"><strong>⚠️ this is not permission to narrow the universe.</strong> Restricting to tender offers AFTER observing that they pass is selection, and the 0.8665 above is now in-sample for that decision and cannot serve as its evidence. A tender-offer-scoped identity is a legitimate REDESIGN, and it needs its own pre-registration with its threshold and universe fixed before anything is measured again. What this analysis establishes is that the CURRENT protocol mis-specified its population, not that a narrower one works.</p>
+</section>
+</section>
+<p class="measure__prose"><strong>Summary.</strong> Of the three families one gate from feasibility, none is blocked by extraction. spin_off_dislocation and customer_supplier_propagation ask for language the filings do not contain at the assumed rate; merger_arbitrage applies one threshold to two populations with different filing obligations. All three need identity redesign with fresh pre-registration, not a better parser. That is a slower answer than &#39;one gate away&#39; implied, and it is the true one.</p>
+</section>
+<section class="measure__section"><h2>Check it yourself</h2>
+<p>Every figure above is read from <a href="/glassbox/feasibility_gate_reachability.json"><code>/glassbox/feasibility_gate_reachability.json</code></a>, the
+artifact the engine wrote. Nothing on this page is typed by hand: the page is generated from that
+file, so a figure that moves in the artifact moves here and a figure that is not in the artifact
+cannot appear here at all.</p>
+<p><a href="/measurements">All 21 measurements</a> &middot;
+<a href="/open">The glass box</a> &middot;
+<a href="/research">The research library</a></p>
+</section>
+    </div>
+  </article>
+</main>
+</body>
+</html>

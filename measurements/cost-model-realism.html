@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Cost model realism / Canli Capital</title>
+<meta name="description" content="Reads the live trading databases read-only. Registers no hypothesis identity, opens no return data, and changes no cost parameter. 0 trials." />
+<link rel="canonical" href="https://canlicapital.com/measurements/cost-model-realism" />
+<meta name="author" content="Arhan Canli" />
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="Canli Capital" />
+<meta property="og:title" content="Cost model realism / Canli Capital" />
+<meta property="og:description" content="Reads the live trading databases read-only. Registers no hypothesis identity, opens no return data, and changes no cost parameter. 0 trials." />
+<meta property="og:url" content="https://canlicapital.com/measurements/cost-model-realism" />
+<meta property="og:image" content="https://canlicapital.com/og.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Cost model realism / Canli Capital" />
+<meta name="twitter:description" content="Reads the live trading databases read-only. Registers no hypothesis identity, opens no return data, and changes no cost parameter. 0 trials." />
+<meta name="twitter:image" content="https://canlicapital.com/og.png" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="icon" href="/favicon.ico" sizes="any" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=swap" />
+<link rel="stylesheet" href="../css/paper.css" />
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"Cost model realism","description":"Reads the live trading databases read-only. Registers no hypothesis identity, opens no return data, and changes no cost parameter. 0 trials.","url":"https://canlicapital.com/measurements/cost-model-realism","creator":{"@type":"Person","name":"Arhan Canli"},"publisher":{"@type":"Organization","name":"Canli Capital","url":"https://canlicapital.com/"},"isAccessibleForFree":true,"distribution":{"@type":"DataDownload","encodingFormat":"application/json","contentUrl":"https://canlicapital.com/glassbox/cost_model_realism.json"}}</script>
+</head>
+<body class="paper">
+<a class="paper__skip" href="#content">Skip to content</a>
+<header class="paper__masthead">
+  <a class="paper__brand" href="/">Canli Capital</a>
+  <nav class="paper__nav" aria-label="Primary">
+    <a href="/systems">Systems</a>
+    <a href="/performance">Evidence</a>
+    <a href="/research">Research</a>
+    <a href="/measurements">Measurements</a>
+    <a href="/open">Glass box</a>
+  </nav>
+</header>
+<main class="paper__main" id="content">
+  <article class="paper__article">
+    <p class="paper__eyebrow"><a href="/measurements">Measurements</a></p>
+    <h1 class="paper__title">Cost model realism</h1>
+    <p class="paper__byline">By <span rel="author">Arhan Canli</span>, Canli Capital</p>
+    <div class="paper__body">
+<p class="measure__lead">Cost model realism is one of 21 measurements this
+engine publishes in full. It is regenerated from a real run rather than transcribed, and it
+is shown here with its own claim boundary so the number and its limits arrive together.</p>
+<aside class="measure__boundary"><h2>What this measurement does and does not claim</h2><p>Reads the live trading databases read-only. Registers no hypothesis identity, opens no return data, and changes no cost parameter. 0 trials.</p></aside>
+<section class="measure__section"><h2>The measurement</h2>
+<dl class="measure__facts">
+<div class="measure__row"><dt>Go live date</dt><dd>2026-08-07</dd></div>
+<div class="measure__row"><dt>Schema</dt><dd>canli.alphac-cost-model-realism.v1</dd></div>
+</dl>
+<section class="measure__sub"><h3>Crypto sleeve</h3>
+<dl class="measure__facts">
+<div class="measure__row"><dt>All taker</dt><dd>yes</dd></div>
+<div class="measure__row"><dt>Book exhausted count</dt><dd>0</dd></div>
+<div class="measure__row"><dt>Database exists</dt><dd>yes</dd></div>
+<div class="measure__row"><dt>Fills since go live</dt><dd>0</dd></div>
+<div class="measure__row"><dt>Fills total</dt><dd>24</dd></div>
+<div class="measure__row"><dt>Modelled taker bps</dt><dd>5</dd></div>
+<div class="measure__row"><dt>Notional total</dt><dd>159576.536982</dd></div>
+<div class="measure__row"><dt>Realised commission bps MEASURED</dt><dd>5</dd></div>
+</dl>
+<section class="measure__sub"><h4>Slippage bps MEASURED</h4>
+<dl class="measure__facts">
+<div class="measure__row"><dt>Max</dt><dd>-1.282038</dd></div>
+<div class="measure__row"><dt>Mean</dt><dd>-3.181039</dd></div>
+<div class="measure__row"><dt>Median</dt><dd>-3.328349</dd></div>
+<div class="measure__row"><dt>Min</dt><dd>-4.409572</dd></div>
+</dl>
+<p class="measure__prose"><strong>Note.</strong> Recorded against `modeled_price`, so this IS a real execution measurement — the only one in the book. Negative is favourable. All 24 fills are taker and none exhausted the book.</p>
+</section>
+<p class="measure__label">Window</p><ul class="measure__list"><li>2026-07-05</li><li>2026-07-30</li></ul>
+</section>
+<section class="measure__sub"><h3>Equity sleeves</h3>
+<section class="measure__sub"><h4>AlphaMax</h4>
+<dl class="measure__facts">
+<div class="measure__row"><dt>Commission</dt><dd>NOT MEASURABLE — no fee column in this fills table</dd></div>
+<div class="measure__row"><dt>Database exists</dt><dd>yes</dd></div>
+<div class="measure__row"><dt>Fills since go live</dt><dd>1063</dd></div>
+<div class="measure__row"><dt>Fills total</dt><dd>3075</dd></div>
+<div class="measure__row"><dt>Notional since go live</dt><dd>748509.470238</dd></div>
+</dl>
+<p class="measure__prose"><strong>Slippage vs decision price.</strong> NOT MEASURABLE — the fills record limit_price, a PADDED marketable limit, not the price the decision was taken at. A fill that beats it is beating the padding.</p>
+<p class="measure__label">Submit to fill latency seconds</p><p class="measure__deep">3 further fields. <a href="/glassbox/cost_model_realism.json">Read them in the artifact</a>.</p>
+</section>
+<section class="measure__sub"><h4>AlphaTrend</h4>
+<dl class="measure__facts">
+<div class="measure__row"><dt>Commission</dt><dd>NOT MEASURABLE — no fee column in this fills table</dd></div>
+<div class="measure__row"><dt>Database exists</dt><dd>yes</dd></div>
+<div class="measure__row"><dt>Fills since go live</dt><dd>98</dd></div>
+<div class="measure__row"><dt>Fills total</dt><dd>311</dd></div>
+<div class="measure__row"><dt>Notional since go live</dt><dd>842220.826596</dd></div>
+</dl>
+<p class="measure__prose"><strong>Slippage vs decision price.</strong> NOT MEASURABLE — the fills record limit_price, a PADDED marketable limit, not the price the decision was taken at. A fill that beats it is beating the padding.</p>
+<p class="measure__label">Submit to fill latency seconds</p><p class="measure__deep">3 further fields. <a href="/glassbox/cost_model_realism.json">Read them in the artifact</a>.</p>
+</section>
+<section class="measure__sub"><h4>AlphaVintage</h4>
+<dl class="measure__facts">
+<div class="measure__row"><dt>Commission</dt><dd>NOT MEASURABLE — no fee column in this fills table</dd></div>
+<div class="measure__row"><dt>Database exists</dt><dd>yes</dd></div>
+<div class="measure__row"><dt>Fills since go live</dt><dd>15</dd></div>
+<div class="measure__row"><dt>Fills total</dt><dd>15</dd></div>
+<div class="measure__row"><dt>Notional since go live</dt><dd>1028168.623657</dd></div>
+</dl>
+<p class="measure__prose"><strong>Slippage vs decision price.</strong> NOT MEASURABLE — the fills record limit_price, a PADDED marketable limit, not the price the decision was taken at. A fill that beats it is beating the padding.</p>
+<p class="measure__label">Submit to fill latency seconds</p><p class="measure__deep">3 further fields. <a href="/glassbox/cost_model_realism.json">Read them in the artifact</a>.</p>
+</section>
+</section>
+<section class="measure__sub"><h3>Modelled parameters</h3>
+<dl class="measure__facts">
+<div class="measure__row"><dt>Crypto taker bps</dt><dd>5</dd></div>
+<div class="measure__row"><dt>Default half spread bps</dt><dd>2.500000</dd></div>
+<div class="measure__row"><dt>Equity borrow bps annual</dt><dd>50</dd></div>
+<div class="measure__row"><dt>Equity commission bps</dt><dd>1</dd></div>
+<div class="measure__row"><dt>Equity half spread bps</dt><dd>3</dd></div>
+<div class="measure__row"><dt>Equity taker bps</dt><dd>1</dd></div>
+<div class="measure__row"><dt>Impact coef</dt><dd>1</dd></div>
+<div class="measure__row"><dt>Latency addon bps</dt><dd>2</dd></div>
+</dl>
+</section>
+<p class="measure__prose"><strong>Verdict.</strong> The one checkable component MATCHES exactly. The rest is not checkable from what is recorded, and the latency component is modelled as the wrong kind of quantity. No cost parameter should move on this evidence; the schema should.</p>
+<p class="measure__prose"><strong>What cannot be asked and the fix.</strong> Slippage against the decision price is not computable for the equity sleeves: the fills record `limit_price`, a PADDED marketable limit, so a fill beating it by 54bp is beating the padding, not the market. Equity commission is not computable either — there is no fee column. THE FIX IS ONE FIELD: record the reference mid at `submitted_ts` on every order. That single addition turns implementation shortfall from unanswerable into a daily measurement, and it costs nothing to capture at the moment the order is built.</p>
+<p class="measure__prose"><strong>What matched.</strong> Crypto commission. Measured 5.00bp against a modelled taker fee of 5.0bp — exact. The one cost component in the book that can be checked against reality checks out.</p>
+<section class="measure__sub"><h3>⚠️ crypto has not traded since go live</h3>
+<dl class="measure__facts">
+<div class="measure__row"><dt>Fills since go live</dt><dd>0</dd></div>
+</dl>
+<p class="measure__label">Last fill window</p><ul class="measure__list"><li>2026-07-05</li><li>2026-07-30</li></ul>
+<p class="measure__prose"><strong>Note.</strong> Zero crypto fills since the 2026-08-07 re-baseline, with the last on 2026-07-30, against a weekly rebalance cadence over a fifteen-day record. The sleeve is marking equity but not trading. Surfaced, not diagnosed — it may be a no-trade band holding, and it may not.</p>
+</section>
+<section class="measure__sub"><h3>⚠️ the latency finding</h3>
+<dl class="measure__facts">
+<div class="measure__row"><dt>Median submit to fill hours</dt><dd>5.515539</dd></div>
+<div class="measure__row"><dt>Modelled latency addon bps</dt><dd>2</dd></div>
+</dl>
+<p class="measure__prose"><strong>Why this matters.</strong> Median submit-to-fill latency across the equity sleeves is about 5.5 HOURS, not seconds — orders are submitted after the close and fill at the next open. The cost model represents latency as a flat 2bp add-on, which is a microstructure quantity. An overnight gap is not a spread: it is unhedged exposure to whatever happens between submission and fill, and its cost is a distribution with a fat tail rather than a constant. This is not evidence the model is wrong by a specific amount — it is evidence that this component is modelled as the wrong KIND of thing, and nothing here measures its size.</p>
+</section>
+</section>
+<section class="measure__section"><h2>Check it yourself</h2>
+<p>Every figure above is read from <a href="/glassbox/cost_model_realism.json"><code>/glassbox/cost_model_realism.json</code></a>, the
+artifact the engine wrote. Nothing on this page is typed by hand: the page is generated from that
+file, so a figure that moves in the artifact moves here and a figure that is not in the artifact
+cannot appear here at all.</p>
+<p><a href="/measurements">All 21 measurements</a> &middot;
+<a href="/open">The glass box</a> &middot;
+<a href="/research">The research library</a></p>
+</section>
+    </div>
+  </article>
+</main>
+</body>
+</html>

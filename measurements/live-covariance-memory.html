@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Live covariance memory / Canli Capital</title>
+<meta name="description" content="A property of the ESTIMATOR, derived from its exact weighting and verified against the production function by unit impulse." />
+<link rel="canonical" href="https://canlicapital.com/measurements/live-covariance-memory" />
+<meta name="author" content="Arhan Canli" />
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="Canli Capital" />
+<meta property="og:title" content="Live covariance memory / Canli Capital" />
+<meta property="og:description" content="A property of the ESTIMATOR, derived from its exact weighting and verified against the production function by unit impulse." />
+<meta property="og:url" content="https://canlicapital.com/measurements/live-covariance-memory" />
+<meta property="og:image" content="https://canlicapital.com/og.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Live covariance memory / Canli Capital" />
+<meta name="twitter:description" content="A property of the ESTIMATOR, derived from its exact weighting and verified against the production function by unit impulse." />
+<meta name="twitter:image" content="https://canlicapital.com/og.png" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="icon" href="/favicon.ico" sizes="any" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=swap" />
+<link rel="stylesheet" href="../css/paper.css" />
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"Live covariance memory","description":"A property of the ESTIMATOR, derived from its exact weighting and verified against the production function by unit impulse.","url":"https://canlicapital.com/measurements/live-covariance-memory","creator":{"@type":"Person","name":"Arhan Canli"},"publisher":{"@type":"Organization","name":"Canli Capital","url":"https://canlicapital.com/"},"isAccessibleForFree":true,"distribution":{"@type":"DataDownload","encodingFormat":"application/json","contentUrl":"https://canlicapital.com/glassbox/live_covariance_memory.json"}}</script>
+</head>
+<body class="paper">
+<a class="paper__skip" href="#content">Skip to content</a>
+<header class="paper__masthead">
+  <a class="paper__brand" href="/">Canli Capital</a>
+  <nav class="paper__nav" aria-label="Primary">
+    <a href="/systems">Systems</a>
+    <a href="/performance">Evidence</a>
+    <a href="/research">Research</a>
+    <a href="/measurements">Measurements</a>
+    <a href="/open">Glass box</a>
+  </nav>
+</header>
+<main class="paper__main" id="content">
+  <article class="paper__article">
+    <p class="paper__eyebrow"><a href="/measurements">Measurements</a></p>
+    <h1 class="paper__title">Live covariance memory</h1>
+    <p class="paper__byline">By <span rel="author">Arhan Canli</span>, Canli Capital</p>
+    <div class="paper__body">
+<p class="measure__lead">Live covariance memory is one of 21 measurements this
+engine publishes in full. It is regenerated from a real run rather than transcribed, and it
+is shown here with its own claim boundary so the number and its limits arrive together.</p>
+<aside class="measure__boundary"><h2>What this measurement does and does not claim</h2><p>A property of the ESTIMATOR, derived from its exact weighting and verified against the production function by unit impulse. Reads no market data, runs no backtest, registers no hypothesis identity, and recommends no halflife. 0 trials.</p></aside>
+<section class="measure__section"><h2>The measurement</h2>
+<dl class="measure__facts">
+<div class="measure__row"><dt>Schema</dt><dd>canli.alphac-live-covariance-memory.v1</dd></div>
+</dl>
+<p class="measure__prose"><strong>Correction 2026 08 21.</strong> An earlier revision of this analysis sampled only 21 days and up, found every result in a 20-25 day band, and concluded the parameter was &#39;nearly inert&#39; on crypto with cov_window_bars as the only lever. That was wrong and is withdrawn. The band is the window, not the parameter: below 30 days the halflife is honoured almost exactly (3d -&gt; 3.0d, 7d -&gt; 7.0d, 14d -&gt; 14.0d). Reading the shape of a sampled range as a property of the mechanism is the error, and the ladder now spans both sides of the window so it cannot recur.</p>
+<section class="measure__sub"><h3>Ledoit wolf intensity mismatch</h3>
+<dl class="measure__facts">
+<div class="measure__row"><dt>Site</dt><dd>src/alphaforge/portfolio/strategy.py, the ledoit_wolf_cc call</dd></div>
+<div class="measure__row"><dt>Status</dt><dd>OPEN — flagged, not fixed; no study has measured it</dd></div>
+</dl>
+<p class="measure__prose"><strong>Description.</strong> ledoit_wolf_cc computes its shrinkage intensity delta* with T = the number of rows passed, and production passes the full unweighted 720-row window while the matrix being shrunk is the EWMA. That approximation is documented and was conservative while the EWMA&#39;s effective sample EXCEEDED 720. It stops being conservative at a short halflife.</p>
+<section class="measure__sub"><h4>Effective sample by request</h4>
+<p class="measure__label">Crypto H1</p><p class="measure__deep">9 further fields. <a href="/glassbox/live_covariance_memory.json">Read them in the artifact</a>.</p>
+<p class="measure__label">Equity D1</p><p class="measure__deep">9 further fields. <a href="/glassbox/live_covariance_memory.json">Read them in the artifact</a>.</p>
+</section>
+</section>
+<section class="measure__sub"><h3>Production</h3>
+<dl class="measure__facts">
+<div class="measure__row"><dt>Cov min periods</dt><dd>240</dd></div>
+<div class="measure__row"><dt>Cov window bars</dt><dd>720</dd></div>
+<div class="measure__row"><dt>Estimator</dt><dd>alphaforge.portfolio.covariance.ewma_cov</dd></div>
+<div class="measure__row"><dt>Legacy cov halflife bars</dt><dd>720</dd></div>
+</dl>
+</section>
+<section class="measure__sub"><h3>Sleeves</h3>
+<section class="measure__sub"><h4>Crypto H1</h4>
+<dl class="measure__facts">
+<div class="measure__row"><dt>Bars per day</dt><dd>24</dd></div>
+</dl>
+<figure class="measure__tablewrap"><figcaption>By requested days</figcaption><table class="measure__table"><thead><tr><th scope="col">Effective sample rows</th><th scope="col">Halflife bars</th><th scope="col">Halflife days</th><th scope="col">Lambda</th><th scope="col">Mean weight age days</th><th scope="col">Median weight age days</th><th scope="col">Seed bars</th><th scope="col">Seed block weight</th><th scope="col">Truncation absorbed fraction</th><th scope="col">Untruncated equivalent halflife days</th><th scope="col">Window bars</th><th scope="col">Window days</th></tr></thead><tbody>
+<tr><td>207.752395</td><td>72</td><td>3</td><td>0.990419</td><td>4.313899</td><td>2.958333</td><td>240</td><td>0.009843</td><td>0.013889</td><td>2.958333</td><td>720</td><td>30</td></tr>
+<tr><td>475.510028</td><td>168</td><td>7</td><td>0.995883</td><td>9.374344</td><td>6.958333</td><td>240</td><td>0.138011</td><td>0.005952</td><td>6.958333</td><td>720</td><td>30</td></tr>
+<tr><td>682.984972</td><td>336</td><td>14</td><td>0.997939</td><td>14.530967</td><td>13.958333</td><td>240</td><td>0.371499</td><td>0.002976</td><td>13.958333</td><td>720</td><td>30</td></tr>
+<tr><td>618.523036</td><td>504</td><td>21</td><td>0.998626</td><td>17.203018</td><td>20.291667</td><td>240</td><td>0.516779</td><td>0.033730</td><td>20.291667</td><td>720</td><td>30</td></tr>
+<tr><td>514.437641</td><td>720</td><td>30</td><td>0.999038</td><td>19.144594</td><td>22.041667</td><td>240</td><td>0.629961</td><td>0.265278</td><td>22.041667</td><td>720</td><td>30</td></tr>
+<tr><td>361.684525</td><td>1512</td><td>63</td><td>0.999542</td><td>21.944006</td><td>23.750000</td><td>240</td><td>0.802481</td><td>0.623016</td><td>23.750000</td><td>720</td><td>30</td></tr>
+<tr><td>297.061240</td><td>3024</td><td>126</td><td>0.999771</td><td>23.397264</td><td>24.416667</td><td>240</td><td>0.895813</td><td>0.806217</td><td>24.416667</td><td>720</td><td>30</td></tr>
+<tr><td>267.485148</td><td>6048</td><td>252</td><td>0.999885</td><td>24.171371</td><td>24.708333</td><td>240</td><td>0.946474</td><td>0.901951</td><td>24.708333</td><td>720</td><td>30</td></tr>
+<tr><td>249.375089</td><td>17280</td><td>720</td><td>0.999960</td><td>24.692506</td><td>24.875000</td><td>240</td><td>0.980930</td><td>0.965451</td><td>24.875000</td><td>720</td><td>30</td></tr>
+</tbody></table></figure>
+<p class="measure__label">Legacy setting</p><p class="measure__deep">13 further fields. <a href="/glassbox/live_covariance_memory.json">Read them in the artifact</a>.</p>
+</section>
+<section class="measure__sub"><h4>Equity D1</h4>
+<dl class="measure__facts">
+<div class="measure__row"><dt>Bars per day</dt><dd>1</dd></div>
+</dl>
+<figure class="measure__tablewrap"><figcaption>By requested days</figcaption><table class="measure__table"><thead><tr><th scope="col">Effective sample rows</th><th scope="col">Halflife bars</th><th scope="col">Halflife days</th><th scope="col">Lambda</th><th scope="col">Mean weight age days</th><th scope="col">Median weight age days</th><th scope="col">Seed bars</th><th scope="col">Seed block weight</th><th scope="col">Truncation absorbed fraction</th><th scope="col">Untruncated equivalent halflife days</th><th scope="col">Window bars</th><th scope="col">Window days</th></tr></thead><tbody>
+<tr><td>8.694644</td><td>3</td><td>3</td><td>0.793701</td><td>3.847322</td><td>3</td><td>240</td><td>6.842e-49</td><td>0</td><td>3</td><td>720</td><td>720</td></tr>
+<tr><td>20.214231</td><td>7</td><td>7</td><td>0.905724</td><td>9.607116</td><td>7</td><td>240</td><td>2.280e-21</td><td>0</td><td>7</td><td>720</td><td>720</td></tr>
+<tr><td>40.403713</td><td>14</td><td>14</td><td>0.951695</td><td>19.701856</td><td>13</td><td>240</td><td>4.775e-11</td><td>0.071429</td><td>13</td><td>720</td><td>720</td></tr>
+<tr><td>60.598693</td><td>21</td><td>21</td><td>0.967532</td><td>29.799358</td><td>20</td><td>240</td><td>1.316e-7</td><td>0.047619</td><td>20</td><td>720</td><td>720</td></tr>
+<tr><td>86.565553</td><td>30</td><td>30</td><td>0.977160</td><td>42.783947</td><td>29</td><td>240</td><td>1.526e-5</td><td>0.033333</td><td>29</td><td>720</td><td>720</td></tr>
+<tr><td>181.782550</td><td>63</td><td>63</td><td>0.989058</td><td>90.538775</td><td>62</td><td>240</td><td>0.005087</td><td>0.015873</td><td>62</td><td>720</td><td>720</td></tr>
+<tr><td>362.610457</td><td>126</td><td>126</td><td>0.994514</td><td>176.873803</td><td>126</td><td>240</td><td>0.071321</td><td>0</td><td>126</td><td>720</td><td>720</td></tr>
+<tr><td>635.172445</td><td>252</td><td>252</td><td>0.997253</td><td>298.014309</td><td>251</td><td>240</td><td>0.267060</td><td>0.003968</td><td>251</td><td>720</td><td>720</td></tr>
+<tr><td>514.437641</td><td>720</td><td>720</td><td>0.999038</td><td>459.470256</td><td>529</td><td>240</td><td>0.629961</td><td>0.265278</td><td>529</td><td>720</td><td>720</td></tr>
+</tbody></table></figure>
+<p class="measure__label">Legacy setting</p><p class="measure__deep">13 further fields. <a href="/glassbox/live_covariance_memory.json">Read them in the artifact</a>.</p>
+</section>
+</section>
+<p class="measure__prose"><strong>The headline.</strong> The WINDOW bounds the memory, so the halflife is faithful below it and truncated above it. On the crypto H1 sleeve the 720-bar window is 30 days: a 7-day request delivers 7.0 days and a 14-day request 14.0, while a 30-day request delivers 22.0 and a 720-day request 24.9. The legacy setting is 30 days requested against 22 days of memory. On the equity D1 sleeve the same 720-bar window is 720 SESSIONS, so the parameter is faithful across the whole practical range and only the legacy 720-day setting is truncated, to 529 days.</p>
+<p class="measure__prose"><strong>What this does not say.</strong> It does not say which halflife is right. It says what the estimator DOES with each one, which is the mapping a halflife decision needs and did not have. Choosing a value still requires a drawdown study run through this estimator rather than through an untruncated simulation of it.</p>
+<p class="measure__prose"><strong>Which lever to use for SHORT memory.</strong> Both routes reach short memory and they are not equivalent. Halflife 7 days at the production 720-bar window gives 7.0 days of memory on an effective sample of ~475 rows; shortening the window to 240 bars gives ~8 days of memory on ~107 rows. The HALFLIFE route preserves roughly four times the effective sample for comparable memory, which also keeps ledoit_wolf_cc&#39;s T=720 approximation far closer to valid. If the drawdown study&#39;s finding holds -- that shorter covariance memory reduces expected maximum drawdown -- the halflife is the instrument, and it has to be asked for BELOW the window rather than at 21 days where truncation has already started.</p>
+<p class="measure__prose"><strong>Why the parameter is not the memory.</strong> ewma_cov sees only cov_window_bars rows and seeds S_0 with the EQUALLY WEIGHTED sample covariance of the oldest cov_min_periods rows, decayed by lambda^k. The seed block is therefore a flat slab of old data the recursion cannot forget inside the window, and the shorter the requested halflife the smaller that slab -- but it never vanishes. The sweep that set overlay policy simulated an untruncated recursion, so its halflife ladder and this estimator&#39;s memory are different quantities.</p>
+</section>
+<section class="measure__section"><h2>Check it yourself</h2>
+<p>Every figure above is read from <a href="/glassbox/live_covariance_memory.json"><code>/glassbox/live_covariance_memory.json</code></a>, the
+artifact the engine wrote. Nothing on this page is typed by hand: the page is generated from that
+file, so a figure that moves in the artifact moves here and a figure that is not in the artifact
+cannot appear here at all.</p>
+<p><a href="/measurements">All 21 measurements</a> &middot;
+<a href="/open">The glass box</a> &middot;
+<a href="/research">The research library</a></p>
+</section>
+    </div>
+  </article>
+</main>
+</body>
+</html>

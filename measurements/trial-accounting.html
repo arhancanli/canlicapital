@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Trial accounting / Canli Capital</title>
+<meta name="description" content="This ledger proves what was measured and how selection N is counted. It does not prove that any identity is profitable, independent, or admissible." />
+<link rel="canonical" href="https://canlicapital.com/measurements/trial-accounting" />
+<meta name="author" content="Arhan Canli" />
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="Canli Capital" />
+<meta property="og:title" content="Trial accounting / Canli Capital" />
+<meta property="og:description" content="This ledger proves what was measured and how selection N is counted. It does not prove that any identity is profitable, independent, or admissible." />
+<meta property="og:url" content="https://canlicapital.com/measurements/trial-accounting" />
+<meta property="og:image" content="https://canlicapital.com/og.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Trial accounting / Canli Capital" />
+<meta name="twitter:description" content="This ledger proves what was measured and how selection N is counted. It does not prove that any identity is profitable, independent, or admissible." />
+<meta name="twitter:image" content="https://canlicapital.com/og.png" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="icon" href="/favicon.ico" sizes="any" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=swap" />
+<link rel="stylesheet" href="../css/paper.css" />
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"Trial accounting","description":"This ledger proves what was measured and how selection N is counted. It does not prove that any identity is profitable, independent, or admissible.","url":"https://canlicapital.com/measurements/trial-accounting","creator":{"@type":"Person","name":"Arhan Canli"},"publisher":{"@type":"Organization","name":"Canli Capital","url":"https://canlicapital.com/"},"isAccessibleForFree":true,"distribution":{"@type":"DataDownload","encodingFormat":"application/json","contentUrl":"https://canlicapital.com/glassbox/trial_accounting.json"}}</script>
+</head>
+<body class="paper">
+<a class="paper__skip" href="#content">Skip to content</a>
+<header class="paper__masthead">
+  <a class="paper__brand" href="/">Canli Capital</a>
+  <nav class="paper__nav" aria-label="Primary">
+    <a href="/systems">Systems</a>
+    <a href="/performance">Evidence</a>
+    <a href="/research">Research</a>
+    <a href="/measurements">Measurements</a>
+    <a href="/open">Glass box</a>
+  </nav>
+</header>
+<main class="paper__main" id="content">
+  <article class="paper__article">
+    <p class="paper__eyebrow"><a href="/measurements">Measurements</a></p>
+    <h1 class="paper__title">Trial accounting</h1>
+    <p class="paper__byline">By <span rel="author">Arhan Canli</span>, Canli Capital</p>
+    <div class="paper__body">
+<p class="measure__lead">Trial accounting is one of 21 measurements this
+engine publishes in full. It is regenerated from a real run rather than transcribed, and it
+is shown here with its own claim boundary so the number and its limits arrive together.</p>
+<aside class="measure__boundary"><h2>What this measurement does and does not claim</h2><p>This ledger proves what was measured and how selection N is counted. It does not prove that any identity is profitable, independent, or admissible.</p></aside>
+<section class="measure__section"><h2>The measurement</h2>
+<dl class="measure__facts">
+<div class="measure__row"><dt>Schema</dt><dd>glassbox.trial-ledger/2</dd></div>
+<div class="measure__row"><dt>Immutable execution records</dt><dd>231</dd></div>
+<div class="measure__row"><dt>Distinct config hashes</dt><dd>231</dd></div>
+<div class="measure__row"><dt>Window only remeasurements</dt><dd>69</dd></div>
+<div class="measure__row"><dt>Cross profile duplicate identities</dt><dd>0</dd></div>
+<div class="measure__row"><dt>Distinct hypothesis identities</dt><dd>162</dd></div>
+<div class="measure__row"><dt>Ledger profiles</dt><dd>4</dd></div>
+<div class="measure__row"><dt>Hypothesis identity budget</dt><dd>320</dd></div>
+<div class="measure__row"><dt>Budget remaining</dt><dd>158</dd></div>
+<div class="measure__row"><dt>Budget status</dt><dd>PASS</dd></div>
+<div class="measure__row"><dt>Research status</dt><dd>ACTIVE</dd></div>
+<div class="measure__row"><dt>Policy source path</dt><dd>config/trial_accounting.json</dd></div>
+<div class="measure__row"><dt>Generated at</dt><dd>2026-08-22T00:08:29.826475+00:00</dd></div>
+<div class="measure__row"><dt>Content hash</dt><dd>sha256:eb68994cbf29fbc1902c5d6b0ae99de610c56804cef189d40d3382143ebc3ccd</dd></div>
+</dl>
+<p class="measure__prose"><strong>Accounting equation.</strong> immutable execution records - window-only remeasurements - cross-profile duplicate identities = distinct union hypothesis identities</p>
+<section class="measure__sub"><h3>Selection statistics</h3>
+<dl class="measure__facts">
+<div class="measure__row"><dt>Unit</dt><dd>first_immutable_record_per_hypothesis</dd></div>
+<div class="measure__row"><dt>N hypotheses</dt><dd>162</dd></div>
+<div class="measure__row"><dt>Sharpe variance</dt><dd>9.606e-4</dd></div>
+<div class="measure__row"><dt>Audit raw record sharpe variance</dt><dd>7.298e-4</dd></div>
+</dl>
+<p class="measure__prose"><strong>Interpretation.</strong> Operational window remeasurements remain public but cannot alter selection N or selection V[SR].</p>
+</section>
+<section class="measure__sub"><h3>Definitions</h3>
+<p class="measure__prose"><strong>Immutable execution record.</strong> One append-only, config-hash-unique measurement row. Rolling-window remeasurements remain records.</p>
+<p class="measure__prose"><strong>Hypothesis identity.</strong> A distinct economic or parameter identity after removing only start and end measurement-window keys.</p>
+<p class="measure__prose"><strong>Window only remeasurement.</strong> A later record whose config differs from an existing identity only in start or end. It remains public but does not inflate DSR selection N.</p>
+</section>
+<section class="measure__sub"><h3>Budget review</h3>
+<dl class="measure__facts">
+<div class="measure__row"><dt>Authorized by</dt><dd>owner, 2026-08-21</dd></div>
+<div class="measure__row"><dt>Hypothesis identities at review</dt><dd>162</dd></div>
+<div class="measure__row"><dt>Prior budget</dt><dd>160</dd></div>
+<div class="measure__row"><dt>New budget</dt><dd>320</dd></div>
+<div class="measure__row"><dt>Headroom</dt><dd>158</dd></div>
+</dl>
+<p class="measure__prose"><strong>Authorization.</strong> Explicit owner decision to fund the fourteen-sleeve programme, taken with the evidence cost on the table rather than inferred afterwards.</p>
+<p class="measure__prose"><strong>Rationale.</strong> Ten new sleeves at the measured 6.5% hit rate (3 survivors from 46 tested candidates) implies about 154 trials. The budget is set at 320 identities, which funds that with a small margin and stops well short of an open-ended search. It is a CEILING, not a plan: the campaign closes at whatever count the evidence stops justifying.</p>
+<section class="measure__sub"><h4>Cost of this decision</h4>
+<dl class="measure__facts">
+<div class="measure__row"><dt>Evidence</dt><dd>artifacts/analysis/trial_budget_cost/result.json</dd></div>
+<div class="measure__row"><dt>Annualized deflated benchmark before</dt><dd>1.207400</dd></div>
+<div class="measure__row"><dt>Annualized deflated benchmark after 154 trials</dt><dd>1.304100</dd></div>
+<div class="measure__row"><dt>Increase</dt><dd>0.096700</dd></div>
+</dl>
+<p class="measure__prose"><strong>Applies to.</strong> every sleeve in the book, not only the new candidates. Deflation is a property of the search, and the search is the book&#39;s.</p>
+<p class="measure__prose"><strong>Why it is affordable.</strong> The deflated benchmark grows with the LOGARITHM of the trial count, so 154 trials on top of 162 move it by roughly 0.10 annualized. Sample length is the far stronger lever, which is why v6 raising minimum_oos_observations from 252 to 756 matters more to admissibility than this budget does.</p>
+<p class="measure__prose"><strong>The honest caveat.</strong> This assumes the measured 6.5% hit rate holds for families that have never been tested. It is an assumption, not a measurement, and the atlas families are deliberately unlike the ones that produced that rate. If the true rate is half of it, ten sleeves cost twice the trials and the budget will bind before the target is reached. Reaching the ceiling without ten admissions is a RESULT, not a failure of the budget, and the book stays smaller.</p>
+</section>
+<p class="measure__prose"><strong>What did not change.</strong> A target still never creates a sleeve. Fourteen is reached only if ten or more new identities independently clear every admission gate in config/sleeve_admission_contract.json; otherwise the book remains smaller. The budget buys permission to look, not permission to admit.</p>
+<p class="measure__prose"><strong>Next tripwire.</strong> At 320 recorded hypothesis identities, registration pauses again and requires a fresh owner review. Any single family exceeding 40 identities also pauses for review, so the budget cannot be consumed by one line of enquiry that is not working.</p>
+<p class="measure__prose"><strong>Status token note.</strong> ACTIVE is the canonical token the trial tripwire recognises. The prospective nature of this budget is recorded here rather than encoded in the status, so no guard is left unable to read the state it governs.</p>
+</section>
+<figure class="measure__tablewrap"><figcaption>Profiles</figcaption><table class="measure__table"><thead><tr><th scope="col">Profile</th><th scope="col">Source path</th><th scope="col">Immutable execution records</th><th scope="col">Distinct config hashes</th><th scope="col">Hypothesis identities</th><th scope="col">Window only remeasurements</th><th scope="col">Latest recorded at</th></tr></thead><tbody>
+<tr><td>var</td><td>var/experiments.jsonl</td><td>172</td><td>172</td><td>136</td><td>36</td><td>2026-08-17T07:52:42.849000+00:00</td></tr>
+<tr><td>var_fut_real</td><td>var_fut_real/experiments.jsonl</td><td>1</td><td>1</td><td>1</td><td>0</td><td>2026-06-28T20:13:53.117000+00:00</td></tr>
+<tr><td>var_mf</td><td>var_mf/experiments.jsonl</td><td>46</td><td>46</td><td>13</td><td>33</td><td>2026-08-21T05:30:30.254000+00:00</td></tr>
+<tr><td>var_sharadar</td><td>var_sharadar/experiments.jsonl</td><td>12</td><td>12</td><td>12</td><td>0</td><td>2026-07-11T19:41:42.107000+00:00</td></tr>
+</tbody></table></figure>
+<figure class="measure__tablewrap"><figcaption>Recent hypothesis identities</figcaption><table class="measure__table"><thead><tr><th scope="col">Hypothesis key</th><th scope="col">Config hash</th><th scope="col">Label</th><th scope="col">Ledger profile</th><th scope="col">First recorded at</th><th scope="col">Observations</th><th scope="col">Annualized sharpe observed</th></tr></thead><tbody>
+<tr><td>eef46f796cdbb646</td><td>34067635abce9cf9</td><td>forensic_alphamax_weighting</td><td>var</td><td>2026-08-17T00:00:00.023000+00:00</td><td>5428</td><td>-0.018761</td></tr>
+<tr><td>5dd5372deac0882f</td><td>d7561b05e7624193</td><td>forensic_alphamax_weighting</td><td>var</td><td>2026-08-17T00:00:00.022000+00:00</td><td>5428</td><td>-0.012095</td></tr>
+<tr><td>1521380bbfea6b18</td><td>15b78eaf0b3d4820</td><td>forensic_alphamax_weighting</td><td>var</td><td>2026-08-17T00:00:00.021000+00:00</td><td>5428</td><td>-0.054936</td></tr>
+<tr><td>944daf4d5888647d</td><td>103beae582dee892</td><td>forensic_alphamax_weighting</td><td>var</td><td>2026-08-17T00:00:00.020000+00:00</td><td>5428</td><td>-0.030261</td></tr>
+<tr><td>1700ddbeaf47d3eb</td><td>069c86acc068a4d5</td><td>forensic_alphamax_weighting</td><td>var</td><td>2026-08-17T00:00:00.019000+00:00</td><td>5428</td><td>0.066016</td></tr>
+<tr><td>2cfbbeea11dd0e2e</td><td>3cc8b915abefa48a</td><td>forensic_alphamax_weighting</td><td>var</td><td>2026-08-17T00:00:00.018000+00:00</td><td>5428</td><td>-0.292825</td></tr>
+<tr><td>3096d43484ea2745</td><td>57fa40c3ea31b530</td><td>forensic_alphamax_weighting</td><td>var</td><td>2026-08-17T00:00:00.017000+00:00</td><td>5428</td><td>0.014885</td></tr>
+<tr><td>8e0d269423afaeb7</td><td>9584c5e969d4b39a</td><td>forensic_alphamax_weighting</td><td>var</td><td>2026-08-17T00:00:00.016000+00:00</td><td>5428</td><td>-0.002788</td></tr>
+<tr><td>f350a08ec0da47d5</td><td>ff8fefa17679b51b</td><td>forensic_alphamax_weighting</td><td>var</td><td>2026-08-17T00:00:00.015000+00:00</td><td>5428</td><td>-0.053703</td></tr>
+<tr><td>0c17b616473d3e37</td><td>b332501af87f95b6</td><td>forensic_alphamax_weighting</td><td>var</td><td>2026-08-17T00:00:00.014000+00:00</td><td>5428</td><td>-0.050382</td></tr>
+</tbody></table></figure>
+<section class="measure__sub"><h3>Trial debt reconciliation</h3>
+<dl class="measure__facts">
+<div class="measure__row"><dt>Source path</dt><dd>artifacts/audit/trial_debt_reconciliation.json</dd></div>
+<div class="measure__row"><dt>Source sha256</dt><dd>5ff87cc863c7ce1301f95798d82feb9b5486332eb8a1b2a58258967e14b34630</dd></div>
+</dl>
+</section>
+<section class="measure__sub"><h3>Legacy dsr debt</h3>
+<dl class="measure__facts">
+<div class="measure__row"><dt>Status</dt><dd>CODE_RESOLVED_HISTORICAL_CLAIMS_RETIRED</dd></div>
+<div class="measure__row"><dt>Historical exception paths</dt><dd>12</dd></div>
+<div class="measure__row"><dt>Executable debt paths</dt><dd>0</dd></div>
+<div class="measure__row"><dt>Resolved code paths</dt><dd>12</dd></div>
+<div class="measure__row"><dt>Union registration paths</dt><dd>7</dd></div>
+<div class="measure__row"><dt>Source path</dt><dd>config/legacy_dsr_exceptions.json</dd></div>
+<div class="measure__row"><dt>Source sha256</dt><dd>df0fdfef765f5933ea90e89d131b70ce120c486a792278d07cbbe7326a364e36</dd></div>
+</dl>
+<section class="measure__sub"><h4>Restatement</h4>
+<dl class="measure__facts">
+<div class="measure__row"><dt>Source path</dt><dd>artifacts/audit/legacy_dsr_restatement.json</dd></div>
+<div class="measure__row"><dt>Source sha256</dt><dd>3e634254e99ecb8e29eb4f0d807b19e29d54a05f2fc66e2e4493c4a88b49a202</dd></div>
+</dl>
+<p class="measure__label">Summary</p><p class="measure__deep">5 further fields. <a href="/glassbox/trial_accounting.json">Read them in the artifact</a>.</p>
+</section>
+</section>
+</section>
+<section class="measure__section"><h2>Check it yourself</h2>
+<p>Every figure above is read from <a href="/glassbox/trial_accounting.json"><code>/glassbox/trial_accounting.json</code></a>, the
+artifact the engine wrote. Nothing on this page is typed by hand: the page is generated from that
+file, so a figure that moves in the artifact moves here and a figure that is not in the artifact
+cannot appear here at all.</p>
+<p><a href="/measurements">All 21 measurements</a> &middot;
+<a href="/open">The glass box</a> &middot;
+<a href="/research">The research library</a></p>
+</section>
+    </div>
+  </article>
+</main>
+</body>
+</html>

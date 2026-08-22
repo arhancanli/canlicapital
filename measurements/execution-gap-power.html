@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Execution gap power / Canli Capital</title>
+<meta name="description" content="Reads trading databases and walk-forward curves read-only. Registers no hypothesis identity and opens no return data. 0 trials." />
+<link rel="canonical" href="https://canlicapital.com/measurements/execution-gap-power" />
+<meta name="author" content="Arhan Canli" />
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="Canli Capital" />
+<meta property="og:title" content="Execution gap power / Canli Capital" />
+<meta property="og:description" content="Reads trading databases and walk-forward curves read-only. Registers no hypothesis identity and opens no return data. 0 trials." />
+<meta property="og:url" content="https://canlicapital.com/measurements/execution-gap-power" />
+<meta property="og:image" content="https://canlicapital.com/og.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Execution gap power / Canli Capital" />
+<meta name="twitter:description" content="Reads trading databases and walk-forward curves read-only. Registers no hypothesis identity and opens no return data. 0 trials." />
+<meta name="twitter:image" content="https://canlicapital.com/og.png" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="icon" href="/favicon.ico" sizes="any" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=swap" />
+<link rel="stylesheet" href="../css/paper.css" />
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"Execution gap power","description":"Reads trading databases and walk-forward curves read-only. Registers no hypothesis identity and opens no return data. 0 trials.","url":"https://canlicapital.com/measurements/execution-gap-power","creator":{"@type":"Person","name":"Arhan Canli"},"publisher":{"@type":"Organization","name":"Canli Capital","url":"https://canlicapital.com/"},"isAccessibleForFree":true,"distribution":{"@type":"DataDownload","encodingFormat":"application/json","contentUrl":"https://canlicapital.com/glassbox/execution_gap_power.json"}}</script>
+</head>
+<body class="paper">
+<a class="paper__skip" href="#content">Skip to content</a>
+<header class="paper__masthead">
+  <a class="paper__brand" href="/">Canli Capital</a>
+  <nav class="paper__nav" aria-label="Primary">
+    <a href="/systems">Systems</a>
+    <a href="/performance">Evidence</a>
+    <a href="/research">Research</a>
+    <a href="/measurements">Measurements</a>
+    <a href="/open">Glass box</a>
+  </nav>
+</header>
+<main class="paper__main" id="content">
+  <article class="paper__article">
+    <p class="paper__eyebrow"><a href="/measurements">Measurements</a></p>
+    <h1 class="paper__title">Execution gap power</h1>
+    <p class="paper__byline">By <span rel="author">Arhan Canli</span>, Canli Capital</p>
+    <div class="paper__body">
+<p class="measure__lead">Execution gap power is one of 21 measurements this
+engine publishes in full. It is regenerated from a real run rather than transcribed, and it
+is shown here with its own claim boundary so the number and its limits arrive together.</p>
+<aside class="measure__boundary"><h2>What this measurement does and does not claim</h2><p>Reads trading databases and walk-forward curves read-only. Registers no hypothesis identity and opens no return data. 0 trials.</p></aside>
+<section class="measure__section"><h2>The measurement</h2>
+<dl class="measure__facts">
+<div class="measure__row"><dt>Any gap detectable today</dt><dd>no</dd></div>
+<div class="measure__row"><dt>Go live date</dt><dd>2026-08-07</dd></div>
+<div class="measure__row"><dt>Schema</dt><dd>canli.alphac-execution-gap-power.v1</dd></div>
+<div class="measure__row"><dt>Verdict</dt><dd>NOT MEASURABLE YET — publish the power, not a number</dd></div>
+</dl>
+<p class="measure__label">Sleeves</p><p class="measure__deep">Nested beyond what this page renders. <a href="/glassbox/execution_gap_power.json">Read it in the artifact</a>.</p>
+<p class="measure__prose"><strong>The answer.</strong> THE RECORD IS TOO SHORT. Overlap between the live marks and a walk-forward that extends into the live period exists for two sleeves and is 5 and 9 days — four and eight return observations. No execution gap is distinguishable from noise at that length, and the observed divergences below are OBSERVATIONS, not estimates.</p>
+<p class="measure__prose"><strong>The quantity that answers it soonest.</strong> The TRACKING DIFFERENCE d = r_live - r_backtest, not either Sharpe. The two run the same signal on the same days, so their returns are strongly correlated and the difference series is far less noisy than either level. The record needed to detect an execution gap is therefore much shorter than the record needed to establish the edge itself — which is the useful thing to know.</p>
+<p class="measure__prose"><strong>What would change this.</strong> Time, and nothing else. The days_required figures below are the honest answer to &#39;when can we ask&#39;. They also depend on the tracking sd being estimated from four and eight observations, which is itself a very noisy estimate — treat them as an order of magnitude, not a date.</p>
+<section class="measure__sub"><h3>When to look again</h3>
+<section class="measure__sub"><h4>A 1pct annual gap</h4>
+<dl class="measure__facts">
+<div class="measure__row"><dt>AlphaMax</dt><dd>6.7 years</dd></div>
+<div class="measure__row"><dt>AlphaTrend</dt><dd>9.2 years</dd></div>
+</dl>
+</section>
+<section class="measure__sub"><h4>A 5pct annual gap</h4>
+<dl class="measure__facts">
+<div class="measure__row"><dt>AlphaMax</dt><dd>3 months</dd></div>
+<div class="measure__row"><dt>AlphaTrend</dt><dd>4 months</dd></div>
+</dl>
+</section>
+<p class="measure__prose"><strong>Note.</strong> The useful output is not a number today but a date. Converted from return observations at 252 trading days a year, and rounded outward because the tracking sd behind them is itself estimated from four and eight observations.</p>
+<p class="measure__prose"><strong>The practical reading.</strong> A LARGE execution gap — 5% of equity a year — becomes visible in roughly three to four months, so that is when this is worth re-running. A 1% gap needs the better part of a decade and is not answerable by waiting. If a gap that small matters, it has to be attacked by measuring fills directly against their decision prices, not by comparing equity curves.</p>
+</section>
+<p class="measure__prose"><strong>Why only two sleeves.</strong> A comparison needs a backtest that covers the live days. The BLESSED research curves (crypto_carry_wk, k30_dn_63) are frozen by disclosure protocol and end 2026-06-01, before go-live, so they cannot answer this question at any record length. Only the live-forward walk-forwards, regenerated by the daily ticks, overlap at all.</p>
+</section>
+<section class="measure__section"><h2>Check it yourself</h2>
+<p>Every figure above is read from <a href="/glassbox/execution_gap_power.json"><code>/glassbox/execution_gap_power.json</code></a>, the
+artifact the engine wrote. Nothing on this page is typed by hand: the page is generated from that
+file, so a figure that moves in the artifact moves here and a figure that is not in the artifact
+cannot appear here at all.</p>
+<p><a href="/measurements">All 21 measurements</a> &middot;
+<a href="/open">The glass box</a> &middot;
+<a href="/research">The research library</a></p>
+</section>
+    </div>
+  </article>
+</main>
+</body>
+</html>
