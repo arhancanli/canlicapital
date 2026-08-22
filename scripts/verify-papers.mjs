@@ -94,6 +94,10 @@ for (const page of pages) {
 
 // 4b. Every topic hub is a real page: metadata, its own canonical, and in the sitemap.
 check(hubs.length > 0, "no topic hubs found in dist/research/topics — the taxonomy did not build");
+// Every essay paragraph on every hub, so a paragraph reused across two hubs is caught rather
+// than read as two pages of content.
+const essaySeen = new Map();
+
 for (const hub of hubs) {
   const slug = basename(hub, ".html");
   const html = readFileSync(resolve(DIST, "research", "topics", hub), "utf8");
@@ -117,7 +121,43 @@ for (const hub of hubs) {
   // A hub whose members are not linked from it is a doorway page.
   const links = (html.match(/href="\/research\/[a-z0-9-]+"/g) || []).length;
   check(links >= 3, `topic ${slug} links only ${links} papers — a hub that thin is a doorway page`);
+
+  // A hub that carries links and nothing else is a doorway page whatever its schema says. Each
+  // must open with real subject content: what the mechanism is, what the literature supports,
+  // what this book found.
+  const body = html.match(/<div class="paper__body">([\s\S]*?)<h2 class="hub__heading">/);
+  check(body !== null, `topic ${slug} has no essay before its document list`);
+  if (body) {
+    const paragraphs = [...body[1].matchAll(/<p[^>]*>([\s\S]*?)<\/p>/g)]
+      .map((m) => m[1].replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim())
+      .filter((t) => t.length > 0);
+    // The standfirst does not count toward the essay: it existed before and is what this check
+    // was written because of.
+    const essay = paragraphs.slice(1);
+    check(
+      essay.length >= 3,
+      `topic ${slug} opens with ${essay.length} essay paragraphs — under the three it needs`,
+    );
+    const words = essay.join(" ").split(/\s+/).filter(Boolean).length;
+    check(words >= 180, `topic ${slug} essay is only ${words} words — too thin to rank or to read`);
+    for (const paragraph of essay) {
+      const seenOn = essaySeen.get(paragraph);
+      // The anti-template check. The moment one paragraph can appear on two hubs, these become
+      // boilerplate with the subject noun swapped, and they would deserve to rank for nothing.
+      check(
+        seenOn === undefined,
+        `topic ${slug} shares an essay paragraph with ${seenOn} — templated, not written`,
+      );
+      essaySeen.set(paragraph, slug);
+    }
+  }
 }
+
+check(
+  essaySeen.size >= 39,
+  `only ${essaySeen.size} distinct essay paragraphs across all hubs — the extractor has stopped ` +
+    `matching and every essay check above would pass vacuously`,
+);
 
 // 5. The library index the hub page renders from covers the whole corpus.
 const index = JSON.parse(readFileSync(resolve(DIST, "research-index.json"), "utf8"));
@@ -261,7 +301,8 @@ console.log(
 );
 console.log(
   `verified ${hubs.length} topic hubs: title, description, canonical, CollectionPage, ` +
-    `sitemap entry, and at least three linked members`,
+    `sitemap entry, at least three linked members, and an opening essay of at least three ` +
+    `paragraphs (${essaySeen.size} distinct paragraphs, none shared between hubs)`,
 );
 console.log(
   `verified ${measurementPages.length} measurement pages: one per artifact discovered in ` +

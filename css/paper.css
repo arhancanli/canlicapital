@@ -431,3 +431,19 @@ body.paper {
   color: var(--muted);
   font-size: 0.94em;
 }
+
+/* Topic hub: the essay that opens it, and the heading that separates that essay from the list of
+   documents. A hub carrying links under one paragraph is a doorway page whatever its schema says,
+   so the reading matter is set as reading matter — the standfirst leads, the essay is body text at
+   the same measure as a paper, and the list is clearly the second half of the page. */
+.hub__standfirst {
+  max-width: var(--measure);
+  color: var(--ink);
+  font-size: clamp(17px, 1.5vw, 20px);
+  line-height: 1.55;
+}
+.hub__heading {
+  margin: clamp(38px, 5vw, 56px) 0 4px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--line);
+}
