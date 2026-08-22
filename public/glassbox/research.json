@@ -250,8 +250,8 @@
         }
       }
     },
-    "generated_at": "2026-08-21T23:55:11.665042+00:00",
-    "content_hash": "sha256:b9faf66367578ef5b4723be062595477c737eaad04b19257570aaaac6324ab87"
+    "generated_at": "2026-08-22T00:08:29.826475+00:00",
+    "content_hash": "sha256:eb68994cbf29fbc1902c5d6b0ae99de610c56804cef189d40d3382143ebc3ccd"
   },
   "factor_research": {
     "summary": "Most ideas die. We publish every test with its real net-of-cost Sharpe and its real Rank-IC. 2 kept, 8 killed. The Rank-IC is the cross-sectional information coefficient with a Newey-West t-stat; the net Sharpe is the purged walk-forward result after the conservative cost model.",
@@ -722,7 +722,7 @@
   "track_record": {
     "summary": "The live paper record begins at go-live and is shown only as it accrues. We publish no return until it is earned in the open.",
     "go_live_date": "2026-08-07",
-    "live_days_accrued": 14,
+    "live_days_accrued": 15,
     "live_status": "LIVE",
     "live_source": "go-live seed (no realized marks have accrued yet)",
     "live_nav_baseline_usd": 100000.0,
@@ -19617,6 +19617,111 @@
       "the_gap": "Every new pair landing exactly on the +0.00 gate gives a book average of +0.0017 and a forward Sharpe of 1.16 on this book's own optimistic haircut. The gate is necessary and it is not sufficient, and the shortfall is 0.34 of forward Sharpe. Ordering by expected orthogonality is the only lever that acts on the difference, because the gate cannot."
     }
   },
+  "identity_redesign": {
+    "form_universe": {
+      "claim_boundary": "Counts filings by form type and enumerates the action types held in the corporate-action lake. Opens no return data, registers no hypothesis identity, proposes no threshold and authorises no candidate. 0 trials.",
+      "corporate_action_route_checked": {
+        "action_types": {
+          "dividend": 11016,
+          "split": 334
+        },
+        "carries_a_spin_off_or_distribution_type": false,
+        "instruments_in_lake": 8799,
+        "instruments_sampled": 600,
+        "sample_seed": 0,
+        "verdict": "The corporate-action lake does NOT carry the event. It holds ['dividend', 'split'] and nothing resembling a distribution, so the structured route is the filing index rather than the corporate-action record. Checked rather than assumed: an unchecked version of this note would have proposed a route that does not exist and would have read just as confidently."
+      },
+      "edgar_index": {
+        "first_year": "2010",
+        "last_year": "2025",
+        "quarters_read": 64,
+        "source": "data/raw/sec_active_ownership_13d/indexes/*.idx.gz"
+      },
+      "note": "docs/design/IDENTITY_REDESIGN_NOTES.md quotes these numbers and a test pins them.",
+      "schema": "canli.alphac-spinoff-form-universe.v1",
+      "spin_off_registrations": {
+        "by_year": {
+          "2010": {
+            "amended": 64,
+            "initial": 19
+          },
+          "2011": {
+            "amended": 67,
+            "initial": 27
+          },
+          "2012": {
+            "amended": 66,
+            "initial": 22
+          },
+          "2013": {
+            "amended": 70,
+            "initial": 31
+          },
+          "2014": {
+            "amended": 150,
+            "initial": 38
+          },
+          "2015": {
+            "amended": 138,
+            "initial": 45
+          },
+          "2016": {
+            "amended": 151,
+            "initial": 33
+          },
+          "2017": {
+            "amended": 38,
+            "initial": 10
+          },
+          "2018": {
+            "amended": 53,
+            "initial": 25
+          },
+          "2019": {
+            "amended": 42,
+            "initial": 36
+          },
+          "2020": {
+            "amended": 19,
+            "initial": 16
+          },
+          "2021": {
+            "amended": 33,
+            "initial": 20
+          },
+          "2022": {
+            "amended": 45,
+            "initial": 20
+          },
+          "2023": {
+            "amended": 46,
+            "initial": 19
+          },
+          "2024": {
+            "amended": 33,
+            "initial": 17
+          },
+          "2025": {
+            "amended": 26,
+            "initial": 8
+          }
+        },
+        "form_amended": "10-12B/A",
+        "form_initial": "10-12B",
+        "mean_initial_per_year": 24.1,
+        "total_amended": 1041,
+        "total_initial": 386
+      },
+      "the_unwelcome_half": "386 initial registrations over 16 years is a thin universe. Whatever a redesigned identity claims is bounded by that count, and the bound belongs in the pre-registration rather than in a footnote after a disappointing result.",
+      "why_this_is_metadata_not_extraction": "The form type is a field in the EDGAR master index. A Form 10-12B is filed to register a class of securities being distributed to shareholders, so the act of filing one declares the event and no sentence inside it has to. The protocol that failed was reading prose to rediscover a universe the index already names."
+    },
+    "notes_public_path": "/research/identity-redesign-notes.md",
+    "notes_source_path": "docs/design/IDENTITY_REDESIGN_NOTES.md",
+    "notes_sha256": "7a55e511246d7070a8f76d60a0494e31a44d3b4106071a2fa4987b433f3e2468",
+    "public_path": "/glassbox/spinoff_form_universe.json",
+    "source_path": "artifacts/analysis/spinoff_form_universe/result.json",
+    "status": "DRAFT \u2014 nothing here is registered and no threshold is proposed"
+  },
   "sleeve_admission_contract": {
     "contract": {
       "schema": "canli.alphac-sleeve-admission-contract.v6",
@@ -20051,7 +20156,7 @@
             "by_file": {}
           },
           "tests": {
-            "python_files": 269,
+            "python_files": 270,
             "violations": 0,
             "files_with_violations": 0,
             "safe_autofixes_available": 0,
@@ -20060,7 +20165,7 @@
             "by_file": {}
           },
           "historical_scripts": {
-            "python_files": 190,
+            "python_files": 191,
             "violations": 363,
             "files_with_violations": 52,
             "safe_autofixes_available": 110,
@@ -20215,9 +20320,9 @@
           "scripts/vps/collect_venues.py": "54870d67f99fa677486b71eae1e0ca4f6579b29e6b9facba6f37f4bdee523b69",
           "scripts/vps/stale_lock.py": "f40b992005f87b733ea6e71a447219a55d8200585c388ac06e13394cb0195a54"
         },
-        "content_hash": "sha256:b2aa9abb493db9c2d94a47e4d3104c6e4be59c0a5cb8e1eb111e7239d125add3"
+        "content_hash": "sha256:4a19479e10b1308ff58ff8a0406c45238fc71d6dcfeed1a8c8435168f3a6f172"
       },
-      "source_sha256": "545f41e2662a5bfe2401b4335719e4f61995188a8f7c4cc041b9b14cc11d2ad3",
+      "source_sha256": "1ed19be070648f6328d3c9391f232bca515483e3dfa6ab7b1de9f5f3778c2393",
       "public_path": "/glassbox/lint_debt_contract.json",
       "book_path": "/research/engineering-quality.md",
       "source_path": "artifacts/engineering/lint_debt_contract.json"
@@ -20667,6 +20772,6 @@
       "source_path": "artifacts/engineering/options_execution_contract.json"
     }
   },
-  "generated_at": "2026-08-21T23:55:11.669240+00:00",
-  "content_hash": "sha256:fe73e9f46b0708bc2383749134d910f65097e08f4dd1f91f66512e0f3b6c3c93"
+  "generated_at": "2026-08-22T00:08:29.830842+00:00",
+  "content_hash": "sha256:fd2c11b74c43d4fd00f1dddb19afe38b3d330684329c9df25a616cda39a82212"
 }
