@@ -250,8 +250,8 @@
         }
       }
     },
-    "generated_at": "2026-08-22T06:25:37.133688+00:00",
-    "content_hash": "sha256:7391fe5a53f4e114002fc22761c0adb626236ad706bcfdb285fec1536e135337"
+    "generated_at": "2026-08-22T08:04:05.246129+00:00",
+    "content_hash": "sha256:022c04a24a3fba575f8ed79306f16c09f234fd9fb10ba5b5336a6c52160fb05b"
   },
   "factor_research": {
     "summary": "Most ideas die. We publish every test with its real net-of-cost Sharpe and its real Rank-IC. 2 kept, 8 killed. The Rank-IC is the cross-sectional information coefficient with a Newey-West t-stat; the net Sharpe is the purged walk-forward result after the conservative cost model.",
@@ -726,8 +726,8 @@
     "live_status": "LIVE",
     "live_source": "go-live seed (no realized marks have accrued yet)",
     "live_nav_baseline_usd": 100000.0,
-    "live_nav_current_usd": 98631.54,
-    "live_return_pct": -1.3685,
+    "live_nav_current_usd": 98611.93,
+    "live_return_pct": -1.3881,
     "research_curve_label": "SIMULATION (research backtest, NOT realized trading)",
     "research_curve_start": {
       "date": "2023-07-07",
@@ -755,7 +755,7 @@
       "CORRECTION 2026-07-05 \u2014 the crypto sleeve was signal-dead, not 'carry compressed'. From go-live (06-23) to 07-05 AlphaForge held cash and we published that funding carry was compressed. An internal audit found the true cause: a wiring bug blended equity-fundamental alphas (undefined on crypto) into the live signal, invalidating it every cycle \u2014 the validated carry-only configuration was never what ran live. Fixed same day (the loop now runs the exact blessed walk-forward config: carry_fund_21, weekly rebalance, with per-cycle signal-health logging so a dead signal can never masquerade as a quiet hold again). The $100k cash equity curve was genuine; the published EXPLANATION was wrong. Per our append-only posture this correction is added to the record, not swapped into it.",
       "We red-team our own record. On 2026-06-27 our publishing pipeline emitted a future-dated (2026-06-29) paper mark that briefly reached the public sites and was anchored into seq 0 of the signed transparency chain. We caught it the same day, added a fail-closed guard, and appended the corrected seq 1 \u2014 the append-only chain shows BOTH, because we don't get to delete our mistakes. That is the trust system working, not failing.",
       "AlphaTrend (managed-futures trend) was the FIRST sleeve we took genuinely live: its 17-ETF book transacts on Alpaca paper, not in a simulator. We published DSR 0.83 for it and called it the first sleeve to CLEAR multiple-testing deflation, statistically real rather than a backtest fluke. RE-DERIVED 2026-08-07 at honest N=133 and pooled V[SR]=7.96e-04, its DSR is 0.000: the LOWEST of the six sleeves we have measured, not the highest. The old 0.83 rested on a variance input roughly 80x too small and a trial count of 5 while its siblings were graded at N=101, so it was marked on an easier exam and then called the soundest. Net Sharpe 0.25 over its full 5,179-day history. It is folded into ALPHAC at equal quarters for MEASURED drawdown reduction, not for a demonstrated edge. The screen suggested 0.73; the honest engine says 0.33 on the live window. We published every one of those numbers.",
-      "STRUCTURAL VERDICT 2026-08-05 \u2014 the crypto sleeve's venue unreachability is STRUCTURAL, and we said we would say so. The 2026-07-20 note above promised: 'if it proves persistent it is a STRUCTURAL problem for a sleeve built on a single venue, and we will say that too.' It has proved persistent, so here is the number we had not put on the record until now: across its entire live history the hourly loop has completed 524 of 1295 expected cycles \u2014 an uptime of 40.5%. It has been dark for roughly 772 hours of a 54.0-day record, with 8 separate outages longer than a day and a longest single outage of 165 hours. As of this publish it has been dark 0 hours; its last observed cycle was 2026-08-22 06:00 UTC. WHAT THIS MEANS, stated plainly rather than buried: this sleeve carries 40% of the flagship's weight, so for most of the forward record our largest single position has not been managed. The published curve is not wrong \u2014 we never roll forward a mark we did not observe, so the sleeve's line simply stops when the venue does \u2014 but a 40%-weight sleeve that is dark most of the time is not meaningfully 'live', and describing it as live without this number attached would have been a half-truth. The forward track record is the whole basis on which this book asks to be believed, and it is being accrued on a book whose biggest sleeve is mostly absent. WHAT WE ARE DOING: the diagnosis is unchanged and venue-specific (the general internet and our equity broker respond normally from the same machine while the exchange endpoint fails on connect). Two fixes are real \u2014 hosting the loop somewhere with unobstructed access, and removing the single-venue dependency altogether by adding a second exchange. We flag the first honestly: our own deploy runbook records that reaching a venue from a different region is a COMPLIANCE decision and not merely an operations one, so it will not be done as a silent infrastructure tweak. Until one of those lands, read this sleeve's contribution to the live record as what it is \u2014 40.5% of the intended trading.",
+      "STRUCTURAL VERDICT 2026-08-05 \u2014 the crypto sleeve's venue unreachability is STRUCTURAL, and we said we would say so. The 2026-07-20 note above promised: 'if it proves persistent it is a STRUCTURAL problem for a sleeve built on a single venue, and we will say that too.' It has proved persistent, so here is the number we had not put on the record until now: across its entire live history the hourly loop has completed 525 of 1296 expected cycles \u2014 an uptime of 40.5%. It has been dark for roughly 772 hours of a 54.0-day record, with 8 separate outages longer than a day and a longest single outage of 165 hours. As of this publish it has been dark 0 hours; its last observed cycle was 2026-08-22 07:00 UTC. WHAT THIS MEANS, stated plainly rather than buried: this sleeve carries 40% of the flagship's weight, so for most of the forward record our largest single position has not been managed. The published curve is not wrong \u2014 we never roll forward a mark we did not observe, so the sleeve's line simply stops when the venue does \u2014 but a 40%-weight sleeve that is dark most of the time is not meaningfully 'live', and describing it as live without this number attached would have been a half-truth. The forward track record is the whole basis on which this book asks to be believed, and it is being accrued on a book whose biggest sleeve is mostly absent. WHAT WE ARE DOING: the diagnosis is unchanged and venue-specific (the general internet and our equity broker respond normally from the same machine while the exchange endpoint fails on connect). Two fixes are real \u2014 hosting the loop somewhere with unobstructed access, and removing the single-venue dependency altogether by adding a second exchange. We flag the first honestly: our own deploy runbook records that reaching a venue from a different region is a COMPLIANCE decision and not merely an operations one, so it will not be done as a silent infrastructure tweak. Until one of those lands, read this sleeve's contribution to the live record as what it is \u2014 40.5% of the intended trading.",
       "CORRECTION 2026-08-06 \u2014 our crypto carry sleeve is a strategy that earns funding, and its LIVE paper account has never once booked funding. We found this ourselves and are publishing it before the fix rather than after. The mechanism, stated plainly so anyone can check it: funding is applied in exactly one place in this codebase, Ledger.apply_funding, and it is called from exactly one call site, the BACKTEST engine. The live paper broker's cash moves on one line and only one line, a fill: cash - qty*price - fee. No funding cashflow can reach the live account by any path. The size of what is missing is not marginal. Our committed walk-forward artifact for this sleeve reports funding_net of $19,500 against a total return of $38,236 on a $100k book over 2022-02 to 2026-06: about HALF of everything this strategy has ever earned is the funding it is designed to harvest. Removing it takes the sleeve's backtested Sharpe from 0.653 to roughly 0.30. So AlphaForge's live record has been running against a hard ceiling of about half its validated Sharpe, and every live number we have published for this sleeve should be read in that light. What we are NOT doing: we are not restating the historical live curve. The marks we published were the marks we observed, and this record is append-only, so the fix applies FORWARD from the day it ships and the understated period stays visible in the chain. One number we are deliberately NOT putting on the record yet: our internal estimate of what funding would have added over the live window is dominated by a single name that redenominated roughly 100x inside the window, which makes the naive figure meaningless. We would rather publish no number than a number we cannot stand behind, so that one waits for the corrected accounting. This is the fourth time a defect in our plumbing, not our strategy, has moved a published number, and the lesson we wrote down in July holds: a fix is not done until a test pins the path that actually runs.",
       "CORRECTION 2026-08-06 \u2014 a factual claim in our 2026-07-20 incident note above is now false and we are marking it rather than editing it. That note said 'Bybit responds' as evidence the Binance failure was venue-specific. Re-measured from the same network on 2026-08-06: Bybit does NOT respond, and neither do Kraken or Deribit. Binance, Bybit and Kraken all fail on connection reset in under a tenth of a second and Deribit times out. The conclusion the original note drew is unchanged and if anything strengthened, since the block is clearly broader than one venue, but the supporting fact it cited is no longer true and a reader checking our work today would find it wrong. One venue does answer: OKX responds normally and serves funding rates, 436 perpetual instruments and hourly candles. We are evaluating it, and we note in advance that moving venue is not a configuration change: the same carry signal computed on OKX has a cross-sectional rank correlation of only about 0.64 with the Binance one, so it would be a materially different strategy wearing the same name, and we will not splice the two curves together and call it one continuous record.",
       "FIXED 2026-08-06 \u2014 the funding gap disclosed above is now closed in the live path, forward only. Earlier today we published that our crypto carry sleeve had never once booked funding in live paper, which is roughly half of everything that strategy has ever earned. That is fixed: the live broker gained a funding path with the identical sign convention the backtest ledger uses (payment = -position * mark * rate, longs pay shorts on a positive rate), and the live loop now settles every stored funding event for the window just closed, before the strategy re-decides, so a settlement is charged against the position that was actually held through it. It is point-in-time by construction: the reader filters on each event's stored publication time, never on the settlement time, so a rate not yet knowable at the moment of the cycle stays invisible. Nine tests pin the running path rather than the intention, including one that asserts the live broker and the backtest ledger return identical figures for the same event, because two conventions would be worse than none. Three things we are deliberately NOT doing. We are not restating the historical curve: the marks we published are the marks we observed, the understated period stays in the signed chain, and the fix applies from today. We are not claiming an improvement yet: the sleeve has been dark on venue unreachability since 2026-08-03, so this books nothing until it trades again, and any future gain will show up in the forward record or not at all. And we are not putting a number on what it would have earned over the live window, because our own measurement of that is dominated by a single instrument that redenominated roughly 100x inside the window, which makes the figure meaningless. We would rather publish no number than one we cannot stand behind.",
@@ -17093,12 +17093,12 @@
       ],
       "source_sha256": {
         "registry": "6a54ef0c0bda0d1353b1fa8175ab900313b31594084cc5c8810b4de069ef3e04",
-        "kill_ledger": "00e1ab4bfedb72c34c15e6c34dc443a5c1b2c2452bac989eba24170fdf7ade92",
-        "current_book": "643deae5b69fc1a228920ac8ca2ffd1195a28b9300b60c178c8d2152e471c3ae",
+        "kill_ledger": "51e7add8b7e055f554c0984f013b6ccd36f53bfef02747acdddcc8328678d162",
+        "current_book": "958e4e755b9ca96b8edafc52531ed3c1ea6d338fd6dcb3f7318bd7e102302927",
         "discovery": "654f831e3ea4122437e5c48f066d6d37ba6cbcf8d1c7119395d104c5aa6cc225"
       },
-      "generated_at": "2026-08-22T06:25:33.360077+00:00",
-      "content_hash": "sha256:749709528efd864b6466e405939501971acc015f66a6126d75a859d8953eeab4"
+      "generated_at": "2026-08-22T07:25:56.874927+00:00",
+      "content_hash": "sha256:c6bcac92013564a23bbc5de9eff4a7757ccf6d2769500dbc22ab5b12e5230428"
     },
     "atlas_public_path": "/glassbox/sleeve_atlas.json",
     "audit_public_path": "/glassbox/sleeve_atlas_audit.json",
@@ -19995,6 +19995,121 @@
   "published_as": {
     "trial_accounting": "trial_ledger.json"
   },
+  "prereg_earnings_narrative_parameters": {
+    "claim_boundary": "The numeric parameters this pre-registration commits to, extracted from the committed document and stated as data. It asserts nothing about the candidate's performance, re-runs nothing, and changes no threshold. 0 trials.",
+    "committed_parameters": {
+      "hedge_beta_window_sessions": 252,
+      "hold_sessions": 63,
+      "minimum_aligned_observations": 252,
+      "minimum_stressed_observations": 63,
+      "momentum_lookback_session_index": -252,
+      "momentum_lookback_sessions": 252,
+      "momentum_skip_session_index": -21,
+      "momentum_skip_sessions": 21,
+      "note": "Stated in the document as '12-1 momentum ... adjusted close at session -21 divided by adjusted close at session -252', a trailing 252-session SPY beta hedge, and void conditions below 252 aligned or 63 stressed observations."
+    },
+    "document": {
+      "path": "docs/design/PREREG_EARNINGS_NARRATIVE_CHANGE.md",
+      "public_path": "/research/prereg-earnings-narrative-change",
+      "sha256": "sha256:60486da41f1e2c88e62b6e56d436d780f645420ffaeb13364540d0c4040cc3b9"
+    },
+    "marginal_test_weights": {
+      "candidate_weight": 0.1,
+      "current_sleeves": 4,
+      "derivation": "4 equal sleeves at 25% each; the candidate is assigned 10% funded PRO RATA, so every existing sleeve keeps 90% of its weight: 0.25 x 0.90 = 0.225. This is arithmetic, not a measurement, and it is published with its inputs so it can be checked rather than accepted.",
+      "sleeve_weight_after": 0.225,
+      "sleeve_weight_after_pct": 22.5,
+      "sleeve_weight_before": 0.25
+    },
+    "measured_book_effect": {
+      "base_sharpe": 0.9563039455217212,
+      "candidate_10pct_sharpe": 1.0643867520134125,
+      "note": "Included so the weight the spec commits to and the weight the run used are visible on one page.",
+      "source": "artifacts/probe/earnings_narrative_change/result.json"
+    },
+    "parameters_found_verbatim_in_the_document": [
+      "-21",
+      "-252",
+      "21",
+      "252",
+      "63"
+    ],
+    "schema": "canli.alphac-prereg-parameters.v1",
+    "why_this_exists": "A pre-registration's function is that the spec is fixed before measurement so a reader can check the run against it. These parameters existed only as English sentences, so nothing could compare the executed run to the committed spec."
+  },
+  "alphavintage_sealed_outcome": {
+    "active_day_net_sharpe_superseded": 0.338207199401868,
+    "active_days": 5998,
+    "claim_boundary": "The figures the published correction paper quotes, recomputed from the probe's own artifacts so a reader can check them. It re-states a sealed result; it does not re-run it, re-open return data, or change any verdict. 0 trials.",
+    "equity_curve_rows": 6296,
+    "inputs": {
+      "equity_parquet": {
+        "path": "artifacts/probe/cpi_surprise_size/equity.parquet",
+        "sha256": "sha256:d277c63ddf2bed6e9314aa863dbbf6adf3f4adb55bd89e8166aee4a19aab415f"
+      },
+      "result_json": {
+        "path": "artifacts/probe/cpi_surprise_size/result.json",
+        "sha256": "sha256:686654b4617efb8322f6fda37f2e71a375423aecc6de03477a0186cf2844e509"
+      }
+    },
+    "max_drawdown": -0.2509779478479198,
+    "max_drawdown_definition": "peak-to-trough on the probe's own equity curve: min(equity / cummax(equity) - 1). RECOMPUTED here because result.json does not carry a drawdown; the paper quoted a figure no published artifact contained.",
+    "max_drawdown_pct": -25.1,
+    "net_sharpe": 0.2298358829229609,
+    "newey_west_t": 1.2673190577321936,
+    "portfolio_days": 6296,
+    "schema": "canli.alphac-alphavintage-sealed-outcome.v1",
+    "verdict": "KILLED",
+    "why_this_exists": "Two figures in that paper traced to nothing published: the superseded Sharpe lived only in an unpublished probe result, and the maximum drawdown was in no artifact at all. A correction paper whose own numbers cannot be checked asks for exactly the credence the original mistake did."
+  },
+  "data_lake_scale": {
+    "claim_boundary": "Counts what is on disk and what pytest collects. It says nothing about data quality, coverage gaps, or whether any of it supports a trading claim \u2014 only how much there is. Runs no backtest, opens no return data, registers no hypothesis. 0 trials.",
+    "corrections_this_measurement_forced": [
+      "'392K+ point-in-time fundamentals' was OVERSTATED \u2014 the true figure is 380,878. An overstated count is the only kind of staleness that matters.",
+      "'8,436 US stocks, survivorship-free' matched neither store and has been replaced by the point-in-time membership count, which is what the phrase means.",
+      "'3.5M+ hourly bars' and '2,820+ automated tests' were understated by enough to mislead in the other direction; the '+' made them true and uninformative."
+    ],
+    "facts": {
+      "automated_tests": {
+        "definition": "tests pytest collects under tests/, summed from its own per-file collection report",
+        "value": 3961
+      },
+      "crypto_hourly_bars": {
+        "definition": "rows across every partition of data/lake/ohlcv, counted from parquet footers",
+        "partitions": 2250,
+        "value": 13662316
+      },
+      "crypto_instruments_with_bars": {
+        "definition": "distinct instrument ids with at least one hourly bar, live and delisted. NOT the traded universe, which is a much smaller subset chosen by the sleeve's own filters",
+        "value": 775
+      },
+      "equity_daily_bars": {
+        "definition": "rows across every partition of data/lake/ohlcv_1d, counted from parquet footers",
+        "partitions": 116037,
+        "value": 24750503
+      },
+      "equity_instruments_in_pit_membership": {
+        "definition": "distinct US-listed instrument ids the point-in-time universe store has ever admitted \u2014 the narrower answer, and the one that means 'survivorship-free research universe'",
+        "value": 6835
+      },
+      "equity_instruments_with_bars": {
+        "definition": "distinct US-listed instrument ids that have at least one daily bar, including delisted ones \u2014 the broadest defensible answer to 'how many stocks'",
+        "value": 18015
+      },
+      "equity_year_span": {
+        "definition": "first and last year partition present in the equity daily lake",
+        "value": "1997-2026",
+        "years": 30
+      },
+      "point_in_time_fundamentals": {
+        "definition": "rows in data/lake/fundamentals \u2014 one (instrument, fiscal period) record carrying an available_at stamp, which is what makes it point-in-time",
+        "partitions": 105144,
+        "value": 380878
+      }
+    },
+    "schema": "canli.alphac-data-lake-scale.v1",
+    "why_each_figure_carries_a_definition": "'How many US stocks' has at least two defensible answers here and they differ by 2.6x: 18,015 instruments have bars, and 6,835 have ever been in the point-in-time universe. Publishing one without saying which it is would replace a stale number with an ambiguous one."
+  },
   "claim_coverage_map": {
     "claim_boundary": "Maps each PUBLISHED ARTIFACT to the mechanisms that guard it and records when each mechanism last ran, by running it. It does not claim any guard is correct \u2014 only which claims have one and which do not. Runs no backtest, opens no return data, registers no hypothesis identity. 0 trials.",
     "coverage": [
@@ -21705,7 +21820,7 @@
             "by_file": {}
           },
           "tests": {
-            "python_files": 276,
+            "python_files": 277,
             "violations": 0,
             "files_with_violations": 0,
             "safe_autofixes_available": 0,
@@ -21714,11 +21829,11 @@
             "by_file": {}
           },
           "historical_scripts": {
-            "python_files": 196,
-            "violations": 363,
-            "files_with_violations": 52,
-            "safe_autofixes_available": 110,
-            "unsafe_autofixes_available": 59,
+            "python_files": 199,
+            "violations": 360,
+            "files_with_violations": 51,
+            "safe_autofixes_available": 109,
+            "unsafe_autofixes_available": 57,
             "by_rule": {
               "B007": 4,
               "B023": 5,
@@ -21737,7 +21852,7 @@
               "E741": 3,
               "F401": 6,
               "F541": 9,
-              "F841": 8,
+              "F841": 6,
               "I001": 2,
               "RUF001": 2,
               "RUF005": 1,
@@ -21746,7 +21861,7 @@
               "RUF034": 1,
               "RUF046": 36,
               "RUF059": 12,
-              "RUF100": 36,
+              "RUF100": 35,
               "SIM105": 2,
               "SIM115": 12,
               "SIM300": 2,
@@ -21772,7 +21887,6 @@
               "scripts/ingest_sec_fundamentals.py": 2,
               "scripts/ingest_short_interest.py": 5,
               "scripts/managed_futures_screen.py": 1,
-              "scripts/mf_gauntlet.py": 3,
               "scripts/probe_alphamax_live_recon.py": 10,
               "scripts/probe_alphamax_recon2.py": 10,
               "scripts/probe_alphamax_residual.py": 3,
@@ -21834,7 +21948,6 @@
           "scripts/ingest_sec_fundamentals.py": "4e84985ece735c0099ff31f44f6d409a85a07468e5237656658733752d87afc4",
           "scripts/ingest_short_interest.py": "c2b17bd2b1de7e3b4a5efded5121cd999a1cd195be2ec0ef1677e0cb90e2f150",
           "scripts/managed_futures_screen.py": "4b3ce844e346b6d3280f76779f59a934c264f1d5e7c9698dd56f83065ea397ba",
-          "scripts/mf_gauntlet.py": "007989d577c72d9d2ff7ad2715c91046a48130b21d925514a3a3dca994d599e2",
           "scripts/probe_alphamax_live_recon.py": "cebbb5df85520f247f5ada3e29ac8957457251f06e004fcccdaa1d99c19909bd",
           "scripts/probe_alphamax_recon2.py": "067e5b4b073dd57039847dbeadf7dde3628301f215f369c869fd4dd139cfea15",
           "scripts/probe_alphamax_residual.py": "bb29e0b2dd0b50af97ecabf8e301185767d1ec0988ab5b8f6cca0a0496e7b619",
@@ -21869,9 +21982,9 @@
           "scripts/vps/collect_venues.py": "54870d67f99fa677486b71eae1e0ca4f6579b29e6b9facba6f37f4bdee523b69",
           "scripts/vps/stale_lock.py": "f40b992005f87b733ea6e71a447219a55d8200585c388ac06e13394cb0195a54"
         },
-        "content_hash": "sha256:e50bee37959006af6d3872fc9e478a16b9837609df83a8cc1e786f2ff72db67c"
+        "content_hash": "sha256:480438df11411557ff9b568338f200c4cdaf032f0511d4317b25ded7ea492390"
       },
-      "source_sha256": "32fbc34379e88558f9dd366de761b904bb008f33b556e4d84c08b2a40868e76b",
+      "source_sha256": "fdb9e1bb30b75ceffa38d119bd473b38e768a0a80077b82eeb79cb6dcff0bd44",
       "public_path": "/glassbox/lint_debt_contract.json",
       "book_path": "/research/engineering-quality.md",
       "source_path": "artifacts/engineering/lint_debt_contract.json"
@@ -22321,6 +22434,6 @@
       "source_path": "artifacts/engineering/options_execution_contract.json"
     }
   },
-  "generated_at": "2026-08-22T06:25:37.160217+00:00",
-  "content_hash": "sha256:115f9d945e8e858b6ad01b8ecbbfd54a7bdc3a76528d7dd5dbfdecea0ae41c97"
+  "generated_at": "2026-08-22T08:04:05.250920+00:00",
+  "content_hash": "sha256:40f7d23b9a4a9e276caa324f5cee07889a0435b34ae838966a8158f0ce225c2f"
 }

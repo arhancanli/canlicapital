@@ -603,6 +603,58 @@ for (const page of pages) {
 check(shortTitled >= 20, `only ${shortTitled} papers declare a short title — the extractor has ` +
   `stopped matching and the checks above would pass vacuously`);
 
+// ---------------------------------------------------------------------------
+// 12. data-fact FALLBACKS. Every `<span data-fact="k">TEXT</span>` is overwritten
+//     by main.js at runtime, so the TEXT is only what a crawler and a reader
+//     with JS off actually see — which makes it a published claim, and it had
+//     drifted: "8,436 survivorship-free US stocks", "392K+ fundamentals" and
+//     "2,820+ tests" sat in the HTML long after config/brand.js was the source
+//     of truth. A fallback that disagrees with the value replacing it is a
+//     second, stale copy of the number.
+// ---------------------------------------------------------------------------
+const brand = readFileSync(resolve(ROOT, "config/brand.js"), "utf8");
+const factsBlock = brand.slice(
+  brand.indexOf("export const FACTS = {"),
+  brand.indexOf("};", brand.indexOf("export const FACTS = {")),
+);
+const FACTS = Object.fromEntries(
+  [...factsBlock.matchAll(/^\s*(\w+):\s*"([^"]*)"/gm)].map((m) => [m[1], m[2]]),
+);
+check(Object.keys(FACTS).length >= 8, `only ${Object.keys(FACTS).length} FACTS parsed from ` +
+  `config/brand.js — the extractor has stopped matching and the checks below would pass vacuously`);
+
+// Walk dist/ here rather than reuse a name from another script: this file had no page walker.
+const walkHtml = (dir) => {
+  const out = [];
+  for (const entry of readdirSync(dir, { withFileTypes: true })) {
+    if (entry.isDirectory()) {
+      if (entry.name === "assets") continue;
+      out.push(...walkHtml(resolve(dir, entry.name)));
+    } else if (entry.name.endsWith(".html")) {
+      out.push(resolve(dir, entry.name));
+    }
+  }
+  return out;
+};
+
+let factSpans = 0;
+for (const file of walkHtml(DIST)) {
+  const html = readFileSync(file, "utf8");
+  for (const match of html.matchAll(/data-fact="(\w+)">([^<]*)</g)) {
+    const [, key, text] = match;
+    if (!(key in FACTS)) continue;
+    factSpans += 1;
+    check(
+      text === FACTS[key],
+      `${file.replace(DIST, "")} renders data-fact="${key}" as "${text}" while config/brand.js says ` +
+        `"${FACTS[key]}". The static text is what a crawler and a no-JS reader see, so a stale ` +
+        `fallback is a stale published number.`,
+    );
+  }
+}
+check(factSpans >= 10, `only ${factSpans} data-fact spans found across the built site — the scan ` +
+  `has stopped matching`);
+
 const sitemapUrls = (sitemap.match(/<loc>/g) || []).length;
 if (failures.length) {
   console.error(`\nFAILED (${failures.length}):`);
@@ -641,5 +693,9 @@ console.log(
 console.log(
   `verified ${shortTitled} short titles: each fits, each is used, and each document still ` +
     `presents its real name in the H1 and the structured data`,
+);
+console.log(
+  `verified ${factSpans} data-fact fallbacks against config/brand.js — the static text a crawler ` +
+    `sees agrees with the value JS replaces it with`,
 );
 console.log(`sitemap covers ${sitemapUrls} URLs`);

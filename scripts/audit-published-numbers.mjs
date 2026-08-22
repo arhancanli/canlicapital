@@ -224,6 +224,9 @@ for (const file of htmlFiles) {
   // "arXiv:2103.02012" is a paper's name. The rule is contextual — what precedes the numeral —
   // rather than a list of the particular identifiers this corpus happens to cite today.
   const identifiers = new Set();
+  for (const match of html.matchAll(/(?:doi|arxiv|https?|www|:\/\/)[^"'\s<>]*/gi)) {
+    for (const token of match[0].match(NUMERAL) || []) identifiers.add(token);
+  }
   for (const match of text.matchAll(/(?:doi|arxiv|https?|www|:\/\/)\S*/gi)) {
     for (const token of match[0].match(NUMERAL) || []) identifiers.add(token);
   }
