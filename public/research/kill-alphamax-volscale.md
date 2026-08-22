@@ -1,5 +1,7 @@
 # Vol-Scaled / Crash-Protected Momentum overlay (campaign): a killed candidate
 
+**Short title:** Vol-scaled crash-protected momentum: killed
+
 **Verdict:** KILLED  **Stage:** screen prototype  
 **Identity:** `alphamax_volscale`
 

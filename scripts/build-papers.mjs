@@ -245,6 +245,18 @@ function extractMeta(markdown, slug) {
   const headingIndex = lines.findIndex((line) => /^#\s+/.test(line));
   const title = headingIndex >= 0 ? toPlainText(lines[headingIndex].replace(/^#\s+/, "")) : null;
 
+  // A SEARCH RESULT HEADLINE IS NOT A DOCUMENT'S NAME. Twenty-three papers carry titles past the
+  // 65 characters a result shows, because their real names are long and precise — "Managed-Futures
+  // fast-trend / real-futures breadth (campaign): a killed candidate" is the right name for the
+  // document and the wrong thing to truncate mid-word in a result. So a paper may declare
+  // `**Short title:** …` and that is used for <title> ONLY. The H1, the Open Graph title and the
+  // structured-data headline all keep the real name, so nothing is renamed and nobody arrives at a
+  // document called something other than what it is. verify-papers.mjs enforces both halves.
+  const shortTitleLine = lines.find((line) => /^\*\*Short title:\*\*/i.test(line.trim()));
+  const shortTitle = shortTitleLine
+    ? toPlainText(shortTitleLine.replace(/^\s*\*\*Short title:\*\*\s*/i, ""))
+    : null;
+
   let description = null;
   const afterHeading = headingIndex >= 0 ? lines.slice(headingIndex + 1).join("\n") : markdown;
   for (const block of afterHeading.split(/\n\s*\n/)) {
@@ -259,7 +271,7 @@ function extractMeta(markdown, slug) {
     description = fitDescription(plain);
     break;
   }
-  return { title, description, slug };
+  return { title, shortTitle, description, slug };
 }
 
 const DESCRIPTION_MAX = 158;
@@ -298,7 +310,7 @@ function fitTitle(title) {
   return title.length + SUFFIX.length <= TITLE_MAX ? `${title}${SUFFIX}` : title;
 }
 
-function pageHtml({ title, description, slug, body, sourceFile, related = "" }) {
+function pageHtml({ title, shortTitle, description, slug, body, sourceFile, related = "" }) {
   const url = `${ORIGIN}/research/${slug}`;
   const jsonLd = {
     "@context": "https://schema.org",
@@ -343,7 +355,7 @@ function pageHtml({ title, description, slug, body, sourceFile, related = "" }) 
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>${escapeHtml(fitTitle(title))}</title>
+<title>${escapeHtml(fitTitle(shortTitle || title))}</title>
 <meta name="description" content="${escapeHtml(description)}" />
 <link rel="canonical" href="${url}" />
 <meta name="author" content="${AUTHOR}" />

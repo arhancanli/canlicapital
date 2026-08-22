@@ -1,5 +1,7 @@
 # Prediction-Market Odds as Macro Signal (probe): a killed candidate
 
+**Short title:** Prediction-market odds as a macro signal: killed
+
 **Verdict:** KILLED  **Stage:** screen prototype  
 **Identity:** `pm_odds_signal`
 

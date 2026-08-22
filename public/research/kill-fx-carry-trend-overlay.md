@@ -1,5 +1,7 @@
 # FX Carry + Trend Overlay (the real construction): a killed candidate
 
+**Short title:** FX carry with a trend overlay: killed
+
 **Verdict:** KILLED  **Stage:** screen prototype  
 **Identity:** `fx_carry_trend_overlay`
 

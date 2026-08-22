@@ -544,6 +544,65 @@ if (existsSync(methodologyFile)) {
   }
 }
 
+// ---------------------------------------------------------------------------
+// 11. SHORT TITLES. A search-result headline is not a document's name. Papers
+//     whose real names run past 65 characters declare a short title used for
+//     <title> only — and the risk of that mechanism is that it quietly RENAMES
+//     the document. So this checks both halves: the short title fits, and the
+//     page still presents the real name in its H1, Open Graph title and
+//     structured-data headline. A reader must never arrive at a document called
+//     something other than what it is.
+// ---------------------------------------------------------------------------
+const TITLE_LIMIT = 65;
+let shortTitled = 0;
+for (const page of pages) {
+  const slug = basename(page, ".html");
+  const markdown = readFileSync(resolve(ROOT, "public/research", `${slug}.md`), "utf8");
+  const realTitle = (markdown.match(/^#\s+(.+)$/m) || [])[1]?.trim();
+  const shortLine = markdown.match(/^\*\*Short title:\*\*\s*(.+)$/im);
+  const html = readFileSync(resolve(DIST, "research", page), "utf8");
+  const rendered = (html.match(/<title>([^<]*)<\/title>/) || [])[1] || "";
+
+  if (!realTitle) continue;
+  if (realTitle.length > TITLE_LIMIT) {
+    check(
+      shortLine !== null,
+      `${slug} has a ${realTitle.length}-character title and declares no short title, so its ` +
+        `search result is truncated mid-phrase`,
+    );
+  }
+  if (shortLine) {
+    shortTitled += 1;
+    const short = shortLine[1].trim();
+    check(
+      short.length <= TITLE_LIMIT,
+      `${slug} declares a short title of ${short.length} characters, which is not short`,
+    );
+    check(
+      rendered.startsWith(short),
+      `${slug} declares a short title that its page does not use (<title> is ${rendered})`,
+    );
+    // The half that matters: the document keeps its real name where its name is presented.
+    const h1 = (html.match(/<h1 class="paper__title">([\s\S]*?)<\/h1>/) || [])[1];
+    check(h1 !== undefined, `${slug} has no paper title heading`);
+    if (h1 !== undefined) {
+      const h1Text = h1.replace(/<[^>]+>/g, "").replace(/&amp;/g, "&").replace(/\s+/g, " ").trim();
+      check(
+        h1Text === realTitle,
+        `${slug} presents "${h1Text}" as its name but the document is called "${realTitle}" — ` +
+          `the short title has renamed the document`,
+      );
+    }
+    check(
+      html.includes(`property="og:title" content="${realTitle.replace(/&/g, "&amp;")}"`) ||
+        html.includes(`"headline":${JSON.stringify(realTitle)}`),
+      `${slug} does not carry its real name in Open Graph or structured data`,
+    );
+  }
+}
+check(shortTitled >= 20, `only ${shortTitled} papers declare a short title — the extractor has ` +
+  `stopped matching and the checks above would pass vacuously`);
+
 const sitemapUrls = (sitemap.match(/<loc>/g) || []).length;
 if (failures.length) {
   console.error(`\nFAILED (${failures.length}):`);
@@ -578,5 +637,9 @@ console.log(
 console.log(
   `verified /methodology: every question marked up, every answer carrying evidence, and every ` +
     `evidence link resolving`,
+);
+console.log(
+  `verified ${shortTitled} short titles: each fits, each is used, and each document still ` +
+    `presents its real name in the H1 and the structured data`,
 );
 console.log(`sitemap covers ${sitemapUrls} URLs`);

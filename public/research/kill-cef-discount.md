@@ -1,5 +1,7 @@
 # Closed-End-Fund Deep-Discount + Activist Catalyst (probe): a killed candidate
 
+**Short title:** Closed-end-fund discount and activist: killed
+
 **Verdict:** KILLED  **Stage:** screen prototype  
 **Identity:** `cef_discount`
 

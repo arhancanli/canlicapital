@@ -1,5 +1,7 @@
 # Real-Futures Breadth for the Trend Sleeve (probe): a killed candidate
 
+**Short title:** Real-futures breadth for the trend sleeve: killed
+
 **Verdict:** KILLED  **Stage:** screen prototype  
 **Identity:** `mf_realfutures_breadth`
 

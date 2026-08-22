@@ -82,7 +82,9 @@ function audit(file) {
   const title = decodeEntities(html.match(/<title>([\s\S]*?)<\/title>/i)?.[1]?.trim() ?? "");
   if (!title) note(page, "error", "no <title>");
   else if (title.length > TITLE_MAX_CHARS)
-    note(page, "warning", `title is ${title.length} chars, likely truncated in results (>${TITLE_MAX_CHARS})`);
+    note(page, "error", `title is ${title.length} chars, truncated in results (>${TITLE_MAX_CHARS}). ` +
+      `A paper whose real name is longer declares "**Short title:** …" in its markdown; the H1 and ` +
+      `the Open Graph title keep the real name.`);
   else if (title.length < TITLE_MIN_CHARS)
     note(page, "warning", `title is only ${title.length} chars`);
 

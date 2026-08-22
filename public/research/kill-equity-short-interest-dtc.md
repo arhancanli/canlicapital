@@ -1,5 +1,7 @@
 # Short Interest / Days-to-Cover Deciles (probe): a killed candidate
 
+**Short title:** Short interest and days-to-cover: killed
+
 **Verdict:** KILLED  **Stage:** screen prototype  
 **Identity:** `equity_short_interest_dtc`
 
