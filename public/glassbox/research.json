@@ -250,8 +250,8 @@
         }
       }
     },
-    "generated_at": "2026-08-22T02:32:57.919330+00:00",
-    "content_hash": "sha256:8daec55cd01ba2df08e2844c4e22a26b027f765c042c4595aa207a6f44931d05"
+    "generated_at": "2026-08-22T02:50:32.369878+00:00",
+    "content_hash": "sha256:b7d46f8c369fa54cda66ad1c59f51f426157f2981fcd5c29045857bf8007ca10"
   },
   "factor_research": {
     "summary": "Most ideas die. We publish every test with its real net-of-cost Sharpe and its real Rank-IC. 2 kept, 8 killed. The Rank-IC is the cross-sectional information coefficient with a Newey-West t-stat; the net Sharpe is the purged walk-forward result after the conservative cost model.",
@@ -19895,6 +19895,111 @@
     "schema": "canli.alphac-mutation-ledger.v1",
     "why": "A check that cannot fail is worse than no check: it produces the confidence of a guard with none of the protection, and a passing test looks identical whether it is watching something or nothing."
   },
+  "audit_guards_that_cannot_fire": {
+    "claim_boundary": "A STRUCTURAL scan of source for checks that cannot fail. It reads code, not results: it cannot say whether a guard is correct, only whether it is capable of firing. Runs no backtest, opens no return data, registers no hypothesis. 0 trials.",
+    "companion": "artifacts/engineering/mutation_ledger.json, which answers the behavioural half by breaking what each guard over a published claim watches.",
+    "confirmed": [
+      {
+        "detail": "test_no_trading_tick_invokes_the_weekly_job asserts inside a loop over `a discovered set`, which is discovered at runtime, with nothing asserting it is non-empty",
+        "reason": "Zero iterations passes this test silently.",
+        "shape": "B",
+        "verdict": "CONFIRMED",
+        "where": "tests/unit/test_corp_actions_weekly_job.py:286"
+      }
+    ],
+    "detectors_proven_on_a_planted_instance": {
+      "B": true,
+      "C": true,
+      "D": true
+    },
+    "files_scanned": 589,
+    "refutations_are_kept": "A finding that turns out to be legitimate stays in this artifact as REFUTED with its reason. An audit that keeps only its hits cannot be checked by anybody who was not there when it ran.",
+    "refuted": [],
+    "schema": "canli.alphac-guards-that-cannot-fire.v1",
+    "shapes": {
+      "A": "a guard excluded from the environment meant to run it",
+      "B": "an assertion inside a loop that can run zero times",
+      "C": "an exemption naming a path that is not there",
+      "D": "an existence-guarded block whose path does not exist"
+    },
+    "why_a_clean_report_needs_that": "Every shape here currently reports zero, and zero is exactly what a scanner that has gone blind reports. Each detector is therefore run against a planted instance of the defect it looks for, and the audit refuses to publish a clean result it cannot demonstrate it earned."
+  },
+  "audit_contract_and_units": {
+    "claim_boundary": "Three audit dimensions worked against the contract in force and the published bundle. It reads configuration and artifacts; it runs no backtest, opens no return data, registers no hypothesis identity and changes no threshold. Findings are reported, not acted on. 0 trials.",
+    "companion": "artifacts/engineering/guards_that_cannot_fire.json is the fourth dimension, and artifacts/engineering/mutation_ledger.json is its behavioural half.",
+    "dimensions": {
+      "E": "contract satisfiability beyond the pairs the loader already rejects",
+      "F": "published narrative numbers against the evidence they describe",
+      "G": "units declared by a field's name against the value it holds"
+    },
+    "findings": [
+      {
+        "detail": "At 504 correlation observations the standard error is 0.0447, so the upper-95 bound only exceeds +0.10 once the point estimate passes +0.0265 \u2014 and a point estimate that high already fails the +0.00 point gate. Both are satisfiable together, which is why the production loader does not reject them; but the bound gate can never be the reason a candidate is refused. It reads as a second, independent hurdle and it is not one.",
+        "dimension": "E",
+        "numbers": {
+          "correlation_observations": 504,
+          "point_gate": 0.0,
+          "standard_error": 0.0447,
+          "upper_95_binds_above": 0.0265,
+          "upper_95_gate": 0.1
+        },
+        "title": "the upper-95 correlation gate cannot be the decisive one",
+        "verdict": "CONFIRMED"
+      },
+      {
+        "detail": "Admission requires the BOOK to clear a deflated Sharpe of 0.95. The best figure this book has ever measured is 0.2112 for the blended configuration and 0.5093 for the best single restated variant. This is not a contradiction in the contract \u2014 it is satisfiable by a better book \u2014 but it means no candidate can be admitted today however good the candidate is, and that belongs on the page beside the gate rather than being discovered by someone who tries.",
+        "dimension": "E",
+        "numbers": {
+          "best_measured_book_dsr": 0.2112,
+          "best_restated_variant_dsr": 0.5093,
+          "book_deflated_sharpe_min": 0.95
+        },
+        "title": "the book deflated-Sharpe gate is currently unreachable in practice",
+        "verdict": "CONFIRMED"
+      },
+      {
+        "detail": "newey_west_t_ratio_min=0.6 gates the ratio of the autocorrelation-robust t to the naive one, which depends on a candidate's own autocorrelation. There is no threshold pair here that contradicts it, and no arithmetic that clears it either. It can only be settled against real candidates, and it is recorded as unsettled rather than as satisfied.",
+        "dimension": "E",
+        "numbers": {
+          "newey_west_t_ratio_min": 0.6
+        },
+        "title": "the Newey-West t-ratio floor is not decidable by arithmetic",
+        "verdict": "UNDECIDABLE"
+      },
+      {
+        "detail": "All 9 figures quoted in the narrative sections are present in the evidence the bundle carries. This checks PRESENCE, not that each number is used in the right place \u2014 the stronger property belongs to E3.",
+        "dimension": "F",
+        "numbers": {
+          "examples": [],
+          "quoted": 9,
+          "untraceable": 0
+        },
+        "title": "numbers in the published narrative that appear nowhere in the evidence it describes",
+        "verdict": "REFUTED"
+      },
+      {
+        "detail": "only 9 figures appear in the narrative sections at all, so a clean result here is a statement about how little prose carries numbers rather than about how well those numbers are grounded. The stronger property \u2014 every number ANYWHERE on the site tracing to an artifact \u2014 is E3's, and this dimension should not be read as having established it.",
+        "dimension": "F",
+        "numbers": {
+          "quoted": 9
+        },
+        "title": "the narrative sections quote too few numbers for this dimension to say much",
+        "verdict": "CONFIRMED"
+      },
+      {
+        "detail": "All 723 unit-declaring fields across the published bundle hold values plausible for the unit their name declares. The rules encode real defect classes rather than style: a 100x divisor error and a count labelled as a duration have both shipped here.",
+        "dimension": "G",
+        "numbers": {
+          "fields_checked": 723,
+          "violations": 0
+        },
+        "title": "published fields whose value is implausible for the unit their name declares",
+        "verdict": "REFUTED"
+      }
+    ],
+    "refutations_are_kept": "A dimension that found nothing says so, with what it checked. An audit that reports only its hits cannot be told apart from one that did not run.",
+    "schema": "canli.alphac-contract-and-unit-audit.v1"
+  },
   "identity_redesign": {
     "form_universe": {
       "claim_boundary": "Counts filings by form type and enumerates the action types held in the corporate-action lake. Opens no return data, registers no hypothesis identity, proposes no threshold and authorises no candidate. 0 trials.",
@@ -20443,7 +20548,7 @@
             "by_file": {}
           },
           "historical_scripts": {
-            "python_files": 192,
+            "python_files": 194,
             "violations": 363,
             "files_with_violations": 52,
             "safe_autofixes_available": 110,
@@ -20598,9 +20703,9 @@
           "scripts/vps/collect_venues.py": "54870d67f99fa677486b71eae1e0ca4f6579b29e6b9facba6f37f4bdee523b69",
           "scripts/vps/stale_lock.py": "f40b992005f87b733ea6e71a447219a55d8200585c388ac06e13394cb0195a54"
         },
-        "content_hash": "sha256:6f118ec2dac390e0b8361236b78b669ef0daba7cdb62008511af086c6e1452b0"
+        "content_hash": "sha256:07fadadf30eb2031b41d21b9a3ff02fc3401b71f22a85954cec4b77a88ca457a"
       },
-      "source_sha256": "fab69fd3cf38782bb528d2c88b5cb6a10f1c555fc310dec4dd77ddbd9a47ce8d",
+      "source_sha256": "d5c8e2fecc485994d70dc67a197bb3978183bddd2d8c97f78932c7fd612aacd1",
       "public_path": "/glassbox/lint_debt_contract.json",
       "book_path": "/research/engineering-quality.md",
       "source_path": "artifacts/engineering/lint_debt_contract.json"
@@ -21050,6 +21155,6 @@
       "source_path": "artifacts/engineering/options_execution_contract.json"
     }
   },
-  "generated_at": "2026-08-22T02:32:57.924258+00:00",
-  "content_hash": "sha256:b87380ab62279869a41776bb03366a43f530595b46c536adbd94a200f0aedc48"
+  "generated_at": "2026-08-22T02:50:32.374311+00:00",
+  "content_hash": "sha256:1793b3069f2a076a3ccb3c3c9c31c3d9ade0e9000d9d00eaae3bac34429692e2"
 }

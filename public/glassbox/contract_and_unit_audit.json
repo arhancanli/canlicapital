@@ -1,0 +1,76 @@
+{
+  "claim_boundary": "Three audit dimensions worked against the contract in force and the published bundle. It reads configuration and artifacts; it runs no backtest, opens no return data, registers no hypothesis identity and changes no threshold. Findings are reported, not acted on. 0 trials.",
+  "companion": "artifacts/engineering/guards_that_cannot_fire.json is the fourth dimension, and artifacts/engineering/mutation_ledger.json is its behavioural half.",
+  "dimensions": {
+    "E": "contract satisfiability beyond the pairs the loader already rejects",
+    "F": "published narrative numbers against the evidence they describe",
+    "G": "units declared by a field's name against the value it holds"
+  },
+  "findings": [
+    {
+      "detail": "At 504 correlation observations the standard error is 0.0447, so the upper-95 bound only exceeds +0.10 once the point estimate passes +0.0265 \u2014 and a point estimate that high already fails the +0.00 point gate. Both are satisfiable together, which is why the production loader does not reject them; but the bound gate can never be the reason a candidate is refused. It reads as a second, independent hurdle and it is not one.",
+      "dimension": "E",
+      "numbers": {
+        "correlation_observations": 504,
+        "point_gate": 0.0,
+        "standard_error": 0.0447,
+        "upper_95_binds_above": 0.0265,
+        "upper_95_gate": 0.1
+      },
+      "title": "the upper-95 correlation gate cannot be the decisive one",
+      "verdict": "CONFIRMED"
+    },
+    {
+      "detail": "Admission requires the BOOK to clear a deflated Sharpe of 0.95. The best figure this book has ever measured is 0.2112 for the blended configuration and 0.5093 for the best single restated variant. This is not a contradiction in the contract \u2014 it is satisfiable by a better book \u2014 but it means no candidate can be admitted today however good the candidate is, and that belongs on the page beside the gate rather than being discovered by someone who tries.",
+      "dimension": "E",
+      "numbers": {
+        "best_measured_book_dsr": 0.2112,
+        "best_restated_variant_dsr": 0.5093,
+        "book_deflated_sharpe_min": 0.95
+      },
+      "title": "the book deflated-Sharpe gate is currently unreachable in practice",
+      "verdict": "CONFIRMED"
+    },
+    {
+      "detail": "newey_west_t_ratio_min=0.6 gates the ratio of the autocorrelation-robust t to the naive one, which depends on a candidate's own autocorrelation. There is no threshold pair here that contradicts it, and no arithmetic that clears it either. It can only be settled against real candidates, and it is recorded as unsettled rather than as satisfied.",
+      "dimension": "E",
+      "numbers": {
+        "newey_west_t_ratio_min": 0.6
+      },
+      "title": "the Newey-West t-ratio floor is not decidable by arithmetic",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "All 9 figures quoted in the narrative sections are present in the evidence the bundle carries. This checks PRESENCE, not that each number is used in the right place \u2014 the stronger property belongs to E3.",
+      "dimension": "F",
+      "numbers": {
+        "examples": [],
+        "quoted": 9,
+        "untraceable": 0
+      },
+      "title": "numbers in the published narrative that appear nowhere in the evidence it describes",
+      "verdict": "REFUTED"
+    },
+    {
+      "detail": "only 9 figures appear in the narrative sections at all, so a clean result here is a statement about how little prose carries numbers rather than about how well those numbers are grounded. The stronger property \u2014 every number ANYWHERE on the site tracing to an artifact \u2014 is E3's, and this dimension should not be read as having established it.",
+      "dimension": "F",
+      "numbers": {
+        "quoted": 9
+      },
+      "title": "the narrative sections quote too few numbers for this dimension to say much",
+      "verdict": "CONFIRMED"
+    },
+    {
+      "detail": "All 723 unit-declaring fields across the published bundle hold values plausible for the unit their name declares. The rules encode real defect classes rather than style: a 100x divisor error and a count labelled as a duration have both shipped here.",
+      "dimension": "G",
+      "numbers": {
+        "fields_checked": 723,
+        "violations": 0
+      },
+      "title": "published fields whose value is implausible for the unit their name declares",
+      "verdict": "REFUTED"
+    }
+  ],
+  "refutations_are_kept": "A dimension that found nothing says so, with what it checked. An audit that reports only its hits cannot be told apart from one that did not run.",
+  "schema": "canli.alphac-contract-and-unit-audit.v1"
+}

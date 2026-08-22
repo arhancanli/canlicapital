@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Audit guards that cannot fire / Canli Capital</title>
+<meta name="description" content="A STRUCTURAL scan of source for checks that cannot fail. It reads code, not results: it cannot say whether a guard is correct, only whether it is capable of firing." />
+<link rel="canonical" href="https://canlicapital.com/measurements/audit-guards-that-cannot-fire" />
+<meta name="author" content="Arhan Canli" />
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="Canli Capital" />
+<meta property="og:title" content="Audit guards that cannot fire / Canli Capital" />
+<meta property="og:description" content="A STRUCTURAL scan of source for checks that cannot fail. It reads code, not results: it cannot say whether a guard is correct, only whether it is capable of firing." />
+<meta property="og:url" content="https://canlicapital.com/measurements/audit-guards-that-cannot-fire" />
+<meta property="og:image" content="https://canlicapital.com/og.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Audit guards that cannot fire / Canli Capital" />
+<meta name="twitter:description" content="A STRUCTURAL scan of source for checks that cannot fail. It reads code, not results: it cannot say whether a guard is correct, only whether it is capable of firing." />
+<meta name="twitter:image" content="https://canlicapital.com/og.png" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="icon" href="/favicon.ico" sizes="any" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=swap" />
+<link rel="stylesheet" href="../css/paper.css" />
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"Audit guards that cannot fire","description":"A STRUCTURAL scan of source for checks that cannot fail. It reads code, not results: it cannot say whether a guard is correct, only whether it is capable of firing.","url":"https://canlicapital.com/measurements/audit-guards-that-cannot-fire","creator":{"@type":"Person","name":"Arhan Canli"},"publisher":{"@type":"Organization","name":"Canli Capital","url":"https://canlicapital.com/"},"isAccessibleForFree":true,"distribution":{"@type":"DataDownload","encodingFormat":"application/json","contentUrl":"https://canlicapital.com/glassbox/audit_guards_that_cannot_fire.json"}}</script>
+</head>
+<body class="paper">
+<a class="paper__skip" href="#content">Skip to content</a>
+<header class="paper__masthead">
+  <a class="paper__brand" href="/">Canli Capital</a>
+  <nav class="paper__nav" aria-label="Primary">
+    <a href="/systems">Systems</a>
+    <a href="/performance">Evidence</a>
+    <a href="/research">Research</a>
+    <a href="/measurements">Measurements</a>
+    <a href="/open">Glass box</a>
+  </nav>
+</header>
+<main class="paper__main" id="content">
+  <article class="paper__article">
+    <p class="paper__eyebrow"><a href="/measurements">Measurements</a></p>
+    <h1 class="paper__title">Audit guards that cannot fire</h1>
+    <p class="paper__byline">By <span rel="author">Arhan Canli</span>, Canli Capital</p>
+    <div class="paper__body">
+<p class="measure__lead">Audit guards that cannot fire is one of 24 measurements this
+engine publishes in full. It is regenerated from a real run rather than transcribed, and it
+is shown here with its own claim boundary so the number and its limits arrive together.</p>
+<aside class="measure__boundary"><h2>What this measurement does and does not claim</h2><p>A STRUCTURAL scan of source for checks that cannot fail. It reads code, not results: it cannot say whether a guard is correct, only whether it is capable of firing. Runs no backtest, opens no return data, registers no hypothesis. 0 trials.</p></aside>
+<section class="measure__section"><h2>The measurement</h2>
+<dl class="measure__facts">
+<div class="measure__row"><dt>Files scanned</dt><dd>589</dd></div>
+<div class="measure__row"><dt>Schema</dt><dd>canli.alphac-guards-that-cannot-fire.v1</dd></div>
+</dl>
+<p class="measure__prose"><strong>Companion.</strong> artifacts/engineering/mutation_ledger.json, which answers the behavioural half by breaking what each guard over a published claim watches.</p>
+<figure class="measure__tablewrap"><figcaption>Confirmed</figcaption><table class="measure__table"><thead><tr><th scope="col">Detail</th><th scope="col">Reason</th><th scope="col">Shape</th><th scope="col">Verdict</th><th scope="col">Where</th></tr></thead><tbody>
+<tr><td>test_no_trading_tick_invokes_the_weekly_job asserts inside a loop over `a discovered set`, which is discovered at runtime, with nothing asserting it is non-empty</td><td>Zero iterations passes this test silently.</td><td>B</td><td>CONFIRMED</td><td>tests/unit/test_corp_actions_weekly_job.py:286</td></tr>
+</tbody></table></figure>
+<section class="measure__sub"><h3>Detectors proven on a planted instance</h3>
+<dl class="measure__facts">
+<div class="measure__row"><dt>B</dt><dd>yes</dd></div>
+<div class="measure__row"><dt>C</dt><dd>yes</dd></div>
+<div class="measure__row"><dt>D</dt><dd>yes</dd></div>
+</dl>
+</section>
+<p class="measure__prose"><strong>Refutations are kept.</strong> A finding that turns out to be legitimate stays in this artifact as REFUTED with its reason. An audit that keeps only its hits cannot be checked by anybody who was not there when it ran.</p>
+<section class="measure__sub"><h3>Shapes</h3>
+<dl class="measure__facts">
+<div class="measure__row"><dt>A</dt><dd>a guard excluded from the environment meant to run it</dd></div>
+<div class="measure__row"><dt>B</dt><dd>an assertion inside a loop that can run zero times</dd></div>
+<div class="measure__row"><dt>C</dt><dd>an exemption naming a path that is not there</dd></div>
+<div class="measure__row"><dt>D</dt><dd>an existence-guarded block whose path does not exist</dd></div>
+</dl>
+</section>
+<p class="measure__prose"><strong>Why a clean report needs that.</strong> Every shape here currently reports zero, and zero is exactly what a scanner that has gone blind reports. Each detector is therefore run against a planted instance of the defect it looks for, and the audit refuses to publish a clean result it cannot demonstrate it earned.</p>
+</section>
+<section class="measure__section"><h2>Check it yourself</h2>
+<p>Every figure above is read from <a href="/glassbox/audit_guards_that_cannot_fire.json"><code>/glassbox/audit_guards_that_cannot_fire.json</code></a>, the
+artifact the engine wrote. Nothing on this page is typed by hand: the page is generated from that
+file, so a figure that moves in the artifact moves here and a figure that is not in the artifact
+cannot appear here at all.</p>
+<p><a href="/measurements">All 24 measurements</a> &middot;
+<a href="/open">The glass box</a> &middot;
+<a href="/research">The research library</a></p>
+</section>
+    </div>
+  </article>
+</main>
+</body>
+</html>
