@@ -106,6 +106,7 @@ export const FOOTER_COLS = [
   {
     head: "Firm",
     links: [
+      { label: "The founder", href: "/founder", anchor: "#founder" },
       { label: "Thesis", href: "/#thesis", anchor: "#thesis" },
       { label: "Building in the open", href: "/progress", anchor: "#progress" },
       { label: "The kill log", href: "/open#killlog", anchor: "#open" },

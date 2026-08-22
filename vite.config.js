@@ -101,6 +101,7 @@ export default defineConfig({
         research: resolve(root, "research.html"),
         measurements: resolve(root, "measurements.html"),
         verify: resolve(root, "verify.html"),
+        founder: resolve(root, "founder.html"),
         ...paperEntries(),
         ...measurementEntries(),
       },

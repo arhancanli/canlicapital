@@ -124,8 +124,9 @@ curl -sO ${ORIGIN}/glassbox/transparency_log.json
 curl -sO ${ORIGIN}/glassbox/verify_transparency.py
 python3 verify_transparency.py transparency_log.json`;
 
-  const l3Command = `git clone https://github.com/arhancanli/alphaforge.git
-cd alphaforge && uv sync
+  const CLONE_URL = "https://github.com/arhancanli/alphac.git";
+  const l3Command = `git clone ${CLONE_URL}
+cd alphac && uv sync
 uv run python scripts/reproduce.py`;
 
   const description =

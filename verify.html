@@ -110,8 +110,8 @@ python3 verify_transparency.py transparency_log.json</code></pre>
         <p>The last level checks that the engine which produced the numbers is deterministic and
         unchanged: a golden-master test replays a scripted fixture and requires the output to be
         byte-for-byte identical. This one needs the repository.</p>
-        <pre class="verify__code"><code>git clone https://github.com/arhancanli/alphaforge.git
-cd alphaforge &amp;&amp; uv sync
+        <pre class="verify__code"><code>git clone https://github.com/arhancanli/alphac.git
+cd alphac &amp;&amp; uv sync
 uv run python scripts/reproduce.py</code></pre>
         <p>Run inside the repo, the same <code>reproduce.py</code> executes all three levels at
         once and prints a summary of each.</p>

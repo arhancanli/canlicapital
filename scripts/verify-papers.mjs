@@ -366,6 +366,126 @@ if (existsSync(verifyFile)) {
   }
 }
 
+// ---------------------------------------------------------------------------
+// 9. /founder — the page behind the Person entity that every paper resolves its
+//    authorship to. Three things have to hold: the entity actually points here,
+//    every number on it is derivable from a published artifact, and it makes no
+//    claim that cannot be checked. The last one is the discipline the page is
+//    built on, so it is enforced rather than trusted.
+// ---------------------------------------------------------------------------
+const founderFile = resolve(DIST, "founder.html");
+check(existsSync(founderFile), "no /founder page was built");
+if (existsSync(founderFile)) {
+  const founderHtml = readFileSync(founderFile, "utf8");
+  const personId = `${ORIGIN}/#arhan-canli`;
+
+  check(founderHtml.includes('"@type":"ProfilePage"'), "/founder is not marked up as a ProfilePage");
+  check(founderHtml.includes(`"@id":"${personId}"`), "/founder does not carry the Person @id");
+  check(
+    founderHtml.includes(`"mainEntityOfPage":"${ORIGIN}/founder"`),
+    "/founder is not declared as the Person's main entity page",
+  );
+  // The defect this page exists to fix: the homepage declared the entity and resolved it to
+  // itself, so eighty-two authorship claims led to a page that never described the author.
+  const homeHtml = readFileSync(resolve(DIST, "index.html"), "utf8");
+  check(
+    homeHtml.includes(`"url": "${ORIGIN}/founder"`),
+    "the homepage Person entity does not resolve to /founder",
+  );
+  check(homeHtml.includes('href="/founder"'), "the homepage has no static link to /founder");
+
+  // Every measurement-shaped number must be derivable from a published artifact, and the set of
+  // allowed values is derived INDEPENDENTLY here from named fields rather than by walking whole
+  // artifacts. The first version did walk them, and it was nearly vacuous: those files carry
+  // thousands of numbers, so a stale corpus count of 84 against a true 82 matched something
+  // somewhere and passed. A trace check whose allowed set is that large is not a trace check.
+  const killLog = JSON.parse(readFileSync(resolve(DIST, "glassbox", "kill_log.json"), "utf8"));
+  const trialLedger = JSON.parse(readFileSync(resolve(DIST, "glassbox", "trial_ledger.json"), "utf8"));
+  const chainLog = JSON.parse(readFileSync(resolve(DIST, "glassbox", "transparency_log.json"), "utf8"));
+  const founderCommitment = JSON.parse(
+    readFileSync(resolve(DIST, "glassbox", "founder_commitment.json"), "utf8"),
+  );
+  const trackRecord = JSON.parse(readFileSync(resolve(DIST, "glassbox", "track_record.json"), "utf8"));
+  const countBuilt = (...parts) =>
+    readdirSync(resolve(DIST, ...parts)).filter((n) => n.endsWith(".html")).length;
+
+  const derived = [
+    countBuilt("research"),
+    countBuilt("research", "topics"),
+    countBuilt("measurements"),
+    killLog.killed_count,
+    killLog.screen_killed_count,
+    killLog.survived_count,
+    killLog.killed_count + killLog.screen_killed_count,
+    trialLedger.distinct_hypothesis_identities,
+    trialLedger.hypothesis_identity_budget,
+    chainLog.entries.length,
+    trackRecord.live_days_accrued,
+    founderCommitment.amount_usd,
+  ];
+  const renderings = new Set();
+  for (const value of derived) {
+    check(
+      typeof value === "number" && Number.isFinite(value) && value > 0,
+      `a fact /founder derives came back empty (${value}) — the check below would pass vacuously`,
+    );
+    renderings.add(String(value));
+    renderings.add(value.toLocaleString("en-US"));
+  }
+  for (const date of [chainLog.entries[0].date, trackRecord.go_live_date]) renderings.add(date);
+
+  const prose = founderHtml
+    .replace(/<script[\s\S]*?<\/script>/g, " ")
+    .replace(/<head>[\s\S]*?<\/head>/g, " ")
+    .replace(/<pre[\s\S]*?<\/pre>/g, " ");
+  const datesRemoved = prose.replace(/\b\d{4}-\d{2}-\d{2}\b/g, (d) =>
+    renderings.has(d) ? " " : ` UNTRACEABLE_DATE_${d} `,
+  );
+  check(
+    !datesRemoved.includes("UNTRACEABLE_DATE_"),
+    `/founder quotes a date that is in no artifact: ` +
+      `${(datesRemoved.match(/UNTRACEABLE_DATE_[\d-]+/g) || []).join(", ")}`,
+  );
+  const numbers = new Set((datesRemoved.match(/\b\d[\d,]*\b/g) || []).filter((n) => n.length > 1));
+  const untraceable = [...numbers].filter((n) => !renderings.has(n));
+  check(
+    untraceable.length === 0,
+    `/founder quotes numbers that are in no artifact: ${untraceable.join(", ")}`,
+  );
+  check(numbers.size >= 8, `/founder quotes only ${numbers.size} figures — the derivation has ` +
+    `stopped rendering and the trace check above would pass vacuously`);
+
+  // No credential may appear, because a credential is a claim a reader would have to take on
+  // trust and this record's whole argument is that they should not have to. Checked against the
+  // SHAPE of such a claim, not a word list the page could be rephrased around.
+  for (const pattern of [
+    /\b(?:PhD|Ph\.D|MSc|M\.Sc|MBA|BSc|B\.Sc)\b/,
+    /\bgraduat(?:ed|e) (?:from|of)\b/i,
+    /\b(?:formerly|previously) (?:at|with)\b/i,
+    /\byears of experience\b/i,
+    /\bawarded\b/i,
+  ]) {
+    check(
+      !pattern.test(prose),
+      `/founder makes an uncheckable credential claim matching ${pattern} — the page is built on ` +
+        `not doing that`,
+    );
+  }
+
+  for (const href of new Set([...founderHtml.matchAll(/href="(\/[^"#]*)"/g)].map((m) => m[1]))) {
+    const target = href.replace(/^\//, "");
+    const ok =
+      target === "" ||
+      existsSync(resolve(DIST, `${target}.html`)) ||
+      existsSync(resolve(DIST, target));
+    check(ok, `/founder links ${href}, which is not a built page`);
+  }
+  check(
+    sitemap.includes(`<loc>${ORIGIN}/founder</loc>`),
+    "/founder is not in the sitemap, so it will not be discovered",
+  );
+}
+
 const sitemapUrls = (sitemap.match(/<loc>/g) || []).length;
 if (failures.length) {
   console.error(`\nFAILED (${failures.length}):`);
@@ -392,5 +512,9 @@ console.log(
 console.log(
   `verified /verify: three levels, every named download published, every link resolving, ` +
     `the limits section present, and static links from the homepage and the glass box`,
+);
+console.log(
+  `verified /founder: ProfilePage carrying the Person @id, resolving from the homepage, every ` +
+    `figure traceable to an artifact, and no uncheckable credential claim`,
 );
 console.log(`sitemap covers ${sitemapUrls} URLs`);
