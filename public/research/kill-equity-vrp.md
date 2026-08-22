@@ -1,5 +1,7 @@
 # Equity-Index VRP / short-vol (campaign): a killed candidate
 
+**Short title:** Equity-Index VRP / short-vol (campaign): killed
+
 **Verdict:** KILLED  **Stage:** screen prototype  
 **Identity:** `equity_vrp`
 

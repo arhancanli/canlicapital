@@ -1,5 +1,7 @@
 # Crypto Low-Volatility: a killed candidate
 
+**Short title:** Crypto Low-Volatility: killed
+
 **Verdict:** KILLED  
 **Test window:** 2023-01-01 to 2026-06-01  
 **Identity:** `crypto_lowvol_720`

@@ -1,5 +1,7 @@
 # 52-Week-High Momentum (campaign): a killed candidate
 
+**Short title:** 52-Week-High Momentum (campaign): killed
+
 **Verdict:** KILLED  **Stage:** deployed gauntlet  
 **Identity:** `eq_52whigh`
 

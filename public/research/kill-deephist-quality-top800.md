@@ -1,5 +1,7 @@
 # Deep-History Quality (Top 800): a killed candidate
 
+**Short title:** Deep-History Quality (Top 800): killed
+
 **Verdict:** KILLED  
 **Test window:** 2005-06-16 to 2026-06-22  
 **Identity:** `deephist_quality_top800`

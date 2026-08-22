@@ -1,5 +1,7 @@
 # Pre-Registered Betting-Against-Beta: a killed candidate
 
+**Short title:** Pre-Registered Betting-Against-Beta: killed
+
 **Verdict:** KILLED  
 **Test window:** 2005-01-04 to 2026-06-01  
 **Identity:** `prereg_bab`

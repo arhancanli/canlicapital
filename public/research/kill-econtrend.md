@@ -1,6 +1,6 @@
 # Economic-Trend Sleeve, macro-fundamental trend (campaign): a killed candidate
 
-**Short title:** Economic-trend macro sleeve: killed
+**Short title:** Economic-Trend Sleeve: killed
 
 **Verdict:** KILLED  **Stage:** deployed gauntlet  
 **Identity:** `econtrend`

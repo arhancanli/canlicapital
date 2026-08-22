@@ -1,6 +1,6 @@
 # AlphaMax Short-Leg Margin Floor (disclosure, not a strategy): a killed candidate
 
-**Short title:** AlphaMax short-leg margin floor: killed
+**Short title:** AlphaMax Short-Leg Margin Floor: killed
 
 **Verdict:** KILLED  **Stage:** screen prototype  
 **Identity:** `alphamax_short_margin_floor`

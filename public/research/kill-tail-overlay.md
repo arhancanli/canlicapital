@@ -1,5 +1,7 @@
 # Long-Vol Tail Overlay (campaign): a killed candidate
 
+**Short title:** Long-Vol Tail Overlay (campaign): killed
+
 **Verdict:** KILLED  **Stage:** screen prototype  
 **Identity:** `tail_overlay`
 

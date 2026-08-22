@@ -1,5 +1,7 @@
 # Commodity / Cross-Asset Futures Carry (probe): a killed candidate
 
+**Short title:** Commodity / Cross-Asset Futures Carry: killed
+
 **Verdict:** KILLED  **Stage:** screen prototype  
 **Identity:** `futcarry_xs`
 

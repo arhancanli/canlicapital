@@ -250,8 +250,8 @@
         }
       }
     },
-    "generated_at": "2026-08-22T01:53:26.717318+00:00",
-    "content_hash": "sha256:fe74542e2aec93e83c81371a9f7d13ffe35c965e189a32956e3f2f1e843cb8b7"
+    "generated_at": "2026-08-22T02:32:57.919330+00:00",
+    "content_hash": "sha256:8daec55cd01ba2df08e2844c4e22a26b027f765c042c4595aa207a6f44931d05"
   },
   "factor_research": {
     "summary": "Most ideas die. We publish every test with its real net-of-cost Sharpe and its real Rank-IC. 2 kept, 8 killed. The Rank-IC is the cross-sectional information coefficient with a Newey-West t-stat; the net Sharpe is the purged walk-forward result after the conservative cost model.",
@@ -726,8 +726,8 @@
     "live_status": "LIVE",
     "live_source": "go-live seed (no realized marks have accrued yet)",
     "live_nav_baseline_usd": 100000.0,
-    "live_nav_current_usd": 98764.29,
-    "live_return_pct": -1.2357,
+    "live_nav_current_usd": 98535.6,
+    "live_return_pct": -1.4644,
     "research_curve_label": "SIMULATION (research backtest, NOT realized trading)",
     "research_curve_start": {
       "date": "2023-07-07",
@@ -755,7 +755,7 @@
       "CORRECTION 2026-07-05 \u2014 the crypto sleeve was signal-dead, not 'carry compressed'. From go-live (06-23) to 07-05 AlphaForge held cash and we published that funding carry was compressed. An internal audit found the true cause: a wiring bug blended equity-fundamental alphas (undefined on crypto) into the live signal, invalidating it every cycle \u2014 the validated carry-only configuration was never what ran live. Fixed same day (the loop now runs the exact blessed walk-forward config: carry_fund_21, weekly rebalance, with per-cycle signal-health logging so a dead signal can never masquerade as a quiet hold again). The $100k cash equity curve was genuine; the published EXPLANATION was wrong. Per our append-only posture this correction is added to the record, not swapped into it.",
       "We red-team our own record. On 2026-06-27 our publishing pipeline emitted a future-dated (2026-06-29) paper mark that briefly reached the public sites and was anchored into seq 0 of the signed transparency chain. We caught it the same day, added a fail-closed guard, and appended the corrected seq 1 \u2014 the append-only chain shows BOTH, because we don't get to delete our mistakes. That is the trust system working, not failing.",
       "AlphaTrend (managed-futures trend) was the FIRST sleeve we took genuinely live: its 17-ETF book transacts on Alpaca paper, not in a simulator. We published DSR 0.83 for it and called it the first sleeve to CLEAR multiple-testing deflation, statistically real rather than a backtest fluke. RE-DERIVED 2026-08-07 at honest N=133 and pooled V[SR]=7.96e-04, its DSR is 0.000: the LOWEST of the six sleeves we have measured, not the highest. The old 0.83 rested on a variance input roughly 80x too small and a trial count of 5 while its siblings were graded at N=101, so it was marked on an easier exam and then called the soundest. Net Sharpe 0.25 over its full 5,179-day history. It is folded into ALPHAC at equal quarters for MEASURED drawdown reduction, not for a demonstrated edge. The screen suggested 0.73; the honest engine says 0.33 on the live window. We published every one of those numbers.",
-      "STRUCTURAL VERDICT 2026-08-05 \u2014 the crypto sleeve's venue unreachability is STRUCTURAL, and we said we would say so. The 2026-07-20 note above promised: 'if it proves persistent it is a STRUCTURAL problem for a sleeve built on a single venue, and we will say that too.' It has proved persistent, so here is the number we had not put on the record until now: across its entire live history the hourly loop has completed 519 of 1290 expected cycles \u2014 an uptime of 40.2%. It has been dark for roughly 772 hours of a 53.8-day record, with 8 separate outages longer than a day and a longest single outage of 165 hours. As of this publish it has been dark 0 hours; its last observed cycle was 2026-08-22 01:00 UTC. WHAT THIS MEANS, stated plainly rather than buried: this sleeve carries 40% of the flagship's weight, so for most of the forward record our largest single position has not been managed. The published curve is not wrong \u2014 we never roll forward a mark we did not observe, so the sleeve's line simply stops when the venue does \u2014 but a 40%-weight sleeve that is dark most of the time is not meaningfully 'live', and describing it as live without this number attached would have been a half-truth. The forward track record is the whole basis on which this book asks to be believed, and it is being accrued on a book whose biggest sleeve is mostly absent. WHAT WE ARE DOING: the diagnosis is unchanged and venue-specific (the general internet and our equity broker respond normally from the same machine while the exchange endpoint fails on connect). Two fixes are real \u2014 hosting the loop somewhere with unobstructed access, and removing the single-venue dependency altogether by adding a second exchange. We flag the first honestly: our own deploy runbook records that reaching a venue from a different region is a COMPLIANCE decision and not merely an operations one, so it will not be done as a silent infrastructure tweak. Until one of those lands, read this sleeve's contribution to the live record as what it is \u2014 40.2% of the intended trading.",
+      "STRUCTURAL VERDICT 2026-08-05 \u2014 the crypto sleeve's venue unreachability is STRUCTURAL, and we said we would say so. The 2026-07-20 note above promised: 'if it proves persistent it is a STRUCTURAL problem for a sleeve built on a single venue, and we will say that too.' It has proved persistent, so here is the number we had not put on the record until now: across its entire live history the hourly loop has completed 520 of 1291 expected cycles \u2014 an uptime of 40.3%. It has been dark for roughly 772 hours of a 53.8-day record, with 8 separate outages longer than a day and a longest single outage of 165 hours. As of this publish it has been dark 0 hours; its last observed cycle was 2026-08-22 02:00 UTC. WHAT THIS MEANS, stated plainly rather than buried: this sleeve carries 40% of the flagship's weight, so for most of the forward record our largest single position has not been managed. The published curve is not wrong \u2014 we never roll forward a mark we did not observe, so the sleeve's line simply stops when the venue does \u2014 but a 40%-weight sleeve that is dark most of the time is not meaningfully 'live', and describing it as live without this number attached would have been a half-truth. The forward track record is the whole basis on which this book asks to be believed, and it is being accrued on a book whose biggest sleeve is mostly absent. WHAT WE ARE DOING: the diagnosis is unchanged and venue-specific (the general internet and our equity broker respond normally from the same machine while the exchange endpoint fails on connect). Two fixes are real \u2014 hosting the loop somewhere with unobstructed access, and removing the single-venue dependency altogether by adding a second exchange. We flag the first honestly: our own deploy runbook records that reaching a venue from a different region is a COMPLIANCE decision and not merely an operations one, so it will not be done as a silent infrastructure tweak. Until one of those lands, read this sleeve's contribution to the live record as what it is \u2014 40.3% of the intended trading.",
       "CORRECTION 2026-08-06 \u2014 our crypto carry sleeve is a strategy that earns funding, and its LIVE paper account has never once booked funding. We found this ourselves and are publishing it before the fix rather than after. The mechanism, stated plainly so anyone can check it: funding is applied in exactly one place in this codebase, Ledger.apply_funding, and it is called from exactly one call site, the BACKTEST engine. The live paper broker's cash moves on one line and only one line, a fill: cash - qty*price - fee. No funding cashflow can reach the live account by any path. The size of what is missing is not marginal. Our committed walk-forward artifact for this sleeve reports funding_net of $19,500 against a total return of $38,236 on a $100k book over 2022-02 to 2026-06: about HALF of everything this strategy has ever earned is the funding it is designed to harvest. Removing it takes the sleeve's backtested Sharpe from 0.653 to roughly 0.30. So AlphaForge's live record has been running against a hard ceiling of about half its validated Sharpe, and every live number we have published for this sleeve should be read in that light. What we are NOT doing: we are not restating the historical live curve. The marks we published were the marks we observed, and this record is append-only, so the fix applies FORWARD from the day it ships and the understated period stays visible in the chain. One number we are deliberately NOT putting on the record yet: our internal estimate of what funding would have added over the live window is dominated by a single name that redenominated roughly 100x inside the window, which makes the naive figure meaningless. We would rather publish no number than a number we cannot stand behind, so that one waits for the corrected accounting. This is the fourth time a defect in our plumbing, not our strategy, has moved a published number, and the lesson we wrote down in July holds: a fix is not done until a test pins the path that actually runs.",
       "CORRECTION 2026-08-06 \u2014 a factual claim in our 2026-07-20 incident note above is now false and we are marking it rather than editing it. That note said 'Bybit responds' as evidence the Binance failure was venue-specific. Re-measured from the same network on 2026-08-06: Bybit does NOT respond, and neither do Kraken or Deribit. Binance, Bybit and Kraken all fail on connection reset in under a tenth of a second and Deribit times out. The conclusion the original note drew is unchanged and if anything strengthened, since the block is clearly broader than one venue, but the supporting fact it cited is no longer true and a reader checking our work today would find it wrong. One venue does answer: OKX responds normally and serves funding rates, 436 perpetual instruments and hourly candles. We are evaluating it, and we note in advance that moving venue is not a configuration change: the same carry signal computed on OKX has a cross-sectional rank correlation of only about 0.64 with the Binance one, so it would be a materially different strategy wearing the same name, and we will not splice the two curves together and call it one continuous record.",
       "FIXED 2026-08-06 \u2014 the funding gap disclosed above is now closed in the live path, forward only. Earlier today we published that our crypto carry sleeve had never once booked funding in live paper, which is roughly half of everything that strategy has ever earned. That is fixed: the live broker gained a funding path with the identical sign convention the backtest ledger uses (payment = -position * mark * rate, longs pay shorts on a positive rate), and the live loop now settles every stored funding event for the window just closed, before the strategy re-decides, so a settlement is charged against the position that was actually held through it. It is point-in-time by construction: the reader filters on each event's stored publication time, never on the settlement time, so a rate not yet knowable at the moment of the cycle stays invisible. Nine tests pin the running path rather than the intention, including one that asserts the live broker and the backtest ledger return identical figures for the same event, because two conventions would be worse than none. Three things we are deliberately NOT doing. We are not restating the historical curve: the marks we published are the marks we observed, the understated period stays in the signed chain, and the fix applies from today. We are not claiming an improvement yet: the sleeve has been dark on venue unreachability since 2026-08-03, so this books nothing until it trades again, and any future gain will show up in the forward record or not at all. And we are not putting a number on what it would have earned over the live window, because our own measurement of that is dominated by a single instrument that redenominated roughly 100x inside the window, which makes the figure meaningless. We would rather publish no number than one we cannot stand behind.",
@@ -17093,12 +17093,12 @@
       ],
       "source_sha256": {
         "registry": "6a54ef0c0bda0d1353b1fa8175ab900313b31594084cc5c8810b4de069ef3e04",
-        "kill_ledger": "52fa3691351b0d4f34fdd50b2e0466e3fa4c6acff5e419cba1aaf19fd0348a6e",
-        "current_book": "ce6050dc26f56bee2e319185f6e1697e96ddeeee9741d54fcae062611d765775",
+        "kill_ledger": "32952762d0b58e434dbea5b3ec682446716f06ea4c747252699e3686114de97c",
+        "current_book": "226b3710786ef3cc569998fdc3fdb9e779c735471fe4a18ef5f6c71b23429051",
         "discovery": "654f831e3ea4122437e5c48f066d6d37ba6cbcf8d1c7119395d104c5aa6cc225"
       },
-      "generated_at": "2026-08-22T01:25:36.609180+00:00",
-      "content_hash": "sha256:a7493877c3147c953662b2ad8f0bc148060c9d835cd35260dd8ef7fb0434f7dd"
+      "generated_at": "2026-08-22T02:25:43.686484+00:00",
+      "content_hash": "sha256:b62ee77ac3994a865987a3b9235578cbab922af67788d6d13e7538033ec5561e"
     },
     "atlas_public_path": "/glassbox/sleeve_atlas.json",
     "audit_public_path": "/glassbox/sleeve_atlas_audit.json",
@@ -19620,6 +19620,281 @@
       "the_gap": "Every new pair landing exactly on the +0.00 gate gives a book average of +0.0017 and a forward Sharpe of 1.16 on this book's own optimistic haircut. The gate is necessary and it is not sufficient, and the shortfall is 0.34 of forward Sharpe. Ordering by expected orthogonality is the only lever that acts on the difference, because the gate cannot."
     }
   },
+  "mutation_ledger": {
+    "claim_boundary": "Breaks what each guard watches and records whether the guard failed. Runs no backtest, opens no return data, registers no hypothesis identity, and changes nothing permanently \u2014 every mutation is restored and the restoration is verified by hash. 0 trials.",
+    "coverage_is_derived": "The guard set is computed from tests/unit by the same rule every run, so a guard added without a mutation appears here rather than joining the unmutated majority unnoticed.",
+    "findings": [],
+    "guards_mutated": 20,
+    "guards_not_yet_mutated": [],
+    "guards_over_published_claims": 20,
+    "ledger": [
+      {
+        "as_expected": true,
+        "expected": "CAUGHT",
+        "guard": "test_admission_significance_floors.py",
+        "mutation": "raise the Newey-West t floor above what the deflated-Sharpe floor can reach",
+        "notes": [
+          "The unsatisfiable-floors class: two gates that cannot both be met."
+        ],
+        "passes_clean": true,
+        "restored_byte_identical": true,
+        "result": "CAUGHT",
+        "target": "config/sleeve_admission_contract.json"
+      },
+      {
+        "as_expected": true,
+        "expected": "CAUGHT",
+        "guard": "test_admission_contract_is_fully_enforced.py",
+        "mutation": "add a threshold the evaluator does not read",
+        "notes": [
+          "A threshold sitting in the contract wearing a gate's costume."
+        ],
+        "passes_clean": true,
+        "restored_byte_identical": true,
+        "result": "CAUGHT",
+        "target": "config/sleeve_admission_contract.json"
+      },
+      {
+        "as_expected": true,
+        "expected": "CAUGHT",
+        "guard": "test_admission_frontier_arithmetic.py",
+        "mutation": "move the published Sharpe target away from the correlation it requires",
+        "notes": [
+          "First aimed at average_pairwise_correlation_objective, which this guard does not read: it watches the GATE and the target. A mutation that misses is indistinguishable from a guard that cannot fail, and that is the whole trap this ledger exists inside."
+        ],
+        "passes_clean": true,
+        "restored_byte_identical": true,
+        "result": "CAUGHT",
+        "target": "config/sleeve_admission_contract.json"
+      },
+      {
+        "as_expected": true,
+        "expected": "CAUGHT",
+        "guard": "test_sleeve_admission.py",
+        "mutation": "loosen the out-of-sample observation minimum",
+        "notes": [],
+        "passes_clean": true,
+        "restored_byte_identical": true,
+        "result": "CAUGHT",
+        "target": "config/sleeve_admission_contract.json"
+      },
+      {
+        "as_expected": true,
+        "expected": "CAUGHT",
+        "guard": "test_published_gates_match_the_contract.py",
+        "mutation": "change the contract the site derives its published gate summary from",
+        "notes": [],
+        "passes_clean": true,
+        "restored_byte_identical": true,
+        "result": "CAUGHT",
+        "target": "config/sleeve_admission_contract.json"
+      },
+      {
+        "as_expected": true,
+        "expected": "CAUGHT",
+        "guard": "test_live_change_is_declared.py",
+        "mutation": "corrupt the declared live-configuration fingerprint",
+        "notes": [
+          "The ceremony that stopped a live sizing change contaminating the forward record."
+        ],
+        "passes_clean": true,
+        "restored_byte_identical": true,
+        "result": "CAUGHT",
+        "target": "config/live_change_contract.json"
+      },
+      {
+        "as_expected": true,
+        "expected": "CAUGHT",
+        "guard": "test_published_clone_url.py",
+        "mutation": "publish a clone URL for a repository that does not exist",
+        "notes": [
+          "The defect that actually shipped, reproduced."
+        ],
+        "passes_clean": true,
+        "restored_byte_identical": true,
+        "result": "CAUGHT",
+        "target": "/Users/arhancanli/meridian/scripts/build-verify.mjs"
+      },
+      {
+        "as_expected": true,
+        "expected": "CAUGHT",
+        "guard": "test_indexnow_is_in_the_deploy_path.py",
+        "mutation": "stop the hourly deploy announcing what it published",
+        "notes": [],
+        "passes_clean": true,
+        "restored_byte_identical": true,
+        "result": "CAUGHT",
+        "target": "scripts/live_deploy_hourly.sh"
+      },
+      {
+        "as_expected": true,
+        "expected": "CAUGHT",
+        "guard": "test_publish_pipeline_order.py",
+        "mutation": "reorder the publish pipeline so a contract is copied before it is rebuilt",
+        "notes": [
+          "The stale-artifact class: research_export copies whatever is on disk."
+        ],
+        "passes_clean": true,
+        "restored_byte_identical": true,
+        "result": "CAUGHT",
+        "target": "scripts/live_publish.sh"
+      },
+      {
+        "as_expected": true,
+        "expected": "CAUGHT",
+        "guard": "test_published_chain_label_matches_the_data.py",
+        "mutation": "label the chain's ENTRY count with the word days on the published page",
+        "notes": [
+          "The count-is-not-a-duration defect, reproduced: this exact wording once overstated a 47-day chain as 371 days. First aimed at the chain FILE, which this guard does not read \u2014 it watches what the page calls the number."
+        ],
+        "passes_clean": true,
+        "restored_byte_identical": true,
+        "result": "CAUGHT",
+        "target": "/Users/arhancanli/meridian/open.html"
+      },
+      {
+        "as_expected": true,
+        "expected": "CAUGHT",
+        "guard": "test_content_hashes_reproduce_publicly.py",
+        "mutation": "edit a published artifact after it was hashed",
+        "notes": [
+          "Exactly what the reproduce kit exists to detect, done from the inside."
+        ],
+        "passes_clean": true,
+        "restored_byte_identical": true,
+        "result": "CAUGHT",
+        "target": "/Users/arhancanli/meridian/public/glassbox/kill_log.json"
+      },
+      {
+        "as_expected": true,
+        "expected": "CAUGHT",
+        "guard": "test_research_export_freshness.py",
+        "mutation": "let a published contract go stale against its source",
+        "notes": [],
+        "passes_clean": true,
+        "restored_byte_identical": true,
+        "result": "CAUGHT",
+        "target": "artifacts/engineering/lint_debt_contract.json"
+      },
+      {
+        "as_expected": true,
+        "expected": "CAUGHT",
+        "guard": "test_kill_papers_quote_their_artifact.py",
+        "mutation": "make the generator print a figure the kill-log entry does not contain",
+        "notes": [
+          "Two earlier attempts moved the kill log itself and were not caught, and that is CORRECT rather than a gap: this guard regenerates each paper from the entry, so moving the entry moves both sides together. What it actually watches is the GENERATOR, which is what research_export.py runs on every publish. The mutation therefore has to break the generator."
+        ],
+        "passes_clean": true,
+        "restored_byte_identical": true,
+        "result": "CAUGHT",
+        "target": "scripts/build_kill_papers.py"
+      },
+      {
+        "as_expected": true,
+        "expected": "CAUGHT",
+        "guard": "test_published_sleeve_claims_track_artifacts.py",
+        "mutation": "drop the KILLED disclosure from a sleeve whose artifact records that verdict",
+        "notes": [
+          "Two earlier attempts moved NUMBERS in the artifacts; this guard watches DISCLOSURE LANGUAGE \u2014 that a killed sleeve is described as killed \u2014 so a number is the wrong thing to move."
+        ],
+        "passes_clean": true,
+        "restored_byte_identical": true,
+        "result": "CAUGHT",
+        "target": "scripts/paper_trading_state.py"
+      },
+      {
+        "as_expected": true,
+        "expected": "CAUGHT",
+        "guard": "test_alphavintage_target.py",
+        "mutation": "double the live gross target this sleeve trades at",
+        "notes": [],
+        "passes_clean": true,
+        "restored_byte_identical": true,
+        "result": "CAUGHT",
+        "target": "scripts/alphavintage_target.py"
+      },
+      {
+        "as_expected": true,
+        "expected": "CAUGHT",
+        "guard": "test_live_cycle_equity_guard.py",
+        "mutation": "let non-equity instruments back into the equity target book",
+        "notes": [
+          "The unscoped-universe defect that put perpetuals in an equity artifact."
+        ],
+        "passes_clean": true,
+        "restored_byte_identical": true,
+        "result": "CAUGHT",
+        "target": "scripts/live_cycle.py"
+      },
+      {
+        "as_expected": true,
+        "expected": "CAUGHT",
+        "guard": "test_curve_store.py",
+        "mutation": "change the curve transform away from the log basis every consumer assumes",
+        "notes": [],
+        "passes_clean": true,
+        "restored_byte_identical": true,
+        "result": "CAUGHT",
+        "target": "src/alphaforge/analytics/curve_store.py"
+      },
+      {
+        "as_expected": true,
+        "expected": "CAUGHT",
+        "guard": "test_paper_broker_funding.py",
+        "mutation": "stop the LIVE broker booking funding",
+        "notes": [
+          "The carry sleeve booked funding zero times in 44 days once, because a TypeError was swallowed by a bare except and nine tests pinned the intention rather than the path."
+        ],
+        "passes_clean": true,
+        "restored_byte_identical": true,
+        "result": "CAUGHT",
+        "target": "src/alphaforge/execution/paper.py"
+      },
+      {
+        "as_expected": true,
+        "expected": "SURVIVED",
+        "guard": "test_overlay_realized_leg_scale.py",
+        "mutation": "NEGATIVE CONTROL: edit a comment and nothing else",
+        "notes": [
+          "THE HARNESS'S NEGATIVE CONTROL. This edits a COMMENT and nothing else, so the guard must NOT fail. A mutation harness with no control looks perfect precisely when it is broken: if every run reports CAUGHT, the reason might be that the runner fails for reasons unrelated to the mutation."
+        ],
+        "passes_clean": true,
+        "restored_byte_identical": true,
+        "result": "SURVIVED",
+        "target": "src/alphaforge/portfolio/strategy.py"
+      },
+      {
+        "as_expected": true,
+        "expected": "CAUGHT",
+        "guard": "test_audit_sleeve_family_lineage.py",
+        "mutation": "make the lineage audit return PASS unconditionally",
+        "notes": [
+          "Two earlier attempts moved DATA; this guard runs the audit over fixtures, so it watches the audit's LOGIC. A gate that always passes is the thing to break."
+        ],
+        "passes_clean": true,
+        "restored_byte_identical": true,
+        "result": "CAUGHT",
+        "target": "scripts/audit_sleeve_family_lineage.py"
+      }
+    ],
+    "negative_controls": [
+      {
+        "as_expected": true,
+        "expected": "SURVIVED",
+        "guard": "test_overlay_realized_leg_scale.py",
+        "mutation": "NEGATIVE CONTROL: edit a comment and nothing else",
+        "notes": [
+          "THE HARNESS'S NEGATIVE CONTROL. This edits a COMMENT and nothing else, so the guard must NOT fail. A mutation harness with no control looks perfect precisely when it is broken: if every run reports CAUGHT, the reason might be that the runner fails for reasons unrelated to the mutation."
+        ],
+        "passes_clean": true,
+        "restored_byte_identical": true,
+        "result": "SURVIVED",
+        "target": "src/alphaforge/portfolio/strategy.py"
+      }
+    ],
+    "schema": "canli.alphac-mutation-ledger.v1",
+    "why": "A check that cannot fail is worse than no check: it produces the confidence of a guard with none of the protection, and a passing test looks identical whether it is watching something or nothing."
+  },
   "identity_redesign": {
     "form_universe": {
       "claim_boundary": "Counts filings by form type and enumerates the action types held in the corporate-action lake. Opens no return data, registers no hypothesis identity, proposes no threshold and authorises no candidate. 0 trials.",
@@ -20159,7 +20434,7 @@
             "by_file": {}
           },
           "tests": {
-            "python_files": 272,
+            "python_files": 273,
             "violations": 0,
             "files_with_violations": 0,
             "safe_autofixes_available": 0,
@@ -20168,7 +20443,7 @@
             "by_file": {}
           },
           "historical_scripts": {
-            "python_files": 191,
+            "python_files": 192,
             "violations": 363,
             "files_with_violations": 52,
             "safe_autofixes_available": 110,
@@ -20323,9 +20598,9 @@
           "scripts/vps/collect_venues.py": "54870d67f99fa677486b71eae1e0ca4f6579b29e6b9facba6f37f4bdee523b69",
           "scripts/vps/stale_lock.py": "f40b992005f87b733ea6e71a447219a55d8200585c388ac06e13394cb0195a54"
         },
-        "content_hash": "sha256:8797d00752b661eb89cc9abbf88cdd8b7ff45b6d62156f7040a3615d11d0cdca"
+        "content_hash": "sha256:6f118ec2dac390e0b8361236b78b669ef0daba7cdb62008511af086c6e1452b0"
       },
-      "source_sha256": "4c93629ba2511a3dbe88b75117d07ee93022d0c6b96b45adf0e10f474cbcc5da",
+      "source_sha256": "fab69fd3cf38782bb528d2c88b5cb6a10f1c555fc310dec4dd77ddbd9a47ce8d",
       "public_path": "/glassbox/lint_debt_contract.json",
       "book_path": "/research/engineering-quality.md",
       "source_path": "artifacts/engineering/lint_debt_contract.json"
@@ -20775,6 +21050,6 @@
       "source_path": "artifacts/engineering/options_execution_contract.json"
     }
   },
-  "generated_at": "2026-08-22T01:53:26.729804+00:00",
-  "content_hash": "sha256:b02d8bac3ac52b6863811a5897bdacf9b3c11e6beda912ef599d6775cb4031e3"
+  "generated_at": "2026-08-22T02:32:57.924258+00:00",
+  "content_hash": "sha256:b87380ab62279869a41776bb03366a43f530595b46c536adbd94a200f0aedc48"
 }

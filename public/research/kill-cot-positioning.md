@@ -1,5 +1,7 @@
 # COT Positioning Overlay (campaign): a killed candidate
 
+**Short title:** COT Positioning Overlay (campaign): killed
+
 **Verdict:** KILLED  **Stage:** screen prototype  
 **Identity:** `cot_positioning`
 

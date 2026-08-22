@@ -1,5 +1,7 @@
 # Residual (beta-neutral) Momentum (campaign): a killed candidate
 
+**Short title:** Residual (beta-neutral) Momentum: killed
+
 **Verdict:** KILLED  **Stage:** screen prototype  
 **Identity:** `residual_momentum`
 

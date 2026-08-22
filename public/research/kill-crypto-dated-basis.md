@@ -1,5 +1,7 @@
 # Crypto Dated-Futures Basis (campaign): a killed candidate
 
+**Short title:** Crypto Dated-Futures Basis (campaign): killed
+
 **Verdict:** KILLED  **Stage:** screen prototype  
 **Identity:** `crypto_dated_basis`
 

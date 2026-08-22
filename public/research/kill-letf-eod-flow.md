@@ -1,6 +1,6 @@
 # Leveraged-ETF End-of-Day Forced-Rebalance Flow (probe): a killed candidate
 
-**Short title:** Leveraged-ETF end-of-day flow: killed
+**Short title:** Leveraged-ETF End-of-Day Forced-Rebalance Flow: killed
 
 **Verdict:** KILLED  **Stage:** screen prototype  
 **Identity:** `letf_eod_flow`

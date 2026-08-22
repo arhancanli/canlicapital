@@ -1,5 +1,7 @@
 # Funding Term-Structure / Slope (campaign): a killed candidate
 
+**Short title:** Funding Term-Structure / Slope (campaign): killed
+
 **Verdict:** KILLED  **Stage:** screen prototype  
 **Identity:** `funding_termstructure`
 

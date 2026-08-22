@@ -1,5 +1,7 @@
 # Crypto Short-Horizon Trend (campaign): a killed candidate
 
+**Short title:** Crypto Short-Horizon Trend (campaign): killed
+
 **Verdict:** KILLED  **Stage:** screen prototype  
 **Identity:** `crypto_short_tsmom`
 

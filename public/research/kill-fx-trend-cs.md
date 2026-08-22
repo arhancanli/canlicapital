@@ -1,5 +1,7 @@
 # FX Trend (cross-sectional 12-1): a killed candidate
 
+**Short title:** FX Trend (cross-sectional 12-1): killed
+
 **Verdict:** KILLED  **Stage:** screen prototype  
 **Identity:** `fx_trend_cs`
 

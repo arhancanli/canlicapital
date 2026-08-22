@@ -1,5 +1,7 @@
 # EIA Petroleum Inventory Scarcity: a killed candidate
 
+**Short title:** EIA Petroleum Inventory Scarcity: killed
+
 **Verdict:** KILLED  **Stage:** research gauntlet  
 **Identity:** `commodity_inventory_seasonal`
 

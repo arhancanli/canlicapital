@@ -1,5 +1,7 @@
 # Rates-Curve Carry (campaign): a killed candidate
 
+**Short title:** Rates-Curve Carry (campaign): killed
+
 **Verdict:** KILLED  **Stage:** screen prototype  
 **Identity:** `rates_curve_carry`
 

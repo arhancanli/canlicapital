@@ -1,6 +1,6 @@
 # Intraday Flow-Momentum, first-30m predicts last-30m (probe): a killed candidate
 
-**Short title:** Intraday flow-momentum: killed
+**Short title:** Intraday Flow-Momentum: killed
 
 **Verdict:** KILLED  **Stage:** screen prototype  
 **Identity:** `intraday_mom`

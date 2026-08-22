@@ -1,5 +1,7 @@
 # Cross-Asset Value (campaign): a killed candidate
 
+**Short title:** Cross-Asset Value (campaign): killed
+
 **Verdict:** KILLED  **Stage:** screen prototype  
 **Identity:** `xasset_value`
 

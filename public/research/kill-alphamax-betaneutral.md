@@ -1,5 +1,7 @@
 # Beta-Neutral Momentum Construction (campaign): a killed candidate
 
+**Short title:** Beta-Neutral Momentum Construction: killed
+
 **Verdict:** KILLED  **Stage:** screen prototype  
 **Identity:** `alphamax_betaneutral`
 

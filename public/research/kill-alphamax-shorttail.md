@@ -1,5 +1,7 @@
 # Short-Leg Tail Controls (campaign): a killed candidate
 
+**Short title:** Short-Leg Tail Controls (campaign): killed
+
 **Verdict:** KILLED  **Stage:** screen prototype  
 **Identity:** `alphamax_shorttail`
 

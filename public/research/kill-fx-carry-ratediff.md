@@ -1,5 +1,7 @@
 # FX Carry (rate differential): a killed candidate
 
+**Short title:** FX Carry (rate differential): killed
+
 **Verdict:** KILLED  **Stage:** screen prototype  
 **Identity:** `fx_carry_ratediff`
 

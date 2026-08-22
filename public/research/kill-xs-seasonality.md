@@ -1,6 +1,6 @@
 # Cross-Sectional Same-Calendar-Month Seasonality (probe): a killed candidate
 
-**Short title:** Cross-sectional month seasonality: killed
+**Short title:** Cross-Sectional Same-Calendar-Month Seasonality: killed
 
 **Verdict:** KILLED  **Stage:** screen prototype  
 **Identity:** `xs_seasonality`

@@ -1,6 +1,6 @@
 # Managed-Futures fast-trend / real-futures breadth (campaign): a killed candidate
 
-**Short title:** Managed-futures fast-trend breadth: killed
+**Short title:** Managed-Futures fast-trend: killed
 
 **Verdict:** KILLED  **Stage:** screen prototype  
 **Identity:** `mf_realfutures_fasttrend`

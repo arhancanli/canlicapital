@@ -1,5 +1,7 @@
 # Pre-Registered Momentum (deep history): a killed candidate
 
+**Short title:** Pre-Registered Momentum (deep history): killed
+
 **Verdict:** KILLED  
 **Test window:** 2005-01-04 to 2026-06-01  
 **Identity:** `prereg_momentum`

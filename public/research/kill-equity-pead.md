@@ -1,5 +1,7 @@
 # Post-Earnings-Announcement Drift (campaign): a killed candidate
 
+**Short title:** Post-Earnings-Announcement Drift: killed
+
 **Verdict:** KILLED  **Stage:** screen prototype  
 **Identity:** `equity_pead`
 

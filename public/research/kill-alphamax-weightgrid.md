@@ -1,6 +1,6 @@
 # Weighting x Breadth Construction Grid (campaign): a killed candidate
 
-**Short title:** Weighting and breadth construction grid: killed
+**Short title:** Weighting x Breadth Construction Grid: killed
 
 **Verdict:** KILLED  **Stage:** screen prototype  
 **Identity:** `alphamax_weightgrid`

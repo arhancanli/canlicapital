@@ -1,5 +1,7 @@
 # Crypto Variance-Risk-Premium (campaign): a killed candidate
 
+**Short title:** Crypto Variance-Risk-Premium (campaign): killed
+
 **Verdict:** KILLED  **Stage:** screen prototype  
 **Identity:** `crypto_vrp`
 

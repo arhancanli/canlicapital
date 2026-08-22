@@ -1,5 +1,7 @@
 # On-Chain Carry-Quality Filter (campaign): a killed candidate
 
+**Short title:** On-Chain Carry-Quality Filter (campaign): killed
+
 **Verdict:** KILLED  **Stage:** screen prototype  
 **Identity:** `onchain_carry_filter`
 

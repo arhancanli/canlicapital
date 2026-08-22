@@ -1,5 +1,7 @@
 # Equity Momentum (with Margin Costs): a killed candidate
 
+**Short title:** Equity Momentum (with Margin Costs): killed
+
 **Verdict:** KILLED  
 **Test window:** 2023-07-06 to 2026-06-01  
 **Identity:** `eq_mom_margin`

@@ -1,5 +1,7 @@
 # Equity Value (Book-to-Price): a killed candidate
 
+**Short title:** Equity Value (Book-to-Price): killed
+
 **Verdict:** KILLED  
 **Test window:** 2022-07-05 to 2026-06-01  
 **Identity:** `eq_value_btp`

@@ -1,5 +1,7 @@
 # Corporate Equity Supply (Net Issuance): a killed candidate
 
+**Short title:** Corporate Equity Supply (Net Issuance): killed
+
 **Verdict:** KILLED  **Stage:** deployed gauntlet  
 **Identity:** `eq_net_issuance`
 

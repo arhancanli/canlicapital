@@ -1,5 +1,7 @@
 # Turn-of-Month / Rebalancing Flow (probe): a killed candidate
 
+**Short title:** Turn-of-Month / Rebalancing Flow (probe): killed
+
 **Verdict:** KILLED  **Stage:** screen prototype  
 **Identity:** `mechflow_tom`
 

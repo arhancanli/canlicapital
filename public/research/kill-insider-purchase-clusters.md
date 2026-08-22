@@ -1,5 +1,7 @@
 # Clustered Insider Open-Market Purchases: a killed candidate
 
+**Short title:** Clustered Insider Open-Market Purchases: killed
+
 **Verdict:** KILLED  **Stage:** research gauntlet  
 **Identity:** `insider_purchase_clusters`
 

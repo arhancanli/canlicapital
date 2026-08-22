@@ -1,5 +1,7 @@
 # Cross-Asset Carry (campaign): a killed candidate
 
+**Short title:** Cross-Asset Carry (campaign): killed
+
 **Verdict:** KILLED  **Stage:** screen prototype  
 **Identity:** `xasset_carry`
 

@@ -1,6 +1,6 @@
 # Crypto Multi-Venue Funding Aggregation (probe): a killed candidate
 
-**Short title:** Crypto multi-venue funding: killed
+**Short title:** Crypto Multi-Venue Funding Aggregation: killed
 
 **Verdict:** KILLED  **Stage:** screen prototype  
 **Identity:** `multivenue_funding`

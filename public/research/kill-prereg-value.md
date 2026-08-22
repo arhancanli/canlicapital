@@ -1,5 +1,7 @@
 # Pre-Registered Value (composite): a killed candidate
 
+**Short title:** Pre-Registered Value (composite): killed
+
 **Verdict:** KILLED  
 **Test window:** 2005-01-04 to 2026-06-01  
 **Identity:** `prereg_value`
