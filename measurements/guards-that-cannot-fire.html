@@ -52,13 +52,10 @@ is shown here with its own claim boundary so the number and its limits arrive to
 <aside class="measure__boundary"><h2>What this measurement does and does not claim</h2><p>A STRUCTURAL scan of source for checks that cannot fail. It reads code, not results: it cannot say whether a guard is correct, only whether it is capable of firing. Runs no backtest, opens no return data, registers no hypothesis. 0 trials.</p></aside>
 <section class="measure__section"><h2>The measurement</h2>
 <dl class="measure__facts">
-<div class="measure__row"><dt>Files scanned</dt><dd>589</dd></div>
+<div class="measure__row"><dt>Files scanned</dt><dd>595</dd></div>
 <div class="measure__row"><dt>Schema</dt><dd>canli.alphac-guards-that-cannot-fire.v1</dd></div>
 </dl>
 <p class="measure__prose"><strong>Companion.</strong> artifacts/engineering/mutation_ledger.json, which answers the behavioural half by breaking what each guard over a published claim watches.</p>
-<figure class="measure__tablewrap"><figcaption>Confirmed</figcaption><table class="measure__table"><thead><tr><th scope="col">Detail</th><th scope="col">Reason</th><th scope="col">Shape</th><th scope="col">Verdict</th><th scope="col">Where</th></tr></thead><tbody>
-<tr><td>test_no_trading_tick_invokes_the_weekly_job asserts inside a loop over `a discovered set`, which is discovered at runtime, with nothing asserting it is non-empty</td><td>Zero iterations passes this test silently.</td><td>B</td><td>CONFIRMED</td><td>tests/unit/test_corp_actions_weekly_job.py:286</td></tr>
-</tbody></table></figure>
 <section class="measure__sub"><h3>Detectors proven on a planted instance</h3>
 <dl class="measure__facts">
 <div class="measure__row"><dt>B</dt><dd>yes</dd></div>

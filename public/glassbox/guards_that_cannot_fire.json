@@ -1,21 +1,13 @@
 {
   "claim_boundary": "A STRUCTURAL scan of source for checks that cannot fail. It reads code, not results: it cannot say whether a guard is correct, only whether it is capable of firing. Runs no backtest, opens no return data, registers no hypothesis. 0 trials.",
   "companion": "artifacts/engineering/mutation_ledger.json, which answers the behavioural half by breaking what each guard over a published claim watches.",
-  "confirmed": [
-    {
-      "detail": "test_no_trading_tick_invokes_the_weekly_job asserts inside a loop over `a discovered set`, which is discovered at runtime, with nothing asserting it is non-empty",
-      "reason": "Zero iterations passes this test silently.",
-      "shape": "B",
-      "verdict": "CONFIRMED",
-      "where": "tests/unit/test_corp_actions_weekly_job.py:286"
-    }
-  ],
+  "confirmed": [],
   "detectors_proven_on_a_planted_instance": {
     "B": true,
     "C": true,
     "D": true
   },
-  "files_scanned": 589,
+  "files_scanned": 595,
   "refutations_are_kept": "A finding that turns out to be legitimate stays in this artifact as REFUTED with its reason. An audit that keeps only its hits cannot be checked by anybody who was not there when it ran.",
   "refuted": [],
   "schema": "canli.alphac-guards-that-cannot-fire.v1",

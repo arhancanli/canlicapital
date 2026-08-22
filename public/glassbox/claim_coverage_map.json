@@ -121,6 +121,7 @@
       "artifact": "contract_and_unit_audit.json",
       "mechanisms": [
         "NAMED_GUARD",
+        "RENDERED_PAGE",
         "HOST_MIRROR"
       ],
       "named_guards": [
@@ -320,6 +321,7 @@
       "artifact": "guards_that_cannot_fire.json",
       "mechanisms": [
         "NAMED_GUARD",
+        "RENDERED_PAGE",
         "HOST_MIRROR"
       ],
       "named_guards": [
@@ -378,6 +380,7 @@
       ],
       "named_guards": [
         "scripts/mutation_ledger.py",
+        "tests/unit/test_hooks_are_tracked_and_installed.py",
         "tests/unit/test_lint_debt_contract.py",
         "tests/unit/test_publish_pipeline_order.py",
         "tests/unit/test_research_export_freshness.py"
@@ -861,7 +864,7 @@
       "cwd": "/Users/arhancanli/alphaforge",
       "exit_code": 0,
       "outcome": "PASS",
-      "ran_at": "2026-08-22T03:33:06+00:00",
+      "ran_at": "2026-08-22T05:20:10+00:00",
       "tail": [
         "  L2 signatures     : 2 verified, 0 failed",
         "  L3 golden master  : PASS",
@@ -873,7 +876,7 @@
       "cwd": "/Users/arhancanli/alphaforge",
       "exit_code": 0,
       "outcome": "PASS",
-      "ran_at": "2026-08-22T03:33:09+00:00",
+      "ran_at": "2026-08-22T05:20:27+00:00",
       "tail": [
         "retracted-claims check: 12 rules over 2 root(s)",
         "  PASS \u2014 no withdrawn claim is asserted anywhere in the publish set"
@@ -884,11 +887,11 @@
       "cwd": "/Users/arhancanli/meridian",
       "exit_code": 1,
       "outcome": "FAIL",
-      "ran_at": "2026-08-22T03:33:10+00:00",
+      "ran_at": "2026-08-22T05:20:28+00:00",
       "tail": [
-        "  - -252  on /research/prereg-earnings-narrative-change",
-        "  - 22.5  on /research/prereg-earnings-narrative-change",
-        "FAILED: 10 untraceable numeral(s)"
+        "  - 59573  on /research/options-execution-foundation",
+        "  - 24.6  on /research/prereg-earnings-narrative-change",
+        "FAILED: 8 untraceable numeral(s) on unsourced pages"
       ]
     },
     "unit_suite": {
@@ -896,11 +899,11 @@
       "cwd": "/Users/arhancanli/alphaforge",
       "exit_code": 0,
       "outcome": "PASS",
-      "ran_at": "2026-08-22T03:31:06+00:00",
+      "ran_at": "2026-08-22T05:18:00+00:00",
       "tail": [
         "........................................................................ [ 97%]",
         "........................................................................ [ 99%]",
-        "......                                                                   [100%]"
+        ".................                                                        [100%]"
       ]
     }
   },
@@ -918,7 +921,7 @@
       "cwd": "/Users/arhancanli/alphaforge",
       "exit_code": 0,
       "outcome": "PASS",
-      "ran_at": "2026-08-22T03:31:05+00:00",
+      "ran_at": "2026-08-22T05:17:59+00:00",
       "tail": [
         "/Users/arhancanli/alphaforge/artifacts/engineering/lint_debt_contract.json"
       ]
@@ -928,10 +931,10 @@
       "cwd": "/Users/arhancanli/alphaforge",
       "exit_code": 0,
       "outcome": "PASS",
-      "ran_at": "2026-08-22T03:31:05+00:00",
+      "ran_at": "2026-08-22T05:17:59+00:00",
       "tail": [
-        "wrote /Users/arhancanli/meridian/public/glassbox/research.json  (1058495 bytes)",
-        "content_hash: sha256:bc1fd8ea4c1c7449791edb8a4da0dd7f98c1239e5d371c5f46318a3390e65b8d"
+        "wrote /Users/arhancanli/meridian/public/glassbox/research.json  (1058677 bytes)",
+        "content_hash: sha256:cea00a82f9b34b989325e4b8ebbbc9cb2897bf8b122d940020ba44e9e5b17465"
       ]
     }
   },
