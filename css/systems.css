@@ -969,3 +969,74 @@
   .js .cstage:last-child { margin-bottom: 0; }
   .cpin__counter { display: none; }
 }
+
+/* ---------------------------------------------------------------------------
+   07 / END TO END — the chain of custody as a readable list.
+   ---------------------------------------------------------------------------
+   The six chapters above describe stages one at a time; this component follows a
+   single observation through all of them, and every row carries a link to the
+   artifact that measured that stage. It is a LIST, not a diagram, on purpose: a
+   diagram asserts that the stages connect and a link lets the reader check.
+
+   Built from the existing vocabulary only — the same rule, kicker, and mono
+   label used by every other chapter. No token is redefined here.
+   --------------------------------------------------------------------------- */
+.sys-custody {
+  margin: clamp(28px, 3.6vw, 44px) 0 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: custody;
+}
+.sys-custody__row {
+  display: grid;
+  grid-template-columns: minmax(96px, 12%) 1fr;
+  gap: 10px clamp(18px, 2.4vw, 32px);
+  padding: clamp(18px, 2.2vw, 26px) 0;
+  border-top: 1px solid var(--line, rgba(231, 224, 210, 0.16));
+}
+.sys-custody__row:last-child {
+  border-bottom: 1px solid var(--line, rgba(231, 224, 210, 0.16));
+}
+.sys-custody__stage {
+  padding-top: 4px;
+  color: var(--faint, #7f8a96);
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+}
+.sys-custody__body { min-width: 0; }
+.sys-custody__title {
+  margin: 0 0 8px;
+  font-family: var(--display, "Newsreader", Georgia, serif);
+  font-size: clamp(17px, 1.5vw, 21px);
+  font-weight: 400;
+  line-height: 1.3;
+}
+.sys-custody__note {
+  margin: 0 0 10px;
+  max-width: 62ch;
+  color: var(--muted, #9ba4ad);
+}
+/* The proof line is the point of the row, so it reads as evidence rather than as
+   a footnote: mono, tighter, and every link visibly a link. */
+.sys-custody__proof {
+  margin: 0;
+  max-width: 62ch;
+  font-family: var(--mono, "IBM Plex Mono", monospace);
+  font-size: 0.82em;
+  line-height: 1.7;
+  color: var(--faint, #7f8a96);
+}
+.sys-custody__proof a {
+  color: var(--paper-tone, #e7e0d2);
+  text-decoration: underline;
+  text-decoration-color: var(--line-strong, rgba(231, 224, 210, 0.3));
+  text-underline-offset: 3px;
+}
+.sys-custody__proof a:hover {
+  color: var(--oxide, #d56b48);
+  text-decoration-color: currentColor;
+}
+@media (max-width: 640px) {
+  .sys-custody__row { grid-template-columns: 1fr; gap: 6px; }
+  .sys-custody__stage { padding-top: 0; }
+}

@@ -210,6 +210,45 @@ check(
   "the /measurements index is not in the sitemap",
 );
 
+// ---------------------------------------------------------------------------
+// 7. THE END-TO-END WALK on /systems. Its whole claim is that the six stages
+//    connect and that you can CHECK each one, so a proof link that 404s is worse
+//    than no link: it invites the reader to verify and then wastes the attempt.
+//    Every stage must be present and every link must resolve to a built page.
+// ---------------------------------------------------------------------------
+const systemsHtml = readFileSync(resolve(DIST, "systems.html"), "utf8");
+const custody = systemsHtml.match(/<ol class="sys-custody">[\s\S]*?<\/ol>/);
+check(custody !== null, "/systems has no end-to-end walk");
+if (custody) {
+  const stages = [...custody[0].matchAll(/class="sys-custody__stage[^"]*">([^<]+)</g)].map((m) =>
+    m[1].trim(),
+  );
+  // Named rather than counted: a walk that silently dropped "Execution" would still be six rows
+  // long if someone split another stage in two.
+  for (const stage of ["Lake", "Factor", "Portfolio", "Overlay", "Execution", "Publication"]) {
+    check(
+      stages.some((s) => s.includes(stage)),
+      `the end-to-end walk has no ${stage} stage — it no longer walks the whole path`,
+    );
+  }
+  const proofLinks = [...custody[0].matchAll(/href="(\/[^"#]*)"/g)].map((m) => m[1]);
+  check(
+    proofLinks.length >= stages.length,
+    `${stages.length} stages but only ${proofLinks.length} proof links — a stage proves nothing`,
+  );
+  for (const href of new Set(proofLinks)) {
+    check(
+      existsSync(resolve(DIST, `${href.replace(/^\//, "")}.html`)),
+      `the end-to-end walk links ${href}, which is not a built page`,
+    );
+  }
+  // Each row must carry its own proof, or the links are decorating the strong rows and the
+  // weak ones are unevidenced.
+  const rows = (custody[0].match(/class="sys-custody__row"/g) || []).length;
+  const proofs = (custody[0].match(/class="sys-custody__proof"/g) || []).length;
+  check(rows === proofs, `${rows} stages but ${proofs} carry a proof link`);
+}
+
 const sitemapUrls = (sitemap.match(/<loc>/g) || []).length;
 if (failures.length) {
   console.error(`\nFAILED (${failures.length}):`);
@@ -228,5 +267,8 @@ console.log(
   `verified ${measurementPages.length} measurement pages: one per artifact discovered in ` +
     `research.json, each with a self-canonical, Dataset markup, a rendered claim boundary, ` +
     `a sitemap entry, and a link from the index`,
+);
+console.log(
+  `verified the /systems end-to-end walk: six named stages, one proof link each, all resolving`,
 );
 console.log(`sitemap covers ${sitemapUrls} URLs`);

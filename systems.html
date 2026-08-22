@@ -101,7 +101,7 @@
       id: "systems",
       chapters: [
         "Overview", "Data", "Factors", "Portfolio",
-        "Backtester", "Overlays", "Paper loop", "Colophon"
+        "Backtester", "Overlays", "Paper loop", "End to end", "Colophon"
       ],
       sceneBand: [0.22, 0.80],
       sceneStill: 0.42
@@ -137,7 +137,8 @@
       <li><a href="#backtester" class="rail__item" data-rail="4"><span class="rail__num mono-label">04</span></a></li>
       <li><a href="#overlays" class="rail__item" data-rail="5"><span class="rail__num mono-label">05</span></a></li>
       <li><a href="#paper-loop" class="rail__item" data-rail="6"><span class="rail__num mono-label">06</span></a></li>
-      <li><a href="#footer" class="rail__item" data-rail="7"><span class="rail__num mono-label">07</span></a></li>
+      <li><a href="#end-to-end" class="rail__item" data-rail="7"><span class="rail__num mono-label">07</span></a></li>
+      <li><a href="#footer" class="rail__item" data-rail="8"><span class="rail__num mono-label">08</span></a></li>
     </ul>
   </nav>
 
@@ -787,6 +788,178 @@
       </div>
     </section>
 
+
+    <!-- ================================================================
+         07 / END TO END. The chapters above describe the six stages one at a
+         time. This one follows a SINGLE observation through all of them, because
+         a reader who has read every component still cannot say how a number
+         arrives, and that is the question that decides whether the rest is worth
+         believing.
+
+         Every stage links to the artifact that measured it. Deliberately not a
+         diagram: a diagram asserts that the stages connect, and a link lets the
+         reader check. Where the evidence is narrower than the stage, the row
+         says so rather than borrowing the confidence of a nearby number. NOT
+         marked data-stage: the pipeline spine tracks the six ENGINE stages, and
+         this is a summary of them rather than a seventh.
+         ================================================================ -->
+    <section class="sys-chapter section" id="end-to-end" data-section="7"
+             aria-labelledby="end-to-end-head">
+      <div class="sys-chapter__inner">
+        <span class="section__rule" aria-hidden="true"></span>
+        <div class="sys-chapter__grid">
+          <div class="sys-chapter__aside">
+            <p class="sys-chapter__kicker label"><span class="idx mono-label">07 /</span> End to end</p>
+            <h2 class="sys-chapter__head display-m" id="end-to-end-head">
+              <span class="mask" data-chars><span class="mask__inner">One funding rate, all the way to a published number.</span></span>
+            </h2>
+          </div>
+          <div class="sys-chapter__main">
+            <p class="sys-body body">
+              Everything above describes a stage. None of it answers the question a
+              sceptical reader actually has: what happens between an observation and a
+              number on this site, and where could it go <span class="signal-word">wrong</span>?
+              So here is one observation followed the whole way. A perpetual futures
+              contract pays a funding rate. That rate becomes a position, the position
+              becomes a return, and the return becomes a figure anybody can re-derive.
+              Six stages, each with the artifact that measured it, because a claim that
+              the stages connect is worth less than a link that lets you check.
+            </p>
+
+            <ol class="sys-custody">
+              <li class="sys-custody__row">
+                <span class="sys-custody__stage mono-label">01 / Lake</span>
+                <div class="sys-custody__body">
+                  <h3 class="sys-custody__title">The rate is recorded when it was knowable.</h3>
+                  <p class="sys-custody__note">
+                    Funding prints on a venue and lands in the research lake stamped with when it
+                    became public, not when it was measured. The failure here is silent and fatal:
+                    a series stamped with its measurement date lets a backtest trade on information
+                    from the future, and it looks wonderful.
+                  </p>
+                  <p class="sys-custody__proof">
+                    Proof, for one data layer rather than all of them:
+                    <a href="/measurements/identity-redesign-form-universe">what the filing index
+                    and the corporate-action lake actually carry</a> — including a route that was
+                    checked and does not exist.
+                  </p>
+                </div>
+              </li>
+              <li class="sys-custody__row">
+                <span class="sys-custody__stage mono-label">02 / Factor</span>
+                <div class="sys-custody__body">
+                  <h3 class="sys-custody__title">The rate becomes a cross-sectional score.</h3>
+                  <p class="sys-custody__note">
+                    Rates across instruments are ranked into a carry signal. The failure is a signal
+                    that is real and worthless: it earns less than it costs to hold, or it is a
+                    factor the book already owns wearing different clothes.
+                  </p>
+                  <p class="sys-custody__proof">
+                    Proof: <a href="/measurements/sleeve-quality-decomposition">what each sleeve's
+                    quality is actually made of</a>, and
+                    <a href="/measurements/orthogonality-prior">whether a new one would repeat a
+                    factor already in the book</a>.
+                  </p>
+                </div>
+              </li>
+              <li class="sys-custody__row">
+                <span class="sys-custody__stage mono-label">03 / Portfolio</span>
+                <div class="sys-custody__body">
+                  <h3 class="sys-custody__title">The score becomes a size.</h3>
+                  <p class="sys-custody__note">
+                    A covariance estimate turns scores into weights. The failure is a memory
+                    setting nobody measured: an estimator that forgets too slowly is trading last
+                    quarter's correlations, and one that forgets too fast is trading noise.
+                  </p>
+                  <p class="sys-custody__proof">
+                    Proof: <a href="/measurements/live-covariance-memory">what the live estimator's
+                    halflife does per sleeve</a>, and
+                    <a href="/measurements/ledoit-wolf-effective-sample">the shrinkage
+                    approximation's error, measured instead of trusted</a>.
+                  </p>
+                </div>
+              </li>
+              <li class="sys-custody__row">
+                <span class="sys-custody__stage mono-label">04 / Overlay</span>
+                <div class="sys-custody__body">
+                  <h3 class="sys-custody__title">The size is scaled, never flipped.</h3>
+                  <p class="sys-custody__note">
+                    A volatility target and a drawdown ladder scale gross exposure down when the
+                    book is losing. The failure is a brake tuned on a simulation of a different
+                    estimator than the one production runs.
+                  </p>
+                  <p class="sys-custody__proof">
+                    Proof: <a href="/measurements/drawdown-live-estimator">the drawdown sweep re-run
+                    through the estimator production actually uses</a>, which supersedes an earlier
+                    answer published on this site.
+                  </p>
+                </div>
+              </li>
+              <li class="sys-custody__row">
+                <span class="sys-custody__stage mono-label">05 / Execution</span>
+                <div class="sys-custody__body">
+                  <h3 class="sys-custody__title">The position is paid for.</h3>
+                  <p class="sys-custody__note">
+                    Orders walk the live book, are idempotent so a retry cannot double-count, and
+                    reconcile against the venue. The failure is a cost model that flatters: a
+                    backtest priced at a spread the live book never gets.
+                  </p>
+                  <p class="sys-custody__proof">
+                    Proof: <a href="/measurements/cost-model-realism">the modelled cost against what
+                    the live book actually paid</a>, published with the part that cannot be checked
+                    from what is recorded, and
+                    <a href="/measurements/execution-gap-power">how long the record must run before
+                    the gap is measurable at all</a>.
+                  </p>
+                </div>
+              </li>
+              <li class="sys-custody__row">
+                <span class="sys-custody__stage mono-label">06 / Publication</span>
+                <div class="sys-custody__body">
+                  <h3 class="sys-custody__title">The return becomes a number you can re-derive.</h3>
+                  <p class="sys-custody__note">
+                    Nothing reaches this site without clearing the admission contract, being counted
+                    against the trial ledger that makes deflation honest, and being signed into an
+                    append-only chain. The failure is a record with a hole in it, or a number
+                    selected from many attempts and reported as one.
+                  </p>
+                  <p class="sys-custody__proof">
+                    Proof: <a href="/measurements/sleeve-admission-contract-contract">the contract
+                    in force</a>,
+                    <a href="/measurements/admission-dry-run-result">it run against a real
+                    candidate</a>,
+                    <a href="/measurements/trial-accounting">the trial ledger that counts selection
+                    N</a>,
+                    <a href="/measurements/record-continuity">whether the forward record has
+                    gaps</a>, and <a href="/open">the downloadable verifier</a> that re-checks every
+                    published hash and signature.
+                  </p>
+                </div>
+              </li>
+            </ol>
+
+            <p class="sys-fam-close body-l">
+              Six links, six measurements, and none of them is a promise about what the engine
+              will earn. They are the answer to a narrower and more useful question: if a number
+              on this site is wrong, where would it have gone wrong, and what would show it.
+            </p>
+
+            <p class="sys-body body">
+              Every measurement this engine writes is published, not only the six above.
+              <a href="/measurements">The full set</a> includes the corrections we have had to make
+              against our own earlier figures and the nulls that closed a line of enquiry rather
+              than opening one. Those are the entries worth reading first: a record that contains
+              only its wins is not a record.
+            </p>
+
+            <p class="sys-dataline mono-label type-mono">
+              lake / factor / portfolio / overlay / execution / publication &mdash;
+              one artifact per stage, all re-derivable
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
     <!-- THE CHAIN-OF-CUSTODY PIN: this page's one tentpole beat (mirrors the
          landing's System pin, /performance's gauntlet pin, and /progress's roadmap
          pin in STRUCTURE). The six engine stages reveal one at a time inside a

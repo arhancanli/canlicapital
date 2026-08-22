@@ -1,7 +1,7 @@
 {
-  "as_of": "2026-08-21",
+  "as_of": "2026-08-22",
   "claim_boundary": "Reads the per-sleeve trading databases read-only. Opens no market data, registers no hypothesis identity and changes nothing. 0 trials.",
-  "days_since_go_live": 15,
+  "days_since_go_live": 16,
   "go_live_date": "2026-08-07",
   "how_a_gap_is_classified": "A weekend absence is LEGITIMATE for a sleeve that does not trade weekends and a REAL gap for one that trades around the clock. Classified per sleeve, because counting them the same way makes a closed market and a broken loop look identical.",
   "max_gap_rate_threshold": 0.2,
@@ -11,10 +11,10 @@
     "alphaforge": {
       "database": "var/trading_crypto_perp.sqlite",
       "database_exists": true,
-      "days_expected": 15,
-      "days_marked": 12,
-      "days_since_go_live": 15,
-      "gap_rate": 0.2,
+      "days_expected": 16,
+      "days_marked": 13,
+      "days_since_go_live": 16,
+      "gap_rate": 0.1875,
       "legitimate_absence_days": [],
       "legitimate_absences": 0,
       "longest_consecutive_gap": 2,
@@ -31,13 +31,14 @@
       "database_exists": true,
       "days_expected": 11,
       "days_marked": 11,
-      "days_since_go_live": 15,
+      "days_since_go_live": 16,
       "gap_rate": 0.18181818181818182,
       "legitimate_absence_days": [
         "2026-08-09",
-        "2026-08-16"
+        "2026-08-16",
+        "2026-08-22"
       ],
-      "legitimate_absences": 2,
+      "legitimate_absences": 3,
       "longest_consecutive_gap": 1,
       "real_gap_days": [
         "2026-08-10",
@@ -51,13 +52,14 @@
       "database_exists": true,
       "days_expected": 11,
       "days_marked": 11,
-      "days_since_go_live": 15,
+      "days_since_go_live": 16,
       "gap_rate": 0.18181818181818182,
       "legitimate_absence_days": [
         "2026-08-09",
-        "2026-08-16"
+        "2026-08-16",
+        "2026-08-22"
       ],
-      "legitimate_absences": 2,
+      "legitimate_absences": 3,
       "longest_consecutive_gap": 1,
       "real_gap_days": [
         "2026-08-10",
@@ -71,13 +73,14 @@
       "database_exists": true,
       "days_expected": 11,
       "days_marked": 11,
-      "days_since_go_live": 15,
+      "days_since_go_live": 16,
       "gap_rate": 0.18181818181818182,
       "legitimate_absence_days": [
         "2026-08-09",
-        "2026-08-16"
+        "2026-08-16",
+        "2026-08-22"
       ],
-      "legitimate_absences": 2,
+      "legitimate_absences": 3,
       "longest_consecutive_gap": 1,
       "real_gap_days": [
         "2026-08-10",
@@ -93,5 +96,5 @@
   "systemic_note": "Days missing on EVERY sleeve are systemic \u2014 the tick did not run or did not mark \u2014 rather than a fault in any one sleeve.",
   "threshold_basis": "Declared, not fitted. A threshold derived from today's gap rate would pass whatever the gap rate happens to be, which is not a threshold.",
   "what_this_does_not_measure": "Whether a mark is CORRECT \u2014 only whether one exists. A sleeve marking the same equity every day would show a perfect continuity record and a frozen curve. That is the publish gate's job (check_published_state), not this one's.",
-  "worst_gap_rate": 0.2
+  "worst_gap_rate": 0.1875
 }
