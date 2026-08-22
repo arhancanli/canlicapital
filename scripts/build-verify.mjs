@@ -172,6 +172,7 @@ uv run python scripts/reproduce.py`;
 <meta name="description" content="${escapeHtml(description)}" />
 <link rel="canonical" href="${ORIGIN}/verify" />
 <meta name="author" content="${AUTHOR}" />
+<meta name="canli:sources" content="${[...artifacts, ...signedPresent, "transparency_log.json"].join(" ")}" />
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
 <meta property="og:type" content="article" />
 <meta property="og:site_name" content="${PUBLISHER}" />

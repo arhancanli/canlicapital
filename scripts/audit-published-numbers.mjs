@@ -68,6 +68,8 @@ const visibleText = (html) =>
     .replace(/<script[\s\S]*?<\/script>/gi, " ")
     .replace(/<style[\s\S]*?<\/style>/gi, " ")
     .replace(/<[^>]+>/g, " ")
+    .replace(/&#x[0-9a-f]+;/gi, " ")
+    .replace(/&#\d+;/g, " ")
     .replace(/&[a-z]+;/gi, " ");
 
 // Exponential notation is ONE numeral, not two. Without the exponent group, an artifact holding
@@ -85,20 +87,75 @@ const ISO_DATE = /\b(19|20)\d\d-\d\d-\d\d\b/g;
 // The published universe: every number inside every glassbox artifact.
 // ---------------------------------------------------------------------------
 const artifacts = walk(resolve(DIST, "glassbox"), ".json");
-const verbatim = new Set();
-const values = [];
+
+// PER-ARTIFACT, NOT ONE POOL. Tracing every page against every number in every artifact was the
+// first design, and it has an expiry date: the corpus grows on every publish, so a figure that
+// traces to nothing today can start "tracing" tomorrow because an unrelated artifact happened to
+// contain a matching value. That is exactly what happened — two genuinely untraceable numbers
+// went quiet within two hours of this guard shipping, because publishing the claim-coverage map
+// added its own numbers to the pool. A guard that weakens each time the record grows is a guard
+// with an expiry date, so a page is now traced against the artifacts IT REFERENCES.
+const perArtifact = new Map();
 for (const file of artifacts) {
   const text = readFileSync(file, "utf8");
+  const verbatim = new Set();
+  const values = [];
   for (const token of text.match(NUMERAL) || []) {
     verbatim.add(token);
     const value = Number(token.replace(/,/g, ""));
     if (Number.isFinite(value)) values.push(value);
   }
+  const labels = new Set(verbatim);
+  for (const token of text.match(/\d+/g) || []) labels.add(token);
+  try {
+    const walkSizes = (node) => {
+      if (Array.isArray(node)) {
+        labels.add(String(node.length));
+        node.forEach(walkSizes);
+      } else if (node && typeof node === "object") {
+        labels.add(String(Object.keys(node).length));
+        Object.values(node).forEach(walkSizes);
+      }
+    };
+    walkSizes(JSON.parse(text));
+  } catch {
+    /* a non-JSON artifact contributes no container sizes */
+  }
+  values.sort((a, b) => a - b);
+  perArtifact.set(relative(resolve(DIST, "glassbox"), file), { verbatim, labels, values });
 }
-values.sort((a, b) => a - b);
 
-/** Is some published value within half a unit of this token's last decimal place? */
-function rounds(target, decimals) {
+/** The whole corpus, used only where a page declares no source. */
+const corpus = { verbatim: new Set(), values: [] };
+for (const { verbatim, values } of perArtifact.values()) {
+  for (const token of verbatim) corpus.verbatim.add(token);
+  corpus.values.push(...values);
+}
+// NOTE the corpus takes `verbatim`, never `labels`. The fallback is the weaker path already;
+// widening it with every digit sequence inside every identifier would make it weaker still.
+corpus.values.sort((a, b) => a - b);
+
+const scopeCache = new Map();
+function scopeFor(sources) {
+  const key = [...sources].sort().join("|");
+  if (scopeCache.has(key)) return scopeCache.get(key);
+  const verbatim = new Set();
+  const values = [];
+  for (const name of sources) {
+    const entry = perArtifact.get(name);
+    if (!entry) continue;
+    for (const token of entry.labels) verbatim.add(token);
+    values.push(...entry.values);
+  }
+  values.sort((a, b) => a - b);
+  const scope = { verbatim, values };
+  scopeCache.set(key, scope);
+  return scope;
+}
+
+/** Is some value IN THIS SCOPE within half a unit of the token's last decimal place? */
+function rounds(scope, target, decimals) {
+  const { values } = scope;
   const tolerance = 0.5 * 10 ** -decimals + Number.EPSILON * Math.abs(target) * 8;
   let lo = 0;
   let hi = values.length;
@@ -135,12 +192,32 @@ const reasons = { EXACT: 0, ROUNDED: 0, PERCENT: 0, DATE: 0, STRUCTURE: 0, IDENT
 const untraceable = new Map();
 let seen = 0;
 
+let scopedPages = 0;
+let fallbackPages = 0;
+const fallbackUntraceable = new Map();
+
 for (const file of htmlFiles) {
   const html = readFileSync(file, "utf8");
   const text = visibleText(html);
+  // A page is scoped ONLY when its generator DECLARES the complete set of artifacts it drew
+  // from, via <meta name="canli:sources">. A link to a glassbox file in prose is a citation, not
+  // a statement that it is the only source — treating one as the other scoped research papers to
+  // a single artifact while they quoted figures from three, which is a worse answer than the
+  // honest fallback.
+  const declared = html.match(/<meta name="canli:sources" content="([^"]*)"/);
+  const sources = new Set(
+    declared ? declared[1].split(/\s+/).filter(Boolean) : [],
+  );
+  const scoped = sources.size > 0;
+  const scope = scoped ? scopeFor(sources) : corpus;
+  if (scoped) scopedPages += 1;
+  else fallbackPages += 1;
   const dateParts = new Set();
   for (const date of text.match(ISO_DATE) || []) {
-    for (const part of date.split("-")) dateParts.add(String(Number(part)));
+    for (const part of date.split("-")) {
+      dateParts.add(part);
+      dateParts.add(String(Number(part)));
+    }
     dateParts.add(date.slice(0, 4));
   }
   // A numeral inside a citation is an IDENTIFIER, not a claim: "10.1016/j.jfineco" is a DOI and
@@ -166,14 +243,18 @@ for (const file of htmlFiles) {
     const value = Number(bare);
     const decimals = (bare.split(".")[1] || "").length;
 
-    if (verbatim.has(token) || verbatim.has(bare)) { reasons.EXACT += 1; continue; }
-    if (Number.isFinite(value) && rounds(value, decimals)) { reasons.ROUNDED += 1; continue; }
-    if (Number.isFinite(value) && rounds(value / 100, decimals + 2)) { reasons.PERCENT += 1; continue; }
+    if (scope.verbatim.has(token) || scope.verbatim.has(bare)) { reasons.EXACT += 1; continue; }
+    if (Number.isFinite(value) && rounds(scope, value, decimals)) { reasons.ROUNDED += 1; continue; }
+    if (Number.isFinite(value) && rounds(scope, value / 100, decimals + 2)) {
+      reasons.PERCENT += 1;
+      continue;
+    }
     if (/^(19|20)\d\d$/.test(bare) || dateParts.has(bare)) { reasons.DATE += 1; continue; }
     if (structure.has(bare)) { reasons.STRUCTURE += 1; continue; }
 
-    if (!untraceable.has(token)) untraceable.set(token, []);
-    const where = untraceable.get(token);
+    const bucket = scoped ? untraceable : fallbackUntraceable;
+    if (!bucket.has(token)) bucket.set(token, []);
+    const where = bucket.get(token);
     if (where.length < 3) where.push("/" + rel(file).replace(/\.html$/, ""));
   }
 }
@@ -181,9 +262,14 @@ for (const file of htmlFiles) {
 // A universe that collapsed would make every numeral untraceable, and a page set that collapsed
 // would make the whole audit pass. Both are floors, both are the shape of the bug.
 const problems = [];
-if (values.length < 5000) {
-  problems.push(`only ${values.length} numbers found across ${artifacts.length} artifacts — the ` +
-    `published universe did not load, so everything would report as untraceable`);
+if (corpus.values.length < 5000) {
+  problems.push(`only ${corpus.values.length} numbers found across ${artifacts.length} artifacts ` +
+    `— the published universe did not load, so everything would report as untraceable`);
+}
+if (scopedPages < 20) {
+  problems.push(`only ${scopedPages} pages declared a glassbox source — the source extractor has ` +
+    `stopped matching, so almost everything fell back to the whole corpus and the scoping this ` +
+    `guard exists for is not happening`);
 }
 if (seen < 500) {
   problems.push(`only ${seen} numerals found across ${htmlFiles.length} pages — the page scan ` +
@@ -195,17 +281,33 @@ console.log(
   "  traced: " +
     Object.entries(reasons).map(([k, v]) => `${k.toLowerCase()} ${v}`).join("  "),
 );
-console.log(`  universe: ${values.length} numbers across ${artifacts.length} artifacts`);
+console.log(
+  `  scoped to declared sources: ${scopedPages} pages   whole-corpus fallback: ${fallbackPages}`,
+);
+console.log(`  corpus: ${corpus.values.length} numbers across ${artifacts.length} artifacts`);
+
+if (fallbackUntraceable.size > 0) {
+  console.error(
+    `\n${fallbackUntraceable.size} numeral(s) on pages that declare NO source trace to nothing ` +
+      `in the whole corpus:`,
+  );
+  for (const [token, where] of [...fallbackUntraceable].slice(0, MAX_REPORTED)) {
+    console.error(`  - ${token}  on ${where.join(", ")}`);
+  }
+  problems.push(`${fallbackUntraceable.size} untraceable numeral(s) on unsourced pages`);
+}
 
 if (untraceable.size > 0) {
-  console.error(`\n${untraceable.size} numeral(s) trace to nothing published:`);
+  console.error(
+    `\n${untraceable.size} numeral(s) on pages that DO declare a source trace to nothing in it:`,
+  );
   for (const [token, where] of [...untraceable].slice(0, MAX_REPORTED)) {
     console.error(`  - ${token}  on ${where.join(", ")}`);
   }
   if (untraceable.size > MAX_REPORTED) {
     console.error(`  … and ${untraceable.size - MAX_REPORTED} more`);
   }
-  problems.push(`${untraceable.size} untraceable numeral(s)`);
+  problems.push(`${untraceable.size} untraceable numeral(s) on sourced pages`);
 }
 
 if (problems.length > 0) {

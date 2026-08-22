@@ -250,8 +250,8 @@
         }
       }
     },
-    "generated_at": "2026-08-22T03:33:11.346540+00:00",
-    "content_hash": "sha256:824f2a827ecf0805f8b34a6408814a4fb48f13c6909dd429cc21e4a0e618271d"
+    "generated_at": "2026-08-22T03:48:09.062160+00:00",
+    "content_hash": "sha256:701d0aaf1dd2cd3e0421e5174e9354f22bc5f478cce3cf44142396af863e5e14"
   },
   "factor_research": {
     "summary": "Most ideas die. We publish every test with its real net-of-cost Sharpe and its real Rank-IC. 2 kept, 8 killed. The Rank-IC is the cross-sectional information coefficient with a Newey-West t-stat; the net Sharpe is the purged walk-forward result after the conservative cost model.",
@@ -16265,7 +16265,7 @@
       ],
       "content_hash": "sha256:e547c35063ec166939ce8d4f81853319a25229b86816606de9c68dff86b56ece"
     },
-    "lineage_audit": {
+    "sleeve_family_lineage_audit": {
       "schema": "canli.alphac-sleeve-family-lineage-audit.v1",
       "stage": "NO_RETURN_IDENTITY_LINEAGE",
       "claim_boundary": "This audit proves registry consistency against the enumerated internal ledgers. It does not prove global economic novelty, returns, or sleeve admission.",
@@ -19895,7 +19895,7 @@
     "schema": "canli.alphac-mutation-ledger.v1",
     "why": "A check that cannot fail is worse than no check: it produces the confidence of a guard with none of the protection, and a passing test looks identical whether it is watching something or nothing."
   },
-  "audit_guards_that_cannot_fire": {
+  "guards_that_cannot_fire": {
     "claim_boundary": "A STRUCTURAL scan of source for checks that cannot fail. It reads code, not results: it cannot say whether a guard is correct, only whether it is capable of firing. Runs no backtest, opens no return data, registers no hypothesis. 0 trials.",
     "companion": "artifacts/engineering/mutation_ledger.json, which answers the behavioural half by breaking what each guard over a published claim watches.",
     "confirmed": [
@@ -19924,7 +19924,7 @@
     },
     "why_a_clean_report_needs_that": "Every shape here currently reports zero, and zero is exactly what a scanner that has gone blind reports. Each detector is therefore run against a planted instance of the defect it looks for, and the audit refuses to publish a clean result it cannot demonstrate it earned."
   },
-  "audit_contract_and_units": {
+  "contract_and_unit_audit": {
     "claim_boundary": "Three audit dimensions worked against the contract in force and the published bundle. It reads configuration and artifacts; it runs no backtest, opens no return data, registers no hypothesis identity and changes no threshold. Findings are reported, not acted on. 0 trials.",
     "companion": "artifacts/engineering/guards_that_cannot_fire.json is the fourth dimension, and artifacts/engineering/mutation_ledger.json is its behavioural half.",
     "dimensions": {
@@ -19999,6 +19999,9 @@
     ],
     "refutations_are_kept": "A dimension that found nothing says so, with what it checked. An audit that reports only its hits cannot be told apart from one that did not run.",
     "schema": "canli.alphac-contract-and-unit-audit.v1"
+  },
+  "published_as": {
+    "trial_accounting": "trial_ledger.json"
   },
   "claim_coverage_map": {
     "claim_boundary": "Maps each PUBLISHED ARTIFACT to the mechanisms that guard it and records when each mechanism last ran, by running it. It does not claim any guard is correct \u2014 only which claims have one and which do not. Runs no backtest, opens no return data, registers no hypothesis identity. 0 trials.",
@@ -20945,7 +20948,7 @@
     "with_a_named_guard": 48
   },
   "repurchase_issuance_feasibility_audits": {
-    "companyfacts_audit": {
+    "repurchase_issuance_companyfacts_audit": {
       "schema": "canli.feasibility.repurchase-issuance-companyfacts-audit.v1",
       "generated_at": "2026-08-16T00:34:11.932123+00:00",
       "stage": "official_xbrl_coverage_no_prices_no_returns",
@@ -21013,7 +21016,7 @@
       "decision": "ITEM703_AUDIT_REQUIRED",
       "content_hash": "sha256:a3e911a82aa0a3fd255cf4429f1945af8d610af13dad18de7ab11db09691c23a"
     },
-    "semantics_audit": {
+    "repurchase_issuance_semantics_audit": {
       "schema": "canli.feasibility.repurchase-issuance-semantics-audit.v1",
       "generated_at": "2026-08-16T00:35:50.832944+00:00",
       "stage": "point_in_time_semantics_no_prices_no_returns",
@@ -21066,7 +21069,7 @@
       "claim_boundary": "This stage cannot pass combined family feasibility or open returns.",
       "content_hash": "sha256:58d2c0cbe44bbf34a71df0e30eada1d148c3255bdbc1d202bbf25a191d70f2de"
     },
-    "identity_overlap_audit": {
+    "repurchase_issuance_identity_overlap_audit": {
       "schema": "canli.alphac-repurchase-issuance-overlap-audit.v1",
       "stage": "identity_governance_no_new_returns",
       "return_data_opened_by_this_audit": false,
@@ -21169,7 +21172,7 @@
     }
   },
   "identity_redesign": {
-    "form_universe": {
+    "spinoff_form_universe": {
       "claim_boundary": "Counts filings by form type and enumerates the action types held in the corporate-action lake. Opens no return data, registers no hypothesis identity, proposes no threshold and authorises no candidate. 0 trials.",
       "corporate_action_route_checked": {
         "action_types": {
@@ -22323,6 +22326,6 @@
       "source_path": "artifacts/engineering/options_execution_contract.json"
     }
   },
-  "generated_at": "2026-08-22T03:33:11.351218+00:00",
-  "content_hash": "sha256:918167593af46fca7ef833825bf62a7220c7032b9a1bd699b586c35dce320f77"
+  "generated_at": "2026-08-22T03:48:09.066712+00:00",
+  "content_hash": "sha256:ba54832539830654597e5bddb5e551cf10042298e4e205f16624a7755bebc3dd"
 }

@@ -339,6 +339,7 @@ ${item.a}
 <meta name="description" content="${escapeHtml(description)}" />
 <link rel="canonical" href="${ORIGIN}/methodology" />
 <meta name="author" content="${AUTHOR}" />
+<meta name="canli:sources" content="kill_log.json trial_ledger.json transparency_log.json deflation.json legacy_dsr_restatement.json track_record.json" />
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
 <meta property="og:type" content="article" />
 <meta property="og:site_name" content="${PUBLISHER}" />

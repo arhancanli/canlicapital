@@ -219,7 +219,7 @@ function renderBody(data, depth, rawUrl) {
 // ---------------------------------------------------------------------------
 // PAGE SHELL. The research paper shell, unchanged, so this is one design system.
 // ---------------------------------------------------------------------------
-function shell({ title, description, url, cssPath, breadcrumb, h1, lead, main, jsonLd }) {
+function shell({ title, description, url, cssPath, breadcrumb, h1, lead, main, jsonLd, sources }) {
   return `<!doctype html>
 <html lang="en">
 <head>
@@ -228,7 +228,7 @@ function shell({ title, description, url, cssPath, breadcrumb, h1, lead, main, j
 <title>${escapeHtml(title)}</title>
 <meta name="description" content="${escapeHtml(description)}" />
 <link rel="canonical" href="${url}" />
-<meta name="author" content="${AUTHOR}" />
+<meta name="author" content="${AUTHOR}" />${sources ? `\n<meta name="canli:sources" content="${sources}" />` : ""}
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
 <meta property="og:type" content="article" />
 <meta property="og:site_name" content="${PUBLISHER}" />
@@ -288,6 +288,38 @@ function boundaryOf(data) {
   return null;
 }
 
+/** The published file behind a bundle key, VERIFIED to exist rather than guessed from the key.
+ *
+ *  Candidates are tried most-specific first. If none is on disk the build fails: a measurement
+ *  page whose "check it yourself" link 404s is worse than one that does not offer the link, and
+ *  four of them shipped that way until the number-trace guard was scoped to declared sources and
+ *  the missing files turned up as untraceable numbers.
+ */
+function rawArtifactUrl(path, research) {
+  const segments = path.split(".");
+  // The producer declares any key whose filename it cannot predict. Guessing first and declaring
+  // second is how four of these links came to 404.
+  const declared = (research.published_as || {})[path];
+  const candidates = [
+    ...(declared ? [declared.replace(/\.json$/, "")] : []),
+    path.replace(/\./g, "_"),
+    segments[segments.length - 1],
+    segments[0],
+  ];
+  for (const candidate of candidates) {
+    if (existsSync(resolve(ROOT, "public/glassbox", `${candidate}.json`))) {
+      return `/glassbox/${candidate}.json`;
+    }
+  }
+  throw new Error(
+    `no published artifact found for bundle key "${path}" — tried ${candidates.join(", ")}. ` +
+      `Either the exporter publishes it under a name the key does not predict, or it is in the ` +
+      `bundle and not on disk. A page that tells a reader to check a file must link one that is ` +
+      `there.`,
+  );
+}
+
+
 function main() {
   if (!existsSync(RESEARCH_JSON)) {
     console.error(`missing ${RESEARCH_JSON} — the exporter has not run`);
@@ -326,7 +358,7 @@ function main() {
     const name = displayName(path);
     const slug = slugify(path);
     const url = `${ORIGIN}/measurements/${slug}`;
-    const rawUrl = `/glassbox/${path.split(".")[0]}.json`;
+    const rawUrl = rawArtifactUrl(path, research);
     const boundary = boundaryOf(data);
     const description = fitDescription(
       boundary ??
@@ -364,6 +396,7 @@ cannot appear here at all.</p>
         description,
         url,
         cssPath: "../css/paper.css",
+        sources: rawUrl.replace("/glassbox/", ""),
         breadcrumb: `<a href="/measurements">Measurements</a>`,
         h1: name,
         lead,

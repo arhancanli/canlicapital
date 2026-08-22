@@ -125,6 +125,7 @@ function main() {
 <meta name="description" content="${escapeHtml(description)}" />
 <link rel="canonical" href="${ORIGIN}/founder" />
 <meta name="author" content="${AUTHOR}" />
+<meta name="canli:sources" content="kill_log.json trial_ledger.json transparency_log.json founder_commitment.json track_record.json" />
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
 <meta property="og:type" content="profile" />
 <meta property="og:site_name" content="${PUBLISHER}" />
