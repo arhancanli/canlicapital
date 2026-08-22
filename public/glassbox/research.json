@@ -250,8 +250,8 @@
         }
       }
     },
-    "generated_at": "2026-08-22T02:50:32.369878+00:00",
-    "content_hash": "sha256:b7d46f8c369fa54cda66ad1c59f51f426157f2981fcd5c29045857bf8007ca10"
+    "generated_at": "2026-08-22T03:03:07.323552+00:00",
+    "content_hash": "sha256:9a17d415de0fcfe557782099327ec553213419692c5e013e0e4d9c344781d651"
   },
   "factor_research": {
     "summary": "Most ideas die. We publish every test with its real net-of-cost Sharpe and its real Rank-IC. 2 kept, 8 killed. The Rank-IC is the cross-sectional information coefficient with a Newey-West t-stat; the net Sharpe is the purged walk-forward result after the conservative cost model.",
@@ -20000,6 +20000,230 @@
     "refutations_are_kept": "A dimension that found nothing says so, with what it checked. An audit that reports only its hits cannot be told apart from one that did not run.",
     "schema": "canli.alphac-contract-and-unit-audit.v1"
   },
+  "repurchase_issuance_feasibility_audits": {
+    "companyfacts_audit": {
+      "schema": "canli.feasibility.repurchase-issuance-companyfacts-audit.v1",
+      "generated_at": "2026-08-16T00:34:11.932123+00:00",
+      "stage": "official_xbrl_coverage_no_prices_no_returns",
+      "protocol": "docs/design/FEASIBILITY_REPURCHASE_ISSUANCE_FLOW.md",
+      "claim_boundary": "Direct-tag coverage cannot pass the full family feasibility gate. Item 703 table precision/recall and contamination reconciliation remain mandatory.",
+      "source_manifest_hash": "sha256:3e206acc081bb4adafa864fc9a609bf443505d28b9bea08758a1434fcc2513a2",
+      "facts_parts_sha256": "8ec319e070b6248e57a875cf9c5fc1af761af0cd6802e9f2f5fb5c7d669984d5",
+      "submissions_parts_sha256": "0d91d328010c4c21b21f78ca7f4a940cf00e6109c45f55be8c1fb0f540038e4a",
+      "metrics": {
+        "periodic_filings": 15009,
+        "issuer_years": 3903,
+        "relevant_fact_rows": 150570,
+        "tag_family_rows": {
+          "authorization_not_completion": 284,
+          "contamination_acquisition": 1730,
+          "contamination_stock_compensation": 38630,
+          "contamination_stock_split": 571,
+          "issuance_cash": 8970,
+          "issuance_shares": 2139,
+          "reconciliation": 82036,
+          "repurchase_cash": 11846,
+          "repurchase_shares": 4364
+        },
+        "tag_family_issuer_years": {
+          "authorization_not_completion": 96,
+          "contamination_acquisition": 537,
+          "contamination_stock_compensation": 3131,
+          "contamination_stock_split": 224,
+          "issuance_cash": 1550,
+          "issuance_shares": 551,
+          "reconciliation": 3643,
+          "repurchase_cash": 1698,
+          "repurchase_shares": 777
+        },
+        "accession_declared_rows": 150570,
+        "accession_joined_rows": 150559,
+        "accession_join_rate": 0.9999269442784087,
+        "context_complete_rows": 149800,
+        "context_complete_rate": 0.99488609948861,
+        "direct_repurchase_issuer_years": 1813,
+        "direct_repurchase_coverage": 0.46451447604406865,
+        "direct_repurchase_wilson_95_lower": 0.44891033917523077,
+        "direct_issuance_issuer_years": 1692,
+        "direct_issuance_coverage": 0.4335126825518832,
+        "direct_issuance_wilson_95_lower": 0.41803862877270387,
+        "unjoined_accessions": [
+          "0001493152-14-003020"
+        ]
+      },
+      "custom_extension_inventory": {
+        "fact_rows": 2373,
+        "tag_count_across_issuers": 260,
+        "mapping_policy": "preserved_in_raw_and_counted_but_never_auto_mapped"
+      },
+      "gates": {
+        "collections_share_manifest": true,
+        "sample_600_ciks": true,
+        "accession_join_rate_gte_0_95": true,
+        "context_complete_rate_gte_0_95": true,
+        "return_data_unopened": true,
+        "return_hypotheses_unspent": true
+      },
+      "return_data_opened": false,
+      "return_hypotheses_spent": 0,
+      "decision": "ITEM703_AUDIT_REQUIRED",
+      "content_hash": "sha256:a3e911a82aa0a3fd255cf4429f1945af8d610af13dad18de7ab11db09691c23a"
+    },
+    "semantics_audit": {
+      "schema": "canli.feasibility.repurchase-issuance-semantics-audit.v1",
+      "generated_at": "2026-08-16T00:35:50.832944+00:00",
+      "stage": "point_in_time_semantics_no_prices_no_returns",
+      "source_manifest_hash": "sha256:3e206acc081bb4adafa864fc9a609bf443505d28b9bea08758a1434fcc2513a2",
+      "facts_parts_sha256": "8ec319e070b6248e57a875cf9c5fc1af761af0cd6802e9f2f5fb5c7d669984d5",
+      "submissions_parts_sha256": "0d91d328010c4c21b21f78ca7f4a940cf00e6109c45f55be8c1fb0f540038e4a",
+      "amendment_replay": {
+        "amendment_fact_rows_tested": 2407,
+        "slice_invariant_failures": [],
+        "slice_invariant": true
+      },
+      "quarterization": {
+        "eligible_cumulative_facts": 54879,
+        "derived_quarters": 35792,
+        "failed_closed_facts": 19087,
+        "failure_reasons": {
+          "missing_acceptance": 5,
+          "missing_context": 646,
+          "missing_predecessor": 18321,
+          "ambiguous_predecessor": 115,
+          "nonnumeric_value": 0
+        },
+        "zero_imputations": 0,
+        "accounted_for": true
+      },
+      "contamination": {
+        "fact_rows": {
+          "contamination_stock_compensation": 38630,
+          "contamination_acquisition": 1730,
+          "contamination_stock_split": 571,
+          "contamination_preferred_mixed": 0,
+          "authorization_not_completion": 284,
+          "custom_extension": 2373,
+          "tender_offer": 0
+        },
+        "all_categories_reported": true,
+        "tender_offer_source": "Item 703 document audit pending"
+      },
+      "gates": {
+        "amendment_replay_slice_invariant": true,
+        "quarterization_accounts_for_every_eligible_fact": true,
+        "quarterization_zero_imputations": true,
+        "contamination_categories_explicit": true,
+        "return_data_unopened": true,
+        "return_hypotheses_unspent": true
+      },
+      "return_data_opened": false,
+      "return_hypotheses_spent": 0,
+      "decision": "SEMANTICS_PASS",
+      "claim_boundary": "This stage cannot pass combined family feasibility or open returns.",
+      "content_hash": "sha256:58d2c0cbe44bbf34a71df0e30eada1d148c3255bdbc1d202bbf25a191d70f2de"
+    },
+    "identity_overlap_audit": {
+      "schema": "canli.alphac-repurchase-issuance-overlap-audit.v1",
+      "stage": "identity_governance_no_new_returns",
+      "return_data_opened_by_this_audit": false,
+      "return_hypotheses_spent_by_this_audit": 0,
+      "classification": "SAME_ECONOMIC_FAMILY_DISTINCT_MEASUREMENT",
+      "economic_family": "corporate_equity_supply",
+      "prior_identity": {
+        "id": "eq_net_issuance",
+        "measurement": "year-over-year log change in split-adjusted basic shares",
+        "direction": "long net repurchasers, short net issuers",
+        "source_sha256": "300a8c31895d0efbe06c1858099faa25a5454b20ffffacd67f87b7f433ec4fb4"
+      },
+      "proposed_identity": {
+        "id": "repurchase_issuance_flow",
+        "measurement": "filing-known completed cash repurchases versus contamination-resolved completed issuance",
+        "proposal_sha256": "a6eb0e08236e8445b3470367e909fe6120068c836bb2cf543b474a6e22693e6e"
+      },
+      "prior_trial_account": {
+        "ledger_records": [
+          {
+            "ledger": "var/experiments.jsonl",
+            "line": 119,
+            "config_hash": "6f975d14e246fd87",
+            "hypothesis_key_excluding_window": "ec0e61ae6c3a06c4",
+            "sharpe_ann": null,
+            "n_obs": 5384,
+            "start": 946684800000,
+            "end": 1780272000000,
+            "instrument_count": 6820,
+            "allocator": "rank",
+            "rebalance_bars": 63
+          },
+          {
+            "ledger": "var_sharadar/experiments.jsonl",
+            "line": 1,
+            "config_hash": "f6c688ee24fe01d7",
+            "hypothesis_key_excluding_window": "f8d284c62e7be731",
+            "sharpe_ann": -0.12892535585660012,
+            "n_obs": 3873,
+            "start": 1262304000000,
+            "end": 1780272000000,
+            "instrument_count": 4980,
+            "allocator": "rank",
+            "rebalance_bars": 63
+          },
+          {
+            "ledger": "var_sharadar/experiments.jsonl",
+            "line": 6,
+            "config_hash": "8ce99f5c7b0447ef",
+            "hypothesis_key_excluding_window": "da0157b02b4dad5a",
+            "sharpe_ann": -0.3112743437896463,
+            "n_obs": 3369,
+            "start": 1325376000000,
+            "end": 1780272000000,
+            "instrument_count": 4701,
+            "allocator": "rank",
+            "rebalance_bars": 63
+          }
+        ],
+        "distinct_config_hashes": 3,
+        "distinct_hypothesis_keys_excluding_window": 3,
+        "walkforward_folds_not_independent_trials": 62
+      },
+      "prior_outcomes": {
+        "source_correct_full_window_rerun": {
+          "sharpe": 0.14814008749165788,
+          "vol_ann": 0.06722364102171516,
+          "max_dd": 0.1748371304261177
+        },
+        "latest_sealed_sweep": {
+          "sharpe": -0.3112743437896463,
+          "dsr": 0.00010209846752985413,
+          "n_trials_at_run": 6,
+          "clears_dsr_gate": false,
+          "max_drawdown": 0.371066,
+          "artifact_sha256": "37de83acc2c1b259d0d3e27a9c68db16c60cffd5842dbf344df2b4236381d3be"
+        }
+      },
+      "governance": {
+        "may_count_as_new_economic_family": false,
+        "may_count_toward_ten_new_independent_sleeves": false,
+        "feasibility_audit_may_continue_without_returns": true,
+        "fresh_standalone_trial_budget": false,
+        "required_family_trial_floor": 4,
+        "required_future_controls": [
+          "include every prior corporate-equity-supply trial in union DSR accounting",
+          "residualize against the frozen broad eq_net_issuance signal",
+          "prove positive mean-zero marginal book contribution",
+          "use an untouched post-declaration holdout and publish a null",
+          "admit only as a replacement or same-family refinement, never as independent breadth"
+        ]
+      },
+      "decision": "CONTINUE_DATA_FEASIBILITY_SAME_FAMILY",
+      "claim_boundary": "Completed flows may be a cleaner measurement, but cleanliness is not economic independence. No return sign, Sharpe, correlation, admission, or new-sleeve claim is authorized by this audit.",
+      "lineage": {
+        "rerun_result_sha256": "9a36093ab36fcf6ef66c2955d0cc29ed8105d894815b2042c1511787a8cfdf33",
+        "sweep_summary_sha256": "1c08971157c1af90255adf04f5518e65319cdd1f71e665a3dac0f861c30e31d7"
+      },
+      "content_hash": "sha256:5924a643ecd1c82e69f5289cdf5c9d83bc3a81779d0935e6be057723b7efced7"
+    }
+  },
   "identity_redesign": {
     "form_universe": {
       "claim_boundary": "Counts filings by form type and enumerates the action types held in the corporate-action lake. Opens no return data, registers no hypothesis identity, proposes no threshold and authorises no candidate. 0 trials.",
@@ -21155,6 +21379,6 @@
       "source_path": "artifacts/engineering/options_execution_contract.json"
     }
   },
-  "generated_at": "2026-08-22T02:50:32.374311+00:00",
-  "content_hash": "sha256:1793b3069f2a076a3ccb3c3c9c31c3d9ade0e9000d9d00eaae3bac34429692e2"
+  "generated_at": "2026-08-22T03:03:07.328048+00:00",
+  "content_hash": "sha256:6d4c74fb812ba19cea2fabb93df0688cacb059901ba72b3cde428ad00b1e0484"
 }

@@ -303,9 +303,27 @@ function main() {
   rmSync(OUT_DIR, { recursive: true, force: true });
   mkdirSync(OUT_DIR, { recursive: true });
 
+  // TITLES THAT FIT, BY RULE. A nested artifact humanises to "Parent / child", which for the
+  // repurchase feasibility audits ran to 75-79 characters and failed the on-page gate. Where the
+  // full path is too long, the leaf alone is used — unless another artifact's leaf humanises the
+  // same way, in which case the full path is kept and the length is the lesser problem. Computed
+  // over the whole set so uniqueness is a property of the run, not an assumption.
+  const TITLE_BUDGET = 49; // 65 minus " / Canli Capital"
+  const leafCounts = new Map();
+  for (const { path } of artifacts) {
+    const leaf = humanise(path.split(".").pop());
+    leafCounts.set(leaf, (leafCounts.get(leaf) || 0) + 1);
+  }
+  const displayName = (path) => {
+    const full = humanise(path);
+    if (full.length <= TITLE_BUDGET) return full;
+    const leaf = humanise(path.split(".").pop());
+    return leafCounts.get(leaf) === 1 ? leaf : full;
+  };
+
   const cards = [];
   for (const { path, data } of artifacts) {
-    const name = humanise(path);
+    const name = displayName(path);
     const slug = slugify(path);
     const url = `${ORIGIN}/measurements/${slug}`;
     const rawUrl = `/glassbox/${path.split(".")[0]}.json`;

@@ -492,8 +492,10 @@ function bindBook(d) {
   // the deflation summary table (the honest "structure survives, magnitude
   // fails" verdict)
   const def = b.deflation || {};
-  setHook("cb", "dsrN69", Number.isFinite(def.combined_dsr_at_n69) ? def.combined_dsr_at_n69.toFixed(2) : null);
-  setHook("cb", "dsrN518", Number.isFinite(def.combined_dsr_at_n518) ? def.combined_dsr_at_n518.toFixed(2) : null);
+  // Bound to what the bundle CARRIES. The two hooks here before this read combined_dsr_at_n69 and
+  // combined_dsr_at_n518, fields the exporter had stopped emitting, so they rendered a permanent
+  // em-dash beside labels advertising selection counts the trial ledger no longer recognises.
+  setHook("cb", "dsrPass", typeof def.dsr_pass === "boolean" ? (def.dsr_pass ? "PASS" : "FAIL") : null);
   setHook("cb", "dsrGate", Number.isFinite(def.dsr_gate) ? def.dsr_gate.toFixed(2) : null);
   setHook("cb", "dsrEquity", Number.isFinite(def.standalone_equity_dsr) ? def.standalone_equity_dsr.toFixed(3) : null);
   setHook("cb", "dsrCrypto", Number.isFinite(def.standalone_crypto_dsr) ? def.standalone_crypto_dsr.toFixed(3) : null);
