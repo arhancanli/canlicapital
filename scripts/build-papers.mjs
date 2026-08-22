@@ -626,6 +626,34 @@ function main() {
     )}\n`,
   );
 
+  // The library page must link the taxonomy it publishes. Until 2026-08-22 it linked eleven
+  // papers and ZERO hubs, so four hubs and their exclusive members sat four and five clicks from
+  // the homepage — reachable only by chance, through another paper's related-work section. The
+  // block is generated from the hubs actually rendered, so it cannot drift from the corpus, and
+  // the sentinels are asserted: a silent no-op here would restore the defect invisibly.
+  const libraryPage = resolve(ROOT, "research.html");
+  const libraryHtml = readFileSync(libraryPage, "utf8");
+  const hubsMarkup = hubs
+    .map(
+      (hub) =>
+        `        <a href="/research/topics/${hub.slug}" class="research-link label">` +
+        `${escapeHtml(hub.label)} <span class="research-hubs__n mono-label">` +
+        `${hub.count}</span></a>`,
+    )
+    .join("\n");
+  const block = `<!-- HUBS:START -->\n${hubsMarkup}\n        <!-- HUBS:END -->`;
+  const rewritten = libraryHtml.replace(
+    /<!-- HUBS:START -->[\s\S]*?<!-- HUBS:END -->/,
+    block,
+  );
+  if (rewritten === libraryHtml && !libraryHtml.includes(block)) {
+    throw new Error(
+      "research.html has no HUBS:START/HUBS:END sentinels — the topic links would silently " +
+        "stop being generated and the hubs would go back to being four clicks deep",
+    );
+  }
+  writeFileSync(libraryPage, rewritten);
+
   const today = new Date().toISOString().slice(0, 10);
   const urls = [
     ...STATIC_ROUTES.map((route) => ({ ...route, loc: `${ORIGIN}${route.path}` })),

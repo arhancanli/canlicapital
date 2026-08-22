@@ -1036,3 +1036,27 @@
 }
 .research-topics__link:hover { border-color: var(--oxide, #d56b48); color: var(--ink, #f2eee5); }
 .research-topics__count { color: var(--faint, #7f8a96); font-size: 11px; }
+
+
+/* Browse-by-topic on /research: the thirteen hubs that are this library's taxonomy. Built from a
+   generated block so the list cannot drift from the corpus, and rendered as real links rather than
+   a JS-populated list — the crawler and a reader with JS off both need to see them, and the graph
+   audit measures exactly that view. */
+.research-hubs {
+  margin: clamp(38px, 5vw, 60px) 0 0;
+  padding-top: clamp(20px, 2.6vw, 28px);
+  border-top: 1px solid var(--line, rgba(231, 224, 210, 0.16));
+}
+.research-hubs__head {
+  margin: 0 0 14px;
+  color: var(--faint, #7f8a96);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.research-hubs a {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 8px;
+  margin: 0 18px 10px 0;
+}
+.research-hubs__n { color: var(--faint, #7f8a96); opacity: 0.75; }
