@@ -447,3 +447,35 @@ body.paper {
   padding-bottom: 10px;
   border-bottom: 1px solid var(--line);
 }
+
+/* /verify — the instructions for checking this record without trusting it. The commands are the
+   content, so they are set as the primary object on the page rather than as decoration: full
+   measure, scrollable in their own frame, and never wrapped by the browser in a way that would
+   break a paste. */
+.verify__level { margin: clamp(38px, 5vw, 56px) 0 0; }
+.verify__level > h2 {
+  margin-bottom: 12px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--line);
+}
+.verify__code {
+  margin: 18px 0;
+  padding: clamp(16px, 2vw, 22px);
+  overflow-x: auto;
+  border: 1px solid var(--line-strong);
+  border-left: 2px solid var(--signal-blue);
+  background: var(--void-raised);
+}
+.verify__code code {
+  display: block;
+  white-space: pre;
+  font-family: var(--mono);
+  font-size: 0.82em;
+  line-height: 1.75;
+  color: var(--paper-tone);
+}
+.verify__key {
+  overflow-wrap: anywhere;
+  font-size: 0.8em;
+  color: var(--muted);
+}

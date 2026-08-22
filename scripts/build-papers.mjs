@@ -55,6 +55,7 @@ const STATIC_ROUTES = [
   { path: "/research", priority: "0.9", changefreq: "weekly" },
   { path: "/open", priority: "0.8", changefreq: "weekly" },
   { path: "/measurements", priority: "0.9", changefreq: "weekly" },
+  { path: "/verify", priority: "0.9", changefreq: "weekly" },
 ];
 
 // =============================================================================

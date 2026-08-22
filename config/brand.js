@@ -73,6 +73,7 @@ export const NAV = [
   { page: "progress", label: "Progress", href: "/progress", anchor: "#progress" },
   { page: "measurements", label: "Measurements", href: "/measurements", anchor: "#measurements" },
   { page: "open", label: "Proven in the open", href: "/open", anchor: "#open" },
+  { page: "verify", label: "Verify us", href: "/verify", anchor: "#verify" },
 ];
 
 // Footer link grid. Each column is a labelled nav region. Internal links carry an
@@ -88,6 +89,7 @@ export const FOOTER_COLS = [
       { label: "Progress", href: "/progress", anchor: "#progress" },
       { label: "Every measurement", href: "/measurements", anchor: "#measurements" },
       { label: "Proven in the open", href: "/open", anchor: "#open" },
+      { label: "How to verify us", href: "/verify", anchor: "#verify" },
       { label: "Join the waitlist", href: "/#waitlist", anchor: "#waitlist" },
     ],
   },

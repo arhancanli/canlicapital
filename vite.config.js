@@ -100,6 +100,7 @@ export default defineConfig({
         open: resolve(root, "open.html"),
         research: resolve(root, "research.html"),
         measurements: resolve(root, "measurements.html"),
+        verify: resolve(root, "verify.html"),
         ...paperEntries(),
         ...measurementEntries(),
       },

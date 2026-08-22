@@ -15,11 +15,12 @@
     "build": "vite build",
     "preview": "vite preview",
     "papers": "node scripts/build-papers.mjs",
-    "prebuild": "node scripts/build-measurements.mjs && node scripts/build-papers.mjs",
+    "prebuild": "node scripts/build-measurements.mjs && node scripts/build-verify.mjs && node scripts/build-papers.mjs",
     "verify": "node scripts/verify-papers.mjs && node scripts/audit-onpage.mjs",
     "audit": "node scripts/audit-onpage.mjs",
     "indexnow": "node scripts/submit-indexnow.mjs",
-    "measurements": "node scripts/build-measurements.mjs"
+    "measurements": "node scripts/build-measurements.mjs",
+    "verify-page": "node scripts/build-verify.mjs"
   },
   "engines": {
     "node": "22.x"

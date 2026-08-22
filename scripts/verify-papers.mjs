@@ -289,6 +289,83 @@ if (custody) {
   check(rows === proofs, `${rows} stages but ${proofs} carry a proof link`);
 }
 
+// ---------------------------------------------------------------------------
+// 8. /verify — the page that tells an outsider how to check this record. Its
+//    failure mode is specific and nasty: an instruction that does not work is
+//    worse than no instruction, because the reader spends their one attempt on
+//    it and concludes the record is fake rather than the page stale. So every
+//    file the commands name must exist on the published site, and every link on
+//    the page must resolve. A dead link was already caught here once, to a topic
+//    hub that is not built because it has too few members.
+// ---------------------------------------------------------------------------
+const verifyFile = resolve(DIST, "verify.html");
+check(existsSync(verifyFile), "no /verify page was built");
+if (existsSync(verifyFile)) {
+  const verifyHtml = readFileSync(verifyFile, "utf8");
+
+  for (const level of ["l1", "l2", "l3"]) {
+    check(verifyHtml.includes(`id="${level}"`), `/verify has no ${level.toUpperCase()} section`);
+  }
+  // The honest half. A verification page that lists only what it establishes is marketing, and
+  // this section is the first thing that would be quietly dropped.
+  check(verifyHtml.includes('id="limits"'), "/verify no longer says what it cannot prove");
+  check(
+    /paper|no real capital/i.test(verifyHtml),
+    "/verify does not state that this book trades on paper",
+  );
+
+  // Every glassbox file the commands tell a reader to download must actually be published.
+  // Two forms, and the second is the one that matters: a literal glassbox/<name> path, and the
+  // stems inside `for f in ... ; do`, which is how the bulk download is written.
+  const named = new Set(
+    [...verifyHtml.matchAll(/glassbox\/([A-Za-z0-9_.-]+)/g)]
+      .map((m) => m[1])
+      .filter((n) => n !== "$f.json"),
+  );
+  for (const loop of verifyHtml.matchAll(/for f in\s*\\?([\s\S]*?);\s*do/g)) {
+    for (const stem of loop[1].split(/[\s\\]+/).filter(Boolean)) named.add(`${stem}.json`);
+  }
+  check(named.size >= 10, `/verify names only ${named.size} downloadable files — the command list `
+    + `has stopped rendering and the checks below would pass vacuously`);
+  for (const name of named) {
+    const file = name.includes(".") ? name : `${name}.json`;
+    check(
+      existsSync(resolve(DIST, "glassbox", file)),
+      `/verify tells the reader to download glassbox/${file}, which is not published`,
+    );
+  }
+  // The kit's own verifier and the chain verifier are the two executables the page hands out.
+  for (const script of ["reproduce.py", "verify_transparency.py"]) {
+    check(
+      existsSync(resolve(DIST, "glassbox", script)),
+      `/verify references ${script}, which is not published`,
+    );
+  }
+
+  // Every internal link on the page resolves to a built file.
+  for (const href of new Set([...verifyHtml.matchAll(/href="(\/[^"#]*)"/g)].map((m) => m[1]))) {
+    const target = href.replace(/^\//, "");
+    const ok =
+      target === "" ||
+      existsSync(resolve(DIST, `${target}.html`)) ||
+      existsSync(resolve(DIST, target));
+    check(ok, `/verify links ${href}, which is not a built page`);
+  }
+
+  check(
+    sitemap.includes(`<loc>${ORIGIN}/verify</loc>`),
+    "/verify is not in the sitemap, so it will not be discovered",
+  );
+  // Linked from the homepage and the glass box, statically. The shared nav is assembled at
+  // runtime, so a link that exists only there is invisible to a crawler reading the HTML.
+  for (const page of ["index.html", "open.html"]) {
+    check(
+      readFileSync(resolve(DIST, page), "utf8").includes('href="/verify"'),
+      `/${page.replace(".html", "")} has no static link to /verify`,
+    );
+  }
+}
+
 const sitemapUrls = (sitemap.match(/<loc>/g) || []).length;
 if (failures.length) {
   console.error(`\nFAILED (${failures.length}):`);
@@ -311,5 +388,9 @@ console.log(
 );
 console.log(
   `verified the /systems end-to-end walk: six named stages, one proof link each, all resolving`,
+);
+console.log(
+  `verified /verify: three levels, every named download published, every link resolving, ` +
+    `the limits section present, and static links from the homepage and the glass box`,
 );
 console.log(`sitemap covers ${sitemapUrls} URLs`);
