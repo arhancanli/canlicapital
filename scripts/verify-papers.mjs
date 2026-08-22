@@ -486,6 +486,64 @@ if (existsSync(founderFile)) {
   );
 }
 
+// ---------------------------------------------------------------------------
+// 10. /methodology — the long-tail questions, each answered with a link to the
+//     document that DEMONSTRATES the answer. An FAQ whose evidence links do not
+//     resolve is a brochure that claims to be a citation, which is worse than a
+//     brochure. Every answer must carry evidence, every link must resolve, and
+//     the FAQPage markup must describe the questions actually on the page.
+// ---------------------------------------------------------------------------
+const methodologyFile = resolve(DIST, "methodology.html");
+check(existsSync(methodologyFile), "no /methodology page was built");
+if (existsSync(methodologyFile)) {
+  const methodologyHtml = readFileSync(methodologyFile, "utf8");
+
+  check(methodologyHtml.includes('"@type":"FAQPage"'), "/methodology is not marked up as an FAQPage");
+  const headings = (methodologyHtml.match(/<h2>/g) || []).length;
+  const marked = (methodologyHtml.match(/"@type":"Question"/g) || []).length;
+  check(headings >= 10, `/methodology has only ${headings} sections — the question list has ` +
+    `stopped rendering and the checks below would pass vacuously`);
+  // One trailing section ("Where to go next") is not a question, so the markup carries one fewer.
+  check(
+    marked === headings - 1,
+    `/methodology renders ${headings - 1} questions but marks up ${marked} — the structured data ` +
+      `describes a different page from the one a reader sees`,
+  );
+
+  // Every answer carries evidence, and every evidence link resolves.
+  const evidence = [...methodologyHtml.matchAll(/class="faq__evidence"[\s\S]*?<\/p>/g)];
+  check(
+    evidence.length === marked,
+    `${marked} questions but ${evidence.length} evidence lines — an answer asserts without showing`,
+  );
+  const evidenceLinks = new Set(
+    evidence.flatMap((block) => [...block[0].matchAll(/href="(\/[^"#]*)"/g)].map((m) => m[1])),
+  );
+  check(
+    evidenceLinks.size >= 15,
+    `/methodology cites only ${evidenceLinks.size} distinct documents — thinner than the corpus ` +
+      `it exists to index`,
+  );
+  for (const href of new Set([...methodologyHtml.matchAll(/href="(\/[^"#]*)"/g)].map((m) => m[1]))) {
+    const target = href.replace(/^\//, "");
+    const ok =
+      target === "" ||
+      existsSync(resolve(DIST, `${target}.html`)) ||
+      existsSync(resolve(DIST, target));
+    check(ok, `/methodology links ${href}, which is not a built page`);
+  }
+  check(
+    sitemap.includes(`${ORIGIN}/methodology</loc>`),
+    "/methodology is not in the sitemap, so it will not be discovered",
+  );
+  for (const page of ["index.html", "research.html"]) {
+    check(
+      readFileSync(resolve(DIST, page), "utf8").includes('href="/methodology"'),
+      `/${page.replace(".html", "")} has no static link to /methodology`,
+    );
+  }
+}
+
 const sitemapUrls = (sitemap.match(/<loc>/g) || []).length;
 if (failures.length) {
   console.error(`\nFAILED (${failures.length}):`);
@@ -516,5 +574,9 @@ console.log(
 console.log(
   `verified /founder: ProfilePage carrying the Person @id, resolving from the homepage, every ` +
     `figure traceable to an artifact, and no uncheckable credential claim`,
+);
+console.log(
+  `verified /methodology: every question marked up, every answer carrying evidence, and every ` +
+    `evidence link resolving`,
 );
 console.log(`sitemap covers ${sitemapUrls} URLs`);

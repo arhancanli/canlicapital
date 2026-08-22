@@ -89,6 +89,7 @@ export const FOOTER_COLS = [
       { label: "Progress", href: "/progress", anchor: "#progress" },
       { label: "Every measurement", href: "/measurements", anchor: "#measurements" },
       { label: "Proven in the open", href: "/open", anchor: "#open" },
+      { label: "Methodology and questions", href: "/methodology", anchor: "#methodology" },
       { label: "How to verify us", href: "/verify", anchor: "#verify" },
       { label: "Join the waitlist", href: "/#waitlist", anchor: "#waitlist" },
     ],

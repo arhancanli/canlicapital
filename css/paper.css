@@ -479,3 +479,23 @@ body.paper {
   font-size: 0.8em;
   color: var(--muted);
 }
+
+/* /methodology — the evidence line under each answer. An FAQ that explains a principle without
+   pointing at the document where the principle cost something is a brochure, so the links are set
+   as the load-bearing part of the answer rather than as a footnote. */
+.faq__evidence {
+  margin: 14px 0 0;
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+  font-family: var(--mono);
+  font-size: 0.8em;
+  line-height: 1.8;
+  color: var(--faint);
+}
+.faq__evidence a {
+  color: var(--paper-tone);
+  text-decoration: underline;
+  text-decoration-color: var(--line-strong);
+  text-underline-offset: 3px;
+}
+.faq__evidence a:hover { color: var(--oxide); text-decoration-color: currentColor; }
