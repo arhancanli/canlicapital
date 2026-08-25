@@ -3,14 +3,20 @@
 from __future__ import annotations
 
 import json
+import os
 from pathlib import Path
 
 from playwright.sync_api import Page, sync_playwright
 
 
 ROOT = Path(__file__).resolve().parents[1]
-OUTPUT = ROOT / "artifacts" / "qa" / "advisor-homepage"
-ORIGIN = "http://127.0.0.1:4173"
+OUTPUT = Path(
+    os.environ.get(
+        "HOMEPAGE_AUDIT_OUTPUT",
+        str(ROOT / "artifacts" / "qa" / "advisor-homepage"),
+    )
+).expanduser().resolve()
+ORIGIN = os.environ.get("HOMEPAGE_AUDIT_ORIGIN", "http://127.0.0.1:4173").rstrip("/")
 
 
 def audit_page(page: Page, *, name: str, width: int, height: int) -> dict[str, object]:
@@ -70,9 +76,14 @@ def audit_page(page: Page, *, name: str, width: int, height: int) -> dict[str, o
 
     screenshot = OUTPUT / f"home-{name}.png"
     page.screenshot(path=str(screenshot), full_page=True)
+    try:
+        screenshot_reference = str(screenshot.relative_to(ROOT))
+    except ValueError:
+        screenshot_reference = str(screenshot)
+
     return {
         "viewport": {"width": width, "height": height},
-        "screenshot": str(screenshot.relative_to(ROOT)),
+        "screenshot": screenshot_reference,
         "status_above_initial_fold": status_above_initial_fold,
         "console_errors": console_errors,
         "page_errors": page_errors,
@@ -115,13 +126,13 @@ def main() -> None:
 
     report = {
         "schema": "canli.homepage-advisor-brief-browser-audit.v1",
+        "origin": ORIGIN,
         "status": "PASS" if not failures else "FAIL",
         "records": records,
         "failures": failures,
         "claim_boundary": (
-            "Local Chromium regression evidence for the evidence-first homepage at two named "
-            "viewports. It is not a human screen-reader certification, conversion-rate study, "
-            "or proof about an undeployed build."
+            f"Chromium regression evidence for {ORIGIN} at two named viewports. It is not a "
+            "human screen-reader certification or a conversion-rate study."
         ),
     }
     output = OUTPUT / "report.json"
