@@ -16,6 +16,7 @@ ROUTES = {
     "research": "/research.html",
     "founder": "/founder.html",
     "program-status": "/measurements/program-status.html",
+    "external-validation": "/measurements/external-validation-opportunities.html",
     "verify": "/verify.html",
 }
 VIEWPORTS = {
