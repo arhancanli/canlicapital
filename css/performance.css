@@ -630,25 +630,25 @@
 .perf-cta:hover { background: var(--signal); color: var(--void); }
 
 /* ---------------------------------------------------------------------------
-   7. THE GAUNTLET PIN (the page's ONE tentpole beat)
-   The six measures cross-fade inside a pinned frame while the manifold tightens
-   onto its single ridge (high-convergence band). Mirrors the landing's System
-   pin STRUCTURE. The base layout below matches the .step idiom so the JS reuses
-   the same active/blur grammar. Reduced motion / mobile: the steps stack as a
-   plain list (rules at the bottom).
+   7. THE GAUNTLET
+   Keep every admission test visible at once. The old six-screen scroll pin hid
+   five gates at any given moment and added more than six viewport-heights of
+   dead travel. This compact evidence board is faster to scan, compare and cite.
    --------------------------------------------------------------------------- */
-.gpin { padding: 0; max-width: none; position: relative; }
-.gpin__sticky {
+.gpin {
+  position: relative;
   max-width: var(--max);
   margin: 0 auto;
   padding: var(--s-8) var(--margin);
-  display: grid;
-  grid-template-columns: 1fr 1.15fr;
-  gap: var(--s-7);
-  min-height: 100vh;
-  align-items: center;
 }
-.gpin__left { position: relative; align-self: center; }
+.gpin__sticky {
+  display: grid;
+  grid-template-columns: minmax(250px, 0.68fr) minmax(0, 1.32fr);
+  gap: clamp(var(--s-6), 7vw, var(--s-8));
+  min-height: 0;
+  align-items: start;
+}
+.gpin__left { position: sticky; top: 112px; align-self: start; }
 .gpin__head { color: var(--paper); margin: var(--s-3) 0 var(--s-4); max-width: 13ch; }
 .gpin__sub { color: var(--paper-dim); max-width: 34ch; }
 .gpin__counter {
@@ -661,25 +661,29 @@
 .gpin__counter .signal-word { font-size: 1.5rem; }
 .gpin__counter-sep { color: var(--grey-600); }
 
-/* P0-B shared right-column centering law (identical to .system__right / .cpin__right /
-   .rpin__right): the right container centers its content vertically so short step
-   content sits at the row's midpoint. The .gstep children stay position:absolute;
-   inset:0 with align-content:center, so this flex governs short content and is inert
-   for the absolute cross-fade stack. ONE hand across all four pins. */
-.gpin__right { position: relative; min-height: 50vh; display: flex; align-items: center; }
-.gsteps { position: relative; width: 100%; }
-.gstep {
-  position: absolute;
-  inset: 0;
+.gpin__right { position: relative; min-height: 0; }
+.gsteps {
+  position: relative;
   display: grid;
-  gap: var(--s-4);
-  align-content: center;
-  opacity: 0;
-  transform: translateY(24px);
-  pointer-events: none;
-  transition: opacity 0.6s var(--ease-out), transform 0.6s var(--ease-out);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1px;
+  width: 100%;
+  overflow: hidden;
+  border: 1px solid var(--grey-850);
+  background: var(--grey-850);
 }
-.gstep.is-active { opacity: 1; transform: none; pointer-events: auto; }
+.gstep {
+  position: relative;
+  display: grid;
+  gap: var(--s-3);
+  align-content: start;
+  min-height: 260px;
+  padding: clamp(var(--s-4), 3vw, var(--s-5));
+  opacity: 1;
+  transform: none;
+  pointer-events: auto;
+  background: var(--void);
+}
 .gstep__kicker { color: var(--signal); }
 .gstep__title { color: var(--paper); max-width: 20ch; }
 .gstep__body { color: var(--paper-dim); max-width: 46ch; }
@@ -688,31 +692,6 @@
   padding-top: var(--s-3);
   border-top: 1px solid var(--grey-850);
   text-transform: uppercase;
-}
-
-/* pin focus pull (mirrors motion.css section 6 for .step) */
-.gpin.is-pinned .gstep {
-  transition: opacity 0.7s var(--ease-in-out),
-              transform 0.7s var(--ease-out),
-              filter 0.7s var(--ease-out);
-}
-.gpin.is-pinned .gstep:not(.is-active) { filter: blur(1.5px); opacity: 0; }
-.gpin.is-pinned .gstep.is-active { filter: blur(0); }
-.gpin .gstep.is-prev { transform: translateY(-18px); }
-
-/* the resolution beat: when the last measure locks, the verdict STICKS the landing.
-   The final step holds at full opacity (it is the honest result, the thing the page
-   exists to say, so it must read sharpest at the climax, not fade), and the counter
-   index resolves to the one signal accent. Restrained, not triumphant: the bloom is
-   muted and the only change is the counter taking the hue. Reversible on scroll-up. */
-.gpin.is-resolved .gstep.is-active .gstep__body,
-.gpin.is-resolved .gstep.is-active .gstep__gate {
-  transition: opacity 0.85s var(--ease-cinema);
-  opacity: 1;
-}
-.gpin.is-resolved .gpin__counter #gstepCurrent {
-  transition: color 0.85s var(--ease-cinema);
-  color: var(--signal);
 }
 
 /* ---------------------------------------------------------------------------
@@ -860,6 +839,7 @@
   .results__body { grid-template-columns: 1fr; }
   .results__chart { border-right: none; border-bottom: 1px solid var(--grey-850); }
   .gpin__sticky { grid-template-columns: 1fr; gap: var(--s-6); }
+  .gpin__left { position: relative; top: auto; }
 }
 
 @media (max-width: 768px) {
@@ -879,11 +859,10 @@
   .evidence-docket__head { grid-template-columns: 1fr; gap: var(--s-3); }
   .evidence-chain__line { align-items: flex-start; flex-direction: column; }
 
-  /* the gauntlet pin is gated off on mobile in performance.js; the measures must
-     read as a plain vertical list. Mirrors the landing System mobile fallback. */
+  /* The comparison board becomes one straight evidence ledger on mobile. */
   .gpin__sticky { min-height: 0; align-items: start; }
   .gpin__right { min-height: 0; }
-  .gsteps { display: grid; gap: var(--s-6); }
+  .gsteps { grid-template-columns: 1fr; gap: 1px; }
   .gstep { position: relative; inset: auto; opacity: 1; transform: none; pointer-events: auto; }
   .gpin__counter { display: none; }
   .standing__forward { gap: var(--s-3) var(--s-5); }
@@ -919,6 +898,4 @@
   }
   .gsteps { display: grid; gap: var(--s-7); }
   .gpin__right { min-height: 0; }
-  .gpin.is-resolved .gstep.is-active .gstep__body,
-  .gpin.is-resolved .gstep.is-active .gstep__gate { transition: none; opacity: 1; }
 }
