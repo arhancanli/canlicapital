@@ -4,14 +4,12 @@
       "analyst_revision_drift",
       "carbon_allowance_carry",
       "catastrophe_bond_event_risk",
-      "inflation_breakeven_relative_value",
       "securities_lending_supply"
     ],
     "STRONGLY_ORTHOGONAL_DRIVEN_BY_SOMETHING_OTHER_THAN_PRICE": [
       "index_reconstitution_flow"
     ],
     "UNCERTAIN_SHARES_THE_CRISIS_DIRECTION_OF_A_LIVE_SLEEVE": [
-      "active_ownership_escalation",
       "credit_equity_relative_value",
       "cross_currency_basis",
       "crypto_liquidation_pressure",
@@ -19,12 +17,10 @@
       "fallen_angel_flow",
       "freight_derivative_dislocation",
       "fx_option_risk_reversal",
-      "merger_arbitrage",
       "mortgage_convexity_pressure",
       "municipal_taxable_basis",
       "sovereign_cds_fx_dislocation",
-      "swap_spread_dislocation",
-      "tender_offer_spread"
+      "swap_spread_dislocation"
     ]
   },
   "claim_boundary": "A PRIOR, stated before measurement and labelled as such in every row. No candidate correlation is measured, no hypothesis identity is registered, no return data is opened and no candidate is authorised. Nothing here is evidence about any family's correlation; it is an ordering to be tested and, where wrong, published as wrong. 0 trials.",
@@ -43,22 +39,6 @@
       "shares_crisis_direction_with": [],
       "shares_factor_with": [],
       "what_the_prior_means": "Shares no factor family and no crisis direction with any live sleeve, and what moves it is not a price. The strongest prior this rule can express, and still a prior."
-    },
-    {
-      "crisis_direction": "DIRECTIONAL",
-      "driver": "TIMETABLE",
-      "evidence_status": "PRIOR_NOT_A_MEASUREMENT",
-      "factor_family": "EVENT",
-      "family": "active_ownership_escalation",
-      "notes": [],
-      "prior": "UNCERTAIN_SHARES_THE_CRISIS_DIRECTION_OF_A_LIVE_SLEEVE",
-      "reasoning": "The 13D timetable drives entry, but the names are small and the position carries beta, which is AlphaMax's and AlphaVintage's crisis direction.",
-      "shares_crisis_direction_with": [
-        "AlphaMax",
-        "AlphaVintage"
-      ],
-      "shares_factor_with": [],
-      "what_the_prior_means": "No shared factor, but it loses money in the same event as a live sleeve. Correlation measured over a calm window will understate it, and the window that would show it is the window nobody has enough of."
     },
     {
       "crisis_direction": "SHORT_LIQUIDITY",
@@ -169,21 +149,6 @@
     },
     {
       "crisis_direction": "SHORT_LIQUIDITY",
-      "driver": "TIMETABLE",
-      "evidence_status": "PRIOR_NOT_A_MEASUREMENT",
-      "factor_family": "EVENT",
-      "family": "merger_arbitrage",
-      "notes": [],
-      "prior": "UNCERTAIN_SHARES_THE_CRISIS_DIRECTION_OF_A_LIVE_SLEEVE",
-      "reasoning": "The deal timetable is not a price, but the position is paid to hold spread risk and it gaps when financing dries up \u2014 the same event AlphaForge's funding carry is short.",
-      "shares_crisis_direction_with": [
-        "AlphaForge"
-      ],
-      "shares_factor_with": [],
-      "what_the_prior_means": "No shared factor, but it loses money in the same event as a live sleeve. Correlation measured over a calm window will understate it, and the window that would show it is the window nobody has enough of."
-    },
-    {
-      "crisis_direction": "SHORT_LIQUIDITY",
       "driver": "ORDER_FLOW",
       "evidence_status": "PRIOR_NOT_A_MEASUREMENT",
       "factor_family": "FLOW",
@@ -236,21 +201,6 @@
       "notes": [],
       "prior": "UNCERTAIN_SHARES_THE_CRISIS_DIRECTION_OF_A_LIVE_SLEEVE",
       "reasoning": "A basis between a swap and its deliverable, funded. Its historical blow-ups are funding events.",
-      "shares_crisis_direction_with": [
-        "AlphaForge"
-      ],
-      "shares_factor_with": [],
-      "what_the_prior_means": "No shared factor, but it loses money in the same event as a live sleeve. Correlation measured over a calm window will understate it, and the window that would show it is the window nobody has enough of."
-    },
-    {
-      "crisis_direction": "SHORT_LIQUIDITY",
-      "driver": "TIMETABLE",
-      "evidence_status": "PRIOR_NOT_A_MEASUREMENT",
-      "factor_family": "EVENT",
-      "family": "tender_offer_spread",
-      "notes": [],
-      "prior": "UNCERTAIN_SHARES_THE_CRISIS_DIRECTION_OF_A_LIVE_SLEEVE",
-      "reasoning": "Same shape as merger arbitrage and the same crisis exposure.",
       "shares_crisis_direction_with": [
         "AlphaForge"
       ],
@@ -313,26 +263,6 @@
       "what_the_prior_means": "Trades the same idea as a live sleeve in different clothes. This is the one structural feature that produced a large measured correlation in this book."
     },
     {
-      "crisis_direction": "DIRECTIONAL",
-      "driver": "PRICE",
-      "evidence_status": "PRIOR_NOT_A_MEASUREMENT",
-      "factor_family": "MACRO_SURPRISE",
-      "family": "inflation_breakeven_relative_value",
-      "notes": [
-        "The collision that matters most. This is the ONE family the obtainability screen found reachable today on data already held, and it is also the one sharing a factor with a live sleeve. The cheapest family to work on is not the most diversifying, and an ordering that only looked at obtainability would have put it first."
-      ],
-      "prior": "LIKELY_CORRELATED_SHARES_A_FACTOR_WITH_A_LIVE_SLEEVE",
-      "reasoning": "Priced off CPI, which is precisely what AlphaVintage trades. Same factor family, and the same release drives both.",
-      "shares_crisis_direction_with": [
-        "AlphaMax",
-        "AlphaVintage"
-      ],
-      "shares_factor_with": [
-        "AlphaVintage"
-      ],
-      "what_the_prior_means": "Trades the same idea as a live sleeve in different clothes. This is the one structural feature that produced a large measured correlation in this book."
-    },
-    {
       "crisis_direction": "SHORT_LIQUIDITY",
       "driver": "PRICE",
       "evidence_status": "PRIOR_NOT_A_MEASUREMENT",
@@ -352,7 +282,7 @@
       "what_the_prior_means": "Trades the same idea as a live sleeve in different clothes. This is the one structural feature that produced a large measured correlation in this book."
     }
   ],
-  "headline": "1 of 20 remaining families are structurally orthogonal to this book on the stated rule. 5 share a factor family with a live sleeve outright, and 14 lose money in the same event as the sleeve that carries this book's largest single source of return. Breadth measured in asset classes is not breadth.",
+  "headline": "1 of 16 remaining families are structurally orthogonal to this book on the stated rule. 4 share a factor family with a live sleeve outright, and 11 lose money in the same event as the sleeve that carries this book's largest single source of return. Breadth measured in asset classes is not breadth.",
   "live_sleeves": {
     "AlphaForge": {
       "crisis": "SHORT_LIQUIDITY",
@@ -510,7 +440,7 @@
     "stated_before_scoring": true
   },
   "what_the_ordering_is_for": {
-    "contract_correlation_gate": 0.0,
+    "candidate_average_correlation_gate": 0.0,
     "extends": "artifacts/analysis/breadth_acquisition/result.json, which reached the same conclusion against the superseded 0.15 gate.",
     "forward_sharpe_at_that_rho_bar_optimistic_haircut": 1.157,
     "forward_sharpe_at_the_objective_optimistic_haircut": 1.498,
@@ -520,10 +450,10 @@
     "pairs_new": 85,
     "pairs_now": 6,
     "required_average_over_the_new_pairs": -0.03396,
-    "rho_bar_if_every_new_pair_sits_exactly_at_the_gate": 0.001717,
+    "rho_bar_if_the_aggregate_new_edges_sit_at_the_incremental_boundary": 0.001717,
     "rho_bar_now": 0.026036646115348446,
     "sleeves_now": 4,
     "sleeves_target": 14,
-    "the_gap": "Every new pair landing exactly on the +0.00 gate gives a book average of +0.0017 and a forward Sharpe of 1.16 on this book's own optimistic haircut. The gate is necessary and it is not sufficient, and the shortfall is 0.34 of forward Sharpe. Ordering by expected orthogonality is the only lever that acts on the difference, because the gate cannot."
+    "the_gap": "The aggregate new edges landing exactly on the +0.00 incremental boundary gives a book average of +0.0017 and a forward Sharpe of 1.16 on this book's own optimistic haircut. The gate is necessary and it is not sufficient, and the shortfall is 0.34 of forward Sharpe. Ordering by expected orthogonality is the only lever that acts on the difference, because the incremental boundary cannot."
   }
 }

@@ -20,9 +20,10 @@
 // Every static link added for this reason across the last few items was added
 // because of exactly that.
 //
-// It also checks the graph and the sitemap describe the same site, in both
+// It also checks the graph and the sitemap describe the same indexable site, in both
 // directions: a page nobody links is an orphan, and a sitemap entry with no page
-// is a 404 we advertised.
+// is a 404 we advertised. Public evidence records may deliberately be noindex; those must remain
+// linked and crawlable but must not leak into the sitemap.
 // =============================================================================
 
 import { readFileSync, readdirSync, statSync, existsSync } from "node:fs";
@@ -66,6 +67,11 @@ const routeOf = (file) =>
 
 const files = htmlFiles(DIST);
 const routes = new Set(files.map(routeOf));
+const noindex = new Set(
+  files
+    .filter((file) => /<meta\s+name="robots"\s+content="[^"]*\bnoindex\b/i.test(readFileSync(file, "utf8")))
+    .map(routeOf),
+);
 
 // Edges: only links that resolve to a page we actually built. A link to a missing page is a
 // different defect and is caught per-page by verify-papers.mjs; here it simply is not an edge.
@@ -122,6 +128,9 @@ for (const route of [...indexable].sort()) {
     fail(`the sitemap advertises ${route}, which was not built — that is a 404 we published`);
     continue;
   }
+  if (noindex.has(route)) {
+    fail(`${route} is both noindex and in the sitemap — the two discovery signals conflict`);
+  }
   const d = depth.get(route);
   if (d === undefined) {
     fail(`${route} is in the sitemap and NOTHING links to it — an orphan page ranks for nothing`);
@@ -131,8 +140,16 @@ for (const route of [...indexable].sort()) {
 }
 
 for (const route of [...routes].sort()) {
-  if (!indexable.has(route)) {
-    fail(`${route} was built and is not in the sitemap, so nothing will discover it`);
+  if (!indexable.has(route) && !noindex.has(route)) {
+    fail(`${route} was built as indexable but is not in the sitemap, so nothing will discover it`);
+  }
+  if (noindex.has(route)) {
+    const d = depth.get(route);
+    if (d === undefined) {
+      fail(`${route} is noindex but NOTHING links to it — the public evidence record is orphaned`);
+    } else if (d > MAX_DEPTH) {
+      fail(`${route} is noindex and ${d} clicks from the homepage (limit ${MAX_DEPTH})`);
+    }
   }
 }
 
@@ -140,6 +157,7 @@ const histogram = {};
 for (const [, d] of depth) histogram[d] = (histogram[d] || 0) + 1;
 
 console.log(`link graph: ${routes.size} pages, ${edgeCount} internal links`);
+console.log(`  ${indexable.size} indexable pages in sitemap; ${noindex.size} linked public noindex pages`);
 console.log(
   "  depth from /: " +
     Object.entries(histogram)

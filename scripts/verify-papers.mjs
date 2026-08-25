@@ -9,9 +9,11 @@
 // Run after `npm run build`. Exits non-zero on any failure.
 // =============================================================================
 
+import { createHash } from "node:crypto";
 import { readFileSync, readdirSync, existsSync } from "node:fs";
 import { dirname, resolve, basename } from "node:path";
 import { fileURLToPath } from "node:url";
+import { IMMUTABLE_PAPER_SHORT_TITLES } from "./paper-presentation.mjs";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const DIST = resolve(ROOT, "dist");
@@ -21,6 +23,7 @@ const failures = [];
 const check = (condition, message) => {
   if (!condition) failures.push(message);
 };
+const sha256 = (text) => createHash("sha256").update(text).digest("hex");
 
 if (!existsSync(DIST)) {
   console.error("dist/ does not exist -- run `npm run build` first");
@@ -28,6 +31,10 @@ if (!existsSync(DIST)) {
 }
 
 const sources = readdirSync(resolve(ROOT, "public/research")).filter((n) => n.endsWith(".md"));
+const citationDir = resolve(DIST, "research", "citations");
+const citations = existsSync(citationDir)
+  ? readdirSync(citationDir).filter((n) => n.endsWith(".bib"))
+  : [];
 const pages = existsSync(resolve(DIST, "research"))
   ? readdirSync(resolve(DIST, "research")).filter((n) => n.endsWith(".html"))
   : [];
@@ -40,6 +47,10 @@ const hubs = existsSync(resolve(DIST, "research", "topics"))
 // A guard whose inputs are empty passes silently, which is the shape of the defect itself.
 check(sources.length > 0, "no research documents found in public/research");
 check(pages.length > 0, "no rendered research pages found in dist/research");
+check(
+  citations.length === sources.length,
+  `citation corpus has ${citations.length} BibTeX files for ${sources.length} papers`,
+);
 
 // 1. Every document has a page.
 for (const source of sources) {
@@ -52,13 +63,24 @@ for (const source of sources) {
 
 // 2. Every page carries the metadata that makes it a document rather than a file.
 const sitemap = readFileSync(resolve(DIST, "sitemap.xml"), "utf8");
+const citationKeys = new Map();
 for (const page of pages) {
   const slug = basename(page, ".html");
   const html = readFileSync(resolve(DIST, "research", page), "utf8");
   const title = html.match(/<title>([^<]*)<\/title>/);
   const description = html.match(/<meta name="description" content="([^"]*)"/);
+  const citationTitle = html.match(/<meta name="citation_title" content="([^"]*)"/g) || [];
+  const citationAuthor = html.match(/<meta name="citation_author" content="([^"]*)"/g) || [];
+  const citationDate = html.match(/<meta name="citation_publication_date" content="([^"]*)"/g) || [];
+  const citationUrl = html.match(/<meta name="citation_fulltext_html_url" content="([^"]*)"/g) || [];
+  const sourceHash = html.match(/<meta name="alphac-source-sha256" content="([0-9a-f]{64})"/);
+  const sourceMarkdown = readFileSync(resolve(ROOT, "public/research", `${slug}.md`), "utf8");
 
   check(Boolean(title && title[1].trim()), `${page} has no <title>`);
+  check(
+    sourceHash?.[1] === sha256(sourceMarkdown),
+    `${page} was rendered from source bytes that do not match its published markdown`,
+  );
   check(
     Boolean(description && description[1].trim().length >= 60),
     `${page} has no usable meta description`,
@@ -73,6 +95,67 @@ for (const page of pages) {
     `${page} does not attribute authorship to the Person entity`,
   );
   check(html.includes('property="og:title"'), `${page} has no Open Graph title`);
+  // Google Scholar requires an unambiguous title, at least one actual author, and publication
+  // year. Assert one exact value for each so a duplicate or site-name-as-author regression does
+  // not produce bibliographic records that look valid while attributing the paper incorrectly.
+  check(
+    citationTitle.length === 1 && citationTitle[0].includes(`content="${html.match(/<meta property="og:title" content="([^"]*)"/)?.[1]}"`),
+    `${page} has missing, duplicate, or inconsistent citation_title metadata`,
+  );
+  check(
+    citationAuthor.length === 1 && citationAuthor[0].includes('content="Arhan Canli"'),
+    `${page} has missing, duplicate, or incorrect citation_author metadata`,
+  );
+  check(
+    citationDate.length === 1 && /content="\d{4}"/.test(citationDate[0]),
+    `${page} has missing, duplicate, or invalid citation_publication_date metadata`,
+  );
+  check(
+    citationUrl.length === 1 &&
+      citationUrl[0].includes(`content="${ORIGIN}/research/${slug}"`),
+    `${page} has missing, duplicate, or incorrect citation_fulltext_html_url metadata`,
+  );
+  check(
+    html.includes(`"datePublished":"${citationDate[0]?.match(/content="([^"]*)"/)?.[1]}"`),
+    `${page} citation date does not match ScholarlyArticle datePublished`,
+  );
+  check(
+    html.includes(`"url":"${ORIGIN}/founder"`),
+    `${page} structured author does not resolve to the founder profile`,
+  );
+  check(
+    html.includes(`href="/research/citations/${slug}.bib" download`),
+    `${page} does not expose its downloadable citation`,
+  );
+  const markdownLinks = [...html.matchAll(/(?:^|\s)href="(\/research\/[^"]+\.md)"/g)].map(
+    (match) => match[1],
+  );
+  check(
+    markdownLinks.length === 1 && markdownLinks[0] === `/research/${slug}.md`,
+    `${page} must link exactly one raw markdown source (itself), never use markdown for paper navigation`,
+  );
+  const citationFile = `${slug}.bib`;
+  check(citations.includes(citationFile), `${page} has no BibTeX citation file`);
+  if (citations.includes(citationFile)) {
+    const bib = readFileSync(resolve(citationDir, citationFile), "utf8");
+    const citationKey = bib.match(/^@techreport\{([^,]+),/m)?.[1];
+    check(Boolean(citationKey), `${citationFile} has no parseable tech-report citation key`);
+    if (citationKey) {
+      const previous = citationKeys.get(citationKey);
+      check(
+        previous === undefined,
+        `${citationFile} reuses citation key ${citationKey} from ${previous}`,
+      );
+      citationKeys.set(citationKey, citationFile);
+    }
+    check(bib.includes("author      = {Canli, Arhan}"), `${citationFile} misattributes its author`);
+    check(bib.includes("institution = {Canli Capital}"), `${citationFile} has no institution`);
+    check(bib.includes("year        = {2026}"), `${citationFile} has no publication year`);
+    check(
+      bib.includes(`url         = {${ORIGIN}/research/${slug}}`),
+      `${citationFile} does not cite its canonical URL`,
+    );
+  }
 
   // 3. Every page is in the sitemap. This is the specific thing that was wrong.
   check(
@@ -89,6 +172,47 @@ for (const page of pages) {
   check(
     linksBuiltStylesheet,
     `${page} does not link a built stylesheet -- it would render unstyled in production`,
+  );
+}
+
+const vercelConfig = JSON.parse(readFileSync(resolve(ROOT, "vercel.json"), "utf8"));
+const rawEvidenceHeader = vercelConfig.headers?.find(
+  (rule) =>
+    rule.source.includes("md") &&
+    rule.source.includes("json") &&
+    rule.headers?.some(
+      (header) => header.key.toLowerCase() === "x-robots-tag" && /\bnoindex\b/i.test(header.value),
+    ),
+);
+check(
+  Boolean(rawEvidenceHeader),
+  "vercel.json does not apply X-Robots-Tag: noindex to raw markdown and machine evidence",
+);
+
+const researchIndex = JSON.parse(readFileSync(resolve(DIST, "research-index.json"), "utf8"));
+check(
+  researchIndex.papers?.length === pages.length,
+  `research-index.json has ${researchIndex.papers?.length ?? 0} records for ${pages.length} papers`,
+);
+for (const paper of researchIndex.papers || []) {
+  const citationFile = `${paper.slug}.bib`;
+  const bib = citations.includes(citationFile)
+    ? readFileSync(resolve(citationDir, citationFile), "utf8")
+    : "";
+  const citationKey = bib.match(/^@techreport\{([^,]+),/m)?.[1];
+  check(paper.author === "Arhan Canli", `${paper.slug} has incorrect indexed author`);
+  check(paper.publication_year === "2026", `${paper.slug} has incorrect indexed publication year`);
+  check(
+    paper.path === `/research/${paper.slug}`,
+    `${paper.slug} has incorrect indexed canonical path`,
+  );
+  check(
+    paper.citation_path === `/research/citations/${paper.slug}.bib`,
+    `${paper.slug} has incorrect indexed citation path`,
+  );
+  check(
+    paper.citation_key === citationKey,
+    `${paper.slug} indexed citation key does not match its BibTeX record`,
   );
 }
 
@@ -497,8 +621,22 @@ const methodologyFile = resolve(DIST, "methodology.html");
 check(existsSync(methodologyFile), "no /methodology page was built");
 if (existsSync(methodologyFile)) {
   const methodologyHtml = readFileSync(methodologyFile, "utf8");
+  const admissionContract = JSON.parse(
+    readFileSync(resolve(DIST, "glassbox/sleeve_admission_contract.json"), "utf8"),
+  );
+  const maturityDsr = admissionContract.deflation_policy.book_maturity_threshold;
 
   check(methodologyHtml.includes('"@type":"FAQPage"'), "/methodology is not marked up as an FAQPage");
+  check(
+    methodologyHtml.includes(`${maturityDsr} is <em>not</em> a per-sleeve`) &&
+      methodologyHtml.includes("full-union book threshold before a portfolio-maturity"),
+    "/methodology does not explain the in-force v7 DSR measurement-versus-maturity boundary",
+  );
+  check(
+    !methodologyHtml.includes("book&#39;s gate is a deflated Sharpe") &&
+      !methodologyHtml.includes("book's gate is a deflated Sharpe"),
+    "/methodology republishes the retired fixed incremental DSR gate",
+  );
   const headings = (methodologyHtml.match(/<h2>/g) || []).length;
   const marked = (methodologyHtml.match(/"@type":"Question"/g) || []).length;
   check(headings >= 10, `/methodology has only ${headings} sections — the question list has ` +
@@ -560,20 +698,21 @@ for (const page of pages) {
   const markdown = readFileSync(resolve(ROOT, "public/research", `${slug}.md`), "utf8");
   const realTitle = (markdown.match(/^#\s+(.+)$/m) || [])[1]?.trim();
   const shortLine = markdown.match(/^\*\*Short title:\*\*\s*(.+)$/im);
+  const shortTitle = shortLine?.[1].trim() ?? IMMUTABLE_PAPER_SHORT_TITLES[slug] ?? null;
   const html = readFileSync(resolve(DIST, "research", page), "utf8");
   const rendered = (html.match(/<title>([^<]*)<\/title>/) || [])[1] || "";
 
   if (!realTitle) continue;
   if (realTitle.length > TITLE_LIMIT) {
     check(
-      shortLine !== null,
+      shortTitle !== null,
       `${slug} has a ${realTitle.length}-character title and declares no short title, so its ` +
         `search result is truncated mid-phrase`,
     );
   }
-  if (shortLine) {
+  if (shortTitle) {
     shortTitled += 1;
-    const short = shortLine[1].trim();
+    const short = shortTitle;
     check(
       short.length <= TITLE_LIMIT,
       `${slug} declares a short title of ${short.length} characters, which is not short`,
@@ -663,7 +802,8 @@ if (failures.length) {
 }
 console.log(
   `verified ${pages.length} research pages: title, description, canonical, ScholarlyArticle, ` +
-    `author entity, Open Graph, stylesheet, sitemap entry`,
+    `author entity, Scholar metadata, unique BibTeX citation, indexed citation identity, ` +
+    `Open Graph, stylesheet, sitemap entry`,
 );
 console.log(
   `verified ${hubs.length} topic hubs: title, description, canonical, CollectionPage, ` +

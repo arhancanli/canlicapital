@@ -5,8 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Vol-Scaled: killed — Canli Capital</title>
 <meta name="description" content="Barroso-Santa-Clara constant-vol and Daniel-Moskowitz variance/dynamic scaling applied to the live AlphaMax sleeve." />
+<meta name="alphac-source-sha256" content="b4dfc1f654e7edd1d0ab9a66fea3d6533fc0ac593b0fcb56b439580809f8f3f6" />
+
 <link rel="canonical" href="https://canlicapital.com/research/kill-alphamax-volscale" />
 <meta name="author" content="Arhan Canli" />
+<meta name="citation_title" content="Vol-Scaled / Crash-Protected Momentum overlay (campaign): a killed candidate" />
+<meta name="citation_author" content="Arhan Canli" />
+<meta name="citation_publication_date" content="2026" />
+<meta name="citation_language" content="en" />
+<meta name="citation_fulltext_html_url" content="https://canlicapital.com/research/kill-alphamax-volscale" />
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
 <meta property="og:type" content="article" />
 <meta property="og:site_name" content="Canli Capital" />
@@ -24,9 +31,11 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=swap" />
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=optional" />
+<link rel="stylesheet" media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=optional" />
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=optional" /></noscript>
 <link rel="stylesheet" href="../css/paper.css" />
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"ScholarlyArticle","headline":"Vol-Scaled / Crash-Protected Momentum overlay (campaign): a killed candidate","description":"Barroso-Santa-Clara constant-vol and Daniel-Moskowitz variance/dynamic scaling applied to the live AlphaMax sleeve.","url":"https://canlicapital.com/research/kill-alphamax-volscale","inLanguage":"en","isAccessibleForFree":true,"author":{"@type":"Person","@id":"https://canlicapital.com/#arhan-canli","name":"Arhan Canli","jobTitle":"Founder and Quantitative Researcher","url":"https://canlicapital.com/","sameAs":["https://github.com/arhancanli"],"affiliation":{"@type":"Organization","@id":"https://canlicapital.com/#organization","name":"Canli Capital","url":"https://canlicapital.com/"}},"publisher":{"@type":"Organization","@id":"https://canlicapital.com/#organization","name":"Canli Capital","url":"https://canlicapital.com/","logo":{"@type":"ImageObject","url":"https://canlicapital.com/brand-mark.svg"}},"isPartOf":{"@type":"Periodical","name":"Canli Capital Research","url":"https://canlicapital.com/research"},"encodingFormat":"text/html","associatedMedia":{"@type":"MediaObject","contentUrl":"https://canlicapital.com/research/kill-alphamax-volscale.md","encodingFormat":"text/markdown"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"ScholarlyArticle","headline":"Vol-Scaled / Crash-Protected Momentum overlay (campaign): a killed candidate","description":"Barroso-Santa-Clara constant-vol and Daniel-Moskowitz variance/dynamic scaling applied to the live AlphaMax sleeve.","url":"https://canlicapital.com/research/kill-alphamax-volscale","inLanguage":"en","isAccessibleForFree":true,"datePublished":"2026","author":{"@type":"Person","@id":"https://canlicapital.com/#arhan-canli","name":"Arhan Canli","jobTitle":"Founder and Quantitative Researcher","url":"https://canlicapital.com/founder","sameAs":["https://github.com/arhancanli"],"affiliation":{"@type":"Organization","@id":"https://canlicapital.com/#organization","name":"Canli Capital","url":"https://canlicapital.com/"}},"publisher":{"@type":"Organization","@id":"https://canlicapital.com/#organization","name":"Canli Capital","url":"https://canlicapital.com/","logo":{"@type":"ImageObject","url":"https://canlicapital.com/brand-mark.svg"}},"isPartOf":{"@type":"Periodical","name":"Canli Capital Research","url":"https://canlicapital.com/research"},"encodingFormat":"text/html","associatedMedia":{"@type":"MediaObject","contentUrl":"https://canlicapital.com/research/kill-alphamax-volscale.md","encodingFormat":"text/markdown"}}</script>
 </head>
 <body class="paper">
 <a class="paper__skip" href="#content">Skip to content</a>
@@ -46,7 +55,8 @@
     <p class="paper__byline">By <span rel="author">Arhan Canli</span>, Canli Capital</p>
     <div class="paper__body">
 <p><strong>Short title:</strong> Vol-Scaled: killed</p>
-<p><strong>Verdict:</strong> KILLED  <strong>Stage:</strong> screen prototype<br><strong>Identity:</strong> <code>alphamax_volscale</code></p>
+<p><strong>Verdict:</strong> KILLED  <strong>Stage:</strong> screen prototype
+<strong>Identity:</strong> <code>alphamax_volscale</code></p>
 <p>Barroso-Santa-Clara constant-vol and Daniel-Moskowitz variance/dynamic scaling applied to the live AlphaMax sleeve. On the canonical window it HURTS (net Sharpe 0.87 vs the sleeve&#39;s own 0.91, maxDD worse by 1.3-3.1pts); incremental alpha over the book-level vol target the engine already runs is statistically zero in all 5 configs (t -1.64 to +0.81, overlay-scale correlation 0.54-0.66 to the engine&#39;s own rule). The insurance is already owned; buying it twice costs money. KILLED.</p>
 <h2>Why it was worth testing</h2>
 <p>This died at the screen stage, before a full walk-forward was ever run. Screening exists so that ideas which cannot clear a coarse, cost-aware bar do not consume the far more expensive machinery behind it. A screen kill is a cheap kill, and it is published for the same reason as an expensive one: the trial was still spent, and it still raises the evidence bar for everything already in the book.</p>
@@ -72,11 +82,13 @@
       <p class="paper__related-kicker">Filed under</p>
       <p class="paper__links"><a href="/research/topics/killed-candidates">Killed candidates</a><span aria-hidden="true"> / </span><a href="/research/topics/equities">Equities</a><span aria-hidden="true"> / </span><a href="/research/topics/options-and-volatility">Options and volatility</a></p>
       <p class="paper__related-kicker">Related work</p>
-      <ul class="paper__related-list"><li><a href="/research/literature-options-dispersion">Options dispersion: literature and implementation boundary</a></li><li><a href="/research/kill-eq-52whigh">52-Week-High Momentum (campaign): a killed candidate</a></li><li><a href="/research/kill-alphamax-betaneutral">Beta-Neutral Momentum Construction (campaign): a killed candidate</a></li><li><a href="/research/kill-insider-purchase-clusters">Clustered Insider Open-Market Purchases: a killed candidate</a></li><li><a href="/research/kill-eq-net-issuance">Corporate Equity Supply (Net Issuance): a killed candidate</a></li><li><a href="/research/kill-cot-positioning">COT Positioning Overlay (campaign): a killed candidate</a></li></ul>
+      <ul class="paper__related-list"><li><a href="/research/literature-options-dispersion">Options dispersion: literature and implementation boundary</a></li><li><a href="/research/kill-eq-52whigh">52-Week-High Momentum (campaign): a killed candidate</a></li><li><a href="/research/active-ownership-item4-v3-feasibility">Active ownership escalation — Schedule 13D Item 4 source-schema v3</a></li><li><a href="/research/alphamax-equity-momentum-lineage">AlphaMax equity momentum: signal, trial lineage, and evidence boundary</a></li><li><a href="/research/alphatrend-managed-futures-lineage">AlphaTrend managed-futures trend: complete trial lineage and evidence boundary</a></li><li><a href="/research/equity-narrative-change-lineage">Annual risk-factor narrative stability: a preregistered null</a></li></ul>
     </nav>
     <footer class="paper__footer">
       <p class="paper__links">
         <a href="/research/kill-alphamax-volscale.md">Read the unrendered source</a>
+        <span aria-hidden="true"> / </span>
+        <a href="/research/citations/kill-alphamax-volscale.bib" download>Cite this report</a>
         <span aria-hidden="true"> / </span>
         <a href="/open">Inspect the underlying artifacts</a>
         <span aria-hidden="true"> / </span>

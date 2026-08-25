@@ -2,8 +2,8 @@
 
 **Short title:** Crypto Low-Volatility: killed
 
-**Verdict:** KILLED  
-**Test window:** 2023-01-01 to 2026-06-01  
+**Verdict:** KILLED
+**Test window:** 2023-01-01 to 2026-06-01
 **Identity:** `crypto_lowvol_720`
 
 The STRONGEST in-sample signal the 200+-factor campaign found anywhere (Rank-IC t = 6.66). Full purged walk-forward: net Sharpe 0.69 — respectable. But the Deflated Sharpe Ratio is 0.04: after honestly penalising for every config we tried, it is indistinguishable from luck. A high raw Sharpe is NOT enough. This is the clearest proof of why we deflate — the prettiest backtest of the campaign, KILLED on deflation.

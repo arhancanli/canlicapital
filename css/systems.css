@@ -367,9 +367,12 @@
   white-space: nowrap;
 }
 .js .hero__ghost {
-  opacity: 0;
-  transform: translateY(2%);
-  transition: opacity 1.1s var(--ease-out), transform 1.1s var(--ease-out);
+  /* This page has no intro curtain. Delaying this large decorative word made it the LCP
+     candidate more than a second after useful content was ready. It is part of the composed
+     first frame; the substantive scroll choreography below remains animated. */
+  opacity: 1;
+  transform: none;
+  transition: none;
 }
 .js .hero__ghost.is-shown { opacity: 1; transform: none; }
 @media (prefers-reduced-motion: reduce) {

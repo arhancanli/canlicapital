@@ -60,12 +60,11 @@
   white-space: nowrap;
 }
 .js .hero__ghost {
-  opacity: 0;
-  /* starts a touch high and SETTLES DOWNWARD into rest, a slower 1.2s fade, so the
-     ghost word reads as grounding rather than lifting away: the page's tone is the
-     honest, grounded result, and the wordmark settles to meet it. */
-  transform: translateY(-3%);
-  transition: opacity 1.2s var(--ease-out), transform 1.2s var(--ease-out);
+  /* No intro curtain is rendered here. Keep the decorative word in the initial frame so
+     animation cannot delay the page's largest paint. */
+  opacity: 1;
+  transform: none;
+  transition: none;
 }
 .js .hero__ghost.is-shown { opacity: 1; transform: none; }
 @media (prefers-reduced-motion: reduce) {
@@ -428,6 +427,86 @@
 .results__source { color: var(--grey-700); margin-top: var(--s-2); }
 .results__source:empty { display: none; }
 
+/* Forward evidence docket. A vertical authority chain, not a card grid: the one
+   broken dashed connector names exactly where the public Sharpe claim stops. */
+.evidence-docket {
+  margin-top: var(--s-7);
+  padding: var(--s-5);
+  border: 1px solid var(--grey-850);
+  border-left: 2px solid var(--signal);
+  background: color-mix(in srgb, var(--ink) 88%, transparent);
+}
+.evidence-docket__head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: var(--s-5);
+  align-items: end;
+  padding-bottom: var(--s-5);
+  border-bottom: 1px solid var(--grey-850);
+}
+.evidence-docket__eyebrow,
+.evidence-docket__author { color: var(--grey-700); }
+.evidence-docket__title { color: var(--paper); margin: var(--s-2) 0 0; max-width: 24ch; }
+.evidence-chain { list-style: none; margin: var(--s-5) 0 0; padding: 0; }
+.evidence-chain__item {
+  position: relative;
+  display: grid;
+  grid-template-columns: 42px minmax(0, 1fr);
+  gap: var(--s-3);
+  padding-bottom: var(--s-5);
+}
+.evidence-chain__item:not(:last-child)::before {
+  content: "";
+  position: absolute;
+  left: 15px;
+  top: 34px;
+  bottom: 4px;
+  border-left: 1px solid var(--grey-825);
+}
+.evidence-chain__item.is-broken::before { border-left-style: dashed; }
+.evidence-chain__mark {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--grey-825);
+  border-radius: 50%;
+  color: var(--paper-dim);
+}
+.evidence-chain__item.is-complete .evidence-chain__mark {
+  border-color: var(--signal);
+  color: var(--signal);
+}
+.evidence-chain__item.is-broken .evidence-chain__mark { border-style: dashed; }
+.evidence-chain__line {
+  min-height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-3);
+  padding-bottom: var(--s-2);
+  border-bottom: 1px solid var(--grey-900);
+}
+.evidence-chain__status { color: var(--paper); font-weight: 700; letter-spacing: 0.08em; }
+.is-complete .evidence-chain__status { color: var(--signal); }
+.evidence-chain__copy { color: var(--paper-dim); max-width: 72ch; margin: var(--s-3) 0 var(--s-2); }
+.evidence-chain__link {
+  min-height: 24px;
+  display: inline-flex;
+  align-items: center;
+  color: var(--paper);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.evidence-chain__link:focus-visible { outline: 2px solid var(--signal); outline-offset: 3px; }
+.evidence-docket__receipt {
+  color: var(--grey-700);
+  margin: 0;
+  padding-top: var(--s-4);
+  border-top: 1px solid var(--grey-850);
+  overflow-wrap: anywhere;
+}
+
 /* ---------------------------------------------------------------------------
    5. THE CAPACITY PANEL
    A labeled, dormant frame for the capacity curve (deployed capital vs. expected
@@ -763,6 +842,7 @@
 .book-carry__fig { color: var(--paper); }
 
 .book__source { color: var(--paper-dim); margin-top: var(--s-6); max-width: 64ch; }
+.book__source a { text-decoration: underline; text-underline-offset: 3px; }
 .book__source .comment { color: var(--grey-700); }
 
 /* ---------------------------------------------------------------------------
@@ -795,6 +875,9 @@
   .results__field:last-child { border-bottom: none; }
   .results__chart { min-height: 240px; }
   .capacity__plot { min-height: 220px; }
+  .evidence-docket { padding: var(--s-4); }
+  .evidence-docket__head { grid-template-columns: 1fr; gap: var(--s-3); }
+  .evidence-chain__line { align-items: flex-start; flex-direction: column; }
 
   /* the gauntlet pin is gated off on mobile in performance.js; the measures must
      read as a plain vertical list. Mirrors the landing System mobile fallback. */
@@ -811,6 +894,18 @@
   .book-ledger { grid-template-columns: 1fr; gap: var(--s-5); }
   .book-summary { gap: var(--s-4) var(--s-5); }
   .book-block__name { font-size: 1.35rem; }
+}
+
+@media (max-width: 480px) {
+  .gauntlet__row {
+    grid-template-columns: 32px minmax(0, 1fr);
+    gap: var(--s-3);
+  }
+  .gauntlet__name,
+  .gauntlet__gate,
+  .book-carry__fig {
+    overflow-wrap: anywhere;
+  }
 }
 
 /* ---------------------------------------------------------------------------

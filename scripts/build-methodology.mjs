@@ -54,9 +54,9 @@ function facts() {
   const killLog = readJson("kill_log.json");
   const trials = readJson("trial_ledger.json");
   const chain = readJson("transparency_log.json");
-  const deflation = readJson("deflation.json");
   const restatement = readJson("legacy_dsr_restatement.json");
   const track = readJson("track_record.json");
+  const admission = readJson("sleeve_admission_contract.json");
 
   const f = {
     papers: countHtml("research"),
@@ -67,7 +67,10 @@ function facts() {
     identities: trials.distinct_hypothesis_identities,
     budget: trials.hypothesis_identity_budget,
     chainEntries: chain.entries.length,
-    dsrGate: deflation.gates.dsr_shared_min,
+    admissionSchema: admission.schema,
+    bookMaturityDsr: admission.deflation_policy.book_maturity_threshold,
+    dsrMeasuredPerSleeve: admission.deflation_policy.per_sleeve_is_measured_not_gated,
+    bookDsrMeasured: admission.thresholds.book_deflated_sharpe_must_be_measured,
     restated: restatement.restated_variants.length,
     clearing: restatement.restated_variants.filter((v) => v.clears_dsr_0_95).length,
     liveDays: track.live_days_accrued,
@@ -96,13 +99,17 @@ function questions(f) {
       tried, the higher that maximum is expected to be even if every single variant is worthless.</p>
       <p>The deflated Sharpe ratio corrects for exactly that. It asks: given the number of trials
       behind this result and how much they varied, what is the probability the true Sharpe is above
-      zero? A figure that looks impressive at one trial is unremarkable at a hundred and fifty. This
-      book's gate is a deflated Sharpe of ${f.dsrGate}, and it is applied against a selection count
-      that is published rather than estimated.</p>
+      zero? A figure that looks impressive at one trial is unremarkable at a hundred and fifty.</p>
+      <p>Under the contract in force (${f.admissionSchema}), DSR is mandatory to measure and publish
+      for each sleeve and for the full-union book. ${f.bookMaturityDsr} is <em>not</em> a per-sleeve
+      or incremental-admission gate; it is the full-union book threshold before a portfolio-maturity
+      claim. Incremental admission instead requires a strictly positive one-sided bootstrap lower
+      bound on the candidate's book-Sharpe improvement, plus the published robustness, execution,
+      stress, capacity and trial-accounting gates.</p>
       <p>We keep failing it because it is the correct answer. When every historical result was
       recomputed against the current selection count, ${f.restated} variants were restated and
-      <strong>${f.clearing} of them clear ${f.dsrGate}</strong>. That restatement is published in
-      full, variant by variant, with the historical figure beside the corrected one.</p>`,
+      <strong>${f.clearing} of them clear ${f.bookMaturityDsr}</strong>. That diagnostic remains
+      published in full, variant by variant, but it is not presented as the current per-sleeve gate.</p>`,
       links: [
         ["The full restatement, every variant", "/research/legacy-dsr-restatement"],
         ["The trial ledger the deflation counts against", "/measurements/trial-accounting"],
@@ -258,8 +265,10 @@ function questions(f) {
       q: "What has to be true before a strategy is added to the book?",
       a: `<p>A written contract, applied by the production evaluator rather than by judgement. It
       sets minimum out-of-sample observations, significance floors that survive autocorrelation, a
-      correlation ceiling against the existing book, a capacity floor, and a deflated-Sharpe
-      requirement for the book as a whole. It is published in full, thresholds and all.</p>
+      correlation ceiling against the existing book, a capacity floor, and mandatory DSR
+      measurement. At incremental admission, DSR is published rather than thresholded; the
+      ${f.bookMaturityDsr} full-union book threshold applies before a portfolio-maturity claim. The
+      contract is published in full, thresholds and all.</p>
       <p>The contract has been wrong before, and that is published too: an earlier version contained
       floors that no candidate could satisfy simultaneously — a gate nobody can pass is not a strict
       gate, it is a broken one — and each was found by testing the gates against each other rather
@@ -308,7 +317,7 @@ function main() {
     "@context": "https://schema.org",
     "@type": "FAQPage",
     url: `${ORIGIN}/methodology`,
-    name: "Methodology and frequently asked questions",
+    name: "Quantitative research methodology and frequently asked questions",
     author: { "@id": `${ORIGIN}/#arhan-canli` },
     publisher: { "@id": `${ORIGIN}/#organization` },
     mainEntity: items.map((item) => ({
@@ -335,20 +344,20 @@ ${item.a}
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Methodology and questions / Canli Capital</title>
+<title>Quantitative research methodology / Canli Capital</title>
 <meta name="description" content="${escapeHtml(description)}" />
 <link rel="canonical" href="${ORIGIN}/methodology" />
 <meta name="author" content="${AUTHOR}" />
-<meta name="canli:sources" content="kill_log.json trial_ledger.json transparency_log.json deflation.json legacy_dsr_restatement.json track_record.json" />
+<meta name="canli:sources" content="kill_log.json trial_ledger.json transparency_log.json sleeve_admission_contract.json legacy_dsr_restatement.json track_record.json" />
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
 <meta property="og:type" content="article" />
 <meta property="og:site_name" content="${PUBLISHER}" />
-<meta property="og:title" content="Methodology and questions" />
+<meta property="og:title" content="Quantitative research methodology" />
 <meta property="og:description" content="${escapeHtml(description)}" />
 <meta property="og:url" content="${ORIGIN}/methodology" />
 <meta property="og:image" content="${ORIGIN}/og.png" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Methodology and questions" />
+<meta name="twitter:title" content="Quantitative research methodology" />
 <meta name="twitter:description" content="${escapeHtml(description)}" />
 <meta name="twitter:image" content="${ORIGIN}/og.png" />
 <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
@@ -356,7 +365,9 @@ ${item.a}
 <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=swap" />
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=optional" />
+<link rel="stylesheet" media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=optional" />
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=optional" /></noscript>
 <link rel="stylesheet" href="./css/paper.css" />
 <script type="application/ld+json">${JSON.stringify(jsonLd)}</script>
 </head>
@@ -375,7 +386,7 @@ ${item.a}
 <main class="paper__main" id="content">
   <article class="paper__article">
     <p class="paper__eyebrow"><a href="/research">Research</a></p>
-    <h1 class="paper__title">Methodology and questions</h1>
+    <h1 class="paper__title">Quantitative research methodology</h1>
     <p class="paper__byline">By <span rel="author">${AUTHOR}</span>, ${PUBLISHER}</p>
     <div class="paper__body">
       <p class="hub__standfirst">${f.papers} research documents, ${f.hubs} subject hubs and

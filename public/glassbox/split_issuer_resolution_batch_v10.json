@@ -1,0 +1,121 @@
+{
+  "author": "Arhan Canli",
+  "claim_boundary": "This seal verifies two McLeodUSA splits and the issuer-effective NCI1 split. It does not authorize NCI1's duplicate next-day event, open returns, or pass the global split gate.",
+  "content_hash": "sha256:61f151501bd8c35b483517399632062aeea7e48938129ee6b91fbe373aa6bbf3",
+  "decision": "THREE_EXACT_ISSUER_SHARE_MUTATIONS_VERIFIED",
+  "hypotheses_spent": 0,
+  "lineage": {
+    "unresolved_context_content_hash": "sha256:c81c35a83c706cec7a8b4e4c9f22d1f0c874c26fe42c8a92ebdc0bc75c7b4d3f",
+    "unresolved_context_path": "artifacts/audit/unresolved_split_event_context.json",
+    "unresolved_context_sha256": "98304049af107814ec6b7798ff6ea91ab54e16c1f8801c202f1fbbd8d692b2c0"
+  },
+  "required_next_action": "Merge only these three exact tuples. Keep NCI1 on 1998-04-02 quarantined as a duplicate issuer-date conflict.",
+  "retrieved_at": "2026-08-23T06:44:25.730945+00:00",
+  "return_data_opened": false,
+  "schema": "canli.alphac-split-issuer-resolution-batch.v10",
+  "verified_events": [
+    {
+      "authorization": "BYPASS_PRICE_GAP_HEURISTIC_FOR_THIS_EXACT_EVENT_ONLY",
+      "date_binding": "FIRST_FROZEN_BAR_AFTER_ISSUER_DISTRIBUTION_DATE",
+      "event_id": "MCLDQ_1999",
+      "ex_date": "1999-07-27 04:00:00+04:00",
+      "ex_date_ms": 933033600000,
+      "instrument_id": "XUSE:CASH:MCLDQUSD",
+      "issuer_distribution_date": "1999-07-26",
+      "issuer_ratio": 2.0,
+      "market_date_binding": {
+        "binding": "FIRST_FROZEN_BAR_AFTER_ISSUER_DISTRIBUTION_DATE",
+        "event_close": 9.625,
+        "event_date": "1999-07-27",
+        "price_partition_path": "data/corrections/corporate_action_basis_48fcfde04e3c_materialized_v1/data/lake_sharadar/ohlcv_1d/instrument_id=XUSE:CASH:MCLDQUSD/year=1999/data.parquet",
+        "price_partition_sha256": "ba4b762827d8295e27844ab07b2060c8c7426a823fcbe28b92d89180a87067c5",
+        "prior_close": 9.812,
+        "prior_date": "1999-07-26"
+      },
+      "prior_context_classification": "PLAIN_SPLIT_WITHOUT_LIFECYCLE_CONTEXT",
+      "ratio": 2.0,
+      "required_fragments": [
+        "announced a two-for-one stock split in the form of a stock dividend",
+        "the distribution of the additional shares took place on July 26, 1999",
+        "The record date for the stock split was July 12, 1999"
+      ],
+      "required_fragments_verified": [
+        "announced a two-for-one stock split in the form of a stock dividend",
+        "the distribution of the additional shares took place on July 26, 1999",
+        "The record date for the stock split was July 12, 1999"
+      ],
+      "retrieved_sha256": "7cf0e536306960fba2f2560376ba96b2158b07b35615a12e41fb25177f1de37d",
+      "stored_ratio": 2.0,
+      "ticker": "MCLDQ",
+      "url": "https://www.sec.gov/Archives/edgar/data/919943/000092838599002618/0000928385-99-002618.txt"
+    },
+    {
+      "authorization": "BYPASS_PRICE_GAP_HEURISTIC_FOR_THIS_EXACT_EVENT_ONLY",
+      "date_binding": "FIRST_FROZEN_BAR_AFTER_ISSUER_DISTRIBUTION_DATE",
+      "event_id": "MCLDQ_2000",
+      "ex_date": "2000-04-25 04:00:00+04:00",
+      "ex_date_ms": 956620800000,
+      "instrument_id": "XUSE:CASH:MCLDQUSD",
+      "issuer_distribution_date": "2000-04-24",
+      "issuer_ratio": 3.0,
+      "market_date_binding": {
+        "binding": "FIRST_FROZEN_BAR_AFTER_ISSUER_DISTRIBUTION_DATE",
+        "event_close": 22.125,
+        "event_date": "2000-04-25",
+        "price_partition_path": "data/corrections/corporate_action_basis_48fcfde04e3c_materialized_v1/data/lake_sharadar/ohlcv_1d/instrument_id=XUSE:CASH:MCLDQUSD/year=2000/data.parquet",
+        "price_partition_sha256": "8af87aceaac7dc2328272fbdf28c1d0de42ed5b2cf7f3f612eb300828a1eb203",
+        "prior_close": 19.5,
+        "prior_date": "2000-04-24"
+      },
+      "prior_context_classification": "PLAIN_SPLIT_WITHOUT_LIFECYCLE_CONTEXT",
+      "ratio": 3.0,
+      "required_fragments": [
+        "three-for-one stock split effected in the form of a stock dividend",
+        "effective April 24, 2000"
+      ],
+      "required_fragments_verified": [
+        "three-for-one stock split effected in the form of a stock dividend",
+        "effective April 24, 2000"
+      ],
+      "retrieved_sha256": "d74f6e98ce38dbaf52170aae03cbe6d26af8f062f63965f0267f1d7e52873ca5",
+      "stored_ratio": 3.0,
+      "ticker": "MCLDQ",
+      "url": "https://www.sec.gov/Archives/edgar/data/919943/000092838500001564/0000928385-00-001564.txt"
+    },
+    {
+      "authorization": "BYPASS_PRICE_GAP_HEURISTIC_FOR_THIS_EXACT_EVENT_ONLY",
+      "date_binding": "ISSUER_EFFECTIVE_DATE_EQUALS_FROZEN_EVENT_DATE",
+      "event_id": "NCI1_1998",
+      "ex_date": "1998-04-01 04:00:00+04:00",
+      "ex_date_ms": 891388800000,
+      "instrument_id": "XUSE:CASH:NCI1USD",
+      "issuer_effective_date": "1998-04-01",
+      "issuer_ratio": 1.5,
+      "market_date_binding": {
+        "binding": "ISSUER_EFFECTIVE_DATE_EQUALS_FROZEN_EVENT_DATE",
+        "event_close": 32.833,
+        "event_date": "1998-04-01",
+        "price_partition_path": "data/corrections/corporate_action_basis_48fcfde04e3c_materialized_v1/data/lake_sharadar/ohlcv_1d/instrument_id=XUSE:CASH:NCI1USD/year=1998/data.parquet",
+        "price_partition_sha256": "c71cf2786b90a14aa460dba76f1f963d52a61898ab6660986a161e4c52aa7a35",
+        "prior_close": 33.167,
+        "prior_date": "1998-03-31"
+      },
+      "prior_context_classification": "PLAIN_SPLIT_WITHOUT_LIFECYCLE_CONTEXT",
+      "ratio": 1.5,
+      "required_fragments": [
+        "a 3-2 stock split being effected in the form of a stock dividend",
+        "payable on or about April 1, 1998",
+        "to the owners of record at the close of business on March 18, 1998"
+      ],
+      "required_fragments_verified": [
+        "a 3-2 stock split being effected in the form of a stock dividend",
+        "payable on or about April 1, 1998",
+        "to the owners of record at the close of business on March 18, 1998"
+      ],
+      "retrieved_sha256": "9deaec8648f9c6efdb6c5634b21d4adcb4ea050d7d26a1551258f9b7a8bf9e29",
+      "stored_ratio": 1.5,
+      "ticker": "NCI1",
+      "url": "https://www.sec.gov/Archives/edgar/data/1019737/000095013198002261/0000950131-98-002261.txt"
+    }
+  ]
+}

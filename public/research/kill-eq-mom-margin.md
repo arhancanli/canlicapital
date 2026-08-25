@@ -2,8 +2,8 @@
 
 **Short title:** Equity Momentum (with Margin Costs): killed
 
-**Verdict:** KILLED  
-**Test window:** 2023-07-06 to 2026-06-01  
+**Verdict:** KILLED
+**Test window:** 2023-07-06 to 2026-06-01
 **Identity:** `eq_mom_margin`
 
 Margin financing costs erode the momentum edge below the frozen k30_dn_63 baseline. Variant killed per pre-registration; the clean h=63 sleeve is the deployed one.

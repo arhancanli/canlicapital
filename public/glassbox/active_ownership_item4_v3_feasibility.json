@@ -1,0 +1,38 @@
+{
+  "schema": "canli.feasibility.active-ownership-13d-item4.v3",
+  "generated_at": "2026-08-23T09:37:44.951982+00:00",
+  "stage": "official_document_feasibility_no_prices_no_returns",
+  "protocol": "docs/design/FEASIBILITY_ACTIVE_OWNERSHIP_13D_ITEM4_V3.md",
+  "hypothesis_identities_spent": 0,
+  "sample_rows": 160,
+  "successful_submissions": 160,
+  "item4_extracted": 150,
+  "item4_extraction_rate": 0.9375,
+  "specific_active_intent": 30,
+  "specific_active_intent_rate": 0.2,
+  "gates": {
+    "submissions_160_of_160": true,
+    "exact_primary_document_rate_gte_0_98": true,
+    "item4_extraction_rate_gte_0_90": true,
+    "every_positive_has_source_sentence": true,
+    "positive_class_rate_between_0_10_and_0_90": true
+  },
+  "human_accuracy_audit": {
+    "complete": false,
+    "labeled": 0,
+    "required": 48
+  },
+  "decision": "HUMAN_AUDIT_REQUIRED",
+  "author": "Arhan Canli",
+  "source_lineage": {
+    "protocol_sha256": "fd766c667c2d39b092076655ffc60fe853166ab8a7465b91398690129c8c4384",
+    "locked_sample_sha256": "4c737b774f5d3399b4ee0a5bceaa05f003ce93c41a2056d9bd11f2e5f4919073",
+    "document_audit_sha256": "f8b2843b194d2b5d9825963af40bdc1e5e732a9e247e957ca828a3c961fc174c",
+    "frozen_human_labels_sha256": "fefb4bdb5a1ad05e691e6a76b5dd98b08066dab88ede3054893342b93a46a137"
+  },
+  "market_data_opened": false,
+  "return_data_opened": false,
+  "return_hypotheses_spent": 0,
+  "claim_boundary": "Machine extraction feasibility passed on the frozen corpus. Classification accuracy, returns, Sharpe, drawdown, correlation, capacity and sleeve admission remain unproven until their separate gates pass.",
+  "content_hash": "sha256:702b207359ca5d90a894bcffc4382bcb307d2d1b692b3c9a81b88cde923040c1"
+}

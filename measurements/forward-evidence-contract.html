@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Forward evidence contract / Canli Capital</title>
+<meta name="description" content="This contract freezes how forward evidence will be described before the record is mature." />
+<link rel="canonical" href="https://canlicapital.com/measurements/forward-evidence-contract" />
+<meta name="author" content="Arhan Canli" />
+<meta name="canli:sources" content="forward_evidence_contract.json" />
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="Canli Capital" />
+<meta property="og:title" content="Forward evidence contract / Canli Capital" />
+<meta property="og:description" content="This contract freezes how forward evidence will be described before the record is mature." />
+<meta property="og:url" content="https://canlicapital.com/measurements/forward-evidence-contract" />
+<meta property="og:image" content="https://canlicapital.com/og.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Forward evidence contract / Canli Capital" />
+<meta name="twitter:description" content="This contract freezes how forward evidence will be described before the record is mature." />
+<meta name="twitter:image" content="https://canlicapital.com/og.png" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="icon" href="/favicon.ico" sizes="any" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=optional" />
+<link rel="stylesheet" media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=optional" />
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=optional" /></noscript>
+<link rel="stylesheet" href="../css/paper.css" />
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"Forward evidence contract","description":"This contract freezes how forward evidence will be described before the record is mature.","url":"https://canlicapital.com/measurements/forward-evidence-contract","creator":{"@type":"Person","name":"Arhan Canli"},"publisher":{"@type":"Organization","name":"Canli Capital","url":"https://canlicapital.com/"},"isAccessibleForFree":true,"distribution":{"@type":"DataDownload","encodingFormat":"application/json","contentUrl":"https://canlicapital.com/glassbox/forward_evidence_contract.json"}}</script>
+</head>
+<body class="paper">
+<a class="paper__skip" href="#content">Skip to content</a>
+<header class="paper__masthead">
+  <a class="paper__brand" href="/">Canli Capital</a>
+  <nav class="paper__nav" aria-label="Primary">
+    <a href="/systems">Systems</a>
+    <a href="/performance">Evidence</a>
+    <a href="/research">Research</a>
+    <a href="/measurements">Measurements</a>
+    <a href="/open">Glass box</a>
+  </nav>
+</header>
+<main class="paper__main" id="content">
+  <article class="paper__article">
+    <p class="paper__eyebrow"><a href="/measurements">Measurements</a></p>
+    <h1 class="paper__title">Forward evidence contract</h1>
+    <p class="paper__byline">By <span rel="author">Arhan Canli</span>, Canli Capital</p>
+    <div class="paper__body">
+<p class="measure__lead">Forward evidence contract is one of 84 measurements this
+engine publishes in full. It is regenerated from a real run rather than transcribed, and it
+is shown here with its own claim boundary so the number and its limits arrive together.</p>
+<aside class="measure__boundary"><h2>What this measurement does and does not claim</h2><p>This contract freezes how forward evidence will be described before the record is mature. It does not guarantee a Sharpe ratio, convert paper trading into real capital, establish expected drawdown from realized history, or treat a non-equivalent simulation cell as a live-book risk estimate.</p></aside>
+<section class="measure__section"><h2>The measurement</h2>
+<dl class="measure__facts">
+<div class="measure__row"><dt>Schema</dt><dd>canli.alphac-forward-evidence-contract.v6</dd></div>
+<div class="measure__row"><dt>Author</dt><dd>Arhan Canli</dd></div>
+<div class="measure__row"><dt>Capital kind</dt><dd>PAPER_ONLY</dd></div>
+<div class="measure__row"><dt>Return frequency</dt><dd>CONSECUTIVE_PUBLISHED_UTC_DAILY_MARKS_NO_SYNTHETIC_FILL</dd></div>
+<div class="measure__row"><dt>Annualization days</dt><dd>365</dd></div>
+<div class="measure__row"><dt>Minimum daily returns for estimate</dt><dd>252</dd></div>
+<div class="measure__row"><dt>Minimum daily returns for establishment</dt><dd>756</dd></div>
+<div class="measure__row"><dt>Forward sharpe target</dt><dd>1.500000</dd></div>
+<div class="measure__row"><dt>Target exceedance probability min</dt><dd>0.950000</dd></div>
+<div class="measure__row"><dt>Expected max drawdown target</dt><dd>0.110000</dd></div>
+<div class="measure__row"><dt>Broker reconciliation max age hours</dt><dd>36</dd></div>
+<div class="measure__row"><dt>Broker state lag tolerance hours</dt><dd>1</dd></div>
+<div class="measure__row"><dt>Required live config fingerprint</dt><dd>sha256:fe82c4eeed742289bfcfee5d39856ee2bb8ca9cfe209bcc7e34abff98553706d</dd></div>
+<div class="measure__row"><dt>Required continuity schema</dt><dd>canli.alphac-record-continuity.v1</dd></div>
+<div class="measure__row"><dt>Required broker reconciliation schema</dt><dd>canli.alphac-alpaca-broker-reconciliation.v1</dd></div>
+<div class="measure__row"><dt>Required drawdown model schema</dt><dd>canli.alphac-drawdown-live-estimator.v1</dd></div>
+<div class="measure__row"><dt>Required current book drawdown study schema</dt><dd>canli.alphac-current-book-drawdown-study.v1</dd></div>
+<div class="measure__row"><dt>Required current book diversification study schema</dt><dd>canli.alphac-current-book-diversification-study.v1</dd></div>
+<div class="measure__row"><dt>Required drawdown evidence schema</dt><dd>canli.alphac-forward-drawdown-evidence.v1</dd></div>
+<div class="measure__row"><dt>Required transparency schema</dt><dd>glassbox.transparency_log/2</dd></div>
+<div class="measure__row"><dt>Required transparency payload schema</dt><dd>canli.alphac-track-record-daily-digest.v1</dd></div>
+<div class="measure__row"><dt>Required crypto position attribution schema</dt><dd>canli.alphac-crypto-position-attribution.v1</dd></div>
+<div class="measure__row"><dt>Required crypto position attribution rollout schema</dt><dd>canli.alphac-crypto-position-attribution-rollout-verification.v1</dd></div>
+<div class="measure__row"><dt>Methodology paper public path</dt><dd>/research/forward-sharpe-evidence-standard</dd></div>
+</dl>
+<section class="measure__sub"><h3>Rules</h3>
+<p class="measure__prose"><strong>Estimate eligible.</strong> At least 252 finite non-constant returns from consecutive published daily marks, plus every provenance gate passing.</p>
+<p class="measure__prose"><strong>Target observed.</strong> The annualized point Sharpe is at least 1.5; this is not statistical establishment.</p>
+<p class="measure__prose"><strong>Target statistically established.</strong> At least 756 returns and PSR probability that the true annualized Sharpe exceeds 1.5 of at least 0.95, plus every provenance gate passing.</p>
+<p class="measure__prose"><strong>Drawdown.</strong> Realized live maximum drawdown is always published. A simulation may be published only with p95, exact configuration mapping and explicit failed establishment dimensions. The older 14-sleeve daily study applies a 10% book-level volatility target and is not an estimate of the current four-sleeve fixed-weight composite. The zero-drift current-composition study maps the exact weights and strategic overlay and may be compared with the 11% objective, but its post-2022 common window and omitted constituent instrument, execution-gap and ladder state mean neither expected value nor p95 establishes live expected drawdown.</p>
+<p class="measure__prose"><strong>Diversification.</strong> The exact current-composition research study must publish average sleeve correlation, its synchronized block-bootstrap upper 95% bound, the maximum ordinary pair and its upper bound, the stressed design value, effective sleeve and diversification-ratio diagnostics, and fixed-to-cash marginal historical book-Sharpe deltas. Every threshold comes from the sleeve-admission contract. A positive average correlation fails the non-positive point gate even when described as near zero. Research-window evidence never establishes live-forward diversification and never retroactively adjudicates an existing sleeve.</p>
+<p class="measure__prose"><strong>Configuration change.</strong> A live-configuration fingerprint change starts a new evidence epoch; pre-change and post-change returns cannot be silently pooled.</p>
+<p class="measure__prose"><strong>Missing marks.</strong> Missing calendar dates are not filled with zero returns. The continuity audit is a separate mandatory gate.</p>
+<p class="measure__prose"><strong>Public chain.</strong> The current paper state must exactly equal the canonical payload disclosed in the signed transparency-chain head. Link continuity, every Ed25519 signature, every disclosed payload hash, and the prospective disclosure boundary must validate. Historical opaque commitments remain explicitly incomplete and are not reconstructed.</p>
+<p class="measure__prose"><strong>Crypto position attribution.</strong> The latest locally simulated crypto paper cycle must be non-empty, persist complete order-book marks for every open position, independently reproduce each stored market value and unrealized P&amp;L from quantity, mark, and entry price, and reconcile cash plus marked market value to account equity within the frozen tolerances. A flat cycle cannot vacuously certify the mark path. Entry-price fallback marks, non-finite values, non-positive prices, missing prospective fields, position-count mismatch, stale cycle coverage, position-arithmetic residual, or equity-reconciliation residual fail provenance closed. Historical rows are never backfilled.</p>
+<p class="measure__prose"><strong>Crypto position attribution rollout.</strong> A hash-bound deployment receipt and the frozen first later non-empty natural cycle must prove the mark-aware runtime operated on the sole-writer Frankfurt paper host without a forced cycle. Before deployment, missing receipt evidence is published deterministically and fails closed without querying Frankfurt. A successful first-cycle receipt is immutable for that exact deployment receipt.</p>
+</section>
+</section>
+<section class="measure__section"><h2>Check it yourself</h2>
+<p>Every figure above is read from <a href="/glassbox/forward_evidence_contract.json"><code>/glassbox/forward_evidence_contract.json</code></a>, the
+artifact the engine wrote. Nothing on this page is typed by hand: the page is generated from that
+file, so a figure that moves in the artifact moves here and a figure that is not in the artifact
+cannot appear here at all.</p>
+<p><a href="/measurements">All 84 measurements</a> &middot;
+<a href="/open">The glass box</a> &middot;
+<a href="/research">The research library</a></p>
+</section>
+    </div>
+  </article>
+</main>
+</body>
+</html>

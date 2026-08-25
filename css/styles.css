@@ -1111,7 +1111,7 @@ body.no-webgl .scene-fallback { display: block; }
   position: absolute;
   bottom: -0.22em;
   left: var(--margin);
-  color: var(--grey-900);
+  color: var(--grey-600);
   z-index: 0;
   font-size: clamp(6rem, 24vw, 26rem);
   line-height: 0.8;
@@ -1185,6 +1185,16 @@ body.no-webgl .scene-fallback { display: block; }
   .statband__list[data-statband="footnote"] {
     justify-content: flex-start;
     gap: var(--s-3) var(--s-5);
+  }
+  .statband__list--secondary .stat,
+  .statband__list[data-statband="footnote"] .stat {
+    min-width: 0;
+    flex-wrap: wrap;
+  }
+  .statband__list--secondary .stat__label,
+  .statband__list[data-statband="footnote"] .stat__label {
+    white-space: normal;
+    overflow-wrap: anywhere;
   }
 
   .flagship__head { flex-direction: column; align-items: flex-start; gap: var(--s-3); }

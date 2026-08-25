@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>HDB dividend quarantine — Canli Capital</title>
+<meta name="description" content="The frozen Sharadar ACTIONS archive contains 11 dividends whose values are not positive." />
+<meta name="alphac-source-sha256" content="803333edafecc5397ab6ff002f2b8920149899649ff51a51ea9c71528a629585" />
+
+<link rel="canonical" href="https://canlicapital.com/research/sharadar-hdb-zero-dividend-quarantine" />
+<meta name="author" content="Arhan Canli" />
+<meta name="citation_title" content="Sharadar HDB zero-dividend quarantine" />
+<meta name="citation_author" content="Arhan Canli" />
+<meta name="citation_publication_date" content="2026" />
+<meta name="citation_language" content="en" />
+<meta name="citation_fulltext_html_url" content="https://canlicapital.com/research/sharadar-hdb-zero-dividend-quarantine" />
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="Canli Capital" />
+<meta property="og:title" content="Sharadar HDB zero-dividend quarantine" />
+<meta property="og:description" content="The frozen Sharadar ACTIONS archive contains 11 dividends whose values are not positive." />
+<meta property="og:url" content="https://canlicapital.com/research/sharadar-hdb-zero-dividend-quarantine" />
+<meta property="og:image" content="https://canlicapital.com/og.png" />
+<meta property="article:author" content="Arhan Canli" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Sharadar HDB zero-dividend quarantine" />
+<meta name="twitter:description" content="The frozen Sharadar ACTIONS archive contains 11 dividends whose values are not positive." />
+<meta name="twitter:image" content="https://canlicapital.com/og.png" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="icon" href="/favicon.ico" sizes="any" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=optional" />
+<link rel="stylesheet" media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=optional" />
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=optional" /></noscript>
+<link rel="stylesheet" href="../css/paper.css" />
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"ScholarlyArticle","headline":"Sharadar HDB zero-dividend quarantine","description":"The frozen Sharadar ACTIONS archive contains 11 dividends whose values are not positive.","url":"https://canlicapital.com/research/sharadar-hdb-zero-dividend-quarantine","inLanguage":"en","isAccessibleForFree":true,"datePublished":"2026","author":{"@type":"Person","@id":"https://canlicapital.com/#arhan-canli","name":"Arhan Canli","jobTitle":"Founder and Quantitative Researcher","url":"https://canlicapital.com/founder","sameAs":["https://github.com/arhancanli"],"affiliation":{"@type":"Organization","@id":"https://canlicapital.com/#organization","name":"Canli Capital","url":"https://canlicapital.com/"}},"publisher":{"@type":"Organization","@id":"https://canlicapital.com/#organization","name":"Canli Capital","url":"https://canlicapital.com/","logo":{"@type":"ImageObject","url":"https://canlicapital.com/brand-mark.svg"}},"isPartOf":{"@type":"Periodical","name":"Canli Capital Research","url":"https://canlicapital.com/research"},"encodingFormat":"text/html","associatedMedia":{"@type":"MediaObject","contentUrl":"https://canlicapital.com/research/sharadar-hdb-zero-dividend-quarantine.md","encodingFormat":"text/markdown"}}</script>
+</head>
+<body class="paper">
+<a class="paper__skip" href="#content">Skip to content</a>
+<header class="paper__masthead">
+  <a class="paper__brand" href="/">Canli Capital</a>
+  <nav class="paper__nav" aria-label="Primary">
+    <a href="/systems">Systems</a>
+    <a href="/performance">Evidence</a>
+    <a href="/research">Research</a>
+    <a href="/open">Glass box</a>
+  </nav>
+</header>
+<main class="paper__main" id="content">
+  <article class="paper__article">
+    <p class="paper__eyebrow"><a href="/research">Research</a></p>
+    <h1 class="paper__title">Sharadar HDB zero-dividend quarantine</h1>
+    <p class="paper__byline">By <span rel="author">Arhan Canli</span>, Canli Capital</p>
+    <div class="paper__body">
+<p><strong>Short title:</strong> HDB dividend quarantine
+<strong>Author:</strong> Arhan Canli
+<strong>Decision:</strong> <code>VERSIONED_ZERO_MARKER_QUARANTINE_AUTHORIZED</code></p>
+<h2>Finding</h2>
+<p>The frozen Sharadar <code>ACTIONS</code> archive contains 11 dividends whose values are not positive. One
+survived the common-stock and liquidity filters and entered the executable lake: HDFC Bank ADR
+(<code>HDB</code>) on 2025-06-26 with value <code>0.0</code>. The loader propagated that row unchanged. The event
+engine correctly rejects it, so fundamental-single exact replays that encounter the row fail
+closed before producing a replacement curve.</p>
+<p>This is a vendor-originated source defect, not a backtest result. The raw archive, lake partition,
+loader, engine, and failed replay are all bound by SHA-256 in the machine-readable audit.</p>
+<h2>Primary-source cross-check</h2>
+<p>HDFC Bank&#39;s <a href="https://www.sec.gov/Archives/edgar/data/1144967/000119312525146102/d60580dex99.htm">June 2025 Form 6-K exhibit</a>
+states that the board recommended a ₹22 dividend per underlying equity share, with a 2025-06-27
+record date and payment on or after 2025-08-11. Its
+<a href="https://www.sec.gov/Archives/edgar/data/1144967/000119312525158722/d854075d20f.htm">2025 Form 20-F</a>
+states that one ADS represents three underlying shares. Sharadar&#39;s
+<a href="https://sharadar.com/docs/actions">ACTIONS documentation</a> defines the action value as numeric,
+but does not resolve the required ADS net-cash or date semantics for this anomalous row.</p>
+<p>The issuer filing therefore contradicts <code>0.0</code> as the declared underlying dividend amount. It does
+not by itself prove the net USD cash an ADS holder should receive after FX, withholding, and
+depositary handling.</p>
+<h2>Vendor semantic resolution</h2>
+<p>A read-only Alpaca corporate-actions query returned a separate positive HDB cash-dividend record
+whose <code>due_bill_on_date</code> is 2025-06-26, <code>due_bill_off_date</code> and <code>ex_date</code> are 2025-08-11, and net
+rate is USD 0.641432 per ADS. Sharadar&#39;s same instrument-year partition separately preserves a
+positive 2025-08-11 dividend. The exact zero row therefore matches a due-bill administrative date,
+not the actual cash event.</p>
+<p>The machine-readable resolution is
+<code>artifacts/audit/hdb_dividend_vendor_resolution.json</code>, content hash
+<code>sha256:c30b02bf34aa40b2974c5b1c3623363a601e826b866c335714c8b5b909247775</code>.
+Alpaca warns that corporate-action creation times are not guaranteed, so the retrieval timestamp
+is used as the conservative knowable-at bound. The Alpaca cash amount is not injected into the
+Sharadar series and no event is moved backward.</p>
+<h2>Quarantine contract</h2>
+<p>Future Sharadar loads reject any split or dividend with a non-finite or non-positive value
+before it reaches the executable lake. The existing raw archive and contaminated partition remain
+preserved by hash. No process may silently drop, move, or replace this row inside an
+identity-bound replay.</p>
+<p>The authorized repair creates a new physical lake version and removes only the exact HDB
+2025-06-26 zero-cash marker. It preserves every other row, including Sharadar&#39;s positive
+2025-08-11 event, and imputes no amount. The materialized lake manifest is
+<code>artifacts/audit/sharadar_hdb_corrected_lake.json</code>, content hash
+<code>sha256:8dec4dac90c0f2646ac09f2dfcbb26f5bd500c8fcb8c2bcda795113f7a46f9a8</code>.</p>
+<p>An initial corrected-lake layout used top-level symlinked dataset directories. The universe loader
+could not traverse that layout, so the attempt failed before signal or return computation. That
+infrastructure failure remains preserved in
+<code>artifacts/probe/fundamental_single_replays/e5f48adc25065ce9/replay_infrastructure_failure.json</code>.
+The replacement lake uses real directories with hard-linked immutable leaves and passed a
+non-empty-universe smoke test. A replay on that version must still independently prove exact
+reproduction; the data repair itself supplies no performance evidence.</p>
+<h2>Claim boundary</h2>
+<p>The vendor audit and lake construction opened no return series and spent no hypothesis. They
+validate neither the historical curve nor any Sharpe, drawdown, capacity, diversification, or
+sleeve claim. The immutable historical operating-margin verdict remains <code>KILL</code>; a separately
+bound replay can reproduce or fail to reproduce that record, but data correction is never
+permission to reinterpret a failed strategy.</p>
+
+    </div>
+    <nav class="paper__related" aria-label="Related research">
+      <p class="paper__related-kicker">Filed under</p>
+      <p class="paper__links"><a href="/research/topics/engineering-foundations">Engineering foundations</a></p>
+    </nav>
+    <footer class="paper__footer">
+      <p class="paper__links">
+        <a href="/research/sharadar-hdb-zero-dividend-quarantine.md">Read the unrendered source</a>
+        <span aria-hidden="true"> / </span>
+        <a href="/research/citations/sharadar-hdb-zero-dividend-quarantine.bib" download>Cite this report</a>
+        <span aria-hidden="true"> / </span>
+        <a href="/open">Inspect the underlying artifacts</a>
+        <span aria-hidden="true"> / </span>
+        <a href="/research">All research</a>
+      </p>
+      <p class="paper__boundary">
+        Published as evidence, not as a claim about future performance. The figures quoted here
+        are reproducible from the artifacts linked above.
+      </p>
+    </footer>
+  </article>
+</main>
+</body>
+</html>

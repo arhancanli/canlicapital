@@ -24,7 +24,9 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=swap" />
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=optional" />
+<link rel="stylesheet" media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=optional" />
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=optional" /></noscript>
 <link rel="stylesheet" href="../css/paper.css" />
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"Sleeve atlas / Atlas","description":"Sleeve atlas / Atlas: a read-only artifact regenerated from the engine run that produced it, published so the figure and its limits can be checked together.","url":"https://canlicapital.com/measurements/sleeve-atlas-atlas","creator":{"@type":"Person","name":"Arhan Canli"},"publisher":{"@type":"Organization","name":"Canli Capital","url":"https://canlicapital.com/"},"isAccessibleForFree":true,"distribution":{"@type":"DataDownload","encodingFormat":"application/json","contentUrl":"https://canlicapital.com/glassbox/sleeve_atlas.json"}}</script>
 </head>
@@ -46,24 +48,50 @@
     <h1 class="paper__title">Sleeve atlas / Atlas</h1>
     <p class="paper__byline">By <span rel="author">Arhan Canli</span>, Canli Capital</p>
     <div class="paper__body">
-<p class="measure__lead">Sleeve atlas / Atlas is one of 31 measurements this
+<p class="measure__lead">Sleeve atlas / Atlas is one of 84 measurements this
 engine publishes in full. It is regenerated from a real run rather than transcribed, and it
 is shown here with its own claim boundary so the number and its limits arrive together.</p>
 <aside class="measure__boundary"><h2>What this measurement does and does not claim</h2><p>This artifact carries no separate claim-boundary field. Read it as a record of what was measured, not as a claim about future performance.</p></aside>
 <section class="measure__section"><h2>The measurement</h2>
 <dl class="measure__facts">
 <div class="measure__row"><dt>Schema</dt><dd>canli.alphac-sleeve-atlas.v2</dd></div>
-<div class="measure__row"><dt>As of</dt><dd>2026-08-16</dd></div>
-<div class="measure__row"><dt>Content hash</dt><dd>sha256:c8d87bf1f16af1b3815da7d01e1b5871770cd490a62be65a92b5fe23725a6a5b</dd></div>
+<div class="measure__row"><dt>As of</dt><dd>2026-08-22</dd></div>
+<div class="measure__row"><dt>Content hash</dt><dd>sha256:f1feb79173794e13cdae737d7679cc56e9cc42657507f1484c095e4c0252ffd2</dd></div>
 </dl>
 <section class="measure__sub"><h3>Objective</h3>
 <dl class="measure__facts">
 <div class="measure__row"><dt>Target total sleeves</dt><dd>14</dd></div>
 <div class="measure__row"><dt>Minimum new sleeves</dt><dd>10</dd></div>
 <div class="measure__row"><dt>Portfolio max drawdown target</dt><dd>0.110000</dd></div>
+<div class="measure__row"><dt>Targets are admission evidence</dt><dd>no</dd></div>
+<div class="measure__row"><dt>Portfolio max drawdown statistic</dt><dd>expected_maximum_drawdown</dd></div>
+<div class="measure__row"><dt>Portfolio p95 max drawdown is gated</dt><dd>no</dd></div>
+<div class="measure__row"><dt>Portfolio p95 max drawdown must be published</dt><dd>yes</dd></div>
+<div class="measure__row"><dt>Average pairwise correlation objective</dt><dd>-0.030000</dd></div>
+<div class="measure__row"><dt>Honest forward sharpe target</dt><dd>1.500000</dd></div>
 <div class="measure__row"><dt>Targets are promises</dt><dd>no</dd></div>
 </dl>
-<p class="measure__label">Portfolio sharpe target</p><ul class="measure__list"><li>2</li><li>2.500000</li></ul>
+<p class="measure__label">Portfolio sharpe target</p><ul class="measure__list"><li>2.250000</li><li>3</li></ul>
+<p class="measure__prose"><strong>Average pairwise correlation objective note.</strong> An objective, not a gate. -0.03 is the average pairwise correlation at which fourteen sleeves of measured quality reach 2.5. Thresholds are gates and live in &#39;thresholds&#39;; anything that is not enforced must not sit there wearing a gate&#39;s costume.</p>
+<p class="measure__label">Superseded in sample sharpe target</p><ul class="measure__list"><li>2</li><li>2.500000</li></ul>
+<p class="measure__prose"><strong>Superseded reason.</strong> Stated in-sample with no haircut named, and unreachable as a forward result: a verified forward 2.0 at measured per-sleeve quality needs an average pairwise correlation of -0.062 against a PSD floor of -0.077. Withdrawn 2026-08-21 and replaced with an honest FORWARD target of 1.5, which is inside the floor at every plausible quality.</p>
+<section class="measure__sub"><h4>Backtest to forward haircut</h4>
+<dl class="measure__facts">
+<div class="measure__row"><dt>Measured on this book</dt><dd>in-sample equal-risk ~1.04 against an honest forward of 0.3-0.9</dd></div>
+</dl>
+<p class="measure__label">Range</p><ul class="measure__list"><li>1.500000</li><li>3</li></ul>
+<p class="measure__prose"><strong>Note.</strong> The haircut IS the uncertainty. Until the forward record is long enough to speak, every in-sample figure should be read through it, and the range is this book&#39;s own published pair rather than a convention borrowed from elsewhere.</p>
+</section>
+<section class="measure__sub"><h4>Implied in sample target</h4>
+<dl class="measure__facts">
+<div class="measure__row"><dt>At 1 5x haircut</dt><dd>2.250000</dd></div>
+<div class="measure__row"><dt>At 2 0x haircut</dt><dd>3</dd></div>
+<div class="measure__row"><dt>At 3 0x haircut</dt><dd>4.500000</dd></div>
+</dl>
+</section>
+<p class="measure__prose"><strong>What reaching it requires.</strong> Both halves, not either: an average pairwise correlation meaningfully BELOW zero, and per-sleeve quality above roughly 0.60. At today&#39;s measured 0.469 the forward target is reachable only at a correlation near -0.030 and only on the optimistic haircut.</p>
+<p class="measure__prose"><strong>Why this is not a retreat.</strong> The rarer thing was never the number. A forward Sharpe near 1.5 that is genuinely verifiable -- signed forward record, every killed candidate published in full, gates that provably bite, and the arithmetic showing where the gate falls short of the target printed on the same page as the target -- is harder to find than a 2.5 nobody can check.</p>
+<p class="measure__prose"><strong>Portfolio sharpe target unit.</strong> IN-SAMPLE, being the band that an honest forward 1.5 implies at the 1.5x and 2.0x ends of this book&#39;s own measured haircut. The headline target is honest_forward_sharpe_target.</p>
 </section>
 <section class="measure__sub"><h3>Governance</h3>
 <dl class="measure__facts">
@@ -88,10 +116,10 @@ is shown here with its own claim boundary so the number and its limits arrive to
 </dl>
 <section class="measure__sub"><h4>Lineage classifications</h4>
 <dl class="measure__facts">
-<div class="measure__row"><dt>ACTIVE FEASIBILITY</dt><dd>6</dd></div>
+<div class="measure__row"><dt>ACTIVE FEASIBILITY</dt><dd>10</dd></div>
 <div class="measure__row"><dt>DUPLICATE OVERLAP</dt><dd>7</dd></div>
 <div class="measure__row"><dt>IDENTITY REDESIGN REQUIRED</dt><dd>2</dd></div>
-<div class="measure__row"><dt>NOVEL ATLAS</dt><dd>20</dd></div>
+<div class="measure__row"><dt>NOVEL ATLAS</dt><dd>16</dd></div>
 <div class="measure__row"><dt>RETIRED KILLED</dt><dd>5</dd></div>
 </dl>
 </section>
@@ -106,7 +134,7 @@ is shown here with its own claim boundary so the number and its limits arrive to
 artifact the engine wrote. Nothing on this page is typed by hand: the page is generated from that
 file, so a figure that moves in the artifact moves here and a figure that is not in the artifact
 cannot appear here at all.</p>
-<p><a href="/measurements">All 31 measurements</a> &middot;
+<p><a href="/measurements">All 84 measurements</a> &middot;
 <a href="/open">The glass box</a> &middot;
 <a href="/research">The research library</a></p>
 </section>

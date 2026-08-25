@@ -77,6 +77,7 @@ function renderGauntlet() {
   if (!host) return;
   const live = isLive();
   host.innerHTML = "";
+  host.setAttribute("role", "list");
 
   GAUNTLET.forEach((m, i) => {
     const row = document.createElement("div");
@@ -100,7 +101,7 @@ function renderGauntlet() {
       </div>
       <p class="gauntlet__blurb body">${m.blurb}</p>
       <div class="gauntlet__verdict">
-        <span class="gauntlet__value" data-empty="${hasValue ? "0" : "1"}" aria-label="Measured value">${valueText}</span>
+        <span class="gauntlet__value" data-empty="${hasValue ? "0" : "1"}">${valueText}</span>
         <span class="${chipClass}">${chipText}</span>
       </div>
     `;
@@ -223,6 +224,62 @@ function bindReservedCopy() {
     } else {
       srcEl.textContent = "";
     }
+  }
+}
+
+// =============================================================================
+// 3b. FORWARD SHARPE EVIDENCE DOCKET
+// Reads the governing contract, sole-writer rollout receipt and maturity verdict
+// as three separate authorities. Failure is rendered as a named broken link, not
+// hidden behind an empty state or inferred from color.
+// =============================================================================
+async function renderForwardEvidenceDocket() {
+  const receipt = document.getElementById("evidenceReceipt");
+  if (!receipt) return;
+  const read = async (path) => {
+    const response = await fetch(path, { cache: "no-store" });
+    if (!response.ok) throw new Error(`${path} returned ${response.status}`);
+    return response.json();
+  };
+  const words = (value) => String(value || "UNAVAILABLE").replaceAll("_", " ");
+
+  try {
+    const [contract, rollout, maturity] = await Promise.all([
+      read("/glassbox/forward_evidence_contract.json"),
+      read("/glassbox/crypto_position_attribution_rollout_verification.json"),
+      read("/glassbox/forward_evidence_maturity.json"),
+    ]);
+    const set = (id, value) => {
+      const node = document.getElementById(id);
+      if (node) node.textContent = value;
+    };
+    set("evidenceAuthor", `Author / ${contract.author}`);
+    set("evidenceContractStatus", "PASS");
+    set(
+      "evidenceContractCopy",
+      `Target ${Number(contract.forward_sharpe_target).toFixed(1)}. ` +
+        `${contract.minimum_daily_returns_for_estimate} observations before an estimate; ` +
+        `${contract.minimum_daily_returns_for_establishment} before establishment.`,
+    );
+    set("evidenceRolloutStatus", rollout.passes ? "PASS" : "FAIL CLOSED");
+    set("evidenceRolloutCopy", `${words(rollout.status)}. ${rollout.claim_boundary}`);
+    set("evidenceMaturityStatus", maturity.provenance_gate?.passes ? "PASS" : "WITHHELD");
+    set(
+      "evidenceMaturityCopy",
+      `${maturity.record.daily_return_observations} of ` +
+        `${maturity.sharpe_evidence.estimate_minimum} observations. ` +
+        `${maturity.provenance_gate.failed_checks.length} provenance gates remain open. ` +
+        `Status: ${words(maturity.sharpe_evidence.underlying_status || maturity.status)}.`,
+    );
+    const hash = String(maturity.content_hash || "");
+    const short = hash.length > 24 ? `${hash.slice(0, 16)}…${hash.slice(-8)}` : hash;
+    receipt.textContent = `Maturity receipt / ${short}`;
+  } catch (error) {
+    document.querySelectorAll(".evidence-chain__status").forEach((node) => {
+      node.textContent = "EVIDENCE UNAVAILABLE";
+    });
+    receipt.textContent = "The machine evidence could not be read. No Sharpe claim is shown.";
+    console.warn("Canli Capital /performance evidence docket unavailable", error);
   }
 }
 
@@ -617,6 +674,7 @@ function boot() {
     renderGauntletParams();
     renderResultFields();
     bindReservedCopy();
+    renderForwardEvidenceDocket();
     renderCurvesIfLive();
     initIdleWaveforms();
     initHeroGhost();

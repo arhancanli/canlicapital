@@ -2,7 +2,7 @@
 
 **Short title:** Managed-Futures fast-trend: killed
 
-**Verdict:** KILLED  **Stage:** screen prototype  
+**Verdict:** KILLED  **Stage:** screen prototype
 **Identity:** `mf_realfutures_fasttrend`
 
 Splits into robust-but-not-new (the slow book IS our existing AlphaTrend) and new-but-dead (the fast-trend leg is net-negative at every verifiable cost). Not a new sleeve. KILLED.

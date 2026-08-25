@@ -5,8 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>PRE-REGISTRATION — post-publication pre-FOMC announcement drift</title>
 <meta name="description" content="Declared 2026-08-16 after official schedule-lineage PASS and before opening any market return associated with this identity." />
+<meta name="alphac-source-sha256" content="3b15992a14a0543db72817768c2947a86ac5c86b077066a3869209ec013af891" />
+
 <link rel="canonical" href="https://canlicapital.com/research/prereg-pre-fomc-announcement-drift" />
 <meta name="author" content="Arhan Canli" />
+<meta name="citation_title" content="PRE-REGISTRATION — post-publication pre-FOMC announcement drift" />
+<meta name="citation_author" content="Arhan Canli" />
+<meta name="citation_publication_date" content="2026" />
+<meta name="citation_language" content="en" />
+<meta name="citation_fulltext_html_url" content="https://canlicapital.com/research/prereg-pre-fomc-announcement-drift" />
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
 <meta property="og:type" content="article" />
 <meta property="og:site_name" content="Canli Capital" />
@@ -24,9 +31,11 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=swap" />
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=optional" />
+<link rel="stylesheet" media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=optional" />
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=optional" /></noscript>
 <link rel="stylesheet" href="../css/paper.css" />
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"ScholarlyArticle","headline":"PRE-REGISTRATION — post-publication pre-FOMC announcement drift","description":"Declared 2026-08-16 after official schedule-lineage PASS and before opening any market return associated with this identity.","url":"https://canlicapital.com/research/prereg-pre-fomc-announcement-drift","inLanguage":"en","isAccessibleForFree":true,"author":{"@type":"Person","@id":"https://canlicapital.com/#arhan-canli","name":"Arhan Canli","jobTitle":"Founder and Quantitative Researcher","url":"https://canlicapital.com/","sameAs":["https://github.com/arhancanli"],"affiliation":{"@type":"Organization","@id":"https://canlicapital.com/#organization","name":"Canli Capital","url":"https://canlicapital.com/"}},"publisher":{"@type":"Organization","@id":"https://canlicapital.com/#organization","name":"Canli Capital","url":"https://canlicapital.com/","logo":{"@type":"ImageObject","url":"https://canlicapital.com/brand-mark.svg"}},"isPartOf":{"@type":"Periodical","name":"Canli Capital Research","url":"https://canlicapital.com/research"},"encodingFormat":"text/html","associatedMedia":{"@type":"MediaObject","contentUrl":"https://canlicapital.com/research/prereg-pre-fomc-announcement-drift.md","encodingFormat":"text/markdown"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"ScholarlyArticle","headline":"PRE-REGISTRATION — post-publication pre-FOMC announcement drift","description":"Declared 2026-08-16 after official schedule-lineage PASS and before opening any market return associated with this identity.","url":"https://canlicapital.com/research/prereg-pre-fomc-announcement-drift","inLanguage":"en","isAccessibleForFree":true,"datePublished":"2026","author":{"@type":"Person","@id":"https://canlicapital.com/#arhan-canli","name":"Arhan Canli","jobTitle":"Founder and Quantitative Researcher","url":"https://canlicapital.com/founder","sameAs":["https://github.com/arhancanli"],"affiliation":{"@type":"Organization","@id":"https://canlicapital.com/#organization","name":"Canli Capital","url":"https://canlicapital.com/"}},"publisher":{"@type":"Organization","@id":"https://canlicapital.com/#organization","name":"Canli Capital","url":"https://canlicapital.com/","logo":{"@type":"ImageObject","url":"https://canlicapital.com/brand-mark.svg"}},"isPartOf":{"@type":"Periodical","name":"Canli Capital Research","url":"https://canlicapital.com/research"},"encodingFormat":"text/html","associatedMedia":{"@type":"MediaObject","contentUrl":"https://canlicapital.com/research/prereg-pre-fomc-announcement-drift.md","encodingFormat":"text/markdown"}}</script>
 </head>
 <body class="paper">
 <a class="paper__skip" href="#content">Skip to content</a>
@@ -76,7 +85,8 @@ an execution failure and contributes a flat return after any actually filled leg
 the next executable quote. It is never filled from a bar close or midpoint.</li>
 <li>Baseline adds 0.5 bp adverse latency/slippage per side beyond observed bid/ask and statutory
 sale fees. Stress scenarios use 1.0, 2.0, and 5.0 bp per side, 1/5/30-second latency, and
-100%/75%/50% fill ratios. Partial fills retain proportional P&L; rejected orders remain flat.</li>
+100%/75%/50% fill ratios. Partial fills retain proportional profit and loss; rejected orders
+remain flat.</li>
 <li>An exchange halt carries the actual position until the first executable quote. An outage before
 entry means no trade. SPY splits and distributions are applied from point-in-time corporate
 actions; an unresolved action fails the run.</li>
@@ -153,11 +163,13 @@ sealed in <code>annual_schedule_events.parquet</code>.</li>
       <p class="paper__related-kicker">Filed under</p>
       <p class="paper__links"><a href="/research/topics/pre-registrations">Pre-registrations</a><span aria-hidden="true"> / </span><a href="/research/topics/rates-and-treasuries">Rates and treasuries</a></p>
       <p class="paper__related-kicker">Related work</p>
-      <ul class="paper__related-list"><li><a href="/research/kill-econtrend">Economic-Trend Sleeve, macro-fundamental trend (campaign): a killed candidate</a></li><li><a href="/research/financing-replay">Point-in-time cash and collateral financing replay</a></li><li><a href="/research/pre-fomc-announcement-drift-feasibility">Pre-FOMC announcement drift — no-return feasibility protocol</a></li><li><a href="/research/kill-rates-curve-carry">Rates-Curve Carry (campaign): a killed candidate</a></li><li><a href="/research/treasury-auction-concession-feasibility">Treasury auction concession — no-return feasibility protocol</a></li><li><a href="/research/treasury-auction-identity-timing">Treasury auction concession — published-identity timing audit</a></li></ul>
+      <ul class="paper__related-list"><li><a href="/research/kill-econtrend">Economic-Trend Sleeve, macro-fundamental trend (campaign): a killed candidate</a></li><li><a href="/research/equity-value-investment-lineage">Equity value, issuance, and investment: 13 identities and unstable evidence</a></li><li><a href="/research/literature-inflation-breakeven-relative-value">Inflation breakeven relative value — literature and claim boundary</a></li><li><a href="/research/financing-replay">Point-in-time cash and collateral financing replay</a></li><li><a href="/research/pre-fomc-announcement-drift-feasibility">Pre-FOMC announcement drift — no-return feasibility protocol</a></li><li><a href="/research/kill-rates-curve-carry">Rates-Curve Carry (campaign): a killed candidate</a></li></ul>
     </nav>
     <footer class="paper__footer">
       <p class="paper__links">
         <a href="/research/prereg-pre-fomc-announcement-drift.md">Read the unrendered source</a>
+        <span aria-hidden="true"> / </span>
+        <a href="/research/citations/prereg-pre-fomc-announcement-drift.bib" download>Cite this report</a>
         <span aria-hidden="true"> / </span>
         <a href="/open">Inspect the underlying artifacts</a>
         <span aria-hidden="true"> / </span>

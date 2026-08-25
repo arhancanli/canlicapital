@@ -2,7 +2,7 @@
 
 **Short title:** FX Carry + Trend Overlay: killed
 
-**Verdict:** KILLED  **Stage:** screen prototype  
+**Verdict:** KILLED  **Stage:** screen prototype
 **Identity:** `fx_carry_trend_overlay`
 
 The professional FX book: trend hedges carry's crashes. It screened at 0.32 — but the robustness stress-test killed it. The Sharpe SPIKED only at the exact threshold we picked by hand (a knob artifact, ~0.15 on either side); it died at realistic cost (25x turnover, 0.05 at 5bp); ALL the performance came from one post-2021 regime; and dropping JPY collapsed it to -0.07 — the entire 'edge' was the single short-JPY trade. Not a diversified premium. KILLED on robustness, before we built a thing.

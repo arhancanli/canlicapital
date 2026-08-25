@@ -12,10 +12,10 @@
     "kill_identities_mapped_to_atlas": 12,
     "kill_identities_outside_atlas": 34,
     "classifications": {
-      "ACTIVE_FEASIBILITY": 9,
+      "ACTIVE_FEASIBILITY": 10,
       "DUPLICATE_OVERLAP": 7,
       "IDENTITY_REDESIGN_REQUIRED": 2,
-      "NOVEL_ATLAS": 17,
+      "NOVEL_ATLAS": 16,
       "RETIRED_KILLED": 5
     },
     "return_data_opened": 0,
@@ -462,9 +462,13 @@
     },
     {
       "family_id": "inflation_breakeven_relative_value",
-      "classification": "NOVEL_ATLAS",
+      "classification": "ACTIVE_FEASIBILITY",
       "aliases": [],
-      "evidence": [],
+      "evidence": [
+        "docs/design/LITERATURE_INFLATION_BREAKEVEN_RELATIVE_VALUE.md",
+        "docs/design/FEASIBILITY_INFLATION_BREAKEVEN_RELATIVE_VALUE.md",
+        "artifacts/feasibility/inflation_breakeven_relative_value/result.json"
+      ],
       "gates": {
         "aliases_required_when_historical": true,
         "historical_aliases_exist_in_kill_ledger": true,
@@ -825,11 +829,11 @@
     }
   ],
   "source_sha256": {
-    "registry": "6a54ef0c0bda0d1353b1fa8175ab900313b31594084cc5c8810b4de069ef3e04",
-    "kill_ledger": "51e7add8b7e055f554c0984f013b6ccd36f53bfef02747acdddcc8328678d162",
-    "current_book": "958e4e755b9ca96b8edafc52531ed3c1ea6d338fd6dcb3f7318bd7e102302927",
-    "discovery": "654f831e3ea4122437e5c48f066d6d37ba6cbcf8d1c7119395d104c5aa6cc225"
+    "registry": "568f184a42fa815725b7e8fcb48ec701564f1ed9cfd6d991fcc5ea5d379d3ecf",
+    "kill_ledger": "d634d1da8d41442d54787fd81bc0600d3b7a89cde0f3cbd0b9d10ab9d58a25a9",
+    "current_book": "db5855959b9a81b43ed9e2be60e76bb01518e0e03a66ffb26aef940bb620e5af",
+    "discovery": "ad1979533293e5eea12c2d7be4c68d00f0f0bbf9badd81b98716cde50dfeea70"
   },
-  "generated_at": "2026-08-22T07:25:56.874927+00:00",
-  "content_hash": "sha256:c6bcac92013564a23bbc5de9eff4a7757ccf6d2769500dbc22ab5b12e5230428"
+  "generated_at": "2026-08-25T14:25:35.312579+00:00",
+  "content_hash": "sha256:46c183e0a2bedfa925b1556edd59a0cc15a4517c57d1c590a56625ebeeebc265"
 }

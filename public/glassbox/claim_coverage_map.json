@@ -2,6 +2,55 @@
   "claim_boundary": "Maps each PUBLISHED ARTIFACT to the mechanisms that guard it and records when each mechanism last ran, by running it. It does not claim any guard is correct \u2014 only which claims have one and which do not. Runs no backtest, opens no return data, registers no hypothesis identity. 0 trials.",
   "coverage": [
     {
+      "artifact": "accessibility_interaction_audit.json",
+      "mechanisms": [
+        "NAMED_GUARD",
+        "CONTENT_HASH",
+        "HOST_MIRROR"
+      ],
+      "named_guards": [
+        "meridian/scripts/audit-live-evidence.mjs"
+      ],
+      "strongest": "NAMED_GUARD"
+    },
+    {
+      "artifact": "active_ownership_13d_item4_v3_blind.json",
+      "mechanisms": [
+        "NAMED_GUARD",
+        "CONTENT_HASH",
+        "HOST_MIRROR"
+      ],
+      "named_guards": [
+        "tests/unit/test_active_ownership_blind_label_packet.py",
+        "tests/unit/test_active_ownership_external_verifier.py",
+        "tests/unit/test_import_active_ownership_blind_labels.py",
+        "tests/unit/test_next_sleeve_selection.py",
+        "tests/unit/test_research_export_freshness.py"
+      ],
+      "strongest": "NAMED_GUARD"
+    },
+    {
+      "artifact": "active_ownership_item4_v3_blind_label_packet.json",
+      "mechanisms": [
+        "NAMED_GUARD",
+        "CONTENT_HASH",
+        "HOST_MIRROR"
+      ],
+      "named_guards": [
+        "tests/unit/test_glassbox_write_paths.py"
+      ],
+      "strongest": "NAMED_GUARD"
+    },
+    {
+      "artifact": "active_ownership_item4_v3_feasibility.json",
+      "mechanisms": [
+        "CONTENT_HASH",
+        "HOST_MIRROR"
+      ],
+      "named_guards": [],
+      "strongest": "CONTENT_HASH"
+    },
+    {
       "artifact": "admission_dry_run.json",
       "mechanisms": [
         "NAMED_GUARD",
@@ -14,6 +63,168 @@
       "strongest": "NAMED_GUARD"
     },
     {
+      "artifact": "admission_v7_promotion.json",
+      "mechanisms": [
+        "NAMED_GUARD",
+        "CONTENT_HASH",
+        "RENDERED_PAGE",
+        "HOST_MIRROR"
+      ],
+      "named_guards": [
+        "tests/unit/test_forward_trial_ledger_gate.py",
+        "tests/unit/test_research_export_freshness.py",
+        "tests/unit/test_validate_forward_trial_reservation.py"
+      ],
+      "strongest": "NAMED_GUARD"
+    },
+    {
+      "artifact": "alpaca_broker_reconciliation.json",
+      "mechanisms": [
+        "NAMED_GUARD",
+        "CONTENT_HASH",
+        "RENDERED_PAGE",
+        "HOST_MIRROR"
+      ],
+      "named_guards": [
+        "meridian/scripts/audit-live-evidence.mjs",
+        "scripts/mutation_ledger.py",
+        "tests/unit/test_alpaca_broker_reconciliation_export.py",
+        "tests/unit/test_publish_pipeline_order.py",
+        "tests/unit/test_track_record_provenance.py"
+      ],
+      "strongest": "NAMED_GUARD"
+    },
+    {
+      "artifact": "alphamax_construction_arms.json",
+      "mechanisms": [
+        "NAMED_GUARD",
+        "HOST_MIRROR"
+      ],
+      "named_guards": [
+        "tests/unit/test_public_support_artifact_sources.py"
+      ],
+      "strongest": "NAMED_GUARD"
+    },
+    {
+      "artifact": "alphamax_upstream_clean_workspace.json",
+      "mechanisms": [
+        "NAMED_GUARD",
+        "CONTENT_HASH",
+        "HOST_MIRROR"
+      ],
+      "named_guards": [
+        "tests/unit/test_alphamax_upstream_replay.py",
+        "tests/unit/test_alphavintage_publication_bundle.py"
+      ],
+      "strongest": "NAMED_GUARD"
+    },
+    {
+      "artifact": "alphatrend_family.json",
+      "mechanisms": [
+        "NAMED_GUARD",
+        "HOST_MIRROR"
+      ],
+      "named_guards": [
+        "tests/unit/test_alphatrend_family.py"
+      ],
+      "strongest": "NAMED_GUARD"
+    },
+    {
+      "artifact": "alphatrend_upstream_clean_workspace.json",
+      "mechanisms": [
+        "NAMED_GUARD",
+        "CONTENT_HASH",
+        "HOST_MIRROR"
+      ],
+      "named_guards": [
+        "tests/unit/test_alphatrend_upstream_reproduction.py",
+        "tests/unit/test_alphavintage_publication_bundle.py"
+      ],
+      "strongest": "NAMED_GUARD"
+    },
+    {
+      "artifact": "alphatrend_upstream_replay_manifest.json",
+      "mechanisms": [
+        "NAMED_GUARD",
+        "CONTENT_HASH",
+        "HOST_MIRROR"
+      ],
+      "named_guards": [
+        "tests/unit/test_alphavintage_publication_bundle.py"
+      ],
+      "strongest": "NAMED_GUARD"
+    },
+    {
+      "artifact": "alphavintage_core_portable_reproduction.json",
+      "mechanisms": [
+        "NAMED_GUARD",
+        "CONTENT_HASH",
+        "HOST_MIRROR"
+      ],
+      "named_guards": [
+        "tests/unit/test_alphavintage_core_portable_reproduction.py"
+      ],
+      "strongest": "NAMED_GUARD"
+    },
+    {
+      "artifact": "alphavintage_corrected_result.json",
+      "mechanisms": [
+        "NAMED_GUARD",
+        "HOST_MIRROR"
+      ],
+      "named_guards": [
+        "scripts/mutation_ledger.py",
+        "tests/unit/test_public_support_artifact_sources.py"
+      ],
+      "strongest": "NAMED_GUARD"
+    },
+    {
+      "artifact": "alphavintage_full_decision_reproduction.json",
+      "mechanisms": [
+        "NAMED_GUARD",
+        "CONTENT_HASH",
+        "HOST_MIRROR"
+      ],
+      "named_guards": [
+        "scripts/mutation_ledger.py"
+      ],
+      "strongest": "NAMED_GUARD"
+    },
+    {
+      "artifact": "alphavintage_rtdsm_portable_fetch.json",
+      "mechanisms": [
+        "NAMED_GUARD",
+        "CONTENT_HASH",
+        "HOST_MIRROR"
+      ],
+      "named_guards": [
+        "tests/unit/test_alphavintage_rtdsm_portable_fetch.py"
+      ],
+      "strongest": "NAMED_GUARD"
+    },
+    {
+      "artifact": "alphavintage_sealed_outcome.json",
+      "mechanisms": [
+        "RENDERED_PAGE",
+        "HOST_MIRROR"
+      ],
+      "named_guards": [],
+      "strongest": "RENDERED_PAGE"
+    },
+    {
+      "artifact": "archival_publication_visual_inspection.json",
+      "mechanisms": [
+        "NAMED_GUARD",
+        "CONTENT_HASH",
+        "HOST_MIRROR"
+      ],
+      "named_guards": [
+        "tests/unit/test_archival_publication_papers.py",
+        "tests/unit/test_public_support_artifact_sources.py"
+      ],
+      "strongest": "NAMED_GUARD"
+    },
+    {
       "artifact": "atlas_reachability_screen.json",
       "mechanisms": [
         "NAMED_GUARD",
@@ -22,6 +233,7 @@
       ],
       "named_guards": [
         "meridian/scripts/build-measurements.mjs",
+        "scripts/mutation_ledger.py",
         "tests/unit/test_atlas_reachability_screen.py"
       ],
       "strongest": "NAMED_GUARD"
@@ -34,6 +246,19 @@
       ],
       "named_guards": [
         "tests/unit/test_audit_bond_etf_nav_dislocation_feasibility.py"
+      ],
+      "strongest": "NAMED_GUARD"
+    },
+    {
+      "artifact": "bond_etf_nav_reachability.json",
+      "mechanisms": [
+        "NAMED_GUARD",
+        "CONTENT_HASH",
+        "RENDERED_PAGE",
+        "HOST_MIRROR"
+      ],
+      "named_guards": [
+        "tests/unit/test_bond_etf_nav_reachability.py"
       ],
       "strongest": "NAMED_GUARD"
     },
@@ -70,8 +295,13 @@
         "meridian/scripts/build-papers.mjs",
         "meridian/scripts/build-verify.mjs",
         "scripts/reproduce.py",
+        "tests/unit/test_alphatrend_family.py",
         "tests/unit/test_backfill.py",
+        "tests/unit/test_crypto_carry_portable_v1_admission_closure.py",
+        "tests/unit/test_expanded_sleeve_paper_claims.py",
+        "tests/unit/test_fundamental_single_market_evidence.py",
         "tests/unit/test_grand_matrix.py",
+        "tests/unit/test_identity_trial_packets.py",
         "tests/unit/test_options_fees.py",
         "tests/unit/test_options_packages.py",
         "tests/unit/test_paper_trading_state_presentation.py",
@@ -102,6 +332,19 @@
       ],
       "named_guards": [
         "tests/unit/test_audit_cftc_hedging_pressure_feasibility.py"
+      ],
+      "strongest": "NAMED_GUARD"
+    },
+    {
+      "artifact": "cftc_release_reachability.json",
+      "mechanisms": [
+        "NAMED_GUARD",
+        "CONTENT_HASH",
+        "RENDERED_PAGE",
+        "HOST_MIRROR"
+      ],
+      "named_guards": [
+        "tests/unit/test_cftc_release_reachability.py"
       ],
       "strongest": "NAMED_GUARD"
     },
@@ -165,6 +408,259 @@
       "strongest": "NAMED_GUARD"
     },
     {
+      "artifact": "crypto_carry_2022_tail.json",
+      "mechanisms": [
+        "NAMED_GUARD",
+        "HOST_MIRROR"
+      ],
+      "named_guards": [
+        "tests/unit/test_public_support_artifact_sources.py"
+      ],
+      "strongest": "NAMED_GUARD"
+    },
+    {
+      "artifact": "crypto_carry_current_replay_receipt.json",
+      "mechanisms": [
+        "NAMED_GUARD",
+        "CONTENT_HASH",
+        "HOST_MIRROR"
+      ],
+      "named_guards": [
+        "meridian/scripts/paper-presentation.mjs"
+      ],
+      "strongest": "NAMED_GUARD"
+    },
+    {
+      "artifact": "crypto_carry_first_rebalance_attribution.json",
+      "mechanisms": [
+        "CONTENT_HASH",
+        "HOST_MIRROR"
+      ],
+      "named_guards": [],
+      "strongest": "CONTENT_HASH"
+    },
+    {
+      "artifact": "crypto_carry_full_path_attribution.json",
+      "mechanisms": [
+        "CONTENT_HASH",
+        "HOST_MIRROR"
+      ],
+      "named_guards": [],
+      "strongest": "CONTENT_HASH"
+    },
+    {
+      "artifact": "crypto_carry_grand_matrix.json",
+      "mechanisms": [
+        "NAMED_GUARD",
+        "HOST_MIRROR"
+      ],
+      "named_guards": [
+        "tests/unit/test_public_support_artifact_sources.py"
+      ],
+      "strongest": "NAMED_GUARD"
+    },
+    {
+      "artifact": "crypto_carry_portable_v1_admission_closure.json",
+      "mechanisms": [
+        "NAMED_GUARD",
+        "CONTENT_HASH",
+        "HOST_MIRROR"
+      ],
+      "named_guards": [
+        "meridian/scripts/paper-presentation.mjs",
+        "tests/unit/test_crypto_carry_portable_v1_admission_closure.py",
+        "tests/unit/test_readme_current_evidence_claims.py"
+      ],
+      "strongest": "NAMED_GUARD"
+    },
+    {
+      "artifact": "crypto_carry_portable_v1_result.json",
+      "mechanisms": [
+        "NAMED_GUARD",
+        "CONTENT_HASH",
+        "HOST_MIRROR"
+      ],
+      "named_guards": [
+        "meridian/scripts/paper-presentation.mjs",
+        "scripts/mutation_ledger.py",
+        "tests/unit/test_crypto_carry_portable_v1_admission_closure.py",
+        "tests/unit/test_crypto_carry_portable_v1_result.py"
+      ],
+      "strongest": "NAMED_GUARD"
+    },
+    {
+      "artifact": "crypto_carry_replay_correction.json",
+      "mechanisms": [
+        "NAMED_GUARD",
+        "CONTENT_HASH",
+        "HOST_MIRROR"
+      ],
+      "named_guards": [
+        "tests/unit/test_crypto_carry_replay_correction.py"
+      ],
+      "strongest": "NAMED_GUARD"
+    },
+    {
+      "artifact": "crypto_carry_selected_walkforward.json",
+      "mechanisms": [
+        "NAMED_GUARD",
+        "HOST_MIRROR"
+      ],
+      "named_guards": [
+        "meridian/scripts/paper-presentation.mjs",
+        "tests/unit/test_public_support_artifact_sources.py"
+      ],
+      "strongest": "NAMED_GUARD"
+    },
+    {
+      "artifact": "crypto_defensive_family.json",
+      "mechanisms": [
+        "NAMED_GUARD",
+        "HOST_MIRROR"
+      ],
+      "named_guards": [
+        "scripts/mutation_ledger.py",
+        "tests/unit/test_expanded_sleeve_paper_claims.py",
+        "tests/unit/test_public_support_artifact_sources.py"
+      ],
+      "strongest": "NAMED_GUARD"
+    },
+    {
+      "artifact": "crypto_lab_carry_crash_incident.json",
+      "mechanisms": [
+        "CONTENT_HASH",
+        "RENDERED_PAGE",
+        "HOST_MIRROR"
+      ],
+      "named_guards": [],
+      "strongest": "CONTENT_HASH"
+    },
+    {
+      "artifact": "crypto_momentum_family.json",
+      "mechanisms": [
+        "NAMED_GUARD",
+        "HOST_MIRROR"
+      ],
+      "named_guards": [
+        "tests/unit/test_identity_packet_recoverability.py",
+        "tests/unit/test_identity_trial_packets.py"
+      ],
+      "strongest": "NAMED_GUARD"
+    },
+    {
+      "artifact": "crypto_multifactor_family.json",
+      "mechanisms": [
+        "NAMED_GUARD",
+        "HOST_MIRROR"
+      ],
+      "named_guards": [
+        "tests/unit/test_crypto_multifactor_family.py"
+      ],
+      "strongest": "NAMED_GUARD"
+    },
+    {
+      "artifact": "crypto_position_attribution.json",
+      "mechanisms": [
+        "NAMED_GUARD",
+        "CONTENT_HASH",
+        "RENDERED_PAGE",
+        "HOST_MIRROR"
+      ],
+      "named_guards": [
+        "tests/unit/test_crypto_position_attribution.py",
+        "tests/unit/test_crypto_position_attribution_vps_preflight.py",
+        "tests/unit/test_deploy_crypto_position_attribution_vps.py",
+        "tests/unit/test_forward_evidence_maturity.py",
+        "tests/unit/test_publish_pipeline_order.py",
+        "tests/unit/test_research_export_freshness.py",
+        "tests/unit/test_verify_crypto_position_attribution_rollout.py"
+      ],
+      "strongest": "NAMED_GUARD"
+    },
+    {
+      "artifact": "crypto_position_attribution_rollout_verification.json",
+      "mechanisms": [
+        "NAMED_GUARD",
+        "CONTENT_HASH",
+        "RENDERED_PAGE",
+        "HOST_MIRROR"
+      ],
+      "named_guards": [
+        "tests/unit/test_publish_pipeline_order.py",
+        "tests/unit/test_research_export_freshness.py"
+      ],
+      "strongest": "NAMED_GUARD"
+    },
+    {
+      "artifact": "crypto_position_attribution_vps_preflight_observation.json",
+      "mechanisms": [
+        "NAMED_GUARD",
+        "CONTENT_HASH",
+        "HOST_MIRROR"
+      ],
+      "named_guards": [
+        "tests/unit/test_crypto_position_attribution_vps_preflight.py",
+        "tests/unit/test_research_export_freshness.py"
+      ],
+      "strongest": "NAMED_GUARD"
+    },
+    {
+      "artifact": "crypto_reversal_family.json",
+      "mechanisms": [
+        "NAMED_GUARD",
+        "HOST_MIRROR"
+      ],
+      "named_guards": [
+        "tests/unit/test_expanded_sleeve_paper_claims.py",
+        "tests/unit/test_public_support_artifact_sources.py"
+      ],
+      "strongest": "NAMED_GUARD"
+    },
+    {
+      "artifact": "crypto_vrp_family.json",
+      "mechanisms": [
+        "NAMED_GUARD",
+        "HOST_MIRROR"
+      ],
+      "named_guards": [
+        "tests/unit/test_crypto_vrp_family.py"
+      ],
+      "strongest": "NAMED_GUARD"
+    },
+    {
+      "artifact": "current_book_diversification.json",
+      "mechanisms": [
+        "NAMED_GUARD",
+        "CONTENT_HASH",
+        "RENDERED_PAGE",
+        "HOST_MIRROR"
+      ],
+      "named_guards": [
+        "tests/unit/test_current_book_diversification.py",
+        "tests/unit/test_forward_evidence_maturity.py",
+        "tests/unit/test_publish_pipeline_order.py",
+        "tests/unit/test_research_export_freshness.py"
+      ],
+      "strongest": "NAMED_GUARD"
+    },
+    {
+      "artifact": "current_book_drawdown.json",
+      "mechanisms": [
+        "NAMED_GUARD",
+        "CONTENT_HASH",
+        "RENDERED_PAGE",
+        "HOST_MIRROR"
+      ],
+      "named_guards": [
+        "tests/unit/test_current_book_drawdown.py",
+        "tests/unit/test_forward_drawdown_evidence.py",
+        "tests/unit/test_forward_evidence_maturity.py",
+        "tests/unit/test_publish_pipeline_order.py",
+        "tests/unit/test_research_export_freshness.py"
+      ],
+      "strongest": "NAMED_GUARD"
+    },
+    {
       "artifact": "customer_supplier_propagation_feasibility.json",
       "mechanisms": [
         "NAMED_GUARD",
@@ -176,6 +672,28 @@
       "strongest": "NAMED_GUARD"
     },
     {
+      "artifact": "data_gate_unblocks.json",
+      "mechanisms": [
+        "NAMED_GUARD",
+        "CONTENT_HASH",
+        "RENDERED_PAGE",
+        "HOST_MIRROR"
+      ],
+      "named_guards": [
+        "tests/unit/test_data_gate_unblocks.py"
+      ],
+      "strongest": "NAMED_GUARD"
+    },
+    {
+      "artifact": "data_lake_scale.json",
+      "mechanisms": [
+        "RENDERED_PAGE",
+        "HOST_MIRROR"
+      ],
+      "named_guards": [],
+      "strongest": "RENDERED_PAGE"
+    },
+    {
       "artifact": "deflation.json",
       "mechanisms": [
         "NAMED_GUARD",
@@ -184,9 +702,10 @@
       "named_guards": [
         "meridian/scripts/build-methodology.mjs",
         "meridian/scripts/build-papers.mjs",
-        "scripts/audit_contract_and_units.py",
+        "meridian/scripts/verify-papers.mjs",
         "scripts/reproduce.py",
         "tests/unit/test_admission_significance_floors.py",
+        "tests/unit/test_crypto_carry_portable_v1_result.py",
         "tests/unit/test_deflation_counts_hypotheses.py",
         "tests/unit/test_dsr.py",
         "tests/unit/test_glassbox_write_paths.py",
@@ -195,7 +714,8 @@
         "tests/unit/test_probe_ledger.py",
         "tests/unit/test_published_gates_match_the_contract.py",
         "tests/unit/test_published_prose_matches_constants.py",
-        "tests/unit/test_record_continuity.py"
+        "tests/unit/test_record_continuity.py",
+        "tests/unit/test_trial_accounting_v7_proposal.py"
       ],
       "strongest": "NAMED_GUARD"
     },
@@ -229,10 +749,33 @@
     {
       "artifact": "earnings_narrative_change_result.json",
       "mechanisms": [
+        "NAMED_GUARD",
+        "HOST_MIRROR"
+      ],
+      "named_guards": [
+        "tests/unit/test_public_support_artifact_sources.py"
+      ],
+      "strongest": "NAMED_GUARD"
+    },
+    {
+      "artifact": "eia_petroleum_inventory_input_data_manifest.json",
+      "mechanisms": [
+        "CONTENT_HASH",
         "HOST_MIRROR"
       ],
       "named_guards": [],
-      "strongest": "HOST_MIRROR"
+      "strongest": "CONTENT_HASH"
+    },
+    {
+      "artifact": "eia_petroleum_inventory_result.json",
+      "mechanisms": [
+        "NAMED_GUARD",
+        "HOST_MIRROR"
+      ],
+      "named_guards": [
+        "tests/unit/test_public_support_artifact_sources.py"
+      ],
+      "strongest": "NAMED_GUARD"
     },
     {
       "artifact": "electricity_load_weather_feasibility.json",
@@ -242,6 +785,87 @@
       ],
       "named_guards": [
         "tests/unit/test_audit_electricity_load_weather_feasibility.py"
+      ],
+      "strongest": "NAMED_GUARD"
+    },
+    {
+      "artifact": "energy_inventory_family.json",
+      "mechanisms": [
+        "NAMED_GUARD",
+        "HOST_MIRROR"
+      ],
+      "named_guards": [
+        "tests/unit/test_expanded_sleeve_paper_claims.py",
+        "tests/unit/test_public_support_artifact_sources.py"
+      ],
+      "strongest": "NAMED_GUARD"
+    },
+    {
+      "artifact": "energy_inventory_source_provenance.json",
+      "mechanisms": [
+        "NAMED_GUARD",
+        "CONTENT_HASH",
+        "HOST_MIRROR"
+      ],
+      "named_guards": [
+        "tests/unit/test_energy_inventory_source_provenance.py"
+      ],
+      "strongest": "NAMED_GUARD"
+    },
+    {
+      "artifact": "equity_insider_family.json",
+      "mechanisms": [
+        "NAMED_GUARD",
+        "HOST_MIRROR"
+      ],
+      "named_guards": [
+        "tests/unit/test_expanded_sleeve_paper_claims.py",
+        "tests/unit/test_public_support_artifact_sources.py"
+      ],
+      "strongest": "NAMED_GUARD"
+    },
+    {
+      "artifact": "equity_low_beta_family.json",
+      "mechanisms": [
+        "NAMED_GUARD",
+        "HOST_MIRROR"
+      ],
+      "named_guards": [
+        "tests/unit/test_expanded_sleeve_paper_claims.py",
+        "tests/unit/test_public_support_artifact_sources.py"
+      ],
+      "strongest": "NAMED_GUARD"
+    },
+    {
+      "artifact": "equity_narrative_family.json",
+      "mechanisms": [
+        "NAMED_GUARD",
+        "HOST_MIRROR"
+      ],
+      "named_guards": [
+        "tests/unit/test_equity_narrative_family.py"
+      ],
+      "strongest": "NAMED_GUARD"
+    },
+    {
+      "artifact": "equity_quality_family.json",
+      "mechanisms": [
+        "NAMED_GUARD",
+        "HOST_MIRROR"
+      ],
+      "named_guards": [
+        "tests/unit/test_public_support_artifact_sources.py"
+      ],
+      "strongest": "NAMED_GUARD"
+    },
+    {
+      "artifact": "equity_value_investment_family.json",
+      "mechanisms": [
+        "NAMED_GUARD",
+        "HOST_MIRROR"
+      ],
+      "named_guards": [
+        "tests/unit/test_public_support_artifact_sources.py"
       ],
       "strongest": "NAMED_GUARD"
     },
@@ -262,6 +886,49 @@
       ],
       "named_guards": [
         "tests/unit/test_research_export_freshness.py"
+      ],
+      "strongest": "NAMED_GUARD"
+    },
+    {
+      "artifact": "external_publication_readiness.json",
+      "mechanisms": [
+        "NAMED_GUARD",
+        "CONTENT_HASH",
+        "HOST_MIRROR"
+      ],
+      "named_guards": [
+        "meridian/scripts/audit-live-evidence.mjs",
+        "tests/unit/test_external_publication_readiness.py",
+        "tests/unit/test_public_support_artifact_sources.py"
+      ],
+      "strongest": "NAMED_GUARD"
+    },
+    {
+      "artifact": "external_publication_registry.json",
+      "mechanisms": [
+        "NAMED_GUARD",
+        "HOST_MIRROR"
+      ],
+      "named_guards": [
+        "meridian/scripts/build-papers.mjs",
+        "tests/unit/test_archival_publication_papers.py",
+        "tests/unit/test_external_publication_readiness.py",
+        "tests/unit/test_public_support_artifact_sources.py",
+        "tests/unit/test_publication_bibliographies.py",
+        "tests/unit/test_sleeve_publication_bundles.py"
+      ],
+      "strongest": "NAMED_GUARD"
+    },
+    {
+      "artifact": "external_submission_plan.json",
+      "mechanisms": [
+        "NAMED_GUARD",
+        "CONTENT_HASH",
+        "HOST_MIRROR"
+      ],
+      "named_guards": [
+        "meridian/scripts/audit-live-evidence.mjs",
+        "tests/unit/test_external_submission_plan.py"
       ],
       "strongest": "NAMED_GUARD"
     },
@@ -291,6 +958,84 @@
       "strongest": "NAMED_GUARD"
     },
     {
+      "artifact": "forward_drawdown_evidence.json",
+      "mechanisms": [
+        "NAMED_GUARD",
+        "CONTENT_HASH",
+        "RENDERED_PAGE",
+        "HOST_MIRROR"
+      ],
+      "named_guards": [
+        "tests/unit/test_forward_drawdown_evidence.py",
+        "tests/unit/test_publish_pipeline_order.py",
+        "tests/unit/test_research_export_freshness.py"
+      ],
+      "strongest": "NAMED_GUARD"
+    },
+    {
+      "artifact": "forward_evidence_contract.json",
+      "mechanisms": [
+        "NAMED_GUARD",
+        "RENDERED_PAGE",
+        "HOST_MIRROR"
+      ],
+      "named_guards": [
+        "tests/unit/test_research_export_freshness.py"
+      ],
+      "strongest": "NAMED_GUARD"
+    },
+    {
+      "artifact": "forward_evidence_maturity.json",
+      "mechanisms": [
+        "NAMED_GUARD",
+        "CONTENT_HASH",
+        "RENDERED_PAGE",
+        "HOST_MIRROR"
+      ],
+      "named_guards": [
+        "meridian/scripts/audit-live-evidence.mjs",
+        "tests/unit/test_forward_evidence_maturity.py",
+        "tests/unit/test_publish_pipeline_order.py",
+        "tests/unit/test_readme_current_evidence_claims.py",
+        "tests/unit/test_research_export_freshness.py"
+      ],
+      "strongest": "NAMED_GUARD"
+    },
+    {
+      "artifact": "forward_full_evidence_reservation_v2_template.json",
+      "mechanisms": [
+        "NAMED_GUARD",
+        "HOST_MIRROR"
+      ],
+      "named_guards": [
+        "tests/unit/test_forward_full_evidence_reservation_v2_template.py"
+      ],
+      "strongest": "NAMED_GUARD"
+    },
+    {
+      "artifact": "forward_full_evidence_reservation_v2_template_audit.json",
+      "mechanisms": [
+        "CONTENT_HASH",
+        "HOST_MIRROR"
+      ],
+      "named_guards": [],
+      "strongest": "CONTENT_HASH"
+    },
+    {
+      "artifact": "forward_sleeve_contribution.json",
+      "mechanisms": [
+        "NAMED_GUARD",
+        "CONTENT_HASH",
+        "RENDERED_PAGE",
+        "HOST_MIRROR"
+      ],
+      "named_guards": [
+        "scripts/mutation_ledger.py",
+        "tests/unit/test_forward_sleeve_contribution.py"
+      ],
+      "strongest": "NAMED_GUARD"
+    },
+    {
       "artifact": "founder_commitment.json",
       "mechanisms": [
         "NAMED_GUARD",
@@ -303,6 +1048,278 @@
         "scripts/reproduce.py"
       ],
       "strongest": "NAMED_GUARD"
+    },
+    {
+      "artifact": "fundamental_single_book_to_price_curve_evidence.json",
+      "mechanisms": [
+        "CONTENT_HASH"
+      ],
+      "named_guards": [],
+      "strongest": "CONTENT_HASH"
+    },
+    {
+      "artifact": "fundamental_single_book_to_price_diversification.json",
+      "mechanisms": [
+        "CONTENT_HASH"
+      ],
+      "named_guards": [],
+      "strongest": "CONTENT_HASH"
+    },
+    {
+      "artifact": "fundamental_single_book_to_price_input_data_manifest.json",
+      "mechanisms": [
+        "CONTENT_HASH"
+      ],
+      "named_guards": [],
+      "strongest": "CONTENT_HASH"
+    },
+    {
+      "artifact": "fundamental_single_book_to_price_market_evidence.json",
+      "mechanisms": [
+        "CONTENT_HASH"
+      ],
+      "named_guards": [],
+      "strongest": "CONTENT_HASH"
+    },
+    {
+      "artifact": "fundamental_single_book_to_price_replay_environment.json",
+      "mechanisms": [
+        "CONTENT_HASH"
+      ],
+      "named_guards": [],
+      "strongest": "CONTENT_HASH"
+    },
+    {
+      "artifact": "fundamental_single_book_to_price_replay_failure.json",
+      "mechanisms": [
+        "CONTENT_HASH"
+      ],
+      "named_guards": [],
+      "strongest": "CONTENT_HASH"
+    },
+    {
+      "artifact": "fundamental_single_earnings_yield_curve_evidence.json",
+      "mechanisms": [
+        "CONTENT_HASH"
+      ],
+      "named_guards": [],
+      "strongest": "CONTENT_HASH"
+    },
+    {
+      "artifact": "fundamental_single_earnings_yield_diversification.json",
+      "mechanisms": [
+        "CONTENT_HASH"
+      ],
+      "named_guards": [],
+      "strongest": "CONTENT_HASH"
+    },
+    {
+      "artifact": "fundamental_single_earnings_yield_input_data_manifest.json",
+      "mechanisms": [
+        "CONTENT_HASH"
+      ],
+      "named_guards": [],
+      "strongest": "CONTENT_HASH"
+    },
+    {
+      "artifact": "fundamental_single_earnings_yield_market_evidence.json",
+      "mechanisms": [
+        "CONTENT_HASH"
+      ],
+      "named_guards": [],
+      "strongest": "CONTENT_HASH"
+    },
+    {
+      "artifact": "fundamental_single_earnings_yield_replay_environment.json",
+      "mechanisms": [
+        "CONTENT_HASH"
+      ],
+      "named_guards": [],
+      "strongest": "CONTENT_HASH"
+    },
+    {
+      "artifact": "fundamental_single_earnings_yield_replay_failure.json",
+      "mechanisms": [
+        "CONTENT_HASH"
+      ],
+      "named_guards": [],
+      "strongest": "CONTENT_HASH"
+    },
+    {
+      "artifact": "fundamental_single_gross_profitability_curve_evidence.json",
+      "mechanisms": [
+        "CONTENT_HASH"
+      ],
+      "named_guards": [],
+      "strongest": "CONTENT_HASH"
+    },
+    {
+      "artifact": "fundamental_single_gross_profitability_diversification.json",
+      "mechanisms": [
+        "CONTENT_HASH"
+      ],
+      "named_guards": [],
+      "strongest": "CONTENT_HASH"
+    },
+    {
+      "artifact": "fundamental_single_gross_profitability_input_data_manifest.json",
+      "mechanisms": [
+        "CONTENT_HASH"
+      ],
+      "named_guards": [],
+      "strongest": "CONTENT_HASH"
+    },
+    {
+      "artifact": "fundamental_single_gross_profitability_market_evidence.json",
+      "mechanisms": [
+        "CONTENT_HASH"
+      ],
+      "named_guards": [],
+      "strongest": "CONTENT_HASH"
+    },
+    {
+      "artifact": "fundamental_single_gross_profitability_replay_environment.json",
+      "mechanisms": [
+        "CONTENT_HASH"
+      ],
+      "named_guards": [],
+      "strongest": "CONTENT_HASH"
+    },
+    {
+      "artifact": "fundamental_single_gross_profitability_replay_failure.json",
+      "mechanisms": [
+        "CONTENT_HASH"
+      ],
+      "named_guards": [],
+      "strongest": "CONTENT_HASH"
+    },
+    {
+      "artifact": "fundamental_single_operating_margin_curve_evidence.json",
+      "mechanisms": [
+        "CONTENT_HASH"
+      ],
+      "named_guards": [],
+      "strongest": "CONTENT_HASH"
+    },
+    {
+      "artifact": "fundamental_single_operating_margin_diversification.json",
+      "mechanisms": [
+        "CONTENT_HASH"
+      ],
+      "named_guards": [],
+      "strongest": "CONTENT_HASH"
+    },
+    {
+      "artifact": "fundamental_single_operating_margin_input_data_manifest.json",
+      "mechanisms": [
+        "CONTENT_HASH"
+      ],
+      "named_guards": [],
+      "strongest": "CONTENT_HASH"
+    },
+    {
+      "artifact": "fundamental_single_operating_margin_market_evidence.json",
+      "mechanisms": [
+        "CONTENT_HASH"
+      ],
+      "named_guards": [],
+      "strongest": "CONTENT_HASH"
+    },
+    {
+      "artifact": "fundamental_single_operating_margin_replay_environment.json",
+      "mechanisms": [
+        "CONTENT_HASH"
+      ],
+      "named_guards": [],
+      "strongest": "CONTENT_HASH"
+    },
+    {
+      "artifact": "fundamental_single_operating_margin_replay_failure.json",
+      "mechanisms": [
+        "CONTENT_HASH"
+      ],
+      "named_guards": [],
+      "strongest": "CONTENT_HASH"
+    },
+    {
+      "artifact": "fundamental_single_operating_margin_replay_infrastructure_failure.json",
+      "mechanisms": [
+        "CONTENT_HASH"
+      ],
+      "named_guards": [],
+      "strongest": "CONTENT_HASH"
+    },
+    {
+      "artifact": "fundamental_single_operating_margin_replay_infrastructure_failure_environment.json",
+      "mechanisms": [
+        "CONTENT_HASH"
+      ],
+      "named_guards": [],
+      "strongest": "CONTENT_HASH"
+    },
+    {
+      "artifact": "fundamental_single_operating_margin_replay_infrastructure_failure_lake_manifest.json",
+      "mechanisms": [
+        "CONTENT_HASH"
+      ],
+      "named_guards": [],
+      "strongest": "CONTENT_HASH"
+    },
+    {
+      "artifact": "fundamental_single_operating_margin_replay_root_cause.json",
+      "mechanisms": [
+        "CONTENT_HASH"
+      ],
+      "named_guards": [],
+      "strongest": "CONTENT_HASH"
+    },
+    {
+      "artifact": "fundamental_single_sales_to_price_curve_evidence.json",
+      "mechanisms": [
+        "CONTENT_HASH"
+      ],
+      "named_guards": [],
+      "strongest": "CONTENT_HASH"
+    },
+    {
+      "artifact": "fundamental_single_sales_to_price_diversification.json",
+      "mechanisms": [
+        "CONTENT_HASH"
+      ],
+      "named_guards": [],
+      "strongest": "CONTENT_HASH"
+    },
+    {
+      "artifact": "fundamental_single_sales_to_price_input_data_manifest.json",
+      "mechanisms": [
+        "CONTENT_HASH"
+      ],
+      "named_guards": [],
+      "strongest": "CONTENT_HASH"
+    },
+    {
+      "artifact": "fundamental_single_sales_to_price_market_evidence.json",
+      "mechanisms": [
+        "CONTENT_HASH"
+      ],
+      "named_guards": [],
+      "strongest": "CONTENT_HASH"
+    },
+    {
+      "artifact": "fundamental_single_sales_to_price_replay_environment.json",
+      "mechanisms": [
+        "CONTENT_HASH"
+      ],
+      "named_guards": [],
+      "strongest": "CONTENT_HASH"
+    },
+    {
+      "artifact": "fundamental_single_sales_to_price_replay_failure.json",
+      "mechanisms": [
+        "CONTENT_HASH"
+      ],
+      "named_guards": [],
+      "strongest": "CONTENT_HASH"
     },
     {
       "artifact": "futures_execution_contract.json",
@@ -331,6 +1348,62 @@
       "strongest": "NAMED_GUARD"
     },
     {
+      "artifact": "hdb_dividend_vendor_resolution.json",
+      "mechanisms": [
+        "NAMED_GUARD",
+        "CONTENT_HASH",
+        "RENDERED_PAGE",
+        "HOST_MIRROR"
+      ],
+      "named_guards": [
+        "tests/unit/test_hdb_dividend_vendor_resolution.py"
+      ],
+      "strongest": "NAMED_GUARD"
+    },
+    {
+      "artifact": "identity_packet_recoverability.json",
+      "mechanisms": [
+        "NAMED_GUARD",
+        "CONTENT_HASH",
+        "HOST_MIRROR"
+      ],
+      "named_guards": [
+        "scripts/mutation_ledger.py",
+        "tests/unit/test_identity_packet_recoverability.py",
+        "tests/unit/test_legacy_research_epoch.py"
+      ],
+      "strongest": "NAMED_GUARD"
+    },
+    {
+      "artifact": "inflation_breakeven_relative_value_feasibility.json",
+      "mechanisms": [
+        "CONTENT_HASH",
+        "HOST_MIRROR"
+      ],
+      "named_guards": [],
+      "strongest": "CONTENT_HASH"
+    },
+    {
+      "artifact": "insider_purchase_clusters_input_data_manifest.json",
+      "mechanisms": [
+        "CONTENT_HASH",
+        "HOST_MIRROR"
+      ],
+      "named_guards": [],
+      "strongest": "CONTENT_HASH"
+    },
+    {
+      "artifact": "insider_purchase_clusters_result.json",
+      "mechanisms": [
+        "NAMED_GUARD",
+        "HOST_MIRROR"
+      ],
+      "named_guards": [
+        "tests/unit/test_public_support_artifact_sources.py"
+      ],
+      "strongest": "NAMED_GUARD"
+    },
+    {
       "artifact": "kill_log.json",
       "mechanisms": [
         "NAMED_GUARD",
@@ -345,7 +1418,8 @@
         "scripts/reproduce.py",
         "tests/unit/test_audit_sleeve_family_lineage.py",
         "tests/unit/test_kill_papers_quote_their_artifact.py",
-        "tests/unit/test_publish_pipeline_order.py"
+        "tests/unit/test_publish_pipeline_order.py",
+        "tests/unit/test_research_export_freshness.py"
       ],
       "strongest": "NAMED_GUARD"
     },
@@ -366,8 +1440,21 @@
       ],
       "named_guards": [
         "meridian/scripts/build-methodology.mjs",
-        "scripts/audit_contract_and_units.py",
         "tests/unit/test_legacy_dsr_restatement.py"
+      ],
+      "strongest": "NAMED_GUARD"
+    },
+    {
+      "artifact": "legacy_research_epoch_closure.json",
+      "mechanisms": [
+        "NAMED_GUARD",
+        "CONTENT_HASH",
+        "HOST_MIRROR"
+      ],
+      "named_guards": [
+        "tests/unit/test_legacy_research_epoch.py",
+        "tests/unit/test_publish_pipeline_order.py",
+        "tests/unit/test_research_export_freshness.py"
       ],
       "strongest": "NAMED_GUARD"
     },
@@ -396,6 +1483,28 @@
       ],
       "named_guards": [
         "tests/unit/test_live_covariance_memory.py"
+      ],
+      "strongest": "NAMED_GUARD"
+    },
+    {
+      "artifact": "lowvol720_reopen_result.json",
+      "mechanisms": [
+        "NAMED_GUARD",
+        "HOST_MIRROR"
+      ],
+      "named_guards": [
+        "tests/unit/test_expanded_sleeve_paper_claims.py"
+      ],
+      "strongest": "NAMED_GUARD"
+    },
+    {
+      "artifact": "macro_economic_trend_family.json",
+      "mechanisms": [
+        "NAMED_GUARD",
+        "HOST_MIRROR"
+      ],
+      "named_guards": [
+        "tests/unit/test_public_support_artifact_sources.py"
       ],
       "strongest": "NAMED_GUARD"
     },
@@ -439,6 +1548,78 @@
       "strongest": "NAMED_GUARD"
     },
     {
+      "artifact": "next_sleeve_selection.json",
+      "mechanisms": [
+        "NAMED_GUARD",
+        "CONTENT_HASH",
+        "RENDERED_PAGE",
+        "HOST_MIRROR"
+      ],
+      "named_guards": [
+        "scripts/mutation_ledger.py",
+        "tests/unit/test_next_sleeve_selection.py"
+      ],
+      "strongest": "NAMED_GUARD"
+    },
+    {
+      "artifact": "operating_margin_corrected_replay_authorization.json",
+      "mechanisms": [
+        "NAMED_GUARD",
+        "CONTENT_HASH",
+        "RENDERED_PAGE",
+        "HOST_MIRROR"
+      ],
+      "named_guards": [
+        "tests/unit/test_operating_margin_corrected_replay_authorization.py"
+      ],
+      "strongest": "NAMED_GUARD"
+    },
+    {
+      "artifact": "operating_margin_corrected_reproduction.json",
+      "mechanisms": [
+        "NAMED_GUARD",
+        "CONTENT_HASH",
+        "RENDERED_PAGE",
+        "HOST_MIRROR"
+      ],
+      "named_guards": [
+        "tests/unit/test_identity_packet_recoverability.py",
+        "tests/unit/test_operating_margin_corrected_reproduction.py"
+      ],
+      "strongest": "NAMED_GUARD"
+    },
+    {
+      "artifact": "operating_margin_exposed_split_issuer_resolution.json",
+      "mechanisms": [
+        "CONTENT_HASH",
+        "HOST_MIRROR"
+      ],
+      "named_guards": [],
+      "strongest": "CONTENT_HASH"
+    },
+    {
+      "artifact": "operating_margin_replay_infrastructure_failure.json",
+      "mechanisms": [
+        "CONTENT_HASH",
+        "RENDERED_PAGE",
+        "HOST_MIRROR"
+      ],
+      "named_guards": [],
+      "strongest": "CONTENT_HASH"
+    },
+    {
+      "artifact": "operating_margin_unresolved_split_exposure.json",
+      "mechanisms": [
+        "NAMED_GUARD",
+        "CONTENT_HASH",
+        "HOST_MIRROR"
+      ],
+      "named_guards": [
+        "tests/unit/test_operating_margin_unresolved_split_exposure.py"
+      ],
+      "strongest": "NAMED_GUARD"
+    },
+    {
       "artifact": "options_execution_contract.json",
       "mechanisms": [
         "NAMED_GUARD",
@@ -464,12 +1645,28 @@
       "strongest": "NAMED_GUARD"
     },
     {
-      "artifact": "pre_fomc_announcement_drift_feasibility.json",
+      "artifact": "polygon_split_crosscheck.json",
       "mechanisms": [
+        "NAMED_GUARD",
+        "CONTENT_HASH",
+        "RENDERED_PAGE",
         "HOST_MIRROR"
       ],
-      "named_guards": [],
-      "strongest": "HOST_MIRROR"
+      "named_guards": [
+        "tests/unit/test_polygon_split_crosscheck.py"
+      ],
+      "strongest": "NAMED_GUARD"
+    },
+    {
+      "artifact": "pre_fomc_announcement_drift_feasibility.json",
+      "mechanisms": [
+        "NAMED_GUARD",
+        "HOST_MIRROR"
+      ],
+      "named_guards": [
+        "tests/unit/test_public_support_artifact_sources.py"
+      ],
+      "strongest": "NAMED_GUARD"
     },
     {
       "artifact": "pre_fomc_market_data_readiness.json",
@@ -505,6 +1702,56 @@
       "strongest": "NAMED_GUARD"
     },
     {
+      "artifact": "prereg_earnings_narrative_parameters.json",
+      "mechanisms": [
+        "RENDERED_PAGE",
+        "HOST_MIRROR"
+      ],
+      "named_guards": [],
+      "strongest": "RENDERED_PAGE"
+    },
+    {
+      "artifact": "prereg_investment_upstream_clean_workspace.json",
+      "mechanisms": [
+        "NAMED_GUARD",
+        "CONTENT_HASH",
+        "HOST_MIRROR"
+      ],
+      "named_guards": [
+        "tests/unit/test_alphavintage_publication_bundle.py",
+        "tests/unit/test_prereg_investment_upstream_replay.py"
+      ],
+      "strongest": "NAMED_GUARD"
+    },
+    {
+      "artifact": "program_status.json",
+      "mechanisms": [
+        "NAMED_GUARD",
+        "CONTENT_HASH",
+        "RENDERED_PAGE",
+        "HOST_MIRROR"
+      ],
+      "named_guards": [
+        "meridian/scripts/audit-live-evidence.mjs",
+        "tests/unit/test_research_export_freshness.py",
+        "tests/unit/test_sleeve_atlas.py"
+      ],
+      "strongest": "NAMED_GUARD"
+    },
+    {
+      "artifact": "prospective_trial_record.json",
+      "mechanisms": [
+        "NAMED_GUARD",
+        "RENDERED_PAGE",
+        "HOST_MIRROR"
+      ],
+      "named_guards": [
+        "meridian/scripts/paper-presentation.mjs",
+        "tests/unit/test_research_export_freshness.py"
+      ],
+      "strongest": "NAMED_GUARD"
+    },
+    {
       "artifact": "reachability_harness.json",
       "mechanisms": [
         "NAMED_GUARD",
@@ -512,6 +1759,7 @@
         "HOST_MIRROR"
       ],
       "named_guards": [
+        "tests/unit/test_atlas_reachability_screen.py",
         "tests/unit/test_reachability_harness.py"
       ],
       "strongest": "NAMED_GUARD"
@@ -520,10 +1768,12 @@
       "artifact": "record_continuity.json",
       "mechanisms": [
         "NAMED_GUARD",
+        "CONTENT_HASH",
         "RENDERED_PAGE",
         "HOST_MIRROR"
       ],
       "named_guards": [
+        "meridian/scripts/audit-live-evidence.mjs",
         "tests/unit/test_publish_pipeline_order.py",
         "tests/unit/test_record_continuity.py"
       ],
@@ -547,7 +1797,9 @@
         "CONTENT_HASH"
       ],
       "named_guards": [
-        "scripts/reproduce.py"
+        "meridian/scripts/audit-live-evidence.mjs",
+        "scripts/reproduce.py",
+        "tests/unit/test_repository_submission_worksheets.py"
       ],
       "strongest": "NAMED_GUARD"
     },
@@ -576,6 +1828,19 @@
       "strongest": "CONTENT_HASH"
     },
     {
+      "artifact": "repurchase_item703_blind_label_packet.json",
+      "mechanisms": [
+        "NAMED_GUARD",
+        "CONTENT_HASH",
+        "HOST_MIRROR"
+      ],
+      "named_guards": [
+        "tests/unit/test_glassbox_write_paths.py",
+        "tests/unit/test_repurchase_item703_blind_label_packet.py"
+      ],
+      "strongest": "NAMED_GUARD"
+    },
+    {
       "artifact": "research.json",
       "mechanisms": [
         "NAMED_GUARD",
@@ -584,44 +1849,204 @@
       ],
       "named_guards": [
         "meridian/scripts/audit-link-graph.mjs",
+        "meridian/scripts/audit-live-evidence.mjs",
+        "meridian/scripts/audit-live-seo.mjs",
+        "meridian/scripts/audit-live-seo.test.mjs",
         "meridian/scripts/audit-published-numbers.mjs",
+        "meridian/scripts/audit-readme.mjs",
         "meridian/scripts/build-founder.mjs",
         "meridian/scripts/build-measurements.mjs",
         "meridian/scripts/build-methodology.mjs",
         "meridian/scripts/build-papers.mjs",
+        "meridian/scripts/build-trials.mjs",
         "meridian/scripts/build-verify.mjs",
         "meridian/scripts/verify-papers.mjs",
+        "meridian/scripts/verify-trials.mjs",
         "scripts/audit_contract_and_units.py",
         "scripts/mutation_ledger.py",
         "scripts/reproduce.py",
         "tests/unit/test_alphamax_tick_data_path.py",
+        "tests/unit/test_alphamax_upstream_replay.py",
+        "tests/unit/test_alphavintage_full_decision_reproduction.py",
+        "tests/unit/test_atlas_reachability_screen.py",
         "tests/unit/test_borrow_execution_contract.py",
         "tests/unit/test_corp_actions_weekly_job.py",
         "tests/unit/test_corporate_action_contract.py",
         "tests/unit/test_cpcv.py",
+        "tests/unit/test_crypto_carry_portable_lake_readiness.py",
+        "tests/unit/test_crypto_carry_portable_prerun_readiness.py",
+        "tests/unit/test_crypto_carry_portable_v1_result.py",
+        "tests/unit/test_crypto_carry_portable_v1_run.py",
         "tests/unit/test_deflation_counts_hypotheses.py",
         "tests/unit/test_deribit_capture_resilience.py",
+        "tests/unit/test_expanded_sleeve_paper_claims.py",
         "tests/unit/test_experiment_union.py",
         "tests/unit/test_experiments.py",
         "tests/unit/test_feature_serve_parity.py",
         "tests/unit/test_financing_contract.py",
+        "tests/unit/test_forward_evidence_maturity.py",
+        "tests/unit/test_forward_trial_ledger_gate.py",
+        "tests/unit/test_glassbox_eia_kill.py",
+        "tests/unit/test_glassbox_insider_kill.py",
         "tests/unit/test_glassbox_write_paths.py",
+        "tests/unit/test_historical_curve_evidence.py",
         "tests/unit/test_ic_report.py",
+        "tests/unit/test_identity_packet_recoverability.py",
+        "tests/unit/test_identity_trial_packets.py",
+        "tests/unit/test_legacy_research_epoch.py",
         "tests/unit/test_market_status_contract.py",
         "tests/unit/test_options_execution_contract.py",
         "tests/unit/test_probe_earnings_narrative_change.py",
+        "tests/unit/test_probe_eia_petroleum_inventory.py",
+        "tests/unit/test_public_support_artifact_sources.py",
+        "tests/unit/test_publication_bibliographies.py",
         "tests/unit/test_publish_gate.py",
         "tests/unit/test_publish_pipeline_order.py",
         "tests/unit/test_published_gates_match_the_contract.py",
+        "tests/unit/test_readme_current_evidence_claims.py",
+        "tests/unit/test_remaining_research_families.py",
         "tests/unit/test_research_export_freshness.py",
         "tests/unit/test_retracted_claims_gate.py",
+        "tests/unit/test_seal_lighthouse_accessibility_audit.py",
+        "tests/unit/test_seal_repurchase_item703_labels.py",
         "tests/unit/test_signal_service.py",
         "tests/unit/test_sleeve.py",
         "tests/unit/test_sleeve_discovery_program.py",
+        "tests/unit/test_stanford_evidence_map.py",
+        "tests/unit/test_track_record_provenance.py",
+        "tests/unit/test_trial_accounting_v7_proposal.py",
+        "tests/unit/test_trial_packet_manifest.py",
+        "tests/unit/test_validate_forward_trial_reservation.py",
         "tests/unit/test_walkforward.py",
         "tests/unit/test_walkforward_equity_scope.py"
       ],
       "strongest": "NAMED_GUARD"
+    },
+    {
+      "artifact": "research_accessibility_audit.json",
+      "mechanisms": [
+        "NAMED_GUARD",
+        "CONTENT_HASH",
+        "HOST_MIRROR"
+      ],
+      "named_guards": [
+        "meridian/scripts/audit-live-evidence.mjs"
+      ],
+      "strongest": "NAMED_GUARD"
+    },
+    {
+      "artifact": "sharadar_corporate_action_corrected_lake.json",
+      "mechanisms": [
+        "NAMED_GUARD",
+        "CONTENT_HASH",
+        "RENDERED_PAGE",
+        "HOST_MIRROR"
+      ],
+      "named_guards": [
+        "tests/unit/test_sharadar_corporate_action_corrected_lake.py"
+      ],
+      "strongest": "NAMED_GUARD"
+    },
+    {
+      "artifact": "sharadar_corrected_corporate_action_validation.json",
+      "mechanisms": [
+        "NAMED_GUARD",
+        "CONTENT_HASH",
+        "RENDERED_PAGE",
+        "HOST_MIRROR"
+      ],
+      "named_guards": [
+        "tests/unit/test_sharadar_corrected_corporate_action_lake.py"
+      ],
+      "strongest": "NAMED_GUARD"
+    },
+    {
+      "artifact": "sharadar_dividend_basis_resolution.json",
+      "mechanisms": [
+        "NAMED_GUARD",
+        "CONTENT_HASH",
+        "RENDERED_PAGE",
+        "HOST_MIRROR"
+      ],
+      "named_guards": [
+        "tests/unit/test_sharadar_dividend_basis_resolution.py"
+      ],
+      "strongest": "NAMED_GUARD"
+    },
+    {
+      "artifact": "sharadar_dividend_price_consistency.json",
+      "mechanisms": [
+        "NAMED_GUARD",
+        "CONTENT_HASH",
+        "RENDERED_PAGE",
+        "HOST_MIRROR"
+      ],
+      "named_guards": [
+        "tests/unit/test_sharadar_dividend_price_consistency.py"
+      ],
+      "strongest": "NAMED_GUARD"
+    },
+    {
+      "artifact": "sharadar_dividend_split_basis.json",
+      "mechanisms": [
+        "NAMED_GUARD",
+        "CONTENT_HASH",
+        "RENDERED_PAGE",
+        "HOST_MIRROR"
+      ],
+      "named_guards": [
+        "tests/unit/test_sharadar_dividend_split_basis.py"
+      ],
+      "strongest": "NAMED_GUARD"
+    },
+    {
+      "artifact": "sharadar_hdb_corrected_lake.json",
+      "mechanisms": [
+        "NAMED_GUARD",
+        "CONTENT_HASH",
+        "RENDERED_PAGE",
+        "HOST_MIRROR"
+      ],
+      "named_guards": [
+        "tests/unit/test_sharadar_hdb_corrected_lake.py"
+      ],
+      "strongest": "NAMED_GUARD"
+    },
+    {
+      "artifact": "sharadar_split_governance_policy.json",
+      "mechanisms": [
+        "NAMED_GUARD",
+        "CONTENT_HASH",
+        "RENDERED_PAGE",
+        "HOST_MIRROR"
+      ],
+      "named_guards": [
+        "tests/unit/test_sharadar_split_governance_policy.py"
+      ],
+      "strongest": "NAMED_GUARD"
+    },
+    {
+      "artifact": "sharadar_split_lifecycle_scope.json",
+      "mechanisms": [
+        "NAMED_GUARD",
+        "CONTENT_HASH",
+        "RENDERED_PAGE",
+        "HOST_MIRROR"
+      ],
+      "named_guards": [
+        "tests/unit/test_sharadar_split_lifecycle_scope.py"
+      ],
+      "strongest": "NAMED_GUARD"
+    },
+    {
+      "artifact": "sharadar_zero_dividend_quarantine.json",
+      "mechanisms": [
+        "CONTENT_HASH",
+        "RENDERED_PAGE",
+        "HOST_MIRROR"
+      ],
+      "named_guards": [],
+      "strongest": "CONTENT_HASH"
     },
     {
       "artifact": "sleeve_admission_contract.json",
@@ -631,15 +2056,23 @@
         "HOST_MIRROR"
       ],
       "named_guards": [
+        "meridian/scripts/build-methodology.mjs",
+        "meridian/scripts/paper-presentation.mjs",
+        "meridian/scripts/verify-papers.mjs",
         "scripts/audit_contract_and_units.py",
         "scripts/mutation_ledger.py",
         "tests/unit/test_admission_contract_is_fully_enforced.py",
         "tests/unit/test_admission_frontier_arithmetic.py",
         "tests/unit/test_admission_significance_floors.py",
+        "tests/unit/test_admission_v7_proposal.py",
         "tests/unit/test_correlation_gate_is_satisfiable_by_the_book.py",
+        "tests/unit/test_crypto_carry_portable_v1_result.py",
+        "tests/unit/test_forward_trial_ledger_gate.py",
         "tests/unit/test_published_gates_match_the_contract.py",
         "tests/unit/test_research_export_freshness.py",
-        "tests/unit/test_sleeve_admission.py"
+        "tests/unit/test_sleeve_admission.py",
+        "tests/unit/test_sleeve_atlas.py",
+        "tests/unit/test_validate_forward_trial_reservation.py"
       ],
       "strongest": "NAMED_GUARD"
     },
@@ -698,6 +2131,47 @@
       "strongest": "NAMED_GUARD"
     },
     {
+      "artifact": "sleeve_publication_evidence.json",
+      "mechanisms": [
+        "NAMED_GUARD",
+        "HOST_MIRROR"
+      ],
+      "named_guards": [
+        "scripts/mutation_ledger.py",
+        "tests/unit/test_public_support_artifact_sources.py",
+        "tests/unit/test_sleeve_publication_bundles.py"
+      ],
+      "strongest": "NAMED_GUARD"
+    },
+    {
+      "artifact": "sleeve_publication_isolated_replay_verification.json",
+      "mechanisms": [
+        "NAMED_GUARD",
+        "CONTENT_HASH",
+        "HOST_MIRROR"
+      ],
+      "named_guards": [
+        "scripts/mutation_ledger.py",
+        "tests/unit/test_public_support_artifact_sources.py",
+        "tests/unit/test_sleeve_publication_replay_verification.py"
+      ],
+      "strongest": "NAMED_GUARD"
+    },
+    {
+      "artifact": "sleeve_publication_replay_verification.json",
+      "mechanisms": [
+        "NAMED_GUARD",
+        "CONTENT_HASH",
+        "HOST_MIRROR"
+      ],
+      "named_guards": [
+        "scripts/mutation_ledger.py",
+        "tests/unit/test_public_support_artifact_sources.py",
+        "tests/unit/test_sleeve_publication_replay_verification.py"
+      ],
+      "strongest": "NAMED_GUARD"
+    },
+    {
       "artifact": "sleeve_quality_decomposition.json",
       "mechanisms": [
         "RENDERED_PAGE",
@@ -709,18 +2183,24 @@
     {
       "artifact": "spin_off_document_schema.json",
       "mechanisms": [
+        "NAMED_GUARD",
         "HOST_MIRROR"
       ],
-      "named_guards": [],
-      "strongest": "HOST_MIRROR"
+      "named_guards": [
+        "tests/unit/test_public_support_artifact_sources.py"
+      ],
+      "strongest": "NAMED_GUARD"
     },
     {
       "artifact": "spin_off_lineage.json",
       "mechanisms": [
+        "NAMED_GUARD",
         "HOST_MIRROR"
       ],
-      "named_guards": [],
-      "strongest": "HOST_MIRROR"
+      "named_guards": [
+        "tests/unit/test_public_support_artifact_sources.py"
+      ],
+      "strongest": "NAMED_GUARD"
     },
     {
       "artifact": "spinoff_form_universe.json",
@@ -746,19 +2226,202 @@
       "strongest": "NAMED_GUARD"
     },
     {
+      "artifact": "split_exception_issuer_resolution.json",
+      "mechanisms": [
+        "NAMED_GUARD",
+        "CONTENT_HASH",
+        "RENDERED_PAGE",
+        "HOST_MIRROR"
+      ],
+      "named_guards": [
+        "tests/unit/test_split_exception_issuer_resolution.py"
+      ],
+      "strongest": "NAMED_GUARD"
+    },
+    {
+      "artifact": "split_issuer_conflict_resolution_batch_v5.json",
+      "mechanisms": [
+        "NAMED_GUARD",
+        "CONTENT_HASH",
+        "RENDERED_PAGE",
+        "HOST_MIRROR"
+      ],
+      "named_guards": [
+        "tests/unit/test_split_issuer_conflict_resolution_batch_v5.py"
+      ],
+      "strongest": "NAMED_GUARD"
+    },
+    {
+      "artifact": "split_issuer_resolution_batch_v10.json",
+      "mechanisms": [
+        "NAMED_GUARD",
+        "CONTENT_HASH",
+        "RENDERED_PAGE",
+        "HOST_MIRROR"
+      ],
+      "named_guards": [
+        "tests/unit/test_split_issuer_resolution_batch_v10.py"
+      ],
+      "strongest": "NAMED_GUARD"
+    },
+    {
+      "artifact": "split_issuer_resolution_batch_v11.json",
+      "mechanisms": [
+        "NAMED_GUARD",
+        "CONTENT_HASH",
+        "RENDERED_PAGE",
+        "HOST_MIRROR"
+      ],
+      "named_guards": [
+        "tests/unit/test_split_issuer_resolution_batch_v11.py"
+      ],
+      "strongest": "NAMED_GUARD"
+    },
+    {
+      "artifact": "split_issuer_resolution_batch_v2.json",
+      "mechanisms": [
+        "NAMED_GUARD",
+        "CONTENT_HASH",
+        "RENDERED_PAGE",
+        "HOST_MIRROR"
+      ],
+      "named_guards": [
+        "tests/unit/test_split_issuer_resolution_batch_v2.py"
+      ],
+      "strongest": "NAMED_GUARD"
+    },
+    {
+      "artifact": "split_issuer_resolution_batch_v3.json",
+      "mechanisms": [
+        "NAMED_GUARD",
+        "CONTENT_HASH",
+        "RENDERED_PAGE",
+        "HOST_MIRROR"
+      ],
+      "named_guards": [
+        "tests/unit/test_split_issuer_resolution_batch_v3.py"
+      ],
+      "strongest": "NAMED_GUARD"
+    },
+    {
+      "artifact": "split_issuer_resolution_batch_v4.json",
+      "mechanisms": [
+        "NAMED_GUARD",
+        "CONTENT_HASH",
+        "RENDERED_PAGE",
+        "HOST_MIRROR"
+      ],
+      "named_guards": [
+        "tests/unit/test_split_issuer_resolution_batch_v4.py"
+      ],
+      "strongest": "NAMED_GUARD"
+    },
+    {
+      "artifact": "split_issuer_resolution_batch_v6.json",
+      "mechanisms": [
+        "NAMED_GUARD",
+        "CONTENT_HASH",
+        "RENDERED_PAGE",
+        "HOST_MIRROR"
+      ],
+      "named_guards": [
+        "tests/unit/test_split_issuer_resolution_batch_v6.py"
+      ],
+      "strongest": "NAMED_GUARD"
+    },
+    {
+      "artifact": "split_issuer_resolution_batch_v7.json",
+      "mechanisms": [
+        "NAMED_GUARD",
+        "CONTENT_HASH",
+        "RENDERED_PAGE",
+        "HOST_MIRROR"
+      ],
+      "named_guards": [
+        "tests/unit/test_split_issuer_resolution_batch_v7.py"
+      ],
+      "strongest": "NAMED_GUARD"
+    },
+    {
+      "artifact": "split_issuer_resolution_batch_v8.json",
+      "mechanisms": [
+        "NAMED_GUARD",
+        "CONTENT_HASH",
+        "RENDERED_PAGE",
+        "HOST_MIRROR"
+      ],
+      "named_guards": [
+        "tests/unit/test_split_issuer_resolution_batch_v8.py"
+      ],
+      "strongest": "NAMED_GUARD"
+    },
+    {
+      "artifact": "split_issuer_resolution_batch_v9.json",
+      "mechanisms": [
+        "NAMED_GUARD",
+        "CONTENT_HASH",
+        "RENDERED_PAGE",
+        "HOST_MIRROR"
+      ],
+      "named_guards": [
+        "tests/unit/test_split_issuer_resolution_batch_v9.py"
+      ],
+      "strongest": "NAMED_GUARD"
+    },
+    {
+      "artifact": "split_lifecycle_discontinuity_resolution.json",
+      "mechanisms": [
+        "NAMED_GUARD",
+        "CONTENT_HASH",
+        "RENDERED_PAGE",
+        "HOST_MIRROR"
+      ],
+      "named_guards": [
+        "tests/unit/test_split_lifecycle_discontinuity_resolution.py"
+      ],
+      "strongest": "NAMED_GUARD"
+    },
+    {
+      "artifact": "stanford_cs_evidence_map.json",
+      "mechanisms": [
+        "CONTENT_HASH",
+        "HOST_MIRROR"
+      ],
+      "named_guards": [],
+      "strongest": "CONTENT_HASH"
+    },
+    {
+      "artifact": "tender_offer_reachability.json",
+      "mechanisms": [
+        "NAMED_GUARD",
+        "CONTENT_HASH",
+        "RENDERED_PAGE",
+        "HOST_MIRROR"
+      ],
+      "named_guards": [
+        "tests/unit/test_atlas_reachability_screen.py",
+        "tests/unit/test_tender_offer_reachability.py"
+      ],
+      "strongest": "NAMED_GUARD"
+    },
+    {
       "artifact": "track_record.json",
       "mechanisms": [
         "NAMED_GUARD",
         "CONTENT_HASH"
       ],
       "named_guards": [
+        "meridian/scripts/audit-live-evidence.mjs",
         "meridian/scripts/build-founder.mjs",
         "meridian/scripts/build-methodology.mjs",
         "meridian/scripts/verify-papers.mjs",
         "scripts/check_retracted_claims.py",
+        "scripts/mutation_ledger.py",
         "scripts/reproduce.py",
+        "tests/unit/test_forward_evidence_maturity.py",
         "tests/unit/test_publish_pipeline_order.py",
-        "tests/unit/test_retracted_claims_gate.py"
+        "tests/unit/test_retracted_claims_gate.py",
+        "tests/unit/test_track_record_provenance.py"
       ],
       "strongest": "NAMED_GUARD"
     },
@@ -769,25 +2432,32 @@
         "SIGNATURE"
       ],
       "named_guards": [
+        "meridian/scripts/audit-live-evidence.mjs",
         "meridian/scripts/build-founder.mjs",
         "meridian/scripts/build-methodology.mjs",
         "meridian/scripts/build-verify.mjs",
         "meridian/scripts/verify-papers.mjs",
         "scripts/check_retracted_claims.py",
+        "scripts/mutation_ledger.py",
         "scripts/reproduce.py",
         "scripts/verify_transparency.py",
+        "tests/unit/test_publish_pipeline_order.py",
         "tests/unit/test_published_chain_label_matches_the_data.py",
-        "tests/unit/test_retracted_claims_gate.py"
+        "tests/unit/test_retracted_claims_gate.py",
+        "tests/unit/test_transparency_payload_disclosure.py"
       ],
       "strongest": "NAMED_GUARD"
     },
     {
       "artifact": "treasury_auction_concession_feasibility.json",
       "mechanisms": [
+        "NAMED_GUARD",
         "HOST_MIRROR"
       ],
-      "named_guards": [],
-      "strongest": "HOST_MIRROR"
+      "named_guards": [
+        "tests/unit/test_public_support_artifact_sources.py"
+      ],
+      "strongest": "NAMED_GUARD"
     },
     {
       "artifact": "treasury_auction_identity_timing.json",
@@ -803,10 +2473,13 @@
     {
       "artifact": "treasury_calendar_revision_audit.json",
       "mechanisms": [
+        "NAMED_GUARD",
         "HOST_MIRROR"
       ],
-      "named_guards": [],
-      "strongest": "HOST_MIRROR"
+      "named_guards": [
+        "tests/unit/test_public_support_artifact_sources.py"
+      ],
+      "strongest": "NAMED_GUARD"
     },
     {
       "artifact": "treasury_tentative_schedule_audit.json",
@@ -820,18 +2493,57 @@
     {
       "artifact": "treasury_wayback_pdf_schedule_audit.json",
       "mechanisms": [
+        "NAMED_GUARD",
         "HOST_MIRROR"
       ],
-      "named_guards": [],
-      "strongest": "HOST_MIRROR"
+      "named_guards": [
+        "tests/unit/test_public_support_artifact_sources.py"
+      ],
+      "strongest": "NAMED_GUARD"
     },
     {
       "artifact": "treasury_wayback_schedule_audit.json",
       "mechanisms": [
+        "NAMED_GUARD",
         "HOST_MIRROR"
       ],
-      "named_guards": [],
-      "strongest": "HOST_MIRROR"
+      "named_guards": [
+        "tests/unit/test_public_support_artifact_sources.py"
+      ],
+      "strongest": "NAMED_GUARD"
+    },
+    {
+      "artifact": "trial_accounting.json",
+      "mechanisms": [
+        "NAMED_GUARD",
+        "RENDERED_PAGE",
+        "HOST_MIRROR"
+      ],
+      "named_guards": [
+        "tests/unit/test_admission_gate_power_audit.py",
+        "tests/unit/test_borrow_execution_contract.py",
+        "tests/unit/test_corporate_action_contract.py",
+        "tests/unit/test_crowding_risk_contract.py",
+        "tests/unit/test_crypto_carry_full_path_drift.py",
+        "tests/unit/test_crypto_carry_replay_correction.py",
+        "tests/unit/test_current_book_diversification.py",
+        "tests/unit/test_current_book_drawdown.py",
+        "tests/unit/test_experiment_union.py",
+        "tests/unit/test_financing_contract.py",
+        "tests/unit/test_forward_trial_ledger_gate.py",
+        "tests/unit/test_futures_execution_contract.py",
+        "tests/unit/test_lint_debt_contract.py",
+        "tests/unit/test_market_status_contract.py",
+        "tests/unit/test_operating_margin_corrected_reproduction.py",
+        "tests/unit/test_options_execution_contract.py",
+        "tests/unit/test_readme_current_evidence_claims.py",
+        "tests/unit/test_research_export_freshness.py",
+        "tests/unit/test_sleeve_publication_bundles.py",
+        "tests/unit/test_trial_accounting_v7_proposal.py",
+        "tests/unit/test_validate_forward_trial_reservation.py",
+        "tests/unit/test_walkforward_input_snapshot_protocol.py"
+      ],
+      "strongest": "NAMED_GUARD"
     },
     {
       "artifact": "trial_ledger.json",
@@ -841,30 +2553,99 @@
         "HOST_MIRROR"
       ],
       "named_guards": [
+        "meridian/scripts/audit-live-evidence.mjs",
         "meridian/scripts/build-founder.mjs",
         "meridian/scripts/build-methodology.mjs",
-        "meridian/scripts/verify-papers.mjs"
+        "meridian/scripts/verify-papers.mjs",
+        "scripts/mutation_ledger.py"
+      ],
+      "strongest": "NAMED_GUARD"
+    },
+    {
+      "artifact": "trial_packet_manifest.json",
+      "mechanisms": [
+        "NAMED_GUARD",
+        "CONTENT_HASH",
+        "HOST_MIRROR"
+      ],
+      "named_guards": [
+        "meridian/scripts/audit-live-evidence.mjs",
+        "meridian/scripts/audit-readme.mjs",
+        "scripts/mutation_ledger.py",
+        "tests/unit/test_forward_trial_ledger_gate.py",
+        "tests/unit/test_legacy_research_epoch.py",
+        "tests/unit/test_publish_pipeline_order.py",
+        "tests/unit/test_research_export_freshness.py",
+        "tests/unit/test_trial_packet_manifest.py",
+        "tests/unit/test_validate_forward_trial_reservation.py"
+      ],
+      "strongest": "NAMED_GUARD"
+    },
+    {
+      "artifact": "unresolved_split_event_context.json",
+      "mechanisms": [
+        "NAMED_GUARD",
+        "CONTENT_HASH",
+        "RENDERED_PAGE",
+        "HOST_MIRROR"
+      ],
+      "named_guards": [
+        "tests/unit/test_unresolved_split_event_context.py"
+      ],
+      "strongest": "NAMED_GUARD"
+    },
+    {
+      "artifact": "vate_2020_dividend_resolution.json",
+      "mechanisms": [
+        "CONTENT_HASH",
+        "RENDERED_PAGE",
+        "HOST_MIRROR"
+      ],
+      "named_guards": [],
+      "strongest": "CONTENT_HASH"
+    },
+    {
+      "artifact": "walkforward_input_snapshot_protocol.json",
+      "mechanisms": [
+        "NAMED_GUARD",
+        "CONTENT_HASH",
+        "HOST_MIRROR"
+      ],
+      "named_guards": [
+        "tests/unit/test_walkforward_input_snapshot_protocol.py"
+      ],
+      "strongest": "NAMED_GUARD"
+    },
+    {
+      "artifact": "wave1_data_rights_audit.json",
+      "mechanisms": [
+        "CONTENT_HASH",
+        "HOST_MIRROR"
+      ],
+      "named_guards": [],
+      "strongest": "CONTENT_HASH"
+    },
+    {
+      "artifact": "wave1_release_candidates.json",
+      "mechanisms": [
+        "NAMED_GUARD",
+        "CONTENT_HASH",
+        "HOST_MIRROR"
+      ],
+      "named_guards": [
+        "tests/unit/test_wave1_release_candidates.py"
       ],
       "strongest": "NAMED_GUARD"
     }
   ],
-  "guarded_only_by_the_host_mirror": [
-    "earnings_narrative_change_result.json",
-    "pre_fomc_announcement_drift_feasibility.json",
-    "spin_off_document_schema.json",
-    "spin_off_lineage.json",
-    "treasury_auction_concession_feasibility.json",
-    "treasury_calendar_revision_audit.json",
-    "treasury_wayback_pdf_schedule_audit.json",
-    "treasury_wayback_schedule_audit.json"
-  ],
+  "guarded_only_by_the_host_mirror": [],
   "last_run": {
     "reproduce_kit": {
-      "command": "/Users/arhancanli/alphaforge/.venv/bin/python scripts/reproduce.py",
+      "command": "/Users/arhancanli/alphaforge/.venv/bin/python3 scripts/reproduce.py",
       "cwd": "/Users/arhancanli/alphaforge",
       "exit_code": 0,
       "outcome": "PASS",
-      "ran_at": "2026-08-22T05:20:10+00:00",
+      "ran_at": "2026-08-25T11:17:02+00:00",
       "tail": [
         "  L2 signatures     : 2 verified, 0 failed",
         "  L3 golden master  : PASS",
@@ -872,11 +2653,11 @@
       ]
     },
     "retracted_claim_gate": {
-      "command": "/Users/arhancanli/alphaforge/.venv/bin/python scripts/check_retracted_claims.py",
+      "command": "/Users/arhancanli/alphaforge/.venv/bin/python3 scripts/check_retracted_claims.py",
       "cwd": "/Users/arhancanli/alphaforge",
       "exit_code": 0,
       "outcome": "PASS",
-      "ran_at": "2026-08-22T05:20:27+00:00",
+      "ran_at": "2026-08-25T11:17:06+00:00",
       "tail": [
         "retracted-claims check: 12 rules over 2 root(s)",
         "  PASS \u2014 no withdrawn claim is asserted anywhere in the publish set"
@@ -885,25 +2666,25 @@
     "site_verifiers": {
       "command": "npm run --silent verify",
       "cwd": "/Users/arhancanli/meridian",
-      "exit_code": 1,
-      "outcome": "FAIL",
-      "ran_at": "2026-08-22T05:20:28+00:00",
+      "exit_code": 0,
+      "outcome": "PASS",
+      "ran_at": "2026-08-25T11:17:11+00:00",
       "tail": [
-        "  - 59573  on /research/options-execution-foundation",
-        "  - 24.6  on /research/prereg-earnings-narrative-change",
-        "FAILED: 8 untraceable numeral(s) on unsourced pages"
+        "  corpus: 616029 numbers across 526 artifacts",
+        "  every numeral a reader can see traces to a published artifact",
+        "README audit passed: 108 papers, 13 topic hubs, 84 measurements, 234 URLs, 228 packets (226 incomplete); deploy-gate source verified"
       ]
     },
     "unit_suite": {
-      "command": "/Users/arhancanli/alphaforge/.venv/bin/python -m pytest tests/unit -q --no-cov",
+      "command": "/Users/arhancanli/alphaforge/.venv/bin/python3 -m pytest tests/unit -q --no-cov",
       "cwd": "/Users/arhancanli/alphaforge",
       "exit_code": 0,
       "outcome": "PASS",
-      "ran_at": "2026-08-22T05:18:00+00:00",
+      "ran_at": "2026-08-25T11:16:00+00:00",
       "tail": [
-        "........................................................................ [ 97%]",
-        "........................................................................ [ 99%]",
-        ".................                                                        [100%]"
+        "........................................................................ [ 96%]",
+        "........................................................................ [ 98%]",
+        "...................................................                      [100%]"
       ]
     }
   },
@@ -914,27 +2695,27 @@
     "RENDERED_PAGE": "rendered as a measurement page and checked for a claim boundary",
     "SIGNATURE": "Ed25519 over the payload"
   },
-  "published_artifacts": 68,
+  "published_artifacts": 215,
   "rebuilt_before_observing": {
     "lint_debt_contract": {
-      "command": "/Users/arhancanli/alphaforge/.venv/bin/python scripts/export_lint_debt_contract.py",
+      "command": "/Users/arhancanli/alphaforge/.venv/bin/python3 scripts/export_lint_debt_contract.py",
       "cwd": "/Users/arhancanli/alphaforge",
       "exit_code": 0,
       "outcome": "PASS",
-      "ran_at": "2026-08-22T05:17:59+00:00",
+      "ran_at": "2026-08-25T11:15:57+00:00",
       "tail": [
         "/Users/arhancanli/alphaforge/artifacts/engineering/lint_debt_contract.json"
       ]
     },
     "research_export": {
-      "command": "/Users/arhancanli/alphaforge/.venv/bin/python scripts/research_export.py",
+      "command": "/Users/arhancanli/alphaforge/.venv/bin/python3 scripts/research_export.py",
       "cwd": "/Users/arhancanli/alphaforge",
       "exit_code": 0,
       "outcome": "PASS",
-      "ran_at": "2026-08-22T05:17:59+00:00",
+      "ran_at": "2026-08-25T11:15:57+00:00",
       "tail": [
-        "wrote /Users/arhancanli/meridian/public/glassbox/research.json  (1058677 bytes)",
-        "content_hash: sha256:cea00a82f9b34b989325e4b8ebbbc9cb2897bf8b122d940020ba44e9e5b17465"
+        "wrote /Users/arhancanli/meridian/public/glassbox/research.json  (3698965 bytes)",
+        "content_hash: sha256:28c8b30201cb8d4a6ff3c5e249a93c3cbf5ee98d4f4b12769c6012514b438d62"
       ]
     }
   },
@@ -943,5 +2724,5 @@
   "what_mirror_only_means": "We verify both hosts received the identical file, and nothing verifies the file. No test names it, it carries no content hash, it renders on no page. If its contents went stale or wrong, both hosts would publish the same wrong thing and every check would pass.",
   "why": "Split coverage reads as coverage. Every guard here reports on itself and none reported on the set, so an artifact with no guard looked exactly like one with three.",
   "why_rebuild_first": "The publish path rebuilds the derived contracts before anything checks them, so a suite observed before that rebuild reports a failure the publish never ships. The first run of this map did exactly that.",
-  "with_a_named_guard": 48
+  "with_a_named_guard": 152
 }

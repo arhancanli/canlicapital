@@ -2,7 +2,7 @@
 
 **Short title:** Crypto Dated-Futures Basis (campaign): killed
 
-**Verdict:** KILLED  **Stage:** screen prototype  
+**Verdict:** KILLED  **Stage:** screen prototype
 **Identity:** `crypto_dated_basis`
 
 Screened at an apparent 1.47 but refuted 3x and reproduced from scratch: the 8.2%/yr 'carry' is a roll-accounting fiction — the kept days (+0.55) and the dropped roll days (-0.55) cancel; honest all-days P&L telescopes to ~0%/yr, skew -6.84. A construction-fitting artifact (the 'edge' is earned by deleting the days it loses money). KILLED.

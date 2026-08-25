@@ -2,7 +2,7 @@
 
 **Short title:** Turn-of-Month / Rebalancing Flow (probe): killed
 
-**Verdict:** KILLED  **Stage:** screen prototype  
+**Verdict:** KILLED  **Stage:** screen prototype
 **Identity:** `mechflow_tom`
 
 The calendar flow is real — SPY earns 5.65bp/day in the last-1-plus-first-3 window vs 3.96bp outside, and the footprint replicates on QQQ — but monetized standalone it sits in cash 76% of days: net Sharpe 0.27, below buy-and-hold SPY (0.58) and the screen bar, DSR 0.035 across 43 configs. The 60/40 month-end rebalance-fade variant decayed negative after 2018. A real effect that is an execution tilt, not a sleeve. KILLED as standalone. RE-EXAMINED 2026-08-03 because that first reason was BAD ARITHMETIC: a candidate need not beat the book to improve it, only clear own_SR > rho x S_b. Re-tested as a diversifier on ONE pre-registered config (no sweep, so no search penalty). The reframe was right about correlation — rho to the live book is +0.010, dropping the bar to +0.006 — and it still fails: own Sharpe -0.56 over the book's own window, and over 25 years / 6,309 sessions the full-history Sharpe of +0.278 carries a Newey-West t of only +1.42, with no decade reaching t=2 (best +1.32). A near-zero bar lowers what you must BEAT, never what you must PROVE. Adding it hurt the book at every weight (-0.03 to -0.15), and 87-96% of that harm came from the mean, not from variance. KILLED on the correct bar — this one is final.

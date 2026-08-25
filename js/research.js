@@ -451,6 +451,8 @@ function bindBook(d) {
   if (sleeveWrap && Array.isArray(b.sleeves)) {
     sleeveWrap.textContent = "";
     sleeveWrap.removeAttribute("data-empty");
+    sleeveWrap.setAttribute("role", "list");
+    sleeveWrap.setAttribute("aria-label", "The four current sleeves");
     b.sleeves.forEach((s) => {
       const card = el("div", "sleeve");
       card.setAttribute("role", "listitem");

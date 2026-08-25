@@ -24,7 +24,9 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=swap" />
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=optional" />
+<link rel="stylesheet" media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=optional" />
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=optional" /></noscript>
 <link rel="stylesheet" href="../css/paper.css" />
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"Orthogonality prior","description":"A PRIOR, stated before measurement and labelled as such in every row. No candidate correlation is measured, no hypothesis identity is registered, no return data is…","url":"https://canlicapital.com/measurements/orthogonality-prior","creator":{"@type":"Person","name":"Arhan Canli"},"publisher":{"@type":"Organization","name":"Canli Capital","url":"https://canlicapital.com/"},"isAccessibleForFree":true,"distribution":{"@type":"DataDownload","encodingFormat":"application/json","contentUrl":"https://canlicapital.com/glassbox/orthogonality_prior.json"}}</script>
 </head>
@@ -46,7 +48,7 @@
     <h1 class="paper__title">Orthogonality prior</h1>
     <p class="paper__byline">By <span rel="author">Arhan Canli</span>, Canli Capital</p>
     <div class="paper__body">
-<p class="measure__lead">Orthogonality prior is one of 31 measurements this
+<p class="measure__lead">Orthogonality prior is one of 84 measurements this
 engine publishes in full. It is regenerated from a real run rather than transcribed, and it
 is shown here with its own claim boundary so the number and its limits arrive together.</p>
 <aside class="measure__boundary"><h2>What this measurement does and does not claim</h2><p>A PRIOR, stated before measurement and labelled as such in every row. No candidate correlation is measured, no hypothesis identity is registered, no return data is opened and no candidate is authorised. Nothing here is evidence about any family&#39;s correlation; it is an ordering to be tested and, where wrong, published as wrong. 0 trials.</p></aside>
@@ -55,12 +57,12 @@ is shown here with its own claim boundary so the number and its limits arrive to
 <div class="measure__row"><dt>Schema</dt><dd>canli.alphac-orthogonality-prior.v1</dd></div>
 </dl>
 <section class="measure__sub"><h3>By prior</h3>
-<p class="measure__label">LIKELY CORRELATED SHARES A FACTOR WITH A LIVE SLEEVE</p><ul class="measure__list"><li>analyst_revision_drift</li><li>carbon_allowance_carry</li><li>catastrophe_bond_event_risk</li><li>inflation_breakeven_relative_value</li><li>securities_lending_supply</li></ul>
+<p class="measure__label">LIKELY CORRELATED SHARES A FACTOR WITH A LIVE SLEEVE</p><ul class="measure__list"><li>analyst_revision_drift</li><li>carbon_allowance_carry</li><li>catastrophe_bond_event_risk</li><li>securities_lending_supply</li></ul>
 <p class="measure__label">STRONGLY ORTHOGONAL DRIVEN BY SOMETHING OTHER THAN PRICE</p><ul class="measure__list"><li>index_reconstitution_flow</li></ul>
-<p class="measure__label">UNCERTAIN SHARES THE CRISIS DIRECTION OF A LIVE SLEEVE</p><ul class="measure__list"><li>active_ownership_escalation</li><li>credit_equity_relative_value</li><li>cross_currency_basis</li><li>crypto_liquidation_pressure</li><li>dealer_gamma_pressure</li><li>fallen_angel_flow</li><li>freight_derivative_dislocation</li><li>fx_option_risk_reversal</li><li>merger_arbitrage</li><li>mortgage_convexity_pressure</li><li>municipal_taxable_basis</li><li>sovereign_cds_fx_dislocation</li><li>swap_spread_dislocation</li><li>tender_offer_spread</li></ul>
+<p class="measure__label">UNCERTAIN SHARES THE CRISIS DIRECTION OF A LIVE SLEEVE</p><ul class="measure__list"><li>credit_equity_relative_value</li><li>cross_currency_basis</li><li>crypto_liquidation_pressure</li><li>dealer_gamma_pressure</li><li>fallen_angel_flow</li><li>freight_derivative_dislocation</li><li>fx_option_risk_reversal</li><li>mortgage_convexity_pressure</li><li>municipal_taxable_basis</li><li>sovereign_cds_fx_dislocation</li><li>swap_spread_dislocation</li></ul>
 </section>
 <p class="measure__label">Families</p><p class="measure__deep">Nested beyond what this page renders. <a href="/glassbox/orthogonality_prior.json">Read it in the artifact</a>.</p>
-<p class="measure__prose"><strong>Headline.</strong> 1 of 20 remaining families are structurally orthogonal to this book on the stated rule. 5 share a factor family with a live sleeve outright, and 14 lose money in the same event as the sleeve that carries this book&#39;s largest single source of return. Breadth measured in asset classes is not breadth.</p>
+<p class="measure__prose"><strong>Headline.</strong> 1 of 16 remaining families are structurally orthogonal to this book on the stated rule. 4 share a factor family with a live sleeve outright, and 11 lose money in the same event as the sleeve that carries this book&#39;s largest single source of return. Breadth measured in asset classes is not breadth.</p>
 <section class="measure__sub"><h3>Live sleeves</h3>
 <section class="measure__sub"><h4>AlphaForge</h4>
 <dl class="measure__facts">
@@ -136,7 +138,7 @@ is shown here with its own claim boundary so the number and its limits arrive to
 </section>
 <section class="measure__sub"><h3>What the ordering is for</h3>
 <dl class="measure__facts">
-<div class="measure__row"><dt>Contract correlation gate</dt><dd>0</dd></div>
+<div class="measure__row"><dt>Candidate average correlation gate</dt><dd>0</dd></div>
 <div class="measure__row"><dt>Forward sharpe at that rho bar optimistic haircut</dt><dd>1.157000</dd></div>
 <div class="measure__row"><dt>Forward sharpe at the objective optimistic haircut</dt><dd>1.498000</dd></div>
 <div class="measure__row"><dt>In sample sharpe at that rho bar</dt><dd>1.736000</dd></div>
@@ -145,13 +147,13 @@ is shown here with its own claim boundary so the number and its limits arrive to
 <div class="measure__row"><dt>Pairs new</dt><dd>85</dd></div>
 <div class="measure__row"><dt>Pairs now</dt><dd>6</dd></div>
 <div class="measure__row"><dt>Required average over the new pairs</dt><dd>-0.033960</dd></div>
-<div class="measure__row"><dt>Rho bar if every new pair sits exactly at the gate</dt><dd>0.001717</dd></div>
+<div class="measure__row"><dt>Rho bar if the aggregate new edges sit at the incremental boundary</dt><dd>0.001717</dd></div>
 <div class="measure__row"><dt>Rho bar now</dt><dd>0.026037</dd></div>
 <div class="measure__row"><dt>Sleeves now</dt><dd>4</dd></div>
 <div class="measure__row"><dt>Sleeves target</dt><dd>14</dd></div>
 </dl>
 <p class="measure__prose"><strong>Extends.</strong> artifacts/analysis/breadth_acquisition/result.json, which reached the same conclusion against the superseded 0.15 gate.</p>
-<p class="measure__prose"><strong>The gap.</strong> Every new pair landing exactly on the +0.00 gate gives a book average of +0.0017 and a forward Sharpe of 1.16 on this book&#39;s own optimistic haircut. The gate is necessary and it is not sufficient, and the shortfall is 0.34 of forward Sharpe. Ordering by expected orthogonality is the only lever that acts on the difference, because the gate cannot.</p>
+<p class="measure__prose"><strong>The gap.</strong> The aggregate new edges landing exactly on the +0.00 incremental boundary gives a book average of +0.0017 and a forward Sharpe of 1.16 on this book&#39;s own optimistic haircut. The gate is necessary and it is not sufficient, and the shortfall is 0.34 of forward Sharpe. Ordering by expected orthogonality is the only lever that acts on the difference, because the incremental boundary cannot.</p>
 </section>
 </section>
 <section class="measure__section"><h2>Check it yourself</h2>
@@ -159,7 +161,7 @@ is shown here with its own claim boundary so the number and its limits arrive to
 artifact the engine wrote. Nothing on this page is typed by hand: the page is generated from that
 file, so a figure that moves in the artifact moves here and a figure that is not in the artifact
 cannot appear here at all.</p>
-<p><a href="/measurements">All 31 measurements</a> &middot;
+<p><a href="/measurements">All 84 measurements</a> &middot;
 <a href="/open">The glass box</a> &middot;
 <a href="/research">The research library</a></p>
 </section>

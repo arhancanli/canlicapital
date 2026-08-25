@@ -144,7 +144,9 @@ function main() {
 <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=swap" />
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=optional" />
+<link rel="stylesheet" media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=optional" />
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=optional" /></noscript>
 <link rel="stylesheet" href="./css/paper.css" />
 <script type="application/ld+json">${JSON.stringify(jsonLd)}</script>
 </head>
@@ -214,7 +216,7 @@ function main() {
         exactly, rather than a figure chosen to impress. No real capital is deployed today. This is
         a forward commitment that activates at first live deployment, and until then it is a
         promise with a signature on it and nothing more.</p>
-        <pre class="verify__code"><code>curl -sO ${ORIGIN}/glassbox/founder_commitment.json
+        <pre class="verify__code" tabindex="0" aria-label="Founder commitment verification command"><code>curl -sO ${ORIGIN}/glassbox/founder_commitment.json
 curl -sO ${ORIGIN}/glassbox/reproduce.py
 pip install cryptography
 python3 reproduce.py --dir .</code></pre>

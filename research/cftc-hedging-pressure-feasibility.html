@@ -5,8 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>CFTC hedging pressure — no-return feasibility protocol</title>
 <meta name="description" content="This stage audits only identifiers, dates, market labels and commodity classifications from the CFTC Disaggregated Futures Only dataset (72hh-3qpy)." />
+<meta name="alphac-source-sha256" content="3c88fd8b06434c76020945543ed8f511dc4f9942231cdbbb81506ce68cd7d054" />
+
 <link rel="canonical" href="https://canlicapital.com/research/cftc-hedging-pressure-feasibility" />
 <meta name="author" content="Arhan Canli" />
+<meta name="citation_title" content="CFTC hedging pressure — no-return feasibility protocol" />
+<meta name="citation_author" content="Arhan Canli" />
+<meta name="citation_publication_date" content="2026" />
+<meta name="citation_language" content="en" />
+<meta name="citation_fulltext_html_url" content="https://canlicapital.com/research/cftc-hedging-pressure-feasibility" />
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
 <meta property="og:type" content="article" />
 <meta property="og:site_name" content="Canli Capital" />
@@ -24,9 +31,11 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=swap" />
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=optional" />
+<link rel="stylesheet" media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=optional" />
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=optional" /></noscript>
 <link rel="stylesheet" href="../css/paper.css" />
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"ScholarlyArticle","headline":"CFTC hedging pressure — no-return feasibility protocol","description":"This stage audits only identifiers, dates, market labels and commodity classifications from the CFTC Disaggregated Futures Only dataset (72hh-3qpy).","url":"https://canlicapital.com/research/cftc-hedging-pressure-feasibility","inLanguage":"en","isAccessibleForFree":true,"author":{"@type":"Person","@id":"https://canlicapital.com/#arhan-canli","name":"Arhan Canli","jobTitle":"Founder and Quantitative Researcher","url":"https://canlicapital.com/","sameAs":["https://github.com/arhancanli"],"affiliation":{"@type":"Organization","@id":"https://canlicapital.com/#organization","name":"Canli Capital","url":"https://canlicapital.com/"}},"publisher":{"@type":"Organization","@id":"https://canlicapital.com/#organization","name":"Canli Capital","url":"https://canlicapital.com/","logo":{"@type":"ImageObject","url":"https://canlicapital.com/brand-mark.svg"}},"isPartOf":{"@type":"Periodical","name":"Canli Capital Research","url":"https://canlicapital.com/research"},"encodingFormat":"text/html","associatedMedia":{"@type":"MediaObject","contentUrl":"https://canlicapital.com/research/cftc-hedging-pressure-feasibility.md","encodingFormat":"text/markdown"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"ScholarlyArticle","headline":"CFTC hedging pressure — no-return feasibility protocol","description":"This stage audits only identifiers, dates, market labels and commodity classifications from the CFTC Disaggregated Futures Only dataset (72hh-3qpy).","url":"https://canlicapital.com/research/cftc-hedging-pressure-feasibility","inLanguage":"en","isAccessibleForFree":true,"datePublished":"2026","author":{"@type":"Person","@id":"https://canlicapital.com/#arhan-canli","name":"Arhan Canli","jobTitle":"Founder and Quantitative Researcher","url":"https://canlicapital.com/founder","sameAs":["https://github.com/arhancanli"],"affiliation":{"@type":"Organization","@id":"https://canlicapital.com/#organization","name":"Canli Capital","url":"https://canlicapital.com/"}},"publisher":{"@type":"Organization","@id":"https://canlicapital.com/#organization","name":"Canli Capital","url":"https://canlicapital.com/","logo":{"@type":"ImageObject","url":"https://canlicapital.com/brand-mark.svg"}},"isPartOf":{"@type":"Periodical","name":"Canli Capital Research","url":"https://canlicapital.com/research"},"encodingFormat":"text/html","associatedMedia":{"@type":"MediaObject","contentUrl":"https://canlicapital.com/research/cftc-hedging-pressure-feasibility.md","encodingFormat":"text/markdown"}}</script>
 </head>
 <body class="paper">
 <a class="paper__skip" href="#content">Skip to content</a>
@@ -72,17 +81,33 @@ known disruptions, but it must do so before returns are opened. Kill if release 
 unverifiable, contract mapping is unstable, lagged positions add nothing beyond trend and curve
 carry, stressed costs fail, or correlation to AlphaTrend exceeds 0.35. No failed return identity
 may be rescued by changing the sign, lag, normalization or market set.</p>
+<h2>Reachability audit — 2026-08-22</h2>
+<p>The exact-release gate is now measured unreachable as preregistered. CFTC&#39;s
+<a href="https://www.cftc.gov/MarketReports/CommitmentsofTraders/index.htm">COT documentation</a> states
+that no historical release-date list exists and only 13 months of release dates are available.
+Even granting exact timestamps to every observation in that full window, only 8.37% of the
+183,676 metadata rows could be covered, versus the locked 95% requirement. CFTC&#39;s
+<a href="https://www.cftc.gov/MarketReports/CommitmentsofTraders/HistoricalSpecialAnnouncements/index.htm">special announcements</a>
+also document holiday, incident, and shutdown delays that make a universal Friday timestamp
+false.</p>
+<p>Building the fixed tradable-contract map is therefore not authorized for this protocol: it cannot
+rescue the independent release-lineage failure, and the family registry already binds this
+mechanism to the retired killed <code>cot_positioning</code> campaign. A future conservative-lag redesign
+would require a new preregistered identity and a documented novelty distinction. It cannot be
+called completion of this candidate.</p>
 
     </div>
     <nav class="paper__related" aria-label="Related research">
       <p class="paper__related-kicker">Filed under</p>
       <p class="paper__links"><a href="/research/topics/feasibility-protocols">Feasibility protocols</a><span aria-hidden="true"> / </span><a href="/research/topics/commodities">Commodities</a></p>
       <p class="paper__related-kicker">Related work</p>
-      <ul class="paper__related-list"><li><a href="/research/kill-futcarry-xs">Commodity / Cross-Asset Futures Carry (probe): a killed candidate</a></li><li><a href="/research/kill-xasset-carry">Cross-Asset Carry (campaign): a killed candidate</a></li><li><a href="/research/kill-commodity-inventory-seasonal">EIA Petroleum Inventory Scarcity: a killed candidate</a></li><li><a href="/research/literature-natural-gas-storage-weather">Natural-gas storage/weather residual — literature and claim boundary</a></li></ul>
+      <ul class="paper__related-list"><li><a href="/research/kill-futcarry-xs">Commodity / Cross-Asset Futures Carry (probe): a killed candidate</a></li><li><a href="/research/kill-xasset-carry">Cross-Asset Carry (campaign): a killed candidate</a></li><li><a href="/research/kill-commodity-inventory-seasonal">EIA Petroleum Inventory Scarcity: a killed candidate</a></li><li><a href="/research/literature-natural-gas-storage-weather">Natural-gas storage/weather residual — literature and claim boundary</a></li><li><a href="/research/energy-inventory-lineage">Petroleum inventory scarcity: a preregistered negative result</a></li></ul>
     </nav>
     <footer class="paper__footer">
       <p class="paper__links">
         <a href="/research/cftc-hedging-pressure-feasibility.md">Read the unrendered source</a>
+        <span aria-hidden="true"> / </span>
+        <a href="/research/citations/cftc-hedging-pressure-feasibility.bib" download>Cite this report</a>
         <span aria-hidden="true"> / </span>
         <a href="/open">Inspect the underlying artifacts</a>
         <span aria-hidden="true"> / </span>

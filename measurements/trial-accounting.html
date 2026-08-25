@@ -24,7 +24,9 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=swap" />
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=optional" />
+<link rel="stylesheet" media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=optional" />
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=optional" /></noscript>
 <link rel="stylesheet" href="../css/paper.css" />
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"Trial accounting","description":"This ledger proves what was measured and how selection N is counted. It does not prove that any identity is profitable, independent, or admissible.","url":"https://canlicapital.com/measurements/trial-accounting","creator":{"@type":"Person","name":"Arhan Canli"},"publisher":{"@type":"Organization","name":"Canli Capital","url":"https://canlicapital.com/"},"isAccessibleForFree":true,"distribution":{"@type":"DataDownload","encodingFormat":"application/json","contentUrl":"https://canlicapital.com/glassbox/trial_ledger.json"}}</script>
 </head>
@@ -46,89 +48,134 @@
     <h1 class="paper__title">Trial accounting</h1>
     <p class="paper__byline">By <span rel="author">Arhan Canli</span>, Canli Capital</p>
     <div class="paper__body">
-<p class="measure__lead">Trial accounting is one of 31 measurements this
+<p class="measure__lead">Trial accounting is one of 84 measurements this
 engine publishes in full. It is regenerated from a real run rather than transcribed, and it
 is shown here with its own claim boundary so the number and its limits arrive together.</p>
 <aside class="measure__boundary"><h2>What this measurement does and does not claim</h2><p>This ledger proves what was measured and how selection N is counted. It does not prove that any identity is profitable, independent, or admissible.</p></aside>
 <section class="measure__section"><h2>The measurement</h2>
 <dl class="measure__facts">
 <div class="measure__row"><dt>Schema</dt><dd>glassbox.trial-ledger/2</dd></div>
-<div class="measure__row"><dt>Immutable execution records</dt><dd>232</dd></div>
-<div class="measure__row"><dt>Distinct config hashes</dt><dd>232</dd></div>
-<div class="measure__row"><dt>Window only remeasurements</dt><dd>70</dd></div>
+<div class="measure__row"><dt>Immutable execution records</dt><dd>301</dd></div>
+<div class="measure__row"><dt>Distinct config hashes</dt><dd>301</dd></div>
+<div class="measure__row"><dt>Window only remeasurements</dt><dd>72</dd></div>
 <div class="measure__row"><dt>Cross profile duplicate identities</dt><dd>0</dd></div>
-<div class="measure__row"><dt>Distinct hypothesis identities</dt><dd>162</dd></div>
-<div class="measure__row"><dt>Ledger profiles</dt><dd>4</dd></div>
-<div class="measure__row"><dt>Hypothesis identity budget</dt><dd>320</dd></div>
-<div class="measure__row"><dt>Budget remaining</dt><dd>158</dd></div>
+<div class="measure__row"><dt>Distinct hypothesis identities</dt><dd>229</dd></div>
+<div class="measure__row"><dt>Ledger profiles</dt><dd>8</dd></div>
+<div class="measure__row"><dt>Hypothesis identity budget</dt><dd>400</dd></div>
+<div class="measure__row"><dt>Budget remaining</dt><dd>171</dd></div>
 <div class="measure__row"><dt>Budget status</dt><dd>PASS</dd></div>
-<div class="measure__row"><dt>Research status</dt><dd>ACTIVE</dd></div>
+<div class="measure__row"><dt>Research status</dt><dd>ACTIVE_STAGED_PROSPECTIVE_BUDGET</dd></div>
 <div class="measure__row"><dt>Policy source path</dt><dd>config/trial_accounting.json</dd></div>
-<div class="measure__row"><dt>Generated at</dt><dd>2026-08-22T08:04:05.246129+00:00</dd></div>
-<div class="measure__row"><dt>Content hash</dt><dd>sha256:022c04a24a3fba575f8ed79306f16c09f234fd9fb10ba5b5336a6c52160fb05b</dd></div>
+<div class="measure__row"><dt>Generated at</dt><dd>2026-08-25T14:26:23.165346+00:00</dd></div>
+<div class="measure__row"><dt>Content hash</dt><dd>sha256:e5df07b652451c642b3fc1cac4848885dd78fd18d849c0195209437cc0c88312</dd></div>
 </dl>
 <p class="measure__prose"><strong>Accounting equation.</strong> immutable execution records - window-only remeasurements - cross-profile duplicate identities = distinct union hypothesis identities</p>
 <section class="measure__sub"><h3>Selection statistics</h3>
 <dl class="measure__facts">
 <div class="measure__row"><dt>Unit</dt><dd>first_immutable_record_per_hypothesis</dd></div>
-<div class="measure__row"><dt>N hypotheses</dt><dd>162</dd></div>
-<div class="measure__row"><dt>Sharpe variance</dt><dd>9.606e-4</dd></div>
-<div class="measure__row"><dt>Audit raw record sharpe variance</dt><dd>7.273e-4</dd></div>
+<div class="measure__row"><dt>N hypotheses</dt><dd>229</dd></div>
+<div class="measure__row"><dt>Sharpe variance</dt><dd>9.019e-4</dd></div>
+<div class="measure__row"><dt>Audit raw record sharpe variance</dt><dd>7.327e-4</dd></div>
 </dl>
 <p class="measure__prose"><strong>Interpretation.</strong> Operational window remeasurements remain public but cannot alter selection N or selection V[SR].</p>
 </section>
 <section class="measure__sub"><h3>Definitions</h3>
-<p class="measure__prose"><strong>Immutable execution record.</strong> One append-only, config-hash-unique measurement row. Rolling-window remeasurements remain records.</p>
 <p class="measure__prose"><strong>Hypothesis identity.</strong> A distinct economic or parameter identity after removing only start and end measurement-window keys.</p>
+<p class="measure__prose"><strong>Immutable execution record.</strong> One append-only, config-hash-unique measurement row. Rolling-window remeasurements remain records.</p>
 <p class="measure__prose"><strong>Window only remeasurement.</strong> A later record whose config differs from an existing identity only in start or end. It remains public but does not inflate DSR selection N.</p>
 </section>
 <section class="measure__sub"><h3>Budget review</h3>
 <dl class="measure__facts">
 <div class="measure__row"><dt>Authorized by</dt><dd>owner, 2026-08-21</dd></div>
-<div class="measure__row"><dt>Hypothesis identities at review</dt><dd>162</dd></div>
-<div class="measure__row"><dt>Prior budget</dt><dd>160</dd></div>
-<div class="measure__row"><dt>New budget</dt><dd>320</dd></div>
 <div class="measure__row"><dt>Headroom</dt><dd>158</dd></div>
+<div class="measure__row"><dt>Hypothesis identities at review</dt><dd>162</dd></div>
+<div class="measure__row"><dt>New budget</dt><dd>320</dd></div>
+<div class="measure__row"><dt>Prior budget</dt><dd>160</dd></div>
 </dl>
 <p class="measure__prose"><strong>Authorization.</strong> Explicit owner decision to fund the fourteen-sleeve programme, taken with the evidence cost on the table rather than inferred afterwards.</p>
-<p class="measure__prose"><strong>Rationale.</strong> Ten new sleeves at the measured 6.5% hit rate (3 survivors from 46 tested candidates) implies about 154 trials. The budget is set at 320 identities, which funds that with a small margin and stops well short of an open-ended search. It is a CEILING, not a plan: the campaign closes at whatever count the evidence stops justifying.</p>
 <section class="measure__sub"><h4>Cost of this decision</h4>
 <dl class="measure__facts">
-<div class="measure__row"><dt>Evidence</dt><dd>artifacts/analysis/trial_budget_cost/result.json</dd></div>
-<div class="measure__row"><dt>Annualized deflated benchmark before</dt><dd>1.207400</dd></div>
 <div class="measure__row"><dt>Annualized deflated benchmark after 154 trials</dt><dd>1.304100</dd></div>
+<div class="measure__row"><dt>Annualized deflated benchmark before</dt><dd>1.207400</dd></div>
+<div class="measure__row"><dt>Evidence</dt><dd>artifacts/analysis/trial_budget_cost/result.json</dd></div>
 <div class="measure__row"><dt>Increase</dt><dd>0.096700</dd></div>
 </dl>
 <p class="measure__prose"><strong>Applies to.</strong> every sleeve in the book, not only the new candidates. Deflation is a property of the search, and the search is the book&#39;s.</p>
-<p class="measure__prose"><strong>Why it is affordable.</strong> The deflated benchmark grows with the LOGARITHM of the trial count, so 154 trials on top of 162 move it by roughly 0.10 annualized. Sample length is the far stronger lever, which is why v6 raising minimum_oos_observations from 252 to 756 matters more to admissibility than this budget does.</p>
 <p class="measure__prose"><strong>The honest caveat.</strong> This assumes the measured 6.5% hit rate holds for families that have never been tested. It is an assumption, not a measurement, and the atlas families are deliberately unlike the ones that produced that rate. If the true rate is half of it, ten sleeves cost twice the trials and the budget will bind before the target is reached. Reaching the ceiling without ten admissions is a RESULT, not a failure of the budget, and the book stays smaller.</p>
+<p class="measure__prose"><strong>Why it is affordable.</strong> The deflated benchmark grows with the LOGARITHM of the trial count, so 154 trials on top of 162 move it by roughly 0.10 annualized. Sample length is the far stronger lever, which is why v6 raising minimum_oos_observations from 252 to 756 matters more to admissibility than this budget does.</p>
 </section>
-<p class="measure__prose"><strong>What did not change.</strong> A target still never creates a sleeve. Fourteen is reached only if ten or more new identities independently clear every admission gate in config/sleeve_admission_contract.json; otherwise the book remains smaller. The budget buys permission to look, not permission to admit.</p>
 <p class="measure__prose"><strong>Next tripwire.</strong> At 320 recorded hypothesis identities, registration pauses again and requires a fresh owner review. Any single family exceeding 40 identities also pauses for review, so the budget cannot be consumed by one line of enquiry that is not working.</p>
+<p class="measure__prose"><strong>Rationale.</strong> Ten new sleeves at the measured 6.5% hit rate (3 survivors from 46 tested candidates) implies about 154 trials. The budget is set at 320 identities, which funds that with a small margin and stops well short of an open-ended search. It is a CEILING, not a plan: the campaign closes at whatever count the evidence stops justifying.</p>
 <p class="measure__prose"><strong>Status token note.</strong> ACTIVE is the canonical token the trial tripwire recognises. The prospective nature of this budget is recorded here rather than encoded in the status, so no guard is left unable to read the state it governs.</p>
+<p class="measure__prose"><strong>What did not change.</strong> A target still never creates a sleeve. Fourteen is reached only if ten or more new identities independently clear every admission gate in config/sleeve_admission_contract.json; otherwise the book remains smaller. The budget buys permission to look, not permission to admit.</p>
+</section>
+<section class="measure__sub"><h3>Ledger scope correction</h3>
+<dl class="measure__facts">
+<div class="measure__row"><dt>Authorized budget unchanged</dt><dd>320</dd></div>
+<div class="measure__row"><dt>Budget remaining</dt><dd>146</dd></div>
+<div class="measure__row"><dt>Current hypothesis identities</dt><dd>174</dd></div>
+<div class="measure__row"><dt>New experiments run</dt><dd>0</dd></div>
+<div class="measure__row"><dt>Prior reported hypothesis identities</dt><dd>162</dd></div>
+<div class="measure__row"><dt>Recorded at</dt><dd>2026-08-22</dd></div>
+<div class="measure__row"><dt>Recovered legacy hypothesis identities</dt><dd>12</dd></div>
+<div class="measure__row"><dt>Status</dt><dd>CORRECTED</dd></div>
+</dl>
+<p class="measure__prose"><strong>Reason.</strong> Canonical union discovery scanned only top-level var* profiles and omitted four durable experiment ledgers filed with legacy result artifacts. The ledgers are selection evidence and have been restored to N. Withdrawn archive_broken_prices ledgers remain excluded.</p>
+<p class="measure__label">Recovered ledger paths</p><ul class="measure__list"><li>artifacts/exp1/20260625T075446Z/experiments.jsonl</li><li>artifacts/exp4/20260625T103226Z/experiments.jsonl</li><li>artifacts/exp4/smoke_20260625T102142Z/experiments.jsonl</li><li>artifacts/grand_backtest/20260616T143620Z/experiments.jsonl</li></ul>
+</section>
+<section class="measure__sub"><h3>Summary trial debt correction</h3>
+<dl class="measure__facts">
+<div class="measure__row"><dt>Already reconciled before this correction</dt><dd>24</dd></div>
+<div class="measure__row"><dt>Authorized budget unchanged</dt><dd>320</dd></div>
+<div class="measure__row"><dt>Budget remaining</dt><dd>92</dd></div>
+<div class="measure__row"><dt>Current hypothesis identities</dt><dd>228</dd></div>
+<div class="measure__row"><dt>Evidence</dt><dd>artifacts/audit/trial_debt_reconciliation.json</dd></div>
+<div class="measure__row"><dt>New experiments run</dt><dd>0</dd></div>
+<div class="measure__row"><dt>Newly reconciled in this correction</dt><dd>54</dd></div>
+<div class="measure__row"><dt>Prior reported hypothesis identities</dt><dd>174</dd></div>
+<div class="measure__row"><dt>Recorded at</dt><dd>2026-08-22</dd></div>
+<div class="measure__row"><dt>Recovered historical hypothesis identities</dt><dd>54</dd></div>
+<div class="measure__row"><dt>Status</dt><dd>CORRECTED</dd></div>
+</dl>
+<p class="measure__prose"><strong>Reason.</strong> Seven persisted historical studies reported named return configurations but bypassed the durable experiment ledger. The source-bound v2 reconciliation charges every measured parameter identity, including 32 AlphaMax robustness-grid configurations and AlphaTrend&#39;s post-hoc selector configurations; rounded summaries are never used to assert duplicate economic identity.</p>
+<section class="measure__sub"><h4>Source identity counts</h4>
+<dl class="measure__facts">
+<div class="measure__row"><dt>Alphamax construction</dt><dd>8</dd></div>
+<div class="measure__row"><dt>Alphamax hyst live</dt><dd>6</dd></div>
+<div class="measure__row"><dt>Alphamax turnover</dt><dd>8</dd></div>
+<div class="measure__row"><dt>Alphamax weighting</dt><dd>48</dd></div>
+<div class="measure__row"><dt>Alphatrend arp</dt><dd>3</dd></div>
+<div class="measure__row"><dt>Alphatrend breadth</dt><dd>4</dd></div>
+<div class="measure__row"><dt>Crypto vrp proxy</dt><dd>1</dd></div>
+</dl>
+</section>
 </section>
 <figure class="measure__tablewrap"><figcaption>Profiles</figcaption><table class="measure__table"><thead><tr><th scope="col">Profile</th><th scope="col">Source path</th><th scope="col">Immutable execution records</th><th scope="col">Distinct config hashes</th><th scope="col">Hypothesis identities</th><th scope="col">Window only remeasurements</th><th scope="col">Latest recorded at</th></tr></thead><tbody>
-<tr><td>var</td><td>var/experiments.jsonl</td><td>172</td><td>172</td><td>136</td><td>36</td><td>2026-08-17T07:52:42.849000+00:00</td></tr>
+<tr><td>20260625T075446Z</td><td>artifacts/exp1/20260625T075446Z/experiments.jsonl</td><td>2</td><td>2</td><td>2</td><td>0</td><td>2026-06-25T07:54:46.297000+00:00</td></tr>
+<tr><td>20260625T103226Z</td><td>artifacts/exp4/20260625T103226Z/experiments.jsonl</td><td>1</td><td>1</td><td>1</td><td>0</td><td>2026-06-25T10:32:26.542000+00:00</td></tr>
+<tr><td>smoke_20260625T102142Z</td><td>artifacts/exp4/smoke_20260625T102142Z/experiments.jsonl</td><td>1</td><td>1</td><td>1</td><td>0</td><td>2026-06-25T10:21:42.062000+00:00</td></tr>
+<tr><td>20260616T143620Z</td><td>artifacts/grand_backtest/20260616T143620Z/experiments.jsonl</td><td>8</td><td>8</td><td>8</td><td>0</td><td>2026-06-16T14:36:20.756000+00:00</td></tr>
+<tr><td>var</td><td>var/experiments.jsonl</td><td>227</td><td>227</td><td>191</td><td>36</td><td>2026-08-23T22:29:16.391000+00:00</td></tr>
 <tr><td>var_fut_real</td><td>var_fut_real/experiments.jsonl</td><td>1</td><td>1</td><td>1</td><td>0</td><td>2026-06-28T20:13:53.117000+00:00</td></tr>
-<tr><td>var_mf</td><td>var_mf/experiments.jsonl</td><td>47</td><td>47</td><td>13</td><td>34</td><td>2026-08-22T05:30:22.651000+00:00</td></tr>
+<tr><td>var_mf</td><td>var_mf/experiments.jsonl</td><td>49</td><td>49</td><td>13</td><td>36</td><td>2026-08-24T05:30:24.624000+00:00</td></tr>
 <tr><td>var_sharadar</td><td>var_sharadar/experiments.jsonl</td><td>12</td><td>12</td><td>12</td><td>0</td><td>2026-07-11T19:41:42.107000+00:00</td></tr>
 </tbody></table></figure>
 <figure class="measure__tablewrap"><figcaption>Recent hypothesis identities</figcaption><table class="measure__table"><thead><tr><th scope="col">Hypothesis key</th><th scope="col">Config hash</th><th scope="col">Label</th><th scope="col">Ledger profile</th><th scope="col">First recorded at</th><th scope="col">Observations</th><th scope="col">Annualized sharpe observed</th></tr></thead><tbody>
-<tr><td>eef46f796cdbb646</td><td>34067635abce9cf9</td><td>forensic_alphamax_weighting</td><td>var</td><td>2026-08-17T00:00:00.023000+00:00</td><td>5428</td><td>-0.018761</td></tr>
-<tr><td>5dd5372deac0882f</td><td>d7561b05e7624193</td><td>forensic_alphamax_weighting</td><td>var</td><td>2026-08-17T00:00:00.022000+00:00</td><td>5428</td><td>-0.012095</td></tr>
-<tr><td>1521380bbfea6b18</td><td>15b78eaf0b3d4820</td><td>forensic_alphamax_weighting</td><td>var</td><td>2026-08-17T00:00:00.021000+00:00</td><td>5428</td><td>-0.054936</td></tr>
-<tr><td>944daf4d5888647d</td><td>103beae582dee892</td><td>forensic_alphamax_weighting</td><td>var</td><td>2026-08-17T00:00:00.020000+00:00</td><td>5428</td><td>-0.030261</td></tr>
-<tr><td>1700ddbeaf47d3eb</td><td>069c86acc068a4d5</td><td>forensic_alphamax_weighting</td><td>var</td><td>2026-08-17T00:00:00.019000+00:00</td><td>5428</td><td>0.066016</td></tr>
-<tr><td>2cfbbeea11dd0e2e</td><td>3cc8b915abefa48a</td><td>forensic_alphamax_weighting</td><td>var</td><td>2026-08-17T00:00:00.018000+00:00</td><td>5428</td><td>-0.292825</td></tr>
-<tr><td>3096d43484ea2745</td><td>57fa40c3ea31b530</td><td>forensic_alphamax_weighting</td><td>var</td><td>2026-08-17T00:00:00.017000+00:00</td><td>5428</td><td>0.014885</td></tr>
-<tr><td>8e0d269423afaeb7</td><td>9584c5e969d4b39a</td><td>forensic_alphamax_weighting</td><td>var</td><td>2026-08-17T00:00:00.016000+00:00</td><td>5428</td><td>-0.002788</td></tr>
-<tr><td>f350a08ec0da47d5</td><td>ff8fefa17679b51b</td><td>forensic_alphamax_weighting</td><td>var</td><td>2026-08-17T00:00:00.015000+00:00</td><td>5428</td><td>-0.053703</td></tr>
-<tr><td>0c17b616473d3e37</td><td>b332501af87f95b6</td><td>forensic_alphamax_weighting</td><td>var</td><td>2026-08-17T00:00:00.014000+00:00</td><td>5428</td><td>-0.050382</td></tr>
+<tr><td>da5f5f47f99f9bd2</td><td>50d9e8b059fee773</td><td>carry_fund_21</td><td>var</td><td>2026-08-23T22:29:16.391000+00:00</td><td>1574</td><td>0.968898</td></tr>
+<tr><td>7843716d6bab8d5b</td><td>09f8fee4e13a004d</td><td>alphatrend_breadth</td><td>var</td><td>2026-08-17T00:00:00.077000+00:00</td><td>5161</td><td>0.204000</td></tr>
+<tr><td>0b91174c6e27a1f3</td><td>ea967116409691ab</td><td>alphatrend_breadth</td><td>var</td><td>2026-08-17T00:00:00.076000+00:00</td><td>5161</td><td>0.217000</td></tr>
+<tr><td>c8d703989f9e36ca</td><td>dc78c2c55edfc678</td><td>alphatrend_breadth</td><td>var</td><td>2026-08-17T00:00:00.075000+00:00</td><td>5161</td><td>0.128000</td></tr>
+<tr><td>e60ed7b6904004af</td><td>356929813b18d8db</td><td>alphatrend_breadth</td><td>var</td><td>2026-08-17T00:00:00.074000+00:00</td><td>5161</td><td>0.289000</td></tr>
+<tr><td>0c5ddfb3d5b52ca5</td><td>18165c784f0332de</td><td>alphatrend_arp</td><td>var</td><td>2026-08-17T00:00:00.073000+00:00</td><td>5161</td><td>0.271000</td></tr>
+<tr><td>f4d5aef87af5cc92</td><td>7845a023b51f8f68</td><td>alphatrend_arp</td><td>var</td><td>2026-08-17T00:00:00.072000+00:00</td><td>5161</td><td>0.186000</td></tr>
+<tr><td>084a8fc5292327ee</td><td>8808d789acccaf3a</td><td>alphatrend_arp</td><td>var</td><td>2026-08-17T00:00:00.071000+00:00</td><td>5161</td><td>0.289000</td></tr>
+<tr><td>69bb7543e8ff821a</td><td>2e43cbf9baacfce4</td><td>alphamax_turnover</td><td>var</td><td>2026-08-17T00:00:00.070000+00:00</td><td>5356</td><td>-0.184506</td></tr>
+<tr><td>4efe32b9ba20a8c8</td><td>72a8345cfc18db7a</td><td>alphamax_turnover</td><td>var</td><td>2026-08-17T00:00:00.069000+00:00</td><td>5356</td><td>-0.191819</td></tr>
 </tbody></table></figure>
 <section class="measure__sub"><h3>Trial debt reconciliation</h3>
 <dl class="measure__facts">
 <div class="measure__row"><dt>Source path</dt><dd>artifacts/audit/trial_debt_reconciliation.json</dd></div>
-<div class="measure__row"><dt>Source sha256</dt><dd>5ff87cc863c7ce1301f95798d82feb9b5486332eb8a1b2a58258967e14b34630</dd></div>
+<div class="measure__row"><dt>Source sha256</dt><dd>2aea898ff82658f46ca08b8ee71f3198010c0f4252c7799830aeeca436ec577b</dd></div>
 </dl>
 </section>
 <section class="measure__sub"><h3>Legacy dsr debt</h3>
@@ -139,12 +186,12 @@ is shown here with its own claim boundary so the number and its limits arrive to
 <div class="measure__row"><dt>Resolved code paths</dt><dd>12</dd></div>
 <div class="measure__row"><dt>Union registration paths</dt><dd>7</dd></div>
 <div class="measure__row"><dt>Source path</dt><dd>config/legacy_dsr_exceptions.json</dd></div>
-<div class="measure__row"><dt>Source sha256</dt><dd>df0fdfef765f5933ea90e89d131b70ce120c486a792278d07cbbe7326a364e36</dd></div>
+<div class="measure__row"><dt>Source sha256</dt><dd>f743d0ffa49c4890f12480982a6237cd2ec71f216dbad20d409cf31e2211726f</dd></div>
 </dl>
 <section class="measure__sub"><h4>Restatement</h4>
 <dl class="measure__facts">
 <div class="measure__row"><dt>Source path</dt><dd>artifacts/audit/legacy_dsr_restatement.json</dd></div>
-<div class="measure__row"><dt>Source sha256</dt><dd>3e634254e99ecb8e29eb4f0d807b19e29d54a05f2fc66e2e4493c4a88b49a202</dd></div>
+<div class="measure__row"><dt>Source sha256</dt><dd>9348d033d7e4dde2e028c0063634b2ab44e637b082bb3b9b851220aba0fcfd80</dd></div>
 </dl>
 <p class="measure__label">Summary</p><p class="measure__deep">5 further fields. <a href="/glassbox/trial_ledger.json">Read them in the artifact</a>.</p>
 </section>
@@ -155,7 +202,7 @@ is shown here with its own claim boundary so the number and its limits arrive to
 artifact the engine wrote. Nothing on this page is typed by hand: the page is generated from that
 file, so a figure that moves in the artifact moves here and a figure that is not in the artifact
 cannot appear here at all.</p>
-<p><a href="/measurements">All 31 measurements</a> &middot;
+<p><a href="/measurements">All 84 measurements</a> &middot;
 <a href="/open">The glass box</a> &middot;
 <a href="/research">The research library</a></p>
 </section>

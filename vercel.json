@@ -94,6 +94,15 @@
       ]
     },
     {
+      "source": "/(.*)\\.(json|md|bib|csv|tsv|parquet|txt|ots|gz|cff)",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex"
+        }
+      ]
+    },
+    {
       "source": "/(systems|research|performance|progress|open)",
       "headers": [
         {

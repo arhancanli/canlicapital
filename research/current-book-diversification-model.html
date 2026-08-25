@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Current-book diversification: the confidence-bound result</title>
+<meta name="description" content="The long-run portfolio objective is approximately −0.03 average correlation. The current measured point is 0.0548 above it." />
+<meta name="alphac-source-sha256" content="4f01fa2d38408d1556aa630843aef8912c276c8560435270b9d480c1237a8f34" />
+
+<link rel="canonical" href="https://canlicapital.com/research/current-book-diversification-model" />
+<meta name="author" content="Arhan Canli" />
+<meta name="citation_title" content="Current-book diversification: the confidence-bound result" />
+<meta name="citation_author" content="Arhan Canli" />
+<meta name="citation_publication_date" content="2026" />
+<meta name="citation_language" content="en" />
+<meta name="citation_fulltext_html_url" content="https://canlicapital.com/research/current-book-diversification-model" />
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="Canli Capital" />
+<meta property="og:title" content="Current-book diversification: the confidence-bound result" />
+<meta property="og:description" content="The long-run portfolio objective is approximately −0.03 average correlation. The current measured point is 0.0548 above it." />
+<meta property="og:url" content="https://canlicapital.com/research/current-book-diversification-model" />
+<meta property="og:image" content="https://canlicapital.com/og.png" />
+<meta property="article:author" content="Arhan Canli" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Current-book diversification: the confidence-bound result" />
+<meta name="twitter:description" content="The long-run portfolio objective is approximately −0.03 average correlation. The current measured point is 0.0548 above it." />
+<meta name="twitter:image" content="https://canlicapital.com/og.png" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="icon" href="/favicon.ico" sizes="any" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=optional" />
+<link rel="stylesheet" media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=optional" />
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=optional" /></noscript>
+<link rel="stylesheet" href="../css/paper.css" />
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"ScholarlyArticle","headline":"Current-book diversification: the confidence-bound result","description":"The long-run portfolio objective is approximately −0.03 average correlation. The current measured point is 0.0548 above it.","url":"https://canlicapital.com/research/current-book-diversification-model","inLanguage":"en","isAccessibleForFree":true,"datePublished":"2026","author":{"@type":"Person","@id":"https://canlicapital.com/#arhan-canli","name":"Arhan Canli","jobTitle":"Founder and Quantitative Researcher","url":"https://canlicapital.com/founder","sameAs":["https://github.com/arhancanli"],"affiliation":{"@type":"Organization","@id":"https://canlicapital.com/#organization","name":"Canli Capital","url":"https://canlicapital.com/"}},"publisher":{"@type":"Organization","@id":"https://canlicapital.com/#organization","name":"Canli Capital","url":"https://canlicapital.com/","logo":{"@type":"ImageObject","url":"https://canlicapital.com/brand-mark.svg"}},"isPartOf":{"@type":"Periodical","name":"Canli Capital Research","url":"https://canlicapital.com/research"},"encodingFormat":"text/html","associatedMedia":{"@type":"MediaObject","contentUrl":"https://canlicapital.com/research/current-book-diversification-model.md","encodingFormat":"text/markdown"}}</script>
+</head>
+<body class="paper">
+<a class="paper__skip" href="#content">Skip to content</a>
+<header class="paper__masthead">
+  <a class="paper__brand" href="/">Canli Capital</a>
+  <nav class="paper__nav" aria-label="Primary">
+    <a href="/systems">Systems</a>
+    <a href="/performance">Evidence</a>
+    <a href="/research">Research</a>
+    <a href="/open">Glass box</a>
+  </nav>
+</header>
+<main class="paper__main" id="content">
+  <article class="paper__article">
+    <p class="paper__eyebrow"><a href="/research">Research</a></p>
+    <h1 class="paper__title">Current-book diversification: the confidence-bound result</h1>
+    <p class="paper__byline">By <span rel="author">Arhan Canli</span>, Canli Capital</p>
+    <div class="paper__body">
+<p><strong>Author:</strong> Arhan Canli
+<strong>Program:</strong> ALPHAC / AlphaC Algorithms
+<strong>Study classification:</strong> retrospective existing-return risk remeasurement
+<strong>Capital:</strong> research simulation over a paper-trading specification</p>
+<h2>Result</h2>
+<p>The exact current four-sleeve research specification is diversified, but it does <strong>not</strong> meet the
+program&#39;s governing average-correlation point gate. Across the 1,061-row common window from
+2023-07-07 through 2026-06-01:</p>
+<table>
+<thead>
+<tr>
+<th>Measurement</th>
+<th align="right">Result</th>
+<th align="right">Governing comparison</th>
+<th>Outcome</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Average pairwise sleeve correlation</td>
+<td align="right">+0.0248</td>
+<td align="right">at most 0.00</td>
+<td><strong>fails</strong></td>
+</tr>
+<tr>
+<td>95% upper bound, 63-row block bootstrap</td>
+<td align="right">+0.0487</td>
+<td align="right">at most +0.10</td>
+<td>passes</td>
+</tr>
+<tr>
+<td>Maximum ordinary pairwise correlation</td>
+<td align="right">+0.2098</td>
+<td align="right">at most +0.35</td>
+<td>passes</td>
+</tr>
+<tr>
+<td>Maximum ordinary pair upper 95% bound</td>
+<td align="right">+0.3025</td>
+<td align="right">at most +0.35</td>
+<td>passes</td>
+</tr>
+<tr>
+<td>Stressed design correlation</td>
+<td align="right">+0.50</td>
+<td align="right">at most +0.50</td>
+<td>passes at the boundary</td>
+</tr>
+<tr>
+<td>Sleeve-only diversification ratio</td>
+<td align="right">1.8153</td>
+<td align="right">diagnostic</td>
+<td>not a gate</td>
+</tr>
+<tr>
+<td>Effective independent sleeves</td>
+<td align="right">3.8988 of 4</td>
+<td align="right">diagnostic</td>
+<td>not a gate</td>
+</tr>
+</tbody></table>
+<p>The long-run portfolio objective is approximately −0.03 average correlation. The current measured
+point is 0.0548 above it. Calling +0.0248 “near zero” may be descriptively reasonable, but it does
+not turn a positive value into a pass against a non-positive gate.</p>
+<h2>What was measured</h2>
+<p>The study reconstructs the same exact current book used by the current-composition drawdown study:</p>
+<ul>
+<li><code>alphavintage_live</code>, 25%;</li>
+<li><code>crypto_carry_wk</code>, 25%;</li>
+<li><code>k30_dn_63</code>, 25%;</li>
+<li><code>managed_futures</code>, 25%; and</li>
+<li>the separately disclosed 10% strategic overlay split between BTC and SPY.</li>
+</ul>
+<p>Sleeve correlation uses the four sleeve returns only. The strategic overlay remains separate and
+is included in full-book and marginal-Sharpe diagnostics. The reconstructed sleeve contributions
+plus overlay equal the book return with zero numerical residual.</p>
+<h2>Confidence procedure</h2>
+<p>The primary uncertainty estimate uses 10,000 synchronized circular moving-block resamples, each as
+long as the observed 1,061-row window, with seed <code>20260825</code> and a 63-row block. Resampling the four
+columns together preserves contemporaneous cross-sleeve dependence. The one-sided upper bound is
+the empirical 95th percentile.</p>
+<table>
+<thead>
+<tr>
+<th align="right">Block length</th>
+<th align="right">Bootstrap mean average correlation</th>
+<th align="right">Upper 95%</th>
+<th align="right">Maximum pair upper 95%</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">21 rows</td>
+<td align="right">+0.0245</td>
+<td align="right">+0.0484</td>
+<td align="right">+0.2861</td>
+</tr>
+<tr>
+<td align="right">63 rows, primary</td>
+<td align="right">+0.0247</td>
+<td align="right">+0.0487</td>
+<td align="right">+0.3025</td>
+</tr>
+<tr>
+<td align="right">126 rows</td>
+<td align="right">+0.0244</td>
+<td align="right">+0.0491</td>
+<td align="right">+0.3086</td>
+</tr>
+</tbody></table>
+<p>The primary upper-bound Monte Carlo standard error is approximately 0.00030. Block-length
+sensitivity does not change the conclusion: the point gate fails and the confidence-bound gates
+pass.</p>
+<h2>Pairwise structure</h2>
+<p>The six observed pairwise correlations are:</p>
+<table>
+<thead>
+<tr>
+<th>Pair</th>
+<th align="right">Correlation</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>AlphaVintage / crypto carry</td>
+<td align="right">+0.0393</td>
+</tr>
+<tr>
+<td>AlphaVintage / equity momentum</td>
+<td align="right">−0.0620</td>
+</tr>
+<tr>
+<td>AlphaVintage / managed futures</td>
+<td align="right">−0.0444</td>
+</tr>
+<tr>
+<td>Crypto carry / equity momentum</td>
+<td align="right">−0.0134</td>
+</tr>
+<tr>
+<td>Crypto carry / managed futures</td>
+<td align="right">+0.0197</td>
+</tr>
+<tr>
+<td>Equity momentum / managed futures</td>
+<td align="right">+0.2098</td>
+</tr>
+</tbody></table>
+<p>The equity-momentum / managed-futures pair is the largest ordinary dependence. Its primary
+bootstrap upper bound remains below the prospective 0.35 ordinary-pair ceiling.</p>
+<h2>Marginal historical diagnostics</h2>
+<p>For each diagnostic, one sleeve&#39;s committed contribution is replaced by cash while every other
+weight and the strategic overlay remain unchanged. These are in-window research diagnostics, not
+reweighting instructions:</p>
+<table>
+<thead>
+<tr>
+<th>Sleeve replaced by cash</th>
+<th align="right">Full-book research Sharpe</th>
+<th align="right">Without sleeve</th>
+<th align="right">Marginal delta</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>AlphaVintage</td>
+<td align="right">1.7846</td>
+<td align="right">1.7909</td>
+<td align="right">−0.0063</td>
+</tr>
+<tr>
+<td>Crypto carry</td>
+<td align="right">1.7846</td>
+<td align="right">1.2520</td>
+<td align="right">+0.5326</td>
+</tr>
+<tr>
+<td>Equity momentum</td>
+<td align="right">1.7846</td>
+<td align="right">1.6378</td>
+<td align="right">+0.1468</td>
+</tr>
+<tr>
+<td>Managed futures</td>
+<td align="right">1.7846</td>
+<td align="right">1.8755</td>
+<td align="right">−0.0908</td>
+</tr>
+</tbody></table>
+<p>Negative historical marginal values do not authorize deletion. The data were known before this
+protocol, the comparison is in-sample for this purpose, and existing sleeves predate the
+prospective admission contract. Any allocation change would require a new declared evidence epoch.</p>
+<h2>What this establishes—and what it does not</h2>
+<p>This study establishes a reproducible description of the exact current research composition. It
+shows that most pairwise and confidence-bound controls are inside their prospective ceilings, while
+the governing average-correlation point gate is not.</p>
+<p>It does not establish live-forward diversification. The frozen research curves end before the
+broker-reconciled forward record begins; the returns were known before the protocol; no independent
+human replication exists; and the window is not crisis-complete. It proves neither alpha nor the
+1.5 forward-Sharpe objective and spends zero new hypothesis identities.</p>
+<h2>Reproduction</h2>
+<pre><code class="language-bash">uv run python scripts/analyze_current_book_diversification.py
+</code></pre>
+<p>The machine-readable result is
+<code>artifacts/analysis/current_book_diversification/result.json</code>. Its content hash is
+<code>sha256:42971513076f2ff21024e343c2ef771a78cbaeb2b3b6160f7d28a526dd4da256</code>.</p>
+
+    </div>
+    <nav class="paper__related" aria-label="Related research">
+      <p class="paper__related-kicker">Filed under</p>
+      <p class="paper__links"><a href="/research/topics/engineering-foundations">Engineering foundations</a></p>
+    </nav>
+    <footer class="paper__footer">
+      <p class="paper__links">
+        <a href="/research/current-book-diversification-model.md">Read the unrendered source</a>
+        <span aria-hidden="true"> / </span>
+        <a href="/research/citations/current-book-diversification-model.bib" download>Cite this report</a>
+        <span aria-hidden="true"> / </span>
+        <a href="/open">Inspect the underlying artifacts</a>
+        <span aria-hidden="true"> / </span>
+        <a href="/research">All research</a>
+      </p>
+      <p class="paper__boundary">
+        Published as evidence, not as a claim about future performance. The figures quoted here
+        are reproducible from the artifacts linked above.
+      </p>
+    </footer>
+  </article>
+</main>
+</body>
+</html>

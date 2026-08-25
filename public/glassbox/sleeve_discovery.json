@@ -2,28 +2,57 @@
   "schema": "canli.sleeve-discovery.v2",
   "program": "ALPHAC breadth program",
   "objective": {
+    "average_pairwise_correlation_objective": -0.03,
+    "average_pairwise_correlation_objective_note": "An objective, not a gate. -0.03 is the average pairwise correlation at which fourteen sleeves of measured quality reach 2.5. Thresholds are gates and live in 'thresholds'; anything that is not enforced must not sit there wearing a gate's costume.",
+    "backtest_to_forward_haircut": {
+      "measured_on_this_book": "in-sample equal-risk ~1.04 against an honest forward of 0.3-0.9",
+      "note": "The haircut IS the uncertainty. Until the forward record is long enough to speak, every in-sample figure should be read through it, and the range is this book's own published pair rather than a convention borrowed from elsewhere.",
+      "range": [
+        1.5,
+        3.0
+      ]
+    },
+    "honest_forward_sharpe_target": 1.5,
+    "implied_in_sample_target": {
+      "at_1_5x_haircut": 2.25,
+      "at_2_0x_haircut": 3.0,
+      "at_3_0x_haircut": 4.5
+    },
+    "minimum_new_sleeves": 10,
+    "portfolio_max_drawdown_statistic": "expected_maximum_drawdown",
+    "portfolio_max_drawdown_target": 0.11,
+    "portfolio_p95_max_drawdown_is_gated": false,
+    "portfolio_p95_max_drawdown_must_be_published": true,
     "portfolio_sharpe_target": [
+      2.25,
+      3.0
+    ],
+    "portfolio_sharpe_target_unit": "IN-SAMPLE, being the band that an honest forward 1.5 implies at the 1.5x and 2.0x ends of this book's own measured haircut. The headline target is honest_forward_sharpe_target.",
+    "superseded_in_sample_sharpe_target": [
       2.0,
       2.5
     ],
-    "portfolio_max_drawdown_target": 0.11,
-    "drawdown_target_kind": "approximate research objective evaluated out of sample and under stress, never a loss limit or promised result",
-    "target_kind": "honest out-of-sample research objective, never a promised result",
-    "portfolio_requirement": "Improve the combined book through independent economic return sources, not leverage or selection of the prettiest backtest.",
+    "superseded_reason": "Stated in-sample with no haircut named, and unreachable as a forward result: a verified forward 2.0 at measured per-sleeve quality needs an average pairwise correlation of -0.062 against a PSD floor of -0.077. Withdrawn 2026-08-21 and replaced with an honest FORWARD target of 1.5, which is inside the floor at every plausible quality.",
+    "target_total_sleeves": 14,
+    "targets_are_admission_evidence": false,
+    "what_reaching_it_requires": "Both halves, not either: an average pairwise correlation meaningfully BELOW zero, and per-sleeve quality above roughly 0.60. At today's measured 0.469 the forward target is reachable only at a correlation near -0.030 and only on the optimistic haircut.",
+    "why_this_is_not_a_retreat": "The rarer thing was never the number. A forward Sharpe near 1.5 that is genuinely verifiable -- signed forward record, every killed candidate published in full, gates that provably bite, and the arithmetic showing where the gate falls short of the target printed on the same page as the target -- is harder to find than a 2.5 nobody can check.",
     "target_sleeve_count": 14,
-    "minimum_new_sleeves": 10,
     "candidate_atlas_minimum": 200,
+    "portfolio_requirement": "Improve the combined book through independent economic return sources, not leverage or selection of the prettiest backtest.",
     "admission_rule": "A target never creates a sleeve. Fourteen is reached only if ten or more new identities independently clear every admission gate; otherwise the book remains smaller."
   },
   "admission_gates": {
     "point_in_time_data": true,
     "net_of_costs": true,
     "walk_forward_only": true,
+    "book_deflated_sharpe_must_be_measured": true,
+    "deflated_sharpe_must_be_measured": true,
     "requires_capacity_curve": true,
     "requires_kill_criteria": true,
-    "book_deflated_sharpe_min": 0.95,
     "pbo_max": 0.2,
-    "average_pairwise_correlation_max": 0.0,
+    "candidate_average_correlation_to_existing_book_max": 0.0,
+    "book_average_pairwise_correlation_delta_max_exclusive": 0.0,
     "average_pairwise_correlation_upper_95_max": 0.1,
     "pairwise_correlation_max": 0.35,
     "stressed_pairwise_correlation_max": 0.5,
@@ -524,6 +553,21 @@
         "item4_extraction_rate": 0.86875,
         "specific_active_intent_rate": 0.17985611510791366
       },
+      "document_feasibility_v3": {
+        "protocol": "docs/design/FEASIBILITY_ACTIVE_OWNERSHIP_13D_ITEM4_V3.md",
+        "protocol_public": "/research/active-ownership-item4-v3-feasibility.md",
+        "result": "artifacts/feasibility/active_ownership_13d_item4_v3/result.json",
+        "result_public": "/glassbox/active_ownership_item4_v3_feasibility.json",
+        "decision": "HUMAN_AUDIT_REQUIRED",
+        "return_hypotheses_spent": 0,
+        "documents": 160,
+        "successful_submissions": 160,
+        "item4_extracted": 150,
+        "item4_extraction_rate": 0.9375,
+        "specific_active_intent_rate": 0.2,
+        "completed_human_labels": 0,
+        "required_human_labels": 48
+      },
       "kill": "Kill if specific active intent cannot be separated from boilerplate point-in-time, target/reporting-person lineage is unstable, or residual correlation to existing equity sleeves exceeds 0.35."
     },
     {
@@ -915,12 +959,12 @@
       "id": "insider_purchase_clusters",
       "public_result": "artifacts/probe/insider_purchase_clusters/result.json",
       "verdict": "KILLED",
-      "net_sharpe": -0.2432300499265856,
-      "dsr": 1.6439916961131833e-06,
-      "newey_west_t": -0.785510407497244,
-      "average_correlation": -0.06427676454613164,
-      "max_pair_correlation": 0.057033921939489814,
-      "capacity_p05_usd_at_1pct_adv": 5167351.429733131,
+      "net_sharpe": -0.23152401026980723,
+      "dsr": 1.8267699207635905e-07,
+      "newey_west_t": -0.7490229630283064,
+      "average_correlation": -0.06552902584399353,
+      "max_pair_correlation": 0.056953006445850426,
+      "capacity_p05_usd_at_1pct_adv": 5314909.588793404,
       "reason": "The sleeve was genuinely diversifying and capacity-feasible, but had negative OOS returns, DSR effectively zero, and reduced the fixed-weight ALPHAC book in three of four leave-one-year-out recomputations. The sign is not inverted and the parameters are not retuned."
     },
     {
@@ -928,50 +972,54 @@
       "public_result": "artifacts/probe/eia_petroleum_inventory/result.json",
       "verdict": "KILLED",
       "net_sharpe": -0.5892034349114502,
-      "dsr": 1.3954242209881757e-09,
+      "dsr": 7.374195622900468e-11,
       "newey_west_t": -1.844976942634086,
-      "average_correlation": 0.00015772886947386117,
-      "max_pair_correlation": 0.03207381723130501,
+      "average_correlation": 0.0011844131458630738,
+      "max_pair_correlation": 0.03225901275187299,
       "capacity_p05_usd_at_1pct_adv": 14919.439128870974,
       "reason": "The one-shot petroleum proxy was exceptionally orthogonal but had strongly negative OOS returns, failed both standalone product checks, failed mean-zero and leave-one-year-out book stability, and was severely capacity-constrained by UGA. The sign is not inverted and the parameters are not retuned."
     }
   ],
   "retired_admission_gates": {
-    "deflated_sharpe_min": "Retired as a per-sleeve GATE in contract v6 and replaced by book_deflated_sharpe_min at the same 0.95 against the complete union of hypothesis identities. A 0.95 per-sleeve floor required an annualized Sharpe of 1.184 even at the least deflation the formula permits, about eight times the declared net Sharpe floor, and no sleeve in this book clears it. The per-sleeve figure is still measured and published for every candidate; evidence that omits it fails closed."
+    "deflated_sharpe_min": "Retired as a per-sleeve gate in v6 because it measured the wrong object and silently required about eight times the declared net-Sharpe floor. Per-sleeve DSR remains a mandatory published measurement.",
+    "book_deflated_sharpe_min": "Re-scoped prospectively in v7 from an incremental admission gate to a 0.95 portfolio-maturity gate. Full-union book DSR remains mandatory to measure and publish at every admission; known results were not regraded.",
+    "average_pairwise_correlation_max": "Replaced prospectively in v7 because applying a final global level to each incremental admission was path-dependent. A candidate must now average no more than zero correlation to the existing book and must strictly reduce the book's global average; the -0.03 portfolio objective remains mandatory to publish."
   },
-  "admission_contract_schema": "canli.alphac-sleeve-admission-contract.v6",
+  "admission_contract_schema": "canli.alphac-sleeve-admission-contract.v7",
   "admission_contract_public_path": "/glassbox/sleeve_admission_contract.json",
   "frontier_arithmetic": {
+    "book_sharpe_ceiling_at_zero_global_correlation": {
+      "s_bar_four_curve_basis": 1.736129027463109,
+      "s_bar_traded_basis": 1.979336757603415
+    },
     "claim_boundary": "Derived from the governing identity alone. Reads no data, runs no backtest, spends no hypothesis, and claims no candidate's correlation, sign or return.",
-    "identity": "S_book = s_bar * sqrt(N / (1 + (N - 1) * rho_bar))",
-    "target_sleeve_count": 14,
-    "psd_floor_at_target_n": -0.07692307692307693,
-    "psd_floor_note": "Average pairwise correlation cannot fall below -1/(N-1) for any real correlation matrix. At fourteen sleeves that floor is far from binding, which is why a negative average is arithmetically available here and is not at 250 sleeves.",
-    "correlation_gate_in_force": 0.0,
-    "book_sharpe_ceiling_at_the_gate": {
-      "s_bar_traded_basis": 1.979336757603415,
-      "s_bar_four_curve_basis": 1.736129027463109
-    },
-    "gate_permits_objective_floor": false,
-    "gate_permits_objective_ceiling": false,
-    "quality_precondition_at_the_gate": {
-      "note": "What the tightened correlation gate alone does NOT buy. At the gate exactly, reaching each end of the objective band requires at least this average standalone Sharpe across fourteen sleeves.",
-      "s_bar_required_for_2.25": 0.6013377943029549,
-      "s_bar_required_for_3.0": 0.8017837257372732,
-      "s_bar_measured_traded_basis": 0.529,
-      "s_bar_measured_four_curve_basis": 0.464
-    },
     "correlation_required_at_measured_quality": {
+      "four_curve_basis": {
+        "rho_bar_required_for_2.25": -0.031124117758784424,
+        "rho_bar_required_for_3.0": -0.05116116239316239
+      },
       "note": "The other route to the same place: hold quality where it is measured today and read off the average pairwise correlation each end of the band demands.",
       "traded_basis": {
         "rho_bar_required_for_2.25": -0.017393747388414055,
         "rho_bar_required_for_3.0": -0.04343782905982906
-      },
-      "four_curve_basis": {
-        "rho_bar_required_for_2.25": -0.031124117758784424,
-        "rho_bar_required_for_3.0": -0.05116116239316239
       }
     },
-    "honest_reading": "Tightening the correlation ceiling from 0.15 to 0.00 removes a ceiling that sat BELOW the objective at every plausible quality, which is why the v4 gate could not have produced the objective at any sleeve count. It does not on its own deliver the objective. At the gate exactly, fourteen sleeves of today's measured quality reach the figure recorded above, and the remaining distance has to be bought with per-sleeve quality, genuinely negative correlation, or both. Publishing this is the point: a target sitting beside a gate that forbids it is not a stretch goal."
+    "honest_reading": "Tightening the correlation ceiling from 0.15 to 0.00 removes a ceiling that sat BELOW the objective at every plausible quality, which is why the v4 gate could not have produced the objective at any sleeve count. It does not on its own deliver the objective. At the gate exactly, fourteen sleeves of today's measured quality reach the figure recorded above, and the remaining distance has to be bought with per-sleeve quality, genuinely negative correlation, or both. Publishing this is the point: a target sitting beside a gate that forbids it is not a stretch goal.",
+    "identity": "S_book = s_bar * sqrt(N / (1 + (N - 1) * rho_bar))",
+    "incremental_book_average_correlation_delta_gate_exclusive": 0.0,
+    "incremental_candidate_average_correlation_gate": 0.0,
+    "incremental_gates_alone_establish_objective_ceiling": false,
+    "incremental_gates_alone_establish_objective_floor": false,
+    "legacy_global_zero_correlation_reference": 0.0,
+    "psd_floor_at_target_n": -0.07692307692307693,
+    "psd_floor_note": "Average pairwise correlation cannot fall below -1/(N-1) for any real correlation matrix. At fourteen sleeves that floor is far from binding, which is why a negative average is arithmetically available here and is not at 250 sleeves.",
+    "quality_precondition_at_the_gate": {
+      "note": "What the tightened correlation gate alone does NOT buy. At the gate exactly, reaching each end of the objective band requires at least this average standalone Sharpe across fourteen sleeves.",
+      "s_bar_measured_four_curve_basis": 0.464,
+      "s_bar_measured_traded_basis": 0.529,
+      "s_bar_required_for_2.25": 0.6013377943029549,
+      "s_bar_required_for_3.0": 0.8017837257372732
+    },
+    "target_sleeve_count": 14
   }
 }

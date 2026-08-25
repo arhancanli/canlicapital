@@ -1,0 +1,55 @@
+{
+  "author": "Arhan Canli",
+  "claim_boundary": "This seal verifies the old-share 1-for-9,200 mutation and its first frozen post-effective-date bar. It does not infer entitlement to restructuring issuances, open returns, authorize another event, or pass the global split gate.",
+  "content_hash": "sha256:d5b2e24b502dffc1c059e82525c30829a657a0add8354896ed57b60f474d06ea",
+  "decision": "ORIG_EXACT_RESTRUCTURING_REVERSE_SPLIT_ISSUER_VERIFIED",
+  "hypotheses_spent": 0,
+  "lineage": {
+    "unresolved_context_content_hash": "sha256:c81c35a83c706cec7a8b4e4c9f22d1f0c874c26fe42c8a92ebdc0bc75c7b4d3f",
+    "unresolved_context_path": "artifacts/audit/unresolved_split_event_context.json",
+    "unresolved_context_sha256": "98304049af107814ec6b7798ff6ea91ab54e16c1f8801c202f1fbbd8d692b2c0"
+  },
+  "required_next_action": "Merge only this exact instrument/date/stored-ratio tuple into the fail-closed policy. Concurrent restructuring issuance explains why the price boundary need not equal the reverse-split ratio.",
+  "retrieved_at": "2026-08-23T05:37:01.926527+00:00",
+  "return_data_opened": false,
+  "schema": "canli.alphac-split-issuer-resolution-batch.v3",
+  "verified_events": [
+    {
+      "authorization": "BYPASS_PRICE_GAP_HEURISTIC_FOR_THIS_EXACT_EVENT_ONLY",
+      "event_semantics": "REVERSE_SPLIT_AT_FIRST_FROZEN_BAR_AFTER_LEGAL_EFFECTIVE_DATE",
+      "ex_date": "2017-09-22 04:00:00+04:00",
+      "ex_date_ms": 1506038400000,
+      "instrument_id": "XUSE:CASH:ORIGUSD",
+      "issuer_effective_date": "2017-09-21",
+      "issuer_ratio": 0.00010869565217391305,
+      "market_date_binding": {
+        "binding": "EVENT_DATE_IS_FIRST_FROZEN_PRICE_BAR_AFTER_ISSUER_EFFECTIVE_DATE",
+        "event_close": 24.0,
+        "event_date": "2017-09-22",
+        "price_partition_path": "data/corrections/corporate_action_basis_48fcfde04e3c_materialized_v1/data/lake_sharadar/ohlcv_1d/instrument_id=XUSE:CASH:ORIGUSD/year=2017/data.parquet",
+        "price_partition_sha256": "68b37ef4ce4ceffdc9814193e9b466cc2f40cd1ba587660428ff0cb07530dd31",
+        "prior_close": 0.075,
+        "prior_date": "2017-09-21"
+      },
+      "prior_context_classification": "PLAIN_SPLIT_WITHOUT_LIFECYCLE_CONTEXT",
+      "ratio": 0.00011,
+      "ratio_binding": "ISSUER_RATIO_ROUNDED_TO_FROZEN_FIVE_DECIMAL_VENDOR_PRECISION",
+      "required_fragments": [
+        "On September 21, 2017, the Company effected a 1-for-9,200 reverse stock split",
+        "of the then-existing shares of the Company's issued common stock",
+        "Following the reverse stock split, there were approximately 8,975 shares",
+        "The CUSIP number for the common stock following the reverse stock split is G66964118"
+      ],
+      "required_fragments_verified": [
+        "On September 21, 2017, the Company effected a 1-for-9,200 reverse stock split",
+        "of the then-existing shares of the Company's issued common stock",
+        "Following the reverse stock split, there were approximately 8,975 shares",
+        "The CUSIP number for the common stock following the reverse stock split is G66964118"
+      ],
+      "retrieved_sha256": "91fe36f300701f6a9b55d26e470f5eecb0db31369449b4b86f5347d830c89e9a",
+      "stored_ratio": 0.00011,
+      "ticker": "ORIG",
+      "url": "https://www.sec.gov/Archives/edgar/data/1447382/000091957417006882/d7659156_ex99-1.htm"
+    }
+  ]
+}

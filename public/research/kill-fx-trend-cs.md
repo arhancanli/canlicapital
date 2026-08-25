@@ -2,7 +2,7 @@
 
 **Short title:** FX Trend (cross-sectional 12-1): killed
 
-**Verdict:** KILLED  **Stage:** screen prototype  
+**Verdict:** KILLED  **Stage:** screen prototype
 **Identity:** `fx_trend_cs`
 
 Cross-sectional currency trend, net of cost, 2016-2026. Flat (net Sharpe -0.035) — a weak-trend decade for FX. Below the 0.30 screen bar. KILLED at screen.

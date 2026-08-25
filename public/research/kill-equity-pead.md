@@ -2,7 +2,7 @@
 
 **Short title:** Post-Earnings-Announcement Drift: killed
 
-**Verdict:** KILLED  **Stage:** screen prototype  
+**Verdict:** KILLED  **Stage:** screen prototype
 **Identity:** `equity_pead`
 
 Clean null on a tradable top-1000 universe: the drift is the WRONG sign net of cost; the published PEAD edge lives only in untradeable micro-caps. Corr 0.47 to momentum. KILLED.

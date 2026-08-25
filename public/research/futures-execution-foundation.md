@@ -1,7 +1,7 @@
 # Dated-futures execution foundation
 
-**Capability status:** domain primitives only  
-**Research effect:** zero market data opened, zero returns evaluated, zero hypotheses spent  
+**Capability status:** domain primitives only
+**Research effect:** zero market data opened, zero returns evaluated, zero hypotheses spent
 **Claim boundary:** architecture evidence, not sleeve-admission or performance evidence
 
 AlphaForge can now represent a dated futures contract as a first-class `FUTURE` instrument and

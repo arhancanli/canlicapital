@@ -1,0 +1,261 @@
+{
+  "author": "Arhan Canli",
+  "claim_boundary": "This audit proves that no raw tabular input file is inside a Wave 1 publication bundle and records the conservative source policy. It is not legal advice and does not establish portable reproduction, redistribution permission, or independent review.",
+  "content_hash": "sha256:656e798b953b9adb278acde8cdebf6ff79404e7da83e12bb28ef9aac7147537e",
+  "failures": [],
+  "policy_binding": {
+    "path": "config/data_source_rights_policy.json",
+    "sha256": "1d57506d08326e7837aa73f8991ca0a63cabecfc334b88ef88eb865b7abcb26b"
+  },
+  "raw_vendor_rows_released": false,
+  "records": [
+    {
+      "bundle": "publication/alphavintage/v1.0.0",
+      "bundle_raw_tabular_files": [],
+      "consumed_market_symbols": [
+        "IWM",
+        "SPY",
+        "QQQ"
+      ],
+      "derived_objects_withheld": [
+        {
+          "bytes": 110583,
+          "path": "artifacts/probe/cpi_surprise_size/equity.parquet",
+          "present": true,
+          "public_bundle_path": null,
+          "sha256": "d277c63ddf2bed6e9314aa863dbbf6adf3f4adb55bd89e8166aee4a19aab415f"
+        }
+      ],
+      "local_input_roots": [
+        {
+          "kind": "directory",
+          "path": "data/lake_macro_vintage/tier2_vintage",
+          "present": true
+        },
+        {
+          "kind": "directory",
+          "path": "data/lake_mf/ohlcv_1d",
+          "present": true
+        }
+      ],
+      "portable_reproduction_status": "AUTHOR_RUN_CORE_REPRODUCTION_FROM_FRESH_INPUTS_FULL_DIVERSIFICATION_NOT_REPLAYED",
+      "raw_vendor_rows_released": false,
+      "registry_key": "alphavintage_macro_surprise",
+      "release_decision": "RESULTS_AND_MANIFESTS_ONLY_RAW_ROWS_WITHHELD",
+      "source_dependencies": [
+        {
+          "access_kind": "public institutional macro-vintage dataset",
+          "official_documentation": "https://www.philadelphiafed.org/surveys-and-data/real-time-data-research/real-time-data-set-for-macroeconomists",
+          "official_terms": "https://www.philadelphiafed.org/-/media/frbp/assets/institutional/about-us/terms-of-use.pdf",
+          "permitted_release": "download recipe, series names, vintage semantics, coverage manifest, hashes and derived results",
+          "portable_reproduction_route": "fresh download from the official source",
+          "raw_redistribution": "WITHHELD_PENDING_EXPLICIT_RIGHTS_CONFIRMATION",
+          "source_key": "PHILADELPHIA_FED_RTDSM"
+        },
+        {
+          "access_kind": "third-party market-data service",
+          "official_terms": "https://legal.yahoo.com/us/en/yahoo/terms/otos/index.html",
+          "permitted_release": "instrument/date specification, code, hashes and derived non-row-level results",
+          "portable_reproduction_route": "reviewer independently acquires equivalent licensed benchmark data",
+          "raw_redistribution": "PROHIBITED_WITHOUT_EXPLICIT_PERMISSION",
+          "source_key": "YAHOO_FINANCE_MARKET_DATA"
+        },
+        {
+          "access_kind": "authenticated private paper-broker account",
+          "official_terms": "https://alpaca.markets/disclosures",
+          "permitted_release": "sanitized aggregate reconciliation with account identifiers and credentials removed",
+          "portable_reproduction_route": "reviewer supplies a separate paper account or verifies released aggregates",
+          "raw_redistribution": "PROHIBITED_BY_PROJECT_POLICY",
+          "source_key": "ALPACA_PRIVATE_ACCOUNT"
+        }
+      ]
+    },
+    {
+      "bundle": "publication/crypto-carry/v0.1.0",
+      "bundle_raw_tabular_files": [],
+      "consumed_market_symbols": [],
+      "derived_objects_withheld": [
+        {
+          "bytes": 679242,
+          "path": "artifacts/walkforward/crypto_carry_wk/equity.parquet",
+          "present": true,
+          "public_bundle_path": null,
+          "sha256": "37598579af6f34892e40902e2a357e4b07993b3e572012a1da311f7e91798a2a"
+        },
+        {
+          "bytes": 680398,
+          "path": "artifacts/probe/crypto_carry_frozen_current_code_replay/equity.parquet",
+          "present": true,
+          "public_bundle_path": null,
+          "sha256": "c2820be452d1687a329690671891f5c38b449b95991d6e38dd57e3e3460932c2"
+        }
+      ],
+      "local_input_roots": [
+        {
+          "kind": "directory",
+          "path": "data/lake",
+          "present": true
+        }
+      ],
+      "portable_reproduction_status": "REQUIRES_FRESH_OFFICIAL_DOWNLOAD_OR_SEPARATELY_LICENSED_ACCESS",
+      "raw_vendor_rows_released": false,
+      "registry_key": "alphaforge_crypto_carry",
+      "release_decision": "RESULTS_AND_MANIFESTS_ONLY_RAW_ROWS_WITHHELD",
+      "source_dependencies": [
+        {
+          "access_kind": "exchange API accessed through CCXT",
+          "official_terms": "https://www.binance.com/en/terms",
+          "permitted_release": "code, query specification, symbols, timestamps, hashes and derived non-row-level results",
+          "portable_reproduction_route": "fresh API acquisition under the reviewer's own access and then hash/coverage comparison",
+          "raw_redistribution": "WITHHELD_PENDING_EXPLICIT_RIGHTS_CONFIRMATION",
+          "source_key": "BINANCE_EXCHANGE_MARKET_DATA"
+        }
+      ]
+    },
+    {
+      "bundle": "publication/alphamax/v0.1.0",
+      "bundle_raw_tabular_files": [],
+      "consumed_market_symbols": [],
+      "derived_objects_withheld": [
+        {
+          "bytes": 13732,
+          "path": "artifacts/walkforward/k30_dn_63/equity.parquet",
+          "present": true,
+          "public_bundle_path": null,
+          "sha256": "76f82c8df3726f049144d7699c0f13069db6a1e0d1f1e4570babd8d82a85cfc9"
+        }
+      ],
+      "local_input_roots": [
+        {
+          "kind": "directory",
+          "path": "data/lake",
+          "present": true
+        },
+        {
+          "kind": "directory",
+          "path": "data/lake_sharadar",
+          "present": true
+        },
+        {
+          "kind": "directory",
+          "path": "data/lake_mf",
+          "present": true
+        }
+      ],
+      "portable_reproduction_status": "REQUIRES_FRESH_OFFICIAL_DOWNLOAD_OR_SEPARATELY_LICENSED_ACCESS",
+      "raw_vendor_rows_released": false,
+      "registry_key": "alphamax_equity_momentum",
+      "release_decision": "RESULTS_AND_MANIFESTS_ONLY_RAW_ROWS_WITHHELD",
+      "source_dependencies": [
+        {
+          "access_kind": "licensed vendor market data",
+          "official_terms": "https://massive.com/legal/terms",
+          "permitted_release": "code, field specification, coverage manifest, hashes and derived non-row-level results",
+          "portable_reproduction_route": "reviewer supplies separately licensed Massive/Polygon access",
+          "raw_redistribution": "PROHIBITED_WITHOUT_SEPARATE_PERMISSION",
+          "source_key": "MASSIVE_POLYGON_MARKET_DATA"
+        },
+        {
+          "access_kind": "licensed Nasdaq Data Link dataset",
+          "official_terms": "https://data.nasdaq.com/terms",
+          "permitted_release": "code, table/field specification, coverage manifest, hashes and derived non-row-level results",
+          "portable_reproduction_route": "reviewer supplies a separately licensed Sharadar dataset",
+          "raw_redistribution": "PROHIBITED_WITHOUT_SEPARATE_PERMISSION",
+          "source_key": "NASDAQ_SHARADAR"
+        },
+        {
+          "access_kind": "third-party market-data service",
+          "official_terms": "https://legal.yahoo.com/us/en/yahoo/terms/otos/index.html",
+          "permitted_release": "instrument/date specification, code, hashes and derived non-row-level results",
+          "portable_reproduction_route": "reviewer independently acquires equivalent licensed benchmark data",
+          "raw_redistribution": "PROHIBITED_WITHOUT_EXPLICIT_PERMISSION",
+          "source_key": "YAHOO_FINANCE_MARKET_DATA"
+        }
+      ]
+    },
+    {
+      "bundle": "publication/alphatrend/v0.1.0",
+      "bundle_raw_tabular_files": [],
+      "consumed_market_symbols": [],
+      "derived_objects_withheld": [
+        {
+          "bytes": 91159,
+          "path": "artifacts/walkforward/mf_live_fwd/equity.parquet",
+          "present": true,
+          "public_bundle_path": null,
+          "sha256": "877c2c573dd8a6b0c52c4d316413a8ec607771a221589e5388e7d3ff0148be17"
+        }
+      ],
+      "local_input_roots": [
+        {
+          "kind": "directory",
+          "path": "data/lake_mf",
+          "present": true
+        }
+      ],
+      "portable_reproduction_status": "REQUIRES_FRESH_OFFICIAL_DOWNLOAD_OR_SEPARATELY_LICENSED_ACCESS",
+      "raw_vendor_rows_released": false,
+      "registry_key": "alphatrend_managed_futures",
+      "release_decision": "RESULTS_AND_MANIFESTS_ONLY_RAW_ROWS_WITHHELD",
+      "source_dependencies": [
+        {
+          "access_kind": "third-party market-data service",
+          "official_terms": "https://legal.yahoo.com/us/en/yahoo/terms/otos/index.html",
+          "permitted_release": "instrument/date specification, code, hashes and derived non-row-level results",
+          "portable_reproduction_route": "reviewer independently acquires equivalent licensed benchmark data",
+          "raw_redistribution": "PROHIBITED_WITHOUT_EXPLICIT_PERMISSION",
+          "source_key": "YAHOO_FINANCE_MARKET_DATA"
+        }
+      ]
+    },
+    {
+      "bundle": "publication/crypto-multifactor-engine/v0.1.0",
+      "bundle_raw_tabular_files": [],
+      "consumed_market_symbols": [],
+      "derived_objects_withheld": [
+        {
+          "bytes": null,
+          "path": "artifacts/grand_backtest/20260616T143620Z/equity.parquet",
+          "present": false,
+          "public_bundle_path": null,
+          "sha256": null
+        }
+      ],
+      "local_input_roots": [
+        {
+          "kind": "directory",
+          "path": "data/lake",
+          "present": true
+        }
+      ],
+      "portable_reproduction_status": "REQUIRES_FRESH_OFFICIAL_DOWNLOAD_OR_SEPARATELY_LICENSED_ACCESS",
+      "raw_vendor_rows_released": false,
+      "registry_key": "crypto_multifactor_engine",
+      "release_decision": "RESULTS_AND_MANIFESTS_ONLY_RAW_ROWS_WITHHELD",
+      "source_dependencies": [
+        {
+          "access_kind": "exchange API accessed through CCXT",
+          "official_terms": "https://www.binance.com/en/terms",
+          "permitted_release": "code, query specification, symbols, timestamps, hashes and derived non-row-level results",
+          "portable_reproduction_route": "fresh API acquisition under the reviewer's own access and then hash/coverage comparison",
+          "raw_redistribution": "WITHHELD_PENDING_EXPLICIT_RIGHTS_CONFIRMATION",
+          "source_key": "BINANCE_EXCHANGE_MARKET_DATA"
+        }
+      ]
+    }
+  ],
+  "remaining_blockers": [
+    "SOURCE_SPECIFIC_WRITTEN_REDISTRIBUTION_PERMISSION_NOT_RECORDED",
+    "PORTABLE_FETCH_RECIPES_AND_COVERAGE_MANIFESTS_NOT_COMPLETE",
+    "FRESH_REVIEWER_ACQUISITION_NOT_EXECUTED"
+  ],
+  "schema": "canli.alphac-wave1-data-rights-audit.v1",
+  "source_classes": 10,
+  "status": "PASS_CONSERVATIVE_EXCLUSION",
+  "submission_plan_binding": {
+    "content_hash": "sha256:7dac1359bd7f83f878f898298428f2d39de9dcdcc435c6a9dcc1bada4fc76e70",
+    "path": "artifacts/publication/external_submission_plan.json",
+    "sha256": "2dce7a5aecd7f5ec13d8a6286075ee17452739c538a77fdf3cdcb87422f8a767"
+  },
+  "wave1_papers": 5
+}

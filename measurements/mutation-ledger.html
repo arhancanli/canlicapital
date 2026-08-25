@@ -24,7 +24,9 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=swap" />
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=optional" />
+<link rel="stylesheet" media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=optional" />
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=optional" /></noscript>
 <link rel="stylesheet" href="../css/paper.css" />
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"Mutation ledger","description":"Breaks what each guard watches and records whether the guard failed. Runs no backtest, opens no return data, registers no hypothesis identity, and changes nothing…","url":"https://canlicapital.com/measurements/mutation-ledger","creator":{"@type":"Person","name":"Arhan Canli"},"publisher":{"@type":"Organization","name":"Canli Capital","url":"https://canlicapital.com/"},"isAccessibleForFree":true,"distribution":{"@type":"DataDownload","encodingFormat":"application/json","contentUrl":"https://canlicapital.com/glassbox/mutation_ledger.json"}}</script>
 </head>
@@ -46,14 +48,14 @@
     <h1 class="paper__title">Mutation ledger</h1>
     <p class="paper__byline">By <span rel="author">Arhan Canli</span>, Canli Capital</p>
     <div class="paper__body">
-<p class="measure__lead">Mutation ledger is one of 31 measurements this
+<p class="measure__lead">Mutation ledger is one of 84 measurements this
 engine publishes in full. It is regenerated from a real run rather than transcribed, and it
 is shown here with its own claim boundary so the number and its limits arrive together.</p>
 <aside class="measure__boundary"><h2>What this measurement does and does not claim</h2><p>Breaks what each guard watches and records whether the guard failed. Runs no backtest, opens no return data, registers no hypothesis identity, and changes nothing permanently — every mutation is restored and the restoration is verified by hash. 0 trials.</p></aside>
 <section class="measure__section"><h2>The measurement</h2>
 <dl class="measure__facts">
-<div class="measure__row"><dt>Guards mutated</dt><dd>20</dd></div>
-<div class="measure__row"><dt>Guards over published claims</dt><dd>20</dd></div>
+<div class="measure__row"><dt>Guards mutated</dt><dd>48</dd></div>
+<div class="measure__row"><dt>Guards over published claims</dt><dd>48</dd></div>
 <div class="measure__row"><dt>Schema</dt><dd>canli.alphac-mutation-ledger.v1</dd></div>
 </dl>
 <p class="measure__prose"><strong>Coverage is derived.</strong> The guard set is computed from tests/unit by the same rule every run, so a guard added without a mutation appears here rather than joining the unmutated majority unnoticed.</p>
@@ -66,7 +68,7 @@ is shown here with its own claim boundary so the number and its limits arrive to
 artifact the engine wrote. Nothing on this page is typed by hand: the page is generated from that
 file, so a figure that moves in the artifact moves here and a figure that is not in the artifact
 cannot appear here at all.</p>
-<p><a href="/measurements">All 31 measurements</a> &middot;
+<p><a href="/measurements">All 84 measurements</a> &middot;
 <a href="/open">The glass box</a> &middot;
 <a href="/research">The research library</a></p>
 </section>

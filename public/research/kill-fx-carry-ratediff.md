@@ -2,7 +2,7 @@
 
 **Short title:** FX Carry (rate differential): killed
 
-**Verdict:** KILLED  **Stage:** screen prototype  
+**Verdict:** KILLED  **Stage:** screen prototype
 **Identity:** `fx_carry_ratediff`
 
 Long high-rate / short low-rate currencies. Net Sharpe 0.18 but skew -2.74: the carry premium does not pay for its crash risk (carry 'picks up pennies in front of a steamroller'). Below the screen bar on both Sharpe and skew. KILLED at screen.

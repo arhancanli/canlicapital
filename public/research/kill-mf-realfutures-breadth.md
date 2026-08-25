@@ -2,7 +2,7 @@
 
 **Short title:** Real-Futures Breadth for the Trend Sleeve: killed
 
-**Verdict:** KILLED  **Stage:** screen prototype  
+**Verdict:** KILLED  **Stage:** screen prototype
 **Identity:** `mf_realfutures_breadth`
 
 We had been treating 'buy real futures data for genuine breadth' as the roadmap for the trend sleeve, on the theory that Sharpe scales with the square root of effective breadth and 17 ETFs cannot supply it. Half of that is right: measured effective breadth is 9.1 for 38 real futures versus 5.3 for the live 17-ETF basket (and only 3.5 for a 33-ETF expansion we already killed — more names, LESS breadth, which is why it failed). The other half is wrong. On an identical construction, identical costs and the identical 2010-2026 common window, the 38-market futures book returns net Sharpe -0.148 against the ETF sleeve's +0.498, independently reproducing an earlier -0.24 result we had discounted as a possible one-off. It is not a data fault: across all 38 back-adjusted series there is exactly one single-day move above 25%. Breadth MULTIPLIES the average per-market edge; where that edge is absent, more breadth buys more of nothing and 7.3x turnover instead of 4.3x. The capital-gated futures path is therefore NOT validated and we have stopped citing it. Reproduce: the probe is in the session record; data is data/lake_fut_real (38 markets).

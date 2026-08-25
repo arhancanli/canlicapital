@@ -2,7 +2,7 @@
 
 **Short title:** Funding Term-Structure / Slope (campaign): killed
 
-**Verdict:** KILLED  **Stage:** screen prototype  
+**Verdict:** KILLED  **Stage:** screen prototype
 **Identity:** `funding_termstructure`
 
 The decorrelated residual is noise (worked pre-2023, inverted after: +1.11 then -1.43); the only version that makes money is leaked carry-LEVEL — a duplication of what we own. KILLED.

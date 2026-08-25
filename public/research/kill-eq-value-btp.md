@@ -2,8 +2,8 @@
 
 **Short title:** Equity Value (Book-to-Price): killed
 
-**Verdict:** KILLED  
-**Test window:** 2022-07-05 to 2026-06-01  
+**Verdict:** KILLED
+**Test window:** 2022-07-05 to 2026-06-01
 **Identity:** `eq_value_btp`
 
 Value premium inverted across the 2022-2026 window. Net Sharpe below the 0.30 gate; the narrow top-200 universe is too small for the small/mid-cap value signal. KILLED.

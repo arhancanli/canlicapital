@@ -2,7 +2,7 @@
 
 **Short title:** Rates-Curve Carry (campaign): killed
 
-**Verdict:** KILLED  **Stage:** screen prototype  
+**Verdict:** KILLED  **Stage:** screen prototype
 **Identity:** `rates_curve_carry`
 
 Robustly NEGATIVE, not fragile-positive: the signal points the wrong way — steepest curves preceded the worst duration drawdowns (2022). Real decorrelation, negative edge. KILLED.

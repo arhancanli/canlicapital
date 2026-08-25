@@ -1,8 +1,8 @@
 # Options dispersion: literature and implementation boundary
 
-**Reviewed:** 2026-08-16  
-**Family:** `options_dispersion`  
-**Claim state:** mechanism supported; investable return untested  
+**Reviewed:** 2026-08-16
+**Family:** `options_dispersion`
+**Claim state:** mechanism supported; investable return untested
 **Return identities spent:** zero
 
 ## What the evidence supports

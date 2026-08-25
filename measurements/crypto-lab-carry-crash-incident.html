@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Crypto lab carry crash incident / Canli Capital</title>
+<meta name="description" content="Forensic description of one paper-traded LABUSDT episode. It spends zero return hypotheses, does not estimate Sharpe or expected performance, does not authorize a…" />
+<link rel="canonical" href="https://canlicapital.com/measurements/crypto-lab-carry-crash-incident" />
+<meta name="author" content="Arhan Canli" />
+<meta name="canli:sources" content="crypto_lab_carry_crash_incident.json" />
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="Canli Capital" />
+<meta property="og:title" content="Crypto lab carry crash incident / Canli Capital" />
+<meta property="og:description" content="Forensic description of one paper-traded LABUSDT episode. It spends zero return hypotheses, does not estimate Sharpe or expected performance, does not authorize a…" />
+<meta property="og:url" content="https://canlicapital.com/measurements/crypto-lab-carry-crash-incident" />
+<meta property="og:image" content="https://canlicapital.com/og.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Crypto lab carry crash incident / Canli Capital" />
+<meta name="twitter:description" content="Forensic description of one paper-traded LABUSDT episode. It spends zero return hypotheses, does not estimate Sharpe or expected performance, does not authorize a…" />
+<meta name="twitter:image" content="https://canlicapital.com/og.png" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="icon" href="/favicon.ico" sizes="any" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=optional" />
+<link rel="stylesheet" media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=optional" />
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=optional" /></noscript>
+<link rel="stylesheet" href="../css/paper.css" />
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"Crypto lab carry crash incident","description":"Forensic description of one paper-traded LABUSDT episode. It spends zero return hypotheses, does not estimate Sharpe or expected performance, does not authorize a…","url":"https://canlicapital.com/measurements/crypto-lab-carry-crash-incident","creator":{"@type":"Person","name":"Arhan Canli"},"publisher":{"@type":"Organization","name":"Canli Capital","url":"https://canlicapital.com/"},"isAccessibleForFree":true,"distribution":{"@type":"DataDownload","encodingFormat":"application/json","contentUrl":"https://canlicapital.com/glassbox/crypto_lab_carry_crash_incident.json"}}</script>
+</head>
+<body class="paper">
+<a class="paper__skip" href="#content">Skip to content</a>
+<header class="paper__masthead">
+  <a class="paper__brand" href="/">Canli Capital</a>
+  <nav class="paper__nav" aria-label="Primary">
+    <a href="/systems">Systems</a>
+    <a href="/performance">Evidence</a>
+    <a href="/research">Research</a>
+    <a href="/measurements">Measurements</a>
+    <a href="/open">Glass box</a>
+  </nav>
+</header>
+<main class="paper__main" id="content">
+  <article class="paper__article">
+    <p class="paper__eyebrow"><a href="/measurements">Measurements</a></p>
+    <h1 class="paper__title">Crypto lab carry crash incident</h1>
+    <p class="paper__byline">By <span rel="author">Arhan Canli</span>, Canli Capital</p>
+    <div class="paper__body">
+<p class="measure__lead">Crypto lab carry crash incident is one of 84 measurements this
+engine publishes in full. It is regenerated from a real run rather than transcribed, and it
+is shown here with its own claim boundary so the number and its limits arrive together.</p>
+<aside class="measure__boundary"><h2>What this measurement does and does not claim</h2><p>Forensic description of one paper-traded LABUSDT episode. It spends zero return hypotheses, does not estimate Sharpe or expected performance, does not authorize a strategy change, and does not rewrite the published equity record.</p></aside>
+<section class="measure__section"><h2>The measurement</h2>
+<dl class="measure__facts">
+<div class="measure__row"><dt>Author</dt><dd>Arhan Canli</dd></div>
+<div class="measure__row"><dt>Content hash</dt><dd>sha256:7afd370ac570341463c730a34d29c7f89a731c9335ce1f5a5f36df00a16358ef</dd></div>
+<div class="measure__row"><dt>Decision</dt><dd>PRESERVE_LOSS_NO_PRICE_JUMP_GUARD_NO_WEIGHT_CHANGE</dd></div>
+<div class="measure__row"><dt>Instrument</dt><dd>BINANCE:PERP:LABUSDT</dd></div>
+<div class="measure__row"><dt>Schema</dt><dd>canli.alphac-crypto-lab-carry-crash-incident.v1</dd></div>
+<div class="measure__row"><dt>Verdict</dt><dd>GENUINE_MARKET_CRASH_NOT_CONTRACT_IDENTITY_DEFECT</dd></div>
+</dl>
+<section class="measure__sub"><h3>Execution sequence</h3>
+<section class="measure__sub"><h4>Long close</h4>
+<dl class="measure__facts">
+<div class="measure__row"><dt>Client order id</dt><dd>rb-1785369600000-BINANCE:PERP:LABUSDT-close</dd></div>
+<div class="measure__row"><dt>Fee quote</dt><dd>0.008852</dd></div>
+<div class="measure__row"><dt>Instrument id</dt><dd>BINANCE:PERP:LABUSDT</dd></div>
+<div class="measure__row"><dt>Price</dt><dd>0.155300</dd></div>
+<div class="measure__row"><dt>Qty</dt><dd>114</dd></div>
+<div class="measure__row"><dt>Side</dt><dd>sell</dd></div>
+<div class="measure__row"><dt>Ts</dt><dd>1785369600000</dd></div>
+</dl>
+</section>
+<section class="measure__sub"><h4>Long entry</h4>
+<dl class="measure__facts">
+<div class="measure__row"><dt>Client order id</dt><dd>rb-1783267200000-BINANCE:PERP:LABUSDT</dd></div>
+<div class="measure__row"><dt>Fee quote</dt><dd>0.920574</dd></div>
+<div class="measure__row"><dt>Instrument id</dt><dd>BINANCE:PERP:LABUSDT</dd></div>
+<div class="measure__row"><dt>Price</dt><dd>16.150421</dd></div>
+<div class="measure__row"><dt>Qty</dt><dd>114</dd></div>
+<div class="measure__row"><dt>Side</dt><dd>buy</dd></div>
+<div class="measure__row"><dt>Ts</dt><dd>1783267200000</dd></div>
+</dl>
+</section>
+<section class="measure__sub"><h4>Short reversal</h4>
+<dl class="measure__facts">
+<div class="measure__row"><dt>Client order id</dt><dd>rb-1785369600000-BINANCE:PERP:LABUSDT-open</dd></div>
+<div class="measure__row"><dt>Fee quote</dt><dd>0.424513</dd></div>
+<div class="measure__row"><dt>Instrument id</dt><dd>BINANCE:PERP:LABUSDT</dd></div>
+<div class="measure__row"><dt>Price</dt><dd>0.155300</dd></div>
+<div class="measure__row"><dt>Qty</dt><dd>5467</dd></div>
+<div class="measure__row"><dt>Side</dt><dd>sell</dd></div>
+<div class="measure__row"><dt>Ts</dt><dd>1785369600000</dd></div>
+</dl>
+</section>
+</section>
+<section class="measure__sub"><h3>Forward record relation</h3>
+<dl class="measure__facts">
+<div class="measure__row"><dt>Classification</dt><dd>PRE_FLAGSHIP_WINDOW_DOES_NOT_EXPLAIN_CURRENT_FORWARD_LOSS</dd></div>
+<div class="measure__row"><dt>Flagship forward record starts</dt><dd>2026-08-07</dd></div>
+<div class="measure__row"><dt>Lab long closed utc</dt><dd>2026-07-30T00:00:00Z</dd></div>
+</dl>
+</section>
+<section class="measure__sub"><h3>Funding regime while held</h3>
+<dl class="measure__facts">
+<div class="measure__row"><dt>First nonnegative settlement</dt><dd>2026-07-08T06:00:00Z</dd></div>
+<div class="measure__row"><dt>Maximum rate</dt><dd>7.515e-4</dd></div>
+<div class="measure__row"><dt>Mean rate</dt><dd>-0.001706</dd></div>
+<div class="measure__row"><dt>Minimum rate</dt><dd>-0.020000</dd></div>
+<div class="measure__row"><dt>Negative observations</dt><dd>68</dd></div>
+<div class="measure__row"><dt>Nonnegative observations</dt><dd>153</dd></div>
+<div class="measure__row"><dt>Observations</dt><dd>221</dd></div>
+</dl>
+<p class="measure__prose"><strong>Interpretation.</strong> The carry signal entered long during negative funding; funding later changed sign and the scheduled rebalance closed the long and opened a short.</p>
+</section>
+<figure class="measure__tablewrap"><figcaption>Independent market context</figcaption><table class="measure__table"><thead><tr><th scope="col">Supports</th><th scope="col">Url</th></tr></thead><tbody>
+<tr><td>independent dated prices during the July 2026 collapse</td><td>https://chartexchange.com/symbol/crypto-labusdt/historical/</td></tr>
+<tr><td>contemporaneous venue response to LABUSDT market risk</td><td>https://phemex.com/announcements/phemex-will-delist-labusdt694</td></tr>
+</tbody></table></figure>
+<section class="measure__sub"><h3>Long episode</h3>
+<dl class="measure__facts">
+<div class="measure__row"><dt>Absolute gross price loss quote rounded 2dp</dt><dd>1823.440000</dd></div>
+<div class="measure__row"><dt>Absolute net price loss quote rounded 2dp</dt><dd>1824.370000</dd></div>
+<div class="measure__row"><dt>Close price</dt><dd>0.155300</dd></div>
+<div class="measure__row"><dt>Entry and close fees quote</dt><dd>0.929426</dd></div>
+<div class="measure__row"><dt>Entry price</dt><dd>16.150421</dd></div>
+<div class="measure__row"><dt>Gross price pnl quote</dt><dd>-1823.443800</dd></div>
+<div class="measure__row"><dt>Gross price pnl quote rounded 2dp</dt><dd>-1823.440000</dd></div>
+<div class="measure__row"><dt>Net price pnl after entry and close fees quote</dt><dd>-1824.373226</dd></div>
+<div class="measure__row"><dt>Net price pnl after entry and close fees quote rounded 2dp</dt><dd>-1824.370000</dd></div>
+<div class="measure__row"><dt>Price return</dt><dd>-0.990384</dd></div>
+<div class="measure__row"><dt>Quantity</dt><dd>114</dd></div>
+</dl>
+</section>
+<section class="measure__sub"><h3>Observability correction</h3>
+<p class="measure__prose"><strong>Historical gap.</strong> Position snapshots retained quantity and average entry but not the exact cycle mark or instrument-level unrealized PnL. Historical attribution cannot be fabricated from aggregate equity.</p>
+<p class="measure__prose"><strong>Prospective fix.</strong> Future paper cycles persist exact order-book mark, mark source, market value, and unrealized PnL through an additive nullable schema migration.</p>
+</section>
+<section class="measure__sub"><h3>Source bindings</h3>
+<section class="measure__sub"><h4>Paper execution database</h4>
+<dl class="measure__facts">
+<div class="measure__row"><dt>Path</dt><dd>var/trading_crypto_perp.sqlite</dd></div>
+<div class="measure__row"><dt>Sha256</dt><dd>b5d117cf821735f8b0f5d7d6f8a6750b4f601f60f3408aa5c4d60f2588eab266</dd></div>
+</dl>
+</section>
+<section class="measure__sub"><h4>Point in time funding</h4>
+<dl class="measure__facts">
+<div class="measure__row"><dt>Path</dt><dd>data/lake/funding/instrument_id=BINANCE:PERP:LABUSDT/year=2026/data.parquet</dd></div>
+<div class="measure__row"><dt>Sha256</dt><dd>909f472cbf8cfaa57cd9a852183dfd9b20d3600d8f497c8e1908bc069dcf01c0</dd></div>
+</dl>
+</section>
+</section>
+</section>
+<section class="measure__section"><h2>Check it yourself</h2>
+<p>Every figure above is read from <a href="/glassbox/crypto_lab_carry_crash_incident.json"><code>/glassbox/crypto_lab_carry_crash_incident.json</code></a>, the
+artifact the engine wrote. Nothing on this page is typed by hand: the page is generated from that
+file, so a figure that moves in the artifact moves here and a figure that is not in the artifact
+cannot appear here at all.</p>
+<p><a href="/measurements">All 84 measurements</a> &middot;
+<a href="/open">The glass box</a> &middot;
+<a href="/research">The research library</a></p>
+</section>
+    </div>
+  </article>
+</main>
+</body>
+</html>

@@ -2,7 +2,7 @@
 
 **Short title:** Natural-gas storage and weather: literature
 
-**Reviewed:** 2026-08-16  
+**Reviewed:** 2026-08-16
 **Research state:** source feasibility only; no futures prices or returns opened.
 
 ## Economic mechanism

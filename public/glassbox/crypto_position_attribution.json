@@ -1,0 +1,22 @@
+{
+  "author": "Arhan Canli",
+  "claim_boundary": "Latest-cycle arithmetic attribution for the locally simulated crypto paper account. It is not Alpaca attestation, a Sharpe estimate, a return trial, or permission to change the strategy. Historical rows without marks remain explicitly unavailable.",
+  "content_hash": "sha256:ccdf08a068a7d34458ce29c5fea435b652a651fc6d35329609913e480dcbb2f2",
+  "historical_boundary": "No historical mark backfill. Completeness begins only with a cycle genuinely persisted by the mark-aware runtime.",
+  "latest_cycle": null,
+  "missing_columns": [
+    "mark_price",
+    "mark_source",
+    "market_value_quote",
+    "unrealized_pnl_quote"
+  ],
+  "passes": false,
+  "positions": [],
+  "schema": "canli.alphac-crypto-position-attribution.v1",
+  "source_binding": {
+    "binding_scope": "latest equity row and same-cycle position snapshot rows",
+    "path": "var/trading_crypto_perp.sqlite",
+    "query_payload_sha256": "8811a9c4fc7deb2a596610c1d1bf3ce579e2de254a24a0874f5fed5aaa344774"
+  },
+  "status": "SCHEMA_NOT_YET_MIGRATED"
+}

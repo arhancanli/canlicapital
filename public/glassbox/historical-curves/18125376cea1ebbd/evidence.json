@@ -1,0 +1,56 @@
+{
+  "author": "Arhan Canli",
+  "claim_boundary": "This artifact proves preservation and deterministic recomputation of one historical curve measurement. It is not preregistration, current reproduction, admission, live performance, or evidence that the full trial packet is complete.",
+  "config_hash": "e2712874c6e55d6e",
+  "content_hash": "sha256:21d5214c3723fbab5bf74b9112382b718f48587196890df69b41d31ac09323e9",
+  "curve_structure": {
+    "first_timestamp": "2022-02-08T00:00:00+00:00",
+    "last_timestamp": "2026-06-01T00:00:00+00:00",
+    "median_source_interval_seconds": 3600,
+    "raw_equity_points": 37776,
+    "return_observations": 1574,
+    "sampled_equity_points": 1575,
+    "sampling_rule": "UTC_CALENDAR_DAY_LAST_FROM_HOURLY_EQUITY"
+  },
+  "evidence_date": "2026-08-23",
+  "hypothesis_key": "18125376cea1ebbd",
+  "measurement": {
+    "annualization_days": 365,
+    "maximum_drawdown": -0.1580820957748722,
+    "maximum_drawdown_magnitude": 0.1580820957748722,
+    "recomputed_annualized_sharpe": 0.36746235624658236,
+    "sharpe_absolute_difference": 0.0,
+    "stored_annualized_sharpe": 0.36746235624658236,
+    "total_return": 0.16029140061250313
+  },
+  "schema": "canli.alphac-historical-curve-evidence.v1",
+  "source_files": {
+    "equity": {
+      "public_path": "/glassbox/historical-curves/18125376cea1ebbd/equity.parquet",
+      "repository_path": "artifacts/cpanel/carry21_3d_rank/equity.parquet",
+      "sha256": "6b5952f5abe6cc8a9f8d05fd23c6d8b5f32669d5d920ed50676fb81a30565b7b"
+    },
+    "ledger": {
+      "config_hash": "e2712874c6e55d6e",
+      "repository_path": "var/experiments.jsonl",
+      "sha256": "b5a318c0997d980575f758451f509e0154eecbbb50d734e49a587d473062bd08"
+    },
+    "walkforward": {
+      "public_path": "/glassbox/historical-curves/18125376cea1ebbd/walkforward.json",
+      "repository_path": "artifacts/cpanel/carry21_3d_rank/walkforward.json",
+      "sha256": "5c3d1b522a9293a55f1f2b5e5f1ed4cb88d97940e19a4da845349b443364db1d"
+    }
+  },
+  "verification": {
+    "annualized_sharpe_matches_within_1e_12": true,
+    "full_packet_section_verified": false,
+    "observation_count_matches": true,
+    "remaining_result_section_debt": [
+      "uncertainty suite",
+      "stress suite",
+      "capacity evidence",
+      "canonical diversification evidence"
+    ],
+    "source_hashes_match": true
+  }
+}

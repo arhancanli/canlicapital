@@ -68,6 +68,16 @@ const measurementEntries = () => {
   );
 };
 
+const trialEntries = () => {
+  const dir = resolve(root, "trials");
+  if (!existsSync(dir)) return {};
+  return Object.fromEntries(
+    readdirSync(dir)
+      .filter((name) => name.endsWith(".html"))
+      .map((name) => [`trial-${name.slice(0, -5)}`, resolve(dir, name)]),
+  );
+};
+
 export default defineConfig({
   root,
   base: "/",
@@ -100,11 +110,13 @@ export default defineConfig({
         open: resolve(root, "open.html"),
         research: resolve(root, "research.html"),
         measurements: resolve(root, "measurements.html"),
+        trials: resolve(root, "trials.html"),
         verify: resolve(root, "verify.html"),
         founder: resolve(root, "founder.html"),
         methodology: resolve(root, "methodology.html"),
         ...paperEntries(),
         ...measurementEntries(),
+        ...trialEntries(),
       },
       output: {
         // Split the heavy, stable vendor (three) into its own long-cache chunk

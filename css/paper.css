@@ -118,6 +118,7 @@ body.paper {
   font: 400 clamp(38px, 5.2vw, 62px)/1.03 var(--display);
   letter-spacing: -0.032em;
   text-wrap: balance;
+  overflow-wrap: anywhere;
 }
 
 .paper__byline {
@@ -430,6 +431,108 @@ body.paper {
   max-width: var(--measure);
   color: var(--muted);
   font-size: 0.94em;
+}
+
+/* Trial evidence pages. The hypothesis hash is treated as a specimen label, while the vertical
+   spine makes the packet contract visible section by section. Missing proof is visually louder
+   than verified shared context, because publication must not make archival debt look complete. */
+.trial__specimen {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 10px 18px;
+  align-items: center;
+  margin: 0 0 28px;
+  padding: 14px 0;
+  border-top: 1px solid var(--line-strong);
+  border-bottom: 1px solid var(--line-strong);
+  font: 500 11px/1.4 var(--mono);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.trial__specimen code { overflow-wrap: anywhere; color: var(--paper-tone); }
+.trial__state--complete { color: #8bc9ad; }
+.trial__state--incomplete { color: #e39a76; }
+.trial__facts, .trial__config { margin: 22px 0; }
+.trial__facts > div, .trial__config > div {
+  display: grid;
+  grid-template-columns: minmax(180px, 34%) 1fr;
+  gap: 8px 22px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--line);
+}
+.trial__facts dt, .trial__config dt { color: var(--muted); }
+.trial__facts dd, .trial__config dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+  color: var(--ink);
+  font-family: var(--mono);
+  font-variant-numeric: tabular-nums;
+}
+.trial__spine { margin: 26px 0; padding: 0; list-style: none; counter-reset: packet-section; }
+.trial__section {
+  position: relative;
+  margin: 0;
+  padding: 18px 0 18px 30px;
+  border-left: 1px solid var(--line-strong);
+  counter-increment: packet-section;
+}
+.trial__section::before {
+  content: counter(packet-section, decimal-leading-zero);
+  position: absolute;
+  top: 20px;
+  left: -13px;
+  width: 25px;
+  padding: 2px 0;
+  background: var(--void);
+  color: var(--faint);
+  font: 500 10px/1.4 var(--mono);
+  text-align: center;
+}
+.trial__section--missing { border-left-color: var(--oxide); }
+.trial__section--partial { border-left-color: #d7b56d; }
+.trial__section-head { display: flex; gap: 14px; align-items: baseline; justify-content: space-between; }
+.trial__section-head h3 { margin: 0; font-size: 16px; }
+.trial__section-head span {
+  color: var(--faint);
+  font: 500 10px/1 var(--mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.trial__section--missing .trial__section-head span { color: #e39a76; }
+.trial__section--partial .trial__section-head span { color: #d7b56d; }
+.trial__section--verified .trial__section-head span { color: #8bc9ad; }
+.trial__evidence { margin: 10px 0 0 !important; padding: 0 !important; list-style: none; }
+.trial__evidence li { display: grid; gap: 3px; margin: 0 0 8px !important; }
+.trial__evidence li { min-width: 0; }
+.trial__source-links { color: var(--muted); font: 500 11px/1.5 var(--mono); }
+.trial__evidence code, .trial__hash code {
+  display: block;
+  max-width: 100%;
+  color: var(--faint);
+  font-size: 0.75em;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+.trial__absence { margin: 8px 0 0 !important; color: var(--faint) !important; font-style: italic; }
+.trial__family { margin-top: 52px; }
+.trial__family > h2 { margin-bottom: 6px; }
+.trial__cards { margin: 18px 0 0 !important; padding: 0 !important; list-style: none; }
+.trial__cards li { margin: 0 !important; border-bottom: 1px solid var(--line); }
+.trial__cards a {
+  display: grid;
+  grid-template-columns: 17ch minmax(0, 1fr) auto;
+  gap: 10px 18px;
+  align-items: baseline;
+  padding: 12px 0;
+  color: var(--ink) !important;
+  text-decoration: none !important;
+}
+.trial__cards code { color: var(--faint); font-size: 0.78em; }
+.trial__cards span { overflow-wrap: anywhere; }
+.trial__cards strong { font: 500 10px/1 var(--mono); letter-spacing: 0.06em; text-transform: uppercase; }
+@media (max-width: 640px) {
+  .trial__specimen, .trial__cards a { grid-template-columns: 1fr; }
+  .trial__facts > div, .trial__config > div { grid-template-columns: 1fr; gap: 2px; }
 }
 
 /* Topic hub: the essay that opens it, and the heading that separates that essay from the list of

@@ -5,8 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Point-in-time options execution foundation — Canli Capital</title>
 <meta name="description" content="AlphaForge now has tested domain primitives for option terms, quote snapshots, displayed-size package execution, fee assessment, internal scenario margin,…" />
+<meta name="alphac-source-sha256" content="330cc0ba0f307bcd1dc6c14b15cadd391c6a2a9765671dcb9eb3806a898e7f70" />
+
 <link rel="canonical" href="https://canlicapital.com/research/options-execution-foundation" />
 <meta name="author" content="Arhan Canli" />
+<meta name="citation_title" content="Point-in-time options execution foundation" />
+<meta name="citation_author" content="Arhan Canli" />
+<meta name="citation_publication_date" content="2026" />
+<meta name="citation_language" content="en" />
+<meta name="citation_fulltext_html_url" content="https://canlicapital.com/research/options-execution-foundation" />
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
 <meta property="og:type" content="article" />
 <meta property="og:site_name" content="Canli Capital" />
@@ -24,9 +31,11 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=swap" />
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=optional" />
+<link rel="stylesheet" media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=optional" />
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=optional" /></noscript>
 <link rel="stylesheet" href="../css/paper.css" />
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"ScholarlyArticle","headline":"Point-in-time options execution foundation","description":"AlphaForge now has tested domain primitives for option terms, quote snapshots, displayed-size package execution, fee assessment, internal scenario margin,…","url":"https://canlicapital.com/research/options-execution-foundation","inLanguage":"en","isAccessibleForFree":true,"author":{"@type":"Person","@id":"https://canlicapital.com/#arhan-canli","name":"Arhan Canli","jobTitle":"Founder and Quantitative Researcher","url":"https://canlicapital.com/","sameAs":["https://github.com/arhancanli"],"affiliation":{"@type":"Organization","@id":"https://canlicapital.com/#organization","name":"Canli Capital","url":"https://canlicapital.com/"}},"publisher":{"@type":"Organization","@id":"https://canlicapital.com/#organization","name":"Canli Capital","url":"https://canlicapital.com/","logo":{"@type":"ImageObject","url":"https://canlicapital.com/brand-mark.svg"}},"isPartOf":{"@type":"Periodical","name":"Canli Capital Research","url":"https://canlicapital.com/research"},"encodingFormat":"text/html","associatedMedia":{"@type":"MediaObject","contentUrl":"https://canlicapital.com/research/options-execution-foundation.md","encodingFormat":"text/markdown"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"ScholarlyArticle","headline":"Point-in-time options execution foundation","description":"AlphaForge now has tested domain primitives for option terms, quote snapshots, displayed-size package execution, fee assessment, internal scenario margin,…","url":"https://canlicapital.com/research/options-execution-foundation","inLanguage":"en","isAccessibleForFree":true,"datePublished":"2026","author":{"@type":"Person","@id":"https://canlicapital.com/#arhan-canli","name":"Arhan Canli","jobTitle":"Founder and Quantitative Researcher","url":"https://canlicapital.com/founder","sameAs":["https://github.com/arhancanli"],"affiliation":{"@type":"Organization","@id":"https://canlicapital.com/#organization","name":"Canli Capital","url":"https://canlicapital.com/"}},"publisher":{"@type":"Organization","@id":"https://canlicapital.com/#organization","name":"Canli Capital","url":"https://canlicapital.com/","logo":{"@type":"ImageObject","url":"https://canlicapital.com/brand-mark.svg"}},"isPartOf":{"@type":"Periodical","name":"Canli Capital Research","url":"https://canlicapital.com/research"},"encodingFormat":"text/html","associatedMedia":{"@type":"MediaObject","contentUrl":"https://canlicapital.com/research/options-execution-foundation.md","encodingFormat":"text/markdown"}}</script>
 </head>
 <body class="paper">
 <a class="paper__skip" href="#content">Skip to content</a>
@@ -188,11 +197,13 @@ at <a href="/glassbox/options_execution_contract.json"><code>/glassbox/options_e
       <p class="paper__related-kicker">Filed under</p>
       <p class="paper__links"><a href="/research/topics/engineering-foundations">Engineering foundations</a><span aria-hidden="true"> / </span><a href="/research/topics/options-and-volatility">Options and volatility</a><span aria-hidden="true"> / </span><a href="/research/topics/execution-and-market-structure">Execution and market structure</a></p>
       <p class="paper__related-kicker">Related work</p>
-      <ul class="paper__related-list"><li><a href="/research/options-dispersion-feasibility">Options dispersion: locked no-return data and execution-feasibility protocol</a></li><li><a href="/research/borrow-execution-foundation">Point-in-time securities-borrow foundation</a></li><li><a href="/research/kill-crypto-lowvol-720">Crypto Low-Volatility: a killed candidate</a></li><li><a href="/research/kill-crypto-vrp">Crypto Variance-Risk-Premium (campaign): a killed candidate</a></li><li><a href="/research/futures-execution-foundation">Dated-futures execution foundation</a></li><li><a href="/research/kill-eq-mom-margin">Equity Momentum (with Margin Costs): a killed candidate</a></li></ul>
+      <ul class="paper__related-list"><li><a href="/research/options-dispersion-feasibility">Options dispersion: locked no-return data and execution-feasibility protocol</a></li><li><a href="/research/borrow-execution-foundation">Point-in-time securities-borrow foundation</a></li><li><a href="/research/crypto-carry-portable-v1">A hash-bound prospective test of cross-sectional perpetual-futures carry</a></li><li><a href="/research/alphatrend-managed-futures-lineage">AlphaTrend managed-futures trend: complete trial lineage and evidence boundary</a></li><li><a href="/research/crypto-defensive-lineage">Crypto defensive factors: positive summaries without admission evidence</a></li><li><a href="/research/kill-crypto-lowvol-720">Crypto Low-Volatility: a killed candidate</a></li></ul>
     </nav>
     <footer class="paper__footer">
       <p class="paper__links">
         <a href="/research/options-execution-foundation.md">Read the unrendered source</a>
+        <span aria-hidden="true"> / </span>
+        <a href="/research/citations/options-execution-foundation.bib" download>Cite this report</a>
         <span aria-hidden="true"> / </span>
         <a href="/open">Inspect the underlying artifacts</a>
         <span aria-hidden="true"> / </span>

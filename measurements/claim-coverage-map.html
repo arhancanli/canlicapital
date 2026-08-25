@@ -24,7 +24,9 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=swap" />
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=optional" />
+<link rel="stylesheet" media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=optional" />
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=optional" /></noscript>
 <link rel="stylesheet" href="../css/paper.css" />
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"Claim coverage map","description":"Maps each PUBLISHED ARTIFACT to the mechanisms that guard it and records when each mechanism last ran, by running it.","url":"https://canlicapital.com/measurements/claim-coverage-map","creator":{"@type":"Person","name":"Arhan Canli"},"publisher":{"@type":"Organization","name":"Canli Capital","url":"https://canlicapital.com/"},"isAccessibleForFree":true,"distribution":{"@type":"DataDownload","encodingFormat":"application/json","contentUrl":"https://canlicapital.com/glassbox/claim_coverage_map.json"}}</script>
 </head>
@@ -46,58 +48,57 @@
     <h1 class="paper__title">Claim coverage map</h1>
     <p class="paper__byline">By <span rel="author">Arhan Canli</span>, Canli Capital</p>
     <div class="paper__body">
-<p class="measure__lead">Claim coverage map is one of 31 measurements this
+<p class="measure__lead">Claim coverage map is one of 84 measurements this
 engine publishes in full. It is regenerated from a real run rather than transcribed, and it
 is shown here with its own claim boundary so the number and its limits arrive together.</p>
 <aside class="measure__boundary"><h2>What this measurement does and does not claim</h2><p>Maps each PUBLISHED ARTIFACT to the mechanisms that guard it and records when each mechanism last ran, by running it. It does not claim any guard is correct — only which claims have one and which do not. Runs no backtest, opens no return data, registers no hypothesis identity. 0 trials.</p></aside>
 <section class="measure__section"><h2>The measurement</h2>
 <dl class="measure__facts">
-<div class="measure__row"><dt>Published artifacts</dt><dd>68</dd></div>
+<div class="measure__row"><dt>Published artifacts</dt><dd>215</dd></div>
 <div class="measure__row"><dt>Schema</dt><dd>canli.alphac-claim-coverage-map.v1</dd></div>
-<div class="measure__row"><dt>With a named guard</dt><dd>48</dd></div>
+<div class="measure__row"><dt>With a named guard</dt><dd>152</dd></div>
 </dl>
 <p class="measure__label">Coverage</p><p class="measure__deep">Nested beyond what this page renders. <a href="/glassbox/claim_coverage_map.json">Read it in the artifact</a>.</p>
-<p class="measure__label">Guarded only by the host mirror</p><ul class="measure__list"><li>earnings_narrative_change_result.json</li><li>pre_fomc_announcement_drift_feasibility.json</li><li>spin_off_document_schema.json</li><li>spin_off_lineage.json</li><li>treasury_auction_concession_feasibility.json</li><li>treasury_calendar_revision_audit.json</li><li>treasury_wayback_pdf_schedule_audit.json</li><li>treasury_wayback_schedule_audit.json</li></ul>
 <section class="measure__sub"><h3>Last run</h3>
 <section class="measure__sub"><h4>Reproduce kit</h4>
 <dl class="measure__facts">
-<div class="measure__row"><dt>Command</dt><dd>/Users/arhancanli/alphaforge/.venv/bin/python scripts/reproduce.py</dd></div>
+<div class="measure__row"><dt>Command</dt><dd>/Users/arhancanli/alphaforge/.venv/bin/python3 scripts/reproduce.py</dd></div>
 <div class="measure__row"><dt>Cwd</dt><dd>/Users/arhancanli/alphaforge</dd></div>
 <div class="measure__row"><dt>Exit code</dt><dd>0</dd></div>
 <div class="measure__row"><dt>Outcome</dt><dd>PASS</dd></div>
-<div class="measure__row"><dt>Ran at</dt><dd>2026-08-22T05:20:10+00:00</dd></div>
+<div class="measure__row"><dt>Ran at</dt><dd>2026-08-25T11:17:02+00:00</dd></div>
 </dl>
 <p class="measure__label">Tail</p><ul class="measure__list"><li>  L2 signatures     : 2 verified, 0 failed</li><li>  L3 golden master  : PASS</li><li>  ALL CHECKS REPRODUCED. The published numbers match their hashes/signatures, and the engine is byte-deterministic.</li></ul>
 </section>
 <section class="measure__sub"><h4>Retracted claim gate</h4>
 <dl class="measure__facts">
-<div class="measure__row"><dt>Command</dt><dd>/Users/arhancanli/alphaforge/.venv/bin/python scripts/check_retracted_claims.py</dd></div>
 <div class="measure__row"><dt>Cwd</dt><dd>/Users/arhancanli/alphaforge</dd></div>
 <div class="measure__row"><dt>Exit code</dt><dd>0</dd></div>
 <div class="measure__row"><dt>Outcome</dt><dd>PASS</dd></div>
-<div class="measure__row"><dt>Ran at</dt><dd>2026-08-22T05:20:27+00:00</dd></div>
+<div class="measure__row"><dt>Ran at</dt><dd>2026-08-25T11:17:06+00:00</dd></div>
 </dl>
+<p class="measure__prose"><strong>Command.</strong> /Users/arhancanli/alphaforge/.venv/bin/python3 scripts/check_retracted_claims.py</p>
 <p class="measure__label">Tail</p><ul class="measure__list"><li>retracted-claims check: 12 rules over 2 root(s)</li><li>  PASS — no withdrawn claim is asserted anywhere in the publish set</li></ul>
 </section>
 <section class="measure__sub"><h4>Site verifiers</h4>
 <dl class="measure__facts">
 <div class="measure__row"><dt>Command</dt><dd>npm run --silent verify</dd></div>
 <div class="measure__row"><dt>Cwd</dt><dd>/Users/arhancanli/meridian</dd></div>
-<div class="measure__row"><dt>Exit code</dt><dd>1</dd></div>
-<div class="measure__row"><dt>Outcome</dt><dd>FAIL</dd></div>
-<div class="measure__row"><dt>Ran at</dt><dd>2026-08-22T05:20:28+00:00</dd></div>
+<div class="measure__row"><dt>Exit code</dt><dd>0</dd></div>
+<div class="measure__row"><dt>Outcome</dt><dd>PASS</dd></div>
+<div class="measure__row"><dt>Ran at</dt><dd>2026-08-25T11:17:11+00:00</dd></div>
 </dl>
-<p class="measure__label">Tail</p><ul class="measure__list"><li>  - 59573  on /research/options-execution-foundation</li><li>  - 24.6  on /research/prereg-earnings-narrative-change</li><li>FAILED: 8 untraceable numeral(s) on unsourced pages</li></ul>
+<p class="measure__label">Tail</p><ul class="measure__list"><li>  corpus: 616029 numbers across 526 artifacts</li><li>  every numeral a reader can see traces to a published artifact</li><li>README audit passed: 108 papers, 13 topic hubs, 84 measurements, 234 URLs, 228 packets (226 incomplete); deploy-gate source verified</li></ul>
 </section>
 <section class="measure__sub"><h4>Unit suite</h4>
 <dl class="measure__facts">
-<div class="measure__row"><dt>Command</dt><dd>/Users/arhancanli/alphaforge/.venv/bin/python -m pytest tests/unit -q --no-cov</dd></div>
+<div class="measure__row"><dt>Command</dt><dd>/Users/arhancanli/alphaforge/.venv/bin/python3 -m pytest tests/unit -q --no-cov</dd></div>
 <div class="measure__row"><dt>Cwd</dt><dd>/Users/arhancanli/alphaforge</dd></div>
 <div class="measure__row"><dt>Exit code</dt><dd>0</dd></div>
 <div class="measure__row"><dt>Outcome</dt><dd>PASS</dd></div>
-<div class="measure__row"><dt>Ran at</dt><dd>2026-08-22T05:18:00+00:00</dd></div>
+<div class="measure__row"><dt>Ran at</dt><dd>2026-08-25T11:16:00+00:00</dd></div>
 </dl>
-<p class="measure__label">Tail</p><ul class="measure__list"><li>........................................................................ [ 97%]</li><li>........................................................................ [ 99%]</li><li>.................                                                        [100%]</li></ul>
+<p class="measure__label">Tail</p><ul class="measure__list"><li>........................................................................ [ 96%]</li><li>........................................................................ [ 98%]</li><li>...................................................                      [100%]</li></ul>
 </section>
 </section>
 <section class="measure__sub"><h3>Mechanisms</h3>
@@ -115,20 +116,20 @@ is shown here with its own claim boundary so the number and its limits arrive to
 <div class="measure__row"><dt>Cwd</dt><dd>/Users/arhancanli/alphaforge</dd></div>
 <div class="measure__row"><dt>Exit code</dt><dd>0</dd></div>
 <div class="measure__row"><dt>Outcome</dt><dd>PASS</dd></div>
-<div class="measure__row"><dt>Ran at</dt><dd>2026-08-22T05:17:59+00:00</dd></div>
+<div class="measure__row"><dt>Ran at</dt><dd>2026-08-25T11:15:57+00:00</dd></div>
 </dl>
-<p class="measure__prose"><strong>Command.</strong> /Users/arhancanli/alphaforge/.venv/bin/python scripts/export_lint_debt_contract.py</p>
+<p class="measure__prose"><strong>Command.</strong> /Users/arhancanli/alphaforge/.venv/bin/python3 scripts/export_lint_debt_contract.py</p>
 <p class="measure__label">Tail</p><ul class="measure__list"><li>/Users/arhancanli/alphaforge/artifacts/engineering/lint_debt_contract.json</li></ul>
 </section>
 <section class="measure__sub"><h4>Research export</h4>
 <dl class="measure__facts">
-<div class="measure__row"><dt>Command</dt><dd>/Users/arhancanli/alphaforge/.venv/bin/python scripts/research_export.py</dd></div>
+<div class="measure__row"><dt>Command</dt><dd>/Users/arhancanli/alphaforge/.venv/bin/python3 scripts/research_export.py</dd></div>
 <div class="measure__row"><dt>Cwd</dt><dd>/Users/arhancanli/alphaforge</dd></div>
 <div class="measure__row"><dt>Exit code</dt><dd>0</dd></div>
 <div class="measure__row"><dt>Outcome</dt><dd>PASS</dd></div>
-<div class="measure__row"><dt>Ran at</dt><dd>2026-08-22T05:17:59+00:00</dd></div>
+<div class="measure__row"><dt>Ran at</dt><dd>2026-08-25T11:15:57+00:00</dd></div>
 </dl>
-<p class="measure__label">Tail</p><ul class="measure__list"><li>wrote /Users/arhancanli/meridian/public/glassbox/research.json  (1058677 bytes)</li><li>content_hash: sha256:cea00a82f9b34b989325e4b8ebbbc9cb2897bf8b122d940020ba44e9e5b17465</li></ul>
+<p class="measure__label">Tail</p><ul class="measure__list"><li>wrote /Users/arhancanli/meridian/public/glassbox/research.json  (3698965 bytes)</li><li>content_hash: sha256:28c8b30201cb8d4a6ff3c5e249a93c3cbf5ee98d4f4b12769c6012514b438d62</li></ul>
 </section>
 </section>
 <p class="measure__prose"><strong>What mirror only means.</strong> We verify both hosts received the identical file, and nothing verifies the file. No test names it, it carries no content hash, it renders on no page. If its contents went stale or wrong, both hosts would publish the same wrong thing and every check would pass.</p>
@@ -140,7 +141,7 @@ is shown here with its own claim boundary so the number and its limits arrive to
 artifact the engine wrote. Nothing on this page is typed by hand: the page is generated from that
 file, so a figure that moves in the artifact moves here and a figure that is not in the artifact
 cannot appear here at all.</p>
-<p><a href="/measurements">All 31 measurements</a> &middot;
+<p><a href="/measurements">All 84 measurements</a> &middot;
 <a href="/open">The glass box</a> &middot;
 <a href="/research">The research library</a></p>
 </section>

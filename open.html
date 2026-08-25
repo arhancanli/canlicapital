@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Canli Capital / Proven in the open, the glass-box record</title>
   <meta name="description" content="The glass box: every published number regenerated from a real engine artifact, with a signed append-only record anyone can verify. Paper trading only." />
+  <meta name="author" content="Arhan Canli" />
   <meta name="theme-color" content="#0A0B0D" />
   <meta name="color-scheme" content="dark" />
   <link rel="canonical" href="https://canlicapital.com/open" />
@@ -27,8 +28,9 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@300..700&display=swap" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@300..700&display=swap" />
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@300..700&display=optional" />
+  <link rel="stylesheet" media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@300..700&display=optional" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@300..700&display=optional" /></noscript>
 
   <link rel="stylesheet" href="./css/styles.css" />
   <link rel="stylesheet" href="./css/motion.css" />
@@ -154,7 +156,7 @@
     <!-- (00) HERO / THE GLASS-BOX MANIFESTO                                   -->
     <!-- =================================================================== -->
     <section class="open-hero hero section" id="hero" data-section="0" aria-labelledby="open-hero-word">
-      <div class="hero__status mono-label" aria-label="Disclosure status">
+      <div class="hero__status mono-label" aria-label="Disclosure status" role="status">
         <span class="dot dot--pulse ridge-accent" aria-hidden="true"></span>
         <span>Glass box</span>
         <span class="hero__status-sep" aria-hidden="true">&middot;</span>
@@ -182,7 +184,7 @@
           <li><span class="open-hero__k">Failures published.</span> Killed sleeves, the C+ deflation null, all in full.</li>
           <li><span class="open-hero__k">Reproducible.</span> The backtest is content-hashed and reproduces byte-for-byte: re-run the engine, get the same numbers.</li>
         </ul>
-        <p class="open-hero__proof mono-label reveal-fade" aria-label="The glass box in numbers" aria-live="polite">
+        <p class="open-hero__proof mono-label reveal-fade" aria-label="The glass box in numbers" role="status" aria-live="polite">
           <span data-kpi="killed">--</span> killed
           <span class="open-hero__proof-sep" aria-hidden="true">&middot;</span>
           <span data-kpi="survived">--</span> survived
@@ -312,7 +314,7 @@
       <!-- The ledger. Header row + one row per strategy, hairline-row idiom. The
            rows are built by open.js from kill_log.json (killed first, then the
            two survivors). data-empty until the artifact loads. -->
-      <div class="ledger" aria-label="Strategy kill log">
+      <div class="ledger" aria-label="Strategy kill log" role="region">
         <div class="ledger__row ledger__row--head" aria-hidden="true">
           <span class="ledger__cell ledger__cell--name label">Strategy</span>
           <span class="ledger__cell ledger__cell--num label">Net Sharpe</span>
@@ -599,7 +601,7 @@
           no data, no taking our word: it recomputes each artifact's content hash, re-checks the
           Ed25519 signatures, and (in the repo) reruns the golden master.
         </p>
-        <pre class="reproduce__cmd mono-data" tabindex="0" aria-label="Reproduce command"><code>curl -sO https://canlicapital.com/glassbox/reproduce.py
+        <pre class="reproduce__cmd mono-data" tabindex="0" aria-label="Reproduce command" role="region"><code>curl -sO https://canlicapital.com/glassbox/reproduce.py
 for f in capacity deflation track_record kill_log pre_registration \
          red_team reproducibility research capacity_commitment; do
   curl -sO https://canlicapital.com/glassbox/$f.json

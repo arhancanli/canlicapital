@@ -2,9 +2,9 @@
   "claim_boundary": "Breaks what each guard watches and records whether the guard failed. Runs no backtest, opens no return data, registers no hypothesis identity, and changes nothing permanently \u2014 every mutation is restored and the restoration is verified by hash. 0 trials.",
   "coverage_is_derived": "The guard set is computed from tests/unit by the same rule every run, so a guard added without a mutation appears here rather than joining the unmutated majority unnoticed.",
   "findings": [],
-  "guards_mutated": 20,
+  "guards_mutated": 48,
   "guards_not_yet_mutated": [],
-  "guards_over_published_claims": 20,
+  "guards_over_published_claims": 48,
   "ledger": [
     {
       "as_expected": true,
@@ -107,6 +107,19 @@
     {
       "as_expected": true,
       "expected": "CAUGHT",
+      "guard": "test_site_deploy_snapshot.py",
+      "mutation": "deploy the landing site from the mutable working tree instead of the frozen snapshot",
+      "notes": [
+        "The two-domain mixed-publication race, reproduced."
+      ],
+      "passes_clean": true,
+      "restored_byte_identical": true,
+      "result": "CAUGHT",
+      "target": "scripts/live_deploy_hourly.sh"
+    },
+    {
+      "as_expected": true,
+      "expected": "CAUGHT",
       "guard": "test_publish_pipeline_order.py",
       "mutation": "reorder the publish pipeline so a contract is copied before it is rebuilt",
       "notes": [
@@ -183,6 +196,19 @@
     {
       "as_expected": true,
       "expected": "CAUGHT",
+      "guard": "test_expanded_sleeve_paper_claims.py",
+      "mutation": "move a published crypto-defensive Sharpe away from the family artifact",
+      "notes": [
+        "The expanded papers quote artifact values directly; moving one artifact value without rewriting the manuscript must be caught."
+      ],
+      "passes_clean": true,
+      "restored_byte_identical": true,
+      "result": "CAUGHT",
+      "target": "artifacts/research/crypto_defensive_family.json"
+    },
+    {
+      "as_expected": true,
+      "expected": "CAUGHT",
       "guard": "test_alphavintage_target.py",
       "mutation": "double the live gross target this sleeve trades at",
       "notes": [],
@@ -253,6 +279,294 @@
       "restored_byte_identical": true,
       "result": "CAUGHT",
       "target": "scripts/audit_sleeve_family_lineage.py"
+    },
+    {
+      "as_expected": true,
+      "expected": "CAUGHT",
+      "guard": "test_alpaca_broker_reconciliation_export.py",
+      "mutation": "corrupt the persisted broker-reconciliation content hash",
+      "notes": [],
+      "passes_clean": true,
+      "restored_byte_identical": true,
+      "result": "CAUGHT",
+      "target": "artifacts/engineering/alpaca_broker_reconciliation.json"
+    },
+    {
+      "as_expected": true,
+      "expected": "CAUGHT",
+      "guard": "test_atlas_reachability_screen.py",
+      "mutation": "move the published minimum-history arithmetic away from the active contract",
+      "notes": [],
+      "passes_clean": true,
+      "restored_byte_identical": true,
+      "result": "CAUGHT",
+      "target": "artifacts/analysis/atlas_reachability_screen/result.json"
+    },
+    {
+      "as_expected": true,
+      "expected": "CAUGHT",
+      "guard": "test_experiment_union.py",
+      "mutation": "invert cross-profile identity deduplication",
+      "notes": [],
+      "passes_clean": true,
+      "restored_byte_identical": true,
+      "result": "CAUGHT",
+      "target": "src/alphaforge/validation/experiments.py"
+    },
+    {
+      "as_expected": true,
+      "expected": "CAUGHT",
+      "guard": "test_forward_sleeve_contribution.py",
+      "mutation": "corrupt the state hash bound into forward sleeve attribution",
+      "notes": [],
+      "passes_clean": true,
+      "restored_byte_identical": true,
+      "result": "CAUGHT",
+      "target": "artifacts/engineering/forward_sleeve_contribution.json"
+    },
+    {
+      "as_expected": true,
+      "expected": "CAUGHT",
+      "guard": "test_forward_trial_ledger_gate.py",
+      "mutation": "break the active contract binding used by the forward reservation gate",
+      "notes": [],
+      "passes_clean": true,
+      "restored_byte_identical": true,
+      "result": "CAUGHT",
+      "target": "config/sleeve_admission_contract.json"
+    },
+    {
+      "as_expected": true,
+      "expected": "CAUGHT",
+      "guard": "test_glassbox_eia_kill.py",
+      "mutation": "make the EIA kill renderer round correlation more coarsely than its guard",
+      "notes": [],
+      "passes_clean": true,
+      "restored_byte_identical": true,
+      "result": "CAUGHT",
+      "target": "scripts/glassbox_export.py"
+    },
+    {
+      "as_expected": true,
+      "expected": "CAUGHT",
+      "guard": "test_glassbox_insider_kill.py",
+      "mutation": "insert a false marker into the insider correlation sentence",
+      "notes": [
+        "The prior same-size format-specifier mutation could reuse timestamp-based Python bytecode. This source-size-changing mutation proves the rendered sentence is read."
+      ],
+      "passes_clean": true,
+      "restored_byte_identical": true,
+      "result": "CAUGHT",
+      "target": "scripts/glassbox_export.py"
+    },
+    {
+      "as_expected": true,
+      "expected": "CAUGHT",
+      "guard": "test_historical_curve_evidence.py",
+      "mutation": "make the historical-curve index claim zero exact bindings",
+      "notes": [],
+      "passes_clean": true,
+      "restored_byte_identical": true,
+      "result": "CAUGHT",
+      "target": "artifacts/research/historical_curve_evidence/index.json"
+    },
+    {
+      "as_expected": true,
+      "expected": "CAUGHT",
+      "guard": "test_identity_packet_recoverability.py",
+      "mutation": "make the recoverability audit claim zero audited identities",
+      "notes": [],
+      "passes_clean": true,
+      "restored_byte_identical": true,
+      "result": "CAUGHT",
+      "target": "artifacts/research/identity_packet_recoverability.json"
+    },
+    {
+      "as_expected": true,
+      "expected": "CAUGHT",
+      "guard": "test_identity_trial_packets.py",
+      "mutation": "make the identity-packet index claim zero published packets",
+      "notes": [],
+      "passes_clean": true,
+      "restored_byte_identical": true,
+      "result": "CAUGHT",
+      "target": "artifacts/research/trial_packets/index.json"
+    },
+    {
+      "as_expected": true,
+      "expected": "CAUGHT",
+      "guard": "test_legacy_research_epoch.py",
+      "mutation": "change the sealed legacy identity count",
+      "notes": [],
+      "passes_clean": true,
+      "restored_byte_identical": true,
+      "result": "CAUGHT",
+      "target": "scripts/seal_legacy_research_epoch.py"
+    },
+    {
+      "as_expected": true,
+      "expected": "CAUGHT",
+      "guard": "test_next_sleeve_selection.py",
+      "mutation": "change the selected candidate after the blind selection was sealed",
+      "notes": [],
+      "passes_clean": true,
+      "restored_byte_identical": true,
+      "result": "CAUGHT",
+      "target": "scripts/seal_next_sleeve_selection.py"
+    },
+    {
+      "as_expected": true,
+      "expected": "CAUGHT",
+      "guard": "test_track_record_provenance.py",
+      "mutation": "remove the broker-derived provenance wording from the research export",
+      "notes": [],
+      "passes_clean": true,
+      "restored_byte_identical": true,
+      "result": "CAUGHT",
+      "target": "scripts/research_export.py"
+    },
+    {
+      "as_expected": true,
+      "expected": "CAUGHT",
+      "guard": "test_transparency_payload_disclosure.py",
+      "mutation": "change the public transparency-log schema on one host",
+      "notes": [],
+      "passes_clean": true,
+      "restored_byte_identical": true,
+      "result": "CAUGHT",
+      "target": "/Users/arhancanli/meridian/public/glassbox/transparency_log.json"
+    },
+    {
+      "as_expected": true,
+      "expected": "CAUGHT",
+      "guard": "test_trial_packet_manifest.py",
+      "mutation": "make the trial manifest claim zero published identity packets",
+      "notes": [],
+      "passes_clean": true,
+      "restored_byte_identical": true,
+      "result": "CAUGHT",
+      "target": "artifacts/research/trial_packet_manifest.json"
+    },
+    {
+      "as_expected": true,
+      "expected": "CAUGHT",
+      "guard": "test_validate_forward_trial_reservation.py",
+      "mutation": "break the active contract schema bound into prospective reservations",
+      "notes": [],
+      "passes_clean": true,
+      "restored_byte_identical": true,
+      "result": "CAUGHT",
+      "target": "config/sleeve_admission_contract.json"
+    },
+    {
+      "as_expected": true,
+      "expected": "CAUGHT",
+      "guard": "test_public_support_artifact_sources.py",
+      "mutation": "change one public support artifact away from its authoritative source",
+      "notes": [],
+      "passes_clean": true,
+      "restored_byte_identical": true,
+      "result": "CAUGHT",
+      "target": "/Users/arhancanli/meridian/public/glassbox/alphavintage_corrected_result.json"
+    },
+    {
+      "as_expected": true,
+      "expected": "CAUGHT",
+      "guard": "test_publication_bundle_public_parity.py",
+      "mutation": "change one public sleeve-bundle byte away from its authoritative source",
+      "notes": [],
+      "passes_clean": true,
+      "restored_byte_identical": true,
+      "result": "CAUGHT",
+      "target": "/Users/arhancanli/meridian/public/publication/crypto-momentum/v0.1.0/paper.json"
+    },
+    {
+      "as_expected": true,
+      "expected": "CAUGHT",
+      "guard": "test_sleeve_publication_bundles.py",
+      "mutation": "break a sleeve's evidence catalog binding to its recorded trial family",
+      "notes": [],
+      "passes_clean": true,
+      "restored_byte_identical": true,
+      "result": "CAUGHT",
+      "target": "config/sleeve_publication_evidence.json"
+    },
+    {
+      "as_expected": true,
+      "expected": "CAUGHT",
+      "guard": "test_sleeve_publication_replay_verification.py",
+      "mutation": "make the isolated frozen-dependency replay receipt claim its own audit failed",
+      "notes": [],
+      "passes_clean": true,
+      "restored_byte_identical": true,
+      "result": "CAUGHT",
+      "target": "artifacts/audit/sleeve_publication_isolated_replay_verification.json"
+    },
+    {
+      "as_expected": true,
+      "expected": "CAUGHT",
+      "guard": "test_crypto_carry_portable_lake_readiness.py",
+      "mutation": "make the sealed zero-return readiness receipt claim one return trial",
+      "notes": [],
+      "passes_clean": true,
+      "restored_byte_identical": true,
+      "result": "CAUGHT",
+      "target": "artifacts/audit/crypto_carry_portable_lake_readiness.json"
+    },
+    {
+      "as_expected": true,
+      "expected": "CAUGHT",
+      "guard": "test_crypto_carry_portable_prerun_readiness.py",
+      "mutation": "change the zero-return preregistration-readiness decision",
+      "notes": [],
+      "passes_clean": true,
+      "restored_byte_identical": true,
+      "result": "CAUGHT",
+      "target": "scripts/audit_crypto_carry_portable_prerun_readiness.py"
+    },
+    {
+      "as_expected": true,
+      "expected": "CAUGHT",
+      "guard": "test_crypto_carry_portable_v1_result.py",
+      "mutation": "change the sealed trial disposition away from incomplete",
+      "notes": [],
+      "passes_clean": true,
+      "restored_byte_identical": true,
+      "result": "CAUGHT",
+      "target": "scripts/seal_crypto_carry_portable_v1_result.py"
+    },
+    {
+      "as_expected": true,
+      "expected": "CAUGHT",
+      "guard": "test_crypto_carry_portable_v1_run.py",
+      "mutation": "change the reservation validator success status",
+      "notes": [],
+      "passes_clean": true,
+      "restored_byte_identical": true,
+      "result": "CAUGHT",
+      "target": "src/alphaforge/validation/trial_reservation.py"
+    },
+    {
+      "as_expected": true,
+      "expected": "CAUGHT",
+      "guard": "test_wave1_data_rights.py",
+      "mutation": "make the data-rights audit report raw vendor rows as released",
+      "notes": [],
+      "passes_clean": true,
+      "restored_byte_identical": true,
+      "result": "CAUGHT",
+      "target": "scripts/audit_wave1_data_rights.py"
+    },
+    {
+      "as_expected": true,
+      "expected": "CAUGHT",
+      "guard": "test_alphavintage_full_decision_reproduction.py",
+      "mutation": "restore an unsupported stale replay difference in the AlphaVintage manuscript",
+      "notes": [],
+      "passes_clean": true,
+      "restored_byte_identical": true,
+      "result": "CAUGHT",
+      "target": "docs/research/ALPHAVINTAGE_MACRO_SURPRISE_LINEAGE.md"
     }
   ],
   "negative_controls": [

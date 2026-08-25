@@ -1,0 +1,623 @@
+{
+  "by_classification": {
+    "BLOCKED_ON_EXTRACTION_QUALITY": [
+      "inflation_breakeven_relative_value",
+      "merger_arbitrage",
+      "tender_offer_spread"
+    ],
+    "BLOCKED_ON_FREE_CREDENTIAL": [
+      "electricity_load_weather"
+    ],
+    "BLOCKED_ON_HUMAN_ACCURACY_AUDIT": [
+      "active_ownership_13d_item4_v3"
+    ],
+    "BLOCKED_ON_HUMAN_BLIND_LABELING": [
+      "repurchase_issuance_flow"
+    ],
+    "BLOCKED_ON_IDENTITY_UNOBSERVABLE_AS_PREREGISTERED": [
+      "treasury_auction_concession"
+    ],
+    "BLOCKED_ON_MEASURED_REACHABILITY_CEILING": [
+      "customer_supplier_propagation",
+      "spin_off_dislocation"
+    ],
+    "BLOCKED_ON_PAID_ARCHIVAL_AND_EXECUTABLE_DATA": [
+      "bond_etf_nav_dislocation"
+    ],
+    "BLOCKED_ON_PAID_DATA": [
+      "natural_gas_storage_weather"
+    ],
+    "BLOCKED_ON_PAID_OR_BOUNDED_MARKET_DATA_ROUTE": [
+      "pre_fomc_announcement_drift"
+    ],
+    "BLOCKED_ON_UNRECOVERABLE_RELEASE_LINEAGE": [
+      "cftc_hedging_pressure"
+    ],
+    "RETURN_OUTCOME_ALREADY_RECORDED": [
+      "earnings_narrative_change"
+    ],
+    "SUPERSEDED_HISTORICAL_RESULT": [
+      "active_ownership_13d",
+      "active_ownership_13d_item4",
+      "active_ownership_13d_item4_v2",
+      "active_ownership_13d_schema_v2"
+    ]
+  },
+  "claim_boundary": "Classifies blockers only. Opens no return data, runs no backtest, registers no hypothesis, and claims nothing about any candidate's edge, sign or correlation. 0 trials.",
+  "content_hash": "sha256:da34ede98431163e2b40998be2d7462e30048119aebebcb7b939395e14293bd5",
+  "families": [
+    {
+      "actionable_unblock": false,
+      "artifacts_considered": [
+        "artifacts/feasibility/active_ownership_13d/result.json",
+        "artifacts/feasibility/active_ownership_13d/result_parser_v1.json"
+      ],
+      "atlas_obtainability_verdict": null,
+      "blocking_reasons": [],
+      "classification": "SUPERSEDED_HISTORICAL_RESULT",
+      "credential_cost": {},
+      "credentials_missing": [],
+      "credentials_required": [],
+      "decision": "DATA_GATED",
+      "failing_gate_count": 4,
+      "failing_gates": [
+        "every_year_at_least_100_initial_filings",
+        "filed_by_matches_index_rate_gte_0_98",
+        "headers_160_of_160",
+        "unique_contemporaneous_ticker_rate_gte_0_80"
+      ],
+      "family": "active_ownership_13d",
+      "passing_gate_count": 3,
+      "reachability_verdict": null,
+      "release_reachability_verdict": null,
+      "return_hypotheses_spent": 0,
+      "return_outcome": null,
+      "source_artifact": "artifacts/feasibility/active_ownership_13d/result.json",
+      "source_reachability_verdict": null,
+      "superseded": true
+    },
+    {
+      "actionable_unblock": false,
+      "artifacts_considered": [
+        "artifacts/feasibility/active_ownership_13d_item4/result.json"
+      ],
+      "atlas_obtainability_verdict": null,
+      "blocking_reasons": [],
+      "classification": "SUPERSEDED_HISTORICAL_RESULT",
+      "credential_cost": {},
+      "credentials_missing": [],
+      "credentials_required": [],
+      "decision": "DATA_GATED",
+      "failing_gate_count": 2,
+      "failing_gates": [
+        "item4_extraction_rate_gte_0_90",
+        "submissions_160_of_160"
+      ],
+      "family": "active_ownership_13d_item4",
+      "passing_gate_count": 3,
+      "reachability_verdict": null,
+      "release_reachability_verdict": null,
+      "return_hypotheses_spent": 0,
+      "return_outcome": null,
+      "source_artifact": "artifacts/feasibility/active_ownership_13d_item4/result.json",
+      "source_reachability_verdict": null,
+      "superseded": true
+    },
+    {
+      "actionable_unblock": false,
+      "artifacts_considered": [
+        "artifacts/feasibility/active_ownership_13d_item4_v2/result.json"
+      ],
+      "atlas_obtainability_verdict": null,
+      "blocking_reasons": [],
+      "classification": "SUPERSEDED_HISTORICAL_RESULT",
+      "credential_cost": {},
+      "credentials_missing": [],
+      "credentials_required": [],
+      "decision": "DATA_GATED",
+      "failing_gate_count": 2,
+      "failing_gates": [
+        "item4_extraction_rate_gte_0_90",
+        "submissions_160_of_160"
+      ],
+      "family": "active_ownership_13d_item4_v2",
+      "passing_gate_count": 3,
+      "reachability_verdict": null,
+      "release_reachability_verdict": null,
+      "return_hypotheses_spent": 0,
+      "return_outcome": null,
+      "source_artifact": "artifacts/feasibility/active_ownership_13d_item4_v2/result.json",
+      "source_reachability_verdict": null,
+      "superseded": true
+    },
+    {
+      "actionable_unblock": true,
+      "artifacts_considered": [
+        "artifacts/feasibility/active_ownership_13d_item4_v3/result.json"
+      ],
+      "atlas_obtainability_verdict": null,
+      "blocking_reasons": [],
+      "classification": "BLOCKED_ON_HUMAN_ACCURACY_AUDIT",
+      "credential_cost": {},
+      "credentials_missing": [],
+      "credentials_required": [],
+      "decision": "HUMAN_AUDIT_REQUIRED",
+      "failing_gate_count": 0,
+      "failing_gates": [],
+      "family": "active_ownership_13d_item4_v3",
+      "passing_gate_count": 5,
+      "reachability_verdict": null,
+      "release_reachability_verdict": null,
+      "return_hypotheses_spent": 0,
+      "return_outcome": null,
+      "source_artifact": "artifacts/feasibility/active_ownership_13d_item4_v3/result.json",
+      "source_reachability_verdict": null,
+      "superseded": false
+    },
+    {
+      "actionable_unblock": false,
+      "artifacts_considered": [
+        "artifacts/feasibility/active_ownership_13d_schema_v2/result.json"
+      ],
+      "atlas_obtainability_verdict": null,
+      "blocking_reasons": [],
+      "classification": "SUPERSEDED_HISTORICAL_RESULT",
+      "credential_cost": {},
+      "credentials_missing": [],
+      "credentials_required": [],
+      "decision": "PASS_TO_DOCUMENT_FEASIBILITY",
+      "failing_gate_count": 0,
+      "failing_gates": [],
+      "family": "active_ownership_13d_schema_v2",
+      "passing_gate_count": 8,
+      "reachability_verdict": null,
+      "release_reachability_verdict": null,
+      "return_hypotheses_spent": 0,
+      "return_outcome": null,
+      "source_artifact": "artifacts/feasibility/active_ownership_13d_schema_v2/result.json",
+      "source_reachability_verdict": null,
+      "superseded": true
+    },
+    {
+      "actionable_unblock": true,
+      "artifacts_considered": [
+        "artifacts/feasibility/bond_etf_nav_dislocation/result.json"
+      ],
+      "atlas_obtainability_verdict": null,
+      "blocking_reasons": [
+        "issuer_premium_discount_coverage_at_least_98pct_each",
+        "monthly_historical_holdings_120_each",
+        "constituent_valuation_timestamps_available",
+        "synchronized_etf_and_bond_execution_data_available"
+      ],
+      "classification": "BLOCKED_ON_PAID_ARCHIVAL_AND_EXECUTABLE_DATA",
+      "credential_cost": {},
+      "credentials_missing": [],
+      "credentials_required": [],
+      "decision": "DATA_GATED",
+      "failing_gate_count": 4,
+      "failing_gates": [
+        "constituent_valuation_timestamps_available",
+        "issuer_premium_discount_coverage_at_least_98pct_each",
+        "monthly_historical_holdings_120_each",
+        "synchronized_etf_and_bond_execution_data_available"
+      ],
+      "family": "bond_etf_nav_dislocation",
+      "passing_gate_count": 1,
+      "reachability_verdict": null,
+      "release_reachability_verdict": null,
+      "return_hypotheses_spent": 0,
+      "return_outcome": null,
+      "source_artifact": "artifacts/feasibility/bond_etf_nav_dislocation/result.json",
+      "source_reachability_verdict": "PAID_ARCHIVAL_AND_EXECUTABLE_DATA_REQUIRED",
+      "superseded": false
+    },
+    {
+      "actionable_unblock": true,
+      "artifacts_considered": [
+        "artifacts/feasibility/cftc_hedging_pressure/result.json"
+      ],
+      "atlas_obtainability_verdict": null,
+      "blocking_reasons": [
+        "exact_historical_release_lineage",
+        "fixed_tradable_contract_mapping"
+      ],
+      "classification": "BLOCKED_ON_UNRECOVERABLE_RELEASE_LINEAGE",
+      "credential_cost": {},
+      "credentials_missing": [],
+      "credentials_required": [],
+      "decision": "DATA_GATED",
+      "failing_gate_count": 2,
+      "failing_gates": [
+        "exact_historical_release_lineage",
+        "fixed_tradable_contract_mapping"
+      ],
+      "family": "cftc_hedging_pressure",
+      "passing_gate_count": 5,
+      "reachability_verdict": null,
+      "release_reachability_verdict": "HISTORICAL_RELEASE_LINEAGE_CEILING_BELOW_GATE",
+      "return_hypotheses_spent": 0,
+      "return_outcome": null,
+      "source_artifact": "artifacts/feasibility/cftc_hedging_pressure/result.json",
+      "source_reachability_verdict": null,
+      "superseded": false
+    },
+    {
+      "actionable_unblock": true,
+      "artifacts_considered": [
+        "artifacts/feasibility/customer_supplier_propagation/result.json"
+      ],
+      "atlas_obtainability_verdict": null,
+      "blocking_reasons": [],
+      "classification": "BLOCKED_ON_MEASURED_REACHABILITY_CEILING",
+      "credential_cost": {},
+      "credentials_missing": [],
+      "credentials_required": [],
+      "decision": "DATA_GATED",
+      "failing_gate_count": 1,
+      "failing_gates": [
+        "strict_named_document_rate_at_least_50pct"
+      ],
+      "family": "customer_supplier_propagation",
+      "passing_gate_count": 5,
+      "reachability_verdict": "GATE_UNREACHABLE_BY_DETECTOR_REPAIR",
+      "release_reachability_verdict": null,
+      "return_hypotheses_spent": 0,
+      "return_outcome": null,
+      "source_artifact": "artifacts/feasibility/customer_supplier_propagation/result.json",
+      "source_reachability_verdict": null,
+      "superseded": false
+    },
+    {
+      "actionable_unblock": false,
+      "artifacts_considered": [
+        "artifacts/feasibility/earnings_narrative_change/result.json",
+        "artifacts/feasibility/earnings_narrative_change/result_parser_v1.json"
+      ],
+      "atlas_obtainability_verdict": null,
+      "blocking_reasons": [],
+      "classification": "RETURN_OUTCOME_ALREADY_RECORDED",
+      "credential_cost": {},
+      "credentials_missing": [],
+      "credentials_required": [],
+      "decision": "PASS_TO_RETURN_PREREGISTRATION",
+      "failing_gate_count": 0,
+      "failing_gates": [],
+      "family": "earnings_narrative_change",
+      "passing_gate_count": 9,
+      "reachability_verdict": null,
+      "release_reachability_verdict": null,
+      "return_hypotheses_spent": 0,
+      "return_outcome": {
+        "result": "artifacts/probe/earnings_narrative_change/result.json",
+        "return_data_opened": true,
+        "return_hypotheses_spent": 1,
+        "return_identity_id": "earnings_narrative_change_v1",
+        "technically_eligible": false,
+        "verdict": "KILL"
+      },
+      "source_artifact": "artifacts/feasibility/earnings_narrative_change/result.json",
+      "source_reachability_verdict": null,
+      "superseded": false
+    },
+    {
+      "actionable_unblock": true,
+      "artifacts_considered": [
+        "artifacts/feasibility/electricity_load_weather/result.json"
+      ],
+      "atlas_obtainability_verdict": null,
+      "blocking_reasons": [
+        "official_eia_collection_rate_limited_or_unavailable"
+      ],
+      "classification": "BLOCKED_ON_FREE_CREDENTIAL",
+      "credential_cost": {
+        "EIA_API_KEY": {
+          "cost": "FREE",
+          "effort": "instant, email only",
+          "obtain": "https://www.eia.gov/opendata/register.php"
+        }
+      },
+      "credentials_missing": [
+        "EIA_API_KEY"
+      ],
+      "credentials_required": [
+        "EIA_API_KEY"
+      ],
+      "decision": "DATA_GATED",
+      "failing_gate_count": 0,
+      "failing_gates": [],
+      "family": "electricity_load_weather",
+      "passing_gate_count": 0,
+      "reachability_verdict": null,
+      "release_reachability_verdict": null,
+      "return_hypotheses_spent": 0,
+      "return_outcome": null,
+      "source_artifact": "artifacts/feasibility/electricity_load_weather/result.json",
+      "source_reachability_verdict": null,
+      "superseded": false
+    },
+    {
+      "actionable_unblock": true,
+      "artifacts_considered": [
+        "artifacts/feasibility/inflation_breakeven_relative_value/result.json"
+      ],
+      "atlas_obtainability_verdict": "VENDOR_ONLY_AN_OWNER_SPENDING_DECISION",
+      "blocking_reasons": [],
+      "classification": "BLOCKED_ON_EXTRACTION_QUALITY",
+      "credential_cost": {},
+      "credentials_missing": [],
+      "credentials_required": [],
+      "decision": "DATA_GATED",
+      "failing_gate_count": 3,
+      "failing_gates": [
+        "all_atlas_maturities_present",
+        "executable_instrument_history_present",
+        "historical_signal_vintages_preserved"
+      ],
+      "family": "inflation_breakeven_relative_value",
+      "passing_gate_count": 3,
+      "reachability_verdict": null,
+      "release_reachability_verdict": null,
+      "return_hypotheses_spent": 0,
+      "return_outcome": null,
+      "source_artifact": "artifacts/feasibility/inflation_breakeven_relative_value/result.json",
+      "source_reachability_verdict": null,
+      "superseded": false
+    },
+    {
+      "actionable_unblock": true,
+      "artifacts_considered": [
+        "artifacts/feasibility/merger_arbitrage/result.json"
+      ],
+      "atlas_obtainability_verdict": "RECORD_HELD_BUT_IDENTITY_REDESIGN_REQUIRED",
+      "blocking_reasons": [],
+      "classification": "BLOCKED_ON_EXTRACTION_QUALITY",
+      "credential_cost": {},
+      "credentials_missing": [],
+      "credentials_required": [],
+      "decision": "DATA_GATED",
+      "failing_gate_count": 1,
+      "failing_gates": [
+        "prior_item101_8k_rate_gte_0_80"
+      ],
+      "family": "merger_arbitrage",
+      "passing_gate_count": 3,
+      "reachability_verdict": "GATE_BLENDS_TWO_POPULATIONS",
+      "release_reachability_verdict": null,
+      "return_hypotheses_spent": 0,
+      "return_outcome": null,
+      "source_artifact": "artifacts/feasibility/merger_arbitrage/result.json",
+      "source_reachability_verdict": null,
+      "superseded": false
+    },
+    {
+      "actionable_unblock": true,
+      "artifacts_considered": [
+        "artifacts/feasibility/natural_gas_storage_weather/result.json"
+      ],
+      "atlas_obtainability_verdict": null,
+      "blocking_reasons": [],
+      "classification": "BLOCKED_ON_PAID_DATA",
+      "credential_cost": {
+        "DATABENTO_API_KEY": {
+          "cost": "PAID",
+          "effort": "commercial agreement; usage-priced",
+          "obtain": "https://databento.com"
+        }
+      },
+      "credentials_missing": [
+        "DATABENTO_API_KEY"
+      ],
+      "credentials_required": [
+        "DATABENTO_API_KEY"
+      ],
+      "decision": "DATA_GATED",
+      "failing_gate_count": 1,
+      "failing_gates": [
+        "wayback_first_release_capture_coverage_gte_0_90"
+      ],
+      "family": "natural_gas_storage_weather",
+      "passing_gate_count": 5,
+      "reachability_verdict": null,
+      "release_reachability_verdict": null,
+      "return_hypotheses_spent": 0,
+      "return_outcome": null,
+      "source_artifact": "artifacts/feasibility/natural_gas_storage_weather/result.json",
+      "source_reachability_verdict": null,
+      "superseded": false
+    },
+    {
+      "actionable_unblock": true,
+      "artifacts_considered": [
+        "artifacts/feasibility/pre_fomc_announcement_drift/annual_schedule_lineage.json",
+        "artifacts/feasibility/pre_fomc_announcement_drift/market_data_readiness.json",
+        "artifacts/feasibility/pre_fomc_announcement_drift/result.json"
+      ],
+      "atlas_obtainability_verdict": null,
+      "blocking_reasons": [],
+      "classification": "BLOCKED_ON_PAID_OR_BOUNDED_MARKET_DATA_ROUTE",
+      "credential_cost": {
+        "POLYGON_API_KEY": {
+          "cost": "FREE_TIER",
+          "effort": "instant; free tier is rate-limited and may not cover the full history",
+          "obtain": "https://polygon.io/dashboard/signup"
+        }
+      },
+      "credentials_missing": [
+        "POLYGON_API_KEY"
+      ],
+      "credentials_required": [
+        "POLYGON_API_KEY"
+      ],
+      "decision": "DATA_GATED",
+      "failing_gate_count": 1,
+      "failing_gates": [
+        "practical_server_filtered_or_bounded_download_route"
+      ],
+      "family": "pre_fomc_announcement_drift",
+      "passing_gate_count": 8,
+      "reachability_verdict": null,
+      "release_reachability_verdict": null,
+      "return_hypotheses_spent": 0,
+      "return_outcome": null,
+      "source_artifact": "artifacts/feasibility/pre_fomc_announcement_drift/market_data_readiness.json",
+      "source_reachability_verdict": null,
+      "superseded": false
+    },
+    {
+      "actionable_unblock": true,
+      "artifacts_considered": [
+        "artifacts/feasibility/repurchase_issuance_flow/companyfacts_audit.json",
+        "artifacts/feasibility/repurchase_issuance_flow/companyfacts_collection_result.json",
+        "artifacts/feasibility/repurchase_issuance_flow/identity_overlap_audit.json",
+        "artifacts/feasibility/repurchase_issuance_flow/item703/documents_result.json",
+        "artifacts/feasibility/repurchase_issuance_flow/item703/manifest_result.json",
+        "artifacts/feasibility/repurchase_issuance_flow/manifest_result.json",
+        "artifacts/feasibility/repurchase_issuance_flow/semantics_audit.json",
+        "artifacts/feasibility/repurchase_issuance_flow/submissions_collection_result.json"
+      ],
+      "atlas_obtainability_verdict": null,
+      "blocking_reasons": [],
+      "classification": "BLOCKED_ON_HUMAN_BLIND_LABELING",
+      "credential_cost": {},
+      "credentials_missing": [],
+      "credentials_required": [],
+      "decision": "READY_FOR_BLIND_LABELING",
+      "failing_gate_count": 0,
+      "failing_gates": [],
+      "family": "repurchase_issuance_flow",
+      "passing_gate_count": 0,
+      "reachability_verdict": null,
+      "release_reachability_verdict": null,
+      "return_hypotheses_spent": 0,
+      "return_outcome": null,
+      "source_artifact": "artifacts/feasibility/repurchase_issuance_flow/item703/documents_result.json",
+      "source_reachability_verdict": null,
+      "superseded": false
+    },
+    {
+      "actionable_unblock": true,
+      "artifacts_considered": [
+        "artifacts/feasibility/spin_off_dislocation/document_schema_result.json",
+        "artifacts/feasibility/spin_off_dislocation/result.json"
+      ],
+      "atlas_obtainability_verdict": null,
+      "blocking_reasons": [],
+      "classification": "BLOCKED_ON_MEASURED_REACHABILITY_CEILING",
+      "credential_cost": {},
+      "credentials_missing": [],
+      "credentials_required": [],
+      "decision": "DATA_GATED",
+      "failing_gate_count": 1,
+      "failing_gates": [
+        "pro_rata_distribution_language_rate_gte_0_30"
+      ],
+      "family": "spin_off_dislocation",
+      "passing_gate_count": 7,
+      "reachability_verdict": "GATE_UNREACHABLE_BY_DETECTOR_REPAIR",
+      "release_reachability_verdict": null,
+      "return_hypotheses_spent": 0,
+      "return_outcome": null,
+      "source_artifact": "artifacts/feasibility/spin_off_dislocation/document_schema_result.json",
+      "source_reachability_verdict": null,
+      "superseded": false
+    },
+    {
+      "actionable_unblock": true,
+      "artifacts_considered": [
+        "artifacts/feasibility/tender_offer_spread/result.json"
+      ],
+      "atlas_obtainability_verdict": "HELD_BUT_REACHABILITY_CEILING_NOT_MEASURED",
+      "blocking_reasons": [],
+      "classification": "BLOCKED_ON_EXTRACTION_QUALITY",
+      "credential_cost": {},
+      "credentials_missing": [],
+      "credentials_required": [],
+      "decision": "DATA_GATED",
+      "failing_gate_count": 3,
+      "failing_gates": [
+        "ambiguous_price_rate_lte_0_10",
+        "recommendation_resolution_rate_gte_0_80",
+        "unique_price_rate_gte_0_80"
+      ],
+      "family": "tender_offer_spread",
+      "passing_gate_count": 3,
+      "reachability_verdict": null,
+      "release_reachability_verdict": null,
+      "return_hypotheses_spent": 0,
+      "return_outcome": null,
+      "source_artifact": "artifacts/feasibility/tender_offer_spread/result.json",
+      "source_reachability_verdict": null,
+      "superseded": false
+    },
+    {
+      "actionable_unblock": true,
+      "artifacts_considered": [
+        "artifacts/feasibility/treasury_auction_concession/calendar_revision_audit.json",
+        "artifacts/feasibility/treasury_auction_concession/identity_timing.json",
+        "artifacts/feasibility/treasury_auction_concession/result.json",
+        "artifacts/feasibility/treasury_auction_concession/tentative_schedule_audit.json",
+        "artifacts/feasibility/treasury_auction_concession/wayback_pdf_schedule_audit.json",
+        "artifacts/feasibility/treasury_auction_concession/wayback_schedule_audit.json"
+      ],
+      "atlas_obtainability_verdict": null,
+      "blocking_reasons": [],
+      "classification": "BLOCKED_ON_IDENTITY_UNOBSERVABLE_AS_PREREGISTERED",
+      "credential_cost": {},
+      "credentials_missing": [],
+      "credentials_required": [],
+      "decision": "IDENTITY_NOT_OBSERVABLE_AS_PREREGISTERED",
+      "failing_gate_count": 1,
+      "failing_gates": [
+        "exact_ten_session_identity_observable_for_all_dates"
+      ],
+      "family": "treasury_auction_concession",
+      "passing_gate_count": 4,
+      "reachability_verdict": null,
+      "release_reachability_verdict": null,
+      "return_hypotheses_spent": 0,
+      "return_outcome": null,
+      "source_artifact": "artifacts/feasibility/treasury_auction_concession/calendar_revision_audit.json",
+      "source_reachability_verdict": null,
+      "superseded": false
+    }
+  ],
+  "families_examined": 18,
+  "honest_reading": "A credential unblocks COLLECTION, never admission. A family whose key arrives still has to pass its remaining feasibility gates, then pre-register, then clear all eighty-five admission checks. The free keys are worth registering because they are free, not because they are close to a sleeve. A family with a recorded return outcome is historical evidence, never an actionable data unblock.",
+  "nearest_to_passing": [],
+  "owner_actions": [
+    {
+      "action": "register EIA_API_KEY (FREE) at https://www.eia.gov/opendata/register.php",
+      "effort": "instant, email only",
+      "unblocks": [
+        "electricity_load_weather"
+      ]
+    },
+    {
+      "action": "register DATABENTO_API_KEY (PAID) at https://databento.com",
+      "effort": "commercial agreement; usage-priced",
+      "unblocks": [
+        "natural_gas_storage_weather"
+      ]
+    },
+    {
+      "action": "commission one independent reviewer to complete the frozen 60-document Item 703 packet and attestation",
+      "effort": "manual source review; no parser output, prices, or returns",
+      "packet": "artifacts/labeling/repurchase_item703_blind/manifest.json",
+      "packet_content_hash": "sha256:0e70f38f7d07e2d22d5834ce1336401518f3704f29023097be3d973e14c928c8",
+      "unblocks": [
+        "repurchase_issuance_flow"
+      ]
+    },
+    {
+      "action": "commission one independent reviewer to complete the frozen 48-document active-ownership Item 4 packet and attestation",
+      "effort": "manual source review; no parser output, prices, or returns",
+      "packet": "artifacts/labeling/active_ownership_13d_item4_v3_blind/manifest.json",
+      "packet_content_hash": "sha256:98a1c738a1476ad1079e1746e656295e6602e70dc198752290fd9924340c0a42",
+      "unblocks": [
+        "active_ownership_13d_item4_v3"
+      ]
+    }
+  ],
+  "schema": "canli.alphac-data-gate-unblocks.v1"
+}

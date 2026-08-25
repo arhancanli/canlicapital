@@ -189,7 +189,9 @@ uv run python scripts/reproduce.py`;
 <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=swap" />
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=optional" />
+<link rel="stylesheet" media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=optional" />
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=optional" /></noscript>
 <link rel="stylesheet" href="./css/paper.css" />
 <script type="application/ld+json">${JSON.stringify(jsonLd)}</script>
 </head>
@@ -228,7 +230,7 @@ uv run python scripts/reproduce.py`;
         all ${artifacts.length} of them from files downloaded straight off this site and confirms
         every one matches. No repository, no install, no data — the Python standard library is
         enough.</p>
-        <pre class="verify__code"><code>${escapeHtml(l1Command)}</code></pre>
+        <pre class="verify__code" tabindex="0" aria-label="Level 1 content-hash verification command"><code>${escapeHtml(l1Command)}</code></pre>
         <p>You should see <code>L1 content hashes : ${artifacts.length} reproduced, 0 failed</code>.
         If any line says FAIL, a published file no longer matches the hash it was published with,
         and the kit exits non-zero. That is the kit working, not the kit breaking.</p>
@@ -240,7 +242,7 @@ uv run python scripts/reproduce.py`;
         append-only hash chain: each entry links to the one before it by hash, and every link is
         signed. Re-deriving that chain is the check that matters most, because it is the one that
         catches a past day being quietly rewritten rather than a present file being edited.</p>
-        <pre class="verify__code"><code>${escapeHtml(l2Command)}</code></pre>
+        <pre class="verify__code" tabindex="0" aria-label="Level 2 signature and chain verification command"><code>${escapeHtml(l2Command)}</code></pre>
         <p>The chain currently holds ${chain.count} entries, from ${escapeHtml(chain.firstDate)} to
         ${escapeHtml(chain.lastDate)}, signed under the public key
         <code class="verify__key">${escapeHtml(chain.publicKey)}</code>. If any earlier entry had
@@ -252,7 +254,7 @@ uv run python scripts/reproduce.py`;
         <p>The last level checks that the engine which produced the numbers is deterministic and
         unchanged: a golden-master test replays a scripted fixture and requires the output to be
         byte-for-byte identical. This one needs the repository.</p>
-        <pre class="verify__code"><code>${escapeHtml(l3Command)}</code></pre>
+        <pre class="verify__code" tabindex="0" aria-label="Level 3 engine determinism command"><code>${escapeHtml(l3Command)}</code></pre>
         <p>Run inside the repo, the same <code>reproduce.py</code> executes all three levels at
         once and prints a summary of each.</p>
       </section>

@@ -2,7 +2,7 @@
 
 **Short title:** Vol-Scaled: killed
 
-**Verdict:** KILLED  **Stage:** screen prototype  
+**Verdict:** KILLED  **Stage:** screen prototype
 **Identity:** `alphamax_volscale`
 
 Barroso-Santa-Clara constant-vol and Daniel-Moskowitz variance/dynamic scaling applied to the live AlphaMax sleeve. On the canonical window it HURTS (net Sharpe 0.87 vs the sleeve's own 0.91, maxDD worse by 1.3-3.1pts); incremental alpha over the book-level vol target the engine already runs is statistically zero in all 5 configs (t -1.64 to +0.81, overlay-scale correlation 0.54-0.66 to the engine's own rule). The insurance is already owned; buying it twice costs money. KILLED.

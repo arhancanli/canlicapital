@@ -8,27 +8,25 @@
   },
   "findings": [
     {
-      "detail": "At 504 correlation observations the standard error is 0.0447, so the upper-95 bound only exceeds +0.10 once the point estimate passes +0.0265 \u2014 and a point estimate that high already fails the +0.00 point gate. Both are satisfiable together, which is why the production loader does not reject them; but the bound gate can never be the reason a candidate is refused. It reads as a second, independent hurdle and it is not one.",
+      "detail": "At 504 observations the approximate correlation standard error is 0.0447. The +0.00 point gate now applies to the candidate's average correlation to the existing book, while the +0.10 upper-bound gate applies to the resulting book-wide average. Because they govern different estimands, the old same-quantity arithmetic that made the uncertainty gate redundant no longer applies.",
       "dimension": "E",
       "numbers": {
+        "candidate_average_point_gate": 0.0,
         "correlation_observations": 504,
-        "point_gate": 0.0,
-        "standard_error": 0.0447,
-        "upper_95_binds_above": 0.0265,
-        "upper_95_gate": 0.1
+        "resulting_book_average_upper_95_gate": 0.1,
+        "standard_error": 0.0447
       },
-      "title": "the upper-95 correlation gate cannot be the decisive one",
+      "title": "the v6 correlation-gate dominance defect is removed in v7",
       "verdict": "CONFIRMED"
     },
     {
-      "detail": "Admission requires the BOOK to clear a deflated Sharpe of 0.95. The best figure this book has ever measured is 0.2112 for the blended configuration and 0.5093 for the best single restated variant. This is not a contradiction in the contract \u2014 it is satisfiable by a better book \u2014 but it means no candidate can be admitted today however good the candidate is, and that belongs on the page beside the gate rather than being discovered by someone who tries.",
+      "detail": "v7 has no book_deflated_sharpe_min admission threshold. It still requires the book DSR to be measured and published, while the 0.95 threshold moves to the forward-evidence maturity decision. This removes the gate that made every candidate inadmissible at the present sample size without weakening disclosure.",
       "dimension": "E",
       "numbers": {
-        "best_measured_book_dsr": 0.2112,
-        "best_restated_variant_dsr": 0.5093,
-        "book_deflated_sharpe_min": 0.95
+        "book_deflated_sharpe_min_is_active_admission_gate": false,
+        "book_deflated_sharpe_must_be_measured": true
       },
-      "title": "the book deflated-Sharpe gate is currently unreachable in practice",
+      "title": "the underpowered incremental book-DSR threshold is retired without hiding DSR",
       "verdict": "CONFIRMED"
     },
     {
@@ -61,14 +59,14 @@
       "verdict": "CONFIRMED"
     },
     {
-      "detail": "All 723 unit-declaring fields across the published bundle hold values plausible for the unit their name declares. The rules encode real defect classes rather than style: a 100x divisor error and a count labelled as a duration have both shipped here.",
+      "detail": "244 of 3087 unit-declaring fields across the published bundle hold a value implausible for that unit: [{'source': 'polygon_split_crosscheck.json', 'field': 'crosschecks[6].stored_ratio', 'value': 100000.0, 'why': 'a ratio over 100 is probably a percentage'}, {'source': 'polygon_split_crosscheck.json', 'field': 'crosschecks[11].stored_ratio', 'value': 64615.0, 'why': 'a ratio over 100 is probably a percentage'}, {'source': 'polygon_split_crosscheck.json', 'field': 'crosschecks[22].stored_ratio', 'value': 105.0, 'why': 'a ratio over 100 is probably a percentage'}, {'source': 'polygon_split_crosscheck.json', 'field': 'crosschecks[25].stored_ratio', 'value': 260.0, 'why': 'a ratio over 100 is probably a percentage'}, {'source': 'polygon_split_crosscheck.json', 'field': 'crosschecks[27].stored_ratio', 'value': 310.0, 'why': 'a ratio over 100 is probably a percentage'}, {'source': 'polygon_split_crosscheck.json', 'field': 'crosschecks[40].stored_ratio', 'value': 334.4, 'why': 'a ratio over 100 is probably a percentage'}]",
       "dimension": "G",
       "numbers": {
-        "fields_checked": 723,
-        "violations": 0
+        "fields_checked": 3087,
+        "violations": 244
       },
       "title": "published fields whose value is implausible for the unit their name declares",
-      "verdict": "REFUTED"
+      "verdict": "CONFIRMED"
     }
   ],
   "refutations_are_kept": "A dimension that found nothing says so, with what it checked. An audit that reports only its hits cannot be told apart from one that did not run.",

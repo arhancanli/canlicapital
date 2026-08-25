@@ -1,7 +1,7 @@
 # Repurchase and issuance flow: literature dossier
 
-**Reviewed:** 2026-08-16  
-**Research state:** source reviewed; returns unopened  
+**Reviewed:** 2026-08-16
+**Research state:** source reviewed; returns unopened
 **Decision:** advance only to a key-free SEC data-feasibility audit inside the already-tested
 `corporate_equity_supply` family; this cannot count as a new independent sleeve
 

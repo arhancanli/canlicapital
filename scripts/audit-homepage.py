@@ -29,24 +29,30 @@ def audit_page(page: Page, *, name: str, width: int, height: int) -> dict[str, o
 
     hero = page.locator("#hero-title")
     assert hero.is_visible()
-    assert hero.inner_text() == "Watch the portfolio.\nAudit the decisions."
+    assert hero.inner_text() == "Systematic research, with the receipts attached."
     assert page.get_by_role("link", name="View the live record").first.is_visible()
     assert page.get_by_role("link", name="Read the methodology").first.is_visible()
-    assert page.locator(".status-strip").is_visible()
-    assert page.locator("#offering-title").is_visible()
-    assert page.locator("#evidence-title").is_visible()
+    assert page.locator(".live-console").is_visible()
+    assert page.locator(".evidence-ribbon").is_visible()
+    assert page.locator("#trace-title").is_visible()
+    assert page.locator("#sleeves-title").is_visible()
+    assert page.locator("#research-title").is_visible()
     assert page.locator("#trust-title").is_visible()
+    assert page.locator("#access-title").is_visible()
+    assert page.locator("#evidence-accounts").inner_text() == "3 × $1M"
+    assert page.locator("#evidence-status").inner_text() == "Broker PASS"
 
-    status_box = page.locator(".status-strip").bounding_box()
-    status_above_initial_fold = bool(status_box and status_box["y"] < height)
+    console_box = page.locator(".live-console").bounding_box()
+    console_above_initial_fold = bool(console_box and console_box["y"] < height)
     if width >= 1000:
-        assert status_above_initial_fold
+        assert console_above_initial_fold
 
     initial_path = page.locator("#equity-path").get_attribute("d")
-    page.get_by_role("button", name="AlphaForge").click()
-    assert page.get_by_role("button", name="AlphaForge").get_attribute("aria-pressed") == "true"
+    page.get_by_role("button", name="Forge").click()
+    assert page.get_by_role("button", name="Forge").get_attribute("aria-pressed") == "true"
     assert page.locator("#chart-title").text_content() == "AlphaForge paper equity curve"
     assert page.locator("#equity-path").get_attribute("d") != initial_path
+    assert "curve=alphaforge" in page.url
 
     heading_levels = page.locator("h1, h2, h3, h4, h5, h6").evaluate_all(
         "nodes => nodes.map(node => Number(node.tagName.slice(1)))"
@@ -84,7 +90,7 @@ def audit_page(page: Page, *, name: str, width: int, height: int) -> dict[str, o
     return {
         "viewport": {"width": width, "height": height},
         "screenshot": screenshot_reference,
-        "status_above_initial_fold": status_above_initial_fold,
+        "console_above_initial_fold": console_above_initial_fold,
         "console_errors": console_errors,
         "page_errors": page_errors,
         "heading_skips": heading_skips,
@@ -93,9 +99,8 @@ def audit_page(page: Page, *, name: str, width: int, height: int) -> dict[str, o
         "horizontal_overflow": horizontal_overflow,
         "first_tab_target_class": focused,
         "first_tab_target_outline": focus_outline,
-        "observed_labels": page.locator(".evidence-kind--observed").count(),
-        "simulated_labels": page.locator(".evidence-kind--simulated").count(),
-        "planned_labels": page.locator(".evidence-kind--planned").count(),
+        "broker_labels": page.locator(".state-pill--broker").count(),
+        "local_simulation_labels": page.locator(".state-pill--local").count(),
     }
 
 

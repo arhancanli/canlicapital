@@ -2,8 +2,8 @@
 
 **Short title:** Deep-History Quality (Top 800): killed
 
-**Verdict:** KILLED  
-**Test window:** 2005-06-16 to 2026-06-22  
+**Verdict:** KILLED
+**Test window:** 2005-06-16 to 2026-06-22
 **Identity:** `deephist_quality_top800`
 
 Quality premium does not survive net of cost on the 21-year survivorship-free universe. Net Sharpe far below the 0.30 minimum gate. KILLED, never re-tuned.

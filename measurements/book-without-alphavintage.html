@@ -24,7 +24,9 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=swap" />
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=optional" />
+<link rel="stylesheet" media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=optional" />
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=optional" /></noscript>
 <link rel="stylesheet" href="../css/paper.css" />
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"Book without alphavintage","description":"A measurement of two allocations on one common window, both reported. Opens no new data, registers no hypothesis identity, changes no allocation and recommends…","url":"https://canlicapital.com/measurements/book-without-alphavintage","creator":{"@type":"Person","name":"Arhan Canli"},"publisher":{"@type":"Organization","name":"Canli Capital","url":"https://canlicapital.com/"},"isAccessibleForFree":true,"distribution":{"@type":"DataDownload","encodingFormat":"application/json","contentUrl":"https://canlicapital.com/glassbox/book_without_alphavintage.json"}}</script>
 </head>
@@ -46,7 +48,7 @@
     <h1 class="paper__title">Book without alphavintage</h1>
     <p class="paper__byline">By <span rel="author">Arhan Canli</span>, Canli Capital</p>
     <div class="paper__body">
-<p class="measure__lead">Book without alphavintage is one of 31 measurements this
+<p class="measure__lead">Book without alphavintage is one of 84 measurements this
 engine publishes in full. It is regenerated from a real run rather than transcribed, and it
 is shown here with its own claim boundary so the number and its limits arrive together.</p>
 <aside class="measure__boundary"><h2>What this measurement does and does not claim</h2><p>A measurement of two allocations on one common window, both reported. Opens no new data, registers no hypothesis identity, changes no allocation and recommends nothing. 0 trials.</p></aside>
@@ -59,10 +61,10 @@ is shown here with its own claim boundary so the number and its limits arrive to
 <section class="measure__sub"><h3>Deltas</h3>
 <dl class="measure__facts">
 <div class="measure__row"><dt>Book max drawdown</dt><dd>-0.010554</dd></div>
-<div class="measure__row"><dt>Book sharpe equal risk</dt><dd>0.006268</dd></div>
-<div class="measure__row"><dt>Projected book sharpe at 14 sleeves</dt><dd>-0.014031</dd></div>
-<div class="measure__row"><dt>Rho bar</dt><dd>0.046333</dd></div>
-<div class="measure__row"><dt>S bar</dt><dd>0.090516</dd></div>
+<div class="measure__row"><dt>Book sharpe equal risk</dt><dd>0.006257</dd></div>
+<div class="measure__row"><dt>Projected book sharpe at 14 sleeves</dt><dd>-0.014046</dd></div>
+<div class="measure__row"><dt>Rho bar</dt><dd>0.046336</dd></div>
+<div class="measure__row"><dt>S bar</dt><dd>0.090507</dd></div>
 </dl>
 </section>
 <p class="measure__prose"><strong>What this does not settle.</strong> Removing a sleeve raises s_bar mechanically whenever the sleeve is below average, and that is not evidence the remaining sleeves are better. It also measures both allocations on the window used to compare them, which is in-sample by construction for the comparison itself. The drawdown and correlation effects are the parts that carry information; the s_bar arithmetic is bookkeeping.</p>
@@ -70,43 +72,43 @@ is shown here with its own claim boundary so the number and its limits arrive to
 <section class="measure__sub"><h3>With alphavintage</h3>
 <dl class="measure__facts">
 <div class="measure__row"><dt>Book max drawdown</dt><dd>-0.027531</dd></div>
-<div class="measure__row"><dt>Book sharpe equal risk</dt><dd>1.037454</dd></div>
+<div class="measure__row"><dt>Book sharpe equal risk</dt><dd>1.037440</dd></div>
 <div class="measure__row"><dt>Book vol</dt><dd>0.033656</dd></div>
-<div class="measure__row"><dt>Diversification ratio</dt><dd>1.942737</dd></div>
+<div class="measure__row"><dt>Diversification ratio</dt><dd>1.942729</dd></div>
 <div class="measure__row"><dt>N</dt><dd>4</dd></div>
 <div class="measure__row"><dt>N days</dt><dd>1061</dd></div>
-<div class="measure__row"><dt>Projected book sharpe at 14 sleeves</dt><dd>1.516612</dd></div>
-<div class="measure__row"><dt>Rho bar</dt><dd>0.026037</dd></div>
-<div class="measure__row"><dt>S bar</dt><dd>0.468939</dd></div>
+<div class="measure__row"><dt>Projected book sharpe at 14 sleeves</dt><dd>1.516505</dd></div>
+<div class="measure__row"><dt>Rho bar</dt><dd>0.026040</dd></div>
+<div class="measure__row"><dt>S bar</dt><dd>0.468913</dd></div>
 </dl>
 <section class="measure__sub"><h4>Pairwise correlations</h4>
 <dl class="measure__facts">
 <div class="measure__row"><dt>AlphaForge|AlphaMax</dt><dd>-0.015770</dd></div>
-<div class="measure__row"><dt>AlphaForge|AlphaTrend</dt><dd>0.022856</dd></div>
+<div class="measure__row"><dt>AlphaForge|AlphaTrend</dt><dd>0.022860</dd></div>
 <div class="measure__row"><dt>AlphaForge|AlphaVintage</dt><dd>0.045550</dd></div>
-<div class="measure__row"><dt>AlphaMax|AlphaTrend</dt><dd>0.210022</dd></div>
+<div class="measure__row"><dt>AlphaMax|AlphaTrend</dt><dd>0.210036</dd></div>
 <div class="measure__row"><dt>AlphaMax|AlphaVintage</dt><dd>-0.062169</dd></div>
-<div class="measure__row"><dt>AlphaTrend|AlphaVintage</dt><dd>-0.044269</dd></div>
+<div class="measure__row"><dt>AlphaTrend|AlphaVintage</dt><dd>-0.044267</dd></div>
 </dl>
 </section>
 <section class="measure__sub"><h4>Per sleeve sharpe</h4>
 <dl class="measure__facts">
 <div class="measure__row"><dt>AlphaForge</dt><dd>1.118055</dd></div>
 <div class="measure__row"><dt>AlphaMax</dt><dd>0.759470</dd></div>
-<div class="measure__row"><dt>AlphaTrend</dt><dd>-0.199160</dd></div>
+<div class="measure__row"><dt>AlphaTrend</dt><dd>-0.199264</dd></div>
 <div class="measure__row"><dt>AlphaVintage</dt><dd>0.197390</dd></div>
 </dl>
 </section>
 <section class="measure__sub"><h4>Rho bar required at 14</h4>
 <dl class="measure__facts">
-<div class="measure__row"><dt>2 / 0</dt><dd>-0.017718</dd></div>
-<div class="measure__row"><dt>2 / 5</dt><dd>-0.039032</dd></div>
+<div class="measure__row"><dt>2 / 25</dt><dd>-0.030149</dd></div>
+<div class="measure__row"><dt>3 / 0</dt><dd>-0.050613</dd></div>
 </dl>
 </section>
 <section class="measure__sub"><h4>S bar required at 14 at this rho</h4>
 <dl class="measure__facts">
-<div class="measure__row"><dt>2 / 0</dt><dd>0.618403</dd></div>
-<div class="measure__row"><dt>2 / 5</dt><dd>0.773003</dd></div>
+<div class="measure__row"><dt>2 / 25</dt><dd>0.695714</dd></div>
+<div class="measure__row"><dt>3 / 0</dt><dd>0.927619</dd></div>
 </dl>
 </section>
 <p class="measure__label">Sleeves</p><ul class="measure__list"><li>AlphaForge</li><li>AlphaMax</li><li>AlphaTrend</li><li>AlphaVintage</li></ul>
@@ -114,39 +116,39 @@ is shown here with its own claim boundary so the number and its limits arrive to
 <section class="measure__sub"><h3>Without alphavintage</h3>
 <dl class="measure__facts">
 <div class="measure__row"><dt>Book max drawdown</dt><dd>-0.038085</dd></div>
-<div class="measure__row"><dt>Book sharpe equal risk</dt><dd>1.043722</dd></div>
+<div class="measure__row"><dt>Book sharpe equal risk</dt><dd>1.043698</dd></div>
 <div class="measure__row"><dt>Book vol</dt><dd>0.040103</dd></div>
-<div class="measure__row"><dt>Diversification ratio</dt><dd>1.642547</dd></div>
+<div class="measure__row"><dt>Diversification ratio</dt><dd>1.642538</dd></div>
 <div class="measure__row"><dt>N</dt><dd>3</dd></div>
 <div class="measure__row"><dt>N days</dt><dd>1061</dd></div>
-<div class="measure__row"><dt>Projected book sharpe at 14 sleeves</dt><dd>1.502581</dd></div>
-<div class="measure__row"><dt>Rho bar</dt><dd>0.072370</dd></div>
-<div class="measure__row"><dt>S bar</dt><dd>0.559455</dd></div>
+<div class="measure__row"><dt>Projected book sharpe at 14 sleeves</dt><dd>1.502459</dd></div>
+<div class="measure__row"><dt>Rho bar</dt><dd>0.072375</dd></div>
+<div class="measure__row"><dt>S bar</dt><dd>0.559420</dd></div>
 </dl>
 <section class="measure__sub"><h4>Pairwise correlations</h4>
 <dl class="measure__facts">
 <div class="measure__row"><dt>AlphaForge|AlphaMax</dt><dd>-0.015770</dd></div>
-<div class="measure__row"><dt>AlphaForge|AlphaTrend</dt><dd>0.022856</dd></div>
-<div class="measure__row"><dt>AlphaMax|AlphaTrend</dt><dd>0.210022</dd></div>
+<div class="measure__row"><dt>AlphaForge|AlphaTrend</dt><dd>0.022860</dd></div>
+<div class="measure__row"><dt>AlphaMax|AlphaTrend</dt><dd>0.210036</dd></div>
 </dl>
 </section>
 <section class="measure__sub"><h4>Per sleeve sharpe</h4>
 <dl class="measure__facts">
 <div class="measure__row"><dt>AlphaForge</dt><dd>1.118055</dd></div>
 <div class="measure__row"><dt>AlphaMax</dt><dd>0.759470</dd></div>
-<div class="measure__row"><dt>AlphaTrend</dt><dd>-0.199160</dd></div>
+<div class="measure__row"><dt>AlphaTrend</dt><dd>-0.199264</dd></div>
 </dl>
 </section>
 <section class="measure__sub"><h4>Rho bar required at 14</h4>
 <dl class="measure__facts">
-<div class="measure__row"><dt>2 / 0</dt><dd>0.007343</dd></div>
-<div class="measure__row"><dt>2 / 5</dt><dd>-0.022993</dd></div>
+<div class="measure__row"><dt>2 / 25</dt><dd>-0.010350</dd></div>
+<div class="measure__row"><dt>3 / 0</dt><dd>-0.039476</dd></div>
 </dl>
 </section>
 <section class="measure__sub"><h4>S bar required at 14 at this rho</h4>
 <dl class="measure__facts">
-<div class="measure__row"><dt>2 / 0</dt><dd>0.744658</dd></div>
-<div class="measure__row"><dt>2 / 5</dt><dd>0.930822</dd></div>
+<div class="measure__row"><dt>2 / 25</dt><dd>0.837757</dd></div>
+<div class="measure__row"><dt>3 / 0</dt><dd>1.117009</dd></div>
 </dl>
 </section>
 <p class="measure__label">Sleeves</p><ul class="measure__list"><li>AlphaForge</li><li>AlphaMax</li><li>AlphaTrend</li></ul>
@@ -157,7 +159,7 @@ is shown here with its own claim boundary so the number and its limits arrive to
 artifact the engine wrote. Nothing on this page is typed by hand: the page is generated from that
 file, so a figure that moves in the artifact moves here and a figure that is not in the artifact
 cannot appear here at all.</p>
-<p><a href="/measurements">All 31 measurements</a> &middot;
+<p><a href="/measurements">All 84 measurements</a> &middot;
 <a href="/open">The glass box</a> &middot;
 <a href="/research">The research library</a></p>
 </section>

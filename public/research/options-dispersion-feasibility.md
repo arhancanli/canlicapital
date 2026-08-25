@@ -2,9 +2,9 @@
 
 **Short title:** Options dispersion: feasibility protocol
 
-**Declared:** 2026-08-16  
-**Return data:** prohibited  
-**Hypotheses spent:** zero  
+**Declared:** 2026-08-16
+**Return data:** prohibited
+**Hypotheses spent:** zero
 **Family trial account:** `options_dispersion`
 
 ## Question

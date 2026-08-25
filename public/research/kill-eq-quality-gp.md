@@ -2,8 +2,8 @@
 
 **Short title:** Equity Quality (Gross Profitability): killed
 
-**Verdict:** KILLED  
-**Test window:** 2022-07-05 to 2026-06-01  
+**Verdict:** KILLED
+**Test window:** 2022-07-05 to 2026-06-01
 **Identity:** `eq_quality_gp`
 
 Quality via GP/A + ROE fails on the narrow top-200 / 5-year slice. Net Sharpe below the 0.30 gate; needs the wide Sharadar fundamentals universe (20yr / 3000 names). KILLED.
