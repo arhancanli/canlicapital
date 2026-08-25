@@ -2,7 +2,7 @@
 
 **Short title:** Economic-Trend Sleeve: killed
 
-**Verdict:** KILLED  **Stage:** deployed gauntlet
+**Verdict:** KILLED  **Stage:** deployed gauntlet  
 **Identity:** `econtrend`
 
 Trend on first-release macro vintages (payrolls, CPI, IP, credit spreads, yields, dollar) driving the 17-ETF basket by a pre-committed economic sign matrix. It has a REAL crisis-alpha personality — +60.7% through the 2008 GFC (SPY -46%), +17.5% in the 2022 bear (SPY -18%), essentially uncorrelated with the live AlphaTrend book (+0.009) and mildly SPY-negative (-0.20). But it fails the adopt bar 2 of 3: net Sharpe 0.211 (bar 0.40), DSR 0.00 at N=103, and it gets caught in fast gap-down crashes (COVID -25.9%, breaching the -22.5% floor). Genuine decorrelation, not enough edge. A hostile 3-auditor leakage panel cleared the vintage plumbing before the one-shot ran. KILLED at the gauntlet. Also tested as a combined-book DIVERSIFIER (not just standalone), since near-zero correlation can lift a book even below the solo bar: it fails there too. At equal total vol its naive Sharpe ticks up ~0.02-0.04 but within noise, it DEEPENS the GFC and 2022 drawdowns, and decisively — strip its DSR-0.00 mean and the optimal weight goes to exactly 0.00 (the whole 'benefit' was return-stacking a mean statistically indistinguishable from zero, not real diversification). Not added, in any construction. Reproduce: scripts/probe_econtrend_book.py.

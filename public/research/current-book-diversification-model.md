@@ -1,8 +1,8 @@
 # Current-book diversification: the confidence-bound result
 
-**Author:** Arhan Canli
-**Program:** ALPHAC / AlphaC Algorithms
-**Study classification:** retrospective existing-return risk remeasurement
+**Author:** Arhan Canli  
+**Program:** ALPHAC / AlphaC Algorithms  
+**Study classification:** retrospective existing-return risk remeasurement  
 **Capital:** research simulation over a paper-trading specification
 
 ## Result

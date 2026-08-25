@@ -1,9 +1,9 @@
 # Equity fundamental quality: 11 identities and no validated sleeve
 
-**Author:** Arhan Canli, Founder, System Architect, and Quantitative Researcher, Canli Capital
-**Research system:** ALPHAC / AlphaForge
-**Family key:** `equity_fundamental_quality`
-**Status:** public research record; not peer reviewed; not an investment solicitation
+**Author:** Arhan Canli, Founder, System Architect, and Quantitative Researcher, Canli Capital  
+**Research system:** ALPHAC / AlphaForge  
+**Family key:** `equity_fundamental_quality`  
+**Status:** public research record; not peer reviewed; not an investment solicitation  
 **Evidence date:** 2026-08-22
 
 ## Abstract

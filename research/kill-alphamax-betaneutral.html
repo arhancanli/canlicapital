@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Beta-Neutral Momentum Construction: killed — Canli Capital</title>
 <meta name="description" content="The premise was that a dollar-neutral momentum book carries hidden NEGATIVE market beta, so a junk rally hurts both legs at once." />
-<meta name="alphac-source-sha256" content="1cee03697122e788771c9bd44b0f8042c97e141705aaaeda23fb1e08bc956bfe" />
+<meta name="alphac-source-sha256" content="fefca7805d2fe0bdbf4e331957246f2c9b1c0ab3d27960b364a273682f7e8461" />
 
 <link rel="canonical" href="https://canlicapital.com/research/kill-alphamax-betaneutral" />
 <meta name="author" content="Arhan Canli" />
@@ -55,8 +55,7 @@
     <p class="paper__byline">By <span rel="author">Arhan Canli</span>, Canli Capital</p>
     <div class="paper__body">
 <p><strong>Short title:</strong> Beta-Neutral Momentum Construction: killed</p>
-<p><strong>Verdict:</strong> KILLED  <strong>Stage:</strong> screen prototype
-<strong>Identity:</strong> <code>alphamax_betaneutral</code></p>
+<p><strong>Verdict:</strong> KILLED  <strong>Stage:</strong> screen prototype<br><strong>Identity:</strong> <code>alphamax_betaneutral</code></p>
 <p>The premise was that a dollar-neutral momentum book carries hidden NEGATIVE market beta, so a junk rally hurts both legs at once. Measuring the premise first killed it. On the research panel (2005-2026) the book&#39;s mean rolling 63-day beta is -0.014 — essentially zero. On the LIVE book it is +0.319, and the LONG leg is the high-beta side (leg beta 1.932 long vs 1.238 short) — the opposite of the premise. The treatment is then regime-dependent with opposite signs: research net Sharpe 0.160 to 0.361 (bootstrap P(dSharpe&lt;=0)=0.0225), LIVE 0.921 to 0.570 (P=0.938). It also barely touches the episode it was designed for — 0.2 points of a 9.5-point loss on research, 0.7 of 10.5 live — and it buys beta-neutrality by selling dollar-neutrality: net exposure runs to +/-34% of gross, which breaks the market-neutral mandate. Not adopted. 0 trial slots burned. Reproduce: scripts/probe_alphamax_betaneutral.py.</p>
 <h2>Why it was worth testing</h2>
 <p>This died at the screen stage, before a full walk-forward was ever run. Screening exists so that ideas which cannot clear a coarse, cost-aware bar do not consume the far more expensive machinery behind it. A screen kill is a cheap kill, and it is published for the same reason as an expensive one: the trial was still spent, and it still raises the evidence bar for everything already in the book.</p>

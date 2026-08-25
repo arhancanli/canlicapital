@@ -2,7 +2,7 @@
 
 **Short title:** Residual (beta-neutral) Momentum: killed
 
-**Verdict:** KILLED  **Stage:** screen prototype
+**Verdict:** KILLED  **Stage:** screen prototype  
 **Identity:** `residual_momentum`
 
 Corr 0.87 to raw 12-1 momentum on the broad survivorship-free universe — it is the SAME bet as AlphaMax, net-negative. The claimed 'separation' is false here. KILLED.

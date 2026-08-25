@@ -2,7 +2,7 @@
 
 **Short title:** Closed-End-Fund Deep-Discount + Activist Catalyst: killed
 
-**Verdict:** KILLED  **Stage:** screen prototype
+**Verdict:** KILLED  **Stage:** screen prototype  
 **Identity:** `cef_discount`
 
 The five-decade anomaly is REAL in free data and we could see it: entry-cohort funds genuinely narrow their discount versus the universe (+1.17pts at 4w t=5.4, +1.26 at 13w t=7.2, +1.39 at 26w). It still fails on economics — the convergence is too slow for its toll. Hedged net Sharpe -0.088 (-0.82 price-only) against a 0.5 gate: ~12.8%/wk turnover at 41bp one-way (6bp + half the 0.7% median CEF spread) hands back the ~1.3pt/quarter the discount closes. Two further honest notes: today's entry watchlist is EMPTY (0 of 328 funds qualify — the 2024-26 activist wave already closed sector discounts to multi-year tights), and the discount screen and the activist catalyst are nearly disjoint books (4.9% overlap), so the documented live-capital story is the CATALYST trade, not the one we screened. A pre-registered, hash-locked FORWARD experiment is now accruing point-in-time data toward a single-look evaluation in 2027. Reproduce: scripts/probe_cef_discount.py.

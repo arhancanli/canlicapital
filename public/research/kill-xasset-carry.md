@@ -2,7 +2,7 @@
 
 **Short title:** Cross-Asset Carry (campaign): killed
 
-**Verdict:** KILLED  **Stage:** screen prototype
+**Verdict:** KILLED  **Stage:** screen prototype  
 **Identity:** `xasset_carry`
 
 5 constructions. The COMBINED cross-asset book is net-NEGATIVE (3 of 4 legs lose); the one positive leg (oil backwardation, +0.37) is a single-instrument bet that leave-one-out zeroes; rates-carry fails the Covid crisis gate. Real futures data cannot flip it. KILLED.

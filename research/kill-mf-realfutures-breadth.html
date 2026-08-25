@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Real-Futures Breadth for the Trend Sleeve: killed — Canli Capital</title>
 <meta name="description" content="We had been treating &#39;buy real futures data for genuine breadth&#39; as the roadmap for the trend sleeve, on the theory that Sharpe scales with the square root…" />
-<meta name="alphac-source-sha256" content="6c37e9f86584b32f27a981cc4cd5804b52bf6fe5275b8ccfda5878ff8af4b0d1" />
+<meta name="alphac-source-sha256" content="4fcd948885e34801b73d0208efb8e8d5ba68568b352f7f41aba5f9a862b75578" />
 
 <link rel="canonical" href="https://canlicapital.com/research/kill-mf-realfutures-breadth" />
 <meta name="author" content="Arhan Canli" />
@@ -55,8 +55,7 @@
     <p class="paper__byline">By <span rel="author">Arhan Canli</span>, Canli Capital</p>
     <div class="paper__body">
 <p><strong>Short title:</strong> Real-Futures Breadth for the Trend Sleeve: killed</p>
-<p><strong>Verdict:</strong> KILLED  <strong>Stage:</strong> screen prototype
-<strong>Identity:</strong> <code>mf_realfutures_breadth</code></p>
+<p><strong>Verdict:</strong> KILLED  <strong>Stage:</strong> screen prototype<br><strong>Identity:</strong> <code>mf_realfutures_breadth</code></p>
 <p>We had been treating &#39;buy real futures data for genuine breadth&#39; as the roadmap for the trend sleeve, on the theory that Sharpe scales with the square root of effective breadth and 17 ETFs cannot supply it. Half of that is right: measured effective breadth is 9.1 for 38 real futures versus 5.3 for the live 17-ETF basket (and only 3.5 for a 33-ETF expansion we already killed — more names, LESS breadth, which is why it failed). The other half is wrong. On an identical construction, identical costs and the identical 2010-2026 common window, the 38-market futures book returns net Sharpe -0.148 against the ETF sleeve&#39;s +0.498, independently reproducing an earlier -0.24 result we had discounted as a possible one-off. It is not a data fault: across all 38 back-adjusted series there is exactly one single-day move above 25%. Breadth MULTIPLIES the average per-market edge; where that edge is absent, more breadth buys more of nothing and 7.3x turnover instead of 4.3x. The capital-gated futures path is therefore NOT validated and we have stopped citing it. Reproduce: the probe is in the session record; data is data/lake_fut_real (38 markets).</p>
 <h2>Why it was worth testing</h2>
 <p>This died at the screen stage, before a full walk-forward was ever run. Screening exists so that ideas which cannot clear a coarse, cost-aware bar do not consume the far more expensive machinery behind it. A screen kill is a cheap kill, and it is published for the same reason as an expensive one: the trial was still spent, and it still raises the evidence bar for everything already in the book.</p>

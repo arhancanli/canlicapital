@@ -2,7 +2,7 @@
 
 **Short title:** Prediction-Market Odds as Macro Signal: killed
 
-**Verdict:** KILLED  **Stage:** screen prototype
+**Verdict:** KILLED  **Stage:** screen prototype  
 **Identity:** `pm_odds_signal`
 
 Do Polymarket-implied probabilities lead tradable markets? No — they lag them. The forward lead is null across 5 macro markets x 5 ETFs; the reverse is strong: bonds reprice a Fed move first and the odds catch up the NEXT day (corr +0.40 to TLT). Only ~2 years of usable history, all one easing cycle. The free odds are a slower, noisier copy of prices we already see. KILLED at feasibility.

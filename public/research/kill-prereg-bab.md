@@ -2,8 +2,8 @@
 
 **Short title:** Pre-Registered Betting-Against-Beta: killed
 
-**Verdict:** KILLED
-**Test window:** 2005-01-04 to 2026-06-01
+**Verdict:** KILLED  
+**Test window:** 2005-01-04 to 2026-06-01  
 **Identity:** `prereg_bab`
 
 Pre-registered BAB on 21 years. Net Sharpe ~ -0.07, failed the DSR >= 0.95 gate. Low-risk anomaly does not survive net of cost here. KILLED.

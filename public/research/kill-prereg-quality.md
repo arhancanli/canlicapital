@@ -2,8 +2,8 @@
 
 **Short title:** Pre-Registered Quality (GP/A + ROE): killed
 
-**Verdict:** KILLED
-**Test window:** 2005-01-04 to 2026-06-01
+**Verdict:** KILLED  
+**Test window:** 2005-01-04 to 2026-06-01  
 **Identity:** `prereg_quality`
 
 Pre-registered quality on 21 years. Net Sharpe -0.83, the worst sleeve. KILLED; the wide-universe quality thesis fails to replicate on the available data.

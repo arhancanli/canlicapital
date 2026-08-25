@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Turn-of-Month / Rebalancing Flow (probe): killed — Canli Capital</title>
 <meta name="description" content="The calendar flow is real — SPY earns 5.65bp/day in the last-1-plus-first-3 window vs 3.96bp outside, and the footprint replicates on QQQ — but monetized…" />
-<meta name="alphac-source-sha256" content="8f75cd65fd6412b615192ff64ea4251ce5d1a438be9833bf4ed82029cf7cca6e" />
+<meta name="alphac-source-sha256" content="ec8aa4c861f34797e6aaf07efea7f1fb886d5dcd57563c3e6d9d59958fa21e35" />
 
 <link rel="canonical" href="https://canlicapital.com/research/kill-mechflow-tom" />
 <meta name="author" content="Arhan Canli" />
@@ -55,8 +55,7 @@
     <p class="paper__byline">By <span rel="author">Arhan Canli</span>, Canli Capital</p>
     <div class="paper__body">
 <p><strong>Short title:</strong> Turn-of-Month / Rebalancing Flow (probe): killed</p>
-<p><strong>Verdict:</strong> KILLED  <strong>Stage:</strong> screen prototype
-<strong>Identity:</strong> <code>mechflow_tom</code></p>
+<p><strong>Verdict:</strong> KILLED  <strong>Stage:</strong> screen prototype<br><strong>Identity:</strong> <code>mechflow_tom</code></p>
 <p>The calendar flow is real — SPY earns 5.65bp/day in the last-1-plus-first-3 window vs 3.96bp outside, and the footprint replicates on QQQ — but monetized standalone it sits in cash 76% of days: net Sharpe 0.27, below buy-and-hold SPY (0.58) and the screen bar, DSR 0.035 across 43 configs. The 60/40 month-end rebalance-fade variant decayed negative after 2018. A real effect that is an execution tilt, not a sleeve. KILLED as standalone. RE-EXAMINED 2026-08-03 because that first reason was BAD ARITHMETIC: a candidate need not beat the book to improve it, only clear own_SR &gt; rho x S_b. Re-tested as a diversifier on ONE pre-registered config (no sweep, so no search penalty). The reframe was right about correlation — rho to the live book is +0.010, dropping the bar to +0.006 — and it still fails: own Sharpe -0.56 over the book&#39;s own window, and over 25 years / 6,309 sessions the full-history Sharpe of +0.278 carries a Newey-West t of only +1.42, with no decade reaching t=2 (best +1.32). A near-zero bar lowers what you must BEAT, never what you must PROVE. Adding it hurt the book at every weight (-0.03 to -0.15), and 87-96% of that harm came from the mean, not from variance. KILLED on the correct bar — this one is final.</p>
 <h2>Why it was worth testing</h2>
 <p>This died at the screen stage, before a full walk-forward was ever run. Screening exists so that ideas which cannot clear a coarse, cost-aware bar do not consume the far more expensive machinery behind it. A screen kill is a cheap kill, and it is published for the same reason as an expensive one: the trial was still spent, and it still raises the evidence bar for everything already in the book.</p>

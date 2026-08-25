@@ -2,7 +2,7 @@
 
 **Short title:** 52-Week-High Momentum (campaign): killed
 
-**Verdict:** KILLED  **Stage:** deployed gauntlet
+**Verdict:** KILLED  **Stage:** deployed gauntlet  
 **Identity:** `eq_52whigh`
 
 The one AlphaMax construction variant whose cheap screen cleared the bar (t 2.01 vs plain momentum's 1.73), so we honored the pre-registration and ran the FULL deployed-path walk-forward. It KILLED: net Sharpe -0.289 (WORSE than plain 12-1's own -0.049 on the same harness), DSR 0.00, and OOS correlation +0.42 to plain momentum — neither better nor genuinely different. The frozen 12-1 build stays. KILLED at the gauntlet.

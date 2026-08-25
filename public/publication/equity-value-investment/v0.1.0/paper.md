@@ -1,10 +1,10 @@
 # Equity value, issuance, and investment: 13 identities and unstable evidence
 
-**Short title:** Equity value and investment: complete trial lineage
-**Author:** Arhan Canli, Founder, System Architect, and Quantitative Researcher, Canli Capital
-**Research system:** ALPHAC / AlphaForge
-**Family key:** `equity_fundamental_value_investment`
-**Status:** public research record; not peer reviewed; not an investment solicitation
+**Short title:** Equity value and investment: complete trial lineage  
+**Author:** Arhan Canli, Founder, System Architect, and Quantitative Researcher, Canli Capital  
+**Research system:** ALPHAC / AlphaForge  
+**Family key:** `equity_fundamental_value_investment`  
+**Status:** public research record; not peer reviewed; not an investment solicitation  
 **Evidence date:** 2026-08-22
 
 ## Abstract

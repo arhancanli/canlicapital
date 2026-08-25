@@ -5,11 +5,11 @@ produce one. This paper defines the precommitted evidence states used by ALPHAC:
 estimate may be shown, when a target is only observed, and what must be true before the target can
 be described as statistically established.
 
-**Author:** Arhan Canli
-**Affiliation:** Canli Capital / AlphaC Algorithms
-**Version:** 1.0, 2026
-**Capital boundary:** Alpaca and AlphaForge paper trading only; no real capital
-**Machine contract:** `/glassbox/forward_evidence_contract.json`
+**Author:** Arhan Canli  
+**Affiliation:** Canli Capital / AlphaC Algorithms  
+**Version:** 1.0, 2026  
+**Capital boundary:** Alpaca and AlphaForge paper trading only; no real capital  
+**Machine contract:** `/glassbox/forward_evidence_contract.json`  
 **Current evaluation:** `/glassbox/forward_evidence_maturity.json`
 
 ## Abstract

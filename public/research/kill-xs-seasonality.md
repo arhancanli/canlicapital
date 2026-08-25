@@ -2,7 +2,7 @@
 
 **Short title:** Cross-Sectional Same-Calendar-Month Seasonality: killed
 
-**Verdict:** KILLED  **Stage:** screen prototype
+**Verdict:** KILLED  **Stage:** screen prototype  
 **Identity:** `xs_seasonality`
 
 The one equity-side signal genuinely DECORRELATED from our momentum sleeve — and that is exactly why it is worth publishing. Same-calendar-month ranking across a 33-ETF macro basket, 10y trailing PIT history, monthly, net of 6bp + borrow: net Sharpe -0.334, and NEGATIVE GROSS too (-0.176), so there is no edge for costs to erode. Correlation to plain 12-1 momentum is just +0.07 (it passes the costume test that killed residual momentum and 52-week-high) — but a 12-1 control on the SAME universe prints +0.175, so the harness can find a real signal; this one simply is not there. Decorrelation without edge is worthless. Screen gate failed, no walk-forward trial spent. Reproduce: scripts/probe_seasonality.py.

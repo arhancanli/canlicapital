@@ -1,7 +1,7 @@
 # Sharadar HDB zero-dividend quarantine
 
-**Short title:** HDB dividend quarantine
-**Author:** Arhan Canli
+**Short title:** HDB dividend quarantine  
+**Author:** Arhan Canli  
 **Decision:** `VERSIONED_ZERO_MARKER_QUARANTINE_AUTHORIZED`
 
 ## Finding

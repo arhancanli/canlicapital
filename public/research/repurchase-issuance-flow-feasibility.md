@@ -1,11 +1,11 @@
 # Repurchase and issuance flow: no-return SEC feasibility protocol
 
-**Declared:** 2026-08-16
-**Return data:** prohibited
-**Hypotheses spent:** zero
-**Family trial account:** `corporate_equity_supply`
-**Prior return configurations:** three (`eq_net_issuance`)
-**Minimum family trial count if one completed-flow return identity is opened:** four
+**Declared:** 2026-08-16  
+**Return data:** prohibited  
+**Hypotheses spent:** zero  
+**Family trial account:** `corporate_equity_supply`  
+**Prior return configurations:** three (`eq_net_issuance`)  
+**Minimum family trial count if one completed-flow return identity is opened:** four  
 **Independent-sleeve count:** prohibited; this is a same-family measurement refinement
 
 ## Question

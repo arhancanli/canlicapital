@@ -2,7 +2,7 @@
 
 **Short title:** Cross-Asset Value (campaign): killed
 
-**Verdict:** KILLED  **Stage:** screen prototype
+**Verdict:** KILLED  **Stage:** screen prototype  
 **Identity:** `xasset_value`
 
 6 constructions, ALL net-negative. The decisive tell: flipping the value sign is positive in every asset class — the only premium present is anti-value = momentum/trend, which we already own. Cross-asset value on liquid proxies is just short-momentum, and it loses. KILLED.

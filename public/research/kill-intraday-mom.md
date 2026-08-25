@@ -2,7 +2,7 @@
 
 **Short title:** Intraday Flow-Momentum: killed
 
-**Verdict:** KILLED  **Stage:** screen prototype
+**Verdict:** KILLED  **Stage:** screen prototype  
 **Identity:** `intraday_mom`
 
 The twice-JFE-documented effect (Gao-Han-Li-Zhou) is fully DECAYED post-publication on SPY/QQQ/IWM: dead-zero in 2023-2026, and significantly INVERTED in 2020-2022 (a textbook publish-then-arbitrage overshoot). The only statistically-alive cell (TLT overnight, t=2.9) makes +1.2 bps/day gross against a >=2bp round-trip — a mirage economically. KILLED at screen.

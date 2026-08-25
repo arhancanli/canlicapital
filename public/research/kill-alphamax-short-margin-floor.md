@@ -2,7 +2,7 @@
 
 **Short title:** AlphaMax Short-Leg Margin Floor: killed
 
-**Verdict:** KILLED  **Stage:** screen prototype
+**Verdict:** KILLED  **Stage:** screen prototype  
 **Identity:** `alphamax_short_margin_floor`
 
 A disclosure against our own published number rather than a tested idea. The equity sleeve's backtest has never modelled the broker's $5.00-per-share short maintenance requirement, which is charged per share regardless of account size — so shorting an $8 stock ties up roughly 62% of its market value in margin at ANY capital level. Applying an honest $17 short-leg price floor costs -0.112 net Sharpe (2015-2026, point-in-time prices from our own lake, so no snapshot bias). Part of the published edge lives in cheap shorts that are permanently margin-inefficient. We are publishing the haircut rather than the flattering number. Separately: a borrow-availability filter appeared to cost a further -0.225, but that estimate is CONFOUNDED — it applies a current broker snapshot to eleven years of history, which silently excludes every delisted name, and delisted names are exactly where short alpha concentrates. Measuring it honestly needs point-in-time borrow data we do not have, so we report it as UNKNOWN rather than publish a number we cannot defend. The current live short book is 92 of 94 names borrowable.

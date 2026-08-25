@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Weighting x Breadth Construction Grid: killed — Canli Capital</title>
 <meta name="description" content="Four weightings (inverse-vol, equal, signal-proportional, vol-capped) crossed with four breadths (K=30/50/100/200), 2005-2026, live cell inverse-vol K=100." />
-<meta name="alphac-source-sha256" content="5f344c431ddbeee54cd5773e5e4d5125c230a1bf407b0eddc753fa7e76c3b192" />
+<meta name="alphac-source-sha256" content="8205cffc7ddf6790eab4a549d3530fc532cfa2359e4f3ce621d0a2cb2c5e701c" />
 
 <link rel="canonical" href="https://canlicapital.com/research/kill-alphamax-weightgrid" />
 <meta name="author" content="Arhan Canli" />
@@ -55,8 +55,7 @@
     <p class="paper__byline">By <span rel="author">Arhan Canli</span>, Canli Capital</p>
     <div class="paper__body">
 <p><strong>Short title:</strong> Weighting x Breadth Construction Grid: killed</p>
-<p><strong>Verdict:</strong> KILLED  <strong>Stage:</strong> screen prototype
-<strong>Identity:</strong> <code>alphamax_weightgrid</code></p>
+<p><strong>Verdict:</strong> KILLED  <strong>Stage:</strong> screen prototype<br><strong>Identity:</strong> <code>alphamax_weightgrid</code></p>
 <p>Four weightings (inverse-vol, equal, signal-proportional, vol-capped) crossed with four breadths (K=30/50/100/200), 2005-2026, live cell inverse-vol K=100. Net Sharpes span -0.293 to +0.066 against the live cell&#39;s -0.062 on the same harness (this is the deep-history panel, where the deployed 2023+ sleeve&#39;s 0.91 does not apply). Four of the 15 challenger cells individually cleared the 90% paired bootstrap — but the bootstrap&#39;s own dSharpe intervals imply those cells are 0.97 to 1.00 correlated with the live cell, so four passes is about the chance expectation for a family of near-copies, not evidence. The family-wise White Reality Check over the whole grid returns p=0.315: the best cell (signal-proportional K=50, dSharpe +0.128) is indistinguishable from luck. That family-wise gate was pre-registered precisely so the best cell could not be harvested. Zero cells adoptable; keep inverse-vol K=100. 0 trial slots burned. Reproduce: scripts/probe_alphamax_weighting.py.</p>
 <h2>Why it was worth testing</h2>
 <p>This died at the screen stage, before a full walk-forward was ever run. Screening exists so that ideas which cannot clear a coarse, cost-aware bar do not consume the far more expensive machinery behind it. A screen kill is a cheap kill, and it is published for the same reason as an expensive one: the trial was still spent, and it still raises the evidence bar for everything already in the book.</p>

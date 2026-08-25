@@ -2,7 +2,7 @@
 
 **Short title:** Crypto Short-Horizon Trend (campaign): killed
 
-**Verdict:** KILLED  **Stage:** screen prototype
+**Verdict:** KILLED  **Stage:** screen prototype  
 **Identity:** `crypto_short_tsmom`
 
 The strong 0.60 screen lives entirely in the untradeable 2016-18 illiquid era; modern crypto is flat-to-dead with a catastrophic -4.88 skew (crash-day reversals). KILLED.

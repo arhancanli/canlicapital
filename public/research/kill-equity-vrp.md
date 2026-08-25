@@ -2,7 +2,7 @@
 
 **Short title:** Equity-Index VRP / short-vol (campaign): killed
 
-**Verdict:** KILLED  **Stage:** screen prototype
+**Verdict:** KILLED  **Stage:** screen prototype  
 **Identity:** `equity_vrp`
 
 The premium is REAL (VIX minus realized = +4 vol pts, t=57) but UNHARVESTABLE: negative in every crisis, skew -1.8 to -2.2, corr +0.45 to +0.66 to SPY — short-vol is leveraged long-beta in disguise, not an orthogonal sleeve. KILLED.

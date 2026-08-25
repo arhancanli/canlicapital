@@ -2,8 +2,8 @@
 
 **Short title:** Pre-Registered Momentum (deep history): killed
 
-**Verdict:** KILLED
-**Test window:** 2005-01-04 to 2026-06-01
+**Verdict:** KILLED  
+**Test window:** 2005-01-04 to 2026-06-01  
 **Identity:** `prereg_momentum`
 
 Pre-registered momentum on 21 years of deep history. Net Sharpe ~ -0.05, failed the DSR >= 0.95 gate. The deployed momentum sleeve is the frozen 2023+ k30_dn_63 instead.

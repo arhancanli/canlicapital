@@ -1,8 +1,8 @@
 # Current-composition maximum-drawdown model
 
-**Author:** Arhan Canli
-**Affiliation:** Canli Capital / AlphaC Algorithms
-**Version:** 1.0, 2026
+**Author:** Arhan Canli  
+**Affiliation:** Canli Capital / AlphaC Algorithms  
+**Version:** 1.0, 2026  
 **Capital boundary:** research simulation over a paper-trading specification
 
 ## Abstract
@@ -100,5 +100,6 @@ uv run python scripts/seal_forward_drawdown_evidence.py
 uv run pytest -q tests/unit/test_current_book_drawdown.py tests/unit/test_forward_drawdown_evidence.py
 ```
 
-Canonical machine result: `/glassbox/current_book_drawdown.json`
+Canonical machine result: `/glassbox/current_book_drawdown.json`  
 Sealed claim boundary: `/glassbox/forward_drawdown_evidence.json`
+

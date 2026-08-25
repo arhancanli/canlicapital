@@ -2,7 +2,7 @@
 
 **Short title:** On-Chain Carry-Quality Filter (campaign): killed
 
-**Verdict:** KILLED  **Stage:** screen prototype
+**Verdict:** KILLED  **Stage:** screen prototype  
 **Identity:** `onchain_carry_filter`
 
 Placebo-indistinguishable: a random risk-off coin-flip of equal intensity matches it, and it does NOT repair carry's 2022 tail (skew got worse). No paid-data upgrade justified. KILLED.

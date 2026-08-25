@@ -7,16 +7,16 @@
     "short_description": "Designed and implemented a quantitative-research and publication system spanning data engineering, statistical validation, paper execution, provenance, testing and public web interfaces. Published negative results and corrections alongside surviving hypotheses so every performance claim can be traced to evidence."
   },
   "claim_boundary": "This is a source-bound portfolio evidence map. It supports concise factual writing but does not prove admissions impact, external use, independent review or unaided authorship.",
-  "content_hash": "sha256:70eadf202ea25ba7f29b32dfc390aed569ac3a88f07a9e19e1235f6b6037d33b",
+  "content_hash": "sha256:821578930c3b08a64b65dbb6b5325e9bd9206d5f8b304f2fff51b17ddbe06e80",
   "evidence": {
     "forward_truth": {
       "boundary": "The forward Sharpe, drawdown and diversification objectives are not established.",
       "claim": "The project refuses to infer success from an immature forward record.",
       "facts": {
-        "cumulative_return": -0.022271700000000005,
+        "cumulative_return": -0.022914700000000066,
         "current_sleeves": 4,
         "daily_return_observations": 16,
-        "provenance_passes": false,
+        "provenance_passes": true,
         "sharpe_status": "IMMATURE_RECORD_TOO_SHORT",
         "target_sleeves": 14
       }
@@ -110,7 +110,7 @@
     },
     "broker": {
       "path": "artifacts/engineering/alpaca_broker_reconciliation.json",
-      "sha256": "ebde115d3498d2088c68c508609147a14e0b6334a610370d038332bd3c647197"
+      "sha256": "50a46765dbc42df6fe52f2a27eb41242ca5733d4ed38a80d9e44fae356c55fe4"
     },
     "clean_reproduction": {
       "path": "artifacts/publication/clean_workspace_reproduction_audit.json",
@@ -118,7 +118,7 @@
     },
     "forward": {
       "path": "artifacts/engineering/forward_evidence_maturity.json",
-      "sha256": "a3b03fad0fe938c5d111d1399fa4e9204c1e98b640dca0fdca97e21441158f7a"
+      "sha256": "37ddd3de177bec811ff798a3bfa5a5cb0975faabea802b30b6780fd7cf3e1450"
     },
     "legacy_closure": {
       "path": "artifacts/research/legacy_research_epoch_closure.json",

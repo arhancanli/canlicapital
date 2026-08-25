@@ -2,9 +2,9 @@
 
 **Short title:** Electricity load and weather: literature
 
-**Reviewed:** 2026-08-16
-**Family:** `electricity_load_weather_spread`
-**Claim state:** mechanism supported; investable return untested
+**Reviewed:** 2026-08-16  
+**Family:** `electricity_load_weather_spread`  
+**Claim state:** mechanism supported; investable return untested  
 **Return identities spent:** zero
 
 ## Abstract

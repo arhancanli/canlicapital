@@ -2,7 +2,7 @@
 
 **Short title:** Leveraged-ETF End-of-Day Forced-Rebalance Flow: killed
 
-**Verdict:** KILLED  **Stage:** screen prototype
+**Verdict:** KILLED  **Stage:** screen prototype  
 **Identity:** `letf_eod_flow`
 
 Leveraged ETFs MUST trade into the close (~$277B QQQ-family rebalance multiplier, ~$4B/day estimated flow) — a real, large, mechanical flow. But it is NOT tradeable on 2021-2026 data: no continuation into the close (+0.58 bps per 1-sigma flow, t=0.93), no overnight reversal, and all six strategy cells lose net of costs (best cell Sharpe -1.41). The ~0.6bp effect is ~6x below the 12bp round-trip cost floor — no cost assumption rescues it. The pre-2019 literature edge appears arbitraged away at the granularity free data sees. KILLED at screen.

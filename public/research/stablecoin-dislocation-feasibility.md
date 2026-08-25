@@ -2,9 +2,9 @@
 
 **Short title:** Stablecoin par dislocations: feasibility
 
-**Declared:** 2026-08-16
-**Return data:** prohibited
-**Hypotheses spent:** zero
+**Declared:** 2026-08-16  
+**Return data:** prohibited  
+**Hypotheses spent:** zero  
 **Family trial account:** `stablecoin_dislocation`
 
 ## Question

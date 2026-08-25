@@ -2,7 +2,7 @@
 
 **Short title:** Commodity / Cross-Asset Futures Carry: killed
 
-**Verdict:** KILLED  **Stage:** screen prototype
+**Verdict:** KILLED  **Stage:** screen prototype  
 **Identity:** `futcarry_xs`
 
 Cross-sectional carry on 38 real futures (long backwardation / short contango, front-vs-next slope), 2010-2016 — the only window the term-structure marks support. GROSS Sharpe is already -0.17, so there is no edge for costs to erode; net -0.24, DSR 0.00, all six construction variants negative. The feed itself dies mid-2016 (one root keeps a next-contract mark), so it could not run live even if it worked. KILLED twice over.

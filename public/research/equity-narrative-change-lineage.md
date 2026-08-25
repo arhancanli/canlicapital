@@ -1,9 +1,9 @@
 # Annual risk-factor narrative stability: a preregistered null
 
-**Author:** Arhan Canli, Founder, System Architect, and Quantitative Researcher, Canli Capital
-**Research system:** ALPHAC / AlphaForge
-**Family key:** `equity_narrative_change`
-**Status:** public research record; not peer reviewed; not an investment solicitation
+**Author:** Arhan Canli, Founder, System Architect, and Quantitative Researcher, Canli Capital  
+**Research system:** ALPHAC / AlphaForge  
+**Family key:** `equity_narrative_change`  
+**Status:** public research record; not peer reviewed; not an investment solicitation  
 **Evidence date:** 2026-08-22
 
 ## Abstract

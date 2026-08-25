@@ -2,7 +2,7 @@
 
 **Short title:** Long-Vol Tail Overlay (campaign): killed
 
-**Verdict:** KILLED  **Stage:** screen prototype
+**Verdict:** KILLED  **Stage:** screen prototype  
 **Identity:** `tail_overlay`
 
 An honest positive-skew (+2.06) anti-equity hedge — but its ONLY thesis, improving the combined book, fails at every hedge weight. AlphaTrend already provides crisis convexity WITH a positive standalone Sharpe. KILLED.

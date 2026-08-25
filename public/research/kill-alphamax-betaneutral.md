@@ -2,7 +2,7 @@
 
 **Short title:** Beta-Neutral Momentum Construction: killed
 
-**Verdict:** KILLED  **Stage:** screen prototype
+**Verdict:** KILLED  **Stage:** screen prototype  
 **Identity:** `alphamax_betaneutral`
 
 The premise was that a dollar-neutral momentum book carries hidden NEGATIVE market beta, so a junk rally hurts both legs at once. Measuring the premise first killed it. On the research panel (2005-2026) the book's mean rolling 63-day beta is -0.014 — essentially zero. On the LIVE book it is +0.319, and the LONG leg is the high-beta side (leg beta 1.932 long vs 1.238 short) — the opposite of the premise. The treatment is then regime-dependent with opposite signs: research net Sharpe 0.160 to 0.361 (bootstrap P(dSharpe<=0)=0.0225), LIVE 0.921 to 0.570 (P=0.938). It also barely touches the episode it was designed for — 0.2 points of a 9.5-point loss on research, 0.7 of 10.5 live — and it buys beta-neutrality by selling dollar-neutrality: net exposure runs to +/-34% of gross, which breaks the market-neutral mandate. Not adopted. 0 trial slots burned. Reproduce: scripts/probe_alphamax_betaneutral.py.

@@ -1,9 +1,9 @@
 # Petroleum inventory scarcity: a preregistered negative result
 
-**Short title:** Petroleum inventory scarcity
-**Author:** Arhan Canli, Founder and Quantitative Researcher, Canli Capital
-**Family key:** `energy_inventory` · **System:** ALPHAC / AlphaForge
-**Status:** public research record; not peer reviewed; not an investment solicitation
+**Short title:** Petroleum inventory scarcity  
+**Author:** Arhan Canli, Founder and Quantitative Researcher, Canli Capital  
+**Family key:** `energy_inventory` · **System:** ALPHAC / AlphaForge  
+**Status:** public research record; not peer reviewed; not an investment solicitation  
 **Evidence date:** 2026-08-22
 
 ## Abstract

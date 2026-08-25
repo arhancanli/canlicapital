@@ -1,9 +1,9 @@
 # Equity low beta: two negative identities and no defensive sleeve
 
-**Short title:** Equity low beta
-**Author:** Arhan Canli, Founder and Quantitative Researcher, Canli Capital
-**Family key:** `equity_low_beta` · **System:** ALPHAC / AlphaForge
-**Status:** public research record; not peer reviewed; not an investment solicitation
+**Short title:** Equity low beta  
+**Author:** Arhan Canli, Founder and Quantitative Researcher, Canli Capital  
+**Family key:** `equity_low_beta` · **System:** ALPHAC / AlphaForge  
+**Status:** public research record; not peer reviewed; not an investment solicitation  
 **Evidence date:** 2026-08-22
 
 ## Abstract

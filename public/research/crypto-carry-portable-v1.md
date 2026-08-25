@@ -1,10 +1,10 @@
 # A hash-bound prospective test of cross-sectional perpetual-futures carry
 
-**Author:** Arhan Canli, Founder, System Architect, and Quantitative Researcher, Canli Capital
-**Research system:** ALPHAC / AlphaForge
-**Trial:** `crypto_carry_portable_v1`
-**Hypothesis identity:** `da5f5f47f99f9bd2`
-**Evidence date:** 2026-08-24
+**Author:** Arhan Canli, Founder, System Architect, and Quantitative Researcher, Canli Capital  
+**Research system:** ALPHAC / AlphaForge  
+**Trial:** `crypto_carry_portable_v1`  
+**Hypothesis identity:** `da5f5f47f99f9bd2`  
+**Evidence date:** 2026-08-24  
 **Status:** working paper; historical simulation; admission incomplete; not externally submitted or
 peer reviewed; not an investment solicitation
 

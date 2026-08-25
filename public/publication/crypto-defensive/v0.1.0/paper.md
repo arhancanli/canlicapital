@@ -1,9 +1,9 @@
 # Crypto defensive factors: positive summaries without admission evidence
 
-**Short title:** Crypto defensive factors: complete trial lineage
-**Author:** Arhan Canli, Founder and Quantitative Researcher, Canli Capital
-**Family key:** `crypto_defensive` · **System:** ALPHAC / AlphaForge
-**Status:** public research record; not peer reviewed; not an investment solicitation
+**Short title:** Crypto defensive factors: complete trial lineage  
+**Author:** Arhan Canli, Founder and Quantitative Researcher, Canli Capital  
+**Family key:** `crypto_defensive` · **System:** ALPHAC / AlphaForge  
+**Status:** public research record; not peer reviewed; not an investment solicitation  
 **Evidence date:** 2026-08-22
 
 ## Abstract

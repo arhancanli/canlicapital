@@ -1,8 +1,8 @@
 # Inflation breakeven relative value — no-return source-feasibility audit
 
-**Short title:** Inflation breakeven relative value: feasibility
-**Author:** Arhan Canli
-**Audited:** 2026-08-22
+**Short title:** Inflation breakeven relative value: feasibility  
+**Author:** Arhan Canli  
+**Audited:** 2026-08-22  
 **Stage:** forensic source audit after atlas enumeration; not a return preregistration.
 
 ## Scope and trial accounting
@@ -57,3 +57,4 @@ quotes, total returns, inflation-swap history, or execution-calibration record i
 was too broad and is superseded by this audit. No return trial is authorized. A future owner
 decision may acquire a lawful point-in-time fixed-income dataset; an ETF proxy would be a newly
 named identity and cannot silently rescue this one.
+

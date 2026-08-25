@@ -1,10 +1,10 @@
 # Crypto volatility risk premium: one proxy trial and a published null
 
-**Short title:** AlphaForge crypto VRP proxy lineage
-**Author:** Arhan Canli, Founder, System Architect, and Quantitative Researcher, Canli Capital
-**Research system:** ALPHAC / AlphaForge
-**Family key:** `crypto_volatility_risk_premium`
-**Status:** public research record; not peer reviewed; not an investment solicitation
+**Short title:** AlphaForge crypto VRP proxy lineage  
+**Author:** Arhan Canli, Founder, System Architect, and Quantitative Researcher, Canli Capital  
+**Research system:** ALPHAC / AlphaForge  
+**Family key:** `crypto_volatility_risk_premium`  
+**Status:** public research record; not peer reviewed; not an investment solicitation  
 **Evidence date:** 2026-08-22
 
 ## Abstract

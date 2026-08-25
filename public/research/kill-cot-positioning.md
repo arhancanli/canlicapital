@@ -2,7 +2,7 @@
 
 **Short title:** COT Positioning Overlay (campaign): killed
 
-**Verdict:** KILLED  **Stage:** screen prototype
+**Verdict:** KILLED  **Stage:** screen prototype  
 **Identity:** `cot_positioning`
 
 Indistinguishable from zero (t~0.42 over 25 years); dies at 2x cost; the entire 'edge' is two equity-index legs. Genuine decorrelation, no edge to attach it to. KILLED.

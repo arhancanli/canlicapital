@@ -1,8 +1,8 @@
 # Reconstructing corporate-action basis without opening strategy returns
 
-**Short title:** Corporate-action basis reconstruction
-**Author:** Arhan Canli
-**Project:** AlphaC Algorithms / Canli Capital
+**Short title:** Corporate-action basis reconstruction  
+**Author:** Arhan Canli  
+**Project:** AlphaC Algorithms / Canli Capital  
 **Research status:** Corrected reproduction complete; factor remains killed; global split gate failed
 
 ## Abstract

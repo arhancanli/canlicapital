@@ -1,7 +1,7 @@
 # AlphaVintage missing-release correction protocol
 
-**Declared:** 2026-08-16
-**Status:** REVISED RETURNS SEALED / VERDICT KILLED
+**Declared:** 2026-08-16  
+**Status:** REVISED RETURNS SEALED / VERDICT KILLED  
 **Hypothesis-ledger impact:** zero new hypotheses; this repairs an existing identity.
 
 ## Confirmed defect

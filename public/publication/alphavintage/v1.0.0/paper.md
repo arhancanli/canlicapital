@@ -2,10 +2,10 @@
 
 ## A corrected null, a deployment-governance failure, and a frozen forward experiment
 
-**Author:** Arhan Canli, Founder and Quantitative Researcher, Canli Capital
-**System:** ALPHAC / AlphaC Algorithms · AlphaVintage sleeve
-**Version:** 1.0, 2026-08-23
-**Status:** public working paper; not peer reviewed
+**Author:** Arhan Canli, Founder and Quantitative Researcher, Canli Capital  
+**System:** ALPHAC / AlphaC Algorithms · AlphaVintage sleeve  
+**Version:** 1.0, 2026-08-23  
+**Status:** public working paper; not peer reviewed  
 **Capital boundary:** historical research simulation and a separately labelled Alpaca paper account
 
 ## Abstract

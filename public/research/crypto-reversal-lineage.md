@@ -1,9 +1,9 @@
 # Crypto short-horizon reversal: two decisive negative trials
 
-**Short title:** Crypto residual reversal
-**Author:** Arhan Canli, Founder and Quantitative Researcher, Canli Capital
-**Family key:** `crypto_short_horizon_reversal` · **System:** ALPHAC / AlphaForge
-**Status:** public research record; not peer reviewed; not an investment solicitation
+**Short title:** Crypto residual reversal  
+**Author:** Arhan Canli, Founder and Quantitative Researcher, Canli Capital  
+**Family key:** `crypto_short_horizon_reversal` · **System:** ALPHAC / AlphaForge  
+**Status:** public research record; not peer reviewed; not an investment solicitation  
 **Evidence date:** 2026-08-22
 
 ## Abstract

@@ -2,8 +2,8 @@
 
 **Short title:** Pre-Registered Value (composite): killed
 
-**Verdict:** KILLED
-**Test window:** 2005-01-04 to 2026-06-01
+**Verdict:** KILLED  
+**Test window:** 2005-01-04 to 2026-06-01  
 **Identity:** `prereg_value`
 
 Pre-registered composite value on 21 years. Net Sharpe -0.60, failed every gate. Confirms the value thesis does not replicate without small/mid-cap breadth. KILLED.

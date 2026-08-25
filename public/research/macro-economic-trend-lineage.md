@@ -1,9 +1,9 @@
 # Point-in-time macroeconomic trend: seven identities without a validated sleeve
 
-**Short title:** Point-in-time macro trend: complete trial lineage
-**Author:** Arhan Canli, Founder and Quantitative Researcher, Canli Capital
-**Family key:** `macro_economic_trend` · **System:** ALPHAC / AlphaForge
-**Status:** public research record; not peer reviewed; not an investment solicitation
+**Short title:** Point-in-time macro trend: complete trial lineage  
+**Author:** Arhan Canli, Founder and Quantitative Researcher, Canli Capital  
+**Family key:** `macro_economic_trend` · **System:** ALPHAC / AlphaForge  
+**Status:** public research record; not peer reviewed; not an investment solicitation  
 **Evidence date:** 2026-08-24
 
 ## Abstract

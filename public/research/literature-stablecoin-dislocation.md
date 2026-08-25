@@ -2,9 +2,9 @@
 
 **Short title:** Stablecoin par dislocations: literature
 
-**Reviewed:** 2026-08-16
-**Family:** `stablecoin_dislocation`
-**Claim state:** economic mechanism supported; investable return untested
+**Reviewed:** 2026-08-16  
+**Family:** `stablecoin_dislocation`  
+**Claim state:** economic mechanism supported; investable return untested  
 **Return identities spent:** zero
 
 ## Abstract

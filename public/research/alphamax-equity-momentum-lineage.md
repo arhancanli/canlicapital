@@ -2,10 +2,10 @@
 
 **Short title:** AlphaMax equity momentum: complete trial lineage
 
-**Author:** Arhan Canli, Founder, System Architect, and Quantitative Researcher, Canli Capital
-**Research system:** ALPHAC / AlphaForge
-**Family key:** `alphamax_equity_momentum`
-**Status:** public research record; not peer reviewed; not an investment solicitation
+**Author:** Arhan Canli, Founder, System Architect, and Quantitative Researcher, Canli Capital  
+**Research system:** ALPHAC / AlphaForge  
+**Family key:** `alphamax_equity_momentum`  
+**Status:** public research record; not peer reviewed; not an investment solicitation  
 **Evidence date:** 2026-08-24
 
 ## Abstract

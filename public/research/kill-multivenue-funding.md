@@ -2,7 +2,7 @@
 
 **Short title:** Crypto Multi-Venue Funding Aggregation: killed
 
-**Verdict:** KILLED  **Stage:** screen prototype
+**Verdict:** KILLED  **Stage:** screen prototype  
 **Identity:** `multivenue_funding`
 
 Would aggregating funding across exchanges beat our Binance-only carry signal? No — null by its own pre-registered rule (promote required +0.10 Sharpe at 90% bootstrap confidence). The reason is structural: Binance and Bybit annualized funding are 0.94 correlated across 12,425 instrument-weeks, so there is almost no independent information to aggregate. The adjacent 'harvest on the best-paying venue' idea dies on arithmetic too — a median cross-venue gap of ~2.4%/yr against a four-legged ~30bp round trip implies a 22-day breakeven hold, marginal before you even price second-tier venue custody risk. The live sleeve stays Binance-only on its blessed config. Byproduct kept: a multi-exchange funding lake (Bybit deep history via mirror; OKX public history is depth-capped at ~90 days, a data finding worth recording). Reproduce: scripts/probe_multivenue_funding.py.

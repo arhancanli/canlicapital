@@ -1,10 +1,10 @@
 # AlphaTrend managed-futures trend: complete trial lineage and evidence boundary
 
-**Short title:** AlphaTrend: managed-futures trend lineage
-**Author:** Arhan Canli, Founder, System Architect, and Quantitative Researcher, Canli Capital
-**Research system:** ALPHAC / AlphaForge
-**Family key:** `managed_futures_trend`
-**Status:** public research record; not peer reviewed; not an investment solicitation
+**Short title:** AlphaTrend: managed-futures trend lineage  
+**Author:** Arhan Canli, Founder, System Architect, and Quantitative Researcher, Canli Capital  
+**Research system:** ALPHAC / AlphaForge  
+**Family key:** `managed_futures_trend`  
+**Status:** public research record; not peer reviewed; not an investment solicitation  
 **Evidence date:** 2026-08-22
 
 ## Abstract

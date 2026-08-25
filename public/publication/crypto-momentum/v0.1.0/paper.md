@@ -1,10 +1,10 @@
 # Crypto momentum: complete trial lineage and failed sleeve-admission evidence
 
-**Short title:** AlphaForge crypto momentum: complete trial lineage
-**Author:** Arhan Canli, Founder, System Architect, and Quantitative Researcher, Canli Capital
-**Research system:** ALPHAC / AlphaForge
-**Family key:** `crypto_momentum`
-**Status:** public research record; not peer reviewed; not an investment solicitation
+**Short title:** AlphaForge crypto momentum: complete trial lineage  
+**Author:** Arhan Canli, Founder, System Architect, and Quantitative Researcher, Canli Capital  
+**Research system:** ALPHAC / AlphaForge  
+**Family key:** `crypto_momentum`  
+**Status:** public research record; not peer reviewed; not an investment solicitation  
 **Evidence date:** 2026-08-22
 
 ## Abstract

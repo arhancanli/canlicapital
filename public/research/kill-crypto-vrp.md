@@ -2,7 +2,7 @@
 
 **Short title:** Crypto Variance-Risk-Premium (campaign): killed
 
-**Verdict:** KILLED  **Stage:** screen prototype
+**Verdict:** KILLED  **Stage:** screen prototype  
 **Identity:** `crypto_vrp`
 
 Pitched at 2.15 Sharpe — the headline was a 252-vs-365 vol-annualization error inventing a phantom 15-vol-point premium. Honest measurement: net Sharpe -0.07, skew -2.19, fails all four stress-tests, shares carry's crash dependence. A seductive false positive, KILLED.

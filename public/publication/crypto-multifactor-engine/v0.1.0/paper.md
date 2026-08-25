@@ -1,10 +1,10 @@
 # Crypto multi-factor engine: seven trials, capacity decay, and no-deploy verdict
 
-**Short title:** AlphaForge crypto multi-factor engine lineage
-**Author:** Arhan Canli, Founder, System Architect, and Quantitative Researcher, Canli Capital
-**Research system:** ALPHAC / AlphaForge
-**Family key:** `crypto_multifactor_engine`
-**Status:** public research record; not peer reviewed; not an investment solicitation
+**Short title:** AlphaForge crypto multi-factor engine lineage  
+**Author:** Arhan Canli, Founder, System Architect, and Quantitative Researcher, Canli Capital  
+**Research system:** ALPHAC / AlphaForge  
+**Family key:** `crypto_multifactor_engine`  
+**Status:** public research record; not peer reviewed; not an investment solicitation  
 **Evidence date:** 2026-08-22
 
 ## Abstract

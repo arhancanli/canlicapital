@@ -2,7 +2,7 @@
 
 **Short title:** Clustered Insider Open-Market Purchases: killed
 
-**Verdict:** KILLED  **Stage:** research gauntlet
+**Verdict:** KILLED  **Stage:** research gauntlet  
 **Identity:** `insider_purchase_clusters`
 
 One pre-registered configuration on official SEC Form 4 purchases, 2016-2026: at least two officers/directors and $100k purchased inside 30 calendar days, filing date plus two sessions, next-open entry, full 63-session hold, trailing-ADV eligibility, SPY beta hedge and explicit one-way costs. The current replay scheduled 3,541 non-overlapping events and was genuinely orthogonal (average correlation -0.066, maximum pair +0.057), controlled beta (+0.046), and cleared the $5M capacity gate ($5.31M fifth-percentile AUM at 1% ADV). But there was no return edge: net Sharpe -0.232, Newey-West t -0.75, DSR 1.83e-07, max drawdown -24.8%, and Sharpe at 2x costs -0.285. A fixed 10% sleeve changed combined-book Sharpe by -0.093 and failed 4 of 4 leave-one-year-out checks. A pre-publication audit corrected weighted log-return aggregation to the canonical simple-return contract; preliminary Sharpe was -0.993 and the corrected verdict remained KILL. The immutable first corrected measurement has 2,669 observations and population-std Sharpe -0.243; the current lake adds 5 sessions, so it is explicitly an OOS extension, not an exact reproduction, and the identity packet remains incomplete. The sign is not inverted and no threshold is retuned. Full curve, event ledger, weights, input lineage and result are preserved in artifacts/probe/insider_purchase_clusters/. KILLED.

@@ -2,7 +2,7 @@
 
 **Short title:** Corporate Equity Supply (Net Issuance): killed
 
-**Verdict:** KILLED  **Stage:** deployed gauntlet
+**Verdict:** KILLED  **Stage:** deployed gauntlet  
 **Identity:** `eq_net_issuance`
 
 The broad corporate-equity-supply identity was run through the deployed-path walk-forward on a point-in-time Sharadar research lake: long firms shrinking split-adjusted basic shares and short firms expanding them, rebalanced every 63 sessions. The latest sealed sweep was decisively negative: net Sharpe -0.311, DSR 0.000102 after six trials, and max drawdown -37.1%. A separate source-correct full-window rerun scored +0.148 with -17.5% max drawdown, still below the 0.40 gate; the sign and magnitude instability across data paths is itself a failure, not a result to select around. Three distinct historical configurations remain charged to the same corporate-equity-supply family. A proposed completed-flow measurement may continue data-feasibility work only as a same-family refinement and cannot count as independent sleeve breadth. No sign flip, window selection, or trial reset is authorized. Evidence: artifacts/sweep/gauntlet_eq_net_issuance/walkforward.json, artifacts/analysis/null_fundamentals_rerun/result.json, and artifacts/feasibility/repurchase_issuance_flow/identity_overlap_audit.json. KILLED.

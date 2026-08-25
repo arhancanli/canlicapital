@@ -1,10 +1,10 @@
 # When Crypto Carry Became Crash Exposure: The LABUSDT Incident
 
-**Short title:** LABUSDT carry-crash incident
-**Author:** Arhan Canli, Founder, System Architect, and Quantitative Researcher, Canli Capital
-**Research system:** ALPHAC / AlphaForge
-**Status:** public incident research; not peer reviewed; not investment advice
-**Evidence date:** 2026-08-23
+**Short title:** LABUSDT carry-crash incident  
+**Author:** Arhan Canli, Founder, System Architect, and Quantitative Researcher, Canli Capital  
+**Research system:** ALPHAC / AlphaForge  
+**Status:** public incident research; not peer reviewed; not investment advice  
+**Evidence date:** 2026-08-23  
 **Machine evidence:** `/glassbox/crypto_lab_carry_crash_incident.json`
 
 ## Abstract

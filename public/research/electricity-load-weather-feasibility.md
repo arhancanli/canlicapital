@@ -1,6 +1,6 @@
 # Electricity load/weather spread — key-free feasibility decision
 
-**Decision date:** 2026-08-15
+**Decision date:** 2026-08-15  
 **Decision:** DATA-GATED; no return trial or hypothesis identity spent.
 
 ## Economic mechanism
