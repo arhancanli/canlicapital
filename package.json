@@ -24,7 +24,8 @@
     "founder-page": "node scripts/build-founder.mjs",
     "methodology-page": "node scripts/build-methodology.mjs",
     "linkgraph": "node scripts/audit-link-graph.mjs",
-    "numbers": "node scripts/audit-published-numbers.mjs"
+    "numbers": "node scripts/audit-published-numbers.mjs",
+    "audit:homepage": "python3 scripts/audit-homepage.py"
   },
   "engines": {
     "node": "22.x"
