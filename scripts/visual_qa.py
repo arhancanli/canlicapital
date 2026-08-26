@@ -17,6 +17,7 @@ ROUTES = {
     "founder": "/founder.html",
     "review": "/review.html",
     "foundry": "/foundry.html",
+    "deflated-sharpe": "/tools/deflated-sharpe.html",
     "program-status": "/measurements/program-status.html",
     "external-validation": "/measurements/external-validation-opportunities.html",
     "verify": "/verify.html",

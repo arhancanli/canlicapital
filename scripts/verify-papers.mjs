@@ -988,6 +988,81 @@ if (existsSync(methodologyFile)) {
 }
 
 // ---------------------------------------------------------------------------
+// 13. /tools/deflated-sharpe: browser arithmetic stays bound to the reviewed
+//     ALPHAC formula, current selection union and current policy boundary.
+// ---------------------------------------------------------------------------
+const dsrToolFile = resolve(DIST, "tools/deflated-sharpe.html");
+check(existsSync(dsrToolFile), "no /tools/deflated-sharpe page was built");
+if (existsSync(dsrToolFile)) {
+  const dsrToolHtml = readFileSync(dsrToolFile, "utf8");
+  const dsrContract = JSON.parse(
+    readFileSync(resolve(DIST, "glassbox/deflated_sharpe_calculator_contract.json"), "utf8"),
+  );
+  const trialLedger = JSON.parse(
+    readFileSync(resolve(DIST, "glassbox/trial_ledger.json"), "utf8"),
+  );
+  const contractBytes = readFileSync(
+    resolve(DIST, "glassbox/deflated_sharpe_calculator_contract.json"),
+  );
+  const observedContractBytesHash = `sha256:${sha256(contractBytes)}`;
+
+  check(
+    dsrContract.schema === "canli.alphac-deflated-sharpe-calculator-contract.v1" &&
+      dsrContract.status === "REFERENCE_IMPLEMENTATION_CONTRACT" &&
+      dsrContract.content_hash ===
+        "sha256:241f33d627cecb876d5cd0cb0b9d48f18e20d55d921437ec2926d4603f92d349" &&
+      observedContractBytesHash ===
+        "sha256:bd709eca441119fa71e15ce03d0c917950e07d7f1f5068238e3c600d507533d8",
+    "/tools/deflated-sharpe formula contract is unsupported or hash-invalid",
+  );
+  check(
+    dsrContract.test_vectors.length >= 3,
+    "/tools/deflated-sharpe has fewer than three production golden vectors",
+  );
+  check(
+    dsrContract.current_policy.per_sleeve_dsr ===
+      "mandatory_measurement_not_a_universal_gate" &&
+      dsrContract.current_policy.full_union_book_maturity_threshold === 0.95,
+    "/tools/deflated-sharpe weakens the in-force DSR policy boundary",
+  );
+  check(
+    trialLedger.selection_statistics.n_hypotheses ===
+      trialLedger.distinct_hypothesis_identities &&
+      dsrToolHtml.includes(`>${trialLedger.selection_statistics.n_hypotheses}</dd>`),
+    "/tools/deflated-sharpe does not render the current complete-union identity count",
+  );
+  check(
+    dsrToolHtml.includes(`<link rel="canonical" href="${ORIGIN}/tools/deflated-sharpe"`),
+    "/tools/deflated-sharpe has no self-canonical",
+  );
+  check(
+    dsrToolHtml.includes('"@type":"WebApplication"') &&
+      dsrToolHtml.includes(`"author":{"@id":"${ORIGIN}/#arhan-canli"}`),
+    "/tools/deflated-sharpe lacks WebApplication markup or founder attribution",
+  );
+  check(
+    dsrToolHtml.includes(
+      'content="deflated_sharpe_calculator_contract.json trial_ledger.json"',
+    ),
+    "/tools/deflated-sharpe does not declare both exact source artifacts",
+  );
+  check(
+    /no output on this page is an ALPHAC performance claim/i.test(dsrToolHtml) &&
+      /not a universal sleeve gate/i.test(dsrToolHtml) &&
+      /not an admission verdict/i.test(dsrToolHtml),
+    "/tools/deflated-sharpe omits its performance, policy or verdict boundary",
+  );
+  check(
+    sitemap.includes(`<loc>${ORIGIN}/tools/deflated-sharpe</loc>`),
+    "/tools/deflated-sharpe is not in the sitemap",
+  );
+  check(
+    readFileSync(methodologyFile, "utf8").includes('href="/tools/deflated-sharpe"'),
+    "/methodology does not link to the Deflated Sharpe calculator",
+  );
+}
+
+// ---------------------------------------------------------------------------
 // 11. SHORT TITLES. A search-result headline is not a document's name. Papers
 //     whose real names run past 65 characters declare a short title used for
 //     <title> only — and the risk of that mechanism is that it quietly RENAMES
@@ -1142,6 +1217,10 @@ console.log(
 console.log(
   `verified /methodology: every question marked up, every answer carrying evidence, and every ` +
     `evidence link resolving`,
+);
+console.log(
+  `verified /tools/deflated-sharpe: hash-bound ALPHAC contract, current trial union, golden ` +
+    `vectors, policy boundary, structured data, methodology link and sitemap discovery`,
 );
 console.log(
   `verified ${shortTitled} short titles: each fits, each is used, and each document still ` +

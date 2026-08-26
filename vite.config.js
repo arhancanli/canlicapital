@@ -134,6 +134,7 @@ export default defineConfig({
         foundry: resolve(root, "foundry.html"),
         founder: resolve(root, "founder.html"),
         methodology: resolve(root, "methodology.html"),
+        deflatedSharpe: resolve(root, "tools", "deflated-sharpe.html"),
         ...paperEntries(),
         ...measurementEntries(),
         ...trialEntries(),
