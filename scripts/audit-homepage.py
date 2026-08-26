@@ -19,7 +19,14 @@ OUTPUT = Path(
 ORIGIN = os.environ.get("HOMEPAGE_AUDIT_ORIGIN", "http://127.0.0.1:4173").rstrip("/")
 
 
-def audit_page(page: Page, *, name: str, width: int, height: int) -> dict[str, object]:
+def audit_page(
+    page: Page,
+    *,
+    name: str,
+    width: int,
+    height: int,
+    reduced_motion: bool = False,
+) -> dict[str, object]:
     console_errors: list[str] = []
     page_errors: list[str] = []
     page.on("console", lambda message: console_errors.append(message.text) if message.type == "error" else None)
@@ -53,7 +60,14 @@ def audit_page(page: Page, *, name: str, width: int, height: int) -> dict[str, o
     assert page.locator("#objective-forward-sharpe").get_attribute("data-claim-maturity") == "planned"
     assert page.locator("#model-p95-drawdown").get_attribute("data-claim-maturity") == "model_estimated"
     assert page.locator("#correlation-reading").get_attribute("data-claim-maturity") == "simulated"
-    assert page.locator("[data-claim-id]").count() >= 16
+    assert page.locator("[data-claim-id]").count() >= 21
+    assert "Loading" not in page.locator("#evidence-signed-time").inner_text()
+    assert "Pending" not in page.locator("#evidence-forward-window").inner_text()
+    assert "gross" in page.locator("#evidence-gross-range").inner_text()
+    assert page.locator("[data-broker-state='pass']").count() == reconciled_sleeves
+    assert "forward goals open" in page.locator("#evidence-validation-label").inner_text()
+    assert page.locator("#core-trial-count").inner_text() != "Pending"
+    assert page.locator("#core-signed-count").inner_text() != "Pending"
     unresolved = page.locator(
         "#hero-record-basis, #hero-broker-execution, #hero-paper-since, #hero-grade, "
         "#evidence-observations, #evidence-accounts, #evidence-positions, #evidence-status, "
@@ -66,7 +80,7 @@ def audit_page(page: Page, *, name: str, width: int, height: int) -> dict[str, o
 
     console_box = page.locator(".live-console").bounding_box()
     console_above_initial_fold = bool(console_box and console_box["y"] < height)
-    if width >= 1000:
+    if width >= 1000 and not reduced_motion:
         assert console_above_initial_fold
 
     initial_path = page.locator("#equity-path").get_attribute("d")
@@ -75,6 +89,26 @@ def audit_page(page: Page, *, name: str, width: int, height: int) -> dict[str, o
     assert page.locator("#chart-title").text_content() == "AlphaForge paper equity curve"
     assert page.locator("#equity-path").get_attribute("d") != initial_path
     assert "curve=alphaforge" in page.url
+
+    evidence_core = page.locator("#evidence-core")
+    evidence_core.scroll_into_view_if_needed()
+    if width >= 1000 and not reduced_motion:
+        page.wait_for_function(
+            "document.querySelector('#evidence-core').dataset.renderer === 'webgl'",
+            timeout=10_000,
+        )
+        page.evaluate("window.scrollBy(0, window.innerHeight * 1.8)")
+        page.wait_for_timeout(900)
+        assert evidence_core.get_attribute("data-renderer") == "webgl"
+        assert page.locator("#evidence-core-canvas").is_visible()
+        assert page.locator("#core-stage-label").inner_text() != "Idea field"
+        core_screenshot = OUTPUT / "evidence-core-desktop.png"
+        page.screenshot(path=str(core_screenshot), full_page=False)
+    else:
+        assert evidence_core.get_attribute("data-renderer") == "static"
+        core_screenshot = None
+    evidence_core_renderer = evidence_core.get_attribute("data-renderer")
+    evidence_core_chapter = page.locator("#core-stage-label").inner_text()
 
     heading_levels = page.locator("h1, h2, h3, h4, h5, h6").evaluate_all(
         "nodes => nodes.map(node => Number(node.tagName.slice(1)))"
@@ -111,6 +145,7 @@ def audit_page(page: Page, *, name: str, width: int, height: int) -> dict[str, o
 
     return {
         "viewport": {"width": width, "height": height},
+        "reduced_motion": reduced_motion,
         "screenshot": screenshot_reference,
         "console_above_initial_fold": console_above_initial_fold,
         "console_errors": console_errors,
@@ -125,6 +160,9 @@ def audit_page(page: Page, *, name: str, width: int, height: int) -> dict[str, o
         "local_simulation_labels": page.locator(".state-pill--local").count(),
         "hydrated_claim_elements": page.locator("[data-claim-id]").count(),
         "unresolved_claim_elements": unresolved,
+        "evidence_core_renderer": evidence_core_renderer,
+        "evidence_core_chapter": evidence_core_chapter,
+        "evidence_core_screenshot": str(core_screenshot.relative_to(ROOT)) if core_screenshot else None,
     }
 
 
@@ -132,10 +170,23 @@ def main() -> None:
     OUTPUT.mkdir(parents=True, exist_ok=True)
     with sync_playwright() as playwright:
         browser = playwright.chromium.launch(headless=True)
+        desktop_context = browser.new_context()
+        mobile_context = browser.new_context()
+        reduced_context = browser.new_context(reduced_motion="reduce")
         records = [
-            audit_page(browser.new_page(), name="desktop", width=1440, height=1000),
-            audit_page(browser.new_page(), name="mobile", width=390, height=844),
+            audit_page(desktop_context.new_page(), name="desktop", width=1440, height=1000),
+            audit_page(mobile_context.new_page(), name="mobile", width=390, height=844),
+            audit_page(
+                reduced_context.new_page(),
+                name="reduced-motion",
+                width=1440,
+                height=1000,
+                reduced_motion=True,
+            ),
         ]
+        desktop_context.close()
+        mobile_context.close()
+        reduced_context.close()
         browser.close()
 
     failures: list[str] = []

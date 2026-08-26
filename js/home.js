@@ -77,7 +77,10 @@ function hydrateClaimContract(payload) {
 
   const capitalKind = get("forward.capital-kind");
   const firstMark = get("forward.first-mark");
+  const lastMark = get("forward.last-mark");
+  const liveDays = get("forward.live-days");
   const observations = get("forward.return-observations");
+  const forwardValidation = get("forward.validation-status");
   const internalGrade = get("validation.internal-grade");
   const brokerSleeves = get("broker.reconciled-alpaca-sleeves");
   const brokerPasses = get("broker.reconciliation-passes");
@@ -90,6 +93,7 @@ function hydrateClaimContract(payload) {
   const currentSleeves = get("sleeves.current");
   const targetSleeves = get("sleeves.target");
   const correlation = get("diversification.average-pairwise-correlation");
+  const researchIdentities = get("research.identities-observed");
 
   setClaimText(
     "hero-record-basis",
@@ -132,6 +136,39 @@ function hydrateClaimContract(payload) {
   setClaimText("current-sleeve-count", currentSleeves, integer.format(Number(currentSleeves.value)));
   setClaimText("target-sleeve-count", targetSleeves, integer.format(Number(targetSleeves.value)));
   setClaimText("correlation-reading", correlation, correlationFormat.format(Number(correlation.value)));
+  const paperEnd = new Date(`${lastMark.value}T00:00:00Z`);
+  setClaimText(
+    "evidence-forward-window",
+    lastMark,
+    Number.isNaN(paperStart.valueOf()) || Number.isNaN(paperEnd.valueOf())
+      ? "Date unavailable"
+      : `${shortDate.format(paperStart)} to ${shortDate.format(paperEnd)}`,
+  );
+  setClaimText(
+    "evidence-forward-days",
+    liveDays,
+    `${integer.format(Number(liveDays.value))} paper-trading days, ${integer.format(Number(observations.value))} return observations.`,
+  );
+  setClaimText("core-trial-count", researchIdentities, integer.format(Number(researchIdentities.value)));
+  setClaimText("core-sleeve-count", currentSleeves, integer.format(Number(currentSleeves.value)));
+
+  const validation = document.querySelector(".validation-callout");
+  const goalsRemainOpen = String(forwardValidation.value).includes("NOT_YET");
+  validation.dataset.validationState = brokerPasses.value === true ? (goalsRemainOpen ? "open" : "pass") : "fail";
+  setClaimText(
+    "evidence-validation-label",
+    forwardValidation,
+    brokerPasses.value === true && goalsRemainOpen
+      ? `Broker pass / forward goals open / ${internalGrade.value}`
+      : humanizeStatus(forwardValidation.value),
+  );
+  setClaimText(
+    "evidence-validation-reason",
+    forwardValidation,
+    brokerPasses.value === true
+      ? "Broker reconciliation passes. The forward record is still too young to establish the performance objectives."
+      : "Broker reconciliation is open, so the public status remains fail-closed.",
+  );
 
   const header = document.querySelector(".header-status");
   header.dataset.status = brokerPasses.value === true ? "pass" : "fail";
@@ -142,6 +179,7 @@ function hydrateClaimContract(payload) {
       ? `${integer.format(Number(brokerSleeves.value))} Alpaca paper accounts reconciled`
       : "Broker reconciliation is fail-closed",
   );
+  return claims;
 }
 
 function curveStatistics(curve) {
@@ -242,14 +280,105 @@ function hydrateBroker(broker) {
 
   Object.entries(sleeves).forEach(([key, sleeve]) => {
     const target = byId(`sleeve-${key}-state`);
-    if (!target) return;
-    if (!sleeve.passes) {
-      target.textContent = "Latest reconciliation open";
-      target.previousElementSibling?.classList.add("state-pill--open");
-      return;
+    if (target) {
+      if (!sleeve.passes) {
+        target.textContent = "Latest reconciliation open";
+        target.previousElementSibling?.classList.add("state-pill--open");
+      } else {
+        target.textContent = `${compactCurrency.format(Number(sleeve.current_equity))} equity · ${integer.format(Number(sleeve.open_position_count || 0))} positions`;
+      }
     }
-    target.textContent = `${compactCurrency.format(Number(sleeve.current_equity))} equity · ${integer.format(Number(sleeve.open_position_count || 0))} positions`;
+
+    const row = document.querySelector(`[data-broker-row="${key}"]`);
+    if (!row) return;
+    const observation = row.querySelector("[data-broker-observation]");
+    const state = row.querySelector("[data-broker-state]");
+    const observedAt = new Date(sleeve.current_equity_as_of);
+    observation.textContent = Number.isNaN(observedAt.valueOf())
+      ? `${integer.format(Number(sleeve.open_position_count || 0))} open positions`
+      : `${integer.format(Number(sleeve.open_position_count || 0))} positions / ${dateTime.format(observedAt)}`;
+    state.textContent = sleeve.passes ? "Pass" : "Open";
+    state.dataset.brokerState = sleeve.passes ? "pass" : "fail";
   });
+
+  const holdings = Object.values(sleeves).map((sleeve) => sleeve.holdings || {});
+  const gross = holdings.map((item) => Number(item.gross_pct)).filter(Number.isFinite);
+  const net = holdings.map((item) => Number(item.net_pct)).filter(Number.isFinite);
+  if (gross.length) {
+    const minimum = Math.min(...gross).toFixed(1);
+    const maximum = Math.max(...gross).toFixed(1);
+    byId("evidence-gross-range").textContent = `${minimum}% to ${maximum}% gross`;
+  }
+  if (net.length) {
+    const minimum = Math.min(...net);
+    const maximum = Math.max(...net);
+    byId("evidence-net-range").textContent = `${formatPercent(minimum)} to ${formatPercent(maximum)} net across dedicated broker accounts. Not a composite exposure.`;
+  }
+}
+
+function hydrateTransparency(transparency) {
+  const head = transparency?.head || transparency?.entries?.at(-1);
+  if (!head) return;
+  const signedAt = new Date(head.generated_at);
+  byId("evidence-signed-time").textContent = Number.isNaN(signedAt.valueOf())
+    ? "Signed head available"
+    : dateTime.format(signedAt);
+  byId("evidence-chain-head").textContent = `seq ${integer.format(Number(head.seq))} / ${String(head.chain_hash || "hash unavailable").slice(0, 16)}…`;
+  byId("console-time").textContent = Number.isNaN(signedAt.valueOf())
+    ? "Latest signed state loaded"
+    : `Signed ${dateTime.format(signedAt)}`;
+  byId("core-signed-count").textContent = integer.format(Number(transparency.entry_count || 0));
+}
+
+function hydrateCosts(costs) {
+  const equity = Object.values(costs?.equity_sleeves || {});
+  const unmeasurable = equity.length > 0 && equity.every((sleeve) =>
+    String(sleeve.slippage_vs_decision_price || "").startsWith("NOT MEASURABLE"));
+  byId("evidence-slippage-state").textContent = unmeasurable ? "Not measurable" : "Partially measured";
+  byId("evidence-slippage-note").textContent = unmeasurable
+    ? "Equity fills lack a decision-price reference. The measured crypto component predates the current forward window."
+    : "Only the components supported by recorded reference prices are treated as observed.";
+}
+
+function supportsEvidenceCore() {
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return false;
+  if (!window.matchMedia("(min-width: 901px)").matches) return false;
+  if (navigator.deviceMemory && navigator.deviceMemory < 4) return false;
+  try {
+    const canvas = document.createElement("canvas");
+    return Boolean(canvas.getContext("webgl2") || canvas.getContext("webgl"));
+  } catch {
+    return false;
+  }
+}
+
+function prepareEvidenceCore(data, claims) {
+  const identities = Number(claims.get("research.identities-observed")?.value || 0);
+  const sleeves = Number(claims.get("sleeves.current")?.value || 0);
+  const killed = Number(data.kills?.killed_count || 0) + Number(data.kills?.screen_killed_count || 0);
+  const signedEntries = Number(data.transparency?.entry_count || 0);
+  const brokerSleeves = Number(data.broker?.summary?.reconciled_alpaca_sleeves || 0);
+  byId("core-kill-count").textContent = integer.format(killed);
+  if (!supportsEvidenceCore()) return;
+
+  const section = byId("evidence-core");
+  let loading = false;
+  const load = async () => {
+    if (loading) return;
+    loading = true;
+    try {
+      const { initEvidenceCore } = await import("./evidence-core.js");
+      initEvidenceCore({ section, identities, killed, sleeves, signedEntries, brokerSleeves });
+    } catch {
+      section.dataset.renderer = "static";
+    }
+  };
+  const observer = new IntersectionObserver((entries) => {
+    if (!entries.some((entry) => entry.isIntersecting)) return;
+    observer.disconnect();
+    load();
+  }, { rootMargin: "110% 0px" });
+  observer.observe(section);
 }
 
 async function fetchJson(path) {
@@ -265,6 +394,8 @@ async function hydrateEvidence() {
     broker: "/glassbox/alpaca_broker_reconciliation.json",
     researchIndex: "/research-index.json",
     kills: "/glassbox/kill_log.json",
+    transparency: "/glassbox/transparency_log.json",
+    costs: "/glassbox/cost_model_realism.json",
   };
   const entries = await Promise.allSettled(
     Object.entries(paths).map(async ([key, path]) => [key, await fetchJson(path)]),
@@ -275,8 +406,8 @@ async function hydrateEvidence() {
       .map((entry) => entry.value),
   );
 
-  if (data.claims) hydrateClaimContract(data.claims);
-  else throw new Error("Public claim contract unavailable");
+  if (!data.claims) throw new Error("Public claim contract unavailable");
+  const claims = hydrateClaimContract(data.claims);
 
   if (data.state) {
     const algorithms = new Map(
@@ -295,7 +426,7 @@ async function hydrateEvidence() {
     const generated = new Date(data.state.generated_at);
     byId("console-time").textContent = Number.isNaN(generated.valueOf())
       ? "Latest mark loaded"
-      : `Verified ${dateTime.format(generated)}`;
+      : `State generated ${dateTime.format(generated)}`;
   }
 
   if (data.broker) hydrateBroker(data.broker);
@@ -311,6 +442,9 @@ async function hydrateEvidence() {
     const killed = Number(data.kills.killed_count || 0) + Number(data.kills.screen_killed_count || 0);
     byId("research-killed").textContent = integer.format(killed);
   }
+  if (data.transparency) hydrateTransparency(data.transparency);
+  if (data.costs) hydrateCosts(data.costs);
+  if (claims) prepareEvidenceCore(data, claims);
 }
 
 const form = byId("waitlist-form");

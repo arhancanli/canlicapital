@@ -92,7 +92,7 @@
           <span class="chart-label chart-label--start" id="chart-start">Pending</span><span class="chart-label chart-label--end" id="chart-end">Pending</span>
         </div>
         <dl class="console-metrics">
-          <div><dt>Paper return</dt><dd id="metric-live-return">Pending</dd><small>Observed</small></div><div><dt>Max drawdown</dt><dd id="metric-live-drawdown">Pending</dd><small>Observed</small></div><div><dt>Realized vol</dt><dd id="metric-live-vol">Pending</dd><small>Observed</small></div><div><dt>Validation</dt><dd id="metric-grade">Pending</dd><small>Internal grade</small></div>
+          <div><dt>Paper return</dt><dd id="metric-live-return">Pending</dd><dd class="metric-basis">Observed</dd></div><div><dt>Max drawdown</dt><dd id="metric-live-drawdown">Pending</dd><dd class="metric-basis">Observed</dd></div><div><dt>Realized vol</dt><dd id="metric-live-vol">Pending</dd><dd class="metric-basis">Observed</dd></div><div><dt>Validation</dt><dd id="metric-grade">Pending</dd><dd class="metric-basis">Internal grade</dd></div>
         </dl>
         <div class="evidence-chain" aria-label="Evidence publication chain">
           <div><span>01</span><strong>Broker</strong><small id="console-broker">Checking Alpaca…</small></div><i aria-hidden="true">→</i><div><span>02</span><strong>Ledger</strong><small id="console-book">Loading exposure…</small></div><i aria-hidden="true">→</i><div><span>03</span><strong>Signed record</strong><small>Append-only chain</small></div><i aria-hidden="true">→</i><div><span>04</span><strong>Public mirror</strong><small>Open JSON + reports</small></div>
@@ -127,11 +127,61 @@
         <article><em class="basis basis--estimated">Model estimate</em><span>Expected max drawdown</span><strong id="model-expected-drawdown">Pending</strong><small>Current composition / not live established</small></article>
         <article><em class="basis basis--estimated">Model estimate</em><span>p95 max drawdown</span><strong id="model-p95-drawdown">Pending</strong><small>Published even though it exceeds the objective</small></article>
       </div>
+      <section class="evidence-detail" aria-labelledby="evidence-detail-title">
+        <header class="evidence-detail__head">
+          <div><p class="eyebrow">Record freshness and execution basis</p><h3 id="evidence-detail-title">The operating facts behind the curve.</h3></div>
+          <div class="signed-head"><span>Latest signed record</span><strong id="evidence-signed-time">Loading signed head…</strong><small id="evidence-chain-head">Chain head unavailable</small><a href="/verify">Verify this record <span aria-hidden="true">↗</span></a></div>
+        </header>
+        <div class="evidence-detail__grid">
+          <article><span>Forward window</span><strong id="evidence-forward-window">Pending</strong><p id="evidence-forward-days">Paper-trading day count loading.</p><a href="/measurements/forward-evidence-maturity">Open maturity record</a></article>
+          <article><span>Broker exposure</span><strong id="evidence-gross-range">Pending</strong><p id="evidence-net-range">Per-account gross and net exposure loading.</p><a href="/measurements/alpaca-broker-reconciliation">Open broker evidence</a></article>
+          <article><span>Forward turnover</span><strong>Not published</strong><p>The public record does not yet expose a governed composite turnover series.</p><a href="/methodology">Read the measurement rule</a></article>
+          <article><span>Observed slippage</span><strong id="evidence-slippage-state">Checking scope</strong><p id="evidence-slippage-note">Cost measurement boundary loading.</p><a href="/measurements/cost-model-realism">Open cost evidence</a></article>
+        </div>
+        <div class="broker-matrix" aria-label="Execution status by sleeve">
+          <div class="broker-matrix__heading"><span>Sleeve</span><span>Execution</span><span>Latest observation</span><span>State</span></div>
+          <div data-broker-row="alphamax"><strong>AlphaMax</strong><span>Alpaca paper</span><span data-broker-observation>Loading…</span><em data-broker-state>Checking</em></div>
+          <div data-broker-row="managed_futures"><strong>AlphaTrend</strong><span>Alpaca paper</span><span data-broker-observation>Loading…</span><em data-broker-state>Checking</em></div>
+          <div data-broker-row="alphavintage"><strong>AlphaVintage</strong><span>Alpaca paper</span><span data-broker-observation>Loading…</span><em data-broker-state>Checking</em></div>
+          <div data-broker-row="alphaforge"><strong>AlphaForge</strong><span>Local paper</span><span>Live exchange books, simulated fills</span><em data-broker-state="local">Local only</em></div>
+        </div>
+        <div class="validation-callout" data-validation-state="loading"><span class="validation-callout__signal" aria-hidden="true"></span><div><strong id="evidence-validation-label">Validation loading</strong><p id="evidence-validation-reason">The public contract and broker reconciliation are being checked.</p></div><a href="/measurements/program-status">Read grading contract</a></div>
+      </section>
       <div class="basis-grid" aria-labelledby="basis-title">
         <div class="basis-grid__heading"><p class="eyebrow">Evidence grammar</p><h3 id="basis-title">Three labels. No ambiguity.</h3></div>
         <article><em class="basis basis--observed">Observed</em><h3>Broker & paper record</h3><p>Marks, positions, orders, and drawdown already recorded by the current paper system.</p></article>
         <article><em class="basis basis--simulated">Simulated</em><h3>Research evidence</h3><p>Walk-forward, stress, and capacity results under declared data and cost assumptions.</p></article>
         <article><em class="basis basis--planned">Planned</em><h3><span id="target-sleeve-count">Pending</span>-sleeve frontier</h3><p>A governed breadth objective. It is not represented as a current portfolio achievement.</p></article>
+      </div>
+    </section>
+
+    <section class="evidence-core" id="evidence-core" aria-labelledby="evidence-core-title" data-renderer="static">
+      <div class="evidence-core__pin">
+        <div class="evidence-core__copy">
+          <p class="eyebrow">Evidence Core / Public schema</p>
+          <h2 id="evidence-core-title">A claim only reaches the centre after surviving the route.</h2>
+          <p>Every shape has a job. Identities freeze before returns are opened. Failed trials remain in the union. Four sleeves stay separate. Broker observations enter from the edge. Signed records join the spine.</p>
+          <ol class="core-chapters" aria-label="Evidence Core chapters">
+            <li class="is-active" data-core-chapter="0"><span>01</span><div><strong>Idea field</strong><small>Candidate mechanisms enter without a result.</small></div></li>
+            <li data-core-chapter="1"><span>02</span><div><strong>Frozen identity</strong><small>Parameters, data and gates become addressable.</small></div></li>
+            <li data-core-chapter="2"><span>03</span><div><strong>Trial union</strong><small>Killed work recedes, but never disappears.</small></div></li>
+            <li data-core-chapter="3"><span>04</span><div><strong>Broker rails</strong><small>Each sleeve keeps its own execution boundary.</small></div></li>
+            <li data-core-chapter="4"><span>05</span><div><strong>Signed claim</strong><small>Disclosed payloads join the append-only spine.</small></div></li>
+          </ol>
+          <noscript><p class="core-noscript">The static diagram presents the complete sequence. JavaScript adds a data-driven camera path on capable devices.</p></noscript>
+        </div>
+        <div class="evidence-core__stage">
+          <canvas id="evidence-core-canvas" aria-hidden="true"></canvas>
+          <div class="core-poster" aria-hidden="true"><i></i><i></i><i></i><i></i><b></b><b></b><b></b><b></b><span></span></div>
+          <div class="core-hud core-hud--top"><span>Observed public state</span><strong id="core-stage-label">Idea field</strong></div>
+          <div class="core-hud core-hud--bottom">
+            <div><span>Trial identities</span><strong id="core-trial-count">Pending</strong></div>
+            <div><span>Killed or screened</span><strong id="core-kill-count">Pending</strong></div>
+            <div><span>Active sleeves</span><strong id="core-sleeve-count">Pending</strong></div>
+            <div><span>Signed entries</span><strong id="core-signed-count">Pending</strong></div>
+          </div>
+          <div class="core-progress" aria-hidden="true"><span id="core-progress-fill"></span></div>
+        </div>
       </div>
     </section>
 
