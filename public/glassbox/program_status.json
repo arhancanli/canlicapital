@@ -63,13 +63,13 @@
   "forward_record": {
     "capital_kind": "PAPER_ONLY",
     "go_live_date": "2026-08-07",
-    "state_generated_at": "2026-08-26T02:25:44.519108+00:00",
+    "state_generated_at": "2026-08-26T03:26:56.025060+00:00",
     "live_days": 19,
     "first_mark": "2026-08-07",
     "last_mark": "2026-08-26",
     "normalized_starting_equity": 100000.0,
-    "normalized_current_equity": 97592.26,
-    "cumulative_return": -0.024077400000000027,
+    "normalized_current_equity": 97579.36,
+    "cumulative_return": -0.02420639999999996,
     "curve_points": 18,
     "curve_basis": "Normalized composite of constituent paper curves plus the disclosed overlay; not a direct broker account balance.",
     "honest_forward_sharpe_estimate": "0.3 to 0.9 (the +10% beta does NOT improve this \u2014 it adds bull upside + crash risk, not risk-adjusted quality; real chance of ~0 yr1)",
@@ -228,7 +228,7 @@
         "status": "IMMATURE_RECORD_TOO_SHORT"
       },
       "drawdown": {
-        "realized_live_max_drawdown": 0.02513045408349912,
+        "realized_live_max_drawdown": 0.025259314888057993,
         "realized_status": "DESCRIPTIVE_TO_DATE_NOT_EXPECTED_MAX_DRAWDOWN",
         "expected_max_drawdown_target": 0.11,
         "study_production_labelled_expected_max_drawdown": 0.10251155801473733,
@@ -317,7 +317,7 @@
       "diversification_evidence_public_path": "/glassbox/current_book_diversification.json",
       "contract_public_path": "/glassbox/forward_evidence_contract.json",
       "methodology_paper_public_path": "/research/forward-sharpe-evidence-standard",
-      "content_hash": "sha256:3cc3d0b95fbe865f863e7499f001c8bee0486d60d9347c6ec1c686c6ee3c1709"
+      "content_hash": "sha256:af07e26077b41db3a0458bbb8d8dcc39fbcacd84783c48ad16e03b24c01636c1"
     }
   },
   "execution_provenance": {
@@ -402,7 +402,7 @@
     "broker_reconciliation_claim": "BROKER_DERIVED_LOCAL_PUBLICATION_NOT_EXTERNALLY_ATTESTED",
     "broker_reconciliation": {
       "status": "PASS",
-      "generated_at": "2026-08-26T02:25:32.574697+00:00",
+      "generated_at": "2026-08-26T03:26:44.131676+00:00",
       "reconciled_alpaca_sleeves": 3,
       "unique_dedicated_accounts": true,
       "public_path": "/glassbox/alpaca_broker_reconciliation.json",
@@ -577,16 +577,16 @@
   "source_provenance": {
     "paper_state": {
       "path": "data/paper/state.json",
-      "sha256": "f2cfa89751706b1e3ee06fd8f70b75d8eaa145e8618e30846046ca8ea30dc8bd"
+      "sha256": "d63a8263c9073e61b7aafe667915b8eb43b4bf901f5c43985b2100d133975813"
     },
     "forward_evidence_maturity": {
       "path": "artifacts/engineering/forward_evidence_maturity.json",
-      "sha256": "dfec421e19b000d25256a73070b919ffdc38abb6ed70fbfe75499e8d5d483a98",
-      "content_hash": "sha256:3cc3d0b95fbe865f863e7499f001c8bee0486d60d9347c6ec1c686c6ee3c1709"
+      "sha256": "26cb58f1ec3f5a1fc9e85f937e531297ea13de9f7e2a6639465aa387ddc15d92",
+      "content_hash": "sha256:af07e26077b41db3a0458bbb8d8dcc39fbcacd84783c48ad16e03b24c01636c1"
     },
     "forward_sleeve_contribution": {
       "path": "artifacts/engineering/forward_sleeve_contribution.json",
-      "sha256": "c929ee1e5b668064e8b2049d9610db3d934ac59f09804e210cf93a2475a925d5"
+      "sha256": "62243586815a8d268a0272b821f76c188891e3d8d3baae804831f6bb1e9262c8"
     },
     "admission_contract": {
       "path": "config/sleeve_admission_contract.json",
@@ -606,6 +606,6 @@
       "sha256": "ea5254cd4463d94fde7e57558a8906dc06ef321bddd0aab0074f768d9778a521"
     }
   },
-  "generated_at": "2026-08-26T03:13:00.424073+00:00",
-  "content_hash": "sha256:017020c65f88db464d967dbc3603197131bb985dd2396fdb572230d58ad3ebc6"
+  "generated_at": "2026-08-26T03:27:48.660165+00:00",
+  "content_hash": "sha256:e0ed9aaa97f4e5475b2d90838961e7d111c395a4b3c9bd1bcf74e00af57786aa"
 }
