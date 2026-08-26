@@ -140,7 +140,7 @@ function hydrateBroker(broker) {
     ? `${reconciled} dedicated accounts · PASS`
     : "Reconciliation check open";
   byId("console-book").textContent = `${integer.format(positions)} positions · ${integer.format(orders)} orders`;
-  byId("evidence-accounts").textContent = passed ? `${reconciled} × $1M` : "Check open";
+  byId("evidence-accounts").textContent = passed ? `${reconciled} × ~$1M` : "Check open";
   byId("evidence-positions").textContent = `${integer.format(positions)} / ${integer.format(orders)}`;
   byId("evidence-status").textContent = passed ? "Broker PASS" : "Fail-closed";
 

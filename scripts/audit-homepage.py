@@ -39,7 +39,7 @@ def audit_page(page: Page, *, name: str, width: int, height: int) -> dict[str, o
     assert page.locator("#research-title").is_visible()
     assert page.locator("#trust-title").is_visible()
     assert page.locator("#access-title").is_visible()
-    assert page.locator("#evidence-accounts").inner_text() == "3 × $1M"
+    assert page.locator("#evidence-accounts").inner_text() == "3 × ~$1M"
     assert page.locator("#evidence-status").inner_text() == "Broker PASS"
 
     console_box = page.locator(".live-console").bounding_box()
