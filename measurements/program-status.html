@@ -101,7 +101,7 @@ is shown here with its own claim boundary so the number and its limits arrive to
 <section class="measure__sub"><h3>Achievement</h3>
 <dl class="measure__facts">
 <div class="measure__row"><dt>Forward sharpe target</dt><dd>1.500000</dd></div>
-<div class="measure__row"><dt>Forward sharpe status</dt><dd>IMMATURE_RECORD_TOO_SHORT</dd></div>
+<div class="measure__row"><dt>Forward sharpe status</dt><dd>FAIL_CLOSED_PROVENANCE</dd></div>
 <div class="measure__row"><dt>Forward sharpe underlying status</dt><dd>IMMATURE_RECORD_TOO_SHORT</dd></div>
 <div class="measure__row"><dt>Expected max drawdown target</dt><dd>0.110000</dd></div>
 <div class="measure__row"><dt>Target sleeves</dt><dd>14</dd></div>
@@ -115,14 +115,14 @@ is shown here with its own claim boundary so the number and its limits arrive to
 <dl class="measure__facts">
 <div class="measure__row"><dt>Capital kind</dt><dd>PAPER_ONLY</dd></div>
 <div class="measure__row"><dt>Go live date</dt><dd>2026-08-07</dd></div>
-<div class="measure__row"><dt>State generated at</dt><dd>2026-08-25T16:25:36.587240+00:00</dd></div>
-<div class="measure__row"><dt>Live days</dt><dd>18</dd></div>
+<div class="measure__row"><dt>State generated at</dt><dd>2026-08-26T00:20:13.938533+00:00</dd></div>
+<div class="measure__row"><dt>Live days</dt><dd>19</dd></div>
 <div class="measure__row"><dt>First mark</dt><dd>2026-08-07</dd></div>
-<div class="measure__row"><dt>Last mark</dt><dd>2026-08-25</dd></div>
+<div class="measure__row"><dt>Last mark</dt><dd>2026-08-26</dd></div>
 <div class="measure__row"><dt>Normalized starting equity</dt><dd>100000</dd></div>
-<div class="measure__row"><dt>Normalized current equity</dt><dd>97708.530000</dd></div>
-<div class="measure__row"><dt>Cumulative return</dt><dd>-0.022915</dd></div>
-<div class="measure__row"><dt>Curve points</dt><dd>17</dd></div>
+<div class="measure__row"><dt>Normalized current equity</dt><dd>97724.800000</dd></div>
+<div class="measure__row"><dt>Cumulative return</dt><dd>-0.022752</dd></div>
+<div class="measure__row"><dt>Curve points</dt><dd>18</dd></div>
 <div class="measure__row"><dt>In sample sharpe</dt><dd>1.780000</dd></div>
 <div class="measure__row"><dt>In sample label</dt><dd>SIMULATION_NOT_EVIDENCE</dd></div>
 </dl>
@@ -140,36 +140,38 @@ is shown here with its own claim boundary so the number and its limits arrive to
 </section>
 <section class="measure__sub"><h4>Continuity</h4>
 <dl class="measure__facts">
-<div class="measure__row"><dt>As of</dt><dd>2026-08-25</dd></div>
+<div class="measure__row"><dt>As of</dt><dd>2026-08-26</dd></div>
 <div class="measure__row"><dt>Author</dt><dd>Arhan Canli</dd></div>
-<div class="measure__row"><dt>Content hash</dt><dd>sha256:37ead08bdc7567776ca7e9e9f438072d95c2972adb8e3d09bab0cff9aa5c804c</dd></div>
-<div class="measure__row"><dt>Days since go live</dt><dd>19</dd></div>
+<div class="measure__row"><dt>Content hash</dt><dd>sha256:632d77ae994ad01f27cb57ede9cb56fa7c7f52e60929cd3e46eea1da9e6c32e3</dd></div>
+<div class="measure__row"><dt>Days since go live</dt><dd>20</dd></div>
 <div class="measure__row"><dt>Go live date</dt><dd>2026-08-07</dd></div>
 <div class="measure__row"><dt>Max gap rate threshold</dt><dd>0.200000</dd></div>
 <div class="measure__row"><dt>Passes</dt><dd>yes</dd></div>
 <div class="measure__row"><dt>Schema</dt><dd>canli.alphac-record-continuity.v1</dd></div>
-<div class="measure__row"><dt>Worst gap rate</dt><dd>0.157895</dd></div>
+<div class="measure__row"><dt>Worst gap rate</dt><dd>0.200000</dd></div>
 </dl>
 <p class="measure__label">Correction</p><p class="measure__deep">4 further fields. <a href="/glassbox/program_status.json">Read them in the artifact</a>.</p>
 <p class="measure__prose"><strong>How a gap is classified.</strong> Crypto marks and expectations use UTC calendar dates. Alpaca 1D midnight-UTC marks map to the preceding XNYS session; equity expectations come from XNYS sessions, so weekends and exchange holidays are legitimate absences.</p>
 <p class="measure__label">Sleeves</p><p class="measure__deep">4 further fields. <a href="/glassbox/program_status.json">Read them in the artifact</a>.</p>
+<p class="measure__label">Systemic gap days</p><ul class="measure__list"><li>2026-08-26</li></ul>
 <p class="measure__prose"><strong>Systemic note.</strong> Dates that are expected and missing on EVERY sleeve&#39;s own calendar are systemic — the tick did not run or did not mark — rather than a fault in any one sleeve.</p>
 <p class="measure__prose"><strong>Threshold basis.</strong> Declared, not fitted. A threshold derived from today&#39;s gap rate would pass whatever the gap rate happens to be, which is not a threshold.</p>
 <p class="measure__prose"><strong>What this does not measure.</strong> Whether a mark is CORRECT — only whether one exists. A sleeve marking the same equity every day would show a perfect continuity record and a frozen curve. That is the publish gate&#39;s job (check_published_state), not this one&#39;s.</p>
 </section>
 <section class="measure__sub"><h4>Evidence maturity</h4>
 <dl class="measure__facts">
-<div class="measure__row"><dt>Status</dt><dd>IMMATURE_RECORD_TOO_SHORT</dd></div>
+<div class="measure__row"><dt>Status</dt><dd>FAIL_CLOSED_PROVENANCE</dd></div>
 <div class="measure__row"><dt>Underlying status</dt><dd>IMMATURE_RECORD_TOO_SHORT</dd></div>
-<div class="measure__row"><dt>Provenance passes</dt><dd>yes</dd></div>
+<div class="measure__row"><dt>Provenance passes</dt><dd>no</dd></div>
 <div class="measure__row"><dt>Public path</dt><dd>/glassbox/forward_evidence_maturity.json</dd></div>
 <div class="measure__row"><dt>Drawdown evidence public path</dt><dd>/glassbox/forward_drawdown_evidence.json</dd></div>
 <div class="measure__row"><dt>Diversification evidence public path</dt><dd>/glassbox/current_book_diversification.json</dd></div>
 <div class="measure__row"><dt>Contract public path</dt><dd>/glassbox/forward_evidence_contract.json</dd></div>
 <div class="measure__row"><dt>Methodology paper public path</dt><dd>/research/forward-sharpe-evidence-standard</dd></div>
-<div class="measure__row"><dt>Content hash</dt><dd>sha256:afb8af31ca90629b2d98915690d28a361a292a12825d0347dbf43560f0200b97</dd></div>
+<div class="measure__row"><dt>Content hash</dt><dd>sha256:c543f0f46414fc69272b10b8557f8ef4285f853a1f6b2d17e95e73b82e5595e7</dd></div>
 </dl>
-<p class="measure__label">Sharpe</p><p class="measure__deep">13 further fields. <a href="/glassbox/program_status.json">Read them in the artifact</a>.</p>
+<p class="measure__label">Failed provenance checks</p><ul class="measure__list"><li>crypto_position_attribution_covers_last_mark</li></ul>
+<p class="measure__label">Sharpe</p><p class="measure__deep">14 further fields. <a href="/glassbox/program_status.json">Read them in the artifact</a>.</p>
 <p class="measure__label">Drawdown</p><p class="measure__deep">15 further fields. <a href="/glassbox/program_status.json">Read them in the artifact</a>.</p>
 <p class="measure__label">Diversification</p><p class="measure__deep">21 further fields. <a href="/glassbox/program_status.json">Read them in the artifact</a>.</p>
 </section>
@@ -184,7 +186,7 @@ is shown here with its own claim boundary so the number and its limits arrive to
 <section class="measure__sub"><h4>Broker reconciliation</h4>
 <dl class="measure__facts">
 <div class="measure__row"><dt>Status</dt><dd>PASS</dd></div>
-<div class="measure__row"><dt>Generated at</dt><dd>2026-08-25T16:25:22.658864+00:00</dd></div>
+<div class="measure__row"><dt>Generated at</dt><dd>2026-08-26T00:18:50.373968+00:00</dd></div>
 <div class="measure__row"><dt>Reconciled alpaca sleeves</dt><dd>3</dd></div>
 <div class="measure__row"><dt>Unique dedicated accounts</dt><dd>yes</dd></div>
 <div class="measure__row"><dt>Public path</dt><dd>/glassbox/alpaca_broker_reconciliation.json</dd></div>
@@ -249,20 +251,20 @@ is shown here with its own claim boundary so the number and its limits arrive to
 <section class="measure__sub"><h4>Paper state</h4>
 <dl class="measure__facts">
 <div class="measure__row"><dt>Path</dt><dd>data/paper/state.json</dd></div>
-<div class="measure__row"><dt>Sha256</dt><dd>f10eab41a5968405b1900c1fef80922938fc8e1f7beab4c612c208bf92635732</dd></div>
+<div class="measure__row"><dt>Sha256</dt><dd>c84e51fb46a12e3f76483920024d3ac175f19b36c9a5ec26889794d0472aef34</dd></div>
 </dl>
 </section>
 <section class="measure__sub"><h4>Forward evidence maturity</h4>
 <dl class="measure__facts">
 <div class="measure__row"><dt>Path</dt><dd>artifacts/engineering/forward_evidence_maturity.json</dd></div>
-<div class="measure__row"><dt>Sha256</dt><dd>37ddd3de177bec811ff798a3bfa5a5cb0975faabea802b30b6780fd7cf3e1450</dd></div>
-<div class="measure__row"><dt>Content hash</dt><dd>sha256:afb8af31ca90629b2d98915690d28a361a292a12825d0347dbf43560f0200b97</dd></div>
+<div class="measure__row"><dt>Sha256</dt><dd>15e7b22bc0c2968555779f0d4e22e7abc0355163162c016308b154456cf1d8c8</dd></div>
+<div class="measure__row"><dt>Content hash</dt><dd>sha256:c543f0f46414fc69272b10b8557f8ef4285f853a1f6b2d17e95e73b82e5595e7</dd></div>
 </dl>
 </section>
 <section class="measure__sub"><h4>Forward sleeve contribution</h4>
 <dl class="measure__facts">
 <div class="measure__row"><dt>Path</dt><dd>artifacts/engineering/forward_sleeve_contribution.json</dd></div>
-<div class="measure__row"><dt>Sha256</dt><dd>da1d993f38b53102c93ff5ee558631a249cd103c82c7cbec5f850de25735868b</dd></div>
+<div class="measure__row"><dt>Sha256</dt><dd>81bf39d3965552d2dee9a1d91ee156b24756a64557b75e8c2adde93ea12e6d8e</dd></div>
 </dl>
 </section>
 <section class="measure__sub"><h4>Admission contract</h4>

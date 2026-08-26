@@ -1,12 +1,15 @@
 {
   "author": "Arhan Canli",
-  "claim_boundary": "This audit proves that no raw tabular input file is inside a Wave 1 publication bundle and records the conservative source policy. It is not legal advice and does not establish portable reproduction, redistribution permission, or independent review.",
-  "content_hash": "sha256:656e798b953b9adb278acde8cdebf6ff79404e7da83e12bb28ef9aac7147537e",
+  "claim_boundary": "This audit proves that no raw tabular input file is inside a Wave 1 publication bundle and that a dated public-terms decision is recorded for each Wave 1 source class. It is not legal advice and does not establish account-specific permission, external-publication clearance, portable reproduction, or independent review.",
+  "content_hash": "sha256:091c15f0c80e675f6e59a03a07f5a5bfae4c9dd821f12851bbfb67364846a174",
+  "external_publication_clearance_complete": false,
+  "external_publication_clearances_recorded": 0,
   "failures": [],
   "policy_binding": {
     "path": "config/data_source_rights_policy.json",
-    "sha256": "1d57506d08326e7837aa73f8991ca0a63cabecfc334b88ef88eb865b7abcb26b"
+    "sha256": "a96e7bb8441689e573b616304c013b1649d5fd83e15121aadacc9b429d460cd4"
   },
+  "public_terms_reviews_complete": 6,
   "raw_vendor_rows_released": false,
   "records": [
     {
@@ -45,28 +48,43 @@
       "source_dependencies": [
         {
           "access_kind": "public institutional macro-vintage dataset",
+          "derived_result_publication": "RESEARCH_USE_AND_PREFERRED_CITATION_DOCUMENTED_RAW_REDISTRIBUTION_NOT_CLEARED",
+          "external_publication_clearance_recorded": false,
           "official_documentation": "https://www.philadelphiafed.org/surveys-and-data/real-time-data-research/real-time-data-set-for-macroeconomists",
           "official_terms": "https://www.philadelphiafed.org/-/media/frbp/assets/institutional/about-us/terms-of-use.pdf",
           "permitted_release": "download recipe, series names, vintage semantics, coverage manifest, hashes and derived results",
           "portable_reproduction_route": "fresh download from the official source",
+          "public_terms_review_status": "COMPLETE_CONSERVATIVE_DECISION_RECORDED",
           "raw_redistribution": "WITHHELD_PENDING_EXPLICIT_RIGHTS_CONFIRMATION",
-          "source_key": "PHILADELPHIA_FED_RTDSM"
+          "source_key": "PHILADELPHIA_FED_RTDSM",
+          "terms_evidence": "The RTDSM page states that the dataset may be used by macroeconomic researchers and identifies the preferred technical citation. It does not state an explicit raw-data redistribution grant, so the bundle contains recipes, provenance, and derived results but no RTDSM rows.",
+          "terms_observed_on": "2026-08-26"
         },
         {
           "access_kind": "third-party market-data service",
+          "derived_result_publication": "NOT_CLEARED_FOR_UNOFFICIAL_FINANCE_DATA_ACCESS_PATH",
+          "external_publication_clearance_recorded": false,
           "official_terms": "https://legal.yahoo.com/us/en/yahoo/terms/otos/index.html",
-          "permitted_release": "instrument/date specification, code, hashes and derived non-row-level results",
+          "permitted_release": "instrument/date specification and source-independent code only until the relevant market-data rights are confirmed",
           "portable_reproduction_route": "reviewer independently acquires equivalent licensed benchmark data",
+          "public_terms_review_status": "COMPLETE_CONSERVATIVE_DECISION_RECORDED",
           "raw_redistribution": "PROHIBITED_WITHOUT_EXPLICIT_PERMISSION",
-          "source_key": "YAHOO_FINANCE_MARKET_DATA"
+          "source_key": "YAHOO_FINANCE_MARKET_DATA",
+          "terms_evidence": "Yahoo's current public terms preserve Yahoo and vendor rights in service content. The project did not use a documented licensed Yahoo Finance market-data API with an external-publication grant, so raw rows remain withheld and research-derived publication clearance is not inferred.",
+          "terms_observed_on": "2026-08-26"
         },
         {
           "access_kind": "authenticated private paper-broker account",
-          "official_terms": "https://alpaca.markets/disclosures",
+          "derived_result_publication": "ACCOUNT_AGGREGATES_ONLY_MARKET_DATA_EXCLUDED_OWNER_AND_CURRENT_TERMS_REVIEW_REQUIRED",
+          "external_publication_clearance_recorded": false,
+          "official_terms": "https://files.alpaca.markets/disclosures/library/AcctAppMarginAndCustAgmt.pdf",
           "permitted_release": "sanitized aggregate reconciliation with account identifiers and credentials removed",
           "portable_reproduction_route": "reviewer supplies a separate paper account or verifies released aggregates",
+          "public_terms_review_status": "COMPLETE_CONSERVATIVE_DECISION_RECORDED",
           "raw_redistribution": "PROHIBITED_BY_PROJECT_POLICY",
-          "source_key": "ALPACA_PRIVATE_ACCOUNT"
+          "source_key": "ALPACA_PRIVATE_ACCOUNT",
+          "terms_evidence": "The current customer agreement prohibits reproducing, distributing, selling, or commercially exploiting Alpaca-supplied market data without written consent. The project therefore excludes market-data rows, credentials, account identifiers, orders, and positions from publication bundles; sanitized paper-account aggregates remain subject to owner approval and a final current-terms check.",
+          "terms_observed_on": "2026-08-26"
         }
       ]
     },
@@ -104,11 +122,16 @@
       "source_dependencies": [
         {
           "access_kind": "exchange API accessed through CCXT",
+          "derived_result_publication": "NOT_EXPLICITLY_CLEARED_BY_PUBLIC_API_DOCUMENTATION",
+          "external_publication_clearance_recorded": false,
           "official_terms": "https://www.binance.com/en/terms",
           "permitted_release": "code, query specification, symbols, timestamps, hashes and derived non-row-level results",
           "portable_reproduction_route": "fresh API acquisition under the reviewer's own access and then hash/coverage comparison",
+          "public_terms_review_status": "COMPLETE_CONSERVATIVE_DECISION_RECORDED",
           "raw_redistribution": "WITHHELD_PENDING_EXPLICIT_RIGHTS_CONFIRMATION",
-          "source_key": "BINANCE_EXCHANGE_MARKET_DATA"
+          "source_key": "BINANCE_EXCHANGE_MARKET_DATA",
+          "terms_evidence": "Binance's current official developer documentation authorizes supported API access to public market data and describes analytics and dashboard integrations, but the reviewed public documentation does not provide an explicit redistribution grant for historical rows or research-derived outputs. Raw rows remain withheld and external publication requires a final provider or qualified-rights confirmation.",
+          "terms_observed_on": "2026-08-26"
         }
       ]
     },
@@ -149,27 +172,42 @@
       "source_dependencies": [
         {
           "access_kind": "licensed vendor market data",
-          "official_terms": "https://massive.com/legal/terms",
-          "permitted_release": "code, field specification, coverage manifest, hashes and derived non-row-level results",
+          "derived_result_publication": "REQUIRES_APPLICABLE_ORDER_FORM_OR_EXPRESS_WRITTEN_CONSENT",
+          "external_publication_clearance_recorded": false,
+          "official_terms": "https://massive.com/legal/market-data-terms-of-service",
+          "permitted_release": "source-independent code and methodology only until an applicable business order form or express written consent is recorded",
           "portable_reproduction_route": "reviewer supplies separately licensed Massive/Polygon access",
+          "public_terms_review_status": "COMPLETE_CONSERVATIVE_DECISION_RECORDED",
           "raw_redistribution": "PROHIBITED_WITHOUT_SEPARATE_PERMISSION",
-          "source_key": "MASSIVE_POLYGON_MARKET_DATA"
+          "source_key": "MASSIVE_POLYGON_MARKET_DATA",
+          "terms_evidence": "Massive's market-data terms, last updated August 28, 2025, restrict publication or transfer of market data and expressly include charts, analytics, research, and other derived works. The account-specific order form has not been reviewed and no express publication consent is recorded.",
+          "terms_observed_on": "2026-08-26"
         },
         {
           "access_kind": "licensed Nasdaq Data Link dataset",
+          "derived_result_publication": "REQUIRES_APPLICABLE_ORDER_FORM_PERMISSION_OR_PRIOR_WRITTEN_APPROVAL",
+          "external_publication_clearance_recorded": false,
           "official_terms": "https://data.nasdaq.com/terms",
-          "permitted_release": "code, table/field specification, coverage manifest, hashes and derived non-row-level results",
+          "permitted_release": "source-independent code and methodology only until the applicable order form or prior written approval permits external distribution",
           "portable_reproduction_route": "reviewer supplies a separately licensed Sharadar dataset",
+          "public_terms_review_status": "COMPLETE_CONSERVATIVE_DECISION_RECORDED",
           "raw_redistribution": "PROHIBITED_WITHOUT_SEPARATE_PERMISSION",
-          "source_key": "NASDAQ_SHARADAR"
+          "source_key": "NASDAQ_SHARADAR",
+          "terms_evidence": "Nasdaq Data Link's public data-license terms prohibit redistributing licensed data and state that derived data cannot be distributed outside the client except as allowed by the order form or with prior written approval. No applicable order-form permission or written approval is recorded.",
+          "terms_observed_on": "2026-08-26"
         },
         {
           "access_kind": "third-party market-data service",
+          "derived_result_publication": "NOT_CLEARED_FOR_UNOFFICIAL_FINANCE_DATA_ACCESS_PATH",
+          "external_publication_clearance_recorded": false,
           "official_terms": "https://legal.yahoo.com/us/en/yahoo/terms/otos/index.html",
-          "permitted_release": "instrument/date specification, code, hashes and derived non-row-level results",
+          "permitted_release": "instrument/date specification and source-independent code only until the relevant market-data rights are confirmed",
           "portable_reproduction_route": "reviewer independently acquires equivalent licensed benchmark data",
+          "public_terms_review_status": "COMPLETE_CONSERVATIVE_DECISION_RECORDED",
           "raw_redistribution": "PROHIBITED_WITHOUT_EXPLICIT_PERMISSION",
-          "source_key": "YAHOO_FINANCE_MARKET_DATA"
+          "source_key": "YAHOO_FINANCE_MARKET_DATA",
+          "terms_evidence": "Yahoo's current public terms preserve Yahoo and vendor rights in service content. The project did not use a documented licensed Yahoo Finance market-data API with an external-publication grant, so raw rows remain withheld and research-derived publication clearance is not inferred.",
+          "terms_observed_on": "2026-08-26"
         }
       ]
     },
@@ -200,11 +238,16 @@
       "source_dependencies": [
         {
           "access_kind": "third-party market-data service",
+          "derived_result_publication": "NOT_CLEARED_FOR_UNOFFICIAL_FINANCE_DATA_ACCESS_PATH",
+          "external_publication_clearance_recorded": false,
           "official_terms": "https://legal.yahoo.com/us/en/yahoo/terms/otos/index.html",
-          "permitted_release": "instrument/date specification, code, hashes and derived non-row-level results",
+          "permitted_release": "instrument/date specification and source-independent code only until the relevant market-data rights are confirmed",
           "portable_reproduction_route": "reviewer independently acquires equivalent licensed benchmark data",
+          "public_terms_review_status": "COMPLETE_CONSERVATIVE_DECISION_RECORDED",
           "raw_redistribution": "PROHIBITED_WITHOUT_EXPLICIT_PERMISSION",
-          "source_key": "YAHOO_FINANCE_MARKET_DATA"
+          "source_key": "YAHOO_FINANCE_MARKET_DATA",
+          "terms_evidence": "Yahoo's current public terms preserve Yahoo and vendor rights in service content. The project did not use a documented licensed Yahoo Finance market-data API with an external-publication grant, so raw rows remain withheld and research-derived publication clearance is not inferred.",
+          "terms_observed_on": "2026-08-26"
         }
       ]
     },
@@ -235,27 +278,40 @@
       "source_dependencies": [
         {
           "access_kind": "exchange API accessed through CCXT",
+          "derived_result_publication": "NOT_EXPLICITLY_CLEARED_BY_PUBLIC_API_DOCUMENTATION",
+          "external_publication_clearance_recorded": false,
           "official_terms": "https://www.binance.com/en/terms",
           "permitted_release": "code, query specification, symbols, timestamps, hashes and derived non-row-level results",
           "portable_reproduction_route": "fresh API acquisition under the reviewer's own access and then hash/coverage comparison",
+          "public_terms_review_status": "COMPLETE_CONSERVATIVE_DECISION_RECORDED",
           "raw_redistribution": "WITHHELD_PENDING_EXPLICIT_RIGHTS_CONFIRMATION",
-          "source_key": "BINANCE_EXCHANGE_MARKET_DATA"
+          "source_key": "BINANCE_EXCHANGE_MARKET_DATA",
+          "terms_evidence": "Binance's current official developer documentation authorizes supported API access to public market data and describes analytics and dashboard integrations, but the reviewed public documentation does not provide an explicit redistribution grant for historical rows or research-derived outputs. Raw rows remain withheld and external publication requires a final provider or qualified-rights confirmation.",
+          "terms_observed_on": "2026-08-26"
         }
       ]
     }
   ],
   "remaining_blockers": [
-    "SOURCE_SPECIFIC_WRITTEN_REDISTRIBUTION_PERMISSION_NOT_RECORDED",
+    "MASSIVE_APPLICABLE_ORDER_FORM_OR_EXPRESS_WRITTEN_CONSENT_REQUIRED",
+    "NASDAQ_APPLICABLE_ORDER_FORM_PERMISSION_OR_PRIOR_WRITTEN_APPROVAL_REQUIRED",
+    "YAHOO_FINANCE_DERIVED_RESULT_PUBLICATION_NOT_CLEARED",
+    "BINANCE_DERIVED_RESULT_PUBLICATION_NOT_EXPLICITLY_CLEARED",
+    "ALPACA_ACCOUNT_AGGREGATE_OWNER_AND_CURRENT_TERMS_REVIEW_REQUIRED",
+    "QUALIFIED_RIGHTS_REVIEW_REQUIRED_BEFORE_EXTERNAL_SUBMISSION",
     "PORTABLE_FETCH_RECIPES_AND_COVERAGE_MANIFESTS_NOT_COMPLETE",
     "FRESH_REVIEWER_ACQUISITION_NOT_EXECUTED"
   ],
-  "schema": "canli.alphac-wave1-data-rights-audit.v1",
+  "review_date": "2026-08-26",
+  "schema": "canli.alphac-wave1-data-rights-audit.v2",
   "source_classes": 10,
-  "status": "PASS_CONSERVATIVE_EXCLUSION",
+  "source_public_terms_review_complete": true,
+  "status": "PASS_PUBLIC_TERMS_REVIEW_COMPLETE_CLEARANCE_REQUIRED",
   "submission_plan_binding": {
-    "content_hash": "sha256:7dac1359bd7f83f878f898298428f2d39de9dcdcc435c6a9dcc1bada4fc76e70",
+    "content_hash": "sha256:0caea422c6dc24fcaf376a5c6f0d16a76fcdc575304b91378e06e124ea23f84b",
     "path": "artifacts/publication/external_submission_plan.json",
-    "sha256": "2dce7a5aecd7f5ec13d8a6286075ee17452739c538a77fdf3cdcb87422f8a767"
+    "sha256": "1cd829b5d8573bc3edb2d24a8ed2c49df5c2d0c35a8a790360da44bbb279f89e"
   },
-  "wave1_papers": 5
+  "wave1_papers": 5,
+  "wave1_source_classes": 6
 }

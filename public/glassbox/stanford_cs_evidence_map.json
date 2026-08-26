@@ -7,16 +7,16 @@
     "short_description": "Designed and implemented a quantitative-research and publication system spanning data engineering, statistical validation, paper execution, provenance, testing and public web interfaces. Published negative results and corrections alongside surviving hypotheses so every performance claim can be traced to evidence."
   },
   "claim_boundary": "This is a source-bound portfolio evidence map. It supports concise factual writing but does not prove admissions impact, external use, independent review or unaided authorship.",
-  "content_hash": "sha256:821578930c3b08a64b65dbb6b5325e9bd9206d5f8b304f2fff51b17ddbe06e80",
+  "content_hash": "sha256:3a0256c4c13ea33c58b3d0fb134afd5f2ac78ebc8eca4ee7b9dd1ed534bfb36f",
   "evidence": {
     "forward_truth": {
       "boundary": "The forward Sharpe, drawdown and diversification objectives are not established.",
       "claim": "The project refuses to infer success from an immature forward record.",
       "facts": {
-        "cumulative_return": -0.022914700000000066,
+        "cumulative_return": -0.022751999999999994,
         "current_sleeves": 4,
-        "daily_return_observations": 16,
-        "provenance_passes": true,
+        "daily_return_observations": 17,
+        "provenance_passes": false,
         "sharpe_status": "IMMATURE_RECORD_TOO_SHORT",
         "target_sleeves": 14
       }
@@ -44,12 +44,14 @@
       "facts": {
         "data_license_reviews_complete": 0,
         "deterministic_review_archives": 16,
+        "external_publication_clearances_complete": 0,
         "full_clean_workspace_reproductions": 0,
         "independent_human_reproductions": 0,
         "normalized_bibliographies": 16,
         "pdf_pages_visually_inspected": 80,
         "portable_core_only_reproductions": 0,
         "portable_full_decision_reproductions": 1,
+        "public_terms_reviews_complete": 16,
         "raw_input_archive_members": 0,
         "released_exact_result_objects": 34,
         "sleeve_papers": 16,
@@ -106,11 +108,11 @@
     },
     "all_sleeve_archives": {
       "path": "artifacts/publication/all_sleeve_review_archives.json",
-      "sha256": "23f10194033f345b1c01fa928a04b82d8b64ebc2b729ba5219835f0f0afc6720"
+      "sha256": "22208565d1b90ca16ec150132e13231ee9b2a096ffd0b0359bfadc9a927b7ee4"
     },
     "broker": {
       "path": "artifacts/engineering/alpaca_broker_reconciliation.json",
-      "sha256": "50a46765dbc42df6fe52f2a27eb41242ca5733d4ed38a80d9e44fae356c55fe4"
+      "sha256": "cd6247b78021cdfd58f0bfa4c6096a868fe2a4f58359722fb292a09daa4efc9f"
     },
     "clean_reproduction": {
       "path": "artifacts/publication/clean_workspace_reproduction_audit.json",
@@ -118,7 +120,7 @@
     },
     "forward": {
       "path": "artifacts/engineering/forward_evidence_maturity.json",
-      "sha256": "37ddd3de177bec811ff798a3bfa5a5cb0975faabea802b30b6780fd7cf3e1450"
+      "sha256": "15e7b22bc0c2968555779f0d4e22e7abc0355163162c016308b154456cf1d8c8"
     },
     "legacy_closure": {
       "path": "artifacts/research/legacy_research_epoch_closure.json",
@@ -134,11 +136,11 @@
     },
     "publication": {
       "path": "artifacts/audit/external_publication_readiness.json",
-      "sha256": "c7ff9cf3e784a31da2e98ad14bab84a08ea1cb2bb3abfe1d39997a3c3e5b57c4"
+      "sha256": "6fe410ccbd0fee724ea6f8cd18cc6567d137f94415a951914f50f7fe4243c22c"
     },
     "source_rights": {
       "path": "artifacts/publication/all_sleeve_data_rights_audit.json",
-      "sha256": "652686632f243df3a40de23bac96f6ce04f6f6364c8d5dae97476f518df836f6"
+      "sha256": "eaa21679819f060a37982ecd1ee121b2b1f8938289643cb5286de95d09d0e09a"
     },
     "trial_packets": {
       "path": "artifacts/research/trial_packet_manifest.json",
