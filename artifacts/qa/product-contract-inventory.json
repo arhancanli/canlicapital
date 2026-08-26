@@ -1,0 +1,1693 @@
+{
+  "schema": "canli.product-contract-inventory.v1",
+  "claim_boundary": "This is a deterministic source-tree inventory. A migration flag identifies a shell mismatch, not a content or evidence failure. Hardcoded metric candidates require human review and are not automatically classified as defects.",
+  "summary": {
+    "pages": 468,
+    "indexable_pages": 242,
+    "noindex_pages": 226,
+    "pages_requiring_shell_migration": 467,
+    "pages_with_em_dashes": 256,
+    "em_dash_occurrences": 3226,
+    "hardcoded_metric_candidate_lines": 1998,
+    "shell_families": {
+      "archival_publication_v1": 16,
+      "evidence_document_v1": 446,
+      "legacy_product_v2": 5,
+      "product_v3_home": 1
+    },
+    "origins": {
+      "measurements": 89,
+      "product": 11,
+      "publication": 16,
+      "research": 124,
+      "trials": 228
+    }
+  },
+  "product_routes": [
+    {
+      "path": "founder.html",
+      "route": "/founder",
+      "origin": "product",
+      "shell_family": "evidence_document_v1",
+      "indexable": true,
+      "em_dash_count": 4,
+      "hardcoded_metric_candidate_lines": 4,
+      "migration_required": true
+    },
+    {
+      "path": "index.html",
+      "route": "/",
+      "origin": "product",
+      "shell_family": "product_v3_home",
+      "indexable": true,
+      "em_dash_count": 11,
+      "hardcoded_metric_candidate_lines": 12,
+      "migration_required": false
+    },
+    {
+      "path": "measurements.html",
+      "route": "/measurements",
+      "origin": "product",
+      "shell_family": "evidence_document_v1",
+      "indexable": true,
+      "em_dash_count": 2,
+      "hardcoded_metric_candidate_lines": 14,
+      "migration_required": true
+    },
+    {
+      "path": "methodology.html",
+      "route": "/methodology",
+      "origin": "product",
+      "shell_family": "evidence_document_v1",
+      "indexable": true,
+      "em_dash_count": 28,
+      "hardcoded_metric_candidate_lines": 2,
+      "migration_required": true
+    },
+    {
+      "path": "open.html",
+      "route": "/open",
+      "origin": "product",
+      "shell_family": "legacy_product_v2",
+      "indexable": true,
+      "em_dash_count": 0,
+      "hardcoded_metric_candidate_lines": 2,
+      "migration_required": true
+    },
+    {
+      "path": "performance.html",
+      "route": "/performance",
+      "origin": "product",
+      "shell_family": "legacy_product_v2",
+      "indexable": true,
+      "em_dash_count": 2,
+      "hardcoded_metric_candidate_lines": 5,
+      "migration_required": true
+    },
+    {
+      "path": "progress.html",
+      "route": "/progress",
+      "origin": "product",
+      "shell_family": "legacy_product_v2",
+      "indexable": true,
+      "em_dash_count": 0,
+      "hardcoded_metric_candidate_lines": 2,
+      "migration_required": true
+    },
+    {
+      "path": "research.html",
+      "route": "/research",
+      "origin": "product",
+      "shell_family": "legacy_product_v2",
+      "indexable": true,
+      "em_dash_count": 0,
+      "hardcoded_metric_candidate_lines": 4,
+      "migration_required": true
+    },
+    {
+      "path": "systems.html",
+      "route": "/systems",
+      "origin": "product",
+      "shell_family": "legacy_product_v2",
+      "indexable": true,
+      "em_dash_count": 2,
+      "hardcoded_metric_candidate_lines": 3,
+      "migration_required": true
+    },
+    {
+      "path": "trials.html",
+      "route": "/trials",
+      "origin": "product",
+      "shell_family": "evidence_document_v1",
+      "indexable": true,
+      "em_dash_count": 0,
+      "hardcoded_metric_candidate_lines": 1,
+      "migration_required": true
+    },
+    {
+      "path": "verify.html",
+      "route": "/verify",
+      "origin": "product",
+      "shell_family": "evidence_document_v1",
+      "indexable": true,
+      "em_dash_count": 8,
+      "hardcoded_metric_candidate_lines": 0,
+      "migration_required": true
+    }
+  ],
+  "migration_groups": {
+    "legacy_product_routes": [
+      "/open",
+      "/performance",
+      "/progress",
+      "/research",
+      "/systems"
+    ],
+    "evidence_document_generators": [
+      "scripts/build-papers.mjs",
+      "scripts/build-measurements.mjs",
+      "scripts/build-trials.mjs",
+      "scripts/build-verify.mjs",
+      "scripts/build-founder.mjs",
+      "scripts/build-methodology.mjs"
+    ],
+    "em_dash_offenders": [
+      {
+        "path": "founder.html",
+        "route": "/founder",
+        "origin": "product",
+        "em_dash_count": 4
+      },
+      {
+        "path": "index.html",
+        "route": "/",
+        "origin": "product",
+        "em_dash_count": 11
+      },
+      {
+        "path": "measurements.html",
+        "route": "/measurements",
+        "origin": "product",
+        "em_dash_count": 2
+      },
+      {
+        "path": "measurements/admission-v7-promotion-receipt.html",
+        "route": "/measurements/admission-v7-promotion-receipt",
+        "origin": "measurements",
+        "em_dash_count": 1
+      },
+      {
+        "path": "measurements/atlas-reachability-screen.html",
+        "route": "/measurements/atlas-reachability-screen",
+        "origin": "measurements",
+        "em_dash_count": 3
+      },
+      {
+        "path": "measurements/claim-coverage-map.html",
+        "route": "/measurements/claim-coverage-map",
+        "origin": "measurements",
+        "em_dash_count": 3
+      },
+      {
+        "path": "measurements/cost-model-realism.html",
+        "route": "/measurements/cost-model-realism",
+        "origin": "measurements",
+        "em_dash_count": 12
+      },
+      {
+        "path": "measurements/current-book-diversification.html",
+        "route": "/measurements/current-book-diversification",
+        "origin": "measurements",
+        "em_dash_count": 2
+      },
+      {
+        "path": "measurements/current-book-drawdown.html",
+        "route": "/measurements/current-book-drawdown",
+        "origin": "measurements",
+        "em_dash_count": 2
+      },
+      {
+        "path": "measurements/data-lake-scale.html",
+        "route": "/measurements/data-lake-scale",
+        "origin": "measurements",
+        "em_dash_count": 9
+      },
+      {
+        "path": "measurements/drawdown-live-estimator.html",
+        "route": "/measurements/drawdown-live-estimator",
+        "origin": "measurements",
+        "em_dash_count": 3
+      },
+      {
+        "path": "measurements/execution-gap-power.html",
+        "route": "/measurements/execution-gap-power",
+        "origin": "measurements",
+        "em_dash_count": 6
+      },
+      {
+        "path": "measurements/external-publication.html",
+        "route": "/measurements/external-publication",
+        "origin": "measurements",
+        "em_dash_count": 4
+      },
+      {
+        "path": "measurements/forward-drawdown-evidence.html",
+        "route": "/measurements/forward-drawdown-evidence",
+        "origin": "measurements",
+        "em_dash_count": 5
+      },
+      {
+        "path": "measurements/forward-evidence-maturity.html",
+        "route": "/measurements/forward-evidence-maturity",
+        "origin": "measurements",
+        "em_dash_count": 4
+      },
+      {
+        "path": "measurements/hdb-dividend-vendor-resolution.html",
+        "route": "/measurements/hdb-dividend-vendor-resolution",
+        "origin": "measurements",
+        "em_dash_count": 4
+      },
+      {
+        "path": "measurements/ledoit-wolf-effective-sample.html",
+        "route": "/measurements/ledoit-wolf-effective-sample",
+        "origin": "measurements",
+        "em_dash_count": 5
+      },
+      {
+        "path": "measurements/live-covariance-memory.html",
+        "route": "/measurements/live-covariance-memory",
+        "origin": "measurements",
+        "em_dash_count": 1
+      },
+      {
+        "path": "measurements/mutation-ledger.html",
+        "route": "/measurements/mutation-ledger",
+        "origin": "measurements",
+        "em_dash_count": 1
+      },
+      {
+        "path": "measurements/orthogonality-prior.html",
+        "route": "/measurements/orthogonality-prior",
+        "origin": "measurements",
+        "em_dash_count": 1
+      },
+      {
+        "path": "measurements/program-status.html",
+        "route": "/measurements/program-status",
+        "origin": "measurements",
+        "em_dash_count": 4
+      },
+      {
+        "path": "measurements/prospective-trial-record.html",
+        "route": "/measurements/prospective-trial-record",
+        "origin": "measurements",
+        "em_dash_count": 12
+      },
+      {
+        "path": "measurements/reachability-harness.html",
+        "route": "/measurements/reachability-harness",
+        "origin": "measurements",
+        "em_dash_count": 2
+      },
+      {
+        "path": "measurements/record-continuity.html",
+        "route": "/measurements/record-continuity",
+        "origin": "measurements",
+        "em_dash_count": 3
+      },
+      {
+        "path": "measurements/repurchase-issuance-feasibility-audits-repurchase-issuance-identity-overlap-audit.html",
+        "route": "/measurements/repurchase-issuance-feasibility-audits-repurchase-issuance-identity-overlap-audit",
+        "origin": "measurements",
+        "em_dash_count": 1
+      },
+      {
+        "path": "measurements/sharadar-corrected-corporate-action-validation.html",
+        "route": "/measurements/sharadar-corrected-corporate-action-validation",
+        "origin": "measurements",
+        "em_dash_count": 1444
+      },
+      {
+        "path": "measurements/sharadar-dividend-price-consistency.html",
+        "route": "/measurements/sharadar-dividend-price-consistency",
+        "origin": "measurements",
+        "em_dash_count": 777
+      },
+      {
+        "path": "measurements/sharadar-split-governance-policy.html",
+        "route": "/measurements/sharadar-split-governance-policy",
+        "origin": "measurements",
+        "em_dash_count": 2
+      },
+      {
+        "path": "measurements/sharadar-split-lifecycle-scope.html",
+        "route": "/measurements/sharadar-split-lifecycle-scope",
+        "origin": "measurements",
+        "em_dash_count": 2
+      },
+      {
+        "path": "measurements/sleeve-admission-contract-contract.html",
+        "route": "/measurements/sleeve-admission-contract-contract",
+        "origin": "measurements",
+        "em_dash_count": 2
+      },
+      {
+        "path": "measurements/sleeve-discovery.html",
+        "route": "/measurements/sleeve-discovery",
+        "origin": "measurements",
+        "em_dash_count": 56
+      },
+      {
+        "path": "measurements/sleeve-quality-decomposition.html",
+        "route": "/measurements/sleeve-quality-decomposition",
+        "origin": "measurements",
+        "em_dash_count": 7
+      },
+      {
+        "path": "methodology.html",
+        "route": "/methodology",
+        "origin": "product",
+        "em_dash_count": 28
+      },
+      {
+        "path": "performance.html",
+        "route": "/performance",
+        "origin": "product",
+        "em_dash_count": 2
+      },
+      {
+        "path": "public/publication/alphamax/v0.1.0/paper.html",
+        "route": "/publication/alphamax/v0.1.0/paper",
+        "origin": "publication",
+        "em_dash_count": 1
+      },
+      {
+        "path": "public/publication/alphatrend/v0.1.0/paper.html",
+        "route": "/publication/alphatrend/v0.1.0/paper",
+        "origin": "publication",
+        "em_dash_count": 1
+      },
+      {
+        "path": "public/publication/alphavintage/v1.0.0/paper.html",
+        "route": "/publication/alphavintage/v1.0.0/paper",
+        "origin": "publication",
+        "em_dash_count": 1
+      },
+      {
+        "path": "public/publication/crypto-carry/v0.1.0/paper.html",
+        "route": "/publication/crypto-carry/v0.1.0/paper",
+        "origin": "publication",
+        "em_dash_count": 1
+      },
+      {
+        "path": "public/publication/crypto-defensive/v0.1.0/paper.html",
+        "route": "/publication/crypto-defensive/v0.1.0/paper",
+        "origin": "publication",
+        "em_dash_count": 1
+      },
+      {
+        "path": "public/publication/crypto-momentum/v0.1.0/paper.html",
+        "route": "/publication/crypto-momentum/v0.1.0/paper",
+        "origin": "publication",
+        "em_dash_count": 1
+      },
+      {
+        "path": "public/publication/crypto-multifactor-engine/v0.1.0/paper.html",
+        "route": "/publication/crypto-multifactor-engine/v0.1.0/paper",
+        "origin": "publication",
+        "em_dash_count": 1
+      },
+      {
+        "path": "public/publication/crypto-reversal/v0.1.0/paper.html",
+        "route": "/publication/crypto-reversal/v0.1.0/paper",
+        "origin": "publication",
+        "em_dash_count": 1
+      },
+      {
+        "path": "public/publication/crypto-vrp/v0.1.0/paper.html",
+        "route": "/publication/crypto-vrp/v0.1.0/paper",
+        "origin": "publication",
+        "em_dash_count": 1
+      },
+      {
+        "path": "public/publication/energy-inventory/v0.1.0/paper.html",
+        "route": "/publication/energy-inventory/v0.1.0/paper",
+        "origin": "publication",
+        "em_dash_count": 1
+      },
+      {
+        "path": "public/publication/equity-insider-activity/v0.1.0/paper.html",
+        "route": "/publication/equity-insider-activity/v0.1.0/paper",
+        "origin": "publication",
+        "em_dash_count": 1
+      },
+      {
+        "path": "public/publication/equity-low-beta/v0.1.0/paper.html",
+        "route": "/publication/equity-low-beta/v0.1.0/paper",
+        "origin": "publication",
+        "em_dash_count": 1
+      },
+      {
+        "path": "public/publication/equity-narrative-change/v0.1.0/paper.html",
+        "route": "/publication/equity-narrative-change/v0.1.0/paper",
+        "origin": "publication",
+        "em_dash_count": 1
+      },
+      {
+        "path": "public/publication/equity-quality/v0.1.0/paper.html",
+        "route": "/publication/equity-quality/v0.1.0/paper",
+        "origin": "publication",
+        "em_dash_count": 1
+      },
+      {
+        "path": "public/publication/equity-value-investment/v0.1.0/paper.html",
+        "route": "/publication/equity-value-investment/v0.1.0/paper",
+        "origin": "publication",
+        "em_dash_count": 1
+      },
+      {
+        "path": "public/publication/macro-economic-trend/v0.1.0/paper.html",
+        "route": "/publication/macro-economic-trend/v0.1.0/paper",
+        "origin": "publication",
+        "em_dash_count": 1
+      },
+      {
+        "path": "research/active-ownership-item4-v3-feasibility.html",
+        "route": "/research/active-ownership-item4-v3-feasibility",
+        "origin": "research",
+        "em_dash_count": 9
+      },
+      {
+        "path": "research/alphamax-equity-momentum-lineage.html",
+        "route": "/research/alphamax-equity-momentum-lineage",
+        "origin": "research",
+        "em_dash_count": 2
+      },
+      {
+        "path": "research/alphatrend-managed-futures-lineage.html",
+        "route": "/research/alphatrend-managed-futures-lineage",
+        "origin": "research",
+        "em_dash_count": 1
+      },
+      {
+        "path": "research/alphavintage-macro-surprise-lineage.html",
+        "route": "/research/alphavintage-macro-surprise-lineage",
+        "origin": "research",
+        "em_dash_count": 1
+      },
+      {
+        "path": "research/alphavintage-missing-release-correction.html",
+        "route": "/research/alphavintage-missing-release-correction",
+        "origin": "research",
+        "em_dash_count": 3
+      },
+      {
+        "path": "research/author-protocol-approval-protocol.html",
+        "route": "/research/author-protocol-approval-protocol",
+        "origin": "research",
+        "em_dash_count": 2
+      },
+      {
+        "path": "research/bond-etf-nav-dislocation-feasibility.html",
+        "route": "/research/bond-etf-nav-dislocation-feasibility",
+        "origin": "research",
+        "em_dash_count": 8
+      },
+      {
+        "path": "research/borrow-execution-foundation.html",
+        "route": "/research/borrow-execution-foundation",
+        "origin": "research",
+        "em_dash_count": 1
+      },
+      {
+        "path": "research/cftc-hedging-pressure-feasibility.html",
+        "route": "/research/cftc-hedging-pressure-feasibility",
+        "origin": "research",
+        "em_dash_count": 8
+      },
+      {
+        "path": "research/corporate-action-basis-reconstruction.html",
+        "route": "/research/corporate-action-basis-reconstruction",
+        "origin": "research",
+        "em_dash_count": 5
+      },
+      {
+        "path": "research/corporate-action-lifecycle.html",
+        "route": "/research/corporate-action-lifecycle",
+        "origin": "research",
+        "em_dash_count": 1
+      },
+      {
+        "path": "research/crowding-risk-foundation.html",
+        "route": "/research/crowding-risk-foundation",
+        "origin": "research",
+        "em_dash_count": 1
+      },
+      {
+        "path": "research/crypto-carry-lineage.html",
+        "route": "/research/crypto-carry-lineage",
+        "origin": "research",
+        "em_dash_count": 1
+      },
+      {
+        "path": "research/crypto-carry-portable-v1.html",
+        "route": "/research/crypto-carry-portable-v1",
+        "origin": "research",
+        "em_dash_count": 1
+      },
+      {
+        "path": "research/crypto-defensive-lineage.html",
+        "route": "/research/crypto-defensive-lineage",
+        "origin": "research",
+        "em_dash_count": 1
+      },
+      {
+        "path": "research/crypto-lab-carry-crash-incident.html",
+        "route": "/research/crypto-lab-carry-crash-incident",
+        "origin": "research",
+        "em_dash_count": 2
+      },
+      {
+        "path": "research/crypto-momentum-lineage.html",
+        "route": "/research/crypto-momentum-lineage",
+        "origin": "research",
+        "em_dash_count": 1
+      },
+      {
+        "path": "research/crypto-multifactor-engine-lineage.html",
+        "route": "/research/crypto-multifactor-engine-lineage",
+        "origin": "research",
+        "em_dash_count": 1
+      },
+      {
+        "path": "research/crypto-reversal-lineage.html",
+        "route": "/research/crypto-reversal-lineage",
+        "origin": "research",
+        "em_dash_count": 1
+      },
+      {
+        "path": "research/crypto-vrp-lineage.html",
+        "route": "/research/crypto-vrp-lineage",
+        "origin": "research",
+        "em_dash_count": 1
+      },
+      {
+        "path": "research/current-book-diversification-model.html",
+        "route": "/research/current-book-diversification-model",
+        "origin": "research",
+        "em_dash_count": 1
+      },
+      {
+        "path": "research/current-book-drawdown-model.html",
+        "route": "/research/current-book-drawdown-model",
+        "origin": "research",
+        "em_dash_count": 1
+      },
+      {
+        "path": "research/customer-supplier-propagation-feasibility.html",
+        "route": "/research/customer-supplier-propagation-feasibility",
+        "origin": "research",
+        "em_dash_count": 7
+      },
+      {
+        "path": "research/electricity-load-weather-feasibility.html",
+        "route": "/research/electricity-load-weather-feasibility",
+        "origin": "research",
+        "em_dash_count": 9
+      },
+      {
+        "path": "research/energy-inventory-lineage.html",
+        "route": "/research/energy-inventory-lineage",
+        "origin": "research",
+        "em_dash_count": 3
+      },
+      {
+        "path": "research/engineering-quality.html",
+        "route": "/research/engineering-quality",
+        "origin": "research",
+        "em_dash_count": 1
+      },
+      {
+        "path": "research/equity-insider-activity-lineage.html",
+        "route": "/research/equity-insider-activity-lineage",
+        "origin": "research",
+        "em_dash_count": 2
+      },
+      {
+        "path": "research/equity-low-beta-lineage.html",
+        "route": "/research/equity-low-beta-lineage",
+        "origin": "research",
+        "em_dash_count": 2
+      },
+      {
+        "path": "research/equity-narrative-change-lineage.html",
+        "route": "/research/equity-narrative-change-lineage",
+        "origin": "research",
+        "em_dash_count": 1
+      },
+      {
+        "path": "research/equity-quality-lineage.html",
+        "route": "/research/equity-quality-lineage",
+        "origin": "research",
+        "em_dash_count": 1
+      },
+      {
+        "path": "research/equity-value-investment-lineage.html",
+        "route": "/research/equity-value-investment-lineage",
+        "origin": "research",
+        "em_dash_count": 1
+      },
+      {
+        "path": "research/execution-realism.html",
+        "route": "/research/execution-realism",
+        "origin": "research",
+        "em_dash_count": 1
+      },
+      {
+        "path": "research/financing-replay.html",
+        "route": "/research/financing-replay",
+        "origin": "research",
+        "em_dash_count": 2
+      },
+      {
+        "path": "research/forward-sharpe-evidence-standard.html",
+        "route": "/research/forward-sharpe-evidence-standard",
+        "origin": "research",
+        "em_dash_count": 1
+      },
+      {
+        "path": "research/futures-execution-foundation.html",
+        "route": "/research/futures-execution-foundation",
+        "origin": "research",
+        "em_dash_count": 1
+      },
+      {
+        "path": "research/identity-redesign-notes.html",
+        "route": "/research/identity-redesign-notes",
+        "origin": "research",
+        "em_dash_count": 13
+      },
+      {
+        "path": "research/inflation-breakeven-relative-value-feasibility.html",
+        "route": "/research/inflation-breakeven-relative-value-feasibility",
+        "origin": "research",
+        "em_dash_count": 7
+      },
+      {
+        "path": "research/kill-alphamax-betaneutral.html",
+        "route": "/research/kill-alphamax-betaneutral",
+        "origin": "research",
+        "em_dash_count": 6
+      },
+      {
+        "path": "research/kill-alphamax-short-margin-floor.html",
+        "route": "/research/kill-alphamax-short-margin-floor",
+        "origin": "research",
+        "em_dash_count": 3
+      },
+      {
+        "path": "research/kill-alphamax-shorttail.html",
+        "route": "/research/kill-alphamax-shorttail",
+        "origin": "research",
+        "em_dash_count": 3
+      },
+      {
+        "path": "research/kill-alphamax-volscale.html",
+        "route": "/research/kill-alphamax-volscale",
+        "origin": "research",
+        "em_dash_count": 2
+      },
+      {
+        "path": "research/kill-alphamax-weightgrid.html",
+        "route": "/research/kill-alphamax-weightgrid",
+        "origin": "research",
+        "em_dash_count": 2
+      },
+      {
+        "path": "research/kill-cef-discount.html",
+        "route": "/research/kill-cef-discount",
+        "origin": "research",
+        "em_dash_count": 2
+      },
+      {
+        "path": "research/kill-commodity-inventory-seasonal.html",
+        "route": "/research/kill-commodity-inventory-seasonal",
+        "origin": "research",
+        "em_dash_count": 3
+      },
+      {
+        "path": "research/kill-cot-positioning.html",
+        "route": "/research/kill-cot-positioning",
+        "origin": "research",
+        "em_dash_count": 2
+      },
+      {
+        "path": "research/kill-crypto-dated-basis.html",
+        "route": "/research/kill-crypto-dated-basis",
+        "origin": "research",
+        "em_dash_count": 6
+      },
+      {
+        "path": "research/kill-crypto-lowvol-720.html",
+        "route": "/research/kill-crypto-lowvol-720",
+        "origin": "research",
+        "em_dash_count": 7
+      },
+      {
+        "path": "research/kill-crypto-short-tsmom.html",
+        "route": "/research/kill-crypto-short-tsmom",
+        "origin": "research",
+        "em_dash_count": 1
+      },
+      {
+        "path": "research/kill-crypto-vrp.html",
+        "route": "/research/kill-crypto-vrp",
+        "origin": "research",
+        "em_dash_count": 6
+      },
+      {
+        "path": "research/kill-deephist-quality-top800.html",
+        "route": "/research/kill-deephist-quality-top800",
+        "origin": "research",
+        "em_dash_count": 1
+      },
+      {
+        "path": "research/kill-econtrend.html",
+        "route": "/research/kill-econtrend",
+        "origin": "research",
+        "em_dash_count": 6
+      },
+      {
+        "path": "research/kill-eq-52whigh.html",
+        "route": "/research/kill-eq-52whigh",
+        "origin": "research",
+        "em_dash_count": 3
+      },
+      {
+        "path": "research/kill-eq-mom-margin.html",
+        "route": "/research/kill-eq-mom-margin",
+        "origin": "research",
+        "em_dash_count": 2
+      },
+      {
+        "path": "research/kill-eq-net-issuance.html",
+        "route": "/research/kill-eq-net-issuance",
+        "origin": "research",
+        "em_dash_count": 2
+      },
+      {
+        "path": "research/kill-eq-quality-gp.html",
+        "route": "/research/kill-eq-quality-gp",
+        "origin": "research",
+        "em_dash_count": 2
+      },
+      {
+        "path": "research/kill-eq-value-btp.html",
+        "route": "/research/kill-eq-value-btp",
+        "origin": "research",
+        "em_dash_count": 2
+      },
+      {
+        "path": "research/kill-equity-pead.html",
+        "route": "/research/kill-equity-pead",
+        "origin": "research",
+        "em_dash_count": 2
+      },
+      {
+        "path": "research/kill-equity-short-interest-dtc.html",
+        "route": "/research/kill-equity-short-interest-dtc",
+        "origin": "research",
+        "em_dash_count": 5
+      },
+      {
+        "path": "research/kill-equity-vrp.html",
+        "route": "/research/kill-equity-vrp",
+        "origin": "research",
+        "em_dash_count": 7
+      },
+      {
+        "path": "research/kill-funding-termstructure.html",
+        "route": "/research/kill-funding-termstructure",
+        "origin": "research",
+        "em_dash_count": 6
+      },
+      {
+        "path": "research/kill-futcarry-xs.html",
+        "route": "/research/kill-futcarry-xs",
+        "origin": "research",
+        "em_dash_count": 8
+      },
+      {
+        "path": "research/kill-fx-carry-ratediff.html",
+        "route": "/research/kill-fx-carry-ratediff",
+        "origin": "research",
+        "em_dash_count": 1
+      },
+      {
+        "path": "research/kill-fx-carry-trend-overlay.html",
+        "route": "/research/kill-fx-carry-trend-overlay",
+        "origin": "research",
+        "em_dash_count": 7
+      },
+      {
+        "path": "research/kill-fx-trend-cs.html",
+        "route": "/research/kill-fx-trend-cs",
+        "origin": "research",
+        "em_dash_count": 6
+      },
+      {
+        "path": "research/kill-insider-purchase-clusters.html",
+        "route": "/research/kill-insider-purchase-clusters",
+        "origin": "research",
+        "em_dash_count": 2
+      },
+      {
+        "path": "research/kill-intraday-mom.html",
+        "route": "/research/kill-intraday-mom",
+        "origin": "research",
+        "em_dash_count": 3
+      },
+      {
+        "path": "research/kill-letf-eod-flow.html",
+        "route": "/research/kill-letf-eod-flow",
+        "origin": "research",
+        "em_dash_count": 6
+      },
+      {
+        "path": "research/kill-mechflow-tom.html",
+        "route": "/research/kill-mechflow-tom",
+        "origin": "research",
+        "em_dash_count": 14
+      },
+      {
+        "path": "research/kill-mf-realfutures-breadth.html",
+        "route": "/research/kill-mf-realfutures-breadth",
+        "origin": "research",
+        "em_dash_count": 2
+      },
+      {
+        "path": "research/kill-mf-realfutures-fasttrend.html",
+        "route": "/research/kill-mf-realfutures-fasttrend",
+        "origin": "research",
+        "em_dash_count": 1
+      },
+      {
+        "path": "research/kill-multivenue-funding.html",
+        "route": "/research/kill-multivenue-funding",
+        "origin": "research",
+        "em_dash_count": 3
+      },
+      {
+        "path": "research/kill-onchain-carry-filter.html",
+        "route": "/research/kill-onchain-carry-filter",
+        "origin": "research",
+        "em_dash_count": 1
+      },
+      {
+        "path": "research/kill-pm-odds-signal.html",
+        "route": "/research/kill-pm-odds-signal",
+        "origin": "research",
+        "em_dash_count": 8
+      },
+      {
+        "path": "research/kill-prereg-bab.html",
+        "route": "/research/kill-prereg-bab",
+        "origin": "research",
+        "em_dash_count": 1
+      },
+      {
+        "path": "research/kill-prereg-momentum.html",
+        "route": "/research/kill-prereg-momentum",
+        "origin": "research",
+        "em_dash_count": 2
+      },
+      {
+        "path": "research/kill-prereg-quality.html",
+        "route": "/research/kill-prereg-quality",
+        "origin": "research",
+        "em_dash_count": 1
+      },
+      {
+        "path": "research/kill-prereg-value.html",
+        "route": "/research/kill-prereg-value",
+        "origin": "research",
+        "em_dash_count": 1
+      },
+      {
+        "path": "research/kill-rates-curve-carry.html",
+        "route": "/research/kill-rates-curve-carry",
+        "origin": "research",
+        "em_dash_count": 8
+      },
+      {
+        "path": "research/kill-residual-momentum.html",
+        "route": "/research/kill-residual-momentum",
+        "origin": "research",
+        "em_dash_count": 7
+      },
+      {
+        "path": "research/kill-tail-overlay.html",
+        "route": "/research/kill-tail-overlay",
+        "origin": "research",
+        "em_dash_count": 7
+      },
+      {
+        "path": "research/kill-xasset-carry.html",
+        "route": "/research/kill-xasset-carry",
+        "origin": "research",
+        "em_dash_count": 3
+      },
+      {
+        "path": "research/kill-xasset-value.html",
+        "route": "/research/kill-xasset-value",
+        "origin": "research",
+        "em_dash_count": 6
+      },
+      {
+        "path": "research/kill-xs-seasonality.html",
+        "route": "/research/kill-xs-seasonality",
+        "origin": "research",
+        "em_dash_count": 7
+      },
+      {
+        "path": "research/legacy-dsr-restatement.html",
+        "route": "/research/legacy-dsr-restatement",
+        "origin": "research",
+        "em_dash_count": 8
+      },
+      {
+        "path": "research/literature-bond-etf-nav-dislocation.html",
+        "route": "/research/literature-bond-etf-nav-dislocation",
+        "origin": "research",
+        "em_dash_count": 7
+      },
+      {
+        "path": "research/literature-customer-supplier-propagation.html",
+        "route": "/research/literature-customer-supplier-propagation",
+        "origin": "research",
+        "em_dash_count": 6
+      },
+      {
+        "path": "research/literature-electricity-load-weather.html",
+        "route": "/research/literature-electricity-load-weather",
+        "origin": "research",
+        "em_dash_count": 3
+      },
+      {
+        "path": "research/literature-frontier-2026-08-16.html",
+        "route": "/research/literature-frontier-2026-08-16",
+        "origin": "research",
+        "em_dash_count": 7
+      },
+      {
+        "path": "research/literature-inflation-breakeven-relative-value.html",
+        "route": "/research/literature-inflation-breakeven-relative-value",
+        "origin": "research",
+        "em_dash_count": 9
+      },
+      {
+        "path": "research/literature-natural-gas-storage-weather.html",
+        "route": "/research/literature-natural-gas-storage-weather",
+        "origin": "research",
+        "em_dash_count": 9
+      },
+      {
+        "path": "research/literature-options-dispersion.html",
+        "route": "/research/literature-options-dispersion",
+        "origin": "research",
+        "em_dash_count": 3
+      },
+      {
+        "path": "research/literature-repurchase-issuance-flow.html",
+        "route": "/research/literature-repurchase-issuance-flow",
+        "origin": "research",
+        "em_dash_count": 3
+      },
+      {
+        "path": "research/literature-spin-off-dislocation.html",
+        "route": "/research/literature-spin-off-dislocation",
+        "origin": "research",
+        "em_dash_count": 10
+      },
+      {
+        "path": "research/literature-stablecoin-dislocation.html",
+        "route": "/research/literature-stablecoin-dislocation",
+        "origin": "research",
+        "em_dash_count": 2
+      },
+      {
+        "path": "research/macro-economic-trend-lineage.html",
+        "route": "/research/macro-economic-trend-lineage",
+        "origin": "research",
+        "em_dash_count": 3
+      },
+      {
+        "path": "research/market-status-replay.html",
+        "route": "/research/market-status-replay",
+        "origin": "research",
+        "em_dash_count": 1
+      },
+      {
+        "path": "research/merger-announcement-identity-v2.html",
+        "route": "/research/merger-announcement-identity-v2",
+        "origin": "research",
+        "em_dash_count": 3
+      },
+      {
+        "path": "research/natural-gas-storage-weather-feasibility.html",
+        "route": "/research/natural-gas-storage-weather-feasibility",
+        "origin": "research",
+        "em_dash_count": 6
+      },
+      {
+        "path": "research/options-dispersion-feasibility.html",
+        "route": "/research/options-dispersion-feasibility",
+        "origin": "research",
+        "em_dash_count": 1
+      },
+      {
+        "path": "research/options-execution-foundation.html",
+        "route": "/research/options-execution-foundation",
+        "origin": "research",
+        "em_dash_count": 2
+      },
+      {
+        "path": "research/pre-fomc-announcement-drift-feasibility.html",
+        "route": "/research/pre-fomc-announcement-drift-feasibility",
+        "origin": "research",
+        "em_dash_count": 8
+      },
+      {
+        "path": "research/prereg-earnings-narrative-change.html",
+        "route": "/research/prereg-earnings-narrative-change",
+        "origin": "research",
+        "em_dash_count": 7
+      },
+      {
+        "path": "research/prereg-pre-fomc-announcement-drift.html",
+        "route": "/research/prereg-pre-fomc-announcement-drift",
+        "origin": "research",
+        "em_dash_count": 10
+      },
+      {
+        "path": "research/repurchase-issuance-flow-feasibility.html",
+        "route": "/research/repurchase-issuance-flow-feasibility",
+        "origin": "research",
+        "em_dash_count": 2
+      },
+      {
+        "path": "research/sharadar-hdb-zero-dividend-quarantine.html",
+        "route": "/research/sharadar-hdb-zero-dividend-quarantine",
+        "origin": "research",
+        "em_dash_count": 1
+      },
+      {
+        "path": "research/spin-off-dislocation-lineage.html",
+        "route": "/research/spin-off-dislocation-lineage",
+        "origin": "research",
+        "em_dash_count": 7
+      },
+      {
+        "path": "research/spin-off-document-schema.html",
+        "route": "/research/spin-off-document-schema",
+        "origin": "research",
+        "em_dash_count": 8
+      },
+      {
+        "path": "research/stablecoin-dislocation-feasibility.html",
+        "route": "/research/stablecoin-dislocation-feasibility",
+        "origin": "research",
+        "em_dash_count": 2
+      },
+      {
+        "path": "research/topics/commodities.html",
+        "route": "/research/topics/commodities",
+        "origin": "research",
+        "em_dash_count": 9
+      },
+      {
+        "path": "research/topics/credit.html",
+        "route": "/research/topics/credit",
+        "origin": "research",
+        "em_dash_count": 6
+      },
+      {
+        "path": "research/topics/crypto.html",
+        "route": "/research/topics/crypto",
+        "origin": "research",
+        "em_dash_count": 12
+      },
+      {
+        "path": "research/topics/engineering-foundations.html",
+        "route": "/research/topics/engineering-foundations",
+        "origin": "research",
+        "em_dash_count": 10
+      },
+      {
+        "path": "research/topics/equities.html",
+        "route": "/research/topics/equities",
+        "origin": "research",
+        "em_dash_count": 16
+      },
+      {
+        "path": "research/topics/event-driven.html",
+        "route": "/research/topics/event-driven",
+        "origin": "research",
+        "em_dash_count": 17
+      },
+      {
+        "path": "research/topics/execution-and-market-structure.html",
+        "route": "/research/topics/execution-and-market-structure",
+        "origin": "research",
+        "em_dash_count": 9
+      },
+      {
+        "path": "research/topics/feasibility-protocols.html",
+        "route": "/research/topics/feasibility-protocols",
+        "origin": "research",
+        "em_dash_count": 34
+      },
+      {
+        "path": "research/topics/killed-candidates.html",
+        "route": "/research/topics/killed-candidates",
+        "origin": "research",
+        "em_dash_count": 21
+      },
+      {
+        "path": "research/topics/literature-reviews.html",
+        "route": "/research/topics/literature-reviews",
+        "origin": "research",
+        "em_dash_count": 15
+      },
+      {
+        "path": "research/topics/macro-surprise.html",
+        "route": "/research/topics/macro-surprise",
+        "origin": "research",
+        "em_dash_count": 10
+      },
+      {
+        "path": "research/topics/options-and-volatility.html",
+        "route": "/research/topics/options-and-volatility",
+        "origin": "research",
+        "em_dash_count": 6
+      },
+      {
+        "path": "research/topics/rates-and-treasuries.html",
+        "route": "/research/topics/rates-and-treasuries",
+        "origin": "research",
+        "em_dash_count": 20
+      },
+      {
+        "path": "research/treasury-auction-concession-feasibility.html",
+        "route": "/research/treasury-auction-concession-feasibility",
+        "origin": "research",
+        "em_dash_count": 8
+      },
+      {
+        "path": "research/treasury-auction-identity-timing.html",
+        "route": "/research/treasury-auction-identity-timing",
+        "origin": "research",
+        "em_dash_count": 9
+      },
+      {
+        "path": "research/treasury-auction-state-machine.html",
+        "route": "/research/treasury-auction-state-machine",
+        "origin": "research",
+        "em_dash_count": 2
+      },
+      {
+        "path": "systems.html",
+        "route": "/systems",
+        "origin": "product",
+        "em_dash_count": 2
+      },
+      {
+        "path": "trials/00d3e37fed229640.html",
+        "route": "/trials/00d3e37fed229640",
+        "origin": "trials",
+        "em_dash_count": 2
+      },
+      {
+        "path": "trials/084a8fc5292327ee.html",
+        "route": "/trials/084a8fc5292327ee",
+        "origin": "trials",
+        "em_dash_count": 1
+      },
+      {
+        "path": "trials/0945730a532778e7.html",
+        "route": "/trials/0945730a532778e7",
+        "origin": "trials",
+        "em_dash_count": 2
+      },
+      {
+        "path": "trials/0b91174c6e27a1f3.html",
+        "route": "/trials/0b91174c6e27a1f3",
+        "origin": "trials",
+        "em_dash_count": 1
+      },
+      {
+        "path": "trials/0c17b616473d3e37.html",
+        "route": "/trials/0c17b616473d3e37",
+        "origin": "trials",
+        "em_dash_count": 2
+      },
+      {
+        "path": "trials/0c5ddfb3d5b52ca5.html",
+        "route": "/trials/0c5ddfb3d5b52ca5",
+        "origin": "trials",
+        "em_dash_count": 1
+      },
+      {
+        "path": "trials/103f792cb5228b61.html",
+        "route": "/trials/103f792cb5228b61",
+        "origin": "trials",
+        "em_dash_count": 2
+      },
+      {
+        "path": "trials/137d19a1a25c52aa.html",
+        "route": "/trials/137d19a1a25c52aa",
+        "origin": "trials",
+        "em_dash_count": 2
+      },
+      {
+        "path": "trials/1521380bbfea6b18.html",
+        "route": "/trials/1521380bbfea6b18",
+        "origin": "trials",
+        "em_dash_count": 2
+      },
+      {
+        "path": "trials/1540bf3288b2e8b5.html",
+        "route": "/trials/1540bf3288b2e8b5",
+        "origin": "trials",
+        "em_dash_count": 2
+      },
+      {
+        "path": "trials/1700ddbeaf47d3eb.html",
+        "route": "/trials/1700ddbeaf47d3eb",
+        "origin": "trials",
+        "em_dash_count": 2
+      },
+      {
+        "path": "trials/19ff9612e795804d.html",
+        "route": "/trials/19ff9612e795804d",
+        "origin": "trials",
+        "em_dash_count": 2
+      },
+      {
+        "path": "trials/1dc6a28896667714.html",
+        "route": "/trials/1dc6a28896667714",
+        "origin": "trials",
+        "em_dash_count": 2
+      },
+      {
+        "path": "trials/23b9dde39a0aeff0.html",
+        "route": "/trials/23b9dde39a0aeff0",
+        "origin": "trials",
+        "em_dash_count": 2
+      },
+      {
+        "path": "trials/2cfbbeea11dd0e2e.html",
+        "route": "/trials/2cfbbeea11dd0e2e",
+        "origin": "trials",
+        "em_dash_count": 2
+      },
+      {
+        "path": "trials/305d63492217a7a6.html",
+        "route": "/trials/305d63492217a7a6",
+        "origin": "trials",
+        "em_dash_count": 2
+      },
+      {
+        "path": "trials/3096d43484ea2745.html",
+        "route": "/trials/3096d43484ea2745",
+        "origin": "trials",
+        "em_dash_count": 2
+      },
+      {
+        "path": "trials/30e70cb595a6eb4c.html",
+        "route": "/trials/30e70cb595a6eb4c",
+        "origin": "trials",
+        "em_dash_count": 2
+      },
+      {
+        "path": "trials/33e1fc428df06e49.html",
+        "route": "/trials/33e1fc428df06e49",
+        "origin": "trials",
+        "em_dash_count": 2
+      },
+      {
+        "path": "trials/3540d25ea2a1e4a2.html",
+        "route": "/trials/3540d25ea2a1e4a2",
+        "origin": "trials",
+        "em_dash_count": 2
+      },
+      {
+        "path": "trials/36c70319603d0212.html",
+        "route": "/trials/36c70319603d0212",
+        "origin": "trials",
+        "em_dash_count": 3
+      },
+      {
+        "path": "trials/3ba4f6e313627404.html",
+        "route": "/trials/3ba4f6e313627404",
+        "origin": "trials",
+        "em_dash_count": 3
+      },
+      {
+        "path": "trials/3cbf5402fe6a1b30.html",
+        "route": "/trials/3cbf5402fe6a1b30",
+        "origin": "trials",
+        "em_dash_count": 1
+      },
+      {
+        "path": "trials/40f9c17d3f0a9755.html",
+        "route": "/trials/40f9c17d3f0a9755",
+        "origin": "trials",
+        "em_dash_count": 2
+      },
+      {
+        "path": "trials/44c2632534e36065.html",
+        "route": "/trials/44c2632534e36065",
+        "origin": "trials",
+        "em_dash_count": 2
+      },
+      {
+        "path": "trials/4d4214cc35cd25d6.html",
+        "route": "/trials/4d4214cc35cd25d6",
+        "origin": "trials",
+        "em_dash_count": 2
+      },
+      {
+        "path": "trials/4efe32b9ba20a8c8.html",
+        "route": "/trials/4efe32b9ba20a8c8",
+        "origin": "trials",
+        "em_dash_count": 2
+      },
+      {
+        "path": "trials/53d8889210357fb5.html",
+        "route": "/trials/53d8889210357fb5",
+        "origin": "trials",
+        "em_dash_count": 2
+      },
+      {
+        "path": "trials/5492af5ff2c88119.html",
+        "route": "/trials/5492af5ff2c88119",
+        "origin": "trials",
+        "em_dash_count": 1
+      },
+      {
+        "path": "trials/58f1a683499f15df.html",
+        "route": "/trials/58f1a683499f15df",
+        "origin": "trials",
+        "em_dash_count": 3
+      },
+      {
+        "path": "trials/5c3d3ca1fa27d501.html",
+        "route": "/trials/5c3d3ca1fa27d501",
+        "origin": "trials",
+        "em_dash_count": 2
+      },
+      {
+        "path": "trials/5c931f56f18b5b58.html",
+        "route": "/trials/5c931f56f18b5b58",
+        "origin": "trials",
+        "em_dash_count": 2
+      },
+      {
+        "path": "trials/5db960809ac11750.html",
+        "route": "/trials/5db960809ac11750",
+        "origin": "trials",
+        "em_dash_count": 3
+      },
+      {
+        "path": "trials/5dd5372deac0882f.html",
+        "route": "/trials/5dd5372deac0882f",
+        "origin": "trials",
+        "em_dash_count": 2
+      },
+      {
+        "path": "trials/65bb3bc6c52cc97e.html",
+        "route": "/trials/65bb3bc6c52cc97e",
+        "origin": "trials",
+        "em_dash_count": 2
+      },
+      {
+        "path": "trials/65ed32d1a057d9e5.html",
+        "route": "/trials/65ed32d1a057d9e5",
+        "origin": "trials",
+        "em_dash_count": 2
+      },
+      {
+        "path": "trials/69bb7543e8ff821a.html",
+        "route": "/trials/69bb7543e8ff821a",
+        "origin": "trials",
+        "em_dash_count": 2
+      },
+      {
+        "path": "trials/6afd0e31e2f4effc.html",
+        "route": "/trials/6afd0e31e2f4effc",
+        "origin": "trials",
+        "em_dash_count": 2
+      },
+      {
+        "path": "trials/6b30b08235223e13.html",
+        "route": "/trials/6b30b08235223e13",
+        "origin": "trials",
+        "em_dash_count": 2
+      },
+      {
+        "path": "trials/6dd9335545a59286.html",
+        "route": "/trials/6dd9335545a59286",
+        "origin": "trials",
+        "em_dash_count": 1
+      },
+      {
+        "path": "trials/7843716d6bab8d5b.html",
+        "route": "/trials/7843716d6bab8d5b",
+        "origin": "trials",
+        "em_dash_count": 1
+      },
+      {
+        "path": "trials/7e29a8e5f5324b37.html",
+        "route": "/trials/7e29a8e5f5324b37",
+        "origin": "trials",
+        "em_dash_count": 2
+      },
+      {
+        "path": "trials/8545249f8afede69.html",
+        "route": "/trials/8545249f8afede69",
+        "origin": "trials",
+        "em_dash_count": 2
+      },
+      {
+        "path": "trials/884c91eb545d3e5a.html",
+        "route": "/trials/884c91eb545d3e5a",
+        "origin": "trials",
+        "em_dash_count": 2
+      },
+      {
+        "path": "trials/8e0d269423afaeb7.html",
+        "route": "/trials/8e0d269423afaeb7",
+        "origin": "trials",
+        "em_dash_count": 2
+      },
+      {
+        "path": "trials/944daf4d5888647d.html",
+        "route": "/trials/944daf4d5888647d",
+        "origin": "trials",
+        "em_dash_count": 2
+      },
+      {
+        "path": "trials/955d1fe916794c7f.html",
+        "route": "/trials/955d1fe916794c7f",
+        "origin": "trials",
+        "em_dash_count": 2
+      },
+      {
+        "path": "trials/992df56a765a57e8.html",
+        "route": "/trials/992df56a765a57e8",
+        "origin": "trials",
+        "em_dash_count": 3
+      },
+      {
+        "path": "trials/9bbf2c2e9e057af0.html",
+        "route": "/trials/9bbf2c2e9e057af0",
+        "origin": "trials",
+        "em_dash_count": 2
+      },
+      {
+        "path": "trials/9de7d18ead3c4555.html",
+        "route": "/trials/9de7d18ead3c4555",
+        "origin": "trials",
+        "em_dash_count": 1
+      },
+      {
+        "path": "trials/a05616592824e821.html",
+        "route": "/trials/a05616592824e821",
+        "origin": "trials",
+        "em_dash_count": 2
+      },
+      {
+        "path": "trials/a19079cb1ed0467d.html",
+        "route": "/trials/a19079cb1ed0467d",
+        "origin": "trials",
+        "em_dash_count": 2
+      },
+      {
+        "path": "trials/a6403336626a7c72.html",
+        "route": "/trials/a6403336626a7c72",
+        "origin": "trials",
+        "em_dash_count": 2
+      },
+      {
+        "path": "trials/a86de2fd09519a75.html",
+        "route": "/trials/a86de2fd09519a75",
+        "origin": "trials",
+        "em_dash_count": 2
+      },
+      {
+        "path": "trials/a99364d06f945a5a.html",
+        "route": "/trials/a99364d06f945a5a",
+        "origin": "trials",
+        "em_dash_count": 2
+      },
+      {
+        "path": "trials/b0265c76f5298f2a.html",
+        "route": "/trials/b0265c76f5298f2a",
+        "origin": "trials",
+        "em_dash_count": 1
+      },
+      {
+        "path": "trials/b48ae427c8593df3.html",
+        "route": "/trials/b48ae427c8593df3",
+        "origin": "trials",
+        "em_dash_count": 2
+      },
+      {
+        "path": "trials/b4c1c92fc4c65cd6.html",
+        "route": "/trials/b4c1c92fc4c65cd6",
+        "origin": "trials",
+        "em_dash_count": 2
+      },
+      {
+        "path": "trials/b5f8db7e90c17056.html",
+        "route": "/trials/b5f8db7e90c17056",
+        "origin": "trials",
+        "em_dash_count": 2
+      },
+      {
+        "path": "trials/bbf3fe53ef50d1b5.html",
+        "route": "/trials/bbf3fe53ef50d1b5",
+        "origin": "trials",
+        "em_dash_count": 2
+      },
+      {
+        "path": "trials/bd061bd6bb11807c.html",
+        "route": "/trials/bd061bd6bb11807c",
+        "origin": "trials",
+        "em_dash_count": 2
+      },
+      {
+        "path": "trials/be9f2444a36d9ab3.html",
+        "route": "/trials/be9f2444a36d9ab3",
+        "origin": "trials",
+        "em_dash_count": 2
+      },
+      {
+        "path": "trials/c8d703989f9e36ca.html",
+        "route": "/trials/c8d703989f9e36ca",
+        "origin": "trials",
+        "em_dash_count": 1
+      },
+      {
+        "path": "trials/ca8bfc47cfa85214.html",
+        "route": "/trials/ca8bfc47cfa85214",
+        "origin": "trials",
+        "em_dash_count": 2
+      },
+      {
+        "path": "trials/cbe407ba3a63cc9e.html",
+        "route": "/trials/cbe407ba3a63cc9e",
+        "origin": "trials",
+        "em_dash_count": 2
+      },
+      {
+        "path": "trials/d4ab93039f48dd53.html",
+        "route": "/trials/d4ab93039f48dd53",
+        "origin": "trials",
+        "em_dash_count": 3
+      },
+      {
+        "path": "trials/d61ff64d9f08713f.html",
+        "route": "/trials/d61ff64d9f08713f",
+        "origin": "trials",
+        "em_dash_count": 1
+      },
+      {
+        "path": "trials/db3ff99463afddc1.html",
+        "route": "/trials/db3ff99463afddc1",
+        "origin": "trials",
+        "em_dash_count": 1
+      },
+      {
+        "path": "trials/dd395fb28e9cb8a8.html",
+        "route": "/trials/dd395fb28e9cb8a8",
+        "origin": "trials",
+        "em_dash_count": 2
+      },
+      {
+        "path": "trials/de4b9e144761d1a6.html",
+        "route": "/trials/de4b9e144761d1a6",
+        "origin": "trials",
+        "em_dash_count": 2
+      },
+      {
+        "path": "trials/df1f57837ebc7200.html",
+        "route": "/trials/df1f57837ebc7200",
+        "origin": "trials",
+        "em_dash_count": 2
+      },
+      {
+        "path": "trials/e51e4462f791aa6e.html",
+        "route": "/trials/e51e4462f791aa6e",
+        "origin": "trials",
+        "em_dash_count": 2
+      },
+      {
+        "path": "trials/e60ed7b6904004af.html",
+        "route": "/trials/e60ed7b6904004af",
+        "origin": "trials",
+        "em_dash_count": 1
+      },
+      {
+        "path": "trials/e61f25cbf5012421.html",
+        "route": "/trials/e61f25cbf5012421",
+        "origin": "trials",
+        "em_dash_count": 2
+      },
+      {
+        "path": "trials/e96bc21d315349d8.html",
+        "route": "/trials/e96bc21d315349d8",
+        "origin": "trials",
+        "em_dash_count": 2
+      },
+      {
+        "path": "trials/eef46f796cdbb646.html",
+        "route": "/trials/eef46f796cdbb646",
+        "origin": "trials",
+        "em_dash_count": 2
+      },
+      {
+        "path": "trials/f0739e4b959c1fcd.html",
+        "route": "/trials/f0739e4b959c1fcd",
+        "origin": "trials",
+        "em_dash_count": 2
+      },
+      {
+        "path": "trials/f093a098d9de5c39.html",
+        "route": "/trials/f093a098d9de5c39",
+        "origin": "trials",
+        "em_dash_count": 2
+      },
+      {
+        "path": "trials/f350a08ec0da47d5.html",
+        "route": "/trials/f350a08ec0da47d5",
+        "origin": "trials",
+        "em_dash_count": 2
+      },
+      {
+        "path": "trials/f4d5aef87af5cc92.html",
+        "route": "/trials/f4d5aef87af5cc92",
+        "origin": "trials",
+        "em_dash_count": 1
+      },
+      {
+        "path": "verify.html",
+        "route": "/verify",
+        "origin": "product",
+        "em_dash_count": 8
+      }
+    ]
+  }
+}

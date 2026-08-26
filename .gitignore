@@ -16,5 +16,9 @@ artifacts/qa/advisor-homepage/lighthouse.json
 artifacts/qa/advisor-homepage/lighthouse-mobile.json
 artifacts/qa/advisor-homepage/lighthouse-accessibility.json
 
+# Deterministic public claim bundle. Built from the tracked registry and current
+# glass-box artifacts during prebuild, then copied into dist by Vite.
+public/contracts/public-claims.json
+
 # Phase snapshots kept locally while the redesign landed. History lives in git now.
 .bak/
