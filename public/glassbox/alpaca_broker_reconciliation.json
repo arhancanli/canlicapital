@@ -2,8 +2,8 @@
   "author": "Arhan Canli",
   "cent_tolerance": 0.01,
   "claim_boundary": "Self-published read-only reconciliation against three dedicated Alpaca paper accounts. It is broker-derived but not an independent third-party attestation, does not imply real capital, and does not establish future performance.",
-  "content_hash": "sha256:7e7d8941b1d904b6c395f21ce252bdc0a77a45af548a79be95693a2059730aa6",
-  "generated_at": "2026-08-26T07:25:32.373843+00:00",
+  "content_hash": "sha256:97fe66b18ec5e2a2a8445ed5ff2191239900ccdd5120e869065d34085d8e1325",
+  "generated_at": "2026-08-26T08:25:35.798859+00:00",
   "method": "GET_ONLY_ACCOUNT_POSITIONS_PORTFOLIO_HISTORY_OPEN_ORDERS",
   "schema": "canli.alphac-alpaca-broker-reconciliation.v1",
   "sleeves": {
@@ -28,24 +28,26 @@
       },
       "comparison_after_refresh": {
         "all_overlapping_marks_match_to_cent": true,
-        "broker_marks": 14,
+        "broker_marks": 15,
         "broker_marks_missing_locally": 0,
-        "local_marks": 15,
+        "local_marks": 16,
         "max_absolute_equity_difference": 0.0,
         "missing_broker_mark_timestamps": [],
-        "overlapping_marks": 14
+        "overlapping_marks": 15
       },
       "comparison_before_refresh": {
         "all_overlapping_marks_match_to_cent": true,
-        "broker_marks": 14,
-        "broker_marks_missing_locally": 0,
+        "broker_marks": 15,
+        "broker_marks_missing_locally": 1,
         "local_marks": 15,
         "max_absolute_equity_difference": 0.0,
-        "missing_broker_mark_timestamps": [],
+        "missing_broker_mark_timestamps": [
+          "2026-08-26T00:00:00+00:00"
+        ],
         "overlapping_marks": 14
       },
-      "current_equity": 988101.4,
-      "current_equity_as_of": "2026-08-26T07:25:32.373000+00:00",
+      "current_equity": 988017.2,
+      "current_equity_as_of": "2026-08-26T08:25:35.798000+00:00",
       "fill_outcome_reconciliation": {
         "consecutive_fill_reconcile_failures": 0,
         "last_error": null,
@@ -72,7 +74,7 @@
           },
           {
             "ticker": "CIEN",
-            "weight_pct": 0.41
+            "weight_pct": 0.42
           },
           {
             "ticker": "TER",
@@ -91,11 +93,11 @@
             "weight_pct": 0.32
           },
           {
-            "ticker": "COHR",
+            "ticker": "GLW",
             "weight_pct": 0.32
           },
           {
-            "ticker": "GLW",
+            "ticker": "COHR",
             "weight_pct": 0.32
           },
           {
@@ -120,7 +122,7 @@
           }
         ],
         "long_count": 84,
-        "net_pct": 3.73,
+        "net_pct": 3.72,
         "short": [
           {
             "ticker": "IT",
@@ -136,7 +138,7 @@
           },
           {
             "ticker": "CSGP",
-            "weight_pct": 0.25
+            "weight_pct": 0.26
           },
           {
             "ticker": "DUOL",
@@ -152,7 +154,7 @@
           },
           {
             "ticker": "HUBS",
-            "weight_pct": 0.22
+            "weight_pct": 0.21
           },
           {
             "ticker": "FISV",
@@ -190,7 +192,7 @@
       "open_position_count": 176,
       "passes": true,
       "portfolio_history_first_mark": "2026-08-06T00:00:00+00:00",
-      "portfolio_history_last_mark": "2026-08-25T00:00:00+00:00",
+      "portfolio_history_last_mark": "2026-08-26T00:00:00+00:00",
       "profile": "equity",
       "sleeve": "alphamax"
     },
@@ -215,24 +217,26 @@
       },
       "comparison_after_refresh": {
         "all_overlapping_marks_match_to_cent": true,
-        "broker_marks": 13,
+        "broker_marks": 14,
         "broker_marks_missing_locally": 0,
-        "local_marks": 14,
+        "local_marks": 15,
         "max_absolute_equity_difference": 0.0,
         "missing_broker_mark_timestamps": [],
-        "overlapping_marks": 13
+        "overlapping_marks": 14
       },
       "comparison_before_refresh": {
         "all_overlapping_marks_match_to_cent": true,
-        "broker_marks": 13,
-        "broker_marks_missing_locally": 0,
+        "broker_marks": 14,
+        "broker_marks_missing_locally": 1,
         "local_marks": 14,
         "max_absolute_equity_difference": 0.0,
-        "missing_broker_mark_timestamps": [],
+        "missing_broker_mark_timestamps": [
+          "2026-08-26T00:00:00+00:00"
+        ],
         "overlapping_marks": 13
       },
-      "current_equity": 1002442.71,
-      "current_equity_as_of": "2026-08-26T07:25:32.373000+00:00",
+      "current_equity": 1002090.44,
+      "current_equity_as_of": "2026-08-26T08:25:35.798000+00:00",
       "fill_outcome_reconciliation": {
         "consecutive_fill_reconcile_failures": 0,
         "last_error": null,
@@ -247,15 +251,15 @@
         "long": [
           {
             "ticker": "IWM",
-            "weight_pct": 49.98
+            "weight_pct": 49.96
           }
         ],
         "long_count": 1,
-        "net_pct": -0.03,
+        "net_pct": -0.06,
         "short": [
           {
             "ticker": "SPY",
-            "weight_pct": 50.01
+            "weight_pct": 50.02
           }
         ],
         "short_count": 1,
@@ -265,7 +269,7 @@
       "open_position_count": 2,
       "passes": true,
       "portfolio_history_first_mark": "2026-08-07T00:00:00+00:00",
-      "portfolio_history_last_mark": "2026-08-25T00:00:00+00:00",
+      "portfolio_history_last_mark": "2026-08-26T00:00:00+00:00",
       "profile": "alphavintage",
       "sleeve": "alphavintage"
     },
@@ -290,24 +294,26 @@
       },
       "comparison_after_refresh": {
         "all_overlapping_marks_match_to_cent": true,
-        "broker_marks": 14,
+        "broker_marks": 15,
         "broker_marks_missing_locally": 0,
-        "local_marks": 15,
+        "local_marks": 16,
         "max_absolute_equity_difference": 0.0,
         "missing_broker_mark_timestamps": [],
-        "overlapping_marks": 14
+        "overlapping_marks": 15
       },
       "comparison_before_refresh": {
         "all_overlapping_marks_match_to_cent": true,
-        "broker_marks": 14,
-        "broker_marks_missing_locally": 0,
+        "broker_marks": 15,
+        "broker_marks_missing_locally": 1,
         "local_marks": 15,
         "max_absolute_equity_difference": 0.0,
-        "missing_broker_mark_timestamps": [],
+        "missing_broker_mark_timestamps": [
+          "2026-08-26T00:00:00+00:00"
+        ],
         "overlapping_marks": 14
       },
-      "current_equity": 997814.48,
-      "current_equity_as_of": "2026-08-26T07:25:32.373000+00:00",
+      "current_equity": 997974.07,
+      "current_equity_as_of": "2026-08-26T08:25:35.798000+00:00",
       "fill_outcome_reconciliation": {
         "consecutive_fill_reconcile_failures": 0,
         "last_error": null,
@@ -350,11 +356,11 @@
           },
           {
             "ticker": "EEM",
-            "weight_pct": 2.58
+            "weight_pct": 2.59
           },
           {
             "ticker": "QQQ",
-            "weight_pct": 2.29
+            "weight_pct": 2.28
           },
           {
             "ticker": "USO",
@@ -362,7 +368,7 @@
           }
         ],
         "long_count": 10,
-        "net_pct": 31.14,
+        "net_pct": 31.15,
         "short": [
           {
             "ticker": "IEF",
@@ -378,7 +384,7 @@
           },
           {
             "ticker": "SLV",
-            "weight_pct": 1.25
+            "weight_pct": 1.24
           },
           {
             "ticker": "UNG",
@@ -392,7 +398,7 @@
       "open_position_count": 15,
       "passes": true,
       "portfolio_history_first_mark": "2026-08-06T00:00:00+00:00",
-      "portfolio_history_last_mark": "2026-08-25T00:00:00+00:00",
+      "portfolio_history_last_mark": "2026-08-26T00:00:00+00:00",
       "profile": "managed_futures",
       "sleeve": "managed_futures"
     }

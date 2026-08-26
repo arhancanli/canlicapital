@@ -2,7 +2,7 @@
   "as_of": "2026-08-26",
   "author": "Arhan Canli",
   "claim_boundary": "Reads the per-sleeve trading databases read-only. Opens no market data, registers no hypothesis identity and changes nothing. Corrects session-date classification only; it changes no mark, equity, return, order, fill or configuration. 0 trials.",
-  "content_hash": "sha256:640351f5ff2291e4f762540ab3a817a0217aa928f97a83c68989d73178e335f5",
+  "content_hash": "sha256:f2660013cdf981a7c1eca5babd1975984d24528b99ae6fb3ea84bd7a21c8856b",
   "correction": {
     "documentation": "docs/design/CORRECTION_ALPACA_SESSION_DATE_CONTINUITY.md",
     "raw_marks_rewritten": false,
@@ -38,14 +38,14 @@
       "trades_24_7": true
     },
     "alphamax": {
-      "calendar_days_marked": 13,
+      "calendar_days_marked": 14,
       "database": "var/trading_equity.sqlite",
       "database_exists": true,
       "days_expected": 14,
-      "days_marked": 13,
+      "days_marked": 14,
       "days_since_go_live": 20,
       "expected_calendar": "XNYS",
-      "gap_rate": 0.07142857142857142,
+      "gap_rate": 0.0,
       "legitimate_absence_days": [
         "2026-08-08",
         "2026-08-09",
@@ -55,23 +55,21 @@
         "2026-08-23"
       ],
       "legitimate_absences": 6,
-      "longest_consecutive_gap": 1,
+      "longest_consecutive_gap": 0,
       "mark_date_convention": "ALPACA_1D_CLOSE_D_STAMPED_D_PLUS_1_00_UTC",
-      "real_gap_days": [
-        "2026-08-25"
-      ],
-      "real_gaps": 1,
+      "real_gap_days": [],
+      "real_gaps": 0,
       "trades_24_7": false
     },
     "alphavintage": {
-      "calendar_days_marked": 13,
+      "calendar_days_marked": 14,
       "database": "var/trading_alphavintage.sqlite",
       "database_exists": true,
       "days_expected": 14,
-      "days_marked": 13,
+      "days_marked": 14,
       "days_since_go_live": 20,
       "expected_calendar": "XNYS",
-      "gap_rate": 0.07142857142857142,
+      "gap_rate": 0.0,
       "legitimate_absence_days": [
         "2026-08-08",
         "2026-08-09",
@@ -81,23 +79,21 @@
         "2026-08-23"
       ],
       "legitimate_absences": 6,
-      "longest_consecutive_gap": 1,
+      "longest_consecutive_gap": 0,
       "mark_date_convention": "ALPACA_1D_CLOSE_D_STAMPED_D_PLUS_1_00_UTC",
-      "real_gap_days": [
-        "2026-08-25"
-      ],
-      "real_gaps": 1,
+      "real_gap_days": [],
+      "real_gaps": 0,
       "trades_24_7": false
     },
     "managed_futures": {
-      "calendar_days_marked": 13,
+      "calendar_days_marked": 14,
       "database": "var/trading_managed_futures.sqlite",
       "database_exists": true,
       "days_expected": 14,
-      "days_marked": 13,
+      "days_marked": 14,
       "days_since_go_live": 20,
       "expected_calendar": "XNYS",
-      "gap_rate": 0.07142857142857142,
+      "gap_rate": 0.0,
       "legitimate_absence_days": [
         "2026-08-08",
         "2026-08-09",
@@ -107,12 +103,10 @@
         "2026-08-23"
       ],
       "legitimate_absences": 6,
-      "longest_consecutive_gap": 1,
+      "longest_consecutive_gap": 0,
       "mark_date_convention": "ALPACA_1D_CLOSE_D_STAMPED_D_PLUS_1_00_UTC",
-      "real_gap_days": [
-        "2026-08-25"
-      ],
-      "real_gaps": 1,
+      "real_gap_days": [],
+      "real_gaps": 0,
       "trades_24_7": false
     }
   },
