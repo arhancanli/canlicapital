@@ -1,6 +1,6 @@
 {
   "claim_boundary": "This is a dated official-source opportunity audit. It proves no personal eligibility, registration, submission, judging, advancement, award, review, publication, or Stanford admissions outcome. Rules and deadlines must be rechecked immediately before any authorized external action.",
-  "content_hash": "sha256:a06175a08a6117bc8f82c1a24eaa28dd8a9e77fe3cc3d0209ebdde1ae5a858bc",
+  "content_hash": "sha256:a3ff1fff109b7f8d956d70759b291962de84a8fe4fdbf34475a3baf96670cbe0",
   "counts": {
     "awarded": 0,
     "exact_future_deadlines": 1,
@@ -12,6 +12,15 @@
   "decision": "NO_EXTERNAL_ACTION_AUTHORIZED_ELIGIBILITY_FACTS_REMAIN",
   "opportunities": [
     {
+      "affiliated_fair_directory_query": {
+        "checked_on": "2026-08-26",
+        "country": "United Arab Emirates",
+        "directory_cycle": "2025-2026",
+        "fair_type": "ISEF",
+        "interpretation": "This establishes only that the current public directory lists no UAE ISEF fair. It does not establish the 2026-2027 network, which the Society says is populated as fairs complete annual affiliation.",
+        "result": "NO_FAIRS_MATCH_YOUR_SEARCH_CRITERIA",
+        "result_count": 0
+      },
       "ai_boundary": "Generative AI may help develop ideas and may produce initial code or identify statistical tools only under the official logging and citation conditions. It may not initially write the research plan, abstract, paper, or poster; add substantive points or conclusions; or generate citations.",
       "eligibility": {
         "age": "must not have reached 20 on or before May 1 preceding ISEF",
@@ -34,7 +43,7 @@
       "id": "regeneron_isef_2027",
       "kind": "SCIENTIFIC_COMPETITION",
       "name": "Regeneron ISEF 2027 through an affiliated fair",
-      "next_action": "Resolve the affiliated fair and adult sponsor before freezing or beginning the competition-specific experiment.",
+      "next_action": "Recheck the official directory as 2026-2027 affiliations appear, and ask the school or Society for Science which fair, if any, serves the UAE. Resolve that route and an adult sponsor before freezing or beginning the competition-specific experiment.",
       "official_sources": [
         "https://www.societyforscience.org/isef/international-rules/",
         "https://www.societyforscience.org/isef/affiliated-fair-network/",
@@ -43,10 +52,10 @@
         "https://findafair.societyforscience.org/"
       ],
       "priority": 1,
-      "public_status": "Eligibility and the local affiliated fair are unresolved.",
+      "public_status": "The official 2025-2026 directory returns no UAE fair; the 2026-2027 directory and personal eligibility remain unresolved.",
       "registration_authorized": false,
       "source_checked_on": "2026-08-26",
-      "state": "POTENTIAL_ELIGIBILITY_LOCAL_FAIR_UNRESOLVED",
+      "state": "POTENTIAL_ELIGIBILITY_NO_UAE_FAIR_IN_CURRENT_DIRECTORY_2027_PENDING",
       "unknowns": [
         "Arhan's grade and age on the governing dates",
         "the affiliated fair serving Arhan's school or UAE territory",
@@ -55,10 +64,12 @@
       ]
     },
     {
+      "ai_boundary": "Generative AI may be used for ideas and brainstorming, but teams may not submit AI-generated work as their own. Any included AI-generated material must be cited.",
       "eligibility": {
         "advisor": "one teacher or educator at the team's high school",
         "grade": "9-12; no secondary-school diploma before competition begins",
         "registration_actor": "advisor, not student",
+        "team_leader": "at least 16 years old at the start of the competition",
         "team_size": "4-6 students from the same school"
       },
       "entry_claimed": false,
@@ -79,6 +90,7 @@
       "state": "OPEN_BUT_TEAM_AND_ADVISOR_UNRESOLVED",
       "unknowns": [
         "Arhan's grade and school status",
+        "whether Arhan or another eligible teammate can serve as the age-16 team leader",
         "three to five eligible same-school teammates",
         "teacher-advisor assignment",
         "the current cycle's exact registration close and deliverable calendar"
@@ -218,7 +230,7 @@
     }
   ],
   "opportunity_shortlist": [
-    "1. Regeneron ISEF 2027 through an affiliated fair: Eligibility and the local affiliated fair are unresolved.",
+    "1. Regeneron ISEF 2027 through an affiliated fair: The official 2025-2026 directory returns no UAE fair; the 2026-2027 directory and personal eligibility remain unresolved.",
     "2. Wharton Global High School Investment Competition 2026-2027: Registration is open; the team and school advisor are unresolved.",
     "3. Diamond Challenge 2027: The window opens September 16; the team and advisor are unresolved.",
     "4. Emirates Young Scientist Competition, next announced cycle: The next cycle date and Arhan's eligible entry route are unresolved.",
@@ -234,6 +246,6 @@
     "available same-school teammates",
     "available teacher, adult sponsor, or advisor"
   ],
-  "schema": "canli.alphac-external-validation-opportunities.v1",
+  "schema": "canli.alphac-external-validation-opportunities.v2",
   "verified_on": "2026-08-26"
 }
