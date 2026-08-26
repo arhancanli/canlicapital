@@ -1,4 +1,4 @@
-# Natural-gas storage/weather residual — no-return source-feasibility protocol
+# Natural-gas storage/weather residual: no-return source-feasibility protocol
 
 **Short title:** Natural-gas storage and weather: feasibility
 

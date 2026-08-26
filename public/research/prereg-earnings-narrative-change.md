@@ -1,4 +1,4 @@
-# PRE-REGISTRATION — annual risk-factor narrative stability
+# PRE-REGISTRATION: annual risk-factor narrative stability
 
 **Declared 2026-08-15 after the filing-only feasibility pass and before loading any security
 return associated with this signal. One hypothesis identity. No direction, section, horizon, or

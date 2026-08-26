@@ -160,7 +160,7 @@ is shown here with its own claim boundary so the number and its limits arrive to
 <div class="measure__row"><dt>In sample label</dt><dd>SIMULATION_NOT_EVIDENCE</dd></div>
 </dl>
 <p class="measure__prose"><strong>Curve basis.</strong> Normalized composite of constituent paper curves plus the disclosed overlay; not a direct broker account balance.</p>
-<p class="measure__prose"><strong>Honest forward sharpe estimate.</strong> 0.3 to 0.9 (the +10% beta does NOT improve this — it adds bull upside + crash risk, not risk-adjusted quality; real chance of ~0 yr1)</p>
+<p class="measure__prose"><strong>Honest forward sharpe estimate.</strong> 0.3 to 0.9 (the +10% beta does NOT improve this; it adds bull upside + crash risk, not risk-adjusted quality; real chance of ~0 yr1)</p>
 <section class="measure__sub"><h4>Live config</h4>
 <dl class="measure__facts">
 <div class="measure__row"><dt>Fingerprint</dt><dd>sha256:fe82c4eeed742289bfcfee5d39856ee2bb8ca9cfe209bcc7e34abff98553706d</dd></div>
@@ -186,9 +186,9 @@ is shown here with its own claim boundary so the number and its limits arrive to
 <p class="measure__label">Correction</p><p class="measure__deep">4 further fields. <a href="/glassbox/program_status.json">Read them in the artifact</a>.</p>
 <p class="measure__prose"><strong>How a gap is classified.</strong> Crypto marks and expectations use UTC calendar dates. Alpaca 1D midnight-UTC marks map to the preceding XNYS session; equity expectations come from XNYS sessions, so weekends and exchange holidays are legitimate absences.</p>
 <p class="measure__label">Sleeves</p><p class="measure__deep">4 further fields. <a href="/glassbox/program_status.json">Read them in the artifact</a>.</p>
-<p class="measure__prose"><strong>Systemic note.</strong> Dates that are expected and missing on EVERY sleeve&#39;s own calendar are systemic — the tick did not run or did not mark — rather than a fault in any one sleeve.</p>
+<p class="measure__prose"><strong>Systemic note.</strong> Dates that are expected and missing on EVERY sleeve&#39;s own calendar are systemic (the tick did not run or did not mark) rather than a fault in any one sleeve.</p>
 <p class="measure__prose"><strong>Threshold basis.</strong> Declared, not fitted. A threshold derived from today&#39;s gap rate would pass whatever the gap rate happens to be, which is not a threshold.</p>
-<p class="measure__prose"><strong>What this does not measure.</strong> Whether a mark is CORRECT — only whether one exists. A sleeve marking the same equity every day would show a perfect continuity record and a frozen curve. That is the publish gate&#39;s job (check_published_state), not this one&#39;s.</p>
+<p class="measure__prose"><strong>What this does not measure.</strong> Whether a mark is CORRECT; only whether one exists. A sleeve marking the same equity every day would show a perfect continuity record and a frozen curve. That is the publish gate&#39;s job (check_published_state), not this one&#39;s.</p>
 </section>
 <section class="measure__sub"><h4>Evidence maturity</h4>
 <dl class="measure__facts">

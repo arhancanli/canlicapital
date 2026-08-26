@@ -83,8 +83,8 @@
     <div class="paper__body">
       <p class="hub__standfirst">Every claim on this site is meant to be checkable by somebody who
       does not trust us. This page is the instructions. It takes about two minutes for the first
-      level, needs no account and no permission, and it is designed to be able to fail — if a
-      published number had been edited after the fact, the command below would say so.</p>
+      level, needs no account and no permission, and is designed to fail when the evidence changes.
+      If a published number had been edited after the fact, the command below would say so.</p>
 
       <p>There are three levels, each more hands-on than the last, and each independent of taking
       our word for anything. The first needs nothing but Python. The second adds one library and
@@ -93,10 +93,10 @@
       were published.</p>
 
       <section class="verify__level" id="l1">
-        <h2>Level 1 — recompute every hash</h2>
+        <h2>Level 1: recompute every hash</h2>
         <p>Each published artifact carries a SHA-256 over its own canonical bytes. This recomputes
         all 153 of them from files downloaded straight off this site and confirms
-        every one matches. No repository, no install, no data — the Python standard library is
+        every one matches. You need no repository, install or private data. The Python standard library is
         enough.</p>
         <pre class="verify__code" tabindex="0" aria-label="Level 1 content-hash verification command"><code>mkdir canli-verify &amp;&amp; cd canli-verify
 
@@ -202,7 +202,7 @@ python3 reproduce.py --dir .</code></pre>
       </section>
 
       <section class="verify__level" id="l2">
-        <h2>Level 2 — check the signatures and the chain</h2>
+        <h2>Level 2: check the signatures and the chain</h2>
         <p>Two commitments are Ed25519-signed, and the whole track record is written into an
         append-only hash chain: each entry links to the one before it by hash, and every link is
         signed. Re-deriving that chain is the check that matters most, because it is the one that
@@ -221,7 +221,7 @@ python3 verify_transparency.py transparency_log.json</code></pre>
         <p>The chain currently holds 501 entries, from 2026-06-27 to
         2026-08-26, signed under the public key
         <code class="verify__key">0c6606a6b0c5b66fbf3b78521c85e72019484e0177d04a873a651179175ac095</code>. If any earlier entry had
-        been altered, that entry's chain hash — and every signature after it — would fail here.</p>
+        been altered, that entry's chain hash and every later signature would fail here.</p>
         <p><a href="/tools/evidence-chain">Inspect the chain in the browser</a>. The interactive
         microscope verifies every predecessor link and signature, exposes the payload-disclosure
         boundary and lets you mutate a local copy of any entry. The Python command above remains
@@ -229,7 +229,7 @@ python3 verify_transparency.py transparency_log.json</code></pre>
       </section>
 
       <section class="verify__level" id="l3">
-        <h2>Level 3 — re-run the engine</h2>
+        <h2>Level 3: re-run the engine</h2>
         <p>The last level checks that the engine which produced the numbers is deterministic and
         unchanged: a golden-master test replays a scripted fixture and requires the output to be
         byte-for-byte identical. This one needs the repository.</p>
@@ -247,7 +247,7 @@ uv run python scripts/reproduce.py</code></pre>
         <p><strong>A matching hash does not make a number correct.</strong> It proves the file you
         are reading is the file that was published and has not been edited since. If a figure was
         computed wrongly, it will hash perfectly. What defends against that is a different thing
-        entirely — the <a href="/measurements">measurements</a>, each published with its own claim
+        entirely: the <a href="/measurements">measurements</a>, each published with its own claim
         boundary, and the published
         <a href="/research/alphavintage-missing-release-correction">corrections</a> we have had to
         make against our own earlier figures.</p>

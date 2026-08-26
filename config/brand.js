@@ -46,7 +46,7 @@ export const STATS = [
 // /glassbox/data_lake_scale.json with a definition for each. They were hand-typed until
 // 2026-08-22, when measuring them found two that were wrong rather than merely stale: the
 // fundamentals count was OVERSTATED (392K+ against a true 380,878) and "8,436 survivorship-free
-// US stocks" matched neither store — 18,015 instruments have bars and 6,835 have ever been in the
+// US stocks" matched neither store. 18,015 instruments have bars and 6,835 have ever been in the
 // point-in-time universe, and the phrase means the second. The rest were understated behind a "+",
 // which made them true and uninformative: 3.5M+ against 13.7M tells a reader something false about
 // the size of the thing.
@@ -59,7 +59,7 @@ export const FACTS = {
                                 // bars, which is a different question; the phrase means this one.
   equityYears: "30",            // 1997 to 2026 inclusive is thirty year partitions, not 25
   equitySince: "1997",
-  fundamentals: "380K+",        // point-in-time fundamental rows; measured 380,878 — the old
+  fundamentals: "380K+",        // point-in-time fundamental rows; measured 380,878. The old
                                 // "392K+" was OVERSTATED, which is the staleness that matters
   cryptoBars: "13.6M+",         // crypto hourly bars; measured 13,662,316 (do not conflate)
   instruments: "775",           // crypto perps with hourly bars, live and delisted

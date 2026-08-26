@@ -1,4 +1,4 @@
-# Active ownership escalation — Schedule 13D Item 4 source-schema v3
+# Active ownership escalation: Schedule 13D Item 4 source-schema v3
 
 **Short title:** Active ownership Item 4 v3
 **Author:** Arhan Canli

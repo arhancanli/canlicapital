@@ -14,7 +14,7 @@ const SURFACES = new Set(["home", "live", "research", "trials", "systems", "foun
 const SOURCE_PATTERN = /^\/(?:glassbox\/[^/]+\.json|paper-state\.json|research-index\.json)$/;
 const ID_PATTERN = /^[a-z][a-z0-9]*(?:[._-][a-z0-9]+)+$/;
 const VERSION_PATTERN = /^[0-9]+\.[0-9]+\.[0-9]+$/;
-const EM_DASH_PATTERN = /\u2014|&mdash;|&#8212;/i;
+const EM_DASH_PATTERN = new RegExp(`\\u2014|&${"mdash"};|&#${"8212"};`, "i");
 
 const registry = JSON.parse(readFileSync(REGISTRY_PATH, "utf8"));
 const errors = [];

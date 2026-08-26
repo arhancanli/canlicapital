@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Identity redesign: three mis-specified families — Canli Capital</title>
+<title>Identity redesign: three mis-specified families | Canli Capital</title>
 <meta name="description" content="Status: DRAFT. Nothing here is registered. No hypothesis identity, no threshold, no universe is fixed by this document." />
 <meta name="alphac-source-sha256" content="a82d9845875ee8ce6b53e06feae2c534baca58026275f7621b1db8bfaab18c50" />
 
@@ -133,18 +133,18 @@ work, and the temptation in all three cases is identical and must be named: wide
 lower the threshold, until the number clears. That is tuning a measurement to agree with a target,
 and it is the one move that would destroy the only thing this programme has.</p>
 <p><strong>The common error is sharper than &quot;the threshold was too high&quot;, and it is the same error three
-times.</strong> Each protocol specified a <em>language</em> test where the identity needed a <em>structural</em> fact —
+times.</strong> Each protocol specified a <em>language</em> test where the identity needed a <em>structural</em> fact;
 a form type, a timestamp, or a counterparty named on a contract. Narrative prose is the least
 reliable carrier of any of those. An issuer writes the narrative; the structure is imposed on them.</p>
 <p>Each note below therefore names the document that carries the evidence <strong>before</strong> it says anything
 about a threshold, and none of them proposes a threshold at all. That ordering is the point.</p>
 <hr>
-<h2>Note 1 — <code>spin_off_dislocation</code></h2>
+<h2>Note 1: <code>spin_off_dislocation</code></h2>
 <h3>What failed</h3>
 <p>The protocol looked for pro-rata distribution language in the <strong>initial Form 10</strong>. Across 98 frozen,
 hash-verified filings, only 11 contain a pro-rata token in any written form (11.2%) and only 5 have
 one near a distribution reference (5.1%), against a gate of 30%. The single false negative reviewed
-by eye was a preemptive-rights boilerplate use — a correct negative for the intended meaning, not a
+by eye was a preemptive-rights boilerplate use; a correct negative for the intended meaning, not a
 miss.</p>
 <p>The shipped detector <em>overstated</em> the rate it published: its second alternative matched
 <code>distribut…</code> followed by <code>holders of</code> with no pro-rata text required, so a field named
@@ -152,8 +152,8 @@ miss.</p>
 either way and it fails harder than the record showed.</p>
 <h3>Why the document cannot carry it</h3>
 <p>An initial Form 10 is a <strong>registration statement</strong>. It registers a class of securities and describes
-the business being separated. The distribution mechanics — ratio, record date, when-issued
-trading — are not settled when it is filed, which is why the information statement attached to an
+the business being separated. The distribution mechanics (ratio, record date, when-issued
+trading) are not settled when it is filed, which is why the information statement attached to an
 initial Form 10 routinely carries <code>[•]</code> where the ratio will go. The protocol asked a document to
 state a fact that did not exist on the day it was written.</p>
 <h3>The document that does carry it</h3>
@@ -190,10 +190,10 @@ type in it.</strong> The structured route is the filing index, not the corporate
 initial Form 10-12B in the index; announcement = that filing&#39;s acceptance timestamp; the parent&#39;s
 completion 8-K or the price record supplies the distribution date if the identity needs it.</p>
 <p>The whole extraction step leaves the critical path. The redesign&#39;s first question is therefore not
-&quot;can we parse it?&quot; but &quot;<strong>is 24 events a year enough to say anything?</strong>&quot; — and that question must be
+&quot;can we parse it?&quot; but &quot;<strong>is 24 events a year enough to say anything?</strong>&quot;; and that question must be
 answered, in the pre-registration, before the identity is registered.</p>
 <hr>
-<h2>Note 2 — <code>customer_supplier_propagation</code></h2>
+<h2>Note 2: <code>customer_supplier_propagation</code></h2>
 <h3>What failed</h3>
 <p>The gate asked that at least 50% of documents disclosing a customer concentration <strong>name</strong> the
 customer. Measured across 300 documents: 35.3% published, and 37.1% among the 280 that genuinely
@@ -226,8 +226,7 @@ filed by whichever party has the disclosure obligation.</p>
 or lower. Nothing in this note licenses an assumption about it, and a redesign that carried over
 the 50% threshold on the hope that a different surface clears it would repeat the original error
 with a new document.</p>
-<p>The first step of a redesign is therefore a <strong>document-schema audit of exhibit descriptions</strong> —
-the same shape of measurement that produced the 37.1% figure — reporting what fraction of
+<p>The first step of a redesign is therefore a <strong>document-schema audit of exhibit descriptions</strong> (the same shape of measurement that produced the 37.1% figure) reporting what fraction of
 concentration-disclosing issuers file a contract whose description names the counterparty. Only
 after that number exists can a threshold be set, and it must be set <em>before</em> the identity is
 registered rather than chosen to accommodate the result.</p>
@@ -237,7 +236,7 @@ narrative concentration disclosure used only for the materiality test it is actu
 make. The narrative says <em>how much</em>; the contract says <em>who</em>. The original protocol asked one
 document to do both.</p>
 <hr>
-<h2>Note 3 — <code>merger_arbitrage</code></h2>
+<h2>Note 3: <code>merger_arbitrage</code></h2>
 <h3>What failed</h3>
 <p>Nothing, in the extraction sense. The gate required a prior Item 1.01 8-K on at least 80% of deal
 anchors and measured 67.0%. Split by form type:</p>
@@ -272,14 +271,14 @@ checked rather than assumed: it is the bidder&#39;s filing, not the target&#39;s
 <p><strong>It is not permission to narrow the universe to tender offers.</strong> Restricting to the population
 that was observed to pass is selection, and the 0.8665 is now in-sample for that decision and
 cannot serve as its evidence. A tender-offer-scoped identity is a legitimate redesign and it needs
-its own pre-registration, with threshold and universe fixed before anything is measured again — on
+its own pre-registration, with threshold and universe fixed before anything is measured again; on
 a sample disjoint from the one that produced 0.8665, or the same number will be doing double duty
 as both the reason for the choice and the proof that it was right.</p>
 <h3>The specification error underneath</h3>
 <p>The gate tested for the <strong>presence of a particular document</strong>. What the identity needs is a
 <strong>clean announcement timestamp</strong>. Those are not the same requirement, and several documents supply
 the second: the Item 1.01 8-K, the preliminary proxy, the merger agreement exhibit, the tender
-offer filings. Requiring one specific form is a specification error dressed as a data-quality gate —
+offer filings. Requiring one specific form is a specification error dressed as a data-quality gate;
 it fails on deals that are perfectly well documented in a different order.</p>
 <h3>What a corrected identity would look like</h3>
 <p>Two changes, and the second matters more than the first.</p>

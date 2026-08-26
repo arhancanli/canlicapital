@@ -6,15 +6,15 @@
 //
 // WHY. Twenty-one read-only artifacts were being copied to /glassbox/*.json and
 // embedded in research.json, and NOTHING rendered them. Several are the
-// corrections and the nulls — the part of this record that is actually hard to
-// fake and the reason to believe any of the rest — and the only way to reach one
+// corrections and the nulls: the part of this record that is hard to fake and
+// the reason to believe any of the rest. This is the only way to reach one
 // was to guess a JSON URL. Unlinked JSON is invisible to a reader and worth
 // nothing to a crawler.
 //
 // TWO RULES, both learned from this repo's own defects:
 //
 //   1. THE LIST IS DERIVED, NEVER WRITTEN. Pages are generated from what
-//      research.json CONTAINS — any object carrying a canli schema or a claim
+//      research.json CONTAINS: any object carrying a canli schema or a claim
 //      boundary. A hand-maintained list is exactly how this site came to publish
 //      a six-URL sitemap for thirty-four documents: the list stops being updated
 //      long before anyone notices the pages are missing. The next artifact the
@@ -45,9 +45,21 @@ const AUTHOR = "Arhan Canli";
 const PUBLISHER = "Canli Capital";
 const TITLE_SUFFIX = " / Canli Capital";
 const DESCRIPTION_MAX = 165;
+const emDashCharacter = String.fromCharCode(8212);
+const editableDashForms = [emDashCharacter, `&${"mdash"};`, `&#${"8212"};`];
+const normalizeEditableCopy = (value) =>
+  editableDashForms.reduce(
+    (copy, dash) => copy
+      .replace(new RegExp(`(<h[1-6][^>]*>[^\\n]*?)[ \\t]+${dash}[ \\t]+`, "g"), "$1: ")
+      .replace(new RegExp(`[ \\t]+${dash}[ \\t\\r\\n]+([^<>]{1,320}?)[ \\t]+${dash}[ \\t\\r\\n]+`, "gs"), " ($1) ")
+      .replace(new RegExp(`[ \\t]+${dash}(?=\\r?\\n)`, "g"), ";")
+      .replace(new RegExp(`[ \\t]+${dash}[ \\t]+`, "g"), "; ")
+      .replaceAll(dash, ": "),
+    String(value),
+  );
 
 const escapeHtml = (value) =>
-  String(value)
+  normalizeEditableCopy(value)
     .replaceAll("&", "&amp;")
     .replaceAll("<", "&lt;")
     .replaceAll(">", "&gt;")
@@ -120,7 +132,7 @@ const PROSE_MIN = 80;
 const isScalar = (v) => v === null || ["string", "number", "boolean"].includes(typeof v);
 
 function formatScalar(value) {
-  if (value === null) return "&mdash;";
+  if (value === null) return "Not reported";
   if (typeof value === "boolean") return value ? "yes" : "no";
   if (typeof value === "number") {
     if (Number.isInteger(value)) return escapeHtml(String(value));
@@ -147,7 +159,7 @@ function renderTable(key, rows) {
     .map(
       (row) =>
         `<tr>${columns
-          .map((c) => `<td>${isScalar(row[c]) ? formatScalar(row[c]) : "&mdash;"}</td>`)
+          .map((c) => `<td>${isScalar(row[c]) ? formatScalar(row[c]) : "Not reported"}</td>`)
           .join("")}</tr>`,
     )
     .join("\n");
@@ -207,8 +219,8 @@ function renderBody(data, depth, rawUrl) {
   // The claim boundary is rendered once, above, as the first thing a reader sees. Repeating it
   // in the field list would bury it among the numbers it is supposed to qualify.
   const entries = Object.entries(data).filter(([key]) => key !== "claim_boundary");
-  // Short scalars gather into one definition list; everything else — long prose, objects,
-  // arrays — renders in place, in the artifact's own order.
+  // Short scalars gather into one definition list. Long prose, objects and arrays render in place,
+  // in the artifact's own order.
   const isShortScalar = (v) => isScalar(v) && !(typeof v === "string" && v.length >= PROSE_MIN);
   const scalars = entries.filter(([, v]) => isShortScalar(v));
   const rest = entries.filter(([, v]) => !isShortScalar(v));
@@ -238,7 +250,7 @@ function shell({
   metaAuthor = AUTHOR,
   byline = `By <span rel="author">${AUTHOR}</span>, ${PUBLISHER}`,
 }) {
-  return `<!doctype html>
+  return normalizeEditableCopy(`<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8" />
@@ -287,7 +299,7 @@ ${main}
 ${renderProductShellFooter()}
 </body>
 </html>
-`;
+`);
 }
 
 // ---------------------------------------------------------------------------
@@ -325,7 +337,7 @@ function rawArtifactUrl(path, research) {
     }
   }
   throw new Error(
-    `no published artifact found for bundle key "${path}" — tried ${candidates.join(", ")}. ` +
+    `No published artifact found for bundle key "${path}". Tried ${candidates.join(", ")}. ` +
       `Either the exporter publishes it under a name the key does not predict, or it is in the ` +
       `bundle and not on disk. A page that tells a reader to check a file must link one that is ` +
       `there.`,
@@ -335,13 +347,13 @@ function rawArtifactUrl(path, research) {
 
 function main() {
   if (!existsSync(RESEARCH_JSON)) {
-    console.error(`missing ${RESEARCH_JSON} — the exporter has not run`);
+    console.error(`Missing ${RESEARCH_JSON}. The exporter has not run.`);
     process.exit(1);
   }
   const research = JSON.parse(readFileSync(RESEARCH_JSON, "utf8"));
   const artifacts = discover(research);
   if (artifacts.length === 0) {
-    console.error("discovered ZERO artifacts — the rule matched nothing and would build an empty index");
+    console.error("Discovered ZERO artifacts. The rule matched nothing and would build an empty index.");
     process.exit(1);
   }
 
@@ -350,8 +362,8 @@ function main() {
 
   // TITLES THAT FIT, BY RULE. A nested artifact humanises to "Parent / child", which for the
   // repurchase feasibility audits ran to 75-79 characters and failed the on-page gate. Where the
-  // full path is too long, the leaf alone is used — unless another artifact's leaf humanises the
-  // same way, in which case the full path is kept and the length is the lesser problem. Computed
+  // full path is too long, the leaf alone is used. If another artifact's leaf has the same name,
+  // the full path is kept and the length is the lesser problem. Computed
   // over the whole set so uniqueness is a property of the run, not an assumption.
   const TITLE_BUDGET = 49; // 65 minus " / Canli Capital"
   const leafCounts = new Map();
@@ -474,7 +486,7 @@ cannot appear here at all.</p>
       h1: "Every measurement, in full",
       lead: `<p class="measure__lead">This engine writes ${artifacts.length} read-only artifacts and
 publishes all of them. Several are corrections against our own earlier numbers and several are
-nulls — results that closed a line of enquiry rather than opening one. Those are the entries worth
+nulls: results that closed a line of enquiry rather than opening one. Those are the entries worth
 reading first, because a record that only contains its wins is not a record.</p>
 <p class="measure__lead">Each page below is generated from the artifact itself. No figure on any of
 them is typed by hand, so a number that moves in the engine moves here, and a number that exists

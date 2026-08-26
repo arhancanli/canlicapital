@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Corporate-action basis reconstruction — Canli Capital</title>
+<title>Corporate-action basis reconstruction | Canli Capital</title>
 <meta name="description" content="An immutable operating-margin replay exposed a corporate-action data defect: dividend values from the frozen Sharadar ACTIONS archive were being treated as…" />
 <meta name="alphac-source-sha256" content="a7104324d52d2cdafa5409899865f606056216c5223d09c8f02f42cbde6768a6" />
 
@@ -112,7 +112,7 @@ those 422 rows. Raw <code>adrratiosplit</code> rows were treated as metadata, no
 mutation.</p>
 <p>Apple provides the ordinary-event anchor. The frozen source contains a dividend value of <code>0.205</code>
 on 2020-05-08 and a later four-for-one split. Their product, <code>0.82</code>, exactly equals Apple&#39;s
-issuer-declared cash dividend. This supports—but does not elevate beyond inference—the following
+issuer-declared cash dividend. This supports: but does not elevate beyond inference: the following
 normalization:</p>
 <p><code>raw cash amount = source dividend value × product of later same-ticker market split ratios</code></p>
 <p>The sole unresolved impossible row, VATE on 2020-05-14, was quarantined exactly after issuer and
@@ -166,7 +166,7 @@ about an unseen counterfactual path. The exposure receipt has content hash
 <code>sha256:c9d379d6a7bd9a7991f561e84162ba1f8c78715b32d540b7b56b6d179eaf6dfd</code>.</p>
 <p>Issuer filings independently confirm ADTX&#39;s one-for-50 reverse split and SPCE&#39;s one-for-20 reverse
 split on the exact stored dates. The corrected reproduction therefore accepted only two exact
-<code>(instrument, ex-date, ratio)</code> tuples—ADTX at <code>0.02</code> and SPCE at <code>0.05</code>—as authorization to bypass
+<code>(instrument, ex-date, ratio)</code> tuples: ADTX at <code>0.02</code> and SPCE at <code>0.05</code>: as authorization to bypass
 the price-gap heuristic. A wrong instrument, date, or ratio still failed closed. The exact-event
 verification receipt used by that reproduction has content hash
 <code>sha256:fa8595944365c27e6a8a49a490ccdafd7f37db31808e569da527c8926fb1b550</code>.</p>

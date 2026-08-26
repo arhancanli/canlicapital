@@ -1,4 +1,4 @@
-# Treasury auction concession — no-return feasibility protocol
+# Treasury auction concession: no-return feasibility protocol
 
 ## Scope
 

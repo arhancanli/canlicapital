@@ -88,4 +88,4 @@ if (failures.length) {
   process.exit(1);
 }
 
-console.log("writing ratchet passed; final release target remains zero in every editable scope");
+console.log("writing ratchet passed; every editable scope is locked at zero");

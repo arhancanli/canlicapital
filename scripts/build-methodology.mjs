@@ -6,7 +6,7 @@
 // answer rather than merely asserting it.
 //
 // WHY. "What is a deflated Sharpe ratio", "why publish failures", "what is
-// point-in-time data", "what does pre-registration actually stop" — these are
+// point-in-time data", "what does pre-registration actually stop": these are
 // the questions the eighty-two documents here exist to answer, and nothing on
 // the site indexed them. A reader arriving on any single kill file has no route
 // to the reasoning that makes it worth reading.
@@ -86,7 +86,7 @@ function facts() {
     // than by the check being loosened for everything.
     if (key === "clearing") continue;
     if (value === undefined || value === null || value === 0 || value === "") {
-      console.error(`methodology page: derived fact "${key}" is empty — refusing to publish it`);
+      console.error(`Methodology page: derived fact "${key}" is empty. Refusing to publish it.`);
       process.exit(1);
     }
   }
@@ -100,8 +100,8 @@ function questions(f) {
       q: "What is a deflated Sharpe ratio, and why do you keep failing it?",
       a: `<p>A Sharpe ratio measures return per unit of risk. It says nothing about how many
       strategies you tried before you found that one. If you test a hundred variants and report the
-      best, the best is partly skill and largely the maximum of a hundred draws — and the more you
-      tried, the higher that maximum is expected to be even if every single variant is worthless.</p>
+      best, the best is partly skill and largely the maximum of a hundred draws. More trials raise
+      that expected maximum even if every variant is worthless.</p>
       <p>The deflated Sharpe ratio corrects for exactly that. It asks: given the number of trials
       behind this result and how much they varied, what is the probability the true Sharpe is above
       zero? A figure that looks impressive at one trial is unremarkable at a hundred and fifty.</p>
@@ -130,7 +130,7 @@ function questions(f) {
       publish the attempts. ${f.kills} candidates have been killed here against ${f.survived} that
       survived, and each kill names the specific number it died on.</p>
       <p>There is a second reason, and it is the one that matters to another researcher. A kill log
-      is a table: it tells you the outcome. A paper tells you the reasoning — the universe, the
+      is a table: it tells you the outcome. A paper tells you the reasoning, including the universe,
       window, the construction, and what would have had to be true for the candidate to live. The
       outcome saves nobody any work. The reasoning either saves them the experiment or gives them
       the grounds to show we were wrong.</p>`,
@@ -150,8 +150,8 @@ function questions(f) {
       <p>Two failures follow from getting it wrong, and both flatter. A backtest on today's index
       constituents is a backtest on companies that survived, which will show a quality effect
       whether or not one exists. A signal stamped with the date a fact was <em>measured</em>, rather
-      than the date it became <em>knowable</em>, trades on information from the future — and it
-      looks wonderful.</p>
+      than the date it became <em>knowable</em>, trades on information from the future and looks
+      wonderful.</p>
       <p>So the vintage discipline is part of the mechanism here rather than a caveat. Where a
       schedule had to be reconstructed, the provenance of the schedule was audited before the effect
       was tested, and that audit turned out to be the larger piece of work.</p>`,
@@ -166,8 +166,8 @@ function questions(f) {
       a: `<p>It stops the specification moving after the result is visible. A pre-registration fixes
       the universe, the signal, the horizon, the cost assumption and the pass criteria in writing,
       before any return data is opened. Once you have seen how a candidate performed, every
-      subsequent choice about it — a different window, a filter, a slightly different construction —
-      is informed by the answer, and the result stops being evidence about the market and becomes
+      subsequent choice about it, including a different window, filter or construction, is informed
+      by the answer. The result stops being evidence about the market and becomes
       evidence about the researcher.</p>
       <p>The test of whether a pre-registration is real is whether anything ever dies under it. The
       registrations here are published alongside the candidates that were registered and then
@@ -181,13 +181,13 @@ function questions(f) {
       id: "feasibility",
       q: "Why decide whether something can be tested before testing it?",
       a: `<p>Because opening return data is the expensive step and it cannot be undone. It consumes
-      a hypothesis from a finite budget — ${f.identities} of ${f.budget} consumed so far — and once
+      a hypothesis from a finite budget. So far, ${f.identities} of ${f.budget} are consumed. Once
       a researcher has seen how a candidate performed, that knowledge contaminates every later
       decision about it.</p>
       <p>A feasibility protocol asks three questions first: does the evidence exist in a
       point-in-time form, can it be extracted at the rate the identity assumes, and are the
       resulting positions executable at a cost the mechanism can pay. If any answer is no, the idea
-      is not weak — it is unmeasurable here, which is a different and more useful verdict.</p>
+      is not weak. It is unmeasurable here, which is a different and more useful verdict.</p>
       <p>The move this guards against is specific. A gate that fails by a few points invites exactly
       one response: widen the detector until the number clears. That is tuning a measurement to
       agree with a target. So the ceiling a <em>perfect</em> detector would reach is computed first,
@@ -203,7 +203,7 @@ function questions(f) {
       q: "How can a strategy be real and still not worth trading?",
       a: `<p>Because the edge and the cost are measured in the same units and the cost usually wins.
       A signal that predicts a small move over a long horizon can be entirely correct and entirely
-      consumed by spread, fees, borrow, financing and market impact — and none of those show up in
+      consumed by spread, fees, borrow, financing and market impact. None of those costs appear in
       a backtest that prices fills at the mid.</p>
       <p>The more instructive failure is not modelling a cost at the wrong <em>level</em> but as the
       wrong <em>kind of thing</em>. Latency represented as a flat basis-point addition is treated as
@@ -211,8 +211,8 @@ function questions(f) {
       crossing a spread at all, it is holding unhedged overnight exposure with a fat tail. Getting
       the size of such a term right does not fix having the wrong term.</p>
       <p>Which is why the cost check here published what it could not answer as well as what it
-      could, and concluded that no cost parameter should move on that evidence — the recording
-      schema should.</p>`,
+      could. It concluded that no cost parameter should move on that evidence. The recording schema
+      should change.</p>`,
       links: [
         ["The modelled cost against what the live book paid", "/measurements/cost-model-realism"],
         ["How execution is modelled, and its limits", "/research/execution-realism"],
@@ -222,7 +222,7 @@ function questions(f) {
       id: "correlation",
       q: "Why is correlation between strategies the binding constraint?",
       a: `<p>Because a book's Sharpe ratio depends on how many sleeves it has, how good each one is,
-      and how correlated they are — and past a handful of sleeves the correlation term dominates.
+      and how correlated they are. Past a handful of sleeves, the correlation term dominates.
       Adding a tenth strategy that moves with the nine you already own adds turnover and almost no
       diversification. The arithmetic is unforgiving and it is published rather than described.</p>
       <p>The uncomfortable finding is that structural intuition gets this backwards. On the only
@@ -278,8 +278,8 @@ function questions(f) {
       ${f.bookMaturityDsr} full-union book threshold applies before a portfolio-maturity claim. The
       contract is published in full, thresholds and all.</p>
       <p>The contract has been wrong before, and that is published too: an earlier version contained
-      floors that no candidate could satisfy simultaneously — a gate nobody can pass is not a strict
-      gate, it is a broken one — and each was found by testing the gates against each other rather
+      floors that no candidate could satisfy simultaneously. A gate nobody can pass is broken, not
+      strict. Each defect was found by testing the gates against each other rather
       than against a candidate.</p>`,
       links: [
         ["The admission contract in force", "/measurements/sleeve-admission-contract-contract"],
@@ -306,7 +306,7 @@ function questions(f) {
       id: "who",
       q: "Who is behind this?",
       a: `<p>One person: ${AUTHOR}, who wrote the engine and every one of the ${f.papers} documents
-      published here. There are no credentials on the founder page, deliberately — a credential is a
+      published here. The founder page omits credentials deliberately. A credential is a
       claim you would have to take on trust, and the entire argument of this record is that you
       should not have to.</p>`,
       links: [["The founder page, and the one claim on it you can verify", "/founder"]],

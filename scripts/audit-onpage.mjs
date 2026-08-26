@@ -155,13 +155,13 @@ function audit(file) {
 }
 
 if (!existsSync(DIST)) {
-  console.error("dist/ does not exist — run `npm run build` first");
+  console.error("dist/ does not exist. Run `npm run build` first.");
   process.exit(1);
 }
 
 const files = htmlFiles(DIST);
 if (files.length === 0) {
-  console.error("no HTML in dist/ — this audit would pass vacuously");
+  console.error("No HTML exists in dist/. This audit would pass vacuously.");
   process.exit(1);
 }
 

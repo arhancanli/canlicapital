@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Crypto Multi-Venue Funding Aggregation: killed — Canli Capital</title>
+<title>Crypto Multi-Venue Funding Aggregation: killed | Canli Capital</title>
 <meta name="description" content="Would aggregating funding across exchanges beat our Binance-only carry signal?" />
 <meta name="alphac-source-sha256" content="1643f5433dcb38ec02c98015dd1bdcf4fa1876328dca981bd64a73aaa42ee464" />
 
@@ -90,7 +90,7 @@
     <div class="paper__body">
 <p><strong>Short title:</strong> Crypto Multi-Venue Funding Aggregation: killed</p>
 <p><strong>Verdict:</strong> KILLED  <strong>Stage:</strong> screen prototype<br><strong>Identity:</strong> <code>multivenue_funding</code></p>
-<p>Would aggregating funding across exchanges beat our Binance-only carry signal? No — null by its own pre-registered rule (promote required +0.10 Sharpe at 90% bootstrap confidence). The reason is structural: Binance and Bybit annualized funding are 0.94 correlated across 12,425 instrument-weeks, so there is almost no independent information to aggregate. The adjacent &#39;harvest on the best-paying venue&#39; idea dies on arithmetic too — a median cross-venue gap of ~2.4%/yr against a four-legged ~30bp round trip implies a 22-day breakeven hold, marginal before you even price second-tier venue custody risk. The live sleeve stays Binance-only on its blessed config. Byproduct kept: a multi-exchange funding lake (Bybit deep history via mirror; OKX public history is depth-capped at ~90 days, a data finding worth recording). Reproduce: scripts/probe_multivenue_funding.py.</p>
+<p>Would aggregating funding across exchanges beat our Binance-only carry signal? No; null by its own pre-registered rule (promote required +0.10 Sharpe at 90% bootstrap confidence). The reason is structural: Binance and Bybit annualized funding are 0.94 correlated across 12,425 instrument-weeks, so there is almost no independent information to aggregate. The adjacent &#39;harvest on the best-paying venue&#39; idea dies on arithmetic too; a median cross-venue gap of ~2.4%/yr against a four-legged ~30bp round trip implies a 22-day breakeven hold, marginal before you even price second-tier venue custody risk. The live sleeve stays Binance-only on its blessed config. Byproduct kept: a multi-exchange funding lake (Bybit deep history via mirror; OKX public history is depth-capped at ~90 days, a data finding worth recording). Reproduce: scripts/probe_multivenue_funding.py.</p>
 <h2>Why it was worth testing</h2>
 <p>This died at the screen stage, before a full walk-forward was ever run. Screening exists so that ideas which cannot clear a coarse, cost-aware bar do not consume the far more expensive machinery behind it. A screen kill is a cheap kill, and it is published for the same reason as an expensive one: the trial was still spent, and it still raises the evidence bar for everything already in the book.</p>
 <h2>The result</h2>

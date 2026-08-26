@@ -140,7 +140,7 @@ const STATIC_ROUTES = [
 // crawler: there is nothing linking related work together, so nothing signals what
 // this body of work is ABOUT.
 //
-// These clusters are DERIVED from the corpus, not invented for it — the vocabulary
+// These clusters are DERIVED from the corpus, not invented for it. The vocabulary
 // below was built by counting what the titles and descriptions actually say, and
 // every hub carries the real descriptions of its members rather than a keyword
 // list. A hub with nothing on it but links is a doorway page, deserves to be
@@ -153,7 +153,7 @@ const KINDS = [
   { slug: "literature-reviews", label: "Literature reviews", match: (s) => s.startsWith("literature-"),
     blurb: "What the published evidence actually supports for each mechanism, with citations, and where our reading of it stops." },
   { slug: "feasibility-protocols", label: "Feasibility protocols", match: (s) => s.endsWith("-feasibility"),
-    blurb: "Whether a mechanism can be tested at all — point-in-time data lineage, execution realism and document coverage — decided before any return data is opened." },
+    blurb: "Whether a mechanism can be tested at all, based on point-in-time data lineage, execution realism and document coverage, is decided before any return data is opened." },
   { slug: "pre-registrations", label: "Pre-registrations", match: (s) => s.startsWith("prereg-"),
     blurb: "Locked specifications committed before measurement: universe, signal, horizon, costs and the pass/fail criteria, fixed in writing so the result cannot be chosen after the fact." },
   { slug: "corrections", label: "Corrections", match: (s) => s.includes("correction"),
@@ -166,21 +166,21 @@ const SUBJECTS = [
   { slug: "equities", label: "Equities", pattern: /equit|stock|momentum|earnings|10-k|filing|sec |issuer/i,
     blurb: "Cross-sectional equity research: momentum construction, quality and value replication on a survivorship-free universe, and the filing-derived signals tested against it." },
   { slug: "crypto", label: "Crypto", pattern: /crypto|perp|funding|bitcoin|btc|stablecoin|binance/i,
-    blurb: "Perpetual-futures funding carry, basis, venue structure and stablecoin dislocation — the sleeve family where this book has the longest live record." },
+    blurb: "Perpetual-futures funding carry, basis, venue structure and stablecoin dislocation form the sleeve family with this book's longest live record." },
   { slug: "options-and-volatility", label: "Options and volatility", pattern: /option|volatilit|dispersion|variance|gamma/i,
     blurb: "Variance risk premium, index-versus-constituent dispersion and dealer positioning: mechanisms that are well documented and expensive to implement honestly." },
   { slug: "rates-and-treasuries", label: "Rates and treasuries", pattern: /rates|treasury|fomc|yield|auction|swap/i,
-    blurb: "Auction concession, pre-FOMC drift, swap-spread dislocation and curve carry — including the identities that turned out not to be observable as pre-registered." },
+    blurb: "Auction concession, pre-FOMC drift, swap-spread dislocation and curve carry include identities that were not observable as pre-registered." },
   { slug: "credit", label: "Credit", pattern: /credit|bond|etf nav|fallen angel|municipal/i,
     blurb: "Bond-ETF NAV dislocation, fallen-angel flow and credit-equity relative value, and the licensed-data boundaries that gate them." },
   { slug: "commodities", label: "Commodities", pattern: /commodit|petroleum|natural gas|oil|inventory|eia/i,
     blurb: "Inventory surprise, storage and weather: official point-in-time vintages, first-release capture, and what happens to a seasonal signal net of cost." },
   { slug: "event-driven", label: "Event-driven", pattern: /merger|spin-?off|tender|arbitrage|13d|repurchase|reconstitution/i,
-    blurb: "Merger arbitrage, spin-off dislocation, tender offers and activist escalation — mechanisms whose feasibility turns on what regulatory filings actually contain." },
+    blurb: "Merger arbitrage, spin-off dislocation, tender offers and activist escalation depend on what regulatory filings actually contain." },
   { slug: "macro-surprise", label: "Macro surprise", pattern: /cpi|inflation|macro|surprise|payroll/i,
     blurb: "Point-in-time macro releases traded as cross-sectional spreads, and the vintage discipline that makes the surprise real rather than hindsight." },
   { slug: "execution-and-market-structure", label: "Execution and market structure", pattern: /execution|borrow|financing|corporate action|market status|fill|slippage/i,
-    blurb: "Borrow availability and fees, financing, corporate actions, market-status replay and fill modelling — the costs that decide whether a paper edge survives contact." },
+    blurb: "Borrow availability and fees, financing, corporate actions, market-status replay and fill modelling decide whether a paper edge survives contact." },
 ];
 
 
@@ -190,7 +190,7 @@ const SUBJECTS = [
 // A hub is a page that should rank for its subject, and a link list under one
 // paragraph is a doorway page however good the links are. Each hub therefore
 // opens with genuine subject content: what the mechanism is, what the published
-// evidence supports, and what THIS book found — which is usually less than the
+// evidence supports, and what THIS book found. That result is usually less than the
 // literature would suggest and is written that way.
 //
 // Written per hub, never templated. A verifier check enforces that: no paragraph
@@ -199,37 +199,37 @@ const SUBJECTS = [
 // =============================================================================
 const HUB_ESSAYS = {
   "killed-candidates": [
-    "A kill file is the paper nobody writes. A strategy is tested, it does not work, and the result goes in a drawer — so the same idea is tested again next year by someone else who had no way of knowing. That silence is not modesty; it is what makes the published record of quantitative finance systematically optimistic, because the surviving results are the ones that happened to clear a threshold and the failures that surrounded them were never counted.",
+    "A kill file is the paper nobody writes. A strategy is tested, it does not work, and the result goes in a drawer. The same idea is then tested again by someone who had no way of knowing. That silence is not modesty; it makes the published record of quantitative finance systematically optimistic because surviving results cleared a threshold while surrounding failures were never counted.",
     "The statistical cost of that silence has a name. When many candidates are tried and one is reported, the reported figure has to be deflated by how many were tried, and a Sharpe ratio that looks convincing at one trial is unremarkable at a hundred. That deflation is only possible if the trial count is honest, which is why every kill here is numbered and counted against a public ledger rather than quietly discarded. A kill is not a failure to be minimised. It is the denominator.",
     "What this collection shows is how much of the accessible ground is already dead. Named equity factors, cross-sectional and time-series construction on crypto perpetuals, seasonality, positioning, insider clusters, curve carry, inventory effects: tested, and killed on the numbers recorded in each file. Nearly every idea that is cheap to test has been tested by someone with more data, and the ones that survive on this book's own evidence are few and modest.",
-    "Each document names the specific number the candidate died on, the window it was measured over, and what would have had to be true for it to survive. That is the part a kill log cannot give you. A table saying REJECTED tells you the outcome; a paper tells you the reasoning, which is the only part another researcher can use — either to avoid repeating the work, or to show that the reasoning was wrong."
+    "Each document names the specific number the candidate died on, the window it was measured over, and what would have had to be true for it to survive. That is the part a kill log cannot give you. A table saying REJECTED tells you the outcome; a paper gives another researcher enough reasoning to avoid repeated work or show that the reasoning was wrong."
   ],
   "literature-reviews": [
-    "Before a mechanism is tested here it is read. A literature review in this collection asks a narrow question: does the published evidence describe an effect that is economically motivated, replicated outside its original sample, and still present after the paper that named it — and if so, what exactly is the claim, in units precise enough to be pre-registered against.",
+    "Before a mechanism is tested here it is read. A literature review in this collection asks a narrow question: does the published evidence describe an economically motivated effect that was replicated outside its original sample and persisted after publication? If so, the claim must be precise enough to pre-register.",
     "That last requirement does most of the work. A great deal of published finance describes an effect in terms that cannot be turned into a specification: the universe drifts, the horizon is chosen after the fact, the cost assumption is absent, or the data used to establish it was restated afterwards. A mechanism that cannot be stated as a testable identity is not a candidate here, however well cited it is, and several reviews end at exactly that point.",
     "Each review states where our reading of the evidence stops. That boundary matters more than a verdict: an effect that is well documented in institutional US equities from 1990 to 2010 is not thereby documented in crypto perpetuals in 2026, and a review that quietly transfers a finding across that gap is doing the reader more harm than one that reaches no conclusion.",
     "These reviews exist to be used against us. If one misreads a paper, overstates a replication, or ignores a contrary result, that is checkable from the citations, and it is checkable before any capital or any trial budget has been spent on the idea. Reading first is cheaper than measuring first, and it is the only stage of this process where being wrong costs nothing."
   ],
   "feasibility-protocols": [
-    "A feasibility protocol asks whether a mechanism can be tested at all, and it is decided before any return data is opened. Three things have to be true: the evidence must exist in a point-in-time form, it must be extractable at a rate the identity assumes, and the resulting positions must be executable at a cost the mechanism can pay. If any one fails, the idea is not weak — it is unmeasurable here, and that is a different and more useful verdict.",
+    "A feasibility protocol asks whether a mechanism can be tested at all, and it is decided before any return data is opened. Three things have to be true: the evidence must exist in a point-in-time form, it must be extractable at a rate the identity assumes, and the resulting positions must be executable at a cost the mechanism can pay. If any one fails, the idea is not weak. It is unmeasurable here, which is a different and more useful verdict.",
     "The order is deliberate. Opening return data is the expensive step, because it consumes a hypothesis from a finite budget and it can never be un-consumed: once a researcher has seen how a candidate performed, every subsequent choice about it is contaminated by that knowledge. Deciding feasibility first keeps the expensive step for candidates that could survive it.",
-    "What these protocols found is not encouraging, and it is published anyway. Several mechanisms that are well documented in the literature turned out to be unobservable as specified — the gate asked for language that regulatory filings do not contain at the assumed rate, or applied one threshold across populations with different disclosure obligations. In every case the shortfall was in what the documents carry, not in the parser reading them, so no amount of engineering would have closed it.",
-    "That distinction is the whole value of the stage. A gate that fails by a few points invites exactly one move — widen the detector until the number clears — and that is tuning a measurement to agree with a target. The protocols here compute what a perfect detector would reach before anyone touches the imperfect one, so the question is settled on arithmetic rather than on effort."
+    "What these protocols found is not encouraging, and it is published anyway. Several documented mechanisms were unobservable as specified. The gate asked for language that regulatory filings do not contain at the assumed rate, or it applied one threshold across populations with different disclosure obligations. In every case the documents lacked the required evidence, so no parser improvement could close the gap.",
+    "That distinction is the value of the stage. A gate that fails by a few points invites researchers to widen the detector until the number clears. That response tunes a measurement to agree with a target. These protocols compute a perfect detector's limit first, so arithmetic settles the question before implementation effort begins."
   ],
   "engineering-foundations": [
     "Most of what decides whether a research result survives contact with a market is not research. It is whether the borrow was available, whether the corporate action was applied, whether the financing was charged, whether the venue was open, and whether the fill price was one anybody could have got. These documents are about that layer, and it is where more published edges die than in the signal itself.",
     "The failures at this layer share a characteristic that makes them dangerous: they are silent and they flatter. An unapplied split turns a price series into a profit. A fill modelled at the mid earns a spread nobody paid. A backtest that ignores borrow shorts names that could not be shorted. None of these produce an error message; they produce a better number, which is why they survive review by people who are checking the strategy rather than the plumbing.",
-    "So each foundation is a contract with a test behind it rather than a description. Execution realism, borrow and financing replay, corporate-action lifecycle and market-status handling are specified, and the specification is enforced by guards that are themselves mutation-tested — broken deliberately to confirm they fail, because a check that cannot fail is worse than no check at all.",
-    "The same discipline applies to what these documents admit they cannot do. The cost model's one fully checkable component, crypto commission, matched exactly at 5.00 basis points against a modelled 5.0. The equity components could not be checked at all, because the recorded fills carry a padded limit price rather than a decision price — a fill that appears to beat it is beating the padding. That is published as a schema defect with a one-field fix, not smoothed over as a cost estimate."
+    "So each foundation is a contract with a test behind it rather than a description. Execution realism, borrow and financing replay, corporate-action lifecycle and market-status handling are specified. Mutation tests break the guards deliberately to confirm that each check can fail.",
+    "The same discipline applies to what these documents admit they cannot do. The cost model's one fully checkable component, crypto commission, matched exactly at 5.00 basis points against a modelled 5.0. The equity components could not be checked because recorded fills carry a padded limit price rather than a decision price. A fill that appears to beat it is beating the padding. That is published as a schema defect with a one-field fix, not smoothed over as a cost estimate."
   ],
   "equities": [
     "The cross-sectional equity factor is the most examined object in quantitative finance. Momentum, value, quality, profitability, issuance, low volatility and their many constructions have been documented, replicated, decayed and re-documented across decades of data by people with better data than this book has. That is the honest starting position: this is not virgin ground, and an edge found here is much more likely to be a construction artifact than a discovery.",
     "This research is run on a survivorship-free universe with point-in-time membership, because the alternative silently answers a different question. A backtest on today's index constituents is a backtest on companies that did not go bankrupt, and it will show a quality effect whether or not one exists. Filing-derived signals face a sharper version of the same problem: the date a fact was measured is not the date it was knowable, and a series stamped with the former trades on information from the future.",
-    "What survived on this book's own evidence is narrow. A conventional cross-sectional momentum construction is the one equity sleeve that trades. Almost everything else tested here — the fifty-two-week high, post-earnings drift, gross profitability, book-to-price, net issuance, residual momentum, cross-sectional seasonality, insider purchase clusters, intraday reversal and positioning-derived signals — is published as a kill, with the number it died on.",
+    "What survived on this book's own evidence is narrow. A conventional cross-sectional momentum construction is the one equity sleeve that trades. The fifty-two-week high, post-earnings drift, gross profitability, book-to-price, net issuance, residual momentum, cross-sectional seasonality, insider purchase clusters, intraday reversal and positioning-derived signals are published as kills with the number each died on.",
     "The enhancement work is equally unflattering and equally published: successive attempts to improve the surviving momentum construction returned nulls, which is evidence that the construction lever is close to exhausted rather than evidence that more effort is required. Where the remaining upside lies is stated plainly in the corrections and feasibility work: in new and independent sources of return, not in another rearrangement of the same inputs."
   ],
   "crypto": [
-    "Perpetual futures carry a mechanism that has no equity analogue: a funding payment exchanged between longs and shorts at a fixed interval to hold the contract near spot. It is a real cash flow with a published rate, which makes carry in this market unusually well defined — you are not inferring a premium from returns, you are being paid one on a schedule, and the schedule is observable.",
+    "Perpetual futures carry a mechanism that has no equity analogue: a funding payment exchanged between longs and shorts at a fixed interval to hold the contract near spot. It is a real cash flow with a published rate. You are not inferring a premium from returns; you are paid on an observable schedule.",
     "That clarity is also the trap. Funding carry is a liquidity-provision trade wearing a yield's clothing: it pays steadily and loses violently in exactly the cascade that makes it pay. Its return distribution is dominated by rare observations, and a Sharpe ratio computed on a calm sample says almost nothing about the risk being taken. Any honest treatment of this sleeve has to separate what it earned from what it was exposed to, and this book's own decomposition of that separation is published.",
     "This is the sleeve family with the longest live record here, and it is also the one where the most has been killed. Dated basis, low-volatility construction, short-side time-series momentum, the variance risk premium, funding term structure and multi-venue funding differentials were each tested and each published as a null. The one construction that trades is the plain cross-sectional funding carry.",
     "Venue structure is treated as part of the mechanism rather than as an implementation detail, because in this market it is. Funding is a venue-specific quantity, the same instrument has different rates in different places, and a research result computed on one exchange's history may not be reproducible on another's. Multi-venue collection runs daily for that reason, and the boundaries of what has actually been collected are published rather than assumed."
@@ -237,14 +237,14 @@ const HUB_ESSAYS = {
   "options-and-volatility": [
     "The variance risk premium is among the best documented effects in finance: implied volatility exceeds subsequent realised volatility on average, across markets and across decades, and there is a coherent economic reason why someone would pay it. Index-versus-constituent dispersion is its cross-sectional cousin, and dealer hedging flow is the microstructural residue of both. None of these is a secret.",
     "They are, however, expensive to implement honestly, and that is where most of the published enthusiasm goes. Selling volatility is short convexity: the strategy earns a small premium repeatedly and gives it back in a single episode, so a backtest over any sample without such an episode is measuring the premium and not the risk. Add bid-ask spreads on options, the cost of delta hedging, and the assumption that a historical quote was executable, and a large fraction of the documented premium is gone before any of it is realised.",
-    "The feasibility question here is unusually binding. A point-in-time option surface — open interest, quotes and the chain as it stood on a past date — is either a licensed vendor product or a reconstruction, and a reconstruction that begins recently cannot supply the years of observations a deflated result requires. That constraint has been measured against the admission contract rather than argued about, and the arithmetic decides before the idea does.",
+    "The feasibility question here is unusually binding. A point-in-time option surface includes open interest, quotes and the chain as it stood on a past date. It is either a licensed vendor product or a reconstruction, and a recent reconstruction cannot supply the years of observations a deflated result requires. That constraint is measured against the admission contract, so arithmetic decides before the idea does.",
     "So what is published in this cluster is mostly boundary work: what the mechanism is, what it would take to test it properly, the execution contracts that would have to hold, and the crypto variance premium tested and killed. That is a thinner result than the literature would suggest, and it is the accurate one for a book that will not price a strategy at quotes it could not have traded."
   ],
   "rates-and-treasuries": [
-    "Rates research here concerns mechanisms with a scheduled cause: an auction that must be absorbed, a policy meeting that must be priced, a swap that must be funded against a deliverable. Effects with a known timetable are attractive because the event is unambiguous and cannot be discovered after the fact — you know when it happened before you know what it did.",
+    "Rates research here concerns mechanisms with a scheduled cause: an auction that must be absorbed, a policy meeting that must be priced, or a swap that must be funded against a deliverable. A known timetable prevents the event date from being discovered after the result.",
     "That advantage is smaller than it looks, because the timetable itself has a history and the history is often reconstructed. A calendar that is scraped today reflects revisions, cancellations and re-scheduling that were not known at the time, and a study anchored on it is anchored on a document that did not exist when the trade would have been placed. Auditing the provenance of the schedule turned out to be a larger piece of work than testing the effect, and it is published in that order.",
     "The treasury auction concession identity is the clearest result in this cluster and it is a negative one: it is not observable as it was pre-registered. That verdict is published in full rather than replaced by a version of the identity that happens to be measurable, because a specification adjusted until it fits the available data is no longer a pre-registration.",
-    "The pre-FOMC announcement drift is at the opposite stage — pre-registered, with its universe, window and pass criteria fixed in writing before measurement, and its data readiness audited separately. Curve carry has been tested and killed. What remains open is stated as open, including the swap-spread work, where the free constant-maturity series was discontinued and the modern curve is a licensed product."
+    "The pre-FOMC announcement drift is at the opposite stage. Its universe, window and pass criteria were pre-registered, and its data readiness was audited separately. Curve carry has been tested and killed. The open swap-spread work remains labeled open because the free constant-maturity series was discontinued and the modern curve is licensed."
   ],
   "credit": [
     "Credit sits between two markets that price the same risk differently, which is why relative-value mechanisms keep appearing here: a bond ETF against its net asset value, a fallen angel against forced index selling, an issuer's spread against its own equity. Each is a basis, and each is a wager that two prices for one obligation will converge on a timetable.",
@@ -253,27 +253,27 @@ const HUB_ESSAYS = {
     "What that leaves in this cluster is the feasibility and infrastructure work: the bond-ETF dislocation protocol, the financing replay that decides whether a carry position is affordable, and the literature that motivates them. No credit sleeve trades in this book, and the reason is written down."
   ],
   "commodities": [
-    "Commodity research here follows physical constraint rather than sentiment. Storage capacity, inventory levels, seasonal demand and the positioning of hedgers are quantities with an official point-in-time record, published on a schedule by agencies that also publish their revisions — which makes them unusually well suited to honest vintage discipline compared with most financial data.",
+    "Commodity research here follows physical constraint rather than sentiment. Storage capacity, inventory levels, seasonal demand and hedger positioning have official point-in-time records. Agencies publish these quantities and their revisions on a schedule, making vintage control practical.",
     "Vintage discipline is the entire methodological content of this cluster. An inventory figure exists in several versions: the first release, and every revision after it. A study that uses the current value is using a number that was not available for weeks, and because revisions are not random the resulting effect can be manufactured entirely by hindsight. Capturing the first release, and only the first release, is what makes a surprise a surprise.",
-    "The results have been unkind. Inventory seasonality, cross-sectional futures carry and cross-asset carry were each tested and published as nulls. The hedging-pressure and storage-weather mechanisms are at the feasibility stage, and one of them is blocked on a free credential and the other on paid data — recorded as such rather than left ambiguous, because a blocker with a price is not the same thing as a result.",
+    "The results have been unkind. Inventory seasonality, cross-sectional futures carry and cross-asset carry were each tested and published as nulls. The hedging-pressure and storage-weather mechanisms remain at the feasibility stage. One is blocked on a free credential and the other on paid data. A priced blocker is not a result, so both remain labeled as blockers.",
     "The general lesson from this cluster is about cost rather than signal. Seasonal commodity effects tend to be real, small, and slower than their turnover implies; net of roll, spread and the calendar alignment that a twenty-four-hour market imposes on a business-day book, several survived as ideas and none survived as sleeves."
   ],
   "event-driven": [
-    "Event-driven mechanisms trade a corporate action with a legal timetable: a spin-off, a merger, a tender offer, a repurchase, an activist stake. The appeal is that the event is discrete and its date is documented, so the study window is defined by a filing rather than chosen by a researcher — the single largest source of accidental hindsight in most backtests is closed before the work starts.",
+    "Event-driven mechanisms trade a corporate action with a legal timetable: a spin-off, merger, tender offer, repurchase or activist stake. The event is discrete and its date is documented, so a filing defines the study window before research begins.",
     "The evidence, though, lives in regulatory documents, and this is where the cluster's most useful findings came from. A protocol that assumes a filing states something will fail if the disclosure rule that produced the filing never required it. Three separate mechanisms here failed for exactly that reason, and the failures are published together because the pattern is worth more than any of them individually.",
     "The pattern is that each protocol specified a language test where the identity needed a structural fact. A registration statement was asked to state distribution mechanics that were not settled on the day it was filed. A narrative disclosure was asked to name a counterparty that the rule requiring the disclosure never required naming. A deal study was asked to require one specific form when what it actually needed was a timestamp that several documents supply.",
-    "So the redesign notes here name the document that would carry the evidence before they name any threshold, and they propose no threshold at all — because a threshold chosen after seeing which population clears it is selection, not specification. The event universe for spin-offs, for instance, turned out to be declared by the form type itself: a registration form filed to distribute securities to shareholders needs no sentence inside it to say so, and the count is metadata rather than extraction."
+    "So the redesign notes name the document that would carry the evidence before naming a threshold. They propose no threshold because choosing one after seeing which population clears it is selection, not specification. For spin-offs, the form type itself declares the event universe. The count comes from metadata rather than narrative extraction."
   ],
   "macro-surprise": [
-    "A macro surprise is the gap between a release and what was expected of it, traded as a cross-sectional spread rather than as a directional bet. The mechanism is that different kinds of company are differently exposed to the same macro variable, so an inflation print that is a mild aggregate event can be a large relative one — and the relative version is measurable without taking a view on the level.",
+    "A macro surprise is the gap between a release and its expectation, traded as a cross-sectional spread rather than a directional bet. Different companies have different exposure to the same macro variable, so a mild aggregate inflation event can create a larger relative move without requiring a view on the level.",
     "Everything here turns on vintages. Macro series are revised, sometimes substantially, and the revised value is the one every convenient data source serves. A study that uses it is trading on a number that did not exist on the day of the trade, and the resulting effect can be entirely an artifact of the revision process. The point-in-time vintage lake this research runs on exists for that single reason, and the rule used to date each series is published with it.",
     "This is the mechanism behind one of the book's live sleeves, a point-in-time consumer-price-surprise size spread, which makes the cluster small but load-bearing. It is also where one of this book's published corrections lives: a missing release was found and the affected figures were withdrawn and restated in public rather than quietly re-run.",
-    "That correction is the most useful document here. A research process is not judged by whether it makes errors — it will — but by whether an error that flatters is as likely to be found and published as one that does not. The missing-release note exists so that question has a concrete answer rather than an assurance."
+    "That correction is the most useful document here. Every research process makes errors. The relevant test is whether flattering errors are found and published as readily as unflattering ones. The missing-release note gives that question a concrete answer rather than an assurance."
   ],
   "execution-and-market-structure": [
     "This cluster is about the distance between a decision and a fill. Every strategy in this book generates a target position; what it actually earns depends on the spread it crossed, the fee it paid, the borrow it needed, the financing it was charged, whether the venue was open, and how long it waited. Those quantities are not a haircut applied at the end. They are part of the mechanism, and for slower and smaller signals they are most of it.",
-    "The recurring finding is that costs are usually modelled as the wrong kind of quantity rather than at the wrong level. Latency represented as a flat basis-point addition is treated as a microstructure effect, but an order submitted after the close and filled at the next open is not crossing a spread — it is holding unhedged overnight exposure with a fat-tailed distribution. Getting the size of such a term right does not fix having the wrong term.",
-    "What can and cannot be checked is published together. The one fully verifiable component, crypto commission, matched exactly: five basis points measured against five modelled. Equity slippage could not be computed at all, because the recorded fills carry a padded marketable limit rather than the decision price, so a fill that appears to beat it by half a percent is beating the padding. The conclusion drawn was that no cost parameter should move on that evidence and the recording schema should — one additional field turns an unanswerable question into a daily measurement.",
+    "The recurring finding is that costs are usually modelled as the wrong kind of quantity rather than at the wrong level. Latency represented as a flat basis-point addition is treated as a microstructure effect. An order submitted after the close and filled at the next open instead holds unhedged overnight exposure with a fat-tailed distribution. Getting the size right cannot fix the wrong term.",
+    "What can and cannot be checked is published together. The one fully verifiable component, crypto commission, matched exactly: five basis points measured against five modelled. Equity slippage could not be computed because recorded fills carry a padded marketable limit rather than the decision price. The evidence supports no cost-parameter change. It supports adding one field to turn an unanswerable question into a daily measurement.",
     "The borrow, financing, corporate-action and market-status contracts here exist so that this layer is specified rather than assumed, and each is enforced by a guard rather than by a convention. Where the answer is that the record cannot yet support a conclusion, that is published as the result, because a noisy estimate presented as a measurement is a worse outcome than an honest not yet."
   ]
 };
@@ -285,8 +285,21 @@ function classify(slug, title, description) {
   return { kind, subjects };
 }
 
+const emDashCharacter = String.fromCharCode(8212);
+const editableDashForms = [emDashCharacter, `&${"mdash"};`, `&#${"8212"};`];
+const normalizeEditableCopy = (value) =>
+  editableDashForms.reduce(
+    (copy, dash) => copy
+      .replace(new RegExp(`(<h[1-6][^>]*>[^\\n]*?)[ \\t]+${dash}[ \\t]+`, "g"), "$1: ")
+      .replace(new RegExp(`[ \\t]+${dash}[ \\t\\r\\n]+([^<>]{1,320}?)[ \\t]+${dash}[ \\t\\r\\n]+`, "gs"), " ($1) ")
+      .replace(new RegExp(`[ \\t]+${dash}(?=\\r?\\n)`, "g"), ";")
+      .replace(new RegExp(`[ \\t]+${dash}[ \\t]+`, "g"), "; ")
+      .replaceAll(dash, ": "),
+    String(value),
+  );
+
 const escapeHtml = (value) =>
-  String(value)
+  normalizeEditableCopy(value)
     .replaceAll("&", "&amp;")
     .replaceAll("<", "&lt;")
     .replaceAll(">", "&gt;")
@@ -324,7 +337,7 @@ function extractMeta(markdown, slug) {
   const title = headingIndex >= 0 ? toPlainText(lines[headingIndex].replace(/^#\s+/, "")) : null;
 
   // A SEARCH RESULT HEADLINE IS NOT A DOCUMENT'S NAME. Twenty-three papers carry titles past the
-  // 65 characters a result shows, because their real names are long and precise — "Managed-Futures
+  // 65 characters a result shows because their real names are long and precise. "Managed-Futures
   // fast-trend / real-futures breadth (campaign): a killed candidate" is the right name for the
   // document and the wrong thing to truncate mid-word in a result. So a paper may declare
   // `**Short title:** …` and that is used for <title> ONLY. The H1, the Open Graph title and the
@@ -382,7 +395,7 @@ function fitDescription(text) {
 // A title is truncated in results around 65 characters, and the site name is the least
 // informative part of it. Drop the suffix rather than the subject when they do not both fit.
 const TITLE_MAX = 65;
-const SUFFIX = ` \u2014 ${PUBLISHER}`;
+const SUFFIX = ` | ${PUBLISHER}`;
 
 function fitTitle(title) {
   return title.length + SUFFIX.length <= TITLE_MAX ? `${title}${SUFFIX}` : title;
@@ -574,7 +587,7 @@ function hubHtml(hub, members) {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
-    name: `${hub.label} — ${PUBLISHER} research`,
+    name: `${hub.label}: ${PUBLISHER} research`,
     description: hub.blurb,
     url,
     inLanguage: "en",
@@ -677,7 +690,7 @@ function main() {
   marked.use({ gfm: true, breaks: false });
 
   // TWO PASSES. Classify the whole corpus first, because a paper's related-work list is a
-  // function of every other paper — writing pages as they are read would give the first document
+  // function of every other paper. Writing pages as they are read would give the first document
   // no siblings and the last one all of them.
   const papers = [];
   const incomplete = [];
@@ -703,12 +716,12 @@ function main() {
     );
     writeFileSync(
       resolve(OUT_DIR, `${paper.slug}.html`),
-      pageHtml({
+      normalizeEditableCopy(pageHtml({
         ...paper,
         body,
         sourceSha256: sha256(paper.markdown),
         related: relatedSection(paper, papers),
-      }),
+      })),
     );
     writeFileSync(resolve(CITATION_DIR, `${paper.slug}.bib`), bibtex(paper));
   }
@@ -727,7 +740,10 @@ function main() {
     // A hub with fewer than three members is a page that exists to hold links, which is the one
     // thing this must not become.
     if (members.length < 3) continue;
-    writeFileSync(resolve(OUT_DIR, "topics", `${hub.slug}.html`), hubHtml(hub, members));
+    writeFileSync(
+      resolve(OUT_DIR, "topics", `${hub.slug}.html`),
+      normalizeEditableCopy(hubHtml(hub, members)),
+    );
     hubs.push({ ...hub, count: members.length });
   }
 
@@ -768,7 +784,7 @@ function main() {
 
   // The library page must link the taxonomy it publishes. Until 2026-08-22 it linked eleven
   // papers and ZERO hubs, so four hubs and their exclusive members sat four and five clicks from
-  // the homepage — reachable only by chance, through another paper's related-work section. The
+  // the homepage and were reachable only by chance through another paper's related-work section. The
   // block is generated from the hubs actually rendered, so it cannot drift from the corpus, and
   // the sentinels are asserted: a silent no-op here would restore the defect invisibly.
   const libraryPage = resolve(ROOT, "research.html");
@@ -788,7 +804,7 @@ function main() {
   );
   if (withHubs === libraryHtml && !libraryHtml.includes(block)) {
     throw new Error(
-      "research.html has no HUBS:START/HUBS:END sentinels — the topic links would silently " +
+      "research.html has no HUBS:START/HUBS:END sentinels. The topic links would silently " +
         "stop being generated and the hubs would go back to being four clicks deep",
     );
   }
@@ -809,7 +825,7 @@ function main() {
   if (rewritten === withHubs && !withHubs.includes(archivalBlock)) {
     throw new Error("research.html has no archival-paper sentinels");
   }
-  writeFileSync(libraryPage, rewritten);
+  writeFileSync(libraryPage, normalizeEditableCopy(rewritten));
 
   const today = new Date().toISOString().slice(0, 10);
   const urls = [

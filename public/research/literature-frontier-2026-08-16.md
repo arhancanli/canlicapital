@@ -1,4 +1,4 @@
-# ALPHAC literature frontier — 2026-08-16
+# ALPHAC literature frontier: 2026-08-16
 
 Status: literature and data-feasibility screen only. No return series was opened and no
 return identity was spent. The purpose is to find mechanisms that are economically distinct

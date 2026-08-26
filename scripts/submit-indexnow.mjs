@@ -102,7 +102,7 @@ async function main() {
 
   const keyResponse = await fetch(keyUrl, { cache: "no-store", headers: { "user-agent": UA } });
   if (!keyResponse.ok) {
-    throw new Error(`IndexNow key is not live at ${keyUrl} (${keyResponse.status}) — deploy first`);
+    throw new Error(`IndexNow key is not live at ${keyUrl} (${keyResponse.status}). Deploy first.`);
   }
   const body = (await keyResponse.text()).trim();
   if (body !== key) {

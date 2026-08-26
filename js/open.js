@@ -373,7 +373,7 @@ function bindKillLog(d) {
   if (!body) return;
   const killed = Array.isArray(d.killed_strategies) ? d.killed_strategies : [];
   // screen-stage prototypes (FX): killed at the cheap screen, before engine integration. Honest
-  // shape — they carry screen_net_sharpe (not a full-backtest sharpe) and no return/dd/period.
+  // shape: they carry screen_net_sharpe (not a full-backtest Sharpe) and no return/dd/period.
   const screen = (Array.isArray(d.screen_stage_kills) ? d.screen_stage_kills : []).map((s) => ({
     ...s,
     sharpe: s.screen_net_sharpe,
@@ -663,7 +663,7 @@ function bindTransparency(d, anchors) {
   if (!d) return;
   // DAYS != ENTRIES. The chain gains an entry on every PUBLISH and the tick publishes hourly, so
   // the entry count runs ~8x the number of calendar dates covered. This rendered entry_count into
-  // a slot labelled "days" under the heading "Signed chain" — 371 entries read as "371 days" while
+  // a slot labelled "days" under the heading "Signed chain". 371 entries read as "371 days" while
   // the record actually spanned 47 dates and the live book was 13 days old. On the page that says
   // "don't trust us, verify us", that is the worst possible place to overstate.
   // Both are shown now, and days is derived from the entries themselves when the exporter is older
@@ -680,7 +680,7 @@ function bindTransparency(d, anchors) {
   }
   setHook("tx", "verifyCmd", d.verify);
   // External Bitcoin anchor (OpenTimestamps): an independent clock proving WHEN the head existed,
-  // so we cannot backdate. It says nothing about whether the numbers are good — that is reproducibility.
+  // so we cannot backdate. It says nothing about whether the numbers are good. That is reproducibility.
   if (anchors && anchors.head_anchor) {
     const a = anchors.head_anchor;
     const n = anchors.anchor_count;
@@ -704,7 +704,7 @@ function bindCommitment(d) {
     "commit",
     "sig",
     d.signature_ed25519
-      ? `Ed25519-signed, key ${(d.public_key_ed25519_hex || "").slice(0, 16)}… — verify against the published key`
+      ? `Ed25519-signed, key ${(d.public_key_ed25519_hex || "").slice(0, 16)}… Verify against the published key.`
       : "",
   );
 }

@@ -227,7 +227,7 @@ for (const paper of researchIndex.papers || []) {
 }
 
 // 4b. Every topic hub is a real page: metadata, its own canonical, and in the sitemap.
-check(hubs.length > 0, "no topic hubs found in dist/research/topics — the taxonomy did not build");
+check(hubs.length > 0, "No topic hubs found in dist/research/topics. The taxonomy did not build.");
 // Every essay paragraph on every hub, so a paragraph reused across two hubs is caught rather
 // than read as two pages of content.
 const essaySeen = new Map();
@@ -254,7 +254,7 @@ for (const hub of hubs) {
   );
   // A hub whose members are not linked from it is a doorway page.
   const links = (html.match(/href="\/research\/[a-z0-9-]+"/g) || []).length;
-  check(links >= 3, `topic ${slug} links only ${links} papers — a hub that thin is a doorway page`);
+  check(links >= 3, `Topic ${slug} links only ${links} papers. A hub that thin is a doorway page.`);
 
   // A hub that carries links and nothing else is a doorway page whatever its schema says. Each
   // must open with real subject content: what the mechanism is, what the literature supports,
@@ -270,17 +270,17 @@ for (const hub of hubs) {
     const essay = paragraphs.slice(1);
     check(
       essay.length >= 3,
-      `topic ${slug} opens with ${essay.length} essay paragraphs — under the three it needs`,
+      `Topic ${slug} opens with ${essay.length} essay paragraphs, fewer than the three it needs.`,
     );
     const words = essay.join(" ").split(/\s+/).filter(Boolean).length;
-    check(words >= 180, `topic ${slug} essay is only ${words} words — too thin to rank or to read`);
+    check(words >= 180, `Topic ${slug} essay is only ${words} words. It is too thin to rank or read.`);
     for (const paragraph of essay) {
       const seenOn = essaySeen.get(paragraph);
       // The anti-template check. The moment one paragraph can appear on two hubs, these become
       // boilerplate with the subject noun swapped, and they would deserve to rank for nothing.
       check(
         seenOn === undefined,
-        `topic ${slug} shares an essay paragraph with ${seenOn} — templated, not written`,
+        `Topic ${slug} shares an essay paragraph with ${seenOn}. The copy is templated.`,
       );
       essaySeen.set(paragraph, slug);
     }
@@ -289,7 +289,7 @@ for (const hub of hubs) {
 
 check(
   essaySeen.size >= 39,
-  `only ${essaySeen.size} distinct essay paragraphs across all hubs — the extractor has stopped ` +
+  `Only ${essaySeen.size} distinct essay paragraphs exist across all hubs. The extractor has stopped ` +
     `matching and every essay check above would pass vacuously`,
 );
 
@@ -339,7 +339,7 @@ const measurementPages = existsSync(resolve(DIST, "measurements"))
 // pass without checking anything, which is the exact shape of the bug being guarded.
 check(
   artifacts.length >= 12,
-  `discovery found only ${artifacts.length} artifacts in research.json — the rule has stopped ` +
+  `Discovery found only ${artifacts.length} artifacts in research.json. The rule has stopped ` +
     `matching and every check below would pass vacuously`,
 );
 check(
@@ -375,7 +375,7 @@ for (const path of artifacts) {
   // Two clicks from /research: the index links every page, and /research links the index.
   check(
     indexHtml.includes(`href="/measurements/${slug}"`),
-    `measurement ${slug} is not linked from the /measurements index — it is an orphan`,
+    `Measurement ${slug} is not linked from the /measurements index. It is an orphan.`,
   );
 }
 
@@ -402,13 +402,13 @@ if (custody) {
   for (const stage of ["Lake", "Factor", "Portfolio", "Overlay", "Execution", "Publication"]) {
     check(
       stages.some((s) => s.includes(stage)),
-      `the end-to-end walk has no ${stage} stage — it no longer walks the whole path`,
+      `The end-to-end walk has no ${stage} stage. It no longer covers the whole path.`,
     );
   }
   const proofLinks = [...custody[0].matchAll(/href="(\/[^"#]*)"/g)].map((m) => m[1]);
   check(
     proofLinks.length >= stages.length,
-    `${stages.length} stages but only ${proofLinks.length} proof links — a stage proves nothing`,
+    `${stages.length} stages have only ${proofLinks.length} proof links. A stage proves nothing.`,
   );
   for (const href of new Set(proofLinks)) {
     check(
@@ -424,7 +424,7 @@ if (custody) {
 }
 
 // ---------------------------------------------------------------------------
-// 8. /verify — the page that tells an outsider how to check this record. Its
+// 8. /verify: the page that tells an outsider how to check this record. Its
 //    failure mode is specific and nasty: an instruction that does not work is
 //    worse than no instruction, because the reader spends their one attempt on
 //    it and concludes the record is fake rather than the page stale. So every
@@ -459,7 +459,7 @@ if (existsSync(verifyFile)) {
   for (const loop of verifyHtml.matchAll(/for f in\s*\\?([\s\S]*?);\s*do/g)) {
     for (const stem of loop[1].split(/[\s\\]+/).filter(Boolean)) named.add(`${stem}.json`);
   }
-  check(named.size >= 10, `/verify names only ${named.size} downloadable files — the command list `
+  check(named.size >= 10, `/verify names only ${named.size} downloadable files. The command list `
     + `has stopped rendering and the checks below would pass vacuously`);
   for (const name of named) {
     const file = name.includes(".") ? name : `${name}.json`;
@@ -501,7 +501,7 @@ if (existsSync(verifyFile)) {
 }
 
 // ---------------------------------------------------------------------------
-// 9. /founder — the page behind the Person entity that every paper resolves its
+// 9. /founder: the page behind the Person entity that every paper resolves its
 //    authorship to. Three things have to hold: the entity actually points here,
 //    every number on it is derivable from a published artifact, and it makes no
 //    claim that cannot be checked. The last one is the discipline the page is
@@ -575,7 +575,7 @@ if (existsSync(founderFile)) {
   for (const value of derived) {
     check(
       typeof value === "number" && Number.isFinite(value) && value > 0,
-      `a fact /founder derives came back empty (${value}) — the check below would pass vacuously`,
+      `A fact /founder derives came back empty (${value}). The next check would pass vacuously.`,
     );
     renderings.add(String(value));
     renderings.add(value.toLocaleString("en-US"));
@@ -626,7 +626,7 @@ if (existsSync(founderFile)) {
     untraceable.length === 0,
     `/founder quotes numbers that are in no artifact: ${untraceable.join(", ")}`,
   );
-  check(numbers.size >= 8, `/founder quotes only ${numbers.size} figures — the derivation has ` +
+  check(numbers.size >= 8, `/founder quotes only ${numbers.size} figures. The derivation has ` +
     `stopped rendering and the trace check above would pass vacuously`);
 
   check(
@@ -674,7 +674,7 @@ if (existsSync(founderFile)) {
   ]) {
     check(
       !pattern.test(prose),
-      `/founder makes an uncheckable credential claim matching ${pattern} — the page is built on ` +
+      `/founder makes an uncheckable credential claim matching ${pattern}. The page is built on ` +
         `not doing that`,
     );
   }
@@ -944,12 +944,12 @@ if (existsSync(methodologyFile)) {
   );
   const headings = (methodologyHtml.match(/<h2>/g) || []).length;
   const marked = (methodologyHtml.match(/"@type":"Question"/g) || []).length;
-  check(headings >= 10, `/methodology has only ${headings} sections — the question list has ` +
+  check(headings >= 10, `/methodology has only ${headings} sections. The question list has ` +
     `stopped rendering and the checks below would pass vacuously`);
   // One trailing section ("Where to go next") is not a question, so the markup carries one fewer.
   check(
     marked === headings - 1,
-    `/methodology renders ${headings - 1} questions but marks up ${marked} — the structured data ` +
+    `/methodology renders ${headings - 1} questions but marks up ${marked}. The structured data ` +
       `describes a different page from the one a reader sees`,
   );
 
@@ -957,14 +957,14 @@ if (existsSync(methodologyFile)) {
   const evidence = [...methodologyHtml.matchAll(/class="faq__evidence"[\s\S]*?<\/p>/g)];
   check(
     evidence.length === marked,
-    `${marked} questions but ${evidence.length} evidence lines — an answer asserts without showing`,
+    `${marked} questions have ${evidence.length} evidence lines. An answer asserts without showing.`,
   );
   const evidenceLinks = new Set(
     evidence.flatMap((block) => [...block[0].matchAll(/href="(\/[^"#]*)"/g)].map((m) => m[1])),
   );
   check(
     evidenceLinks.size >= 15,
-    `/methodology cites only ${evidenceLinks.size} distinct documents — thinner than the corpus ` +
+    `/methodology cites only ${evidenceLinks.size} distinct documents. This is thinner than the corpus ` +
       `it exists to index`,
   );
   for (const href of new Set([...methodologyHtml.matchAll(/href="(\/[^"#]*)"/g)].map((m) => m[1]))) {
@@ -1246,7 +1246,7 @@ if (existsSync(trialToolFile)) {
 // ---------------------------------------------------------------------------
 // 11. SHORT TITLES. A search-result headline is not a document's name. Papers
 //     whose real names run past 65 characters declare a short title used for
-//     <title> only — and the risk of that mechanism is that it quietly RENAMES
+//     <title> only. The risk of that mechanism is that it quietly RENAMES
 //     the document. So this checks both halves: the short title fits, and the
 //     page still presents the real name in its H1, Open Graph title and
 //     structured-data headline. A reader must never arrive at a document called
@@ -1289,7 +1289,7 @@ for (const page of pages) {
       const h1Text = h1.replace(/<[^>]+>/g, "").replace(/&amp;/g, "&").replace(/\s+/g, " ").trim();
       check(
         h1Text === realTitle,
-        `${slug} presents "${h1Text}" as its name but the document is called "${realTitle}" — ` +
+        `${slug} presents "${h1Text}" as its name but the document is called "${realTitle}". ` +
           `the short title has renamed the document`,
       );
     }
@@ -1300,13 +1300,13 @@ for (const page of pages) {
     );
   }
 }
-check(shortTitled >= 20, `only ${shortTitled} papers declare a short title — the extractor has ` +
+check(shortTitled >= 20, `Only ${shortTitled} papers declare a short title. The extractor has ` +
   `stopped matching and the checks above would pass vacuously`);
 
 // ---------------------------------------------------------------------------
 // 12. data-fact FALLBACKS. Every `<span data-fact="k">TEXT</span>` is overwritten
 //     by main.js at runtime, so the TEXT is only what a crawler and a reader
-//     with JS off actually see — which makes it a published claim, and it had
+//     with JS off actually see. This makes it a published claim, and it had
 //     drifted: "8,436 survivorship-free US stocks", "392K+ fundamentals" and
 //     "2,820+ tests" sat in the HTML long after config/brand.js was the source
 //     of truth. A fallback that disagrees with the value replacing it is a
@@ -1321,7 +1321,7 @@ const FACTS = Object.fromEntries(
   [...factsBlock.matchAll(/^\s*(\w+):\s*"([^"]*)"/gm)].map((m) => [m[1], m[2]]),
 );
 check(Object.keys(FACTS).length >= 8, `only ${Object.keys(FACTS).length} FACTS parsed from ` +
-  `config/brand.js — the extractor has stopped matching and the checks below would pass vacuously`);
+  `config/brand.js. The extractor has stopped matching and the checks below would pass vacuously.`);
 
 // Walk dist/ here rather than reuse a name from another script: this file had no page walker.
 const walkHtml = (dir) => {
@@ -1352,7 +1352,7 @@ for (const file of walkHtml(DIST)) {
     );
   }
 }
-check(factSpans >= 10, `only ${factSpans} data-fact spans found across the built site — the scan ` +
+check(factSpans >= 10, `Only ${factSpans} data-fact spans were found across the built site. The scan ` +
   `has stopped matching`);
 
 const sitemapUrls = (sitemap.match(/<loc>/g) || []).length;
@@ -1416,7 +1416,7 @@ console.log(
     `presents its real name in the H1 and the structured data`,
 );
 console.log(
-  `verified ${factSpans} data-fact fallbacks against config/brand.js — the static text a crawler ` +
+  `verified ${factSpans} data-fact fallbacks against config/brand.js. The static text a crawler ` +
     `sees agrees with the value JS replaces it with`,
 );
 console.log(`sitemap covers ${sitemapUrls} URLs`);

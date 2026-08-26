@@ -4,7 +4,7 @@
 // Every numeral a reader can see on this site must trace to something we
 // published, and this reports the ones that do not.
 //
-// WHY. The kill papers already have this guarantee — a generator that can only
+// WHY. The kill papers already have this guarantee. A generator that can only
 // print figures present in the entry it renders, with a test that catches a
 // hand-typed one. The other hundred-odd pages did not. A number written into
 // prose by hand is a claim nothing keeps honest: it is right on the day it is
@@ -24,7 +24,7 @@
 //   PERCENT     some artifact value times one hundred rounds to the token.
 //   DATE        a four-digit year in 1900-2100, or a component of an ISO date
 //               printed on the same page.
-//   STRUCTURE   the token equals a count of something the built site contains —
+//   STRUCTURE   the token equals a count of something the built site contains.
 //               pages, papers, hubs, measurements, sitemap URLs. These are
 //               claims ABOUT the site, so the site is the artifact, and the
 //               count is recomputed here rather than trusted.
@@ -41,7 +41,7 @@ const DIST = resolve(ROOT, "dist");
 const MAX_REPORTED = 40;
 
 if (!existsSync(DIST)) {
-  console.error("dist/ does not exist — run `npm run build` first");
+  console.error("dist/ does not exist. Run `npm run build` first.");
   process.exit(1);
 }
 
@@ -74,7 +74,7 @@ const visibleText = (html) =>
 
 // Exponential notation is ONE numeral, not two. Without the exponent group, an artifact holding
 // 3e-06 contributed the tokens "3" and "06" to the universe and a page printing 0.000003 traced to
-// neither — six of the first run's forty-five "untraceable" numbers were this, on both sides at
+// neither. Six of the first run's forty-five "untraceable" numbers were this, on both sides at
 // once.
 // The leading lookbehind is a RANGE rule, not a cosmetic one: in "1961-1970" the hyphen joins two
 // years, and reading it as a minus sign invented the number -1970 and reported it as an
@@ -91,7 +91,7 @@ const artifacts = walk(resolve(DIST, "glassbox"), ".json");
 // PER-ARTIFACT, NOT ONE POOL. Tracing every page against every number in every artifact was the
 // first design, and it has an expiry date: the corpus grows on every publish, so a figure that
 // traces to nothing today can start "tracing" tomorrow because an unrelated artifact happened to
-// contain a matching value. That is exactly what happened — two genuinely untraceable numbers
+// contain a matching value. That is exactly what happened: two genuinely untraceable numbers
 // went quiet within two hours of this guard shipping, because publishing the claim-coverage map
 // added its own numbers to the pool. A guard that weakens each time the record grows is a guard
 // with an expiry date, so a page is now traced against the artifacts IT REFERENCES.
@@ -201,7 +201,7 @@ for (const file of htmlFiles) {
   const text = visibleText(html);
   // A page is scoped ONLY when its generator DECLARES the complete set of artifacts it drew
   // from, via <meta name="canli:sources">. A link to a glassbox file in prose is a citation, not
-  // a statement that it is the only source — treating one as the other scoped research papers to
+  // a statement that it is the only source. Treating one as the other scoped research papers to
   // a single artifact while they quoted figures from three, which is a worse answer than the
   // honest fallback.
   const declared = html.match(/<meta name="canli:sources" content="([^"]*)"/);
@@ -221,7 +221,7 @@ for (const file of htmlFiles) {
     dateParts.add(date.slice(0, 4));
   }
   // A numeral inside a citation is an IDENTIFIER, not a claim: "10.1016/j.jfineco" is a DOI and
-  // "arXiv:2103.02012" is a paper's name. The rule is contextual — what precedes the numeral —
+  // "arXiv:2103.02012" is a paper's name. The rule is contextual: what precedes the numeral
   // rather than a list of the particular identifiers this corpus happens to cite today.
   const identifiers = new Set();
   for (const match of html.matchAll(/(?:doi|arxiv|https?|www|:\/\/)[^"'\s<>]*/gi)) {
@@ -266,16 +266,16 @@ for (const file of htmlFiles) {
 // would make the whole audit pass. Both are floors, both are the shape of the bug.
 const problems = [];
 if (corpus.values.length < 5000) {
-  problems.push(`only ${corpus.values.length} numbers found across ${artifacts.length} artifacts ` +
-    `— the published universe did not load, so everything would report as untraceable`);
+  problems.push(`Only ${corpus.values.length} numbers were found across ${artifacts.length} artifacts. ` +
+    `The published universe did not load, so everything would report as untraceable.`);
 }
 if (scopedPages < 20) {
-  problems.push(`only ${scopedPages} pages declared a glassbox source — the source extractor has ` +
+  problems.push(`Only ${scopedPages} pages declared a glassbox source. The source extractor has ` +
     `stopped matching, so almost everything fell back to the whole corpus and the scoping this ` +
     `guard exists for is not happening`);
 }
 if (seen < 500) {
-  problems.push(`only ${seen} numerals found across ${htmlFiles.length} pages — the page scan ` +
+  problems.push(`Only ${seen} numerals were found across ${htmlFiles.length} pages. The page scan ` +
     `matched almost nothing, so a clean result here means nothing`);
 }
 

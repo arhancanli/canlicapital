@@ -93,7 +93,7 @@ is shown here with its own claim boundary so the number and its limits arrive to
 <section class="measure__sub"><h3>Ledoit wolf intensity mismatch</h3>
 <dl class="measure__facts">
 <div class="measure__row"><dt>Site</dt><dd>src/alphaforge/portfolio/strategy.py, the ledoit_wolf_cc call</dd></div>
-<div class="measure__row"><dt>Status</dt><dd>OPEN — flagged, not fixed; no study has measured it</dd></div>
+<div class="measure__row"><dt>Status</dt><dd>OPEN; flagged, not fixed; no study has measured it</dd></div>
 </dl>
 <p class="measure__prose"><strong>Description.</strong> ledoit_wolf_cc computes its shrinkage intensity delta* with T = the number of rows passed, and production passes the full unweighted 720-row window while the matrix being shrunk is the EWMA. That approximation is documented and was conservative while the EWMA&#39;s effective sample EXCEEDED 720. It stops being conservative at a short halflife.</p>
 <section class="measure__sub"><h4>Effective sample by request</h4>

@@ -1,4 +1,4 @@
-# PRE-REGISTRATION — post-publication pre-FOMC announcement drift
+# PRE-REGISTRATION: post-publication pre-FOMC announcement drift
 
 **Declared 2026-08-16 after official schedule-lineage PASS and before opening any market return
 associated with this identity. One direction, one instrument, one timing window, one hypothesis.**

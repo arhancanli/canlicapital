@@ -1643,15 +1643,15 @@ is shown here with its own claim boundary so the number and its limits arrive to
  + zstandard==0.25.0
 </td><td>e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855</td><td></td></tr>
 <tr><td>.venv/bin/python3 scripts/mf_gauntlet.py --alphas mf_trend_63,mf_trend_126,mf_trend_252 --rebalance 10 --cash 100000 --start 2003-01-01 --end 2026-08-24 --out outputs/mf_live_fwd</td><td>0</td><td>e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855</td><td></td><td>7ca73119f7645c9df2036d0c4a1eb853da983603a45db85ed91b55327e630d39</td><td>
-================ MANAGED-FUTURES TREND — GAUNTLET ================
+================ MANAGED-FUTURES TREND; GAUNTLET ================
   window      : 2003-01-01 .. 2026-08-24   (monthly rebalance, 2y train / 6m test)
   net Sharpe  : 0.327
   DSR         : 0.8103064357871095
   ann vol     : 0.053
   max DD      : 0.102
   sortino     : 0.469
-  skew        : 0.26   (trend should be &gt;~0 — the crash-protection signature)
-  corr to SPY : +0.08   (want ~0 / negative — diversifies the book)
+  skew        : 0.26   (trend should be &gt;~0 (the crash-protection signature)
+  corr to SPY : +0.08   (want ~0 / negative) diversifies the book)
   CAGR        : 0.011
   artifacts   : outputs/mf_live_fwd
 =================================================================
@@ -1826,7 +1826,7 @@ is shown here with its own claim boundary so the number and its limits arrive to
 <tr><td>publication/crypto-carry/v0.1.0</td><td>CARRIED_FORWARD_BYTE_IDENTICAL_PDF_FROM_PRIOR_RECEIPT</td><td>10</td><td>93c315aebf3262ae195f7475ce668ceed47290c62549ba707cf8544ab795e421</td><td>48a603b78f9568b18c245f9a0c28286edb1277995e0eaa8e77ca8f89e08f77a8</td><td>f41be57dbcbd04f0e72568ccde561cfd4fe6ed06ba29e0c3e1c4d2cafc034c7f</td><td>alphaforge_crypto_carry</td><td>PASS_INTERNAL_VISUAL_INSPECTION</td></tr>
 <tr><td>publication/alphamax/v0.1.0</td><td>CARRIED_FORWARD_BYTE_IDENTICAL_PDF_FROM_PRIOR_RECEIPT</td><td>8</td><td>eed32d00c9ed1b3bab146f8a220bd46279f9f56b5db88cd7b22e7b0c81eeaa05</td><td>055ae6bbdc897cffeeca9f39d5b539e52179d01afade2f5f3a620c693fa483f7</td><td>635ed23af6518e2c27782e61dde095e60b8b377dbba3471aa6bff1abcbb28e88</td><td>alphamax_equity_momentum</td><td>PASS_INTERNAL_VISUAL_INSPECTION</td></tr>
 <tr><td>publication/alphatrend/v0.1.0</td><td>CARRIED_FORWARD_BYTE_IDENTICAL_PDF_FROM_PRIOR_RECEIPT</td><td>6</td><td>029428552d4fed9e9ea2c79f655c9f239d3546c390f695c42176f4d53fe8ceac</td><td>08ff14b9fca6052f7402a572edd0a084d20bcca788bcdde6259af0f3bcbe57a2</td><td>3e2565edb17422a60bd96c40969f0520866c79e2bc880405852c90cfc3907090</td><td>alphatrend_managed_futures</td><td>PASS_INTERNAL_VISUAL_INSPECTION</td></tr>
-<tr><td>publication/alphavintage/v1.0.0</td><td>REINSPECTED_CURRENT_PDF_2026_08_25</td><td>8</td><td>1a008c6c32b3b8fc313515f636d986be678187ef92a44c0a9d6651585c790f47</td><td>4badae5a9b4a1c6979217bb386c867b8c3eef165585aa5145e567f85db5f27d3</td><td>&mdash;</td><td>alphavintage_macro_surprise</td><td>PASS_INTERNAL_VISUAL_INSPECTION</td></tr>
+<tr><td>publication/alphavintage/v1.0.0</td><td>REINSPECTED_CURRENT_PDF_2026_08_25</td><td>8</td><td>1a008c6c32b3b8fc313515f636d986be678187ef92a44c0a9d6651585c790f47</td><td>4badae5a9b4a1c6979217bb386c867b8c3eef165585aa5145e567f85db5f27d3</td><td>Not reported</td><td>alphavintage_macro_surprise</td><td>PASS_INTERNAL_VISUAL_INSPECTION</td></tr>
 <tr><td>publication/crypto-defensive/v0.1.0</td><td>CARRIED_FORWARD_BYTE_IDENTICAL_PDF_FROM_PRIOR_RECEIPT</td><td>4</td><td>d2012cf059a5ed9e8089122575a1d65efd02d5d43fa96c8e47a492d84a0a96ce</td><td>32bb757611472fb685951955cc186269e4fab0088c637e4fb451b5894de80aa1</td><td>4eece6b79e14b89af3f64f304b4c5e134d55a7f04aff77499d9087bc91e07be4</td><td>crypto_defensive</td><td>PASS_INTERNAL_VISUAL_INSPECTION</td></tr>
 <tr><td>publication/crypto-momentum/v0.1.0</td><td>CARRIED_FORWARD_BYTE_IDENTICAL_PDF_FROM_PRIOR_RECEIPT</td><td>7</td><td>170dff8bfbf47443ad39f8e9dda535a3fc1b85300b14df84682f48ce3650d0e9</td><td>94f3d31fd6fe29628e89a30d9786483339c7148ff802856ed7c3a919d0b6f190</td><td>decb66153c8a00b517a3d305db489c12aacf24f6e36f6898b5b725d5dc7b6f43</td><td>crypto_momentum</td><td>PASS_INTERNAL_VISUAL_INSPECTION</td></tr>
 <tr><td>publication/crypto-multifactor-engine/v0.1.0</td><td>CARRIED_FORWARD_BYTE_IDENTICAL_PDF_FROM_PRIOR_RECEIPT</td><td>5</td><td>d472c102ac67d1259c8207ecc79b17bc0b2a6ce64c9b581c11cbb010e42391ae</td><td>f9940101485bbbec60b7ef40b3f658f0818bf593eb4684f4a886ba57d2271b53</td><td>504200d5e68d5da9109f11343b3e185f8012c3ad2adc9d0d3fb1203836c72618</td><td>crypto_multifactor_engine</td><td>PASS_INTERNAL_VISUAL_INSPECTION</td></tr>

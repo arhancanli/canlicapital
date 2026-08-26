@@ -6,7 +6,7 @@
 //
 // WHY. The verifier already existed and already worked. Nothing on the site
 // explained it to somebody who had not already gone looking, which meant the one
-// asset this record has — that it can be checked — was reachable only by people
+// asset this record has, independent checking, was reachable only by people
 // who already believed it. "Don't trust us, verify us" is a slogan until the
 // commands are on a page.
 //
@@ -98,11 +98,11 @@ function main() {
   const artifacts = hashedArtifacts();
   const chain = chainFacts();
   if (artifacts.length === 0) {
-    console.error("no hashed artifacts found — /verify would tell a reader to download nothing");
+    console.error("No hashed artifacts found. /verify would tell a reader to download nothing.");
     process.exit(1);
   }
   if (!chain) {
-    console.error("no transparency chain found — /verify cannot describe what it does not have");
+    console.error("No transparency chain found. /verify cannot describe what it does not have.");
     process.exit(1);
   }
   const signedPresent = SIGNED_COMMITMENTS.filter((n) => existsSync(resolve(GLASSBOX, n)));
@@ -212,8 +212,8 @@ ${renderProductShellHeader({ active: "verify" })}
     <div class="paper__body">
       <p class="hub__standfirst">Every claim on this site is meant to be checkable by somebody who
       does not trust us. This page is the instructions. It takes about two minutes for the first
-      level, needs no account and no permission, and it is designed to be able to fail — if a
-      published number had been edited after the fact, the command below would say so.</p>
+      level, needs no account and no permission, and is designed to fail when the evidence changes.
+      If a published number had been edited after the fact, the command below would say so.</p>
 
       <p>There are three levels, each more hands-on than the last, and each independent of taking
       our word for anything. The first needs nothing but Python. The second adds one library and
@@ -222,10 +222,10 @@ ${renderProductShellHeader({ active: "verify" })}
       were published.</p>
 
       <section class="verify__level" id="l1">
-        <h2>Level 1 — recompute every hash</h2>
+        <h2>Level 1: recompute every hash</h2>
         <p>Each published artifact carries a SHA-256 over its own canonical bytes. This recomputes
         all ${artifacts.length} of them from files downloaded straight off this site and confirms
-        every one matches. No repository, no install, no data — the Python standard library is
+        every one matches. You need no repository, install or private data. The Python standard library is
         enough.</p>
         <pre class="verify__code" tabindex="0" aria-label="Level 1 content-hash verification command"><code>${escapeHtml(l1Command)}</code></pre>
         <p>You should see <code>L1 content hashes : ${artifacts.length} reproduced, 0 failed</code>.
@@ -234,7 +234,7 @@ ${renderProductShellHeader({ active: "verify" })}
       </section>
 
       <section class="verify__level" id="l2">
-        <h2>Level 2 — check the signatures and the chain</h2>
+        <h2>Level 2: check the signatures and the chain</h2>
         <p>Two commitments are Ed25519-signed, and the whole track record is written into an
         append-only hash chain: each entry links to the one before it by hash, and every link is
         signed. Re-deriving that chain is the check that matters most, because it is the one that
@@ -243,7 +243,7 @@ ${renderProductShellHeader({ active: "verify" })}
         <p>The chain currently holds ${chain.count} entries, from ${escapeHtml(chain.firstDate)} to
         ${escapeHtml(chain.lastDate)}, signed under the public key
         <code class="verify__key">${escapeHtml(chain.publicKey)}</code>. If any earlier entry had
-        been altered, that entry's chain hash — and every signature after it — would fail here.</p>
+        been altered, that entry's chain hash and every later signature would fail here.</p>
         <p><a href="/tools/evidence-chain">Inspect the chain in the browser</a>. The interactive
         microscope verifies every predecessor link and signature, exposes the payload-disclosure
         boundary and lets you mutate a local copy of any entry. The Python command above remains
@@ -251,7 +251,7 @@ ${renderProductShellHeader({ active: "verify" })}
       </section>
 
       <section class="verify__level" id="l3">
-        <h2>Level 3 — re-run the engine</h2>
+        <h2>Level 3: re-run the engine</h2>
         <p>The last level checks that the engine which produced the numbers is deterministic and
         unchanged: a golden-master test replays a scripted fixture and requires the output to be
         byte-for-byte identical. This one needs the repository.</p>
@@ -267,7 +267,7 @@ ${renderProductShellHeader({ active: "verify" })}
         <p><strong>A matching hash does not make a number correct.</strong> It proves the file you
         are reading is the file that was published and has not been edited since. If a figure was
         computed wrongly, it will hash perfectly. What defends against that is a different thing
-        entirely — the <a href="/measurements">measurements</a>, each published with its own claim
+        entirely: the <a href="/measurements">measurements</a>, each published with its own claim
         boundary, and the published
         <a href="/research/alphavintage-missing-release-correction">corrections</a> we have had to
         make against our own earlier figures.</p>

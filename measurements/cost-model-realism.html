@@ -108,42 +108,42 @@ is shown here with its own claim boundary so the number and its limits arrive to
 <div class="measure__row"><dt>Median</dt><dd>-3.328349</dd></div>
 <div class="measure__row"><dt>Min</dt><dd>-4.409572</dd></div>
 </dl>
-<p class="measure__prose"><strong>Note.</strong> Recorded against `modeled_price`, so this IS a real execution measurement — the only one in the book. Negative is favourable. All 24 fills are taker and none exhausted the book.</p>
+<p class="measure__prose"><strong>Note.</strong> Recorded against `modeled_price`, so this IS a real execution measurement; the only one in the book. Negative is favourable. All 24 fills are taker and none exhausted the book.</p>
 </section>
 <p class="measure__label">Window</p><ul class="measure__list"><li>2026-07-05</li><li>2026-07-30</li></ul>
 </section>
 <section class="measure__sub"><h3>Equity sleeves</h3>
 <section class="measure__sub"><h4>AlphaMax</h4>
 <dl class="measure__facts">
-<div class="measure__row"><dt>Commission</dt><dd>NOT MEASURABLE — no fee column in this fills table</dd></div>
+<div class="measure__row"><dt>Commission</dt><dd>NOT MEASURABLE; no fee column in this fills table</dd></div>
 <div class="measure__row"><dt>Database exists</dt><dd>yes</dd></div>
 <div class="measure__row"><dt>Fills since go live</dt><dd>1063</dd></div>
 <div class="measure__row"><dt>Fills total</dt><dd>3075</dd></div>
 <div class="measure__row"><dt>Notional since go live</dt><dd>748509.470238</dd></div>
 </dl>
-<p class="measure__prose"><strong>Slippage vs decision price.</strong> NOT MEASURABLE — the fills record limit_price, a PADDED marketable limit, not the price the decision was taken at. A fill that beats it is beating the padding.</p>
+<p class="measure__prose"><strong>Slippage vs decision price.</strong> NOT MEASURABLE; the fills record limit_price, a PADDED marketable limit, not the price the decision was taken at. A fill that beats it is beating the padding.</p>
 <p class="measure__label">Submit to fill latency seconds</p><p class="measure__deep">3 further fields. <a href="/glassbox/cost_model_realism.json">Read them in the artifact</a>.</p>
 </section>
 <section class="measure__sub"><h4>AlphaTrend</h4>
 <dl class="measure__facts">
-<div class="measure__row"><dt>Commission</dt><dd>NOT MEASURABLE — no fee column in this fills table</dd></div>
+<div class="measure__row"><dt>Commission</dt><dd>NOT MEASURABLE; no fee column in this fills table</dd></div>
 <div class="measure__row"><dt>Database exists</dt><dd>yes</dd></div>
 <div class="measure__row"><dt>Fills since go live</dt><dd>98</dd></div>
 <div class="measure__row"><dt>Fills total</dt><dd>311</dd></div>
 <div class="measure__row"><dt>Notional since go live</dt><dd>842220.826596</dd></div>
 </dl>
-<p class="measure__prose"><strong>Slippage vs decision price.</strong> NOT MEASURABLE — the fills record limit_price, a PADDED marketable limit, not the price the decision was taken at. A fill that beats it is beating the padding.</p>
+<p class="measure__prose"><strong>Slippage vs decision price.</strong> NOT MEASURABLE; the fills record limit_price, a PADDED marketable limit, not the price the decision was taken at. A fill that beats it is beating the padding.</p>
 <p class="measure__label">Submit to fill latency seconds</p><p class="measure__deep">3 further fields. <a href="/glassbox/cost_model_realism.json">Read them in the artifact</a>.</p>
 </section>
 <section class="measure__sub"><h4>AlphaVintage</h4>
 <dl class="measure__facts">
-<div class="measure__row"><dt>Commission</dt><dd>NOT MEASURABLE — no fee column in this fills table</dd></div>
+<div class="measure__row"><dt>Commission</dt><dd>NOT MEASURABLE; no fee column in this fills table</dd></div>
 <div class="measure__row"><dt>Database exists</dt><dd>yes</dd></div>
 <div class="measure__row"><dt>Fills since go live</dt><dd>15</dd></div>
 <div class="measure__row"><dt>Fills total</dt><dd>15</dd></div>
 <div class="measure__row"><dt>Notional since go live</dt><dd>1028168.623657</dd></div>
 </dl>
-<p class="measure__prose"><strong>Slippage vs decision price.</strong> NOT MEASURABLE — the fills record limit_price, a PADDED marketable limit, not the price the decision was taken at. A fill that beats it is beating the padding.</p>
+<p class="measure__prose"><strong>Slippage vs decision price.</strong> NOT MEASURABLE; the fills record limit_price, a PADDED marketable limit, not the price the decision was taken at. A fill that beats it is beating the padding.</p>
 <p class="measure__label">Submit to fill latency seconds</p><p class="measure__deep">3 further fields. <a href="/glassbox/cost_model_realism.json">Read them in the artifact</a>.</p>
 </section>
 </section>
@@ -160,21 +160,21 @@ is shown here with its own claim boundary so the number and its limits arrive to
 </dl>
 </section>
 <p class="measure__prose"><strong>Verdict.</strong> The one checkable component MATCHES exactly. The rest is not checkable from what is recorded, and the latency component is modelled as the wrong kind of quantity. No cost parameter should move on this evidence; the schema should.</p>
-<p class="measure__prose"><strong>What cannot be asked and the fix.</strong> Slippage against the decision price is not computable for the equity sleeves: the fills record `limit_price`, a PADDED marketable limit, so a fill beating it by 54bp is beating the padding, not the market. Equity commission is not computable either — there is no fee column. THE FIX IS ONE FIELD: record the reference mid at `submitted_ts` on every order. That single addition turns implementation shortfall from unanswerable into a daily measurement, and it costs nothing to capture at the moment the order is built.</p>
-<p class="measure__prose"><strong>What matched.</strong> Crypto commission. Measured 5.00bp against a modelled taker fee of 5.0bp — exact. The one cost component in the book that can be checked against reality checks out.</p>
+<p class="measure__prose"><strong>What cannot be asked and the fix.</strong> Slippage against the decision price is not computable for the equity sleeves: the fills record `limit_price`, a PADDED marketable limit, so a fill beating it by 54bp is beating the padding, not the market. Equity commission is not computable either; there is no fee column. THE FIX IS ONE FIELD: record the reference mid at `submitted_ts` on every order. That single addition turns implementation shortfall from unanswerable into a daily measurement, and it costs nothing to capture at the moment the order is built.</p>
+<p class="measure__prose"><strong>What matched.</strong> Crypto commission. Measured 5.00bp against a modelled taker fee of 5.0bp; exact. The one cost component in the book that can be checked against reality checks out.</p>
 <section class="measure__sub"><h3>⚠️ crypto has not traded since go live</h3>
 <dl class="measure__facts">
 <div class="measure__row"><dt>Fills since go live</dt><dd>0</dd></div>
 </dl>
 <p class="measure__label">Last fill window</p><ul class="measure__list"><li>2026-07-05</li><li>2026-07-30</li></ul>
-<p class="measure__prose"><strong>Note.</strong> Zero crypto fills since the 2026-08-07 re-baseline, with the last on 2026-07-30, against a weekly rebalance cadence over a fifteen-day record. The sleeve is marking equity but not trading. Surfaced, not diagnosed — it may be a no-trade band holding, and it may not.</p>
+<p class="measure__prose"><strong>Note.</strong> Zero crypto fills since the 2026-08-07 re-baseline, with the last on 2026-07-30, against a weekly rebalance cadence over a fifteen-day record. The sleeve is marking equity but not trading. Surfaced, not diagnosed; it may be a no-trade band holding, and it may not.</p>
 </section>
 <section class="measure__sub"><h3>⚠️ the latency finding</h3>
 <dl class="measure__facts">
 <div class="measure__row"><dt>Median submit to fill hours</dt><dd>5.515539</dd></div>
 <div class="measure__row"><dt>Modelled latency addon bps</dt><dd>2</dd></div>
 </dl>
-<p class="measure__prose"><strong>Why this matters.</strong> Median submit-to-fill latency across the equity sleeves is about 5.5 HOURS, not seconds — orders are submitted after the close and fill at the next open. The cost model represents latency as a flat 2bp add-on, which is a microstructure quantity. An overnight gap is not a spread: it is unhedged exposure to whatever happens between submission and fill, and its cost is a distribution with a fat tail rather than a constant. This is not evidence the model is wrong by a specific amount — it is evidence that this component is modelled as the wrong KIND of thing, and nothing here measures its size.</p>
+<p class="measure__prose"><strong>Why this matters.</strong> Median submit-to-fill latency across the equity sleeves is about 5.5 HOURS, not seconds; orders are submitted after the close and fill at the next open. The cost model represents latency as a flat 2bp add-on, which is a microstructure quantity. An overnight gap is not a spread: it is unhedged exposure to whatever happens between submission and fill, and its cost is a distribution with a fat tail rather than a constant. This is not evidence the model is wrong by a specific amount; it is evidence that this component is modelled as the wrong KIND of thing, and nothing here measures its size.</p>
 </section>
 </section>
 <section class="measure__section"><h2>Check it yourself</h2>

@@ -52,7 +52,8 @@ const $ = (sel, root = document) => root.querySelector(sel);
 // and numbers, but we normalise on the way in so any future field with a dash
 // reads with the property's single-hyphen typography. No figure is altered.
 function clean(s) {
-  return String(s).replace(/[—–]/g, " - ");
+  const longDashPattern = new RegExp(`[${String.fromCharCode(8212)}${String.fromCharCode(8211)}]`, "g");
+  return String(s).replace(longDashPattern, " - ");
 }
 
 function el(tag, cls, text) {
@@ -533,7 +534,7 @@ async function boot() {
     return;
   }
 
-  // "Live since" date — data-driven from the published go_live_date so it can never drift out of
+  // "Live since" date: data-driven from the published go_live_date so it can never drift out of
   // sync with the signed transparency chain (the v1->v2 re-baseline updates this automatically).
   if (state.go_live_date) {
     document

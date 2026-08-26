@@ -1,4 +1,4 @@
-# Inflation breakeven relative value — literature and claim boundary
+# Inflation breakeven relative value: literature and claim boundary
 
 **Short title:** Inflation breakeven relative value: literature  
 **Author:** Arhan Canli  
@@ -56,4 +56,3 @@ every alternate universe, horizon, sign, and implementation to one family-wise t
 must also specify liquidity controls, 2008 stress, indexation lag, seasonality, financing,
 transaction costs, capacity, DSR/PBO, and the fixed-book diversification tests. No source cited
 here establishes edge, sign, Sharpe, drawdown, capacity, or admission.
-

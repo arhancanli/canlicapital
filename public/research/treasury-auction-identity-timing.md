@@ -1,4 +1,4 @@
-# Treasury auction concession — published-identity timing audit
+# Treasury auction concession: published-identity timing audit
 
 ## Why this stage exists
 

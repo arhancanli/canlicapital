@@ -1,4 +1,4 @@
-# Bond-ETF NAV dislocation — locked no-return source feasibility protocol
+# Bond-ETF NAV dislocation: locked no-return source feasibility protocol
 
 **Short title:** Bond-ETF NAV dislocation: feasibility
 

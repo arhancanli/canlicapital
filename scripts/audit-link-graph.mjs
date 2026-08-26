@@ -5,7 +5,7 @@
 // unreachable, or further than three clicks, from the homepage.
 //
 // WHY. Nothing asserted it, and the answer turned out to be no. On 2026-08-22
-// this audit found 22 pages beyond the bound — 14 at four clicks and 8 at five —
+// this audit found 22 pages beyond the bound: 14 at four clicks and 8 at five.
 // because /research linked eleven papers and NOT ONE of the thirteen topic hubs
 // that are its own taxonomy. Those hubs were reachable only by chance, through
 // another paper's related-work section, and their exclusive members sat behind
@@ -15,7 +15,7 @@
 // THE GRAPH IS BUILT FROM STATIC HTML ONLY, and that is deliberate rather than a
 // limitation. The shared nav and footer are assembled at runtime by shell.js, so
 // a link that exists only there is invisible to a crawler reading the delivered
-// document — and invisible to a reader with JS off. Measuring the static graph
+// document and invisible to a reader with JS off. Measuring the static graph
 // measures the view that actually decides whether this corpus is discoverable.
 // Every static link added for this reason across the last few items was added
 // because of exactly that.
@@ -44,7 +44,7 @@ const problems = [];
 const fail = (message) => problems.push(message);
 
 if (!existsSync(DIST)) {
-  console.error("dist/ does not exist — run `npm run build` first");
+  console.error("dist/ does not exist. Run `npm run build` first.");
   process.exit(1);
 }
 
@@ -92,7 +92,7 @@ for (const file of files) {
     // UNANCHORED ONCE, and a mutation test caught it: `data-href="/x"` CONTAINS `href="/x"`, so
     // any attribute ending in -href counted as a link. The same substring trap as literature_dir
     // inside app_literature_dir. Without the left boundary the extractor over-counts edges, and
-    // the floor meant to catch a broken extractor never fires — which is exactly how this audit
+    // the floor meant to catch a broken extractor never fires. That is exactly how this audit
     // passed a mutation that had neutralised every link on the site.
     [...html.matchAll(/(?:^|\s)href="(\/[^"]*)"/g)]
       .map((m) => m[1].split("#")[0].replace(/\/$/, "") || "/")
@@ -104,11 +104,11 @@ for (const file of files) {
 }
 
 if (routes.size < MIN_PAGES) {
-  fail(`only ${routes.size} pages in the graph — the crawl found almost nothing and every check ` +
+  fail(`Only ${routes.size} pages are in the graph. The crawl found almost nothing and every check ` +
     `below would pass vacuously`);
 }
 if (edgeCount < MIN_EDGES) {
-  fail(`only ${edgeCount} internal links across the whole site — the link extractor has stopped ` +
+  fail(`Only ${edgeCount} internal links exist across the whole site. The extractor has stopped ` +
     `matching, and an empty graph satisfies a depth bound perfectly`);
 }
 
@@ -134,15 +134,15 @@ const indexable = new Set(
 
 for (const route of [...indexable].sort()) {
   if (!routes.has(route)) {
-    fail(`the sitemap advertises ${route}, which was not built — that is a 404 we published`);
+    fail(`The sitemap advertises ${route}, which was not built. That is a published 404.`);
     continue;
   }
   if (noindex.has(route)) {
-    fail(`${route} is both noindex and in the sitemap — the two discovery signals conflict`);
+    fail(`${route} is both noindex and in the sitemap. The discovery signals conflict.`);
   }
   const d = depth.get(route);
   if (d === undefined) {
-    fail(`${route} is in the sitemap and NOTHING links to it — an orphan page ranks for nothing`);
+    fail(`${route} is in the sitemap and NOTHING links to it. This page is orphaned.`);
   } else if (d > MAX_DEPTH) {
     fail(`${route} is ${d} clicks from the homepage (limit ${MAX_DEPTH})`);
   }
@@ -155,7 +155,7 @@ for (const route of [...routes].sort()) {
   if (noindex.has(route)) {
     const d = depth.get(route);
     if (d === undefined) {
-      fail(`${route} is noindex but NOTHING links to it — the public evidence record is orphaned`);
+      fail(`${route} is noindex but NOTHING links to it. The public evidence record is orphaned.`);
     } else if (d > MAX_DEPTH) {
       fail(`${route} is noindex and ${d} clicks from the homepage (limit ${MAX_DEPTH})`);
     }

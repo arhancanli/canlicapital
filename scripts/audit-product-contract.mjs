@@ -7,7 +7,7 @@ const OUTPUT = resolve(ROOT, "artifacts/qa/product-contract-inventory.json");
 const ROUTE_DIRS = new Set(["research", "measurements", "trials"]);
 const METRIC_TERMS = /\b(?:sharpe|drawdown|correlation|sleeves?|paper|positions?|orders?|returns?|volatility|trials?|identit(?:y|ies)|accounts?|capital)\b/i;
 const NUMBER = /(?:^|[^A-Za-z])[-+]?\d+(?:\.\d+)?%?/;
-const EM_DASH = /\u2014|&mdash;|&#8212;/gi;
+const EM_DASH = new RegExp(`\\u2014|&${"mdash"};|&#${"8212"};`, "gi");
 
 function walk(dir) {
   const files = [];

@@ -4,7 +4,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Data lake scale / Canli Capital</title>
-<meta name="description" content="Counts what is on disk and what pytest collects. It says nothing about data quality, coverage gaps, or whether any of it supports a trading claim — only how much…" />
+<meta name="description" content="Counts what is on disk and what pytest collects. It says nothing about data quality, coverage gaps, or whether any of it supports a trading claim; only how much…" />
 <link rel="canonical" href="https://canlicapital.com/measurements/data-lake-scale" />
 <meta name="author" content="Arhan Canli" />
 <meta name="canli:sources" content="data_lake_scale.json" />
@@ -12,12 +12,12 @@
 <meta property="og:type" content="article" />
 <meta property="og:site_name" content="Canli Capital" />
 <meta property="og:title" content="Data lake scale / Canli Capital" />
-<meta property="og:description" content="Counts what is on disk and what pytest collects. It says nothing about data quality, coverage gaps, or whether any of it supports a trading claim — only how much…" />
+<meta property="og:description" content="Counts what is on disk and what pytest collects. It says nothing about data quality, coverage gaps, or whether any of it supports a trading claim; only how much…" />
 <meta property="og:url" content="https://canlicapital.com/measurements/data-lake-scale" />
 <meta property="og:image" content="https://canlicapital.com/og.png" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Data lake scale / Canli Capital" />
-<meta name="twitter:description" content="Counts what is on disk and what pytest collects. It says nothing about data quality, coverage gaps, or whether any of it supports a trading claim — only how much…" />
+<meta name="twitter:description" content="Counts what is on disk and what pytest collects. It says nothing about data quality, coverage gaps, or whether any of it supports a trading claim; only how much…" />
 <meta name="twitter:image" content="https://canlicapital.com/og.png" />
 <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 <link rel="icon" href="/favicon.ico" sizes="any" />
@@ -29,7 +29,7 @@
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=optional" /></noscript>
 <link rel="stylesheet" href="../css/paper.css" />
 <link rel="stylesheet" href="/css/product-shell.css" />
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"Data lake scale","description":"Counts what is on disk and what pytest collects. It says nothing about data quality, coverage gaps, or whether any of it supports a trading claim — only how much…","url":"https://canlicapital.com/measurements/data-lake-scale","creator":{"@type":"Person","name":"Arhan Canli"},"publisher":{"@type":"Organization","name":"Canli Capital","url":"https://canlicapital.com/"},"isAccessibleForFree":true,"distribution":{"@type":"DataDownload","encodingFormat":"application/json","contentUrl":"https://canlicapital.com/glassbox/data_lake_scale.json"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"Data lake scale","description":"Counts what is on disk and what pytest collects. It says nothing about data quality, coverage gaps, or whether any of it supports a trading claim; only how much…","url":"https://canlicapital.com/measurements/data-lake-scale","creator":{"@type":"Person","name":"Arhan Canli"},"publisher":{"@type":"Organization","name":"Canli Capital","url":"https://canlicapital.com/"},"isAccessibleForFree":true,"distribution":{"@type":"DataDownload","encodingFormat":"application/json","contentUrl":"https://canlicapital.com/glassbox/data_lake_scale.json"}}</script>
 </head>
 <body class="paper">
 <a class="paper__skip" href="#content">Skip to content</a>
@@ -84,12 +84,12 @@
 <p class="measure__lead">Data lake scale is one of 89 measurements this
 engine publishes in full. It is regenerated from a real run rather than transcribed, and it
 is shown here with its own claim boundary so the number and its limits arrive together.</p>
-<aside class="measure__boundary"><h2>What this measurement does and does not claim</h2><p>Counts what is on disk and what pytest collects. It says nothing about data quality, coverage gaps, or whether any of it supports a trading claim — only how much there is. Runs no backtest, opens no return data, registers no hypothesis. 0 trials.</p></aside>
+<aside class="measure__boundary"><h2>What this measurement does and does not claim</h2><p>Counts what is on disk and what pytest collects. It says nothing about data quality, coverage gaps, or whether any of it supports a trading claim; only how much there is. Runs no backtest, opens no return data, registers no hypothesis. 0 trials.</p></aside>
 <section class="measure__section"><h2>The measurement</h2>
 <dl class="measure__facts">
 <div class="measure__row"><dt>Schema</dt><dd>canli.alphac-data-lake-scale.v1</dd></div>
 </dl>
-<p class="measure__label">Corrections this measurement forced</p><ul class="measure__list"><li>&#39;392K+ point-in-time fundamentals&#39; was OVERSTATED — the true figure is 380,878. An overstated count is the only kind of staleness that matters.</li><li>&#39;8,436 US stocks, survivorship-free&#39; matched neither store and has been replaced by the point-in-time membership count, which is what the phrase means.</li><li>&#39;3.5M+ hourly bars&#39; and &#39;2,820+ automated tests&#39; were understated by enough to mislead in the other direction; the &#39;+&#39; made them true and uninformative.</li></ul>
+<p class="measure__label">Corrections this measurement forced</p><ul class="measure__list"><li>&#39;392K+ point-in-time fundamentals&#39; was OVERSTATED; the true figure is 380,878. An overstated count is the only kind of staleness that matters.</li><li>&#39;8,436 US stocks, survivorship-free&#39; matched neither store and has been replaced by the point-in-time membership count, which is what the phrase means.</li><li>&#39;3.5M+ hourly bars&#39; and &#39;2,820+ automated tests&#39; were understated by enough to mislead in the other direction; the &#39;+&#39; made them true and uninformative.</li></ul>
 <section class="measure__sub"><h3>Facts</h3>
 <section class="measure__sub"><h4>Automated tests</h4>
 <dl class="measure__facts">
@@ -121,13 +121,13 @@ is shown here with its own claim boundary so the number and its limits arrive to
 <dl class="measure__facts">
 <div class="measure__row"><dt>Value</dt><dd>6835</dd></div>
 </dl>
-<p class="measure__prose"><strong>Definition.</strong> distinct US-listed instrument ids the point-in-time universe store has ever admitted — the narrower answer, and the one that means &#39;survivorship-free research universe&#39;</p>
+<p class="measure__prose"><strong>Definition.</strong> distinct US-listed instrument ids the point-in-time universe store has ever admitted; the narrower answer, and the one that means &#39;survivorship-free research universe&#39;</p>
 </section>
 <section class="measure__sub"><h4>Equity instruments with bars</h4>
 <dl class="measure__facts">
 <div class="measure__row"><dt>Value</dt><dd>18015</dd></div>
 </dl>
-<p class="measure__prose"><strong>Definition.</strong> distinct US-listed instrument ids that have at least one daily bar, including delisted ones — the broadest defensible answer to &#39;how many stocks&#39;</p>
+<p class="measure__prose"><strong>Definition.</strong> distinct US-listed instrument ids that have at least one daily bar, including delisted ones; the broadest defensible answer to &#39;how many stocks&#39;</p>
 </section>
 <section class="measure__sub"><h4>Equity year span</h4>
 <dl class="measure__facts">
@@ -141,7 +141,7 @@ is shown here with its own claim boundary so the number and its limits arrive to
 <div class="measure__row"><dt>Partitions</dt><dd>105144</dd></div>
 <div class="measure__row"><dt>Value</dt><dd>380878</dd></div>
 </dl>
-<p class="measure__prose"><strong>Definition.</strong> rows in data/lake/fundamentals — one (instrument, fiscal period) record carrying an available_at stamp, which is what makes it point-in-time</p>
+<p class="measure__prose"><strong>Definition.</strong> rows in data/lake/fundamentals; one (instrument, fiscal period) record carrying an available_at stamp, which is what makes it point-in-time</p>
 </section>
 </section>
 <p class="measure__prose"><strong>Why each figure carries a definition.</strong> &#39;How many US stocks&#39; has at least two defensible answers here and they differ by 2.6x: 18,015 instruments have bars, and 6,835 have ever been in the point-in-time universe. Publishing one without saying which it is would replace a stale number with an ambiguous one.</p>

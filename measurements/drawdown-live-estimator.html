@@ -149,7 +149,7 @@ is shown here with its own claim boundary so the number and its limits arrive to
 </dl>
 </section>
 <p class="measure__prose"><strong>Path count caveat.</strong> 96 paths, so each expected maximum drawdown carries a standard error of roughly the value reported in max_drawdown_stderr. Configurations share their shocks, so the RANKING is far better determined than any single level, and the ranking is what this analysis is for.</p>
-<p class="measure__prose"><strong>Precondition before acting.</strong> At a 21-bar halflife the Ledoit-Wolf shrinkage error measured in artifacts/analysis/ledoit_wolf_effective_sample is 4.46% of ex-ante vol, and at 7 it would be worse — the effective sample shrinks further. That error must be fixed BEFORE the halflife is shortened, not after. And any change to it is a live-book change: owner-gated, and it VOIDS the forward pre-registration draft.</p>
+<p class="measure__prose"><strong>Precondition before acting.</strong> At a 21-bar halflife the Ledoit-Wolf shrinkage error measured in artifacts/analysis/ledoit_wolf_effective_sample is 4.46% of ex-ante vol, and at 7 it would be worse; the effective sample shrinks further. That error must be fixed BEFORE the halflife is shortened, not after. And any change to it is a live-book change: owner-gated, and it VOIDS the forward pre-registration draft.</p>
 <section class="measure__sub"><h3>Production setting</h3>
 <dl class="measure__facts">
 <div class="measure__row"><dt>Expected max drawdown</dt><dd>0.102512</dd></div>
@@ -164,7 +164,7 @@ is shown here with its own claim boundary so the number and its limits arrive to
 <div class="measure__row"><dt>Window bars</dt><dd>720</dd></div>
 </dl>
 </section>
-<p class="measure__prose"><strong>The finding.</strong> THE HALFLIFE IS THE LEVER AND THE WINDOW IS NOT. Shortening the halflife inside the production 720-bar window improves expected maximum drawdown monotonically: 10.25% at 720, 9.45% at 63, 8.38% at 21, 7.96% at 7. Shortening the WINDOW buys nothing on top of it — 168/21 gives 8.52% against 720/21&#39;s 8.38%, inside the standard error. This corrects a claim published earlier the same day that named the window as the only lever; that came from sampling only halflives at or above 21 days, where the window truncates everything into one narrow band.</p>
+<p class="measure__prose"><strong>The finding.</strong> THE HALFLIFE IS THE LEVER AND THE WINDOW IS NOT. Shortening the halflife inside the production 720-bar window improves expected maximum drawdown monotonically: 10.25% at 720, 9.45% at 63, 8.38% at 21, 7.96% at 7. Shortening the WINDOW buys nothing on top of it; 168/21 gives 8.52% against 720/21&#39;s 8.38%, inside the standard error. This corrects a claim published earlier the same day that named the window as the only lever; that came from sampling only halflives at or above 21 days, where the window truncates everything into one narrow band.</p>
 <figure class="measure__tablewrap"><figcaption>Twin verification</figcaption><table class="measure__table"><thead><tr><th scope="col">Halflife</th><th scope="col">Max abs error</th><th scope="col">Seed</th><th scope="col">Window</th></tr></thead><tbody>
 <tr><td>720</td><td>1.084e-19</td><td>240</td><td>720</td></tr>
 <tr><td>252</td><td>8.132e-20</td><td>240</td><td>720</td></tr>
@@ -178,7 +178,7 @@ is shown here with its own claim boundary so the number and its limits arrive to
 <tr><td>21</td><td>1.355e-20</td><td>80</td><td>240</td></tr>
 <tr><td>21</td><td>1.355e-20</td><td>56</td><td>168</td></tr>
 </tbody></table></figure>
-<p class="measure__prose"><strong>Why the original sweep does not transfer.</strong> analyze_frontier_14.py updates covariance with an UNTRUNCATED recursion — infinite memory, no window, no seed block. Production&#39;s ewma_cov is windowed at cov_window_bars and seeded with an equally weighted block of the oldest cov_min_periods rows, so the window BOUNDS the memory and a halflife longer than the window cannot be delivered. A halflife sweep on an untruncated estimator answers a question about a system this book does not run.</p>
+<p class="measure__prose"><strong>Why the original sweep does not transfer.</strong> analyze_frontier_14.py updates covariance with an UNTRUNCATED recursion; infinite memory, no window, no seed block. Production&#39;s ewma_cov is windowed at cov_window_bars and seeded with an equally weighted block of the oldest cov_min_periods rows, so the window BOUNDS the memory and a halflife longer than the window cannot be delivered. A halflife sweep on an untruncated estimator answers a question about a system this book does not run.</p>
 </section>
 <section class="measure__section"><h2>Check it yourself</h2>
 <p>Every figure above is read from <a href="/glassbox/drawdown_live_estimator.json"><code>/glassbox/drawdown_live_estimator.json</code></a>, the
