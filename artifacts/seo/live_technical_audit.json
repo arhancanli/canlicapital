@@ -1,8 +1,8 @@
 {
   "schema": "canli.canlicapital-live-seo-audit.v1",
   "author": "Arhan Canli",
-  "observed_at_utc": "2026-08-25T14:02:11.438Z",
-  "status": "PASS",
+  "observed_at_utc": "2026-08-26T00:42:08.336Z",
+  "status": "PASS_TECHNICAL_STRATEGIC_REPAIRS_PENDING",
   "claim_boundary": "This is a read-only direct-HTTP observation of the live domain plus an explicitly labeled local-build comparison. It does not prove search-engine indexing, rankings, traffic, deployment of local changes, content quality, or future search performance.",
   "collection": {
     "method": "direct HTTP fetch of robots.txt, sitemap.xml, and every sitemap URL",
@@ -19,14 +19,14 @@
     },
     "sitemap": {
       "status": 200,
-      "body_sha256": "b0a00cdf7d25b61bdb2b8517b49b1b7c172797e0232c06ea2c2446fbf3b9cc67",
-      "canonical_url_list_sha256": "406ea8585b6081bb5caca3c530790f7bac9d4223ffc8984b57f6ffed2b55a23f",
-      "url_count": 234,
+      "body_sha256": "d36b73d6d7871ba5166c14cc4d12fdbe0b41670272eb8206a029764ed2787c53",
+      "canonical_url_list_sha256": "d7e2377ae98d47751f4bd8ae532efca5db8c341a0ea1166e93873d7d3ad7501e",
+      "url_count": 235,
       "duplicate_urls": [],
       "off_origin_urls": []
     },
     "crawl": {
-      "pages_checked": 234,
+      "pages_checked": 235,
       "technical_failure_count": 0,
       "technical_failures": [],
       "duplicate_titles": [],
@@ -469,7 +469,7 @@
       "raw_markdown_navigation_link_count": 0,
       "raw_markdown_navigation_links": [],
       "raw_markdown_unique_target_count": 108,
-      "raw_markdown_targets_without_noindex_count": 0,
+      "raw_markdown_targets_without_noindex_count": 11,
       "raw_markdown_target_headers": [
         {
           "url": "https://canlicapital.com/research/active-ownership-item4-v3-feasibility.md",
@@ -483,18 +483,21 @@
         },
         {
           "url": "https://canlicapital.com/research/alphatrend-managed-futures-lineage.md",
-          "status": 200,
-          "x_robots_tag": "noindex"
+          "status": null,
+          "x_robots_tag": null,
+          "fetch_error": "TypeError: fetch failed"
         },
         {
           "url": "https://canlicapital.com/research/alphavintage-macro-surprise-lineage.md",
-          "status": 200,
-          "x_robots_tag": "noindex"
+          "status": null,
+          "x_robots_tag": null,
+          "fetch_error": "TypeError: fetch failed"
         },
         {
           "url": "https://canlicapital.com/research/alphavintage-missing-release-correction.md",
-          "status": 200,
-          "x_robots_tag": "noindex"
+          "status": null,
+          "x_robots_tag": null,
+          "fetch_error": "TypeError: fetch failed"
         },
         {
           "url": "https://canlicapital.com/research/bond-etf-nav-dislocation-feasibility.md",
@@ -533,8 +536,9 @@
         },
         {
           "url": "https://canlicapital.com/research/crypto-carry-portable-v1.md",
-          "status": 200,
-          "x_robots_tag": "noindex"
+          "status": null,
+          "x_robots_tag": null,
+          "fetch_error": "TypeError: fetch failed"
         },
         {
           "url": "https://canlicapital.com/research/crypto-defensive-lineage.md",
@@ -543,8 +547,9 @@
         },
         {
           "url": "https://canlicapital.com/research/crypto-lab-carry-crash-incident.md",
-          "status": 200,
-          "x_robots_tag": "noindex"
+          "status": null,
+          "x_robots_tag": null,
+          "fetch_error": "TypeError: fetch failed"
         },
         {
           "url": "https://canlicapital.com/research/crypto-momentum-lineage.md",
@@ -603,8 +608,9 @@
         },
         {
           "url": "https://canlicapital.com/research/equity-low-beta-lineage.md",
-          "status": 200,
-          "x_robots_tag": "noindex"
+          "status": null,
+          "x_robots_tag": null,
+          "fetch_error": "TypeError: fetch failed"
         },
         {
           "url": "https://canlicapital.com/research/equity-narrative-change-lineage.md",
@@ -648,8 +654,9 @@
         },
         {
           "url": "https://canlicapital.com/research/inflation-breakeven-relative-value-feasibility.md",
-          "status": 200,
-          "x_robots_tag": "noindex"
+          "status": null,
+          "x_robots_tag": null,
+          "fetch_error": "TypeError: fetch failed"
         },
         {
           "url": "https://canlicapital.com/research/kill-alphamax-betaneutral.md",
@@ -708,8 +715,9 @@
         },
         {
           "url": "https://canlicapital.com/research/kill-crypto-vrp.md",
-          "status": 200,
-          "x_robots_tag": "noindex"
+          "status": null,
+          "x_robots_tag": null,
+          "fetch_error": "TypeError: fetch failed"
         },
         {
           "url": "https://canlicapital.com/research/kill-deephist-quality-top800.md",
@@ -803,8 +811,9 @@
         },
         {
           "url": "https://canlicapital.com/research/kill-mechflow-tom.md",
-          "status": 200,
-          "x_robots_tag": "noindex"
+          "status": null,
+          "x_robots_tag": null,
+          "fetch_error": "TypeError: fetch failed"
         },
         {
           "url": "https://canlicapital.com/research/kill-mf-realfutures-breadth.md",
@@ -833,8 +842,9 @@
         },
         {
           "url": "https://canlicapital.com/research/kill-prereg-bab.md",
-          "status": 200,
-          "x_robots_tag": "noindex"
+          "status": null,
+          "x_robots_tag": null,
+          "fetch_error": "TypeError: fetch failed"
         },
         {
           "url": "https://canlicapital.com/research/kill-prereg-momentum.md",
@@ -853,8 +863,9 @@
         },
         {
           "url": "https://canlicapital.com/research/kill-rates-curve-carry.md",
-          "status": 200,
-          "x_robots_tag": "noindex"
+          "status": null,
+          "x_robots_tag": null,
+          "fetch_error": "TypeError: fetch failed"
         },
         {
           "url": "https://canlicapital.com/research/kill-residual-momentum.md",
@@ -1018,15 +1029,21 @@
       "locally_classified_incomplete_packets": 226,
       "incomplete_trial_detail_urls_in_live_sitemap": 0
     },
-    "strategic_issues": []
+    "strategic_issues": [
+      {
+        "code": "RAW_EVIDENCE_TARGETS_INDEXABLE",
+        "count": 11,
+        "finding": "Raw source downloads are useful evidence, but their responses do not currently carry an X-Robots-Tag noindex directive."
+      }
+    ]
   },
   "local_candidate": {
     "deployment_claimed": false,
-    "public_html_pages": 460,
-    "sitemap_urls": 234,
+    "public_html_pages": 461,
+    "sitemap_urls": 235,
     "linked_noindex_pages": 226,
     "raw_markdown_navigation_link_count": 0,
     "raw_evidence_x_robots_noindex_configured": true,
-    "sitemap_sha256": "b0a00cdf7d25b61bdb2b8517b49b1b7c172797e0232c06ea2c2446fbf3b9cc67"
+    "sitemap_sha256": "d36b73d6d7871ba5166c14cc4d12fdbe0b41670272eb8206a029764ed2787c53"
   }
 }

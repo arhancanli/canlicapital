@@ -28,6 +28,8 @@ const PATHS = [
   "glassbox/external_publication_readiness.json",
   "glassbox/external_submission_plan.json",
 ];
+const FETCH_CONCURRENCY = 4;
+const FETCH_ATTEMPTS = 3;
 
 const sha256 = (bytes) => createHash("sha256").update(bytes).digest("hex");
 const canonicalize = (value) => {
@@ -43,23 +45,66 @@ const canonicalize = (value) => {
 };
 
 async function fetchEvidence(origin, path) {
-  const response = await fetch(`${origin}/${path}`, {
-    cache: "no-store",
-    headers: {
-      "Cache-Control": "no-cache",
-      "User-Agent": "CanliCapital-LiveEvidenceAudit/1.0",
-    },
-  });
-  const bytes = Buffer.from(await response.arrayBuffer());
+  let lastError;
+  for (let attempt = 1; attempt <= FETCH_ATTEMPTS; attempt += 1) {
+    try {
+      const response = await fetch(`${origin}/${path}`, {
+        cache: "no-store",
+        headers: {
+          "Cache-Control": "no-cache",
+          "User-Agent": "CanliCapital-LiveEvidenceAudit/1.0",
+        },
+        signal: AbortSignal.timeout(15_000),
+      });
+      const bytes = Buffer.from(await response.arrayBuffer());
+      return {
+        ok: response.ok,
+        status: response.status,
+        bytes: bytes.length,
+        sha256: sha256(bytes),
+        etag: response.headers.get("etag"),
+        last_modified: response.headers.get("last-modified"),
+        response_date: response.headers.get("date"),
+        attempts: attempt,
+        error: null,
+      };
+    } catch (error) {
+      lastError = error;
+      if (attempt < FETCH_ATTEMPTS) {
+        await new Promise((resolveDelay) => setTimeout(resolveDelay, attempt * 500));
+      }
+    }
+  }
   return {
-    ok: response.ok,
-    status: response.status,
-    bytes: bytes.length,
-    sha256: sha256(bytes),
-    etag: response.headers.get("etag"),
-    last_modified: response.headers.get("last-modified"),
-    response_date: response.headers.get("date"),
+    ok: false,
+    status: 0,
+    bytes: 0,
+    sha256: null,
+    etag: null,
+    last_modified: null,
+    response_date: null,
+    attempts: FETCH_ATTEMPTS,
+    error:
+      lastError instanceof Error
+        ? `${lastError.name}: ${lastError.message}`
+        : String(lastError),
   };
+}
+
+async function mapWithConcurrency(items, concurrency, mapper) {
+  const results = new Array(items.length);
+  let nextIndex = 0;
+  async function worker() {
+    while (nextIndex < items.length) {
+      const index = nextIndex;
+      nextIndex += 1;
+      results[index] = await mapper(items[index]);
+    }
+  }
+  await Promise.all(
+    Array.from({ length: Math.min(concurrency, items.length) }, () => worker()),
+  );
+  return results;
 }
 
 const locals = Object.fromEntries(
@@ -73,8 +118,10 @@ const tasks = [];
 for (const [surface, origin] of Object.entries(ORIGINS)) {
   for (const path of PATHS) tasks.push({ surface, origin, path });
 }
-const fetched = await Promise.all(
-  tasks.map(async (task) => ({ ...task, evidence: await fetchEvidence(task.origin, task.path) })),
+const fetched = await mapWithConcurrency(
+  tasks,
+  FETCH_CONCURRENCY,
+  async (task) => ({ ...task, evidence: await fetchEvidence(task.origin, task.path) }),
 );
 const remote = Object.fromEntries(Object.keys(ORIGINS).map((surface) => [surface, {}]));
 for (const item of fetched) remote[item.surface][item.path] = item.evidence;
