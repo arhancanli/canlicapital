@@ -133,9 +133,15 @@ function audit(file) {
   if (!/<html[^>]*\blang=/i.test(html)) note(page, "error", "no lang attribute on <html>");
   if (!/name="viewport"/i.test(html)) note(page, "error", "no viewport meta");
   const authors = [...html.matchAll(/<meta\s+name="author"\s+content="([^"]*)"/gi)];
+  const pendingTechnicalAuthorship = html.includes(
+    "AI-assisted technical draft; exact-text approval pending",
+  );
   if (authors.length !== 1)
     note(page, "error", `expected exactly one author meta tag, found ${authors.length}`);
-  else if (authors[0][1] !== "Arhan Canli")
+  else if (
+    authors[0][1] !== "Arhan Canli" &&
+    !(pendingTechnicalAuthorship && authors[0][1] === "Canli Capital")
+  )
     note(page, "error", `author metadata is ${JSON.stringify(authors[0][1])}, not Arhan Canli`);
   if (!/property="og:title"/i.test(html)) note(page, "warning", "no Open Graph title");
 

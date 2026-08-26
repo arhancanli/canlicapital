@@ -50,14 +50,14 @@ shipping, but cannot place, cancel, or delay an order.
 | `methodology.html` | evidence-linked answers to the research methodology questions |
 | `research/*.html` | 108 generated technical reports, each with Scholar metadata and BibTeX |
 | `research/topics/*.html` | 13 substantive subject and research-stage indexes |
-| `measurements/*.html` | 86 generated Dataset pages with explicit claim boundaries |
+| `measurements/*.html` | 87 generated Dataset pages with explicit claim boundaries |
 
 `public/paper-state.json` and `public/glassbox/*` are written by the engine's publish job, not by
 hand. They are the machine-readable form of every claim the pages make. Current corpus counts are
 derived during the build from `public/research-index.json`,
 `public/glassbox/trial_packet_manifest.json`, and the generated measurement directory; the sitemap
 is generated from the same files rather than maintained separately. The present build contains
-236 canonical URLs in the sitemap (all indexable), plus a public noindex evidence page for every incomplete registered
+237 canonical URLs in the sitemap (all indexable), plus a public noindex evidence page for every incomplete registered
 trial and one archival HTML paper per registered sleeve. It publishes
 identity-level packets for all 228 recorded hypotheses, while
 honestly marking 226 of those packets incomplete.

@@ -219,7 +219,20 @@ function renderBody(data, depth, rawUrl) {
 // ---------------------------------------------------------------------------
 // PAGE SHELL. The research paper shell, unchanged, so this is one design system.
 // ---------------------------------------------------------------------------
-function shell({ title, description, url, cssPath, breadcrumb, h1, lead, main, jsonLd, sources }) {
+function shell({
+  title,
+  description,
+  url,
+  cssPath,
+  breadcrumb,
+  h1,
+  lead,
+  main,
+  jsonLd,
+  sources,
+  metaAuthor = AUTHOR,
+  byline = `By <span rel="author">${AUTHOR}</span>, ${PUBLISHER}`,
+}) {
   return `<!doctype html>
 <html lang="en">
 <head>
@@ -228,7 +241,7 @@ function shell({ title, description, url, cssPath, breadcrumb, h1, lead, main, j
 <title>${escapeHtml(title)}</title>
 <meta name="description" content="${escapeHtml(description)}" />
 <link rel="canonical" href="${url}" />
-<meta name="author" content="${AUTHOR}" />${sources ? `\n<meta name="canli:sources" content="${sources}" />` : ""}
+<meta name="author" content="${escapeHtml(metaAuthor)}" />${sources ? `\n<meta name="canli:sources" content="${sources}" />` : ""}
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
 <meta property="og:type" content="article" />
 <meta property="og:site_name" content="${PUBLISHER}" />
@@ -267,7 +280,7 @@ function shell({ title, description, url, cssPath, breadcrumb, h1, lead, main, j
   <article class="paper__article">
     <p class="paper__eyebrow">${breadcrumb}</p>
     <h1 class="paper__title">${escapeHtml(h1)}</h1>
-    <p class="paper__byline">By <span rel="author">${AUTHOR}</span>, ${PUBLISHER}</p>
+    <p class="paper__byline">${byline}</p>
     <div class="paper__body">
 ${lead}
 ${main}
@@ -367,6 +380,15 @@ function main() {
         `${name}: a read-only artifact regenerated from the engine run that produced it, ` +
           `published so the figure and its limits can be checked together.`,
     );
+    const technicalAuthorshipPending = data.technical_authorship_approved === false;
+    const metaAuthor = technicalAuthorshipPending ? PUBLISHER : AUTHOR;
+    const byline = technicalAuthorshipPending
+      ? `Project owner <span>${escapeHtml(data.project_owner ?? AUTHOR)}</span> · ` +
+        `AI-assisted technical draft; exact-text approval pending`
+      : `By <span rel="author">${AUTHOR}</span>, ${PUBLISHER}`;
+    const creator = technicalAuthorshipPending
+      ? { "@type": "Organization", name: PUBLISHER, url: `${ORIGIN}/` }
+      : { "@type": "Person", name: AUTHOR };
 
     const lead = [
       `<p class="measure__lead">${escapeHtml(name)} is one of ${artifacts.length} measurements this`,
@@ -403,13 +425,24 @@ cannot appear here at all.</p>
         h1: name,
         lead,
         main: body,
+        metaAuthor,
+        byline,
         jsonLd: {
           "@context": "https://schema.org",
           "@type": "Dataset",
           name,
           description,
           url,
-          creator: { "@type": "Person", name: AUTHOR },
+          creator,
+          ...(technicalAuthorshipPending
+            ? {
+                contributor: {
+                  "@type": "Person",
+                  name: data.project_owner ?? AUTHOR,
+                  roleName: "Project owner",
+                },
+              }
+            : {}),
           publisher: { "@type": "Organization", name: PUBLISHER, url: `${ORIGIN}/` },
           isAccessibleForFree: true,
           distribution: {
