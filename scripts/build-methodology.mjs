@@ -27,6 +27,11 @@
 import { readFileSync, readdirSync, writeFileSync, existsSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
+import {
+  renderProductShellFooter,
+  renderProductShellHeader,
+  renderProductShellStylesheet,
+} from "./product-shell.mjs";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const GLASSBOX = resolve(ROOT, "public/glassbox");
@@ -370,20 +375,12 @@ ${item.a}
 <link rel="stylesheet" media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=optional" />
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=optional" /></noscript>
 <link rel="stylesheet" href="./css/paper.css" />
+${renderProductShellStylesheet()}
 <script type="application/ld+json">${JSON.stringify(jsonLd)}</script>
 </head>
 <body class="paper">
 <a class="paper__skip" href="#content">Skip to content</a>
-<header class="paper__masthead">
-  <a class="paper__brand" href="/">${PUBLISHER}</a>
-  <nav class="paper__nav" aria-label="Primary">
-    <a href="/open">Evidence</a>
-    <a href="/systems">Sleeves</a>
-    <a href="/research">Research</a>
-    <a href="/methodology">Methodology</a>
-    <a class="paper__nav-cta" href="https://app.canlicapital.com/dashboard">Open live record <span aria-hidden="true">↗</span></a>
-  </nav>
-</header>
+${renderProductShellHeader({ active: "methodology" })}
 <main class="paper__main" id="content">
   <article class="paper__article">
     <p class="paper__eyebrow"><a href="/research">Research</a></p>
@@ -407,6 +404,7 @@ ${body}
     </div>
   </article>
 </main>
+${renderProductShellFooter()}
 </body>
 </html>
 `;

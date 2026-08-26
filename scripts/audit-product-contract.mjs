@@ -40,6 +40,7 @@ function routeFor(file) {
 }
 
 function familyFor(html) {
+  if (/data-product-shell="v3"/i.test(html)) return "product_v3";
   if (/<header\s+class="site-header"/i.test(html)) return "product_v3_home";
   if (/<html[^>]+data-page=/i.test(html) && /class="nav(?:__|\s|\")/i.test(html)) return "legacy_product_v2";
   if (/class="(?:paper__)?masthead(?:__|\s|\")/i.test(html)) return "evidence_document_v1";
@@ -84,7 +85,7 @@ const pages = [...walk(ROOT), ...walkPublicationPapers(resolve(ROOT, "public/pub
       indexable: !/<meta\s+name="robots"\s+content="[^"]*noindex/i.test(html),
       em_dash_count: emDashCount,
       hardcoded_metric_candidate_lines: metricCandidates(html),
-      migration_required: shellFamily !== "product_v3_home",
+      migration_required: !["product_v3", "product_v3_home"].includes(shellFamily),
     };
   });
 

@@ -40,6 +40,7 @@
        the single design system above; it never redefines a token or an easing. -->
   <link rel="stylesheet" href="./css/performance.css" />
   <link rel="stylesheet" href="./css/shell.css" />
+  <link rel="stylesheet" href="/css/product-shell.css" />
 
   <!-- Favicon set (the brand mark: one signal dot on the void). The SVG is the
        primary, scalable icon; the .ico is the legacy fallback; the PNG sizes serve
@@ -140,13 +141,12 @@
     </ul>
   </nav>
 
-  <!-- Shared top nav: js/shell.js renders the links + CTA into this .nav__links
-       and marks the current page. -->
-  <header class="nav" id="nav">
-    <div class="nav__inner">
-      <a href="/" class="nav__brand label" data-brand aria-label="Canli Capital, home">Canli Capital</a>
-      <nav class="nav__links" aria-label="Primary"></nav>
-    </div>
+  <header class="cc-shell" id="nav" data-product-shell="v3">
+    <a class="cc-shell__brand" href="/" aria-label="Canli Capital, home"><span class="cc-shell__mark" aria-hidden="true"><i></i></span><span>Canli Capital</span></a>
+    <a class="cc-shell__status" href="/measurements/alpaca-broker-reconciliation" aria-label="Current record status"><span class="status-dot" aria-hidden="true"></span><span>Public paper record</span></a>
+    <nav class="cc-shell__primary" aria-label="Primary navigation"><a class="cc-shell__link" href="https://app.canlicapital.com/dashboard" rel="noreferrer">Live</a><a class="cc-shell__link" href="/research">Research</a><a class="cc-shell__link" href="/trials">Trials</a><a class="cc-shell__link" href="/systems">Systems</a><a class="cc-shell__link" href="/methodology">Methodology</a><a class="cc-shell__link" href="/verify">Verify</a></nav>
+    <details class="cc-shell__index"><summary><span class="cc-shell__index-wide">More</span><span class="cc-shell__index-compact">Menu</span></summary><div class="cc-shell__panel"><div><span class="cc-shell__panel-label">Core</span><nav aria-label="Core routes"><a class="cc-shell__panel-link" href="https://app.canlicapital.com/dashboard" rel="noreferrer">Live</a><a class="cc-shell__panel-link" href="/research">Research</a><a class="cc-shell__panel-link" href="/trials">Trials</a><a class="cc-shell__panel-link" href="/systems">Systems</a><a class="cc-shell__panel-link" href="/methodology">Methodology</a><a class="cc-shell__panel-link" href="/verify">Verify</a></nav></div><div><span class="cc-shell__panel-label">Institution</span><nav aria-label="Institution routes"><a class="cc-shell__panel-link" href="/progress">Corrections</a><a class="cc-shell__panel-link" href="/performance" aria-current="page" data-current="true">Status</a><a class="cc-shell__panel-link" href="/founder">Founder</a><a class="cc-shell__panel-link" href="/open">Open data</a><a class="cc-shell__panel-link" href="/measurements">Measurements</a></nav></div><p>Observed, simulated, model-estimated and planned claims remain visibly separate.</p></div></details>
+    <a class="cc-shell__cta" href="https://app.canlicapital.com/dashboard">Enter live record <span aria-hidden="true">↗</span></a>
   </header>
 
   <main id="content" class="content" tabindex="-1">
@@ -676,7 +676,11 @@
   <!-- Footer is the Colophon chapter (index 8 in the per-page chapters array), so
        the living rail head reads "08 / Colophon" when the footer is in view,
        matching the landing's footer-as-last-chapter behaviour. -->
-  <footer class="footer" id="footer" data-section="8"></footer>
+  <footer class="cc-footer" id="footer" data-product-shell="v3">
+    <div class="cc-footer__lead"><a class="cc-footer__brand" href="/">Canli Capital</a><p>Build the claim. Publish the evidence. Keep the failures.</p></div>
+    <div class="cc-footer__routes"><nav aria-label="Portfolio and research"><span>Research system</span><a href="https://app.canlicapital.com/dashboard">Live record</a><a href="/systems">ALPHAC systems</a><a href="/research">Research papers</a><a href="/trials">Trial union</a></nav><nav aria-label="Evidence and verification"><span>Evidence</span><a href="/methodology">Methodology</a><a href="/verify">Verify record</a><a href="/measurements">Measurements</a><a href="/open">Open data</a></nav><nav aria-label="Institution and authorship"><span>Institution</span><a href="/progress">Corrections</a><a href="/performance">Status</a><a href="/founder">Arhan Canli</a><a href="https://github.com/arhancanli" rel="noreferrer">GitHub</a></nav></div>
+    <div class="cc-footer__boundary"><p>Research and paper execution only. No managed capital, copy trading, investment advice or promised return.</p><p>Founded and built by Arhan Canli in Dubai.</p><span>Copyright Arhan Canli</span></div>
+  </footer>
 
   <script type="module" src="./js/waitlist.js"></script>
   <script type="module" src="./js/performance.js"></script>

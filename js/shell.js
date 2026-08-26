@@ -58,6 +58,7 @@ function resolveHref(link) {
 function buildNav() {
   const nav = document.getElementById("nav");
   if (!nav) return;
+  if (nav.dataset.productShell === "v3") return;
 
   const inner = nav.querySelector(".nav__inner");
   if (!inner) return;
@@ -122,6 +123,7 @@ function buildNav() {
 function buildFooter() {
   const footer = document.getElementById("footer");
   if (!footer) return;
+  if (footer.dataset.productShell === "v3") return;
 
   // If the grid already exists (landing), just rebuild the columns from the model
   // so the cross-page links resolve correctly; otherwise build the full footer.

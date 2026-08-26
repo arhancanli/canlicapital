@@ -5,15 +5,13 @@
     "pages": 468,
     "indexable_pages": 242,
     "noindex_pages": 226,
-    "pages_requiring_shell_migration": 467,
+    "pages_requiring_shell_migration": 16,
     "pages_with_em_dashes": 255,
     "em_dash_occurrences": 3215,
-    "hardcoded_metric_candidate_lines": 1994,
+    "hardcoded_metric_candidate_lines": 1993,
     "shell_families": {
       "archival_publication_v1": 16,
-      "evidence_document_v1": 446,
-      "legacy_product_v2": 5,
-      "product_v3_home": 1
+      "product_v3": 452
     },
     "origins": {
       "measurements": 89,
@@ -28,121 +26,115 @@
       "path": "founder.html",
       "route": "/founder",
       "origin": "product",
-      "shell_family": "evidence_document_v1",
+      "shell_family": "product_v3",
       "indexable": true,
       "em_dash_count": 4,
       "hardcoded_metric_candidate_lines": 4,
-      "migration_required": true
+      "migration_required": false
     },
     {
       "path": "index.html",
       "route": "/",
       "origin": "product",
-      "shell_family": "product_v3_home",
+      "shell_family": "product_v3",
       "indexable": true,
       "em_dash_count": 0,
-      "hardcoded_metric_candidate_lines": 8,
+      "hardcoded_metric_candidate_lines": 7,
       "migration_required": false
     },
     {
       "path": "measurements.html",
       "route": "/measurements",
       "origin": "product",
-      "shell_family": "evidence_document_v1",
+      "shell_family": "product_v3",
       "indexable": true,
       "em_dash_count": 2,
       "hardcoded_metric_candidate_lines": 14,
-      "migration_required": true
+      "migration_required": false
     },
     {
       "path": "methodology.html",
       "route": "/methodology",
       "origin": "product",
-      "shell_family": "evidence_document_v1",
+      "shell_family": "product_v3",
       "indexable": true,
       "em_dash_count": 28,
       "hardcoded_metric_candidate_lines": 2,
-      "migration_required": true
+      "migration_required": false
     },
     {
       "path": "open.html",
       "route": "/open",
       "origin": "product",
-      "shell_family": "legacy_product_v2",
+      "shell_family": "product_v3",
       "indexable": true,
       "em_dash_count": 0,
       "hardcoded_metric_candidate_lines": 2,
-      "migration_required": true
+      "migration_required": false
     },
     {
       "path": "performance.html",
       "route": "/performance",
       "origin": "product",
-      "shell_family": "legacy_product_v2",
+      "shell_family": "product_v3",
       "indexable": true,
       "em_dash_count": 2,
       "hardcoded_metric_candidate_lines": 5,
-      "migration_required": true
+      "migration_required": false
     },
     {
       "path": "progress.html",
       "route": "/progress",
       "origin": "product",
-      "shell_family": "legacy_product_v2",
+      "shell_family": "product_v3",
       "indexable": true,
       "em_dash_count": 0,
       "hardcoded_metric_candidate_lines": 2,
-      "migration_required": true
+      "migration_required": false
     },
     {
       "path": "research.html",
       "route": "/research",
       "origin": "product",
-      "shell_family": "legacy_product_v2",
+      "shell_family": "product_v3",
       "indexable": true,
       "em_dash_count": 0,
       "hardcoded_metric_candidate_lines": 4,
-      "migration_required": true
+      "migration_required": false
     },
     {
       "path": "systems.html",
       "route": "/systems",
       "origin": "product",
-      "shell_family": "legacy_product_v2",
+      "shell_family": "product_v3",
       "indexable": true,
       "em_dash_count": 2,
       "hardcoded_metric_candidate_lines": 3,
-      "migration_required": true
+      "migration_required": false
     },
     {
       "path": "trials.html",
       "route": "/trials",
       "origin": "product",
-      "shell_family": "evidence_document_v1",
+      "shell_family": "product_v3",
       "indexable": true,
       "em_dash_count": 0,
       "hardcoded_metric_candidate_lines": 1,
-      "migration_required": true
+      "migration_required": false
     },
     {
       "path": "verify.html",
       "route": "/verify",
       "origin": "product",
-      "shell_family": "evidence_document_v1",
+      "shell_family": "product_v3",
       "indexable": true,
       "em_dash_count": 8,
       "hardcoded_metric_candidate_lines": 0,
-      "migration_required": true
+      "migration_required": false
     }
   ],
   "migration_groups": {
-    "legacy_product_routes": [
-      "/open",
-      "/performance",
-      "/progress",
-      "/research",
-      "/systems"
-    ],
+    "legacy_product_routes": [],
     "evidence_document_generators": [
       "scripts/build-papers.mjs",
       "scripts/build-measurements.mjs",
