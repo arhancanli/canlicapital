@@ -15,6 +15,7 @@ ROUTES = {
     "performance": "/performance.html",
     "research": "/research.html",
     "founder": "/founder.html",
+    "review": "/review.html",
     "program-status": "/measurements/program-status.html",
     "external-validation": "/measurements/external-validation-opportunities.html",
     "verify": "/verify.html",

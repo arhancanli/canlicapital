@@ -130,6 +130,7 @@ export default defineConfig({
         measurements: resolve(root, "measurements.html"),
         trials: resolve(root, "trials.html"),
         verify: resolve(root, "verify.html"),
+        review: resolve(root, "review.html"),
         founder: resolve(root, "founder.html"),
         methodology: resolve(root, "methodology.html"),
         ...paperEntries(),

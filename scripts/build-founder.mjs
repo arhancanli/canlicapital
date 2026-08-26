@@ -245,7 +245,7 @@ ${renderProductShellHeader({ active: "founder" })}
       </details>
       <details>
         <summary><span>04</span><strong>External validation</strong><em>${external.completed_reviews} completed</em></summary>
-        <div class="founder-ledger__body"><p>${escapeHtml(external.boundary)}</p><p class="founder-ledger__boundary">Assigned reviewers: ${external.assigned_reviewers}. Independent replications: ${external.independent_replications}.</p></div>
+        <div class="founder-ledger__body"><p>${escapeHtml(external.boundary)}</p><p class="founder-ledger__boundary">Assigned reviewers: ${external.assigned_reviewers}. Independent replications: ${external.independent_replications}.</p><p><a href="/review">Inspect the governed review bench and its exact zero-state.</a></p></div>
       </details>
     </div>
   </section>

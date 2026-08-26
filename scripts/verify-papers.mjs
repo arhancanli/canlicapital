@@ -684,7 +684,117 @@ if (existsSync(founderFile)) {
 }
 
 // ---------------------------------------------------------------------------
-// 10. /methodology — the long-tail questions, each answered with a link to the
+// 10. /review: a source-bound public criticism surface. Opening an issue is not
+//     allowed to silently become assigned review, peer review or replication.
+// ---------------------------------------------------------------------------
+const reviewFile = resolve(DIST, "review.html");
+check(existsSync(reviewFile), "no /review page was built");
+if (existsSync(reviewFile)) {
+  const reviewHtml = readFileSync(reviewFile, "utf8");
+  const submissionPlan = JSON.parse(
+    readFileSync(resolve(DIST, "glassbox", "external_submission_plan.json"), "utf8"),
+  );
+  const stanfordEvidence = JSON.parse(
+    readFileSync(resolve(DIST, "glassbox", "stanford_cs_evidence_map.json"), "utf8"),
+  );
+  const records = submissionPlan.records.filter((record) => record.wave === 1);
+  const external = stanfordEvidence.contribution_map.external_validation;
+  const assigned = records.reduce(
+    (total, record) => total + record.review.external_reviewer_packet.assigned_reviewers,
+    0,
+  );
+  const completed = records.reduce(
+    (total, record) => total + record.review.external_reviewer_packet.completed_reviews,
+    0,
+  );
+  const replications = records.reduce(
+    (total, record) => total + record.review.independent_replications_completed,
+    0,
+  );
+
+  check(records.length === 5, `/review derives ${records.length} flagship records instead of 5`);
+  check(records.length * 2 === 10, "/review does not derive exactly 10 independent roles");
+  check(
+    assigned === 0 && completed === 0 && replications === 0,
+    `/review source state is not zero: ${assigned} assigned, ${completed} completed, ` +
+      `${replications} replications`,
+  );
+  check(
+    external.assigned_reviewers === assigned &&
+      external.completed_reviews === completed &&
+      external.independent_replications === replications,
+    "/review source ledgers disagree about external validation state",
+  );
+  check(
+    records.every((record) => record.review.formal_peer_review_claimed === false),
+    "/review includes a record that claims formal peer review",
+  );
+  check(
+    reviewHtml.includes(`<link rel="canonical" href="${ORIGIN}/review"`),
+    "/review has no self-canonical",
+  );
+  check(reviewHtml.includes('"@type":"CollectionPage"'), "/review is not a CollectionPage");
+  check(reviewHtml.includes('"@type":"ItemList"'), "/review has no ItemList");
+  check(reviewHtml.includes('"numberOfItems":5'), "/review ItemList does not contain 5 papers");
+  check(
+    reviewHtml.includes(`"author":{"@id":"${ORIGIN}/#arhan-canli"}`),
+    "/review author does not resolve to the founder Person entity",
+  );
+  check(
+    reviewHtml.includes(
+      'content="external_submission_plan.json stanford_cs_evidence_map.json"',
+    ),
+    "/review does not declare its two source ledgers",
+  );
+  check(
+    (reviewHtml.match(/class="review-manuscript"/g) || []).length === 5,
+    "/review does not render 5 manuscript rows",
+  );
+  check(
+    (reviewHtml.match(/class="review-lane review-lane--/g) || []).length === 10,
+    "/review does not render 10 independent review lanes",
+  );
+  check(
+    (reviewHtml.match(/<small>Unassigned<\/small>/g) || []).length === 10,
+    "/review does not label all 10 roles unassigned",
+  );
+  check(
+    reviewHtml.includes("external-review.yml"),
+    "/review has no link to the structured external critique form",
+  );
+  check(
+    /not assigned review/i.test(reviewHtml) &&
+      /not peer review/i.test(reviewHtml) &&
+      /not replication/i.test(reviewHtml),
+    "/review weakens the distinction between criticism, review and replication",
+  );
+  check(
+    !/independently reviewed|peer-reviewed|externally validated|replicated successfully/i.test(
+      reviewHtml,
+    ),
+    "/review makes an unsupported validation claim",
+  );
+  for (const record of records) {
+    const pathname = new URL(record.public_canonical).pathname.replace(/\/paper$/, "");
+    check(
+      reviewHtml.includes(`href="${pathname}"`),
+      `/review does not link the exact public paper for ${record.registry_key}`,
+    );
+    check(
+      existsSync(resolve(DIST, `${pathname.replace(/^\//, "")}.html`)),
+      `/review links a paper wrapper that was not built: ${pathname}`,
+    );
+  }
+  check(
+    sitemap.includes(`<loc>${ORIGIN}/review</loc>`),
+    "/review is not in the sitemap, so it will not be discovered",
+  );
+  const founderHtml = readFileSync(founderFile, "utf8");
+  check(founderHtml.includes('href="/review"'), "/founder has no static link to /review");
+}
+
+// ---------------------------------------------------------------------------
+// 11. /methodology: the long-tail questions, each answered with a link to the
 //     document that DEMONSTRATES the answer. An FAQ whose evidence links do not
 //     resolve is a brochure that claims to be a citation, which is worse than a
 //     brochure. Every answer must carry evidence, every link must resolve, and
@@ -898,6 +1008,10 @@ console.log(
 console.log(
   `verified /founder: ProfilePage carrying the Person @id, resolving from the homepage, every ` +
     `figure traceable to an artifact, and no uncheckable credential claim`,
+);
+console.log(
+  `verified /review: 5 source-bound manuscript rows, 10 unassigned roles, zero completed reviews ` +
+    `or replications, exact paper links, governed critique route, and sitemap discovery`,
 );
 console.log(
   `verified /methodology: every question marked up, every answer carrying evidence, and every ` +
