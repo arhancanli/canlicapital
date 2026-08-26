@@ -90,5 +90,5 @@ authoritative artifact.
 ## Not investment advice
 
 Nothing on this site or in this repo is investment advice, an offer, or a solicitation. The record
-published here is **paper trading** — no real capital has been deployed. Simulated and past
+published here is **paper trading**; the published ALPHAC strategy record includes no funded performance. Simulated and past
 performance do not indicate future results. See `LICENSE`: provided "as is", without warranty.

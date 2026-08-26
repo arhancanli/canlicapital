@@ -80,13 +80,10 @@ export const FACTS = {
 // the right target per page (anchors smooth-scroll on the landing, clean URLs
 // link out from a sub-page). `page` keys the active (`is-current`) state.
 export const NAV = [
-  { page: "systems", label: "Systems", href: "/systems", anchor: "#systems" },
-  { page: "research", label: "The research", href: "/research", anchor: "#research" },
-  { page: "performance", label: "Performance", href: "/performance", anchor: "#performance" },
-  { page: "progress", label: "Progress", href: "/progress", anchor: "#progress" },
-  { page: "measurements", label: "Measurements", href: "/measurements", anchor: "#measurements" },
-  { page: "open", label: "Proven in the open", href: "/open", anchor: "#open" },
-  { page: "verify", label: "Verify us", href: "/verify", anchor: "#verify" },
+  { page: "open", label: "Evidence", href: "/open", anchor: "#evidence" },
+  { page: "systems", label: "Sleeves", href: "/systems", anchor: "#sleeves" },
+  { page: "research", label: "Research", href: "/research", anchor: "#research" },
+  { page: "methodology", label: "Methodology", href: "/methodology", anchor: "#methodology" },
 ];
 
 // Footer link grid. Each column is a labelled nav region. Internal links carry an

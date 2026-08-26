@@ -29,17 +29,17 @@ def audit_page(page: Page, *, name: str, width: int, height: int) -> dict[str, o
 
     hero = page.locator("#hero-title")
     assert hero.is_visible()
-    assert hero.inner_text() == "Systematic research, with the receipts attached."
+    assert hero.inner_text() == "A systematic portfolio you can audit while it runs."
     assert page.get_by_role("link", name="View the live record").first.is_visible()
     assert page.get_by_role("link", name="Read the methodology").first.is_visible()
     assert page.locator(".live-console").is_visible()
-    assert page.locator(".evidence-ribbon").is_visible()
+    assert page.locator(".evidence-ledger").is_visible()
     assert page.locator("#trace-title").is_visible()
     assert page.locator("#sleeves-title").is_visible()
     assert page.locator("#research-title").is_visible()
     assert page.locator("#trust-title").is_visible()
     assert page.locator("#access-title").is_visible()
-    assert page.locator("#evidence-accounts").inner_text() == "3 × ~$1M"
+    assert page.locator("#evidence-accounts").inner_text() == "3 / paper"
     assert page.locator("#evidence-status").inner_text() == "Broker PASS"
 
     console_box = page.locator(".live-console").bounding_box()

@@ -140,7 +140,7 @@ function hydrateBroker(broker) {
     ? `${reconciled} dedicated accounts · PASS`
     : "Reconciliation check open";
   byId("console-book").textContent = `${integer.format(positions)} positions · ${integer.format(orders)} orders`;
-  byId("evidence-accounts").textContent = passed ? `${reconciled} × ~$1M` : "Check open";
+  byId("evidence-accounts").textContent = passed ? `${reconciled} / paper` : "Check open";
   byId("evidence-positions").textContent = `${integer.format(positions)} / ${integer.format(orders)}`;
   byId("evidence-status").textContent = passed ? "Broker PASS" : "Fail-closed";
 
@@ -198,6 +198,7 @@ async function hydrateEvidence() {
       : `Verified ${dateTime.format(generated)}`;
     const grade = data.state.metrics?.gauntlet_grade || "—";
     byId("metric-grade").textContent = grade;
+    byId("hero-grade").textContent = grade;
     byId("evidence-days").textContent = integer.format(Number(data.state.metrics?.live_days || 0));
     const correlation = Number(data.state.metrics?.correlation_value);
     byId("correlation-reading").textContent = Number.isFinite(correlation)

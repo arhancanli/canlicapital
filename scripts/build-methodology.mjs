@@ -230,7 +230,8 @@ function questions(f) {
     {
       id: "paper-trading",
       q: "Is this real money, and why is there no return to look at?",
-      a: `<p>No. Every sleeve here trades on paper. No real capital is deployed, nothing on this site
+      a: `<p>The published ALPHAC record is not funded. Every sleeve shown here trades on paper,
+      nothing on this site
       is investment advice, an offer or a solicitation, and a verified record of a simulation is
       still a record of a simulation.</p>
       <p>The live paper record began ${escapeHtml(f.goLive)} and has accrued ${f.liveDays} days.
@@ -376,11 +377,11 @@ ${item.a}
 <header class="paper__masthead">
   <a class="paper__brand" href="/">${PUBLISHER}</a>
   <nav class="paper__nav" aria-label="Primary">
-    <a href="/systems">Systems</a>
+    <a href="/open">Evidence</a>
+    <a href="/systems">Sleeves</a>
     <a href="/research">Research</a>
-    <a href="/measurements">Measurements</a>
-    <a href="/verify">Verify</a>
-    <a href="/open">Glass box</a>
+    <a href="/methodology">Methodology</a>
+    <a class="paper__nav-cta" href="https://app.canlicapital.com/dashboard">Open live record <span aria-hidden="true">↗</span></a>
   </nav>
 </header>
 <main class="paper__main" id="content">
@@ -401,7 +402,7 @@ ${body}
         <a href="/systems">How the engine works, stage by stage</a> &middot;
         <a href="/verify">How to check all of it</a></p>
         <p>Nothing on this site is investment advice, an offer, or a solicitation. The book trades
-        on paper and no real capital is deployed.</p>
+        on paper and the published strategy record includes no funded performance.</p>
       </section>
     </div>
   </article>

@@ -478,10 +478,11 @@ ${sources.length > 0 ? `<meta name="canli:sources" content="${sources.map(escape
 <header class="paper__masthead">
   <a class="paper__brand" href="/">${PUBLISHER}</a>
   <nav class="paper__nav" aria-label="Primary">
-    <a href="/systems">Systems</a>
-    <a href="/performance">Evidence</a>
+    <a href="/open">Evidence</a>
+    <a href="/systems">Sleeves</a>
     <a href="/research">Research</a>
-    <a href="/open">Glass box</a>
+    <a href="/methodology">Methodology</a>
+    <a class="paper__nav-cta" href="https://app.canlicapital.com/dashboard">Open live record <span aria-hidden="true">↗</span></a>
   </nav>
 </header>
 <main class="paper__main" id="content">
@@ -613,10 +614,11 @@ function hubHtml(hub, members) {
 <header class="paper__masthead">
   <a class="paper__brand" href="/">${PUBLISHER}</a>
   <nav class="paper__nav" aria-label="Primary">
-    <a href="/systems">Systems</a>
-    <a href="/performance">Evidence</a>
+    <a href="/open">Evidence</a>
+    <a href="/systems">Sleeves</a>
     <a href="/research">Research</a>
-    <a href="/open">Glass box</a>
+    <a href="/methodology">Methodology</a>
+    <a class="paper__nav-cta" href="https://app.canlicapital.com/dashboard">Open live record <span aria-hidden="true">↗</span></a>
   </nav>
 </header>
 <main class="paper__main" id="content">

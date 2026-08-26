@@ -155,11 +155,11 @@ function main() {
 <header class="paper__masthead">
   <a class="paper__brand" href="/">${PUBLISHER}</a>
   <nav class="paper__nav" aria-label="Primary">
-    <a href="/systems">Systems</a>
-    <a href="/performance">Evidence</a>
+    <a href="/open">Evidence</a>
+    <a href="/systems">Sleeves</a>
     <a href="/research">Research</a>
-    <a href="/measurements">Measurements</a>
-    <a href="/verify">Verify</a>
+    <a href="/methodology">Methodology</a>
+    <a class="paper__nav-cta" href="https://app.canlicapital.com/dashboard">Open live record <span aria-hidden="true">↗</span></a>
   </nav>
 </header>
 <main class="paper__main" id="content">
@@ -213,7 +213,8 @@ function main() {
         on the same terms as any external capital. That commitment is Ed25519-signed, so it cannot
         be quietly edited, softened or backdated after the fact.</p>
         <p>It is a small number and saying so is the point: it is what I can actually commit, stated
-        exactly, rather than a figure chosen to impress. No real capital is deployed today. This is
+        exactly, rather than a figure chosen to impress. No funded performance is included in the
+        published ALPHAC record today. This is
         a forward commitment that activates at first live deployment, and until then it is a
         promise with a signature on it and nothing more.</p>
         <pre class="verify__code" tabindex="0" aria-label="Founder commitment verification command"><code>curl -sO ${ORIGIN}/glassbox/founder_commitment.json
@@ -247,7 +248,7 @@ python3 reproduce.py --dir .</code></pre>
         <a href="/measurements">/measurements</a>, and the instructions for checking any of it at
         <a href="/verify">/verify</a>.</p>
         <p>Nothing on this site is investment advice, an offer, or a solicitation. The book trades
-        on paper and no real capital is deployed.</p>
+        on paper and the published strategy record includes no funded performance.</p>
       </section>
     </div>
   </article>

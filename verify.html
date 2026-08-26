@@ -28,18 +28,18 @@
 <link rel="stylesheet" media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=optional" />
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=optional" /></noscript>
 <link rel="stylesheet" href="./css/paper.css" />
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"HowTo","name":"How to verify the Canli Capital published record","description":"Recompute every published hash with nothing but Python, check the signatures and the append-only chain, re-run the engine. Exact commands, and what each cannot show.","url":"https://canlicapital.com/verify","author":{"@type":"Person","@id":"https://canlicapital.com/#arhan-canli","name":"Arhan Canli"},"publisher":{"@type":"Organization","@id":"https://canlicapital.com/#organization","name":"Canli Capital"},"step":[{"@type":"HowToStep","name":"Recompute the content hashes","text":"Download the 151 published artifacts and reproduce.py, then run it. Python standard library only.","url":"https://canlicapital.com/verify#l1"},{"@type":"HowToStep","name":"Check the signatures and the append-only chain","text":"Verify the Ed25519 signatures on the signed commitments and re-derive all 500 links of the transparency chain.","url":"https://canlicapital.com/verify#l2"},{"@type":"HowToStep","name":"Re-run the engine determinism test","text":"Clone the repository and run the golden-master test, which reproduces a scripted fixture byte for byte.","url":"https://canlicapital.com/verify#l3"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"HowTo","name":"How to verify the Canli Capital published record","description":"Recompute every published hash with nothing but Python, check the signatures and the append-only chain, re-run the engine. Exact commands, and what each cannot show.","url":"https://canlicapital.com/verify","author":{"@type":"Person","@id":"https://canlicapital.com/#arhan-canli","name":"Arhan Canli"},"publisher":{"@type":"Organization","@id":"https://canlicapital.com/#organization","name":"Canli Capital"},"step":[{"@type":"HowToStep","name":"Recompute the content hashes","text":"Download the 151 published artifacts and reproduce.py, then run it. Python standard library only.","url":"https://canlicapital.com/verify#l1"},{"@type":"HowToStep","name":"Check the signatures and the append-only chain","text":"Verify the Ed25519 signatures on the signed commitments and re-derive all 501 links of the transparency chain.","url":"https://canlicapital.com/verify#l2"},{"@type":"HowToStep","name":"Re-run the engine determinism test","text":"Clone the repository and run the golden-master test, which reproduces a scripted fixture byte for byte.","url":"https://canlicapital.com/verify#l3"}]}</script>
 </head>
 <body class="paper">
 <a class="paper__skip" href="#content">Skip to content</a>
 <header class="paper__masthead">
   <a class="paper__brand" href="/">Canli Capital</a>
   <nav class="paper__nav" aria-label="Primary">
-    <a href="/systems">Systems</a>
-    <a href="/performance">Evidence</a>
+    <a href="/open">Evidence</a>
+    <a href="/systems">Sleeves</a>
     <a href="/research">Research</a>
-    <a href="/measurements">Measurements</a>
-    <a href="/open">Glass box</a>
+    <a href="/methodology">Methodology</a>
+    <a class="paper__nav-cta" href="https://app.canlicapital.com/dashboard">Open live record <span aria-hidden="true">↗</span></a>
   </nav>
 </header>
 <main class="paper__main" id="content">
@@ -184,7 +184,7 @@ python3 reproduce.py --dir .
 curl -sO https://canlicapital.com/glassbox/transparency_log.json
 curl -sO https://canlicapital.com/glassbox/verify_transparency.py
 python3 verify_transparency.py transparency_log.json</code></pre>
-        <p>The chain currently holds 500 entries, from 2026-06-27 to
+        <p>The chain currently holds 501 entries, from 2026-06-27 to
         2026-08-26, signed under the public key
         <code class="verify__key">0c6606a6b0c5b66fbf3b78521c85e72019484e0177d04a873a651179175ac095</code>. If any earlier entry had
         been altered, that entry's chain hash — and every signature after it — would fail here.</p>
@@ -222,8 +222,8 @@ uv run python scripts/reproduce.py</code></pre>
         the engine reproduces its own output exactly. It says nothing about whether the model of
         the market inside it is any good, which is what the research library exists to argue about
         and what the forward record exists to settle.</p>
-        <p><strong>And none of it is a return.</strong> This book trades on paper. No real capital
-        is deployed, nothing here is investment advice, and a verified record of a simulation is
+        <p><strong>And none of it is funded performance.</strong> The published ALPHAC book trades on
+        paper, nothing here is investment advice, and a verified record of a simulation is
         still a record of a simulation.</p>
       </section>
 

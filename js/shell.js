@@ -104,7 +104,7 @@ function buildNav() {
   // moment here (center-out underline, already styled).
   const ctaHref = "https://app.canlicapital.com/dashboard";
   markup.push(
-    `<a href="${ctaHref}" class="nav__cta label" data-magnetic>Enter the platform</a>`
+    `<a href="${ctaHref}" class="nav__cta label" data-magnetic>Open live record <span aria-hidden="true">↗</span></a>`
   );
 
   links.innerHTML = markup.join("");
@@ -148,7 +148,7 @@ function buildFooter() {
   footer.innerHTML = `
     <p class="footer__status mono-label">
       <span class="dot dot--pulse" aria-hidden="true"></span>
-      <span data-brand>Canli Capital</span> / simulation and live paper trading / no real capital
+      <span data-brand>Canli Capital</span> / observed paper record / funded strategy record inactive
     </p>
 
     <div class="footer__grid">${gridMarkup}</div>
@@ -168,7 +168,7 @@ function buildFooter() {
 
     <p class="footer__colophon mono-label">
       &copy; 2026 <span data-brand>Canli Capital</span>. Built in Dubai. Type set in
-      Fraunces, Space Grotesk, and JetBrains Mono.
+      Space Grotesk and JetBrains Mono.
     </p>
   `;
 }

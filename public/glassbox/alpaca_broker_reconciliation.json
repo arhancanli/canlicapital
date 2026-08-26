@@ -2,8 +2,8 @@
   "author": "Arhan Canli",
   "cent_tolerance": 0.01,
   "claim_boundary": "Self-published read-only reconciliation against three dedicated Alpaca paper accounts. It is broker-derived but not an independent third-party attestation, does not imply real capital, and does not establish future performance.",
-  "content_hash": "sha256:97fe66b18ec5e2a2a8445ed5ff2191239900ccdd5120e869065d34085d8e1325",
-  "generated_at": "2026-08-26T08:25:35.798859+00:00",
+  "content_hash": "sha256:4616964ce805d1b5b260de5f47b999f88b303ada46147328622f80e3763f0712",
+  "generated_at": "2026-08-26T09:25:45.939024+00:00",
   "method": "GET_ONLY_ACCOUNT_POSITIONS_PORTFOLIO_HISTORY_OPEN_ORDERS",
   "schema": "canli.alphac-alpaca-broker-reconciliation.v1",
   "sleeves": {
@@ -38,16 +38,14 @@
       "comparison_before_refresh": {
         "all_overlapping_marks_match_to_cent": true,
         "broker_marks": 15,
-        "broker_marks_missing_locally": 1,
-        "local_marks": 15,
+        "broker_marks_missing_locally": 0,
+        "local_marks": 16,
         "max_absolute_equity_difference": 0.0,
-        "missing_broker_mark_timestamps": [
-          "2026-08-26T00:00:00+00:00"
-        ],
-        "overlapping_marks": 14
+        "missing_broker_mark_timestamps": [],
+        "overlapping_marks": 15
       },
-      "current_equity": 988017.2,
-      "current_equity_as_of": "2026-08-26T08:25:35.798000+00:00",
+      "current_equity": 988019.87,
+      "current_equity_as_of": "2026-08-26T09:25:45.939000+00:00",
       "fill_outcome_reconciliation": {
         "consecutive_fill_reconcile_failures": 0,
         "last_error": null,
@@ -74,7 +72,7 @@
           },
           {
             "ticker": "CIEN",
-            "weight_pct": 0.42
+            "weight_pct": 0.41
           },
           {
             "ticker": "TER",
@@ -93,11 +91,11 @@
             "weight_pct": 0.32
           },
           {
-            "ticker": "GLW",
+            "ticker": "COHR",
             "weight_pct": 0.32
           },
           {
-            "ticker": "COHR",
+            "ticker": "GLW",
             "weight_pct": 0.32
           },
           {
@@ -227,16 +225,14 @@
       "comparison_before_refresh": {
         "all_overlapping_marks_match_to_cent": true,
         "broker_marks": 14,
-        "broker_marks_missing_locally": 1,
-        "local_marks": 14,
+        "broker_marks_missing_locally": 0,
+        "local_marks": 15,
         "max_absolute_equity_difference": 0.0,
-        "missing_broker_mark_timestamps": [
-          "2026-08-26T00:00:00+00:00"
-        ],
-        "overlapping_marks": 13
+        "missing_broker_mark_timestamps": [],
+        "overlapping_marks": 14
       },
-      "current_equity": 1002090.44,
-      "current_equity_as_of": "2026-08-26T08:25:35.798000+00:00",
+      "current_equity": 1002299.32,
+      "current_equity_as_of": "2026-08-26T09:25:45.939000+00:00",
       "fill_outcome_reconciliation": {
         "consecutive_fill_reconcile_failures": 0,
         "last_error": null,
@@ -255,11 +251,11 @@
           }
         ],
         "long_count": 1,
-        "net_pct": -0.06,
+        "net_pct": -0.04,
         "short": [
           {
             "ticker": "SPY",
-            "weight_pct": 50.02
+            "weight_pct": 50.0
           }
         ],
         "short_count": 1,
@@ -304,16 +300,14 @@
       "comparison_before_refresh": {
         "all_overlapping_marks_match_to_cent": true,
         "broker_marks": 15,
-        "broker_marks_missing_locally": 1,
-        "local_marks": 15,
+        "broker_marks_missing_locally": 0,
+        "local_marks": 16,
         "max_absolute_equity_difference": 0.0,
-        "missing_broker_mark_timestamps": [
-          "2026-08-26T00:00:00+00:00"
-        ],
-        "overlapping_marks": 14
+        "missing_broker_mark_timestamps": [],
+        "overlapping_marks": 15
       },
-      "current_equity": 997974.07,
-      "current_equity_as_of": "2026-08-26T08:25:35.798000+00:00",
+      "current_equity": 997990.14,
+      "current_equity_as_of": "2026-08-26T09:25:45.939000+00:00",
       "fill_outcome_reconciliation": {
         "consecutive_fill_reconcile_failures": 0,
         "last_error": null,
@@ -328,7 +322,7 @@
         "long": [
           {
             "ticker": "SHY",
-            "weight_pct": 20.04
+            "weight_pct": 20.05
           },
           {
             "ticker": "UUP",
@@ -364,7 +358,7 @@
           },
           {
             "ticker": "USO",
-            "weight_pct": 1.42
+            "weight_pct": 1.41
           }
         ],
         "long_count": 10,
@@ -380,7 +374,7 @@
           },
           {
             "ticker": "GLD",
-            "weight_pct": 2.68
+            "weight_pct": 2.67
           },
           {
             "ticker": "SLV",

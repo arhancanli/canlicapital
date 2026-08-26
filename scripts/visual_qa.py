@@ -30,10 +30,13 @@ def main() -> int:
     results: list[dict[str, object]] = []
 
     with sync_playwright() as playwright:
-        browser = playwright.chromium.launch(headless=True)
         for viewport_name, viewport in VIEWPORTS.items():
-            context = browser.new_context(viewport=viewport, device_scale_factor=1)
             for route_name, route in ROUTES.items():
+                # Isolate every evidence page. Chromium retains large paint
+                # surfaces across contexts, which can exhaust screenshot
+                # resources after visiting the longest records.
+                browser = playwright.chromium.launch(headless=True)
+                context = browser.new_context(viewport=viewport, device_scale_factor=1)
                 page = context.new_page()
                 console_errors: list[str] = []
                 page_errors: list[str] = []
@@ -49,6 +52,12 @@ def main() -> int:
                 page.on("pageerror", record_page_error)
                 response = page.goto(f"{BASE_URL}{route}", wait_until="networkidle")
                 page.evaluate("document.fonts.ready")
+                screenshot = OUTPUT / f"{route_name}-{viewport_name}.png"
+                # Capture the first viewport before exercising the entire page.
+                # Several evidence routes are taller than Chromium's reliable
+                # single-bitmap limit, while their complete layouts are still
+                # inspected by the scroll and DOM checks below.
+                page.screenshot(path=str(screenshot), full_page=False)
                 page.evaluate(
                     """
                     async () => {
@@ -138,6 +147,7 @@ def main() -> int:
                         title: document.title,
                         h1Count: document.querySelectorAll('h1').length,
                         mainCount: document.querySelectorAll('main').length,
+                        documentHeight: root.scrollHeight,
                         horizontalOverflow: root.scrollWidth - root.clientWidth,
                         brokenImages,
                         overflowing,
@@ -147,8 +157,6 @@ def main() -> int:
                     }
                     """
                 )
-                screenshot = OUTPUT / f"{route_name}-{viewport_name}.png"
-                page.screenshot(path=str(screenshot), full_page=True)
                 results.append(
                     {
                         "route": route,
@@ -157,12 +165,13 @@ def main() -> int:
                         "console_errors": console_errors,
                         "page_errors": page_errors,
                         "screenshot": str(screenshot),
+                        "screenshot_scope": "first_viewport",
                         **diagnostics,
                     }
                 )
                 page.close()
-            context.close()
-        browser.close()
+                context.close()
+                browser.close()
 
     failures = [
         result

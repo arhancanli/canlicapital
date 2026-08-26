@@ -200,11 +200,11 @@ uv run python scripts/reproduce.py`;
 <header class="paper__masthead">
   <a class="paper__brand" href="/">${PUBLISHER}</a>
   <nav class="paper__nav" aria-label="Primary">
-    <a href="/systems">Systems</a>
-    <a href="/performance">Evidence</a>
+    <a href="/open">Evidence</a>
+    <a href="/systems">Sleeves</a>
     <a href="/research">Research</a>
-    <a href="/measurements">Measurements</a>
-    <a href="/open">Glass box</a>
+    <a href="/methodology">Methodology</a>
+    <a class="paper__nav-cta" href="https://app.canlicapital.com/dashboard">Open live record <span aria-hidden="true">↗</span></a>
   </nav>
 </header>
 <main class="paper__main" id="content">
@@ -279,8 +279,8 @@ uv run python scripts/reproduce.py`;
         the engine reproduces its own output exactly. It says nothing about whether the model of
         the market inside it is any good, which is what the research library exists to argue about
         and what the forward record exists to settle.</p>
-        <p><strong>And none of it is a return.</strong> This book trades on paper. No real capital
-        is deployed, nothing here is investment advice, and a verified record of a simulation is
+        <p><strong>And none of it is funded performance.</strong> The published ALPHAC book trades on
+        paper, nothing here is investment advice, and a verified record of a simulation is
         still a record of a simulation.</p>
       </section>
 

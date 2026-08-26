@@ -434,7 +434,7 @@ if (existsSync(verifyFile)) {
   // this section is the first thing that would be quietly dropped.
   check(verifyHtml.includes('id="limits"'), "/verify no longer says what it cannot prove");
   check(
-    /paper|no real capital/i.test(verifyHtml),
+    /paper|no funded performance/i.test(verifyHtml),
     "/verify does not state that this book trades on paper",
   );
 
