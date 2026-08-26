@@ -16,7 +16,7 @@
     "preview": "vite preview",
     "papers": "node scripts/build-papers.mjs",
     "prebuild": "node scripts/build-public-claims.mjs && node scripts/build-publication-wrappers.mjs && node scripts/build-measurements.mjs && node scripts/build-trials.mjs && node scripts/build-verify.mjs && node scripts/build-review.mjs && node scripts/build-foundry.mjs && node scripts/build-dsr-tool.mjs && node scripts/build-evidence-chain-tool.mjs && node scripts/build-papers.mjs && node scripts/build-founder.mjs && node scripts/build-methodology.mjs && node scripts/verify-system-films.mjs",
-    "verify": "node scripts/build-public-claims.mjs && node --test js/dsr-tool.test.js js/evidence-chain-core.test.js && node scripts/audit-writing.mjs && node scripts/verify-publication-wrappers.mjs && node scripts/verify-papers.mjs && node scripts/verify-trials.mjs && node scripts/verify-system-films.mjs && node scripts/audit-onpage.mjs && node scripts/audit-link-graph.mjs && node scripts/audit-published-numbers.mjs && node scripts/audit-readme.mjs",
+    "verify": "node scripts/build-public-claims.mjs && node --test js/dsr-tool.test.js js/evidence-chain-core.test.js js/trial-accounting-core.test.js && node scripts/audit-writing.mjs && node scripts/verify-publication-wrappers.mjs && node scripts/verify-papers.mjs && node scripts/verify-trials.mjs && node scripts/verify-system-films.mjs && node scripts/audit-onpage.mjs && node scripts/audit-link-graph.mjs && node scripts/audit-published-numbers.mjs && node scripts/audit-readme.mjs",
     "audit": "node scripts/audit-onpage.mjs",
     "indexnow": "node scripts/submit-indexnow.mjs",
     "indexnow:force": "node scripts/submit-indexnow.mjs --force",
