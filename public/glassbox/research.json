@@ -326,8 +326,8 @@
         }
       }
     },
-    "generated_at": "2026-08-26T07:27:42.331907+00:00",
-    "content_hash": "sha256:6e0955afb6f0fe358b69e10c00457a021de738c51ce59bcd7bcc832ce3460340"
+    "generated_at": "2026-08-26T08:23:12.249204+00:00",
+    "content_hash": "sha256:dc7c617dd072479778c834934049013e13d4a57cc35dbe94ee68d70c3cb9fc68"
   },
   "program_status": {
     "schema": "canli.alphac-program-status.v2",
@@ -755,7 +755,7 @@
         "return_hypotheses_spent": 0
       },
       "paper_corpus": {
-        "published_markdown_papers": 108,
+        "published_markdown_papers": 110,
         "family_papers": [
           {
             "research_family_key": "alphamax_equity_momentum",
@@ -4179,7 +4179,7 @@
           "Alpaca",
           "Interactive Brokers"
         ],
-        "status": "data-gated",
+        "status": "identity-redesign-required",
         "feasibility": {
           "protocol": "docs/design/FEASIBILITY_MERGER_ARBITRAGE.md",
           "result": "artifacts/feasibility/merger_arbitrage/result.json",
@@ -4188,6 +4188,33 @@
           "target_anchors": 1965,
           "prior_8k_60d_rate": 0.6702290076335878,
           "later_outcome_540d_rate": 0.917557251908397
+        },
+        "announcement_identity_v2": {
+          "protocol": "docs/design/FEASIBILITY_MERGER_ANNOUNCEMENT_IDENTITY_V2.md",
+          "protocol_public": "/research/merger-announcement-identity-v2.md",
+          "result": "artifacts/feasibility/merger_arbitrage/announcement_confirmatory_design.json",
+          "result_public": "/glassbox/merger_announcement_confirmatory_design.json",
+          "technical_decision": "PASS_PROSPECTIVE_NO_RETURN_CONFIRMATORY_DESIGN",
+          "governance_decision": "AUTHOR_APPROVAL_REQUIRED",
+          "exploration_period": {
+            "start": "2016-01-01",
+            "end": "2025-12-31"
+          },
+          "confirmation_period": {
+            "start": "2006-01-01",
+            "end": "2015-12-31"
+          },
+          "confirmation_target_rows": 400,
+          "rows_per_stratum": 200,
+          "strata": [
+            "DEFM14A",
+            "SC 14D9"
+          ],
+          "technical_authorship_approved": false,
+          "confirmation_corpus_opened": false,
+          "return_data_opened": false,
+          "return_hypotheses_spent": 0,
+          "content_hash": "sha256:e2d294361c96994931849cef2e44faa464e3f2ab6a9ba1e05e9c4d6742f82b74"
         },
         "tender_only_document_feasibility": {
           "protocol": "docs/design/FEASIBILITY_TENDER_OFFER_SPREAD.md",
@@ -19996,7 +20023,9 @@
           "evidence": [
             "config/sleeve_discovery.json#candidates:merger_arbitrage",
             "docs/design/FEASIBILITY_MERGER_ARBITRAGE.md",
-            "artifacts/feasibility/merger_arbitrage/result.json"
+            "artifacts/feasibility/merger_arbitrage/result.json",
+            "docs/design/FEASIBILITY_MERGER_ANNOUNCEMENT_IDENTITY_V2.md",
+            "artifacts/feasibility/merger_arbitrage/announcement_confirmatory_design.json"
           ],
           "gates": {
             "aliases_required_when_historical": true,
@@ -20338,13 +20367,13 @@
         }
       ],
       "source_sha256": {
-        "registry": "568f184a42fa815725b7e8fcb48ec701564f1ed9cfd6d991fcc5ea5d379d3ecf",
+        "registry": "d35a91e24e2a6eca9d359272e23b3a3fda534c396c7c0a704e6199b4eac05f58",
         "kill_ledger": "5a759476902f8bfeef5d2ed6bc23a3754cffbd7c6b62754eafb91da9b5e25b93",
         "current_book": "d26f1b03f61a42721b3a2c9579649d493bf9418b877922ae987cfc7bdc9da5e4",
-        "discovery": "b9680873c1c8d9cd005012b3c8e7fbbaab77b2adc282539573d6b7587f556ca0"
+        "discovery": "3edf6e76ddafe96b39929cb12292b7104e7ecec9ddab987422eedc1344fea0d9"
       },
-      "generated_at": "2026-08-26T07:25:46.216209+00:00",
-      "content_hash": "sha256:5fb9311d6ccfbfcfce28d21738a216710f1c2fd2a43eaf8e377a67a0261a4fca"
+      "generated_at": "2026-08-26T08:04:49.069297+00:00",
+      "content_hash": "sha256:fedb4eba511c86cd1793107e9d2a5a33dc1049a1b3148ece8ae87b53ab7c4a5c"
     },
     "atlas_public_path": "/glassbox/sleeve_atlas.json",
     "audit_public_path": "/glassbox/sleeve_atlas_audit.json",
@@ -22278,11 +22307,11 @@
   "data_gate_unblocks": {
     "by_classification": {
       "BLOCKED_ON_AUTHOR_TECHNICAL_APPROVAL": [
+        "merger_arbitrage",
         "treasury_auction_concession"
       ],
       "BLOCKED_ON_EXTRACTION_QUALITY": [
         "inflation_breakeven_relative_value",
-        "merger_arbitrage",
         "tender_offer_spread"
       ],
       "BLOCKED_ON_FREE_CREDENTIAL": [
@@ -22321,7 +22350,7 @@
       ]
     },
     "claim_boundary": "Classifies blockers only. Opens no return data, runs no backtest, registers no hypothesis, and claims nothing about any candidate's edge, sign or correlation. 0 trials.",
-    "content_hash": "sha256:5cc81705c7e7c9a82708e95e1c0a59ed27172d0f76c12a98679ed82b649dcee2",
+    "content_hash": "sha256:55f0fd4966f7ec886f42635422c69d3025c1ddfbcf23ee1356533f8465178ad3",
     "families": [
       {
         "actionable_unblock": false,
@@ -22644,26 +22673,27 @@
       {
         "actionable_unblock": true,
         "artifacts_considered": [
+          "artifacts/feasibility/merger_arbitrage/announcement_confirmatory_design.json",
           "artifacts/feasibility/merger_arbitrage/result.json"
         ],
         "atlas_obtainability_verdict": "RECORD_HELD_BUT_IDENTITY_REDESIGN_REQUIRED",
         "blocking_reasons": [],
-        "classification": "BLOCKED_ON_EXTRACTION_QUALITY",
+        "classification": "BLOCKED_ON_AUTHOR_TECHNICAL_APPROVAL",
         "credential_cost": {},
         "credentials_missing": [],
         "credentials_required": [],
-        "decision": "DATA_GATED",
+        "decision": "AUTHOR_APPROVAL_REQUIRED",
         "failing_gate_count": 1,
         "failing_gates": [
-          "prior_item101_8k_rate_gte_0_80"
+          "author_technical_approval_recorded"
         ],
         "family": "merger_arbitrage",
-        "passing_gate_count": 3,
+        "passing_gate_count": 11,
         "reachability_verdict": "GATE_BLENDS_TWO_POPULATIONS",
         "release_reachability_verdict": null,
         "return_hypotheses_spent": 0,
         "return_outcome": null,
-        "source_artifact": "artifacts/feasibility/merger_arbitrage/result.json",
+        "source_artifact": "artifacts/feasibility/merger_arbitrage/announcement_confirmatory_design.json",
         "source_reachability_verdict": null,
         "superseded": false
       },
@@ -22894,6 +22924,16 @@
         "packet_content_hash": "sha256:eda83fdea1ea96ab693a9cb1fa22f4943d1f2a5a228e59294c6a16092ecb7cfe",
         "unblocks": [
           "active_ownership_13d_item4_v3"
+        ]
+      },
+      {
+        "action": "Arhan independently reviews the merger-announcement v2 confirmation design and records approval or required changes; automation may not answer for him",
+        "artifact_content_hash": "sha256:e2d294361c96994931849cef2e44faa464e3f2ab6a9ba1e05e9c4d6742f82b74",
+        "effort": "technical authorship review; confirmation corpus, prices and returns remain unopened",
+        "protocol": "docs/design/FEASIBILITY_MERGER_ANNOUNCEMENT_IDENTITY_V2.md",
+        "source_artifact": "artifacts/feasibility/merger_arbitrage/announcement_confirmatory_design.json",
+        "unblocks": [
+          "merger_arbitrage"
         ]
       },
       {
@@ -65703,6 +65743,197 @@
     "stage": "PROSPECTIVE_PRE_LABEL_PRE_RETURN_CONFIRMATORY_DESIGN",
     "technical_authorship_approved": false
   },
+  "merger_announcement_confirmatory_design": {
+    "activation": {
+      "approval_recorded": false,
+      "corpus_acquisition_requires_author_approval": true,
+      "return_preregistration_is_separate": true,
+      "return_preregistration_requires_both_strata_to_pass": true
+    },
+    "authorship_disclosure": "AI-assisted technical draft prepared under the project owner's direction; Arhan Canli has not yet reviewed or approved the exact design.",
+    "candidate_status": "identity-redesign-required",
+    "claim_boundary": "Freezes a disjoint no-return confirmation design for a materially new announcement identity. It proves no corpus coverage, resolver accuracy, return, Sharpe, drawdown, correlation, capacity, or sleeve admission.",
+    "confidence_gates_per_stratum": {
+      "acceptance_timestamp_accuracy": {
+        "minimum_successes_at_target_denominator": 188,
+        "one_sided_exact_lower_95_threshold": 0.9,
+        "point_threshold": 0.9,
+        "target_denominator": 200
+      },
+      "announcement_coverage": {
+        "minimum_successes_at_target_denominator": 161,
+        "one_sided_exact_lower_95_threshold": 0.75,
+        "point_threshold": 0.8,
+        "target_denominator": 200
+      },
+      "outcome_marker_coverage": {
+        "minimum_successes_at_target_denominator": 142,
+        "one_sided_exact_lower_95_threshold": 0.65,
+        "point_threshold": 0.7,
+        "target_denominator": 200
+      },
+      "same_transaction_link_accuracy": {
+        "minimum_successes_at_target_denominator": 196,
+        "one_sided_exact_lower_95_threshold": 0.95,
+        "point_threshold": 0.95,
+        "target_denominator": 200
+      }
+    },
+    "confirmation_period": {
+      "end": "2015-12-31",
+      "start": "2006-01-01"
+    },
+    "content_hash": "sha256:e2d294361c96994931849cef2e44faa464e3f2ab6a9ba1e05e9c4d6742f82b74",
+    "corpus_acquired": false,
+    "corpus_frozen": false,
+    "decision": "AUTHOR_APPROVAL_REQUIRED",
+    "declared_on": "2026-08-26",
+    "execution_authorized": false,
+    "exploration_period": {
+      "end": "2025-12-31",
+      "start": "2016-01-01"
+    },
+    "exploratory_result_preserved_as_failed": true,
+    "family": "merger_arbitrage",
+    "governance_decision": "AUTHOR_APPROVAL_REQUIRED",
+    "independent_labels_completed": 0,
+    "lineage_gate": {
+      "required_fields": [
+        "cik",
+        "accession",
+        "form",
+        "acceptance_timestamp",
+        "primary_document",
+        "archive_url",
+        "document_sha256"
+      ],
+      "required_rate": 1.0
+    },
+    "periods_disjoint": true,
+    "project_owner": "Arhan Canli",
+    "protocol_frozen": true,
+    "resolver": {
+      "candidate_sources": [
+        "TARGET_8K_ITEM_1_01_7_01_OR_8_01_WITH_QUALIFYING_EXHIBIT",
+        "TARGET_PREM14A_OR_DEFA14A_WITH_PARTIES_AND_CASH_TERMS",
+        "BIDDER_SC_TO_T_LINKED_BY_SUBJECT_COMPANY_CIK"
+      ],
+      "conflict_policy": "UNRESOLVED_CONFLICT",
+      "later_confirmation_may_backdate": false,
+      "lookback_calendar_days": 365,
+      "qualifying_fields": [
+        "target_cik",
+        "one_named_counterparty",
+        "one_cash_consideration",
+        "binding_agreement_or_commenced_offer_language"
+      ],
+      "selection_rule": "EARLIEST_QUALIFYING_SEC_ACCEPTANCE_TIMESTAMP",
+      "states": [
+        "RESOLVED_CASH_MERGER",
+        "RESOLVED_CASH_TENDER",
+        "UNRESOLVED_NO_QUALIFYING_SOURCE",
+        "UNRESOLVED_CONFLICT",
+        "OUT_OF_SCOPE_NON_CASH_OR_COMPLEX_CONSIDERATION"
+      ]
+    },
+    "return_data_opened": false,
+    "return_hypotheses_spent": 0,
+    "review_boundary": {
+      "all_selected_anchors_labeled": true,
+      "independent_reviewer_required": true,
+      "no_automated_or_ai_labeling_assistance": true,
+      "prediction_blind_packet_required": true,
+      "prices_and_returns_forbidden": true,
+      "raw_confusion_counts_required": true
+    },
+    "schema": "canli.alphac-merger-announcement-confirmatory-design.v1",
+    "selection": {
+      "exploratory_accessions_excluded": 1965,
+      "insufficient_cell_policy": "DATA_GATED_NO_CROSS_CELL_SUBSTITUTION",
+      "namespace": "alphac-merger-announcement-confirmation-v2",
+      "rank_expression": "sha256(namespace + '|' + year + '|' + stratum + '|' + accession)",
+      "rows_per_stratum": 200,
+      "rows_per_year_stratum_cell": 20,
+      "selection_uses_document_text": false,
+      "selection_uses_human_labels": false,
+      "selection_uses_machine_prediction": false,
+      "selection_uses_prices_or_returns": false,
+      "selection_uses_realized_deal_outcome": false,
+      "target_rows": 400,
+      "years": [
+        2006,
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015
+      ]
+    },
+    "source_bindings": {
+      "compact_input_receipt": {
+        "content_hash": "sha256:11e1d46af1ed039a3c00d6d15e7479baf5d5bc4872103d4a0b4b876cae09a768",
+        "path": "config/merger_announcement_confirmatory_design_inputs.json",
+        "sha256": "2db3e951a2dabcf1323bcb84805c1df741168fd63ad6907ab1e1fc489e31dc52"
+      },
+      "exploratory_result": {
+        "path": "artifacts/feasibility/merger_arbitrage/result.json",
+        "sha256": "f28fbf54dfce33888c3d5e96e08d3c85549543105bd7fde68989f13bcc2827ea"
+      },
+      "exploratory_timeline": {
+        "path": "artifacts/feasibility/merger_arbitrage/target_anchor_timeline.parquet",
+        "sha256": "c39467ad09778b25a42550a0130eb42769a29aeb77547b9ce2c4db5e2940e6f7"
+      },
+      "protocol": {
+        "path": "docs/design/FEASIBILITY_MERGER_ANNOUNCEMENT_IDENTITY_V2.md",
+        "sha256": "a49a4c019fabc4a5dad8f777c79988b6125832be65d4990083ed2da14484739b"
+      }
+    },
+    "stage": "PROSPECTIVE_PRE_CORPUS_PRE_LABEL_PRE_RETURN_IDENTITY_REDESIGN",
+    "strata": {
+      "aggregate_cannot_rescue_failed_stratum": true,
+      "exploratory_measurements": {
+        "DEFM14A": {
+          "anchors": 1523,
+          "first_filing_date": "2016-01-08",
+          "last_filing_date": "2025-12-31",
+          "later_item201_or_102_8k_rate": 0.9238345370978333,
+          "prior_item101_8k_rate": 0.613263296126067
+        },
+        "SC 14D9": {
+          "anchors": 442,
+          "first_filing_date": "2016-01-05",
+          "last_filing_date": "2025-12-29",
+          "later_item201_or_102_8k_rate": 0.8959276018099548,
+          "prior_item101_8k_rate": 0.8665158371040724
+        }
+      },
+      "reported_and_gated_separately": true,
+      "values": [
+        "DEFM14A",
+        "SC 14D9"
+      ]
+    },
+    "technical_authorship_approved": false,
+    "technical_decision": "PASS_PROSPECTIVE_NO_RETURN_CONFIRMATORY_DESIGN",
+    "technical_gates": {
+      "author_technical_approval_recorded": false,
+      "both_strata_preserved": true,
+      "confidence_gates_are_predeclared": true,
+      "confirmation_corpus_unopened": true,
+      "confirmation_period_disjoint": true,
+      "exploratory_failure_preserved": true,
+      "market_and_return_columns_absent": true,
+      "resolver_is_deterministic_and_fail_closed": true,
+      "return_data_unopened": true,
+      "return_hypotheses_unspent": true,
+      "selection_is_pre_text_pre_label_pre_return": true,
+      "strata_gated_separately": true
+    }
+  },
   "external_validation_opportunities": {
     "claim_boundary": "This is a dated official-source opportunity audit. It proves no personal eligibility, registration, submission, judging, advancement, award, review, publication, or Stanford admissions outcome. Rules and deadlines must be rechecked immediately before any authorized external action.",
     "content_hash": "sha256:9a5ef9eed1406fd32d3fb0f2b93ff58a102b1a3794263e870dc6bb90b4a4cf4a",
@@ -71175,7 +71406,7 @@
     },
     "notes_public_path": "/research/identity-redesign-notes.md",
     "notes_source_path": "docs/design/IDENTITY_REDESIGN_NOTES.md",
-    "notes_sha256": "5606fed950d3c599696e444e957e52f6eb1eae9e3e28e9f1e441c623a2a32a75",
+    "notes_sha256": "a82d9845875ee8ce6b53e06feae2c534baca58026275f7621b1db8bfaab18c50",
     "public_path": "/glassbox/spinoff_form_universe.json",
     "source_path": "artifacts/analysis/spinoff_form_universe/result.json",
     "status": "DRAFT \u2014 nothing here is registered and no threshold is proposed"
@@ -86145,6 +86376,6 @@
       "source_path": "artifacts/engineering/options_execution_contract.json"
     }
   },
-  "generated_at": "2026-08-26T07:27:43.204299+00:00",
-  "content_hash": "sha256:5be217528eb266571995a2ca2ce7f0b180a3687d6c3e20bac8b318e2a152424f"
+  "generated_at": "2026-08-26T08:23:13.131884+00:00",
+  "content_hash": "sha256:8f55562cc7ebb4cc2eed15d043c38cd7e5204be21c6c00c66a27834cf430ce06"
 }
