@@ -381,6 +381,107 @@ function prepareEvidenceCore(data, claims) {
   observer.observe(section);
 }
 
+function hydrateSystemFilmState(payload) {
+  const films = new Map((payload?.films || []).map((film) => [film.id, film]));
+  document.querySelectorAll("[data-film-card]").forEach((card) => {
+    const film = films.get(card.dataset.filmCard);
+    if (!film) return;
+    const timestamp = new Date(film.timestamp);
+    const element = card.querySelector("[data-film-timestamp]");
+    if (!element) return;
+    element.dateTime = film.timestamp;
+    element.textContent = Number.isNaN(timestamp.valueOf()) ? "Artifact timestamp available" : dateTime.format(timestamp);
+  });
+}
+
+function prepareSystemFilmPlayback() {
+  const motionPreference = window.matchMedia("(prefers-reduced-motion: reduce)");
+  document.querySelectorAll("[data-film-card]").forEach((card) => {
+    const video = card.querySelector("[data-film-video]");
+    const toggle = card.querySelector("[data-film-toggle]");
+    if (!video || !toggle) return;
+
+    let attached = false;
+    let nearViewport = false;
+    let userPaused = false;
+
+    const attachSources = () => {
+      if (attached || motionPreference.matches) return;
+      video.querySelectorAll("source[data-src]").forEach((source) => {
+        source.src = source.dataset.src;
+      });
+      video.poster = video.dataset.poster;
+      attached = true;
+      toggle.hidden = false;
+      card.dataset.playback = "loading";
+      video.load();
+    };
+
+    const play = async () => {
+      if (!nearViewport || userPaused || document.hidden || motionPreference.matches) return;
+      try {
+        await video.play();
+        card.dataset.playback = "playing";
+        toggle.textContent = "Pause film";
+        toggle.setAttribute("aria-label", `Pause ${card.querySelector("h3")?.textContent || "system film"}`);
+      } catch {
+        card.dataset.playback = "ready";
+      }
+    };
+
+    const pause = () => {
+      video.pause();
+      if (attached) card.dataset.playback = "paused";
+      toggle.textContent = "Play film";
+      toggle.setAttribute("aria-label", `Play ${card.querySelector("h3")?.textContent || "system film"}`);
+    };
+
+    const observer = new IntersectionObserver(([entry]) => {
+      nearViewport = entry.isIntersecting;
+      if (nearViewport && !motionPreference.matches) {
+        attachSources();
+        play();
+      } else {
+        pause();
+        if (motionPreference.matches) {
+          card.dataset.playback = "poster";
+          toggle.hidden = true;
+        }
+      }
+    }, { rootMargin: "320px 0px", threshold: .01 });
+    observer.observe(card);
+
+    toggle.addEventListener("click", () => {
+      userPaused = !video.paused;
+      if (userPaused) pause();
+      else play();
+    });
+    video.addEventListener("loadeddata", play, { once: true });
+    video.addEventListener("error", () => {
+      card.dataset.playback = "poster";
+      toggle.hidden = true;
+    });
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden) pause();
+      else if (!userPaused) play();
+    });
+    motionPreference.addEventListener("change", () => {
+      if (motionPreference.matches) {
+        pause();
+        video.querySelectorAll("source").forEach((source) => source.removeAttribute("src"));
+        video.removeAttribute("poster");
+        video.load();
+        attached = false;
+        toggle.hidden = true;
+        card.dataset.playback = "poster";
+      } else if (nearViewport) {
+        attachSources();
+        play();
+      }
+    });
+  });
+}
+
 async function fetchJson(path) {
   const response = await fetch(path, { cache: "no-cache" });
   if (!response.ok) throw new Error(`${path} returned ${response.status}`);
@@ -396,6 +497,7 @@ async function hydrateEvidence() {
     kills: "/glassbox/kill_log.json",
     transparency: "/glassbox/transparency_log.json",
     costs: "/glassbox/cost_model_realism.json",
+    films: "/system-films/state.json",
   };
   const entries = await Promise.allSettled(
     Object.entries(paths).map(async ([key, path]) => [key, await fetchJson(path)]),
@@ -444,6 +546,7 @@ async function hydrateEvidence() {
   }
   if (data.transparency) hydrateTransparency(data.transparency);
   if (data.costs) hydrateCosts(data.costs);
+  if (data.films) hydrateSystemFilmState(data.films);
   if (claims) prepareEvidenceCore(data, claims);
 }
 
@@ -485,6 +588,7 @@ form?.addEventListener("submit", async (event) => {
   }
 });
 
+prepareSystemFilmPlayback();
 hydrateEvidence().catch(() => {
   document.querySelector(".header-status").dataset.status = "fail";
   byId("header-broker-status").textContent = "Evidence loading failed";
