@@ -26,6 +26,8 @@ Review all 48 rows without consulting parser outputs, aggregate results, prices,
   submission. Do not search for outcomes, prices, returns, parser results, or later filings.
 - Copy one representative source sentence verbatim. For a negative row, copy the sentence most
   relevant to the negative decision. Use `[ITEM 4 UNRESOLVED]` only when extraction is unresolved.
+  The verifier normalizes whitespace and rejects a sentence that is not present in the frozen
+  source excerpt; do not paraphrase it.
 - Record one unambiguous aggregate ownership percentage explicitly reported for the reporting
   person or group as a plain number without a percent sign. Do not infer, sum, average, or choose
   among conflicting percentages. Enter exactly `unresolved` when one aggregate percentage cannot
@@ -38,10 +40,12 @@ Review all 48 rows without consulting parser outputs, aggregate results, prices,
   official SEC submission.
 - Complete all 48 rows in `completed_labels.csv`. Do not reorder, add, or remove rows and do not
   change the frozen identity or source columns.
-- Fill `reviewer_name`, `reviewer_role`, and timezone-aware ISO 8601 `completed_at` in
-  `completed_attestation.json`; copy `content_hash` from `manifest.json` into
-  `packet_manifest_content_hash`; and set every independence boolean to `true`. Preserve the blank
-  template.
+- Fill every reviewer/disclosure field and the timezone-aware ISO 8601 `completed_at` in
+  `completed_attestation.json`. Use `none` when a relationship, payment, or conflict field truly
+  has nothing to disclose. Copy `content_hash` from `manifest.json` into
+  `packet_manifest_content_hash`; set every independence boolean to `true` only when truthful.
+  No generative-AI, classifier, scripted, or other automated assistance may be used to make or
+  draft any label, sentence, ownership value, or note. Preserve the blank template.
 - Run `python3 verify_review.py --completed completed_labels.csv --attestation
   completed_attestation.json`. Return the two completed files only if it prints
   `REVIEW_RETURN_VALID`; the output also gives both file hashes.
