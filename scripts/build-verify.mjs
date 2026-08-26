@@ -244,6 +244,10 @@ ${renderProductShellHeader({ active: "verify" })}
         ${escapeHtml(chain.lastDate)}, signed under the public key
         <code class="verify__key">${escapeHtml(chain.publicKey)}</code>. If any earlier entry had
         been altered, that entry's chain hash — and every signature after it — would fail here.</p>
+        <p><a href="/tools/evidence-chain">Inspect the chain in the browser</a>. The interactive
+        microscope verifies every predecessor link and signature, exposes the payload-disclosure
+        boundary and lets you mutate a local copy of any entry. The Python command above remains
+        the canonical check for disclosed payload bytes.</p>
       </section>
 
       <section class="verify__level" id="l3">

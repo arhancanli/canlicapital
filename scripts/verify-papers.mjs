@@ -1063,6 +1063,93 @@ if (existsSync(dsrToolFile)) {
 }
 
 // ---------------------------------------------------------------------------
+// 14. /tools/evidence-chain: browser verification remains bound to the exact
+//     public chain, disclosure boundary, anchor manifest and honest payload
+//     rehash limitation.
+// ---------------------------------------------------------------------------
+const chainToolFile = resolve(DIST, "tools/evidence-chain.html");
+check(existsSync(chainToolFile), "no /tools/evidence-chain page was built");
+if (existsSync(chainToolFile)) {
+  const chainToolHtml = readFileSync(chainToolFile, "utf8");
+  const transparencyBytes = readFileSync(resolve(DIST, "glassbox/transparency_log.json"));
+  const anchorsBytes = readFileSync(resolve(DIST, "glassbox/ots/anchors.json"));
+  const verifierBytes = readFileSync(resolve(DIST, "glassbox/verify_transparency.py"));
+  const transparency = JSON.parse(transparencyBytes);
+  const anchors = JSON.parse(anchorsBytes);
+  const entries = transparency.entries;
+  const disclosure = transparency.payload_disclosure;
+
+  check(
+    transparency.schema === "glassbox.transparency_log/2" &&
+      transparency.entry_count === entries.length &&
+      entries.at(-1).seq === entries.length - 1 &&
+      transparency.head.chain_hash === entries.at(-1).chain_hash,
+    "/tools/evidence-chain public transparency source is internally inconsistent",
+  );
+  check(
+    disclosure.first_disclosed_seq ===
+      entries.find((entry) => Object.hasOwn(entry, "payload")).seq &&
+      disclosure.disclosed_entries ===
+        entries.filter((entry) => Object.hasOwn(entry, "payload")).length &&
+      disclosure.opaque_historical_entries + disclosure.disclosed_entries === entries.length,
+    "/tools/evidence-chain disclosure boundary is not derived from the published entries",
+  );
+  check(
+    anchors.schema === "glassbox.ots_anchors/1" &&
+      anchors.anchor_count === anchors.anchors.length &&
+      anchors.bitcoin_confirmed_count + anchors.calendar_pending_count === anchors.anchor_count &&
+      anchors.anchors.every(
+        (anchor) =>
+          entries[anchor.seq]?.chain_hash === anchor.chain_hash &&
+          entries[anchor.seq]?.date === anchor.date,
+      ),
+    "/tools/evidence-chain checkpoint manifest is not bound to the public chain",
+  );
+  check(
+    chainToolHtml.includes(`<link rel="canonical" href="${ORIGIN}/tools/evidence-chain"`) &&
+      chainToolHtml.includes('"@type":"WebApplication"') &&
+      chainToolHtml.includes(`"author":{"@id":"${ORIGIN}/#arhan-canli"}`),
+    "/tools/evidence-chain lacks its canonical, WebApplication markup or founder attribution",
+  );
+  check(
+    chainToolHtml.includes(
+      'content="transparency_log.json ots/anchors.json verify_transparency.py"',
+    ) &&
+      chainToolHtml.includes(`sha256:${sha256(transparencyBytes)}`) &&
+      chainToolHtml.includes(`sha256:${sha256(anchorsBytes)}`) &&
+      chainToolHtml.includes(`sha256:${sha256(verifierBytes)}`),
+    "/tools/evidence-chain does not declare and hash all three exact public sources",
+  );
+  check(
+    chainToolHtml.includes(`>${entries.length}</dd>`) &&
+      chainToolHtml.includes(`SEQ ${entries.at(-1).seq}`) &&
+      chainToolHtml.includes(`>SEQ ${disclosure.first_disclosed_seq}</strong>`) &&
+      chainToolHtml.includes(`>${anchors.bitcoin_confirmed_count}</dd>`),
+    "/tools/evidence-chain does not render current chain, boundary and checkpoint facts",
+  );
+  check(
+    /what does not[\s\S]*broker truth/i.test(chainToolHtml) &&
+      /pre-boundary payload contents/i.test(chainToolHtml) &&
+      /absence of an unpublished alternate chain/i.test(chainToolHtml) &&
+      /published Python verifier performs the complete disclosed-payload rehash/i.test(
+        chainToolHtml,
+      ),
+    "/tools/evidence-chain omits its integrity, completeness or payload-rehash boundary",
+  );
+  check(
+    sitemap.includes(`<loc>${ORIGIN}/tools/evidence-chain</loc>`),
+    "/tools/evidence-chain is not in the sitemap",
+  );
+  check(
+    readFileSync(resolve(DIST, "verify.html"), "utf8").includes(
+      'href="/tools/evidence-chain"',
+    ) &&
+      readFileSync(methodologyFile, "utf8").includes('href="/tools/evidence-chain"'),
+    "/verify and /methodology do not both link to the evidence-chain explorer",
+  );
+}
+
+// ---------------------------------------------------------------------------
 // 11. SHORT TITLES. A search-result headline is not a document's name. Papers
 //     whose real names run past 65 characters declare a short title used for
 //     <title> only — and the risk of that mechanism is that it quietly RENAMES
@@ -1221,6 +1308,10 @@ console.log(
 console.log(
   `verified /tools/deflated-sharpe: hash-bound ALPHAC contract, current trial union, golden ` +
     `vectors, policy boundary, structured data, methodology link and sitemap discovery`,
+);
+console.log(
+  `verified /tools/evidence-chain: exact source hashes, current chain and disclosure facts, ` +
+    `checkpoint bindings, claim limits, structured data, internal links and sitemap discovery`,
 );
 console.log(
   `verified ${shortTitled} short titles: each fits, each is used, and each document still ` +

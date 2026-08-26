@@ -135,6 +135,7 @@ export default defineConfig({
         founder: resolve(root, "founder.html"),
         methodology: resolve(root, "methodology.html"),
         deflatedSharpe: resolve(root, "tools", "deflated-sharpe.html"),
+        evidenceChain: resolve(root, "tools", "evidence-chain.html"),
         ...paperEntries(),
         ...measurementEntries(),
         ...trialEntries(),

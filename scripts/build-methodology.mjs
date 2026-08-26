@@ -296,6 +296,7 @@ function questions(f) {
       valid chain says nothing about what was recorded before the chain began. A deterministic
       engine is not an accurate one.</p>`,
       links: [
+        ["Inspect and challenge the signed chain in your browser", "/tools/evidence-chain"],
         ["The commands, and what they cannot show", "/verify"],
         ["The glass box itself", "/open"],
       ],

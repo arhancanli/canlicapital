@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Evidence-chain explorer | Canli Capital</title>
+<meta name="description" content="Inspect and independently verify every predecessor link and Ed25519 signature in Canli Capital&#39;s public record, with disclosure and Bitcoin checkpoints visible." />
+<link rel="canonical" href="https://canlicapital.com/tools/evidence-chain" />
+<meta name="author" content="Arhan Canli" />
+<meta name="canli:sources" content="transparency_log.json ots/anchors.json verify_transparency.py" />
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Canli Capital" />
+<meta property="og:title" content="Evidence-chain explorer" />
+<meta property="og:description" content="Inspect and independently verify every predecessor link and Ed25519 signature in Canli Capital&#39;s public record, with disclosure and Bitcoin checkpoints visible." />
+<meta property="og:url" content="https://canlicapital.com/tools/evidence-chain" />
+<meta property="og:image" content="https://canlicapital.com/og.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Evidence-chain explorer" />
+<meta name="twitter:description" content="Inspect and independently verify every predecessor link and Ed25519 signature in Canli Capital&#39;s public record, with disclosure and Bitcoin checkpoints visible." />
+<meta name="twitter:image" content="https://canlicapital.com/og.png" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=optional" />
+<link rel="stylesheet" media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=optional" />
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=optional" /></noscript>
+<link rel="stylesheet" href="/css/product-shell.css" />
+<link rel="stylesheet" href="/css/evidence-chain-tool.css" />
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Canli Capital evidence-chain explorer","url":"https://canlicapital.com/tools/evidence-chain","description":"Inspect and independently verify every predecessor link and Ed25519 signature in Canli Capital's public record, with disclosure and Bitcoin checkpoints visible.","applicationCategory":"DeveloperApplication","operatingSystem":"Any modern web browser","author":{"@id":"https://canlicapital.com/#arhan-canli"},"creator":{"@id":"https://canlicapital.com/#arhan-canli"},"isAccessibleForFree":true}</script>
+</head>
+<body class="chain-page">
+<a class="chain-skip" href="#microscope">Skip to the chain microscope</a>
+<header class="cc-shell" id="nav" data-product-shell="v3">
+  <a class="cc-shell__brand" href="/" aria-label="Canli Capital, home">
+    <span class="cc-shell__mark" aria-hidden="true"><i></i></span>
+    <span>Canli Capital</span>
+  </a>
+  <a class="cc-shell__status" href="/measurements/alpaca-broker-reconciliation" aria-label="Current record status">
+    <span class="status-dot" aria-hidden="true"></span>
+    <span>Public paper record</span>
+  </a>
+  <nav class="cc-shell__primary" aria-label="Primary navigation">
+<a class="cc-shell__link" href="https://app.canlicapital.com/dashboard" rel="noreferrer">Live</a>
+<a class="cc-shell__link" href="/research">Research</a>
+<a class="cc-shell__link" href="/trials">Trials</a>
+<a class="cc-shell__link" href="/systems">Systems</a>
+<a class="cc-shell__link" href="/methodology">Methodology</a>
+<a class="cc-shell__link" href="/verify" aria-current="page" data-current="true">Verify</a>
+  </nav>
+  <details class="cc-shell__index">
+    <summary><span class="cc-shell__index-wide">More</span><span class="cc-shell__index-compact">Menu</span></summary>
+    <div class="cc-shell__panel">
+      <div>
+        <span class="cc-shell__panel-label">Core</span>
+        <nav aria-label="Core routes"><a class="cc-shell__panel-link" href="https://app.canlicapital.com/dashboard" rel="noreferrer">Live</a>
+<a class="cc-shell__panel-link" href="/research">Research</a>
+<a class="cc-shell__panel-link" href="/trials">Trials</a>
+<a class="cc-shell__panel-link" href="/systems">Systems</a>
+<a class="cc-shell__panel-link" href="/methodology">Methodology</a>
+<a class="cc-shell__panel-link" href="/verify" aria-current="page" data-current="true">Verify</a></nav>
+      </div>
+      <div>
+        <span class="cc-shell__panel-label">Institution</span>
+        <nav aria-label="Institution routes"><a class="cc-shell__panel-link" href="/progress">Corrections</a>
+<a class="cc-shell__panel-link" href="/performance">Status</a>
+<a class="cc-shell__panel-link" href="/founder">Founder</a>
+<a class="cc-shell__panel-link" href="/open">Open data</a>
+<a class="cc-shell__panel-link" href="/measurements">Measurements</a></nav>
+      </div>
+      <p>Observed, simulated, model-estimated and planned claims remain visibly separate.</p>
+    </div>
+  </details>
+  <a class="cc-shell__cta" href="https://app.canlicapital.com/dashboard">Enter live record <span aria-hidden="true">↗</span></a>
+</header>
+<main>
+  <section class="chain-hero" aria-labelledby="chain-title">
+    <div class="chain-hero__copy">
+      <p class="chain-kicker"><span>Public verification instrument</span><span>Record schema v2</span></p>
+      <h1 id="chain-title">Do not trust the timeline. Break it.</h1>
+      <p class="chain-hero__lead">This browser re-derives every chain hash, checks every predecessor link and verifies every Ed25519 signature against the published key. Pick any historical entry, inspect what was signed, then alter a local copy and watch the proof fail.</p>
+      <div class="chain-hero__actions">
+        <a class="chain-button chain-button--primary" href="#microscope">Open the chain microscope</a>
+        <a class="chain-button" href="/glassbox/verify_transparency.py">Download the full Python verifier</a>
+      </div>
+    </div>
+    <aside class="chain-terminal" aria-label="Current published chain facts">
+      <div class="chain-terminal__head"><span>Published head</span><strong>SEQ 500</strong></div>
+      <code>2c2a1289bdc0bf611d4c802ea8cc0bb05ac78476af7731765433081a41256d05</code>
+      <dl>
+        <div><dt>Signed entries</dt><dd>501</dd></div>
+        <div><dt>Distinct days</dt><dd>53</dd></div>
+        <div><dt>Public payloads</dt><dd>65</dd></div>
+        <div><dt>Bitcoin checkpoints</dt><dd>51</dd></div>
+      </dl>
+      <p>2026-06-27 to 2026-08-26. Source facts, not page copy.</p>
+    </aside>
+  </section>
+
+  <section class="chain-boundary" aria-label="Verification claim boundary">
+    <span>What passes here</span>
+    <p>Sequence, predecessor links, chain hashes, Ed25519 signatures, the declared payload-disclosure boundary and anchor-manifest bindings.</p>
+    <span>What does not</span>
+    <p>Broker truth, pre-boundary payload contents, record completeness or the absence of an unpublished alternate chain.</p>
+  </section>
+
+  <section class="chain-workbench" id="microscope" aria-labelledby="microscope-title">
+    <header class="chain-section-head">
+      <div><p class="chain-label">Chain microscope</p><h2 id="microscope-title">501 entries. Every dependency exposed.</h2></div>
+      <div class="chain-verification">
+        <span id="chain-verification-label">Loading public sources</span>
+        <strong id="chain-verification-status" data-state="loading">WAIT</strong>
+        <button type="button" id="chain-verify">Run verification again</button>
+      </div>
+    </header>
+
+    <div class="chain-map" aria-label="Complete transparency-chain map" style="--disclosure-ratio:0.872">
+      <div class="chain-map__legend" aria-hidden="true"><span>Opaque commitment</span><span>Public payload</span><span>Bitcoin checkpoint</span><span>Pending checkpoint</span></div>
+      <canvas id="chain-canvas" aria-hidden="true"></canvas>
+      <div class="chain-map__boundary" id="chain-disclosure-marker"><span>Payload disclosure starts</span><strong>SEQ 436</strong></div>
+      <input id="chain-range" type="range" min="0" max="500" value="500" step="1" aria-label="Select transparency-chain sequence" />
+      <div class="chain-map__axis"><span>GENESIS<br />2026-06-27</span><span>PUBLIC PAYLOADS FROM 436</span><span>HEAD<br />2026-08-26</span></div>
+      <div class="chain-map__controls">
+        <button type="button" id="chain-prev">Previous</button>
+        <button type="button" id="chain-boundary-jump">Disclosure boundary</button>
+        <button type="button" id="chain-head-jump">Current head</button>
+        <button type="button" id="chain-next">Next</button>
+      </div>
+    </div>
+
+    <div class="chain-inspector">
+      <article class="chain-entry" aria-live="polite">
+        <header>
+          <div><span>Selected entry</span><h3>SEQ <strong id="entry-seq">500</strong></h3></div>
+          <div class="chain-entry__meta"><span id="entry-date">2026-08-26</span><strong id="entry-disclosure">PUBLIC PAYLOAD</strong><span id="entry-anchor">NO CHECKPOINT</span></div>
+        </header>
+        <div class="chain-equation" aria-label="Fields used to calculate the selected chain hash">
+          <div><span>01 / predecessor</span><code id="entry-prev">6510385591b18d381adcc21beed4ef6039d9f09da00c229a126346a99aa1654c</code></div>
+          <i aria-hidden="true">+</i>
+          <div><span>02 / payload digest</span><code id="entry-payload">bad0de1f9a4de108de3010abd1e60c588be9209099e3abc383dcf9f98b421419</code></div>
+          <i aria-hidden="true">+</i>
+          <div><span>03 / date and sequence</span><code id="entry-coordinate">2026-08-26 | 500</code></div>
+          <i aria-hidden="true">=</i>
+          <div class="chain-equation__result"><span>04 / signed chain hash</span><code id="entry-hash">2c2a1289bdc0bf611d4c802ea8cc0bb05ac78476af7731765433081a41256d05</code></div>
+        </div>
+        <div class="chain-entry__signature">
+          <span>Ed25519 signature</span><code id="entry-signature">e0c54eb56425116239621a0e27bb7732961079e35bdc866b7c88ed6f2e831f5ebf05273dd40a1f0c01b094cba1e7719abcda4c17084be35f7cfa02d6d899a706</code>
+          <button type="button" id="chain-copy">Copy selected entry JSON</button>
+        </div>
+      </article>
+
+      <aside class="chain-proof" aria-label="Selected entry verification state">
+        <div class="chain-proof__score"><span>Browser checks</span><strong id="entry-proof-score">0 / 4</strong></div>
+        <ol>
+          <li id="proof-sequence"><span>01</span><div><strong>Sequence and link</strong><small>Contiguous and bound to its predecessor</small></div><b>WAIT</b></li>
+          <li id="proof-hash"><span>02</span><div><strong>Chain hash</strong><small>Recomputed from four signed fields</small></div><b>WAIT</b></li>
+          <li id="proof-signature"><span>03</span><div><strong>Ed25519 signature</strong><small>Checked against the published raw key</small></div><b>WAIT</b></li>
+          <li id="proof-anchor"><span>04</span><div><strong>External checkpoint</strong><small id="proof-anchor-note">Not every entry has an OpenTimestamps checkpoint</small></div><b>INFO</b></li>
+        </ol>
+        <p><span>Public key</span><code>0c6606a6b0c5b66fbf3b78521c85e72019484e0177d04a873a651179175ac095</code></p>
+      </aside>
+    </div>
+  </section>
+
+  <section class="chain-mutation" aria-labelledby="mutation-title">
+    <div class="chain-mutation__copy">
+      <p class="chain-label">Local mutation lab</p>
+      <h2 id="mutation-title">Change one signed field. The old signature loses its target.</h2>
+      <p>This experiment edits an in-memory copy of the selected date. It never writes to the published record. The new hash will differ, so the existing signature cannot validate it and the next entry will still point to the old hash.</p>
+      <button class="chain-button chain-button--primary" type="button" id="chain-mutate">Simulate one-field rewrite</button>
+    </div>
+    <div class="chain-mutation__lab" id="mutation-lab" data-state="idle">
+      <div><span>Published date</span><code id="mutation-original-date">2026-08-26</code></div>
+      <div><span>Local test date</span><code id="mutation-test-date">Awaiting experiment</code></div>
+      <div><span>Published hash</span><code id="mutation-original-hash">2c2a1289bdc0bf611d4c802ea8cc0bb05ac78476af7731765433081a41256d05</code></div>
+      <div><span>Recomputed test hash</span><code id="mutation-test-hash">Awaiting experiment</code></div>
+      <p id="mutation-result">No mutation has been run.</p>
+    </div>
+  </section>
+
+  <section class="chain-layers" aria-labelledby="layers-title">
+    <header class="chain-section-head"><div><p class="chain-label">Four different claims</p><h2 id="layers-title">Integrity is not truth. Timestamping is not completeness.</h2></div></header>
+    <div class="chain-layers__grid">
+      <article><span>01</span><h3>Link continuity</h3><p>Changing one signed field changes that entry's hash. The next entry still points to the original, so continuity breaks.</p><strong>Verified in this browser</strong></article>
+      <article><span>02</span><h3>Signer possession</h3><p>Each chain hash has a valid Ed25519 signature under the one public key printed above.</p><strong>Verified in this browser</strong></article>
+      <article><span>03</span><h3>Payload disclosure</h3><p>From sequence 436, canonical payloads are public. Earlier entries expose hashes only and cannot be reconstructed.</p><strong>Full rehash uses Python</strong></article>
+      <article><span>04</span><h3>External existence proof</h3><p>51 selected heads have Bitcoin-confirmed OpenTimestamps proofs. This dates checkpoint existence, not broker accuracy.</p><strong>Proof files published</strong></article>
+    </div>
+  </section>
+
+  <section class="chain-source" aria-labelledby="source-title">
+    <header class="chain-section-head"><div><p class="chain-label">Source ledger</p><h2 id="source-title">Reproduce the claim outside this interface.</h2></div></header>
+    <div class="chain-source__grid">
+      <a href="/glassbox/transparency_log.json"><span>Signed record</span><strong>transparency_log.json</strong><code>sha256:84401ec2b1e4420057943cbcaf281c6f8256a1c314e3fb9a04ac6fbc80597610</code></a>
+      <a href="/glassbox/ots/anchors.json"><span>Checkpoint manifest</span><strong>ots/anchors.json</strong><code>sha256:c427c2101cc8b640b79986e14df063c62e0b00bae82002097554b4252bad1ca6</code></a>
+      <a href="/glassbox/verify_transparency.py"><span>Canonical payload verifier</span><strong>verify_transparency.py</strong><code>sha256:9aad126824fdde82f39c35a4cb726f51d32aff59c5a0ba03b91b6d17dd4b7ebb</code></a>
+      <a href="/verify"><span>Complete verification route</span><strong>Commands and claim boundaries</strong><code>canlicapital.com/verify</code></a>
+    </div>
+    <p class="chain-source__boundary"><strong>Why Python for payload rehashing?</strong> JavaScript parses numeric JSON tokens such as <code>100000.0</code> into the number <code>100000</code>. Re-serializing that value can change canonical bytes even when the data are equivalent. This browser therefore verifies links and signatures without pretending it can reproduce Python's original numeric lexemes. The published Python verifier performs the complete disclosed-payload rehash.</p>
+  </section>
+</main>
+<footer class="cc-footer" id="footer" data-product-shell="v3">
+  <div class="cc-footer__lead">
+    <a class="cc-footer__brand" href="/">Canli Capital</a>
+    <p>Build the claim. Publish the evidence. Keep the failures.</p>
+  </div>
+  <div class="cc-footer__routes">
+    <nav aria-label="Portfolio and research">
+      <span>Research system</span>
+      <a href="https://app.canlicapital.com/dashboard">Live record</a>
+      <a href="/systems">ALPHAC systems</a>
+      <a href="/research">Research papers</a>
+      <a href="/trials">Trial union</a>
+    </nav>
+    <nav aria-label="Evidence and verification">
+      <span>Evidence</span>
+      <a href="/methodology">Methodology</a>
+      <a href="/verify">Verify record</a>
+      <a href="/measurements">Measurements</a>
+      <a href="/open">Open data</a>
+    </nav>
+    <nav aria-label="Institution and authorship">
+      <span>Institution</span>
+      <a href="/progress">Corrections</a>
+      <a href="/performance">Status</a>
+      <a href="/founder">Arhan Canli</a>
+      <a href="https://github.com/arhancanli" rel="noreferrer">GitHub</a>
+    </nav>
+  </div>
+  <div class="cc-footer__boundary">
+    <p>Research and paper execution only. No managed capital, copy trading, investment advice or promised return.</p>
+    <p>Founded and built by Arhan Canli in Dubai.</p>
+    <span>Copyright Arhan Canli</span>
+  </div>
+</footer>
+<script id="evidence-chain-config" type="application/json">{"schema":"canli.evidence-chain-explorer-config.v1","source_urls":{"log":"/glassbox/transparency_log.json","anchors":"/glassbox/ots/anchors.json","verifier":"/glassbox/verify_transparency.py"},"source_hashes":{"log":"sha256:84401ec2b1e4420057943cbcaf281c6f8256a1c314e3fb9a04ac6fbc80597610","anchors":"sha256:c427c2101cc8b640b79986e14df063c62e0b00bae82002097554b4252bad1ca6","verifier":"sha256:9aad126824fdde82f39c35a4cb726f51d32aff59c5a0ba03b91b6d17dd4b7ebb"},"facts":{"entries":501,"first_date":"2026-06-27","last_date":"2026-08-26","head_seq":500,"head_chain_hash":"2c2a1289bdc0bf611d4c802ea8cc0bb05ac78476af7731765433081a41256d05","distinct_days":53,"first_disclosed_seq":436,"disclosed_entries":65,"opaque_historical_entries":436,"anchors":52,"bitcoin_confirmed_anchors":51,"calendar_pending_anchors":1}}</script>
+<script type="module" src="/js/evidence-chain-tool.js"></script>
+</body>
+</html>
