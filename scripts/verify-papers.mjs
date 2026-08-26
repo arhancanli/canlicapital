@@ -1150,6 +1150,100 @@ if (existsSync(chainToolFile)) {
 }
 
 // ---------------------------------------------------------------------------
+// 15. /tools/trial-accounting: the public search denominator is reconstructed
+//     from the exact ledger, legacy packet manifest, packet index and separately
+//     reserved prospective identity. Packet completeness must never become an
+//     admission claim.
+// ---------------------------------------------------------------------------
+const trialToolFile = resolve(DIST, "tools/trial-accounting.html");
+check(existsSync(trialToolFile), "no /tools/trial-accounting page was built");
+if (existsSync(trialToolFile)) {
+  const trialToolHtml = readFileSync(trialToolFile, "utf8");
+  const ledgerBytes = readFileSync(resolve(DIST, "glassbox/trial_ledger.json"));
+  const manifestBytes = readFileSync(resolve(DIST, "glassbox/trial_packet_manifest.json"));
+  const packetIndexBytes = readFileSync(resolve(DIST, "glassbox/trial-packets/index.json"));
+  const prospectiveBytes = readFileSync(resolve(DIST, "glassbox/prospective_trial_record.json"));
+  const ledger = JSON.parse(ledgerBytes);
+  const manifest = JSON.parse(manifestBytes);
+  const packetIndex = JSON.parse(packetIndexBytes);
+  const prospective = JSON.parse(prospectiveBytes);
+  const selectionN = ledger.distinct_hypothesis_identities;
+
+  check(
+    ledger.schema === "glassbox.trial-ledger/2" &&
+      ledger.immutable_execution_records - ledger.window_only_remeasurements -
+        ledger.cross_profile_duplicate_identities === selectionN &&
+      ledger.selection_statistics.unit === "first_immutable_record_per_hypothesis" &&
+      ledger.selection_statistics.n_hypotheses === selectionN,
+    "/tools/trial-accounting ledger does not reconcile to the complete identity union",
+  );
+  check(
+    manifest.schema === "canli.alphac-trial-packet-manifest.v2" &&
+      packetIndex.schema === "canli.alphac-identity-trial-packet-index.v2" &&
+      manifest.identities.length === manifest.summary.distinct_hypothesis_identities &&
+      packetIndex.packets.length === packetIndex.summary.published_identity_packets &&
+      manifest.summary.complete_trial_packets + manifest.summary.incomplete_trial_packets ===
+        manifest.summary.distinct_hypothesis_identities,
+    "/tools/trial-accounting legacy packet corpus is internally inconsistent",
+  );
+  check(
+    prospective.schema === "canli.alphac-public-prospective-trial-record.v1" &&
+      prospective.identity.hypotheses_spent === 1 &&
+      prospective.identity.reservation_ordinal === selectionN &&
+      prospective.metrics.union_hypothesis_identities === selectionN &&
+      prospective.packet.complete === true &&
+      prospective.decision.admitted === false &&
+      prospective.gate_assessment.admission_status === "INCOMPLETE_NOT_ADMITTED" &&
+      manifest.summary.distinct_hypothesis_identities + prospective.identity.hypotheses_spent ===
+        selectionN,
+    "/tools/trial-accounting prospective identity is not separately reserved and not admitted",
+  );
+  check(
+    trialToolHtml.includes(`<link rel="canonical" href="${ORIGIN}/tools/trial-accounting"`) &&
+      trialToolHtml.includes('"@type":"WebApplication"') &&
+      trialToolHtml.includes(`"author":{"@id":"${ORIGIN}/#arhan-canli"}`),
+    "/tools/trial-accounting lacks its canonical, WebApplication markup or founder attribution",
+  );
+  check(
+    trialToolHtml.includes(
+      'content="trial_ledger.json trial_packet_manifest.json trial-packets/index.json prospective_trial_record.json"',
+    ) &&
+      trialToolHtml.includes(`sha256:${sha256(ledgerBytes)}`) &&
+      trialToolHtml.includes(`sha256:${sha256(manifestBytes)}`) &&
+      trialToolHtml.includes(`sha256:${sha256(packetIndexBytes)}`) &&
+      trialToolHtml.includes(`sha256:${sha256(prospectiveBytes)}`),
+    "/tools/trial-accounting does not declare and hash all four exact public sources",
+  );
+  check(
+    trialToolHtml.includes(`<strong>${ledger.immutable_execution_records}</strong>`) &&
+      trialToolHtml.includes(`<strong>${ledger.window_only_remeasurements}</strong>`) &&
+      trialToolHtml.includes(`<strong>${ledger.cross_profile_duplicate_identities}</strong>`) &&
+      trialToolHtml.includes(`Selection N</span><strong>${selectionN}</strong>`) &&
+      trialToolHtml.includes(`${manifest.summary.complete_trial_packets}<small> complete</small>`) &&
+      trialToolHtml.includes(`${manifest.summary.incomplete_trial_packets}<small> incomplete</small>`),
+    "/tools/trial-accounting does not render the current equation or packet debt",
+  );
+  check(
+    /Accounting, not performance/i.test(trialToolHtml) &&
+      /complete packet is not a passed strategy/i.test(trialToolHtml) &&
+      /prospective identity remains not admitted/i.test(trialToolHtml) &&
+      /not live returns, rankings, admission scores or recommendations/i.test(trialToolHtml),
+    "/tools/trial-accounting omits its accounting, admission or performance boundary",
+  );
+  check(
+    sitemap.includes(`<loc>${ORIGIN}/tools/trial-accounting</loc>`),
+    "/tools/trial-accounting is not in the sitemap",
+  );
+  check(
+    readFileSync(resolve(DIST, "trials.html"), "utf8").includes(
+      'href="/tools/trial-accounting"',
+    ) &&
+      readFileSync(methodologyFile, "utf8").includes('href="/tools/trial-accounting"'),
+    "/trials and /methodology do not both link to the trial-accounting explorer",
+  );
+}
+
+// ---------------------------------------------------------------------------
 // 11. SHORT TITLES. A search-result headline is not a document's name. Papers
 //     whose real names run past 65 characters declare a short title used for
 //     <title> only — and the risk of that mechanism is that it quietly RENAMES
@@ -1312,6 +1406,10 @@ console.log(
 console.log(
   `verified /tools/evidence-chain: exact source hashes, current chain and disclosure facts, ` +
     `checkpoint bindings, claim limits, structured data, internal links and sitemap discovery`,
+);
+console.log(
+  `verified /tools/trial-accounting: complete 229-identity union, exact source hashes, packet ` +
+    `debt, prospective non-admission, claim boundaries, internal links and sitemap discovery`,
 );
 console.log(
   `verified ${shortTitled} short titles: each fits, each is used, and each document still ` +

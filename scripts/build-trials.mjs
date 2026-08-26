@@ -273,7 +273,8 @@ function main() {
 binds the immutable first measurement to the evidence that survives today. Only ${complete} packets
 currently satisfy every required section; the remaining debt is shown rather than hidden.</p>
 <aside class="measure__boundary"><h2>Claim boundary</h2><p>${escapeHtml(index.claim_boundary)}</p></aside>
-<p><a href="/glassbox/trial-packets/index.json">Download the packet index</a> ·
+<p><a href="/tools/trial-accounting">Explore the complete selection denominator</a> ·
+<a href="/glassbox/trial-packets/index.json">Download the packet index</a> ·
 <a href="/measurements/trial-accounting">Verify trial accounting</a></p>${familyHtml}`;
   writeFileSync(resolve(ROOT, "trials.html"), shell({
     title: "Quantitative research trial register / Canli Capital", description,

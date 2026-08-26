@@ -117,6 +117,7 @@ function questions(f) {
       published in full, variant by variant, but it is not presented as the current per-sleeve gate.</p>`,
       links: [
         ["Model the search pressure with the open calculator", "/tools/deflated-sharpe"],
+        ["Inspect every identity behind selection N", "/tools/trial-accounting"],
         ["The full restatement, every variant", "/research/legacy-dsr-restatement"],
         ["The trial ledger the deflation counts against", "/measurements/trial-accounting"],
       ],
