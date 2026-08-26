@@ -265,7 +265,7 @@ ${renderProductShellHeader({ active: "founder" })}
       <div><dt>Forward record</dt><dd>${forward.daily_return_observations} observations</dd><small>${escapeHtml(humanizeStatus(forward.sharpe_status))}</small></div>
       <div><dt>Sleeve objective</dt><dd>${forward.current_sleeves} of ${forward.target_sleeves}</dd><small>Target not achieved</small></div>
       <div><dt>Independent review</dt><dd>${external.completed_reviews} completed</dd><small>${external.independent_replications} replications</small></div>
-      <div><dt>Foundry deployment</dt><dd>Planned</dd><small>Not applied to DigitalOcean</small></div>
+      <div><dt>Foundry deployment</dt><dd>Planned</dd><small>Not applied to DigitalOcean. <a href="/foundry">Inspect the design status.</a></small></div>
     </dl>
   </section>
 

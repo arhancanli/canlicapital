@@ -24,6 +24,16 @@ const check = (condition, message) => {
   if (!condition) failures.push(message);
 };
 const sha256 = (text) => createHash("sha256").update(text).digest("hex");
+const canonicalJson = (value) => {
+  if (Array.isArray(value)) return `[${value.map(canonicalJson).join(",")}]`;
+  if (value && typeof value === "object") {
+    return `{${Object.keys(value)
+      .sort()
+      .map((key) => `${JSON.stringify(key)}:${canonicalJson(value[key])}`)
+      .join(",")}}`;
+  }
+  return JSON.stringify(value);
+};
 
 if (!existsSync(DIST)) {
   console.error("dist/ does not exist -- run `npm run build` first");
@@ -794,7 +804,119 @@ if (existsSync(reviewFile)) {
 }
 
 // ---------------------------------------------------------------------------
-// 11. /methodology: the long-tail questions, each answered with a link to the
+// 11. /foundry: locally verified contracts must remain visibly distinct from
+//     cloud deployment and operational acceptance.
+// ---------------------------------------------------------------------------
+const foundryFile = resolve(DIST, "foundry.html");
+check(existsSync(foundryFile), "no /foundry page was built");
+if (existsSync(foundryFile)) {
+  const foundryHtml = readFileSync(foundryFile, "utf8");
+  const foundryReceipt = JSON.parse(
+    readFileSync(
+      resolve(DIST, "glassbox", "foundry_local_contract_verification.json"),
+      "utf8",
+    ),
+  );
+  const claimedHash = foundryReceipt.content_hash;
+  const payload = { ...foundryReceipt };
+  delete payload.content_hash;
+  const observedHash = `sha256:${sha256(canonicalJson(payload))}`;
+
+  check(
+    foundryReceipt.schema === "canli.foundry-local-contract-verification.v1" &&
+      foundryReceipt.status === "PASS",
+    "/foundry source is not a passing local-contract receipt",
+  );
+  check(claimedHash === observedHash, "/foundry source receipt content hash does not reproduce");
+  check(
+    foundryReceipt.design_status.deployment === "PLANNED_NOT_APPLIED" &&
+      foundryReceipt.design_status.runtime === "FROZEN_NOT_DEPLOYED" &&
+      foundryReceipt.design_status.lifecycle === "DESIGN_FROZEN_NOT_DEPLOYED" &&
+      foundryReceipt.design_status.acceptance === "INCOMPLETE_NOT_OPERATIONAL",
+    "/foundry source weakens or contradicts the not-deployed status",
+  );
+  check(
+    foundryReceipt.acceptance.required_receipts === 11 &&
+      foundryReceipt.acceptance.public_receipts_attached === 0 &&
+      foundryReceipt.acceptance.missing_receipts.length === 11,
+    "/foundry source does not preserve the eleven-receipt zero-state",
+  );
+  check(
+    foundryReceipt.architecture.broker_write_access === false &&
+      foundryReceipt.architecture.execution_reachable_from_research === false &&
+      foundryReceipt.architecture.research_and_holdout_separate === true,
+    "/foundry source weakens the research-to-execution boundary",
+  );
+  check(
+    foundryReceipt.first_migration.status === "PREPARED_NOT_IMPORTED_OR_REPLAYED" &&
+      foundryReceipt.first_migration.preserved_state === "KILLED" &&
+      foundryReceipt.first_migration.replay_status === "NOT_RUN_IN_FOUNDRY" &&
+      foundryReceipt.first_migration.max_attempts === 1 &&
+      foundryReceipt.first_migration.new_identity_spend_allowed === false,
+    "/foundry source changes the bounded first-migration contract",
+  );
+  check(
+    foundryHtml.includes(`<link rel="canonical" href="${ORIGIN}/foundry"`),
+    "/foundry has no self-canonical",
+  );
+  check(foundryHtml.includes('"@type":"WebPage"'), "/foundry is not marked up as a WebPage");
+  check(
+    foundryHtml.includes('"@type":"SoftwareSourceCode"'),
+    "/foundry has no SoftwareSourceCode entity",
+  );
+  check(
+    foundryHtml.includes(`"author":{"@id":"${ORIGIN}/#arhan-canli"}`),
+    "/foundry author does not resolve to the founder Person entity",
+  );
+  check(
+    foundryHtml.includes('content="foundry_local_contract_verification.json"'),
+    "/foundry does not declare its exact source receipt",
+  );
+  check(
+    (foundryHtml.match(/class="foundry-service"/g) || []).length === 7,
+    "/foundry does not render all seven research services",
+  );
+  check(
+    (foundryHtml.match(/class="foundry-receipt"/g) || []).length === 11 &&
+      (foundryHtml.match(/<small>Missing<\/small>/g) || []).length === 11,
+    "/foundry does not render eleven missing acceptance receipts",
+  );
+  check(
+    /not operational/i.test(foundryHtml) &&
+      /planned, not applied/i.test(foundryHtml) &&
+      /not run in Foundry/i.test(foundryHtml) &&
+      /no broker write access/i.test(foundryHtml),
+    "/foundry omits an operational, deployment, migration or broker boundary",
+  );
+  check(
+    !/Foundry is (?:live|deployed|operational)|operational Foundry|deployment complete/i.test(
+      foundryHtml,
+    ),
+    "/foundry makes an unsupported deployment claim",
+  );
+  check(
+    foundryHtml.includes(
+      `href="/trials/${foundryReceipt.first_migration.historical_identity_key}"`,
+    ) &&
+      existsSync(
+        resolve(
+          DIST,
+          "trials",
+          `${foundryReceipt.first_migration.historical_identity_key}.html`,
+        ),
+      ),
+    "/foundry does not resolve its first migration to the historical trial packet",
+  );
+  check(
+    sitemap.includes(`<loc>${ORIGIN}/foundry</loc>`),
+    "/foundry is not in the sitemap, so it will not be discovered",
+  );
+  const founderHtml = readFileSync(founderFile, "utf8");
+  check(founderHtml.includes('href="/foundry"'), "/founder has no static link to /foundry");
+}
+
+// ---------------------------------------------------------------------------
+// 12. /methodology: the long-tail questions, each answered with a link to the
 //     document that DEMONSTRATES the answer. An FAQ whose evidence links do not
 //     resolve is a brochure that claims to be a citation, which is worse than a
 //     brochure. Every answer must carry evidence, every link must resolve, and
@@ -1012,6 +1134,10 @@ console.log(
 console.log(
   `verified /review: 5 source-bound manuscript rows, 10 unassigned roles, zero completed reviews ` +
     `or replications, exact paper links, governed critique route, and sitemap discovery`,
+);
+console.log(
+  `verified /foundry: passing local contracts, planned-not-applied cloud state, 0 of 11 ` +
+    `acceptance receipts, no broker path, bounded killed-trial migration, and sitemap discovery`,
 );
 console.log(
   `verified /methodology: every question marked up, every answer carrying evidence, and every ` +

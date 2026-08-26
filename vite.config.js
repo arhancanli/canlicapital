@@ -131,6 +131,7 @@ export default defineConfig({
         trials: resolve(root, "trials.html"),
         verify: resolve(root, "verify.html"),
         review: resolve(root, "review.html"),
+        foundry: resolve(root, "foundry.html"),
         founder: resolve(root, "founder.html"),
         methodology: resolve(root, "methodology.html"),
         ...paperEntries(),
