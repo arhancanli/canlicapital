@@ -63,13 +63,13 @@
   "forward_record": {
     "capital_kind": "PAPER_ONLY",
     "go_live_date": "2026-08-07",
-    "state_generated_at": "2026-08-26T05:02:35.659006+00:00",
+    "state_generated_at": "2026-08-26T05:31:09.430715+00:00",
     "live_days": 19,
     "first_mark": "2026-08-07",
     "last_mark": "2026-08-26",
     "normalized_starting_equity": 100000.0,
-    "normalized_current_equity": 97580.15,
-    "cumulative_return": -0.02419850000000001,
+    "normalized_current_equity": 97609.41,
+    "cumulative_return": -0.023905899999999924,
     "curve_points": 18,
     "curve_basis": "Normalized composite of constituent paper curves plus the disclosed overlay; not a direct broker account balance.",
     "honest_forward_sharpe_estimate": "0.3 to 0.9 (the +10% beta does NOT improve this \u2014 it adds bull upside + crash risk, not risk-adjusted quality; real chance of ~0 yr1)",
@@ -228,13 +228,13 @@
         "status": "IMMATURE_RECORD_TOO_SHORT"
       },
       "drawdown": {
-        "realized_live_max_drawdown": 0.02525142341243003,
+        "realized_live_max_drawdown": 0.024959139137903263,
         "realized_status": "DESCRIPTIVE_TO_DATE_NOT_EXPECTED_MAX_DRAWDOWN",
         "expected_max_drawdown_target": 0.11,
         "study_production_labelled_expected_max_drawdown": 0.10251155801473733,
         "study_production_labelled_p95_max_drawdown": 0.1876321103559252,
-        "current_composition_conservative_expected_max_drawdown": 0.09318244773230698,
-        "current_composition_conservative_p95_max_drawdown": 0.16451439873252724,
+        "current_composition_conservative_expected_max_drawdown": 0.09318244551248031,
+        "current_composition_conservative_p95_max_drawdown": 0.16451438864694068,
         "current_composition_study_status": "CURRENT_COMPOSITION_EXPECTED_WITHIN_OBJECTIVE_HISTORICAL_TAIL_COVERAGE_INCOMPLETE",
         "current_composition_expected_within_objective": true,
         "current_composition_p95_within_objective": false,
@@ -275,24 +275,24 @@
         "effective_independent_sleeves_participation_ratio": 3.8988014966039604,
         "marginal_book_sharpe_research_diagnostics": {
           "alphavintage_live": {
-            "book_sharpe_with_sleeve": 1.7846281534351103,
-            "book_sharpe_with_sleeve_replaced_by_cash": 1.7908857094735895,
-            "marginal_book_sharpe_delta": -0.006257556038479217
+            "book_sharpe_with_sleeve": 1.7846281624947016,
+            "book_sharpe_with_sleeve_replaced_by_cash": 1.7908857436192642,
+            "marginal_book_sharpe_delta": -0.00625758112456265
           },
           "crypto_carry_wk": {
-            "book_sharpe_with_sleeve": 1.7846281534351103,
-            "book_sharpe_with_sleeve_replaced_by_cash": 1.2520345246277234,
-            "marginal_book_sharpe_delta": 0.5325936288073869
+            "book_sharpe_with_sleeve": 1.7846281624947016,
+            "book_sharpe_with_sleeve_replaced_by_cash": 1.2520344887802892,
+            "marginal_book_sharpe_delta": 0.5325936737144124
           },
           "k30_dn_63": {
-            "book_sharpe_with_sleeve": 1.7846281534351103,
-            "book_sharpe_with_sleeve_replaced_by_cash": 1.637795681607975,
-            "marginal_book_sharpe_delta": 0.1468324718271352
+            "book_sharpe_with_sleeve": 1.7846281624947016,
+            "book_sharpe_with_sleeve_replaced_by_cash": 1.6377956510360392,
+            "marginal_book_sharpe_delta": 0.14683251145866238
           },
           "managed_futures": {
-            "book_sharpe_with_sleeve": 1.7846281534351103,
-            "book_sharpe_with_sleeve_replaced_by_cash": 1.875465970548092,
-            "marginal_book_sharpe_delta": -0.09083781711298178
+            "book_sharpe_with_sleeve": 1.7846281624947016,
+            "book_sharpe_with_sleeve_replaced_by_cash": 1.8754660377941292,
+            "marginal_book_sharpe_delta": -0.09083787529942766
           }
         },
         "checks": {
@@ -317,7 +317,7 @@
       "diversification_evidence_public_path": "/glassbox/current_book_diversification.json",
       "contract_public_path": "/glassbox/forward_evidence_contract.json",
       "methodology_paper_public_path": "/research/forward-sharpe-evidence-standard",
-      "content_hash": "sha256:ade69646ad59fd7e12652125b1838fb5db84adbb9961286574e3f5d0299e74b8"
+      "content_hash": "sha256:abcb45cb4ec725378b4c5a499ea2fa001a554a118b65021693cf759721773d30"
     }
   },
   "execution_provenance": {
@@ -402,7 +402,7 @@
     "broker_reconciliation_claim": "BROKER_DERIVED_LOCAL_PUBLICATION_NOT_EXTERNALLY_ATTESTED",
     "broker_reconciliation": {
       "status": "PASS",
-      "generated_at": "2026-08-26T04:25:37.231766+00:00",
+      "generated_at": "2026-08-26T05:25:35.472220+00:00",
       "reconciled_alpaca_sleeves": 3,
       "unique_dedicated_accounts": true,
       "public_path": "/glassbox/alpaca_broker_reconciliation.json",
@@ -577,16 +577,16 @@
   "source_provenance": {
     "paper_state": {
       "path": "data/paper/state.json",
-      "sha256": "f5e4c86deae650e886f9230f5d00fb1f8501eae3cb2a0360c58a599cb2d635c5"
+      "sha256": "eedcbcaea21ac8f64d226f2c156b1821f856739eb28c20baf90697ab5b2c37b5"
     },
     "forward_evidence_maturity": {
       "path": "artifacts/engineering/forward_evidence_maturity.json",
-      "sha256": "550628a21fe4d91c52febdd2fc6e158e0f1fc78cd1435b7bcd4d603a8768ece3",
-      "content_hash": "sha256:ade69646ad59fd7e12652125b1838fb5db84adbb9961286574e3f5d0299e74b8"
+      "sha256": "b6c829642c7480921dda5066ce14063c661ac435ec03d59252fa8595abb65bec",
+      "content_hash": "sha256:abcb45cb4ec725378b4c5a499ea2fa001a554a118b65021693cf759721773d30"
     },
     "forward_sleeve_contribution": {
       "path": "artifacts/engineering/forward_sleeve_contribution.json",
-      "sha256": "6a762931def60be970af1d7271e200be804eb560b7913cbbb6164f8a92aa3cec"
+      "sha256": "21d9debf5e170007afa118de82b0c9236f86d161697d164836235ba7eebb9dfb"
     },
     "admission_contract": {
       "path": "config/sleeve_admission_contract.json",
@@ -606,6 +606,6 @@
       "sha256": "ea5254cd4463d94fde7e57558a8906dc06ef321bddd0aab0074f768d9778a521"
     }
   },
-  "generated_at": "2026-08-26T05:10:42.813401+00:00",
-  "content_hash": "sha256:bddeacfbfb8a9a1ee5a60516c06efcbe88c06edd352cb87843e96fdf6615e22e"
+  "generated_at": "2026-08-26T05:32:08.957295+00:00",
+  "content_hash": "sha256:3b0a8158ea022115f894a1992abc851a294fff255a039217798b07b6e75ff719"
 }

@@ -2,8 +2,8 @@
   "author": "Arhan Canli",
   "cent_tolerance": 0.01,
   "claim_boundary": "Self-published read-only reconciliation against three dedicated Alpaca paper accounts. It is broker-derived but not an independent third-party attestation, does not imply real capital, and does not establish future performance.",
-  "content_hash": "sha256:f6f7cb9a4678f7b43e128db2c5b5e5e346963a9987eb239b01cd006faf37b45a",
-  "generated_at": "2026-08-26T04:25:37.231766+00:00",
+  "content_hash": "sha256:3010460572eabe160d79e0116dbc7a0a0ff7ac8d2afe463e30aff2a15b7a7e60",
+  "generated_at": "2026-08-26T05:25:35.472220+00:00",
   "method": "GET_ONLY_ACCOUNT_POSITIONS_PORTFOLIO_HISTORY_OPEN_ORDERS",
   "schema": "canli.alphac-alpaca-broker-reconciliation.v1",
   "sleeves": {
@@ -44,19 +44,19 @@
         "missing_broker_mark_timestamps": [],
         "overlapping_marks": 14
       },
-      "current_equity": 988276.26,
-      "current_equity_as_of": "2026-08-26T04:25:37.231000+00:00",
+      "current_equity": 988226.09,
+      "current_equity_as_of": "2026-08-26T05:25:35.472000+00:00",
       "fill_outcome_reconciliation": {
         "consecutive_fill_reconcile_failures": 0,
         "last_error": null,
         "last_failure_at": "2026-08-25T06:09:35.875000+00:00",
-        "last_success_at": "2026-08-25T10:37:05.236000+00:00"
+        "last_success_at": "2026-08-26T05:01:51.404000+00:00"
       },
       "holdings": {
         "as_of": "2026-08-26",
         "broker_reconciled": true,
         "flat": false,
-        "gross_pct": 29.4,
+        "gross_pct": 29.3,
         "long": [
           {
             "ticker": "STX",
@@ -108,7 +108,7 @@
           },
           {
             "ticker": "NBIS",
-            "weight_pct": 0.28
+            "weight_pct": 0.27
           },
           {
             "ticker": "APGE",
@@ -186,7 +186,7 @@
         "short_count": 92,
         "source": "ALPACA_CURRENT_POSITIONS"
       },
-      "open_order_count": 0,
+      "open_order_count": 134,
       "open_position_count": 176,
       "passes": true,
       "portfolio_history_first_mark": "2026-08-06T00:00:00+00:00",
@@ -231,8 +231,8 @@
         "missing_broker_mark_timestamps": [],
         "overlapping_marks": 13
       },
-      "current_equity": 1002085.37,
-      "current_equity_as_of": "2026-08-26T04:25:37.231000+00:00",
+      "current_equity": 1002338.63,
+      "current_equity_as_of": "2026-08-26T05:25:35.472000+00:00",
       "fill_outcome_reconciliation": {
         "consecutive_fill_reconcile_failures": 0,
         "last_error": null,
@@ -243,19 +243,19 @@
         "as_of": "2026-08-26",
         "broker_reconciled": true,
         "flat": false,
-        "gross_pct": 100.1,
+        "gross_pct": 100.0,
         "long": [
           {
             "ticker": "IWM",
-            "weight_pct": 49.99
+            "weight_pct": 49.97
           }
         ],
         "long_count": 1,
-        "net_pct": -0.06,
+        "net_pct": -0.04,
         "short": [
           {
             "ticker": "SPY",
-            "weight_pct": 50.06
+            "weight_pct": 50.01
           }
         ],
         "short_count": 1,
@@ -306,8 +306,8 @@
         "missing_broker_mark_timestamps": [],
         "overlapping_marks": 14
       },
-      "current_equity": 997664.5,
-      "current_equity_as_of": "2026-08-26T04:25:37.231000+00:00",
+      "current_equity": 997680.05,
+      "current_equity_as_of": "2026-08-26T05:25:35.472000+00:00",
       "fill_outcome_reconciliation": {
         "consecutive_fill_reconcile_failures": 0,
         "last_error": null,
@@ -358,7 +358,7 @@
           },
           {
             "ticker": "USO",
-            "weight_pct": 1.42
+            "weight_pct": 1.43
           }
         ],
         "long_count": 10,
@@ -370,7 +370,7 @@
           },
           {
             "ticker": "TLT",
-            "weight_pct": 4.88
+            "weight_pct": 4.87
           },
           {
             "ticker": "GLD",
@@ -399,7 +399,7 @@
   },
   "summary": {
     "expected_alpaca_sleeves": 3,
-    "open_orders": 0,
+    "open_orders": 134,
     "open_positions": 193,
     "passes": true,
     "reconciled_alpaca_sleeves": 3,

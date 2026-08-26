@@ -11,9 +11,9 @@
     ],
     "end": "2026-06-01",
     "exact_component_reconstruction_max_abs_error": 0.0,
-    "observed_book_annualized_volatility": 0.05213553893866788,
-    "observed_book_max_drawdown": 0.04508709584099779,
-    "observed_book_sharpe_simulation_not_forward_evidence": 1.7846281534351103,
+    "observed_book_annualized_volatility": 0.05213553757072626,
+    "observed_book_max_drawdown": 0.045087091183407924,
+    "observed_book_sharpe_simulation_not_forward_evidence": 1.7846281624947016,
     "sample_mean_removed_before_modeling": true,
     "start": "2023-07-07"
   },
@@ -47,7 +47,7 @@
       "managed_futures": 0.25
     }
   },
-  "content_hash": "sha256:bf0759012873386a4d049f35eaae0677a3fd7e98a62c3ea09f44b6a6215e7c23",
+  "content_hash": "sha256:2e7146ef27b5bf100734fddd1dfeaada7d5df556a1728e960bb94d253e101b41",
   "design": {
     "bootstrap_primary_block_days": 63,
     "bootstrap_seed": 20260823,
@@ -74,22 +74,22 @@
   "models": {
     "circular_moving_block_bootstrap": {
       "126": {
-        "expected_max_drawdown": 0.0740922991915528,
-        "max_drawdown_stderr": 0.0002475750900633874,
-        "median_max_drawdown": 0.06948728291627698,
-        "p95_max_drawdown": 0.12149848516694813
+        "expected_max_drawdown": 0.07409229819580501,
+        "max_drawdown_stderr": 0.00024757508933024366,
+        "median_max_drawdown": 0.06948728371316165,
+        "p95_max_drawdown": 0.12149848748696535
       },
       "21": {
-        "expected_max_drawdown": 0.0796064986672114,
-        "max_drawdown_stderr": 0.00031827968099072484,
-        "median_max_drawdown": 0.07332457193749603,
-        "p95_max_drawdown": 0.14111917935471527
+        "expected_max_drawdown": 0.0796064965107907,
+        "max_drawdown_stderr": 0.0003182796687300973,
+        "median_max_drawdown": 0.07332459702551913,
+        "p95_max_drawdown": 0.14111916555692208
       },
       "63": {
-        "expected_max_drawdown": 0.07833345852540453,
-        "max_drawdown_stderr": 0.00028862846893636476,
-        "median_max_drawdown": 0.07349362618826633,
-        "p95_max_drawdown": 0.1334699917603662
+        "expected_max_drawdown": 0.07833345763580121,
+        "max_drawdown_stderr": 0.0002886284698310178,
+        "median_max_drawdown": 0.07349361398841348,
+        "p95_max_drawdown": 0.1334699891682861
       }
     },
     "correlation_regime": {
@@ -97,37 +97,37 @@
         "calm_correlation": [
           [
             1.0,
-            0.0392636269880886,
-            -0.061960202019901475,
-            -0.04438969572740388,
-            -0.03329472901967486
+            0.039263626988088225,
+            -0.06196020201990145,
+            -0.0443896957274041,
+            -0.033294657489178855
           ],
           [
-            0.0392636269880886,
+            0.039263626988088225,
             1.0,
-            -0.013369983642824655,
-            0.019668844934251063,
-            0.012445309055814141
+            -0.013369983642823845,
+            0.019668844934251594,
+            0.01244524055254442
           ],
           [
-            -0.061960202019901475,
-            -0.013369983642824655,
+            -0.06196020201990145,
+            -0.013369983642823845,
             1.0,
-            0.20975189522943657,
-            -0.0041743949767846355
+            0.20975189522943666,
+            -0.004174470721525632
           ],
           [
-            -0.04438969572740388,
-            0.019668844934251063,
-            0.20975189522943657,
+            -0.0443896957274041,
+            0.019668844934251594,
+            0.20975189522943666,
             1.0,
-            0.005934480803844322
+            0.005934804379760771
           ],
           [
-            -0.03329472901967486,
-            0.012445309055814141,
-            -0.0041743949767846355,
-            0.005934480803844322,
+            -0.033294657489178855,
+            0.01244524055254442,
+            -0.004174470721525632,
+            0.005934804379760771,
             1.0
           ]
         ],
@@ -136,7 +136,7 @@
           0.001566264938956614,
           0.0014170675485880642,
           0.00044178704910863417,
-          0.0014041876401294452
+          0.0014041875118574003
         ],
         "simulated_stress_day_fraction": 0.11922027397260274,
         "stress_correlation": [
@@ -177,16 +177,16 @@
           ]
         ]
       },
-      "expected_max_drawdown": 0.09318244773230698,
-      "max_drawdown_stderr": 0.00037836431854389375,
-      "median_max_drawdown": 0.08585057455521328,
-      "p95_max_drawdown": 0.16451439873252724
+      "expected_max_drawdown": 0.09318244551248031,
+      "max_drawdown_stderr": 0.00037836430980886965,
+      "median_max_drawdown": 0.08585056497204258,
+      "p95_max_drawdown": 0.16451438864694068
     }
   },
   "objective": {
-    "conservative_modeled_expected_max_drawdown": 0.09318244773230698,
+    "conservative_modeled_expected_max_drawdown": 0.09318244551248031,
     "conservative_modeled_expected_within_target": true,
-    "conservative_modeled_p95_max_drawdown": 0.16451439873252724,
+    "conservative_modeled_p95_max_drawdown": 0.16451438864694068,
     "conservative_modeled_p95_within_target": false,
     "expected_max_drawdown_target": 0.11,
     "live_expected_max_drawdown_established": false
@@ -211,7 +211,7 @@
     },
     "market_factor_source_corpus": {
       "files": 33,
-      "manifest_sha256": "06d47fe170a286b0cdaebee50fbadda56f29cce88c076a7655792b3bdd518dc8"
+      "manifest_sha256": "f297ce8217636e60aded919177dd955ae3e5304beb8465b3e41a18dcd94a74e6"
     },
     "paper_state_builder": {
       "path": "scripts/paper_trading_state.py",

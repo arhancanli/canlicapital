@@ -1,6 +1,6 @@
 {
   "schema": "canli.alphac-forward-evidence-maturity.v1",
-  "generated_at": "2026-08-26T05:10:38.066764+00:00",
+  "generated_at": "2026-08-26T05:32:04.234486+00:00",
   "author": "Arhan Canli",
   "capital_kind": "PAPER_ONLY",
   "status": "IMMATURE_RECORD_TOO_SHORT",
@@ -61,7 +61,7 @@
     "last_mark": "2026-08-26",
     "curve_points": 18,
     "daily_return_observations": 17,
-    "cumulative_return": -0.02419850000000001,
+    "cumulative_return": -0.023905899999999924,
     "return_frequency": "CONSECUTIVE_PUBLISHED_UTC_DAILY_MARKS_NO_SYNTHETIC_FILL",
     "configuration_fingerprint": "sha256:fe82c4eeed742289bfcfee5d39856ee2bb8ca9cfe209bcc7e34abff98553706d"
   },
@@ -81,13 +81,13 @@
     "status": "IMMATURE_RECORD_TOO_SHORT"
   },
   "drawdown_evidence": {
-    "realized_live_max_drawdown": 0.02525142341243003,
+    "realized_live_max_drawdown": 0.024959139137903263,
     "realized_status": "DESCRIPTIVE_TO_DATE_NOT_EXPECTED_MAX_DRAWDOWN",
     "expected_max_drawdown_target": 0.11,
     "study_production_labelled_expected_max_drawdown": 0.10251155801473733,
     "study_production_labelled_p95_max_drawdown": 0.1876321103559252,
-    "current_composition_conservative_expected_max_drawdown": 0.09318244773230698,
-    "current_composition_conservative_p95_max_drawdown": 0.16451439873252724,
+    "current_composition_conservative_expected_max_drawdown": 0.09318244551248031,
+    "current_composition_conservative_p95_max_drawdown": 0.16451438864694068,
     "current_composition_study_status": "CURRENT_COMPOSITION_EXPECTED_WITHIN_OBJECTIVE_HISTORICAL_TAIL_COVERAGE_INCOMPLETE",
     "current_composition_expected_within_objective": true,
     "current_composition_p95_within_objective": false,
@@ -128,24 +128,24 @@
     "effective_independent_sleeves_participation_ratio": 3.8988014966039604,
     "marginal_book_sharpe_research_diagnostics": {
       "alphavintage_live": {
-        "book_sharpe_with_sleeve": 1.7846281534351103,
-        "book_sharpe_with_sleeve_replaced_by_cash": 1.7908857094735895,
-        "marginal_book_sharpe_delta": -0.006257556038479217
+        "book_sharpe_with_sleeve": 1.7846281624947016,
+        "book_sharpe_with_sleeve_replaced_by_cash": 1.7908857436192642,
+        "marginal_book_sharpe_delta": -0.00625758112456265
       },
       "crypto_carry_wk": {
-        "book_sharpe_with_sleeve": 1.7846281534351103,
-        "book_sharpe_with_sleeve_replaced_by_cash": 1.2520345246277234,
-        "marginal_book_sharpe_delta": 0.5325936288073869
+        "book_sharpe_with_sleeve": 1.7846281624947016,
+        "book_sharpe_with_sleeve_replaced_by_cash": 1.2520344887802892,
+        "marginal_book_sharpe_delta": 0.5325936737144124
       },
       "k30_dn_63": {
-        "book_sharpe_with_sleeve": 1.7846281534351103,
-        "book_sharpe_with_sleeve_replaced_by_cash": 1.637795681607975,
-        "marginal_book_sharpe_delta": 0.1468324718271352
+        "book_sharpe_with_sleeve": 1.7846281624947016,
+        "book_sharpe_with_sleeve_replaced_by_cash": 1.6377956510360392,
+        "marginal_book_sharpe_delta": 0.14683251145866238
       },
       "managed_futures": {
-        "book_sharpe_with_sleeve": 1.7846281534351103,
-        "book_sharpe_with_sleeve_replaced_by_cash": 1.875465970548092,
-        "marginal_book_sharpe_delta": -0.09083781711298178
+        "book_sharpe_with_sleeve": 1.7846281624947016,
+        "book_sharpe_with_sleeve_replaced_by_cash": 1.8754660377941292,
+        "marginal_book_sharpe_delta": -0.09083787529942766
       }
     },
     "checks": {
@@ -172,7 +172,7 @@
     },
     "paper_state": {
       "path": "data/paper/state.json",
-      "sha256": "f5e4c86deae650e886f9230f5d00fb1f8501eae3cb2a0360c58a599cb2d635c5"
+      "sha256": "eedcbcaea21ac8f64d226f2c156b1821f856739eb28c20baf90697ab5b2c37b5"
     },
     "record_continuity": {
       "path": "artifacts/engineering/record_continuity.json",
@@ -180,7 +180,7 @@
     },
     "broker_reconciliation": {
       "path": "artifacts/engineering/alpaca_broker_reconciliation.json",
-      "sha256": "430bf0094fc4d7dfb2045fd7e8304fc9301dc2f9abf2f8b32206f7a62693713c"
+      "sha256": "658885d370c97949292d792e0c08af78cd679a1d2c19531d000cc1b7199c71b7"
     },
     "drawdown_model": {
       "path": "artifacts/analysis/drawdown_live_estimator/result.json",
@@ -188,15 +188,15 @@
     },
     "current_book_drawdown": {
       "path": "artifacts/analysis/current_book_drawdown/result.json",
-      "sha256": "8c99fd77e1212ff9bdd7ddb66df7bb5b04b170673c8687b0de3ff4b6c6b70ce7"
+      "sha256": "fc4f9999f0d3f0ed8028e7a5c839d5b97e7bc41efb068a784abe4bfe9c34d9a7"
     },
     "current_book_diversification": {
       "path": "artifacts/analysis/current_book_diversification/result.json",
-      "sha256": "043431eb3548d925cfb52efcf6fb9a3c2fcbc0aeed869e6d3fa1ae0c6f7ac04b"
+      "sha256": "0cccca3069a13c2dfa8f3839de6109da2d3fe2b8c7f1a58911e97f62f587225f"
     },
     "drawdown_evidence": {
       "path": "artifacts/engineering/forward_drawdown_evidence.json",
-      "sha256": "70fb9676df7619b5c437fe913b29bb213e5dcdb8c00b9cea4e2ba3ee445871d2"
+      "sha256": "1c11b743c9ea8c1265905ee9fa22bf0bba9d642aa9856ac33bbe971aba67700e"
     },
     "methodology_paper": {
       "path": "docs/research/FORWARD_SHARPE_EVIDENCE_STANDARD.md",
@@ -204,11 +204,11 @@
     },
     "transparency_chain": {
       "path": "meridian/public/glassbox/transparency_log.json",
-      "sha256": "61195873e25f62c2dadba2d0b5e0afe0c21f333c8e58ab01dd6d16eaa20a2e47"
+      "sha256": "615b1609cc0cedb9f5ee5dda1ed3577567e9d8158432609b2fdf67eecdf5bb04"
     },
     "crypto_position_attribution": {
       "path": "artifacts/engineering/crypto_position_attribution.json",
-      "sha256": "c8746b0887f47f004fcfdee92f12bc7fe924fdde1f6c2887f9db665f110627b4"
+      "sha256": "797821ca182f2e81fd351873ce3d8c5eac534a84f880f31d5998ca52b35650aa"
     },
     "crypto_position_attribution_rollout": {
       "path": "artifacts/engineering/crypto_position_attribution_rollout_verification.json",
@@ -216,5 +216,5 @@
     }
   },
   "claim_boundary": "Paper-only, self-published evidence. An immature or observed Sharpe is not an established Sharpe. Realized maximum drawdown is not expected maximum drawdown, and the modeled expectation is not a live guarantee.",
-  "content_hash": "sha256:ade69646ad59fd7e12652125b1838fb5db84adbb9961286574e3f5d0299e74b8"
+  "content_hash": "sha256:abcb45cb4ec725378b4c5a499ea2fa001a554a118b65021693cf759721773d30"
 }
