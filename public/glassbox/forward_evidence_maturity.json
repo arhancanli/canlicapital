@@ -1,6 +1,6 @@
 {
   "schema": "canli.alphac-forward-evidence-maturity.v1",
-  "generated_at": "2026-08-26T03:27:32.254242+00:00",
+  "generated_at": "2026-08-26T05:10:38.066764+00:00",
   "author": "Arhan Canli",
   "capital_kind": "PAPER_ONLY",
   "status": "IMMATURE_RECORD_TOO_SHORT",
@@ -61,7 +61,7 @@
     "last_mark": "2026-08-26",
     "curve_points": 18,
     "daily_return_observations": 17,
-    "cumulative_return": -0.02420639999999996,
+    "cumulative_return": -0.02419850000000001,
     "return_frequency": "CONSECUTIVE_PUBLISHED_UTC_DAILY_MARKS_NO_SYNTHETIC_FILL",
     "configuration_fingerprint": "sha256:fe82c4eeed742289bfcfee5d39856ee2bb8ca9cfe209bcc7e34abff98553706d"
   },
@@ -81,7 +81,7 @@
     "status": "IMMATURE_RECORD_TOO_SHORT"
   },
   "drawdown_evidence": {
-    "realized_live_max_drawdown": 0.025259314888057993,
+    "realized_live_max_drawdown": 0.02525142341243003,
     "realized_status": "DESCRIPTIVE_TO_DATE_NOT_EXPECTED_MAX_DRAWDOWN",
     "expected_max_drawdown_target": 0.11,
     "study_production_labelled_expected_max_drawdown": 0.10251155801473733,
@@ -172,15 +172,15 @@
     },
     "paper_state": {
       "path": "data/paper/state.json",
-      "sha256": "d63a8263c9073e61b7aafe667915b8eb43b4bf901f5c43985b2100d133975813"
+      "sha256": "f5e4c86deae650e886f9230f5d00fb1f8501eae3cb2a0360c58a599cb2d635c5"
     },
     "record_continuity": {
       "path": "artifacts/engineering/record_continuity.json",
-      "sha256": "da011607201cef2035ee61ecce2199091013ded3bcba643ac9eff4eda3a4a177"
+      "sha256": "2602ed5a379c7d13dd7692bd0280e8204fe6bc89cd4cdb0d2d171943b507aecd"
     },
     "broker_reconciliation": {
       "path": "artifacts/engineering/alpaca_broker_reconciliation.json",
-      "sha256": "d223dc3f31e99bde2009992c99cec3f83d66c2447cddf991a2a95c74d0d62119"
+      "sha256": "430bf0094fc4d7dfb2045fd7e8304fc9301dc2f9abf2f8b32206f7a62693713c"
     },
     "drawdown_model": {
       "path": "artifacts/analysis/drawdown_live_estimator/result.json",
@@ -204,11 +204,11 @@
     },
     "transparency_chain": {
       "path": "meridian/public/glassbox/transparency_log.json",
-      "sha256": "293bdba607315878c7910e23f24e5f8d3aaaf30e05d88b5b8dc8ba0d0f1cc26f"
+      "sha256": "61195873e25f62c2dadba2d0b5e0afe0c21f333c8e58ab01dd6d16eaa20a2e47"
     },
     "crypto_position_attribution": {
       "path": "artifacts/engineering/crypto_position_attribution.json",
-      "sha256": "fee7fbcb0375de660b2d334c8cf60e24e5cccf414c9790e158c3981012fa35c5"
+      "sha256": "c8746b0887f47f004fcfdee92f12bc7fe924fdde1f6c2887f9db665f110627b4"
     },
     "crypto_position_attribution_rollout": {
       "path": "artifacts/engineering/crypto_position_attribution_rollout_verification.json",
@@ -216,5 +216,5 @@
     }
   },
   "claim_boundary": "Paper-only, self-published evidence. An immature or observed Sharpe is not an established Sharpe. Realized maximum drawdown is not expected maximum drawdown, and the modeled expectation is not a live guarantee.",
-  "content_hash": "sha256:af07e26077b41db3a0458bbb8d8dcc39fbcacd84783c48ad16e03b24c01636c1"
+  "content_hash": "sha256:ade69646ad59fd7e12652125b1838fb5db84adbb9961286574e3f5d0299e74b8"
 }

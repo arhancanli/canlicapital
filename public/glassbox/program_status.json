@@ -63,13 +63,13 @@
   "forward_record": {
     "capital_kind": "PAPER_ONLY",
     "go_live_date": "2026-08-07",
-    "state_generated_at": "2026-08-26T03:26:56.025060+00:00",
+    "state_generated_at": "2026-08-26T05:02:35.659006+00:00",
     "live_days": 19,
     "first_mark": "2026-08-07",
     "last_mark": "2026-08-26",
     "normalized_starting_equity": 100000.0,
-    "normalized_current_equity": 97579.36,
-    "cumulative_return": -0.02420639999999996,
+    "normalized_current_equity": 97580.15,
+    "cumulative_return": -0.02419850000000001,
     "curve_points": 18,
     "curve_basis": "Normalized composite of constituent paper curves plus the disclosed overlay; not a direct broker account balance.",
     "honest_forward_sharpe_estimate": "0.3 to 0.9 (the +10% beta does NOT improve this \u2014 it adds bull upside + crash risk, not risk-adjusted quality; real chance of ~0 yr1)",
@@ -87,7 +87,7 @@
       "as_of": "2026-08-26",
       "author": "Arhan Canli",
       "claim_boundary": "Reads the per-sleeve trading databases read-only. Opens no market data, registers no hypothesis identity and changes nothing. Corrects session-date classification only; it changes no mark, equity, return, order, fill or configuration. 0 trials.",
-      "content_hash": "sha256:613e545faf6b255dcc3bab09567857c38195cd9147df694992e1044daec35f9f",
+      "content_hash": "sha256:640351f5ff2291e4f762540ab3a817a0217aa928f97a83c68989d73178e335f5",
       "correction": {
         "documentation": "docs/design/CORRECTION_ALPACA_SESSION_DATE_CONTINUITY.md",
         "raw_marks_rewritten": false,
@@ -143,7 +143,7 @@
           "longest_consecutive_gap": 1,
           "mark_date_convention": "ALPACA_1D_CLOSE_D_STAMPED_D_PLUS_1_00_UTC",
           "real_gap_days": [
-            "2026-08-26"
+            "2026-08-25"
           ],
           "real_gaps": 1,
           "trades_24_7": false
@@ -169,7 +169,7 @@
           "longest_consecutive_gap": 1,
           "mark_date_convention": "ALPACA_1D_CLOSE_D_STAMPED_D_PLUS_1_00_UTC",
           "real_gap_days": [
-            "2026-08-26"
+            "2026-08-25"
           ],
           "real_gaps": 1,
           "trades_24_7": false
@@ -195,7 +195,7 @@
           "longest_consecutive_gap": 1,
           "mark_date_convention": "ALPACA_1D_CLOSE_D_STAMPED_D_PLUS_1_00_UTC",
           "real_gap_days": [
-            "2026-08-26"
+            "2026-08-25"
           ],
           "real_gaps": 1,
           "trades_24_7": false
@@ -228,7 +228,7 @@
         "status": "IMMATURE_RECORD_TOO_SHORT"
       },
       "drawdown": {
-        "realized_live_max_drawdown": 0.025259314888057993,
+        "realized_live_max_drawdown": 0.02525142341243003,
         "realized_status": "DESCRIPTIVE_TO_DATE_NOT_EXPECTED_MAX_DRAWDOWN",
         "expected_max_drawdown_target": 0.11,
         "study_production_labelled_expected_max_drawdown": 0.10251155801473733,
@@ -317,7 +317,7 @@
       "diversification_evidence_public_path": "/glassbox/current_book_diversification.json",
       "contract_public_path": "/glassbox/forward_evidence_contract.json",
       "methodology_paper_public_path": "/research/forward-sharpe-evidence-standard",
-      "content_hash": "sha256:af07e26077b41db3a0458bbb8d8dcc39fbcacd84783c48ad16e03b24c01636c1"
+      "content_hash": "sha256:ade69646ad59fd7e12652125b1838fb5db84adbb9961286574e3f5d0299e74b8"
     }
   },
   "execution_provenance": {
@@ -402,7 +402,7 @@
     "broker_reconciliation_claim": "BROKER_DERIVED_LOCAL_PUBLICATION_NOT_EXTERNALLY_ATTESTED",
     "broker_reconciliation": {
       "status": "PASS",
-      "generated_at": "2026-08-26T03:26:44.131676+00:00",
+      "generated_at": "2026-08-26T04:25:37.231766+00:00",
       "reconciled_alpaca_sleeves": 3,
       "unique_dedicated_accounts": true,
       "public_path": "/glassbox/alpaca_broker_reconciliation.json",
@@ -577,16 +577,16 @@
   "source_provenance": {
     "paper_state": {
       "path": "data/paper/state.json",
-      "sha256": "d63a8263c9073e61b7aafe667915b8eb43b4bf901f5c43985b2100d133975813"
+      "sha256": "f5e4c86deae650e886f9230f5d00fb1f8501eae3cb2a0360c58a599cb2d635c5"
     },
     "forward_evidence_maturity": {
       "path": "artifacts/engineering/forward_evidence_maturity.json",
-      "sha256": "26cb58f1ec3f5a1fc9e85f937e531297ea13de9f7e2a6639465aa387ddc15d92",
-      "content_hash": "sha256:af07e26077b41db3a0458bbb8d8dcc39fbcacd84783c48ad16e03b24c01636c1"
+      "sha256": "550628a21fe4d91c52febdd2fc6e158e0f1fc78cd1435b7bcd4d603a8768ece3",
+      "content_hash": "sha256:ade69646ad59fd7e12652125b1838fb5db84adbb9961286574e3f5d0299e74b8"
     },
     "forward_sleeve_contribution": {
       "path": "artifacts/engineering/forward_sleeve_contribution.json",
-      "sha256": "62243586815a8d268a0272b821f76c188891e3d8d3baae804831f6bb1e9262c8"
+      "sha256": "6a762931def60be970af1d7271e200be804eb560b7913cbbb6164f8a92aa3cec"
     },
     "admission_contract": {
       "path": "config/sleeve_admission_contract.json",
@@ -606,6 +606,6 @@
       "sha256": "ea5254cd4463d94fde7e57558a8906dc06ef321bddd0aab0074f768d9778a521"
     }
   },
-  "generated_at": "2026-08-26T04:13:57.961434+00:00",
-  "content_hash": "sha256:7a3640f4b3c3307d66e6bca30275585e0fdecfd09953df7d9e9f791905101688"
+  "generated_at": "2026-08-26T05:10:42.813401+00:00",
+  "content_hash": "sha256:bddeacfbfb8a9a1ee5a60516c06efcbe88c06edd352cb87843e96fdf6615e22e"
 }

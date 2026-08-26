@@ -7,7 +7,7 @@
   "bundles_with_complete_recorded_union_extract": 16,
   "bundles_with_verified_checksums": 16,
   "claim_boundary": "This proves only that the preparation ledger is honest and source-bound. It proves no submission, DOI, peer review, citation, moderation outcome or replication.",
-  "content_hash": "sha256:fb25d0fd56e30a03041450f1a1e7ee4ad9362ac81b199a30b1c7dc7bd75e6093",
+  "content_hash": "sha256:94558e57fd08416d3cc1379de9a9a9da51adf4d8e1c11a5577082be5d8572254",
   "current_sleeves": 16,
   "data_rights": {
     "data_license_reviews_complete": 0,
@@ -19,6 +19,12 @@
   },
   "external_review": {
     "assigned_reviewers": 0,
+    "author_approval_workflow": {
+      "approval_receipts_imported": 0,
+      "automation_may_complete_response": false,
+      "software_proves_author_identity": false,
+      "status": "AVAILABLE_ZERO_SELF_ATTESTED_APPROVALS"
+    },
     "author_approvals": 0,
     "author_audit_worksheets": 16,
     "author_audits_completed": 0,
@@ -99,12 +105,20 @@
     },
     "audit_script": {
       "path": "scripts/audit_external_publication_readiness.py",
-      "sha256": "922ca522ec9a6ce939615bf9795177f5cc7a6b32ccb983d8edf6afb6a75541ad"
+      "sha256": "6109f501bf39546f93300242a33856c3502bf7177b57b17a3f8ad0ec1da46c2f"
+    },
+    "author_technical_approval_protocol": {
+      "path": "docs/design/AUTHOR_TECHNICAL_APPROVAL_PROTOCOL.md",
+      "sha256": "4bc727ca072dac02c3d50fa3aeef559e3f08829187fa45b0892decac490eb8f8"
+    },
+    "author_technical_approval_verifier": {
+      "path": "scripts/verify_author_technical_approval.py",
+      "sha256": "f665c949ad2f2e9dc95abbd7ab44734040cc242c0f81b1cbde4f050dad8bf1d6"
     },
     "author_technical_audit_worksheets": {
-      "content_hash": "sha256:790fa39cc30f317cf0f39a3db7a3e326d3c70b9c21bedda21e30890dc337d3ea",
+      "content_hash": "sha256:02352ba4f602a92e6f7c25e5548e8c66fed9121f90604c61791b9be3ba415052",
       "path": "artifacts/publication/author_technical_audits.json",
-      "sha256": "a868c52744a5651aa3153da316d222f3c007b4f9baef76df5b191009eb4199b5"
+      "sha256": "5c6feec95a1cbe2da043c14c598e86e3659ce7809a7a9d423a0a7fb135895d75"
     },
     "bundles": {
       "alphaforge_crypto_carry": {
@@ -121,7 +135,7 @@
       },
       "alphavintage_macro_surprise": {
         "path": "publication/alphavintage/v1.0.0/bundle_manifest.json",
-        "sha256": "a3456d74dbf961faa5240bd4b4a2f0aecd282f2b7f41c256dc8f83b5f7498d79"
+        "sha256": "9effb4af30556da97bdab2dff8381bfcc6d97ae07450e705a0eef4c90be6ca2f"
       },
       "crypto_defensive": {
         "path": "publication/crypto-defensive/v0.1.0/bundle_manifest.json",
@@ -278,7 +292,7 @@
     },
     "standard": {
       "path": "docs/design/EXTERNAL_RESEARCH_PUBLICATION_STANDARD.md",
-      "sha256": "0386279645a9aa52541e158bad3105f1f9fc61eb17e00c6bca6559b00da5ab04"
+      "sha256": "022eb6e847cd007c5c318b0507797220b5c7121ae8aca310ab69d6debe727e96"
     }
   },
   "state_counts": {
