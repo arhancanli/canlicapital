@@ -1,11 +1,11 @@
 {
   "schema": "canli.alphac-forward-evidence-maturity.v1",
-  "generated_at": "2026-08-26T00:23:00.733754+00:00",
+  "generated_at": "2026-08-26T00:53:12.523249+00:00",
   "author": "Arhan Canli",
   "capital_kind": "PAPER_ONLY",
-  "status": "FAIL_CLOSED_PROVENANCE",
+  "status": "IMMATURE_RECORD_TOO_SHORT",
   "provenance_gate": {
-    "passes": false,
+    "passes": true,
     "checks": {
       "paper_capital_only": true,
       "live_config_matches_declaration": true,
@@ -47,14 +47,12 @@
       "crypto_position_attribution_complete": true,
       "crypto_position_attribution_reconciles_equity": true,
       "crypto_position_attribution_reproduces_position_arithmetic": true,
-      "crypto_position_attribution_covers_last_mark": false,
+      "crypto_position_attribution_covers_last_mark": true,
       "crypto_position_attribution_rollout_schema": true,
       "crypto_position_attribution_rollout_content_hash": true,
       "crypto_position_attribution_rollout_verified": true
     },
-    "failed_checks": [
-      "crypto_position_attribution_covers_last_mark"
-    ],
+    "failed_checks": [],
     "transparency_chain_validation_error": null,
     "transparency_state_validation_error": null
   },
@@ -63,7 +61,7 @@
     "last_mark": "2026-08-26",
     "curve_points": 18,
     "daily_return_observations": 17,
-    "cumulative_return": -0.022751999999999994,
+    "cumulative_return": -0.02257410000000004,
     "return_frequency": "CONSECUTIVE_PUBLISHED_UTC_DAILY_MARKS_NO_SYNTHETIC_FILL",
     "configuration_fingerprint": "sha256:fe82c4eeed742289bfcfee5d39856ee2bb8ca9cfe209bcc7e34abff98553706d"
   },
@@ -80,11 +78,10 @@
     "probability_true_sharpe_exceeds_target": null,
     "target_observed": false,
     "target_statistically_established": false,
-    "status": "FAIL_CLOSED_PROVENANCE",
-    "underlying_status": "IMMATURE_RECORD_TOO_SHORT"
+    "status": "IMMATURE_RECORD_TOO_SHORT"
   },
   "drawdown_evidence": {
-    "realized_live_max_drawdown": 0.024737178899352896,
+    "realized_live_max_drawdown": 0.024729087639531744,
     "realized_status": "DESCRIPTIVE_TO_DATE_NOT_EXPECTED_MAX_DRAWDOWN",
     "expected_max_drawdown_target": 0.11,
     "study_production_labelled_expected_max_drawdown": 0.10251155801473733,
@@ -175,15 +172,15 @@
     },
     "paper_state": {
       "path": "data/paper/state.json",
-      "sha256": "c84e51fb46a12e3f76483920024d3ac175f19b36c9a5ec26889794d0472aef34"
+      "sha256": "1732f44beb27b6d8646b03300c7a9a3454ee509bb4741ad522dd63c070941e6f"
     },
     "record_continuity": {
       "path": "artifacts/engineering/record_continuity.json",
-      "sha256": "d7a130ae4c7ec61e518721f30456889b3c9d2322d7a0c1a791a7e1917bfbefce"
+      "sha256": "da011607201cef2035ee61ecce2199091013ded3bcba643ac9eff4eda3a4a177"
     },
     "broker_reconciliation": {
       "path": "artifacts/engineering/alpaca_broker_reconciliation.json",
-      "sha256": "cd6247b78021cdfd58f0bfa4c6096a868fe2a4f58359722fb292a09daa4efc9f"
+      "sha256": "8d30ba6031d6dea51d84a5d9847f0d7208e52851cd7c220ce18c8094b79b6022"
     },
     "drawdown_model": {
       "path": "artifacts/analysis/drawdown_live_estimator/result.json",
@@ -207,11 +204,11 @@
     },
     "transparency_chain": {
       "path": "meridian/public/glassbox/transparency_log.json",
-      "sha256": "4f9f1d11cc1a9eba4448ba882bb26231dd775eb2c9bbcb3baa41538e30a170c4"
+      "sha256": "34a3017c547eda6b16bab5d354ca23dd2a2abc05c48569fea4f9084a046882da"
     },
     "crypto_position_attribution": {
       "path": "artifacts/engineering/crypto_position_attribution.json",
-      "sha256": "6a0f519a762f604a972e19c7ae76d3ddaace514b58b6ed4cc62094ca8a0e172f"
+      "sha256": "57a1cccb57eb58a46b562c36f51f165d2340ab067df5d4a5344dd4f78ff2a8a4"
     },
     "crypto_position_attribution_rollout": {
       "path": "artifacts/engineering/crypto_position_attribution_rollout_verification.json",
@@ -219,5 +216,5 @@
     }
   },
   "claim_boundary": "Paper-only, self-published evidence. An immature or observed Sharpe is not an established Sharpe. Realized maximum drawdown is not expected maximum drawdown, and the modeled expectation is not a live guarantee.",
-  "content_hash": "sha256:c543f0f46414fc69272b10b8557f8ef4285f853a1f6b2d17e95e73b82e5595e7"
+  "content_hash": "sha256:5ef953721057e93aeafeb84a8f10c7ab9a1230c651f3300d16b76d18559cba42"
 }

@@ -6,7 +6,7 @@
   "payload_disclosure": {
     "payload_schema": "canli.alphac-track-record-daily-digest.v1",
     "first_disclosed_seq": 436,
-    "disclosed_entries": 52,
+    "disclosed_entries": 53,
     "opaque_historical_entries": 436,
     "historical_limitation": "Entries before first_disclosed_seq contain signed payload hashes but not their canonical payloads. Their contents cannot be independently reconstructed from this public chain; no backfill is claimed."
   },
@@ -26617,16 +26617,488 @@
         ]
       },
       "event": "TRACK_RECORD_STATE"
+    },
+    {
+      "seq": 488,
+      "date": "2026-08-26",
+      "generated_at": "2026-08-26T00:53:06.144923+00:00",
+      "payload_sha256": "ed40c57cf57019a397cc39cf5f4e7ee7651139dd2e390cccf7506e5068f35b73",
+      "prev_chain_hash": "040e56974c2fb7223e12c9d94ee41b596b3adc2abd47f2067f684ee03d6e73c2",
+      "chain_hash": "8bd90f5d5af30600b9eaae30b22e4f706c3244fbdd749f8a93d4a9176a38a6fb",
+      "signature": "60254a1f14aa2aed157a5eca839a348a99da8ad179ce52685e82c59b129282877852447f442be2f03c21d23427aeea789f46db5cfe78bce5fc3b47857aae890b",
+      "payload_schema": "canli.alphac-track-record-daily-digest.v1",
+      "payload": {
+        "go_live_date": "2026-08-07",
+        "rebaseline": {
+          "v1": {
+            "go_live": "2026-06-21",
+            "ended": "2026-06-29",
+            "result": "flat, $0 realized ($100k -> $100k); crypto carry held cash, equity/MF days-old at baseline",
+            "config": "market-neutral, net beta ~0, no strategic tilt"
+          },
+          "v2": {
+            "go_live": "2026-06-29",
+            "ended": "2026-08-07",
+            "config": "3-sleeve market-neutral core (AlphaForge + AlphaMax + AlphaTrend, equal quarters) + DISCLOSED +20% strategic net-long overlay (0.5 BTC + 0.5 SPY), held as a separate labelled line",
+            "result": "39 days. AlphaMax $1,000,000 -> $932,338 on its own account; AlphaTrend $100,000 -> $100,603. Both accounts still EXIST at the broker (PA397834GG9R, PA3IQC5B7BC2) and remain independently checkable; the full record is frozen read-only in artifacts/archive/."
+          },
+          "v3": {
+            "go_live": "2026-08-07",
+            "config": "every sleeve moved to its OWN fresh $1,000,000 Alpaca paper account (AlphaMax PA3ECIF9O942, AlphaTrend PA31FJRJQK69, AlphaLedger PA3DYIG9B4AL), so equal book weights are a real dollar allocation rather than a reporting convention",
+            "why": "the v2 seeds were mismatched ($932k / $100k), which made the published 40/40/20 weights describe a dollar split that was really ~9:1, and $100k is too small for a wide dollar-neutral book: whole-share truncation on shorts cost AlphaMax 8.79% of its short notional and pushed it +2.40% NET LONG. At $1M that is 0.37% and +0.10%."
+          },
+          "disclosure": "v1 (2026-06-21..06-29) ran flat at the $100k baseline and is SUPERSEDED, NOT deleted: it remains in the signed transparency chain (seq 0..4) as opaque historical commitments; later heads have Bitcoin-confirmed OpenTimestamps checkpoints. v2 (2026-06-29..08-07) ran 39 days and is likewise superseded, not deleted: its accounts are still open at the broker and its full record is frozen with a published manifest digest. v3 restarts the forward record on 2026-08-07 on equal $1M accounts. Each re-baseline RESETS the forward record rather than splicing it: v2's last mark and v3's first mark are NOT one day's return, and reporting them as such would have invented +7.26% for AlphaMax and +894% for AlphaTrend. We re-baseline in the open; we never silently rewrite 'live since'."
+        },
+        "strategic_tilt": {
+          "pct": 0.1,
+          "mix": {
+            "BTC": 0.5,
+            "SPY": 0.5
+          },
+          "kind": "disclosed net-long market beta (commoditized), separate labelled line, NOT blended into the neutral sleeves",
+          "honest_note": "beta dilutes risk-adjusted return and adds crash tail-risk; it buys bull-market participation, not quality. The pure-neutral core is the institutional franchise; the tilt is for near-term/family capital."
+        },
+        "book_sleeves": [
+          {
+            "key": "alphaforge",
+            "weight": 0.25
+          },
+          {
+            "key": "alphamax",
+            "weight": 0.25
+          },
+          {
+            "key": "managed_futures",
+            "weight": 0.25
+          },
+          {
+            "key": "alphavintage",
+            "weight": 0.25
+          }
+        ],
+        "algorithms": [
+          {
+            "key": "alphac",
+            "standalone_sharpe": null,
+            "go_live": "2026-08-07",
+            "live": [
+              {
+                "date": "2026-08-07",
+                "equity": 100000.0
+              },
+              {
+                "date": "2026-08-08",
+                "equity": 100000.0
+              },
+              {
+                "date": "2026-08-11",
+                "equity": 100021.62
+              },
+              {
+                "date": "2026-08-12",
+                "equity": 99918.75
+              },
+              {
+                "date": "2026-08-13",
+                "equity": 100103.25
+              },
+              {
+                "date": "2026-08-14",
+                "equity": 99931.91
+              },
+              {
+                "date": "2026-08-15",
+                "equity": 99964.85
+              },
+              {
+                "date": "2026-08-16",
+                "equity": 99976.53
+              },
+              {
+                "date": "2026-08-17",
+                "equity": 99924.86
+              },
+              {
+                "date": "2026-08-18",
+                "equity": 100108.02
+              },
+              {
+                "date": "2026-08-19",
+                "equity": 99164.78
+              },
+              {
+                "date": "2026-08-20",
+                "equity": 99017.92
+              },
+              {
+                "date": "2026-08-21",
+                "equity": 98782.88
+              },
+              {
+                "date": "2026-08-22",
+                "equity": 98495.86
+              },
+              {
+                "date": "2026-08-23",
+                "equity": 98300.88
+              },
+              {
+                "date": "2026-08-24",
+                "equity": 98179.72
+              },
+              {
+                "date": "2026-08-25",
+                "equity": 97632.44
+              },
+              {
+                "date": "2026-08-26",
+                "equity": 97742.59
+              }
+            ]
+          },
+          {
+            "key": "alphamax",
+            "standalone_sharpe": 0.91,
+            "go_live": "2026-08-07",
+            "live": [
+              {
+                "date": "2026-08-07",
+                "equity": 100000.0
+              },
+              {
+                "date": "2026-08-08",
+                "equity": 100000.0
+              },
+              {
+                "date": "2026-08-11",
+                "equity": 99441.99
+              },
+              {
+                "date": "2026-08-12",
+                "equity": 99423.02
+              },
+              {
+                "date": "2026-08-13",
+                "equity": 100275.2
+              },
+              {
+                "date": "2026-08-14",
+                "equity": 99678.16
+              },
+              {
+                "date": "2026-08-15",
+                "equity": 100237.9
+              },
+              {
+                "date": "2026-08-18",
+                "equity": 100947.44
+              },
+              {
+                "date": "2026-08-19",
+                "equity": 99960.56
+              },
+              {
+                "date": "2026-08-20",
+                "equity": 99064.2
+              },
+              {
+                "date": "2026-08-21",
+                "equity": 99078.85
+              },
+              {
+                "date": "2026-08-22",
+                "equity": 98942.75
+              },
+              {
+                "date": "2026-08-25",
+                "equity": 98398.47
+              },
+              {
+                "date": "2026-08-26",
+                "equity": 98810.27
+              }
+            ]
+          },
+          {
+            "key": "managed_futures",
+            "standalone_sharpe": 0.33,
+            "go_live": "2026-08-07",
+            "live": [
+              {
+                "date": "2026-08-07",
+                "equity": 100000.0
+              },
+              {
+                "date": "2026-08-08",
+                "equity": 100000.0
+              },
+              {
+                "date": "2026-08-11",
+                "equity": 99966.06
+              },
+              {
+                "date": "2026-08-12",
+                "equity": 100005.81
+              },
+              {
+                "date": "2026-08-13",
+                "equity": 100138.7
+              },
+              {
+                "date": "2026-08-14",
+                "equity": 100140.71
+              },
+              {
+                "date": "2026-08-15",
+                "equity": 100221.16
+              },
+              {
+                "date": "2026-08-18",
+                "equity": 100394.61
+              },
+              {
+                "date": "2026-08-19",
+                "equity": 100215.59
+              },
+              {
+                "date": "2026-08-20",
+                "equity": 100005.36
+              },
+              {
+                "date": "2026-08-21",
+                "equity": 100062.32
+              },
+              {
+                "date": "2026-08-22",
+                "equity": 100112.79
+              },
+              {
+                "date": "2026-08-25",
+                "equity": 99894.76
+              },
+              {
+                "date": "2026-08-26",
+                "equity": 99767.36
+              }
+            ]
+          },
+          {
+            "key": "alphavintage",
+            "standalone_sharpe": 0.23,
+            "go_live": "2026-08-07",
+            "live": [
+              {
+                "date": "2026-08-11",
+                "equity": 100000.0
+              },
+              {
+                "date": "2026-08-12",
+                "equity": 100327.62
+              },
+              {
+                "date": "2026-08-13",
+                "equity": 100489.95
+              },
+              {
+                "date": "2026-08-14",
+                "equity": 100271.83
+              },
+              {
+                "date": "2026-08-15",
+                "equity": 100633.19
+              },
+              {
+                "date": "2026-08-18",
+                "equity": 100700.46
+              },
+              {
+                "date": "2026-08-19",
+                "equity": 100405.16
+              },
+              {
+                "date": "2026-08-20",
+                "equity": 100547.28
+              },
+              {
+                "date": "2026-08-21",
+                "equity": 100295.59
+              },
+              {
+                "date": "2026-08-22",
+                "equity": 100474.23
+              },
+              {
+                "date": "2026-08-25",
+                "equity": 100287.56
+              },
+              {
+                "date": "2026-08-26",
+                "equity": 100380.93
+              }
+            ]
+          },
+          {
+            "key": "alphaforge",
+            "standalone_sharpe": 0.68,
+            "go_live": "2026-08-07",
+            "live": [
+              {
+                "date": "2026-08-08",
+                "equity": 100000.0
+              },
+              {
+                "date": "2026-08-11",
+                "equity": 100742.33
+              },
+              {
+                "date": "2026-08-12",
+                "equity": 99926.52
+              },
+              {
+                "date": "2026-08-13",
+                "equity": 99374.17
+              },
+              {
+                "date": "2026-08-14",
+                "equity": 99538.54
+              },
+              {
+                "date": "2026-08-15",
+                "equity": 98672.13
+              },
+              {
+                "date": "2026-08-16",
+                "equity": 98718.24
+              },
+              {
+                "date": "2026-08-17",
+                "equity": 98607.51
+              },
+              {
+                "date": "2026-08-18",
+                "equity": 98529.14
+              },
+              {
+                "date": "2026-08-19",
+                "equity": 96202.23
+              },
+              {
+                "date": "2026-08-20",
+                "equity": 96722.24
+              },
+              {
+                "date": "2026-08-21",
+                "equity": 95897.46
+              },
+              {
+                "date": "2026-08-22",
+                "equity": 94695.46
+              },
+              {
+                "date": "2026-08-23",
+                "equity": 93945.65
+              },
+              {
+                "date": "2026-08-24",
+                "equity": 93537.68
+              },
+              {
+                "date": "2026-08-25",
+                "equity": 92344.12
+              },
+              {
+                "date": "2026-08-26",
+                "equity": 92406.19
+              }
+            ]
+          }
+        ],
+        "book_live": [
+          {
+            "date": "2026-08-07",
+            "equity": 100000.0
+          },
+          {
+            "date": "2026-08-08",
+            "equity": 100000.0
+          },
+          {
+            "date": "2026-08-11",
+            "equity": 100021.62
+          },
+          {
+            "date": "2026-08-12",
+            "equity": 99918.75
+          },
+          {
+            "date": "2026-08-13",
+            "equity": 100103.25
+          },
+          {
+            "date": "2026-08-14",
+            "equity": 99931.91
+          },
+          {
+            "date": "2026-08-15",
+            "equity": 99964.85
+          },
+          {
+            "date": "2026-08-16",
+            "equity": 99976.53
+          },
+          {
+            "date": "2026-08-17",
+            "equity": 99924.86
+          },
+          {
+            "date": "2026-08-18",
+            "equity": 100108.02
+          },
+          {
+            "date": "2026-08-19",
+            "equity": 99164.78
+          },
+          {
+            "date": "2026-08-20",
+            "equity": 99017.92
+          },
+          {
+            "date": "2026-08-21",
+            "equity": 98782.88
+          },
+          {
+            "date": "2026-08-22",
+            "equity": 98495.86
+          },
+          {
+            "date": "2026-08-23",
+            "equity": 98300.88
+          },
+          {
+            "date": "2026-08-24",
+            "equity": 98179.72
+          },
+          {
+            "date": "2026-08-25",
+            "equity": 97632.44
+          },
+          {
+            "date": "2026-08-26",
+            "equity": 97742.59
+          }
+        ]
+      },
+      "event": "TRACK_RECORD_STATE"
     }
   ],
   "head": {
-    "seq": 487,
+    "seq": 488,
     "date": "2026-08-26",
-    "generated_at": "2026-08-26T00:21:08.799224+00:00",
-    "payload_sha256": "0136ddfc277246fc3ba762cbe8443af06365cb98af84f6ddcecb4619f969afd7",
-    "prev_chain_hash": "30b07f03fe5678f18bf3886a5dd06c1dfe6c8a32cf81a83397b0b36267de574c",
-    "chain_hash": "040e56974c2fb7223e12c9d94ee41b596b3adc2abd47f2067f684ee03d6e73c2",
-    "signature": "69dd9b66f0bfa84ff80d91c700a65535f7ba2d8a598280a21c7dbe7fd275d158a6892b8bafd476697fc1a5b00d7417006b7d0c21707d88bce062822e5569c00b",
+    "generated_at": "2026-08-26T00:53:06.144923+00:00",
+    "payload_sha256": "ed40c57cf57019a397cc39cf5f4e7ee7651139dd2e390cccf7506e5068f35b73",
+    "prev_chain_hash": "040e56974c2fb7223e12c9d94ee41b596b3adc2abd47f2067f684ee03d6e73c2",
+    "chain_hash": "8bd90f5d5af30600b9eaae30b22e4f706c3244fbdd749f8a93d4a9176a38a6fb",
+    "signature": "60254a1f14aa2aed157a5eca839a348a99da8ad179ce52685e82c59b129282877852447f442be2f03c21d23427aeea789f46db5cfe78bce5fc3b47857aae890b",
     "payload_schema": "canli.alphac-track-record-daily-digest.v1",
     "payload": {
       "go_live_date": "2026-08-07",
@@ -26749,11 +27221,11 @@
             },
             {
               "date": "2026-08-25",
-              "equity": 97631.63
+              "equity": 97632.44
             },
             {
               "date": "2026-08-26",
-              "equity": 97724.8
+              "equity": 97742.59
             }
           ]
         },
@@ -26816,7 +27288,7 @@
             },
             {
               "date": "2026-08-26",
-              "equity": 98841.91
+              "equity": 98810.27
             }
           ]
         },
@@ -26879,7 +27351,7 @@
             },
             {
               "date": "2026-08-26",
-              "equity": 99763.42
+              "equity": 99767.36
             }
           ]
         },
@@ -26934,7 +27406,7 @@
             },
             {
               "date": "2026-08-26",
-              "equity": 100350.25
+              "equity": 100380.93
             }
           ]
         },
@@ -27005,7 +27477,11 @@
             },
             {
               "date": "2026-08-25",
-              "equity": 92341.04
+              "equity": 92344.12
+            },
+            {
+              "date": "2026-08-26",
+              "equity": 92406.19
             }
           ]
         }
@@ -27077,19 +27553,19 @@
         },
         {
           "date": "2026-08-25",
-          "equity": 97631.63
+          "equity": 97632.44
         },
         {
           "date": "2026-08-26",
-          "equity": 97724.8
+          "equity": 97742.59
         }
       ]
     },
     "event": "TRACK_RECORD_STATE"
   },
-  "entry_count": 488,
+  "entry_count": 489,
   "distinct_days": 53,
   "first_date": "2026-06-27",
   "last_date": "2026-08-26",
-  "generated_at": "2026-08-26T00:21:08.800420+00:00"
+  "generated_at": "2026-08-26T00:53:06.145882+00:00"
 }

@@ -51,7 +51,7 @@
   },
   "achievement": {
     "forward_sharpe_target": 1.5,
-    "forward_sharpe_status": "FAIL_CLOSED_PROVENANCE",
+    "forward_sharpe_status": "IMMATURE_RECORD_TOO_SHORT",
     "forward_sharpe_underlying_status": "IMMATURE_RECORD_TOO_SHORT",
     "expected_max_drawdown_target": 0.11,
     "expected_max_drawdown_status": "MODELED_CURRENT_COMPOSITION_WITHIN_OBJECTIVE_LIVE_EXPECTED_MAX_DRAWDOWN_NOT_ESTABLISHED",
@@ -63,13 +63,13 @@
   "forward_record": {
     "capital_kind": "PAPER_ONLY",
     "go_live_date": "2026-08-07",
-    "state_generated_at": "2026-08-26T00:20:13.938533+00:00",
+    "state_generated_at": "2026-08-26T00:53:04.930720+00:00",
     "live_days": 19,
     "first_mark": "2026-08-07",
     "last_mark": "2026-08-26",
     "normalized_starting_equity": 100000.0,
-    "normalized_current_equity": 97724.8,
-    "cumulative_return": -0.022751999999999994,
+    "normalized_current_equity": 97742.59,
+    "cumulative_return": -0.02257410000000004,
     "curve_points": 18,
     "curve_basis": "Normalized composite of constituent paper curves plus the disclosed overlay; not a direct broker account balance.",
     "honest_forward_sharpe_estimate": "0.3 to 0.9 (the +10% beta does NOT improve this \u2014 it adds bull upside + crash risk, not risk-adjusted quality; real chance of ~0 yr1)",
@@ -87,7 +87,7 @@
       "as_of": "2026-08-26",
       "author": "Arhan Canli",
       "claim_boundary": "Reads the per-sleeve trading databases read-only. Opens no market data, registers no hypothesis identity and changes nothing. Corrects session-date classification only; it changes no mark, equity, return, order, fill or configuration. 0 trials.",
-      "content_hash": "sha256:632d77ae994ad01f27cb57ede9cb56fa7c7f52e60929cd3e46eea1da9e6c32e3",
+      "content_hash": "sha256:613e545faf6b255dcc3bab09567857c38195cd9147df694992e1044daec35f9f",
       "correction": {
         "documentation": "docs/design/CORRECTION_ALPACA_SESSION_DATE_CONTINUITY.md",
         "raw_marks_rewritten": false,
@@ -102,14 +102,14 @@
       "schema": "canli.alphac-record-continuity.v1",
       "sleeves": {
         "alphaforge": {
-          "calendar_days_marked": 16,
+          "calendar_days_marked": 17,
           "database": "var/trading_crypto_perp.sqlite",
           "database_exists": true,
           "days_expected": 20,
-          "days_marked": 16,
+          "days_marked": 17,
           "days_since_go_live": 20,
           "expected_calendar": "UTC_24_7",
-          "gap_rate": 0.2,
+          "gap_rate": 0.15,
           "legitimate_absence_days": [],
           "legitimate_absences": 0,
           "longest_consecutive_gap": 2,
@@ -117,10 +117,9 @@
           "real_gap_days": [
             "2026-08-07",
             "2026-08-09",
-            "2026-08-10",
-            "2026-08-26"
+            "2026-08-10"
           ],
-          "real_gaps": 4,
+          "real_gaps": 3,
           "trades_24_7": true
         },
         "alphamax": {
@@ -202,21 +201,17 @@
           "trades_24_7": false
         }
       },
-      "systemic_gap_days": [
-        "2026-08-26"
-      ],
+      "systemic_gap_days": [],
       "systemic_note": "Dates that are expected and missing on EVERY sleeve's own calendar are systemic \u2014 the tick did not run or did not mark \u2014 rather than a fault in any one sleeve.",
       "threshold_basis": "Declared, not fitted. A threshold derived from today's gap rate would pass whatever the gap rate happens to be, which is not a threshold.",
       "what_this_does_not_measure": "Whether a mark is CORRECT \u2014 only whether one exists. A sleeve marking the same equity every day would show a perfect continuity record and a frozen curve. That is the publish gate's job (check_published_state), not this one's.",
-      "worst_gap_rate": 0.2
+      "worst_gap_rate": 0.15
     },
     "evidence_maturity": {
-      "status": "FAIL_CLOSED_PROVENANCE",
+      "status": "IMMATURE_RECORD_TOO_SHORT",
       "underlying_status": "IMMATURE_RECORD_TOO_SHORT",
-      "provenance_passes": false,
-      "failed_provenance_checks": [
-        "crypto_position_attribution_covers_last_mark"
-      ],
+      "provenance_passes": true,
+      "failed_provenance_checks": [],
       "sharpe": {
         "daily_return_observations": 17,
         "estimate_minimum": 252,
@@ -230,11 +225,10 @@
         "probability_true_sharpe_exceeds_target": null,
         "target_observed": false,
         "target_statistically_established": false,
-        "status": "FAIL_CLOSED_PROVENANCE",
-        "underlying_status": "IMMATURE_RECORD_TOO_SHORT"
+        "status": "IMMATURE_RECORD_TOO_SHORT"
       },
       "drawdown": {
-        "realized_live_max_drawdown": 0.024737178899352896,
+        "realized_live_max_drawdown": 0.024729087639531744,
         "realized_status": "DESCRIPTIVE_TO_DATE_NOT_EXPECTED_MAX_DRAWDOWN",
         "expected_max_drawdown_target": 0.11,
         "study_production_labelled_expected_max_drawdown": 0.10251155801473733,
@@ -323,7 +317,7 @@
       "diversification_evidence_public_path": "/glassbox/current_book_diversification.json",
       "contract_public_path": "/glassbox/forward_evidence_contract.json",
       "methodology_paper_public_path": "/research/forward-sharpe-evidence-standard",
-      "content_hash": "sha256:c543f0f46414fc69272b10b8557f8ef4285f853a1f6b2d17e95e73b82e5595e7"
+      "content_hash": "sha256:5ef953721057e93aeafeb84a8f10c7ab9a1230c651f3300d16b76d18559cba42"
     }
   },
   "execution_provenance": {
@@ -394,7 +388,7 @@
         "key": "alphaforge",
         "name": "AlphaForge",
         "go_live": "2026-08-07",
-        "last_mark": "2026-08-25",
+        "last_mark": "2026-08-26",
         "execution": {
           "record_kind": "LOCALLY_SIMULATED_PAPER_FILLS",
           "capital_kind": "PAPER_ONLY",
@@ -408,7 +402,7 @@
     "broker_reconciliation_claim": "BROKER_DERIVED_LOCAL_PUBLICATION_NOT_EXTERNALLY_ATTESTED",
     "broker_reconciliation": {
       "status": "PASS",
-      "generated_at": "2026-08-26T00:18:50.373968+00:00",
+      "generated_at": "2026-08-26T00:52:58.468653+00:00",
       "reconciled_alpaca_sleeves": 3,
       "unique_dedicated_accounts": true,
       "public_path": "/glassbox/alpaca_broker_reconciliation.json",
@@ -583,16 +577,16 @@
   "source_provenance": {
     "paper_state": {
       "path": "data/paper/state.json",
-      "sha256": "c84e51fb46a12e3f76483920024d3ac175f19b36c9a5ec26889794d0472aef34"
+      "sha256": "1732f44beb27b6d8646b03300c7a9a3454ee509bb4741ad522dd63c070941e6f"
     },
     "forward_evidence_maturity": {
       "path": "artifacts/engineering/forward_evidence_maturity.json",
-      "sha256": "15e7b22bc0c2968555779f0d4e22e7abc0355163162c016308b154456cf1d8c8",
-      "content_hash": "sha256:c543f0f46414fc69272b10b8557f8ef4285f853a1f6b2d17e95e73b82e5595e7"
+      "sha256": "d243c75385596a75c79690c703cd95c6605904fb33d582a7a678422cfc52d6ab",
+      "content_hash": "sha256:5ef953721057e93aeafeb84a8f10c7ab9a1230c651f3300d16b76d18559cba42"
     },
     "forward_sleeve_contribution": {
       "path": "artifacts/engineering/forward_sleeve_contribution.json",
-      "sha256": "81bf39d3965552d2dee9a1d91ee156b24756a64557b75e8c2adde93ea12e6d8e"
+      "sha256": "e6167541ebcef0527db218774e1de739a8a5de81f13ab9ad3f4be40a4b8036c1"
     },
     "admission_contract": {
       "path": "config/sleeve_admission_contract.json",
@@ -612,6 +606,6 @@
       "sha256": "ea5254cd4463d94fde7e57558a8906dc06ef321bddd0aab0074f768d9778a521"
     }
   },
-  "generated_at": "2026-08-26T00:26:11.441835+00:00",
-  "content_hash": "sha256:200f7e273032e958b937e9def37ba6e0d45410a7a24036ff5620a419cc67db9d"
+  "generated_at": "2026-08-26T00:55:17.688870+00:00",
+  "content_hash": "sha256:0c281227681106a7741b6950ca4aa109280cc198478f81b57f380c7af41e5821"
 }
