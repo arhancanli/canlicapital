@@ -2,8 +2,8 @@
   "author": "Arhan Canli",
   "cent_tolerance": 0.01,
   "claim_boundary": "Self-published read-only reconciliation against three dedicated Alpaca paper accounts. It is broker-derived but not an independent third-party attestation, does not imply real capital, and does not establish future performance.",
-  "content_hash": "sha256:3010460572eabe160d79e0116dbc7a0a0ff7ac8d2afe463e30aff2a15b7a7e60",
-  "generated_at": "2026-08-26T05:25:35.472220+00:00",
+  "content_hash": "sha256:b9e260d9928c96a63ceb6ccb6502a9609d220881aedad0feb21d59351110ff47",
+  "generated_at": "2026-08-26T06:25:35.181223+00:00",
   "method": "GET_ONLY_ACCOUNT_POSITIONS_PORTFOLIO_HISTORY_OPEN_ORDERS",
   "schema": "canli.alphac-alpaca-broker-reconciliation.v1",
   "sleeves": {
@@ -44,8 +44,8 @@
         "missing_broker_mark_timestamps": [],
         "overlapping_marks": 14
       },
-      "current_equity": 988226.09,
-      "current_equity_as_of": "2026-08-26T05:25:35.472000+00:00",
+      "current_equity": 988009.04,
+      "current_equity_as_of": "2026-08-26T06:25:35.181000+00:00",
       "fill_outcome_reconciliation": {
         "consecutive_fill_reconcile_failures": 0,
         "last_error": null,
@@ -64,7 +64,7 @@
           },
           {
             "ticker": "MU",
-            "weight_pct": 0.92
+            "weight_pct": 0.91
           },
           {
             "ticker": "WDC",
@@ -120,7 +120,7 @@
           }
         ],
         "long_count": 84,
-        "net_pct": 3.74,
+        "net_pct": 3.72,
         "short": [
           {
             "ticker": "IT",
@@ -231,37 +231,37 @@
         "missing_broker_mark_timestamps": [],
         "overlapping_marks": 13
       },
-      "current_equity": 1002338.63,
-      "current_equity_as_of": "2026-08-26T05:25:35.472000+00:00",
+      "current_equity": 1002657.4,
+      "current_equity_as_of": "2026-08-26T06:25:35.181000+00:00",
       "fill_outcome_reconciliation": {
         "consecutive_fill_reconcile_failures": 0,
         "last_error": null,
         "last_failure_at": null,
-        "last_success_at": "2026-08-24T06:00:20.588000+00:00"
+        "last_success_at": "2026-08-26T06:00:16.933000+00:00"
       },
       "holdings": {
         "as_of": "2026-08-26",
         "broker_reconciled": true,
         "flat": false,
-        "gross_pct": 100.0,
+        "gross_pct": 99.9,
         "long": [
           {
             "ticker": "IWM",
-            "weight_pct": 49.97
+            "weight_pct": 49.96
           }
         ],
         "long_count": 1,
-        "net_pct": -0.04,
+        "net_pct": -0.0,
         "short": [
           {
             "ticker": "SPY",
-            "weight_pct": 50.01
+            "weight_pct": 49.97
           }
         ],
         "short_count": 1,
         "source": "ALPACA_CURRENT_POSITIONS"
       },
-      "open_order_count": 0,
+      "open_order_count": 2,
       "open_position_count": 2,
       "passes": true,
       "portfolio_history_first_mark": "2026-08-07T00:00:00+00:00",
@@ -306,13 +306,13 @@
         "missing_broker_mark_timestamps": [],
         "overlapping_marks": 14
       },
-      "current_equity": 997680.05,
-      "current_equity_as_of": "2026-08-26T05:25:35.472000+00:00",
+      "current_equity": 998000.46,
+      "current_equity_as_of": "2026-08-26T06:25:35.181000+00:00",
       "fill_outcome_reconciliation": {
         "consecutive_fill_reconcile_failures": 0,
         "last_error": null,
         "last_failure_at": null,
-        "last_success_at": "2026-08-25T05:49:49.438000+00:00"
+        "last_success_at": "2026-08-26T05:31:01.289000+00:00"
       },
       "holdings": {
         "as_of": "2026-08-26",
@@ -322,7 +322,7 @@
         "long": [
           {
             "ticker": "SHY",
-            "weight_pct": 20.05
+            "weight_pct": 20.04
           },
           {
             "ticker": "UUP",
@@ -354,7 +354,7 @@
           },
           {
             "ticker": "QQQ",
-            "weight_pct": 2.29
+            "weight_pct": 2.28
           },
           {
             "ticker": "USO",
@@ -362,11 +362,11 @@
           }
         ],
         "long_count": 10,
-        "net_pct": 31.13,
+        "net_pct": 31.15,
         "short": [
           {
             "ticker": "IEF",
-            "weight_pct": 10.35
+            "weight_pct": 10.33
           },
           {
             "ticker": "TLT",
@@ -374,11 +374,11 @@
           },
           {
             "ticker": "GLD",
-            "weight_pct": 2.69
+            "weight_pct": 2.68
           },
           {
             "ticker": "SLV",
-            "weight_pct": 1.25
+            "weight_pct": 1.24
           },
           {
             "ticker": "UNG",
@@ -388,7 +388,7 @@
         "short_count": 5,
         "source": "ALPACA_CURRENT_POSITIONS"
       },
-      "open_order_count": 0,
+      "open_order_count": 13,
       "open_position_count": 15,
       "passes": true,
       "portfolio_history_first_mark": "2026-08-06T00:00:00+00:00",
@@ -399,7 +399,7 @@
   },
   "summary": {
     "expected_alpaca_sleeves": 3,
-    "open_orders": 134,
+    "open_orders": 149,
     "open_positions": 193,
     "passes": true,
     "reconciled_alpaca_sleeves": 3,

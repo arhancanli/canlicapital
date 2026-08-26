@@ -326,8 +326,8 @@
         }
       }
     },
-    "generated_at": "2026-08-26T06:17:18.898852+00:00",
-    "content_hash": "sha256:663b924aa60eff69c7856087b4bc1658f7b916427c39a4f2e4f7c59c57bfad21"
+    "generated_at": "2026-08-26T06:31:31.543306+00:00",
+    "content_hash": "sha256:fbc091707205d8c7c89a815f7bc03cf3a1a7c95eba231008156a3cba249d04f2"
   },
   "program_status": {
     "schema": "canli.alphac-program-status.v2",
@@ -394,13 +394,13 @@
     "forward_record": {
       "capital_kind": "PAPER_ONLY",
       "go_live_date": "2026-08-07",
-      "state_generated_at": "2026-08-26T05:31:09.430715+00:00",
+      "state_generated_at": "2026-08-26T06:25:47.810156+00:00",
       "live_days": 19,
       "first_mark": "2026-08-07",
       "last_mark": "2026-08-26",
       "normalized_starting_equity": 100000.0,
-      "normalized_current_equity": 97609.41,
-      "cumulative_return": -0.023905899999999924,
+      "normalized_current_equity": 97613.78,
+      "cumulative_return": -0.023862200000000056,
       "curve_points": 18,
       "curve_basis": "Normalized composite of constituent paper curves plus the disclosed overlay; not a direct broker account balance.",
       "honest_forward_sharpe_estimate": "0.3 to 0.9 (the +10% beta does NOT improve this \u2014 it adds bull upside + crash risk, not risk-adjusted quality; real chance of ~0 yr1)",
@@ -559,7 +559,7 @@
           "status": "IMMATURE_RECORD_TOO_SHORT"
         },
         "drawdown": {
-          "realized_live_max_drawdown": 0.024959139137903263,
+          "realized_live_max_drawdown": 0.0249154862917077,
           "realized_status": "DESCRIPTIVE_TO_DATE_NOT_EXPECTED_MAX_DRAWDOWN",
           "expected_max_drawdown_target": 0.11,
           "study_production_labelled_expected_max_drawdown": 0.10251155801473733,
@@ -648,7 +648,7 @@
         "diversification_evidence_public_path": "/glassbox/current_book_diversification.json",
         "contract_public_path": "/glassbox/forward_evidence_contract.json",
         "methodology_paper_public_path": "/research/forward-sharpe-evidence-standard",
-        "content_hash": "sha256:abcb45cb4ec725378b4c5a499ea2fa001a554a118b65021693cf759721773d30"
+        "content_hash": "sha256:50bb50da9fbf4127451348b01dc524fc54a7e7463f6adce131df5ef1ee45373e"
       }
     },
     "execution_provenance": {
@@ -733,7 +733,7 @@
       "broker_reconciliation_claim": "BROKER_DERIVED_LOCAL_PUBLICATION_NOT_EXTERNALLY_ATTESTED",
       "broker_reconciliation": {
         "status": "PASS",
-        "generated_at": "2026-08-26T05:25:35.472220+00:00",
+        "generated_at": "2026-08-26T06:25:35.181223+00:00",
         "reconciled_alpaca_sleeves": 3,
         "unique_dedicated_accounts": true,
         "public_path": "/glassbox/alpaca_broker_reconciliation.json",
@@ -908,16 +908,16 @@
     "source_provenance": {
       "paper_state": {
         "path": "data/paper/state.json",
-        "sha256": "eedcbcaea21ac8f64d226f2c156b1821f856739eb28c20baf90697ab5b2c37b5"
+        "sha256": "d76d61621e16a54b5c4eb5de320baf3cf54891b5fac578a5296354ffd8e2da55"
       },
       "forward_evidence_maturity": {
         "path": "artifacts/engineering/forward_evidence_maturity.json",
-        "sha256": "b6c829642c7480921dda5066ce14063c661ac435ec03d59252fa8595abb65bec",
-        "content_hash": "sha256:abcb45cb4ec725378b4c5a499ea2fa001a554a118b65021693cf759721773d30"
+        "sha256": "c74f7f69f2279a0bc960ad8e76b03056c47415a07d5fd665f5e3233ccb3f87ad",
+        "content_hash": "sha256:50bb50da9fbf4127451348b01dc524fc54a7e7463f6adce131df5ef1ee45373e"
       },
       "forward_sleeve_contribution": {
         "path": "artifacts/engineering/forward_sleeve_contribution.json",
-        "sha256": "21d9debf5e170007afa118de82b0c9236f86d161697d164836235ba7eebb9dfb"
+        "sha256": "3d4793072f2659163dfef797168774b893929a44ddeb4b71113036216e718697"
       },
       "admission_contract": {
         "path": "config/sleeve_admission_contract.json",
@@ -2114,7 +2114,7 @@
   },
   "forward_evidence_maturity": {
     "schema": "canli.alphac-forward-evidence-maturity.v1",
-    "generated_at": "2026-08-26T05:32:04.234486+00:00",
+    "generated_at": "2026-08-26T06:26:26.835508+00:00",
     "author": "Arhan Canli",
     "capital_kind": "PAPER_ONLY",
     "status": "IMMATURE_RECORD_TOO_SHORT",
@@ -2175,7 +2175,7 @@
       "last_mark": "2026-08-26",
       "curve_points": 18,
       "daily_return_observations": 17,
-      "cumulative_return": -0.023905899999999924,
+      "cumulative_return": -0.023862200000000056,
       "return_frequency": "CONSECUTIVE_PUBLISHED_UTC_DAILY_MARKS_NO_SYNTHETIC_FILL",
       "configuration_fingerprint": "sha256:fe82c4eeed742289bfcfee5d39856ee2bb8ca9cfe209bcc7e34abff98553706d"
     },
@@ -2195,7 +2195,7 @@
       "status": "IMMATURE_RECORD_TOO_SHORT"
     },
     "drawdown_evidence": {
-      "realized_live_max_drawdown": 0.024959139137903263,
+      "realized_live_max_drawdown": 0.0249154862917077,
       "realized_status": "DESCRIPTIVE_TO_DATE_NOT_EXPECTED_MAX_DRAWDOWN",
       "expected_max_drawdown_target": 0.11,
       "study_production_labelled_expected_max_drawdown": 0.10251155801473733,
@@ -2286,7 +2286,7 @@
       },
       "paper_state": {
         "path": "data/paper/state.json",
-        "sha256": "eedcbcaea21ac8f64d226f2c156b1821f856739eb28c20baf90697ab5b2c37b5"
+        "sha256": "d76d61621e16a54b5c4eb5de320baf3cf54891b5fac578a5296354ffd8e2da55"
       },
       "record_continuity": {
         "path": "artifacts/engineering/record_continuity.json",
@@ -2294,7 +2294,7 @@
       },
       "broker_reconciliation": {
         "path": "artifacts/engineering/alpaca_broker_reconciliation.json",
-        "sha256": "658885d370c97949292d792e0c08af78cd679a1d2c19531d000cc1b7199c71b7"
+        "sha256": "fe15bc8be85201eb14f7477ccccd51a43b1e1d90aef7d2f3cb50d41001dca49f"
       },
       "drawdown_model": {
         "path": "artifacts/analysis/drawdown_live_estimator/result.json",
@@ -2318,11 +2318,11 @@
       },
       "transparency_chain": {
         "path": "meridian/public/glassbox/transparency_log.json",
-        "sha256": "615b1609cc0cedb9f5ee5dda1ed3577567e9d8158432609b2fdf67eecdf5bb04"
+        "sha256": "552074d553910d9169de8cb519b933a19cd8c16f4c44c31cbdd10cce819362e2"
       },
       "crypto_position_attribution": {
         "path": "artifacts/engineering/crypto_position_attribution.json",
-        "sha256": "797821ca182f2e81fd351873ce3d8c5eac534a84f880f31d5998ca52b35650aa"
+        "sha256": "c8add83f79c99571bb78530d4f345fc13bc898419dabc68f03c8b43fba932777"
       },
       "crypto_position_attribution_rollout": {
         "path": "artifacts/engineering/crypto_position_attribution_rollout_verification.json",
@@ -2330,12 +2330,12 @@
       }
     },
     "claim_boundary": "Paper-only, self-published evidence. An immature or observed Sharpe is not an established Sharpe. Realized maximum drawdown is not expected maximum drawdown, and the modeled expectation is not a live guarantee.",
-    "content_hash": "sha256:abcb45cb4ec725378b4c5a499ea2fa001a554a118b65021693cf759721773d30"
+    "content_hash": "sha256:50bb50da9fbf4127451348b01dc524fc54a7e7463f6adce131df5ef1ee45373e"
   },
   "forward_sleeve_contribution": {
     "author": "Arhan Canli",
     "claim_boundary": "Descriptive arithmetic attribution of the published paper curve only. It is not a Sharpe estimate, evidence of expected sleeve performance, permission to reweight, or a return trial. The strategic-overlay residual is not alpha.",
-    "content_hash": "sha256:a919d32b3b930922c0fc8f9313df86d635916e9b5bb14da825136a03a5cdda30",
+    "content_hash": "sha256:33b67c97439375122d8a58b468ced52aa40f741e07010a624617d1a027dd8a6e",
     "daily": [
       {
         "book_return": 0.0,
@@ -2514,36 +2514,36 @@
         "strategic_overlay_and_rounding_residual": 0.00015976598056344216
       },
       {
-        "book_return": -0.0003965257706419756,
+        "book_return": -0.00035177324952362365,
         "date": "2026-08-26",
         "sleeve_contributions": {
-          "crypto": -0.0013856323499536194,
-          "equity": 0.001077608218908288,
-          "macro_surprise": 0.00022639896713011476,
-          "managed_futures": -0.00031488138116553266
+          "crypto": -0.0014432158755749713,
+          "equity": 0.0010224498409375227,
+          "macro_surprise": 0.00030599508054640623,
+          "managed_futures": -0.00023702444452539106
         },
-        "strategic_overlay_and_rounding_residual": -1.922556122635477e-08
+        "strategic_overlay_and_rounding_residual": 2.214909280984223e-08
       }
     ],
     "decision": "MONITOR_ONLY_NO_WEIGHT_CHANGE",
     "largest_loss_driver": {
-      "absolute_share_of_negative_book_return": 0.8762067381937497,
-      "additive_contribution": -0.021134420244450752,
+      "absolute_share_of_negative_book_return": 0.8802272387826383,
+      "additive_contribution": -0.021192003770072104,
       "dominates_current_loss": true,
       "sleeve": "crypto"
     },
     "record": {
-      "book_additive_return": -0.02412035804246171,
+      "book_additive_return": -0.024075605521343357,
       "daily_return_observations": 17,
       "first_mark": "2026-08-07",
       "last_mark": "2026-08-26"
     },
     "schema": "canli.alphac-forward-sleeve-contribution.v1",
     "sleeve_additive_contributions": {
-      "crypto": -0.021134420244450752,
-      "equity": -0.002904800106010047,
-      "macro_surprise": 0.0009511379773190498,
-      "managed_futures": -0.0005757957302999217
+      "crypto": -0.021192003770072104,
+      "equity": -0.0029599584839808124,
+      "macro_surprise": 0.0010307340907353413,
+      "managed_futures": -0.0004979387936597801
     },
     "source_bindings": {
       "committed_weight_schedule": {
@@ -2570,15 +2570,15 @@
       },
       "paper_state": {
         "path": "data/paper/state.json",
-        "sha256": "eedcbcaea21ac8f64d226f2c156b1821f856739eb28c20baf90697ab5b2c37b5"
+        "sha256": "d76d61621e16a54b5c4eb5de320baf3cf54891b5fac578a5296354ffd8e2da55"
       }
     },
-    "strategic_overlay_and_rounding_residual": -0.00045647993902003803
+    "strategic_overlay_and_rounding_residual": -0.00045643856436600183
   },
   "crypto_lab_carry_crash_incident": {
     "author": "Arhan Canli",
     "claim_boundary": "Forensic description of one paper-traded LABUSDT episode. It spends zero return hypotheses, does not estimate Sharpe or expected performance, does not authorize a strategy change, and does not rewrite the published equity record.",
-    "content_hash": "sha256:3467882bd0ac341da1ccee6983e3248b0d7bd82ae767d8b9908f9c4e1d08d8d2",
+    "content_hash": "sha256:25948c6a7d9570a00275c584ff4f075efd3219179ef441b315cf791d1beb081b",
     "decision": "PRESERVE_LOSS_NO_PRICE_JUMP_GUARD_NO_WEIGHT_CHANGE",
     "execution_sequence": {
       "long_close": {
@@ -2656,7 +2656,7 @@
     "source_bindings": {
       "paper_execution_database": {
         "path": "var/trading_crypto_perp.sqlite",
-        "sha256": "1b7d33444bb13feeae87d5dbb1fa664ea0338aff34517d4bd74246dd4983147b"
+        "sha256": "b15cf891475d923f8fa211351ac510cc55bb509e6c08fa1e5cbeb177f9738b91"
       },
       "point_in_time_funding": {
         "path": "data/lake/funding/instrument_id=BINANCE:PERP:LABUSDT/year=2026/data.parquet",
@@ -2668,14 +2668,14 @@
   "crypto_position_attribution": {
     "author": "Arhan Canli",
     "claim_boundary": "Latest-cycle arithmetic attribution for the locally simulated crypto paper account. It is not Alpaca attestation, a Sharpe estimate, a return trial, or permission to change the strategy. Historical rows without marks remain explicitly unavailable.",
-    "content_hash": "sha256:34cdc158328a3ea6b5dacb075248fefc65055c8b660d7ae344ef5f91317ffabe",
+    "content_hash": "sha256:7007488f5f9933ea30f89eda8429dd4db56f031c6ca7f4dc05dd9a7c417bf83e",
     "historical_boundary": "No historical mark backfill. Completeness begins only with a cycle genuinely persisted by the mark-aware runtime.",
     "latest_cycle": {
-      "account_ts": 1787720400000,
+      "account_ts": 1787724000000,
       "cash_quote": 87395.33475045091,
       "complete_mark_count": 9,
-      "cycle_ts": 1787720400000,
-      "equity_quote": 91070.02624045091,
+      "cycle_ts": 1787724000000,
+      "equity_quote": 91048.93048545092,
       "expected_position_count": 9,
       "fallback_mark_count": 0,
       "max_abs_market_value_residual_quote": 0.0,
@@ -2683,9 +2683,9 @@
       "order_book_mark_count": 9,
       "position_arithmetic_passes": true,
       "reconciliation_passes": true,
-      "reconciliation_residual_quote": 0.0,
+      "reconciliation_residual_quote": 1.4551915228366852e-11,
       "reconciliation_tolerance_quote": 0.01,
-      "reconstructed_equity_quote": 91070.02624045091,
+      "reconstructed_equity_quote": 91048.93048545091,
       "stored_position_count": 9
     },
     "missing_columns": [],
@@ -2693,109 +2693,109 @@
     "positions": [
       {
         "avg_entry_price": 0.1625,
-        "cycle_ts": 1787720400000,
+        "cycle_ts": 1787724000000,
         "instrument_id": "BINANCE:PERP:ADAUSDT",
-        "mark_price": 0.20905,
+        "mark_price": 0.21125,
         "mark_source": "order_book_mid",
-        "market_value_quote": 8868.737200000001,
+        "market_value_quote": 8962.07,
         "opened_ts": 1785369600000,
         "qty": 42424.0,
-        "unrealized_pnl_quote": 1974.8372000000004
+        "unrealized_pnl_quote": 2068.1699999999996
       },
       {
         "avg_entry_price": 87.02903475868968,
-        "cycle_ts": 1787720400000,
+        "cycle_ts": 1787724000000,
         "instrument_id": "BINANCE:PERP:BZUSDT",
-        "mark_price": 85.525,
+        "mark_price": 85.82499999999999,
         "mark_source": "order_book_mid",
-        "market_value_quote": 10260.43425,
+        "market_value_quote": 10296.425249999998,
         "opened_ts": 1785369600000,
         "qty": 119.97,
-        "unrealized_pnl_quote": -180.43904999999972
+        "unrealized_pnl_quote": -144.44805000000176
       },
       {
         "avg_entry_price": 83.47,
-        "cycle_ts": 1787720400000,
+        "cycle_ts": 1787724000000,
         "instrument_id": "BINANCE:PERP:CLUSDT",
-        "mark_price": 80.545,
+        "mark_price": 80.805,
         "mark_source": "order_book_mid",
-        "market_value_quote": 9337.58185,
+        "market_value_quote": 9367.723650000002,
         "opened_ts": 1785369600000,
         "qty": 115.93,
-        "unrealized_pnl_quote": -339.0952499999997
+        "unrealized_pnl_quote": -308.9534499999991
       },
       {
         "avg_entry_price": 63.80494962618857,
-        "cycle_ts": 1787720400000,
+        "cycle_ts": 1787724000000,
         "instrument_id": "BINANCE:PERP:HYPEUSDT",
-        "mark_price": 81.7775,
+        "mark_price": 82.5995,
         "mark_source": "order_book_mid",
-        "market_value_quote": -11266.486175000002,
+        "market_value_quote": -11379.733115,
         "opened_ts": 1783267200000,
         "qty": -137.77,
-        "unrealized_pnl_quote": -2476.078265000002
+        "unrealized_pnl_quote": -2589.3252050000024
       },
       {
         "avg_entry_price": 0.1553,
-        "cycle_ts": 1787720400000,
+        "cycle_ts": 1787724000000,
         "instrument_id": "BINANCE:PERP:LABUSDT",
-        "mark_price": 0.06976,
+        "mark_price": 0.070025,
         "mark_source": "order_book_mid",
-        "market_value_quote": -381.37792,
+        "market_value_quote": -382.826675,
         "opened_ts": 1785369600000,
         "qty": -5467.0,
-        "unrealized_pnl_quote": 467.64717999999993
+        "unrealized_pnl_quote": 466.19842499999993
       },
       {
         "avg_entry_price": 8.340275212032589,
-        "cycle_ts": 1787720400000,
+        "cycle_ts": 1787724000000,
         "instrument_id": "BINANCE:PERP:LINKUSDT",
-        "mark_price": 11.3255,
+        "mark_price": 11.3915,
         "mark_source": "order_book_mid",
-        "market_value_quote": -13553.792125,
+        "market_value_quote": -13632.777625,
         "opened_ts": 1785369600000,
         "qty": -1196.75,
-        "unrealized_pnl_quote": -3572.567764999999
+        "unrealized_pnl_quote": -3651.553265
       },
       {
         "avg_entry_price": 0.6873369149647459,
-        "cycle_ts": 1787720400000,
+        "cycle_ts": 1787724000000,
         "instrument_id": "BINANCE:PERP:SUIUSDT",
-        "mark_price": 0.75975,
+        "mark_price": 0.76825,
         "mark_source": "order_book_mid",
-        "market_value_quote": 9999.5256,
+        "market_value_quote": 10111.3992,
         "opened_ts": 1785369600000,
         "qty": 13161.6,
-        "unrealized_pnl_quote": 953.0720600000006
+        "unrealized_pnl_quote": 1064.94566
       },
       {
         "avg_entry_price": 211.87004213631093,
-        "cycle_ts": 1787720400000,
+        "cycle_ts": 1787724000000,
         "instrument_id": "BINANCE:PERP:TAOUSDT",
-        "mark_price": 231.055,
+        "mark_price": 233.765,
         "mark_source": "order_book_mid",
-        "market_value_quote": 1.6417445181104995e-12,
+        "market_value_quote": 1.6610002262495981e-12,
         "opened_ts": 1783267200000,
         "qty": 7.105427357601002e-15,
-        "unrealized_pnl_quote": 1.3631732445907885e-13
+        "unrealized_pnl_quote": 1.5557303259817742e-13
       },
       {
         "avg_entry_price": 463.64436262477494,
-        "cycle_ts": 1787720400000,
+        "cycle_ts": 1787724000000,
         "instrument_id": "BINANCE:PERP:ZECUSDT",
-        "mark_price": 784.645,
+        "mark_price": 792.725,
         "mark_source": "order_book_mid",
-        "market_value_quote": -9589.931190000001,
+        "market_value_quote": -9688.68495,
         "opened_ts": 1783267200000,
         "qty": -12.222000000000001,
-        "unrealized_pnl_quote": -3923.2697900000007
+        "unrealized_pnl_quote": -4022.0235500000013
       }
     ],
     "schema": "canli.alphac-crypto-position-attribution.v1",
     "source_binding": {
       "binding_scope": "latest equity row and same-cycle position snapshot rows",
       "path": "var/trading_crypto_perp.sqlite",
-      "query_payload_sha256": "932080e37babbda14c6111eb160190a00610c031c6cd66190e2e870d9797b2b5"
+      "query_payload_sha256": "890686eb464de94916d5bd60828f696e8d4ba726268c0df66e3110a70cee9116"
     },
     "status": "COMPLETE"
   },
@@ -3458,8 +3458,8 @@
       "legacy_sqlite_authoritative": false
     },
     "live_nav_baseline_usd": 100000.0,
-    "live_nav_current_usd": 97609.41,
-    "live_return_pct": -2.3906,
+    "live_nav_current_usd": 97613.78,
+    "live_return_pct": -2.3862,
     "research_curve_label": "SIMULATION (research backtest, NOT realized trading)",
     "research_curve_start": {
       "date": "2023-07-07",
@@ -3487,7 +3487,7 @@
       "CORRECTION 2026-07-05 \u2014 the crypto sleeve was signal-dead, not 'carry compressed'. From go-live (06-23) to 07-05 AlphaForge held cash and we published that funding carry was compressed. An internal audit found the true cause: a wiring bug blended equity-fundamental alphas (undefined on crypto) into the live signal, invalidating it every cycle \u2014 the validated carry-only configuration was never what ran live. Fixed same day (the loop now runs the exact blessed walk-forward config: carry_fund_21, weekly rebalance, with per-cycle signal-health logging so a dead signal can never masquerade as a quiet hold again). The $100k cash equity curve was genuine; the published EXPLANATION was wrong. Per our append-only posture this correction is added to the record, not swapped into it.",
       "We red-team our own record. On 2026-06-27 our publishing pipeline emitted a future-dated (2026-06-29) paper mark that briefly reached the public sites and was anchored into seq 0 of the signed transparency chain. We caught it the same day, added a fail-closed guard, and appended the corrected seq 1. The signed chain retains BOTH opaque commitments; their underlying historical payloads were not published and cannot now be reconstructed from the chain. We preserve that limitation instead of deleting or fabricating a backfill.",
       "AlphaTrend (managed-futures trend) was the FIRST sleeve we took genuinely live: its 17-ETF book transacts on Alpaca paper, not in a simulator. We published DSR 0.83 for it and called it the first sleeve to CLEAR multiple-testing deflation, statistically real rather than a backtest fluke. RE-DERIVED 2026-08-07 at honest N=133 and pooled V[SR]=7.96e-04, its DSR is 0.000: the LOWEST of the six sleeves we have measured, not the highest. The old 0.83 rested on a variance input roughly 80x too small and a trial count of 5 while its siblings were graded at N=101, so it was marked on an easier exam and then called the soundest. Net Sharpe 0.25 over its full 5,179-day history. It is folded into ALPHAC at equal quarters for MEASURED drawdown reduction, not for a demonstrated edge. The screen suggested 0.73; the honest engine says 0.33 on the live window. We published every one of those numbers.",
-      "STRUCTURAL VERDICT 2026-08-05 \u2014 the crypto sleeve's venue unreachability is STRUCTURAL, and we said we would say so. The 2026-07-20 note above promised: 'if it proves persistent it is a STRUCTURAL problem for a sleeve built on a single venue, and we will say that too.' It has proved persistent, so here is the number we had not put on the record until now: across its entire live history the hourly loop has completed 619 of 1391 expected cycles \u2014 an uptime of 44.5%. It has been dark for roughly 773 hours of a 57.9-day record, with 8 separate outages longer than a day and a longest single outage of 165 hours. As of this publish it has been dark 1 hours; its last observed cycle was 2026-08-26 05:00 UTC. WHAT THIS MEANS, stated plainly rather than buried: this sleeve carries 40% of the flagship's weight, so for most of the forward record our largest single position has not been managed. The published curve is not wrong \u2014 we never roll forward a mark we did not observe, so the sleeve's line simply stops when the venue does \u2014 but a 40%-weight sleeve that is dark most of the time is not meaningfully 'live', and describing it as live without this number attached would have been a half-truth. The forward track record is the whole basis on which this book asks to be believed, and it is being accrued on a book whose biggest sleeve is mostly absent. WHAT WE ARE DOING: the diagnosis is unchanged and venue-specific (the general internet and our equity broker respond normally from the same machine while the exchange endpoint fails on connect). Two fixes are real \u2014 hosting the loop somewhere with unobstructed access, and removing the single-venue dependency altogether by adding a second exchange. We flag the first honestly: our own deploy runbook records that reaching a venue from a different region is a COMPLIANCE decision and not merely an operations one, so it will not be done as a silent infrastructure tweak. Until one of those lands, read this sleeve's contribution to the live record as what it is \u2014 44.5% of the intended trading.",
+      "STRUCTURAL VERDICT 2026-08-05 \u2014 the crypto sleeve's venue unreachability is STRUCTURAL, and we said we would say so. The 2026-07-20 note above promised: 'if it proves persistent it is a STRUCTURAL problem for a sleeve built on a single venue, and we will say that too.' It has proved persistent, so here is the number we had not put on the record until now: across its entire live history the hourly loop has completed 620 of 1391 expected cycles \u2014 an uptime of 44.6%. It has been dark for roughly 772 hours of a 58.0-day record, with 8 separate outages longer than a day and a longest single outage of 165 hours. As of this publish it has been dark 0 hours; its last observed cycle was 2026-08-26 06:00 UTC. WHAT THIS MEANS, stated plainly rather than buried: this sleeve carries 40% of the flagship's weight, so for most of the forward record our largest single position has not been managed. The published curve is not wrong \u2014 we never roll forward a mark we did not observe, so the sleeve's line simply stops when the venue does \u2014 but a 40%-weight sleeve that is dark most of the time is not meaningfully 'live', and describing it as live without this number attached would have been a half-truth. The forward track record is the whole basis on which this book asks to be believed, and it is being accrued on a book whose biggest sleeve is mostly absent. WHAT WE ARE DOING: the diagnosis is unchanged and venue-specific (the general internet and our equity broker respond normally from the same machine while the exchange endpoint fails on connect). Two fixes are real \u2014 hosting the loop somewhere with unobstructed access, and removing the single-venue dependency altogether by adding a second exchange. We flag the first honestly: our own deploy runbook records that reaching a venue from a different region is a COMPLIANCE decision and not merely an operations one, so it will not be done as a silent infrastructure tweak. Until one of those lands, read this sleeve's contribution to the live record as what it is \u2014 44.6% of the intended trading.",
       "CORRECTION 2026-08-06 \u2014 our crypto carry sleeve is a strategy that earns funding, and its LIVE paper account has never once booked funding. We found this ourselves and are publishing it before the fix rather than after. The mechanism, stated plainly so anyone can check it: funding is applied in exactly one place in this codebase, Ledger.apply_funding, and it is called from exactly one call site, the BACKTEST engine. The live paper broker's cash moves on one line and only one line, a fill: cash - qty*price - fee. No funding cashflow can reach the live account by any path. The size of what is missing is not marginal. Our committed walk-forward artifact for this sleeve reports funding_net of $19,500 against a total return of $38,236 on a $100k book over 2022-02 to 2026-06: about HALF of everything this strategy has ever earned is the funding it is designed to harvest. Removing it takes the sleeve's backtested Sharpe from 0.653 to roughly 0.30. So AlphaForge's live record has been running against a hard ceiling of about half its validated Sharpe, and every live number we have published for this sleeve should be read in that light. What we are NOT doing: we are not restating the historical live curve. The marks we published were the marks we observed, and this record is append-only, so the fix applies FORWARD from the day it ships and the understated period stays visible in the chain. One number we are deliberately NOT putting on the record yet: our internal estimate of what funding would have added over the live window is dominated by a single name that redenominated roughly 100x inside the window, which makes the naive figure meaningless. We would rather publish no number than a number we cannot stand behind, so that one waits for the corrected accounting. This is the fourth time a defect in our plumbing, not our strategy, has moved a published number, and the lesson we wrote down in July holds: a fix is not done until a test pins the path that actually runs.",
       "CORRECTION 2026-08-06 \u2014 a factual claim in our 2026-07-20 incident note above is now false and we are marking it rather than editing it. That note said 'Bybit responds' as evidence the Binance failure was venue-specific. Re-measured from the same network on 2026-08-06: Bybit does NOT respond, and neither do Kraken or Deribit. Binance, Bybit and Kraken all fail on connection reset in under a tenth of a second and Deribit times out. The conclusion the original note drew is unchanged and if anything strengthened, since the block is clearly broader than one venue, but the supporting fact it cited is no longer true and a reader checking our work today would find it wrong. One venue does answer: OKX responds normally and serves funding rates, 436 perpetual instruments and hourly candles. We are evaluating it, and we note in advance that moving venue is not a configuration change: the same carry signal computed on OKX has a cross-sectional rank correlation of only about 0.64 with the Binance one, so it would be a materially different strategy wearing the same name, and we will not splice the two curves together and call it one continuous record.",
       "FIXED 2026-08-06 \u2014 the funding gap disclosed above is now closed in the live path, forward only. Earlier today we published that our crypto carry sleeve had never once booked funding in live paper, which is roughly half of everything that strategy has ever earned. That is fixed: the live broker gained a funding path with the identical sign convention the backtest ledger uses (payment = -position * mark * rate, longs pay shorts on a positive rate), and the live loop now settles every stored funding event for the window just closed, before the strategy re-decides, so a settlement is charged against the position that was actually held through it. It is point-in-time by construction: the reader filters on each event's stored publication time, never on the settlement time, so a rate not yet knowable at the moment of the cycle stays invisible. Nine tests pin the running path rather than the intention, including one that asserts the live broker and the backtest ledger return identical figures for the same event, because two conventions would be worse than none. Three things we are deliberately NOT doing. We are not restating the historical curve: the marks we published are the marks we observed, the understated period stays in the signed chain, and the fix applies from today. We are not claiming an improvement yet: the sleeve has been dark on venue unreachability since 2026-08-03, so this books nothing until it trades again, and any future gain will show up in the forward record or not at all. And we are not putting a number on what it would have earned over the live window, because our own measurement of that is dominated by a single instrument that redenominated roughly 100x inside the window, which makes the figure meaningless. We would rather publish no number than one we cannot stand behind.",
@@ -20320,12 +20320,12 @@
       ],
       "source_sha256": {
         "registry": "568f184a42fa815725b7e8fcb48ec701564f1ed9cfd6d991fcc5ea5d379d3ecf",
-        "kill_ledger": "ce5606ae43364b897d3b463866dc6ea3653ea5db3444f23ce23e29034940f2b9",
-        "current_book": "249236ad1f9e702f6082a67809d48b89df19f15d5b57e7b0f4fb955ab8099e7d",
+        "kill_ledger": "e473781858713098048aef8afe6d4cef1363839c3858b64b8746f0bfaf9b7abf",
+        "current_book": "d76d61621e16a54b5c4eb5de320baf3cf54891b5fac578a5296354ffd8e2da55",
         "discovery": "ad1979533293e5eea12c2d7be4c68d00f0f0bbf9badd81b98716cde50dfeea70"
       },
-      "generated_at": "2026-08-26T05:25:48.809067+00:00",
-      "content_hash": "sha256:6c591247dd199a5fd937736748ba9483c4bf7d252893f70c55fef6313e7a260b"
+      "generated_at": "2026-08-26T06:25:49.177145+00:00",
+      "content_hash": "sha256:a39ab93751a3bbb4af301da5ebd289a55f15fc0501517760557f16a9f860da0e"
     },
     "atlas_public_path": "/glassbox/sleeve_atlas.json",
     "audit_public_path": "/glassbox/sleeve_atlas_audit.json",
@@ -21363,8 +21363,8 @@
     "author": "Arhan Canli",
     "cent_tolerance": 0.01,
     "claim_boundary": "Self-published read-only reconciliation against three dedicated Alpaca paper accounts. It is broker-derived but not an independent third-party attestation, does not imply real capital, and does not establish future performance.",
-    "content_hash": "sha256:3010460572eabe160d79e0116dbc7a0a0ff7ac8d2afe463e30aff2a15b7a7e60",
-    "generated_at": "2026-08-26T05:25:35.472220+00:00",
+    "content_hash": "sha256:b9e260d9928c96a63ceb6ccb6502a9609d220881aedad0feb21d59351110ff47",
+    "generated_at": "2026-08-26T06:25:35.181223+00:00",
     "method": "GET_ONLY_ACCOUNT_POSITIONS_PORTFOLIO_HISTORY_OPEN_ORDERS",
     "schema": "canli.alphac-alpaca-broker-reconciliation.v1",
     "sleeves": {
@@ -21405,8 +21405,8 @@
           "missing_broker_mark_timestamps": [],
           "overlapping_marks": 14
         },
-        "current_equity": 988226.09,
-        "current_equity_as_of": "2026-08-26T05:25:35.472000+00:00",
+        "current_equity": 988009.04,
+        "current_equity_as_of": "2026-08-26T06:25:35.181000+00:00",
         "fill_outcome_reconciliation": {
           "consecutive_fill_reconcile_failures": 0,
           "last_error": null,
@@ -21425,7 +21425,7 @@
             },
             {
               "ticker": "MU",
-              "weight_pct": 0.92
+              "weight_pct": 0.91
             },
             {
               "ticker": "WDC",
@@ -21481,7 +21481,7 @@
             }
           ],
           "long_count": 84,
-          "net_pct": 3.74,
+          "net_pct": 3.72,
           "short": [
             {
               "ticker": "IT",
@@ -21592,37 +21592,37 @@
           "missing_broker_mark_timestamps": [],
           "overlapping_marks": 13
         },
-        "current_equity": 1002338.63,
-        "current_equity_as_of": "2026-08-26T05:25:35.472000+00:00",
+        "current_equity": 1002657.4,
+        "current_equity_as_of": "2026-08-26T06:25:35.181000+00:00",
         "fill_outcome_reconciliation": {
           "consecutive_fill_reconcile_failures": 0,
           "last_error": null,
           "last_failure_at": null,
-          "last_success_at": "2026-08-24T06:00:20.588000+00:00"
+          "last_success_at": "2026-08-26T06:00:16.933000+00:00"
         },
         "holdings": {
           "as_of": "2026-08-26",
           "broker_reconciled": true,
           "flat": false,
-          "gross_pct": 100.0,
+          "gross_pct": 99.9,
           "long": [
             {
               "ticker": "IWM",
-              "weight_pct": 49.97
+              "weight_pct": 49.96
             }
           ],
           "long_count": 1,
-          "net_pct": -0.04,
+          "net_pct": -0.0,
           "short": [
             {
               "ticker": "SPY",
-              "weight_pct": 50.01
+              "weight_pct": 49.97
             }
           ],
           "short_count": 1,
           "source": "ALPACA_CURRENT_POSITIONS"
         },
-        "open_order_count": 0,
+        "open_order_count": 2,
         "open_position_count": 2,
         "passes": true,
         "portfolio_history_first_mark": "2026-08-07T00:00:00+00:00",
@@ -21667,13 +21667,13 @@
           "missing_broker_mark_timestamps": [],
           "overlapping_marks": 14
         },
-        "current_equity": 997680.05,
-        "current_equity_as_of": "2026-08-26T05:25:35.472000+00:00",
+        "current_equity": 998000.46,
+        "current_equity_as_of": "2026-08-26T06:25:35.181000+00:00",
         "fill_outcome_reconciliation": {
           "consecutive_fill_reconcile_failures": 0,
           "last_error": null,
           "last_failure_at": null,
-          "last_success_at": "2026-08-25T05:49:49.438000+00:00"
+          "last_success_at": "2026-08-26T05:31:01.289000+00:00"
         },
         "holdings": {
           "as_of": "2026-08-26",
@@ -21683,7 +21683,7 @@
           "long": [
             {
               "ticker": "SHY",
-              "weight_pct": 20.05
+              "weight_pct": 20.04
             },
             {
               "ticker": "UUP",
@@ -21715,7 +21715,7 @@
             },
             {
               "ticker": "QQQ",
-              "weight_pct": 2.29
+              "weight_pct": 2.28
             },
             {
               "ticker": "USO",
@@ -21723,11 +21723,11 @@
             }
           ],
           "long_count": 10,
-          "net_pct": 31.13,
+          "net_pct": 31.15,
           "short": [
             {
               "ticker": "IEF",
-              "weight_pct": 10.35
+              "weight_pct": 10.33
             },
             {
               "ticker": "TLT",
@@ -21735,11 +21735,11 @@
             },
             {
               "ticker": "GLD",
-              "weight_pct": 2.69
+              "weight_pct": 2.68
             },
             {
               "ticker": "SLV",
-              "weight_pct": 1.25
+              "weight_pct": 1.24
             },
             {
               "ticker": "UNG",
@@ -21749,7 +21749,7 @@
           "short_count": 5,
           "source": "ALPACA_CURRENT_POSITIONS"
         },
-        "open_order_count": 0,
+        "open_order_count": 13,
         "open_position_count": 15,
         "passes": true,
         "portfolio_history_first_mark": "2026-08-06T00:00:00+00:00",
@@ -21760,7 +21760,7 @@
     },
     "summary": {
       "expected_alpaca_sleeves": 3,
-      "open_orders": 134,
+      "open_orders": 149,
       "open_positions": 193,
       "passes": true,
       "reconciled_alpaca_sleeves": 3,
@@ -65675,10 +65675,10 @@
   },
   "external_validation_opportunities": {
     "claim_boundary": "This is a dated official-source opportunity audit. It proves no personal eligibility, registration, submission, judging, advancement, award, review, publication, or Stanford admissions outcome. Rules and deadlines must be rechecked immediately before any authorized external action.",
-    "content_hash": "sha256:a3ff1fff109b7f8d956d70759b291962de84a8fe4fdbf34475a3baf96670cbe0",
+    "content_hash": "sha256:9a5ef9eed1406fd32d3fb0f2b93ff58a102b1a3794263e870dc6bb90b4a4cf4a",
     "counts": {
       "awarded": 0,
-      "exact_future_deadlines": 1,
+      "exact_future_deadlines": 2,
       "opportunities": 6,
       "registered": 0,
       "registration_authorized": 0,
@@ -65740,6 +65740,13 @@
       },
       {
         "ai_boundary": "Generative AI may be used for ideas and brainstorming, but teams may not submit AI-generated work as their own. Any included AI-generated material must be cited.",
+        "competition_calendar": {
+          "competition_begins": "2026-09-28",
+          "final_report_and_school_documentation": "2026-12-04T17:00:00-05:00",
+          "investment_policy_statement": "2026-11-06T17:00:00-05:00",
+          "official_team_roster": "2026-10-09T17:00:00-04:00",
+          "registered_team_instructions": "2026-09-15"
+        },
         "eligibility": {
           "advisor": "one teacher or educator at the team's high school",
           "grade": "9-12; no secondary-school diploma before competition begins",
@@ -65748,18 +65755,18 @@
           "team_size": "4-6 students from the same school"
         },
         "entry_claimed": false,
-        "exact_deadline": null,
+        "exact_deadline": "2026-09-11T17:00:00-04:00",
         "fit": "A client-centered team portfolio thesis using ALPHAC's evidence discipline.",
         "id": "wharton_investment_2026_2027",
         "kind": "INVESTMENT_COMPETITION",
         "name": "Wharton Global High School Investment Competition 2026-2027",
-        "next_action": "Form the same-school team and have the teacher-advisor independently verify the live registration calendar before the advisor registers.",
+        "next_action": "Resolve the same-school team and teacher-advisor immediately; have the advisor independently recheck the official calendar before any authorized registration.",
         "official_sources": [
           "https://globalyouth.wharton.upenn.edu/competitions/investment-competition/",
           "https://globalyouth.wharton.upenn.edu/competitions/investment-competition/rules-roles/"
         ],
         "priority": 2,
-        "public_status": "Registration is open; the team and school advisor are unresolved.",
+        "public_status": "Registration closes September 11 at 5:00 p.m. ET; the team and school advisor are unresolved.",
         "registration_authorized": false,
         "source_checked_on": "2026-08-26",
         "state": "OPEN_BUT_TEAM_AND_ADVISOR_UNRESOLVED",
@@ -65768,7 +65775,7 @@
           "whether Arhan or another eligible teammate can serve as the age-16 team leader",
           "three to five eligible same-school teammates",
           "teacher-advisor assignment",
-          "the current cycle's exact registration close and deliverable calendar"
+          "whether the school can complete advisor registration before the deadline"
         ],
         "window_opens": "2026-08-10"
       },
@@ -65906,7 +65913,7 @@
     ],
     "opportunity_shortlist": [
       "1. Regeneron ISEF 2027 through an affiliated fair: The official 2025-2026 directory returns no UAE fair; the 2026-2027 directory and personal eligibility remain unresolved.",
-      "2. Wharton Global High School Investment Competition 2026-2027: Registration is open; the team and school advisor are unresolved.",
+      "2. Wharton Global High School Investment Competition 2026-2027: Registration closes September 11 at 5:00 p.m. ET; the team and school advisor are unresolved.",
       "3. Diamond Challenge 2027: The window opens September 16; the team and advisor are unresolved.",
       "4. Emirates Young Scientist Competition, next announced cycle: The next cycle date and Arhan's eligible entry route are unresolved.",
       "5. Conrad Challenge 2026-2027: The current cycle is confirmed; exact phase dates are unresolved.",
@@ -65921,7 +65928,7 @@
       "available same-school teammates",
       "available teacher, adult sponsor, or advisor"
     ],
-    "schema": "canli.alphac-external-validation-opportunities.v2",
+    "schema": "canli.alphac-external-validation-opportunities.v3",
     "verified_on": "2026-08-26"
   },
   "active_ownership_blind_handoff_receipt": {
@@ -86108,6 +86115,6 @@
       "source_path": "artifacts/engineering/options_execution_contract.json"
     }
   },
-  "generated_at": "2026-08-26T06:17:19.796381+00:00",
-  "content_hash": "sha256:a149dfaf1221a8b49871027b2e39fe09396c9b4f440288a3263dc69781de4cb5"
+  "generated_at": "2026-08-26T06:31:32.428960+00:00",
+  "content_hash": "sha256:e317284c05dd450d555477ef8ba57c06365635dde010d4511f8217cdb887eb28"
 }
