@@ -530,6 +530,20 @@ if (existsSync(founderFile)) {
     readFileSync(resolve(DIST, "glassbox", "founder_commitment.json"), "utf8"),
   );
   const trackRecord = JSON.parse(readFileSync(resolve(DIST, "glassbox", "track_record.json"), "utf8"));
+  const stanfordEvidence = JSON.parse(
+    readFileSync(resolve(DIST, "glassbox", "stanford_cs_evidence_map.json"), "utf8"),
+  );
+  const contribution = stanfordEvidence.contribution_map;
+  const walkthrough = stanfordEvidence.ninety_second_walkthrough;
+  if (!contribution || !walkthrough) {
+    console.error(
+      "dist/glassbox/stanford_cs_evidence_map.json uses the retired schema -- run `npm run build` first",
+    );
+    process.exit(1);
+  }
+  const forwardFacts = stanfordEvidence.evidence.forward_truth.facts;
+  const systemsFacts = stanfordEvidence.evidence.systems_and_provenance.facts;
+  const governanceFacts = stanfordEvidence.evidence.research_governance.facts;
   const countBuilt = (...parts) =>
     readdirSync(resolve(DIST, ...parts)).filter((n) => n.endsWith(".html")).length;
 
@@ -556,6 +570,32 @@ if (existsSync(founderFile)) {
     renderings.add(String(value));
     renderings.add(value.toLocaleString("en-US"));
   }
+  const portfolioValues = [
+    walkthrough.total_seconds,
+    forwardFacts.daily_return_observations,
+    forwardFacts.current_sleeves,
+    forwardFacts.target_sleeves,
+    systemsFacts.alpaca_sleeves_expected,
+    systemsFacts.alpaca_sleeves_reconciled,
+    systemsFacts.publication_bundle_files,
+    governanceFacts.legacy_hypothesis_identities,
+    governanceFacts.prospective_hypothesis_identities,
+    governanceFacts.total_hypothesis_identities,
+    contribution.external_validation.assigned_reviewers,
+    contribution.external_validation.completed_reviews,
+    contribution.external_validation.independent_replications,
+    ...walkthrough.chapters.flatMap((chapter) => [chapter.start_second, chapter.end_second]),
+  ];
+  for (const value of portfolioValues) {
+    check(
+      typeof value === "number" && Number.isFinite(value) && value >= 0,
+      `a portfolio fact /founder derives is invalid (${value})`,
+    );
+    renderings.add(String(value));
+    renderings.add(String(value).padStart(2, "0"));
+    renderings.add(value.toLocaleString("en-US"));
+  }
+  walkthrough.chapters.forEach((_, index) => renderings.add(String(index + 1).padStart(2, "0")));
   for (const date of [chainLog.entries[0].date, trackRecord.go_live_date]) renderings.add(date);
 
   const prose = founderHtml
@@ -578,6 +618,39 @@ if (existsSync(founderFile)) {
   );
   check(numbers.size >= 8, `/founder quotes only ${numbers.size} figures — the derivation has ` +
     `stopped rendering and the trace check above would pass vacuously`);
+
+  check(
+    founderHtml.includes('content="stanford_cs_evidence_map.json '),
+    "/founder does not declare the portfolio evidence map as a source",
+  );
+  check(
+    contribution.status === "SELF_DISCLOSED_SOURCE_BOUND_NOT_INDEPENDENTLY_ATTESTED" &&
+      founderHtml.includes("Self-disclosed and source-bound") &&
+      founderHtml.includes("Not independently attested"),
+    "/founder weakens or omits the self-disclosed contribution boundary",
+  );
+  check(
+    founderHtml.includes("AI-assisted development") &&
+      founderHtml.includes("reviewed AI-assisted tooling") &&
+      founderHtml.includes("cannot claim authorship"),
+    "/founder does not disclose the role and limits of AI-assisted tooling",
+  );
+  check(
+    !/sole author|my own work|unaided authorship/i.test(founderHtml),
+    "/founder makes an unsupported unaided or sole-authorship claim",
+  );
+  check(
+    walkthrough.total_seconds === 90 &&
+      walkthrough.chapters.length === 6 &&
+      (founderHtml.match(/class="founder-spine__item"/g) || []).length === 6,
+    "/founder does not render the complete source-bound 90-second walkthrough",
+  );
+  check(
+    founderHtml.includes("The video has not been recorded") &&
+      founderHtml.includes(`${contribution.external_validation.completed_reviews} completed`) &&
+      founderHtml.includes("Planned, not applied"),
+    "/founder turns planned, unreviewed or unrecorded work into completed evidence",
+  );
 
   // No credential may appear, because a credential is a claim a reader would have to take on
   // trust and this record's whole argument is that they should not have to. Checked against the

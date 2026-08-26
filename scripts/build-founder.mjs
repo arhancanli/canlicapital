@@ -1,27 +1,6 @@
-// =============================================================================
-// CANLI CAPITAL / scripts/build-founder.mjs
-// -----------------------------------------------------------------------------
-// Render /founder: the page behind the Person entity that eighty-two research
-// documents resolve their authorship to.
-//
-// WHY. Every paper on this site carries author markup pointing at a Person @id,
-// and that @id resolved to the homepage, where the entity is DECLARED and never
-// described. An authorship claim that leads nowhere is the weakest link in an
-// otherwise checkable record.
-//
-// WHAT THIS PAGE IS NOT. There are no credentials on it, no employers, no
-// degrees, no awards, and that absence is deliberate and stated on the page
-// itself: a credential is a claim you would have to take on trust, and the whole
-// argument of this record is that you do not have to take anything on trust. The
-// only personal claim made here is one that is cryptographically checkable — the
-// signed founder commitment — and the page shows you how to check it.
-//
-// Every number is DERIVED from the published artifacts at build time. A founder
-// page that hard-coded its own corpus size would be the first thing on the site
-// to go quietly stale, and it would be stale in the flattering direction.
-// =============================================================================
+// Build the source-bound founder case study at /founder.
 
-import { readFileSync, readdirSync, writeFileSync, existsSync } from "node:fs";
+import { existsSync, readFileSync, readdirSync, writeFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import {
@@ -49,8 +28,58 @@ const escapeHtml = (value) =>
 const readJson = (name) => JSON.parse(readFileSync(resolve(GLASSBOX, name), "utf8"));
 const countHtml = (dir) =>
   existsSync(resolve(ROOT, dir))
-    ? readdirSync(resolve(ROOT, dir)).filter((n) => n.endsWith(".html")).length
+    ? readdirSync(resolve(ROOT, dir)).filter((name) => name.endsWith(".html")).length
     : 0;
+const humanizeStatus = (value) =>
+  String(value)
+    .toLowerCase()
+    .split("_")
+    .map((word) => word[0].toUpperCase() + word.slice(1))
+    .join(" ");
+
+function assertPositiveFacts(facts) {
+  for (const [key, value] of Object.entries(facts)) {
+    if (value === undefined || value === null || value === 0) {
+      throw new Error(`founder page: derived fact "${key}" is empty`);
+    }
+  }
+}
+
+function assertEvidenceMap(evidenceMap) {
+  const contribution = evidenceMap.contribution_map;
+  const walkthrough = evidenceMap.ninety_second_walkthrough;
+  if (contribution?.status !== "SELF_DISCLOSED_SOURCE_BOUND_NOT_INDEPENDENTLY_ATTESTED") {
+    throw new Error("founder page: contribution boundary is missing or weakened");
+  }
+  if (walkthrough?.total_seconds !== 90 || walkthrough?.chapters?.length !== 6) {
+    throw new Error("founder page: 90-second walkthrough contract is incomplete");
+  }
+  if (walkthrough.chapters[0].start_second !== 0 || walkthrough.chapters.at(-1).end_second !== 90) {
+    throw new Error("founder page: walkthrough does not span exactly 90 seconds");
+  }
+  for (let index = 1; index < walkthrough.chapters.length; index += 1) {
+    if (walkthrough.chapters[index - 1].end_second !== walkthrough.chapters[index].start_second) {
+      throw new Error("founder page: walkthrough chapters are not continuous");
+    }
+  }
+}
+
+function renderChapter(chapter, index) {
+  const timing = `${String(chapter.start_second).padStart(2, "0")}:${String(
+    chapter.end_second,
+  ).padStart(2, "0")}`;
+  return `<li class="founder-spine__item">
+    <span class="founder-spine__node" aria-hidden="true">${String(index + 1).padStart(2, "0")}</span>
+    <article class="founder-spine__card">
+      <div class="founder-spine__meta"><span>${escapeHtml(timing)}</span><span>${escapeHtml(chapter.label)}</span></div>
+      <p>${escapeHtml(chapter.narration)}</p>
+      <a href="${escapeHtml(chapter.screen)}">Open evidence path <span aria-hidden="true">↗</span></a>
+    </article>
+  </li>`;
+}
+
+const renderResponsibilities = (items) =>
+  items.map((item) => `<li>${escapeHtml(item)}</li>`).join("\n");
 
 function main() {
   const killLog = readJson("kill_log.json");
@@ -58,7 +87,16 @@ function main() {
   const chain = readJson("transparency_log.json");
   const commitment = readJson("founder_commitment.json");
   const track = readJson("track_record.json");
+  const evidenceMap = readJson("stanford_cs_evidence_map.json");
+  assertEvidenceMap(evidenceMap);
 
+  const contribution = evidenceMap.contribution_map;
+  const walkthrough = evidenceMap.ninety_second_walkthrough;
+  const forward = evidenceMap.evidence.forward_truth.facts;
+  const systems = evidenceMap.evidence.systems_and_provenance.facts;
+  const external = contribution.external_validation;
+  const ai = contribution.ai_assisted_tooling;
+  const services = contribution.libraries_services_and_data;
   const facts = {
     papers: countHtml("research"),
     hubs: countHtml("research/topics"),
@@ -75,20 +113,12 @@ function main() {
     commitmentUsd: commitment.amount_usd,
     commitmentTrigger: commitment.trigger,
   };
-  for (const [key, value] of Object.entries(facts)) {
-    if (value === undefined || value === null || value === 0) {
-      // A derived number that came back empty would be published as a claim about the corpus.
-      // Failing here is the only acceptable outcome; a zero on this page reads as modesty.
-      console.error(`founder page: derived fact "${key}" is empty — refusing to publish it`);
-      process.exit(1);
-    }
-  }
-
+  assertPositiveFacts(facts);
   const totalKilled = facts.killed + facts.screenKilled;
-  const description =
-    `Arhan Canli, founder of Canli Capital: what the work is, what the record contains, and the ` +
-    `one personal claim here that can be checked with a signature.`;
 
+  const description =
+    "Arhan Canli explains the decisions, corrections, contribution boundary and open evidence " +
+    "burden behind Canli Capital and ALPHAC.";
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "ProfilePage",
@@ -108,40 +138,41 @@ function main() {
       knowsAbout: [
         "Systematic trading",
         "Quantitative research",
-        "Multiple-testing correction",
-        "Deflated Sharpe ratio",
-        "Point-in-time data",
-        "Pre-registration",
-        "Reproducible research",
+        "Research reproducibility",
+        "Statistical validation",
+        "Paper execution",
+        "Evidence provenance",
       ],
       description:
-        `Founder of Canli Capital and sole author of its published research record: ` +
-        `${facts.papers} documents, ${facts.measurements} published measurements, and a signed ` +
-        `append-only track record.`,
+        "Founder, named author and final accountable human for Canli Capital methodology, claims, " +
+        "corrections and publication decisions. Development uses reviewed AI-assisted tooling.",
     },
   };
+  const foundryStatus = walkthrough.chapters.at(-1).narration.includes("planned not applied")
+    ? "Planned, not applied"
+    : "Status unavailable";
 
   const html = `<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Arhan Canli, founder / Canli Capital</title>
+<title>Arhan Canli, founder and accountable researcher | Canli Capital</title>
 <meta name="description" content="${escapeHtml(description)}" />
 <link rel="canonical" href="${ORIGIN}/founder" />
 <meta name="author" content="${AUTHOR}" />
-<meta name="canli:sources" content="kill_log.json trial_ledger.json transparency_log.json founder_commitment.json track_record.json" />
+<meta name="canli:sources" content="stanford_cs_evidence_map.json kill_log.json trial_ledger.json transparency_log.json founder_commitment.json track_record.json" />
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
 <meta property="og:type" content="profile" />
 <meta property="og:site_name" content="${PUBLISHER}" />
-<meta property="og:title" content="Arhan Canli, founder of Canli Capital" />
+<meta property="og:title" content="Arhan Canli, founder and accountable researcher" />
 <meta property="og:description" content="${escapeHtml(description)}" />
 <meta property="og:url" content="${ORIGIN}/founder" />
 <meta property="og:image" content="${ORIGIN}/og.png" />
 <meta property="profile:first_name" content="Arhan" />
 <meta property="profile:last_name" content="Canli" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Arhan Canli, founder of Canli Capital" />
+<meta name="twitter:title" content="Arhan Canli, founder and accountable researcher" />
 <meta name="twitter:description" content="${escapeHtml(description)}" />
 <meta name="twitter:image" content="${ORIGIN}/og.png" />
 <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
@@ -149,117 +180,125 @@ function main() {
 <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=optional" />
-<link rel="stylesheet" media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=optional" />
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=optional" /></noscript>
-<link rel="stylesheet" href="./css/paper.css" />
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" />
+<link rel="stylesheet" media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" />
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" /></noscript>
 ${renderProductShellStylesheet()}
+<link rel="stylesheet" href="/css/founder.css" />
 <script type="application/ld+json">${JSON.stringify(jsonLd)}</script>
 </head>
-<body class="paper">
-<a class="paper__skip" href="#content">Skip to content</a>
+<body class="founder-page">
+<a class="founder-skip" href="#content">Skip to content</a>
 ${renderProductShellHeader({ active: "founder" })}
-<main class="paper__main" id="content">
-  <article class="paper__article">
-    <p class="paper__eyebrow"><a href="/">Canli Capital</a></p>
-    <h1 class="paper__title">Arhan Canli</h1>
-    <p class="paper__byline">Founder and quantitative researcher, ${PUBLISHER}</p>
-    <div class="paper__body">
-      <p class="hub__standfirst">I build and publish a systematic trading engine. Everything on
-      this site that carries my name as author is my own work, and all of it is written so that
-      somebody who does not know me can check it without asking me anything.</p>
-
-      <section class="verify__level" id="the-work">
-        <h2>What the work is</h2>
-        <p>ALPHAC is a cross-asset book of paper-traded sleeves — crypto funding carry, US equity
-        cross-sectional momentum, multi-asset time-series momentum, and a point-in-time
-        consumer-price-surprise size spread — combined at equal core weights with a separately
-        disclosed directional overlay. The engine behind it handles the whole path: point-in-time
-        data, factor construction, covariance-based sizing, a volatility target and drawdown ladder,
-        execution against a live order book, and publication into a signed record. That path is
-        <a href="/systems">walked stage by stage on the systems page</a>, with the measurement that
-        proves each stage linked from it.</p>
-        <p>The record it produces is deliberately larger than the part that worked.
-        ${facts.papers} research documents are published, organised into ${facts.hubs} subject
-        hubs, alongside ${facts.measurements} measurements each rendered with its own claim
-        boundary. ${totalKilled} candidates have been killed and published in full against
-        ${facts.survived} that survived. ${facts.identities} distinct hypothesis identities have
-        been consumed against a declared budget of ${facts.budget}, because a deflated result is
-        only honest if the number of attempts behind it is counted in public.</p>
-        <p>The live paper record began ${escapeHtml(facts.goLive)} and has accrued
-        ${facts.liveDays} days. That is short, it is stated as short everywhere it appears, and no
-        conclusion is drawn from it that a record of that length cannot support.</p>
-      </section>
-
-      <section class="verify__level" id="no-credentials">
-        <h2>What is deliberately not on this page</h2>
-        <p>There are no degrees here, no former employers, no awards and no assets under
-        management. That is not modesty and it is not an oversight — it is the same rule the rest
-        of the site follows. A credential is a claim you would have to take on trust, and the
-        entire argument of this record is that you should not have to take anything on trust. If a
-        line of biography would change how you read the numbers, it is doing work the numbers
-        should be doing themselves.</p>
-        <p>So the only personal claim made on this page is one you can check with a command, and
-        it is in the next section.</p>
-      </section>
-
-      <section class="verify__level" id="commitment">
-        <h2>The one claim here you can verify</h2>
-        <p>I have committed USD ${facts.commitmentUsd.toLocaleString("en-US")} of my own capital at
-        ${escapeHtml(facts.commitmentTrigger)} of this book, into the same book, at the same time,
-        on the same terms as any external capital. That commitment is Ed25519-signed, so it cannot
-        be quietly edited, softened or backdated after the fact.</p>
-        <p>It is a small number and saying so is the point: it is what I can actually commit, stated
-        exactly, rather than a figure chosen to impress. No funded performance is included in the
-        published ALPHAC record today. This is
-        a forward commitment that activates at first live deployment, and until then it is a
-        promise with a signature on it and nothing more.</p>
-        <pre class="verify__code" tabindex="0" aria-label="Founder commitment verification command"><code>curl -sO ${ORIGIN}/glassbox/founder_commitment.json
-curl -sO ${ORIGIN}/glassbox/reproduce.py
-pip install cryptography
-python3 reproduce.py --dir .</code></pre>
-        <p>The same key signs the ${facts.chainEntries}-entry append-only chain behind the track
-        record, which has been running since ${escapeHtml(facts.chainStart)}.
-        <a href="/verify">The full verification instructions</a> cover both, including what each
-        check cannot prove.</p>
-      </section>
-
-      <section class="verify__level" id="how-i-work">
-        <h2>How the work is done, and where it has been wrong</h2>
-        <p>The rules I hold myself to are written down and enforced in code rather than kept as
-        intentions: a hypothesis is registered before its data is opened, a threshold is fixed
-        before it is measured, a gate is mutation-tested by breaking the thing it guards, and a
-        result that is chosen after seeing which population clears it is called selection and
-        published as such.</p>
-        <p>The most useful thing I can offer a sceptical reader is not the wins. It is that the
-        corrections are published in the same place and the same format as everything else — a
-        withdrawn figure, a defect found in our own gate, an earlier answer superseded by a better
-        measurement of the same thing. <a href="/measurements">The measurements</a> include several
-        that exist only because something we had already published turned out to be wrong.</p>
-      </section>
-
-      <section class="verify__level" id="elsewhere">
-        <h2>Elsewhere</h2>
-        <p>Code: <a href="${GITHUB}" rel="me noopener">${escapeHtml(GITHUB)}</a>. The research
-        library is at <a href="/research">/research</a>, the published measurements at
-        <a href="/measurements">/measurements</a>, and the instructions for checking any of it at
-        <a href="/verify">/verify</a>.</p>
-        <p>Nothing on this site is investment advice, an offer, or a solicitation. The book trades
-        on paper and the published strategy record includes no funded performance.</p>
-      </section>
+<main id="content">
+  <section class="founder-hero" aria-labelledby="founder-title">
+    <div class="founder-hero__grid" aria-hidden="true"></div>
+    <div class="founder-hero__copy">
+      <p class="founder-kicker"><span>Founder evidence map</span><span>Arhan Canli</span></p>
+      <h1 id="founder-title">I built a system that keeps the evidence that proves me wrong.</h1>
+      <p class="founder-hero__lead">ALPHAC is my attempt to make quantitative research publicly falsifiable. The interesting part is not a perfect curve. It is the machinery that freezes each attempt, keeps corrections visible and separates what I know from what I still need to prove.</p>
+      <div class="founder-hero__actions">
+        <a class="founder-button founder-button--primary" href="#walkthrough">Walk the 90-second case</a>
+        <a class="founder-button" href="#contribution">Inspect who did what</a>
+      </div>
     </div>
-  </article>
+    <aside class="founder-status" aria-label="Current evidence status">
+      <div class="founder-status__head"><span>Current record</span><strong>Source-bound</strong></div>
+      <dl>
+        <div><dt>Paper record since</dt><dd>${escapeHtml(facts.goLive)}</dd></div>
+        <div><dt>Forward observations</dt><dd>${forward.daily_return_observations}</dd></div>
+        <div><dt>Sleeves</dt><dd>${forward.current_sleeves} / ${forward.target_sleeves}</dd></div>
+        <div><dt>External reviews</dt><dd>${external.completed_reviews}</dd></div>
+        <div><dt>Foundry</dt><dd>${escapeHtml(foundryStatus)}</dd></div>
+      </dl>
+      <p>These are project facts, not an admissions claim or a performance claim.</p>
+    </aside>
+  </section>
+
+  <section class="founder-section founder-walkthrough" id="walkthrough" aria-labelledby="walkthrough-title">
+    <header class="founder-section__head">
+      <p class="founder-label">A 90-second project case</p>
+      <h2 id="walkthrough-title">Follow the decision, not the pitch.</h2>
+      <p>Six evidence stops tell the story in order. The script is ready. The video has not been recorded.</p>
+    </header>
+    <ol class="founder-spine">${walkthrough.chapters.map(renderChapter).join("\n")}</ol>
+    <p class="founder-boundary">${escapeHtml(walkthrough.claim_boundary)}</p>
+  </section>
+
+  <section class="founder-section founder-contribution" id="contribution" aria-labelledby="contribution-title">
+    <header class="founder-section__head founder-section__head--split">
+      <div><p class="founder-label">Contribution ledger</p><h2 id="contribution-title">Credit should be as inspectable as performance.</h2></div>
+      <p class="founder-attestation">Self-disclosed and source-bound.<br />Not independently attested.</p>
+    </header>
+    <div class="founder-ledger">
+      <details open>
+        <summary><span>01</span><strong>Arhan Canli</strong><em>Accountable human</em></summary>
+        <div class="founder-ledger__body"><p>${escapeHtml(contribution.arhan_canli.role)}</p><ul>${renderResponsibilities(contribution.arhan_canli.responsibilities)}</ul><p class="founder-ledger__boundary">${escapeHtml(contribution.arhan_canli.credit_boundary)}</p></div>
+      </details>
+      <details>
+        <summary><span>02</span><strong>AI-assisted development</strong><em>Reviewed tooling</em></summary>
+        <div class="founder-ledger__body"><p>${escapeHtml(ai.role)}</p><p>It cannot claim authorship, independent review, author approval or scientific judgment independent of me. Venue-specific disclosure is required.</p></div>
+      </details>
+      <details>
+        <summary><span>03</span><strong>Libraries, services and data</strong><em>Capabilities and inputs</em></summary>
+        <div class="founder-ledger__body"><p>${escapeHtml(services.role)}</p><p class="founder-ledger__boundary">${escapeHtml(services.credit_boundary)}</p></div>
+      </details>
+      <details>
+        <summary><span>04</span><strong>External validation</strong><em>${external.completed_reviews} completed</em></summary>
+        <div class="founder-ledger__body"><p>${escapeHtml(external.boundary)}</p><p class="founder-ledger__boundary">Assigned reviewers: ${external.assigned_reviewers}. Independent replications: ${external.independent_replications}.</p></div>
+      </details>
+    </div>
+  </section>
+
+  <section class="founder-section founder-proof" aria-labelledby="proof-title">
+    <header class="founder-section__head"><p class="founder-label">Three proof surfaces</p><h2 id="proof-title">What I want a skeptical reader to open next.</h2></header>
+    <div class="founder-proof__grid">
+      <a href="/progress" class="founder-proof__card"><span>Correction trace</span><strong>See the attractive result, the defect and the repair.</strong><small>${totalKilled} killed or screen-killed candidates remain public.</small></a>
+      <a href="/measurements/alpaca-broker-reconciliation" class="founder-proof__card"><span>Broker evidence</span><strong>${systems.alpaca_sleeves_reconciled} of ${systems.alpaca_sleeves_expected} Alpaca sleeves reconcile.</strong><small>Paper accounts only. No client capital. No funded performance.</small></a>
+      <a href="/verify" class="founder-proof__card"><span>Signed record</span><strong>Verify the append-only chain from a clean command line.</strong><small>${facts.chainEntries} entries since ${escapeHtml(facts.chainStart)}. Integrity is not profitability.</small></a>
+    </div>
+  </section>
+
+  <section class="founder-section founder-burden" id="open-burden" aria-labelledby="burden-title">
+    <div class="founder-burden__intro"><p class="founder-label">Open burden</p><h2 id="burden-title">The unfinished work belongs in the result.</h2><p>I do not have a mature forward Sharpe, independent review, a deployed research Foundry or funded performance. Those are not footnotes. They define what the next evidence must establish.</p></div>
+    <dl class="founder-burden__grid">
+      <div><dt>Forward record</dt><dd>${forward.daily_return_observations} observations</dd><small>${escapeHtml(humanizeStatus(forward.sharpe_status))}</small></div>
+      <div><dt>Sleeve objective</dt><dd>${forward.current_sleeves} of ${forward.target_sleeves}</dd><small>Target not achieved</small></div>
+      <div><dt>Independent review</dt><dd>${external.completed_reviews} completed</dd><small>${external.independent_replications} replications</small></div>
+      <div><dt>Foundry deployment</dt><dd>Planned</dd><small>Not applied to DigitalOcean</small></div>
+    </dl>
+  </section>
+
+  <section class="founder-section founder-commitment" id="commitment" aria-labelledby="commitment-title">
+    <div><p class="founder-label">Signed founder commitment</p><h2 id="commitment-title">A precise promise, not a funded track record.</h2><p>I committed USD ${facts.commitmentUsd.toLocaleString("en-US")} of my own capital at ${escapeHtml(facts.commitmentTrigger)} of this book, into the same book and on the same terms as external capital. It activates only at first live deployment. Until then it is a signed forward commitment and nothing more.</p></div>
+    <pre tabindex="0" aria-label="Founder commitment verification command"><code>curl -sO ${ORIGIN}/glassbox/founder_commitment.json
+curl -sO ${ORIGIN}/glassbox/reproduce.py
+python3 reproduce.py --dir .</code></pre>
+  </section>
+
+  <section class="founder-section founder-close" aria-labelledby="close-title">
+    <p class="founder-label">The working principle</p>
+    <h2 id="close-title">Build the claim. Publish the evidence. Keep the failures.</h2>
+    <p>The public record contains ${facts.papers} research documents, ${facts.measurements} measurements and ${facts.identities} recorded hypothesis identities against a declared budget of ${facts.budget}. It is larger than the part that worked because that is the only version worth trusting.</p>
+    <div class="founder-hero__actions"><a class="founder-button founder-button--primary" href="/systems">Inspect ALPHAC systems</a><a class="founder-button" href="${GITHUB}" rel="me noopener">Open GitHub <span aria-hidden="true">↗</span></a></div>
+  </section>
 </main>
 ${renderProductShellFooter()}
 </body>
 </html>
 `;
 
+  if (
+    html.includes(String.fromCodePoint(0x2014)) ||
+    html.includes("sole author") ||
+    html.includes("my own work")
+  ) {
+    throw new Error("founder page: prohibited or unsupported authorship language detected");
+  }
   writeFileSync(resolve(ROOT, "founder.html"), html);
   console.log(
-    `rendered /founder: ${facts.papers} papers, ${facts.measurements} measurements, ` +
-      `${totalKilled} kills, ${facts.identities}/${facts.budget} identities, ` +
-      `${facts.chainEntries} chain entries`,
+    `rendered /founder: ${walkthrough.chapters.length} evidence stops, ` +
+      `${external.completed_reviews} completed external reviews, ${facts.identities} recorded identities`,
   );
 }
 
