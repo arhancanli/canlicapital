@@ -55,15 +55,21 @@ const archivalPaperRoutes = () => {
   if (!existsSync(registryPath)) return [];
   const registry = JSON.parse(readFileSync(registryPath, "utf8"));
   return registry.sleeves.map((paper) => {
-    const route = `/${paper.bundle_manifest.replace(/\/bundle_manifest\.json$/, "/paper")}`;
-    const builtFile = resolve(ROOT, "public", `${route.slice(1)}.html`);
-    if (!existsSync(builtFile)) {
-      throw new Error(`registered archival paper has no public HTML: ${route}`);
+    const originalRoute = `/${paper.bundle_manifest.replace(/\/bundle_manifest\.json$/, "/paper")}`;
+    const wrapperRoute = originalRoute.replace(/\/paper$/, "");
+    const originalFile = resolve(ROOT, "public", `${originalRoute.slice(1)}.html`);
+    const wrapperFile = resolve(ROOT, `${wrapperRoute.slice(1)}.html`);
+    if (!existsSync(originalFile)) {
+      throw new Error(`registered archival paper has no public HTML: ${originalRoute}`);
+    }
+    if (!existsSync(wrapperFile)) {
+      throw new Error(`registered archival paper has no current-shell wrapper: ${wrapperRoute}`);
     }
     return {
       title: paper.title,
-      route,
-      loc: `${ORIGIN}${route}`,
+      route: wrapperRoute,
+      originalRoute,
+      loc: `${ORIGIN}${wrapperRoute}`,
       priority: "0.7",
       changefreq: "monthly",
     };
@@ -744,7 +750,11 @@ function main() {
           source_path: `/research/${sourceFile}`,
           citation_path: `/research/citations/${slug}.bib`,
         })),
-        archival_papers: archivalPapers.map(({ title, route }) => ({ title, path: route })),
+        archival_papers: archivalPapers.map(({ title, route, originalRoute }) => ({
+          title,
+          path: route,
+          original_path: originalRoute,
+        })),
       },
       null,
       2,

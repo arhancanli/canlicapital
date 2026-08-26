@@ -15,8 +15,8 @@
     "build": "vite build",
     "preview": "vite preview",
     "papers": "node scripts/build-papers.mjs",
-    "prebuild": "node scripts/build-public-claims.mjs && node scripts/build-measurements.mjs && node scripts/build-trials.mjs && node scripts/build-verify.mjs && node scripts/build-papers.mjs && node scripts/build-founder.mjs && node scripts/build-methodology.mjs",
-    "verify": "node scripts/build-public-claims.mjs && node scripts/audit-writing.mjs && node scripts/verify-papers.mjs && node scripts/verify-trials.mjs && node scripts/audit-onpage.mjs && node scripts/audit-link-graph.mjs && node scripts/audit-published-numbers.mjs && node scripts/audit-readme.mjs",
+    "prebuild": "node scripts/build-public-claims.mjs && node scripts/build-publication-wrappers.mjs && node scripts/build-measurements.mjs && node scripts/build-trials.mjs && node scripts/build-verify.mjs && node scripts/build-papers.mjs && node scripts/build-founder.mjs && node scripts/build-methodology.mjs",
+    "verify": "node scripts/build-public-claims.mjs && node scripts/audit-writing.mjs && node scripts/verify-publication-wrappers.mjs && node scripts/verify-papers.mjs && node scripts/verify-trials.mjs && node scripts/audit-onpage.mjs && node scripts/audit-link-graph.mjs && node scripts/audit-published-numbers.mjs && node scripts/audit-readme.mjs",
     "audit": "node scripts/audit-onpage.mjs",
     "indexnow": "node scripts/submit-indexnow.mjs",
     "indexnow:force": "node scripts/submit-indexnow.mjs --force",
@@ -36,6 +36,7 @@
     "audit:homepage": "python3 scripts/audit-homepage.py",
     "audit:product-shell": "python3 scripts/audit-product-shell.py",
     "claims": "node scripts/build-public-claims.mjs",
+    "publication-wrappers": "node scripts/build-publication-wrappers.mjs",
     "product-contract": "node scripts/audit-product-contract.mjs",
     "writing": "node scripts/audit-writing.mjs"
   },

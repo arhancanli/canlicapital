@@ -78,6 +78,24 @@ const trialEntries = () => {
   );
 };
 
+const publicationWrapperEntries = () => {
+  const dir = resolve(root, "publication");
+  if (!existsSync(dir)) return {};
+  const entries = [];
+  const visit = (current) => {
+    for (const entry of readdirSync(current, { withFileTypes: true })) {
+      const full = resolve(current, entry.name);
+      if (entry.isDirectory()) visit(full);
+      else if (entry.name.endsWith(".html")) {
+        const route = full.slice(dir.length + 1).replace(/\.html$/, "").replaceAll("/", "-");
+        entries.push([`publication-${route}`, full]);
+      }
+    }
+  };
+  visit(dir);
+  return Object.fromEntries(entries);
+};
+
 export default defineConfig({
   root,
   base: "/",
@@ -117,6 +135,7 @@ export default defineConfig({
         ...paperEntries(),
         ...measurementEntries(),
         ...trialEntries(),
+        ...publicationWrapperEntries(),
       },
       output: {
         // Split the heavy, stable vendor (three) into its own long-cache chunk

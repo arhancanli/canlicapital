@@ -1,4 +1,4 @@
-import { mkdirSync, readFileSync, readdirSync, statSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, readFileSync, readdirSync, statSync, writeFileSync } from "node:fs";
 import { dirname, join, relative, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -36,6 +36,7 @@ function routeFor(file) {
   const path = relative(ROOT, file).replaceAll("\\", "/");
   const publicPath = path.startsWith("public/") ? path.slice("public/".length) : path;
   if (publicPath === "index.html") return "/";
+  if (publicPath.endsWith("/index.html")) return `/${publicPath.slice(0, -"/index.html".length)}`;
   return `/${publicPath.replace(/\.html$/, "")}`;
 }
 
@@ -50,10 +51,19 @@ function familyFor(html) {
 
 function originFor(file) {
   const path = relative(ROOT, file).replaceAll("\\", "/");
-  if (path.startsWith("public/publication/")) return "publication";
+  if (path.startsWith("public/publication/") || path.startsWith("publication/")) return "publication";
   const first = path.split("/")[0];
   if (ROUTE_DIRS.has(first)) return first;
   return "product";
+}
+
+function requiresMigration(file, shellFamily) {
+  if (shellFamily === "archival_publication_v1") {
+    const archivePath = relative(resolve(ROOT, "public/publication"), file).replaceAll("\\", "/");
+    const wrapper = resolve(ROOT, "publication", archivePath.replace(/\/paper\.html$/, ".html"));
+    return !existsSync(wrapper);
+  }
+  return !["product_v3", "product_v3_home"].includes(shellFamily);
 }
 
 function countMatches(text, expression) {
@@ -85,7 +95,7 @@ const pages = [...walk(ROOT), ...walkPublicationPapers(resolve(ROOT, "public/pub
       indexable: !/<meta\s+name="robots"\s+content="[^"]*noindex/i.test(html),
       em_dash_count: emDashCount,
       hardcoded_metric_candidate_lines: metricCandidates(html),
-      migration_required: !["product_v3", "product_v3_home"].includes(shellFamily),
+      migration_required: requiresMigration(file, shellFamily),
     };
   });
 
@@ -112,6 +122,9 @@ const inventory = {
   product_routes: pages.filter((page) => page.origin === "product"),
   migration_groups: {
     legacy_product_routes: pages.filter((page) => page.shell_family === "legacy_product_v2").map((page) => page.route),
+    archival_publications_without_wrappers: pages
+      .filter((page) => page.shell_family === "archival_publication_v1" && page.migration_required)
+      .map((page) => page.route),
     evidence_document_generators: [
       "scripts/build-papers.mjs",
       "scripts/build-measurements.mjs",

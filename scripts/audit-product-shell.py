@@ -26,6 +26,7 @@ ROUTES = (
     "/founder",
     "/measurements/forward-evidence-maturity",
     "/research/forward-sharpe-evidence-standard",
+    "/publication/alphamax/v0.1.0",
 )
 
 EXPECTED_CORE = {"Live", "Research", "Trials", "Systems", "Methodology", "Verify"}
@@ -56,6 +57,9 @@ def audit_route(browser, route: str, *, mobile: bool = False) -> dict[str, objec
     assert header.locator(".cc-shell__cta").get_attribute("href") == "https://app.canlicapital.com/dashboard"
     assert footer.get_by_text("Founded and built by Arhan Canli in Dubai.", exact=True).count() == 1
     assert not page.evaluate("document.documentElement.scrollWidth > document.documentElement.clientWidth")
+    if route.startswith("/publication/"):
+        assert page.locator(".publication-hero").count() == 1, f"{route}: publication wrapper did not resolve"
+        assert page.get_by_role("link", name="Read immutable paper").get_attribute("href") == f"{route}/paper"
 
     if mobile:
         menu = header.locator("details.cc-shell__index")
@@ -67,7 +71,12 @@ def audit_route(browser, route: str, *, mobile: bool = False) -> dict[str, objec
         assert not page.evaluate("document.documentElement.scrollWidth > document.documentElement.clientWidth")
 
     screenshot = None
-    if (route, mobile) in {("/systems", False), ("/research/forward-sharpe-evidence-standard", False), ("/", True)}:
+    if (route, mobile) in {
+        ("/systems", False),
+        ("/research/forward-sharpe-evidence-standard", False),
+        ("/publication/alphamax/v0.1.0", False),
+        ("/", True),
+    }:
         slug = "home" if route == "/" else route.strip("/").replace("/", "-")
         screenshot_path = OUTPUT / f"{slug}-{'mobile' if mobile else 'desktop'}.png"
         page.screenshot(path=str(screenshot_path), full_page=False)

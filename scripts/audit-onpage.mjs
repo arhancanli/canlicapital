@@ -77,7 +77,10 @@ const STOP_WORDS = new Set([
 
 function audit(file) {
   const html = readFileSync(file, "utf8");
-  const page = "/" + relative(DIST, file).replace(/\.html$/, "").replace(/^index$/, "");
+  const relativePath = relative(DIST, file).replaceAll("\\", "/");
+  const page = relativePath === "index.html"
+    ? "/"
+    : `/${relativePath.endsWith("/index.html") ? relativePath.slice(0, -"/index.html".length) : relativePath.replace(/\.html$/, "")}`;
 
   const title = decodeEntities(html.match(/<title>([\s\S]*?)<\/title>/i)?.[1]?.trim() ?? "");
   if (!title) note(page, "error", "no <title>");

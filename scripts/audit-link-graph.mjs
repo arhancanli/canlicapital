@@ -62,8 +62,12 @@ function htmlFiles(dir) {
   return out;
 }
 
-const routeOf = (file) =>
-  "/" + relative(DIST, file).replace(/\.html$/, "").replace(/^index$/, "");
+const routeOf = (file) => {
+  const path = relative(DIST, file).replaceAll("\\", "/");
+  if (path === "index.html") return "/";
+  if (path.endsWith("/index.html")) return `/${path.slice(0, -"/index.html".length)}`;
+  return `/${path.replace(/\.html$/, "")}`;
+};
 
 const files = htmlFiles(DIST);
 const routes = new Set(files.map(routeOf));
@@ -72,6 +76,11 @@ const noindex = new Set(
     .filter((file) => /<meta\s+name="robots"\s+content="[^"]*\bnoindex\b/i.test(readFileSync(file, "utf8")))
     .map(routeOf),
 );
+const publicationWrapperManifest = resolve(ROOT, "artifacts/qa/publication-wrapper-manifest.json");
+if (existsSync(publicationWrapperManifest)) {
+  const wrapperRecords = JSON.parse(readFileSync(publicationWrapperManifest, "utf8")).records || [];
+  wrapperRecords.forEach((record) => noindex.add(record.original_route));
+}
 
 // Edges: only links that resolve to a page we actually built. A link to a missing page is a
 // different defect and is caught per-page by verify-papers.mjs; here it simply is not an edge.
