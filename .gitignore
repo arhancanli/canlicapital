@@ -4,6 +4,10 @@ dist
 *.log
 .DS_Store
 
+# Local credentials and runtime configuration. Never publish broker or deployment secrets.
+.env*
+!.env.example
+
 # Playwright/render-audit output — regenerated on every run, never source.
 test-results/
 artifacts/qa/visual/*.png
