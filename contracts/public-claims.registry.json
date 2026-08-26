@@ -84,6 +84,17 @@
       "surfaces": ["home", "live", "methodology", "status"]
     },
     {
+      "id": "validation.internal-grade",
+      "label": "Internal validation grade",
+      "description": "Current self-published gauntlet grade under the project's internal review rubric.",
+      "maturity": "observed",
+      "value_type": "string",
+      "format": "status",
+      "source": {"path": "/paper-state.json", "pointer": "/metrics/gauntlet_grade", "as_of_pointer": "/generated_at"},
+      "boundary": {"text": "This is a self-published internal grade, not independent validation, peer review, a performance result or evidence that the forward objective has been achieved."},
+      "surfaces": ["home", "live", "methodology", "status"]
+    },
+    {
       "id": "broker.reconciled-alpaca-sleeves",
       "label": "Reconciled Alpaca sleeves",
       "description": "Dedicated Alpaca paper sleeves covered by the latest reconciliation.",

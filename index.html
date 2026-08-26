@@ -55,10 +55,10 @@
     <section class="hero" aria-labelledby="hero-title">
       <div class="hero-grid" aria-hidden="true"></div>
       <div class="hero-status" aria-label="Current program status">
-        <div><span>Record basis</span><strong>Observed paper</strong></div>
-        <div><span>Broker execution</span><strong>3 Alpaca sleeves</strong></div>
-        <div><span>Published strategy capital</span><strong>$0 funded</strong></div>
-        <div><span>Validation grade</span><strong id="hero-grade">Loading…</strong></div>
+        <div><span>Record basis</span><strong id="hero-record-basis">Loading…</strong></div>
+        <div><span>Broker execution</span><strong id="hero-broker-execution">Loading…</strong></div>
+        <div><span>Paper record</span><strong id="hero-paper-since">Loading…</strong></div>
+        <div><span>Internal validation</span><strong id="hero-grade">Loading…</strong></div>
       </div>
       <div class="hero__copy">
         <p class="eyebrow"><span class="signal-pulse" aria-hidden="true"></span> ALPHAC / Public systematic research</p>
@@ -83,10 +83,10 @@
             <g class="chart-grid" aria-hidden="true"><path d="M0 64H760M0 128H760M0 192H760M0 256H760" /><path d="M152 0V320M304 0V320M456 0V320M608 0V320" /></g>
             <path class="chart-area" id="equity-area" d="" /><path class="chart-line" id="equity-path" d="" /><circle class="chart-node" id="equity-node" cx="0" cy="0" r="5" />
           </svg>
-          <span class="chart-label chart-label--start" id="chart-start">—</span><span class="chart-label chart-label--end" id="chart-end">—</span>
+          <span class="chart-label chart-label--start" id="chart-start">Pending</span><span class="chart-label chart-label--end" id="chart-end">Pending</span>
         </div>
         <dl class="console-metrics">
-          <div><dt>Paper return</dt><dd id="metric-live-return">—</dd><small>Observed</small></div><div><dt>Max drawdown</dt><dd id="metric-live-drawdown">—</dd><small>Observed</small></div><div><dt>Realized vol</dt><dd id="metric-live-vol">—</dd><small>Observed</small></div><div><dt>Validation</dt><dd id="metric-grade">—</dd><small>Current grade</small></div>
+          <div><dt>Paper return</dt><dd id="metric-live-return">Pending</dd><small>Observed</small></div><div><dt>Max drawdown</dt><dd id="metric-live-drawdown">Pending</dd><small>Observed</small></div><div><dt>Realized vol</dt><dd id="metric-live-vol">Pending</dd><small>Observed</small></div><div><dt>Validation</dt><dd id="metric-grade">Pending</dd><small>Internal grade</small></div>
         </dl>
         <div class="evidence-chain" aria-label="Evidence publication chain">
           <div><span>01</span><strong>Broker</strong><small id="console-broker">Checking Alpaca…</small></div><i aria-hidden="true">→</i><div><span>02</span><strong>Ledger</strong><small id="console-book">Loading exposure…</small></div><i aria-hidden="true">→</i><div><span>03</span><strong>Signed record</strong><small>Append-only chain</small></div><i aria-hidden="true">→</i><div><span>04</span><strong>Public mirror</strong><small>Open JSON + reports</small></div>
@@ -109,17 +109,23 @@
     <section class="evidence section" id="evidence" aria-labelledby="evidence-title">
       <div class="section-heading section-heading--split"><div><p class="eyebrow">Dated evidence dashboard</p><h2 id="evidence-title">A claim should arrive with its basis attached.</h2></div><p>The dashboard separates what has been observed, what was simulated, and what is still a goal. Performance targets never inherit the styling of earned results.</p></div>
       <div class="evidence-ledger">
-        <article class="evidence-ledger__primary"><div class="evidence-ledger__label"><span>Current forward record</span><em class="basis basis--observed">Observed / paper</em></div><strong id="evidence-days">—</strong><p>published daily marks</p><a href="/measurements/forward-evidence-maturity">Inspect maturity evidence <span aria-hidden="true">↗</span></a></article>
-        <article><span>Alpaca execution</span><strong id="evidence-accounts">—</strong><small>Dedicated paper accounts</small></article>
-        <article><span>Broker book</span><strong id="evidence-positions">—</strong><small>Positions / open orders</small></article>
+        <article class="evidence-ledger__primary"><div class="evidence-ledger__label"><span>Current forward record</span><em class="basis basis--observed">Observed / paper</em></div><strong id="evidence-observations">Pending</strong><p>daily return observations</p><a href="/measurements/forward-evidence-maturity">Inspect maturity evidence <span aria-hidden="true">↗</span></a></article>
+        <article><span>Alpaca execution</span><strong id="evidence-accounts">Pending</strong><small>Dedicated paper sleeves</small></article>
+        <article><span>Broker book</span><strong id="evidence-positions">Pending</strong><small>Positions / open orders</small></article>
         <article><span>Funded strategy record</span><strong>Not active</strong><small>Any separate $1 account is not yet attested here</small></article>
         <article><span>Validation</span><strong id="evidence-status">Loading…</strong><small>Green only when reconciliation passes</small></article>
+      </div>
+      <div class="evidence-frontier" aria-label="Objectives and model estimates">
+        <article><em class="basis basis--planned">Objective</em><span>Forward Sharpe</span><strong id="objective-forward-sharpe">Pending</strong><small>Not yet estimated from the forward record</small></article>
+        <article><em class="basis basis--planned">Objective</em><span>Expected max drawdown</span><strong id="objective-max-drawdown">Pending</strong><small>Portfolio objective, not a guarantee</small></article>
+        <article><em class="basis basis--estimated">Model estimate</em><span>Expected max drawdown</span><strong id="model-expected-drawdown">Pending</strong><small>Current composition / not live established</small></article>
+        <article><em class="basis basis--estimated">Model estimate</em><span>p95 max drawdown</span><strong id="model-p95-drawdown">Pending</strong><small>Published even though it exceeds the objective</small></article>
       </div>
       <div class="basis-grid" aria-labelledby="basis-title">
         <div class="basis-grid__heading"><p class="eyebrow">Evidence grammar</p><h3 id="basis-title">Three labels. No ambiguity.</h3></div>
         <article><em class="basis basis--observed">Observed</em><h3>Broker & paper record</h3><p>Marks, positions, orders, and drawdown already recorded by the current paper system.</p></article>
         <article><em class="basis basis--simulated">Simulated</em><h3>Research evidence</h3><p>Walk-forward, stress, and capacity results under declared data and cost assumptions.</p></article>
-        <article><em class="basis basis--planned">Planned</em><h3>14-sleeve frontier</h3><p>A governed breadth objective. It is not represented as a current portfolio achievement.</p></article>
+        <article><em class="basis basis--planned">Planned</em><h3><span id="target-sleeve-count">Pending</span>-sleeve frontier</h3><p>A governed breadth objective. It is not represented as a current portfolio achievement.</p></article>
       </div>
     </section>
 
@@ -131,18 +137,18 @@
     </section>
 
     <section class="sleeves section" id="sleeves" aria-labelledby="sleeves-title">
-      <div class="section-heading section-heading--split"><div><p class="eyebrow">Current portfolio architecture</p><h2 id="sleeves-title">4 sleeves. Different mechanisms. One risk budget.</h2></div><p>The current target mix is equal-weighted. Correlation is measured on the disclosed research window; live-forward diversification is not yet established.</p></div>
+      <div class="section-heading section-heading--split"><div><p class="eyebrow">Current portfolio architecture</p><h2 id="sleeves-title"><span id="current-sleeve-count">Pending</span> sleeves. Different mechanisms. One risk budget.</h2></div><p>The current target mix is equal-weighted. Correlation is measured on the disclosed research window; live-forward diversification is not yet established.</p></div>
       <div class="sleeve-table">
         <article class="sleeve-row" data-sleeve="alphamax"><div class="sleeve-index">01</div><div class="sleeve-name"><span>US equity momentum</span><h3>AlphaMax</h3></div><p>Cross-sectional momentum across a survivorship-free US equity universe.</p><dl><div><dt>Execution</dt><dd>Alpaca paper</dd></div><div><dt>Target weight</dt><dd>25%</dd></div></dl><div class="sleeve-state"><span class="state-pill state-pill--broker">Observed broker</span><small id="sleeve-alphamax-state">Loading account…</small></div></article>
         <article class="sleeve-row" data-sleeve="managed_futures"><div class="sleeve-index">02</div><div class="sleeve-name"><span>Managed futures</span><h3>AlphaTrend</h3></div><p>Time-series trend across liquid equity, rates, commodity, and FX proxies.</p><dl><div><dt>Execution</dt><dd>Alpaca paper</dd></div><div><dt>Target weight</dt><dd>25%</dd></div></dl><div class="sleeve-state"><span class="state-pill state-pill--broker">Observed broker</span><small id="sleeve-managed_futures-state">Loading account…</small></div></article>
         <article class="sleeve-row" data-sleeve="alphavintage"><div class="sleeve-index">03</div><div class="sleeve-name"><span>Macro surprise</span><h3>AlphaVintage</h3></div><p>A point-in-time inflation-surprise spread expressed through IWM and SPY.</p><dl><div><dt>Execution</dt><dd>Alpaca paper</dd></div><div><dt>Target weight</dt><dd>25%</dd></div></dl><div class="sleeve-state"><span class="state-pill state-pill--broker">Observed broker</span><small id="sleeve-alphavintage-state">Loading account…</small></div></article>
         <article class="sleeve-row" data-sleeve="alphaforge"><div class="sleeve-index">04</div><div class="sleeve-name"><span>Crypto funding carry</span><h3>AlphaForge</h3></div><p>Funding-rate carry across perpetual futures, marked from live exchange books.</p><dl><div><dt>Execution</dt><dd>Local paper</dd></div><div><dt>Target weight</dt><dd>25%</dd></div></dl><div class="sleeve-state"><span class="state-pill state-pill--local">Observed local</span><small>Live books, simulated fills</small></div></article>
       </div>
-      <div class="sleeves-footer"><div><span>Research-window correlation</span><small>Simulated / not live-forward proof</small></div><strong id="correlation-reading">+0.0274</strong><a href="/systems">Inspect every system <span aria-hidden="true">→</span></a></div>
+      <div class="sleeves-footer"><div><span>Research-window correlation</span><small>Simulated / not live-forward proof</small></div><strong id="correlation-reading">Pending</strong><a href="/systems">Inspect every system <span aria-hidden="true">→</span></a></div>
     </section>
 
     <section class="research" id="research" aria-labelledby="research-title">
-      <div class="research__intro"><p class="eyebrow">Open research book</p><h2 id="research-title">The failed trials stay visible.</h2><p>The goal is not to look right in hindsight. It is to preserve what was tested, what failed, what changed, and which claims remain unearned.</p><div class="research-counts"><div><strong id="research-documents">—</strong><span>published documents</span></div><div><strong id="research-killed">—</strong><span>rejected or screen-killed</span></div></div><p class="research-accounting-note">Hypothesis identities, family decisions, and complete trial packets are separate accounting units. The <a href="/trials">trial ledger</a> shows the denominator.</p><a class="button button--light" href="/research">Read the research library</a></div>
+      <div class="research__intro"><p class="eyebrow">Open research book</p><h2 id="research-title">The failed trials stay visible.</h2><p>The goal is not to look right in hindsight. It is to preserve what was tested, what failed, what changed, and which claims remain unearned.</p><div class="research-counts"><div><strong id="research-documents">Pending</strong><span>published documents</span></div><div><strong id="research-killed">Pending</strong><span>rejected or screen-killed</span></div></div><p class="research-accounting-note">Hypothesis identities, family decisions, and complete trial packets are separate accounting units. The <a href="/trials">trial ledger</a> shows the denominator.</p><a class="button button--light" href="/research">Read the research library</a></div>
       <div class="paper-stack"><a class="paper-card" href="/research/crypto-carry-portable-v1"><span>Portable reproduction</span><h3>Crypto Carry, without the private lake</h3><p>A bounded package for reproducing the selected carry result from public inputs.</p><em>Read paper <span aria-hidden="true">↗</span></em></a><a class="paper-card" href="/research/corporate-action-basis-reconstruction"><span>Data integrity</span><h3>Corporate-action basis reconstruction</h3><p>Why split and dividend semantics can move an apparently stable equity result.</p><em>Read paper <span aria-hidden="true">↗</span></em></a><a class="paper-card" href="/research/forward-sharpe-evidence-standard"><span>Research standard</span><h3>What would count as forward Sharpe evidence?</h3><p>The observation, provenance, and maturity requirements fixed before the result arrives.</p><em>Read paper <span aria-hidden="true">↗</span></em></a></div>
     </section>
 

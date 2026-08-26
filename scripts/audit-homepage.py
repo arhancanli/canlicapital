@@ -39,8 +39,30 @@ def audit_page(page: Page, *, name: str, width: int, height: int) -> dict[str, o
     assert page.locator("#research-title").is_visible()
     assert page.locator("#trust-title").is_visible()
     assert page.locator("#access-title").is_visible()
-    assert page.locator("#evidence-accounts").inner_text() == "3 / paper"
-    assert page.locator("#evidence-status").inner_text() == "Broker PASS"
+    public_claims = page.evaluate(
+        "async () => (await fetch('/contracts/public-claims.json')).json()"
+    )
+    claims_by_id = {claim["id"]: claim for claim in public_claims["claims"]}
+    reconciled_sleeves = claims_by_id["broker.reconciled-alpaca-sleeves"]["value"]
+    assert page.locator("#evidence-accounts").inner_text() == f"{reconciled_sleeves} / paper"
+    assert page.locator("#evidence-status").inner_text() == "Broker pass"
+    assert page.locator("#hero-record-basis").inner_text() == "Observed paper"
+    assert page.locator("#hero-broker-execution").inner_text() == f"{reconciled_sleeves} Alpaca paper sleeves"
+    assert page.locator("#hero-paper-since").inner_text().startswith("Since ")
+    assert page.locator("#hero-grade").inner_text().startswith("Self-grade ")
+    assert page.locator("#objective-forward-sharpe").get_attribute("data-claim-maturity") == "planned"
+    assert page.locator("#model-p95-drawdown").get_attribute("data-claim-maturity") == "model_estimated"
+    assert page.locator("#correlation-reading").get_attribute("data-claim-maturity") == "simulated"
+    assert page.locator("[data-claim-id]").count() >= 16
+    unresolved = page.locator(
+        "#hero-record-basis, #hero-broker-execution, #hero-paper-since, #hero-grade, "
+        "#evidence-observations, #evidence-accounts, #evidence-positions, #evidence-status, "
+        "#objective-forward-sharpe, #objective-max-drawdown, #model-expected-drawdown, "
+        "#model-p95-drawdown, #current-sleeve-count, #target-sleeve-count, #correlation-reading"
+    ).evaluate_all(
+        "nodes => nodes.filter(node => ['Loading…', 'Pending', 'Not available'].includes(node.textContent.trim())).map(node => node.id)"
+    )
+    assert unresolved == []
 
     console_box = page.locator(".live-console").bounding_box()
     console_above_initial_fold = bool(console_box and console_box["y"] < height)
@@ -101,6 +123,8 @@ def audit_page(page: Page, *, name: str, width: int, height: int) -> dict[str, o
         "first_tab_target_outline": focus_outline,
         "broker_labels": page.locator(".state-pill--broker").count(),
         "local_simulation_labels": page.locator(".state-pill--local").count(),
+        "hydrated_claim_elements": page.locator("[data-claim-id]").count(),
+        "unresolved_claim_elements": unresolved,
     }
 
 

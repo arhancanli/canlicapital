@@ -22,6 +22,12 @@ const shortDate = new Intl.DateTimeFormat("en-GB", {
   month: "short",
   timeZone: "UTC",
 });
+const fullDate = new Intl.DateTimeFormat("en-GB", {
+  day: "2-digit",
+  month: "short",
+  year: "numeric",
+  timeZone: "UTC",
+});
 const dateTime = new Intl.DateTimeFormat("en-GB", {
   day: "2-digit",
   month: "short",
@@ -34,9 +40,108 @@ const dateTime = new Intl.DateTimeFormat("en-GB", {
 
 function formatPercent(value, absolute = false) {
   const number = Number(value);
-  if (!Number.isFinite(number)) return "—";
+  if (!Number.isFinite(number)) return "Not available";
   const formatted = percent.format(absolute ? Math.abs(number) : number);
   return `${formatted.replace("-", "−").replace(/^\+/, absolute ? "" : "+")}%`;
+}
+
+function formatDecimalPercent(value) {
+  const number = Number(value);
+  if (!Number.isFinite(number)) return "Not available";
+  return `${Math.abs(number * 100).toFixed(2)}%`;
+}
+
+function humanizeStatus(value) {
+  return String(value || "Not available")
+    .toLowerCase()
+    .replaceAll("_", " ")
+    .replace(/^./, (character) => character.toUpperCase());
+}
+
+function setClaimText(elementId, claim, value) {
+  const element = byId(elementId);
+  if (!element) return;
+  element.textContent = value;
+  element.dataset.claimId = claim.id;
+  element.dataset.claimMaturity = claim.maturity;
+  element.title = `${claim.label}. ${claim.description}`;
+}
+
+function hydrateClaimContract(payload) {
+  const claims = new Map((payload?.claims || []).map((claim) => [claim.id, claim]));
+  const get = (id) => {
+    const claim = claims.get(id);
+    if (!claim) throw new Error(`Missing public claim ${id}`);
+    return claim;
+  };
+
+  const capitalKind = get("forward.capital-kind");
+  const firstMark = get("forward.first-mark");
+  const observations = get("forward.return-observations");
+  const internalGrade = get("validation.internal-grade");
+  const brokerSleeves = get("broker.reconciled-alpaca-sleeves");
+  const brokerPasses = get("broker.reconciliation-passes");
+  const brokerPositions = get("broker.open-positions");
+  const brokerOrders = get("broker.open-orders");
+  const forwardSharpe = get("objective.forward-sharpe");
+  const drawdownObjective = get("objective.expected-max-drawdown");
+  const expectedDrawdown = get("model.expected-max-drawdown");
+  const p95Drawdown = get("model.p95-max-drawdown");
+  const currentSleeves = get("sleeves.current");
+  const targetSleeves = get("sleeves.target");
+  const correlation = get("diversification.average-pairwise-correlation");
+
+  setClaimText(
+    "hero-record-basis",
+    capitalKind,
+    capitalKind.value === "PAPER_ONLY" ? "Observed paper" : humanizeStatus(capitalKind.value),
+  );
+  setClaimText(
+    "hero-broker-execution",
+    brokerSleeves,
+    `${integer.format(Number(brokerSleeves.value))} Alpaca paper sleeves`,
+  );
+  const paperStart = new Date(`${firstMark.value}T00:00:00Z`);
+  setClaimText(
+    "hero-paper-since",
+    firstMark,
+    Number.isNaN(paperStart.valueOf()) ? "Date unavailable" : `Since ${fullDate.format(paperStart)}`,
+  );
+  setClaimText("hero-grade", internalGrade, `Self-grade ${internalGrade.value}`);
+  setClaimText("metric-grade", internalGrade, internalGrade.value);
+  setClaimText("evidence-observations", observations, integer.format(Number(observations.value)));
+  setClaimText(
+    "evidence-accounts",
+    brokerSleeves,
+    `${integer.format(Number(brokerSleeves.value))} / paper`,
+  );
+  setClaimText(
+    "evidence-positions",
+    brokerPositions,
+    `${integer.format(Number(brokerPositions.value))} / ${integer.format(Number(brokerOrders.value))}`,
+  );
+  setClaimText(
+    "evidence-status",
+    brokerPasses,
+    brokerPasses.value === true ? "Broker pass" : "Broker check open",
+  );
+  setClaimText("objective-forward-sharpe", forwardSharpe, Number(forwardSharpe.value).toFixed(2));
+  setClaimText("objective-max-drawdown", drawdownObjective, formatDecimalPercent(drawdownObjective.value));
+  setClaimText("model-expected-drawdown", expectedDrawdown, formatDecimalPercent(expectedDrawdown.value));
+  setClaimText("model-p95-drawdown", p95Drawdown, formatDecimalPercent(p95Drawdown.value));
+  setClaimText("current-sleeve-count", currentSleeves, integer.format(Number(currentSleeves.value)));
+  setClaimText("target-sleeve-count", targetSleeves, integer.format(Number(targetSleeves.value)));
+  setClaimText("correlation-reading", correlation, correlationFormat.format(Number(correlation.value)));
+
+  const header = document.querySelector(".header-status");
+  header.dataset.status = brokerPasses.value === true ? "pass" : "fail";
+  setClaimText(
+    "header-broker-status",
+    brokerPasses,
+    brokerPasses.value === true
+      ? `${integer.format(Number(brokerSleeves.value))} Alpaca paper accounts reconciled`
+      : "Broker reconciliation is fail-closed",
+  );
 }
 
 function curveStatistics(curve) {
@@ -130,19 +235,10 @@ function hydrateBroker(broker) {
   const reconciled = Number(summary.reconciled_alpaca_sleeves || 0);
   const positions = Number(summary.open_positions || 0);
   const orders = Number(summary.open_orders || 0);
-  const header = document.querySelector(".header-status");
-
-  header.dataset.status = passed ? "pass" : "fail";
-  byId("header-broker-status").textContent = passed
-    ? `${reconciled} Alpaca paper accounts reconciled`
-    : "Broker reconciliation is fail-closed";
   byId("console-broker").textContent = passed
     ? `${reconciled} dedicated accounts · PASS`
     : "Reconciliation check open";
   byId("console-book").textContent = `${integer.format(positions)} positions · ${integer.format(orders)} orders`;
-  byId("evidence-accounts").textContent = passed ? `${reconciled} / paper` : "Check open";
-  byId("evidence-positions").textContent = `${integer.format(positions)} / ${integer.format(orders)}`;
-  byId("evidence-status").textContent = passed ? "Broker PASS" : "Fail-closed";
 
   Object.entries(sleeves).forEach(([key, sleeve]) => {
     const target = byId(`sleeve-${key}-state`);
@@ -164,6 +260,7 @@ async function fetchJson(path) {
 
 async function hydrateEvidence() {
   const paths = {
+    claims: "/contracts/public-claims.json",
     state: "/paper-state.json",
     broker: "/glassbox/alpaca_broker_reconciliation.json",
     researchIndex: "/research-index.json",
@@ -177,6 +274,9 @@ async function hydrateEvidence() {
       .filter((entry) => entry.status === "fulfilled")
       .map((entry) => entry.value),
   );
+
+  if (data.claims) hydrateClaimContract(data.claims);
+  else throw new Error("Public claim contract unavailable");
 
   if (data.state) {
     const algorithms = new Map(
@@ -196,21 +296,12 @@ async function hydrateEvidence() {
     byId("console-time").textContent = Number.isNaN(generated.valueOf())
       ? "Latest mark loaded"
       : `Verified ${dateTime.format(generated)}`;
-    const grade = data.state.metrics?.gauntlet_grade || "—";
-    byId("metric-grade").textContent = grade;
-    byId("hero-grade").textContent = grade;
-    byId("evidence-days").textContent = integer.format(Number(data.state.metrics?.live_days || 0));
-    const correlation = Number(data.state.metrics?.correlation_value);
-    byId("correlation-reading").textContent = Number.isFinite(correlation)
-      ? correlationFormat.format(correlation)
-      : "—";
   }
 
   if (data.broker) hydrateBroker(data.broker);
   else {
-    document.querySelector(".header-status").dataset.status = "fail";
-    byId("header-broker-status").textContent = "Broker evidence unavailable";
-    byId("evidence-status").textContent = "Unavailable";
+    byId("console-broker").textContent = "Broker detail unavailable";
+    byId("console-book").textContent = "Open system status";
   }
 
   if (data.researchIndex) {
