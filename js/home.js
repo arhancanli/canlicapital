@@ -238,7 +238,7 @@ form?.addEventListener("submit", async (event) => {
 
   email.removeAttribute("aria-invalid");
   button.disabled = true;
-  status.textContent = "Requesting access…";
+  status.textContent = "Joining research updates…";
   try {
     const payload = Object.fromEntries(new FormData(form));
     const response = await fetch(form.action, {
@@ -250,7 +250,7 @@ form?.addEventListener("submit", async (event) => {
     if (!response.ok || !result.ok) throw new Error(result.error || "Could not save right now.");
     form.reset();
     email.removeAttribute("aria-invalid");
-    status.textContent = "Access requested. You will receive the next research release.";
+    status.textContent = "You're on the research update list. The public record stays open either way.";
   } catch (error) {
     status.textContent = error.message || "Could not save right now. Try again shortly.";
     status.dataset.error = "true";
