@@ -1,5 +1,8 @@
 {
   "by_classification": {
+    "BLOCKED_ON_AUTHOR_TECHNICAL_APPROVAL": [
+      "treasury_auction_concession"
+    ],
     "BLOCKED_ON_EXTRACTION_QUALITY": [
       "inflation_breakeven_relative_value",
       "merger_arbitrage",
@@ -13,9 +16,6 @@
     ],
     "BLOCKED_ON_HUMAN_BLIND_LABELING": [
       "repurchase_issuance_flow"
-    ],
-    "BLOCKED_ON_IDENTITY_UNOBSERVABLE_AS_PREREGISTERED": [
-      "treasury_auction_concession"
     ],
     "BLOCKED_ON_MEASURED_REACHABILITY_CEILING": [
       "customer_supplier_propagation",
@@ -44,7 +44,7 @@
     ]
   },
   "claim_boundary": "Classifies blockers only. Opens no return data, runs no backtest, registers no hypothesis, and claims nothing about any candidate's edge, sign or correlation. 0 trials.",
-  "content_hash": "sha256:43ea407743325d6d5c0df2c41b7d0be36440970b210fbf22e5bf7e3b32f950d9",
+  "content_hash": "sha256:5cc81705c7e7c9a82708e95e1c0a59ed27172d0f76c12a98679ed82b649dcee2",
   "families": [
     {
       "actionable_unblock": false,
@@ -556,28 +556,29 @@
         "artifacts/feasibility/treasury_auction_concession/calendar_revision_audit.json",
         "artifacts/feasibility/treasury_auction_concession/identity_timing.json",
         "artifacts/feasibility/treasury_auction_concession/result.json",
+        "artifacts/feasibility/treasury_auction_concession/schedule_state_machine_audit.json",
         "artifacts/feasibility/treasury_auction_concession/tentative_schedule_audit.json",
         "artifacts/feasibility/treasury_auction_concession/wayback_pdf_schedule_audit.json",
         "artifacts/feasibility/treasury_auction_concession/wayback_schedule_audit.json"
       ],
       "atlas_obtainability_verdict": null,
       "blocking_reasons": [],
-      "classification": "BLOCKED_ON_IDENTITY_UNOBSERVABLE_AS_PREREGISTERED",
+      "classification": "BLOCKED_ON_AUTHOR_TECHNICAL_APPROVAL",
       "credential_cost": {},
       "credentials_missing": [],
       "credentials_required": [],
-      "decision": "IDENTITY_NOT_OBSERVABLE_AS_PREREGISTERED",
+      "decision": "AUTHOR_APPROVAL_REQUIRED",
       "failing_gate_count": 1,
       "failing_gates": [
-        "exact_ten_session_identity_observable_for_all_dates"
+        "author_technical_approval_recorded"
       ],
       "family": "treasury_auction_concession",
-      "passing_gate_count": 4,
+      "passing_gate_count": 9,
       "reachability_verdict": null,
       "release_reachability_verdict": null,
       "return_hypotheses_spent": 0,
       "return_outcome": null,
-      "source_artifact": "artifacts/feasibility/treasury_auction_concession/calendar_revision_audit.json",
+      "source_artifact": "artifacts/feasibility/treasury_auction_concession/schedule_state_machine_audit.json",
       "source_reachability_verdict": null,
       "superseded": false
     }
@@ -616,6 +617,16 @@
       "packet_content_hash": "sha256:eda83fdea1ea96ab693a9cb1fa22f4943d1f2a5a228e59294c6a16092ecb7cfe",
       "unblocks": [
         "active_ownership_13d_item4_v3"
+      ]
+    },
+    {
+      "action": "Arhan independently reviews the Treasury schedule state machine and records approval or required changes; automation may not answer for him",
+      "artifact_content_hash": "sha256:46dfc56e7a2bd92cf55cacc1cb69ce4d09d8803a56376ab93faeb0d4b45ebef2",
+      "effort": "technical authorship review; no prices or returns",
+      "protocol": "docs/design/FEASIBILITY_TREASURY_AUCTION_STATE_MACHINE.md",
+      "source_artifact": "artifacts/feasibility/treasury_auction_concession/schedule_state_machine_audit.json",
+      "unblocks": [
+        "treasury_auction_concession"
       ]
     }
   ],

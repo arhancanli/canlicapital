@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Treasury auction concession: point-in-time schedule state machine</title>
+<meta name="description" content="The original literature identity enters a relative-value position ten XNYS sessions before each fixed-rate 2-year Treasury auction, reverses after the…" />
+<meta name="alphac-source-sha256" content="12b3fa9cfb774bd926945bf39111f9cd3ba50e0c87ba67220f9d8e1423b8563f" />
+
+<link rel="canonical" href="https://canlicapital.com/research/treasury-auction-state-machine" />
+<meta name="author" content="Arhan Canli" />
+<meta name="citation_title" content="Treasury auction concession: point-in-time schedule state machine" />
+<meta name="citation_author" content="Arhan Canli" />
+<meta name="citation_publication_date" content="2026" />
+<meta name="citation_language" content="en" />
+<meta name="citation_fulltext_html_url" content="https://canlicapital.com/research/treasury-auction-state-machine" />
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="Canli Capital" />
+<meta property="og:title" content="Treasury auction concession: point-in-time schedule state machine" />
+<meta property="og:description" content="The original literature identity enters a relative-value position ten XNYS sessions before each fixed-rate 2-year Treasury auction, reverses after the…" />
+<meta property="og:url" content="https://canlicapital.com/research/treasury-auction-state-machine" />
+<meta property="og:image" content="https://canlicapital.com/og.png" />
+<meta property="article:author" content="Arhan Canli" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Treasury auction concession: point-in-time schedule state machine" />
+<meta name="twitter:description" content="The original literature identity enters a relative-value position ten XNYS sessions before each fixed-rate 2-year Treasury auction, reverses after the…" />
+<meta name="twitter:image" content="https://canlicapital.com/og.png" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="icon" href="/favicon.ico" sizes="any" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=optional" />
+<link rel="stylesheet" media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=optional" />
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=optional" /></noscript>
+<link rel="stylesheet" href="../css/paper.css" />
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"ScholarlyArticle","headline":"Treasury auction concession: point-in-time schedule state machine","description":"The original literature identity enters a relative-value position ten XNYS sessions before each fixed-rate 2-year Treasury auction, reverses after the…","url":"https://canlicapital.com/research/treasury-auction-state-machine","inLanguage":"en","isAccessibleForFree":true,"datePublished":"2026","author":{"@type":"Person","@id":"https://canlicapital.com/#arhan-canli","name":"Arhan Canli","jobTitle":"Founder and Quantitative Researcher","url":"https://canlicapital.com/founder","sameAs":["https://github.com/arhancanli"],"affiliation":{"@type":"Organization","@id":"https://canlicapital.com/#organization","name":"Canli Capital","url":"https://canlicapital.com/"}},"publisher":{"@type":"Organization","@id":"https://canlicapital.com/#organization","name":"Canli Capital","url":"https://canlicapital.com/","logo":{"@type":"ImageObject","url":"https://canlicapital.com/brand-mark.svg"}},"isPartOf":{"@type":"Periodical","name":"Canli Capital Research","url":"https://canlicapital.com/research"},"encodingFormat":"text/html","associatedMedia":{"@type":"MediaObject","contentUrl":"https://canlicapital.com/research/treasury-auction-state-machine.md","encodingFormat":"text/markdown"}}</script>
+</head>
+<body class="paper">
+<a class="paper__skip" href="#content">Skip to content</a>
+<header class="paper__masthead">
+  <a class="paper__brand" href="/">Canli Capital</a>
+  <nav class="paper__nav" aria-label="Primary">
+    <a href="/systems">Systems</a>
+    <a href="/performance">Evidence</a>
+    <a href="/research">Research</a>
+    <a href="/open">Glass box</a>
+  </nav>
+</header>
+<main class="paper__main" id="content">
+  <article class="paper__article">
+    <p class="paper__eyebrow"><a href="/research">Research</a></p>
+    <h1 class="paper__title">Treasury auction concession: point-in-time schedule state machine</h1>
+    <p class="paper__byline">By <span rel="author">Arhan Canli</span>, Canli Capital</p>
+    <div class="paper__body">
+<p><strong>Prepared:</strong> 2026-08-26<br><strong>Stage:</strong> no-price, no-return identity redesign<br><strong>Family trial account:</strong> <code>treasury_auction_concession</code><br><strong>Author technical approval:</strong> not yet recorded<br><strong>Return execution authorized:</strong> no</p>
+<h2>Why the identity needs a state machine</h2>
+<p>The original literature identity enters a relative-value position ten XNYS sessions before each
+fixed-rate 2-year Treasury auction, reverses after the auction, and exits ten sessions later. That
+clock is not observable from formal auction announcements alone. The sealed archive audit proves
+145 of 156 auction dates at least ten sessions ahead, but it also preserves five tentative-date
+changes, two late exact captures, three post-event exact captures, and one missing month.</p>
+<p>A historical test cannot replace those states with the final auction calendar. This protocol keeps
+the economic direction and ten-session windows fixed while declaring how an implementable process
+would react to the calendar information available at each decision time.</p>
+<p>This document does not select prices, load returns, claim a premium, or admit a sleeve. It prepares
+one identity for Arhan Canli&#39;s technical review.</p>
+<h2>Frozen event and decision clock</h2>
+<ul>
+<li>Eligible event: nominal, fixed-rate 2-year US Treasury note auction.</li>
+<li>Research interval: 2013-01-01 through 2025-12-31 for the sealed historical audit.</li>
+<li>Trading calendar: XNYS sessions. The eventual instrument calendar and execution timestamps must
+be bound separately in the return preregistration.</li>
+<li>Tentative entry: XNYS close ten sessions before the latest authoritative tentative auction date
+observable by that close.</li>
+<li>Formal confirmation: the official Treasury auction announcement date.</li>
+<li>Auction confirmation: the official auction occurrence and result publication.</li>
+<li>Post entry: XNYS close on the confirmed auction date, after the 1 p.m. auction.</li>
+<li>Post exit: XNYS close ten sessions after the confirmed auction date.</li>
+<li>Price, return, P&amp;L, Sharpe, drawdown, and portfolio-correlation fields are prohibited here.</li>
+</ul>
+<p>The state machine does not infer when an archive document was originally published. Historical
+knowability uses only a sealed official release date or a Wayback capture timestamp. A capture is an
+upper bound on when a date was observable, never evidence that it was known earlier.</p>
+<h2>Position identity carried forward</h2>
+<p>The state machine changes only the event clock. It does not alter the literature direction:</p>
+<ol>
+<li>The pre-auction leg is the locked short on-the-run 2-year note position against the declared
+duration-matched 6-month-bill and 10-year-note hedge.</li>
+<li>The post-auction leg is the locked opposite relative-value position.</li>
+<li>No missing or revised schedule permits an inverted sign, a shorter substitute window, an ETF
+directional proxy, or a different maturity.</li>
+<li>Exact instruments, hedge ratios, rolls, timestamps, commissions, bid/ask costs, market impact,
+and margin remain mandatory fields in the later return preregistration.</li>
+</ol>
+<h2>States</h2>
+<p><code>UNOBSERVED</code>
+: No usable tentative date is known. No pre-auction position is allowed.</p>
+<p><code>TENTATIVE_ARMED</code>
+: A fixed-rate 2-year date is source-bound at least ten XNYS sessions ahead. The T−10 entry is
+scheduled but no position exists.</p>
+<p><code>PRE_ACTIVE</code>
+: The locked pre-auction leg was entered at the scheduled T−10 close.</p>
+<p><code>REARMED</code>
+: An authoritative schedule update changed the date before entry and the replacement date still
+has at least ten sessions of lead. The old entry is cancelled and a new T−10 entry is scheduled.</p>
+<p><code>PRE_CANCELLED</code>
+: A date changed or an auction was cancelled after entry. The pre leg exits at the next XNYS close;
+the strategy never holds it merely because the original tentative date was convenient.</p>
+<p><code>POST_ONLY</code>
+: The exact date arrived with fewer than ten sessions of lead, after the event, or without a usable
+tentative schedule. The pre leg is skipped. A post leg remains possible only after the auction is
+formally confirmed and occurs.</p>
+<p><code>CONFIRMED</code>
+: The official announcement confirms the date. If the pre leg is active and unchanged, it remains
+active through the auction-day close.</p>
+<p><code>POST_ACTIVE</code>
+: The confirmed auction occurred. The pre leg, if any, is closed and the opposite post leg is
+entered at the auction-day close.</p>
+<p><code>CLOSED</code>
+: The post leg exits at T+10. Event attribution and all costs remain attached to that event identity.</p>
+<h2>Transition rules</h2>
+<table>
+<thead>
+<tr>
+<th>Current state</th>
+<th>Point-in-time event</th>
+<th>Required action</th>
+<th>Next state</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>UNOBSERVED</code></td>
+<td>Usable tentative date with at least ten sessions of lead</td>
+<td>Schedule the exact T−10 close</td>
+<td><code>TENTATIVE_ARMED</code></td>
+</tr>
+<tr>
+<td><code>UNOBSERVED</code></td>
+<td>Formal announcement with fewer than ten sessions of lead</td>
+<td>Do not chase the pre leg</td>
+<td><code>POST_ONLY</code></td>
+</tr>
+<tr>
+<td><code>TENTATIVE_ARMED</code></td>
+<td>T−10 close arrives with no conflicting update</td>
+<td>Enter the locked pre leg</td>
+<td><code>PRE_ACTIVE</code></td>
+</tr>
+<tr>
+<td><code>TENTATIVE_ARMED</code></td>
+<td>Date changes and replacement still has ten sessions</td>
+<td>Cancel old entry and schedule the replacement</td>
+<td><code>REARMED</code></td>
+</tr>
+<tr>
+<td><code>TENTATIVE_ARMED</code></td>
+<td>Date changes with fewer than ten sessions remaining</td>
+<td>Cancel the old entry; do not enter late</td>
+<td><code>POST_ONLY</code></td>
+</tr>
+<tr>
+<td><code>PRE_ACTIVE</code></td>
+<td>Date changes or auction is cancelled</td>
+<td>Exit at the next XNYS close; never invert</td>
+<td><code>PRE_CANCELLED</code></td>
+</tr>
+<tr>
+<td><code>PRE_CANCELLED</code></td>
+<td>Replacement date later becomes observable with ten sessions</td>
+<td>A fresh pre entry is allowed only at its exact T−10 close</td>
+<td><code>REARMED</code></td>
+</tr>
+<tr>
+<td><code>PRE_CANCELLED</code></td>
+<td>Replacement remains late</td>
+<td>No replacement pre leg</td>
+<td><code>POST_ONLY</code></td>
+</tr>
+<tr>
+<td><code>PRE_ACTIVE</code></td>
+<td>Formal announcement confirms the same date</td>
+<td>Keep the pre leg through auction-day close</td>
+<td><code>CONFIRMED</code></td>
+</tr>
+<tr>
+<td>any pre state</td>
+<td>No official announcement by the auction-day decision cutoff</td>
+<td>Exit or remain flat; no post leg</td>
+<td><code>CLOSED</code></td>
+</tr>
+<tr>
+<td><code>CONFIRMED</code> or <code>POST_ONLY</code></td>
+<td>Auction occurs and the official result is published</td>
+<td>Enter the locked post leg at the XNYS close</td>
+<td><code>POST_ACTIVE</code></td>
+</tr>
+<tr>
+<td><code>POST_ACTIVE</code></td>
+<td>T+10 close</td>
+<td>Exit</td>
+<td><code>CLOSED</code></td>
+</tr>
+</tbody></table>
+<p>An announcement or update without an intraday publication timestamp is treated conservatively as
+actionable at the next XNYS close. A replacement pre leg is never backdated.</p>
+<h2>Revisions in the sealed 2013–2025 panel</h2>
+<p>The five known tentative-date changes receive deterministic treatment:</p>
+<ul>
+<li>Four dates had already crossed their tentative T−10 entry before the formal revision. Their pre
+legs are cancelled at the next XNYS close and are not re-opened because fewer than ten sessions
+remain before the confirmed date.</li>
+<li>One revision was announced before the tentative T−10 entry. Its stale entry is cancelled and the
+event becomes post-only because the confirmed date is already inside T−10.</li>
+<li>The two late exact captures, three post-event captures, and one missing month are also post-only.</li>
+<li>The remaining 145 events use the exact source-bound tentative date and can follow the complete
+pre-and-post path.</li>
+</ul>
+<p>These classifications are inputs, not performance-based exclusions. Every skipped or shortened pre
+leg remains in the event ledger.</p>
+<h2>Overlap policy</h2>
+<p>Monthly T−10/T+10 windows can overlap. No event is dropped because a neighboring event exists.
+Each event retains its own state and gross target. The later execution preregistration must aggregate
+simultaneous targets into one net order while preserving event-level theoretical legs, realized
+fills, allocated fees, and any cancellation. It may not keep only the more profitable attribution.</p>
+<h2>Fail-closed conditions</h2>
+<p>The event closes without a post leg if the auction is cancelled, the official announcement or
+result cannot be source-bound by the decision cutoff, the auction date is not a valid declared
+trading session, or the relevant instrument cannot be traded under the frozen execution contract.
+Missing records are never replaced by the final calendar.</p>
+<h2>Technical gates</h2>
+<p>The no-return audit passes only when:</p>
+<ol>
+<li>All 156 sealed events map to exactly one state path.</li>
+<li>The 145 exact-date proofs and 11 unresolved-date classifications reconcile to the source audits.</li>
+<li>Every tentative entry, cancellation session, auction-day transition, and T+10 exit is
+deterministic under the XNYS calendar.</li>
+<li>Revised, late, post-event, and missing schedules have explicit behavior.</li>
+<li>Overlap handling and event-level attribution are declared.</li>
+<li>No source input contains market prices or returns.</li>
+<li>Return data opened and return hypotheses spent remain zero.</li>
+<li>The protocol and every source artifact are SHA-256 bound.</li>
+</ol>
+<p>Passing these technical gates means only that the calendar identity is executable without final-date
+hindsight. The candidate remains <code>identity-redesign-required</code> until Arhan records technical approval.
+Even after approval, a separate checksum-bound return preregistration is required before any market
+data is opened.</p>
+<h2>Approval boundary</h2>
+<p>Prepared for review; not approved. Arhan must independently confirm the position identity, decision
+timing, cancellation rule, post-only treatment, overlap accounting, and kill conditions. Automation
+may test and package this protocol but may not supply that approval or authorize a return run.</p>
+
+    </div>
+    <nav class="paper__related" aria-label="Related research">
+      <p class="paper__related-kicker">Filed under</p>
+      <p class="paper__links"><a href="/research/topics/engineering-foundations">Engineering foundations</a><span aria-hidden="true"> / </span><a href="/research/topics/rates-and-treasuries">Rates and treasuries</a></p>
+      <p class="paper__related-kicker">Related work</p>
+      <ul class="paper__related-list"><li><a href="/research/kill-econtrend">Economic-Trend Sleeve, macro-fundamental trend (campaign): a killed candidate</a></li><li><a href="/research/equity-value-investment-lineage">Equity value, issuance, and investment: 13 identities and unstable evidence</a></li><li><a href="/research/literature-inflation-breakeven-relative-value">Inflation breakeven relative value — literature and claim boundary</a></li><li><a href="/research/financing-replay">Point-in-time cash and collateral financing replay</a></li><li><a href="/research/pre-fomc-announcement-drift-feasibility">Pre-FOMC announcement drift — no-return feasibility protocol</a></li><li><a href="/research/prereg-pre-fomc-announcement-drift">PRE-REGISTRATION — post-publication pre-FOMC announcement drift</a></li></ul>
+    </nav>
+    <footer class="paper__footer">
+      <p class="paper__links">
+        <a href="/research/treasury-auction-state-machine.md">Read the unrendered source</a>
+        <span aria-hidden="true"> / </span>
+        <a href="/research/citations/treasury-auction-state-machine.bib" download>Cite this report</a>
+        <span aria-hidden="true"> / </span>
+        <a href="/open">Inspect the underlying artifacts</a>
+        <span aria-hidden="true"> / </span>
+        <a href="/research">All research</a>
+      </p>
+      <p class="paper__boundary">
+        Published as evidence, not as a claim about future performance. The figures quoted here
+        are reproducible from the artifacts linked above.
+      </p>
+    </footer>
+  </article>
+</main>
+</body>
+</html>
