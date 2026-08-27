@@ -45,10 +45,10 @@ old units. Any of those would produce exactly this shape.
 
 So the incident record binds two artifacts by hash and reads them rather than trusting memory:
 
-- `var/trading_crypto_perp.sqlite`, `sha256:d5827f3e02...`, the actual paper execution
+- `var/trading_crypto_perp.sqlite`, `sha256:d5827f3e0248f2...`, the actual paper execution
   database with the three orders in it;
 - `data/lake/funding/instrument_id=BINANCE:PERP:LABUSDT/year=2026/data.parquet`,
-  `sha256:233336b834...`, the point-in-time funding series.
+  `sha256:233336b834ce62...`, the point-in-time funding series.
 
 And it cites independent, dated market evidence that has nothing to do with this system: third
 party historical prices for the token across the July collapse, and a venue's public delisting

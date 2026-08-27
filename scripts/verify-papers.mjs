@@ -1026,9 +1026,9 @@ if (existsSync(dsrToolFile)) {
     dsrContract.schema === "canli.alphac-deflated-sharpe-calculator-contract.v1" &&
       dsrContract.status === "REFERENCE_IMPLEMENTATION_CONTRACT" &&
       dsrContract.content_hash ===
-        "sha256:241f33d627cecb876d5cd0cb0b9d48f18e20d55d921437ec2926d4603f92d349" &&
+        "sha256:4f0043376bff896f427e0314e7e29848751424863337fcf0bfd7ec9429502b8a" &&
       observedContractBytesHash ===
-        "sha256:bd709eca441119fa71e15ce03d0c917950e07d7f1f5068238e3c600d507533d8",
+        "sha256:2ba8fcb339a5fdb9304da074fcbdf9e229f9b6f5ec2f8a787c542f5f31db7e8f",
     "/tools/deflated-sharpe formula contract is unsupported or hash-invalid",
   );
   check(

@@ -123,10 +123,10 @@ mis-scaled contract multiplier, a token that redenominated while the position re
 old units. Any of those would produce exactly this shape.</p>
 <p>So the incident record binds two artifacts by hash and reads them rather than trusting memory:</p>
 <ul>
-<li><code>var/trading_crypto_perp.sqlite</code>, <code>sha256:d5827f3e02...</code>, the actual paper execution
+<li><code>var/trading_crypto_perp.sqlite</code>, <code>sha256:d5827f3e0248f2...</code>, the actual paper execution
 database with the three orders in it;</li>
 <li><code>data/lake/funding/instrument_id=BINANCE:PERP:LABUSDT/year=2026/data.parquet</code>,
-<code>sha256:233336b834...</code>, the point-in-time funding series.</li>
+<code>sha256:233336b834ce62...</code>, the point-in-time funding series.</li>
 </ul>
 <p>And it cites independent, dated market evidence that has nothing to do with this system: third
 party historical prices for the token across the July collapse, and a venue&#39;s public delisting

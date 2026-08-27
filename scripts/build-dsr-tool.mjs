@@ -19,10 +19,16 @@ const LEDGER_PATH = resolve(GLASSBOX, LEDGER_NAME);
 const ORIGIN = "https://canlicapital.com";
 const ALPHAC_COMMIT = "9b92f5128acfdabbc9c3160348004c5b3eba6f05";
 const ALPHAC_ROOT = `https://github.com/arhancanli/alphac/blob/${ALPHAC_COMMIT}`;
+// Re-pinned 2026-08-27. The contract's PAYLOAD did not change; its canonicalization
+// did. Its builder hashed with ensure_ascii=False while all 33 other artifacts that
+// contain non-ASCII, and the public reproduce.py kit, use the default escaping. The
+// difference is invisible on pure-ASCII documents and this was the only artifact with
+// a raw non-ASCII byte, so the mismatch surfaced only as reproduce.py reporting it
+// FAILED, which halted the nightly publish on three separate nights.
 const CONTRACT_BYTES_SHA256 =
-  "sha256:bd709eca441119fa71e15ce03d0c917950e07d7f1f5068238e3c600d507533d8";
+  "sha256:2ba8fcb339a5fdb9304da074fcbdf9e229f9b6f5ec2f8a787c542f5f31db7e8f";
 const CONTRACT_CONTENT_HASH =
-  "sha256:241f33d627cecb876d5cd0cb0b9d48f18e20d55d921437ec2926d4603f92d349";
+  "sha256:4f0043376bff896f427e0314e7e29848751424863337fcf0bfd7ec9429502b8a";
 
 const escapeHtml = (value) =>
   String(value)
