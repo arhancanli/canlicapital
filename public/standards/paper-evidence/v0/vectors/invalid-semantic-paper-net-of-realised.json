@@ -1,6 +1,6 @@
 {
   "schema": "canli.paper-evidence.v0",
-  "generated_at": "2026-08-27T18:26:43Z",
+  "generated_at": "2026-08-27T18:37:08Z",
   "capital": {
     "kind": "PAPER",
     "execution": "MIXED",
@@ -27,7 +27,7 @@
   },
   "returns": {
     "basis": "NET_OF_REALISED_COSTS",
-    "cumulative": -0.02457649999999989,
+    "cumulative": -0.02426509999999993,
     "annualised": null,
     "sharpe_annualised": null,
     "sharpe_reportable": false,
@@ -46,7 +46,21 @@
       "FUNDING"
     ],
     "turnover_annualised": null,
-    "notes": "One shared transaction-cost model prices every fill; the engine never computes a cost itself."
+    "not_modelled": [
+      "Partial fills and queue position",
+      "Tick and lot rounding",
+      "Minimum commission floors",
+      "Margin interest above the financing model",
+      "Custody, platform and market-data fees",
+      "Dividend withholding tax",
+      "Regulatory fees (SEC Section 31, FINRA TAF)",
+      "Transaction taxes and stamp duty",
+      "Capital gains and income tax",
+      "Currency conversion",
+      "Delisting and halt losses"
+    ],
+    "coverage_url": "https://canlicapital.com/costs",
+    "notes": "One shared transaction-cost model prices every fill; the engine never computes a cost itself. Latency is charged as a flat add-on but measures about 5.5 hours in the live record, so it is modelled as the wrong KIND of quantity. Every unmodelled cost listed flatters the result, so these returns are an upper bound."
   },
   "selection": {
     "trials_counted": true,
@@ -76,12 +90,12 @@
       },
       {
         "path": "public/contracts/public-claims.json",
-        "sha256": "3ba9153e97ff5ad5eeeb9074728bb040d4af7da9d0c969717c88b87ddb8ab109",
+        "sha256": "11603a2f7165327dcbf0dcefee1e63c377ba61619fe56d4ba2a2b634af1825c6",
         "url": "https://canlicapital.com/contracts/public-claims.json"
       },
       {
         "path": "public/glassbox/alpaca_broker_reconciliation.json",
-        "sha256": "8aaf82bd6c724ad7fa40073f4d80baf6476d896ef0a4047ca2f40696e50178a0",
+        "sha256": "94ca3faf50ab1f2677856144b72e9bf911af05658ed7d625208e370a36a7a45a",
         "url": "https://canlicapital.com/glassbox/alpaca_broker_reconciliation.json"
       }
     ],
@@ -99,6 +113,7 @@
       "A forward Sharpe ratio. 252 observations are required to estimate one and this record has 18.",
       "An expected maximum drawdown. The realised figure describes a short sample and the model estimate is not live evidence.",
       "Live-forward diversification between sleeves.",
+      "A return net of every cost. Several cost categories are not charged at all and every one of them flatters, so this figure is an upper bound. The full ledger is at /costs.",
       "Any funded performance whatsoever. No real capital has been deployed."
     ],
     "external_review_count": 0,

@@ -20,155 +20,335 @@
   ],
   "additionalProperties": false,
   "properties": {
-    "schema": { "const": "canli.paper-evidence.v0" },
-    "generated_at": { "type": "string", "format": "date-time" },
-
+    "schema": {
+      "const": "canli.paper-evidence.v0"
+    },
+    "generated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
     "capital": {
       "type": "object",
       "description": "What kind of money produced this record. The single most misreadable fact about any track record, so it is required and enumerated rather than described in prose.",
-      "required": ["kind", "execution"],
+      "required": [
+        "kind",
+        "execution"
+      ],
       "additionalProperties": false,
       "properties": {
         "kind": {
-          "enum": ["PAPER", "FUNDED", "SIMULATED", "MIXED"],
+          "enum": [
+            "PAPER",
+            "FUNDED",
+            "SIMULATED",
+            "MIXED"
+          ],
           "description": "PAPER: orders placed at a broker against a paper account. SIMULATED: no broker involved. FUNDED: real capital at risk. MIXED: any combination, which must be decomposed in `notes`."
         },
         "execution": {
-          "enum": ["BROKER_PAPER_FILLS", "LOCAL_SIMULATED_FILLS", "BROKER_LIVE_FILLS", "MIXED"],
+          "enum": [
+            "BROKER_PAPER_FILLS",
+            "LOCAL_SIMULATED_FILLS",
+            "BROKER_LIVE_FILLS",
+            "MIXED"
+          ],
           "description": "Where the fills came from. A broker paper fill and a locally modelled fill are different evidence and may not be merged silently."
         },
-        "venue": { "type": "string" },
-        "notes": { "type": "string" }
+        "venue": {
+          "type": "string"
+        },
+        "notes": {
+          "type": "string"
+        }
       }
     },
-
     "identity": {
       "type": "object",
       "description": "What this record is about, and whether that thing was frozen before the returns were seen.",
-      "required": ["name", "kind", "preregistered"],
+      "required": [
+        "name",
+        "kind",
+        "preregistered"
+      ],
       "additionalProperties": false,
       "properties": {
-        "name": { "type": "string", "minLength": 1 },
-        "kind": { "enum": ["SLEEVE", "BOOK", "CANDIDATE"] },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "kind": {
+          "enum": [
+            "SLEEVE",
+            "BOOK",
+            "CANDIDATE"
+          ]
+        },
         "preregistered": {
           "type": "boolean",
           "description": "Whether the strategy identity was frozen before its out-of-sample returns were opened. False is a legitimate answer and is far more useful than an absent field."
         },
-        "preregistration_ref": { "type": "string" },
-        "constituents": { "type": "array", "items": { "type": "string" } }
+        "preregistration_ref": {
+          "type": "string"
+        },
+        "constituents": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
       }
     },
-
     "period": {
       "type": "object",
-      "required": ["first_observation", "last_observation", "observation_count", "frequency"],
+      "required": [
+        "first_observation",
+        "last_observation",
+        "observation_count",
+        "frequency"
+      ],
       "additionalProperties": false,
       "properties": {
-        "first_observation": { "type": "string", "format": "date" },
-        "last_observation": { "type": "string", "format": "date" },
-        "observation_count": { "type": "integer", "minimum": 0 },
-        "frequency": { "enum": ["DAILY", "WEEKLY", "MONTHLY", "HOURLY", "IRREGULAR"] },
-        "calendar": { "type": "string" }
+        "first_observation": {
+          "type": "string",
+          "format": "date"
+        },
+        "last_observation": {
+          "type": "string",
+          "format": "date"
+        },
+        "observation_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "frequency": {
+          "enum": [
+            "DAILY",
+            "WEEKLY",
+            "MONTHLY",
+            "HOURLY",
+            "IRREGULAR"
+          ]
+        },
+        "calendar": {
+          "type": "string"
+        }
       }
     },
-
     "returns": {
       "type": "object",
       "description": "Return figures, always net-of-what stated. A return series whose cost treatment is unstated is not a measurement.",
-      "required": ["basis", "cumulative", "series_available"],
+      "required": [
+        "basis",
+        "cumulative",
+        "series_available"
+      ],
       "additionalProperties": false,
       "properties": {
         "basis": {
-          "enum": ["GROSS", "NET_OF_MODELLED_COSTS", "NET_OF_REALISED_COSTS"],
+          "enum": [
+            "GROSS",
+            "NET_OF_MODELLED_COSTS",
+            "NET_OF_REALISED_COSTS"
+          ],
           "description": "NET_OF_REALISED_COSTS requires broker-observed costs, not a model."
         },
-        "cumulative": { "type": "number" },
-        "annualised": { "type": ["number", "null"] },
-        "sharpe_annualised": { "type": ["number", "null"] },
+        "cumulative": {
+          "type": "number"
+        },
+        "annualised": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "sharpe_annualised": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
         "sharpe_reportable": {
           "type": "boolean",
           "description": "Whether the sample supports reporting a Sharpe at all. A short record must set this false and leave sharpe_annualised null rather than publishing a figure the sample cannot carry."
         },
-        "series_available": { "type": "boolean" },
-        "series_url": { "type": "string" }
+        "series_available": {
+          "type": "boolean"
+        },
+        "series_url": {
+          "type": "string"
+        }
       }
     },
-
     "costs": {
       "type": "object",
       "description": "What was charged and what was assumed. Absent cost modelling is itself a disclosure.",
-      "required": ["modelled"],
+      "required": [
+        "modelled"
+      ],
       "additionalProperties": false,
       "properties": {
-        "modelled": { "type": "boolean" },
+        "modelled": {
+          "type": "boolean"
+        },
         "components": {
           "type": "array",
-          "items": { "enum": ["SPREAD", "FEES", "IMPACT", "LATENCY", "FINANCING", "BORROW", "FUNDING"] }
+          "items": {
+            "enum": [
+              "SPREAD",
+              "FEES",
+              "IMPACT",
+              "LATENCY",
+              "FINANCING",
+              "BORROW",
+              "FUNDING"
+            ]
+          }
         },
-        "turnover_annualised": { "type": ["number", "null"] },
-        "notes": { "type": "string" }
+        "turnover_annualised": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "notes": {
+          "type": "string"
+        },
+        "not_modelled": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Cost categories the publisher does NOT charge. Optional in v0 and a candidate to become required in the next version, because a cost model described only by its inclusions is structurally misleading: a reader cannot distinguish a cost judged immaterial from one nobody considered, since both appear as silence. Unmodelled costs almost always flatter, so this list has a known direction."
+        },
+        "coverage_url": {
+          "type": "string"
+        }
       }
     },
-
     "selection": {
       "type": "object",
       "description": "How much searching produced this result. Without it a Sharpe ratio is uninterpretable, which is the single most common defect in published performance.",
-      "required": ["trials_counted", "trial_count", "deflation_applied"],
+      "required": [
+        "trials_counted",
+        "trial_count",
+        "deflation_applied"
+      ],
       "additionalProperties": false,
       "properties": {
         "trials_counted": {
           "type": "boolean",
           "description": "Whether the publisher actually maintains a trial ledger. False is honest; an unstated trial count is not."
         },
-        "trial_count": { "type": ["integer", "null"], "minimum": 0 },
-        "trial_unit": { "type": "string" },
-        "deflation_applied": { "type": "boolean" },
-        "deflated_sharpe_ratio": { "type": ["number", "null"], "minimum": 0, "maximum": 1 },
-        "deflation_method": { "type": "string" }
+        "trial_count": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "trial_unit": {
+          "type": "string"
+        },
+        "deflation_applied": {
+          "type": "boolean"
+        },
+        "deflated_sharpe_ratio": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 1
+        },
+        "deflation_method": {
+          "type": "string"
+        }
       }
     },
-
     "risk": {
       "type": "object",
-      "required": ["max_drawdown_realised", "drawdown_basis"],
+      "required": [
+        "max_drawdown_realised",
+        "drawdown_basis"
+      ],
       "additionalProperties": false,
       "properties": {
-        "max_drawdown_realised": { "type": ["number", "null"] },
-        "drawdown_basis": { "enum": ["OBSERVED", "MODEL_ESTIMATED", "NOT_ESTABLISHED"] },
-        "max_drawdown_model_expected": { "type": ["number", "null"] },
-        "exposure_notes": { "type": "string" }
+        "max_drawdown_realised": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "drawdown_basis": {
+          "enum": [
+            "OBSERVED",
+            "MODEL_ESTIMATED",
+            "NOT_ESTABLISHED"
+          ]
+        },
+        "max_drawdown_model_expected": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "exposure_notes": {
+          "type": "string"
+        }
       }
     },
-
     "corrections": {
       "type": "object",
       "description": "Whether anything in this record has been withdrawn. A record with no correction history and no statement that it has none is silent, not clean.",
-      "required": ["count", "withdrawn_figures"],
+      "required": [
+        "count",
+        "withdrawn_figures"
+      ],
       "additionalProperties": false,
       "properties": {
-        "count": { "type": "integer", "minimum": 0 },
+        "count": {
+          "type": "integer",
+          "minimum": 0
+        },
         "withdrawn_figures": {
           "type": "array",
           "items": {
             "type": "object",
-            "required": ["figure", "withdrawn_on", "reason"],
+            "required": [
+              "figure",
+              "withdrawn_on",
+              "reason"
+            ],
             "additionalProperties": false,
             "properties": {
-              "figure": { "type": "string" },
-              "withdrawn_on": { "type": "string", "format": "date" },
-              "reason": { "type": "string" },
-              "superseded_by": { "type": "string" }
+              "figure": {
+                "type": "string"
+              },
+              "withdrawn_on": {
+                "type": "string",
+                "format": "date"
+              },
+              "reason": {
+                "type": "string"
+              },
+              "superseded_by": {
+                "type": "string"
+              }
             }
           }
         },
-        "log_url": { "type": "string" }
+        "log_url": {
+          "type": "string"
+        }
       }
     },
-
     "provenance": {
       "type": "object",
       "description": "What a reader can check without trusting the publisher.",
-      "required": ["source_bindings", "independently_verifiable"],
+      "required": [
+        "source_bindings",
+        "independently_verifiable"
+      ],
       "additionalProperties": false,
       "properties": {
         "source_bindings": {
@@ -176,40 +356,74 @@
           "minItems": 1,
           "items": {
             "type": "object",
-            "required": ["path", "sha256"],
+            "required": [
+              "path",
+              "sha256"
+            ],
             "additionalProperties": false,
             "properties": {
-              "path": { "type": "string" },
-              "sha256": { "type": "string", "pattern": "^(sha256:)?[0-9a-f]{64}$" },
-              "url": { "type": "string" }
+              "path": {
+                "type": "string"
+              },
+              "sha256": {
+                "type": "string",
+                "pattern": "^(sha256:)?[0-9a-f]{64}$"
+              },
+              "url": {
+                "type": "string"
+              }
             }
           }
         },
-        "independently_verifiable": { "type": "boolean" },
-        "verification_url": { "type": "string" },
-        "signed": { "type": "boolean" },
-        "signature_scheme": { "type": "string" }
+        "independently_verifiable": {
+          "type": "boolean"
+        },
+        "verification_url": {
+          "type": "string"
+        },
+        "signed": {
+          "type": "boolean"
+        },
+        "signature_scheme": {
+          "type": "string"
+        }
       }
     },
-
     "claim_maturity": {
       "type": "object",
       "description": "What this record does NOT establish. Required, because the omission of this section is what makes an otherwise accurate record misleading.",
-      "required": ["establishes", "does_not_establish"],
+      "required": [
+        "establishes",
+        "does_not_establish"
+      ],
       "additionalProperties": false,
       "properties": {
-        "establishes": { "type": "array", "items": { "type": "string" } },
+        "establishes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
         "does_not_establish": {
           "type": "array",
           "minItems": 1,
-          "items": { "type": "string" },
+          "items": {
+            "type": "string"
+          },
           "description": "At least one entry. Every record fails to establish something, and a publisher who cannot name one has not looked."
         },
-        "external_review_count": { "type": "integer", "minimum": 0 },
-        "independent_replication_count": { "type": "integer", "minimum": 0 }
+        "external_review_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "independent_replication_count": {
+          "type": "integer",
+          "minimum": 0
+        }
       }
     },
-
-    "notes": { "type": "string" }
+    "notes": {
+      "type": "string"
+    }
   }
 }

@@ -184,6 +184,12 @@ ${renderProductShellHeader({ active: "" })}
 
   <section class="dev-section dev-section--tail">
     <h2>Governance</h2>
+    <p class="dev-note"><strong>Change already queued for v1.</strong> <code>costs.not_modelled</code>
+      was added to v0 as an OPTIONAL member and should become required. A cost model described
+      only by its inclusions is structurally misleading: a reader cannot tell a cost judged
+      immaterial from one nobody considered, because both appear as silence. It was not made
+      required immediately because that is a breaking change, and the rule below is the rule
+      whether or not it is inconvenient on the day it applies.</p>
     <p class="dev-note">Version zero. Breaking changes bump the version in the <code>schema</code>
       member, which is a <code>const</code> so a record can never claim a version it does not
       implement. Criticism is welcome through

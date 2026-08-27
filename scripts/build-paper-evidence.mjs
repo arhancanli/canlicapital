@@ -29,7 +29,7 @@ const SCHEMA = JSON.parse(readFileSync(resolve(ROOT, "standards/paper-evidence/s
 const read = (p) => JSON.parse(readFileSync(resolve(ROOT, p), "utf8"));
 const sha256 = (p) => createHash("sha256").update(readFileSync(resolve(ROOT, p))).digest("hex");
 
-export function buildRecord({ claims, state, broker, generatedAt }) {
+export function buildRecord({ claims, state, broker, coverage, generatedAt }) {
   const value = (id) => {
     const claim = claims.claims.find((c) => c.id === id);
     if (!claim) throw new Error(`paper-evidence: no published claim ${id}`);
@@ -84,7 +84,18 @@ export function buildRecord({ claims, state, broker, generatedAt }) {
       modelled: true,
       components: ["SPREAD", "FEES", "IMPACT", "LATENCY", "FINANCING", "BORROW", "FUNDING"],
       turnover_annualised: null,
-      notes: "One shared transaction-cost model prices every fill; the engine never computes a cost itself.",
+      // Derived from the cost-coverage ledger, never typed here. A record that
+      // lists what it charges and stays silent on the rest lets a reader assume
+      // the silence means "immaterial" when it may mean "not considered".
+      not_modelled: coverage.costs
+        .filter((c) => c.status === "NOT_CHARGED")
+        .map((c) => c.name),
+      coverage_url: `${ORIGIN}/costs`,
+      notes:
+        "One shared transaction-cost model prices every fill; the engine never computes a cost " +
+        "itself. Latency is charged as a flat add-on but measures about 5.5 hours in the live " +
+        "record, so it is modelled as the wrong KIND of quantity. Every unmodelled cost listed " +
+        "flatters the result, so these returns are an upper bound.",
     },
     selection: {
       trials_counted: true,
@@ -129,6 +140,8 @@ export function buildRecord({ claims, state, broker, generatedAt }) {
         `A forward Sharpe ratio. ${SHARPE_MINIMUM_OBSERVATIONS} observations are required to estimate one and this record has ${observations}.`,
         "An expected maximum drawdown. The realised figure describes a short sample and the model estimate is not live evidence.",
         "Live-forward diversification between sleeves.",
+      "A return net of every cost. Several cost categories are not charged at all and every one " +
+        "of them flatters, so this figure is an upper bound. The full ledger is at /costs.",
         "Any funded performance whatsoever. No real capital has been deployed.",
       ],
       external_review_count: 0,
@@ -143,6 +156,7 @@ function main() {
     claims: read("public/contracts/public-claims.json"),
     state: read("public/paper-state.json"),
     broker: read("public/glassbox/alpaca_broker_reconciliation.json"),
+    coverage: read("public/glassbox/cost_coverage.json"),
     generatedAt,
   });
 

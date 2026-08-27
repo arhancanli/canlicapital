@@ -150,6 +150,7 @@ export default defineConfig({
         engineering: resolve(root, "engineering.html"),
         notes: resolve(root, "notes.html"),
         developers: resolve(root, "developers.html"),
+        costs: resolve(root, "costs.html"),
         paperEvidence: resolve(root, "standards", "paper-evidence.html"),
         deflatedSharpe: resolve(root, "tools", "deflated-sharpe.html"),
         evidenceChain: resolve(root, "tools", "evidence-chain.html"),
