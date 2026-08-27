@@ -2,20 +2,21 @@
   "schema": "canli.product-contract-inventory.v1",
   "claim_boundary": "This is a deterministic source-tree inventory. A migration flag identifies a shell mismatch, not a content or evidence failure. Hardcoded metric candidates require human review and are not automatically classified as defects.",
   "summary": {
-    "pages": 484,
-    "indexable_pages": 258,
+    "pages": 485,
+    "indexable_pages": 259,
     "noindex_pages": 226,
-    "pages_requiring_shell_migration": 0,
+    "pages_requiring_shell_migration": 1,
     "pages_with_em_dashes": 255,
     "em_dash_occurrences": 3215,
     "hardcoded_metric_candidate_lines": 1996,
     "shell_families": {
       "archival_publication_v1": 16,
-      "product_v3": 468
+      "product_v3": 468,
+      "unclassified": 1
     },
     "origins": {
       "measurements": 89,
-      "product": 11,
+      "product": 12,
       "publication": 32,
       "research": 124,
       "trials": 228
@@ -111,6 +112,16 @@
       "em_dash_count": 2,
       "hardcoded_metric_candidate_lines": 3,
       "migration_required": false
+    },
+    {
+      "path": "tools/system-films/composition.html",
+      "route": "/tools/system-films/composition",
+      "origin": "product",
+      "shell_family": "unclassified",
+      "indexable": true,
+      "em_dash_count": 0,
+      "hardcoded_metric_candidate_lines": 0,
+      "migration_required": true
     },
     {
       "path": "trials.html",

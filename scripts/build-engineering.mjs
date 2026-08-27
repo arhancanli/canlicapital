@@ -394,6 +394,25 @@ ${renderProductShellHeader({ active: "engineering" })}
     </ol>
   </section>
 
+  <section class="eng-section eng-section--lab" aria-labelledby="eng-lab-title">
+    <div class="eng-section__head">
+      <h2 id="eng-lab-title">About the lab</h2>
+    </div>
+    <div class="eng-lab">
+      <p>Canli Capital is not a fund and not a team. It is a one-person quantitative research
+        lab, engineered independently in Dubai since <strong>July 2024</strong>.</p>
+      <p>The order of the work is the argument. The point-in-time data layer, the cost authority,
+        the validation gauntlet and the crash-safe execution loop were built before any serious
+        effort went into chasing return, because a backtest only means something on top of a
+        process honest enough to produce it. That is why there are two years of engineering
+        behind a paper record measured in weeks, and not the other way around.</p>
+      <p class="eng-lab__boundary"><strong>The distinction that matters.</strong> The engineering
+        began in July 2024. The public paper record began on 2026-08-07. Everything between those
+        dates is infrastructure and method, not performance. This site does not present it as a
+        track record, and neither should anyone citing it.</p>
+    </div>
+  </section>
+
   <section class="eng-section" aria-labelledby="eng-notes-title">
     <div class="eng-section__head">
       <h2 id="eng-notes-title">Notes on the engineering</h2>

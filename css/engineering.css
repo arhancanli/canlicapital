@@ -337,6 +337,19 @@ body.eng-page {
 .eng-path small { margin-left: 10px; color: var(--eng-muted); font: 400 0.74rem "IBM Plex Mono", monospace; }
 .eng-path p { margin: 8px 0 0; color: var(--eng-muted); font-size: 0.93rem; line-height: 1.65; }
 
+/* --- about the lab -------------------------------------------------------- */
+
+.eng-lab { max-width: 74ch; }
+.eng-lab p { margin: 0 0 1.2em; font-size: 1.02rem; line-height: 1.74; }
+.eng-lab__boundary {
+  margin-top: 26px;
+  padding-top: 22px;
+  color: var(--eng-muted);
+  border-top: 1px solid var(--eng-line);
+  font-size: 0.93rem;
+}
+.eng-lab__boundary strong { color: var(--eng-ink); }
+
 /* --- tail ----------------------------------------------------------------- */
 
 .eng-author, .eng-source { max-width: 74ch; margin: 0; font-size: 1rem; line-height: 1.72; }

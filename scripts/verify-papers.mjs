@@ -608,6 +608,15 @@ if (existsSync(founderFile)) {
   }
   walkthrough.chapters.forEach((_, index) => renderings.add(String(index + 1).padStart(2, "0")));
   for (const date of [chainLog.entries[0].date, trackRecord.go_live_date]) renderings.add(date);
+  // The inception year is a published claim like any other, so it is traced to its
+  // source in config/brand.js rather than exempted.
+  const founded = (readFileSync(resolve(ROOT, "config/brand.js"), "utf8")
+    .match(/founded:\s*"(\d{4})-(\d{2})"/) || []);
+  if (founded[1]) {
+    renderings.add(founded[1]);
+    renderings.add(founded[2]);
+    renderings.add(String(Number(founded[2])));
+  }
 
   // Inline SVG is geometry, not prose: a path's coordinates are numbers no
   // artifact will ever contain, and reading them as published figures makes the
@@ -1370,6 +1379,69 @@ for (const file of walkHtml(DIST)) {
 }
 check(factSpans >= 10, `Only ${factSpans} data-fact spans were found across the built site. The scan ` +
   `has stopped matching`);
+
+// ---------------------------------------------------------------------------
+// FOUNDING DATE. The inception date is declared in structured data on several
+// hand-authored pages AND stated in the shell footer prose on every page. It had
+// already drifted once: the JSON-LD said 2026 while the project began in July
+// 2024, so every crawler was told the wrong year. Six hand-maintained copies of
+// one fact will drift again, so this asserts they agree with each other and with
+// the sentence a reader actually sees.
+// ---------------------------------------------------------------------------
+{
+  const declared = new Set();
+  const pagesWithDate = [];
+  for (const file of walkHtml(DIST)) {
+    const html = readFileSync(file, "utf8");
+    const match = html.match(/"foundingDate"\s*:\s*"([^"]+)"/);
+    if (!match) continue;
+    declared.add(match[1]);
+    pagesWithDate.push(file.slice(DIST.length));
+  }
+  check(
+    declared.size === 1,
+    `pages declare ${declared.size} different founding dates (${[...declared].join(", ")}). ` +
+      "One fact, one value.",
+  );
+  check(
+    pagesWithDate.length >= 5,
+    `only ${pagesWithDate.length} pages declare a founding date; the check would pass vacuously`,
+  );
+  // Agreeing with each other is not enough: six copies can agree on a wrong value,
+  // which is exactly how "2026" survived. They must agree with the config source.
+  const brandFounded = (readFileSync(resolve(ROOT, "config/brand.js"), "utf8")
+    .match(/founded:\s*"([^"]+)"/) || [])[1];
+  check(
+    brandFounded !== undefined,
+    "config/brand.js declares no `founded` date for the pages to agree with",
+  );
+  check(
+    declared.size === 1 && declared.has(brandFounded),
+    `structured data declares ${[...declared].join(", ")} but config/brand.js says ` +
+      `${brandFounded}. brand.js is the source.`,
+  );
+  const [structuredDate] = [...declared];
+  if (structuredDate) {
+    const year = structuredDate.slice(0, 4);
+    const month = Number(structuredDate.slice(5, 7));
+    const monthName = [
+      "", "January", "February", "March", "April", "May", "June",
+      "July", "August", "September", "October", "November", "December",
+    ][month] ?? "";
+    const footerHtml = readFileSync(resolve(DIST, "index.html"), "utf8");
+    const footer = footerHtml.slice(footerHtml.indexOf('<footer class="cc-footer"'));
+    const stated = monthName ? `${monthName} ${year}` : year;
+    check(
+      footer.includes(stated),
+      `structured data says the project began ${structuredDate}, but the footer a reader sees ` +
+        `does not say "${stated}". The machine claim and the human claim must match.`,
+    );
+  }
+}
+console.log(
+  `verified the founding date agrees across every page that declares it, and matches the ` +
+    `sentence in the footer`,
+);
 
 const sitemapUrls = (sitemap.match(/<loc>/g) || []).length;
 if (failures.length) {

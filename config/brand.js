@@ -59,6 +59,9 @@ export const FACTS = {
                                 // bars, which is a different question; the phrase means this one.
   equityYears: "30",            // 1997 to 2026 inclusive is thirty year partitions, not 25
   equitySince: "1997",
+  founded: "2024-07",         // when the engineering began. NOT when the public paper
+                              // record begins (2026-08-07); the pages must state both,
+                              // and verify-papers asserts every declaration agrees.
   fundamentals: "380K+",        // point-in-time fundamental rows; measured 380,878. The old
                                 // "392K+" was OVERSTATED, which is the staleness that matters
   cryptoBars: "13.6M+",         // crypto hourly bars; measured 13,662,316 (do not conflate)
