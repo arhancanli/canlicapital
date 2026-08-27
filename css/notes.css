@@ -1,0 +1,204 @@
+/* =============================================================================
+   /notes: engineering notes. A reading surface, not a dashboard.
+   Shares the Product System v3 tokens; the body is a single measured column
+   because these are long technical arguments and the only job is legibility.
+   ============================================================================= */
+
+:root {
+  --note-night: #06111b;
+  --note-chalk: #f3f8fb;
+  --note-paper: #f4f7f9;
+  --note-ink: #101c25;
+  --note-muted: #5b6f7c;
+  --note-cyan: #66d6ff;
+  --note-mint: #58e0b5;
+  --note-amber: #f1b85b;
+  --note-line: rgba(16, 28, 37, 0.14);
+  --note-line-dark: rgba(243, 248, 251, 0.18);
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body.note-page {
+  margin: 0;
+  color: var(--note-ink);
+  background: var(--note-paper);
+  font-family: Inter, Arial, sans-serif;
+  font-size: 17px;
+}
+
+.note-skip {
+  position: fixed; z-index: 1000; top: 12px; left: 12px; padding: 10px 14px;
+  color: var(--note-night); background: var(--note-mint);
+  text-decoration: none; transform: translateY(-160%);
+}
+.note-skip:focus { transform: translateY(0); }
+.note-page :where(a, button, summary, [tabindex]):focus-visible {
+  outline: 3px solid var(--note-amber); outline-offset: 3px;
+}
+
+/* --- index ---------------------------------------------------------------- */
+
+.note-hero {
+  padding: clamp(76px, 10vw, 132px) clamp(24px, 7vw, 112px) clamp(48px, 6vw, 76px);
+  color: var(--note-chalk);
+  background:
+    repeating-linear-gradient(0deg, transparent 0 79px, rgba(102, 214, 255, 0.035) 80px),
+    var(--note-night);
+  border-bottom: 1px solid var(--note-line-dark);
+}
+.note-kicker {
+  margin: 0 0 20px; color: var(--note-cyan);
+  font: 500 0.7rem/1.45 "IBM Plex Mono", monospace;
+  letter-spacing: 0.14em; text-transform: uppercase;
+}
+.note-hero h1 {
+  max-width: 20ch; margin: 0;
+  font-family: "Bricolage Grotesque", Inter, sans-serif;
+  font-size: clamp(2.5rem, 5.4vw, 5rem); font-weight: 560;
+  line-height: 0.95; letter-spacing: -0.045em;
+}
+.note-lead {
+  max-width: 68ch; margin: 28px 0 0; color: #b8c8d1;
+  font-size: clamp(1rem, 1.3vw, 1.16rem); line-height: 1.68;
+}
+
+.note-list {
+  margin: 0; padding: clamp(40px, 5vw, 68px) clamp(24px, 7vw, 112px);
+  list-style: none; display: grid; gap: 2px; counter-reset: none;
+}
+.note-card {
+  display: grid; grid-template-columns: 72px minmax(0, 1fr); gap: 20px;
+  padding: clamp(22px, 2.6vw, 32px); background: #fff;
+  border: 1px solid var(--note-line); text-decoration: none; color: inherit;
+  transition: border-color 180ms ease, transform 180ms ease;
+}
+.note-card:hover { border-color: var(--note-ink); }
+.note-card__n { color: var(--note-muted); font: 500 0.86rem/1.7 "IBM Plex Mono", monospace; }
+.note-card__body { display: block; min-width: 0; }
+.note-card__title {
+  display: block; font-family: "Bricolage Grotesque", Inter, sans-serif;
+  font-size: clamp(1.2rem, 1.9vw, 1.6rem); font-weight: 560;
+  line-height: 1.14; letter-spacing: -0.032em;
+}
+.note-card__dek {
+  display: block; max-width: 74ch; margin-top: 12px;
+  color: var(--note-muted); font-size: 0.97rem; line-height: 1.65;
+}
+.note-card__meta {
+  display: block; margin-top: 14px; color: var(--note-muted);
+  font: 400 0.74rem "IBM Plex Mono", monospace;
+}
+.note-tail {
+  padding: 0 clamp(24px, 7vw, 112px) clamp(60px, 7vw, 96px);
+  color: var(--note-muted); font-size: 0.95rem; line-height: 1.7;
+}
+.note-tail a, .note-boundary a { color: var(--note-ink); }
+
+/* --- article -------------------------------------------------------------- */
+
+.note {
+  max-width: 78ch;
+  margin: 0 auto;
+  padding: clamp(40px, 5vw, 72px) clamp(22px, 5vw, 40px) clamp(70px, 8vw, 110px);
+}
+.note-trail { margin-bottom: 30px; font: 500 0.72rem "IBM Plex Mono", monospace; }
+.note-trail a { color: var(--note-muted); text-decoration: none; border-bottom: 1px solid var(--note-line); }
+
+.note-head h1 {
+  margin: 0; font-family: "Bricolage Grotesque", Inter, sans-serif;
+  font-size: clamp(2.1rem, 4.2vw, 3.5rem); font-weight: 560;
+  line-height: 1.02; letter-spacing: -0.04em;
+}
+.note-dek {
+  margin: 22px 0 0; color: var(--note-muted);
+  font-size: clamp(1.05rem, 1.5vw, 1.25rem); line-height: 1.6;
+}
+.note-meta {
+  display: flex; flex-wrap: wrap; gap: 18px; margin: 26px 0 0;
+  padding-bottom: 26px; border-bottom: 1px solid var(--note-line);
+  color: var(--note-muted); font: 400 0.76rem "IBM Plex Mono", monospace;
+}
+
+.note-body { margin-top: 38px; }
+.note-body > p { margin: 0 0 1.35em; line-height: 1.74; }
+.note-body h2 {
+  margin: 2.2em 0 0.7em; font-family: "Bricolage Grotesque", Inter, sans-serif;
+  font-size: clamp(1.4rem, 2.3vw, 1.85rem); font-weight: 560;
+  line-height: 1.14; letter-spacing: -0.033em;
+}
+.note-body h3 { margin: 1.9em 0 0.6em; font-size: 1.14rem; font-weight: 600; }
+.note-body a { color: var(--note-ink); text-decoration: none; border-bottom: 1px solid rgba(16,28,37,0.3); }
+.note-body a:hover { border-bottom-color: currentColor; }
+.note-body strong { font-weight: 650; }
+.note-body ul, .note-body ol { margin: 0 0 1.35em; padding-left: 1.3em; }
+.note-body li { margin-bottom: 0.5em; line-height: 1.72; }
+
+.note-body blockquote {
+  margin: 1.6em 0; padding: 2px 0 2px 22px;
+  border-left: 2px solid var(--note-mint); color: var(--note-muted);
+}
+.note-body blockquote p { margin: 0 0 0.6em; line-height: 1.7; }
+
+.note-body code {
+  padding: 1px 5px; background: rgba(16, 28, 37, 0.06); border-radius: 2px;
+  font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 0.88em;
+  word-break: break-word;
+}
+.note-body pre {
+  margin: 1.6em 0; padding: 20px 22px; overflow-x: auto;
+  color: var(--note-chalk); background: var(--note-night);
+  border-radius: 2px; line-height: 1.6;
+}
+.note-body pre code {
+  padding: 0; background: none; color: inherit; font-size: 0.82rem; word-break: normal;
+}
+
+.note-body table {
+  width: 100%; margin: 1.7em 0; border-collapse: collapse;
+  display: block; overflow-x: auto;
+}
+.note-body th, .note-body td {
+  padding: 10px 14px 10px 0; text-align: left;
+  border-bottom: 1px solid var(--note-line);
+  font-size: 0.93rem; vertical-align: top;
+}
+.note-body th { color: var(--note-muted); font-weight: 500; font-size: 0.78rem; letter-spacing: 0.02em; }
+.note-body td:last-child, .note-body th:last-child { padding-right: 0; }
+.note-body em { color: var(--note-muted); }
+
+.note-foot { margin-top: 56px; padding-top: 30px; border-top: 1px solid var(--note-line); }
+.note-boundary { margin: 0; color: var(--note-muted); font-size: 0.92rem; line-height: 1.7; }
+.note-boundary strong { color: var(--note-ink); }
+.note-more { margin-top: 34px; }
+.note-more h2 {
+  margin: 0 0 14px; font-family: "Bricolage Grotesque", Inter, sans-serif;
+  font-size: 1.05rem; font-weight: 560; letter-spacing: -0.02em;
+}
+.note-more ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 2px; }
+/* These sat with a hairline border and read as plain text next to the clearly
+   underlined links in the boundary note directly above them. A link that does not
+   look like a link is not a link. */
+.note-more li { border-top: 1px solid var(--note-line); }
+.note-more li:last-child { border-bottom: 1px solid var(--note-line); }
+.note-more a {
+  display: block;
+  padding: 13px 0;
+  color: var(--note-ink);
+  text-decoration: none;
+  font-size: 0.98rem;
+  transition: color 160ms ease, padding-left 160ms ease;
+}
+.note-more a::after { content: " \2197"; color: var(--note-muted); font-size: 0.82em; }
+.note-more a:hover { padding-left: 6px; }
+.note-more a:hover::after { color: var(--note-ink); }
+
+@media (max-width: 720px) {
+  .note-card { grid-template-columns: 1fr; gap: 8px; }
+  .note-card__n { font-size: 0.76rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .note-page * { transition-duration: 0.01ms !important; }
+}

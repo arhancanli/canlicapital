@@ -27,11 +27,20 @@ ROUTES = (
     "/measurements/forward-evidence-maturity",
     "/research/forward-sharpe-evidence-standard",
     "/publication/alphamax/v0.1.0",
+    "/engineering",
+    "/notes",
+    "/notes/deflating-a-sharpe-ratio",
 )
 
 EXPECTED_CORE = {"Live", "Research", "Trials", "Systems", "Methodology", "Verify"}
 EXPECTED_INSTITUTION = {"Corrections", "Status", "Founder", "Open data", "Measurements"}
-EXPECTED_SOURCE = {"Engineering hub", "alphac (engine)", "canli-pit-lake", "canli-backtest"}
+EXPECTED_SOURCE = {
+    "Engineering hub",
+    "Engineering notes",
+    "alphac (engine)",
+    "canli-pit-lake",
+    "canli-backtest",
+}
 
 #: Below this width the source control is deliberately hidden and the expanded menu
 #: carries the repositories instead. Asserted rather than assumed, because "the

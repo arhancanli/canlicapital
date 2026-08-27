@@ -17,7 +17,7 @@
 // inferred from a footer.
 // =============================================================================
 
-import { readFileSync, writeFileSync } from "node:fs";
+import { readdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -102,6 +102,22 @@ for (const e of engineering.extractions) {
     `commit ${e.pinned_engine_commit.slice(0, 12)} and CI-checked on every push.`,
   );
 }
+say();
+const notes = readdirSync(resolve(ROOT, "notes"))
+  .filter((f) => f.endsWith(".md"))
+  .map((f) => {
+    const md = readFileSync(resolve(ROOT, "notes", f), "utf8");
+    const title = (md.match(/^# (.+)$/m) ?? [, f])[1];
+    const dek = (md.match(/^> ([\s\S]*?)\n\n/m) ?? [, ""])[1].replace(/\n> ?/g, " ").trim();
+    return { slug: f.slice(0, -3), title, dek };
+  })
+  .sort((a, b) => a.slug.localeCompare(b.slug));
+
+say("## Engineering notes");
+say();
+say("Post-mortems and derivations. These describe method and engineering; none is a performance claim.");
+say();
+for (const n of notes) say(`- [${n.title}](${ORIGIN}/notes/${n.slug}): ${n.dek}`);
 say();
 say("## Evidence and corrections");
 say();

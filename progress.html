@@ -172,6 +172,7 @@
       <div>
         <span class="cc-shell__panel-label">Open source</span>
         <nav aria-label="Source code"><a class="cc-shell__panel-link" href="/engineering">Engineering hub</a>
+<a class="cc-shell__panel-link" href="/notes">Engineering notes</a>
 <a class="cc-shell__panel-link" href="https://github.com/arhancanli/alphac" rel="noreferrer">alphac (engine)</a>
 <a class="cc-shell__panel-link" href="https://github.com/arhancanli/canli-pit-lake" rel="noreferrer">canli-pit-lake</a>
 <a class="cc-shell__panel-link" href="https://github.com/arhancanli/canli-backtest" rel="noreferrer">canli-backtest</a></nav>
@@ -259,7 +260,36 @@
     <!-- =================================================================== -->
 
     <!-- =================================================================== -->
-    <!-- (03) THE EDGE STATUS                                                 -->
+    <!-- (02b) THE WRITTEN RECORD                                             -->
+    <!-- This page is the phase-by-phase ledger. The notes are the prose       -->
+    <!-- version: what broke, what the arithmetic says, and what got changed   -->
+    <!-- because of it. Linked here because a build log without post-mortems   -->
+    <!-- reads as a list of wins.                                             -->
+    <!-- =================================================================== -->
+    <section class="section" id="written-record" aria-labelledby="written-head">
+      <span class="section__rule" aria-hidden="true"></span>
+      <div class="progress__head">
+        <p class="eyebrow label"><span class="idx mono-label">03 /</span> The written record</p>
+        <h2 class="progress__title display-l" id="written-head">
+          <span class="mask" data-chars><span class="mask__inner">A build log without</span></span>
+          <span class="mask" data-chars><span class="mask__inner">post-mortems is a</span></span>
+          <span class="mask" data-chars><span class="mask__inner">list of wins.</span></span>
+        </h2>
+      </div>
+      <p class="progress__lede body-l">
+        The phases above say what was built. The engineering notes say what went wrong while
+        building it: a position that lost 99 percent and the guard I decided not to add, seventy
+        files published by a check that could not fail, and the arithmetic that decides whether a
+        Sharpe ratio means anything. Each one is bound to a published artifact or a script you
+        can run.
+      </p>
+      <p class="progress__lede body-l">
+        <a class="research-link label" href="/notes">Read the engineering notes</a>
+      </p>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- (04) THE EDGE STATUS                                                 -->
     <!-- =================================================================== -->
     <section class="section section--ink" id="edge-status" data-section="2" aria-labelledby="edge-head">
       <span class="section__rule" aria-hidden="true"></span>
@@ -419,6 +449,7 @@
     <nav aria-label="Open source">
       <span>Source code</span>
       <a href="/engineering">Engineering</a>
+      <a href="/notes">Engineering notes</a>
       <a href="https://github.com/arhancanli/alphac" rel="noreferrer">alphac engine</a>
       <a href="https://github.com/arhancanli/canli-pit-lake" rel="noreferrer">canli-pit-lake</a>
       <a href="https://github.com/arhancanli/canli-backtest" rel="noreferrer">canli-backtest</a>

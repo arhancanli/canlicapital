@@ -113,6 +113,20 @@ const trialRoutes = () => {
     });
 };
 
+// The engineering notes, DERIVED from what build-notes.mjs put on disk, for the same
+// reason the measurement pages are: build-notes decides how many there are.
+function noteRoutes() {
+  const dir = resolve(ROOT, "notes");
+  if (!existsSync(dir)) return [];
+  return readdirSync(dir)
+    .filter((name) => name.endsWith(".html"))
+    .map((name) => ({
+      loc: `${ORIGIN}/notes/${name.slice(0, -5)}`,
+      priority: "0.8",
+      changefreq: "monthly",
+    }));
+}
+
 const STATIC_ROUTES = [
   { path: "/", priority: "1.0", changefreq: "weekly" },
   { path: "/systems", priority: "0.8", changefreq: "weekly" },
@@ -128,6 +142,7 @@ const STATIC_ROUTES = [
   { path: "/founder", priority: "0.7", changefreq: "monthly" },
   { path: "/methodology", priority: "0.9", changefreq: "weekly" },
   { path: "/engineering", priority: "0.9", changefreq: "weekly" },
+  { path: "/notes", priority: "0.9", changefreq: "weekly" },
   { path: "/tools/deflated-sharpe", priority: "0.9", changefreq: "weekly" },
   { path: "/tools/evidence-chain", priority: "0.9", changefreq: "weekly" },
   { path: "/tools/trial-accounting", priority: "0.9", changefreq: "weekly" },
@@ -847,6 +862,7 @@ function main() {
     // that stops matching the pages long before anyone notices.
     ...measurementRoutes(),
     ...trialRoutes(),
+    ...noteRoutes(),
   ];
   writeFileSync(
     resolve(ROOT, "public/sitemap.xml"),

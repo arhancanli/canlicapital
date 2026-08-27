@@ -69,6 +69,7 @@
       <div>
         <span class="cc-shell__panel-label">Open source</span>
         <nav aria-label="Source code"><a class="cc-shell__panel-link" href="/engineering">Engineering hub</a>
+<a class="cc-shell__panel-link" href="/notes">Engineering notes</a>
 <a class="cc-shell__panel-link" href="https://github.com/arhancanli/alphac" rel="noreferrer">alphac (engine)</a>
 <a class="cc-shell__panel-link" href="https://github.com/arhancanli/canli-pit-lake" rel="noreferrer">canli-pit-lake</a>
 <a class="cc-shell__panel-link" href="https://github.com/arhancanli/canli-backtest" rel="noreferrer">canli-backtest</a></nav>
@@ -163,10 +164,12 @@
       <p class="eng-repo__basis">Apple silicon, single process; the PBO case runs on pure noise so the result is also a correctness check</p>
       <table>
         <tbody>
-          <tr><th scope="row">PBO via CSCV, 2,000 x 100 configs, 5,000 sampled splits</th><td>1.55 s</td></tr>
-          <tr><th scope="row">Deflated Sharpe, 1,260 daily returns</th><td>289 microseconds</td></tr>
+          <tr><th scope="row">PBO via CSCV, 2,000 x 100 configs, 5,000 sampled splits</th><td>1.6 s</td></tr>
+          <tr><th scope="row">Deflated Sharpe, 1,260 daily returns</th><td>~300 microseconds</td></tr>
           <tr><th scope="row">PBO measured on pure noise (0.5 is correct)</th><td>0.569</td></tr>
-          <tr><th scope="row">Sharpe +1.139 deflated at 200 trials</th><td>0.000</td></tr>
+          <tr><th scope="row">One series, Sharpe +1.139, PSR against zero</th><td>0.9828</td></tr>
+          <tr><th scope="row">The same series deflated against 10 trials</th><td>0.8408</td></tr>
+          <tr><th scope="row">The same series deflated against 200 trials</th><td>0.5608</td></tr>
         </tbody>
       </table>
       <p class="eng-repo__commands-lede">Re-run every gate yourself:</p>
@@ -234,8 +237,11 @@
       <p>The answer is an honest denominator, not a better backtest. Deflated Sharpe measures
       an observed Sharpe against the level luck alone reaches given how many configurations were
       tried; a union trial ledger counts every hypothesis across every research ledger so filing
-      conventions cannot shrink the count. On a real 1,260-day series an annualised Sharpe of
-      +1.139 deflates to <strong>0.000</strong> once 200 trials are counted.</p>
+      conventions cannot shrink the count. Hold one 1,260-day series fixed at an annualised Sharpe
+      of +1.139, a Probabilistic Sharpe against zero of 0.9828, and move only the trial count: the
+      Deflated Sharpe reads 0.9596 at two trials and <strong>0.5608</strong> at two hundred.
+      Nothing about the strategy changed. Against this project's 0.95 gate it is admissible if you
+      tried two things and inadmissible if you tried ten.</p>
     </div>
     <a class="eng-problem__file" href="https://github.com/arhancanli/canli-backtest/blob/main/src/alphaforge/validation/dsr.py" rel="noreferrer"><code>src/alphaforge/validation/dsr.py</code> <span aria-hidden="true">&#8599;</span></a>
   </article>
@@ -321,6 +327,15 @@
     </ol>
   </section>
 
+  <section class="eng-section" aria-labelledby="eng-notes-title">
+    <div class="eng-section__head">
+      <h2 id="eng-notes-title">Notes on the engineering</h2>
+      <p>Post-mortems on real incidents, the arithmetic behind the validation gates, and design
+        arguments about the parts that were hard. Written for the mechanism, not the summary.</p>
+    </div>
+    <p class="eng-author"><a class="eng-button" href="/notes">Read the engineering notes</a></p>
+  </section>
+
   <section class="eng-section eng-section--tail" aria-labelledby="eng-author-title">
     <div class="eng-section__head">
       <h2 id="eng-author-title">Authorship</h2>
@@ -365,6 +380,7 @@
     <nav aria-label="Open source">
       <span>Source code</span>
       <a href="/engineering">Engineering</a>
+      <a href="/notes">Engineering notes</a>
       <a href="https://github.com/arhancanli/alphac" rel="noreferrer">alphac engine</a>
       <a href="https://github.com/arhancanli/canli-pit-lake" rel="noreferrer">canli-pit-lake</a>
       <a href="https://github.com/arhancanli/canli-backtest" rel="noreferrer">canli-backtest</a>

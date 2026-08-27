@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="en" data-page="notes">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>The arithmetic of not fooling yourself | Canli Capital</title>
+<meta name="description" content="A Sharpe ratio of 1.14 with a p-value of 0.017. Publishable, on the face of it. Whether it means anything depends entirely on a number that does not appear in it: how many things you tried before this one." />
+<link rel="canonical" href="https://canlicapital.com/notes/deflating-a-sharpe-ratio" />
+<meta name="author" content="Arhan Canli" />
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="Canli Capital" />
+<meta property="og:title" content="The arithmetic of not fooling yourself" />
+<meta property="og:description" content="A Sharpe ratio of 1.14 with a p-value of 0.017. Publishable, on the face of it. Whether it means anything depends entirely on a number that does not appear in it: how many things you tried before this one." />
+<meta property="og:url" content="https://canlicapital.com/notes/deflating-a-sharpe-ratio" />
+<meta property="og:image" content="https://canlicapital.com/og.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="The arithmetic of not fooling yourself" />
+<meta name="twitter:description" content="A Sharpe ratio of 1.14 with a p-value of 0.017. Publishable, on the face of it. Whether it means anything depends entirely on a number that does not appear in it: how many things you tried before this one." />
+<meta name="twitter:image" content="https://canlicapital.com/og.png" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" />
+<link rel="stylesheet" href="/css/product-shell.css" />
+<link rel="stylesheet" href="/css/notes.css" />
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"The arithmetic of not fooling yourself","description":"A Sharpe ratio of 1.14 with a p-value of 0.017. Publishable, on the face of it. Whether it means anything depends entirely on a number that does not appear in it: how many things you tried before this one.","url":"https://canlicapital.com/notes/deflating-a-sharpe-ratio","datePublished":"2026-08-27","dateModified":"2026-08-27","wordCount":1266,"inLanguage":"en","author":{"@id":"https://canlicapital.com/#arhan-canli"},"publisher":{"@id":"https://canlicapital.com/#organization"},"mainEntityOfPage":"https://canlicapital.com/notes/deflating-a-sharpe-ratio","isPartOf":{"@type":"Blog","@id":"https://canlicapital.com/notes","name":"Engineering notes"}}</script>
+</head>
+<body class="note-page">
+<a class="note-skip" href="#content">Skip to content</a>
+<header class="cc-shell" id="nav" data-product-shell="v3">
+  <a class="cc-shell__brand" href="/" aria-label="Canli Capital, home">
+    <span class="cc-shell__mark" aria-hidden="true"><i></i></span>
+    <span>Canli Capital</span>
+  </a>
+  <a class="cc-shell__status" href="/measurements/alpaca-broker-reconciliation" aria-label="Current record status">
+    <span class="status-dot" aria-hidden="true"></span>
+    <span>Public paper record</span>
+  </a>
+  <nav class="cc-shell__primary" aria-label="Primary navigation">
+<a class="cc-shell__link" href="https://app.canlicapital.com/dashboard" rel="noreferrer">Live</a>
+<a class="cc-shell__link" href="/research">Research</a>
+<a class="cc-shell__link" href="/trials">Trials</a>
+<a class="cc-shell__link" href="/systems">Systems</a>
+<a class="cc-shell__link" href="/methodology">Methodology</a>
+<a class="cc-shell__link" href="/verify">Verify</a>
+  </nav>
+  <details class="cc-shell__index">
+    <summary><span class="cc-shell__index-wide">More</span><span class="cc-shell__index-compact">Menu</span></summary>
+    <div class="cc-shell__panel">
+      <div>
+        <span class="cc-shell__panel-label">Core</span>
+        <nav aria-label="Core routes"><a class="cc-shell__panel-link" href="https://app.canlicapital.com/dashboard" rel="noreferrer">Live</a>
+<a class="cc-shell__panel-link" href="/research">Research</a>
+<a class="cc-shell__panel-link" href="/trials">Trials</a>
+<a class="cc-shell__panel-link" href="/systems">Systems</a>
+<a class="cc-shell__panel-link" href="/methodology">Methodology</a>
+<a class="cc-shell__panel-link" href="/verify">Verify</a></nav>
+      </div>
+      <div>
+        <span class="cc-shell__panel-label">Institution</span>
+        <nav aria-label="Institution routes"><a class="cc-shell__panel-link" href="/progress">Corrections</a>
+<a class="cc-shell__panel-link" href="/performance">Status</a>
+<a class="cc-shell__panel-link" href="/founder">Founder</a>
+<a class="cc-shell__panel-link" href="/open">Open data</a>
+<a class="cc-shell__panel-link" href="/measurements">Measurements</a></nav>
+      </div>
+      <div>
+        <span class="cc-shell__panel-label">Open source</span>
+        <nav aria-label="Source code"><a class="cc-shell__panel-link" href="/engineering">Engineering hub</a>
+<a class="cc-shell__panel-link" href="/notes">Engineering notes</a>
+<a class="cc-shell__panel-link" href="https://github.com/arhancanli/alphac" rel="noreferrer">alphac (engine)</a>
+<a class="cc-shell__panel-link" href="https://github.com/arhancanli/canli-pit-lake" rel="noreferrer">canli-pit-lake</a>
+<a class="cc-shell__panel-link" href="https://github.com/arhancanli/canli-backtest" rel="noreferrer">canli-backtest</a></nav>
+      </div>
+      <p>Observed, simulated, model-estimated and planned claims remain visibly separate.</p>
+    </div>
+  </details>
+  <a class="cc-shell__source" href="/engineering" title="Open-source engineering: the engine, the data layer and the backtester"><svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true" focusable="false"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg><span>Source</span></a>
+  <a class="cc-shell__cta" href="https://app.canlicapital.com/dashboard">Enter live record <span aria-hidden="true">↗</span></a>
+</header>
+<main id="content">
+  <article class="note">
+    <nav class="note-trail" aria-label="Breadcrumb">
+      <a href="/notes">Engineering notes</a>
+    </nav>
+    <header class="note-head">
+      <h1>The arithmetic of not fooling yourself</h1>
+      <p class="note-dek">A Sharpe ratio of 1.14 with a p-value of 0.017. Publishable, on the face of it. Whether it means anything depends entirely on a number that does not appear in it: how many things you tried before this one.</p>
+      <p class="note-meta">
+        <span>Arhan Canli</span>
+        <time datetime="2026-08-27">2026-08-27</time>
+        <span>6 min read</span>
+      </p>
+    </header>
+    <div class="note-body">
+<p><strong>Published 2026-08-27. Every figure below is printed by
+<a href="https://github.com/arhancanli/canli-backtest/blob/main/benchmarks/validation_throughput.py"><code>benchmarks/validation_throughput.py</code></a>
+in <code>canli-backtest</code>. Run it and you get these numbers.</strong></p>
+<h2>The problem, stated precisely</h2>
+<p>Take a strategy with 1,260 daily returns, about five years. It has an annualised Sharpe ratio
+of <strong>+1.139</strong>.</p>
+<p>The first correction anyone should apply is for sample size and shape. A Sharpe estimated from
+1,260 observations is a random variable, and returns are not Gaussian. Bailey and Lopez de
+Prado&#39;s <strong>Probabilistic Sharpe Ratio</strong> does this. For an observed per-period Sharpe <code>SR</code>
+against a benchmark <code>SR*</code>, over <code>T</code> observations, with sample skewness <code>g3</code> and non-excess
+sample kurtosis <code>g4</code>:</p>
+<pre><code>PSR(SR*) = Phi(z)
+
+                 (SR - SR*) * sqrt(T - 1)
+    z = -----------------------------------------
+          sqrt( 1 - g3*SR + ((g4 - 1)/4)*SR^2 )
+</code></pre>
+<p><code>Phi</code> is the standard normal CDF. Against <code>SR* = 0</code>, our series gives <strong>PSR = 0.9828</strong>. Read
+naively: a 98.3 percent chance the true Sharpe exceeds zero. Under 2 percent chance this is
+noise.</p>
+<p>That number is correct and it is close to useless, because it answers the question &quot;is this one
+series distinguishable from zero&quot; when the question that matters is &quot;is the <em>best of everything
+I tried</em> distinguishable from zero.&quot;</p>
+<h2>Why the benchmark must not be zero</h2>
+<p>If you run <code>N</code> strategy variants that genuinely have no edge, their estimated Sharpe ratios
+still scatter. The maximum of <code>N</code> draws from that scatter is not zero. It is a positive number
+that grows with <code>N</code>, and it grows whether or not any variant has an edge.</p>
+<p>So the honest benchmark is not zero. It is the Sharpe that the <em>luckiest of N nothing-strategies</em>
+would be expected to produce. Using the expected maximum of <code>N</code> draws with cross-trial Sharpe
+variance <code>V[SR]</code>:</p>
+<pre><code>SR* = sqrt(V[SR]) * ( (1 - g) * Q(1 - 1/N)  +  g * Q(1 - 1/(N*e)) )
+
+    Q = Phi^-1, the normal quantile function
+    g = 0.5772156649, the Euler-Mascheroni constant
+    e = exp(1)
+</code></pre>
+<p>The <strong>Deflated Sharpe Ratio</strong> is simply the PSR evaluated against that benchmark instead of
+zero: <code>DSR = PSR(SR*)</code>.</p>
+<h2>The demonstration</h2>
+<p>One return series. Unchanged. The only thing that moves is how many trials you admit to,
+against a trial family whose per-period Sharpes scatter with standard deviation 0.02:</p>
+<table>
+<thead>
+<tr>
+<th align="right">trials <code>N</code></th>
+<th align="right">expected max Sharpe <code>SR*</code></th>
+<th align="right">DSR</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="right">2</td>
+<td align="right">0.01040</td>
+<td align="right"><strong>0.9596</strong></td>
+</tr>
+<tr>
+<td align="right">10</td>
+<td align="right">0.03149</td>
+<td align="right">0.8408</td>
+</tr>
+<tr>
+<td align="right">50</td>
+<td align="right">0.04553</td>
+<td align="right">0.6914</td>
+</tr>
+<tr>
+<td align="right">200</td>
+<td align="right">0.05531</td>
+<td align="right">0.5608</td>
+</tr>
+<tr>
+<td align="right">1000</td>
+<td align="right">0.06510</td>
+<td align="right">0.4230</td>
+</tr>
+</tbody></table>
+<p>Nothing about the strategy changed between the first row and the last. No new data arrived. No
+parameter moved. This project&#39;s deployment gate is <code>DSR &gt;= 0.95</code>, so read against that gate,
+the same Sharpe of 1.14 is <strong>admissible if you tried two things and inadmissible if you tried
+ten</strong>.</p>
+<p>That is the entire argument for a trial ledger. The denominator is not paperwork. It is half of
+the result.</p>
+<h2>The trap I fell into while writing this</h2>
+<p>The first version of this note, and the README that shipped with the repository, used
+<code>sr_trials_variance = 0.04</code> and reported that the same Sharpe deflates to <strong>0.000</strong> at 200
+trials. I published that. It is wrong, and the way it is wrong is more instructive than the
+correct version.</p>
+<p><code>V[SR]</code> is the variance of Sharpe <em>across the trial family</em>, in the same <strong>per-period</strong> units as
+the series. Our series has a per-period Sharpe of 0.0385. A variance of 0.04 is a standard
+deviation of 0.2, roughly twenty times the thing being measured. At that scale <code>SR*</code> already
+exceeds the observed Sharpe at <code>N = 2</code>, so the deflated ratio collapses immediately and stays
+collapsed. The trial count changes nothing.</p>
+<p>So the sentence &quot;it deflates to zero once you count 200 trials&quot; credited the trial count for
+work the variance parameter was doing. The arithmetic was right. The attribution was wrong.</p>
+<p>And it was wrong in the specific direction that flatters the argument. I was using the example
+to say <em>counting your trials is what separates an edge from luck</em>, and I demonstrated it with a
+parameter setting under which the trial count is irrelevant. A reader who checked would have
+found a worked example that argues against its own thesis while appearing to confirm it.</p>
+<p>The retraction is in the repository README, and the withdrawn 0.000 is still quoted inside it,
+because a number you cannot search for is a number nobody can check.</p>
+<p><strong>The general form of the mistake: a unit error in a parameter that is not the subject of the
+sentence.</strong> Nothing checks it. The types agree, the function returns, the value is plausible,
+and the conclusion is unaffected in direction so it never looks wrong. The only defence I know
+is to sweep the parameter you claim is driving the result and confirm it actually drives it. If
+the answer barely moves across the sweep, your headline is about something else.</p>
+<h2>The second instrument: does the winner survive?</h2>
+<p>Deflation asks whether one Sharpe survives the search that produced it. <strong>Probability of
+Backtest Overfitting</strong> asks a sharper question: does in-sample rank predict out-of-sample rank
+at all?</p>
+<p>Combinatorially Symmetric Cross-Validation (Bailey, Borwein, Lopez de Prado, Zhu, 2017). Given
+a <code>T x N</code> matrix of per-period returns, one column per configuration:</p>
+<ol>
+<li>Split the <code>T</code> rows into <code>S</code> contiguous equal blocks (<code>S</code> even, default 16). Drop the
+remainder so every block is exactly <code>T // S</code> rows.</li>
+<li>For each way of choosing <code>S/2</code> blocks as in-sample, form the IS matrix from those and the
+OOS matrix from the complement. That is <code>C(16, 8) = 12,870</code> splits; the implementation
+samples 5,000 of them with a fixed seed rather than enumerating all.</li>
+<li>Take the in-sample winner <code>n* = argmax_n SR_IS(n)</code>.</li>
+<li>Find <code>n*</code>&#39;s rank among all <code>N</code> configurations <strong>out of sample</strong>, ranked ascending, and take
+the logit of its relative rank.</li>
+</ol>
+<p>PBO is the fraction of splits where the in-sample winner lands in the bottom half out of sample.</p>
+<p>The test in the benchmark runs it on <strong>100 configurations of pure noise</strong>, so the in-sample
+winner is always luck by construction. A correct implementation must return approximately 0.5.
+It returns <strong>0.569</strong>.</p>
+<p>That number is doing double duty. It is a performance measurement and it is a correctness
+assertion, in the same run. If the implementation ever started finding structure in noise, that
+figure would move before the timing did, and a benchmark that only measured speed would stay
+green while computing nonsense.</p>
+<h2>What it costs</h2>
+<p>PBO over 2,000 observations and 100 configurations, 5,000 sampled splits: <strong>1.6 seconds</strong>. A
+deflated Sharpe on 1,260 daily returns: about <strong>300 microseconds</strong>.</p>
+<p>The point is not that these are fast. It is that at 300 microseconds there is no resource
+argument for running the honest test only on the candidate you already like. The reason people
+skip it is not compute.</p>
+<h2>Three rules I would keep</h2>
+<ol>
+<li><strong>The benchmark is never zero.</strong> If you selected the thing you are testing, the null it must
+beat is the best of what you searched.</li>
+<li><strong>Sweep the parameter you are crediting.</strong> If the conclusion does not move across it, the
+conclusion is about something else, and you are about to publish a confident misattribution.</li>
+<li><strong>Make the benchmark assert behaviour.</strong> A correctness check that runs on every performance
+run is nearly free and catches the class of bug where the answer is fast and wrong.</li>
+</ol>
+<p><em>Implementation:
+<a href="https://github.com/arhancanli/canli-backtest/blob/main/src/alphaforge/validation/dsr.py"><code>dsr.py</code></a>
+and
+<a href="https://github.com/arhancanli/canli-backtest/blob/main/src/alphaforge/validation/pbo.py"><code>pbo.py</code></a>.
+Both are byte-identical to the engine that produces the public record, and CI proves it on every
+push. You can also run the deflation in the browser on
+<a href="/tools/deflated-sharpe">the calculator</a>.</em></p>
+
+    </div>
+    <footer class="note-foot">
+      <p class="note-boundary"><strong>Boundary.</strong> These notes describe engineering and
+      method. They are not performance claims. The paper record and its limits are on
+      <a href="/performance">status</a>, the withdrawn figures on <a href="/progress">corrections</a>,
+      and the code on <a href="/engineering">engineering</a>.</p>
+      <div class="note-more">
+        <h2>More notes</h2>
+        <ul><li><a href="/notes/seventy-files">Seventy files that were never meant to be public</a></li><li><a href="/notes/the-trade-that-lost-99-percent">The trade that lost 99 percent, and the guard I did not add</a></li><li><a href="/notes/what-competitive-programming-bought">What competitive programming actually bought me, and what it did not</a></li></ul>
+      </div>
+    </footer>
+  </article>
+</main>
+<footer class="cc-footer" id="footer" data-product-shell="v3">
+  <div class="cc-footer__lead">
+    <a class="cc-footer__brand" href="/">Canli Capital</a>
+    <p>Build the claim. Publish the evidence. Keep the failures.</p>
+  </div>
+  <div class="cc-footer__routes">
+    <nav aria-label="Portfolio and research">
+      <span>Research system</span>
+      <a href="https://app.canlicapital.com/dashboard">Live record</a>
+      <a href="/systems">ALPHAC systems</a>
+      <a href="/research">Research papers</a>
+      <a href="/trials">Trial union</a>
+    </nav>
+    <nav aria-label="Evidence and verification">
+      <span>Evidence</span>
+      <a href="/methodology">Methodology</a>
+      <a href="/verify">Verify record</a>
+      <a href="/measurements">Measurements</a>
+      <a href="/open">Open data</a>
+    </nav>
+    <nav aria-label="Institution and authorship">
+      <span>Institution</span>
+      <a href="/progress">Corrections</a>
+      <a href="/performance">Status</a>
+      <a href="/founder">Arhan Canli</a>
+    </nav>
+    <nav aria-label="Open source">
+      <span>Source code</span>
+      <a href="/engineering">Engineering</a>
+      <a href="/notes">Engineering notes</a>
+      <a href="https://github.com/arhancanli/alphac" rel="noreferrer">alphac engine</a>
+      <a href="https://github.com/arhancanli/canli-pit-lake" rel="noreferrer">canli-pit-lake</a>
+      <a href="https://github.com/arhancanli/canli-backtest" rel="noreferrer">canli-backtest</a>
+    </nav>
+  </div>
+  <div class="cc-footer__boundary">
+    <p>Research and paper execution only. No managed capital, copy trading, investment advice or promised return.</p>
+    <p>Founded and built by Arhan Canli in Dubai.</p>
+    <span>Copyright Arhan Canli</span>
+  </div>
+</footer>
+</body>
+</html>

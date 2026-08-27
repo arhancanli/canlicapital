@@ -111,8 +111,11 @@ const PROBLEMS = [
     answer: `The answer is an honest denominator, not a better backtest. Deflated Sharpe measures
       an observed Sharpe against the level luck alone reaches given how many configurations were
       tried; a union trial ledger counts every hypothesis across every research ledger so filing
-      conventions cannot shrink the count. On a real 1,260-day series an annualised Sharpe of
-      +1.139 deflates to <strong>0.000</strong> once 200 trials are counted.`,
+      conventions cannot shrink the count. Hold one 1,260-day series fixed at an annualised Sharpe
+      of +1.139, a Probabilistic Sharpe against zero of 0.9828, and move only the trial count: the
+      Deflated Sharpe reads 0.9596 at two trials and <strong>0.5608</strong> at two hundred.
+      Nothing about the strategy changed. Against this project's 0.95 gate it is admissible if you
+      tried two things and inadmissible if you tried ten.`,
     file: "src/alphaforge/validation/dsr.py",
     repo: "canli-backtest",
   },
@@ -384,6 +387,15 @@ ${renderProductShellHeader({ active: "engineering" })}
         </div>
       </li>`).join("\n      ")}
     </ol>
+  </section>
+
+  <section class="eng-section" aria-labelledby="eng-notes-title">
+    <div class="eng-section__head">
+      <h2 id="eng-notes-title">Notes on the engineering</h2>
+      <p>Post-mortems on real incidents, the arithmetic behind the validation gates, and design
+        arguments about the parts that were hard. Written for the mechanism, not the summary.</p>
+    </div>
+    <p class="eng-author"><a class="eng-button" href="/notes">Read the engineering notes</a></p>
   </section>
 
   <section class="eng-section eng-section--tail" aria-labelledby="eng-author-title">

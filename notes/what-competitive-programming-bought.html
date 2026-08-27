@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="en" data-page="notes">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>What competitive programming actually bought me, and what it did not | Canli Capital</title>
+<meta name="description" content="There are no segment trees in this trading engine. I want to explain why that is the right answer, and what the contest habit did pay for instead, because the honest version of this story is more useful than the flattering one." />
+<link rel="canonical" href="https://canlicapital.com/notes/what-competitive-programming-bought" />
+<meta name="author" content="Arhan Canli" />
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="Canli Capital" />
+<meta property="og:title" content="What competitive programming actually bought me, and what it did not" />
+<meta property="og:description" content="There are no segment trees in this trading engine. I want to explain why that is the right answer, and what the contest habit did pay for instead, because the honest version of this story is more useful than the flattering one." />
+<meta property="og:url" content="https://canlicapital.com/notes/what-competitive-programming-bought" />
+<meta property="og:image" content="https://canlicapital.com/og.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="What competitive programming actually bought me, and what it did not" />
+<meta name="twitter:description" content="There are no segment trees in this trading engine. I want to explain why that is the right answer, and what the contest habit did pay for instead, because the honest version of this story is more useful than the flattering one." />
+<meta name="twitter:image" content="https://canlicapital.com/og.png" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" />
+<link rel="stylesheet" href="/css/product-shell.css" />
+<link rel="stylesheet" href="/css/notes.css" />
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"What competitive programming actually bought me, and what it did not","description":"There are no segment trees in this trading engine. I want to explain why that is the right answer, and what the contest habit did pay for instead, because the honest version of this story is more useful than the flattering one.","url":"https://canlicapital.com/notes/what-competitive-programming-bought","datePublished":"2026-08-27","dateModified":"2026-08-27","wordCount":1308,"inLanguage":"en","author":{"@id":"https://canlicapital.com/#arhan-canli"},"publisher":{"@id":"https://canlicapital.com/#organization"},"mainEntityOfPage":"https://canlicapital.com/notes/what-competitive-programming-bought","isPartOf":{"@type":"Blog","@id":"https://canlicapital.com/notes","name":"Engineering notes"}}</script>
+</head>
+<body class="note-page">
+<a class="note-skip" href="#content">Skip to content</a>
+<header class="cc-shell" id="nav" data-product-shell="v3">
+  <a class="cc-shell__brand" href="/" aria-label="Canli Capital, home">
+    <span class="cc-shell__mark" aria-hidden="true"><i></i></span>
+    <span>Canli Capital</span>
+  </a>
+  <a class="cc-shell__status" href="/measurements/alpaca-broker-reconciliation" aria-label="Current record status">
+    <span class="status-dot" aria-hidden="true"></span>
+    <span>Public paper record</span>
+  </a>
+  <nav class="cc-shell__primary" aria-label="Primary navigation">
+<a class="cc-shell__link" href="https://app.canlicapital.com/dashboard" rel="noreferrer">Live</a>
+<a class="cc-shell__link" href="/research">Research</a>
+<a class="cc-shell__link" href="/trials">Trials</a>
+<a class="cc-shell__link" href="/systems">Systems</a>
+<a class="cc-shell__link" href="/methodology">Methodology</a>
+<a class="cc-shell__link" href="/verify">Verify</a>
+  </nav>
+  <details class="cc-shell__index">
+    <summary><span class="cc-shell__index-wide">More</span><span class="cc-shell__index-compact">Menu</span></summary>
+    <div class="cc-shell__panel">
+      <div>
+        <span class="cc-shell__panel-label">Core</span>
+        <nav aria-label="Core routes"><a class="cc-shell__panel-link" href="https://app.canlicapital.com/dashboard" rel="noreferrer">Live</a>
+<a class="cc-shell__panel-link" href="/research">Research</a>
+<a class="cc-shell__panel-link" href="/trials">Trials</a>
+<a class="cc-shell__panel-link" href="/systems">Systems</a>
+<a class="cc-shell__panel-link" href="/methodology">Methodology</a>
+<a class="cc-shell__panel-link" href="/verify">Verify</a></nav>
+      </div>
+      <div>
+        <span class="cc-shell__panel-label">Institution</span>
+        <nav aria-label="Institution routes"><a class="cc-shell__panel-link" href="/progress">Corrections</a>
+<a class="cc-shell__panel-link" href="/performance">Status</a>
+<a class="cc-shell__panel-link" href="/founder">Founder</a>
+<a class="cc-shell__panel-link" href="/open">Open data</a>
+<a class="cc-shell__panel-link" href="/measurements">Measurements</a></nav>
+      </div>
+      <div>
+        <span class="cc-shell__panel-label">Open source</span>
+        <nav aria-label="Source code"><a class="cc-shell__panel-link" href="/engineering">Engineering hub</a>
+<a class="cc-shell__panel-link" href="/notes">Engineering notes</a>
+<a class="cc-shell__panel-link" href="https://github.com/arhancanli/alphac" rel="noreferrer">alphac (engine)</a>
+<a class="cc-shell__panel-link" href="https://github.com/arhancanli/canli-pit-lake" rel="noreferrer">canli-pit-lake</a>
+<a class="cc-shell__panel-link" href="https://github.com/arhancanli/canli-backtest" rel="noreferrer">canli-backtest</a></nav>
+      </div>
+      <p>Observed, simulated, model-estimated and planned claims remain visibly separate.</p>
+    </div>
+  </details>
+  <a class="cc-shell__source" href="/engineering" title="Open-source engineering: the engine, the data layer and the backtester"><svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true" focusable="false"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg><span>Source</span></a>
+  <a class="cc-shell__cta" href="https://app.canlicapital.com/dashboard">Enter live record <span aria-hidden="true">↗</span></a>
+</header>
+<main id="content">
+  <article class="note">
+    <nav class="note-trail" aria-label="Breadcrumb">
+      <a href="/notes">Engineering notes</a>
+    </nav>
+    <header class="note-head">
+      <h1>What competitive programming actually bought me, and what it did not</h1>
+      <p class="note-dek">There are no segment trees in this trading engine. I want to explain why that is the right answer, and what the contest habit did pay for instead, because the honest version of this story is more useful than the flattering one.</p>
+      <p class="note-meta">
+        <span>Arhan Canli</span>
+        <time datetime="2026-08-27">2026-08-27</time>
+        <span>6 min read</span>
+      </p>
+    </header>
+    <div class="note-body">
+<p><strong>Published 2026-08-27. Code links go to the published extractions; the measurement at the end
+is reproducible from the snippet given.</strong></p>
+<h2>The flattering version</h2>
+<p>The tempting thing to write is that competitive programming gave me a toolkit of exotic data
+structures, and that a backtest engine is where they finally paid off. Segment trees for range
+queries over time. A Fenwick tree for rolling aggregates. Union-find for grouping correlated
+instruments.</p>
+<p>That would be a nice story. Here is the actual inventory of the engine&#39;s source tree:</p>
+<ul>
+<li><code>bisect</code>, in two files;</li>
+<li><code>deque</code>, in one;</li>
+<li>no segment tree, no Fenwick tree, no union-find, no explicit priority queue.</li>
+</ul>
+<p>Knowing when a structure is not the answer is most of what the training is for. A segment tree
+buys you <code>O(log n)</code> range updates <strong>interleaved with</strong> queries, online, in arbitrary order. My
+range updates are not interleaved with queries and they are not online. They arrive as a batch
+of intervals, all known in advance, and are consumed as one dense array afterwards. That is the
+case where you paint the intervals and skip the tree entirely.</p>
+<p>Reaching for the sophisticated structure there would cost a log factor, several hundred lines,
+and a new place for an off-by-one to live. The contest instinct that actually matters is
+recognising which problem you have, and the answer here is &quot;offline range assignment&quot;, not
+&quot;dynamic range query&quot;.</p>
+<h2>What it did buy, one: the boundary is where the bug is</h2>
+<p>This engine is full of &quot;what was true at time t&quot; questions. Trading calendars are the sharpest
+case, because the naive answer is arithmetic and the arithmetic is wrong.</p>
+<p>The naive next bar after timestamp <code>ts</code> is <code>ts + tf.ms</code>. Add a day to Friday and you get
+Saturday, a session that does not exist. Nothing raises. You get a phantom bar, your strategy
+&quot;trades&quot; on it, and your backtest quietly earns returns on a day the exchange was shut.</p>
+<p>The real answer is a predecessor and a successor query over the sorted array of session opens:</p>
+<pre><code class="language-python"># last session open at or before ts
+idx = bisect.bisect_right(opens, ts) - 1
+if idx &lt; 0:
+    raise ValueError(f&quot;ts {ts} precedes the first XNYS session {opens[0]}; widen the horizon&quot;)
+return opens[idx]
+
+# first session open strictly after ts
+idx = bisect.bisect_right(opens, ts)
+if idx &gt;= len(opens):
+    raise ValueError(f&quot;ts {ts} is at or past the last cached session; widen the horizon&quot;)
+return opens[idx]
+</code></pre>
+<p>Three details, all of them contest reflexes:</p>
+<p><strong><code>bisect_right</code> minus one, not <code>bisect_left</code>.</strong> For &quot;at or before&quot;, <code>bisect_right</code> puts you
+past every element equal to <code>ts</code>, so stepping back once lands on <code>ts</code> itself when it is a
+session open. <code>bisect_left</code> minus one would skip it and silently return the <em>previous</em> session
+whenever you ask about a real trading day. Both are one-liners. One is wrong in a way that only
+shows up on exact matches, which is to say on the boundary.</p>
+<p><strong>The empty-side guards raise; they do not clamp.</strong> <code>idx &lt; 0</code> means the question is outside the
+cached horizon. Returning <code>opens[0]</code> there would be an answer, and it would be a lie: the caller
+asked about 1994 and would receive a 1997 session as though it were the truth. Clamping is how
+a range error turns into a plausible number. The contest version of this is returning <code>0</code> for an
+out-of-range query and watching the judge disagree on test 14 with no idea why.</p>
+<p><strong>The interval is half-open.</strong> <code>[effective_from, effective_to)</code> throughout, everywhere, without
+exception. Which brings me to the second thing.</p>
+<h2>What it did buy, two: consistency between two implementations of the same predicate</h2>
+<p>Universe membership is stored as intervals. &quot;Was instrument <code>i</code> in the universe at time <code>t</code>?&quot;</p>
+<p>There are two implementations of that predicate in the codebase, and they must agree exactly:</p>
+<ul>
+<li><code>membership_asof(t, i)</code>, the scalar version, used for point queries;</li>
+<li><code>_membership_mask(...)</code>, which produces the whole boolean grid at once for research panels.</li>
+</ul>
+<p>If those two disagree on a single boundary, a backtest and its own diagnostics report different
+universes and nobody notices until a number cannot be reproduced. The scalar version defines the
+predicate as <code>effective_from &lt;= t</code> and (<code>effective_to</code> is null or <code>&gt; t</code>). The vectorised version
+has to reproduce that exactly, which it does by using <code>side=&quot;left&quot;</code> on <strong>both</strong> searches:</p>
+<pre><code class="language-python">lo = int(np.searchsorted(ts_grid, eff_from, side=&quot;left&quot;))
+hi = ts_grid.size if eff_to is None else int(np.searchsorted(ts_grid, eff_to, side=&quot;left&quot;))
+if lo &lt; hi:
+    member[lo:hi, j] = True
+</code></pre>
+<p><code>side=&quot;left&quot;</code> at <code>lo</code> includes a grid point landing exactly on <code>effective_from</code>. <code>side=&quot;left&quot;</code> at
+<code>hi</code> excludes one landing exactly on <code>effective_to</code>, and Python&#39;s own half-open slice
+<code>member[lo:hi]</code> then does the rest. The half-openness of the interval and the half-openness of
+the slice line up, so the boundary case needs no special handling at all.</p>
+<p>Instruments with no interval stay <code>False</code> everywhere, and consumers reindex with
+<code>fill_value=False</code>, so a coverage gap is a non-member rather than a silent <code>True</code>. Fail closed at
+the edge: the same instinct as raising instead of clamping.</p>
+<h2>What it did buy, three: seeing the rewrite immediately</h2>
+<p>The naive way to build that grid is the obvious way. For every <code>(t, i)</code> cell, call
+<code>membership_asof(t, i)</code>. It is correct, it is readable, and on a research panel it is unusable.</p>
+<p>The rewrite is the one every contest teaches: <strong>stop asking per element, start assigning per
+interval.</strong> Instead of one point query per cell, do two binary searches per interval and one
+vectorised slice assignment. The cost stops scaling with the number of cells you are asking
+about and starts scaling with the number of intervals you actually have, which is smaller by
+orders of magnitude.</p>
+<p>Measured on a grid the size of this project&#39;s equity panel, 7,500 sessions by 3,000
+instruments, 22.5 million cells, 9,000 membership intervals:</p>
+<table>
+<thead>
+<tr>
+<th>approach</th>
+<th align="right">time</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>per-cell point query (1% sample, extrapolated)</td>
+<td align="right">3.9 s</td>
+</tr>
+<tr>
+<td>two searches per interval, then paint</td>
+<td align="right"><strong>0.022 s</strong></td>
+</tr>
+</tbody></table>
+<p>About <strong>180x</strong>, and the gap widens as the panel grows, because one side scales with cells and
+the other with intervals. That is the whole trick, and it is the same trick as a difference
+array in a contest problem: the work belongs on the edges of the ranges, not on the points
+inside them.</p>
+<p>The comment in the source says it more bluntly than I would have: <em>one <code>searchsorted</code> pair per
+interval, NEVER a per-row <code>membership_asof</code> sweep</em>.</p>
+<h2>The part that transfers, and the part that does not</h2>
+<p>What does not transfer: the exotic structures, mostly. Real systems are dominated by input and
+output, by data that does not fit the shape you want, and by correctness constraints that make
+the clever version unmaintainable. I have written far more code deciding <em>what is knowable at
+time t</em> than optimising anything.</p>
+<p>What transfers, and I did not expect how much:</p>
+<ol>
+<li><strong>Suspicion of the boundary.</strong> Every time I have found a genuine bug in this engine, it lived
+at an edge: the first bar, the last session, the exact-equality case, the empty set. Contests
+train you to test <code>n = 1</code> before anything else.</li>
+<li><strong>Half-open intervals, always.</strong> Not because they are elegant, but because mixing conventions
+between two functions that implement the same predicate is a bug you cannot see in either
+function alone.</li>
+<li><strong>Failing loudly at the edge of the domain.</strong> Clamping produces plausible answers, and a
+plausible wrong answer survives review.</li>
+<li><strong>Knowing the structure you are choosing not to use.</strong> &quot;No segment tree here, because the
+updates are offline&quot; is a decision. Never having heard of one is not.</li>
+</ol>
+<p>The engine has no clever data structures in it. That is the result of the training, not the
+absence of it.</p>
+<p><em>Code: <a href="https://github.com/arhancanli/canli-pit-lake/blob/main/src/alphaforge/core/calendar.py"><code>core/calendar.py</code></a>
+and <a href="https://github.com/arhancanli/canli-pit-lake/blob/main/src/alphaforge/data/universe/store.py"><code>data/universe/store.py</code></a>
+in <code>canli-pit-lake</code>. Both are byte-identical to the engine behind the public record, and CI
+proves it on every push.</em></p>
+
+    </div>
+    <footer class="note-foot">
+      <p class="note-boundary"><strong>Boundary.</strong> These notes describe engineering and
+      method. They are not performance claims. The paper record and its limits are on
+      <a href="/performance">status</a>, the withdrawn figures on <a href="/progress">corrections</a>,
+      and the code on <a href="/engineering">engineering</a>.</p>
+      <div class="note-more">
+        <h2>More notes</h2>
+        <ul><li><a href="/notes/deflating-a-sharpe-ratio">The arithmetic of not fooling yourself</a></li><li><a href="/notes/seventy-files">Seventy files that were never meant to be public</a></li><li><a href="/notes/the-trade-that-lost-99-percent">The trade that lost 99 percent, and the guard I did not add</a></li></ul>
+      </div>
+    </footer>
+  </article>
+</main>
+<footer class="cc-footer" id="footer" data-product-shell="v3">
+  <div class="cc-footer__lead">
+    <a class="cc-footer__brand" href="/">Canli Capital</a>
+    <p>Build the claim. Publish the evidence. Keep the failures.</p>
+  </div>
+  <div class="cc-footer__routes">
+    <nav aria-label="Portfolio and research">
+      <span>Research system</span>
+      <a href="https://app.canlicapital.com/dashboard">Live record</a>
+      <a href="/systems">ALPHAC systems</a>
+      <a href="/research">Research papers</a>
+      <a href="/trials">Trial union</a>
+    </nav>
+    <nav aria-label="Evidence and verification">
+      <span>Evidence</span>
+      <a href="/methodology">Methodology</a>
+      <a href="/verify">Verify record</a>
+      <a href="/measurements">Measurements</a>
+      <a href="/open">Open data</a>
+    </nav>
+    <nav aria-label="Institution and authorship">
+      <span>Institution</span>
+      <a href="/progress">Corrections</a>
+      <a href="/performance">Status</a>
+      <a href="/founder">Arhan Canli</a>
+    </nav>
+    <nav aria-label="Open source">
+      <span>Source code</span>
+      <a href="/engineering">Engineering</a>
+      <a href="/notes">Engineering notes</a>
+      <a href="https://github.com/arhancanli/alphac" rel="noreferrer">alphac engine</a>
+      <a href="https://github.com/arhancanli/canli-pit-lake" rel="noreferrer">canli-pit-lake</a>
+      <a href="https://github.com/arhancanli/canli-backtest" rel="noreferrer">canli-backtest</a>
+    </nav>
+  </div>
+  <div class="cc-footer__boundary">
+    <p>Research and paper execution only. No managed capital, copy trading, investment advice or promised return.</p>
+    <p>Founded and built by Arhan Canli in Dubai.</p>
+    <span>Copyright Arhan Canli</span>
+  </div>
+</footer>
+</body>
+</html>
