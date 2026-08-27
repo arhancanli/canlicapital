@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import json
 import os
+import re
 from pathlib import Path
 
 from playwright.sync_api import Page, sync_playwright
@@ -35,6 +36,29 @@ def audit_page(
     page.goto(ORIGIN, wait_until="networkidle")
 
     hero = page.locator("#hero-title")
+    # The status strip is the first text in the document. It shipped as four
+    # "Loading..." placeholders, which is what a crawler, a social-card generator
+    # and anyone with scripts blocked saw as the opening line of the site.
+    # build-hero-fallbacks.mjs writes the real values in at build time; this
+    # asserts they are there AND that JavaScript agrees with them, so the two can
+    # never drift apart in either direction.
+    hero_ids = ("hero-record-basis", "hero-broker-execution", "hero-paper-since", "hero-grade")
+    static_html = (ROOT / "index.html").read_text(encoding="utf-8")
+    for element_id in hero_ids:
+        rendered = page.locator(f"#{element_id}").inner_text().strip()
+        assert rendered, f"{element_id} rendered empty"
+        assert "Loading" not in rendered, f"{element_id} still shows a loading placeholder"
+        match = re.search(rf'<strong id="{element_id}"[^>]*>([^<]*)</strong>', static_html)
+        assert match, f"{element_id} has no static fallback in index.html"
+        static_text = match.group(1).strip()
+        assert "Loading" not in static_text, (
+            f"{element_id} static fallback is still a placeholder; a crawler sees it"
+        )
+        assert static_text == rendered, (
+            f"{element_id}: the crawler sees {static_text!r} but JavaScript renders "
+            f"{rendered!r}. The static fallback and the claim contract have drifted."
+        )
+
     assert hero.is_visible()
     assert hero.inner_text() == "A systematic portfolio you can audit while it runs."
     assert page.get_by_role("link", name="View the live record").first.is_visible()
