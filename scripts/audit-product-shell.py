@@ -31,6 +31,13 @@ ROUTES = (
 
 EXPECTED_CORE = {"Live", "Research", "Trials", "Systems", "Methodology", "Verify"}
 EXPECTED_INSTITUTION = {"Corrections", "Status", "Founder", "Open data", "Measurements"}
+EXPECTED_SOURCE = {"Engineering hub", "alphac (engine)", "canli-pit-lake", "canli-backtest"}
+
+#: Below this width the source control is deliberately hidden and the expanded menu
+#: carries the repositories instead. Asserted rather than assumed, because "the
+#: button disappeared on mobile" and "the button was removed" look identical in a
+#: screenshot, and only one of them is intended.
+SOURCE_CONTROL_HIDDEN_BELOW_PX = 640
 
 
 def audit_route(browser, route: str, *, mobile: bool = False) -> dict[str, object]:
@@ -55,6 +62,16 @@ def audit_route(browser, route: str, *, mobile: bool = False) -> dict[str, objec
     core_links = set(header.locator(".cc-shell__primary .cc-shell__link").all_inner_texts())
     assert core_links == EXPECTED_CORE, f"{route}: primary routes differ: {core_links}"
     assert header.locator(".cc-shell__cta").get_attribute("href") == "https://app.canlicapital.com/dashboard"
+    source = header.locator(".cc-shell__source")
+    assert source.count() == 1, f"{route}: expected exactly one source control"
+    assert source.get_attribute("href") == "/engineering", f"{route}: source control does not point at /engineering"
+    if width >= SOURCE_CONTROL_HIDDEN_BELOW_PX:
+        assert source.is_visible(), f"{route}: source control is in the DOM but not visible at {width}px"
+    else:
+        assert not source.is_visible(), (
+            f"{route}: source control is visible at {width}px; below "
+            f"{SOURCE_CONTROL_HIDDEN_BELOW_PX}px the expanded menu is meant to carry it instead"
+        )
     assert footer.get_by_text("Founded and built by Arhan Canli in Dubai.", exact=True).count() == 1
     assert not page.evaluate("document.documentElement.scrollWidth > document.documentElement.clientWidth")
     if route.startswith("/publication/"):
@@ -68,6 +85,8 @@ def audit_route(browser, route: str, *, mobile: bool = False) -> dict[str, objec
         assert menu.locator(".cc-shell__panel").is_visible()
         institution_links = set(menu.locator("nav[aria-label='Institution routes'] a").all_inner_texts())
         assert institution_links == EXPECTED_INSTITUTION
+        source_links = set(menu.locator("nav[aria-label='Source code'] a").all_inner_texts())
+        assert source_links == EXPECTED_SOURCE, f"{route}: source routes differ: {source_links}"
         assert not page.evaluate("document.documentElement.scrollWidth > document.documentElement.clientWidth")
 
     screenshot = None

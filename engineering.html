@@ -1,0 +1,380 @@
+<!doctype html>
+<html lang="en" data-page="engineering">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Open-source engineering | Canli Capital</title>
+<meta name="description" content="The open-source engineering behind Canli Capital: a point-in-time data lake, a backtester that raises on look-ahead, and multiple-testing machinery that counts every hypothesis. Read the code, run the tests, check the numbers." />
+<link rel="canonical" href="https://canlicapital.com/engineering" />
+<meta name="author" content="Arhan Canli" />
+<meta name="canli:sources" content="engineering_open_source.json" />
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Canli Capital" />
+<meta property="og:title" content="Open-source engineering" />
+<meta property="og:description" content="The open-source engineering behind Canli Capital: a point-in-time data lake, a backtester that raises on look-ahead, and multiple-testing machinery that counts every hypothesis. Read the code, run the tests, check the numbers." />
+<meta property="og:url" content="https://canlicapital.com/engineering" />
+<meta property="og:image" content="https://canlicapital.com/og.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Open-source engineering" />
+<meta name="twitter:description" content="The open-source engineering behind Canli Capital: a point-in-time data lake, a backtester that raises on look-ahead, and multiple-testing machinery that counts every hypothesis. Read the code, run the tests, check the numbers." />
+<meta name="twitter:image" content="https://canlicapital.com/og.png" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" />
+<link rel="stylesheet" href="/css/product-shell.css" />
+<link rel="stylesheet" href="/css/engineering.css" />
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"CollectionPage","@id":"https://canlicapital.com/engineering","name":"Open-source engineering","url":"https://canlicapital.com/engineering","description":"The open-source engineering behind Canli Capital: a point-in-time data lake, a backtester that raises on look-ahead, and multiple-testing machinery that counts every hypothesis. Read the code, run the tests, check the numbers.","author":{"@id":"https://canlicapital.com/#arhan-canli"},"isPartOf":{"@id":"https://canlicapital.com/#website"}},{"@type":"SoftwareSourceCode","name":"alphac","description":"The whole system: data lake, point-in-time reader, backtester, walk-forward harness, multiple-testing machinery, portfolio optimizer and live broker loop.","codeRepository":"https://github.com/arhancanli/alphac","programmingLanguage":"Python","license":"https://opensource.org/licenses/MIT","creator":{"@id":"https://canlicapital.com/#arhan-canli"}},{"@type":"SoftwareSourceCode","name":"canli-pit-lake","codeRepository":"https://github.com/arhancanli/canli-pit-lake","programmingLanguage":"Python","license":"https://opensource.org/licenses/MIT","creator":{"@id":"https://canlicapital.com/#arhan-canli"},"isBasedOn":"https://github.com/arhancanli/alphac"},{"@type":"SoftwareSourceCode","name":"canli-backtest","codeRepository":"https://github.com/arhancanli/canli-backtest","programmingLanguage":"Python","license":"https://opensource.org/licenses/MIT","creator":{"@id":"https://canlicapital.com/#arhan-canli"},"isBasedOn":"https://github.com/arhancanli/alphac"}]}</script>
+</head>
+<body class="eng-page">
+<a class="eng-skip" href="#content">Skip to content</a>
+<header class="cc-shell" id="nav" data-product-shell="v3">
+  <a class="cc-shell__brand" href="/" aria-label="Canli Capital, home">
+    <span class="cc-shell__mark" aria-hidden="true"><i></i></span>
+    <span>Canli Capital</span>
+  </a>
+  <a class="cc-shell__status" href="/measurements/alpaca-broker-reconciliation" aria-label="Current record status">
+    <span class="status-dot" aria-hidden="true"></span>
+    <span>Public paper record</span>
+  </a>
+  <nav class="cc-shell__primary" aria-label="Primary navigation">
+<a class="cc-shell__link" href="https://app.canlicapital.com/dashboard" rel="noreferrer">Live</a>
+<a class="cc-shell__link" href="/research">Research</a>
+<a class="cc-shell__link" href="/trials">Trials</a>
+<a class="cc-shell__link" href="/systems">Systems</a>
+<a class="cc-shell__link" href="/methodology">Methodology</a>
+<a class="cc-shell__link" href="/verify">Verify</a>
+  </nav>
+  <details class="cc-shell__index">
+    <summary><span class="cc-shell__index-wide">More</span><span class="cc-shell__index-compact">Menu</span></summary>
+    <div class="cc-shell__panel">
+      <div>
+        <span class="cc-shell__panel-label">Core</span>
+        <nav aria-label="Core routes"><a class="cc-shell__panel-link" href="https://app.canlicapital.com/dashboard" rel="noreferrer">Live</a>
+<a class="cc-shell__panel-link" href="/research">Research</a>
+<a class="cc-shell__panel-link" href="/trials">Trials</a>
+<a class="cc-shell__panel-link" href="/systems">Systems</a>
+<a class="cc-shell__panel-link" href="/methodology">Methodology</a>
+<a class="cc-shell__panel-link" href="/verify">Verify</a></nav>
+      </div>
+      <div>
+        <span class="cc-shell__panel-label">Institution</span>
+        <nav aria-label="Institution routes"><a class="cc-shell__panel-link" href="/progress">Corrections</a>
+<a class="cc-shell__panel-link" href="/performance">Status</a>
+<a class="cc-shell__panel-link" href="/founder">Founder</a>
+<a class="cc-shell__panel-link" href="/open">Open data</a>
+<a class="cc-shell__panel-link" href="/measurements">Measurements</a></nav>
+      </div>
+      <div>
+        <span class="cc-shell__panel-label">Open source</span>
+        <nav aria-label="Source code"><a class="cc-shell__panel-link" href="/engineering">Engineering hub</a>
+<a class="cc-shell__panel-link" href="https://github.com/arhancanli/alphac" rel="noreferrer">alphac (engine)</a>
+<a class="cc-shell__panel-link" href="https://github.com/arhancanli/canli-pit-lake" rel="noreferrer">canli-pit-lake</a>
+<a class="cc-shell__panel-link" href="https://github.com/arhancanli/canli-backtest" rel="noreferrer">canli-backtest</a></nav>
+      </div>
+      <p>Observed, simulated, model-estimated and planned claims remain visibly separate.</p>
+    </div>
+  </details>
+  <a class="cc-shell__source" href="/engineering" title="Open-source engineering: the engine, the data layer and the backtester" aria-current="page" data-current="true"><svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true" focusable="false"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg><span>Source</span></a>
+  <a class="cc-shell__cta" href="https://app.canlicapital.com/dashboard">Enter live record <span aria-hidden="true">↗</span></a>
+</header>
+<main id="content">
+
+  <section class="eng-hero" aria-labelledby="eng-title">
+    <p class="eng-kicker">Open source / engineering</p>
+    <h1 id="eng-title">The code that produces every number on this site.</h1>
+    <p class="eng-lead">The strategies are well-documented academic families. What took the work is
+      the machinery that stops me fooling myself, and that machinery is public, tested and
+      pinned. 1,220 tests across 262 published files, all of it
+      byte-identical to the engine that publishes the live paper record.</p>
+    <div class="eng-hero__actions">
+      <a class="eng-button eng-button--primary" href="https://github.com/arhancanli/alphac" rel="noreferrer">Read the engine <span aria-hidden="true">&#8599;</span></a>
+      <a class="eng-button" href="#reading-path">Where to start</a>
+    </div>
+    <p class="eng-boundary"><strong>What this is not.</strong> Open code is not a track record and
+      not a claim that the strategies make money. The paper record and its limits live on
+      <a href="/performance">status</a>; the corrections live on <a href="/progress">corrections</a>.</p>
+  </section>
+
+  <section class="eng-section" aria-labelledby="eng-repos-title">
+    <div class="eng-section__head">
+      <h2 id="eng-repos-title">Three repositories</h2>
+      <p>One system, plus two focused extractions of the parts most worth reading on their own.</p>
+    </div>
+    <article class="eng-repo eng-repo--engine">
+      <header>
+        <h3><a href="https://github.com/arhancanli/alphac" rel="noreferrer">alphac</a></h3>
+        <p class="eng-repo__pin">The whole system</p>
+      </header>
+      <p class="eng-repo__lede">The whole system: data lake, point-in-time reader, backtester, walk-forward harness, multiple-testing machinery, portfolio optimizer and live broker loop.</p>
+      <p class="eng-repo__note">Public because the claim is not &ldquo;this makes money.&rdquo; It is
+        &ldquo;every number published here can be checked, including the ones that embarrass me.&rdquo;
+        That claim is worthless if the code is hidden.</p>
+    </article>
+    <div class="eng-repos">
+      <article class="eng-repo" id="canli-pit-lake">
+    <header>
+      <h3><a href="https://github.com/arhancanli/canli-pit-lake" rel="noreferrer">canli-pit-lake</a></h3>
+      <p class="eng-repo__pin">Byte-identical to <code>alphac@612d2af81844</code></p>
+    </header>
+    <dl class="eng-repo__stats">
+      <div><dt>Files published</dt><dd>146</dd></div>
+      <div><dt>Source / tests</dt><dd>40 / 48</dd></div>
+      <div><dt>Tests passing</dt><dd>941 <small>+12 deselected</small></dd></div>
+      <div><dt>Strict type check</dt><dd>42 files, 0 issues</dd></div>
+    </dl>
+    <p class="eng-repo__aside">The 12 deselected are network tests, excluded by default.</p>
+    <details class="eng-repo__bench">
+      <summary>Measured 2026-08-27 using <code>benchmarks/lake_throughput.py</code></summary>
+      <p class="eng-repo__basis">1,000,000 synthetic bars (50 instruments x 20,000 hourly), Apple silicon, single process</p>
+      <table>
+        <tbody>
+          <tr><th scope="row">write, validate then atomic promote</th><td>~1.05M bars/s</td></tr>
+          <tr><th scope="row">read, everything visible</th><td>~15M rows/s</td></tr>
+          <tr><th scope="row">read, as_of at the midpoint</th><td>~14M rows/s</td></tr>
+          <tr><th scope="row">on disk, zstd-3</th><td>60.6 bytes/bar</td></tr>
+        </tbody>
+      </table>
+      <p class="eng-repo__commands-lede">Re-run every gate yourself:</p>
+      <ul class="eng-repo__commands">
+        <li><code>uv run pytest</code></li>
+        <li><code>uv run mypy</code></li>
+        <li><code>uv run ruff check .</code></li>
+        <li><code>uv run python tools/check_parity.py</code></li>
+      </ul>
+    </details>
+    <p class="eng-repo__note">1 engine test module read the private research corpus and cannot run here. It is <strong>removed rather than skipped</strong>, with the reason recorded in <code>excluded_tests.json</code>, so the suite has no silently-passing holes.</p>
+  </article>
+      <article class="eng-repo" id="canli-backtest">
+    <header>
+      <h3><a href="https://github.com/arhancanli/canli-backtest" rel="noreferrer">canli-backtest</a></h3>
+      <p class="eng-repo__pin">Byte-identical to <code>alphac@612d2af81844</code></p>
+    </header>
+    <dl class="eng-repo__stats">
+      <div><dt>Files published</dt><dd>116</dd></div>
+      <div><dt>Source / tests</dt><dd>36 / 22</dd></div>
+      <div><dt>Tests passing</dt><dd>279</dd></div>
+      <div><dt>Strict type check</dt><dd>41 files, 0 issues</dd></div>
+    </dl>
+    
+    <details class="eng-repo__bench">
+      <summary>Measured 2026-08-27 using <code>benchmarks/validation_throughput.py</code></summary>
+      <p class="eng-repo__basis">Apple silicon, single process; the PBO case runs on pure noise so the result is also a correctness check</p>
+      <table>
+        <tbody>
+          <tr><th scope="row">PBO via CSCV, 2,000 x 100 configs, 5,000 sampled splits</th><td>1.55 s</td></tr>
+          <tr><th scope="row">Deflated Sharpe, 1,260 daily returns</th><td>289 microseconds</td></tr>
+          <tr><th scope="row">PBO measured on pure noise (0.5 is correct)</th><td>0.569</td></tr>
+          <tr><th scope="row">Sharpe +1.139 deflated at 200 trials</th><td>0.000</td></tr>
+        </tbody>
+      </table>
+      <p class="eng-repo__commands-lede">Re-run every gate yourself:</p>
+      <ul class="eng-repo__commands">
+        <li><code>uv run pytest</code></li>
+        <li><code>uv run mypy</code></li>
+        <li><code>uv run ruff check .</code></li>
+        <li><code>uv run python tools/check_parity.py</code></li>
+      </ul>
+    </details>
+    <p class="eng-repo__note">2 engine test modules read the private research corpus and cannot run here. They are <strong>removed rather than skipped</strong>, with the reason recorded in <code>excluded_tests.json</code>, so the suite has no silently-passing holes.</p>
+  </article>
+    </div>
+  </section>
+
+  <section class="eng-section" aria-labelledby="eng-problems-title">
+    <div class="eng-section__head">
+      <h2 id="eng-problems-title">What is actually hard here</h2>
+      <p>Three ways a quantitative result can be false while every test passes, and the structural
+        answer to each. Not conventions to remember, but things the code will not let you do.</p>
+    </div>
+    <div class="eng-problems">
+      <article class="eng-problem" id="lookahead">
+    <p class="eng-problem__kicker">Problem one</p>
+    <h3>The backtest saw something it could not have seen.</h3>
+    <p class="eng-problem__body">Look-ahead is rarely a dramatic bug. It is an off-by-one on a timestamp, a feature
+      computed over a window that includes the present, a flag derived from tomorrow's reversion.
+      It never raises. It just makes the curve go up.</p>
+    <div class="eng-problem__answer">
+      <span>How it is prevented</span>
+      <p>A strategy decides at the close of bar <em>t</em> and fills at the open of bar
+      <em>t+1</em>. The fill model is handed only the <em>t+1</em> bar, checks that bar opened
+      after the decision, and raises <code>LookaheadError</code> if it did not. The engine
+      re-checks every fill it gets back. The strategy reads history through a context whose
+      accessor is a point-in-time read fixed at the decision close, so there is no handle on the
+      future to grab even by accident.</p>
+    </div>
+    <a class="eng-problem__file" href="https://github.com/arhancanli/canli-backtest/blob/main/src/alphaforge/backtest/fills.py" rel="noreferrer"><code>src/alphaforge/backtest/fills.py</code> <span aria-hidden="true">&#8599;</span></a>
+  </article>
+      <article class="eng-problem" id="pit">
+    <p class="eng-problem__kicker">Problem two</p>
+    <h3>The data quietly knows how the story ended.</h3>
+    <p class="eng-problem__body">Today's index membership means the backtest only ever traded survivors. Today's split
+      factors mean 2015 trades at prices no screen showed in 2015. A restated earnings figure gets
+      treated as knowable on the original filing date.</p>
+    <div class="eng-problem__answer">
+      <span>How it is prevented</span>
+      <p>Every analytical read takes an explicit <code>as_of</code> and returns only records
+      available at that instant. There is deliberately no <code>as_of=now</code> default, so a
+      caller has to state its information time. Corporate actions filter on
+      <code>available_at</code>, meaning declaration plus publication lag, and never on
+      <code>ex_date</code>. A split declared one millisecond after your <code>as_of</code> is
+      therefore invisible. Quality flags carry per-bit availability lags, and a bit whose lag is undeclared
+      is never exposed at all.</p>
+    </div>
+    <a class="eng-problem__file" href="https://github.com/arhancanli/canli-pit-lake/blob/main/src/alphaforge/data/store/reader.py" rel="noreferrer"><code>src/alphaforge/data/store/reader.py</code> <span aria-hidden="true">&#8599;</span></a>
+  </article>
+      <article class="eng-problem" id="selection">
+    <p class="eng-problem__kicker">Problem three</p>
+    <h3>It was the best of two hundred tries, and one got published.</h3>
+    <p class="eng-problem__body">This is the harder lie and the more common one. Run enough variants and something looks
+      brilliant by luck alone. No amount of simulation fidelity fixes it.</p>
+    <div class="eng-problem__answer">
+      <span>How it is prevented</span>
+      <p>The answer is an honest denominator, not a better backtest. Deflated Sharpe measures
+      an observed Sharpe against the level luck alone reaches given how many configurations were
+      tried; a union trial ledger counts every hypothesis across every research ledger so filing
+      conventions cannot shrink the count. On a real 1,260-day series an annualised Sharpe of
+      +1.139 deflates to <strong>0.000</strong> once 200 trials are counted.</p>
+    </div>
+    <a class="eng-problem__file" href="https://github.com/arhancanli/canli-backtest/blob/main/src/alphaforge/validation/dsr.py" rel="noreferrer"><code>src/alphaforge/validation/dsr.py</code> <span aria-hidden="true">&#8599;</span></a>
+  </article>
+    </div>
+  </section>
+
+  <section class="eng-section" aria-labelledby="eng-parity-title">
+    <div class="eng-section__head">
+      <h2 id="eng-parity-title">How the extractions stay honest</h2>
+      <p>A published copy of code nobody checks is a screenshot.</p>
+    </div>
+    <div class="eng-parity">
+      <article>
+        <h3>The module set is derived, not curated</h3>
+        <p>Each extraction ships the transitive import closure of its entry packages, computed by
+          walking the import graph. The test set is every engine test whose imports that closure
+          satisfies. Nobody chose the file list, so nobody could quietly leave an awkward file out.</p>
+      </article>
+      <article>
+        <h3>Parity is a build failure, not a promise</h3>
+        <p>Every shipped file's SHA-256 is recorded at extraction time.
+          <code>tools/check_parity.py</code> re-reads each one from the engine at the pinned commit
+          and fails if a single byte differs. It runs in CI on every push, and it is mutation-tested
+          three ways: a drifted file, a tampered manifest entry and a deleted file each turn it red.</p>
+      </article>
+      <article>
+        <h3>Only what the engine publishes</h3>
+        <p>The extraction reads the engine's tracked file set, not its working directory. That rule
+          exists because the first version did not have it and shipped 70 files the engine
+          deliberately gitignores. The parity check against GitHub caught them; a check against a
+          local copy never would have, because it was comparing those files against the very tree
+          they came from.</p>
+      </article>
+      <article>
+        <h3>The toolchain is pinned too</h3>
+        <p>Source that cannot be edited without breaking parity cannot be made to satisfy a newer
+          linter. So ruff, mypy, pandas and numpy are pinned to the versions the engine is verified
+          against. &ldquo;Identical&rdquo; asserted by a tool that disagrees with the one that
+          certified it is not identical.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="eng-section" id="reading-path" aria-labelledby="eng-path-title">
+    <div class="eng-section__head">
+      <h2 id="eng-path-title">If you have ten minutes</h2>
+      <p>Four files, in this order. Each one is heavily commented with the reasoning, not just the
+        implementation.</p>
+    </div>
+    <ol class="eng-path">
+      <li>
+        <span class="eng-path__n">01</span>
+        <div>
+          <a href="https://github.com/arhancanli/canli-pit-lake/blob/main/src/alphaforge/data/store/reader.py" rel="noreferrer"><code>src/alphaforge/data/store/reader.py</code></a>
+          <small>canli-pit-lake</small>
+          <p>The point-in-time rule, and the comment explaining why it lives in exactly one place.</p>
+        </div>
+      </li>
+      <li>
+        <span class="eng-path__n">02</span>
+        <div>
+          <a href="https://github.com/arhancanli/canli-backtest/blob/main/src/alphaforge/backtest/engine.py" rel="noreferrer"><code>src/alphaforge/backtest/engine.py</code></a>
+          <small>canli-backtest</small>
+          <p>The event loop: corporate actions, funding, marks, decision, fill, and the re-check after it.</p>
+        </div>
+      </li>
+      <li>
+        <span class="eng-path__n">03</span>
+        <div>
+          <a href="https://github.com/arhancanli/canli-backtest/blob/main/src/alphaforge/validation/pbo.py" rel="noreferrer"><code>src/alphaforge/validation/pbo.py</code></a>
+          <small>canli-backtest</small>
+          <p>Combinatorially symmetric cross-validation, written out step by step against the 2017 paper.</p>
+        </div>
+      </li>
+      <li>
+        <span class="eng-path__n">04</span>
+        <div>
+          <a href="https://github.com/arhancanli/canli-pit-lake/blob/main/tools/check_parity.py" rel="noreferrer"><code>tools/check_parity.py</code></a>
+          <small>canli-pit-lake</small>
+          <p>How these repositories prove they are the engine&#39;s code and not a fork that drifted.</p>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <section class="eng-section eng-section--tail" aria-labelledby="eng-author-title">
+    <div class="eng-section__head">
+      <h2 id="eng-author-title">Authorship</h2>
+    </div>
+    <p class="eng-author">Designed, written and maintained by
+      <a href="/founder">Arhan Canli</a>, in Dubai. Development uses reviewed AI-assisted tooling;
+      ownership, research decisions, published claims and release responsibility are mine. Every
+      repository is MIT licensed and carries machine-readable citation metadata.</p>
+    <p class="eng-source">This page is generated from
+      <a href="/glassbox/engineering_open_source.json"><code>engineering_open_source.json</code></a>, whose counts are read out of
+      what the repositories publish. The build asserts that artifact's content hash reproduces, so a
+      number typed by hand fails the build instead of reaching this page.</p>
+  </section>
+
+</main>
+<footer class="cc-footer" id="footer" data-product-shell="v3">
+  <div class="cc-footer__lead">
+    <a class="cc-footer__brand" href="/">Canli Capital</a>
+    <p>Build the claim. Publish the evidence. Keep the failures.</p>
+  </div>
+  <div class="cc-footer__routes">
+    <nav aria-label="Portfolio and research">
+      <span>Research system</span>
+      <a href="https://app.canlicapital.com/dashboard">Live record</a>
+      <a href="/systems">ALPHAC systems</a>
+      <a href="/research">Research papers</a>
+      <a href="/trials">Trial union</a>
+    </nav>
+    <nav aria-label="Evidence and verification">
+      <span>Evidence</span>
+      <a href="/methodology">Methodology</a>
+      <a href="/verify">Verify record</a>
+      <a href="/measurements">Measurements</a>
+      <a href="/open">Open data</a>
+    </nav>
+    <nav aria-label="Institution and authorship">
+      <span>Institution</span>
+      <a href="/progress">Corrections</a>
+      <a href="/performance">Status</a>
+      <a href="/founder">Arhan Canli</a>
+    </nav>
+    <nav aria-label="Open source">
+      <span>Source code</span>
+      <a href="/engineering">Engineering</a>
+      <a href="https://github.com/arhancanli/alphac" rel="noreferrer">alphac engine</a>
+      <a href="https://github.com/arhancanli/canli-pit-lake" rel="noreferrer">canli-pit-lake</a>
+      <a href="https://github.com/arhancanli/canli-backtest" rel="noreferrer">canli-backtest</a>
+    </nav>
+  </div>
+  <div class="cc-footer__boundary">
+    <p>Research and paper execution only. No managed capital, copy trading, investment advice or promised return.</p>
+    <p>Founded and built by Arhan Canli in Dubai.</p>
+    <span>Copyright Arhan Canli</span>
+  </div>
+</footer>
+</body>
+</html>

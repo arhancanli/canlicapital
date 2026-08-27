@@ -1,0 +1,96 @@
+{
+  "schema": "canli.engineering-open-source.v1",
+  "generated_at": "2026-08-27T06:44:05Z",
+  "engine": {
+    "repo": "alphac",
+    "url": "https://github.com/arhancanli/alphac",
+    "note": "The whole system: data lake, point-in-time reader, backtester, walk-forward harness, multiple-testing machinery, portfolio optimizer and live broker loop."
+  },
+  "extractions": [
+    {
+      "repo": "canli-pit-lake",
+      "url": "https://github.com/arhancanli/canli-pit-lake",
+      "files_total": 146,
+      "files_source": 40,
+      "files_test": 48,
+      "pinned_engine_commit": "612d2af818441a3e67ceba17e1451434ed9e4f1c",
+      "excluded_test_modules": 1,
+      "measured_at": "2026-08-27",
+      "tests_passed": 941,
+      "tests_deselected": 12,
+      "tests_deselected_reason": "network tests, excluded by default",
+      "typed_source_files": 42,
+      "commands": [
+        "uv run pytest",
+        "uv run mypy",
+        "uv run ruff check .",
+        "uv run python tools/check_parity.py"
+      ],
+      "benchmark": {
+        "script": "benchmarks/lake_throughput.py",
+        "basis": "1,000,000 synthetic bars (50 instruments x 20,000 hourly), Apple silicon, single process",
+        "rows": [
+          [
+            "write, validate then atomic promote",
+            "~1.05M bars/s"
+          ],
+          [
+            "read, everything visible",
+            "~15M rows/s"
+          ],
+          [
+            "read, as_of at the midpoint",
+            "~14M rows/s"
+          ],
+          [
+            "on disk, zstd-3",
+            "60.6 bytes/bar"
+          ]
+        ]
+      }
+    },
+    {
+      "repo": "canli-backtest",
+      "url": "https://github.com/arhancanli/canli-backtest",
+      "files_total": 116,
+      "files_source": 36,
+      "files_test": 22,
+      "pinned_engine_commit": "612d2af818441a3e67ceba17e1451434ed9e4f1c",
+      "excluded_test_modules": 2,
+      "measured_at": "2026-08-27",
+      "tests_passed": 279,
+      "tests_deselected": 0,
+      "tests_deselected_reason": "",
+      "typed_source_files": 41,
+      "commands": [
+        "uv run pytest",
+        "uv run mypy",
+        "uv run ruff check .",
+        "uv run python tools/check_parity.py"
+      ],
+      "benchmark": {
+        "script": "benchmarks/validation_throughput.py",
+        "basis": "Apple silicon, single process; the PBO case runs on pure noise so the result is also a correctness check",
+        "rows": [
+          [
+            "PBO via CSCV, 2,000 x 100 configs, 5,000 sampled splits",
+            "1.55 s"
+          ],
+          [
+            "Deflated Sharpe, 1,260 daily returns",
+            "289 microseconds"
+          ],
+          [
+            "PBO measured on pure noise (0.5 is correct)",
+            "0.569"
+          ],
+          [
+            "Sharpe +1.139 deflated at 200 trials",
+            "0.000"
+          ]
+        ]
+      }
+    }
+  ],
+  "content_hash": "sha256:3d670540ffdba6ad871439dbe712b4538de26d3e83ea9d5adfd4486efbf08cca"
+}

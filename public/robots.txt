@@ -1,4 +1,12 @@
 User-agent: *
 Allow: /
 
+# Every page here is meant to be readable by people and by machines. Nothing is
+# gated, nothing is cloaked, and no crawler is singled out for different content.
+
 Sitemap: https://canlicapital.com/sitemap.xml
+
+# An LLM-oriented map of the site, in the llmstxt.org convention. It leads with the
+# claim boundary -- paper-traded, not funded -- because a summary that gets that
+# wrong is the most costly error a model can make about this project.
+# https://canlicapital.com/llms.txt

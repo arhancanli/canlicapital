@@ -26,7 +26,7 @@
   width: 100%;
   min-height: 78px;
   display: grid;
-  grid-template-columns: auto auto minmax(0, 1fr) auto auto;
+  grid-template-columns: auto auto minmax(0, 1fr) auto auto auto;
   align-items: center;
   gap: clamp(16px, 2vw, 34px);
   padding: 0 clamp(22px, 4.5vw, 76px);
@@ -199,6 +199,31 @@
   font: 400 0.75rem/1.55 var(--cc-shell-data);
 }
 
+/* The source control. Outlined rather than underlined so it reads as an action
+   beside the CTA, not as a seventh navigation category. */
+.cc-shell__source {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 13px;
+  color: #cfe0ea !important;
+  border: 1px solid var(--cc-line);
+  font-size: 0.69rem;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: color 180ms ease, border-color 180ms ease, background-color 180ms ease;
+}
+.cc-shell__source svg { flex: none; opacity: 0.9; }
+.cc-shell__source:hover,
+.cc-shell__source[data-current="true"] {
+  color: #fff !important;
+  border-color: var(--cc-cyan);
+  background: rgba(88, 224, 181, 0.06);
+}
+.cc-shell__source:hover svg,
+.cc-shell__source[data-current="true"] svg { opacity: 1; }
+
 .cc-shell__cta {
   min-height: 44px;
   display: inline-flex;
@@ -263,13 +288,15 @@
 .cc-footer__boundary span { white-space: nowrap; }
 
 @media (max-width: 1240px) {
-  .cc-shell { grid-template-columns: auto minmax(0, 1fr) auto auto; }
+  .cc-shell { grid-template-columns: auto minmax(0, 1fr) auto auto auto; }
   .cc-shell__status { display: none; }
   .cc-shell__primary { justify-content: flex-end; }
 }
 
 @media (max-width: 980px) {
-  .cc-shell { position: relative; grid-template-columns: auto 1fr auto; gap: 14px; min-height: 70px; padding-right: 16px; padding-left: 20px; }
+  .cc-shell { position: relative; grid-template-columns: auto 1fr auto auto; gap: 14px; min-height: 70px; padding-right: 16px; padding-left: 20px; }
+  .cc-shell__source { min-height: 40px; padding: 0 10px; }
+  .cc-shell__source span { display: none; }
   .cc-shell__primary { display: none; }
   .cc-shell__index { justify-self: end; }
   .cc-shell__index-wide { display: none; }
@@ -281,6 +308,10 @@
 
 @media (max-width: 640px) {
   .cc-shell { grid-template-columns: minmax(0, 1fr) auto auto; }
+  /* Below 640px the row cannot hold brand + menu + CTA + source without crowding.
+     The control is dropped rather than shrunk, because the expanded menu carries an
+     "Open source" group with every repository, so nothing becomes unreachable. */
+  .cc-shell__source { display: none; }
   .cc-shell__brand { font-size: 0.82rem; }
   .cc-shell__mark { width: 23px; transform: scale(.9); transform-origin: left center; }
   .cc-shell__cta { width: 42px; padding: 0; justify-content: center; overflow: hidden; color: transparent !important; font-size: 0; }

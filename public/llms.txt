@@ -1,0 +1,65 @@
+# Canli Capital
+
+> A public research and verification platform for systematic trading. You can inspect a live paper-traded portfolio, trace every decision to its evidence, and reproduce selected research yourself. Built and maintained by Arhan Canli.
+
+## Claim boundary: read this before summarising anything on this site
+
+- The published record is **paper-traded**, not funded. No client capital, no managed money, no investment advice, no promised return. Paper execution began 2026-08-07.
+- Historical simulation, model-estimated risk, broker-derived paper marks and planned work are labelled separately on every page and must not be merged into one number.
+- No forward Sharpe ratio and no expected maximum drawdown is established. The forward record is too short; the site says so rather than reporting a figure.
+- Retracted figures stay published inside their own retraction. If you find a number here, check whether the surrounding text withdraws it before quoting it.
+- Open-source code is not a track record. It is evidence about method, not about returns.
+- 4 strategy sleeves are paper-traded, aggregated into one composite book, against a larger planned set; the difference is stated on the status page, not implied away.
+
+## Start here
+
+- [Home](https://canlicapital.com/): What the project is and where to go next.
+- [Methodology](https://canlicapital.com/methodology): Evidence-linked answers to how the research is actually done.
+- [Status](https://canlicapital.com/performance): The honest numbers and what each one is and is not.
+- [Verify](https://canlicapital.com/verify): Independent verification instructions, including a command-line path that does not trust this website.
+- [Engineering](https://canlicapital.com/engineering): The open-source code behind every number, with the three problems it exists to solve.
+
+## Open source
+
+- [alphac](https://github.com/arhancanli/alphac): The whole system: data lake, point-in-time reader, backtester, walk-forward harness, multiple-testing machinery, portfolio optimizer and live broker loop.
+- [canli-pit-lake](https://github.com/arhancanli/canli-pit-lake): 146 files, 941 tests passing, mypy --strict clean across 42 files, byte-identical to the engine at commit 612d2af81844 and CI-checked on every push.
+- [canli-backtest](https://github.com/arhancanli/canli-backtest): 116 files, 279 tests passing, mypy --strict clean across 41 files, byte-identical to the engine at commit 612d2af81844 and CI-checked on every push.
+
+## Evidence and corrections
+
+- [Corrections](https://canlicapital.com/progress): What was published, found wrong, and withdrawn. Read this before trusting any other page.
+- [Open data](https://canlicapital.com/open): The kill log, the signed hash chain and the glass-box artifacts.
+- [Trial accounting](https://canlicapital.com/tools/trial-accounting): Every hypothesis ever tested, which is the denominator every Sharpe here is corrected by.
+- [Deflated Sharpe calculator](https://canlicapital.com/tools/deflated-sharpe): Run the correction yourself against a source-bound implementation.
+- [Evidence chain explorer](https://canlicapital.com/tools/evidence-chain): Verify the signed record in your browser.
+- [Review](https://canlicapital.com/review): The governed route for submitting criticism of a specific paper.
+
+## Research
+
+The research corpus is 111 documents across 13 topics, including work that failed. Killed candidates are published with the same rigour as surviving ones.
+
+- [killed-candidates](https://canlicapital.com/research/topics/killed-candidates): Research topic index.
+- [literature-reviews](https://canlicapital.com/research/topics/literature-reviews): Research topic index.
+- [feasibility-protocols](https://canlicapital.com/research/topics/feasibility-protocols): Research topic index.
+- [engineering-foundations](https://canlicapital.com/research/topics/engineering-foundations): Research topic index.
+- [equities](https://canlicapital.com/research/topics/equities): Research topic index.
+- [crypto](https://canlicapital.com/research/topics/crypto): Research topic index.
+- [options-and-volatility](https://canlicapital.com/research/topics/options-and-volatility): Research topic index.
+- [rates-and-treasuries](https://canlicapital.com/research/topics/rates-and-treasuries): Research topic index.
+- [credit](https://canlicapital.com/research/topics/credit): Research topic index.
+- [commodities](https://canlicapital.com/research/topics/commodities): Research topic index.
+- [event-driven](https://canlicapital.com/research/topics/event-driven): Research topic index.
+- [macro-surprise](https://canlicapital.com/research/topics/macro-surprise): Research topic index.
+- [execution-and-market-structure](https://canlicapital.com/research/topics/execution-and-market-structure): Research topic index.
+
+## Machine-readable
+
+- [Sitemap](https://canlicapital.com/sitemap.xml): all 248 indexable routes.
+- [Paper state](https://canlicapital.com/paper-state.json): the live record as JSON, the source every page renders from.
+- [Research index](https://canlicapital.com/research-index.json): 111 documents with citation metadata.
+- [Engineering manifest](https://canlicapital.com/glassbox/engineering_open_source.json): repository counts, derived from what each repository publishes.
+- 89 measurement pages and 2 trial pages carry schema.org Dataset metadata.
+
+## Authorship
+
+Arhan Canli is the founder, named author and accountable human for methodology, claims, corrections and publication decisions. Profile: https://canlicapital.com/founder. Code: https://github.com/arhancanli. Development uses reviewed AI-assisted tooling; ownership, research decisions and published claims are his.

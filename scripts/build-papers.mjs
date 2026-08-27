@@ -127,6 +127,7 @@ const STATIC_ROUTES = [
   { path: "/foundry", priority: "0.8", changefreq: "weekly" },
   { path: "/founder", priority: "0.7", changefreq: "monthly" },
   { path: "/methodology", priority: "0.9", changefreq: "weekly" },
+  { path: "/engineering", priority: "0.9", changefreq: "weekly" },
   { path: "/tools/deflated-sharpe", priority: "0.9", changefreq: "weekly" },
   { path: "/tools/evidence-chain", priority: "0.9", changefreq: "weekly" },
   { path: "/tools/trial-accounting", priority: "0.9", changefreq: "weekly" },

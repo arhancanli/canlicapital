@@ -134,6 +134,7 @@ export default defineConfig({
         foundry: resolve(root, "foundry.html"),
         founder: resolve(root, "founder.html"),
         methodology: resolve(root, "methodology.html"),
+        engineering: resolve(root, "engineering.html"),
         deflatedSharpe: resolve(root, "tools", "deflated-sharpe.html"),
         evidenceChain: resolve(root, "tools", "evidence-chain.html"),
         trialAccounting: resolve(root, "tools", "trial-accounting.html"),
