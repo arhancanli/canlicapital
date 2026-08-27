@@ -156,6 +156,7 @@ export default defineConfig({
         trialAccounting: resolve(root, "tools", "trial-accounting.html"),
         selectionRisk: resolve(root, "tools", "selection-risk.html"),
         breadth: resolve(root, "tools", "breadth.html"),
+        execution: resolve(root, "tools", "execution.html"),
         ...noteEntries(),
         ...paperEntries(),
         ...measurementEntries(),

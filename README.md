@@ -57,6 +57,7 @@ shipping, but cannot place, cancel, or delay an order.
 | `notes/*.html` | engineering notes: post-mortems, derivations and design arguments |
 | `tools/selection-risk.html` | the Selection Risk Lab: search a series with no edge, watch the deflation kill what you find |
 | `tools/breadth.html` | the Breadth Lab: what a book of N sleeves is worth, and the ceiling no amount of breadth can pass |
+| `tools/execution.html` | the Execution Reality Lab: which execution assumptions are costs, and which only look like costs |
 | `developers.html` | the public read API: endpoints, the response envelope, and what each response cannot be used to claim |
 | `standards/paper-evidence.html` | canli.paper-evidence.v0, a proposed open standard whose required fields are the ones a performance claim usually omits |
 
@@ -65,7 +66,7 @@ hand. They are the machine-readable form of every claim the pages make. Current 
 derived during the build from `public/research-index.json`,
 `public/glassbox/trial_packet_manifest.json`, and the generated measurement directory; the sitemap
 is generated from the same files rather than maintained separately. The present build contains
-257 canonical URLs in the sitemap (all indexable), plus a public noindex evidence page for every incomplete registered
+258 canonical URLs in the sitemap (all indexable), plus a public noindex evidence page for every incomplete registered
 trial and one archival HTML paper per registered sleeve. It publishes
 identity-level packets for all 228 recorded hypotheses, while
 honestly marking 226 of those packets incomplete.

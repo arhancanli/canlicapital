@@ -55,13 +55,21 @@ function gaussian(next) {
  * `drift` exists only so a caller can demonstrate the contrast; the sandbox pins it
  * to zero, which is what makes the true Sharpe zero.
  */
-export function generateSeries({ seed, bars = 750, volatility = 0.011, drift = 0 }) {
+export function generateSeries({ seed, bars = 750, volatility = 0.011, drift = 0, gapVolatility = 0 }) {
   if (!Number.isInteger(bars) || bars < 32) throw new Error("bars must be an integer >= 32");
   if (!(volatility > 0)) throw new Error("volatility must be positive");
   const next = makeRandom(seed);
   const out = [];
   let level = 100;
   for (let i = 0; i < bars; i += 1) {
+    // The overnight gap. With gapVolatility at zero, open[i+1] equals close[i] and
+    // the series is continuous, which is what the Selection Risk Lab wants: it
+    // studies search, not execution, and a gap would only add noise there.
+    //
+    // The Execution Reality Lab needs a non-zero gap, because without one "fill at
+    // the next open" and "fill at the decision close" are the SAME price and the
+    // most important comparison on that page silently collapses to a tie.
+    if (gapVolatility > 0) level *= Math.exp(gapVolatility * gaussian(next));
     const open = level;
     level *= Math.exp(drift + volatility * gaussian(next));
     out.push({ i, open, close: level });
