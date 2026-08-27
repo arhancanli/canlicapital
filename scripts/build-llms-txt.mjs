@@ -119,6 +119,13 @@ say("Post-mortems and derivations. These describe method and engineering; none i
 say();
 for (const n of notes) say(`- [${n.title}](${ORIGIN}/notes/${n.slug}): ${n.dek}`);
 say();
+say("## Machine interfaces");
+say();
+say(`- [Read API](${ORIGIN}/developers): static JSON over the published record. Every response carries its sources with SHA-256 hashes, its claim class, and what it cannot be used to claim.`);
+say(`- [OpenAPI 3.1 document](${ORIGIN}/api/v1/openapi): generated from the endpoints that exist, so it cannot document a route that does not.`);
+say(`- [Discovery document](${ORIGIN}/api/v1/index): every endpoint, with the limits of the API as a whole.`);
+say(`- [canli.paper-evidence.v0](${ORIGIN}/standards/paper-evidence): a proposed open standard for paper-trading evidence. Its required fields are the ones a performance claim usually omits, including a mandatory list of what the record does NOT establish. Schema, 12 conformance vectors and a zero-dependency validator are published; there are no independent implementations yet.`);
+say();
 say("## Evidence and corrections");
 say();
 say(`- [Corrections](${ORIGIN}/progress): What was published, found wrong, and withdrawn. Read this before trusting any other page.`);

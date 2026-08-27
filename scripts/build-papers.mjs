@@ -143,6 +143,8 @@ const STATIC_ROUTES = [
   { path: "/methodology", priority: "0.9", changefreq: "weekly" },
   { path: "/engineering", priority: "0.9", changefreq: "weekly" },
   { path: "/notes", priority: "0.9", changefreq: "weekly" },
+  { path: "/developers", priority: "0.9", changefreq: "weekly" },
+  { path: "/standards/paper-evidence", priority: "0.9", changefreq: "weekly" },
   { path: "/tools/deflated-sharpe", priority: "0.9", changefreq: "weekly" },
   { path: "/tools/evidence-chain", priority: "0.9", changefreq: "weekly" },
   { path: "/tools/trial-accounting", priority: "0.9", changefreq: "weekly" },

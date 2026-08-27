@@ -149,6 +149,8 @@ export default defineConfig({
         methodology: resolve(root, "methodology.html"),
         engineering: resolve(root, "engineering.html"),
         notes: resolve(root, "notes.html"),
+        developers: resolve(root, "developers.html"),
+        paperEvidence: resolve(root, "standards", "paper-evidence.html"),
         deflatedSharpe: resolve(root, "tools", "deflated-sharpe.html"),
         evidenceChain: resolve(root, "tools", "evidence-chain.html"),
         trialAccounting: resolve(root, "tools", "trial-accounting.html"),

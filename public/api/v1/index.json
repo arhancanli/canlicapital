@@ -1,0 +1,43 @@
+{
+  "schema": "canli.api.v1",
+  "generated_at": "2026-08-27T12:03:09Z",
+  "description": "A static, cacheable read API over the published Canli Capital record. Every response carries its own sources, hashes, claim class and limits.",
+  "documentation": "https://canlicapital.com/developers",
+  "openapi": "https://canlicapital.com/api/v1/openapi.json",
+  "standard": {
+    "id": "canli.paper-evidence.v0",
+    "schema": "https://canlicapital.com/standards/paper-evidence/v0/schema.json",
+    "human_page": "https://canlicapital.com/standards/paper-evidence"
+  },
+  "endpoints": [
+    {
+      "path": "/api/v1/chain/head",
+      "url": "https://canlicapital.com/api/v1/chain/head"
+    },
+    {
+      "path": "/api/v1/record",
+      "url": "https://canlicapital.com/api/v1/record"
+    },
+    {
+      "path": "/api/v1/research",
+      "url": "https://canlicapital.com/api/v1/research"
+    },
+    {
+      "path": "/api/v1/sleeves",
+      "url": "https://canlicapital.com/api/v1/sleeves"
+    },
+    {
+      "path": "/api/v1/status",
+      "url": "https://canlicapital.com/api/v1/status"
+    },
+    {
+      "path": "/api/v1/trials/summary",
+      "url": "https://canlicapital.com/api/v1/trials/summary"
+    }
+  ],
+  "limits": [
+    "Read only. There is no write path and no authentication, because there is nothing to authenticate to.",
+    "Regenerated on each publish. Treat generated_at as the freshness of every figure inside.",
+    "Paper execution only. Nothing here represents funded performance."
+  ]
+}

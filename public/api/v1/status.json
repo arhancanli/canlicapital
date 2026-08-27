@@ -1,0 +1,36 @@
+{
+  "schema": "canli.api.v1",
+  "endpoint": "/api/v1/status",
+  "generated_at": "2026-08-27T12:03:09Z",
+  "claim_class": "OBSERVED",
+  "capital_kind": "PAPER_ONLY",
+  "canonical_human_page": "https://canlicapital.com/performance",
+  "limits": [
+    "Paper execution only. No funded performance is represented anywhere in this API.",
+    "A passing broker reconciliation means the paper accounts agree with the published record, not that a strategy works."
+  ],
+  "sources": [
+    {
+      "path": "public/contracts/public-claims.json",
+      "sha256": "sha256:f9be4c8aa3f0c5762447e5010f1c922708ad14f723021781460aadfaf36733c6",
+      "url": "https://canlicapital.com/contracts/public-claims.json"
+    },
+    {
+      "path": "public/glassbox/alpaca_broker_reconciliation.json",
+      "sha256": "sha256:f379b3b4300cf5c84700143da00a378ff5227a5a977195d0160cfe64c2a84667",
+      "url": "https://canlicapital.com/glassbox/alpaca_broker_reconciliation.json"
+    }
+  ],
+  "data": {
+    "capital_kind": "PAPER_ONLY",
+    "first_observation": "2026-08-07",
+    "last_observation": "2026-08-27",
+    "return_observations": 18,
+    "validation_status": "TARGETS_NOT_YET_ACHIEVED",
+    "internal_grade": "C+",
+    "sleeves_current": 4,
+    "sleeves_target": 14,
+    "broker_reconciled_sleeves": 3,
+    "broker_reconciliation_passes": true
+  }
+}

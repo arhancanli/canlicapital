@@ -37,6 +37,8 @@ EXPECTED_INSTITUTION = {"Corrections", "Status", "Founder", "Open data", "Measur
 EXPECTED_SOURCE = {
     "Engineering hub",
     "Engineering notes",
+    "Developers / API",
+    "Evidence standard",
     "alphac (engine)",
     "canli-pit-lake",
     "canli-backtest",

@@ -1,0 +1,185 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Canli Capital public read API",
+    "version": "1.0.0",
+    "summary": "A static, cacheable read API over a paper-traded systematic record.",
+    "description": "Every response carries the artifacts it was built from with their SHA-256 hashes, the class of claim it represents, and the limits of what it can be used to say. There is no write path and no authentication. Nothing here represents funded performance.",
+    "contact": {
+      "name": "Arhan Canli",
+      "url": "https://canlicapital.com/founder"
+    },
+    "license": {
+      "name": "MIT",
+      "identifier": "MIT"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://canlicapital.com",
+      "description": "Production"
+    }
+  ],
+  "externalDocs": {
+    "description": "Developer documentation",
+    "url": "https://canlicapital.com/developers"
+  },
+  "paths": {
+    "/api/v1/chain/head": {
+      "get": {
+        "summary": "The head of the signed append-only transparency chain, and the public key needed to verify it.",
+        "operationId": "chain_head",
+        "responses": {
+          "200": {
+            "description": "The current snapshot, regenerated on each publish.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "schema",
+                    "generated_at",
+                    "claim_class",
+                    "limits",
+                    "sources",
+                    "data"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/record": {
+      "get": {
+        "summary": "The full record as an instance of the canli.paper-evidence.v0 open standard, including what it does not establish.",
+        "operationId": "record",
+        "responses": {
+          "200": {
+            "description": "The current snapshot, regenerated on each publish.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "schema",
+                    "generated_at",
+                    "claim_class",
+                    "limits",
+                    "sources",
+                    "data"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/research": {
+      "get": {
+        "summary": "Every published research document and topic, including failures and feasibility nulls.",
+        "operationId": "research",
+        "responses": {
+          "200": {
+            "description": "The current snapshot, regenerated on each publish.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "schema",
+                    "generated_at",
+                    "claim_class",
+                    "limits",
+                    "sources",
+                    "data"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/sleeves": {
+      "get": {
+        "summary": "Per-sleeve state. Note that the research curves are not on a common date grid and cannot be combined.",
+        "operationId": "sleeves",
+        "responses": {
+          "200": {
+            "description": "The current snapshot, regenerated on each publish.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "schema",
+                    "generated_at",
+                    "claim_class",
+                    "limits",
+                    "sources",
+                    "data"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/status": {
+      "get": {
+        "summary": "Current state of the paper record: capital kind, period, observation count, validation status and broker reconciliation.",
+        "operationId": "status",
+        "responses": {
+          "200": {
+            "description": "The current snapshot, regenerated on each publish.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "schema",
+                    "generated_at",
+                    "claim_class",
+                    "limits",
+                    "sources",
+                    "data"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/trials/summary": {
+      "get": {
+        "summary": "The trial union used as the multiple-testing denominator, plus the kill counts.",
+        "operationId": "trials_summary",
+        "responses": {
+          "200": {
+            "description": "The current snapshot, regenerated on each publish.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "schema",
+                    "generated_at",
+                    "claim_class",
+                    "limits",
+                    "sources",
+                    "data"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

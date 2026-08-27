@@ -1,0 +1,103 @@
+/* =============================================================================
+   /developers and /standards/paper-evidence.
+   Two sibling documents in the same visual language as /engineering: dark hero,
+   paper body, tables that read as reference material rather than decoration.
+   ============================================================================= */
+
+:root {
+  --dev-night: #06111b;
+  --dev-carbon: #0a1722;
+  --dev-chalk: #f3f8fb;
+  --dev-paper: #eaf1f5;
+  --dev-ink: #07141e;
+  --dev-muted: #566a76;
+  --dev-cyan: #66d6ff;
+  --dev-mint: #58e0b5;
+  --dev-amber: #f1b85b;
+  --dev-line: rgba(7, 20, 30, 0.16);
+  --dev-line-dark: rgba(243, 248, 251, 0.18);
+}
+
+* { box-sizing: border-box; }
+body.dev-page { margin: 0; color: var(--dev-ink); background: var(--dev-paper); font-family: Inter, Arial, sans-serif; }
+.dev-page code { font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 0.9em; word-break: break-word; }
+
+.dev-skip {
+  position: fixed; z-index: 1000; top: 12px; left: 12px; padding: 10px 14px;
+  color: var(--dev-night); background: var(--dev-mint); text-decoration: none; transform: translateY(-160%);
+}
+.dev-skip:focus { transform: translateY(0); }
+.dev-page :where(a, button, [tabindex]):focus-visible { outline: 3px solid var(--dev-amber); outline-offset: 3px; }
+
+.dev-hero {
+  padding: clamp(72px, 9vw, 128px) clamp(24px, 7vw, 112px) clamp(48px, 6vw, 76px);
+  color: var(--dev-chalk);
+  background:
+    repeating-linear-gradient(0deg, transparent 0 79px, rgba(102, 214, 255, 0.035) 80px),
+    var(--dev-night);
+  border-bottom: 1px solid var(--dev-line-dark);
+}
+.dev-kicker {
+  display: flex; flex-wrap: wrap; gap: 8px 20px; margin: 0 0 20px;
+  color: var(--dev-cyan); font: 500 0.7rem/1.45 "IBM Plex Mono", monospace;
+  letter-spacing: 0.14em; text-transform: uppercase;
+}
+.dev-hero h1 {
+  max-width: 19ch; margin: 0;
+  font-family: "Bricolage Grotesque", Inter, sans-serif;
+  font-size: clamp(2.4rem, 5.4vw, 4.9rem); font-weight: 560;
+  line-height: 0.95; letter-spacing: -0.045em;
+}
+.dev-lead { max-width: 72ch; margin: 28px 0 0; color: #b8c8d1; font-size: clamp(1rem, 1.3vw, 1.16rem); line-height: 1.68; }
+.dev-lead strong { color: var(--dev-mint); }
+.dev-boundary {
+  max-width: 76ch; margin: 30px 0 0; padding-top: 20px;
+  color: #90a6b3; border-top: 1px solid var(--dev-line-dark); font-size: 0.9rem; line-height: 1.65;
+}
+.dev-boundary strong { color: var(--dev-chalk); }
+
+.dev-downloads { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 32px; }
+.dev-button {
+  display: inline-flex; min-height: 44px; align-items: center; padding: 10px 16px;
+  color: inherit; border: 1px solid currentColor; text-decoration: none;
+  font: 500 0.7rem/1 "IBM Plex Mono", monospace; letter-spacing: 0.04em; text-transform: uppercase;
+  transition: color 180ms ease, background 180ms ease, border-color 180ms ease;
+}
+.dev-hero .dev-button:hover { background: rgba(255, 255, 255, 0.08); }
+.dev-button--primary { color: var(--dev-night); background: var(--dev-mint); border-color: var(--dev-mint); }
+.dev-button--primary:hover { background: var(--dev-cyan); border-color: var(--dev-cyan); }
+.dev-section .dev-button { color: var(--dev-ink); border-color: var(--dev-line); }
+.dev-section .dev-button:hover { border-color: var(--dev-ink); }
+.dev-section .dev-button--primary { color: var(--dev-night); background: var(--dev-mint); border-color: var(--dev-mint); }
+
+.dev-section {
+  padding: clamp(56px, 7vw, 100px) clamp(24px, 7vw, 112px);
+  border-bottom: 1px solid var(--dev-line);
+}
+.dev-section--tail { border-bottom: 0; }
+.dev-section h2 {
+  margin: 0 0 20px; max-width: 24ch;
+  font-family: "Bricolage Grotesque", Inter, sans-serif;
+  font-size: clamp(1.7rem, 3vw, 2.6rem); font-weight: 560; letter-spacing: -0.04em; line-height: 1.04;
+}
+.dev-note { max-width: 76ch; margin: 0 0 clamp(26px, 3vw, 40px); color: var(--dev-muted); font-size: 0.99rem; line-height: 1.7; }
+.dev-note a, .dev-list a { color: var(--dev-ink); }
+
+.dev-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 290px), 1fr)); gap: 18px; }
+.dev-grid article { padding: clamp(20px, 2.2vw, 28px); background: #fff; border: 1px solid var(--dev-line); }
+.dev-grid__wide { grid-column: 1 / -1; }
+.dev-grid h3 { margin: 0 0 10px; font-size: 1rem; font-weight: 600; letter-spacing: -0.01em; }
+.dev-grid p { margin: 0; color: var(--dev-muted); font-size: 0.92rem; line-height: 1.66; }
+
+.dev-table { width: 100%; border-collapse: collapse; background: #fff; border: 1px solid var(--dev-line); display: block; overflow-x: auto; }
+.dev-table th, .dev-table td { padding: 12px 16px; text-align: left; border-bottom: 1px solid var(--dev-line); font-size: 0.9rem; vertical-align: top; }
+.dev-table th { color: var(--dev-muted); font-size: 0.74rem; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; }
+.dev-table tr:last-child td { border-bottom: 0; }
+.dev-table td:first-child { white-space: nowrap; }
+.dev-table a { color: var(--dev-ink); }
+
+.dev-list { max-width: 76ch; margin: 0 0 26px; padding-left: 1.2em; color: var(--dev-muted); }
+.dev-list li { margin-bottom: 0.7em; font-size: 0.96rem; line-height: 1.68; }
+.dev-list strong { color: var(--dev-ink); }
+
+@media (prefers-reduced-motion: reduce) { .dev-page * { transition-duration: 0.01ms !important; } }

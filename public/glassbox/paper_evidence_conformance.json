@@ -1,0 +1,177 @@
+{
+  "schema": "canli.paper-evidence-conformance.v1",
+  "standard": "canli.paper-evidence.v0",
+  "generated_at": "2026-08-27T12:03:09Z",
+  "author": "Arhan Canli",
+  "claim_boundary": "A record of this validator run over these vectors. It shows the rules fire where they are meant to. It is not evidence that the standard is complete, and it is not an independent implementation.",
+  "validator": {
+    "path": "js/paper-evidence-core.js",
+    "dependencies": 0
+  },
+  "required_members": 12,
+  "totals": {
+    "vectors": 13,
+    "valid": 1,
+    "invalid": 12,
+    "behaved_as_declared": 13,
+    "failed_at_declared_pointer": 12
+  },
+  "independent_implementations": 0,
+  "results": [
+    {
+      "name": "valid-alphac-book",
+      "expected": "VALID",
+      "observed": "VALID",
+      "as_expected": true,
+      "violates": null,
+      "expected_pointer": null,
+      "reported_pointers": [],
+      "failed_at_expected_pointer": null
+    },
+    {
+      "name": "invalid-missing-required-claim-maturity",
+      "expected": "INVALID",
+      "observed": "INVALID",
+      "as_expected": true,
+      "violates": "required: claim_maturity",
+      "expected_pointer": "/",
+      "reported_pointers": [
+        "/"
+      ],
+      "failed_at_expected_pointer": true
+    },
+    {
+      "name": "invalid-empty-does-not-establish",
+      "expected": "INVALID",
+      "observed": "INVALID",
+      "as_expected": true,
+      "violates": "minItems: 1",
+      "expected_pointer": "/claim_maturity/does_not_establish",
+      "reported_pointers": [
+        "/claim_maturity/does_not_establish"
+      ],
+      "failed_at_expected_pointer": true
+    },
+    {
+      "name": "invalid-unknown-capital-kind",
+      "expected": "INVALID",
+      "observed": "INVALID",
+      "as_expected": true,
+      "violates": "enum",
+      "expected_pointer": "/capital/kind",
+      "reported_pointers": [
+        "/capital/kind"
+      ],
+      "failed_at_expected_pointer": true
+    },
+    {
+      "name": "invalid-wrong-schema-id",
+      "expected": "INVALID",
+      "observed": "INVALID",
+      "as_expected": true,
+      "violates": "const",
+      "expected_pointer": "/schema",
+      "reported_pointers": [
+        "/schema"
+      ],
+      "failed_at_expected_pointer": true
+    },
+    {
+      "name": "invalid-unexpected-property",
+      "expected": "INVALID",
+      "observed": "INVALID",
+      "as_expected": true,
+      "violates": "additionalProperties: false",
+      "expected_pointer": "/returns/annualized_return_pct",
+      "reported_pointers": [
+        "/returns/annualized_return_pct"
+      ],
+      "failed_at_expected_pointer": true
+    },
+    {
+      "name": "invalid-malformed-sha256",
+      "expected": "INVALID",
+      "observed": "INVALID",
+      "as_expected": true,
+      "violates": "pattern",
+      "expected_pointer": "/provenance/source_bindings/0/sha256",
+      "reported_pointers": [
+        "/provenance/source_bindings/0/sha256"
+      ],
+      "failed_at_expected_pointer": true
+    },
+    {
+      "name": "invalid-impossible-date",
+      "expected": "INVALID",
+      "observed": "INVALID",
+      "as_expected": true,
+      "violates": "format: date",
+      "expected_pointer": "/period/first_observation",
+      "reported_pointers": [
+        "/period/first_observation"
+      ],
+      "failed_at_expected_pointer": true
+    },
+    {
+      "name": "invalid-no-source-bindings",
+      "expected": "INVALID",
+      "observed": "INVALID",
+      "as_expected": true,
+      "violates": "minItems: 1",
+      "expected_pointer": "/provenance/source_bindings",
+      "reported_pointers": [
+        "/provenance/source_bindings"
+      ],
+      "failed_at_expected_pointer": true
+    },
+    {
+      "name": "invalid-semantic-unreportable-sharpe-reported",
+      "expected": "INVALID",
+      "observed": "INVALID",
+      "as_expected": true,
+      "violates": "semantic: sharpe_reportable false but a Sharpe is published",
+      "expected_pointer": "/returns/sharpe_annualised",
+      "reported_pointers": [
+        "/returns/sharpe_annualised"
+      ],
+      "failed_at_expected_pointer": true
+    },
+    {
+      "name": "invalid-semantic-paper-net-of-realised",
+      "expected": "INVALID",
+      "observed": "INVALID",
+      "as_expected": true,
+      "violates": "semantic: PAPER capital cannot be net of REALISED costs",
+      "expected_pointer": "/returns/basis",
+      "reported_pointers": [
+        "/returns/basis"
+      ],
+      "failed_at_expected_pointer": true
+    },
+    {
+      "name": "invalid-semantic-uncounted-trials",
+      "expected": "INVALID",
+      "observed": "INVALID",
+      "as_expected": true,
+      "violates": "semantic: trials_counted true but trial_count null",
+      "expected_pointer": "/selection/trial_count",
+      "reported_pointers": [
+        "/selection/trial_count"
+      ],
+      "failed_at_expected_pointer": true
+    },
+    {
+      "name": "invalid-semantic-reversed-period",
+      "expected": "INVALID",
+      "observed": "INVALID",
+      "as_expected": true,
+      "violates": "semantic: first_observation after last_observation",
+      "expected_pointer": "/period",
+      "reported_pointers": [
+        "/period"
+      ],
+      "failed_at_expected_pointer": true
+    }
+  ],
+  "content_hash": "sha256:12bc304675dc7aed8d2dc3bedd4a989e49d454c6e57b1f38c6dc4fa81baa22a5"
+}

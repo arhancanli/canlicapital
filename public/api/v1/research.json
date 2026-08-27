@@ -1,0 +1,647 @@
+{
+  "schema": "canli.api.v1",
+  "endpoint": "/api/v1/research",
+  "generated_at": "2026-08-27T12:03:09Z",
+  "claim_class": "PUBLISHED_DOCUMENTS",
+  "capital_kind": "PAPER_ONLY",
+  "canonical_human_page": "https://canlicapital.com/research",
+  "limits": [
+    "A published document is not a peer-reviewed one. No paper here has completed external review.",
+    "Documents include failures and feasibility nulls; presence in this index is not evidence of a positive result."
+  ],
+  "sources": [
+    {
+      "path": "public/research-index.json",
+      "sha256": "sha256:c6d2f5cf584ed71fd4c748add4f38a6dfefd73c06fbcb44d8486ab4e197e3dc7",
+      "url": "https://canlicapital.com/research-index.json"
+    }
+  ],
+  "data": {
+    "document_count": 111,
+    "topic_count": 13,
+    "topics": [
+      {
+        "slug": "killed-candidates",
+        "title": "killed-candidates",
+        "url": "https://canlicapital.com/research/topics/killed-candidates"
+      },
+      {
+        "slug": "literature-reviews",
+        "title": "literature-reviews",
+        "url": "https://canlicapital.com/research/topics/literature-reviews"
+      },
+      {
+        "slug": "feasibility-protocols",
+        "title": "feasibility-protocols",
+        "url": "https://canlicapital.com/research/topics/feasibility-protocols"
+      },
+      {
+        "slug": "engineering-foundations",
+        "title": "engineering-foundations",
+        "url": "https://canlicapital.com/research/topics/engineering-foundations"
+      },
+      {
+        "slug": "equities",
+        "title": "equities",
+        "url": "https://canlicapital.com/research/topics/equities"
+      },
+      {
+        "slug": "crypto",
+        "title": "crypto",
+        "url": "https://canlicapital.com/research/topics/crypto"
+      },
+      {
+        "slug": "options-and-volatility",
+        "title": "options-and-volatility",
+        "url": "https://canlicapital.com/research/topics/options-and-volatility"
+      },
+      {
+        "slug": "rates-and-treasuries",
+        "title": "rates-and-treasuries",
+        "url": "https://canlicapital.com/research/topics/rates-and-treasuries"
+      },
+      {
+        "slug": "credit",
+        "title": "credit",
+        "url": "https://canlicapital.com/research/topics/credit"
+      },
+      {
+        "slug": "commodities",
+        "title": "commodities",
+        "url": "https://canlicapital.com/research/topics/commodities"
+      },
+      {
+        "slug": "event-driven",
+        "title": "event-driven",
+        "url": "https://canlicapital.com/research/topics/event-driven"
+      },
+      {
+        "slug": "macro-surprise",
+        "title": "macro-surprise",
+        "url": "https://canlicapital.com/research/topics/macro-surprise"
+      },
+      {
+        "slug": "execution-and-market-structure",
+        "title": "execution-and-market-structure",
+        "url": "https://canlicapital.com/research/topics/execution-and-market-structure"
+      }
+    ],
+    "documents": [
+      {
+        "slug": "active-ownership-item4-v3-feasibility",
+        "title": "Active ownership escalation — Schedule 13D Item 4 source-schema v3",
+        "url": "https://canlicapital.com/research/active-ownership-item4-v3-feasibility"
+      },
+      {
+        "slug": "alphamax-equity-momentum-lineage",
+        "title": "AlphaMax equity momentum: signal, trial lineage, and evidence boundary",
+        "url": "https://canlicapital.com/research/alphamax-equity-momentum-lineage"
+      },
+      {
+        "slug": "alphatrend-managed-futures-lineage",
+        "title": "AlphaTrend managed-futures trend: complete trial lineage and evidence boundary",
+        "url": "https://canlicapital.com/research/alphatrend-managed-futures-lineage"
+      },
+      {
+        "slug": "alphavintage-macro-surprise-lineage",
+        "title": "Point-in-Time Inflation Surprise and the Equity Size Spread",
+        "url": "https://canlicapital.com/research/alphavintage-macro-surprise-lineage"
+      },
+      {
+        "slug": "alphavintage-missing-release-correction",
+        "title": "AlphaVintage missing-release correction protocol",
+        "url": "https://canlicapital.com/research/alphavintage-missing-release-correction"
+      },
+      {
+        "slug": "author-protocol-approval-protocol",
+        "title": "Author review for approval-gated research protocols",
+        "url": "https://canlicapital.com/research/author-protocol-approval-protocol"
+      },
+      {
+        "slug": "bond-etf-nav-dislocation-feasibility",
+        "title": "Bond-ETF NAV dislocation — locked no-return source feasibility protocol",
+        "url": "https://canlicapital.com/research/bond-etf-nav-dislocation-feasibility"
+      },
+      {
+        "slug": "borrow-execution-foundation",
+        "title": "Point-in-time securities-borrow foundation",
+        "url": "https://canlicapital.com/research/borrow-execution-foundation"
+      },
+      {
+        "slug": "cftc-hedging-pressure-feasibility",
+        "title": "CFTC hedging pressure — no-return feasibility protocol",
+        "url": "https://canlicapital.com/research/cftc-hedging-pressure-feasibility"
+      },
+      {
+        "slug": "corporate-action-basis-reconstruction",
+        "title": "Reconstructing corporate-action basis without opening strategy returns",
+        "url": "https://canlicapital.com/research/corporate-action-basis-reconstruction"
+      },
+      {
+        "slug": "corporate-action-lifecycle",
+        "title": "Corporate-action and delisting lifecycle replay",
+        "url": "https://canlicapital.com/research/corporate-action-lifecycle"
+      },
+      {
+        "slug": "crowding-risk-foundation",
+        "title": "Point-in-time crowding and stressed capacity",
+        "url": "https://canlicapital.com/research/crowding-risk-foundation"
+      },
+      {
+        "slug": "crypto-carry-lineage",
+        "title": "Crypto perpetual carry: trial lineage, capacity failure, and live evidence boundary",
+        "url": "https://canlicapital.com/research/crypto-carry-lineage"
+      },
+      {
+        "slug": "crypto-carry-portable-v1",
+        "title": "A hash-bound prospective test of cross-sectional perpetual-futures carry",
+        "url": "https://canlicapital.com/research/crypto-carry-portable-v1"
+      },
+      {
+        "slug": "crypto-defensive-lineage",
+        "title": "Crypto defensive factors: positive summaries without admission evidence",
+        "url": "https://canlicapital.com/research/crypto-defensive-lineage"
+      },
+      {
+        "slug": "crypto-lab-carry-crash-incident",
+        "title": "When Crypto Carry Became Crash Exposure: The LABUSDT Incident",
+        "url": "https://canlicapital.com/research/crypto-lab-carry-crash-incident"
+      },
+      {
+        "slug": "crypto-momentum-lineage",
+        "title": "Crypto momentum: complete trial lineage and failed sleeve-admission evidence",
+        "url": "https://canlicapital.com/research/crypto-momentum-lineage"
+      },
+      {
+        "slug": "crypto-multifactor-engine-lineage",
+        "title": "Crypto multi-factor engine: seven trials, capacity decay, and no-deploy verdict",
+        "url": "https://canlicapital.com/research/crypto-multifactor-engine-lineage"
+      },
+      {
+        "slug": "crypto-reversal-lineage",
+        "title": "Crypto short-horizon reversal: two decisive negative trials",
+        "url": "https://canlicapital.com/research/crypto-reversal-lineage"
+      },
+      {
+        "slug": "crypto-vrp-lineage",
+        "title": "Crypto volatility risk premium: one proxy trial and a published null",
+        "url": "https://canlicapital.com/research/crypto-vrp-lineage"
+      },
+      {
+        "slug": "current-book-diversification-model",
+        "title": "Current-book diversification: the confidence-bound result",
+        "url": "https://canlicapital.com/research/current-book-diversification-model"
+      },
+      {
+        "slug": "current-book-drawdown-model",
+        "title": "Current-composition maximum-drawdown model",
+        "url": "https://canlicapital.com/research/current-book-drawdown-model"
+      },
+      {
+        "slug": "customer-supplier-propagation-feasibility",
+        "title": "Customer–supplier propagation — locked no-return relationship-source protocol",
+        "url": "https://canlicapital.com/research/customer-supplier-propagation-feasibility"
+      },
+      {
+        "slug": "electricity-load-weather-feasibility",
+        "title": "Electricity load/weather spread — key-free feasibility decision",
+        "url": "https://canlicapital.com/research/electricity-load-weather-feasibility"
+      },
+      {
+        "slug": "energy-inventory-lineage",
+        "title": "Petroleum inventory scarcity: a preregistered negative result",
+        "url": "https://canlicapital.com/research/energy-inventory-lineage"
+      },
+      {
+        "slug": "engineering-quality",
+        "title": "Engineering quality boundary",
+        "url": "https://canlicapital.com/research/engineering-quality"
+      },
+      {
+        "slug": "equity-insider-activity-lineage",
+        "title": "Clustered insider purchases: a corrected preregistered null",
+        "url": "https://canlicapital.com/research/equity-insider-activity-lineage"
+      },
+      {
+        "slug": "equity-low-beta-lineage",
+        "title": "Equity low beta: two negative identities and no defensive sleeve",
+        "url": "https://canlicapital.com/research/equity-low-beta-lineage"
+      },
+      {
+        "slug": "equity-narrative-change-lineage",
+        "title": "Annual risk-factor narrative stability: a preregistered null",
+        "url": "https://canlicapital.com/research/equity-narrative-change-lineage"
+      },
+      {
+        "slug": "equity-quality-lineage",
+        "title": "Equity fundamental quality: 11 identities and no validated sleeve",
+        "url": "https://canlicapital.com/research/equity-quality-lineage"
+      },
+      {
+        "slug": "equity-value-investment-lineage",
+        "title": "Equity value, issuance, and investment: 13 identities and unstable evidence",
+        "url": "https://canlicapital.com/research/equity-value-investment-lineage"
+      },
+      {
+        "slug": "execution-realism",
+        "title": "Execution realism and model boundary",
+        "url": "https://canlicapital.com/research/execution-realism"
+      },
+      {
+        "slug": "financing-replay",
+        "title": "Point-in-time cash and collateral financing replay",
+        "url": "https://canlicapital.com/research/financing-replay"
+      },
+      {
+        "slug": "forward-sharpe-evidence-standard",
+        "title": "When a Forward Sharpe Ratio Becomes Evidence",
+        "url": "https://canlicapital.com/research/forward-sharpe-evidence-standard"
+      },
+      {
+        "slug": "futures-execution-foundation",
+        "title": "Dated-futures execution foundation",
+        "url": "https://canlicapital.com/research/futures-execution-foundation"
+      },
+      {
+        "slug": "identity-redesign-notes",
+        "title": "Identity redesign notes: three families that mis-specified their population",
+        "url": "https://canlicapital.com/research/identity-redesign-notes"
+      },
+      {
+        "slug": "inflation-breakeven-relative-value-feasibility",
+        "title": "Inflation breakeven relative value — no-return source-feasibility audit",
+        "url": "https://canlicapital.com/research/inflation-breakeven-relative-value-feasibility"
+      },
+      {
+        "slug": "kill-alphamax-betaneutral",
+        "title": "Beta-Neutral Momentum Construction (campaign): a killed candidate",
+        "url": "https://canlicapital.com/research/kill-alphamax-betaneutral"
+      },
+      {
+        "slug": "kill-alphamax-short-margin-floor",
+        "title": "AlphaMax Short-Leg Margin Floor (disclosure, not a strategy): a killed candidate",
+        "url": "https://canlicapital.com/research/kill-alphamax-short-margin-floor"
+      },
+      {
+        "slug": "kill-alphamax-shorttail",
+        "title": "Short-Leg Tail Controls (campaign): a killed candidate",
+        "url": "https://canlicapital.com/research/kill-alphamax-shorttail"
+      },
+      {
+        "slug": "kill-alphamax-volscale",
+        "title": "Vol-Scaled / Crash-Protected Momentum overlay (campaign): a killed candidate",
+        "url": "https://canlicapital.com/research/kill-alphamax-volscale"
+      },
+      {
+        "slug": "kill-alphamax-weightgrid",
+        "title": "Weighting x Breadth Construction Grid (campaign): a killed candidate",
+        "url": "https://canlicapital.com/research/kill-alphamax-weightgrid"
+      },
+      {
+        "slug": "kill-cef-discount",
+        "title": "Closed-End-Fund Deep-Discount + Activist Catalyst (probe): a killed candidate",
+        "url": "https://canlicapital.com/research/kill-cef-discount"
+      },
+      {
+        "slug": "kill-commodity-inventory-seasonal",
+        "title": "EIA Petroleum Inventory Scarcity: a killed candidate",
+        "url": "https://canlicapital.com/research/kill-commodity-inventory-seasonal"
+      },
+      {
+        "slug": "kill-cot-positioning",
+        "title": "COT Positioning Overlay (campaign): a killed candidate",
+        "url": "https://canlicapital.com/research/kill-cot-positioning"
+      },
+      {
+        "slug": "kill-crypto-dated-basis",
+        "title": "Crypto Dated-Futures Basis (campaign): a killed candidate",
+        "url": "https://canlicapital.com/research/kill-crypto-dated-basis"
+      },
+      {
+        "slug": "kill-crypto-lowvol-720",
+        "title": "Crypto Low-Volatility: a killed candidate",
+        "url": "https://canlicapital.com/research/kill-crypto-lowvol-720"
+      },
+      {
+        "slug": "kill-crypto-short-tsmom",
+        "title": "Crypto Short-Horizon Trend (campaign): a killed candidate",
+        "url": "https://canlicapital.com/research/kill-crypto-short-tsmom"
+      },
+      {
+        "slug": "kill-crypto-vrp",
+        "title": "Crypto Variance-Risk-Premium (campaign): a killed candidate",
+        "url": "https://canlicapital.com/research/kill-crypto-vrp"
+      },
+      {
+        "slug": "kill-deephist-quality-top800",
+        "title": "Deep-History Quality (Top 800): a killed candidate",
+        "url": "https://canlicapital.com/research/kill-deephist-quality-top800"
+      },
+      {
+        "slug": "kill-econtrend",
+        "title": "Economic-Trend Sleeve, macro-fundamental trend (campaign): a killed candidate",
+        "url": "https://canlicapital.com/research/kill-econtrend"
+      },
+      {
+        "slug": "kill-eq-52whigh",
+        "title": "52-Week-High Momentum (campaign): a killed candidate",
+        "url": "https://canlicapital.com/research/kill-eq-52whigh"
+      },
+      {
+        "slug": "kill-eq-mom-margin",
+        "title": "Equity Momentum (with Margin Costs): a killed candidate",
+        "url": "https://canlicapital.com/research/kill-eq-mom-margin"
+      },
+      {
+        "slug": "kill-eq-net-issuance",
+        "title": "Corporate Equity Supply (Net Issuance): a killed candidate",
+        "url": "https://canlicapital.com/research/kill-eq-net-issuance"
+      },
+      {
+        "slug": "kill-eq-quality-gp",
+        "title": "Equity Quality (Gross Profitability): a killed candidate",
+        "url": "https://canlicapital.com/research/kill-eq-quality-gp"
+      },
+      {
+        "slug": "kill-eq-value-btp",
+        "title": "Equity Value (Book-to-Price): a killed candidate",
+        "url": "https://canlicapital.com/research/kill-eq-value-btp"
+      },
+      {
+        "slug": "kill-equity-pead",
+        "title": "Post-Earnings-Announcement Drift (campaign): a killed candidate",
+        "url": "https://canlicapital.com/research/kill-equity-pead"
+      },
+      {
+        "slug": "kill-equity-short-interest-dtc",
+        "title": "Short Interest / Days-to-Cover Deciles (probe): a killed candidate",
+        "url": "https://canlicapital.com/research/kill-equity-short-interest-dtc"
+      },
+      {
+        "slug": "kill-equity-vrp",
+        "title": "Equity-Index VRP / short-vol (campaign): a killed candidate",
+        "url": "https://canlicapital.com/research/kill-equity-vrp"
+      },
+      {
+        "slug": "kill-funding-termstructure",
+        "title": "Funding Term-Structure / Slope (campaign): a killed candidate",
+        "url": "https://canlicapital.com/research/kill-funding-termstructure"
+      },
+      {
+        "slug": "kill-futcarry-xs",
+        "title": "Commodity / Cross-Asset Futures Carry (probe): a killed candidate",
+        "url": "https://canlicapital.com/research/kill-futcarry-xs"
+      },
+      {
+        "slug": "kill-fx-carry-ratediff",
+        "title": "FX Carry (rate differential): a killed candidate",
+        "url": "https://canlicapital.com/research/kill-fx-carry-ratediff"
+      },
+      {
+        "slug": "kill-fx-carry-trend-overlay",
+        "title": "FX Carry + Trend Overlay (the real construction): a killed candidate",
+        "url": "https://canlicapital.com/research/kill-fx-carry-trend-overlay"
+      },
+      {
+        "slug": "kill-fx-trend-cs",
+        "title": "FX Trend (cross-sectional 12-1): a killed candidate",
+        "url": "https://canlicapital.com/research/kill-fx-trend-cs"
+      },
+      {
+        "slug": "kill-insider-purchase-clusters",
+        "title": "Clustered Insider Open-Market Purchases: a killed candidate",
+        "url": "https://canlicapital.com/research/kill-insider-purchase-clusters"
+      },
+      {
+        "slug": "kill-intraday-mom",
+        "title": "Intraday Flow-Momentum, first-30m predicts last-30m (probe): a killed candidate",
+        "url": "https://canlicapital.com/research/kill-intraday-mom"
+      },
+      {
+        "slug": "kill-letf-eod-flow",
+        "title": "Leveraged-ETF End-of-Day Forced-Rebalance Flow (probe): a killed candidate",
+        "url": "https://canlicapital.com/research/kill-letf-eod-flow"
+      },
+      {
+        "slug": "kill-mechflow-tom",
+        "title": "Turn-of-Month / Rebalancing Flow (probe): a killed candidate",
+        "url": "https://canlicapital.com/research/kill-mechflow-tom"
+      },
+      {
+        "slug": "kill-mf-realfutures-breadth",
+        "title": "Real-Futures Breadth for the Trend Sleeve (probe): a killed candidate",
+        "url": "https://canlicapital.com/research/kill-mf-realfutures-breadth"
+      },
+      {
+        "slug": "kill-mf-realfutures-fasttrend",
+        "title": "Managed-Futures fast-trend / real-futures breadth (campaign): a killed candidate",
+        "url": "https://canlicapital.com/research/kill-mf-realfutures-fasttrend"
+      },
+      {
+        "slug": "kill-multivenue-funding",
+        "title": "Crypto Multi-Venue Funding Aggregation (probe): a killed candidate",
+        "url": "https://canlicapital.com/research/kill-multivenue-funding"
+      },
+      {
+        "slug": "kill-onchain-carry-filter",
+        "title": "On-Chain Carry-Quality Filter (campaign): a killed candidate",
+        "url": "https://canlicapital.com/research/kill-onchain-carry-filter"
+      },
+      {
+        "slug": "kill-pm-odds-signal",
+        "title": "Prediction-Market Odds as Macro Signal (probe): a killed candidate",
+        "url": "https://canlicapital.com/research/kill-pm-odds-signal"
+      },
+      {
+        "slug": "kill-prereg-bab",
+        "title": "Pre-Registered Betting-Against-Beta: a killed candidate",
+        "url": "https://canlicapital.com/research/kill-prereg-bab"
+      },
+      {
+        "slug": "kill-prereg-momentum",
+        "title": "Pre-Registered Momentum (deep history): a killed candidate",
+        "url": "https://canlicapital.com/research/kill-prereg-momentum"
+      },
+      {
+        "slug": "kill-prereg-quality",
+        "title": "Pre-Registered Quality (GP/A + ROE): a killed candidate",
+        "url": "https://canlicapital.com/research/kill-prereg-quality"
+      },
+      {
+        "slug": "kill-prereg-value",
+        "title": "Pre-Registered Value (composite): a killed candidate",
+        "url": "https://canlicapital.com/research/kill-prereg-value"
+      },
+      {
+        "slug": "kill-rates-curve-carry",
+        "title": "Rates-Curve Carry (campaign): a killed candidate",
+        "url": "https://canlicapital.com/research/kill-rates-curve-carry"
+      },
+      {
+        "slug": "kill-residual-momentum",
+        "title": "Residual (beta-neutral) Momentum (campaign): a killed candidate",
+        "url": "https://canlicapital.com/research/kill-residual-momentum"
+      },
+      {
+        "slug": "kill-tail-overlay",
+        "title": "Long-Vol Tail Overlay (campaign): a killed candidate",
+        "url": "https://canlicapital.com/research/kill-tail-overlay"
+      },
+      {
+        "slug": "kill-xasset-carry",
+        "title": "Cross-Asset Carry (campaign): a killed candidate",
+        "url": "https://canlicapital.com/research/kill-xasset-carry"
+      },
+      {
+        "slug": "kill-xasset-value",
+        "title": "Cross-Asset Value (campaign): a killed candidate",
+        "url": "https://canlicapital.com/research/kill-xasset-value"
+      },
+      {
+        "slug": "kill-xs-seasonality",
+        "title": "Cross-Sectional Same-Calendar-Month Seasonality (probe): a killed candidate",
+        "url": "https://canlicapital.com/research/kill-xs-seasonality"
+      },
+      {
+        "slug": "legacy-dsr-restatement",
+        "title": "Legacy DSR restatement",
+        "url": "https://canlicapital.com/research/legacy-dsr-restatement"
+      },
+      {
+        "slug": "literature-bond-etf-nav-dislocation",
+        "title": "Bond-ETF NAV dislocation — literature and mechanism review",
+        "url": "https://canlicapital.com/research/literature-bond-etf-nav-dislocation"
+      },
+      {
+        "slug": "literature-customer-supplier-propagation",
+        "title": "Customer–supplier propagation — source and identity review",
+        "url": "https://canlicapital.com/research/literature-customer-supplier-propagation"
+      },
+      {
+        "slug": "literature-electricity-load-weather",
+        "title": "Electricity load/weather dislocation: literature and implementation boundary",
+        "url": "https://canlicapital.com/research/literature-electricity-load-weather"
+      },
+      {
+        "slug": "literature-frontier-2026-08-16",
+        "title": "ALPHAC literature frontier — 2026-08-16",
+        "url": "https://canlicapital.com/research/literature-frontier-2026-08-16"
+      },
+      {
+        "slug": "literature-inflation-breakeven-relative-value",
+        "title": "Inflation breakeven relative value — literature and claim boundary",
+        "url": "https://canlicapital.com/research/literature-inflation-breakeven-relative-value"
+      },
+      {
+        "slug": "literature-natural-gas-storage-weather",
+        "title": "Natural-gas storage/weather residual — literature and claim boundary",
+        "url": "https://canlicapital.com/research/literature-natural-gas-storage-weather"
+      },
+      {
+        "slug": "literature-options-dispersion",
+        "title": "Options dispersion: literature and implementation boundary",
+        "url": "https://canlicapital.com/research/literature-options-dispersion"
+      },
+      {
+        "slug": "literature-repurchase-issuance-flow",
+        "title": "Repurchase and issuance flow: literature dossier",
+        "url": "https://canlicapital.com/research/literature-repurchase-issuance-flow"
+      },
+      {
+        "slug": "literature-spin-off-dislocation",
+        "title": "Spin-off dislocation — literature and claim boundary",
+        "url": "https://canlicapital.com/research/literature-spin-off-dislocation"
+      },
+      {
+        "slug": "literature-stablecoin-dislocation",
+        "title": "Stablecoin par dislocations: literature and implementation boundary",
+        "url": "https://canlicapital.com/research/literature-stablecoin-dislocation"
+      },
+      {
+        "slug": "macro-economic-trend-lineage",
+        "title": "Point-in-time macroeconomic trend: seven identities without a validated sleeve",
+        "url": "https://canlicapital.com/research/macro-economic-trend-lineage"
+      },
+      {
+        "slug": "market-status-replay",
+        "title": "Point-in-time market-status and outage replay",
+        "url": "https://canlicapital.com/research/market-status-replay"
+      },
+      {
+        "slug": "merger-announcement-identity-v2",
+        "title": "Merger arbitrage v2: point-in-time announcement identity",
+        "url": "https://canlicapital.com/research/merger-announcement-identity-v2"
+      },
+      {
+        "slug": "natural-gas-storage-weather-feasibility",
+        "title": "Natural-gas storage/weather residual — no-return source-feasibility protocol",
+        "url": "https://canlicapital.com/research/natural-gas-storage-weather-feasibility"
+      },
+      {
+        "slug": "options-dispersion-feasibility",
+        "title": "Options dispersion: locked no-return data and execution-feasibility protocol",
+        "url": "https://canlicapital.com/research/options-dispersion-feasibility"
+      },
+      {
+        "slug": "options-execution-foundation",
+        "title": "Point-in-time options execution foundation",
+        "url": "https://canlicapital.com/research/options-execution-foundation"
+      },
+      {
+        "slug": "pre-fomc-announcement-drift-feasibility",
+        "title": "Pre-FOMC announcement drift — no-return feasibility protocol",
+        "url": "https://canlicapital.com/research/pre-fomc-announcement-drift-feasibility"
+      },
+      {
+        "slug": "prereg-earnings-narrative-change",
+        "title": "PRE-REGISTRATION — annual risk-factor narrative stability",
+        "url": "https://canlicapital.com/research/prereg-earnings-narrative-change"
+      },
+      {
+        "slug": "prereg-pre-fomc-announcement-drift",
+        "title": "PRE-REGISTRATION — post-publication pre-FOMC announcement drift",
+        "url": "https://canlicapital.com/research/prereg-pre-fomc-announcement-drift"
+      },
+      {
+        "slug": "repurchase-issuance-flow-feasibility",
+        "title": "Repurchase and issuance flow: no-return SEC feasibility protocol",
+        "url": "https://canlicapital.com/research/repurchase-issuance-flow-feasibility"
+      },
+      {
+        "slug": "sharadar-hdb-zero-dividend-quarantine",
+        "title": "Sharadar HDB zero-dividend quarantine",
+        "url": "https://canlicapital.com/research/sharadar-hdb-zero-dividend-quarantine"
+      },
+      {
+        "slug": "spin-off-dislocation-lineage",
+        "title": "Spin-off dislocation — SEC Form 10 lineage protocol",
+        "url": "https://canlicapital.com/research/spin-off-dislocation-lineage"
+      },
+      {
+        "slug": "spin-off-document-schema",
+        "title": "Spin-off dislocation — initial Form 10 document-schema protocol",
+        "url": "https://canlicapital.com/research/spin-off-document-schema"
+      },
+      {
+        "slug": "stablecoin-dislocation-feasibility",
+        "title": "Stablecoin par dislocations: locked no-return feasibility protocol",
+        "url": "https://canlicapital.com/research/stablecoin-dislocation-feasibility"
+      },
+      {
+        "slug": "treasury-auction-concession-feasibility",
+        "title": "Treasury auction concession — no-return feasibility protocol",
+        "url": "https://canlicapital.com/research/treasury-auction-concession-feasibility"
+      },
+      {
+        "slug": "treasury-auction-identity-timing",
+        "title": "Treasury auction concession — published-identity timing audit",
+        "url": "https://canlicapital.com/research/treasury-auction-identity-timing"
+      },
+      {
+        "slug": "treasury-auction-state-machine",
+        "title": "Treasury auction concession: point-in-time schedule state machine",
+        "url": "https://canlicapital.com/research/treasury-auction-state-machine"
+      }
+    ]
+  }
+}

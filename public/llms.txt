@@ -34,6 +34,13 @@ Post-mortems and derivations. These describe method and engineering; none is a p
 - [The trade that lost 99 percent, and the guard I did not add](https://canlicapital.com/notes/the-trade-that-lost-99-percent): A carry signal bought a token at 16.15 and closed it at 0.1553. The strategy was not broken. The interesting decision came afterwards, and it was to change nothing.
 - [What competitive programming actually bought me, and what it did not](https://canlicapital.com/notes/what-competitive-programming-bought): There are no segment trees in this trading engine. I want to explain why that is the right answer, and what the contest habit did pay for instead, because the honest version of this story is more useful than the flattering one.
 
+## Machine interfaces
+
+- [Read API](https://canlicapital.com/developers): static JSON over the published record. Every response carries its sources with SHA-256 hashes, its claim class, and what it cannot be used to claim.
+- [OpenAPI 3.1 document](https://canlicapital.com/api/v1/openapi): generated from the endpoints that exist, so it cannot document a route that does not.
+- [Discovery document](https://canlicapital.com/api/v1/index): every endpoint, with the limits of the API as a whole.
+- [canli.paper-evidence.v0](https://canlicapital.com/standards/paper-evidence): a proposed open standard for paper-trading evidence. Its required fields are the ones a performance claim usually omits, including a mandatory list of what the record does NOT establish. Schema, 12 conformance vectors and a zero-dependency validator are published; there are no independent implementations yet.
+
 ## Evidence and corrections
 
 - [Corrections](https://canlicapital.com/progress): What was published, found wrong, and withdrawn. Read this before trusting any other page.
@@ -64,7 +71,7 @@ The research corpus is 111 documents across 13 topics, including work that faile
 
 ## Machine-readable
 
-- [Sitemap](https://canlicapital.com/sitemap.xml): all 254 indexable routes.
+- [Sitemap](https://canlicapital.com/sitemap.xml): all 256 indexable routes.
 - [Paper state](https://canlicapital.com/paper-state.json): the live record as JSON, the source every page renders from.
 - [Research index](https://canlicapital.com/research-index.json): 111 documents with citation metadata.
 - [Engineering manifest](https://canlicapital.com/glassbox/engineering_open_source.json): repository counts, derived from what each repository publishes.

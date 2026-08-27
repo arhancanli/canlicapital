@@ -21,6 +21,8 @@ const SOURCE_LINK = Object.freeze({
 const SOURCE_REPOS = Object.freeze([
   { label: "Engineering hub", href: "/engineering" },
   { label: "Engineering notes", href: "/notes" },
+  { label: "Developers / API", href: "/developers" },
+  { label: "Evidence standard", href: "/standards/paper-evidence" },
   { label: "alphac (engine)", href: "https://github.com/arhancanli/alphac", external: true },
   { label: "canli-pit-lake", href: "https://github.com/arhancanli/canli-pit-lake", external: true },
   { label: "canli-backtest", href: "https://github.com/arhancanli/canli-backtest", external: true },
@@ -135,6 +137,8 @@ export function renderProductShellFooter() {
       <span>Source code</span>
       <a href="/engineering">Engineering</a>
       <a href="/notes">Engineering notes</a>
+      <a href="/developers">Developers</a>
+      <a href="/standards/paper-evidence">Evidence standard</a>
       <a href="https://github.com/arhancanli/alphac" rel="noreferrer">alphac engine</a>
       <a href="https://github.com/arhancanli/canli-pit-lake" rel="noreferrer">canli-pit-lake</a>
       <a href="https://github.com/arhancanli/canli-backtest" rel="noreferrer">canli-backtest</a>

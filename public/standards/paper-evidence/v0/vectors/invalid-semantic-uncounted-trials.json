@@ -1,0 +1,107 @@
+{
+  "schema": "canli.paper-evidence.v0",
+  "generated_at": "2026-08-27T12:03:09Z",
+  "capital": {
+    "kind": "PAPER",
+    "execution": "MIXED",
+    "venue": "Alpaca paper accounts for equity and futures sleeves; locally simulated fills for crypto perpetuals",
+    "notes": "Three sleeves reconcile against dedicated Alpaca paper accounts. The crypto sleeve is filled locally against point-in-time venue data and is never presented as broker-executed."
+  },
+  "identity": {
+    "name": "ALPHAC Cross-Asset Book",
+    "kind": "BOOK",
+    "preregistered": false,
+    "constituents": [
+      "alphamax",
+      "managed_futures",
+      "alphavintage",
+      "alphaforge"
+    ]
+  },
+  "period": {
+    "first_observation": "2026-08-07",
+    "last_observation": "2026-08-27",
+    "observation_count": 18,
+    "frequency": "DAILY",
+    "calendar": "UTC daily marks; sleeves trade on their own venue calendars"
+  },
+  "returns": {
+    "basis": "NET_OF_MODELLED_COSTS",
+    "cumulative": -0.022487799999999947,
+    "annualised": null,
+    "sharpe_annualised": null,
+    "sharpe_reportable": false,
+    "series_available": true,
+    "series_url": "https://canlicapital.com/paper-state.json"
+  },
+  "costs": {
+    "modelled": true,
+    "components": [
+      "SPREAD",
+      "FEES",
+      "IMPACT",
+      "LATENCY",
+      "FINANCING",
+      "BORROW",
+      "FUNDING"
+    ],
+    "turnover_annualised": null,
+    "notes": "One shared transaction-cost model prices every fill; the engine never computes a cost itself."
+  },
+  "selection": {
+    "trials_counted": true,
+    "trial_count": null,
+    "trial_unit": "first immutable record per hypothesis identity, deduplicated across every durable ledger",
+    "deflation_applied": false,
+    "deflated_sharpe_ratio": null,
+    "deflation_method": "Deflated Sharpe against the expected maximum of the counted trial union. Not applied to this record because the forward sample cannot support a Sharpe estimate yet."
+  },
+  "risk": {
+    "max_drawdown_realised": -0.045,
+    "drawdown_basis": "OBSERVED",
+    "max_drawdown_model_expected": 0.09318244871588115,
+    "exposure_notes": "The realised figure is descriptive of a short sample. The model estimate is not established by live evidence."
+  },
+  "corrections": {
+    "count": 0,
+    "withdrawn_figures": [],
+    "log_url": "https://canlicapital.com/progress"
+  },
+  "provenance": {
+    "source_bindings": [
+      {
+        "path": "public/paper-state.json",
+        "sha256": "eba37a751cf6864c79ce155e811b88347b4693bbb53a6dd0d11df4f0fe8bb4b6",
+        "url": "https://canlicapital.com/paper-state.json"
+      },
+      {
+        "path": "public/contracts/public-claims.json",
+        "sha256": "f9be4c8aa3f0c5762447e5010f1c922708ad14f723021781460aadfaf36733c6",
+        "url": "https://canlicapital.com/contracts/public-claims.json"
+      },
+      {
+        "path": "public/glassbox/alpaca_broker_reconciliation.json",
+        "sha256": "f379b3b4300cf5c84700143da00a378ff5227a5a977195d0160cfe64c2a84667",
+        "url": "https://canlicapital.com/glassbox/alpaca_broker_reconciliation.json"
+      }
+    ],
+    "independently_verifiable": true,
+    "verification_url": "https://canlicapital.com/verify",
+    "signed": true,
+    "signature_scheme": "Ed25519 over an append-only hash chain"
+  },
+  "claim_maturity": {
+    "establishes": [
+      "A 18-observation paper record with broker reconciliation on 3 sleeves.",
+      "That every published figure traces to a hash-bound artifact."
+    ],
+    "does_not_establish": [
+      "A forward Sharpe ratio. 252 observations are required to estimate one and this record has 18.",
+      "An expected maximum drawdown. The realised figure describes a short sample and the model estimate is not live evidence.",
+      "Live-forward diversification between sleeves.",
+      "Any funded performance whatsoever. No real capital has been deployed."
+    ],
+    "external_review_count": 0,
+    "independent_replication_count": 0
+  }
+}

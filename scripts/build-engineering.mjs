@@ -422,6 +422,8 @@ ${renderProductShellHeader({ active: "engineering" })}
     <p class="eng-author">
       <a class="eng-button" href="/notes">Read the engineering notes</a>
       <a class="eng-button" href="/tools/selection-risk">Try to fool yourself, in the browser</a>
+      <a class="eng-button" href="/developers">The read API</a>
+      <a class="eng-button" href="/standards/paper-evidence">The evidence standard</a>
     </p>
   </section>
 

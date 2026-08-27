@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="en" data-page="standards-paper-evidence">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>canli.paper-evidence.v0 | Canli Capital</title>
+<meta name="description" content="A proposed open standard for reporting paper-traded and simulated strategy performance, whose required fields are the ones a performance claim usually omits." />
+<link rel="canonical" href="https://canlicapital.com/standards/paper-evidence" />
+<meta name="author" content="Arhan Canli" />
+<meta name="canli:sources" content="paper_evidence_conformance.json" />
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Canli Capital" />
+<meta property="og:title" content="canli.paper-evidence.v0" />
+<meta property="og:description" content="A proposed open standard for reporting paper-traded and simulated strategy performance, whose required fields are the ones a performance claim usually omits." />
+<meta property="og:url" content="https://canlicapital.com/standards/paper-evidence" />
+<meta property="og:image" content="https://canlicapital.com/og.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="canli.paper-evidence.v0" />
+<meta name="twitter:description" content="A proposed open standard for reporting paper-traded and simulated strategy performance, whose required fields are the ones a performance claim usually omits." />
+<meta name="twitter:image" content="https://canlicapital.com/og.png" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" />
+<link rel="stylesheet" href="/css/product-shell.css" />
+<link rel="stylesheet" href="/css/developers.css" />
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"canli.paper-evidence.v0: an open standard for paper-trading evidence","description":"A proposed open standard for reporting paper-traded and simulated strategy performance, whose required fields are the ones a performance claim usually omits.","url":"https://canlicapital.com/standards/paper-evidence","author":{"@id":"https://canlicapital.com/#arhan-canli"},"license":"https://opensource.org/licenses/MIT"}</script>
+</head>
+<body class="dev-page">
+<a class="dev-skip" href="#content">Skip to content</a>
+<header class="cc-shell" id="nav" data-product-shell="v3">
+  <a class="cc-shell__brand" href="/" aria-label="Canli Capital, home">
+    <span class="cc-shell__mark" aria-hidden="true"><i></i></span>
+    <span>Canli Capital</span>
+  </a>
+  <a class="cc-shell__status" href="/measurements/alpaca-broker-reconciliation" aria-label="Current record status">
+    <span class="status-dot" aria-hidden="true"></span>
+    <span>Public paper record</span>
+  </a>
+  <nav class="cc-shell__primary" aria-label="Primary navigation">
+<a class="cc-shell__link" href="https://app.canlicapital.com/dashboard" rel="noreferrer">Live</a>
+<a class="cc-shell__link" href="/research">Research</a>
+<a class="cc-shell__link" href="/trials">Trials</a>
+<a class="cc-shell__link" href="/systems">Systems</a>
+<a class="cc-shell__link" href="/methodology">Methodology</a>
+<a class="cc-shell__link" href="/verify">Verify</a>
+  </nav>
+  <details class="cc-shell__index">
+    <summary><span class="cc-shell__index-wide">More</span><span class="cc-shell__index-compact">Menu</span></summary>
+    <div class="cc-shell__panel">
+      <div>
+        <span class="cc-shell__panel-label">Core</span>
+        <nav aria-label="Core routes"><a class="cc-shell__panel-link" href="https://app.canlicapital.com/dashboard" rel="noreferrer">Live</a>
+<a class="cc-shell__panel-link" href="/research">Research</a>
+<a class="cc-shell__panel-link" href="/trials">Trials</a>
+<a class="cc-shell__panel-link" href="/systems">Systems</a>
+<a class="cc-shell__panel-link" href="/methodology">Methodology</a>
+<a class="cc-shell__panel-link" href="/verify">Verify</a></nav>
+      </div>
+      <div>
+        <span class="cc-shell__panel-label">Institution</span>
+        <nav aria-label="Institution routes"><a class="cc-shell__panel-link" href="/progress">Corrections</a>
+<a class="cc-shell__panel-link" href="/performance">Status</a>
+<a class="cc-shell__panel-link" href="/founder">Founder</a>
+<a class="cc-shell__panel-link" href="/open">Open data</a>
+<a class="cc-shell__panel-link" href="/measurements">Measurements</a></nav>
+      </div>
+      <div>
+        <span class="cc-shell__panel-label">Open source</span>
+        <nav aria-label="Source code"><a class="cc-shell__panel-link" href="/engineering">Engineering hub</a>
+<a class="cc-shell__panel-link" href="/notes">Engineering notes</a>
+<a class="cc-shell__panel-link" href="/developers">Developers / API</a>
+<a class="cc-shell__panel-link" href="/standards/paper-evidence">Evidence standard</a>
+<a class="cc-shell__panel-link" href="https://github.com/arhancanli/alphac" rel="noreferrer">alphac (engine)</a>
+<a class="cc-shell__panel-link" href="https://github.com/arhancanli/canli-pit-lake" rel="noreferrer">canli-pit-lake</a>
+<a class="cc-shell__panel-link" href="https://github.com/arhancanli/canli-backtest" rel="noreferrer">canli-backtest</a></nav>
+      </div>
+      <p>Observed, simulated, model-estimated and planned claims remain visibly separate.</p>
+    </div>
+  </details>
+  <a class="cc-shell__source" href="/engineering" title="Open-source engineering: the engine, the data layer and the backtester"><svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true" focusable="false"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg><span>Source</span></a>
+  <a class="cc-shell__cta" href="https://app.canlicapital.com/dashboard">Enter live record <span aria-hidden="true">↗</span></a>
+</header>
+<main id="content">
+  <section class="dev-hero">
+    <p class="dev-kicker"><span>Proposed open standard</span><span>canli.paper-evidence.v0</span></p>
+    <h1>A performance record that states what it does not know.</h1>
+    <p class="dev-lead">Almost every way a published track record misleads is an omission, not a
+      wrong number: the capital was paper and it did not say so, the costs were modelled and it did
+      not say so, the result was the best of two hundred tries and it did not say so. This schema
+      makes those the <strong>required</strong> fields.</p>
+    <p class="dev-boundary"><strong>Status.</strong> Proposed, version zero, published for
+      criticism. It has one implementation, which is mine, and no independent one. That is a
+      statement of maturity, not modesty: a format with a single implementer is a house style until
+      somebody else can read it.</p>
+  </section>
+
+  <section class="dev-section">
+    <h2>What it requires, and why</h2>
+    <p class="dev-note">12 top-level members, every one of them mandatory. The
+      interesting ones are the last three.</p>
+    <div class="dev-grid">
+      <article><h3><code>capital</code></h3><p>Paper, funded, simulated or mixed, and where the
+        fills came from. The single most misreadable fact about any record, enumerated so it
+        cannot be softened into prose.</p></article>
+      <article><h3><code>identity</code></h3><p>What the record is about and whether that identity
+        was frozen before the returns were opened. <code>false</code> is a legitimate answer and
+        far more useful than an absent field.</p></article>
+      <article><h3><code>returns</code></h3><p>Carries <code>basis</code> and
+        <code>sharpe_reportable</code>. A short sample must set the latter false and leave the
+        Sharpe null rather than publish a figure the sample cannot carry.</p></article>
+      <article><h3><code>costs</code></h3><p>What was charged and what was assumed. Absent cost
+        modelling is itself a disclosure.</p></article>
+      <article><h3><code>selection</code></h3><p>How much searching produced the result. Without
+        it a Sharpe ratio is uninterpretable, which is the most common defect in published
+        performance.</p></article>
+      <article><h3><code>corrections</code></h3><p>What has been withdrawn. A record with no
+        correction history and no statement that it has none is silent, not clean.</p></article>
+      <article><h3><code>provenance</code></h3><p>At least one source binding with a SHA-256, so a
+        reader can check something without trusting the publisher.</p></article>
+      <article class="dev-grid__wide"><h3><code>claim_maturity.does_not_establish</code></h3>
+        <p>At least one entry, enforced by the schema. Every record fails to establish something,
+        and a publisher who cannot name one has not looked. This is the field the standard exists
+        for: it is the only one that cannot be satisfied by pointing at a number you already
+        had.</p></article>
+    </div>
+  </section>
+
+  <section class="dev-section">
+    <h2>Conformance</h2>
+    <p class="dev-note">A validator with 0 dependencies, and
+      12 invalid vectors, each breaking exactly one rule so an implementer
+      can diff them against the valid one and read the rule off the difference. On the last run,
+      13 of 13 vectors behaved as
+      declared and 12 failed <em>at the pointer they
+      declare</em>. That second number is the one worth having: a vector failing for an unrelated
+      reason looks like a passing test while hiding a rule that does not work.
+      <a href="/glassbox/paper_evidence_conformance.json">The receipt</a> is published.</p>
+    <table class="dev-table">
+      <thead><tr><th>Vector</th><th>Violates</th><th>Why it matters</th></tr></thead>
+      <tbody>
+        <tr><td><a href="/standards/paper-evidence/v0/vectors/invalid-missing-required-claim-maturity.json"><code>missing-required-claim-maturity</code></a></td><td><code>required: claim_maturity</code></td><td>A record that never says what it fails to establish is the defect this standard exists to prevent.</td></tr>
+        <tr><td><a href="/standards/paper-evidence/v0/vectors/invalid-empty-does-not-establish.json"><code>empty-does-not-establish</code></a></td><td><code>minItems: 1</code></td><td>Every record fails to establish something. An empty list means the publisher did not look.</td></tr>
+        <tr><td><a href="/standards/paper-evidence/v0/vectors/invalid-unknown-capital-kind.json"><code>unknown-capital-kind</code></a></td><td><code>enum</code></td><td>Capital kind is enumerated so it cannot be softened into prose.</td></tr>
+        <tr><td><a href="/standards/paper-evidence/v0/vectors/invalid-wrong-schema-id.json"><code>wrong-schema-id</code></a></td><td><code>const</code></td><td>A record claiming a version it does not implement is worse than an unversioned one.</td></tr>
+        <tr><td><a href="/standards/paper-evidence/v0/vectors/invalid-unexpected-property.json"><code>unexpected-property</code></a></td><td><code>additionalProperties: false</code></td><td>Extra fields are where unreviewed claims enter a standardised record.</td></tr>
+        <tr><td><a href="/standards/paper-evidence/v0/vectors/invalid-malformed-sha256.json"><code>malformed-sha256</code></a></td><td><code>pattern</code></td><td>A truncated or mistyped digest cannot be checked, so it is not provenance.</td></tr>
+        <tr><td><a href="/standards/paper-evidence/v0/vectors/invalid-impossible-date.json"><code>impossible-date</code></a></td><td><code>format: date</code></td><td>A regex accepts 2026-02-30. A record&#39;s period must be a date that exists.</td></tr>
+        <tr><td><a href="/standards/paper-evidence/v0/vectors/invalid-no-source-bindings.json"><code>no-source-bindings</code></a></td><td><code>minItems: 1</code></td><td>A record bound to nothing is an assertion.</td></tr>
+        <tr><td><a href="/standards/paper-evidence/v0/vectors/invalid-semantic-unreportable-sharpe-reported.json"><code>semantic-unreportable-sharpe-reported</code></a></td><td><code>semantic: sharpe_reportable false but a Sharpe is published</code></td><td>Declaring the sample cannot support a figure and then publishing it anyway.</td></tr>
+        <tr><td><a href="/standards/paper-evidence/v0/vectors/invalid-semantic-paper-net-of-realised.json"><code>semantic-paper-net-of-realised</code></a></td><td><code>semantic: PAPER capital cannot be net of REALISED costs</code></td><td>Realised costs require funded execution. This is how a paper record acquires the authority of a funded one.</td></tr>
+        <tr><td><a href="/standards/paper-evidence/v0/vectors/invalid-semantic-uncounted-trials.json"><code>semantic-uncounted-trials</code></a></td><td><code>semantic: trials_counted true but trial_count null</code></td><td>Claiming to count trials without a count.</td></tr>
+        <tr><td><a href="/standards/paper-evidence/v0/vectors/invalid-semantic-reversed-period.json"><code>semantic-reversed-period</code></a></td><td><code>semantic: first_observation after last_observation</code></td><td>A period that runs backwards passes every type check.</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="dev-section">
+    <h2>The flagship instance is my own record</h2>
+    <p class="dev-note">A standard whose only example is invented is a wish. The valid vector is
+      this project's live paper record, generated from the same artifacts the site renders from,
+      and the build fails if it ever stops conforming. Writing it was the useful part: mapping your
+      own record into a schema that asks what you do not know is where you find out whether you can
+      answer.</p>
+    <div class="dev-downloads">
+      <a class="dev-button dev-button--primary" href="/standards/paper-evidence/v0/schema.json">JSON Schema</a>
+      <a class="dev-button" href="/standards/paper-evidence/v0/vectors/valid-alphac-book.json">Valid instance</a>
+      <a class="dev-button" href="/standards/paper-evidence/v0/vectors/manifest.json">Vector manifest</a>
+      <a class="dev-button" href="/standards/paper-evidence/v0/validator.js">Validator</a>
+      <a class="dev-button" href="/api/v1/record">Live instance via the API</a>
+    </div>
+  </section>
+
+  <section class="dev-section dev-section--tail">
+    <h2>Governance</h2>
+    <p class="dev-note">Version zero. Breaking changes bump the version in the <code>schema</code>
+      member, which is a <code>const</code> so a record can never claim a version it does not
+      implement. Criticism is welcome through
+      <a href="https://github.com/arhancanli/alphac/issues/new?template=external-review.yml" rel="noreferrer">the governed review route</a>,
+      and the honest next milestone is one independent implementation attempt, pass or fail.</p>
+    <p class="dev-note">MIT licensed, like everything else here. Authored by
+      <a href="/founder">Arhan Canli</a>.</p>
+  </section>
+</main>
+<footer class="cc-footer" id="footer" data-product-shell="v3">
+  <div class="cc-footer__lead">
+    <a class="cc-footer__brand" href="/">Canli Capital</a>
+    <p>Build the claim. Publish the evidence. Keep the failures.</p>
+  </div>
+  <div class="cc-footer__routes">
+    <nav aria-label="Portfolio and research">
+      <span>Research system</span>
+      <a href="https://app.canlicapital.com/dashboard">Live record</a>
+      <a href="/systems">ALPHAC systems</a>
+      <a href="/research">Research papers</a>
+      <a href="/trials">Trial union</a>
+    </nav>
+    <nav aria-label="Evidence and verification">
+      <span>Evidence</span>
+      <a href="/methodology">Methodology</a>
+      <a href="/verify">Verify record</a>
+      <a href="/measurements">Measurements</a>
+      <a href="/open">Open data</a>
+    </nav>
+    <nav aria-label="Institution and authorship">
+      <span>Institution</span>
+      <a href="/progress">Corrections</a>
+      <a href="/performance">Status</a>
+      <a href="/founder">Arhan Canli</a>
+    </nav>
+    <nav aria-label="Open source">
+      <span>Source code</span>
+      <a href="/engineering">Engineering</a>
+      <a href="/notes">Engineering notes</a>
+      <a href="/developers">Developers</a>
+      <a href="/standards/paper-evidence">Evidence standard</a>
+      <a href="https://github.com/arhancanli/alphac" rel="noreferrer">alphac engine</a>
+      <a href="https://github.com/arhancanli/canli-pit-lake" rel="noreferrer">canli-pit-lake</a>
+      <a href="https://github.com/arhancanli/canli-backtest" rel="noreferrer">canli-backtest</a>
+    </nav>
+  </div>
+  <div class="cc-footer__boundary">
+    <p>Research and paper execution only. No managed capital, copy trading, investment advice or promised return.</p>
+    <p>Engineered independently by Arhan Canli in Dubai since July 2024. The public paper
+    record begins 2026-08-07; the years before it are engineering, not track record.</p>
+    <span>Copyright Arhan Canli</span>
+  </div>
+</footer>
+</body>
+</html>

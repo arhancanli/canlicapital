@@ -137,5 +137,39 @@
       "destination": "https://canlicapital.com/:path*",
       "permanent": true
     }
+  ],
+  "rewrites": [
+    {
+      "source": "/api/v1/index",
+      "destination": "/api/v1/index.json"
+    },
+    {
+      "source": "/api/v1/status",
+      "destination": "/api/v1/status.json"
+    },
+    {
+      "source": "/api/v1/record",
+      "destination": "/api/v1/record.json"
+    },
+    {
+      "source": "/api/v1/sleeves",
+      "destination": "/api/v1/sleeves.json"
+    },
+    {
+      "source": "/api/v1/trials/summary",
+      "destination": "/api/v1/trials/summary.json"
+    },
+    {
+      "source": "/api/v1/research",
+      "destination": "/api/v1/research.json"
+    },
+    {
+      "source": "/api/v1/chain/head",
+      "destination": "/api/v1/chain/head.json"
+    },
+    {
+      "source": "/api/v1/openapi",
+      "destination": "/api/v1/openapi.json"
+    }
   ]
 }
