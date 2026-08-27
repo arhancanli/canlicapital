@@ -93,6 +93,22 @@ const ISO_DATE = /\b(19|20)\d\d-\d\d-\d\d\b/g;
 // ---------------------------------------------------------------------------
 const artifacts = walk(resolve(DIST, "glassbox"), ".json");
 
+// The published data a page renders from is not all under glassbox/. The homepage
+// reads paper-state.json, the public-claims contract, the research index and the
+// film state, and none of them was in the corpus, so the homepage could not be
+// scoped to what it actually uses and fell back to being traced against every
+// artifact on the site. These are published files under dist/ like any other; the
+// corpus should know them.
+for (const extra of [
+  "paper-state.json",
+  "contracts/public-claims.json",
+  "research-index.json",
+  "system-films/state.json",
+]) {
+  const file = resolve(DIST, extra);
+  if (existsSync(file)) artifacts.push(file);
+}
+
 // PER-ARTIFACT, NOT ONE POOL. Tracing every page against every number in every artifact was the
 // first design, and it has an expiry date: the corpus grows on every publish, so a figure that
 // traces to nothing today can start "tracing" tomorrow because an unrelated artifact happened to
@@ -127,7 +143,13 @@ for (const file of artifacts) {
     /* a non-JSON artifact contributes no container sizes */
   }
   values.sort((a, b) => a - b);
-  perArtifact.set(relative(resolve(DIST, "glassbox"), file), { verbatim, labels, values });
+  // Key by the glassbox-relative name where that applies, and by basename for the
+  // files above, so a page can declare either without knowing where it lives.
+  const key = file.startsWith(resolve(DIST, "glassbox"))
+    ? relative(resolve(DIST, "glassbox"), file)
+    : file.slice(resolve(DIST).length + 1);
+  perArtifact.set(key, { verbatim, labels, values });
+  perArtifact.set(key.split("/").pop(), { verbatim, labels, values });
 }
 
 /** The whole corpus, used only where a page declares no source. */
@@ -172,6 +194,27 @@ function rounds(scope, target, decimals) {
   return lo < values.length && values[lo] <= target + tolerance;
 }
 
+/**
+ * The same test for a COMPACT token, whose precision is expressed in scaled units.
+ *
+ * "$993.9K" carries one decimal place of THOUSANDS, so it stands for anything
+ * within half a hundred of 993,900. Passing the unscaled tolerance would demand
+ * the artifact match to within 0.05 of a dollar, which no compact rendering can
+ * ever satisfy, and the rule would be decorative.
+ */
+function roundsScaled(scope, target, decimals, scale) {
+  const { values } = scope;
+  const tolerance = 0.5 * 10 ** -decimals * scale + Number.EPSILON * Math.abs(target) * 8;
+  let lo = 0;
+  let hi = values.length;
+  while (lo < hi) {
+    const mid = (lo + hi) >> 1;
+    if (values[mid] < target - tolerance) lo = mid + 1;
+    else hi = mid;
+  }
+  return lo < values.length && values[lo] <= target + tolerance;
+}
+
 // ---------------------------------------------------------------------------
 // Site-structural counts: claims ABOUT the site, recomputed from the site.
 // ---------------------------------------------------------------------------
@@ -193,7 +236,7 @@ const structure = new Set(
 // ---------------------------------------------------------------------------
 // Classify every numeral on every page.
 // ---------------------------------------------------------------------------
-const reasons = { EXACT: 0, ROUNDED: 0, PERCENT: 0, DATE: 0, STRUCTURE: 0, IDENTIFIER: 0 };
+const reasons = { EXACT: 0, ROUNDED: 0, PERCENT: 0, COMPACT: 0, DATE: 0, STRUCTURE: 0, IDENTIFIER: 0 };
 const untraceable = new Map();
 let seen = 0;
 
@@ -244,6 +287,19 @@ for (const file of htmlFiles) {
     for (const token of match[0].match(NUMERAL) || []) identifiers.add(token);
   }
 
+  // COMPACT notation. Intl's compact currency renders 993951.67 as "$993.9K", and
+  // the scaled token traces to nothing: the artifact holds the full value and the
+  // page shows it divided by a thousand. Whether such a token passed was pure luck,
+  // depending on whether some unrelated artifact happened to hold a similar number.
+  // The suffix is part of the numeral's meaning, so it is read here and the token is
+  // traced against value * scale. A rule, not an exemption: it works for any future
+  // compact figure without anybody adding it to a list.
+  const COMPACT_SCALE = { K: 1e3, M: 1e6, B: 1e9, T: 1e12 };
+  const compactScaleOf = new Map();
+  for (const match of text.matchAll(/(?<![\w.])(-?\d[\d,]*(?:\.\d+)?)\s?([KMBT])\b/g)) {
+    compactScaleOf.set(match[1], COMPACT_SCALE[match[2]]);
+  }
+
   for (const token of new Set(text.match(NUMERAL) || [])) {
     seen += 1;
     if (identifiers.has(token)) { reasons.IDENTIFIER += 1; continue; }
@@ -255,6 +311,18 @@ for (const file of htmlFiles) {
     if (Number.isFinite(value) && rounds(scope, value, decimals)) { reasons.ROUNDED += 1; continue; }
     if (Number.isFinite(value) && rounds(scope, value / 100, decimals + 2)) {
       reasons.PERCENT += 1;
+      continue;
+    }
+    // COMPACT is deliberately honoured only on a SCOPED page. "$993.9K" pins the
+    // underlying value to plus or minus fifty, which is a thousand times wider than
+    // any other rule here, and against the whole-corpus fallback a window that wide
+    // finds a match by chance: two deliberately wrong compact figures traced
+    // cleanly while plain numerals of the same wrongness were caught. A
+    // low-information rule is only safe where the candidate set is the handful of
+    // artifacts the page names.
+    const scale = compactScaleOf.get(token) ?? compactScaleOf.get(bare);
+    if (scoped && scale && Number.isFinite(value) && roundsScaled(scope, value * scale, decimals, scale)) {
+      reasons.COMPACT += 1;
       continue;
     }
     if (/^(19|20)\d\d$/.test(bare) || dateParts.has(bare)) { reasons.DATE += 1; continue; }

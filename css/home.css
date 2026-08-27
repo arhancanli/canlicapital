@@ -133,11 +133,11 @@ h1 { max-width: 12.2ch; margin: 0; font-size: clamp(3.7rem, 5.9vw, 7rem); font-v
 .offering__grid article { position: relative; min-height: 290px; display: flex; flex-direction: column; padding: 25px 25px 22px 0; border-right: 1px solid var(--line); }
 .offering__grid article:not(:first-child) { padding-left: 25px; }
 .offering__grid article:last-child { padding-right: 0; border-right: 0; }
-.offering__grid article > span, .trust-grid article > span, .paper-card > span { color: var(--cobalt); font: 500 .6rem/1.2 var(--mono); letter-spacing: .08em; text-transform: uppercase; }
+.offering__grid article > span, .trust-grid article > span, .paths-grid article > span, .paper-card > span { color: var(--cobalt); font: 500 .6rem/1.2 var(--mono); letter-spacing: .08em; text-transform: uppercase; }
 .offering__grid h3 { max-width: 12ch; margin: auto 0 12px; font-size: clamp(1.35rem, 1.8vw, 1.85rem); font-weight: 560; letter-spacing: -.04em; line-height: 1; }
 .offering__grid p { min-height: 65px; margin: 0 0 20px; color: var(--muted); font-size: .78rem; line-height: 1.55; }
-.offering__grid a, .trust-grid a { width: fit-content; color: var(--ink); border-bottom: 1px solid var(--line); font-size: .66rem; font-weight: 600; }
-.offering__grid a:hover, .trust-grid a:hover { color: var(--cobalt); border-color: var(--cobalt); }
+.offering__grid a, .trust-grid a, .paths-grid a { width: fit-content; color: var(--ink); border-bottom: 1px solid var(--line); font-size: .66rem; font-weight: 600; }
+.offering__grid a:hover, .trust-grid a:hover, .paths-grid a:hover { color: var(--cobalt); border-color: var(--cobalt); }
 
 .evidence { padding-top: clamp(80px, 9vw, 150px); padding-bottom: clamp(80px, 9vw, 150px); }
 .section-heading { margin-bottom: clamp(45px, 6vw, 88px); }
@@ -352,11 +352,26 @@ h1 { max-width: 12.2ch; margin: 0; font-size: clamp(3.7rem, 5.9vw, 7rem); font-v
 
 .trust { padding-top: clamp(90px, 10vw, 170px); padding-bottom: clamp(90px, 10vw, 170px); }
 .trust-grid { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--ink); border-bottom: 1px solid var(--ink); }
+
 .trust-grid article { min-height: 235px; display: flex; flex-direction: column; padding: 24px 24px 22px 0; border-right: 1px solid var(--line); }
 .trust-grid article:not(:first-child) { padding-left: 24px; }
 .trust-grid article:last-child { padding-right: 0; border-right: 0; }
 .trust-grid h3 { max-width: 15ch; margin: auto 0 10px; font-size: 1.25rem; font-weight: 560; letter-spacing: -.04em; line-height: 1.05; }
 .trust-grid p { min-height: 50px; margin: 0 0 18px; color: var(--muted); font-size: .75rem; line-height: 1.5; }
+
+/* The routing grid carries three cards, not four, and one of them holds two links. */
+/* The routing grid carries three cards, one of which holds two links. The shared
+   .trust-grid rule pushes h3 down with `margin: auto`, which is right for four
+   cards of equal text but leaves three cards of unequal text with their headings
+   at three different heights. Here the heading sits under the eyebrow and the
+   LINKS take the auto margin instead, so every card's heading and every card's
+   links line up across the row whatever the paragraph length. */
+.paths-grid { grid-template-columns: repeat(3, 1fr); }
+.paths-grid article { min-height: 210px; }
+.paths-grid h3 { margin: 14px 0 10px; }
+.paths-grid p { min-height: 0; margin: 0 0 18px; }
+.paths-grid a:first-of-type { margin-top: auto; }
+.paths-grid a + a { margin-top: 8px; }
 
 .access { display: grid; grid-template-columns: 1fr auto minmax(330px, .8fr); gap: clamp(36px, 6vw, 90px); align-items: end; padding: clamp(82px, 9vw, 145px) var(--pad); color: #fff; background: var(--cobalt); }
 .access h2 { max-width: 8ch; }

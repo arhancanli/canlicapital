@@ -6,6 +6,11 @@
   <title>Canli Capital / Audit ALPHAC while it runs</title>
   <meta name="description" content="Watch the ALPHAC paper-traded systematic portfolio, inspect its broker-linked decisions, and reproduce selected Canli Capital research." />
   <meta name="author" content="Arhan Canli" />
+  <!-- The COMPLETE set of published artifacts this page renders from, exactly the
+       paths js/home.js fetches. Declaring it scopes audit-published-numbers to
+       these files instead of tracing the homepage against every artifact on the
+       site, which is the difference between a real check and a coincidence. -->
+  <meta name="canli:sources" content="public-claims.json paper-state.json alpaca_broker_reconciliation.json research-index.json kill_log.json transparency_log.json cost_model_realism.json state.json" />
   <meta name="theme-color" content="#07121c" />
   <meta name="color-scheme" content="light dark" />
   <link rel="canonical" href="https://canlicapital.com/" />
@@ -175,9 +180,9 @@
         </div>
         <div class="broker-matrix" aria-label="Execution status by sleeve">
           <div class="broker-matrix__heading"><span>Sleeve</span><span>Execution</span><span>Latest observation</span><span>State</span></div>
-          <div data-broker-row="alphamax"><strong>AlphaMax</strong><span>Alpaca paper</span><span data-broker-observation>175 positions / 27 Aug, 09:25</span><em data-broker-state>Checking</em></div>
-          <div data-broker-row="managed_futures"><strong>AlphaTrend</strong><span>Alpaca paper</span><span data-broker-observation>15 positions / 27 Aug, 09:25</span><em data-broker-state>Checking</em></div>
-          <div data-broker-row="alphavintage"><strong>AlphaVintage</strong><span>Alpaca paper</span><span data-broker-observation>2 positions / 27 Aug, 09:25</span><em data-broker-state>Checking</em></div>
+          <div data-broker-row="alphamax"><strong>AlphaMax</strong><span>Alpaca paper</span><span data-broker-observation>175 positions / 27 Aug, 10:25</span><em data-broker-state>Checking</em></div>
+          <div data-broker-row="managed_futures"><strong>AlphaTrend</strong><span>Alpaca paper</span><span data-broker-observation>15 positions / 27 Aug, 10:25</span><em data-broker-state>Checking</em></div>
+          <div data-broker-row="alphavintage"><strong>AlphaVintage</strong><span>Alpaca paper</span><span data-broker-observation>2 positions / 27 Aug, 10:25</span><em data-broker-state>Checking</em></div>
           <div data-broker-row="alphaforge"><strong>AlphaForge</strong><span>Local paper</span><span>Live exchange books, simulated fills</span><em data-broker-state="local">Local only</em></div>
         </div>
         <div class="validation-callout" data-validation-state="loading"><span class="validation-callout__signal" aria-hidden="true"></span><div><strong id="evidence-validation-label">Validation loading</strong><p id="evidence-validation-reason">The public contract and broker reconciliation are being checked.</p></div><a href="/measurements/program-status">Read grading contract</a></div>
@@ -218,6 +223,11 @@
           <div class="core-progress" aria-hidden="true"><span id="core-progress-fill"></span></div>
         </div>
       </div>
+    </section>
+
+    <section class="paths section" id="paths" aria-labelledby="paths-title">
+      <div class="section-heading section-heading--split"><div><p class="eyebrow">Where to start</p><h2 id="paths-title">Three ways in, depending on what you came to check.</h2></div><p>Nothing here is gated and nothing needs an account. Pick the one that matches the question you actually have.</p></div>
+      <div class="paths-grid trust-grid"><article><span>To see what it does</span><h3>The live paper record</h3><p>Equity, positions, decisions and broker reconciliation, republished hourly. Paper execution throughout, never funded.</p><a href="https://app.canlicapital.com/dashboard" rel="noreferrer">Open the live record</a></article><article><span>To decide whether to believe it</span><h3>The research, and the retractions</h3><p>Every hypothesis this project has tested, the ones that failed, and the published figures it has since withdrawn.</p><a href="/progress">Read the corrections</a></article><article><span>To judge the engineering</span><h3>Three open repositories</h3><p>The engine, the point-in-time data layer and the backtester. The extractions are byte-identical to the engine and CI proves it on every push.</p><a href="/engineering">Read the code</a><a href="/notes">Engineering notes</a></article></div>
     </section>
 
     <section class="system-films" id="system-films" aria-labelledby="system-films-title">
@@ -294,9 +304,9 @@
     <section class="sleeves section" id="sleeves" aria-labelledby="sleeves-title">
       <div class="section-heading section-heading--split"><div><p class="eyebrow">Current portfolio architecture</p><h2 id="sleeves-title"><span id="current-sleeve-count">Pending</span> sleeves. Different mechanisms. One risk budget.</h2></div><p>The current target mix is equal-weighted. Correlation is measured on the disclosed research window; live-forward diversification is not yet established.</p></div>
       <div class="sleeve-table">
-        <article class="sleeve-row" data-sleeve="alphamax"><div class="sleeve-index">01</div><div class="sleeve-name"><span>US equity momentum</span><h3>AlphaMax</h3></div><p>Cross-sectional momentum across a survivorship-free US equity universe.</p><dl><div><dt>Execution</dt><dd>Alpaca paper</dd></div><div><dt>Target weight</dt><dd>25%</dd></div></dl><div class="sleeve-state"><span class="state-pill state-pill--broker">Observed broker</span><small id="sleeve-alphamax-state">$994.0K equity · 175 positions</small></div></article>
-        <article class="sleeve-row" data-sleeve="managed_futures"><div class="sleeve-index">02</div><div class="sleeve-name"><span>Managed futures</span><h3>AlphaTrend</h3></div><p>Time-series trend across liquid equity, rates, commodity, and FX proxies.</p><dl><div><dt>Execution</dt><dd>Alpaca paper</dd></div><div><dt>Target weight</dt><dd>25%</dd></div></dl><div class="sleeve-state"><span class="state-pill state-pill--broker">Observed broker</span><small id="sleeve-managed_futures-state">$1.0M equity · 15 positions</small></div></article>
-        <article class="sleeve-row" data-sleeve="alphavintage"><div class="sleeve-index">03</div><div class="sleeve-name"><span>Macro surprise</span><h3>AlphaVintage</h3></div><p>A point-in-time inflation-surprise spread expressed through IWM and SPY.</p><dl><div><dt>Execution</dt><dd>Alpaca paper</dd></div><div><dt>Target weight</dt><dd>25%</dd></div></dl><div class="sleeve-state"><span class="state-pill state-pill--broker">Observed broker</span><small id="sleeve-alphavintage-state">$998.8K equity · 2 positions</small></div></article>
+        <article class="sleeve-row" data-sleeve="alphamax"><div class="sleeve-index">01</div><div class="sleeve-name"><span>US equity momentum</span><h3>AlphaMax</h3></div><p>Cross-sectional momentum across a survivorship-free US equity universe.</p><dl><div><dt>Execution</dt><dd>Alpaca paper</dd></div><div><dt>Target weight</dt><dd>25%</dd></div></dl><div class="sleeve-state"><span class="state-pill state-pill--broker">Observed broker</span><small id="sleeve-alphamax-state">$993.9K equity · 175 positions</small></div></article>
+        <article class="sleeve-row" data-sleeve="managed_futures"><div class="sleeve-index">02</div><div class="sleeve-name"><span>Managed futures</span><h3>AlphaTrend</h3></div><p>Time-series trend across liquid equity, rates, commodity, and FX proxies.</p><dl><div><dt>Execution</dt><dd>Alpaca paper</dd></div><div><dt>Target weight</dt><dd>25%</dd></div></dl><div class="sleeve-state"><span class="state-pill state-pill--broker">Observed broker</span><small id="sleeve-managed_futures-state">$999.9K equity · 15 positions</small></div></article>
+        <article class="sleeve-row" data-sleeve="alphavintage"><div class="sleeve-index">03</div><div class="sleeve-name"><span>Macro surprise</span><h3>AlphaVintage</h3></div><p>A point-in-time inflation-surprise spread expressed through IWM and SPY.</p><dl><div><dt>Execution</dt><dd>Alpaca paper</dd></div><div><dt>Target weight</dt><dd>25%</dd></div></dl><div class="sleeve-state"><span class="state-pill state-pill--broker">Observed broker</span><small id="sleeve-alphavintage-state">$998.7K equity · 2 positions</small></div></article>
         <article class="sleeve-row" data-sleeve="alphaforge"><div class="sleeve-index">04</div><div class="sleeve-name"><span>Crypto funding carry</span><h3>AlphaForge</h3></div><p>Funding-rate carry across perpetual futures, marked from live exchange books.</p><dl><div><dt>Execution</dt><dd>Local paper</dd></div><div><dt>Target weight</dt><dd>25%</dd></div></dl><div class="sleeve-state"><span class="state-pill state-pill--local">Observed local</span><small>Live books, simulated fills</small></div></article>
       </div>
       <div class="sleeves-footer"><div><span>Research-window correlation</span><small>Simulated / not live-forward proof</small></div><strong id="correlation-reading">Pending</strong><a href="/systems">Inspect every system <span aria-hidden="true">→</span></a></div>
