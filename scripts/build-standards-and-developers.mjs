@@ -221,7 +221,7 @@ function buildDevelopers() {
       name: "Canli Capital public read API",
       description,
       documentation: `${ORIGIN}/developers`,
-      url: `${ORIGIN}/api/v1/index`,
+      url: `${ORIGIN}/api/v1`,
       provider: { "@id": `${ORIGIN}/#organization` },
       termsOfService: `${ORIGIN}/methodology`,
     },
@@ -238,7 +238,7 @@ ${renderProductShellHeader({ active: "" })}
       site to lose a claim boundary, because nobody reads one by eye, so the boundary is part of
       the envelope rather than part of the documentation.</p>
     <div class="dev-downloads">
-      <a class="dev-button dev-button--primary" href="/api/v1/index">Discovery document</a>
+      <a class="dev-button dev-button--primary" href="/api/v1">Discovery document</a>
       <a class="dev-button" href="/api/v1/openapi">OpenAPI 3.1</a>
       <a class="dev-button" href="/standards/paper-evidence">The record standard</a>
     </div>

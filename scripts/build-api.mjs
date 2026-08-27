@@ -18,7 +18,7 @@
 // =============================================================================
 
 import { createHash } from "node:crypto";
-import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -216,8 +216,9 @@ function main() {
     description:
       "A static, cacheable read API over the published Canli Capital record. Every response " +
       "carries its own sources, hashes, claim class and limits.",
+    self: `${ORIGIN}/api/${VERSION}`,
     documentation: `${ORIGIN}/developers`,
-    openapi: `${ORIGIN}/api/${VERSION}/openapi.json`,
+    openapi: `${ORIGIN}/api/${VERSION}/openapi`,
     standard: {
       id: "canli.paper-evidence.v0",
       schema: `${ORIGIN}/standards/paper-evidence/v0/schema.json`,
@@ -289,8 +290,11 @@ function main() {
   // the source and the config is checked against them.
   const vercel = JSON.parse(readFileSync(resolve(ROOT, "vercel.json"), "utf8"));
   const routed = new Set((vercel.rewrites ?? []).map((r) => r.source));
-  const missing = [...written, `/api/${VERSION}/index`, `/api/${VERSION}/openapi`]
-    .filter((path) => !routed.has(path));
+  // /api/v1 itself resolves to index.json through cleanUrls, so it needs no rewrite
+  // and must not claim one. Publishing /api/v1/index instead cost a 308 redirect on
+  // every discovery request, because cleanUrls strips "index" before a rewrite can
+  // match it.
+  const missing = [...written, `/api/${VERSION}/openapi`].filter((path) => !routed.has(path));
   if (missing.length) {
     throw new Error(
       `api: vercel.json has no rewrite for ${missing.join(", ")}. Without one the ` +
@@ -298,7 +302,16 @@ function main() {
     );
   }
 
-  console.log(`  api ${VERSION}: ${written.length + 1} endpoints written, all routed`);
+  // Every URL the discovery document and the OpenAPI advertise must resolve to a
+  // file that exists. A published endpoint list is a promise, and this is the
+  // cheapest possible check that the promise is kept.
+  const unresolvable = [...index.endpoints.map((e) => e.path), `/api/${VERSION}/openapi`]
+    .filter((path) => !existsSync(resolve(OUT, `${path.replace(`/api/${VERSION}/`, "")}.json`)));
+  if (unresolvable.length) {
+    throw new Error(`api: advertises ${unresolvable.join(", ")} but no such file was written`);
+  }
+
+  console.log(`  api ${VERSION}: ${written.length} endpoints written, all routed and resolvable`);
   for (const p of written) console.log(`    ${p}`);
 }
 
