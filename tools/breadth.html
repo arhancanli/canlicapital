@@ -1,23 +1,23 @@
 <!doctype html>
-<html lang="en" data-page="selection-risk">
+<html lang="en" data-page="breadth">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Selection Risk Lab | Canli Capital</title>
-<meta name="description" content="Search a series that provably has no edge, and watch what your best result is worth once the search is counted against it." />
-<link rel="canonical" href="https://canlicapital.com/tools/selection-risk" />
+<title>Breadth Lab | Canli Capital</title>
+<meta name="description" content="How much a book of N sleeves is worth, and the ceiling that no amount of breadth can pass." />
+<link rel="canonical" href="https://canlicapital.com/tools/breadth" />
 <meta name="author" content="Arhan Canli" />
-<meta name="canli:sources" content="selection_risk_lab_contract.json" />
+<meta name="canli:sources" content="breadth_lab_contract.json public-claims.json" />
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Canli Capital" />
-<meta property="og:title" content="Selection Risk Lab" />
-<meta property="og:description" content="Search a series that provably has no edge, and watch what your best result is worth once the search is counted against it." />
-<meta property="og:url" content="https://canlicapital.com/tools/selection-risk" />
+<meta property="og:title" content="Breadth Lab" />
+<meta property="og:description" content="How much a book of N sleeves is worth, and the ceiling that no amount of breadth can pass." />
+<meta property="og:url" content="https://canlicapital.com/tools/breadth" />
 <meta property="og:image" content="https://canlicapital.com/og.png" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Selection Risk Lab" />
-<meta name="twitter:description" content="Search a series that provably has no edge, and watch what your best result is worth once the search is counted against it." />
+<meta name="twitter:title" content="Breadth Lab" />
+<meta name="twitter:description" content="How much a book of N sleeves is worth, and the ceiling that no amount of breadth can pass." />
 <meta name="twitter:image" content="https://canlicapital.com/og.png" />
 <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -25,7 +25,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" />
 <link rel="stylesheet" href="/css/product-shell.css" />
 <link rel="stylesheet" href="/css/lab.css" />
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Selection Risk Lab","applicationCategory":"EducationalApplication","operatingSystem":"Any modern browser","url":"https://canlicapital.com/tools/selection-risk","description":"Search a series that provably has no edge, and watch what your best result is worth once the search is counted against it.","author":{"@id":"https://canlicapital.com/#arhan-canli"},"isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Breadth Lab","applicationCategory":"EducationalApplication","operatingSystem":"Any modern browser","url":"https://canlicapital.com/tools/breadth","description":"How much a book of N sleeves is worth, and the ceiling that no amount of breadth can pass.","author":{"@id":"https://canlicapital.com/#arhan-canli"},"isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
 </head>
 <body class="lab-page">
 <a class="lab-skip" href="#lab">Skip to the lab</a>
@@ -84,111 +84,104 @@
 </header>
 <main>
   <section class="lab-hero" aria-labelledby="lab-title">
-    <p class="lab-kicker"><span>Open research instrument</span><span>Educational, not evidence</span></p>
-    <h1 id="lab-title">Find an edge that is not there.</h1>
-    <p class="lab-lead">The series below is a driftless random walk. Its true Sharpe ratio is
-      <strong>0</strong>, by construction, and no setting of any control can change
-      that. Search it anyway. The lab counts every parameter set you try and deflates your best
-      result against your own search, so you can watch a good-looking number turn into what it
-      actually is.</p>
-    <p class="lab-boundary"><strong>What this is.</strong> A teaching instrument. It runs on a synthetic series with no edge, spends no research hypothesis, writes to no ledger, and produces no ALPHAC performance claim. Nothing a visitor generates here is evidence about any strategy.</p>
+    <p class="lab-kicker"><span>Open research instrument</span><span>Arithmetic, not a forecast</span></p>
+    <h1 id="lab-title">More sleeves stops working, and you can see where.</h1>
+    <p class="lab-lead">A book of equally weighted sleeves, each worth <strong>s</strong>, sharing a
+      pairwise correlation <strong>rho</strong>, is worth
+      <code>s &times; sqrt(N / (1 + (N-1) &times; rho))</code>. Take that to the limit and the
+      ceiling is <code>s / sqrt(rho)</code>, which does not contain N at all. Past a point, breadth
+      is not the lever and correlation is. This is the most important arithmetic in this project
+      and it decides whether its own objective is reachable.</p>
+    <p class="lab-boundary"><strong>What this is.</strong> Closed-form arithmetic under strong assumptions. It shows the SHAPE of the constraint breadth operates under. It is not a forecast of any book, and no output here is a performance claim.</p>
   </section>
 
-  <section class="lab-lab" id="lab" aria-labelledby="lab-lab-title">
-    <h2 id="lab-lab-title" class="lab-visually-hidden">The lab</h2>
+  <section class="lab-lab" id="lab">
     <div class="lab-controls">
-      <label class="lab-field" for="lab-seed">
-    <span class="lab-field__label">Series seed</span>
-    <input id="lab-seed" type="number" value="20260827" min="1" max="999999" step="1" inputmode="numeric" />
-    <span class="lab-field__note">750 bars, driftless geometric random walk</span>
+      <label class="lab-field" for="lab-sharpe">
+    <span class="lab-field__label">Sharpe per sleeve</span>
+    <input id="lab-sharpe" type="number" value="0.5" min="0" max="3" step="0.05" inputmode="decimal" />
+    <span class="lab-field__note">s, the same for every sleeve</span>
   </label>
-      <label class="lab-field" for="lab-fast">
-    <span class="lab-field__label">Fast window</span>
-    <input id="lab-fast" type="number" value="10" min="2" max="60" step="1" inputmode="numeric" />
-    <span class="lab-field__note">bars in the fast average</span>
+      <label class="lab-field" for="lab-rho">
+    <span class="lab-field__label">Average pairwise correlation</span>
+    <input id="lab-rho" type="number" value="0.0248" min="-0.5" max="1" step="0.005" inputmode="decimal" />
+    <span class="lab-field__note">rho, shared by every pair</span>
   </label>
-      <label class="lab-field" for="lab-slow">
-    <span class="lab-field__label">Slow window</span>
-    <input id="lab-slow" type="number" value="50" min="3" max="200" step="1" inputmode="numeric" />
-    <span class="lab-field__note">bars in the slow average</span>
+      <label class="lab-field" for="lab-n">
+    <span class="lab-field__label">Sleeves</span>
+    <input id="lab-n" type="number" value="4" min="1" max="60" step="1" inputmode="decimal" />
+    <span class="lab-field__note">N, equally weighted</span>
   </label>
-      <label class="lab-field" for="lab-cost">
-    <span class="lab-field__label">Cost</span>
-    <input id="lab-cost" type="number" value="2" min="0" max="100" step="1" inputmode="numeric" />
-    <span class="lab-field__note">basis points per unit of turnover</span>
+      <label class="lab-field" for="lab-target">
+    <span class="lab-field__label">Target book Sharpe</span>
+    <input id="lab-target" type="number" value="1.5" min="0" max="5" step="0.1" inputmode="decimal" />
+    <span class="lab-field__note">the objective to test against</span>
   </label>
       <div class="lab-actions">
-        <button type="button" id="lab-sweep" class="lab-button lab-button--primary" data-grid="820">Search 820 settings</button>
-        <button type="button" id="lab-new-series" class="lab-button">New series</button>
-        <button type="button" id="lab-reset-ledger" class="lab-button">Reset trial ledger</button>
+        <button type="button" class="lab-button" data-preset='{"s":0.5,"rho":0.0248,"n":4,"target":1.5}'>This book, as published</button>
+        <button type="button" class="lab-button" data-preset='{"s":0.5,"rho":0.0248,"n":14,"target":1.5}'>The planned book</button>
+        <button type="button" class="lab-button" data-preset='{"s":0.5,"rho":0.15,"n":14,"target":1.5}'>At the live correlation ceiling</button>
       </div>
       <p class="lab-warning" id="lab-warning" role="alert" hidden></p>
     </div>
 
     <div class="lab-output">
       <div class="lab-chart-wrap">
-        <svg id="lab-chart" viewBox="0 0 760 260" preserveAspectRatio="none" role="img">
-          <path id="lab-base" class="lab-chart__base" d="" />
-          <path id="lab-path" class="lab-chart__line" d="" />
+        <svg id="lab-chart" viewBox="0 0 760 260" preserveAspectRatio="none" role="img" aria-label="Book Sharpe against sleeve count, with the ceiling">
+          <path id="lab-ceiling" class="lab-chart__ceiling" d="" />
+          <path id="lab-target-line" class="lab-chart__base" d="" />
+          <path id="lab-curve" class="lab-chart__line" d="" />
+          <circle id="lab-marker" class="lab-chart__marker" cx="0" cy="0" r="4" />
         </svg>
-        <p class="lab-causal" id="lab-causal" data-ok="true"></p>
+        <p class="lab-causal" id="lab-causal">solid: book Sharpe against N &middot; long dash: the ceiling &middot; short dash: your target</p>
       </div>
       <dl class="lab-stats">
-        <div><dt>Annualised Sharpe</dt><dd id="lab-sharpe">0</dd></div>
-        <div><dt>Max drawdown</dt><dd id="lab-drawdown">0</dd></div>
-        <div><dt>Total return</dt><dd id="lab-total">0</dd></div>
-        <div><dt>Trades</dt><dd id="lab-trades">0</dd></div>
+        <div><dt>Book Sharpe</dt><dd id="lab-book">0</dd></div>
+        <div><dt>Ceiling at this correlation</dt><dd id="lab-ceiling-value">0</dd></div>
+        <div><dt>Share of the ceiling captured</dt><dd id="lab-captured">0</dd></div>
+        <div><dt>Sleeves needed for the target</dt><dd id="lab-required">0</dd></div>
       </dl>
     </div>
 
     <div class="lab-ledger">
-      <h3>Your trial ledger</h3>
-      <dl>
-        <div><dt>Distinct settings evaluated</dt><dd id="lab-trials">0</dd></div>
-        <div><dt>Best annualised Sharpe found</dt><dd id="lab-best">0</dd></div>
-        <div><dt>Sharpe luck alone would find</dt><dd id="lab-luckbar">n/a</dd></div>
-        <div><dt>Deflated Sharpe of your best</dt><dd id="lab-dsr">n/a</dd></div>
-      </dl>
-      <p class="lab-bestparams">Best found at <span id="lab-bestparams">nothing yet</span></p>
-      <p class="lab-verdict" id="lab-verdict" data-state="idle">Move a control to record your first trial.</p>
+      <h3>What this says</h3>
+      <p class="lab-verdict" id="lab-verdict" data-state="idle">Move a control.</p>
+      <p class="lab-bestparams">The live contract permits average pairwise correlation up to 0.15. This is what that permits the book to become.</p>
     </div>
   </section>
 
   <section class="lab-notes" aria-labelledby="lab-notes-title">
-    <h2 id="lab-notes-title">How it works, and why it is synthetic</h2>
+    <h2 id="lab-notes-title">The assumptions, which are strong</h2>
     <div class="lab-notes__grid">
       <article>
-        <h3>The execution rule is the engine's</h3>
-        <p>decide at the close of bar t, hold from the open of bar t+1 to the open of bar t+2. the same no-lookahead contract the ALPHAC backtester enforces. The property is re-checked
-          on every run and reported under the chart, rather than asserted once in prose.</p>
+        <h3>What it assumes</h3>
+        <ul><li>every sleeve carries the same Sharpe ratio</li><li>every sleeve is weighted equally</li><li>every pair of sleeves shares one correlation</li><li>correlations are stable, which is the assumption that fails first in a crisis</li></ul>
+        <p>Real books have none of these. The lab is for the shape of the constraint, not for
+          forecasting a book.</p>
       </article>
       <article>
-        <h3>Why not real prices</h3>
-        <p>config/data_source_rights_policy.json records every market-data source this project uses as prohibited or withheld for raw redistribution, with a project default of do not bundle raw third-party rows. Shipping real bars into a browser is not available.</p>
-        <p>On real data a visitor can always argue the edge they found was genuine. On a driftless random walk the true Sharpe is zero by construction, so every good result is provably luck. The demonstration is stronger for it, not weaker.</p>
+        <h3>Where the numbers come from</h3>
+        <p>The presets read this project's own published claims: the research-curve average
+          pairwise correlation, the current and planned sleeve counts, and the declared forward
+          Sharpe objective. 0.5 is used as the per-sleeve Sharpe in every preset. It is an illustrative round number, not a measured sleeve figure: no sleeve here has an established forward Sharpe.</p>
       </article>
       <article>
-        <h3>What the deflation uses</h3>
-        <p>Your trial count is the number of distinct settings you have evaluated on this series.
-          The dispersion is measured across your own results, not assumed. The arithmetic is
-          <a href="/tools/deflated-sharpe">the same calculator</a> published elsewhere on this site,
-          js/dsr-tool.js, golden-vector tested against the Python source, on the non_excess kurtosis
-          convention, annualised at 252 periods.</p>
+        <h3>The case it refuses</h3>
+        <p>1 + (N-1)*rho must be strictly positive. At zero the equally weighted book has zero variance and an infinite Sharpe, which is refused rather than displayed. A tool that displays an infinite Sharpe for an impossible
+          correlation is doing the opposite of its job.</p>
       </article>
       <article>
-        <h3>The gate</h3>
-        <p>ALPHAC admits a full-union book at a deflated ratio of 0.95. That is
-          the bar your scenario is read against here. Reaching it on a series with no edge is a
-          false positive, and the instrument is built to let you produce one and then see it named.</p>
+        <h3>Why it matters here</h3>
+        <p>This project's live contract permits an average pairwise correlation up to 0.15. Load
+          that preset and read the ceiling: it is the honest answer to whether the declared
+          objective is reachable by adding sleeves, and it is not the answer anyone wants.</p>
       </article>
     </div>
-    <p class="lab-safety"><strong>Sandbox contract.</strong> every input is stored in the URL, so a scenario is shareable and reproducible. no write path to any ledger, artifact, broker or published record exists. results are labelled USER_GENERATED_SCENARIO_NOT_RESEARCH_EVIDENCE.</p>
+    <p class="lab-safety"><strong>Sandbox contract.</strong> every input is stored in the URL, so a scenario is shareable and reproducible. no write path to any ledger, artifact, broker or published record exists. outputs are arithmetic under stated assumptions, never a forecast.</p>
     <p class="lab-source">Rendered from
-      <a href="/glassbox/selection_risk_lab_contract.json"><code>selection_risk_lab_contract.json</code></a>, whose content hash the
-      build reproduces before this page is written. Further reading:
-      <a href="/notes/deflating-a-sharpe-ratio">the arithmetic of not fooling yourself</a>, and
-      <a href="/tools/breadth">the Breadth Lab</a>, which shows the other ceiling this book runs
-      into.</p>
+      <a href="/glassbox/breadth_lab_contract.json"><code>breadth_lab_contract.json</code></a>. Related:
+      <a href="/tools/selection-risk">the Selection Risk Lab</a> and
+      <a href="/notes/deflating-a-sharpe-ratio">the arithmetic of not fooling yourself</a>.</p>
   </section>
 </main>
 <footer class="cc-footer" id="footer" data-product-shell="v3">
@@ -235,6 +228,6 @@
     <span>Copyright Arhan Canli</span>
   </div>
 </footer>
-<script type="module" src="/js/selection-risk-lab.js"></script>
+<script type="module" src="/js/breadth-lab.js"></script>
 </body>
 </html>

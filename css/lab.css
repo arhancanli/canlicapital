@@ -1,0 +1,161 @@
+/* =============================================================================
+   Shared chrome for the interactive labs (/tools/selection-risk, /tools/breadth).
+   Same Product System v3 tokens as the other instruments; the layout puts the
+   trial ledger beside the equity curve on purpose, because the ledger is the
+   argument and the curve is only the bait.
+   ============================================================================= */
+
+:root {
+  --lab-night: #06111b;
+  --lab-carbon: #0a1722;
+  --lab-chalk: #f3f8fb;
+  --lab-paper: #eaf1f5;
+  --lab-ink: #07141e;
+  --lab-muted: #566a76;
+  --lab-cyan: #66d6ff;
+  --lab-mint: #58e0b5;
+  --lab-amber: #f1b85b;
+  --lab-red: #d94f59;
+  --lab-line: rgba(7, 20, 30, 0.16);
+  --lab-line-dark: rgba(243, 248, 251, 0.18);
+}
+
+* { box-sizing: border-box; }
+body.lab-page { margin: 0; color: var(--lab-ink); background: var(--lab-paper); font-family: Inter, Arial, sans-serif; }
+.lab-page code { font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 0.92em; }
+
+.lab-visually-hidden {
+  position: absolute; width: 1px; height: 1px; margin: -1px;
+  clip-path: inset(50%); overflow: hidden; white-space: nowrap;
+}
+
+.lab-skip {
+  position: fixed; z-index: 1000; top: 12px; left: 12px; padding: 10px 14px;
+  color: var(--lab-night); background: var(--lab-mint); text-decoration: none;
+  transform: translateY(-160%);
+}
+.lab-skip:focus { transform: translateY(0); }
+.lab-page :where(a, button, input, [tabindex]):focus-visible { outline: 3px solid var(--lab-amber); outline-offset: 3px; }
+
+/* --- hero ----------------------------------------------------------------- */
+
+.lab-hero {
+  padding: clamp(72px, 9vw, 124px) clamp(24px, 7vw, 112px) clamp(48px, 6vw, 72px);
+  color: var(--lab-chalk);
+  background:
+    repeating-linear-gradient(0deg, transparent 0 79px, rgba(102, 214, 255, 0.035) 80px),
+    var(--lab-night);
+  border-bottom: 1px solid var(--lab-line-dark);
+}
+.lab-kicker {
+  display: flex; flex-wrap: wrap; gap: 8px 20px; margin: 0 0 20px;
+  color: var(--lab-cyan); font: 500 0.7rem/1.45 "IBM Plex Mono", monospace;
+  letter-spacing: 0.14em; text-transform: uppercase;
+}
+.lab-hero h1 {
+  max-width: 18ch; margin: 0;
+  font-family: "Bricolage Grotesque", Inter, sans-serif;
+  font-size: clamp(2.6rem, 6vw, 5.4rem); font-weight: 560;
+  line-height: 0.94; letter-spacing: -0.045em;
+}
+.lab-lead { max-width: 70ch; margin: 28px 0 0; color: #b8c8d1; font-size: clamp(1rem, 1.35vw, 1.18rem); line-height: 1.68; }
+.lab-lead strong { color: var(--lab-mint); }
+.lab-boundary {
+  max-width: 74ch; margin: 30px 0 0; padding-top: 20px;
+  color: #90a6b3; border-top: 1px solid var(--lab-line-dark);
+  font-size: 0.9rem; line-height: 1.65;
+}
+.lab-boundary strong { color: var(--lab-chalk); }
+
+/* --- lab ------------------------------------------------------------------ */
+
+.lab-lab {
+  display: grid;
+  grid-template-columns: minmax(240px, 0.85fr) minmax(0, 2fr) minmax(250px, 1fr);
+  gap: clamp(20px, 2.4vw, 34px);
+  padding: clamp(40px, 5vw, 66px) clamp(24px, 7vw, 112px);
+  align-items: start;
+}
+
+.lab-controls { display: grid; gap: 18px; padding: clamp(20px, 2.2vw, 28px); background: #fff; border: 1px solid var(--lab-line); }
+.lab-field { display: grid; gap: 6px; }
+.lab-field__label { font-size: 0.78rem; font-weight: 600; letter-spacing: 0.02em; }
+.lab-field input {
+  width: 100%; padding: 10px 12px; color: var(--lab-ink); background: var(--lab-paper);
+  border: 1px solid var(--lab-line); border-radius: 2px;
+  font: 500 1rem "IBM Plex Mono", monospace;
+}
+.lab-field__note { color: var(--lab-muted); font-size: 0.74rem; line-height: 1.45; }
+.lab-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+.lab-button {
+  min-height: 40px; padding: 0 14px; cursor: pointer;
+  color: var(--lab-ink); background: var(--lab-paper); border: 1px solid var(--lab-line);
+  font: 500 0.72rem "IBM Plex Mono", monospace; letter-spacing: 0.04em;
+  transition: background 160ms ease, border-color 160ms ease;
+}
+.lab-button:hover { background: #fff; border-color: var(--lab-ink); }
+.lab-button--primary { color: var(--lab-night); background: var(--lab-mint); border-color: var(--lab-mint); }
+.lab-button--primary:hover { background: var(--lab-cyan); border-color: var(--lab-cyan); }
+.lab-warning { margin: 0; color: var(--lab-red); font-size: 0.84rem; }
+
+.lab-output { display: grid; gap: 18px; }
+.lab-chart-wrap { padding: clamp(18px, 2vw, 26px); background: var(--lab-carbon); border: 1px solid var(--lab-line-dark); }
+#lab-chart { width: 100%; height: auto; display: block; }
+.lab-chart__line { fill: none; stroke: var(--lab-mint); stroke-width: 2; }
+.lab-chart__base { fill: none; stroke: rgba(243, 248, 251, 0.35); stroke-width: 1; stroke-dasharray: 4 5; }
+/* The ceiling is the argument, so it is drawn heavier than the target line. */
+.lab-chart__ceiling { fill: none; stroke: var(--lab-amber); stroke-width: 1.5; stroke-dasharray: 12 6; }
+.lab-chart__marker { fill: var(--lab-cyan); stroke: var(--lab-night); stroke-width: 2; }
+.lab-notes__grid ul { margin: 0 0 0.9em; padding-left: 1.1em; color: var(--lab-muted); font-size: 0.93rem; line-height: 1.7; }
+.lab-notes__grid li { margin-bottom: 0.35em; }
+.lab-verdict[data-state="work"] { border-left-color: var(--lab-cyan); }
+.lab-causal { margin: 14px 0 0; color: var(--lab-mint); font: 400 0.74rem "IBM Plex Mono", monospace; }
+.lab-causal[data-ok="false"] { color: var(--lab-red); }
+
+.lab-stats, .lab-ledger dl {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 16px 18px;
+  margin: 0; padding: clamp(18px, 2vw, 24px); background: #fff; border: 1px solid var(--lab-line);
+}
+.lab-stats dt, .lab-ledger dt { color: var(--lab-muted); font-size: 0.74rem; letter-spacing: 0.02em; }
+.lab-stats dd, .lab-ledger dd { margin: 6px 0 0; font: 500 1.24rem/1.2 "IBM Plex Mono", monospace; letter-spacing: -0.02em; }
+
+.lab-ledger { display: grid; gap: 14px; }
+.lab-ledger h3 {
+  margin: 0; font-family: "Bricolage Grotesque", Inter, sans-serif;
+  font-size: 1.1rem; font-weight: 560; letter-spacing: -0.025em;
+}
+.lab-ledger dl { grid-template-columns: 1fr; }
+.lab-bestparams { margin: 0; color: var(--lab-muted); font: 400 0.78rem "IBM Plex Mono", monospace; }
+.lab-verdict {
+  margin: 0; padding: 16px 18px; font-size: 0.92rem; line-height: 1.6;
+  background: #fff; border: 1px solid var(--lab-line); border-left-width: 3px;
+}
+.lab-verdict[data-state="idle"] { border-left-color: var(--lab-muted); color: var(--lab-muted); }
+.lab-verdict[data-state="fail"] { border-left-color: var(--lab-mint); }
+.lab-verdict[data-state="pass"] { border-left-color: var(--lab-amber); }
+
+/* --- notes ---------------------------------------------------------------- */
+
+.lab-notes { padding: 0 clamp(24px, 7vw, 112px) clamp(60px, 7vw, 100px); }
+.lab-notes h2 {
+  margin: 0 0 clamp(24px, 3vw, 38px);
+  font-family: "Bricolage Grotesque", Inter, sans-serif;
+  font-size: clamp(1.6rem, 2.8vw, 2.4rem); font-weight: 560; letter-spacing: -0.038em;
+}
+.lab-notes__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 20px; }
+.lab-notes__grid article { padding: clamp(20px, 2.2vw, 28px); background: #fff; border: 1px solid var(--lab-line); }
+.lab-notes__grid h3 {
+  margin: 0 0 12px; font-family: "Bricolage Grotesque", Inter, sans-serif;
+  font-size: 1.06rem; font-weight: 560; letter-spacing: -0.025em;
+}
+.lab-notes__grid p { margin: 0 0 0.9em; color: var(--lab-muted); font-size: 0.93rem; line-height: 1.68; }
+.lab-notes__grid p:last-child { margin-bottom: 0; }
+.lab-notes__grid a, .lab-source a, .lab-safety a { color: var(--lab-ink); }
+.lab-safety, .lab-source {
+  max-width: 78ch; margin: 26px 0 0; color: var(--lab-muted);
+  font-size: 0.88rem; line-height: 1.7;
+}
+.lab-safety strong { color: var(--lab-ink); }
+
+@media (max-width: 1100px) { .lab-lab { grid-template-columns: 1fr; } }
+@media (prefers-reduced-motion: reduce) { .lab-page * { transition-duration: 0.01ms !important; } }

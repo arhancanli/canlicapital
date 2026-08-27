@@ -54,10 +54,10 @@ function syncLedgerToSeed(seed) {
 
 function readControls() {
   return {
-    seed: Number($("sr-seed").value),
-    fast: Number($("sr-fast").value),
-    slow: Number($("sr-slow").value),
-    costBps: Number($("sr-cost").value),
+    seed: Number($("lab-seed").value),
+    fast: Number($("lab-fast").value),
+    slow: Number($("lab-slow").value),
+    costBps: Number($("lab-cost").value),
   };
 }
 
@@ -73,14 +73,14 @@ function readUrl() {
     const v = p.get(key);
     if (v !== null && v !== "" && Number.isFinite(Number(v))) $(id).value = v;
   };
-  set("sr-seed", "seed");
-  set("sr-fast", "fast");
-  set("sr-slow", "slow");
-  set("sr-cost", "cost");
+  set("lab-seed", "seed");
+  set("lab-fast", "fast");
+  set("lab-slow", "slow");
+  set("lab-cost", "cost");
 }
 
 function drawCurve(curve) {
-  const svg = $("sr-chart");
+  const svg = $("lab-chart");
   const width = 760;
   const height = 260;
   if (curve.length < 2) return;
@@ -90,21 +90,21 @@ function drawCurve(curve) {
   const x = (i) => (i / (curve.length - 1)) * width;
   const y = (v) => height - ((v - min) / span) * (height - 16) - 8;
   const path = curve.map((v, i) => `${i === 0 ? "M" : "L"}${x(i).toFixed(1)} ${y(v).toFixed(1)}`).join("");
-  $("sr-path").setAttribute("d", path);
+  $("lab-path").setAttribute("d", path);
   // The flat line at 1.0 is where a strategy with no edge belongs, drawn so the
   // visitor's curve is always read against it rather than on its own.
-  $("sr-base").setAttribute("d", `M0 ${y(1).toFixed(1)}L${width} ${y(1).toFixed(1)}`);
+  $("lab-base").setAttribute("d", `M0 ${y(1).toFixed(1)}L${width} ${y(1).toFixed(1)}`);
   svg.setAttribute("aria-label", `Equity curve ending at ${curve[curve.length - 1].toFixed(3)}`);
 }
 
 function render() {
   const controls = readControls();
   if (controls.fast >= controls.slow) {
-    $("sr-warning").textContent = "The fast window has to be shorter than the slow one.";
-    $("sr-warning").hidden = false;
+    $("lab-warning").textContent = "The fast window has to be shorter than the slow one.";
+    $("lab-warning").hidden = false;
     return;
   }
-  $("sr-warning").hidden = true;
+  $("lab-warning").hidden = true;
   writeUrl({ seed: controls.seed, fast: controls.fast, slow: controls.slow, cost: controls.costBps });
 
   syncLedgerToSeed(controls.seed);
@@ -114,15 +114,15 @@ function render() {
   // Causality is re-checked on every run, in front of the visitor, rather than
   // being a claim made once in prose.
   const causal = assertNoLookahead(result);
-  $("sr-causal").textContent = causal.ok
+  $("lab-causal").textContent = causal.ok
     ? "no-lookahead: every decision priced at a strictly later bar"
     : "no-lookahead: VIOLATED";
-  $("sr-causal").dataset.ok = String(causal.ok);
+  $("lab-causal").dataset.ok = String(causal.ok);
 
-  $("sr-sharpe").textContent = fmt(result.sharpeAnnualised, 3);
-  $("sr-drawdown").textContent = `${fmt(result.maxDrawdown * 100, 2)}%`;
-  $("sr-total").textContent = `${fmt(result.totalReturn * 100, 2)}%`;
-  $("sr-trades").textContent = String(result.trades);
+  $("lab-sharpe").textContent = fmt(result.sharpeAnnualised, 3);
+  $("lab-drawdown").textContent = `${fmt(result.maxDrawdown * 100, 2)}%`;
+  $("lab-total").textContent = `${fmt(result.totalReturn * 100, 2)}%`;
+  $("lab-trades").textContent = String(result.trades);
   drawCurve(result.curve);
 
   // The ledger: one entry per distinct parameter set, on this series.
@@ -132,17 +132,17 @@ function render() {
   const best = Math.max(...sharpes);
   const trials = sharpes.length;
 
-  $("sr-trials").textContent = String(trials);
-  $("sr-best").textContent = fmt(best, 3);
+  $("lab-trials").textContent = String(trials);
+  $("lab-best").textContent = fmt(best, 3);
 
-  const verdict = $("sr-verdict");
+  const verdict = $("lab-verdict");
   if (trials < 2) {
-    $("sr-dsr").textContent = "n/a";
-    $("sr-luckbar").textContent = "n/a";
+    $("lab-dsr").textContent = "n/a";
+    $("lab-luckbar").textContent = "n/a";
     // Clear the attribution too. Leaving the previous series' winning parameters on
     // screen next to a fresh series is a small lie of exactly the kind this page
     // is about.
-    $("sr-bestparams").textContent = "nothing yet";
+    $("lab-bestparams").textContent = "nothing yet";
     verdict.textContent =
       "Deflation needs at least two trials to have anything to deflate against. Try another setting.";
     verdict.dataset.state = "idle";
@@ -172,19 +172,19 @@ function render() {
       cross_trial_sharpe_sd_annualized: dispersionAnnualised,
     });
   } catch (error) {
-    $("sr-dsr").textContent = "n/a";
+    $("lab-dsr").textContent = "n/a";
     verdict.textContent = `Deflation unavailable: ${error.message}`;
     verdict.dataset.state = "idle";
     return;
   }
 
-  $("sr-dsr").textContent = fmt(report.deflated_sharpe_ratio, 4);
+  $("lab-dsr").textContent = fmt(report.deflated_sharpe_ratio, 4);
   // The expected maximum, not the haircut. "Observed minus expected max" goes
   // negative whenever the search found nothing good, and a negative haircut reads
   // as nonsense to someone meeting the idea for the first time. The bar that luck
   // alone sets is always meaningful and is the number the argument turns on.
-  $("sr-luckbar").textContent = fmt(report.expected_max_sharpe_annualized, 3);
-  $("sr-bestparams").textContent = `seed ${bestSeed}, fast ${bestFast}, slow ${bestSlow}, ${bestCost} bps`;
+  $("lab-luckbar").textContent = fmt(report.expected_max_sharpe_annualized, 3);
+  $("lab-bestparams").textContent = `seed ${bestSeed}, fast ${bestFast}, slow ${bestSlow}, ${bestCost} bps`;
 
   const admissible = report.deflated_sharpe_ratio >= GATE;
   verdict.dataset.state = admissible ? "pass" : "fail";
@@ -225,25 +225,25 @@ function sweep() {
     }
   }
   if (best.fast !== null) {
-    $("sr-fast").value = String(best.fast);
-    $("sr-slow").value = String(best.slow);
+    $("lab-fast").value = String(best.fast);
+    $("lab-slow").value = String(best.slow);
   }
   render();
 }
 
 function wire() {
   readUrl();
-  for (const id of ["sr-seed", "sr-fast", "sr-slow", "sr-cost"]) {
+  for (const id of ["lab-seed", "lab-fast", "lab-slow", "lab-cost"]) {
     $(id).addEventListener("input", render);
   }
-  $("sr-sweep").addEventListener("click", sweep);
-  $("sr-new-series").addEventListener("click", () => {
+  $("lab-sweep").addEventListener("click", sweep);
+  $("lab-new-series").addEventListener("click", () => {
     // render() clears the ledger through syncLedgerToSeed, so a new series always
     // starts from zero trials no matter which route changed the seed.
-    $("sr-seed").value = String(Math.floor(Math.random() * 100000));
+    $("lab-seed").value = String(Math.floor(Math.random() * 100000));
     render();
   });
-  $("sr-reset-ledger").addEventListener("click", () => {
+  $("lab-reset-ledger").addEventListener("click", () => {
     ledger.clear();
     ledgerSeed = null;
     render();

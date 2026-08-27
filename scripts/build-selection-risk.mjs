@@ -156,10 +156,10 @@ function main() {
     offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
   };
 
-  const num = (id, label, value, min, max, step, note) => `<label class="sr-field" for="${id}">
-    <span class="sr-field__label">${esc(label)}</span>
+  const num = (id, label, value, min, max, step, note) => `<label class="lab-field" for="${id}">
+    <span class="lab-field__label">${esc(label)}</span>
     <input id="${id}" type="number" value="${value}" min="${min}" max="${max}" step="${step}" inputmode="numeric" />
-    <span class="sr-field__note">${esc(note)}</span>
+    <span class="lab-field__note">${esc(note)}</span>
   </label>`;
 
   const html = `<!doctype html>
@@ -188,71 +188,71 @@ function main() {
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" />
 ${renderProductShellStylesheet()}
-<link rel="stylesheet" href="/css/selection-risk.css" />
+<link rel="stylesheet" href="/css/lab.css" />
 <script type="application/ld+json">${JSON.stringify(jsonLd)}</script>
 </head>
-<body class="sr-page">
-<a class="sr-skip" href="#lab">Skip to the lab</a>
+<body class="lab-page">
+<a class="lab-skip" href="#lab">Skip to the lab</a>
 ${renderProductShellHeader({ active: "" })}
 <main>
-  <section class="sr-hero" aria-labelledby="sr-title">
-    <p class="sr-kicker"><span>Open research instrument</span><span>Educational, not evidence</span></p>
-    <h1 id="sr-title">Find an edge that is not there.</h1>
-    <p class="sr-lead">The series below is a driftless random walk. Its true Sharpe ratio is
+  <section class="lab-hero" aria-labelledby="lab-title">
+    <p class="lab-kicker"><span>Open research instrument</span><span>Educational, not evidence</span></p>
+    <h1 id="lab-title">Find an edge that is not there.</h1>
+    <p class="lab-lead">The series below is a driftless random walk. Its true Sharpe ratio is
       <strong>${g.true_sharpe}</strong>, by construction, and no setting of any control can change
       that. Search it anyway. The lab counts every parameter set you try and deflates your best
       result against your own search, so you can watch a good-looking number turn into what it
       actually is.</p>
-    <p class="sr-boundary"><strong>What this is.</strong> ${esc(c.claim_boundary)}</p>
+    <p class="lab-boundary"><strong>What this is.</strong> ${esc(c.claim_boundary)}</p>
   </section>
 
-  <section class="sr-lab" id="lab" aria-labelledby="sr-lab-title">
-    <h2 id="sr-lab-title" class="sr-visually-hidden">The lab</h2>
-    <div class="sr-controls">
-      ${num("sr-seed", "Series seed", d.seed, 1, 999999, 1, `${g.bars} bars, ${g.process}`)}
-      ${num("sr-fast", "Fast window", d.fast, 2, 60, 1, "bars in the fast average")}
-      ${num("sr-slow", "Slow window", d.slow, 3, 200, 1, "bars in the slow average")}
-      ${num("sr-cost", "Cost", d.cost_bps, 0, 100, 1, "basis points per unit of turnover")}
-      <div class="sr-actions">
-        <button type="button" id="sr-sweep" class="sr-button sr-button--primary" data-grid="${c.sweep_grid.combinations}">Search ${c.sweep_grid.combinations.toLocaleString("en-US")} settings</button>
-        <button type="button" id="sr-new-series" class="sr-button">New series</button>
-        <button type="button" id="sr-reset-ledger" class="sr-button">Reset trial ledger</button>
+  <section class="lab-lab" id="lab" aria-labelledby="lab-lab-title">
+    <h2 id="lab-lab-title" class="lab-visually-hidden">The lab</h2>
+    <div class="lab-controls">
+      ${num("lab-seed", "Series seed", d.seed, 1, 999999, 1, `${g.bars} bars, ${g.process}`)}
+      ${num("lab-fast", "Fast window", d.fast, 2, 60, 1, "bars in the fast average")}
+      ${num("lab-slow", "Slow window", d.slow, 3, 200, 1, "bars in the slow average")}
+      ${num("lab-cost", "Cost", d.cost_bps, 0, 100, 1, "basis points per unit of turnover")}
+      <div class="lab-actions">
+        <button type="button" id="lab-sweep" class="lab-button lab-button--primary" data-grid="${c.sweep_grid.combinations}">Search ${c.sweep_grid.combinations.toLocaleString("en-US")} settings</button>
+        <button type="button" id="lab-new-series" class="lab-button">New series</button>
+        <button type="button" id="lab-reset-ledger" class="lab-button">Reset trial ledger</button>
       </div>
-      <p class="sr-warning" id="sr-warning" role="alert" hidden></p>
+      <p class="lab-warning" id="lab-warning" role="alert" hidden></p>
     </div>
 
-    <div class="sr-output">
-      <div class="sr-chart-wrap">
-        <svg id="sr-chart" viewBox="0 0 760 260" preserveAspectRatio="none" role="img">
-          <path id="sr-base" class="sr-chart__base" d="" />
-          <path id="sr-path" class="sr-chart__line" d="" />
+    <div class="lab-output">
+      <div class="lab-chart-wrap">
+        <svg id="lab-chart" viewBox="0 0 760 260" preserveAspectRatio="none" role="img">
+          <path id="lab-base" class="lab-chart__base" d="" />
+          <path id="lab-path" class="lab-chart__line" d="" />
         </svg>
-        <p class="sr-causal" id="sr-causal" data-ok="true"></p>
+        <p class="lab-causal" id="lab-causal" data-ok="true"></p>
       </div>
-      <dl class="sr-stats">
-        <div><dt>Annualised Sharpe</dt><dd id="sr-sharpe">0</dd></div>
-        <div><dt>Max drawdown</dt><dd id="sr-drawdown">0</dd></div>
-        <div><dt>Total return</dt><dd id="sr-total">0</dd></div>
-        <div><dt>Trades</dt><dd id="sr-trades">0</dd></div>
+      <dl class="lab-stats">
+        <div><dt>Annualised Sharpe</dt><dd id="lab-sharpe">0</dd></div>
+        <div><dt>Max drawdown</dt><dd id="lab-drawdown">0</dd></div>
+        <div><dt>Total return</dt><dd id="lab-total">0</dd></div>
+        <div><dt>Trades</dt><dd id="lab-trades">0</dd></div>
       </dl>
     </div>
 
-    <div class="sr-ledger">
+    <div class="lab-ledger">
       <h3>Your trial ledger</h3>
       <dl>
-        <div><dt>Distinct settings evaluated</dt><dd id="sr-trials">0</dd></div>
-        <div><dt>Best annualised Sharpe found</dt><dd id="sr-best">0</dd></div>
-        <div><dt>Sharpe luck alone would find</dt><dd id="sr-luckbar">n/a</dd></div>
-        <div><dt>Deflated Sharpe of your best</dt><dd id="sr-dsr">n/a</dd></div>
+        <div><dt>Distinct settings evaluated</dt><dd id="lab-trials">0</dd></div>
+        <div><dt>Best annualised Sharpe found</dt><dd id="lab-best">0</dd></div>
+        <div><dt>Sharpe luck alone would find</dt><dd id="lab-luckbar">n/a</dd></div>
+        <div><dt>Deflated Sharpe of your best</dt><dd id="lab-dsr">n/a</dd></div>
       </dl>
-      <p class="sr-bestparams">Best found at <span id="sr-bestparams">nothing yet</span></p>
-      <p class="sr-verdict" id="sr-verdict" data-state="idle">Move a control to record your first trial.</p>
+      <p class="lab-bestparams">Best found at <span id="lab-bestparams">nothing yet</span></p>
+      <p class="lab-verdict" id="lab-verdict" data-state="idle">Move a control to record your first trial.</p>
     </div>
   </section>
 
-  <section class="sr-notes" aria-labelledby="sr-notes-title">
-    <h2 id="sr-notes-title">How it works, and why it is synthetic</h2>
-    <div class="sr-notes__grid">
+  <section class="lab-notes" aria-labelledby="lab-notes-title">
+    <h2 id="lab-notes-title">How it works, and why it is synthetic</h2>
+    <div class="lab-notes__grid">
       <article>
         <h3>The execution rule is the engine's</h3>
         <p>${esc(c.execution.rule)}. ${esc(c.execution.matches_engine)}. The property is re-checked
@@ -278,11 +278,13 @@ ${renderProductShellHeader({ active: "" })}
           false positive, and the instrument is built to let you produce one and then see it named.</p>
       </article>
     </div>
-    <p class="sr-safety"><strong>Sandbox contract.</strong> ${c.sandbox_safety.map(esc).join(". ")}.</p>
-    <p class="sr-source">Rendered from
+    <p class="lab-safety"><strong>Sandbox contract.</strong> ${c.sandbox_safety.map(esc).join(". ")}.</p>
+    <p class="lab-source">Rendered from
       <a href="/glassbox/${SOURCE_NAME}"><code>${SOURCE_NAME}</code></a>, whose content hash the
       build reproduces before this page is written. Further reading:
-      <a href="/notes/deflating-a-sharpe-ratio">the arithmetic of not fooling yourself</a>.</p>
+      <a href="/notes/deflating-a-sharpe-ratio">the arithmetic of not fooling yourself</a>, and
+      <a href="/tools/breadth">the Breadth Lab</a>, which shows the other ceiling this book runs
+      into.</p>
   </section>
 </main>
 ${renderProductShellFooter()}
