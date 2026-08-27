@@ -66,6 +66,11 @@ const visibleText = (html) =>
   html
     .replace(/<head>[\s\S]*?<\/head>/gi, " ")
     .replace(/<script[\s\S]*?<\/script>/gi, " ")
+    // Inline SVG is geometry. Path coordinates are not published claims and will
+    // never appear in an artifact, so scanning them makes every icon added to the
+    // shell look like an untraceable figure. One GitHub mark contributed 47 of
+    // them to /founder and one more to /engineering.
+    .replace(/<svg[\s\S]*?<\/svg>/gi, " ")
     .replace(/<style[\s\S]*?<\/style>/gi, " ")
     .replace(/<[^>]+>/g, " ")
     .replace(/&#x[0-9a-f]+;/gi, " ")

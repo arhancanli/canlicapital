@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>The trade that lost 99 percent, and the guard I did not add | Canli Capital</title>
+<title>The trade that lost 99 percent | Canli Capital</title>
 <meta name="description" content="A carry signal bought a token at 16.15 and closed it at 0.1553. The strategy was not broken. The interesting decision came afterwards, and it was to change nothing." />
 <link rel="canonical" href="https://canlicapital.com/notes/the-trade-that-lost-99-percent" />
 <meta name="author" content="Arhan Canli" />
@@ -24,7 +24,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" />
 <link rel="stylesheet" href="/css/product-shell.css" />
 <link rel="stylesheet" href="/css/notes.css" />
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"The trade that lost 99 percent, and the guard I did not add","description":"A carry signal bought a token at 16.15 and closed it at 0.1553. The strategy was not broken. The interesting decision came afterwards, and it was to change nothing.","url":"https://canlicapital.com/notes/the-trade-that-lost-99-percent","datePublished":"2026-08-27","dateModified":"2026-08-27","wordCount":1072,"inLanguage":"en","author":{"@id":"https://canlicapital.com/#arhan-canli"},"publisher":{"@id":"https://canlicapital.com/#organization"},"mainEntityOfPage":"https://canlicapital.com/notes/the-trade-that-lost-99-percent","isPartOf":{"@type":"Blog","@id":"https://canlicapital.com/notes","name":"Engineering notes"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"The trade that lost 99 percent, and the guard I did not add","description":"A carry signal bought a token at 16.15 and closed it at 0.1553. The strategy was not broken. The interesting decision came afterwards, and it was to change nothing.","url":"https://canlicapital.com/notes/the-trade-that-lost-99-percent","datePublished":"2026-08-27","dateModified":"2026-08-27","wordCount":1068,"inLanguage":"en","author":{"@id":"https://canlicapital.com/#arhan-canli"},"publisher":{"@id":"https://canlicapital.com/#organization"},"mainEntityOfPage":"https://canlicapital.com/notes/the-trade-that-lost-99-percent","isPartOf":{"@type":"Blog","@id":"https://canlicapital.com/notes","name":"Engineering notes"}}</script>
 </head>
 <body class="note-page">
 <a class="note-skip" href="#content">Skip to content</a>
@@ -99,10 +99,10 @@
 funding table by SHA-256.</strong></p>
 <h2>What happened</h2>
 <p>On 2026-07-05 at 16:00 UTC the crypto carry sleeve opened a long in <code>BINANCE:PERP:LABUSDT</code>:
-114 units at 16.15, about 1,841 quote units of notional. On 2026-07-30 at 00:00 UTC the
-scheduled rebalance closed it at 0.1553 and opened a short.</p>
-<p>Twenty-four days. A price return of <strong>-99.0384 percent</strong>. After entry and close fees, a
-realised loss of <strong>1,824.37</strong> quote units on 1,841.15 in.</p>
+114 units at an entry price of 16.15. On 2026-07-30 at 00:00 UTC the scheduled rebalance closed
+it at 0.1553 and opened a short.</p>
+<p>Twenty-four days. A price return of <strong>-99.0384 percent</strong>, and after entry and close fees a
+realised loss of <strong>1,824.37</strong> quote units.</p>
 <p>The token did not drift down. It collapsed, and a venue delisted it.</p>
 <h2>The signal was not wrong. It was answering a different question.</h2>
 <p>Funding carry on a perpetual future is not a directional bet. When funding is negative,

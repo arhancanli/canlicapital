@@ -1,4 +1,4 @@
-# Spin-off dislocation: literature and claim boundary
+# Spin-off dislocation — literature and claim boundary
 
 **Reviewed:** 2026-08-16  
 **Research state:** source review only; no market returns opened.

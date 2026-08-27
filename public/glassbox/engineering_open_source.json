@@ -1,6 +1,6 @@
 {
-  "schema": "canli.engineering-open-source.v1",
-  "generated_at": "2026-08-27T07:39:52Z",
+  "schema": "canli.engineering-open-source.v2",
+  "generated_at": "2026-08-27T08:09:07Z",
   "engine": {
     "repo": "alphac",
     "url": "https://github.com/arhancanli/alphac",
@@ -100,5 +100,65 @@
       }
     }
   ],
-  "content_hash": "sha256:dcff0343f683ae6f0e88bc2799fcc81500d62c3b5383929ba9aac41cf54c3d20"
+  "totals": {
+    "files_published": 262,
+    "tests_passing": 1220,
+    "typed_source_files": 83
+  },
+  "deflation_demonstration": {
+    "measured_at": "2026-08-27",
+    "script": "benchmarks/validation_throughput.py",
+    "repo": "https://github.com/arhancanli/canli-backtest",
+    "series": {
+      "observations": 1260,
+      "annualised_sharpe": 1.139,
+      "per_period_sharpe": 0.0385,
+      "psr_against_zero": 0.9828
+    },
+    "trial_family_per_period_sd": 0.02,
+    "deployment_gate_dsr": 0.95,
+    "sweep": [
+      {
+        "trials": 2,
+        "expected_max_sharpe": 0.0104,
+        "dsr": 0.9596
+      },
+      {
+        "trials": 10,
+        "expected_max_sharpe": 0.03149,
+        "dsr": 0.8408
+      },
+      {
+        "trials": 50,
+        "expected_max_sharpe": 0.04553,
+        "dsr": 0.6914
+      },
+      {
+        "trials": 200,
+        "expected_max_sharpe": 0.05531,
+        "dsr": 0.5608
+      },
+      {
+        "trials": 1000,
+        "expected_max_sharpe": 0.0651,
+        "dsr": 0.423
+      }
+    ],
+    "pbo_on_pure_noise": 0.569,
+    "note": "One unchanged return series. Only the admitted trial count moves.",
+    "retracted": {
+      "figure": 0,
+      "claim": "the same Sharpe deflates to a DSR of 0.000 at 200 trials",
+      "withdrawn_on": "2026-08-27",
+      "reason": "sr_trials_variance was set to 0.04, a per-period Sharpe sd of 0.2 against a series whose own per-period Sharpe is 0.0385. At that scale the ratio collapses at N=2 and the trial count is irrelevant, so the sentence credited N for what V was doing."
+    }
+  },
+  "parity_incident": {
+    "date": "2026-08-27",
+    "files_republished_that_the_engine_gitignores": 70,
+    "detected_by": "the parity check run against GitHub rather than a local checkout",
+    "local_check_result": "passed on every run, because it compared the leaked files to their own source",
+    "resolution": "The extractor now builds its allowed set from git ls-files in the engine, and the repository history was rebuilt so the files appear in no commit."
+  },
+  "content_hash": "sha256:a9d9f3729ac2145526030c003970797244e8e413f45f3f20fb8dff77a6bc3d35"
 }

@@ -4,6 +4,8 @@
 > answer, and what the contest habit did pay for instead, because the honest version of this
 > story is more useful than the flattering one.
 
+**Short title:** What competitive programming bought me
+
 **Published 2026-08-27. Code links go to the published extractions; the measurement at the end
 is reproducible from the snippet given.**
 

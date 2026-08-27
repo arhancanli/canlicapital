@@ -4,7 +4,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Open-source engineering | Canli Capital</title>
-<meta name="description" content="The open-source engineering behind Canli Capital: a point-in-time data lake, a backtester that raises on look-ahead, and multiple-testing machinery that counts every hypothesis. Read the code, run the tests, check the numbers." />
+<meta name="description" content="The open-source engineering behind Canli Capital: a point-in-time data lake, a backtester that raises on look-ahead, and honest trial accounting." />
 <link rel="canonical" href="https://canlicapital.com/engineering" />
 <meta name="author" content="Arhan Canli" />
 <meta name="canli:sources" content="engineering_open_source.json" />
@@ -12,12 +12,12 @@
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Canli Capital" />
 <meta property="og:title" content="Open-source engineering" />
-<meta property="og:description" content="The open-source engineering behind Canli Capital: a point-in-time data lake, a backtester that raises on look-ahead, and multiple-testing machinery that counts every hypothesis. Read the code, run the tests, check the numbers." />
+<meta property="og:description" content="The open-source engineering behind Canli Capital: a point-in-time data lake, a backtester that raises on look-ahead, and honest trial accounting." />
 <meta property="og:url" content="https://canlicapital.com/engineering" />
 <meta property="og:image" content="https://canlicapital.com/og.png" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Open-source engineering" />
-<meta name="twitter:description" content="The open-source engineering behind Canli Capital: a point-in-time data lake, a backtester that raises on look-ahead, and multiple-testing machinery that counts every hypothesis. Read the code, run the tests, check the numbers." />
+<meta name="twitter:description" content="The open-source engineering behind Canli Capital: a point-in-time data lake, a backtester that raises on look-ahead, and honest trial accounting." />
 <meta name="twitter:image" content="https://canlicapital.com/og.png" />
 <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -25,7 +25,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" />
 <link rel="stylesheet" href="/css/product-shell.css" />
 <link rel="stylesheet" href="/css/engineering.css" />
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"CollectionPage","@id":"https://canlicapital.com/engineering","name":"Open-source engineering","url":"https://canlicapital.com/engineering","description":"The open-source engineering behind Canli Capital: a point-in-time data lake, a backtester that raises on look-ahead, and multiple-testing machinery that counts every hypothesis. Read the code, run the tests, check the numbers.","author":{"@id":"https://canlicapital.com/#arhan-canli"},"isPartOf":{"@id":"https://canlicapital.com/#website"}},{"@type":"SoftwareSourceCode","name":"alphac","description":"The whole system: data lake, point-in-time reader, backtester, walk-forward harness, multiple-testing machinery, portfolio optimizer and live broker loop.","codeRepository":"https://github.com/arhancanli/alphac","programmingLanguage":"Python","license":"https://opensource.org/licenses/MIT","creator":{"@id":"https://canlicapital.com/#arhan-canli"}},{"@type":"SoftwareSourceCode","name":"canli-pit-lake","codeRepository":"https://github.com/arhancanli/canli-pit-lake","programmingLanguage":"Python","license":"https://opensource.org/licenses/MIT","creator":{"@id":"https://canlicapital.com/#arhan-canli"},"isBasedOn":"https://github.com/arhancanli/alphac"},{"@type":"SoftwareSourceCode","name":"canli-backtest","codeRepository":"https://github.com/arhancanli/canli-backtest","programmingLanguage":"Python","license":"https://opensource.org/licenses/MIT","creator":{"@id":"https://canlicapital.com/#arhan-canli"},"isBasedOn":"https://github.com/arhancanli/alphac"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"CollectionPage","@id":"https://canlicapital.com/engineering","name":"Open-source engineering","url":"https://canlicapital.com/engineering","description":"The open-source engineering behind Canli Capital: a point-in-time data lake, a backtester that raises on look-ahead, and honest trial accounting.","author":{"@id":"https://canlicapital.com/#arhan-canli"},"isPartOf":{"@id":"https://canlicapital.com/#website"}},{"@type":"SoftwareSourceCode","name":"alphac","description":"The whole system: data lake, point-in-time reader, backtester, walk-forward harness, multiple-testing machinery, portfolio optimizer and live broker loop.","codeRepository":"https://github.com/arhancanli/alphac","programmingLanguage":"Python","license":"https://opensource.org/licenses/MIT","creator":{"@id":"https://canlicapital.com/#arhan-canli"}},{"@type":"SoftwareSourceCode","name":"canli-pit-lake","codeRepository":"https://github.com/arhancanli/canli-pit-lake","programmingLanguage":"Python","license":"https://opensource.org/licenses/MIT","creator":{"@id":"https://canlicapital.com/#arhan-canli"},"isBasedOn":"https://github.com/arhancanli/alphac"},{"@type":"SoftwareSourceCode","name":"canli-backtest","codeRepository":"https://github.com/arhancanli/canli-backtest","programmingLanguage":"Python","license":"https://opensource.org/licenses/MIT","creator":{"@id":"https://canlicapital.com/#arhan-canli"},"isBasedOn":"https://github.com/arhancanli/alphac"}]}</script>
 </head>
 <body class="eng-page">
 <a class="eng-skip" href="#content">Skip to content</a>
@@ -293,7 +293,6 @@
     </div>
     <ol class="eng-path">
       <li>
-        <span class="eng-path__n">01</span>
         <div>
           <a href="https://github.com/arhancanli/canli-pit-lake/blob/main/src/alphaforge/data/store/reader.py" rel="noreferrer"><code>src/alphaforge/data/store/reader.py</code></a>
           <small>canli-pit-lake</small>
@@ -301,7 +300,6 @@
         </div>
       </li>
       <li>
-        <span class="eng-path__n">02</span>
         <div>
           <a href="https://github.com/arhancanli/canli-backtest/blob/main/src/alphaforge/backtest/engine.py" rel="noreferrer"><code>src/alphaforge/backtest/engine.py</code></a>
           <small>canli-backtest</small>
@@ -309,7 +307,6 @@
         </div>
       </li>
       <li>
-        <span class="eng-path__n">03</span>
         <div>
           <a href="https://github.com/arhancanli/canli-backtest/blob/main/src/alphaforge/validation/pbo.py" rel="noreferrer"><code>src/alphaforge/validation/pbo.py</code></a>
           <small>canli-backtest</small>
@@ -317,7 +314,6 @@
         </div>
       </li>
       <li>
-        <span class="eng-path__n">04</span>
         <div>
           <a href="https://github.com/arhancanli/canli-pit-lake/blob/main/tools/check_parity.py" rel="noreferrer"><code>tools/check_parity.py</code></a>
           <small>canli-pit-lake</small>

@@ -1,4 +1,4 @@
-# Customer–supplier propagation: locked no-return relationship-source protocol
+# Customer–supplier propagation — locked no-return relationship-source protocol
 
 **Short title:** Customer-supplier propagation: feasibility
 

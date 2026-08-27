@@ -45,7 +45,7 @@ function assertSource(doc) {
   if (observed !== doc.content_hash) {
     throw new Error("engineering page: source artifact content hash does not reproduce");
   }
-  if (doc.schema !== "canli.engineering-open-source.v1") {
+  if (doc.schema !== "canli.engineering-open-source.v2") {
     throw new Error(`engineering page: unexpected schema ${doc.schema}`);
   }
   if (doc.extractions.length !== 2) {
@@ -212,13 +212,19 @@ function main() {
   const doc = JSON.parse(readFileSync(SOURCE_PATH, "utf8"));
   assertSource(doc);
   const commit = doc.extractions[0].pinned_engine_commit;
-  const totalTests = doc.extractions.reduce((n, e) => n + e.tests_passed, 0);
-  const totalFiles = doc.extractions.reduce((n, e) => n + e.files_total, 0);
+  // Read the totals from the artifact rather than recomputing them here, so the
+  // page and the artifact cannot disagree, then check the artifact's own sum.
+  const totalTests = doc.totals.tests_passing;
+  const totalFiles = doc.totals.files_published;
+  if (totalTests !== doc.extractions.reduce((n, e) => n + e.tests_passed, 0)
+    || totalFiles !== doc.extractions.reduce((n, e) => n + e.files_total, 0)) {
+    throw new Error("engineering page: artifact totals do not equal the sum of its extractions");
+  }
 
+  // Kept under 165 characters: past that a search result truncates mid-sentence.
   const description =
     "The open-source engineering behind Canli Capital: a point-in-time data lake, a backtester " +
-    "that raises on look-ahead, and multiple-testing machinery that counts every hypothesis. " +
-    "Read the code, run the tests, check the numbers.";
+    "that raises on look-ahead, and honest trial accounting.";
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -378,8 +384,7 @@ ${renderProductShellHeader({ active: "engineering" })}
         implementation.</p>
     </div>
     <ol class="eng-path">
-      ${READING_PATH.map((r, i) => `<li>
-        <span class="eng-path__n">${String(i + 1).padStart(2, "0")}</span>
+      ${READING_PATH.map((r) => `<li>
         <div>
           <a href="${esc(repoUrl(r.repo, r.file, commit))}" rel="noreferrer"><code>${esc(r.file)}</code></a>
           <small>${esc(r.repo)}</small>

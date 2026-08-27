@@ -2,8 +2,8 @@
   "author": "Arhan Canli",
   "cent_tolerance": 0.01,
   "claim_boundary": "Self-published read-only reconciliation against three dedicated Alpaca paper accounts. It is broker-derived but not an independent third-party attestation, does not imply real capital, and does not establish future performance.",
-  "content_hash": "sha256:4616964ce805d1b5b260de5f47b999f88b303ada46147328622f80e3763f0712",
-  "generated_at": "2026-08-26T09:25:45.939024+00:00",
+  "content_hash": "sha256:52a251d8347453ed60a1460d4c9427ae157fd79ec548843624d5fb3041bc2d6c",
+  "generated_at": "2026-08-27T07:25:47.777106+00:00",
   "method": "GET_ONLY_ACCOUNT_POSITIONS_PORTFOLIO_HISTORY_OPEN_ORDERS",
   "schema": "canli.alphac-alpaca-broker-reconciliation.v1",
   "sleeves": {
@@ -44,114 +44,114 @@
         "missing_broker_mark_timestamps": [],
         "overlapping_marks": 15
       },
-      "current_equity": 988019.87,
-      "current_equity_as_of": "2026-08-26T09:25:45.939000+00:00",
+      "current_equity": 993145.16,
+      "current_equity_as_of": "2026-08-27T07:25:47.777000+00:00",
       "fill_outcome_reconciliation": {
         "consecutive_fill_reconcile_failures": 0,
         "last_error": null,
         "last_failure_at": "2026-08-25T06:09:35.875000+00:00",
-        "last_success_at": "2026-08-26T05:01:51.404000+00:00"
+        "last_success_at": "2026-08-27T05:03:26.770000+00:00"
       },
       "holdings": {
-        "as_of": "2026-08-26",
+        "as_of": "2026-08-27",
         "broker_reconciled": true,
         "flat": false,
-        "gross_pct": 29.3,
+        "gross_pct": 29.6,
         "long": [
           {
             "ticker": "STX",
-            "weight_pct": 0.92
+            "weight_pct": 1.0
           },
           {
             "ticker": "MU",
-            "weight_pct": 0.91
+            "weight_pct": 0.98
           },
           {
             "ticker": "WDC",
-            "weight_pct": 0.48
+            "weight_pct": 0.53
           },
           {
             "ticker": "CIEN",
-            "weight_pct": 0.41
+            "weight_pct": 0.44
           },
           {
             "ticker": "TER",
-            "weight_pct": 0.4
+            "weight_pct": 0.41
           },
           {
             "ticker": "REPL",
-            "weight_pct": 0.39
-          },
-          {
-            "ticker": "LRCX",
-            "weight_pct": 0.33
-          },
-          {
-            "ticker": "ONTO",
-            "weight_pct": 0.32
-          },
-          {
-            "ticker": "COHR",
-            "weight_pct": 0.32
+            "weight_pct": 0.37
           },
           {
             "ticker": "GLW",
-            "weight_pct": 0.32
+            "weight_pct": 0.34
+          },
+          {
+            "ticker": "COHR",
+            "weight_pct": 0.34
+          },
+          {
+            "ticker": "LRCX",
+            "weight_pct": 0.34
+          },
+          {
+            "ticker": "ONTO",
+            "weight_pct": 0.33
           },
           {
             "ticker": "MKSI",
-            "weight_pct": 0.3
+            "weight_pct": 0.31
           },
           {
             "ticker": "TTMI",
+            "weight_pct": 0.31
+          },
+          {
+            "ticker": "SIMO",
+            "weight_pct": 0.29
+          },
+          {
+            "ticker": "TSEM",
             "weight_pct": 0.28
           },
           {
             "ticker": "NBIS",
-            "weight_pct": 0.27
-          },
-          {
-            "ticker": "APGE",
-            "weight_pct": 0.26
-          },
-          {
-            "ticker": "SIMO",
-            "weight_pct": 0.25
+            "weight_pct": 0.28
           }
         ],
         "long_count": 84,
-        "net_pct": 3.72,
+        "net_pct": 4.39,
         "short": [
           {
             "ticker": "IT",
-            "weight_pct": 0.34
+            "weight_pct": 0.35
+          },
+          {
+            "ticker": "INTU",
+            "weight_pct": 0.35
           },
           {
             "ticker": "CHTR",
             "weight_pct": 0.3
           },
           {
-            "ticker": "INTU",
-            "weight_pct": 0.29
-          },
-          {
             "ticker": "CSGP",
-            "weight_pct": 0.26
+            "weight_pct": 0.24
           },
           {
             "ticker": "DUOL",
-            "weight_pct": 0.25
+            "weight_pct": 0.24
           },
           {
             "ticker": "SMPL",
             "weight_pct": 0.23
           },
           {
-            "ticker": "PRGO",
+            "ticker": "HUBS",
             "weight_pct": 0.22
           },
           {
-            "ticker": "HUBS",
+            "ticker": "SHAK",
             "weight_pct": 0.21
           },
           {
@@ -163,12 +163,12 @@
             "weight_pct": 0.21
           },
           {
-            "ticker": "SHAK",
+            "ticker": "PRGO",
             "weight_pct": 0.21
           },
           {
             "ticker": "HDB",
-            "weight_pct": 0.21
+            "weight_pct": 0.2
           },
           {
             "ticker": "WHR",
@@ -176,18 +176,18 @@
           },
           {
             "ticker": "POWL",
-            "weight_pct": 0.2
+            "weight_pct": 0.19
           },
           {
-            "ticker": "FLUT",
-            "weight_pct": 0.2
+            "ticker": "KLAC",
+            "weight_pct": 0.19
           }
         ],
-        "short_count": 92,
+        "short_count": 91,
         "source": "ALPACA_CURRENT_POSITIONS"
       },
-      "open_order_count": 134,
-      "open_position_count": 176,
+      "open_order_count": 142,
+      "open_position_count": 175,
       "passes": true,
       "portfolio_history_first_mark": "2026-08-06T00:00:00+00:00",
       "portfolio_history_last_mark": "2026-08-26T00:00:00+00:00",
@@ -231,31 +231,31 @@
         "missing_broker_mark_timestamps": [],
         "overlapping_marks": 14
       },
-      "current_equity": 1002299.32,
-      "current_equity_as_of": "2026-08-26T09:25:45.939000+00:00",
+      "current_equity": 999483.16,
+      "current_equity_as_of": "2026-08-27T07:25:47.777000+00:00",
       "fill_outcome_reconciliation": {
         "consecutive_fill_reconcile_failures": 0,
         "last_error": null,
         "last_failure_at": null,
-        "last_success_at": "2026-08-26T06:00:16.933000+00:00"
+        "last_success_at": "2026-08-27T06:00:17.936000+00:00"
       },
       "holdings": {
-        "as_of": "2026-08-26",
+        "as_of": "2026-08-27",
         "broker_reconciled": true,
         "flat": false,
-        "gross_pct": 100.0,
+        "gross_pct": 100.4,
         "long": [
           {
             "ticker": "IWM",
-            "weight_pct": 49.96
+            "weight_pct": 50.08
           }
         ],
         "long_count": 1,
-        "net_pct": -0.04,
+        "net_pct": -0.22,
         "short": [
           {
             "ticker": "SPY",
-            "weight_pct": 50.0
+            "weight_pct": 50.3
           }
         ],
         "short_count": 1,
@@ -306,23 +306,23 @@
         "missing_broker_mark_timestamps": [],
         "overlapping_marks": 15
       },
-      "current_equity": 997990.14,
-      "current_equity_as_of": "2026-08-26T09:25:45.939000+00:00",
+      "current_equity": 999744.6,
+      "current_equity_as_of": "2026-08-27T07:25:47.777000+00:00",
       "fill_outcome_reconciliation": {
         "consecutive_fill_reconcile_failures": 0,
         "last_error": null,
         "last_failure_at": null,
-        "last_success_at": "2026-08-26T05:31:01.289000+00:00"
+        "last_success_at": "2026-08-27T05:31:29.173000+00:00"
       },
       "holdings": {
-        "as_of": "2026-08-26",
+        "as_of": "2026-08-27",
         "broker_reconciled": true,
         "flat": false,
-        "gross_pct": 71.3,
+        "gross_pct": 71.1,
         "long": [
           {
             "ticker": "SHY",
-            "weight_pct": 20.05
+            "weight_pct": 19.95
           },
           {
             "ticker": "UUP",
@@ -330,15 +330,15 @@
           },
           {
             "ticker": "DBA",
-            "weight_pct": 4.53
+            "weight_pct": 4.61
           },
           {
             "ticker": "EFA",
-            "weight_pct": 3.49
+            "weight_pct": 3.42
           },
           {
             "ticker": "DBC",
-            "weight_pct": 3.09
+            "weight_pct": 3.13
           },
           {
             "ticker": "SPY",
@@ -346,35 +346,35 @@
           },
           {
             "ticker": "IWM",
-            "weight_pct": 2.64
+            "weight_pct": 2.62
           },
           {
             "ticker": "EEM",
-            "weight_pct": 2.59
+            "weight_pct": 2.57
           },
           {
             "ticker": "QQQ",
-            "weight_pct": 2.28
+            "weight_pct": 2.29
           },
           {
             "ticker": "USO",
-            "weight_pct": 1.41
+            "weight_pct": 1.49
           }
         ],
         "long_count": 10,
-        "net_pct": 31.15,
+        "net_pct": 31.32,
         "short": [
           {
             "ticker": "IEF",
-            "weight_pct": 10.33
+            "weight_pct": 10.22
           },
           {
             "ticker": "TLT",
-            "weight_pct": 4.87
+            "weight_pct": 4.82
           },
           {
             "ticker": "GLD",
-            "weight_pct": 2.67
+            "weight_pct": 2.66
           },
           {
             "ticker": "SLV",
@@ -382,13 +382,13 @@
           },
           {
             "ticker": "UNG",
-            "weight_pct": 0.94
+            "weight_pct": 0.95
           }
         ],
         "short_count": 5,
         "source": "ALPACA_CURRENT_POSITIONS"
       },
-      "open_order_count": 13,
+      "open_order_count": 15,
       "open_position_count": 15,
       "passes": true,
       "portfolio_history_first_mark": "2026-08-06T00:00:00+00:00",
@@ -399,8 +399,8 @@
   },
   "summary": {
     "expected_alpaca_sleeves": 3,
-    "open_orders": 149,
-    "open_positions": 193,
+    "open_orders": 159,
+    "open_positions": 192,
     "passes": true,
     "reconciled_alpaca_sleeves": 3,
     "status": "PASS",

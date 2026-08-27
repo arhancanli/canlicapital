@@ -1,4 +1,4 @@
-# CFTC hedging pressure: no-return feasibility protocol
+# CFTC hedging pressure — no-return feasibility protocol
 
 ## Scope
 

@@ -3,6 +3,8 @@
 > A carry signal bought a token at 16.15 and closed it at 0.1553. The strategy was not
 > broken. The interesting decision came afterwards, and it was to change nothing.
 
+**Short title:** The trade that lost 99 percent
+
 **Published 2026-08-27. Evidence: `crypto_lab_carry_crash_incident.json`, content hash
 `sha256:0083a155a8`, source-bound to the paper execution database and the point-in-time
 funding table by SHA-256.**
@@ -10,11 +12,11 @@ funding table by SHA-256.**
 ## What happened
 
 On 2026-07-05 at 16:00 UTC the crypto carry sleeve opened a long in `BINANCE:PERP:LABUSDT`:
-114 units at 16.15, about 1,841 quote units of notional. On 2026-07-30 at 00:00 UTC the
-scheduled rebalance closed it at 0.1553 and opened a short.
+114 units at an entry price of 16.15. On 2026-07-30 at 00:00 UTC the scheduled rebalance closed
+it at 0.1553 and opened a short.
 
-Twenty-four days. A price return of **-99.0384 percent**. After entry and close fees, a
-realised loss of **1,824.37** quote units on 1,841.15 in.
+Twenty-four days. A price return of **-99.0384 percent**, and after entry and close fees a
+realised loss of **1,824.37** quote units.
 
 The token did not drift down. It collapsed, and a venue delisted it.
 

@@ -311,7 +311,13 @@ body.eng-page {
 
 /* --- reading path --------------------------------------------------------- */
 
-.eng-path { margin: 0; padding: 0; list-style: none; display: grid; gap: 2px; }
+/* The ordinals are drawn by a counter rather than written into the markup. They
+   are presentation, and a literal "04" in the DOM is read by
+   audit-published-numbers as a figure this site is claiming, which it is not. */
+.eng-path {
+  margin: 0; padding: 0; list-style: none;
+  display: grid; gap: 2px; counter-reset: eng-path;
+}
 .eng-path li {
   display: grid;
   grid-template-columns: 62px minmax(0, 1fr);
@@ -319,8 +325,13 @@ body.eng-page {
   padding: 22px clamp(18px, 2vw, 28px);
   background: #fff;
   border: 1px solid var(--eng-line);
+  counter-increment: eng-path;
 }
-.eng-path__n { color: var(--eng-muted); font: 500 0.86rem/1.6 "IBM Plex Mono", monospace; }
+.eng-path li::before {
+  content: counter(eng-path, decimal-leading-zero);
+  color: var(--eng-muted);
+  font: 500 0.86rem/1.6 "IBM Plex Mono", monospace;
+}
 .eng-path a { color: var(--eng-ink); text-decoration: none; border-bottom: 1px solid var(--eng-line); }
 .eng-path a:hover { border-bottom-color: currentColor; }
 .eng-path small { margin-left: 10px; color: var(--eng-muted); font: 400 0.74rem "IBM Plex Mono", monospace; }

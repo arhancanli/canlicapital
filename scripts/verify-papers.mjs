@@ -14,6 +14,7 @@ import { readFileSync, readdirSync, existsSync } from "node:fs";
 import { dirname, resolve, basename } from "node:path";
 import { fileURLToPath } from "node:url";
 import { IMMUTABLE_PAPER_SHORT_TITLES } from "./paper-presentation.mjs";
+import { normalizeEditableCopy } from "./editable-copy.mjs";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const DIST = resolve(ROOT, "dist");
@@ -608,9 +609,15 @@ if (existsSync(founderFile)) {
   walkthrough.chapters.forEach((_, index) => renderings.add(String(index + 1).padStart(2, "0")));
   for (const date of [chainLog.entries[0].date, trackRecord.go_live_date]) renderings.add(date);
 
+  // Inline SVG is geometry, not prose: a path's coordinates are numbers no
+  // artifact will ever contain, and reading them as published figures makes the
+  // check fire on any icon added to the shell. Adding one GitHub mark introduced
+  // 47 "untraceable" numbers, all of them path data. Stripped for the same reason
+  // <script> and <pre> already are.
   const prose = founderHtml
     .replace(/<script[\s\S]*?<\/script>/g, " ")
     .replace(/<head>[\s\S]*?<\/head>/g, " ")
+    .replace(/<svg[\s\S]*?<\/svg>/g, " ")
     .replace(/<pre[\s\S]*?<\/pre>/g, " ");
   const datesRemoved = prose.replace(/\b\d{4}-\d{2}-\d{2}\b/g, (d) =>
     renderings.has(d) ? " " : ` UNTRACEABLE_DATE_${d} `,
@@ -1257,7 +1264,16 @@ let shortTitled = 0;
 for (const page of pages) {
   const slug = basename(page, ".html");
   const markdown = readFileSync(resolve(ROOT, "public/research", `${slug}.md`), "utf8");
-  const realTitle = (markdown.match(/^#\s+(.+)$/m) || [])[1]?.trim();
+  // The rendered page cannot carry the source title verbatim when that title
+  // contains an em dash: audit-writing.mjs locks editable copy at zero em-dash
+  // forms, so the renderer rewrites it. Comparing the raw source title against
+  // the rendered one asked for something the publishing contract forbids, and 20
+  // of 111 papers could satisfy neither gate. This check is about whether the
+  // page RENAMED the document, so both sides are normalized through the same
+  // shared definition the renderer uses. A genuine rename still fails; only the
+  // mandated dash rewrite is accepted.
+  const sourceTitle = (markdown.match(/^#\s+(.+)$/m) || [])[1]?.trim();
+  const realTitle = sourceTitle === undefined ? undefined : normalizeEditableCopy(sourceTitle).trim();
   const shortLine = markdown.match(/^\*\*Short title:\*\*\s*(.+)$/im);
   const shortTitle = shortLine?.[1].trim() ?? IMMUTABLE_PAPER_SHORT_TITLES[slug] ?? null;
   const html = readFileSync(resolve(DIST, "research", page), "utf8");

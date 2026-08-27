@@ -19,18 +19,7 @@ const OUT_DIR = resolve(ROOT, "trials");
 const ORIGIN = "https://canlicapital.com";
 const AUTHOR = "Arhan Canli";
 const PUBLISHER = "Canli Capital";
-const emDashCharacter = String.fromCharCode(8212);
-const editableDashForms = [emDashCharacter, `&${"mdash"};`, `&#${"8212"};`];
-const normalizeEditableCopy = (value) =>
-  editableDashForms.reduce(
-    (copy, dash) => copy
-      .replace(new RegExp(`(<h[1-6][^>]*>[^\\n]*?)[ \\t]+${dash}[ \\t]+`, "g"), "$1: ")
-      .replace(new RegExp(`[ \\t]+${dash}[ \\t\\r\\n]+([^<>]{1,320}?)[ \\t]+${dash}[ \\t\\r\\n]+`, "gs"), " ($1) ")
-      .replace(new RegExp(`[ \\t]+${dash}(?=\\r?\\n)`, "g"), ";")
-      .replace(new RegExp(`[ \\t]+${dash}[ \\t]+`, "g"), "; ")
-      .replaceAll(dash, ": "),
-    String(value),
-  );
+import { editableDashForms, emDashCharacter, normalizeEditableCopy } from "./editable-copy.mjs";
 
 const escapeHtml = (value) => normalizeEditableCopy(value)
   .replaceAll("&", "&amp;")

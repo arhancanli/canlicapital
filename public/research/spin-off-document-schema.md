@@ -1,4 +1,4 @@
-# Spin-off dislocation: initial Form 10 document-schema protocol
+# Spin-off dislocation — initial Form 10 document-schema protocol
 
 **Declared:** 2026-08-16 after the Form 10 lineage pass and before opening any filing document in
 this stage. **Market prices and returns remain forbidden.**

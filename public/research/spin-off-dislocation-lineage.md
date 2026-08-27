@@ -1,4 +1,4 @@
-# Spin-off dislocation: SEC Form 10 lineage protocol
+# Spin-off dislocation — SEC Form 10 lineage protocol
 
 **Declared:** 2026-08-16 before downloading any SEC full index for this protocol.  
 **Stage:** official-source lineage only. Prices, returns, event outcomes, and performance are

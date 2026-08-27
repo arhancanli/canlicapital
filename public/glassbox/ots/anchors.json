@@ -5,30 +5,39 @@
   "does_not_prove": "It does not establish when an unanchored entry was first published, make opaque payload hashes reconstructable, prove that the data came from Alpaca, or rule out an unpublished alternative chain.",
   "how_to_verify": [
     "pip install opentimestamps-client",
-    "Download a head file and its proof from this folder, e.g. seq0471_379a708964fb.head.txt and seq0471_379a708964fb.head.txt.ots",
+    "Download a head file and its proof from this folder, e.g. seq0513_120f98cceb26.head.txt and seq0513_120f98cceb26.head.txt.ots",
     "Run:  ots verify <file>.head.txt.ots   (it reports the Bitcoin block + time the head was committed)",
     "Confirm the chain_hash inside the head file matches the head in transparency_log.json.",
     "Or upload the .ots proof at https://opentimestamps.org"
   ],
   "head_anchor": {
-    "seq": 471,
-    "date": "2026-08-24",
-    "chain_hash": "379a708964fb46f964b3cb6ccd48bee74f2ebc16c65a672fd9f5cab8ea58a5e0",
-    "head_file": "seq0471_379a708964fb.head.txt",
-    "ots_file": "seq0471_379a708964fb.head.txt.ots",
+    "seq": 513,
+    "date": "2026-08-26",
+    "chain_hash": "120f98cceb26e8f5e9fe9bcfbdb8620b61df8dbc933b7126dd82e787fe9de0a8",
+    "head_file": "seq0513_120f98cceb26.head.txt",
+    "ots_file": "seq0513_120f98cceb26.head.txt.ots",
     "status": "pending"
   },
-  "anchor_count": 52,
-  "bitcoin_confirmed_count": 51,
+  "anchor_count": 53,
+  "bitcoin_confirmed_count": 52,
   "calendar_pending_count": 1,
   "anchors": [
+    {
+      "seq": 513,
+      "date": "2026-08-26",
+      "chain_hash": "120f98cceb26e8f5e9fe9bcfbdb8620b61df8dbc933b7126dd82e787fe9de0a8",
+      "head_file": "seq0513_120f98cceb26.head.txt",
+      "ots_file": "seq0513_120f98cceb26.head.txt.ots",
+      "status": "pending"
+    },
     {
       "seq": 471,
       "date": "2026-08-24",
       "chain_hash": "379a708964fb46f964b3cb6ccd48bee74f2ebc16c65a672fd9f5cab8ea58a5e0",
       "head_file": "seq0471_379a708964fb.head.txt",
       "ots_file": "seq0471_379a708964fb.head.txt.ots",
-      "status": "pending"
+      "status": "bitcoin",
+      "bitcoin_block_height": 963913
     },
     {
       "seq": 448,

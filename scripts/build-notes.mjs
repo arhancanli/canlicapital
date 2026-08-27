@@ -60,6 +60,67 @@ const plain = (md) =>
     .replace(/\s+/g, " ")
     .trim();
 
+// Search results truncate past these. The papers already solve the title case with a
+// declared short title; notes use the same convention so there is one rule on this site.
+const TITLE_LIMIT = 65;        // including the " | Canli Capital" suffix
+const DESCRIPTION_LIMIT = 165;
+const DESCRIPTION_MINIMUM = 70;  // below this a search snippet is mostly empty
+const SUFFIX = " | Canli Capital";
+
+/**
+ * The opening of the standfirst, trimmed to fit a search snippet.
+ *
+ * The first implementation used a global regex to split sentences. A global regex
+ * is free to begin matching anywhere, so on a standfirst opening "a p-value of
+ * 0.017. Publishable..." it started INSIDE the number and produced a description
+ * beginning "017.". The result was the right length, well-formed, and nonsense.
+ *
+ * This walks forward from index 0 instead, so the description is always a genuine
+ * prefix of the standfirst, and asserts exactly that at the end: the invariant
+ * catches the whole class rather than the one string that exposed it.
+ */
+function metaDescription(slug, dek) {
+  if (dek.length <= DESCRIPTION_LIMIT) return dek;
+
+  // Sentence ends: terminal punctuation followed by a space and a capital, so a
+  // decimal point inside a number is never mistaken for the end of a sentence.
+  const ends = [];
+  for (let i = 0; i < dek.length; i += 1) {
+    if (!".!?".includes(dek[i])) continue;
+    const after = dek.slice(i + 1);
+    if (after === "" || /^\s+[A-Z(\u201c"]/.test(after)) ends.push(i + 1);
+  }
+
+  let out = "";
+  for (const end of ends) {
+    const candidate = dek.slice(0, end).trim();
+    if (candidate.length > DESCRIPTION_LIMIT) break;
+    out = candidate;
+  }
+
+  // A whole-sentence trim can be far too short when the second sentence is long,
+  // and a 50-character description wastes the snippet. Fall back to a word
+  // boundary, which never cuts mid-word.
+  if (out.length < DESCRIPTION_MINIMUM) {
+    let packed = "";
+    for (const word of dek.split(" ")) {
+      if (`${packed} ${word}`.trim().length > DESCRIPTION_LIMIT - 1) break;
+      packed = `${packed} ${word}`.trim();
+    }
+    out = `${packed}\u2026`;
+  }
+
+  const literal = out.replace(/\u2026$/, "");
+  if (!dek.startsWith(literal) || out.length < DESCRIPTION_MINIMUM) {
+    throw new Error(
+      `${slug}: description "${out.slice(0, 60)}..." is not a usable prefix of the standfirst ` +
+      `(${out.length} chars, minimum ${DESCRIPTION_MINIMUM}). It must begin where the ` +
+      "standfirst begins.",
+    );
+  }
+  return out;
+}
+
 function parseNote(slug, markdown) {
   const lines = markdown.split("\n");
 
@@ -78,6 +139,36 @@ function parseNote(slug, markdown) {
   if (!dekLines.length) throw new Error(`${slug}: no leading blockquote standfirst`);
   const dek = plain(dekLines.join(" "));
 
+  // A note whose real name does not fit in a search result declares a short one.
+  // The H1 and the Open Graph title always keep the real name; only <title> shortens.
+  const shortLine = markdown.match(/^\*\*Short title:\*\*\s*(.+)$/im);
+  const shortTitle = shortLine ? plain(shortLine[1]) : null;
+  const documentTitle = shortTitle ?? title;
+  if (documentTitle.length + SUFFIX.length > TITLE_LIMIT) {
+    throw new Error(
+      `${slug}: "${documentTitle}" plus "${SUFFIX}" is ` +
+      `${documentTitle.length + SUFFIX.length} characters and truncates in search results ` +
+      `(limit ${TITLE_LIMIT}). Declare "**Short title:** ..." in the markdown; the H1 and the ` +
+      "Open Graph title keep the real name.",
+    );
+  }
+
+  // A note MAY declare the artifacts it draws figures from, the same way every
+  // generated page does, and audit-published-numbers then scopes its numerals to
+  // those artifacts instead of the whole corpus.
+  //
+  // None of the current notes uses it, deliberately. That meta tag asserts the
+  // COMPLETE set of sources, and an essay quotes the incident artifact, a
+  // benchmark run and the source code in the same paragraph. Naming one file as
+  // the complete set would be a false statement in service of a passing check,
+  // which is the exact trade this whole site exists to refuse. The corpus-wide
+  // fallback is the correct mode for prose; declare sources only for a note whose
+  // figures genuinely all come from one artifact.
+  const sourceLine = markdown.match(/^\*\*Sources:\*\*\s*(.+)$/im);
+  const sources = sourceLine
+    ? sourceLine[1].split(",").map((x) => plain(x)).filter(Boolean)
+    : [];
+
   const dateMatch = markdown.match(/\*\*Published (\d{4}-\d{2}-\d{2})[.,]/);
   if (!dateMatch) throw new Error(`${slug}: no "**Published YYYY-MM-DD" line`);
 
@@ -86,13 +177,24 @@ function parseNote(slug, markdown) {
   while (bodyStart < lines.length && (lines[bodyStart].startsWith("> ") || lines[bodyStart].trim() === "")) {
     bodyStart += 1;
   }
-  const body = lines.slice(bodyStart).join("\n");
+  const body = lines
+    .slice(bodyStart)
+    .filter((line) => !/^\*\*(Short title|Sources):\*\*/i.test(line))
+    .join("\n");
   const words = plain(body).split(/\s+/).filter(Boolean).length;
 
-  return { slug, title, dek, date: dateMatch[1], body, words, minutes: Math.max(1, Math.round(words / 220)) };
+  return {
+    slug, title, documentTitle, dek, sources,
+    description: metaDescription(slug, dek),
+    date: dateMatch[1], body, words,
+    minutes: Math.max(1, Math.round(words / 220)),
+  };
 }
 
-function pageHead({ title, description, route, extraJsonLd }) {
+function pageHead({ title, socialTitle, description, route, extraJsonLd, sources }) {
+  // <title> may shorten to fit a search result; the social title never does, because
+  // it is the document's actual name.
+  const social = socialTitle ?? title;
   return `<!doctype html>
 <html lang="en" data-page="notes">
 <head>
@@ -101,16 +203,16 @@ function pageHead({ title, description, route, extraJsonLd }) {
 <title>${esc(title)} | Canli Capital</title>
 <meta name="description" content="${esc(description)}" />
 <link rel="canonical" href="${ORIGIN}${route}" />
-<meta name="author" content="Arhan Canli" />
+<meta name="author" content="Arhan Canli" />${sources && sources.length ? `\n<meta name="canli:sources" content="${esc(sources.join(" "))}" />` : ""}
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
 <meta property="og:type" content="article" />
 <meta property="og:site_name" content="Canli Capital" />
-<meta property="og:title" content="${esc(title)}" />
+<meta property="og:title" content="${esc(social)}" />
 <meta property="og:description" content="${esc(description)}" />
 <meta property="og:url" content="${ORIGIN}${route}" />
 <meta property="og:image" content="${ORIGIN}/og.png" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="${esc(title)}" />
+<meta name="twitter:title" content="${esc(social)}" />
 <meta name="twitter:description" content="${esc(description)}" />
 <meta name="twitter:image" content="${ORIGIN}/og.png" />
 <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
@@ -141,7 +243,7 @@ function renderNote(note, siblings) {
     isPartOf: { "@type": "Blog", "@id": `${ORIGIN}/notes`, name: "Engineering notes" },
   };
   const others = siblings.filter((s) => s.slug !== note.slug).slice(0, 3);
-  const html = `${pageHead({ title: note.title, description: note.dek, route, extraJsonLd: jsonLd })}
+  const html = `${pageHead({ title: note.documentTitle, socialTitle: note.title, description: note.description, route, extraJsonLd: jsonLd, sources: note.sources })}
 <body class="note-page">
 <a class="note-skip" href="#content">Skip to content</a>
 ${renderProductShellHeader({ active: "" })}
