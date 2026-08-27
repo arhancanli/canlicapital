@@ -146,6 +146,7 @@ const STATIC_ROUTES = [
   { path: "/tools/deflated-sharpe", priority: "0.9", changefreq: "weekly" },
   { path: "/tools/evidence-chain", priority: "0.9", changefreq: "weekly" },
   { path: "/tools/trial-accounting", priority: "0.9", changefreq: "weekly" },
+  { path: "/tools/selection-risk", priority: "0.9", changefreq: "weekly" },
 ];
 
 // =============================================================================

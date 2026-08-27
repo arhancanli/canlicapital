@@ -152,6 +152,7 @@ export default defineConfig({
         deflatedSharpe: resolve(root, "tools", "deflated-sharpe.html"),
         evidenceChain: resolve(root, "tools", "evidence-chain.html"),
         trialAccounting: resolve(root, "tools", "trial-accounting.html"),
+        selectionRisk: resolve(root, "tools", "selection-risk.html"),
         ...noteEntries(),
         ...paperEntries(),
         ...measurementEntries(),

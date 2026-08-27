@@ -125,6 +125,7 @@ say(`- [Corrections](${ORIGIN}/progress): What was published, found wrong, and w
 say(`- [Open data](${ORIGIN}/open): The kill log, the signed hash chain and the glass-box artifacts.`);
 say(`- [Trial accounting](${ORIGIN}/tools/trial-accounting): Every hypothesis ever tested, which is the denominator every Sharpe here is corrected by.`);
 say(`- [Deflated Sharpe calculator](${ORIGIN}/tools/deflated-sharpe): Run the correction yourself against a source-bound implementation.`);
+say(`- [Selection Risk Lab](${ORIGIN}/tools/selection-risk): Search a synthetic series that provably has no edge, and see your best result deflated against your own search. Educational; nothing generated there is evidence about any strategy.`);
 say(`- [Evidence chain explorer](${ORIGIN}/tools/evidence-chain): Verify the signed record in your browser.`);
 say(`- [Review](${ORIGIN}/review): The governed route for submitting criticism of a specific paper.`);
 say();

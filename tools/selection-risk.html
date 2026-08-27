@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en" data-page="selection-risk">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Selection Risk Lab | Canli Capital</title>
+<meta name="description" content="Search a series that provably has no edge, and watch what your best result is worth once the search is counted against it." />
+<link rel="canonical" href="https://canlicapital.com/tools/selection-risk" />
+<meta name="author" content="Arhan Canli" />
+<meta name="canli:sources" content="selection_risk_lab_contract.json" />
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Canli Capital" />
+<meta property="og:title" content="Selection Risk Lab" />
+<meta property="og:description" content="Search a series that provably has no edge, and watch what your best result is worth once the search is counted against it." />
+<meta property="og:url" content="https://canlicapital.com/tools/selection-risk" />
+<meta property="og:image" content="https://canlicapital.com/og.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Selection Risk Lab" />
+<meta name="twitter:description" content="Search a series that provably has no edge, and watch what your best result is worth once the search is counted against it." />
+<meta name="twitter:image" content="https://canlicapital.com/og.png" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" />
+<link rel="stylesheet" href="/css/product-shell.css" />
+<link rel="stylesheet" href="/css/selection-risk.css" />
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Selection Risk Lab","applicationCategory":"EducationalApplication","operatingSystem":"Any modern browser","url":"https://canlicapital.com/tools/selection-risk","description":"Search a series that provably has no edge, and watch what your best result is worth once the search is counted against it.","author":{"@id":"https://canlicapital.com/#arhan-canli"},"isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+</head>
+<body class="sr-page">
+<a class="sr-skip" href="#lab">Skip to the lab</a>
+<header class="cc-shell" id="nav" data-product-shell="v3">
+  <a class="cc-shell__brand" href="/" aria-label="Canli Capital, home">
+    <span class="cc-shell__mark" aria-hidden="true"><i></i></span>
+    <span>Canli Capital</span>
+  </a>
+  <a class="cc-shell__status" href="/measurements/alpaca-broker-reconciliation" aria-label="Current record status">
+    <span class="status-dot" aria-hidden="true"></span>
+    <span>Public paper record</span>
+  </a>
+  <nav class="cc-shell__primary" aria-label="Primary navigation">
+<a class="cc-shell__link" href="https://app.canlicapital.com/dashboard" rel="noreferrer">Live</a>
+<a class="cc-shell__link" href="/research">Research</a>
+<a class="cc-shell__link" href="/trials">Trials</a>
+<a class="cc-shell__link" href="/systems">Systems</a>
+<a class="cc-shell__link" href="/methodology">Methodology</a>
+<a class="cc-shell__link" href="/verify">Verify</a>
+  </nav>
+  <details class="cc-shell__index">
+    <summary><span class="cc-shell__index-wide">More</span><span class="cc-shell__index-compact">Menu</span></summary>
+    <div class="cc-shell__panel">
+      <div>
+        <span class="cc-shell__panel-label">Core</span>
+        <nav aria-label="Core routes"><a class="cc-shell__panel-link" href="https://app.canlicapital.com/dashboard" rel="noreferrer">Live</a>
+<a class="cc-shell__panel-link" href="/research">Research</a>
+<a class="cc-shell__panel-link" href="/trials">Trials</a>
+<a class="cc-shell__panel-link" href="/systems">Systems</a>
+<a class="cc-shell__panel-link" href="/methodology">Methodology</a>
+<a class="cc-shell__panel-link" href="/verify">Verify</a></nav>
+      </div>
+      <div>
+        <span class="cc-shell__panel-label">Institution</span>
+        <nav aria-label="Institution routes"><a class="cc-shell__panel-link" href="/progress">Corrections</a>
+<a class="cc-shell__panel-link" href="/performance">Status</a>
+<a class="cc-shell__panel-link" href="/founder">Founder</a>
+<a class="cc-shell__panel-link" href="/open">Open data</a>
+<a class="cc-shell__panel-link" href="/measurements">Measurements</a></nav>
+      </div>
+      <div>
+        <span class="cc-shell__panel-label">Open source</span>
+        <nav aria-label="Source code"><a class="cc-shell__panel-link" href="/engineering">Engineering hub</a>
+<a class="cc-shell__panel-link" href="/notes">Engineering notes</a>
+<a class="cc-shell__panel-link" href="https://github.com/arhancanli/alphac" rel="noreferrer">alphac (engine)</a>
+<a class="cc-shell__panel-link" href="https://github.com/arhancanli/canli-pit-lake" rel="noreferrer">canli-pit-lake</a>
+<a class="cc-shell__panel-link" href="https://github.com/arhancanli/canli-backtest" rel="noreferrer">canli-backtest</a></nav>
+      </div>
+      <p>Observed, simulated, model-estimated and planned claims remain visibly separate.</p>
+    </div>
+  </details>
+  <a class="cc-shell__source" href="/engineering" title="Open-source engineering: the engine, the data layer and the backtester"><svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true" focusable="false"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg><span>Source</span></a>
+  <a class="cc-shell__cta" href="https://app.canlicapital.com/dashboard">Enter live record <span aria-hidden="true">↗</span></a>
+</header>
+<main>
+  <section class="sr-hero" aria-labelledby="sr-title">
+    <p class="sr-kicker"><span>Open research instrument</span><span>Educational, not evidence</span></p>
+    <h1 id="sr-title">Find an edge that is not there.</h1>
+    <p class="sr-lead">The series below is a driftless random walk. Its true Sharpe ratio is
+      <strong>0</strong>, by construction, and no setting of any control can change
+      that. Search it anyway. The lab counts every parameter set you try and deflates your best
+      result against your own search, so you can watch a good-looking number turn into what it
+      actually is.</p>
+    <p class="sr-boundary"><strong>What this is.</strong> A teaching instrument. It runs on a synthetic series with no edge, spends no research hypothesis, writes to no ledger, and produces no ALPHAC performance claim. Nothing a visitor generates here is evidence about any strategy.</p>
+  </section>
+
+  <section class="sr-lab" id="lab" aria-labelledby="sr-lab-title">
+    <h2 id="sr-lab-title" class="sr-visually-hidden">The lab</h2>
+    <div class="sr-controls">
+      <label class="sr-field" for="sr-seed">
+    <span class="sr-field__label">Series seed</span>
+    <input id="sr-seed" type="number" value="20260827" min="1" max="999999" step="1" inputmode="numeric" />
+    <span class="sr-field__note">750 bars, driftless geometric random walk</span>
+  </label>
+      <label class="sr-field" for="sr-fast">
+    <span class="sr-field__label">Fast window</span>
+    <input id="sr-fast" type="number" value="10" min="2" max="60" step="1" inputmode="numeric" />
+    <span class="sr-field__note">bars in the fast average</span>
+  </label>
+      <label class="sr-field" for="sr-slow">
+    <span class="sr-field__label">Slow window</span>
+    <input id="sr-slow" type="number" value="50" min="3" max="200" step="1" inputmode="numeric" />
+    <span class="sr-field__note">bars in the slow average</span>
+  </label>
+      <label class="sr-field" for="sr-cost">
+    <span class="sr-field__label">Cost</span>
+    <input id="sr-cost" type="number" value="2" min="0" max="100" step="1" inputmode="numeric" />
+    <span class="sr-field__note">basis points per unit of turnover</span>
+  </label>
+      <div class="sr-actions">
+        <button type="button" id="sr-sweep" class="sr-button sr-button--primary" data-grid="820">Search 820 settings</button>
+        <button type="button" id="sr-new-series" class="sr-button">New series</button>
+        <button type="button" id="sr-reset-ledger" class="sr-button">Reset trial ledger</button>
+      </div>
+      <p class="sr-warning" id="sr-warning" role="alert" hidden></p>
+    </div>
+
+    <div class="sr-output">
+      <div class="sr-chart-wrap">
+        <svg id="sr-chart" viewBox="0 0 760 260" preserveAspectRatio="none" role="img">
+          <path id="sr-base" class="sr-chart__base" d="" />
+          <path id="sr-path" class="sr-chart__line" d="" />
+        </svg>
+        <p class="sr-causal" id="sr-causal" data-ok="true"></p>
+      </div>
+      <dl class="sr-stats">
+        <div><dt>Annualised Sharpe</dt><dd id="sr-sharpe">0</dd></div>
+        <div><dt>Max drawdown</dt><dd id="sr-drawdown">0</dd></div>
+        <div><dt>Total return</dt><dd id="sr-total">0</dd></div>
+        <div><dt>Trades</dt><dd id="sr-trades">0</dd></div>
+      </dl>
+    </div>
+
+    <div class="sr-ledger">
+      <h3>Your trial ledger</h3>
+      <dl>
+        <div><dt>Distinct settings evaluated</dt><dd id="sr-trials">0</dd></div>
+        <div><dt>Best annualised Sharpe found</dt><dd id="sr-best">0</dd></div>
+        <div><dt>Sharpe luck alone would find</dt><dd id="sr-luckbar">n/a</dd></div>
+        <div><dt>Deflated Sharpe of your best</dt><dd id="sr-dsr">n/a</dd></div>
+      </dl>
+      <p class="sr-bestparams">Best found at <span id="sr-bestparams">nothing yet</span></p>
+      <p class="sr-verdict" id="sr-verdict" data-state="idle">Move a control to record your first trial.</p>
+    </div>
+  </section>
+
+  <section class="sr-notes" aria-labelledby="sr-notes-title">
+    <h2 id="sr-notes-title">How it works, and why it is synthetic</h2>
+    <div class="sr-notes__grid">
+      <article>
+        <h3>The execution rule is the engine's</h3>
+        <p>decide at the close of bar t, hold from the open of bar t+1 to the open of bar t+2. the same no-lookahead contract the ALPHAC backtester enforces. The property is re-checked
+          on every run and reported under the chart, rather than asserted once in prose.</p>
+      </article>
+      <article>
+        <h3>Why not real prices</h3>
+        <p>config/data_source_rights_policy.json records every market-data source this project uses as prohibited or withheld for raw redistribution, with a project default of do not bundle raw third-party rows. Shipping real bars into a browser is not available.</p>
+        <p>On real data a visitor can always argue the edge they found was genuine. On a driftless random walk the true Sharpe is zero by construction, so every good result is provably luck. The demonstration is stronger for it, not weaker.</p>
+      </article>
+      <article>
+        <h3>What the deflation uses</h3>
+        <p>Your trial count is the number of distinct settings you have evaluated on this series.
+          The dispersion is measured across your own results, not assumed. The arithmetic is
+          <a href="/tools/deflated-sharpe">the same calculator</a> published elsewhere on this site,
+          js/dsr-tool.js, golden-vector tested against the Python source, on the non_excess kurtosis
+          convention, annualised at 252 periods.</p>
+      </article>
+      <article>
+        <h3>The gate</h3>
+        <p>ALPHAC admits a full-union book at a deflated ratio of 0.95. That is
+          the bar your scenario is read against here. Reaching it on a series with no edge is a
+          false positive, and the instrument is built to let you produce one and then see it named.</p>
+      </article>
+    </div>
+    <p class="sr-safety"><strong>Sandbox contract.</strong> every input is stored in the URL, so a scenario is shareable and reproducible. no write path to any ledger, artifact, broker or published record exists. results are labelled USER_GENERATED_SCENARIO_NOT_RESEARCH_EVIDENCE.</p>
+    <p class="sr-source">Rendered from
+      <a href="/glassbox/selection_risk_lab_contract.json"><code>selection_risk_lab_contract.json</code></a>, whose content hash the
+      build reproduces before this page is written. Further reading:
+      <a href="/notes/deflating-a-sharpe-ratio">the arithmetic of not fooling yourself</a>.</p>
+  </section>
+</main>
+<footer class="cc-footer" id="footer" data-product-shell="v3">
+  <div class="cc-footer__lead">
+    <a class="cc-footer__brand" href="/">Canli Capital</a>
+    <p>Build the claim. Publish the evidence. Keep the failures.</p>
+  </div>
+  <div class="cc-footer__routes">
+    <nav aria-label="Portfolio and research">
+      <span>Research system</span>
+      <a href="https://app.canlicapital.com/dashboard">Live record</a>
+      <a href="/systems">ALPHAC systems</a>
+      <a href="/research">Research papers</a>
+      <a href="/trials">Trial union</a>
+    </nav>
+    <nav aria-label="Evidence and verification">
+      <span>Evidence</span>
+      <a href="/methodology">Methodology</a>
+      <a href="/verify">Verify record</a>
+      <a href="/measurements">Measurements</a>
+      <a href="/open">Open data</a>
+    </nav>
+    <nav aria-label="Institution and authorship">
+      <span>Institution</span>
+      <a href="/progress">Corrections</a>
+      <a href="/performance">Status</a>
+      <a href="/founder">Arhan Canli</a>
+    </nav>
+    <nav aria-label="Open source">
+      <span>Source code</span>
+      <a href="/engineering">Engineering</a>
+      <a href="/notes">Engineering notes</a>
+      <a href="https://github.com/arhancanli/alphac" rel="noreferrer">alphac engine</a>
+      <a href="https://github.com/arhancanli/canli-pit-lake" rel="noreferrer">canli-pit-lake</a>
+      <a href="https://github.com/arhancanli/canli-backtest" rel="noreferrer">canli-backtest</a>
+    </nav>
+  </div>
+  <div class="cc-footer__boundary">
+    <p>Research and paper execution only. No managed capital, copy trading, investment advice or promised return.</p>
+    <p>Engineered independently by Arhan Canli in Dubai since July 2024. The public paper
+    record begins 2026-08-07; the years before it are engineering, not track record.</p>
+    <span>Copyright Arhan Canli</span>
+  </div>
+</footer>
+<script type="module" src="/js/selection-risk-lab.js"></script>
+</body>
+</html>

@@ -419,7 +419,10 @@ ${renderProductShellHeader({ active: "engineering" })}
       <p>Post-mortems on real incidents, the arithmetic behind the validation gates, and design
         arguments about the parts that were hard. Written for the mechanism, not the summary.</p>
     </div>
-    <p class="eng-author"><a class="eng-button" href="/notes">Read the engineering notes</a></p>
+    <p class="eng-author">
+      <a class="eng-button" href="/notes">Read the engineering notes</a>
+      <a class="eng-button" href="/tools/selection-risk">Try to fool yourself, in the browser</a>
+    </p>
   </section>
 
   <section class="eng-section eng-section--tail" aria-labelledby="eng-author-title">

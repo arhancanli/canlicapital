@@ -55,13 +55,14 @@ shipping, but cannot place, cancel, or delay an order.
 | `measurements/*.html` | 89 generated Dataset pages with explicit claim boundaries |
 | `engineering.html` | the open-source hub: the three repositories, what is hard in them, and a reading path |
 | `notes/*.html` | engineering notes: post-mortems, derivations and design arguments |
+| `tools/selection-risk.html` | the Selection Risk Lab: search a series with no edge, watch the deflation kill what you find |
 
 `public/paper-state.json` and `public/glassbox/*` are written by the engine's publish job, not by
 hand. They are the machine-readable form of every claim the pages make. Current corpus counts are
 derived during the build from `public/research-index.json`,
 `public/glassbox/trial_packet_manifest.json`, and the generated measurement directory; the sitemap
 is generated from the same files rather than maintained separately. The present build contains
-253 canonical URLs in the sitemap (all indexable), plus a public noindex evidence page for every incomplete registered
+254 canonical URLs in the sitemap (all indexable), plus a public noindex evidence page for every incomplete registered
 trial and one archival HTML paper per registered sleeve. It publishes
 identity-level packets for all 228 recorded hypotheses, while
 honestly marking 226 of those packets incomplete.

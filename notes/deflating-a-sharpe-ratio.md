@@ -160,4 +160,6 @@ and
 [`pbo.py`](https://github.com/arhancanli/canli-backtest/blob/main/src/alphaforge/validation/pbo.py).
 Both are byte-identical to the engine that produces the public record, and CI proves it on every
 push. You can also run the deflation in the browser on
-[the calculator](/tools/deflated-sharpe).*
+[the calculator](/tools/deflated-sharpe), or watch it happen to you in
+[the Selection Risk Lab](/tools/selection-risk), which lets you search a series that provably has
+no edge and then deflates whatever you find against your own search.*
