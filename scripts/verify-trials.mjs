@@ -18,6 +18,11 @@ for (const packet of source.packets) {
   check(pages.includes(name), `${packet.hypothesis_key} has no HTML evidence page`);
   if (!pages.includes(name)) continue;
   const html = readFileSync(resolve(DIST, "trials", name), "utf8");
+  // The index entry carries only identity and status. The section-level debt
+  // lives in the packet itself, so read it rather than asserting against fields
+  // the index does not have -- which would compare every page to zero and fail.
+  const full = JSON.parse(readFileSync(
+    resolve(ROOT, "public/glassbox/trial-packets", `${packet.hypothesis_key}.json`), "utf8"));
   check(html.includes(`<link rel="canonical" href="https://canlicapital.com/trials/${packet.hypothesis_key}"`), `${name} has no self-canonical`);
   check(html.includes('"@type":"Dataset"'), `${name} has no Dataset schema`);
   check(html.includes('"@id":"https://canlicapital.com/#arhan-canli"'), `${name} has no Arhan Canli Person binding`);
@@ -30,7 +35,39 @@ for (const packet of source.packets) {
   } else {
     check(html.includes('name="robots" content="noindex, follow,'), `${name} is incomplete but indexable`);
     check(!inSitemap, `${name} is incomplete but present in the sitemap`);
-    check(html.includes("A missing section stays visibly missing"), `${name} softens incomplete evidence debt`);
+    // ASSERT THE DEBT, NOT A SENTENCE ABOUT IT.
+    //
+    // This used to require the literal string "A missing section stays visibly
+    // missing" -- a sentence of prose that appeared, identically, on all 228
+    // trial pages. It could be satisfied by a page that printed the sentence and
+    // rendered none of the missing sections, and it FAILED a page that rendered
+    // every missing section and simply did not repeat the explanation. It was
+    // guarding the wording.
+    //
+    // What has to be true is that every section the packet records as missing is
+    // on the page, labelled missing. That is checked directly, per section, so a
+    // page cannot quietly drop one and still pass.
+    const missingSections = Object.entries(full.required_sections ?? {})
+      .filter(([, section]) => section.status === "MISSING_IDENTITY_LEVEL_EVIDENCE");
+    const renderedMissing = (html.match(/trial__section--missing/g) ?? []).length;
+    check(
+      renderedMissing === missingSections.length,
+      `${name} renders ${renderedMissing} missing sections but its packet records ${missingSections.length}`,
+    );
+    for (const [sectionName] of missingSections) {
+      const label = sectionName.replaceAll("_", " ").replace(/\b\w/g, (c) => c.toUpperCase());
+      check(
+        html.includes(label),
+        `${name} does not name its missing section "${label}"`,
+      );
+    }
+    // A packet with nothing missing is not incomplete, so reaching this branch
+    // with zero missing sections means the completeness flag and the sections
+    // disagree, and the loop above would have passed vacuously.
+    check(
+      missingSections.length > 0 || (full.partial_sections ?? []).length > 0,
+      `${name} is marked incomplete but records no missing or partial section`,
+    );
   }
   if ((packet.partial_sections ?? []).length) {
     check(html.includes("trial__section--partial"), `${name} renders partial evidence as verified or missing`);

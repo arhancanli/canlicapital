@@ -30,6 +30,15 @@ ROUTES = (
     "/engineering",
     "/notes",
     "/notes/deflating-a-sharpe-ratio",
+    # The interactive labs and the cost ledger. These carry the shared shell like
+    # every other page, and until they were listed here nothing checked that they
+    # did -- they were the newest pages and so the least covered, which is exactly
+    # backwards.
+    "/costs",
+    "/developers",
+    "/tools/selection-risk",
+    "/tools/breadth",
+    "/tools/execution",
 )
 
 EXPECTED_CORE = {"Live", "Research", "Trials", "Systems", "Methodology", "Verify"}

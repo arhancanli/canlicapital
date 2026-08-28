@@ -164,10 +164,39 @@ function parseNote(slug, markdown) {
   // which is the exact trade this whole site exists to refuse. The corpus-wide
   // fallback is the correct mode for prose; declare sources only for a note whose
   // figures genuinely all come from one artifact.
+  //
+  // 2026-08-28: and not even then, if the note links to another note whose TITLE
+  // contains a number. A declaration scopes every numeral on the RENDERED page,
+  // including the related-note links this builder appends, so a cross-link to
+  // "The trade that lost 99 percent" made 99 an untraceable figure on a page
+  // that never wrote it. Quote artifacts verbatim and let the corpus match.
   const sourceLine = markdown.match(/^\*\*Sources:\*\*\s*(.+)$/im);
+  // NOT plain(): that strips underscores as markdown emphasis, so a declared
+  // source of crypto_carry_replay_correction.json became
+  // cryptocarryreplaycorrection.json and matched no artifact. A source list is
+  // filenames, not prose, and the only markdown that can legitimately appear in
+  // one is a link. Every entry is then checked against what is actually on disk,
+  // because a source declaration that names a file which does not exist scopes
+  // the page's numerals to nothing and fails every one of them.
   const sources = sourceLine
-    ? sourceLine[1].split(",").map((x) => plain(x)).filter(Boolean)
+    ? sourceLine[1]
+        .split(",")
+        .map((entry) => entry.replace(/\[([^\]]+)\]\([^)]*\)/g, "$1").replace(/[`*]/g, "").trim())
+        .filter(Boolean)
     : [];
+  for (const source of sources) {
+    const candidates = [
+      resolve(ROOT, "public", "glassbox", source),
+      resolve(ROOT, "public", source),
+    ];
+    if (!candidates.some((path) => existsSync(path))) {
+      throw new Error(
+        `${slug}: declared source "${source}" is not a published artifact. ` +
+        "A source list scopes every numeral on the page to those files, so naming one that " +
+        "does not exist makes every figure on the page untraceable.",
+      );
+    }
+  }
 
   const dateMatch = markdown.match(/\*\*Published (\d{4}-\d{2}-\d{2})[.,]/);
   if (!dateMatch) throw new Error(`${slug}: no "**Published YYYY-MM-DD" line`);

@@ -1,3 +1,6 @@
+import { curveStatistics } from "./curve-stats.js";
+import { formatCompactCurrency } from "./format.js";
+
 const byId = (id) => document.getElementById(id);
 
 const percent = new Intl.NumberFormat("en-GB", {
@@ -11,12 +14,8 @@ const correlationFormat = new Intl.NumberFormat("en-GB", {
   signDisplay: "always",
 });
 const integer = new Intl.NumberFormat("en-GB");
-const compactCurrency = new Intl.NumberFormat("en-US", {
-  style: "currency",
-  currency: "USD",
-  notation: "compact",
-  maximumFractionDigits: 1,
-});
+// Shared with the static build; see js/format.js for why this is not Intl.
+const compactCurrency = { format: formatCompactCurrency };
 const shortDate = new Intl.DateTimeFormat("en-GB", {
   day: "2-digit",
   month: "short",
@@ -182,31 +181,6 @@ function hydrateClaimContract(payload) {
   return claims;
 }
 
-function curveStatistics(curve) {
-  if (!Array.isArray(curve) || curve.length < 2) return null;
-  const values = curve.map((point) => Number(point.equity)).filter(Number.isFinite);
-  if (values.length < 2 || values[0] === 0) return null;
-
-  let high = values[0];
-  let maxDrawdown = 0;
-  const returns = [];
-  values.forEach((value, index) => {
-    high = Math.max(high, value);
-    maxDrawdown = Math.min(maxDrawdown, value / high - 1);
-    if (index > 0 && values[index - 1] !== 0) {
-      returns.push(value / values[index - 1] - 1);
-    }
-  });
-  const mean = returns.reduce((sum, value) => sum + value, 0) / returns.length;
-  const variance = returns.length > 1
-    ? returns.reduce((sum, value) => sum + ((value - mean) ** 2), 0) / (returns.length - 1)
-    : 0;
-  return {
-    returnPercent: (values.at(-1) / values[0] - 1) * 100,
-    drawdownPercent: maxDrawdown * 100,
-    annualizedVolatilityPercent: Math.sqrt(variance) * Math.sqrt(365) * 100,
-  };
-}
 
 function renderCurve(algorithm, { updateUrl = true } = {}) {
   const curve = algorithm?.live_curve;
@@ -341,7 +315,9 @@ function hydrateCosts(costs) {
 }
 
 function supportsEvidenceCore() {
-  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return false;
+  // Reduced motion is handled INSIDE the scene, which renders a single static
+  // frame of the real data rather than falling back to a CSS poster. Gating it
+  // here would also make that branch unreachable and therefore untested.
   if (!window.matchMedia("(min-width: 901px)").matches) return false;
   if (navigator.deviceMemory && navigator.deviceMemory < 4) return false;
   try {
@@ -368,7 +344,7 @@ function prepareEvidenceCore(data, claims) {
     loading = true;
     try {
       const { initEvidenceCore } = await import("./evidence-core.js");
-      initEvidenceCore({ section, identities, killed, sleeves, signedEntries, brokerSleeves });
+      await initEvidenceCore(section);
     } catch {
       section.dataset.renderer = "static";
     }

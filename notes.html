@@ -24,7 +24,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" />
 <link rel="stylesheet" href="/css/product-shell.css" />
 <link rel="stylesheet" href="/css/notes.css" />
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Blog","@id":"https://canlicapital.com/notes","name":"Engineering notes","description":"Engineering notes from Canli Capital: post-mortems on real incidents, the arithmetic behind the validation gates, and design arguments from the research engine.","url":"https://canlicapital.com/notes","author":{"@id":"https://canlicapital.com/#arhan-canli"},"blogPost":[{"@type":"TechArticle","headline":"The arithmetic of not fooling yourself","description":"A Sharpe ratio of 1.14 with a p-value of 0.017. Publishable, on the face of it. Whether it means anything depends entirely on a number that does not appear in it: how many things you tried before this one.","url":"https://canlicapital.com/notes/deflating-a-sharpe-ratio","datePublished":"2026-08-27","wordCount":1298,"author":{"@id":"https://canlicapital.com/#arhan-canli"}},{"@type":"TechArticle","headline":"Seventy files that were never meant to be public","description":"I published two open-source repositories with a check that proved they were faithful copies. The check passed every time I ran it. It was structurally incapable of failing.","url":"https://canlicapital.com/notes/seventy-files","datePublished":"2026-08-27","wordCount":916,"author":{"@id":"https://canlicapital.com/#arhan-canli"}},{"@type":"TechArticle","headline":"The trade that lost 99 percent, and the guard I did not add","description":"A carry signal bought a token at 16.15 and closed it at 0.1553. The strategy was not broken. The interesting decision came afterwards, and it was to change nothing.","url":"https://canlicapital.com/notes/the-trade-that-lost-99-percent","datePublished":"2026-08-27","wordCount":1068,"author":{"@id":"https://canlicapital.com/#arhan-canli"}},{"@type":"TechArticle","headline":"What competitive programming actually bought me, and what it did not","description":"There are no segment trees in this trading engine. I want to explain why that is the right answer, and what the contest habit did pay for instead, because the honest version of this story is more useful than the flattering one.","url":"https://canlicapital.com/notes/what-competitive-programming-bought","datePublished":"2026-08-27","wordCount":1308,"author":{"@id":"https://canlicapital.com/#arhan-canli"}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Blog","@id":"https://canlicapital.com/notes","name":"Engineering notes","description":"Engineering notes from Canli Capital: post-mortems on real incidents, the arithmetic behind the validation gates, and design arguments from the research engine.","url":"https://canlicapital.com/notes","author":{"@id":"https://canlicapital.com/#arhan-canli"},"blogPost":[{"@type":"TechArticle","headline":"The one symbol that explained the whole gap","description":"I could not reproduce my own result. The replay came out materially worse over the same window, on the same code path, from what I believed were the same inputs. The cause was a single delisted token that had quietly left the universe between the two runs.","url":"https://canlicapital.com/notes/one-symbol","datePublished":"2026-08-28","wordCount":1116,"author":{"@id":"https://canlicapital.com/#arhan-canli"}},{"@type":"TechArticle","headline":"The arithmetic of not fooling yourself","description":"A Sharpe ratio of 1.14 with a p-value of 0.017. Publishable, on the face of it. Whether it means anything depends entirely on a number that does not appear in it: how many things you tried before this one.","url":"https://canlicapital.com/notes/deflating-a-sharpe-ratio","datePublished":"2026-08-27","wordCount":1298,"author":{"@id":"https://canlicapital.com/#arhan-canli"}},{"@type":"TechArticle","headline":"Seventy files that were never meant to be public","description":"I published two open-source repositories with a check that proved they were faithful copies. The check passed every time I ran it. It was structurally incapable of failing.","url":"https://canlicapital.com/notes/seventy-files","datePublished":"2026-08-27","wordCount":916,"author":{"@id":"https://canlicapital.com/#arhan-canli"}},{"@type":"TechArticle","headline":"The trade that lost 99 percent, and the guard I did not add","description":"A carry signal bought a token at 16.15 and closed it at 0.1553. The strategy was not broken. The interesting decision came afterwards, and it was to change nothing.","url":"https://canlicapital.com/notes/the-trade-that-lost-99-percent","datePublished":"2026-08-27","wordCount":1068,"author":{"@id":"https://canlicapital.com/#arhan-canli"}},{"@type":"TechArticle","headline":"What competitive programming actually bought me, and what it did not","description":"There are no segment trees in this trading engine. I want to explain why that is the right answer, and what the contest habit did pay for instead, because the honest version of this story is more useful than the flattering one.","url":"https://canlicapital.com/notes/what-competitive-programming-bought","datePublished":"2026-08-27","wordCount":1308,"author":{"@id":"https://canlicapital.com/#arhan-canli"}}]}</script>
 </head>
 <body class="note-page note-index-page">
 <a class="note-skip" href="#content">Skip to content</a>
@@ -91,6 +91,16 @@
       artifact or a script you can run.</p>
   </section>
   <ol class="note-list">
+    <li>
+      <a class="note-card" href="/notes/one-symbol">
+        <span class="note-card__n">05</span>
+        <span class="note-card__body">
+          <span class="note-card__title">The one symbol that explained the whole gap</span>
+          <span class="note-card__dek">I could not reproduce my own result. The replay came out materially worse over the same window, on the same code path, from what I believed were the same inputs. The cause was a single delisted token that had quietly left the universe between the two runs.</span>
+          <span class="note-card__meta"><time datetime="2026-08-28">2026-08-28</time> &middot; 5 min</span>
+        </span>
+      </a>
+    </li>
     <li>
       <a class="note-card" href="/notes/deflating-a-sharpe-ratio">
         <span class="note-card__n">04</span>
@@ -164,6 +174,15 @@
       <a href="/progress">Corrections</a>
       <a href="/performance">Status</a>
       <a href="/founder">Arhan Canli</a>
+    </nav>
+    <nav aria-label="Interactive tools">
+      <span>Run it yourself</span>
+      <a href="/tools/deflated-sharpe">Deflated Sharpe calculator</a>
+      <a href="/tools/selection-risk">Selection Risk Lab</a>
+      <a href="/tools/breadth">Breadth Lab</a>
+      <a href="/tools/execution">Execution Reality Lab</a>
+      <a href="/tools/trial-accounting">Trial accounting</a>
+      <a href="/tools/evidence-chain">Evidence chain</a>
     </nav>
     <nav aria-label="Open source">
       <span>Source code</span>

@@ -390,9 +390,6 @@ function main() {
       : { "@type": "Person", name: AUTHOR };
 
     const lead = [
-      `<p class="measure__lead">${escapeHtml(name)} is one of ${artifacts.length} measurements this`,
-      `engine publishes in full. It is regenerated from a real run rather than transcribed, and it`,
-      `is shown here with its own claim boundary so the number and its limits arrive together.</p>`,
       boundary
         ? `<aside class="measure__boundary"><h2>What this measurement does and does not claim</h2>` +
           `<p>${escapeHtml(boundary)}</p></aside>`
@@ -404,9 +401,7 @@ function main() {
     const body = `<section class="measure__section"><h2>The measurement</h2>\n${renderBody(data, 1, rawUrl)}\n</section>
 <section class="measure__section"><h2>Check it yourself</h2>
 <p>Every figure above is read from <a href="${rawUrl}"><code>${escapeHtml(rawUrl)}</code></a>, the
-artifact the engine wrote. Nothing on this page is typed by hand: the page is generated from that
-file, so a figure that moves in the artifact moves here and a figure that is not in the artifact
-cannot appear here at all.</p>
+artifact the engine wrote.</p>
 <p><a href="/measurements">All ${artifacts.length} measurements</a> &middot;
 <a href="/open">The glass box</a> &middot;
 <a href="/research">The research library</a></p>

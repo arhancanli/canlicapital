@@ -29,7 +29,7 @@
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=optional" /></noscript>
 <link rel="stylesheet" href="./css/paper.css" />
 <link rel="stylesheet" href="/css/product-shell.css" />
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"HowTo","name":"How to verify the Canli Capital published record","description":"Recompute every published hash with nothing but Python, check the signatures and the append-only chain, re-run the engine. Exact commands, and what each cannot show.","url":"https://canlicapital.com/verify","author":{"@type":"Person","@id":"https://canlicapital.com/#arhan-canli","name":"Arhan Canli"},"publisher":{"@type":"Organization","@id":"https://canlicapital.com/#organization","name":"Canli Capital"},"step":[{"@type":"HowToStep","name":"Recompute the content hashes","text":"Download the 159 published artifacts and reproduce.py, then run it. Python standard library only.","url":"https://canlicapital.com/verify#l1"},{"@type":"HowToStep","name":"Check the signatures and the append-only chain","text":"Verify the Ed25519 signatures on the signed commitments and re-derive all 535 links of the transparency chain.","url":"https://canlicapital.com/verify#l2"},{"@type":"HowToStep","name":"Re-run the engine determinism test","text":"Clone the repository and run the golden-master test, which reproduces a scripted fixture byte for byte.","url":"https://canlicapital.com/verify#l3"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"HowTo","name":"How to verify the Canli Capital published record","description":"Recompute every published hash with nothing but Python, check the signatures and the append-only chain, re-run the engine. Exact commands, and what each cannot show.","url":"https://canlicapital.com/verify","author":{"@type":"Person","@id":"https://canlicapital.com/#arhan-canli","name":"Arhan Canli"},"publisher":{"@type":"Organization","@id":"https://canlicapital.com/#organization","name":"Canli Capital"},"step":[{"@type":"HowToStep","name":"Recompute the content hashes","text":"Download the 159 published artifacts and reproduce.py, then run it. Python standard library only.","url":"https://canlicapital.com/verify#l1"},{"@type":"HowToStep","name":"Check the signatures and the append-only chain","text":"Verify the Ed25519 signatures on the signed commitments and re-derive all 552 links of the transparency chain.","url":"https://canlicapital.com/verify#l2"},{"@type":"HowToStep","name":"Re-run the engine determinism test","text":"Clone the repository and run the golden-master test, which reproduces a scripted fixture byte for byte.","url":"https://canlicapital.com/verify#l3"}]}</script>
 </head>
 <body class="paper">
 <a class="paper__skip" href="#content">Skip to content</a>
@@ -230,8 +230,8 @@ python3 reproduce.py --dir .
 curl -sO https://canlicapital.com/glassbox/transparency_log.json
 curl -sO https://canlicapital.com/glassbox/verify_transparency.py
 python3 verify_transparency.py transparency_log.json</code></pre>
-        <p>The chain currently holds 535 entries, from 2026-06-27 to
-        2026-08-27, signed under the public key
+        <p>The chain currently holds 552 entries, from 2026-06-27 to
+        2026-08-28, signed under the public key
         <code class="verify__key">0c6606a6b0c5b66fbf3b78521c85e72019484e0177d04a873a651179175ac095</code>. If any earlier entry had
         been altered, that entry's chain hash and every later signature would fail here.</p>
         <p><a href="/tools/evidence-chain">Inspect the chain in the browser</a>. The interactive
@@ -317,6 +317,15 @@ uv run python scripts/reproduce.py</code></pre>
       <a href="/progress">Corrections</a>
       <a href="/performance">Status</a>
       <a href="/founder">Arhan Canli</a>
+    </nav>
+    <nav aria-label="Interactive tools">
+      <span>Run it yourself</span>
+      <a href="/tools/deflated-sharpe">Deflated Sharpe calculator</a>
+      <a href="/tools/selection-risk">Selection Risk Lab</a>
+      <a href="/tools/breadth">Breadth Lab</a>
+      <a href="/tools/execution">Execution Reality Lab</a>
+      <a href="/tools/trial-accounting">Trial accounting</a>
+      <a href="/tools/evidence-chain">Evidence chain</a>
     </nav>
     <nav aria-label="Open source">
       <span>Source code</span>

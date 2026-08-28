@@ -147,6 +147,7 @@ say();
 say("## Machine-readable");
 say();
 say(`- [Sitemap](${ORIGIN}/sitemap.xml): all ${routes.length} indexable routes.`);
+say(`- [Full text](${ORIGIN}/llms-full.txt): every research document, engineering note and paper abstract concatenated into one file, so a model can read the whole corpus without sampling it.`);
 say(`- [Paper state](${ORIGIN}/paper-state.json): the live record as JSON, the source every page renders from.`);
 say(`- [Research index](${ORIGIN}/research-index.json): ${researchIndex.count ?? paperRoutes.length} documents with citation metadata.`);
 say(`- [Engineering manifest](${ORIGIN}/glassbox/engineering_open_source.json): repository counts, derived from what each repository publishes.`);
@@ -164,4 +165,102 @@ say();
 
 const body = lines.join("\n");
 writeFileSync(OUT, body);
+
+// =============================================================================
+// llms-full.txt
+// -----------------------------------------------------------------------------
+// llms.txt is a map. This is the territory: every research document, every
+// engineering note and every archived abstract concatenated into one fetch.
+//
+// WHY IT EXISTS. A model asked about this site will otherwise crawl a sample of
+// 275 URLs and reason from whatever subset it happened to reach. The corpus here
+// is 111 research documents, and the ones most worth reading are the failures,
+// which are exactly the pages a crawler ranks lowest and samples last. Publishing
+// the whole thing in one file removes sampling from the equation.
+//
+// WHY IT REPEATS THE INDEX FIRST. The claim boundary has to survive truncation.
+// A model that reads only the first few kilobytes of a 700 KB file must still
+// come away knowing the record is paper-traded, so the boundary block is the
+// first thing in the file and it is the SAME string llms.txt publishes -- not a
+// copy that can drift, but the same generated lines.
+// =============================================================================
+
+const full = [];
+const fullSay = (line = "") => full.push(line);
+
+fullSay("# Canli Capital: full text corpus");
+fullSay();
+fullSay(
+  "This file is the complete text of the research published at " + ORIGIN + ", assembled in one " +
+  "document. The index below is identical to " + ORIGIN + "/llms.txt. Every document after it is " +
+  "reproduced in full from the same markdown the website renders.",
+);
+fullSay();
+fullSay("---");
+fullSay();
+fullSay(body);
+fullSay();
+fullSay("---");
+fullSay();
+const RULE = "=".repeat(78);
+const section = (heading) => { fullSay(); fullSay(RULE); fullSay(heading.toUpperCase()); fullSay(RULE); fullSay(); };
+const document = (url) => { fullSay(); fullSay("-".repeat(78)); fullSay(`SOURCE: ${url}`); fullSay("-".repeat(78)); fullSay(); };
+
+section(`Full text: ${notes.length} engineering notes, then the research corpus`);
+
+for (const n of notes) {
+  document(`${ORIGIN}/notes/${n.slug}`);
+  fullSay(readFileSync(resolve(ROOT, "notes", `${n.slug}.md`), "utf8").trim());
+  fullSay();
+}
+
+// The research corpus, in full, read from the same markdown the site publishes at
+// /research/<slug>.md so this file cannot contain a document the site does not.
+const researchDir = resolve(ROOT, "public/research");
+const researchFiles = readdirSync(researchDir).filter((f) => f.endsWith(".md")).sort();
+if (researchFiles.length !== paperRoutes.length) {
+  throw new Error(
+    `llms-full.txt: ${researchFiles.length} markdown sources but ${paperRoutes.length} research routes in the sitemap. ` +
+    "One of them is publishing a document the other does not.",
+  );
+}
+section(`Research corpus: ${researchFiles.length} documents, including every failed candidate`);
+for (const file of researchFiles) {
+  document(`${ORIGIN}/research/${file.slice(0, -3)}`);
+  fullSay(readFileSync(resolve(researchDir, file), "utf8").trim());
+  fullSay();
+}
+
+// Archived working papers: the abstract and the checksums, not the body. The body
+// is byte-preserved HTML whose hash is published; inlining it here would create a
+// second copy that no manifest pins, and a model quoting the copy could not tell
+// whether it matched the archive.
+const registry = read("public/glassbox/external_publication_registry.json");
+section(`Archived working papers: ${registry.sleeves.length} abstracts`);
+fullSay(
+  "Preprints, not peer reviewed, with no DOI and no independent replication. Each paper is " +
+  "byte-preserved and its checksums are published beside it. The abstract is reproduced here; " +
+  "the body is not, because a copy of it in this file would not hash to the checksum the bundle " +
+  "publishes, and an uncheckable copy of a document whose whole point is that it is checkable is " +
+  "worse than a link.",
+);
+fullSay();
+for (const sleeve of registry.sleeves) {
+  const dir = sleeve.bundle_manifest.replace(/\/bundle_manifest\.json$/, "");
+  const meta = read(`public/${dir}/paper.json`);
+  document(`${ORIGIN}/${dir}`);
+  fullSay(`# ${meta.title}`);
+  fullSay();
+  fullSay(`Published ${meta.date}. Paper: ${ORIGIN}/${dir}/paper . PDF: ${ORIGIN}/${dir}/paper.pdf`);
+  fullSay();
+  if (meta.abstract) { fullSay(meta.abstract.trim()); fullSay(); }
+  if (meta.claim_boundary) { fullSay(`Claim boundary: ${meta.claim_boundary.trim()}`); fullSay(); }
+}
+
+const fullBody = full.join("\n");
+writeFileSync(resolve(ROOT, "public", "llms-full.txt"), fullBody);
+console.log(
+  `  llms-full.txt  ${(fullBody.length / 1024).toFixed(0)} KB, ` +
+  `${researchFiles.length} research documents, ${notes.length} notes, ${registry.sleeves.length} abstracts`,
+);
 console.log(`  llms.txt  ${body.split("\n").length} lines, ${routes.length} routes, ${topics.length} topics, ${engineering.extractions.length + 1} repositories`);

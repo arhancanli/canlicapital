@@ -43,7 +43,18 @@ for (const record of manifest.records) {
     check(!forbiddenDashForms.test(html), `${record.wrapper}: editable em dash form remains`);
   }
   check(sitemap.includes(`<loc>https://canlicapital.com${record.wrapper_route}</loc>`), `${record.wrapper_route}: absent from sitemap`);
-  check(!sitemap.includes(`<loc>https://canlicapital.com${record.original_route}</loc>`), `${record.original_route}: original should sit behind its wrapper in the sitemap`);
+  // WHY. The archived route carries X-Robots-Tag: noindex, follow from vercel.json
+  // (asserted above), so listing it here would submit a noindex URL to Google and
+  // earn a "Submitted URL marked noindex" error. The wrapper is the indexable
+  // surface by design. This rule read as arbitrary while it had no reason written
+  // beside it, and was very nearly overridden on that basis; the general form of
+  // it now lives in audit-indexability.mjs, which computes effective robots state
+  // from BOTH the meta tag and the header layer for every page on the site.
+  //
+  // If a wrapper ever looks too thin to rank, the fix is to thicken the wrapper --
+  // it carries the abstract, the Scholar citation tags and the full
+  // ScholarlyArticle graph for exactly this reason -- not to index the archive.
+  check(!sitemap.includes(`<loc>https://canlicapital.com${record.original_route}</loc>`), `${record.original_route}: original is noindex at the hosting layer and must not be in the sitemap`);
 }
 
 if (failures.length) {

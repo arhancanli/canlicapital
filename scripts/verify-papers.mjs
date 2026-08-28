@@ -655,11 +655,37 @@ if (existsSync(founderFile)) {
       founderHtml.includes("Not independently attested"),
     "/founder weakens or omits the self-disclosed contribution boundary",
   );
+  // The disclosure is checked against the CONTRIBUTION MAP, not against three
+  // phrases someone once typed. The earlier version required the literal heading
+  // "AI-assisted development", and so it failed the moment that disclosure was
+  // moved from a numbered card of its own into the tools-and-services card where
+  // it categorically belongs -- a change that altered the item's RANK on the page
+  // and removed none of its substance. A guard that cannot tell those two apart
+  // is guarding the wording, not the honesty.
+  //
+  // What must remain true: the role the tooling played is stated verbatim from
+  // the source of truth, the page says no tool can claim authorship, and the
+  // venue-disclosure obligation is on the page. Reword freely; delete and fail.
+  const tooling = contribution.ai_assisted_tooling;
+  const asHtml = (text) => String(text)
+    .replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;").replaceAll("'", "&#39;");
   check(
-    founderHtml.includes("AI-assisted development") &&
-      founderHtml.includes("reviewed AI-assisted tooling") &&
-      founderHtml.includes("cannot claim authorship"),
-    "/founder does not disclose the role and limits of AI-assisted tooling",
+    founderHtml.includes(asHtml(tooling.role)),
+    "/founder no longer states the tooling role recorded in the contribution map",
+  );
+  check(
+    /can(?:not)? claim authorship/.test(founderHtml) && founderHtml.includes("venue-specific disclosure"),
+    "/founder does not state the limits of tooling: authorship and venue disclosure",
+  );
+  // The precise, unabbreviated list stays in the machine-readable map even though
+  // the page prose summarises it, so an academic venue reading the JSON gets the
+  // exact terms rather than the sentence.
+  check(
+    Array.isArray(tooling.not_permitted_to_claim) &&
+      ["authorship", "independent review", "author approval"].every((claim) => tooling.not_permitted_to_claim.includes(claim)) &&
+      tooling.venue_disclosure_required === true,
+    "the contribution map no longer records what AI tooling may not claim",
   );
   check(
     !/sole author|my own work|unaided authorship/i.test(founderHtml),

@@ -158,7 +158,8 @@ ${renderProductShellHeader({ active: "" })}
     <p class="lab-boundary"><strong>What this is.</strong> ${esc(contract.claim_boundary)}</p>
   </section>
 
-  <section class="lab-lab" id="lab">
+  <section class="lab-lab" id="lab" aria-labelledby="lab-lab-title">
+    <h2 id="lab-lab-title" class="lab-visually-hidden">The lab</h2>
     <div class="lab-controls">
       ${field("lab-fast", "Fast window", d.fast, 2, 60, 1, "bars in the fast average")}
       ${field("lab-slow", "Slow window", d.slow, 3, 200, 1, "bars in the slow average")}

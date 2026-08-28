@@ -1,15 +1,15 @@
 {
-  "as_of": "2026-08-27",
+  "as_of": "2026-08-28",
   "author": "Arhan Canli",
   "claim_boundary": "Reads the per-sleeve trading databases read-only. Opens no market data, registers no hypothesis identity and changes nothing. Corrects session-date classification only; it changes no mark, equity, return, order, fill or configuration. 0 trials.",
-  "content_hash": "sha256:ce91bbd608d84dc2dc6a4f959cb2c278be86acf79e1a76365e93b4315004db87",
+  "content_hash": "sha256:f353ded49a15edd335d03d1019d503e3dc7ad8a0131486195910dcde24503ff4",
   "correction": {
     "documentation": "docs/design/CORRECTION_ALPACA_SESSION_DATE_CONTINUITY.md",
     "raw_marks_rewritten": false,
     "status": "CORRECTED",
     "withdrawn_finding": "The v1 UTC-calendar audit called 2026-08-10 a systemic gap. The three Alpaca rows stamped 2026-08-11T00:00:00Z are the finalized 2026-08-10 XNYS closes."
   },
-  "days_since_go_live": 21,
+  "days_since_go_live": 22,
   "go_live_date": "2026-08-07",
   "how_a_gap_is_classified": "Crypto marks and expectations use UTC calendar dates. Alpaca 1D midnight-UTC marks map to the preceding XNYS session; equity expectations come from XNYS sessions, so weekends and exchange holidays are legitimate absences.",
   "max_gap_rate_threshold": 0.2,
@@ -17,14 +17,14 @@
   "schema": "canli.alphac-record-continuity.v1",
   "sleeves": {
     "alphaforge": {
-      "calendar_days_marked": 18,
+      "calendar_days_marked": 19,
       "database": "var/trading_crypto_perp.sqlite",
       "database_exists": true,
-      "days_expected": 21,
-      "days_marked": 18,
-      "days_since_go_live": 21,
+      "days_expected": 22,
+      "days_marked": 19,
+      "days_since_go_live": 22,
       "expected_calendar": "UTC_24_7",
-      "gap_rate": 0.14285714285714285,
+      "gap_rate": 0.13636363636363635,
       "legitimate_absence_days": [],
       "legitimate_absences": 0,
       "longest_consecutive_gap": 2,
@@ -38,12 +38,12 @@
       "trades_24_7": true
     },
     "alphamax": {
-      "calendar_days_marked": 15,
+      "calendar_days_marked": 16,
       "database": "var/trading_equity.sqlite",
       "database_exists": true,
-      "days_expected": 15,
-      "days_marked": 15,
-      "days_since_go_live": 21,
+      "days_expected": 16,
+      "days_marked": 16,
+      "days_since_go_live": 22,
       "expected_calendar": "XNYS",
       "gap_rate": 0.0,
       "legitimate_absence_days": [
@@ -62,12 +62,12 @@
       "trades_24_7": false
     },
     "alphavintage": {
-      "calendar_days_marked": 15,
+      "calendar_days_marked": 16,
       "database": "var/trading_alphavintage.sqlite",
       "database_exists": true,
-      "days_expected": 15,
-      "days_marked": 15,
-      "days_since_go_live": 21,
+      "days_expected": 16,
+      "days_marked": 16,
+      "days_since_go_live": 22,
       "expected_calendar": "XNYS",
       "gap_rate": 0.0,
       "legitimate_absence_days": [
@@ -86,12 +86,12 @@
       "trades_24_7": false
     },
     "managed_futures": {
-      "calendar_days_marked": 15,
+      "calendar_days_marked": 16,
       "database": "var/trading_managed_futures.sqlite",
       "database_exists": true,
-      "days_expected": 15,
-      "days_marked": 15,
-      "days_since_go_live": 21,
+      "days_expected": 16,
+      "days_marked": 16,
+      "days_since_go_live": 22,
       "expected_calendar": "XNYS",
       "gap_rate": 0.0,
       "legitimate_absence_days": [
@@ -114,5 +114,5 @@
   "systemic_note": "Dates that are expected and missing on EVERY sleeve's own calendar are systemic \u2014 the tick did not run or did not mark \u2014 rather than a fault in any one sleeve.",
   "threshold_basis": "Declared, not fitted. A threshold derived from today's gap rate would pass whatever the gap rate happens to be, which is not a threshold.",
   "what_this_does_not_measure": "Whether a mark is CORRECT \u2014 only whether one exists. A sleeve marking the same equity every day would show a perfect continuity record and a frozen curve. That is the publish gate's job (check_published_state), not this one's.",
-  "worst_gap_rate": 0.14285714285714285
+  "worst_gap_rate": 0.13636363636363635
 }

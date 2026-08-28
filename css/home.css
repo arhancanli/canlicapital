@@ -123,10 +123,10 @@ h1 { max-width: 12.2ch; margin: 0; font-size: clamp(3.7rem, 5.9vw, 7rem); font-v
 .console-foot a { color: var(--cyan); }
 
 .section, .offering { max-width: var(--max); margin: 0 auto; padding-right: var(--pad); padding-left: var(--pad); }
-.offering { padding-top: clamp(72px, 8vw, 126px); padding-bottom: clamp(82px, 9vw, 146px); }
+.offering { padding-top: clamp(64px, 5.4vw, 92px); padding-bottom: clamp(70px, 6vw, 104px); }
 .section-kicker { display: flex; align-items: center; justify-content: space-between; padding-bottom: 15px; border-bottom: 1px solid var(--line); color: var(--cobalt); font: 500 .64rem/1.2 var(--mono); letter-spacing: .09em; text-transform: uppercase; }
 .section-kicker small { color: var(--muted); font: inherit; }
-.offering__intro { display: grid; grid-template-columns: 1.25fr .75fr; gap: clamp(40px, 9vw, 150px); align-items: end; padding: clamp(34px, 4.5vw, 72px) 0 clamp(40px, 5vw, 78px); }
+.offering__intro { display: grid; grid-template-columns: 1.25fr .75fr; gap: clamp(40px, 7vw, 120px); align-items: end; padding: clamp(28px, 3.2vw, 50px) 0 clamp(32px, 3.6vw, 56px); }
 .offering__intro h2, .section-heading h2, .research h2, .access h2 { margin: 0; font-size: clamp(2.7rem, 4.8vw, 5.5rem); font-variation-settings: "wdth" 91; font-weight: 560; letter-spacing: -.052em; line-height: .94; text-wrap: balance; }
 .offering__intro p, .section-heading > p { max-width: 53ch; margin: 0; color: var(--muted); font-size: .95rem; line-height: 1.7; }
 .offering__grid { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--ink); border-bottom: 1px solid var(--ink); }
@@ -139,7 +139,7 @@ h1 { max-width: 12.2ch; margin: 0; font-size: clamp(3.7rem, 5.9vw, 7rem); font-v
 .offering__grid a, .trust-grid a, .paths-grid a { width: fit-content; color: var(--ink); border-bottom: 1px solid var(--line); font-size: .66rem; font-weight: 600; }
 .offering__grid a:hover, .trust-grid a:hover, .paths-grid a:hover { color: var(--cobalt); border-color: var(--cobalt); }
 
-.evidence { padding-top: clamp(80px, 9vw, 150px); padding-bottom: clamp(80px, 9vw, 150px); }
+.evidence { padding-top: clamp(72px, 6vw, 104px); padding-bottom: clamp(72px, 6vw, 104px); }
 .section-heading { margin-bottom: clamp(45px, 6vw, 88px); }
 .section-heading--split { display: grid; grid-template-columns: 1.22fr .78fr; gap: clamp(44px, 10vw, 170px); align-items: end; }
 .section-heading .eyebrow { margin-bottom: 19px; }
@@ -211,11 +211,11 @@ h1 { max-width: 12.2ch; margin: 0; font-size: clamp(3.7rem, 5.9vw, 7rem); font-v
 .basis-grid article h3 { margin: auto 0 9px; font-size: 1.2rem; font-weight: 580; letter-spacing: -.035em; }
 .basis-grid article p { margin: 0; color: var(--muted); font-size: .75rem; line-height: 1.55; }
 
-.evidence-core { position: relative; color: #eef8ff; background: #06111b; border-top: 1px solid rgba(158,205,230,.12); border-bottom: 1px solid rgba(158,205,230,.12); }
-.evidence-core__pin { min-height: 100svh; display: grid; grid-template-columns: minmax(340px, .72fr) minmax(0, 1.28fr); gap: clamp(46px, 7vw, 120px); align-items: center; padding: 108px var(--pad) 72px; overflow: hidden; }
+.evidence-core { position: relative; min-height: 240vh; color: #eef8ff; background: #06111b; border-top: 1px solid rgba(158,205,230,.12); border-bottom: 1px solid rgba(158,205,230,.12); }
+.evidence-core__pin { position: sticky; top: 0; height: 100svh; min-height: 100svh; display: grid; grid-template-columns: minmax(340px, .88fr) minmax(0, 1.12fr); gap: clamp(46px, 7vw, 120px); align-items: center; padding: 84px var(--pad) 64px; overflow: hidden; }
 .evidence-core__copy { position: relative; z-index: 2; max-width: 620px; }
 .evidence-core__copy .eyebrow { color: var(--cyan); }
-.evidence-core__copy h2 { max-width: 10ch; margin-top: 22px; font-size: clamp(3.4rem, 5.5vw, 7rem); }
+.evidence-core__copy h2 { max-width: 18ch; margin-top: 18px; font-size: clamp(2.5rem, 3.9vw, 4.3rem); line-height: 1; }
 .evidence-core__copy > p:not(.eyebrow):not(.core-noscript) { max-width: 52ch; margin: 28px 0 0; color: #8ca6b6; font-size: .83rem; line-height: 1.68; }
 .core-chapters { display: grid; gap: 0; margin: 38px 0 0; padding: 0; list-style: none; border-top: 1px solid rgba(158,205,230,.13); }
 .core-chapters li { display: grid; grid-template-columns: 36px 1fr; gap: 12px; min-height: 63px; align-items: center; padding: 11px 0; color: #7793a4; border-bottom: 1px solid rgba(158,205,230,.13); transition: color .35s ease, padding-left .35s var(--ease); }
@@ -255,7 +255,7 @@ h1 { max-width: 12.2ch; margin: 0; font-size: clamp(3.7rem, 5.9vw, 7rem); font-v
 .core-progress span { display: block; width: 100%; height: 100%; background: var(--cyan); transform: scaleX(0); transform-origin: left; }
 .core-noscript { color: #8ca6b6; font: 400 .58rem/1.5 var(--mono); }
 
-.system-films { padding: clamp(92px, 10vw, 170px) var(--pad); color: #eef8ff; background: #08151f; }
+.system-films { padding: clamp(76px, 6.4vw, 112px) var(--pad); color: #eef8ff; background: #08151f; }
 .system-films__head { display: grid; grid-template-columns: 1.15fr .85fr; gap: clamp(48px, 8vw, 130px); align-items: end; margin-bottom: 58px; }
 .system-films__head .eyebrow { color: var(--cyan); }
 .system-films__head h2 { max-width: 12ch; margin: 0; font-size: clamp(3.25rem, 5.5vw, 6.6rem); font-weight: 560; letter-spacing: -.058em; line-height: .91; }
@@ -295,7 +295,7 @@ h1 { max-width: 12.2ch; margin: 0; font-size: clamp(3.7rem, 5.9vw, 7rem); font-v
   .system-film__body > a:hover { color: #fff; border-color: #fff; }
 }
 
-.trace { padding-top: clamp(80px, 9vw, 150px); padding-bottom: clamp(90px, 10vw, 170px); }
+.trace { padding-top: clamp(72px, 6vw, 104px); padding-bottom: clamp(76px, 6.4vw, 112px); }
 .trace-line { display: grid; grid-template-columns: repeat(5, 1fr); margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--ink); border-bottom: 1px solid var(--ink); counter-reset: trace; }
 .trace-line li { position: relative; min-height: 250px; display: flex; flex-direction: column; padding: 22px 20px 20px 0; border-right: 1px solid var(--line); }
 .trace-line li:not(:first-child) { padding-left: 20px; }
@@ -307,7 +307,7 @@ h1 { max-width: 12.2ch; margin: 0; font-size: clamp(3.7rem, 5.9vw, 7rem); font-v
 .trace-line a { width: fit-content; color: var(--ink); border-bottom: 1px solid var(--line); font-size: .62rem; }
 .trace-line a:hover { color: var(--cobalt); border-color: var(--cobalt); }
 
-.sleeves { padding-top: clamp(90px, 10vw, 170px); padding-bottom: clamp(90px, 10vw, 170px); }
+.sleeves { padding-top: clamp(76px, 6.4vw, 112px); padding-bottom: clamp(76px, 6.4vw, 112px); }
 .sleeve-table { border-top: 1px solid var(--ink); }
 .sleeve-row { display: grid; grid-template-columns: 48px 1.05fr 1.5fr .9fr 1.05fr; gap: clamp(18px, 2.3vw, 38px); align-items: center; min-height: 150px; padding: 24px 0; border-bottom: 1px solid var(--line); }
 .sleeve-index { color: #536b79; font: 500 .75rem/1 var(--mono); }
@@ -329,7 +329,7 @@ h1 { max-width: 12.2ch; margin: 0; font-size: clamp(3.7rem, 5.9vw, 7rem); font-v
 .sleeves-footer strong { color: var(--cobalt); font: 500 1.5rem/1 var(--mono); font-variant-numeric: tabular-nums; }
 .sleeves-footer a { font-size: .66rem; font-weight: 600; }
 
-.research { display: grid; grid-template-columns: .86fr 1.14fr; gap: clamp(70px, 10vw, 180px); padding: clamp(92px, 10vw, 170px) var(--pad); color: #eff8ff; background: var(--night); }
+.research { display: grid; grid-template-columns: .86fr 1.14fr; gap: clamp(60px, 7vw, 120px); padding: clamp(76px, 6.4vw, 112px) var(--pad); color: #eff8ff; background: var(--night); }
 .research .eyebrow { color: var(--cyan); }
 .research__intro { max-width: 560px; }
 .research h2 { max-width: 8ch; }
@@ -350,7 +350,7 @@ h1 { max-width: 12.2ch; margin: 0; font-size: clamp(3.7rem, 5.9vw, 7rem); font-v
 .paper-card p { max-width: 52ch; margin: 0; color: #8ea6b5; font-size: .75rem; line-height: 1.5; }
 .paper-card em { color: var(--cyan); font: 400 .58rem/1.2 var(--mono); font-style: normal; }
 
-.trust { padding-top: clamp(90px, 10vw, 170px); padding-bottom: clamp(90px, 10vw, 170px); }
+.trust { padding-top: clamp(76px, 6.4vw, 112px); padding-bottom: clamp(76px, 6.4vw, 112px); }
 .trust-grid { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--ink); border-bottom: 1px solid var(--ink); }
 
 .trust-grid article { min-height: 235px; display: flex; flex-direction: column; padding: 24px 24px 22px 0; border-right: 1px solid var(--line); }
@@ -373,8 +373,8 @@ h1 { max-width: 12.2ch; margin: 0; font-size: clamp(3.7rem, 5.9vw, 7rem); font-v
 .paths-grid a:first-of-type { margin-top: auto; }
 .paths-grid a + a { margin-top: 8px; }
 
-.access { display: grid; grid-template-columns: 1fr auto minmax(330px, .8fr); gap: clamp(36px, 6vw, 90px); align-items: end; padding: clamp(82px, 9vw, 145px) var(--pad); color: #fff; background: var(--cobalt); }
-.access h2 { max-width: 8ch; }
+.access { display: grid; grid-template-columns: 1fr auto minmax(330px, .8fr); gap: clamp(36px, 6vw, 90px); align-items: end; padding: clamp(70px, 6vw, 104px) var(--pad); color: #fff; background: var(--cobalt); }
+.access h2 { max-width: 13ch; }
 .access > div > p:last-child { max-width: 52ch; margin: 24px 0 0; color: #f2f5ff; font-size: .84rem; line-height: 1.6; }
 .access .eyebrow { color: #fff; }
 .access__actions { display: grid; gap: 10px; align-self: end; }
@@ -588,3 +588,61 @@ h1 { max-width: 12.2ch; margin: 0; font-size: clamp(3.7rem, 5.9vw, 7rem); font-v
   .core-chapters li { color: #9eb5c3; }
   .core-chapters li.is-active { padding-left: 0; color: #f3f9fd; }
 }
+
+/* ---------------------------------------------------------------------------
+   Entry scene.
+
+   The field of recorded trial identities behind the hero. It sits UNDER the
+   hero grid and the copy, at low opacity, because it is context for the
+   headline and not a competitor to it: a reader must be able to read the first
+   sentence of the site without waiting for anything.
+
+   It fades in only once the scene has real data. Before that, and forever if
+   the artifact cannot be fetched, the hero looks exactly as it does with
+   JavaScript disabled.
+   --------------------------------------------------------------------------- */
+.entry-scene {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 1.6s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+.entry-scene.is-ready { opacity: 0.78; }
+.hero > .hero-grid,
+.hero > .hero-status,
+.hero > .hero__copy,
+.hero > .live-console { position: relative; z-index: 1; }
+
+@media (prefers-reduced-motion: reduce) {
+  .entry-scene { transition: none; }
+  .entry-scene.is-ready { opacity: 0.42; }
+}
+
+/* Entry-card figures. Small, monospaced, tabular: these are counts a reader is
+   meant to compare against what they find at the other end of the link, not
+   marketing numerals. */
+.offering__stat {
+  margin: 14px 0 0 !important;
+  color: var(--ink-soft, #5c7180) !important;
+  font: 500 0.72rem/1.6 var(--mono, "IBM Plex Mono", monospace) !important;
+  font-variant-numeric: tabular-nums;
+}
+.offering__stat strong { color: var(--ink, #0a1824); font-weight: 600; }
+.offering__stat span { opacity: 0.4; margin: 0 2px; }
+
+/* Figures on the authorship and portfolio cards. Same treatment as the entry
+   cards: small, monospaced, tabular. These are counts to be checked against the
+   record each card links to, not headline numerals. */
+.trust__stat, .sleeves__stat {
+  margin: 12px 0 0;
+  color: var(--ink-soft, #5c7180);
+  font: 500 0.72rem/1.6 var(--mono, "IBM Plex Mono", monospace);
+  font-variant-numeric: tabular-nums;
+}
+.trust__stat strong, .sleeves__stat strong { color: var(--ink, #0a1824); font-weight: 600; }
+.trust__stat span, .sleeves__stat span { opacity: 0.4; margin: 0 2px; }
+.sleeves__stat { margin-top: 18px; max-width: 52ch; }

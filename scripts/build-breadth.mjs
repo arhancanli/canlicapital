@@ -183,7 +183,8 @@ ${renderProductShellHeader({ active: "" })}
     <p class="lab-boundary"><strong>What this is.</strong> ${esc(c.claim_boundary)}</p>
   </section>
 
-  <section class="lab-lab" id="lab">
+  <section class="lab-lab" id="lab" aria-labelledby="lab-lab-title">
+    <h2 id="lab-lab-title" class="lab-visually-hidden">The lab</h2>
     <div class="lab-controls">
       ${field("lab-sharpe", "Sharpe per sleeve", p.published_book.s, 0, 3, 0.05, "s, the same for every sleeve")}
       ${field("lab-rho", "Average pairwise correlation", p.published_book.rho, -0.5, 1, 0.005, "rho, shared by every pair")}

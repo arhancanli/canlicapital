@@ -236,15 +236,11 @@ ${renderProductShellHeader({ active: "founder" })}
         <div class="founder-ledger__body"><p>${escapeHtml(contribution.arhan_canli.role)}</p><ul>${renderResponsibilities(contribution.arhan_canli.responsibilities)}</ul><p class="founder-ledger__boundary">${escapeHtml(contribution.arhan_canli.credit_boundary)}</p></div>
       </details>
       <details>
-        <summary><span>02</span><strong>AI-assisted development</strong><em>Reviewed tooling</em></summary>
-        <div class="founder-ledger__body"><p>${escapeHtml(ai.role)}</p><p>It cannot claim authorship, independent review, author approval or scientific judgment independent of me. Venue-specific disclosure is required.</p></div>
+        <summary><span>02</span><strong>Tools, libraries, services and data</strong><em>Capabilities and inputs</em></summary>
+        <div class="founder-ledger__body"><p>${escapeHtml(services.role)}</p><p>${escapeHtml(ai.role)}</p><p class="founder-ledger__boundary">${escapeHtml(services.credit_boundary)} No tool used here can claim authorship, independent review, author approval or scientific judgment; venue-specific disclosure is required where a venue asks for it.</p></div>
       </details>
       <details>
-        <summary><span>03</span><strong>Libraries, services and data</strong><em>Capabilities and inputs</em></summary>
-        <div class="founder-ledger__body"><p>${escapeHtml(services.role)}</p><p class="founder-ledger__boundary">${escapeHtml(services.credit_boundary)}</p></div>
-      </details>
-      <details>
-        <summary><span>04</span><strong>External validation</strong><em>${external.completed_reviews} completed</em></summary>
+        <summary><span>03</span><strong>External validation</strong><em>${external.completed_reviews} completed</em></summary>
         <div class="founder-ledger__body"><p>${escapeHtml(external.boundary)}</p><p class="founder-ledger__boundary">Assigned reviewers: ${external.assigned_reviewers}. Independent replications: ${external.independent_replications}.</p><p><a href="/review">Inspect the governed review bench and its exact zero-state.</a></p></div>
       </details>
     </div>

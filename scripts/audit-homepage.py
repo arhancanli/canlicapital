@@ -42,22 +42,95 @@ def audit_page(
     # build-hero-fallbacks.mjs writes the real values in at build time; this
     # asserts they are there AND that JavaScript agrees with them, so the two can
     # never drift apart in either direction.
-    hero_ids = ("hero-record-basis", "hero-broker-execution", "hero-paper-since", "hero-grade")
+    # EVERY element with an id, not a list of four, and every tag, not just
+    # <strong>. The earlier version checked four hero cells matched against a
+    # `<strong id=...>` pattern; the evidence table's cells are dd, span, small
+    # and time, so twenty-four of them said "Pending" to every crawler and every
+    # language model while a browser showed the real figures and nothing looked
+    # wrong to anyone who could see the page.
+    #
+    # This same comparison, once widened, immediately found three drawdowns
+    # published a hundred times too small and a compact-currency formatter whose
+    # output depends on whether Node or Chrome ran it.
     static_html = (ROOT / "index.html").read_text(encoding="utf-8")
-    for element_id in hero_ids:
-        rendered = page.locator(f"#{element_id}").inner_text().strip()
-        assert rendered, f"{element_id} rendered empty"
-        assert "Loading" not in rendered, f"{element_id} still shows a loading placeholder"
-        match = re.search(rf'<strong id="{element_id}"[^>]*>([^<]*)</strong>', static_html)
-        assert match, f"{element_id} has no static fallback in index.html"
-        static_text = match.group(1).strip()
-        assert "Loading" not in static_text, (
-            f"{element_id} static fallback is still a placeholder; a crawler sees it"
+    PLACEHOLDER = re.compile(
+        r"^(?:loading|pending|checking(?:\s+scope)?|unavailable|tbd|n/a)\b"
+        r"|\b(?:loading|unavailable)\b\.?$",
+        re.IGNORECASE,
+    )
+    cells = re.findall(r'<[a-z]+(?:\s[^>]*?)? id="([^"]+)"[^>]*>([^<]*)<', static_html)
+    compared = 0
+    for element_id, static_raw in cells:
+        static_text = static_raw.strip()
+        if not static_text:
+            continue
+        assert not PLACEHOLDER.search(static_text), (
+            f"#{element_id} static text is a placeholder ({static_text!r}); "
+            "that is what a crawler and a language model read as the record"
         )
+        locator = page.locator(f"#{element_id}")
+        if locator.count() != 1:
+            continue
+        # text_content, not inner_text: some of these cells are SVG <title> and
+        # <desc> nodes, which are not HTMLElements and raise on inner_text. They
+        # are also exactly the cells a screen reader and a crawler read.
+        rendered = (locator.text_content() or "").strip()
+        if not rendered:
+            continue
+        compared += 1
+        assert not PLACEHOLDER.search(rendered), f"#{element_id} still renders a placeholder"
         assert static_text == rendered, (
-            f"{element_id}: the crawler sees {static_text!r} but JavaScript renders "
+            f"#{element_id}: the crawler sees {static_text!r} but JavaScript renders "
             f"{rendered!r}. The static fallback and the claim contract have drifted."
         )
+    # A comparison loop whose corpus silently empties reports success forever.
+    assert compared >= 40, f"only {compared} homepage cells compared; the sweep collapsed"
+
+    # The per-sleeve broker rows are addressed by attribute rather than by id, so
+    # the id sweep above cannot see them. They said "Checking" to every crawler.
+    for row in page.locator("[data-broker-row]").all():
+        key = row.get_attribute("data-broker-row")
+        for selector in ("[data-broker-observation]", "[data-broker-state]"):
+            cell = row.locator(selector)
+            if cell.count() != 1:
+                continue
+            rendered = (cell.text_content() or "").strip()
+            if not rendered:
+                continue
+            assert not PLACEHOLDER.search(rendered), (
+                f"broker row {key} {selector} still renders a placeholder"
+            )
+            pattern = rf'data-broker-row="{key}"[\s\S]{{0,600}}?{selector[1:-1]}[^>]*>([^<]*)<'
+            match = re.search(pattern, static_html)
+            assert match, f"broker row {key} has no static {selector} cell"
+            assert match.group(1).strip() == rendered, (
+                f"broker row {key} {selector}: crawler sees {match.group(1).strip()!r} "
+                f"but JavaScript renders {rendered!r}"
+            )
+
+    # The entry scene. Its contract is that it NEVER degrades the page: it only
+    # marks itself ready once it holds real data, and the hero must be complete
+    # whether or not that happens. Both halves are asserted, because a scene that
+    # renders is worth nothing if it can also break the page it sits behind.
+    scene = page.locator("#entry-scene")
+    if scene.count() == 1:
+        label = scene.get_attribute("aria-label") or ""
+        if "is-ready" in (scene.get_attribute("class") or ""):
+            # Ready means it drew real trials, so it must say how many, and the
+            # count must match the published distribution rather than a number
+            # someone typed into the mount script.
+            distribution = json.loads(
+                (ROOT / "public/glassbox/trial_sharpe_distribution.json").read_text(encoding="utf-8")
+            )
+            assert str(distribution["trials_measured"]) in label, (
+                f"entry scene reports {label!r} but the distribution has "
+                f"{distribution['trials_measured']} measured trials"
+            )
+            assert scene.get_attribute("aria-hidden") is None, (
+                "entry scene is ready and labelled but still hidden from assistive technology"
+            )
+        else:
+            assert not label, "entry scene is not ready but carries a description of data it never drew"
 
     assert hero.is_visible()
     assert hero.inner_text() == "A systematic portfolio you can audit while it runs."

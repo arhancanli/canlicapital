@@ -1,0 +1,1818 @@
+{
+  "schema": "canli.trial-sharpe-distribution.v1",
+  "claim_boundary": "These are first measurements of recorded trial identities, not returns, not a portfolio, and not evidence that any of them work. A Sharpe ratio computed once over a historical sample is the number a trial STARTED with; the deflation for how many trials were run is applied elsewhere and is not reflected here.",
+  "trials_total": 228,
+  "trials_measured": 224,
+  "trials_unmeasured": 4,
+  "summary": {
+    "minimum": -2.1527,
+    "p25": -0.2093,
+    "median": 0.0247,
+    "p75": 0.3028,
+    "maximum": 1.8129,
+    "count_above_zero": 119,
+    "count_above_one": 12,
+    "share_above_zero_pct": 53.1,
+    "share_above_one_pct": 5.4
+  },
+  "unmeasured_identities": [
+    "36c70319603d0212",
+    "3ba4f6e313627404",
+    "992df56a765a57e8",
+    "d4ab93039f48dd53"
+  ],
+  "ranked": [
+    {
+      "hypothesis_key": "7d65785e1ea4789e",
+      "research_family_key": "crypto_short_horizon_reversal",
+      "observations": 1574,
+      "annualized_sharpe": -2.1527,
+      "rank_ascending": 1,
+      "percentile": 0.4
+    },
+    {
+      "hypothesis_key": "9d39062d6525fdbb",
+      "research_family_key": "crypto_short_horizon_reversal",
+      "observations": 1574,
+      "annualized_sharpe": -2.114,
+      "rank_ascending": 2,
+      "percentile": 0.9
+    },
+    {
+      "hypothesis_key": "bd3db62a406aeb58",
+      "research_family_key": "crypto_carry",
+      "observations": 1574,
+      "annualized_sharpe": -1.3945,
+      "rank_ascending": 3,
+      "percentile": 1.3
+    },
+    {
+      "hypothesis_key": "bee03ca77096bf76",
+      "research_family_key": "crypto_momentum",
+      "observations": 1574,
+      "annualized_sharpe": -1.169,
+      "rank_ascending": 4,
+      "percentile": 1.8
+    },
+    {
+      "hypothesis_key": "0fe8b76c5ae033e2",
+      "research_family_key": "crypto_carry",
+      "observations": 245,
+      "annualized_sharpe": -1.017,
+      "rank_ascending": 5,
+      "percentile": 2.2
+    },
+    {
+      "hypothesis_key": "7c522581b35475e3",
+      "research_family_key": "equity_insider_activity",
+      "observations": 2669,
+      "annualized_sharpe": -0.9931,
+      "rank_ascending": 6,
+      "percentile": 2.7
+    },
+    {
+      "hypothesis_key": "a238c1a5ecc5d1e3",
+      "research_family_key": "equity_fundamental_value_investment",
+      "observations": 5384,
+      "annualized_sharpe": -0.9676,
+      "rank_ascending": 7,
+      "percentile": 3.1
+    },
+    {
+      "hypothesis_key": "54b0a73551057e63",
+      "research_family_key": "crypto_momentum",
+      "observations": 1574,
+      "annualized_sharpe": -0.8366,
+      "rank_ascending": 8,
+      "percentile": 3.6
+    },
+    {
+      "hypothesis_key": "97dec5f23e5fcf27",
+      "research_family_key": "equity_fundamental_quality",
+      "observations": 5384,
+      "annualized_sharpe": -0.8316,
+      "rank_ascending": 9,
+      "percentile": 4
+    },
+    {
+      "hypothesis_key": "6fd59c804837ff70",
+      "research_family_key": "equity_fundamental_quality",
+      "observations": 980,
+      "annualized_sharpe": -0.8214,
+      "rank_ascending": 10,
+      "percentile": 4.5
+    },
+    {
+      "hypothesis_key": "b0265c76f5298f2a",
+      "research_family_key": "crypto_multifactor_engine",
+      "observations": 1612,
+      "annualized_sharpe": -0.7901,
+      "rank_ascending": 11,
+      "percentile": 4.9
+    },
+    {
+      "hypothesis_key": "8dcb3a18bd569762",
+      "research_family_key": "equity_fundamental_quality",
+      "observations": 3873,
+      "annualized_sharpe": -0.7706,
+      "rank_ascending": 12,
+      "percentile": 5.4
+    },
+    {
+      "hypothesis_key": "5bdfeebafebccec9",
+      "research_family_key": "alphamax_equity_momentum",
+      "observations": 728,
+      "annualized_sharpe": -0.7442,
+      "rank_ascending": 13,
+      "percentile": 5.8
+    },
+    {
+      "hypothesis_key": "4a76eafa9d283198",
+      "research_family_key": "equity_fundamental_quality",
+      "observations": 3873,
+      "annualized_sharpe": -0.7289,
+      "rank_ascending": 14,
+      "percentile": 6.3
+    },
+    {
+      "hypothesis_key": "6263071e30548421",
+      "research_family_key": "equity_fundamental_value_investment",
+      "observations": 755,
+      "annualized_sharpe": -0.6858,
+      "rank_ascending": 15,
+      "percentile": 6.7
+    },
+    {
+      "hypothesis_key": "4164e4a433658d04",
+      "research_family_key": "alphamax_equity_momentum",
+      "observations": 3256,
+      "annualized_sharpe": -0.6656,
+      "rank_ascending": 16,
+      "percentile": 7.1
+    },
+    {
+      "hypothesis_key": "4a4da0a907579767",
+      "research_family_key": "equity_fundamental_quality",
+      "observations": 3873,
+      "annualized_sharpe": -0.6564,
+      "rank_ascending": 17,
+      "percentile": 7.6
+    },
+    {
+      "hypothesis_key": "91cea00cfa276730",
+      "research_family_key": "alphamax_equity_momentum",
+      "observations": 728,
+      "annualized_sharpe": -0.6351,
+      "rank_ascending": 18,
+      "percentile": 8
+    },
+    {
+      "hypothesis_key": "bd4688c240711a16",
+      "research_family_key": "crypto_volatility_risk_premium",
+      "observations": 1492,
+      "annualized_sharpe": -0.633,
+      "rank_ascending": 19,
+      "percentile": 8.5
+    },
+    {
+      "hypothesis_key": "24ba8fd4df0c9d8e",
+      "research_family_key": "alphamax_equity_momentum",
+      "observations": 728,
+      "annualized_sharpe": -0.6182,
+      "rank_ascending": 20,
+      "percentile": 8.9
+    },
+    {
+      "hypothesis_key": "1db3096d8f18eef5",
+      "research_family_key": "equity_low_beta",
+      "observations": 728,
+      "annualized_sharpe": -0.5995,
+      "rank_ascending": 21,
+      "percentile": 9.4
+    },
+    {
+      "hypothesis_key": "c6100630d688b4d7",
+      "research_family_key": "equity_fundamental_value_investment",
+      "observations": 5384,
+      "annualized_sharpe": -0.5994,
+      "rank_ascending": 22,
+      "percentile": 9.8
+    },
+    {
+      "hypothesis_key": "2c54b1c8e6ab55b0",
+      "research_family_key": "equity_fundamental_quality",
+      "observations": 5285,
+      "annualized_sharpe": -0.5926,
+      "rank_ascending": 23,
+      "percentile": 10.3
+    },
+    {
+      "hypothesis_key": "8446702cb8dd1768",
+      "research_family_key": "energy_inventory",
+      "observations": 2669,
+      "annualized_sharpe": -0.5893,
+      "rank_ascending": 24,
+      "percentile": 10.7
+    },
+    {
+      "hypothesis_key": "5d3e879373e9a0b8",
+      "research_family_key": "crypto_momentum",
+      "observations": 844,
+      "annualized_sharpe": -0.5879,
+      "rank_ascending": 25,
+      "percentile": 11.2
+    },
+    {
+      "hypothesis_key": "446e00f6c7b0dbfc",
+      "research_family_key": "crypto_carry",
+      "observations": 365,
+      "annualized_sharpe": -0.5868,
+      "rank_ascending": 26,
+      "percentile": 11.6
+    },
+    {
+      "hypothesis_key": "13e52a1a345bcfbd",
+      "research_family_key": "equity_fundamental_quality",
+      "observations": 3256,
+      "annualized_sharpe": -0.5856,
+      "rank_ascending": 27,
+      "percentile": 12.1
+    },
+    {
+      "hypothesis_key": "6afd0e31e2f4effc",
+      "research_family_key": "alphamax_equity_momentum",
+      "observations": 5428,
+      "annualized_sharpe": -0.564,
+      "rank_ascending": 28,
+      "percentile": 12.5
+    },
+    {
+      "hypothesis_key": "e86109044ab18734",
+      "research_family_key": "equity_fundamental_value_investment",
+      "observations": 5384,
+      "annualized_sharpe": -0.5526,
+      "rank_ascending": 29,
+      "percentile": 12.9
+    },
+    {
+      "hypothesis_key": "2d966892fb5db520",
+      "research_family_key": "equity_fundamental_value_investment",
+      "observations": 5384,
+      "annualized_sharpe": -0.5185,
+      "rank_ascending": 30,
+      "percentile": 13.4
+    },
+    {
+      "hypothesis_key": "b9dbe90adf89db05",
+      "research_family_key": "alphamax_equity_momentum",
+      "observations": 5384,
+      "annualized_sharpe": -0.4179,
+      "rank_ascending": 31,
+      "percentile": 13.8
+    },
+    {
+      "hypothesis_key": "e5f48adc25065ce9",
+      "research_family_key": "equity_fundamental_quality",
+      "observations": 5384,
+      "annualized_sharpe": -0.4174,
+      "rank_ascending": 32,
+      "percentile": 14.3
+    },
+    {
+      "hypothesis_key": "a05616592824e821",
+      "research_family_key": "alphamax_equity_momentum",
+      "observations": 5428,
+      "annualized_sharpe": -0.4109,
+      "rank_ascending": 33,
+      "percentile": 14.7
+    },
+    {
+      "hypothesis_key": "e51e4462f791aa6e",
+      "research_family_key": "alphamax_equity_momentum",
+      "observations": 5428,
+      "annualized_sharpe": -0.4005,
+      "rank_ascending": 34,
+      "percentile": 15.2
+    },
+    {
+      "hypothesis_key": "e96bc21d315349d8",
+      "research_family_key": "alphamax_equity_momentum",
+      "observations": 5428,
+      "annualized_sharpe": -0.3918,
+      "rank_ascending": 35,
+      "percentile": 15.6
+    },
+    {
+      "hypothesis_key": "a19079cb1ed0467d",
+      "research_family_key": "alphamax_equity_momentum",
+      "observations": 5428,
+      "annualized_sharpe": -0.3903,
+      "rank_ascending": 36,
+      "percentile": 16.1
+    },
+    {
+      "hypothesis_key": "0ac07e82d693a3a8",
+      "research_family_key": "alphamax_equity_momentum",
+      "observations": 175,
+      "annualized_sharpe": -0.3796,
+      "rank_ascending": 37,
+      "percentile": 16.5
+    },
+    {
+      "hypothesis_key": "73fb83323d76ec6a",
+      "research_family_key": "equity_fundamental_value_investment",
+      "observations": 980,
+      "annualized_sharpe": -0.3219,
+      "rank_ascending": 38,
+      "percentile": 17
+    },
+    {
+      "hypothesis_key": "0cf2b009903ca988",
+      "research_family_key": "equity_fundamental_value_investment",
+      "observations": 3369,
+      "annualized_sharpe": -0.3113,
+      "rank_ascending": 39,
+      "percentile": 17.4
+    },
+    {
+      "hypothesis_key": "396ff291d893e2b4",
+      "research_family_key": "macro_economic_trend",
+      "observations": 5977,
+      "annualized_sharpe": -0.2981,
+      "rank_ascending": 40,
+      "percentile": 17.9
+    },
+    {
+      "hypothesis_key": "2cfbbeea11dd0e2e",
+      "research_family_key": "alphamax_equity_momentum",
+      "observations": 5428,
+      "annualized_sharpe": -0.2928,
+      "rank_ascending": 41,
+      "percentile": 18.3
+    },
+    {
+      "hypothesis_key": "55671ccd670f0dff",
+      "research_family_key": "equity_fundamental_value_investment",
+      "observations": 5384,
+      "annualized_sharpe": -0.2895,
+      "rank_ascending": 42,
+      "percentile": 18.8
+    },
+    {
+      "hypothesis_key": "230d98e8609b0771",
+      "research_family_key": "crypto_carry",
+      "observations": 479,
+      "annualized_sharpe": -0.2861,
+      "rank_ascending": 43,
+      "percentile": 19.2
+    },
+    {
+      "hypothesis_key": "8eb9bed726090014",
+      "research_family_key": "crypto_carry",
+      "observations": 479,
+      "annualized_sharpe": -0.2861,
+      "rank_ascending": 44,
+      "percentile": 19.6
+    },
+    {
+      "hypothesis_key": "fb1358c08d36d128",
+      "research_family_key": "crypto_momentum",
+      "observations": 1574,
+      "annualized_sharpe": -0.2762,
+      "rank_ascending": 45,
+      "percentile": 20.1
+    },
+    {
+      "hypothesis_key": "1d2924f28fe31a9a",
+      "research_family_key": "equity_fundamental_quality",
+      "observations": 5384,
+      "annualized_sharpe": -0.2635,
+      "rank_ascending": 46,
+      "percentile": 20.5
+    },
+    {
+      "hypothesis_key": "4447a04e2e786b11",
+      "research_family_key": "alphamax_equity_momentum",
+      "observations": 175,
+      "annualized_sharpe": -0.2509,
+      "rank_ascending": 47,
+      "percentile": 21
+    },
+    {
+      "hypothesis_key": "b4c1c92fc4c65cd6",
+      "research_family_key": "alphamax_equity_momentum",
+      "observations": 5428,
+      "annualized_sharpe": -0.2447,
+      "rank_ascending": 48,
+      "percentile": 21.4
+    },
+    {
+      "hypothesis_key": "d614fdc1daa2906c",
+      "research_family_key": "equity_insider_activity",
+      "observations": 2669,
+      "annualized_sharpe": -0.2433,
+      "rank_ascending": 49,
+      "percentile": 21.9
+    },
+    {
+      "hypothesis_key": "de4b9e144761d1a6",
+      "research_family_key": "alphamax_equity_momentum",
+      "observations": 5428,
+      "annualized_sharpe": -0.2396,
+      "rank_ascending": 50,
+      "percentile": 22.3
+    },
+    {
+      "hypothesis_key": "b08b7841ef8beb6e",
+      "research_family_key": "crypto_momentum",
+      "observations": 1574,
+      "annualized_sharpe": -0.2382,
+      "rank_ascending": 51,
+      "percentile": 22.8
+    },
+    {
+      "hypothesis_key": "5829101185f4f6ec",
+      "research_family_key": "managed_futures_trend",
+      "observations": 3515,
+      "annualized_sharpe": -0.2376,
+      "rank_ascending": 52,
+      "percentile": 23.2
+    },
+    {
+      "hypothesis_key": "9365c9129f6d7f72",
+      "research_family_key": "alphamax_equity_momentum",
+      "observations": 662,
+      "annualized_sharpe": -0.2291,
+      "rank_ascending": 53,
+      "percentile": 23.7
+    },
+    {
+      "hypothesis_key": "f781fc9dac3d783d",
+      "research_family_key": "crypto_momentum",
+      "observations": 1574,
+      "annualized_sharpe": -0.2245,
+      "rank_ascending": 54,
+      "percentile": 24.1
+    },
+    {
+      "hypothesis_key": "d2ceacfb22b36147",
+      "research_family_key": "alphamax_equity_momentum",
+      "observations": 176,
+      "annualized_sharpe": -0.2125,
+      "rank_ascending": 55,
+      "percentile": 24.6
+    },
+    {
+      "hypothesis_key": "e2d030eb57ff18a1",
+      "research_family_key": "crypto_carry",
+      "observations": 1574,
+      "annualized_sharpe": -0.2124,
+      "rank_ascending": 56,
+      "percentile": 25
+    },
+    {
+      "hypothesis_key": "8545249f8afede69",
+      "research_family_key": "alphamax_equity_momentum",
+      "observations": 5428,
+      "annualized_sharpe": -0.2093,
+      "rank_ascending": 57,
+      "percentile": 25.4
+    },
+    {
+      "hypothesis_key": "5facc6dd331d80aa",
+      "research_family_key": "macro_economic_trend",
+      "observations": 5977,
+      "annualized_sharpe": -0.2023,
+      "rank_ascending": 58,
+      "percentile": 25.9
+    },
+    {
+      "hypothesis_key": "0945730a532778e7",
+      "research_family_key": "alphamax_equity_momentum",
+      "observations": 5428,
+      "annualized_sharpe": -0.2012,
+      "rank_ascending": 59,
+      "percentile": 26.3
+    },
+    {
+      "hypothesis_key": "6dd9335545a59286",
+      "research_family_key": "crypto_multifactor_engine",
+      "observations": 1612,
+      "annualized_sharpe": -0.1994,
+      "rank_ascending": 60,
+      "percentile": 26.8
+    },
+    {
+      "hypothesis_key": "4efe32b9ba20a8c8",
+      "research_family_key": "alphamax_equity_momentum",
+      "observations": 5356,
+      "annualized_sharpe": -0.1918,
+      "rank_ascending": 61,
+      "percentile": 27.2
+    },
+    {
+      "hypothesis_key": "b5f8db7e90c17056",
+      "research_family_key": "alphamax_equity_momentum",
+      "observations": 5356,
+      "annualized_sharpe": -0.1918,
+      "rank_ascending": 62,
+      "percentile": 27.7
+    },
+    {
+      "hypothesis_key": "103f792cb5228b61",
+      "research_family_key": "alphamax_equity_momentum",
+      "observations": 5356,
+      "annualized_sharpe": -0.1888,
+      "rank_ascending": 63,
+      "percentile": 28.1
+    },
+    {
+      "hypothesis_key": "69bb7543e8ff821a",
+      "research_family_key": "alphamax_equity_momentum",
+      "observations": 5356,
+      "annualized_sharpe": -0.1845,
+      "rank_ascending": 64,
+      "percentile": 28.6
+    },
+    {
+      "hypothesis_key": "a6403336626a7c72",
+      "research_family_key": "alphamax_equity_momentum",
+      "observations": 5356,
+      "annualized_sharpe": -0.1845,
+      "rank_ascending": 65,
+      "percentile": 29
+    },
+    {
+      "hypothesis_key": "cbe407ba3a63cc9e",
+      "research_family_key": "alphamax_equity_momentum",
+      "observations": 5356,
+      "annualized_sharpe": -0.1825,
+      "rank_ascending": 66,
+      "percentile": 29.5
+    },
+    {
+      "hypothesis_key": "1dc6a28896667714",
+      "research_family_key": "alphamax_equity_momentum",
+      "observations": 5356,
+      "annualized_sharpe": -0.1813,
+      "rank_ascending": 67,
+      "percentile": 29.9
+    },
+    {
+      "hypothesis_key": "00d3e37fed229640",
+      "research_family_key": "alphamax_equity_momentum",
+      "observations": 5428,
+      "annualized_sharpe": -0.1778,
+      "rank_ascending": 68,
+      "percentile": 30.4
+    },
+    {
+      "hypothesis_key": "b48ae427c8593df3",
+      "research_family_key": "alphamax_equity_momentum",
+      "observations": 5428,
+      "annualized_sharpe": -0.1701,
+      "rank_ascending": 69,
+      "percentile": 30.8
+    },
+    {
+      "hypothesis_key": "ca8bfc47cfa85214",
+      "research_family_key": "alphamax_equity_momentum",
+      "observations": 5428,
+      "annualized_sharpe": -0.1675,
+      "rank_ascending": 70,
+      "percentile": 31.3
+    },
+    {
+      "hypothesis_key": "5d6da77ae00a4ce7",
+      "research_family_key": "alphamax_equity_momentum",
+      "observations": 708,
+      "annualized_sharpe": -0.1545,
+      "rank_ascending": 71,
+      "percentile": 31.7
+    },
+    {
+      "hypothesis_key": "955d1fe916794c7f",
+      "research_family_key": "alphamax_equity_momentum",
+      "observations": 5428,
+      "annualized_sharpe": -0.1527,
+      "rank_ascending": 72,
+      "percentile": 32.1
+    },
+    {
+      "hypothesis_key": "bbf3fe53ef50d1b5",
+      "research_family_key": "alphamax_equity_momentum",
+      "observations": 5428,
+      "annualized_sharpe": -0.1372,
+      "rank_ascending": 73,
+      "percentile": 32.6
+    },
+    {
+      "hypothesis_key": "4d4214cc35cd25d6",
+      "research_family_key": "alphamax_equity_momentum",
+      "observations": 5356,
+      "annualized_sharpe": -0.1336,
+      "rank_ascending": 74,
+      "percentile": 33
+    },
+    {
+      "hypothesis_key": "131745bc21f41d5f",
+      "research_family_key": "crypto_momentum",
+      "observations": 1574,
+      "annualized_sharpe": -0.1318,
+      "rank_ascending": 75,
+      "percentile": 33.5
+    },
+    {
+      "hypothesis_key": "949d33468f11327a",
+      "research_family_key": "crypto_momentum",
+      "observations": 661,
+      "annualized_sharpe": -0.1317,
+      "rank_ascending": 76,
+      "percentile": 33.9
+    },
+    {
+      "hypothesis_key": "ee4a47e4d52781f3",
+      "research_family_key": "equity_fundamental_value_investment",
+      "observations": 3873,
+      "annualized_sharpe": -0.1289,
+      "rank_ascending": 77,
+      "percentile": 34.4
+    },
+    {
+      "hypothesis_key": "6b30b08235223e13",
+      "research_family_key": "alphamax_equity_momentum",
+      "observations": 5428,
+      "annualized_sharpe": -0.1209,
+      "rank_ascending": 78,
+      "percentile": 34.8
+    },
+    {
+      "hypothesis_key": "44c2632534e36065",
+      "research_family_key": "alphamax_equity_momentum",
+      "observations": 5428,
+      "annualized_sharpe": -0.1133,
+      "rank_ascending": 79,
+      "percentile": 35.3
+    },
+    {
+      "hypothesis_key": "db3ff99463afddc1",
+      "research_family_key": "crypto_multifactor_engine",
+      "observations": 1612,
+      "annualized_sharpe": -0.0946,
+      "rank_ascending": 80,
+      "percentile": 35.7
+    },
+    {
+      "hypothesis_key": "7e29a8e5f5324b37",
+      "research_family_key": "alphamax_equity_momentum",
+      "observations": 5428,
+      "annualized_sharpe": -0.0857,
+      "rank_ascending": 81,
+      "percentile": 36.2
+    },
+    {
+      "hypothesis_key": "dd395fb28e9cb8a8",
+      "research_family_key": "alphamax_equity_momentum",
+      "observations": 5428,
+      "annualized_sharpe": -0.0769,
+      "rank_ascending": 82,
+      "percentile": 36.6
+    },
+    {
+      "hypothesis_key": "7bd6950916182f12",
+      "research_family_key": "alphamax_equity_momentum",
+      "observations": 728,
+      "annualized_sharpe": -0.0749,
+      "rank_ascending": 83,
+      "percentile": 37.1
+    },
+    {
+      "hypothesis_key": "7b64d1bcb48d1706",
+      "research_family_key": "macro_economic_trend",
+      "observations": 5996,
+      "annualized_sharpe": -0.0747,
+      "rank_ascending": 84,
+      "percentile": 37.5
+    },
+    {
+      "hypothesis_key": "65bb3bc6c52cc97e",
+      "research_family_key": "alphamax_equity_momentum",
+      "observations": 5428,
+      "annualized_sharpe": -0.0714,
+      "rank_ascending": 85,
+      "percentile": 37.9
+    },
+    {
+      "hypothesis_key": "6c08c11a04ef43c5",
+      "research_family_key": "equity_low_beta",
+      "observations": 5384,
+      "annualized_sharpe": -0.0679,
+      "rank_ascending": 86,
+      "percentile": 38.4
+    },
+    {
+      "hypothesis_key": "3540d25ea2a1e4a2",
+      "research_family_key": "alphamax_equity_momentum",
+      "observations": 5428,
+      "annualized_sharpe": -0.0647,
+      "rank_ascending": 87,
+      "percentile": 38.8
+    },
+    {
+      "hypothesis_key": "e61f25cbf5012421",
+      "research_family_key": "alphamax_equity_momentum",
+      "observations": 5428,
+      "annualized_sharpe": -0.0619,
+      "rank_ascending": 88,
+      "percentile": 39.3
+    },
+    {
+      "hypothesis_key": "1521380bbfea6b18",
+      "research_family_key": "alphamax_equity_momentum",
+      "observations": 5428,
+      "annualized_sharpe": -0.0549,
+      "rank_ascending": 89,
+      "percentile": 39.7
+    },
+    {
+      "hypothesis_key": "f350a08ec0da47d5",
+      "research_family_key": "alphamax_equity_momentum",
+      "observations": 5428,
+      "annualized_sharpe": -0.0537,
+      "rank_ascending": 90,
+      "percentile": 40.2
+    },
+    {
+      "hypothesis_key": "19ff9612e795804d",
+      "research_family_key": "alphamax_equity_momentum",
+      "observations": 5428,
+      "annualized_sharpe": -0.0509,
+      "rank_ascending": 91,
+      "percentile": 40.6
+    },
+    {
+      "hypothesis_key": "0c17b616473d3e37",
+      "research_family_key": "alphamax_equity_momentum",
+      "observations": 5428,
+      "annualized_sharpe": -0.0504,
+      "rank_ascending": 92,
+      "percentile": 41.1
+    },
+    {
+      "hypothesis_key": "4eb98b8f5dad412c",
+      "research_family_key": "alphamax_equity_momentum",
+      "observations": 5384,
+      "annualized_sharpe": -0.0493,
+      "rank_ascending": 93,
+      "percentile": 41.5
+    },
+    {
+      "hypothesis_key": "5c931f56f18b5b58",
+      "research_family_key": "alphamax_equity_momentum",
+      "observations": 5428,
+      "annualized_sharpe": -0.0447,
+      "rank_ascending": 94,
+      "percentile": 42
+    },
+    {
+      "hypothesis_key": "884c91eb545d3e5a",
+      "research_family_key": "alphamax_equity_momentum",
+      "observations": 5428,
+      "annualized_sharpe": -0.0433,
+      "rank_ascending": 95,
+      "percentile": 42.4
+    },
+    {
+      "hypothesis_key": "5b5a71b086289f8d",
+      "research_family_key": "crypto_momentum",
+      "observations": 1574,
+      "annualized_sharpe": -0.0384,
+      "rank_ascending": 96,
+      "percentile": 42.9
+    },
+    {
+      "hypothesis_key": "f0739e4b959c1fcd",
+      "research_family_key": "alphamax_equity_momentum",
+      "observations": 5428,
+      "annualized_sharpe": -0.0334,
+      "rank_ascending": 97,
+      "percentile": 43.3
+    },
+    {
+      "hypothesis_key": "944daf4d5888647d",
+      "research_family_key": "alphamax_equity_momentum",
+      "observations": 5428,
+      "annualized_sharpe": -0.0303,
+      "rank_ascending": 98,
+      "percentile": 43.8
+    },
+    {
+      "hypothesis_key": "2aeea2223daf5164",
+      "research_family_key": "alphamax_equity_momentum",
+      "observations": 728,
+      "annualized_sharpe": -0.0216,
+      "rank_ascending": 99,
+      "percentile": 44.2
+    },
+    {
+      "hypothesis_key": "eef46f796cdbb646",
+      "research_family_key": "alphamax_equity_momentum",
+      "observations": 5428,
+      "annualized_sharpe": -0.0188,
+      "rank_ascending": 100,
+      "percentile": 44.6
+    },
+    {
+      "hypothesis_key": "bd061bd6bb11807c",
+      "research_family_key": "alphamax_equity_momentum",
+      "observations": 5428,
+      "annualized_sharpe": -0.0177,
+      "rank_ascending": 101,
+      "percentile": 45.1
+    },
+    {
+      "hypothesis_key": "40f9c17d3f0a9755",
+      "research_family_key": "alphamax_equity_momentum",
+      "observations": 5428,
+      "annualized_sharpe": -0.0135,
+      "rank_ascending": 102,
+      "percentile": 45.5
+    },
+    {
+      "hypothesis_key": "5dd5372deac0882f",
+      "research_family_key": "alphamax_equity_momentum",
+      "observations": 5428,
+      "annualized_sharpe": -0.0121,
+      "rank_ascending": 103,
+      "percentile": 46
+    },
+    {
+      "hypothesis_key": "e2b76a7604131f00",
+      "research_family_key": "equity_narrative_change",
+      "observations": 2514,
+      "annualized_sharpe": -0.0074,
+      "rank_ascending": 104,
+      "percentile": 46.4
+    },
+    {
+      "hypothesis_key": "8e0d269423afaeb7",
+      "research_family_key": "alphamax_equity_momentum",
+      "observations": 5428,
+      "annualized_sharpe": -0.0028,
+      "rank_ascending": 105,
+      "percentile": 46.9
+    },
+    {
+      "hypothesis_key": "f25ca9b1fa4be1bd",
+      "research_family_key": "alphamax_equity_momentum",
+      "observations": 5384,
+      "annualized_sharpe": 0.0097,
+      "rank_ascending": 106,
+      "percentile": 47.3
+    },
+    {
+      "hypothesis_key": "5fad5a41615c811e",
+      "research_family_key": "alphamax_equity_momentum",
+      "observations": 5384,
+      "annualized_sharpe": 0.0097,
+      "rank_ascending": 107,
+      "percentile": 47.8
+    },
+    {
+      "hypothesis_key": "90814576f43bdcee",
+      "research_family_key": "alphamax_equity_momentum",
+      "observations": 5384,
+      "annualized_sharpe": 0.0106,
+      "rank_ascending": 108,
+      "percentile": 48.2
+    },
+    {
+      "hypothesis_key": "3096d43484ea2745",
+      "research_family_key": "alphamax_equity_momentum",
+      "observations": 5428,
+      "annualized_sharpe": 0.0149,
+      "rank_ascending": 109,
+      "percentile": 48.7
+    },
+    {
+      "hypothesis_key": "9bbf2c2e9e057af0",
+      "research_family_key": "alphamax_equity_momentum",
+      "observations": 5428,
+      "annualized_sharpe": 0.016,
+      "rank_ascending": 110,
+      "percentile": 49.1
+    },
+    {
+      "hypothesis_key": "df1f57837ebc7200",
+      "research_family_key": "alphamax_equity_momentum",
+      "observations": 5428,
+      "annualized_sharpe": 0.0225,
+      "rank_ascending": 111,
+      "percentile": 49.6
+    },
+    {
+      "hypothesis_key": "5c3d3ca1fa27d501",
+      "research_family_key": "alphamax_equity_momentum",
+      "observations": 5428,
+      "annualized_sharpe": 0.0233,
+      "rank_ascending": 112,
+      "percentile": 50
+    },
+    {
+      "hypothesis_key": "33e1fc428df06e49",
+      "research_family_key": "alphamax_equity_momentum",
+      "observations": 5428,
+      "annualized_sharpe": 0.0247,
+      "rank_ascending": 113,
+      "percentile": 50.4
+    },
+    {
+      "hypothesis_key": "53d8889210357fb5",
+      "research_family_key": "alphamax_equity_momentum",
+      "observations": 5428,
+      "annualized_sharpe": 0.025,
+      "rank_ascending": 114,
+      "percentile": 50.9
+    },
+    {
+      "hypothesis_key": "a86de2fd09519a75",
+      "research_family_key": "alphamax_equity_momentum",
+      "observations": 5428,
+      "annualized_sharpe": 0.0311,
+      "rank_ascending": 115,
+      "percentile": 51.3
+    },
+    {
+      "hypothesis_key": "c8408da906327943",
+      "research_family_key": "crypto_carry",
+      "observations": 1574,
+      "annualized_sharpe": 0.0339,
+      "rank_ascending": 116,
+      "percentile": 51.8
+    },
+    {
+      "hypothesis_key": "1540bf3288b2e8b5",
+      "research_family_key": "alphamax_equity_momentum",
+      "observations": 5428,
+      "annualized_sharpe": 0.0417,
+      "rank_ascending": 117,
+      "percentile": 52.2
+    },
+    {
+      "hypothesis_key": "3cbf5402fe6a1b30",
+      "research_family_key": "crypto_multifactor_engine",
+      "observations": 1612,
+      "annualized_sharpe": 0.0424,
+      "rank_ascending": 118,
+      "percentile": 52.7
+    },
+    {
+      "hypothesis_key": "5492af5ff2c88119",
+      "research_family_key": "crypto_multifactor_engine",
+      "observations": 1612,
+      "annualized_sharpe": 0.0424,
+      "rank_ascending": 119,
+      "percentile": 53.1
+    },
+    {
+      "hypothesis_key": "9de7d18ead3c4555",
+      "research_family_key": "crypto_multifactor_engine",
+      "observations": 1612,
+      "annualized_sharpe": 0.0424,
+      "rank_ascending": 120,
+      "percentile": 53.6
+    },
+    {
+      "hypothesis_key": "d61ff64d9f08713f",
+      "research_family_key": "crypto_multifactor_engine",
+      "observations": 1612,
+      "annualized_sharpe": 0.0424,
+      "rank_ascending": 121,
+      "percentile": 54
+    },
+    {
+      "hypothesis_key": "23b9dde39a0aeff0",
+      "research_family_key": "alphamax_equity_momentum",
+      "observations": 5428,
+      "annualized_sharpe": 0.0428,
+      "rank_ascending": 122,
+      "percentile": 54.5
+    },
+    {
+      "hypothesis_key": "65ed32d1a057d9e5",
+      "research_family_key": "alphamax_equity_momentum",
+      "observations": 5428,
+      "annualized_sharpe": 0.0467,
+      "rank_ascending": 123,
+      "percentile": 54.9
+    },
+    {
+      "hypothesis_key": "be9f2444a36d9ab3",
+      "research_family_key": "alphamax_equity_momentum",
+      "observations": 5428,
+      "annualized_sharpe": 0.0493,
+      "rank_ascending": 124,
+      "percentile": 55.4
+    },
+    {
+      "hypothesis_key": "7ab789a38a596dc3",
+      "research_family_key": "alphamax_equity_momentum",
+      "observations": 173,
+      "annualized_sharpe": 0.0549,
+      "rank_ascending": 125,
+      "percentile": 55.8
+    },
+    {
+      "hypothesis_key": "d1f9fc2e0af67426",
+      "research_family_key": "crypto_carry",
+      "observations": 1574,
+      "annualized_sharpe": 0.0612,
+      "rank_ascending": 126,
+      "percentile": 56.3
+    },
+    {
+      "hypothesis_key": "05908a8a641400e2",
+      "research_family_key": "crypto_carry",
+      "observations": 1612,
+      "annualized_sharpe": 0.0618,
+      "rank_ascending": 127,
+      "percentile": 56.7
+    },
+    {
+      "hypothesis_key": "1700ddbeaf47d3eb",
+      "research_family_key": "alphamax_equity_momentum",
+      "observations": 5428,
+      "annualized_sharpe": 0.066,
+      "rank_ascending": 128,
+      "percentile": 57.1
+    },
+    {
+      "hypothesis_key": "61db97abbbc4076f",
+      "research_family_key": "crypto_carry",
+      "observations": 1574,
+      "annualized_sharpe": 0.0681,
+      "rank_ascending": 129,
+      "percentile": 57.6
+    },
+    {
+      "hypothesis_key": "f552797a038b9cc5",
+      "research_family_key": "macro_economic_trend",
+      "observations": 5977,
+      "annualized_sharpe": 0.0698,
+      "rank_ascending": 130,
+      "percentile": 58
+    },
+    {
+      "hypothesis_key": "827861e57050f162",
+      "research_family_key": "crypto_momentum",
+      "observations": 1612,
+      "annualized_sharpe": 0.078,
+      "rank_ascending": 131,
+      "percentile": 58.5
+    },
+    {
+      "hypothesis_key": "30e70cb595a6eb4c",
+      "research_family_key": "alphamax_equity_momentum",
+      "observations": 5428,
+      "annualized_sharpe": 0.0806,
+      "rank_ascending": 132,
+      "percentile": 58.9
+    },
+    {
+      "hypothesis_key": "9f0b751a921df354",
+      "research_family_key": "crypto_carry",
+      "observations": 1574,
+      "annualized_sharpe": 0.0814,
+      "rank_ascending": 133,
+      "percentile": 59.4
+    },
+    {
+      "hypothesis_key": "73aa637baa2b554d",
+      "research_family_key": "crypto_momentum",
+      "observations": 1574,
+      "annualized_sharpe": 0.0821,
+      "rank_ascending": 134,
+      "percentile": 59.8
+    },
+    {
+      "hypothesis_key": "1d04211afa42e8d5",
+      "research_family_key": "alphamax_equity_momentum",
+      "observations": 728,
+      "annualized_sharpe": 0.0862,
+      "rank_ascending": 135,
+      "percentile": 60.3
+    },
+    {
+      "hypothesis_key": "54eed376f4055448",
+      "research_family_key": "crypto_carry",
+      "observations": 1612,
+      "annualized_sharpe": 0.092,
+      "rank_ascending": 136,
+      "percentile": 60.7
+    },
+    {
+      "hypothesis_key": "94a8bafd2d6af076",
+      "research_family_key": "crypto_momentum",
+      "observations": 1574,
+      "annualized_sharpe": 0.0979,
+      "rank_ascending": 137,
+      "percentile": 61.2
+    },
+    {
+      "hypothesis_key": "bbf01486a4fe692d",
+      "research_family_key": "alphamax_equity_momentum",
+      "observations": 176,
+      "annualized_sharpe": 0.0984,
+      "rank_ascending": 138,
+      "percentile": 61.6
+    },
+    {
+      "hypothesis_key": "9b3ea423a0f3568b",
+      "research_family_key": "crypto_carry",
+      "observations": 1574,
+      "annualized_sharpe": 0.1046,
+      "rank_ascending": 139,
+      "percentile": 62.1
+    },
+    {
+      "hypothesis_key": "3c11c45eb8f40024",
+      "research_family_key": "macro_economic_trend",
+      "observations": 6157,
+      "annualized_sharpe": 0.1126,
+      "rank_ascending": 140,
+      "percentile": 62.5
+    },
+    {
+      "hypothesis_key": "5a3a402f9bc7670f",
+      "research_family_key": "alphamax_equity_momentum",
+      "observations": 728,
+      "annualized_sharpe": 0.1198,
+      "rank_ascending": 141,
+      "percentile": 62.9
+    },
+    {
+      "hypothesis_key": "eaf0ec15d78128b1",
+      "research_family_key": "equity_fundamental_quality",
+      "observations": 728,
+      "annualized_sharpe": 0.1229,
+      "rank_ascending": 142,
+      "percentile": 63.4
+    },
+    {
+      "hypothesis_key": "c8d703989f9e36ca",
+      "research_family_key": "managed_futures_trend",
+      "observations": 5161,
+      "annualized_sharpe": 0.128,
+      "rank_ascending": 143,
+      "percentile": 63.8
+    },
+    {
+      "hypothesis_key": "59d935a8b861275f",
+      "research_family_key": "alphamax_equity_momentum",
+      "observations": 728,
+      "annualized_sharpe": 0.1354,
+      "rank_ascending": 144,
+      "percentile": 64.3
+    },
+    {
+      "hypothesis_key": "2c9b8d6c355ab404",
+      "research_family_key": "alphamax_equity_momentum",
+      "observations": 728,
+      "annualized_sharpe": 0.1434,
+      "rank_ascending": 145,
+      "percentile": 64.7
+    },
+    {
+      "hypothesis_key": "651fa1f268ec116c",
+      "research_family_key": "alphamax_equity_momentum",
+      "observations": 728,
+      "annualized_sharpe": 0.1494,
+      "rank_ascending": 146,
+      "percentile": 65.2
+    },
+    {
+      "hypothesis_key": "581babb3419fc331",
+      "research_family_key": "crypto_momentum",
+      "observations": 1574,
+      "annualized_sharpe": 0.1733,
+      "rank_ascending": 147,
+      "percentile": 65.6
+    },
+    {
+      "hypothesis_key": "ff04cd656519e1e4",
+      "research_family_key": "managed_futures_trend",
+      "observations": 5132,
+      "annualized_sharpe": 0.1754,
+      "rank_ascending": 148,
+      "percentile": 66.1
+    },
+    {
+      "hypothesis_key": "0a30261280d92c9c",
+      "research_family_key": "managed_futures_trend",
+      "observations": 5132,
+      "annualized_sharpe": 0.1818,
+      "rank_ascending": 149,
+      "percentile": 66.5
+    },
+    {
+      "hypothesis_key": "890a432d09e1ef8a",
+      "research_family_key": "crypto_carry",
+      "observations": 1574,
+      "annualized_sharpe": 0.1856,
+      "rank_ascending": 150,
+      "percentile": 67
+    },
+    {
+      "hypothesis_key": "f4d5aef87af5cc92",
+      "research_family_key": "managed_futures_trend",
+      "observations": 5161,
+      "annualized_sharpe": 0.186,
+      "rank_ascending": 151,
+      "percentile": 67.4
+    },
+    {
+      "hypothesis_key": "757781cf1d69e68f",
+      "research_family_key": "crypto_momentum",
+      "observations": 1574,
+      "annualized_sharpe": 0.1931,
+      "rank_ascending": 152,
+      "percentile": 67.9
+    },
+    {
+      "hypothesis_key": "7843716d6bab8d5b",
+      "research_family_key": "managed_futures_trend",
+      "observations": 5161,
+      "annualized_sharpe": 0.204,
+      "rank_ascending": 153,
+      "percentile": 68.3
+    },
+    {
+      "hypothesis_key": "c2d99e83ff3ec57a",
+      "research_family_key": "macro_economic_trend",
+      "observations": 5165,
+      "annualized_sharpe": 0.2109,
+      "rank_ascending": 154,
+      "percentile": 68.8
+    },
+    {
+      "hypothesis_key": "0b91174c6e27a1f3",
+      "research_family_key": "managed_futures_trend",
+      "observations": 5161,
+      "annualized_sharpe": 0.217,
+      "rank_ascending": 155,
+      "percentile": 69.2
+    },
+    {
+      "hypothesis_key": "abc2f98882a8cb5d",
+      "research_family_key": "crypto_momentum",
+      "observations": 1574,
+      "annualized_sharpe": 0.2179,
+      "rank_ascending": 156,
+      "percentile": 69.6
+    },
+    {
+      "hypothesis_key": "3dfd53248a59dda6",
+      "research_family_key": "alphamax_equity_momentum",
+      "observations": 728,
+      "annualized_sharpe": 0.2292,
+      "rank_ascending": 157,
+      "percentile": 70.1
+    },
+    {
+      "hypothesis_key": "420a3a61a0a0aaf6",
+      "research_family_key": "managed_futures_trend",
+      "observations": 5169,
+      "annualized_sharpe": 0.2364,
+      "rank_ascending": 158,
+      "percentile": 70.5
+    },
+    {
+      "hypothesis_key": "34d1ad35e104768c",
+      "research_family_key": "managed_futures_trend",
+      "observations": 5132,
+      "annualized_sharpe": 0.2629,
+      "rank_ascending": 159,
+      "percentile": 71
+    },
+    {
+      "hypothesis_key": "3854903ae853daf8",
+      "research_family_key": "crypto_momentum",
+      "observations": 1574,
+      "annualized_sharpe": 0.2648,
+      "rank_ascending": 160,
+      "percentile": 71.4
+    },
+    {
+      "hypothesis_key": "0c5ddfb3d5b52ca5",
+      "research_family_key": "managed_futures_trend",
+      "observations": 5161,
+      "annualized_sharpe": 0.271,
+      "rank_ascending": 161,
+      "percentile": 71.9
+    },
+    {
+      "hypothesis_key": "c64d232200a50030",
+      "research_family_key": "crypto_carry",
+      "observations": 1574,
+      "annualized_sharpe": 0.2711,
+      "rank_ascending": 162,
+      "percentile": 72.3
+    },
+    {
+      "hypothesis_key": "337e75745bd4a1a8",
+      "research_family_key": "crypto_carry",
+      "observations": 1574,
+      "annualized_sharpe": 0.2721,
+      "rank_ascending": 163,
+      "percentile": 72.8
+    },
+    {
+      "hypothesis_key": "de979d426420242c",
+      "research_family_key": "managed_futures_trend",
+      "observations": 5132,
+      "annualized_sharpe": 0.2785,
+      "rank_ascending": 164,
+      "percentile": 73.2
+    },
+    {
+      "hypothesis_key": "92e6a893c23dc9eb",
+      "research_family_key": "managed_futures_trend",
+      "observations": 5168,
+      "annualized_sharpe": 0.2844,
+      "rank_ascending": 165,
+      "percentile": 73.7
+    },
+    {
+      "hypothesis_key": "084a8fc5292327ee",
+      "research_family_key": "managed_futures_trend",
+      "observations": 5161,
+      "annualized_sharpe": 0.289,
+      "rank_ascending": 166,
+      "percentile": 74.1
+    },
+    {
+      "hypothesis_key": "e60ed7b6904004af",
+      "research_family_key": "managed_futures_trend",
+      "observations": 5161,
+      "annualized_sharpe": 0.289,
+      "rank_ascending": 167,
+      "percentile": 74.6
+    },
+    {
+      "hypothesis_key": "f67b4ad24feb9100",
+      "research_family_key": "crypto_carry",
+      "observations": 1574,
+      "annualized_sharpe": 0.3028,
+      "rank_ascending": 168,
+      "percentile": 75
+    },
+    {
+      "hypothesis_key": "8e8816393676531a",
+      "research_family_key": "managed_futures_trend",
+      "observations": 5158,
+      "annualized_sharpe": 0.3081,
+      "rank_ascending": 169,
+      "percentile": 75.4
+    },
+    {
+      "hypothesis_key": "3bb6916d5e480681",
+      "research_family_key": "managed_futures_trend",
+      "observations": 5169,
+      "annualized_sharpe": 0.3083,
+      "rank_ascending": 170,
+      "percentile": 75.9
+    },
+    {
+      "hypothesis_key": "f9c8f796702a6ba5",
+      "research_family_key": "managed_futures_trend",
+      "observations": 5132,
+      "annualized_sharpe": 0.3112,
+      "rank_ascending": 171,
+      "percentile": 76.3
+    },
+    {
+      "hypothesis_key": "a41f8f4d9023fdb6",
+      "research_family_key": "alphamax_equity_momentum",
+      "observations": 728,
+      "annualized_sharpe": 0.3159,
+      "rank_ascending": 172,
+      "percentile": 76.8
+    },
+    {
+      "hypothesis_key": "07c8d58c9396b466",
+      "research_family_key": "managed_futures_trend",
+      "observations": 5155,
+      "annualized_sharpe": 0.3222,
+      "rank_ascending": 173,
+      "percentile": 77.2
+    },
+    {
+      "hypothesis_key": "29233f5e0132b584",
+      "research_family_key": "crypto_momentum",
+      "observations": 1574,
+      "annualized_sharpe": 0.3296,
+      "rank_ascending": 174,
+      "percentile": 77.7
+    },
+    {
+      "hypothesis_key": "401ee607f8d11e02",
+      "research_family_key": "crypto_carry",
+      "observations": 1574,
+      "annualized_sharpe": 0.3379,
+      "rank_ascending": 175,
+      "percentile": 78.1
+    },
+    {
+      "hypothesis_key": "df2ff29afd9fcdb8",
+      "research_family_key": "macro_economic_trend",
+      "observations": 5977,
+      "annualized_sharpe": 0.3403,
+      "rank_ascending": 176,
+      "percentile": 78.6
+    },
+    {
+      "hypothesis_key": "6086a8e1414ed5b9",
+      "research_family_key": "managed_futures_trend",
+      "observations": 5171,
+      "annualized_sharpe": 0.3445,
+      "rank_ascending": 177,
+      "percentile": 79
+    },
+    {
+      "hypothesis_key": "2f90bfc62873b674",
+      "research_family_key": "alphamax_equity_momentum",
+      "observations": 728,
+      "annualized_sharpe": 0.3509,
+      "rank_ascending": 178,
+      "percentile": 79.5
+    },
+    {
+      "hypothesis_key": "dd3ae7b22ce7ebae",
+      "research_family_key": "alphamax_equity_momentum",
+      "observations": 728,
+      "annualized_sharpe": 0.3638,
+      "rank_ascending": 179,
+      "percentile": 79.9
+    },
+    {
+      "hypothesis_key": "18125376cea1ebbd",
+      "research_family_key": "crypto_carry",
+      "observations": 1574,
+      "annualized_sharpe": 0.3675,
+      "rank_ascending": 180,
+      "percentile": 80.4
+    },
+    {
+      "hypothesis_key": "8f8e6f8ced4272f5",
+      "research_family_key": "alphamax_equity_momentum",
+      "observations": 728,
+      "annualized_sharpe": 0.3719,
+      "rank_ascending": 181,
+      "percentile": 80.8
+    },
+    {
+      "hypothesis_key": "346311eccb786dda",
+      "research_family_key": "crypto_carry",
+      "observations": 1574,
+      "annualized_sharpe": 0.3734,
+      "rank_ascending": 182,
+      "percentile": 81.3
+    },
+    {
+      "hypothesis_key": "d5aa6d0cacd93391",
+      "research_family_key": "alphamax_equity_momentum",
+      "observations": 728,
+      "annualized_sharpe": 0.3908,
+      "rank_ascending": 183,
+      "percentile": 81.7
+    },
+    {
+      "hypothesis_key": "c54196c5721e8556",
+      "research_family_key": "crypto_carry",
+      "observations": 1574,
+      "annualized_sharpe": 0.3987,
+      "rank_ascending": 184,
+      "percentile": 82.1
+    },
+    {
+      "hypothesis_key": "d686f5d80540dffe",
+      "research_family_key": "alphamax_equity_momentum",
+      "observations": 728,
+      "annualized_sharpe": 0.4143,
+      "rank_ascending": 185,
+      "percentile": 82.6
+    },
+    {
+      "hypothesis_key": "efe8488b15f21f66",
+      "research_family_key": "alphamax_equity_momentum",
+      "observations": 728,
+      "annualized_sharpe": 0.4188,
+      "rank_ascending": 186,
+      "percentile": 83
+    },
+    {
+      "hypothesis_key": "e419d4349347aa26",
+      "research_family_key": "alphamax_equity_momentum",
+      "observations": 728,
+      "annualized_sharpe": 0.4221,
+      "rank_ascending": 187,
+      "percentile": 83.5
+    },
+    {
+      "hypothesis_key": "ed905a766147d2de",
+      "research_family_key": "crypto_carry",
+      "observations": 1574,
+      "annualized_sharpe": 0.4342,
+      "rank_ascending": 188,
+      "percentile": 83.9
+    },
+    {
+      "hypothesis_key": "f45ffeade4dae695",
+      "research_family_key": "crypto_carry",
+      "observations": 1574,
+      "annualized_sharpe": 0.4342,
+      "rank_ascending": 189,
+      "percentile": 84.4
+    },
+    {
+      "hypothesis_key": "b6f08cc62d80ca6b",
+      "research_family_key": "alphamax_equity_momentum",
+      "observations": 176,
+      "annualized_sharpe": 0.4502,
+      "rank_ascending": 190,
+      "percentile": 84.8
+    },
+    {
+      "hypothesis_key": "63812ba59fb509bd",
+      "research_family_key": "crypto_momentum",
+      "observations": 1574,
+      "annualized_sharpe": 0.4863,
+      "rank_ascending": 191,
+      "percentile": 85.3
+    },
+    {
+      "hypothesis_key": "e725ca3e5c6e9182",
+      "research_family_key": "alphamax_equity_momentum",
+      "observations": 164,
+      "annualized_sharpe": 0.5033,
+      "rank_ascending": 192,
+      "percentile": 85.7
+    },
+    {
+      "hypothesis_key": "e8c640856f9e1b0a",
+      "research_family_key": "alphamax_equity_momentum",
+      "observations": 728,
+      "annualized_sharpe": 0.5348,
+      "rank_ascending": 193,
+      "percentile": 86.2
+    },
+    {
+      "hypothesis_key": "5bb3bb225a077910",
+      "research_family_key": "alphamax_equity_momentum",
+      "observations": 728,
+      "annualized_sharpe": 0.5935,
+      "rank_ascending": 194,
+      "percentile": 86.6
+    },
+    {
+      "hypothesis_key": "56cada31ea70f66a",
+      "research_family_key": "crypto_defensive",
+      "observations": 1247,
+      "annualized_sharpe": 0.6295,
+      "rank_ascending": 195,
+      "percentile": 87.1
+    },
+    {
+      "hypothesis_key": "7fa29a6dec0e5eb3",
+      "research_family_key": "crypto_carry",
+      "observations": 1574,
+      "annualized_sharpe": 0.6483,
+      "rank_ascending": 196,
+      "percentile": 87.5
+    },
+    {
+      "hypothesis_key": "dd3a9b571cae1c6d",
+      "research_family_key": "alphamax_equity_momentum",
+      "observations": 176,
+      "annualized_sharpe": 0.6582,
+      "rank_ascending": 197,
+      "percentile": 87.9
+    },
+    {
+      "hypothesis_key": "2880e99fb89d9318",
+      "research_family_key": "alphamax_equity_momentum",
+      "observations": 728,
+      "annualized_sharpe": 0.6598,
+      "rank_ascending": 198,
+      "percentile": 88.4
+    },
+    {
+      "hypothesis_key": "6d151a184bf3e743",
+      "research_family_key": "crypto_carry",
+      "observations": 1574,
+      "annualized_sharpe": 0.6766,
+      "rank_ascending": 199,
+      "percentile": 88.8
+    },
+    {
+      "hypothesis_key": "7d8ef3d166868c19",
+      "research_family_key": "alphamax_equity_momentum",
+      "observations": 728,
+      "annualized_sharpe": 0.6801,
+      "rank_ascending": 200,
+      "percentile": 89.3
+    },
+    {
+      "hypothesis_key": "a463ab3319931865",
+      "research_family_key": "alphamax_equity_momentum",
+      "observations": 728,
+      "annualized_sharpe": 0.6801,
+      "rank_ascending": 201,
+      "percentile": 89.7
+    },
+    {
+      "hypothesis_key": "482976fcaa353633",
+      "research_family_key": "equity_fundamental_value_investment",
+      "observations": 3873,
+      "annualized_sharpe": 0.6911,
+      "rank_ascending": 202,
+      "percentile": 90.2
+    },
+    {
+      "hypothesis_key": "0a85fa2eca9afeb8",
+      "research_family_key": "alphamax_equity_momentum",
+      "observations": 728,
+      "annualized_sharpe": 0.6943,
+      "rank_ascending": 203,
+      "percentile": 90.6
+    },
+    {
+      "hypothesis_key": "e204cb10f8ee937c",
+      "research_family_key": "crypto_defensive",
+      "observations": 1247,
+      "annualized_sharpe": 0.6946,
+      "rank_ascending": 204,
+      "percentile": 91.1
+    },
+    {
+      "hypothesis_key": "2ea272f35fae4d7a",
+      "research_family_key": "alphamax_equity_momentum",
+      "observations": 728,
+      "annualized_sharpe": 0.7421,
+      "rank_ascending": 205,
+      "percentile": 91.5
+    },
+    {
+      "hypothesis_key": "62330828c7820481",
+      "research_family_key": "equity_fundamental_quality",
+      "observations": 728,
+      "annualized_sharpe": 0.7643,
+      "rank_ascending": 206,
+      "percentile": 92
+    },
+    {
+      "hypothesis_key": "a0a58ec84b0747f7",
+      "research_family_key": "alphamax_equity_momentum",
+      "observations": 728,
+      "annualized_sharpe": 0.8164,
+      "rank_ascending": 207,
+      "percentile": 92.4
+    },
+    {
+      "hypothesis_key": "cb54117502489bf8",
+      "research_family_key": "equity_fundamental_value_investment",
+      "observations": 5384,
+      "annualized_sharpe": 0.8276,
+      "rank_ascending": 208,
+      "percentile": 92.9
+    },
+    {
+      "hypothesis_key": "2ed8b8e5762e30bc",
+      "research_family_key": "alphamax_equity_momentum",
+      "observations": 728,
+      "annualized_sharpe": 0.8666,
+      "rank_ascending": 209,
+      "percentile": 93.3
+    },
+    {
+      "hypothesis_key": "9063537c142df7d1",
+      "research_family_key": "alphamax_equity_momentum",
+      "observations": 728,
+      "annualized_sharpe": 0.8877,
+      "rank_ascending": 210,
+      "percentile": 93.8
+    },
+    {
+      "hypothesis_key": "6a19ec36e1f9a65d",
+      "research_family_key": "alphamax_equity_momentum",
+      "observations": 728,
+      "annualized_sharpe": 0.9096,
+      "rank_ascending": 211,
+      "percentile": 94.2
+    },
+    {
+      "hypothesis_key": "b2e9f54f69c6fb82",
+      "research_family_key": "alphamax_equity_momentum",
+      "observations": 615,
+      "annualized_sharpe": 0.9466,
+      "rank_ascending": 212,
+      "percentile": 94.6
+    },
+    {
+      "hypothesis_key": "d84240f1f6ff0208",
+      "research_family_key": "alphamax_equity_momentum",
+      "observations": 114,
+      "annualized_sharpe": 1.0948,
+      "rank_ascending": 213,
+      "percentile": 95.1
+    },
+    {
+      "hypothesis_key": "fce6f97ec2a5c567",
+      "research_family_key": "alphamax_equity_momentum",
+      "observations": 728,
+      "annualized_sharpe": 1.263,
+      "rank_ascending": 214,
+      "percentile": 95.5
+    },
+    {
+      "hypothesis_key": "58f1a683499f15df",
+      "research_family_key": "alphamax_equity_momentum",
+      "observations": 728,
+      "annualized_sharpe": 1.282,
+      "rank_ascending": 215,
+      "percentile": 96
+    },
+    {
+      "hypothesis_key": "5db960809ac11750",
+      "research_family_key": "alphamax_equity_momentum",
+      "observations": 728,
+      "annualized_sharpe": 1.282,
+      "rank_ascending": 216,
+      "percentile": 96.4
+    },
+    {
+      "hypothesis_key": "7587bc6f65c5ce61",
+      "research_family_key": "alphamax_equity_momentum",
+      "observations": 685,
+      "annualized_sharpe": 1.3085,
+      "rank_ascending": 217,
+      "percentile": 96.9
+    },
+    {
+      "hypothesis_key": "bde3ccfe94d24b75",
+      "research_family_key": "alphamax_equity_momentum",
+      "observations": 728,
+      "annualized_sharpe": 1.3413,
+      "rank_ascending": 218,
+      "percentile": 97.3
+    },
+    {
+      "hypothesis_key": "f093a098d9de5c39",
+      "research_family_key": "alphamax_equity_momentum",
+      "observations": 728,
+      "annualized_sharpe": 1.4413,
+      "rank_ascending": 219,
+      "percentile": 97.8
+    },
+    {
+      "hypothesis_key": "137d19a1a25c52aa",
+      "research_family_key": "alphamax_equity_momentum",
+      "observations": 728,
+      "annualized_sharpe": 1.6041,
+      "rank_ascending": 220,
+      "percentile": 98.2
+    },
+    {
+      "hypothesis_key": "305d63492217a7a6",
+      "research_family_key": "alphamax_equity_momentum",
+      "observations": 728,
+      "annualized_sharpe": 1.6297,
+      "rank_ascending": 221,
+      "percentile": 98.7
+    },
+    {
+      "hypothesis_key": "a99364d06f945a5a",
+      "research_family_key": "alphamax_equity_momentum",
+      "observations": 728,
+      "annualized_sharpe": 1.6297,
+      "rank_ascending": 222,
+      "percentile": 99.1
+    },
+    {
+      "hypothesis_key": "a23502b1e86cf3ae",
+      "research_family_key": "alphamax_equity_momentum",
+      "observations": 728,
+      "annualized_sharpe": 1.6637,
+      "rank_ascending": 223,
+      "percentile": 99.6
+    },
+    {
+      "hypothesis_key": "32f1bd5131ef87ca",
+      "research_family_key": "alphamax_equity_momentum",
+      "observations": 148,
+      "annualized_sharpe": 1.8129,
+      "rank_ascending": 224,
+      "percentile": 100
+    }
+  ]
+}

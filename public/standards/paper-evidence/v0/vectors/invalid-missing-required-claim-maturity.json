@@ -1,6 +1,6 @@
 {
   "schema": "canli.paper-evidence.v0",
-  "generated_at": "2026-08-27T18:37:08Z",
+  "generated_at": "2026-08-28T10:29:50Z",
   "capital": {
     "kind": "PAPER",
     "execution": "MIXED",
@@ -20,14 +20,14 @@
   },
   "period": {
     "first_observation": "2026-08-07",
-    "last_observation": "2026-08-27",
-    "observation_count": 18,
+    "last_observation": "2026-08-28",
+    "observation_count": 19,
     "frequency": "DAILY",
     "calendar": "UTC daily marks; sleeves trade on their own venue calendars"
   },
   "returns": {
     "basis": "NET_OF_MODELLED_COSTS",
-    "cumulative": -0.02426509999999993,
+    "cumulative": -0.023534500000000014,
     "annualised": null,
     "sharpe_annualised": null,
     "sharpe_reportable": false,
@@ -73,7 +73,7 @@
   "risk": {
     "max_drawdown_realised": -0.045,
     "drawdown_basis": "OBSERVED",
-    "max_drawdown_model_expected": 0.09318244871588115,
+    "max_drawdown_model_expected": 0.09318244776686595,
     "exposure_notes": "The realised figure is descriptive of a short sample. The model estimate is not established by live evidence."
   },
   "corrections": {
@@ -85,17 +85,17 @@
     "source_bindings": [
       {
         "path": "public/paper-state.json",
-        "sha256": "bb615e1b368a013a9c809d4c6eabf7a1e0182016ec56592a3ceaf3a2c5ea026c",
+        "sha256": "376c35bf79dad7c81210fac54dc72b67c94ed5ea9279124e4ad679c5f501f448",
         "url": "https://canlicapital.com/paper-state.json"
       },
       {
         "path": "public/contracts/public-claims.json",
-        "sha256": "11603a2f7165327dcbf0dcefee1e63c377ba61619fe56d4ba2a2b634af1825c6",
+        "sha256": "56b25577b9f61b48ee25d051ba12decdbf9e2ffcd1fdfc6fc71d0ad31c42edbe",
         "url": "https://canlicapital.com/contracts/public-claims.json"
       },
       {
         "path": "public/glassbox/alpaca_broker_reconciliation.json",
-        "sha256": "94ca3faf50ab1f2677856144b72e9bf911af05658ed7d625208e370a36a7a45a",
+        "sha256": "6f0fec6ab7fb5efd0df5fad04c812533be050099765b0b3f21aace1247ecb886",
         "url": "https://canlicapital.com/glassbox/alpaca_broker_reconciliation.json"
       }
     ],

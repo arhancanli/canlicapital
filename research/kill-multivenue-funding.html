@@ -37,6 +37,7 @@
 <link rel="stylesheet" href="../css/paper.css" />
 <link rel="stylesheet" href="/css/product-shell.css" />
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"ScholarlyArticle","headline":"Crypto Multi-Venue Funding Aggregation (probe): a killed candidate","description":"Would aggregating funding across exchanges beat our Binance-only carry signal?","url":"https://canlicapital.com/research/kill-multivenue-funding","inLanguage":"en","isAccessibleForFree":true,"datePublished":"2026","author":{"@type":"Person","@id":"https://canlicapital.com/#arhan-canli","name":"Arhan Canli","jobTitle":"Founder and Quantitative Researcher","url":"https://canlicapital.com/founder","sameAs":["https://github.com/arhancanli"],"affiliation":{"@type":"Organization","@id":"https://canlicapital.com/#organization","name":"Canli Capital","url":"https://canlicapital.com/"}},"publisher":{"@type":"Organization","@id":"https://canlicapital.com/#organization","name":"Canli Capital","url":"https://canlicapital.com/","logo":{"@type":"ImageObject","url":"https://canlicapital.com/brand-mark.svg"}},"isPartOf":{"@type":"Periodical","name":"Canli Capital Research","url":"https://canlicapital.com/research"},"encodingFormat":"text/html","associatedMedia":{"@type":"MediaObject","contentUrl":"https://canlicapital.com/research/kill-multivenue-funding.md","encodingFormat":"text/markdown"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Canli Capital","item":"https://canlicapital.com"},{"@type":"ListItem","position":2,"name":"Research","item":"https://canlicapital.com/research"},{"@type":"ListItem","position":3,"name":"Crypto Multi-Venue Funding Aggregation: killed","item":"https://canlicapital.com/research/kill-multivenue-funding"}]}</script>
 </head>
 <body class="paper">
 <a class="paper__skip" href="#content">Skip to content</a>
@@ -99,9 +100,7 @@
     <h1 class="paper__title">Crypto Multi-Venue Funding Aggregation (probe): a killed candidate</h1>
     <p class="paper__byline">By <span rel="author">Arhan Canli</span>, Canli Capital</p>
     <div class="paper__body">
-<p><strong>Short title:</strong> Crypto Multi-Venue Funding Aggregation: killed</p>
-<p><strong>Verdict:</strong> KILLED  <strong>Stage:</strong> screen prototype<br><strong>Identity:</strong> <code>multivenue_funding</code></p>
-<p>Would aggregating funding across exchanges beat our Binance-only carry signal? No; null by its own pre-registered rule (promote required +0.10 Sharpe at 90% bootstrap confidence). The reason is structural: Binance and Bybit annualized funding are 0.94 correlated across 12,425 instrument-weeks, so there is almost no independent information to aggregate. The adjacent &#39;harvest on the best-paying venue&#39; idea dies on arithmetic too; a median cross-venue gap of ~2.4%/yr against a four-legged ~30bp round trip implies a 22-day breakeven hold, marginal before you even price second-tier venue custody risk. The live sleeve stays Binance-only on its blessed config. Byproduct kept: a multi-exchange funding lake (Bybit deep history via mirror; OKX public history is depth-capped at ~90 days, a data finding worth recording). Reproduce: scripts/probe_multivenue_funding.py.</p>
+<div class="research-masthead"><p class="research-masthead__verdict" data-verdict="killed"><span>Verdict</span><strong>KILLED</strong></p><dl class="research-masthead__facts"><div><dt>Stage</dt><dd>screen prototype</dd></div><div><dt>Identity</dt><dd><code>multivenue_funding</code></dd></div></dl></div><p>Would aggregating funding across exchanges beat our Binance-only carry signal? No; null by its own pre-registered rule (promote required +0.10 Sharpe at 90% bootstrap confidence). The reason is structural: Binance and Bybit annualized funding are 0.94 correlated across 12,425 instrument-weeks, so there is almost no independent information to aggregate. The adjacent &#39;harvest on the best-paying venue&#39; idea dies on arithmetic too; a median cross-venue gap of ~2.4%/yr against a four-legged ~30bp round trip implies a 22-day breakeven hold, marginal before you even price second-tier venue custody risk. The live sleeve stays Binance-only on its blessed config. Byproduct kept: a multi-exchange funding lake (Bybit deep history via mirror; OKX public history is depth-capped at ~90 days, a data finding worth recording). Reproduce: scripts/probe_multivenue_funding.py.</p>
 <h2>Why it was worth testing</h2>
 <p>This died at the screen stage, before a full walk-forward was ever run. Screening exists so that ideas which cannot clear a coarse, cost-aware bar do not consume the far more expensive machinery behind it. A screen kill is a cheap kill, and it is published for the same reason as an expensive one: the trial was still spent, and it still raises the evidence bar for everything already in the book.</p>
 <h2>The result</h2>
@@ -171,6 +170,15 @@
       <a href="/progress">Corrections</a>
       <a href="/performance">Status</a>
       <a href="/founder">Arhan Canli</a>
+    </nav>
+    <nav aria-label="Interactive tools">
+      <span>Run it yourself</span>
+      <a href="/tools/deflated-sharpe">Deflated Sharpe calculator</a>
+      <a href="/tools/selection-risk">Selection Risk Lab</a>
+      <a href="/tools/breadth">Breadth Lab</a>
+      <a href="/tools/execution">Execution Reality Lab</a>
+      <a href="/tools/trial-accounting">Trial accounting</a>
+      <a href="/tools/evidence-chain">Evidence chain</a>
     </nav>
     <nav aria-label="Open source">
       <span>Source code</span>

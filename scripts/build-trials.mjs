@@ -15,6 +15,7 @@ import {
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const PACKET_DIR = resolve(ROOT, "public/glassbox/trial-packets");
 const INDEX_PATH = resolve(PACKET_DIR, "index.json");
+const DISTRIBUTION_PATH = resolve(ROOT, "public/glassbox/trial_sharpe_distribution.json");
 const OUT_DIR = resolve(ROOT, "trials");
 const ORIGIN = "https://canlicapital.com";
 const AUTHOR = "Arhan Canli";
@@ -45,9 +46,17 @@ function validateHash(payload, path) {
   if (declared !== observed) throw new Error(`${path}: content hash mismatch`);
 }
 
+const ACRONYMS = new Set([
+  "eia", "vrp", "cpi", "roe", "bab", "mvo", "arp", "gpe", "ml", "bp",
+  "etf", "nav", "fx", "us", "pnl", "iv", "rv",
+]);
 const humanise = (value) => String(value)
   .replaceAll("_", " ")
-  .replace(/\b\w/g, (letter) => letter.toUpperCase());
+  .split(" ")
+  .map((word) => (ACRONYMS.has(word.toLowerCase())
+    ? word.toUpperCase()
+    : word.replace(/^\w/, (letter) => letter.toUpperCase())))
+  .join(" ");
 
 const formatNumber = (value) => {
   if (Number.isInteger(value)) return value.toLocaleString("en-US");
@@ -69,11 +78,13 @@ function displayValue(value) {
 
 function shell({
   title,
+  socialTitle = "",
   description,
   canonicalUrl,
   source,
   eyebrow,
   h1,
+  hero = "",
   body,
   jsonLd,
   robots = "index, follow, max-snippet:-1, max-image-preview:large",
@@ -91,12 +102,12 @@ function shell({
 <meta name="robots" content="${robots}" />
 <meta property="og:type" content="article" />
 <meta property="og:site_name" content="${PUBLISHER}" />
-<meta property="og:title" content="${escapeHtml(title)}" />
+<meta property="og:title" content="${escapeHtml(socialTitle || title)}" />
 <meta property="og:description" content="${escapeHtml(description)}" />
 <meta property="og:url" content="${canonicalUrl}" />
 <meta property="og:image" content="${ORIGIN}/og.png" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="${escapeHtml(title)}" />
+<meta name="twitter:title" content="${escapeHtml(socialTitle || title)}" />
 <meta name="twitter:description" content="${escapeHtml(description)}" />
 <meta name="twitter:image" content="${ORIGIN}/og.png" />
 <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
@@ -114,9 +125,10 @@ ${renderProductShellStylesheet()}
 <body class="paper">
 <a class="paper__skip" href="#content">Skip to content</a>
 ${renderProductShellHeader({ active: "trials" })}
+${hero}
 <main class="paper__main" id="content"><article class="paper__article">
-  <p class="paper__eyebrow">${eyebrow}</p>
-  <h1 class="paper__title">${escapeHtml(h1)}</h1>
+  ${hero ? "" : `<p class="paper__eyebrow">${eyebrow}</p>
+  <h1 class="paper__title">${escapeHtml(h1)}</h1>`}
   <p class="paper__byline">By <span rel="author">${AUTHOR}</span>, ${PUBLISHER}</p>
   <div class="paper__body">${body}</div>
 </article></main>
@@ -131,6 +143,67 @@ const canonicalPublicPath = (path) =>
   typeof path === "string" && path.startsWith("/research/") && path.endsWith(".md")
     ? path.slice(0, -3)
     : path;
+
+// A strip plot of all 224 measured trials with this one marked. The argument
+// this site makes is that most attempts fail and the median attempt is worth
+// nothing; showing each trial its own position in that population makes the
+// argument on every page instead of once on a summary page.
+//
+// Coordinates only -- no text -- because the axis labels and the caption carry
+// the numbers, and a number inside an SVG path is not something a reader can read.
+const formatFigure = (value) => (Number.isFinite(value) ? value.toFixed(2) : "");
+
+function distributionPlot(distribution, sharpe) {
+  const values = distribution.ranked.map((r) => r.annualized_sharpe);
+  const lo = Math.min(...values);
+  const hi = Math.max(...values);
+  const span = hi - lo || 1;
+  const W = 1000;
+  const x = (value) => 12 + ((value - lo) / span) * (W - 24);
+  const ticks = distribution.ranked
+    .map((r) => `<line x1="${x(r.annualized_sharpe).toFixed(1)}" y1="18" x2="${x(r.annualized_sharpe).toFixed(1)}" y2="42" />`)
+    .join("");
+  const zero = lo <= 0 && hi >= 0
+    ? `<line class="trial-dist__zero" x1="${x(0).toFixed(1)}" y1="10" x2="${x(0).toFixed(1)}" y2="50" />` : "";
+  const median = `<line class="trial-dist__median" x1="${x(distribution.summary.median).toFixed(1)}" y1="10" x2="${x(distribution.summary.median).toFixed(1)}" y2="50" />`;
+  const here = typeof sharpe === "number"
+    ? `<line class="trial-dist__here" x1="${x(sharpe).toFixed(1)}" y1="4" x2="${x(sharpe).toFixed(1)}" y2="56" />` +
+      `<circle class="trial-dist__dot" cx="${x(sharpe).toFixed(1)}" cy="30" r="5" />` : "";
+  return `<svg class="trial-dist__plot" viewBox="0 0 ${W} 60" preserveAspectRatio="none" role="img" aria-label="Position of this trial among every measured trial">
+    <g class="trial-dist__ticks">${ticks}</g>${zero}${median}${here}
+  </svg>`;
+}
+
+function heroBlock(packet, distribution) {
+  const measurement = packet.immutable_first_measurement ?? {};
+  const sharpe = typeof measurement.annualized_sharpe === "number" ? measurement.annualized_sharpe : null;
+  const entry = distribution.ranked.find((r) => r.hypothesis_key === packet.hypothesis_key) ?? null;
+  const state = packet.complete ? "Complete" : "Incomplete";
+
+  // A trial with no recorded first measurement says so. Rendering a dash where a
+  // number belongs is the honest output; rendering a zero would invent a result.
+  const figure = sharpe === null
+    ? `<div class="trial-hero__figure trial-hero__figure--absent"><span>First measurement</span><strong>Not recorded</strong><small>This identity carries no first-measurement Sharpe. It is one of ${distribution.trials_unmeasured} such identities.</small></div>`
+    : `<div class="trial-hero__figure"><span>First measurement, annualised Sharpe</span><strong>${formatFigure(sharpe)}</strong><small>over ${formatNumber(measurement.observations)} observations. One historical measurement, not a return and not a forecast.</small></div>`;
+
+  const placement = entry
+    ? `<p class="trial-dist__caption">This trial ranks <strong>${entry.rank_ascending} of ${distribution.trials_measured}</strong> measured identities, at the <strong>${entry.percentile}th</strong> percentile. The median trial recorded here scores ${distribution.summary.median}, and ${distribution.summary.share_above_zero_pct}% score above zero at all.</p>`
+    : `<p class="trial-dist__caption">Unranked: this identity has no first measurement, so it does not appear in the distribution of ${distribution.trials_measured} measured trials shown above.</p>`;
+
+  return `<section class="trial-hero" aria-labelledby="trial-hero-title">
+  <p class="trial-hero__eyebrow"><a href="/trials">Trial evidence</a> <span>/</span> ${escapeHtml(humanise(packet.research_family_key))}</p>
+  <h1 class="trial-hero__title" id="trial-hero-title">${escapeHtml(humanise(packet.label))}</h1>
+  <p class="trial-hero__key">Hypothesis key <code>${escapeHtml(packet.hypothesis_key)}</code> <em class="trial-hero__state trial-hero__state--${packet.complete ? "complete" : "incomplete"}">${state}</em></p>
+  <div class="trial-hero__measure">${figure}</div>
+  <div class="trial-dist">
+    <p class="trial-dist__label">Where this sits among every trial ever recorded</p>
+    ${distributionPlot(distribution, sharpe)}
+    <p class="trial-dist__axis"><span>${distribution.summary.minimum}</span><span>Sharpe ratio</span><span>${distribution.summary.maximum}</span></p>
+    <p class="trial-dist__legend"><span class="trial-dist__swatch trial-dist__swatch--here"></span>this trial <span class="trial-dist__swatch trial-dist__swatch--median"></span>median <span class="trial-dist__swatch trial-dist__swatch--zero"></span>zero</p>
+    ${placement}
+  </div>
+</section>`;
+}
 
 function facts(packet) {
   const measurement = packet.immutable_first_measurement;
@@ -181,7 +254,7 @@ function configuration(packet) {
     `<div><dt>${escapeHtml(humanise(key))}</dt><dd>${escapeHtml(displayValue(value))}</dd></div>`).join("")}</dl>`;
 }
 
-function trialPage(packet) {
+function trialPage(packet, distribution) {
   const key = packet.hypothesis_key;
   const rawPath = `trial-packets/${key}.json`;
   const rawUrl = `/glassbox/${rawPath}`;
@@ -196,26 +269,23 @@ function trialPage(packet) {
     `<li><strong>${escapeHtml(humanise(blocker.code ?? "blocker"))}.</strong> ${escapeHtml(blocker.finding ?? "")}</li>`).join("")}</ul>` :
     `<p>${escapeHtml(packet.completion_assessment.claim_boundary)}</p>`;
   const body = `
-<div class="trial__specimen" aria-label="Trial identity"><span>Hypothesis</span><code>${key}</code>
-<strong class="${packet.complete ? "trial__state--complete" : "trial__state--incomplete"}">${status}</strong></div>
-<p class="measure__lead">This page is generated from the exact machine-readable packet for
-<strong>${escapeHtml(packet.label)}</strong>. Publication makes the evidence inspectable; it does not
-upgrade the result, fill a missing section, or establish future performance.</p>
 <aside class="measure__boundary"><h2>Claim boundary</h2><p>${escapeHtml(packet.claim_boundary)}</p></aside>
 <section class="measure__section"><h2>Immutable first measurement</h2>${facts(packet)}</section>
-<section class="measure__section"><h2>Evidence coverage</h2>
-<p>The spine below is the trial-packet contract. A missing section stays visibly missing; partial
-evidence remains incomplete until the entire section is proved.</p>${coverage(packet)}</section>
+<section class="measure__section"><h2>Evidence coverage</h2>${coverage(packet)}</section>
 <section class="measure__section"><h2>Completion assessment</h2>${blockerHtml}</section>
 <section class="measure__section"><h2>Frozen configuration</h2>${configuration(packet)}</section>
 <section class="measure__section"><h2>Verify the packet</h2>
 <p>${familyLink}<a href="${rawUrl}">Download the machine-readable packet</a> · <a href="/trials">All trials</a></p>
 <p class="trial__hash">Packet content hash <code>${escapeHtml(packet.content_hash)}</code></p></section>`;
   return shell({
-    title: `Trial ${key} / Canli Capital`, description,
-    canonicalUrl: `${ORIGIN}/trials/${key}`, source: rawPath,
+    title: `${humanise(packet.research_family_key)} trial ${key.slice(0, 8)} / Canli`,
+    socialTitle: `${humanise(packet.label)} / Canli Capital`,
+    description,
+    canonicalUrl: `${ORIGIN}/trials/${key}`,
+    source: `${rawPath} trial_sharpe_distribution.json`,
     eyebrow: `<a href="/trials">Trial evidence</a> / ${escapeHtml(humanise(packet.research_family_key))}`,
-    h1: packet.label,
+    h1: humanise(packet.label),
+    hero: heroBlock(packet, distribution),
     body,
     // Incomplete packets stay publicly addressable and their links remain crawlable, but they are
     // evidence-accounting records rather than standalone search documents. Only a packet that
@@ -238,6 +308,20 @@ evidence remains incomplete until the entire section is proved.</p>${coverage(pa
 function main() {
   if (!existsSync(INDEX_PATH)) throw new Error(`missing ${INDEX_PATH}`);
   const index = JSON.parse(readFileSync(INDEX_PATH, "utf8"));
+  if (!existsSync(DISTRIBUTION_PATH)) {
+    throw new Error(`missing ${DISTRIBUTION_PATH}; run build-trial-distribution.mjs first`);
+  }
+  const distribution = JSON.parse(readFileSync(DISTRIBUTION_PATH, "utf8"));
+  // The distribution is built from these same packets. If it was generated
+  // against a different set, every percentile on every page is quietly wrong,
+  // so the two are required to agree on the population before anything renders.
+  const entries = index.packets ?? index;
+  if (distribution.trials_total !== entries.length) {
+    throw new Error(
+      `trial distribution covers ${distribution.trials_total} identities but the index has ${entries.length}; ` +
+      "the percentiles would describe a different population than the pages do",
+    );
+  }
   validateHash(index, INDEX_PATH);
   if (index.packets.length !== 228) throw new Error(`expected 228 trial packets, found ${index.packets.length}`);
   rmSync(OUT_DIR, { recursive: true, force: true });
@@ -251,7 +335,7 @@ function main() {
     if (fileHash !== entry.packet_file_sha256 || packet.content_hash !== entry.packet_content_hash || packet.hypothesis_key !== entry.hypothesis_key) {
       throw new Error(`${entry.hypothesis_key}: index-to-packet binding mismatch`);
     }
-    writeFileSync(resolve(OUT_DIR, `${entry.hypothesis_key}.html`), trialPage(packet));
+    writeFileSync(resolve(OUT_DIR, `${entry.hypothesis_key}.html`), trialPage(packet, distribution));
     return packet;
   });
 

@@ -672,3 +672,186 @@ body.paper {
   text-underline-offset: 3px;
 }
 .faq__evidence a:hover { color: var(--oxide); text-decoration-color: currentColor; }
+
+/* ---------------------------------------------------------------------------
+   Trial hero.
+
+   229 pages used to open with a database key set as a 60px headline, a bare hex
+   hash beside the word HYPOTHESIS, and four hundred pixels of white before any
+   content. The result the trial actually recorded was five sections down inside
+   a definition list. This band puts the identity, the measurement and the
+   trial's position among all the others above the fold, in the dark palette the
+   rest of the site uses.
+   --------------------------------------------------------------------------- */
+.trial-hero {
+  padding: clamp(56px, 7vw, 104px) clamp(22px, 5vw, 76px) clamp(48px, 6vw, 84px);
+  color: #eef7fc;
+  background: linear-gradient(178deg, #06111b 0%, #08161f 62%, #0a1a24 100%);
+  border-bottom: 1px solid rgba(120, 190, 225, 0.16);
+}
+.trial-hero__eyebrow {
+  margin: 0 0 22px;
+  color: #7fd4f2;
+  font: 500 0.7rem/1.4 var(--paper-mono, "IBM Plex Mono", monospace);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.trial-hero__eyebrow a { color: inherit; text-decoration: none; border-bottom: 1px solid rgba(127, 212, 242, 0.4); }
+.trial-hero__eyebrow span { margin: 0 8px; opacity: 0.5; }
+.trial-hero__title {
+  max-width: 20ch;
+  margin: 0;
+  color: #ffffff;
+  font: 560 clamp(2.3rem, 5vw, 4.1rem)/1.02 var(--paper-display, "Instrument Sans", system-ui, sans-serif);
+  letter-spacing: -0.035em;
+}
+.trial-hero__key {
+  margin: 20px 0 0;
+  display: flex; flex-wrap: wrap; gap: 12px; align-items: center;
+  color: #93aebd;
+  font-size: 0.8rem;
+}
+.trial-hero__key code {
+  padding: 3px 9px;
+  color: #cfe6f2;
+  font-family: var(--paper-mono, "IBM Plex Mono", monospace);
+  font-size: 0.76rem;
+  background: rgba(127, 212, 242, 0.09);
+  border: 1px solid rgba(127, 212, 242, 0.2);
+  border-radius: 4px;
+}
+.trial-hero__state {
+  padding: 3px 10px;
+  font-style: normal;
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border-radius: 999px;
+}
+.trial-hero__state--complete { color: #06180f; background: #5fe0a4; }
+.trial-hero__state--incomplete { color: #f0d9a8; background: rgba(224, 160, 60, 0.15); border: 1px solid rgba(224, 160, 60, 0.4); }
+
+.trial-hero__measure { margin: clamp(34px, 4.5vw, 56px) 0 0; }
+.trial-hero__figure span {
+  display: block;
+  color: #7f9dad;
+  font: 500 0.68rem/1.4 var(--paper-mono, "IBM Plex Mono", monospace);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.trial-hero__figure strong {
+  display: block;
+  margin: 10px 0 0;
+  color: #ffffff;
+  font: 500 clamp(2.6rem, 6vw, 4.6rem)/1 var(--paper-mono, "IBM Plex Mono", monospace);
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+}
+.trial-hero__figure small {
+  display: block;
+  max-width: 54ch;
+  margin: 14px 0 0;
+  color: #93aebd;
+  font-size: 0.85rem;
+  line-height: 1.65;
+}
+.trial-hero__figure--absent strong { color: #93aebd; font-size: clamp(1.6rem, 3vw, 2.4rem); }
+
+.trial-dist { margin: clamp(38px, 5vw, 60px) 0 0; }
+.trial-dist__label {
+  margin: 0 0 14px;
+  color: #7f9dad;
+  font: 500 0.68rem/1.4 var(--paper-mono, "IBM Plex Mono", monospace);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.trial-dist__plot { display: block; width: 100%; height: 66px; overflow: visible; }
+.trial-dist__ticks line { stroke: rgba(158, 196, 214, 0.30); stroke-width: 1.4; }
+.trial-dist__zero { stroke: rgba(238, 247, 252, 0.62); stroke-width: 1.4; stroke-dasharray: 3 4; }
+.trial-dist__median { stroke: #7fd4f2; stroke-width: 2; stroke-dasharray: 6 4; }
+.trial-dist__here { stroke: #ffb454; stroke-width: 2.4; }
+.trial-dist__dot { fill: #ffb454; }
+.trial-dist__legend {
+  margin: 10px 0 0;
+  display: flex; flex-wrap: wrap; gap: 8px 20px; align-items: center;
+  color: #93aebd;
+  font-size: 0.74rem;
+}
+.trial-dist__swatch { width: 16px; height: 2px; display: inline-block; }
+.trial-dist__swatch--here { background: #ffb454; height: 3px; }
+.trial-dist__swatch--median { background: #7fd4f2; }
+.trial-dist__swatch--zero { background: rgba(238, 247, 252, 0.5); }
+.trial-dist__caption {
+  max-width: 68ch;
+  margin: 20px 0 0;
+  color: #b6cdd9;
+  font-size: 0.92rem;
+  line-height: 1.7;
+}
+.trial-dist__caption strong { color: #ffffff; font-weight: 500; }
+
+.trial-dist__axis { display: flex; justify-content: space-between; margin: 8px 0 0; color: #7f9dad; font: 500 0.7rem/1.4 var(--paper-mono, "IBM Plex Mono", monospace); font-variant-numeric: tabular-nums; }
+.trial-dist__axis span:nth-child(2) { letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.7; }
+.trial-dist__legend span:not(.trial-dist__swatch) { margin-right: 4px; }
+
+/* ---------------------------------------------------------------------------
+   Research masthead.
+
+   These documents open with bold key-value front matter -- Short title, Author,
+   Verdict, Family key and forty-four other keys across the corpus. Rendered as
+   markdown it became seven stacked lines between the title and the first
+   sentence, pushing the abstract below the fold and reading like a form dump.
+   Same facts, one compact block, abstract back above the fold.
+   --------------------------------------------------------------------------- */
+/* No rule of its own: the first h2 below already draws one, and two rules with
+   a dead band between them is worse than either alone. */
+.research-masthead { margin: 0 0 clamp(10px, 1.5vw, 18px); }
+.research-masthead__verdict {
+  display: inline-flex; align-items: center; gap: 10px;
+  margin: 0 0 22px;
+  padding: 6px 14px 6px 10px;
+  border-radius: 999px;
+}
+.research-masthead__verdict span {
+  font: 500 0.62rem/1 var(--paper-mono, "IBM Plex Mono", monospace);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  opacity: 0.72;
+}
+.research-masthead__verdict strong {
+  font: 600 0.78rem/1 var(--paper-mono, "IBM Plex Mono", monospace);
+  letter-spacing: 0.1em;
+}
+/* KILLED is the only verdict in the corpus today, and it is the reason the
+   corpus exists. It is coloured as a fact, not as an alarm. */
+.research-masthead__verdict[data-verdict="killed"] {
+  color: #7d2f22;
+  background: rgba(190, 74, 48, 0.1);
+  border: 1px solid rgba(190, 74, 48, 0.3);
+}
+.research-masthead__facts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 18px 34px;
+  margin: 0;
+}
+.research-masthead__facts div { min-width: 0; }
+.research-masthead__facts dt {
+  margin: 0 0 5px;
+  color: var(--paper-tone, #55707f);
+  font: 500 0.63rem/1.3 var(--paper-mono, "IBM Plex Mono", monospace);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.research-masthead__facts dd {
+  margin: 0;
+  color: var(--paper-ink, #0a1824);
+  font-size: 0.88rem;
+  line-height: 1.55;
+}
+.research-masthead__facts dd code {
+  padding: 1px 6px;
+  font-size: 0.82em;
+  background: rgba(10, 24, 36, 0.06);
+  border-radius: 3px;
+}

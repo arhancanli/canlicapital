@@ -326,3 +326,24 @@
 @media (prefers-reduced-motion: reduce) {
   .cc-shell *, .cc-footer * { scroll-behavior: auto !important; transition-duration: 0.01ms !important; }
 }
+
+/* ---------------------------------------------------------------------------
+   Long unbreakable identifiers.
+
+   This site's prose is full of tokens that have no spaces in them: content
+   hashes, artifact paths, and SCREAMING_SNAKE state names like
+   USER_GENERATED_SCENARIO_NOT_RESEARCH_EVIDENCE. A survey of the built site
+   found 1,538 distinct tokens of 40 characters or more, the longest 123. At a
+   390px viewport a 44-character token cannot fit its line, does not wrap, and
+   pushes the whole document sideways -- which is how /tools/selection-risk came
+   to render 429px of content in a 390px window.
+
+   `break-word` breaks a word only when it would otherwise overflow its line, so
+   ordinary prose is unaffected and only the offending token is split. Code and
+   preformatted blocks are exempt: there, a token that does not fit should scroll
+   inside its own box rather than be silently broken across lines, because a hash
+   split over two lines reads as two different hashes.
+   --------------------------------------------------------------------------- */
+body { overflow-wrap: break-word; }
+pre, code, kbd, samp { overflow-wrap: normal; }
+pre { overflow-x: auto; }

@@ -422,6 +422,54 @@ function bibtexValue(value) {
     .replace(/([{}%&#_$])/g, "\\$1");
 }
 
+// Values run from "**Key:**" to the next "**Key:**" or the end of the line, so a
+// line carrying two pairs ("**Verdict:** KILLED  **Stage:** screen prototype")
+// yields two entries rather than one entry with the second pair buried inside it.
+const FRONT_MATTER = /\*\*([^:*\n]+):\*\*[ \t]*([^\n]*?)(?=\s*\*\*[^:*\n]+:\*\*|\s*$)/gm;
+
+function extractFrontMatter(markdown) {
+  const withoutTitle = markdown.replace(/^#\s+.*\n/, "");
+  const split = withoutTitle.split(/^##\s/m);
+  const head = split[0];
+  const pairs = [...head.matchAll(FRONT_MATTER)]
+    .map(([, key, value]) => ({ key: key.trim(), value: value.trim() }))
+    .filter((pair) => pair.key && pair.value);
+  if (!pairs.length) return { pairs: [], markdown: withoutTitle };
+  // Remove only the matched pairs from the head, then rejoin. Anything else in
+  // the head -- a standfirst, a warning, a note -- stays in the prose where its
+  // author put it.
+  const strippedHead = head.replace(FRONT_MATTER, "").replace(/^[ \t]*\n/gm, "\n").trim();
+  const rest = split.slice(1).map((section) => `## ${section}`).join("");
+  return { pairs, markdown: `${strippedHead ? `${strippedHead}\n\n` : ""}${rest}` };
+}
+
+// A verdict is the single most useful thing a reader can learn from a research
+// page, and 46 of these documents carry one. All 46 say KILLED. Publishing them
+// is the point of the corpus, so the verdict is a chip in the masthead rather
+// than the second line of a bold list.
+function mastheadHtml(pairs, shortTitle) {
+  if (!pairs.length) return "";
+  const verdict = pairs.find((pair) => pair.key.toLowerCase() === "verdict");
+  const rest = pairs.filter((pair) => pair !== verdict && pair.key.toLowerCase() !== "short title");
+  const chip = verdict
+    ? `<p class="research-masthead__verdict" data-verdict="${escapeHtml(verdict.value.toLowerCase())}">` +
+      `<span>Verdict</span><strong>${escapeHtml(verdict.value)}</strong></p>`
+    : "";
+  const facts = rest.length
+    ? `<dl class="research-masthead__facts">${rest.map((pair) =>
+        `<div><dt>${escapeHtml(pair.key)}</dt><dd>${inlineMarkdown(pair.value)}</dd></div>`).join("")}</dl>`
+    : "";
+  return `<div class="research-masthead">${chip}${facts}</div>`;
+}
+
+// Front-matter values contain backticks and the occasional link; render that
+// inline markup rather than printing the source characters at the reader.
+function inlineMarkdown(value) {
+  return escapeHtml(value)
+    .replace(/`([^`]+)`/g, (_, code) => `<code>${code}</code>`)
+    .replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (_, text, href) => `<a href="${href}">${text}</a>`);
+}
+
 function bibtex(paper) {
   return `@techreport{${citationKey(paper.slug)},
   author      = {Canli, Arhan},
@@ -433,8 +481,24 @@ function bibtex(paper) {
 }\n`;
 }
 
+const breadcrumbs = (trail) => ({
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: trail.map(([name, item], index) => ({
+    "@type": "ListItem",
+    position: index + 1,
+    name,
+    item,
+  })),
+});
+
 function pageHtml({ title, shortTitle, description, slug, body, sourceFile, sourceSha256, sources = [], related = "" }) {
   const url = `${ORIGIN}/research/${slug}`;
+  const trail = breadcrumbs([
+    ["Canli Capital", ORIGIN],
+    ["Research", `${ORIGIN}/research`],
+    [shortTitle || title, url],
+  ]);
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "ScholarlyArticle",
@@ -513,6 +577,7 @@ ${sources.length > 0 ? `<meta name="canli:sources" content="${sources.map(escape
 <link rel="stylesheet" href="../css/paper.css" />
 ${renderProductShellStylesheet()}
 <script type="application/ld+json">${JSON.stringify(jsonLd)}</script>
+<script type="application/ld+json">${JSON.stringify(trail)}</script>
 </head>
 <body class="paper">
 <a class="paper__skip" href="#content">Skip to content</a>
@@ -611,6 +676,11 @@ function hubHtml(hub, members) {
       url: `${ORIGIN}/research/${m.slug}`,
     })),
   };
+  const trail = breadcrumbs([
+    ["Canli Capital", ORIGIN],
+    ["Research", `${ORIGIN}/research`],
+    [hub.label, url],
+  ]);
 
   return `<!doctype html>
 <html lang="en">
@@ -642,6 +712,7 @@ function hubHtml(hub, members) {
 <link rel="stylesheet" href="../../css/paper.css" />
 ${renderProductShellStylesheet()}
 <script type="application/ld+json">${JSON.stringify(jsonLd)}</script>
+<script type="application/ld+json">${JSON.stringify(trail)}</script>
 </head>
 <body class="paper">
 <a class="paper__skip" href="#content">Skip to content</a>
@@ -722,8 +793,9 @@ function main() {
   }
 
   for (const paper of papers) {
-    const body = canonicalizeRenderedResearchLinks(
-      marked.parse(paper.markdown.replace(/^#\s+.*\n/, "")),
+    const { pairs, markdown } = extractFrontMatter(paper.markdown);
+    const body = mastheadHtml(pairs, paper.shortTitle) + canonicalizeRenderedResearchLinks(
+      marked.parse(markdown),
     );
     writeFileSync(
       resolve(OUT_DIR, `${paper.slug}.html`),
