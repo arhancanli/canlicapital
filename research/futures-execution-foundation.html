@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Dated-futures execution foundation | Canli Capital</title>
+<meta name="description" content="AlphaForge can now represent a dated futures contract as a first-class FUTURE instrument and make deterministic lifecycle decisions without using…" />
+<meta name="alphac-source-sha256" content="90f3b84943088058e39794b66df5a10b8699de1416fa048768f71bcb10866778" />
+
+<link rel="canonical" href="https://canlicapital.com/research/futures-execution-foundation" />
+<meta name="author" content="Arhan Canli" />
+<meta name="citation_title" content="Dated-futures execution foundation" />
+<meta name="citation_author" content="Arhan Canli" />
+<meta name="citation_publication_date" content="2026" />
+<meta name="citation_language" content="en" />
+<meta name="citation_fulltext_html_url" content="https://canlicapital.com/research/futures-execution-foundation" />
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="Canli Capital" />
+<meta property="og:title" content="Dated-futures execution foundation" />
+<meta property="og:description" content="AlphaForge can now represent a dated futures contract as a first-class FUTURE instrument and make deterministic lifecycle decisions without using…" />
+<meta property="og:url" content="https://canlicapital.com/research/futures-execution-foundation" />
+<meta property="og:image" content="https://canlicapital.com/og.png" />
+<meta property="article:author" content="Arhan Canli" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Dated-futures execution foundation" />
+<meta name="twitter:description" content="AlphaForge can now represent a dated futures contract as a first-class FUTURE instrument and make deterministic lifecycle decisions without using…" />
+<meta name="twitter:image" content="https://canlicapital.com/og.png" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="icon" href="/favicon.ico" sizes="any" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=optional" />
+<link rel="stylesheet" media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=optional" />
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=optional" /></noscript>
+<link rel="stylesheet" href="../css/paper.css" />
+<link rel="stylesheet" href="/css/product-shell.css" />
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"ScholarlyArticle","headline":"Dated-futures execution foundation","description":"AlphaForge can now represent a dated futures contract as a first-class FUTURE instrument and make deterministic lifecycle decisions without using…","url":"https://canlicapital.com/research/futures-execution-foundation","inLanguage":"en","isAccessibleForFree":true,"datePublished":"2026","author":{"@type":"Person","@id":"https://canlicapital.com/#arhan-canli","name":"Arhan Canli","jobTitle":"Founder and Quantitative Researcher","url":"https://canlicapital.com/founder","sameAs":["https://github.com/arhancanli"],"affiliation":{"@type":"Organization","@id":"https://canlicapital.com/#organization","name":"Canli Capital","url":"https://canlicapital.com/"}},"publisher":{"@type":"Organization","@id":"https://canlicapital.com/#organization","name":"Canli Capital","url":"https://canlicapital.com/","logo":{"@type":"ImageObject","url":"https://canlicapital.com/brand-mark.svg"}},"isPartOf":{"@type":"Periodical","name":"Canli Capital Research","url":"https://canlicapital.com/research"},"encodingFormat":"text/html","associatedMedia":{"@type":"MediaObject","contentUrl":"https://canlicapital.com/research/futures-execution-foundation.md","encodingFormat":"text/markdown"}}</script>
+</head>
+<body class="paper">
+<a class="paper__skip" href="#content">Skip to content</a>
+<header class="cc-shell" id="nav" data-product-shell="v3">
+  <a class="cc-shell__brand" href="/" aria-label="Canli Capital, home">
+    <span class="cc-shell__mark" aria-hidden="true"><i></i></span>
+    <span>Canli Capital</span>
+  </a>
+  <a class="cc-shell__status" href="/measurements/alpaca-broker-reconciliation" aria-label="Current record status">
+    <span class="status-dot" aria-hidden="true"></span>
+    <span>Public paper record</span>
+  </a>
+  <nav class="cc-shell__primary" aria-label="Primary navigation">
+<a class="cc-shell__link" href="https://app.canlicapital.com/dashboard" rel="noreferrer">Live</a>
+<a class="cc-shell__link" href="/research" aria-current="page" data-current="true">Research</a>
+<a class="cc-shell__link" href="/trials">Trials</a>
+<a class="cc-shell__link" href="/systems">Systems</a>
+<a class="cc-shell__link" href="/methodology">Methodology</a>
+<a class="cc-shell__link" href="/verify">Verify</a>
+  </nav>
+  <details class="cc-shell__index">
+    <summary><span class="cc-shell__index-wide">More</span><span class="cc-shell__index-compact">Menu</span></summary>
+    <div class="cc-shell__panel">
+      <div>
+        <span class="cc-shell__panel-label">Core</span>
+        <nav aria-label="Core routes"><a class="cc-shell__panel-link" href="https://app.canlicapital.com/dashboard" rel="noreferrer">Live</a>
+<a class="cc-shell__panel-link" href="/research" aria-current="page" data-current="true">Research</a>
+<a class="cc-shell__panel-link" href="/trials">Trials</a>
+<a class="cc-shell__panel-link" href="/systems">Systems</a>
+<a class="cc-shell__panel-link" href="/methodology">Methodology</a>
+<a class="cc-shell__panel-link" href="/verify">Verify</a></nav>
+      </div>
+      <div>
+        <span class="cc-shell__panel-label">Institution</span>
+        <nav aria-label="Institution routes"><a class="cc-shell__panel-link" href="/progress">Corrections</a>
+<a class="cc-shell__panel-link" href="/performance">Status</a>
+<a class="cc-shell__panel-link" href="/founder">Founder</a>
+<a class="cc-shell__panel-link" href="/open">Open data</a>
+<a class="cc-shell__panel-link" href="/measurements">Measurements</a></nav>
+      </div>
+      <p>Observed, simulated, model-estimated and planned claims remain visibly separate.</p>
+    </div>
+  </details>
+  <a class="cc-shell__cta" href="https://app.canlicapital.com/dashboard">Enter live record <span aria-hidden="true">↗</span></a>
+</header>
+<main class="paper__main" id="content">
+  <article class="paper__article">
+    <p class="paper__eyebrow"><a href="/research">Research</a></p>
+    <h1 class="paper__title">Dated-futures execution foundation</h1>
+    <p class="paper__byline">By <span rel="author">Arhan Canli</span>, Canli Capital</p>
+    <div class="paper__body">
+<p><strong>Capability status:</strong> domain primitives only<br><strong>Research effect:</strong> zero market data opened, zero returns evaluated, zero hypotheses spent<br><strong>Claim boundary:</strong> architecture evidence, not sleeve-admission or performance evidence</p>
+<p>AlphaForge can now represent a dated futures contract as a first-class <code>FUTURE</code> instrument and
+make deterministic lifecycle decisions without using information unavailable at the decision
+time. The current AlphaTrend implementation remains a managed-futures <strong>ETF proxy</strong>. Nothing in
+this foundation relabels its evidence as direct futures evidence.</p>
+<h2>Implemented contract</h2>
+<p>Each dated contract carries its canonical instrument identity, root, contract month, listing time,
+metadata availability time, first-notice time, last-trade time, multiplier and tick size. Contract
+metadata or liquidity stamped after a decision raises <code>LookaheadError</code>.</p>
+<p>The roll policy is locked in exchange sessions rather than guessed calendar days:</p>
+<ol>
+<li>Compute the first-notice exit session and last-trade exit session from the supplied session
+index.</li>
+<li>Use the earlier deadline.</li>
+<li>At or after that deadline, roll only to the immediate next listed expiry when its metadata is
+known and it remains safely before its own deadline.</li>
+<li>If that immediate successor is missing or unsafe, flatten. Never skip the lineage gap by
+jumping farther down the curve.</li>
+<li>Before the mandatory deadline, a liquidity-led roll requires the next contract to exceed the
+locked volume ratio for every required confirmation observation. Missing data means hold.</li>
+</ol>
+<p>The execution guard separately identifies locked limit-up, locked limit-down and generic missing
+liquidity from a point-in-time effective price band. Daily variation margin is an explicit signed
+cashflow: <code>contracts × multiplier × (current settlement − prior settlement)</code>.</p>
+<h2>Fail-closed integration boundary</h2>
+<p>The shared instrument taxonomy accepts dated futures, but the generic calendar and transaction
+cost paths reject them. There is deliberately no fallback to NYSE sessions, 24/7 crypto time, or
+Binance spot commissions. Product-specific sources must land before an end-to-end futures run can
+be valid.</p>
+<p>Still required:</p>
+<ul>
+<li>exchange/product calendars and settlement schedules;</li>
+<li>dated-contract settlements, executable quotes, volume and open interest with PIT lineage;</li>
+<li>exchange, clearing, initial-margin and maintenance-margin schedules;</li>
+<li>continuous-series construction with explicit roll-return attribution;</li>
+<li>backtest ledger and broker integration;</li>
+<li>historical limit-event and exchange-outage replay.</li>
+</ul>
+<p>The machine-readable capability contract, source hashes, invariants and missing components are at
+<a href="/glassbox/futures_execution_contract.json"><code>/glassbox/futures_execution_contract.json</code></a>.</p>
+
+    </div>
+    <nav class="paper__related" aria-label="Related research">
+      <p class="paper__related-kicker">Filed under</p>
+      <p class="paper__links"><a href="/research/topics/engineering-foundations">Engineering foundations</a><span aria-hidden="true"> / </span><a href="/research/topics/execution-and-market-structure">Execution and market structure</a></p>
+      <p class="paper__related-kicker">Related work</p>
+      <ul class="paper__related-list"><li><a href="/research/crypto-carry-portable-v1">A hash-bound prospective test of cross-sectional perpetual-futures carry</a></li><li><a href="/research/kill-eq-mom-margin">Equity Momentum (with Margin Costs): a killed candidate</a></li><li><a href="/research/execution-realism">Execution realism and model boundary</a></li><li><a href="/research/options-dispersion-feasibility">Options dispersion: locked no-return data and execution-feasibility protocol</a></li><li><a href="/research/financing-replay">Point-in-time cash and collateral financing replay</a></li><li><a href="/research/options-execution-foundation">Point-in-time options execution foundation</a></li></ul>
+    </nav>
+    <footer class="paper__footer">
+      <p class="paper__links">
+        <a href="/research/futures-execution-foundation.md">Read the unrendered source</a>
+        <span aria-hidden="true"> / </span>
+        <a href="/research/citations/futures-execution-foundation.bib" download>Cite this report</a>
+        <span aria-hidden="true"> / </span>
+        <a href="/open">Inspect the underlying artifacts</a>
+        <span aria-hidden="true"> / </span>
+        <a href="/research">All research</a>
+      </p>
+      <p class="paper__boundary">
+        Published as evidence, not as a claim about future performance. The figures quoted here
+        are reproducible from the artifacts linked above.
+      </p>
+    </footer>
+  </article>
+</main>
+<footer class="cc-footer" id="footer" data-product-shell="v3">
+  <div class="cc-footer__lead">
+    <a class="cc-footer__brand" href="/">Canli Capital</a>
+    <p>Build the claim. Publish the evidence. Keep the failures.</p>
+  </div>
+  <div class="cc-footer__routes">
+    <nav aria-label="Portfolio and research">
+      <span>Research system</span>
+      <a href="https://app.canlicapital.com/dashboard">Live record</a>
+      <a href="/systems">ALPHAC systems</a>
+      <a href="/research">Research papers</a>
+      <a href="/trials">Trial union</a>
+    </nav>
+    <nav aria-label="Evidence and verification">
+      <span>Evidence</span>
+      <a href="/methodology">Methodology</a>
+      <a href="/verify">Verify record</a>
+      <a href="/measurements">Measurements</a>
+      <a href="/open">Open data</a>
+    </nav>
+    <nav aria-label="Institution and authorship">
+      <span>Institution</span>
+      <a href="/progress">Corrections</a>
+      <a href="/performance">Status</a>
+      <a href="/founder">Arhan Canli</a>
+      <a href="https://github.com/arhancanli" rel="noreferrer">GitHub</a>
+    </nav>
+  </div>
+  <div class="cc-footer__boundary">
+    <p>Research and paper execution only. No managed capital, copy trading, investment advice or promised return.</p>
+    <p>Founded and built by Arhan Canli in Dubai.</p>
+    <span>Copyright Arhan Canli</span>
+  </div>
+</footer>
+</body>
+</html>

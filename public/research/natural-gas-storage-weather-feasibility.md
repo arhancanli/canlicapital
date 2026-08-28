@@ -1,4 +1,6 @@
-# Natural-gas storage/weather residual — no-return source-feasibility protocol
+# Natural-gas storage/weather residual: no-return source-feasibility protocol
+
+**Short title:** Natural-gas storage and weather: feasibility
 
 **Declared:** 2026-08-16 before downloading historical WNGSR snapshots, enumerating the full NOAA
 weekly key set, or requesting CME market records. **Prices and returns are forbidden.**

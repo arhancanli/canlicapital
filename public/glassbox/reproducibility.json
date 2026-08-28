@@ -1,9 +1,9 @@
 {
   "schema": "glassbox.reproducibility/1",
   "title": "Reproducibility",
-  "summary": "The backtest is content-hashed and byte-reproducible. A golden-master test asserts every fill price, fee, funding payment and the final equity from hand-written arithmetic to 1e-9 precision. We do not claim blockchain anchoring; we do not need it.",
+  "summary": "The backtest is content-hashed and byte-reproducible. A golden-master test asserts every fill price, fee, funding payment and the final equity from hand-written arithmetic to 1e-9 precision. The backtest itself is not timestamp-anchored; the separate live track-record chain has selected OpenTimestamps checkpoints.",
   "reproducibility_claim": "content-hashed + byte-reproducible backtest",
-  "not_claimed": "NOT blockchain-anchored; no chain-of-custody proofs",
+  "not_claimed": "No blockchain timestamp or chain-of-custody claim for the backtest itself",
   "registered_factors": 52,
   "golden_master_test": {
     "file": "tests/integration/test_golden_master.py",
@@ -35,6 +35,6 @@
   "source_paths": [
     "tests/integration/test_golden_master.py"
   ],
-  "generated_at": "2026-08-18T17:25:32.218261+00:00",
-  "content_hash": "sha256:38a7eecb07e5c77fba9454f2e02df962256245dfcbc8a0f6303d1b66e12f29c5"
+  "generated_at": "2026-08-26T09:26:02.727295+00:00",
+  "content_hash": "sha256:fac92bb19269b2bc96028b43a4a635ece1adf097b04b32dc1a7836d18d5049dd"
 }

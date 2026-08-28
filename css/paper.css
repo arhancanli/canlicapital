@@ -1,0 +1,674 @@
+/* ===========================================================================
+   CANLI CAPITAL / paper.css
+   ---------------------------------------------------------------------------
+   The reading surface for research documents at /research/<slug>.
+
+   Deliberately self-contained and small. The marketing pages carry a WebGL
+   manifold, GSAP and Lenis; a research paper needs none of it, and loading half
+   a megabyte of renderer in front of a document a reader arrived at from a
+   search result would be the wrong trade twice over -- once for them, once for
+   the Core Web Vitals that decide whether the next reader arrives at all.
+
+   It redeclares only the tokens it uses, with the same values as home.css, so a
+   paper page reads as the same publication without depending on 51KB of
+   stylesheet written for a different job.
+   =========================================================================== */
+
+:root {
+  color-scheme: light;
+  --void: #f2f6f8;
+  --void-raised: #ffffff;
+  --ink: #0a1823;
+  --paper-tone: #334553;
+  --muted: #5b6d79;
+  --faint: #667b89;
+  --line: #cad6dd;
+  --line-strong: #97aebb;
+  --oxide: #1737ba;
+  --signal-blue: #305cff;
+  --display: "Instrument Sans", system-ui, -apple-system, sans-serif;
+  --body: "Instrument Sans", system-ui, -apple-system, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SF Mono", monospace;
+  --measure: 74ch;
+  --pad: clamp(22px, 4.4vw, 72px);
+}
+
+* { box-sizing: border-box; }
+
+html {
+  background: var(--void);
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body.paper {
+  margin: 0;
+  background-color: var(--void);
+  background-image:
+    linear-gradient(rgba(49, 92, 255, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(49, 92, 255, 0.045) 1px, transparent 1px);
+  background-size: 52px 52px;
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: 17px;
+  line-height: 1.62;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection { color: #fff; background: var(--signal-blue); }
+:focus-visible { outline: 2px solid var(--signal-blue); outline-offset: 3px; }
+
+.paper__skip {
+  position: fixed;
+  z-index: 100;
+  top: 10px;
+  left: 10px;
+  padding: 12px 16px;
+  transform: translateY(-150%);
+  background: var(--signal-blue);
+  color: #fff;
+  text-decoration: none;
+}
+.paper__skip:focus { transform: translateY(0); }
+
+/* --- masthead ----------------------------------------------------------- */
+
+.paper__masthead {
+  position: sticky;
+  z-index: 30;
+  top: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 24px;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 72px;
+  padding: 10px var(--pad);
+  border-bottom: 1px solid #21394b;
+  background: rgba(7, 18, 28, 0.94);
+  backdrop-filter: blur(18px);
+}
+.paper__brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: #edf8ff;
+  font-family: var(--body);
+  font-size: 15px;
+  font-weight: 650;
+  letter-spacing: -0.025em;
+  text-decoration: none;
+}
+.paper__brand::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  border: 1px solid #65d8ff;
+  border-radius: 50%;
+  background: #65d8ff;
+  box-shadow: inset 0 0 0 2px #07121c;
+}
+.paper__nav {
+  display: flex;
+  gap: clamp(14px, 2vw, 28px);
+  font: 500 11px/1 var(--mono);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.paper__nav a {
+  min-height: 42px;
+  display: inline-flex;
+  align-items: center;
+  color: #bfd1dc;
+  text-decoration: none;
+  transition: color 160ms ease, background-color 160ms ease;
+}
+.paper__nav a:hover { color: #65d8ff; }
+.paper__nav .paper__nav-cta {
+  min-height: 44px;
+  gap: 9px;
+  padding: 0 16px;
+  color: #07121c;
+  background: #edf8ff;
+  font-family: var(--body);
+  font-weight: 620;
+  letter-spacing: -0.01em;
+  text-transform: none;
+}
+.paper__nav .paper__nav-cta:hover { color: #07121c; background: #65d8ff; }
+
+/* --- article ------------------------------------------------------------ */
+
+.paper__main {
+  padding: clamp(36px, 5vw, 76px) var(--pad) clamp(72px, 9vw, 128px);
+}
+.paper__article {
+  width: 100%;
+  min-width: 0;
+  overflow-x: hidden;
+  max-width: calc(var(--measure) + clamp(44px, 8vw, 120px));
+  margin: 0 auto;
+  padding: clamp(30px, 5vw, 66px);
+  border: 1px solid var(--line);
+  border-top: 4px solid var(--signal-blue);
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 24px 70px rgba(32, 48, 72, 0.09);
+}
+
+.paper__eyebrow {
+  margin: 0 0 20px;
+  font: 500 11px/1 var(--mono);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.paper__eyebrow a { color: var(--oxide); text-decoration: none; }
+.paper__eyebrow a:hover { text-decoration: underline; }
+
+.paper__title {
+  margin: 0;
+  max-width: 22ch;
+  font: 570 clamp(38px, 5.2vw, 64px)/0.98 var(--display);
+  letter-spacing: -0.052em;
+  text-wrap: balance;
+  overflow-wrap: anywhere;
+}
+
+.paper__byline {
+  margin: 22px 0 0;
+  color: var(--faint);
+  font: 400 12px/1.5 var(--mono);
+  letter-spacing: 0.02em;
+}
+
+.paper__body { min-width: 0; margin-top: clamp(40px, 5vw, 64px); }
+.paper__body > :first-child { margin-top: 0; }
+
+.paper__body h2 {
+  margin: clamp(48px, 6vw, 76px) 0 18px;
+  padding-top: 22px;
+  border-top: 1px solid var(--line);
+  font: 580 clamp(25px, 2.6vw, 33px)/1.12 var(--display);
+  letter-spacing: -0.04em;
+}
+.paper__body h3 {
+  margin: 40px 0 14px;
+  font: 600 18px/1.35 var(--body);
+  letter-spacing: -0.008em;
+}
+.paper__body h4 {
+  margin: 32px 0 12px;
+  color: var(--muted);
+  font: 500 12px/1.4 var(--mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.paper__body p { margin: 0 0 22px; color: var(--paper-tone); }
+.paper__body strong { color: var(--ink); font-weight: 600; }
+.paper__body em { font-style: italic; }
+
+.paper__body a { color: var(--signal-blue); text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+.paper__body a:hover { color: var(--oxide); }
+
+.paper__body ul, .paper__body ol { margin: 0 0 24px; padding-left: 22px; color: var(--paper-tone); }
+.paper__body li { margin-bottom: 10px; }
+.paper__body li::marker { color: var(--faint); }
+
+.paper__body blockquote {
+  margin: 28px 0;
+  padding: 4px 0 4px 22px;
+  border-left: 2px solid var(--oxide);
+  color: var(--muted);
+}
+.paper__body blockquote p:last-child { margin-bottom: 0; }
+
+.paper__body code {
+  padding: 2px 5px;
+  border: 1px solid var(--line);
+  background: var(--void-raised);
+  font: 400 0.86em/1.4 var(--mono);
+  word-break: break-word;
+}
+.paper__body pre {
+  margin: 26px 0;
+  padding: 18px 20px;
+  overflow-x: auto;          /* wide code scrolls in its own box, never the page */
+  border: 1px solid var(--line);
+  background: var(--void-raised);
+  font: 400 13px/1.6 var(--mono);
+}
+.paper__body pre code { padding: 0; border: 0; background: none; font-size: inherit; }
+
+/* Tables carry most of the numeric evidence in these documents, so they get the
+   same care as the prose: they scroll inside their own box rather than pushing
+   the page sideways on a phone. */
+.paper__body table {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  margin: 28px 0;
+  border-collapse: collapse;
+  font: 400 14px/1.5 var(--mono);
+  white-space: nowrap;
+}
+.paper__body th, .paper__body td {
+  padding: 10px 16px 10px 0;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  vertical-align: top;
+}
+.paper__body th {
+  color: var(--muted);
+  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.paper__body hr { margin: 44px 0; border: 0; border-top: 1px solid var(--line); }
+.paper__body img { max-width: 100%; height: auto; }
+
+/* --- footer ------------------------------------------------------------- */
+
+.paper__footer {
+  margin-top: clamp(56px, 7vw, 88px);
+  padding-top: 28px;
+  border-top: 1px solid var(--line-strong);
+}
+.paper__links { margin: 0 0 16px; font: 500 12px/1.6 var(--mono); letter-spacing: 0.02em; }
+.paper__links a { color: var(--muted); text-decoration: none; }
+.paper__links a:hover { color: var(--oxide); text-decoration: underline; }
+.paper__boundary { margin: 0; max-width: 62ch; color: var(--faint); font-size: 13px; line-height: 1.6; }
+
+@media (max-width: 640px) {
+  body.paper { font-size: 16px; }
+  .paper__masthead {
+    flex-wrap: nowrap;
+    align-items: center;
+    overflow-x: clip;
+    padding-top: 14px;
+    padding-bottom: 14px;
+  }
+  .paper__nav {
+    width: auto;
+    margin: 0;
+    padding: 0;
+  }
+  .paper__nav a:not(.paper__nav-cta) { display: none; }
+  .paper__nav .paper__nav-cta { min-height: 40px; padding: 0 13px; white-space: nowrap; }
+  .paper__main { padding-right: 12px; padding-left: 12px; }
+  .paper__article { padding: 26px 20px 42px; box-shadow: none; }
+  .paper__title { max-width: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+
+/* ---------------------------------------------------------------------------
+   TOPIC HUB LISTING
+   The hub pages load THIS stylesheet, not research.css, so the library classes
+   have to exist here too. Without them the title and description spans collapse
+   inline — "…a killed candidateScreened at an apparent 1.47…" — and the whole
+   list inherits the prose bullet and underline treatment. Caught in a rendered
+   screenshot, which is the only place it is visible.
+   --------------------------------------------------------------------------- */
+
+.paper__body .research-library {
+  margin: clamp(28px, 4vw, 40px) 0 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--line);
+}
+.paper__body .research-library__item {
+  margin: 0;
+  border-bottom: 1px solid var(--line);
+}
+.paper__body .research-library__item::marker { content: none; }
+.paper__body .research-library__link {
+  display: grid;
+  gap: 6px;
+  padding: 20px 0;
+  color: inherit;
+  text-decoration: none;
+  transition: opacity 160ms ease;
+}
+.paper__body .research-library__link:hover { opacity: 0.75; }
+.paper__body .research-library__link:hover .research-library__title { color: var(--oxide); }
+.research-library__title {
+  font-family: var(--display);
+  font-size: clamp(18px, 1.7vw, 22px);
+  line-height: 1.25;
+  letter-spacing: -0.018em;
+  color: var(--ink);
+  transition: color 160ms ease;
+}
+.research-library__desc {
+  max-width: 88ch;
+  color: var(--faint);
+  font-size: 14px;
+  line-height: 1.55;
+}
+@media (max-width: 640px) {
+  .research-library__desc { display: none; }
+}
+
+
+/* Moved here from research.css: paper pages load THIS stylesheet, and the same mistake
+   (styling a paper-page component in the marketing stylesheet) has now been made twice.
+   If a class starts with .paper__ or renders inside .paper__body, it belongs in this file. */
+/* Related-work navigation on a paper page: the internal link graph that makes eighty documents
+   a body of work rather than eighty orphans. */
+.paper__related {
+  margin: clamp(48px, 6vw, 72px) 0 0;
+  padding-top: 26px;
+  border-top: 1px solid var(--line, rgba(231, 224, 210, 0.16));
+}
+.paper__related-kicker {
+  margin: 0 0 10px;
+  color: var(--faint, #7f8a96);
+  font: 500 11px/1 var(--mono, "IBM Plex Mono", monospace);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.paper__related-kicker + .paper__links { margin-bottom: 28px; }
+.paper__related-list { margin: 0; padding-left: 18px; }
+.paper__related-list li { margin-bottom: 8px; }
+.paper__related-list a {
+  color: var(--muted, #9ba4ad);
+  text-decoration: none;
+  text-underline-offset: 3px;
+}
+.paper__related-list a:hover { color: var(--oxide, #d56b48); text-decoration: underline; }
+.research-library--hub { border-top: 0; }
+
+/* ---------------------------------------------------------------------------
+   MEASUREMENT PAGES (/measurements and /measurements/*)
+   ---------------------------------------------------------------------------
+   Generated by scripts/build-measurements.mjs from research.json, and rendered
+   with the paper shell so the site has one document design rather than two.
+   These classes add only the components a rendered ARTIFACT needs that a written
+   paper does not: a claim-boundary block that sits above the numbers, a facts
+   list, and a table for a uniform array. No token is redefined here.
+
+   The boundary block is deliberately the most prominent thing under the title.
+   A measurement published without its limits is the failure this whole record
+   exists to avoid, so on these pages the limits are not a footnote.
+   --------------------------------------------------------------------------- */
+.measure__lead {
+  max-width: var(--measure);
+  color: var(--paper-tone);
+}
+.measure__boundary {
+  margin: clamp(26px, 3.4vw, 40px) 0;
+  padding: clamp(18px, 2.4vw, 26px) clamp(20px, 2.6vw, 30px);
+  border: 1px solid var(--line-strong);
+  border-left: 2px solid var(--oxide);
+  background: var(--void-raised);
+}
+.measure__boundary h2 {
+  margin: 0 0 10px;
+  color: var(--faint);
+  font: 500 11px/1.2 var(--mono);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.measure__boundary p {
+  margin: 0;
+  max-width: var(--measure);
+  color: var(--paper-tone);
+}
+.measure__section { margin: clamp(38px, 5vw, 60px) 0 0; }
+.measure__section > h2 {
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--line);
+}
+.measure__sub {
+  margin: clamp(22px, 3vw, 34px) 0 0;
+  padding-left: clamp(12px, 1.6vw, 20px);
+  border-left: 1px solid var(--line);
+}
+.measure__prose { max-width: var(--measure); }
+.measure__prose strong { color: var(--ink); }
+.measure__label {
+  margin: 22px 0 8px;
+  color: var(--faint);
+  font: 500 11px/1.2 var(--mono);
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+.measure__facts { margin: 18px 0; }
+.measure__row {
+  display: grid;
+  grid-template-columns: minmax(180px, 34%) 1fr;
+  gap: 8px 22px;
+  padding: 7px 0;
+  border-bottom: 1px solid var(--line);
+}
+.measure__row dt { color: var(--muted); }
+.measure__row dd {
+  margin: 0;
+  color: var(--ink);
+  font-family: var(--mono);
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
+}
+.measure__list { margin: 0 0 18px; padding-left: 18px; color: var(--paper-tone); }
+.measure__list li { margin-bottom: 5px; font-family: var(--mono); font-size: 0.92em; }
+.measure__deep { color: var(--muted); }
+/* A wide table must scroll inside its own frame. Letting the page scroll sideways instead is
+   how a rendered artifact breaks a phone. */
+.measure__tablewrap {
+  margin: 22px 0;
+  overflow-x: auto;
+}
+.measure__tablewrap figcaption {
+  margin-bottom: 8px;
+  color: var(--faint);
+  font: 500 11px/1.2 var(--mono);
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+.measure__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--mono);
+  font-size: 0.88em;
+  font-variant-numeric: tabular-nums;
+}
+.measure__table th,
+.measure__table td {
+  padding: 8px 14px 8px 0;
+  text-align: left;
+  border-bottom: 1px solid var(--line);
+  white-space: nowrap;
+}
+.measure__table th { color: var(--faint); font-weight: 500; }
+.measure__table td { color: var(--ink); }
+.measure__cards { margin: 22px 0 0; padding: 0; list-style: none; }
+.measure__card {
+  padding: clamp(16px, 2.2vw, 22px) 0;
+  border-bottom: 1px solid var(--line);
+}
+.measure__card h3 { margin: 0 0 6px; }
+.measure__card h3 a { color: var(--ink); text-decoration: none; }
+.measure__card h3 a:hover { color: var(--oxide); text-decoration: underline; }
+.measure__card p {
+  margin: 0;
+  max-width: var(--measure);
+  color: var(--muted);
+  font-size: 0.94em;
+}
+
+/* Trial evidence pages. The hypothesis hash is treated as a specimen label, while the vertical
+   spine makes the packet contract visible section by section. Missing proof is visually louder
+   than verified shared context, because publication must not make archival debt look complete. */
+.trial__specimen {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 10px 18px;
+  align-items: center;
+  margin: 0 0 28px;
+  padding: 14px 0;
+  border-top: 1px solid var(--line-strong);
+  border-bottom: 1px solid var(--line-strong);
+  font: 500 11px/1.4 var(--mono);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.trial__specimen code { overflow-wrap: anywhere; color: var(--paper-tone); }
+.trial__state--complete { color: #167a56; }
+.trial__state--incomplete { color: #b53a33; }
+.trial__facts, .trial__config { margin: 22px 0; }
+.trial__facts > div, .trial__config > div {
+  display: grid;
+  grid-template-columns: minmax(180px, 34%) 1fr;
+  gap: 8px 22px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--line);
+}
+.trial__facts dt, .trial__config dt { color: var(--muted); }
+.trial__facts dd, .trial__config dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+  color: var(--ink);
+  font-family: var(--mono);
+  font-variant-numeric: tabular-nums;
+}
+.trial__spine { margin: 26px 0; padding: 0; list-style: none; counter-reset: packet-section; }
+.trial__section {
+  position: relative;
+  margin: 0;
+  padding: 18px 0 18px 30px;
+  border-left: 1px solid var(--line-strong);
+  counter-increment: packet-section;
+}
+.trial__section::before {
+  content: counter(packet-section, decimal-leading-zero);
+  position: absolute;
+  top: 20px;
+  left: -13px;
+  width: 25px;
+  padding: 2px 0;
+  background: var(--void);
+  color: var(--faint);
+  font: 500 10px/1.4 var(--mono);
+  text-align: center;
+}
+.trial__section--missing { border-left-color: var(--oxide); }
+.trial__section--partial { border-left-color: #8d6100; }
+.trial__section-head { display: flex; gap: 14px; align-items: baseline; justify-content: space-between; }
+.trial__section-head h3 { margin: 0; font-size: 16px; }
+.trial__section-head span {
+  color: var(--faint);
+  font: 500 10px/1 var(--mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.trial__section--missing .trial__section-head span { color: #b53a33; }
+.trial__section--partial .trial__section-head span { color: #8d6100; }
+.trial__section--verified .trial__section-head span { color: #167a56; }
+.trial__evidence { margin: 10px 0 0 !important; padding: 0 !important; list-style: none; }
+.trial__evidence li { display: grid; gap: 3px; margin: 0 0 8px !important; }
+.trial__evidence li { min-width: 0; }
+.trial__source-links { color: var(--muted); font: 500 11px/1.5 var(--mono); }
+.trial__evidence code, .trial__hash code {
+  display: block;
+  max-width: 100%;
+  color: var(--faint);
+  font-size: 0.75em;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+.trial__absence { margin: 8px 0 0 !important; color: var(--faint) !important; font-style: italic; }
+.trial__family { margin-top: 52px; }
+.trial__family > h2 { margin-bottom: 6px; }
+.trial__cards { margin: 18px 0 0 !important; padding: 0 !important; list-style: none; }
+.trial__cards li { margin: 0 !important; border-bottom: 1px solid var(--line); }
+.trial__cards a {
+  display: grid;
+  grid-template-columns: 17ch minmax(0, 1fr) auto;
+  gap: 10px 18px;
+  align-items: baseline;
+  padding: 12px 0;
+  color: var(--ink) !important;
+  text-decoration: none !important;
+}
+.trial__cards code { color: var(--faint); font-size: 0.78em; }
+.trial__cards span { overflow-wrap: anywhere; }
+.trial__cards strong { font: 500 10px/1 var(--mono); letter-spacing: 0.06em; text-transform: uppercase; }
+@media (max-width: 640px) {
+  .trial__specimen, .trial__cards a { grid-template-columns: 1fr; }
+  .trial__facts > div, .trial__config > div { grid-template-columns: 1fr; gap: 2px; }
+}
+
+/* Topic hub: the essay that opens it, and the heading that separates that essay from the list of
+   documents. A hub carrying links under one paragraph is a doorway page whatever its schema says,
+   so the reading matter is set as reading matter — the standfirst leads, the essay is body text at
+   the same measure as a paper, and the list is clearly the second half of the page. */
+.hub__standfirst {
+  max-width: var(--measure);
+  color: var(--ink);
+  font-size: clamp(17px, 1.5vw, 20px);
+  line-height: 1.55;
+}
+.hub__heading {
+  margin: clamp(38px, 5vw, 56px) 0 4px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--line);
+}
+
+/* /verify — the instructions for checking this record without trusting it. The commands are the
+   content, so they are set as the primary object on the page rather than as decoration: full
+   measure, scrollable in their own frame, and never wrapped by the browser in a way that would
+   break a paste. */
+.verify__level { margin: clamp(38px, 5vw, 56px) 0 0; }
+.verify__level > h2 {
+  margin-bottom: 12px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--line);
+}
+.verify__code {
+  margin: 18px 0;
+  padding: clamp(16px, 2vw, 22px);
+  overflow-x: auto;
+  border: 1px solid var(--line-strong);
+  border-left: 2px solid var(--signal-blue);
+  background: var(--void-raised);
+}
+.verify__code code {
+  display: block;
+  white-space: pre;
+  font-family: var(--mono);
+  font-size: 0.82em;
+  line-height: 1.75;
+  color: var(--paper-tone);
+}
+.verify__key {
+  overflow-wrap: anywhere;
+  font-size: 0.8em;
+  color: var(--muted);
+}
+
+/* /methodology — the evidence line under each answer. An FAQ that explains a principle without
+   pointing at the document where the principle cost something is a brochure, so the links are set
+   as the load-bearing part of the answer rather than as a footnote. */
+.faq__evidence {
+  margin: 14px 0 0;
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+  font-family: var(--mono);
+  font-size: 0.8em;
+  line-height: 1.8;
+  color: var(--faint);
+}
+.faq__evidence a {
+  color: var(--paper-tone);
+  text-decoration: underline;
+  text-decoration-color: var(--line-strong);
+  text-underline-offset: 3px;
+}
+.faq__evidence a:hover { color: var(--oxide); text-decoration-color: currentColor; }

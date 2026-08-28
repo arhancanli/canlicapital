@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Point-in-time options execution foundation | Canli Capital</title>
+<meta name="description" content="AlphaForge now has tested domain primitives for option terms, quote snapshots, displayed-size package execution, fee assessment, internal scenario margin,…" />
+<meta name="alphac-source-sha256" content="330cc0ba0f307bcd1dc6c14b15cadd391c6a2a9765671dcb9eb3806a898e7f70" />
+
+<link rel="canonical" href="https://canlicapital.com/research/options-execution-foundation" />
+<meta name="author" content="Arhan Canli" />
+<meta name="citation_title" content="Point-in-time options execution foundation" />
+<meta name="citation_author" content="Arhan Canli" />
+<meta name="citation_publication_date" content="2026" />
+<meta name="citation_language" content="en" />
+<meta name="citation_fulltext_html_url" content="https://canlicapital.com/research/options-execution-foundation" />
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="Canli Capital" />
+<meta property="og:title" content="Point-in-time options execution foundation" />
+<meta property="og:description" content="AlphaForge now has tested domain primitives for option terms, quote snapshots, displayed-size package execution, fee assessment, internal scenario margin,…" />
+<meta property="og:url" content="https://canlicapital.com/research/options-execution-foundation" />
+<meta property="og:image" content="https://canlicapital.com/og.png" />
+<meta property="article:author" content="Arhan Canli" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Point-in-time options execution foundation" />
+<meta name="twitter:description" content="AlphaForge now has tested domain primitives for option terms, quote snapshots, displayed-size package execution, fee assessment, internal scenario margin,…" />
+<meta name="twitter:image" content="https://canlicapital.com/og.png" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="icon" href="/favicon.ico" sizes="any" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=optional" />
+<link rel="stylesheet" media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=optional" />
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=optional" /></noscript>
+<link rel="stylesheet" href="../css/paper.css" />
+<link rel="stylesheet" href="/css/product-shell.css" />
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"ScholarlyArticle","headline":"Point-in-time options execution foundation","description":"AlphaForge now has tested domain primitives for option terms, quote snapshots, displayed-size package execution, fee assessment, internal scenario margin,…","url":"https://canlicapital.com/research/options-execution-foundation","inLanguage":"en","isAccessibleForFree":true,"datePublished":"2026","author":{"@type":"Person","@id":"https://canlicapital.com/#arhan-canli","name":"Arhan Canli","jobTitle":"Founder and Quantitative Researcher","url":"https://canlicapital.com/founder","sameAs":["https://github.com/arhancanli"],"affiliation":{"@type":"Organization","@id":"https://canlicapital.com/#organization","name":"Canli Capital","url":"https://canlicapital.com/"}},"publisher":{"@type":"Organization","@id":"https://canlicapital.com/#organization","name":"Canli Capital","url":"https://canlicapital.com/","logo":{"@type":"ImageObject","url":"https://canlicapital.com/brand-mark.svg"}},"isPartOf":{"@type":"Periodical","name":"Canli Capital Research","url":"https://canlicapital.com/research"},"encodingFormat":"text/html","associatedMedia":{"@type":"MediaObject","contentUrl":"https://canlicapital.com/research/options-execution-foundation.md","encodingFormat":"text/markdown"}}</script>
+</head>
+<body class="paper">
+<a class="paper__skip" href="#content">Skip to content</a>
+<header class="cc-shell" id="nav" data-product-shell="v3">
+  <a class="cc-shell__brand" href="/" aria-label="Canli Capital, home">
+    <span class="cc-shell__mark" aria-hidden="true"><i></i></span>
+    <span>Canli Capital</span>
+  </a>
+  <a class="cc-shell__status" href="/measurements/alpaca-broker-reconciliation" aria-label="Current record status">
+    <span class="status-dot" aria-hidden="true"></span>
+    <span>Public paper record</span>
+  </a>
+  <nav class="cc-shell__primary" aria-label="Primary navigation">
+<a class="cc-shell__link" href="https://app.canlicapital.com/dashboard" rel="noreferrer">Live</a>
+<a class="cc-shell__link" href="/research" aria-current="page" data-current="true">Research</a>
+<a class="cc-shell__link" href="/trials">Trials</a>
+<a class="cc-shell__link" href="/systems">Systems</a>
+<a class="cc-shell__link" href="/methodology">Methodology</a>
+<a class="cc-shell__link" href="/verify">Verify</a>
+  </nav>
+  <details class="cc-shell__index">
+    <summary><span class="cc-shell__index-wide">More</span><span class="cc-shell__index-compact">Menu</span></summary>
+    <div class="cc-shell__panel">
+      <div>
+        <span class="cc-shell__panel-label">Core</span>
+        <nav aria-label="Core routes"><a class="cc-shell__panel-link" href="https://app.canlicapital.com/dashboard" rel="noreferrer">Live</a>
+<a class="cc-shell__panel-link" href="/research" aria-current="page" data-current="true">Research</a>
+<a class="cc-shell__panel-link" href="/trials">Trials</a>
+<a class="cc-shell__panel-link" href="/systems">Systems</a>
+<a class="cc-shell__panel-link" href="/methodology">Methodology</a>
+<a class="cc-shell__panel-link" href="/verify">Verify</a></nav>
+      </div>
+      <div>
+        <span class="cc-shell__panel-label">Institution</span>
+        <nav aria-label="Institution routes"><a class="cc-shell__panel-link" href="/progress">Corrections</a>
+<a class="cc-shell__panel-link" href="/performance">Status</a>
+<a class="cc-shell__panel-link" href="/founder">Founder</a>
+<a class="cc-shell__panel-link" href="/open">Open data</a>
+<a class="cc-shell__panel-link" href="/measurements">Measurements</a></nav>
+      </div>
+      <p>Observed, simulated, model-estimated and planned claims remain visibly separate.</p>
+    </div>
+  </details>
+  <a class="cc-shell__cta" href="https://app.canlicapital.com/dashboard">Enter live record <span aria-hidden="true">↗</span></a>
+</header>
+<main class="paper__main" id="content">
+  <article class="paper__article">
+    <p class="paper__eyebrow"><a href="/research">Research</a></p>
+    <h1 class="paper__title">Point-in-time options execution foundation</h1>
+    <p class="paper__byline">By <span rel="author">Arhan Canli</span>, Canli Capital</p>
+    <div class="paper__body">
+<p>AlphaForge now has tested domain primitives for option terms, quote snapshots, displayed-size
+package execution, fee assessment, internal scenario margin, adjusted deliverables, expiration,
+exercise, and assignment. This is
+engineering evidence, not an options backtest, investable track record, or sleeve-admission
+result. No market returns were opened to
+build it and no research hypothesis was spent.</p>
+<h2>What is enforced</h2>
+<ul>
+<li>Option identities are distinct from cash equities, futures, spot, and perpetuals.</li>
+<li>Contract terms, quotes, official settlements, and assignment notices each carry an explicit
+availability timestamp. Future-known inputs fail closed.</li>
+<li>Quotes carry an explicit uppercase premium currency. Cross-strike integrity checks are
+currency-local; values denominated differently are never compared as one series.</li>
+<li>A surface contains one underlying, active contracts, and unique economic terms. Quotes outside
+the listed-to-last-trade lifecycle are rejected.</li>
+<li>Crossed and stale quotes are rejected. Within homogeneous expiry/right/exercise/settlement/
+multiplier series, positive-size bid/ask bounds must satisfy call/put strike monotonicity and
+nonuniform-strike convexity. Missing strikes remain missing; the engine does not interpolate,
+smooth, or repair a surface.</li>
+<li>Multi-leg orders use signed integer ratios and explicit IOC or FOK handling. Positive ratios
+cross the displayed ask and consume ask size; negative ratios cross a strictly positive bid and
+consume bid size. The smallest whole-number leg capacity controls the entire package, so IOC
+partial execution preserves every ratio and cancels the residual while an undersized FOK order
+executes nothing.</li>
+<li>Every package has a maximum net debit per unit; a negative ceiling expresses a minimum required
+credit. All legs must share one explicit premium currency. Premium cash is multiplier-aware and
+must reconcile exactly across the package record.
+Missing quotes, zero bids, sub-ratio size, future-submitted orders, malformed evidence records,
+and non-marketable debit/credit limits fail closed.</li>
+<li>Package execution can require point-in-time market-status coverage for every leg. OPEN may cross;
+HALTED and OUTAGE block; AUCTION_ONLY cannot use the continuous displayed-leg assumption; and
+missing or future-known coverage fails closed. Each queried leg&#39;s effective status and reason is
+retained on the execution evidence record.</li>
+<li>Status inputs can be normalized through strict reviewed manifests bound to the exact SHA-256 of
+supplied source bytes. Publication, event observation, historical availability, local capture,
+and review timestamps remain separate. Qualification requires dual review; exact reconciliation
+requires distinct official-exchange and vendor bytes to agree on status, scope, and the complete
+effective interval. The generic contract accepts canonical OPTION instrument identities.</li>
+<li>A reconciliation-only preflight can require complete explicit status coverage over each option
+instrument interval. Source silence never implies OPEN; instrument status retains precedence,
+future-known specific status cannot fall back to a venue-wide event, and every missing interval
+is labeled while covered plus gap milliseconds must reconcile to the requirement.</li>
+<li>CLOSE_ONLY permits a package only when it is explicitly reduce-only and supplied integer-contract
+positions prove that every full requested ratio leg moves toward zero without increasing or
+flipping exposure. The same integrity check applies to reduce-only packages in OPEN markets, so
+the flag cannot become a leverage exemption.</li>
+<li>Option fee schedules are immutable point-in-time revisions keyed by venue, account class,
+product group, and premium currency. Every revision binds effective and local-availability
+intervals plus a credential-free HTTPS source URL and SHA-256 digest; revision identities are
+contiguous and cannot regress in availability or effective time.</li>
+<li>Fee components use exact decimal arithmetic and can scope per-contract or premium-rate charges
+by buy/sell side, maker/taker/auction liquidity, and trade/exercise/assignment event. Explicit
+order minima, caps, rebates, and component-level no-rounding, half-up, or ceiling-to-increment
+policies are supported. Rounding occurs before contractual minima and caps. Accepted package
+legs supply the contract counts and premium notionals; rejected packages cannot be charged, and
+every fee line must reconcile to the exact assessment total.</li>
+<li>Internal scenario margin consumes a complete stressed-price matrix from a locked upstream model.
+Every scenario must price every held option exactly once in one premium currency. Model and input
+artifacts carry SHA-256 identities; future-known, stale, duplicate, incomplete, extra-instrument,
+cross-currency, negative-price, or inexact-number inputs fail closed.</li>
+<li>Scenario P&amp;L nets all legs before selecting the worst loss. Separate point-in-time initial and
+maintenance policies can apply an explicit loss multiplier, per-short-contract floor,
+gross-short-mark add-on, and underlying-group concentration add-on. The assessment records every
+parameter and re-derives every component and total; the snapshot model identity must exactly
+equal the policy risk method. Mismatched methodology and coherent-looking arithmetic tampering
+fail closed.</li>
+<li>Expiry uses an official settlement observation available after expiration, not a convenient
+last trade or midpoint.</li>
+<li>Cash-settled and physically settled call/put positions produce signed, multiplier-aware cash
+and underlying delivery. Below-threshold contracts lapse explicitly.</li>
+<li>Early assignment requires an observed broker/clearing notice and American physical terms.
+The platform does not invent assignment from an uncalibrated probability.</li>
+<li>Each adjusted deliverable has a source reference, contiguous revision number, effective time,
+source-observation time, and platform-availability time. Replay selects only the latest revision
+both effective and available at the decision; future-known revisions fail closed.</li>
+<li>An adjusted package can contain multiple canonical assets and currencies plus explicit exercise
+cash. Expiry and observed assignment convert it into one deterministic option-close, asset, and
+cash basket whose signs are tested for calls, puts, long positions, and short positions.</li>
+<li>OCC adjustment documents enter through a strict reviewed-extraction manifest. Every observation
+binds the raw source URL and SHA-256 digest, exact decimal economics, source publication time,
+local availability time, effective time, stable contract-class key, and contiguous revision.
+Unknown fields and malformed official memo identities fail closed.</li>
+<li>The source archive accepts only the canonical HTTPS OCC memo endpoint, refuses redirects,
+bounds response size, validates PDF media type/signature/terminator, and writes immutable
+SHA-256-addressed blobs plus point-in-time manifests. Repeated observations are idempotent;
+changed source bytes become visible history, while conflicting claims at the same observation
+time fail closed. Every reviewed OCC extraction must bind exact archived bytes observed no later
+than its local availability time.</li>
+<li>Anticipated terms, fewer than two independent reviews, unresolved/TBD consideration, delayed
+settlement, reused source content, and non-final revisions remain auditable but cannot qualify
+for replay. A numeric suffix identifies a non-standard option class; it never defines its terms.</li>
+<li>A separately captured vendor observation must exactly match OCC on effective time, adjusted root,
+multiplier, strike-cash multiplier, exercise currency, settlement state, canonical assets,
+source identifiers, quantities, and fixed cash. Every disagreement is named and blocks
+qualification rather than being resolved by preference or tolerance.</li>
+<li>Generic crypto routing and transaction-fee schedules reject options.</li>
+</ul>
+<p>These rules follow OCC/OIC&#39;s published boundary: adjusted roots can be revised again without a new
+suffix, adjustments are case-specific, and deliverables may include multiple securities, fixed
+cash, cash in lieu, or components whose settlement is delayed. Representative primary sources are
+<a href="https://infomemo.theocc.com/infomemos?number=26853">OCC Information Memo 26853</a>, the
+<a href="https://www.optionseducation.org/referencelibrary/faq/splits-mergers-spinoffs-bankruptcies">OIC corporate-actions FAQ</a>,
+and <a href="https://infomemo.theocc.com/infomemos?number=59573">OCC Information Memo 59573</a>.</p>
+<h2>Deliberate boundary</h2>
+<p>These checks establish quote-bound integrity, an explicit atomic displayed-leg crossing model, a
+fail-closed adjusted-deliverable representation, an immutable source-byte archive, and a reviewed
+normalization/reconciliation contract: not actual simultaneous package fillability or historical
+adjustment coverage. Displayed bid/ask sizes on independent legs do not prove that a complex order
+would fill atomically; the replay therefore publishes its assumption as
+<code>atomic_cross_of_independently_displayed_bid_ask_without_fill_probability</code> and does not invent
+hidden liquidity, queue priority, complex-order-book price improvement, or beyond-displayed-size
+impact. Fee semantics are implemented, but no historical venue/account/product schedule corpus,
+content-verified fee-source archive, calibrated rate set, or production adapter is bundled; no
+default option commission is invented. Internal scenario margin is an AlphaForge risk measure,
+not a broker, OCC, exchange, regulatory, TIMS, STANS, or portfolio-margin replica; the supplied
+stress prices are not independently validated by an option repricer, and opening premium cash is
+outside the requirement. Status replay consumes supplied point-in-time events and the reviewed
+ingestion and preflight boundaries can normalize and audit supplied source artifacts, but there is
+no historical options status corpus, production status adapter, empirical broad-market coverage
+evidence, complex-order auction model, live venue-status polling, or outage failover. The archive
+transport is
+injectable, but operational unattended acquisition is not established: on 2026-08-18, direct HTTP
+and headless Chromium requests to the live OCC memo endpoint both returned HTTP 403 with
+<code>cf-mitigated: challenge</code> and exposed no PDF bytes. This limitation is preserved as a negative
+result; no challenge bypass or historical corpus is claimed. An OCC-supported distribution path or
+authorized operator retrieval is required before corpus accrual can be represented as operational.
+There is not yet automated PDF text extraction, a reviewed historical memo corpus, a production
+vendor feed adapter, a historical terms/quote
+ingestion spine, implied-volatility fitter, put-call-parity input set, dividends/rates/borrow
+exercise model, arbitrage repair, a validated stress repricer or calibrated scenario corpus,
+broker/OCC/exchange/regulatory margin equivalence, opening-premium collateral integration, margin
+calls and forced liquidation, end-to-end backtest ledger, or
+broker exercise/reconciliation path. The existing Deribit forward capture is a research data
+accrual process; it does not erase these gaps.</p>
+<p>Until those components and their point-in-time evidence exist, no candidate may claim realistic
+options execution or assignment modeling. The machine-readable capability statement is published
+at <a href="/glassbox/options_execution_contract.json"><code>/glassbox/options_execution_contract.json</code></a>.</p>
+
+    </div>
+    <nav class="paper__related" aria-label="Related research">
+      <p class="paper__related-kicker">Filed under</p>
+      <p class="paper__links"><a href="/research/topics/engineering-foundations">Engineering foundations</a><span aria-hidden="true"> / </span><a href="/research/topics/options-and-volatility">Options and volatility</a><span aria-hidden="true"> / </span><a href="/research/topics/execution-and-market-structure">Execution and market structure</a></p>
+      <p class="paper__related-kicker">Related work</p>
+      <ul class="paper__related-list"><li><a href="/research/options-dispersion-feasibility">Options dispersion: locked no-return data and execution-feasibility protocol</a></li><li><a href="/research/borrow-execution-foundation">Point-in-time securities-borrow foundation</a></li><li><a href="/research/crypto-carry-portable-v1">A hash-bound prospective test of cross-sectional perpetual-futures carry</a></li><li><a href="/research/alphatrend-managed-futures-lineage">AlphaTrend managed-futures trend: complete trial lineage and evidence boundary</a></li><li><a href="/research/crypto-defensive-lineage">Crypto defensive factors: positive summaries without admission evidence</a></li><li><a href="/research/kill-crypto-lowvol-720">Crypto Low-Volatility: a killed candidate</a></li></ul>
+    </nav>
+    <footer class="paper__footer">
+      <p class="paper__links">
+        <a href="/research/options-execution-foundation.md">Read the unrendered source</a>
+        <span aria-hidden="true"> / </span>
+        <a href="/research/citations/options-execution-foundation.bib" download>Cite this report</a>
+        <span aria-hidden="true"> / </span>
+        <a href="/open">Inspect the underlying artifacts</a>
+        <span aria-hidden="true"> / </span>
+        <a href="/research">All research</a>
+      </p>
+      <p class="paper__boundary">
+        Published as evidence, not as a claim about future performance. The figures quoted here
+        are reproducible from the artifacts linked above.
+      </p>
+    </footer>
+  </article>
+</main>
+<footer class="cc-footer" id="footer" data-product-shell="v3">
+  <div class="cc-footer__lead">
+    <a class="cc-footer__brand" href="/">Canli Capital</a>
+    <p>Build the claim. Publish the evidence. Keep the failures.</p>
+  </div>
+  <div class="cc-footer__routes">
+    <nav aria-label="Portfolio and research">
+      <span>Research system</span>
+      <a href="https://app.canlicapital.com/dashboard">Live record</a>
+      <a href="/systems">ALPHAC systems</a>
+      <a href="/research">Research papers</a>
+      <a href="/trials">Trial union</a>
+    </nav>
+    <nav aria-label="Evidence and verification">
+      <span>Evidence</span>
+      <a href="/methodology">Methodology</a>
+      <a href="/verify">Verify record</a>
+      <a href="/measurements">Measurements</a>
+      <a href="/open">Open data</a>
+    </nav>
+    <nav aria-label="Institution and authorship">
+      <span>Institution</span>
+      <a href="/progress">Corrections</a>
+      <a href="/performance">Status</a>
+      <a href="/founder">Arhan Canli</a>
+      <a href="https://github.com/arhancanli" rel="noreferrer">GitHub</a>
+    </nav>
+  </div>
+  <div class="cc-footer__boundary">
+    <p>Research and paper execution only. No managed capital, copy trading, investment advice or promised return.</p>
+    <p>Founded and built by Arhan Canli in Dubai.</p>
+    <span>Copyright Arhan Canli</span>
+  </div>
+</footer>
+</body>
+</html>

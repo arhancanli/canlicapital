@@ -7,34 +7,34 @@
 :root {
   color-scheme: dark;
   /* palette */
-  --void: #0A0B0D;
-  --ink: #070809;
-  --paper: #F4F1EA;
+  --void: #07121C;
+  --ink: #050E15;
+  --paper: #EDF8FF;
   /* secondary text tier. Lifted from #B7B4AC to #C4C0B8 (~5.3:1 on --void, still
      clearly muted below --paper) so long-form body, leads, and sub-copy read
      cleanly over the manifold without competing with the paper headlines. This is
      a token lift, not a fork: every --paper-dim consumer across all four pages
      rises one honest rung by construction. */
-  --paper-dim: #C4C0B8;
+  --paper-dim: #BFD1DC;
   /* readable label/eyebrow text. Lifted from #7C7E84 (which sat at the 4.85:1 AA
      floor and dipped below when composited over the lighter parts of the manifold
      canvas) to #888A90, ~5.7:1 on --void and ~5.8:1 on --ink, for a safe margin
      above AA while staying recessed and austere. */
-  --grey-700: #888A90;
+  --grey-700: #8AA4B3;
   /* purely-decorative dim (rail idle numbers, ghost separators): NOT for body text */
-  --grey-600: #5C5E63;
-  --grey-850: #222428;
+  --grey-600: #617E8E;
+  --grey-850: #21394B;
   /* one mid-tone between 850 and 700, reserved for the active/hovered hairline
      state only, so an element responds to attention without raising the resting
      border weight of the page. Composited (border-color), never layout. */
-  --grey-825: #2A2C30;
-  --grey-900: #15171A;
-  --signal: #D97964;
-  --signal-deep: #7E3324;
+  --grey-825: #29475A;
+  --grey-900: #102638;
+  --signal: #65D8FF;
+  --signal-deep: #1C6D88;
   /* faint signal washes for the convergence / hairline tints. The 3D scene owns
      its own accent; these are the CSS-side companions, never a second hue. */
-  --signal-glow: rgba(200, 85, 61, 0.14);
-  --signal-faint: rgba(200, 85, 61, 0.06);
+  --signal-glow: rgba(101, 216, 255, 0.14);
+  --signal-faint: rgba(101, 216, 255, 0.06);
 
   /* spacing (8px base, geometric). --s-9/--s-10 tightened from 272/440 to 240/360
      so chapter rhythm reads composed rather than stretched: long pages no longer
@@ -43,7 +43,7 @@
   --s-6: 64px; --s-7: 104px; --s-8: 168px; --s-9: 240px; --s-10: 360px;
 
   /* type */
-  --serif: "Fraunces", Georgia, "Times New Roman", serif;
+  --serif: "Space Grotesk", system-ui, -apple-system, sans-serif;
   --ui: "Space Grotesk", system-ui, -apple-system, sans-serif;
   --mono: "JetBrains Mono", ui-monospace, "SF Mono", monospace;
 
@@ -496,6 +496,46 @@ body.no-webgl .scene-fallback { display: block; }
   .js .tenet,
   .js .roadmap__row:not(.roadmap__row--head) { opacity: 1; }
 }
+
+/* 2026-08 evidence-console identity: every legacy editorial route now shares
+   the same cold operational surface as the homepage and app. The WebGL scene
+   belonged to the superseded manifesto direction; the evidence itself is now
+   the visual signature, so the scene is removed rather than recoloured. */
+.scene,
+.scene-fallback { display: none !important; }
+
+body {
+  background-color: var(--void);
+  background-image:
+    linear-gradient(rgba(101, 216, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(101, 216, 255, 0.035) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+
+.display-xl,
+.display-l,
+.display-m,
+.serif-quote,
+.display-quote {
+  font-family: var(--ui);
+  font-style: normal;
+  font-variation-settings: normal;
+  letter-spacing: -0.055em;
+}
+
+.display-xl { font-weight: 560; line-height: 0.9; }
+.display-l,
+.display-m { font-weight: 540; line-height: 0.96; }
+
+.nav {
+  border-bottom: 1px solid rgba(138, 164, 179, 0.18);
+  background: rgba(7, 18, 28, 0.82);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+.nav.is-scrolled { background: rgba(7, 18, 28, 0.94); }
+.grain { opacity: 0.12; }
 
 /* ---- 11. HERO ------------------------------------------------------------ */
 .hero {
@@ -1111,7 +1151,7 @@ body.no-webgl .scene-fallback { display: block; }
   position: absolute;
   bottom: -0.22em;
   left: var(--margin);
-  color: var(--grey-900);
+  color: var(--grey-600);
   z-index: 0;
   font-size: clamp(6rem, 24vw, 26rem);
   line-height: 0.8;
@@ -1185,6 +1225,16 @@ body.no-webgl .scene-fallback { display: block; }
   .statband__list[data-statband="footnote"] {
     justify-content: flex-start;
     gap: var(--s-3) var(--s-5);
+  }
+  .statband__list--secondary .stat,
+  .statband__list[data-statband="footnote"] .stat {
+    min-width: 0;
+    flex-wrap: wrap;
+  }
+  .statband__list--secondary .stat__label,
+  .statband__list[data-statband="footnote"] .stat__label {
+    white-space: normal;
+    overflow-wrap: anywhere;
   }
 
   .flagship__head { flex-direction: column; align-items: flex-start; gap: var(--s-3); }

@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Crypto lab carry crash incident / Canli Capital</title>
+<meta name="description" content="Forensic description of one paper-traded LABUSDT episode. It spends zero return hypotheses, does not estimate Sharpe or expected performance, does not authorize a…" />
+<link rel="canonical" href="https://canlicapital.com/measurements/crypto-lab-carry-crash-incident" />
+<meta name="author" content="Arhan Canli" />
+<meta name="canli:sources" content="crypto_lab_carry_crash_incident.json" />
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="Canli Capital" />
+<meta property="og:title" content="Crypto lab carry crash incident / Canli Capital" />
+<meta property="og:description" content="Forensic description of one paper-traded LABUSDT episode. It spends zero return hypotheses, does not estimate Sharpe or expected performance, does not authorize a…" />
+<meta property="og:url" content="https://canlicapital.com/measurements/crypto-lab-carry-crash-incident" />
+<meta property="og:image" content="https://canlicapital.com/og.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Crypto lab carry crash incident / Canli Capital" />
+<meta name="twitter:description" content="Forensic description of one paper-traded LABUSDT episode. It spends zero return hypotheses, does not estimate Sharpe or expected performance, does not authorize a…" />
+<meta name="twitter:image" content="https://canlicapital.com/og.png" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="icon" href="/favicon.ico" sizes="any" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=optional" />
+<link rel="stylesheet" media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=optional" />
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=optional" /></noscript>
+<link rel="stylesheet" href="../css/paper.css" />
+<link rel="stylesheet" href="/css/product-shell.css" />
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"Crypto lab carry crash incident","description":"Forensic description of one paper-traded LABUSDT episode. It spends zero return hypotheses, does not estimate Sharpe or expected performance, does not authorize a…","url":"https://canlicapital.com/measurements/crypto-lab-carry-crash-incident","creator":{"@type":"Person","name":"Arhan Canli"},"publisher":{"@type":"Organization","name":"Canli Capital","url":"https://canlicapital.com/"},"isAccessibleForFree":true,"distribution":{"@type":"DataDownload","encodingFormat":"application/json","contentUrl":"https://canlicapital.com/glassbox/crypto_lab_carry_crash_incident.json"}}</script>
+</head>
+<body class="paper">
+<a class="paper__skip" href="#content">Skip to content</a>
+<header class="cc-shell" id="nav" data-product-shell="v3">
+  <a class="cc-shell__brand" href="/" aria-label="Canli Capital, home">
+    <span class="cc-shell__mark" aria-hidden="true"><i></i></span>
+    <span>Canli Capital</span>
+  </a>
+  <a class="cc-shell__status" href="/measurements/alpaca-broker-reconciliation" aria-label="Current record status">
+    <span class="status-dot" aria-hidden="true"></span>
+    <span>Public paper record</span>
+  </a>
+  <nav class="cc-shell__primary" aria-label="Primary navigation">
+<a class="cc-shell__link" href="https://app.canlicapital.com/dashboard" rel="noreferrer">Live</a>
+<a class="cc-shell__link" href="/research">Research</a>
+<a class="cc-shell__link" href="/trials">Trials</a>
+<a class="cc-shell__link" href="/systems">Systems</a>
+<a class="cc-shell__link" href="/methodology">Methodology</a>
+<a class="cc-shell__link" href="/verify">Verify</a>
+  </nav>
+  <details class="cc-shell__index">
+    <summary><span class="cc-shell__index-wide">More</span><span class="cc-shell__index-compact">Menu</span></summary>
+    <div class="cc-shell__panel">
+      <div>
+        <span class="cc-shell__panel-label">Core</span>
+        <nav aria-label="Core routes"><a class="cc-shell__panel-link" href="https://app.canlicapital.com/dashboard" rel="noreferrer">Live</a>
+<a class="cc-shell__panel-link" href="/research">Research</a>
+<a class="cc-shell__panel-link" href="/trials">Trials</a>
+<a class="cc-shell__panel-link" href="/systems">Systems</a>
+<a class="cc-shell__panel-link" href="/methodology">Methodology</a>
+<a class="cc-shell__panel-link" href="/verify">Verify</a></nav>
+      </div>
+      <div>
+        <span class="cc-shell__panel-label">Institution</span>
+        <nav aria-label="Institution routes"><a class="cc-shell__panel-link" href="/progress">Corrections</a>
+<a class="cc-shell__panel-link" href="/performance">Status</a>
+<a class="cc-shell__panel-link" href="/founder">Founder</a>
+<a class="cc-shell__panel-link" href="/open">Open data</a>
+<a class="cc-shell__panel-link" href="/measurements" aria-current="page" data-current="true">Measurements</a></nav>
+      </div>
+      <p>Observed, simulated, model-estimated and planned claims remain visibly separate.</p>
+    </div>
+  </details>
+  <a class="cc-shell__cta" href="https://app.canlicapital.com/dashboard">Enter live record <span aria-hidden="true">↗</span></a>
+</header>
+<main class="paper__main" id="content">
+  <article class="paper__article">
+    <p class="paper__eyebrow"><a href="/measurements">Measurements</a></p>
+    <h1 class="paper__title">Crypto lab carry crash incident</h1>
+    <p class="paper__byline">By <span rel="author">Arhan Canli</span>, Canli Capital</p>
+    <div class="paper__body">
+<p class="measure__lead">Crypto lab carry crash incident is one of 89 measurements this
+engine publishes in full. It is regenerated from a real run rather than transcribed, and it
+is shown here with its own claim boundary so the number and its limits arrive together.</p>
+<aside class="measure__boundary"><h2>What this measurement does and does not claim</h2><p>Forensic description of one paper-traded LABUSDT episode. It spends zero return hypotheses, does not estimate Sharpe or expected performance, does not authorize a strategy change, and does not rewrite the published equity record.</p></aside>
+<section class="measure__section"><h2>The measurement</h2>
+<dl class="measure__facts">
+<div class="measure__row"><dt>Author</dt><dd>Arhan Canli</dd></div>
+<div class="measure__row"><dt>Content hash</dt><dd>sha256:925596922283e01c7968ea0b8cb9278efa4984e124425cfcb80799f6eea0f84c</dd></div>
+<div class="measure__row"><dt>Decision</dt><dd>PRESERVE_LOSS_NO_PRICE_JUMP_GUARD_NO_WEIGHT_CHANGE</dd></div>
+<div class="measure__row"><dt>Instrument</dt><dd>BINANCE:PERP:LABUSDT</dd></div>
+<div class="measure__row"><dt>Schema</dt><dd>canli.alphac-crypto-lab-carry-crash-incident.v1</dd></div>
+<div class="measure__row"><dt>Verdict</dt><dd>GENUINE_MARKET_CRASH_NOT_CONTRACT_IDENTITY_DEFECT</dd></div>
+</dl>
+<section class="measure__sub"><h3>Execution sequence</h3>
+<section class="measure__sub"><h4>Long close</h4>
+<dl class="measure__facts">
+<div class="measure__row"><dt>Client order id</dt><dd>rb-1785369600000-BINANCE:PERP:LABUSDT-close</dd></div>
+<div class="measure__row"><dt>Fee quote</dt><dd>0.008852</dd></div>
+<div class="measure__row"><dt>Instrument id</dt><dd>BINANCE:PERP:LABUSDT</dd></div>
+<div class="measure__row"><dt>Price</dt><dd>0.155300</dd></div>
+<div class="measure__row"><dt>Qty</dt><dd>114</dd></div>
+<div class="measure__row"><dt>Side</dt><dd>sell</dd></div>
+<div class="measure__row"><dt>Ts</dt><dd>1785369600000</dd></div>
+</dl>
+</section>
+<section class="measure__sub"><h4>Long entry</h4>
+<dl class="measure__facts">
+<div class="measure__row"><dt>Client order id</dt><dd>rb-1783267200000-BINANCE:PERP:LABUSDT</dd></div>
+<div class="measure__row"><dt>Fee quote</dt><dd>0.920574</dd></div>
+<div class="measure__row"><dt>Instrument id</dt><dd>BINANCE:PERP:LABUSDT</dd></div>
+<div class="measure__row"><dt>Price</dt><dd>16.150421</dd></div>
+<div class="measure__row"><dt>Qty</dt><dd>114</dd></div>
+<div class="measure__row"><dt>Side</dt><dd>buy</dd></div>
+<div class="measure__row"><dt>Ts</dt><dd>1783267200000</dd></div>
+</dl>
+</section>
+<section class="measure__sub"><h4>Short reversal</h4>
+<dl class="measure__facts">
+<div class="measure__row"><dt>Client order id</dt><dd>rb-1785369600000-BINANCE:PERP:LABUSDT-open</dd></div>
+<div class="measure__row"><dt>Fee quote</dt><dd>0.424513</dd></div>
+<div class="measure__row"><dt>Instrument id</dt><dd>BINANCE:PERP:LABUSDT</dd></div>
+<div class="measure__row"><dt>Price</dt><dd>0.155300</dd></div>
+<div class="measure__row"><dt>Qty</dt><dd>5467</dd></div>
+<div class="measure__row"><dt>Side</dt><dd>sell</dd></div>
+<div class="measure__row"><dt>Ts</dt><dd>1785369600000</dd></div>
+</dl>
+</section>
+</section>
+<section class="measure__sub"><h3>Forward record relation</h3>
+<dl class="measure__facts">
+<div class="measure__row"><dt>Classification</dt><dd>PRE_FLAGSHIP_WINDOW_DOES_NOT_EXPLAIN_CURRENT_FORWARD_LOSS</dd></div>
+<div class="measure__row"><dt>Flagship forward record starts</dt><dd>2026-08-07</dd></div>
+<div class="measure__row"><dt>Lab long closed utc</dt><dd>2026-07-30T00:00:00Z</dd></div>
+</dl>
+</section>
+<section class="measure__sub"><h3>Funding regime while held</h3>
+<dl class="measure__facts">
+<div class="measure__row"><dt>First nonnegative settlement</dt><dd>2026-07-08T06:00:00Z</dd></div>
+<div class="measure__row"><dt>Maximum rate</dt><dd>7.515e-4</dd></div>
+<div class="measure__row"><dt>Mean rate</dt><dd>-0.001706</dd></div>
+<div class="measure__row"><dt>Minimum rate</dt><dd>-0.020000</dd></div>
+<div class="measure__row"><dt>Negative observations</dt><dd>68</dd></div>
+<div class="measure__row"><dt>Nonnegative observations</dt><dd>153</dd></div>
+<div class="measure__row"><dt>Observations</dt><dd>221</dd></div>
+</dl>
+<p class="measure__prose"><strong>Interpretation.</strong> The carry signal entered long during negative funding; funding later changed sign and the scheduled rebalance closed the long and opened a short.</p>
+</section>
+<figure class="measure__tablewrap"><figcaption>Independent market context</figcaption><table class="measure__table"><thead><tr><th scope="col">Supports</th><th scope="col">Url</th></tr></thead><tbody>
+<tr><td>independent dated prices during the July 2026 collapse</td><td>https://chartexchange.com/symbol/crypto-labusdt/historical/</td></tr>
+<tr><td>contemporaneous venue response to LABUSDT market risk</td><td>https://phemex.com/announcements/phemex-will-delist-labusdt694</td></tr>
+</tbody></table></figure>
+<section class="measure__sub"><h3>Long episode</h3>
+<dl class="measure__facts">
+<div class="measure__row"><dt>Absolute gross price loss quote rounded 2dp</dt><dd>1823.440000</dd></div>
+<div class="measure__row"><dt>Absolute net price loss quote rounded 2dp</dt><dd>1824.370000</dd></div>
+<div class="measure__row"><dt>Close price</dt><dd>0.155300</dd></div>
+<div class="measure__row"><dt>Entry and close fees quote</dt><dd>0.929426</dd></div>
+<div class="measure__row"><dt>Entry price</dt><dd>16.150421</dd></div>
+<div class="measure__row"><dt>Gross price pnl quote</dt><dd>-1823.443800</dd></div>
+<div class="measure__row"><dt>Gross price pnl quote rounded 2dp</dt><dd>-1823.440000</dd></div>
+<div class="measure__row"><dt>Net price pnl after entry and close fees quote</dt><dd>-1824.373226</dd></div>
+<div class="measure__row"><dt>Net price pnl after entry and close fees quote rounded 2dp</dt><dd>-1824.370000</dd></div>
+<div class="measure__row"><dt>Price return</dt><dd>-0.990384</dd></div>
+<div class="measure__row"><dt>Quantity</dt><dd>114</dd></div>
+</dl>
+</section>
+<section class="measure__sub"><h3>Observability correction</h3>
+<p class="measure__prose"><strong>Historical gap.</strong> Position snapshots retained quantity and average entry but not the exact cycle mark or instrument-level unrealized PnL. Historical attribution cannot be fabricated from aggregate equity.</p>
+<p class="measure__prose"><strong>Prospective fix.</strong> Future paper cycles persist exact order-book mark, mark source, market value, and unrealized PnL through an additive nullable schema migration.</p>
+</section>
+<section class="measure__sub"><h3>Source bindings</h3>
+<section class="measure__sub"><h4>Paper execution database</h4>
+<dl class="measure__facts">
+<div class="measure__row"><dt>Path</dt><dd>var/trading_crypto_perp.sqlite</dd></div>
+<div class="measure__row"><dt>Sha256</dt><dd>ea0e90e27e8b85e6fd721df5c58529750e4323e95435401c600a4db5033ea17b</dd></div>
+</dl>
+</section>
+<section class="measure__sub"><h4>Point in time funding</h4>
+<dl class="measure__facts">
+<div class="measure__row"><dt>Path</dt><dd>data/lake/funding/instrument_id=BINANCE:PERP:LABUSDT/year=2026/data.parquet</dd></div>
+<div class="measure__row"><dt>Sha256</dt><dd>8d8765e76b9c024b9eadc0a7dc090d505fec35f86f6ac8e927ba1078f4de177b</dd></div>
+</dl>
+</section>
+</section>
+</section>
+<section class="measure__section"><h2>Check it yourself</h2>
+<p>Every figure above is read from <a href="/glassbox/crypto_lab_carry_crash_incident.json"><code>/glassbox/crypto_lab_carry_crash_incident.json</code></a>, the
+artifact the engine wrote. Nothing on this page is typed by hand: the page is generated from that
+file, so a figure that moves in the artifact moves here and a figure that is not in the artifact
+cannot appear here at all.</p>
+<p><a href="/measurements">All 89 measurements</a> &middot;
+<a href="/open">The glass box</a> &middot;
+<a href="/research">The research library</a></p>
+</section>
+    </div>
+  </article>
+</main>
+<footer class="cc-footer" id="footer" data-product-shell="v3">
+  <div class="cc-footer__lead">
+    <a class="cc-footer__brand" href="/">Canli Capital</a>
+    <p>Build the claim. Publish the evidence. Keep the failures.</p>
+  </div>
+  <div class="cc-footer__routes">
+    <nav aria-label="Portfolio and research">
+      <span>Research system</span>
+      <a href="https://app.canlicapital.com/dashboard">Live record</a>
+      <a href="/systems">ALPHAC systems</a>
+      <a href="/research">Research papers</a>
+      <a href="/trials">Trial union</a>
+    </nav>
+    <nav aria-label="Evidence and verification">
+      <span>Evidence</span>
+      <a href="/methodology">Methodology</a>
+      <a href="/verify">Verify record</a>
+      <a href="/measurements">Measurements</a>
+      <a href="/open">Open data</a>
+    </nav>
+    <nav aria-label="Institution and authorship">
+      <span>Institution</span>
+      <a href="/progress">Corrections</a>
+      <a href="/performance">Status</a>
+      <a href="/founder">Arhan Canli</a>
+      <a href="https://github.com/arhancanli" rel="noreferrer">GitHub</a>
+    </nav>
+  </div>
+  <div class="cc-footer__boundary">
+    <p>Research and paper execution only. No managed capital, copy trading, investment advice or promised return.</p>
+    <p>Founded and built by Arhan Canli in Dubai.</p>
+    <span>Copyright Arhan Canli</span>
+  </div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>ALPHAC Foundry design status | Canli Capital</title>
+<meta name="description" content="Inspect the fail-closed ALPHAC Foundry design, its research-to-execution isolation, bounded trial lifecycle and eleven still-missing deployment receipts." />
+<link rel="canonical" href="https://canlicapital.com/foundry" />
+<meta name="author" content="Arhan Canli" />
+<meta name="canli:sources" content="foundry_local_contract_verification.json" />
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Canli Capital" />
+<meta property="og:title" content="ALPHAC Foundry design status" />
+<meta property="og:description" content="Inspect the fail-closed ALPHAC Foundry design, its research-to-execution isolation, bounded trial lifecycle and eleven still-missing deployment receipts." />
+<meta property="og:url" content="https://canlicapital.com/foundry" />
+<meta property="og:image" content="https://canlicapital.com/og.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="ALPHAC Foundry design status" />
+<meta name="twitter:description" content="Inspect the fail-closed ALPHAC Foundry design, its research-to-execution isolation, bounded trial lifecycle and eleven still-missing deployment receipts." />
+<meta name="twitter:image" content="https://canlicapital.com/og.png" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" />
+<link rel="stylesheet" href="/css/product-shell.css" />
+<link rel="stylesheet" href="/css/foundry.css" />
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"ALPHAC Foundry design status","url":"https://canlicapital.com/foundry","description":"Inspect the fail-closed ALPHAC Foundry design, its research-to-execution isolation, bounded trial lifecycle and eleven still-missing deployment receipts.","author":{"@id":"https://canlicapital.com/#arhan-canli"},"about":{"@type":"SoftwareSourceCode","name":"ALPHAC Foundry","codeRepository":"https://github.com/arhancanli/alphac","programmingLanguage":["Python","SQL","HCL"],"creator":{"@id":"https://canlicapital.com/#arhan-canli"}}}</script>
+</head>
+<body class="foundry-page">
+<a class="foundry-skip" href="#content">Skip to content</a>
+<header class="cc-shell" id="nav" data-product-shell="v3">
+  <a class="cc-shell__brand" href="/" aria-label="Canli Capital, home">
+    <span class="cc-shell__mark" aria-hidden="true"><i></i></span>
+    <span>Canli Capital</span>
+  </a>
+  <a class="cc-shell__status" href="/measurements/alpaca-broker-reconciliation" aria-label="Current record status">
+    <span class="status-dot" aria-hidden="true"></span>
+    <span>Public paper record</span>
+  </a>
+  <nav class="cc-shell__primary" aria-label="Primary navigation">
+<a class="cc-shell__link" href="https://app.canlicapital.com/dashboard" rel="noreferrer">Live</a>
+<a class="cc-shell__link" href="/research">Research</a>
+<a class="cc-shell__link" href="/trials">Trials</a>
+<a class="cc-shell__link" href="/systems">Systems</a>
+<a class="cc-shell__link" href="/methodology">Methodology</a>
+<a class="cc-shell__link" href="/verify">Verify</a>
+  </nav>
+  <details class="cc-shell__index">
+    <summary><span class="cc-shell__index-wide">More</span><span class="cc-shell__index-compact">Menu</span></summary>
+    <div class="cc-shell__panel">
+      <div>
+        <span class="cc-shell__panel-label">Core</span>
+        <nav aria-label="Core routes"><a class="cc-shell__panel-link" href="https://app.canlicapital.com/dashboard" rel="noreferrer">Live</a>
+<a class="cc-shell__panel-link" href="/research">Research</a>
+<a class="cc-shell__panel-link" href="/trials">Trials</a>
+<a class="cc-shell__panel-link" href="/systems">Systems</a>
+<a class="cc-shell__panel-link" href="/methodology">Methodology</a>
+<a class="cc-shell__panel-link" href="/verify">Verify</a></nav>
+      </div>
+      <div>
+        <span class="cc-shell__panel-label">Institution</span>
+        <nav aria-label="Institution routes"><a class="cc-shell__panel-link" href="/progress">Corrections</a>
+<a class="cc-shell__panel-link" href="/performance">Status</a>
+<a class="cc-shell__panel-link" href="/founder">Founder</a>
+<a class="cc-shell__panel-link" href="/open">Open data</a>
+<a class="cc-shell__panel-link" href="/measurements">Measurements</a></nav>
+      </div>
+      <p>Observed, simulated, model-estimated and planned claims remain visibly separate.</p>
+    </div>
+  </details>
+  <a class="cc-shell__cta" href="https://app.canlicapital.com/dashboard">Enter live record <span aria-hidden="true">↗</span></a>
+</header>
+<main id="content">
+  <section class="foundry-hero" aria-labelledby="foundry-title">
+    <div class="foundry-hero__copy">
+      <p class="foundry-kicker">ALPHAC Foundry / design status</p>
+      <h1 id="foundry-title">A research engine that is not allowed to trade.</h1>
+      <p>Foundry is the bounded research system behind future ALPHAC trials. Its contracts pass local verification. Its DigitalOcean deployment does not exist yet, and none of the eleven operational receipts is attached.</p>
+      <div class="foundry-actions">
+        <a class="foundry-button foundry-button--primary" href="#air-gap">Inspect the isolation boundary</a>
+        <a class="foundry-button" href="https://github.com/arhancanli/alphac/blob/f03bd8f59b99cc83526c8caf582948320d411109/artifacts/engineering/foundry_local_contract_verification.json" rel="noreferrer">Read the exact receipt <span aria-hidden="true">↗</span></a>
+      </div>
+    </div>
+    <aside class="foundry-verdict" aria-label="Current Foundry status">
+      <span>Current verdict</span>
+      <strong>Not operational</strong>
+      <dl>
+        <div><dt>Local contracts</dt><dd>PASS</dd></div>
+        <div><dt>Cloud deployment</dt><dd>Planned, not applied</dd></div>
+        <div><dt>Acceptance receipts</dt><dd>0 / 11</dd></div>
+        <div><dt>First migration</dt><dd>Not run in Foundry</dd></div>
+      </dl>
+      <code>receipt 0552a3ec9c62826d...</code>
+    </aside>
+  </section>
+
+  <section class="foundry-boundary" aria-label="Foundry claim boundary">
+    <span>Claim boundary</span>
+    <p>This receipt verifies committed local contracts. It is not a Terraform plan, cloud inventory, deployment, network probe, database integration test or restore receipt.</p>
+  </section>
+
+  <section class="foundry-section foundry-airgap" id="air-gap" aria-labelledby="airgap-title">
+    <header class="foundry-section__head">
+      <p class="foundry-kicker">The air-gap ledger</p>
+      <h2 id="airgap-title">Research can publish evidence. It cannot reach execution.</h2>
+      <p>The contract separates research, holdout and broker execution. The only outward path shown here is sanitized public evidence.</p>
+    </header>
+    <div class="foundry-network" role="img" aria-label="Research services flow through a sanitizer to the public record while the execution network remains unreachable">
+      <div class="foundry-network__research">
+        <div class="foundry-network__label"><span>Research network</span><strong>DigitalOcean target</strong><small>Not provisioned</small></div>
+        <ol><li class="foundry-service"><span>01</span><strong>researchd</strong></li>
+<li class="foundry-service"><span>02</span><strong>worker</strong></li>
+<li class="foundry-service"><span>03</span><strong>validator</strong></li>
+<li class="foundry-service"><span>04</span><strong>data_gateway</strong></li>
+<li class="foundry-service"><span>05</span><strong>sanitizer</strong></li>
+<li class="foundry-service"><span>06</span><strong>sentinel</strong></li>
+<li class="foundry-service"><span>07</span><strong>status_adapter</strong></li></ol>
+      </div>
+      <div class="foundry-network__sanitizer"><span>Allowlist</span><strong>Sanitizer</strong><small>Public fields only</small></div>
+      <div class="foundry-network__public"><span>Output</span><strong>Public evidence</strong><small>Read only</small></div>
+      <div class="foundry-network__gap"><span>Denied by contract</span><i aria-hidden="true"></i></div>
+      <div class="foundry-network__execution"><span>Separate system</span><strong>ALPHAC execution</strong><small>No broker write access from Foundry</small></div>
+    </div>
+  </section>
+
+  <section class="foundry-section foundry-lifecycle" aria-labelledby="lifecycle-title">
+    <header class="foundry-section__head">
+      <p class="foundry-kicker">Bounded lifecycle</p>
+      <h2 id="lifecycle-title">The identity is spent before the outcome is visible.</h2>
+    </header>
+    <dl class="foundry-figures">
+      <div><dt>Declared states</dt><dd>17</dd><small>From feasibility to terminal verdict</small></div>
+      <div><dt>Allowed transitions</dt><dd>31</dd><small>Every transition names its authority</small></div>
+      <div><dt>Holdout consumption</dt><dd>1</dd><small>Maximum per identity</small></div>
+      <div><dt>Human gate override</dt><dd>Forbidden</dd><small>A failed gate stays failed</small></div>
+    </dl>
+    <p class="foundry-rule">A model can propose code. A human must approve outcome-bearing work. No state in the lifecycle grants broker write access.</p>
+  </section>
+
+  <section class="foundry-section foundry-migration" aria-labelledby="migration-title">
+    <div class="foundry-migration__copy">
+      <p class="foundry-kicker">First migration / frozen target</p>
+      <h2 id="migration-title">Start with a failure, then prove the system keeps it failed.</h2>
+      <p>The first selected migration is an existing killed petroleum-inventory trial. It cannot spend another identity, use the network, reopen the result or take a second replay attempt.</p>
+      <a href="/trials/8446702cb8dd1768">Open the historical trial packet</a>
+    </div>
+    <dl class="foundry-migration__ledger">
+      <div><dt>Public trial</dt><dd><code>ft_a9ae69f6bc4a5269</code></dd></div>
+      <div><dt>Preserved state</dt><dd>Killed</dd></div>
+      <div><dt>Foundry replay</dt><dd>Not run</dd></div>
+      <div><dt>Network policy</dt><dd>NONE</dd></div>
+      <div><dt>Maximum attempts</dt><dd>1</dd></div>
+      <div><dt>New identity spend</dt><dd>Forbidden</dd></div>
+    </dl>
+  </section>
+
+  <section class="foundry-section foundry-acceptance" aria-labelledby="acceptance-title">
+    <header class="foundry-section__head">
+      <p class="foundry-kicker">Operational burden</p>
+      <h2 id="acceptance-title">Eleven receipts stand between source code and an operational claim.</h2>
+      <p>Every item must bind to the same infrastructure, source commit, image digest and contract set. A partial deployment stays not operational.</p>
+    </header>
+    <div class="foundry-acceptance__status"><span>Attached</span><strong>0 of 11</strong><small>Incomplete Not Operational</small></div>
+    <ol class="foundry-receipts"><li class="foundry-receipt">
+    <span aria-hidden="true"></span>
+    <strong>Cloud Firewall Export</strong>
+    <small>Missing</small>
+  </li>
+<li class="foundry-receipt">
+    <span aria-hidden="true"></span>
+    <strong>Database Role Tests</strong>
+    <small>Missing</small>
+  </li>
+<li class="foundry-receipt">
+    <span aria-hidden="true"></span>
+    <strong>Honest Public Status</strong>
+    <small>Missing</small>
+  </li>
+<li class="foundry-receipt">
+    <span aria-hidden="true"></span>
+    <strong>Host Firewall Export</strong>
+    <small>Missing</small>
+  </li>
+<li class="foundry-receipt">
+    <span aria-hidden="true"></span>
+    <strong>Migration Replay Sanitizer Packet</strong>
+    <small>Missing</small>
+  </li>
+<li class="foundry-receipt">
+    <span aria-hidden="true"></span>
+    <strong>Negative Network Probe</strong>
+    <small>Missing</small>
+  </li>
+<li class="foundry-receipt">
+    <span aria-hidden="true"></span>
+    <strong>Object Permission Tests</strong>
+    <small>Missing</small>
+  </li>
+<li class="foundry-receipt">
+    <span aria-hidden="true"></span>
+    <strong>Redacted Secret Scope Inventory</strong>
+    <small>Missing</small>
+  </li>
+<li class="foundry-receipt">
+    <span aria-hidden="true"></span>
+    <strong>Restore And Post Restore Replay</strong>
+    <small>Missing</small>
+  </li>
+<li class="foundry-receipt">
+    <span aria-hidden="true"></span>
+    <strong>Reviewed Terraform Plan</strong>
+    <small>Missing</small>
+  </li>
+<li class="foundry-receipt">
+    <span aria-hidden="true"></span>
+    <strong>State Machine Tests</strong>
+    <small>Missing</small>
+  </li></ol>
+  </section>
+
+  <section class="foundry-section foundry-source" aria-labelledby="source-title">
+    <div>
+      <p class="foundry-kicker">Machine-verifiable source</p>
+      <h2 id="source-title">Local verification is evidence of the contracts. Nothing more.</h2>
+      <p>The receipt hashes the deployment manifest, runtime contract, lifecycle, acceptance contract and migration packet. Its PASS does not convert any missing cloud receipt into evidence.</p>
+    </div>
+    <pre tabindex="0" aria-label="Foundry receipt verification command"><code>curl -sO https://canlicapital.com/glassbox/foundry_local_contract_verification.json
+python3 - &lt;&lt;'PY'
+import hashlib, json
+p=json.load(open('foundry_local_contract_verification.json'))
+h=p.pop('content_hash')
+s=json.dumps(p,sort_keys=True,separators=(',',':')).encode('ascii')
+print(h == 'sha256:' + hashlib.sha256(s).hexdigest())
+PY</code></pre>
+  </section>
+
+  <section class="foundry-section foundry-close" aria-labelledby="close-title">
+    <p class="foundry-kicker">The next proof</p>
+    <h2 id="close-title">The page changes only when the receipts do.</h2>
+    <p>Provisioning requires a reviewed plan, a dedicated DigitalOcean principal and a separate billable apply decision. Until then, Foundry remains a verified design and an unproven deployment.</p>
+    <div class="foundry-actions"><a class="foundry-button foundry-button--primary" href="/methodology">Read the research rules</a><a class="foundry-button" href="/review">Review ALPHAC research</a></div>
+  </section>
+</main>
+<footer class="cc-footer" id="footer" data-product-shell="v3">
+  <div class="cc-footer__lead">
+    <a class="cc-footer__brand" href="/">Canli Capital</a>
+    <p>Build the claim. Publish the evidence. Keep the failures.</p>
+  </div>
+  <div class="cc-footer__routes">
+    <nav aria-label="Portfolio and research">
+      <span>Research system</span>
+      <a href="https://app.canlicapital.com/dashboard">Live record</a>
+      <a href="/systems">ALPHAC systems</a>
+      <a href="/research">Research papers</a>
+      <a href="/trials">Trial union</a>
+    </nav>
+    <nav aria-label="Evidence and verification">
+      <span>Evidence</span>
+      <a href="/methodology">Methodology</a>
+      <a href="/verify">Verify record</a>
+      <a href="/measurements">Measurements</a>
+      <a href="/open">Open data</a>
+    </nav>
+    <nav aria-label="Institution and authorship">
+      <span>Institution</span>
+      <a href="/progress">Corrections</a>
+      <a href="/performance">Status</a>
+      <a href="/founder">Arhan Canli</a>
+      <a href="https://github.com/arhancanli" rel="noreferrer">GitHub</a>
+    </nav>
+  </div>
+  <div class="cc-footer__boundary">
+    <p>Research and paper execution only. No managed capital, copy trading, investment advice or promised return.</p>
+    <p>Founded and built by Arhan Canli in Dubai.</p>
+    <span>Copyright Arhan Canli</span>
+  </div>
+</footer>
+</body>
+</html>

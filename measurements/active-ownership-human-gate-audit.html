@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Active ownership human gate audit / Canli Capital</title>
+<meta name="description" content="This is a prospective gate-design and reachability audit. It uses frozen machine outputs but no human outcomes, prices, returns, or portfolio results." />
+<link rel="canonical" href="https://canlicapital.com/measurements/active-ownership-human-gate-audit" />
+<meta name="author" content="Arhan Canli" />
+<meta name="canli:sources" content="active_ownership_human_gate_audit.json" />
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="Canli Capital" />
+<meta property="og:title" content="Active ownership human gate audit / Canli Capital" />
+<meta property="og:description" content="This is a prospective gate-design and reachability audit. It uses frozen machine outputs but no human outcomes, prices, returns, or portfolio results." />
+<meta property="og:url" content="https://canlicapital.com/measurements/active-ownership-human-gate-audit" />
+<meta property="og:image" content="https://canlicapital.com/og.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Active ownership human gate audit / Canli Capital" />
+<meta name="twitter:description" content="This is a prospective gate-design and reachability audit. It uses frozen machine outputs but no human outcomes, prices, returns, or portfolio results." />
+<meta name="twitter:image" content="https://canlicapital.com/og.png" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="icon" href="/favicon.ico" sizes="any" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=optional" />
+<link rel="stylesheet" media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=optional" />
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=optional" /></noscript>
+<link rel="stylesheet" href="../css/paper.css" />
+<link rel="stylesheet" href="/css/product-shell.css" />
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"Active ownership human gate audit","description":"This is a prospective gate-design and reachability audit. It uses frozen machine outputs but no human outcomes, prices, returns, or portfolio results.","url":"https://canlicapital.com/measurements/active-ownership-human-gate-audit","creator":{"@type":"Person","name":"Arhan Canli"},"publisher":{"@type":"Organization","name":"Canli Capital","url":"https://canlicapital.com/"},"isAccessibleForFree":true,"distribution":{"@type":"DataDownload","encodingFormat":"application/json","contentUrl":"https://canlicapital.com/glassbox/active_ownership_human_gate_audit.json"}}</script>
+</head>
+<body class="paper">
+<a class="paper__skip" href="#content">Skip to content</a>
+<header class="cc-shell" id="nav" data-product-shell="v3">
+  <a class="cc-shell__brand" href="/" aria-label="Canli Capital, home">
+    <span class="cc-shell__mark" aria-hidden="true"><i></i></span>
+    <span>Canli Capital</span>
+  </a>
+  <a class="cc-shell__status" href="/measurements/alpaca-broker-reconciliation" aria-label="Current record status">
+    <span class="status-dot" aria-hidden="true"></span>
+    <span>Public paper record</span>
+  </a>
+  <nav class="cc-shell__primary" aria-label="Primary navigation">
+<a class="cc-shell__link" href="https://app.canlicapital.com/dashboard" rel="noreferrer">Live</a>
+<a class="cc-shell__link" href="/research">Research</a>
+<a class="cc-shell__link" href="/trials">Trials</a>
+<a class="cc-shell__link" href="/systems">Systems</a>
+<a class="cc-shell__link" href="/methodology">Methodology</a>
+<a class="cc-shell__link" href="/verify">Verify</a>
+  </nav>
+  <details class="cc-shell__index">
+    <summary><span class="cc-shell__index-wide">More</span><span class="cc-shell__index-compact">Menu</span></summary>
+    <div class="cc-shell__panel">
+      <div>
+        <span class="cc-shell__panel-label">Core</span>
+        <nav aria-label="Core routes"><a class="cc-shell__panel-link" href="https://app.canlicapital.com/dashboard" rel="noreferrer">Live</a>
+<a class="cc-shell__panel-link" href="/research">Research</a>
+<a class="cc-shell__panel-link" href="/trials">Trials</a>
+<a class="cc-shell__panel-link" href="/systems">Systems</a>
+<a class="cc-shell__panel-link" href="/methodology">Methodology</a>
+<a class="cc-shell__panel-link" href="/verify">Verify</a></nav>
+      </div>
+      <div>
+        <span class="cc-shell__panel-label">Institution</span>
+        <nav aria-label="Institution routes"><a class="cc-shell__panel-link" href="/progress">Corrections</a>
+<a class="cc-shell__panel-link" href="/performance">Status</a>
+<a class="cc-shell__panel-link" href="/founder">Founder</a>
+<a class="cc-shell__panel-link" href="/open">Open data</a>
+<a class="cc-shell__panel-link" href="/measurements" aria-current="page" data-current="true">Measurements</a></nav>
+      </div>
+      <p>Observed, simulated, model-estimated and planned claims remain visibly separate.</p>
+    </div>
+  </details>
+  <a class="cc-shell__cta" href="https://app.canlicapital.com/dashboard">Enter live record <span aria-hidden="true">↗</span></a>
+</header>
+<main class="paper__main" id="content">
+  <article class="paper__article">
+    <p class="paper__eyebrow"><a href="/measurements">Measurements</a></p>
+    <h1 class="paper__title">Active ownership human gate audit</h1>
+    <p class="paper__byline">By <span rel="author">Arhan Canli</span>, Canli Capital</p>
+    <div class="paper__body">
+<p class="measure__lead">Active ownership human gate audit is one of 89 measurements this
+engine publishes in full. It is regenerated from a real run rather than transcribed, and it
+is shown here with its own claim boundary so the number and its limits arrive together.</p>
+<aside class="measure__boundary"><h2>What this measurement does and does not claim</h2><p>This is a prospective gate-design and reachability audit. It uses frozen machine outputs but no human outcomes, prices, returns, or portfolio results. It proves neither classifier accuracy nor investment performance.</p></aside>
+<section class="measure__section"><h2>The measurement</h2>
+<dl class="measure__facts">
+<div class="measure__row"><dt>Schema</dt><dd>canli.alphac-active-ownership-human-gate-audit.v1</dd></div>
+<div class="measure__row"><dt>Generated at</dt><dd>2026-08-26T03:25:48.497500+00:00</dd></div>
+<div class="measure__row"><dt>Author</dt><dd>Arhan Canli</dd></div>
+<div class="measure__row"><dt>Stage</dt><dd>PROSPECTIVE_PRE_LABEL_PRE_RETURN_GATE_AUDIT</dd></div>
+<div class="measure__row"><dt>Public path</dt><dd>/glassbox/active_ownership_human_gate_audit.json</dd></div>
+<div class="measure__row"><dt>Content hash</dt><dd>sha256:668e65f17c9e83bb5118db75f3489b4ecfbf5c1bd351f41c07f529673bc88f90</dd></div>
+</dl>
+<section class="measure__sub"><h3>Governance</h3>
+<dl class="measure__facts">
+<div class="measure__row"><dt>Labels opened</dt><dd>no</dd></div>
+<div class="measure__row"><dt>Return data opened</dt><dd>no</dd></div>
+<div class="measure__row"><dt>Return hypotheses spent</dt><dd>0</dd></div>
+<div class="measure__row"><dt>Existing point thresholds changed</dt><dd>no</dd></div>
+<div class="measure__row"><dt>Audit may rescue known outcome</dt><dd>no</dd></div>
+</dl>
+</section>
+<section class="measure__sub"><h3>Frozen design</h3>
+<dl class="measure__facts">
+<div class="measure__row"><dt>Rows</dt><dd>48</dd></div>
+<div class="measure__row"><dt>Machine predicted positive</dt><dd>8</dd></div>
+<div class="measure__row"><dt>Machine predicted negative</dt><dd>40</dd></div>
+<div class="measure__row"><dt>Item4 extracted</dt><dd>45</dd></div>
+<div class="measure__row"><dt>Item4 unresolved</dt><dd>3</dd></div>
+<div class="measure__row"><dt>Ownership sole candidate</dt><dd>14</dd></div>
+<div class="measure__row"><dt>Ownership unresolved by frozen machine rule</dt><dd>34</dd></div>
+</dl>
+<section class="measure__sub"><h4>Years</h4>
+<dl class="measure__facts">
+<div class="measure__row"><dt>First</dt><dd>2010</dd></div>
+<div class="measure__row"><dt>Last</dt><dd>2025</dd></div>
+<div class="measure__row"><dt>Count</dt><dd>16</dd></div>
+</dl>
+</section>
+<section class="measure__sub"><h4>Rows per year</h4>
+<dl class="measure__facts">
+<div class="measure__row"><dt>2010</dt><dd>3</dd></div>
+<div class="measure__row"><dt>2011</dt><dd>3</dd></div>
+<div class="measure__row"><dt>2012</dt><dd>3</dd></div>
+<div class="measure__row"><dt>2013</dt><dd>3</dd></div>
+<div class="measure__row"><dt>2014</dt><dd>3</dd></div>
+<div class="measure__row"><dt>2015</dt><dd>3</dd></div>
+<div class="measure__row"><dt>2016</dt><dd>3</dd></div>
+<div class="measure__row"><dt>2017</dt><dd>3</dd></div>
+<div class="measure__row"><dt>2018</dt><dd>3</dd></div>
+<div class="measure__row"><dt>2019</dt><dd>3</dd></div>
+<div class="measure__row"><dt>2020</dt><dd>3</dd></div>
+<div class="measure__row"><dt>2021</dt><dd>3</dd></div>
+<div class="measure__row"><dt>2022</dt><dd>3</dd></div>
+<div class="measure__row"><dt>2023</dt><dd>3</dd></div>
+<div class="measure__row"><dt>2024</dt><dd>3</dd></div>
+<div class="measure__row"><dt>2025</dt><dd>3</dd></div>
+</dl>
+</section>
+</section>
+<section class="measure__sub"><h3>Point gate reachability</h3>
+<dl class="measure__facts">
+<div class="measure__row"><dt>Operationally reachable</dt><dd>yes</dd></div>
+<div class="measure__row"><dt>Not guaranteed to pass</dt><dd>yes</dd></div>
+</dl>
+<section class="measure__sub"><h4>Precision</h4>
+<dl class="measure__facts">
+<div class="measure__row"><dt>Threshold</dt><dd>0.950000</dd></div>
+<div class="measure__row"><dt>Minimum true positives</dt><dd>8</dd></div>
+<div class="measure__row"><dt>Maximum false positives</dt><dd>0</dd></div>
+</dl>
+<p class="measure__prose"><strong>Interpretation.</strong> With 8 frozen predicted positives, the point gate passes only at 8/8; one false positive fails.</p>
+</section>
+<section class="measure__sub"><h4>Recall</h4>
+<dl class="measure__facts">
+<div class="measure__row"><dt>Threshold</dt><dd>0.800000</dd></div>
+<div class="measure__row"><dt>Human positive denominator known pre label</dt><dd>no</dd></div>
+<div class="measure__row"><dt>Maximum human positives that can still pass</dt><dd>10</dd></div>
+</dl>
+<p class="measure__prose"><strong>Interpretation.</strong> The denominator is determined only by the independent labels. With eight frozen predicted positives, eleven or more human-positive rows necessarily make the 80% point-recall gate fail.</p>
+</section>
+<section class="measure__sub"><h4>Ownership exact</h4>
+<dl class="measure__facts">
+<div class="measure__row"><dt>Threshold</dt><dd>0.900000</dd></div>
+<div class="measure__row"><dt>Minimum exact rows</dt><dd>44</dd></div>
+<div class="measure__row"><dt>Maximum mismatches</dt><dd>4</dd></div>
+<div class="measure__row"><dt>Interpretation</dt><dd>At least 44/48 exact outcomes are required; 4 mismatches are permitted.</dd></div>
+</dl>
+</section>
+</section>
+<section class="measure__sub"><h3>Statistical establishment audit</h3>
+<dl class="measure__facts">
+<div class="measure__row"><dt>Confidence level one sided</dt><dd>0.950000</dd></div>
+<div class="measure__row"><dt>Method</dt><dd>exact Clopper-Pearson binomial lower bound</dd></div>
+</dl>
+<section class="measure__sub"><h4>Best case precision</h4>
+<dl class="measure__facts">
+<div class="measure__row"><dt>Successes</dt><dd>8</dd></div>
+<div class="measure__row"><dt>Trials</dt><dd>8</dd></div>
+<div class="measure__row"><dt>Point estimate</dt><dd>1</dd></div>
+<div class="measure__row"><dt>Lower bound</dt><dd>0.687656</dd></div>
+<div class="measure__row"><dt>Establishes threshold</dt><dd>no</dd></div>
+</dl>
+</section>
+<section class="measure__sub"><h4>Best case whole packet accuracy</h4>
+<dl class="measure__facts">
+<div class="measure__row"><dt>Successes</dt><dd>48</dd></div>
+<div class="measure__row"><dt>Trials</dt><dd>48</dd></div>
+<div class="measure__row"><dt>Point estimate</dt><dd>1</dd></div>
+<div class="measure__row"><dt>Lower bound</dt><dd>0.939497</dd></div>
+<div class="measure__row"><dt>Establishes 0 95</dt><dd>no</dd></div>
+</dl>
+</section>
+<section class="measure__sub"><h4>Minimum all success denominators</h4>
+<dl class="measure__facts">
+<div class="measure__row"><dt>Precision predicted positives</dt><dd>59</dd></div>
+<div class="measure__row"><dt>Recall human positives</dt><dd>14</dd></div>
+<div class="measure__row"><dt>Ownership rows</dt><dd>29</dd></div>
+</dl>
+</section>
+<p class="measure__prose"><strong>Conclusion.</strong> The 48-row packet can support a frozen feasibility point result but cannot, by itself, statistically establish 95% precision at one-sided 95% confidence. Passing point estimates must not be described as confidence-bound validation.</p>
+</section>
+<p class="measure__prose"><strong>Decision.</strong> KEEP_FROZEN_48_ROW_POINT_GATE_FOR_RETURN_FEASIBILITY_AND_REQUIRE_DISJOINT_CONFIRMATORY_ACCURACY_BEFORE_SLEEVE_ADMISSION</p>
+<section class="measure__sub"><h3>Required interpretation</h3>
+<p class="measure__prose"><strong>If point gate passes.</strong> May proceed only to the already-governed return preregistration stage. Report raw confusion counts, point metrics, and exact confidence bounds.</p>
+<p class="measure__prose"><strong>Before sleeve admission.</strong> Freeze a disjoint independent confirmatory corpus sized by the relevant positive denominators and require one-sided 95% exact lower bounds to meet the declared precision, recall, and ownership thresholds.</p>
+<p class="measure__prose"><strong>If point gate fails.</strong> The frozen classifier is data-gated. Do not tune it on these labels or open returns for this identity.</p>
+</section>
+<section class="measure__sub"><h3>Source bindings</h3>
+<section class="measure__sub"><h4>Generator</h4>
+<dl class="measure__facts">
+<div class="measure__row"><dt>Path</dt><dd>scripts/audit_active_ownership_human_gate.py</dd></div>
+<div class="measure__row"><dt>Sha256</dt><dd>4599222242309956d625f4e934bc968c42e092367dedeae1915c350bd605f0cb</dd></div>
+</dl>
+</section>
+<section class="measure__sub"><h4>Protocol</h4>
+<dl class="measure__facts">
+<div class="measure__row"><dt>Path</dt><dd>docs/design/FEASIBILITY_ACTIVE_OWNERSHIP_13D_ITEM4_V3.md</dd></div>
+<div class="measure__row"><dt>Sha256</dt><dd>017eac943055deaff83261e6b67e853d78e687d4790a6d78c4a05ecbdef0d988</dd></div>
+</dl>
+</section>
+<section class="measure__sub"><h4>Gate audit protocol</h4>
+<dl class="measure__facts">
+<div class="measure__row"><dt>Path</dt><dd>docs/design/ACTIVE_OWNERSHIP_HUMAN_GATE_AUDIT.md</dd></div>
+<div class="measure__row"><dt>Sha256</dt><dd>bb75b1ab2f47dbeb2a3f317537665399a06217a9dafd43ebb6d6f600d2cfa32e</dd></div>
+</dl>
+</section>
+<section class="measure__sub"><h4>Frozen labels</h4>
+<dl class="measure__facts">
+<div class="measure__row"><dt>Path</dt><dd>artifacts/feasibility/active_ownership_13d_item4_v3/frozen_human_labels.csv</dd></div>
+<div class="measure__row"><dt>Sha256</dt><dd>fefb4bdb5a1ad05e691e6a76b5dd98b08066dab88ede3054893342b93a46a137</dd></div>
+</dl>
+</section>
+<section class="measure__sub"><h4>Document audit</h4>
+<dl class="measure__facts">
+<div class="measure__row"><dt>Path</dt><dd>artifacts/feasibility/active_ownership_13d_item4_v3/document_audit.parquet</dd></div>
+<div class="measure__row"><dt>Sha256</dt><dd>f8b2843b194d2b5d9825963af40bdc1e5e732a9e247e957ca828a3c961fc174c</dd></div>
+</dl>
+</section>
+<section class="measure__sub"><h4>Feasibility result</h4>
+<dl class="measure__facts">
+<div class="measure__row"><dt>Path</dt><dd>artifacts/feasibility/active_ownership_13d_item4_v3/result.json</dd></div>
+<div class="measure__row"><dt>Sha256</dt><dd>6443ae40f358330bf9ca4512d09aebc834b962385de703483a2c2f2e795901c5</dd></div>
+</dl>
+</section>
+<section class="measure__sub"><h4>Blind packet manifest</h4>
+<dl class="measure__facts">
+<div class="measure__row"><dt>Path</dt><dd>artifacts/labeling/active_ownership_13d_item4_v3_blind/manifest.json</dd></div>
+<div class="measure__row"><dt>Sha256</dt><dd>6e3e4480f7c248d6d7d42e3ab03a05e6fb20450e46313514f4e976b152bc3057</dd></div>
+</dl>
+</section>
+</section>
+</section>
+<section class="measure__section"><h2>Check it yourself</h2>
+<p>Every figure above is read from <a href="/glassbox/active_ownership_human_gate_audit.json"><code>/glassbox/active_ownership_human_gate_audit.json</code></a>, the
+artifact the engine wrote. Nothing on this page is typed by hand: the page is generated from that
+file, so a figure that moves in the artifact moves here and a figure that is not in the artifact
+cannot appear here at all.</p>
+<p><a href="/measurements">All 89 measurements</a> &middot;
+<a href="/open">The glass box</a> &middot;
+<a href="/research">The research library</a></p>
+</section>
+    </div>
+  </article>
+</main>
+<footer class="cc-footer" id="footer" data-product-shell="v3">
+  <div class="cc-footer__lead">
+    <a class="cc-footer__brand" href="/">Canli Capital</a>
+    <p>Build the claim. Publish the evidence. Keep the failures.</p>
+  </div>
+  <div class="cc-footer__routes">
+    <nav aria-label="Portfolio and research">
+      <span>Research system</span>
+      <a href="https://app.canlicapital.com/dashboard">Live record</a>
+      <a href="/systems">ALPHAC systems</a>
+      <a href="/research">Research papers</a>
+      <a href="/trials">Trial union</a>
+    </nav>
+    <nav aria-label="Evidence and verification">
+      <span>Evidence</span>
+      <a href="/methodology">Methodology</a>
+      <a href="/verify">Verify record</a>
+      <a href="/measurements">Measurements</a>
+      <a href="/open">Open data</a>
+    </nav>
+    <nav aria-label="Institution and authorship">
+      <span>Institution</span>
+      <a href="/progress">Corrections</a>
+      <a href="/performance">Status</a>
+      <a href="/founder">Arhan Canli</a>
+      <a href="https://github.com/arhancanli" rel="noreferrer">GitHub</a>
+    </nav>
+  </div>
+  <div class="cc-footer__boundary">
+    <p>Research and paper execution only. No managed capital, copy trading, investment advice or promised return.</p>
+    <p>Founded and built by Arhan Canli in Dubai.</p>
+    <span>Copyright Arhan Canli</span>
+  </div>
+</footer>
+</body>
+</html>

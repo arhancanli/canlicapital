@@ -1,0 +1,78 @@
+{
+  "author": "Arhan Canli",
+  "causal_chain": [
+    {
+      "dividend_engine_commit": "c0eeceadbb47727a036dc37e8a33e3627fbc6fe9",
+      "dividend_engine_committed_at": "2026-08-18T13:11:51+00:00",
+      "finding": "The immutable first measurement predates the first tracked engine commit that applies cash dividends to equity holdings.",
+      "first_measured_at": "2026-08-05T09:08:20.067000+00:00",
+      "stage": "historical_measurement"
+    },
+    {
+      "equity_delta": 1.1499999999941792,
+      "equity_timestamp": 1104969600000,
+      "fills_byte_equal": true,
+      "finding": "Leg-0 decisions and fills are unchanged; the first equity mismatch equals the first newly applied dividend cashflow exactly.",
+      "orders_byte_equal": true,
+      "source_action": {
+        "action_type": "dividend",
+        "cash_amount": 0.05,
+        "cashflow_quote": 1.1500000000000001,
+        "instrument_id": "XUSE:CASH:RGLDUSD",
+        "position_qty_before": 23.0
+      },
+      "stage": "first_divergence"
+    },
+    {
+      "dominant_row": {
+        "action_ts": 1127952000000,
+        "cash_amount": 112500.0,
+        "cashflow_quote": 7312500.0,
+        "fraction_of_net_replay_cashflow": 0.9464075335467793,
+        "instrument_id": "XUSE:CASH:CMCTUSD",
+        "leg": "leg_02",
+        "position_qty_before": 65.0
+      },
+      "finding": "The vendor-originated CMCT value mints $7.3125m from 65 shares and dominates the replay. It is not executable as a plain per-share cash dividend.",
+      "replay_cash_action_rows": 1916,
+      "replay_gross_corporate_action_cashflow": 7752275.01876153,
+      "replay_net_corporate_action_cashflow": 7726586.846361526,
+      "stage": "dominant_contamination"
+    },
+    {
+      "affected_instruments": 55,
+      "dividend_rows": 167120,
+      "finding": "The malformed-unit/lifecycle class is systemic, so one-row imputation or ticker-specific deletion would not resolve executable data quality.",
+      "rows_above_full_pre_ex_close": 422,
+      "stage": "systemic_source_audit"
+    },
+    {
+      "finding": "The engine now fails closed when an exposed plain cash dividend exceeds the observable pre-ex share value; it never guesses a scale or drops the row.",
+      "stage": "engine_prevention"
+    }
+  ],
+  "claim_boundary": "This establishes why the attempted replay diverged and why its apparent positive performance is invalid. It does not validate the historical curve, create a new trial, admit a sleeve, or claim future performance.",
+  "content_hash": "sha256:22470dbc585d89ea1106f4d7deba33cdc8a5a3669e9b05a7bbf9fac574657644",
+  "decision": "CURRENT_REPLAY_CONTAMINATED_BY_UNVERIFIED_DIVIDEND_UNITS",
+  "evidence": {
+    "dividend_consistency_audit_path": "artifacts/audit/sharadar_dividend_price_consistency.json",
+    "dividend_consistency_audit_sha256": "1d590c208a8eb5f4722058cf386fc1f5aba7d950bfe9aa48e489825253f98ec2",
+    "dividend_consistency_content_hash": "sha256:57d11336c0c7daca85ea3332b46461c3cad48562fd35f6aea02b96fd320a3510",
+    "engine_path": "src/alphaforge/backtest/engine.py",
+    "engine_sha256": "84b42685d6ad4fe14897bcd90b8ed766ea7a63815cec11e6dc428ecaa8a78647",
+    "preserved_leg_0_fills_sha256": "de6d957efaa6dd5dec0bfe49de6180097e1223eed31e28b6920a399eb10ecc26",
+    "preserved_leg_0_orders_sha256": "41e8fed8e7f194e80680acc32b2c589a92aac91ca78536aa1780b87b2db259ae",
+    "raw_actions_archive_sha256": "166d6ae17921b6a3a1f13a734e43bfd32ca5d9e88398030290a5246c89d7185c",
+    "replay_failure_path": "artifacts/probe/fundamental_single_replays/e5f48adc25065ce9/replay_failure.json",
+    "replay_failure_sha256": "70b7ea84b633ca55b32bd4d9c50a9d61d89d417cc94cb4a54bbd37f89f1ef7b1",
+    "replay_leg_0_fills_sha256": "de6d957efaa6dd5dec0bfe49de6180097e1223eed31e28b6920a399eb10ecc26",
+    "replay_leg_0_orders_sha256": "41e8fed8e7f194e80680acc32b2c589a92aac91ca78536aa1780b87b2db259ae"
+  },
+  "evidence_date": "2026-08-23",
+  "hypotheses_spent": 0,
+  "hypothesis_key": "e5f48adc25065ce9",
+  "required_next_action": "Quarantine every source row that fails the price-consistency boundary and resolve each affected family through independently documented vendor/lifecycle semantics. Do not rerun or promote this identity from the contaminated replay.",
+  "run_name": "single_operating_margin",
+  "schema": "canli.alphac-operating-margin-replay-root-cause.v1",
+  "status": "ROOT_CAUSE_ESTABLISHED_REPLAY_REMAINS_INVALID"
+}

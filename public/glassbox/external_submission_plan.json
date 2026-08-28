@@ -1,0 +1,1671 @@
+{
+  "claim_boundary": "This is a local preparation queue. It proves no submission, acceptance, DOI, peer review, citation, external review, or independent replication.",
+  "content_hash": "sha256:c5353762cc7ad0f216386f1a00e885438f4ad447e33a42778ba7c197c648cade",
+  "counts": {
+    "blocked": 16,
+    "papers": 16,
+    "planned_external_records": 32,
+    "submission_ready": 0,
+    "wave_1": 5,
+    "wave_2": 11
+  },
+  "owner_and_author": "Arhan Canli",
+  "records": [
+    {
+      "abstract": "A point-in-time CPI-surprise IWM-minus-SPY strategy appeared to pass its locked rules, but missing-release and active-day calendar defects invalidated that reading. A sealed, untuned correction produced net Sharpe 0.2298, Newey-West t 1.2673 and maximum drawdown -25.1%, so the result is KILLED. The separately labelled Alpaca paper sleeve remains a frozen forward experiment rather than validated alpha.",
+      "affiliation": "Canli Capital / AlphaC Algorithms",
+      "author": "Arhan Canli",
+      "blockers": [
+        "DATA_LICENCE_REVIEW_REQUIRED",
+        "CLEAN_ENVIRONMENT_REPLAY_NOT_COMPLETED",
+        "INDEPENDENT_HUMAN_REPLICATION_MISSING",
+        "ACCOUNT_SPECIFIC_LICENSE_OR_WRITTEN_PUBLICATION_PERMISSION_REQUIRED",
+        "OWNER_RELEASE_AUTHORIZATION_REQUIRED",
+        "REPOSITORY_LICENSE_SELECTION_REQUIRED",
+        "RELEASE_DATE_MUST_BE_SET_AT_PUBLICATION",
+        "AUTHOR_TECHNICAL_AUDIT_AND_MANUSCRIPT_APPROVAL_REQUIRED",
+        "FRESH_CONTEXT_HUMAN_READER_REVIEW_REQUIRED",
+        "TWO_EXTERNAL_DOMAIN_REVIEWS_REQUIRED",
+        "INDEPENDENT_HUMAN_REPLICATION_REQUIRED"
+      ],
+      "bundle_slug": "alphavintage",
+      "capital_kind": "ALPACA_PAPER_AND_RESEARCH_SIMULATION_SEPARATELY_LABELLED",
+      "data_rights": {
+        "data_manifest_license_review_complete": false,
+        "external_publication_clearance_complete": false,
+        "raw_third_party_rows_released": false,
+        "source_classes": [
+          "PHILADELPHIA_FED_RTDSM",
+          "YAHOO_FINANCE_MARKET_DATA",
+          "ALPACA_PRIVATE_ACCOUNT"
+        ],
+        "source_mapping_complete": true,
+        "source_public_terms_review_complete": true
+      },
+      "editorial_priority": 1,
+      "keywords": [
+        "point-in-time data",
+        "inflation surprise",
+        "equity size spread",
+        "research reproducibility",
+        "backtest correction",
+        "deployment governance",
+        "quantitative finance"
+      ],
+      "peer_reviewed": false,
+      "planned_targets": [
+        {
+          "doi_expected_only_after_publish": true,
+          "object": "PAPER_PREPRINT",
+          "platform": "ZENODO",
+          "purpose": "CITABLE_ARCHIVAL_PAPER_RECORD"
+        },
+        {
+          "doi_expected_only_after_publish": true,
+          "object": "REPRODUCIBILITY_BUNDLE",
+          "platform": "ZENODO",
+          "purpose": "DISTINCT_CODE_DATA_PROVENANCE_RECORD"
+        }
+      ],
+      "public_canonical": "https://canlicapital.com/publication/alphavintage/v1.0.0/paper",
+      "registry_key": "alphavintage_macro_surprise",
+      "release_state": "BLOCKED_PREPARATION_ONLY",
+      "review": {
+        "author_audit": {
+          "answers_completed": 0,
+          "approved": false,
+          "path": "artifacts/publication/author_technical_audits/alphavintage/author_audit.json",
+          "sha256": "111c1f61f3fa6f0318d9bf5365f89b272570c6c9fc318537df9290bac59a28e7"
+        },
+        "external_domain_reviews_completed": 0,
+        "external_reviewer_packet": {
+          "assigned_reviewers": 0,
+          "completed_reviews": 0,
+          "path": "artifacts/publication/external_reviewer_packets/alphavintage/review_request.json",
+          "sha256": "46a891dac0e84cf9f9cfefbc5093489dd5c2be73ed7f4116bbbd7a6bc6eb1f06"
+        },
+        "formal_peer_review_claimed": false,
+        "fresh_context_reader": {
+          "path": "artifacts/publication/fresh_context_reader_packets/alphavintage/reader_review.json",
+          "reader_assigned": false,
+          "review_completed": false,
+          "sha256": "e41bfce7456fa10664181df4bdb936513c20261e88c4ca9653afd052d76aaa33"
+        },
+        "independent_replications_completed": 0,
+        "required_claim_levels": [
+          "AUTHOR_TECHNICAL_AUDIT",
+          "FRESH_CONTEXT_READER_REVIEW",
+          "EXTERNAL_DOMAIN_REVIEW",
+          "INDEPENDENT_REPLICATION"
+        ],
+        "state": "ZERO_EXTERNAL_REVIEWS"
+      },
+      "source_objects": {
+        "bundle_manifest": {
+          "path": "publication/alphavintage/v1.0.0/bundle_manifest.json",
+          "sha256": "9effb4af30556da97bdab2dff8381bfcc6d97ae07450e705a0eef4c90be6ca2f"
+        },
+        "paper_json": {
+          "path": "publication/alphavintage/v1.0.0/paper.json",
+          "sha256": "bcba84214d3ef267acdaf1a0100573e2a30af0996d07494c56dc3d08b8913932"
+        },
+        "paper_pdf": {
+          "path": "publication/alphavintage/v1.0.0/paper.pdf",
+          "sha256": "1a008c6c32b3b8fc313515f636d986be678187ef92a44c0a9d6651585c790f47"
+        }
+      },
+      "submission_claimed": false,
+      "title": "Point-in-Time Inflation Surprise and the Equity Size Spread: A Corrected Null, a Deployment-Governance Failure, and a Frozen Forward Experiment",
+      "version": "1.0.0",
+      "wave": 1
+    },
+    {
+      "abstract": "AlphaForge studies cross-sectional carry in USDT-margined perpetual futures, ranking contracts by the negative trailing mean of observed funding: expensive longs rank as shorts and negative-funding contracts as longs. This paper reconciles all 25 charged hypothesis identities. The historical `carry_fund_21` walk-forward grew a simulated $100,000 to $138,236.27 from 2022-02-08 through 2026-06-01, with Sharpe 0.6766 and maximum drawdown 19.60%, but failed its DSR gate. A later eight-configuration matrix reported PBO 0.8818, no deflated winner, and a capacity sweep context rather than carry capacity; the sole carry-tilted arm had Sharpe 0.0618. An exact-timestamp current-state replay on 2026-08-23 does not reproduce the selection: final equity is $103,335.16, Sharpe 0.1065, and maximum drawdown 20.98%. At the first decision, the historical 22 names included EOS while the current 21 did not; restoring EOS reproduces all ten historical order quantities. A zero-trial audit binds every surviving ledger: overlapping prices, position and funding marks, and funding rates agree, but holdings and state paths diverge. Because the historical run sealed neither its exact code nor derived-input snapshots, a unique additive attribution of the multi-year gap is structurally unidentifiable. Prospective private snapshots are now enforced but cannot repair that omission. The material correction therefore remains open and external submission is blocked. The forward record is weaker: AlphaForge is a local simulated paper broker, not an Alpaca account or externally attested record. Its first configuration was signal-dead; funding cashflows were omitted until a forward-only repair; fewer than half of intended hourly cycles completed; and the stored universe remains frozen at 2026-06-01. Crypto carry is therefore an incumbent experiment with a plausible mechanism, severe selection and capacity evidence, known operational defects, and an unmet forward burden of proof, not a validated sleeve.",
+      "affiliation": "Canli Capital / AlphaC Algorithms",
+      "author": "Arhan Canli",
+      "blockers": [
+        "OPEN_MATERIAL_REPLAY_CORRECTION",
+        "ACCOUNT_SPECIFIC_LICENSE_OR_WRITTEN_PUBLICATION_PERMISSION_REQUIRED",
+        "LIVE_CRYPTO_POSITION_ATTRIBUTION_NOT_DEPLOYED_OR_EXTERNALLY_VERIFIED",
+        "CLEAN_ENVIRONMENT_REPLAY_NOT_COMPLETED",
+        "INDEPENDENT_HUMAN_REPLICATION_MISSING",
+        "OWNER_RELEASE_AUTHORIZATION_REQUIRED",
+        "REPOSITORY_LICENSE_SELECTION_REQUIRED",
+        "RELEASE_DATE_MUST_BE_SET_AT_PUBLICATION",
+        "AUTHOR_TECHNICAL_AUDIT_AND_MANUSCRIPT_APPROVAL_REQUIRED",
+        "FRESH_CONTEXT_HUMAN_READER_REVIEW_REQUIRED",
+        "TWO_EXTERNAL_DOMAIN_REVIEWS_REQUIRED",
+        "INDEPENDENT_HUMAN_REPLICATION_REQUIRED"
+      ],
+      "bundle_slug": "crypto-carry",
+      "capital_kind": "LOCAL_SIMULATED_PAPER_NOT_ALPACA",
+      "data_rights": {
+        "data_manifest_license_review_complete": false,
+        "external_publication_clearance_complete": false,
+        "raw_third_party_rows_released": false,
+        "source_classes": [
+          "BINANCE_EXCHANGE_MARKET_DATA"
+        ],
+        "source_mapping_complete": true,
+        "source_public_terms_review_complete": true
+      },
+      "editorial_priority": 2,
+      "keywords": [
+        "crypto perpetual futures",
+        "funding rate",
+        "carry",
+        "trial accounting",
+        "research reproducibility"
+      ],
+      "peer_reviewed": false,
+      "planned_targets": [
+        {
+          "doi_expected_only_after_publish": true,
+          "object": "PAPER_PREPRINT",
+          "platform": "ZENODO",
+          "purpose": "CITABLE_ARCHIVAL_PAPER_RECORD"
+        },
+        {
+          "doi_expected_only_after_publish": true,
+          "object": "REPRODUCIBILITY_BUNDLE",
+          "platform": "ZENODO",
+          "purpose": "DISTINCT_CODE_DATA_PROVENANCE_RECORD"
+        }
+      ],
+      "public_canonical": "https://canlicapital.com/publication/crypto-carry/v0.1.0/paper",
+      "registry_key": "alphaforge_crypto_carry",
+      "release_state": "BLOCKED_PREPARATION_ONLY",
+      "review": {
+        "author_audit": {
+          "answers_completed": 0,
+          "approved": false,
+          "path": "artifacts/publication/author_technical_audits/crypto-carry/author_audit.json",
+          "sha256": "47c00894435712bfbe46ea72b5126f0c6eea42fb85fe9779bf66a9db510ac8ed"
+        },
+        "external_domain_reviews_completed": 0,
+        "external_reviewer_packet": {
+          "assigned_reviewers": 0,
+          "completed_reviews": 0,
+          "path": "artifacts/publication/external_reviewer_packets/crypto-carry/review_request.json",
+          "sha256": "6caf3f69611145fea606b8c73d4526e7da6d0af5ffcf8e3e3a5f97176ef00c1b"
+        },
+        "formal_peer_review_claimed": false,
+        "fresh_context_reader": {
+          "path": "artifacts/publication/fresh_context_reader_packets/crypto-carry/reader_review.json",
+          "reader_assigned": false,
+          "review_completed": false,
+          "sha256": "1349ea6ad5e66567a950907c53eb8cb252bccc39e2a025f6d984103d0fc175fd"
+        },
+        "independent_replications_completed": 0,
+        "required_claim_levels": [
+          "AUTHOR_TECHNICAL_AUDIT",
+          "FRESH_CONTEXT_READER_REVIEW",
+          "EXTERNAL_DOMAIN_REVIEW",
+          "INDEPENDENT_REPLICATION"
+        ],
+        "state": "ZERO_EXTERNAL_REVIEWS"
+      },
+      "source_objects": {
+        "bundle_manifest": {
+          "path": "publication/crypto-carry/v0.1.0/bundle_manifest.json",
+          "sha256": "14f6271865ffc87d1a7f784a4b855c92e2eccd8bb16e523423d9e6e7cf6b226d"
+        },
+        "paper_json": {
+          "path": "publication/crypto-carry/v0.1.0/paper.json",
+          "sha256": "3f59101f153c4ecd54ce580d6d36d93c38af7afc0ae00853b621687135ac197e"
+        },
+        "paper_pdf": {
+          "path": "publication/crypto-carry/v0.1.0/paper.pdf",
+          "sha256": "93c315aebf3262ae195f7475ce668ceed47290c62549ba707cf8544ab795e421"
+        }
+      },
+      "submission_claimed": false,
+      "title": "Crypto Perpetual Carry: Trial Lineage, Capacity Failure, and Live Evidence Boundary",
+      "version": "0.1.0",
+      "wave": 1
+    },
+    {
+      "abstract": "AlphaMax is ALPHAC's US-equity long/short momentum program. Its canonical signal is 12-minus-1 cross-sectional momentum: rank securities by split-adjusted return from approximately twelve months ago through one month ago, then hold a dollar-neutral long/short portfolio. This paper does not present a single favourable backtest as proof. It reconciles the entire charged family: 115 distinct hypothesis identities recorded from 2026-06-20 through 2026-08-17 across the primary and Sharadar research ledgers. The evidence is deliberately uncomfortable. A frozen 2023\u20132026 construction reported net Sharpe 0.91 and maximum drawdown 8.68% in the persisted deployed-path artifact. The later, preregistered 2005\u20132026 replication reported net Sharpe approximately -0.05 and a drawdown exceeding one third, failing its DSR and return gates. Construction studies did not rescue the family: a 4-by-4 weighting and breadth grid failed its family-wise Reality Check, and beta-neutral, volatility-scaling, and short-tail modifications were not adopted. The correct claim is therefore not \u201cmomentum is proven.\u201d It is that AlphaMax is a live paper research sleeve with a plausible mechanism, a selected short-window survivor, a failed deep-history replication, and an explicit forward burden of proof.",
+      "affiliation": "Canli Capital / AlphaC Algorithms",
+      "author": "Arhan Canli",
+      "blockers": [
+        "ACCOUNT_SPECIFIC_LICENSE_OR_WRITTEN_PUBLICATION_PERMISSION_REQUIRED",
+        "CORPORATE_ACTION_CORRECTION_LEDGER_NEEDS_COMPACT_APPENDIX",
+        "CLEAN_ENVIRONMENT_REPLAY_NOT_COMPLETED",
+        "INDEPENDENT_HUMAN_REPLICATION_MISSING",
+        "OWNER_RELEASE_AUTHORIZATION_REQUIRED",
+        "REPOSITORY_LICENSE_SELECTION_REQUIRED",
+        "RELEASE_DATE_MUST_BE_SET_AT_PUBLICATION",
+        "AUTHOR_TECHNICAL_AUDIT_AND_MANUSCRIPT_APPROVAL_REQUIRED",
+        "FRESH_CONTEXT_HUMAN_READER_REVIEW_REQUIRED",
+        "TWO_EXTERNAL_DOMAIN_REVIEWS_REQUIRED",
+        "INDEPENDENT_HUMAN_REPLICATION_REQUIRED"
+      ],
+      "bundle_slug": "alphamax",
+      "capital_kind": "ALPACA_PAPER_AND_RESEARCH_SIMULATION_SEPARATELY_LABELLED",
+      "data_rights": {
+        "data_manifest_license_review_complete": false,
+        "external_publication_clearance_complete": false,
+        "raw_third_party_rows_released": false,
+        "source_classes": [
+          "MASSIVE_POLYGON_MARKET_DATA",
+          "NASDAQ_SHARADAR",
+          "YAHOO_FINANCE_MARKET_DATA"
+        ],
+        "source_mapping_complete": true,
+        "source_public_terms_review_complete": true
+      },
+      "editorial_priority": 3,
+      "keywords": [
+        "equity momentum",
+        "walk-forward validation",
+        "trial accounting",
+        "corporate actions",
+        "research reproducibility"
+      ],
+      "peer_reviewed": false,
+      "planned_targets": [
+        {
+          "doi_expected_only_after_publish": true,
+          "object": "PAPER_PREPRINT",
+          "platform": "ZENODO",
+          "purpose": "CITABLE_ARCHIVAL_PAPER_RECORD"
+        },
+        {
+          "doi_expected_only_after_publish": true,
+          "object": "REPRODUCIBILITY_BUNDLE",
+          "platform": "ZENODO",
+          "purpose": "DISTINCT_CODE_DATA_PROVENANCE_RECORD"
+        }
+      ],
+      "public_canonical": "https://canlicapital.com/publication/alphamax/v0.1.0/paper",
+      "registry_key": "alphamax_equity_momentum",
+      "release_state": "BLOCKED_PREPARATION_ONLY",
+      "review": {
+        "author_audit": {
+          "answers_completed": 0,
+          "approved": false,
+          "path": "artifacts/publication/author_technical_audits/alphamax/author_audit.json",
+          "sha256": "9fee6c663f62f6117351c7424ba9a6a6157dd2da0f85293723a7b86b3f3ba831"
+        },
+        "external_domain_reviews_completed": 0,
+        "external_reviewer_packet": {
+          "assigned_reviewers": 0,
+          "completed_reviews": 0,
+          "path": "artifacts/publication/external_reviewer_packets/alphamax/review_request.json",
+          "sha256": "dbbcf8f1b257a3cc2b30d24845ed803d751100ada8373c646b83883408318118"
+        },
+        "formal_peer_review_claimed": false,
+        "fresh_context_reader": {
+          "path": "artifacts/publication/fresh_context_reader_packets/alphamax/reader_review.json",
+          "reader_assigned": false,
+          "review_completed": false,
+          "sha256": "bd872d612c4cfdc327f8356b8bc37044e539b3efff3b00c382b844ad01e54573"
+        },
+        "independent_replications_completed": 0,
+        "required_claim_levels": [
+          "AUTHOR_TECHNICAL_AUDIT",
+          "FRESH_CONTEXT_READER_REVIEW",
+          "EXTERNAL_DOMAIN_REVIEW",
+          "INDEPENDENT_REPLICATION"
+        ],
+        "state": "ZERO_EXTERNAL_REVIEWS"
+      },
+      "source_objects": {
+        "bundle_manifest": {
+          "path": "publication/alphamax/v0.1.0/bundle_manifest.json",
+          "sha256": "dde48f36f5d22d2bcd6d6f7d23f05f3c094d2e319d1f68e0e0ce855c4eefd3b8"
+        },
+        "paper_json": {
+          "path": "publication/alphamax/v0.1.0/paper.json",
+          "sha256": "2b51001980adfe3b72a17464c5aa89bae9a452fd3d85597101f56a2cc472aa90"
+        },
+        "paper_pdf": {
+          "path": "publication/alphamax/v0.1.0/paper.pdf",
+          "sha256": "eed32d00c9ed1b3bab146f8a220bd46279f9f56b5db88cd7b22e7b0c81eeaa05"
+        }
+      },
+      "submission_claimed": false,
+      "title": "Equity Momentum Under Complete Trial Accounting: A Selected Survivor and Failed Deep-History Replication",
+      "version": "0.1.0",
+      "wave": 1
+    },
+    {
+      "abstract": "AlphaTrend is ALPHAC's managed-futures trend program. It takes volatility-normalized directional positions from medium- and long-horizon price trends across liquid exchange-traded market proxies, then combines them under a covariance-aware risk budget. This paper reconciles all 21 charged hypothesis identities in the family rather than presenting the strongest backtest alone. The result is promising as a diversifier but statistically unresolved. Nineteen identities have finite Sharpe estimates ranging from -0.238 to +0.345. Six identities retain complete walk-forward artifacts, seven retain source-bound summary reports, and eight retain immutable ledger summaries without full curves. Thirteen have persisted artifact-era DSR values; zero clear the 0.95 gate. The 17-market baseline had Sharpe 0.289 and 9.69% vol-matched maximum drawdown in a replica screen. Correlation whitening reduced Sharpe to 0.186, a single 110-session signal reached 0.271, and expanding to 33 ETFs reduced Sharpe to 0.128 while worsening vol-matched drawdown to 14.42%. AlphaTrend remains a paper evidence-collection sleeve, not an established forward result.",
+      "affiliation": "Canli Capital / AlphaC Algorithms",
+      "author": "Arhan Canli",
+      "blockers": [
+        "ACCOUNT_SPECIFIC_LICENSE_OR_WRITTEN_PUBLICATION_PERMISSION_REQUIRED",
+        "FUTURES_PROXY_AND_ETF_IMPLEMENTATIONS_REQUIRE_SEPARATE_TABLES",
+        "CLEAN_ENVIRONMENT_REPLAY_NOT_COMPLETED",
+        "INDEPENDENT_HUMAN_REPLICATION_MISSING",
+        "OWNER_RELEASE_AUTHORIZATION_REQUIRED",
+        "REPOSITORY_LICENSE_SELECTION_REQUIRED",
+        "RELEASE_DATE_MUST_BE_SET_AT_PUBLICATION",
+        "AUTHOR_TECHNICAL_AUDIT_AND_MANUSCRIPT_APPROVAL_REQUIRED",
+        "FRESH_CONTEXT_HUMAN_READER_REVIEW_REQUIRED",
+        "TWO_EXTERNAL_DOMAIN_REVIEWS_REQUIRED",
+        "INDEPENDENT_HUMAN_REPLICATION_REQUIRED"
+      ],
+      "bundle_slug": "alphatrend",
+      "capital_kind": "ALPACA_PAPER_AND_RESEARCH_SIMULATION_SEPARATELY_LABELLED",
+      "data_rights": {
+        "data_manifest_license_review_complete": false,
+        "external_publication_clearance_complete": false,
+        "raw_third_party_rows_released": false,
+        "source_classes": [
+          "YAHOO_FINANCE_MARKET_DATA"
+        ],
+        "source_mapping_complete": true,
+        "source_public_terms_review_complete": true
+      },
+      "editorial_priority": 4,
+      "keywords": [
+        "managed futures",
+        "trend following",
+        "diversification",
+        "forward evidence",
+        "research reproducibility"
+      ],
+      "peer_reviewed": false,
+      "planned_targets": [
+        {
+          "doi_expected_only_after_publish": true,
+          "object": "PAPER_PREPRINT",
+          "platform": "ZENODO",
+          "purpose": "CITABLE_ARCHIVAL_PAPER_RECORD"
+        },
+        {
+          "doi_expected_only_after_publish": true,
+          "object": "REPRODUCIBILITY_BUNDLE",
+          "platform": "ZENODO",
+          "purpose": "DISTINCT_CODE_DATA_PROVENANCE_RECORD"
+        }
+      ],
+      "public_canonical": "https://canlicapital.com/publication/alphatrend/v0.1.0/paper",
+      "registry_key": "alphatrend_managed_futures",
+      "release_state": "BLOCKED_PREPARATION_ONLY",
+      "review": {
+        "author_audit": {
+          "answers_completed": 0,
+          "approved": false,
+          "path": "artifacts/publication/author_technical_audits/alphatrend/author_audit.json",
+          "sha256": "b0d616098bf213f73baf289190c9ee7baa579463e80b9546985600c6c2290097"
+        },
+        "external_domain_reviews_completed": 0,
+        "external_reviewer_packet": {
+          "assigned_reviewers": 0,
+          "completed_reviews": 0,
+          "path": "artifacts/publication/external_reviewer_packets/alphatrend/review_request.json",
+          "sha256": "a8a2e8e5b870e7ff20a33cfc75b1c0e72730eed284851799f4bef7653a5712e9"
+        },
+        "formal_peer_review_claimed": false,
+        "fresh_context_reader": {
+          "path": "artifacts/publication/fresh_context_reader_packets/alphatrend/reader_review.json",
+          "reader_assigned": false,
+          "review_completed": false,
+          "sha256": "3a6024476bd1d50de4ece61f6d266597516b5a7df7f80a3a6dfe865449d51950"
+        },
+        "independent_replications_completed": 0,
+        "required_claim_levels": [
+          "AUTHOR_TECHNICAL_AUDIT",
+          "FRESH_CONTEXT_READER_REVIEW",
+          "EXTERNAL_DOMAIN_REVIEW",
+          "INDEPENDENT_REPLICATION"
+        ],
+        "state": "ZERO_EXTERNAL_REVIEWS"
+      },
+      "source_objects": {
+        "bundle_manifest": {
+          "path": "publication/alphatrend/v0.1.0/bundle_manifest.json",
+          "sha256": "4839834154b4337690da327f395a10abf53fa2eb787a7587e45b2b36ed0a9f2f"
+        },
+        "paper_json": {
+          "path": "publication/alphatrend/v0.1.0/paper.json",
+          "sha256": "c732385f2a9c5ed985960731f6574b6bc1db4df6e8b103831b2de8303914798b"
+        },
+        "paper_pdf": {
+          "path": "publication/alphatrend/v0.1.0/paper.pdf",
+          "sha256": "029428552d4fed9e9ea2c79f655c9f239d3546c390f695c42176f4d53fe8ceac"
+        }
+      },
+      "submission_claimed": false,
+      "title": "Managed-Futures Trend as an Unresolved Diversifier: Complete Trial Lineage and Forward Burden of Proof",
+      "version": "0.1.0",
+      "wave": 1
+    },
+    {
+      "abstract": "AlphaForge ran a historical robustness matrix over crypto perpetual futures from 2021-01-01 through 2026-06-01. Seven charged identities belong to the broad multi-factor engine: a baseline rank allocator; ML, regime, and combined overlays; daily rebalancing; a tighter no-trade band; and mean-variance allocation. An eighth matrix identity explicitly selected carry and residual reversal and is accounted for in the separate `crypto_carry` family. None of the seven engine identities cleared its artifact-era DSR gate. Annualized Sharpe ranged from -0.7901 to +0.0424 and maximum drawdown from 13.59% to 33.93%. The four baseline/overlay arms all produced the same Sharpe 0.0424 and DSR 0.2112. Cross-sectional combinatorially symmetric validation across all eight matrix trials reported PBO 0.8818 against a gate below 0.20 and no deflated winner. The matrix verdict was **NO-DEPLOY**. A capital sweep on the regime-gated engine showed Sharpe 0.4009 at $100,000, 0.0424 at $1 million, and -0.3720 at $10 million under the committed impact model. This is useful capacity-failure evidence, not a promise that the $100,000 result is repeatable. The family has no admitted sleeve and no broker-reconciled forward record.",
+      "affiliation": "Canli Capital / AlphaC Algorithms",
+      "author": "Arhan Canli",
+      "blockers": [
+        "ACCOUNT_SPECIFIC_LICENSE_OR_WRITTEN_PUBLICATION_PERMISSION_REQUIRED",
+        "CLEAN_ENVIRONMENT_REPLAY_NOT_COMPLETED",
+        "INDEPENDENT_HUMAN_REPLICATION_MISSING",
+        "OWNER_RELEASE_AUTHORIZATION_REQUIRED",
+        "REPOSITORY_LICENSE_SELECTION_REQUIRED",
+        "RELEASE_DATE_MUST_BE_SET_AT_PUBLICATION",
+        "AUTHOR_TECHNICAL_AUDIT_AND_MANUSCRIPT_APPROVAL_REQUIRED",
+        "FRESH_CONTEXT_HUMAN_READER_REVIEW_REQUIRED",
+        "TWO_EXTERNAL_DOMAIN_REVIEWS_REQUIRED",
+        "INDEPENDENT_HUMAN_REPLICATION_REQUIRED"
+      ],
+      "bundle_slug": "crypto-multifactor-engine",
+      "capital_kind": "RESEARCH_SIMULATION_ONLY",
+      "data_rights": {
+        "data_manifest_license_review_complete": false,
+        "external_publication_clearance_complete": false,
+        "raw_third_party_rows_released": false,
+        "source_classes": [
+          "BINANCE_EXCHANGE_MARKET_DATA"
+        ],
+        "source_mapping_complete": true,
+        "source_public_terms_review_complete": true
+      },
+      "editorial_priority": 5,
+      "keywords": [
+        "cryptocurrency factors",
+        "probability of backtest overfitting",
+        "capacity",
+        "no-deploy decision",
+        "research reproducibility"
+      ],
+      "peer_reviewed": false,
+      "planned_targets": [
+        {
+          "doi_expected_only_after_publish": true,
+          "object": "PAPER_PREPRINT",
+          "platform": "ZENODO",
+          "purpose": "CITABLE_ARCHIVAL_PAPER_RECORD"
+        },
+        {
+          "doi_expected_only_after_publish": true,
+          "object": "REPRODUCIBILITY_BUNDLE",
+          "platform": "ZENODO",
+          "purpose": "DISTINCT_CODE_DATA_PROVENANCE_RECORD"
+        }
+      ],
+      "public_canonical": "https://canlicapital.com/publication/crypto-multifactor-engine/v0.1.0/paper",
+      "registry_key": "crypto_multifactor_engine",
+      "release_state": "BLOCKED_PREPARATION_ONLY",
+      "review": {
+        "author_audit": {
+          "answers_completed": 0,
+          "approved": false,
+          "path": "artifacts/publication/author_technical_audits/crypto-multifactor-engine/author_audit.json",
+          "sha256": "b8218cf7584b9cc9ab538b6f1c3994e9ccce72f6614a425ff51ccb873b76b0f2"
+        },
+        "external_domain_reviews_completed": 0,
+        "external_reviewer_packet": {
+          "assigned_reviewers": 0,
+          "completed_reviews": 0,
+          "path": "artifacts/publication/external_reviewer_packets/crypto-multifactor-engine/review_request.json",
+          "sha256": "a8d394edba39bad7327a23af7d6c9bdcabcdf6dc140bba16b8128ef0da9059df"
+        },
+        "formal_peer_review_claimed": false,
+        "fresh_context_reader": {
+          "path": "artifacts/publication/fresh_context_reader_packets/crypto-multifactor-engine/reader_review.json",
+          "reader_assigned": false,
+          "review_completed": false,
+          "sha256": "6672c232e11c403f5fdc9ac9be1c1253dcbacfcc7e778e2e1368e3233173ceda"
+        },
+        "independent_replications_completed": 0,
+        "required_claim_levels": [
+          "AUTHOR_TECHNICAL_AUDIT",
+          "FRESH_CONTEXT_READER_REVIEW",
+          "EXTERNAL_DOMAIN_REVIEW",
+          "INDEPENDENT_REPLICATION"
+        ],
+        "state": "ZERO_EXTERNAL_REVIEWS"
+      },
+      "source_objects": {
+        "bundle_manifest": {
+          "path": "publication/crypto-multifactor-engine/v0.1.0/bundle_manifest.json",
+          "sha256": "df49adc22535ffd291a0b645e3013dae72475f138b00484fb81ecb97336bfc2d"
+        },
+        "paper_json": {
+          "path": "publication/crypto-multifactor-engine/v0.1.0/paper.json",
+          "sha256": "af07c30f9e4ea8f982d2da9cb145ba9a9335bca13f3af337882623b0997a1fe0"
+        },
+        "paper_pdf": {
+          "path": "publication/crypto-multifactor-engine/v0.1.0/paper.pdf",
+          "sha256": "d472c102ac67d1259c8207ecc79b17bc0b2a6ce64c9b581c11cbb010e42391ae"
+        }
+      },
+      "submission_claimed": false,
+      "title": "Crypto Multi-Factor Engine: Seven Trials, Capacity Decay, and No-Deploy Verdict",
+      "version": "0.1.0",
+      "wave": 1
+    },
+    {
+      "abstract": "This record reconciles two cross-sectional defensive-factor identities in crypto perpetual futures: 720-hour low beta and 720-hour low realized volatility. The immutable ledger summaries report annualized Sharpe ratios of 0.6295 and 0.6946 over 1,247 observations. Those are positive historical summaries, but they are not admission results. Neither identity retains a complete identity-matched curve, maximum drawdown, current-union deflated Sharpe ratio, capacity study, or broker-reconciled forward record. A later low-volatility reopening reproduced a lower Sharpe of 0.5229 and passed four diversification diagnostics, but its venue-reality gate remained outstanding and its DSR remained 0.04. The family therefore contributes zero sleeves.",
+      "affiliation": "Canli Capital / AlphaC Algorithms",
+      "author": "Arhan Canli",
+      "blockers": [
+        "ACCOUNT_SPECIFIC_LICENSE_OR_WRITTEN_PUBLICATION_PERMISSION_REQUIRED",
+        "CLEAN_ENVIRONMENT_REPLAY_NOT_COMPLETED",
+        "INDEPENDENT_HUMAN_REPLICATION_MISSING",
+        "OWNER_RELEASE_AUTHORIZATION_REQUIRED",
+        "REPOSITORY_LICENSE_SELECTION_REQUIRED",
+        "RELEASE_DATE_MUST_BE_SET_AT_PUBLICATION",
+        "AUTHOR_TECHNICAL_AUDIT_AND_MANUSCRIPT_APPROVAL_REQUIRED",
+        "FRESH_CONTEXT_HUMAN_READER_REVIEW_REQUIRED"
+      ],
+      "bundle_slug": "crypto-defensive",
+      "capital_kind": "RESEARCH_SIMULATION_ONLY",
+      "data_rights": {
+        "data_manifest_license_review_complete": false,
+        "external_publication_clearance_complete": false,
+        "raw_third_party_rows_released": false,
+        "source_classes": [
+          "BINANCE_EXCHANGE_MARKET_DATA",
+          "MASSIVE_POLYGON_MARKET_DATA"
+        ],
+        "source_mapping_complete": true,
+        "source_public_terms_review_complete": true
+      },
+      "editorial_priority": null,
+      "keywords": [
+        "cryptocurrency",
+        "defensive factors",
+        "null result",
+        "sleeve admission",
+        "research reproducibility"
+      ],
+      "peer_reviewed": false,
+      "planned_targets": [
+        {
+          "doi_expected_only_after_publish": true,
+          "object": "PAPER_PREPRINT",
+          "platform": "ZENODO",
+          "purpose": "CITABLE_ARCHIVAL_PAPER_RECORD"
+        },
+        {
+          "doi_expected_only_after_publish": true,
+          "object": "REPRODUCIBILITY_BUNDLE",
+          "platform": "ZENODO",
+          "purpose": "DISTINCT_CODE_DATA_PROVENANCE_RECORD"
+        }
+      ],
+      "public_canonical": "https://canlicapital.com/publication/crypto-defensive/v0.1.0/paper",
+      "registry_key": "crypto_defensive",
+      "release_state": "BLOCKED_PREPARATION_ONLY",
+      "review": {
+        "author_audit": {
+          "answers_completed": 0,
+          "approved": false,
+          "path": "artifacts/publication/author_technical_audits/crypto-defensive/author_audit.json",
+          "sha256": "9a5cda4a94031e3277ef3d302fb2c41380f3e77fe621272dab5140faf9965b78"
+        },
+        "external_domain_reviews_completed": 0,
+        "external_reviewer_packet": null,
+        "formal_peer_review_claimed": false,
+        "fresh_context_reader": {
+          "path": "artifacts/publication/fresh_context_reader_packets/crypto-defensive/reader_review.json",
+          "reader_assigned": false,
+          "review_completed": false,
+          "sha256": "0dea7e029d86c0ab8674deff02450ac1b34bcf53631a673c47a7d3a925bfe7e7"
+        },
+        "independent_replications_completed": 0,
+        "required_claim_levels": [
+          "AUTHOR_TECHNICAL_AUDIT",
+          "FRESH_CONTEXT_READER_REVIEW"
+        ],
+        "state": "ZERO_EXTERNAL_REVIEWS"
+      },
+      "source_objects": {
+        "bundle_manifest": {
+          "path": "publication/crypto-defensive/v0.1.0/bundle_manifest.json",
+          "sha256": "87c5c9c0aa2fd482145caf7000e3191fd1c78e72fb339a70544f0f89a39be330"
+        },
+        "paper_json": {
+          "path": "publication/crypto-defensive/v0.1.0/paper.json",
+          "sha256": "83bb851e27b5e30b52e747c574c9254f659045800e865d8a9037ea486992c16f"
+        },
+        "paper_pdf": {
+          "path": "publication/crypto-defensive/v0.1.0/paper.pdf",
+          "sha256": "d2012cf059a5ed9e8089122575a1d65efd02d5d43fa96c8e47a492d84a0a96ce"
+        }
+      },
+      "submission_claimed": false,
+      "title": "Crypto Defensive Factors: Two Positive Summaries Without Admission Evidence",
+      "version": "0.1.0",
+      "wave": 2
+    },
+    {
+      "abstract": "AlphaForge tested cross-sectional and time-series momentum in perpetual-futures prices. This paper reconciles all 18 charged crypto-momentum hypothesis identities recorded from 2026-06-20 through 2026-06-25. The best persisted result, a 21-day time-series momentum signal rebalanced weekly, had annualized Sharpe 0.4863, total return 26.83%, and maximum drawdown 17.02% from 2022-02-08 through 2026-06-01. Its artifact-era Deflated Sharpe Ratio was only 0.0684. The worst result, a seven-day cross-sectional signal rebalanced daily, had Sharpe -1.1690, total return -42.39%, and maximum drawdown 50.64%. All 18 artifacts failed their recorded DSR gate. A separate 2021\u20132026 diagnostic combined three momentum signals and measured Sharpe 0.0780. Its full-sample correlation with a carry diagnostic was +0.0444 and stress correlation was negative, but the combined Sharpe was only 0.0556 and even the reported decorrelated ceiling was 0.1206. Diversification without standalone edge does not earn a sleeve slot. No persisted momentum capacity sweep exists. This family is research-only: it is not validated, admitted, live, or part of an Alpaca paper account.",
+      "affiliation": "Canli Capital / AlphaC Algorithms",
+      "author": "Arhan Canli",
+      "blockers": [
+        "ACCOUNT_SPECIFIC_LICENSE_OR_WRITTEN_PUBLICATION_PERMISSION_REQUIRED",
+        "CLEAN_ENVIRONMENT_REPLAY_NOT_COMPLETED",
+        "INDEPENDENT_HUMAN_REPLICATION_MISSING",
+        "OWNER_RELEASE_AUTHORIZATION_REQUIRED",
+        "REPOSITORY_LICENSE_SELECTION_REQUIRED",
+        "RELEASE_DATE_MUST_BE_SET_AT_PUBLICATION",
+        "AUTHOR_TECHNICAL_AUDIT_AND_MANUSCRIPT_APPROVAL_REQUIRED",
+        "FRESH_CONTEXT_HUMAN_READER_REVIEW_REQUIRED"
+      ],
+      "bundle_slug": "crypto-momentum",
+      "capital_kind": "RESEARCH_SIMULATION_ONLY",
+      "data_rights": {
+        "data_manifest_license_review_complete": false,
+        "external_publication_clearance_complete": false,
+        "raw_third_party_rows_released": false,
+        "source_classes": [
+          "BINANCE_EXCHANGE_MARKET_DATA",
+          "MASSIVE_POLYGON_MARKET_DATA"
+        ],
+        "source_mapping_complete": true,
+        "source_public_terms_review_complete": true
+      },
+      "editorial_priority": null,
+      "keywords": [
+        "cryptocurrency momentum",
+        "walk-forward validation",
+        "failed replication",
+        "trial accounting",
+        "research reproducibility"
+      ],
+      "peer_reviewed": false,
+      "planned_targets": [
+        {
+          "doi_expected_only_after_publish": true,
+          "object": "PAPER_PREPRINT",
+          "platform": "ZENODO",
+          "purpose": "CITABLE_ARCHIVAL_PAPER_RECORD"
+        },
+        {
+          "doi_expected_only_after_publish": true,
+          "object": "REPRODUCIBILITY_BUNDLE",
+          "platform": "ZENODO",
+          "purpose": "DISTINCT_CODE_DATA_PROVENANCE_RECORD"
+        }
+      ],
+      "public_canonical": "https://canlicapital.com/publication/crypto-momentum/v0.1.0/paper",
+      "registry_key": "crypto_momentum",
+      "release_state": "BLOCKED_PREPARATION_ONLY",
+      "review": {
+        "author_audit": {
+          "answers_completed": 0,
+          "approved": false,
+          "path": "artifacts/publication/author_technical_audits/crypto-momentum/author_audit.json",
+          "sha256": "c70fa0c6acaae4490f6ab44bbea7f15516608b6e6f31287d46be704bbcb831eb"
+        },
+        "external_domain_reviews_completed": 0,
+        "external_reviewer_packet": null,
+        "formal_peer_review_claimed": false,
+        "fresh_context_reader": {
+          "path": "artifacts/publication/fresh_context_reader_packets/crypto-momentum/reader_review.json",
+          "reader_assigned": false,
+          "review_completed": false,
+          "sha256": "fbe263ecdee2e5fe95f967da681f851088a788ac780b6ec81adc742fa0c400b5"
+        },
+        "independent_replications_completed": 0,
+        "required_claim_levels": [
+          "AUTHOR_TECHNICAL_AUDIT",
+          "FRESH_CONTEXT_READER_REVIEW"
+        ],
+        "state": "ZERO_EXTERNAL_REVIEWS"
+      },
+      "source_objects": {
+        "bundle_manifest": {
+          "path": "publication/crypto-momentum/v0.1.0/bundle_manifest.json",
+          "sha256": "68645b594fdbfd7b443c6f0f1f359951ef3c42002fc2c3c529e6247df43540a5"
+        },
+        "paper_json": {
+          "path": "publication/crypto-momentum/v0.1.0/paper.json",
+          "sha256": "b7b1ca77c2636145ecb5bc984c731e692e9fd77d4f7e2d9764284280ed45b266"
+        },
+        "paper_pdf": {
+          "path": "publication/crypto-momentum/v0.1.0/paper.pdf",
+          "sha256": "170dff8bfbf47443ad39f8e9dda535a3fc1b85300b14df84682f48ce3650d0e9"
+        }
+      },
+      "submission_claimed": false,
+      "title": "Crypto Momentum: Complete Trial Lineage and Failed Sleeve-Admission Evidence",
+      "version": "0.1.0",
+      "wave": 2
+    },
+    {
+      "abstract": "Two historical identities test whether crypto perpetual-futures returns reverse after common movement is removed. One uses a 24-hour residual signal; the other combines 24- and 72-hour residuals. Both are strongly negative in the implemented direction. Their immutable annualized Sharpe summaries are -2.1527 and -2.1140 across 1,574 observations. The result rejects the tested reversal rule, but it does not automatically establish the opposite momentum trade. Exact curves, maximum drawdowns, costs, funding attribution, and current-union DSR are not preserved at the family level. The family contributes zero sleeves and remains in the trial union as a negative result.",
+      "affiliation": "Canli Capital / AlphaC Algorithms",
+      "author": "Arhan Canli",
+      "blockers": [
+        "ACCOUNT_SPECIFIC_LICENSE_OR_WRITTEN_PUBLICATION_PERMISSION_REQUIRED",
+        "CLEAN_ENVIRONMENT_REPLAY_NOT_COMPLETED",
+        "INDEPENDENT_HUMAN_REPLICATION_MISSING",
+        "OWNER_RELEASE_AUTHORIZATION_REQUIRED",
+        "REPOSITORY_LICENSE_SELECTION_REQUIRED",
+        "RELEASE_DATE_MUST_BE_SET_AT_PUBLICATION",
+        "AUTHOR_TECHNICAL_AUDIT_AND_MANUSCRIPT_APPROVAL_REQUIRED",
+        "FRESH_CONTEXT_HUMAN_READER_REVIEW_REQUIRED"
+      ],
+      "bundle_slug": "crypto-reversal",
+      "capital_kind": "RESEARCH_SIMULATION_ONLY",
+      "data_rights": {
+        "data_manifest_license_review_complete": false,
+        "external_publication_clearance_complete": false,
+        "raw_third_party_rows_released": false,
+        "source_classes": [
+          "BINANCE_EXCHANGE_MARKET_DATA"
+        ],
+        "source_mapping_complete": true,
+        "source_public_terms_review_complete": true
+      },
+      "editorial_priority": null,
+      "keywords": [
+        "cryptocurrency reversal",
+        "short-horizon returns",
+        "negative result",
+        "trial accounting",
+        "research reproducibility"
+      ],
+      "peer_reviewed": false,
+      "planned_targets": [
+        {
+          "doi_expected_only_after_publish": true,
+          "object": "PAPER_PREPRINT",
+          "platform": "ZENODO",
+          "purpose": "CITABLE_ARCHIVAL_PAPER_RECORD"
+        },
+        {
+          "doi_expected_only_after_publish": true,
+          "object": "REPRODUCIBILITY_BUNDLE",
+          "platform": "ZENODO",
+          "purpose": "DISTINCT_CODE_DATA_PROVENANCE_RECORD"
+        }
+      ],
+      "public_canonical": "https://canlicapital.com/publication/crypto-reversal/v0.1.0/paper",
+      "registry_key": "crypto_reversal",
+      "release_state": "BLOCKED_PREPARATION_ONLY",
+      "review": {
+        "author_audit": {
+          "answers_completed": 0,
+          "approved": false,
+          "path": "artifacts/publication/author_technical_audits/crypto-reversal/author_audit.json",
+          "sha256": "756fdf25907c69263507421e13f11f40b1f85a46b92a0f1178a1ea43da2f1330"
+        },
+        "external_domain_reviews_completed": 0,
+        "external_reviewer_packet": null,
+        "formal_peer_review_claimed": false,
+        "fresh_context_reader": {
+          "path": "artifacts/publication/fresh_context_reader_packets/crypto-reversal/reader_review.json",
+          "reader_assigned": false,
+          "review_completed": false,
+          "sha256": "2f5fb83359371fa2b49d895c75dd1f8531413e84fd56b519807c33c8e4f203a8"
+        },
+        "independent_replications_completed": 0,
+        "required_claim_levels": [
+          "AUTHOR_TECHNICAL_AUDIT",
+          "FRESH_CONTEXT_READER_REVIEW"
+        ],
+        "state": "ZERO_EXTERNAL_REVIEWS"
+      },
+      "source_objects": {
+        "bundle_manifest": {
+          "path": "publication/crypto-reversal/v0.1.0/bundle_manifest.json",
+          "sha256": "c32ad0eccd2549a4c62b88486a9043e11e87ca2e39c63db79eb856ed1d6ea707"
+        },
+        "paper_json": {
+          "path": "publication/crypto-reversal/v0.1.0/paper.json",
+          "sha256": "4254f723535e73820ba93f0fa563e2c028f5e832563727485412d4dd895c8d0f"
+        },
+        "paper_pdf": {
+          "path": "publication/crypto-reversal/v0.1.0/paper.pdf",
+          "sha256": "4ce95d68b438bc529aff03eda61b6c11691cea28f927c667616f6b995af1123e"
+        }
+      },
+      "submission_claimed": false,
+      "title": "Crypto Short-Horizon Reversal: Two Decisive Negative Trials",
+      "version": "0.1.0",
+      "wave": 2
+    },
+    {
+      "abstract": "AlphaForge tested one preregistered BTC/ETH volatility-risk-premium timing rule from 2021-03-24 through 2026-06-01. It compared Deribit DVOL closes with a seven-day Yang\u2013Zhang realized- volatility estimate, entered only when the spread exceeded two volatility points, charged 10 basis points on signal turnover, and evaluated 1,492 expanding-window out-of-sample days after a 365-day warmup. The proxy produced annualized Sharpe -0.633, Deflated Sharpe Ratio 0.000, PSR 0.066, skew -9.517, and raw kurtosis 132.65. It failed. The diagnostic also illustrates why average variance premium is not timing alpha. BTC's mean DVOL-minus-realized spread was +0.044 and positive on 72.99% of days; an always-short variance proxy showed Sharpe 2.4818 but skew -5.4874. ETH's corresponding always-short proxy showed Sharpe 0.5309 and skew -10.6795. Those attractive averages coexist with catastrophic left tails. This family is not a sleeve, is not in an Alpaca account, and has no broker-reconciled forward record.",
+      "affiliation": "Canli Capital / AlphaC Algorithms",
+      "author": "Arhan Canli",
+      "blockers": [
+        "ACCOUNT_SPECIFIC_LICENSE_OR_WRITTEN_PUBLICATION_PERMISSION_REQUIRED",
+        "CLEAN_ENVIRONMENT_REPLAY_NOT_COMPLETED",
+        "INDEPENDENT_HUMAN_REPLICATION_MISSING",
+        "OWNER_RELEASE_AUTHORIZATION_REQUIRED",
+        "REPOSITORY_LICENSE_SELECTION_REQUIRED",
+        "RELEASE_DATE_MUST_BE_SET_AT_PUBLICATION",
+        "AUTHOR_TECHNICAL_AUDIT_AND_MANUSCRIPT_APPROVAL_REQUIRED",
+        "FRESH_CONTEXT_HUMAN_READER_REVIEW_REQUIRED"
+      ],
+      "bundle_slug": "crypto-vrp",
+      "capital_kind": "RESEARCH_SIMULATION_ONLY",
+      "data_rights": {
+        "data_manifest_license_review_complete": false,
+        "external_publication_clearance_complete": false,
+        "raw_third_party_rows_released": false,
+        "source_classes": [
+          "BINANCE_EXCHANGE_MARKET_DATA",
+          "DERIBIT_MARKET_DATA"
+        ],
+        "source_mapping_complete": true,
+        "source_public_terms_review_complete": true
+      },
+      "editorial_priority": null,
+      "keywords": [
+        "cryptocurrency volatility",
+        "variance risk premium",
+        "proxy design",
+        "null result",
+        "research reproducibility"
+      ],
+      "peer_reviewed": false,
+      "planned_targets": [
+        {
+          "doi_expected_only_after_publish": true,
+          "object": "PAPER_PREPRINT",
+          "platform": "ZENODO",
+          "purpose": "CITABLE_ARCHIVAL_PAPER_RECORD"
+        },
+        {
+          "doi_expected_only_after_publish": true,
+          "object": "REPRODUCIBILITY_BUNDLE",
+          "platform": "ZENODO",
+          "purpose": "DISTINCT_CODE_DATA_PROVENANCE_RECORD"
+        }
+      ],
+      "public_canonical": "https://canlicapital.com/publication/crypto-vrp/v0.1.0/paper",
+      "registry_key": "crypto_vrp",
+      "release_state": "BLOCKED_PREPARATION_ONLY",
+      "review": {
+        "author_audit": {
+          "answers_completed": 0,
+          "approved": false,
+          "path": "artifacts/publication/author_technical_audits/crypto-vrp/author_audit.json",
+          "sha256": "6121f690dbeb7ce03719b87cbedc7de4139cb2f236caedfe5340373c04ffd2f2"
+        },
+        "external_domain_reviews_completed": 0,
+        "external_reviewer_packet": null,
+        "formal_peer_review_claimed": false,
+        "fresh_context_reader": {
+          "path": "artifacts/publication/fresh_context_reader_packets/crypto-vrp/reader_review.json",
+          "reader_assigned": false,
+          "review_completed": false,
+          "sha256": "8d1392306d5f44e7a908edc082b1098a880f4dcc73b968cbf2676f9692199b7d"
+        },
+        "independent_replications_completed": 0,
+        "required_claim_levels": [
+          "AUTHOR_TECHNICAL_AUDIT",
+          "FRESH_CONTEXT_READER_REVIEW"
+        ],
+        "state": "ZERO_EXTERNAL_REVIEWS"
+      },
+      "source_objects": {
+        "bundle_manifest": {
+          "path": "publication/crypto-vrp/v0.1.0/bundle_manifest.json",
+          "sha256": "7db6fc5e7315c3fdab39a4de81123699cce5e5d72710633d3f4b2076e5cf1d65"
+        },
+        "paper_json": {
+          "path": "publication/crypto-vrp/v0.1.0/paper.json",
+          "sha256": "344005562f9fc841554a36f00c7e146b9b1f1479bfd8d9fdb7f39495a93fbcde"
+        },
+        "paper_pdf": {
+          "path": "publication/crypto-vrp/v0.1.0/paper.pdf",
+          "sha256": "a5aa2f50d89c01c4d415a895b62ec956ad187842895d397e58aba289e5bc5e73"
+        }
+      },
+      "submission_claimed": false,
+      "title": "Crypto Volatility Risk Premium: One Proxy Trial and a Published Null",
+      "version": "0.1.0",
+      "wave": 2
+    },
+    {
+      "abstract": "This study tests one preregistered implementation of petroleum-inventory scarcity using EIA first-release data and liquid exchange-traded energy proxies. The signal enters on the next market open after release, normalizes inventory surprises against five years of seasonal history, and hedges trailing DBC beta. Over 2,669 immutable ledger observations, annualized Sharpe was -0.5893, skew was -1.5157, and kurtosis was 30.2245. The fuller probe measured net Sharpe -0.5892, Newey-West t-statistic -1.8450, DSR effectively zero, and maximum drawdown of 41.05%. It passed exposure and correlation checks but failed the return, robustness, product-consistency, portfolio, and capacity gates. The verdict is KILL and the family contributes zero sleeves.",
+      "affiliation": "Canli Capital / AlphaC Algorithms",
+      "author": "Arhan Canli",
+      "blockers": [
+        "ACCOUNT_SPECIFIC_LICENSE_OR_WRITTEN_PUBLICATION_PERMISSION_REQUIRED",
+        "CLEAN_ENVIRONMENT_REPLAY_NOT_COMPLETED",
+        "INDEPENDENT_HUMAN_REPLICATION_MISSING",
+        "OWNER_RELEASE_AUTHORIZATION_REQUIRED",
+        "REPOSITORY_LICENSE_SELECTION_REQUIRED",
+        "RELEASE_DATE_MUST_BE_SET_AT_PUBLICATION",
+        "AUTHOR_TECHNICAL_AUDIT_AND_MANUSCRIPT_APPROVAL_REQUIRED",
+        "FRESH_CONTEXT_HUMAN_READER_REVIEW_REQUIRED"
+      ],
+      "bundle_slug": "energy-inventory",
+      "capital_kind": "RESEARCH_SIMULATION_ONLY",
+      "data_rights": {
+        "data_manifest_license_review_complete": false,
+        "external_publication_clearance_complete": false,
+        "raw_third_party_rows_released": false,
+        "source_classes": [
+          "EIA_PUBLIC_DATA",
+          "YAHOO_FINANCE_MARKET_DATA"
+        ],
+        "source_mapping_complete": true,
+        "source_public_terms_review_complete": true
+      },
+      "editorial_priority": null,
+      "keywords": [
+        "petroleum inventories",
+        "commodity returns",
+        "scarcity",
+        "negative result",
+        "research reproducibility"
+      ],
+      "peer_reviewed": false,
+      "planned_targets": [
+        {
+          "doi_expected_only_after_publish": true,
+          "object": "PAPER_PREPRINT",
+          "platform": "ZENODO",
+          "purpose": "CITABLE_ARCHIVAL_PAPER_RECORD"
+        },
+        {
+          "doi_expected_only_after_publish": true,
+          "object": "REPRODUCIBILITY_BUNDLE",
+          "platform": "ZENODO",
+          "purpose": "DISTINCT_CODE_DATA_PROVENANCE_RECORD"
+        }
+      ],
+      "public_canonical": "https://canlicapital.com/publication/energy-inventory/v0.1.0/paper",
+      "registry_key": "energy_inventory",
+      "release_state": "BLOCKED_PREPARATION_ONLY",
+      "review": {
+        "author_audit": {
+          "answers_completed": 0,
+          "approved": false,
+          "path": "artifacts/publication/author_technical_audits/energy-inventory/author_audit.json",
+          "sha256": "6364c32bb1da47a443a416b73677bf848f36b2e4e4bbce9e87a43ba7c622e0a0"
+        },
+        "external_domain_reviews_completed": 0,
+        "external_reviewer_packet": null,
+        "formal_peer_review_claimed": false,
+        "fresh_context_reader": {
+          "path": "artifacts/publication/fresh_context_reader_packets/energy-inventory/reader_review.json",
+          "reader_assigned": false,
+          "review_completed": false,
+          "sha256": "6653f81ef7cb367c084fa3973f77e74e7f7159c5e92153761137d71e5dd6d8a5"
+        },
+        "independent_replications_completed": 0,
+        "required_claim_levels": [
+          "AUTHOR_TECHNICAL_AUDIT",
+          "FRESH_CONTEXT_READER_REVIEW"
+        ],
+        "state": "ZERO_EXTERNAL_REVIEWS"
+      },
+      "source_objects": {
+        "bundle_manifest": {
+          "path": "publication/energy-inventory/v0.1.0/bundle_manifest.json",
+          "sha256": "e94296c5b027f8687a25eb02185dfe7a649a4fa82ec667577592ce581aa4665b"
+        },
+        "paper_json": {
+          "path": "publication/energy-inventory/v0.1.0/paper.json",
+          "sha256": "3917979b857aca3e32ea07c9d20227a794f669fd3455decaee614f147413d09a"
+        },
+        "paper_pdf": {
+          "path": "publication/energy-inventory/v0.1.0/paper.pdf",
+          "sha256": "70e32c1d040c1ac58b07e1ee0d04b6ae924150873d6e43100a4c1a4982391b0a"
+        }
+      },
+      "submission_claimed": false,
+      "title": "Petroleum Inventory Scarcity: One Negative Macro-Commodity Identity",
+      "version": "0.1.0",
+      "wave": 2
+    },
+    {
+      "abstract": "This record examines whether clustered open-market purchases by corporate insiders predict issuer returns after a realistic filing delay. Two immutable identities are charged because the return aggregation was corrected before publication. The preliminary implementation produced annualized Sharpe -0.9931; the corrected first measurement produced -0.2433 over 2,669 observations. A later replay on an advanced input snapshot measured Sharpe -0.2315 over 2,674 observations, Newey-West t-statistic -0.7490, DSR 1.83e-7, and maximum drawdown 24.84%. The strategy had low correlation with the existing book but reduced observed book Sharpe at a 10% weight. Six of twelve preregistered research checks passed. The verdict is KILL and the family contributes zero sleeves.",
+      "affiliation": "Canli Capital / AlphaC Algorithms",
+      "author": "Arhan Canli",
+      "blockers": [
+        "ACCOUNT_SPECIFIC_LICENSE_OR_WRITTEN_PUBLICATION_PERMISSION_REQUIRED",
+        "CLEAN_ENVIRONMENT_REPLAY_NOT_COMPLETED",
+        "INDEPENDENT_HUMAN_REPLICATION_MISSING",
+        "OWNER_RELEASE_AUTHORIZATION_REQUIRED",
+        "REPOSITORY_LICENSE_SELECTION_REQUIRED",
+        "RELEASE_DATE_MUST_BE_SET_AT_PUBLICATION",
+        "AUTHOR_TECHNICAL_AUDIT_AND_MANUSCRIPT_APPROVAL_REQUIRED",
+        "FRESH_CONTEXT_HUMAN_READER_REVIEW_REQUIRED"
+      ],
+      "bundle_slug": "equity-insider-activity",
+      "capital_kind": "RESEARCH_SIMULATION_ONLY",
+      "data_rights": {
+        "data_manifest_license_review_complete": false,
+        "external_publication_clearance_complete": false,
+        "raw_third_party_rows_released": false,
+        "source_classes": [
+          "SEC_PUBLIC_DATA_AND_FILINGS",
+          "NASDAQ_SHARADAR",
+          "YAHOO_FINANCE_MARKET_DATA"
+        ],
+        "source_mapping_complete": true,
+        "source_public_terms_review_complete": true
+      },
+      "editorial_priority": null,
+      "keywords": [
+        "insider purchases",
+        "event study",
+        "equity returns",
+        "negative result",
+        "research reproducibility"
+      ],
+      "peer_reviewed": false,
+      "planned_targets": [
+        {
+          "doi_expected_only_after_publish": true,
+          "object": "PAPER_PREPRINT",
+          "platform": "ZENODO",
+          "purpose": "CITABLE_ARCHIVAL_PAPER_RECORD"
+        },
+        {
+          "doi_expected_only_after_publish": true,
+          "object": "REPRODUCIBILITY_BUNDLE",
+          "platform": "ZENODO",
+          "purpose": "DISTINCT_CODE_DATA_PROVENANCE_RECORD"
+        }
+      ],
+      "public_canonical": "https://canlicapital.com/publication/equity-insider-activity/v0.1.0/paper",
+      "registry_key": "equity_insider_activity",
+      "release_state": "BLOCKED_PREPARATION_ONLY",
+      "review": {
+        "author_audit": {
+          "answers_completed": 0,
+          "approved": false,
+          "path": "artifacts/publication/author_technical_audits/equity-insider-activity/author_audit.json",
+          "sha256": "2ec9ba179f9c3ea12919a75fb182a1c963931bd0f885e2897da0b828204d87e5"
+        },
+        "external_domain_reviews_completed": 0,
+        "external_reviewer_packet": null,
+        "formal_peer_review_claimed": false,
+        "fresh_context_reader": {
+          "path": "artifacts/publication/fresh_context_reader_packets/equity-insider-activity/reader_review.json",
+          "reader_assigned": false,
+          "review_completed": false,
+          "sha256": "29047b349973883bf75e9c7f17eab83aa2a47638bb51742dfa472cdcd7921899"
+        },
+        "independent_replications_completed": 0,
+        "required_claim_levels": [
+          "AUTHOR_TECHNICAL_AUDIT",
+          "FRESH_CONTEXT_READER_REVIEW"
+        ],
+        "state": "ZERO_EXTERNAL_REVIEWS"
+      },
+      "source_objects": {
+        "bundle_manifest": {
+          "path": "publication/equity-insider-activity/v0.1.0/bundle_manifest.json",
+          "sha256": "30437364c9cb8272477527b84d3d3863d625c122fb2ca6263f2b90338195f82e"
+        },
+        "paper_json": {
+          "path": "publication/equity-insider-activity/v0.1.0/paper.json",
+          "sha256": "5bb3fed7ff5756cd66346e348eaea15f4d74be890e9031ea1c7aeff3e8907fd4"
+        },
+        "paper_pdf": {
+          "path": "publication/equity-insider-activity/v0.1.0/paper.pdf",
+          "sha256": "f7361073dc107b7414b60e8cc50c77515dae71a8d280745582250e970aa653dc"
+        }
+      },
+      "submission_claimed": false,
+      "title": "Clustered Insider Purchases: Two Negative Event-Information Trials",
+      "version": "0.1.0",
+      "wave": 2
+    },
+    {
+      "abstract": "Two historical identities test a 252-session equity beta rank. The implemented portfolio seeks a long-low-beta, short-high-beta spread under rank allocation. The shorter configuration reports annualized Sharpe -0.5995 over 728 observations. A deep-history configuration reports -0.0679 over 5,384 observations, with skew 8.2898 and kurtosis 311.7071. Neither estimate supports a defensive sleeve. The extreme higher moments in the longer summary also make a curve-level audit mandatory; they are not treated as evidence of an attractive positive tail. Exact curves, maximum drawdown, current-union DSR, capacity, and forward execution are not established. The family contributes zero sleeves.",
+      "affiliation": "Canli Capital / AlphaC Algorithms",
+      "author": "Arhan Canli",
+      "blockers": [
+        "ACCOUNT_SPECIFIC_LICENSE_OR_WRITTEN_PUBLICATION_PERMISSION_REQUIRED",
+        "CLEAN_ENVIRONMENT_REPLAY_NOT_COMPLETED",
+        "INDEPENDENT_HUMAN_REPLICATION_MISSING",
+        "OWNER_RELEASE_AUTHORIZATION_REQUIRED",
+        "REPOSITORY_LICENSE_SELECTION_REQUIRED",
+        "RELEASE_DATE_MUST_BE_SET_AT_PUBLICATION",
+        "AUTHOR_TECHNICAL_AUDIT_AND_MANUSCRIPT_APPROVAL_REQUIRED",
+        "FRESH_CONTEXT_HUMAN_READER_REVIEW_REQUIRED"
+      ],
+      "bundle_slug": "equity-low-beta",
+      "capital_kind": "RESEARCH_SIMULATION_ONLY",
+      "data_rights": {
+        "data_manifest_license_review_complete": false,
+        "external_publication_clearance_complete": false,
+        "raw_third_party_rows_released": false,
+        "source_classes": [
+          "BINANCE_EXCHANGE_MARKET_DATA",
+          "MASSIVE_POLYGON_MARKET_DATA",
+          "NASDAQ_SHARADAR"
+        ],
+        "source_mapping_complete": true,
+        "source_public_terms_review_complete": true
+      },
+      "editorial_priority": null,
+      "keywords": [
+        "low beta anomaly",
+        "defensive equities",
+        "negative result",
+        "trial accounting",
+        "research reproducibility"
+      ],
+      "peer_reviewed": false,
+      "planned_targets": [
+        {
+          "doi_expected_only_after_publish": true,
+          "object": "PAPER_PREPRINT",
+          "platform": "ZENODO",
+          "purpose": "CITABLE_ARCHIVAL_PAPER_RECORD"
+        },
+        {
+          "doi_expected_only_after_publish": true,
+          "object": "REPRODUCIBILITY_BUNDLE",
+          "platform": "ZENODO",
+          "purpose": "DISTINCT_CODE_DATA_PROVENANCE_RECORD"
+        }
+      ],
+      "public_canonical": "https://canlicapital.com/publication/equity-low-beta/v0.1.0/paper",
+      "registry_key": "equity_low_beta",
+      "release_state": "BLOCKED_PREPARATION_ONLY",
+      "review": {
+        "author_audit": {
+          "answers_completed": 0,
+          "approved": false,
+          "path": "artifacts/publication/author_technical_audits/equity-low-beta/author_audit.json",
+          "sha256": "d6f4af4c71527b170c7400b205591c752728dc52d2c8d16952cc5e9b1020eb09"
+        },
+        "external_domain_reviews_completed": 0,
+        "external_reviewer_packet": null,
+        "formal_peer_review_claimed": false,
+        "fresh_context_reader": {
+          "path": "artifacts/publication/fresh_context_reader_packets/equity-low-beta/reader_review.json",
+          "reader_assigned": false,
+          "review_completed": false,
+          "sha256": "ff69758b5ae9df35efb16ee49efe05745a78adff338e62da52cef041bf8327e1"
+        },
+        "independent_replications_completed": 0,
+        "required_claim_levels": [
+          "AUTHOR_TECHNICAL_AUDIT",
+          "FRESH_CONTEXT_READER_REVIEW"
+        ],
+        "state": "ZERO_EXTERNAL_REVIEWS"
+      },
+      "source_objects": {
+        "bundle_manifest": {
+          "path": "publication/equity-low-beta/v0.1.0/bundle_manifest.json",
+          "sha256": "71317e73d7d22794d075688a9748b29c533f3c7e82bc36d8c9132fe8fa8984bb"
+        },
+        "paper_json": {
+          "path": "publication/equity-low-beta/v0.1.0/paper.json",
+          "sha256": "15de2c7553f4128602af3cfd23b5ce07ab7b4bb72b8da171b5b2983c50f39fcf"
+        },
+        "paper_pdf": {
+          "path": "publication/equity-low-beta/v0.1.0/paper.pdf",
+          "sha256": "9044474480c24191f19bf8d2498cf0a452e0b5602c28116567739e6881340dcf"
+        }
+      },
+      "submission_claimed": false,
+      "title": "Equity Low Beta: Two Negative Identities and No Defensive Sleeve",
+      "version": "0.1.0",
+      "wave": 2
+    },
+    {
+      "abstract": "ALPHAC preregistered one test of annual 10-K Item 1A narrative stability before opening the 2016\u20132025 return window. The locked strategy bought issuers with stable disclosures and sold issuers with changed disclosures after controlling for filing reaction, momentum, and filing-time industry. Across 2,514 observations, net Sharpe was -0.0074, DSR 0.0000114, Newey\u2013West t-stat -0.0242, and maximum drawdown -28.47%. Twelve of 20 research gates passed, but the return, DSR, stress-cost, short-leg, capacity, mean-zero book-delta, and expected-shortfall gates failed. The sealed verdict is **KILL**. No sleeve was admitted.",
+      "affiliation": "Canli Capital / AlphaC Algorithms",
+      "author": "Arhan Canli",
+      "blockers": [
+        "ACCOUNT_SPECIFIC_LICENSE_OR_WRITTEN_PUBLICATION_PERMISSION_REQUIRED",
+        "CLEAN_ENVIRONMENT_REPLAY_NOT_COMPLETED",
+        "INDEPENDENT_HUMAN_REPLICATION_MISSING",
+        "OWNER_RELEASE_AUTHORIZATION_REQUIRED",
+        "REPOSITORY_LICENSE_SELECTION_REQUIRED",
+        "RELEASE_DATE_MUST_BE_SET_AT_PUBLICATION",
+        "AUTHOR_TECHNICAL_AUDIT_AND_MANUSCRIPT_APPROVAL_REQUIRED",
+        "FRESH_CONTEXT_HUMAN_READER_REVIEW_REQUIRED"
+      ],
+      "bundle_slug": "equity-narrative-change",
+      "capital_kind": "RESEARCH_SIMULATION_ONLY",
+      "data_rights": {
+        "data_manifest_license_review_complete": false,
+        "external_publication_clearance_complete": false,
+        "raw_third_party_rows_released": false,
+        "source_classes": [
+          "SEC_PUBLIC_DATA_AND_FILINGS",
+          "NASDAQ_SHARADAR",
+          "YAHOO_FINANCE_MARKET_DATA"
+        ],
+        "source_mapping_complete": true,
+        "source_public_terms_review_complete": true
+      },
+      "editorial_priority": null,
+      "keywords": [
+        "risk factor disclosure",
+        "text analysis",
+        "preregistration",
+        "null result",
+        "research reproducibility"
+      ],
+      "peer_reviewed": false,
+      "planned_targets": [
+        {
+          "doi_expected_only_after_publish": true,
+          "object": "PAPER_PREPRINT",
+          "platform": "ZENODO",
+          "purpose": "CITABLE_ARCHIVAL_PAPER_RECORD"
+        },
+        {
+          "doi_expected_only_after_publish": true,
+          "object": "REPRODUCIBILITY_BUNDLE",
+          "platform": "ZENODO",
+          "purpose": "DISTINCT_CODE_DATA_PROVENANCE_RECORD"
+        }
+      ],
+      "public_canonical": "https://canlicapital.com/publication/equity-narrative-change/v0.1.0/paper",
+      "registry_key": "equity_narrative_change",
+      "release_state": "BLOCKED_PREPARATION_ONLY",
+      "review": {
+        "author_audit": {
+          "answers_completed": 0,
+          "approved": false,
+          "path": "artifacts/publication/author_technical_audits/equity-narrative-change/author_audit.json",
+          "sha256": "4209b12a74cfa13ae642c57ad8aae2c2c757fc339a4b46156aea0df394d9c388"
+        },
+        "external_domain_reviews_completed": 0,
+        "external_reviewer_packet": null,
+        "formal_peer_review_claimed": false,
+        "fresh_context_reader": {
+          "path": "artifacts/publication/fresh_context_reader_packets/equity-narrative-change/reader_review.json",
+          "reader_assigned": false,
+          "review_completed": false,
+          "sha256": "1b72349a3c9ace4d85813d28c8070691ffb21f2f91681be9ebc1520228c06216"
+        },
+        "independent_replications_completed": 0,
+        "required_claim_levels": [
+          "AUTHOR_TECHNICAL_AUDIT",
+          "FRESH_CONTEXT_READER_REVIEW"
+        ],
+        "state": "ZERO_EXTERNAL_REVIEWS"
+      },
+      "source_objects": {
+        "bundle_manifest": {
+          "path": "publication/equity-narrative-change/v0.1.0/bundle_manifest.json",
+          "sha256": "8bf4246842e65e2477c170086c7b9ef89f8b4a91c2404293029553b92d7e4d68"
+        },
+        "paper_json": {
+          "path": "publication/equity-narrative-change/v0.1.0/paper.json",
+          "sha256": "f9f1b8a144afcce41577f5c48d30b95dbfc4c1d0badde6224d6bdc6a02b6434e"
+        },
+        "paper_pdf": {
+          "path": "publication/equity-narrative-change/v0.1.0/paper.pdf",
+          "sha256": "66e24f148b7b560328fc4495092d5ce81cbcc25a6fc0199ad1abb7521a2e2099"
+        }
+      },
+      "submission_claimed": false,
+      "title": "Annual Risk-Factor Narrative Stability: A Preregistered Null",
+      "version": "0.1.0",
+      "wave": 2
+    },
+    {
+      "abstract": "ALPHAC recorded 11 distinct equity-quality return identities spanning gross profitability, operating margin, return on equity, a quality composite, and a growth/profitability/earnings quality composite. Immutable annualized Sharpe measurements range from -0.8316 to +0.7643. Nine of 11 are negative. The two positives are both operating-margin variants over the shortest 2022\u20132026 history; the same signal over 2000\u20132026 is -0.4174. No family-wide persisted curves, drawdowns, DSR values, capacity sweep, or broker-reconciled forward record survive for these identities. The correct status is research-only, not a validated sleeve.",
+      "affiliation": "Canli Capital / AlphaC Algorithms",
+      "author": "Arhan Canli",
+      "blockers": [
+        "ACCOUNT_SPECIFIC_LICENSE_OR_WRITTEN_PUBLICATION_PERMISSION_REQUIRED",
+        "CLEAN_ENVIRONMENT_REPLAY_NOT_COMPLETED",
+        "INDEPENDENT_HUMAN_REPLICATION_MISSING",
+        "OWNER_RELEASE_AUTHORIZATION_REQUIRED",
+        "REPOSITORY_LICENSE_SELECTION_REQUIRED",
+        "RELEASE_DATE_MUST_BE_SET_AT_PUBLICATION",
+        "AUTHOR_TECHNICAL_AUDIT_AND_MANUSCRIPT_APPROVAL_REQUIRED",
+        "FRESH_CONTEXT_HUMAN_READER_REVIEW_REQUIRED"
+      ],
+      "bundle_slug": "equity-quality",
+      "capital_kind": "RESEARCH_SIMULATION_ONLY",
+      "data_rights": {
+        "data_manifest_license_review_complete": false,
+        "external_publication_clearance_complete": false,
+        "raw_third_party_rows_released": false,
+        "source_classes": [
+          "BINANCE_EXCHANGE_MARKET_DATA",
+          "MASSIVE_POLYGON_MARKET_DATA",
+          "NASDAQ_SHARADAR"
+        ],
+        "source_mapping_complete": true,
+        "source_public_terms_review_complete": true
+      },
+      "editorial_priority": null,
+      "keywords": [
+        "equity quality",
+        "fundamental factors",
+        "multiple testing",
+        "negative result",
+        "research reproducibility"
+      ],
+      "peer_reviewed": false,
+      "planned_targets": [
+        {
+          "doi_expected_only_after_publish": true,
+          "object": "PAPER_PREPRINT",
+          "platform": "ZENODO",
+          "purpose": "CITABLE_ARCHIVAL_PAPER_RECORD"
+        },
+        {
+          "doi_expected_only_after_publish": true,
+          "object": "REPRODUCIBILITY_BUNDLE",
+          "platform": "ZENODO",
+          "purpose": "DISTINCT_CODE_DATA_PROVENANCE_RECORD"
+        }
+      ],
+      "public_canonical": "https://canlicapital.com/publication/equity-quality/v0.1.0/paper",
+      "registry_key": "equity_quality",
+      "release_state": "BLOCKED_PREPARATION_ONLY",
+      "review": {
+        "author_audit": {
+          "answers_completed": 0,
+          "approved": false,
+          "path": "artifacts/publication/author_technical_audits/equity-quality/author_audit.json",
+          "sha256": "db014614b0563f9d1903622ccbb022788765f958224b1c33add9f5584a278eab"
+        },
+        "external_domain_reviews_completed": 0,
+        "external_reviewer_packet": null,
+        "formal_peer_review_claimed": false,
+        "fresh_context_reader": {
+          "path": "artifacts/publication/fresh_context_reader_packets/equity-quality/reader_review.json",
+          "reader_assigned": false,
+          "review_completed": false,
+          "sha256": "f240bbc9c7125360a1192f9c5a87d69218dd9ff182e99d0a08dc3946d1bc5129"
+        },
+        "independent_replications_completed": 0,
+        "required_claim_levels": [
+          "AUTHOR_TECHNICAL_AUDIT",
+          "FRESH_CONTEXT_READER_REVIEW"
+        ],
+        "state": "ZERO_EXTERNAL_REVIEWS"
+      },
+      "source_objects": {
+        "bundle_manifest": {
+          "path": "publication/equity-quality/v0.1.0/bundle_manifest.json",
+          "sha256": "3c63740bdaa60867fe0b63523a02493e9ed69c47d4dbcc7f420df1b1f60e6712"
+        },
+        "paper_json": {
+          "path": "publication/equity-quality/v0.1.0/paper.json",
+          "sha256": "03a170826f0bdb300309de71bd2d8b3e1cde38f33f77ad73f09740ec86f7351d"
+        },
+        "paper_pdf": {
+          "path": "publication/equity-quality/v0.1.0/paper.pdf",
+          "sha256": "e0a33cf2cb3ca6869e57927f50dffc247aaf5dbb0bdce321567498b84aba1900"
+        }
+      },
+      "submission_claimed": false,
+      "title": "Equity Fundamental Quality: Eleven Identities and No Validated Sleeve",
+      "version": "0.1.0",
+      "wave": 2
+    },
+    {
+      "abstract": "ALPHAC recorded 13 equity value/investment identities: book-to-price, earnings yield, sales-to-price, accruals, asset growth, net issuance, investment-to-revenue, a value composite, and 52-week-high context. Eleven have finite immutable Sharpe measurements ranging from -0.9676 to +0.8276; nine of those 11 are negative. Accruals and one net-issuance run are non-finite. Asset growth flips from -0.6858 over 2018\u20132021 to +0.8276 over 2000\u20132026, while both book-to-price runs are negative. This is specification and data-instability evidence, not a validated return family.",
+      "affiliation": "Canli Capital / AlphaC Algorithms",
+      "author": "Arhan Canli",
+      "blockers": [
+        "ACCOUNT_SPECIFIC_LICENSE_OR_WRITTEN_PUBLICATION_PERMISSION_REQUIRED",
+        "CLEAN_ENVIRONMENT_REPLAY_NOT_COMPLETED",
+        "INDEPENDENT_HUMAN_REPLICATION_MISSING",
+        "OWNER_RELEASE_AUTHORIZATION_REQUIRED",
+        "REPOSITORY_LICENSE_SELECTION_REQUIRED",
+        "RELEASE_DATE_MUST_BE_SET_AT_PUBLICATION",
+        "AUTHOR_TECHNICAL_AUDIT_AND_MANUSCRIPT_APPROVAL_REQUIRED",
+        "FRESH_CONTEXT_HUMAN_READER_REVIEW_REQUIRED"
+      ],
+      "bundle_slug": "equity-value-investment",
+      "capital_kind": "RESEARCH_SIMULATION_ONLY",
+      "data_rights": {
+        "data_manifest_license_review_complete": false,
+        "external_publication_clearance_complete": false,
+        "raw_third_party_rows_released": false,
+        "source_classes": [
+          "BINANCE_EXCHANGE_MARKET_DATA",
+          "MASSIVE_POLYGON_MARKET_DATA",
+          "NASDAQ_SHARADAR"
+        ],
+        "source_mapping_complete": true,
+        "source_public_terms_review_complete": true
+      },
+      "editorial_priority": null,
+      "keywords": [
+        "equity value",
+        "corporate issuance",
+        "investment factors",
+        "multiple testing",
+        "research reproducibility"
+      ],
+      "peer_reviewed": false,
+      "planned_targets": [
+        {
+          "doi_expected_only_after_publish": true,
+          "object": "PAPER_PREPRINT",
+          "platform": "ZENODO",
+          "purpose": "CITABLE_ARCHIVAL_PAPER_RECORD"
+        },
+        {
+          "doi_expected_only_after_publish": true,
+          "object": "REPRODUCIBILITY_BUNDLE",
+          "platform": "ZENODO",
+          "purpose": "DISTINCT_CODE_DATA_PROVENANCE_RECORD"
+        }
+      ],
+      "public_canonical": "https://canlicapital.com/publication/equity-value-investment/v0.1.0/paper",
+      "registry_key": "equity_value_investment",
+      "release_state": "BLOCKED_PREPARATION_ONLY",
+      "review": {
+        "author_audit": {
+          "answers_completed": 0,
+          "approved": false,
+          "path": "artifacts/publication/author_technical_audits/equity-value-investment/author_audit.json",
+          "sha256": "6e1b3a68ecc7e65c71a91cd286eb77a1f52cc73b118ceeb542ab6ae974566b46"
+        },
+        "external_domain_reviews_completed": 0,
+        "external_reviewer_packet": null,
+        "formal_peer_review_claimed": false,
+        "fresh_context_reader": {
+          "path": "artifacts/publication/fresh_context_reader_packets/equity-value-investment/reader_review.json",
+          "reader_assigned": false,
+          "review_completed": false,
+          "sha256": "cd85e672f3c2543268de31a5d33ee61bc9579802d8ac8230618f530c22ad6ceb"
+        },
+        "independent_replications_completed": 0,
+        "required_claim_levels": [
+          "AUTHOR_TECHNICAL_AUDIT",
+          "FRESH_CONTEXT_READER_REVIEW"
+        ],
+        "state": "ZERO_EXTERNAL_REVIEWS"
+      },
+      "source_objects": {
+        "bundle_manifest": {
+          "path": "publication/equity-value-investment/v0.1.0/bundle_manifest.json",
+          "sha256": "c572f7a0b95deb1ed0573b31f330d52f96f55e92b05dc6116c8e15ba02fd3dc0"
+        },
+        "paper_json": {
+          "path": "publication/equity-value-investment/v0.1.0/paper.json",
+          "sha256": "d2858b2f8b6cd1565eb67dfeed3c2ad8e662dcf34592ca632e932eeee172a78d"
+        },
+        "paper_pdf": {
+          "path": "publication/equity-value-investment/v0.1.0/paper.pdf",
+          "sha256": "d9823935e464299588b9927869b10dad9cd7a211101986a2fa2b2fcea6eeaacf"
+        }
+      },
+      "submission_claimed": false,
+      "title": "Equity Value, Issuance, and Investment: Thirteen Identities and Unstable Evidence",
+      "version": "0.1.0",
+      "wave": 2
+    },
+    {
+      "abstract": "ALPHAC evaluates seven immutable identities spanning an economic-trend engine, CPI-surprise sizing, and point-in-time macro-vintage variants. Persisted historical summaries range from -0.2981 to +0.3403, but the +0.3403 value is withdrawn because its active-day calendar omitted zero-exposure sessions. The calendar-corrected result is +0.2298 with Newey-West t 1.267 and a `KILLED` verdict. The withdrawn row remains in the lineage as a superseded measurement. The economic premise is that slowly updating growth and inflation information may forecast liquid cross-asset returns. Revised releases create a direct look-ahead hazard, so only vintages available at each decision are admissible. The seven identities share macro information and constitute one research family, not seven independent sleeves; they may also overlap managed-futures trend. Current evidence is summary-level rather than a complete curve, DSR, capacity, drawdown, and crisis correlation packet. The decision is therefore **zero validated sleeves**. A related AlphaVintage Alpaca paper experiment does not reverse that research decision and is neither funded nor independently attested. Future admission requires one frozen vintage-safe configuration, current-union deflation, full risk and capacity evidence, and forward execution.",
+      "affiliation": "Canli Capital / AlphaC Algorithms",
+      "author": "Arhan Canli",
+      "blockers": [
+        "ACCOUNT_SPECIFIC_LICENSE_OR_WRITTEN_PUBLICATION_PERMISSION_REQUIRED",
+        "CLEAN_ENVIRONMENT_REPLAY_NOT_COMPLETED",
+        "INDEPENDENT_HUMAN_REPLICATION_MISSING",
+        "OWNER_RELEASE_AUTHORIZATION_REQUIRED",
+        "REPOSITORY_LICENSE_SELECTION_REQUIRED",
+        "RELEASE_DATE_MUST_BE_SET_AT_PUBLICATION",
+        "AUTHOR_TECHNICAL_AUDIT_AND_MANUSCRIPT_APPROVAL_REQUIRED",
+        "FRESH_CONTEXT_HUMAN_READER_REVIEW_REQUIRED"
+      ],
+      "bundle_slug": "macro-economic-trend",
+      "capital_kind": "RESEARCH_SIMULATION_ONLY",
+      "data_rights": {
+        "data_manifest_license_review_complete": false,
+        "external_publication_clearance_complete": false,
+        "raw_third_party_rows_released": false,
+        "source_classes": [
+          "FRED_ECONOMIC_DATA",
+          "PHILADELPHIA_FED_RTDSM",
+          "YAHOO_FINANCE_MARKET_DATA"
+        ],
+        "source_mapping_complete": true,
+        "source_public_terms_review_complete": true
+      },
+      "editorial_priority": null,
+      "keywords": [
+        "macroeconomic trend",
+        "point-in-time data",
+        "multiple testing",
+        "negative result",
+        "research reproducibility"
+      ],
+      "peer_reviewed": false,
+      "planned_targets": [
+        {
+          "doi_expected_only_after_publish": true,
+          "object": "PAPER_PREPRINT",
+          "platform": "ZENODO",
+          "purpose": "CITABLE_ARCHIVAL_PAPER_RECORD"
+        },
+        {
+          "doi_expected_only_after_publish": true,
+          "object": "REPRODUCIBILITY_BUNDLE",
+          "platform": "ZENODO",
+          "purpose": "DISTINCT_CODE_DATA_PROVENANCE_RECORD"
+        }
+      ],
+      "public_canonical": "https://canlicapital.com/publication/macro-economic-trend/v0.1.0/paper",
+      "registry_key": "macro_economic_trend",
+      "release_state": "BLOCKED_PREPARATION_ONLY",
+      "review": {
+        "author_audit": {
+          "answers_completed": 0,
+          "approved": false,
+          "path": "artifacts/publication/author_technical_audits/macro-economic-trend/author_audit.json",
+          "sha256": "88e6b4edd12b7c10cef96ccdffcc0be1f7ee341c86233c47bc6e19943e61ba2b"
+        },
+        "external_domain_reviews_completed": 0,
+        "external_reviewer_packet": null,
+        "formal_peer_review_claimed": false,
+        "fresh_context_reader": {
+          "path": "artifacts/publication/fresh_context_reader_packets/macro-economic-trend/reader_review.json",
+          "reader_assigned": false,
+          "review_completed": false,
+          "sha256": "cb3d11f68e4e18e098aa644118553fdf2ca47b2076ab58dc349027c4b40e0f4b"
+        },
+        "independent_replications_completed": 0,
+        "required_claim_levels": [
+          "AUTHOR_TECHNICAL_AUDIT",
+          "FRESH_CONTEXT_READER_REVIEW"
+        ],
+        "state": "ZERO_EXTERNAL_REVIEWS"
+      },
+      "source_objects": {
+        "bundle_manifest": {
+          "path": "publication/macro-economic-trend/v0.1.0/bundle_manifest.json",
+          "sha256": "4958bdae34459bed2e1b12b0605bcf43611bfb2a7b23fac7e68b24216b91f6cd"
+        },
+        "paper_json": {
+          "path": "publication/macro-economic-trend/v0.1.0/paper.json",
+          "sha256": "fc69d41fe79d9bb263cce31530f7469e0a5b313af77f45bad2be8cc088237197"
+        },
+        "paper_pdf": {
+          "path": "publication/macro-economic-trend/v0.1.0/paper.pdf",
+          "sha256": "7ad1865d7854be839c8b607b0106f7dafd50eb820af3fd4d77fa44b242e81d04"
+        }
+      },
+      "submission_claimed": false,
+      "title": "Point-in-Time Macroeconomic Trend: Seven Identities Without a Validated Sleeve",
+      "version": "0.1.0",
+      "wave": 2
+    }
+  ],
+  "schema": "canli.alphac-external-submission-plan.v1",
+  "source_bindings": {
+    "all_sleeve_data_rights_audit": {
+      "content_hash": "sha256:90fdc2f6d7bb3a4893f54f311ba739589fb0976520da06fe405df54f40f89495",
+      "data_license_reviews_complete": 0,
+      "external_publication_clearances_complete": 0,
+      "path": "artifacts/publication/all_sleeve_data_rights_audit.json",
+      "public_terms_reviews_complete": 16,
+      "sha256": "eaa21679819f060a37982ecd1ee121b2b1f8938289643cb5286de95d09d0e09a",
+      "source_mappings_complete": 16
+    },
+    "author_technical_audits": {
+      "author_approvals": 0,
+      "author_audits_completed": 0,
+      "content_hash": "sha256:02352ba4f602a92e6f7c25e5548e8c66fed9121f90604c61791b9be3ba415052",
+      "path": "artifacts/publication/author_technical_audits.json",
+      "sha256": "5c6feec95a1cbe2da043c14c598e86e3659ce7809a7a9d423a0a7fb135895d75",
+      "worksheets": 16
+    },
+    "external_review_protocol": {
+      "current_counts": {
+        "accepted_peer_reviewed_publications": 0,
+        "external_domain_reviews": 0,
+        "formal_peer_reviews": 0,
+        "fresh_context_reader_reviews": 0,
+        "independent_replications": 0,
+        "open_preprint_reviews": 0
+      },
+      "governed_templates": {
+        "author_response_matrix": "docs/design/EXTERNAL_REVIEW_RESPONSE_MATRIX_TEMPLATE.md",
+        "author_technical_audit": "docs/design/AUTHOR_TECHNICAL_AUDIT_TEMPLATE.md",
+        "automation_may_invent_author_answers_or_approval": false,
+        "external_reviewer_brief": "docs/design/EXTERNAL_REVIEWER_BRIEF_TEMPLATE.md",
+        "fresh_context_reader": "docs/design/FRESH_CONTEXT_READER_TEMPLATE.md",
+        "review_acquisition_plan": "docs/design/EXTERNAL_REVIEW_ACQUISITION_PLAN.md"
+      },
+      "path": "config/external_review_protocol.json",
+      "sha256": "693276ab5426f0082cb45fa6ae4b7503778a6f8a555e1223f1097e0d41339336",
+      "status": "PREPARATION_ONLY_ZERO_EXTERNAL_REVIEWS"
+    },
+    "external_reviewer_packets": {
+      "assigned_reviewers": 0,
+      "completed_reviews": 0,
+      "content_hash": "sha256:4d526bcd3d003be1d732dd0601d59875e356d790d7bff724cd3aafdc450bc8eb",
+      "flagship_packets": 5,
+      "path": "artifacts/publication/external_reviewer_packets.json",
+      "sha256": "8fae0d142637f9b2b0851753022d09dfa4da407f67d5829a444cc14b66f30a0e"
+    },
+    "fresh_context_reader_packets": {
+      "content_hash": "sha256:dfa25400f58bd1a7a04eca071f0119f7f639a997a414d93739cbc882f031fef3",
+      "papers": 16,
+      "path": "artifacts/publication/fresh_context_reader_packets.json",
+      "readers_assigned": 0,
+      "reviews_completed": 0,
+      "sha256": "be435d83ea7e8beed2756c15ab4ef4e54351968d4e7884042b737ee283502e23"
+    },
+    "repository_requirements": {
+      "observed_on": "2026-08-24",
+      "path": "config/scholarly_repository_requirements.json",
+      "sha256": "3937cd2fe6bf5da5f4adc7c1a01ea78202f5e5c5917c2c3b610b97e74a3548e9"
+    }
+  },
+  "status": "PREPARATION_ONLY_NO_EXTERNAL_SUBMISSIONS_CLAIMED",
+  "strategy": {
+    "duplicate_identifier_policy": "Never mint two identifiers for the same object; paper and reproducibility bundle are distinct related objects.",
+    "methodology_flagship": "A separate cross-sleeve paper on fail-closed quantitative research governance remains to be authored and scope-checked for arXiv q-fin. OSF Preprints is excluded pending a paper-specific human-authorship and provider-scope review.",
+    "open_review_routes": [
+      "PREreview",
+      "PCI_REGISTERED_REPORTS",
+      "JOSS",
+      "ARXIV",
+      "ZENODO",
+      "OPENREVIEW"
+    ],
+    "osf_preprints_route": "EXCLUDED_PENDING_PAPER_SPECIFIC_AUTHORSHIP_AND_PROVIDER_SCOPE_REVIEW",
+    "requirements_observed_on": "2026-08-24",
+    "ssrn_route": "EXCLUDED_PENDING_DIRECT_AUTHOR_ELIGIBILITY_CONFIRMATION_OR_POLICY_CHANGE",
+    "wave_1": "Five methodologically strongest sleeve papers: separate Zenodo paper and reproducibility records, followed by expert review and an eligible open-review route where one exists.",
+    "wave_2": "Remaining sleeve papers: separate Zenodo paper and reproducibility records after editorial depth and evidence review."
+  }
+}

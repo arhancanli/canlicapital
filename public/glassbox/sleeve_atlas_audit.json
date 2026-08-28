@@ -1,7 +1,7 @@
 {
   "schema": "canli.alphac-sleeve-atlas-audit.v2",
   "as_of": "2026-08-16",
-  "atlas_content_hash": "sha256:c8d87bf1f16af1b3815da7d01e1b5871770cd490a62be65a92b5fe23725a6a5b",
+  "atlas_content_hash": "sha256:f1feb79173794e13cdae737d7679cc56e9cc42657507f1484c095e4c0252ffd2",
   "stage": "NO_RETURN_TAXONOMY_AND_GOVERNANCE",
   "claim_boundary": "Passing this audit is not return evidence and does not create a sleeve. It only permits a separately sealed key-free feasibility review.",
   "structural_gates": [
@@ -25,25 +25,25 @@
     "gate_evaluations": 2880,
     "governance_rejections": 0,
     "lineage_families": {
-      "ACTIVE_FEASIBILITY": 6,
+      "ACTIVE_FEASIBILITY": 10,
       "DUPLICATE_OVERLAP": 7,
       "IDENTITY_REDESIGN_REQUIRED": 2,
-      "NOVEL_ATLAS": 20,
+      "NOVEL_ATLAS": 16,
       "RETIRED_KILLED": 5
     },
     "lineage_cells": {
-      "ACTIVE_FEASIBILITY": 36,
+      "ACTIVE_FEASIBILITY": 60,
       "DUPLICATE_OVERLAP": 42,
       "IDENTITY_REDESIGN_REQUIRED": 12,
-      "NOVEL_ATLAS": 120,
+      "NOVEL_ATLAS": 96,
       "RETIRED_KILLED": 30
     },
     "retired_killed": 24,
     "forward_only_monitoring": 6,
     "overlap_review_required": 42,
     "identity_redesign_required": 12,
-    "literature_review_required": 120,
-    "ready_for_key_free_feasibility": 36,
+    "literature_review_required": 96,
+    "ready_for_key_free_feasibility": 60,
     "return_data_opened": 0,
     "return_hypotheses_spent": 0,
     "family_return_data_opened": 1,
@@ -424,12 +424,16 @@
         "lineage_classification_declared": true
       },
       "structural_pass": true,
-      "literature_pass": false,
-      "lineage_classification": "NOVEL_ATLAS",
+      "literature_pass": true,
+      "lineage_classification": "ACTIVE_FEASIBILITY",
       "lineage_aliases": [],
-      "lineage_evidence": [],
+      "lineage_evidence": [
+        "config/sleeve_discovery.json#candidates:merger_arbitrage",
+        "docs/design/FEASIBILITY_MERGER_ARBITRAGE.md",
+        "artifacts/feasibility/merger_arbitrage/result.json"
+      ],
       "lineage_permits_feasibility": true,
-      "decision": "LITERATURE_REVIEW_REQUIRED",
+      "decision": "READY_FOR_KEY_FREE_FEASIBILITY",
       "return_data_opened": false,
       "return_hypotheses_spent": 0
     },
@@ -452,12 +456,16 @@
         "lineage_classification_declared": true
       },
       "structural_pass": true,
-      "literature_pass": false,
-      "lineage_classification": "NOVEL_ATLAS",
+      "literature_pass": true,
+      "lineage_classification": "ACTIVE_FEASIBILITY",
       "lineage_aliases": [],
-      "lineage_evidence": [],
+      "lineage_evidence": [
+        "config/sleeve_discovery.json#candidates:merger_arbitrage",
+        "docs/design/FEASIBILITY_MERGER_ARBITRAGE.md",
+        "artifacts/feasibility/merger_arbitrage/result.json"
+      ],
       "lineage_permits_feasibility": true,
-      "decision": "LITERATURE_REVIEW_REQUIRED",
+      "decision": "READY_FOR_KEY_FREE_FEASIBILITY",
       "return_data_opened": false,
       "return_hypotheses_spent": 0
     },
@@ -480,12 +488,16 @@
         "lineage_classification_declared": true
       },
       "structural_pass": true,
-      "literature_pass": false,
-      "lineage_classification": "NOVEL_ATLAS",
+      "literature_pass": true,
+      "lineage_classification": "ACTIVE_FEASIBILITY",
       "lineage_aliases": [],
-      "lineage_evidence": [],
+      "lineage_evidence": [
+        "config/sleeve_discovery.json#candidates:merger_arbitrage",
+        "docs/design/FEASIBILITY_MERGER_ARBITRAGE.md",
+        "artifacts/feasibility/merger_arbitrage/result.json"
+      ],
       "lineage_permits_feasibility": true,
-      "decision": "LITERATURE_REVIEW_REQUIRED",
+      "decision": "READY_FOR_KEY_FREE_FEASIBILITY",
       "return_data_opened": false,
       "return_hypotheses_spent": 0
     },
@@ -508,12 +520,16 @@
         "lineage_classification_declared": true
       },
       "structural_pass": true,
-      "literature_pass": false,
-      "lineage_classification": "NOVEL_ATLAS",
+      "literature_pass": true,
+      "lineage_classification": "ACTIVE_FEASIBILITY",
       "lineage_aliases": [],
-      "lineage_evidence": [],
+      "lineage_evidence": [
+        "config/sleeve_discovery.json#candidates:merger_arbitrage",
+        "docs/design/FEASIBILITY_MERGER_ARBITRAGE.md",
+        "artifacts/feasibility/merger_arbitrage/result.json"
+      ],
       "lineage_permits_feasibility": true,
-      "decision": "LITERATURE_REVIEW_REQUIRED",
+      "decision": "READY_FOR_KEY_FREE_FEASIBILITY",
       "return_data_opened": false,
       "return_hypotheses_spent": 0
     },
@@ -536,12 +552,16 @@
         "lineage_classification_declared": true
       },
       "structural_pass": true,
-      "literature_pass": false,
-      "lineage_classification": "NOVEL_ATLAS",
+      "literature_pass": true,
+      "lineage_classification": "ACTIVE_FEASIBILITY",
       "lineage_aliases": [],
-      "lineage_evidence": [],
+      "lineage_evidence": [
+        "config/sleeve_discovery.json#candidates:merger_arbitrage",
+        "docs/design/FEASIBILITY_MERGER_ARBITRAGE.md",
+        "artifacts/feasibility/merger_arbitrage/result.json"
+      ],
       "lineage_permits_feasibility": true,
-      "decision": "LITERATURE_REVIEW_REQUIRED",
+      "decision": "READY_FOR_KEY_FREE_FEASIBILITY",
       "return_data_opened": false,
       "return_hypotheses_spent": 0
     },
@@ -564,12 +584,16 @@
         "lineage_classification_declared": true
       },
       "structural_pass": true,
-      "literature_pass": false,
-      "lineage_classification": "NOVEL_ATLAS",
+      "literature_pass": true,
+      "lineage_classification": "ACTIVE_FEASIBILITY",
       "lineage_aliases": [],
-      "lineage_evidence": [],
+      "lineage_evidence": [
+        "config/sleeve_discovery.json#candidates:merger_arbitrage",
+        "docs/design/FEASIBILITY_MERGER_ARBITRAGE.md",
+        "artifacts/feasibility/merger_arbitrage/result.json"
+      ],
       "lineage_permits_feasibility": true,
-      "decision": "LITERATURE_REVIEW_REQUIRED",
+      "decision": "READY_FOR_KEY_FREE_FEASIBILITY",
       "return_data_opened": false,
       "return_hypotheses_spent": 0
     },
@@ -592,12 +616,16 @@
         "lineage_classification_declared": true
       },
       "structural_pass": true,
-      "literature_pass": false,
-      "lineage_classification": "NOVEL_ATLAS",
+      "literature_pass": true,
+      "lineage_classification": "ACTIVE_FEASIBILITY",
       "lineage_aliases": [],
-      "lineage_evidence": [],
+      "lineage_evidence": [
+        "config/sleeve_discovery.json#candidates:merger_arbitrage.tender_only_document_feasibility",
+        "docs/design/FEASIBILITY_TENDER_OFFER_SPREAD.md",
+        "artifacts/feasibility/tender_offer_spread/result.json"
+      ],
       "lineage_permits_feasibility": true,
-      "decision": "LITERATURE_REVIEW_REQUIRED",
+      "decision": "READY_FOR_KEY_FREE_FEASIBILITY",
       "return_data_opened": false,
       "return_hypotheses_spent": 0
     },
@@ -620,12 +648,16 @@
         "lineage_classification_declared": true
       },
       "structural_pass": true,
-      "literature_pass": false,
-      "lineage_classification": "NOVEL_ATLAS",
+      "literature_pass": true,
+      "lineage_classification": "ACTIVE_FEASIBILITY",
       "lineage_aliases": [],
-      "lineage_evidence": [],
+      "lineage_evidence": [
+        "config/sleeve_discovery.json#candidates:merger_arbitrage.tender_only_document_feasibility",
+        "docs/design/FEASIBILITY_TENDER_OFFER_SPREAD.md",
+        "artifacts/feasibility/tender_offer_spread/result.json"
+      ],
       "lineage_permits_feasibility": true,
-      "decision": "LITERATURE_REVIEW_REQUIRED",
+      "decision": "READY_FOR_KEY_FREE_FEASIBILITY",
       "return_data_opened": false,
       "return_hypotheses_spent": 0
     },
@@ -648,12 +680,16 @@
         "lineage_classification_declared": true
       },
       "structural_pass": true,
-      "literature_pass": false,
-      "lineage_classification": "NOVEL_ATLAS",
+      "literature_pass": true,
+      "lineage_classification": "ACTIVE_FEASIBILITY",
       "lineage_aliases": [],
-      "lineage_evidence": [],
+      "lineage_evidence": [
+        "config/sleeve_discovery.json#candidates:merger_arbitrage.tender_only_document_feasibility",
+        "docs/design/FEASIBILITY_TENDER_OFFER_SPREAD.md",
+        "artifacts/feasibility/tender_offer_spread/result.json"
+      ],
       "lineage_permits_feasibility": true,
-      "decision": "LITERATURE_REVIEW_REQUIRED",
+      "decision": "READY_FOR_KEY_FREE_FEASIBILITY",
       "return_data_opened": false,
       "return_hypotheses_spent": 0
     },
@@ -676,12 +712,16 @@
         "lineage_classification_declared": true
       },
       "structural_pass": true,
-      "literature_pass": false,
-      "lineage_classification": "NOVEL_ATLAS",
+      "literature_pass": true,
+      "lineage_classification": "ACTIVE_FEASIBILITY",
       "lineage_aliases": [],
-      "lineage_evidence": [],
+      "lineage_evidence": [
+        "config/sleeve_discovery.json#candidates:merger_arbitrage.tender_only_document_feasibility",
+        "docs/design/FEASIBILITY_TENDER_OFFER_SPREAD.md",
+        "artifacts/feasibility/tender_offer_spread/result.json"
+      ],
       "lineage_permits_feasibility": true,
-      "decision": "LITERATURE_REVIEW_REQUIRED",
+      "decision": "READY_FOR_KEY_FREE_FEASIBILITY",
       "return_data_opened": false,
       "return_hypotheses_spent": 0
     },
@@ -704,12 +744,16 @@
         "lineage_classification_declared": true
       },
       "structural_pass": true,
-      "literature_pass": false,
-      "lineage_classification": "NOVEL_ATLAS",
+      "literature_pass": true,
+      "lineage_classification": "ACTIVE_FEASIBILITY",
       "lineage_aliases": [],
-      "lineage_evidence": [],
+      "lineage_evidence": [
+        "config/sleeve_discovery.json#candidates:merger_arbitrage.tender_only_document_feasibility",
+        "docs/design/FEASIBILITY_TENDER_OFFER_SPREAD.md",
+        "artifacts/feasibility/tender_offer_spread/result.json"
+      ],
       "lineage_permits_feasibility": true,
-      "decision": "LITERATURE_REVIEW_REQUIRED",
+      "decision": "READY_FOR_KEY_FREE_FEASIBILITY",
       "return_data_opened": false,
       "return_hypotheses_spent": 0
     },
@@ -732,12 +776,16 @@
         "lineage_classification_declared": true
       },
       "structural_pass": true,
-      "literature_pass": false,
-      "lineage_classification": "NOVEL_ATLAS",
+      "literature_pass": true,
+      "lineage_classification": "ACTIVE_FEASIBILITY",
       "lineage_aliases": [],
-      "lineage_evidence": [],
+      "lineage_evidence": [
+        "config/sleeve_discovery.json#candidates:merger_arbitrage.tender_only_document_feasibility",
+        "docs/design/FEASIBILITY_TENDER_OFFER_SPREAD.md",
+        "artifacts/feasibility/tender_offer_spread/result.json"
+      ],
       "lineage_permits_feasibility": true,
-      "decision": "LITERATURE_REVIEW_REQUIRED",
+      "decision": "READY_FOR_KEY_FREE_FEASIBILITY",
       "return_data_opened": false,
       "return_hypotheses_spent": 0
     },
@@ -928,12 +976,19 @@
         "lineage_classification_declared": true
       },
       "structural_pass": true,
-      "literature_pass": false,
-      "lineage_classification": "NOVEL_ATLAS",
+      "literature_pass": true,
+      "lineage_classification": "ACTIVE_FEASIBILITY",
       "lineage_aliases": [],
-      "lineage_evidence": [],
+      "lineage_evidence": [
+        "config/sleeve_discovery.json#candidates:active_ownership_escalation",
+        "docs/design/FEASIBILITY_ACTIVE_OWNERSHIP_13D.md",
+        "docs/design/FEASIBILITY_ACTIVE_OWNERSHIP_13D_SCHEMA_V2.md",
+        "docs/design/FEASIBILITY_ACTIVE_OWNERSHIP_13D_ITEM4.md",
+        "docs/design/FEASIBILITY_ACTIVE_OWNERSHIP_13D_ITEM4_V2.md",
+        "artifacts/feasibility/active_ownership_13d_item4_v2/result.json"
+      ],
       "lineage_permits_feasibility": true,
-      "decision": "LITERATURE_REVIEW_REQUIRED",
+      "decision": "READY_FOR_KEY_FREE_FEASIBILITY",
       "return_data_opened": false,
       "return_hypotheses_spent": 0
     },
@@ -956,12 +1011,19 @@
         "lineage_classification_declared": true
       },
       "structural_pass": true,
-      "literature_pass": false,
-      "lineage_classification": "NOVEL_ATLAS",
+      "literature_pass": true,
+      "lineage_classification": "ACTIVE_FEASIBILITY",
       "lineage_aliases": [],
-      "lineage_evidence": [],
+      "lineage_evidence": [
+        "config/sleeve_discovery.json#candidates:active_ownership_escalation",
+        "docs/design/FEASIBILITY_ACTIVE_OWNERSHIP_13D.md",
+        "docs/design/FEASIBILITY_ACTIVE_OWNERSHIP_13D_SCHEMA_V2.md",
+        "docs/design/FEASIBILITY_ACTIVE_OWNERSHIP_13D_ITEM4.md",
+        "docs/design/FEASIBILITY_ACTIVE_OWNERSHIP_13D_ITEM4_V2.md",
+        "artifacts/feasibility/active_ownership_13d_item4_v2/result.json"
+      ],
       "lineage_permits_feasibility": true,
-      "decision": "LITERATURE_REVIEW_REQUIRED",
+      "decision": "READY_FOR_KEY_FREE_FEASIBILITY",
       "return_data_opened": false,
       "return_hypotheses_spent": 0
     },
@@ -984,12 +1046,19 @@
         "lineage_classification_declared": true
       },
       "structural_pass": true,
-      "literature_pass": false,
-      "lineage_classification": "NOVEL_ATLAS",
+      "literature_pass": true,
+      "lineage_classification": "ACTIVE_FEASIBILITY",
       "lineage_aliases": [],
-      "lineage_evidence": [],
+      "lineage_evidence": [
+        "config/sleeve_discovery.json#candidates:active_ownership_escalation",
+        "docs/design/FEASIBILITY_ACTIVE_OWNERSHIP_13D.md",
+        "docs/design/FEASIBILITY_ACTIVE_OWNERSHIP_13D_SCHEMA_V2.md",
+        "docs/design/FEASIBILITY_ACTIVE_OWNERSHIP_13D_ITEM4.md",
+        "docs/design/FEASIBILITY_ACTIVE_OWNERSHIP_13D_ITEM4_V2.md",
+        "artifacts/feasibility/active_ownership_13d_item4_v2/result.json"
+      ],
       "lineage_permits_feasibility": true,
-      "decision": "LITERATURE_REVIEW_REQUIRED",
+      "decision": "READY_FOR_KEY_FREE_FEASIBILITY",
       "return_data_opened": false,
       "return_hypotheses_spent": 0
     },
@@ -1012,12 +1081,19 @@
         "lineage_classification_declared": true
       },
       "structural_pass": true,
-      "literature_pass": false,
-      "lineage_classification": "NOVEL_ATLAS",
+      "literature_pass": true,
+      "lineage_classification": "ACTIVE_FEASIBILITY",
       "lineage_aliases": [],
-      "lineage_evidence": [],
+      "lineage_evidence": [
+        "config/sleeve_discovery.json#candidates:active_ownership_escalation",
+        "docs/design/FEASIBILITY_ACTIVE_OWNERSHIP_13D.md",
+        "docs/design/FEASIBILITY_ACTIVE_OWNERSHIP_13D_SCHEMA_V2.md",
+        "docs/design/FEASIBILITY_ACTIVE_OWNERSHIP_13D_ITEM4.md",
+        "docs/design/FEASIBILITY_ACTIVE_OWNERSHIP_13D_ITEM4_V2.md",
+        "artifacts/feasibility/active_ownership_13d_item4_v2/result.json"
+      ],
       "lineage_permits_feasibility": true,
-      "decision": "LITERATURE_REVIEW_REQUIRED",
+      "decision": "READY_FOR_KEY_FREE_FEASIBILITY",
       "return_data_opened": false,
       "return_hypotheses_spent": 0
     },
@@ -1040,12 +1116,19 @@
         "lineage_classification_declared": true
       },
       "structural_pass": true,
-      "literature_pass": false,
-      "lineage_classification": "NOVEL_ATLAS",
+      "literature_pass": true,
+      "lineage_classification": "ACTIVE_FEASIBILITY",
       "lineage_aliases": [],
-      "lineage_evidence": [],
+      "lineage_evidence": [
+        "config/sleeve_discovery.json#candidates:active_ownership_escalation",
+        "docs/design/FEASIBILITY_ACTIVE_OWNERSHIP_13D.md",
+        "docs/design/FEASIBILITY_ACTIVE_OWNERSHIP_13D_SCHEMA_V2.md",
+        "docs/design/FEASIBILITY_ACTIVE_OWNERSHIP_13D_ITEM4.md",
+        "docs/design/FEASIBILITY_ACTIVE_OWNERSHIP_13D_ITEM4_V2.md",
+        "artifacts/feasibility/active_ownership_13d_item4_v2/result.json"
+      ],
       "lineage_permits_feasibility": true,
-      "decision": "LITERATURE_REVIEW_REQUIRED",
+      "decision": "READY_FOR_KEY_FREE_FEASIBILITY",
       "return_data_opened": false,
       "return_hypotheses_spent": 0
     },
@@ -1068,12 +1151,19 @@
         "lineage_classification_declared": true
       },
       "structural_pass": true,
-      "literature_pass": false,
-      "lineage_classification": "NOVEL_ATLAS",
+      "literature_pass": true,
+      "lineage_classification": "ACTIVE_FEASIBILITY",
       "lineage_aliases": [],
-      "lineage_evidence": [],
+      "lineage_evidence": [
+        "config/sleeve_discovery.json#candidates:active_ownership_escalation",
+        "docs/design/FEASIBILITY_ACTIVE_OWNERSHIP_13D.md",
+        "docs/design/FEASIBILITY_ACTIVE_OWNERSHIP_13D_SCHEMA_V2.md",
+        "docs/design/FEASIBILITY_ACTIVE_OWNERSHIP_13D_ITEM4.md",
+        "docs/design/FEASIBILITY_ACTIVE_OWNERSHIP_13D_ITEM4_V2.md",
+        "artifacts/feasibility/active_ownership_13d_item4_v2/result.json"
+      ],
       "lineage_permits_feasibility": true,
-      "decision": "LITERATURE_REVIEW_REQUIRED",
+      "decision": "READY_FOR_KEY_FREE_FEASIBILITY",
       "return_data_opened": false,
       "return_hypotheses_spent": 0
     },
@@ -4432,12 +4522,16 @@
         "lineage_classification_declared": true
       },
       "structural_pass": true,
-      "literature_pass": false,
-      "lineage_classification": "NOVEL_ATLAS",
+      "literature_pass": true,
+      "lineage_classification": "ACTIVE_FEASIBILITY",
       "lineage_aliases": [],
-      "lineage_evidence": [],
+      "lineage_evidence": [
+        "docs/design/LITERATURE_INFLATION_BREAKEVEN_RELATIVE_VALUE.md",
+        "docs/design/FEASIBILITY_INFLATION_BREAKEVEN_RELATIVE_VALUE.md",
+        "artifacts/feasibility/inflation_breakeven_relative_value/result.json"
+      ],
       "lineage_permits_feasibility": true,
-      "decision": "LITERATURE_REVIEW_REQUIRED",
+      "decision": "READY_FOR_KEY_FREE_FEASIBILITY",
       "return_data_opened": false,
       "return_hypotheses_spent": 0
     },
@@ -4460,12 +4554,16 @@
         "lineage_classification_declared": true
       },
       "structural_pass": true,
-      "literature_pass": false,
-      "lineage_classification": "NOVEL_ATLAS",
+      "literature_pass": true,
+      "lineage_classification": "ACTIVE_FEASIBILITY",
       "lineage_aliases": [],
-      "lineage_evidence": [],
+      "lineage_evidence": [
+        "docs/design/LITERATURE_INFLATION_BREAKEVEN_RELATIVE_VALUE.md",
+        "docs/design/FEASIBILITY_INFLATION_BREAKEVEN_RELATIVE_VALUE.md",
+        "artifacts/feasibility/inflation_breakeven_relative_value/result.json"
+      ],
       "lineage_permits_feasibility": true,
-      "decision": "LITERATURE_REVIEW_REQUIRED",
+      "decision": "READY_FOR_KEY_FREE_FEASIBILITY",
       "return_data_opened": false,
       "return_hypotheses_spent": 0
     },
@@ -4488,12 +4586,16 @@
         "lineage_classification_declared": true
       },
       "structural_pass": true,
-      "literature_pass": false,
-      "lineage_classification": "NOVEL_ATLAS",
+      "literature_pass": true,
+      "lineage_classification": "ACTIVE_FEASIBILITY",
       "lineage_aliases": [],
-      "lineage_evidence": [],
+      "lineage_evidence": [
+        "docs/design/LITERATURE_INFLATION_BREAKEVEN_RELATIVE_VALUE.md",
+        "docs/design/FEASIBILITY_INFLATION_BREAKEVEN_RELATIVE_VALUE.md",
+        "artifacts/feasibility/inflation_breakeven_relative_value/result.json"
+      ],
       "lineage_permits_feasibility": true,
-      "decision": "LITERATURE_REVIEW_REQUIRED",
+      "decision": "READY_FOR_KEY_FREE_FEASIBILITY",
       "return_data_opened": false,
       "return_hypotheses_spent": 0
     },
@@ -4516,12 +4618,16 @@
         "lineage_classification_declared": true
       },
       "structural_pass": true,
-      "literature_pass": false,
-      "lineage_classification": "NOVEL_ATLAS",
+      "literature_pass": true,
+      "lineage_classification": "ACTIVE_FEASIBILITY",
       "lineage_aliases": [],
-      "lineage_evidence": [],
+      "lineage_evidence": [
+        "docs/design/LITERATURE_INFLATION_BREAKEVEN_RELATIVE_VALUE.md",
+        "docs/design/FEASIBILITY_INFLATION_BREAKEVEN_RELATIVE_VALUE.md",
+        "artifacts/feasibility/inflation_breakeven_relative_value/result.json"
+      ],
       "lineage_permits_feasibility": true,
-      "decision": "LITERATURE_REVIEW_REQUIRED",
+      "decision": "READY_FOR_KEY_FREE_FEASIBILITY",
       "return_data_opened": false,
       "return_hypotheses_spent": 0
     },
@@ -4544,12 +4650,16 @@
         "lineage_classification_declared": true
       },
       "structural_pass": true,
-      "literature_pass": false,
-      "lineage_classification": "NOVEL_ATLAS",
+      "literature_pass": true,
+      "lineage_classification": "ACTIVE_FEASIBILITY",
       "lineage_aliases": [],
-      "lineage_evidence": [],
+      "lineage_evidence": [
+        "docs/design/LITERATURE_INFLATION_BREAKEVEN_RELATIVE_VALUE.md",
+        "docs/design/FEASIBILITY_INFLATION_BREAKEVEN_RELATIVE_VALUE.md",
+        "artifacts/feasibility/inflation_breakeven_relative_value/result.json"
+      ],
       "lineage_permits_feasibility": true,
-      "decision": "LITERATURE_REVIEW_REQUIRED",
+      "decision": "READY_FOR_KEY_FREE_FEASIBILITY",
       "return_data_opened": false,
       "return_hypotheses_spent": 0
     },
@@ -4572,12 +4682,16 @@
         "lineage_classification_declared": true
       },
       "structural_pass": true,
-      "literature_pass": false,
-      "lineage_classification": "NOVEL_ATLAS",
+      "literature_pass": true,
+      "lineage_classification": "ACTIVE_FEASIBILITY",
       "lineage_aliases": [],
-      "lineage_evidence": [],
+      "lineage_evidence": [
+        "docs/design/LITERATURE_INFLATION_BREAKEVEN_RELATIVE_VALUE.md",
+        "docs/design/FEASIBILITY_INFLATION_BREAKEVEN_RELATIVE_VALUE.md",
+        "artifacts/feasibility/inflation_breakeven_relative_value/result.json"
+      ],
       "lineage_permits_feasibility": true,
-      "decision": "LITERATURE_REVIEW_REQUIRED",
+      "decision": "READY_FOR_KEY_FREE_FEASIBILITY",
       "return_data_opened": false,
       "return_hypotheses_spent": 0
     },
@@ -7330,5 +7444,5 @@
       "return_hypotheses_spent": 0
     }
   ],
-  "content_hash": "sha256:e547c35063ec166939ce8d4f81853319a25229b86816606de9c68dff86b56ece"
+  "content_hash": "sha256:86e6d3a72eaca844154d7beb03ece2e0bf6584f44dc549ff1298ef856ae56de7"
 }

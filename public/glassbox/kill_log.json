@@ -181,15 +181,15 @@
       "screen_net_sharpe": -0.589,
       "stage": "research_gauntlet",
       "verdict": "KILLED",
-      "reason": "One pre-registered configuration on 782 accepted official EIA WPSR first-release Table 4 vintages, 2016-2026 OOS: commercial crude excluding SPR mapped to USO and total gasoline mapped to UGA, five-year same-week seasonal expectation, trailing 52-release surprise scale, next-session-open entry, DBC beta hedge and explicit one-way costs. One of 783 discovered releases was quarantined for a published arithmetic contradiction. The sleeve was exceptionally orthogonal (average correlation +0.0002, maximum pair +0.0321) and controlled DBC beta (-0.014), but there was no return edge: net Sharpe -0.589, Newey-West t -1.84, DSR effectively zero, max drawdown -41.1%, and Sharpe at 2x costs -0.998. USO and UGA standalone Sharpes were both negative. The fixed 10% book check improved by 0.058 only on the short common window, but failed after mean-centering and failed one of four leave-one-year-out checks. UGA constrained fifth-percentile proxy capacity to about $14.9k at 1% ADV. The sign is not inverted and no threshold is retuned. Full curve, scores, weights and result are preserved in artifacts/probe/eia_petroleum_inventory/. KILLED."
+      "reason": "One pre-registered configuration on 782 accepted official EIA WPSR first-release Table 4 vintages, 2016-2026 OOS: commercial crude excluding SPR mapped to USO and total gasoline mapped to UGA, five-year same-week seasonal expectation, trailing 52-release surprise scale, next-session-open entry, DBC beta hedge and explicit one-way costs. One of 783 discovered releases was quarantined for a published arithmetic contradiction. The sleeve was exceptionally orthogonal (average correlation +0.0012, maximum pair +0.0323) and controlled DBC beta (-0.014), but there was no return edge: net Sharpe -0.589, Newey-West t -1.84, DSR 7.37e-11, max drawdown -41.1%, and Sharpe at 2x costs -0.998. USO and UGA standalone Sharpes were both negative. The fixed 10% book check improved by 0.013 over its 728-session common window, but failed after mean-centering and failed 1 of 4 leave-one-year-out checks. UGA constrained fifth-percentile proxy capacity to about $14.9k at 1% ADV. The sign is not inverted and no threshold is retuned. Full curve, scores, weights, input lineage and result are preserved in artifacts/probe/eia_petroleum_inventory/. KILLED."
     },
     {
       "name": "insider_purchase_clusters",
       "readable_name": "Clustered Insider Open-Market Purchases",
-      "screen_net_sharpe": -0.243,
+      "screen_net_sharpe": -0.232,
       "stage": "research_gauntlet",
       "verdict": "KILLED",
-      "reason": "One pre-registered configuration on official SEC Form 4 purchases, 2016-2026: at least two officers/directors and $100k purchased inside 30 calendar days, filing date plus two sessions, next-open entry, full 63-session hold, trailing-ADV eligibility, SPY beta hedge and explicit one-way costs. The full PIT probe scheduled 3,508 non-overlapping events. It was genuinely orthogonal (average correlation -0.064, maximum pair +0.057), controlled beta (+0.048), and just cleared the hard $5M capacity gate ($5.17M fifth-percentile AUM at 1% ADV). But there was no return edge: net Sharpe -0.243, Newey-West t -0.79, DSR effectively zero, max drawdown -24.8%, and Sharpe at 2x costs -0.297. A fixed 10% sleeve reduced combined-book Sharpe by 0.072 and failed three of four leave-one-year-out checks. A pre-publication audit corrected weighted log-return aggregation to the canonical simple-return contract; preliminary Sharpe was -0.993 and the corrected verdict remained KILL. Immutable execution records rose from 200 to 201; distinct hypothesis identities rose from 135 to 136 because the correction remains conservatively charged. The sign is not inverted and no threshold is retuned. Full curve, event ledger, weights and result are preserved in artifacts/probe/insider_purchase_clusters/. KILLED."
+      "reason": "One pre-registered configuration on official SEC Form 4 purchases, 2016-2026: at least two officers/directors and $100k purchased inside 30 calendar days, filing date plus two sessions, next-open entry, full 63-session hold, trailing-ADV eligibility, SPY beta hedge and explicit one-way costs. The current replay scheduled 3,541 non-overlapping events and was genuinely orthogonal (average correlation -0.066, maximum pair +0.057), controlled beta (+0.046), and cleared the $5M capacity gate ($5.31M fifth-percentile AUM at 1% ADV). But there was no return edge: net Sharpe -0.232, Newey-West t -0.75, DSR 1.83e-07, max drawdown -24.8%, and Sharpe at 2x costs -0.285. A fixed 10% sleeve changed combined-book Sharpe by -0.093 and failed 4 of 4 leave-one-year-out checks. A pre-publication audit corrected weighted log-return aggregation to the canonical simple-return contract; preliminary Sharpe was -0.993 and the corrected verdict remained KILL. The immutable first corrected measurement has 2,669 observations and population-std Sharpe -0.243; the current lake adds 5 sessions, so it is explicitly an OOS extension, not an exact reproduction, and the identity packet remains incomplete. The sign is not inverted and no threshold is retuned. Full curve, event ledger, weights, input lineage and result are preserved in artifacts/probe/insider_purchase_clusters/. KILLED."
     },
     {
       "name": "eq_net_issuance",
@@ -330,7 +330,7 @@
     {
       "name": "crypto_dated_basis",
       "readable_name": "Crypto Dated-Futures Basis (campaign)",
-      "screen_net_sharpe": 0.0,
+      "screen_net_sharpe": null,
       "stage": "screen_prototype",
       "verdict": "KILLED",
       "reason": "Screened at an apparent 1.47 but refuted 3x and reproduced from scratch: the 8.2%/yr 'carry' is a roll-accounting fiction \u2014 the kept days (+0.55) and the dropped roll days (-0.55) cancel; honest all-days P&L telescopes to ~0%/yr, skew -6.84. A construction-fitting artifact (the 'edge' is earned by deleting the days it loses money). KILLED."
@@ -354,7 +354,7 @@
     {
       "name": "pm_odds_signal",
       "readable_name": "Prediction-Market Odds as Macro Signal (probe)",
-      "screen_net_sharpe": 0.0,
+      "screen_net_sharpe": null,
       "stage": "screen_prototype",
       "verdict": "KILLED",
       "reason": "Do Polymarket-implied probabilities lead tradable markets? No \u2014 they lag them. The forward lead is null across 5 macro markets x 5 ETFs; the reverse is strong: bonds reprice a Fed move first and the odds catch up the NEXT day (corr +0.40 to TLT). Only ~2 years of usable history, all one easing cycle. The free odds are a slower, noisier copy of prices we already see. KILLED at feasibility."
@@ -402,7 +402,7 @@
     {
       "name": "intraday_mom",
       "readable_name": "Intraday Flow-Momentum, first-30m predicts last-30m (probe)",
-      "screen_net_sharpe": 0.0,
+      "screen_net_sharpe": null,
       "stage": "screen_prototype",
       "verdict": "KILLED",
       "reason": "The twice-JFE-documented effect (Gao-Han-Li-Zhou) is fully DECAYED post-publication on SPY/QQQ/IWM: dead-zero in 2023-2026, and significantly INVERTED in 2020-2022 (a textbook publish-then-arbitrage overshoot). The only statistically-alive cell (TLT overnight, t=2.9) makes +1.2 bps/day gross against a >=2bp round-trip \u2014 a mirage economically. KILLED at screen."
@@ -434,7 +434,7 @@
     {
       "name": "multivenue_funding",
       "readable_name": "Crypto Multi-Venue Funding Aggregation (probe)",
-      "screen_net_sharpe": 0.0,
+      "screen_net_sharpe": null,
       "stage": "screen_prototype",
       "verdict": "KILLED",
       "reason": "Would aggregating funding across exchanges beat our Binance-only carry signal? No \u2014 null by its own pre-registered rule (promote required +0.10 Sharpe at 90% bootstrap confidence). The reason is structural: Binance and Bybit annualized funding are 0.94 correlated across 12,425 instrument-weeks, so there is almost no independent information to aggregate. The adjacent 'harvest on the best-paying venue' idea dies on arithmetic too \u2014 a median cross-venue gap of ~2.4%/yr against a four-legged ~30bp round trip implies a 22-day breakeven hold, marginal before you even price second-tier venue custody risk. The live sleeve stays Binance-only on its blessed config. Byproduct kept: a multi-exchange funding lake (Bybit deep history via mirror; OKX public history is depth-capped at ~90 days, a data finding worth recording). Reproduce: scripts/probe_multivenue_funding.py."
@@ -547,13 +547,20 @@
     "artifacts/walkforward/managed_futures/summary.txt",
     "docs/design/PREREG_INSIDER_CLUSTERS.md",
     "artifacts/probe/insider_purchase_clusters/result.json",
+    "artifacts/probe/insider_purchase_clusters/input_data_manifest.json",
     "artifacts/probe/insider_purchase_clusters/equity.parquet",
+    "artifacts/probe/insider_purchase_clusters/events.parquet",
+    "artifacts/probe/insider_purchase_clusters/weights.parquet",
     "artifacts/probe/eia_petroleum_inventory/result.json",
+    "artifacts/probe/eia_petroleum_inventory/input_data_manifest.json",
     "artifacts/probe/eia_petroleum_inventory/equity.parquet",
+    "artifacts/probe/eia_petroleum_inventory/scores.parquet",
+    "artifacts/probe/eia_petroleum_inventory/weights.parquet",
+    "docs/design/PREREG_EIA_PETROLEUM_INVENTORY.md",
     "artifacts/sweep/gauntlet_eq_net_issuance/walkforward.json",
     "artifacts/analysis/null_fundamentals_rerun/result.json",
     "artifacts/feasibility/repurchase_issuance_flow/identity_overlap_audit.json"
   ],
-  "generated_at": "2026-08-18T17:25:31.654847+00:00",
-  "content_hash": "sha256:fc306a8e1bccbc6b6c40db249404878e83be471095ab60686b1e36549abf4289"
+  "generated_at": "2026-08-26T09:26:02.159458+00:00",
+  "content_hash": "sha256:0756118aca5c06cf32e630a1d7ea830ee32b8664f2737655f099d53094195e85"
 }

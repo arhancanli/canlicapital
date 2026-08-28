@@ -1,0 +1,304 @@
+{
+  "archival_pdf_pages": 80,
+  "archival_pdfs_machine_validated": 16,
+  "archival_pdfs_visually_inspected": 16,
+  "author": "Arhan Canli",
+  "bundle_files": 418,
+  "bundles_with_complete_recorded_union_extract": 16,
+  "bundles_with_verified_checksums": 16,
+  "claim_boundary": "This proves only that the preparation ledger is honest and source-bound. It proves no submission, DOI, peer review, citation, moderation outcome or replication.",
+  "content_hash": "sha256:06453170eb9b17bb9431f6fa0ee75752e924ba29cc088f1b8b4c1331a02d5b3e",
+  "data_rights": {
+    "data_license_reviews_complete": 0,
+    "external_publication_clearances_complete": 0,
+    "public_terms_reviews_complete": 16,
+    "raw_row_free_bundles": 16,
+    "redistribution_rights_cleared_for_all_sleeves": false,
+    "source_mappings_complete": 16
+  },
+  "external_review": {
+    "assigned_reviewers": 0,
+    "author_approval_workflow": {
+      "approval_receipts_imported": 0,
+      "automation_may_complete_response": false,
+      "software_proves_author_identity": false,
+      "status": "AVAILABLE_ZERO_SELF_ATTESTED_APPROVALS"
+    },
+    "author_approvals": 0,
+    "author_audit_worksheets": 16,
+    "author_audits_completed": 0,
+    "completed_reviews": 0,
+    "current_counts": {
+      "accepted_peer_reviewed_publications": 0,
+      "external_domain_reviews": 0,
+      "formal_peer_reviews": 0,
+      "fresh_context_reader_reviews": 0,
+      "independent_replications": 0,
+      "open_preprint_reviews": 0
+    },
+    "external_account_actions_authorized": false,
+    "flagship_commissioning_packets": 5,
+    "fresh_context_reader_packets": 16,
+    "fresh_context_reader_reviews_completed": 0,
+    "fresh_context_readers_assigned": 0,
+    "governed_templates": {
+      "author_response_matrix": "docs/design/EXTERNAL_REVIEW_RESPONSE_MATRIX_TEMPLATE.md",
+      "author_technical_audit": "docs/design/AUTHOR_TECHNICAL_AUDIT_TEMPLATE.md",
+      "automation_may_invent_author_answers_or_approval": false,
+      "external_reviewer_brief": "docs/design/EXTERNAL_REVIEWER_BRIEF_TEMPLATE.md",
+      "fresh_context_reader": "docs/design/FRESH_CONTEXT_READER_TEMPLATE.md",
+      "review_acquisition_plan": "docs/design/EXTERNAL_REVIEW_ACQUISITION_PLAN.md"
+    },
+    "outreach_authorized": false,
+    "status": "PREPARATION_ONLY_ZERO_EXTERNAL_REVIEWS",
+    "unassigned_external_reviewer_roles": 10
+  },
+  "external_submissions_claimed": false,
+  "failures": [],
+  "internal_audit_replay": {
+    "clean_environment_replays_completed": 0,
+    "commands_executed": 13,
+    "independent_replications_completed": 0,
+    "sleeves_deferred": [
+      "alphamax_equity_momentum"
+    ],
+    "sleeves_with_audit_command_executed": 14,
+    "status": "PASS_INTERNAL_AUDIT_REPLAY_NOT_CLEAN_ENVIRONMENT"
+  },
+  "isolated_frozen_dependency_replay": {
+    "commands_executed": 13,
+    "dependency_environment": "UV_ISOLATED_FROZEN",
+    "independent_replications_completed": 0,
+    "portable_clean_workspace_replays_completed": 0,
+    "raw_input_portability_established": false,
+    "sleeves_deferred": [
+      "alphamax_equity_momentum"
+    ],
+    "sleeves_with_audit_command_executed": 14,
+    "status": "PASS_ISOLATED_FROZEN_DEPENDENCY_REPLAY_NOT_PORTABLE_WORKSPACE"
+  },
+  "latex_sources": 16,
+  "lineage_monographs": 16,
+  "manuscript_style": {
+    "ai_detector_used": false,
+    "human_authorship_proved_by_mechanical_audit": false,
+    "papers_audited": 16,
+    "papers_passing": 16,
+    "status": "PASS_MECHANICAL_STYLE_BOUNDARY"
+  },
+  "normalized_bibliographies": 16,
+  "passes": true,
+  "publication_record_count": 16,
+  "publication_record_count_unit": "PREPARED_SLEEVE_RESEARCH_RECORDS_NOT_ADMITTED_LIVE_SLEEVES",
+  "registry_coverage_fraction": 1.0,
+  "released_result_objects": 34,
+  "schema": "canli.alphac-external-publication-readiness-audit.v2",
+  "source_bindings": {
+    "all_sleeve_data_rights_audit": {
+      "content_hash": "sha256:90fdc2f6d7bb3a4893f54f311ba739589fb0976520da06fe405df54f40f89495",
+      "path": "artifacts/publication/all_sleeve_data_rights_audit.json",
+      "sha256": "eaa21679819f060a37982ecd1ee121b2b1f8938289643cb5286de95d09d0e09a"
+    },
+    "archival_visual_inspection_receipt": {
+      "content_hash": "sha256:6c0da840ce605997d2ed54d51d120180708bfe54a194ae0b6470f63225b508bb",
+      "path": "artifacts/audit/archival_publication_visual_inspection.json",
+      "sha256": "7a40b8c55de12ec4dd2f93143810266ac8854dc14fdd2ac1a336f64ff9dd8578"
+    },
+    "audit_script": {
+      "path": "scripts/audit_external_publication_readiness.py",
+      "sha256": "6c23f8170661759079d0239a5a21e0f88316ae89b60276ad2f49ecd7db9149d0"
+    },
+    "author_technical_approval_protocol": {
+      "path": "docs/design/AUTHOR_TECHNICAL_APPROVAL_PROTOCOL.md",
+      "sha256": "4bc727ca072dac02c3d50fa3aeef559e3f08829187fa45b0892decac490eb8f8"
+    },
+    "author_technical_approval_verifier": {
+      "path": "scripts/verify_author_technical_approval.py",
+      "sha256": "e866f275e957e47afb801f7f56bca87161f2d7a54bb1dc35ebac82c6892b2421"
+    },
+    "author_technical_audit_worksheets": {
+      "content_hash": "sha256:02352ba4f602a92e6f7c25e5548e8c66fed9121f90604c61791b9be3ba415052",
+      "path": "artifacts/publication/author_technical_audits.json",
+      "sha256": "5c6feec95a1cbe2da043c14c598e86e3659ce7809a7a9d423a0a7fb135895d75"
+    },
+    "bundles": {
+      "alphaforge_crypto_carry": {
+        "path": "publication/crypto-carry/v0.1.0/bundle_manifest.json",
+        "sha256": "14f6271865ffc87d1a7f784a4b855c92e2eccd8bb16e523423d9e6e7cf6b226d"
+      },
+      "alphamax_equity_momentum": {
+        "path": "publication/alphamax/v0.1.0/bundle_manifest.json",
+        "sha256": "dde48f36f5d22d2bcd6d6f7d23f05f3c094d2e319d1f68e0e0ce855c4eefd3b8"
+      },
+      "alphatrend_managed_futures": {
+        "path": "publication/alphatrend/v0.1.0/bundle_manifest.json",
+        "sha256": "4839834154b4337690da327f395a10abf53fa2eb787a7587e45b2b36ed0a9f2f"
+      },
+      "alphavintage_macro_surprise": {
+        "path": "publication/alphavintage/v1.0.0/bundle_manifest.json",
+        "sha256": "9effb4af30556da97bdab2dff8381bfcc6d97ae07450e705a0eef4c90be6ca2f"
+      },
+      "crypto_defensive": {
+        "path": "publication/crypto-defensive/v0.1.0/bundle_manifest.json",
+        "sha256": "87c5c9c0aa2fd482145caf7000e3191fd1c78e72fb339a70544f0f89a39be330"
+      },
+      "crypto_momentum": {
+        "path": "publication/crypto-momentum/v0.1.0/bundle_manifest.json",
+        "sha256": "68645b594fdbfd7b443c6f0f1f359951ef3c42002fc2c3c529e6247df43540a5"
+      },
+      "crypto_multifactor_engine": {
+        "path": "publication/crypto-multifactor-engine/v0.1.0/bundle_manifest.json",
+        "sha256": "df49adc22535ffd291a0b645e3013dae72475f138b00484fb81ecb97336bfc2d"
+      },
+      "crypto_reversal": {
+        "path": "publication/crypto-reversal/v0.1.0/bundle_manifest.json",
+        "sha256": "c32ad0eccd2549a4c62b88486a9043e11e87ca2e39c63db79eb856ed1d6ea707"
+      },
+      "crypto_vrp": {
+        "path": "publication/crypto-vrp/v0.1.0/bundle_manifest.json",
+        "sha256": "7db6fc5e7315c3fdab39a4de81123699cce5e5d72710633d3f4b2076e5cf1d65"
+      },
+      "energy_inventory": {
+        "path": "publication/energy-inventory/v0.1.0/bundle_manifest.json",
+        "sha256": "e94296c5b027f8687a25eb02185dfe7a649a4fa82ec667577592ce581aa4665b"
+      },
+      "equity_insider_activity": {
+        "path": "publication/equity-insider-activity/v0.1.0/bundle_manifest.json",
+        "sha256": "30437364c9cb8272477527b84d3d3863d625c122fb2ca6263f2b90338195f82e"
+      },
+      "equity_low_beta": {
+        "path": "publication/equity-low-beta/v0.1.0/bundle_manifest.json",
+        "sha256": "71317e73d7d22794d075688a9748b29c533f3c7e82bc36d8c9132fe8fa8984bb"
+      },
+      "equity_narrative_change": {
+        "path": "publication/equity-narrative-change/v0.1.0/bundle_manifest.json",
+        "sha256": "8bf4246842e65e2477c170086c7b9ef89f8b4a91c2404293029553b92d7e4d68"
+      },
+      "equity_quality": {
+        "path": "publication/equity-quality/v0.1.0/bundle_manifest.json",
+        "sha256": "3c63740bdaa60867fe0b63523a02493e9ed69c47d4dbcc7f420df1b1f60e6712"
+      },
+      "equity_value_investment": {
+        "path": "publication/equity-value-investment/v0.1.0/bundle_manifest.json",
+        "sha256": "c572f7a0b95deb1ed0573b31f330d52f96f55e92b05dc6116c8e15ba02fd3dc0"
+      },
+      "macro_economic_trend": {
+        "path": "publication/macro-economic-trend/v0.1.0/bundle_manifest.json",
+        "sha256": "4958bdae34459bed2e1b12b0605bcf43611bfb2a7b23fac7e68b24216b91f6cd"
+      }
+    },
+    "evidence_catalog": {
+      "path": "config/sleeve_publication_evidence.json",
+      "sha256": "3f5fe2a09fcff9c62a146cc8dd33e09149d01af4509da94f0bce1f69479752a5"
+    },
+    "external_review_protocol": {
+      "path": "config/external_review_protocol.json",
+      "sha256": "693276ab5426f0082cb45fa6ae4b7503778a6f8a555e1223f1097e0d41339336",
+      "status": "PREPARATION_ONLY_ZERO_EXTERNAL_REVIEWS"
+    },
+    "external_reviewer_packets": {
+      "content_hash": "sha256:4d526bcd3d003be1d732dd0601d59875e356d790d7bff724cd3aafdc450bc8eb",
+      "path": "artifacts/publication/external_reviewer_packets.json",
+      "sha256": "8fae0d142637f9b2b0851753022d09dfa4da407f67d5829a444cc14b66f30a0e"
+    },
+    "fresh_context_reader_packets": {
+      "content_hash": "sha256:dfa25400f58bd1a7a04eca071f0119f7f639a997a414d93739cbc882f031fef3",
+      "path": "artifacts/publication/fresh_context_reader_packets.json",
+      "sha256": "be435d83ea7e8beed2756c15ab4ef4e54351968d4e7884042b737ee283502e23"
+    },
+    "internal_audit_replay_receipt": {
+      "content_hash": "sha256:222201e3428e2cc75dd546d9205b15c17af4518038397983b171af2195b57b1d",
+      "path": "artifacts/audit/sleeve_publication_replay_verification.json",
+      "sha256": "70ac0c8d8542294e02c396085216646208a786295c747940f0eb0f576010ec95"
+    },
+    "isolated_dependency_replay_receipt": {
+      "content_hash": "sha256:cf5e340ae7a23fb8dc168b47af77055b981e2e9ef8a1bc467b523fb7e445a2ac",
+      "path": "artifacts/audit/sleeve_publication_isolated_replay_verification.json",
+      "sha256": "d0df878375d415986fa639487e4ccffc9cad6396dca9bde5f3be4a7fdf50b2ad"
+    },
+    "manuscript_style_audit": {
+      "content_hash": "sha256:acf9f5ff00b8a3171cbd8231b733b062bfb12b8f3c1cfe0a64d2d050f6c13039",
+      "path": "artifacts/audit/publication_manuscript_style.json",
+      "sha256": "3b9269e6b25e0ce8d5b3e41963f29288b2da05f5d18535c04cb5bf367e13b8e1"
+    },
+    "papers": {
+      "alphaforge_crypto_carry": {
+        "path": "docs/research/CRYPTO_CARRY_LINEAGE.md",
+        "sha256": "10cef060051ebd54c9e79c292295370aa7b2c2ef9232292e07f7f992fa69679b"
+      },
+      "alphamax_equity_momentum": {
+        "path": "docs/research/ALPHAMAX_EQUITY_MOMENTUM_LINEAGE.md",
+        "sha256": "b2ccb4db05766124a984eb3ebb6c42930542a596e0491363b899ff06feea375f"
+      },
+      "alphatrend_managed_futures": {
+        "path": "docs/research/ALPHATREND_MANAGED_FUTURES_LINEAGE.md",
+        "sha256": "b3907e279cc289e3009e477e5c2d0124e7a16685fc53f9cc6f1c596ab3aa657b"
+      },
+      "alphavintage_macro_surprise": {
+        "path": "docs/research/ALPHAVINTAGE_MACRO_SURPRISE_LINEAGE.md",
+        "sha256": "7d932502929797af79146da7100d204a1a4965b528f43df38f4b3bba788e78ae"
+      },
+      "crypto_defensive": {
+        "path": "docs/research/CRYPTO_DEFENSIVE_LINEAGE.md",
+        "sha256": "395c5662df14296a60786402d911f32409b5db95ce64feed05eddeca99297c37"
+      },
+      "crypto_momentum": {
+        "path": "docs/research/CRYPTO_MOMENTUM_LINEAGE.md",
+        "sha256": "cf0b5830a5c261f62bbaf9e43cab7c0405c4c3c3dc5293eccd6e80f8763533c3"
+      },
+      "crypto_multifactor_engine": {
+        "path": "docs/research/CRYPTO_MULTIFACTOR_ENGINE_LINEAGE.md",
+        "sha256": "73e40af49f0e55e09f706dde37473781d5cc22104d86cd6bc031fe77e080b53c"
+      },
+      "crypto_reversal": {
+        "path": "docs/research/CRYPTO_REVERSAL_LINEAGE.md",
+        "sha256": "74204bd4d7fb7b89047a9578af2697a19d33a9454e5f0998c18c8d7a03e0d5fc"
+      },
+      "crypto_vrp": {
+        "path": "docs/research/CRYPTO_VRP_LINEAGE.md",
+        "sha256": "ec6af71089819e093c833d2f5b7ac63d80efe6517243314ebff207c3c4fa8fbd"
+      },
+      "energy_inventory": {
+        "path": "docs/research/ENERGY_INVENTORY_LINEAGE.md",
+        "sha256": "cd042321f3001f1c65491ba33904075dde4a70b8f6d46765419557ac8ddfe519"
+      },
+      "equity_insider_activity": {
+        "path": "docs/research/EQUITY_INSIDER_ACTIVITY_LINEAGE.md",
+        "sha256": "23b78849957d7c2cc99b86cbb8f15acf42e01d28a6205aad5e3d1e82b48ed945"
+      },
+      "equity_low_beta": {
+        "path": "docs/research/EQUITY_LOW_BETA_LINEAGE.md",
+        "sha256": "13370ad27d5c66d0d00fef2d0869c667fa4bdb47e9abaaea3897d23f07be36cc"
+      },
+      "equity_narrative_change": {
+        "path": "docs/research/EQUITY_NARRATIVE_CHANGE_LINEAGE.md",
+        "sha256": "1f6ee039603a462ba3af1d8cf188a539f1f0f33748f41ba664d1eaea9745736b"
+      },
+      "equity_quality": {
+        "path": "docs/research/EQUITY_QUALITY_LINEAGE.md",
+        "sha256": "ad8c7420167251eae69fb9991b222043a03c2c873b43e2b89d21cd76b269297b"
+      },
+      "equity_value_investment": {
+        "path": "docs/research/EQUITY_VALUE_INVESTMENT_LINEAGE.md",
+        "sha256": "dd994a223a072aa3f3a68633ebf52552a308a569e60dc925066cc897b5cbde1d"
+      },
+      "macro_economic_trend": {
+        "path": "docs/research/MACRO_ECONOMIC_TREND_LINEAGE.md",
+        "sha256": "ff5892cb61f591dde50ee2da25dfe9e7eba51b125b2be57af97dca88f0dcbd8a"
+      }
+    },
+    "registry": {
+      "path": "config/external_publication_registry.json",
+      "sha256": "9681fc65b66ad3ed1f4507f7321f022247c7ca7bc0af23501719cfd5c6ed63e6"
+    },
+    "standard": {
+      "path": "docs/design/EXTERNAL_RESEARCH_PUBLICATION_STANDARD.md",
+      "sha256": "022eb6e847cd007c5c318b0507797220b5c7121ae8aca310ab69d6debe727e96"
+    }
+  },
+  "state_counts": {
+    "BUNDLE_INCOMPLETE": 16
+  },
+  "status": "PASS_FAIL_CLOSED_PREPARATION_LEDGER",
+  "submission_blockers": 52
+}

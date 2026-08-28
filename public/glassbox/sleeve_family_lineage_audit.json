@@ -12,10 +12,10 @@
     "kill_identities_mapped_to_atlas": 12,
     "kill_identities_outside_atlas": 34,
     "classifications": {
-      "ACTIVE_FEASIBILITY": 6,
+      "ACTIVE_FEASIBILITY": 10,
       "DUPLICATE_OVERLAP": 7,
       "IDENTITY_REDESIGN_REQUIRED": 2,
-      "NOVEL_ATLAS": 20,
+      "NOVEL_ATLAS": 16,
       "RETIRED_KILLED": 5
     },
     "return_data_opened": 0,
@@ -77,9 +77,16 @@
   "family_results": [
     {
       "family_id": "active_ownership_escalation",
-      "classification": "NOVEL_ATLAS",
+      "classification": "ACTIVE_FEASIBILITY",
       "aliases": [],
-      "evidence": [],
+      "evidence": [
+        "config/sleeve_discovery.json#candidates:active_ownership_escalation",
+        "docs/design/FEASIBILITY_ACTIVE_OWNERSHIP_13D.md",
+        "docs/design/FEASIBILITY_ACTIVE_OWNERSHIP_13D_SCHEMA_V2.md",
+        "docs/design/FEASIBILITY_ACTIVE_OWNERSHIP_13D_ITEM4.md",
+        "docs/design/FEASIBILITY_ACTIVE_OWNERSHIP_13D_ITEM4_V2.md",
+        "artifacts/feasibility/active_ownership_13d_item4_v2/result.json"
+      ],
       "gates": {
         "aliases_required_when_historical": true,
         "historical_aliases_exist_in_kill_ledger": true,
@@ -455,9 +462,13 @@
     },
     {
       "family_id": "inflation_breakeven_relative_value",
-      "classification": "NOVEL_ATLAS",
+      "classification": "ACTIVE_FEASIBILITY",
       "aliases": [],
-      "evidence": [],
+      "evidence": [
+        "docs/design/LITERATURE_INFLATION_BREAKEVEN_RELATIVE_VALUE.md",
+        "docs/design/FEASIBILITY_INFLATION_BREAKEVEN_RELATIVE_VALUE.md",
+        "artifacts/feasibility/inflation_breakeven_relative_value/result.json"
+      ],
       "gates": {
         "aliases_required_when_historical": true,
         "historical_aliases_exist_in_kill_ledger": true,
@@ -471,9 +482,15 @@
     },
     {
       "family_id": "merger_arbitrage",
-      "classification": "NOVEL_ATLAS",
+      "classification": "ACTIVE_FEASIBILITY",
       "aliases": [],
-      "evidence": [],
+      "evidence": [
+        "config/sleeve_discovery.json#candidates:merger_arbitrage",
+        "docs/design/FEASIBILITY_MERGER_ARBITRAGE.md",
+        "artifacts/feasibility/merger_arbitrage/result.json",
+        "docs/design/FEASIBILITY_MERGER_ANNOUNCEMENT_IDENTITY_V2.md",
+        "artifacts/feasibility/merger_arbitrage/announcement_confirmatory_design.json"
+      ],
       "gates": {
         "aliases_required_when_historical": true,
         "historical_aliases_exist_in_kill_ledger": true,
@@ -752,9 +769,13 @@
     },
     {
       "family_id": "tender_offer_spread",
-      "classification": "NOVEL_ATLAS",
+      "classification": "ACTIVE_FEASIBILITY",
       "aliases": [],
-      "evidence": [],
+      "evidence": [
+        "config/sleeve_discovery.json#candidates:merger_arbitrage.tender_only_document_feasibility",
+        "docs/design/FEASIBILITY_TENDER_OFFER_SPREAD.md",
+        "artifacts/feasibility/tender_offer_spread/result.json"
+      ],
       "gates": {
         "aliases_required_when_historical": true,
         "historical_aliases_exist_in_kill_ledger": true,
@@ -810,11 +831,11 @@
     }
   ],
   "source_sha256": {
-    "registry": "56d34aba34281dc1832b989b8b0ea2b6e2be3979f1012e32f17b997d307662e1",
-    "kill_ledger": "60938ebcb83401d5307cfe6078ee3b37ce0fc4953d6e808e4c1f7f896ad46b82",
-    "current_book": "144ea1aba783144d186e6f3333dd09abb0486b8b5a7bf80cd5782552787d46a0",
-    "discovery": "654f831e3ea4122437e5c48f066d6d37ba6cbcf8d1c7119395d104c5aa6cc225"
+    "registry": "d35a91e24e2a6eca9d359272e23b3a3fda534c396c7c0a704e6199b4eac05f58",
+    "kill_ledger": "844d499e5c2cd54950497eec78ec8896b79ca7c25004b75c4c716db367b25086",
+    "current_book": "4ef50675c1f262cf3073db1f2647a1e74a6896187323b47a2e85347f62d17477",
+    "discovery": "5ec4ccba89437423ba9a00230f590613eb78344d3841d192683aab0addc5b672"
   },
-  "content_hash": "sha256:1a4f3b22fe89ee1b9b040657b4d31e0cd58f0b01bed60393444f46e3bd9c2aef",
-  "generated_at": "2026-08-16T03:22:56.058440+00:00"
+  "generated_at": "2026-08-26T09:26:02.981705+00:00",
+  "content_hash": "sha256:2f71f0210f1747a5459ebae7678ed7874cb8a049d4cba945db04b6968d34b2ee"
 }

@@ -2,54 +2,134 @@
   "schema": "glassbox.trial-ledger/2",
   "claim_boundary": "This ledger proves what was measured and how selection N is counted. It does not prove that any identity is profitable, independent, or admissible.",
   "accounting_equation": "immutable execution records - window-only remeasurements - cross-profile duplicate identities = distinct union hypothesis identities",
-  "immutable_execution_records": 229,
-  "distinct_config_hashes": 229,
-  "window_only_remeasurements": 67,
+  "immutable_execution_records": 301,
+  "distinct_config_hashes": 301,
+  "window_only_remeasurements": 72,
   "cross_profile_duplicate_identities": 0,
-  "distinct_hypothesis_identities": 162,
+  "distinct_hypothesis_identities": 229,
   "selection_statistics": {
     "unit": "first_immutable_record_per_hypothesis",
-    "n_hypotheses": 162,
-    "sharpe_variance": 0.0009605968552560768,
-    "audit_raw_record_sharpe_variance": 0.0007349521849715131,
+    "n_hypotheses": 229,
+    "sharpe_variance": 0.0009019255799292642,
+    "audit_raw_record_sharpe_variance": 0.0007326666145874145,
     "interpretation": "Operational window remeasurements remain public but cannot alter selection N or selection V[SR]."
   },
-  "ledger_profiles": 4,
-  "hypothesis_identity_budget": 160,
-  "budget_remaining": -2,
-  "budget_status": "PAUSE_RESEARCH",
-  "research_status": "PAUSED_BUDGET_REVIEW",
+  "ledger_profiles": 8,
+  "hypothesis_identity_budget": 400,
+  "budget_remaining": 171,
+  "budget_status": "PASS",
+  "research_status": "ACTIVE_STAGED_PROSPECTIVE_BUDGET",
   "definitions": {
-    "immutable_execution_record": "One append-only, config-hash-unique measurement row. Rolling-window remeasurements remain records.",
     "hypothesis_identity": "A distinct economic or parameter identity after removing only start and end measurement-window keys.",
+    "immutable_execution_record": "One append-only, config-hash-unique measurement row. Rolling-window remeasurements remain records.",
     "window_only_remeasurement": "A later record whose config differs from an existing identity only in start or end. It remains public but does not inflate DSR selection N."
   },
   "budget_review": {
+    "authorization": "Explicit owner decision to fund the fourteen-sleeve programme, taken with the evidence cost on the table rather than inferred afterwards.",
+    "authorized_by": "owner, 2026-08-21",
+    "cost_of_this_decision": {
+      "annualized_deflated_benchmark_after_154_trials": 1.3041,
+      "annualized_deflated_benchmark_before": 1.2074,
+      "applies_to": "every sleeve in the book, not only the new candidates. Deflation is a property of the search, and the search is the book's.",
+      "evidence": "artifacts/analysis/trial_budget_cost/result.json",
+      "increase": 0.0967,
+      "the_honest_caveat": "This assumes the measured 6.5% hit rate holds for families that have never been tested. It is an assumption, not a measurement, and the atlas families are deliberately unlike the ones that produced that rate. If the true rate is half of it, ten sleeves cost twice the trials and the budget will bind before the target is reached. Reaching the ceiling without ten admissions is a RESULT, not a failure of the budget, and the book stays smaller.",
+      "why_it_is_affordable": "The deflated benchmark grows with the LOGARITHM of the trial count, so 154 trials on top of 162 move it by roughly 0.10 annualized. Sample length is the far stronger lever, which is why v6 raising minimum_oos_observations from 252 to 756 matters more to admissibility than this budget does."
+    },
+    "headroom": 158,
     "hypothesis_identities_at_review": 162,
-    "immutable_execution_records_at_review": 229,
-    "ledger_profiles_at_review": 4,
-    "new_identities_since_prior_135_ceiling": [
-      "insider_purchase_clusters_preliminary",
-      "insider_purchase_clusters_corrected_simple_return_contract",
-      "eia_petroleum_inventory",
-      "earnings_narrative_change"
+    "new_budget": 320,
+    "next_tripwire": "At 320 recorded hypothesis identities, registration pauses again and requires a fresh owner review. Any single family exceeding 40 identities also pauses for review, so the budget cannot be consumed by one line of enquiry that is not working.",
+    "prior_budget": 160,
+    "rationale": "Ten new sleeves at the measured 6.5% hit rate (3 survivors from 46 tested candidates) implies about 154 trials. The budget is set at 320 identities, which funds that with a small margin and stops well short of an open-ended search. It is a CEILING, not a plan: the campaign closes at whatever count the evidence stops justifying.",
+    "status_token_note": "ACTIVE is the canonical token the trial tripwire recognises. The prospective nature of this budget is recorded here rather than encoded in the status, so no guard is left unable to read the state it governs.",
+    "what_did_not_change": "A target still never creates a sleeve. Fourteen is reached only if ten or more new identities independently clear every admission gate in config/sleeve_admission_contract.json; otherwise the book remains smaller. The budget buys permission to look, not permission to admit."
+  },
+  "ledger_scope_correction": {
+    "authorized_budget_unchanged": 320,
+    "budget_remaining": 146,
+    "current_hypothesis_identities": 174,
+    "new_experiments_run": 0,
+    "prior_reported_hypothesis_identities": 162,
+    "reason": "Canonical union discovery scanned only top-level var* profiles and omitted four durable experiment ledgers filed with legacy result artifacts. The ledgers are selection evidence and have been restored to N. Withdrawn archive_broken_prices ledgers remain excluded.",
+    "recorded_at": "2026-08-22",
+    "recovered_ledger_paths": [
+      "artifacts/exp1/20260625T075446Z/experiments.jsonl",
+      "artifacts/exp4/20260625T103226Z/experiments.jsonl",
+      "artifacts/exp4/smoke_20260625T102142Z/experiments.jsonl",
+      "artifacts/grand_backtest/20260616T143620Z/experiments.jsonl"
     ],
-    "forensic_debt_charged_at_review": [
-      "8 complete alphamax_construction walk-forward arms",
-      "16 persisted alphamax_weighting parameter-grid cells"
-    ],
-    "decision": "All prior identities remain charged and 24 proven historical screen identities were appended from immutable local artifacts. Legacy raw-row DSR code has been eliminated and all twelve historical paths are union-aligned or fail closed. The fixed 160-identity campaign budget was not raised. New return-hypothesis registration remains paused pending a formal budget decision.",
-    "next_tripwire": "No new return identity may be recorded until a formal review either closes the campaign at 162 identities or authorizes a prospective budget with documented rationale. Engineering, data-lineage, execution, publication, and exact reproduction work may continue."
+    "recovered_legacy_hypothesis_identities": 12,
+    "status": "CORRECTED"
+  },
+  "summary_trial_debt_correction": {
+    "already_reconciled_before_this_correction": 24,
+    "authorized_budget_unchanged": 320,
+    "budget_remaining": 92,
+    "current_hypothesis_identities": 228,
+    "evidence": "artifacts/audit/trial_debt_reconciliation.json",
+    "new_experiments_run": 0,
+    "newly_reconciled_in_this_correction": 54,
+    "prior_reported_hypothesis_identities": 174,
+    "reason": "Seven persisted historical studies reported named return configurations but bypassed the durable experiment ledger. The source-bound v2 reconciliation charges every measured parameter identity, including 32 AlphaMax robustness-grid configurations and AlphaTrend's post-hoc selector configurations; rounded summaries are never used to assert duplicate economic identity.",
+    "recorded_at": "2026-08-22",
+    "recovered_historical_hypothesis_identities": 54,
+    "source_identity_counts": {
+      "alphamax_construction": 8,
+      "alphamax_hyst_live": 6,
+      "alphamax_turnover": 8,
+      "alphamax_weighting": 48,
+      "alphatrend_arp": 3,
+      "alphatrend_breadth": 4,
+      "crypto_vrp_proxy": 1
+    },
+    "status": "CORRECTED"
   },
   "profiles": [
     {
+      "profile": "20260625T075446Z",
+      "source_path": "artifacts/exp1/20260625T075446Z/experiments.jsonl",
+      "immutable_execution_records": 2,
+      "distinct_config_hashes": 2,
+      "hypothesis_identities": 2,
+      "window_only_remeasurements": 0,
+      "latest_recorded_at": "2026-06-25T07:54:46.297000+00:00"
+    },
+    {
+      "profile": "20260625T103226Z",
+      "source_path": "artifacts/exp4/20260625T103226Z/experiments.jsonl",
+      "immutable_execution_records": 1,
+      "distinct_config_hashes": 1,
+      "hypothesis_identities": 1,
+      "window_only_remeasurements": 0,
+      "latest_recorded_at": "2026-06-25T10:32:26.542000+00:00"
+    },
+    {
+      "profile": "smoke_20260625T102142Z",
+      "source_path": "artifacts/exp4/smoke_20260625T102142Z/experiments.jsonl",
+      "immutable_execution_records": 1,
+      "distinct_config_hashes": 1,
+      "hypothesis_identities": 1,
+      "window_only_remeasurements": 0,
+      "latest_recorded_at": "2026-06-25T10:21:42.062000+00:00"
+    },
+    {
+      "profile": "20260616T143620Z",
+      "source_path": "artifacts/grand_backtest/20260616T143620Z/experiments.jsonl",
+      "immutable_execution_records": 8,
+      "distinct_config_hashes": 8,
+      "hypothesis_identities": 8,
+      "window_only_remeasurements": 0,
+      "latest_recorded_at": "2026-06-16T14:36:20.756000+00:00"
+    },
+    {
       "profile": "var",
       "source_path": "var/experiments.jsonl",
-      "immutable_execution_records": 172,
-      "distinct_config_hashes": 172,
-      "hypothesis_identities": 136,
+      "immutable_execution_records": 227,
+      "distinct_config_hashes": 227,
+      "hypothesis_identities": 191,
       "window_only_remeasurements": 36,
-      "latest_recorded_at": "2026-08-17T07:52:42.849000+00:00"
+      "latest_recorded_at": "2026-08-23T22:29:16.391000+00:00"
     },
     {
       "profile": "var_fut_real",
@@ -63,11 +143,11 @@
     {
       "profile": "var_mf",
       "source_path": "var_mf/experiments.jsonl",
-      "immutable_execution_records": 44,
-      "distinct_config_hashes": 44,
+      "immutable_execution_records": 49,
+      "distinct_config_hashes": 49,
       "hypothesis_identities": 13,
-      "window_only_remeasurements": 31,
-      "latest_recorded_at": "2026-08-15T05:30:29.870000+00:00"
+      "window_only_remeasurements": 36,
+      "latest_recorded_at": "2026-08-24T05:30:24.624000+00:00"
     },
     {
       "profile": "var_sharadar",
@@ -81,100 +161,100 @@
   ],
   "recent_hypothesis_identities": [
     {
-      "hypothesis_key": "eef46f796cdbb646",
-      "config_hash": "34067635abce9cf9",
-      "label": "forensic_alphamax_weighting",
+      "hypothesis_key": "da5f5f47f99f9bd2",
+      "config_hash": "50d9e8b059fee773",
+      "label": "carry_fund_21",
       "ledger_profile": "var",
-      "first_recorded_at": "2026-08-17T00:00:00.023000+00:00",
-      "observations": 5428,
-      "annualized_sharpe_observed": -0.018761
+      "first_recorded_at": "2026-08-23T22:29:16.391000+00:00",
+      "observations": 1574,
+      "annualized_sharpe_observed": 0.968898
     },
     {
-      "hypothesis_key": "5dd5372deac0882f",
-      "config_hash": "d7561b05e7624193",
-      "label": "forensic_alphamax_weighting",
+      "hypothesis_key": "7843716d6bab8d5b",
+      "config_hash": "09f8fee4e13a004d",
+      "label": "alphatrend_breadth",
       "ledger_profile": "var",
-      "first_recorded_at": "2026-08-17T00:00:00.022000+00:00",
-      "observations": 5428,
-      "annualized_sharpe_observed": -0.012095
+      "first_recorded_at": "2026-08-17T00:00:00.077000+00:00",
+      "observations": 5161,
+      "annualized_sharpe_observed": 0.204
     },
     {
-      "hypothesis_key": "1521380bbfea6b18",
-      "config_hash": "15b78eaf0b3d4820",
-      "label": "forensic_alphamax_weighting",
+      "hypothesis_key": "0b91174c6e27a1f3",
+      "config_hash": "ea967116409691ab",
+      "label": "alphatrend_breadth",
       "ledger_profile": "var",
-      "first_recorded_at": "2026-08-17T00:00:00.021000+00:00",
-      "observations": 5428,
-      "annualized_sharpe_observed": -0.054936
+      "first_recorded_at": "2026-08-17T00:00:00.076000+00:00",
+      "observations": 5161,
+      "annualized_sharpe_observed": 0.217
     },
     {
-      "hypothesis_key": "944daf4d5888647d",
-      "config_hash": "103beae582dee892",
-      "label": "forensic_alphamax_weighting",
+      "hypothesis_key": "c8d703989f9e36ca",
+      "config_hash": "dc78c2c55edfc678",
+      "label": "alphatrend_breadth",
       "ledger_profile": "var",
-      "first_recorded_at": "2026-08-17T00:00:00.020000+00:00",
-      "observations": 5428,
-      "annualized_sharpe_observed": -0.030261
+      "first_recorded_at": "2026-08-17T00:00:00.075000+00:00",
+      "observations": 5161,
+      "annualized_sharpe_observed": 0.128
     },
     {
-      "hypothesis_key": "1700ddbeaf47d3eb",
-      "config_hash": "069c86acc068a4d5",
-      "label": "forensic_alphamax_weighting",
+      "hypothesis_key": "e60ed7b6904004af",
+      "config_hash": "356929813b18d8db",
+      "label": "alphatrend_breadth",
       "ledger_profile": "var",
-      "first_recorded_at": "2026-08-17T00:00:00.019000+00:00",
-      "observations": 5428,
-      "annualized_sharpe_observed": 0.066016
+      "first_recorded_at": "2026-08-17T00:00:00.074000+00:00",
+      "observations": 5161,
+      "annualized_sharpe_observed": 0.289
     },
     {
-      "hypothesis_key": "2cfbbeea11dd0e2e",
-      "config_hash": "3cc8b915abefa48a",
-      "label": "forensic_alphamax_weighting",
+      "hypothesis_key": "0c5ddfb3d5b52ca5",
+      "config_hash": "18165c784f0332de",
+      "label": "alphatrend_arp",
       "ledger_profile": "var",
-      "first_recorded_at": "2026-08-17T00:00:00.018000+00:00",
-      "observations": 5428,
-      "annualized_sharpe_observed": -0.292825
+      "first_recorded_at": "2026-08-17T00:00:00.073000+00:00",
+      "observations": 5161,
+      "annualized_sharpe_observed": 0.271
     },
     {
-      "hypothesis_key": "3096d43484ea2745",
-      "config_hash": "57fa40c3ea31b530",
-      "label": "forensic_alphamax_weighting",
+      "hypothesis_key": "f4d5aef87af5cc92",
+      "config_hash": "7845a023b51f8f68",
+      "label": "alphatrend_arp",
       "ledger_profile": "var",
-      "first_recorded_at": "2026-08-17T00:00:00.017000+00:00",
-      "observations": 5428,
-      "annualized_sharpe_observed": 0.014885
+      "first_recorded_at": "2026-08-17T00:00:00.072000+00:00",
+      "observations": 5161,
+      "annualized_sharpe_observed": 0.186
     },
     {
-      "hypothesis_key": "8e0d269423afaeb7",
-      "config_hash": "9584c5e969d4b39a",
-      "label": "forensic_alphamax_weighting",
+      "hypothesis_key": "084a8fc5292327ee",
+      "config_hash": "8808d789acccaf3a",
+      "label": "alphatrend_arp",
       "ledger_profile": "var",
-      "first_recorded_at": "2026-08-17T00:00:00.016000+00:00",
-      "observations": 5428,
-      "annualized_sharpe_observed": -0.002788
+      "first_recorded_at": "2026-08-17T00:00:00.071000+00:00",
+      "observations": 5161,
+      "annualized_sharpe_observed": 0.289
     },
     {
-      "hypothesis_key": "f350a08ec0da47d5",
-      "config_hash": "ff8fefa17679b51b",
-      "label": "forensic_alphamax_weighting",
+      "hypothesis_key": "69bb7543e8ff821a",
+      "config_hash": "2e43cbf9baacfce4",
+      "label": "alphamax_turnover",
       "ledger_profile": "var",
-      "first_recorded_at": "2026-08-17T00:00:00.015000+00:00",
-      "observations": 5428,
-      "annualized_sharpe_observed": -0.053703
+      "first_recorded_at": "2026-08-17T00:00:00.070000+00:00",
+      "observations": 5356,
+      "annualized_sharpe_observed": -0.184506
     },
     {
-      "hypothesis_key": "0c17b616473d3e37",
-      "config_hash": "b332501af87f95b6",
-      "label": "forensic_alphamax_weighting",
+      "hypothesis_key": "4efe32b9ba20a8c8",
+      "config_hash": "72a8345cfc18db7a",
+      "label": "alphamax_turnover",
       "ledger_profile": "var",
-      "first_recorded_at": "2026-08-17T00:00:00.014000+00:00",
-      "observations": 5428,
-      "annualized_sharpe_observed": -0.050382
+      "first_recorded_at": "2026-08-17T00:00:00.069000+00:00",
+      "observations": 5356,
+      "annualized_sharpe_observed": -0.191819
     }
   ],
   "policy_source_path": "config/trial_accounting.json",
   "trial_debt_reconciliation": {
     "source_path": "artifacts/audit/trial_debt_reconciliation.json",
-    "source_sha256": "5ff87cc863c7ce1301f95798d82feb9b5486332eb8a1b2a58258967e14b34630"
+    "source_sha256": "2aea898ff82658f46ca08b8ee71f3198010c0f4252c7799830aeeca436ec577b"
   },
   "legacy_dsr_debt": {
     "status": "CODE_RESOLVED_HISTORICAL_CLAIMS_RETIRED",
@@ -184,10 +264,10 @@
     "union_registration_paths": 7,
     "claim_boundary": "No executable raw-row DSR implementation remains. Historical summary-only DSR claims stay retired because their exact return series were not preserved; code repair does not rehabilitate those artifacts.",
     "source_path": "config/legacy_dsr_exceptions.json",
-    "source_sha256": "df0fdfef765f5933ea90e89d131b70ce120c486a792278d07cbbe7326a364e36",
+    "source_sha256": "f743d0ffa49c4890f12480982a6237cd2ec71f216dbad20d409cf31e2211726f",
     "restatement": {
       "source_path": "artifacts/audit/legacy_dsr_restatement.json",
-      "source_sha256": "3e634254e99ecb8e29eb4f0d807b19e29d54a05f2fc66e2e4493c4a88b49a202",
+      "source_sha256": "9348d033d7e4dde2e028c0063634b2ab44e637b082bb3b9b851220aba0fcfd80",
       "summary": {
         "historical_exception_families": 12,
         "restated_families": 5,
@@ -197,6 +277,6 @@
       }
     }
   },
-  "generated_at": "2026-08-18T17:49:22.077215+00:00",
-  "content_hash": "sha256:fc8e6a03947fda893a637da00bfcc9ac64f47e0c5d85252f17ef98e5665f0758"
+  "generated_at": "2026-08-26T09:26:51.433856+00:00",
+  "content_hash": "sha256:a847612ea5a9c593b7b6a4e8f40a9e60b417a50988fd59a529aeed453d572dce"
 }

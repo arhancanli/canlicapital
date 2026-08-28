@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Natural-gas storage and weather: feasibility | Canli Capital</title>
+<meta name="description" content="Failure is DATA_GATED; thresholds, archive windows, weather initialization, and file endpoints are not revised after aggregate coverage is observed." />
+<meta name="alphac-source-sha256" content="0ba63af6bb61aa9c6859babd3fd7abfbe0e9f3019347b9efff508b4b923fbb60" />
+
+<link rel="canonical" href="https://canlicapital.com/research/natural-gas-storage-weather-feasibility" />
+<meta name="author" content="Arhan Canli" />
+<meta name="citation_title" content="Natural-gas storage/weather residual: no-return source-feasibility protocol" />
+<meta name="citation_author" content="Arhan Canli" />
+<meta name="citation_publication_date" content="2026" />
+<meta name="citation_language" content="en" />
+<meta name="citation_fulltext_html_url" content="https://canlicapital.com/research/natural-gas-storage-weather-feasibility" />
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="Canli Capital" />
+<meta property="og:title" content="Natural-gas storage/weather residual: no-return source-feasibility protocol" />
+<meta property="og:description" content="Failure is DATA_GATED; thresholds, archive windows, weather initialization, and file endpoints are not revised after aggregate coverage is observed." />
+<meta property="og:url" content="https://canlicapital.com/research/natural-gas-storage-weather-feasibility" />
+<meta property="og:image" content="https://canlicapital.com/og.png" />
+<meta property="article:author" content="Arhan Canli" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Natural-gas storage/weather residual: no-return source-feasibility protocol" />
+<meta name="twitter:description" content="Failure is DATA_GATED; thresholds, archive windows, weather initialization, and file endpoints are not revised after aggregate coverage is observed." />
+<meta name="twitter:image" content="https://canlicapital.com/og.png" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="icon" href="/favicon.ico" sizes="any" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=optional" />
+<link rel="stylesheet" media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=optional" />
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=optional" /></noscript>
+<link rel="stylesheet" href="../css/paper.css" />
+<link rel="stylesheet" href="/css/product-shell.css" />
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"ScholarlyArticle","headline":"Natural-gas storage/weather residual: no-return source-feasibility protocol","description":"Failure is DATA_GATED; thresholds, archive windows, weather initialization, and file endpoints are not revised after aggregate coverage is observed.","url":"https://canlicapital.com/research/natural-gas-storage-weather-feasibility","inLanguage":"en","isAccessibleForFree":true,"datePublished":"2026","author":{"@type":"Person","@id":"https://canlicapital.com/#arhan-canli","name":"Arhan Canli","jobTitle":"Founder and Quantitative Researcher","url":"https://canlicapital.com/founder","sameAs":["https://github.com/arhancanli"],"affiliation":{"@type":"Organization","@id":"https://canlicapital.com/#organization","name":"Canli Capital","url":"https://canlicapital.com/"}},"publisher":{"@type":"Organization","@id":"https://canlicapital.com/#organization","name":"Canli Capital","url":"https://canlicapital.com/","logo":{"@type":"ImageObject","url":"https://canlicapital.com/brand-mark.svg"}},"isPartOf":{"@type":"Periodical","name":"Canli Capital Research","url":"https://canlicapital.com/research"},"encodingFormat":"text/html","associatedMedia":{"@type":"MediaObject","contentUrl":"https://canlicapital.com/research/natural-gas-storage-weather-feasibility.md","encodingFormat":"text/markdown"}}</script>
+</head>
+<body class="paper">
+<a class="paper__skip" href="#content">Skip to content</a>
+<header class="cc-shell" id="nav" data-product-shell="v3">
+  <a class="cc-shell__brand" href="/" aria-label="Canli Capital, home">
+    <span class="cc-shell__mark" aria-hidden="true"><i></i></span>
+    <span>Canli Capital</span>
+  </a>
+  <a class="cc-shell__status" href="/measurements/alpaca-broker-reconciliation" aria-label="Current record status">
+    <span class="status-dot" aria-hidden="true"></span>
+    <span>Public paper record</span>
+  </a>
+  <nav class="cc-shell__primary" aria-label="Primary navigation">
+<a class="cc-shell__link" href="https://app.canlicapital.com/dashboard" rel="noreferrer">Live</a>
+<a class="cc-shell__link" href="/research" aria-current="page" data-current="true">Research</a>
+<a class="cc-shell__link" href="/trials">Trials</a>
+<a class="cc-shell__link" href="/systems">Systems</a>
+<a class="cc-shell__link" href="/methodology">Methodology</a>
+<a class="cc-shell__link" href="/verify">Verify</a>
+  </nav>
+  <details class="cc-shell__index">
+    <summary><span class="cc-shell__index-wide">More</span><span class="cc-shell__index-compact">Menu</span></summary>
+    <div class="cc-shell__panel">
+      <div>
+        <span class="cc-shell__panel-label">Core</span>
+        <nav aria-label="Core routes"><a class="cc-shell__panel-link" href="https://app.canlicapital.com/dashboard" rel="noreferrer">Live</a>
+<a class="cc-shell__panel-link" href="/research" aria-current="page" data-current="true">Research</a>
+<a class="cc-shell__panel-link" href="/trials">Trials</a>
+<a class="cc-shell__panel-link" href="/systems">Systems</a>
+<a class="cc-shell__panel-link" href="/methodology">Methodology</a>
+<a class="cc-shell__panel-link" href="/verify">Verify</a></nav>
+      </div>
+      <div>
+        <span class="cc-shell__panel-label">Institution</span>
+        <nav aria-label="Institution routes"><a class="cc-shell__panel-link" href="/progress">Corrections</a>
+<a class="cc-shell__panel-link" href="/performance">Status</a>
+<a class="cc-shell__panel-link" href="/founder">Founder</a>
+<a class="cc-shell__panel-link" href="/open">Open data</a>
+<a class="cc-shell__panel-link" href="/measurements">Measurements</a></nav>
+      </div>
+      <p>Observed, simulated, model-estimated and planned claims remain visibly separate.</p>
+    </div>
+  </details>
+  <a class="cc-shell__cta" href="https://app.canlicapital.com/dashboard">Enter live record <span aria-hidden="true">↗</span></a>
+</header>
+<main class="paper__main" id="content">
+  <article class="paper__article">
+    <p class="paper__eyebrow"><a href="/research">Research</a></p>
+    <h1 class="paper__title">Natural-gas storage/weather residual: no-return source-feasibility protocol</h1>
+    <p class="paper__byline">By <span rel="author">Arhan Canli</span>, Canli Capital</p>
+    <div class="paper__body">
+<p><strong>Short title:</strong> Natural-gas storage and weather: feasibility</p>
+<p><strong>Declared:</strong> 2026-08-16 before downloading historical WNGSR snapshots, enumerating the full NOAA
+weekly key set, or requesting CME market records. <strong>Prices and returns are forbidden.</strong></p>
+<h2>Identity and overlap boundary</h2>
+<ul>
+<li>Candidate family account: <code>commodity_inventory_weather</code>.</li>
+<li>Prior family trial: killed petroleum inventory scarcity; one return hypothesis already spent.</li>
+<li>Prospective identity: EIA Lower-48 first-release weekly net change residualized to a NOAA GEFS
+00Z forecast initialized on the Saturday beginning the storage week.</li>
+<li>The source-feasibility stage spends zero additional return hypotheses.</li>
+<li>A later return trial, if authorized, is family configuration two and must use the full union
+experiment count. It does not qualify as a fresh independent family by relabeling the commodity.</li>
+</ul>
+<h2>Frozen period and sources</h2>
+<ul>
+<li>Period: storage weeks ending 2017-01-06 through 2025-12-31. NOAA&#39;s public GEFS archive does not
+cover the analogous 2016 initializations.</li>
+<li>EIA denominator: official <code>ngshistory.xls</code> weekly dates, used only to enumerate expected reports.</li>
+<li>First-release evidence: Internet Archive captures of EIA&#39;s <code>wngsr.csv</code>. A capture must contain
+its own <code>Released:</code> date/time and week-ending date and must precede the next report&#39;s release.
+Current/revised history cannot fill an absent first-release snapshot.</li>
+<li>Weather evidence: exact NOAA GEFS object metadata for the control run at forecast hour 24 and the
+final perturbation member at hour 168. Pre-v12 uses the 20-member legacy path; post-upgrade uses
+the 30-member 0.5-degree path. These endpoint probes test both horizon and ensemble availability
+without downloading meteorological payloads.</li>
+<li>Futures evidence: Databento <code>GLBX.MDP3</code> metadata only for CME coverage and schemas. No records,
+prices, settlements, spreads, or returns may be requested.</li>
+</ul>
+<h2>Locked gates</h2>
+<p>All are required for <code>PASS_TO_RETURN_PREREGISTRATION</code>:</p>
+<ol>
+<li>At least 450 expected weekly EIA periods in 2017–2025 with no duplicate week endings.</li>
+<li>At least 90% of expected periods have a hash-bound first-release <code>wngsr.csv</code> capture before the
+next report. Values must parse as Lower-48 stocks/net change, but no price join is allowed.</li>
+<li>At least 95% of expected period-start initializations have both frozen GEFS endpoint objects,
+with byte size and ETag retained.</li>
+<li>CME metadata covers the full period and exposes daily bars plus order-book or top-of-book schema
+for later execution calibration.</li>
+<li>No market records or returns are opened and no new return hypothesis is spent.</li>
+</ol>
+<p>Failure is <code>DATA_GATED</code>; thresholds, archive windows, weather initialization, and file endpoints are
+not revised after aggregate coverage is observed. A source pass would still require a separate
+machine-readable return preregistration locking forecast-field extraction, model training,
+preholdout/holdout dates, NG contract rolls, calendar spreads, release latency, bid/ask, slippage,
+limit moves, partial fills, capacity, DSR/PBO treatment, perturbations, and book-level gates.</p>
+<h2>Locked result</h2>
+<p>The audit enumerated 469 official weekly periods and hash-bound all source workbooks. The frozen
+Wayback route recovered 93 valid WNGSR snapshots representing only 84 unique first-release weeks,
+or 17.91% coverage versus the locked 90% gate. That gate fails.</p>
+<p>The other infrastructure passed:</p>
+<ul>
+<li>938 NOAA endpoint probes bound both hour-24 control and hour-168 final-member objects for 468 of
+469 weeks (99.79%); only the 2016-12-31 initialization preceding the formal period was absent.</li>
+<li>Databento <code>GLBX.MDP3</code> metadata begins in 2010 and exposes daily, MBP-1, TBBO, BBO, trades, status,
+and definition schemas. Zero market records were requested.</li>
+<li>EIA&#39;s official <code>revisions.xls</code> <code>original_data</code> sheet independently covers all 469 weeks. It
+differs from current history in 53 rows, proving why revised history is not an acceptable silent
+substitute. This file was not the preregistered first-release source, so it cannot rescue the
+failed Wayback identity.</li>
+</ul>
+<p><strong>Decision:</strong> <code>DATA_GATED</code>. A new source protocol may use EIA&#39;s official <code>original_data</code> sheet and
+must separately bind conservative historical availability/release timing before returns. The prior
+petroleum trial remains in the family count; no new return hypothesis was spent here.</p>
+
+    </div>
+    <nav class="paper__related" aria-label="Related research">
+      <p class="paper__related-kicker">Filed under</p>
+      <p class="paper__links"><a href="/research/topics/feasibility-protocols">Feasibility protocols</a></p>
+    </nav>
+    <footer class="paper__footer">
+      <p class="paper__links">
+        <a href="/research/natural-gas-storage-weather-feasibility.md">Read the unrendered source</a>
+        <span aria-hidden="true"> / </span>
+        <a href="/research/citations/natural-gas-storage-weather-feasibility.bib" download>Cite this report</a>
+        <span aria-hidden="true"> / </span>
+        <a href="/open">Inspect the underlying artifacts</a>
+        <span aria-hidden="true"> / </span>
+        <a href="/research">All research</a>
+      </p>
+      <p class="paper__boundary">
+        Published as evidence, not as a claim about future performance. The figures quoted here
+        are reproducible from the artifacts linked above.
+      </p>
+    </footer>
+  </article>
+</main>
+<footer class="cc-footer" id="footer" data-product-shell="v3">
+  <div class="cc-footer__lead">
+    <a class="cc-footer__brand" href="/">Canli Capital</a>
+    <p>Build the claim. Publish the evidence. Keep the failures.</p>
+  </div>
+  <div class="cc-footer__routes">
+    <nav aria-label="Portfolio and research">
+      <span>Research system</span>
+      <a href="https://app.canlicapital.com/dashboard">Live record</a>
+      <a href="/systems">ALPHAC systems</a>
+      <a href="/research">Research papers</a>
+      <a href="/trials">Trial union</a>
+    </nav>
+    <nav aria-label="Evidence and verification">
+      <span>Evidence</span>
+      <a href="/methodology">Methodology</a>
+      <a href="/verify">Verify record</a>
+      <a href="/measurements">Measurements</a>
+      <a href="/open">Open data</a>
+    </nav>
+    <nav aria-label="Institution and authorship">
+      <span>Institution</span>
+      <a href="/progress">Corrections</a>
+      <a href="/performance">Status</a>
+      <a href="/founder">Arhan Canli</a>
+      <a href="https://github.com/arhancanli" rel="noreferrer">GitHub</a>
+    </nav>
+  </div>
+  <div class="cc-footer__boundary">
+    <p>Research and paper execution only. No managed capital, copy trading, investment advice or promised return.</p>
+    <p>Founded and built by Arhan Canli in Dubai.</p>
+    <span>Copyright Arhan Canli</span>
+  </div>
+</footer>
+</body>
+</html>

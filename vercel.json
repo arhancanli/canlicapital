@@ -94,6 +94,28 @@
       ]
     },
     {
+      "source": "/(.*)\\.(json|md|bib|csv|tsv|parquet|txt|ots|gz|cff)",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex"
+        }
+      ]
+    },
+    {
+      "source": "/publication/(.*)/paper",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, follow"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "no-cache"
+        }
+      ]
+    },
+    {
       "source": "/(systems|research|performance|progress|open)",
       "headers": [
         {

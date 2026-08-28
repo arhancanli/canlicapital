@@ -1,0 +1,454 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Corporate-action basis reconstruction | Canli Capital</title>
+<meta name="description" content="An immutable operating-margin replay exposed a corporate-action data defect: dividend values from the frozen Sharadar ACTIONS archive were being treated as…" />
+<meta name="alphac-source-sha256" content="a7104324d52d2cdafa5409899865f606056216c5223d09c8f02f42cbde6768a6" />
+
+<link rel="canonical" href="https://canlicapital.com/research/corporate-action-basis-reconstruction" />
+<meta name="author" content="Arhan Canli" />
+<meta name="citation_title" content="Reconstructing corporate-action basis without opening strategy returns" />
+<meta name="citation_author" content="Arhan Canli" />
+<meta name="citation_publication_date" content="2026" />
+<meta name="citation_language" content="en" />
+<meta name="citation_fulltext_html_url" content="https://canlicapital.com/research/corporate-action-basis-reconstruction" />
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="Canli Capital" />
+<meta property="og:title" content="Reconstructing corporate-action basis without opening strategy returns" />
+<meta property="og:description" content="An immutable operating-margin replay exposed a corporate-action data defect: dividend values from the frozen Sharadar ACTIONS archive were being treated as…" />
+<meta property="og:url" content="https://canlicapital.com/research/corporate-action-basis-reconstruction" />
+<meta property="og:image" content="https://canlicapital.com/og.png" />
+<meta property="article:author" content="Arhan Canli" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Reconstructing corporate-action basis without opening strategy returns" />
+<meta name="twitter:description" content="An immutable operating-margin replay exposed a corporate-action data defect: dividend values from the frozen Sharadar ACTIONS archive were being treated as…" />
+<meta name="twitter:image" content="https://canlicapital.com/og.png" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="icon" href="/favicon.ico" sizes="any" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=optional" />
+<link rel="stylesheet" media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=optional" />
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=optional" /></noscript>
+<link rel="stylesheet" href="../css/paper.css" />
+<link rel="stylesheet" href="/css/product-shell.css" />
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"ScholarlyArticle","headline":"Reconstructing corporate-action basis without opening strategy returns","description":"An immutable operating-margin replay exposed a corporate-action data defect: dividend values from the frozen Sharadar ACTIONS archive were being treated as…","url":"https://canlicapital.com/research/corporate-action-basis-reconstruction","inLanguage":"en","isAccessibleForFree":true,"datePublished":"2026","author":{"@type":"Person","@id":"https://canlicapital.com/#arhan-canli","name":"Arhan Canli","jobTitle":"Founder and Quantitative Researcher","url":"https://canlicapital.com/founder","sameAs":["https://github.com/arhancanli"],"affiliation":{"@type":"Organization","@id":"https://canlicapital.com/#organization","name":"Canli Capital","url":"https://canlicapital.com/"}},"publisher":{"@type":"Organization","@id":"https://canlicapital.com/#organization","name":"Canli Capital","url":"https://canlicapital.com/","logo":{"@type":"ImageObject","url":"https://canlicapital.com/brand-mark.svg"}},"isPartOf":{"@type":"Periodical","name":"Canli Capital Research","url":"https://canlicapital.com/research"},"encodingFormat":"text/html","associatedMedia":{"@type":"MediaObject","contentUrl":"https://canlicapital.com/research/corporate-action-basis-reconstruction.md","encodingFormat":"text/markdown"}}</script>
+</head>
+<body class="paper">
+<a class="paper__skip" href="#content">Skip to content</a>
+<header class="cc-shell" id="nav" data-product-shell="v3">
+  <a class="cc-shell__brand" href="/" aria-label="Canli Capital, home">
+    <span class="cc-shell__mark" aria-hidden="true"><i></i></span>
+    <span>Canli Capital</span>
+  </a>
+  <a class="cc-shell__status" href="/measurements/alpaca-broker-reconciliation" aria-label="Current record status">
+    <span class="status-dot" aria-hidden="true"></span>
+    <span>Public paper record</span>
+  </a>
+  <nav class="cc-shell__primary" aria-label="Primary navigation">
+<a class="cc-shell__link" href="https://app.canlicapital.com/dashboard" rel="noreferrer">Live</a>
+<a class="cc-shell__link" href="/research" aria-current="page" data-current="true">Research</a>
+<a class="cc-shell__link" href="/trials">Trials</a>
+<a class="cc-shell__link" href="/systems">Systems</a>
+<a class="cc-shell__link" href="/methodology">Methodology</a>
+<a class="cc-shell__link" href="/verify">Verify</a>
+  </nav>
+  <details class="cc-shell__index">
+    <summary><span class="cc-shell__index-wide">More</span><span class="cc-shell__index-compact">Menu</span></summary>
+    <div class="cc-shell__panel">
+      <div>
+        <span class="cc-shell__panel-label">Core</span>
+        <nav aria-label="Core routes"><a class="cc-shell__panel-link" href="https://app.canlicapital.com/dashboard" rel="noreferrer">Live</a>
+<a class="cc-shell__panel-link" href="/research" aria-current="page" data-current="true">Research</a>
+<a class="cc-shell__panel-link" href="/trials">Trials</a>
+<a class="cc-shell__panel-link" href="/systems">Systems</a>
+<a class="cc-shell__panel-link" href="/methodology">Methodology</a>
+<a class="cc-shell__panel-link" href="/verify">Verify</a></nav>
+      </div>
+      <div>
+        <span class="cc-shell__panel-label">Institution</span>
+        <nav aria-label="Institution routes"><a class="cc-shell__panel-link" href="/progress">Corrections</a>
+<a class="cc-shell__panel-link" href="/performance">Status</a>
+<a class="cc-shell__panel-link" href="/founder">Founder</a>
+<a class="cc-shell__panel-link" href="/open">Open data</a>
+<a class="cc-shell__panel-link" href="/measurements">Measurements</a></nav>
+      </div>
+      <p>Observed, simulated, model-estimated and planned claims remain visibly separate.</p>
+    </div>
+  </details>
+  <a class="cc-shell__cta" href="https://app.canlicapital.com/dashboard">Enter live record <span aria-hidden="true">↗</span></a>
+</header>
+<main class="paper__main" id="content">
+  <article class="paper__article">
+    <p class="paper__eyebrow"><a href="/research">Research</a></p>
+    <h1 class="paper__title">Reconstructing corporate-action basis without opening strategy returns</h1>
+    <p class="paper__byline">By <span rel="author">Arhan Canli</span>, Canli Capital</p>
+    <div class="paper__body">
+<p><strong>Short title:</strong> Corporate-action basis reconstruction<br><strong>Author:</strong> Arhan Canli<br><strong>Project:</strong> AlphaC Algorithms / Canli Capital<br><strong>Research status:</strong> Corrected reproduction complete; factor remains killed; global split gate failed</p>
+<h2>Abstract</h2>
+<p>An immutable operating-margin replay exposed a corporate-action data defect: dividend values from
+the frozen Sharadar ACTIONS archive were being treated as raw cash amounts even when they were
+expressed on a later split-adjusted basis. This note records the diagnosis, issuer-anchored repair
+contract, versioned materialization, full-lake validation, external cross-check, path-exposure
+audit, exact issuer verification, and one fail-closed corrected reproduction. The dividend gate
+passes after repair, while the global split-boundary gate remains failed. The corrected
+operating-margin result improves materially but remains negative and <strong>KILLED</strong>; it does not earn
+sleeve admission or production promotion.</p>
+<h2>Trigger and preserved result</h2>
+<p>The valid historical operating-margin result remains <strong>KILLED</strong>: Sharpe
+<code>-0.4173809362582861</code>, maximum drawdown <code>0.39623483315571484</code>, and final equity
+<code>63911.64507926929</code>. A later apparent Sharpe of <code>0.2595404513705637</code> is rejected because its replay
+was contaminated by unverified corporate-action units. The first divergence was a legitimate
+RGLD dividend; the largest distortion was a CMCT cashflow produced by interpreting a split-adjusted
+dividend as raw cash. Historical results are not rewritten by this investigation.</p>
+<h2>Diagnosis and repair contract</h2>
+<p>Across 167,120 positive dividend rows, 422 exceeded the full pre-ex-date raw close. Applying the
+product of same-ticker raw <code>action=&#39;split&#39;</code> values on or after each dividend date reconciled 421 of
+those 422 rows. Raw <code>adrratiosplit</code> rows were treated as metadata, not as a second executable share
+mutation.</p>
+<p>Apple provides the ordinary-event anchor. The frozen source contains a dividend value of <code>0.205</code>
+on 2020-05-08 and a later four-for-one split. Their product, <code>0.82</code>, exactly equals Apple&#39;s
+issuer-declared cash dividend. This supports: but does not elevate beyond inference: the following
+normalization:</p>
+<p><code>raw cash amount = source dividend value × product of later same-ticker market split ratios</code></p>
+<p>The sole unresolved impossible row, VATE on 2020-05-14, was quarantined exactly after issuer and
+independent-provider evidence failed to support it. A zero-value HDB marker was also quarantined
+exactly. No amount was imputed. The source archive and original lake remain immutable. The sealed
+repair receipt has content hash
+<code>sha256:48fcfde04e3c7f7d28bc349c93b55911f97514317e74bac67fca80980b621e47</code>.</p>
+<h2>Versioned materialization</h2>
+<p>The corrected corporate-action lake is a new physical version, not an in-place edit. It maps
+171,924 base rows to 171,780 normalized rows: 167,118 dividends were normalized, 31,807 dividend
+amounts changed, 142 ADR-ratio metadata rows were removed from execution, 4,662 market-split rows
+were preserved, and exactly two source rows were quarantined. Non-corporate-action datasets are
+hard-linked and the original lake is preserved by hash. The materialization receipt has content
+hash <code>sha256:178c4564f9c5e0b917db752879c08a2f25c3133e614f92f0ecec6af3c33ef1c0</code>.</p>
+<h2>Full-lake validation</h2>
+<p>The dividend gate passes: all 167,118 dividend rows were checked; zero exceed the full pre-ex-date
+close; the maximum observed multiple is <code>0.9836065573770493</code>; and 259 rows lack a two-sided price
+boundary and remain explicitly counted.</p>
+<p>The split gate fails. Of 4,662 market-split groups, 4,189 are consistent, three would verify under
+the reciprocal ratio, 109 have unexplained price boundaries, and 361 lack a two-sided price
+boundary. In total, 473 failed or unverifiable events affect 401 instruments. The validation
+receipt therefore records <code>CORPORATE_ACTION_VALIDATION_FAILED_SPLIT_BOUNDARIES</code>, content hash
+<code>sha256:6ed09e42b6e6a744df4dfb3c9bbd927b58ac70a813c9c819a1592daa8afae583</code>.</p>
+<p>The engine now fails closed when an exposed position or order encounters a split that violates its
+price-boundary sanity check. It may no longer log the defect and continue with unconverted
+exposure, which could fabricate profit and loss.</p>
+<h2>Independent split cross-check</h2>
+<p>A GET-only Polygon reference audit downloaded 28,079 split records from 1997-12-31 through
+2026-08-23 and cross-checked all 473 local failed or unverifiable events by
+date and ticker alias. The external provider confirms the stored ratio for 114 events, confirms the
+reciprocal of the stored ratio for one event (BMNR on 2021-04-27), reports a materially different
+event ratio for two events (ACHC on 2011-11-01 and JHG on 2017-05-30), and has no matching event for
+356. Three initially apparent conflicts resolve at the source&#39;s recorded five-decimal precision.</p>
+<p>These classifications narrow the next investigation; they do not close the gate. Stored-ratio
+confirmation does not explain a disagreeing or absent local price boundary. BMNR is a candidate
+for a separately sealed reciprocal-ratio repair, not an authorized mutation. Conflicting and
+unmatched events remain closed. The external cross-check receipt has content hash
+<code>sha256:b401c5260988ba900d0acac857bfeda28a3cb353d6a18db3b9ef55890dc67a32</code>.</p>
+<h2>Lifecycle and sealed-path accounting</h2>
+<p>The 473 failed or unverifiable events were then classified against each instrument&#39;s frozen price
+lifecycle. Of these, 332 precede the first price, 23 occur on the first-price boundary with no
+pre-existing exposure, five follow the final price, 112 occur within a price lifecycle, and one
+lacks a frozen lifecycle. This narrows the global unresolved set without deleting a source event
+or declaring the lake valid. The lifecycle receipt has content hash
+<code>sha256:deed344bd2823f820e326b69f510f704a11b3ba3d2621100594da2600f78cb2d</code>.</p>
+<p>Within the operating-margin window, 71 in-lifecycle failed events were audited against the sealed
+historical order and position path. Fifty-one had independent-provider support and 20 remained
+unresolved. Sixty-nine had no observed pre-boundary position or queued order. Exactly two were
+held: ADTX on 2022-09-14 and SPCE on 2024-06-17. This is historical-path evidence, not an assumption
+about an unseen counterfactual path. The exposure receipt has content hash
+<code>sha256:c9d379d6a7bd9a7991f561e84162ba1f8c78715b32d540b7b56b6d179eaf6dfd</code>.</p>
+<p>Issuer filings independently confirm ADTX&#39;s one-for-50 reverse split and SPCE&#39;s one-for-20 reverse
+split on the exact stored dates. The corrected reproduction therefore accepted only two exact
+<code>(instrument, ex-date, ratio)</code> tuples: ADTX at <code>0.02</code> and SPCE at <code>0.05</code>: as authorization to bypass
+the price-gap heuristic. A wrong instrument, date, or ratio still failed closed. The exact-event
+verification receipt used by that reproduction has content hash
+<code>sha256:fa8595944365c27e6a8a49a490ccdafd7f37db31808e569da527c8926fb1b550</code>.</p>
+<h2>Global fail-closed routing and subsequent issuer resolutions</h2>
+<p>Every one of the 473 failed events now has exactly one governance route. Three hundred sixty-six
+are non-executable under frozen lifecycle evidence, 25 have exact issuer authorization, 12 are
+issuer-verified composite actions that remain quarantined, 16 have issuer conflicts or date
+mismatches, and 52 have provider corroboration but remain failed closed because their local price
+boundary still disagrees. Two remain unresolved within a price lifecycle; the sole no-lifecycle
+event is now an issuer-timeline conflict. The global gate therefore remains failed. The policy
+receipt has content hash
+<code>sha256:20dceb4995121d0895223f830d87e858c5f527e2936cadb5cdf3a98778ab2b28</code>.</p>
+<p>The two additional exact authorizations are AMPE and EVHC. Ampio&#39;s filing establishes a
+fifteen-to-one reverse split effective on 2022-11-09 and the first resumed NYSE American trading
+date on 2022-11-22. The frozen five-decimal ratio <code>0.06667</code> is the rounded form of <code>1/15</code>; the
+authorization binds that exact stored tuple and creates no general tolerance. Envision&#39;s filing
+establishes a <code>0.334</code> merger exchange conversion and first Newco trading under <code>EVHC</code> on
+2016-12-02. The batch receipt has content hash
+<code>sha256:beceafdeb0917e77ccd2c30d2bd95fd39b18e7f55e115307a36d5cb13199567e</code>.</p>
+<p>Ocean Rig is the fifth exact authorization. Its issuer release establishes a 1-for-9,200 reverse
+split effective on 2017-09-21. The frozen <code>0.00011</code> ratio is the five-decimal representation of
+<code>1/9,200</code>, and the 2017-09-22 event date is the first frozen price bar after the issuer-effective
+date. Concurrent restructuring issuance explains why the local price gap cannot validate the
+split mechanically; the authorization covers only the old-share mutation, not any entitlement to
+new restructuring shares. The receipt has content hash
+<code>sha256:d5b2e24b502dffc1c059e82525c30829a657a0add8354896ed57b60f474d06ea</code>.</p>
+<p>ETS1 is the sixth exact authorization. The issuer filing establishes a one-for-eight reverse split
+effective on Friday, 2005-10-28. The frozen event on Monday, 2005-10-31 is the first subsequent
+price bar, and its stored ratio is exactly <code>0.125</code>. No nearby companion action is recorded, so the
+authorization binds only that exact instrument, event date, and ratio. The receipt has content
+hash <code>sha256:855fdfd19c27b5cdb0250bec08fa9d443acd966c3c3b08a912d5891a0b596ce1</code>.</p>
+<p>Six further plain splits complete the 12 exact authorizations. Issuer filings bind BNI&#39;s
+three-for-one distribution, EPAC&#39;s two-for-one distribution, GDW&#39;s three-for-one distribution,
+HAFC&#39;s and JAKK&#39;s three-for-two distributions, and LNG&#39;s one-for-four reverse split to the frozen
+event date or first frozen post-distribution bar. Each has an exact scalar shareholder mutation,
+no nearby companion action, and no general ratio tolerance. The batch receipt has content hash
+<code>sha256:6342504521c9d41ce2e22eb7fd54273ba7db85ca46a3ab00a24557c52fa400da</code>.</p>
+<p>Four further events bring the exact authorization set to 16. CuraGen&#39;s filing binds its
+two-for-one distribution on 2000-03-30 to the first subsequent frozen bar. Wild Oats&#39; filings
+bind its three-for-two splits effected on 1998-01-07 and 1999-12-01 to their respective first
+subsequent frozen bars. Intermedia&#39;s filing similarly binds its two-for-one split paid on
+1998-06-15 to the 1998-06-16 frozen event. All four lack nearby companion actions. Allaire remains
+quarantined because its filing confirms the split and record date but does not establish the exact
+distribution or trading-effective date needed to bind the frozen event. The batch receipt has
+content hash <code>sha256:e6885c1f1b355f5fb71f030a0edb9d21baf3a5bacd07de0ce99f38f0ea435a1c</code>.</p>
+<p>UTI Energy is the 17th exact authorization. Its filing states that the board authorized a
+two-for-one stock split in the form of a stock dividend, paid on 2000-10-03 to holders of record
+on 2000-09-25. The issuer payment date, frozen event date, and stored ratio <code>2.0</code> agree exactly,
+and there is no nearby companion action. The receipt has content hash
+<code>sha256:4fd9b0d804c589bbf619ab89ed1146a57d8a6448911cc847da1bcdead781533a</code>.</p>
+<p>Three further events bring the exact authorization set to 20. McLeodUSA&#39;s filings bind its
+two-for-one distribution on 1999-07-26 and three-for-one distribution effective 2000-04-24 to
+their respective first subsequent frozen bars. Metzler&#39;s filing binds its three-for-two stock
+dividend directly to 1998-04-01. The separate NCI1 event on 1998-04-02 is not authorized because
+the issuer describes only the April 1 action. The exact batch receipt has content hash
+<code>sha256:61f151501bd8c35b483517399632062aeea7e48938129ee6b91fbe373aa6bbf3</code>.</p>
+<p>Five further plain events bring the exact authorization set to 25. Beyond.com and Network
+Commerce each completed one-for-15 reverse splits on their frozen event dates. Worldwide Xceed
+completed a one-for-10 reverse split on its frozen date. ACE Limited&#39;s three-for-one distribution
+and Cellular Communications International&#39;s three-for-two distribution bind to their respective
+first frozen post-distribution bars. Each stored ratio is the exact issuer ratio or its explicit
+five-decimal representation, and none has nearby companion-action context. The batch receipt has
+content hash <code>sha256:3fe329129db627a4fa26b3a6f51d75ddc70ac77d5857f788de68c399b08384ac</code>.</p>
+<p>Twelve composite share mutations are issuer-verified but not executable. ITT completed a one-for-two
+reverse split after distributing Exelis and Xylem; Sabra&#39;s REIT conversion delivered one Sabra
+share for every three Old Sun shares; NorthStar completed a one-for-two reverse split alongside
+its asset-management separation; IHG exchanged 11 new shares for every 15 old shares plus £1.65
+cash per old share; and Tyco completed a one-for-four reverse split immediately after distributing
+Tyco Electronics and Covidien. CMO paired its one-for-two reverse split with a $7.30 special cash
+dividend on the same ex-date. ATNI&#39;s <code>0.4</code> share mutation accompanied one Emerging Communications
+share per old share, while KSU&#39;s one-for-two reverse split accompanied two Stilwell shares per old
+share. KMI1&#39;s three-for-two split was distributed concurrently with a cash dividend that is absent
+from the frozen actions feed. AT&amp;T&#39;s one-for-five reverse split followed its same-day Broadband
+spin-off and Comcast-share distribution. Redback&#39;s approximate 73.39:1 reverse split accompanied
+new creditor equity and stockholder warrants under its bankruptcy plan. Sodexho Marriott&#39;s
+one-for-four reverse split was part of Marriott&#39;s spin-off and merger transaction: each old share
+also received one share in each of two New Marriott classes, and the issuer completed the
+transaction four days after the frozen event date. Applying only the share mutation would corrupt
+shareholder value, so all 12 remain composite-action quarantines. The
+receipt has content hash
+<code>sha256:e1d1d9fb384877b52199e86d0924e126b4eb208a7a9382ef3c9fc2aa5e60334b</code>.</p>
+<p>Sixteen records remain hard quarantined because primary issuer evidence conflicts with the frozen
+event semantics. GEVA&#39;s one-for-five effective date differs from the stored event date; MHGVY&#39;s
+filing says each ADS represented one ordinary share rather than the stored <code>0.1</code>; DIAL1&#39;s
+200-for-one reverse split became effective before the frozen event date; and PRTK&#39;s one-for-five
+mutation occurred inside a merger that also issued <code>0.14134</code> shares per target share, before the
+frozen event date. IPAR, USB, and CDR have issuer distribution or occurrence dates that differ
+from their frozen events. NVEC&#39;s stored one-for-five mutation occurred inside a merger that also
+issued 3.5 surviving-company shares per acquired-company share, before the frozen event date.
+NCI1&#39;s April 2 row duplicates the issuer&#39;s single April 1 stock dividend. Peregrine&#39;s issuer filing
+binds its old-to-new equity conversion to the August 7 reorganization effective date and states
+that new stock traded from August 8, not the frozen October 17 event date. Ambev&#39;s issuer filing
+places its one-for-five share conversion and stock bonus on May 31, not the frozen June 9 event.
+Eni&#39;s filing places its two-for-one reverse split and ADS-ratio change on June 18, not the frozen
+June 22 event. EXMCQ&#39;s filing shows stable shares outstanding across the alleged split window and
+identifies <code>0.05</code> as a rights-offering exercise price rather than a share mutation. None is
+executable as a plain split. Atlas Air&#39;s issuer filing reports 19,815,338 shares at 2005 year-end
+and 20,049,108 at 2006 Q2, contradicting the frozen six-for-one mutation. Alcon&#39;s filing reports
+308,519,051 shares at 2003 year-end and 305,654,454 at 2004 year-end, contradicting the frozen
+one-for-ten mutation. Arizona Aircraft Spares&#39; filing states that the public company was
+incorporated in December 2000 and that <code>AZAA</code> trading began on 2003-10-01; the frozen 2000-11-10
+event predates both the issuer and ticker lifecycle. None of the three additions authorizes a
+ratio repair. The conflict receipt has content hash
+<code>sha256:fa5c744c0268e1c05c32d3fbfd286db01073a9e1a6367331ca908dae04145395</code>.</p>
+<p>Six records are resolved in the opposite direction. BASXQ, TDW, CIVI, KEGX, EGLE2, and CQB all cross
+bankruptcy or recapitalization boundaries where old equity was canceled and replacement value
+included a new CUSIP, warrants, aggregate ownership allocations, new shares, or combinations of
+those instruments. Chiquita&#39;s old preferred, preference, and common stock was exchanged for an
+aggregate new-equity allocation plus seven-year warrants. A scalar stored ratio is not a complete
+supported old-to-new shareholder conversion for any of the six. Each row is preserved in lineage and routed as a non-executable
+lifecycle discontinuity; a simulated position crossing one must abort. The receipt has content
+hash <code>sha256:af66b2190bc8aac83320d7ff7b8b540d57372698bd8a6d9cfde96f668d7f44dc</code>.</p>
+<h2>Corrected zero-trial reproduction</h2>
+<p>A trial-specific authorization bound the corrected lake, failed global split status, lifecycle
+accounting, sealed-path exposure, exact issuer events, and execution-code hashes before returns
+were reopened. One reproduction of the immutable <code>single_operating_margin</code> identity then ran in a
+new content-addressed directory. It spent zero hypotheses and left the historical result and
+experiment ledger unchanged.</p>
+<table>
+<thead>
+<tr>
+<th>Measurement</th>
+<th align="right">Immutable result</th>
+<th align="right">Corrected reproduction</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Annualized Sharpe</td>
+<td align="right">-0.4173809363</td>
+<td align="right">-0.1457641219</td>
+</tr>
+<tr>
+<td>Maximum drawdown</td>
+<td align="right">39.62348332%</td>
+<td align="right">24.46692315%</td>
+</tr>
+<tr>
+<td>Final equity</td>
+<td align="right">$63,911.65</td>
+<td align="right">$84,805.92</td>
+</tr>
+<tr>
+<td>Total return</td>
+<td align="right">Not separately sealed</td>
+<td align="right">-15.19408261%</td>
+</tr>
+</tbody></table>
+<p>The correction removes a material distortion, but it does not rescue the factor: Sharpe, CAGR,
+and total return remain negative. The verdict remains <strong>KILL</strong>. The sealed reproduction receipt
+has content hash
+<code>sha256:04c000216be3ba13f1ba3e196d8543e77ff1f18a876753005c6b13a7b856ed0f</code>.</p>
+<h2>Claim boundary and next decision</h2>
+<p>This study reconstructs corporate-action data and reports one corrected reproduction of an
+already-spent identity. It spends no new strategy hypothesis and establishes no sleeve,
+live-performance, capacity, or forward-performance result. The global split gate remains failed;
+future identities may not treat this lake as globally valid while two events remain genuinely
+unresolved. A runner may bind only an explicitly sealed exact authorization and must abort on any
+other exposed failed event. Unmatched records cannot be made green by deletion.</p>
+<p>Primary issuer and schema references:</p>
+<ul>
+<li><a href="https://investor.apple.com/dividend-history/default.aspx">Apple dividend history</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/320193/000032019320000050/a8-kexhibit991q2202032.htm">Apple 2020 dividend filing</a></li>
+<li><a href="https://sharadar.com/docs/stocks">Sharadar equity-prices documentation</a></li>
+<li><a href="https://sharadar.com/docs/actions">Sharadar corporate-actions documentation</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/1726711/000121390022061276/ea166672-8k_aditxt.htm">ADTX reverse-split filing</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/1706946/000119312524159991/d829568d8k.htm">SPCE reverse-split filing</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/1411906/000155837022018084/ampe-20221117xex99d1.htm">AMPE reverse-split and trading-resumption filing</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/1678531/000167853117000044/evhc-2016123110k.htm">EVHC merger conversion and first-trading-date filing</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/1109189/000110918916000402/basic-form8xkforemergence.htm">Basic Energy Services emergence filing</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/1109189/000110918916000402/exh992201623pressrelease.htm">Basic Energy Services new-equity trading notice</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/1447382/000091957417006882/d7659156_ex99-1.htm">Ocean Rig restructuring and reverse-split release</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/98222/000119312517242513/d431632d8k.htm">Tidewater emergence filing</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/98222/000119312517242513/d431632dex992.htm">Tidewater new-equity trading notice</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/1509589/000095010317004047/dp75602_8k.htm">Bonanza Creek emergence filing</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/318996/000119312516794624/d313262d8k.htm">Key Energy emergence filing</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/318996/000119312516794624/d313262dex991.htm">Key Energy restructuring allocation</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/1322439/000143774914018448/egle20141015_8k.htm">Eagle Bulk emergence filing</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/216228/000095012311095346/y93291e8vk.htm">ITT spinoff and reverse-split filing</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/1492298/000119312510261436/d8k.htm">Sabra REIT conversion filing</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/1273801/000127380114000061/nrf0630201410-q.htm">NorthStar reverse-split disclosure</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/858446/000115697305000999/u49002e6vk.htm">IHG scheme share exchange and cash consideration</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/833444/000110465907052190/a07-17393_3ex99d1.htm">Tyco distributions and reverse-split disclosure</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/911326/000119312511294917/d251415d8k.htm">GEVA reverse-split filing</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/1578526/000110465914032214/a14-11076_120f.htm">MHGVY ADS-ratio filing</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/771950/000095012309035313/c89015e10vq.htm">DIAL1 reverse-split filing</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/1178711/000119312509020145/d8k.htm">PRTK merger and reverse-split filing</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/846909/000095013505006345/b57408ene10vq.htm">ETS1 reverse-split filing</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/1109242/000091205701539508/a2062901z10-q.htm">HAFC stock-dividend split filing</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/1009829/000095014899002339/0000950148-99-002339.txt">JAKK stock-dividend filing</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/3570/000119312504049308/d10k.htm">LNG reverse-split filing</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/934612/000093461298000017/0000934612-98-000017.txt">BNI stock-dividend split filing</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/6955/000095013198002327/0000950131-98-002327.txt">EPAC stock-dividend split filing</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/42293/000004229300000009/0000042293-00-000009.txt">GDW stock-dividend split filing</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/1030653/000092701600001788/0000927016-00-001788.txt">CuraGen stock-dividend split filing</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/909990/000092735698000444/0000927356-98-000444.txt">Wild Oats 1998 stock-split filing</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/909990/000089973300000020/0000899733-00-000020.txt">Wild Oats 1999 stock-split filing</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/885067/000095014498009211/0000950144-98-009211.txt">Intermedia stock-dividend split filing</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/912899/000095012900005078/0000950129-00-005078.txt">UTI Energy stock-dividend split filing</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/879585/000095013098001580/0000950130-98-001580.txt">ATNI split-off filing</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/54502/000095013499001524/0000950134-99-001524.txt">K N Energy split and concurrent-dividend filing</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/54480/000005448000000020/0000054480-00-000020.txt">KSU Stilwell distribution and reverse-split filing</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/919943/000092838599002618/0000928385-99-002618.txt">McLeodUSA 1999 stock-dividend split filing</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/919943/000092838500001564/0000928385-00-001564.txt">McLeodUSA 2000 stock-dividend split filing</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/1019737/000095013198002261/0000950131-98-002261.txt">Metzler three-for-two stock-dividend filing</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/1060531/000109581101504316/f74865e10-q.htm">Beyond.com reverse-split filing</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/1087879/000113724301500051/form10qnci.txt">Network Commerce reverse-split filing</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/721176/000091205701508952/a2045655z10-q.txt">Worldwide Xceed reverse-split filing</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/896159/000090256198000175/0000902561-98-000175.txt">ACE three-for-one split filing</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/870762/000087076298000021/0000870762-98-000021.txt">Cellular Communications International stock-dividend filing</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/766701/000095013401503792/d88804e8-k.txt">CMO special-dividend and reverse-split filing</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/761648/000095012303009594/y88871sv11.htm">CDR stock-split filing</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/822663/000093041301501460/c22238_10q.txt">IPAR stock-dividend split filing</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/724910/000091205700052325/a2032378z8-k.txt">NVEC merger and reverse-split filing</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/36104/000104746999007568/0001047469-99-007568.txt">USB stock-split filing</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/5907/000095012303003510/e84804e10vk.txt">AT&amp;T Broadband spin-off and reverse-split filing</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/1081290/000119312504042090/d10k.htm">Redback bankruptcy securities and reverse-split filing</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/1048286/000092838598000674/0000928385-98-000674.txt">Marriott spin-off, merger, and one-for-four reverse-split filing</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/1031107/000104746904014838/a2134573z10-k.htm">Peregrine reorganization conversion and trading-date filing</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/1113172/000114420407063976/v089496_20-f.htm">Ambev share conversion and stock-bonus filing</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/1002242/000131143505000018/sj0605en20f2.htm">Eni reverse-split and ADS-ratio filing</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/725282/000072528298000006/0000725282-98-000006.txt">EXMCQ shares-outstanding and rights-offering filing</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/1135185/000093041306005893/c43889_10-q.htm">Atlas Air shares-outstanding filing</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/1167379/000116737905000020/acl20f2004.htm">Alcon shares-outstanding filing</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/1141880/000109432804000079/arizona10ksb041404woex.txt">Arizona Aircraft Spares formation and trading-history filing</a></li>
+<li><a href="https://www.sec.gov/Archives/edgar/data/101063/000102140802003831/d10k.txt">Chiquita reorganization equity-and-warrant filing</a></li>
+</ul>
+
+    </div>
+    <nav class="paper__related" aria-label="Related research">
+      <p class="paper__related-kicker">Filed under</p>
+      <p class="paper__links"><a href="/research/topics/engineering-foundations">Engineering foundations</a></p>
+    </nav>
+    <footer class="paper__footer">
+      <p class="paper__links">
+        <a href="/research/corporate-action-basis-reconstruction.md">Read the unrendered source</a>
+        <span aria-hidden="true"> / </span>
+        <a href="/research/citations/corporate-action-basis-reconstruction.bib" download>Cite this report</a>
+        <span aria-hidden="true"> / </span>
+        <a href="/open">Inspect the underlying artifacts</a>
+        <span aria-hidden="true"> / </span>
+        <a href="/research">All research</a>
+      </p>
+      <p class="paper__boundary">
+        Published as evidence, not as a claim about future performance. The figures quoted here
+        are reproducible from the artifacts linked above.
+      </p>
+    </footer>
+  </article>
+</main>
+<footer class="cc-footer" id="footer" data-product-shell="v3">
+  <div class="cc-footer__lead">
+    <a class="cc-footer__brand" href="/">Canli Capital</a>
+    <p>Build the claim. Publish the evidence. Keep the failures.</p>
+  </div>
+  <div class="cc-footer__routes">
+    <nav aria-label="Portfolio and research">
+      <span>Research system</span>
+      <a href="https://app.canlicapital.com/dashboard">Live record</a>
+      <a href="/systems">ALPHAC systems</a>
+      <a href="/research">Research papers</a>
+      <a href="/trials">Trial union</a>
+    </nav>
+    <nav aria-label="Evidence and verification">
+      <span>Evidence</span>
+      <a href="/methodology">Methodology</a>
+      <a href="/verify">Verify record</a>
+      <a href="/measurements">Measurements</a>
+      <a href="/open">Open data</a>
+    </nav>
+    <nav aria-label="Institution and authorship">
+      <span>Institution</span>
+      <a href="/progress">Corrections</a>
+      <a href="/performance">Status</a>
+      <a href="/founder">Arhan Canli</a>
+      <a href="https://github.com/arhancanli" rel="noreferrer">GitHub</a>
+    </nav>
+  </div>
+  <div class="cc-footer__boundary">
+    <p>Research and paper execution only. No managed capital, copy trading, investment advice or promised return.</p>
+    <p>Founded and built by Arhan Canli in Dubai.</p>
+    <span>Copyright Arhan Canli</span>
+  </div>
+</footer>
+</body>
+</html>

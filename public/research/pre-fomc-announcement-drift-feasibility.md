@@ -1,4 +1,4 @@
-# Pre-FOMC announcement drift — no-return feasibility protocol
+# Pre-FOMC announcement drift: no-return feasibility protocol
 
 **Declared:** 2026-08-16  
 **Return data:** unopened  

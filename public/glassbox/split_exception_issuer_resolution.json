@@ -1,0 +1,78 @@
+{
+  "author": "Arhan Canli",
+  "claim_boundary": "Issuer evidence resolves only these named exceptions. It does not authorize a strategy replay, alter a historical result, or validate performance.",
+  "content_hash": "sha256:29178f88644be6ca80e328ba1305e35acbe0da7979b0cb4ba0b7e89b561fad59",
+  "decision": "ISSUER_EXCEPTIONS_RESOLVED_AS_NONEXECUTABLE_LIFECYCLE_METADATA",
+  "hypotheses_spent": 0,
+  "lineage": {
+    "lifecycle_content_hash": "sha256:deed344bd2823f820e326b69f510f704a11b3ba3d2621100594da2600f78cb2d",
+    "lifecycle_path": "artifacts/audit/sharadar_split_lifecycle_scope.json",
+    "lifecycle_sha256": "017f1723f1937900bc2e40aa1f54f0187286ffda794e4cddcf11159ce82031bf",
+    "provider_crosscheck_content_hash": "sha256:b401c5260988ba900d0acac857bfeda28a3cb353d6a18db3b9ef55890dc67a32",
+    "provider_crosscheck_path": "artifacts/audit/polygon_split_crosscheck.json",
+    "provider_crosscheck_sha256": "5c00be6dee175309d3511f1d183906824f651847e7561df722a03fad5a3e0fb8"
+  },
+  "required_next_action": "Implement and test fail-closed lifecycle scoping: source rows outside possible pre-existing exposure remain in lineage but are not executable share mutations. Do not infer a general provider precedence rule from these three cases.",
+  "resolutions": [
+    {
+      "event_date": "2021-04-27",
+      "executable_action": false,
+      "first_price_date": "2025-06-05",
+      "issuer_ratio": 0.005,
+      "lifecycle_classification": "BEFORE_FIRST_PRICE_NON_EXECUTABLE",
+      "provider_ratio": 200.0,
+      "ratio_repair_authorized": false,
+      "required_fragments_verified": [
+        "net 1 for 200 reverse-split",
+        "effective as of April 27, 2021"
+      ],
+      "resolution": "ISSUER_CONFIRMS_STORED_RATIO_PROVIDER_DIRECTION_REJECTED",
+      "retrieved_sha256": "b82239a75e14bc7134831d3b85e2fa9cad43a20052e83c561e65ad251ca6c5ed",
+      "source_row_deleted": false,
+      "stored_ratio": 0.005,
+      "ticker": "BMNR",
+      "url": "https://www.sec.gov/Archives/edgar/data/1829311/000168316822005159/bitmine_s1.htm"
+    },
+    {
+      "event_date": "2011-11-01",
+      "executable_action": false,
+      "first_price_date": "2011-11-01",
+      "issuer_ratio": 0.25,
+      "lifecycle_classification": "FIRST_PRICE_BOUNDARY_NO_PREEXISTING_EXPOSURE",
+      "provider_ratio": 0.25,
+      "ratio_repair_authorized": false,
+      "required_fragments_verified": [
+        "one-to-four conversion rate",
+        "November 1, 2011"
+      ],
+      "resolution": "STORED_ROW_IS_NOT_ISSUER_MARKET_CONVERSION_KEEP_NONEXECUTABLE",
+      "retrieved_sha256": "03f962c1dc7cba35dc89c915e3c757c08215956dceed9027e4d7772f25366e9d",
+      "source_row_deleted": false,
+      "stored_ratio": 1.7633,
+      "ticker": "ACHC",
+      "url": "https://www.sec.gov/Archives/edgar/data/1520697/000119312511340742/d258032ds1a.htm"
+    },
+    {
+      "event_date": "2017-05-30",
+      "executable_action": false,
+      "first_price_date": "2017-05-30",
+      "issuer_ratio": 0.1,
+      "lifecycle_classification": "FIRST_PRICE_BOUNDARY_NO_PREEXISTING_EXPOSURE",
+      "provider_ratio": 0.1,
+      "ratio_repair_authorized": false,
+      "required_fragments_verified": [
+        "10-to-1 share consolidation",
+        "took effect on May 30, 2017"
+      ],
+      "resolution": "STORED_ROW_IS_NOT_ISSUER_MARKET_CONSOLIDATION_KEEP_NONEXECUTABLE",
+      "retrieved_sha256": "9f8d7645bd5d3dedaabb0d8049edd5dedeb1053bbf164ad61ab29291b7323b6e",
+      "source_row_deleted": false,
+      "stored_ratio": 0.5,
+      "ticker": "JHG",
+      "url": "https://www.sec.gov/Archives/edgar/data/1274173/000110465917050025/a17-14663_110q.htm"
+    }
+  ],
+  "retrieved_at": "2026-08-23T03:04:13.219498+00:00",
+  "return_data_opened": false,
+  "schema": "canli.alphac-split-exception-issuer-resolution.v1"
+}

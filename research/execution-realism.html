@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Execution realism and model boundary | Canli Capital</title>
+<meta name="description" content="This page describes what AlphaForge actually models as of 2026-08-18. It is an engineering capability statement, not evidence of investment performance." />
+<meta name="alphac-source-sha256" content="549ff096c6084683714ea2affd3adc42641394af802dd415bb4bc8d0a77e0927" />
+
+<link rel="canonical" href="https://canlicapital.com/research/execution-realism" />
+<meta name="author" content="Arhan Canli" />
+<meta name="citation_title" content="Execution realism and model boundary" />
+<meta name="citation_author" content="Arhan Canli" />
+<meta name="citation_publication_date" content="2026" />
+<meta name="citation_language" content="en" />
+<meta name="citation_fulltext_html_url" content="https://canlicapital.com/research/execution-realism" />
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="Canli Capital" />
+<meta property="og:title" content="Execution realism and model boundary" />
+<meta property="og:description" content="This page describes what AlphaForge actually models as of 2026-08-18. It is an engineering capability statement, not evidence of investment performance." />
+<meta property="og:url" content="https://canlicapital.com/research/execution-realism" />
+<meta property="og:image" content="https://canlicapital.com/og.png" />
+<meta property="article:author" content="Arhan Canli" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Execution realism and model boundary" />
+<meta name="twitter:description" content="This page describes what AlphaForge actually models as of 2026-08-18. It is an engineering capability statement, not evidence of investment performance." />
+<meta name="twitter:image" content="https://canlicapital.com/og.png" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="icon" href="/favicon.ico" sizes="any" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=optional" />
+<link rel="stylesheet" media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=optional" />
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=optional" /></noscript>
+<link rel="stylesheet" href="../css/paper.css" />
+<link rel="stylesheet" href="/css/product-shell.css" />
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"ScholarlyArticle","headline":"Execution realism and model boundary","description":"This page describes what AlphaForge actually models as of 2026-08-18. It is an engineering capability statement, not evidence of investment performance.","url":"https://canlicapital.com/research/execution-realism","inLanguage":"en","isAccessibleForFree":true,"datePublished":"2026","author":{"@type":"Person","@id":"https://canlicapital.com/#arhan-canli","name":"Arhan Canli","jobTitle":"Founder and Quantitative Researcher","url":"https://canlicapital.com/founder","sameAs":["https://github.com/arhancanli"],"affiliation":{"@type":"Organization","@id":"https://canlicapital.com/#organization","name":"Canli Capital","url":"https://canlicapital.com/"}},"publisher":{"@type":"Organization","@id":"https://canlicapital.com/#organization","name":"Canli Capital","url":"https://canlicapital.com/","logo":{"@type":"ImageObject","url":"https://canlicapital.com/brand-mark.svg"}},"isPartOf":{"@type":"Periodical","name":"Canli Capital Research","url":"https://canlicapital.com/research"},"encodingFormat":"text/html","associatedMedia":{"@type":"MediaObject","contentUrl":"https://canlicapital.com/research/execution-realism.md","encodingFormat":"text/markdown"}}</script>
+</head>
+<body class="paper">
+<a class="paper__skip" href="#content">Skip to content</a>
+<header class="cc-shell" id="nav" data-product-shell="v3">
+  <a class="cc-shell__brand" href="/" aria-label="Canli Capital, home">
+    <span class="cc-shell__mark" aria-hidden="true"><i></i></span>
+    <span>Canli Capital</span>
+  </a>
+  <a class="cc-shell__status" href="/measurements/alpaca-broker-reconciliation" aria-label="Current record status">
+    <span class="status-dot" aria-hidden="true"></span>
+    <span>Public paper record</span>
+  </a>
+  <nav class="cc-shell__primary" aria-label="Primary navigation">
+<a class="cc-shell__link" href="https://app.canlicapital.com/dashboard" rel="noreferrer">Live</a>
+<a class="cc-shell__link" href="/research" aria-current="page" data-current="true">Research</a>
+<a class="cc-shell__link" href="/trials">Trials</a>
+<a class="cc-shell__link" href="/systems">Systems</a>
+<a class="cc-shell__link" href="/methodology">Methodology</a>
+<a class="cc-shell__link" href="/verify">Verify</a>
+  </nav>
+  <details class="cc-shell__index">
+    <summary><span class="cc-shell__index-wide">More</span><span class="cc-shell__index-compact">Menu</span></summary>
+    <div class="cc-shell__panel">
+      <div>
+        <span class="cc-shell__panel-label">Core</span>
+        <nav aria-label="Core routes"><a class="cc-shell__panel-link" href="https://app.canlicapital.com/dashboard" rel="noreferrer">Live</a>
+<a class="cc-shell__panel-link" href="/research" aria-current="page" data-current="true">Research</a>
+<a class="cc-shell__panel-link" href="/trials">Trials</a>
+<a class="cc-shell__panel-link" href="/systems">Systems</a>
+<a class="cc-shell__panel-link" href="/methodology">Methodology</a>
+<a class="cc-shell__panel-link" href="/verify">Verify</a></nav>
+      </div>
+      <div>
+        <span class="cc-shell__panel-label">Institution</span>
+        <nav aria-label="Institution routes"><a class="cc-shell__panel-link" href="/progress">Corrections</a>
+<a class="cc-shell__panel-link" href="/performance">Status</a>
+<a class="cc-shell__panel-link" href="/founder">Founder</a>
+<a class="cc-shell__panel-link" href="/open">Open data</a>
+<a class="cc-shell__panel-link" href="/measurements">Measurements</a></nav>
+      </div>
+      <p>Observed, simulated, model-estimated and planned claims remain visibly separate.</p>
+    </div>
+  </details>
+  <a class="cc-shell__cta" href="https://app.canlicapital.com/dashboard">Enter live record <span aria-hidden="true">↗</span></a>
+</header>
+<main class="paper__main" id="content">
+  <article class="paper__article">
+    <p class="paper__eyebrow"><a href="/research">Research</a></p>
+    <h1 class="paper__title">Execution realism and model boundary</h1>
+    <p class="paper__byline">By <span rel="author">Arhan Canli</span>, Canli Capital</p>
+    <div class="paper__body">
+<p>This page describes what AlphaForge actually models as of 2026-08-18. It is an engineering
+capability statement, not evidence of investment performance. The compatibility default remains
+<code>NextOpenFill</code>; research that claims bar-liquidity realism must explicitly select
+<code>ParticipationCappedFill</code> and publish that choice in its run config.</p>
+<h2>Implemented and tested</h2>
+<table>
+<thead>
+<tr>
+<th>Risk</th>
+<th>Current contract</th>
+<th>Evidence boundary</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Commissions and spreads</td>
+<td>Venue/asset-aware fees and half-spread in one shared cost model</td>
+<td>Unit-tested exact arithmetic</td>
+</tr>
+<tr>
+<td>Nonlinear impact</td>
+<td>Square-root impact with a 1% ADV build cap and hard 5% validity edge</td>
+<td>Out-of-regime use fails loudly</td>
+</tr>
+<tr>
+<td>Latency</td>
+<td>Configured adverse price add-on</td>
+<td>Placeholder until calibrated from paper fills</td>
+</tr>
+<tr>
+<td>Partial fills</td>
+<td>Optional next-bar participation cap, lot-flooring, explicit canceled residual</td>
+<td>Missing/zero quote volume fails closed</td>
+</tr>
+<tr>
+<td>Rejected/unfilled orders</td>
+<td>Missing bars, missing cost inputs, missing liquidity and final-bar orders are counted and labeled; broker recovery ingests full or partial venue executions</td>
+<td>No synthetic fallback fill</td>
+</tr>
+<tr>
+<td>Holidays</td>
+<td>Equity D1 execution follows exchange sessions</td>
+<td>Weekend/holiday hopping is tested</td>
+</tr>
+<tr>
+<td>Corporate actions</td>
+<td>PIT split and cash-dividend replay, lake NaN-to-null normalization for no-cash splits with non-finite dividends still rejected, queued-order split rescaling, and metadata-confirmed delisting force-flat</td>
+<td>No complex reorganizations, full historical coverage, dedicated delisting returns, or live broker path</td>
+</tr>
+<tr>
+<td>Delistings</td>
+<td>Point-in-time membership and metadata-confirmed conservative administrative force-flat</td>
+<td>Dedicated delisting-return data remains a promotion requirement</td>
+</tr>
+<tr>
+<td>Borrow and financing</td>
+<td>General-collateral equity borrow and stored perp funding accrue; optional PIT locates, dynamic fees, recall buy-ins, cash credit, margin debit, and segregated short-sale-proceeds rates</td>
+<td>No broad historical lending/rate coverage, multicurrency collateral, margin-call liquidation, broker reservation, restart persistence, auction replay or live broker path</td>
+</tr>
+<tr>
+<td>Stale/missing data</td>
+<td>Signal staleness holds, price collars, missing-bar drops and feed-quality checks</td>
+<td>No bundled historical venue-outage coverage</td>
+</tr>
+<tr>
+<td>Market status/outages</td>
+<td>Optional PIT OPEN/HALTED/OUTAGE/AUCTION_ONLY/CLOSE_ONLY replay blocks impossible fills; enabling it now requires full run-interval coverage for every instrument before bars are read, while strict source-byte-bound manifests, exact official/vendor reconciliation, and audit-hash-bound reviewed providers preserve PIT lineage and expose every missing/future-known millisecond</td>
+<td>No bundled historical status corpus, production feed adapter, empirical broad-market coverage evidence, auction-price model, smart routing or live status polling</td>
+</tr>
+<tr>
+<td>Crowding and liquidation</td>
+<td>Optional PIT ownership, short-interest, borrow-utilization and flow gate; ADV-haircut liquidation stress in shared pre-trade</td>
+<td>No broad historical ownership/flow coverage, empirical unwind calibration or correlated-depth model</td>
+</tr>
+<tr>
+<td>Operational controls</td>
+<td>Pre-trade limits, reconciliation, risk-event storage, drawdown ladder and absorbing kill switch; three consecutive fill-outcome reconciliation failures persistently engage the kill and block submission</td>
+<td>Live effectiveness still requires prospective paper evidence</td>
+</tr>
+<tr>
+<td>Dated futures lifecycle</td>
+<td>PIT contract metadata, session-counted first-notice/last-trade exits, immediate-next rolls, locked-limit classification and variation margin</td>
+<td>Domain primitives only; no futures data, product calendar, cost schedule, backtest or broker path</td>
+</tr>
+<tr>
+<td>Options lifecycle and surface integrity</td>
+<td>PIT terms/quotes/official settlement/assignment notices; premium-currency-local static-arbitrage checks; single-underlying active surfaces; displayed bid/ask-bound strike monotonicity and convexity; ratio-preserving multi-leg IOC/FOK replay with homogeneous premium currency, side-specific displayed-size caps and net debit/credit limits; optional per-leg OPEN/HALTED/OUTAGE/AUCTION_ONLY/CLOSE_ONLY replay with proven reduce-only integrity; exact PIT side/liquidity/event-scoped fee revisions with declared rounding, minima, caps and rebates; complete-matrix internal scenario margin with cross-leg netting, locked model/input hashes, short floors and concentration add-ons; signed cash/physical expiry; source-bound adjusted baskets; immutable SHA-256 OCC memo archive; strict reviewed manifests and exact vendor reconciliation</td>
+<td>Domain/data primitives only; no historical option-status corpus, complex-order auction model or live status polling/failover; internal margin is not broker/OCC/regulatory equivalent and excludes opening premium, margin calls and liquidation; no validated stress repricer/calibrated scenario corpus or verified historical fee corpus/production adapter; package replay assumes an atomic cross of independently displayed legs and has no fill probability, queue, price-improvement or beyond-size impact model; live OCC acquisition is Cloudflare-challenge-blocked; no historical fitted surface or reviewed adjustment corpus, parity/rate-dividend inputs, exercise model, backtest or broker path</td>
+</tr>
+</tbody></table>
+<h2>Participation-capped fill semantics</h2>
+<p>For an order presented to a bar with open price <code>P</code>, observed quote volume <code>V</code>, lot size <code>L</code>, and
+participation ceiling <code>p</code>, executable quantity is:</p>
+<p><code>min(order_qty, floor((p × V) / (P × L)) × L)</code></p>
+<p>The executed slice is priced by the same commission, spread, impact and latency model used by the
+default fill. If the slice is smaller than the order, the engine records
+<code>partial_fill_residual_canceled</code>; it does not silently assume the remainder traded. If quote volume
+is absent/non-positive or the cap cannot support one valid minimum lot/notional, the engine records
+<code>dropped_no_bar_liquidity</code> and executes nothing.</p>
+<p>Residual cancellation is intentionally conservative and deterministic. Multi-bar child-order
+scheduling, queue position and venue-specific rejection probabilities remain future work.</p>
+<h2>Local engineering benchmark</h2>
+<p>The reproducible synthetic microbenchmark executes 100,000 fill-model calls per repeat across
+seven repeats on the recorded CPython 3.12.13/arm64 Darwin runtime. In the 2026-08-17 snapshot,
+median call time was 887 ns for the compatibility full-fill path and 2,004 ns for the
+participation-capped path (2.26× the baseline). Deterministic checksums accompany every timing
+sample.</p>
+<p>These figures measure isolated Python fill-call overhead on one local machine. They are not
+end-to-end backtest throughput, capacity, latency-to-market, or return evidence. The complete
+machine-readable samples, workload, runtime metadata, guardrails and source hashes are published
+at <a href="/glassbox/execution_models_benchmark.json"><code>/glassbox/execution_models_benchmark.json</code></a>.</p>
+<h2>Explicitly not implemented</h2>
+<ul>
+<li>End-to-end securities lending: historical quote/locate/recall ingestion, broker reservations, restart persistence, buy-in auction replay, and live reconciliation.</li>
+<li>End-to-end financing: historical rate schedules, multicurrency cash/collateral, broker-specific haircuts and rehypothecation, margin calls/liquidation, and live reconciliation.</li>
+<li>End-to-end futures ingestion and trading: product calendars, dated quotes/settlements, fees and margin schedules, continuous-series attribution, broker routing, and historical limit/outage replay.</li>
+<li>End-to-end options ingestion and trading: historical fitted surfaces, put-call-parity inputs,
+operational unattended OCC acquisition (direct and headless-browser clients received a
+Cloudflare HTTP 403 managed challenge on 2026-08-18), automated PDF text extraction, reviewed
+historical adjustment coverage, a production vendor adapter, calibrated early-exercise/
+assignment modeling, quote repair, a verified historical fee corpus, broker-equivalent margin,
+validated scenario repricing, opening-premium collateral, margin calls/liquidation,
+complex-order-book execution, queue and
+beyond-displayed-size impact, historical option-status ingestion, complex-order auction
+execution, live outage polling/failover, backtest ledger, and broker reconciliation.</li>
+<li>Calibrated queue position, partial-fill continuation, auction imbalance/price formation, a content-verified historical status corpus with production adapters, and live outage failover.</li>
+<li>Historical crowding coverage and calibration: point-in-time ownership/flows, cross-manager overlap, and correlated liquidation-depth feedback.</li>
+</ul>
+<p>No sleeve may claim these risks are modeled merely because the platform has a generic cost or
+staleness control. Candidates requiring one of these capabilities remain data- or engine-gated.</p>
+
+    </div>
+    <nav class="paper__related" aria-label="Related research">
+      <p class="paper__related-kicker">Filed under</p>
+      <p class="paper__links"><a href="/research/topics/engineering-foundations">Engineering foundations</a><span aria-hidden="true"> / </span><a href="/research/topics/execution-and-market-structure">Execution and market structure</a></p>
+      <p class="paper__related-kicker">Related work</p>
+      <ul class="paper__related-list"><li><a href="/research/crypto-carry-portable-v1">A hash-bound prospective test of cross-sectional perpetual-futures carry</a></li><li><a href="/research/futures-execution-foundation">Dated-futures execution foundation</a></li><li><a href="/research/kill-eq-mom-margin">Equity Momentum (with Margin Costs): a killed candidate</a></li><li><a href="/research/options-dispersion-feasibility">Options dispersion: locked no-return data and execution-feasibility protocol</a></li><li><a href="/research/financing-replay">Point-in-time cash and collateral financing replay</a></li><li><a href="/research/options-execution-foundation">Point-in-time options execution foundation</a></li></ul>
+    </nav>
+    <footer class="paper__footer">
+      <p class="paper__links">
+        <a href="/research/execution-realism.md">Read the unrendered source</a>
+        <span aria-hidden="true"> / </span>
+        <a href="/research/citations/execution-realism.bib" download>Cite this report</a>
+        <span aria-hidden="true"> / </span>
+        <a href="/open">Inspect the underlying artifacts</a>
+        <span aria-hidden="true"> / </span>
+        <a href="/research">All research</a>
+      </p>
+      <p class="paper__boundary">
+        Published as evidence, not as a claim about future performance. The figures quoted here
+        are reproducible from the artifacts linked above.
+      </p>
+    </footer>
+  </article>
+</main>
+<footer class="cc-footer" id="footer" data-product-shell="v3">
+  <div class="cc-footer__lead">
+    <a class="cc-footer__brand" href="/">Canli Capital</a>
+    <p>Build the claim. Publish the evidence. Keep the failures.</p>
+  </div>
+  <div class="cc-footer__routes">
+    <nav aria-label="Portfolio and research">
+      <span>Research system</span>
+      <a href="https://app.canlicapital.com/dashboard">Live record</a>
+      <a href="/systems">ALPHAC systems</a>
+      <a href="/research">Research papers</a>
+      <a href="/trials">Trial union</a>
+    </nav>
+    <nav aria-label="Evidence and verification">
+      <span>Evidence</span>
+      <a href="/methodology">Methodology</a>
+      <a href="/verify">Verify record</a>
+      <a href="/measurements">Measurements</a>
+      <a href="/open">Open data</a>
+    </nav>
+    <nav aria-label="Institution and authorship">
+      <span>Institution</span>
+      <a href="/progress">Corrections</a>
+      <a href="/performance">Status</a>
+      <a href="/founder">Arhan Canli</a>
+      <a href="https://github.com/arhancanli" rel="noreferrer">GitHub</a>
+    </nav>
+  </div>
+  <div class="cc-footer__boundary">
+    <p>Research and paper execution only. No managed capital, copy trading, investment advice or promised return.</p>
+    <p>Founded and built by Arhan Canli in Dubai.</p>
+    <span>Copyright Arhan Canli</span>
+  </div>
+</footer>
+</body>
+</html>

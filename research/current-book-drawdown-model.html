@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Current-composition maximum-drawdown model | Canli Capital</title>
+<meta name="description" content="This study estimates the two-year maximum-drawdown distribution of the current ALPHAC composition: four constituent sleeves at equal-quarter weights plus a…" />
+<meta name="alphac-source-sha256" content="27980f489dfcb33a3812898bf16f06a5fe4c02166997881e0e372bda6426b71f" />
+
+<link rel="canonical" href="https://canlicapital.com/research/current-book-drawdown-model" />
+<meta name="author" content="Arhan Canli" />
+<meta name="citation_title" content="Current-composition maximum-drawdown model" />
+<meta name="citation_author" content="Arhan Canli" />
+<meta name="citation_publication_date" content="2026" />
+<meta name="citation_language" content="en" />
+<meta name="citation_fulltext_html_url" content="https://canlicapital.com/research/current-book-drawdown-model" />
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="Canli Capital" />
+<meta property="og:title" content="Current-composition maximum-drawdown model" />
+<meta property="og:description" content="This study estimates the two-year maximum-drawdown distribution of the current ALPHAC composition: four constituent sleeves at equal-quarter weights plus a…" />
+<meta property="og:url" content="https://canlicapital.com/research/current-book-drawdown-model" />
+<meta property="og:image" content="https://canlicapital.com/og.png" />
+<meta property="article:author" content="Arhan Canli" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Current-composition maximum-drawdown model" />
+<meta name="twitter:description" content="This study estimates the two-year maximum-drawdown distribution of the current ALPHAC composition: four constituent sleeves at equal-quarter weights plus a…" />
+<meta name="twitter:image" content="https://canlicapital.com/og.png" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="icon" href="/favicon.ico" sizes="any" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=optional" />
+<link rel="stylesheet" media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=optional" />
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=optional" /></noscript>
+<link rel="stylesheet" href="../css/paper.css" />
+<link rel="stylesheet" href="/css/product-shell.css" />
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"ScholarlyArticle","headline":"Current-composition maximum-drawdown model","description":"This study estimates the two-year maximum-drawdown distribution of the current ALPHAC composition: four constituent sleeves at equal-quarter weights plus a…","url":"https://canlicapital.com/research/current-book-drawdown-model","inLanguage":"en","isAccessibleForFree":true,"datePublished":"2026","author":{"@type":"Person","@id":"https://canlicapital.com/#arhan-canli","name":"Arhan Canli","jobTitle":"Founder and Quantitative Researcher","url":"https://canlicapital.com/founder","sameAs":["https://github.com/arhancanli"],"affiliation":{"@type":"Organization","@id":"https://canlicapital.com/#organization","name":"Canli Capital","url":"https://canlicapital.com/"}},"publisher":{"@type":"Organization","@id":"https://canlicapital.com/#organization","name":"Canli Capital","url":"https://canlicapital.com/","logo":{"@type":"ImageObject","url":"https://canlicapital.com/brand-mark.svg"}},"isPartOf":{"@type":"Periodical","name":"Canli Capital Research","url":"https://canlicapital.com/research"},"encodingFormat":"text/html","associatedMedia":{"@type":"MediaObject","contentUrl":"https://canlicapital.com/research/current-book-drawdown-model.md","encodingFormat":"text/markdown"}}</script>
+</head>
+<body class="paper">
+<a class="paper__skip" href="#content">Skip to content</a>
+<header class="cc-shell" id="nav" data-product-shell="v3">
+  <a class="cc-shell__brand" href="/" aria-label="Canli Capital, home">
+    <span class="cc-shell__mark" aria-hidden="true"><i></i></span>
+    <span>Canli Capital</span>
+  </a>
+  <a class="cc-shell__status" href="/measurements/alpaca-broker-reconciliation" aria-label="Current record status">
+    <span class="status-dot" aria-hidden="true"></span>
+    <span>Public paper record</span>
+  </a>
+  <nav class="cc-shell__primary" aria-label="Primary navigation">
+<a class="cc-shell__link" href="https://app.canlicapital.com/dashboard" rel="noreferrer">Live</a>
+<a class="cc-shell__link" href="/research" aria-current="page" data-current="true">Research</a>
+<a class="cc-shell__link" href="/trials">Trials</a>
+<a class="cc-shell__link" href="/systems">Systems</a>
+<a class="cc-shell__link" href="/methodology">Methodology</a>
+<a class="cc-shell__link" href="/verify">Verify</a>
+  </nav>
+  <details class="cc-shell__index">
+    <summary><span class="cc-shell__index-wide">More</span><span class="cc-shell__index-compact">Menu</span></summary>
+    <div class="cc-shell__panel">
+      <div>
+        <span class="cc-shell__panel-label">Core</span>
+        <nav aria-label="Core routes"><a class="cc-shell__panel-link" href="https://app.canlicapital.com/dashboard" rel="noreferrer">Live</a>
+<a class="cc-shell__panel-link" href="/research" aria-current="page" data-current="true">Research</a>
+<a class="cc-shell__panel-link" href="/trials">Trials</a>
+<a class="cc-shell__panel-link" href="/systems">Systems</a>
+<a class="cc-shell__panel-link" href="/methodology">Methodology</a>
+<a class="cc-shell__panel-link" href="/verify">Verify</a></nav>
+      </div>
+      <div>
+        <span class="cc-shell__panel-label">Institution</span>
+        <nav aria-label="Institution routes"><a class="cc-shell__panel-link" href="/progress">Corrections</a>
+<a class="cc-shell__panel-link" href="/performance">Status</a>
+<a class="cc-shell__panel-link" href="/founder">Founder</a>
+<a class="cc-shell__panel-link" href="/open">Open data</a>
+<a class="cc-shell__panel-link" href="/measurements">Measurements</a></nav>
+      </div>
+      <p>Observed, simulated, model-estimated and planned claims remain visibly separate.</p>
+    </div>
+  </details>
+  <a class="cc-shell__cta" href="https://app.canlicapital.com/dashboard">Enter live record <span aria-hidden="true">↗</span></a>
+</header>
+<main class="paper__main" id="content">
+  <article class="paper__article">
+    <p class="paper__eyebrow"><a href="/research">Research</a></p>
+    <h1 class="paper__title">Current-composition maximum-drawdown model</h1>
+    <p class="paper__byline">By <span rel="author">Arhan Canli</span>, Canli Capital</p>
+    <div class="paper__body">
+<p><strong>Author:</strong> Arhan Canli<br><strong>Affiliation:</strong> Canli Capital / AlphaC Algorithms<br><strong>Version:</strong> 1.0, 2026<br><strong>Capital boundary:</strong> research simulation over a paper-trading specification</p>
+<h2>Abstract</h2>
+<p>This study estimates the two-year maximum-drawdown distribution of the current ALPHAC
+composition: four constituent sleeves at equal-quarter weights plus a separately disclosed 10%
+50/50 BTC/SPY strategic overlay. It corrects a category error in the earlier frontier study. The
+15% volatility target belongs to constituent <code>BlendStrategy</code> instances; the ALPHAC composite
+applies no second book-level volatility target or drawdown ladder.</p>
+<p>Two zero-drift models were frozen before execution. A 10,000-path circular moving-block bootstrap
+uses a 63-calendar-day primary block, with 21- and 126-day sensitivity arms. A separate 10,000-path
+regime model preserves observed component volatility and calm dependence while moving all five
+weighted contributions to 0.50 stress correlation for a predeclared 12% stress share and 40-day
+mean stress run.</p>
+<p>The conservative expected maximum drawdown is <strong>9.32%</strong>, inside the governing 11% design
+objective. The conservative p95 maximum drawdown is <strong>16.45%</strong>, outside 11%. The expected result is
+therefore encouraging; the tail result is not. Neither establishes live expected drawdown.</p>
+<h2>1. Exact specification mapped</h2>
+<p>The source builder reconstructs the same research book used by the public state:</p>
+<ul>
+<li>AlphaMax, AlphaForge, AlphaTrend and AlphaVintage at 25% each;</li>
+<li>fixed-weight aggregation;</li>
+<li>no ALPHAC-level volatility target;</li>
+<li>no ALPHAC-level drawdown ladder;</li>
+<li>missing daily constituent marks contribute zero; and</li>
+<li>a fixed +10% strategic overlay, 50% BTC and 50% SPY, outside constituent sizing.</li>
+</ul>
+<p>The component contributions reconstruct the daily book return with zero numerical residual. The
+study binds the live fingerprint, contracts, protocol, book implementation, market-factor
+implementation, four sleeve-equity inputs and the market-factor source corpus by SHA-256.</p>
+<h2>2. Calibration boundary</h2>
+<p>The exact common window contains 1,061 calendar days from 2023-07-07 through 2026-06-01. In that
+window the research book has 5.21% annualized volatility and a 4.51% realized maximum drawdown. Its
+1.78 Sharpe is labelled simulation, not forward evidence, and is not used as model drift: every
+arm removes the sample mean before estimating drawdown.</p>
+<p>This window begins after both COVID and 2022. That is a binding limitation. A block bootstrap
+cannot generate a crisis absent from its source window.</p>
+<h2>3. Frozen models</h2>
+<h3>3.1 Circular moving-block bootstrap</h3>
+<p>The primary 63-day arm produces:</p>
+<table>
+<thead>
+<tr>
+<th>statistic</th>
+<th align="right">maximum drawdown</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>expected</td>
+<td align="right">7.83%</td>
+</tr>
+<tr>
+<td>median</td>
+<td align="right">7.35%</td>
+</tr>
+<tr>
+<td>p95</td>
+<td align="right">13.35%</td>
+</tr>
+<tr>
+<td>Monte Carlo standard error of expected</td>
+<td align="right">0.029 percentage points</td>
+</tr>
+</tbody></table>
+<p>The 21-day sensitivity arm gives 7.96% expected / 14.11% p95. The 126-day arm gives 7.41%
+expected / 12.15% p95. All three expected values are inside 11%; all three tails exceed it.</p>
+<h3>3.2 Correlation-regime model</h3>
+<p>The regime arm produces:</p>
+<table>
+<thead>
+<tr>
+<th>statistic</th>
+<th align="right">maximum drawdown</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>expected</td>
+<td align="right">9.32%</td>
+</tr>
+<tr>
+<td>median</td>
+<td align="right">8.59%</td>
+</tr>
+<tr>
+<td>p95</td>
+<td align="right">16.45%</td>
+</tr>
+<tr>
+<td>Monte Carlo standard error of expected</td>
+<td align="right">0.038 percentage points</td>
+</tr>
+</tbody></table>
+<p>The model&#39;s simulated stress-day share is published in the machine artifact. It changes
+dependence but deliberately does not invent a stress-volatility multiplier.</p>
+<h2>4. Decision</h2>
+<p>The protocol defines the conservative expected value as the larger of the primary bootstrap and
+regime expectations. That value is 9.32%, so the current-composition modeled expectation is within
+the 11% design objective. The mandatory p95 is 16.45% and is not within 11%.</p>
+<p>Status:
+<code>CURRENT_COMPOSITION_EXPECTED_WITHIN_OBJECTIVE_HISTORICAL_TAIL_COVERAGE_INCOMPLETE</code>.</p>
+<p>This is not statistical establishment. The live record is still short, the common calibration
+window omits major crises, the regime arm has no stress-volatility multiplier, and neither model
+replays constituent instruments, execution gaps, liquidity feedback or dynamic ladder state.
+Those limitations are machine-readable failed establishment dimensions, not prose footnotes.</p>
+<h2>5. Reproduction</h2>
+<pre><code class="language-text">uv run python scripts/analyze_current_book_drawdown.py
+uv run python scripts/seal_forward_drawdown_evidence.py
+uv run pytest -q tests/unit/test_current_book_drawdown.py tests/unit/test_forward_drawdown_evidence.py
+</code></pre>
+<p>Canonical machine result: <code>/glassbox/current_book_drawdown.json</code><br>Sealed claim boundary: <code>/glassbox/forward_drawdown_evidence.json</code></p>
+
+    </div>
+    <nav class="paper__related" aria-label="Related research">
+      <p class="paper__related-kicker">Filed under</p>
+      <p class="paper__links"><a href="/research/topics/engineering-foundations">Engineering foundations</a></p>
+    </nav>
+    <footer class="paper__footer">
+      <p class="paper__links">
+        <a href="/research/current-book-drawdown-model.md">Read the unrendered source</a>
+        <span aria-hidden="true"> / </span>
+        <a href="/research/citations/current-book-drawdown-model.bib" download>Cite this report</a>
+        <span aria-hidden="true"> / </span>
+        <a href="/open">Inspect the underlying artifacts</a>
+        <span aria-hidden="true"> / </span>
+        <a href="/research">All research</a>
+      </p>
+      <p class="paper__boundary">
+        Published as evidence, not as a claim about future performance. The figures quoted here
+        are reproducible from the artifacts linked above.
+      </p>
+    </footer>
+  </article>
+</main>
+<footer class="cc-footer" id="footer" data-product-shell="v3">
+  <div class="cc-footer__lead">
+    <a class="cc-footer__brand" href="/">Canli Capital</a>
+    <p>Build the claim. Publish the evidence. Keep the failures.</p>
+  </div>
+  <div class="cc-footer__routes">
+    <nav aria-label="Portfolio and research">
+      <span>Research system</span>
+      <a href="https://app.canlicapital.com/dashboard">Live record</a>
+      <a href="/systems">ALPHAC systems</a>
+      <a href="/research">Research papers</a>
+      <a href="/trials">Trial union</a>
+    </nav>
+    <nav aria-label="Evidence and verification">
+      <span>Evidence</span>
+      <a href="/methodology">Methodology</a>
+      <a href="/verify">Verify record</a>
+      <a href="/measurements">Measurements</a>
+      <a href="/open">Open data</a>
+    </nav>
+    <nav aria-label="Institution and authorship">
+      <span>Institution</span>
+      <a href="/progress">Corrections</a>
+      <a href="/performance">Status</a>
+      <a href="/founder">Arhan Canli</a>
+      <a href="https://github.com/arhancanli" rel="noreferrer">GitHub</a>
+    </nav>
+  </div>
+  <div class="cc-footer__boundary">
+    <p>Research and paper execution only. No managed capital, copy trading, investment advice or promised return.</p>
+    <p>Founded and built by Arhan Canli in Dubai.</p>
+    <span>Copyright Arhan Canli</span>
+  </div>
+</footer>
+</body>
+</html>

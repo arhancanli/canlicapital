@@ -1,0 +1,90 @@
+{
+  "author": "Arhan Canli",
+  "claim_boundary": "Forensic description of one paper-traded LABUSDT episode. It spends zero return hypotheses, does not estimate Sharpe or expected performance, does not authorize a strategy change, and does not rewrite the published equity record.",
+  "content_hash": "sha256:925596922283e01c7968ea0b8cb9278efa4984e124425cfcb80799f6eea0f84c",
+  "decision": "PRESERVE_LOSS_NO_PRICE_JUMP_GUARD_NO_WEIGHT_CHANGE",
+  "execution_sequence": {
+    "long_close": {
+      "client_order_id": "rb-1785369600000-BINANCE:PERP:LABUSDT-close",
+      "fee_quote": 0.0088521,
+      "instrument_id": "BINANCE:PERP:LABUSDT",
+      "price": 0.1553,
+      "qty": 114.0,
+      "side": "sell",
+      "ts": 1785369600000
+    },
+    "long_entry": {
+      "client_order_id": "rb-1783267200000-BINANCE:PERP:LABUSDT",
+      "fee_quote": 0.920574,
+      "instrument_id": "BINANCE:PERP:LABUSDT",
+      "price": 16.15042105263158,
+      "qty": 114.0,
+      "side": "buy",
+      "ts": 1783267200000
+    },
+    "short_reversal": {
+      "client_order_id": "rb-1785369600000-BINANCE:PERP:LABUSDT-open",
+      "fee_quote": 0.42451255000000004,
+      "instrument_id": "BINANCE:PERP:LABUSDT",
+      "price": 0.1553,
+      "qty": 5467.0,
+      "side": "sell",
+      "ts": 1785369600000
+    }
+  },
+  "forward_record_relation": {
+    "classification": "PRE_FLAGSHIP_WINDOW_DOES_NOT_EXPLAIN_CURRENT_FORWARD_LOSS",
+    "flagship_forward_record_starts": "2026-08-07",
+    "lab_long_closed_utc": "2026-07-30T00:00:00Z"
+  },
+  "funding_regime_while_held": {
+    "first_nonnegative_settlement": "2026-07-08T06:00:00Z",
+    "interpretation": "The carry signal entered long during negative funding; funding later changed sign and the scheduled rebalance closed the long and opened a short.",
+    "maximum_rate": 0.0007515,
+    "mean_rate": -0.0017057643438914028,
+    "minimum_rate": -0.02,
+    "negative_observations": 68,
+    "nonnegative_observations": 153,
+    "observations": 221
+  },
+  "independent_market_context": [
+    {
+      "supports": "independent dated prices during the July 2026 collapse",
+      "url": "https://chartexchange.com/symbol/crypto-labusdt/historical/"
+    },
+    {
+      "supports": "contemporaneous venue response to LABUSDT market risk",
+      "url": "https://phemex.com/announcements/phemex-will-delist-labusdt694"
+    }
+  ],
+  "instrument": "BINANCE:PERP:LABUSDT",
+  "long_episode": {
+    "absolute_gross_price_loss_quote_rounded_2dp": 1823.44,
+    "absolute_net_price_loss_quote_rounded_2dp": 1824.37,
+    "close_price": 0.1553,
+    "entry_and_close_fees_quote": 0.9294261,
+    "entry_price": 16.15042105263158,
+    "gross_price_pnl_quote": -1823.4438,
+    "gross_price_pnl_quote_rounded_2dp": -1823.44,
+    "net_price_pnl_after_entry_and_close_fees_quote": -1824.3732261,
+    "net_price_pnl_after_entry_and_close_fees_quote_rounded_2dp": -1824.37,
+    "price_return": -0.990384151627137,
+    "quantity": 114.0
+  },
+  "observability_correction": {
+    "historical_gap": "Position snapshots retained quantity and average entry but not the exact cycle mark or instrument-level unrealized PnL. Historical attribution cannot be fabricated from aggregate equity.",
+    "prospective_fix": "Future paper cycles persist exact order-book mark, mark source, market value, and unrealized PnL through an additive nullable schema migration."
+  },
+  "schema": "canli.alphac-crypto-lab-carry-crash-incident.v1",
+  "source_bindings": {
+    "paper_execution_database": {
+      "path": "var/trading_crypto_perp.sqlite",
+      "sha256": "ea0e90e27e8b85e6fd721df5c58529750e4323e95435401c600a4db5033ea17b"
+    },
+    "point_in_time_funding": {
+      "path": "data/lake/funding/instrument_id=BINANCE:PERP:LABUSDT/year=2026/data.parquet",
+      "sha256": "8d8765e76b9c024b9eadc0a7dc090d505fec35f86f6ac8e927ba1078f4de177b"
+    }
+  },
+  "verdict": "GENUINE_MARKET_CRASH_NOT_CONTRACT_IDENTITY_DEFECT"
+}

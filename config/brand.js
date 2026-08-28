@@ -42,17 +42,30 @@ export const STATS = [
 // split: `cryptoSince` (2020) for the crypto data line, `equitySince`/`equityYears`
 // for the lake. `tests` is one number everywhere (the honesty review requires it),
 // bound via data-fact on every page, never hardcoded.
+// EVERY NUMBER HERE IS MEASURED, and the measurement is published at
+// /glassbox/data_lake_scale.json with a definition for each. They were hand-typed until
+// 2026-08-22, when measuring them found two that were wrong rather than merely stale: the
+// fundamentals count was OVERSTATED (392K+ against a true 380,878) and "8,436 survivorship-free
+// US stocks" matched neither store. 18,015 instruments have bars and 6,835 have ever been in the
+// point-in-time universe, and the phrase means the second. The rest were understated behind a "+",
+// which made them true and uninformative: 3.5M+ against 13.7M tells a reader something false about
+// the size of the thing.
+//
+// Regenerate with: alphaforge/scripts/audit_data_lake_scale.py
 export const FACTS = {
-  bars: "24M+",                 // equity lake daily bars (1997 to 2026)
-  equityStocks: "8,436",        // survivorship-free US stocks
-  equityYears: "25",            // 1997 to 2026
+  bars: "24.7M+",               // equity lake daily bars; measured 24,750,503
+  equityStocks: "6,835",        // survivorship-free US stocks = distinct instruments the
+                                // POINT-IN-TIME universe store has ever admitted. 18,015 have
+                                // bars, which is a different question; the phrase means this one.
+  equityYears: "30",            // 1997 to 2026 inclusive is thirty year partitions, not 25
   equitySince: "1997",
-  fundamentals: "392K+",        // point-in-time fundamental rows
-  cryptoBars: "3.5M+",          // crypto hourly bars (separate, do not conflate)
-  instruments: "94",            // crypto perps, live and delisted
+  fundamentals: "380K+",        // point-in-time fundamental rows; measured 380,878. The old
+                                // "392K+" was OVERSTATED, which is the staleness that matters
+  cryptoBars: "13.6M+",         // crypto hourly bars; measured 13,662,316 (do not conflate)
+  instruments: "775",           // crypto perps with hourly bars, live and delisted
   cryptoSince: "2020",          // crypto data start (6 years), distinct from equity 1997
   factors: "50",                // registered across cross-asset
-  tests: "2,820+",
+  tests: "3,961+",              // what pytest collects under tests/
   phases: "12",
   costAuthority: "1",
 };
@@ -67,11 +80,10 @@ export const FACTS = {
 // the right target per page (anchors smooth-scroll on the landing, clean URLs
 // link out from a sub-page). `page` keys the active (`is-current`) state.
 export const NAV = [
-  { page: "systems", label: "Systems", href: "/systems", anchor: "#systems" },
-  { page: "research", label: "The research", href: "/research", anchor: "#research" },
-  { page: "performance", label: "Performance", href: "/performance", anchor: "#performance" },
-  { page: "progress", label: "Progress", href: "/progress", anchor: "#progress" },
-  { page: "open", label: "Proven in the open", href: "/open", anchor: "#open" },
+  { page: "open", label: "Evidence", href: "/open", anchor: "#evidence" },
+  { page: "systems", label: "Sleeves", href: "/systems", anchor: "#sleeves" },
+  { page: "research", label: "Research", href: "/research", anchor: "#research" },
+  { page: "methodology", label: "Methodology", href: "/methodology", anchor: "#methodology" },
 ];
 
 // Footer link grid. Each column is a labelled nav region. Internal links carry an
@@ -85,7 +97,10 @@ export const FOOTER_COLS = [
       { label: "The research", href: "/research", anchor: "#research" },
       { label: "Performance", href: "/performance", anchor: "#performance" },
       { label: "Progress", href: "/progress", anchor: "#progress" },
+      { label: "Every measurement", href: "/measurements", anchor: "#measurements" },
       { label: "Proven in the open", href: "/open", anchor: "#open" },
+      { label: "Methodology and questions", href: "/methodology", anchor: "#methodology" },
+      { label: "How to verify us", href: "/verify", anchor: "#verify" },
       { label: "Join the waitlist", href: "/#waitlist", anchor: "#waitlist" },
     ],
   },
@@ -102,6 +117,7 @@ export const FOOTER_COLS = [
   {
     head: "Firm",
     links: [
+      { label: "The founder", href: "/founder", anchor: "#founder" },
       { label: "Thesis", href: "/#thesis", anchor: "#thesis" },
       { label: "Building in the open", href: "/progress", anchor: "#progress" },
       { label: "The kill log", href: "/open#killlog", anchor: "#open" },

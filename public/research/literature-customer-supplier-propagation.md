@@ -1,4 +1,4 @@
-# Customer–supplier propagation — source and identity review
+# Customer–supplier propagation: source and identity review
 
 **Reviewed:** 2026-08-16. **Research stage:** literature and source engineering only. No prices,
 returns, signs, thresholds, or portfolio statistics were inspected.

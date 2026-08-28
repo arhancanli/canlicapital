@@ -1,4 +1,6 @@
-# Customer–supplier propagation — locked no-return relationship-source protocol
+# Customer–supplier propagation: locked no-return relationship-source protocol
+
+**Short title:** Customer-supplier propagation: feasibility
 
 **Declared:** 2026-08-16 before computing corpus prevalence, selecting the document sample, or
 extracting any customer name. **Stage:** official-source feasibility only. Market prices, returns,

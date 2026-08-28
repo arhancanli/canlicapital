@@ -4,7 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Canli Capital / Progress, the build in the open</title>
-  <meta name="description" content="Built in the open, phase by phase. Four algorithms running live on paper - crypto carry, equity momentum, managed-futures trend, PIT macro surprise, and their flagship ALPHAC. Honest about what works, what does not, and why depth matters." />
+  <meta name="description" content="The ALPHAC build log, phase by phase and in the open: what shipped, what broke, and what was corrected. Four sleeves live on paper, no client capital." />
+  <meta name="author" content="Arhan Canli" />
   <meta name="theme-color" content="#0A0B0D" />
   <meta name="color-scheme" content="dark" />
   <link rel="canonical" href="https://canlicapital.com/progress" />
@@ -13,28 +14,30 @@
   <meta property="og:site_name" content="Canli Capital" />
   <meta property="og:locale" content="en_US" />
   <meta property="og:title" content="Canli Capital / Progress" />
-  <meta property="og:description" content="Built in the open, phase by phase. Four algorithms running live on paper - crypto carry, equity momentum, managed-futures trend, PIT macro surprise, and their flagship ALPHAC. Honest about what works, what does not, and why depth matters." />
+  <meta property="og:description" content="The ALPHAC build log, phase by phase and in the open: what shipped, what broke, and what was corrected. Four sleeves live on paper, no client capital." />
   <meta property="og:url" content="https://canlicapital.com/progress" />
   <meta property="og:image" content="https://canlicapital.com/og.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta property="og:image:type" content="image/png" />
-  <meta property="og:image:alt" content="Canli Capital. A multi-signal quant engine, proven in the open. Simulation and live paper only, no real capital, no claimed return." />
+  <meta property="og:image:alt" content="Canli Capital. Systematic research proven in the open. The published ALPHAC record is paper-only and includes no funded performance." />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Canli Capital / Progress" />
-  <meta name="twitter:description" content="Built in the open, phase by phase. Four algorithms running live on paper - crypto carry, equity momentum, managed-futures trend, PIT macro surprise, and their flagship ALPHAC. Honest about what works, what does not, and why depth matters." />
+  <meta name="twitter:description" content="The ALPHAC build log, phase by phase and in the open: what shipped, what broke, and what was corrected. Four sleeves live on paper, no client capital." />
   <meta name="twitter:image" content="https://canlicapital.com/og.png" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@300..700&display=swap" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@300..700&display=swap" />
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@300..700&display=optional" />
+  <link rel="stylesheet" media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@300..700&display=optional" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@300..700&display=optional" /></noscript>
 
   <link rel="stylesheet" href="./css/styles.css" />
   <link rel="stylesheet" href="./css/motion.css" />
-  <link rel="stylesheet" href="./css/shell.css" />
   <link rel="stylesheet" href="./css/waitlist.css" />
   <link rel="stylesheet" href="./css/progress.css" />
+  <link rel="stylesheet" href="./css/shell.css" />
+  <link rel="stylesheet" href="/css/product-shell.css" />
 
   <!-- Favicon set (the brand mark: one signal dot on the void). The SVG is the
        primary, scalable icon; the .ico is the legacy fallback; the PNG sizes serve
@@ -55,7 +58,7 @@
     "url": "https://canlicapital.com/",
     "logo": "https://canlicapital.com/icon-512.png",
     "image": "https://canlicapital.com/og.png",
-    "description": "A quantitative research platform running four sleeves in paper: AlphaForge in crypto funding carry, AlphaMax in US equity momentum, AlphaTrend in managed-futures trend, and AlphaVintage in point-in-time macro surprise, combined at equal quarters into ALPHAC, the flagship the firm reports on. No sleeve currently clears our deflation bar. Validated in simulation and live paper trading. No real capital, no claimed returns.",
+    "description": "A quantitative research platform running four sleeves in paper: AlphaForge, AlphaMax, AlphaTrend and AlphaVintage, combined into the published ALPHAC record. No sleeve currently clears the portfolio-maturity bar. The strategy record includes no funded performance.",
     "foundingDate": "2026",
     "founder": { "@type": "Person", "name": "Arhan Canli" },
     "slogan": "Institutional discipline, made legible.",
@@ -129,13 +132,12 @@
     </ul>
   </nav>
 
-  <!-- Shared top nav: js/shell.js renders the links + CTA into this .nav__links
-       and marks /progress as the current page. -->
-  <header class="nav" id="nav">
-    <div class="nav__inner">
-      <a href="/" class="nav__brand label" data-brand aria-label="Canli Capital, home">Canli Capital</a>
-      <nav class="nav__links" aria-label="Primary"></nav>
-    </div>
+  <header class="cc-shell" id="nav" data-product-shell="v3">
+    <a class="cc-shell__brand" href="/" aria-label="Canli Capital, home"><span class="cc-shell__mark" aria-hidden="true"><i></i></span><span>Canli Capital</span></a>
+    <a class="cc-shell__status" href="/measurements/alpaca-broker-reconciliation" aria-label="Current record status"><span class="status-dot" aria-hidden="true"></span><span>Public paper record</span></a>
+    <nav class="cc-shell__primary" aria-label="Primary navigation"><a class="cc-shell__link" href="https://app.canlicapital.com/dashboard" rel="noreferrer">Live</a><a class="cc-shell__link" href="/research">Research</a><a class="cc-shell__link" href="/trials">Trials</a><a class="cc-shell__link" href="/systems">Systems</a><a class="cc-shell__link" href="/methodology">Methodology</a><a class="cc-shell__link" href="/verify">Verify</a></nav>
+    <details class="cc-shell__index"><summary><span class="cc-shell__index-wide">More</span><span class="cc-shell__index-compact">Menu</span></summary><div class="cc-shell__panel"><div><span class="cc-shell__panel-label">Core</span><nav aria-label="Core routes"><a class="cc-shell__panel-link" href="https://app.canlicapital.com/dashboard" rel="noreferrer">Live</a><a class="cc-shell__panel-link" href="/research">Research</a><a class="cc-shell__panel-link" href="/trials">Trials</a><a class="cc-shell__panel-link" href="/systems">Systems</a><a class="cc-shell__panel-link" href="/methodology">Methodology</a><a class="cc-shell__panel-link" href="/verify">Verify</a></nav></div><div><span class="cc-shell__panel-label">Institution</span><nav aria-label="Institution routes"><a class="cc-shell__panel-link" href="/progress" aria-current="page" data-current="true">Corrections</a><a class="cc-shell__panel-link" href="/performance">Status</a><a class="cc-shell__panel-link" href="/founder">Founder</a><a class="cc-shell__panel-link" href="/open">Open data</a><a class="cc-shell__panel-link" href="/measurements">Measurements</a></nav></div><p>Observed, simulated, model-estimated and planned claims remain visibly separate.</p></div></details>
+    <a class="cc-shell__cta" href="https://app.canlicapital.com/dashboard">Enter live record <span aria-hidden="true">↗</span></a>
   </header>
 
   <main id="content" class="content" tabindex="-1">
@@ -167,7 +169,7 @@
         <p class="pstrip type-mono" aria-label="Verified build facts">
           <span class="pstrip__item"><span class="pstrip__num" data-fact="phases">12</span> phases shipped</span>
           <span class="pstrip__sep" aria-hidden="true">/</span>
-          <span class="pstrip__item"><span class="pstrip__num" data-fact="tests">2,820+</span> automated tests</span>
+          <span class="pstrip__item"><span class="pstrip__num" data-fact="tests">3,961+</span> automated tests</span>
           <span class="pstrip__sep" aria-hidden="true">/</span>
           <span class="pstrip__item">mypy --strict</span>
           <span class="pstrip__sep" aria-hidden="true">/</span>
@@ -205,7 +207,7 @@
         </p>
       </div>
       <p class="progress__data mono-label type-mono">
-        <span data-fact="phases">12</span> phases / <span data-fact="tests">2,820+</span> tests, green / mypy --strict / CI on every change
+        <span data-fact="phases">12</span> phases / <span data-fact="tests">3,961+</span> tests, green / mypy --strict / CI on every change
       </p>
     </section>
 
@@ -283,24 +285,24 @@
         <dl class="estate__grid">
           <div class="estate__cell">
             <dt class="estate__k mono-label">Daily bars, equity lake</dt>
-            <dd class="estate__v mono-data" data-fact="bars">24M+</dd>
+            <dd class="estate__v mono-data" data-fact="bars">24.7M+</dd>
           </div>
           <div class="estate__cell">
             <dt class="estate__k mono-label">US stocks, survivorship-free</dt>
-            <dd class="estate__v mono-data"><span data-fact="equityStocks">8,436</span><span class="estate__v-since mono-label"><span data-fact="equitySince">1997</span> to 2026</span></dd>
+            <dd class="estate__v mono-data"><span data-fact="equityStocks">6,835</span><span class="estate__v-since mono-label"><span data-fact="equitySince">1997</span> to 2026</span></dd>
           </div>
           <div class="estate__cell">
             <dt class="estate__k mono-label">Point-in-time fundamentals</dt>
-            <dd class="estate__v mono-data" data-fact="fundamentals">392K+</dd>
+            <dd class="estate__v mono-data" data-fact="fundamentals">380K+</dd>
           </div>
           <div class="estate__cell">
             <dt class="estate__k mono-label">Crypto instrument universe (live + delisted)</dt>
-            <dd class="estate__v mono-data" data-fact="instruments">94</dd>
+            <dd class="estate__v mono-data" data-fact="instruments">775</dd>
           </div>
         </dl>
         <p class="estate__line mono-label">
           <span class="comment">//</span>
-          Running 24/7 on paper across the live and delisted book. No real capital in
+          Running 24/7 on paper across the live and delisted book. No funded performance in
           play. The build in the open.
         </p>
       </div>
@@ -345,7 +347,11 @@
 
   </main>
 
-  <footer class="footer" id="footer" data-section="99"></footer>
+  <footer class="cc-footer" id="footer" data-product-shell="v3">
+    <div class="cc-footer__lead"><a class="cc-footer__brand" href="/">Canli Capital</a><p>Build the claim. Publish the evidence. Keep the failures.</p></div>
+    <div class="cc-footer__routes"><nav aria-label="Portfolio and research"><span>Research system</span><a href="https://app.canlicapital.com/dashboard">Live record</a><a href="/systems">ALPHAC systems</a><a href="/research">Research papers</a><a href="/trials">Trial union</a></nav><nav aria-label="Evidence and verification"><span>Evidence</span><a href="/methodology">Methodology</a><a href="/verify">Verify record</a><a href="/measurements">Measurements</a><a href="/open">Open data</a></nav><nav aria-label="Institution and authorship"><span>Institution</span><a href="/progress">Corrections</a><a href="/performance">Status</a><a href="/founder">Arhan Canli</a><a href="https://github.com/arhancanli" rel="noreferrer">GitHub</a></nav></div>
+    <div class="cc-footer__boundary"><p>Research and paper execution only. No managed capital, copy trading, investment advice or promised return.</p><p>Founded and built by Arhan Canli in Dubai.</p><span>Copyright Arhan Canli</span></div>
+  </footer>
 
   <!-- Shared waitlist + boot. The progress-only phase explorer is loaded as its
        own small module; it self-inits and no-ops if there are no phases. -->

@@ -1,0 +1,222 @@
+{
+  "author": "Arhan Canli",
+  "claim_boundary": "This seal verifies six plain splits at their issuer-bound frozen bars: BNI, EPAC, GDW, HAFC, JAKK, and LNG. It does not open returns, authorize another event, or pass the global split gate.",
+  "content_hash": "sha256:6342504521c9d41ce2e22eb7fd54273ba7db85ca46a3ab00a24557c52fa400da",
+  "decision": "SIX_EXACT_ISSUER_SHARE_MUTATIONS_VERIFIED",
+  "hypotheses_spent": 0,
+  "lineage": {
+    "unresolved_context_content_hash": "sha256:c81c35a83c706cec7a8b4e4c9f22d1f0c874c26fe42c8a92ebdc0bc75c7b4d3f",
+    "unresolved_context_path": "artifacts/audit/unresolved_split_event_context.json",
+    "unresolved_context_sha256": "98304049af107814ec6b7798ff6ea91ab54e16c1f8801c202f1fbbd8d692b2c0"
+  },
+  "required_next_action": "Merge only these six exact instrument/date/stored-ratio tuples into the fail-closed policy.",
+  "retrieved_at": "2026-08-23T06:15:31.487904+00:00",
+  "return_data_opened": false,
+  "schema": "canli.alphac-split-issuer-resolution-batch.v7",
+  "verified_events": [
+    {
+      "authorization": "BYPASS_PRICE_GAP_HEURISTIC_FOR_THIS_EXACT_EVENT_ONLY",
+      "date_binding": "FIRST_FROZEN_BAR_AFTER_ISSUER_DISTRIBUTION_DATE",
+      "ex_date": "1998-09-02 04:00:00+04:00",
+      "ex_date_ms": 904694400000,
+      "instrument_id": "XUSE:CASH:BNIUSD",
+      "issuer_distribution_date": "1998-09-01",
+      "issuer_ratio": 3.0,
+      "market_date_binding": {
+        "binding": "FIRST_FROZEN_BAR_AFTER_ISSUER_DISTRIBUTION_DATE",
+        "event_close": 29.615,
+        "event_date": "1998-09-02",
+        "price_partition_path": "data/corrections/corporate_action_basis_48fcfde04e3c_materialized_v1/data/lake_sharadar/ohlcv_1d/instrument_id=XUSE:CASH:BNIUSD/year=1998/data.parquet",
+        "price_partition_sha256": "f1309e14f0841b2e03e2b5b099a3c44a7e5df910ab258e29d1feeb76b119f64e",
+        "prior_close": 30.969,
+        "prior_date": "1998-09-01"
+      },
+      "prior_context_classification": "PLAIN_SPLIT_WITHOUT_LIFECYCLE_CONTEXT",
+      "ratio": 3.0,
+      "required_fragments": [
+        "approved a three-for-one common stock split",
+        "a stock dividend of two additional shares of BNSF common stock",
+        "payable for each share outstanding or held in treasury on September 1, 1998"
+      ],
+      "required_fragments_verified": [
+        "approved a three-for-one common stock split",
+        "a stock dividend of two additional shares of BNSF common stock",
+        "payable for each share outstanding or held in treasury on September 1, 1998"
+      ],
+      "retrieved_sha256": "a3961499cebc074396cc53b6c9890f0be976c025f24966d2211bb32069a2d9d6",
+      "stored_ratio": 3.0,
+      "ticker": "BNI",
+      "url": "https://www.sec.gov/Archives/edgar/data/934612/000093461298000017/0000934612-98-000017.txt"
+    },
+    {
+      "authorization": "BYPASS_PRICE_GAP_HEURISTIC_FOR_THIS_EXACT_EVENT_ONLY",
+      "date_binding": "ISSUER_EFFECTIVE_DATE_EQUALS_FROZEN_EVENT_DATE",
+      "ex_date": "1998-02-03 04:00:00+04:00",
+      "ex_date_ms": 886464000000,
+      "instrument_id": "XUSE:CASH:EPACUSD",
+      "issuer_effective_date": "1998-02-03",
+      "issuer_ratio": 2.0,
+      "market_date_binding": {
+        "binding": "ISSUER_EFFECTIVE_DATE_EQUALS_FROZEN_EVENT_DATE",
+        "event_close": 70.125,
+        "event_date": "1998-02-03",
+        "price_partition_path": "data/corrections/corporate_action_basis_48fcfde04e3c_materialized_v1/data/lake_sharadar/ohlcv_1d/instrument_id=XUSE:CASH:EPACUSD/year=1998/data.parquet",
+        "price_partition_sha256": "105323a43b967eab112aa354388d27a344d568a4a1ae29ab5706aaaa4b73ac3a",
+        "prior_close": 69.938,
+        "prior_date": "1998-02-02"
+      },
+      "prior_context_classification": "PLAIN_SPLIT_WITHOUT_LIFECYCLE_CONTEXT",
+      "ratio": 2.0,
+      "required_fragments": [
+        "authorized a two-for-one stock split",
+        "a 100 percent stock dividend",
+        "shares of the Company's common stock were issued on February 3, 1998"
+      ],
+      "required_fragments_verified": [
+        "authorized a two-for-one stock split",
+        "a 100 percent stock dividend",
+        "shares of the Company's common stock were issued on February 3, 1998"
+      ],
+      "retrieved_sha256": "e0a4906897eae84c2d53ab8baf2e9c116f16fe2f9f3b06d7de04ca3409778c37",
+      "stored_ratio": 2.0,
+      "ticker": "EPAC",
+      "url": "https://www.sec.gov/Archives/edgar/data/6955/000095013198002327/0000950131-98-002327.txt"
+    },
+    {
+      "authorization": "BYPASS_PRICE_GAP_HEURISTIC_FOR_THIS_EXACT_EVENT_ONLY",
+      "date_binding": "FIRST_FROZEN_BAR_AFTER_ISSUER_DISTRIBUTION_DATE",
+      "ex_date": "1999-12-13 04:00:00+04:00",
+      "ex_date_ms": 945043200000,
+      "instrument_id": "XUSE:CASH:GDWUSD",
+      "issuer_distribution_date": "1999-12-10",
+      "issuer_ratio": 3.0,
+      "market_date_binding": {
+        "binding": "FIRST_FROZEN_BAR_AFTER_ISSUER_DISTRIBUTION_DATE",
+        "event_close": 31.25,
+        "event_date": "1999-12-13",
+        "price_partition_path": "data/corrections/corporate_action_basis_48fcfde04e3c_materialized_v1/data/lake_sharadar/ohlcv_1d/instrument_id=XUSE:CASH:GDWUSD/year=1999/data.parquet",
+        "price_partition_sha256": "86d8061d20d5a2a5dc0e2f78ee1ca499a44e27d5e2dba754df4bf717acccba67",
+        "prior_close": 32.062,
+        "prior_date": "1999-12-10"
+      },
+      "prior_context_classification": "PLAIN_SPLIT_WITHOUT_LIFECYCLE_CONTEXT",
+      "ratio": 3.0,
+      "required_fragments": [
+        "a three-for-one split of its outstanding Common Stock",
+        "in the form of a 200% stock dividend",
+        "This dividend was payable December 10, 1999"
+      ],
+      "required_fragments_verified": [
+        "a three-for-one split of its outstanding Common Stock",
+        "in the form of a 200% stock dividend",
+        "This dividend was payable December 10, 1999"
+      ],
+      "retrieved_sha256": "ccf062fd2ea6a9ea77787162c0bc85cf91e37dccc1f2ce393eef9723d0fbca10",
+      "stored_ratio": 3.0,
+      "ticker": "GDW",
+      "url": "https://www.sec.gov/Archives/edgar/data/42293/000004229300000009/0000042293-00-000009.txt"
+    },
+    {
+      "authorization": "BYPASS_PRICE_GAP_HEURISTIC_FOR_THIS_EXACT_EVENT_ONLY",
+      "date_binding": "FIRST_FROZEN_BAR_AFTER_ISSUER_DISTRIBUTION_DATE",
+      "ex_date": "2001-09-24 04:00:00+04:00",
+      "ex_date_ms": 1001289600000,
+      "instrument_id": "XUSE:CASH:HAFCUSD",
+      "issuer_distribution_date": "2001-09-21",
+      "issuer_ratio": 1.5,
+      "market_date_binding": {
+        "binding": "FIRST_FROZEN_BAR_AFTER_ISSUER_DISTRIBUTION_DATE",
+        "event_close": 14.0,
+        "event_date": "2001-09-24",
+        "price_partition_path": "data/corrections/corporate_action_basis_48fcfde04e3c_materialized_v1/data/lake_sharadar/ohlcv_1d/instrument_id=XUSE:CASH:HAFCUSD/year=2001/data.parquet",
+        "price_partition_sha256": "89420bf6777fdd8fe4c588578af7c520ccfcfe727cbb7c78e0acb1a11ee9a7c3",
+        "prior_close": 20.0,
+        "prior_date": "2001-09-21"
+      },
+      "prior_context_classification": "PLAIN_SPLIT_WITHOUT_LIFECYCLE_CONTEXT",
+      "ratio": 1.5,
+      "required_fragments": [
+        "the Company announced a three-for-two stock split",
+        "one additional share of Hanmi Financial common stock for every two shares",
+        "Distribution of additional shares issued as a result of the split occurred on September 21, 2001"
+      ],
+      "required_fragments_verified": [
+        "the Company announced a three-for-two stock split",
+        "one additional share of Hanmi Financial common stock for every two shares",
+        "Distribution of additional shares issued as a result of the split occurred on September 21, 2001"
+      ],
+      "retrieved_sha256": "70f7e8cead0f4c1c71c1f352c9715e19f228ae160c1d5087d2c008e3f27ea7ff",
+      "stored_ratio": 1.5,
+      "ticker": "HAFC",
+      "url": "https://www.sec.gov/Archives/edgar/data/1109242/000091205701539508/a2062901z10-q.htm"
+    },
+    {
+      "authorization": "BYPASS_PRICE_GAP_HEURISTIC_FOR_THIS_EXACT_EVENT_ONLY",
+      "date_binding": "FIRST_FROZEN_BAR_AFTER_ISSUER_DISTRIBUTION_DATE",
+      "ex_date": "1999-11-05 04:00:00+04:00",
+      "ex_date_ms": 941760000000,
+      "instrument_id": "XUSE:CASH:JAKKUSD",
+      "issuer_distribution_date": "1999-11-04",
+      "issuer_ratio": 1.5,
+      "market_date_binding": {
+        "binding": "FIRST_FROZEN_BAR_AFTER_ISSUER_DISTRIBUTION_DATE",
+        "event_close": 23.875,
+        "event_date": "1999-11-05",
+        "price_partition_path": "data/corrections/corporate_action_basis_48fcfde04e3c_materialized_v1/data/lake_sharadar/ohlcv_1d/instrument_id=XUSE:CASH:JAKKUSD/year=1999/data.parquet",
+        "price_partition_sha256": "72bc3cd02e3a410792191207f009787f3f13194925f7875b65ba8b80143fc082",
+        "prior_close": 26.667,
+        "prior_date": "1999-11-04"
+      },
+      "prior_context_classification": "PLAIN_SPLIT_WITHOUT_LIFECYCLE_CONTEXT",
+      "ratio": 1.5,
+      "required_fragments": [
+        "On November 4, 1999, we will distribute",
+        "a dividend of 1/2 share of our common stock for each share",
+        "cash will be paid in lieu of fractional shares"
+      ],
+      "required_fragments_verified": [
+        "On November 4, 1999, we will distribute",
+        "a dividend of 1/2 share of our common stock for each share",
+        "cash will be paid in lieu of fractional shares"
+      ],
+      "retrieved_sha256": "3245b8fe1be17faa35a2b3d53563d487e3f35eeae259c76bf5979dfb69da89e9",
+      "stored_ratio": 1.5,
+      "ticker": "JAKK",
+      "url": "https://www.sec.gov/Archives/edgar/data/1009829/000095014899002339/0000950148-99-002339.txt"
+    },
+    {
+      "authorization": "BYPASS_PRICE_GAP_HEURISTIC_FOR_THIS_EXACT_EVENT_ONLY",
+      "date_binding": "ISSUER_EFFECTIVE_DATE_EQUALS_FROZEN_EVENT_DATE",
+      "ex_date": "2000-10-18 04:00:00+04:00",
+      "ex_date_ms": 971827200000,
+      "instrument_id": "XUSE:CASH:LNGUSD",
+      "issuer_effective_date": "2000-10-18",
+      "issuer_ratio": 0.25,
+      "market_date_binding": {
+        "binding": "ISSUER_EFFECTIVE_DATE_EQUALS_FROZEN_EVENT_DATE",
+        "event_close": 2.13,
+        "event_date": "2000-10-18",
+        "price_partition_path": "data/corrections/corporate_action_basis_48fcfde04e3c_materialized_v1/data/lake_sharadar/ohlcv_1d/instrument_id=XUSE:CASH:LNGUSD/year=2000/data.parquet",
+        "price_partition_sha256": "1fd3cc2faf5ef00a2e54cb0ca6d1fd76b904a292f1a7d3c2a0832e27a84608a8",
+        "prior_close": 0.5,
+        "prior_date": "2000-10-17"
+      },
+      "prior_context_classification": "PLAIN_SPLIT_WITHOUT_LIFECYCLE_CONTEXT",
+      "ratio": 0.25,
+      "required_fragments": [
+        "our stockholders approved a one-for-four reverse stock split",
+        "The reverse stock split became effective on October 18, 2000",
+        "reduced our issued and outstanding shares from 43,989,572 shares to 10,997,393"
+      ],
+      "required_fragments_verified": [
+        "our stockholders approved a one-for-four reverse stock split",
+        "The reverse stock split became effective on October 18, 2000",
+        "reduced our issued and outstanding shares from 43,989,572 shares to 10,997,393"
+      ],
+      "retrieved_sha256": "f6b81accb3caebd7043abd5ee3c588f02adf6e509d404677a31eca039030cf50",
+      "stored_ratio": 0.25,
+      "ticker": "LNG",
+      "url": "https://www.sec.gov/Archives/edgar/data/3570/000119312504049308/d10k.htm"
+    }
+  ]
+}

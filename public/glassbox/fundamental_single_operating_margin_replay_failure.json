@@ -1,0 +1,68 @@
+{
+  "author": "Arhan Canli",
+  "claim_boundary": "This receipt proves a completed zero-new-hypothesis replay failed exact equality. The replay metrics are quarantined diagnostics, not a new trial, validated result, Sharpe claim, admission claim, or evidence of future performance.",
+  "comparison": {
+    "equity_mismatch_count": 5383,
+    "equity_mismatch_fraction": 0.9996285979572888,
+    "equity_values_equal": false,
+    "first_mismatch_row": 2,
+    "first_mismatch_ts": 1104969600000,
+    "maximum_absolute_equity_difference": 7568201.095225516,
+    "maximum_relative_equity_difference": 97.21743667653367,
+    "original_equity_at_first_mismatch": 100385.60155257735,
+    "replay_equity_at_first_mismatch": 100386.75155257735,
+    "rows": 5385,
+    "summary_equal": false,
+    "timestamps_equal": true
+  },
+  "content_hash": "sha256:fbf8797343cae393628285fe30692d48a9a5601d82d6a3af602373c0223d56c6",
+  "decision": "EXACT_REPRODUCTION_FAILED",
+  "evidence": {
+    "current_ledger_state": {
+      "active_rows": 226,
+      "union_identities": 228
+    },
+    "data_environment": {
+      "cash_amount_imputed": false,
+      "corrected_corporate_actions_root": "sha256:51e79666067d46e5f679aff9867ddd4a7e6cd8ff150da2b583d5713537e32ea9",
+      "kind": "VERSIONED_SHARADAR_HDB_ZERO_MARKER_QUARANTINE",
+      "lake_dir": "data/corrections/hdb_zero_marker_c30b02bf34aa_materialized_v1/data/lake_sharadar",
+      "rows_quarantined": 1,
+      "versioned_correction_content_hash": "sha256:8dec4dac90c0f2646ac09f2dfcbb26f5bd500c8fcb8c2bcda795113f7a46f9a8",
+      "versioned_correction_manifest": "artifacts/audit/sharadar_hdb_corrected_lake.json",
+      "versioned_correction_manifest_sha256": "d6efda5619e3aa3ab7d841bfee16c059a64bb732de94ea6f3c60835e42c09c64"
+    },
+    "preserved_equity_path": "artifacts/walkforward/single_operating_margin/equity.parquet",
+    "preserved_equity_sha256": "sha256:5dbad6d37710b022ba76b37f0ee5bedeb9589fbc2afec2934ea31d7bc865337f",
+    "preserved_walkforward_path": "artifacts/walkforward/single_operating_margin/walkforward.json",
+    "preserved_walkforward_sha256": "sha256:603e5d53e3f1d36b1585cdd923f6fd7e1709db29b1505a0c15d4242be6bdf7e5",
+    "replay_environment_path": "artifacts/probe/fundamental_single_replays/e5f48adc25065ce9/replay_environment.json",
+    "replay_environment_sha256": "sha256:8b927bec502db8ba143396d8034db1c0b4adc11d8a71bcccaa0120963f04075d",
+    "replay_equity_path": "artifacts/probe/fundamental_single_replays/e5f48adc25065ce9/equity.parquet",
+    "replay_equity_sha256": "sha256:0be3cd0b73187d90029d3033c89ac08be9ab597d2837180b9fa251d844f2c18c",
+    "replay_walkforward_path": "artifacts/probe/fundamental_single_replays/e5f48adc25065ce9/walkforward.json",
+    "replay_walkforward_sha256": "sha256:a2810e2659299c0a58cf415097047bf1da54f061f0dbc9cee66f14b2f3c9c66d",
+    "runner_invoked_without_experiment_logging": true,
+    "source_environment_content_hash": "sha256:71a3d0b8e5aeba13a39daac512cab6c5696d019918f690ee4e132a85bfd96c44"
+  },
+  "evidence_date": "2026-08-23",
+  "exact_first_measurement_reproduced": false,
+  "hypotheses_spent": 0,
+  "hypothesis_key": "e5f48adc25065ce9",
+  "immutable_first_measurement": {
+    "annualized_sharpe": -0.4173809362582861,
+    "final_equity": 63911.64507926929,
+    "maximum_drawdown": 0.39623483315571484
+  },
+  "packet_status": "INCOMPLETE",
+  "quarantined_replay_diagnostic": {
+    "annualized_sharpe": 0.2595404513705637,
+    "eligible_for_admission": false,
+    "final_equity": 5431695.724321028,
+    "maximum_drawdown": 0.28973379014075307
+  },
+  "required_next_action": "Investigate why the current corrected-data/current-code replay diverges from the immutable first measurement. Do not rerun variants, promote the diagnostic curve, or mark the packet complete unless exact lineage and equality are established.",
+  "run_name": "single_operating_margin",
+  "schema": "canli.alphac-fundamental-single-replay-divergence.v1",
+  "status": "FAILED_CLOSED"
+}

@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Options dispersion: feasibility protocol | Canli Capital</title>
+<meta name="description" content="Can one point-in-time S&amp;P 500 index-versus-constituent option book be reconstructed with enough quote, membership, corporate-action, settlement, and…" />
+<meta name="alphac-source-sha256" content="9729a26b73263f1bc6985bbecc7210d2f026e3b64f1dd05cb753c1f5a65e02a8" />
+
+<link rel="canonical" href="https://canlicapital.com/research/options-dispersion-feasibility" />
+<meta name="author" content="Arhan Canli" />
+<meta name="citation_title" content="Options dispersion: locked no-return data and execution-feasibility protocol" />
+<meta name="citation_author" content="Arhan Canli" />
+<meta name="citation_publication_date" content="2026" />
+<meta name="citation_language" content="en" />
+<meta name="citation_fulltext_html_url" content="https://canlicapital.com/research/options-dispersion-feasibility" />
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="Canli Capital" />
+<meta property="og:title" content="Options dispersion: locked no-return data and execution-feasibility protocol" />
+<meta property="og:description" content="Can one point-in-time S&amp;P 500 index-versus-constituent option book be reconstructed with enough quote, membership, corporate-action, settlement, and…" />
+<meta property="og:url" content="https://canlicapital.com/research/options-dispersion-feasibility" />
+<meta property="og:image" content="https://canlicapital.com/og.png" />
+<meta property="article:author" content="Arhan Canli" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Options dispersion: locked no-return data and execution-feasibility protocol" />
+<meta name="twitter:description" content="Can one point-in-time S&amp;P 500 index-versus-constituent option book be reconstructed with enough quote, membership, corporate-action, settlement, and…" />
+<meta name="twitter:image" content="https://canlicapital.com/og.png" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="icon" href="/favicon.ico" sizes="any" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=optional" />
+<link rel="stylesheet" media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=optional" />
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=optional" /></noscript>
+<link rel="stylesheet" href="../css/paper.css" />
+<link rel="stylesheet" href="/css/product-shell.css" />
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"ScholarlyArticle","headline":"Options dispersion: locked no-return data and execution-feasibility protocol","description":"Can one point-in-time S&P 500 index-versus-constituent option book be reconstructed with enough quote, membership, corporate-action, settlement, and…","url":"https://canlicapital.com/research/options-dispersion-feasibility","inLanguage":"en","isAccessibleForFree":true,"datePublished":"2026","author":{"@type":"Person","@id":"https://canlicapital.com/#arhan-canli","name":"Arhan Canli","jobTitle":"Founder and Quantitative Researcher","url":"https://canlicapital.com/founder","sameAs":["https://github.com/arhancanli"],"affiliation":{"@type":"Organization","@id":"https://canlicapital.com/#organization","name":"Canli Capital","url":"https://canlicapital.com/"}},"publisher":{"@type":"Organization","@id":"https://canlicapital.com/#organization","name":"Canli Capital","url":"https://canlicapital.com/","logo":{"@type":"ImageObject","url":"https://canlicapital.com/brand-mark.svg"}},"isPartOf":{"@type":"Periodical","name":"Canli Capital Research","url":"https://canlicapital.com/research"},"encodingFormat":"text/html","associatedMedia":{"@type":"MediaObject","contentUrl":"https://canlicapital.com/research/options-dispersion-feasibility.md","encodingFormat":"text/markdown"}}</script>
+</head>
+<body class="paper">
+<a class="paper__skip" href="#content">Skip to content</a>
+<header class="cc-shell" id="nav" data-product-shell="v3">
+  <a class="cc-shell__brand" href="/" aria-label="Canli Capital, home">
+    <span class="cc-shell__mark" aria-hidden="true"><i></i></span>
+    <span>Canli Capital</span>
+  </a>
+  <a class="cc-shell__status" href="/measurements/alpaca-broker-reconciliation" aria-label="Current record status">
+    <span class="status-dot" aria-hidden="true"></span>
+    <span>Public paper record</span>
+  </a>
+  <nav class="cc-shell__primary" aria-label="Primary navigation">
+<a class="cc-shell__link" href="https://app.canlicapital.com/dashboard" rel="noreferrer">Live</a>
+<a class="cc-shell__link" href="/research" aria-current="page" data-current="true">Research</a>
+<a class="cc-shell__link" href="/trials">Trials</a>
+<a class="cc-shell__link" href="/systems">Systems</a>
+<a class="cc-shell__link" href="/methodology">Methodology</a>
+<a class="cc-shell__link" href="/verify">Verify</a>
+  </nav>
+  <details class="cc-shell__index">
+    <summary><span class="cc-shell__index-wide">More</span><span class="cc-shell__index-compact">Menu</span></summary>
+    <div class="cc-shell__panel">
+      <div>
+        <span class="cc-shell__panel-label">Core</span>
+        <nav aria-label="Core routes"><a class="cc-shell__panel-link" href="https://app.canlicapital.com/dashboard" rel="noreferrer">Live</a>
+<a class="cc-shell__panel-link" href="/research" aria-current="page" data-current="true">Research</a>
+<a class="cc-shell__panel-link" href="/trials">Trials</a>
+<a class="cc-shell__panel-link" href="/systems">Systems</a>
+<a class="cc-shell__panel-link" href="/methodology">Methodology</a>
+<a class="cc-shell__panel-link" href="/verify">Verify</a></nav>
+      </div>
+      <div>
+        <span class="cc-shell__panel-label">Institution</span>
+        <nav aria-label="Institution routes"><a class="cc-shell__panel-link" href="/progress">Corrections</a>
+<a class="cc-shell__panel-link" href="/performance">Status</a>
+<a class="cc-shell__panel-link" href="/founder">Founder</a>
+<a class="cc-shell__panel-link" href="/open">Open data</a>
+<a class="cc-shell__panel-link" href="/measurements">Measurements</a></nav>
+      </div>
+      <p>Observed, simulated, model-estimated and planned claims remain visibly separate.</p>
+    </div>
+  </details>
+  <a class="cc-shell__cta" href="https://app.canlicapital.com/dashboard">Enter live record <span aria-hidden="true">↗</span></a>
+</header>
+<main class="paper__main" id="content">
+  <article class="paper__article">
+    <p class="paper__eyebrow"><a href="/research">Research</a></p>
+    <h1 class="paper__title">Options dispersion: locked no-return data and execution-feasibility protocol</h1>
+    <p class="paper__byline">By <span rel="author">Arhan Canli</span>, Canli Capital</p>
+    <div class="paper__body">
+<p><strong>Short title:</strong> Options dispersion: feasibility protocol</p>
+<p><strong>Declared:</strong> 2026-08-16<br><strong>Return data:</strong> prohibited<br><strong>Hypotheses spent:</strong> zero<br><strong>Family trial account:</strong> <code>options_dispersion</code></p>
+<h2>Question</h2>
+<p>Can one point-in-time S&amp;P 500 index-versus-constituent option book be reconstructed with enough
+quote, membership, corporate-action, settlement, and executable-cost fidelity to justify one later
+return preregistration?</p>
+<p>This stage may inspect schemas, timestamps, identifiers, bid/ask quotes, quote sizes, option terms,
+index membership, dividends, rates, corporate actions, exercise/settlement rules, and missingness.
+It may not calculate strategy P&amp;L, forward realized variance, Sharpe ratio, drawdown, portfolio
+correlation, or any return-conditioned threshold.</p>
+<h2>Frozen research identity</h2>
+<ul>
+<li>Underlying index: S&amp;P 500 / SPX.</li>
+<li>Constituent basket: the 50 largest eligible optionable constituents using membership and float
+market capitalization known before that trading session.</li>
+<li>Measurement time: 3:45 p.m. New York for intraday quotes, or the vendor&#39;s documented 3:59 p.m.
+end-of-day snapshot. Sources cannot be mixed within a date.</li>
+<li>Target maturity: 30 calendar days, interpolated only between eligible near and next standard
+expirations bracketing 30 days.</li>
+<li>Quote construction: model-free OTM option strips, with the official Cboe valid-quote, two-zero-bid,
+and minimum-strike-count rules as the independent reference implementation.</li>
+<li>Missing constituent variances: never forward-filled. Available basket weight and excluded weight
+are both published; no date is eligible below the locked coverage gate.</li>
+<li>No sign, entry threshold, holding return, or performance criterion is selected in this audit.</li>
+</ul>
+<h2>Frozen source hierarchy</h2>
+<ol>
+<li>OptionMetrics IvyDB US end-of-day option prices, permanent security IDs, rates, dividends,
+corporate actions, and surfaces from 1996 onward.</li>
+<li>A point-in-time S&amp;P constituent and float-weight history linked by permanent identifier.</li>
+<li>Cboe DataShop one-minute NBBO and size for SPX and only the frozen constituent sample, used on
+a deterministic calibration-date sample rather than as a substitute history.</li>
+<li>Official OCC/Cboe contract, adjustment, exercise, and settlement metadata.</li>
+<li>Alpaca OPRA capture only for prospective paper/live evidence from February 2024 onward.</li>
+</ol>
+<p>Indicative option feeds, today’s constituent list applied backward, midpoint-only bars, adjusted
+contracts without deliverable lineage, and vendor surfaces without their timestamp/vintage are
+inadmissible.</p>
+<h2>Locked feasibility gates</h2>
+<p>All gates pass before a return protocol can be written:</p>
+<ol>
+<li>At least 15 complete calendar years spanning 2008–2009, 2020, 2022, and 2024–2025.</li>
+<li>At least 99% of research dates have point-in-time index membership and prior-known weights;
+Wilson 95% lower bound at least 98%.</li>
+<li>At least 98% of dates have a valid SPX near/next strip and at least 90% of frozen basket weight
+has valid constituent near/next strips; Wilson lower bounds at least 97% and 88% respectively.</li>
+<li>Every retained contract has bid, ask, quote timestamp, expiration, strike, call/put, multiplier,
+exercise style, settlement style, and deliverable identity; crossed or one-sided markets fail.</li>
+<li>At least 99.5% of retained option rows link uniquely through symbol changes, splits, special
+dividends, mergers, spin-offs, and delistings; adjusted contracts remain separate identities.</li>
+<li>Rates and discrete dividend forecasts are vintage-correct. American single-stock options use an
+early-exercise/assignment model; European cash-settled SPX options do not inherit that model.</li>
+<li>On 250 deterministic overlap dates, the independent option-strip implementation agrees with
+the vendor surface within median 1.0 variance-volatility point and 95th percentile 3.0 points;
+disagreements are published, never averaged away.</li>
+<li>On 250 deterministic Cboe-overlap dates, executable NBBO reconstruction retains at least 85%
+of target vega after size and valid-strip filters; Wilson lower bound at least 80%.</li>
+<li>The accounting identity reconciles index variance, weighted constituent variance, excluded
+basket weight, and implied correlation without clipping except where the official benchmark
+definition explicitly clips its displayed index level.</li>
+<li>A complete execution-state schema exists for commissions, exchange/clearing fees, half-spread,
+nonlinear size impact, partial and rejected fills, leg risk, cancel/replace latency, stale quotes,
+delta-hedge spread/impact, overnight gaps, early assignment, pin risk, dividends, borrow,
+margin, exercise, settlement, halts, exchange outages, and corporate actions.</li>
+<li>A defined-loss construction is possible on every date without using future strikes or fills.
+Unavailable disaster wings make the date ineligible; they are never synthesized.</li>
+<li>Return data opened and return identities spent remain exactly zero.</li>
+</ol>
+<h2>Decisions</h2>
+<ul>
+<li><code>PASS_TO_RETURN_PREREGISTRATION</code>: every gate passes and all manifests are hash-bound.</li>
+<li><code>DATA_GATED</code>: a named licensed dataset can resolve a failed lineage or quote-size gate.</li>
+<li><code>KILL_FEASIBILITY</code>: the defined-loss basket or point-in-time replication is structurally
+unavailable at adequate coverage.</li>
+<li><code>REJECT_GOVERNANCE</code>: returns were opened, samples changed after inspection, or a present-day
+constituent/contract state rewrote history.</li>
+</ul>
+<p>Passing permits exactly one separately sealed 30-day return identity. It does not admit a sleeve.</p>
+<h2>Credential boundary</h2>
+<p>No Alpaca key is requested for the historical decision because Alpaca&#39;s options history begins in
+February 2024. The first useful access is OptionMetrics IvyDB US through a direct license or WRDS,
+plus point-in-time S&amp;P membership. Cboe DataShop is second, scoped to deterministic quote-size
+calibration dates. Alpaca OPRA credentials become useful only after those gates pass, for prospective
+capture and paper execution. Secrets must be supplied through environment variables and are never
+written to source, artifacts, logs, or research pages.</p>
+
+    </div>
+    <nav class="paper__related" aria-label="Related research">
+      <p class="paper__related-kicker">Filed under</p>
+      <p class="paper__links"><a href="/research/topics/feasibility-protocols">Feasibility protocols</a><span aria-hidden="true"> / </span><a href="/research/topics/options-and-volatility">Options and volatility</a><span aria-hidden="true"> / </span><a href="/research/topics/execution-and-market-structure">Execution and market structure</a></p>
+      <p class="paper__related-kicker">Related work</p>
+      <ul class="paper__related-list"><li><a href="/research/options-execution-foundation">Point-in-time options execution foundation</a></li><li><a href="/research/borrow-execution-foundation">Point-in-time securities-borrow foundation</a></li><li><a href="/research/crypto-carry-portable-v1">A hash-bound prospective test of cross-sectional perpetual-futures carry</a></li><li><a href="/research/alphatrend-managed-futures-lineage">AlphaTrend managed-futures trend: complete trial lineage and evidence boundary</a></li><li><a href="/research/crypto-defensive-lineage">Crypto defensive factors: positive summaries without admission evidence</a></li><li><a href="/research/kill-crypto-lowvol-720">Crypto Low-Volatility: a killed candidate</a></li></ul>
+    </nav>
+    <footer class="paper__footer">
+      <p class="paper__links">
+        <a href="/research/options-dispersion-feasibility.md">Read the unrendered source</a>
+        <span aria-hidden="true"> / </span>
+        <a href="/research/citations/options-dispersion-feasibility.bib" download>Cite this report</a>
+        <span aria-hidden="true"> / </span>
+        <a href="/open">Inspect the underlying artifacts</a>
+        <span aria-hidden="true"> / </span>
+        <a href="/research">All research</a>
+      </p>
+      <p class="paper__boundary">
+        Published as evidence, not as a claim about future performance. The figures quoted here
+        are reproducible from the artifacts linked above.
+      </p>
+    </footer>
+  </article>
+</main>
+<footer class="cc-footer" id="footer" data-product-shell="v3">
+  <div class="cc-footer__lead">
+    <a class="cc-footer__brand" href="/">Canli Capital</a>
+    <p>Build the claim. Publish the evidence. Keep the failures.</p>
+  </div>
+  <div class="cc-footer__routes">
+    <nav aria-label="Portfolio and research">
+      <span>Research system</span>
+      <a href="https://app.canlicapital.com/dashboard">Live record</a>
+      <a href="/systems">ALPHAC systems</a>
+      <a href="/research">Research papers</a>
+      <a href="/trials">Trial union</a>
+    </nav>
+    <nav aria-label="Evidence and verification">
+      <span>Evidence</span>
+      <a href="/methodology">Methodology</a>
+      <a href="/verify">Verify record</a>
+      <a href="/measurements">Measurements</a>
+      <a href="/open">Open data</a>
+    </nav>
+    <nav aria-label="Institution and authorship">
+      <span>Institution</span>
+      <a href="/progress">Corrections</a>
+      <a href="/performance">Status</a>
+      <a href="/founder">Arhan Canli</a>
+      <a href="https://github.com/arhancanli" rel="noreferrer">GitHub</a>
+    </nav>
+  </div>
+  <div class="cc-footer__boundary">
+    <p>Research and paper execution only. No managed capital, copy trading, investment advice or promised return.</p>
+    <p>Founded and built by Arhan Canli in Dubai.</p>
+    <span>Copyright Arhan Canli</span>
+  </div>
+</footer>
+</body>
+</html>

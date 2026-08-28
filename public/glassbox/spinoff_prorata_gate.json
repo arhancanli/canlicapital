@@ -1,0 +1,36 @@
+{
+  "any_pro_rata_token_rate": 0.11224489795918367,
+  "claim_boundary": "A measurement of document LANGUAGE on 98 frozen Form 10 filings, every one hash-verified against the feasibility artifact. Opens no market data, registers no hypothesis identity, and proposes no change to the pre-registered threshold. 0 trials.",
+  "documents": 98,
+  "documents_containing_any_pro_rata_token": 11,
+  "false_negatives_reviewed": {
+    "count": 1,
+    "documents": [
+      "0000950123-17-006934.htm.gz"
+    ],
+    "note": "Each was read. They are preemptive-rights and similar boilerplate uses of 'pro rata share', not a spin-off distribution, so they are correct negatives for the intended meaning rather than misses."
+  },
+  "gate": "pro_rata_distribution_language_rate_gte_0_30",
+  "gate_threshold": 0.3,
+  "hash_verified_against_artifact": 98,
+  "schema": "canli.alphac-spinoff-prorata-gate.v1",
+  "shipped_detector_rate": 0.16326530612244897,
+  "tolerant_near_distribution_rate": 0.05102040816326531,
+  "verdict": "GATE_UNREACHABLE_BY_DETECTOR_REPAIR",
+  "what_this_implies": "The identity is not observable as pre-registered, which is the same classification already applied to treasury_auction_concession. The next step is an identity REDESIGN with its own pre-registration -- an initial Form 10 evidently does not carry distribution mechanics at the rate this protocol assumed, and any redesign must name the document that does before it names a threshold. Lowering the threshold on the existing protocol would be fitting the gate to the result.",
+  "why": "Only 11 of 98 documents contain a pro-rata token in ANY written form (11.2%), and only 5 contain one near a distribution reference (5.1%). The gate asks for 30%. A perfect detector therefore reaches at most 11.2%: the shortfall is not extraction, it is that this language is not in these documents. Widening the pattern until the number cleared would have been tuning a measurement to agree with a target.",
+  "\u26a0\ufe0f_the_shipped_detector_OVERSTATES_the_rate": {
+    "affected_documents": [
+      "0001193125-20-060717.htm.gz",
+      "0001213900-21-056422.htm.gz",
+      "0001445866-17-000049.htm.gz",
+      "0001709179-17-000007.HTM.gz",
+      "0001721868-20-000002.htm.gz",
+      "0001826466-20-000015.htm.gz"
+    ],
+    "cause": "PRO_RATA_PATTERN's second alternative matches 'distribut...' followed by 'holders of' or 'stockholders of' with NO pro-rata text required. So a field named pro_rata_distribution_language fires on documents that never say pro rata, and the published 0.1633 is higher than the true rate of 0.1122. The gate fails either way, and it fails harder than recorded.",
+    "documents_with_any_pro_rata_token": 11,
+    "hits_with_no_pro_rata_language_at_all": 6,
+    "shipped_hits": 16
+  }
+}

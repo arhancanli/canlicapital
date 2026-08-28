@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Merger arbitrage v2: point-in-time announcement identity</title>
+<meta name="description" content="The original metadata protocol required one preceding Item 1.01 8-K inside 60 days for at least 80% of all target-side deal anchors. It failed at 67.02%." />
+<meta name="alphac-source-sha256" content="a49a4c019fabc4a5dad8f777c79988b6125832be65d4990083ed2da14484739b" />
+
+<link rel="canonical" href="https://canlicapital.com/research/merger-announcement-identity-v2" />
+<meta name="author" content="Arhan Canli" />
+<meta name="citation_title" content="Merger arbitrage v2: point-in-time announcement identity" />
+<meta name="citation_author" content="Arhan Canli" />
+<meta name="citation_publication_date" content="2026" />
+<meta name="citation_language" content="en" />
+<meta name="citation_fulltext_html_url" content="https://canlicapital.com/research/merger-announcement-identity-v2" />
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="Canli Capital" />
+<meta property="og:title" content="Merger arbitrage v2: point-in-time announcement identity" />
+<meta property="og:description" content="The original metadata protocol required one preceding Item 1.01 8-K inside 60 days for at least 80% of all target-side deal anchors. It failed at 67.02%." />
+<meta property="og:url" content="https://canlicapital.com/research/merger-announcement-identity-v2" />
+<meta property="og:image" content="https://canlicapital.com/og.png" />
+<meta property="article:author" content="Arhan Canli" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Merger arbitrage v2: point-in-time announcement identity" />
+<meta name="twitter:description" content="The original metadata protocol required one preceding Item 1.01 8-K inside 60 days for at least 80% of all target-side deal anchors. It failed at 67.02%." />
+<meta name="twitter:image" content="https://canlicapital.com/og.png" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="icon" href="/favicon.ico" sizes="any" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=optional" />
+<link rel="stylesheet" media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=optional" />
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=optional" /></noscript>
+<link rel="stylesheet" href="../css/paper.css" />
+<link rel="stylesheet" href="/css/product-shell.css" />
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"ScholarlyArticle","headline":"Merger arbitrage v2: point-in-time announcement identity","description":"The original metadata protocol required one preceding Item 1.01 8-K inside 60 days for at least 80% of all target-side deal anchors. It failed at 67.02%.","url":"https://canlicapital.com/research/merger-announcement-identity-v2","inLanguage":"en","isAccessibleForFree":true,"datePublished":"2026","author":{"@type":"Person","@id":"https://canlicapital.com/#arhan-canli","name":"Arhan Canli","jobTitle":"Founder and Quantitative Researcher","url":"https://canlicapital.com/founder","sameAs":["https://github.com/arhancanli"],"affiliation":{"@type":"Organization","@id":"https://canlicapital.com/#organization","name":"Canli Capital","url":"https://canlicapital.com/"}},"publisher":{"@type":"Organization","@id":"https://canlicapital.com/#organization","name":"Canli Capital","url":"https://canlicapital.com/","logo":{"@type":"ImageObject","url":"https://canlicapital.com/brand-mark.svg"}},"isPartOf":{"@type":"Periodical","name":"Canli Capital Research","url":"https://canlicapital.com/research"},"encodingFormat":"text/html","associatedMedia":{"@type":"MediaObject","contentUrl":"https://canlicapital.com/research/merger-announcement-identity-v2.md","encodingFormat":"text/markdown"}}</script>
+</head>
+<body class="paper">
+<a class="paper__skip" href="#content">Skip to content</a>
+<header class="cc-shell" id="nav" data-product-shell="v3">
+  <a class="cc-shell__brand" href="/" aria-label="Canli Capital, home">
+    <span class="cc-shell__mark" aria-hidden="true"><i></i></span>
+    <span>Canli Capital</span>
+  </a>
+  <a class="cc-shell__status" href="/measurements/alpaca-broker-reconciliation" aria-label="Current record status">
+    <span class="status-dot" aria-hidden="true"></span>
+    <span>Public paper record</span>
+  </a>
+  <nav class="cc-shell__primary" aria-label="Primary navigation">
+<a class="cc-shell__link" href="https://app.canlicapital.com/dashboard" rel="noreferrer">Live</a>
+<a class="cc-shell__link" href="/research" aria-current="page" data-current="true">Research</a>
+<a class="cc-shell__link" href="/trials">Trials</a>
+<a class="cc-shell__link" href="/systems">Systems</a>
+<a class="cc-shell__link" href="/methodology">Methodology</a>
+<a class="cc-shell__link" href="/verify">Verify</a>
+  </nav>
+  <details class="cc-shell__index">
+    <summary><span class="cc-shell__index-wide">More</span><span class="cc-shell__index-compact">Menu</span></summary>
+    <div class="cc-shell__panel">
+      <div>
+        <span class="cc-shell__panel-label">Core</span>
+        <nav aria-label="Core routes"><a class="cc-shell__panel-link" href="https://app.canlicapital.com/dashboard" rel="noreferrer">Live</a>
+<a class="cc-shell__panel-link" href="/research" aria-current="page" data-current="true">Research</a>
+<a class="cc-shell__panel-link" href="/trials">Trials</a>
+<a class="cc-shell__panel-link" href="/systems">Systems</a>
+<a class="cc-shell__panel-link" href="/methodology">Methodology</a>
+<a class="cc-shell__panel-link" href="/verify">Verify</a></nav>
+      </div>
+      <div>
+        <span class="cc-shell__panel-label">Institution</span>
+        <nav aria-label="Institution routes"><a class="cc-shell__panel-link" href="/progress">Corrections</a>
+<a class="cc-shell__panel-link" href="/performance">Status</a>
+<a class="cc-shell__panel-link" href="/founder">Founder</a>
+<a class="cc-shell__panel-link" href="/open">Open data</a>
+<a class="cc-shell__panel-link" href="/measurements">Measurements</a></nav>
+      </div>
+      <p>Observed, simulated, model-estimated and planned claims remain visibly separate.</p>
+    </div>
+  </details>
+  <a class="cc-shell__cta" href="https://app.canlicapital.com/dashboard">Enter live record <span aria-hidden="true">↗</span></a>
+</header>
+<main class="paper__main" id="content">
+  <article class="paper__article">
+    <p class="paper__eyebrow"><a href="/research">Research</a></p>
+    <h1 class="paper__title">Merger arbitrage v2: point-in-time announcement identity</h1>
+    <p class="paper__byline">By <span rel="author">Arhan Canli</span>, Canli Capital</p>
+    <div class="paper__body">
+<p><strong>Prepared:</strong> 2026-08-26</p>
+<p><strong>Stage:</strong> prospective no-price, no-return identity redesign</p>
+<p><strong>Family trial account:</strong> <code>merger_arbitrage</code></p>
+<p><strong>Technical authorship approval:</strong> not yet recorded</p>
+<p><strong>Return execution authorized:</strong> no</p>
+<h2>Why this is a new identity</h2>
+<p>The original metadata protocol required one preceding Item 1.01 8-K inside 60 days for at least
+80% of all target-side deal anchors. It failed at 67.02%. The failure was not homogeneous:
+<code>SC 14D9</code> tender-offer anchors reached 86.65%, while <code>DEFM14A</code> merger-proxy anchors reached 61.33%.
+The aggregate gate blended populations with different filing paths and therefore described
+neither one cleanly.</p>
+<p>That result remains failed. This protocol does not widen its window, reinterpret its gate, or
+reuse the tender stratum as if it were prospective evidence. It defines a materially new identity,
+keeps both strata, and reserves 2006–2015 as a disjoint confirmation period. The 2016–2025 result
+may explain the redesign but may not validate it.</p>
+<h2>Mechanism and claim boundary</h2>
+<p>The candidate is the contractual spread on an announced all-cash acquisition of a US-listed
+public target. Entry cannot precede a source-bound SEC acceptance timestamp that identifies the
+same target, counterparty, cash consideration, and binding merger agreement or commenced tender
+offer. Rumours, press timestamps reconstructed from later documents, stock consideration, collars,
+CVRs, appraisal trades, hostile proposals, and transactions without a deterministic announcement
+record are outside this identity.</p>
+<p>This protocol contains no prices, returns, break losses, Sharpe ratios, drawdowns, correlations,
+capacity estimates, or sleeve-admission evidence. It spends zero return hypotheses.</p>
+<h2>Frozen strata</h2>
+<p>Discovery begins from unamended target-side filings and never treats the discovery filing as the
+historical entry time:</p>
+<ol>
+<li><code>DEFM14A</code> merger-proxy anchors;</li>
+<li><code>SC 14D9</code> target recommendation anchors.</li>
+</ol>
+<p>Every acquisition, extraction, coverage, and accuracy statistic is reported separately by stratum.
+Both strata must pass. An aggregate result cannot rescue a failed stratum, and no row may be moved
+between strata after its documents are read.</p>
+<h2>Announcement resolver</h2>
+<p>For each anchor, search at most 365 calendar days backward using only filings accepted no later
+than the anchor. The broad search interval locates source documents; it is not a trading window and
+does not authorize backdating.</p>
+<p>Eligible source classes are:</p>
+<ul>
+<li>target 8-K Item 1.01, 7.01, or 8.01 filings and their merger-agreement or press-release exhibits;</li>
+<li>target <code>PREM14A</code> or <code>DEFA14A</code> filings carrying the agreement parties and cash terms; and</li>
+<li>bidder <code>SC TO-T</code> filings linked to the target through the filing header&#39;s subject-company CIK.</li>
+</ul>
+<p>A document qualifies only when the point-in-time text resolves the target CIK, one named
+counterparty, one cash consideration, and binding-agreement or commenced-offer language. The
+resolver selects the earliest SEC acceptance timestamp among qualifying documents. A later filing
+may confirm an earlier filing&#39;s meaning but may not move the timestamp backward. Conflicting
+counterparties, consideration values, transaction types, or subject-company links produce
+<code>UNRESOLVED_CONFLICT</code>, not a discretionary choice.</p>
+<p>The required resolver states are:</p>
+<ul>
+<li><code>RESOLVED_CASH_MERGER</code>;</li>
+<li><code>RESOLVED_CASH_TENDER</code>;</li>
+<li><code>UNRESOLVED_NO_QUALIFYING_SOURCE</code>;</li>
+<li><code>UNRESOLVED_CONFLICT</code>;</li>
+<li><code>OUT_OF_SCOPE_NON_CASH_OR_COMPLEX_CONSIDERATION</code>.</li>
+</ul>
+<h2>Disjoint confirmation corpus</h2>
+<p>The confirmation interval is 2006-01-01 through 2015-12-31, disjoint from the 2016–2025
+exploratory result. No confirmation filing, document, machine prediction, or human label has been
+opened for this design.</p>
+<p>After Arhan&#39;s technical approval, acquire official SEC metadata in deterministic order. Within
+each <code>(year, stratum)</code> cell, rank anchors by
+<code>sha256(&quot;alphac-merger-announcement-confirmation-v2|&quot; + year + &quot;|&quot; + stratum + &quot;|&quot; + accession)</code>
+and retain the first 20 eligible anchors. The target is 200 anchors per stratum and 400 total.
+Fewer than 20 eligible anchors in any cell produces <code>DATA_GATED_NO_CROSS_CELL_SUBSTITUTION</code>.</p>
+<p>Selection uses no document text, machine prediction, human label, price, return, or realized deal
+outcome. All accessions from the 2016–2025 exploratory corpus are excluded even though the periods
+are already disjoint.</p>
+<h2>Independent review gates</h2>
+<p>An independent reviewer, blind to machine outputs and all prices and returns, labels every selected
+anchor from the frozen source packet. AI or automated labeling assistance is prohibited. Raw
+confusion counts and unresolved cases are published.</p>
+<p>Each stratum independently requires:</p>
+<ol>
+<li>point announcement coverage of at least 0.80 and a one-sided 95% exact lower bound of at least
+0.75;</li>
+<li>same-transaction linkage accuracy with a one-sided 95% exact lower bound of at least 0.95;</li>
+<li>exact SEC acceptance-timestamp agreement with a one-sided 95% exact lower bound of at least
+0.90;</li>
+<li>later Item 2.01 or 1.02 outcome-marker coverage of at least 0.70 and a one-sided 95% exact lower
+bound of at least 0.65; and</li>
+<li>complete CIK, accession, form, acceptance timestamp, primary-document, archive-URL, and
+SHA-256 lineage for every selected row.</li>
+</ol>
+<p>Coverage denominators include unresolved rows. Accuracy denominators include every machine-resolved
+row; a small denominator cannot pass by omission. Underpowered denominators remain data-gated.</p>
+<p>These thresholds do not prove alpha. They establish only that the event clock and transaction
+identity can be reconstructed without hindsight at the declared error rate.</p>
+<h2>Fail-closed sequence</h2>
+<ol>
+<li>This technical draft must pass its structural audit.</li>
+<li>Arhan independently reviews and either approves the exact design or records required changes.</li>
+<li>Only an approved hash may activate metadata and document acquisition for the disjoint corpus.</li>
+<li>The frozen corpus must pass both strata and the independent-review gates.</li>
+<li>Only then may a separate return preregistration bind instruments, sizing, financing, borrow,
+dividends, delisting treatment, costs, halts, breaks, amendments, capacity, stress tests, and
+the complete admission contract.</li>
+</ol>
+<p>No automation may supply Arhan&#39;s approval, acquire the corpus before approval, open market data,
+or interpret a technical pass as a sleeve admission.</p>
+
+    </div>
+    <nav class="paper__related" aria-label="Related research">
+      <p class="paper__related-kicker">Filed under</p>
+      <p class="paper__links"><a href="/research/topics/engineering-foundations">Engineering foundations</a><span aria-hidden="true"> / </span><a href="/research/topics/event-driven">Event-driven</a></p>
+      <p class="paper__related-kicker">Related work</p>
+      <ul class="paper__related-list"><li><a href="/research/active-ownership-item4-v3-feasibility">Active ownership escalation: Schedule 13D Item 4 source-schema v3</a></li><li><a href="/research/author-protocol-approval-protocol">Author review for approval-gated research protocols</a></li><li><a href="/research/literature-repurchase-issuance-flow">Repurchase and issuance flow: literature dossier</a></li><li><a href="/research/repurchase-issuance-flow-feasibility">Repurchase and issuance flow: no-return SEC feasibility protocol</a></li><li><a href="/research/spin-off-document-schema">Spin-off dislocation: initial Form 10 document-schema protocol</a></li><li><a href="/research/literature-spin-off-dislocation">Spin-off dislocation: literature and claim boundary</a></li></ul>
+    </nav>
+    <footer class="paper__footer">
+      <p class="paper__links">
+        <a href="/research/merger-announcement-identity-v2.md">Read the unrendered source</a>
+        <span aria-hidden="true"> / </span>
+        <a href="/research/citations/merger-announcement-identity-v2.bib" download>Cite this report</a>
+        <span aria-hidden="true"> / </span>
+        <a href="/open">Inspect the underlying artifacts</a>
+        <span aria-hidden="true"> / </span>
+        <a href="/research">All research</a>
+      </p>
+      <p class="paper__boundary">
+        Published as evidence, not as a claim about future performance. The figures quoted here
+        are reproducible from the artifacts linked above.
+      </p>
+    </footer>
+  </article>
+</main>
+<footer class="cc-footer" id="footer" data-product-shell="v3">
+  <div class="cc-footer__lead">
+    <a class="cc-footer__brand" href="/">Canli Capital</a>
+    <p>Build the claim. Publish the evidence. Keep the failures.</p>
+  </div>
+  <div class="cc-footer__routes">
+    <nav aria-label="Portfolio and research">
+      <span>Research system</span>
+      <a href="https://app.canlicapital.com/dashboard">Live record</a>
+      <a href="/systems">ALPHAC systems</a>
+      <a href="/research">Research papers</a>
+      <a href="/trials">Trial union</a>
+    </nav>
+    <nav aria-label="Evidence and verification">
+      <span>Evidence</span>
+      <a href="/methodology">Methodology</a>
+      <a href="/verify">Verify record</a>
+      <a href="/measurements">Measurements</a>
+      <a href="/open">Open data</a>
+    </nav>
+    <nav aria-label="Institution and authorship">
+      <span>Institution</span>
+      <a href="/progress">Corrections</a>
+      <a href="/performance">Status</a>
+      <a href="/founder">Arhan Canli</a>
+      <a href="https://github.com/arhancanli" rel="noreferrer">GitHub</a>
+    </nav>
+  </div>
+  <div class="cc-footer__boundary">
+    <p>Research and paper execution only. No managed capital, copy trading, investment advice or promised return.</p>
+    <p>Founded and built by Arhan Canli in Dubai.</p>
+    <span>Copyright Arhan Canli</span>
+  </div>
+</footer>
+</body>
+</html>

@@ -4,7 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Canli Capital / Performance, methodology and honest results</title>
-  <meta name="description" content="How Canli Capital measures whether an edge is real: purged walk-forward, Deflated and Probabilistic Sharpe, Probability of Backtest Overfitting, a must-beat-baseline gate. The honest result so far: the crypto-only edge did not clear the bar, and we publish it in full. The path forward is breadth. No claimed return; simulation and paper only." />
+  <meta name="description" content="How Canli Capital tests whether an edge is real: purged walk-forward, deflated and probabilistic Sharpe, and the results that failed. Paper trading only." />
+  <meta name="author" content="Arhan Canli" />
   <meta name="theme-color" content="#0A0B0D" />
   <meta name="color-scheme" content="dark" />
   <link rel="canonical" href="https://canlicapital.com/performance" />
@@ -13,31 +14,33 @@
   <meta property="og:site_name" content="Canli Capital" />
   <meta property="og:locale" content="en_US" />
   <meta property="og:title" content="Canli Capital / Performance" />
-  <meta property="og:description" content="The methodology and the validation gauntlet: purged walk-forward, Deflated and Probabilistic Sharpe, PBO, a must-beat-baseline gate. The honest result so far: the crypto-only edge has not cleared the bar, and we report it. Simulation and paper trading only. No real capital, no claimed returns." />
+  <meta property="og:description" content="How Canli Capital tests whether an edge is real: purged walk-forward, deflated and probabilistic Sharpe, and the results that failed. Paper trading only." />
   <meta property="og:url" content="https://canlicapital.com/performance" />
   <meta property="og:image" content="https://canlicapital.com/og.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta property="og:image:type" content="image/png" />
-  <meta property="og:image:alt" content="Canli Capital. A multi-signal quant engine, proven in the open. Simulation and live paper only, no real capital, no claimed return." />
+  <meta property="og:image:alt" content="Canli Capital. Systematic research proven in the open. The published ALPHAC record is paper-only and includes no funded performance." />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Canli Capital / Performance" />
-  <meta name="twitter:description" content="The methodology and the validation gauntlet. The honest result so far: the crypto-only edge has not cleared the bar, and we report it. Simulation and paper trading only. No real capital, no claimed returns." />
+  <meta name="twitter:description" content="How Canli Capital tests whether an edge is real: purged walk-forward, deflated and probabilistic Sharpe, and the results that failed. Paper trading only." />
   <meta name="twitter:image" content="https://canlicapital.com/og.png" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@300..700&display=swap" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@300..700&display=swap" />
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@300..700&display=optional" />
+  <link rel="stylesheet" media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@300..700&display=optional" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@300..700&display=optional" /></noscript>
 
   <link rel="stylesheet" href="./css/styles.css" />
   <link rel="stylesheet" href="./css/motion.css" />
-  <link rel="stylesheet" href="./css/shell.css" />
   <link rel="stylesheet" href="./css/waitlist.css" />
   <!-- Page-specific layer: adds the gauntlet ledger, the reserved results panel,
        the capacity panel, and the gauntlet pin. Loaded LAST so it only ADDS to
        the single design system above; it never redefines a token or an easing. -->
   <link rel="stylesheet" href="./css/performance.css" />
+  <link rel="stylesheet" href="./css/shell.css" />
+  <link rel="stylesheet" href="/css/product-shell.css" />
 
   <!-- Favicon set (the brand mark: one signal dot on the void). The SVG is the
        primary, scalable icon; the .ico is the legacy fallback; the PNG sizes serve
@@ -58,7 +61,7 @@
     "url": "https://canlicapital.com/",
     "logo": "https://canlicapital.com/icon-512.png",
     "image": "https://canlicapital.com/og.png",
-    "description": "A quantitative research platform building ALPHAC: a paper-traded, cross-asset book of four equal-quarter sleeves spanning equity momentum, managed-futures trend, funding carry and point-in-time macro surprise. Methods, failures and corrections are published in the open. No real capital and no claimed returns.",
+    "description": "A quantitative research platform building ALPHAC: a paper-traded, cross-asset book of four sleeves spanning equity momentum, managed-futures trend, funding carry and point-in-time macro surprise. Methods, failures and corrections are published in the open. The published strategy record includes no funded performance.",
     "foundingDate": "2026",
     "founder": { "@type": "Person", "name": "Arhan Canli" },
     "slogan": "Institutional discipline, made legible.",
@@ -138,13 +141,12 @@
     </ul>
   </nav>
 
-  <!-- Shared top nav: js/shell.js renders the links + CTA into this .nav__links
-       and marks the current page. -->
-  <header class="nav" id="nav">
-    <div class="nav__inner">
-      <a href="/" class="nav__brand label" data-brand aria-label="Canli Capital, home">Canli Capital</a>
-      <nav class="nav__links" aria-label="Primary"></nav>
-    </div>
+  <header class="cc-shell" id="nav" data-product-shell="v3">
+    <a class="cc-shell__brand" href="/" aria-label="Canli Capital, home"><span class="cc-shell__mark" aria-hidden="true"><i></i></span><span>Canli Capital</span></a>
+    <a class="cc-shell__status" href="/measurements/alpaca-broker-reconciliation" aria-label="Current record status"><span class="status-dot" aria-hidden="true"></span><span>Public paper record</span></a>
+    <nav class="cc-shell__primary" aria-label="Primary navigation"><a class="cc-shell__link" href="https://app.canlicapital.com/dashboard" rel="noreferrer">Live</a><a class="cc-shell__link" href="/research">Research</a><a class="cc-shell__link" href="/trials">Trials</a><a class="cc-shell__link" href="/systems">Systems</a><a class="cc-shell__link" href="/methodology">Methodology</a><a class="cc-shell__link" href="/verify">Verify</a></nav>
+    <details class="cc-shell__index"><summary><span class="cc-shell__index-wide">More</span><span class="cc-shell__index-compact">Menu</span></summary><div class="cc-shell__panel"><div><span class="cc-shell__panel-label">Core</span><nav aria-label="Core routes"><a class="cc-shell__panel-link" href="https://app.canlicapital.com/dashboard" rel="noreferrer">Live</a><a class="cc-shell__panel-link" href="/research">Research</a><a class="cc-shell__panel-link" href="/trials">Trials</a><a class="cc-shell__panel-link" href="/systems">Systems</a><a class="cc-shell__panel-link" href="/methodology">Methodology</a><a class="cc-shell__panel-link" href="/verify">Verify</a></nav></div><div><span class="cc-shell__panel-label">Institution</span><nav aria-label="Institution routes"><a class="cc-shell__panel-link" href="/progress">Corrections</a><a class="cc-shell__panel-link" href="/performance" aria-current="page" data-current="true">Status</a><a class="cc-shell__panel-link" href="/founder">Founder</a><a class="cc-shell__panel-link" href="/open">Open data</a><a class="cc-shell__panel-link" href="/measurements">Measurements</a></nav></div><p>Observed, simulated, model-estimated and planned claims remain visibly separate.</p></div></details>
+    <a class="cc-shell__cta" href="https://app.canlicapital.com/dashboard">Enter live record <span aria-hidden="true">↗</span></a>
   </header>
 
   <main id="content" class="content" tabindex="-1">
@@ -165,10 +167,11 @@
           Most platforms lead with a curve. We lead with how the curve is judged,
           because a curve is only as honest as the test behind it. This page shows
           exactly how we decide whether an edge is real, and reports the result in
-          full: the crypto-only edge did not clear the bar, and we say so.
+          full: none of the current sleeves clears multiple-testing deflation,
+          and the live paper record is still too short to overturn that result.
         </p>
         <p class="standfirst mono-label reveal-fade">
-          <span>Paper only, no real capital, no claimed return.</span>
+          <span>Published strategy record: paper only, no funded performance.</span>
         </p>
       </div>
     </section>
@@ -199,7 +202,7 @@
            js/performance.js. Labels, gates, and the honest sentences are real and
            final; the measured value and verdict are reserved until a validated
            artifact is wired (no fabricated numbers). -->
-      <div class="gauntlet" id="gauntletList" role="list" aria-label="The validation gauntlet">
+      <div class="gauntlet" id="gauntletList" aria-label="The validation gauntlet" role="group">
         <!-- rows injected by js/performance.js from GAUNTLET in performance_data.js -->
       </div>
 
@@ -210,7 +213,7 @@
            name no result: the quant's request to see the rigor named, satisfied
            without fabricating a single measurement. Written by js/performance.js
            from GAUNTLET_PARAMS and revealed left to right as a mono type-in. -->
-      <p class="gauntlet__params mono-label type-mono" id="gauntletParams" aria-label="Gauntlet design parameters"></p>
+      <p class="gauntlet__params mono-label type-mono" id="gauntletParams"></p>
     </section>
 
     <!-- THE PIN: the page's one tentpole beat. The six measures cross-fade inside a
@@ -317,7 +320,7 @@
         </p>
       </div>
 
-      <div class="statband" aria-label="Verified system facts">
+      <div class="statband" aria-label="Verified system facts" role="group">
         <ul class="statband__list" id="statList">
           <!-- stats rendered by main.js from config/brand.js STATS -->
         </ul>
@@ -385,7 +388,7 @@
                 <span class="results__pending-cap mono-label" id="resultsPendingCap">[ validated result, did not clear the gate ]</span>
               </div>
             </div>
-            <div class="results__fields" id="resultFields" aria-label="Validated result fields">
+            <div class="results__fields" id="resultFields" aria-label="Validated result fields" role="group">
               <!-- fields injected by js/performance.js from RESULTS_FIELDS -->
             </div>
           </div>
@@ -401,6 +404,52 @@
              the honest source/as-of line. -->
         <p class="results__cadence mono-label" id="resultsCadence" aria-live="polite"></p>
         <p class="results__source mono-label" id="resultsSource" aria-live="polite"></p>
+
+        <aside class="evidence-docket reveal-fade" aria-labelledby="evidence-docket-head">
+          <div class="evidence-docket__head">
+            <div>
+              <p class="mono-label evidence-docket__eyebrow">Forward evidence / live authority chain</p>
+              <h3 class="display-m evidence-docket__title" id="evidence-docket-head">The claim stays withheld until every link holds.</h3>
+            </div>
+            <p class="mono-label evidence-docket__author" id="evidenceAuthor">Author / loading</p>
+          </div>
+          <ol class="evidence-chain" aria-label="Forward Sharpe evidence stages">
+            <li class="evidence-chain__item is-complete">
+              <span class="evidence-chain__mark mono-label" aria-hidden="true">01</span>
+              <div>
+                <div class="evidence-chain__line">
+                  <span class="label">Contract sealed</span>
+                  <span class="evidence-chain__status mono-label" id="evidenceContractStatus">READING</span>
+                </div>
+                <p class="body evidence-chain__copy" id="evidenceContractCopy">Reading the governing target and sample gates.</p>
+                <a class="evidence-chain__link mono-label" href="/glassbox/forward_evidence_contract.json">Inspect the governing contract</a>
+              </div>
+            </li>
+            <li class="evidence-chain__item is-broken">
+              <span class="evidence-chain__mark mono-label" aria-hidden="true">02</span>
+              <div>
+                <div class="evidence-chain__line">
+                  <span class="label">Runtime rollout</span>
+                  <span class="evidence-chain__status mono-label" id="evidenceRolloutStatus">READING</span>
+                </div>
+                <p class="body evidence-chain__copy" id="evidenceRolloutCopy">Reading the sole-writer runtime receipt.</p>
+                <a class="evidence-chain__link mono-label" href="/glassbox/crypto_position_attribution_rollout_verification.json">Inspect rollout evidence</a>
+              </div>
+            </li>
+            <li class="evidence-chain__item is-withheld">
+              <span class="evidence-chain__mark mono-label" aria-hidden="true">03</span>
+              <div>
+                <div class="evidence-chain__line">
+                  <span class="label">Sharpe claim</span>
+                  <span class="evidence-chain__status mono-label" id="evidenceMaturityStatus">READING</span>
+                </div>
+                <p class="body evidence-chain__copy" id="evidenceMaturityCopy">Reading the current maturity receipt.</p>
+                <a class="evidence-chain__link mono-label" href="/glassbox/forward_evidence_maturity.json">Inspect every maturity gate</a>
+              </div>
+            </li>
+          </ol>
+          <p class="evidence-docket__receipt mono-label" id="evidenceReceipt" aria-live="polite">Machine evidence is loading.</p>
+        </aside>
       </div>
     </section>
 
@@ -456,15 +505,16 @@
       <div class="standing__head">
         <p class="eyebrow label"><span class="idx mono-label">06 /</span> Standing</p>
         <h2 class="standing__title display-l" id="standing-head">
-          <span class="mask" data-chars><span class="mask__inner">The crypto-only edge has</span></span>
-          <span class="mask" data-chars><span class="mask__inner">not cleared the bar. We</span></span>
-          <span class="mask" data-chars><span class="mask__inner">are telling you on purpose.</span></span>
+          <span class="mask" data-chars><span class="mask__inner">No sleeve has cleared</span></span>
+          <span class="mask" data-chars><span class="mask__inner">deflation. We are</span></span>
+          <span class="mask" data-chars><span class="mask__inner">telling you on purpose.</span></span>
         </h2>
         <p class="standing__body body-l reveal-fade">
-          AlphaForge, tested on crypto
-          perpetual futures alone, does not clear our validation gauntlet. After
-          deflation and cost, the signal is not strong enough to stake capital on.
-          So we report it instead of dressing a backtest as a promise.
+          AlphaMax, AlphaTrend, AlphaVintage, and AlphaForge all remain below the
+          programme's multiple-testing gate after the full research search is counted.
+          The current paper book tests diversification and implementation; it does
+          not certify that any sleeve has alpha. So we report the null instead of
+          dressing a backtest as a promise.
           <span data-brand>Canli Capital</span> does not claim to always win. It runs
           the test in the open and reports what
           <span class="signal-word">passes</span> and what does not.
@@ -484,10 +534,10 @@
       </p>
 
       <p class="standing__body body reveal-fade">
-        The deployed book pairs the crypto sleeve with a US equity momentum sleeve
-        that does clear the bar; the two are near-uncorrelated, and that is the
-        edge. Breadth beyond the pair is the road forward, and it is on the
-        progress page.
+        The paper book combines four sleeves at equal quarters plus a separately
+        disclosed strategic overlay. Their measured diversification is useful but
+        smaller than we first claimed. Only a long, continuous, broker-reconciled
+        forward record can turn that construction into evidence.
       </p>
       <div class="standing__forward reveal-fade">
         <a href="/progress#equity-breadth" class="perf-link label">See the roadmap</a>
@@ -523,19 +573,15 @@
           The house runs four sleeves: AlphaForge (crypto funding carry), AlphaMax
           (US-equity 12-1 momentum), AlphaTrend (managed-futures trend) and
           AlphaVintage (point-in-time macro surprise), combined into ALPHAC at equal
-          quarters. AlphaTrend is carried for its MEASURED drawdown reduction, not for a
-          demonstrated edge: re-derived on 2026-08-07 at honest trial count, its deflated
-          Sharpe is 0.00, the lowest of the sleeves we have measured. We previously
-          published 0.83 for it and called it the first sleeve to clear deflation; that
-          rested on a variance input roughly 80x too small, and it is withdrawn.
-          In-sample validation reads 1.46. Corrected for every strategy we
-          tried, it deflates to a forward of 0.3 to 0.9. That is the number to lead
-          with. Below are the live positions the book carries today:
-          the real names, top per side, with counts, gross, and net.
+          quarters. None clears multiple-testing deflation at the current 228-identity
+          research count. The 0.3 to 0.9 forward Sharpe band is a governing expectation,
+          not a measured achievement; the forward record is too short to estimate it.
+          Below are the current paper positions read from each dedicated Alpaca account,
+          plus AlphaForge's separately labelled local PaperBroker book.
         </p>
         <p class="book__forward mono-label reveal-fade">
-          Honest forward Sharpe <span class="signal-word">0.3 to 0.9</span>
-          <span class="book__struck">in-sample 1.46</span>
+          Honest forward Sharpe <span class="signal-word" data-book="forward-sharpe">not loaded</span>
+          <span class="book__struck">full-book in-sample <span data-book="in-sample-sharpe">not loaded</span></span>
         </p>
       </div>
 
@@ -546,8 +592,26 @@
           <span class="book-block__name">AlphaMax</span>
           <span class="book-block__asset mono-label">US-equity 12-1 momentum, dollar-neutral</span>
         </div>
-        <div class="book-summary" data-book="summary" aria-label="Book summary"></div>
-        <div class="book-ledger" data-book="ledger" aria-label="AlphaMax long and short book"></div>
+        <div class="book-summary" data-book="summary" aria-label="Book summary" role="group"></div>
+        <div class="book-ledger" data-book="ledger" aria-label="AlphaMax long and short book" role="group"></div>
+      </div>
+
+      <div class="book-block" id="bookAlphatrend">
+        <div class="book-block__head">
+          <span class="book-block__name">AlphaTrend</span>
+          <span class="book-block__asset mono-label">Managed-futures trend, 17-market ETF implementation</span>
+        </div>
+        <div class="book-summary" data-book="summary" aria-label="AlphaTrend book summary" role="group"></div>
+        <div class="book-ledger" data-book="ledger" aria-label="AlphaTrend long and short book" role="group"></div>
+      </div>
+
+      <div class="book-block" id="bookAlphavintage">
+        <div class="book-block__head">
+          <span class="book-block__name">AlphaVintage</span>
+          <span class="book-block__asset mono-label">Point-in-time CPI surprise, IWM/SPY spread</span>
+        </div>
+        <div class="book-summary" data-book="summary" aria-label="AlphaVintage book summary" role="group"></div>
+        <div class="book-ledger" data-book="ledger" aria-label="AlphaVintage long and short book" role="group"></div>
       </div>
 
       <!-- AlphaForge: the honest flat state. Holding cash. Flat is the truthful
@@ -572,8 +636,8 @@
            +10% strategic net-long overlay. The composition + tilt are read live
            from state.book by js/holdings.js (renderAlphac).
            Corrected 2026-08-12: this block said "THREE sleeves at fixed 40/40/20"
-           and "+20%", and its body asserted that decorrelation "is the edge" — a
-           claim this site RETRACTED on 2026-08-06 in the transparency log, because
+           and "+20%", and its body asserted that decorrelation "is the edge". This
+           site RETRACTED the claim on 2026-08-06 in the transparency log because
            the -0.04 behind it averaged in a strategy we do not trade. Leaving the
            retracted claim standing on the page while the log says we withdrew it
            is the worst of both: it reads as correction theatre. -->
@@ -584,7 +648,7 @@
         </div>
         <p class="book-carry body">
           The book combines <span class="book-carry__fig mono-data" data-book="carry"></span>.
-          The four sleeves are near-uncorrelated — their average pairwise correlation
+          The four sleeves are near-uncorrelated. Their average pairwise correlation
           measures +0.0274, which is POSITIVE. We used to call that decorrelation
           &ldquo;the edge&rdquo; and we withdrew the claim: the diversification is
           real but smaller than we said. The disclosed overlay is commoditized beta,
@@ -594,9 +658,17 @@
 
       <p class="book__source mono-label reveal-fade">
         <span class="comment">//</span>
-        These are the live paper positions, refreshed daily, drawn from the same
-        ledger the engine acts on. No real money is in play. No name is shown that
-        the book does not hold.
+        The three Alpaca sleeves above are current broker positions, not strategy
+        targets. AlphaForge is a locally simulated PaperBroker book. No real money
+        is in play.
+      </p>
+      <p class="book__source mono-label reveal-fade">
+        <span class="comment">//</span>
+        Broker reconciliation <a href="/glassbox/alpaca_broker_reconciliation.json">evidence</a>:
+        <span data-broker="status">not loaded</span> /
+        <span data-broker="accounts">account scope unavailable</span> /
+        <span data-broker="positions">position count unavailable</span> /
+        <span data-broker="as-of">timestamp unavailable</span>.
       </p>
     </section>
   </main>
@@ -604,7 +676,11 @@
   <!-- Footer is the Colophon chapter (index 8 in the per-page chapters array), so
        the living rail head reads "08 / Colophon" when the footer is in view,
        matching the landing's footer-as-last-chapter behaviour. -->
-  <footer class="footer" id="footer" data-section="8"></footer>
+  <footer class="cc-footer" id="footer" data-product-shell="v3">
+    <div class="cc-footer__lead"><a class="cc-footer__brand" href="/">Canli Capital</a><p>Build the claim. Publish the evidence. Keep the failures.</p></div>
+    <div class="cc-footer__routes"><nav aria-label="Portfolio and research"><span>Research system</span><a href="https://app.canlicapital.com/dashboard">Live record</a><a href="/systems">ALPHAC systems</a><a href="/research">Research papers</a><a href="/trials">Trial union</a></nav><nav aria-label="Evidence and verification"><span>Evidence</span><a href="/methodology">Methodology</a><a href="/verify">Verify record</a><a href="/measurements">Measurements</a><a href="/open">Open data</a></nav><nav aria-label="Institution and authorship"><span>Institution</span><a href="/progress">Corrections</a><a href="/performance">Status</a><a href="/founder">Arhan Canli</a><a href="https://github.com/arhancanli" rel="noreferrer">GitHub</a></nav></div>
+    <div class="cc-footer__boundary"><p>Research and paper execution only. No managed capital, copy trading, investment advice or promised return.</p><p>Founded and built by Arhan Canli in Dubai.</p><span>Copyright Arhan Canli</span></div>
+  </footer>
 
   <script type="module" src="./js/waitlist.js"></script>
   <script type="module" src="./js/performance.js"></script>

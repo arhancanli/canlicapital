@@ -7,7 +7,7 @@
       "severity": "critical",
       "status": "FIXED",
       "weakness": "A future-dated (2026-06-29) paper loss leaked into the public record and was sealed into seq 0 of the signed transparency chain (read_fwd_curve had no <= today guard).",
-      "fix": "clamp_live() drops any mark dated after today (UTC) before publish + anchor; a fail-closed guard was added; the corrected state was anchored as seq 1. The append-only chain shows BOTH seq 0 and seq 1 \u2014 we don't delete mistakes."
+      "fix": "clamp_live() drops any mark dated after today (UTC) before publish + anchor; a fail-closed guard was added; the signed chain retains BOTH seq 0 and seq 1 as opaque historical commitments. Their underlying payloads were not published, so no content-reconstruction claim is made."
     },
     {
       "severity": "critical",
@@ -59,6 +59,6 @@
     "The public state honestly labels the 1.46 figure as in-sample and deflates it."
   ],
   "report": "artifacts/campaigns/red_team_self_audit_2026-06-27.md",
-  "generated_at": "2026-08-18T17:25:32.219546+00:00",
-  "content_hash": "sha256:f06f9c60617d461214b631e1a4092f622cf58f9b073fcd52429792441b0f6746"
+  "generated_at": "2026-08-26T09:26:02.728605+00:00",
+  "content_hash": "sha256:6f453cc05de3b5bdb442becac4597e7f4598405bea4bd71207993069353bbc77"
 }

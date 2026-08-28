@@ -1,0 +1,68 @@
+{
+  "author": "Arhan Canli",
+  "claim_boundary": "Issuer evidence resolves only AMPE on its first resumed split-adjusted trading date and EVHC as a merger exchange conversion on its first Newco trading date. It does not open returns, authorize another event, validate performance, or pass the global split gate.",
+  "content_hash": "sha256:beceafdeb0917e77ccd2c30d2bd95fd39b18e7f55e115307a36d5cb13199567e",
+  "decision": "TWO_EXACT_QUARANTINED_EVENTS_ISSUER_VERIFIED",
+  "hypotheses_spent": 0,
+  "lineage": {
+    "unresolved_context_content_hash": "sha256:c81c35a83c706cec7a8b4e4c9f22d1f0c874c26fe42c8a92ebdc0bc75c7b4d3f",
+    "unresolved_context_path": "artifacts/audit/unresolved_split_event_context.json",
+    "unresolved_context_sha256": "98304049af107814ec6b7798ff6ea91ab54e16c1f8801c202f1fbbd8d692b2c0"
+  },
+  "required_next_action": "Merge only these exact instrument/date/stored-ratio tuples into the global fail-closed governance policy. Do not infer a broad ratio tolerance or event rule.",
+  "retrieved_at": "2026-08-23T05:22:51.406855+00:00",
+  "return_data_opened": false,
+  "schema": "canli.alphac-split-issuer-resolution-batch.v2",
+  "verified_events": [
+    {
+      "authorization": "BYPASS_PRICE_GAP_HEURISTIC_FOR_THIS_EXACT_EVENT_ONLY",
+      "event_semantics": "FIRST_SPLIT_ADJUSTED_TRADING_RESUMPTION",
+      "ex_date": "2022-11-22 04:00:00+04:00",
+      "ex_date_ms": 1669075200000,
+      "instrument_id": "XUSE:CASH:AMPEUSD",
+      "issuer_ratio": 0.06666666666666667,
+      "prior_context_classification": "PLAIN_SPLIT_WITHOUT_LIFECYCLE_CONTEXT",
+      "ratio": 0.06667,
+      "ratio_binding": "ISSUER_RATIO_ROUNDED_TO_FROZEN_FIVE_DECIMAL_VENDOR_PRECISION",
+      "required_fragments": [
+        "fifteen-to-one reverse stock split",
+        "became effective November 9, 2022",
+        "common stock will commence trading on the NYSE American on Tuesday, November 22, 2022"
+      ],
+      "required_fragments_verified": [
+        "fifteen-to-one reverse stock split",
+        "became effective November 9, 2022",
+        "common stock will commence trading on the NYSE American on Tuesday, November 22, 2022"
+      ],
+      "retrieved_sha256": "ade5eca5329437df4e91faf0a169a5b293e18a622069b4073e13ee2580b8ef46",
+      "stored_ratio": 0.06667,
+      "ticker": "AMPE",
+      "url": "https://www.sec.gov/Archives/edgar/data/1411906/000155837022018084/ampe-20221117xex99d1.htm"
+    },
+    {
+      "authorization": "BYPASS_PRICE_GAP_HEURISTIC_FOR_THIS_EXACT_EVENT_ONLY",
+      "event_semantics": "MERGER_EXCHANGE_CONVERSION_AT_FIRST_NEWCO_TRADING_DATE",
+      "ex_date": "2016-12-02 04:00:00+04:00",
+      "ex_date_ms": 1480636800000,
+      "instrument_id": "XUSE:CASH:EVHCUSD",
+      "issuer_ratio": 0.334,
+      "prior_context_classification": "NEARBY_ACQUISITION_OR_MERGER_CONTEXT",
+      "ratio": 0.334,
+      "ratio_binding": "ISSUER_RATIO_EXACTLY_MATCHES_FROZEN_VENDOR_RATIO",
+      "required_fragments": [
+        "each share of EHH common stock was converted into 0.334 shares of Company common stock",
+        "On December 2, 2016, shares of the common stock of the Company",
+        "began trading on the New York Stock Exchange under the ticker symbol \u201cEVHC\u201d"
+      ],
+      "required_fragments_verified": [
+        "each share of EHH common stock was converted into 0.334 shares of Company common stock",
+        "On December 2, 2016, shares of the common stock of the Company",
+        "began trading on the New York Stock Exchange under the ticker symbol \u201cEVHC\u201d"
+      ],
+      "retrieved_sha256": "eae52a9c0b668a09ee3d5ed871d3bb2334bcc9e7eef1533d9a12908b0fbdc880",
+      "stored_ratio": 0.334,
+      "ticker": "EVHC",
+      "url": "https://www.sec.gov/Archives/edgar/data/1678531/000167853117000044/evhc-2016123110k.htm"
+    }
+  ]
+}

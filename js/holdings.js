@@ -52,7 +52,8 @@ const $ = (sel, root = document) => root.querySelector(sel);
 // and numbers, but we normalise on the way in so any future field with a dash
 // reads with the property's single-hyphen typography. No figure is altered.
 function clean(s) {
-  return String(s).replace(/[—–]/g, " - ");
+  const longDashPattern = new RegExp(`[${String.fromCharCode(8212)}${String.fromCharCode(8211)}]`, "g");
+  return String(s).replace(longDashPattern, " - ");
 }
 
 function el(tag, cls, text) {
@@ -332,26 +333,50 @@ function fillGlass(transparency, anchors, founder, deflation) {
 
 // Load the glass-box subset and bind all three surfaces. A failure here must
 // never strand the page: each authored placeholder keeps its reserved copy.
+function fillBrokerProof(reconciliation) {
+  if (!reconciliation || !reconciliation.summary) return;
+  const summary = reconciliation.summary;
+  setGlassHook("broker", "status", summary.status);
+  if (Number.isFinite(summary.reconciled_alpaca_sleeves)) {
+    const distinct = summary.unique_dedicated_accounts ? "distinct" : "not distinct";
+    setGlassHook(
+      "broker",
+      "accounts",
+      `${summary.reconciled_alpaca_sleeves}/3 dedicated paper accounts, ${distinct}`,
+    );
+  }
+  if (Number.isFinite(summary.open_positions)) {
+    setGlassHook("broker", "positions", `${summary.open_positions} open positions`);
+  }
+  if (reconciliation.generated_at) {
+    setGlassHook("broker", "as-of", `as of ${reconciliation.generated_at}`);
+  }
+}
+
 async function bootGlass() {
   const hasGlass = !!document.querySelector('[data-glass]')
+    || !!document.querySelector('[data-broker]')
     || !!document.getElementById("heroProof")
     || !!document.getElementById("proofLive");
   if (!hasGlass) return;
 
   // Load each artifact independently so one missing file never blocks the others.
   const safe = (p) => p.then((v) => v).catch(() => null);
-  const [transparency, anchors, founder, deflation, killLog, track] = await Promise.all([
-    safe(loadGlass("transparency_log.json")),
-    safe(loadGlass("ots/anchors.json")),
-    safe(loadGlass("founder_commitment.json")),
-    safe(loadGlass("deflation.json")),
-    safe(loadGlass("kill_log.json")),
-    safe(loadGlass("track_record.json")),
-  ]);
+  const [transparency, anchors, founder, deflation, killLog, track, brokerRecon] =
+    await Promise.all([
+      safe(loadGlass("transparency_log.json")),
+      safe(loadGlass("ots/anchors.json")),
+      safe(loadGlass("founder_commitment.json")),
+      safe(loadGlass("deflation.json")),
+      safe(loadGlass("kill_log.json")),
+      safe(loadGlass("track_record.json")),
+      safe(loadGlass("alpaca_broker_reconciliation.json")),
+    ]);
 
   fillHeroProof(transparency, killLog);
   fillProofLive(track);
   fillGlass(transparency, anchors, founder, deflation);
+  fillBrokerProof(brokerRecon);
 }
 
 // =============================================================================
@@ -406,11 +431,11 @@ function holdingsColumn(side, list, totalCount, shown) {
   return { col, rows };
 }
 
-function renderAlphaMax(state) {
-  const root = $("#bookAlphamax");
+function renderBrokerBook(state, rootSelector, holdingsKey) {
+  const root = $(rootSelector);
   if (!root) return;
-  const am = (state.holdings && state.holdings.alphamax) || null;
-  if (!am) { root.remove(); return; }
+  const held = (state.holdings && state.holdings[holdingsKey]) || null;
+  if (!held) { root.remove(); return; }
 
   // summary row: long / short / gross / net, the figures the eye should meet
   // first. net shows its sign; gross does not.
@@ -425,18 +450,18 @@ function renderAlphaMax(state) {
       );
       summary.appendChild(cell);
     };
-    add("Long", String(am.long_count), true);
-    add("Short", String(am.short_count), false);
-    if (Number.isFinite(am.gross_pct)) add("Gross", pct(am.gross_pct, 1), false);
-    if (Number.isFinite(am.net_pct)) add("Net", signed(am.net_pct), false);
+    add("Long", String(held.long_count), true);
+    add("Short", String(held.short_count), false);
+    if (Number.isFinite(held.gross_pct)) add("Gross", pct(held.gross_pct, 1), false);
+    if (Number.isFinite(held.net_pct)) add("Net", signed(held.net_pct), false);
   }
 
   // the two-column ticker ledger
   const grid = $("[data-book='ledger']", root);
   if (grid) {
     grid.textContent = "";
-    const longCol = holdingsColumn("long", am.long || [], am.long_count, 15);
-    const shortCol = holdingsColumn("short", am.short || [], am.short_count, 15);
+    const longCol = holdingsColumn("long", held.long || [], held.long_count, 15);
+    const shortCol = holdingsColumn("short", held.short || [], held.short_count, 15);
     grid.append(longCol.col, shortCol.col);
     staggerIn(grid, [...longCol.rows, ...shortCol.rows]);
   }
@@ -474,6 +499,12 @@ function renderAlphac(state) {
       : "";
     countHook.textContent = comp + tilt;
   }
+  if (state.metrics) {
+    setGlassHook("book", "forward-sharpe", state.metrics.honest_forward_sharpe);
+    if (Number.isFinite(state.metrics.in_sample_sharpe)) {
+      setGlassHook("book", "in-sample-sharpe", state.metrics.in_sample_sharpe.toFixed(2));
+    }
+  }
 }
 
 // =============================================================================
@@ -489,7 +520,8 @@ async function boot() {
 
   // nothing else to do if this page authored no holdings surface
   const hasTeaser = !!$("#holdingsTeaser");
-  const hasLedger = !!$("#bookAlphamax") || !!$("#bookAlphaforge") || !!$("#bookAlphac");
+  const hasLedger = !!$("#bookAlphamax") || !!$("#bookAlphatrend")
+    || !!$("#bookAlphavintage") || !!$("#bookAlphaforge") || !!$("#bookAlphac");
   if (!hasTeaser && !hasLedger) return;
 
   let state;
@@ -502,7 +534,7 @@ async function boot() {
     return;
   }
 
-  // "Live since" date — data-driven from the published go_live_date so it can never drift out of
+  // "Live since" date: data-driven from the published go_live_date so it can never drift out of
   // sync with the signed transparency chain (the v1->v2 re-baseline updates this automatically).
   if (state.go_live_date) {
     document
@@ -512,7 +544,9 @@ async function boot() {
 
   if (hasTeaser) renderTeaser(state);
   if (hasLedger) {
-    renderAlphaMax(state);
+    renderBrokerBook(state, "#bookAlphamax", "alphamax");
+    renderBrokerBook(state, "#bookAlphatrend", "managed_futures");
+    renderBrokerBook(state, "#bookAlphavintage", "alphavintage");
     renderAlphaForge(state);
     renderAlphac(state);
   }

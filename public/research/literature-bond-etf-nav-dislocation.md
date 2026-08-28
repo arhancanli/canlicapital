@@ -1,4 +1,4 @@
-# Bond-ETF NAV dislocation — literature and mechanism review
+# Bond-ETF NAV dislocation: literature and mechanism review
 
 **Reviewed:** 2026-08-16. **Stage:** source review only. No market observations, returns, signs,
 thresholds, horizons, or portfolio statistics were inspected.

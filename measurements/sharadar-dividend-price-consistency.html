@@ -1,0 +1,917 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Sharadar dividend price consistency / Canli Capital</title>
+<meta name="description" content="This is a source-data and executable-semantics audit. It opens no signals, positions, returns, Sharpe ratios, or strategy outcomes and makes no investment…" />
+<link rel="canonical" href="https://canlicapital.com/measurements/sharadar-dividend-price-consistency" />
+<meta name="author" content="Arhan Canli" />
+<meta name="canli:sources" content="sharadar_dividend_price_consistency.json" />
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="Canli Capital" />
+<meta property="og:title" content="Sharadar dividend price consistency / Canli Capital" />
+<meta property="og:description" content="This is a source-data and executable-semantics audit. It opens no signals, positions, returns, Sharpe ratios, or strategy outcomes and makes no investment…" />
+<meta property="og:url" content="https://canlicapital.com/measurements/sharadar-dividend-price-consistency" />
+<meta property="og:image" content="https://canlicapital.com/og.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Sharadar dividend price consistency / Canli Capital" />
+<meta name="twitter:description" content="This is a source-data and executable-semantics audit. It opens no signals, positions, returns, Sharpe ratios, or strategy outcomes and makes no investment…" />
+<meta name="twitter:image" content="https://canlicapital.com/og.png" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="icon" href="/favicon.ico" sizes="any" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=optional" />
+<link rel="stylesheet" media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=optional" />
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=optional" /></noscript>
+<link rel="stylesheet" href="../css/paper.css" />
+<link rel="stylesheet" href="/css/product-shell.css" />
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"Sharadar dividend price consistency","description":"This is a source-data and executable-semantics audit. It opens no signals, positions, returns, Sharpe ratios, or strategy outcomes and makes no investment…","url":"https://canlicapital.com/measurements/sharadar-dividend-price-consistency","creator":{"@type":"Person","name":"Arhan Canli"},"publisher":{"@type":"Organization","name":"Canli Capital","url":"https://canlicapital.com/"},"isAccessibleForFree":true,"distribution":{"@type":"DataDownload","encodingFormat":"application/json","contentUrl":"https://canlicapital.com/glassbox/sharadar_dividend_price_consistency.json"}}</script>
+</head>
+<body class="paper">
+<a class="paper__skip" href="#content">Skip to content</a>
+<header class="cc-shell" id="nav" data-product-shell="v3">
+  <a class="cc-shell__brand" href="/" aria-label="Canli Capital, home">
+    <span class="cc-shell__mark" aria-hidden="true"><i></i></span>
+    <span>Canli Capital</span>
+  </a>
+  <a class="cc-shell__status" href="/measurements/alpaca-broker-reconciliation" aria-label="Current record status">
+    <span class="status-dot" aria-hidden="true"></span>
+    <span>Public paper record</span>
+  </a>
+  <nav class="cc-shell__primary" aria-label="Primary navigation">
+<a class="cc-shell__link" href="https://app.canlicapital.com/dashboard" rel="noreferrer">Live</a>
+<a class="cc-shell__link" href="/research">Research</a>
+<a class="cc-shell__link" href="/trials">Trials</a>
+<a class="cc-shell__link" href="/systems">Systems</a>
+<a class="cc-shell__link" href="/methodology">Methodology</a>
+<a class="cc-shell__link" href="/verify">Verify</a>
+  </nav>
+  <details class="cc-shell__index">
+    <summary><span class="cc-shell__index-wide">More</span><span class="cc-shell__index-compact">Menu</span></summary>
+    <div class="cc-shell__panel">
+      <div>
+        <span class="cc-shell__panel-label">Core</span>
+        <nav aria-label="Core routes"><a class="cc-shell__panel-link" href="https://app.canlicapital.com/dashboard" rel="noreferrer">Live</a>
+<a class="cc-shell__panel-link" href="/research">Research</a>
+<a class="cc-shell__panel-link" href="/trials">Trials</a>
+<a class="cc-shell__panel-link" href="/systems">Systems</a>
+<a class="cc-shell__panel-link" href="/methodology">Methodology</a>
+<a class="cc-shell__panel-link" href="/verify">Verify</a></nav>
+      </div>
+      <div>
+        <span class="cc-shell__panel-label">Institution</span>
+        <nav aria-label="Institution routes"><a class="cc-shell__panel-link" href="/progress">Corrections</a>
+<a class="cc-shell__panel-link" href="/performance">Status</a>
+<a class="cc-shell__panel-link" href="/founder">Founder</a>
+<a class="cc-shell__panel-link" href="/open">Open data</a>
+<a class="cc-shell__panel-link" href="/measurements" aria-current="page" data-current="true">Measurements</a></nav>
+      </div>
+      <p>Observed, simulated, model-estimated and planned claims remain visibly separate.</p>
+    </div>
+  </details>
+  <a class="cc-shell__cta" href="https://app.canlicapital.com/dashboard">Enter live record <span aria-hidden="true">↗</span></a>
+</header>
+<main class="paper__main" id="content">
+  <article class="paper__article">
+    <p class="paper__eyebrow"><a href="/measurements">Measurements</a></p>
+    <h1 class="paper__title">Sharadar dividend price consistency</h1>
+    <p class="paper__byline">By <span rel="author">Arhan Canli</span>, Canli Capital</p>
+    <div class="paper__body">
+<p class="measure__lead">Sharadar dividend price consistency is one of 89 measurements this
+engine publishes in full. It is regenerated from a real run rather than transcribed, and it
+is shown here with its own claim boundary so the number and its limits arrive together.</p>
+<aside class="measure__boundary"><h2>What this measurement does and does not claim</h2><p>This is a source-data and executable-semantics audit. It opens no signals, positions, returns, Sharpe ratios, or strategy outcomes and makes no investment performance claim.</p></aside>
+<section class="measure__section"><h2>The measurement</h2>
+<dl class="measure__facts">
+<div class="measure__row"><dt>Author</dt><dd>Arhan Canli</dd></div>
+<div class="measure__row"><dt>Content hash</dt><dd>sha256:57d11336c0c7daca85ea3332b46461c3cad48562fd35f6aea02b96fd320a3510</dd></div>
+<div class="measure__row"><dt>Decision</dt><dd>DIVIDEND_PRICE_CONSISTENCY_FAILED</dd></div>
+<div class="measure__row"><dt>Evidence date</dt><dd>2026-08-23</dd></div>
+<div class="measure__row"><dt>Schema</dt><dd>canli.alphac-sharadar-dividend-price-consistency.v1</dd></div>
+</dl>
+<section class="measure__sub"><h3>Affected instrument counts</h3>
+<dl class="measure__facts">
+<div class="measure__row"><dt>XUSE:CASH:ADAMUSD</dt><dd>6</dd></div>
+<div class="measure__row"><dt>XUSE:CASH:AHTUSD</dt><dd>58</dd></div>
+<div class="measure__row"><dt>XUSE:CASH:AIFUUSD</dt><dd>22</dd></div>
+<div class="measure__row"><dt>XUSE:CASH:ARRUSD</dt><dd>4</dd></div>
+<div class="measure__row"><dt>XUSE:CASH:BCICUSD</dt><dd>1</dd></div>
+<div class="measure__row"><dt>XUSE:CASH:BEBE1USD</dt><dd>1</dd></div>
+<div class="measure__row"><dt>XUSE:CASH:BSBRUSD</dt><dd>2</dd></div>
+<div class="measure__row"><dt>XUSE:CASH:BXMTUSD</dt><dd>2</dd></div>
+<div class="measure__row"><dt>XUSE:CASH:CETXUSD</dt><dd>1</dd></div>
+<div class="measure__row"><dt>XUSE:CASH:CHKAQUSD</dt><dd>3</dd></div>
+<div class="measure__row"><dt>XUSE:CASH:CMCMUSD</dt><dd>1</dd></div>
+<div class="measure__row"><dt>XUSE:CASH:CMCTUSD</dt><dd>111</dd></div>
+<div class="measure__row"><dt>XUSE:CASH:CXWUSD</dt><dd>1</dd></div>
+<div class="measure__row"><dt>XUSE:CASH:DRLCQUSD</dt><dd>17</dd></div>
+<div class="measure__row"><dt>XUSE:CASH:DRYSUSD</dt><dd>17</dd></div>
+<div class="measure__row"><dt>XUSE:CASH:EGLE2USD</dt><dd>13</dd></div>
+<div class="measure__row"><dt>XUSE:CASH:EMKRUSD</dt><dd>1</dd></div>
+<div class="measure__row"><dt>XUSE:CASH:EMMSUSD</dt><dd>1</dd></div>
+<div class="measure__row"><dt>XUSE:CASH:FBCUSD</dt><dd>9</dd></div>
+<div class="measure__row"><dt>XUSE:CASH:FLNAUSD</dt><dd>2</dd></div>
+<div class="measure__row"><dt>XUSE:CASH:FTRCQUSD</dt><dd>1</dd></div>
+<div class="measure__row"><dt>XUSE:CASH:GEGUSD</dt><dd>1</dd></div>
+<div class="measure__row"><dt>XUSE:CASH:GFASYUSD</dt><dd>1</dd></div>
+<div class="measure__row"><dt>XUSE:CASH:GLAEUSD</dt><dd>23</dd></div>
+<div class="measure__row"><dt>XUSE:CASH:GYREUSD</dt><dd>3</dd></div>
+<div class="measure__row"><dt>XUSE:CASH:IVRUSD</dt><dd>2</dd></div>
+<div class="measure__row"><dt>XUSE:CASH:KANTUSD</dt><dd>1</dd></div>
+<div class="measure__row"><dt>XUSE:CASH:LENZUSD</dt><dd>1</dd></div>
+<div class="measure__row"><dt>XUSE:CASH:LGNDUSD</dt><dd>1</dd></div>
+<div class="measure__row"><dt>XUSE:CASH:MACKUSD</dt><dd>1</dd></div>
+<div class="measure__row"><dt>XUSE:CASH:MNIQQUSD</dt><dd>1</dd></div>
+<div class="measure__row"><dt>XUSE:CASH:MRVCUSD</dt><dd>3</dd></div>
+<div class="measure__row"><dt>XUSE:CASH:MTBLYUSD</dt><dd>1</dd></div>
+<div class="measure__row"><dt>XUSE:CASH:NBRUSD</dt><dd>2</dd></div>
+<div class="measure__row"><dt>XUSE:CASH:NVECUSD</dt><dd>1</dd></div>
+<div class="measure__row"><dt>XUSE:CASH:NVLNFUSD</dt><dd>1</dd></div>
+<div class="measure__row"><dt>XUSE:CASH:NYRTUSD</dt><dd>2</dd></div>
+<div class="measure__row"><dt>XUSE:CASH:OCGNUSD</dt><dd>1</dd></div>
+<div class="measure__row"><dt>XUSE:CASH:ORIGUSD</dt><dd>5</dd></div>
+<div class="measure__row"><dt>XUSE:CASH:PCBCUSD</dt><dd>3</dd></div>
+<div class="measure__row"><dt>XUSE:CASH:PFXUSD</dt><dd>2</dd></div>
+<div class="measure__row"><dt>XUSE:CASH:PRETUSD</dt><dd>2</dd></div>
+<div class="measure__row"><dt>XUSE:CASH:PRTKUSD</dt><dd>1</dd></div>
+<div class="measure__row"><dt>XUSE:CASH:QVCAQUSD</dt><dd>3</dd></div>
+<div class="measure__row"><dt>XUSE:CASH:RNWKUSD</dt><dd>1</dd></div>
+<div class="measure__row"><dt>XUSE:CASH:SFUNYUSD</dt><dd>7</dd></div>
+<div class="measure__row"><dt>XUSE:CASH:SITCUSD</dt><dd>1</dd></div>
+<div class="measure__row"><dt>XUSE:CASH:STCNUSD</dt><dd>1</dd></div>
+<div class="measure__row"><dt>XUSE:CASH:TRVGUSD</dt><dd>1</dd></div>
+<div class="measure__row"><dt>XUSE:CASH:TWCUSD</dt><dd>1</dd></div>
+<div class="measure__row"><dt>XUSE:CASH:VATEUSD</dt><dd>4</dd></div>
+<div class="measure__row"><dt>XUSE:CASH:VEONUSD</dt><dd>9</dd></div>
+<div class="measure__row"><dt>XUSE:CASH:VSAUSD</dt><dd>3</dd></div>
+<div class="measure__row"><dt>XUSE:CASH:WHCIUSD</dt><dd>3</dd></div>
+<div class="measure__row"><dt>XUSE:CASH:WHLRUSD</dt><dd>55</dd></div>
+</dl>
+</section>
+<section class="measure__sub"><h3>Lineage</h3>
+<dl class="measure__facts">
+<div class="measure__row"><dt>Audit command</dt><dd>uv run python scripts/audit_sharadar_dividend_price_consistency.py</dd></div>
+<div class="measure__row"><dt>Engine</dt><dd>src/alphaforge/backtest/engine.py</dd></div>
+<div class="measure__row"><dt>Engine sha256</dt><dd>84b42685d6ad4fe14897bcd90b8ed766ea7a63815cec11e6dc428ecaa8a78647</dd></div>
+<div class="measure__row"><dt>Lake</dt><dd>data/lake_sharadar</dd></div>
+<div class="measure__row"><dt>Loader</dt><dd>scripts/sharadar_load.py</dd></div>
+<div class="measure__row"><dt>Loader sha256</dt><dd>a1647ebdabe1396ca52cfe812d44c26ab88974bf79b3b3a96f23befe0bd2fa91</dd></div>
+<div class="measure__row"><dt>Raw actions archive</dt><dd>data/sharadar_raw/ACTIONS.zip</dd></div>
+<div class="measure__row"><dt>Raw actions archive sha256</dt><dd>166d6ae17921b6a3a1f13a734e43bfd32ca5d9e88398030290a5246c89d7185c</dd></div>
+</dl>
+</section>
+<figure class="measure__tablewrap"><figcaption>Missing pre close rows</figcaption><table class="measure__table"><thead><tr><th scope="col">Available at</th><th scope="col">Cash amount</th><th scope="col">Ex date</th><th scope="col">Instrument id</th><th scope="col">Pre close</th><th scope="col">Pre close multiple</th><th scope="col">Pre close ts</th></tr></thead><tbody>
+<tr><td>2017-12-27T04:00:00+04:00</td><td>0.044770</td><td>2017-12-27T04:00:00+04:00</td><td>XUSE:CASH:ACTUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2018-12-27T04:00:00+04:00</td><td>0.368000</td><td>2018-12-27T04:00:00+04:00</td><td>XUSE:CASH:ACTUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2019-12-27T04:00:00+04:00</td><td>0.620260</td><td>2019-12-27T04:00:00+04:00</td><td>XUSE:CASH:ACTUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>1997-12-31T04:00:00+04:00</td><td>0.012500</td><td>1997-12-31T04:00:00+04:00</td><td>XUSE:CASH:ASM1USD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>1998-08-05T04:00:00+04:00</td><td>1.214000</td><td>1998-08-05T04:00:00+04:00</td><td>XUSE:CASH:AUUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2001-04-25T04:00:00+04:00</td><td>0.319500</td><td>2001-04-25T04:00:00+04:00</td><td>XUSE:CASH:BAYRYUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2017-07-05T04:00:00+04:00</td><td>17.500000</td><td>2017-07-05T04:00:00+04:00</td><td>XUSE:CASH:BKRUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>1997-12-31T04:00:00+04:00</td><td>0.674000</td><td>1997-12-31T04:00:00+04:00</td><td>XUSE:CASH:BTTGYUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2016-05-31T04:00:00+04:00</td><td>14.500000</td><td>2016-05-31T04:00:00+04:00</td><td>XUSE:CASH:CCEPUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>1997-12-31T04:00:00+04:00</td><td>0.210000</td><td>1997-12-31T04:00:00+04:00</td><td>XUSE:CASH:CPBUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>1998-06-03T04:00:00+04:00</td><td>0.714200</td><td>1998-06-03T04:00:00+04:00</td><td>XUSE:CASH:CSUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>1999-06-01T04:00:00+04:00</td><td>0.711600</td><td>1999-06-01T04:00:00+04:00</td><td>XUSE:CASH:CSUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2000-05-26T04:00:00+04:00</td><td>0.895000</td><td>2000-05-26T04:00:00+04:00</td><td>XUSE:CASH:CSUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2001-08-15T04:00:00+04:00</td><td>1.170000</td><td>2001-08-15T04:00:00+04:00</td><td>XUSE:CASH:CSUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>1999-03-29T04:00:00+04:00</td><td>0.066670</td><td>1999-03-29T04:00:00+04:00</td><td>XUSE:CASH:DCOMUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>1999-06-30T04:00:00+04:00</td><td>0.066670</td><td>1999-06-30T04:00:00+04:00</td><td>XUSE:CASH:DCOMUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>1999-10-01T04:00:00+04:00</td><td>0.073330</td><td>1999-10-01T04:00:00+04:00</td><td>XUSE:CASH:DCOMUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>1999-12-29T04:00:00+04:00</td><td>0.073330</td><td>1999-12-29T04:00:00+04:00</td><td>XUSE:CASH:DCOMUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2000-03-29T04:00:00+04:00</td><td>0.080000</td><td>2000-03-29T04:00:00+04:00</td><td>XUSE:CASH:DCOMUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2000-06-28T04:00:00+04:00</td><td>0.080000</td><td>2000-06-28T04:00:00+04:00</td><td>XUSE:CASH:DCOMUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2000-09-27T04:00:00+04:00</td><td>0.080000</td><td>2000-09-27T04:00:00+04:00</td><td>XUSE:CASH:DCOMUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2000-12-27T04:00:00+04:00</td><td>0.086670</td><td>2000-12-27T04:00:00+04:00</td><td>XUSE:CASH:DCOMUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2001-03-28T04:00:00+04:00</td><td>0.086670</td><td>2001-03-28T04:00:00+04:00</td><td>XUSE:CASH:DCOMUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2001-06-27T04:00:00+04:00</td><td>0.086670</td><td>2001-06-27T04:00:00+04:00</td><td>XUSE:CASH:DCOMUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2001-09-26T04:00:00+04:00</td><td>0.093330</td><td>2001-09-26T04:00:00+04:00</td><td>XUSE:CASH:DCOMUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2001-12-27T04:00:00+04:00</td><td>0.100000</td><td>2001-12-27T04:00:00+04:00</td><td>XUSE:CASH:DCOMUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2002-03-26T04:00:00+04:00</td><td>0.100000</td><td>2002-03-26T04:00:00+04:00</td><td>XUSE:CASH:DCOMUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2002-06-26T04:00:00+04:00</td><td>0.100000</td><td>2002-06-26T04:00:00+04:00</td><td>XUSE:CASH:DCOMUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2002-09-26T04:00:00+04:00</td><td>0.100000</td><td>2002-09-26T04:00:00+04:00</td><td>XUSE:CASH:DCOMUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2002-12-27T04:00:00+04:00</td><td>0.106670</td><td>2002-12-27T04:00:00+04:00</td><td>XUSE:CASH:DCOMUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2003-03-27T04:00:00+04:00</td><td>0.113330</td><td>2003-03-27T04:00:00+04:00</td><td>XUSE:CASH:DCOMUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2003-06-26T04:00:00+04:00</td><td>0.120000</td><td>2003-06-26T04:00:00+04:00</td><td>XUSE:CASH:DCOMUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2003-09-26T04:00:00+04:00</td><td>0.133330</td><td>2003-09-26T04:00:00+04:00</td><td>XUSE:CASH:DCOMUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2003-12-29T04:00:00+04:00</td><td>0.420000</td><td>2003-12-29T04:00:00+04:00</td><td>XUSE:CASH:DCOMUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2004-03-29T04:00:00+04:00</td><td>0.160000</td><td>2004-03-29T04:00:00+04:00</td><td>XUSE:CASH:DCOMUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2004-06-30T04:00:00+04:00</td><td>0.166670</td><td>2004-06-30T04:00:00+04:00</td><td>XUSE:CASH:DCOMUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2004-09-28T04:00:00+04:00</td><td>0.180000</td><td>2004-09-28T04:00:00+04:00</td><td>XUSE:CASH:DCOMUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2004-12-29T04:00:00+04:00</td><td>0.210000</td><td>2004-12-29T04:00:00+04:00</td><td>XUSE:CASH:DCOMUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2005-03-29T04:00:00+04:00</td><td>0.220000</td><td>2005-03-29T04:00:00+04:00</td><td>XUSE:CASH:DCOMUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2005-06-29T04:00:00+04:00</td><td>0.230000</td><td>2005-06-29T04:00:00+04:00</td><td>XUSE:CASH:DCOMUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2005-09-28T04:00:00+04:00</td><td>0.230000</td><td>2005-09-28T04:00:00+04:00</td><td>XUSE:CASH:DCOMUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2005-12-28T04:00:00+04:00</td><td>0.230000</td><td>2005-12-28T04:00:00+04:00</td><td>XUSE:CASH:DCOMUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2006-04-06T04:00:00+04:00</td><td>0.230000</td><td>2006-04-06T04:00:00+04:00</td><td>XUSE:CASH:DCOMUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2006-07-06T04:00:00+04:00</td><td>0.230000</td><td>2006-07-06T04:00:00+04:00</td><td>XUSE:CASH:DCOMUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2006-10-05T04:00:00+04:00</td><td>0.230000</td><td>2006-10-05T04:00:00+04:00</td><td>XUSE:CASH:DCOMUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2006-12-28T04:00:00+04:00</td><td>0.230000</td><td>2006-12-28T04:00:00+04:00</td><td>XUSE:CASH:DCOMUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2007-04-04T04:00:00+04:00</td><td>0.230000</td><td>2007-04-04T04:00:00+04:00</td><td>XUSE:CASH:DCOMUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2007-07-05T04:00:00+04:00</td><td>0.230000</td><td>2007-07-05T04:00:00+04:00</td><td>XUSE:CASH:DCOMUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2007-10-04T04:00:00+04:00</td><td>0.230000</td><td>2007-10-04T04:00:00+04:00</td><td>XUSE:CASH:DCOMUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2007-12-27T04:00:00+04:00</td><td>0.230000</td><td>2007-12-27T04:00:00+04:00</td><td>XUSE:CASH:DCOMUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2008-04-04T04:00:00+04:00</td><td>0.230000</td><td>2008-04-04T04:00:00+04:00</td><td>XUSE:CASH:DCOMUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>1997-12-31T04:00:00+04:00</td><td>0.250000</td><td>1997-12-31T04:00:00+04:00</td><td>XUSE:CASH:EIXUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>1997-12-31T04:00:00+04:00</td><td>0.118750</td><td>1997-12-31T04:00:00+04:00</td><td>XUSE:CASH:ENRNQUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>1997-12-31T04:00:00+04:00</td><td>0.016670</td><td>1997-12-31T04:00:00+04:00</td><td>XUSE:CASH:EXPUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2000-04-14T04:00:00+04:00</td><td>0.190800</td><td>2000-04-14T04:00:00+04:00</td><td>XUSE:CASH:FBRUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>1998-03-12T04:00:00+04:00</td><td>0.256000</td><td>1998-03-12T04:00:00+04:00</td><td>XUSE:CASH:FCBCUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>1998-06-12T04:00:00+04:00</td><td>0.206400</td><td>1998-06-12T04:00:00+04:00</td><td>XUSE:CASH:FCBCUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>1998-09-14T04:00:00+04:00</td><td>0.206400</td><td>1998-09-14T04:00:00+04:00</td><td>XUSE:CASH:FCBCUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>1998-12-14T04:00:00+04:00</td><td>0.241600</td><td>1998-12-14T04:00:00+04:00</td><td>XUSE:CASH:FCBCUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>1999-03-12T04:00:00+04:00</td><td>0.200000</td><td>1999-03-12T04:00:00+04:00</td><td>XUSE:CASH:FCBCUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>1999-06-14T04:00:00+04:00</td><td>0.210000</td><td>1999-06-14T04:00:00+04:00</td><td>XUSE:CASH:FCBCUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>1999-09-15T04:00:00+04:00</td><td>0.220000</td><td>1999-09-15T04:00:00+04:00</td><td>XUSE:CASH:FCBCUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>1999-12-15T04:00:00+04:00</td><td>0.250000</td><td>1999-12-15T04:00:00+04:00</td><td>XUSE:CASH:FCBCUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2000-03-15T04:00:00+04:00</td><td>0.220000</td><td>2000-03-15T04:00:00+04:00</td><td>XUSE:CASH:FCBCUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2000-06-14T04:00:00+04:00</td><td>0.230000</td><td>2000-06-14T04:00:00+04:00</td><td>XUSE:CASH:FCBCUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2000-09-13T04:00:00+04:00</td><td>0.230000</td><td>2000-09-13T04:00:00+04:00</td><td>XUSE:CASH:FCBCUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2000-12-13T04:00:00+04:00</td><td>0.270000</td><td>2000-12-13T04:00:00+04:00</td><td>XUSE:CASH:FCBCUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2000-12-22T04:00:00+04:00</td><td>0.094810</td><td>2000-12-22T04:00:00+04:00</td><td>XUSE:CASH:FMBHUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2001-06-11T04:00:00+04:00</td><td>0.085930</td><td>2001-06-11T04:00:00+04:00</td><td>XUSE:CASH:FMBHUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2002-05-30T04:00:00+04:00</td><td>0.102220</td><td>2002-05-30T04:00:00+04:00</td><td>XUSE:CASH:FMBHUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2002-12-26T04:00:00+04:00</td><td>0.120000</td><td>2002-12-26T04:00:00+04:00</td><td>XUSE:CASH:FMBHUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2003-05-29T04:00:00+04:00</td><td>0.111110</td><td>2003-05-29T04:00:00+04:00</td><td>XUSE:CASH:FMBHUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2003-12-26T04:00:00+04:00</td><td>0.177780</td><td>2003-12-26T04:00:00+04:00</td><td>XUSE:CASH:FMBHUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2004-05-27T04:00:00+04:00</td><td>0.142220</td><td>2004-05-27T04:00:00+04:00</td><td>XUSE:CASH:FMBHUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2004-12-28T04:00:00+04:00</td><td>0.160000</td><td>2004-12-28T04:00:00+04:00</td><td>XUSE:CASH:FMBHUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2005-05-27T04:00:00+04:00</td><td>0.160000</td><td>2005-05-27T04:00:00+04:00</td><td>XUSE:CASH:FMBHUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2005-12-28T04:00:00+04:00</td><td>0.173330</td><td>2005-12-28T04:00:00+04:00</td><td>XUSE:CASH:FMBHUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2006-05-30T04:00:00+04:00</td><td>0.173330</td><td>2006-05-30T04:00:00+04:00</td><td>XUSE:CASH:FMBHUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2006-12-27T04:00:00+04:00</td><td>0.173330</td><td>2006-12-27T04:00:00+04:00</td><td>XUSE:CASH:FMBHUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2007-05-30T04:00:00+04:00</td><td>0.186670</td><td>2007-05-30T04:00:00+04:00</td><td>XUSE:CASH:FMBHUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2007-12-27T04:00:00+04:00</td><td>0.190000</td><td>2007-12-27T04:00:00+04:00</td><td>XUSE:CASH:FMBHUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2008-05-29T04:00:00+04:00</td><td>0.190000</td><td>2008-05-29T04:00:00+04:00</td><td>XUSE:CASH:FMBHUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2008-12-24T04:00:00+04:00</td><td>0.190000</td><td>2008-12-24T04:00:00+04:00</td><td>XUSE:CASH:FMBHUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2009-05-28T04:00:00+04:00</td><td>0.190000</td><td>2009-05-28T04:00:00+04:00</td><td>XUSE:CASH:FMBHUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2009-12-30T04:00:00+04:00</td><td>0.190000</td><td>2009-12-30T04:00:00+04:00</td><td>XUSE:CASH:FMBHUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2010-05-27T04:00:00+04:00</td><td>0.190000</td><td>2010-05-27T04:00:00+04:00</td><td>XUSE:CASH:FMBHUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2010-12-22T04:00:00+04:00</td><td>0.190000</td><td>2010-12-22T04:00:00+04:00</td><td>XUSE:CASH:FMBHUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2011-05-27T04:00:00+04:00</td><td>0.190000</td><td>2011-05-27T04:00:00+04:00</td><td>XUSE:CASH:FMBHUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2011-12-21T04:00:00+04:00</td><td>0.210000</td><td>2011-12-21T04:00:00+04:00</td><td>XUSE:CASH:FMBHUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2012-05-30T04:00:00+04:00</td><td>0.210000</td><td>2012-05-30T04:00:00+04:00</td><td>XUSE:CASH:FMBHUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2012-11-28T04:00:00+04:00</td><td>0.210000</td><td>2012-11-28T04:00:00+04:00</td><td>XUSE:CASH:FMBHUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2013-05-30T04:00:00+04:00</td><td>0.210000</td><td>2013-05-30T04:00:00+04:00</td><td>XUSE:CASH:FMBHUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2013-11-26T04:00:00+04:00</td><td>0.250000</td><td>2013-11-26T04:00:00+04:00</td><td>XUSE:CASH:FMBHUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>1999-03-10T04:00:00+04:00</td><td>0.084360</td><td>1999-03-10T04:00:00+04:00</td><td>XUSE:CASH:FMNBUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>1999-06-09T04:00:00+04:00</td><td>0.088800</td><td>1999-06-09T04:00:00+04:00</td><td>XUSE:CASH:FMNBUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>1999-09-08T04:00:00+04:00</td><td>0.093240</td><td>1999-09-08T04:00:00+04:00</td><td>XUSE:CASH:FMNBUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>1999-12-08T04:00:00+04:00</td><td>0.108690</td><td>1999-12-08T04:00:00+04:00</td><td>XUSE:CASH:FMNBUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2000-03-08T04:00:00+04:00</td><td>0.108690</td><td>2000-03-08T04:00:00+04:00</td><td>XUSE:CASH:FMNBUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2000-06-07T04:00:00+04:00</td><td>0.117750</td><td>2000-06-07T04:00:00+04:00</td><td>XUSE:CASH:FMNBUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2000-09-06T04:00:00+04:00</td><td>0.120100</td><td>2000-09-06T04:00:00+04:00</td><td>XUSE:CASH:FMNBUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2000-12-06T04:00:00+04:00</td><td>0.120100</td><td>2000-12-06T04:00:00+04:00</td><td>XUSE:CASH:FMNBUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2001-03-07T04:00:00+04:00</td><td>0.120100</td><td>2001-03-07T04:00:00+04:00</td><td>XUSE:CASH:FMNBUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2001-06-06T04:00:00+04:00</td><td>0.120100</td><td>2001-06-06T04:00:00+04:00</td><td>XUSE:CASH:FMNBUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2001-09-17T04:00:00+04:00</td><td>0.120100</td><td>2001-09-17T04:00:00+04:00</td><td>XUSE:CASH:FMNBUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2001-12-12T04:00:00+04:00</td><td>0.131920</td><td>2001-12-12T04:00:00+04:00</td><td>XUSE:CASH:FMNBUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2002-03-13T04:00:00+04:00</td><td>0.131920</td><td>2002-03-13T04:00:00+04:00</td><td>XUSE:CASH:FMNBUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2002-06-05T04:00:00+04:00</td><td>0.131920</td><td>2002-06-05T04:00:00+04:00</td><td>XUSE:CASH:FMNBUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2002-09-11T04:00:00+04:00</td><td>0.131920</td><td>2002-09-11T04:00:00+04:00</td><td>XUSE:CASH:FMNBUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2002-12-11T04:00:00+04:00</td><td>0.144170</td><td>2002-12-11T04:00:00+04:00</td><td>XUSE:CASH:FMNBUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2003-03-12T04:00:00+04:00</td><td>0.144170</td><td>2003-03-12T04:00:00+04:00</td><td>XUSE:CASH:FMNBUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2003-06-11T04:00:00+04:00</td><td>0.144170</td><td>2003-06-11T04:00:00+04:00</td><td>XUSE:CASH:FMNBUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2003-09-10T04:00:00+04:00</td><td>0.144170</td><td>2003-09-10T04:00:00+04:00</td><td>XUSE:CASH:FMNBUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2003-12-10T04:00:00+04:00</td><td>0.156860</td><td>2003-12-10T04:00:00+04:00</td><td>XUSE:CASH:FMNBUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2004-03-10T04:00:00+04:00</td><td>0.156860</td><td>2004-03-10T04:00:00+04:00</td><td>XUSE:CASH:FMNBUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2004-06-09T04:00:00+04:00</td><td>0.156860</td><td>2004-06-09T04:00:00+04:00</td><td>XUSE:CASH:FMNBUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2004-09-08T04:00:00+04:00</td><td>0.156860</td><td>2004-09-08T04:00:00+04:00</td><td>XUSE:CASH:FMNBUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2004-12-08T04:00:00+04:00</td><td>0.160000</td><td>2004-12-08T04:00:00+04:00</td><td>XUSE:CASH:FMNBUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2005-03-09T04:00:00+04:00</td><td>0.160000</td><td>2005-03-09T04:00:00+04:00</td><td>XUSE:CASH:FMNBUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2005-06-08T04:00:00+04:00</td><td>0.160000</td><td>2005-06-08T04:00:00+04:00</td><td>XUSE:CASH:FMNBUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2005-09-14T04:00:00+04:00</td><td>0.160000</td><td>2005-09-14T04:00:00+04:00</td><td>XUSE:CASH:FMNBUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2005-12-14T04:00:00+04:00</td><td>0.160000</td><td>2005-12-14T04:00:00+04:00</td><td>XUSE:CASH:FMNBUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2006-03-08T04:00:00+04:00</td><td>0.160000</td><td>2006-03-08T04:00:00+04:00</td><td>XUSE:CASH:FMNBUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2006-06-14T04:00:00+04:00</td><td>0.160000</td><td>2006-06-14T04:00:00+04:00</td><td>XUSE:CASH:FMNBUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2006-09-13T04:00:00+04:00</td><td>0.160000</td><td>2006-09-13T04:00:00+04:00</td><td>XUSE:CASH:FMNBUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2006-12-13T04:00:00+04:00</td><td>0.160000</td><td>2006-12-13T04:00:00+04:00</td><td>XUSE:CASH:FMNBUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2007-03-14T04:00:00+04:00</td><td>0.160000</td><td>2007-03-14T04:00:00+04:00</td><td>XUSE:CASH:FMNBUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2007-06-13T04:00:00+04:00</td><td>0.160000</td><td>2007-06-13T04:00:00+04:00</td><td>XUSE:CASH:FMNBUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2007-09-12T04:00:00+04:00</td><td>0.160000</td><td>2007-09-12T04:00:00+04:00</td><td>XUSE:CASH:FMNBUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2007-12-12T04:00:00+04:00</td><td>0.160000</td><td>2007-12-12T04:00:00+04:00</td><td>XUSE:CASH:FMNBUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2008-03-12T04:00:00+04:00</td><td>0.160000</td><td>2008-03-12T04:00:00+04:00</td><td>XUSE:CASH:FMNBUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2008-06-11T04:00:00+04:00</td><td>0.120000</td><td>2008-06-11T04:00:00+04:00</td><td>XUSE:CASH:FMNBUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2008-09-11T04:00:00+04:00</td><td>0.120000</td><td>2008-09-11T04:00:00+04:00</td><td>XUSE:CASH:FMNBUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2009-01-02T04:00:00+04:00</td><td>0.120000</td><td>2009-01-02T04:00:00+04:00</td><td>XUSE:CASH:FMNBUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2009-03-11T04:00:00+04:00</td><td>0.120000</td><td>2009-03-11T04:00:00+04:00</td><td>XUSE:CASH:FMNBUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2009-06-17T04:00:00+04:00</td><td>0.120000</td><td>2009-06-17T04:00:00+04:00</td><td>XUSE:CASH:FMNBUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2009-09-16T04:00:00+04:00</td><td>0.060000</td><td>2009-09-16T04:00:00+04:00</td><td>XUSE:CASH:FMNBUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2009-12-16T04:00:00+04:00</td><td>0.060000</td><td>2009-12-16T04:00:00+04:00</td><td>XUSE:CASH:FMNBUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2010-03-17T04:00:00+04:00</td><td>0.030000</td><td>2010-03-17T04:00:00+04:00</td><td>XUSE:CASH:FMNBUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2010-06-16T04:00:00+04:00</td><td>0.030000</td><td>2010-06-16T04:00:00+04:00</td><td>XUSE:CASH:FMNBUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2010-09-16T04:00:00+04:00</td><td>0.030000</td><td>2010-09-16T04:00:00+04:00</td><td>XUSE:CASH:FMNBUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2010-12-15T04:00:00+04:00</td><td>0.030000</td><td>2010-12-15T04:00:00+04:00</td><td>XUSE:CASH:FMNBUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2011-03-16T04:00:00+04:00</td><td>0.030000</td><td>2011-03-16T04:00:00+04:00</td><td>XUSE:CASH:FMNBUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2011-06-15T04:00:00+04:00</td><td>0.030000</td><td>2011-06-15T04:00:00+04:00</td><td>XUSE:CASH:FMNBUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2011-09-14T04:00:00+04:00</td><td>0.030000</td><td>2011-09-14T04:00:00+04:00</td><td>XUSE:CASH:FMNBUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2008-08-01T04:00:00+04:00</td><td>1.566000</td><td>2008-08-01T04:00:00+04:00</td><td>XUSE:CASH:FTIUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>1997-12-31T04:00:00+04:00</td><td>0.284000</td><td>1997-12-31T04:00:00+04:00</td><td>XUSE:CASH:FURUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>1997-12-31T04:00:00+04:00</td><td>0.053750</td><td>1997-12-31T04:00:00+04:00</td><td>XUSE:CASH:G1USD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>1998-08-05T04:00:00+04:00</td><td>0.090000</td><td>1998-08-05T04:00:00+04:00</td><td>XUSE:CASH:GFIUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>1999-02-03T04:00:00+04:00</td><td>0.120000</td><td>1999-02-03T04:00:00+04:00</td><td>XUSE:CASH:GFIUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>1999-09-15T04:00:00+04:00</td><td>0.044200</td><td>1999-09-15T04:00:00+04:00</td><td>XUSE:CASH:GFIUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2000-02-16T04:00:00+04:00</td><td>0.026700</td><td>2000-02-16T04:00:00+04:00</td><td>XUSE:CASH:GFIUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2001-02-14T04:00:00+04:00</td><td>0.123200</td><td>2001-02-14T04:00:00+04:00</td><td>XUSE:CASH:GFIUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2001-08-15T04:00:00+04:00</td><td>0.043500</td><td>2001-08-15T04:00:00+04:00</td><td>XUSE:CASH:GFIUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2002-02-20T04:00:00+04:00</td><td>0.067500</td><td>2002-02-20T04:00:00+04:00</td><td>XUSE:CASH:GFIUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2004-12-29T04:00:00+04:00</td><td>0.450000</td><td>2004-12-29T04:00:00+04:00</td><td>XUSE:CASH:GPT4USD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2005-03-29T04:00:00+04:00</td><td>0.660000</td><td>2005-03-29T04:00:00+04:00</td><td>XUSE:CASH:GPT4USD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2005-06-28T04:00:00+04:00</td><td>1.050000</td><td>2005-06-28T04:00:00+04:00</td><td>XUSE:CASH:GPT4USD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2005-09-28T04:00:00+04:00</td><td>1.350000</td><td>2005-09-28T04:00:00+04:00</td><td>XUSE:CASH:GPT4USD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2005-12-28T04:00:00+04:00</td><td>1.425000</td><td>2005-12-28T04:00:00+04:00</td><td>XUSE:CASH:GPT4USD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2006-03-29T04:00:00+04:00</td><td>1.500000</td><td>2006-03-29T04:00:00+04:00</td><td>XUSE:CASH:GPT4USD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2006-06-28T04:00:00+04:00</td><td>1.530000</td><td>2006-06-28T04:00:00+04:00</td><td>XUSE:CASH:GPT4USD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2006-09-27T04:00:00+04:00</td><td>1.530000</td><td>2006-09-27T04:00:00+04:00</td><td>XUSE:CASH:GPT4USD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2006-12-27T04:00:00+04:00</td><td>1.680000</td><td>2006-12-27T04:00:00+04:00</td><td>XUSE:CASH:GPT4USD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2007-03-28T04:00:00+04:00</td><td>1.680000</td><td>2007-03-28T04:00:00+04:00</td><td>XUSE:CASH:GPT4USD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2007-06-27T04:00:00+04:00</td><td>1.890000</td><td>2007-06-27T04:00:00+04:00</td><td>XUSE:CASH:GPT4USD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2007-09-26T04:00:00+04:00</td><td>1.890000</td><td>2007-09-26T04:00:00+04:00</td><td>XUSE:CASH:GPT4USD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2008-04-02T04:00:00+04:00</td><td>1.890000</td><td>2008-04-02T04:00:00+04:00</td><td>XUSE:CASH:GPT4USD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2008-06-26T04:00:00+04:00</td><td>1.890000</td><td>2008-06-26T04:00:00+04:00</td><td>XUSE:CASH:GPT4USD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>1997-12-31T04:00:00+04:00</td><td>0.185000</td><td>1997-12-31T04:00:00+04:00</td><td>XUSE:CASH:IBCPUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2015-02-25T04:00:00+04:00</td><td>0.108330</td><td>2015-02-25T04:00:00+04:00</td><td>XUSE:CASH:IVTUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2015-04-28T04:00:00+04:00</td><td>0.110000</td><td>2015-04-28T04:00:00+04:00</td><td>XUSE:CASH:IVTUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2015-05-27T04:00:00+04:00</td><td>0.110000</td><td>2015-05-27T04:00:00+04:00</td><td>XUSE:CASH:IVTUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2015-06-26T04:00:00+04:00</td><td>0.110000</td><td>2015-06-26T04:00:00+04:00</td><td>XUSE:CASH:IVTUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2015-09-28T04:00:00+04:00</td><td>0.330000</td><td>2015-09-28T04:00:00+04:00</td><td>XUSE:CASH:IVTUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2015-12-28T04:00:00+04:00</td><td>0.325000</td><td>2015-12-28T04:00:00+04:00</td><td>XUSE:CASH:IVTUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2016-03-29T04:00:00+04:00</td><td>0.330000</td><td>2016-03-29T04:00:00+04:00</td><td>XUSE:CASH:IVTUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2016-06-28T04:00:00+04:00</td><td>0.330000</td><td>2016-06-28T04:00:00+04:00</td><td>XUSE:CASH:IVTUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2016-09-28T04:00:00+04:00</td><td>0.170000</td><td>2016-09-28T04:00:00+04:00</td><td>XUSE:CASH:IVTUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2016-12-28T04:00:00+04:00</td><td>0.168750</td><td>2016-12-28T04:00:00+04:00</td><td>XUSE:CASH:IVTUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2017-03-29T04:00:00+04:00</td><td>0.170000</td><td>2017-03-29T04:00:00+04:00</td><td>XUSE:CASH:IVTUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2017-06-28T04:00:00+04:00</td><td>0.173750</td><td>2017-06-28T04:00:00+04:00</td><td>XUSE:CASH:IVTUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2017-09-28T04:00:00+04:00</td><td>0.173750</td><td>2017-09-28T04:00:00+04:00</td><td>XUSE:CASH:IVTUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2019-03-28T04:00:00+04:00</td><td>0.180000</td><td>2019-03-28T04:00:00+04:00</td><td>XUSE:CASH:IVTUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2020-03-30T04:00:00+04:00</td><td>0.190000</td><td>2020-03-30T04:00:00+04:00</td><td>XUSE:CASH:IVTUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2020-06-26T04:00:00+04:00</td><td>0.189750</td><td>2020-06-26T04:00:00+04:00</td><td>XUSE:CASH:IVTUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2020-09-28T04:00:00+04:00</td><td>0.189750</td><td>2020-09-28T04:00:00+04:00</td><td>XUSE:CASH:IVTUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2020-12-29T04:00:00+04:00</td><td>0.189750</td><td>2020-12-29T04:00:00+04:00</td><td>XUSE:CASH:IVTUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2021-03-30T04:00:00+04:00</td><td>0.020000</td><td>2021-03-30T04:00:00+04:00</td><td>XUSE:CASH:IVTUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2021-06-29T04:00:00+04:00</td><td>0.020000</td><td>2021-06-29T04:00:00+04:00</td><td>XUSE:CASH:IVTUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2021-09-29T04:00:00+04:00</td><td>0.020000</td><td>2021-09-29T04:00:00+04:00</td><td>XUSE:CASH:IVTUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>1997-12-31T04:00:00+04:00</td><td>0.220000</td><td>1997-12-31T04:00:00+04:00</td><td>XUSE:CASH:JOSUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2020-01-02T04:00:00+04:00</td><td>0.107550</td><td>2020-01-02T04:00:00+04:00</td><td>XUSE:CASH:NHPUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2020-04-02T04:00:00+04:00</td><td>0.460940</td><td>2020-04-02T04:00:00+04:00</td><td>XUSE:CASH:NHPUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2020-07-01T04:00:00+04:00</td><td>0.460940</td><td>2020-07-01T04:00:00+04:00</td><td>XUSE:CASH:NHPUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2020-10-02T04:00:00+04:00</td><td>0.460940</td><td>2020-10-02T04:00:00+04:00</td><td>XUSE:CASH:NHPUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2021-01-04T04:00:00+04:00</td><td>0.460940</td><td>2021-01-04T04:00:00+04:00</td><td>XUSE:CASH:NHPUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2021-04-01T04:00:00+04:00</td><td>0.460940</td><td>2021-04-01T04:00:00+04:00</td><td>XUSE:CASH:NHPUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2021-07-01T04:00:00+04:00</td><td>0.460940</td><td>2021-07-01T04:00:00+04:00</td><td>XUSE:CASH:NHPUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2021-10-04T04:00:00+04:00</td><td>0.460940</td><td>2021-10-04T04:00:00+04:00</td><td>XUSE:CASH:NHPUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2022-01-06T04:00:00+04:00</td><td>0.460940</td><td>2022-01-06T04:00:00+04:00</td><td>XUSE:CASH:NHPUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2022-04-07T04:00:00+04:00</td><td>0.460940</td><td>2022-04-07T04:00:00+04:00</td><td>XUSE:CASH:NHPUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2022-07-01T04:00:00+04:00</td><td>0.460940</td><td>2022-07-01T04:00:00+04:00</td><td>XUSE:CASH:NHPUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2022-10-06T04:00:00+04:00</td><td>0.460940</td><td>2022-10-06T04:00:00+04:00</td><td>XUSE:CASH:NHPUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2023-01-05T04:00:00+04:00</td><td>0.460940</td><td>2023-01-05T04:00:00+04:00</td><td>XUSE:CASH:NHPUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2023-04-05T04:00:00+04:00</td><td>0.460940</td><td>2023-04-05T04:00:00+04:00</td><td>XUSE:CASH:NHPUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2023-07-05T04:00:00+04:00</td><td>0.460940</td><td>2023-07-05T04:00:00+04:00</td><td>XUSE:CASH:NHPUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2023-10-05T04:00:00+04:00</td><td>0.460940</td><td>2023-10-05T04:00:00+04:00</td><td>XUSE:CASH:NHPUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2024-01-04T04:00:00+04:00</td><td>0.460940</td><td>2024-01-04T04:00:00+04:00</td><td>XUSE:CASH:NHPUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2024-04-04T04:00:00+04:00</td><td>0.460940</td><td>2024-04-04T04:00:00+04:00</td><td>XUSE:CASH:NHPUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2024-07-05T04:00:00+04:00</td><td>0.460940</td><td>2024-07-05T04:00:00+04:00</td><td>XUSE:CASH:NHPUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2024-10-04T04:00:00+04:00</td><td>0.460940</td><td>2024-10-04T04:00:00+04:00</td><td>XUSE:CASH:NHPUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2025-01-03T04:00:00+04:00</td><td>0.460940</td><td>2025-01-03T04:00:00+04:00</td><td>XUSE:CASH:NHPUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2025-04-04T04:00:00+04:00</td><td>0.460940</td><td>2025-04-04T04:00:00+04:00</td><td>XUSE:CASH:NHPUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2025-07-03T04:00:00+04:00</td><td>0.460940</td><td>2025-07-03T04:00:00+04:00</td><td>XUSE:CASH:NHPUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2025-10-03T04:00:00+04:00</td><td>0.460940</td><td>2025-10-03T04:00:00+04:00</td><td>XUSE:CASH:NHPUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2026-01-02T04:00:00+04:00</td><td>0.460940</td><td>2026-01-02T04:00:00+04:00</td><td>XUSE:CASH:NHPUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2026-04-06T04:00:00+04:00</td><td>0.460940</td><td>2026-04-06T04:00:00+04:00</td><td>XUSE:CASH:NHPUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>1999-03-26T04:00:00+04:00</td><td>0.680000</td><td>1999-03-26T04:00:00+04:00</td><td>XUSE:CASH:NMRUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2000-03-28T04:00:00+04:00</td><td>1.178000</td><td>2000-03-28T04:00:00+04:00</td><td>XUSE:CASH:NMRUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2001-03-27T04:00:00+04:00</td><td>0.683000</td><td>2001-03-27T04:00:00+04:00</td><td>XUSE:CASH:NMRUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2020-01-31T04:00:00+04:00</td><td>0.232500</td><td>2020-01-31T04:00:00+04:00</td><td>XUSE:CASH:ONEMUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>1998-04-01T04:00:00+04:00</td><td>0.191400</td><td>1998-04-01T04:00:00+04:00</td><td>XUSE:CASH:PSOUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>1998-08-12T04:00:00+04:00</td><td>0.130400</td><td>1998-08-12T04:00:00+04:00</td><td>XUSE:CASH:PSOUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>1999-03-24T04:00:00+04:00</td><td>0.191400</td><td>1999-03-24T04:00:00+04:00</td><td>XUSE:CASH:PSOUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>1999-09-08T04:00:00+04:00</td><td>0.128500</td><td>1999-09-08T04:00:00+04:00</td><td>XUSE:CASH:PSOUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2000-03-15T04:00:00+04:00</td><td>0.190800</td><td>2000-03-15T04:00:00+04:00</td><td>XUSE:CASH:PSOUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2000-08-09T04:00:00+04:00</td><td>0.131700</td><td>2000-08-09T04:00:00+04:00</td><td>XUSE:CASH:PSOUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2014-11-14T04:00:00+04:00</td><td>0.030000</td><td>2014-11-14T04:00:00+04:00</td><td>XUSE:CASH:RILYUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2015-05-20T04:00:00+04:00</td><td>0.059410</td><td>2015-05-20T04:00:00+04:00</td><td>XUSE:CASH:RILYUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>1997-12-31T04:00:00+04:00</td><td>0.003400</td><td>1997-12-31T04:00:00+04:00</td><td>XUSE:CASH:SIDUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>1998-02-17T04:00:00+04:00</td><td>0.826500</td><td>1998-02-17T04:00:00+04:00</td><td>XUSE:CASH:SIEGYUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>1999-02-16T04:00:00+04:00</td><td>0.847500</td><td>1999-02-16T04:00:00+04:00</td><td>XUSE:CASH:SIEGYUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2000-02-22T04:00:00+04:00</td><td>0.999000</td><td>2000-02-22T04:00:00+04:00</td><td>XUSE:CASH:SIEGYUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2001-02-20T04:00:00+04:00</td><td>1.623000</td><td>2001-02-20T04:00:00+04:00</td><td>XUSE:CASH:SIEGYUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>1997-12-31T04:00:00+04:00</td><td>0.090000</td><td>1997-12-31T04:00:00+04:00</td><td>XUSE:CASH:SK1USD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2003-12-24T04:00:00+04:00</td><td>0.098040</td><td>2003-12-24T04:00:00+04:00</td><td>XUSE:CASH:SMBKUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2004-12-22T04:00:00+04:00</td><td>0.098040</td><td>2004-12-22T04:00:00+04:00</td><td>XUSE:CASH:SMBKUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2005-06-16T04:00:00+04:00</td><td>0.078430</td><td>2005-06-16T04:00:00+04:00</td><td>XUSE:CASH:SMBKUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2005-12-15T04:00:00+04:00</td><td>0.058820</td><td>2005-12-15T04:00:00+04:00</td><td>XUSE:CASH:SMBKUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2006-03-13T04:00:00+04:00</td><td>0.058820</td><td>2006-03-13T04:00:00+04:00</td><td>XUSE:CASH:SMBKUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2006-06-08T04:00:00+04:00</td><td>0.058820</td><td>2006-06-08T04:00:00+04:00</td><td>XUSE:CASH:SMBKUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2006-09-13T04:00:00+04:00</td><td>0.058820</td><td>2006-09-13T04:00:00+04:00</td><td>XUSE:CASH:SMBKUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2006-12-13T04:00:00+04:00</td><td>0.049020</td><td>2006-12-13T04:00:00+04:00</td><td>XUSE:CASH:SMBKUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2007-03-14T04:00:00+04:00</td><td>0.049020</td><td>2007-03-14T04:00:00+04:00</td><td>XUSE:CASH:SMBKUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2007-06-14T04:00:00+04:00</td><td>0.049020</td><td>2007-06-14T04:00:00+04:00</td><td>XUSE:CASH:SMBKUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2007-09-14T04:00:00+04:00</td><td>0.049020</td><td>2007-09-14T04:00:00+04:00</td><td>XUSE:CASH:SMBKUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2007-12-12T04:00:00+04:00</td><td>0.068630</td><td>2007-12-12T04:00:00+04:00</td><td>XUSE:CASH:SMBKUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2008-03-12T04:00:00+04:00</td><td>0.068630</td><td>2008-03-12T04:00:00+04:00</td><td>XUSE:CASH:SMBKUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2008-06-11T04:00:00+04:00</td><td>0.068630</td><td>2008-06-11T04:00:00+04:00</td><td>XUSE:CASH:SMBKUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2008-09-17T04:00:00+04:00</td><td>0.068630</td><td>2008-09-17T04:00:00+04:00</td><td>XUSE:CASH:SMBKUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2008-12-17T04:00:00+04:00</td><td>0.068630</td><td>2008-12-17T04:00:00+04:00</td><td>XUSE:CASH:SMBKUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2009-03-11T04:00:00+04:00</td><td>0.068630</td><td>2009-03-11T04:00:00+04:00</td><td>XUSE:CASH:SMBKUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2008-03-17T04:00:00+04:00</td><td>0.514000</td><td>2008-03-17T04:00:00+04:00</td><td>XUSE:CASH:SMSMYUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>1997-12-31T04:00:00+04:00</td><td>0.500000</td><td>1997-12-31T04:00:00+04:00</td><td>XUSE:CASH:VREUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>1997-12-31T04:00:00+04:00</td><td>0.090000</td><td>1997-12-31T04:00:00+04:00</td><td>XUSE:CASH:WACGQUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>1997-12-31T04:00:00+04:00</td><td>0.093330</td><td>1997-12-31T04:00:00+04:00</td><td>XUSE:CASH:WASHUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>1997-12-31T04:00:00+04:00</td><td>0.120000</td><td>1997-12-31T04:00:00+04:00</td><td>XUSE:CASH:ZIONUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2014-06-17T04:00:00+04:00</td><td>0.136360</td><td>2014-06-17T04:00:00+04:00</td><td>XUSE:CASH:ZYXIQUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+<tr><td>2018-12-31T04:00:00+04:00</td><td>0.063640</td><td>2018-12-31T04:00:00+04:00</td><td>XUSE:CASH:ZYXIQUSD</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
+</tbody></table></figure>
+<figure class="measure__tablewrap"><figcaption>Offending rows</figcaption><table class="measure__table"><thead><tr><th scope="col">Available at</th><th scope="col">Cash amount</th><th scope="col">Ex date</th><th scope="col">Instrument id</th><th scope="col">Pre close</th><th scope="col">Pre close multiple</th><th scope="col">Pre close ts</th></tr></thead><tbody>
+<tr><td>2016-03-29T04:00:00+04:00</td><td>50803201.012050</td><td>2016-03-29T04:00:00+04:00</td><td>XUSE:CASH:WHLRUSD</td><td>1.185000</td><td>42871899.588228</td><td>2016-03-28T04:00:00+04:00</td></tr>
+<tr><td>2016-02-25T04:00:00+04:00</td><td>50803201.012050</td><td>2016-02-25T04:00:00+04:00</td><td>XUSE:CASH:WHLRUSD</td><td>1.190000</td><td>42691765.556345</td><td>2016-02-24T04:00:00+04:00</td></tr>
+<tr><td>2016-04-27T04:00:00+04:00</td><td>50803201.012050</td><td>2016-04-27T04:00:00+04:00</td><td>XUSE:CASH:WHLRUSD</td><td>1.440000</td><td>35280000.702813</td><td>2016-04-26T04:00:00+04:00</td></tr>
+<tr><td>2016-01-27T04:00:00+04:00</td><td>50803201.012050</td><td>2016-01-27T04:00:00+04:00</td><td>XUSE:CASH:WHLRUSD</td><td>1.510000</td><td>33644503.981490</td><td>2016-01-26T04:00:00+04:00</td></tr>
+<tr><td>2016-05-26T04:00:00+04:00</td><td>50803201.012050</td><td>2016-05-26T04:00:00+04:00</td><td>XUSE:CASH:WHLRUSD</td><td>1.520000</td><td>33423158.560559</td><td>2016-05-25T04:00:00+04:00</td></tr>
+<tr><td>2016-06-28T04:00:00+04:00</td><td>50803201.012050</td><td>2016-06-28T04:00:00+04:00</td><td>XUSE:CASH:WHLRUSD</td><td>1.520000</td><td>33423158.560559</td><td>2016-06-27T04:00:00+04:00</td></tr>
+<tr><td>2016-12-28T04:00:00+04:00</td><td>50803201.012050</td><td>2016-12-28T04:00:00+04:00</td><td>XUSE:CASH:WHLRUSD</td><td>1.670000</td><td>30421078.450329</td><td>2016-12-27T04:00:00+04:00</td></tr>
+<tr><td>2016-11-28T04:00:00+04:00</td><td>50803201.012050</td><td>2016-11-28T04:00:00+04:00</td><td>XUSE:CASH:WHLRUSD</td><td>1.690000</td><td>30061065.687604</td><td>2016-11-25T04:00:00+04:00</td></tr>
+<tr><td>2017-01-27T04:00:00+04:00</td><td>50803201.012050</td><td>2017-01-27T04:00:00+04:00</td><td>XUSE:CASH:WHLRUSD</td><td>1.700000</td><td>29884235.889441</td><td>2017-01-26T04:00:00+04:00</td></tr>
+<tr><td>2016-10-27T04:00:00+04:00</td><td>50803201.012050</td><td>2016-10-27T04:00:00+04:00</td><td>XUSE:CASH:WHLRUSD</td><td>1.710000</td><td>29709474.276053</td><td>2016-10-26T04:00:00+04:00</td></tr>
+<tr><td>2017-03-29T04:00:00+04:00</td><td>50803201.012050</td><td>2017-03-29T04:00:00+04:00</td><td>XUSE:CASH:WHLRUSD</td><td>1.740000</td><td>29197241.960948</td><td>2017-03-28T04:00:00+04:00</td></tr>
+<tr><td>2015-01-28T04:00:00+04:00</td><td>101606402.024100</td><td>2015-01-28T04:00:00+04:00</td><td>XUSE:CASH:WHLRUSD</td><td>3.500000</td><td>29030400.578314</td><td>2015-01-27T04:00:00+04:00</td></tr>
+<tr><td>2016-09-28T04:00:00+04:00</td><td>50803201.012050</td><td>2016-09-28T04:00:00+04:00</td><td>XUSE:CASH:WHLRUSD</td><td>1.750000</td><td>29030400.578314</td><td>2016-09-27T04:00:00+04:00</td></tr>
+<tr><td>2015-02-25T04:00:00+04:00</td><td>101606402.024100</td><td>2015-02-25T04:00:00+04:00</td><td>XUSE:CASH:WHLRUSD</td><td>3.540000</td><td>28702373.453136</td><td>2015-02-24T04:00:00+04:00</td></tr>
+<tr><td>2016-08-29T04:00:00+04:00</td><td>50803201.012050</td><td>2016-08-29T04:00:00+04:00</td><td>XUSE:CASH:WHLRUSD</td><td>1.790000</td><td>28381676.543045</td><td>2016-08-26T04:00:00+04:00</td></tr>
+<tr><td>2015-09-28T04:00:00+04:00</td><td>52254721.040970</td><td>2015-09-28T04:00:00+04:00</td><td>XUSE:CASH:WHLRUSD</td><td>1.850000</td><td>28245795.157281</td><td>2015-09-25T04:00:00+04:00</td></tr>
+<tr><td>2017-02-24T04:00:00+04:00</td><td>50803201.012050</td><td>2017-02-24T04:00:00+04:00</td><td>XUSE:CASH:WHLRUSD</td><td>1.810000</td><td>28068066.857486</td><td>2017-02-23T04:00:00+04:00</td></tr>
+<tr><td>2015-11-25T04:00:00+04:00</td><td>50803201.012050</td><td>2015-11-25T04:00:00+04:00</td><td>XUSE:CASH:WHLRUSD</td><td>1.850000</td><td>27461189.736243</td><td>2015-11-24T04:00:00+04:00</td></tr>
+<tr><td>2015-12-29T04:00:00+04:00</td><td>50803201.012050</td><td>2015-12-29T04:00:00+04:00</td><td>XUSE:CASH:WHLRUSD</td><td>1.850000</td><td>27461189.736243</td><td>2015-12-28T04:00:00+04:00</td></tr>
+<tr><td>2015-08-27T04:00:00+04:00</td><td>52254721.040970</td><td>2015-08-27T04:00:00+04:00</td><td>XUSE:CASH:WHLRUSD</td><td>1.920000</td><td>27216000.542172</td><td>2015-08-26T04:00:00+04:00</td></tr>
+<tr><td>2016-07-27T04:00:00+04:00</td><td>50803201.012050</td><td>2016-07-27T04:00:00+04:00</td><td>XUSE:CASH:WHLRUSD</td><td>1.900000</td><td>26738526.848447</td><td>2016-07-26T04:00:00+04:00</td></tr>
+<tr><td>2015-07-29T04:00:00+04:00</td><td>52254721.040970</td><td>2015-07-29T04:00:00+04:00</td><td>XUSE:CASH:WHLRUSD</td><td>1.970000</td><td>26525239.107091</td><td>2015-07-28T04:00:00+04:00</td></tr>
+<tr><td>2015-10-28T04:00:00+04:00</td><td>50803201.012050</td><td>2015-10-28T04:00:00+04:00</td><td>XUSE:CASH:WHLRUSD</td><td>1.960000</td><td>25920000.516352</td><td>2015-10-27T04:00:00+04:00</td></tr>
+<tr><td>2015-06-26T04:00:00+04:00</td><td>52254721.040970</td><td>2015-06-26T04:00:00+04:00</td><td>XUSE:CASH:WHLRUSD</td><td>2.080000</td><td>25122462.038928</td><td>2015-06-25T04:00:00+04:00</td></tr>
+<tr><td>2012-12-27T04:00:00+04:00</td><td>142248962.833740</td><td>2012-12-27T04:00:00+04:00</td><td>XUSE:CASH:WHLRUSD</td><td>5.810000</td><td>24483470.367253</td><td>2012-12-26T04:00:00+04:00</td></tr>
+<tr><td>2014-12-29T04:00:00+04:00</td><td>101606402.024100</td><td>2014-12-29T04:00:00+04:00</td><td>XUSE:CASH:WHLRUSD</td><td>4.180000</td><td>24307751.680407</td><td>2014-12-26T04:00:00+04:00</td></tr>
+<tr><td>2013-10-29T04:00:00+04:00</td><td>101606402.024100</td><td>2013-10-29T04:00:00+04:00</td><td>XUSE:CASH:WHLRUSD</td><td>4.210000</td><td>24134537.297886</td><td>2013-10-28T04:00:00+04:00</td></tr>
+<tr><td>2014-11-25T04:00:00+04:00</td><td>101606402.024100</td><td>2014-11-25T04:00:00+04:00</td><td>XUSE:CASH:WHLRUSD</td><td>4.260000</td><td>23851268.080775</td><td>2014-11-24T04:00:00+04:00</td></tr>
+<tr><td>2013-12-27T04:00:00+04:00</td><td>101606402.024100</td><td>2013-12-27T04:00:00+04:00</td><td>XUSE:CASH:WHLRUSD</td><td>4.320000</td><td>23520000.468542</td><td>2013-12-26T04:00:00+04:00</td></tr>
+<tr><td>2013-09-26T04:00:00+04:00</td><td>101606402.024100</td><td>2013-09-26T04:00:00+04:00</td><td>XUSE:CASH:WHLRUSD</td><td>4.380000</td><td>23197808.681301</td><td>2013-09-25T04:00:00+04:00</td></tr>
+<tr><td>2013-08-28T04:00:00+04:00</td><td>101606402.024100</td><td>2013-08-28T04:00:00+04:00</td><td>XUSE:CASH:WHLRUSD</td><td>4.400000</td><td>23092364.096386</td><td>2013-08-27T04:00:00+04:00</td></tr>
+<tr><td>2013-11-26T04:00:00+04:00</td><td>101606402.024100</td><td>2013-11-26T04:00:00+04:00</td><td>XUSE:CASH:WHLRUSD</td><td>4.400000</td><td>23092364.096386</td><td>2013-11-25T04:00:00+04:00</td></tr>
+<tr><td>2014-02-26T04:00:00+04:00</td><td>101606402.024100</td><td>2014-02-26T04:00:00+04:00</td><td>XUSE:CASH:WHLRUSD</td><td>4.411000</td><td>23034777.153503</td><td>2014-02-25T04:00:00+04:00</td></tr>
+<tr><td>2015-03-27T04:00:00+04:00</td><td>52254721.040970</td><td>2015-03-27T04:00:00+04:00</td><td>XUSE:CASH:WHLRUSD</td><td>2.290000</td><td>22818655.476406</td><td>2015-03-26T04:00:00+04:00</td></tr>
+<tr><td>2015-05-27T04:00:00+04:00</td><td>50803201.012050</td><td>2015-05-27T04:00:00+04:00</td><td>XUSE:CASH:WHLRUSD</td><td>2.230000</td><td>22781704.489709</td><td>2015-05-26T04:00:00+04:00</td></tr>
+<tr><td>2014-04-28T04:00:00+04:00</td><td>101606402.024100</td><td>2014-04-28T04:00:00+04:00</td><td>XUSE:CASH:WHLRUSD</td><td>4.500000</td><td>22579200.449800</td><td>2014-04-25T04:00:00+04:00</td></tr>
+<tr><td>2014-03-27T04:00:00+04:00</td><td>101606402.024100</td><td>2014-03-27T04:00:00+04:00</td><td>XUSE:CASH:WHLRUSD</td><td>4.560000</td><td>22282105.707039</td><td>2014-03-26T04:00:00+04:00</td></tr>
+<tr><td>2014-01-29T04:00:00+04:00</td><td>101606402.024100</td><td>2014-01-29T04:00:00+04:00</td><td>XUSE:CASH:WHLRUSD</td><td>4.590000</td><td>22136471.029216</td><td>2014-01-28T04:00:00+04:00</td></tr>
+<tr><td>2014-10-29T04:00:00+04:00</td><td>101606402.024100</td><td>2014-10-29T04:00:00+04:00</td><td>XUSE:CASH:WHLRUSD</td><td>4.590000</td><td>22136471.029216</td><td>2014-10-28T04:00:00+04:00</td></tr>
+<tr><td>2015-04-28T04:00:00+04:00</td><td>52254721.040970</td><td>2015-04-28T04:00:00+04:00</td><td>XUSE:CASH:WHLRUSD</td><td>2.390000</td><td>21863900.017142</td><td>2015-04-27T04:00:00+04:00</td></tr>
+<tr><td>2014-05-28T04:00:00+04:00</td><td>101606402.024100</td><td>2014-05-28T04:00:00+04:00</td><td>XUSE:CASH:WHLRUSD</td><td>4.650000</td><td>21850839.144968</td><td>2014-05-27T04:00:00+04:00</td></tr>
+<tr><td>2014-09-26T04:00:00+04:00</td><td>101606402.024100</td><td>2014-09-26T04:00:00+04:00</td><td>XUSE:CASH:WHLRUSD</td><td>4.650000</td><td>21850839.144968</td><td>2014-09-25T04:00:00+04:00</td></tr>
+<tr><td>2014-06-26T04:00:00+04:00</td><td>101606402.024100</td><td>2014-06-26T04:00:00+04:00</td><td>XUSE:CASH:WHLRUSD</td><td>4.790000</td><td>21212192.489374</td><td>2014-06-25T04:00:00+04:00</td></tr>
+<tr><td>2014-07-29T04:00:00+04:00</td><td>101606402.024100</td><td>2014-07-29T04:00:00+04:00</td><td>XUSE:CASH:WHLRUSD</td><td>4.870000</td><td>20863737.581951</td><td>2014-07-28T04:00:00+04:00</td></tr>
+<tr><td>2014-08-27T04:00:00+04:00</td><td>101606402.024100</td><td>2014-08-27T04:00:00+04:00</td><td>XUSE:CASH:WHLRUSD</td><td>5.070000</td><td>20040710.458402</td><td>2014-08-26T04:00:00+04:00</td></tr>
+<tr><td>2013-07-29T04:00:00+04:00</td><td>101606402.024100</td><td>2013-07-29T04:00:00+04:00</td><td>XUSE:CASH:WHLRUSD</td><td>5.299000</td><td>19174637.105888</td><td>2013-07-26T04:00:00+04:00</td></tr>
+<tr><td>2013-06-26T04:00:00+04:00</td><td>101606402.024100</td><td>2013-06-26T04:00:00+04:00</td><td>XUSE:CASH:WHLRUSD</td><td>5.860000</td><td>17338976.454625</td><td>2013-06-25T04:00:00+04:00</td></tr>
+<tr><td>2013-02-27T04:00:00+04:00</td><td>101606402.024100</td><td>2013-02-27T04:00:00+04:00</td><td>XUSE:CASH:WHLRUSD</td><td>6</td><td>16934400.337350</td><td>2013-02-26T04:00:00+04:00</td></tr>
+<tr><td>2013-04-26T04:00:00+04:00</td><td>101606402.024100</td><td>2013-04-26T04:00:00+04:00</td><td>XUSE:CASH:WHLRUSD</td><td>6</td><td>16934400.337350</td><td>2013-04-25T04:00:00+04:00</td></tr>
+<tr><td>2013-03-26T04:00:00+04:00</td><td>101606402.024100</td><td>2013-03-26T04:00:00+04:00</td><td>XUSE:CASH:WHLRUSD</td><td>6.010000</td><td>16906223.298519</td><td>2013-03-25T04:00:00+04:00</td></tr>
+<tr><td>2013-01-30T04:00:00+04:00</td><td>101606402.024100</td><td>2013-01-30T04:00:00+04:00</td><td>XUSE:CASH:WHLRUSD</td><td>6.060000</td><td>16766733.007277</td><td>2013-01-29T04:00:00+04:00</td></tr>
+<tr><td>2013-05-29T04:00:00+04:00</td><td>101606402.024100</td><td>2013-05-29T04:00:00+04:00</td><td>XUSE:CASH:WHLRUSD</td><td>6.066000</td><td>16750148.701632</td><td>2013-05-28T04:00:00+04:00</td></tr>
+<tr><td>2017-06-28T04:00:00+04:00</td><td>123379202.457840</td><td>2017-06-28T04:00:00+04:00</td><td>XUSE:CASH:WHLRUSD</td><td>10.560000</td><td>11683636.596386</td><td>2017-06-27T04:00:00+04:00</td></tr>
+<tr><td>2017-12-27T04:00:00+04:00</td><td>123379202.457840</td><td>2017-12-27T04:00:00+04:00</td><td>XUSE:CASH:WHLRUSD</td><td>11.330000</td><td>10889603.041292</td><td>2017-12-26T04:00:00+04:00</td></tr>
+<tr><td>2017-09-28T04:00:00+04:00</td><td>123379202.457840</td><td>2017-09-28T04:00:00+04:00</td><td>XUSE:CASH:WHLRUSD</td><td>11.930000</td><td>10341928.118847</td><td>2017-09-27T04:00:00+04:00</td></tr>
+<tr><td>2017-03-29T04:00:00+04:00</td><td>1764086.939870</td><td>2017-03-29T04:00:00+04:00</td><td>XUSE:CASH:CETXUSD</td><td>3.300000</td><td>534571.799961</td><td>2017-03-28T04:00:00+04:00</td></tr>
+<tr><td>2011-09-19T04:00:00+04:00</td><td>1328881.993320</td><td>2011-09-19T04:00:00+04:00</td><td>XUSE:CASH:DRYSUSD</td><td>3.240000</td><td>410148.763370</td><td>2011-09-16T04:00:00+04:00</td></tr>
+<tr><td>2006-04-12T04:00:00+04:00</td><td>2352003.528010</td><td>2006-04-12T04:00:00+04:00</td><td>XUSE:CASH:DRYSUSD</td><td>10.460000</td><td>224856.933844</td><td>2006-04-11T04:00:00+04:00</td></tr>
+<tr><td>2006-06-28T04:00:00+04:00</td><td>2352003.528010</td><td>2006-06-28T04:00:00+04:00</td><td>XUSE:CASH:DRYSUSD</td><td>11.010000</td><td>213624.298639</td><td>2006-06-27T04:00:00+04:00</td></tr>
+<tr><td>2014-03-26T04:00:00+04:00</td><td>2098127</td><td>2014-03-26T04:00:00+04:00</td><td>XUSE:CASH:CMCTUSD</td><td>9.950000</td><td>210867.035176</td><td>2014-03-25T04:00:00+04:00</td></tr>
+<tr><td>2006-01-12T04:00:00+04:00</td><td>2352003.528010</td><td>2006-01-12T04:00:00+04:00</td><td>XUSE:CASH:DRYSUSD</td><td>12.830000</td><td>183320.617928</td><td>2006-01-11T04:00:00+04:00</td></tr>
+<tr><td>2006-09-27T04:00:00+04:00</td><td>2352003.528010</td><td>2006-09-27T04:00:00+04:00</td><td>XUSE:CASH:DRYSUSD</td><td>13.840000</td><td>169942.451446</td><td>2006-09-26T04:00:00+04:00</td></tr>
+<tr><td>2005-09-28T04:00:00+04:00</td><td>2352003.528010</td><td>2005-09-28T04:00:00+04:00</td><td>XUSE:CASH:DRYSUSD</td><td>17.100000</td><td>137544.065965</td><td>2005-09-27T04:00:00+04:00</td></tr>
+<tr><td>2005-06-24T04:00:00+04:00</td><td>2352003.528010</td><td>2005-06-24T04:00:00+04:00</td><td>XUSE:CASH:DRYSUSD</td><td>17.280000</td><td>136111.315278</td><td>2005-06-23T04:00:00+04:00</td></tr>
+<tr><td>2007-01-12T04:00:00+04:00</td><td>2352003.528010</td><td>2007-01-12T04:00:00+04:00</td><td>XUSE:CASH:DRYSUSD</td><td>18.370000</td><td>128035.031465</td><td>2007-01-11T04:00:00+04:00</td></tr>
+<tr><td>2008-10-10T04:00:00+04:00</td><td>2352003.528010</td><td>2008-10-10T04:00:00+04:00</td><td>XUSE:CASH:DRYSUSD</td><td>19.090000</td><td>123206.051755</td><td>2008-10-09T04:00:00+04:00</td></tr>
+<tr><td>2007-04-12T04:00:00+04:00</td><td>2352003.528010</td><td>2007-04-12T04:00:00+04:00</td><td>XUSE:CASH:DRYSUSD</td><td>24.920000</td><td>94382.164045</td><td>2007-04-11T04:00:00+04:00</td></tr>
+<tr><td>2019-09-03T04:00:00+04:00</td><td>1050000</td><td>2019-09-03T04:00:00+04:00</td><td>XUSE:CASH:CMCTUSD</td><td>20</td><td>52500</td><td>2019-08-30T04:00:00+04:00</td></tr>
+<tr><td>2007-07-12T04:00:00+04:00</td><td>2352003.528010</td><td>2007-07-12T04:00:00+04:00</td><td>XUSE:CASH:DRYSUSD</td><td>51.490000</td><td>45678.841096</td><td>2007-07-11T04:00:00+04:00</td></tr>
+<tr><td>2008-01-16T04:00:00+04:00</td><td>2352003.528010</td><td>2008-01-16T04:00:00+04:00</td><td>XUSE:CASH:DRYSUSD</td><td>54.890000</td><td>42849.399308</td><td>2008-01-15T04:00:00+04:00</td></tr>
+<tr><td>2008-08-06T04:00:00+04:00</td><td>2352003.528010</td><td>2008-08-06T04:00:00+04:00</td><td>XUSE:CASH:DRYSUSD</td><td>66.300000</td><td>35475.166335</td><td>2008-08-05T04:00:00+04:00</td></tr>
+<tr><td>2008-04-15T04:00:00+04:00</td><td>2352003.528010</td><td>2008-04-15T04:00:00+04:00</td><td>XUSE:CASH:DRYSUSD</td><td>67.110000</td><td>35046.990434</td><td>2008-04-14T04:00:00+04:00</td></tr>
+<tr><td>2007-10-11T04:00:00+04:00</td><td>2352003.528010</td><td>2007-10-11T04:00:00+04:00</td><td>XUSE:CASH:DRYSUSD</td><td>117.860000</td><td>19955.909791</td><td>2007-10-10T04:00:00+04:00</td></tr>
+<tr><td>2008-12-29T04:00:00+04:00</td><td>136875.250000</td><td>2008-12-29T04:00:00+04:00</td><td>XUSE:CASH:CMCTUSD</td><td>7.600000</td><td>18009.901316</td><td>2008-12-26T04:00:00+04:00</td></tr>
+<tr><td>2000-09-27T04:00:00+04:00</td><td>172500.250000</td><td>2000-09-27T04:00:00+04:00</td><td>XUSE:CASH:CMCTUSD</td><td>9.880000</td><td>17459.539474</td><td>2000-09-26T04:00:00+04:00</td></tr>
+<tr><td>2005-06-28T04:00:00+04:00</td><td>225000.250000</td><td>2005-06-28T04:00:00+04:00</td><td>XUSE:CASH:CMCTUSD</td><td>13.890000</td><td>16198.722102</td><td>2005-06-27T04:00:00+04:00</td></tr>
+<tr><td>1999-12-29T04:00:00+04:00</td><td>172500.250000</td><td>1999-12-29T04:00:00+04:00</td><td>XUSE:CASH:CMCTUSD</td><td>10.690000</td><td>16136.599626</td><td>1999-12-28T04:00:00+04:00</td></tr>
+<tr><td>2000-06-28T04:00:00+04:00</td><td>172500.250000</td><td>2000-06-28T04:00:00+04:00</td><td>XUSE:CASH:CMCTUSD</td><td>11</td><td>15681.840909</td><td>2000-06-27T04:00:00+04:00</td></tr>
+<tr><td>2000-03-29T04:00:00+04:00</td><td>172500.250000</td><td>2000-03-29T04:00:00+04:00</td><td>XUSE:CASH:CMCTUSD</td><td>11.500000</td><td>15000.021739</td><td>2000-03-28T04:00:00+04:00</td></tr>
+<tr><td>2009-03-27T04:00:00+04:00</td><td>84375</td><td>2009-03-27T04:00:00+04:00</td><td>XUSE:CASH:CMCTUSD</td><td>6</td><td>14062.500000</td><td>2009-03-26T04:00:00+04:00</td></tr>
+<tr><td>2000-12-27T04:00:00+04:00</td><td>136875.250000</td><td>2000-12-27T04:00:00+04:00</td><td>XUSE:CASH:CMCTUSD</td><td>9.880000</td><td>13853.770243</td><td>2000-12-26T04:00:00+04:00</td></tr>
+<tr><td>1999-09-28T04:00:00+04:00</td><td>172500.250000</td><td>1999-09-28T04:00:00+04:00</td><td>XUSE:CASH:CMCTUSD</td><td>13.690000</td><td>12600.456538</td><td>1999-09-27T04:00:00+04:00</td></tr>
+<tr><td>2002-12-27T04:00:00+04:00</td><td>157500.250000</td><td>2002-12-27T04:00:00+04:00</td><td>XUSE:CASH:CMCTUSD</td><td>13.040000</td><td>12078.240031</td><td>2002-12-26T04:00:00+04:00</td></tr>
+<tr><td>1999-06-28T04:00:00+04:00</td><td>172500.250000</td><td>1999-06-28T04:00:00+04:00</td><td>XUSE:CASH:CMCTUSD</td><td>15</td><td>11500.016667</td><td>1999-06-25T04:00:00+04:00</td></tr>
+<tr><td>1999-03-29T04:00:00+04:00</td><td>172500.250000</td><td>1999-03-29T04:00:00+04:00</td><td>XUSE:CASH:CMCTUSD</td><td>15.440000</td><td>11172.295984</td><td>1999-03-26T04:00:00+04:00</td></tr>
+<tr><td>2001-12-27T04:00:00+04:00</td><td>150000.250000</td><td>2001-12-27T04:00:00+04:00</td><td>XUSE:CASH:CMCTUSD</td><td>13.450000</td><td>11152.434944</td><td>2001-12-26T04:00:00+04:00</td></tr>
+<tr><td>2003-03-27T04:00:00+04:00</td><td>150000.250000</td><td>2003-03-27T04:00:00+04:00</td><td>XUSE:CASH:CMCTUSD</td><td>13.540000</td><td>11078.305022</td><td>2003-03-26T04:00:00+04:00</td></tr>
+<tr><td>2002-09-26T04:00:00+04:00</td><td>150000.250000</td><td>2002-09-26T04:00:00+04:00</td><td>XUSE:CASH:CMCTUSD</td><td>13.750000</td><td>10909.109091</td><td>2002-09-25T04:00:00+04:00</td></tr>
+<tr><td>2001-09-26T04:00:00+04:00</td><td>142500.250000</td><td>2001-09-26T04:00:00+04:00</td><td>XUSE:CASH:CMCTUSD</td><td>13.150000</td><td>10836.520913</td><td>2001-09-25T04:00:00+04:00</td></tr>
+<tr><td>2008-09-26T04:00:00+04:00</td><td>84375</td><td>2008-09-26T04:00:00+04:00</td><td>XUSE:CASH:CMCTUSD</td><td>8.100000</td><td>10416.666667</td><td>2008-09-25T04:00:00+04:00</td></tr>
+<tr><td>2001-03-28T04:00:00+04:00</td><td>136875.250000</td><td>2001-03-28T04:00:00+04:00</td><td>XUSE:CASH:CMCTUSD</td><td>13.200000</td><td>10369.337121</td><td>2001-03-27T04:00:00+04:00</td></tr>
+<tr><td>2002-03-26T04:00:00+04:00</td><td>150000.250000</td><td>2002-03-26T04:00:00+04:00</td><td>XUSE:CASH:CMCTUSD</td><td>14.610000</td><td>10266.957563</td><td>2002-03-25T04:00:00+04:00</td></tr>
+<tr><td>2003-09-26T04:00:00+04:00</td><td>142500.250000</td><td>2003-09-26T04:00:00+04:00</td><td>XUSE:CASH:CMCTUSD</td><td>14</td><td>10178.589286</td><td>2003-09-25T04:00:00+04:00</td></tr>
+<tr><td>2003-06-26T04:00:00+04:00</td><td>142500.250000</td><td>2003-06-26T04:00:00+04:00</td><td>XUSE:CASH:CMCTUSD</td><td>14.200000</td><td>10035.228873</td><td>2003-06-25T04:00:00+04:00</td></tr>
+<tr><td>2002-06-26T04:00:00+04:00</td><td>150000.250000</td><td>2002-06-26T04:00:00+04:00</td><td>XUSE:CASH:CMCTUSD</td><td>15</td><td>10000.016667</td><td>2002-06-25T04:00:00+04:00</td></tr>
+<tr><td>2008-06-26T04:00:00+04:00</td><td>84375</td><td>2008-06-26T04:00:00+04:00</td><td>XUSE:CASH:CMCTUSD</td><td>8.450000</td><td>9985.207101</td><td>2008-06-25T04:00:00+04:00</td></tr>
+<tr><td>2001-06-27T04:00:00+04:00</td><td>140625.250000</td><td>2001-06-27T04:00:00+04:00</td><td>XUSE:CASH:CMCTUSD</td><td>14.100000</td><td>9973.421986</td><td>2001-06-26T04:00:00+04:00</td></tr>
+<tr><td>2006-12-27T04:00:00+04:00</td><td>150000.250000</td><td>2006-12-27T04:00:00+04:00</td><td>XUSE:CASH:CMCTUSD</td><td>15.300000</td><td>9803.937908</td><td>2006-12-26T04:00:00+04:00</td></tr>
+<tr><td>2007-12-27T04:00:00+04:00</td><td>112500</td><td>2007-12-27T04:00:00+04:00</td><td>XUSE:CASH:CMCTUSD</td><td>11.670000</td><td>9640.102828</td><td>2007-12-26T04:00:00+04:00</td></tr>
+<tr><td>1998-12-29T04:00:00+04:00</td><td>170625.250000</td><td>1998-12-29T04:00:00+04:00</td><td>XUSE:CASH:CMCTUSD</td><td>17.750000</td><td>9612.690141</td><td>1998-12-28T04:00:00+04:00</td></tr>
+<tr><td>1998-09-28T04:00:00+04:00</td><td>168750.250000</td><td>1998-09-28T04:00:00+04:00</td><td>XUSE:CASH:CMCTUSD</td><td>17.750000</td><td>9507.056338</td><td>1998-09-25T04:00:00+04:00</td></tr>
+<tr><td>2003-12-29T04:00:00+04:00</td><td>142500.250000</td><td>2003-12-29T04:00:00+04:00</td><td>XUSE:CASH:CMCTUSD</td><td>15.390000</td><td>9259.275504</td><td>2003-12-26T04:00:00+04:00</td></tr>
+<tr><td>2008-03-27T04:00:00+04:00</td><td>75000</td><td>2008-03-27T04:00:00+04:00</td><td>XUSE:CASH:CMCTUSD</td><td>8.250000</td><td>9090.909091</td><td>2008-03-26T04:00:00+04:00</td></tr>
+<tr><td>1998-06-26T04:00:00+04:00</td><td>165000.250000</td><td>1998-06-26T04:00:00+04:00</td><td>XUSE:CASH:CMCTUSD</td><td>18.380000</td><td>8977.162677</td><td>1998-06-25T04:00:00+04:00</td></tr>
+<tr><td>2006-06-28T04:00:00+04:00</td><td>112500</td><td>2006-06-28T04:00:00+04:00</td><td>XUSE:CASH:CMCTUSD</td><td>12.740000</td><td>8830.455259</td><td>2006-06-27T04:00:00+04:00</td></tr>
+<tr><td>2004-06-28T04:00:00+04:00</td><td>127500.250000</td><td>2004-06-28T04:00:00+04:00</td><td>XUSE:CASH:CMCTUSD</td><td>14.500000</td><td>8793.120690</td><td>2004-06-25T04:00:00+04:00</td></tr>
+<tr><td>2005-12-28T04:00:00+04:00</td><td>112500</td><td>2005-12-28T04:00:00+04:00</td><td>XUSE:CASH:CMCTUSD</td><td>13</td><td>8653.846154</td><td>2005-12-27T04:00:00+04:00</td></tr>
+<tr><td>2009-06-26T04:00:00+04:00</td><td>60000</td><td>2009-06-26T04:00:00+04:00</td><td>XUSE:CASH:CMCTUSD</td><td>7.050000</td><td>8510.638298</td><td>2009-06-25T04:00:00+04:00</td></tr>
+<tr><td>2005-03-29T04:00:00+04:00</td><td>131250.250000</td><td>2005-03-29T04:00:00+04:00</td><td>XUSE:CASH:CMCTUSD</td><td>15.480000</td><td>8478.698320</td><td>2005-03-28T04:00:00+04:00</td></tr>
+<tr><td>2011-12-28T04:00:00+04:00</td><td>60000</td><td>2011-12-28T04:00:00+04:00</td><td>XUSE:CASH:CMCTUSD</td><td>7.130000</td><td>8415.147265</td><td>2011-12-27T04:00:00+04:00</td></tr>
+<tr><td>2017-06-16T04:00:00+04:00</td><td>157875.250000</td><td>2017-06-16T04:00:00+04:00</td><td>XUSE:CASH:CMCTUSD</td><td>18.800000</td><td>8397.619681</td><td>2017-06-15T04:00:00+04:00</td></tr>
+<tr><td>2004-09-28T04:00:00+04:00</td><td>127500.250000</td><td>2004-09-28T04:00:00+04:00</td><td>XUSE:CASH:CMCTUSD</td><td>15.320000</td><td>8322.470627</td><td>2004-09-27T04:00:00+04:00</td></tr>
+<tr><td>2009-09-28T04:00:00+04:00</td><td>60000</td><td>2009-09-28T04:00:00+04:00</td><td>XUSE:CASH:CMCTUSD</td><td>7.210000</td><td>8321.775312</td><td>2009-09-25T04:00:00+04:00</td></tr>
+<tr><td>2007-06-27T04:00:00+04:00</td><td>112500</td><td>2007-06-27T04:00:00+04:00</td><td>XUSE:CASH:CMCTUSD</td><td>13.540000</td><td>8308.714919</td><td>2007-06-26T04:00:00+04:00</td></tr>
+<tr><td>2007-09-26T04:00:00+04:00</td><td>112500</td><td>2007-09-26T04:00:00+04:00</td><td>XUSE:CASH:CMCTUSD</td><td>13.570000</td><td>8290.346352</td><td>2007-09-25T04:00:00+04:00</td></tr>
+<tr><td>2006-03-29T04:00:00+04:00</td><td>112500</td><td>2006-03-29T04:00:00+04:00</td><td>XUSE:CASH:CMCTUSD</td><td>13.600000</td><td>8272.058824</td><td>2006-03-28T04:00:00+04:00</td></tr>
+<tr><td>2005-09-28T04:00:00+04:00</td><td>112500</td><td>2005-09-28T04:00:00+04:00</td><td>XUSE:CASH:CMCTUSD</td><td>13.670000</td><td>8229.700073</td><td>2005-09-27T04:00:00+04:00</td></tr>
+<tr><td>1998-03-27T04:00:00+04:00</td><td>163125.250000</td><td>1998-03-27T04:00:00+04:00</td><td>XUSE:CASH:CMCTUSD</td><td>20</td><td>8156.262500</td><td>1998-03-26T04:00:00+04:00</td></tr>
+<tr><td>2004-12-29T04:00:00+04:00</td><td>127500.250000</td><td>2004-12-29T04:00:00+04:00</td><td>XUSE:CASH:CMCTUSD</td><td>15.790000</td><td>8074.746675</td><td>2004-12-28T04:00:00+04:00</td></tr>
+<tr><td>2006-09-27T04:00:00+04:00</td><td>112500</td><td>2006-09-27T04:00:00+04:00</td><td>XUSE:CASH:CMCTUSD</td><td>14.100000</td><td>7978.723404</td><td>2006-09-26T04:00:00+04:00</td></tr>
+<tr><td>2010-03-29T04:00:00+04:00</td><td>60000</td><td>2010-03-29T04:00:00+04:00</td><td>XUSE:CASH:CMCTUSD</td><td>7.560000</td><td>7936.507937</td><td>2010-03-26T04:00:00+04:00</td></tr>
+<tr><td>2012-09-26T04:00:00+04:00</td><td>60000</td><td>2012-09-26T04:00:00+04:00</td><td>XUSE:CASH:CMCTUSD</td><td>7.660000</td><td>7832.898172</td><td>2012-09-25T04:00:00+04:00</td></tr>
+<tr><td>2012-06-27T04:00:00+04:00</td><td>60000</td><td>2012-06-27T04:00:00+04:00</td><td>XUSE:CASH:CMCTUSD</td><td>7.750000</td><td>7741.935484</td><td>2012-06-26T04:00:00+04:00</td></tr>
+<tr><td>2009-12-29T04:00:00+04:00</td><td>60000</td><td>2009-12-29T04:00:00+04:00</td><td>XUSE:CASH:CMCTUSD</td><td>7.800000</td><td>7692.307692</td><td>2009-12-28T04:00:00+04:00</td></tr>
+<tr><td>2007-03-28T04:00:00+04:00</td><td>112500</td><td>2007-03-28T04:00:00+04:00</td><td>XUSE:CASH:CMCTUSD</td><td>14.930000</td><td>7535.164099</td><td>2007-03-27T04:00:00+04:00</td></tr>
+<tr><td>2011-09-28T04:00:00+04:00</td><td>60000</td><td>2011-09-28T04:00:00+04:00</td><td>XUSE:CASH:CMCTUSD</td><td>8.050000</td><td>7453.416149</td><td>2011-09-27T04:00:00+04:00</td></tr>
+<tr><td>2010-06-28T04:00:00+04:00</td><td>60000</td><td>2010-06-28T04:00:00+04:00</td><td>XUSE:CASH:CMCTUSD</td><td>8.400000</td><td>7142.857143</td><td>2010-06-25T04:00:00+04:00</td></tr>
+<tr><td>2011-06-28T04:00:00+04:00</td><td>60000</td><td>2011-06-28T04:00:00+04:00</td><td>XUSE:CASH:CMCTUSD</td><td>8.540000</td><td>7025.761124</td><td>2011-06-27T04:00:00+04:00</td></tr>
+<tr><td>2010-12-29T04:00:00+04:00</td><td>60000</td><td>2010-12-29T04:00:00+04:00</td><td>XUSE:CASH:CMCTUSD</td><td>8.700000</td><td>6896.551724</td><td>2010-12-28T04:00:00+04:00</td></tr>
+<tr><td>2012-03-28T04:00:00+04:00</td><td>60000</td><td>2012-03-28T04:00:00+04:00</td><td>XUSE:CASH:CMCTUSD</td><td>8.770000</td><td>6841.505131</td><td>2012-03-27T04:00:00+04:00</td></tr>
+<tr><td>2010-09-28T04:00:00+04:00</td><td>60000</td><td>2010-09-28T04:00:00+04:00</td><td>XUSE:CASH:CMCTUSD</td><td>8.780000</td><td>6833.712984</td><td>2010-09-27T04:00:00+04:00</td></tr>
+<tr><td>2011-03-29T04:00:00+04:00</td><td>60000</td><td>2011-03-29T04:00:00+04:00</td><td>XUSE:CASH:CMCTUSD</td><td>8.840000</td><td>6787.330317</td><td>2011-03-28T04:00:00+04:00</td></tr>
+<tr><td>2012-12-27T04:00:00+04:00</td><td>45000</td><td>2012-12-27T04:00:00+04:00</td><td>XUSE:CASH:CMCTUSD</td><td>7.130000</td><td>6311.360449</td><td>2012-12-26T04:00:00+04:00</td></tr>
+<tr><td>2013-03-26T04:00:00+04:00</td><td>46875</td><td>2013-03-26T04:00:00+04:00</td><td>XUSE:CASH:CMCTUSD</td><td>7.540000</td><td>6216.843501</td><td>2013-03-25T04:00:00+04:00</td></tr>
+<tr><td>2004-02-19T04:00:00+04:00</td><td>91125</td><td>2004-02-19T04:00:00+04:00</td><td>XUSE:CASH:CMCTUSD</td><td>16</td><td>5695.312500</td><td>2004-02-18T04:00:00+04:00</td></tr>
+<tr><td>2013-06-26T04:00:00+04:00</td><td>46875</td><td>2013-06-26T04:00:00+04:00</td><td>XUSE:CASH:CMCTUSD</td><td>8.480000</td><td>5527.712264</td><td>2013-06-25T04:00:00+04:00</td></tr>
+<tr><td>2013-12-27T04:00:00+04:00</td><td>46875</td><td>2013-12-27T04:00:00+04:00</td><td>XUSE:CASH:CMCTUSD</td><td>8.650000</td><td>5419.075145</td><td>2013-12-26T04:00:00+04:00</td></tr>
+<tr><td>2013-09-26T04:00:00+04:00</td><td>46875</td><td>2013-09-26T04:00:00+04:00</td><td>XUSE:CASH:CMCTUSD</td><td>8.890000</td><td>5272.778403</td><td>2013-09-25T04:00:00+04:00</td></tr>
+<tr><td>2004-03-29T04:00:00+04:00</td><td>51375</td><td>2004-03-29T04:00:00+04:00</td><td>XUSE:CASH:CMCTUSD</td><td>15.500000</td><td>3314.516129</td><td>2004-03-26T04:00:00+04:00</td></tr>
+<tr><td>2008-11-18T04:00:00+04:00</td><td>25872.025870</td><td>2008-11-18T04:00:00+04:00</td><td>XUSE:CASH:EGLE2USD</td><td>8.900000</td><td>2906.969199</td><td>2008-11-17T04:00:00+04:00</td></tr>
+<tr><td>2017-12-28T04:00:00+04:00</td><td>54750</td><td>2017-12-28T04:00:00+04:00</td><td>XUSE:CASH:CMCTUSD</td><td>20.150000</td><td>2717.121588</td><td>2017-12-27T04:00:00+04:00</td></tr>
+<tr><td>2006-02-13T04:00:00+04:00</td><td>29568.029570</td><td>2006-02-13T04:00:00+04:00</td><td>XUSE:CASH:EGLE2USD</td><td>14.340000</td><td>2061.926748</td><td>2006-02-10T04:00:00+04:00</td></tr>
+<tr><td>2006-04-26T04:00:00+04:00</td><td>25872.025870</td><td>2006-04-26T04:00:00+04:00</td><td>XUSE:CASH:EGLE2USD</td><td>14.240000</td><td>1816.855749</td><td>2006-04-25T04:00:00+04:00</td></tr>
+<tr><td>2006-07-26T04:00:00+04:00</td><td>25872.025870</td><td>2006-07-26T04:00:00+04:00</td><td>XUSE:CASH:EGLE2USD</td><td>15.430000</td><td>1676.735312</td><td>2006-07-25T04:00:00+04:00</td></tr>
+<tr><td>2005-10-13T04:00:00+04:00</td><td>28000.028000</td><td>2005-10-13T04:00:00+04:00</td><td>XUSE:CASH:EGLE2USD</td><td>16.950000</td><td>1651.919056</td><td>2005-10-12T04:00:00+04:00</td></tr>
+<tr><td>2006-10-26T04:00:00+04:00</td><td>26432.026430</td><td>2006-10-26T04:00:00+04:00</td><td>XUSE:CASH:EGLE2USD</td><td>17.800000</td><td>1484.945305</td><td>2006-10-25T04:00:00+04:00</td></tr>
+<tr><td>2017-04-12T04:00:00+04:00</td><td>21000</td><td>2017-04-12T04:00:00+04:00</td><td>XUSE:CASH:CMCTUSD</td><td>16.450000</td><td>1276.595745</td><td>2017-04-11T04:00:00+04:00</td></tr>
+<tr><td>2007-02-26T04:00:00+04:00</td><td>26432.026430</td><td>2007-02-26T04:00:00+04:00</td><td>XUSE:CASH:EGLE2USD</td><td>21.300000</td><td>1240.940208</td><td>2007-02-23T04:00:00+04:00</td></tr>
+<tr><td>2007-04-26T04:00:00+04:00</td><td>25872.025870</td><td>2007-04-26T04:00:00+04:00</td><td>XUSE:CASH:EGLE2USD</td><td>22.740000</td><td>1137.732008</td><td>2007-04-25T04:00:00+04:00</td></tr>
+<tr><td>2008-03-11T04:00:00+04:00</td><td>25872.025870</td><td>2008-03-11T04:00:00+04:00</td><td>XUSE:CASH:EGLE2USD</td><td>23.760000</td><td>1088.889978</td><td>2008-03-10T04:00:00+04:00</td></tr>
+<tr><td>2016-09-20T04:00:00+04:00</td><td>16406.250000</td><td>2016-09-20T04:00:00+04:00</td><td>XUSE:CASH:CMCTUSD</td><td>15.420000</td><td>1063.959144</td><td>2016-09-19T04:00:00+04:00</td></tr>
+<tr><td>2016-12-14T04:00:00+04:00</td><td>16406.250000</td><td>2016-12-14T04:00:00+04:00</td><td>XUSE:CASH:CMCTUSD</td><td>15.450000</td><td>1061.893204</td><td>2016-12-13T04:00:00+04:00</td></tr>
+<tr><td>2014-12-18T04:00:00+04:00</td><td>16406.250000</td><td>2014-12-18T04:00:00+04:00</td><td>XUSE:CASH:CMCTUSD</td><td>15.660000</td><td>1047.653257</td><td>2014-12-17T04:00:00+04:00</td></tr>
+<tr><td>2017-03-16T04:00:00+04:00</td><td>16406.250000</td><td>2017-03-16T04:00:00+04:00</td><td>XUSE:CASH:CMCTUSD</td><td>16.100000</td><td>1019.021739</td><td>2017-03-15T04:00:00+04:00</td></tr>
+<tr><td>2016-03-17T04:00:00+04:00</td><td>16406.250000</td><td>2016-03-17T04:00:00+04:00</td><td>XUSE:CASH:CMCTUSD</td><td>16.900000</td><td>970.784024</td><td>2016-03-16T04:00:00+04:00</td></tr>
+<tr><td>2015-12-17T04:00:00+04:00</td><td>16406.250000</td><td>2015-12-17T04:00:00+04:00</td><td>XUSE:CASH:CMCTUSD</td><td>17.320000</td><td>947.243072</td><td>2015-12-16T04:00:00+04:00</td></tr>
+<tr><td>2007-07-30T04:00:00+04:00</td><td>24416.024420</td><td>2007-07-30T04:00:00+04:00</td><td>XUSE:CASH:EGLE2USD</td><td>25.920000</td><td>941.976251</td><td>2007-07-27T04:00:00+04:00</td></tr>
+<tr><td>2007-11-19T04:00:00+04:00</td><td>25872.025870</td><td>2007-11-19T04:00:00+04:00</td><td>XUSE:CASH:EGLE2USD</td><td>27.560000</td><td>938.752753</td><td>2007-11-16T04:00:00+04:00</td></tr>
+<tr><td>2015-03-18T04:00:00+04:00</td><td>16406.250000</td><td>2015-03-18T04:00:00+04:00</td><td>XUSE:CASH:CMCTUSD</td><td>17.910000</td><td>916.038526</td><td>2015-03-17T04:00:00+04:00</td></tr>
+<tr><td>2008-08-18T04:00:00+04:00</td><td>25872.025870</td><td>2008-08-18T04:00:00+04:00</td><td>XUSE:CASH:EGLE2USD</td><td>28.500000</td><td>907.790381</td><td>2008-08-15T04:00:00+04:00</td></tr>
+<tr><td>2016-06-17T04:00:00+04:00</td><td>16406.250000</td><td>2016-06-17T04:00:00+04:00</td><td>XUSE:CASH:CMCTUSD</td><td>18.360000</td><td>893.586601</td><td>2016-06-16T04:00:00+04:00</td></tr>
+<tr><td>2015-06-18T04:00:00+04:00</td><td>16406.250000</td><td>2015-06-18T04:00:00+04:00</td><td>XUSE:CASH:CMCTUSD</td><td>18.510000</td><td>886.345219</td><td>2015-06-17T04:00:00+04:00</td></tr>
+<tr><td>2014-09-19T04:00:00+04:00</td><td>16406.250000</td><td>2014-09-19T04:00:00+04:00</td><td>XUSE:CASH:CMCTUSD</td><td>19</td><td>863.486842</td><td>2014-09-18T04:00:00+04:00</td></tr>
+<tr><td>2015-09-22T04:00:00+04:00</td><td>16406.250000</td><td>2015-09-22T04:00:00+04:00</td><td>XUSE:CASH:CMCTUSD</td><td>19.850000</td><td>826.511335</td><td>2015-09-21T04:00:00+04:00</td></tr>
+<tr><td>2024-07-08T04:00:00+04:00</td><td>2125</td><td>2024-07-08T04:00:00+04:00</td><td>XUSE:CASH:CMCTUSD</td><td>2.680000</td><td>792.910448</td><td>2024-07-05T04:00:00+04:00</td></tr>
+<tr><td>2014-06-19T04:00:00+04:00</td><td>16406.250000</td><td>2014-06-19T04:00:00+04:00</td><td>XUSE:CASH:CMCTUSD</td><td>21.810000</td><td>752.235213</td><td>2014-06-18T04:00:00+04:00</td></tr>
+<tr><td>2008-05-16T04:00:00+04:00</td><td>25872.025870</td><td>2008-05-16T04:00:00+04:00</td><td>XUSE:CASH:EGLE2USD</td><td>35.040000</td><td>738.356903</td><td>2008-05-15T04:00:00+04:00</td></tr>
+<tr><td>2018-06-14T04:00:00+04:00</td><td>9375</td><td>2018-06-14T04:00:00+04:00</td><td>XUSE:CASH:CMCTUSD</td><td>14.950000</td><td>627.090301</td><td>2018-06-13T04:00:00+04:00</td></tr>
+<tr><td>2018-09-04T04:00:00+04:00</td><td>9375</td><td>2018-09-04T04:00:00+04:00</td><td>XUSE:CASH:CMCTUSD</td><td>15.600000</td><td>600.961538</td><td>2018-08-31T04:00:00+04:00</td></tr>
+<tr><td>2018-03-15T04:00:00+04:00</td><td>9375</td><td>2018-03-15T04:00:00+04:00</td><td>XUSE:CASH:CMCTUSD</td><td>15.700000</td><td>597.133758</td><td>2018-03-14T04:00:00+04:00</td></tr>
+<tr><td>2018-12-13T04:00:00+04:00</td><td>9375</td><td>2018-12-13T04:00:00+04:00</td><td>XUSE:CASH:CMCTUSD</td><td>16.860000</td><td>556.049822</td><td>2018-12-12T04:00:00+04:00</td></tr>
+<tr><td>2023-12-29T04:00:00+04:00</td><td>2125</td><td>2023-12-29T04:00:00+04:00</td><td>XUSE:CASH:CMCTUSD</td><td>3.910000</td><td>543.478261</td><td>2023-12-28T04:00:00+04:00</td></tr>
+<tr><td>2023-03-29T04:00:00+04:00</td><td>2125</td><td>2023-03-29T04:00:00+04:00</td><td>XUSE:CASH:CMCTUSD</td><td>3.920000</td><td>542.091837</td><td>2023-03-28T04:00:00+04:00</td></tr>
+<tr><td>2024-04-05T04:00:00+04:00</td><td>2125</td><td>2024-04-05T04:00:00+04:00</td><td>XUSE:CASH:CMCTUSD</td><td>4.020000</td><td>528.606965</td><td>2024-04-04T04:00:00+04:00</td></tr>
+<tr><td>2019-03-05T04:00:00+04:00</td><td>9375</td><td>2019-03-05T04:00:00+04:00</td><td>XUSE:CASH:CMCTUSD</td><td>18.001000</td><td>520.804400</td><td>2019-03-04T04:00:00+04:00</td></tr>
+<tr><td>2023-10-05T04:00:00+04:00</td><td>2125</td><td>2023-10-05T04:00:00+04:00</td><td>XUSE:CASH:CMCTUSD</td><td>4.120000</td><td>515.776699</td><td>2023-10-04T04:00:00+04:00</td></tr>
+<tr><td>2017-12-20T04:00:00+04:00</td><td>9375</td><td>2017-12-20T04:00:00+04:00</td><td>XUSE:CASH:CMCTUSD</td><td>19.100000</td><td>490.837696</td><td>2017-12-19T04:00:00+04:00</td></tr>
+<tr><td>2017-09-15T04:00:00+04:00</td><td>9375</td><td>2017-09-15T04:00:00+04:00</td><td>XUSE:CASH:CMCTUSD</td><td>19.750000</td><td>474.683544</td><td>2017-09-14T04:00:00+04:00</td></tr>
+<tr><td>2019-06-13T04:00:00+04:00</td><td>9375</td><td>2019-06-13T04:00:00+04:00</td><td>XUSE:CASH:CMCTUSD</td><td>20.500000</td><td>457.317073</td><td>2019-06-12T04:00:00+04:00</td></tr>
+<tr><td>2023-07-07T04:00:00+04:00</td><td>2125</td><td>2023-07-07T04:00:00+04:00</td><td>XUSE:CASH:CMCTUSD</td><td>4.890000</td><td>434.560327</td><td>2023-07-06T04:00:00+04:00</td></tr>
+<tr><td>2022-12-23T04:00:00+04:00</td><td>2125</td><td>2022-12-23T04:00:00+04:00</td><td>XUSE:CASH:CMCTUSD</td><td>4.980000</td><td>426.706827</td><td>2022-12-22T04:00:00+04:00</td></tr>
+<tr><td>2014-03-20T04:00:00+04:00</td><td>3750</td><td>2014-03-20T04:00:00+04:00</td><td>XUSE:CASH:CMCTUSD</td><td>9.720000</td><td>385.802469</td><td>2014-03-19T04:00:00+04:00</td></tr>
+<tr><td>2022-09-30T04:00:00+04:00</td><td>2125</td><td>2022-09-30T04:00:00+04:00</td><td>XUSE:CASH:CMCTUSD</td><td>6.400000</td><td>332.031250</td><td>2022-09-29T04:00:00+04:00</td></tr>
+<tr><td>2022-06-16T04:00:00+04:00</td><td>2125</td><td>2022-06-16T04:00:00+04:00</td><td>XUSE:CASH:CMCTUSD</td><td>7.220000</td><td>294.321330</td><td>2022-06-15T04:00:00+04:00</td></tr>
+<tr><td>2021-09-16T04:00:00+04:00</td><td>1875</td><td>2021-09-16T04:00:00+04:00</td><td>XUSE:CASH:CMCTUSD</td><td>6.960000</td><td>269.396552</td><td>2021-09-15T04:00:00+04:00</td></tr>
+<tr><td>2022-03-17T04:00:00+04:00</td><td>2125</td><td>2022-03-17T04:00:00+04:00</td><td>XUSE:CASH:CMCTUSD</td><td>7.980000</td><td>266.290727</td><td>2022-03-16T04:00:00+04:00</td></tr>
+<tr><td>2021-12-17T04:00:00+04:00</td><td>1875</td><td>2021-12-17T04:00:00+04:00</td><td>XUSE:CASH:CMCTUSD</td><td>7.120000</td><td>263.342697</td><td>2021-12-16T04:00:00+04:00</td></tr>
+<tr><td>2015-03-06T04:00:00+04:00</td><td>1727.100000</td><td>2015-03-06T04:00:00+04:00</td><td>XUSE:CASH:ORIGUSD</td><td>7.570000</td><td>228.150594</td><td>2015-03-05T04:00:00+04:00</td></tr>
+<tr><td>2021-06-16T04:00:00+04:00</td><td>1875</td><td>2021-06-16T04:00:00+04:00</td><td>XUSE:CASH:CMCTUSD</td><td>9.190000</td><td>204.026115</td><td>2021-06-15T04:00:00+04:00</td></tr>
+<tr><td>2015-05-20T04:00:00+04:00</td><td>1727.100000</td><td>2015-05-20T04:00:00+04:00</td><td>XUSE:CASH:ORIGUSD</td><td>8.540000</td><td>202.236534</td><td>2015-05-19T04:00:00+04:00</td></tr>
+<tr><td>2020-06-12T04:00:00+04:00</td><td>1875</td><td>2020-06-12T04:00:00+04:00</td><td>XUSE:CASH:CMCTUSD</td><td>9.620000</td><td>194.906445</td><td>2020-06-11T04:00:00+04:00</td></tr>
+<tr><td>2020-09-11T04:00:00+04:00</td><td>1875</td><td>2020-09-11T04:00:00+04:00</td><td>XUSE:CASH:CMCTUSD</td><td>10.330000</td><td>181.510165</td><td>2020-09-10T04:00:00+04:00</td></tr>
+<tr><td>2020-03-12T04:00:00+04:00</td><td>1875</td><td>2020-03-12T04:00:00+04:00</td><td>XUSE:CASH:CMCTUSD</td><td>11.600000</td><td>161.637931</td><td>2020-03-11T04:00:00+04:00</td></tr>
+<tr><td>2020-12-11T04:00:00+04:00</td><td>1875</td><td>2020-12-11T04:00:00+04:00</td><td>XUSE:CASH:CMCTUSD</td><td>12.060000</td><td>155.472637</td><td>2020-12-10T04:00:00+04:00</td></tr>
+<tr><td>2021-03-12T04:00:00+04:00</td><td>1875</td><td>2021-03-12T04:00:00+04:00</td><td>XUSE:CASH:CMCTUSD</td><td>13</td><td>144.230769</td><td>2021-03-11T04:00:00+04:00</td></tr>
+<tr><td>2019-12-12T04:00:00+04:00</td><td>1875</td><td>2019-12-12T04:00:00+04:00</td><td>XUSE:CASH:CMCTUSD</td><td>14.550000</td><td>128.865979</td><td>2019-12-11T04:00:00+04:00</td></tr>
+<tr><td>2014-10-29T04:00:00+04:00</td><td>1727.100000</td><td>2014-10-29T04:00:00+04:00</td><td>XUSE:CASH:ORIGUSD</td><td>13.700000</td><td>126.065693</td><td>2014-10-28T04:00:00+04:00</td></tr>
+<tr><td>2019-09-05T04:00:00+04:00</td><td>1875</td><td>2019-09-05T04:00:00+04:00</td><td>XUSE:CASH:CMCTUSD</td><td>16.440000</td><td>114.051095</td><td>2019-09-04T04:00:00+04:00</td></tr>
+<tr><td>2014-05-16T04:00:00+04:00</td><td>1727.100000</td><td>2014-05-16T04:00:00+04:00</td><td>XUSE:CASH:ORIGUSD</td><td>16.810000</td><td>102.742415</td><td>2014-05-15T04:00:00+04:00</td></tr>
+<tr><td>2014-07-30T04:00:00+04:00</td><td>1727.100000</td><td>2014-07-30T04:00:00+04:00</td><td>XUSE:CASH:ORIGUSD</td><td>17.670000</td><td>97.741935</td><td>2014-07-29T04:00:00+04:00</td></tr>
+<tr><td>2015-07-16T04:00:00+04:00</td><td>618</td><td>2015-07-16T04:00:00+04:00</td><td>XUSE:CASH:AHTUSD</td><td>9.210000</td><td>67.100977</td><td>2015-07-15T04:00:00+04:00</td></tr>
+<tr><td>2008-06-26T04:00:00+04:00</td><td>210</td><td>2008-06-26T04:00:00+04:00</td><td>XUSE:CASH:AHTUSD</td><td>5.240000</td><td>40.076336</td><td>2008-06-25T04:00:00+04:00</td></tr>
+<tr><td>2008-09-26T04:00:00+04:00</td><td>140</td><td>2008-09-26T04:00:00+04:00</td><td>XUSE:CASH:AHTUSD</td><td>3.990000</td><td>35.087719</td><td>2008-09-25T04:00:00+04:00</td></tr>
+<tr><td>2016-04-04T04:00:00+04:00</td><td>375</td><td>2016-04-04T04:00:00+04:00</td><td>XUSE:CASH:VSAUSD</td><td>10.820000</td><td>34.658041</td><td>2016-04-01T04:00:00+04:00</td></tr>
+<tr><td>2008-03-27T04:00:00+04:00</td><td>210</td><td>2008-03-27T04:00:00+04:00</td><td>XUSE:CASH:AHTUSD</td><td>6.260000</td><td>33.546326</td><td>2008-03-26T04:00:00+04:00</td></tr>
+<tr><td>2018-12-28T04:00:00+04:00</td><td>120</td><td>2018-12-28T04:00:00+04:00</td><td>XUSE:CASH:AHTUSD</td><td>4.010000</td><td>29.925187</td><td>2018-12-27T04:00:00+04:00</td></tr>
+<tr><td>2018-04-04T04:00:00+04:00</td><td>300</td><td>2018-04-04T04:00:00+04:00</td><td>XUSE:CASH:VSAUSD</td><td>11.020000</td><td>27.223230</td><td>2018-04-03T04:00:00+04:00</td></tr>
+<tr><td>2007-12-27T04:00:00+04:00</td><td>210</td><td>2007-12-27T04:00:00+04:00</td><td>XUSE:CASH:AHTUSD</td><td>7.780000</td><td>26.992288</td><td>2007-12-26T04:00:00+04:00</td></tr>
+<tr><td>2019-03-28T04:00:00+04:00</td><td>120</td><td>2019-03-28T04:00:00+04:00</td><td>XUSE:CASH:AHTUSD</td><td>4.960000</td><td>24.193548</td><td>2019-03-27T04:00:00+04:00</td></tr>
+<tr><td>2016-06-28T04:00:00+04:00</td><td>120</td><td>2016-06-28T04:00:00+04:00</td><td>XUSE:CASH:AHTUSD</td><td>5.070000</td><td>23.668639</td><td>2016-06-27T04:00:00+04:00</td></tr>
+<tr><td>2017-06-07T04:00:00+04:00</td><td>400</td><td>2017-06-07T04:00:00+04:00</td><td>XUSE:CASH:VSAUSD</td><td>18.120000</td><td>22.075055</td><td>2017-06-06T04:00:00+04:00</td></tr>
+<tr><td>1999-12-07T04:00:00+04:00</td><td>28.165000</td><td>1999-12-07T04:00:00+04:00</td><td>XUSE:CASH:NVECUSD</td><td>1.280000</td><td>22.003906</td><td>1999-12-06T04:00:00+04:00</td></tr>
+<tr><td>2019-06-27T04:00:00+04:00</td><td>60</td><td>2019-06-27T04:00:00+04:00</td><td>XUSE:CASH:AHTUSD</td><td>2.770000</td><td>21.660650</td><td>2019-06-26T04:00:00+04:00</td></tr>
+<tr><td>2019-12-30T04:00:00+04:00</td><td>60</td><td>2019-12-30T04:00:00+04:00</td><td>XUSE:CASH:AHTUSD</td><td>2.860000</td><td>20.979021</td><td>2019-12-27T04:00:00+04:00</td></tr>
+<tr><td>2016-03-29T04:00:00+04:00</td><td>120</td><td>2016-03-29T04:00:00+04:00</td><td>XUSE:CASH:AHTUSD</td><td>5.770000</td><td>20.797227</td><td>2016-03-28T04:00:00+04:00</td></tr>
+<tr><td>2017-03-29T04:00:00+04:00</td><td>120</td><td>2017-03-29T04:00:00+04:00</td><td>XUSE:CASH:AHTUSD</td><td>5.850000</td><td>20.512821</td><td>2017-03-28T04:00:00+04:00</td></tr>
+<tr><td>2007-09-26T04:00:00+04:00</td><td>210</td><td>2007-09-26T04:00:00+04:00</td><td>XUSE:CASH:AHTUSD</td><td>10.240000</td><td>20.507813</td><td>2007-09-25T04:00:00+04:00</td></tr>
+<tr><td>2016-09-28T04:00:00+04:00</td><td>120</td><td>2016-09-28T04:00:00+04:00</td><td>XUSE:CASH:AHTUSD</td><td>5.940000</td><td>20.202020</td><td>2016-09-27T04:00:00+04:00</td></tr>
+<tr><td>2018-03-28T04:00:00+04:00</td><td>120</td><td>2018-03-28T04:00:00+04:00</td><td>XUSE:CASH:AHTUSD</td><td>6.280000</td><td>19.108280</td><td>2018-03-27T04:00:00+04:00</td></tr>
+<tr><td>2018-09-27T04:00:00+04:00</td><td>120</td><td>2018-09-27T04:00:00+04:00</td><td>XUSE:CASH:AHTUSD</td><td>6.310000</td><td>19.017433</td><td>2018-09-26T04:00:00+04:00</td></tr>
+<tr><td>2017-06-28T04:00:00+04:00</td><td>120</td><td>2017-06-28T04:00:00+04:00</td><td>XUSE:CASH:AHTUSD</td><td>6.340000</td><td>18.927445</td><td>2017-06-27T04:00:00+04:00</td></tr>
+<tr><td>2015-12-29T04:00:00+04:00</td><td>120</td><td>2015-12-29T04:00:00+04:00</td><td>XUSE:CASH:AHTUSD</td><td>6.500000</td><td>18.461538</td><td>2015-12-28T04:00:00+04:00</td></tr>
+<tr><td>2019-09-27T04:00:00+04:00</td><td>60</td><td>2019-09-27T04:00:00+04:00</td><td>XUSE:CASH:AHTUSD</td><td>3.290000</td><td>18.237082</td><td>2019-09-26T04:00:00+04:00</td></tr>
+<tr><td>2017-09-28T04:00:00+04:00</td><td>120</td><td>2017-09-28T04:00:00+04:00</td><td>XUSE:CASH:AHTUSD</td><td>6.640000</td><td>18.072289</td><td>2017-09-27T04:00:00+04:00</td></tr>
+<tr><td>2015-09-28T04:00:00+04:00</td><td>120</td><td>2015-09-28T04:00:00+04:00</td><td>XUSE:CASH:AHTUSD</td><td>6.730000</td><td>17.830609</td><td>2015-09-25T04:00:00+04:00</td></tr>
+<tr><td>2017-12-28T04:00:00+04:00</td><td>120</td><td>2017-12-28T04:00:00+04:00</td><td>XUSE:CASH:AHTUSD</td><td>6.800000</td><td>17.647059</td><td>2017-12-27T04:00:00+04:00</td></tr>
+<tr><td>2007-06-27T04:00:00+04:00</td><td>210</td><td>2007-06-27T04:00:00+04:00</td><td>XUSE:CASH:AHTUSD</td><td>11.910000</td><td>17.632242</td><td>2007-06-26T04:00:00+04:00</td></tr>
+<tr><td>2006-12-27T04:00:00+04:00</td><td>200</td><td>2006-12-27T04:00:00+04:00</td><td>XUSE:CASH:AHTUSD</td><td>12.460000</td><td>16.051364</td><td>2006-12-26T04:00:00+04:00</td></tr>
+<tr><td>2006-03-29T04:00:00+04:00</td><td>200</td><td>2006-03-29T04:00:00+04:00</td><td>XUSE:CASH:AHTUSD</td><td>12.470000</td><td>16.038492</td><td>2006-03-28T04:00:00+04:00</td></tr>
+<tr><td>2005-06-28T04:00:00+04:00</td><td>170</td><td>2005-06-28T04:00:00+04:00</td><td>XUSE:CASH:AHTUSD</td><td>10.600000</td><td>16.037736</td><td>2005-06-27T04:00:00+04:00</td></tr>
+<tr><td>2005-03-29T04:00:00+04:00</td><td>160</td><td>2005-03-29T04:00:00+04:00</td><td>XUSE:CASH:AHTUSD</td><td>10.250000</td><td>15.609756</td><td>2005-03-28T04:00:00+04:00</td></tr>
+<tr><td>2016-12-28T04:00:00+04:00</td><td>120</td><td>2016-12-28T04:00:00+04:00</td><td>XUSE:CASH:AHTUSD</td><td>7.760000</td><td>15.463918</td><td>2016-12-27T04:00:00+04:00</td></tr>
+<tr><td>2018-06-28T04:00:00+04:00</td><td>120</td><td>2018-06-28T04:00:00+04:00</td><td>XUSE:CASH:AHTUSD</td><td>7.840000</td><td>15.306122</td><td>2018-06-27T04:00:00+04:00</td></tr>
+<tr><td>2008-03-12T04:00:00+04:00</td><td>320</td><td>2008-03-12T04:00:00+04:00</td><td>XUSE:CASH:GLAEUSD</td><td>21.470000</td><td>14.904518</td><td>2008-03-11T04:00:00+04:00</td></tr>
+<tr><td>2015-06-26T04:00:00+04:00</td><td>120</td><td>2015-06-26T04:00:00+04:00</td><td>XUSE:CASH:AHTUSD</td><td>8.300000</td><td>14.457831</td><td>2015-06-25T04:00:00+04:00</td></tr>
+<tr><td>2013-12-27T04:00:00+04:00</td><td>120</td><td>2013-12-27T04:00:00+04:00</td><td>XUSE:CASH:AHTUSD</td><td>8.350000</td><td>14.371257</td><td>2013-12-26T04:00:00+04:00</td></tr>
+<tr><td>2008-09-11T04:00:00+04:00</td><td>320</td><td>2008-09-11T04:00:00+04:00</td><td>XUSE:CASH:GLAEUSD</td><td>22.500000</td><td>14.222222</td><td>2008-09-10T04:00:00+04:00</td></tr>
+<tr><td>2007-12-12T04:00:00+04:00</td><td>320</td><td>2007-12-12T04:00:00+04:00</td><td>XUSE:CASH:GLAEUSD</td><td>22.750000</td><td>14.065934</td><td>2007-12-11T04:00:00+04:00</td></tr>
+<tr><td>2004-12-29T04:00:00+04:00</td><td>150</td><td>2004-12-29T04:00:00+04:00</td><td>XUSE:CASH:AHTUSD</td><td>10.970000</td><td>13.673655</td><td>2004-12-28T04:00:00+04:00</td></tr>
+<tr><td>2020-05-14T04:00:00+04:00</td><td>38.900000</td><td>2020-05-14T04:00:00+04:00</td><td>XUSE:CASH:VATEUSD</td><td>3.020000</td><td>12.880795</td><td>2020-05-13T04:00:00+04:00</td></tr>
+<tr><td>2015-03-27T04:00:00+04:00</td><td>120</td><td>2015-03-27T04:00:00+04:00</td><td>XUSE:CASH:AHTUSD</td><td>9.680000</td><td>12.396694</td><td>2015-03-26T04:00:00+04:00</td></tr>
+<tr><td>2008-06-11T04:00:00+04:00</td><td>320</td><td>2008-06-11T04:00:00+04:00</td><td>XUSE:CASH:GLAEUSD</td><td>25.820000</td><td>12.393493</td><td>2008-06-10T04:00:00+04:00</td></tr>
+<tr><td>2008-12-11T04:00:00+04:00</td><td>160</td><td>2008-12-11T04:00:00+04:00</td><td>XUSE:CASH:GLAEUSD</td><td>13</td><td>12.307692</td><td>2008-12-10T04:00:00+04:00</td></tr>
+<tr><td>2004-02-26T04:00:00+04:00</td><td>150</td><td>2004-02-26T04:00:00+04:00</td><td>XUSE:CASH:CHKAQUSD</td><td>12.250000</td><td>12.244898</td><td>2004-02-25T04:00:00+04:00</td></tr>
+<tr><td>2005-12-28T04:00:00+04:00</td><td>130</td><td>2005-12-28T04:00:00+04:00</td><td>XUSE:CASH:AHTUSD</td><td>10.840000</td><td>11.992620</td><td>2005-12-27T04:00:00+04:00</td></tr>
+<tr><td>2007-09-12T04:00:00+04:00</td><td>320</td><td>2007-09-12T04:00:00+04:00</td><td>XUSE:CASH:GLAEUSD</td><td>26.770000</td><td>11.953679</td><td>2007-09-11T04:00:00+04:00</td></tr>
+<tr><td>2011-12-28T04:00:00+04:00</td><td>100</td><td>2011-12-28T04:00:00+04:00</td><td>XUSE:CASH:AHTUSD</td><td>8.430000</td><td>11.862396</td><td>2011-12-27T04:00:00+04:00</td></tr>
+<tr><td>2012-03-28T04:00:00+04:00</td><td>110</td><td>2012-03-28T04:00:00+04:00</td><td>XUSE:CASH:AHTUSD</td><td>9.290000</td><td>11.840689</td><td>2012-03-27T04:00:00+04:00</td></tr>
+<tr><td>2004-06-28T04:00:00+04:00</td><td>100</td><td>2004-06-28T04:00:00+04:00</td><td>XUSE:CASH:AHTUSD</td><td>8.590000</td><td>11.641444</td><td>2004-06-25T04:00:00+04:00</td></tr>
+<tr><td>2014-09-26T04:00:00+04:00</td><td>120</td><td>2014-09-26T04:00:00+04:00</td><td>XUSE:CASH:AHTUSD</td><td>10.500000</td><td>11.428571</td><td>2014-09-25T04:00:00+04:00</td></tr>
+<tr><td>2007-03-28T04:00:00+04:00</td><td>140</td><td>2007-03-28T04:00:00+04:00</td><td>XUSE:CASH:AHTUSD</td><td>12.390000</td><td>11.299435</td><td>2007-03-27T04:00:00+04:00</td></tr>
+<tr><td>2022-09-21T04:00:00+04:00</td><td>21.450000</td><td>2022-09-21T04:00:00+04:00</td><td>XUSE:CASH:GYREUSD</td><td>1.940000</td><td>11.056701</td><td>2022-09-20T04:00:00+04:00</td></tr>
+<tr><td>2014-06-26T04:00:00+04:00</td><td>120</td><td>2014-06-26T04:00:00+04:00</td><td>XUSE:CASH:AHTUSD</td><td>10.910000</td><td>10.999083</td><td>2014-06-25T04:00:00+04:00</td></tr>
+<tr><td>2005-09-28T04:00:00+04:00</td><td>120</td><td>2005-09-28T04:00:00+04:00</td><td>XUSE:CASH:AHTUSD</td><td>10.940000</td><td>10.968921</td><td>2005-09-27T04:00:00+04:00</td></tr>
+<tr><td>2014-12-29T04:00:00+04:00</td><td>120</td><td>2014-12-29T04:00:00+04:00</td><td>XUSE:CASH:AHTUSD</td><td>10.950000</td><td>10.958904</td><td>2014-12-26T04:00:00+04:00</td></tr>
+<tr><td>2005-03-28T04:00:00+04:00</td><td>110</td><td>2005-03-28T04:00:00+04:00</td><td>XUSE:CASH:AHTUSD</td><td>10.040000</td><td>10.956175</td><td>2005-03-24T04:00:00+04:00</td></tr>
+<tr><td>2014-03-27T04:00:00+04:00</td><td>120</td><td>2014-03-27T04:00:00+04:00</td><td>XUSE:CASH:AHTUSD</td><td>11.020000</td><td>10.889292</td><td>2014-03-26T04:00:00+04:00</td></tr>
+<tr><td>2006-09-27T04:00:00+04:00</td><td>130</td><td>2006-09-27T04:00:00+04:00</td><td>XUSE:CASH:AHTUSD</td><td>12.070000</td><td>10.770505</td><td>2006-09-26T04:00:00+04:00</td></tr>
+<tr><td>2012-12-27T04:00:00+04:00</td><td>110</td><td>2012-12-27T04:00:00+04:00</td><td>XUSE:CASH:AHTUSD</td><td>10.350000</td><td>10.628019</td><td>2012-12-26T04:00:00+04:00</td></tr>
+<tr><td>2006-06-28T04:00:00+04:00</td><td>130</td><td>2006-06-28T04:00:00+04:00</td><td>XUSE:CASH:AHTUSD</td><td>12.250000</td><td>10.612245</td><td>2006-06-27T04:00:00+04:00</td></tr>
+<tr><td>2013-06-26T04:00:00+04:00</td><td>120</td><td>2013-06-26T04:00:00+04:00</td><td>XUSE:CASH:AHTUSD</td><td>11.360000</td><td>10.563380</td><td>2013-06-25T04:00:00+04:00</td></tr>
+<tr><td>2006-03-28T04:00:00+04:00</td><td>130</td><td>2006-03-28T04:00:00+04:00</td><td>XUSE:CASH:AHTUSD</td><td>12.520000</td><td>10.383387</td><td>2006-03-27T04:00:00+04:00</td></tr>
+<tr><td>2011-09-28T04:00:00+04:00</td><td>70</td><td>2011-09-28T04:00:00+04:00</td><td>XUSE:CASH:AHTUSD</td><td>6.870000</td><td>10.189229</td><td>2011-09-27T04:00:00+04:00</td></tr>
+<tr><td>2004-09-28T04:00:00+04:00</td><td>90</td><td>2004-09-28T04:00:00+04:00</td><td>XUSE:CASH:AHTUSD</td><td>9.200000</td><td>9.782609</td><td>2004-09-27T04:00:00+04:00</td></tr>
+<tr><td>2017-03-13T04:00:00+04:00</td><td>17.064480</td><td>2017-03-13T04:00:00+04:00</td><td>XUSE:CASH:DRYSUSD</td><td>1.840000</td><td>9.274174</td><td>2017-03-10T04:00:00+04:00</td></tr>
+<tr><td>2012-09-26T04:00:00+04:00</td><td>70</td><td>2012-09-26T04:00:00+04:00</td><td>XUSE:CASH:AHTUSD</td><td>8.150000</td><td>8.588957</td><td>2012-09-25T04:00:00+04:00</td></tr>
+<tr><td>2012-06-27T04:00:00+04:00</td><td>70</td><td>2012-06-27T04:00:00+04:00</td><td>XUSE:CASH:AHTUSD</td><td>8.180000</td><td>8.557457</td><td>2012-06-26T04:00:00+04:00</td></tr>
+<tr><td>2007-06-13T04:00:00+04:00</td><td>320</td><td>2007-06-13T04:00:00+04:00</td><td>XUSE:CASH:GLAEUSD</td><td>37.490000</td><td>8.535609</td><td>2007-06-12T04:00:00+04:00</td></tr>
+<tr><td>2022-04-11T04:00:00+04:00</td><td>60</td><td>2022-04-11T04:00:00+04:00</td><td>XUSE:CASH:AIFUUSD</td><td>7.380000</td><td>8.130081</td><td>2022-04-08T04:00:00+04:00</td></tr>
+<tr><td>2017-04-27T04:00:00+04:00</td><td>9.690500</td><td>2017-04-27T04:00:00+04:00</td><td>XUSE:CASH:DRYSUSD</td><td>1.230000</td><td>7.878455</td><td>2017-04-26T04:00:00+04:00</td></tr>
+<tr><td>2011-06-28T04:00:00+04:00</td><td>100</td><td>2011-06-28T04:00:00+04:00</td><td>XUSE:CASH:AHTUSD</td><td>13.030000</td><td>7.674597</td><td>2011-06-27T04:00:00+04:00</td></tr>
+<tr><td>2006-06-13T04:00:00+04:00</td><td>280</td><td>2006-06-13T04:00:00+04:00</td><td>XUSE:CASH:GLAEUSD</td><td>37.500000</td><td>7.466667</td><td>2006-06-12T04:00:00+04:00</td></tr>
+<tr><td>2021-03-30T04:00:00+04:00</td><td>100</td><td>2021-03-30T04:00:00+04:00</td><td>XUSE:CASH:AIFUUSD</td><td>13.900000</td><td>7.194245</td><td>2021-03-29T04:00:00+04:00</td></tr>
+<tr><td>2020-12-08T04:00:00+04:00</td><td>100</td><td>2020-12-08T04:00:00+04:00</td><td>XUSE:CASH:AIFUUSD</td><td>14.100000</td><td>7.092199</td><td>2020-12-07T04:00:00+04:00</td></tr>
+<tr><td>2011-11-14T04:00:00+04:00</td><td>9.514000</td><td>2011-11-14T04:00:00+04:00</td><td>XUSE:CASH:MRVCUSD</td><td>1.350000</td><td>7.047407</td><td>2011-11-11T04:00:00+04:00</td></tr>
+<tr><td>2007-03-13T04:00:00+04:00</td><td>280</td><td>2007-03-13T04:00:00+04:00</td><td>XUSE:CASH:GLAEUSD</td><td>40.010000</td><td>6.998250</td><td>2007-03-12T04:00:00+04:00</td></tr>
+<tr><td>2013-08-28T04:00:00+04:00</td><td>85</td><td>2013-08-28T04:00:00+04:00</td><td>XUSE:CASH:VATEUSD</td><td>12.390000</td><td>6.860371</td><td>2013-08-27T04:00:00+04:00</td></tr>
+<tr><td>2006-09-13T04:00:00+04:00</td><td>280</td><td>2006-09-13T04:00:00+04:00</td><td>XUSE:CASH:GLAEUSD</td><td>41.820000</td><td>6.695361</td><td>2006-09-12T04:00:00+04:00</td></tr>
+<tr><td>2013-03-26T04:00:00+04:00</td><td>80</td><td>2013-03-26T04:00:00+04:00</td><td>XUSE:CASH:AHTUSD</td><td>11.980000</td><td>6.677796</td><td>2013-03-25T04:00:00+04:00</td></tr>
+<tr><td>2011-03-29T04:00:00+04:00</td><td>70</td><td>2011-03-29T04:00:00+04:00</td><td>XUSE:CASH:AHTUSD</td><td>10.510000</td><td>6.660324</td><td>2011-03-28T04:00:00+04:00</td></tr>
+<tr><td>2020-11-27T04:00:00+04:00</td><td>75</td><td>2020-11-27T04:00:00+04:00</td><td>XUSE:CASH:QVCAQUSD</td><td>11.590000</td><td>6.471096</td><td>2020-11-25T04:00:00+04:00</td></tr>
+<tr><td>2009-06-24T04:00:00+04:00</td><td>80</td><td>2009-06-24T04:00:00+04:00</td><td>XUSE:CASH:AIFUUSD</td><td>12.400000</td><td>6.451613</td><td>2009-06-23T04:00:00+04:00</td></tr>
+<tr><td>2004-12-13T04:00:00+04:00</td><td>200</td><td>2004-12-13T04:00:00+04:00</td><td>XUSE:CASH:GLAEUSD</td><td>31.030000</td><td>6.445375</td><td>2004-12-10T04:00:00+04:00</td></tr>
+<tr><td>2013-09-26T04:00:00+04:00</td><td>80</td><td>2013-09-26T04:00:00+04:00</td><td>XUSE:CASH:AHTUSD</td><td>12.440000</td><td>6.430868</td><td>2013-09-25T04:00:00+04:00</td></tr>
+<tr><td>2005-06-13T04:00:00+04:00</td><td>240</td><td>2005-06-13T04:00:00+04:00</td><td>XUSE:CASH:GLAEUSD</td><td>38.160000</td><td>6.289308</td><td>2005-06-10T04:00:00+04:00</td></tr>
+<tr><td>2021-11-12T04:00:00+04:00</td><td>62.500000</td><td>2021-11-12T04:00:00+04:00</td><td>XUSE:CASH:QVCAQUSD</td><td>9.950000</td><td>6.281407</td><td>2021-11-11T04:00:00+04:00</td></tr>
+<tr><td>2012-05-29T04:00:00+04:00</td><td>6</td><td>2012-05-29T04:00:00+04:00</td><td>XUSE:CASH:MRVCUSD</td><td>0.960000</td><td>6.250000</td><td>2012-05-25T04:00:00+04:00</td></tr>
+<tr><td>2014-01-10T04:00:00+04:00</td><td>0.660000</td><td>2014-01-10T04:00:00+04:00</td><td>XUSE:CASH:BSBRUSD</td><td>0.106000</td><td>6.226415</td><td>2014-01-09T04:00:00+04:00</td></tr>
+<tr><td>2019-09-30T04:00:00+04:00</td><td>1</td><td>2019-09-30T04:00:00+04:00</td><td>XUSE:CASH:OCGNUSD</td><td>0.162000</td><td>6.172840</td><td>2019-09-27T04:00:00+04:00</td></tr>
+<tr><td>2017-05-04T04:00:00+04:00</td><td>48</td><td>2017-05-04T04:00:00+04:00</td><td>XUSE:CASH:AIFUUSD</td><td>7.850000</td><td>6.114650</td><td>2017-05-03T04:00:00+04:00</td></tr>
+<tr><td>2004-03-29T04:00:00+04:00</td><td>60</td><td>2004-03-29T04:00:00+04:00</td><td>XUSE:CASH:AHTUSD</td><td>9.900000</td><td>6.060606</td><td>2004-03-26T04:00:00+04:00</td></tr>
+<tr><td>2006-12-13T04:00:00+04:00</td><td>280</td><td>2006-12-13T04:00:00+04:00</td><td>XUSE:CASH:GLAEUSD</td><td>46.390000</td><td>6.035784</td><td>2006-12-12T04:00:00+04:00</td></tr>
+<tr><td>2020-04-01T04:00:00+04:00</td><td>120</td><td>2020-04-01T04:00:00+04:00</td><td>XUSE:CASH:AIFUUSD</td><td>20.120000</td><td>5.964215</td><td>2020-03-31T04:00:00+04:00</td></tr>
+<tr><td>2023-01-13T04:00:00+04:00</td><td>3.600000</td><td>2023-01-13T04:00:00+04:00</td><td>XUSE:CASH:GYREUSD</td><td>0.630000</td><td>5.714286</td><td>2023-01-12T04:00:00+04:00</td></tr>
+<tr><td>2012-08-10T04:00:00+04:00</td><td>106.668000</td><td>2012-08-10T04:00:00+04:00</td><td>XUSE:CASH:QVCAQUSD</td><td>18.850000</td><td>5.658780</td><td>2012-08-09T04:00:00+04:00</td></tr>
+<tr><td>2005-03-11T04:00:00+04:00</td><td>200</td><td>2005-03-11T04:00:00+04:00</td><td>XUSE:CASH:GLAEUSD</td><td>35.370000</td><td>5.654509</td><td>2005-03-10T04:00:00+04:00</td></tr>
+<tr><td>2012-11-08T04:00:00+04:00</td><td>20</td><td>2012-11-08T04:00:00+04:00</td><td>XUSE:CASH:BXMTUSD</td><td>3.540000</td><td>5.649718</td><td>2012-11-07T04:00:00+04:00</td></tr>
+<tr><td>2005-09-13T04:00:00+04:00</td><td>240</td><td>2005-09-13T04:00:00+04:00</td><td>XUSE:CASH:GLAEUSD</td><td>43.200000</td><td>5.555556</td><td>2005-09-12T04:00:00+04:00</td></tr>
+<tr><td>2006-03-13T04:00:00+04:00</td><td>240</td><td>2006-03-13T04:00:00+04:00</td><td>XUSE:CASH:GLAEUSD</td><td>43.370000</td><td>5.533779</td><td>2006-03-10T04:00:00+04:00</td></tr>
+<tr><td>2004-09-13T04:00:00+04:00</td><td>200</td><td>2004-09-13T04:00:00+04:00</td><td>XUSE:CASH:GLAEUSD</td><td>36.390000</td><td>5.496015</td><td>2004-09-10T04:00:00+04:00</td></tr>
+<tr><td>2012-12-21T04:00:00+04:00</td><td>20</td><td>2012-12-21T04:00:00+04:00</td><td>XUSE:CASH:BXMTUSD</td><td>3.700000</td><td>5.405405</td><td>2012-12-20T04:00:00+04:00</td></tr>
+<tr><td>2021-12-07T04:00:00+04:00</td><td>60</td><td>2021-12-07T04:00:00+04:00</td><td>XUSE:CASH:AIFUUSD</td><td>11.210000</td><td>5.352364</td><td>2021-12-06T04:00:00+04:00</td></tr>
+<tr><td>2022-12-19T04:00:00+04:00</td><td>10.010000</td><td>2022-12-19T04:00:00+04:00</td><td>XUSE:CASH:KANTUSD</td><td>1.890000</td><td>5.296296</td><td>2022-12-16T04:00:00+04:00</td></tr>
+<tr><td>2005-09-27T04:00:00+04:00</td><td>72</td><td>2005-09-27T04:00:00+04:00</td><td>XUSE:CASH:DRLCQUSD</td><td>13.720000</td><td>5.247813</td><td>2005-09-26T04:00:00+04:00</td></tr>
+<tr><td>2005-12-13T04:00:00+04:00</td><td>240</td><td>2005-12-13T04:00:00+04:00</td><td>XUSE:CASH:GLAEUSD</td><td>45.880000</td><td>5.231037</td><td>2005-12-12T04:00:00+04:00</td></tr>
+<tr><td>2014-06-04T04:00:00+04:00</td><td>15.960000</td><td>2014-06-04T04:00:00+04:00</td><td>XUSE:CASH:PRTKUSD</td><td>3.200000</td><td>4.987500</td><td>2014-06-03T04:00:00+04:00</td></tr>
+<tr><td>2004-06-14T04:00:00+04:00</td><td>200</td><td>2004-06-14T04:00:00+04:00</td><td>XUSE:CASH:GLAEUSD</td><td>41.170000</td><td>4.857906</td><td>2004-06-10T04:00:00+04:00</td></tr>
+<tr><td>2020-09-04T04:00:00+04:00</td><td>100</td><td>2020-09-04T04:00:00+04:00</td><td>XUSE:CASH:AIFUUSD</td><td>20.840000</td><td>4.798464</td><td>2020-09-03T04:00:00+04:00</td></tr>
+<tr><td>2003-12-11T04:00:00+04:00</td><td>160</td><td>2003-12-11T04:00:00+04:00</td><td>XUSE:CASH:GLAEUSD</td><td>33.760000</td><td>4.739336</td><td>2003-12-10T04:00:00+04:00</td></tr>
+<tr><td>2005-06-27T04:00:00+04:00</td><td>72</td><td>2005-06-27T04:00:00+04:00</td><td>XUSE:CASH:DRLCQUSD</td><td>15.250000</td><td>4.721311</td><td>2005-06-24T04:00:00+04:00</td></tr>
+<tr><td>2020-06-09T04:00:00+04:00</td><td>100</td><td>2020-06-09T04:00:00+04:00</td><td>XUSE:CASH:AIFUUSD</td><td>21.440000</td><td>4.664179</td><td>2020-06-08T04:00:00+04:00</td></tr>
+<tr><td>2003-06-12T04:00:00+04:00</td><td>160</td><td>2003-06-12T04:00:00+04:00</td><td>XUSE:CASH:GLAEUSD</td><td>34.500000</td><td>4.637681</td><td>2003-06-11T04:00:00+04:00</td></tr>
+<tr><td>2003-09-11T04:00:00+04:00</td><td>160</td><td>2003-09-11T04:00:00+04:00</td><td>XUSE:CASH:GLAEUSD</td><td>34.670000</td><td>4.614941</td><td>2003-09-10T04:00:00+04:00</td></tr>
+<tr><td>2019-12-04T04:00:00+04:00</td><td>120</td><td>2019-12-04T04:00:00+04:00</td><td>XUSE:CASH:AIFUUSD</td><td>26.510000</td><td>4.526594</td><td>2019-12-03T04:00:00+04:00</td></tr>
+<tr><td>2021-09-10T04:00:00+04:00</td><td>60</td><td>2021-09-10T04:00:00+04:00</td><td>XUSE:CASH:AIFUUSD</td><td>13.270000</td><td>4.521477</td><td>2021-09-09T04:00:00+04:00</td></tr>
+<tr><td>2019-09-03T04:00:00+04:00</td><td>120</td><td>2019-09-03T04:00:00+04:00</td><td>XUSE:CASH:AIFUUSD</td><td>27.250000</td><td>4.403670</td><td>2019-08-30T04:00:00+04:00</td></tr>
+<tr><td>2021-09-03T04:00:00+04:00</td><td>60</td><td>2021-09-03T04:00:00+04:00</td><td>XUSE:CASH:AIFUUSD</td><td>13.800000</td><td>4.347826</td><td>2021-09-02T04:00:00+04:00</td></tr>
+<tr><td>2004-03-11T04:00:00+04:00</td><td>160</td><td>2004-03-11T04:00:00+04:00</td><td>XUSE:CASH:GLAEUSD</td><td>36.870000</td><td>4.339571</td><td>2004-03-10T04:00:00+04:00</td></tr>
+<tr><td>2018-09-04T04:00:00+04:00</td><td>100</td><td>2018-09-04T04:00:00+04:00</td><td>XUSE:CASH:AIFUUSD</td><td>23.280000</td><td>4.295533</td><td>2018-08-31T04:00:00+04:00</td></tr>
+<tr><td>2014-08-14T04:00:00+04:00</td><td>50</td><td>2014-08-14T04:00:00+04:00</td><td>XUSE:CASH:SFUNYUSD</td><td>12</td><td>4.166667</td><td>2014-08-13T04:00:00+04:00</td></tr>
+<tr><td>2019-06-05T04:00:00+04:00</td><td>120</td><td>2019-06-05T04:00:00+04:00</td><td>XUSE:CASH:AIFUUSD</td><td>28.960000</td><td>4.143646</td><td>2019-06-04T04:00:00+04:00</td></tr>
+<tr><td>2018-12-04T04:00:00+04:00</td><td>100</td><td>2018-12-04T04:00:00+04:00</td><td>XUSE:CASH:AIFUUSD</td><td>25</td><td>4</td><td>2018-12-03T04:00:00+04:00</td></tr>
+<tr><td>2021-06-10T04:00:00+04:00</td><td>60</td><td>2021-06-10T04:00:00+04:00</td><td>XUSE:CASH:AIFUUSD</td><td>15.070000</td><td>3.981420</td><td>2021-06-09T04:00:00+04:00</td></tr>
+<tr><td>2015-08-20T04:00:00+04:00</td><td>8.535000</td><td>2015-08-20T04:00:00+04:00</td><td>XUSE:CASH:GYREUSD</td><td>2.210000</td><td>3.861991</td><td>2015-08-19T04:00:00+04:00</td></tr>
+<tr><td>2017-01-05T04:00:00+04:00</td><td>25.900000</td><td>2017-01-05T04:00:00+04:00</td><td>XUSE:CASH:VATEUSD</td><td>6.710000</td><td>3.859911</td><td>2017-01-04T04:00:00+04:00</td></tr>
+<tr><td>2019-03-20T04:00:00+04:00</td><td>100</td><td>2019-03-20T04:00:00+04:00</td><td>XUSE:CASH:AIFUUSD</td><td>25.930000</td><td>3.856537</td><td>2019-03-19T04:00:00+04:00</td></tr>
+<tr><td>2010-05-18T04:00:00+04:00</td><td>96</td><td>2010-05-18T04:00:00+04:00</td><td>XUSE:CASH:AIFUUSD</td><td>25.880000</td><td>3.709428</td><td>2010-05-17T04:00:00+04:00</td></tr>
+<tr><td>2012-09-04T04:00:00+04:00</td><td>50</td><td>2012-09-04T04:00:00+04:00</td><td>XUSE:CASH:SFUNYUSD</td><td>13.600000</td><td>3.676471</td><td>2012-08-31T04:00:00+04:00</td></tr>
+<tr><td>2017-12-07T04:00:00+04:00</td><td>80</td><td>2017-12-07T04:00:00+04:00</td><td>XUSE:CASH:AIFUUSD</td><td>21.880000</td><td>3.656307</td><td>2017-12-06T04:00:00+04:00</td></tr>
+<tr><td>2018-06-01T04:00:00+04:00</td><td>100</td><td>2018-06-01T04:00:00+04:00</td><td>XUSE:CASH:AIFUUSD</td><td>28.970000</td><td>3.451847</td><td>2018-05-31T04:00:00+04:00</td></tr>
+<tr><td>2011-12-21T04:00:00+04:00</td><td>49</td><td>2011-12-21T04:00:00+04:00</td><td>XUSE:CASH:SFUNYUSD</td><td>14.500000</td><td>3.379310</td><td>2011-12-20T04:00:00+04:00</td></tr>
+<tr><td>2005-03-28T04:00:00+04:00</td><td>72</td><td>2005-03-28T04:00:00+04:00</td><td>XUSE:CASH:DRLCQUSD</td><td>22.130000</td><td>3.253502</td><td>2005-03-24T04:00:00+04:00</td></tr>
+<tr><td>2017-05-30T04:00:00+04:00</td><td>10.552100</td><td>2017-05-30T04:00:00+04:00</td><td>XUSE:CASH:MACKUSD</td><td>3.300000</td><td>3.197606</td><td>2017-05-26T04:00:00+04:00</td></tr>
+<tr><td>2005-12-28T04:00:00+04:00</td><td>32</td><td>2005-12-28T04:00:00+04:00</td><td>XUSE:CASH:DRLCQUSD</td><td>10.530000</td><td>3.038936</td><td>2005-12-27T04:00:00+04:00</td></tr>
+<tr><td>2006-03-28T04:00:00+04:00</td><td>32</td><td>2006-03-28T04:00:00+04:00</td><td>XUSE:CASH:DRLCQUSD</td><td>10.790000</td><td>2.965709</td><td>2006-03-27T04:00:00+04:00</td></tr>
+<tr><td>2019-06-12T04:00:00+04:00</td><td>3.400000</td><td>2019-06-12T04:00:00+04:00</td><td>XUSE:CASH:SFUNYUSD</td><td>1.160000</td><td>2.931034</td><td>2019-06-11T04:00:00+04:00</td></tr>
+<tr><td>2017-11-29T04:00:00+04:00</td><td>20.700000</td><td>2017-11-29T04:00:00+04:00</td><td>XUSE:CASH:NYRTUSD</td><td>7.120000</td><td>2.907303</td><td>2017-11-28T04:00:00+04:00</td></tr>
+<tr><td>2018-03-28T04:00:00+04:00</td><td>80</td><td>2018-03-28T04:00:00+04:00</td><td>XUSE:CASH:AIFUUSD</td><td>27.530000</td><td>2.905921</td><td>2018-03-27T04:00:00+04:00</td></tr>
+<tr><td>2018-06-22T04:00:00+04:00</td><td>27.562530</td><td>2018-06-22T04:00:00+04:00</td><td>XUSE:CASH:MTBLYUSD</td><td>10.110000</td><td>2.726264</td><td>2018-06-21T04:00:00+04:00</td></tr>
+<tr><td>2011-08-09T04:00:00+04:00</td><td>49</td><td>2011-08-09T04:00:00+04:00</td><td>XUSE:CASH:SFUNYUSD</td><td>18.400000</td><td>2.663043</td><td>2011-08-08T04:00:00+04:00</td></tr>
+<tr><td>2023-11-14T04:00:00+04:00</td><td>2.826250</td><td>2023-11-14T04:00:00+04:00</td><td>XUSE:CASH:TRVGUSD</td><td>1.070000</td><td>2.641355</td><td>2023-11-13T04:00:00+04:00</td></tr>
+<tr><td>2012-12-12T04:00:00+04:00</td><td>1.400000</td><td>2012-12-12T04:00:00+04:00</td><td>XUSE:CASH:MRVCUSD</td><td>0.570000</td><td>2.456140</td><td>2012-12-11T04:00:00+04:00</td></tr>
+<tr><td>2013-06-28T04:00:00+04:00</td><td>19.576400</td><td>2013-06-28T04:00:00+04:00</td><td>XUSE:CASH:NVLNFUSD</td><td>8.190000</td><td>2.390281</td><td>2013-06-27T04:00:00+04:00</td></tr>
+<tr><td>2004-08-16T04:00:00+04:00</td><td>33.750000</td><td>2004-08-16T04:00:00+04:00</td><td>XUSE:CASH:FTRCQUSD</td><td>14.290000</td><td>2.361791</td><td>2004-08-13T04:00:00+04:00</td></tr>
+<tr><td>2013-04-25T04:00:00+04:00</td><td>28.500000</td><td>2013-04-25T04:00:00+04:00</td><td>XUSE:CASH:VEONUSD</td><td>12.250000</td><td>2.326531</td><td>2013-04-24T04:00:00+04:00</td></tr>
+<tr><td>2016-08-01T04:00:00+04:00</td><td>15</td><td>2016-08-01T04:00:00+04:00</td><td>XUSE:CASH:EMKRUSD</td><td>6.480000</td><td>2.314815</td><td>2016-07-29T04:00:00+04:00</td></tr>
+<tr><td>2024-03-22T04:00:00+04:00</td><td>7.210000</td><td>2024-03-22T04:00:00+04:00</td><td>XUSE:CASH:LENZUSD</td><td>3.180000</td><td>2.267296</td><td>2024-03-21T04:00:00+04:00</td></tr>
+<tr><td>2010-06-01T04:00:00+04:00</td><td>16</td><td>2010-06-01T04:00:00+04:00</td><td>XUSE:CASH:ARRUSD</td><td>7.500000</td><td>2.133333</td><td>2010-05-28T04:00:00+04:00</td></tr>
+<tr><td>2017-12-15T04:00:00+04:00</td><td>10</td><td>2017-12-15T04:00:00+04:00</td><td>XUSE:CASH:NYRTUSD</td><td>4.900000</td><td>2.040816</td><td>2017-12-14T04:00:00+04:00</td></tr>
+<tr><td>2020-06-22T04:00:00+04:00</td><td>7.200000</td><td>2020-06-22T04:00:00+04:00</td><td>XUSE:CASH:CMCMUSD</td><td>3.540000</td><td>2.033898</td><td>2020-06-19T04:00:00+04:00</td></tr>
+<tr><td>2007-06-13T04:00:00+04:00</td><td>14.400000</td><td>2007-06-13T04:00:00+04:00</td><td>XUSE:CASH:GEGUSD</td><td>7.350000</td><td>1.959184</td><td>2007-06-12T04:00:00+04:00</td></tr>
+<tr><td>2010-03-11T04:00:00+04:00</td><td>16</td><td>2010-03-11T04:00:00+04:00</td><td>XUSE:CASH:ARRUSD</td><td>8.450000</td><td>1.893491</td><td>2010-03-10T04:00:00+04:00</td></tr>
+<tr><td>2010-09-21T04:00:00+04:00</td><td>14.400000</td><td>2010-09-21T04:00:00+04:00</td><td>XUSE:CASH:ARRUSD</td><td>7.630000</td><td>1.887287</td><td>2010-09-20T04:00:00+04:00</td></tr>
+<tr><td>2012-12-24T04:00:00+04:00</td><td>20</td><td>2012-12-24T04:00:00+04:00</td><td>XUSE:CASH:VEONUSD</td><td>10.850000</td><td>1.843318</td><td>2012-12-21T04:00:00+04:00</td></tr>
+<tr><td>2010-12-16T04:00:00+04:00</td><td>14.400000</td><td>2010-12-16T04:00:00+04:00</td><td>XUSE:CASH:ARRUSD</td><td>7.850000</td><td>1.834395</td><td>2010-12-15T04:00:00+04:00</td></tr>
+<tr><td>2019-04-02T04:00:00+04:00</td><td>6.700000</td><td>2019-04-02T04:00:00+04:00</td><td>XUSE:CASH:BCICUSD</td><td>3.750000</td><td>1.786667</td><td>2019-04-01T04:00:00+04:00</td></tr>
+<tr><td>2000-09-25T04:00:00+04:00</td><td>3.125000</td><td>2000-09-25T04:00:00+04:00</td><td>XUSE:CASH:CXWUSD</td><td>1.750000</td><td>1.785714</td><td>2000-09-22T04:00:00+04:00</td></tr>
+<tr><td>2008-11-28T04:00:00+04:00</td><td>0.625000</td><td>2008-11-28T04:00:00+04:00</td><td>XUSE:CASH:WHCIUSD</td><td>0.350000</td><td>1.785714</td><td>2008-11-26T04:00:00+04:00</td></tr>
+<tr><td>2012-11-23T04:00:00+04:00</td><td>25</td><td>2012-11-23T04:00:00+04:00</td><td>XUSE:CASH:VATEUSD</td><td>14.100000</td><td>1.773050</td><td>2012-11-21T04:00:00+04:00</td></tr>
+<tr><td>2004-06-25T04:00:00+04:00</td><td>60</td><td>2004-06-25T04:00:00+04:00</td><td>XUSE:CASH:DRLCQUSD</td><td>34.350000</td><td>1.746725</td><td>2004-06-24T04:00:00+04:00</td></tr>
+<tr><td>2007-12-28T04:00:00+04:00</td><td>2.375000</td><td>2007-12-28T04:00:00+04:00</td><td>XUSE:CASH:WHCIUSD</td><td>1.370000</td><td>1.733577</td><td>2007-12-27T04:00:00+04:00</td></tr>
+<tr><td>2009-03-09T04:00:00+04:00</td><td>30.810000</td><td>2009-03-09T04:00:00+04:00</td><td>XUSE:CASH:TWCUSD</td><td>18.060000</td><td>1.705980</td><td>2009-03-06T04:00:00+04:00</td></tr>
+<tr><td>2019-03-07T04:00:00+04:00</td><td>4.250000</td><td>2019-03-07T04:00:00+04:00</td><td>XUSE:CASH:VEONUSD</td><td>2.500000</td><td>1.700000</td><td>2019-03-06T04:00:00+04:00</td></tr>
+<tr><td>2020-02-26T04:00:00+04:00</td><td>3.750000</td><td>2020-02-26T04:00:00+04:00</td><td>XUSE:CASH:VEONUSD</td><td>2.240000</td><td>1.674107</td><td>2020-02-25T04:00:00+04:00</td></tr>
+<tr><td>2010-12-13T04:00:00+04:00</td><td>14</td><td>2010-12-13T04:00:00+04:00</td><td>XUSE:CASH:FLNAUSD</td><td>8.400000</td><td>1.666667</td><td>2010-12-10T04:00:00+04:00</td></tr>
+<tr><td>2000-03-28T04:00:00+04:00</td><td>17.777780</td><td>2000-03-28T04:00:00+04:00</td><td>XUSE:CASH:DRLCQUSD</td><td>10.750000</td><td>1.653747</td><td>2000-03-27T04:00:00+04:00</td></tr>
+<tr><td>2012-12-13T04:00:00+04:00</td><td>5.250000</td><td>2012-12-13T04:00:00+04:00</td><td>XUSE:CASH:FLNAUSD</td><td>3.190000</td><td>1.645768</td><td>2012-12-12T04:00:00+04:00</td></tr>
+<tr><td>2009-03-12T04:00:00+04:00</td><td>11</td><td>2009-03-12T04:00:00+04:00</td><td>XUSE:CASH:PCBCUSD</td><td>6.700000</td><td>1.641791</td><td>2009-03-11T04:00:00+04:00</td></tr>
+<tr><td>2008-11-26T04:00:00+04:00</td><td>8.549570</td><td>2008-11-26T04:00:00+04:00</td><td>XUSE:CASH:PRETUSD</td><td>5.290000</td><td>1.616176</td><td>2008-11-25T04:00:00+04:00</td></tr>
+<tr><td>2015-03-11T04:00:00+04:00</td><td>9.500000</td><td>2015-03-11T04:00:00+04:00</td><td>XUSE:CASH:SFUNYUSD</td><td>5.890000</td><td>1.612903</td><td>2015-03-10T04:00:00+04:00</td></tr>
+<tr><td>2008-07-18T04:00:00+04:00</td><td>22</td><td>2008-07-18T04:00:00+04:00</td><td>XUSE:CASH:PCBCUSD</td><td>13.720000</td><td>1.603499</td><td>2008-07-17T04:00:00+04:00</td></tr>
+<tr><td>2013-07-25T04:00:00+04:00</td><td>50</td><td>2013-07-25T04:00:00+04:00</td><td>XUSE:CASH:SFUNYUSD</td><td>31.490000</td><td>1.587806</td><td>2013-07-24T04:00:00+04:00</td></tr>
+<tr><td>2020-05-20T04:00:00+04:00</td><td>5</td><td>2020-05-20T04:00:00+04:00</td><td>XUSE:CASH:IVRUSD</td><td>3.170000</td><td>1.577287</td><td>2020-05-19T04:00:00+04:00</td></tr>
+<tr><td>2000-06-27T04:00:00+04:00</td><td>17.777780</td><td>2000-06-27T04:00:00+04:00</td><td>XUSE:CASH:DRLCQUSD</td><td>11.812000</td><td>1.505061</td><td>2000-06-26T04:00:00+04:00</td></tr>
+<tr><td>2004-12-28T04:00:00+04:00</td><td>72</td><td>2004-12-28T04:00:00+04:00</td><td>XUSE:CASH:DRLCQUSD</td><td>47.860000</td><td>1.504388</td><td>2004-12-27T04:00:00+04:00</td></tr>
+<tr><td>2007-04-03T04:00:00+04:00</td><td>15</td><td>2007-04-03T04:00:00+04:00</td><td>XUSE:CASH:LGNDUSD</td><td>9.990000</td><td>1.501502</td><td>2007-04-02T04:00:00+04:00</td></tr>
+<tr><td>2010-07-19T04:00:00+04:00</td><td>10</td><td>2010-07-19T04:00:00+04:00</td><td>XUSE:CASH:BEBE1USD</td><td>6.790000</td><td>1.472754</td><td>2010-07-16T04:00:00+04:00</td></tr>
+<tr><td>2003-12-26T04:00:00+04:00</td><td>48</td><td>2003-12-26T04:00:00+04:00</td><td>XUSE:CASH:DRLCQUSD</td><td>32.620000</td><td>1.471490</td><td>2003-12-24T04:00:00+04:00</td></tr>
+<tr><td>2006-10-04T04:00:00+04:00</td><td>5.600000</td><td>2006-10-04T04:00:00+04:00</td><td>XUSE:CASH:ADAMUSD</td><td>3.850000</td><td>1.454545</td><td>2006-10-03T04:00:00+04:00</td></tr>
+<tr><td>2005-09-14T04:00:00+04:00</td><td>25</td><td>2005-09-14T04:00:00+04:00</td><td>XUSE:CASH:FBCUSD</td><td>17.410000</td><td>1.435956</td><td>2005-09-13T04:00:00+04:00</td></tr>
+<tr><td>2004-09-27T04:00:00+04:00</td><td>60</td><td>2004-09-27T04:00:00+04:00</td><td>XUSE:CASH:DRLCQUSD</td><td>41.800000</td><td>1.435407</td><td>2004-09-24T04:00:00+04:00</td></tr>
+<tr><td>2004-03-26T04:00:00+04:00</td><td>48</td><td>2004-03-26T04:00:00+04:00</td><td>XUSE:CASH:DRLCQUSD</td><td>33.970000</td><td>1.413011</td><td>2004-03-25T04:00:00+04:00</td></tr>
+<tr><td>2018-03-02T04:00:00+04:00</td><td>4.250000</td><td>2018-03-02T04:00:00+04:00</td><td>XUSE:CASH:VEONUSD</td><td>3.020000</td><td>1.407285</td><td>2018-03-01T04:00:00+04:00</td></tr>
+<tr><td>2006-07-03T04:00:00+04:00</td><td>5.600000</td><td>2006-07-03T04:00:00+04:00</td><td>XUSE:CASH:ADAMUSD</td><td>4</td><td>1.400000</td><td>2006-06-30T04:00:00+04:00</td></tr>
+<tr><td>2009-03-09T04:00:00+04:00</td><td>0.900000</td><td>2009-03-09T04:00:00+04:00</td><td>XUSE:CASH:MNIQQUSD</td><td>0.680000</td><td>1.323529</td><td>2009-03-06T04:00:00+04:00</td></tr>
+<tr><td>2011-08-24T04:00:00+04:00</td><td>4</td><td>2011-08-24T04:00:00+04:00</td><td>XUSE:CASH:RNWKUSD</td><td>3.050000</td><td>1.311475</td><td>2011-08-23T04:00:00+04:00</td></tr>
+<tr><td>2011-03-15T04:00:00+04:00</td><td>8.524760</td><td>2011-03-15T04:00:00+04:00</td><td>XUSE:CASH:STCNUSD</td><td>6.580000</td><td>1.295556</td><td>2011-03-14T04:00:00+04:00</td></tr>
+<tr><td>1999-12-28T04:00:00+04:00</td><td>14.222220</td><td>1999-12-28T04:00:00+04:00</td><td>XUSE:CASH:DRLCQUSD</td><td>11.188000</td><td>1.271203</td><td>1999-12-27T04:00:00+04:00</td></tr>
+<tr><td>2006-11-24T04:00:00+04:00</td><td>16</td><td>2006-11-24T04:00:00+04:00</td><td>XUSE:CASH:EMMSUSD</td><td>12.630000</td><td>1.266825</td><td>2006-11-22T04:00:00+04:00</td></tr>
+<tr><td>2006-01-04T04:00:00+04:00</td><td>8.400000</td><td>2006-01-04T04:00:00+04:00</td><td>XUSE:CASH:ADAMUSD</td><td>6.750000</td><td>1.244444</td><td>2006-01-03T04:00:00+04:00</td></tr>
+<tr><td>2005-06-15T04:00:00+04:00</td><td>25</td><td>2005-06-15T04:00:00+04:00</td><td>XUSE:CASH:FBCUSD</td><td>20.390000</td><td>1.226091</td><td>2005-06-14T04:00:00+04:00</td></tr>
+<tr><td>2004-06-14T04:00:00+04:00</td><td>25</td><td>2004-06-14T04:00:00+04:00</td><td>XUSE:CASH:FBCUSD</td><td>20.410000</td><td>1.224890</td><td>2004-06-10T04:00:00+04:00</td></tr>
+<tr><td>2005-03-15T04:00:00+04:00</td><td>25</td><td>2005-03-15T04:00:00+04:00</td><td>XUSE:CASH:FBCUSD</td><td>20.510000</td><td>1.218918</td><td>2005-03-14T04:00:00+04:00</td></tr>
+<tr><td>2020-02-28T04:00:00+04:00</td><td>3.149840</td><td>2020-02-28T04:00:00+04:00</td><td>XUSE:CASH:PRETUSD</td><td>2.590000</td><td>1.216154</td><td>2020-02-27T04:00:00+04:00</td></tr>
+<tr><td>2020-03-30T04:00:00+04:00</td><td>0.700000</td><td>2020-03-30T04:00:00+04:00</td><td>XUSE:CASH:PFXUSD</td><td>0.580000</td><td>1.206897</td><td>2020-03-27T04:00:00+04:00</td></tr>
+<tr><td>2017-03-28T04:00:00+04:00</td><td>4.875000</td><td>2017-03-28T04:00:00+04:00</td><td>XUSE:CASH:VEONUSD</td><td>4.090000</td><td>1.191932</td><td>2017-03-27T04:00:00+04:00</td></tr>
+<tr><td>2019-08-13T04:00:00+04:00</td><td>3.250000</td><td>2019-08-13T04:00:00+04:00</td><td>XUSE:CASH:VEONUSD</td><td>2.780000</td><td>1.169065</td><td>2019-08-12T04:00:00+04:00</td></tr>
+<tr><td>2015-04-13T04:00:00+04:00</td><td>17.400000</td><td>2015-04-13T04:00:00+04:00</td><td>XUSE:CASH:CHKAQUSD</td><td>14.930000</td><td>1.165439</td><td>2015-04-10T04:00:00+04:00</td></tr>
+<tr><td>2004-12-13T04:00:00+04:00</td><td>25</td><td>2004-12-13T04:00:00+04:00</td><td>XUSE:CASH:FBCUSD</td><td>21.880000</td><td>1.142596</td><td>2004-12-10T04:00:00+04:00</td></tr>
+<tr><td>2004-09-13T04:00:00+04:00</td><td>25</td><td>2004-09-13T04:00:00+04:00</td><td>XUSE:CASH:FBCUSD</td><td>22</td><td>1.136364</td><td>2004-09-10T04:00:00+04:00</td></tr>
+<tr><td>2020-03-11T04:00:00+04:00</td><td>0.500000</td><td>2020-03-11T04:00:00+04:00</td><td>XUSE:CASH:NBRUSD</td><td>0.440000</td><td>1.136364</td><td>2020-03-10T04:00:00+04:00</td></tr>
+<tr><td>2008-09-26T04:00:00+04:00</td><td>0.625000</td><td>2008-09-26T04:00:00+04:00</td><td>XUSE:CASH:WHCIUSD</td><td>0.550000</td><td>1.136364</td><td>2008-09-25T04:00:00+04:00</td></tr>
+<tr><td>2005-10-04T04:00:00+04:00</td><td>8.400000</td><td>2005-10-04T04:00:00+04:00</td><td>XUSE:CASH:ADAMUSD</td><td>7.440000</td><td>1.129032</td><td>2005-10-03T04:00:00+04:00</td></tr>
+<tr><td>2000-09-27T04:00:00+04:00</td><td>17.777780</td><td>2000-09-27T04:00:00+04:00</td><td>XUSE:CASH:DRLCQUSD</td><td>15.750000</td><td>1.128748</td><td>2000-09-26T04:00:00+04:00</td></tr>
+<tr><td>2009-03-10T04:00:00+04:00</td><td>1.600000</td><td>2009-03-10T04:00:00+04:00</td><td>XUSE:CASH:SITCUSD</td><td>1.430000</td><td>1.118881</td><td>2009-03-09T04:00:00+04:00</td></tr>
+<tr><td>2003-03-28T04:00:00+04:00</td><td>37.333330</td><td>2003-03-28T04:00:00+04:00</td><td>XUSE:CASH:DRLCQUSD</td><td>33.660000</td><td>1.109130</td><td>2003-03-27T04:00:00+04:00</td></tr>
+<tr><td>2008-10-20T04:00:00+04:00</td><td>22</td><td>2008-10-20T04:00:00+04:00</td><td>XUSE:CASH:PCBCUSD</td><td>20.300000</td><td>1.083744</td><td>2008-10-17T04:00:00+04:00</td></tr>
+<tr><td>2012-05-30T04:00:00+04:00</td><td>8.750000</td><td>2012-05-30T04:00:00+04:00</td><td>XUSE:CASH:VEONUSD</td><td>8.110000</td><td>1.078915</td><td>2012-05-29T04:00:00+04:00</td></tr>
+<tr><td>2018-08-13T04:00:00+04:00</td><td>3</td><td>2018-08-13T04:00:00+04:00</td><td>XUSE:CASH:VEONUSD</td><td>2.800000</td><td>1.071429</td><td>2018-08-10T04:00:00+04:00</td></tr>
+<tr><td>2002-09-27T04:00:00+04:00</td><td>26.666670</td><td>2002-09-27T04:00:00+04:00</td><td>XUSE:CASH:DRLCQUSD</td><td>25.010000</td><td>1.066240</td><td>2002-09-26T04:00:00+04:00</td></tr>
+<tr><td>1999-09-27T04:00:00+04:00</td><td>14.222220</td><td>1999-09-27T04:00:00+04:00</td><td>XUSE:CASH:DRLCQUSD</td><td>13.375000</td><td>1.063344</td><td>1999-09-24T04:00:00+04:00</td></tr>
+<tr><td>2014-01-07T04:00:00+04:00</td><td>0.113420</td><td>2014-01-07T04:00:00+04:00</td><td>XUSE:CASH:BSBRUSD</td><td>0.107000</td><td>1.060000</td><td>2014-01-06T04:00:00+04:00</td></tr>
+<tr><td>2013-01-11T04:00:00+04:00</td><td>17.500000</td><td>2013-01-11T04:00:00+04:00</td><td>XUSE:CASH:CHKAQUSD</td><td>16.730000</td><td>1.046025</td><td>2013-01-10T04:00:00+04:00</td></tr>
+<tr><td>2006-04-04T04:00:00+04:00</td><td>5.600000</td><td>2006-04-04T04:00:00+04:00</td><td>XUSE:CASH:ADAMUSD</td><td>5.370000</td><td>1.042831</td><td>2006-04-03T04:00:00+04:00</td></tr>
+<tr><td>2013-12-30T04:00:00+04:00</td><td>3.501190</td><td>2013-12-30T04:00:00+04:00</td><td>XUSE:CASH:GFASYUSD</td><td>3.360000</td><td>1.042021</td><td>2013-12-27T04:00:00+04:00</td></tr>
+<tr><td>2018-12-12T04:00:00+04:00</td><td>3</td><td>2018-12-12T04:00:00+04:00</td><td>XUSE:CASH:NBRUSD</td><td>2.880000</td><td>1.041667</td><td>2018-12-11T04:00:00+04:00</td></tr>
+<tr><td>2006-03-13T04:00:00+04:00</td><td>15</td><td>2006-03-13T04:00:00+04:00</td><td>XUSE:CASH:FBCUSD</td><td>14.500000</td><td>1.034483</td><td>2006-03-10T04:00:00+04:00</td></tr>
+<tr><td>2006-09-13T04:00:00+04:00</td><td>15</td><td>2006-09-13T04:00:00+04:00</td><td>XUSE:CASH:FBCUSD</td><td>14.510000</td><td>1.033770</td><td>2006-09-12T04:00:00+04:00</td></tr>
+<tr><td>2005-06-10T04:00:00+04:00</td><td>10</td><td>2005-06-10T04:00:00+04:00</td><td>XUSE:CASH:ADAMUSD</td><td>9.750000</td><td>1.025641</td><td>2005-06-09T04:00:00+04:00</td></tr>
+<tr><td>2005-12-14T04:00:00+04:00</td><td>15</td><td>2005-12-14T04:00:00+04:00</td><td>XUSE:CASH:FBCUSD</td><td>14.750000</td><td>1.016949</td><td>2005-12-13T04:00:00+04:00</td></tr>
+<tr><td>2016-02-22T04:00:00+04:00</td><td>6</td><td>2016-02-22T04:00:00+04:00</td><td>XUSE:CASH:PFXUSD</td><td>5.900000</td><td>1.016949</td><td>2016-02-19T04:00:00+04:00</td></tr>
+<tr><td>2020-03-27T04:00:00+04:00</td><td>5</td><td>2020-03-27T04:00:00+04:00</td><td>XUSE:CASH:IVRUSD</td><td>4.920000</td><td>1.016260</td><td>2020-03-26T04:00:00+04:00</td></tr>
+</tbody></table></figure>
+<section class="measure__sub"><h3>Summary</h3>
+<dl class="measure__facts">
+<div class="measure__row"><dt>Affected instruments</dt><dd>55</dd></div>
+<div class="measure__row"><dt>Dividend rows</dt><dd>167120</dd></div>
+<div class="measure__row"><dt>Maximum pre close multiple</dt><dd>42871899.588228</dd></div>
+<div class="measure__row"><dt>Rows above full pre ex close</dt><dd>422</dd></div>
+<div class="measure__row"><dt>Rows above half pre ex close</dt><dd>734</dd></div>
+<div class="measure__row"><dt>Rows without pre ex close</dt><dd>259</dd></div>
+</dl>
+</section>
+<section class="measure__sub"><h3>Threshold</h3>
+<dl class="measure__facts">
+<div class="measure__row"><dt>Comparison</dt><dd>cash_amount / last raw close with ts_open &lt; ex_date</dd></div>
+<div class="measure__row"><dt>Maximum plain cash dividend to pre ex raw close</dt><dd>1</dd></div>
+</dl>
+<p class="measure__prose"><strong>Failure policy.</strong> Fail closed. Do not execute, impute, scale, or silently drop the row without independently bound lifecycle and vendor-unit semantics.</p>
+</section>
+</section>
+<section class="measure__section"><h2>Check it yourself</h2>
+<p>Every figure above is read from <a href="/glassbox/sharadar_dividend_price_consistency.json"><code>/glassbox/sharadar_dividend_price_consistency.json</code></a>, the
+artifact the engine wrote. Nothing on this page is typed by hand: the page is generated from that
+file, so a figure that moves in the artifact moves here and a figure that is not in the artifact
+cannot appear here at all.</p>
+<p><a href="/measurements">All 89 measurements</a> &middot;
+<a href="/open">The glass box</a> &middot;
+<a href="/research">The research library</a></p>
+</section>
+    </div>
+  </article>
+</main>
+<footer class="cc-footer" id="footer" data-product-shell="v3">
+  <div class="cc-footer__lead">
+    <a class="cc-footer__brand" href="/">Canli Capital</a>
+    <p>Build the claim. Publish the evidence. Keep the failures.</p>
+  </div>
+  <div class="cc-footer__routes">
+    <nav aria-label="Portfolio and research">
+      <span>Research system</span>
+      <a href="https://app.canlicapital.com/dashboard">Live record</a>
+      <a href="/systems">ALPHAC systems</a>
+      <a href="/research">Research papers</a>
+      <a href="/trials">Trial union</a>
+    </nav>
+    <nav aria-label="Evidence and verification">
+      <span>Evidence</span>
+      <a href="/methodology">Methodology</a>
+      <a href="/verify">Verify record</a>
+      <a href="/measurements">Measurements</a>
+      <a href="/open">Open data</a>
+    </nav>
+    <nav aria-label="Institution and authorship">
+      <span>Institution</span>
+      <a href="/progress">Corrections</a>
+      <a href="/performance">Status</a>
+      <a href="/founder">Arhan Canli</a>
+      <a href="https://github.com/arhancanli" rel="noreferrer">GitHub</a>
+    </nav>
+  </div>
+  <div class="cc-footer__boundary">
+    <p>Research and paper execution only. No managed capital, copy trading, investment advice or promised return.</p>
+    <p>Founded and built by Arhan Canli in Dubai.</p>
+    <span>Copyright Arhan Canli</span>
+  </div>
+</footer>
+</body>
+</html>

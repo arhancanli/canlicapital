@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Treasury auction concession: published-identity timing audit</title>
+<meta name="description" content="The official event manifest passed its metadata gates, but the primary paper&#39;s tradable identity starts ten trading days before a 2-year note auction." />
+<meta name="alphac-source-sha256" content="b7ff90fafc94651cc827f9d57464e53531b79f60b73bc73b753c1045bfdffd0a" />
+
+<link rel="canonical" href="https://canlicapital.com/research/treasury-auction-identity-timing" />
+<meta name="author" content="Arhan Canli" />
+<meta name="citation_title" content="Treasury auction concession: published-identity timing audit" />
+<meta name="citation_author" content="Arhan Canli" />
+<meta name="citation_publication_date" content="2026" />
+<meta name="citation_language" content="en" />
+<meta name="citation_fulltext_html_url" content="https://canlicapital.com/research/treasury-auction-identity-timing" />
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="Canli Capital" />
+<meta property="og:title" content="Treasury auction concession: published-identity timing audit" />
+<meta property="og:description" content="The official event manifest passed its metadata gates, but the primary paper&#39;s tradable identity starts ten trading days before a 2-year note auction." />
+<meta property="og:url" content="https://canlicapital.com/research/treasury-auction-identity-timing" />
+<meta property="og:image" content="https://canlicapital.com/og.png" />
+<meta property="article:author" content="Arhan Canli" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Treasury auction concession: published-identity timing audit" />
+<meta name="twitter:description" content="The official event manifest passed its metadata gates, but the primary paper&#39;s tradable identity starts ten trading days before a 2-year note auction." />
+<meta name="twitter:image" content="https://canlicapital.com/og.png" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="icon" href="/favicon.ico" sizes="any" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=optional" />
+<link rel="stylesheet" media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=optional" />
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=optional" /></noscript>
+<link rel="stylesheet" href="../css/paper.css" />
+<link rel="stylesheet" href="/css/product-shell.css" />
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"ScholarlyArticle","headline":"Treasury auction concession: published-identity timing audit","description":"The official event manifest passed its metadata gates, but the primary paper's tradable identity starts ten trading days before a 2-year note auction.","url":"https://canlicapital.com/research/treasury-auction-identity-timing","inLanguage":"en","isAccessibleForFree":true,"datePublished":"2026","author":{"@type":"Person","@id":"https://canlicapital.com/#arhan-canli","name":"Arhan Canli","jobTitle":"Founder and Quantitative Researcher","url":"https://canlicapital.com/founder","sameAs":["https://github.com/arhancanli"],"affiliation":{"@type":"Organization","@id":"https://canlicapital.com/#organization","name":"Canli Capital","url":"https://canlicapital.com/"}},"publisher":{"@type":"Organization","@id":"https://canlicapital.com/#organization","name":"Canli Capital","url":"https://canlicapital.com/","logo":{"@type":"ImageObject","url":"https://canlicapital.com/brand-mark.svg"}},"isPartOf":{"@type":"Periodical","name":"Canli Capital Research","url":"https://canlicapital.com/research"},"encodingFormat":"text/html","associatedMedia":{"@type":"MediaObject","contentUrl":"https://canlicapital.com/research/treasury-auction-identity-timing.md","encodingFormat":"text/markdown"}}</script>
+</head>
+<body class="paper">
+<a class="paper__skip" href="#content">Skip to content</a>
+<header class="cc-shell" id="nav" data-product-shell="v3">
+  <a class="cc-shell__brand" href="/" aria-label="Canli Capital, home">
+    <span class="cc-shell__mark" aria-hidden="true"><i></i></span>
+    <span>Canli Capital</span>
+  </a>
+  <a class="cc-shell__status" href="/measurements/alpaca-broker-reconciliation" aria-label="Current record status">
+    <span class="status-dot" aria-hidden="true"></span>
+    <span>Public paper record</span>
+  </a>
+  <nav class="cc-shell__primary" aria-label="Primary navigation">
+<a class="cc-shell__link" href="https://app.canlicapital.com/dashboard" rel="noreferrer">Live</a>
+<a class="cc-shell__link" href="/research" aria-current="page" data-current="true">Research</a>
+<a class="cc-shell__link" href="/trials">Trials</a>
+<a class="cc-shell__link" href="/systems">Systems</a>
+<a class="cc-shell__link" href="/methodology">Methodology</a>
+<a class="cc-shell__link" href="/verify">Verify</a>
+  </nav>
+  <details class="cc-shell__index">
+    <summary><span class="cc-shell__index-wide">More</span><span class="cc-shell__index-compact">Menu</span></summary>
+    <div class="cc-shell__panel">
+      <div>
+        <span class="cc-shell__panel-label">Core</span>
+        <nav aria-label="Core routes"><a class="cc-shell__panel-link" href="https://app.canlicapital.com/dashboard" rel="noreferrer">Live</a>
+<a class="cc-shell__panel-link" href="/research" aria-current="page" data-current="true">Research</a>
+<a class="cc-shell__panel-link" href="/trials">Trials</a>
+<a class="cc-shell__panel-link" href="/systems">Systems</a>
+<a class="cc-shell__panel-link" href="/methodology">Methodology</a>
+<a class="cc-shell__panel-link" href="/verify">Verify</a></nav>
+      </div>
+      <div>
+        <span class="cc-shell__panel-label">Institution</span>
+        <nav aria-label="Institution routes"><a class="cc-shell__panel-link" href="/progress">Corrections</a>
+<a class="cc-shell__panel-link" href="/performance">Status</a>
+<a class="cc-shell__panel-link" href="/founder">Founder</a>
+<a class="cc-shell__panel-link" href="/open">Open data</a>
+<a class="cc-shell__panel-link" href="/measurements">Measurements</a></nav>
+      </div>
+      <p>Observed, simulated, model-estimated and planned claims remain visibly separate.</p>
+    </div>
+  </details>
+  <a class="cc-shell__cta" href="https://app.canlicapital.com/dashboard">Enter live record <span aria-hidden="true">↗</span></a>
+</header>
+<main class="paper__main" id="content">
+  <article class="paper__article">
+    <p class="paper__eyebrow"><a href="/research">Research</a></p>
+    <h1 class="paper__title">Treasury auction concession: published-identity timing audit</h1>
+    <p class="paper__byline">By <span rel="author">Arhan Canli</span>, Canli Capital</p>
+    <div class="paper__body">
+<h2>Why this stage exists</h2>
+<p>The official event manifest passed its metadata gates, but the primary paper&#39;s tradable identity
+starts ten trading days before a 2-year note auction. A return test may use that entry only if the
+auction date was knowable at the time. This audit compares the published window with formal
+announcement lead time without loading any price or return data.</p>
+<h2>Locked interpretation</h2>
+<ul>
+<li>Primary literature identity: short the on-the-run 2-year note against a duration-matched
+6-month-bill/10-year-note hedge for ten trading days before the auction, reverse on auction day,
+and hold the opposite relative-value position for ten trading days after.</li>
+<li>Formal auction announcements do not retroactively justify trades placed before announcement.</li>
+<li>A recurring monthly pattern is not sufficient lineage. The exact auction date must come from a
+point-in-time source available by the entry date.</li>
+<li>Treasury says six-month tentative schedules are released at each quarterly refunding. Those
+historical schedule documents are the required next corpus.</li>
+</ul>
+<h2>Decision rule</h2>
+<p><code>CALENDAR_LINEAGE_REQUIRED</code> if formal announcements do not support the ten-session entry or the
+historical tentative-schedule archive has not been sealed. Do not shorten the window, change the
+sign, substitute a directional ETF trade, or open returns to work around this gate. Such a change
+would spend a different identity.</p>
+<h2>Sealed empirical checkpoint: 2026-08-16</h2>
+<p>The no-return audit sealed the official quarterly-refunding archive page, each linked release page,
+and the machine-readable tentative schedules available from the current Treasury archive path.
+The source event manifest was also corrected to retain Treasury&#39;s <code>floating_rate</code> field. This
+separates fixed-rate 2-year notes from 2-year FRNs; the earlier manifest had incorrectly made the
+two records auctioned on 2015-01-28 appear ambiguous. The corrected manifest contains 2,037 coupon
+auctions, including 153 floating-rate notes, with complete fixed/floating classification and SHA-256
+<code>594cd1df7acbb6b91c3a778cfea0abd7bdec290d418b073c954ead858b22c285</code>.</p>
+<p>For the locked 2013–2025 fixed-rate 2-year-note panel:</p>
+<ul>
+<li>156 auction dates are unique after the FRN exclusion.</li>
+<li>23 of 52 quarterly tentative schedules are available through the current official XML path.</li>
+<li>Those schedules bind 68 auctions, or 43.59% of the locked panel.</li>
+<li>Every bound auction had at least 13 XNYS sessions between schedule publication and auction,
+exceeding the published ten-session requirement where provenance exists.</li>
+<li>The 29 missing official-XML quarters are 2013Q1 through 2020Q1.</li>
+</ul>
+<p>The archive workflow audited both original Treasury formats: machine-readable <code>auctions.xml</code> and
+the separately captured <code>auctions.pdf</code>. The Internet Archive CDX index yielded 16 distinct XML
+captures and 26 distinct PDF captures. Every payload and extracted PDF text is SHA-256 bound. The
+PDF parser accepts only fixed-rate <code>2-Year NOTE</code> rows, excludes <code>2-Year FRN</code>, selects the auction
+date from the three-date row, and cross-checks it against the sealed official event manifest. A
+capture counts only when it proves the exact final auction date at least ten XNYS sessions before
+the auction. Six tentative dates that differ from the final manifest are preserved as schedule
+revisions and excluded from proof.</p>
+<ul>
+<li>Archived XML binds 47 of the 88 historical auctions through 2020Q1.</li>
+<li>Archived PDF binds 73 of 88; the XML/PDF union binds 77 without double counting.</li>
+<li>Combined with current official XML, 145 of 156 auctions are bound: 92.95% coverage.</li>
+<li>Eleven auction dates remain unproven; late captures are explicitly rejected as hindsight.</li>
+<li>The CDX corpus hash is
+<code>de2968f5dcffab2ffb4f72ac2d132c13a9537463448087087842a9e15a6c0800</code>.</li>
+<li>No price or return data was opened and zero return hypotheses were spent.</li>
+</ul>
+<p>The unresolved-date revision audit then classified all 11 failures directly from 251 hash-bound
+archive event rows and the official announcement dates:</p>
+<ul>
+<li>Five auctions had a different same-month tentative date visible at least ten sessions ahead.</li>
+<li>Two exact dates appeared in archive captures only three to eight sessions ahead.</li>
+<li>Three exact dates appeared only in post-event captures.</li>
+<li>One month had no captured schedule.</li>
+<li>Every formal announcement arrived only two to four XNYS sessions before auction.</li>
+</ul>
+<p>Decision: <code>IDENTITY_NOT_OBSERVABLE_AS_PREREGISTERED</code>. More searching cannot turn a documented
+tentative-date revision into exact T-10 knowledge. The family may not proceed to return testing
+unless a new point-in-time schedule-revision state machine is registered with explicit cancel,
+roll, late-announcement, and missing-update behavior. Otherwise the ten-session identity must be
+retired. This is a lineage redesign, not permission to shorten the entry horizon after seeing
+returns.</p>
+<p>The sealed machine-readable result is published at
+<code>/glassbox/treasury_tentative_schedule_audit.json</code>; the archive-only audit is published at
+<code>/glassbox/treasury_wayback_schedule_audit.json</code>, and the PDF audit at
+<code>/glassbox/treasury_wayback_pdf_schedule_audit.json</code>. The revision classification is published at
+<code>/glassbox/treasury_calendar_revision_audit.json</code>.</p>
+
+    </div>
+    <nav class="paper__related" aria-label="Related research">
+      <p class="paper__related-kicker">Filed under</p>
+      <p class="paper__links"><a href="/research/topics/engineering-foundations">Engineering foundations</a><span aria-hidden="true"> / </span><a href="/research/topics/rates-and-treasuries">Rates and treasuries</a></p>
+      <p class="paper__related-kicker">Related work</p>
+      <ul class="paper__related-list"><li><a href="/research/author-protocol-approval-protocol">Author review for approval-gated research protocols</a></li><li><a href="/research/kill-econtrend">Economic-Trend Sleeve, macro-fundamental trend (campaign): a killed candidate</a></li><li><a href="/research/equity-value-investment-lineage">Equity value, issuance, and investment: 13 identities and unstable evidence</a></li><li><a href="/research/literature-inflation-breakeven-relative-value">Inflation breakeven relative value: literature and claim boundary</a></li><li><a href="/research/financing-replay">Point-in-time cash and collateral financing replay</a></li><li><a href="/research/pre-fomc-announcement-drift-feasibility">Pre-FOMC announcement drift: no-return feasibility protocol</a></li></ul>
+    </nav>
+    <footer class="paper__footer">
+      <p class="paper__links">
+        <a href="/research/treasury-auction-identity-timing.md">Read the unrendered source</a>
+        <span aria-hidden="true"> / </span>
+        <a href="/research/citations/treasury-auction-identity-timing.bib" download>Cite this report</a>
+        <span aria-hidden="true"> / </span>
+        <a href="/open">Inspect the underlying artifacts</a>
+        <span aria-hidden="true"> / </span>
+        <a href="/research">All research</a>
+      </p>
+      <p class="paper__boundary">
+        Published as evidence, not as a claim about future performance. The figures quoted here
+        are reproducible from the artifacts linked above.
+      </p>
+    </footer>
+  </article>
+</main>
+<footer class="cc-footer" id="footer" data-product-shell="v3">
+  <div class="cc-footer__lead">
+    <a class="cc-footer__brand" href="/">Canli Capital</a>
+    <p>Build the claim. Publish the evidence. Keep the failures.</p>
+  </div>
+  <div class="cc-footer__routes">
+    <nav aria-label="Portfolio and research">
+      <span>Research system</span>
+      <a href="https://app.canlicapital.com/dashboard">Live record</a>
+      <a href="/systems">ALPHAC systems</a>
+      <a href="/research">Research papers</a>
+      <a href="/trials">Trial union</a>
+    </nav>
+    <nav aria-label="Evidence and verification">
+      <span>Evidence</span>
+      <a href="/methodology">Methodology</a>
+      <a href="/verify">Verify record</a>
+      <a href="/measurements">Measurements</a>
+      <a href="/open">Open data</a>
+    </nav>
+    <nav aria-label="Institution and authorship">
+      <span>Institution</span>
+      <a href="/progress">Corrections</a>
+      <a href="/performance">Status</a>
+      <a href="/founder">Arhan Canli</a>
+      <a href="https://github.com/arhancanli" rel="noreferrer">GitHub</a>
+    </nav>
+  </div>
+  <div class="cc-footer__boundary">
+    <p>Research and paper execution only. No managed capital, copy trading, investment advice or promised return.</p>
+    <p>Founded and built by Arhan Canli in Dubai.</p>
+    <span>Copyright Arhan Canli</span>
+  </div>
+</footer>
+</body>
+</html>

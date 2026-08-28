@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Sleeve quality decomposition / Canli Capital</title>
+<meta name="description" content="A FIRST-ORDER decomposition from published artifacts, read-only. Each dollar component is converted to an annualised return on starting equity and then to Sharpe…" />
+<link rel="canonical" href="https://canlicapital.com/measurements/sleeve-quality-decomposition" />
+<meta name="author" content="Arhan Canli" />
+<meta name="canli:sources" content="sleeve_quality_decomposition.json" />
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="Canli Capital" />
+<meta property="og:title" content="Sleeve quality decomposition / Canli Capital" />
+<meta property="og:description" content="A FIRST-ORDER decomposition from published artifacts, read-only. Each dollar component is converted to an annualised return on starting equity and then to Sharpe…" />
+<meta property="og:url" content="https://canlicapital.com/measurements/sleeve-quality-decomposition" />
+<meta property="og:image" content="https://canlicapital.com/og.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Sleeve quality decomposition / Canli Capital" />
+<meta name="twitter:description" content="A FIRST-ORDER decomposition from published artifacts, read-only. Each dollar component is converted to an annualised return on starting equity and then to Sharpe…" />
+<meta name="twitter:image" content="https://canlicapital.com/og.png" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="icon" href="/favicon.ico" sizes="any" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=optional" />
+<link rel="stylesheet" media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=optional" />
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=optional" /></noscript>
+<link rel="stylesheet" href="../css/paper.css" />
+<link rel="stylesheet" href="/css/product-shell.css" />
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"Sleeve quality decomposition","description":"A FIRST-ORDER decomposition from published artifacts, read-only. Each dollar component is converted to an annualised return on starting equity and then to Sharpe…","url":"https://canlicapital.com/measurements/sleeve-quality-decomposition","creator":{"@type":"Person","name":"Arhan Canli"},"publisher":{"@type":"Organization","name":"Canli Capital","url":"https://canlicapital.com/"},"isAccessibleForFree":true,"distribution":{"@type":"DataDownload","encodingFormat":"application/json","contentUrl":"https://canlicapital.com/glassbox/sleeve_quality_decomposition.json"}}</script>
+</head>
+<body class="paper">
+<a class="paper__skip" href="#content">Skip to content</a>
+<header class="cc-shell" id="nav" data-product-shell="v3">
+  <a class="cc-shell__brand" href="/" aria-label="Canli Capital, home">
+    <span class="cc-shell__mark" aria-hidden="true"><i></i></span>
+    <span>Canli Capital</span>
+  </a>
+  <a class="cc-shell__status" href="/measurements/alpaca-broker-reconciliation" aria-label="Current record status">
+    <span class="status-dot" aria-hidden="true"></span>
+    <span>Public paper record</span>
+  </a>
+  <nav class="cc-shell__primary" aria-label="Primary navigation">
+<a class="cc-shell__link" href="https://app.canlicapital.com/dashboard" rel="noreferrer">Live</a>
+<a class="cc-shell__link" href="/research">Research</a>
+<a class="cc-shell__link" href="/trials">Trials</a>
+<a class="cc-shell__link" href="/systems">Systems</a>
+<a class="cc-shell__link" href="/methodology">Methodology</a>
+<a class="cc-shell__link" href="/verify">Verify</a>
+  </nav>
+  <details class="cc-shell__index">
+    <summary><span class="cc-shell__index-wide">More</span><span class="cc-shell__index-compact">Menu</span></summary>
+    <div class="cc-shell__panel">
+      <div>
+        <span class="cc-shell__panel-label">Core</span>
+        <nav aria-label="Core routes"><a class="cc-shell__panel-link" href="https://app.canlicapital.com/dashboard" rel="noreferrer">Live</a>
+<a class="cc-shell__panel-link" href="/research">Research</a>
+<a class="cc-shell__panel-link" href="/trials">Trials</a>
+<a class="cc-shell__panel-link" href="/systems">Systems</a>
+<a class="cc-shell__panel-link" href="/methodology">Methodology</a>
+<a class="cc-shell__panel-link" href="/verify">Verify</a></nav>
+      </div>
+      <div>
+        <span class="cc-shell__panel-label">Institution</span>
+        <nav aria-label="Institution routes"><a class="cc-shell__panel-link" href="/progress">Corrections</a>
+<a class="cc-shell__panel-link" href="/performance">Status</a>
+<a class="cc-shell__panel-link" href="/founder">Founder</a>
+<a class="cc-shell__panel-link" href="/open">Open data</a>
+<a class="cc-shell__panel-link" href="/measurements" aria-current="page" data-current="true">Measurements</a></nav>
+      </div>
+      <p>Observed, simulated, model-estimated and planned claims remain visibly separate.</p>
+    </div>
+  </details>
+  <a class="cc-shell__cta" href="https://app.canlicapital.com/dashboard">Enter live record <span aria-hidden="true">↗</span></a>
+</header>
+<main class="paper__main" id="content">
+  <article class="paper__article">
+    <p class="paper__eyebrow"><a href="/measurements">Measurements</a></p>
+    <h1 class="paper__title">Sleeve quality decomposition</h1>
+    <p class="paper__byline">By <span rel="author">Arhan Canli</span>, Canli Capital</p>
+    <div class="paper__body">
+<p class="measure__lead">Sleeve quality decomposition is one of 89 measurements this
+engine publishes in full. It is regenerated from a real run rather than transcribed, and it
+is shown here with its own claim boundary so the number and its limits arrive together.</p>
+<aside class="measure__boundary"><h2>What this measurement does and does not claim</h2><p>A FIRST-ORDER decomposition from published artifacts, read-only. Each dollar component is converted to an annualised return on starting equity and then to Sharpe points by dividing by realised annual vol, ignoring compounding interaction between components. Registers no hypothesis identity and opens no return data. 0 trials.</p></aside>
+<section class="measure__section"><h2>The measurement</h2>
+<dl class="measure__facts">
+<div class="measure__row"><dt>Largest cost burden</dt><dd>AlphaForge</dd></div>
+<div class="measure__row"><dt>S bar measured</dt><dd>0.636823</dd></div>
+<div class="measure__row"><dt>Schema</dt><dd>canli.alphac-sleeve-quality-decomposition.v1</dd></div>
+<div class="measure__row"><dt>Weakest sleeve</dt><dd>AlphaTrend</dd></div>
+</dl>
+<section class="measure__sub"><h3>Largest recoverable component</h3>
+<dl class="measure__facts">
+<div class="measure__row"><dt>Sharpe points</dt><dd>0.274529</dd></div>
+<div class="measure__row"><dt>Sleeve</dt><dd>AlphaForge</dd></div>
+<div class="measure__row"><dt>Turnover ann</dt><dd>33.221809</dd></div>
+</dl>
+<p class="measure__label">What recovering half would be worth</p><ul class="measure__list"><li>0.137265</li><li>Sharpe points on that sleeve, which is roughly a third of that on s_bar across three sleeves.</li></ul>
+<p class="measure__prose"><strong>Why.</strong> Transaction cost is the only component here that better execution could give back. Signal is construction and funding is a market fact; neither is recovered by executing better. This sleeve carries the largest cost burden by a wide margin, and it is the turnover that drives it.</p>
+</section>
+<p class="measure__prose"><strong>S bar basis note.</strong> s_bar_measured here is the mean of these three FULL-HISTORY backtest Sharpes, each on its own window. It is NOT the 0.469 measured across the four live sleeves on their 1,061-day common window in artifacts/analysis/book_without_alphavintage, and the two must not be compared. Different sleeves, different windows.</p>
+<figure class="measure__tablewrap"><figcaption>Sleeves</figcaption><table class="measure__table"><thead><tr><th scope="col">Asset class</th><th scope="col">Commission bps realised</th><th scope="col">Commission dollars MEASURED</th><th scope="col">Commission sharpe points MEASURED</th><th scope="col">Funding dollars MEASURED</th><th scope="col">Funding sharpe points MEASURED</th><th scope="col">Half spread bps used</th><th scope="col">Market impact</th><th scope="col">Net sharpe published</th><th scope="col">Notional traded total</th><th scope="col">Realised vol ann</th><th scope="col">Residual signal sharpe</th><th scope="col">Sleeve</th><th scope="col">Spread dollars MODELLED</th><th scope="col">Spread sharpe points MODELLED</th><th scope="col">Turnover ann</th><th scope="col">Walkforward</th><th scope="col">Years</th></tr></thead><tbody>
+<tr><td>equity</td><td>1.000000</td><td>86.585143</td><td>0.003319</td><td>0</td><td>0</td><td>5</td><td>NOT SEPARABLE; see claim boundary</td><td>0.907084</td><td>865851.427556</td><td>0.130716</td><td>0.926997</td><td>AlphaMax</td><td>432.925714</td><td>0.016594</td><td>4.111369</td><td>k30_dn_63</td><td>1.995893</td></tr>
+<tr><td>crypto</td><td>5.000000</td><td>7372.717709</td><td>0.144489</td><td>19500.019816</td><td>0.382158</td><td>4.500000</td><td>NOT SEPARABLE; see claim boundary</td><td>0.676610</td><td>14745435.418976</td><td>0.118332</td><td>0.568982</td><td>AlphaForge</td><td>6635.445939</td><td>0.130040</td><td>33.221809</td><td>crypto_carry_wk</td><td>4.312115</td></tr>
+<tr><td>equity</td><td>1.000000</td><td>1566.954815</td><td>0.020755</td><td>0</td><td>0</td><td>5</td><td>NOT SEPARABLE; see claim boundary</td><td>0.326774</td><td>15669548.154843</td><td>0.053132</td><td>0.451304</td><td>AlphaTrend</td><td>7834.774077</td><td>0.103775</td><td>9.693324</td><td>mf_live_fwd</td><td>14.209446</td></tr>
+</tbody></table></figure>
+<p class="measure__prose"><strong>The finding.</strong> AlphaTrend is the weakest at 0.327 net Sharpe. Its total modelled-plus-measured cost burden is 0.125 Sharpe points, so recovering ALL of its transaction cost would still leave it at 0.451 before spread and impact are re-charged. The drag is construction, not execution.</p>
+<section class="measure__sub"><h3>What is measured and what is not</h3>
+<p class="measure__label">MEASURED</p><ul class="measure__list"><li>commission; summed from the `fee` column of every fill</li><li>funding; the walk-forward&#39;s own funding_net</li></ul>
+<p class="measure__label">MODELLED</p><ul class="measure__list"><li>half-spread and latency; turnover x notional x the DECLARED bps, because the spread is applied to the FILL PRICE and never recorded as a line item</li></ul>
+<p class="measure__label">NOT SEPARABLE</p><ul class="measure__list"><li>market impact; same reason as spread, and it depends on ADV per name per day, which the published fills do not carry. It is inside the residual.</li></ul>
+<p class="measure__prose"><strong>The trap.</strong> `fees_paid` in every summary.txt is COMMISSION ONLY. Reading it as total transaction cost understates the cost component badly: measured commission is about 1bp against a declared 3bp equity half-spread plus a 2bp latency add-on plus impact. This decomposition reports a RESIDUAL rather than pretending to a full attribution.</p>
+</section>
+<p class="measure__prose"><strong>What this does not settle.</strong> Whether the modelled spread is the spread actually paid. That is B5&#39;s question and it needs the live fills, which the forward record is currently too short to answer.</p>
+</section>
+<section class="measure__section"><h2>Check it yourself</h2>
+<p>Every figure above is read from <a href="/glassbox/sleeve_quality_decomposition.json"><code>/glassbox/sleeve_quality_decomposition.json</code></a>, the
+artifact the engine wrote. Nothing on this page is typed by hand: the page is generated from that
+file, so a figure that moves in the artifact moves here and a figure that is not in the artifact
+cannot appear here at all.</p>
+<p><a href="/measurements">All 89 measurements</a> &middot;
+<a href="/open">The glass box</a> &middot;
+<a href="/research">The research library</a></p>
+</section>
+    </div>
+  </article>
+</main>
+<footer class="cc-footer" id="footer" data-product-shell="v3">
+  <div class="cc-footer__lead">
+    <a class="cc-footer__brand" href="/">Canli Capital</a>
+    <p>Build the claim. Publish the evidence. Keep the failures.</p>
+  </div>
+  <div class="cc-footer__routes">
+    <nav aria-label="Portfolio and research">
+      <span>Research system</span>
+      <a href="https://app.canlicapital.com/dashboard">Live record</a>
+      <a href="/systems">ALPHAC systems</a>
+      <a href="/research">Research papers</a>
+      <a href="/trials">Trial union</a>
+    </nav>
+    <nav aria-label="Evidence and verification">
+      <span>Evidence</span>
+      <a href="/methodology">Methodology</a>
+      <a href="/verify">Verify record</a>
+      <a href="/measurements">Measurements</a>
+      <a href="/open">Open data</a>
+    </nav>
+    <nav aria-label="Institution and authorship">
+      <span>Institution</span>
+      <a href="/progress">Corrections</a>
+      <a href="/performance">Status</a>
+      <a href="/founder">Arhan Canli</a>
+      <a href="https://github.com/arhancanli" rel="noreferrer">GitHub</a>
+    </nav>
+  </div>
+  <div class="cc-footer__boundary">
+    <p>Research and paper execution only. No managed capital, copy trading, investment advice or promised return.</p>
+    <p>Founded and built by Arhan Canli in Dubai.</p>
+    <span>Copyright Arhan Canli</span>
+  </div>
+</footer>
+</body>
+</html>
