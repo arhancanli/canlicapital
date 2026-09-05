@@ -1,0 +1,15 @@
+{
+  "schema": "canli.superseded-first-measurements.v1",
+  "why_this_file_exists": "A trial identity's first measurement is immutable on purpose: it is the number the trial STARTED with, and editing it would falsify the ledger that makes trial accounting meaningful. But a first measurement can later be found to have been produced by a defect, and publishing that number bare -- inside a ranked distribution, with no mention that it was withdrawn -- asserts a claim this record has retracted. Deleting it is dishonest and asserting it is dishonest. This file names the third option: the number stays, and its retraction travels with it.",
+  "how_it_is_enforced": "scripts/build-trial-distribution.mjs resolves each entry's label to a hypothesis key from the published trial packets, requires the named correction artifact to exist and to record a withdrawing verdict, and quotes the corrected figure FROM that artifact rather than restating it here. A label that matches no packet, a missing artifact, or a verdict that is not a withdrawal fails the build. Nothing in this file is a number anyone typed.",
+  "withdrawing_verdicts": ["KILLED", "WITHDRAWN", "RETRACTED"],
+  "superseded": [
+    {
+      "label": "cpi_surprise_size",
+      "public_name": "AlphaVintage",
+      "correction_artifact": "alphavintage_corrected_result.json",
+      "corrected_value_field": "net_sharpe",
+      "why": "Deployed 2026-08-10 at a quarter of the book on a verdict of ADD. A 2026-08-16 re-run with a calendar correction that retains zero-exposure sessions flipped the pre-registered Newey-West check to FALSE and recorded a verdict of KILLED. The published figures did not move for three days, because they were hard-coded in the publisher rather than read from the artifact."
+    }
+  ]
+}

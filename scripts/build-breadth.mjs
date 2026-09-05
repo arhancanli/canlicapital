@@ -11,6 +11,8 @@ import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
+import { canonicalJson as canonical } from "./canonical-json.mjs";
+
 import {
   renderProductShellFooter,
   renderProductShellHeader,
@@ -26,13 +28,6 @@ const esc = (v) =>
   String(v).replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;")
     .replaceAll('"', "&quot;").replaceAll("'", "&#39;");
 
-const canonical = (v) => {
-  if (Array.isArray(v)) return `[${v.map(canonical).join(",")}]`;
-  if (v && typeof v === "object") {
-    return `{${Object.keys(v).sort().map((k) => `${JSON.stringify(k)}:${canonical(v[k])}`).join(",")}}`;
-  }
-  return JSON.stringify(v);
-};
 
 const claims = JSON.parse(readFileSync(resolve(ROOT, "public/contracts/public-claims.json"), "utf8"));
 const claim = (id) => {

@@ -30,6 +30,7 @@
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
   <link rel="manifest" href="/manifest.webmanifest" />
   <link rel="stylesheet" href="/css/home.css" />
+  <link rel="stylesheet" href="/css/flow.css" />
   <link rel="stylesheet" href="/css/product-shell.css" />
   <script type="application/ld+json">
   {
@@ -43,6 +44,7 @@
   </script>
 </head>
 <body>
+  <div class="flow-thread" aria-hidden="true"></div>
   <a class="skip-link" href="#main">Skip to content</a>
 
   <header class="cc-shell" id="nav" data-product-shell="v3">
@@ -121,24 +123,24 @@
       </div>
 
       <aside class="live-console" aria-label="Interactive ALPHAC paper execution console">
-        <div class="console-bar"><div><span class="console-light" aria-hidden="true"></span><strong>Evidence console</strong><span>ALPHAC / Paper</span></div><time id="console-time">Signed 28 Aug 2026, 10:26 UTC</time></div>
+        <div class="console-bar"><div><span class="console-light" aria-hidden="true"></span><strong>Evidence console</strong><span>ALPHAC / Paper</span></div><time id="console-time">Signed 05 Sept 2026, 17:26 UTC</time></div>
         <div class="console-tabs" role="group" aria-label="Choose a paper equity curve">
           <button type="button" data-curve-key="alphac" aria-pressed="true">Composite</button><button type="button" data-curve-key="alphamax" aria-pressed="false">AlphaMax</button><button type="button" data-curve-key="managed_futures" aria-pressed="false">AlphaTrend</button><button type="button" data-curve-key="alphavintage" aria-pressed="false">Vintage</button><button type="button" data-curve-key="alphaforge" aria-pressed="false">Forge</button>
         </div>
         <div class="console-chart">
           <div class="chart-heading"><span>Normalized equity</span><strong>Observed / paper</strong></div>
           <svg viewBox="0 0 760 320" preserveAspectRatio="none" role="img" aria-labelledby="chart-title chart-description">
-            <title id="chart-title">ALPHAC paper equity curve</title><desc id="chart-description">ALPHAC has 20 published paper equity marks from 07 Aug through 28 Aug.</desc>
+            <title id="chart-title">ALPHAC paper equity curve</title><desc id="chart-description">ALPHAC has 28 published paper equity marks from 07 Aug through 05 Sept.</desc>
             <g class="chart-grid" aria-hidden="true"><path d="M0 64H760M0 128H760M0 192H760M0 256H760" /><path d="M152 0V320M304 0V320M456 0V320M608 0V320" /></g>
             <path class="chart-area" id="equity-area" d="" /><path class="chart-line" id="equity-path" d="" /><circle class="chart-node" id="equity-node" cx="0" cy="0" r="5" />
           </svg>
-          <span class="chart-label chart-label--start" id="chart-start">07 Aug</span><span class="chart-label chart-label--end" id="chart-end">28 Aug</span>
+          <span class="chart-label chart-label--start" id="chart-start">07 Aug</span><span class="chart-label chart-label--end" id="chart-end">05 Sept</span>
         </div>
         <dl class="console-metrics">
-          <div><dt>Paper return</dt><dd id="metric-live-return">−2.35%</dd><dd class="metric-basis">Observed</dd></div><div><dt>Max drawdown</dt><dd id="metric-live-drawdown">−2.60%</dd><dd class="metric-basis">Observed</dd></div><div><dt>Realized vol</dt><dd id="metric-live-vol">5.03%</dd><dd class="metric-basis">Observed</dd></div><div><dt>Validation</dt><dd id="metric-grade">C+</dd><dd class="metric-basis">Internal grade</dd></div>
+          <div><dt>Paper return</dt><dd id="metric-live-return">−2.69%</dd><dd class="metric-basis">Observed</dd></div><div><dt>Max drawdown</dt><dd id="metric-live-drawdown">−3.00%</dd><dd class="metric-basis">Observed</dd></div><div><dt>Realized vol</dt><dd id="metric-live-vol">5.48%</dd><dd class="metric-basis">Observed</dd></div><div><dt>Validation</dt><dd id="metric-grade">C+</dd><dd class="metric-basis">Internal grade</dd></div>
         </dl>
         <div class="evidence-chain" aria-label="Evidence publication chain">
-          <div><span>01</span><strong>Broker</strong><small id="console-broker">3 dedicated accounts · PASS</small></div><i aria-hidden="true">→</i><div><span>02</span><strong>Ledger</strong><small id="console-book">193 positions · 166 orders</small></div><i aria-hidden="true">→</i><div><span>03</span><strong>Signed record</strong><small>Append-only chain</small></div><i aria-hidden="true">→</i><div><span>04</span><strong>Public mirror</strong><small>Open JSON + reports</small></div>
+          <div><span>01</span><strong>Broker</strong><small id="console-broker">3 dedicated accounts · PASS</small></div><i aria-hidden="true">→</i><div><span>02</span><strong>Ledger</strong><small id="console-book">192 positions · 0 orders</small></div><i aria-hidden="true">→</i><div><span>03</span><strong>Signed record</strong><small>Append-only chain</small></div><i aria-hidden="true">→</i><div><span>04</span><strong>Public mirror</strong><small>Open JSON + reports</small></div>
         </div>
         <div class="console-foot"><span>Self-published broker-derived evidence</span><a href="/verify">Verify the record <span aria-hidden="true">→</span></a></div>
       </aside>
@@ -148,7 +150,7 @@
       <div class="section-kicker"><span>What you get</span><small>Open now / no paid plan</small></div>
       <div class="offering__intro"><h2 id="offering-title">Three ways in, depending on what you came to check.</h2><p>Nothing is gated and nothing needs an account.</p></div>
       <div class="offering__grid">
-        <article><span>To see what it does</span><h3>The live paper record</h3><p>Equity, positions, decisions and broker reconciliation, republished hourly. Paper throughout, never funded.</p><p class="offering__stat"><strong id="card-equity-marks">20</strong> published equity marks <span>&middot;</span> <strong id="card-broker-accounts">3</strong> broker accounts reconciled</p><a href="https://app.canlicapital.com/dashboard">Open the live record <span aria-hidden="true">↗</span></a></article>
+        <article><span>To see what it does</span><h3>The live paper record</h3><p>Equity, positions, decisions and broker reconciliation, republished hourly. Paper throughout, never funded.</p><p class="offering__stat"><strong id="card-equity-marks">28</strong> published equity marks <span>&middot;</span> <strong id="card-broker-accounts">3</strong> broker accounts reconciled</p><a href="https://app.canlicapital.com/dashboard">Open the live record <span aria-hidden="true">↗</span></a></article>
         <article><span>To decide whether to believe it</span><h3>The research, and the retractions</h3><p>Every hypothesis tested, the ones that failed, and the figures since withdrawn.</p><p class="offering__stat"><strong id="card-research-docs">111</strong> documents <span>&middot;</span> <strong id="card-research-kills">46</strong> published kills <span>&middot;</span> <strong id="card-trial-ids">228</strong> trial identities</p><a href="/progress">Read the corrections <span aria-hidden="true">→</span></a></article>
         <article><span>To judge the engineering</span><h3>Three open repositories</h3><p>The engine, the point-in-time data layer and the backtester, byte-identical and CI-checked on every push.</p><p class="offering__stat"><strong id="card-tests">1,220</strong> tests passing <span>&middot;</span> mypy --strict across <strong id="card-typed-files">83</strong> files</p><a href="/engineering">Read the code <span aria-hidden="true">→</span></a></article>
         <article><span>Hard boundary</span><h3>Research, not a fund</h3><p>No managed capital, copy-trading, promised return, or investment advice.</p><p class="offering__stat"><strong id="card-external-reviews">0</strong> external reviews <span>&middot;</span> <strong id="card-replications">0</strong> independent replications</p><a href="/methodology">Read boundaries <span aria-hidden="true">→</span></a></article>
@@ -158,9 +160,9 @@
     <section class="evidence section" id="evidence" aria-labelledby="evidence-title">
       <div class="section-heading section-heading--split"><div><p class="eyebrow">Dated evidence dashboard</p><h2 id="evidence-title">What was observed, what was simulated, and what is still only a goal.</h2></div><p>Performance targets never inherit the styling of earned results.</p></div>
       <div class="evidence-ledger">
-        <article class="evidence-ledger__primary"><div class="evidence-ledger__label"><span>Current forward record</span><em class="basis basis--observed">Observed / paper</em></div><strong id="evidence-observations">19</strong><p>daily return observations</p><a href="/measurements/forward-evidence-maturity">Inspect maturity evidence <span aria-hidden="true">↗</span></a></article>
+        <article class="evidence-ledger__primary"><div class="evidence-ledger__label"><span>Current forward record</span><em class="basis basis--observed">Observed / paper</em></div><strong id="evidence-observations">27</strong><p>daily return observations</p><a href="/measurements/forward-evidence-maturity">Inspect maturity evidence <span aria-hidden="true">↗</span></a></article>
         <article><span>Alpaca execution</span><strong id="evidence-accounts">3 / paper</strong><small>Dedicated paper sleeves</small></article>
-        <article><span>Broker book</span><strong id="evidence-positions">193 / 166</strong><small>Positions / open orders</small></article>
+        <article><span>Broker book</span><strong id="evidence-positions">192 / 0</strong><small>Positions / open orders</small></article>
         <article><span>Funded strategy record</span><strong>Not active</strong><small>Any separate $1 account is not yet attested here</small></article>
         <article><span>Validation</span><strong id="evidence-status">Broker pass</strong><small>Green only when reconciliation passes</small></article>
       </div>
@@ -173,19 +175,19 @@
       <section class="evidence-detail" aria-labelledby="evidence-detail-title">
         <header class="evidence-detail__head">
           <div><p class="eyebrow">Record freshness and execution basis</p><h3 id="evidence-detail-title">The operating facts behind the curve.</h3></div>
-          <div class="signed-head"><span>Latest signed record</span><strong id="evidence-signed-time">28 Aug 2026, 10:26 UTC</strong><small id="evidence-chain-head">seq 551 / 7cf92bdff2a00c98…</small><a href="/verify">Verify this record <span aria-hidden="true">↗</span></a></div>
+          <div class="signed-head"><span>Latest signed record</span><strong id="evidence-signed-time">05 Sept 2026, 17:26 UTC</strong><small id="evidence-chain-head">seq 739 / 8279167ebbf5b4fb…</small><a href="/verify">Verify this record <span aria-hidden="true">↗</span></a></div>
         </header>
         <div class="evidence-detail__grid">
-          <article><span>Forward window</span><strong id="evidence-forward-window">07 Aug to 28 Aug</strong><p id="evidence-forward-days">21 paper-trading days, 19 return observations.</p><a href="/measurements/forward-evidence-maturity">Open maturity record</a></article>
-          <article><span>Broker exposure</span><strong id="evidence-gross-range">29.5% to 100.4% gross</strong><p id="evidence-net-range">−0.13% to +31.37% net across dedicated broker accounts. Not a composite exposure.</p><a href="/measurements/alpaca-broker-reconciliation">Open broker evidence</a></article>
+          <article><span>Forward window</span><strong id="evidence-forward-window">07 Aug to 05 Sept</strong><p id="evidence-forward-days">29 paper-trading days, 27 return observations.</p><a href="/measurements/forward-evidence-maturity">Open maturity record</a></article>
+          <article><span>Broker exposure</span><strong id="evidence-gross-range">28.1% to 71.2% gross</strong><p id="evidence-net-range">−0.08% to +31.30% net across dedicated broker accounts. Not a composite exposure.</p><a href="/measurements/alpaca-broker-reconciliation">Open broker evidence</a></article>
           <article><span>Forward turnover</span><strong>Not published</strong><p>The public record does not yet expose a governed composite turnover series.</p><a href="/methodology">Read the measurement rule</a></article>
           <article><span>Observed slippage</span><strong id="evidence-slippage-state">Not measurable</strong><p id="evidence-slippage-note">Equity fills lack a decision-price reference. The measured crypto component predates the current forward window.</p><a href="/measurements/cost-model-realism">Open cost evidence</a></article>
         </div>
         <div class="broker-matrix" aria-label="Execution status by sleeve">
           <div class="broker-matrix__heading"><span>Sleeve</span><span>Execution</span><span>Latest observation</span><span>State</span></div>
-          <div data-broker-row="alphamax"><strong>AlphaMax</strong><span>Alpaca paper</span><span data-broker-observation>176 positions / 28 Aug 2026, 10:25 UTC</span><em data-broker-state>Pass</em></div>
-          <div data-broker-row="managed_futures"><strong>AlphaTrend</strong><span>Alpaca paper</span><span data-broker-observation>15 positions / 28 Aug 2026, 10:25 UTC</span><em data-broker-state>Pass</em></div>
-          <div data-broker-row="alphavintage"><strong>AlphaVintage</strong><span>Alpaca paper</span><span data-broker-observation>2 positions / 28 Aug 2026, 10:25 UTC</span><em data-broker-state>Pass</em></div>
+          <div data-broker-row="alphamax"><strong>AlphaMax</strong><span>Alpaca paper</span><span data-broker-observation>175 positions / 05 Sept 2026, 17:25 UTC</span><em data-broker-state>Pass</em></div>
+          <div data-broker-row="managed_futures"><strong>AlphaTrend</strong><span>Alpaca paper</span><span data-broker-observation>15 positions / 05 Sept 2026, 17:25 UTC</span><em data-broker-state>Pass</em></div>
+          <div data-broker-row="alphavintage"><strong>AlphaVintage</strong><span>Alpaca paper</span><span data-broker-observation>2 positions / 05 Sept 2026, 17:25 UTC</span><em data-broker-state>Pass</em></div>
           <div data-broker-row="alphaforge"><strong>AlphaForge</strong><span>Local paper</span><span>Live exchange books, simulated fills</span><em data-broker-state="local">Local only</em></div>
         </div>
         <div class="validation-callout" data-validation-state="loading"><span class="validation-callout__signal" aria-hidden="true"></span><div><strong id="evidence-validation-label">Broker pass / forward goals open / C+</strong><p id="evidence-validation-reason">Broker reconciliation passes. The forward record is still too young to establish the performance objectives.</p></div><a href="/measurements/program-status">Read grading contract</a></div>
@@ -221,7 +223,7 @@
             <div><span>Trial identities</span><strong id="core-trial-count">228</strong></div>
             <div><span>Killed or screened</span><strong id="core-kill-count">46</strong></div>
             <div><span>Active sleeves</span><strong id="core-sleeve-count">4</strong></div>
-            <div><span>Signed entries</span><strong id="core-signed-count">552</strong></div>
+            <div><span>Signed entries</span><strong id="core-signed-count">740</strong></div>
           </div>
           <div class="core-progress" aria-hidden="true"><span id="core-progress-fill"></span></div>
         </div>
@@ -303,9 +305,9 @@
     <section class="sleeves section" id="sleeves" aria-labelledby="sleeves-title">
       <div class="section-heading section-heading--split"><div><p class="eyebrow">Current portfolio architecture</p><h2 id="sleeves-title"><span id="current-sleeve-count">4</span> sleeves. Different mechanisms. One risk budget.</h2></div><p>The current target mix is equal-weighted. Correlation is measured on the disclosed research window; live-forward diversification is not yet established.</p><p class="sleeves__stat">Average pairwise correlation <strong id="sleeves-correlation">+0.0248</strong> <span>&middot;</span> measured on the research window, not the forward record</p></div>
       <div class="sleeve-table">
-        <article class="sleeve-row" data-sleeve="alphamax"><div class="sleeve-index">01</div><div class="sleeve-name"><span>US equity momentum</span><h3>AlphaMax</h3></div><p>Cross-sectional momentum across a survivorship-free US equity universe.</p><dl><div><dt>Execution</dt><dd>Alpaca paper</dd></div><div><dt>Target weight</dt><dd>25%</dd></div></dl><div class="sleeve-state"><span class="state-pill state-pill--broker">Observed broker</span><small id="sleeve-alphamax-state">$989.3K equity · 176 positions</small></div></article>
+        <article class="sleeve-row" data-sleeve="alphamax"><div class="sleeve-index">01</div><div class="sleeve-name"><span>US equity momentum</span><h3>AlphaMax</h3></div><p>Cross-sectional momentum across a survivorship-free US equity universe.</p><dl><div><dt>Execution</dt><dd>Alpaca paper</dd></div><div><dt>Target weight</dt><dd>25%</dd></div></dl><div class="sleeve-state"><span class="state-pill state-pill--broker">Observed broker</span><small id="sleeve-alphamax-state">$985.5K equity · 175 positions</small></div></article>
         <article class="sleeve-row" data-sleeve="managed_futures"><div class="sleeve-index">02</div><div class="sleeve-name"><span>Managed futures</span><h3>AlphaTrend</h3></div><p>Time-series trend across liquid equity, rates, commodity, and FX proxies.</p><dl><div><dt>Execution</dt><dd>Alpaca paper</dd></div><div><dt>Target weight</dt><dd>25%</dd></div></dl><div class="sleeve-state"><span class="state-pill state-pill--broker">Observed broker</span><small id="sleeve-managed_futures-state">$1M equity · 15 positions</small></div></article>
-        <article class="sleeve-row" data-sleeve="alphavintage"><div class="sleeve-index">03</div><div class="sleeve-name"><span>Macro surprise</span><h3>AlphaVintage</h3></div><p>A point-in-time inflation-surprise spread expressed through IWM and SPY.</p><dl><div><dt>Execution</dt><dd>Alpaca paper</dd></div><div><dt>Target weight</dt><dd>25%</dd></div></dl><div class="sleeve-state"><span class="state-pill state-pill--broker">Observed broker</span><small id="sleeve-alphavintage-state">$999.8K equity · 2 positions</small></div></article>
+        <article class="sleeve-row" data-sleeve="alphavintage"><div class="sleeve-index">03</div><div class="sleeve-name"><span>Macro surprise</span><h3>AlphaVintage</h3></div><p>A point-in-time inflation-surprise spread expressed through IWM and SPY.</p><dl><div><dt>Execution</dt><dd>Alpaca paper</dd></div><div><dt>Target weight</dt><dd>25%</dd></div></dl><div class="sleeve-state"><span class="state-pill state-pill--broker">Observed broker</span><small id="sleeve-alphavintage-state">$993.1K equity · 2 positions</small></div></article>
         <article class="sleeve-row" data-sleeve="alphaforge"><div class="sleeve-index">04</div><div class="sleeve-name"><span>Crypto funding carry</span><h3>AlphaForge</h3></div><p>Funding-rate carry across perpetual futures, marked from live exchange books.</p><dl><div><dt>Execution</dt><dd>Local paper</dd></div><div><dt>Target weight</dt><dd>25%</dd></div></dl><div class="sleeve-state"><span class="state-pill state-pill--local">Observed local</span><small>Live books, simulated fills</small></div></article>
       </div>
       <div class="sleeves-footer"><div><span>Research-window correlation</span><small>Simulated / not live-forward proof</small></div><strong id="correlation-reading">+0.0248</strong><a href="/systems">Inspect every system <span aria-hidden="true">→</span></a></div>

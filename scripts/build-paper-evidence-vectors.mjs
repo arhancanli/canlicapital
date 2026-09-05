@@ -21,6 +21,8 @@ import { fileURLToPath } from "node:url";
 
 import { conformance } from "../js/paper-evidence-core.js";
 
+import { writeArtifact } from "./canonical-json.mjs";
+
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const DIR = resolve(ROOT, "standards/paper-evidence/vectors");
 const VALID = JSON.parse(readFileSync(resolve(DIR, "valid-alphac-book.json"), "utf8"));
@@ -194,14 +196,19 @@ const receipt = {
   independent_implementations: 0,
   results,
 };
-const body = JSON.stringify(
-  Object.fromEntries(Object.entries(receipt).filter(([k]) => k !== "content_hash")),
-);
-receipt.content_hash = `sha256:${createHash("sha256").update(body).digest("hex")}`;
+// HASHED AND WRITTEN THROUGH THE SHARED CANONICALISER, and this line is the whole
+// point of the fix. This generator used to hash with a bare `JSON.stringify`, which
+// preserves insertion order, while `reproduce.py` recomputes with `sort_keys=True`.
+// The artifact therefore never reproduced: L1 read 158/1 for days, and because the
+// nightly ceremony gates on L1, OTS anchoring and the founder/capacity commitments
+// stopped running entirely. Seven other generators had copy-pasted a `canonical()`
+// that got this right; this one had no copy. `writeArtifact` reads the file back and
+// proves it reproduces, so the next generator cannot repeat it.
 mkdirSync(resolve(ROOT, "public/glassbox"), { recursive: true });
-writeFileSync(
+writeArtifact(
   resolve(ROOT, "public/glassbox/paper_evidence_conformance.json"),
-  `${JSON.stringify(receipt, null, 2)}\n`,
+  receipt,
+  { createHash, readFileSync, writeFileSync },
 );
 
 console.log(

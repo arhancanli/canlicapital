@@ -27,17 +27,12 @@ import { writeFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
+import { canonicalJson as canonical } from "./canonical-json.mjs";
+
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const OUT = resolve(ROOT, "public", "glassbox", "engineering_open_source.json");
 const RAW = "https://raw.githubusercontent.com/arhancanli";
 
-const canonical = (value) => {
-  if (Array.isArray(value)) return `[${value.map(canonical).join(",")}]`;
-  if (value && typeof value === "object") {
-    return `{${Object.keys(value).sort().map((k) => `${JSON.stringify(k)}:${canonical(value[k])}`).join(",")}}`;
-  }
-  return JSON.stringify(value);
-};
 
 //: Verification results measured by running the repository's own gates. The
 //: commands are published beside the numbers so the claim is checkable, and the
