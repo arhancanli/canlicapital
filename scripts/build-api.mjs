@@ -22,6 +22,9 @@ import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
+import { LIMITS } from "../api/_lib/limits.js";
+import { MANIFEST } from "../api/_lib/manifest.js";
+
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const OUT = resolve(ROOT, "public", "api", "v1");
 const ORIGIN = "https://canlicapital.com";
@@ -219,6 +222,7 @@ function main() {
     self: `${ORIGIN}/api/${VERSION}`,
     documentation: `${ORIGIN}/developers`,
     openapi: `${ORIGIN}/api/${VERSION}/openapi`,
+    validation: `${ORIGIN}/developers#validation`,
     standard: {
       id: "canli.paper-evidence.v0",
       schema: `${ORIGIN}/standards/paper-evidence/v0/schema.json`,
@@ -280,6 +284,50 @@ function main() {
       }),
     ),
   };
+  // The keyed validation routes are Vercel functions, not static files. They come from the one
+  // manifest the functions and /developers also read, so the document cannot name a route that
+  // does not exist and cannot omit one that does.
+  openapi.components = {
+    ...(openapi.components ?? {}),
+    securitySchemes: { bearerKey: { type: "http", scheme: "bearer", description: "A key from POST /api/v1/keys, sent as Authorization: Bearer ck_live_..." } },
+    schemas: {
+      ...((openapi.components ?? {}).schemas ?? {}),
+      Envelope: {
+        type: "object",
+        required: ["schema", "endpoint", "generated_at", "claim_class", "capital_kind", "canonical_human_page", "limits", "sources", "data"],
+        properties: {
+          schema: { const: "canli.api.v1" }, endpoint: { type: "string" }, generated_at: { type: "string", format: "date-time" },
+          claim_class: { type: "string" }, capital_kind: { type: "string" }, canonical_human_page: { type: "string" },
+          limits: { type: "array", items: { type: "string" }, minItems: 1 }, sources: { type: "array", items: { type: "object" } },
+          data: { type: "object" }, receipt: { type: "object" }, error: { type: "object" },
+        },
+      },
+    },
+  };
+  const envelopeResponse = (description) => ({ description, content: { "application/json": { schema: { $ref: "#/components/schemas/Envelope" } } } });
+  for (const m of MANIFEST) {
+    const op = { summary: m.summary, operationId: m.path.replace(/^\/api\/v1\//, "").replace(/[^a-z]+/g, "_"), responses: { 200: envelopeResponse("The envelope with data"), 400: envelopeResponse("Malformed request"), 405: envelopeResponse("Wrong method") } };
+    if (m.method === "POST") {
+      op.requestBody = { required: true, content: { "application/json": { schema: { type: "object" }, example: m.requestExample } } };
+      op.responses[413] = envelopeResponse(`Body over ${LIMITS.max_body_bytes} bytes`);
+      op.responses[422] = envelopeResponse("Input the validator refuses, with the reason");
+    }
+    if (m.keyed) {
+      op.security = [{ bearerKey: [] }];
+      op.responses[401] = envelopeResponse("Missing, unknown or revoked key");
+      op.responses[429] = envelopeResponse(`Daily quota of ${LIMITS.validations_per_key_per_day} validations reached; see Retry-After`);
+    }
+    if (m.path === "/api/v1/keys") {
+      op.responses[201] = envelopeResponse("The key, once");
+      op.responses[429] = envelopeResponse(`At most ${LIMITS.keys_per_client_per_day} keys per client per day`);
+      delete op.responses[200];
+    }
+    if (m.path.includes("{id}")) {
+      op.parameters = [{ name: "id", in: "path", required: true, schema: { type: "string", pattern: "^[0-9a-f]{24}$" } }];
+      op.responses[404] = envelopeResponse("No such receipt");
+    }
+    openapi.paths[m.path] = { ...(openapi.paths[m.path] ?? {}), [m.method.toLowerCase()]: op };
+  }
   const undocumented = written.filter((p) => !ENDPOINT_SUMMARIES[p.replace(`/api/${VERSION}/`, "")]);
   if (undocumented.length) {
     throw new Error(`api: ${undocumented.join(", ")} have no summary; every endpoint must be described`);
