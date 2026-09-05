@@ -101,3 +101,20 @@ body.dev-page { margin: 0; color: var(--dev-ink); background: var(--dev-paper); 
 .dev-list strong { color: var(--dev-ink); }
 
 @media (prefers-reduced-motion: reduce) { .dev-page * { transition-duration: 0.01ms !important; } }
+
+/* Validation endpoints: request examples and per-route articles. Added 2026-09-05. */
+.dev-code {
+  margin: 0.75rem 0 0;
+  padding: 0.9rem 1rem;
+  overflow-x: auto;
+  border: 1px solid var(--dev-border, rgba(255, 255, 255, 0.12));
+  border-radius: 10px;
+  background: var(--dev-code-bg, rgba(255, 255, 255, 0.04));
+  font-size: 0.85rem;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+.dev-endpoint { margin: 1.25rem 0 0; }
+.dev-endpoint h4 { margin: 0 0 0.35rem; font-size: 1rem; }
+.dev-endpoint p { margin: 0; }

@@ -19,6 +19,9 @@ import {
   renderProductShellStylesheet,
 } from "./product-shell.mjs";
 
+import { LIMITS, LIMITS_TEXT } from "../api/_lib/limits.js";
+import { MANIFEST } from "../api/_lib/manifest.js";
+
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const ORIGIN = "https://canlicapital.com";
 const SRC = resolve(ROOT, "standards/paper-evidence");
@@ -210,17 +213,22 @@ ${renderProductShellFooter()}
 function buildDevelopers() {
   const index = JSON.parse(readFileSync(resolve(ROOT, "public/api/v1/index.json"), "utf8"));
   const openapi = JSON.parse(readFileSync(resolve(ROOT, "public/api/v1/openapi.json"), "utf8"));
-  const summaries = Object.entries(openapi.paths).map(([path, def]) => ({ path, summary: def.get.summary }));
+  const summaries = Object.entries(openapi.paths)
+    .filter(([path, def]) => def.get && !MANIFEST.some((m) => m.path === path))
+    .map(([path, def]) => ({ path, summary: def.get.summary }));
+  const validators = MANIFEST.filter((m) => m.method === "POST" && m.keyed);
+  const curl = (m) => `curl -X POST https://canlicapital.com${m.path} \\\n  -H "Authorization: Bearer $CANLI_KEY" -H "Content-Type: application/json" \\\n  -d '${JSON.stringify(m.requestExample)}'`;
 
   const description =
-    "A static, cacheable read API over the Canli Capital paper record. Every response carries its " +
-    "sources, their hashes, its claim class and its limits.";
+    "A static read API over the Canli Capital paper record, and a free keyed API that runs your own " +
+    "numbers through the same validation arithmetic. Every response carries its sources, their " +
+    "hashes, its claim class and its limits.";
 
   const html = `${head({
     title: "Developers",
     description,
     route: "/developers",
-    sources: "",
+    sources: "validation_api_limits.json,index.json",
     jsonLd: {
       "@context": "https://schema.org",
       "@type": "WebAPI",
@@ -237,10 +245,11 @@ function buildDevelopers() {
 ${renderProductShellHeader({ active: "" })}
 <main id="content">
   <section class="dev-hero">
-    <p class="dev-kicker"><span>Public read API</span><span>v1</span></p>
+    <p class="dev-kicker"><span>Public API</span><span>v1</span></p>
     <h1>Every response says what it cannot be used to claim.</h1>
-    <p class="dev-lead">Static JSON, regenerated on each publish, no key and no rate limit because
-      there is nothing to authenticate to and nothing to overload. An API is the easiest place on a
+    <p class="dev-lead">The read endpoints need no key: static JSON, regenerated on each publish.
+      The validation endpoints take a free key and run your numbers through the same arithmetic this
+      record is held to, then hand back a receipt you can cite. An API is the easiest place on a
       site to lose a claim boundary, because nobody reads one by eye, so the boundary is part of
       the envelope rather than part of the documentation.</p>
     <div class="dev-downloads">
@@ -251,13 +260,59 @@ ${renderProductShellHeader({ active: "" })}
   </section>
 
   <section class="dev-section">
-    <h2>Endpoints</h2>
+    <h2>Read endpoints, no key</h2>
     <table class="dev-table">
       <thead><tr><th>Path</th><th>What it returns</th></tr></thead>
       <tbody>
         ${summaries.map((e) => `<tr><td><a href="${esc(e.path)}"><code>GET ${esc(e.path)}</code></a></td><td>${esc(e.summary)}</td></tr>`).join("\n        ")}
       </tbody>
     </table>
+  </section>
+
+  <section class="dev-section" id="validation">
+    <h2>Validation endpoints, free key</h2>
+    <p class="dev-note">Send your own numbers; get back the arithmetic this house runs on itself.
+      Nothing you send is stored. Each verdict returns a receipt anyone can recompute.</p>
+    <table class="dev-table">
+      <thead><tr><th>Route</th><th>What it does</th></tr></thead>
+      <tbody>
+        ${MANIFEST.map((m) => `<tr><td><code>${esc(m.method)} ${esc(m.path)}</code></td><td>${esc(m.summary)}</td></tr>`).join("\n        ")}
+      </tbody>
+    </table>
+    <h3>1. Issue a key</h3>
+    <pre class="dev-code"><code>curl -X POST https://canlicapital.com/api/v1/keys -H "Content-Type: application/json" -d '{"label":"my-backtest-runner"}'</code></pre>
+    <p class="dev-note">The key is returned once. Only its hash is kept.</p>
+    <h3>2. Validate</h3>
+    ${validators.map((m) => `<article class="dev-endpoint"><h4><code>${esc(m.method)} ${esc(m.path)}</code></h4><p>${esc(m.summary)}</p><pre class="dev-code"><code>${esc(curl(m))}</code></pre></article>`).join("\n    ")}
+    <h3>3. Cite the receipt</h3>
+    <p class="dev-note">Every verdict carries <code>receipt.url</code>. <code>GET /api/v1/receipts/{id}</code>
+      returns the stored output, the input hash, and the sha256 of every core and contract that computed
+      it. The id is the first 24 hex characters of the sha256 over the canonical JSON of endpoint, input
+      hash, output and bindings, so a third party can check it without trusting this server.</p>
+  </section>
+
+  <section class="dev-section" id="quotas">
+    <h2>Quotas, public and enforced from one source</h2>
+    <table class="dev-table">
+      <thead><tr><th>Limit</th><th>Value</th></tr></thead>
+      <tbody>
+        <tr><td>Validations per key per UTC day</td><td>${LIMITS.validations_per_key_per_day}</td></tr>
+        <tr><td>Keys per client per UTC day</td><td>${LIMITS.keys_per_client_per_day}</td></tr>
+        <tr><td>Request body, bytes</td><td>${LIMITS.max_body_bytes}</td></tr>
+        <tr><td>Observations per series or rows per matrix</td><td>${LIMITS.max_observations}</td></tr>
+        <tr><td>Variants per matrix</td><td>${LIMITS.max_variants}</td></tr>
+        <tr><td>CSCV combinations evaluated</td><td>${LIMITS.max_cscv_combinations}</td></tr>
+      </tbody>
+    </table>
+    <p class="dev-note">Every response carries <code>X-RateLimit-Limit</code>, <code>X-RateLimit-Remaining</code>
+      and <code>X-RateLimit-Reset</code>. A 429 carries <code>Retry-After</code>.</p>
+  </section>
+
+  <section class="dev-section" id="not-established">
+    <h2>What a verdict does not establish</h2>
+    <ul class="dev-list">
+      ${LIMITS_TEXT.map((t) => `<li>${esc(t)}</li>`).join("\n      ")}
+    </ul>
   </section>
 
   <section class="dev-section">
