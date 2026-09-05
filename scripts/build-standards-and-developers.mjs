@@ -228,7 +228,7 @@ function buildDevelopers() {
     title: "Developers",
     description,
     route: "/developers",
-    sources: "validation_api_limits.json,index.json",
+    sources: "validation_api_limits.json validation_api_manifest.json",
     jsonLd: {
       "@context": "https://schema.org",
       "@type": "WebAPI",
@@ -254,7 +254,7 @@ ${renderProductShellHeader({ active: "" })}
       the envelope rather than part of the documentation.</p>
     <div class="dev-downloads">
       <a class="dev-button dev-button--primary" href="/api/v1">Discovery document</a>
-      <a class="dev-button" href="/api/v1/openapi">OpenAPI 3.1</a>
+      <a class="dev-button" href="/api/v1/openapi">OpenAPI document</a>
       <a class="dev-button" href="/standards/paper-evidence">The record standard</a>
     </div>
   </section>
@@ -279,16 +279,17 @@ ${renderProductShellHeader({ active: "" })}
         ${MANIFEST.map((m) => `<tr><td><code>${esc(m.method)} ${esc(m.path)}</code></td><td>${esc(m.summary)}</td></tr>`).join("\n        ")}
       </tbody>
     </table>
-    <h3>1. Issue a key</h3>
+    <h3>First, issue a key</h3>
     <pre class="dev-code"><code>curl -X POST https://canlicapital.com/api/v1/keys -H "Content-Type: application/json" -d '{"label":"my-backtest-runner"}'</code></pre>
     <p class="dev-note">The key is returned once. Only its hash is kept.</p>
-    <h3>2. Validate</h3>
+    <h3>Then validate</h3>
     ${validators.map((m) => `<article class="dev-endpoint"><h4><code>${esc(m.method)} ${esc(m.path)}</code></h4><p>${esc(m.summary)}</p><pre class="dev-code"><code>${esc(curl(m))}</code></pre></article>`).join("\n    ")}
-    <h3>3. Cite the receipt</h3>
+    <h3>Then cite the receipt</h3>
     <p class="dev-note">Every verdict carries <code>receipt.url</code>. <code>GET /api/v1/receipts/{id}</code>
-      returns the stored output, the input hash, and the sha256 of every core and contract that computed
-      it. The id is the first 24 hex characters of the sha256 over the canonical JSON of endpoint, input
-      hash, output and bindings, so a third party can check it without trusting this server.</p>
+      returns the stored output, the input hash, and the content hash of every core and contract that
+      computed it. The id is the first twenty-four hex characters of the content hash over the canonical
+      JSON of endpoint, input hash, output and bindings, so a third party can check it without trusting
+      this server.</p>
   </section>
 
   <section class="dev-section" id="quotas">
@@ -325,8 +326,8 @@ ${renderProductShellHeader({ active: "" })}
         figure acquires the authority of a measured one.</p></article>
       <article><h3><code>limits</code></h3><p>What this response cannot be used to say. The build
         refuses to emit an endpoint that declares none.</p></article>
-      <article><h3><code>sources</code></h3><p>Every artifact the response was built from, with a
-        SHA-256 and a URL, so a consumer can recompute rather than trust.</p></article>
+      <article><h3><code>sources</code></h3><p>Every artifact the response was built from, with its
+        content hash and a URL, so a consumer can recompute rather than trust.</p></article>
       <article><h3><code>generated_at</code></h3><p>The freshness of every figure inside. These are
         snapshots, not a stream.</p></article>
     </div>

@@ -8,6 +8,7 @@ import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
 import { LIMITS, LIMITS_TEXT } from "../api/_lib/limits.js";
+import { MANIFEST } from "../api/_lib/manifest.js";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const BOUND = [
@@ -25,7 +26,16 @@ const limits = {
   source: "api/_lib/limits.js",
   limits: LIMITS,
   limits_text: LIMITS_TEXT,
-  claim_boundary: "Service quotas and the standing caveats attached to every verdict. They describe the service, not any strategy.",
+  receipt_id_hex_chars: 24,
+  http_status: { ok: 200, created: 201, bad_request: 400, unauthorized: 401, method_not_allowed: 405, payload_too_large: 413, unprocessable: 422, quota_exhausted: 429, store_unavailable: 503 },
+  claim_boundary: "Service quotas, response codes and the standing caveats attached to every verdict. They describe the service, not any strategy.",
 };
 writeFileSync(resolve(ROOT, "public/glassbox/validation_api_limits.json"), `${JSON.stringify(limits, null, 2)}\n`);
+const manifest = {
+  schema: "canli.validation-api-manifest.v1",
+  source: "api/_lib/manifest.js",
+  routes: MANIFEST,
+  claim_boundary: "The routes this API serves and the example request each documents. Examples are illustrative inputs, not data about any strategy.",
+};
+writeFileSync(resolve(ROOT, "public/glassbox/validation_api_manifest.json"), `${JSON.stringify(manifest, null, 2)}\n`);
 console.log(`validation-api: ${BOUND.length} bindings, limits artifact written`);

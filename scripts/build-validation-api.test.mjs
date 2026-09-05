@@ -18,7 +18,7 @@ test("the quota constants are the documented values and every one has a sentence
   });
   assert.ok(Object.isFrozen(LIMITS));
   assert.ok(LIMITS_TEXT.length >= 4);
-  for (const line of LIMITS_TEXT) assert.ok(!line.includes("—"), "no em dashes in published copy");
+  for (const line of LIMITS_TEXT) assert.ok(!line.includes("\u2014"), "no em dashes in published copy");
 });
 
 test("the committed bindings and limits artifact are current", () => {
@@ -58,5 +58,5 @@ test("/developers documents every manifest route, the quotas, and what a verdict
   assert.ok(html.includes("does not establish"));
   assert.ok(html.includes("curl -X POST https://canlicapital.com/api/v1/keys"));
   assert.match(html, /<meta name="canli:sources" content="[^"]*validation_api_limits\.json/);
-  assert.ok(!html.includes("—"), "no em dashes");
+  assert.ok(!html.includes("\u2014"), "no em dashes");
 });

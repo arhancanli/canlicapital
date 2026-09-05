@@ -7,7 +7,7 @@
 <meta name="description" content="A static read API over the Canli Capital paper record, and a free keyed API that runs your own numbers through the same validation arithmetic. Every response carries its sources, their hashes, its claim class and its limits." />
 <link rel="canonical" href="https://canlicapital.com/developers" />
 <meta name="author" content="Arhan Canli" />
-<meta name="canli:sources" content="validation_api_limits.json,index.json" />
+<meta name="canli:sources" content="validation_api_limits.json validation_api_manifest.json" />
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Canli Capital" />
@@ -93,7 +93,7 @@
       the envelope rather than part of the documentation.</p>
     <div class="dev-downloads">
       <a class="dev-button dev-button--primary" href="/api/v1">Discovery document</a>
-      <a class="dev-button" href="/api/v1/openapi">OpenAPI 3.1</a>
+      <a class="dev-button" href="/api/v1/openapi">OpenAPI document</a>
       <a class="dev-button" href="/standards/paper-evidence">The record standard</a>
     </div>
   </section>
@@ -129,10 +129,10 @@
         <tr><td><code>GET /api/v1/receipts/{id}</code></td><td>A stored verdict by content-hash id. Immutable.</td></tr>
       </tbody>
     </table>
-    <h3>1. Issue a key</h3>
+    <h3>First, issue a key</h3>
     <pre class="dev-code"><code>curl -X POST https://canlicapital.com/api/v1/keys -H "Content-Type: application/json" -d '{"label":"my-backtest-runner"}'</code></pre>
     <p class="dev-note">The key is returned once. Only its hash is kept.</p>
-    <h3>2. Validate</h3>
+    <h3>Then validate</h3>
     <article class="dev-endpoint"><h4><code>POST /api/v1/validate/deflated-sharpe</code></h4><p>Probabilistic and deflated Sharpe from the seven contract inputs, or from a return series plus the trials behind it.</p><pre class="dev-code"><code>curl -X POST https://canlicapital.com/api/v1/validate/deflated-sharpe \
   -H &quot;Authorization: Bearer $CANLI_KEY&quot; -H &quot;Content-Type: application/json&quot; \
   -d &#39;{&quot;returns&quot;:[0.004,-0.002,0.007,0.001,-0.003,0.005,0.002,-0.001],&quot;periods_per_year&quot;:252,&quot;effective_independent_trials&quot;:30,&quot;cross_trial_sharpe_sd_annualized&quot;:0.5}&#39;</code></pre></article>
@@ -145,11 +145,12 @@
     <article class="dev-endpoint"><h4><code>POST /api/v1/validate/breadth</code></h4><p>Book Sharpe ceiling from per-sleeve quality and average pairwise correlation, and the sleeves a target needs.</p><pre class="dev-code"><code>curl -X POST https://canlicapital.com/api/v1/validate/breadth \
   -H &quot;Authorization: Bearer $CANLI_KEY&quot; -H &quot;Content-Type: application/json&quot; \
   -d &#39;{&quot;sleeve_sharpe&quot;:0.5,&quot;average_pairwise_correlation&quot;:0.05,&quot;sleeves&quot;:4,&quot;target&quot;:1.5}&#39;</code></pre></article>
-    <h3>3. Cite the receipt</h3>
+    <h3>Then cite the receipt</h3>
     <p class="dev-note">Every verdict carries <code>receipt.url</code>. <code>GET /api/v1/receipts/{id}</code>
-      returns the stored output, the input hash, and the sha256 of every core and contract that computed
-      it. The id is the first 24 hex characters of the sha256 over the canonical JSON of endpoint, input
-      hash, output and bindings, so a third party can check it without trusting this server.</p>
+      returns the stored output, the input hash, and the content hash of every core and contract that
+      computed it. The id is the first twenty-four hex characters of the content hash over the canonical
+      JSON of endpoint, input hash, output and bindings, so a third party can check it without trusting
+      this server.</p>
   </section>
 
   <section class="dev-section" id="quotas">
@@ -189,8 +190,8 @@
         figure acquires the authority of a measured one.</p></article>
       <article><h3><code>limits</code></h3><p>What this response cannot be used to say. The build
         refuses to emit an endpoint that declares none.</p></article>
-      <article><h3><code>sources</code></h3><p>Every artifact the response was built from, with a
-        SHA-256 and a URL, so a consumer can recompute rather than trust.</p></article>
+      <article><h3><code>sources</code></h3><p>Every artifact the response was built from, with its
+        content hash and a URL, so a consumer can recompute rather than trust.</p></article>
       <article><h3><code>generated_at</code></h3><p>The freshness of every figure inside. These are
         snapshots, not a stream.</p></article>
     </div>

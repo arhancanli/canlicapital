@@ -16,5 +16,17 @@
     "The receipt is content-hashed and reproducible from the open-source core it names. It is not signed.",
     "Quotas: 1000 validations per key per UTC day, 5 keys per client per UTC day, 1048576 bytes per request, 20000 observations per series, 200 variants per matrix."
   ],
-  "claim_boundary": "Service quotas and the standing caveats attached to every verdict. They describe the service, not any strategy."
+  "receipt_id_hex_chars": 24,
+  "http_status": {
+    "ok": 200,
+    "created": 201,
+    "bad_request": 400,
+    "unauthorized": 401,
+    "method_not_allowed": 405,
+    "payload_too_large": 413,
+    "unprocessable": 422,
+    "quota_exhausted": 429,
+    "store_unavailable": 503
+  },
+  "claim_boundary": "Service quotas, response codes and the standing caveats attached to every verdict. They describe the service, not any strategy."
 }
