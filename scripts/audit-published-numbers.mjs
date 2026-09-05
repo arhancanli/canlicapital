@@ -156,7 +156,10 @@ for (const file of artifacts) {
 const corpus = { verbatim: new Set(), values: [] };
 for (const { verbatim, values } of perArtifact.values()) {
   for (const token of verbatim) corpus.verbatim.add(token);
-  corpus.values.push(...values);
+  // A loop, not `push(...values)`: one artifact can hold hundreds of thousands of numbers and a
+  // spread that wide overflows the call stack (RangeError), which silently ended this audit on
+  // 2026-09-05. Same result, no argument-count ceiling.
+  for (const v of values) corpus.values.push(v);
 }
 // NOTE the corpus takes `verbatim`, never `labels`. The fallback is the weaker path already;
 // widening it with every digit sequence inside every identifier would make it weaker still.
@@ -172,7 +175,7 @@ function scopeFor(sources) {
     const entry = perArtifact.get(name);
     if (!entry) continue;
     for (const token of entry.labels) verbatim.add(token);
-    values.push(...entry.values);
+    for (const v of entry.values) values.push(v);
   }
   values.sort((a, b) => a - b);
   const scope = { verbatim, values };
