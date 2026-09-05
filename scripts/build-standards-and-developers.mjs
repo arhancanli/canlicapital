@@ -220,9 +220,8 @@ function buildDevelopers() {
   const curl = (m) => `curl -X POST https://canlicapital.com${m.path} \\\n  -H "Authorization: Bearer $CANLI_KEY" -H "Content-Type: application/json" \\\n  -d '${JSON.stringify(m.requestExample)}'`;
 
   const description =
-    "A static read API over the Canli Capital paper record, and a free keyed API that runs your own " +
-    "numbers through the same validation arithmetic. Every response carries its sources, their " +
-    "hashes, its claim class and its limits.";
+    "A read API over the Canli Capital paper record, and a free keyed API that runs your own numbers " +
+    "through the same validation arithmetic. Every response states its limits.";
 
   const html = `${head({
     title: "Developers",
