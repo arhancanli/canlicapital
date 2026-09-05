@@ -261,7 +261,7 @@
       "managed_futures": 0.25
     }
   },
-  "content_hash": "sha256:2797edc1a0c89a58866e821d25efbdbc6a025a49abaf819030b8e9dbf9e6c323",
+  "content_hash": "sha256:53750ccd855a98be49e3c7537e7847db832aa86bb6f968b1e8ed68c9d265a2e5",
   "failed_establishment_dimensions": [
     "RESEARCH_CURVES_END_BEFORE_BROKER_RECONCILED_FORWARD_RECORD",
     "RETURN_DATA_WERE_KNOWN_BEFORE_PROTOCOL",
@@ -329,27 +329,27 @@
     "diversification_ratio_sleeves_only": 1.8153132626773805,
     "effective_independent_sleeves_participation_ratio": 3.8988014966039604,
     "exact_component_reconstruction_max_abs_error": 0.0,
-    "full_book_sharpe_research_simulation_not_forward_evidence": 1.7846280941921533,
+    "full_book_sharpe_research_simulation_not_forward_evidence": 1.7846281669176056,
     "marginal_book_sharpe_research_diagnostics": {
       "alphavintage_live": {
-        "book_sharpe_with_sleeve": 1.7846280941921533,
-        "book_sharpe_with_sleeve_replaced_by_cash": 1.790885609112651,
-        "marginal_book_sharpe_delta": -0.006257514920497753
+        "book_sharpe_with_sleeve": 1.7846281669176056,
+        "book_sharpe_with_sleeve_replaced_by_cash": 1.7908857604795474,
+        "marginal_book_sharpe_delta": -0.006257593561941777
       },
       "crypto_carry_wk": {
-        "book_sharpe_with_sleeve": 1.7846280941921533,
-        "book_sharpe_with_sleeve_replaced_by_cash": 1.2520344838820832,
-        "marginal_book_sharpe_delta": 0.5325936103100701
+        "book_sharpe_with_sleeve": 1.7846281669176056,
+        "book_sharpe_with_sleeve_replaced_by_cash": 1.252034546324405,
+        "marginal_book_sharpe_delta": 0.5325936205932007
       },
       "k30_dn_63": {
-        "book_sharpe_with_sleeve": 1.7846280941921533,
-        "book_sharpe_with_sleeve_replaced_by_cash": 1.6377955912090225,
-        "marginal_book_sharpe_delta": 0.14683250298313077
+        "book_sharpe_with_sleeve": 1.7846281669176056,
+        "book_sharpe_with_sleeve_replaced_by_cash": 1.6377956654461165,
+        "marginal_book_sharpe_delta": 0.14683250147148907
       },
       "managed_futures": {
-        "book_sharpe_with_sleeve": 1.7846280941921533,
-        "book_sharpe_with_sleeve_replaced_by_cash": 1.8754659395836883,
-        "marginal_book_sharpe_delta": -0.09083784539153505
+        "book_sharpe_with_sleeve": 1.7846281669176056,
+        "book_sharpe_with_sleeve_replaced_by_cash": 1.875466015776462,
+        "marginal_book_sharpe_delta": -0.09083784885885637
       }
     },
     "maximum_pairwise_correlation": 0.20975189522943685,
@@ -409,9 +409,9 @@
       "sha256": "f63f2bc83ddf739f7e91c0ba8b2cd095984f26148461b56ddbb7a69c8ccd9c07"
     },
     "current_book_drawdown": {
-      "content_hash": "sha256:857eec95f1c446323c377d1d3fe202dbdf6cc53621661287991edf50ad4419c5",
+      "content_hash": "sha256:f89282b8754ad257a5bce3d603ab5b7e940abe67f0cb9f0dc8f6d57ba89b0e71",
       "path": "artifacts/analysis/current_book_drawdown/result.json",
-      "sha256": "cd267c8fed66ddc4cf9f87c21daaa15a60525c4f5b684e1621d655562366d2cd"
+      "sha256": "44d8fb315eeb21f033b4070c19d17faea9dd0e4e52a8b9b9036a7d7818313e3d"
     },
     "drawdown_implementation": {
       "path": "scripts/analyze_current_book_drawdown.py",
@@ -423,7 +423,7 @@
     },
     "live_contract": {
       "path": "config/live_change_contract.json",
-      "sha256": "a28ea309bf15253229f9cfa11da4c786323076d1aef6c83ffda5d7615338793d"
+      "sha256": "5b7fa2e700cf29d3e4ef38eff2d745fe0dcec234133da899fd291e8b92c709fe"
     },
     "market_factor_implementation": {
       "path": "src/alphaforge/portfolio/market_factor.py",
@@ -431,11 +431,11 @@
     },
     "market_factor_source_corpus": {
       "files": 33,
-      "manifest_sha256": "640ce97749e270b95f4e7379de326d6beedae693e6cc268fbe774651abb1ea25"
+      "manifest_sha256": "5315fa1d24a21b5656d9296fbc54ecb3e82f7a4c19ff9c38f7a92189656ba850"
     },
     "paper_state_builder": {
       "path": "scripts/paper_trading_state.py",
-      "sha256": "b2e0f784fd99aac4b3ba926cb84a2c2b62fbc343c1853ef7abc031e229ac2585"
+      "sha256": "82555044f3b93acc32110863d00a4cba799171fdf6e2f4e7cba1b3c801f2020f"
     },
     "protocol": {
       "path": "docs/design/CURRENT_BOOK_DIVERSIFICATION_STUDY_PROTOCOL.md",

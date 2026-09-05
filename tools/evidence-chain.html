@@ -96,12 +96,12 @@
       </div>
     </div>
     <aside class="chain-terminal" aria-label="Current published chain facts">
-      <div class="chain-terminal__head"><span>Published head</span><strong>SEQ 739</strong></div>
-      <code>8279167ebbf5b4fbf5d5954e42110c878ed0f319400d8e2b0a466453e57a0069</code>
+      <div class="chain-terminal__head"><span>Published head</span><strong>SEQ 740</strong></div>
+      <code>0058e743d33938822202c0c115c491b2fb0a9c2ac32095c5d840a76ab530a854</code>
       <dl>
-        <div><dt>Signed entries</dt><dd>740</dd></div>
+        <div><dt>Signed entries</dt><dd>741</dd></div>
         <div><dt>Distinct days</dt><dd>63</dd></div>
-        <div><dt>Public payloads</dt><dd>304</dd></div>
+        <div><dt>Public payloads</dt><dd>305</dd></div>
         <div><dt>Bitcoin checkpoints</dt><dd>61</dd></div>
       </dl>
       <p>2026-06-27 to 2026-09-05. Source facts, not page copy.</p>
@@ -117,7 +117,7 @@
 
   <section class="chain-workbench" id="microscope" aria-labelledby="microscope-title">
     <header class="chain-section-head">
-      <div><p class="chain-label">Chain microscope</p><h2 id="microscope-title">740 entries. Every dependency exposed.</h2></div>
+      <div><p class="chain-label">Chain microscope</p><h2 id="microscope-title">741 entries. Every dependency exposed.</h2></div>
       <div class="chain-verification">
         <span id="chain-verification-label">Loading public sources</span>
         <strong id="chain-verification-status" data-state="loading">WAIT</strong>
@@ -125,11 +125,11 @@
       </div>
     </header>
 
-    <div class="chain-map" aria-label="Complete transparency-chain map" style="--disclosure-ratio:0.5899864682002707">
+    <div class="chain-map" aria-label="Complete transparency-chain map" style="--disclosure-ratio:0.5891891891891892">
       <div class="chain-map__legend" aria-hidden="true"><span>Opaque commitment</span><span>Public payload</span><span>Bitcoin checkpoint</span><span>Pending checkpoint</span></div>
       <canvas id="chain-canvas" aria-hidden="true"></canvas>
       <div class="chain-map__boundary" id="chain-disclosure-marker"><span>Payload disclosure starts</span><strong>SEQ 436</strong></div>
-      <input id="chain-range" type="range" min="0" max="739" value="739" step="1" aria-label="Select transparency-chain sequence" />
+      <input id="chain-range" type="range" min="0" max="740" value="740" step="1" aria-label="Select transparency-chain sequence" />
       <div class="chain-map__axis"><span>GENESIS<br />2026-06-27</span><span>PUBLIC PAYLOADS FROM 436</span><span>HEAD<br />2026-09-05</span></div>
       <div class="chain-map__controls">
         <button type="button" id="chain-prev">Previous</button>
@@ -142,20 +142,20 @@
     <div class="chain-inspector">
       <article class="chain-entry" aria-live="polite">
         <header>
-          <div><span>Selected entry</span><h3>SEQ <strong id="entry-seq">739</strong></h3></div>
+          <div><span>Selected entry</span><h3>SEQ <strong id="entry-seq">740</strong></h3></div>
           <div class="chain-entry__meta"><span id="entry-date">2026-09-05</span><strong id="entry-disclosure">PUBLIC PAYLOAD</strong><span id="entry-anchor">NO CHECKPOINT</span></div>
         </header>
         <div class="chain-equation" aria-label="Fields used to calculate the selected chain hash">
-          <div><span>01 / predecessor</span><code id="entry-prev">1315a0067c15e627509b2705f693643d76d4b06691391023bdf2d81c7ab7303c</code></div>
+          <div><span>01 / predecessor</span><code id="entry-prev">8279167ebbf5b4fbf5d5954e42110c878ed0f319400d8e2b0a466453e57a0069</code></div>
           <i aria-hidden="true">+</i>
-          <div><span>02 / payload digest</span><code id="entry-payload">0da0b73392077b15702b4882be7f568af607c45f8377911b57d488da6a4cbfd2</code></div>
+          <div><span>02 / payload digest</span><code id="entry-payload">99540e831e4b51235fc63b28cf317674526c4940654508c1886273c9f822354e</code></div>
           <i aria-hidden="true">+</i>
-          <div><span>03 / date and sequence</span><code id="entry-coordinate">2026-09-05 | 739</code></div>
+          <div><span>03 / date and sequence</span><code id="entry-coordinate">2026-09-05 | 740</code></div>
           <i aria-hidden="true">=</i>
-          <div class="chain-equation__result"><span>04 / signed chain hash</span><code id="entry-hash">8279167ebbf5b4fbf5d5954e42110c878ed0f319400d8e2b0a466453e57a0069</code></div>
+          <div class="chain-equation__result"><span>04 / signed chain hash</span><code id="entry-hash">0058e743d33938822202c0c115c491b2fb0a9c2ac32095c5d840a76ab530a854</code></div>
         </div>
         <div class="chain-entry__signature">
-          <span>Ed25519 signature</span><code id="entry-signature">11ece76a8f25e131bed7008690a215482b8ad07138acc3976e8052dcdeaa5bcb0f232b60feb9cf18c7805c224fa5185c488d74542889780498e904477016460c</code>
+          <span>Ed25519 signature</span><code id="entry-signature">65bc3ef8269e3f769268cce87b47d6ac5f05f5b80b2eb90b0ebb5772bdc6a46485c573a28d4ba34dc6d1888b24103a10e306fbbac6c5bffc68c53630e4562f09</code>
           <button type="button" id="chain-copy">Copy selected entry JSON</button>
         </div>
       </article>
@@ -183,7 +183,7 @@
     <div class="chain-mutation__lab" id="mutation-lab" data-state="idle">
       <div><span>Published date</span><code id="mutation-original-date">2026-09-05</code></div>
       <div><span>Local test date</span><code id="mutation-test-date">Awaiting experiment</code></div>
-      <div><span>Published hash</span><code id="mutation-original-hash">8279167ebbf5b4fbf5d5954e42110c878ed0f319400d8e2b0a466453e57a0069</code></div>
+      <div><span>Published hash</span><code id="mutation-original-hash">0058e743d33938822202c0c115c491b2fb0a9c2ac32095c5d840a76ab530a854</code></div>
       <div><span>Recomputed test hash</span><code id="mutation-test-hash">Awaiting experiment</code></div>
       <p id="mutation-result">No mutation has been run.</p>
     </div>
@@ -202,7 +202,7 @@
   <section class="chain-source" aria-labelledby="source-title">
     <header class="chain-section-head"><div><p class="chain-label">Source ledger</p><h2 id="source-title">Reproduce the claim outside this interface.</h2></div></header>
     <div class="chain-source__grid">
-      <a href="/glassbox/transparency_log.json"><span>Signed record</span><strong>transparency_log.json</strong><code>sha256:27aa669952b9ce61599d0b7bd6151062eee0ab0920f02ce4de453cf6e8a98202</code></a>
+      <a href="/glassbox/transparency_log.json"><span>Signed record</span><strong>transparency_log.json</strong><code>sha256:f1a6da1c169cec85cf5ee18161ff956788a6ea75789d1377d64755496ef8f7a1</code></a>
       <a href="/glassbox/ots/anchors.json"><span>Checkpoint manifest</span><strong>ots/anchors.json</strong><code>sha256:26306c1f0efa0125aefe977cf9828dd65bb501515a8a775d07f01f2600e22098</code></a>
       <a href="/glassbox/verify_transparency.py"><span>Canonical payload verifier</span><strong>verify_transparency.py</strong><code>sha256:9aad126824fdde82f39c35a4cb726f51d32aff59c5a0ba03b91b6d17dd4b7ebb</code></a>
       <a href="/verify"><span>Complete verification route</span><strong>Commands and claim boundaries</strong><code>canlicapital.com/verify</code></a>
@@ -264,7 +264,7 @@
     <span>Copyright Arhan Canli</span>
   </div>
 </footer>
-<script id="evidence-chain-config" type="application/json">{"schema":"canli.evidence-chain-explorer-config.v1","source_urls":{"log":"/glassbox/transparency_log.json","anchors":"/glassbox/ots/anchors.json","verifier":"/glassbox/verify_transparency.py"},"source_hashes":{"log":"sha256:27aa669952b9ce61599d0b7bd6151062eee0ab0920f02ce4de453cf6e8a98202","anchors":"sha256:26306c1f0efa0125aefe977cf9828dd65bb501515a8a775d07f01f2600e22098","verifier":"sha256:9aad126824fdde82f39c35a4cb726f51d32aff59c5a0ba03b91b6d17dd4b7ebb"},"facts":{"entries":740,"first_date":"2026-06-27","last_date":"2026-09-05","head_seq":739,"head_chain_hash":"8279167ebbf5b4fbf5d5954e42110c878ed0f319400d8e2b0a466453e57a0069","distinct_days":63,"first_disclosed_seq":436,"disclosed_entries":304,"opaque_historical_entries":436,"anchors":62,"bitcoin_confirmed_anchors":61,"calendar_pending_anchors":1}}</script>
+<script id="evidence-chain-config" type="application/json">{"schema":"canli.evidence-chain-explorer-config.v1","source_urls":{"log":"/glassbox/transparency_log.json","anchors":"/glassbox/ots/anchors.json","verifier":"/glassbox/verify_transparency.py"},"source_hashes":{"log":"sha256:f1a6da1c169cec85cf5ee18161ff956788a6ea75789d1377d64755496ef8f7a1","anchors":"sha256:26306c1f0efa0125aefe977cf9828dd65bb501515a8a775d07f01f2600e22098","verifier":"sha256:9aad126824fdde82f39c35a4cb726f51d32aff59c5a0ba03b91b6d17dd4b7ebb"},"facts":{"entries":741,"first_date":"2026-06-27","last_date":"2026-09-05","head_seq":740,"head_chain_hash":"0058e743d33938822202c0c115c491b2fb0a9c2ac32095c5d840a76ab530a854","distinct_days":63,"first_disclosed_seq":436,"disclosed_entries":305,"opaque_historical_entries":436,"anchors":62,"bitcoin_confirmed_anchors":61,"calendar_pending_anchors":1}}</script>
 <script type="module" src="/js/evidence-chain-tool.js"></script>
 </body>
 </html>

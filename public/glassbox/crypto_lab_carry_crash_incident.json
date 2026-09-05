@@ -1,7 +1,7 @@
 {
   "author": "Arhan Canli",
   "claim_boundary": "Forensic description of one paper-traded LABUSDT episode. It spends zero return hypotheses, does not estimate Sharpe or expected performance, does not authorize a strategy change, and does not rewrite the published equity record.",
-  "content_hash": "sha256:4d4b61504e8616e777a23a1f4cdfeb7ca5287d6c1a4ce75e767d18e7eb628f48",
+  "content_hash": "sha256:a79b93210091aba2a2d3903e82220cbf2efb355fdcf9caed60a5e8a255c8ca73",
   "decision": "PRESERVE_LOSS_NO_PRICE_JUMP_GUARD_NO_WEIGHT_CHANGE",
   "execution_sequence": {
     "long_close": {
@@ -79,11 +79,11 @@
   "source_bindings": {
     "paper_execution_database": {
       "path": "var/trading_crypto_perp.sqlite",
-      "sha256": "2b8faffa5453f211aeeb13aa9aa6e452cb5dec97ca330bd57146faae9cf4275b"
+      "sha256": "0bb2f6e5f5aa9b440a3ee35efdaeea918163a1cac8676a8e30c0c08432fb558e"
     },
     "point_in_time_funding": {
       "path": "data/lake/funding/instrument_id=BINANCE:PERP:LABUSDT/year=2026/data.parquet",
-      "sha256": "3bc0f4a78309e89be21052d717c6e6068121181fa096469a328a74e92b54b634"
+      "sha256": "29d64513a4d52729d92345d8af4244bdd2ee7b3fdbc44c9f7a3cd2e88acbe70d"
     }
   },
   "verdict": "GENUINE_MARKET_CRASH_NOT_CONTRACT_IDENTITY_DEFECT"

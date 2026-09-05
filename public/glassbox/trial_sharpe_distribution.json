@@ -1,6 +1,7 @@
 {
   "schema": "canli.trial-sharpe-distribution.v1",
-  "claim_boundary": "These are first measurements of recorded trial identities, not returns, not a portfolio, and not evidence that any of them work. A Sharpe ratio computed once over a historical sample is the number a trial STARTED with; the deflation for how many trials were run is applied elsewhere and is not reflected here.",
+  "claim_boundary": "These are first measurements of recorded trial identities, not returns, not a portfolio, and not evidence that any of them work. A Sharpe ratio computed once over a historical sample is the number a trial STARTED with; the deflation for how many trials were run is applied elsewhere and is not reflected here. A measurement later found to have been produced by a defect is marked `superseded` in place rather than removed: the corrected figure and the artifact recording it travel with the entry.",
+  "trials_superseded": 1,
   "trials_total": 228,
   "trials_measured": 224,
   "trials_unmeasured": 4,
@@ -1427,6 +1428,14 @@
       "research_family_key": "macro_economic_trend",
       "observations": 5977,
       "annualized_sharpe": 0.3403,
+      "superseded": {
+        "status": "SUPERSEDED",
+        "verdict": "KILLED",
+        "statement": "This first measurement is SUPERSEDED and the figure was WITHDRAWN. A corrected re-run of AlphaVintage (cpi_surprise_size) recorded a verdict of KILLED; the correction was: zero-exposure sessions retained between first and last activity. It is retained here because a trial ledger that deletes its own mistakes is not a ledger.",
+        "corrected_net_sharpe": 0.2298358829229609,
+        "correction_source": "/glassbox/alphavintage_corrected_result.json",
+        "why": "Deployed 2026-08-10 at a quarter of the book on a verdict of ADD. A 2026-08-16 re-run with a calendar correction that retains zero-exposure sessions flipped the pre-registered Newey-West check to FALSE and recorded a verdict of KILLED. The published figures did not move for three days, because they were hard-coded in the publisher rather than read from the artifact."
+      },
       "rank_ascending": 176,
       "percentile": 78.6
     },

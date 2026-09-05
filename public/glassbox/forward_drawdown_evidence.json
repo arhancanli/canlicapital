@@ -2,7 +2,7 @@
   "author": "Arhan Canli",
   "capital_kind": "PAPER_ONLY",
   "claim_boundary": "The sealed study cell is a 96-path, two-year, fourteen-sleeve, daily simulation at a 10% book-level volatility target. It is not an estimate of today's four-sleeve, mixed-timebase, fixed-weight live paper composite, which applies no second book-level volatility target or drawdown ladder after constituent sizing. The 10.25% study expectation and 18.76% study p95 remain published. A separate zero-drift current-composition study maps the exact fixed weights and overlay at 9.32% conservative expected and 16.45% p95 maximum drawdown. That stronger model still does not establish live expected or tail maximum drawdown because its common history begins after COVID and 2022 and it does not replay constituent instrument, execution-gap or ladder state.",
-  "content_hash": "sha256:2e84882b9f50b8e01a764e7da003bcda8605e7db29eee5934fadb458849caf8d",
+  "content_hash": "sha256:ae7c9e96e35afd241cf16e998220553f072e0db90af9e1e111272a9c7e9fc71c",
   "current_book_study": {
     "calibration": {
       "calendar_days": 1061,
@@ -15,13 +15,13 @@
       ],
       "end": "2026-06-01",
       "exact_component_reconstruction_max_abs_error": 0.0,
-      "observed_book_annualized_volatility": 0.05213553896663004,
-      "observed_book_max_drawdown": 0.04508709595474347,
-      "observed_book_sharpe_simulation_not_forward_evidence": 1.7846280941921533,
+      "observed_book_annualized_volatility": 0.05213553880476738,
+      "observed_book_max_drawdown": 0.04508709586830517,
+      "observed_book_sharpe_simulation_not_forward_evidence": 1.7846281669176056,
       "sample_mean_removed_before_modeling": true,
       "start": "2023-07-07"
     },
-    "content_hash": "sha256:857eec95f1c446323c377d1d3fe202dbdf6cc53621661287991edf50ad4419c5",
+    "content_hash": "sha256:f89282b8754ad257a5bce3d603ab5b7e940abe67f0cb9f0dc8f6d57ba89b0e71",
     "design": {
       "bootstrap_primary_block_days": 63,
       "bootstrap_seed": 20260823,
@@ -49,8 +49,8 @@
   },
   "integrity_passes": true,
   "objective": {
-    "current_composition_conservative_expected_max_drawdown": 0.09318244776686595,
-    "current_composition_conservative_p95_max_drawdown": 0.16451440138155957,
+    "current_composition_conservative_expected_max_drawdown": 0.09318244707449024,
+    "current_composition_conservative_p95_max_drawdown": 0.16451439272324467,
     "current_composition_expected_within_objective": true,
     "current_composition_p95_within_objective": false,
     "expected_max_drawdown_target": 0.11,
@@ -114,7 +114,7 @@
     },
     "current_book_drawdown_model": {
       "path": "artifacts/analysis/current_book_drawdown/result.json",
-      "sha256": "cd267c8fed66ddc4cf9f87c21daaa15a60525c4f5b684e1621d655562366d2cd"
+      "sha256": "44d8fb315eeb21f033b4070c19d17faea9dd0e4e52a8b9b9036a7d7818313e3d"
     },
     "drawdown_model": {
       "path": "artifacts/analysis/drawdown_live_estimator/result.json",
@@ -126,11 +126,11 @@
     },
     "live_change_contract": {
       "path": "config/live_change_contract.json",
-      "sha256": "a28ea309bf15253229f9cfa11da4c786323076d1aef6c83ffda5d7615338793d"
+      "sha256": "5b7fa2e700cf29d3e4ef38eff2d745fe0dcec234133da899fd291e8b92c709fe"
     },
     "strategy": {
       "path": "src/alphaforge/portfolio/strategy.py",
-      "sha256": "e2e247cf5d32fa707f813b11ff8afe32cd01b3d46a831d25f030810a4f3bc1f4"
+      "sha256": "e1308c8bf6560a759983d1bd2fbef505050340ccce4ef42499d6943c559d5263"
     }
   },
   "status": "CURRENT_COMPOSITION_EXPECTED_WITHIN_OBJECTIVE_LIVE_NOT_ESTABLISHED",

@@ -1,7 +1,7 @@
 {
   "schema": "canli.api.v1",
   "endpoint": "/api/v1/chain/head",
-  "generated_at": "2026-08-28T10:29:50Z",
+  "generated_at": "2026-09-05T19:19:33Z",
   "claim_class": "CRYPTOGRAPHIC_RECORD",
   "capital_kind": "PAPER_ONLY",
   "canonical_human_page": "https://canlicapital.com/verify",
@@ -12,23 +12,23 @@
   "sources": [
     {
       "path": "public/glassbox/transparency_log.json",
-      "sha256": "sha256:46213e27f5be96e722e2f6b3407ffbc006b2bf347fd98e79e230c4afc84d185c",
+      "sha256": "sha256:f1a6da1c169cec85cf5ee18161ff956788a6ea75789d1377d64755496ef8f7a1",
       "url": "https://canlicapital.com/glassbox/transparency_log.json"
     }
   ],
   "data": {
-    "entries": 552,
-    "distinct_days": 55,
+    "entries": 741,
+    "distinct_days": 63,
     "first_date": "2026-06-27",
-    "last_date": "2026-08-28",
+    "last_date": "2026-09-05",
     "head": {
-      "seq": 551,
-      "date": "2026-08-28",
-      "generated_at": "2026-08-28T10:26:25.199656+00:00",
-      "payload_sha256": "885e010828a485a7004e669dae6fac1c785ce83cff85af3ac50d3189b7120b7c",
-      "prev_chain_hash": "34e12fa95be907b42805c8412e87b8ede513c8952d6f881c3d3ec830abc78e4d",
-      "chain_hash": "7cf92bdff2a00c985dc6151ca193cc6b3ae8e0cbb6f2d43466081a047b32b822",
-      "signature": "a3e2c2585c79068a75cd28377689580060d882b3a024ead0dda912b2b73e560d099720c19fb26d8e649a8784bcf429526f7a9e28ec49cceabb8b77832a4ec906",
+      "seq": 740,
+      "date": "2026-09-05",
+      "generated_at": "2026-09-05T18:26:28.675814+00:00",
+      "payload_sha256": "99540e831e4b51235fc63b28cf317674526c4940654508c1886273c9f822354e",
+      "prev_chain_hash": "8279167ebbf5b4fbf5d5954e42110c878ed0f319400d8e2b0a466453e57a0069",
+      "chain_hash": "0058e743d33938822202c0c115c491b2fb0a9c2ac32095c5d840a76ab530a854",
+      "signature": "65bc3ef8269e3f769268cce87b47d6ac5f05f5b80b2eb90b0ebb5772bdc6a46485c573a28d4ba34dc6d1888b24103a10e306fbbac6c5bffc68c53630e4562f09",
       "payload_schema": "canli.alphac-track-record-daily-digest.v1",
       "payload": {
         "go_live_date": "2026-08-07",
@@ -163,7 +163,39 @@
               },
               {
                 "date": "2026-08-28",
-                "equity": 97646.55
+                "equity": 97640.98
+              },
+              {
+                "date": "2026-08-29",
+                "equity": 97123.75
+              },
+              {
+                "date": "2026-08-30",
+                "equity": 97201.14
+              },
+              {
+                "date": "2026-08-31",
+                "equity": 97203.63
+              },
+              {
+                "date": "2026-09-01",
+                "equity": 97546.62
+              },
+              {
+                "date": "2026-09-02",
+                "equity": 97864.88
+              },
+              {
+                "date": "2026-09-03",
+                "equity": 97476.64
+              },
+              {
+                "date": "2026-09-04",
+                "equity": 97104.54
+              },
+              {
+                "date": "2026-09-05",
+                "equity": 97357.48
               }
             ]
           },
@@ -234,7 +266,31 @@
               },
               {
                 "date": "2026-08-28",
-                "equity": 98931.51
+                "equity": 99070.15
+              },
+              {
+                "date": "2026-08-29",
+                "equity": 98253.1
+              },
+              {
+                "date": "2026-09-01",
+                "equity": 98110.21
+              },
+              {
+                "date": "2026-09-02",
+                "equity": 98009.51
+              },
+              {
+                "date": "2026-09-03",
+                "equity": 98010.76
+              },
+              {
+                "date": "2026-09-04",
+                "equity": 97939.22
+              },
+              {
+                "date": "2026-09-05",
+                "equity": 98552.44
               }
             ]
           },
@@ -305,7 +361,31 @@
               },
               {
                 "date": "2026-08-28",
-                "equity": 100093.94
+                "equity": 100056.13
+              },
+              {
+                "date": "2026-08-29",
+                "equity": 100235.09
+              },
+              {
+                "date": "2026-09-01",
+                "equity": 100309.13
+              },
+              {
+                "date": "2026-09-02",
+                "equity": 100562.36
+              },
+              {
+                "date": "2026-09-03",
+                "equity": 100471.04
+              },
+              {
+                "date": "2026-09-04",
+                "equity": 100469.2
+              },
+              {
+                "date": "2026-09-05",
+                "equity": 100519.22
               }
             ]
           },
@@ -368,7 +448,31 @@
               },
               {
                 "date": "2026-08-28",
-                "equity": 100120.99
+                "equity": 100096.61
+              },
+              {
+                "date": "2026-08-29",
+                "equity": 99531.69
+              },
+              {
+                "date": "2026-09-01",
+                "equity": 99481.99
+              },
+              {
+                "date": "2026-09-02",
+                "equity": 99555.37
+              },
+              {
+                "date": "2026-09-03",
+                "equity": 99452.75
+              },
+              {
+                "date": "2026-09-04",
+                "equity": 99542.92
+              },
+              {
+                "date": "2026-09-05",
+                "equity": 99450.6
               }
             ]
           },
@@ -451,7 +555,39 @@
               },
               {
                 "date": "2026-08-28",
-                "equity": 91681.17
+                "equity": 91630.58
+              },
+              {
+                "date": "2026-08-29",
+                "equity": 90797.96
+              },
+              {
+                "date": "2026-08-30",
+                "equity": 91087.36
+              },
+              {
+                "date": "2026-08-31",
+                "equity": 91151.16
+              },
+              {
+                "date": "2026-09-01",
+                "equity": 92673.69
+              },
+              {
+                "date": "2026-09-02",
+                "equity": 93593.71
+              },
+              {
+                "date": "2026-09-03",
+                "equity": 92092.84
+              },
+              {
+                "date": "2026-09-04",
+                "equity": 90743.05
+              },
+              {
+                "date": "2026-09-05",
+                "equity": 91159.35
               }
             ]
           }
@@ -535,7 +671,39 @@
           },
           {
             "date": "2026-08-28",
-            "equity": 97646.55
+            "equity": 97640.98
+          },
+          {
+            "date": "2026-08-29",
+            "equity": 97123.75
+          },
+          {
+            "date": "2026-08-30",
+            "equity": 97201.14
+          },
+          {
+            "date": "2026-08-31",
+            "equity": 97203.63
+          },
+          {
+            "date": "2026-09-01",
+            "equity": 97546.62
+          },
+          {
+            "date": "2026-09-02",
+            "equity": 97864.88
+          },
+          {
+            "date": "2026-09-03",
+            "equity": 97476.64
+          },
+          {
+            "date": "2026-09-04",
+            "equity": 97104.54
+          },
+          {
+            "date": "2026-09-05",
+            "equity": 97357.48
           }
         ]
       },
