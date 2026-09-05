@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import test from "node:test";
 
-import { calculateDsr, checkGoldenVectors, normalCdf, normalPpf } from "./dsr-tool.js";
+import { calculateDsr, checkGoldenVectors, normalCdf, normalPpf } from "./dsr-core.js";
 
 
 const contract = JSON.parse(
