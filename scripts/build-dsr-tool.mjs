@@ -203,7 +203,7 @@ ${renderProductShellHeader({ active: "methodology" })}
 
   <section class="dsr-workbench" id="calculator" aria-labelledby="calculator-title">
     <header class="dsr-section-head">
-      <div><p class="dsr-label">Selection pressure chamber</p><h2 id="calculator-title">One result. The whole search behind it.</h2></div>
+      <div><p class="dsr-label">Selection pressure chamber</p><h2 id="calculator-title">How many trials did you run?</h2><p class="dsr-hero__lead">One result. The whole search behind it.</p></div>
       <div class="dsr-workbench__tools">
         <button type="button" id="dsr-reset">Restore sourced preset</button>
         <button type="button" id="dsr-copy">Copy calculation link</button>
@@ -259,7 +259,7 @@ ${renderProductShellHeader({ active: "methodology" })}
   </section>
 
   <section class="dsr-explain" aria-labelledby="explain-title">
-    <header class="dsr-section-head"><div><p class="dsr-label">Read the result</p><h2 id="explain-title">PSR asks about the sample. DSR asks about the search.</h2></div></header>
+    <header class="dsr-section-head"><div><p class="dsr-label">Read the result</p><h2 id="explain-title">What is a deflated Sharpe ratio?</h2><p class="dsr-hero__lead">PSR asks about the sample. DSR asks about the search.</p></div></header>
     <div class="dsr-explain__grid">
       <article><span>PSR</span><h3>Was the observed Sharpe above a benchmark?</h3><p>Probabilistic Sharpe Ratio adjusts for sample length, skew and non-excess kurtosis. The zero-benchmark result does not know how many alternatives were tried.</p></article>
       <article><span>SR*</span><h3>What would the best null trial look like?</h3><p>The expected maximum rises with the number of effectively independent trials and their cross-trial Sharpe dispersion.</p></article>
