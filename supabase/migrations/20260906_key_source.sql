@@ -40,6 +40,11 @@ begin
 end;
 $$;
 
+-- The previous four-parameter overload must go: with both present, a four-argument RPC call is
+-- ambiguous to PostgREST, and the old body ignores source_host. The defaulted fifth parameter
+-- keeps four-argument callers working. (Applied to production in this form, 2026-09-06.)
+drop function if exists public.issue_key(text, integer, text, text);
+
 revoke all on function public.issue_key(text, integer, text, text, text) from public, anon, authenticated;
 
 -- ---------------------------------------------------------------------------------------------
