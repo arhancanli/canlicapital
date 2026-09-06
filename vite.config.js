@@ -129,6 +129,16 @@ export default defineConfig({
     // heavy module; this raises the warn ceiling so a normal three build is not
     // flagged as a problem, without hiding genuinely large regressions.
     chunkSizeWarningLimit: 900,
+    modulePreload: {
+      // gsap and lenis are the scroll/animation stack (js/scroll.js), loaded
+      // only through js/main.js's dynamic import of scroll.js. Without this,
+      // Vite also emits an eager <link rel="modulepreload"> for them on any
+      // page whose own entry module imports gsap directly (e.g. js/open.js,
+      // for its section reveals), fetching the two heaviest chunks on the
+      // critical path before scroll.js ever asks for them.
+      resolveDependencies: (_filename, deps) =>
+        deps.filter((dep) => !/\/(gsap|lenis)-[^/]+\.js$/.test(dep)),
+    },
     rollupOptions: {
       // Multi-page app: one HTML entry per route. Keys produce stable output
       // names so cleanUrls resolves /systems -> systems.html (etc.). All four
