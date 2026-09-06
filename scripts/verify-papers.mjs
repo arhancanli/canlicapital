@@ -1169,6 +1169,44 @@ if (existsSync(pboToolFile)) {
 }
 
 // ---------------------------------------------------------------------------
+// 13c. /tools: the index of every calculator. Every calculator it names must
+//      be a real built page, and it must be reachable from /developers and
+//      the shared shell rather than only from the tool pages themselves.
+// ---------------------------------------------------------------------------
+const toolsHubFile = resolve(DIST, "tools.html");
+check(existsSync(toolsHubFile), "no /tools hub page was built");
+if (existsSync(toolsHubFile)) {
+  const toolsHubHtml = readFileSync(toolsHubFile, "utf8");
+  const toolLinks = [...toolsHubHtml.matchAll(/href="(\/tools\/[a-z-]+)"/g)].map((m) => m[1]);
+  check(
+    new Set(toolLinks).size >= 7,
+    `/tools links only ${new Set(toolLinks).size} distinct calculators, fewer than the published set`,
+  );
+  for (const href of new Set(toolLinks)) {
+    check(
+      existsSync(resolve(DIST, `${href.replace(/^\//, "")}.html`)),
+      `/tools links ${href}, which is not a built page`,
+    );
+  }
+  check(
+    toolsHubHtml.includes(`<link rel="canonical" href="${ORIGIN}/tools"`),
+    "/tools has no self-canonical",
+  );
+  check(
+    toolsHubHtml.includes('"@type":"CollectionPage"') && toolsHubHtml.includes('"@type":"ItemList"'),
+    "/tools lacks CollectionPage or ItemList structured data",
+  );
+  check(sitemap.includes(`<loc>${ORIGIN}/tools</loc>`), "/tools is not in the sitemap");
+  const developersHubHtml = readFileSync(resolve(DIST, "developers.html"), "utf8");
+  check(developersHubHtml.includes('href="/tools"'), "/developers has no link to the /tools hub");
+  const shellHtml = readFileSync(resolve(DIST, "index.html"), "utf8");
+  check(
+    shellHtml.includes('href="/tools"'),
+    "the shared product shell (header or footer) has no link to the /tools hub",
+  );
+}
+
+// ---------------------------------------------------------------------------
 // 14. /tools/evidence-chain: browser verification remains bound to the exact
 //     public chain, disclosure boundary, anchor manifest and honest payload
 //     rehash limitation.

@@ -41,6 +41,14 @@ const SECONDARY_LINKS = Object.freeze([
   { key: "measurements", label: "Measurements", href: "/measurements" },
 ]);
 
+//: Not a PRIMARY_LINKS entry for the same reason SOURCE_LINK is not one: the top bar
+//: names the few things a visitor chooses between, and "run a calculator" is an action
+//: available from any page rather than a destination of its own. It gets a panel
+//: category instead, one click from the same "More" menu every page already has.
+const TOOLS_LINKS = Object.freeze([
+  { key: "tools", label: "All tools", href: "/tools" },
+]);
+
 const GITHUB_MARK =
   '<svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true" focusable="false">' +
   '<path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 ' +
@@ -100,6 +108,10 @@ ${renderLinks(PRIMARY_LINKS, active, "cc-shell__link")}
         <nav aria-label="Institution routes">${renderLinks(SECONDARY_LINKS, active, "cc-shell__panel-link")}</nav>
       </div>
       <div>
+        <span class="cc-shell__panel-label">Tools</span>
+        <nav aria-label="Interactive tools">${renderLinks(TOOLS_LINKS, active, "cc-shell__panel-link")}</nav>
+      </div>
+      <div>
         <span class="cc-shell__panel-label">Reproducible code</span>
         <nav aria-label="Source code">${SOURCE_REPOS.map((r) => `<a class="cc-shell__panel-link" href="${r.href}"${r.external ? ' rel="noreferrer"' : ""}>${r.label}</a>`).join("\n")}</nav>
       </div>
@@ -141,7 +153,9 @@ export function renderProductShellFooter() {
     </nav>
     <nav aria-label="Interactive tools">
       <span>Run it yourself</span>
+      <a href="/tools">All calculators</a>
       <a href="/tools/deflated-sharpe">Deflated Sharpe calculator</a>
+      <a href="/tools/backtest-overfitting">Backtest overfitting calculator</a>
       <a href="/tools/selection-risk">Selection Risk Lab</a>
       <a href="/tools/breadth">Breadth Lab</a>
       <a href="/tools/execution">Execution Reality Lab</a>
@@ -172,3 +186,4 @@ export const PRODUCT_SHELL_PRIMARY_LINKS = PRIMARY_LINKS;
 export const PRODUCT_SHELL_SOURCE_LINK = SOURCE_LINK;
 export const PRODUCT_SHELL_SOURCE_REPOS = SOURCE_REPOS;
 export const PRODUCT_SHELL_SECONDARY_LINKS = SECONDARY_LINKS;
+export const PRODUCT_SHELL_TOOLS_LINKS = TOOLS_LINKS;

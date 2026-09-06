@@ -395,6 +395,7 @@ ${renderProductShellHeader({ active: "developers" })}
       <a class="dev-button dev-button--primary" href="/api/v1">Discovery document</a>
       <a class="dev-button" href="/api/v1/openapi">OpenAPI document</a>
       <a class="dev-button" href="/standards/paper-evidence">The record standard</a>
+      <a class="dev-button" href="/tools">Run the same arithmetic in a browser calculator</a>
     </div>
   </section>
 
