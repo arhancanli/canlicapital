@@ -89,7 +89,7 @@ naming the live page and section to capture; where no single rendered page shows
 cleanly, the raw JSON artifact is named instead, because it is itself a live, public URL.
 
 **1/10** (214 chars)
-> My quant fund's homepage has a page that only lists the strategies I killed. 9 died on the full backtest, 37 more died earlier and cheaper, 3 survived. That page exists so nobody has to take the survivors on faith.
+> My paper-traded quant book has a page that only lists the strategies I killed. 9 died on the full backtest, 37 more died earlier and cheaper, 3 survived. That page exists so nobody has to take the survivors on faith.
 
 Screenshot: `canlicapital.com` (homepage) hero HUD strip, the four-stat row reading "Trial
 identities / Killed or screened / Active sleeves / Signed entries" (`index.html`, elements
