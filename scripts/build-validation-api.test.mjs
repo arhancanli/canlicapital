@@ -84,12 +84,26 @@ test("every POST route's request schema has properties, and its example round-tr
     const body = openapi.paths[m.path]?.post?.requestBody;
     assert.ok(body, `${m.path} has no requestBody`);
     const media = body.content["application/json"];
-    assert.ok(media.schema.properties && Object.keys(media.schema.properties).length > 0, `${m.path} schema has no properties`);
-    assert.ok(Array.isArray(media.schema.required), `${m.path} schema has no required array`);
-    assert.deepEqual(media.example, m.requestExample, `${m.path} example is missing or has drifted from the manifest`);
     const loadValidator = BODY_VALIDATORS[m.path];
     assert.ok(loadValidator, `${m.path} has no registered body validator for this test`);
     const validate = await loadValidator();
+    // A route can declare `modes`: a discriminated union of input shapes, documented as a oneOf
+    // with one schema and one example PER MODE rather than a single flat object. Every mode gets
+    // the same checks a single-shape route gets, individually.
+    if (Array.isArray(m.modes) && m.modes.length) {
+      assert.ok(Array.isArray(media.schema.oneOf) && media.schema.oneOf.length === m.modes.length, `${m.path} schema oneOf does not match its declared modes`);
+      for (const [i, modeSchema] of media.schema.oneOf.entries()) {
+        const mode = m.modes[i];
+        assert.ok(modeSchema.properties && Object.keys(modeSchema.properties).length > 0, `${m.path} mode ${mode.name} schema has no properties`);
+        assert.ok(Array.isArray(modeSchema.required) && modeSchema.required.length > 0, `${m.path} mode ${mode.name} schema has no required array`);
+        assert.deepEqual(media.examples?.[mode.name]?.value, mode.example, `${m.path} mode ${mode.name} example is missing or has drifted from the manifest`);
+        assert.doesNotThrow(() => validate(mode.example), `${m.path} mode ${mode.name}: its own documented example does not pass its own validator`);
+      }
+      continue;
+    }
+    assert.ok(media.schema.properties && Object.keys(media.schema.properties).length > 0, `${m.path} schema has no properties`);
+    assert.ok(Array.isArray(media.schema.required), `${m.path} schema has no required array`);
+    assert.deepEqual(media.example, m.requestExample, `${m.path} example is missing or has drifted from the manifest`);
     assert.doesNotThrow(() => validate(m.requestExample), `${m.path}: its own documented example does not pass its own validator`);
   }
 });

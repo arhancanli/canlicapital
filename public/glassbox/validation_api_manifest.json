@@ -34,31 +34,55 @@
         "effective_independent_trials": 30,
         "cross_trial_sharpe_sd_annualized": 0.5
       },
-      "requestOptional": [
-        "returns",
-        "periods_per_year",
-        "effective_independent_trials",
-        "cross_trial_sharpe_sd_annualized"
-      ],
-      "requestExtraProperties": {
-        "observed_sharpe_annualized": {
-          "type": "number",
-          "description": "Contract-input mode only."
+      "modes": [
+        {
+          "name": "contract_inputs",
+          "label": "Mode 1: the seven contract inputs",
+          "required": [
+            "observed_sharpe_annualized",
+            "observations",
+            "periods_per_year",
+            "skew",
+            "non_excess_kurtosis",
+            "effective_independent_trials",
+            "cross_trial_sharpe_sd_annualized"
+          ],
+          "example": {
+            "observed_sharpe_annualized": 1.5,
+            "observations": 730,
+            "periods_per_year": 365,
+            "skew": -0.5,
+            "non_excess_kurtosis": 5,
+            "effective_independent_trials": 229,
+            "cross_trial_sharpe_sd_annualized": 0.57
+          }
         },
-        "observations": {
-          "type": "number",
-          "description": "Contract-input mode only."
-        },
-        "skew": {
-          "type": "number",
-          "description": "Contract-input mode only."
-        },
-        "non_excess_kurtosis": {
-          "type": "number",
-          "description": "Contract-input mode only."
+        {
+          "name": "return_series",
+          "label": "Mode 2: a return series plus the trials behind it",
+          "required": [
+            "returns",
+            "periods_per_year",
+            "effective_independent_trials",
+            "cross_trial_sharpe_sd_annualized"
+          ],
+          "example": {
+            "returns": [
+              0.004,
+              -0.002,
+              0.007,
+              0.001,
+              -0.003,
+              0.005,
+              0.002,
+              -0.001
+            ],
+            "periods_per_year": 252,
+            "effective_independent_trials": 30,
+            "cross_trial_sharpe_sd_annualized": 0.5
+          }
         }
-      },
-      "requestDescription": "Send either a return series (returns, periods_per_year, effective_independent_trials, cross_trial_sharpe_sd_annualized) or all seven contract fields (observed_sharpe_annualized, observations, periods_per_year, skew, non_excess_kurtosis, effective_independent_trials, cross_trial_sharpe_sd_annualized), never both."
+      ]
     },
     {
       "path": "/api/v1/validate/overfitting",

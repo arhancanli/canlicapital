@@ -349,57 +349,105 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
-                "properties": {
-                  "returns": {
-                    "type": "array",
-                    "items": {
-                      "type": "number"
-                    }
+                "oneOf": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "observed_sharpe_annualized": {
+                        "type": "number"
+                      },
+                      "observations": {
+                        "type": "number"
+                      },
+                      "periods_per_year": {
+                        "type": "number"
+                      },
+                      "skew": {
+                        "type": "number"
+                      },
+                      "non_excess_kurtosis": {
+                        "type": "number"
+                      },
+                      "effective_independent_trials": {
+                        "type": "number"
+                      },
+                      "cross_trial_sharpe_sd_annualized": {
+                        "type": "number"
+                      }
+                    },
+                    "required": [
+                      "observed_sharpe_annualized",
+                      "observations",
+                      "periods_per_year",
+                      "skew",
+                      "non_excess_kurtosis",
+                      "effective_independent_trials",
+                      "cross_trial_sharpe_sd_annualized"
+                    ],
+                    "title": "contract_inputs",
+                    "description": "Mode 1: the seven contract inputs"
                   },
-                  "periods_per_year": {
-                    "type": "number"
-                  },
-                  "effective_independent_trials": {
-                    "type": "number"
-                  },
-                  "cross_trial_sharpe_sd_annualized": {
-                    "type": "number"
-                  },
-                  "observed_sharpe_annualized": {
-                    "type": "number",
-                    "description": "Contract-input mode only."
-                  },
-                  "observations": {
-                    "type": "number",
-                    "description": "Contract-input mode only."
-                  },
-                  "skew": {
-                    "type": "number",
-                    "description": "Contract-input mode only."
-                  },
-                  "non_excess_kurtosis": {
-                    "type": "number",
-                    "description": "Contract-input mode only."
+                  {
+                    "type": "object",
+                    "properties": {
+                      "returns": {
+                        "type": "array",
+                        "items": {
+                          "type": "number"
+                        }
+                      },
+                      "periods_per_year": {
+                        "type": "number"
+                      },
+                      "effective_independent_trials": {
+                        "type": "number"
+                      },
+                      "cross_trial_sharpe_sd_annualized": {
+                        "type": "number"
+                      }
+                    },
+                    "required": [
+                      "returns",
+                      "periods_per_year",
+                      "effective_independent_trials",
+                      "cross_trial_sharpe_sd_annualized"
+                    ],
+                    "title": "return_series",
+                    "description": "Mode 2: a return series plus the trials behind it"
+                  }
+                ]
+              },
+              "examples": {
+                "contract_inputs": {
+                  "summary": "Mode 1: the seven contract inputs",
+                  "value": {
+                    "observed_sharpe_annualized": 1.5,
+                    "observations": 730,
+                    "periods_per_year": 365,
+                    "skew": -0.5,
+                    "non_excess_kurtosis": 5,
+                    "effective_independent_trials": 229,
+                    "cross_trial_sharpe_sd_annualized": 0.57
                   }
                 },
-                "required": [],
-                "description": "Send either a return series (returns, periods_per_year, effective_independent_trials, cross_trial_sharpe_sd_annualized) or all seven contract fields (observed_sharpe_annualized, observations, periods_per_year, skew, non_excess_kurtosis, effective_independent_trials, cross_trial_sharpe_sd_annualized), never both."
-              },
-              "example": {
-                "returns": [
-                  0.004,
-                  -0.002,
-                  0.007,
-                  0.001,
-                  -0.003,
-                  0.005,
-                  0.002,
-                  -0.001
-                ],
-                "periods_per_year": 252,
-                "effective_independent_trials": 30,
-                "cross_trial_sharpe_sd_annualized": 0.5
+                "return_series": {
+                  "summary": "Mode 2: a return series plus the trials behind it",
+                  "value": {
+                    "returns": [
+                      0.004,
+                      -0.002,
+                      0.007,
+                      0.001,
+                      -0.003,
+                      0.005,
+                      0.002,
+                      -0.001
+                    ],
+                    "periods_per_year": 252,
+                    "effective_independent_trials": 30,
+                    "cross_trial_sharpe_sd_annualized": 0.5
+                  }
+                }
               }
             }
           }
@@ -791,11 +839,40 @@
         "operationId": "validate_status",
         "responses": {
           "200": {
-            "description": "The envelope with data",
+            "description": "Service, store and usage status.",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Envelope"
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/Envelope"
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "data": {
+                          "type": "object",
+                          "properties": {
+                            "service": {
+                              "type": "string"
+                            },
+                            "store_reachable": {
+                              "type": "boolean"
+                            },
+                            "quotas": {
+                              "type": "object"
+                            },
+                            "usage": {
+                              "$ref": "#/components/schemas/UsageSummary"
+                            },
+                            "usage_available": {
+                              "type": "boolean"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
                 }
               }
             }
@@ -812,6 +889,16 @@
           },
           "405": {
             "description": "Wrong method",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Envelope"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "The store is unreachable; usage is still reported, as null",
             "content": {
               "application/json": {
                 "schema": {
@@ -948,6 +1035,42 @@
             "type": "object"
           }
         }
+      },
+      "UsageSummary": {
+        "type": "object",
+        "nullable": true,
+        "oneOf": [
+          {
+            "type": "null"
+          },
+          {
+            "type": "object",
+            "required": [
+              "validations_today",
+              "validations_total",
+              "keys_issued_today",
+              "as_of_utc_day"
+            ],
+            "properties": {
+              "validations_today": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "validations_total": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "keys_issued_today": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "as_of_utc_day": {
+                "type": "string",
+                "format": "date"
+              }
+            }
+          }
+        ]
       }
     }
   }
