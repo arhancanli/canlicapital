@@ -28,7 +28,9 @@
 // emphasis (`**...**`) some entries carry. The one exception is the leading
 // "PREFIX YYYY-MM-DD (optional scope)" fragment, which is wrapped in a <time>
 // element (and a scope span) for structure; the characters inside it are
-// untouched.
+// untouched. Each entry is marked data-verbatim-source="paper-state.json" so the writing audit
+// can check that claim against the artifact and exclude the quoted text from its em dash count
+// (scripts/lib/verbatim-quotes.mjs); prose this site writes gets no such exclusion.
 // =============================================================================
 
 import { existsSync, readFileSync, writeFileSync } from "node:fs";
@@ -97,7 +99,7 @@ function renderItem({ text, date, headLength }) {
   const rest = text.slice(headLength);
   return (
     `      <li class="corrections-item">\n` +
-    `        <p class="corrections-item__text body-l"><time class="corrections-item__date mono-label" datetime="${date}">${escapeHtml(head)}</time>${escapeHtml(rest)}</p>\n` +
+    `        <p class="corrections-item__text body-l" data-verbatim-source="paper-state.json"><time class="corrections-item__date mono-label" datetime="${date}">${escapeHtml(head)}</time>${escapeHtml(rest)}</p>\n` +
     `      </li>`
   );
 }

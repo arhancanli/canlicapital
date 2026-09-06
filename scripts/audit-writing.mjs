@@ -1,6 +1,7 @@
 import { readFileSync, readdirSync, statSync } from "node:fs";
 import { dirname, extname, join, relative, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
+import { artifactStrings, stripVerifiedVerbatim } from "./lib/verbatim-quotes.mjs";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const BASELINE_PATH = resolve(ROOT, "contracts/writing-ratchet.json");
@@ -30,7 +31,8 @@ function walk(dir, accept, skip = new Set()) {
 const htmlFiles = walk(
   ROOT,
   (file) => extname(file) === ".html",
-  new Set(["node_modules", "dist", ".git", ".bak", "public"]),
+  // .claude holds agent worktrees (whole checkouts at an older commit), never site pages.
+  new Set(["node_modules", "dist", ".git", ".bak", "public", ".claude", ".firecrawl", "test-results"]),
 );
 const publicationFiles = walk(
   resolve(ROOT, "public/publication"),
@@ -56,8 +58,28 @@ const counts = {
   "generators.scripts": 0,
 };
 
+// Quoted artifact text (data-verbatim-source, see scripts/lib/verbatim-quotes.mjs) is excluded
+// from an HTML scope's count only after the audit has checked it really is verbatim in the named
+// artifact under public/. A marked element that is not verbatim fails the audit outright.
+const artifactCache = new Map();
+function loadArtifact(name) {
+  if (!artifactCache.has(name)) {
+    const path = resolve(ROOT, "public", name);
+    let strings = null;
+    try {
+      strings = artifactStrings(JSON.parse(readFileSync(path, "utf8")));
+    } catch {
+      strings = null;
+    }
+    artifactCache.set(name, strings);
+  }
+  return artifactCache.get(name);
+}
+const verbatimFailures = [];
 for (const file of [...htmlFiles, ...publicationFiles]) {
-  counts[htmlScope(file)] += countForms(readFileSync(file, "utf8"));
+  const { kept, failures: notVerbatim } = stripVerifiedVerbatim(readFileSync(file, "utf8"), loadArtifact);
+  for (const failure of notVerbatim) verbatimFailures.push(`${relative(ROOT, file)}: ${failure}`);
+  counts[htmlScope(file)] += countForms(kept);
 }
 for (const file of walk(resolve(ROOT, "js"), (candidate) => extname(candidate) === ".js")) {
   counts["runtime.js"] += countForms(readFileSync(file, "utf8"));
@@ -70,7 +92,7 @@ for (const file of walk(resolve(ROOT, "scripts"), (candidate) => extname(candida
 }
 
 const limits = baseline.maximum_em_dash_forms || {};
-const failures = [];
+const failures = [...verbatimFailures];
 for (const [scope, count] of Object.entries(counts)) {
   const limit = limits[scope];
   if (!Number.isInteger(limit) || limit < 0) {
