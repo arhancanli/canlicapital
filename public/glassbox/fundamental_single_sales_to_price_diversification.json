@@ -1,0 +1,67 @@
+{
+  "alignment": {
+    "candidate_days_after_common_end": 0,
+    "candidate_days_before_common_start": 4656,
+    "common_days": 728,
+    "common_end": "2026-06-01",
+    "common_start": "2023-07-07",
+    "internal_missing_by_series": {},
+    "stress_rule": "bottom decile of pre-existing equal-weight ALPHAC book returns",
+    "stress_threshold": -0.003053163370689638
+  },
+  "content_hash": "sha256:a19dd85dae442ed364571170a5f6543aa7aecdda2658556f4173042d435e1351",
+  "family_trial_account": "equity_fundamental_quality",
+  "report": {
+    "average_pairwise_correlation": -0.1280048722310632,
+    "average_pairwise_correlation_upper_95": -0.09258402287274262,
+    "book_expected_shortfall_delta": 0.0006741919032243089,
+    "book_max_drawdown_delta": 0.004293390198498392,
+    "book_sharpe_delta": -0.029669458994084685,
+    "bootstrap_block_size": 21,
+    "bootstrap_samples": 2000,
+    "bootstrap_seed": 20260816,
+    "candidate_mean_on_book_es_days": 0.001238680342510668,
+    "candidate_weight": 0.1,
+    "leave_one_period_out_book_sharpe_deltas": {
+      "2023": -0.03855195349336116,
+      "2024": -0.015932755164983936,
+      "2025": -0.01879182075889574,
+      "2026": -0.04273599680012352
+    },
+    "max_pairwise_correlation": -0.027645163764929506,
+    "max_pairwise_correlation_upper_95": 0.0301782051258971,
+    "max_stressed_pairwise_correlation": 0.1959158966284095,
+    "max_stressed_pairwise_correlation_upper_95": 0.38149812361774754,
+    "minimum_leave_one_period_out_book_sharpe_delta": -0.04273599680012352,
+    "observations": 728,
+    "pairwise_correlation_upper_95": {
+      "AlphaForge": 0.010668549513929771,
+      "AlphaMax": -0.27458757542994966,
+      "AlphaTrend": -0.0030575578313331506,
+      "AlphaVintage": 0.0301782051258971
+    },
+    "pairwise_correlations": {
+      "AlphaForge": -0.05064721190003954,
+      "AlphaMax": -0.35674683838216426,
+      "AlphaTrend": -0.07698027487711942,
+      "AlphaVintage": -0.027645163764929506
+    },
+    "return_data_opened": true,
+    "stressed_joint_loss_rate": 0.1643835616438356,
+    "stressed_observations": 73,
+    "stressed_pairwise_correlation_upper_95": {
+      "AlphaForge": 0.38149812361774754,
+      "AlphaMax": 0.044271157040109414,
+      "AlphaTrend": 0.06434708288013331,
+      "AlphaVintage": 0.12666049483823597
+    },
+    "stressed_pairwise_correlations": {
+      "AlphaForge": 0.1959158966284095,
+      "AlphaMax": -0.22493855396371126,
+      "AlphaTrend": -0.02677822054895813,
+      "AlphaVintage": -0.07591063255061442
+    }
+  },
+  "return_identity_id": "2d966892fb5db520",
+  "schema": "canli.alphac-canonical-diversification.v1"
+}

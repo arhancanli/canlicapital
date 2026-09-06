@@ -1,0 +1,130 @@
+{
+  "schema": "canli.alphac-active-ownership-human-gate-audit.v1",
+  "generated_at": "2026-08-26T03:25:48.497500+00:00",
+  "author": "Arhan Canli",
+  "stage": "PROSPECTIVE_PRE_LABEL_PRE_RETURN_GATE_AUDIT",
+  "governance": {
+    "labels_opened": false,
+    "return_data_opened": false,
+    "return_hypotheses_spent": 0,
+    "existing_point_thresholds_changed": false,
+    "audit_may_rescue_known_outcome": false
+  },
+  "frozen_design": {
+    "rows": 48,
+    "years": {
+      "first": 2010,
+      "last": 2025,
+      "count": 16
+    },
+    "rows_per_year": {
+      "2010": 3,
+      "2011": 3,
+      "2012": 3,
+      "2013": 3,
+      "2014": 3,
+      "2015": 3,
+      "2016": 3,
+      "2017": 3,
+      "2018": 3,
+      "2019": 3,
+      "2020": 3,
+      "2021": 3,
+      "2022": 3,
+      "2023": 3,
+      "2024": 3,
+      "2025": 3
+    },
+    "machine_predicted_positive": 8,
+    "machine_predicted_negative": 40,
+    "item4_extracted": 45,
+    "item4_unresolved": 3,
+    "ownership_sole_candidate": 14,
+    "ownership_unresolved_by_frozen_machine_rule": 34
+  },
+  "point_gate_reachability": {
+    "precision": {
+      "threshold": 0.95,
+      "minimum_true_positives": 8,
+      "maximum_false_positives": 0,
+      "interpretation": "With 8 frozen predicted positives, the point gate passes only at 8/8; one false positive fails."
+    },
+    "recall": {
+      "threshold": 0.8,
+      "human_positive_denominator_known_pre_label": false,
+      "maximum_human_positives_that_can_still_pass": 10,
+      "interpretation": "The denominator is determined only by the independent labels. With eight frozen predicted positives, eleven or more human-positive rows necessarily make the 80% point-recall gate fail."
+    },
+    "ownership_exact": {
+      "threshold": 0.9,
+      "minimum_exact_rows": 44,
+      "maximum_mismatches": 4,
+      "interpretation": "At least 44/48 exact outcomes are required; 4 mismatches are permitted."
+    },
+    "operationally_reachable": true,
+    "not_guaranteed_to_pass": true
+  },
+  "statistical_establishment_audit": {
+    "confidence_level_one_sided": 0.95,
+    "method": "exact Clopper-Pearson binomial lower bound",
+    "best_case_precision": {
+      "successes": 8,
+      "trials": 8,
+      "point_estimate": 1.0,
+      "lower_bound": 0.6876560219336321,
+      "establishes_threshold": false
+    },
+    "best_case_whole_packet_accuracy": {
+      "successes": 48,
+      "trials": 48,
+      "point_estimate": 1.0,
+      "lower_bound": 0.9394965906511057,
+      "establishes_0_95": false
+    },
+    "minimum_all_success_denominators": {
+      "precision_predicted_positives": 59,
+      "recall_human_positives": 14,
+      "ownership_rows": 29
+    },
+    "conclusion": "The 48-row packet can support a frozen feasibility point result but cannot, by itself, statistically establish 95% precision at one-sided 95% confidence. Passing point estimates must not be described as confidence-bound validation."
+  },
+  "decision": "KEEP_FROZEN_48_ROW_POINT_GATE_FOR_RETURN_FEASIBILITY_AND_REQUIRE_DISJOINT_CONFIRMATORY_ACCURACY_BEFORE_SLEEVE_ADMISSION",
+  "public_path": "/glassbox/active_ownership_human_gate_audit.json",
+  "required_interpretation": {
+    "if_point_gate_passes": "May proceed only to the already-governed return preregistration stage. Report raw confusion counts, point metrics, and exact confidence bounds.",
+    "before_sleeve_admission": "Freeze a disjoint independent confirmatory corpus sized by the relevant positive denominators and require one-sided 95% exact lower bounds to meet the declared precision, recall, and ownership thresholds.",
+    "if_point_gate_fails": "The frozen classifier is data-gated. Do not tune it on these labels or open returns for this identity."
+  },
+  "source_bindings": {
+    "generator": {
+      "path": "scripts/audit_active_ownership_human_gate.py",
+      "sha256": "4599222242309956d625f4e934bc968c42e092367dedeae1915c350bd605f0cb"
+    },
+    "protocol": {
+      "path": "docs/design/FEASIBILITY_ACTIVE_OWNERSHIP_13D_ITEM4_V3.md",
+      "sha256": "017eac943055deaff83261e6b67e853d78e687d4790a6d78c4a05ecbdef0d988"
+    },
+    "gate_audit_protocol": {
+      "path": "docs/design/ACTIVE_OWNERSHIP_HUMAN_GATE_AUDIT.md",
+      "sha256": "bb75b1ab2f47dbeb2a3f317537665399a06217a9dafd43ebb6d6f600d2cfa32e"
+    },
+    "frozen_labels": {
+      "path": "artifacts/feasibility/active_ownership_13d_item4_v3/frozen_human_labels.csv",
+      "sha256": "fefb4bdb5a1ad05e691e6a76b5dd98b08066dab88ede3054893342b93a46a137"
+    },
+    "document_audit": {
+      "path": "artifacts/feasibility/active_ownership_13d_item4_v3/document_audit.parquet",
+      "sha256": "f8b2843b194d2b5d9825963af40bdc1e5e732a9e247e957ca828a3c961fc174c"
+    },
+    "feasibility_result": {
+      "path": "artifacts/feasibility/active_ownership_13d_item4_v3/result.json",
+      "sha256": "6443ae40f358330bf9ca4512d09aebc834b962385de703483a2c2f2e795901c5"
+    },
+    "blind_packet_manifest": {
+      "path": "artifacts/labeling/active_ownership_13d_item4_v3_blind/manifest.json",
+      "sha256": "6e3e4480f7c248d6d7d42e3ab03a05e6fb20450e46313514f4e976b152bc3057"
+    }
+  },
+  "claim_boundary": "This is a prospective gate-design and reachability audit. It uses frozen machine outputs but no human outcomes, prices, returns, or portfolio results. It proves neither classifier accuracy nor investment performance.",
+  "content_hash": "sha256:668e65f17c9e83bb5118db75f3489b4ecfbf5c1bd351f41c07f529673bc88f90"
+}

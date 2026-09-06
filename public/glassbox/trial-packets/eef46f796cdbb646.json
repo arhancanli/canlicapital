@@ -1,0 +1,196 @@
+{
+  "author": "Arhan Canli",
+  "claim_boundary": "This stable packet proves the exact identity, immutable first measurement, and current evidence state. INCOMPLETE means missing sections remain missing; packet publication is not validation, admission, or a future-return claim.",
+  "complete": false,
+  "completion_assessment": {
+    "blockers": [
+      {
+        "code": "FORENSIC_ACCOUNTING_POSTDATES_ORIGINAL_MEASUREMENT",
+        "evidence": [
+          {
+            "path": "artifacts/audit/trial_debt_reconciliation.json",
+            "sha256": "2aea898ff82658f46ca08b8ee71f3198010c0f4252c7799830aeeca436ec577b"
+          },
+          {
+            "path": "artifacts/probe/alphamax_weighting/report.json",
+            "sha256": "4eb3a9dc4ad8e991679d2409c29c17925d52ddd7a97c4a36fb43e8ace2646f50"
+          }
+        ],
+        "finding": "This identity was recovered by the 2026-08-17 forensic accounting correction. The receipt charges the historical configuration but cannot retroactively prove an identity-level preregistration or original environment stamp.",
+        "required_section": "preregistration_and_hashes"
+      },
+      {
+        "code": "ORIGINAL_IDENTITY_GATE_DECISION_NOT_PRESERVED",
+        "evidence": [
+          {
+            "path": "artifacts/audit/trial_debt_reconciliation.json",
+            "sha256": "2aea898ff82658f46ca08b8ee71f3198010c0f4252c7799830aeeca436ec577b"
+          },
+          {
+            "path": "artifacts/probe/alphamax_weighting/report.json",
+            "sha256": "4eb3a9dc4ad8e991679d2409c29c17925d52ddd7a97c4a36fb43e8ace2646f50"
+          }
+        ],
+        "finding": "The source preserves a historical measurement, not a complete identity-level admission or kill packet under the current contract.",
+        "required_section": "admission_or_kill_decision"
+      },
+      {
+        "code": "FORENSIC_SOURCE_IS_SUMMARY_ONLY",
+        "evidence": [
+          {
+            "path": "artifacts/audit/trial_debt_reconciliation.json",
+            "sha256": "2aea898ff82658f46ca08b8ee71f3198010c0f4252c7799830aeeca436ec577b"
+          },
+          {
+            "path": "artifacts/probe/alphamax_weighting/report.json",
+            "sha256": "4eb3a9dc4ad8e991679d2409c29c17925d52ddd7a97c4a36fb43e8ace2646f50"
+          }
+        ],
+        "finding": "The declared evidence grade is persisted_summary_only_missing_higher_moments. The exact daily curve and complete uncertainty, stress, capacity, and diversification evidence are not preserved by this source.",
+        "required_section": "result_uncertainty_stress_capacity_and_diversification"
+      }
+    ],
+    "config_hash": "34067635abce9cf9",
+    "evidence_grade": "persisted_summary_only_missing_higher_moments",
+    "forensic_reconciliation": "artifacts/audit/trial_debt_reconciliation.json",
+    "status": "AUDITED_NOT_CURRENTLY_COMPLETABLE"
+  },
+  "config_hash": "34067635abce9cf9",
+  "configuration": {
+    "construction": {
+      "ann_basis": 365.0,
+      "beta_window": 252,
+      "borrow_ann_bps": 50.0,
+      "cost_oneway_bps": 5.999999999999999,
+      "drift_between_reforms": true,
+      "gross_leg": 0.5,
+      "no_trade_band": 0.001,
+      "reform_bars": 63,
+      "ret_clip": [
+        -0.5,
+        1.0
+      ],
+      "signal": "eq_mom_252_21",
+      "vol_window": 63,
+      "volcap_mult": 2.0,
+      "w_max": 0.15
+    },
+    "historical_accounting_correction": true,
+    "probe": "forensic_alphamax_weighting",
+    "rank_top_k": 50,
+    "scheme": "volcap",
+    "source_artifact": "artifacts/probe/alphamax_weighting/report.json",
+    "source_artifact_sha256": "4eb3a9dc4ad8e991679d2409c29c17925d52ddd7a97c4a36fb43e8ace2646f50",
+    "variant": "volcap_K50",
+    "window": {
+      "book_start": "2005-01-03",
+      "end": "2026-08-01",
+      "sessions": 5428,
+      "warmup": "2004-01-02"
+    }
+  },
+  "content_hash": "sha256:f69e9f00a1294eb7e6f149d0f1c3c19b25bda35279ee1eb2aa434e288c942fac",
+  "evidence_date": "2026-08-22",
+  "family_paper_public_path": "/research/alphamax-equity-momentum-lineage.md",
+  "hypothesis_key": "eef46f796cdbb646",
+  "immutable_first_measurement": {
+    "annualized_sharpe": -0.01876066883094903,
+    "kurtosis": null,
+    "ledger_source_path": "var/experiments.jsonl",
+    "ledger_source_sha256": "b5a318c0997d980575f758451f509e0154eecbbb50d734e49a587d473062bd08",
+    "observations": 5428,
+    "recorded_at_unix_ms": 1786924800023,
+    "skew": null
+  },
+  "label": "forensic_alphamax_weighting / volcap_K50",
+  "missing_sections": [
+    "preregistration_and_hashes",
+    "point_in_time_data_and_survivorship_controls",
+    "execution_and_cost_model",
+    "result_uncertainty_stress_capacity_and_diversification",
+    "admission_or_kill_decision",
+    "code_environment_and_reproduction"
+  ],
+  "packet_status": "INCOMPLETE_BACKFILL_REQUIRED",
+  "partial_sections": [],
+  "required_sections": {
+    "admission_or_kill_decision": {
+      "evidence": [],
+      "status": "MISSING_IDENTITY_LEVEL_EVIDENCE"
+    },
+    "code_environment_and_reproduction": {
+      "evidence": [],
+      "status": "MISSING_IDENTITY_LEVEL_EVIDENCE"
+    },
+    "economic_mechanism_and_falsifiable_hypothesis": {
+      "evidence": [
+        {
+          "public_path": "/research/alphamax-equity-momentum-lineage.md",
+          "type": "family_paper"
+        }
+      ],
+      "status": "VERIFIED_SHARED_FAMILY_EVIDENCE"
+    },
+    "execution_and_cost_model": {
+      "evidence": [],
+      "status": "MISSING_IDENTITY_LEVEL_EVIDENCE"
+    },
+    "family_and_union_trial_accounting": {
+      "evidence": [
+        {
+          "public_path": "/research/alphamax-equity-momentum-lineage.md",
+          "type": "family_paper"
+        }
+      ],
+      "status": "VERIFIED_SHARED_FAMILY_EVIDENCE"
+    },
+    "identity_and_authorship": {
+      "evidence": [
+        {
+          "public_path": "/research/alphamax-equity-momentum-lineage.md",
+          "type": "family_paper"
+        }
+      ],
+      "status": "VERIFIED_SHARED_FAMILY_EVIDENCE"
+    },
+    "literature_and_overlap_decision": {
+      "evidence": [
+        {
+          "public_path": "/research/alphamax-equity-momentum-lineage.md",
+          "type": "family_paper"
+        }
+      ],
+      "status": "VERIFIED_SHARED_FAMILY_EVIDENCE"
+    },
+    "machine_readable_packet_and_stable_public_paper": {
+      "evidence": [
+        {
+          "public_path": "/research/alphamax-equity-momentum-lineage.md",
+          "type": "family_paper"
+        }
+      ],
+      "status": "VERIFIED_SHARED_FAMILY_EVIDENCE"
+    },
+    "point_in_time_data_and_survivorship_controls": {
+      "evidence": [],
+      "status": "MISSING_IDENTITY_LEVEL_EVIDENCE"
+    },
+    "preregistration_and_hashes": {
+      "evidence": [],
+      "status": "MISSING_IDENTITY_LEVEL_EVIDENCE"
+    },
+    "result_uncertainty_stress_capacity_and_diversification": {
+      "evidence": [],
+      "status": "MISSING_IDENTITY_LEVEL_EVIDENCE"
+    }
+  },
+  "research_family_key": "alphamax_equity_momentum",
+  "schema": "canli.alphac-identity-trial-packet.v2",
+  "verified_sections": [
+    "identity_and_authorship",
+    "economic_mechanism_and_falsifiable_hypothesis",
+    "literature_and_overlap_decision",
+    "family_and_union_trial_accounting",
+    "machine_readable_packet_and_stable_public_paper"
+  ]
+}

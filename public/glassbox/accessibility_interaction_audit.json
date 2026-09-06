@@ -1,0 +1,115 @@
+{
+  "claim_boundary": "Automated Chromium evidence for skip-link behavior, complete forward Tab traversal, focus visibility at element centers, 320-CSS-pixel reflow, non-inline control target sizes, reduced motion, forced-color rendering, and browser errors. It is not a human screen-reader review or complete WCAG 2.2 AA certification.",
+  "content_hash": "sha256:716f879b1d328c372899553bff9e5c9772822bc12cd865217822ea0c0948e5e4",
+  "environment": "LOCAL_PRODUCTION_BUILD",
+  "passes": true,
+  "project_lead": "Arhan Canli",
+  "routes": [
+    {
+      "browser_errors": [],
+      "forced_colors_main_visible": true,
+      "keyboard": {
+        "focus_cycle_complete_without_trap": true,
+        "focusable_elements": 22,
+        "obscured_focus_targets": [],
+        "passes": true,
+        "skip_link_is_first": true,
+        "skip_link_moves_focus_to_main": true,
+        "unique_elements_reached": 22
+      },
+      "passes": true,
+      "reduced_motion": {
+        "motion_offenders": [],
+        "passes": true
+      },
+      "reflow_320_css_px_and_targets": {
+        "document_width": 320,
+        "horizontal_overflow_px": 0,
+        "passes": true,
+        "undersized_targets": [],
+        "viewport_width": 320
+      },
+      "route": "/"
+    },
+    {
+      "browser_errors": [],
+      "forced_colors_main_visible": true,
+      "keyboard": {
+        "focus_cycle_complete_without_trap": true,
+        "focusable_elements": 27,
+        "obscured_focus_targets": [],
+        "passes": true,
+        "skip_link_is_first": true,
+        "skip_link_moves_focus_to_main": true,
+        "unique_elements_reached": 27
+      },
+      "passes": true,
+      "reduced_motion": {
+        "motion_offenders": [],
+        "passes": true
+      },
+      "reflow_320_css_px_and_targets": {
+        "document_width": 320,
+        "horizontal_overflow_px": 0,
+        "passes": true,
+        "undersized_targets": [],
+        "viewport_width": 320
+      },
+      "route": "/dashboard"
+    },
+    {
+      "browser_errors": [],
+      "forced_colors_main_visible": true,
+      "keyboard": {
+        "focus_cycle_complete_without_trap": true,
+        "focusable_elements": 13,
+        "obscured_focus_targets": [],
+        "passes": true,
+        "skip_link_is_first": true,
+        "skip_link_moves_focus_to_main": true,
+        "unique_elements_reached": 13
+      },
+      "passes": true,
+      "reduced_motion": {
+        "motion_offenders": [],
+        "passes": true
+      },
+      "reflow_320_css_px_and_targets": {
+        "document_width": 320,
+        "horizontal_overflow_px": 0,
+        "passes": true,
+        "undersized_targets": [],
+        "viewport_width": 320
+      },
+      "route": "/how-it-works"
+    },
+    {
+      "browser_errors": [],
+      "forced_colors_main_visible": true,
+      "keyboard": {
+        "focus_cycle_complete_without_trap": true,
+        "focusable_elements": 130,
+        "obscured_focus_targets": [],
+        "passes": true,
+        "skip_link_is_first": true,
+        "skip_link_moves_focus_to_main": true,
+        "unique_elements_reached": 130
+      },
+      "passes": true,
+      "reduced_motion": {
+        "motion_offenders": [],
+        "passes": true
+      },
+      "reflow_320_css_px_and_targets": {
+        "document_width": 320,
+        "horizontal_overflow_px": 0,
+        "passes": true,
+        "undersized_targets": [],
+        "viewport_width": 320
+      },
+      "route": "/research"
+    }
+  ],
+  "schema": "canli.site-accessibility-interaction-audit.v1",
+  "tested_at": "2026-08-24T09:47:03.204318+00:00"
+}

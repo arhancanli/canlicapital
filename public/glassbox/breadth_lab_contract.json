@@ -1,0 +1,52 @@
+{
+  "schema": "canli.alphac-breadth-lab-contract.v1",
+  "status": "EDUCATIONAL_INSTRUMENT_NOT_A_FORECAST",
+  "author": "Arhan Canli",
+  "published_on": "2026-08-27",
+  "claim_boundary": "Closed-form arithmetic under strong assumptions. It shows the SHAPE of the constraint breadth operates under. It is not a forecast of any book, and no output here is a performance claim.",
+  "formula": {
+    "book_sharpe": "s * sqrt( N / (1 + (N-1) * rho) )",
+    "ceiling": "s / sqrt(rho), for rho > 0",
+    "ceiling_note": "The ceiling does not contain N. Past a point, breadth is not the lever and correlation is.",
+    "degenerate": "1 + (N-1)*rho must be strictly positive. At zero the equally weighted book has zero variance and an infinite Sharpe, which is refused rather than displayed."
+  },
+  "assumptions": [
+    "every sleeve carries the same Sharpe ratio",
+    "every sleeve is weighted equally",
+    "every pair of sleeves shares one correlation",
+    "correlations are stable, which is the assumption that fails first in a crisis"
+  ],
+  "presets": {
+    "published_book": {
+      "label": "This book, as published",
+      "s": 0.5,
+      "rho": 0.0248,
+      "n": 4,
+      "target": 1.5,
+      "note": "Research-curve average pairwise correlation, current sleeve count, declared objective."
+    },
+    "planned_book": {
+      "label": "The planned book",
+      "s": 0.5,
+      "rho": 0.0248,
+      "n": 14,
+      "target": 1.5,
+      "note": "The same correlation at the planned sleeve count."
+    },
+    "correlation_ceiling": {
+      "label": "At the live correlation ceiling",
+      "s": 0.5,
+      "rho": 0.15,
+      "n": 14,
+      "target": 1.5,
+      "note": "The live contract permits average pairwise correlation up to 0.15. This is what that permits the book to become."
+    }
+  },
+  "sleeve_sharpe_note": "0.5 is used as the per-sleeve Sharpe in every preset. It is an illustrative round number, not a measured sleeve figure: no sleeve here has an established forward Sharpe.",
+  "sandbox_safety": [
+    "every input is stored in the URL, so a scenario is shareable and reproducible",
+    "no write path to any ledger, artifact, broker or published record exists",
+    "outputs are arithmetic under stated assumptions, never a forecast"
+  ],
+  "content_hash": "sha256:af24f5a9b11dec9ea1ae7f31f99fb741d490f440fe5d82bbbbe9fa255aa4d74d"
+}

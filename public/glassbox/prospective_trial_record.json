@@ -1,0 +1,258 @@
+{
+  "schema": "canli.alphac-public-prospective-trial-record.v1",
+  "title": "A hash-bound prospective test of cross-sectional perpetual-futures carry",
+  "author": "Arhan Canli",
+  "identity": {
+    "config_hash": "50d9e8b059fee773",
+    "family_trial_account": "crypto_carry",
+    "hypotheses_spent": 1,
+    "hypothesis_key": "da5f5f47f99f9bd2",
+    "primary_return_trials_executed": 1,
+    "reservation_ordinal": 229,
+    "return_identity_id": "crypto_carry_portable_v1",
+    "unregistered_variants_executed": 0
+  },
+  "classification": {
+    "evidence_type": "HISTORICAL_WALK_FORWARD_SIMULATION",
+    "external_submission_completed": false,
+    "forward_live_result": false,
+    "independent_replication": false,
+    "live_broker_result": false,
+    "peer_reviewed": false
+  },
+  "metrics": {
+    "annualized_daily_sharpe": 0.9688980432905521,
+    "cagr": 0.1084306032402318,
+    "annualized_volatility": 0.11010267815426131,
+    "candidate_simulation_max_drawdown": 0.12303511718661964,
+    "total_return": 0.5588081982357993,
+    "daily_observations": 1574,
+    "probabilistic_sharpe_ratio": 0.9776259474665245,
+    "deflated_sharpe_ratio": 0.09141260613462271,
+    "union_hypothesis_identities": 229
+  },
+  "stability_diagnostics": {
+    "walkforward_legs": 25,
+    "positive_sharpe_legs": 16,
+    "nonpositive_sharpe_legs": 9,
+    "median_leg_sharpe": 0.4755982022610931,
+    "minimum_leave_one_calendar_year_out_sharpe": 0.6231691644266796,
+    "calendar_year_results": [
+      {
+        "annualized_sharpe": -0.5857395276234225,
+        "calendar_year_utc": 2022,
+        "compounded_return": -0.06791054181334855,
+        "daily_observations": 326,
+        "partial_year": true
+      },
+      {
+        "annualized_sharpe": 0.29886528490312586,
+        "calendar_year_utc": 2023,
+        "compounded_return": 0.02177539695601549,
+        "daily_observations": 365,
+        "partial_year": false
+      },
+      {
+        "annualized_sharpe": 1.7474898092325235,
+        "calendar_year_utc": 2024,
+        "compounded_return": 0.19630603974721095,
+        "daily_observations": 366,
+        "partial_year": false
+      },
+      {
+        "annualized_sharpe": 0.978050273638493,
+        "calendar_year_utc": 2025,
+        "compounded_return": 0.11567492054275608,
+        "daily_observations": 365,
+        "partial_year": false
+      },
+      {
+        "annualized_sharpe": 3.7872298021284503,
+        "calendar_year_utc": 2026,
+        "compounded_return": 0.2140290075708251,
+        "daily_observations": 152,
+        "partial_year": true
+      }
+    ]
+  },
+  "gate_assessment": {
+    "admission_status": "INCOMPLETE_NOT_ADMITTED",
+    "evaluated": [
+      {
+        "gate": "net_sharpe_min",
+        "observed": 0.9688980432905521,
+        "operator": ">=",
+        "status": "PASS",
+        "threshold": 0.15
+      },
+      {
+        "gate": "minimum_oos_observations",
+        "observed": 1574,
+        "operator": ">=",
+        "status": "PASS",
+        "threshold": 756
+      },
+      {
+        "admission_role": "MANDATORY_MEASUREMENT_NOT_PER_SLEEVE_GATE",
+        "generic_runner_dsr_at_least_0_95_indicator": false,
+        "generic_runner_indicator_is_governing_v7_gate": false,
+        "observed": 0.09141260613462271,
+        "requirement": "deflated_sharpe_must_be_measured",
+        "status": "PASS_MEASUREMENT_PRESENT"
+      }
+    ],
+    "governing_contract_schema": "canli.alphac-sleeve-admission-contract.v7",
+    "not_evaluated": [
+      "newey_west_t_min",
+      "newey_west_t_ratio_min",
+      "stressed_sharpe_min",
+      "capacity_curve_min_points",
+      "capacity_minimum_stressed_fill_ratio",
+      "capacity_usd_min",
+      "ordinary_pairwise_correlation_max",
+      "pairwise_correlation_upper_95_max",
+      "stressed_pairwise_correlation_max",
+      "stressed_pairwise_correlation_upper_95_max",
+      "candidate_average_correlation_to_existing_book_max",
+      "book_average_pairwise_correlation_delta_max_exclusive",
+      "book_sharpe_delta_min_exclusive",
+      "book_sharpe_delta_lower_95_min_exclusive",
+      "minimum_leave_one_period_out_book_sharpe_delta_exclusive",
+      "book_expected_shortfall_delta_max",
+      "book_max_drawdown_delta_max",
+      "book_expected_max_drawdown_max",
+      "book_deflated_sharpe_must_be_measured",
+      "execution_scenario_bundle",
+      "overlay_replay"
+    ],
+    "pbo": {
+      "status": "NOT_DEFINED_SINGLE_REGISTERED_IDENTITY_NO_PATH_MATRIX",
+      "value": null,
+      "zero_imputation_forbidden": true
+    },
+    "reason": "Required v7 evidence remains unmeasured; a positive point estimate cannot substitute for it.",
+    "technically_eligible": false
+  },
+  "decision": {
+    "additional_return_paths_executed_after_primary": 0,
+    "admitted": false,
+    "disposition": "INCOMPLETE",
+    "final_for_admission": true,
+    "gate_changes_after_result": 0,
+    "identity_may_be_regraded_later": false,
+    "killed": false,
+    "technically_eligible": false
+  },
+  "evidence_accounting": {
+    "packet_completion_meaning": "Every required section has either measured evidence or a hash-bound final blocker. It does not mean every admission gate was evaluated or passed.",
+    "pbo": "NOT_DEFINED_SINGLE_REGISTERED_IDENTITY_NO_PATH_MATRIX",
+    "primary_result_and_same_path_diagnostics": "SEALED",
+    "unmeasured_gate_evidence": [
+      "newey_west_t_min",
+      "newey_west_t_ratio_min",
+      "stressed_sharpe_min",
+      "capacity_curve_min_points",
+      "capacity_minimum_stressed_fill_ratio",
+      "capacity_usd_min",
+      "ordinary_pairwise_correlation_max",
+      "pairwise_correlation_upper_95_max",
+      "stressed_pairwise_correlation_max",
+      "stressed_pairwise_correlation_upper_95_max",
+      "candidate_average_correlation_to_existing_book_max",
+      "book_average_pairwise_correlation_delta_max_exclusive",
+      "book_sharpe_delta_min_exclusive",
+      "book_sharpe_delta_lower_95_min_exclusive",
+      "minimum_leave_one_period_out_book_sharpe_delta_exclusive",
+      "book_expected_shortfall_delta_max",
+      "book_max_drawdown_delta_max",
+      "book_expected_max_drawdown_max",
+      "book_deflated_sharpe_must_be_measured",
+      "execution_scenario_bundle",
+      "overlay_replay"
+    ],
+    "unmeasured_values_are_null_or_absent": true,
+    "unmeasured_values_treated_as_pass": false
+  },
+  "supporting_facts": {
+    "fresh_input_comparison": {
+      "overlap_ohlcv_field_revisions": 1256,
+      "content_hash": "sha256:7b74d9d32354b41c148428682ff2109a3a3b0d7bdb2a56e143d173fd5dc32fcc"
+    },
+    "portable_lake_production_readback": {
+      "ohlcv_rows": 2137040,
+      "funding_rows": 272846,
+      "universe_intervals": 108,
+      "content_hash": "sha256:d6ead5a3dd1b0db3f5db840ef3a4b00519d63b4af0ed354741cd33d0389f7d62"
+    },
+    "private_input_snapshot_aggregate_only": {
+      "signal_rows": 2454144,
+      "file_count": 781,
+      "raw_execution_partition_files": 603,
+      "source_and_environment_files": 174,
+      "snapshot_bytes": 102831710,
+      "root_sha256": "c8b573712103907130a301f22d578feb07e31de0939339450f766b2d037df822",
+      "public_release_allowed": false
+    },
+    "bibliographic_identifiers": {
+      "perpetual_futures_pricing": "10.3386/w32936",
+      "crypto_carry": "10.2139/ssrn.4268371"
+    },
+    "aggregate_walkforward_risk_counters": {
+      "bars_half_gross": 16591,
+      "bars_halted_flat": 0,
+      "rebalances": 225,
+      "fallback_uses": 225
+    }
+  },
+  "packet": {
+    "complete": true,
+    "packet_status": "COMPLETE_EVIDENCED_FINAL_INCOMPLETE_NOT_ADMITTED",
+    "completion_assessment": {
+      "blockers": [],
+      "candidate_evidence_complete_for_admission": false,
+      "disposition": "INCOMPLETE_NOT_ADMITTED",
+      "next_forward_identity_blocked_by_this_packet": false,
+      "packet_evidence_accounting_complete": true,
+      "status": "COMPLETE_EVIDENCE_ACCOUNTING_FINAL_INCOMPLETE"
+    },
+    "content_hash": "sha256:9ba408cb3c1d9accd91eddd25a079995a8d42aa6b7456dd6afd22539917ce40a"
+  },
+  "future_protocol": {
+    "status": "TEMPLATE_NOT_IN_FORCE_NO_RETURN_AUTHORIZATION",
+    "scope": {
+      "applies_to_known_results": false,
+      "earliest_possible_reservation_ordinal": 230,
+      "requires_separate_policy_promotion": true
+    },
+    "audit_status": "PASS_TEMPLATE_FAIL_CLOSED_NOT_ACTIVE_ZERO_RETURN",
+    "remaining_before_promotion": [
+      "SATISFIABILITY_AUDIT_PASSES",
+      "TRIAL_ACCOUNTING_BATCH_AND_DIAGNOSTIC_CLASSIFICATION_PROMOTED",
+      "SERIALITY_GUARD_SUPPORTS_PREDECLARED_BATCH",
+      "PUBLIC_PROJECTION_TESTS_PASS",
+      "OWNER_PROMOTION_RECORDED"
+    ],
+    "claim_boundary": "This is a fail-closed design template, not an active policy, reservation, candidate, result, or return authorization. Null and empty fields must be filled and hash-bound before validation. It cannot be applied to a known result."
+  },
+  "public_paths": {
+    "paper": "/research/crypto-carry-portable-v1",
+    "result": "/glassbox/crypto_carry_portable_v1_result.json",
+    "admission_closure": "/glassbox/crypto_carry_portable_v1_admission_closure.json",
+    "identity_packet": "/glassbox/trial-packets/da5f5f47f99f9bd2.json",
+    "identity_packet_alias": "/glassbox/trial-packets/crypto_carry_portable_v1.json",
+    "future_template": "/glassbox/forward_full_evidence_reservation_v2_template.json",
+    "future_template_audit": "/glassbox/forward_full_evidence_reservation_v2_template_audit.json"
+  },
+  "source_bindings": {
+    "result_sha256": "bca34612b3f683666e5738fbbe352be7953a233b4fd6689ba1111d56385e916c",
+    "closure_sha256": "83c330782c7178315ad55648b18db31a3798e767ffdbdd8c0fe2af7c76beeef1",
+    "packet_sha256": "c46b821057d5991b713f673db74e92c416167513481c433fadae6c7ead7657f9",
+    "paper_sha256": "141bbf970993a5ee594d27ddd8c55dc8aeb2944dc7cd0bd24712e53e307188c5",
+    "future_template_sha256": "f7f55bd4237cc19fdc69ae7aba19e05d14263a710725948cc04753e981b236f5",
+    "future_template_audit_sha256": "e1a15b846502e5d28b318b59af9328ded14be5972d00a63ab3c9766536b96521",
+    "portable_lake_readiness_sha256": "e6c829153b60ac5fef16d35abe052e9efa720f96a61e4106ccb35c2c4f8ae441",
+    "portable_prerun_readiness_sha256": "15de6929185213098ec2c3864b6ac16ae0c1a328003feda547dd90624502f702",
+    "private_input_snapshot_manifest_sha256": "a1ac28f065bffcc761f9a3b8f7058deb55f8d7672f72770d27b02fd07ade1156"
+  },
+  "claim_boundary": "This receipt seals one preregistered historical walk-forward simulation and its same-path diagnostics. It does not establish admission, live or future returns, capacity, diversification, book drawdown, independent replication, peer review, or external publication. Missing evidence is null or explicitly NOT_EVALUATED."
+}

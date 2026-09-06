@@ -1,0 +1,191 @@
+{
+  "author": "Arhan Canli",
+  "claim_boundary": "This seal verifies the exact BYNDQ, NWKC, XCEDQ, CB, and CCIL share mutations. It does not authorize another event, open returns, or pass the global split gate.",
+  "content_hash": "sha256:3fe329129db627a4fa26b3a6f51d75ddc70ac77d5857f788de68c399b08384ac",
+  "decision": "FIVE_EXACT_ISSUER_SHARE_MUTATIONS_VERIFIED",
+  "hypotheses_spent": 0,
+  "lineage": {
+    "unresolved_context_content_hash": "sha256:c81c35a83c706cec7a8b4e4c9f22d1f0c874c26fe42c8a92ebdc0bc75c7b4d3f",
+    "unresolved_context_path": "artifacts/audit/unresolved_split_event_context.json",
+    "unresolved_context_sha256": "98304049af107814ec6b7798ff6ea91ab54e16c1f8801c202f1fbbd8d692b2c0"
+  },
+  "required_next_action": "Merge only these five exact instrument/date/stored-ratio tuples.",
+  "retrieved_at": "2026-08-23T06:50:30.524619+00:00",
+  "return_data_opened": false,
+  "schema": "canli.alphac-split-issuer-resolution-batch.v11",
+  "verified_events": [
+    {
+      "authorization": "BYPASS_PRICE_GAP_HEURISTIC_FOR_THIS_EXACT_EVENT_ONLY",
+      "date_binding": "ISSUER_EFFECTIVE_DATE_EQUALS_FROZEN_EVENT_DATE",
+      "event_id": "BYNDQ_2001",
+      "ex_date": "2001-07-02 04:00:00+04:00",
+      "ex_date_ms": 994032000000,
+      "instrument_id": "XUSE:CASH:BYNDQUSD",
+      "issuer_effective_date": "2001-07-02",
+      "issuer_ratio": 0.06666666666666667,
+      "market_date_binding": {
+        "binding": "ISSUER_EFFECTIVE_DATE_EQUALS_FROZEN_EVENT_DATE",
+        "event_close": 2.14,
+        "event_date": "2001-07-02",
+        "price_partition_path": "data/corrections/corporate_action_basis_48fcfde04e3c_materialized_v1/data/lake_sharadar/ohlcv_1d/instrument_id=XUSE:CASH:BYNDQUSD/year=2001/data.parquet",
+        "price_partition_sha256": "f12745500515fab0e3d3dff1863740ac10504827ed3444f2ba2ba417d5b88717",
+        "prior_close": 0.2,
+        "prior_date": "2001-06-29"
+      },
+      "prior_context_classification": "PLAIN_SPLIT_WITHOUT_LIFECYCLE_CONTEXT",
+      "ratio": 0.06667,
+      "required_fragments": [
+        "On July 2, 2001, the Company completed a reverse stock split",
+        "fifteen shares of common stock outstanding were converted into one share"
+      ],
+      "required_fragments_verified": [
+        "On July 2, 2001, the Company completed a reverse stock split",
+        "fifteen shares of common stock outstanding were converted into one share"
+      ],
+      "retrieved_sha256": "68808f3f3829a76955f5882fd5f1207166ea640cf588f575147369e6c485fed8",
+      "stored_ratio": 0.06667,
+      "ticker": "BYNDQ",
+      "url": "https://www.sec.gov/Archives/edgar/data/1060531/000109581101504316/f74865e10-q.htm"
+    },
+    {
+      "authorization": "BYPASS_PRICE_GAP_HEURISTIC_FOR_THIS_EXACT_EVENT_ONLY",
+      "date_binding": "ISSUER_EFFECTIVE_DATE_EQUALS_FROZEN_EVENT_DATE",
+      "event_id": "NWKC_2001",
+      "ex_date": "2001-06-18 04:00:00+04:00",
+      "ex_date_ms": 992822400000,
+      "instrument_id": "XUSE:CASH:NWKCUSD",
+      "issuer_effective_date": "2001-06-18",
+      "issuer_ratio": 0.06666666666666667,
+      "market_date_binding": {
+        "binding": "ISSUER_EFFECTIVE_DATE_EQUALS_FROZEN_EVENT_DATE",
+        "event_close": 0.92,
+        "event_date": "2001-06-18",
+        "price_partition_path": "data/corrections/corporate_action_basis_48fcfde04e3c_materialized_v1/data/lake_sharadar/ohlcv_1d/instrument_id=XUSE:CASH:NWKCUSD/year=2001/data.parquet",
+        "price_partition_sha256": "ddfe720856cc3ebfddfd119725bcb2815d10f7696cfff354d455448c0ec2a33c",
+        "prior_close": 0.119,
+        "prior_date": "2001-06-15"
+      },
+      "prior_context_classification": "PLAIN_SPLIT_WITHOUT_LIFECYCLE_CONTEXT",
+      "ratio": 0.06667,
+      "required_fragments": [
+        "completed a 1-for-15 reverse split of the Company's outstanding common stock",
+        "effective and applied to shareholders of record immediately prior to the opening",
+        "on Monday, June 18, 2001"
+      ],
+      "required_fragments_verified": [
+        "completed a 1-for-15 reverse split of the Company's outstanding common stock",
+        "effective and applied to shareholders of record immediately prior to the opening",
+        "on Monday, June 18, 2001"
+      ],
+      "retrieved_sha256": "58fd6da978b19fafb1c081f3347064f0f731eb9459fcece8956bbb8e8e597335",
+      "stored_ratio": 0.06667,
+      "ticker": "NWKC",
+      "url": "https://www.sec.gov/Archives/edgar/data/1087879/000113724301500051/form10qnci.txt"
+    },
+    {
+      "authorization": "BYPASS_PRICE_GAP_HEURISTIC_FOR_THIS_EXACT_EVENT_ONLY",
+      "date_binding": "ISSUER_EFFECTIVE_DATE_EQUALS_FROZEN_EVENT_DATE",
+      "event_id": "XCEDQ_2001",
+      "ex_date": "2001-03-21 04:00:00+04:00",
+      "ex_date_ms": 985132800000,
+      "instrument_id": "XUSE:CASH:XCEDQUSD",
+      "issuer_effective_date": "2001-03-21",
+      "issuer_ratio": 0.1,
+      "market_date_binding": {
+        "binding": "ISSUER_EFFECTIVE_DATE_EQUALS_FROZEN_EVENT_DATE",
+        "event_close": 0.594,
+        "event_date": "2001-03-21",
+        "price_partition_path": "data/corrections/corporate_action_basis_48fcfde04e3c_materialized_v1/data/lake_sharadar/ohlcv_1d/instrument_id=XUSE:CASH:XCEDQUSD/year=2001/data.parquet",
+        "price_partition_sha256": "793ceb7f4e688385d10d15471985ab2df03a317e7f541b37fabc5abfeff9bde8",
+        "prior_close": 0.156,
+        "prior_date": "2001-03-20"
+      },
+      "prior_context_classification": "PLAIN_SPLIT_WITHOUT_LIFECYCLE_CONTEXT",
+      "ratio": 0.1,
+      "required_fragments": [
+        "approved a 10-for-1 reverse stock split of the Common Stock",
+        "made effective March 21, 2001",
+        "Fractional shares resulting from the reverse stock split were rounded up"
+      ],
+      "required_fragments_verified": [
+        "approved a 10-for-1 reverse stock split of the Common Stock",
+        "made effective March 21, 2001",
+        "Fractional shares resulting from the reverse stock split were rounded up"
+      ],
+      "retrieved_sha256": "d13e3023bc0eacf7cff200120757fa2e06bc4f2c81d56d35e8328dc5d4456f47",
+      "stored_ratio": 0.1,
+      "ticker": "XCEDQ",
+      "url": "https://www.sec.gov/Archives/edgar/data/721176/000091205701508952/a2045655z10-q.txt"
+    },
+    {
+      "authorization": "BYPASS_PRICE_GAP_HEURISTIC_FOR_THIS_EXACT_EVENT_ONLY",
+      "date_binding": "FIRST_FROZEN_BAR_AFTER_ISSUER_DISTRIBUTION_DATE",
+      "event_id": "CB_1998",
+      "ex_date": "1998-03-03 04:00:00+04:00",
+      "ex_date_ms": 888883200000,
+      "instrument_id": "XUSE:CASH:CBUSD",
+      "issuer_distribution_date": "1998-03-02",
+      "issuer_ratio": 3.0,
+      "market_date_binding": {
+        "binding": "FIRST_FROZEN_BAR_AFTER_ISSUER_DISTRIBUTION_DATE",
+        "event_close": 32.438,
+        "event_date": "1998-03-03",
+        "price_partition_path": "data/corrections/corporate_action_basis_48fcfde04e3c_materialized_v1/data/lake_sharadar/ohlcv_1d/instrument_id=XUSE:CASH:CBUSD/year=1998/data.parquet",
+        "price_partition_sha256": "2ddd904d6d972e848426333177c101af9868355fe7ad2e308cbd02bae2e9f4e5",
+        "prior_close": 32.667,
+        "prior_date": "1998-03-02"
+      },
+      "prior_context_classification": "PLAIN_SPLIT_WITHOUT_LIFECYCLE_CONTEXT",
+      "ratio": 3.0,
+      "required_fragments": [
+        "On March 2, 1998 the Company effected a three for one split",
+        "Certificates representing the additional shares of stock were mailed on March 2",
+        "All share and per share amounts have been restated"
+      ],
+      "required_fragments_verified": [
+        "On March 2, 1998 the Company effected a three for one split",
+        "Certificates representing the additional shares of stock were mailed on March 2",
+        "All share and per share amounts have been restated"
+      ],
+      "retrieved_sha256": "a1f940e0049ec2379d90ef37feb861f4c6233e83163959c9bc24ec17cc2c78e8",
+      "stored_ratio": 3.0,
+      "ticker": "CB",
+      "url": "https://www.sec.gov/Archives/edgar/data/896159/000090256198000175/0000902561-98-000175.txt"
+    },
+    {
+      "authorization": "BYPASS_PRICE_GAP_HEURISTIC_FOR_THIS_EXACT_EVENT_ONLY",
+      "date_binding": "FIRST_FROZEN_BAR_AFTER_ISSUER_DISTRIBUTION_DATE",
+      "event_id": "CCIL_1998",
+      "ex_date": "1998-04-15 04:00:00+04:00",
+      "ex_date_ms": 892598400000,
+      "instrument_id": "XUSE:CASH:CCILUSD",
+      "issuer_distribution_date": "1998-04-14",
+      "issuer_ratio": 1.5,
+      "market_date_binding": {
+        "binding": "FIRST_FROZEN_BAR_AFTER_ISSUER_DISTRIBUTION_DATE",
+        "event_close": 47.5,
+        "event_date": "1998-04-15",
+        "price_partition_path": "data/corrections/corporate_action_basis_48fcfde04e3c_materialized_v1/data/lake_sharadar/ohlcv_1d/instrument_id=XUSE:CASH:CCILUSD/year=1998/data.parquet",
+        "price_partition_sha256": "a11ebf8c5137d7fe436522138b3df5a4a2817fcd09ec7eba541f84dc62cf0689",
+        "prior_close": 45.333,
+        "prior_date": "1998-04-14"
+      },
+      "prior_context_classification": "PLAIN_SPLIT_WITHOUT_LIFECYCLE_CONTEXT",
+      "ratio": 1.5,
+      "required_fragments": [
+        "declared a 3-for-2 stock split by way of stock dividend",
+        "The record date for this dividend is April 1, 1998",
+        "the payment date is April 14, 1998"
+      ],
+      "required_fragments_verified": [
+        "declared a 3-for-2 stock split by way of stock dividend",
+        "The record date for this dividend is April 1, 1998",
+        "the payment date is April 14, 1998"
+      ],
+      "retrieved_sha256": "9b4ce6d39c717a1a2e2ddd54dd98df16f699dd70bee35e29b4e3d9fdc652f6f4",
+      "stored_ratio": 1.5,
+      "ticker": "CCIL",
+      "url": "https://www.sec.gov/Archives/edgar/data/870762/000087076298000021/0000870762-98-000021.txt"
+    }
+  ]
+}

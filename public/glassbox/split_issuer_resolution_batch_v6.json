@@ -1,0 +1,54 @@
+{
+  "author": "Arhan Canli",
+  "claim_boundary": "This seal verifies one 1-for-8 reverse split and its first frozen post-effective-date bar. It does not open returns, authorize another event, or pass the global split gate.",
+  "content_hash": "sha256:855fdfd19c27b5cdb0250bec08fa9d443acd966c3c3b08a912d5891a0b596ce1",
+  "decision": "ETS1_EXACT_REVERSE_SPLIT_ISSUER_VERIFIED",
+  "hypotheses_spent": 0,
+  "lineage": {
+    "unresolved_context_content_hash": "sha256:c81c35a83c706cec7a8b4e4c9f22d1f0c874c26fe42c8a92ebdc0bc75c7b4d3f",
+    "unresolved_context_path": "artifacts/audit/unresolved_split_event_context.json",
+    "unresolved_context_sha256": "98304049af107814ec6b7798ff6ea91ab54e16c1f8801c202f1fbbd8d692b2c0"
+  },
+  "required_next_action": "Merge only this exact instrument/date/stored-ratio tuple into the fail-closed policy.",
+  "retrieved_at": "2026-08-23T05:56:46.344606+00:00",
+  "return_data_opened": false,
+  "schema": "canli.alphac-split-issuer-resolution-batch.v6",
+  "verified_events": [
+    {
+      "authorization": "BYPASS_PRICE_GAP_HEURISTIC_FOR_THIS_EXACT_EVENT_ONLY",
+      "event_semantics": "REVERSE_SPLIT_AT_FIRST_FROZEN_BAR_AFTER_LEGAL_EFFECTIVE_DATE",
+      "ex_date": "2005-10-31 04:00:00+04:00",
+      "ex_date_ms": 1130716800000,
+      "instrument_id": "XUSE:CASH:ETS1USD",
+      "issuer_effective_date": "2005-10-28",
+      "issuer_ratio": 0.125,
+      "market_date_binding": {
+        "binding": "EVENT_DATE_IS_FIRST_FROZEN_PRICE_BAR_AFTER_ISSUER_EFFECTIVE_DATE",
+        "event_close": 9.97,
+        "event_date": "2005-10-31",
+        "price_partition_path": "data/corrections/corporate_action_basis_48fcfde04e3c_materialized_v1/data/lake_sharadar/ohlcv_1d/instrument_id=XUSE:CASH:ETS1USD/year=2005/data.parquet",
+        "price_partition_sha256": "a49a20ed4f6678447d95cb570cd19bd203512cb4a4eb7e33bfdbb92936624b20",
+        "prior_close": 1.27,
+        "prior_date": "2005-10-28"
+      },
+      "prior_context_classification": "PLAIN_SPLIT_WITHOUT_LIFECYCLE_CONTEXT",
+      "ratio": 0.125,
+      "required_fragments": [
+        "the Company's Board of Directors approved a 1-for-8 reverse stock split",
+        "of the Company's outstanding shares of common stock",
+        "the reverse stock split became effective on October 28, 2005",
+        "issued shares were reverse split on a 1 for 8 basis"
+      ],
+      "required_fragments_verified": [
+        "the Company's Board of Directors approved a 1-for-8 reverse stock split",
+        "of the Company's outstanding shares of common stock",
+        "the reverse stock split became effective on October 28, 2005",
+        "issued shares were reverse split on a 1 for 8 basis"
+      ],
+      "retrieved_sha256": "de8a7ef87ea99caf7eedff0cb83e4ab59c4d9b25d776061ba89105b889ce6ebf",
+      "stored_ratio": 0.125,
+      "ticker": "ETS1",
+      "url": "https://www.sec.gov/Archives/edgar/data/846909/000095013505006345/b57408ene10vq.htm"
+    }
+  ]
+}

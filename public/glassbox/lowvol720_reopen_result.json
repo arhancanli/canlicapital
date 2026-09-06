@@ -1,0 +1,113 @@
+{
+  "prereg": "docs/design/PREREG_CRYPTO_LOWVOL_REOPEN.md",
+  "candidate": "crypto_lowvol_720",
+  "candidate_sharpe_reproduced": 0.5229344563293479,
+  "candidate_sharpe_published": 0.6946246749457002,
+  "gates": {
+    "K1_book_corr": {
+      "rho_at_chosen_lag": 0.1243451215132212,
+      "chosen_lag": -1,
+      "n_overlap_days": 727,
+      "min_days_required": 500,
+      "threshold_kill_above": 0.15,
+      "lag_table": [
+        {
+          "lag": -1,
+          "rho": 0.1243451215132212,
+          "n_days": 727
+        },
+        {
+          "lag": 0,
+          "rho": 0.08157889965106989,
+          "n_days": 728
+        },
+        {
+          "lag": 1,
+          "rho": 0.009118117287699583,
+          "n_days": 727
+        }
+      ],
+      "book_sharpe": 0.8560166982891412
+    },
+    "K2_costume": {
+      "vs": "alphaforge (crypto_carry_wk)",
+      "rho_at_chosen_lag": 0.08771244805845813,
+      "chosen_lag": 0,
+      "n_overlap_days": 1247,
+      "threshold_kill_above": 0.25,
+      "lag_table": [
+        {
+          "lag": -1,
+          "rho": 0.06466450029394974,
+          "n_days": 1246
+        },
+        {
+          "lag": 0,
+          "rho": 0.08771244805845813,
+          "n_days": 1247
+        },
+        {
+          "lag": 1,
+          "rho": -0.003730212266566957,
+          "n_days": 1247
+        }
+      ]
+    },
+    "K3_single_factor": {
+      "r2_btc_plus_dominance": 0.20393731412307237,
+      "r2_btc_only": 0.20381894603883255,
+      "n_days": 1246,
+      "coefficients": {
+        "const": 7.694201071253638e-05,
+        "btc": 0.12582970689586118,
+        "dominance": 0.0019939734134453812
+      },
+      "threshold_kill_above": 0.5,
+      "dominance_proxy": "BTC daily log return minus equal-weight mean of config alts with >=80% coverage"
+    },
+    "K4_contribution": {
+      "analytic": {
+        "s_bar_3": 0.5287374984232712,
+        "rho_bar_3": 0.0722779462447328,
+        "book_sharpe_3": 0.8560166982891411,
+        "s_bar_4": 0.6246192209653123,
+        "rho_bar_4": 0.07786508275712654,
+        "book_sharpe_4": 1.124757754619901,
+        "contribution": 0.26874105633075995
+      },
+      "empirical_crosscheck": {
+        "book_sharpe_3": 0.8560166982891412,
+        "book_sharpe_4": 1.1247577546199012,
+        "contribution": 0.26874105633076006,
+        "n_days": 728
+      },
+      "threshold_kill_below": 0.024,
+      "n_common_days_3": 728
+    }
+  },
+  "verdicts": [
+    {
+      "gate": "K1",
+      "status": "PASS",
+      "reason": "rho +0.1243 vs kill-above 0.15"
+    },
+    {
+      "gate": "K2",
+      "status": "PASS",
+      "reason": "rho +0.0877 vs kill-above 0.25"
+    },
+    {
+      "gate": "K3",
+      "status": "PASS",
+      "reason": "R^2 0.2039 vs kill-above 0.5"
+    },
+    {
+      "gate": "K4",
+      "status": "PASS",
+      "reason": "contribution +0.2687 vs kill-below +0.024"
+    }
+  ],
+  "K5_venue_reality": "OUTSTANDING \u2014 deployment gate, not evaluated",
+  "overall": "SURVIVES K1-K4",
+  "note": "Enters at 10% of full weight on the probation ladder ONLY after K5. Its DSR is 0.04 and that does not change; it is never described as cleared."
+}

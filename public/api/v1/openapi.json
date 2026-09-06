@@ -1,0 +1,854 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Canli Capital public read API",
+    "version": "1.0.0",
+    "summary": "A static, cacheable read API over a paper-traded systematic record.",
+    "description": "Every response carries the artifacts it was built from with their SHA-256 hashes, the class of claim it represents, and the limits of what it can be used to say. There is no write path and no authentication. Nothing here represents funded performance.",
+    "contact": {
+      "name": "Arhan Canli",
+      "url": "https://canlicapital.com/founder"
+    },
+    "license": {
+      "name": "MIT",
+      "identifier": "MIT"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://canlicapital.com",
+      "description": "Production"
+    }
+  ],
+  "externalDocs": {
+    "description": "Developer documentation",
+    "url": "https://canlicapital.com/developers"
+  },
+  "paths": {
+    "/api/v1/chain/head": {
+      "get": {
+        "summary": "The head of the signed append-only transparency chain, and the public key needed to verify it.",
+        "operationId": "chain_head",
+        "responses": {
+          "200": {
+            "description": "The current snapshot, regenerated on each publish.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "schema",
+                    "generated_at",
+                    "claim_class",
+                    "limits",
+                    "sources",
+                    "data"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/record": {
+      "get": {
+        "summary": "The full record as an instance of the canli.paper-evidence.v0 open standard, including what it does not establish.",
+        "operationId": "record",
+        "responses": {
+          "200": {
+            "description": "The current snapshot, regenerated on each publish.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "schema",
+                    "generated_at",
+                    "claim_class",
+                    "limits",
+                    "sources",
+                    "data"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/research": {
+      "get": {
+        "summary": "Every published research document and topic, including failures and feasibility nulls.",
+        "operationId": "research",
+        "responses": {
+          "200": {
+            "description": "The current snapshot, regenerated on each publish.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "schema",
+                    "generated_at",
+                    "claim_class",
+                    "limits",
+                    "sources",
+                    "data"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/sleeves": {
+      "get": {
+        "summary": "Per-sleeve state. Note that the research curves are not on a common date grid and cannot be combined.",
+        "operationId": "sleeves",
+        "responses": {
+          "200": {
+            "description": "The current snapshot, regenerated on each publish.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "schema",
+                    "generated_at",
+                    "claim_class",
+                    "limits",
+                    "sources",
+                    "data"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/status": {
+      "get": {
+        "summary": "Current state of the paper record: capital kind, period, observation count, validation status and broker reconciliation.",
+        "operationId": "status",
+        "responses": {
+          "200": {
+            "description": "The current snapshot, regenerated on each publish.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "schema",
+                    "generated_at",
+                    "claim_class",
+                    "limits",
+                    "sources",
+                    "data"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/trials/summary": {
+      "get": {
+        "summary": "The trial union used as the multiple-testing denominator, plus the kill counts.",
+        "operationId": "trials_summary",
+        "responses": {
+          "200": {
+            "description": "The current snapshot, regenerated on each publish.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "schema",
+                    "generated_at",
+                    "claim_class",
+                    "limits",
+                    "sources",
+                    "data"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/keys": {
+      "post": {
+        "summary": "Issue a free key. Returned once; only its hash is stored.",
+        "operationId": "keys",
+        "responses": {
+          "201": {
+            "description": "The key, once",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Envelope"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Malformed request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Envelope"
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "Wrong method",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Envelope"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Body over 1048576 bytes",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Envelope"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Input the validator refuses, with the reason",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Envelope"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "At most 5 keys per client per day",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Envelope"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              },
+              "example": {
+                "label": "my-backtest-runner"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/validate/deflated-sharpe": {
+      "post": {
+        "summary": "Probabilistic and deflated Sharpe from the seven contract inputs, or from a return series plus the trials behind it.",
+        "operationId": "validate_deflated_sharpe",
+        "responses": {
+          "200": {
+            "description": "The envelope with data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Envelope"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Malformed request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Envelope"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing, unknown or revoked key",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Envelope"
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "Wrong method",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Envelope"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Body over 1048576 bytes",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Envelope"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Input the validator refuses, with the reason",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Envelope"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Daily quota of 1000 validations reached; see Retry-After",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Envelope"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              },
+              "example": {
+                "returns": [
+                  0.004,
+                  -0.002,
+                  0.007,
+                  0.001,
+                  -0.003,
+                  0.005,
+                  0.002,
+                  -0.001
+                ],
+                "periods_per_year": 252,
+                "effective_independent_trials": 30,
+                "cross_trial_sharpe_sd_annualized": 0.5
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerKey": []
+          }
+        ]
+      }
+    },
+    "/api/v1/validate/overfitting": {
+      "post": {
+        "summary": "Probability of backtest overfitting by CSCV over the returns of every variant tried.",
+        "operationId": "validate_overfitting",
+        "responses": {
+          "200": {
+            "description": "The envelope with data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Envelope"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Malformed request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Envelope"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing, unknown or revoked key",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Envelope"
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "Wrong method",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Envelope"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Body over 1048576 bytes",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Envelope"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Input the validator refuses, with the reason",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Envelope"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Daily quota of 1000 validations reached; see Retry-After",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Envelope"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              },
+              "example": {
+                "matrix": [
+                  [
+                    0.01,
+                    0.002,
+                    -0.004
+                  ],
+                  [
+                    -0.003,
+                    0.001,
+                    0.006
+                  ],
+                  [
+                    0.004,
+                    -0.002,
+                    0.001
+                  ],
+                  [
+                    0.002,
+                    0.003,
+                    -0.001
+                  ]
+                ],
+                "n_splits": 4
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerKey": []
+          }
+        ]
+      }
+    },
+    "/api/v1/validate/paper-evidence": {
+      "post": {
+        "summary": "Conformance of a performance record against the canli.paper-evidence.v0 standard.",
+        "operationId": "validate_paper_evidence",
+        "responses": {
+          "200": {
+            "description": "The envelope with data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Envelope"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Malformed request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Envelope"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing, unknown or revoked key",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Envelope"
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "Wrong method",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Envelope"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Body over 1048576 bytes",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Envelope"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Input the validator refuses, with the reason",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Envelope"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Daily quota of 1000 validations reached; see Retry-After",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Envelope"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              },
+              "example": {
+                "record": {
+                  "schema": "canli.paper-evidence.v0"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerKey": []
+          }
+        ]
+      }
+    },
+    "/api/v1/validate/breadth": {
+      "post": {
+        "summary": "Book Sharpe ceiling from per-sleeve quality and average pairwise correlation, and the sleeves a target needs.",
+        "operationId": "validate_breadth",
+        "responses": {
+          "200": {
+            "description": "The envelope with data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Envelope"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Malformed request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Envelope"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing, unknown or revoked key",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Envelope"
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "Wrong method",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Envelope"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Body over 1048576 bytes",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Envelope"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Input the validator refuses, with the reason",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Envelope"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Daily quota of 1000 validations reached; see Retry-After",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Envelope"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              },
+              "example": {
+                "sleeve_sharpe": 0.5,
+                "average_pairwise_correlation": 0.05,
+                "sleeves": 4,
+                "target": 1.5
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerKey": []
+          }
+        ]
+      }
+    },
+    "/api/v1/validate/status": {
+      "get": {
+        "summary": "Service and store status with the quota constants in force.",
+        "operationId": "validate_status",
+        "responses": {
+          "200": {
+            "description": "The envelope with data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Envelope"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Malformed request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Envelope"
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "Wrong method",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Envelope"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/receipts/{id}": {
+      "get": {
+        "summary": "A stored verdict by content-hash id. Immutable.",
+        "operationId": "receipts_id_",
+        "responses": {
+          "200": {
+            "description": "The envelope with data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Envelope"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Malformed request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Envelope"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No such receipt",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Envelope"
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "Wrong method",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Envelope"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{24}$"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerKey": {
+        "type": "http",
+        "scheme": "bearer",
+        "description": "A key from POST /api/v1/keys, sent as Authorization: Bearer ck_live_..."
+      }
+    },
+    "schemas": {
+      "Envelope": {
+        "type": "object",
+        "required": [
+          "schema",
+          "endpoint",
+          "generated_at",
+          "claim_class",
+          "capital_kind",
+          "canonical_human_page",
+          "limits",
+          "sources",
+          "data"
+        ],
+        "properties": {
+          "schema": {
+            "const": "canli.api.v1"
+          },
+          "endpoint": {
+            "type": "string"
+          },
+          "generated_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "claim_class": {
+            "type": "string"
+          },
+          "capital_kind": {
+            "type": "string"
+          },
+          "canonical_human_page": {
+            "type": "string"
+          },
+          "limits": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1
+          },
+          "sources": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          },
+          "data": {
+            "type": "object"
+          },
+          "receipt": {
+            "type": "object"
+          },
+          "error": {
+            "type": "object"
+          }
+        }
+      }
+    }
+  }
+}

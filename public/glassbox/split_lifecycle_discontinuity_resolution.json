@@ -1,0 +1,332 @@
+{
+  "author": "Arhan Canli",
+  "claim_boundary": "The issuer filings and frozen price sequence establish cancellation/restructuring boundaries involving new equity, aggregate allocations, and/or warrants. They do not validate the stored values as complete shareholder conversions, repair prices, authorize execution, or validate returns.",
+  "content_hash": "sha256:af66b2190bc8aac83320d7ff7b8b540d57372698bd8a6d9cfde96f668d7f44dc",
+  "decision": "SIX_SPLIT_LIKE_ROWS_RESOLVED_AS_NONEXECUTABLE_LIFECYCLE_BREAKS",
+  "hypotheses_spent": 0,
+  "lineage": {
+    "unresolved_context_content_hash": "sha256:c81c35a83c706cec7a8b4e4c9f22d1f0c874c26fe42c8a92ebdc0bc75c7b4d3f",
+    "unresolved_context_path": "artifacts/audit/unresolved_split_event_context.json",
+    "unresolved_context_sha256": "98304049af107814ec6b7798ff6ea91ab54e16c1f8801c202f1fbbd8d692b2c0"
+  },
+  "required_next_action": "Route these exact rows as non-executable lifecycle discontinuities. Any simulated position crossing an old-equity cancellation must abort; no stored ratio in this seal may be applied as a complete share conversion.",
+  "resolved_events": [
+    {
+      "event_semantics": "BANKRUPTCY_OLD_EQUITY_CANCELLATION_AND_NEW_EQUITY_RELISTING",
+      "ex_date": "2016-12-27 04:00:00+04:00",
+      "ex_date_ms": 1482796800000,
+      "execution_authorized": false,
+      "governance_route": "NON_EXECUTABLE_ISSUER_VERIFIED_LIFECYCLE_DISCONTINUITY",
+      "instrument_id": "XUSE:CASH:BASXQUSD",
+      "issuer_effective_date": "2016-12-23",
+      "issuer_evidence": [
+        {
+          "required_fragments": [
+            "On December 23, 2016 (the \u201cEffective Date\u201d)",
+            "the Debtors emerged from their Chapter 11 Cases",
+            "the \u201cOld Common Shares\u201d), and any rights of any holder in respect thereof, were deemed cancelled, discharged and of no force or effect"
+          ],
+          "required_fragments_verified": [
+            "On December 23, 2016 (the \u201cEffective Date\u201d)",
+            "the Debtors emerged from their Chapter 11 Cases",
+            "the \u201cOld Common Shares\u201d), and any rights of any holder in respect thereof, were deemed cancelled, discharged and of no force or effect"
+          ],
+          "retrieved_sha256": "64429fc40e3732188943b47afcabdc78c02aa15b381d1221a4f88f4a616bc049",
+          "role": "OLD_EQUITY_CANCELLATION_AND_EMERGENCE",
+          "ticker": "BASXQ",
+          "url": "https://www.sec.gov/Archives/edgar/data/1109189/000110918916000402/basic-form8xkforemergence.htm"
+        },
+        {
+          "required_fragments": [
+            "new common stock (CUSIP number 06985P 209)",
+            "same as the symbol for existing shares",
+            "Trading in the New Common Shares on the NYSE is expected to commence on Tuesday, December 27, 2016"
+          ],
+          "required_fragments_verified": [
+            "new common stock (CUSIP number 06985P 209)",
+            "same as the symbol for existing shares",
+            "Trading in the New Common Shares on the NYSE is expected to commence on Tuesday, December 27, 2016"
+          ],
+          "retrieved_sha256": "2400e901a264cd6994f896cfb1f82ab4f92e8e0326c834b775517d2e7aacc312",
+          "role": "NEW_EQUITY_FIRST_TRADING_DATE_AND_CUSIP",
+          "ticker": "BASXQ",
+          "url": "https://www.sec.gov/Archives/edgar/data/1109189/000110918916000402/exh992201623pressrelease.htm"
+        }
+      ],
+      "market_date_binding": {
+        "binding": "EVENT_DATE_IS_FIRST_FROZEN_PRICE_BAR_AFTER_ISSUER_EFFECTIVE_DATE",
+        "event_close": 36.0,
+        "event_date": "2016-12-27",
+        "price_partition_path": "data/corrections/corporate_action_basis_48fcfde04e3c_materialized_v1/data/lake_sharadar/ohlcv_1d/instrument_id=XUSE:CASH:BASXQUSD/year=2016/data.parquet",
+        "price_partition_sha256": "972cb8612ecf12db0d03724355b5e18624fb8da567ae39d4bddd9f9b3070a687",
+        "prior_close": 0.45,
+        "prior_date": "2016-12-23"
+      },
+      "prior_context_classification": "PLAIN_SPLIT_WITHOUT_LIFECYCLE_CONTEXT",
+      "ratio_repair_authorized": false,
+      "source_row_deleted": false,
+      "stored_ratio": 0.00175,
+      "stored_ratio_semantics": "NOT_A_COMPLETE_OR_SUPPORTED_OLD_TO_NEW_SHAREHOLDER_CONVERSION",
+      "ticker": "BASXQ"
+    },
+    {
+      "event_semantics": "BANKRUPTCY_OLD_EQUITY_CANCELLATION_AND_WARRANT_DISTRIBUTION",
+      "ex_date": "2017-08-01 04:00:00+04:00",
+      "ex_date_ms": 1501545600000,
+      "execution_authorized": false,
+      "governance_route": "NON_EXECUTABLE_ISSUER_VERIFIED_LIFECYCLE_DISCONTINUITY",
+      "instrument_id": "XUSE:CASH:TDWUSD",
+      "issuer_effective_date": "2017-07-31",
+      "issuer_evidence": [
+        {
+          "required_fragments": [
+            "On July 31, 2017 (the \u201cEffective Date\u201d)",
+            "outstanding shares of the Old Common Stock",
+            "were deemed cancelled, discharged and of no further force or effect",
+            "Series A Warrants\u201d and the \u201cSeries B Warrants",
+            "on a pro rata basis to all pre-emergence holders"
+          ],
+          "required_fragments_verified": [
+            "On July 31, 2017 (the \u201cEffective Date\u201d)",
+            "outstanding shares of the Old Common Stock",
+            "were deemed cancelled, discharged and of no further force or effect",
+            "Series A Warrants\u201d and the \u201cSeries B Warrants",
+            "on a pro rata basis to all pre-emergence holders"
+          ],
+          "retrieved_sha256": "d709c581980175390723d5795b97f9d1ca3c08781ae1b9633ffed4dfb0d66c9d",
+          "role": "OLD_EQUITY_CANCELLATION_AND_WARRANT_DISTRIBUTION",
+          "ticker": "TDW",
+          "url": "https://www.sec.gov/Archives/edgar/data/98222/000119312517242513/d431632d8k.htm"
+        },
+        {
+          "required_fragments": [
+            "new common stock (CUSIP number 88642R 109)",
+            "same NYSE ticker symbol \u201cTDW\u201d",
+            "Trading in the New Common Stock on the NYSE is expected to commence on Tuesday, August 1, 2017"
+          ],
+          "required_fragments_verified": [
+            "new common stock (CUSIP number 88642R 109)",
+            "same NYSE ticker symbol \u201cTDW\u201d",
+            "Trading in the New Common Stock on the NYSE is expected to commence on Tuesday, August 1, 2017"
+          ],
+          "retrieved_sha256": "d5305a4a743a707ed229bcbed4fcd19891e8ad86c1a884288cab02513aece4f2",
+          "role": "NEW_EQUITY_FIRST_TRADING_DATE_AND_CUSIP",
+          "ticker": "TDW",
+          "url": "https://www.sec.gov/Archives/edgar/data/98222/000119312517242513/d431632dex992.htm"
+        }
+      ],
+      "market_date_binding": {
+        "binding": "EVENT_DATE_IS_FIRST_FROZEN_PRICE_BAR_AFTER_ISSUER_EFFECTIVE_DATE",
+        "event_close": 25.0,
+        "event_date": "2017-08-01",
+        "price_partition_path": "data/corrections/corporate_action_basis_48fcfde04e3c_materialized_v1/data/lake_sharadar/ohlcv_1d/instrument_id=XUSE:CASH:TDWUSD/year=2017/data.parquet",
+        "price_partition_sha256": "85d9b7aba3abf14af0af9b54e77a4cae268c8e69055aaf2143241f896bc83246",
+        "prior_close": 0.93,
+        "prior_date": "2017-07-31"
+      },
+      "prior_context_classification": "PLAIN_SPLIT_WITHOUT_LIFECYCLE_CONTEXT",
+      "ratio_repair_authorized": false,
+      "source_row_deleted": false,
+      "stored_ratio": 0.031,
+      "stored_ratio_semantics": "NOT_A_COMPLETE_OR_SUPPORTED_OLD_TO_NEW_SHAREHOLDER_CONVERSION",
+      "ticker": "TDW"
+    },
+    {
+      "event_semantics": "BANKRUPTCY_OLD_EQUITY_CANCELLATION_AND_WARRANT_DISTRIBUTION",
+      "ex_date": "2017-05-01 04:00:00+04:00",
+      "ex_date_ms": 1493596800000,
+      "execution_authorized": false,
+      "governance_route": "NON_EXECUTABLE_ISSUER_VERIFIED_LIFECYCLE_DISCONTINUITY",
+      "instrument_id": "XUSE:CASH:CIVIUSD",
+      "issuer_effective_date": "2017-04-28",
+      "issuer_evidence": [
+        {
+          "required_fragments": [
+            "On April 28, 2017 (the \u201cEffective Date\u201d)",
+            "each share of the Company's common stock outstanding prior to the Effective Date",
+            "was cancelled",
+            "issuance of up to an aggregate of 1,650,510 warrants",
+            "to former holders of Existing Equity Interests"
+          ],
+          "required_fragments_verified": [
+            "On April 28, 2017 (the \u201cEffective Date\u201d)",
+            "each share of the Company's common stock outstanding prior to the Effective Date",
+            "was cancelled",
+            "issuance of up to an aggregate of 1,650,510 warrants",
+            "to former holders of Existing Equity Interests"
+          ],
+          "retrieved_sha256": "86ca99b9bac8ba41f5e5f946d9e3071498f10b1caf62ae7c6cc637945ad1c45a",
+          "role": "OLD_EQUITY_CANCELLATION_AND_WARRANT_DISTRIBUTION",
+          "ticker": "CIVI",
+          "url": "https://www.sec.gov/Archives/edgar/data/1509589/000095010317004047/dp75602_8k.htm"
+        }
+      ],
+      "market_date_binding": {
+        "binding": "EVENT_DATE_IS_FIRST_FROZEN_PRICE_BAR_AFTER_ISSUER_EFFECTIVE_DATE",
+        "event_close": 39.2,
+        "event_date": "2017-05-01",
+        "price_partition_path": "data/corrections/corporate_action_basis_48fcfde04e3c_materialized_v1/data/lake_sharadar/ohlcv_1d/instrument_id=XUSE:CASH:CIVIUSD/year=2017/data.parquet",
+        "price_partition_sha256": "294e36e48dbf9e23a45d584ec85b9ac9f948551a1d7f2bb7090d72fedce69ded",
+        "prior_close": 0.505,
+        "prior_date": "2017-04-28"
+      },
+      "prior_context_classification": "PLAIN_SPLIT_WITHOUT_LIFECYCLE_CONTEXT",
+      "ratio_repair_authorized": false,
+      "source_row_deleted": false,
+      "stored_ratio": 0.00896,
+      "stored_ratio_semantics": "NOT_A_COMPLETE_OR_SUPPORTED_OLD_TO_NEW_SHAREHOLDER_CONVERSION",
+      "ticker": "CIVI"
+    },
+    {
+      "event_semantics": "BANKRUPTCY_OLD_EQUITY_CANCELLATION_NEW_SHARES_AND_WARRANTS",
+      "ex_date": "2016-12-16 04:00:00+04:00",
+      "ex_date_ms": 1481846400000,
+      "execution_authorized": false,
+      "governance_route": "NON_EXECUTABLE_ISSUER_VERIFIED_LIFECYCLE_DISCONTINUITY",
+      "instrument_id": "XUSE:CASH:KEGXUSD",
+      "issuer_effective_date": "2016-12-15",
+      "issuer_evidence": [
+        {
+          "required_fragments": [
+            "all previously issued and outstanding shares",
+            "Pre-Effective Date Common Stock were cancelled",
+            "issued two series of warrants to the former holders"
+          ],
+          "required_fragments_verified": [
+            "all previously issued and outstanding shares",
+            "Pre-Effective Date Common Stock were cancelled",
+            "issued two series of warrants to the former holders"
+          ],
+          "retrieved_sha256": "b77725df71bb17f66d994718bccf2fdcbbbd7fd6e5665909ed6d1aef5c4b3e2b",
+          "role": "OLD_EQUITY_CANCELLATION_AND_WARRANT_DISTRIBUTION",
+          "ticker": "KEGX",
+          "url": "https://www.sec.gov/Archives/edgar/data/318996/000119312516794624/d313262d8k.htm"
+        },
+        {
+          "required_fragments": [
+            "New Shares Issued to Equity Holders",
+            "1,338,266",
+            "trading in its common stock is expected to commence on December 16, 2016"
+          ],
+          "required_fragments_verified": [
+            "New Shares Issued to Equity Holders",
+            "1,338,266",
+            "trading in its common stock is expected to commence on December 16, 2016"
+          ],
+          "retrieved_sha256": "96b7fbd11299adf5376ea4eb8941f94eb8a9c579b4a3723a8c0bf6258f610955",
+          "role": "NEW_EQUITY_ALLOCATION_AND_FIRST_TRADING_DATE",
+          "ticker": "KEGX",
+          "url": "https://www.sec.gov/Archives/edgar/data/318996/000119312516794624/d313262dex991.htm"
+        }
+      ],
+      "market_date_binding": {
+        "binding": "EVENT_DATE_IS_FIRST_FROZEN_PRICE_BAR_AFTER_ISSUER_EFFECTIVE_DATE",
+        "event_close": 26.95,
+        "event_date": "2016-12-16",
+        "price_partition_path": "data/corrections/corporate_action_basis_48fcfde04e3c_materialized_v1/data/lake_sharadar/ohlcv_1d/instrument_id=XUSE:CASH:KEGXUSD/year=2016/data.parquet",
+        "price_partition_sha256": "a1a5821ea418cfbb81acc6aa3bc3550952a531e15d1db25966b7e8052cda31be",
+        "prior_close": 0.165,
+        "prior_date": "2016-12-15"
+      },
+      "prior_context_classification": "PLAIN_SPLIT_WITHOUT_LIFECYCLE_CONTEXT",
+      "ratio_repair_authorized": false,
+      "source_row_deleted": false,
+      "stored_ratio": 0.005,
+      "stored_ratio_semantics": "NOT_A_COMPLETE_OR_SUPPORTED_OLD_TO_NEW_SHAREHOLDER_CONVERSION",
+      "ticker": "KEGX"
+    },
+    {
+      "event_semantics": "BANKRUPTCY_AGGREGATE_OWNERSHIP_ALLOCATION_AND_WARRANT_DISTRIBUTION",
+      "ex_date": "2014-10-16 04:00:00+04:00",
+      "ex_date_ms": 1413417600000,
+      "execution_authorized": false,
+      "governance_route": "NON_EXECUTABLE_ISSUER_VERIFIED_LIFECYCLE_DISCONTINUITY",
+      "instrument_id": "XUSE:CASH:EGLE2USD",
+      "issuer_effective_date": "2014-10-15",
+      "issuer_evidence": [
+        {
+          "required_fragments": [
+            "On October 15, 2014 (the \u201cEffective Date\u201d)",
+            "cancellation of all outstanding Equity Interests",
+            "receiving (i) shares of New Eagle Common Stock equal to 0.5%",
+            "an aggregate of 3,040,540 New Eagle Equity Warrants"
+          ],
+          "required_fragments_verified": [
+            "On October 15, 2014 (the \u201cEffective Date\u201d)",
+            "cancellation of all outstanding Equity Interests",
+            "receiving (i) shares of New Eagle Common Stock equal to 0.5%",
+            "an aggregate of 3,040,540 New Eagle Equity Warrants"
+          ],
+          "retrieved_sha256": "e6ecda53008a43294d7325ebeb04ce8293d38f993ce39769e5aad4be24c589c8",
+          "role": "OLD_EQUITY_CANCELLATION_AGGREGATE_ALLOCATION_AND_WARRANTS",
+          "ticker": "EGLE2",
+          "url": "https://www.sec.gov/Archives/edgar/data/1322439/000143774914018448/egle20141015_8k.htm"
+        }
+      ],
+      "market_date_binding": {
+        "binding": "EVENT_DATE_IS_FIRST_FROZEN_PRICE_BAR_AFTER_ISSUER_EFFECTIVE_DATE",
+        "event_close": 15.8,
+        "event_date": "2014-10-16",
+        "price_partition_path": "data/corrections/corporate_action_basis_48fcfde04e3c_materialized_v1/data/lake_sharadar/ohlcv_1d/instrument_id=XUSE:CASH:EGLE2USD/year=2014/data.parquet",
+        "price_partition_sha256": "a1d627fbef5bf74147dc5cc4c8d393ef3f66cff0b820789063fdd76c19cdf6b7",
+        "prior_close": 0.68,
+        "prior_date": "2014-10-15"
+      },
+      "prior_context_classification": "PLAIN_SPLIT_WITHOUT_LIFECYCLE_CONTEXT",
+      "ratio_repair_authorized": false,
+      "source_row_deleted": false,
+      "stored_ratio": 0.005,
+      "stored_ratio_semantics": "NOT_A_COMPLETE_OR_SUPPORTED_OLD_TO_NEW_SHAREHOLDER_CONVERSION",
+      "ticker": "EGLE2"
+    },
+    {
+      "event_semantics": "BANKRUPTCY_OLD_SECURITIES_EXCHANGED_FOR_NEW_EQUITY_AND_WARRANTS",
+      "ex_date": "2002-03-20 04:00:00+04:00",
+      "ex_date_ms": 1016582400000,
+      "execution_authorized": false,
+      "governance_route": "NON_EXECUTABLE_ISSUER_VERIFIED_LIFECYCLE_DISCONTINUITY",
+      "instrument_id": "XUSE:CASH:CQBUSD",
+      "issuer_effective_date": "2002-03-19",
+      "issuer_evidence": [
+        {
+          "required_fragments": [
+            "On March 19, 2002, CBII completed its previously announced financial restructuring",
+            "became effective March 19, 2002",
+            "Previously outstanding preferred, preference and common stock is being exchanged for 2% of the New Common Stock",
+            "7-year warrants",
+            "trading in such shares on the New York Stock Exchange will not commence until March 20, 2002"
+          ],
+          "required_fragments_verified": [
+            "On March 19, 2002, CBII completed its previously announced financial restructuring",
+            "became effective March 19, 2002",
+            "Previously outstanding preferred, preference and common stock is being exchanged for 2% of the New Common Stock",
+            "7-year warrants",
+            "trading in such shares on the New York Stock Exchange will not commence until March 20, 2002"
+          ],
+          "retrieved_sha256": "7af8bdcec1bfcde8c87a7659cbe1ef738288b0998b00607fd82c1f2cb52dd7de",
+          "role": "OLD_SECURITIES_EXCHANGE_NEW_EQUITY_AND_WARRANTS",
+          "ticker": "CQB",
+          "url": "https://www.sec.gov/Archives/edgar/data/101063/000102140802003831/d10k.txt"
+        }
+      ],
+      "market_date_binding": {
+        "binding": "EVENT_DATE_IS_FIRST_FROZEN_PRICE_BAR_AFTER_ISSUER_EFFECTIVE_DATE",
+        "event_close": 14.99,
+        "event_date": "2002-03-20",
+        "price_partition_path": "data/corrections/corporate_action_basis_48fcfde04e3c_materialized_v1/data/lake_sharadar/ohlcv_1d/instrument_id=XUSE:CASH:CQBUSD/year=2002/data.parquet",
+        "price_partition_sha256": "f62165f1db5eb8226d846e250846413aaf3dc9f59f6fea6e3bef8303f0a02ea1",
+        "prior_close": 0.71,
+        "prior_date": "2002-03-19"
+      },
+      "prior_context_classification": "PLAIN_SPLIT_WITHOUT_LIFECYCLE_CONTEXT",
+      "ratio_repair_authorized": false,
+      "source_row_deleted": false,
+      "stored_ratio": 0.071,
+      "stored_ratio_semantics": "NOT_A_COMPLETE_OR_SUPPORTED_OLD_TO_NEW_SHAREHOLDER_CONVERSION",
+      "ticker": "CQB"
+    }
+  ],
+  "retrieved_at": "2026-08-23T07:00:22.805372+00:00",
+  "return_data_opened": false,
+  "schema": "canli.alphac-split-lifecycle-discontinuity-resolution.v2"
+}

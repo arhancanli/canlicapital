@@ -13,7 +13,54 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "papers": "node scripts/build-papers.mjs",
+    "prebuild": "node scripts/build-public-claims.mjs && node scripts/build-validation-api.mjs && node scripts/build-publication-wrappers.mjs && node scripts/build-measurements.mjs && node scripts/build-trial-distribution.mjs && node scripts/build-trials.mjs && node scripts/build-verify.mjs && node scripts/build-review.mjs && node scripts/build-foundry.mjs && node scripts/build-dsr-tool.mjs && node scripts/build-evidence-chain-tool.mjs && node scripts/build-trial-accounting-tool.mjs && node scripts/build-selection-risk.mjs && node scripts/build-breadth.mjs && node scripts/build-execution.mjs && node scripts/build-cost-coverage.mjs && node scripts/build-paper-evidence.mjs && node scripts/build-paper-evidence-vectors.mjs && node scripts/build-api.mjs && node scripts/build-standards-and-developers.mjs && node scripts/build-notes.mjs && node scripts/build-papers.mjs && node scripts/build-founder.mjs && node scripts/build-methodology.mjs && node scripts/build-engineering.mjs && node scripts/sync-product-shell.mjs && node scripts/build-hero-fallbacks.mjs && node scripts/build-llms-txt.mjs && node scripts/verify-system-films.mjs",
+    "verify": "node scripts/build-public-claims.mjs && node --test js/dsr-tool.test.js js/evidence-chain-core.test.js js/trial-accounting-core.test.js js/selection-risk-core.test.js js/paper-evidence-core.test.js js/breadth-core.test.js js/execution-core.test.js scripts/canonical-json.test.mjs scripts/build-validation-api.test.mjs js/dsr-core.test.js js/moments-core.test.js js/pbo-core.test.js api/_lib/envelope.test.mjs api/_lib/body.test.mjs api/_lib/auth.test.mjs api/_lib/store.test.mjs api/_lib/handler.test.mjs api/v1/endpoints.test.mjs && node scripts/audit-writing.mjs && node scripts/verify-publication-wrappers.mjs && node scripts/verify-papers.mjs && node scripts/verify-trials.mjs && node scripts/verify-system-films.mjs && node scripts/audit-onpage.mjs && node scripts/audit-link-graph.mjs && node scripts/audit-indexability.mjs && node scripts/audit-flow-safety.mjs && node scripts/audit-published-numbers.mjs && node scripts/audit-readme.mjs",
+    "audit": "node scripts/audit-onpage.mjs",
+    "indexnow": "node scripts/submit-indexnow.mjs",
+    "indexnow:force": "node scripts/submit-indexnow.mjs --force",
+    "indexnow:dry-run": "node scripts/submit-indexnow.mjs --dry-run",
+    "test:indexnow": "node --test scripts/submit-indexnow.test.mjs",
+    "seo:live-audit": "node scripts/audit-live-seo.mjs",
+    "test:seo-audit": "node --test scripts/audit-live-seo.test.mjs",
+    "measurements": "node scripts/build-measurements.mjs",
+    "trials": "node scripts/build-trials.mjs",
+    "verify-page": "node scripts/build-verify.mjs",
+    "founder-page": "node scripts/build-founder.mjs",
+    "review-page": "node scripts/build-review.mjs",
+    "foundry-page": "node scripts/build-foundry.mjs",
+    "methodology-page": "node scripts/build-methodology.mjs",
+    "engineering-page": "node scripts/build-engineering.mjs",
+    "notes-page": "node scripts/build-notes.mjs",
+    "api": "node scripts/build-api.mjs",
+    "standard": "node scripts/build-paper-evidence.mjs && node scripts/build-paper-evidence-vectors.mjs && node scripts/build-standards-and-developers.mjs",
+    "engineering-manifest": "node scripts/build-engineering-manifest.mjs",
+    "shell": "node scripts/sync-product-shell.mjs",
+    "llms": "node scripts/build-llms-txt.mjs",
+    "dsr-tool": "node scripts/build-dsr-tool.mjs",
+    "evidence-chain-tool": "node scripts/build-evidence-chain-tool.mjs",
+    "trial-accounting-tool": "node scripts/build-trial-accounting-tool.mjs",
+    "selection-risk": "node scripts/build-selection-risk.mjs",
+    "breadth": "node scripts/build-breadth.mjs",
+    "execution": "node scripts/build-execution.mjs",
+    "costs": "node scripts/build-cost-coverage.mjs",
+    "films:state": "node scripts/build-system-film-state.mjs",
+    "films:render": "node scripts/build-system-film-state.mjs && node scripts/render-system-films.mjs",
+    "films:verify": "node scripts/verify-system-films.mjs",
+    "linkgraph": "node scripts/audit-link-graph.mjs",
+    "numbers": "node scripts/audit-published-numbers.mjs",
+    "readme": "node scripts/audit-readme.mjs",
+    "live-parity": "node scripts/audit-live-evidence.mjs",
+    "audit:homepage": "python3 scripts/audit-homepage.py",
+    "audit:product-shell": "python3 scripts/audit-product-shell.py",
+    "claims": "node scripts/build-public-claims.mjs",
+    "hero-fallbacks": "node scripts/build-hero-fallbacks.mjs",
+    "publication-wrappers": "node scripts/build-publication-wrappers.mjs",
+    "product-contract": "node scripts/audit-product-contract.mjs",
+    "writing": "node scripts/audit-writing.mjs",
+    "verify:browser": "bash scripts/verify-browser.sh",
+    "smoke:api": "node scripts/smoke-validation-api.mjs"
   },
   "engines": {
     "node": "22.x"
@@ -21,9 +68,12 @@
   "dependencies": {
     "gsap": "^3.15.0",
     "lenis": "^1.3.23",
+    "marked": "^18.0.10",
     "three": "^0.184.0"
   },
   "devDependencies": {
+    "ffmpeg-static": "^5.2.0",
+    "playwright": "^1.55.0",
     "vite": "^8.0.16"
   }
 }

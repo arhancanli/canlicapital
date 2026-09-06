@@ -483,7 +483,10 @@ export function initScroll({ scene, page }) {
     const r = el.getBoundingClientRect();
     const vh = window.innerHeight || document.documentElement.clientHeight;
     if (r.top <= vh * 0.82) { gsap.set(words, { opacity: 1, y: 0 }); return; }
-    gsap.set(words, { opacity: 0.1, y: 16 });
+    // Keep the quote fully legible while it waits below the fold. Fading readable text to 10%
+    // opacity created a transient WCAG contrast failure; the rise and stagger carry the reveal
+    // without turning content into low-contrast decoration.
+    gsap.set(words, { opacity: 1, y: 16 });
     ScrollTrigger.create({
       trigger: el, start: "top 82%", once: true,
       onEnter: () => gsap.to(words, {
@@ -996,6 +999,9 @@ export function initScroll({ scene, page }) {
       if (id.length > 1 && document.querySelector(id)) {
         e.preventDefault();
         scrollTo(id);
+        if (a.classList.contains("skip-link")) {
+          document.querySelector(id).focus({ preventScroll: true });
+        }
       }
     });
   });
@@ -1093,8 +1099,14 @@ export function initScroll({ scene, page }) {
       m.hasAttribute("data-chars") || (m.parentElement && m.parentElement.hasAttribute("data-chars")));
     const heroSub = document.querySelector("#hero .hero__sub");
     const heroActions = document.querySelector("#hero [data-hero-actions]");
+    const hasIntroCurtain = Boolean(document.getElementById("intro"));
 
-    if (prefersReduced) {
+    // Most evidence pages do not render an intro curtain. Hiding their LCP headline and
+    // revealing it character by character delayed the first useful paint by more than two
+    // seconds even though there was no transition to hand off from. Keep the authored cascade
+    // only where a real curtain exists; otherwise the hero is the first frame and must already
+    // be composed. Reduced-motion visitors use the same immediate final state.
+    if (prefersReduced || !hasIntroCurtain) {
       heroChars.forEach((m) => {
         const inner = m.querySelector(".mask__inner");
         if (inner) { splitChars(inner); gsap.set(inner.querySelectorAll(".char"), { yPercent: 0, opacity: 1 }); inner.classList.add("is-settled"); }

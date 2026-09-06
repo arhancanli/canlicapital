@@ -1,0 +1,33 @@
+{
+  "schema": "canli.api.v1",
+  "endpoint": "/api/v1/trials/summary",
+  "generated_at": "2026-09-05T19:19:33Z",
+  "claim_class": "OBSERVED",
+  "capital_kind": "PAPER_ONLY",
+  "canonical_human_page": "https://canlicapital.com/trials",
+  "limits": [
+    "The trial union is the denominator for multiple-testing correction. It is accounting, not performance.",
+    "A hypothesis counted here may have been tested and abandoned without ever producing a publishable result."
+  ],
+  "sources": [
+    {
+      "path": "public/glassbox/trial_ledger.json",
+      "sha256": "sha256:b00807c5ad048866d85f79b37a976b59a5fe3e2e113b77b67ecaf899dafe523c",
+      "url": "https://canlicapital.com/glassbox/trial_ledger.json"
+    },
+    {
+      "path": "public/glassbox/kill_log.json",
+      "sha256": "sha256:d0a5a4b4471746068b6dc11f20ea165cb9d4d2ca191509cbf3f56da8ff96d864",
+      "url": "https://canlicapital.com/glassbox/kill_log.json"
+    }
+  ],
+  "data": {
+    "distinct_hypothesis_identities": 229,
+    "distinct_config_hashes": 301,
+    "identity_budget": 400,
+    "identities_observed": 228,
+    "killed_count": 9,
+    "screen_killed_count": 37,
+    "survived_count": 3
+  }
+}

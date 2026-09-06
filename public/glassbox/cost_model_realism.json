@@ -1,0 +1,93 @@
+{
+  "claim_boundary": "Reads the live trading databases read-only. Registers no hypothesis identity, opens no return data, and changes no cost parameter. 0 trials.",
+  "crypto_sleeve": {
+    "all_taker": true,
+    "book_exhausted_count": 0,
+    "database_exists": true,
+    "fills_since_go_live": 0,
+    "fills_total": 24,
+    "modelled_taker_bps": 5.0,
+    "notional_total": 159576.53698200002,
+    "realised_commission_bps_MEASURED": 5.0,
+    "slippage_bps_MEASURED": {
+      "max": -1.2820381337678106,
+      "mean": -3.1810392368418583,
+      "median": -3.3283485071064653,
+      "min": -4.409572260682257,
+      "note": "Recorded against `modeled_price`, so this IS a real execution measurement \u2014 the only one in the book. Negative is favourable. All 24 fills are taker and none exhausted the book."
+    },
+    "window": [
+      "2026-07-05",
+      "2026-07-30"
+    ]
+  },
+  "equity_sleeves": {
+    "AlphaMax": {
+      "commission": "NOT MEASURABLE \u2014 no fee column in this fills table",
+      "database_exists": true,
+      "fills_since_go_live": 1063,
+      "fills_total": 3075,
+      "notional_since_go_live": 748509.4702382392,
+      "slippage_vs_decision_price": "NOT MEASURABLE \u2014 the fills record limit_price, a PADDED marketable limit, not the price the decision was taken at. A fill that beats it is beating the padding.",
+      "submit_to_fill_latency_seconds": {
+        "median": 19884.673,
+        "median_hours": 5.523520277777777,
+        "p90": 20458.357200000002
+      }
+    },
+    "AlphaTrend": {
+      "commission": "NOT MEASURABLE \u2014 no fee column in this fills table",
+      "database_exists": true,
+      "fills_since_go_live": 98,
+      "fills_total": 311,
+      "notional_since_go_live": 842220.8265962057,
+      "slippage_vs_decision_price": "NOT MEASURABLE \u2014 the fills record limit_price, a PADDED marketable limit, not the price the decision was taken at. A fill that beats it is beating the padding.",
+      "submit_to_fill_latency_seconds": {
+        "median": 19828.5255,
+        "median_hours": 5.50792375,
+        "p90": 20017.0711
+      }
+    },
+    "AlphaVintage": {
+      "commission": "NOT MEASURABLE \u2014 no fee column in this fills table",
+      "database_exists": true,
+      "fills_since_go_live": 15,
+      "fills_total": 15,
+      "notional_since_go_live": 1028168.6236568228,
+      "slippage_vs_decision_price": "NOT MEASURABLE \u2014 the fills record limit_price, a PADDED marketable limit, not the price the decision was taken at. A fill that beats it is beating the padding.",
+      "submit_to_fill_latency_seconds": {
+        "median": 19855.94,
+        "median_hours": 5.515538888888888,
+        "p90": 19966.2726
+      }
+    }
+  },
+  "go_live_date": "2026-08-07",
+  "modelled_parameters": {
+    "crypto_taker_bps": 5.0,
+    "default_half_spread_bps": 2.5,
+    "equity_borrow_bps_annual": 50.0,
+    "equity_commission_bps": 1.0,
+    "equity_half_spread_bps": 3.0,
+    "equity_taker_bps": 1.0,
+    "impact_coef": 1.0,
+    "latency_addon_bps": 2.0
+  },
+  "schema": "canli.alphac-cost-model-realism.v1",
+  "verdict": "The one checkable component MATCHES exactly. The rest is not checkable from what is recorded, and the latency component is modelled as the wrong kind of quantity. No cost parameter should move on this evidence; the schema should.",
+  "what_cannot_be_asked_and_the_fix": "Slippage against the decision price is not computable for the equity sleeves: the fills record `limit_price`, a PADDED marketable limit, so a fill beating it by 54bp is beating the padding, not the market. Equity commission is not computable either \u2014 there is no fee column. THE FIX IS ONE FIELD: record the reference mid at `submitted_ts` on every order. That single addition turns implementation shortfall from unanswerable into a daily measurement, and it costs nothing to capture at the moment the order is built.",
+  "what_matched": "Crypto commission. Measured 5.00bp against a modelled taker fee of 5.0bp \u2014 exact. The one cost component in the book that can be checked against reality checks out.",
+  "\u26a0\ufe0f_crypto_has_not_traded_since_go_live": {
+    "fills_since_go_live": 0,
+    "last_fill_window": [
+      "2026-07-05",
+      "2026-07-30"
+    ],
+    "note": "Zero crypto fills since the 2026-08-07 re-baseline, with the last on 2026-07-30, against a weekly rebalance cadence over a fifteen-day record. The sleeve is marking equity but not trading. Surfaced, not diagnosed \u2014 it may be a no-trade band holding, and it may not."
+  },
+  "\u26a0\ufe0f_the_latency_finding": {
+    "median_submit_to_fill_hours": 5.515538888888888,
+    "modelled_latency_addon_bps": 2.0,
+    "why_this_matters": "Median submit-to-fill latency across the equity sleeves is about 5.5 HOURS, not seconds \u2014 orders are submitted after the close and fill at the next open. The cost model represents latency as a flat 2bp add-on, which is a microstructure quantity. An overnight gap is not a spread: it is unhedged exposure to whatever happens between submission and fill, and its cost is a distribution with a fat tail rather than a constant. This is not evidence the model is wrong by a specific amount \u2014 it is evidence that this component is modelled as the wrong KIND of thing, and nothing here measures its size."
+  }
+}

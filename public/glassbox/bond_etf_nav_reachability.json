@@ -1,0 +1,52 @@
+{
+  "author": "Arhan Canli",
+  "claim_boundary": "This classifies ownership of four failed source gates. It does not claim that paid data will pass them, opens no market records or returns, and makes no signal, Sharpe, drawdown, diversification, capacity, or admission claim.",
+  "content_hash": "sha256:37857d9dc6183b924a80a1c3872135dc276d844b95aef999387f15a5bfb9a4da",
+  "decision": "PUBLIC_ENGINEERING_CANNOT_CLOSE_LOCKED_GATES",
+  "engineering_reachability": {
+    "next_action": "Owner spending/contract decision for archival issuer holdings, evaluated bond prices, TRACE transactions, and synchronized ETF quote/trade history. Collection still does not authorize returns.",
+    "parser_or_crawler_can_create_missing_history": false,
+    "public_metadata_can_replace_executable_quotes_and_trades": false,
+    "public_pages_can_retroactively_supply_point_in_time_snapshots": false
+  },
+  "family": "bond_etf_nav_dislocation",
+  "hypotheses_spent": 0,
+  "lineage": {
+    "issuer_manifest_sha256": "3c50bc07711b6bbc53a29fe92d731b4a24f34349ddaa2a9f9f4ede85e45ead42",
+    "protocol_sha256": "b93f6cdb6dda1fe97f7cfcf76cb367246b1683e937aff2d160b665ddbb903da3",
+    "source_path": "artifacts/feasibility/bond_etf_nav_dislocation/result.json",
+    "source_probe_manifest_sha256": "de7dcf570662c67c0505badd2d37e1a6521c3abb328ee1fb8193fd803a601676",
+    "source_sha256": "sha256:3c736ef66baa20c01202faf9b9d129457f6b36892e574a7684f1fa847efc2a73"
+  },
+  "locked_gate_owners": {
+    "constituent_valuation_timestamps": "evaluated_price_vendor",
+    "issuer_premium_discount_history": "issuer_or_archival_vendor",
+    "monthly_point_in_time_holdings": "issuer_or_archival_vendor",
+    "synchronized_etf_and_bond_execution": "ETF_and_TRACE_market_data_vendors"
+  },
+  "market_records_opened": 0,
+  "measured_public_record": {
+    "funds": {
+      "HYG": {
+        "coverage_shortfall": 0.8809546539379475,
+        "first_available": "2025-01-02",
+        "historical_holdings_snapshots": 1,
+        "holdings_shortfall": 119,
+        "observed_coverage": 0.09904534606205251,
+        "required_historical_holdings_snapshots": 120
+      },
+      "LQD": {
+        "coverage_shortfall": 0.8809546539379475,
+        "first_available": "2025-01-02",
+        "historical_holdings_snapshots": 1,
+        "holdings_shortfall": 119,
+        "observed_coverage": 0.09904534606205251,
+        "required_historical_holdings_snapshots": 120
+      }
+    },
+    "required_issuer_session_coverage": 0.98
+  },
+  "return_data_opened": false,
+  "schema": "canli.alphac-bond-etf-nav-reachability.v1",
+  "verdict": "PAID_ARCHIVAL_AND_EXECUTABLE_DATA_REQUIRED"
+}

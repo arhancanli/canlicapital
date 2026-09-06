@@ -1,0 +1,62 @@
+{
+  "accounting": {
+    "dividend_gate_passed": true,
+    "exact_issuer_verified_exposed_events": 2,
+    "global_split_failures": 473,
+    "global_split_gate_passed": false,
+    "historically_exposed_events": 2,
+    "no_observed_pre_boundary_exposure": 69,
+    "post_2005_in_lifecycle_failed_events": 71,
+    "within_lifecycle_requires_resolution": 112
+  },
+  "author": "Arhan Canli",
+  "claim_boundary": "This authorizes one zero-trial corrected-data reproduction of the immutable single_operating_margin identity. The global lake split gate remains failed. This receipt does not predict or validate Sharpe, drawdown, admission, or live performance.",
+  "content_hash": "sha256:f812e1576bf430eee48be1df5d8d10af759b014de898919ba5e2da415f1e51bc",
+  "corrected_lake": "data/corrections/corporate_action_basis_48fcfde04e3c_materialized_v1/data/lake_sharadar",
+  "decision": "OPERATING_MARGIN_CORRECTED_REPLAY_AUTHORIZED_FAIL_CLOSED",
+  "execution_code": {
+    "src/alphaforge/analytics/walkforward.py": "4db6d0ddf33e3e9537b017c87840179facfa2ff4b2e6a5c04d3fe68b0fe6188b",
+    "src/alphaforge/backtest/engine.py": "5c7d3479ca6ef2a09f2d1faccc4b5f6a9ca1c880897086e40363f88b249b204b"
+  },
+  "hypotheses_spent": 0,
+  "hypothesis_key": "e5f48adc25065ce9",
+  "lineage": {
+    "artifacts/audit/operating_margin_exposed_split_issuer_resolution.json": {
+      "content_hash": "sha256:fa8595944365c27e6a8a49a490ccdafd7f37db31808e569da527c8926fb1b550",
+      "sha256": "38945e4d8df3771f834b9d577edb106bb2dff5129ee0c34627bb02720308b089"
+    },
+    "artifacts/audit/operating_margin_unresolved_split_exposure.json": {
+      "content_hash": "sha256:c9d379d6a7bd9a7991f561e84162ba1f8c78715b32d540b7b56b6d179eaf6dfd",
+      "sha256": "28feea05b0a4bdf8ad35abeafb39881d3abe2cc6ce16d7f2ba9efe5c9625b251"
+    },
+    "artifacts/audit/sharadar_corporate_action_corrected_lake.json": {
+      "content_hash": "sha256:178c4564f9c5e0b917db752879c08a2f25c3133e614f92f0ecec6af3c33ef1c0",
+      "sha256": "2ff4354d2f569b182901ae1a079270e78438c8fd1e7c35b115e79dd0bc65306a"
+    },
+    "artifacts/audit/sharadar_corrected_corporate_action_validation.json": {
+      "content_hash": "sha256:6ed09e42b6e6a744df4dfb3c9bbd927b58ac70a813c9c819a1592daa8afae583",
+      "sha256": "74d91878d38321e344982ef1104ca918d354f18210d6edde946e61673cf9266b"
+    },
+    "artifacts/audit/sharadar_split_lifecycle_scope.json": {
+      "content_hash": "sha256:deed344bd2823f820e326b69f510f704a11b3ba3d2621100594da2600f78cb2d",
+      "sha256": "017f1723f1937900bc2e40aa1f54f0187286ffda794e4cddcf11159ce82031bf"
+    }
+  },
+  "required_runtime_behavior": "Only the two exact issuer-verified tuples may bypass the split price-gap heuristic. Any other exposed split without a valid price boundary must abort the replay.",
+  "return_data_opened": false,
+  "run_name": "single_operating_margin",
+  "schema": "canli.alphac-operating-margin-corrected-replay-authorization.v1",
+  "sealed_at": "2026-08-23T03:35:45.251683+00:00",
+  "verified_split_events": [
+    {
+      "ex_date_ms": 1663113600000,
+      "instrument_id": "XUSE:CASH:ADTXUSD",
+      "ratio": 0.02
+    },
+    {
+      "ex_date_ms": 1718582400000,
+      "instrument_id": "XUSE:CASH:SPCEUSD",
+      "ratio": 0.05
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "author": "Arhan Canli",
+  "claim_boundary": "This artifact proves only that the selected exact replay failed closed on the sole non-positive dividend row in the current Sharadar corporate-action lake. It is not a successful replay, does not validate the historical return curve, does not create a new trial, and supplies no Sharpe, drawdown, or sleeve claim.",
+  "content_hash": "sha256:fe87e60156ca58e1dbf2adbdd5720cfcd9317315ab83ccf54852a0e16532d445",
+  "decision": "INVALID_CORPORATE_ACTION_SOURCE_ROW",
+  "evidence": {
+    "preserved_equity_path": "artifacts/walkforward/single_sales_to_price/equity.parquet",
+    "preserved_equity_sha256": "sha256:7f49f51e65e9362ef5df728d31348f9ac83a49ae1b393f14a97e089226395246",
+    "preserved_walkforward_path": "artifacts/walkforward/single_sales_to_price/walkforward.json",
+    "preserved_walkforward_sha256": "sha256:7dc4e41b0918e48568a98fde5b83af55961eab4763d92bb62ccc06ba34759bf1",
+    "replay_environment_path": "artifacts/probe/fundamental_single_replays/2d966892fb5db520/replay_environment.json",
+    "replay_environment_sha256": "sha256:551296ff6cfcb86da8e8fe18afbc3051303be6f7e6f040c6991dddf9ff2b2ed5",
+    "replay_outputs_present": {
+      "equity.parquet": false,
+      "result.json": false,
+      "walkforward.json": false
+    },
+    "source_environment_content_hash": "sha256:33cdb88d869d9f6c7156dd5882b5ef1683a2676f650879ed5bba67d709680d96"
+  },
+  "failure": {
+    "exception_message": "cash dividend cash_amount must be > 0",
+    "exception_type": "ValueError",
+    "invalid_row_count_entire_sharadar_lake": 1,
+    "offending_row": {
+      "action_type": "dividend",
+      "available_at": "2025-06-26 04:00:00+04",
+      "cash_amount": 0.0,
+      "ex_date": "2025-06-26 04:00:00+04",
+      "ingested_at": "2026-06-25 16:25:02.14+04",
+      "instrument_id": "XUSE:CASH:HDBUSD",
+      "ratio": 1.0,
+      "source_path": "data/lake_sharadar/corporate_actions/instrument_id=XUSE:CASH:HDBUSD/year=2025/data.parquet",
+      "source_sha256": "sha256:a4985291c6eb3bbafd3f2e3df513dd5b98b11185914f746db04305475921de17"
+    },
+    "stage": "walk_forward.corporate_action_validation"
+  },
+  "hypothesis_key": "2d966892fb5db520",
+  "packet_status": "INCOMPLETE",
+  "required_next_action": "Resolve the source-row semantics through an independently documented data repair or vendor correction, then rerun under a newly hash-bound environment. Never drop the row silently and never mark this identity complete without exact equality.",
+  "run_name": "single_sales_to_price",
+  "schema": "canli.alphac-fundamental-single-replay-failure.v1",
+  "status": "FAILED_CLOSED"
+}

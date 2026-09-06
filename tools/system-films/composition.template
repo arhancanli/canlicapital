@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Canli Capital system film renderer</title>
+  <link rel="stylesheet" href="/tools/system-films/composition.css" />
+</head>
+<body>
+  <main class="film" id="film" data-composition-id="system-film" data-duration="12">
+    <div class="film__grid" aria-hidden="true"></div>
+    <div class="film__glow" id="film-glow" aria-hidden="true"></div>
+    <header class="film__header">
+      <div class="film__brand"><span class="film__mark">C</span><strong>CANLI CAPITAL</strong></div>
+      <div class="film__clock"><span>ARTIFACT SNAPSHOT</span><time id="film-time"></time></div>
+    </header>
+    <section class="film__content">
+      <div class="film__copy">
+        <p class="film__basis" id="film-basis"></p>
+        <p class="film__ordinal" id="film-ordinal"></p>
+        <h1 id="film-title"></h1>
+        <p class="film__status"><i aria-hidden="true"></i><span id="film-status"></span></p>
+      </div>
+      <div class="film__visual" id="film-visual" aria-hidden="true"></div>
+    </section>
+    <section class="film__metrics" id="film-metrics" aria-label="Artifact metrics"></section>
+    <footer class="film__footer">
+      <span>OBSERVED / PAPER AND RESEARCH STATE</span>
+      <code id="film-source"></code>
+    </footer>
+  </main>
+  <script type="module" src="/tools/system-films/composition.js"></script>
+</body>
+</html>

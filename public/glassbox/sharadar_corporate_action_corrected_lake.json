@@ -1,0 +1,50 @@
+{
+  "author": "Arhan Canli",
+  "base_lake": "data/lake_sharadar",
+  "claim_boundary": "This proves only that a new physical data version was materialized under the sealed source transformation contract. It opens no returns, spends no hypothesis, and does not authorize a replay, validate a strategy, or improve any performance statistic.",
+  "content_hash": "sha256:178c4564f9c5e0b917db752879c08a2f25c3133e614f92f0ecec6af3c33ef1c0",
+  "corrected_lake": "data/corrections/corporate_action_basis_48fcfde04e3c_materialized_v1/data/lake_sharadar",
+  "decision": "VERSIONED_CORPORATE_ACTION_LAKE_BUILT_VALIDATION_PENDING",
+  "hypotheses_spent": 0,
+  "invariants": {
+    "all_base_rows_have_raw_lineage": true,
+    "amounts_imputed": false,
+    "apple_2020_05_08_cash_amount_is_0_82": true,
+    "hdb_zero_and_vate_unsupported_rows_absent": true,
+    "logical_preregistration_path_preserved": true,
+    "non_action_datasets_hardlinked": true,
+    "original_lake_preserved_by_hash": true,
+    "physical_version_is_content_addressed": true
+  },
+  "lineage": {
+    "authority_content_hash": "sha256:48fcfde04e3c7f7d28bc349c93b55911f97514317e74bac67fca80980b621e47",
+    "authority_path": "artifacts/audit/sharadar_dividend_basis_resolution.json",
+    "authority_sha256": "sha256:110378773151de3c8a095c134c91016fcd9de71670c218e0bb4857debe7939f2",
+    "base_corporate_action_bytes": 171208720,
+    "base_corporate_action_files": 48833,
+    "base_corporate_actions_root": "sha256:9a8db6616e8f0078c86e179e38161b9a57fce96da9d3d1e58a0470ddf72e0bb2",
+    "corrected_corporate_action_bytes": 295549779,
+    "corrected_corporate_action_files": 48765,
+    "corrected_corporate_actions_root": "sha256:d07802568921649fddba5c0a847ef1d0db8a23dcd4f3e65b57a04310173a6e5d",
+    "hardlinked_immutable_datasets": [
+      "fundamentals",
+      "ohlcv_1d",
+      "universe_membership"
+    ],
+    "raw_actions_archive": "data/sharadar_raw/ACTIONS.zip",
+    "raw_actions_archive_sha256": "sha256:166d6ae17921b6a3a1f13a734e43bfd32ca5d9e88398030290a5246c89d7185c"
+  },
+  "normalization": {
+    "adrratiosplit_metadata_rows_removed_from_execution": 142,
+    "base_rows": 171924,
+    "dividend_amounts_changed": 31807,
+    "dividend_rows_normalized": 167118,
+    "exact_source_rows_quarantined": 2,
+    "market_split_rows_preserved": 4662,
+    "normalized_rows": 171780
+  },
+  "preregistration_logical_suffix": "data/lake_sharadar",
+  "required_next_action": "Run full-lake dividend-price and split-price boundary audits. Do not replay or promote this lake unless both pass and a separate validation receipt authorizes it.",
+  "return_data_opened": false,
+  "schema": "canli.alphac-sharadar-corporate-action-corrected-lake.v1"
+}

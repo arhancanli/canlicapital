@@ -1,0 +1,856 @@
+{
+  "content_hash": "sha256:33cdb88d869d9f6c7156dd5882b5ef1683a2676f650879ed5bba67d709680d96",
+  "leaves": [
+    {
+      "bytes": 2748,
+      "path": "configs/base.yaml",
+      "sha256": "6177d3f33089e7c0f6f8d99bc97e66d75f3d596e7593806b79c89cedebde15fa"
+    },
+    {
+      "bytes": 1226,
+      "path": "configs/sharadar.yaml",
+      "sha256": "96c41a086e7bbd44f370b87354e5d6ca5e723eb3ffeba4822587b1330e1fda64"
+    },
+    {
+      "bytes": 5790,
+      "path": "docs/design/PREREG_FUNDAMENTAL_SINGLES.md",
+      "sha256": "730789738cf079f53c0c5a0383190de242c20b88ed1561dd32b6715f1363ce11"
+    },
+    {
+      "bytes": 3175,
+      "path": "pyproject.toml",
+      "sha256": "ddaf8b60999275f6d3fb93b3073f256d75d1383bfc8bab14263dc58645841006"
+    },
+    {
+      "bytes": 12451,
+      "path": "scripts/replay_fundamental_single_identity.py",
+      "sha256": "5b334cead9860bfeea6333ea09997526bcdb67139fabb0dc113f973213e1e3c1"
+    },
+    {
+      "bytes": 104,
+      "path": "src/alphaforge/__init__.py",
+      "sha256": "1fa58413d322da66bd50618acde23ac98a0460ebf8e17aeb9d2f0aa451af06d5"
+    },
+    {
+      "bytes": 1559,
+      "path": "src/alphaforge/analytics/__init__.py",
+      "sha256": "d3b73f3d85ec32239b0feb44d170e34c5b420c98c2d3cf52788041569351f364"
+    },
+    {
+      "bytes": 6479,
+      "path": "src/alphaforge/analytics/curve_store.py",
+      "sha256": "4c8189481c8556216d341feeddacbc7e86aed0988be6a44b8131999d335d1c93"
+    },
+    {
+      "bytes": 40318,
+      "path": "src/alphaforge/analytics/grand_matrix.py",
+      "sha256": "8bc6f44de20354a43d73c41f6bff4408caa1bd7a6ac81a90b3d7d819dcea6245"
+    },
+    {
+      "bytes": 21128,
+      "path": "src/alphaforge/analytics/metrics.py",
+      "sha256": "317f48ce4e56981308caed15ffadf3e5e9ab26e2af3f9e2708466bab98691aa0"
+    },
+    {
+      "bytes": 11198,
+      "path": "src/alphaforge/analytics/tearsheet.py",
+      "sha256": "9cf740395f8c59b0e8a9a0ec4ddaa043b9568522168985311f451930fcc5ebda"
+    },
+    {
+      "bytes": 75888,
+      "path": "src/alphaforge/analytics/walkforward.py",
+      "sha256": "60c76ed2fc058bdbd5e59e89c37e12ad82d1afa2c85464dcf027a3e7742bdf48"
+    },
+    {
+      "bytes": 1710,
+      "path": "src/alphaforge/backtest/__init__.py",
+      "sha256": "2d9e7d5ec35f66bdb8c14a890bdefff97ea2a1291fc10921b0a790ea0236811d"
+    },
+    {
+      "bytes": 85705,
+      "path": "src/alphaforge/backtest/engine.py",
+      "sha256": "fe2b70d304a615f44eb7cf87bb3381f383cb526fc987f2a0569db7faa4535103"
+    },
+    {
+      "bytes": 17048,
+      "path": "src/alphaforge/backtest/fills.py",
+      "sha256": "a65cf39822ad37876b7c19e02a2a2138529644b9b8a72c17487a4c6276d91c7d"
+    },
+    {
+      "bytes": 27337,
+      "path": "src/alphaforge/backtest/ledger.py",
+      "sha256": "89d524b11ecb8863f3342a0aeed20d9229bc2194364c319fd306f0de8786e1d7"
+    },
+    {
+      "bytes": 12400,
+      "path": "src/alphaforge/backtest/result.py",
+      "sha256": "fc51670733ba7605cd214ff2a06b40fb8b4515ce78fbf47cdd145386525a6c31"
+    },
+    {
+      "bytes": 0,
+      "path": "src/alphaforge/cli/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 7608,
+      "path": "src/alphaforge/cli/backtest_cmds.py",
+      "sha256": "bc4a58673d07710737ca5cddcdd08f1e3485567ce269fefca3ae7fb438dd47a5"
+    },
+    {
+      "bytes": 31115,
+      "path": "src/alphaforge/cli/data_cmds.py",
+      "sha256": "b673018b44631a46263bfe9edc1ca11ab831f41b46a039fee6b5fce0c5d8f3fd"
+    },
+    {
+      "bytes": 9646,
+      "path": "src/alphaforge/cli/instruments_cmds.py",
+      "sha256": "924cc14fa34de3e81cd62f240d38c94aff4e80c52a5fb923cab335795c571c5d"
+    },
+    {
+      "bytes": 1786,
+      "path": "src/alphaforge/cli/main.py",
+      "sha256": "d052ca6202bbb344e077f54993d8faddb6044ada5f7f2ecbfa01553cf7815385"
+    },
+    {
+      "bytes": 14175,
+      "path": "src/alphaforge/cli/ops_cmds.py",
+      "sha256": "2ae0832a4a2ff124ea4975ecefdebc51f952114a121b4830ad1934a2ef90266f"
+    },
+    {
+      "bytes": 34612,
+      "path": "src/alphaforge/cli/paper_cmds.py",
+      "sha256": "c585c9dce48755215cf35e01fd0616f30eff16fa3b49ae9f9bbe93f8a324e816"
+    },
+    {
+      "bytes": 6021,
+      "path": "src/alphaforge/cli/quality_cmds.py",
+      "sha256": "8abdd1f20077c4802da0dd2f3dd3d23dadb5719d626f408a244cd39857fbce5b"
+    },
+    {
+      "bytes": 15650,
+      "path": "src/alphaforge/cli/research_cmds.py",
+      "sha256": "a899bc79b62a7c184c6dfb969274bdbc9f14e80511eb95b82e0b3b5ed26636a5"
+    },
+    {
+      "bytes": 9427,
+      "path": "src/alphaforge/cli/universe_cmds.py",
+      "sha256": "341678551509eb67141c8950cfcfa2ffb2bda480947cd3b2e051b70238dd1277"
+    },
+    {
+      "bytes": 14306,
+      "path": "src/alphaforge/cli/walkforward_cmds.py",
+      "sha256": "b8426d26094c9e383ef43f216eccedacd110e1595fa5a691f71f5e2643b67357"
+    },
+    {
+      "bytes": 0,
+      "path": "src/alphaforge/config/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 22518,
+      "path": "src/alphaforge/config/settings.py",
+      "sha256": "a8baa6cff327f8a8f0a43f62d4a10ebbef85e2233fed31b719b6263b1cd896ad"
+    },
+    {
+      "bytes": 4761,
+      "path": "src/alphaforge/config/sleeve.py",
+      "sha256": "228be91144ec35cb89a486a4e99c6f91ff380268bd413ac9d17f22109275c763"
+    },
+    {
+      "bytes": 2306,
+      "path": "src/alphaforge/core/__init__.py",
+      "sha256": "f63503f5aaeae530e94a13e20fb106a2441e4b03647af95f2ede0dac0ae5751e"
+    },
+    {
+      "bytes": 15005,
+      "path": "src/alphaforge/core/calendar.py",
+      "sha256": "af3d6d7dde04fe367be78342b8c48f5532b59bfa621823075ad5a00a0d9f8312"
+    },
+    {
+      "bytes": 3636,
+      "path": "src/alphaforge/core/errors.py",
+      "sha256": "bc694ae793816da2caec1e85a327bc550f6bdf1afcfb307bc9b906af664111b4"
+    },
+    {
+      "bytes": 14764,
+      "path": "src/alphaforge/core/instruments.py",
+      "sha256": "3d23402d076ec3a36c9bfa7b646a251f43c83decbc9351643bce3e8509fa141f"
+    },
+    {
+      "bytes": 12621,
+      "path": "src/alphaforge/core/logging.py",
+      "sha256": "b4f5fabb323d28664647a9055b1a29f026e6b6d6ad8ed4d87452b4999943e34d"
+    },
+    {
+      "bytes": 11863,
+      "path": "src/alphaforge/core/symbols.py",
+      "sha256": "e3b4a84fba24764eea1c2c4f07d2fee41c74fe69d78638ae03ee70ba43ec4d0b"
+    },
+    {
+      "bytes": 7442,
+      "path": "src/alphaforge/core/time.py",
+      "sha256": "aab6b78410850be4ec9ebb5b64ad6d938a6631d6dc2e4b88510882033d171a36"
+    },
+    {
+      "bytes": 5039,
+      "path": "src/alphaforge/core/types.py",
+      "sha256": "b1461d92858688bec7074a5b500614d3f4df5a42dce75ca29ebf7e07f198223c"
+    },
+    {
+      "bytes": 731,
+      "path": "src/alphaforge/costs/__init__.py",
+      "sha256": "3bb669c83208788f8f64070d3e396c2fb30d35ab10dd91738ee358af3dce9d23"
+    },
+    {
+      "bytes": 3836,
+      "path": "src/alphaforge/costs/fees.py",
+      "sha256": "92f9a22eeecef7e86e3c95521364144950cc061fd1fdddcbf7d4777dede34fcb"
+    },
+    {
+      "bytes": 13641,
+      "path": "src/alphaforge/costs/model.py",
+      "sha256": "c415644e9e0b7e9f6f33c2bf084d32d70c73d612fbcf5b4a54e21f6523684cc9"
+    },
+    {
+      "bytes": 0,
+      "path": "src/alphaforge/data/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 0,
+      "path": "src/alphaforge/data/ingest/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 30853,
+      "path": "src/alphaforge/data/ingest/backfill.py",
+      "sha256": "1e37c034caca687f73816aa0d4920cd5e02a53f45de5cb4f5ac0a01cedc7a887"
+    },
+    {
+      "bytes": 14146,
+      "path": "src/alphaforge/data/ingest/checkpoints.py",
+      "sha256": "c166fc50975c021df3b54a2ccdba1a166130b3049b76df43c08d6bd2c1b97366"
+    },
+    {
+      "bytes": 14741,
+      "path": "src/alphaforge/data/ingest/equities.py",
+      "sha256": "73174fbe051cb6d59ff37f7e11deb20b3fb1a0458cbea1f13c01261ea86191b6"
+    },
+    {
+      "bytes": 10988,
+      "path": "src/alphaforge/data/ingest/fundamentals.py",
+      "sha256": "1b85f26d205e59e6447e3ba28a53f1b477ee548a9cd5a15fcb81dc9708c4c9dd"
+    },
+    {
+      "bytes": 31533,
+      "path": "src/alphaforge/data/ingest/market_status.py",
+      "sha256": "97559540e3366f1cd4f64cc899f4aad60fced481e169adc49faff12125f0a4e3"
+    },
+    {
+      "bytes": 19418,
+      "path": "src/alphaforge/data/ingest/occ_memo_archive.py",
+      "sha256": "f8ea2ab70c8c5dc7d59b74992e7fb83b662df75f30c559b3c27c13436de9b1ad"
+    },
+    {
+      "bytes": 26543,
+      "path": "src/alphaforge/data/ingest/option_adjustments.py",
+      "sha256": "dcb5bbe23446d9517be4e581bc2fadea6d699d85ef23bd8b704804d0cd4ef247"
+    },
+    {
+      "bytes": 8806,
+      "path": "src/alphaforge/data/ingest/retry.py",
+      "sha256": "ba42af1e006694c7678c888d82c1c06f6b830dfb205fd6c1d4fd5bad3b4fe20b"
+    },
+    {
+      "bytes": 11604,
+      "path": "src/alphaforge/data/ingest/seed.py",
+      "sha256": "23787b7ad2d48f959415cd941e4d580d4f0ec58289595f05f0a083da4e0240d5"
+    },
+    {
+      "bytes": 0,
+      "path": "src/alphaforge/data/quality/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 25872,
+      "path": "src/alphaforge/data/quality/checks.py",
+      "sha256": "de0ed5ba929aeee86ca941e51966e79582e040d314cf1b9ddab811b8ecc75399"
+    },
+    {
+      "bytes": 9511,
+      "path": "src/alphaforge/data/quality/report.py",
+      "sha256": "9c42c116ea58a3bcb44a3e98e3b3253119a822b9c3845fbaf92f45216dcd07ef"
+    },
+    {
+      "bytes": 26290,
+      "path": "src/alphaforge/data/schemas.py",
+      "sha256": "5309adceb4b5bc53bdfa6b89dc5abf47101fc007ef6ce8c361cb17e0344c422c"
+    },
+    {
+      "bytes": 0,
+      "path": "src/alphaforge/data/sources/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 6001,
+      "path": "src/alphaforge/data/sources/base.py",
+      "sha256": "e5b68349ebd77ab10530a1d17867be21e350f36e734fd0862fd4383efab2beb9"
+    },
+    {
+      "bytes": 23704,
+      "path": "src/alphaforge/data/sources/ccxt_source.py",
+      "sha256": "68271246560afc1f629f4a96fe36319a098eddac2fa4be14d614d98d1faa0307"
+    },
+    {
+      "bytes": 22793,
+      "path": "src/alphaforge/data/sources/polygon_flatfiles.py",
+      "sha256": "c6ced0e811f2ec15f0375d7ced5dcf59f0729b32b9c75bdf45202bfaa277edce"
+    },
+    {
+      "bytes": 46877,
+      "path": "src/alphaforge/data/sources/polygon_source.py",
+      "sha256": "e8c1a977fde552c0b0b076768d45502788a513d0e0fc8e6bcdc4c9b4e89bd4ff"
+    },
+    {
+      "bytes": 25766,
+      "path": "src/alphaforge/data/sources/vision.py",
+      "sha256": "220ee822ff2360ad02b70a8a79c82a811ef855e9d78e8c0074ea45f34dcf0ac3"
+    },
+    {
+      "bytes": 0,
+      "path": "src/alphaforge/data/store/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 7074,
+      "path": "src/alphaforge/data/store/lake.py",
+      "sha256": "c2d0452d754bdf45321c9a786e7a89d27281a5f3431979cdb1417fd1b2bba5a1"
+    },
+    {
+      "bytes": 16503,
+      "path": "src/alphaforge/data/store/reader.py",
+      "sha256": "60c2528e25bd5685e5acd481552364af4f7ccdf974c9556354e02fa8d73338bd"
+    },
+    {
+      "bytes": 14370,
+      "path": "src/alphaforge/data/store/resample.py",
+      "sha256": "836f56a9a7c56e2378207855b5180bd52060149e63de7ce3f5aa7e1d662bb1a5"
+    },
+    {
+      "bytes": 10973,
+      "path": "src/alphaforge/data/store/writer.py",
+      "sha256": "ce739a72ca6b2b11b302152e08e460da019722c74dad6c24a388109dab2bba6d"
+    },
+    {
+      "bytes": 0,
+      "path": "src/alphaforge/data/universe/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 19248,
+      "path": "src/alphaforge/data/universe/builder.py",
+      "sha256": "cd5ec51a045603b937022331a28e501614a9c066ee83605fa7a274b4ac7cabbb"
+    },
+    {
+      "bytes": 10098,
+      "path": "src/alphaforge/data/universe/store.py",
+      "sha256": "7e955c6256d1e277b8a5217b9b0b2a003a222d4ad94f8121f64c0871b89c3096"
+    },
+    {
+      "bytes": 7252,
+      "path": "src/alphaforge/execution/__init__.py",
+      "sha256": "931c39775e4d57da91e77c3398d6e2c826afdca852103b06191f58ab99aa6fcd"
+    },
+    {
+      "bytes": 17137,
+      "path": "src/alphaforge/execution/alpaca_broker.py",
+      "sha256": "224dd29e704d67b661c7d62d3a9a43b7faa9f5b9e7a8c9f1abd11532022837ee"
+    },
+    {
+      "bytes": 9734,
+      "path": "src/alphaforge/execution/borrow.py",
+      "sha256": "dc0f6c51824063106a162671f0a4f24fa4f3648faffbe9f9105c5ab6fa18180d"
+    },
+    {
+      "bytes": 10023,
+      "path": "src/alphaforge/execution/broker.py",
+      "sha256": "5284d57c36b23d24e0b945393486b00a849b93bf0f05d170e472c7f78d5c3914"
+    },
+    {
+      "bytes": 7889,
+      "path": "src/alphaforge/execution/ccxt_broker.py",
+      "sha256": "c2c304a7ef41903d18d78345f5f8d2060215ae1cf9df97c026a8d839f7689c49"
+    },
+    {
+      "bytes": 3065,
+      "path": "src/alphaforge/execution/corporate_actions.py",
+      "sha256": "5fdb7e4caeecaba304b337b664d72661d77c6c2dd5b94095c54a026633aaa238"
+    },
+    {
+      "bytes": 6018,
+      "path": "src/alphaforge/execution/financing.py",
+      "sha256": "4e7627ec97e6d49d82210fff5877382c7bc4af54d9cc77b0ea3a791a7b9dbf1b"
+    },
+    {
+      "bytes": 15758,
+      "path": "src/alphaforge/execution/futures.py",
+      "sha256": "555ffc2c8e5ac7baad5b6f9dc0e529cb658ef808bec25c7a6927b5d194387308"
+    },
+    {
+      "bytes": 6721,
+      "path": "src/alphaforge/execution/market_status.py",
+      "sha256": "91c4ec27018353ddea72d06d83c9ebba0e017dc0215ebb4587bacc4a86455e6a"
+    },
+    {
+      "bytes": 21451,
+      "path": "src/alphaforge/execution/options.py",
+      "sha256": "1758c2a0574eea4143f94a974d9ee3c618f7e8546dd57c030e14ceb629e69c64"
+    },
+    {
+      "bytes": 13415,
+      "path": "src/alphaforge/execution/options_deliverables.py",
+      "sha256": "1ee1ea5410ea7a6ef79352a46172b66c63478269db8e4911c6d68c84f0c9e884"
+    },
+    {
+      "bytes": 18184,
+      "path": "src/alphaforge/execution/options_fees.py",
+      "sha256": "8fb43265a101001a1ea4ec7a975266a8b7be1f405d82016fd909a49178dc67f3"
+    },
+    {
+      "bytes": 24097,
+      "path": "src/alphaforge/execution/options_margin.py",
+      "sha256": "1bdf492e64f801a2788c7501eb24e616c901e681a5ec35a07b71047372df4d91"
+    },
+    {
+      "bytes": 23834,
+      "path": "src/alphaforge/execution/options_packages.py",
+      "sha256": "1b544acd977209a8534e02bb363ccd549c7f4a3df6e4219a97b431e960e1de0f"
+    },
+    {
+      "bytes": 23640,
+      "path": "src/alphaforge/execution/order_manager.py",
+      "sha256": "9507a3a8b41e2d505618e61b449dd9aeaea60cb5b9753d3f56dde63d0eb1d6b2"
+    },
+    {
+      "bytes": 33943,
+      "path": "src/alphaforge/execution/paper.py",
+      "sha256": "f6f0872748a2791ff989660b74d02fc9482bac3d9a492114a702d4813d3a96a2"
+    },
+    {
+      "bytes": 34301,
+      "path": "src/alphaforge/execution/reconcile.py",
+      "sha256": "2b122dcd3491e50d46cd19581b69dd5c261d05b5eccd318e72f6a22e46dbff79"
+    },
+    {
+      "bytes": 2137,
+      "path": "src/alphaforge/features/__init__.py",
+      "sha256": "ffc6955cdb7eb1b89b046c2bc04cd84181ef37e42f8289b102c9598e3c95c923"
+    },
+    {
+      "bytes": 25726,
+      "path": "src/alphaforge/features/context.py",
+      "sha256": "4a27b10393865219f3fbda2e6483ba9b093fb264b4e998f2e9c18f59fca4a782"
+    },
+    {
+      "bytes": 11326,
+      "path": "src/alphaforge/features/cross_section.py",
+      "sha256": "5c29ecd8e8c4c7f28a5065cbcfc10ea17f27601edffcb7e3143663e3fb67e67c"
+    },
+    {
+      "bytes": 12982,
+      "path": "src/alphaforge/features/engine.py",
+      "sha256": "7de54a522aca22e17177fe4dffb362ca96bb052b0eca6bbc03c375461f3a2d53"
+    },
+    {
+      "bytes": 6964,
+      "path": "src/alphaforge/features/library/__init__.py",
+      "sha256": "63ba5950242db0960d460ec0df3a3206ab282ea3a6291d9ff2d73afef117c4d7"
+    },
+    {
+      "bytes": 9528,
+      "path": "src/alphaforge/features/library/carry.py",
+      "sha256": "c51f8faeb8456302692a55f28a0f59e87eaff1816d25b19ee5c1ce8767a1dc90"
+    },
+    {
+      "bytes": 13439,
+      "path": "src/alphaforge/features/library/carry_dynamics.py",
+      "sha256": "5f79875314b6d92fbb4e576fe66a3c617ac75d1b9603c925be7a023a019d54eb"
+    },
+    {
+      "bytes": 24770,
+      "path": "src/alphaforge/features/library/equity_fundamental.py",
+      "sha256": "300a8c31895d0efbe06c1858099faa25a5454b20ffffacd67f87b7f433ec4fb4"
+    },
+    {
+      "bytes": 6650,
+      "path": "src/alphaforge/features/library/equity_liquidity_alpha.py",
+      "sha256": "bb054ec43f3ffbee469136247846d3fc5a703b96e02f284927cdc234f55fbc90"
+    },
+    {
+      "bytes": 34044,
+      "path": "src/alphaforge/features/library/equity_price.py",
+      "sha256": "50fddfdba9eb4cd7a37805133038ab6f2af44de33d0a460feba9de5a1e5e3c10"
+    },
+    {
+      "bytes": 10061,
+      "path": "src/alphaforge/features/library/equity_residual.py",
+      "sha256": "695742ad3a92b8b98ba182896df7281b1af932073283ef1d1201f32aeb3ca544"
+    },
+    {
+      "bytes": 12058,
+      "path": "src/alphaforge/features/library/liquidity.py",
+      "sha256": "900ac70441e3d31536035c973b987f62f8ef3117bea2b44aff51f3ea49571d27"
+    },
+    {
+      "bytes": 7142,
+      "path": "src/alphaforge/features/library/market.py",
+      "sha256": "63b29c1d8124c71802de01c34455c19ddbb3bae81c4b031add9eb78652268264"
+    },
+    {
+      "bytes": 6007,
+      "path": "src/alphaforge/features/library/market_state.py",
+      "sha256": "eacfcee178d4cc4e347ce6eb59fc6cdbe0962cd5324d45edc40a7ffd6c370a7f"
+    },
+    {
+      "bytes": 11727,
+      "path": "src/alphaforge/features/library/mean_reversion.py",
+      "sha256": "55981a635321198d1c49d58f28a376b368c8a7a369dd590368a150346712ea3d"
+    },
+    {
+      "bytes": 7026,
+      "path": "src/alphaforge/features/library/momentum.py",
+      "sha256": "52b5a1010b35253aee88a1e55738d0ecebccdab0a056d59dea6f2185f8d4a9c4"
+    },
+    {
+      "bytes": 8970,
+      "path": "src/alphaforge/features/library/momentum_slow.py",
+      "sha256": "316ee86444a1ed6eac2f092aa2925210a301d798fef11f73bb8e9df123c3136a"
+    },
+    {
+      "bytes": 12225,
+      "path": "src/alphaforge/features/library/regime_features.py",
+      "sha256": "3250a3ed0c0f870a95e0bb53b6c6ebad81a36eb7cb21b27b1d720b5e6f3e4827"
+    },
+    {
+      "bytes": 16852,
+      "path": "src/alphaforge/features/library/vol.py",
+      "sha256": "7a93d8dd0a6d616ef6298f2f15ebd0c45f0325be7d0d8951e4ad351e0d329812"
+    },
+    {
+      "bytes": 8794,
+      "path": "src/alphaforge/features/library/vol_premium.py",
+      "sha256": "1507a25add2d41f7533dcc02499da2bfad85bee7cc32d4ac937e7cb242a11ca3"
+    },
+    {
+      "bytes": 8074,
+      "path": "src/alphaforge/features/parity.py",
+      "sha256": "d0037d941ff6b1a7722270b673cca23cbb6370968c6172057e23e0697841fa57"
+    },
+    {
+      "bytes": 6307,
+      "path": "src/alphaforge/features/registry.py",
+      "sha256": "4f068952bc61101b461836388d1f13c0a7056e59b5d148da0cf35e158672b963"
+    },
+    {
+      "bytes": 7123,
+      "path": "src/alphaforge/features/spec.py",
+      "sha256": "935fb30c066ef935a650697768e11150d08fcd6a85c41ee5933beff58f1f5e36"
+    },
+    {
+      "bytes": 1996,
+      "path": "src/alphaforge/labeling/__init__.py",
+      "sha256": "1c083f5a4025ea4ff7caeba85da11c58b8e4a4cc834170d97320ce2564e798ef"
+    },
+    {
+      "bytes": 9573,
+      "path": "src/alphaforge/labeling/forward_returns.py",
+      "sha256": "a264c1a32a022a46ab243b63c0882e55cf831206f3822f82e0a70654ff091dee"
+    },
+    {
+      "bytes": 15867,
+      "path": "src/alphaforge/labeling/meta.py",
+      "sha256": "cafa04975ae0641cf031ef2e7eef0144ec107c5057f138864ab8358472b56bb9"
+    },
+    {
+      "bytes": 29934,
+      "path": "src/alphaforge/labeling/triple_barrier.py",
+      "sha256": "08ea300d11e29030631e5cf090c580e98894e8b61f8de896a61f39cfd4d83d6d"
+    },
+    {
+      "bytes": 19420,
+      "path": "src/alphaforge/labeling/weights.py",
+      "sha256": "01211f5801c9f7ec9cb01705cc3b92726f56e9e14d86594eaed4d0c2e5795a88"
+    },
+    {
+      "bytes": 1489,
+      "path": "src/alphaforge/live/__init__.py",
+      "sha256": "a8d7f86391796d5385b19f28cdd9dabb4cafbf75732a3f77c2cfeafdba9724fa"
+    },
+    {
+      "bytes": 10221,
+      "path": "src/alphaforge/live/alerts.py",
+      "sha256": "1e02bfde81900d6bd08e5317f5e81704da073a4f26ac710f8f325a4c6f5a6489"
+    },
+    {
+      "bytes": 85871,
+      "path": "src/alphaforge/live/loop.py",
+      "sha256": "b2faf9703c1ce114bb1710e2c025b05b86d377ab0bb3ac54d0a3508cd700f1d5"
+    },
+    {
+      "bytes": 34550,
+      "path": "src/alphaforge/live/store.py",
+      "sha256": "aa815f09a2eee9528ca878e510dd4e69041a1de378d8e0b28ce5f54044c6a8d5"
+    },
+    {
+      "bytes": 2164,
+      "path": "src/alphaforge/ml/__init__.py",
+      "sha256": "30c22f96e91c20d6465a2e755d6a7757af7b305b17b230ac503a34c3fd48f173"
+    },
+    {
+      "bytes": 13223,
+      "path": "src/alphaforge/ml/importance.py",
+      "sha256": "94f5396742bcd178af1d06af9f924bb001456947e48565847bcb533eae7abe0f"
+    },
+    {
+      "bytes": 25929,
+      "path": "src/alphaforge/ml/model.py",
+      "sha256": "9046b89f67b4cf7994ebd0d927b51005352e993b161c8d2824801599501b6784"
+    },
+    {
+      "bytes": 17036,
+      "path": "src/alphaforge/ml/registry.py",
+      "sha256": "79212e9a83c66dddc247476156b993a59034dbeadce411ae41b7f18716323e0a"
+    },
+    {
+      "bytes": 22660,
+      "path": "src/alphaforge/ml/retrain.py",
+      "sha256": "c837d8dd0b0737313d28b16fbf68b7cb61ba5955c0f206eeb7a2c01530632844"
+    },
+    {
+      "bytes": 1808,
+      "path": "src/alphaforge/ops/__init__.py",
+      "sha256": "733d81e8a70723b5858c4a9173958aac5137a54038b92619b901bfba10eb4e68"
+    },
+    {
+      "bytes": 18601,
+      "path": "src/alphaforge/ops/backup.py",
+      "sha256": "8ce2226d5c90516c45ecb669654a4ff48bc2203c89c2cc024bded873726dad54"
+    },
+    {
+      "bytes": 8985,
+      "path": "src/alphaforge/ops/clock.py",
+      "sha256": "5183959d56b518d48447e6d11c8999e049434bc288a62b93b5ad767f1d25ba87"
+    },
+    {
+      "bytes": 10020,
+      "path": "src/alphaforge/ops/slippage.py",
+      "sha256": "817f7ac82694d4550df4a69f69520da2e945cc7f8496746244d0064112ac90c3"
+    },
+    {
+      "bytes": 1384,
+      "path": "src/alphaforge/portfolio/__init__.py",
+      "sha256": "abc6bf7caedc8d6152aa4992da03761016a99d87d3c5b93a982e59d965081e46"
+    },
+    {
+      "bytes": 17369,
+      "path": "src/alphaforge/portfolio/book.py",
+      "sha256": "f63f2bc83ddf739f7e91c0ba8b2cd095984f26148461b56ddbb7a69c8ccd9c07"
+    },
+    {
+      "bytes": 12138,
+      "path": "src/alphaforge/portfolio/covariance.py",
+      "sha256": "bdc3655b8dbe65ab3a4cd28f4c03f13afadca7927fd393aa5364baebf908f391"
+    },
+    {
+      "bytes": 8288,
+      "path": "src/alphaforge/portfolio/discretize.py",
+      "sha256": "093b9819c30fee85ab48656e38d93dd39ca3bd08706c19fd048c1e267905cfe1"
+    },
+    {
+      "bytes": 3765,
+      "path": "src/alphaforge/portfolio/market_factor.py",
+      "sha256": "da817e6e953224b3602f20b4cb32339bf94f632453d883f8e3896a609685f6f0"
+    },
+    {
+      "bytes": 33161,
+      "path": "src/alphaforge/portfolio/optimizer.py",
+      "sha256": "e933fa6f871aeeb82680475b728fd06c5429f008b0635ef2fb35144c255a9f20"
+    },
+    {
+      "bytes": 4181,
+      "path": "src/alphaforge/portfolio/overlay.py",
+      "sha256": "d1f2013245c396269448a900c374d663f7768843061e27376ecfa4c10e11eca8"
+    },
+    {
+      "bytes": 41325,
+      "path": "src/alphaforge/portfolio/strategy.py",
+      "sha256": "e2e247cf5d32fa707f813b11ff8afe32cd01b3d46a831d25f030810a4f3bc1f4"
+    },
+    {
+      "bytes": 1660,
+      "path": "src/alphaforge/regime/__init__.py",
+      "sha256": "5c51073843ffdf420d9164979fa653ab99a3f01e90d2d91041dd80e8f938263f"
+    },
+    {
+      "bytes": 28488,
+      "path": "src/alphaforge/regime/hmm.py",
+      "sha256": "b0017b7db36d731f561a1658c0f4dfa739e918a918a784eb9bf30a3eae1442db"
+    },
+    {
+      "bytes": 0,
+      "path": "src/alphaforge/research/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 22549,
+      "path": "src/alphaforge/research/ic_report.py",
+      "sha256": "7e51687607bfe1e9ab1bfdab039d34b65e467b10bda0cf150f03f9d89838ee75"
+    },
+    {
+      "bytes": 14048,
+      "path": "src/alphaforge/research/zoo.py",
+      "sha256": "8a5ab83c0119ce8664341ee9bc8395ef12ea93dfe4b40c6d788219b0c99a9f5c"
+    },
+    {
+      "bytes": 1280,
+      "path": "src/alphaforge/risk/__init__.py",
+      "sha256": "7ea587f8d79d0671f36f62403751174058445528b3969a59500dd7b39006c572"
+    },
+    {
+      "bytes": 6622,
+      "path": "src/alphaforge/risk/crowding.py",
+      "sha256": "ba8e2069f00e1fe3eb30914f7e4afdef486f760744e5a23f7f488b0ababc1c70"
+    },
+    {
+      "bytes": 2377,
+      "path": "src/alphaforge/risk/killswitch.py",
+      "sha256": "308f8283b1232f0a4d93a66a88fe3b3dd0eaf51722c48a257535bb0c14bde443"
+    },
+    {
+      "bytes": 5500,
+      "path": "src/alphaforge/risk/limits.py",
+      "sha256": "5119c578864d3229b9a57a6270de18bfe04670d6ca656a8236dfa1cde3baa789"
+    },
+    {
+      "bytes": 14656,
+      "path": "src/alphaforge/risk/monitors.py",
+      "sha256": "fbb2b7078d5090671527d6d60d7e7ef778ae05d43a2a1ef522574d658b63f710"
+    },
+    {
+      "bytes": 13837,
+      "path": "src/alphaforge/risk/pretrade.py",
+      "sha256": "05e62410af6942e0012778c37e7f5cd57583fcbd0d0865b64df6536450b3744d"
+    },
+    {
+      "bytes": 1582,
+      "path": "src/alphaforge/signals/__init__.py",
+      "sha256": "8eda3eb1f0a2688c4349f96689bc1983a7817828c86bf6897f69958d8d49e488"
+    },
+    {
+      "bytes": 21413,
+      "path": "src/alphaforge/signals/blending.py",
+      "sha256": "2aed8ff7e9026267aaa09ed0169255e18143aec1afa6039916c5c6889c5589ad"
+    },
+    {
+      "bytes": 5536,
+      "path": "src/alphaforge/signals/features_serve.py",
+      "sha256": "7a8eaf0c75ea45f422180c33a2bbad25131877e844cd73f989cd2d7fcc797689"
+    },
+    {
+      "bytes": 12728,
+      "path": "src/alphaforge/signals/gating.py",
+      "sha256": "1b099d175e64b04240968db149a6a11aad0b61f5606dd10e4d5dce4a70abc864"
+    },
+    {
+      "bytes": 18279,
+      "path": "src/alphaforge/signals/service.py",
+      "sha256": "eb9cb42fcf3a6b1e789130b9a97ea41a5b9d5753fcf19f96542d7ce2aa7302d9"
+    },
+    {
+      "bytes": 6635,
+      "path": "src/alphaforge/signals/sizing.py",
+      "sha256": "1e917f4796ef9684e76cee56fb6c2a7616cb9e5674f59641c6db52556b02452d"
+    },
+    {
+      "bytes": 1758,
+      "path": "src/alphaforge/validation/__init__.py",
+      "sha256": "6c41b755a13c93ff62487c25ba8a3c6b40270dda1d85a7faf81ff6004f50f434"
+    },
+    {
+      "bytes": 7854,
+      "path": "src/alphaforge/validation/concentration.py",
+      "sha256": "8deab4283c7217bb04d08d1ef608ff075519fefaa63f42696765f3d7022cdf06"
+    },
+    {
+      "bytes": 12699,
+      "path": "src/alphaforge/validation/cpcv.py",
+      "sha256": "5e6d2efd20f9125b6783e303e8a2da47aafaa6eface2c6ce2a0f9bc6d69a366b"
+    },
+    {
+      "bytes": 12916,
+      "path": "src/alphaforge/validation/diversification.py",
+      "sha256": "62b73aa376e70e16d1cdf2896632f8c9e9a55b48389020ffdca0ceb28e4cd313"
+    },
+    {
+      "bytes": 11317,
+      "path": "src/alphaforge/validation/dsr.py",
+      "sha256": "ac2f18440e21b8241df4ac933748ab34125e42531aac2d1f5413aa4ad0deb1b2"
+    },
+    {
+      "bytes": 27632,
+      "path": "src/alphaforge/validation/experiments.py",
+      "sha256": "0b8dff4651c2125d861567f6967f3c8a6ddb7f3d2e515c2c092128fc69b60101"
+    },
+    {
+      "bytes": 10834,
+      "path": "src/alphaforge/validation/metrics.py",
+      "sha256": "dbb1ee5ac453db4ac59e9b98236d9ad647ae5b6a68c3b38f80653897ffbfe538"
+    },
+    {
+      "bytes": 10294,
+      "path": "src/alphaforge/validation/pbo.py",
+      "sha256": "a861b7b0f053ff845d696b23f9382734beec349abedd94294c5b6254c3351794"
+    },
+    {
+      "bytes": 5634,
+      "path": "src/alphaforge/validation/prereg.py",
+      "sha256": "0ad34850713b0b4e6d391a078e934736b71cb5172301f115687ab62a49090ed3"
+    },
+    {
+      "bytes": 5130,
+      "path": "src/alphaforge/validation/probe_ledger.py",
+      "sha256": "9ee397e78541f64982dd655d914d5b356658e98fb6a52932133db24d94a2358a"
+    },
+    {
+      "bytes": 6651,
+      "path": "src/alphaforge/validation/publish_gate.py",
+      "sha256": "6c20e8bba6ce272a4da2014a6edc80bfd527e470dfb583fd3505817f18ad18a9"
+    },
+    {
+      "bytes": 30163,
+      "path": "src/alphaforge/validation/sleeve_admission.py",
+      "sha256": "c9a36e3ce01b8d4bda615d3eb55cadf2f88b16a049df39e547f870185d915e64"
+    },
+    {
+      "bytes": 9401,
+      "path": "src/alphaforge/validation/splits.py",
+      "sha256": "6e9e5fb0fed9b1b6820328be31d9b42565789ff0496656f74cb6df7d6b39f5c5"
+    },
+    {
+      "bytes": 617550,
+      "path": "uv.lock",
+      "sha256": "5caca664242722a3a3112663d7a19b7b5000583e30ade3753e1b8ffdecfd6f06"
+    }
+  ],
+  "packages": {
+    "numpy": "2.4.6",
+    "pandas": "3.0.3",
+    "pyarrow": "24.0.0",
+    "scipy": "1.17.1"
+  },
+  "platform": "macOS-26.5.1-arm64-arm-64bit",
+  "python": "3.12.13 (main, Jun  2 2026, 22:42:28) [Clang 22.1.3 ]",
+  "schema": "canli.alphac-replay-source-environment.v1",
+  "source_bytes": 2966860,
+  "source_files": 168
+}

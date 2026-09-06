@@ -1,0 +1,220 @@
+{
+  "schema": "canli.alphac-forward-evidence-maturity.v1",
+  "generated_at": "2026-09-05T20:27:07.800580+00:00",
+  "author": "Arhan Canli",
+  "capital_kind": "PAPER_ONLY",
+  "status": "IMMATURE_RECORD_TOO_SHORT",
+  "provenance_gate": {
+    "passes": true,
+    "checks": {
+      "paper_capital_only": true,
+      "live_config_matches_declaration": true,
+      "live_config_matches_frozen_evidence_epoch": true,
+      "continuity_schema": true,
+      "continuity_content_hash": true,
+      "continuity_passes": true,
+      "continuity_covers_last_mark": true,
+      "broker_schema": true,
+      "broker_content_hash": true,
+      "broker_passes": true,
+      "broker_accounts_are_unique": true,
+      "broker_reconciliation_fresh": true,
+      "broker_reconciliation_covers_state": true,
+      "drawdown_model_schema": true,
+      "current_book_drawdown_schema": true,
+      "current_book_drawdown_content_hash": true,
+      "current_book_drawdown_binds_live_configuration": true,
+      "current_book_drawdown_remains_non_establishing": true,
+      "current_book_diversification_schema": true,
+      "current_book_diversification_content_hash": true,
+      "current_book_diversification_binds_live_configuration": true,
+      "current_book_diversification_binds_drawdown_bytes": true,
+      "current_book_diversification_remains_non_establishing": true,
+      "drawdown_evidence_schema": true,
+      "drawdown_evidence_content_hash": true,
+      "drawdown_evidence_integrity_passes": true,
+      "drawdown_evidence_binds_model_bytes": true,
+      "drawdown_evidence_binds_current_book_model_bytes": true,
+      "drawdown_evidence_binds_contract_bytes": true,
+      "drawdown_live_non_equivalence_disclosed": true,
+      "drawdown_evidence_matches_current_book_model": true,
+      "transparency_schema": true,
+      "transparency_payload_schema": true,
+      "transparency_chain_and_signatures_valid": true,
+      "transparency_head_payload_matches_state": true,
+      "crypto_position_attribution_schema": true,
+      "crypto_position_attribution_content_hash": true,
+      "crypto_position_attribution_complete": true,
+      "crypto_position_attribution_reconciles_equity": true,
+      "crypto_position_attribution_reproduces_position_arithmetic": true,
+      "crypto_position_attribution_covers_last_mark": true,
+      "crypto_position_attribution_rollout_schema": true,
+      "crypto_position_attribution_rollout_content_hash": true,
+      "crypto_position_attribution_rollout_verified": true
+    },
+    "failed_checks": [],
+    "transparency_chain_validation_error": null,
+    "transparency_state_validation_error": null
+  },
+  "record": {
+    "first_mark": "2026-08-07",
+    "last_mark": "2026-09-05",
+    "curve_points": 28,
+    "daily_return_observations": 27,
+    "cumulative_return": -0.025361100000000025,
+    "return_frequency": "CONSECUTIVE_PUBLISHED_UTC_DAILY_MARKS_NO_SYNTHETIC_FILL",
+    "configuration_fingerprint": "sha256:fe82c4eeed742289bfcfee5d39856ee2bb8ca9cfe209bcc7e34abff98553706d"
+  },
+  "sharpe_evidence": {
+    "daily_return_observations": 27,
+    "estimate_minimum": 252,
+    "establishment_minimum": 756,
+    "observations_to_estimate": 225,
+    "observations_to_establishment": 729,
+    "annualization_days": 365.0,
+    "target": 1.5,
+    "target_exceedance_probability_min": 0.95,
+    "annualized_point_estimate": null,
+    "probability_true_sharpe_exceeds_target": null,
+    "target_observed": false,
+    "target_statistically_established": false,
+    "status": "IMMATURE_RECORD_TOO_SHORT"
+  },
+  "drawdown_evidence": {
+    "realized_live_max_drawdown": 0.03000239141679173,
+    "realized_status": "DESCRIPTIVE_TO_DATE_NOT_EXPECTED_MAX_DRAWDOWN",
+    "expected_max_drawdown_target": 0.11,
+    "study_production_labelled_expected_max_drawdown": 0.10251155801473733,
+    "study_production_labelled_p95_max_drawdown": 0.1876321103559252,
+    "current_composition_conservative_expected_max_drawdown": 0.09318244707449024,
+    "current_composition_conservative_p95_max_drawdown": 0.16451439272324467,
+    "current_composition_study_status": "CURRENT_COMPOSITION_EXPECTED_WITHIN_OBJECTIVE_HISTORICAL_TAIL_COVERAGE_INCOMPLETE",
+    "current_composition_expected_within_objective": true,
+    "current_composition_p95_within_objective": false,
+    "current_composition_failed_establishment_dimensions": [
+      "COMMON_WINDOW_BEGINS_AFTER_COVID_AND_2022",
+      "ABSENT_CRISIS_CANNOT_APPEAR_IN_BLOCK_BOOTSTRAP",
+      "REGIME_MODEL_HAS_NO_STRESS_VOLATILITY_MULTIPLIER",
+      "CONSTITUENT_INSTRUMENT_AND_LADDER_STATE_NOT_REPLAYED",
+      "EXECUTION_GAPS_AND_LIQUIDITY_FEEDBACK_NOT_MODELED"
+    ],
+    "study_status": "CURRENT_COMPOSITION_EXPECTED_WITHIN_OBJECTIVE_LIVE_NOT_ESTABLISHED",
+    "production_equivalence_passes": false,
+    "production_equivalence_failed_checks": [
+      "sleeve_count_matches_live_book",
+      "book_level_volatility_target_matches_live_composite",
+      "book_level_risk_overlay_matches_live_composite",
+      "single_daily_timebase_matches_mixed_live_timebases",
+      "covariance_halflife_has_one_duration_across_live_sleeves",
+      "production_shrinkage_is_inside_simulation"
+    ],
+    "objective_status": "MODELED_CURRENT_COMPOSITION_WITHIN_OBJECTIVE_LIVE_EXPECTED_MAX_DRAWDOWN_NOT_ESTABLISHED"
+  },
+  "diversification_evidence": {
+    "study_status": "CURRENT_COMPOSITION_DIVERSIFICATION_OBJECTIVE_GAP_RESEARCH_ONLY",
+    "current_sleeves": 4,
+    "target_total_sleeves": 14,
+    "average_pairwise_correlation": 0.024827414293607856,
+    "average_pairwise_correlation_objective": -0.03,
+    "active_v7_has_no_global_average_correlation_point_gate": true,
+    "active_v7_candidate_average_correlation_gate": 0.0,
+    "historical_v6_global_average_correlation_point_gate": 0.0,
+    "average_pairwise_upper_95": 0.04870778381377487,
+    "average_pairwise_upper_95_gate": 0.1,
+    "maximum_pairwise_correlation": 0.20975189522943685,
+    "maximum_pairwise_upper_95": 0.3025187934584474,
+    "stressed_pairwise_design_value_not_observed": 0.5,
+    "diversification_ratio_sleeves_only": 1.8153132626773805,
+    "effective_independent_sleeves_participation_ratio": 3.8988014966039604,
+    "marginal_book_sharpe_research_diagnostics": {
+      "alphavintage_live": {
+        "book_sharpe_with_sleeve": 1.7846281669176056,
+        "book_sharpe_with_sleeve_replaced_by_cash": 1.7908857604795474,
+        "marginal_book_sharpe_delta": -0.006257593561941777
+      },
+      "crypto_carry_wk": {
+        "book_sharpe_with_sleeve": 1.7846281669176056,
+        "book_sharpe_with_sleeve_replaced_by_cash": 1.252034546324405,
+        "marginal_book_sharpe_delta": 0.5325936205932007
+      },
+      "k30_dn_63": {
+        "book_sharpe_with_sleeve": 1.7846281669176056,
+        "book_sharpe_with_sleeve_replaced_by_cash": 1.6377956654461165,
+        "marginal_book_sharpe_delta": 0.14683250147148907
+      },
+      "managed_futures": {
+        "book_sharpe_with_sleeve": 1.7846281669176056,
+        "book_sharpe_with_sleeve_replaced_by_cash": 1.875466015776462,
+        "marginal_book_sharpe_delta": -0.09083784885885637
+      }
+    },
+    "checks": {
+      "average_pairwise_upper_95": true,
+      "minimum_correlation_observations": true,
+      "ordinary_pairwise_point": true,
+      "ordinary_pairwise_upper_95": true,
+      "stressed_pairwise_design": true
+    },
+    "passes_all_active_v7_risk_comparisons": true,
+    "live_forward_diversification_established": false,
+    "failed_establishment_dimensions": [
+      "RESEARCH_CURVES_END_BEFORE_BROKER_RECONCILED_FORWARD_RECORD",
+      "RETURN_DATA_WERE_KNOWN_BEFORE_PROTOCOL",
+      "NO_HUMAN_INDEPENDENT_REPLICATION",
+      "NO_CRISIS_COMPLETE_FORWARD_CORRELATION_WINDOW"
+    ],
+    "objective_status": "CURRENT_COMPOSITION_AVERAGE_CORRELATION_OBJECTIVE_GAP_LIVE_FORWARD_NOT_ESTABLISHED"
+  },
+  "source_bindings": {
+    "contract": {
+      "path": "config/forward_evidence_contract.json",
+      "sha256": "d1b0c97921d9c8b96de7af275b18b9d0ffbfe1332a078061135e8d044ba3981a"
+    },
+    "paper_state": {
+      "path": "data/paper/state.json",
+      "sha256": "44856762908fdc961fed817d95e753c96b05d58fd245b68e3b085e5ca15bd224"
+    },
+    "record_continuity": {
+      "path": "artifacts/engineering/record_continuity.json",
+      "sha256": "189aafe18ad09331608a938853cacbbaf0c58d9423ba7eca372ff79e44152001"
+    },
+    "broker_reconciliation": {
+      "path": "artifacts/engineering/alpaca_broker_reconciliation.json",
+      "sha256": "e6ff727d772b8ffba32e18b2893e8f2bb88f704c48d0e6b98dabce242dcf0389"
+    },
+    "drawdown_model": {
+      "path": "artifacts/analysis/drawdown_live_estimator/result.json",
+      "sha256": "9671ed7551aab242dc3529510cf9105201835096f36bb971153c132081754324"
+    },
+    "current_book_drawdown": {
+      "path": "artifacts/analysis/current_book_drawdown/result.json",
+      "sha256": "44d8fb315eeb21f033b4070c19d17faea9dd0e4e52a8b9b9036a7d7818313e3d"
+    },
+    "current_book_diversification": {
+      "path": "artifacts/analysis/current_book_diversification/result.json",
+      "sha256": "513c0aec24163e4241da0ec332accc86e9516741be1c409c5b2a1c5857dce8a8"
+    },
+    "drawdown_evidence": {
+      "path": "artifacts/engineering/forward_drawdown_evidence.json",
+      "sha256": "2e8fcbcc6dde076ac3cd50cf9ee44c4aa28a60ef54f403d1e893be2dbba1f729"
+    },
+    "methodology_paper": {
+      "path": "docs/research/FORWARD_SHARPE_EVIDENCE_STANDARD.md",
+      "sha256": "aeba2fc6ff13effd1a363119f883bf4f56948e0bb5395f659632d2a67517571c"
+    },
+    "transparency_chain": {
+      "path": "meridian/public/glassbox/transparency_log.json",
+      "sha256": "04474fc17cd44a5ca9fdf92a64494b6eb9a35ed5833764ea0d6497fe3d513cec"
+    },
+    "crypto_position_attribution": {
+      "path": "artifacts/engineering/crypto_position_attribution.json",
+      "sha256": "d5354c0914a66bb329e81f64a676bf9442bcf921ef5aa57d7e9b4a89bd1ea82f"
+    },
+    "crypto_position_attribution_rollout": {
+      "path": "artifacts/engineering/crypto_position_attribution_rollout_verification.json",
+      "sha256": "a2cc6feba0363e6f0d2bfdb8fc745107a433dda17705bf712071739908b0fa29"
+    }
+  },
+  "claim_boundary": "Paper-only, self-published evidence. An immature or observed Sharpe is not an established Sharpe. Realized maximum drawdown is not expected maximum drawdown, and the modeled expectation is not a live guarantee.",
+  "content_hash": "sha256:512a84734ae737800005a0b025c387e013e88828a01ee63c033dbb2a8f7f90ce"
+}

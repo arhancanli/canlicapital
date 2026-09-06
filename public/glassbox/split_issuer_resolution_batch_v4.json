@@ -1,0 +1,512 @@
+{
+  "author": "Arhan Canli",
+  "claim_boundary": "This verifies only the ATNI, CMO, ITT, SBRA, NRF, IHG, KMI1, KSU, TYC, T1, RBAK, and SDH1 share-mutation components. Because the engine does not replay their companion distributed securities, special dividend, or cash scheme consideration, none is executable. This does not open returns, validate performance, or pass the global split gate.",
+  "content_hash": "sha256:e1d1d9fb384877b52199e86d0924e126b4eb208a7a9382ef3c9fc2aa5e60334b",
+  "decision": "TWELVE_COMPOSITE_SHARE_MUTATIONS_VERIFIED_REPLAY_NOT_AUTHORIZED",
+  "hypotheses_spent": 0,
+  "lineage": {
+    "unresolved_context_content_hash": "sha256:c81c35a83c706cec7a8b4e4c9f22d1f0c874c26fe42c8a92ebdc0bc75c7b4d3f",
+    "unresolved_context_path": "artifacts/audit/unresolved_split_event_context.json",
+    "unresolved_context_sha256": "98304049af107814ec6b7798ff6ea91ab54e16c1f8801c202f1fbbd8d692b2c0"
+  },
+  "required_next_action": "Route these exact tuples as issuer-verified composite-action quarantines until the engine can replay each separate distributed-security or cash entitlement.",
+  "resolved_events": [
+    {
+      "date_binding": "ISSUER_EFFECTIVE_DATE_PRECEDES_EVENT_WITHOUT_PRE_EVENT_BAR",
+      "event_semantics": "SPLIT_OFF_WITH_COMPANION_ECI_SECURITY_ENTITLEMENT",
+      "ex_date": "1997-12-31 04:00:00+04:00",
+      "ex_date_ms": 883526400000,
+      "execution_authorized": false,
+      "governance_route": "HARD_QUARANTINE_ISSUER_VERIFIED_COMPOSITE_ACTION",
+      "instrument_id": "XUSE:CASH:ATNIUSD",
+      "issuer_effective_date": "1997-12-30",
+      "issuer_ratio": 0.4,
+      "market_date_binding": {
+        "binding": "ISSUER_EFFECTIVE_DATE_PRECEDES_EVENT_WITHOUT_PRE_EVENT_BAR",
+        "event_close": 10.88,
+        "event_date": "1997-12-31",
+        "price_partition_path": "data/corrections/corporate_action_basis_48fcfde04e3c_materialized_v1/data/lake_sharadar/ohlcv_1d/instrument_id=XUSE:CASH:ATNIUSD/year=1997/data.parquet",
+        "price_partition_sha256": "df2e1f04f2f87bc83c2db2b3756bcb3fb5b32ea4e60b2d712add645ffa499afa",
+        "prior_close": null,
+        "prior_date": null,
+        "prior_price_partition_path": null,
+        "prior_price_partition_sha256": null
+      },
+      "prior_context_classification": "NEARBY_SPINOFF_CONTEXT",
+      "ratio": 0.4,
+      "required_companion_replay": "SEPARATE_SPINOFF_DISTRIBUTED_SECURITY_ENTITLEMENT",
+      "required_fragments": [
+        "On December 30, 1997, the Company was split into two separate public companies",
+        "Emerging Communications, Inc.",
+        "received one share of ECI Common Stock and 0.4 shares of Company Common Stock"
+      ],
+      "required_fragments_verified": [
+        "On December 30, 1997, the Company was split into two separate public companies",
+        "Emerging Communications, Inc.",
+        "received one share of ECI Common Stock and 0.4 shares of Company Common Stock"
+      ],
+      "retrieved_sha256": "aaaaf1798038b52c74098870aba003b3fde221fc08015ca36a9d93760f29e773",
+      "share_mutation_verified": true,
+      "stored_ratio": 0.4,
+      "ticker": "ATNI",
+      "url": "https://www.sec.gov/Archives/edgar/data/879585/000095013098001580/0000950130-98-001580.txt"
+    },
+    {
+      "date_binding": "FIRST_FROZEN_BAR_AFTER_ISSUER_EFFECTIVE_DATE",
+      "event_semantics": "REVERSE_SPLIT_WITH_COMPANION_SPECIAL_CASH_DIVIDEND",
+      "ex_date": "2001-07-02 04:00:00+04:00",
+      "ex_date_ms": 994032000000,
+      "execution_authorized": false,
+      "governance_route": "HARD_QUARANTINE_ISSUER_VERIFIED_COMPOSITE_ACTION",
+      "instrument_id": "XUSE:CASH:CMOUSD",
+      "issuer_effective_date": "2001-06-29",
+      "issuer_ratio": 0.5,
+      "market_date_binding": {
+        "binding": "FIRST_FROZEN_BAR_AFTER_ISSUER_EFFECTIVE_DATE",
+        "event_close": 19.7,
+        "event_date": "2001-07-02",
+        "price_partition_path": "data/corrections/corporate_action_basis_48fcfde04e3c_materialized_v1/data/lake_sharadar/ohlcv_1d/instrument_id=XUSE:CASH:CMOUSD/year=2001/data.parquet",
+        "price_partition_sha256": "3339a6f91f24e6627404e4831cec5b8b73e282be448d572cd0427074ca81e18a",
+        "prior_close": 17.8,
+        "prior_date": "2001-06-29",
+        "prior_price_partition_path": "data/corrections/corporate_action_basis_48fcfde04e3c_materialized_v1/data/lake_sharadar/ohlcv_1d/instrument_id=XUSE:CASH:CMOUSD/year=2000/data.parquet",
+        "prior_price_partition_sha256": "a202374ae3ea3581bd3e6797c173b593d571630c8d426f27d35c2f9f8cb8e341"
+      },
+      "prior_context_classification": "PLAIN_SPLIT_WITHOUT_LIFECYCLE_CONTEXT",
+      "ratio": 0.5,
+      "required_companion_replay": "COMPANION_CASH_DISTRIBUTION",
+      "required_fragments": [
+        "a special dividend of $7.30 per common share",
+        "the close of business on June 29, 2001, as the effective date of the reverse split",
+        "the first day the common shares traded post-split was July 2, 2001",
+        "coincided with the first day that the common shares began trading ex-special dividend"
+      ],
+      "required_fragments_verified": [
+        "a special dividend of $7.30 per common share",
+        "the close of business on June 29, 2001, as the effective date of the reverse split",
+        "the first day the common shares traded post-split was July 2, 2001",
+        "coincided with the first day that the common shares began trading ex-special dividend"
+      ],
+      "retrieved_sha256": "38be617fa9bda1947b98e74164fd7796cc11bdf1d82a03c5bbcd3586a1123b44",
+      "share_mutation_verified": true,
+      "stored_ratio": 0.5,
+      "ticker": "CMO",
+      "url": "https://www.sec.gov/Archives/edgar/data/766701/000095013401503792/d88804e8-k.txt"
+    },
+    {
+      "date_binding": "FIRST_FROZEN_BAR_AFTER_ISSUER_EFFECTIVE_DATE",
+      "event_semantics": "POST_SPINOFF_REVERSE_SPLIT_AT_FIRST_POST_EFFECTIVE_BAR",
+      "ex_date": "2011-11-01 04:00:00+04:00",
+      "ex_date_ms": 1320105600000,
+      "execution_authorized": false,
+      "governance_route": "HARD_QUARANTINE_ISSUER_VERIFIED_COMPOSITE_ACTION",
+      "instrument_id": "XUSE:CASH:ITTUSD",
+      "issuer_effective_date": "2011-10-31",
+      "issuer_ratio": 0.5,
+      "market_date_binding": {
+        "binding": "FIRST_FROZEN_BAR_AFTER_ISSUER_EFFECTIVE_DATE",
+        "event_close": 18.8,
+        "event_date": "2011-11-01",
+        "price_partition_path": "data/corrections/corporate_action_basis_48fcfde04e3c_materialized_v1/data/lake_sharadar/ohlcv_1d/instrument_id=XUSE:CASH:ITTUSD/year=2011/data.parquet",
+        "price_partition_sha256": "a0a046154faaa9f7eef9a588e5e9f8c14d778a315010e29cfbb57ee9cddf6fb0",
+        "prior_close": 45.6,
+        "prior_date": "2011-10-31",
+        "prior_price_partition_path": "data/corrections/corporate_action_basis_48fcfde04e3c_materialized_v1/data/lake_sharadar/ohlcv_1d/instrument_id=XUSE:CASH:ITTUSD/year=2010/data.parquet",
+        "prior_price_partition_sha256": "52d734d8e98e372f731988bf30aad9a6215aeed34a82b2ddaa2ea3a011d0a1e4"
+      },
+      "prior_context_classification": "NEARBY_SPINOFF_CONTEXT",
+      "ratio": 0.5,
+      "required_companion_replay": "SEPARATE_SPINOFF_DISTRIBUTED_SECURITY_ENTITLEMENT",
+      "required_fragments": [
+        "completed the previously announced spin-off of Exelis Inc.",
+        "one-for-two reverse stock split of ITT common stock",
+        "would be effective after market close that day"
+      ],
+      "required_fragments_verified": [
+        "completed the previously announced spin-off of Exelis Inc.",
+        "one-for-two reverse stock split of ITT common stock",
+        "would be effective after market close that day"
+      ],
+      "retrieved_sha256": "807af29bd636b305cd03ee2e1c303f397ca74030e519f7c5385f3016c17aa37c",
+      "share_mutation_verified": true,
+      "stored_ratio": 0.5,
+      "ticker": "ITT",
+      "url": "https://www.sec.gov/Archives/edgar/data/216228/000095012311095346/y93291e8vk.htm"
+    },
+    {
+      "date_binding": "FIRST_FROZEN_BAR_AFTER_ISSUER_EFFECTIVE_DATE",
+      "event_semantics": "POST_SPINOFF_REIT_CONVERSION_AT_FIRST_POST_EFFECTIVE_BAR",
+      "ex_date": "2010-11-16 04:00:00+04:00",
+      "ex_date_ms": 1289865600000,
+      "execution_authorized": false,
+      "governance_route": "HARD_QUARANTINE_ISSUER_VERIFIED_COMPOSITE_ACTION",
+      "instrument_id": "XUSE:CASH:SBRAUSD",
+      "issuer_effective_date": "2010-11-15",
+      "issuer_ratio": 0.3333333333333333,
+      "market_date_binding": {
+        "binding": "FIRST_FROZEN_BAR_AFTER_ISSUER_EFFECTIVE_DATE",
+        "event_close": 19.1,
+        "event_date": "2010-11-16",
+        "price_partition_path": "data/corrections/corporate_action_basis_48fcfde04e3c_materialized_v1/data/lake_sharadar/ohlcv_1d/instrument_id=XUSE:CASH:SBRAUSD/year=2010/data.parquet",
+        "price_partition_sha256": "8d63d4a16f79b5edba355358460b52ceb927bddc920f6d3223d2ce2796ea1073",
+        "prior_close": 28.32,
+        "prior_date": "2010-11-15",
+        "prior_price_partition_path": "data/corrections/corporate_action_basis_48fcfde04e3c_materialized_v1/data/lake_sharadar/ohlcv_1d/instrument_id=XUSE:CASH:SBRAUSD/year=2009/data.parquet",
+        "prior_price_partition_sha256": "b240faba37d09dd0e839cabd2acf5af1542b4f1d96de222c75dfc53338d44c0c"
+      },
+      "prior_context_classification": "NEARBY_SPINOFF_CONTEXT",
+      "ratio": 0.33333,
+      "required_companion_replay": "SEPARATE_SPINOFF_DISTRIBUTED_SECURITY_ENTITLEMENT",
+      "required_fragments": [
+        "On November 15, 2010, Sun Healthcare Group, Inc.",
+        "REIT Conversion Merger",
+        "each stockholder of Old Sun receiving one share of common stock of Sabra",
+        "for every three shares of common stock of Old Sun"
+      ],
+      "required_fragments_verified": [
+        "On November 15, 2010, Sun Healthcare Group, Inc.",
+        "REIT Conversion Merger",
+        "each stockholder of Old Sun receiving one share of common stock of Sabra",
+        "for every three shares of common stock of Old Sun"
+      ],
+      "retrieved_sha256": "2d049172e8eabc63ffdc480c3423b0713b22992d10bba2cad18d4da735ec80ef",
+      "share_mutation_verified": true,
+      "stored_ratio": 0.33333,
+      "ticker": "SBRA",
+      "url": "https://www.sec.gov/Archives/edgar/data/1492298/000119312510261436/d8k.htm"
+    },
+    {
+      "date_binding": "ISSUER_COMPLETION_DATE_EQUALS_FROZEN_EVENT_DATE",
+      "event_semantics": "SPINOFF_LINKED_REVERSE_SPLIT_ON_ISSUER_COMPLETION_DATE",
+      "ex_date": "2014-06-30 04:00:00+04:00",
+      "ex_date_ms": 1404086400000,
+      "execution_authorized": false,
+      "governance_route": "HARD_QUARANTINE_ISSUER_VERIFIED_COMPOSITE_ACTION",
+      "instrument_id": "XUSE:CASH:NRFUSD",
+      "issuer_effective_date": "2014-06-30",
+      "issuer_ratio": 0.5,
+      "market_date_binding": {
+        "binding": "ISSUER_COMPLETION_DATE_EQUALS_FROZEN_EVENT_DATE",
+        "event_close": 17.38,
+        "event_date": "2014-06-30",
+        "price_partition_path": "data/corrections/corporate_action_basis_48fcfde04e3c_materialized_v1/data/lake_sharadar/ohlcv_1d/instrument_id=XUSE:CASH:NRFUSD/year=2014/data.parquet",
+        "price_partition_sha256": "e22837fd60992905c8c9b0be07f49247bdd47eb4331e5ecba20e145d4343f34c",
+        "prior_close": 17.64,
+        "prior_date": "2014-06-27",
+        "prior_price_partition_path": "data/corrections/corporate_action_basis_48fcfde04e3c_materialized_v1/data/lake_sharadar/ohlcv_1d/instrument_id=XUSE:CASH:NRFUSD/year=2013/data.parquet",
+        "prior_price_partition_sha256": "a575c88d7548f9921e01d08fa757b82b0a42c49eb4bc7c21f72e39106bdd5067"
+      },
+      "prior_context_classification": "NEARBY_SPINOFF_CONTEXT",
+      "ratio": 0.5,
+      "required_companion_replay": "SEPARATE_SPINOFF_DISTRIBUTED_SECURITY_ENTITLEMENT",
+      "required_fragments": [
+        "one-for-two reverse stock split completed on June 30, 2014",
+        "every two shares of our issued and outstanding common stock",
+        "were combined into one issued and outstanding share of our common stock"
+      ],
+      "required_fragments_verified": [
+        "one-for-two reverse stock split completed on June 30, 2014",
+        "every two shares of our issued and outstanding common stock",
+        "were combined into one issued and outstanding share of our common stock"
+      ],
+      "retrieved_sha256": "b3e964e39175c82f302bed358709620b66929b1ed28c17cf6382d52ca5db1afa",
+      "share_mutation_verified": true,
+      "stored_ratio": 0.5,
+      "ticker": "NRF",
+      "url": "https://www.sec.gov/Archives/edgar/data/1273801/000127380114000061/nrf0630201410-q.htm"
+    },
+    {
+      "date_binding": "ISSUER_DATE_MISMATCH_COMPOSITE_ACTION",
+      "event_semantics": "SCHEME_SHARE_EXCHANGE_WITH_COMPANION_CASH_CONSIDERATION",
+      "ex_date": "2005-06-28 04:00:00+04:00",
+      "ex_date_ms": 1119916800000,
+      "execution_authorized": false,
+      "governance_route": "HARD_QUARANTINE_ISSUER_VERIFIED_COMPOSITE_ACTION",
+      "instrument_id": "XUSE:CASH:IHGUSD",
+      "issuer_effective_date": "2005-06-27",
+      "issuer_ratio": 0.7333333333333333,
+      "market_date_binding": {
+        "binding": "ISSUER_DATE_MISMATCH_COMPOSITE_ACTION",
+        "event_close": 12.99,
+        "event_date": "2005-06-28",
+        "price_partition_path": "data/corrections/corporate_action_basis_48fcfde04e3c_materialized_v1/data/lake_sharadar/ohlcv_1d/instrument_id=XUSE:CASH:IHGUSD/year=2005/data.parquet",
+        "price_partition_sha256": "6b3aab1a860c16aa877c1e7cf16d18828b6621abea9819e6f2e9c26525a36117",
+        "prior_close": 12.76,
+        "prior_date": "2005-06-27",
+        "prior_price_partition_path": "data/corrections/corporate_action_basis_48fcfde04e3c_materialized_v1/data/lake_sharadar/ohlcv_1d/instrument_id=XUSE:CASH:IHGUSD/year=2004/data.parquet",
+        "prior_price_partition_sha256": "803135eef4eccdb5a4d6b3c78db122fd40efb723fa3ac05997c163b7bb203572"
+      },
+      "prior_context_classification": "PLAIN_SPLIT_WITHOUT_LIFECYCLE_CONTEXT",
+      "ratio": 0.73333,
+      "required_companion_replay": "COMPANION_CASH_DISTRIBUTION",
+      "required_fragments": [
+        "The Scheme, which was approved by shareholders on 1 June 2005, became effective",
+        "shareholders receive 11 New IHG ordinary shares for every 15 ordinary shares",
+        "\u00a31.65 in cash for every ordinary share held",
+        "New IHG American depositary shares will be listed and trading will commence"
+      ],
+      "required_fragments_verified": [
+        "The Scheme, which was approved by shareholders on 1 June 2005, became effective",
+        "shareholders receive 11 New IHG ordinary shares for every 15 ordinary shares",
+        "\u00a31.65 in cash for every ordinary share held",
+        "New IHG American depositary shares will be listed and trading will commence"
+      ],
+      "retrieved_sha256": "2985b857c69f12a2fdf12f5533f38b5d1474b14e64658e1ee455164260cdc026",
+      "share_mutation_verified": true,
+      "stored_ratio": 0.73333,
+      "ticker": "IHG",
+      "url": "https://www.sec.gov/Archives/edgar/data/858446/000115697305000999/u49002e6vk.htm"
+    },
+    {
+      "date_binding": "FIRST_FROZEN_BAR_AFTER_ISSUER_EFFECTIVE_DATE",
+      "event_semantics": "STOCK_SPLIT_WITH_CONCURRENT_CASH_DIVIDEND_MISSING_FROM_FROZEN_ACTIONS",
+      "ex_date": "1999-01-04 04:00:00+04:00",
+      "ex_date_ms": 915408000000,
+      "execution_authorized": false,
+      "governance_route": "HARD_QUARANTINE_ISSUER_VERIFIED_COMPOSITE_ACTION",
+      "instrument_id": "XUSE:CASH:KMI1USD",
+      "issuer_effective_date": "1998-12-31",
+      "issuer_ratio": 1.5,
+      "market_date_binding": {
+        "binding": "FIRST_FROZEN_BAR_AFTER_ISSUER_EFFECTIVE_DATE",
+        "event_close": 23.5,
+        "event_date": "1999-01-04",
+        "price_partition_path": "data/corrections/corporate_action_basis_48fcfde04e3c_materialized_v1/data/lake_sharadar/ohlcv_1d/instrument_id=XUSE:CASH:KMI1USD/year=1999/data.parquet",
+        "price_partition_sha256": "28e72d14f47bfa93eaedbba8a6728823b556349d9f18c5a8b45829fad1524846",
+        "prior_close": 24.25,
+        "prior_date": "1998-12-31",
+        "prior_price_partition_path": "data/corrections/corporate_action_basis_48fcfde04e3c_materialized_v1/data/lake_sharadar/ohlcv_1d/instrument_id=XUSE:CASH:KMI1USD/year=1998/data.parquet",
+        "prior_price_partition_sha256": "cbf4924efc0eeeea333e5c47fd83c0f69079a71c11d3fcac545cd297edefb74f"
+      },
+      "prior_context_classification": "PLAIN_SPLIT_WITHOUT_LIFECYCLE_CONTEXT",
+      "ratio": 1.5,
+      "required_companion_replay": "CASH_DIVIDEND_MISSING_FROM_FROZEN_ACTIONS",
+      "required_fragments": [
+        "a three-for-two split of the Company's common stock",
+        "The stock split was distributed and the increase in dividend was paid concurrently",
+        "on December 31, 1998"
+      ],
+      "required_fragments_verified": [
+        "a three-for-two split of the Company's common stock",
+        "The stock split was distributed and the increase in dividend was paid concurrently",
+        "on December 31, 1998"
+      ],
+      "retrieved_sha256": "0df097790f6b4bd8411b53957052f321c3c4506c8d11c049a4b38eaad96e70bb",
+      "share_mutation_verified": true,
+      "stored_ratio": 1.5,
+      "ticker": "KMI1",
+      "url": "https://www.sec.gov/Archives/edgar/data/54502/000095013499001524/0000950134-99-001524.txt"
+    },
+    {
+      "date_binding": "FIRST_FROZEN_BAR_AFTER_ISSUER_EFFECTIVE_DATE",
+      "event_semantics": "REVERSE_SPLIT_WITH_COMPANION_STILWELL_SECURITY_ENTITLEMENT",
+      "ex_date": "2000-07-13 04:00:00+04:00",
+      "ex_date_ms": 963446400000,
+      "execution_authorized": false,
+      "governance_route": "HARD_QUARANTINE_ISSUER_VERIFIED_COMPOSITE_ACTION",
+      "instrument_id": "XUSE:CASH:KSUUSD",
+      "issuer_effective_date": "2000-07-12",
+      "issuer_ratio": 0.5,
+      "market_date_binding": {
+        "binding": "FIRST_FROZEN_BAR_AFTER_ISSUER_EFFECTIVE_DATE",
+        "event_close": 6.25,
+        "event_date": "2000-07-13",
+        "price_partition_path": "data/corrections/corporate_action_basis_48fcfde04e3c_materialized_v1/data/lake_sharadar/ohlcv_1d/instrument_id=XUSE:CASH:KSUUSD/year=2000/data.parquet",
+        "price_partition_sha256": "9974c3f8ad2249d26bbf0bb7e20fee2db2f56c52c6dad3dde2bb7f32475ce2fa",
+        "prior_close": 93.75,
+        "prior_date": "2000-07-12",
+        "prior_price_partition_path": "data/corrections/corporate_action_basis_48fcfde04e3c_materialized_v1/data/lake_sharadar/ohlcv_1d/instrument_id=XUSE:CASH:KSUUSD/year=1999/data.parquet",
+        "prior_price_partition_sha256": "6e04e72bc0a9fc78c1a677f425ce9e7d5f0ee61f2721364a160027b47071e16a"
+      },
+      "prior_context_classification": "NEARBY_SPINOFF_CONTEXT",
+      "ratio": 0.5,
+      "required_companion_replay": "SEPARATE_SPINOFF_DISTRIBUTED_SECURITY_ENTITLEMENT",
+      "required_fragments": [
+        "Each holder of record of KCSI Common Stock received two shares of common stock of Stilwell",
+        "KCSI effected the Distribution on July 12, 2000",
+        "to effect a one for two reverse stock split"
+      ],
+      "required_fragments_verified": [
+        "Each holder of record of KCSI Common Stock received two shares of common stock of Stilwell",
+        "KCSI effected the Distribution on July 12, 2000",
+        "to effect a one for two reverse stock split"
+      ],
+      "retrieved_sha256": "37eaf13246155f667b26b4262a21412e0ad17567ce6254779ce3a28f23faa99a",
+      "share_mutation_verified": true,
+      "stored_ratio": 0.5,
+      "ticker": "KSU",
+      "url": "https://www.sec.gov/Archives/edgar/data/54480/000005448000000020/0000054480-00-000020.txt"
+    },
+    {
+      "date_binding": "FROZEN_EVENT_DATE_BOUND_TO_SAME_DAY_SPINOFF_CONTEXT_NOT_EXECUTION",
+      "event_semantics": "POST_DISTRIBUTION_REVERSE_SPLIT_WITH_TWO_SPINOFF_ENTITLEMENTS",
+      "ex_date": "2007-07-02 04:00:00+04:00",
+      "ex_date_ms": 1183334400000,
+      "execution_authorized": false,
+      "governance_route": "HARD_QUARANTINE_ISSUER_VERIFIED_COMPOSITE_ACTION",
+      "instrument_id": "XUSE:CASH:TYCUSD",
+      "issuer_effective_date": "2007-07-02",
+      "issuer_ratio": 0.25,
+      "market_date_binding": {
+        "binding": "FROZEN_EVENT_DATE_BOUND_TO_SAME_DAY_SPINOFF_CONTEXT_NOT_EXECUTION",
+        "event_close": 53.36,
+        "event_date": "2007-07-02",
+        "price_partition_path": "data/corrections/corporate_action_basis_48fcfde04e3c_materialized_v1/data/lake_sharadar/ohlcv_1d/instrument_id=XUSE:CASH:TYCUSD/year=2007/data.parquet",
+        "price_partition_sha256": "81c9131ef8ae40e0fa43d6651107408ef0ead9fad7182545a2848ec4807fec86",
+        "prior_close": 33.79,
+        "prior_date": "2007-06-29",
+        "prior_price_partition_path": "data/corrections/corporate_action_basis_48fcfde04e3c_materialized_v1/data/lake_sharadar/ohlcv_1d/instrument_id=XUSE:CASH:TYCUSD/year=2006/data.parquet",
+        "prior_price_partition_sha256": "dc106e5f7a2bc20f42ad14df31b41a5198c483796d37fa239545f5989208a7de"
+      },
+      "prior_context_classification": "NEARBY_SPINOFF_CONTEXT",
+      "ratio": 0.25,
+      "required_companion_replay": "SEPARATE_SPINOFF_DISTRIBUTED_SECURITY_ENTITLEMENT",
+      "required_fragments": [
+        "Immediately following the distribution of the common shares of Tyco Electronics and Covidien",
+        "every four common shares of Tyco International were converted into one common share",
+        "one-for-four reverse stock split",
+        "closing share prices quoted on the New York Stock Exchange on July 2, 2007"
+      ],
+      "required_fragments_verified": [
+        "Immediately following the distribution of the common shares of Tyco Electronics and Covidien",
+        "every four common shares of Tyco International were converted into one common share",
+        "one-for-four reverse stock split",
+        "closing share prices quoted on the New York Stock Exchange on July 2, 2007"
+      ],
+      "retrieved_sha256": "b14f22e76216095e002b9d0de4b74bb212b46b21d9a4c32826877e4515bb3bdb",
+      "share_mutation_verified": true,
+      "stored_ratio": 0.25,
+      "ticker": "TYC",
+      "url": "https://www.sec.gov/Archives/edgar/data/833444/000110465907052190/a07-17393_3ex99d1.htm"
+    },
+    {
+      "date_binding": "FIRST_FROZEN_BAR_AFTER_ISSUER_EFFECTIVE_DATE",
+      "event_semantics": "POST_BROADBAND_SPINOFF_REVERSE_SPLIT_WITH_COMCAST_ENTITLEMENT",
+      "ex_date": "2002-11-19 04:00:00+04:00",
+      "ex_date_ms": 1037664000000,
+      "execution_authorized": false,
+      "governance_route": "HARD_QUARANTINE_ISSUER_VERIFIED_COMPOSITE_ACTION",
+      "instrument_id": "XUSE:CASH:T1USD",
+      "issuer_effective_date": "2002-11-18",
+      "issuer_ratio": 0.2,
+      "market_date_binding": {
+        "binding": "FIRST_FROZEN_BAR_AFTER_ISSUER_EFFECTIVE_DATE",
+        "event_close": 27.2,
+        "event_date": "2002-11-19",
+        "price_partition_path": "data/corrections/corporate_action_basis_48fcfde04e3c_materialized_v1/data/lake_sharadar/ohlcv_1d/instrument_id=XUSE:CASH:T1USD/year=2002/data.parquet",
+        "price_partition_sha256": "4804109191fa0ab371f0feb6a99c67cec97e489a13a9bc8aeb9a7d73dc0f3005",
+        "prior_close": 13.51,
+        "prior_date": "2002-11-18",
+        "prior_price_partition_path": "data/corrections/corporate_action_basis_48fcfde04e3c_materialized_v1/data/lake_sharadar/ohlcv_1d/instrument_id=XUSE:CASH:T1USD/year=2001/data.parquet",
+        "prior_price_partition_sha256": "a56231d3d7dff865c09db17f82a7a1f997e8adf40153005ff3f6f9d8a936fe39"
+      },
+      "prior_context_classification": "NEARBY_SPINOFF_CONTEXT",
+      "ratio": 0.2,
+      "required_companion_replay": "SEPARATE_SPINOFF_DISTRIBUTED_SECURITY_ENTITLEMENT",
+      "required_fragments": [
+        "On November 18, 2002, AT&T completed the spin-off of AT&T Broadband",
+        "Each AT&T shareowner received a distribution of 0.3235 of a share",
+        "one-for-five reverse stock split of AT&T common stock",
+        "was effected on November 18, 2002 immediately after the completion of the spin-off"
+      ],
+      "required_fragments_verified": [
+        "On November 18, 2002, AT&T completed the spin-off of AT&T Broadband",
+        "Each AT&T shareowner received a distribution of 0.3235 of a share",
+        "one-for-five reverse stock split of AT&T common stock",
+        "was effected on November 18, 2002 immediately after the completion of the spin-off"
+      ],
+      "retrieved_sha256": "878600c3ac3f83d3cb50fc4e6135fc9230c643f33e41a3c8d7053708dc4add05",
+      "share_mutation_verified": true,
+      "stored_ratio": 0.2,
+      "ticker": "T1",
+      "url": "https://www.sec.gov/Archives/edgar/data/5907/000095012303003510/e84804e10vk.txt"
+    },
+    {
+      "date_binding": "FIRST_FROZEN_BAR_AFTER_ISSUER_EFFECTIVE_DATE",
+      "event_semantics": "BANKRUPTCY_REVERSE_SPLIT_WITH_CREDITOR_EQUITY_AND_STOCKHOLDER_WARRANTS",
+      "ex_date": "2004-01-05 04:00:00+04:00",
+      "ex_date_ms": 1073260800000,
+      "execution_authorized": false,
+      "governance_route": "HARD_QUARANTINE_ISSUER_VERIFIED_COMPOSITE_ACTION",
+      "instrument_id": "XUSE:CASH:RBAKUSD",
+      "issuer_effective_date": "2004-01-02",
+      "issuer_ratio": 0.01362583458236817,
+      "market_date_binding": {
+        "binding": "FIRST_FROZEN_BAR_AFTER_ISSUER_EFFECTIVE_DATE",
+        "event_close": 7.8,
+        "event_date": "2004-01-05",
+        "price_partition_path": "data/corrections/corporate_action_basis_48fcfde04e3c_materialized_v1/data/lake_sharadar/ohlcv_1d/instrument_id=XUSE:CASH:RBAKUSD/year=2004/data.parquet",
+        "price_partition_sha256": "a92635f72db2722ee0516eddda10dc2d355d160e65e0d8966d4fe72c51c460a1",
+        "prior_close": 0.22,
+        "prior_date": "2004-01-02",
+        "prior_price_partition_path": "data/corrections/corporate_action_basis_48fcfde04e3c_materialized_v1/data/lake_sharadar/ohlcv_1d/instrument_id=XUSE:CASH:RBAKUSD/year=2003/data.parquet",
+        "prior_price_partition_sha256": "3e5a229a05bd7a302f7925b1628cf073f9cced9e5a369f3ac13b676729334762"
+      },
+      "prior_context_classification": "PLAIN_SPLIT_WITHOUT_LIFECYCLE_CONTEXT",
+      "ratio": 0.01363,
+      "required_companion_replay": "CREDITOR_EQUITY_AND_STOCKHOLDER_WARRANT_ENTITLEMENTS",
+      "required_fragments": [
+        "the issuance of warrants exercisable for the Company's common stock to the Company's stockholders",
+        "an approximate 73.39:1 reverse stock split",
+        "holders of the Convertible Notes received an aggregate of 47,500,000 shares",
+        "January 2, 2004 the Company emerged from bankruptcy"
+      ],
+      "required_fragments_verified": [
+        "the issuance of warrants exercisable for the Company's common stock to the Company's stockholders",
+        "an approximate 73.39:1 reverse stock split",
+        "holders of the Convertible Notes received an aggregate of 47,500,000 shares",
+        "January 2, 2004 the Company emerged from bankruptcy"
+      ],
+      "retrieved_sha256": "ecfc47b178a160da1486938625955b5160d6731e08b0d8a2a950bb1c179fae93",
+      "share_mutation_verified": true,
+      "stored_ratio": 0.01363,
+      "ticker": "RBAK",
+      "url": "https://www.sec.gov/Archives/edgar/data/1081290/000119312504042090/d10k.htm"
+    },
+    {
+      "date_binding": "ISSUER_DATE_MISMATCH_COMPOSITE_ACTION",
+      "event_semantics": "SPINOFF_AND_MERGER_REVERSE_SPLIT_WITH_TWO_NEW_MARRIOTT_CLASSES",
+      "ex_date": "1998-03-23 04:00:00+04:00",
+      "ex_date_ms": 890611200000,
+      "execution_authorized": false,
+      "governance_route": "HARD_QUARANTINE_ISSUER_VERIFIED_COMPOSITE_ACTION",
+      "instrument_id": "XUSE:CASH:SDH1USD",
+      "issuer_effective_date": "1998-03-27",
+      "issuer_ratio": 0.25,
+      "market_date_binding": {
+        "binding": "ISSUER_DATE_MISMATCH_COMPOSITE_ACTION",
+        "event_close": 24.0,
+        "event_date": "1998-03-23",
+        "price_partition_path": "data/corrections/corporate_action_basis_48fcfde04e3c_materialized_v1/data/lake_sharadar/ohlcv_1d/instrument_id=XUSE:CASH:SDH1USD/year=1998/data.parquet",
+        "price_partition_sha256": "a2131208c2682f271b817fb9de800a80f4005298ff055fbb37986b7372e3367c",
+        "prior_close": 79.875,
+        "prior_date": "1998-03-20",
+        "prior_price_partition_path": "data/corrections/corporate_action_basis_48fcfde04e3c_materialized_v1/data/lake_sharadar/ohlcv_1d/instrument_id=XUSE:CASH:SDH1USD/year=1997/data.parquet",
+        "prior_price_partition_sha256": "950290273824983a94b2c0b48c78c594dd290b248921f085c9504650be344b5e"
+      },
+      "prior_context_classification": "NEARBY_SPINOFF_CONTEXT",
+      "ratio": 0.25,
+      "required_companion_replay": "SEPARATE_SPINOFF_DISTRIBUTED_SECURITY_ENTITLEMENT",
+      "required_fragments": [
+        "On March 27, 1998, Marriott International, Inc.",
+        "received one share of MAR Common Stock and one share of MAR-A Common Stock",
+        "Immediately following the Distribution, shares of Old Marriott common stock underwent a one-for-four reverse stock split",
+        "25 shares of Sodexho Marriott Services, Inc. common stock"
+      ],
+      "required_fragments_verified": [
+        "On March 27, 1998, Marriott International, Inc.",
+        "received one share of MAR Common Stock and one share of MAR-A Common Stock",
+        "Immediately following the Distribution, shares of Old Marriott common stock underwent a one-for-four reverse stock split",
+        "25 shares of Sodexho Marriott Services, Inc. common stock"
+      ],
+      "retrieved_sha256": "334df3e5936d58ab03e7c5f183d3d496559f7b975ba4a2cdcdb89744c5cc6698",
+      "share_mutation_verified": true,
+      "stored_ratio": 0.25,
+      "ticker": "SDH1",
+      "url": "https://www.sec.gov/Archives/edgar/data/1048286/000092838598000674/0000928385-98-000674.txt"
+    }
+  ],
+  "retrieved_at": "2026-08-23T07:19:11.005098+00:00",
+  "return_data_opened": false,
+  "schema": "canli.alphac-split-issuer-resolution-batch.v4"
+}

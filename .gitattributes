@@ -1,0 +1,5 @@
+# CommonMark uses two trailing spaces for an intentional hard line break. The
+# exported research corpus preserves source bytes and bundle checksums, so Git
+# must not treat those semantic spaces (or source-preserved EOF spacing) as a
+# patch-hygiene defect.
+*.md whitespace=-trailing-space,-blank-at-eof

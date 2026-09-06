@@ -1,0 +1,381 @@
+{
+  "author": "Arhan Canli",
+  "claim_boundary": "This stable packet proves the exact identity, immutable first measurement, and current evidence state. INCOMPLETE means missing sections remain missing; packet publication is not validation, admission, or a future-return claim.",
+  "complete": false,
+  "completion_assessment": {
+    "artifact_recoverability_class": "AMBIGUOUS_EXACT_ARTIFACT_MATCHES",
+    "blockers": [
+      {
+        "code": "MULTIPLE_BYTE_DISTINCT_ARTIFACTS_MATCH_IDENTITY",
+        "evidence": [
+          {
+            "path": "artifacts/panel/L7c_k50_R21/walkforward.json",
+            "sha256": "4584c3a7d43b0fe9b30cd5dd11dbf8b37a6cc007bfa8c6b288746c8caeab5e58"
+          },
+          {
+            "path": "artifacts/panel/ctrl_100_R21/walkforward.json",
+            "sha256": "121fabb5a4cdd93345328d69c65b9cdf5857f1226ba179295d038fcbcb558fb6"
+          }
+        ],
+        "finding": "2 byte-distinct walk-forward artifacts match every ledger identity field and immutable measurement. The original source cannot be selected without inventing lineage.",
+        "required_section": "code_environment_and_reproduction"
+      },
+      {
+        "code": "IDENTITY_PREREGISTRATION_NOT_PRESERVED",
+        "evidence": [
+          {
+            "path": "artifacts/panel/L7c_k50_R21/walkforward.json",
+            "sha256": "4584c3a7d43b0fe9b30cd5dd11dbf8b37a6cc007bfa8c6b288746c8caeab5e58"
+          }
+        ],
+        "finding": "No identity-level preregistration and immutable pre-result hash are bound to this historical measurement.",
+        "required_section": "preregistration_and_hashes"
+      },
+      {
+        "code": "IDENTITY_LEVEL_DECISION_PACKET_NOT_PRESERVED",
+        "evidence": [
+          {
+            "path": "artifacts/panel/L7c_k50_R21/walkforward.json",
+            "sha256": "4584c3a7d43b0fe9b30cd5dd11dbf8b37a6cc007bfa8c6b288746c8caeab5e58"
+          }
+        ],
+        "finding": "No complete identity-level admission or kill packet under the current contract is preserved for this historical measurement.",
+        "required_section": "admission_or_kill_decision"
+      }
+    ],
+    "config_hash": "984a289e69fee6cb",
+    "status": "AUDITED_NOT_CURRENTLY_COMPLETABLE",
+    "walkforward_corpus_hash": "sha256:100f6051fcadd89a33412ec317f982f17023bb8fe18b879116d5b16955bcb7c7"
+  },
+  "config_hash": "984a289e69fee6cb",
+  "configuration": {
+    "allocator": "rank",
+    "alpha_names": [
+      "eq_mom_252_21"
+    ],
+    "end": 1780272000000,
+    "instrument_ids": [
+      "XUSE:CASH:AALUSD",
+      "XUSE:CASH:AAOIUSD",
+      "XUSE:CASH:AAPLUSD",
+      "XUSE:CASH:ABBVUSD",
+      "XUSE:CASH:ABNBUSD",
+      "XUSE:CASH:ABTUSD",
+      "XUSE:CASH:ACNUSD",
+      "XUSE:CASH:ADBEUSD",
+      "XUSE:CASH:ADIUSD",
+      "XUSE:CASH:AFRMUSD",
+      "XUSE:CASH:AIUSD",
+      "XUSE:CASH:ALABUSD",
+      "XUSE:CASH:AMATUSD",
+      "XUSE:CASH:AMCUSD",
+      "XUSE:CASH:AMDUSD",
+      "XUSE:CASH:AMGNUSD",
+      "XUSE:CASH:AMZNUSD",
+      "XUSE:CASH:ANETUSD",
+      "XUSE:CASH:APHUSD",
+      "XUSE:CASH:APLDUSD",
+      "XUSE:CASH:APPUSD",
+      "XUSE:CASH:ARMUSD",
+      "XUSE:CASH:ASMLUSD",
+      "XUSE:CASH:ASTSUSD",
+      "XUSE:CASH:ATVIUSD",
+      "XUSE:CASH:AVGOUSD",
+      "XUSE:CASH:AVLRUSD",
+      "XUSE:CASH:AXPUSD",
+      "XUSE:CASH:BABAUSD",
+      "XUSE:CASH:BACUSD",
+      "XUSE:CASH:BAUSD",
+      "XUSE:CASH:BBBYUSD",
+      "XUSE:CASH:BEUSD",
+      "XUSE:CASH:BKNGUSD",
+      "XUSE:CASH:BMNRUSD",
+      "XUSE:CASH:BMYUSD",
+      "XUSE:CASH:BRKAUSD",
+      "XUSE:CASH:BRKBUSD",
+      "XUSE:CASH:BSXUSD",
+      "XUSE:CASH:BXUSD",
+      "XUSE:CASH:CARUSD",
+      "XUSE:CASH:CATUSD",
+      "XUSE:CASH:CCLUSD",
+      "XUSE:CASH:CEGUSD",
+      "XUSE:CASH:CHTRUSD",
+      "XUSE:CASH:CIENUSD",
+      "XUSE:CASH:CLSKUSD",
+      "XUSE:CASH:CMCSAUSD",
+      "XUSE:CASH:CMGUSD",
+      "XUSE:CASH:CMIUSD",
+      "XUSE:CASH:COFUSD",
+      "XUSE:CASH:COHRUSD",
+      "XUSE:CASH:COINUSD",
+      "XUSE:CASH:COPUSD",
+      "XUSE:CASH:COSTUSD",
+      "XUSE:CASH:CRCLUSD",
+      "XUSE:CASH:CRHUSD",
+      "XUSE:CASH:CRMUSD",
+      "XUSE:CASH:CRWDUSD",
+      "XUSE:CASH:CRWVUSD",
+      "XUSE:CASH:CSCOUSD",
+      "XUSE:CASH:CUSD",
+      "XUSE:CASH:CVNAUSD",
+      "XUSE:CASH:CVSUSD",
+      "XUSE:CASH:CVXUSD",
+      "XUSE:CASH:DASHUSD",
+      "XUSE:CASH:DELLUSD",
+      "XUSE:CASH:DEUSD",
+      "XUSE:CASH:DGUSD",
+      "XUSE:CASH:DHRUSD",
+      "XUSE:CASH:DISUSD",
+      "XUSE:CASH:DJTUSD",
+      "XUSE:CASH:DVNUSD",
+      "XUSE:CASH:ELVUSD",
+      "XUSE:CASH:ENPHUSD",
+      "XUSE:CASH:ETNUSD",
+      "XUSE:CASH:FCXUSD",
+      "XUSE:CASH:FDXUSD",
+      "XUSE:CASH:FIUSD",
+      "XUSE:CASH:FRCUSD",
+      "XUSE:CASH:FSLRUSD",
+      "XUSE:CASH:FUSD",
+      "XUSE:CASH:GEUSD",
+      "XUSE:CASH:GEVUSD",
+      "XUSE:CASH:GILDUSD",
+      "XUSE:CASH:GLWUSD",
+      "XUSE:CASH:GMEUSD",
+      "XUSE:CASH:GMUSD",
+      "XUSE:CASH:GOOGLUSD",
+      "XUSE:CASH:GOOGUSD",
+      "XUSE:CASH:GSUSD",
+      "XUSE:CASH:HDUSD",
+      "XUSE:CASH:HIMSUSD",
+      "XUSE:CASH:HONUSD",
+      "XUSE:CASH:HOODUSD",
+      "XUSE:CASH:HUMUSD",
+      "XUSE:CASH:IBMUSD",
+      "XUSE:CASH:INTCUSD",
+      "XUSE:CASH:INTUUSD",
+      "XUSE:CASH:IONQUSD",
+      "XUSE:CASH:IRENUSD",
+      "XUSE:CASH:ISRGUSD",
+      "XUSE:CASH:JDUSD",
+      "XUSE:CASH:JNJUSD",
+      "XUSE:CASH:JPMUSD",
+      "XUSE:CASH:KLACUSD",
+      "XUSE:CASH:KOUSD",
+      "XUSE:CASH:KVUEUSD",
+      "XUSE:CASH:LINUSD",
+      "XUSE:CASH:LITEUSD",
+      "XUSE:CASH:LLYUSD",
+      "XUSE:CASH:LMTUSD",
+      "XUSE:CASH:LOWUSD",
+      "XUSE:CASH:LRCXUSD",
+      "XUSE:CASH:LULUUSD",
+      "XUSE:CASH:MARAUSD",
+      "XUSE:CASH:MAUSD",
+      "XUSE:CASH:MCDUSD",
+      "XUSE:CASH:MDBUSD",
+      "XUSE:CASH:MDTUSD",
+      "XUSE:CASH:MELIUSD",
+      "XUSE:CASH:METAUSD",
+      "XUSE:CASH:MMMUSD",
+      "XUSE:CASH:MOUSD",
+      "XUSE:CASH:MPCUSD",
+      "XUSE:CASH:MPUSD",
+      "XUSE:CASH:MRKUSD",
+      "XUSE:CASH:MRNAUSD",
+      "XUSE:CASH:MRVLUSD",
+      "XUSE:CASH:MSFTUSD",
+      "XUSE:CASH:MSTRUSD",
+      "XUSE:CASH:MSUSD",
+      "XUSE:CASH:MUUSD",
+      "XUSE:CASH:NBISUSD",
+      "XUSE:CASH:NEEUSD",
+      "XUSE:CASH:NFLXUSD",
+      "XUSE:CASH:NIOUSD",
+      "XUSE:CASH:NKEUSD",
+      "XUSE:CASH:NOWUSD",
+      "XUSE:CASH:NVDAUSD",
+      "XUSE:CASH:NVOUSD",
+      "XUSE:CASH:OKLOUSD",
+      "XUSE:CASH:ONDSUSD",
+      "XUSE:CASH:ONUSD",
+      "XUSE:CASH:OPENUSD",
+      "XUSE:CASH:ORCLUSD",
+      "XUSE:CASH:OXYUSD",
+      "XUSE:CASH:PANWUSD",
+      "XUSE:CASH:PDDUSD",
+      "XUSE:CASH:PEPUSD",
+      "XUSE:CASH:PFEUSD",
+      "XUSE:CASH:PGUSD",
+      "XUSE:CASH:PLDUSD",
+      "XUSE:CASH:PLTRUSD",
+      "XUSE:CASH:PLUGUSD",
+      "XUSE:CASH:PMUSD",
+      "XUSE:CASH:PXDUSD",
+      "XUSE:CASH:PYPLUSD",
+      "XUSE:CASH:QBTSUSD",
+      "XUSE:CASH:QCOMUSD",
+      "XUSE:CASH:RBLXUSD",
+      "XUSE:CASH:RDDTUSD",
+      "XUSE:CASH:RGTIUSD",
+      "XUSE:CASH:RIVNUSD",
+      "XUSE:CASH:RKLBUSD",
+      "XUSE:CASH:ROKUUSD",
+      "XUSE:CASH:RTXUSD",
+      "XUSE:CASH:SBETUSD",
+      "XUSE:CASH:SBUXUSD",
+      "XUSE:CASH:SCHWUSD",
+      "XUSE:CASH:SHOPUSD",
+      "XUSE:CASH:SLBUSD",
+      "XUSE:CASH:SMCIUSD",
+      "XUSE:CASH:SNAPUSD",
+      "XUSE:CASH:SNDKUSD",
+      "XUSE:CASH:SNOWUSD",
+      "XUSE:CASH:SNPSUSD",
+      "XUSE:CASH:SOFIUSD",
+      "XUSE:CASH:SOUNUSD",
+      "XUSE:CASH:SPGIUSD",
+      "XUSE:CASH:SPOTUSD",
+      "XUSE:CASH:SQUSD",
+      "XUSE:CASH:STXUSD",
+      "XUSE:CASH:TEAMUSD",
+      "XUSE:CASH:TEMUSD",
+      "XUSE:CASH:TFCUSD",
+      "XUSE:CASH:TGTUSD",
+      "XUSE:CASH:TMOUSD",
+      "XUSE:CASH:TMUSUSD",
+      "XUSE:CASH:TSLAUSD",
+      "XUSE:CASH:TSMUSD",
+      "XUSE:CASH:TUSD",
+      "XUSE:CASH:TWTRUSD",
+      "XUSE:CASH:TXNUSD",
+      "XUSE:CASH:UBERUSD",
+      "XUSE:CASH:UNHUSD",
+      "XUSE:CASH:UNPUSD",
+      "XUSE:CASH:UPSUSD",
+      "XUSE:CASH:USBUSD",
+      "XUSE:CASH:UUSD",
+      "XUSE:CASH:VALEUSD",
+      "XUSE:CASH:VLOUSD",
+      "XUSE:CASH:VRTUSD",
+      "XUSE:CASH:VSTUSD",
+      "XUSE:CASH:VUSD",
+      "XUSE:CASH:VZUSD",
+      "XUSE:CASH:WBDUSD",
+      "XUSE:CASH:WDAYUSD",
+      "XUSE:CASH:WDCUSD",
+      "XUSE:CASH:WFCUSD",
+      "XUSE:CASH:WMTUSD",
+      "XUSE:CASH:XOMUSD"
+    ],
+    "no_trade_band": 0.001,
+    "rebalance_bars": 21,
+    "start": 1656633600000,
+    "test_bars": 63,
+    "train_bars": 252
+  },
+  "content_hash": "sha256:8ba6dff79e2b5660f6906e6715b30499593c328d2a56d2355df276c7f48ab239",
+  "evidence_date": "2026-08-22",
+  "family_paper_public_path": "/research/alphamax-equity-momentum-lineage.md",
+  "hypothesis_key": "5a3a402f9bc7670f",
+  "immutable_first_measurement": {
+    "annualized_sharpe": 0.11983311825991663,
+    "kurtosis": 4.095421480632554,
+    "ledger_source_path": "var/experiments.jsonl",
+    "ledger_source_sha256": "b5a318c0997d980575f758451f509e0154eecbbb50d734e49a587d473062bd08",
+    "observations": 728,
+    "recorded_at_unix_ms": 1781944999349,
+    "skew": -0.42984433862058297
+  },
+  "label": "eq_mom_252_21",
+  "missing_sections": [
+    "preregistration_and_hashes",
+    "point_in_time_data_and_survivorship_controls",
+    "execution_and_cost_model",
+    "result_uncertainty_stress_capacity_and_diversification",
+    "admission_or_kill_decision",
+    "code_environment_and_reproduction"
+  ],
+  "packet_status": "INCOMPLETE_BACKFILL_REQUIRED",
+  "partial_sections": [],
+  "required_sections": {
+    "admission_or_kill_decision": {
+      "evidence": [],
+      "status": "MISSING_IDENTITY_LEVEL_EVIDENCE"
+    },
+    "code_environment_and_reproduction": {
+      "evidence": [],
+      "status": "MISSING_IDENTITY_LEVEL_EVIDENCE"
+    },
+    "economic_mechanism_and_falsifiable_hypothesis": {
+      "evidence": [
+        {
+          "public_path": "/research/alphamax-equity-momentum-lineage.md",
+          "type": "family_paper"
+        }
+      ],
+      "status": "VERIFIED_SHARED_FAMILY_EVIDENCE"
+    },
+    "execution_and_cost_model": {
+      "evidence": [],
+      "status": "MISSING_IDENTITY_LEVEL_EVIDENCE"
+    },
+    "family_and_union_trial_accounting": {
+      "evidence": [
+        {
+          "public_path": "/research/alphamax-equity-momentum-lineage.md",
+          "type": "family_paper"
+        }
+      ],
+      "status": "VERIFIED_SHARED_FAMILY_EVIDENCE"
+    },
+    "identity_and_authorship": {
+      "evidence": [
+        {
+          "public_path": "/research/alphamax-equity-momentum-lineage.md",
+          "type": "family_paper"
+        }
+      ],
+      "status": "VERIFIED_SHARED_FAMILY_EVIDENCE"
+    },
+    "literature_and_overlap_decision": {
+      "evidence": [
+        {
+          "public_path": "/research/alphamax-equity-momentum-lineage.md",
+          "type": "family_paper"
+        }
+      ],
+      "status": "VERIFIED_SHARED_FAMILY_EVIDENCE"
+    },
+    "machine_readable_packet_and_stable_public_paper": {
+      "evidence": [
+        {
+          "public_path": "/research/alphamax-equity-momentum-lineage.md",
+          "type": "family_paper"
+        }
+      ],
+      "status": "VERIFIED_SHARED_FAMILY_EVIDENCE"
+    },
+    "point_in_time_data_and_survivorship_controls": {
+      "evidence": [],
+      "status": "MISSING_IDENTITY_LEVEL_EVIDENCE"
+    },
+    "preregistration_and_hashes": {
+      "evidence": [],
+      "status": "MISSING_IDENTITY_LEVEL_EVIDENCE"
+    },
+    "result_uncertainty_stress_capacity_and_diversification": {
+      "evidence": [],
+      "status": "MISSING_IDENTITY_LEVEL_EVIDENCE"
+    }
+  },
+  "research_family_key": "alphamax_equity_momentum",
+  "schema": "canli.alphac-identity-trial-packet.v2",
+  "verified_sections": [
+    "identity_and_authorship",
+    "economic_mechanism_and_falsifiable_hypothesis",
+    "literature_and_overlap_decision",
+    "family_and_union_trial_accounting",
+    "machine_readable_packet_and_stable_public_paper"
+  ]
+}

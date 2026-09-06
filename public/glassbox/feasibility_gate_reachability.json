@@ -1,0 +1,41 @@
+{
+  "claim_boundary": "Asks only whether each near-miss gate is reachable by repairing extraction. Opens no market data, registers no hypothesis identity, proposes no threshold change and authorizes no candidate. 0 trials.",
+  "companion": "artifacts/analysis/spinoff_prorata_gate/result.json",
+  "families": {
+    "customer_supplier_propagation": {
+      "a_hypothesis_this_measurement_REFUTED": "Five window excerpts read by eye from the misses were generic business and risk-factor text, which suggested the denominator was inflated with documents that disclose no concentration at all. Measured across all 300, that is wrong: 93.3% do carry real concentration language, and correcting the denominator moves the rate from 0.3533 to 0.3714 -- about two points, against a 15-point shortfall. Five excerpts were an unrepresentative sample and the hypothesis they suggested is recorded here as refuted rather than dropped.",
+      "documents_sampled": 300,
+      "documents_with_genuine_concentration_language": 280,
+      "gate": "strict_named_document_rate_at_least_50pct",
+      "gate_threshold": 0.5,
+      "genuine_concentration_share": 0.9333333333333333,
+      "naming_rate_among_genuine_disclosures": 0.37142857142857144,
+      "published_rate": 0.35333333333333333,
+      "verdict": "GATE_UNREACHABLE_BY_DETECTOR_REPAIR",
+      "why": "An issuer may disclose a material customer concentration WITHOUT naming the customer, and most do. Among documents that genuinely carry concentration language, only 104/280 name the customer (37.1%) against a gate of 50%. The shortfall is what the filings contain, not what the parser reads."
+    },
+    "merger_arbitrage": {
+      "blended_rate": 0.6702290076335878,
+      "by_form": {
+        "DEFM14A": {
+          "anchors": 1523,
+          "clears_0_80": false,
+          "prior_item101_8k_rate": 0.613263296126067
+        },
+        "SC 14D9": {
+          "anchors": 442,
+          "clears_0_80": true,
+          "prior_item101_8k_rate": 0.8665158371040724
+        }
+      },
+      "gate": "prior_item101_8k_rate_gte_0_80",
+      "gate_threshold": 0.8,
+      "sc_to_t_note": "SC TO-T appears in counts_by_year_form (521 filings) and not in the anchor timeline. That is deliberate and correct: TARGET_FORMS is {DEFM14A, SC 14D9} because SC TO-T is the bidder's filing, not the target's. Checked rather than assumed.",
+      "verdict": "GATE_BLENDS_TWO_POPULATIONS",
+      "why": "The threshold is applied across deal structures with different filing obligations. A tender offer's SC 14D9 follows a contemporaneous merger agreement, so its prior Item 1.01 8-K is nearly always present; a definitive merger proxy can be filed long after the agreement and by issuers who announced it otherwise. Measured separately, SC 14D9 clears 0.80 outright and DEFM14A does not come close. The blended figure describes neither population.",
+      "\u26a0\ufe0f_this_is_not_permission_to_narrow_the_universe": "Restricting to tender offers AFTER observing that they pass is selection, and the 0.8665 above is now in-sample for that decision and cannot serve as its evidence. A tender-offer-scoped identity is a legitimate REDESIGN, and it needs its own pre-registration with its threshold and universe fixed before anything is measured again. What this analysis establishes is that the CURRENT protocol mis-specified its population, not that a narrower one works."
+    }
+  },
+  "schema": "canli.alphac-feasibility-gate-reachability.v1",
+  "summary": "Of the three families one gate from feasibility, none is blocked by extraction. spin_off_dislocation and customer_supplier_propagation ask for language the filings do not contain at the assumed rate; merger_arbitrage applies one threshold to two populations with different filing obligations. All three need identity redesign with fresh pre-registration, not a better parser. That is a slower answer than 'one gate away' implied, and it is the true one."
+}

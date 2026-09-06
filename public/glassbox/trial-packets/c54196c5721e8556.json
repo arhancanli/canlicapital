@@ -1,0 +1,250 @@
+{
+  "author": "Arhan Canli",
+  "claim_boundary": "This stable packet proves the exact identity, immutable first measurement, and current evidence state. INCOMPLETE means missing sections remain missing; packet publication is not validation, admission, or a future-return claim.",
+  "complete": false,
+  "completion_assessment": {
+    "artifact_recoverability_class": "UNIQUE_EXACT_ARTIFACT_BINDING",
+    "blockers": [
+      {
+        "code": "EXACT_ARTIFACT_LACKS_ORIGINAL_ENVIRONMENT_STAMP",
+        "evidence": [
+          {
+            "path": "artifacts/cpanel/L9_carry_72/walkforward.json",
+            "sha256": "c97ca519e1d37f418d5ab15579ec2c16a3a113a20e11060b86df34205907f2e0"
+          },
+          {
+            "path": "artifacts/cpanel/L9_carry_72/equity.parquet",
+            "sha256": "e3a173f32c63a0bb0a9f5307c9f3a4c0d02d081d091c9a893d8ead2f63c7870c"
+          },
+          {
+            "config_hash": "d0d6682daf67db7d",
+            "path": "var/experiments.jsonl",
+            "sha256": "b5a318c0997d980575f758451f509e0154eecbbb50d734e49a587d473062bd08"
+          }
+        ],
+        "finding": "One persisted walk-forward artifact and equity curve uniquely match every identity-bearing ledger field and the immutable measurement. The artifact does not preserve the original code commit, runner hash, lockfile, and input manifest.",
+        "required_section": "code_environment_and_reproduction"
+      },
+      {
+        "code": "IDENTITY_PREREGISTRATION_NOT_PRESERVED",
+        "evidence": [
+          {
+            "path": "artifacts/cpanel/L9_carry_72/walkforward.json",
+            "sha256": "c97ca519e1d37f418d5ab15579ec2c16a3a113a20e11060b86df34205907f2e0"
+          }
+        ],
+        "finding": "No identity-level preregistration and immutable pre-result hash are bound to this historical measurement.",
+        "required_section": "preregistration_and_hashes"
+      },
+      {
+        "code": "IDENTITY_LEVEL_DECISION_PACKET_NOT_PRESERVED",
+        "evidence": [
+          {
+            "path": "artifacts/cpanel/L9_carry_72/walkforward.json",
+            "sha256": "c97ca519e1d37f418d5ab15579ec2c16a3a113a20e11060b86df34205907f2e0"
+          }
+        ],
+        "finding": "No complete identity-level admission or kill packet under the current contract is preserved for this historical measurement.",
+        "required_section": "admission_or_kill_decision"
+      }
+    ],
+    "config_hash": "d0d6682daf67db7d",
+    "status": "AUDITED_NOT_CURRENTLY_COMPLETABLE",
+    "walkforward_corpus_hash": "sha256:100f6051fcadd89a33412ec317f982f17023bb8fe18b879116d5b16955bcb7c7"
+  },
+  "config_hash": "d0d6682daf67db7d",
+  "configuration": {
+    "allocator": "rank",
+    "alpha_names": [
+      "carry_fund_21",
+      "carry_fund_90",
+      "carry_z_252",
+      "carry_mom_21_63"
+    ],
+    "end": 1780272000000,
+    "instrument_ids": [
+      "BINANCE:PERP:1000PEPEUSDT",
+      "BINANCE:PERP:1000SHIBUSDT",
+      "BINANCE:PERP:AAVEUSDT",
+      "BINANCE:PERP:ADAUSDT",
+      "BINANCE:PERP:APEUSDT",
+      "BINANCE:PERP:APTUSDT",
+      "BINANCE:PERP:ARBUSDT",
+      "BINANCE:PERP:ATOMUSDT",
+      "BINANCE:PERP:AVAXUSDT",
+      "BINANCE:PERP:AXSUSDT",
+      "BINANCE:PERP:BCHUSDT",
+      "BINANCE:PERP:BLZUSDT",
+      "BINANCE:PERP:BNBUSDT",
+      "BINANCE:PERP:BTCUSDT",
+      "BINANCE:PERP:CHZUSDT",
+      "BINANCE:PERP:COMPUSDT",
+      "BINANCE:PERP:CRVUSDT",
+      "BINANCE:PERP:DOGEUSDT",
+      "BINANCE:PERP:DOTUSDT",
+      "BINANCE:PERP:EOSUSDT",
+      "BINANCE:PERP:ETCUSDT",
+      "BINANCE:PERP:ETHUSDT",
+      "BINANCE:PERP:FILUSDT",
+      "BINANCE:PERP:FTMUSDT",
+      "BINANCE:PERP:GALAUSDT",
+      "BINANCE:PERP:ICPUSDT",
+      "BINANCE:PERP:INJUSDT",
+      "BINANCE:PERP:LDOUSDT",
+      "BINANCE:PERP:LINAUSDT",
+      "BINANCE:PERP:LINKUSDT",
+      "BINANCE:PERP:LRCUSDT",
+      "BINANCE:PERP:LTCUSDT",
+      "BINANCE:PERP:LUNAUSDT",
+      "BINANCE:PERP:MANAUSDT",
+      "BINANCE:PERP:MATICUSDT",
+      "BINANCE:PERP:MKRUSDT",
+      "BINANCE:PERP:NEARUSDT",
+      "BINANCE:PERP:OCEANUSDT",
+      "BINANCE:PERP:OPUSDT",
+      "BINANCE:PERP:REEFUSDT",
+      "BINANCE:PERP:RNDRUSDT",
+      "BINANCE:PERP:RUNEUSDT",
+      "BINANCE:PERP:SANDUSDT",
+      "BINANCE:PERP:SEIUSDT",
+      "BINANCE:PERP:SOLUSDT",
+      "BINANCE:PERP:SUIUSDT",
+      "BINANCE:PERP:SUSHIUSDT",
+      "BINANCE:PERP:SXPUSDT",
+      "BINANCE:PERP:THETAUSDT",
+      "BINANCE:PERP:TIAUSDT",
+      "BINANCE:PERP:TOMOUSDT",
+      "BINANCE:PERP:TRXUSDT",
+      "BINANCE:PERP:UNIUSDT",
+      "BINANCE:PERP:VETUSDT",
+      "BINANCE:PERP:WAVESUSDT",
+      "BINANCE:PERP:WLDUSDT",
+      "BINANCE:PERP:XLMUSDT",
+      "BINANCE:PERP:XRPUSDT"
+    ],
+    "no_trade_band": 0.001,
+    "rebalance_bars": 72,
+    "start": 1622505600000,
+    "test_bars": 1512,
+    "train_bars": 6048
+  },
+  "content_hash": "sha256:9780bc4eaf3b46062a0dd4369c77f764e699ea4c82c180c7cd399a46c5a24252",
+  "evidence_date": "2026-08-22",
+  "family_paper_public_path": "/research/crypto-carry-lineage.md",
+  "hypothesis_key": "c54196c5721e8556",
+  "immutable_first_measurement": {
+    "annualized_sharpe": 0.3987301589695089,
+    "kurtosis": 8.972890364583392,
+    "ledger_source_path": "var/experiments.jsonl",
+    "ledger_source_sha256": "b5a318c0997d980575f758451f509e0154eecbbb50d734e49a587d473062bd08",
+    "observations": 1574,
+    "recorded_at_unix_ms": 1781964174465,
+    "skew": -0.5731726857820153
+  },
+  "label": "carry_fund_21 + carry_fund_90 + carry_z_252 + carry_mom_21_63",
+  "missing_sections": [
+    "preregistration_and_hashes",
+    "point_in_time_data_and_survivorship_controls",
+    "execution_and_cost_model",
+    "result_uncertainty_stress_capacity_and_diversification",
+    "admission_or_kill_decision",
+    "code_environment_and_reproduction"
+  ],
+  "packet_status": "INCOMPLETE_BACKFILL_REQUIRED",
+  "partial_sections": [
+    "result_uncertainty_stress_capacity_and_diversification"
+  ],
+  "required_sections": {
+    "admission_or_kill_decision": {
+      "evidence": [],
+      "status": "MISSING_IDENTITY_LEVEL_EVIDENCE"
+    },
+    "code_environment_and_reproduction": {
+      "evidence": [],
+      "status": "MISSING_IDENTITY_LEVEL_EVIDENCE"
+    },
+    "economic_mechanism_and_falsifiable_hypothesis": {
+      "evidence": [
+        {
+          "public_path": "/research/crypto-carry-lineage.md",
+          "type": "family_paper"
+        }
+      ],
+      "status": "VERIFIED_SHARED_FAMILY_EVIDENCE"
+    },
+    "execution_and_cost_model": {
+      "evidence": [],
+      "status": "MISSING_IDENTITY_LEVEL_EVIDENCE"
+    },
+    "family_and_union_trial_accounting": {
+      "evidence": [
+        {
+          "public_path": "/research/crypto-carry-lineage.md",
+          "type": "family_paper"
+        }
+      ],
+      "status": "VERIFIED_SHARED_FAMILY_EVIDENCE"
+    },
+    "identity_and_authorship": {
+      "evidence": [
+        {
+          "public_path": "/research/crypto-carry-lineage.md",
+          "type": "family_paper"
+        }
+      ],
+      "status": "VERIFIED_SHARED_FAMILY_EVIDENCE"
+    },
+    "literature_and_overlap_decision": {
+      "evidence": [
+        {
+          "public_path": "/research/crypto-carry-lineage.md",
+          "type": "family_paper"
+        }
+      ],
+      "status": "VERIFIED_SHARED_FAMILY_EVIDENCE"
+    },
+    "machine_readable_packet_and_stable_public_paper": {
+      "evidence": [
+        {
+          "public_path": "/research/crypto-carry-lineage.md",
+          "type": "family_paper"
+        }
+      ],
+      "status": "VERIFIED_SHARED_FAMILY_EVIDENCE"
+    },
+    "point_in_time_data_and_survivorship_controls": {
+      "evidence": [],
+      "status": "MISSING_IDENTITY_LEVEL_EVIDENCE"
+    },
+    "preregistration_and_hashes": {
+      "evidence": [],
+      "status": "MISSING_IDENTITY_LEVEL_EVIDENCE"
+    },
+    "result_uncertainty_stress_capacity_and_diversification": {
+      "evidence": [
+        {
+          "claim_boundary": "This artifact proves preservation and deterministic recomputation of one historical curve measurement. It is not preregistration, current reproduction, admission, live performance, or evidence that the full trial packet is complete.",
+          "content_hash": "sha256:3c02dc14563c38b01d3d646922b6f2b1da2759f36107a4a910f649d5c9a77db8",
+          "equity_public_path": "/glassbox/historical-curves/c54196c5721e8556/equity.parquet",
+          "equity_sha256": "e3a173f32c63a0bb0a9f5307c9f3a4c0d02d081d091c9a893d8ead2f63c7870c",
+          "file_sha256": "3c917ad8e9943ceb3c3c0a6548b8101ce1df1a7e9124a8ad95cf5b82d5f8d7b9",
+          "public_path": "/glassbox/historical-curves/c54196c5721e8556/evidence.json",
+          "sha256": "3c917ad8e9943ceb3c3c0a6548b8101ce1df1a7e9124a8ad95cf5b82d5f8d7b9",
+          "type": "historical_curve_evidence",
+          "walkforward_public_path": "/glassbox/historical-curves/c54196c5721e8556/walkforward.json",
+          "walkforward_sha256": "c97ca519e1d37f418d5ab15579ec2c16a3a113a20e11060b86df34205907f2e0"
+        }
+      ],
+      "status": "PARTIAL_IDENTITY_LEVEL_EVIDENCE"
+    }
+  },
+  "research_family_key": "crypto_carry",
+  "schema": "canli.alphac-identity-trial-packet.v2",
+  "verified_sections": [
+    "identity_and_authorship",
+    "economic_mechanism_and_falsifiable_hypothesis",
+    "literature_and_overlap_decision",
+    "family_and_union_trial_accounting",
+    "machine_readable_packet_and_stable_public_paper"
+  ]
+}

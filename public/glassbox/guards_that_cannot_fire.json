@@ -1,0 +1,21 @@
+{
+  "claim_boundary": "A STRUCTURAL scan of source for checks that cannot fail. It reads code, not results: it cannot say whether a guard is correct, only whether it is capable of firing. Runs no backtest, opens no return data, registers no hypothesis. 0 trials.",
+  "companion": "artifacts/engineering/mutation_ledger.json, which answers the behavioural half by breaking what each guard over a published claim watches.",
+  "confirmed": [],
+  "detectors_proven_on_a_planted_instance": {
+    "B": true,
+    "C": true,
+    "D": true
+  },
+  "files_scanned": 595,
+  "refutations_are_kept": "A finding that turns out to be legitimate stays in this artifact as REFUTED with its reason. An audit that keeps only its hits cannot be checked by anybody who was not there when it ran.",
+  "refuted": [],
+  "schema": "canli.alphac-guards-that-cannot-fire.v1",
+  "shapes": {
+    "A": "a guard excluded from the environment meant to run it",
+    "B": "an assertion inside a loop that can run zero times",
+    "C": "an exemption naming a path that is not there",
+    "D": "an existence-guarded block whose path does not exist"
+  },
+  "why_a_clean_report_needs_that": "Every shape here currently reports zero, and zero is exactly what a scanner that has gone blind reports. Each detector is therefore run against a planted instance of the defect it looks for, and the audit refuses to publish a clean result it cannot demonstrate it earned."
+}

@@ -1,0 +1,52 @@
+{
+  "schema": "canli.alphac-selection-risk-lab-contract.v1",
+  "status": "EDUCATIONAL_INSTRUMENT_NOT_RESEARCH_EVIDENCE",
+  "author": "Arhan Canli",
+  "published_on": "2026-08-27",
+  "claim_boundary": "A teaching instrument. It runs on a synthetic series with no edge, spends no research hypothesis, writes to no ledger, and produces no ALPHAC performance claim. Nothing a visitor generates here is evidence about any strategy.",
+  "why_synthetic": {
+    "rights": "config/data_source_rights_policy.json records every market-data source this project uses as prohibited or withheld for raw redistribution, with a project default of do not bundle raw third-party rows. Shipping real bars into a browser is not available.",
+    "proof": "On real data a visitor can always argue the edge they found was genuine. On a driftless random walk the true Sharpe is zero by construction, so every good result is provably luck. The demonstration is stronger for it, not weaker."
+  },
+  "generator": {
+    "process": "driftless geometric random walk",
+    "bars": 750,
+    "per_bar_volatility": 0.011,
+    "drift": 0,
+    "true_sharpe": 0,
+    "deterministic": "mulberry32 seeded; the same seed reproduces the same series anywhere"
+  },
+  "execution": {
+    "rule": "decide at the close of bar t, hold from the open of bar t+1 to the open of bar t+2",
+    "matches_engine": "the same no-lookahead contract the ALPHAC backtester enforces",
+    "rechecked_every_run": true
+  },
+  "statistics": {
+    "periods_per_year": 252,
+    "deflation_implementation": "js/dsr-tool.js, golden-vector tested against the Python source",
+    "kurtosis_convention": "non_excess",
+    "deployment_gate_dsr": 0.95,
+    "trial_unit": "one distinct parameter set evaluated by this visitor, on this series"
+  },
+  "defaults": {
+    "seed": 20260827,
+    "fast": 10,
+    "slow": 50,
+    "cost_bps": 2
+  },
+  "sweep_grid": {
+    "fast_from": 2,
+    "fast_to": 24,
+    "fast_step": 1,
+    "slow_offset": 2,
+    "slow_to": 120,
+    "slow_step": 3,
+    "combinations": 820
+  },
+  "sandbox_safety": [
+    "every input is stored in the URL, so a scenario is shareable and reproducible",
+    "no write path to any ledger, artifact, broker or published record exists",
+    "results are labelled USER_GENERATED_SCENARIO_NOT_RESEARCH_EVIDENCE"
+  ],
+  "content_hash": "sha256:f9a0732f5f797b7601089f5fb0b0507edd70f7b37950bd4afd214c6812e022d6"
+}
