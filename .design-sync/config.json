@@ -1,0 +1,21 @@
+{
+  "pkg": "canli-design-system",
+  "shape": "package",
+  "globalName": "CanliDS",
+  "buildCmd": "npm --prefix design-system run build",
+  "entry": "./design-system/dist/index.js",
+  "srcDir": "src",
+  "cssEntry": "dist/styles.css",
+  "runtimeFontPrefixes": [
+    "space grotesk",
+    "jetbrains mono",
+    "bricolage grotesque",
+    "inter",
+    "ibm plex mono",
+    "barlow condensed"
+  ],
+  "componentSrcMap": {
+    "ShellHeader": "src/shell/ProductShell.tsx",
+    "ShellFooter": "src/shell/ProductShell.tsx"
+  }
+}
