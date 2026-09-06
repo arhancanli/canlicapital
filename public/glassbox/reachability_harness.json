@@ -1,0 +1,73 @@
+{
+  "claim_boundary": "Reads frozen feasibility artifacts read-only. Registers no hypothesis identity, opens no return data, and authorises no candidate. 0 trials.",
+  "families": [
+    {
+      "ceiling_basis": "documents containing a pro-rata token in ANY written form \u2014 hyphenated, non-breaking, or spaced. A detector cannot find language that is absent.",
+      "ceiling_rate": 0.11224489795918367,
+      "family": "spin_off_dislocation",
+      "gate": "pro_rata_distribution_language_rate_gte_0_30",
+      "headroom_over_threshold": -0.1877551020408163,
+      "measured_rate": 0.16326530612244897,
+      "strata": {},
+      "strata_clearing_alone": [],
+      "threshold": 0.3,
+      "verdict": "GATE_UNREACHABLE_BY_DETECTOR_REPAIR",
+      "what_the_verdict_means": "A perfect detector reaches less than the gate requires. The shortfall is what the documents contain, not what the parser reads, and no extraction work will close it. The identity needs a redesign that names the document carrying the evidence before it names a threshold.",
+      "\u26a0\ufe0f_if_blended": null
+    },
+    {
+      "ceiling_basis": "the naming rate among documents that genuinely carry concentration language. An issuer may disclose a material customer concentration without naming the customer, and most do.",
+      "ceiling_rate": 0.37142857142857144,
+      "family": "customer_supplier_propagation",
+      "gate": "strict_named_document_rate_at_least_50pct",
+      "headroom_over_threshold": -0.12857142857142856,
+      "measured_rate": 0.35333333333333333,
+      "strata": {},
+      "strata_clearing_alone": [],
+      "threshold": 0.5,
+      "verdict": "GATE_UNREACHABLE_BY_DETECTOR_REPAIR",
+      "what_the_verdict_means": "A perfect detector reaches less than the gate requires. The shortfall is what the documents contain, not what the parser reads, and no extraction work will close it. The identity needs a redesign that names the document carrying the evidence before it names a threshold.",
+      "\u26a0\ufe0f_if_blended": null
+    },
+    {
+      "ceiling_basis": "not applicable \u2014 the filing either exists or it does not, so there is no detector to improve. The question is which population the threshold was written for.",
+      "ceiling_rate": 0.6702290076335878,
+      "family": "merger_arbitrage",
+      "gate": "prior_item101_8k_rate_gte_0_80",
+      "headroom_over_threshold": -0.1297709923664122,
+      "measured_rate": 0.6702290076335878,
+      "strata": {
+        "DEFM14A": {
+          "n": 1523,
+          "rate": 0.613263296126067
+        },
+        "SC 14D9": {
+          "n": 442,
+          "rate": 0.8665158371040724
+        }
+      },
+      "strata_clearing_alone": [
+        "SC 14D9"
+      ],
+      "threshold": 0.8,
+      "verdict": "GATE_BLENDS_TWO_POPULATIONS",
+      "what_the_verdict_means": "One threshold is applied across populations that do not share the obligation it tests. The blended rate describes none of them.",
+      "\u26a0\ufe0f_if_blended": "A subgroup clearing the gate is NOT permission to narrow the universe. Selecting it after observing that it passes is selection, and its rate is then in-sample for that decision and cannot be its evidence. It is a REDESIGN needing its own pre-registration with threshold and universe fixed before anything is measured again."
+    }
+  ],
+  "how_to_add_a_family": "Write a probe returning a Reachability with its own ceiling_rate and ceiling_basis, register it, and add its expected verdict to PUBLISHED_VERDICTS if it has already been worked by hand. The harness refuses to run if any registered family stops reproducing its published answer.",
+  "purpose": "Run BEFORE a protocol is written for any family. A near-miss gate invites exactly one move \u2014 widen the detector until the number clears \u2014 which is tuning a measurement to agree with a target. This asks the opposite question first.",
+  "reproduces_published_answers": true,
+  "schema": "canli.alphac-reachability-harness.v1",
+  "verdict_meanings": {
+    "GATE_ALREADY_CLEARS": "The gate already passes as measured; nothing to reach.",
+    "GATE_BLENDS_TWO_POPULATIONS": "One threshold is applied across populations that do not share the obligation it tests. The blended rate describes none of them.",
+    "GATE_UNREACHABLE_BY_DETECTOR_REPAIR": "A perfect detector reaches less than the gate requires. The shortfall is what the documents contain, not what the parser reads, and no extraction work will close it. The identity needs a redesign that names the document carrying the evidence before it names a threshold.",
+    "REACHABLE_BY_DETECTOR_REPAIR": "A perfect detector would clear the gate, so the shortfall IS extraction and the work is worth doing. This is the only verdict that justifies parser effort."
+  },
+  "what_does_not_generalise": "The CEILING PROBE. What a perfect detector would find is a property of the mechanism, so every family must supply its own; the harness makes that a required argument rather than inventing one. A harness that guessed the ceiling would be a rubber stamp.",
+  "what_generalises": [
+    "the decision logic: measured rate vs gate vs ceiling, and the verdict that follows",
+    "the heterogeneity test: whether a blended rate hides a subgroup that clears alone"
+  ]
+}

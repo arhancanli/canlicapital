@@ -1,0 +1,55 @@
+{
+  "author": "Arhan Canli",
+  "claim_boundary": "This is a reachability audit over metadata only. It assumes the best possible exact coverage for the 13 months CFTC says are available, opens no position columns, prices or returns, and makes no claim about sign, edge, Sharpe, drawdown or diversification.",
+  "content_hash": "sha256:e35a0a19e19298bd194fb57d509ae423a7c5956460325d06f4fc3fa028d5d919",
+  "decision": "UNREACHABLE_AS_PREREGISTERED",
+  "family": "cftc_hedging_pressure",
+  "hypotheses_spent": 0,
+  "lineage": {
+    "aliases": [
+      "cot_positioning"
+    ],
+    "classification": "RETIRED_KILLED",
+    "events_sha256": "sha256:8dcc786360279c0448c9600f4d7e7bf4f120a64fa3bbcd4b525ab6d44b7843a8",
+    "evidence": [
+      "public_kill_ledger#screen_stage_kills:cot_positioning"
+    ],
+    "feasibility_sha256": "sha256:7d4eb8d0c4993a892dcff924247d2da78e94b7deec521a2289de0882930e7299",
+    "lineage_registry_sha256": "sha256:568f184a42fa815725b7e8fcb48ec701564f1ed9cfd6d991fcc5ea5d379d3ecf"
+  },
+  "measured_ceiling": {
+    "available_window_cutoff": "2025-07-11",
+    "ceiling_assumption": "Best case: every observation in the most recent 13 months can be matched to an exact release timestamp; no older observation can.",
+    "date_weighted_exact_lineage_ceiling": 0.05413105413105413,
+    "dates_in_best_case_available_window": 57,
+    "first_report_date": "2006-06-13",
+    "last_report_date": "2026-08-11",
+    "row_weighted_exact_lineage_ceiling": 0.08368540255667589,
+    "rows_in_best_case_available_window": 15371,
+    "shortfall_to_required_rate": 0.8663145974433241,
+    "total_distinct_report_dates": 1053,
+    "total_rows": 183676
+  },
+  "official_record_constraint": {
+    "available_release_history_months": 13,
+    "historical_release_date_list_exists": false,
+    "holiday_and_disruption_exceptions_exist": true,
+    "normal_release_rule": "Friday 15:30 US Eastern for prior Tuesday data",
+    "retrieved_on": "2026-08-22",
+    "source": "https://www.cftc.gov/MarketReports/CommitmentsofTraders/index.htm",
+    "special_announcement_source": "https://www.cftc.gov/MarketReports/CommitmentsofTraders/HistoricalSpecialAnnouncements/index.htm"
+  },
+  "protocol_gate": {
+    "name": "exact_historical_release_lineage",
+    "observed_verified_rate": 0.0,
+    "required_rate": 0.95
+  },
+  "return_data_opened": false,
+  "schema": "canli.alphac-cftc-release-reachability.v1",
+  "verdict": "HISTORICAL_RELEASE_LINEAGE_CEILING_BELOW_GATE",
+  "work_authorization": {
+    "build_fixed_contract_mapping_now": false,
+    "permitted_future_branch": "Only a preregistered identity redesign with a conservative availability rule and a documented distinction from the killed COT campaign. It would be a new trial family, not completion of this protocol.",
+    "reason": "A contract map cannot rescue an independently unreachable release-lineage gate, and the mechanism is already classified as a retired killed lineage."
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "claim_boundary": "The numeric parameters this pre-registration commits to, extracted from the committed document and stated as data. It asserts nothing about the candidate's performance, re-runs nothing, and changes no threshold. 0 trials.",
+  "committed_parameters": {
+    "hedge_beta_window_sessions": 252,
+    "hold_sessions": 63,
+    "minimum_aligned_observations": 252,
+    "minimum_stressed_observations": 63,
+    "momentum_lookback_session_index": -252,
+    "momentum_lookback_sessions": 252,
+    "momentum_skip_session_index": -21,
+    "momentum_skip_sessions": 21,
+    "note": "Stated in the document as '12-1 momentum ... adjusted close at session -21 divided by adjusted close at session -252', a trailing 252-session SPY beta hedge, and void conditions below 252 aligned or 63 stressed observations."
+  },
+  "document": {
+    "path": "docs/design/PREREG_EARNINGS_NARRATIVE_CHANGE.md",
+    "public_path": "/research/prereg-earnings-narrative-change",
+    "sha256": "sha256:60486da41f1e2c88e62b6e56d436d780f645420ffaeb13364540d0c4040cc3b9"
+  },
+  "marginal_test_weights": {
+    "candidate_weight": 0.1,
+    "current_sleeves": 4,
+    "derivation": "4 equal sleeves at 25% each; the candidate is assigned 10% funded PRO RATA, so every existing sleeve keeps 90% of its weight: 0.25 x 0.90 = 0.225. This is arithmetic, not a measurement, and it is published with its inputs so it can be checked rather than accepted.",
+    "sleeve_weight_after": 0.225,
+    "sleeve_weight_after_pct": 22.5,
+    "sleeve_weight_before": 0.25
+  },
+  "measured_book_effect": {
+    "base_sharpe": 0.9563039455217212,
+    "candidate_10pct_sharpe": 1.0643867520134125,
+    "note": "Included so the weight the spec commits to and the weight the run used are visible on one page.",
+    "source": "artifacts/probe/earnings_narrative_change/result.json"
+  },
+  "parameters_found_verbatim_in_the_document": [
+    "-21",
+    "-252",
+    "21",
+    "252",
+    "63"
+  ],
+  "schema": "canli.alphac-prereg-parameters.v1",
+  "why_this_exists": "A pre-registration's function is that the spec is fixed before measurement so a reader can check the run against it. These parameters existed only as English sentences, so nothing could compare the executed run to the committed spec."
+}

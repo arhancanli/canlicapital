@@ -1,0 +1,342 @@
+{
+  "schema": "canli.eia-petroleum-inventory-input-manifest.v1",
+  "preregistration_path": "docs/design/PREREG_EIA_PETROLEUM_INVENTORY.md",
+  "preregistration_sha256": "dc1f7dd8888a51c1b53fe3b04c4fd941d2027075e2b7150c72941736d740e66c",
+  "events_path": "data/lake_inventory_releases/events.parquet",
+  "events_sha256": "031cf4a3178dfffb84d13f12a0b8a4b417914ddbc885e314bbf4ff6347de0bbc",
+  "first_release_manifest_path": "data/lake_inventory_releases/manifest.json",
+  "first_release_manifest_sha256": "386577605c5bea567ce166efbf600419f79858ff20ed57a68b625bc1da4c9623",
+  "first_release_files_validated": 783,
+  "market_data_partitions": {
+    "USO": [
+      {
+        "path": "data/lake_inventory/ohlcv_1d/instrument_id=XUSE:CASH:USOUSD/year=2006/data.parquet",
+        "bytes": 11005,
+        "sha256": "3f19651422727c21d407609d670688b69c5c03a4340715553f15ee271699c65d"
+      },
+      {
+        "path": "data/lake_inventory/ohlcv_1d/instrument_id=XUSE:CASH:USOUSD/year=2007/data.parquet",
+        "bytes": 13145,
+        "sha256": "273a99bcc076fb86c1188841923afd3af5160f6d0190a729448bc773f580e3a3"
+      },
+      {
+        "path": "data/lake_inventory/ohlcv_1d/instrument_id=XUSE:CASH:USOUSD/year=2008/data.parquet",
+        "bytes": 13547,
+        "sha256": "6a90280cfe3e43250ff14685d22e2868e327da5e75cf3243154627122970c1f7"
+      },
+      {
+        "path": "data/lake_inventory/ohlcv_1d/instrument_id=XUSE:CASH:USOUSD/year=2009/data.parquet",
+        "bytes": 13348,
+        "sha256": "20b63005504105663fbc66f2cb957d1e8840cae8a2f6c4cf9b198420e0bc3973"
+      },
+      {
+        "path": "data/lake_inventory/ohlcv_1d/instrument_id=XUSE:CASH:USOUSD/year=2010/data.parquet",
+        "bytes": 12965,
+        "sha256": "485054d4cd617684b4a49280881b580acad287d49c1d6c06501021b521240492"
+      },
+      {
+        "path": "data/lake_inventory/ohlcv_1d/instrument_id=XUSE:CASH:USOUSD/year=2011/data.parquet",
+        "bytes": 13112,
+        "sha256": "d9c15af2bae1ac7bfcd0899d9fc87cc8b20b8662547d2e702e7825846e2f4077"
+      },
+      {
+        "path": "data/lake_inventory/ohlcv_1d/instrument_id=XUSE:CASH:USOUSD/year=2012/data.parquet",
+        "bytes": 12923,
+        "sha256": "ef8cd1921f3ccd8b2515e043f6a95b11f06414feb028ee7453e5af1c16f4ccb9"
+      },
+      {
+        "path": "data/lake_inventory/ohlcv_1d/instrument_id=XUSE:CASH:USOUSD/year=2013/data.parquet",
+        "bytes": 12637,
+        "sha256": "0e3c42b591afa121442a08084980bea77dbff62068a39a76ebb2dcc76d7fdc0f"
+      },
+      {
+        "path": "data/lake_inventory/ohlcv_1d/instrument_id=XUSE:CASH:USOUSD/year=2014/data.parquet",
+        "bytes": 12952,
+        "sha256": "8855d5b4a4a060b8798e2aa3cd561d147e25937f60e8deb80b32b82dda37cfd1"
+      },
+      {
+        "path": "data/lake_inventory/ohlcv_1d/instrument_id=XUSE:CASH:USOUSD/year=2015/data.parquet",
+        "bytes": 13101,
+        "sha256": "8c7f3308d0bc2ed5c13e4df6265f455601b8d14e4e1f9529ccf79b3b2f46b088"
+      },
+      {
+        "path": "data/lake_inventory/ohlcv_1d/instrument_id=XUSE:CASH:USOUSD/year=2016/data.parquet",
+        "bytes": 12551,
+        "sha256": "e4e1af7060be771a3eec760fd23635f70ccb386f0164bf3ddc1b76f6f3aa5879"
+      },
+      {
+        "path": "data/lake_inventory/ohlcv_1d/instrument_id=XUSE:CASH:USOUSD/year=2017/data.parquet",
+        "bytes": 12162,
+        "sha256": "b69e967b55704e85619076b382b1a36629804b5ed29f1f37cda5d90140e6024c"
+      },
+      {
+        "path": "data/lake_inventory/ohlcv_1d/instrument_id=XUSE:CASH:USOUSD/year=2018/data.parquet",
+        "bytes": 12578,
+        "sha256": "2e498930c0d189212d278be6c70a8876daff17d1817b3c4a4640e6f3d09c6cac"
+      },
+      {
+        "path": "data/lake_inventory/ohlcv_1d/instrument_id=XUSE:CASH:USOUSD/year=2019/data.parquet",
+        "bytes": 12310,
+        "sha256": "7f810cc0f7f8f41c1faa9e5bce9178a1ce1debdde2cdbfb69313bb3f9dbb3674"
+      },
+      {
+        "path": "data/lake_inventory/ohlcv_1d/instrument_id=XUSE:CASH:USOUSD/year=2020/data.parquet",
+        "bytes": 13274,
+        "sha256": "eb2527370660d379d11dadb05a61ad1be37c4c2db6e6c9c9ff3fbba7ed0e4603"
+      },
+      {
+        "path": "data/lake_inventory/ohlcv_1d/instrument_id=XUSE:CASH:USOUSD/year=2021/data.parquet",
+        "bytes": 13257,
+        "sha256": "700cb6b01ccf0dfb8909f903563290e3478d734878a1898c1b21b68710df87aa"
+      },
+      {
+        "path": "data/lake_inventory/ohlcv_1d/instrument_id=XUSE:CASH:USOUSD/year=2022/data.parquet",
+        "bytes": 13410,
+        "sha256": "278466cfa613cdafa9f0decc8d72b7ad73257697213e8269fff17f2076f50746"
+      },
+      {
+        "path": "data/lake_inventory/ohlcv_1d/instrument_id=XUSE:CASH:USOUSD/year=2023/data.parquet",
+        "bytes": 13265,
+        "sha256": "ce991eb9877e9e3cb2e905630b97db8f4f92c2cafddf96fa6e6303f69c9eb54e"
+      },
+      {
+        "path": "data/lake_inventory/ohlcv_1d/instrument_id=XUSE:CASH:USOUSD/year=2024/data.parquet",
+        "bytes": 13165,
+        "sha256": "b30964aae85c65504bc10c62eb38ddc99d2f3f6fe1febfb5f8e4a3a3008895fd"
+      },
+      {
+        "path": "data/lake_inventory/ohlcv_1d/instrument_id=XUSE:CASH:USOUSD/year=2025/data.parquet",
+        "bytes": 13224,
+        "sha256": "f3be7ac3fed3f640c5ab03195a7f04a67574a5dd665930ab11b417feecbbfa14"
+      },
+      {
+        "path": "data/lake_inventory/ohlcv_1d/instrument_id=XUSE:CASH:USOUSD/year=2026/data.parquet",
+        "bytes": 10479,
+        "sha256": "f9d03950b8a22f8d7129d61e4c140b5f73f4b18553d6508c3cf5e7668f310a79"
+      }
+    ],
+    "UGA": [
+      {
+        "path": "data/lake_inventory/ohlcv_1d/instrument_id=XUSE:CASH:UGAUSD/year=2008/data.parquet",
+        "bytes": 11807,
+        "sha256": "715d6a5c75dbf74bb80717eeebd57d912fe9b84d39e161d93dc164f79474e80b"
+      },
+      {
+        "path": "data/lake_inventory/ohlcv_1d/instrument_id=XUSE:CASH:UGAUSD/year=2009/data.parquet",
+        "bytes": 12977,
+        "sha256": "fa0fa3e6749ed7758363354989f89ebcc1893ce54f263a38ad9bb2d5fc1d0779"
+      },
+      {
+        "path": "data/lake_inventory/ohlcv_1d/instrument_id=XUSE:CASH:UGAUSD/year=2010/data.parquet",
+        "bytes": 12544,
+        "sha256": "947ae82426dd800ff94e081f9d8c69d3e8f03d70e60d819ddbcb7bdc9c58f61a"
+      },
+      {
+        "path": "data/lake_inventory/ohlcv_1d/instrument_id=XUSE:CASH:UGAUSD/year=2011/data.parquet",
+        "bytes": 12820,
+        "sha256": "fbc437b1e8c9bc9a0e164b3be20f29ae8bedd7b964235c65d0071283c967c142"
+      },
+      {
+        "path": "data/lake_inventory/ohlcv_1d/instrument_id=XUSE:CASH:UGAUSD/year=2012/data.parquet",
+        "bytes": 12627,
+        "sha256": "64d0e55397b359882bb8405fa08a968199e10a8d10522630372c1908467772fa"
+      },
+      {
+        "path": "data/lake_inventory/ohlcv_1d/instrument_id=XUSE:CASH:UGAUSD/year=2013/data.parquet",
+        "bytes": 12385,
+        "sha256": "c2e3e34467b5355b5f4ee690f5c23ded0eb49b45e3ac164811ca2d602d27492f"
+      },
+      {
+        "path": "data/lake_inventory/ohlcv_1d/instrument_id=XUSE:CASH:UGAUSD/year=2014/data.parquet",
+        "bytes": 12391,
+        "sha256": "76a32d6418e8d8944927cf2b06fb4ea1a02f403e1651b2c871aacc38e7cf8806"
+      },
+      {
+        "path": "data/lake_inventory/ohlcv_1d/instrument_id=XUSE:CASH:UGAUSD/year=2015/data.parquet",
+        "bytes": 12846,
+        "sha256": "cf8c6585a6368006bf2d4c7a5b4230fb28234ac32a0cdbcaa425e219dcf2a276"
+      },
+      {
+        "path": "data/lake_inventory/ohlcv_1d/instrument_id=XUSE:CASH:UGAUSD/year=2016/data.parquet",
+        "bytes": 12659,
+        "sha256": "8c6346efbf1c5756599f72eafa87261c4c95da6e7744c5d857f61066c0363fc6"
+      },
+      {
+        "path": "data/lake_inventory/ohlcv_1d/instrument_id=XUSE:CASH:UGAUSD/year=2017/data.parquet",
+        "bytes": 12443,
+        "sha256": "fce4679750b9d03e14be0bfe55485d7a5441dc8c33e44cad4de9a609d61143f9"
+      },
+      {
+        "path": "data/lake_inventory/ohlcv_1d/instrument_id=XUSE:CASH:UGAUSD/year=2018/data.parquet",
+        "bytes": 12164,
+        "sha256": "172684acf0434331aea03eb121f8b0a7a201c3f1b009f6601a879d17bacfba24"
+      },
+      {
+        "path": "data/lake_inventory/ohlcv_1d/instrument_id=XUSE:CASH:UGAUSD/year=2019/data.parquet",
+        "bytes": 12338,
+        "sha256": "4e9d3afad42f5aceca91c5f67bff25badad2974a390c4029765e6aa7a1dfc79f"
+      },
+      {
+        "path": "data/lake_inventory/ohlcv_1d/instrument_id=XUSE:CASH:UGAUSD/year=2020/data.parquet",
+        "bytes": 12886,
+        "sha256": "4603be0af845ed565358dfe6f4483289e1270cc9ea28b68866625a70f4180a2c"
+      },
+      {
+        "path": "data/lake_inventory/ohlcv_1d/instrument_id=XUSE:CASH:UGAUSD/year=2021/data.parquet",
+        "bytes": 12743,
+        "sha256": "9868911784dd0e4f3e615067aefff96f33d5bd0d8f49ea5865adc42c98a84cc2"
+      },
+      {
+        "path": "data/lake_inventory/ohlcv_1d/instrument_id=XUSE:CASH:UGAUSD/year=2022/data.parquet",
+        "bytes": 13149,
+        "sha256": "a3f8c91031918bdbf5a95ae44ac94be1b3df4e7d8610d8c608698f0223491a46"
+      },
+      {
+        "path": "data/lake_inventory/ohlcv_1d/instrument_id=XUSE:CASH:UGAUSD/year=2023/data.parquet",
+        "bytes": 12635,
+        "sha256": "c6aa331406ad4dfab7fad396735e7841ff7e4e30761c8f82c66228c5c89341dd"
+      },
+      {
+        "path": "data/lake_inventory/ohlcv_1d/instrument_id=XUSE:CASH:UGAUSD/year=2024/data.parquet",
+        "bytes": 12636,
+        "sha256": "fdd1466879c2c1cf6ad1c8ad67e566db1716ff7a9c252ad30dbd1b5aef088013"
+      },
+      {
+        "path": "data/lake_inventory/ohlcv_1d/instrument_id=XUSE:CASH:UGAUSD/year=2025/data.parquet",
+        "bytes": 12487,
+        "sha256": "e57cf62b505216541daaf64ebd861ff4873d7d57718b7404919dc23a98469204"
+      },
+      {
+        "path": "data/lake_inventory/ohlcv_1d/instrument_id=XUSE:CASH:UGAUSD/year=2026/data.parquet",
+        "bytes": 10204,
+        "sha256": "adba62655c75a736dfb16e3f9535b76100075cb30370f1156fe2baa4b260e0bb"
+      }
+    ],
+    "DBC": [
+      {
+        "path": "data/lake_inventory/ohlcv_1d/instrument_id=XUSE:CASH:DBCUSD/year=2006/data.parquet",
+        "bytes": 15065,
+        "sha256": "84e7706088f0662685196b623aec43b88e586cfc01eb89ccc9f160a1d3c1dbb0"
+      },
+      {
+        "path": "data/lake_inventory/ohlcv_1d/instrument_id=XUSE:CASH:DBCUSD/year=2007/data.parquet",
+        "bytes": 16075,
+        "sha256": "00aebe1966145de585bc9d2b34b77fc68a907988e6e74ee8dbb454ba6a783274"
+      },
+      {
+        "path": "data/lake_inventory/ohlcv_1d/instrument_id=XUSE:CASH:DBCUSD/year=2008/data.parquet",
+        "bytes": 16559,
+        "sha256": "a6c5f8c49d9a48febefacc071db43835fd872e43af2c20d3fa2e0fffff8ec821"
+      },
+      {
+        "path": "data/lake_inventory/ohlcv_1d/instrument_id=XUSE:CASH:DBCUSD/year=2009/data.parquet",
+        "bytes": 16334,
+        "sha256": "4dd0da8b62d6d774ab47f836d47c41dac29f63fae603f0aececaa70ea2efa55d"
+      },
+      {
+        "path": "data/lake_inventory/ohlcv_1d/instrument_id=XUSE:CASH:DBCUSD/year=2010/data.parquet",
+        "bytes": 16285,
+        "sha256": "259ae61ca01157dad4ebfda09fff61e055d7e179f4ddae4db9637a4ea7922110"
+      },
+      {
+        "path": "data/lake_inventory/ohlcv_1d/instrument_id=XUSE:CASH:DBCUSD/year=2011/data.parquet",
+        "bytes": 16326,
+        "sha256": "c995ef6b5c0c9ea4475e481c30dc6695ac685c1231f689caaa5011bfd3934529"
+      },
+      {
+        "path": "data/lake_inventory/ohlcv_1d/instrument_id=XUSE:CASH:DBCUSD/year=2012/data.parquet",
+        "bytes": 16121,
+        "sha256": "a6a455e25ddd6988b078818d70e683a3877c31d3b53cb233e2de0923693b0888"
+      },
+      {
+        "path": "data/lake_inventory/ohlcv_1d/instrument_id=XUSE:CASH:DBCUSD/year=2013/data.parquet",
+        "bytes": 15904,
+        "sha256": "079cd2d427b5a50020be07afff7cd8d7fe5a57ac52256001ddbd2b2f2d74abf2"
+      },
+      {
+        "path": "data/lake_inventory/ohlcv_1d/instrument_id=XUSE:CASH:DBCUSD/year=2014/data.parquet",
+        "bytes": 16124,
+        "sha256": "8b63adc8da2cfe6696986fecaa92e42672b8c28d20f238129392731c70bd45ee"
+      },
+      {
+        "path": "data/lake_inventory/ohlcv_1d/instrument_id=XUSE:CASH:DBCUSD/year=2015/data.parquet",
+        "bytes": 16171,
+        "sha256": "17d0f100ed3ad50308e2d551cef50b72bd10d4a00060a5121723519dbd1c60bb"
+      },
+      {
+        "path": "data/lake_inventory/ohlcv_1d/instrument_id=XUSE:CASH:DBCUSD/year=2016/data.parquet",
+        "bytes": 16094,
+        "sha256": "ef377e179add9391ce65f0e2c023496b5f8445ab9cdd337a9266a62e4d80a1ce"
+      },
+      {
+        "path": "data/lake_inventory/ohlcv_1d/instrument_id=XUSE:CASH:DBCUSD/year=2017/data.parquet",
+        "bytes": 15807,
+        "sha256": "e6bd2bbcddd94f0f6ae368c63cd85554296e3524bf6b8bfe998a5454330d1efa"
+      },
+      {
+        "path": "data/lake_inventory/ohlcv_1d/instrument_id=XUSE:CASH:DBCUSD/year=2018/data.parquet",
+        "bytes": 15909,
+        "sha256": "3fba82ba676b679c5aacb6a8142a34ce72d5216cf37a245a754ec4ea2886177a"
+      },
+      {
+        "path": "data/lake_inventory/ohlcv_1d/instrument_id=XUSE:CASH:DBCUSD/year=2019/data.parquet",
+        "bytes": 15507,
+        "sha256": "1c3e60daf259c9666722df4069395ab53e0aee0aa61dc69fb718e94ad51afbcb"
+      },
+      {
+        "path": "data/lake_inventory/ohlcv_1d/instrument_id=XUSE:CASH:DBCUSD/year=2020/data.parquet",
+        "bytes": 16184,
+        "sha256": "6c3e246b574d0e71b362f1cca71f6b577f299dec3310dc69613afa1d664f1eb9"
+      },
+      {
+        "path": "data/lake_inventory/ohlcv_1d/instrument_id=XUSE:CASH:DBCUSD/year=2021/data.parquet",
+        "bytes": 16190,
+        "sha256": "81922a07019af7e3b835279cd2a756a432f44aec27e2ddb3018f4b0f64d3bb20"
+      },
+      {
+        "path": "data/lake_inventory/ohlcv_1d/instrument_id=XUSE:CASH:DBCUSD/year=2022/data.parquet",
+        "bytes": 16440,
+        "sha256": "45788e003074fa10e3c0543e62b4162b41ed1dd84afad805966cee3ba4839edb"
+      },
+      {
+        "path": "data/lake_inventory/ohlcv_1d/instrument_id=XUSE:CASH:DBCUSD/year=2023/data.parquet",
+        "bytes": 15971,
+        "sha256": "92fee2769393a563f3b7a34dbbae9721f8caeb3bb7241bf05e9b39fb3b2112d6"
+      },
+      {
+        "path": "data/lake_inventory/ohlcv_1d/instrument_id=XUSE:CASH:DBCUSD/year=2024/data.parquet",
+        "bytes": 15770,
+        "sha256": "4d48a55a986d12ac18fdff6b5d36686048b41fef900f1192d463c78f310b1d3b"
+      },
+      {
+        "path": "data/lake_inventory/ohlcv_1d/instrument_id=XUSE:CASH:DBCUSD/year=2025/data.parquet",
+        "bytes": 15693,
+        "sha256": "11fef3e5f0b60cc17835f07c9c6127237c3fdc61e4188ab505426712bb25040f"
+      },
+      {
+        "path": "data/lake_inventory/ohlcv_1d/instrument_id=XUSE:CASH:DBCUSD/year=2026/data.parquet",
+        "bytes": 10018,
+        "sha256": "22e866e4a4c671b6846c73430229fb48d6a40244124a8728490b3034c145bfc8"
+      }
+    ]
+  },
+  "diversification_curves": {
+    "AlphaForge": {
+      "path": "artifacts/walkforward/crypto_carry_wk/equity.parquet",
+      "sha256": "37598579af6f34892e40902e2a357e4b07993b3e572012a1da311f7e91798a2a"
+    },
+    "AlphaMax": {
+      "path": "artifacts/walkforward/k30_dn_63/equity.parquet",
+      "sha256": "76f82c8df3726f049144d7699c0f13069db6a1e0d1f1e4570babd8d82a85cfc9"
+    },
+    "AlphaTrend": {
+      "path": "artifacts/walkforward/managed_futures/equity.parquet",
+      "sha256": "870c87827ac72ab8759d77d511a1207da44d5ec679ee24eb18bb1cdd0aeb75b3"
+    },
+    "AlphaVintage": {
+      "path": "artifacts/probe/cpi_surprise_size/equity.parquet",
+      "sha256": "d277c63ddf2bed6e9314aa863dbbf6adf3f4adb55bd89e8166aee4a19aab415f"
+    }
+  },
+  "content_hash": "sha256:70fab9c75c78c7102661ab1d2f9ca02834554f6d1342d3b68db8242c2f2d33ec"
+}

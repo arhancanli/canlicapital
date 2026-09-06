@@ -1,0 +1,42 @@
+{
+  "author": "Arhan Canli",
+  "claim_boundary": "The corporate-action correction materially changes the measured curve but does not rescue the factor: corrected Sharpe, CAGR, and total return remain negative. This is a zero-trial reproduction, not a new hypothesis, sleeve admission, or forward claim.",
+  "content_hash": "sha256:04c000216be3ba13f1ba3e196d8543e77ff1f18a876753005c6b13a7b856ed0f",
+  "corrected_measurement": {
+    "annualized_sharpe": -0.1457641218704682,
+    "cagr": -0.007664741439944112,
+    "final_equity": 84805.91738542935,
+    "maximum_drawdown": 0.24466923153195985,
+    "n_periods": 5384,
+    "total_return": -0.15194082614570648
+  },
+  "decision": "CORRECTED_OPERATING_MARGIN_REPRODUCED_KILL_PRESERVED",
+  "difference": {
+    "annualized_sharpe": 0.27161681438781793,
+    "final_equity": 20894.272306160055,
+    "maximum_drawdown": -0.151565601623755
+  },
+  "hypotheses_spent": 0,
+  "immutable_measurement": {
+    "annualized_sharpe": -0.4173809362582861,
+    "final_equity": 63911.64507926929,
+    "maximum_drawdown": 0.39623483315571484
+  },
+  "lineage": {
+    "authorization_content_hash": "sha256:f812e1576bf430eee48be1df5d8d10af759b014de898919ba5e2da415f1e51bc",
+    "authorization_path": "artifacts/audit/operating_margin_corrected_replay_authorization.json",
+    "authorization_sha256": "50cb648a88c219b2c55b5b9861b570264f38c70dd69a2626edb7790cd4d8e0e3",
+    "environment_path": "artifacts/probe/fundamental_single_replays/e5f48adc25065ce9/corrected_corporate_actions_f812e1576bf430ee/replay_environment.json",
+    "environment_sha256": "dc007cb1c3b121222da021a60f532cab3b9fc754d8eab15fe67990e926283963",
+    "equity_path": "artifacts/probe/fundamental_single_replays/e5f48adc25065ce9/corrected_corporate_actions_f812e1576bf430ee/equity.parquet",
+    "equity_sha256": "9897daecdf992a999f794bf43e8b9a671be489c3a68517503dcc9edf7f2b69e4",
+    "historical_path": "artifacts/walkforward/single_operating_margin/walkforward.json",
+    "historical_sha256": "603e5d53e3f1d36b1585cdd923f6fd7e1709db29b1505a0c15d4242be6bdf7e5",
+    "result_path": "artifacts/probe/fundamental_single_replays/e5f48adc25065ce9/corrected_corporate_actions_f812e1576bf430ee/result.json",
+    "result_sha256": "ec8d2959a1eb91d96162c35ab762dd36636da91157fcd238fedaf10bd840dc0b",
+    "walkforward_path": "artifacts/probe/fundamental_single_replays/e5f48adc25065ce9/corrected_corporate_actions_f812e1576bf430ee/walkforward.json",
+    "walkforward_sha256": "a80414e520fe79b435373a5c3ba3864d25bd1a972666143b5e87473e11d4a853"
+  },
+  "schema": "canli.alphac-operating-margin-corrected-reproduction-seal.v1",
+  "verdict": "KILL"
+}

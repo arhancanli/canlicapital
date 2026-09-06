@@ -1,0 +1,177 @@
+{
+  "author": "Arhan Canli",
+  "claim_boundary": "This stable packet proves the exact identity, immutable first measurement, and current evidence state. INCOMPLETE means missing sections remain missing; packet publication is not validation, admission, or a future-return claim.",
+  "complete": false,
+  "completion_assessment": {
+    "blockers": [
+      {
+        "code": "FORENSIC_ACCOUNTING_POSTDATES_ORIGINAL_MEASUREMENT",
+        "evidence": [
+          {
+            "path": "artifacts/audit/trial_debt_reconciliation.json",
+            "sha256": "2aea898ff82658f46ca08b8ee71f3198010c0f4252c7799830aeeca436ec577b"
+          },
+          {
+            "path": "artifacts/exp2/20260625T094710Z/exp2_metrics.json",
+            "sha256": "f39839b1e05b33e718563984228ee4dba64e94bdbf10c1b174426c0bd880d3a4"
+          }
+        ],
+        "finding": "This identity was recovered by the 2026-08-17 forensic accounting correction. The receipt charges the historical configuration but cannot retroactively prove an identity-level preregistration or original environment stamp.",
+        "required_section": "preregistration_and_hashes"
+      },
+      {
+        "code": "ORIGINAL_IDENTITY_GATE_DECISION_NOT_PRESERVED",
+        "evidence": [
+          {
+            "path": "artifacts/audit/trial_debt_reconciliation.json",
+            "sha256": "2aea898ff82658f46ca08b8ee71f3198010c0f4252c7799830aeeca436ec577b"
+          },
+          {
+            "path": "artifacts/exp2/20260625T094710Z/exp2_metrics.json",
+            "sha256": "f39839b1e05b33e718563984228ee4dba64e94bdbf10c1b174426c0bd880d3a4"
+          }
+        ],
+        "finding": "The source preserves a historical measurement, not a complete identity-level admission or kill packet under the current contract.",
+        "required_section": "admission_or_kill_decision"
+      },
+      {
+        "code": "FORENSIC_SOURCE_IS_SUMMARY_ONLY",
+        "evidence": [
+          {
+            "path": "artifacts/audit/trial_debt_reconciliation.json",
+            "sha256": "2aea898ff82658f46ca08b8ee71f3198010c0f4252c7799830aeeca436ec577b"
+          },
+          {
+            "path": "artifacts/exp2/20260625T094710Z/exp2_metrics.json",
+            "sha256": "f39839b1e05b33e718563984228ee4dba64e94bdbf10c1b174426c0bd880d3a4"
+          }
+        ],
+        "finding": "The declared evidence grade is persisted_summary_with_higher_moments. The exact daily curve and complete uncertainty, stress, capacity, and diversification evidence are not preserved by this source.",
+        "required_section": "result_uncertainty_stress_capacity_and_diversification"
+      }
+    ],
+    "config_hash": "99596bbb5b6f8e38",
+    "evidence_grade": "persisted_summary_with_higher_moments",
+    "forensic_reconciliation": "artifacts/audit/trial_debt_reconciliation.json",
+    "status": "AUDITED_NOT_CURRENTLY_COMPLETABLE"
+  },
+  "config_hash": "99596bbb5b6f8e38",
+  "configuration": {
+    "cost_bps": 10.0,
+    "currencies": [
+      "BTC",
+      "ETH"
+    ],
+    "end": "2026-06-01",
+    "k_cost": 0.02,
+    "normalizer": "expanding_std_shift_1",
+    "probe": "crypto_vrp_proxy",
+    "signal": "dvol_minus_yang_zhang_168",
+    "start": "2021-03-24",
+    "warmup_days": 365
+  },
+  "content_hash": "sha256:bb2ecb740546bb66281473e2b3d9e114aab58397f0c0d1ed8c74b0293d498ed1",
+  "evidence_date": "2026-08-22",
+  "family_paper_public_path": "/research/crypto-vrp-lineage.md",
+  "hypothesis_key": "bd4688c240711a16",
+  "immutable_first_measurement": {
+    "annualized_sharpe": -0.633,
+    "kurtosis": 132.65,
+    "ledger_source_path": "var/experiments.jsonl",
+    "ledger_source_sha256": "b5a318c0997d980575f758451f509e0154eecbbb50d734e49a587d473062bd08",
+    "observations": 1492,
+    "recorded_at_unix_ms": 1786924800056,
+    "skew": -9.517
+  },
+  "label": "crypto_vrp_proxy",
+  "missing_sections": [
+    "preregistration_and_hashes",
+    "point_in_time_data_and_survivorship_controls",
+    "execution_and_cost_model",
+    "result_uncertainty_stress_capacity_and_diversification",
+    "admission_or_kill_decision",
+    "code_environment_and_reproduction"
+  ],
+  "packet_status": "INCOMPLETE_BACKFILL_REQUIRED",
+  "partial_sections": [],
+  "required_sections": {
+    "admission_or_kill_decision": {
+      "evidence": [],
+      "status": "MISSING_IDENTITY_LEVEL_EVIDENCE"
+    },
+    "code_environment_and_reproduction": {
+      "evidence": [],
+      "status": "MISSING_IDENTITY_LEVEL_EVIDENCE"
+    },
+    "economic_mechanism_and_falsifiable_hypothesis": {
+      "evidence": [
+        {
+          "public_path": "/research/crypto-vrp-lineage.md",
+          "type": "family_paper"
+        }
+      ],
+      "status": "VERIFIED_SHARED_FAMILY_EVIDENCE"
+    },
+    "execution_and_cost_model": {
+      "evidence": [],
+      "status": "MISSING_IDENTITY_LEVEL_EVIDENCE"
+    },
+    "family_and_union_trial_accounting": {
+      "evidence": [
+        {
+          "public_path": "/research/crypto-vrp-lineage.md",
+          "type": "family_paper"
+        }
+      ],
+      "status": "VERIFIED_SHARED_FAMILY_EVIDENCE"
+    },
+    "identity_and_authorship": {
+      "evidence": [
+        {
+          "public_path": "/research/crypto-vrp-lineage.md",
+          "type": "family_paper"
+        }
+      ],
+      "status": "VERIFIED_SHARED_FAMILY_EVIDENCE"
+    },
+    "literature_and_overlap_decision": {
+      "evidence": [
+        {
+          "public_path": "/research/crypto-vrp-lineage.md",
+          "type": "family_paper"
+        }
+      ],
+      "status": "VERIFIED_SHARED_FAMILY_EVIDENCE"
+    },
+    "machine_readable_packet_and_stable_public_paper": {
+      "evidence": [
+        {
+          "public_path": "/research/crypto-vrp-lineage.md",
+          "type": "family_paper"
+        }
+      ],
+      "status": "VERIFIED_SHARED_FAMILY_EVIDENCE"
+    },
+    "point_in_time_data_and_survivorship_controls": {
+      "evidence": [],
+      "status": "MISSING_IDENTITY_LEVEL_EVIDENCE"
+    },
+    "preregistration_and_hashes": {
+      "evidence": [],
+      "status": "MISSING_IDENTITY_LEVEL_EVIDENCE"
+    },
+    "result_uncertainty_stress_capacity_and_diversification": {
+      "evidence": [],
+      "status": "MISSING_IDENTITY_LEVEL_EVIDENCE"
+    }
+  },
+  "research_family_key": "crypto_volatility_risk_premium",
+  "schema": "canli.alphac-identity-trial-packet.v2",
+  "verified_sections": [
+    "identity_and_authorship",
+    "economic_mechanism_and_falsifiable_hypothesis",
+    "literature_and_overlap_decision",
+    "family_and_union_trial_accounting",
+    "machine_readable_packet_and_stable_public_paper"
+  ]
+}

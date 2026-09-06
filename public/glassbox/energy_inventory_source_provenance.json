@@ -1,0 +1,98 @@
+{
+  "author": "Arhan Canli",
+  "claim_boundary": "The local execution receipt, exact persisted coverage, one ingestion timestamp inside the execution window, and current loader implementation jointly establish the Yahoo source mapping for this workspace. This does not prove the exact historical loader bytes, grant redistribution rights, reproduce the research result, or constitute independent verification.",
+  "confidence": "LOCALLY_VERIFIED_HISTORICAL_EXECUTION_RECEIPT",
+  "content_hash": "sha256:123322dd7f4d2dbf7a9412f1a21ceb01b8f03e16402ac298fa3d61bc0f240e70",
+  "failures": [],
+  "historical_execution": {
+    "command": "MF_BASKET_OVERRIDE=USO,UGA,DBC uv run python scripts/mf_etf_load.py --lake-dir data/lake_inventory --var-dir var_inventory",
+    "completed_at": "2026-08-15T16:21:57.232Z",
+    "exit_code": 0,
+    "private_session_basename": "rollout-2026-08-15T19-04-30-01a005f3-f8a7-7ed3-a557-60ff95691176.jsonl",
+    "private_session_sha256_at_capture": "a3cd0fcd44746ed2b94e642ed7ba4283712fb0471107494af4022e81eff63bbd",
+    "receipt_path": "artifacts/provenance/energy_inventory_historical_execution_receipt.json",
+    "receipt_sha256": "7717b247ab020ee906022ab1031118b7f142ad845202423c915f352f0e45fffa",
+    "started_at": "2026-08-15T16:21:53.074Z",
+    "stdout": [
+      "USO: 5119 bars  1144627200000..1786665600000",
+      "UGA: 4645 bars  1204156800000..1786665600000",
+      "DBC: 5163 bars  1139184000000..1786665600000",
+      "LOAD COMPLETE: 3/17 ETFs, fixed-basket universe written"
+    ]
+  },
+  "independent_attestation_completed": false,
+  "loader_binding": {
+    "current_sha256": "e640604bfb127be98da9c7850f5d4648989effff0acbda9088cad286d58d2654",
+    "exact_historical_loader_bytes_proven": false,
+    "markers": {
+      "applies_adjusted_close_ratio": true,
+      "declares_yahoo_adjusted_total_return": true,
+      "supports_basket_override": true,
+      "uses_yahoo_chart_endpoint": true
+    },
+    "path": "scripts/mf_etf_load.py"
+  },
+  "persisted_lake_reconciliation": {
+    "coverage": [
+      {
+        "distinct_ingested_at": [
+          "2026-08-15T16:21:53.118000+00:00"
+        ],
+        "expected": {
+          "first_ts_ms": 1144627200000,
+          "last_ts_ms": 1786665600000,
+          "rows": 5119
+        },
+        "first_ts_ms": 1144627200000,
+        "last_ts_ms": 1786665600000,
+        "matches_execution_stdout": true,
+        "partition_bindings_valid": true,
+        "rows": 5119,
+        "symbol": "USO"
+      },
+      {
+        "distinct_ingested_at": [
+          "2026-08-15T16:21:53.118000+00:00"
+        ],
+        "expected": {
+          "first_ts_ms": 1204156800000,
+          "last_ts_ms": 1786665600000,
+          "rows": 4645
+        },
+        "first_ts_ms": 1204156800000,
+        "last_ts_ms": 1786665600000,
+        "matches_execution_stdout": true,
+        "partition_bindings_valid": true,
+        "rows": 4645,
+        "symbol": "UGA"
+      },
+      {
+        "distinct_ingested_at": [
+          "2026-08-15T16:21:53.118000+00:00"
+        ],
+        "expected": {
+          "first_ts_ms": 1139184000000,
+          "last_ts_ms": 1786665600000,
+          "rows": 5163
+        },
+        "first_ts_ms": 1139184000000,
+        "last_ts_ms": 1786665600000,
+        "matches_execution_stdout": true,
+        "partition_bindings_valid": true,
+        "rows": 5163,
+        "symbol": "DBC"
+      }
+    ],
+    "ingestion_timestamp_within_execution_window": true,
+    "input_manifest_path": "artifacts/probe/eia_petroleum_inventory/input_data_manifest.json",
+    "input_manifest_sha256": "80e62a4db5a79055b8899660d71e8e30b474e4af3172ff8aa6238efe61bddddd",
+    "single_ingestion_timestamp": "2026-08-15T16:21:53.118000+00:00"
+  },
+  "raw_rows_released": false,
+  "reconstruction_date": "2026-08-24",
+  "redistribution_rights_established": false,
+  "schema": "canli.alphac-energy-inventory-source-provenance.v1",
+  "source_identity": "YAHOO_FINANCE_MARKET_DATA",
+  "source_mapping_complete": true,
+  "status": "PASS_LOCAL_SOURCE_IDENTITY_RECONSTRUCTED"
+}

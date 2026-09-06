@@ -1,0 +1,37 @@
+{
+  "author": "Arhan Canli",
+  "claim_boundary": "This audit classifies whether parser work is evidentially justified. It does not claim edge, sign, return, Sharpe, drawdown, capacity, correlation or admission.",
+  "content_hash": "sha256:20855abc04b272ab03a044ec1d2ba26bdf82c85055892d8293f5b684f6fd839c",
+  "decision": "CEILING_NOT_MEASURED",
+  "evidence_date": "2026-08-22",
+  "locked_sample": {
+    "all_label_document_hashes_match": true,
+    "completed_accuracy_labels": 0,
+    "documents": 100,
+    "frozen_accuracy_documents": 30,
+    "item4_sections_extracted": 94
+  },
+  "market_return_files_opened": [],
+  "observed_parser_result": {
+    "feasibility_decision": "DATA_GATED",
+    "multiple_price_sections": 70,
+    "resolved_recommendation_sections": 21,
+    "unique_price_sections": 10
+  },
+  "parser_work_authorized": false,
+  "required_next_evidence": "Complete all 30 frozen, hash-bound human labels and score exact price/ineligibility and recommendation agreement. Only then can a perfect-detector ceiling distinguish repairable extraction from language that does not identify one tradable state.",
+  "return_data_opened": false,
+  "return_hypotheses_spent": 0,
+  "schema": "canli.alphac-tender-offer-reachability.v1",
+  "source_lineage": {
+    "document_audit_path": "artifacts/feasibility/tender_offer_spread/document_audit.parquet",
+    "document_audit_sha256": "e067a360c1ace1493b736a7c0c27a3ca223fd5d2a3e9fc42de0dbfee5a5441e9",
+    "feasibility_result_path": "artifacts/feasibility/tender_offer_spread/result.json",
+    "feasibility_result_sha256": "8e4a20518aef7534c082dfea8f6108840abd922e524d8415b67b63f9166fb607",
+    "frozen_labels_path": "artifacts/feasibility/tender_offer_spread/frozen_human_labels.csv",
+    "frozen_labels_sha256": "14272c5f9e6e740cc1553e57f0c019c610c7988579b32beebfda15e59a1412d7",
+    "protocol_path": "docs/design/FEASIBILITY_TENDER_OFFER_SPREAD.md",
+    "protocol_sha256": "4081df46a5e781fd78c77953a173434163058f343bb3e8408c456b23f4335789"
+  },
+  "stage": "document_extraction_reachability_no_prices_no_returns"
+}

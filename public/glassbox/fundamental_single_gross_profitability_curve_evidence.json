@@ -1,0 +1,63 @@
+{
+  "author": "Arhan Canli",
+  "claim_boundary": "This artifact proves curve-derived uncertainty and diversification only. Exact current-code replay, input partition lineage, execution-cost stress, and capacity remain separate required evidence.",
+  "content_hash": "sha256:77b4a3c71bf78299ae48ee7a85a7bee5770a62030c413fc94df77a3d100fd3bc",
+  "determinative_reason": "The preregistered net Sharpe is negative.",
+  "diversification": {
+    "artifact": "artifacts/probe/fundamental_single_replays/1d2924f28fe31a9a/diversification.json",
+    "average": -0.05070260393604455,
+    "book_sharpe_delta_at_10pct": -0.12981720664183283,
+    "max_pair": 0.012130443029170964,
+    "max_pair_upper_95": 0.09402487770793133,
+    "max_stressed": 0.25481805327769247,
+    "max_stressed_upper_95": 0.5420247867678686,
+    "minimum_leave_one_year_out_delta": -0.16161375741692896,
+    "ordinary_by_sleeve": {
+      "AlphaForge": -0.02642693225821247,
+      "AlphaMax": -0.12325071871510732,
+      "AlphaTrend": 0.012130443029170964,
+      "AlphaVintage": -0.0652632078000294
+    },
+    "ordinary_upper_95_by_sleeve": {
+      "AlphaForge": 0.025713186509691604,
+      "AlphaMax": -0.07289454478657786,
+      "AlphaTrend": 0.09402487770793133,
+      "AlphaVintage": 0.022080846760274223
+    },
+    "stressed_by_sleeve": {
+      "AlphaForge": 0.25481805327769247,
+      "AlphaMax": -0.26609616931194147,
+      "AlphaTrend": 0.04888145387084206,
+      "AlphaVintage": -0.02160192032038949
+    },
+    "stressed_upper_95_by_sleeve": {
+      "AlphaForge": 0.5420247867678686,
+      "AlphaMax": -0.07088232645614237,
+      "AlphaTrend": 0.1336632032702826,
+      "AlphaVintage": 0.1630055879745604
+    }
+  },
+  "evidence_date": "2026-08-22",
+  "hypothesis_key": "1d2924f28fe31a9a",
+  "lineage": {
+    "curve_sha256": "f7983aee8dfafe557b5898974105c80f5bc0a13a35b06e0fc7c3ffab64f45374",
+    "diversification_content_hash": "sha256:2fb68fa2fca522d3560e817aad35ed127266265b10456033d6a55aa0bd0db1d7",
+    "walkforward_sha256": "c9df75bea8d36f37f95120fd043dc737f4786504be88a153a58fc8b8fa14a429"
+  },
+  "metrics": {
+    "annualized_sharpe": -0.26348968531040723,
+    "artifact_era_dsr": 9.712810773682424e-15,
+    "artifact_era_trials": 121,
+    "current_union_dsr": 1.2248699979225065e-15,
+    "current_union_psr": 0.13222556437257188,
+    "current_union_sr_variance": 0.0008957471162984615,
+    "current_union_trials": 228,
+    "ledger_annualization_periods_per_year": 365,
+    "maximum_drawdown": -0.42872801951630646,
+    "newey_west_t_lags_10": -1.0228554679736268,
+    "observations": 5384,
+    "skew": -15.062841571443023
+  },
+  "schema": "canli.alphac-fundamental-single-curve-evidence.v1",
+  "verdict": "KILL"
+}

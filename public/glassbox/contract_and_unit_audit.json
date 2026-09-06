@@ -1,0 +1,74 @@
+{
+  "claim_boundary": "Three audit dimensions worked against the contract in force and the published bundle. It reads configuration and artifacts; it runs no backtest, opens no return data, registers no hypothesis identity and changes no threshold. Findings are reported, not acted on. 0 trials.",
+  "companion": "artifacts/engineering/guards_that_cannot_fire.json is the fourth dimension, and artifacts/engineering/mutation_ledger.json is its behavioural half.",
+  "dimensions": {
+    "E": "contract satisfiability beyond the pairs the loader already rejects",
+    "F": "published narrative numbers against the evidence they describe",
+    "G": "units declared by a field's name against the value it holds"
+  },
+  "findings": [
+    {
+      "detail": "At 504 observations the approximate correlation standard error is 0.0447. The +0.00 point gate now applies to the candidate's average correlation to the existing book, while the +0.10 upper-bound gate applies to the resulting book-wide average. Because they govern different estimands, the old same-quantity arithmetic that made the uncertainty gate redundant no longer applies.",
+      "dimension": "E",
+      "numbers": {
+        "candidate_average_point_gate": 0.0,
+        "correlation_observations": 504,
+        "resulting_book_average_upper_95_gate": 0.1,
+        "standard_error": 0.0447
+      },
+      "title": "the v6 correlation-gate dominance defect is removed in v7",
+      "verdict": "CONFIRMED"
+    },
+    {
+      "detail": "v7 has no book_deflated_sharpe_min admission threshold. It still requires the book DSR to be measured and published, while the 0.95 threshold moves to the forward-evidence maturity decision. This removes the gate that made every candidate inadmissible at the present sample size without weakening disclosure.",
+      "dimension": "E",
+      "numbers": {
+        "book_deflated_sharpe_min_is_active_admission_gate": false,
+        "book_deflated_sharpe_must_be_measured": true
+      },
+      "title": "the underpowered incremental book-DSR threshold is retired without hiding DSR",
+      "verdict": "CONFIRMED"
+    },
+    {
+      "detail": "newey_west_t_ratio_min=0.6 gates the ratio of the autocorrelation-robust t to the naive one, which depends on a candidate's own autocorrelation. There is no threshold pair here that contradicts it, and no arithmetic that clears it either. It can only be settled against real candidates, and it is recorded as unsettled rather than as satisfied.",
+      "dimension": "E",
+      "numbers": {
+        "newey_west_t_ratio_min": 0.6
+      },
+      "title": "the Newey-West t-ratio floor is not decidable by arithmetic",
+      "verdict": "UNDECIDABLE"
+    },
+    {
+      "detail": "All 9 figures quoted in the narrative sections are present in the evidence the bundle carries. This checks PRESENCE, not that each number is used in the right place \u2014 the stronger property belongs to E3.",
+      "dimension": "F",
+      "numbers": {
+        "examples": [],
+        "quoted": 9,
+        "untraceable": 0
+      },
+      "title": "numbers in the published narrative that appear nowhere in the evidence it describes",
+      "verdict": "REFUTED"
+    },
+    {
+      "detail": "only 9 figures appear in the narrative sections at all, so a clean result here is a statement about how little prose carries numbers rather than about how well those numbers are grounded. The stronger property \u2014 every number ANYWHERE on the site tracing to an artifact \u2014 is E3's, and this dimension should not be read as having established it.",
+      "dimension": "F",
+      "numbers": {
+        "quoted": 9
+      },
+      "title": "the narrative sections quote too few numbers for this dimension to say much",
+      "verdict": "CONFIRMED"
+    },
+    {
+      "detail": "244 of 3087 unit-declaring fields across the published bundle hold a value implausible for that unit: [{'source': 'polygon_split_crosscheck.json', 'field': 'crosschecks[6].stored_ratio', 'value': 100000.0, 'why': 'a ratio over 100 is probably a percentage'}, {'source': 'polygon_split_crosscheck.json', 'field': 'crosschecks[11].stored_ratio', 'value': 64615.0, 'why': 'a ratio over 100 is probably a percentage'}, {'source': 'polygon_split_crosscheck.json', 'field': 'crosschecks[22].stored_ratio', 'value': 105.0, 'why': 'a ratio over 100 is probably a percentage'}, {'source': 'polygon_split_crosscheck.json', 'field': 'crosschecks[25].stored_ratio', 'value': 260.0, 'why': 'a ratio over 100 is probably a percentage'}, {'source': 'polygon_split_crosscheck.json', 'field': 'crosschecks[27].stored_ratio', 'value': 310.0, 'why': 'a ratio over 100 is probably a percentage'}, {'source': 'polygon_split_crosscheck.json', 'field': 'crosschecks[40].stored_ratio', 'value': 334.4, 'why': 'a ratio over 100 is probably a percentage'}]",
+      "dimension": "G",
+      "numbers": {
+        "fields_checked": 3087,
+        "violations": 244
+      },
+      "title": "published fields whose value is implausible for the unit their name declares",
+      "verdict": "CONFIRMED"
+    }
+  ],
+  "refutations_are_kept": "A dimension that found nothing says so, with what it checked. An audit that reports only its hits cannot be told apart from one that did not run.",
+  "schema": "canli.alphac-contract-and-unit-audit.v1"
+}

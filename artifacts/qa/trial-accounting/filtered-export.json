@@ -1,0 +1,156 @@
+{
+  "schema": "canli.trial-accounting-filter-export.v1",
+  "selection_n": 229,
+  "filters": {
+    "query": "da5f5f47f99f9bd2",
+    "family": "all",
+    "status": "all",
+    "sleeve": "all"
+  },
+  "visible_identities": [
+    {
+      "hypothesis_key": "da5f5f47f99f9bd2",
+      "config_hash": "50d9e8b059fee773",
+      "label": "crypto_carry_portable_v1",
+      "family_key": "crypto_carry",
+      "family_title": "Crypto perpetual-futures carry",
+      "sleeve": "AlphaForge",
+      "first_recorded_at": null,
+      "ledger_profile": "prospective reservation",
+      "measurement": {
+        "observations": 1574,
+        "annualized_sharpe": 0.9688980432905521,
+        "skew": null,
+        "kurtosis": null,
+        "deflated_sharpe_ratio": 0.09141260613462271
+      },
+      "status": "prospective_final_incomplete_not_admitted",
+      "packet_complete": true,
+      "admitted": false,
+      "source_epoch": "prospective",
+      "verified_sections": [],
+      "missing_sections": [
+        "newey_west_t_min",
+        "newey_west_t_ratio_min",
+        "stressed_sharpe_min",
+        "capacity_curve_min_points",
+        "capacity_minimum_stressed_fill_ratio",
+        "capacity_usd_min",
+        "ordinary_pairwise_correlation_max",
+        "pairwise_correlation_upper_95_max",
+        "stressed_pairwise_correlation_max",
+        "stressed_pairwise_correlation_upper_95_max",
+        "candidate_average_correlation_to_existing_book_max",
+        "book_average_pairwise_correlation_delta_max_exclusive",
+        "book_sharpe_delta_min_exclusive",
+        "book_sharpe_delta_lower_95_min_exclusive",
+        "minimum_leave_one_period_out_book_sharpe_delta_exclusive",
+        "book_expected_shortfall_delta_max",
+        "book_max_drawdown_delta_max",
+        "book_expected_max_drawdown_max",
+        "book_deflated_sharpe_must_be_measured",
+        "execution_scenario_bundle",
+        "overlay_replay"
+      ],
+      "packet_status": "COMPLETE_EVIDENCED_FINAL_INCOMPLETE_NOT_ADMITTED",
+      "packet_path": "/glassbox/trial-packets/da5f5f47f99f9bd2.json",
+      "public_page": "/measurements/prospective-trial-record",
+      "family_paper": "/research/crypto-carry-portable-v1",
+      "blockers": [
+        {
+          "code": "NOT_EVALUATED",
+          "required_section": "newey_west_t_min"
+        },
+        {
+          "code": "NOT_EVALUATED",
+          "required_section": "newey_west_t_ratio_min"
+        },
+        {
+          "code": "NOT_EVALUATED",
+          "required_section": "stressed_sharpe_min"
+        },
+        {
+          "code": "NOT_EVALUATED",
+          "required_section": "capacity_curve_min_points"
+        },
+        {
+          "code": "NOT_EVALUATED",
+          "required_section": "capacity_minimum_stressed_fill_ratio"
+        },
+        {
+          "code": "NOT_EVALUATED",
+          "required_section": "capacity_usd_min"
+        },
+        {
+          "code": "NOT_EVALUATED",
+          "required_section": "ordinary_pairwise_correlation_max"
+        },
+        {
+          "code": "NOT_EVALUATED",
+          "required_section": "pairwise_correlation_upper_95_max"
+        },
+        {
+          "code": "NOT_EVALUATED",
+          "required_section": "stressed_pairwise_correlation_max"
+        },
+        {
+          "code": "NOT_EVALUATED",
+          "required_section": "stressed_pairwise_correlation_upper_95_max"
+        },
+        {
+          "code": "NOT_EVALUATED",
+          "required_section": "candidate_average_correlation_to_existing_book_max"
+        },
+        {
+          "code": "NOT_EVALUATED",
+          "required_section": "book_average_pairwise_correlation_delta_max_exclusive"
+        },
+        {
+          "code": "NOT_EVALUATED",
+          "required_section": "book_sharpe_delta_min_exclusive"
+        },
+        {
+          "code": "NOT_EVALUATED",
+          "required_section": "book_sharpe_delta_lower_95_min_exclusive"
+        },
+        {
+          "code": "NOT_EVALUATED",
+          "required_section": "minimum_leave_one_period_out_book_sharpe_delta_exclusive"
+        },
+        {
+          "code": "NOT_EVALUATED",
+          "required_section": "book_expected_shortfall_delta_max"
+        },
+        {
+          "code": "NOT_EVALUATED",
+          "required_section": "book_max_drawdown_delta_max"
+        },
+        {
+          "code": "NOT_EVALUATED",
+          "required_section": "book_expected_max_drawdown_max"
+        },
+        {
+          "code": "NOT_EVALUATED",
+          "required_section": "book_deflated_sharpe_must_be_measured"
+        },
+        {
+          "code": "NOT_EVALUATED",
+          "required_section": "execution_scenario_bundle"
+        },
+        {
+          "code": "NOT_EVALUATED",
+          "required_section": "overlay_replay"
+        }
+      ],
+      "reservation_ordinal": 229,
+      "disposition": "INCOMPLETE"
+    }
+  ],
+  "claim_boundary": "This ledger proves what was measured and how selection N is counted. It does not prove that any identity is profitable, independent, or admissible.",
+  "source_hashes": {
+    "ledger": "sha256:5bf50008d59bae4a87cb42a03770243f935b161e842b9516a12cc9827afb4003",
+    "manifest": "sha256:0147dd8e631ca24257e2db384bf01d4637a79371f1754b284f3f7e9637c1369c",
+    "index": "sha256:9829f34f2f441a17fb6966dbedb548e0834d6bd55ec4ef903049d8dc4433d594",
+    "prospective": "sha256:596693028319d31915d31a0896bd64bab084c47a798a7e19cc27920ca748efa8"
+  }
+}

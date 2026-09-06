@@ -46,25 +46,11 @@ gsap.registerPlugin(ScrollTrigger);
 const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const isMobile = window.matchMedia("(max-width: 768px)").matches;
 
-const EASE = {
-  out: "cubic-bezier(0.16, 1, 0.3, 1)",
-  inOut: "cubic-bezier(0.65, 0, 0.35, 1)",
-  cinema: "cubic-bezier(0.83, 0, 0.17, 1)",
-};
-
 // ---- scene guards (the live scene is owned by main.js) ----------------------
 const scene = () => (typeof window !== "undefined" ? window.__meridianScene : null);
 const sceneConverge = (v) => {
   const s = scene();
   if (s && typeof s.setConverge === "function") s.setConverge(v);
-};
-const scenePulse = () => {
-  const s = scene();
-  if (s && typeof s.pulseRidge === "function") s.pulseRidge();
-};
-const sceneFlare = () => {
-  const s = scene();
-  if (s && typeof s.flareBloom === "function") s.flareBloom();
 };
 
 // =============================================================================
@@ -77,6 +63,7 @@ function renderGauntlet() {
   if (!host) return;
   const live = isLive();
   host.innerHTML = "";
+  host.setAttribute("role", "list");
 
   GAUNTLET.forEach((m, i) => {
     const row = document.createElement("div");
@@ -100,7 +87,7 @@ function renderGauntlet() {
       </div>
       <p class="gauntlet__blurb body">${m.blurb}</p>
       <div class="gauntlet__verdict">
-        <span class="gauntlet__value" data-empty="${hasValue ? "0" : "1"}" aria-label="Measured value">${valueText}</span>
+        <span class="gauntlet__value" data-empty="${hasValue ? "0" : "1"}">${valueText}</span>
         <span class="${chipClass}">${chipText}</span>
       </div>
     `;
@@ -223,6 +210,62 @@ function bindReservedCopy() {
     } else {
       srcEl.textContent = "";
     }
+  }
+}
+
+// =============================================================================
+// 3b. FORWARD SHARPE EVIDENCE DOCKET
+// Reads the governing contract, sole-writer rollout receipt and maturity verdict
+// as three separate authorities. Failure is rendered as a named broken link, not
+// hidden behind an empty state or inferred from color.
+// =============================================================================
+async function renderForwardEvidenceDocket() {
+  const receipt = document.getElementById("evidenceReceipt");
+  if (!receipt) return;
+  const read = async (path) => {
+    const response = await fetch(path, { cache: "no-store" });
+    if (!response.ok) throw new Error(`${path} returned ${response.status}`);
+    return response.json();
+  };
+  const words = (value) => String(value || "UNAVAILABLE").replaceAll("_", " ");
+
+  try {
+    const [contract, rollout, maturity] = await Promise.all([
+      read("/glassbox/forward_evidence_contract.json"),
+      read("/glassbox/crypto_position_attribution_rollout_verification.json"),
+      read("/glassbox/forward_evidence_maturity.json"),
+    ]);
+    const set = (id, value) => {
+      const node = document.getElementById(id);
+      if (node) node.textContent = value;
+    };
+    set("evidenceAuthor", `Author / ${contract.author}`);
+    set("evidenceContractStatus", "PASS");
+    set(
+      "evidenceContractCopy",
+      `Target ${Number(contract.forward_sharpe_target).toFixed(1)}. ` +
+        `${contract.minimum_daily_returns_for_estimate} observations before an estimate; ` +
+        `${contract.minimum_daily_returns_for_establishment} before establishment.`,
+    );
+    set("evidenceRolloutStatus", rollout.passes ? "PASS" : "FAIL CLOSED");
+    set("evidenceRolloutCopy", `${words(rollout.status)}. ${rollout.claim_boundary}`);
+    set("evidenceMaturityStatus", maturity.provenance_gate?.passes ? "PASS" : "WITHHELD");
+    set(
+      "evidenceMaturityCopy",
+      `${maturity.record.daily_return_observations} of ` +
+        `${maturity.sharpe_evidence.estimate_minimum} observations. ` +
+        `${maturity.provenance_gate.failed_checks.length} provenance gates remain open. ` +
+        `Status: ${words(maturity.sharpe_evidence.underlying_status || maturity.status)}.`,
+    );
+    const hash = String(maturity.content_hash || "");
+    const short = hash.length > 24 ? `${hash.slice(0, 16)}…${hash.slice(-8)}` : hash;
+    receipt.textContent = `Maturity receipt / ${short}`;
+  } catch (error) {
+    document.querySelectorAll(".evidence-chain__status").forEach((node) => {
+      node.textContent = "EVIDENCE UNAVAILABLE";
+    });
+    receipt.textContent = "The machine evidence could not be read. No Sharpe claim is shown.";
+    console.warn("Canli Capital /performance evidence docket unavailable", error);
   }
 }
 
@@ -476,83 +519,26 @@ function initIdleWaveforms() {
 }
 
 // =============================================================================
-// 5. THE GAUNTLET PIN (the page's ONE tentpole beat)
-// Six measures cross-fade inside a pinned frame; the manifold tightens onto its
-// single ridge across the back of the pin; the resolution is RESTRAINED (the
-// honest result is that the edge has not cleared the bar). Reduced motion /
-// mobile: no pin; the steps are shown stacked (CSS handles the static layout).
+// 5. THE GAUNTLET BOARD
+// All six measures remain visible in one comparison surface. This replaces the
+// long pinned reveal that made readers scroll through one gate at a time.
 // =============================================================================
-function initGauntletPin() {
+function initGauntletBoard() {
   const pinEl = document.getElementById("gpin");
   const steps = gsap.utils.toArray(".gstep");
   const stepCurrent = document.getElementById("gstepCurrent");
   const stepTotal = document.getElementById("gstepTotal");
   if (stepTotal && steps.length) stepTotal.textContent = String(steps.length).padStart(2, "0");
+  if (!pinEl || !steps.length) return;
 
-  // No pin: show all steps (matches the CSS mobile/reduced fallback) and stop.
-  if (!pinEl || !steps.length || prefersReduced || isMobile) {
-    steps.forEach((s) => s.classList.add("is-active"));
-    if (stepCurrent) stepCurrent.textContent = "01";
-    return;
-  }
-
-  let activeStep = -1;
-  let resolvedFired = false;
-  const setStep = (idx) => {
-    if (idx === activeStep) return;
-    activeStep = idx;
-    steps.forEach((s, i) => {
-      s.classList.toggle("is-active", i === idx);
-      s.classList.toggle("is-prev", i < idx);
-    });
-    if (stepCurrent) stepCurrent.textContent = String(idx + 1).padStart(2, "0");
-    scenePulse();
-
-    // The resolution: only on first arrival at the last measure. One restrained
-    // bloom (the honest result is not triumphant), the field gathered onto one
-    // ridge. Reversible: cleared on scroll-up.
-    if (idx === steps.length - 1) {
-      pinEl.classList.add("is-resolved");
-      if (!resolvedFired) { resolvedFired = true; sceneFlare(); }
-    } else {
-      pinEl.classList.remove("is-resolved");
-    }
-  };
-
-  const N = steps.length;
-  const CONV_START = 0.45;
-  const CONV_END = 0.96;
-  ScrollTrigger.create({
-    trigger: pinEl,
-    start: "top top",
-    end: "+=" + (N * 105) + "%",
-    pin: ".gpin__sticky",
-    pinSpacing: true,
-    scrub: false,
-    onEnter: () => pinEl.classList.add("is-pinned"),
-    onEnterBack: () => pinEl.classList.add("is-pinned"),
-    // On leave in either direction, RELEASE the gather to the scroll-state
-    // descriptor (setConverge(null)) instead of snapping it to a forced value.
-    // This page lives in the high-convergence band [0.7, 1.0], so the descriptor
-    // already keeps the camera close on the gathered spine outside the pin: the
-    // page reads "close to the resolved decision" before and after the climax,
-    // never scattered. The standing-close settle (below) re-takes control to hold
-    // a full, still gather when the payoff lands. Guarded no-op on a null scene.
-    onLeave: () => { pinEl.classList.remove("is-pinned"); sceneConverge(null); },
-    onLeaveBack: () => { pinEl.classList.remove("is-pinned", "is-resolved"); sceneConverge(null); },
-    onUpdate: (self) => {
-      const p = gsap.utils.clamp(0, 1, (self.progress - 0.04) / 0.92);
-      const idx = Math.min(N - 1, Math.floor(p * N));
-      setStep(idx);
-      const c = gsap.utils.clamp(0, 1, (p - CONV_START) / (CONV_END - CONV_START));
-      const eased = c * c * (3 - 2 * c); // smoothstep
-      sceneConverge(eased);
-    },
+  // Every gate stays visible. A reader can compare the whole admission contract
+  // without spending six viewport-heights revealing one item at a time.
+  steps.forEach((step) => {
+    step.classList.add("is-active");
+    step.classList.remove("is-prev");
   });
-  setStep(0);
-  // Do NOT force the field scattered on init: this page sits in the high band, so
-  // releasing to the descriptor keeps the camera close on the gathered spine until
-  // the pin engages. The pin's onUpdate takes the override the instant it is hit.
+  pinEl.classList.remove("is-pinned", "is-resolved");
+  if (stepCurrent) stepCurrent.textContent = String(steps.length).padStart(2, "0");
   sceneConverge(null);
 }
 
@@ -589,10 +575,8 @@ function initStandingSettle() {
 
 // =============================================================================
 // 6. BOOT
-// Render the data-driven markup first (so reveals and the pin see final nodes),
-// then wire the pin and draw any live curves. Deferred until after the shared
-// boot has had a chance to wire Lenis + the scene; we refresh ScrollTrigger so
-// the new pin measures correctly. A failsafe guarantees no measure stays hidden.
+// Render the data-driven markup first, then expose the comparison board and draw
+// any live curves. A failsafe guarantees no measure stays hidden.
 // =============================================================================
 function reveal() {
   // Never strand a measure or field hidden if anything below throws.
@@ -617,17 +601,14 @@ function boot() {
     renderGauntletParams();
     renderResultFields();
     bindReservedCopy();
+    renderForwardEvidenceDocket();
     renderCurvesIfLive();
     initIdleWaveforms();
     initHeroGhost();
 
-    // Defer the pin one frame so scroll.js (loaded in parallel by main.js) has
-    // wired Lenis + the ticker and the scene handle exists on window. The pin
-    // (and the standing-close settle) only read ScrollTrigger (a shared singleton)
-    // and the guarded scene calls, so they are safe even if the scene never
-    // arrives. The settle is one non-pinning trigger; the page keeps ONE pin.
+    // Defer one frame so the shared scene and scroll bootstrap have settled.
     requestAnimationFrame(() => {
-      initGauntletPin();
+      initGauntletBoard();
       initStandingSettle();
       ScrollTrigger.refresh();
     });

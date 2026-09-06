@@ -1,0 +1,94 @@
+{
+  "author": "Arhan Canli",
+  "claim_boundary": "This audit proves that one of 11 vendor-originated non-positive cash-dividend rows propagated unchanged into the filtered Sharadar executable lake and that issuer filings describe a positive underlying dividend. It does not establish the executable net USD ADS amount, does not repair the row, opens no returns, and validates no performance claim.",
+  "content_hash": "sha256:01e743030356b2dc149da404d6504739b9a7a18531fd773d0abb573eeb74ab4c",
+  "decision": "QUARANTINE_REQUIRED_NO_AUTOMATIC_REPAIR",
+  "external_primary_evidence": {
+    "issuer_20f": {
+      "facts": {
+        "equity_shares_per_ads": 3
+      },
+      "url": "https://www.sec.gov/Archives/edgar/data/1144967/000119312525158722/d854075d20f.htm"
+    },
+    "issuer_6k": {
+      "facts": {
+        "payment_on_or_after": "2025-08-11",
+        "recommended_dividend_inr_per_equity_share": 22.0,
+        "record_date": "2025-06-27"
+      },
+      "url": "https://www.sec.gov/Archives/edgar/data/1144967/000119312525146102/d60580dex99.htm"
+    },
+    "vendor_schema": {
+      "facts": {
+        "actions_value_type": "numeric",
+        "date_action_ticker_are_primary_key_fields": true
+      },
+      "url": "https://sharadar.com/docs/actions"
+    }
+  },
+  "gates": {
+    "automatic_amount_or_date_imputation_permitted": false,
+    "executable_lake_row_uniquely_identified": true,
+    "issuer_declared_positive_underlying_dividend": true,
+    "net_usd_cash_per_ads_established_from_primary_evidence": false,
+    "raw_hdb_row_uniquely_identified": true,
+    "raw_to_lake_propagation_proven": true,
+    "vendor_date_semantics_established_for_this_row": false
+  },
+  "hypotheses_spent": 0,
+  "lineage": {
+    "engine_path": "src/alphaforge/backtest/engine.py",
+    "engine_sha256": "sha256:fe2b70d304a615f44eb7cf87bb3381f383cb526fc987f2a0569db7faa4535103",
+    "lake_partition_sha256": "sha256:a4985291c6eb3bbafd3f2e3df513dd5b98b11185914f746db04305475921de17",
+    "loader_path": "scripts/sharadar_load.py",
+    "loader_sha256": "sha256:a1647ebdabe1396ca52cfe812d44c26ab88974bf79b3b3a96f23befe0bd2fa91",
+    "raw_archive_path": "data/sharadar_raw/ACTIONS.zip",
+    "raw_archive_sha256": "sha256:166d6ae17921b6a3a1f13a734e43bfd32ca5d9e88398030290a5246c89d7185c",
+    "raw_member": "SHARADAR_ACTIONS_2_29fe246cadf640e7e1609af39f779093.csv"
+  },
+  "quarantine_contract": {
+    "existing_row": "Preserve the raw archive and current partition by hash. Do not silently drop, move, or replace the row in an identity-bound replay.",
+    "future_ingest": "Reject every split or dividend whose value is non-finite or non-positive before writing the executable corporate-action lake.",
+    "unlock": "Obtain an issuer/depositary or corrected-vendor record establishing the ADS ex-date, knowable-at timestamp, and net USD cash amount. Then create a new versioned corrected lake and replay environment; retain this failed attempt."
+  },
+  "return_data_opened": false,
+  "schema": "canli.alphac-sharadar-zero-dividend-audit.v1",
+  "source_defect": {
+    "lake_nonpositive_dividend_rows": 1,
+    "lake_row": {
+      "action_type": "dividend",
+      "available_at": "2025-06-26 04:00:00+04",
+      "cash_amount": 0.0,
+      "ex_date": "2025-06-26 04:00:00+04",
+      "ingested_at": "2026-06-25 16:25:02.14+04",
+      "instrument_id": "XUSE:CASH:HDBUSD",
+      "path": "data/lake_sharadar/corporate_actions/instrument_id=XUSE:CASH:HDBUSD/year=2025/data.parquet",
+      "ratio": 1.0
+    },
+    "raw_archive_nonpositive_dividend_rows": 11,
+    "raw_archive_nonpositive_dividend_tickers": [
+      "BIB",
+      "BIS",
+      "GROM",
+      "GROW",
+      "HDB",
+      "HYZD",
+      "IMVIQ",
+      "PTF",
+      "RVPH",
+      "TECL",
+      "WAVC"
+    ],
+    "raw_hdb_nonpositive_dividend_rows": 1,
+    "raw_hdb_row": {
+      "action": "dividend",
+      "contraname": "N/A",
+      "contraticker": "N/A",
+      "date": "2025-06-26",
+      "name": "HDFC BANK LTD",
+      "ticker": "HDB",
+      "value": "0.0"
+    }
+  },
+  "status": "DATA_CORRECTION_BLOCKED_ON_EXECUTABLE_SEMANTICS"
+}

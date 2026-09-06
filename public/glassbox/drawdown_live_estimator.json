@@ -1,0 +1,341 @@
+{
+  "best_expected_max_drawdown": {
+    "expected_max_drawdown": 0.07961651142754178,
+    "halflife_bars": 7,
+    "max_drawdown_stderr": 0.002651750174587392,
+    "median_max_drawdown": 0.07296828964913477,
+    "overlay_gross_turnover_per_year": 3.5728097679213637,
+    "p95_max_drawdown": 0.1353666307587787,
+    "realized_book_sharpe": 1.869413899839946,
+    "realized_book_vol": 0.09986931273260134,
+    "seed_rows": 240,
+    "window_bars": 720
+  },
+  "claim_boundary": "A simulation through a vectorized twin of the PRODUCTION covariance estimator, asserted equal to ewma_cov on real states before any result was reported. It changes nothing, registers no hypothesis identity and opens no return data. 0 trials.",
+  "cost_of_each_configuration": [
+    {
+      "drawdown_bought_pp": 0.0,
+      "extra_turnover_per_year": 0.0,
+      "halflife_bars": 720,
+      "sharpe_cost_at_10bp": 0.0,
+      "sharpe_cost_at_30bp": 0.0,
+      "window_bars": 720
+    },
+    {
+      "drawdown_bought_pp": -0.4751127125058083,
+      "extra_turnover_per_year": -0.020834479078943313,
+      "halflife_bars": 252,
+      "sharpe_cost_at_10bp": -0.0002083447907894331,
+      "sharpe_cost_at_30bp": -0.0006250343723682993,
+      "window_bars": 720
+    },
+    {
+      "drawdown_bought_pp": 0.8013124720823162,
+      "extra_turnover_per_year": 0.3041766016270506,
+      "halflife_bars": 63,
+      "sharpe_cost_at_10bp": 0.0030417660162705058,
+      "sharpe_cost_at_30bp": 0.009125298048811518,
+      "window_bars": 720
+    },
+    {
+      "drawdown_bought_pp": 1.87071389262375,
+      "extra_turnover_per_year": 1.0332741740282807,
+      "halflife_bars": 21,
+      "sharpe_cost_at_10bp": 0.010332741740282807,
+      "sharpe_cost_at_30bp": 0.03099822522084842,
+      "window_bars": 720
+    },
+    {
+      "drawdown_bought_pp": 2.2895046587195544,
+      "extra_turnover_per_year": 3.063045227741844,
+      "halflife_bars": 7,
+      "sharpe_cost_at_10bp": 0.030630452277418438,
+      "sharpe_cost_at_30bp": 0.0918913568322553,
+      "window_bars": 720
+    },
+    {
+      "drawdown_bought_pp": 0.2485757353727594,
+      "extra_turnover_per_year": 0.16843077622081482,
+      "halflife_bars": 360,
+      "sharpe_cost_at_10bp": 0.001684307762208148,
+      "sharpe_cost_at_30bp": 0.005052923286624444,
+      "window_bars": 360
+    },
+    {
+      "drawdown_bought_pp": 1.4143917993503508,
+      "extra_turnover_per_year": 0.2915860944494787,
+      "halflife_bars": 63,
+      "sharpe_cost_at_10bp": 0.002915860944494787,
+      "sharpe_cost_at_30bp": 0.00874758283348436,
+      "window_bars": 360
+    },
+    {
+      "drawdown_bought_pp": 0.9861983377253594,
+      "extra_turnover_per_year": 1.1163060739739294,
+      "halflife_bars": 21,
+      "sharpe_cost_at_10bp": 0.011163060739739295,
+      "sharpe_cost_at_30bp": 0.03348918221921788,
+      "window_bars": 360
+    },
+    {
+      "drawdown_bought_pp": -0.7849388214015041,
+      "extra_turnover_per_year": 0.29547541975862956,
+      "halflife_bars": 240,
+      "sharpe_cost_at_10bp": 0.0029547541975862954,
+      "sharpe_cost_at_30bp": 0.008864262592758887,
+      "window_bars": 240
+    },
+    {
+      "drawdown_bought_pp": 1.4164208018368665,
+      "extra_turnover_per_year": 1.0560626579273902,
+      "halflife_bars": 21,
+      "sharpe_cost_at_10bp": 0.010560626579273901,
+      "sharpe_cost_at_30bp": 0.0316818797378217,
+      "window_bars": 240
+    },
+    {
+      "drawdown_bought_pp": 1.7344947853635593,
+      "extra_turnover_per_year": 1.0529678005468286,
+      "halflife_bars": 21,
+      "sharpe_cost_at_10bp": 0.010529678005468286,
+      "sharpe_cost_at_30bp": 0.03158903401640486,
+      "window_bars": 168
+    }
+  ],
+  "cost_unit_warning": "Turnover is a MULTIPLE OF EQUITY per year; a round-trip cost in basis points is a fraction of the NOTIONAL TRADED. The annual drag is turnover * bps/10000 of equity. Dividing by 100 instead overstates it a hundredfold, which has happened once in this project already.",
+  "excluded_deliberately": "Ledoit-Wolf shrinkage. artifacts/analysis/ledoit_wolf_effective_sample measured it separately: immaterial at the production setting (0.36% ex-ante vol error) and material at a short halflife (4.46% mean, 38% worst). Folding it in here would conflate two effects in one number. It is a PRECONDITION on acting on this result, not a term inside it.",
+  "grid": [
+    {
+      "expected_max_drawdown": 0.10251155801473733,
+      "halflife_bars": 720,
+      "max_drawdown_stderr": 0.004873668252574118,
+      "median_max_drawdown": 0.09495320055081719,
+      "overlay_gross_turnover_per_year": 0.5097645401795198,
+      "p95_max_drawdown": 0.1876321103559252,
+      "realized_book_sharpe": 1.3467484690997482,
+      "realized_book_vol": 0.10412475476117108,
+      "seed_rows": 240,
+      "window_bars": 720
+    },
+    {
+      "expected_max_drawdown": 0.10726268513979541,
+      "halflife_bars": 252,
+      "max_drawdown_stderr": 0.005246189846945475,
+      "median_max_drawdown": 0.09805592597689172,
+      "overlay_gross_turnover_per_year": 0.48893006110057646,
+      "p95_max_drawdown": 0.18547684267059092,
+      "realized_book_sharpe": 1.3819064333885525,
+      "realized_book_vol": 0.10361856858548037,
+      "seed_rows": 240,
+      "window_bars": 720
+    },
+    {
+      "expected_max_drawdown": 0.09449843329391416,
+      "halflife_bars": 63,
+      "max_drawdown_stderr": 0.004205644237410449,
+      "median_max_drawdown": 0.08678554494525914,
+      "overlay_gross_turnover_per_year": 0.8139411418065704,
+      "p95_max_drawdown": 0.17477634837432465,
+      "realized_book_sharpe": 1.6359588919998083,
+      "realized_book_vol": 0.10092585240893277,
+      "seed_rows": 240,
+      "window_bars": 720
+    },
+    {
+      "expected_max_drawdown": 0.08380441908849982,
+      "halflife_bars": 21,
+      "max_drawdown_stderr": 0.003365052560020317,
+      "median_max_drawdown": 0.07590414604693296,
+      "overlay_gross_turnover_per_year": 1.5430387142078004,
+      "p95_max_drawdown": 0.15387138275195533,
+      "realized_book_sharpe": 1.6975692009825112,
+      "realized_book_vol": 0.0988791496963738,
+      "seed_rows": 240,
+      "window_bars": 720
+    },
+    {
+      "expected_max_drawdown": 0.07961651142754178,
+      "halflife_bars": 7,
+      "max_drawdown_stderr": 0.002651750174587392,
+      "median_max_drawdown": 0.07296828964913477,
+      "overlay_gross_turnover_per_year": 3.5728097679213637,
+      "p95_max_drawdown": 0.1353666307587787,
+      "realized_book_sharpe": 1.869413899839946,
+      "realized_book_vol": 0.09986931273260134,
+      "seed_rows": 240,
+      "window_bars": 720
+    },
+    {
+      "expected_max_drawdown": 0.10002580066100973,
+      "halflife_bars": 360,
+      "max_drawdown_stderr": 0.004965037062146933,
+      "median_max_drawdown": 0.08993423675888412,
+      "overlay_gross_turnover_per_year": 0.6781953164003346,
+      "p95_max_drawdown": 0.1873039269633,
+      "realized_book_sharpe": 1.5805220498273702,
+      "realized_book_vol": 0.10470193705253028,
+      "seed_rows": 120,
+      "window_bars": 360
+    },
+    {
+      "expected_max_drawdown": 0.08836764002123382,
+      "halflife_bars": 63,
+      "max_drawdown_stderr": 0.003684007812551513,
+      "median_max_drawdown": 0.07849974226776613,
+      "overlay_gross_turnover_per_year": 0.8013506346289985,
+      "p95_max_drawdown": 0.15500654319061646,
+      "realized_book_sharpe": 1.6386426682084407,
+      "realized_book_vol": 0.0999479553713626,
+      "seed_rows": 120,
+      "window_bars": 360
+    },
+    {
+      "expected_max_drawdown": 0.09264957463748373,
+      "halflife_bars": 21,
+      "max_drawdown_stderr": 0.0033497726508776387,
+      "median_max_drawdown": 0.09086853861878114,
+      "overlay_gross_turnover_per_year": 1.6260706141534493,
+      "p95_max_drawdown": 0.15851599819246504,
+      "realized_book_sharpe": 1.7488662087667057,
+      "realized_book_vol": 0.09935458220267125,
+      "seed_rows": 120,
+      "window_bars": 360
+    },
+    {
+      "expected_max_drawdown": 0.11036094622875237,
+      "halflife_bars": 240,
+      "max_drawdown_stderr": 0.00527749857813107,
+      "median_max_drawdown": 0.09803232041775495,
+      "overlay_gross_turnover_per_year": 0.8052399599381493,
+      "p95_max_drawdown": 0.21339175198527244,
+      "realized_book_sharpe": 1.4274014935316939,
+      "realized_book_vol": 0.10926499195588939,
+      "seed_rows": 80,
+      "window_bars": 240
+    },
+    {
+      "expected_max_drawdown": 0.08834734999636866,
+      "halflife_bars": 21,
+      "max_drawdown_stderr": 0.003511521984416597,
+      "median_max_drawdown": 0.08091952347671505,
+      "overlay_gross_turnover_per_year": 1.5658271981069098,
+      "p95_max_drawdown": 0.1508661647735639,
+      "realized_book_sharpe": 1.6748436943525815,
+      "realized_book_vol": 0.1001410419424532,
+      "seed_rows": 80,
+      "window_bars": 240
+    },
+    {
+      "expected_max_drawdown": 0.08516661016110173,
+      "halflife_bars": 21,
+      "max_drawdown_stderr": 0.0031722480208055247,
+      "median_max_drawdown": 0.07933900941022692,
+      "overlay_gross_turnover_per_year": 1.5627323407263483,
+      "p95_max_drawdown": 0.14495240787696834,
+      "realized_book_sharpe": 1.692588089591904,
+      "realized_book_vol": 0.09964641315037287,
+      "seed_rows": 56,
+      "window_bars": 168
+    }
+  ],
+  "improvement_vs_production": 0.022895046587195544,
+  "p95_still_misses_the_objective": "No configuration holds the 95th percentile at or under 11%. The best is 13.5% at 720/7. The drawdown objective is an EXPECTED maximum drawdown, and both figures are always published together.",
+  "parameters": {
+    "mean_run_days": 40.0,
+    "min_periods_fraction": 0.3333333333333333,
+    "paths": 96,
+    "rho_calm": -0.02,
+    "rho_stress": 0.5,
+    "s_bar": 0.469,
+    "seed": 20260822,
+    "sleeves": 14,
+    "stress_share": 0.12,
+    "vol_target": 0.1,
+    "years": 2
+  },
+  "path_count_caveat": "96 paths, so each expected maximum drawdown carries a standard error of roughly the value reported in max_drawdown_stderr. Configurations share their shocks, so the RANKING is far better determined than any single level, and the ranking is what this analysis is for.",
+  "precondition_before_acting": "At a 21-bar halflife the Ledoit-Wolf shrinkage error measured in artifacts/analysis/ledoit_wolf_effective_sample is 4.46% of ex-ante vol, and at 7 it would be worse \u2014 the effective sample shrinks further. That error must be fixed BEFORE the halflife is shortened, not after. And any change to it is a live-book change: owner-gated, and it VOIDS the forward pre-registration draft.",
+  "production_setting": {
+    "expected_max_drawdown": 0.10251155801473733,
+    "halflife_bars": 720,
+    "max_drawdown_stderr": 0.004873668252574118,
+    "median_max_drawdown": 0.09495320055081719,
+    "overlay_gross_turnover_per_year": 0.5097645401795198,
+    "p95_max_drawdown": 0.1876321103559252,
+    "realized_book_sharpe": 1.3467484690997482,
+    "realized_book_vol": 0.10412475476117108,
+    "seed_rows": 240,
+    "window_bars": 720
+  },
+  "schema": "canli.alphac-drawdown-live-estimator.v1",
+  "the_finding": "THE HALFLIFE IS THE LEVER AND THE WINDOW IS NOT. Shortening the halflife inside the production 720-bar window improves expected maximum drawdown monotonically: 10.25% at 720, 9.45% at 63, 8.38% at 21, 7.96% at 7. Shortening the WINDOW buys nothing on top of it \u2014 168/21 gives 8.52% against 720/21's 8.38%, inside the standard error. This corrects a claim published earlier the same day that named the window as the only lever; that came from sampling only halflives at or above 21 days, where the window truncates everything into one narrow band.",
+  "twin_verification": [
+    {
+      "halflife": 720,
+      "max_abs_error": 1.0842021724855044e-19,
+      "seed": 240,
+      "window": 720
+    },
+    {
+      "halflife": 252,
+      "max_abs_error": 8.131516293641283e-20,
+      "seed": 240,
+      "window": 720
+    },
+    {
+      "halflife": 63,
+      "max_abs_error": 6.776263578034403e-20,
+      "seed": 240,
+      "window": 720
+    },
+    {
+      "halflife": 21,
+      "max_abs_error": 1.3552527156068805e-20,
+      "seed": 240,
+      "window": 720
+    },
+    {
+      "halflife": 7,
+      "max_abs_error": 2.710505431213761e-20,
+      "seed": 240,
+      "window": 720
+    },
+    {
+      "halflife": 360,
+      "max_abs_error": 1.3552527156068805e-19,
+      "seed": 120,
+      "window": 360
+    },
+    {
+      "halflife": 63,
+      "max_abs_error": 5.421010862427522e-20,
+      "seed": 120,
+      "window": 360
+    },
+    {
+      "halflife": 21,
+      "max_abs_error": 1.3552527156068805e-20,
+      "seed": 120,
+      "window": 360
+    },
+    {
+      "halflife": 240,
+      "max_abs_error": 2.710505431213761e-20,
+      "seed": 80,
+      "window": 240
+    },
+    {
+      "halflife": 21,
+      "max_abs_error": 1.3552527156068805e-20,
+      "seed": 80,
+      "window": 240
+    },
+    {
+      "halflife": 21,
+      "max_abs_error": 1.3552527156068805e-20,
+      "seed": 56,
+      "window": 168
+    }
+  ],
+  "why_the_original_sweep_does_not_transfer": "analyze_frontier_14.py updates covariance with an UNTRUNCATED recursion \u2014 infinite memory, no window, no seed block. Production's ewma_cov is windowed at cov_window_bars and seeded with an equally weighted block of the oldest cov_min_periods rows, so the window BOUNDS the memory and a halflife longer than the window cannot be delivered. A halflife sweep on an untruncated estimator answers a question about a system this book does not run."
+}

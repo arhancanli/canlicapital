@@ -1,0 +1,420 @@
+{
+  "author": "Arhan Canli",
+  "claim_boundary": "This stable packet proves the exact identity, immutable first measurement, and current evidence state. INCOMPLETE means missing sections remain missing; packet publication is not validation, admission, or a future-return claim.",
+  "complete": false,
+  "completion_assessment": {
+    "blockers": [
+      {
+        "code": "IDENTITY_PREREGISTRATION_AND_ORIGINAL_ENVIRONMENT_NOT_BOUND",
+        "evidence": [
+          {
+            "path": "artifacts/research/macro_economic_trend_family.json",
+            "sha256": "db6cb64852e242ce696bc090c11ceec6ad10561e7c8529b2348e418f5572300c"
+          },
+          {
+            "path": "var/experiments.jsonl",
+            "sha256": "b5a318c0997d980575f758451f509e0154eecbbb50d734e49a587d473062bd08"
+          }
+        ],
+        "finding": "The canonical family audit binds this identity to its immutable ledger measurement, but does not bind an identity-level preregistration, original code commit, runner hash, lockfile, and input snapshot. Those missing historical fields cannot be reconstructed from the family summary.",
+        "required_section": "preregistration_and_hashes"
+      },
+      {
+        "code": "IDENTITY_LEVEL_DECISION_PACKET_NOT_PRESERVED",
+        "evidence": [
+          {
+            "path": "artifacts/research/macro_economic_trend_family.json",
+            "sha256": "db6cb64852e242ce696bc090c11ceec6ad10561e7c8529b2348e418f5572300c"
+          }
+        ],
+        "finding": "The family-level admission status is NOT_ESTABLISHED_RESEARCH_ONLY; it is not a preserved identity-level gate decision under the complete packet contract.",
+        "required_section": "admission_or_kill_decision"
+      },
+      {
+        "code": "IMMUTABLE_SUMMARY_LACKS_COMPLETE_IDENTITY_CURVE",
+        "evidence": [
+          {
+            "path": "artifacts/research/macro_economic_trend_family.json",
+            "sha256": "db6cb64852e242ce696bc090c11ceec6ad10561e7c8529b2348e418f5572300c"
+          },
+          {
+            "path": "var/experiments.jsonl",
+            "sha256": "b5a318c0997d980575f758451f509e0154eecbbb50d734e49a587d473062bd08"
+          }
+        ],
+        "finding": "The immutable ledger summary preserves the first measurement but not the complete identity-level curve, uncertainty, stress, capacity, and diversification evidence required for packet completion.",
+        "required_section": "result_uncertainty_stress_capacity_and_diversification"
+      },
+      {
+        "code": "IDENTITY_CAPACITY_NOT_MEASURED",
+        "evidence": [
+          {
+            "path": "artifacts/research/macro_economic_trend_family.json",
+            "sha256": "db6cb64852e242ce696bc090c11ceec6ad10561e7c8529b2348e418f5572300c"
+          }
+        ],
+        "finding": "The canonical family audit records capacity as UNMEASURED_OR_NOT_FAMILY_WIDE; no identity-level capacity evidence can be credited.",
+        "required_section": "result_uncertainty_stress_capacity_and_diversification"
+      }
+    ],
+    "config_hash": "aeea431164594fe5",
+    "evidence_grade": "immutable_ledger_summary_with_optional_family_artifact",
+    "family_audit": "artifacts/research/macro_economic_trend_family.json",
+    "status": "AUDITED_NOT_CURRENTLY_COMPLETABLE"
+  },
+  "config_hash": "aeea431164594fe5",
+  "configuration": {
+    "blend": "mean of per-month-normalized 3/6/12m changes; all three required",
+    "costs": {
+      "borrow_bps_ann_short": 50.0,
+      "one_way_bps": 6.0,
+      "overlay_relever_charged": true
+    },
+    "crisis_windows": {
+      "BEAR_2022": [
+        "2022-01-01",
+        "2022-12-31"
+      ],
+      "COVID_2020": [
+        "2020-02-15",
+        "2020-04-30"
+      ],
+      "GFC_2008": [
+        "2007-10-01",
+        "2009-03-31"
+      ]
+    },
+    "gates": {
+      "adopt_max_corr_alphatrend": 0.5,
+      "adopt_min_net_sharpe": 0.4,
+      "crisis_max_window_loss": -0.225,
+      "crisis_pooled_beat_spy": true
+    },
+    "history_start": "1980-01-31",
+    "lookbacks_m": [
+      3,
+      6,
+      12
+    ],
+    "probe": "econtrend",
+    "rebalance": "monthly last trading day; close signal -> next-open fill; old book earns the gap",
+    "score": "plain sum over themes of sign * theme_z",
+    "sign_matrix": {
+      "DBA": [
+        0,
+        1,
+        0,
+        -1
+      ],
+      "DBC": [
+        1,
+        1,
+        0,
+        -1
+      ],
+      "EEM": [
+        1,
+        0,
+        -1,
+        -1
+      ],
+      "EFA": [
+        1,
+        0,
+        0,
+        -1
+      ],
+      "FXE": [
+        0,
+        0,
+        -1,
+        -1
+      ],
+      "FXY": [
+        -1,
+        0,
+        -1,
+        -1
+      ],
+      "GLD": [
+        0,
+        1,
+        -1,
+        -1
+      ],
+      "IEF": [
+        -1,
+        -1,
+        -1,
+        0
+      ],
+      "IWM": [
+        1,
+        -1,
+        -1,
+        0
+      ],
+      "QQQ": [
+        1,
+        -1,
+        -1,
+        0
+      ],
+      "SHY": [
+        0,
+        -1,
+        -1,
+        0
+      ],
+      "SLV": [
+        0,
+        1,
+        -1,
+        -1
+      ],
+      "SPY": [
+        1,
+        -1,
+        -1,
+        0
+      ],
+      "TLT": [
+        -1,
+        -1,
+        -1,
+        0
+      ],
+      "UNG": [
+        0,
+        1,
+        0,
+        0
+      ],
+      "USO": [
+        1,
+        1,
+        0,
+        -1
+      ],
+      "UUP": [
+        0,
+        0,
+        1,
+        1
+      ]
+    },
+    "sizing": {
+      "ann_days": 252.0,
+      "gross": 1.0,
+      "min_breadth": 8,
+      "name_cap": 0.34,
+      "net": "unconstrained",
+      "vol_floor_ann": 0.05,
+      "vol_lookback_d": 63
+    },
+    "themes": {
+      "dollar": [
+        [
+          "USD_TW",
+          "splice",
+          "log",
+          1
+        ]
+      ],
+      "growth": [
+        [
+          "EMPLOY",
+          "t2",
+          "log",
+          1
+        ],
+        [
+          "IPT",
+          "t2",
+          "log",
+          1
+        ],
+        [
+          "RUC",
+          "t2",
+          "level",
+          -1
+        ],
+        [
+          "HSTARTS",
+          "t2",
+          "log",
+          1
+        ],
+        [
+          "RCONM",
+          "t2",
+          "log",
+          1
+        ],
+        [
+          "BAA10Y",
+          "t1",
+          "level",
+          -1
+        ]
+      ],
+      "inflation": [
+        [
+          "PCPI",
+          "t2",
+          "log",
+          1
+        ],
+        [
+          "PCPIX",
+          "t2",
+          "log",
+          1
+        ],
+        [
+          "T10YIE",
+          "t1",
+          "level",
+          1
+        ]
+      ],
+      "policy": [
+        [
+          "DFF",
+          "t1",
+          "level",
+          1
+        ],
+        [
+          "DGS2",
+          "t1",
+          "level",
+          1
+        ]
+      ]
+    },
+    "version": "1.0",
+    "wf": {
+      "embargo": 21,
+      "note": "no fitted params; train = vol estimation only",
+      "test": 126,
+      "train": 504,
+      "vol_target_ann": 0.15
+    },
+    "window": [
+      "2003-01-01",
+      "2026-06-01"
+    ],
+    "z": {
+      "clip": 2.0,
+      "ddof": 0,
+      "min_obs": 36,
+      "window": "expanding incl current"
+    }
+  },
+  "content_hash": "sha256:9f2bcb5389605dfb3be9c83d6d51d287783d975e1dc537722718f6190f6de533",
+  "evidence_date": "2026-08-22",
+  "family_paper_public_path": "/research/macro-economic-trend-lineage.md",
+  "hypothesis_key": "c2d99e83ff3ec57a",
+  "immutable_first_measurement": {
+    "annualized_sharpe": 0.21093885031168313,
+    "kurtosis": 18.924529121318805,
+    "ledger_source_path": "var/experiments.jsonl",
+    "ledger_source_sha256": "b5a318c0997d980575f758451f509e0154eecbbb50d734e49a587d473062bd08",
+    "observations": 5165,
+    "recorded_at_unix_ms": 1783803600108,
+    "skew": -0.55728366524265
+  },
+  "label": "econtrend",
+  "missing_sections": [
+    "preregistration_and_hashes",
+    "point_in_time_data_and_survivorship_controls",
+    "execution_and_cost_model",
+    "result_uncertainty_stress_capacity_and_diversification",
+    "admission_or_kill_decision",
+    "code_environment_and_reproduction"
+  ],
+  "packet_status": "INCOMPLETE_BACKFILL_REQUIRED",
+  "partial_sections": [],
+  "required_sections": {
+    "admission_or_kill_decision": {
+      "evidence": [],
+      "status": "MISSING_IDENTITY_LEVEL_EVIDENCE"
+    },
+    "code_environment_and_reproduction": {
+      "evidence": [],
+      "status": "MISSING_IDENTITY_LEVEL_EVIDENCE"
+    },
+    "economic_mechanism_and_falsifiable_hypothesis": {
+      "evidence": [
+        {
+          "public_path": "/research/macro-economic-trend-lineage.md",
+          "type": "family_paper"
+        }
+      ],
+      "status": "VERIFIED_SHARED_FAMILY_EVIDENCE"
+    },
+    "execution_and_cost_model": {
+      "evidence": [],
+      "status": "MISSING_IDENTITY_LEVEL_EVIDENCE"
+    },
+    "family_and_union_trial_accounting": {
+      "evidence": [
+        {
+          "public_path": "/research/macro-economic-trend-lineage.md",
+          "type": "family_paper"
+        }
+      ],
+      "status": "VERIFIED_SHARED_FAMILY_EVIDENCE"
+    },
+    "identity_and_authorship": {
+      "evidence": [
+        {
+          "public_path": "/research/macro-economic-trend-lineage.md",
+          "type": "family_paper"
+        }
+      ],
+      "status": "VERIFIED_SHARED_FAMILY_EVIDENCE"
+    },
+    "literature_and_overlap_decision": {
+      "evidence": [
+        {
+          "public_path": "/research/macro-economic-trend-lineage.md",
+          "type": "family_paper"
+        }
+      ],
+      "status": "VERIFIED_SHARED_FAMILY_EVIDENCE"
+    },
+    "machine_readable_packet_and_stable_public_paper": {
+      "evidence": [
+        {
+          "public_path": "/research/macro-economic-trend-lineage.md",
+          "type": "family_paper"
+        }
+      ],
+      "status": "VERIFIED_SHARED_FAMILY_EVIDENCE"
+    },
+    "point_in_time_data_and_survivorship_controls": {
+      "evidence": [],
+      "status": "MISSING_IDENTITY_LEVEL_EVIDENCE"
+    },
+    "preregistration_and_hashes": {
+      "evidence": [],
+      "status": "MISSING_IDENTITY_LEVEL_EVIDENCE"
+    },
+    "result_uncertainty_stress_capacity_and_diversification": {
+      "evidence": [],
+      "status": "MISSING_IDENTITY_LEVEL_EVIDENCE"
+    }
+  },
+  "research_family_key": "macro_economic_trend",
+  "schema": "canli.alphac-identity-trial-packet.v2",
+  "verified_sections": [
+    "identity_and_authorship",
+    "economic_mechanism_and_falsifiable_hypothesis",
+    "literature_and_overlap_decision",
+    "family_and_union_trial_accounting",
+    "machine_readable_packet_and_stable_public_paper"
+  ]
+}

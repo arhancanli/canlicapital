@@ -1,31 +1,187 @@
 {
   "schema": "glassbox.ots_anchors/1",
-  "method": "OpenTimestamps \u2014 each transparency-chain head is committed to the Bitcoin blockchain.",
-  "what_it_proves": "An independent, un-forgeable timestamp. The signed chain proves the record was not edited since publication; this proves it was not BACKDATED either. We hold the Ed25519 key, but we do not control Bitcoin, so we cannot regenerate or pre-date the record without these anchors disagreeing. Pending anchors are calendar-attested and harden into a Bitcoin block over a few hours.",
+  "method": "OpenTimestamps checkpoints for selected transparency-chain heads.",
+  "what_it_proves": "A Bitcoin-confirmed OpenTimestamps proof shows that the exact checkpoint file digest existed no later than the attesting block. A pending proof is calendar-attested only and is not yet a Bitcoin confirmation. The checkpoint binds a chain head, not the truth or completeness of the underlying broker record.",
+  "does_not_prove": "It does not establish when an unanchored entry was first published, make opaque payload hashes reconstructable, prove that the data came from Alpaca, or rule out an unpublished alternative chain.",
   "how_to_verify": [
     "pip install opentimestamps-client",
-    "Download a head file and its proof from this folder, e.g. seq0333_4b6566254073.head.txt and seq0333_4b6566254073.head.txt.ots",
+    "Download a head file and its proof from this folder, e.g. seq0719_f57e87f04c73.head.txt and seq0719_f57e87f04c73.head.txt.ots",
     "Run:  ots verify <file>.head.txt.ots   (it reports the Bitcoin block + time the head was committed)",
     "Confirm the chain_hash inside the head file matches the head in transparency_log.json.",
     "Or upload the .ots proof at https://opentimestamps.org"
   ],
   "head_anchor": {
-    "seq": 333,
-    "date": "2026-08-18",
-    "chain_hash": "4b6566254073db53b44bd2b1452cd657279cf3c491cd844ee8442f15ab64e13f",
-    "head_file": "seq0333_4b6566254073.head.txt",
-    "ots_file": "seq0333_4b6566254073.head.txt.ots",
+    "seq": 719,
+    "date": "2026-09-04",
+    "chain_hash": "f57e87f04c733c4240de41abf80b325aad5a1d1b180b28fbc643644fe7c5072f",
+    "head_file": "seq0719_f57e87f04c73.head.txt",
+    "ots_file": "seq0719_f57e87f04c73.head.txt.ots",
     "status": "pending"
   },
-  "anchor_count": 45,
+  "anchor_count": 62,
+  "bitcoin_confirmed_count": 61,
+  "calendar_pending_count": 1,
   "anchors": [
+    {
+      "seq": 719,
+      "date": "2026-09-04",
+      "chain_hash": "f57e87f04c733c4240de41abf80b325aad5a1d1b180b28fbc643644fe7c5072f",
+      "head_file": "seq0719_f57e87f04c73.head.txt",
+      "ots_file": "seq0719_f57e87f04c73.head.txt.ots",
+      "status": "pending"
+    },
+    {
+      "seq": 702,
+      "date": "2026-09-03",
+      "chain_hash": "d24f5359929049f80a7344b4b7fc071a482306761bab3bd3819db2f600f520a0",
+      "head_file": "seq0702_d24f53599290.head.txt",
+      "ots_file": "seq0702_d24f53599290.head.txt.ots",
+      "status": "bitcoin",
+      "bitcoin_block_height": 965385
+    },
+    {
+      "seq": 683,
+      "date": "2026-09-02",
+      "chain_hash": "96a2f463b7f5b518cb1f2cd032ab1d9a9df6e7b867e78e5f75a2c29f540e0dbf",
+      "head_file": "seq0683_96a2f463b7f5.head.txt",
+      "ots_file": "seq0683_96a2f463b7f5.head.txt.ots",
+      "status": "bitcoin",
+      "bitcoin_block_height": 965232
+    },
+    {
+      "seq": 661,
+      "date": "2026-09-01",
+      "chain_hash": "b38503378004d2b80d5d7005de3effc815ce86d10ec0453817c2dfc66adef4b3",
+      "head_file": "seq0661_b38503378004.head.txt",
+      "ots_file": "seq0661_b38503378004.head.txt.ots",
+      "status": "bitcoin",
+      "bitcoin_block_height": 965093
+    },
+    {
+      "seq": 636,
+      "date": "2026-08-31",
+      "chain_hash": "fb3401bc0f15f57d4312c785f4f572281ffcf6e7337a0de530d3b84b1f49aa19",
+      "head_file": "seq0636_fb3401bc0f15.head.txt",
+      "ots_file": "seq0636_fb3401bc0f15.head.txt.ots",
+      "status": "bitcoin",
+      "bitcoin_block_height": 964946
+    },
+    {
+      "seq": 611,
+      "date": "2026-08-30",
+      "chain_hash": "43fa22d565e21cefb796b1bc26ffa5a99e4d3341d56e1305b4a1de1867f62452",
+      "head_file": "seq0611_43fa22d565e2.head.txt",
+      "ots_file": "seq0611_43fa22d565e2.head.txt.ots",
+      "status": "bitcoin",
+      "bitcoin_block_height": 964796
+    },
+    {
+      "seq": 587,
+      "date": "2026-08-29",
+      "chain_hash": "76c4561a11ef34e0ce917606cf8b5a5d4b100c965d89180a4917f8a32109c6a1",
+      "head_file": "seq0587_76c4561a11ef.head.txt",
+      "ots_file": "seq0587_76c4561a11ef.head.txt.ots",
+      "status": "bitcoin",
+      "bitcoin_block_height": 964634
+    },
+    {
+      "seq": 563,
+      "date": "2026-08-28",
+      "chain_hash": "98d04e0d4a6802d4b7e43e8eb3ec5eb1545c917878e8502a46895ad4d5acafc2",
+      "head_file": "seq0563_98d04e0d4a68.head.txt",
+      "ots_file": "seq0563_98d04e0d4a68.head.txt.ots",
+      "status": "bitcoin",
+      "bitcoin_block_height": 964488
+    },
+    {
+      "seq": 538,
+      "date": "2026-08-27",
+      "chain_hash": "fa881e92880b5a9c573d55d577895197367a38be17bce4a8d5f5c5ffd4274d8d",
+      "head_file": "seq0538_fa881e92880b.head.txt",
+      "ots_file": "seq0538_fa881e92880b.head.txt.ots",
+      "status": "bitcoin",
+      "bitcoin_block_height": 964364
+    },
+    {
+      "seq": 513,
+      "date": "2026-08-26",
+      "chain_hash": "120f98cceb26e8f5e9fe9bcfbdb8620b61df8dbc933b7126dd82e787fe9de0a8",
+      "head_file": "seq0513_120f98cceb26.head.txt",
+      "ots_file": "seq0513_120f98cceb26.head.txt.ots",
+      "status": "bitcoin",
+      "bitcoin_block_height": 964211
+    },
+    {
+      "seq": 471,
+      "date": "2026-08-24",
+      "chain_hash": "379a708964fb46f964b3cb6ccd48bee74f2ebc16c65a672fd9f5cab8ea58a5e0",
+      "head_file": "seq0471_379a708964fb.head.txt",
+      "ots_file": "seq0471_379a708964fb.head.txt.ots",
+      "status": "bitcoin",
+      "bitcoin_block_height": 963913
+    },
+    {
+      "seq": 448,
+      "date": "2026-08-23",
+      "chain_hash": "686a6f207bba234b89e34238f381d5a9f21174c101f53bcb1cc37f48c755121a",
+      "head_file": "seq0448_686a6f207bba.head.txt",
+      "ots_file": "seq0448_686a6f207bba.head.txt.ots",
+      "status": "bitcoin",
+      "bitcoin_block_height": 963778
+    },
+    {
+      "seq": 436,
+      "date": "2026-08-23",
+      "chain_hash": "0816c90fb8007b1a2c98eeecc31061dda1c50219444ff00dc893fe0752511867",
+      "head_file": "seq0436_0816c90fb800.head.txt",
+      "ots_file": "seq0436_0816c90fb800.head.txt.ots",
+      "status": "bitcoin",
+      "bitcoin_block_height": 963710
+    },
+    {
+      "seq": 423,
+      "date": "2026-08-22",
+      "chain_hash": "cd98afa0bc8cd784feac14547680e9bace051639772b5a99da52860c62c5300c",
+      "head_file": "seq0423_cd98afa0bc8c.head.txt",
+      "ots_file": "seq0423_cd98afa0bc8c.head.txt.ots",
+      "status": "bitcoin",
+      "bitcoin_block_height": 963641
+    },
+    {
+      "seq": 399,
+      "date": "2026-08-21",
+      "chain_hash": "53909bcbd373f65b647720055ed06353e4c3380afe61c67ff79dea945b9b4e36",
+      "head_file": "seq0399_53909bcbd373.head.txt",
+      "ots_file": "seq0399_53909bcbd373.head.txt.ots",
+      "status": "bitcoin",
+      "bitcoin_block_height": 963502
+    },
+    {
+      "seq": 375,
+      "date": "2026-08-20",
+      "chain_hash": "f8c7a97f3d578e7c9860f5d019dff0ae33fae40170c4a7e269facf8a66023b75",
+      "head_file": "seq0375_f8c7a97f3d57.head.txt",
+      "ots_file": "seq0375_f8c7a97f3d57.head.txt.ots",
+      "status": "bitcoin",
+      "bitcoin_block_height": 963359
+    },
+    {
+      "seq": 353,
+      "date": "2026-08-19",
+      "chain_hash": "5adebb4e97273fb19878f053f5004f549c7e5cb844d37268fdfd21dce6702935",
+      "head_file": "seq0353_5adebb4e9727.head.txt",
+      "ots_file": "seq0353_5adebb4e9727.head.txt.ots",
+      "status": "bitcoin",
+      "bitcoin_block_height": 963236
+    },
     {
       "seq": 333,
       "date": "2026-08-18",
       "chain_hash": "4b6566254073db53b44bd2b1452cd657279cf3c491cd844ee8442f15ab64e13f",
       "head_file": "seq0333_4b6566254073.head.txt",
       "ots_file": "seq0333_4b6566254073.head.txt.ots",
-      "status": "pending"
+      "status": "bitcoin",
+      "bitcoin_block_height": 963030
     },
     {
       "seq": 320,

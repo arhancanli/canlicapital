@@ -1,0 +1,103 @@
+{
+  "author": "Arhan Canli",
+  "bound_due_bill_record": {
+    "cusip": "40415F101",
+    "due_bill_off_date": "2025-08-11",
+    "due_bill_on_date": "2025-06-26",
+    "ex_date": "2025-08-11",
+    "foreign": true,
+    "id": "e8152c16-910e-41a5-bbc8-d2f340b177a0",
+    "payable_date": "2025-08-20",
+    "process_date": "2025-08-20",
+    "rate": 0.641432,
+    "record_date": "2025-06-26",
+    "special": false,
+    "symbol": "HDB"
+  },
+  "claim_boundary": "This GET-only vendor audit identifies the Sharadar June-26 zero row as a due-bill administrative date associated with a separate positive August-11 HDB ADS dividend. It authorizes only an explicit versioned quarantine of that exact zero row. It does not rewrite the frozen lake, backdate vendor knowledge, replace Sharadar's positive cash event, open returns, spend a hypothesis, or validate performance.",
+  "content_hash": "sha256:c30b02bf34aa40b2974c5b1c3623363a601e826b866c335714c8b5b909247775",
+  "decision": "VERSIONED_ZERO_MARKER_QUARANTINE_AUTHORIZED",
+  "gates": {
+    "actual_cash_dividend_is_a_separate_positive_event": true,
+    "automatic_cash_amount_imputation_permitted": false,
+    "historical_vendor_creation_time_established": false,
+    "original_lake_mutation_permitted": false,
+    "retrieval_time_is_conservative_knowable_at": true,
+    "versioned_exact_row_quarantine_permitted": true,
+    "zero_row_date_is_not_vendor_ex_date": true,
+    "zero_row_date_matches_vendor_due_bill_on_date": true
+  },
+  "hypotheses_spent": 0,
+  "resolution": {
+    "actual_vendor_ex_date": "2025-08-11",
+    "actual_vendor_net_cash_usd_per_ads": 0.641432,
+    "conservative_knowable_at": "2026-08-22T23:57:55.466625+00:00",
+    "matching_vendor_semantic": "due_bill_on_date",
+    "repair_action": "In a new versioned lake, remove only the exact zero-cash June-26 row from the executable action set as a due-bill administrative marker. Preserve the frozen source lake and its hashes. Do not alter or replace Sharadar's separate positive August-11 dividend and do not inject Alpaca's rate into the Sharadar series.",
+    "sharadar_zero_row": {
+      "cash_amount": 0.0,
+      "instrument_id": "XUSE:CASH:HDBUSD",
+      "source_date": "2025-06-26"
+    }
+  },
+  "retrieved_at": "2026-08-22T23:57:55.466625+00:00",
+  "return_data_opened": false,
+  "schema": "canli.alphac-hdb-dividend-vendor-resolution.v1",
+  "source": {
+    "creation_time_guaranteed_by_provider": false,
+    "credentials_published": false,
+    "documentation": "https://docs.alpaca.markets/us/reference/corporateactions-1",
+    "endpoint": "https://data.alpaca.markets/v1/corporate-actions",
+    "provider": "Alpaca Market Data corporate-actions API",
+    "provider_warning": "Alpaca documents that corporate-action creation time is not guaranteed and records may be delayed by upstream receipt or processing.",
+    "query": {
+      "data_quality": "all",
+      "end": "2025-09-30",
+      "region": "all",
+      "start": "2025-06-01",
+      "symbols": "HDB",
+      "types": "cash_dividend"
+    }
+  },
+  "status": "READY_FOR_VERSIONED_DATA_REPAIR_NO_AMOUNT_IMPUTATION",
+  "vendor_rows": [
+    {
+      "cusip": "40415F101",
+      "ex_date": "2025-07-31",
+      "foreign": true,
+      "id": "5d4c5fbb-e648-4b1a-8bb8-423e907bf5d3",
+      "payable_date": "2025-08-20",
+      "process_date": "2025-08-20",
+      "rate": 0.130325,
+      "record_date": "2025-07-31",
+      "special": false,
+      "symbol": "HDB"
+    },
+    {
+      "cusip": "40415F101",
+      "ex_date": "2025-07-31",
+      "foreign": false,
+      "id": "e6d9f79c-b302-4f4a-b262-f20ef0bff7e9",
+      "payable_date": "2025-07-31",
+      "process_date": "2025-07-31",
+      "rate": 0.174097,
+      "record_date": "2025-07-31",
+      "special": true,
+      "symbol": "HDB"
+    },
+    {
+      "cusip": "40415F101",
+      "due_bill_off_date": "2025-08-11",
+      "due_bill_on_date": "2025-06-26",
+      "ex_date": "2025-08-11",
+      "foreign": true,
+      "id": "e8152c16-910e-41a5-bbc8-d2f340b177a0",
+      "payable_date": "2025-08-20",
+      "process_date": "2025-08-20",
+      "rate": 0.641432,
+      "record_date": "2025-06-26",
+      "special": false,
+      "symbol": "HDB"
+    }
+  ]
+}

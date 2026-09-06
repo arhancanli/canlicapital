@@ -1,0 +1,52 @@
+{
+  "author": "Arhan Canli",
+  "claim_boundary": "This audit proves the design template is fail-closed, return-blind, and aligned with selected current contract constants. It does not promote the template, alter the active policy, authorize a reservation, validate a candidate, or compute returns.",
+  "content_hash": "sha256:452234b1e4075ba2d2f6abd164d8d260c351b5a916ede6c5f4091522be3a2f05",
+  "contract_reference": {
+    "derived_checks": {
+      "bootstrap_block_size": 21,
+      "bootstrap_confidence": 0.95,
+      "bootstrap_samples": 2000,
+      "bootstrap_seed": 20260816,
+      "capacity_curve_min_points": 3,
+      "capacity_usd_min": 500000,
+      "minimum_oos_observations": 756
+    },
+    "path": "config/sleeve_admission_contract.json",
+    "schema": "canli.alphac-sleeve-admission-contract.v7",
+    "sha256": "6bc72c1f47675b4e14897e1ba3aad6e56aba9b5f013a7b9bae57f930e8d3b8b6"
+  },
+  "evidence_date": "2026-08-24",
+  "fail_closed_checks": {
+    "active_policy_changed": false,
+    "empty_required_lists": 8,
+    "hypotheses_spent": 0,
+    "known_results_excluded": true,
+    "null_required_fields": 28,
+    "outcome_keys_present": [],
+    "return_artifacts_read": 0,
+    "return_authorized": false,
+    "returns_computed": false
+  },
+  "protocol": {
+    "bytes": 8388,
+    "path": "docs/design/FORWARD_FULL_EVIDENCE_RESERVATION_V2.md",
+    "sha256": "3a0bced3e2b063c4f04152335625218013446e1e9eafac3a9268933171426c27"
+  },
+  "remaining_before_promotion": [
+    "SATISFIABILITY_AUDIT_PASSES",
+    "TRIAL_ACCOUNTING_BATCH_AND_DIAGNOSTIC_CLASSIFICATION_PROMOTED",
+    "SERIALITY_GUARD_SUPPORTS_PREDECLARED_BATCH",
+    "PUBLIC_PROJECTION_TESTS_PASS",
+    "OWNER_PROMOTION_RECORDED"
+  ],
+  "schema": "canli.alphac-forward-full-evidence-template-audit.v1",
+  "status": "PASS_TEMPLATE_FAIL_CLOSED_NOT_ACTIVE_ZERO_RETURN",
+  "template": {
+    "bytes": 3741,
+    "path": "config/forward_full_evidence_reservation_v2_template.json",
+    "schema": "canli.alphac-forward-full-evidence-reservation-template.v2",
+    "sha256": "f7f55bd4237cc19fdc69ae7aba19e05d14263a710725948cc04753e981b236f5",
+    "status": "TEMPLATE_NOT_IN_FORCE_NO_RETURN_AUTHORIZATION"
+  }
+}

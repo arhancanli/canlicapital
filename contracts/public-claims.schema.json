@@ -1,0 +1,129 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://canlicapital.com/contracts/public-claims.schema.json",
+  "title": "Canli Capital public claim registry",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "contract_version", "claim_boundary", "claims"],
+  "properties": {
+    "schema": {
+      "const": "canli.public-claim-registry.v1"
+    },
+    "contract_version": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "claim_boundary": {
+      "type": "string",
+      "minLength": 40
+    },
+    "claims": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/claim"
+      }
+    }
+  },
+  "$defs": {
+    "claim": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "label",
+        "description",
+        "maturity",
+        "value_type",
+        "format",
+        "source",
+        "boundary",
+        "surfaces"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9]*(?:[._-][a-z0-9]+)+$"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 2
+        },
+        "description": {
+          "type": "string",
+          "minLength": 12
+        },
+        "maturity": {
+          "enum": ["observed", "simulated", "model_estimated", "planned"]
+        },
+        "value_type": {
+          "enum": ["string", "number", "integer", "boolean", "array", "object"]
+        },
+        "format": {
+          "enum": ["text", "status", "date", "timestamp", "integer", "decimal", "percent", "currency", "count"]
+        },
+        "unit": {
+          "type": "string"
+        },
+        "allow_null": {
+          "type": "boolean",
+          "default": false
+        },
+        "source": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["path", "pointer"],
+          "properties": {
+            "path": {
+              "type": "string",
+              "pattern": "^/(?:glassbox/[^/]+\\.json|paper-state\\.json|research-index\\.json)$"
+            },
+            "pointer": {
+              "$ref": "#/$defs/pointer"
+            },
+            "as_of_pointer": {
+              "$ref": "#/$defs/pointer"
+            }
+          }
+        },
+        "boundary": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["pointer"],
+              "properties": {
+                "pointer": {
+                  "$ref": "#/$defs/pointer"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["text"],
+              "properties": {
+                "text": {
+                  "type": "string",
+                  "minLength": 30
+                }
+              }
+            }
+          ]
+        },
+        "surfaces": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "enum": ["home", "live", "research", "trials", "systems", "foundry", "methodology", "verify", "corrections", "status", "founder", "open"]
+          }
+        }
+      }
+    },
+    "pointer": {
+      "type": "string",
+      "pattern": "^(?:/(?:[^~/]|~0|~1)*)*$"
+    }
+  }
+}

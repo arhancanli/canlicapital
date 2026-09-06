@@ -1,0 +1,237 @@
+{
+  "author": "Arhan Canli",
+  "calibration": {
+    "calendar_days": 1061,
+    "component_order": [
+      "alphavintage_live",
+      "crypto_carry_wk",
+      "k30_dn_63",
+      "managed_futures",
+      "strategic_overlay"
+    ],
+    "end": "2026-06-01",
+    "exact_component_reconstruction_max_abs_error": 0.0,
+    "observed_book_annualized_volatility": 0.05213553880476738,
+    "observed_book_max_drawdown": 0.04508709586830517,
+    "observed_book_sharpe_simulation_not_forward_evidence": 1.7846281669176056,
+    "sample_mean_removed_before_modeling": true,
+    "start": "2023-07-07"
+  },
+  "capital_kind": "RESEARCH_SIMULATION_OVER_PAPER_SPECIFICATION",
+  "claim_boundary": "This is a zero-drift two-year risk simulation of the exact current four-sleeve fixed-weight research composition and strategic overlay. It is stronger mapping evidence than the fourteen-sleeve frontier cell, but it is not a funded result, a loss limit, a guarantee, or an established live expected-drawdown estimate. The common window begins after COVID and 2022, and neither model replays constituent instrument, execution-gap or ladder state.",
+  "configuration": {
+    "aggregation": {
+      "book_level_drawdown_ladder": null,
+      "book_level_vol_target_ann": null,
+      "claim_boundary": "Constituent strategies own their internal sizing. ALPHAC combines their realized returns at the committed fixed-weight schedule and adds the separately disclosed strategic overlay. It does not apply a second book-level volatility target or drawdown ladder.",
+      "missing_mark_policy": "ZERO_CONTRIBUTION_ON_MISSING_DAILY_SLEEVE_MARK",
+      "scheme": "fixed",
+      "strategic_overlay_is_book_vol_scaled": false
+    },
+    "live_fingerprint": "sha256:fe82c4eeed742289bfcfee5d39856ee2bb8ca9cfe209bcc7e34abff98553706d",
+    "sleeves": [
+      "alphavintage_live",
+      "crypto_carry_wk",
+      "k30_dn_63",
+      "managed_futures"
+    ],
+    "strategic_tilt_mix": {
+      "BTC": 0.5,
+      "SPY": 0.5
+    },
+    "strategic_tilt_pct": 0.1,
+    "weights": {
+      "alphavintage_live": 0.25,
+      "crypto_carry_wk": 0.25,
+      "k30_dn_63": 0.25,
+      "managed_futures": 0.25
+    }
+  },
+  "content_hash": "sha256:f89282b8754ad257a5bce3d603ab5b7e940abe67f0cb9f0dc8f6d57ba89b0e71",
+  "design": {
+    "bootstrap_primary_block_days": 63,
+    "bootstrap_seed": 20260823,
+    "bootstrap_sensitivity_block_days": [
+      21,
+      63,
+      126
+    ],
+    "horizon_calendar_days": 730,
+    "paths_per_model": 10000,
+    "regime_component_means": "ZERO",
+    "regime_mean_stress_run_days": 40.0,
+    "regime_seed": 20260824,
+    "regime_stress_correlation": 0.5,
+    "regime_stress_share": 0.12
+  },
+  "failed_establishment_dimensions": [
+    "COMMON_WINDOW_BEGINS_AFTER_COVID_AND_2022",
+    "ABSENT_CRISIS_CANNOT_APPEAR_IN_BLOCK_BOOTSTRAP",
+    "REGIME_MODEL_HAS_NO_STRESS_VOLATILITY_MULTIPLIER",
+    "CONSTITUENT_INSTRUMENT_AND_LADDER_STATE_NOT_REPLAYED",
+    "EXECUTION_GAPS_AND_LIQUIDITY_FEEDBACK_NOT_MODELED"
+  ],
+  "models": {
+    "circular_moving_block_bootstrap": {
+      "126": {
+        "expected_max_drawdown": 0.07409229994011896,
+        "max_drawdown_stderr": 0.0002475750925381583,
+        "median_max_drawdown": 0.0694872807587898,
+        "p95_max_drawdown": 0.12149847782872827
+      },
+      "21": {
+        "expected_max_drawdown": 0.07960649828479675,
+        "max_drawdown_stderr": 0.0003182796726441917,
+        "median_max_drawdown": 0.07332459389904761,
+        "p95_max_drawdown": 0.14111918364185008
+      },
+      "63": {
+        "expected_max_drawdown": 0.07833345887177563,
+        "max_drawdown_stderr": 0.0002886284673808996,
+        "median_max_drawdown": 0.07349361993869868,
+        "p95_max_drawdown": 0.1334700236299713
+      }
+    },
+    "correlation_regime": {
+      "diagnostics": {
+        "calm_correlation": [
+          [
+            1.0,
+            0.03926362698808823,
+            -0.06196020201990142,
+            -0.04438969572740409,
+            -0.033294611273774685
+          ],
+          [
+            0.03926362698808823,
+            1.0,
+            -0.013369983642824886,
+            0.01966884493425123,
+            0.012445320470354161
+          ],
+          [
+            -0.06196020201990142,
+            -0.013369983642824886,
+            1.0,
+            0.2097518952294372,
+            -0.00417444908278947
+          ],
+          [
+            -0.04438969572740409,
+            0.01966884493425123,
+            0.2097518952294372,
+            1.0,
+            0.005934667001531354
+          ],
+          [
+            -0.033294611273774685,
+            0.012445320470354161,
+            -0.00417444908278947,
+            0.005934667001531354,
+            1.0
+          ]
+        ],
+        "component_daily_volatility": [
+          0.000835163567731372,
+          0.001566264938956614,
+          0.0014170675485880642,
+          0.00044178704910863417,
+          0.001404187503576859
+        ],
+        "simulated_stress_day_fraction": 0.11922027397260274,
+        "stress_correlation": [
+          [
+            1.0,
+            0.5,
+            0.5,
+            0.5,
+            0.5
+          ],
+          [
+            0.5,
+            1.0,
+            0.5,
+            0.5,
+            0.5
+          ],
+          [
+            0.5,
+            0.5,
+            1.0,
+            0.5,
+            0.5
+          ],
+          [
+            0.5,
+            0.5,
+            0.5,
+            1.0,
+            0.5
+          ],
+          [
+            0.5,
+            0.5,
+            0.5,
+            0.5,
+            1.0
+          ]
+        ]
+      },
+      "expected_max_drawdown": 0.09318244707449024,
+      "max_drawdown_stderr": 0.00037836431498732394,
+      "median_max_drawdown": 0.08585057301559501,
+      "p95_max_drawdown": 0.16451439272324467
+    }
+  },
+  "objective": {
+    "conservative_modeled_expected_max_drawdown": 0.09318244707449024,
+    "conservative_modeled_expected_within_target": true,
+    "conservative_modeled_p95_max_drawdown": 0.16451439272324467,
+    "conservative_modeled_p95_within_target": false,
+    "expected_max_drawdown_target": 0.11,
+    "live_expected_max_drawdown_established": false
+  },
+  "schema": "canli.alphac-current-book-drawdown-study.v1",
+  "source_bindings": {
+    "admission_contract": {
+      "path": "config/sleeve_admission_contract.json",
+      "sha256": "6bc72c1f47675b4e14897e1ba3aad6e56aba9b5f013a7b9bae57f930e8d3b8b6"
+    },
+    "book_implementation": {
+      "path": "src/alphaforge/portfolio/book.py",
+      "sha256": "f63f2bc83ddf739f7e91c0ba8b2cd095984f26148461b56ddbb7a69c8ccd9c07"
+    },
+    "live_contract": {
+      "path": "config/live_change_contract.json",
+      "sha256": "5b7fa2e700cf29d3e4ef38eff2d745fe0dcec234133da899fd291e8b92c709fe"
+    },
+    "market_factor_implementation": {
+      "path": "src/alphaforge/portfolio/market_factor.py",
+      "sha256": "da817e6e953224b3602f20b4cb32339bf94f632453d883f8e3896a609685f6f0"
+    },
+    "market_factor_source_corpus": {
+      "files": 33,
+      "manifest_sha256": "5315fa1d24a21b5656d9296fbc54ecb3e82f7a4c19ff9c38f7a92189656ba850"
+    },
+    "paper_state_builder": {
+      "path": "scripts/paper_trading_state.py",
+      "sha256": "82555044f3b93acc32110863d00a4cba799171fdf6e2f4e7cba1b3c801f2020f"
+    },
+    "protocol": {
+      "path": "docs/design/CURRENT_BOOK_DRAWDOWN_STUDY_PROTOCOL.md",
+      "sha256": "f737474b8f49b00a1cf42f4fb6cc47084a811bd3b8405ce07e6c9880dd53f96f"
+    },
+    "sleeve_equity_inputs": {
+      "artifacts/probe/cpi_surprise_size/equity.parquet": "d277c63ddf2bed6e9314aa863dbbf6adf3f4adb55bd89e8166aee4a19aab415f",
+      "artifacts/walkforward/crypto_carry_wk/equity.parquet": "37598579af6f34892e40902e2a357e4b07993b3e572012a1da311f7e91798a2a",
+      "artifacts/walkforward/k30_dn_63/equity.parquet": "76f82c8df3726f049144d7699c0f13069db6a1e0d1f1e4570babd8d82a85cfc9",
+      "artifacts/walkforward/managed_futures/equity.parquet": "870c87827ac72ab8759d77d511a1207da44d5ec679ee24eb18bb1cdd0aeb75b3"
+    }
+  },
+  "status": "CURRENT_COMPOSITION_EXPECTED_WITHIN_OBJECTIVE_HISTORICAL_TAIL_COVERAGE_INCOMPLETE",
+  "trial_accounting": {
+    "classification": "EXISTING_RETURN_RISK_REMEASUREMENT",
+    "hypothesis_identities_spent": 0,
+    "return_data_opened": false
+  }
+}

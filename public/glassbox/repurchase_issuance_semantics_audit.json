@@ -1,0 +1,53 @@
+{
+  "schema": "canli.feasibility.repurchase-issuance-semantics-audit.v1",
+  "generated_at": "2026-08-16T00:35:50.832944+00:00",
+  "stage": "point_in_time_semantics_no_prices_no_returns",
+  "source_manifest_hash": "sha256:3e206acc081bb4adafa864fc9a609bf443505d28b9bea08758a1434fcc2513a2",
+  "facts_parts_sha256": "8ec319e070b6248e57a875cf9c5fc1af761af0cd6802e9f2f5fb5c7d669984d5",
+  "submissions_parts_sha256": "0d91d328010c4c21b21f78ca7f4a940cf00e6109c45f55be8c1fb0f540038e4a",
+  "amendment_replay": {
+    "amendment_fact_rows_tested": 2407,
+    "slice_invariant_failures": [],
+    "slice_invariant": true
+  },
+  "quarterization": {
+    "eligible_cumulative_facts": 54879,
+    "derived_quarters": 35792,
+    "failed_closed_facts": 19087,
+    "failure_reasons": {
+      "missing_acceptance": 5,
+      "missing_context": 646,
+      "missing_predecessor": 18321,
+      "ambiguous_predecessor": 115,
+      "nonnumeric_value": 0
+    },
+    "zero_imputations": 0,
+    "accounted_for": true
+  },
+  "contamination": {
+    "fact_rows": {
+      "contamination_stock_compensation": 38630,
+      "contamination_acquisition": 1730,
+      "contamination_stock_split": 571,
+      "contamination_preferred_mixed": 0,
+      "authorization_not_completion": 284,
+      "custom_extension": 2373,
+      "tender_offer": 0
+    },
+    "all_categories_reported": true,
+    "tender_offer_source": "Item 703 document audit pending"
+  },
+  "gates": {
+    "amendment_replay_slice_invariant": true,
+    "quarterization_accounts_for_every_eligible_fact": true,
+    "quarterization_zero_imputations": true,
+    "contamination_categories_explicit": true,
+    "return_data_unopened": true,
+    "return_hypotheses_unspent": true
+  },
+  "return_data_opened": false,
+  "return_hypotheses_spent": 0,
+  "decision": "SEMANTICS_PASS",
+  "claim_boundary": "This stage cannot pass combined family feasibility or open returns.",
+  "content_hash": "sha256:58d2c0cbe44bbf34a71df0e30eada1d148c3255bdbc1d202bbf25a191d70f2de"
+}

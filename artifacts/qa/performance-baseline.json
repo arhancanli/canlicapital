@@ -1,0 +1,95 @@
+{
+  "browser": {
+    "headless": true,
+    "name": "Chromium",
+    "version": "148.0.7778.96"
+  },
+  "captured_at": "2026-08-26T12:50:34.005181+00:00",
+  "claim_boundary": "Loopback measurements from a production Vite build in headless Chromium. They are a repeatable engineering baseline, not production field data. Scripted event timing does not establish Interaction to Next Paint.",
+  "origin": "http://127.0.0.1:4173",
+  "quality_targets": {
+    "cls_max": 0.05,
+    "inp_ms_max": 200,
+    "mobile_lcp_ms_max": 2500
+  },
+  "records": [
+    {
+      "console_errors": [],
+      "http_status": 200,
+      "main_thread": {
+        "long_task_count": 0,
+        "long_task_max_ms": 0,
+        "long_task_total_ms": 0
+      },
+      "name": "desktop",
+      "navigation": {
+        "dom_content_loaded_ms": 79.09999999403954,
+        "load_event_ms": 2530,
+        "time_to_first_byte_ms": 12.599999994039536
+      },
+      "observed_lcp_element": null,
+      "page_errors": [],
+      "synthetic_interaction": {
+        "maximum_event_duration_ms": 24,
+        "note": "A scripted local click is not field INP.",
+        "observed_event_entries": 3
+      },
+      "transfer": {
+        "css_transfer_bytes": 35478,
+        "javascript_transfer_bytes": 269181,
+        "request_count": 10,
+        "total_encoded_body_bytes": 631799,
+        "total_transfer_bytes": 634799
+      },
+      "viewport": {
+        "height": 1000,
+        "width": 1440
+      },
+      "web_vitals": {
+        "cumulative_layout_shift": 0.00041220531322337965,
+        "interaction_to_next_paint_ms": null,
+        "largest_contentful_paint_ms": 84
+      }
+    },
+    {
+      "console_errors": [],
+      "http_status": 200,
+      "main_thread": {
+        "long_task_count": 0,
+        "long_task_max_ms": 0,
+        "long_task_total_ms": 0
+      },
+      "name": "mobile",
+      "navigation": {
+        "dom_content_loaded_ms": 44.400000005960464,
+        "load_event_ms": 363.80000000447035,
+        "time_to_first_byte_ms": 5.4000000059604645
+      },
+      "observed_lcp_element": null,
+      "page_errors": [],
+      "synthetic_interaction": {
+        "maximum_event_duration_ms": 24,
+        "note": "A scripted local click is not field INP.",
+        "observed_event_entries": 3
+      },
+      "transfer": {
+        "css_transfer_bytes": 35478,
+        "javascript_transfer_bytes": 269181,
+        "request_count": 10,
+        "total_encoded_body_bytes": 631799,
+        "total_transfer_bytes": 634799
+      },
+      "viewport": {
+        "height": 844,
+        "width": 390
+      },
+      "web_vitals": {
+        "cumulative_layout_shift": 0.020501614379687717,
+        "interaction_to_next_paint_ms": null,
+        "largest_contentful_paint_ms": 44
+      }
+    }
+  ],
+  "schema": "canli.product-performance-baseline.v1",
+  "source_fingerprint": "sha256:5b5e1e8d1dc7f5969a09e43aaacc0c90325383fae349b7c166fbd831285f8192"
+}

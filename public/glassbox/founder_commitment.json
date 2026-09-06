@@ -11,9 +11,9 @@
   "amount_usd": 1000,
   "trigger": "first live (real-money) deployment",
   "honest_scope": "A disclosure of the founder's own capital commitment, signed so it cannot be quietly edited. NOT investment advice, an offer, or a solicitation. No real capital is deployed yet; this is a forward commitment that activates at first live deployment.",
-  "as_of": "2026-08-18",
-  "payload_sha256": "52d44f92391b1cb5b6699b342940a760f2583a77f3746f259e6075ebdecfc802",
-  "signature_ed25519": "397bd8534f439693b9c7ef8d9f816ff76697d5c234da1ed525290e7a4155355b74fd7225bbdd90bc0624baa0692e2e05388e62c23b3f8b4194e3f4e691cb610b",
+  "as_of": "2026-09-04",
+  "payload_sha256": "89e7ca55f2cb7f400547616270620ae18714fc42ccc900a4fc549e5f6296d353",
+  "signature_ed25519": "45aa785b75e8c1a05c21da4ebc87398193d8b0db718b2167c90c4f18ad51cf5de38de0969324d3424ab8944142356624f8fde17acb4088aa6e49fbfff58ce003",
   "public_key_ed25519_hex": "0c6606a6b0c5b66fbf3b78521c85e72019484e0177d04a873a651179175ac095",
   "verify": "Remove {payload_sha256, signature_ed25519, public_key_ed25519_hex, verify}, canonical-JSON the rest (sorted keys, compact separators), sha256 it (= payload_sha256), then check the Ed25519 signature over that hash against the public key."
 }

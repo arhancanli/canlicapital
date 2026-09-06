@@ -85,11 +85,60 @@
       ]
     },
     {
+      "source": "/api/v1/validate/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-store"
+        }
+      ]
+    },
+    {
+      "source": "/api/v1/keys",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-store"
+        }
+      ]
+    },
+    {
+      "source": "/api/v1/receipts/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
       "source": "/(.*)\\.json",
       "headers": [
         {
           "key": "Cache-Control",
           "value": "max-age=0, must-revalidate, s-maxage=60, stale-while-revalidate=300"
+        }
+      ]
+    },
+    {
+      "source": "/(.*)\\.(json|md|bib|csv|tsv|parquet|txt|ots|gz|cff)",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex"
+        }
+      ]
+    },
+    {
+      "source": "/publication/(.*)/paper",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, follow"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "no-cache"
         }
       ]
     },
@@ -114,6 +163,36 @@
       ],
       "destination": "https://canlicapital.com/:path*",
       "permanent": true
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/api/v1/status",
+      "destination": "/api/v1/status.json"
+    },
+    {
+      "source": "/api/v1/record",
+      "destination": "/api/v1/record.json"
+    },
+    {
+      "source": "/api/v1/sleeves",
+      "destination": "/api/v1/sleeves.json"
+    },
+    {
+      "source": "/api/v1/trials/summary",
+      "destination": "/api/v1/trials/summary.json"
+    },
+    {
+      "source": "/api/v1/research",
+      "destination": "/api/v1/research.json"
+    },
+    {
+      "source": "/api/v1/chain/head",
+      "destination": "/api/v1/chain/head.json"
+    },
+    {
+      "source": "/api/v1/openapi",
+      "destination": "/api/v1/openapi.json"
     }
   ]
 }

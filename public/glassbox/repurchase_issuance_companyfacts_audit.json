@@ -1,0 +1,68 @@
+{
+  "schema": "canli.feasibility.repurchase-issuance-companyfacts-audit.v1",
+  "generated_at": "2026-08-16T00:34:11.932123+00:00",
+  "stage": "official_xbrl_coverage_no_prices_no_returns",
+  "protocol": "docs/design/FEASIBILITY_REPURCHASE_ISSUANCE_FLOW.md",
+  "claim_boundary": "Direct-tag coverage cannot pass the full family feasibility gate. Item 703 table precision/recall and contamination reconciliation remain mandatory.",
+  "source_manifest_hash": "sha256:3e206acc081bb4adafa864fc9a609bf443505d28b9bea08758a1434fcc2513a2",
+  "facts_parts_sha256": "8ec319e070b6248e57a875cf9c5fc1af761af0cd6802e9f2f5fb5c7d669984d5",
+  "submissions_parts_sha256": "0d91d328010c4c21b21f78ca7f4a940cf00e6109c45f55be8c1fb0f540038e4a",
+  "metrics": {
+    "periodic_filings": 15009,
+    "issuer_years": 3903,
+    "relevant_fact_rows": 150570,
+    "tag_family_rows": {
+      "authorization_not_completion": 284,
+      "contamination_acquisition": 1730,
+      "contamination_stock_compensation": 38630,
+      "contamination_stock_split": 571,
+      "issuance_cash": 8970,
+      "issuance_shares": 2139,
+      "reconciliation": 82036,
+      "repurchase_cash": 11846,
+      "repurchase_shares": 4364
+    },
+    "tag_family_issuer_years": {
+      "authorization_not_completion": 96,
+      "contamination_acquisition": 537,
+      "contamination_stock_compensation": 3131,
+      "contamination_stock_split": 224,
+      "issuance_cash": 1550,
+      "issuance_shares": 551,
+      "reconciliation": 3643,
+      "repurchase_cash": 1698,
+      "repurchase_shares": 777
+    },
+    "accession_declared_rows": 150570,
+    "accession_joined_rows": 150559,
+    "accession_join_rate": 0.9999269442784087,
+    "context_complete_rows": 149800,
+    "context_complete_rate": 0.99488609948861,
+    "direct_repurchase_issuer_years": 1813,
+    "direct_repurchase_coverage": 0.46451447604406865,
+    "direct_repurchase_wilson_95_lower": 0.44891033917523077,
+    "direct_issuance_issuer_years": 1692,
+    "direct_issuance_coverage": 0.4335126825518832,
+    "direct_issuance_wilson_95_lower": 0.41803862877270387,
+    "unjoined_accessions": [
+      "0001493152-14-003020"
+    ]
+  },
+  "custom_extension_inventory": {
+    "fact_rows": 2373,
+    "tag_count_across_issuers": 260,
+    "mapping_policy": "preserved_in_raw_and_counted_but_never_auto_mapped"
+  },
+  "gates": {
+    "collections_share_manifest": true,
+    "sample_600_ciks": true,
+    "accession_join_rate_gte_0_95": true,
+    "context_complete_rate_gte_0_95": true,
+    "return_data_unopened": true,
+    "return_hypotheses_unspent": true
+  },
+  "return_data_opened": false,
+  "return_hypotheses_spent": 0,
+  "decision": "ITEM703_AUDIT_REQUIRED",
+  "content_hash": "sha256:a3e911a82aa0a3fd255cf4429f1945af8d610af13dad18de7ab11db09691c23a"
+}

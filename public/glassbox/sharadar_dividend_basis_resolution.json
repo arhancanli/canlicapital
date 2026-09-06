@@ -1,0 +1,89 @@
+{
+  "author": "Arhan Canli",
+  "claim_boundary": "This authorizes a new physical data version for validation only. The adjustment-basis interpretation is an issuer-anchored inference because public ACTIONS documentation does not state the basis explicitly. No replay, trial, sleeve, or performance claim is authorized until every post-build gate passes.",
+  "content_hash": "sha256:48fcfde04e3c7f7d28bc349c93b55911f97514317e74bac67fca80980b621e47",
+  "decision": "VERSIONED_DIVIDEND_BASIS_REPAIR_AUTHORIZED_FOR_DATA_VALIDATION",
+  "hypotheses_spent": 0,
+  "lineage": {
+    "hdb_resolution_content_hash": "sha256:c30b02bf34aa40b2974c5b1c3623363a601e826b866c335714c8b5b909247775",
+    "hdb_resolution_sha256": "3a88d804448b6316e548e226fe05a1d58e70de14b1cf2a927a800873e3ca7e6e",
+    "raw_actions_archive_sha256": "166d6ae17921b6a3a1f13a734e43bfd32ca5d9e88398030290a5246c89d7185c",
+    "split_basis_audit_content_hash": "sha256:cb32298cec76a2a4713dd8e3a892dc5c1aca03a684f951c9d7fbf59e3048b894",
+    "split_basis_audit_sha256": "6ab87e87f8c0f31c680324c818a9c3fea4b113c90a011447996150c0719a9f04",
+    "vate_resolution_content_hash": "sha256:5db7f46a0b1c66f7052a65178632f1244a6cec926fdfc45eaae684456147ca11",
+    "vate_resolution_sha256": "d5123b165ca035b385596abae1a076ad6e452667f4f9ace68c3602585d451d0b"
+  },
+  "mandatory_post_build_gates": {
+    "all_executable_splits_pass_price_boundary_sanity": true,
+    "all_non_corporate_action_files_byte_identical_or_hardlinked": true,
+    "all_positive_dividends_at_or_below_pre_ex_raw_close": true,
+    "exact_hdb_and_vate_rows_absent": true,
+    "no_other_source_rows_dropped": true,
+    "replay_permitted_before_all_gates_pass": false
+  },
+  "ordinary_event_anchor": {
+    "candidate_raw_dividend": 0.82,
+    "exact_equality": true,
+    "finding": "Sharadar's pre-split dividend value is expressed on the later split-adjusted basis. Multiplying by the same-ticker market split restores the issuer-declared cash amount exactly.",
+    "issuer_declared_raw_dividend": 0.82,
+    "later_market_split_ratio": 4.0,
+    "source_dividend_value": 0.205,
+    "source_rows": [
+      {
+        "action": "dividend",
+        "date": "2020-05-08",
+        "name": "APPLE INC",
+        "ticker": "AAPL",
+        "value": 0.205
+      },
+      {
+        "action": "split",
+        "date": "2020-08-31",
+        "name": "APPLE INC",
+        "ticker": "AAPL",
+        "value": 4.0
+      }
+    ],
+    "ticker": "AAPL"
+  },
+  "repair_contract": {
+    "adrratiosplit_is_second_position_mutation": false,
+    "amount_imputation_permitted": false,
+    "dividend_formula": "raw_cash_amount = source_value * product(value of every same-ticker raw action='split' with date >= dividend date)",
+    "formula_scope": "every finite positive dividend in the frozen ACTIONS archive",
+    "hdb_2025_06_26_zero_marker_action": "QUARANTINE_EXACT_ROW",
+    "market_split_source_action": "split",
+    "new_physical_version_required": true,
+    "original_archive_or_lake_mutation_permitted": false,
+    "vate_2020_05_14_unsupported_dividend_action": "QUARANTINE_EXACT_ROW"
+  },
+  "retrieved_at": "2026-08-23T02:13:39.333793+00:00",
+  "return_data_opened": false,
+  "schema": "canli.alphac-sharadar-dividend-basis-resolution.v1",
+  "sources": {
+    "apple_dividend_history": {
+      "retrieved_sha256": "ac6e63b5bd905abba9246fde7ce7375a4329bbc775293de0bcd7054b76ddb1a0",
+      "url": "https://investor.apple.com/dividend-history/default.aspx"
+    },
+    "apple_sec_filing": {
+      "retrieved_sha256": "244dc76e2fee2351e4166deda8fe753269b6dcb882bc94f18cf396f124651a43",
+      "url": "https://www.sec.gov/Archives/edgar/data/320193/000032019320000050/a8-kexhibit991q2202032.htm"
+    },
+    "sharadar_actions_documentation": {
+      "limitation": "Public documentation labels value numeric without basis semantics.",
+      "retrieved_sha256": "a83e505428c29169114e92f43d51df10bafac594c2ba610ee03f21755e44a6af",
+      "url": "https://sharadar.com/docs/actions"
+    },
+    "sharadar_stock_price_documentation": {
+      "retrieved_sha256": "090de110236a75d3ba82b5814a5aee7979b4b47122ac6b379e0fecf17f71989b",
+      "url": "https://sharadar.com/docs/stocks"
+    }
+  },
+  "status": "REPAIR_CONTRACT_SEALED_REPLAY_NOT_AUTHORIZED",
+  "systemic_evidence": {
+    "reconciled_fraction": 0.9976303317535545,
+    "residual_rows_with_exact_quarantine_authority": 1,
+    "rows_reconciled_by_the_same_formula": 421,
+    "source_offending_rows": 422
+  }
+}

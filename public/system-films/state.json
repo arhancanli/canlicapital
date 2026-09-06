@@ -1,0 +1,124 @@
+{
+  "schema": "canli.system-films-state.v1",
+  "snapshot_at": "2026-08-26T09:26:51.433856+00:00",
+  "claim_boundary": "Observed public artifacts only. These films visualize state and provenance, not returns, funded execution, or investment performance.",
+  "films": [
+    {
+      "id": "engine",
+      "ordinal": "01",
+      "title": "The engine is testing",
+      "basis": "OBSERVED RESEARCH ACCOUNTING",
+      "timestamp": "2026-08-26T09:26:51.433856+00:00",
+      "status": "ACTIVE STAGED PROSPECTIVE BUDGET",
+      "source": {
+        "artifact_url": "/glassbox/trial_ledger.json",
+        "claim_url": "/trials",
+        "generated_at": "2026-08-26T09:26:51.433856+00:00",
+        "sha256": "4baa0f502cb0b5315dd831e96234c455b5971b629721783b18c381278c08c7ff"
+      },
+      "metrics": [
+        {
+          "label": "Hypothesis identities",
+          "value": 229
+        },
+        {
+          "label": "Immutable executions",
+          "value": 301
+        },
+        {
+          "label": "Budget remaining",
+          "value": 171
+        }
+      ],
+      "transcript": [
+        "Candidate mechanisms enter without a result attached.",
+        "A hypothesis identity freezes before its execution is counted.",
+        "Immutable records accumulate while the preregistered budget remains visible."
+      ]
+    },
+    {
+      "id": "broker",
+      "ordinal": "02",
+      "title": "The broker is observed",
+      "basis": "OBSERVED ALPACA PAPER STATE",
+      "timestamp": "2026-08-26T09:25:45.939024+00:00",
+      "status": "RECONCILIATION PASS",
+      "source": {
+        "artifact_url": "/glassbox/alpaca_broker_reconciliation.json",
+        "claim_url": "/measurements/alpaca-broker-reconciliation",
+        "generated_at": "2026-08-26T09:25:45.939024+00:00",
+        "sha256": "a0f3ecc8c4dbf7092fea7d1332e5a82c04d8243a6cee96d420be643620e51676"
+      },
+      "metrics": [
+        {
+          "label": "Paper sleeves",
+          "value": 3
+        },
+        {
+          "label": "Open positions",
+          "value": 193
+        },
+        {
+          "label": "Open orders",
+          "value": 149
+        }
+      ],
+      "rails": [
+        {
+          "id": "alphamax",
+          "capital_kind": "PAPER_ONLY",
+          "passes": true
+        },
+        {
+          "id": "managed_futures",
+          "capital_kind": "PAPER_ONLY",
+          "passes": true
+        },
+        {
+          "id": "alphavintage",
+          "capital_kind": "PAPER_ONLY",
+          "passes": true
+        }
+      ],
+      "transcript": [
+        "Three dedicated paper sleeves enter as separate execution rails.",
+        "Aggregate positions and orders are observed without exposing account identifiers or holdings.",
+        "The reconciliation state resolves from the published broker artifact."
+      ]
+    },
+    {
+      "id": "record",
+      "ordinal": "03",
+      "title": "The record is sealed",
+      "basis": "OBSERVED SIGNED PUBLIC RECORD",
+      "timestamp": "2026-08-26T09:26:13.683296+00:00",
+      "status": "SIGNED HEAD PUBLISHED",
+      "source": {
+        "artifact_url": "/glassbox/transparency_log.json",
+        "claim_url": "/verify",
+        "generated_at": "2026-08-26T09:26:13.685485+00:00",
+        "sha256": "84401ec2b1e4420057943cbcaf281c6f8256a1c314e3fb9a04ac6fbc80597610"
+      },
+      "metrics": [
+        {
+          "label": "Signed entries",
+          "value": 501
+        },
+        {
+          "label": "Disclosed payloads",
+          "value": 65
+        },
+        {
+          "label": "Head sequence",
+          "value": 500
+        }
+      ],
+      "head_hash_prefix": "2c2a1289bdc0bf61",
+      "transcript": [
+        "Published states join an append-only sequence.",
+        "Each visible node binds to the previous chain hash.",
+        "The current signed head resolves with its timestamp and short hash prefix."
+      ]
+    }
+  ]
+}

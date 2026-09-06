@@ -1,0 +1,220 @@
+{
+  "author": "Arhan Canli",
+  "claim_boundary": "This stable packet proves the exact identity, immutable first measurement, and current evidence state. INCOMPLETE means missing sections remain missing; packet publication is not validation, admission, or a future-return claim.",
+  "complete": true,
+  "completion_assessment": {
+    "blockers": [],
+    "claim_boundary": "Every required packet section is verified.",
+    "status": "COMPLETE"
+  },
+  "config_hash": "41ce2b1f40450a6e",
+  "configuration": {
+    "cohort": "acceptance_month_second_next_open",
+    "controls": "filing_reaction_momentum_sic2",
+    "costs": {
+      "borrow_annual": 0.03,
+      "spy_oneway": 0.0001,
+      "stock_oneway": 0.0015
+    },
+    "direction": "long_stable_short_changed",
+    "hedge": "individual_252d_spy_beta_clamped_pm1",
+    "hold_sessions": 63,
+    "mechanism": "sec_10k_item1a_stability_jaccard5",
+    "oos_end": "2025-12-31",
+    "oos_start": "2016-01-01",
+    "prereg": "docs/design/PREREG_EARNINGS_NARRATIVE_CHANGE.md",
+    "probe": "earnings_narrative_change",
+    "tails": "residual_quintiles"
+  },
+  "content_hash": "sha256:522b8bad5ddb1140760a79bbb767509f245cdd34752cfe888e2c850178557ddb",
+  "evidence_date": "2026-08-22",
+  "family_paper_public_path": "/research/equity-narrative-change-lineage.md",
+  "hypothesis_key": "e2b76a7604131f00",
+  "immutable_first_measurement": {
+    "annualized_sharpe": -0.007436823485361785,
+    "kurtosis": 6.374751824545715,
+    "ledger_source_path": "var/experiments.jsonl",
+    "ledger_source_sha256": "b5a318c0997d980575f758451f509e0154eecbbb50d734e49a587d473062bd08",
+    "observations": 2514,
+    "recorded_at_unix_ms": 1786838779565,
+    "skew": 0.0515409873827547
+  },
+  "label": "earnings_narrative_change",
+  "missing_sections": [],
+  "packet_status": "COMPLETE_EVIDENCED_KILL",
+  "partial_sections": [],
+  "required_sections": {
+    "admission_or_kill_decision": {
+      "evidence": [
+        {
+          "public_path": "/glassbox/earnings_narrative_change_result.json",
+          "sha256": "8e416ba075894a67eb74e262d74f467127a6274ae9e78d59d66b35822068a091",
+          "source_path": "artifacts/probe/earnings_narrative_change/result.json",
+          "type": "kill_result"
+        },
+        {
+          "sha256": "5f628a44ae73ed9c412b225ac9dc56c4e59c1bc0645e2ebde251501e938b9932",
+          "source_path": "config/archive/sleeve_admission_contract_v6_superseded.json",
+          "type": "admission_contract_v6"
+        }
+      ],
+      "status": "VERIFIED_IDENTITY_LEVEL_EVIDENCE"
+    },
+    "code_environment_and_reproduction": {
+      "evidence": [
+        {
+          "sha256": "b64c366b95c2f9595de3f6bf292f3958db7d9f2b1b5cab38ebedd94a082e3a05",
+          "source_path": "scripts/probe_earnings_narrative_change.py",
+          "type": "executable_runner"
+        },
+        {
+          "sha256": "ddaf8b60999275f6d3fb93b3073f256d75d1383bfc8bab14263dc58645841006",
+          "source_path": "pyproject.toml",
+          "type": "python_project"
+        },
+        {
+          "sha256": "5caca664242722a3a3112663d7a19b7b5000583e30ade3753e1b8ffdecfd6f06",
+          "source_path": "uv.lock",
+          "type": "locked_environment"
+        }
+      ],
+      "status": "VERIFIED_IDENTITY_LEVEL_EVIDENCE"
+    },
+    "economic_mechanism_and_falsifiable_hypothesis": {
+      "evidence": [
+        {
+          "public_path": "/research/equity-narrative-change-lineage.md",
+          "type": "family_paper"
+        }
+      ],
+      "status": "VERIFIED_SHARED_FAMILY_EVIDENCE"
+    },
+    "execution_and_cost_model": {
+      "evidence": [
+        {
+          "sha256": "b64c366b95c2f9595de3f6bf292f3958db7d9f2b1b5cab38ebedd94a082e3a05",
+          "source_path": "scripts/probe_earnings_narrative_change.py",
+          "type": "executable_runner"
+        },
+        {
+          "public_path": "/glassbox/earnings_narrative_change_result.json",
+          "sha256": "8e416ba075894a67eb74e262d74f467127a6274ae9e78d59d66b35822068a091",
+          "source_path": "artifacts/probe/earnings_narrative_change/result.json",
+          "type": "result_with_cost_stress"
+        }
+      ],
+      "status": "VERIFIED_IDENTITY_LEVEL_EVIDENCE"
+    },
+    "family_and_union_trial_accounting": {
+      "evidence": [
+        {
+          "public_path": "/research/equity-narrative-change-lineage.md",
+          "type": "family_paper"
+        }
+      ],
+      "status": "VERIFIED_SHARED_FAMILY_EVIDENCE"
+    },
+    "identity_and_authorship": {
+      "evidence": [
+        {
+          "public_path": "/research/equity-narrative-change-lineage.md",
+          "type": "family_paper"
+        }
+      ],
+      "status": "VERIFIED_SHARED_FAMILY_EVIDENCE"
+    },
+    "literature_and_overlap_decision": {
+      "evidence": [
+        {
+          "public_path": "/research/equity-narrative-change-lineage.md",
+          "type": "family_paper"
+        }
+      ],
+      "status": "VERIFIED_SHARED_FAMILY_EVIDENCE"
+    },
+    "machine_readable_packet_and_stable_public_paper": {
+      "evidence": [
+        {
+          "public_path": "/research/equity-narrative-change-lineage.md",
+          "type": "family_paper"
+        }
+      ],
+      "status": "VERIFIED_SHARED_FAMILY_EVIDENCE"
+    },
+    "point_in_time_data_and_survivorship_controls": {
+      "evidence": [
+        {
+          "public_path": "/glassbox/earnings_narrative_change_input_data_manifest.json",
+          "sha256": "3f69cc02bd0038d9fc3ad4c8f61b832e884127cbef93e862194e22b06f25e006",
+          "source_path": "artifacts/probe/earnings_narrative_change/input_data_manifest.json",
+          "type": "input_data_manifest"
+        },
+        {
+          "public_path": "/research/prereg-earnings-narrative-change",
+          "sha256": "60486da41f1e2c88e62b6e56d436d780f645420ffaeb13364540d0c4040cc3b9",
+          "source_path": "docs/design/PREREG_EARNINGS_NARRATIVE_CHANGE.md",
+          "type": "preregistered_point_in_time_protocol"
+        }
+      ],
+      "status": "VERIFIED_IDENTITY_LEVEL_EVIDENCE"
+    },
+    "preregistration_and_hashes": {
+      "evidence": [
+        {
+          "public_path": "/research/prereg-earnings-narrative-change",
+          "sha256": "60486da41f1e2c88e62b6e56d436d780f645420ffaeb13364540d0c4040cc3b9",
+          "source_path": "docs/design/PREREG_EARNINGS_NARRATIVE_CHANGE.md",
+          "type": "preregistration"
+        },
+        {
+          "sha256": "1cca246e42c70803830ce69e9efda1ee6978b92ba88b6adee7830d479eabae79",
+          "source_path": "artifacts/probe/earnings_narrative_change/return_identity_reservation.json",
+          "type": "return_identity_reservation"
+        }
+      ],
+      "status": "VERIFIED_IDENTITY_LEVEL_EVIDENCE"
+    },
+    "result_uncertainty_stress_capacity_and_diversification": {
+      "evidence": [
+        {
+          "public_path": "/glassbox/earnings_narrative_change_result.json",
+          "sha256": "8e416ba075894a67eb74e262d74f467127a6274ae9e78d59d66b35822068a091",
+          "source_path": "artifacts/probe/earnings_narrative_change/result.json",
+          "type": "full_result"
+        },
+        {
+          "public_path": "/glassbox/earnings_narrative_change_diversification.json",
+          "sha256": "db1ae528574297b72916720ce8f048231800a6ad4834bfc8b05a4ed65f058c8e",
+          "source_path": "artifacts/probe/earnings_narrative_change/diversification.json",
+          "type": "bootstrap_diversification_report"
+        },
+        {
+          "sha256": "3e0a378f00d395f777100ed34e656a110d52d52b7bef59d627f4a00817865832",
+          "source_path": "artifacts/probe/earnings_narrative_change/equity.parquet",
+          "type": "complete_oos_curve"
+        },
+        {
+          "sha256": "1bea937404539d7a46634b9adc8247144ddf6f370f48c25f357ac6a9a502b687",
+          "source_path": "artifacts/probe/earnings_narrative_change/weights.parquet",
+          "type": "portfolio_weights"
+        }
+      ],
+      "status": "VERIFIED_IDENTITY_LEVEL_EVIDENCE"
+    }
+  },
+  "research_family_key": "equity_narrative_change",
+  "schema": "canli.alphac-identity-trial-packet.v2",
+  "verified_sections": [
+    "identity_and_authorship",
+    "economic_mechanism_and_falsifiable_hypothesis",
+    "literature_and_overlap_decision",
+    "family_and_union_trial_accounting",
+    "machine_readable_packet_and_stable_public_paper",
+    "preregistration_and_hashes",
+    "point_in_time_data_and_survivorship_controls",
+    "execution_and_cost_model",
+    "result_uncertainty_stress_capacity_and_diversification",
+    "admission_or_kill_decision",
+    "code_environment_and_reproduction"
+  ]
+}

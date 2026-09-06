@@ -1,0 +1,44 @@
+{
+  "author": "Arhan Canli",
+  "base_lake": "data/lake_sharadar",
+  "claim_boundary": "This artifact proves a new physical Sharadar lake version differs only by explicit quarantine of the exact HDB zero-cash due-bill marker. The frozen source is preserved, no amount is imputed, no return data is opened, and no hypothesis is spent. It does not claim that a replay will reproduce, validate a strategy, or improve Sharpe.",
+  "content_hash": "sha256:f969ee5cb74173b7cbd1e2d139534ec1be9588f98908ba9a667cede0dbe970c7",
+  "corrected_lake": "data/corrections/hdb_zero_marker_c30b02bf34aa/data/lake_sharadar",
+  "correction": {
+    "cash_amount_imputed": false,
+    "corrected_partition_sha256": "sha256:cef369aea9a45d859bb32c2c99d437ebb620889afafefdc4ac08a0ca5c45f0e6",
+    "other_rows_changed": false,
+    "partition": "corporate_actions/instrument_id=XUSE:CASH:HDBUSD/year=2025/data.parquet",
+    "rows_after": 3,
+    "rows_before": 4,
+    "rows_quarantined": 1,
+    "source_partition_sha256": "sha256:a4985291c6eb3bbafd3f2e3df513dd5b98b11185914f746db04305475921de17"
+  },
+  "decision": "VERSIONED_LAKE_READY_FOR_EXACT_REPLAY",
+  "hypotheses_spent": 0,
+  "invariants": {
+    "exactly_one_zero_marker_quarantined": true,
+    "logical_preregistration_path_preserved": true,
+    "original_partition_preserved_by_hash": true,
+    "physical_version_is_content_addressed": true,
+    "positive_august_11_dividend_preserved": true
+  },
+  "lineage": {
+    "corporate_action_bytes": 171208695,
+    "corporate_action_files": 48833,
+    "corrected_corporate_actions_root": "sha256:51e79666067d46e5f679aff9867ddd4a7e6cd8ff150da2b583d5713537e32ea9",
+    "shared_immutable_datasets": [
+      "fundamentals",
+      "ohlcv_1d",
+      "universe_membership"
+    ],
+    "vendor_resolution_content_hash": "sha256:c30b02bf34aa40b2974c5b1c3623363a601e826b866c335714c8b5b909247775",
+    "vendor_resolution_path": "artifacts/audit/hdb_dividend_vendor_resolution.json",
+    "vendor_resolution_sha256": "sha256:3a88d804448b6316e548e226fe05a1d58e70de14b1cf2a927a800873e3ca7e6e",
+    "zero_dividend_audit_path": "artifacts/audit/sharadar_zero_dividend.json",
+    "zero_dividend_audit_sha256": "sha256:f2ffe310185266c9609983dc9f5f889605d716676637556ecd6d1719d36ba2ca"
+  },
+  "preregistration_logical_suffix": "data/lake_sharadar",
+  "return_data_opened": false,
+  "schema": "canli.alphac-sharadar-versioned-hdb-repair.v1"
+}

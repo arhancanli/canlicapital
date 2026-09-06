@@ -1,0 +1,121 @@
+{
+  "accessibility_score": 100,
+  "automated_supplemental_checks": [
+    "complete forward Tab traversal and skip-link focus transfer",
+    "focused-element center visibility against fixed content",
+    "320-CSS-pixel reflow and non-inline 24-pixel control targets",
+    "reduced-motion computed-style enforcement",
+    "forced-colors main-content rendering",
+    "browser console and page-error capture"
+  ],
+  "binary_checks_failed": 0,
+  "binary_checks_passed": 103,
+  "category_audits": 292,
+  "claim_boundary": "This receipt seals Lighthouse and supplemental automated Chromium accessibility evidence across the four named public routes on local production builds. Perfect automated results are not complete WCAG 2.2 AA conformance, a human keyboard or screen-reader certification, or proof about an undeployed build. Untested human dimensions remain explicit and fail any broader conformance claim open.",
+  "content_hash": "sha256:010836755d9ab32896c7e61a8e1caab3ec0b167c72a32b6b00221dbbff8d4749",
+  "environment": "LOCAL_PRODUCTION_BUILD",
+  "interaction_audit": {
+    "content_hash": "sha256:716f879b1d328c372899553bff9e5c9772822bc12cd865217822ea0c0948e5e4",
+    "passes": true,
+    "public_path": "/glassbox/accessibility_interaction_audit.json",
+    "routes_tested": [
+      "/",
+      "/dashboard",
+      "/how-it-works",
+      "/research"
+    ],
+    "schema": "canli.site-accessibility-interaction-audit.v1",
+    "source_sha256": "d8d5d95054cab3eb1cc5d85a420e5ccfead3d2692608a09891f6076afd5b89e3",
+    "tested_at": "2026-08-24T09:47:03.204318+00:00"
+  },
+  "lighthouse_version": "12.8.2",
+  "manual_checks_completed": [],
+  "project_lead": "Arhan Canli",
+  "reproduction": {
+    "audit_template": "npx --no-install lighthouse http://127.0.0.1:3000{route} --only-categories=accessibility --output=json",
+    "build": "npm run build",
+    "serve": "npm start"
+  },
+  "route_evidence": [
+    {
+      "accessibility_score": 100,
+      "audit_modes": {
+        "binary": 23,
+        "manual": 10,
+        "notApplicable": 40
+      },
+      "binary_checks_failed": 0,
+      "binary_checks_passed": 23,
+      "category_audits": 73,
+      "final_url": "http://127.0.0.1:3000/",
+      "lighthouse_version": "12.8.2",
+      "route": "/",
+      "source_report_sha256": "446cd2f65af1a5dd00a1204d21ad1e41a97530c807529ca255ab616dd14ee93e",
+      "tested_at": "2026-08-24T09:46:39.076Z"
+    },
+    {
+      "accessibility_score": 100,
+      "audit_modes": {
+        "binary": 28,
+        "manual": 10,
+        "notApplicable": 35
+      },
+      "binary_checks_failed": 0,
+      "binary_checks_passed": 28,
+      "category_audits": 73,
+      "final_url": "http://127.0.0.1:3000/dashboard",
+      "lighthouse_version": "12.8.2",
+      "route": "/dashboard",
+      "source_report_sha256": "84997492f67af3c40af547b643ba6b5168d73c22a64faffce959342dbfdc7950",
+      "tested_at": "2026-08-24T09:46:38.915Z"
+    },
+    {
+      "accessibility_score": 100,
+      "audit_modes": {
+        "binary": 23,
+        "manual": 10,
+        "notApplicable": 40
+      },
+      "binary_checks_failed": 0,
+      "binary_checks_passed": 23,
+      "category_audits": 73,
+      "final_url": "http://127.0.0.1:3000/how-it-works",
+      "lighthouse_version": "12.8.2",
+      "route": "/how-it-works",
+      "source_report_sha256": "b6cbf5de7f81fcff65eecf0adbcbdc2d944fce02abe3c506148c01d61f944238",
+      "tested_at": "2026-08-24T09:46:39.072Z"
+    },
+    {
+      "accessibility_score": 100,
+      "audit_modes": {
+        "binary": 29,
+        "informative": 1,
+        "manual": 10,
+        "notApplicable": 33
+      },
+      "binary_checks_failed": 0,
+      "binary_checks_passed": 29,
+      "category_audits": 73,
+      "final_url": "http://127.0.0.1:3000/research",
+      "lighthouse_version": "12.8.2",
+      "route": "/research",
+      "source_report_sha256": "5f558cc28d6713abf6e7f3402459a53a25bb4d4ef8a07c132f830134c56b2fca",
+      "tested_at": "2026-08-24T09:46:38.915Z"
+    }
+  ],
+  "routes_tested": [
+    "/",
+    "/dashboard",
+    "/how-it-works",
+    "/research"
+  ],
+  "schema": "canli.site-accessibility-audit.v3",
+  "tested_at": "2026-08-24T09:46:39.076Z",
+  "untested_human_dimensions": [
+    "human keyboard usability and focus-order review",
+    "screen-reader review with VoiceOver, NVDA, or TalkBack",
+    "human review at browser zoom levels up to 400 percent",
+    "visual review in platform high-contrast modes",
+    "touch usability across physical devices"
+  ]
+}

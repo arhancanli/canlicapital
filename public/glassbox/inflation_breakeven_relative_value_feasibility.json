@@ -1,0 +1,96 @@
+{
+  "aligned_5y_10y": {
+    "first_observation": "2003-01-02",
+    "last_observation": "2026-08-24",
+    "null_cells": 0,
+    "rows": 5915
+  },
+  "author": "Arhan Canli",
+  "claim_boundary": "No sign, horizon, return, Sharpe, drawdown, correlation, capacity, execution quality, or sleeve-admission claim is authorized.",
+  "content_hash": "sha256:48d397caf8db9d7c96f65d60be816ab1e7278055e04fc63799e8cdd212850f57",
+  "cpi_vintage_inventory": {
+    "first_true_release": "1998-11-15",
+    "last_true_release": "2026-07-15",
+    "path": "data/lake_macro_vintage/tier2_vintage/PCPI_first_release.parquet",
+    "rows": 953,
+    "sha256": "b51a98078ce62db11bcd78d7d6e9f870cebbb7791d8e18181f9b3b74d4e5f348",
+    "true_first_releases": 335
+  },
+  "decision": "DATA_GATED",
+  "evidence_date": "2026-08-24",
+  "execution_source_inventory": {
+    "declared_roots": [
+      "data/lake_fixed_income/tips",
+      "data/lake_rates/tips",
+      "data/lake_treasury_securities",
+      "data/inflation_swaps"
+    ],
+    "matching_files": [],
+    "required_but_absent": [
+      "matched_nominal_and_tips_security_identifiers",
+      "cashflows_and_index_ratios",
+      "executable_prices_or_quotes",
+      "bid_ask_and_depth",
+      "financing_and_carry_inputs",
+      "inflation_swap_history_or_named_alternative"
+    ]
+  },
+  "failed_gates": [
+    "all_atlas_maturities_present",
+    "historical_signal_vintages_preserved",
+    "executable_instrument_history_present"
+  ],
+  "gates": {
+    "aligned_5y_10y_signal_at_least_three_years": true,
+    "aligned_5y_10y_signal_has_no_nulls": true,
+    "all_atlas_maturities_present": false,
+    "at_least_300_true_cpi_first_releases": true,
+    "executable_instrument_history_present": false,
+    "historical_signal_vintages_preserved": false
+  },
+  "literature_review": {
+    "path": "docs/design/LITERATURE_INFLATION_BREAKEVEN_RELATIVE_VALUE.md",
+    "sha256": "09d8ef4a7e1d7e4bffa85b2b6d5934b72514853cec74bd0c6e97c5702747d5f0"
+  },
+  "market_return_files_opened": [],
+  "protocol": {
+    "path": "docs/design/FEASIBILITY_INFLATION_BREAKEVEN_RELATIVE_VALUE.md",
+    "sha256": "a51f0f53aca7528fc74d1da72411b737b47217f97eb577063fa249dfc79f7708"
+  },
+  "return_data_opened": false,
+  "return_hypotheses_spent": 0,
+  "schema": "canli.alphac-inflation-breakeven-feasibility.v1",
+  "signal_inventory": {
+    "10": {
+      "first_observation": "2003-01-02",
+      "last_observation": "2026-08-24",
+      "null_cells": 0,
+      "path": "data/lake_macro_vintage/tier1_daily/T10YIE.parquet",
+      "publication_is_next_business_day": true,
+      "rows": 5915,
+      "sha256": "26446219d86815353541d18bd2429c30c69ef75e33805859af2e8f15071b5229",
+      "sorted_dates": true,
+      "unique_dates": true
+    },
+    "5": {
+      "first_observation": "2003-01-02",
+      "last_observation": "2026-08-24",
+      "null_cells": 0,
+      "path": "data/lake_macro_vintage/tier1_daily/T5YIE.parquet",
+      "publication_is_next_business_day": true,
+      "rows": 5915,
+      "sha256": "de14183d55c554dd9cac83d8011c0b45064f8f13dd2501a2b94a70a5f15411a0",
+      "sorted_dates": true,
+      "unique_dates": true
+    }
+  },
+  "source_contract": {
+    "arrival_log_path": "data/lake_macro_vintage/arrival_log.jsonl",
+    "arrival_log_sha256": "4982f9e9e6afa25a1a57918909d4c9de75d9f93e8662655d498c921617b6d5f5",
+    "current_snapshot_is_not_historical_vintage_proof": true,
+    "meta_path": "data/lake_macro_vintage/meta.json",
+    "meta_sha256": "b0ba20cfafb52cc74a0ddaf74cd495e2be93a20075b1e9da25ff67b7c3685b47"
+  },
+  "stage": "signal_and_execution_source_audit_no_prices_no_returns",
+  "supersedes_reachability_claim": "OBTAINABLE_FROM_DATA_THIS_REPO_ALREADY_HOLDS is too broad. The held files support 5Y/10Y signal-source depth and vintage CPI, not the complete point-in-time, instrument-level, executable identity."
+}

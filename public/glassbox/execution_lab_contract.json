@@ -1,0 +1,81 @@
+{
+  "schema": "canli.alphac-execution-lab-contract.v1",
+  "status": "EDUCATIONAL_INSTRUMENT_NOT_RESEARCH_EVIDENCE",
+  "author": "Arhan Canli",
+  "published_on": "2026-08-27",
+  "claim_boundary": "A synthetic demonstration of how execution assumptions behave. It spends no research hypothesis, writes to no ledger, and produces no ALPHAC performance claim.",
+  "method": {
+    "series": "driftless geometric random walk with an overnight gap, 750 bars",
+    "gap_volatility": 0.004,
+    "gap_rationale": "Without a gap the next open IS the decision close, so the single most important comparison on this page collapses to a tie that looks like a finding. The core refuses a series with no gap rather than reporting one.",
+    "strategy": "a fixed moving-average crossover, identical across every variant",
+    "comparability": "Every variant prices the SAME decision bars. A delayed variant needs an extra bar of runway, so left to itself it would price one fewer decision and its Sharpe would be computed over a different sample."
+  },
+  "classification": {
+    "rule": "Each assumption is measured ALONE against the honest baseline across many independent series. |t| below 2 is indistinguishable from no effect; a worse-share at or above 98 percent is a cost; anything else is a re-timing.",
+    "why_isolated": "Measured cumulatively, market impact inherits the delay's variance and is misclassified as a re-timing when it is a pure cost.",
+    "kinds": {
+      "COST": "reduces the result on essentially every series; small variance, enormous t",
+      "RE_TIMING": "changes WHICH prices you get; hurts on average, sign per series close to a coin flip",
+      "INDISTINGUISHABLE": "no systematic effect on a series with no edge"
+    }
+  },
+  "defaults": {
+    "fast": 14,
+    "slow": 34,
+    "spread_bps": 5,
+    "delay_bars": 1,
+    "impact_bps": 8,
+    "outage_rate": 0.05,
+    "seeds": 200
+  },
+  "parameter_scaling": {
+    "method": "each control varied alone, 300 independent series per setting, mean change in annualised Sharpe",
+    "cost_example": {
+      "control": "spread_bps",
+      "readings": [
+        {
+          "setting": 5,
+          "mean": -0.0326
+        },
+        {
+          "setting": 10,
+          "mean": -0.0652
+        }
+      ],
+      "note": "doubles when the parameter doubles, which is what paying for something looks like"
+    },
+    "re_timing_example": {
+      "control": "delay_bars",
+      "readings": [
+        {
+          "setting": 1,
+          "mean": -0.0184,
+          "t": -1.9
+        },
+        {
+          "setting": 2,
+          "mean": -0.0362,
+          "t": -2.9
+        },
+        {
+          "setting": 3,
+          "mean": -0.0286,
+          "t": -2
+        },
+        {
+          "setting": 5,
+          "mean": -0.0112,
+          "t": -0.6
+        }
+      ],
+      "note": "does not scale, and peaks in the middle. A longer delay is not a bigger cost, it is a different bet."
+    }
+  },
+  "sandbox_safety": [
+    "every input is stored in the URL, so a scenario is shareable and reproducible",
+    "no write path to any ledger, artifact, broker or published record exists",
+    "outputs describe a synthetic series, never an ALPHAC result"
+  ],
+  "content_hash": "sha256:6fc4f9270beb21aa4038fb2ab02c002e411a9b4eb394dc8549d7ac6ba9489fa0"
+}

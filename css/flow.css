@@ -1,0 +1,139 @@
+/* ===========================================================================
+   flow.css - the landing page as one continuous motion, not ten reveals.
+
+   WHY NATIVE SCROLL TIMELINES AND NOT JAVASCRIPT. The usual way to do this is
+   an IntersectionObserver that adds a class, with `opacity: 0` sitting in the
+   stylesheet waiting for it. That pattern has a failure mode this site cannot
+   accept: if the script does not run -- a crawler, a parse error, a blocked
+   bundle -- the content is permanently invisible while the markup insists it is
+   there. Every rule below lives inside `@supports (animation-timeline: view())`
+   and nowhere else, so a browser without scroll timelines never applies the
+   hidden state at all. There is no arrangement of failures that hides this page.
+
+   WHY IT READS AS CONTINUOUS. Three decisions, none of them decorative:
+
+     1. ONE VOCABULARY. Everything enters the same way: a short rise and a
+        resolve. No element scales, rotates, slides sideways or bounces. Ten
+        different effects read as ten sections; one effect read ten times reads
+        as one page.
+
+     2. RANGES THAT OVERLAP. Each item finishes resolving well before it reaches
+        the middle of the viewport, and the next section starts before the
+        previous has settled. Motion is therefore always in progress somewhere,
+        which is what makes a page feel like it is flowing rather than stepping.
+
+     3. DEPTH ORDERS THE STAGGER. A heading resolves before its supporting
+        sentence, which resolves before the grid beneath it. The eye is led in
+        reading order rather than everything arriving at once.
+
+   The motion is deliberately small. This is an evidence page; the animation's
+   job is to carry the eye down it, not to be noticed.
+   =========================================================================== */
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+
+    @keyframes flow-in {
+      from { opacity: 0; transform: translate3d(0, 22px, 0); }
+      to   { opacity: 1; transform: translate3d(0, 0, 0); }
+    }
+
+    /* The shared vocabulary. `both` holds the end state after the range, so an
+       element scrolled past stays resolved rather than fading back out. */
+    .flow,
+    .section-heading > div,
+    .section-heading > p,
+    .offering__intro,
+    .evidence-detail__head,
+    .system-films__head,
+    .evidence-core__copy > *,
+    .trace__timeline,
+    .research__side,
+    .access > * {
+      animation: flow-in linear both;
+      animation-timeline: view();
+      animation-range: entry 8% cover 26%;
+      will-change: opacity, transform;
+    }
+
+    /* Grid children stagger by position, so a row of cards unfolds left to right
+       instead of arriving as a block. The increments are small: past about
+       120ms of separation a stagger stops reading as one gesture and starts
+       reading as items queueing. */
+    .offering__grid article,
+    .trust-grid article,
+    .paths-grid article,
+    .evidence-ledger article,
+    .evidence-frontier article,
+    .evidence-detail__grid article,
+    .system-films__grid > article,
+    .sleeve-row,
+    .research-link,
+    .core-chapters li {
+      animation: flow-in linear both;
+      animation-timeline: view();
+      animation-range: entry 6% cover 24%;
+      will-change: opacity, transform;
+    }
+    .offering__grid article:nth-child(2),
+    .trust-grid article:nth-child(2),
+    .evidence-detail__grid article:nth-child(2) { animation-range: entry 9% cover 27%; }
+    .offering__grid article:nth-child(3),
+    .trust-grid article:nth-child(3),
+    .evidence-detail__grid article:nth-child(3) { animation-range: entry 12% cover 30%; }
+    .offering__grid article:nth-child(4),
+    .trust-grid article:nth-child(4),
+    .evidence-detail__grid article:nth-child(4) { animation-range: entry 15% cover 33%; }
+
+    /* Table rows carry the same gesture at a shorter distance: a long table that
+       lifts each row 22px reads as unstable rather than alive. */
+    .broker-table tbody tr,
+    .sleeves__table tbody tr {
+      animation: flow-row linear both;
+      animation-timeline: view();
+      animation-range: entry 4% cover 20%;
+    }
+    @keyframes flow-row {
+      from { opacity: 0; transform: translate3d(0, 10px, 0); }
+      to   { opacity: 1; transform: translate3d(0, 0, 0); }
+    }
+
+    /* THE THREAD. One element, spanning the whole document, driven by the root
+       scroller rather than by any section's view. This is the part that makes
+       the page one object: a hairline that draws from the first pixel to the
+       last as you read, present in every section and owned by none of them. */
+    .flow-thread {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 2px;
+      height: 100vh;
+      transform-origin: top;
+      background: linear-gradient(180deg, var(--cyan, #66d8ff), rgba(102, 216, 255, 0.06));
+      z-index: 60;
+      pointer-events: none;
+      animation: flow-thread linear both;
+      animation-timeline: scroll(root block);
+    }
+    @keyframes flow-thread {
+      from { transform: scaleY(0); }
+      to   { transform: scaleY(1); }
+    }
+
+    /* The hero is on screen at load. Anything inside it that used the vocabulary
+       above would animate from a scroll position the reader never travelled, so
+       it resolves on its own timeline instead: a single settle as the page
+       arrives, then nothing. */
+    .hero__copy > *,
+    .hero-status > div {
+      animation: flow-in 0.7s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+    }
+    .hero__copy > *:nth-child(2) { animation-delay: 0.06s; }
+    .hero__copy > *:nth-child(3) { animation-delay: 0.12s; }
+    .hero__copy > *:nth-child(4) { animation-delay: 0.18s; }
+    .hero__copy > *:nth-child(5) { animation-delay: 0.24s; }
+    .hero-status > div:nth-child(2) { animation-delay: 0.05s; }
+    .hero-status > div:nth-child(3) { animation-delay: 0.10s; }
+    .hero-status > div:nth-child(4) { animation-delay: 0.15s; }
+  }
+}

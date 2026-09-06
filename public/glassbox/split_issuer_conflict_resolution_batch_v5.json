@@ -1,0 +1,1057 @@
+{
+  "author": "Arhan Canli",
+  "claim_boundary": "This identifies eleven issuer-date, duplicate, or composite mismatches, four ratio-semantics conflicts, and one issuer-identity/timeline conflict. It does not repair either row, authorize execution, open returns, validate performance, or pass the global split gate.",
+  "content_hash": "sha256:fa5c744c0268e1c05c32d3fbfd286db01073a9e1a6367331ca908dae04145395",
+  "decision": "SIXTEEN_ISSUER_CONFLICTS_RESOLVED_SEMANTICALLY_EXECUTION_REMAINS_FORBIDDEN",
+  "hypotheses_spent": 0,
+  "lineage": {
+    "unresolved_context_content_hash": "sha256:c81c35a83c706cec7a8b4e4c9f22d1f0c874c26fe42c8a92ebdc0bc75c7b4d3f",
+    "unresolved_context_path": "artifacts/audit/unresolved_split_event_context.json",
+    "unresolved_context_sha256": "98304049af107814ec6b7798ff6ea91ab54e16c1f8801c202f1fbbd8d692b2c0"
+  },
+  "required_next_action": "Keep all sixteen exact frozen tuples quarantined. CDR, DIAL1, GEVA, IPAR, USB, PRGN1, ABEV, and E require issuer-supported date corrections; NVEC and PRTK also require composite merger replay; MHGVY and EXMCQ have unsupported stored-ratio semantics; AAWW and ACL have stored mutations contradicted by issuer share counts; AZAA predates issuer formation and ticker trading.",
+  "resolved_events": [
+    {
+      "conflict": "ISSUER_SHARE_COUNTS_CONTRADICT_SIX_FOR_ONE_STORED_MUTATION",
+      "ex_date": "2006-04-01 04:00:00+04:00",
+      "ex_date_ms": 1143849600000,
+      "execution_authorized": false,
+      "governance_route": "HARD_QUARANTINE_ISSUER_CONFLICT_OR_DATE_MISMATCH",
+      "instrument_id": "XUSE:CASH:AAWWUSD",
+      "issuer_evidence": {
+        "post_event_2006_q2_shares": 20049108,
+        "pre_event_2005_year_end_shares": 19815338
+      },
+      "issuer_ratio": 1.0,
+      "issuer_terms_date": "2006-06-30",
+      "market_boundary": {
+        "boundary_available": true,
+        "event_date_bar_present": false,
+        "first_three_bars_after_event": [
+          {
+            "close": 44.5,
+            "date": "2006-04-03",
+            "volume": 505200.0
+          },
+          {
+            "close": 45.01,
+            "date": "2006-04-04",
+            "volume": 1137800.0
+          },
+          {
+            "close": 46.0,
+            "date": "2006-04-05",
+            "volume": 15300.0
+          }
+        ],
+        "last_three_bars_on_or_before_event": [
+          {
+            "close": 46.5,
+            "date": "2006-03-29",
+            "volume": 22700.0
+          },
+          {
+            "close": 47.55,
+            "date": "2006-03-30",
+            "volume": 9800.0
+          },
+          {
+            "close": 47.1,
+            "date": "2006-03-31",
+            "volume": 15600.0
+          }
+        ],
+        "price_partition_path": "data/corrections/corporate_action_basis_48fcfde04e3c_materialized_v1/data/lake_sharadar/ohlcv_1d/instrument_id=XUSE:CASH:AAWWUSD/year=2006/data.parquet",
+        "price_partition_sha256": "8e4050e20962ec00379efd69480cf8ea1ce03301b10a2605a3de4b7fdb26301b"
+      },
+      "prior_context_classification": "WEEKEND_SPLIT_WITHOUT_LIFECYCLE_CONTEXT",
+      "ratio_repair_authorized": false,
+      "required_fragments": [
+        "As of June 30, 2006, there were 20,049,108 shares",
+        "20,049,108 and 19,815,338 shares outstanding"
+      ],
+      "required_fragments_verified": [
+        "As of June 30, 2006, there were 20,049,108 shares",
+        "20,049,108 and 19,815,338 shares outstanding"
+      ],
+      "retrieved_sha256": "4436f2cb0c9f68e2042e1506da256b11f4c2c5742a95828fb394fc43ec4e6910",
+      "stored_ratio": 6.0,
+      "ticker": "AAWW",
+      "url": "https://www.sec.gov/Archives/edgar/data/1135185/000093041306005893/c43889_10-q.htm"
+    },
+    {
+      "conflict": "ISSUER_SHARE_COUNTS_CONTRADICT_ONE_FOR_TEN_STORED_MUTATION",
+      "ex_date": "2004-08-30 04:00:00+04:00",
+      "ex_date_ms": 1093824000000,
+      "execution_authorized": false,
+      "governance_route": "HARD_QUARANTINE_ISSUER_CONFLICT_OR_DATE_MISMATCH",
+      "instrument_id": "XUSE:CASH:ACLUSD",
+      "issuer_evidence": {
+        "post_event_2004_year_end_shares": 305654454,
+        "pre_event_2003_year_end_shares": 308519051
+      },
+      "issuer_ratio": 1.0,
+      "issuer_terms_date": "2004-12-31",
+      "market_boundary": {
+        "boundary_available": true,
+        "event_date_bar_present": true,
+        "first_three_bars_after_event": [
+          {
+            "close": 74.84,
+            "date": "2004-08-31",
+            "volume": 566000.0
+          },
+          {
+            "close": 75.0,
+            "date": "2004-09-01",
+            "volume": 333800.0
+          },
+          {
+            "close": 75.63,
+            "date": "2004-09-02",
+            "volume": 394300.0
+          }
+        ],
+        "last_three_bars_on_or_before_event": [
+          {
+            "close": 75.67,
+            "date": "2004-08-26",
+            "volume": 763500.0
+          },
+          {
+            "close": 75.86,
+            "date": "2004-08-27",
+            "volume": 331300.0
+          },
+          {
+            "close": 75.1,
+            "date": "2004-08-30",
+            "volume": 454000.0
+          }
+        ],
+        "price_partition_path": "data/corrections/corporate_action_basis_48fcfde04e3c_materialized_v1/data/lake_sharadar/ohlcv_1d/instrument_id=XUSE:CASH:ACLUSD/year=2004/data.parquet",
+        "price_partition_sha256": "28fc1e9655d528bae16abc29ed8017604802e569fd279ed7375499721ccc1f47"
+      },
+      "prior_context_classification": "PLAIN_SPLIT_WITHOUT_LIFECYCLE_CONTEXT",
+      "ratio_repair_authorized": false,
+      "required_fragments": [
+        "305,654,454 shares outstanding at December 31, 2004",
+        "308,519,051 shares outstanding at December 31, 2003"
+      ],
+      "required_fragments_verified": [
+        "305,654,454 shares outstanding at December 31, 2004",
+        "308,519,051 shares outstanding at December 31, 2003"
+      ],
+      "retrieved_sha256": "b55c4a33e971fde6ae801b5853e7ab5b04aa5e679eaa86f8643bdbab493297ae",
+      "stored_ratio": 0.1,
+      "ticker": "ACL",
+      "url": "https://www.sec.gov/Archives/edgar/data/1167379/000116737905000020/acl20f2004.htm"
+    },
+    {
+      "conflict": "ISSUER_EVENT_DATE_DOES_NOT_MATCH_FROZEN_EVENT_DATE",
+      "ex_date": "2003-07-15 04:00:00+04:00",
+      "ex_date_ms": 1058227200000,
+      "execution_authorized": false,
+      "governance_route": "HARD_QUARANTINE_ISSUER_CONFLICT_OR_DATE_MISMATCH",
+      "instrument_id": "XUSE:CASH:CDRUSD",
+      "issuer_event_date": "2003-07-07",
+      "issuer_ratio": 2.0,
+      "market_boundary": {
+        "boundary_available": true,
+        "event_date_bar_present": true,
+        "first_three_bars_after_event": [
+          {
+            "close": 4.25,
+            "date": "2003-07-16",
+            "volume": 212.125
+          },
+          {
+            "close": 4.18,
+            "date": "2003-07-17",
+            "volume": 166.67
+          },
+          {
+            "close": 3.79,
+            "date": "2003-07-18",
+            "volume": 0.0
+          }
+        ],
+        "last_three_bars_on_or_before_event": [
+          {
+            "close": 7.02,
+            "date": "2003-07-11",
+            "volume": 30.304
+          },
+          {
+            "close": 7.76,
+            "date": "2003-07-14",
+            "volume": 136.366
+          },
+          {
+            "close": 4.0,
+            "date": "2003-07-15",
+            "volume": 45.455
+          }
+        ],
+        "price_partition_path": "data/corrections/corporate_action_basis_48fcfde04e3c_materialized_v1/data/lake_sharadar/ohlcv_1d/instrument_id=XUSE:CASH:CDRUSD/year=2003/data.parquet",
+        "price_partition_sha256": "a86f27b65783b813076988f1dd5ac32036da57c6eeaccac238dc91ab7031e512"
+      },
+      "prior_context_classification": "PLAIN_SPLIT_WITHOUT_LIFECYCLE_CONTEXT",
+      "ratio_repair_authorized": false,
+      "required_fragments": [
+        "our 2-for-1 stock split which occurred July 7, 2003",
+        "All share and per share information set forth in this prospectus has been adjusted"
+      ],
+      "required_fragments_verified": [
+        "our 2-for-1 stock split which occurred July 7, 2003",
+        "All share and per share information set forth in this prospectus has been adjusted"
+      ],
+      "retrieved_sha256": "00a3e92fa6773d8f39a2b35415f121d89337a97277db45db0caf988138afcf10",
+      "stored_ratio": 2.0,
+      "ticker": "CDR",
+      "url": "https://www.sec.gov/Archives/edgar/data/761648/000095012303009594/y88871sv11.htm"
+    },
+    {
+      "conflict": "ISSUER_DATE_DOES_NOT_MATCH_FROZEN_EVENT_DATE",
+      "ex_date": "2009-08-07 04:00:00+04:00",
+      "ex_date_ms": 1249603200000,
+      "execution_authorized": false,
+      "governance_route": "HARD_QUARANTINE_ISSUER_CONFLICT_OR_DATE_MISMATCH",
+      "instrument_id": "XUSE:CASH:DIAL1USD",
+      "issuer_event_date": "2009-08-03",
+      "issuer_ratio": 0.005,
+      "market_boundary": {
+        "boundary_available": true,
+        "event_date_bar_present": true,
+        "first_three_bars_after_event": [
+          {
+            "close": 9.0,
+            "date": "2009-08-10",
+            "volume": 6500.0
+          },
+          {
+            "close": 6.5,
+            "date": "2009-08-11",
+            "volume": 1000.0
+          },
+          {
+            "close": 9.5,
+            "date": "2009-08-12",
+            "volume": 4400.0
+          }
+        ],
+        "last_three_bars_on_or_before_event": [
+          {
+            "close": 0.04,
+            "date": "2009-08-05",
+            "volume": 0.0
+          },
+          {
+            "close": 0.04,
+            "date": "2009-08-06",
+            "volume": 0.0
+          },
+          {
+            "close": 6.0,
+            "date": "2009-08-07",
+            "volume": 1100.0
+          }
+        ],
+        "price_partition_path": "data/corrections/corporate_action_basis_48fcfde04e3c_materialized_v1/data/lake_sharadar/ohlcv_1d/instrument_id=XUSE:CASH:DIAL1USD/year=2009/data.parquet",
+        "price_partition_sha256": "066436177081be560f94b47ac6f68adcd6e9c23e5fceab9da5a0b6d5197c635a"
+      },
+      "prior_context_classification": "PLAIN_SPLIT_WITHOUT_LIFECYCLE_CONTEXT",
+      "ratio_repair_authorized": false,
+      "required_fragments": [
+        "a two hundred to one (200:1) reverse stock split",
+        "was approved and effective on August 3, 2009"
+      ],
+      "required_fragments_verified": [
+        "a two hundred to one (200:1) reverse stock split",
+        "was approved and effective on August 3, 2009"
+      ],
+      "retrieved_sha256": "07a6c08e80dd75b48912f09db36c31eb67e1b4e02eed2a426b9591c2fccbb303",
+      "stored_ratio": 0.005,
+      "ticker": "DIAL1",
+      "url": "https://www.sec.gov/Archives/edgar/data/771950/000095012309035313/c89015e10vq.htm"
+    },
+    {
+      "conflict": "ISSUER_DATE_DOES_NOT_MATCH_FROZEN_EVENT_DATE",
+      "ex_date": "2011-11-04 04:00:00+04:00",
+      "ex_date_ms": 1320364800000,
+      "execution_authorized": false,
+      "governance_route": "HARD_QUARANTINE_ISSUER_CONFLICT_OR_DATE_MISMATCH",
+      "instrument_id": "XUSE:CASH:GEVAUSD",
+      "issuer_event_date": "2011-11-02",
+      "issuer_ratio": 0.2,
+      "market_boundary": {
+        "boundary_available": true,
+        "event_date_bar_present": true,
+        "first_three_bars_after_event": [
+          {
+            "close": 12.65,
+            "date": "2011-11-07",
+            "volume": 236787.0
+          },
+          {
+            "close": 13.59,
+            "date": "2011-11-08",
+            "volume": 7298.0
+          },
+          {
+            "close": 14.74,
+            "date": "2011-11-09",
+            "volume": 258656.0
+          }
+        ],
+        "last_three_bars_on_or_before_event": [
+          {
+            "close": 15.35,
+            "date": "2011-11-02",
+            "volume": 3610.0
+          },
+          {
+            "close": 15.35,
+            "date": "2011-11-03",
+            "volume": 0.0
+          },
+          {
+            "close": 15.0,
+            "date": "2011-11-04",
+            "volume": 1142.0
+          }
+        ],
+        "price_partition_path": "data/corrections/corporate_action_basis_48fcfde04e3c_materialized_v1/data/lake_sharadar/ohlcv_1d/instrument_id=XUSE:CASH:GEVAUSD/year=2011/data.parquet",
+        "price_partition_sha256": "9dba9cf89d22a8999170ce0695ebebae0152b9a04179d6dad636f6e05255ebb7"
+      },
+      "prior_context_classification": "PLAIN_SPLIT_WITHOUT_LIFECYCLE_CONTEXT",
+      "ratio_repair_authorized": false,
+      "required_fragments": [
+        "filed on November 2, 2011",
+        "one-for-five reverse stock split",
+        "each five shares of Trimeris common stock",
+        "were automatically combined into and became one share"
+      ],
+      "required_fragments_verified": [
+        "filed on November 2, 2011",
+        "one-for-five reverse stock split",
+        "each five shares of Trimeris common stock",
+        "were automatically combined into and became one share"
+      ],
+      "retrieved_sha256": "4a15cf1732c445025c18dc5142d98544c21bc8820d3cc5958586ae3d31f29618",
+      "stored_ratio": 0.2,
+      "ticker": "GEVA",
+      "url": "https://www.sec.gov/Archives/edgar/data/911326/000119312511294917/d251415d8k.htm"
+    },
+    {
+      "conflict": "ISSUER_ADS_TERMS_CONFLICT_WITH_FROZEN_STORED_RATIO",
+      "ex_date": "2014-05-01 04:00:00+04:00",
+      "ex_date_ms": 1398902400000,
+      "execution_authorized": false,
+      "governance_route": "HARD_QUARANTINE_ISSUER_CONFLICT_OR_DATE_MISMATCH",
+      "instrument_id": "XUSE:CASH:MHGVYUSD",
+      "issuer_ratio": 1.0,
+      "issuer_terms_date": "2014-04-30",
+      "market_boundary": {
+        "boundary_available": true,
+        "event_date_bar_present": true,
+        "first_three_bars_after_event": [
+          {
+            "close": 12.306,
+            "date": "2014-05-02",
+            "volume": 54400.0
+          },
+          {
+            "close": 12.28,
+            "date": "2014-05-05",
+            "volume": 69800.0
+          },
+          {
+            "close": 12.32,
+            "date": "2014-05-06",
+            "volume": 22100.0
+          }
+        ],
+        "last_three_bars_on_or_before_event": [
+          {
+            "close": 12.16,
+            "date": "2014-04-29",
+            "volume": 28200.0
+          },
+          {
+            "close": 12.51,
+            "date": "2014-04-30",
+            "volume": 99700.0
+          },
+          {
+            "close": 12.59,
+            "date": "2014-05-01",
+            "volume": 55700.0
+          }
+        ],
+        "price_partition_path": "data/corrections/corporate_action_basis_48fcfde04e3c_materialized_v1/data/lake_sharadar/ohlcv_1d/instrument_id=XUSE:CASH:MHGVYUSD/year=2014/data.parquet",
+        "price_partition_sha256": "4b31dc130eccecdf50187cdb2f9661ba2fce7c9311e491f300927ad9de1f5a1c"
+      },
+      "prior_context_classification": "PLAIN_SPLIT_WITHOUT_LIFECYCLE_CONTEXT",
+      "ratio_repair_authorized": false,
+      "required_fragments": [
+        "As filed with the Securities and Exchange Commission on April 30, 2014",
+        "American Depositary Shares, each representing 1 ordinary share",
+        "New York Stock Exchange"
+      ],
+      "required_fragments_verified": [
+        "As filed with the Securities and Exchange Commission on April 30, 2014",
+        "American Depositary Shares, each representing 1 ordinary share",
+        "New York Stock Exchange"
+      ],
+      "retrieved_sha256": "fec7e77f578d1c21d62ae3b430d5afe91473411782f9d4cb00d28555f37d866b",
+      "stored_ratio": 0.1,
+      "ticker": "MHGVY",
+      "url": "https://www.sec.gov/Archives/edgar/data/1578526/000110465914032214/a14-11076_120f.htm"
+    },
+    {
+      "conflict": "ISSUER_DATE_MISMATCH_AND_COMPOSITE_MERGER_REPLAY_REQUIRED",
+      "ex_date": "2000-12-06 04:00:00+04:00",
+      "ex_date_ms": 976060800000,
+      "execution_authorized": false,
+      "governance_route": "HARD_QUARANTINE_ISSUER_CONFLICT_OR_DATE_MISMATCH",
+      "instrument_id": "XUSE:CASH:NVECUSD",
+      "issuer_event_date": "2000-11-20",
+      "issuer_ratio": 0.2,
+      "market_boundary": {
+        "boundary_available": true,
+        "event_date_bar_present": true,
+        "first_three_bars_after_event": [
+          {
+            "close": 1.25,
+            "date": "2000-12-07",
+            "volume": 200.0
+          },
+          {
+            "close": 1.25,
+            "date": "2000-12-08",
+            "volume": 0.0
+          },
+          {
+            "close": 1.25,
+            "date": "2000-12-11",
+            "volume": 100.0
+          }
+        ],
+        "last_three_bars_on_or_before_event": [
+          {
+            "close": 0.25,
+            "date": "2000-12-04",
+            "volume": 0.0
+          },
+          {
+            "close": 0.28,
+            "date": "2000-12-05",
+            "volume": 1000.0
+          },
+          {
+            "close": 1.88,
+            "date": "2000-12-06",
+            "volume": 2000.0
+          }
+        ],
+        "price_partition_path": "data/corrections/corporate_action_basis_48fcfde04e3c_materialized_v1/data/lake_sharadar/ohlcv_1d/instrument_id=XUSE:CASH:NVECUSD/year=2000/data.parquet",
+        "price_partition_sha256": "3227176b75afba36e81885fe4b30646b7cd1fdf474c3ebae2ea0bee02a4da86c"
+      },
+      "prior_context_classification": "PLAIN_SPLIT_WITHOUT_LIFECYCLE_CONTEXT",
+      "ratio_repair_authorized": false,
+      "required_fragments": [
+        "Effective as of November 21, 2000",
+        "all outstanding shares of common stock of Premis held as of that date were converted",
+        "on a 5:1 basis in a reverse stock-split",
+        "each shareholder of Merged NVE received 3.5 shares of stock of the Company"
+      ],
+      "required_fragments_verified": [
+        "Effective as of November 21, 2000",
+        "all outstanding shares of common stock of Premis held as of that date were converted",
+        "on a 5:1 basis in a reverse stock-split",
+        "each shareholder of Merged NVE received 3.5 shares of stock of the Company"
+      ],
+      "retrieved_sha256": "d56f7227d01ac21b879569c6f836669c05cb0e013600ccecd8b29d8f1c296a54",
+      "stored_ratio": 0.2,
+      "ticker": "NVEC",
+      "url": "https://www.sec.gov/Archives/edgar/data/724910/000091205700052325/a2032378z8-k.txt"
+    },
+    {
+      "conflict": "DUPLICATE_FROZEN_EVENT_ONE_DAY_AFTER_ISSUER_EFFECTIVE_EVENT",
+      "ex_date": "1998-04-02 04:00:00+04:00",
+      "ex_date_ms": 891475200000,
+      "execution_authorized": false,
+      "governance_route": "HARD_QUARANTINE_ISSUER_CONFLICT_OR_DATE_MISMATCH",
+      "instrument_id": "XUSE:CASH:NCI1USD",
+      "issuer_event_date": "1998-04-01",
+      "issuer_ratio": 1.5,
+      "market_boundary": {
+        "boundary_available": true,
+        "event_date_bar_present": true,
+        "first_three_bars_after_event": [
+          {
+            "close": 33.438,
+            "date": "1998-04-03",
+            "volume": 97600.0
+          },
+          {
+            "close": 32.969,
+            "date": "1998-04-06",
+            "volume": 62100.0
+          },
+          {
+            "close": 32.0,
+            "date": "1998-04-07",
+            "volume": 416400.0
+          }
+        ],
+        "last_three_bars_on_or_before_event": [
+          {
+            "close": 33.167,
+            "date": "1998-03-31",
+            "volume": 44550.0
+          },
+          {
+            "close": 32.833,
+            "date": "1998-04-01",
+            "volume": 200250.0
+          },
+          {
+            "close": 31.125,
+            "date": "1998-04-02",
+            "volume": 129000.0
+          }
+        ],
+        "price_partition_path": "data/corrections/corporate_action_basis_48fcfde04e3c_materialized_v1/data/lake_sharadar/ohlcv_1d/instrument_id=XUSE:CASH:NCI1USD/year=1998/data.parquet",
+        "price_partition_sha256": "c71cf2786b90a14aa460dba76f1f963d52a61898ab6660986a161e4c52aa7a35"
+      },
+      "prior_context_classification": "PLAIN_SPLIT_WITHOUT_LIFECYCLE_CONTEXT",
+      "ratio_repair_authorized": false,
+      "required_fragments": [
+        "a 3-2 stock split being effected in the form of a stock dividend",
+        "payable on or about April 1, 1998",
+        "to the owners of record at the close of business on March 18, 1998"
+      ],
+      "required_fragments_verified": [
+        "a 3-2 stock split being effected in the form of a stock dividend",
+        "payable on or about April 1, 1998",
+        "to the owners of record at the close of business on March 18, 1998"
+      ],
+      "retrieved_sha256": "9deaec8648f9c6efdb6c5634b21d4adcb4ea050d7d26a1551258f9b7a8bf9e29",
+      "stored_ratio": 1.5,
+      "ticker": "NCI1",
+      "url": "https://www.sec.gov/Archives/edgar/data/1019737/000095013198002261/0000950131-98-002261.txt"
+    },
+    {
+      "conflict": "ISSUER_PAYABLE_DATE_DOES_NOT_MATCH_FROZEN_EVENT_DATE",
+      "ex_date": "2001-09-20 04:00:00+04:00",
+      "ex_date_ms": 1000944000000,
+      "execution_authorized": false,
+      "governance_route": "HARD_QUARANTINE_ISSUER_CONFLICT_OR_DATE_MISMATCH",
+      "instrument_id": "XUSE:CASH:IPARUSD",
+      "issuer_event_date": "2001-09-14",
+      "issuer_ratio": 1.5,
+      "market_boundary": {
+        "boundary_available": true,
+        "event_date_bar_present": true,
+        "first_three_bars_after_event": [
+          {
+            "close": 7.75,
+            "date": "2001-09-21",
+            "volume": 20700.0
+          },
+          {
+            "close": 7.75,
+            "date": "2001-09-24",
+            "volume": 1500.0
+          },
+          {
+            "close": 7.76,
+            "date": "2001-09-25",
+            "volume": 600.0
+          }
+        ],
+        "last_three_bars_on_or_before_event": [
+          {
+            "close": 8.98,
+            "date": "2001-09-18",
+            "volume": 2500.0
+          },
+          {
+            "close": 8.45,
+            "date": "2001-09-19",
+            "volume": 15100.0
+          },
+          {
+            "close": 7.95,
+            "date": "2001-09-20",
+            "volume": 9300.0
+          }
+        ],
+        "price_partition_path": "data/corrections/corporate_action_basis_48fcfde04e3c_materialized_v1/data/lake_sharadar/ohlcv_1d/instrument_id=XUSE:CASH:IPARUSD/year=2001/data.parquet",
+        "price_partition_sha256": "2f978e70d0ba321c30dc99972a9f4a930fa42d76274ac3bdd8f233bf15e4aafe"
+      },
+      "prior_context_classification": "PLAIN_SPLIT_WITHOUT_LIFECYCLE_CONTEXT",
+      "ratio_repair_authorized": false,
+      "required_fragments": [
+        "the Board of Directors authorized a 3 for 2 stock split",
+        "in the form of a 50% dividend",
+        "payable September 14, 2001"
+      ],
+      "required_fragments_verified": [
+        "the Board of Directors authorized a 3 for 2 stock split",
+        "in the form of a 50% dividend",
+        "payable September 14, 2001"
+      ],
+      "retrieved_sha256": "65c3cb861e28d9cd868ba2379d53e84b603f75163fbc3bf0e52f16a0e48f1009",
+      "stored_ratio": 1.5,
+      "ticker": "IPAR",
+      "url": "https://www.sec.gov/Archives/edgar/data/822663/000093041301501460/c22238_10q.txt"
+    },
+    {
+      "conflict": "ISSUER_DATE_MISMATCH_AND_COMPOSITE_MERGER_REPLAY_REQUIRED",
+      "ex_date": "2009-02-06 04:00:00+04:00",
+      "ex_date_ms": 1233878400000,
+      "execution_authorized": false,
+      "governance_route": "HARD_QUARANTINE_ISSUER_CONFLICT_OR_DATE_MISMATCH",
+      "instrument_id": "XUSE:CASH:PRTKUSD",
+      "issuer_event_date": "2009-01-30",
+      "issuer_ratio": 0.2,
+      "market_boundary": {
+        "boundary_available": true,
+        "event_date_bar_present": true,
+        "first_three_bars_after_event": [
+          {
+            "close": 3.958,
+            "date": "2009-02-09",
+            "volume": 1300.0
+          },
+          {
+            "close": 3.9,
+            "date": "2009-02-10",
+            "volume": 1650.0
+          },
+          {
+            "close": 3.98,
+            "date": "2009-02-11",
+            "volume": 67.0
+          }
+        ],
+        "last_three_bars_on_or_before_event": [
+          {
+            "close": 8.2,
+            "date": "2009-02-04",
+            "volume": 2700.0
+          },
+          {
+            "close": 7.6,
+            "date": "2009-02-05",
+            "volume": 6750.0
+          },
+          {
+            "close": 3.85,
+            "date": "2009-02-06",
+            "volume": 4292.0
+          }
+        ],
+        "price_partition_path": "data/corrections/corporate_action_basis_48fcfde04e3c_materialized_v1/data/lake_sharadar/ohlcv_1d/instrument_id=XUSE:CASH:PRTKUSD/year=2009/data.parquet",
+        "price_partition_sha256": "6070e58c7ce0397a2980cf00da9aedb67c2502c61195b9b708f8430d5a822f63"
+      },
+      "prior_context_classification": "PLAIN_SPLIT_WITHOUT_LIFECYCLE_CONTEXT",
+      "ratio_repair_authorized": false,
+      "required_fragments": [
+        "Also on January 30, 2009, in connection with the Merger",
+        "Novacea effected a 1-for-5 reverse stock split",
+        "issued shares of common stock to the TPI stockholders at the rate of 0.14134 shares"
+      ],
+      "required_fragments_verified": [
+        "Also on January 30, 2009, in connection with the Merger",
+        "Novacea effected a 1-for-5 reverse stock split",
+        "issued shares of common stock to the TPI stockholders at the rate of 0.14134 shares"
+      ],
+      "retrieved_sha256": "98dd46fd05715901dff86a9db2766954034cd45a6e4456dc13637d1bfe16dd2d",
+      "stored_ratio": 0.2,
+      "ticker": "PRTK",
+      "url": "https://www.sec.gov/Archives/edgar/data/1178711/000119312509020145/d8k.htm"
+    },
+    {
+      "conflict": "ISSUER_PAYABLE_DATE_DOES_NOT_MATCH_FROZEN_EVENT_DATE",
+      "ex_date": "1999-04-16 04:00:00+04:00",
+      "ex_date_ms": 924220800000,
+      "execution_authorized": false,
+      "governance_route": "HARD_QUARANTINE_ISSUER_CONFLICT_OR_DATE_MISMATCH",
+      "instrument_id": "XUSE:CASH:USBUSD",
+      "issuer_event_date": "1998-05-18",
+      "issuer_ratio": 3.0,
+      "market_boundary": {
+        "boundary_available": true,
+        "event_date_bar_present": true,
+        "first_three_bars_after_event": [
+          {
+            "close": 34.25,
+            "date": "1999-04-19",
+            "volume": 1449000.0
+          },
+          {
+            "close": 33.875,
+            "date": "1999-04-20",
+            "volume": 1042000.0
+          },
+          {
+            "close": 34.5,
+            "date": "1999-04-21",
+            "volume": 963000.0
+          }
+        ],
+        "last_three_bars_on_or_before_event": [
+          {
+            "close": 34.562,
+            "date": "1999-04-14",
+            "volume": 1990000.0
+          },
+          {
+            "close": 34.229,
+            "date": "1999-04-15",
+            "volume": 1705000.0
+          },
+          {
+            "close": 33.312,
+            "date": "1999-04-16",
+            "volume": 1557000.0
+          }
+        ],
+        "price_partition_path": "data/corrections/corporate_action_basis_48fcfde04e3c_materialized_v1/data/lake_sharadar/ohlcv_1d/instrument_id=XUSE:CASH:USBUSD/year=1999/data.parquet",
+        "price_partition_sha256": "6ace0871aec751bc2d7141dee57b8fff843518c6fb5211a5b8955aaef5d3b44e"
+      },
+      "prior_context_classification": "PLAIN_SPLIT_WITHOUT_LIFECYCLE_CONTEXT",
+      "ratio_repair_authorized": false,
+      "required_fragments": [
+        "the three-for-one split of the Company's common stock",
+        "announced February 18, 1998",
+        "a 200 percent dividend payable May 18, 1998"
+      ],
+      "required_fragments_verified": [
+        "the three-for-one split of the Company's common stock",
+        "announced February 18, 1998",
+        "a 200 percent dividend payable May 18, 1998"
+      ],
+      "retrieved_sha256": "3f31f58bacfc40783611866b105b0847341028c57b35172f4f3987dbf9a7dc55",
+      "stored_ratio": 3.0,
+      "ticker": "USB",
+      "url": "https://www.sec.gov/Archives/edgar/data/36104/000104746999007568/0001047469-99-007568.txt"
+    },
+    {
+      "conflict": "ISSUER_EFFECTIVE_AND_FIRST_TRADING_DATES_DO_NOT_MATCH_FROZEN_EVENT_DATE",
+      "ex_date": "2003-10-17 04:00:00+04:00",
+      "ex_date_ms": 1066348800000,
+      "execution_authorized": false,
+      "governance_route": "HARD_QUARANTINE_ISSUER_CONFLICT_OR_DATE_MISMATCH",
+      "instrument_id": "XUSE:CASH:PRGN1USD",
+      "issuer_event_date": "2003-08-07",
+      "issuer_first_new_stock_trading_date": "2003-08-08",
+      "issuer_ratio": 0.020510800987800174,
+      "market_boundary": {
+        "boundary_available": true,
+        "event_date_bar_present": true,
+        "first_three_bars_after_event": [
+          {
+            "close": 19.05,
+            "date": "2003-10-20",
+            "volume": 400.0
+          },
+          {
+            "close": 19.6,
+            "date": "2003-10-21",
+            "volume": 3000.0
+          },
+          {
+            "close": 19.55,
+            "date": "2003-10-22",
+            "volume": 38700.0
+          }
+        ],
+        "last_three_bars_on_or_before_event": [
+          {
+            "close": 0.08,
+            "date": "2003-10-15",
+            "volume": 0.0
+          },
+          {
+            "close": 0.08,
+            "date": "2003-10-16",
+            "volume": 0.0
+          },
+          {
+            "close": 19.75,
+            "date": "2003-10-17",
+            "volume": 50900.0
+          }
+        ],
+        "price_partition_path": "data/corrections/corporate_action_basis_48fcfde04e3c_materialized_v1/data/lake_sharadar/ohlcv_1d/instrument_id=XUSE:CASH:PRGN1USD/year=2003/data.parquet",
+        "price_partition_sha256": "4ac90fdbaa40a3337629fc98bd5b53075cb2bab7ef8ce85c14369bbad7e2f8ff"
+      },
+      "prior_context_classification": "PLAIN_SPLIT_WITHOUT_LIFECYCLE_CONTEXT",
+      "ratio_repair_authorized": false,
+      "required_fragments": [
+        "all shares of our old common stock were cancelled on August 7, 2003",
+        "Since August 8, 2003, our new common stock has been traded",
+        "one share of new common stock for every 48.7548 shares of old common stock",
+        "Based on a settlement reached in November 2003"
+      ],
+      "required_fragments_verified": [
+        "all shares of our old common stock were cancelled on August 7, 2003",
+        "Since August 8, 2003, our new common stock has been traded",
+        "one share of new common stock for every 48.7548 shares of old common stock",
+        "Based on a settlement reached in November 2003"
+      ],
+      "retrieved_sha256": "7505c55c918f6ba14ec59c38fa845cc2ecdf52601105d5419d6d6aebee86aa38",
+      "stored_ratio": 0.02051,
+      "ticker": "PRGN1",
+      "url": "https://www.sec.gov/Archives/edgar/data/1031107/000104746904014838/a2134573z10-k.htm"
+    },
+    {
+      "conflict": "ISSUER_STOCK_BONUS_DATE_DOES_NOT_MATCH_FROZEN_EVENT_DATE",
+      "ex_date": "2005-06-09 04:00:00+04:00",
+      "ex_date_ms": 1118275200000,
+      "execution_authorized": false,
+      "governance_route": "HARD_QUARANTINE_ISSUER_CONFLICT_OR_DATE_MISMATCH",
+      "instrument_id": "XUSE:CASH:ABEVUSD",
+      "issuer_event_date": "2005-05-31",
+      "issuer_ratio": 1.2,
+      "market_boundary": {
+        "boundary_available": true,
+        "event_date_bar_present": true,
+        "first_three_bars_after_event": [
+          {
+            "close": 22.0,
+            "date": "2005-06-10",
+            "volume": 4795000.0
+          },
+          {
+            "close": 23.95,
+            "date": "2005-06-13",
+            "volume": 3295000.0
+          },
+          {
+            "close": 24.18,
+            "date": "2005-06-14",
+            "volume": 5990000.0
+          }
+        ],
+        "last_three_bars_on_or_before_event": [
+          {
+            "close": 42.0,
+            "date": "2005-06-07",
+            "volume": 0.0
+          },
+          {
+            "close": 42.0,
+            "date": "2005-06-08",
+            "volume": 0.0
+          },
+          {
+            "close": 21.45,
+            "date": "2005-06-09",
+            "volume": 1105000.0
+          }
+        ],
+        "price_partition_path": "data/corrections/corporate_action_basis_48fcfde04e3c_materialized_v1/data/lake_sharadar/ohlcv_1d/instrument_id=XUSE:CASH:ABEVUSD/year=2005/data.parquet",
+        "price_partition_sha256": "c1a574259e8808a42b8d8f6c0f2aaa8f07c1a1c6f89f4ae0c03c51e6cef6b913"
+      },
+      "prior_context_classification": "PLAIN_SPLIT_WITHOUT_LIFECYCLE_CONTEXT",
+      "ratio_repair_authorized": false,
+      "required_fragments": [
+        "payment by AmBev of a common stock dividend in May 2005",
+        "one common share for each five shares owned",
+        "stock bonus issued on May 31, 2005"
+      ],
+      "required_fragments_verified": [
+        "payment by AmBev of a common stock dividend in May 2005",
+        "one common share for each five shares owned",
+        "stock bonus issued on May 31, 2005"
+      ],
+      "retrieved_sha256": "64737b9c807239b12039a8220354e43565e046e3727782607f9f617eb85eaaca",
+      "stored_ratio": 1.2,
+      "ticker": "ABEV",
+      "url": "https://www.sec.gov/Archives/edgar/data/1113172/000114420407063976/v089496_20-f.htm"
+    },
+    {
+      "conflict": "ISSUER_REVERSE_SPLIT_DATE_DOES_NOT_MATCH_FROZEN_EVENT_DATE",
+      "ex_date": "2001-06-22 04:00:00+04:00",
+      "ex_date_ms": 993168000000,
+      "execution_authorized": false,
+      "governance_route": "HARD_QUARANTINE_ISSUER_CONFLICT_OR_DATE_MISMATCH",
+      "instrument_id": "XUSE:CASH:EUSD",
+      "issuer_event_date": "2001-06-18",
+      "issuer_ratio": 0.5,
+      "market_boundary": {
+        "boundary_available": true,
+        "event_date_bar_present": true,
+        "first_three_bars_after_event": [
+          {
+            "close": 64.58,
+            "date": "2001-06-25",
+            "volume": 76000.0
+          },
+          {
+            "close": 64.88,
+            "date": "2001-06-26",
+            "volume": 55500.0
+          },
+          {
+            "close": 63.88,
+            "date": "2001-06-27",
+            "volume": 75000.0
+          }
+        ],
+        "last_three_bars_on_or_before_event": [
+          {
+            "close": 63.02,
+            "date": "2001-06-20",
+            "volume": 134000.0
+          },
+          {
+            "close": 62.4,
+            "date": "2001-06-21",
+            "volume": 197000.0
+          },
+          {
+            "close": 63.8,
+            "date": "2001-06-22",
+            "volume": 210000.0
+          }
+        ],
+        "price_partition_path": "data/corrections/corporate_action_basis_48fcfde04e3c_materialized_v1/data/lake_sharadar/ohlcv_1d/instrument_id=XUSE:CASH:EUSD/year=2001/data.parquet",
+        "price_partition_sha256": "b78236efc9b24ab5316db6774c13c2e24d00bd403a96cec731b2b7da8b6de1a8"
+      },
+      "prior_context_classification": "PLAIN_SPLIT_WITHOUT_LIFECYCLE_CONTEXT",
+      "ratio_repair_authorized": false,
+      "required_fragments": [
+        "group two shares of nominal value euro 0.5 into one share",
+        "The conversion, due to EU requirements, was effective from June 18, 2001",
+        "Starting from the same date, each ADS represents five Eni Shares",
+        "2 for 1 reverse stock split"
+      ],
+      "required_fragments_verified": [
+        "group two shares of nominal value euro 0.5 into one share",
+        "The conversion, due to EU requirements, was effective from June 18, 2001",
+        "Starting from the same date, each ADS represents five Eni Shares",
+        "2 for 1 reverse stock split"
+      ],
+      "retrieved_sha256": "b120060b8669f22a0526fe5eeafae308055f51b55b53329ea6ae645e5be23184",
+      "stored_ratio": 0.5,
+      "ticker": "E",
+      "url": "https://www.sec.gov/Archives/edgar/data/1002242/000131143505000018/sj0605en20f2.htm"
+    },
+    {
+      "conflict": "STORED_RATIO_MATCHES_RIGHTS_PRICE_NOT_ISSUER_SHARE_MUTATION",
+      "ex_date": "1998-06-09 04:00:00+04:00",
+      "ex_date_ms": 897350400000,
+      "execution_authorized": false,
+      "governance_route": "HARD_QUARANTINE_ISSUER_CONFLICT_OR_DATE_MISMATCH",
+      "instrument_id": "XUSE:CASH:EXMCQUSD",
+      "issuer_ratio": 1.0,
+      "issuer_terms_date": "1998-08-14",
+      "market_boundary": {
+        "boundary_available": true,
+        "event_date_bar_present": true,
+        "first_three_bars_after_event": [
+          {
+            "close": 1.359,
+            "date": "1998-06-10",
+            "volume": 0.0
+          },
+          {
+            "close": 1.359,
+            "date": "1998-06-11",
+            "volume": 0.0
+          },
+          {
+            "close": 1.383,
+            "date": "1998-06-12",
+            "volume": 533.3
+          }
+        ],
+        "last_three_bars_on_or_before_event": [
+          {
+            "close": 0.234,
+            "date": "1998-06-05",
+            "volume": 0.0
+          },
+          {
+            "close": 0.234,
+            "date": "1998-06-08",
+            "volume": 0.0
+          },
+          {
+            "close": 1.359,
+            "date": "1998-06-09",
+            "volume": 1333.3
+          }
+        ],
+        "price_partition_path": "data/corrections/corporate_action_basis_48fcfde04e3c_materialized_v1/data/lake_sharadar/ohlcv_1d/instrument_id=XUSE:CASH:EXMCQUSD/year=1998/data.parquet",
+        "price_partition_sha256": "a51c00d53493afaf11a8fd620057cb489dfff10e060acf0ab3035ccf0413bc2b"
+      },
+      "prior_context_classification": "PLAIN_SPLIT_WITHOUT_LIFECYCLE_CONTEXT",
+      "ratio_repair_authorized": false,
+      "required_fragments": [
+        "49,741,018 and 49,660,359 issued and outstanding",
+        "The number of shares outstanding of registrant's Common Stock",
+        "as of July 31, 1998 was 49,766,256",
+        "Each five rights will entitle the holder to purchase one share",
+        "exercise price of $.05 per right"
+      ],
+      "required_fragments_verified": [
+        "49,741,018 and 49,660,359 issued and outstanding",
+        "The number of shares outstanding of registrant's Common Stock",
+        "as of July 31, 1998 was 49,766,256",
+        "Each five rights will entitle the holder to purchase one share",
+        "exercise price of $.05 per right"
+      ],
+      "retrieved_sha256": "7c02eb3291445dc139e442f83b080e1d270a9eeca97c100d68d23cdd3e5940d1",
+      "stored_ratio": 0.05,
+      "ticker": "EXMCQ",
+      "url": "https://www.sec.gov/Archives/edgar/data/725282/000072528298000006/0000725282-98-000006.txt"
+    },
+    {
+      "conflict": "FROZEN_EVENT_PREDATES_ISSUER_FORMATION_AND_TICKER_TRADING",
+      "ex_date": "2000-11-10 04:00:00+04:00",
+      "ex_date_ms": 973814400000,
+      "execution_authorized": false,
+      "governance_route": "HARD_QUARANTINE_ISSUER_CONFLICT_OR_DATE_MISMATCH",
+      "instrument_id": "XUSE:CASH:AZAAUSD",
+      "issuer_evidence": {
+        "azaa_trading_start_date": "2003-10-01",
+        "issuer_incorporation_month": "2000-12"
+      },
+      "issuer_ratio": 1.0,
+      "issuer_terms_date": "2004-03-30",
+      "market_boundary": {
+        "boundary_available": false,
+        "first_price_date": null,
+        "last_price_date": null,
+        "reason": "NO_FROZEN_TICKER_LIFECYCLE"
+      },
+      "prior_context_classification": "PLAIN_SPLIT_WITHOUT_LIFECYCLE_CONTEXT",
+      "ratio_repair_authorized": false,
+      "required_fragments": [
+        "The Company was incorporated in Nevada in December 2000",
+        "began trading on October 1, 2003",
+        "under the symbol \"AZAA\""
+      ],
+      "required_fragments_verified": [
+        "The Company was incorporated in Nevada in December 2000",
+        "began trading on October 1, 2003",
+        "under the symbol \"AZAA\""
+      ],
+      "retrieved_sha256": "573f9234438939b91bbf113e4d514ce18458a94a045ce2678d835c6def2650de",
+      "stored_ratio": 2.0,
+      "ticker": "AZAA",
+      "url": "https://www.sec.gov/Archives/edgar/data/1141880/000109432804000079/arizona10ksb041404woex.txt"
+    }
+  ],
+  "retrieved_at": "2026-08-23T07:38:44.891710+00:00",
+  "return_data_opened": false,
+  "schema": "canli.alphac-split-issuer-conflict-resolution-batch.v5"
+}
