@@ -99,7 +99,7 @@
     window.__MERIDIAN_PAGE = {
       id: "progress",
       chapters: [
-        "Progress", "Edge status", "The build", "Roadmap", "Colophon"
+        "Progress", "Corrections", "Edge status", "The build", "Roadmap", "Colophon"
       ],
       sceneBand: [0.0, 0.4],
       sceneStill: 0.4
@@ -125,9 +125,10 @@
     </div>
     <ul class="rail__list">
       <li><a href="#hero" class="rail__item" data-rail="0"><span class="rail__num mono-label">00</span></a></li>
-      <li><a href="#edge-status" class="rail__item" data-rail="1"><span class="rail__num mono-label">01</span></a></li>
-      <li><a href="#build" class="rail__item" data-rail="2"><span class="rail__num mono-label">02</span></a></li>
-      <li><a href="#roadmap" class="rail__item" data-rail="3"><span class="rail__num mono-label">03</span></a></li>
+      <li><a href="#corrections" class="rail__item" data-rail="1"><span class="rail__num mono-label">01</span></a></li>
+      <li><a href="#edge-status" class="rail__item" data-rail="2"><span class="rail__num mono-label">02</span></a></li>
+      <li><a href="#build" class="rail__item" data-rail="3"><span class="rail__num mono-label">03</span></a></li>
+      <li><a href="#roadmap" class="rail__item" data-rail="4"><span class="rail__num mono-label">04</span></a></li>
     </ul>
   </nav>
 
@@ -228,22 +229,48 @@
         </p>
       </div>
 
-      <a href="#edge-status" class="hero__scroll mono-label" aria-label="Scroll to edge status">
+      <a href="#corrections" class="hero__scroll mono-label" aria-label="Scroll to corrections">
         <span>Scroll</span>
         <span class="hero__scroll-line" aria-hidden="true"></span>
       </a>
     </section>
 
     <!-- =================================================================== -->
-    <!-- (01) THE EDGE STATUS                                                 -->
-    <!-- The corrections record: what the build has and has not proven,       -->
-    <!-- leading the page ahead of the build log, since the nav links here    -->
-    <!-- as "Corrections".                                                    -->
+    <!-- (01) THE CORRECTIONS RECORD                                          -->
+    <!-- Generated at prebuild by scripts/build-progress-corrections.mjs from  -->
+    <!-- every CORRECTION-prefixed entry in public/paper-state.json's          -->
+    <!-- transparency log, newest first. This leads the page, ahead of the     -->
+    <!-- build log, because the nav and the homepage link here as              -->
+    <!-- "Corrections", and a stranger clicking that word should land on a     -->
+    <!-- correction, not a phase count.                                       -->
     <!-- =================================================================== -->
-    <section class="section section--ink" id="edge-status" data-section="1" aria-labelledby="edge-head">
+    <section class="section section--ink" id="corrections" data-section="1" aria-labelledby="corrections-head">
       <span class="section__rule" aria-hidden="true"></span>
       <div class="progress__head">
-        <p class="eyebrow label"><span class="idx mono-label">01 /</span> Edge status</p>
+        <p class="eyebrow label"><span class="idx mono-label">01 /</span> Corrections</p>
+        <h2 class="progress__title display-l" id="corrections-head">
+          <span class="mask" data-chars><span class="mask__inner">The corrections we have</span></span>
+          <span class="mask" data-chars><span class="mask__inner">published against ourselves.</span></span>
+        </h2>
+        <p class="progress__lead body-l reveal-fade">
+          This is the list of corrections we have published against our own record, newest first, copied verbatim from the signed transparency log.
+        </p>
+      </div>
+      <!-- corrections:start -->
+      <!-- corrections:end -->
+      <p class="progress__lead body-l">
+        <a class="research-link label" href="/open">Read the signed chain</a>
+      </p>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- (02) THE EDGE STATUS                                                 -->
+    <!-- What the build has and has not proven, engineering versus edge.       -->
+    <!-- =================================================================== -->
+    <section class="section" id="edge-status" data-section="2" aria-labelledby="edge-head">
+      <span class="section__rule" aria-hidden="true"></span>
+      <div class="progress__head">
+        <p class="eyebrow label"><span class="idx mono-label">02 /</span> Edge status</p>
         <h2 class="progress__title display-l" id="edge-head">
           <span class="mask" data-chars><span class="mask__inner">What the build has</span></span>
           <span class="mask" data-chars><span class="mask__inner">and has not proven.</span></span>
@@ -331,12 +358,12 @@
     </section>
 
     <!-- =================================================================== -->
-    <!-- (02) HOW IT WAS BUILT                                                -->
+    <!-- (03) HOW IT WAS BUILT                                                -->
     <!-- =================================================================== -->
-    <section class="section" id="build" data-section="2" aria-labelledby="build-head">
+    <section class="section" id="build" data-section="3" aria-labelledby="build-head">
       <span class="section__rule" aria-hidden="true"></span>
       <div class="progress__head">
-        <p class="eyebrow label"><span class="idx mono-label">02 /</span> The build</p>
+        <p class="eyebrow label"><span class="idx mono-label">03 /</span> The build</p>
         <h2 class="progress__title display-l" id="build-head">
           <span class="mask" data-chars><span class="mask__inner">The integrity</span></span>
           <span class="mask" data-chars><span class="mask__inner">came first.</span></span>
@@ -359,11 +386,11 @@
     </section>
 
     <!-- =================================================================== -->
-    <!-- (02) THE TWELVE PHASES (interactive explorer)                        -->
+    <!-- (03) THE TWELVE PHASES (interactive explorer)                        -->
     <!-- =================================================================== -->
 
     <!-- =================================================================== -->
-    <!-- (02b) THE WRITTEN RECORD                                             -->
+    <!-- (04) THE WRITTEN RECORD                                              -->
     <!-- This page is the phase-by-phase ledger. The notes are the prose       -->
     <!-- version: what broke, what the arithmetic says, and what got changed   -->
     <!-- because of it. Linked here because a build log without post-mortems   -->
@@ -372,7 +399,7 @@
     <section class="section" id="written-record" aria-labelledby="written-head">
       <span class="section__rule" aria-hidden="true"></span>
       <div class="progress__head">
-        <p class="eyebrow label"><span class="idx mono-label">03 /</span> The written record</p>
+        <p class="eyebrow label"><span class="idx mono-label">04 /</span> The written record</p>
         <h2 class="progress__title display-l" id="written-head">
           <span class="mask" data-chars><span class="mask__inner">A build log without</span></span>
           <span class="mask" data-chars><span class="mask__inner">post-mortems is a</span></span>
@@ -392,12 +419,12 @@
     </section>
 
     <!-- =================================================================== -->
-    <!-- (04) THE ROADMAP                                                     -->
+    <!-- (05) THE ROADMAP                                                     -->
     <!-- =================================================================== -->
-    <section class="section roadmap-section" id="roadmap" data-section="3" aria-labelledby="roadmap-head">
+    <section class="section roadmap-section" id="roadmap" data-section="4" aria-labelledby="roadmap-head">
       <span class="section__rule" aria-hidden="true"></span>
       <div class="progress__head">
-        <p class="eyebrow label"><span class="idx mono-label">04 /</span> Roadmap</p>
+        <p class="eyebrow label"><span class="idx mono-label">05 /</span> Roadmap</p>
         <h2 class="progress__title display-l" id="roadmap-head">
           <span class="mask" data-chars><span class="mask__inner">The way forward</span></span>
           <span class="mask" data-chars><span class="mask__inner">is breadth.</span></span>
