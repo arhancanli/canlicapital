@@ -1,18 +1,20 @@
 # What Died This Week
 
-Covering the seven days ending 2026-09-06 [public/paper-state.json#transparency].
+Covering the seven days ending 2026-09-06 [public/glassbox/transparency_log.json#last_date].
 
 ## Transparency chain
 
-129 new signed entries were appended in this window, sequence 614 through 742, dated 2026-08-31, 2026-09-01, 2026-09-02, 2026-09-03, 2026-09-04, 2026-09-05 [public/glassbox/transparency_log.json#entries].
+147 new signed entries were appended in this window, sequence 614 through 760, dated 2026-08-31, 2026-09-01, 2026-09-02, 2026-09-03, 2026-09-04, 2026-09-05, 2026-09-06 [public/glassbox/transparency_log.json#entries].
 
-5 OpenTimestamps anchors were checkpointed in this window: seq 719 (pending), seq 702 (bitcoin, block 965385), seq 683 (bitcoin, block 965232), seq 661 (bitcoin, block 965093), seq 636 (bitcoin, block 964946) [public/glassbox/ots/anchors.json#anchors].
+6 OpenTimestamps anchors were checkpointed in this window: seq 743 (pending), seq 719 (bitcoin, block 965533), seq 702 (bitcoin, block 965385), seq 683 (bitcoin, block 965232), seq 661 (bitcoin, block 965093), seq 636 (bitcoin, block 964946) [public/glassbox/ots/anchors.json#anchors].
 
 ## Corrections and updates
 
 - CORRECTION 2026-09-05: the crypto sleeve did not rebalance for five weeks, and the cause was our plumbing, not the market. Its weekly rebalance failed on 2026-08-13, 2026-08-20,... [public/paper-state.json#transparency]
 - UPDATE 2026-09-06: the universe refresh named in the correction above is now wired into the live loop, through the same asset-class-scoped builder the research rebuild uses, with... [public/paper-state.json#transparency]
 - UPDATE 2026-09-06: the sizing overlay's realized-volatility leg, which the ladder note above said was also lost by the per-cycle process, is restored: each cycle now records the... [public/paper-state.json#transparency]
+- CORRECTION 2026-09-06: the /progress roadmap said the next breadth would be managed-futures trend, but that needs futures data we have not yet invested in. That sentence was wrong... [public/paper-state.json#transparency]
+- CORRECTION 2026-09-06: (engine README)  -  the known-open defects list said the sizing overlay's scale defect was open. The fix landed on 2026-08-18, the same day that entry was... [public/paper-state.json#transparency]
 
 ## Trial ledger
 
@@ -22,7 +24,11 @@ For reference, the kill log currently totals 9 killed at the deployed gauntlet, 
 
 ## Arrivals reading
 
-Arrivals reading unavailable: scripts/report-arrivals.mjs is not present in this checkout.
+- as of 2026-09-06: keys today 5 (baseline 5, delta 0) [config/arrivals-baseline.json]
+- validations today 12 (baseline 12, delta 0), total 12 [config/arrivals-baseline.json]
+- keys by referer host: unknown=5 [config/arrivals-baseline.json]
+- keys by label: smoke=2, unlabeled=2, onboarding-audit=1 [config/arrivals-baseline.json]
+- verdict: no arrival from a named source yet [config/arrivals-baseline.json]
 
 ## This is a paper record
 
