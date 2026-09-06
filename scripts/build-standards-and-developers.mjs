@@ -21,6 +21,7 @@ import {
 
 import { LIMITS, LIMITS_TEXT } from "../api/_lib/limits.js";
 import { MANIFEST } from "../api/_lib/manifest.js";
+import { renderAll } from "./render-snippets.mjs";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const ORIGIN = "https://canlicapital.com";
@@ -30,6 +31,16 @@ const PUB = resolve(ROOT, "public/standards/paper-evidence/v0");
 const esc = (v) =>
   String(v).replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;")
     .replaceAll('"', "&quot;").replaceAll("'", "&#39;");
+
+// curl, Python and JavaScript, side by side, generated from the SAME manifest requestExample
+// (see scripts/render-snippets.mjs). One route, three copy-ready blocks; none can name a body
+// its own handler would refuse, because a test round-trips every one of them.
+const LANG_LABEL = { curl: "curl", python: "Python", javascript: "JavaScript" };
+function snippetsBlock(m) {
+  return `<div class="dev-snippets">
+      ${renderAll(m).map(({ lang, code }) => `<div class="dev-snippet"><p class="dev-snippet-label">${esc(LANG_LABEL[lang])}</p><pre class="dev-code"><code>${esc(code)}</code></pre></div>`).join("\n      ")}
+    </div>`;
+}
 
 function publishArtifacts() {
   mkdirSync(resolve(PUB, "vectors"), { recursive: true });
@@ -219,8 +230,6 @@ function buildDevelopers() {
   const validators = MANIFEST.filter((m) => m.method === "POST" && m.keyed);
   const keysRoute = MANIFEST.find((m) => m.path === "/api/v1/keys");
   const firstValidator = validators[0];
-  const curl = (m) => `curl -X POST https://canlicapital.com${m.path} \\\n  -H "Authorization: Bearer $CANLI_KEY" -H "Content-Type: application/json" \\\n  -d '${JSON.stringify(m.requestExample)}'`;
-  const curlKeys = `curl -X POST https://canlicapital.com/api/v1/keys -H "Content-Type: application/json" -d '${JSON.stringify(keysRoute.requestExample)}'`;
 
   // Vanilla JS, no dependency, defensive: every DOM lookup checks its own result before touching
   // it, and every failure path falls back to the curl block that is always on the page. Without
@@ -357,14 +366,14 @@ ${renderProductShellHeader({ active: "" })}
         <button type="button" class="dev-button dev-button--primary" id="dev-get-key-button">Get a free key</button>
         <div class="dev-key-result" id="dev-key-result" hidden></div>
         <p class="dev-key-error" id="dev-key-error" hidden role="alert"></p>
-        <p class="dev-note">Or from a terminal:</p>
-        <pre class="dev-code"><code>${esc(curlKeys)}</code></pre>
+        <p class="dev-note">Or from a terminal, in the language you have open:</p>
+        ${snippetsBlock(keysRoute)}
         <p class="dev-note">The key is returned once. Only its hash is kept, so store it now.</p>
       </li>
       <li class="dev-step">
         <h3>2. Validate your own numbers</h3>
         <p class="dev-note">${esc(firstValidator.summary)}</p>
-        <pre class="dev-code"><code>${esc(curl(firstValidator))}</code></pre>
+        ${snippetsBlock(firstValidator)}
         <p class="dev-note">The other three validators are documented <a href="#validation">below</a>.</p>
       </li>
       <li class="dev-step">
@@ -398,10 +407,10 @@ ${renderProductShellHeader({ active: "" })}
       </tbody>
     </table>
     <h3>First, issue a key</h3>
-    <pre class="dev-code"><code>${esc(curlKeys)}</code></pre>
+    ${snippetsBlock(keysRoute)}
     <p class="dev-note">The key is returned once. Only its hash is kept.</p>
     <h3>Then validate</h3>
-    ${validators.map((m) => `<article class="dev-endpoint"><h4><code>${esc(m.method)} ${esc(m.path)}</code></h4><p>${esc(m.summary)}</p><pre class="dev-code"><code>${esc(curl(m))}</code></pre></article>`).join("\n    ")}
+    ${validators.map((m) => `<article class="dev-endpoint"><h4><code>${esc(m.method)} ${esc(m.path)}</code></h4><p>${esc(m.summary)}</p>${snippetsBlock(m)}</article>`).join("\n    ")}
     <h3>Then cite the receipt</h3>
     <p class="dev-note">Every verdict carries <code>receipt.url</code>. <code>GET /api/v1/receipts/{id}</code>
       returns the stored output, the input hash, and the content hash of every core and contract that
