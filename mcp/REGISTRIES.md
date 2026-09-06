@@ -1,10 +1,12 @@
 # Registry listings for canli-validation-mcp
 
 This file is the exact sequence for the three MCP registries research turned up
-(`docs/superpowers/plans/2026-09-06-earned-mentions.md`, section 3). Nothing in it has been run:
-no `npm publish`, no `mcp-publisher publish`, no site submission. It exists so the owner can copy
-commands rather than re-derive them, and so the honest blockers are written down before they turn
-into a confusing CLI error.
+(`docs/superpowers/plans/2026-09-06-earned-mentions.md`, section 3). Status on 2026-09-06: the
+owner published `canli-validation-mcp@0.1.1` to npm and `mcp-publisher publish` listed
+`io.github.arhancanli/canli-validation-mcp` 0.1.1 as active in the official registry (the search
+URL in step 4 returns it). Smithery and Glama below have not been submitted. The file exists so
+the owner can copy commands rather than re-derive them, and so the honest blockers are written
+down before they turn into a confusing CLI error.
 
 ## Official registry (registry.modelcontextprotocol.io)
 
