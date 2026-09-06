@@ -24,6 +24,7 @@ This file is the complete text of the research published at https://canlicapital
 - [Status](https://canlicapital.com/performance): The honest numbers and what each one is and is not.
 - [Verify](https://canlicapital.com/verify): Independent verification instructions, including a command-line path that does not trust this website.
 - [Engineering](https://canlicapital.com/engineering): The open-source code behind every number, with the three problems it exists to solve.
+- [Tools](https://canlicapital.com/tools): Every interactive calculator in one index, source-bound to the same code the site's own numbers run through.
 
 ## Open source
 
@@ -47,6 +48,8 @@ Post-mortems and derivations. These describe method and engineering; none is a p
 - [OpenAPI 3.1 document](https://canlicapital.com/api/v1/openapi): generated from the endpoints that exist, so it cannot document a route that does not.
 - [Discovery document](https://canlicapital.com/api/v1): every endpoint, with the limits of the API as a whole.
 - [canli.paper-evidence.v0](https://canlicapital.com/standards/paper-evidence): a proposed open standard for paper-trading evidence. Its required fields are the ones a performance claim usually omits, including a mandatory list of what the record does NOT establish. Schema, 12 conformance vectors and a zero-dependency validator are published; there are no independent implementations yet.
+- [MCP server](https://www.npmjs.com/package/canli-validation-mcp): `npx -y canli-validation-mcp`. Wraps the same validation API as callable tools for a coding agent: issue a free key, validate a Sharpe ratio or a backtest, fetch a receipt, check service status.
+- [GitHub Action](https://github.com/arhancanli/validate-backtest-action): `uses: arhancanli/validate-backtest-action@v0`. Runs the same validation API against a submitted return series inside CI, so a failing check can gate a merge.
 
 ## Evidence and corrections
 

@@ -1,6 +1,6 @@
 {
   "schema": "canli.engineering-open-source.v2",
-  "generated_at": "2026-08-27T08:09:07Z",
+  "generated_at": "2026-09-06T16:02:29Z",
   "engine": {
     "repo": "alphac",
     "url": "https://github.com/arhancanli/alphac",
@@ -160,5 +160,24 @@
     "local_check_result": "passed on every run, because it compared the leaked files to their own source",
     "resolution": "The extractor now builds its allowed set from git ls-files in the engine, and the repository history was rebuilt so the files appear in no commit."
   },
-  "content_hash": "sha256:a9d9f3729ac2145526030c003970797244e8e413f45f3f20fb8dff77a6bc3d35"
+  "developer_interfaces": [
+    {
+      "name": "canli-validation-mcp",
+      "kind": "MCP server",
+      "version": "0.1.0",
+      "url": "https://www.npmjs.com/package/canli-validation-mcp",
+      "install": "npx -y canli-validation-mcp",
+      "files_source": 2,
+      "files_test": 4,
+      "note": "Wraps the same validation API as callable tools, published from this repository's mcp/ directory."
+    },
+    {
+      "name": "validate-backtest-action",
+      "kind": "GitHub Action",
+      "url": "https://github.com/arhancanli/validate-backtest-action",
+      "usage": "uses: arhancanli/validate-backtest-action@v0",
+      "note": "Runs the same validation API against a submitted return series inside CI. A separate repository from this checkout, so no file count is claimed here."
+    }
+  ],
+  "content_hash": "sha256:086ffba9099ff22bbed2d89a437b1b8812e7d890930da2bdf3749b0d43e53c5f"
 }
