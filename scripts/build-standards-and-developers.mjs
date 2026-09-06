@@ -347,6 +347,16 @@ function buildDevelopers() {
     wire();
   }
 })();`;
+  // The browser calculators that compute the same arithmetic as one of these routes. Only
+  // routes with an actual matching tool are listed: the Selection Risk and Execution Reality
+  // labs run synthetic demonstrations with no general-purpose API equivalent, so they are not
+  // named here rather than pointed at a route that would not agree with them.
+  const TOOL_PAGE_FOR = {
+    "/api/v1/validate/deflated-sharpe": "/tools/deflated-sharpe",
+    "/api/v1/validate/overfitting": "/tools/backtest-overfitting",
+    "/api/v1/validate/breadth": "/tools/breadth",
+  };
+  const endpointSlug = (path) => path.split("/").pop();
 
   const description =
     "A read API over the Canli Capital paper record, and a free keyed API that runs your numbers " +
@@ -449,7 +459,7 @@ ${renderProductShellHeader({ active: "developers" })}
     ${keysSnippetsBlock()}
     <p class="dev-note">The key is returned once. Only its hash is kept.</p>
     <h3>Then validate</h3>
-    ${validators.map((m) => `<article class="dev-endpoint"><h4><code>${esc(m.method)} ${esc(m.path)}</code></h4><p>${esc(m.summary)}</p>${snippetsBlock(m)}</article>`).join("\n    ")}
+    ${validators.map((m) => `<article class="dev-endpoint" id="api-${esc(endpointSlug(m.path))}"><h4><code>${esc(m.method)} ${esc(m.path)}</code></h4><p>${esc(m.summary)}</p>${snippetsBlock(m)}${TOOL_PAGE_FOR[m.path] ? `<p class="dev-note"><a href="${esc(TOOL_PAGE_FOR[m.path])}">Try it in the browser, no key required</a></p>` : ""}</article>`).join("\n    ")}
     <h3>Then cite the receipt</h3>
     <p class="dev-note">Every verdict carries <code>receipt.url</code>. <code>GET /api/v1/receipts/{id}</code>
       returns the stored output, the input hash, and the content hash of every core and contract that

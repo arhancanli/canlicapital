@@ -158,6 +158,7 @@ export default defineConfig({
         selectionRisk: resolve(root, "tools", "selection-risk.html"),
         breadth: resolve(root, "tools", "breadth.html"),
         execution: resolve(root, "tools", "execution.html"),
+        backtestOverfitting: resolve(root, "tools", "backtest-overfitting.html"),
         ...noteEntries(),
         ...paperEntries(),
         ...measurementEntries(),

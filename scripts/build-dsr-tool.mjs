@@ -291,6 +291,11 @@ ${renderProductShellHeader({ active: "methodology" })}
       <a href="${reference.url}" rel="noreferrer"><span>Primary paper</span><strong>Bailey and López de Prado</strong><small>${escapeHtml(reference.publication)}</small></a>
     </div>
     <p class="dsr-source__boundary">${escapeHtml(contract.claim_boundary)}</p>
+    <p class="dsr-source__boundary">A deflated Sharpe asks whether one result survives the search
+      that produced it. <a href="/tools/backtest-overfitting">The probability of backtest overfitting
+      calculator</a> asks the sharper question of whether the in-sample winner predicts anything
+      out of sample. Run the same arithmetic against your own numbers through
+      <a href="/developers#api-deflated-sharpe">the validation API</a>.</p>
   </section>
 </main>
 ${renderProductShellFooter()}

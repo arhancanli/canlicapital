@@ -333,7 +333,7 @@ console.log(await response.json());</code></pre></div>
     </div>
     <p class="dev-note">The key is returned once. Only its hash is kept.</p>
     <h3>Then validate</h3>
-    <article class="dev-endpoint"><h4><code>POST /api/v1/validate/deflated-sharpe</code></h4><p>Probabilistic and deflated Sharpe from the seven contract inputs, or from a return series plus the trials behind it.</p><div class="dev-mode">
+    <article class="dev-endpoint" id="api-deflated-sharpe"><h4><code>POST /api/v1/validate/deflated-sharpe</code></h4><p>Probabilistic and deflated Sharpe from the seven contract inputs, or from a return series plus the trials behind it.</p><div class="dev-mode">
       <p class="dev-note"><strong>Mode 1: the seven contract inputs</strong></p>
       <div class="dev-snippets">
       <div class="dev-snippet"><p class="dev-snippet-label">curl</p><pre class="dev-code"><code>curl -X POST https://canlicapital.com/api/v1/validate/deflated-sharpe \
@@ -382,8 +382,8 @@ const response = await fetch(&quot;https://canlicapital.com/api/v1/validate/defl
 });
 console.log(await response.json());</code></pre></div>
       </div>
-    </div></article>
-    <article class="dev-endpoint"><h4><code>POST /api/v1/validate/overfitting</code></h4><p>Probability of backtest overfitting by CSCV over the returns of every variant tried.</p><div class="dev-snippets">
+    </div><p class="dev-note"><a href="/tools/deflated-sharpe">Try it in the browser, no key required</a></p></article>
+    <article class="dev-endpoint" id="api-overfitting"><h4><code>POST /api/v1/validate/overfitting</code></h4><p>Probability of backtest overfitting by CSCV over the returns of every variant tried.</p><div class="dev-snippets">
       <div class="dev-snippet"><p class="dev-snippet-label">curl</p><pre class="dev-code"><code>curl -X POST https://canlicapital.com/api/v1/validate/overfitting \
   -H &quot;Authorization: Bearer $CANLI_KEY&quot; \
   -H &quot;Content-Type: application/json&quot; \
@@ -404,8 +404,8 @@ const response = await fetch(&quot;https://canlicapital.com/api/v1/validate/over
   body: JSON.stringify(body),
 });
 console.log(await response.json());</code></pre></div>
-    </div></article>
-    <article class="dev-endpoint"><h4><code>POST /api/v1/validate/paper-evidence</code></h4><p>Conformance of a performance record against the canli.paper-evidence.v0 standard.</p><div class="dev-snippets">
+    </div><p class="dev-note"><a href="/tools/backtest-overfitting">Try it in the browser, no key required</a></p></article>
+    <article class="dev-endpoint" id="api-paper-evidence"><h4><code>POST /api/v1/validate/paper-evidence</code></h4><p>Conformance of a performance record against the canli.paper-evidence.v0 standard.</p><div class="dev-snippets">
       <div class="dev-snippet"><p class="dev-snippet-label">curl</p><pre class="dev-code"><code>curl -X POST https://canlicapital.com/api/v1/validate/paper-evidence \
   -H &quot;Authorization: Bearer $CANLI_KEY&quot; \
   -H &quot;Content-Type: application/json&quot; \
@@ -427,7 +427,7 @@ const response = await fetch(&quot;https://canlicapital.com/api/v1/validate/pape
 });
 console.log(await response.json());</code></pre></div>
     </div></article>
-    <article class="dev-endpoint"><h4><code>POST /api/v1/validate/breadth</code></h4><p>Book Sharpe ceiling from per-sleeve quality and average pairwise correlation, and the sleeves a target needs.</p><div class="dev-snippets">
+    <article class="dev-endpoint" id="api-breadth"><h4><code>POST /api/v1/validate/breadth</code></h4><p>Book Sharpe ceiling from per-sleeve quality and average pairwise correlation, and the sleeves a target needs.</p><div class="dev-snippets">
       <div class="dev-snippet"><p class="dev-snippet-label">curl</p><pre class="dev-code"><code>curl -X POST https://canlicapital.com/api/v1/validate/breadth \
   -H &quot;Authorization: Bearer $CANLI_KEY&quot; \
   -H &quot;Content-Type: application/json&quot; \
@@ -448,7 +448,7 @@ const response = await fetch(&quot;https://canlicapital.com/api/v1/validate/brea
   body: JSON.stringify(body),
 });
 console.log(await response.json());</code></pre></div>
-    </div></article>
+    </div><p class="dev-note"><a href="/tools/breadth">Try it in the browser, no key required</a></p></article>
     <h3>Then cite the receipt</h3>
     <p class="dev-note">Every verdict carries <code>receipt.url</code>. <code>GET /api/v1/receipts/{id}</code>
       returns the stored output, the input hash, and the content hash of every core and contract that

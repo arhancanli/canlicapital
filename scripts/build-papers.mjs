@@ -152,6 +152,7 @@ const STATIC_ROUTES = [
   { path: "/tools/selection-risk", priority: "0.9", changefreq: "weekly" },
   { path: "/tools/breadth", priority: "0.9", changefreq: "weekly" },
   { path: "/tools/execution", priority: "0.9", changefreq: "weekly" },
+  { path: "/tools/backtest-overfitting", priority: "0.9", changefreq: "weekly" },
 ];
 
 // =============================================================================
