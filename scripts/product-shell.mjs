@@ -35,7 +35,7 @@ const SOURCE_REPOS = Object.freeze([
 
 const SECONDARY_LINKS = Object.freeze([
   { key: "progress", label: "Corrections", href: "/progress" },
-  { key: "performance", label: "Status", href: "/performance" },
+  { key: "performance", label: "Performance", href: "/performance" },
   { key: "founder", label: "Founder", href: "/founder" },
   { key: "open", label: "Open data", href: "/open" },
   { key: "measurements", label: "Measurements", href: "/measurements" },
@@ -110,7 +110,7 @@ ${renderLinks(PRIMARY_LINKS, active, "cc-shell__link")}
       </div>
       <div>
         <span class="cc-shell__panel-label">Tools</span>
-        <nav aria-label="Interactive tools">${renderLinks(TOOLS_LINKS, active, "cc-shell__panel-link")}</nav>
+        <nav aria-label="Tools">${renderLinks(TOOLS_LINKS, active, "cc-shell__panel-link")}</nav>
       </div>
       <div>
         <span class="cc-shell__panel-label">Reproducible code</span>
@@ -149,10 +149,10 @@ export function renderProductShellFooter() {
     <nav aria-label="Institution and authorship">
       <span>Institution</span>
       <a href="/progress">Corrections</a>
-      <a href="/performance">Status</a>
+      <a href="/performance">Performance</a>
       <a href="/founder">Arhan Canli</a>
     </nav>
-    <nav aria-label="Interactive tools">
+    <nav aria-label="Calculators">
       <span>Run it yourself</span>
       <a href="/tools">All calculators</a>
       <a href="/tools/deflated-sharpe">Deflated Sharpe calculator</a>
