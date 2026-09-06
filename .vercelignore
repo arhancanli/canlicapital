@@ -1,0 +1,14 @@
+# What the deploy uploads is what the build needs, nothing else. On 2026-09-06 the upload hit
+# Vercel's 15,000-file cap (15,005) because three agent worktrees under .claude/ and the local
+# dist/ rode along, and the landing deploy failed three times. Vercel rebuilds dist/ itself.
+.claude
+.bak
+.firecrawl
+.github
+dist
+test-results
+artifacts/qa
+docs
+supabase
+**/*.test.mjs
+**/*.test.js
