@@ -18,6 +18,7 @@ import {
   getKeyInput,
   getReceiptInput,
   LIMITS_SENTENCES,
+  REGISTRY_LIMITS_CLAUSE,
   overfittingInput,
   paperEvidenceInput,
   TOOL_DESCRIPTIONS,
@@ -104,6 +105,13 @@ test("every tool description states, verbatim, one sentence of the boundary lang
     const carriesOne = sentences.some((sentence) => description.includes(sentence));
     assert.ok(carriesOne, `${tool} description does not carry a limits sentence: ${description}`);
   }
+});
+
+test("the registry clause is the verbatim tail of the not-admission sentence", () => {
+  assert.ok(
+    LIMITS_SENTENCES.notAdmission.endsWith(REGISTRY_LIMITS_CLAUSE),
+    `REGISTRY_LIMITS_CLAUSE has drifted from LIMITS_SENTENCES.notAdmission: ${REGISTRY_LIMITS_CLAUSE}`,
+  );
 });
 
 test("the boundary language has not drifted from api/_lib/limits.js LIMITS_TEXT", () => {

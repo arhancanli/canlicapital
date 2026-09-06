@@ -10,7 +10,7 @@ import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import test from "node:test";
 
-import { LIMITS_SENTENCES } from "../src/schemas.mjs";
+import { LIMITS_SENTENCES, REGISTRY_DESCRIPTION_MAX, REGISTRY_LIMITS_CLAUSE } from "../src/schemas.mjs";
 
 const MCP_ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const pkg = JSON.parse(readFileSync(resolve(MCP_ROOT, "package.json"), "utf8"));
@@ -49,10 +49,22 @@ test("mcp/server.json names the published npm package and version, not a typed c
   assert.match(server.name, /^io\.github\.[\w-]+\/[\w.-]+$/);
 });
 
-test("every description in mcp/server.json carries a limits sentence, verbatim", () => {
+test("the top-level description fits the registry cap and carries the limits clause, verbatim", () => {
   const server = JSON.parse(serverJsonText);
-  const descriptions = collectDescriptions(server);
-  assert.ok(descriptions.length > 0, "at least one description field must exist");
+  assert.equal(typeof server.description, "string", "server.json must carry a top-level description");
+  assert.ok(
+    server.description.length <= REGISTRY_DESCRIPTION_MAX,
+    `registry rejects descriptions over ${REGISTRY_DESCRIPTION_MAX} characters; this one is ${server.description.length}`,
+  );
+  assert.ok(
+    server.description.includes(REGISTRY_LIMITS_CLAUSE),
+    `top-level description does not carry the registry limits clause: ${server.description}`,
+  );
+});
+
+test("every other description in mcp/server.json carries a full limits sentence, verbatim", () => {
+  const server = JSON.parse(serverJsonText);
+  const descriptions = collectDescriptions(server).filter((d) => d !== server.description);
   const sentences = Object.values(LIMITS_SENTENCES);
   for (const description of descriptions) {
     assert.ok(

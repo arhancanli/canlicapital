@@ -33,6 +33,8 @@ Until that runs, `mcp-publisher publish` below will fail with "Registry validati
 package," not because `server.json` is wrong, but because the npm package it names cannot yet
 prove who owns it. After it runs, update the `version` fields in `mcp/server.json` (both the
 top-level one and `packages[0].version`) to match the new npm version before publishing.
+The registry also caps the top-level `description` at 100 characters (a 422 reading
+"expected length <= 100"); the guard test pins that cap and the limits clause it must carry.
 
 ### Steps 1 to 4: install, log in, publish, verify
 
