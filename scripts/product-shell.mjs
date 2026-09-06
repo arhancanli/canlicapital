@@ -100,7 +100,7 @@ ${renderLinks(PRIMARY_LINKS, active, "cc-shell__link")}
         <nav aria-label="Institution routes">${renderLinks(SECONDARY_LINKS, active, "cc-shell__panel-link")}</nav>
       </div>
       <div>
-        <span class="cc-shell__panel-label">Open source</span>
+        <span class="cc-shell__panel-label">Reproducible code</span>
         <nav aria-label="Source code">${SOURCE_REPOS.map((r) => `<a class="cc-shell__panel-link" href="${r.href}"${r.external ? ' rel="noreferrer"' : ""}>${r.label}</a>`).join("\n")}</nav>
       </div>
       <p>Observed, simulated, model-estimated and planned claims remain visibly separate.</p>
