@@ -192,11 +192,17 @@ const ENDPOINTS = {
     ],
     data: {
       entries: chain.entries?.length ?? null,
+      // Same value as `entries` above, named to match the field the homepage and
+      // /open already read from the full log (entry_count), so switching either
+      // page's fetch target from the 5.7 MB decoded log to this head-only
+      // artifact requires no new field name on the reading side.
+      entry_count: chain.entry_count ?? chain.entries?.length ?? null,
       distinct_days: chain.distinct_days ?? null,
       first_date: chain.first_date ?? null,
       last_date: chain.last_date ?? null,
       head: chain.head ?? chain.entries?.at(-1) ?? null,
       public_key_ed25519_hex: chain.public_key_ed25519_hex ?? null,
+      verify: chain.verify ?? null,
     },
   }),
 };
