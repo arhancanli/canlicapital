@@ -34,9 +34,9 @@ below states entries and days as two separate numbers, never one for the other.
 
 ## 1. Hacker News story post (not Show HN)
 
-**Title** (67 characters):
+**Title** (79 characters; the site is research, not a fund, and the title must not say fund):
 
-> A quant fund that publishes every strategy it killed, signs the log
+> A quant research book that publishes every strategy it killed, and signs the log
 
 **Body** (339 words in prose, 350 including the three link lines; both inside the 250-350
 word target):
