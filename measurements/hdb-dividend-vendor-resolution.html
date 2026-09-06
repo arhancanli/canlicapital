@@ -73,6 +73,11 @@
 <a class="cc-shell__panel-link" href="/measurements" aria-current="page" data-current="true">Measurements</a></nav>
       </div>
       <div>
+        <span class="cc-shell__panel-label">Tools</span>
+        <nav aria-label="Interactive tools"><a class="cc-shell__panel-link" href="/tools">All tools</a>
+<a class="cc-shell__panel-link" href="/how-to-validate-a-backtest">How to validate a backtest</a></nav>
+      </div>
+      <div>
         <span class="cc-shell__panel-label">Reproducible code</span>
         <nav aria-label="Source code"><a class="cc-shell__panel-link" href="/engineering">Engineering hub</a>
 <a class="cc-shell__panel-link" href="/notes">Engineering notes</a>
@@ -153,8 +158,8 @@
 <dl class="measure__facts">
 <div class="measure__row"><dt>Creation time guaranteed by provider</dt><dd>no</dd></div>
 <div class="measure__row"><dt>Credentials published</dt><dd>no</dd></div>
-<div class="measure__row"><dt>Documentation</dt><dd>https://docs.alpaca.markets/us/reference/corporateactions-1</dd></div>
-<div class="measure__row"><dt>Endpoint</dt><dd>https://data.alpaca.markets/v1/corporate-actions</dd></div>
+<div class="measure__row"><dt>Documentation</dt><dd><a href="https://docs.alpaca.markets/us/reference/corporateactions-1" rel="noreferrer">Alpaca Markets API documentation</a></dd></div>
+<div class="measure__row"><dt>Endpoint</dt><dd><a href="https://data.alpaca.markets/v1/corporate-actions" rel="noreferrer">Alpaca Markets corporate actions endpoint</a></dd></div>
 <div class="measure__row"><dt>Provider</dt><dd>Alpaca Market Data corporate-actions API</dd></div>
 </dl>
 <p class="measure__prose"><strong>Provider warning.</strong> Alpaca documents that corporate-action creation time is not guaranteed and records may be delayed by upstream receipt or processing.</p>
@@ -214,7 +219,9 @@ artifact the engine wrote.</p>
     </nav>
     <nav aria-label="Interactive tools">
       <span>Run it yourself</span>
+      <a href="/tools">All calculators</a>
       <a href="/tools/deflated-sharpe">Deflated Sharpe calculator</a>
+      <a href="/tools/backtest-overfitting">Backtest overfitting calculator</a>
       <a href="/tools/selection-risk">Selection Risk Lab</a>
       <a href="/tools/breadth">Breadth Lab</a>
       <a href="/tools/execution">Execution Reality Lab</a>

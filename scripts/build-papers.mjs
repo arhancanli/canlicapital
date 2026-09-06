@@ -37,6 +37,7 @@ import {
 } from "./product-shell.mjs";
 import { discover as discoverMeasurementArtifacts, rawArtifactUrl } from "./build-measurements.mjs";
 import { gitCommitDate, artifactDate, resolveLastmod } from "./lastmod.mjs";
+import { describeProvenanceUrl } from "./describe-provenance-url.mjs";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const SOURCE_DIR = resolve(ROOT, "public/research");
@@ -518,6 +519,24 @@ function toPlainText(markdown) {
 const canonicalizeRenderedResearchLinks = (html) =>
   html.replace(/href="(\/research\/[^"]+?)\.md(#[^"]*)?"/g, 'href="$1$2"');
 
+// A source document that cites a provenance URL as bare prose ("see https://...") gets it
+// autolinked by marked's GFM renderer into `<a href="URL">URL</a>`: a real link, correctly
+// pointing at the exact source, whose VISIBLE text is a query string full of timestamps and
+// encoded parameters instead of a sentence. This finds exactly that self-referential pattern
+// (never a deliberately authored `[text](url)` link, which marked renders with different text)
+// and relabels it through the same lookup the measurement pages use, so the same source gets the
+// same name everywhere. Citation hosts (doi.org, nber.org, ssrn.com...) are left untouched:
+// describeProvenanceUrl returns null for those on purpose, because showing the reference URL
+// itself is the citation convention in a literature review, not an accident.
+const describeAutolinkedProvenanceUrls = (html) =>
+  html.replace(
+    /<a href="(https?:\/\/[^"]+)">(https?:\/\/[^<]+)<\/a>/g,
+    (full, href) => {
+      const label = describeProvenanceUrl(href);
+      return label ? `<a href="${href}" rel="noreferrer">${escapeHtml(label)}</a>` : full;
+    },
+  );
+
 /**
  * Pull the title and description out of the document itself.
  *
@@ -977,8 +996,8 @@ function main() {
 
   for (const paper of papers) {
     const { pairs, markdown } = extractFrontMatter(paper.markdown);
-    const body = mastheadHtml(pairs, paper.shortTitle) + canonicalizeRenderedResearchLinks(
-      marked.parse(markdown),
+    const body = mastheadHtml(pairs, paper.shortTitle) + describeAutolinkedProvenanceUrls(
+      canonicalizeRenderedResearchLinks(marked.parse(markdown)),
     );
     writeFileSync(
       resolve(OUT_DIR, `${paper.slug}.html`),

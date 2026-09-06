@@ -81,6 +81,11 @@
 <a class="cc-shell__panel-link" href="/measurements">Measurements</a></nav>
       </div>
       <div>
+        <span class="cc-shell__panel-label">Tools</span>
+        <nav aria-label="Interactive tools"><a class="cc-shell__panel-link" href="/tools">All tools</a>
+<a class="cc-shell__panel-link" href="/how-to-validate-a-backtest">How to validate a backtest</a></nav>
+      </div>
+      <div>
         <span class="cc-shell__panel-label">Reproducible code</span>
         <nav aria-label="Source code"><a class="cc-shell__panel-link" href="/engineering">Engineering hub</a>
 <a class="cc-shell__panel-link" href="/notes">Engineering notes</a>
@@ -117,23 +122,23 @@ support a 2Y leg, inflation swaps, or executable nominal/TIPS baskets.</p>
 <li>Gürkaynak, Sack, and Wright, <em>The TIPS Yield Curve and Inflation Compensation</em>, documents the
 fitted real-yield curve and shows that inflation compensation is affected by time-varying
 inflation-risk and early-sample liquidity premia. It supplies measurement foundations, not a
-trading rule: <a href="https://www.federalreserve.gov/pubs/feds/2008/200805/200805pap.pdf">https://www.federalreserve.gov/pubs/feds/2008/200805/200805pap.pdf</a></li>
+trading rule: <a href="https://www.federalreserve.gov/pubs/feds/2008/200805/200805pap.pdf" rel="noreferrer">Federal Reserve research page</a></li>
 <li>D&#39;Amico, Kim, and Wei, <em>Tips from TIPS</em>, estimates an explicit TIPS-liquidity factor. Their
 central warning is load-bearing here: treating breakevens as expected inflation without
 liquidity and risk-premium controls distorts the signal materially:
-<a href="https://www.federalreserve.gov/pubs/feds/2010/201019/201019pap.pdf">https://www.federalreserve.gov/pubs/feds/2010/201019/201019pap.pdf</a></li>
+<a href="https://www.federalreserve.gov/pubs/feds/2010/201019/201019pap.pdf" rel="noreferrer">Federal Reserve research page</a></li>
 <li>Kim, Walsh, and Wei&#39;s 2019 update writes the decomposition directly as expected inflation plus
 inflation-risk premium minus TIPS-liquidity premium and shows the components move through time:
-<a href="https://www.federalreserve.gov/econres/notes/feds-notes/tips-from-tips-update-and-discussions-20190521.html">https://www.federalreserve.gov/econres/notes/feds-notes/tips-from-tips-update-and-discussions-20190521.html</a></li>
+<a href="https://www.federalreserve.gov/econres/notes/feds-notes/tips-from-tips-update-and-discussions-20190521.html" rel="noreferrer">Federal Reserve research page</a></li>
 <li>The Federal Reserve&#39;s public TIPS-curve page defines the matched-maturity breakeven and warns
 that the estimates can be delayed, revised, or changed methodologically. It records a specific
 2022 historical revision, so a current download is not itself a historical-vintage archive:
-<a href="https://www.federalreserve.gov/data/tips-yield-curve-and-inflation-compensation.htm">https://www.federalreserve.gov/data/tips-yield-curve-and-inflation-compensation.htm</a></li>
+<a href="https://www.federalreserve.gov/data/tips-yield-curve-and-inflation-compensation.htm" rel="noreferrer">Federal Reserve research page</a></li>
 <li>FRED defines <code>T5YIE</code> and <code>T10YIE</code> as spreads built from constant-maturity nominal and
 inflation-indexed Treasury series. These are daily market-derived estimates, not security-level
 transaction prices, cashflows, bid/ask quotes, or total returns:
-<a href="https://fred.stlouisfed.org/series/T5YIE">https://fred.stlouisfed.org/series/T5YIE</a> and
-<a href="https://fred.stlouisfed.org/series/T10YIE">https://fred.stlouisfed.org/series/T10YIE</a></li>
+<a href="https://fred.stlouisfed.org/series/T5YIE" rel="noreferrer">fred.stlouisfed.org record</a> and
+<a href="https://fred.stlouisfed.org/series/T10YIE" rel="noreferrer">fred.stlouisfed.org record</a></li>
 </ul>
 <h2>What follows for ALPHAC</h2>
 <p>The literature forbids three flattering shortcuts. First, a breakeven-minus-realized-inflation
@@ -201,7 +206,9 @@ here establishes edge, sign, Sharpe, drawdown, capacity, or admission.</p>
     </nav>
     <nav aria-label="Interactive tools">
       <span>Run it yourself</span>
+      <a href="/tools">All calculators</a>
       <a href="/tools/deflated-sharpe">Deflated Sharpe calculator</a>
+      <a href="/tools/backtest-overfitting">Backtest overfitting calculator</a>
       <a href="/tools/selection-risk">Selection Risk Lab</a>
       <a href="/tools/breadth">Breadth Lab</a>
       <a href="/tools/execution">Execution Reality Lab</a>

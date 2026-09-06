@@ -46,6 +46,9 @@ const PUBLISHER = "Canli Capital";
 const TITLE_SUFFIX = " / Canli Capital";
 const DESCRIPTION_MAX = 165;
 import { editableDashForms, emDashCharacter, normalizeEditableCopy } from "./editable-copy.mjs";
+import { describeProvenanceUrl } from "./describe-provenance-url.mjs";
+
+const URL_VALUE = /^https?:\/\//i;
 
 const escapeHtml = (value) =>
   normalizeEditableCopy(value)
@@ -120,12 +123,21 @@ const PROSE_MIN = 80;
 
 const isScalar = (v) => v === null || ["string", "number", "boolean"].includes(typeof v);
 
+// A provenance URL (a Yahoo Finance chart endpoint, a CFTC dataset resource) is not a sentence
+// a reader chose to write; it is a value that happens to be a string starting with "http". Its
+// EXACT bytes belong in the href, unconditionally. Its VISIBLE text should be a name, not a query
+// string full of timestamps -- so every scalar renderer routes a URL through the same descriptive
+// label rather than printing it verbatim.
 function formatScalar(value) {
   if (value === null) return "Not reported";
   if (typeof value === "boolean") return value ? "yes" : "no";
   if (typeof value === "number") {
     if (Number.isInteger(value)) return escapeHtml(String(value));
     return escapeHtml(Math.abs(value) < 0.001 ? value.toExponential(3) : value.toFixed(6));
+  }
+  if (typeof value === "string" && URL_VALUE.test(value)) {
+    const label = describeProvenanceUrl(value);
+    if (label) return `<a href="${escapeHtml(value)}" rel="noreferrer">${escapeHtml(label)}</a>`;
   }
   return escapeHtml(value);
 }
@@ -161,7 +173,7 @@ function renderTable(key, rows) {
 
 function renderValue(key, value, depth, rawUrl) {
   if (isScalar(value)) {
-    if (typeof value === "string" && value.length >= PROSE_MIN) {
+    if (typeof value === "string" && value.length >= PROSE_MIN && !URL_VALUE.test(value)) {
       return `<p class="measure__prose"><strong>${escapeHtml(humanise(key))}.</strong> ${escapeHtml(value)}</p>`;
     }
     return renderScalarList([[key, value]]);
@@ -209,8 +221,11 @@ function renderBody(data, depth, rawUrl) {
   // in the field list would bury it among the numbers it is supposed to qualify.
   const entries = Object.entries(data).filter(([key]) => key !== "claim_boundary");
   // Short scalars gather into one definition list. Long prose, objects and arrays render in place,
-  // in the artifact's own order.
-  const isShortScalar = (v) => isScalar(v) && !(typeof v === "string" && v.length >= PROSE_MIN);
+  // in the artifact's own order. A URL is never prose regardless of its length: a 99-character
+  // Yahoo or CFTC endpoint is still one value that starts with "http", not a paragraph, and routing
+  // it here keeps it out of the escaped-verbatim prose branch and into formatScalar's link handling.
+  const isShortScalar = (v) =>
+    isScalar(v) && !(typeof v === "string" && v.length >= PROSE_MIN && !URL_VALUE.test(v));
   const scalars = entries.filter(([, v]) => isShortScalar(v));
   const rest = entries.filter(([, v]) => !isShortScalar(v));
   const parts = [];

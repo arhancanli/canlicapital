@@ -73,6 +73,11 @@
 <a class="cc-shell__panel-link" href="/measurements" aria-current="page" data-current="true">Measurements</a></nav>
       </div>
       <div>
+        <span class="cc-shell__panel-label">Tools</span>
+        <nav aria-label="Interactive tools"><a class="cc-shell__panel-link" href="/tools">All tools</a>
+<a class="cc-shell__panel-link" href="/how-to-validate-a-backtest">How to validate a backtest</a></nav>
+      </div>
+      <div>
         <span class="cc-shell__panel-label">Reproducible code</span>
         <nav aria-label="Source code"><a class="cc-shell__panel-link" href="/engineering">Engineering hub</a>
 <a class="cc-shell__panel-link" href="/notes">Engineering notes</a>
@@ -122,7 +127,7 @@
 <dl class="measure__facts">
 <div class="measure__row"><dt>Cash dividend rows returned</dt><dd>0</dd></div>
 <div class="measure__row"><dt>Credentials published</dt><dd>no</dd></div>
-<div class="measure__row"><dt>Endpoint</dt><dd>https://data.alpaca.markets/v1/corporate-actions</dd></div>
+<div class="measure__row"><dt>Endpoint</dt><dd><a href="https://data.alpaca.markets/v1/corporate-actions" rel="noreferrer">Alpaca Markets corporate actions endpoint</a></dd></div>
 <div class="measure__row"><dt>Provider</dt><dd>Alpaca Market Data corporate-actions API</dd></div>
 </dl>
 <p class="measure__prose"><strong>Limitation.</strong> Absence from a second provider is corroboration, not proof of complete historical coverage. The issuer filing is the governing evidence.</p>
@@ -140,13 +145,13 @@
 <section class="measure__sub"><h3>Issuer evidence</h3>
 <dl class="measure__facts">
 <div class="measure__row"><dt>Form 10k sha256</dt><dd>940488bd79570a77406b5e754b4db76eb93be8897a18a4ca553a2848806e2413</dd></div>
+<div class="measure__row"><dt>Form 10k url</dt><dd><a href="https://www.sec.gov/Archives/edgar/data/1006837/000100683721000027/hchc-20201231.htm" rel="noreferrer">SEC EDGAR filing record</a></dd></div>
 <div class="measure__row"><dt>Period of report</dt><dd>2020-12-31</dd></div>
 <div class="measure__row"><dt>Provider</dt><dd>U.S. Securities and Exchange Commission</dd></div>
 <div class="measure__row"><dt>Same date form 8k subject</dt><dd>board reconstitution and governance settlement</dd></div>
+<div class="measure__row"><dt>Same date form 8k url</dt><dd><a href="https://www.sec.gov/Archives/edgar/data/1006837/000110465920061613/tm2019732d1_8k.htm" rel="noreferrer">SEC EDGAR filing record</a></dd></div>
 </dl>
 <p class="measure__prose"><strong>Finding.</strong> The issuer says it did not anticipate paying cash dividends in the foreseeable future and separately reports preferred-share dividends. No common-share cash dividend corresponding to the source row is established.</p>
-<p class="measure__prose"><strong>Form 10k url.</strong> https://www.sec.gov/Archives/edgar/data/1006837/000100683721000027/hchc-20201231.htm</p>
-<p class="measure__prose"><strong>Same date form 8k url.</strong> https://www.sec.gov/Archives/edgar/data/1006837/000110465920061613/tm2019732d1_8k.htm</p>
 </section>
 <section class="measure__sub"><h3>Lineage</h3>
 <dl class="measure__facts">
@@ -216,7 +221,9 @@ artifact the engine wrote.</p>
     </nav>
     <nav aria-label="Interactive tools">
       <span>Run it yourself</span>
+      <a href="/tools">All calculators</a>
       <a href="/tools/deflated-sharpe">Deflated Sharpe calculator</a>
+      <a href="/tools/backtest-overfitting">Backtest overfitting calculator</a>
       <a href="/tools/selection-risk">Selection Risk Lab</a>
       <a href="/tools/breadth">Breadth Lab</a>
       <a href="/tools/execution">Execution Reality Lab</a>
