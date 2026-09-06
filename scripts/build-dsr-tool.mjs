@@ -185,11 +185,11 @@ ${renderProductShellHeader({ active: "methodology" })}
       </div>
     </div>
     <aside class="dsr-union" aria-label="Current ALPHAC trial accounting preset">
-      <div class="dsr-union__head"><span>Current union preset</span><strong>Source-bound</strong></div>
+      <div class="dsr-union__head"><span>What this preset loads (current union preset)</span><strong>Source-bound</strong></div>
       <dl>
-        <div><dt>Hypothesis identities</dt><dd>${selection.n_hypotheses}</dd></div>
+        <div><dt>Ideas tested (hypothesis identities)</dt><dd>${selection.n_hypotheses}</dd></div>
         <div><dt>Per-period V[SR]</dt><dd>${selection.sharpe_variance.toPrecision(7)}</dd></div>
-        <div><dt>Selection unit</dt><dd>First immutable record</dd></div>
+        <div><dt>What counts as one try (selection unit)</dt><dd>First immutable record</dd></div>
         <div><dt>Claim status</dt><dd>Accounting, not performance</dd></div>
       </dl>
       <p>${escapeHtml(ledger.claim_boundary)}</p>
