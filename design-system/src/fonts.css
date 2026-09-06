@@ -1,0 +1,17 @@
+/* Fonts served at runtime, exactly as the live site loads them: canlicapital.com never
+   ships webfont files itself, it links Google Fonts and lets the browser fetch them. This
+   package does the same rather than vendoring font files, so a consumer gets the identical
+   network request the real pages make.
+
+   The families below are the union of every Google Fonts request used by the pages this
+   package's components are drawn from:
+     - css/styles.css + css/progress.css pages (open/performance/progress/research/systems):
+       Space Grotesk, JetBrains Mono (Fraunces is also requested by those pages but is not
+       used by any class this package imports, so it is left out here; see
+       .design-sync/NOTES.md).
+     - css/developers.css + css/tools-hub.css + css/lab.css pages (developers, tools hub):
+       Bricolage Grotesque, Inter, IBM Plex Mono.
+     - css/dsr-tool.css (the DSR calculator shared layout): Barlow Condensed, Inter,
+       IBM Plex Mono.
+   Weight/axis ranges are the union of the ranges requested by those pages' own <link> tags. */
+@import url("https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600&family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..700&family=IBM+Plex+Mono:wght@400;500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@300..700&display=swap");

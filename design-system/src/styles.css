@@ -1,0 +1,39 @@
+/* canli-design-system stylesheet.
+   This file does not define a single rule of its own. It only imports the site's real
+   stylesheets, by relative path, in the order that keeps every component's tokens correct:
+
+   1. fonts.css        - the same Google Fonts request the live pages make.
+   2. css/styles.css    - the base design system: tokens, type classes, .section, .hero, .dot,
+                          .stat, .eyebrow. Every page this package draws from loads this file
+                          first, so it is loaded first here too.
+   3. css/product-shell.css - the shared header/footer chrome (Shell). Scoped under --cc-*
+                          custom properties, so nothing here can collide with styles.css.
+   4. css/progress.css  - .corrections-list / .corrections-item, .ledger, .estate. No :root of
+                          its own; it consumes styles.css's tokens directly, which is why it
+                          must load after styles.css, not before.
+   5. css/dsr-tool.css  - the DSR calculator's shared layout (.dsr-hero, .dsr-section-head,
+                          .dsr-boundary, .dsr-button). Scoped under --dsr-*.
+   6. css/lab.css       - shared /tools chrome. Scoped under --lab-*. Loaded before
+                          tools-hub.css because tools-hub.css's .tools-card rules read
+                          --lab-ink / --lab-cyan / --lab-muted from here.
+   7. css/tools-hub.css - the tools hub cards (.tools-card).
+   8. css/developers.css - the developers page (.dev-button, .dev-boundary, .dev-key-result).
+                          Scoped under --dev-*.
+
+   Deliberately NOT imported: css/home.css. It is the only stylesheet on the site that
+   redeclares bare (unprefixed) :root custom properties also declared by css/styles.css
+   (--ink, --mono, --max, --ease and others), with different values for a light theme. On the
+   live site this never matters because no single page loads both files. Flattened into one
+   stylesheet for this package, home.css's declarations would win the cascade (it must load
+   after styles.css to get its own tokens right) and silently repaint every styles.css-based
+   component in this file with home.css's values. That is real corruption, not a cosmetic
+   quirk, so this package does not wrap a Hero/Button pair sourced from home.css. See
+   .design-sync/NOTES.md for the full account. */
+@import "./fonts.css";
+@import "../../css/styles.css";
+@import "../../css/product-shell.css";
+@import "../../css/progress.css";
+@import "../../css/dsr-tool.css";
+@import "../../css/lab.css";
+@import "../../css/tools-hub.css";
+@import "../../css/developers.css";
