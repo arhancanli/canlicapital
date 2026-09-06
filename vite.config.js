@@ -1,22 +1,22 @@
 // =============================================================================
 // CANLI CAPITAL / vite.config.js
 // -----------------------------------------------------------------------------
-// Self-hosted build for the pre-launch site. All animation/3D tooling
-// (three, gsap incl. the now-free ScrollTrigger/SplitText/Flip, lenis) is
-// installed in node_modules and bundled here via bare specifiers. Nothing is
-// fetched at runtime. The existing file layout is preserved exactly: index.html
-// at the root, js/, css/, config/, api/ untouched.
+// Self-hosted build for the pre-launch site. All animation tooling (gsap incl.
+// the now-free ScrollTrigger/SplitText/Flip, lenis) is installed in
+// node_modules and bundled here via bare specifiers. Nothing is fetched at
+// runtime. The existing file layout is preserved exactly: index.html at the
+// root, js/, css/, config/, api/ untouched.
 //
 // What this config guarantees:
 //   - The HTML entries (index, systems, performance, progress, open, research)
 //     are crawled, bundled, and fingerprinted. They all reference the SAME shared
-//     CSS and the SAME main.js entry, so the design system, cursor, scroll feel,
-//     and manifold scene are byte-identical across pages (one system, not forks).
-//     Vite emits systems.html / performance.html / progress.html / open.html /
+//     CSS and the SAME main.js entry, so the design system, cursor and scroll
+//     feel are byte-identical across pages (one system, not forks). Vite emits
+//     systems.html / performance.html / progress.html / open.html /
 //     research.html alongside index.html; Vercel's cleanUrls maps /systems to
 //     systems.html, /research to research.html, etc.
-//   - Dynamic imports (scene.js, scroll.js) become code-split chunks.
-//   - three / gsap / lenis are tree-shaken into the bundle, never fetched.
+//   - Dynamic imports (scroll.js) become code-split chunks.
+//   - gsap / lenis are tree-shaken into the bundle, never fetched.
 //   - api/ is a Vercel serverless function, NOT part of the Vite graph. It is
 //     not referenced by index.html, so Vite never touches it. We also keep it
 //     out of any copy path by not using it as the public dir.
@@ -177,10 +177,11 @@ export default defineConfig({
         ...publicationWrapperEntries(),
       },
       output: {
-        // Split the heavy, stable vendor (three) into its own long-cache chunk
-        // so the app code can change without re-downloading the renderer.
+        // Split heavy, stable vendors into their own long-cache chunks so the
+        // app code can change without re-downloading them. three was here
+        // until it was deleted: no page ever shipped the canvas that gated
+        // its only import, so it built a 526 kB chunk with zero real loads.
         manualChunks(id) {
-          if (id.includes("node_modules/three")) return "three";
           if (id.includes("node_modules/gsap")) return "gsap";
           if (id.includes("node_modules/lenis")) return "lenis";
           return undefined;
