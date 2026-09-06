@@ -192,7 +192,9 @@ ${renderProductShellHeader({ active: "methodology" })}
         <div><dt>What counts as one try (selection unit)</dt><dd>First immutable record</dd></div>
         <div><dt>Claim status</dt><dd>Accounting, not performance</dd></div>
       </dl>
-      <p>${escapeHtml(ledger.claim_boundary)}</p>
+      <p>This count is the full union, including the one live prospective identity not yet
+        admitted; a retired legacy set published elsewhere on the site is smaller by that one
+        identity. ${escapeHtml(ledger.claim_boundary)}</p>
     </aside>
   </section>
 
