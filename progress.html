@@ -99,7 +99,7 @@
     window.__MERIDIAN_PAGE = {
       id: "progress",
       chapters: [
-        "Progress", "The build", "Edge status", "Roadmap", "Colophon"
+        "Progress", "Edge status", "The build", "Roadmap", "Colophon"
       ],
       sceneBand: [0.0, 0.4],
       sceneStill: 0.4
@@ -125,8 +125,8 @@
     </div>
     <ul class="rail__list">
       <li><a href="#hero" class="rail__item" data-rail="0"><span class="rail__num mono-label">00</span></a></li>
-      <li><a href="#build" class="rail__item" data-rail="1"><span class="rail__num mono-label">01</span></a></li>
-      <li><a href="#edge-status" class="rail__item" data-rail="2"><span class="rail__num mono-label">02</span></a></li>
+      <li><a href="#edge-status" class="rail__item" data-rail="1"><span class="rail__num mono-label">01</span></a></li>
+      <li><a href="#build" class="rail__item" data-rail="2"><span class="rail__num mono-label">02</span></a></li>
       <li><a href="#roadmap" class="rail__item" data-rail="3"><span class="rail__num mono-label">03</span></a></li>
     </ul>
   </nav>
@@ -172,7 +172,8 @@
       </div>
       <div>
         <span class="cc-shell__panel-label">Tools</span>
-        <nav aria-label="Interactive tools"><a class="cc-shell__panel-link" href="/tools">All tools</a></nav>
+        <nav aria-label="Interactive tools"><a class="cc-shell__panel-link" href="/tools">All tools</a>
+<a class="cc-shell__panel-link" href="/how-to-validate-a-backtest">How to validate a backtest</a></nav>
       </div>
       <div>
         <span class="cc-shell__panel-label">Reproducible code</span>
@@ -227,80 +228,22 @@
         </p>
       </div>
 
-      <a href="#build" class="hero__scroll mono-label" aria-label="Scroll to the build">
+      <a href="#edge-status" class="hero__scroll mono-label" aria-label="Scroll to edge status">
         <span>Scroll</span>
         <span class="hero__scroll-line" aria-hidden="true"></span>
       </a>
     </section>
 
     <!-- =================================================================== -->
-    <!-- (01) HOW IT WAS BUILT                                                -->
+    <!-- (01) THE EDGE STATUS                                                 -->
+    <!-- The corrections record: what the build has and has not proven,       -->
+    <!-- leading the page ahead of the build log, since the nav links here    -->
+    <!-- as "Corrections".                                                    -->
     <!-- =================================================================== -->
-    <section class="section" id="build" data-section="1" aria-labelledby="build-head">
+    <section class="section section--ink" id="edge-status" data-section="1" aria-labelledby="edge-head">
       <span class="section__rule" aria-hidden="true"></span>
       <div class="progress__head">
-        <p class="eyebrow label"><span class="idx mono-label">01 /</span> The build</p>
-        <h2 class="progress__title display-l" id="build-head">
-          <span class="mask" data-chars><span class="mask__inner">The integrity</span></span>
-          <span class="mask" data-chars><span class="mask__inner">came first.</span></span>
-        </h2>
-        <p class="progress__lead body-l reveal-fade">
-          The order of the work is the thesis. The data integrity, the cost
-          authority, the validation gauntlet, and the crash-safe execution loop
-          were built before any serious effort went into chasing return, because a
-          good backtest only means something on top of a process honest enough to
-          <span class="signal-word">trust</span>. The engine is statically typed
-          under mypy strict, every phase is covered by tests that must pass in
-          continuous integration before the next phase starts, and research and
-          live code share one path. Nothing here is a prototype dressed up as a
-          product.
-        </p>
-      </div>
-      <p class="progress__data mono-label type-mono">
-        <span data-fact="phases">12</span> phases / <span data-fact="tests">3,961+</span> tests, green / mypy --strict / CI on every change
-      </p>
-    </section>
-
-    <!-- =================================================================== -->
-    <!-- (02) THE TWELVE PHASES (interactive explorer)                        -->
-    <!-- =================================================================== -->
-
-    <!-- =================================================================== -->
-    <!-- (02b) THE WRITTEN RECORD                                             -->
-    <!-- This page is the phase-by-phase ledger. The notes are the prose       -->
-    <!-- version: what broke, what the arithmetic says, and what got changed   -->
-    <!-- because of it. Linked here because a build log without post-mortems   -->
-    <!-- reads as a list of wins.                                             -->
-    <!-- =================================================================== -->
-    <section class="section" id="written-record" aria-labelledby="written-head">
-      <span class="section__rule" aria-hidden="true"></span>
-      <div class="progress__head">
-        <p class="eyebrow label"><span class="idx mono-label">03 /</span> The written record</p>
-        <h2 class="progress__title display-l" id="written-head">
-          <span class="mask" data-chars><span class="mask__inner">A build log without</span></span>
-          <span class="mask" data-chars><span class="mask__inner">post-mortems is a</span></span>
-          <span class="mask" data-chars><span class="mask__inner">list of wins.</span></span>
-        </h2>
-      </div>
-      <p class="progress__lede body-l">
-        The phases above say what was built. The engineering notes say what went wrong while
-        building it: a position that lost 99 percent and the guard I decided not to add, seventy
-        files published by a check that could not fail, and the arithmetic that decides whether a
-        Sharpe ratio means anything. Each one is bound to a published artifact or a script you
-        can run.
-      </p>
-      <p class="progress__lede body-l">
-        <a class="research-link label" href="/notes">Read the engineering notes</a>
-      </p>
-    </section>
-
-    <!-- =================================================================== -->
-    <!-- (04) THE EDGE STATUS                                                 -->
-    <!-- =================================================================== -->
-    <section class="section section--ink" id="edge-status" data-section="2" aria-labelledby="edge-head">
-      <span class="section__rule" aria-hidden="true"></span>
-      <div class="progress__head">
-        <p class="eyebrow label"><span class="idx mono-label">03 /</span> Edge status</p>
+        <p class="eyebrow label"><span class="idx mono-label">01 /</span> Edge status</p>
         <h2 class="progress__title display-l" id="edge-head">
           <span class="mask" data-chars><span class="mask__inner">What the build has</span></span>
           <span class="mask" data-chars><span class="mask__inner">and has not proven.</span></span>
@@ -385,6 +328,67 @@
           play. The build in the open.
         </p>
       </div>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- (02) HOW IT WAS BUILT                                                -->
+    <!-- =================================================================== -->
+    <section class="section" id="build" data-section="2" aria-labelledby="build-head">
+      <span class="section__rule" aria-hidden="true"></span>
+      <div class="progress__head">
+        <p class="eyebrow label"><span class="idx mono-label">02 /</span> The build</p>
+        <h2 class="progress__title display-l" id="build-head">
+          <span class="mask" data-chars><span class="mask__inner">The integrity</span></span>
+          <span class="mask" data-chars><span class="mask__inner">came first.</span></span>
+        </h2>
+        <p class="progress__lead body-l reveal-fade">
+          The order of the work is the thesis. The data integrity, the cost
+          authority, the validation gauntlet, and the crash-safe execution loop
+          were built before any serious effort went into chasing return, because a
+          good backtest only means something on top of a process honest enough to
+          <span class="signal-word">trust</span>. The engine is statically typed
+          under mypy strict, every phase is covered by tests that must pass in
+          continuous integration before the next phase starts, and research and
+          live code share one path. Nothing here is a prototype dressed up as a
+          product.
+        </p>
+      </div>
+      <p class="progress__data mono-label type-mono">
+        <span data-fact="phases">12</span> phases / <span data-fact="tests">3,961+</span> tests, green / mypy --strict / CI on every change
+      </p>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- (02) THE TWELVE PHASES (interactive explorer)                        -->
+    <!-- =================================================================== -->
+
+    <!-- =================================================================== -->
+    <!-- (02b) THE WRITTEN RECORD                                             -->
+    <!-- This page is the phase-by-phase ledger. The notes are the prose       -->
+    <!-- version: what broke, what the arithmetic says, and what got changed   -->
+    <!-- because of it. Linked here because a build log without post-mortems   -->
+    <!-- reads as a list of wins.                                             -->
+    <!-- =================================================================== -->
+    <section class="section" id="written-record" aria-labelledby="written-head">
+      <span class="section__rule" aria-hidden="true"></span>
+      <div class="progress__head">
+        <p class="eyebrow label"><span class="idx mono-label">03 /</span> The written record</p>
+        <h2 class="progress__title display-l" id="written-head">
+          <span class="mask" data-chars><span class="mask__inner">A build log without</span></span>
+          <span class="mask" data-chars><span class="mask__inner">post-mortems is a</span></span>
+          <span class="mask" data-chars><span class="mask__inner">list of wins.</span></span>
+        </h2>
+      </div>
+      <p class="progress__lede body-l">
+        The phases above say what was built. The engineering notes say what went wrong while
+        building it: a position that lost 99 percent and the guard I decided not to add, seventy
+        files published by a check that could not fail, and the arithmetic that decides whether a
+        Sharpe ratio means anything. Each one is bound to a published artifact or a script you
+        can run.
+      </p>
+      <p class="progress__lede body-l">
+        <a class="research-link label" href="/notes">Read the engineering notes</a>
+      </p>
     </section>
 
     <!-- =================================================================== -->
