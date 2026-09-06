@@ -125,6 +125,53 @@ test("vercel.json gives the function routes no-store and receipts an immutable c
   assert.equal(bySource["/(.*)\\.(mp4|webm)"]["Cache-Control"], "public, max-age=604800");
 });
 
+// Regression for the bug behind /developers, /tools/* and /standards/* falling through to
+// Vercel's default cache policy: the ONLY rule naming extensionless HTML routes was
+// "/(systems|research|performance|progress|open)", which never matched them. Every extensionless
+// route this test checks must carry the same Cache-Control value as "/" and that original list, so
+// the site has one cache policy for HTML rather than one for five pages and none for the rest.
+test("every extensionless HTML route family carries the same Cache-Control as / and the original five pages", () => {
+  const vercel = JSON.parse(readFileSync(resolve(ROOT, "vercel.json"), "utf8"));
+  const cacheControlFor = (path) => {
+    // Several rules can match one path (the blanket security-header rule matches everything);
+    // Vercel applies every matching rule's headers, and a later rule's value for the same key
+    // wins. So this takes the LAST matching rule that actually sets Cache-Control, not the first
+    // rule whose source merely matches.
+    let value;
+    for (const h of vercel.headers) {
+      if (!new RegExp(`^${h.source}$`).test(path)) continue;
+      const found = h.headers.find((x) => x.key === "Cache-Control");
+      if (found) value = found.value;
+    }
+    return value;
+  };
+  const rootValue = cacheControlFor("/");
+  assert.ok(rootValue, "/ has no Cache-Control rule to compare against");
+  for (const path of [
+    "/",
+    "/systems",
+    "/developers",
+    "/tools",
+    "/tools/deflated-sharpe",
+    "/standards/paper-evidence",
+    "/measurements",
+    "/measurements/trial-accounting",
+    "/trials",
+    "/trials/00d3e37fed229640",
+    "/notes",
+    "/notes/one-symbol",
+    "/research/topics/crypto",
+    "/how-to-validate-a-backtest",
+  ]) {
+    assert.equal(cacheControlFor(path), rootValue, `${path} does not carry the same Cache-Control as /`);
+  }
+  // The API surface must NOT pick up the HTML policy just because it lacks a file extension --
+  // its own no-store/immutable rules above must be the ones that apply.
+  for (const path of ["/api/v1/status", "/api/v1/keys", "/api/v1/validate/deflated-sharpe"]) {
+    assert.notEqual(cacheControlFor(path), rootValue, `${path} incorrectly picked up the HTML cache policy`);
+  }
+});
+
 test("/developers ships no loading placeholder: the key result and error boxes are hidden and empty in the static HTML", () => {
   const html = readFileSync(resolve(ROOT, "developers.html"), "utf8");
   const resultBox = html.match(/<div class="dev-key-result"[^>]*>([\s\S]*?)<\/div>/);
