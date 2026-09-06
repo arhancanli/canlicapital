@@ -9,7 +9,10 @@
       "summary": "Issue a free key. Returned once; only its hash is stored.",
       "requestExample": {
         "label": "my-backtest-runner"
-      }
+      },
+      "requestOptional": [
+        "label"
+      ]
     },
     {
       "path": "/api/v1/validate/deflated-sharpe",
@@ -30,7 +33,56 @@
         "periods_per_year": 252,
         "effective_independent_trials": 30,
         "cross_trial_sharpe_sd_annualized": 0.5
-      }
+      },
+      "modes": [
+        {
+          "name": "contract_inputs",
+          "label": "Mode 1: the seven contract inputs",
+          "required": [
+            "observed_sharpe_annualized",
+            "observations",
+            "periods_per_year",
+            "skew",
+            "non_excess_kurtosis",
+            "effective_independent_trials",
+            "cross_trial_sharpe_sd_annualized"
+          ],
+          "example": {
+            "observed_sharpe_annualized": 1.5,
+            "observations": 730,
+            "periods_per_year": 365,
+            "skew": -0.5,
+            "non_excess_kurtosis": 5,
+            "effective_independent_trials": 229,
+            "cross_trial_sharpe_sd_annualized": 0.57
+          }
+        },
+        {
+          "name": "return_series",
+          "label": "Mode 2: a return series plus the trials behind it",
+          "required": [
+            "returns",
+            "periods_per_year",
+            "effective_independent_trials",
+            "cross_trial_sharpe_sd_annualized"
+          ],
+          "example": {
+            "returns": [
+              0.004,
+              -0.002,
+              0.007,
+              0.001,
+              -0.003,
+              0.005,
+              0.002,
+              -0.001
+            ],
+            "periods_per_year": 252,
+            "effective_independent_trials": 30,
+            "cross_trial_sharpe_sd_annualized": 0.5
+          }
+        }
+      ]
     },
     {
       "path": "/api/v1/validate/overfitting",
@@ -61,6 +113,19 @@
           ]
         ],
         "n_splits": 4
+      },
+      "requestOptional": [
+        "n_splits"
+      ],
+      "requestExtraProperties": {
+        "max_combinations": {
+          "type": "number",
+          "description": "Defaults to the service ceiling; may not exceed it."
+        },
+        "seed": {
+          "type": "number",
+          "description": "Defaults to 42. Seeds the service's own sampler for the non-exhaustive case."
+        }
       }
     },
     {
@@ -72,7 +137,8 @@
         "record": {
           "schema": "canli.paper-evidence.v0"
         }
-      }
+      },
+      "requestOptional": []
     },
     {
       "path": "/api/v1/validate/breadth",
@@ -84,7 +150,11 @@
         "average_pairwise_correlation": 0.05,
         "sleeves": 4,
         "target": 1.5
-      }
+      },
+      "requestOptional": [
+        "sleeves",
+        "target"
+      ]
     },
     {
       "path": "/api/v1/validate/status",
@@ -97,6 +167,12 @@
       "method": "GET",
       "keyed": false,
       "summary": "A stored verdict by content-hash id. Immutable."
+    },
+    {
+      "path": "/api/v1/receipts/{id}/badge.svg",
+      "method": "GET",
+      "keyed": false,
+      "summary": "An embeddable SVG badge for a receipt: the formula version and the receipt id prefix only, never a pass or fail mark."
     }
   ],
   "claim_boundary": "The routes this API serves and the example request each documents. Examples are illustrative inputs, not data about any strategy."

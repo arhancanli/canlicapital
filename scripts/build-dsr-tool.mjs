@@ -92,9 +92,11 @@ function main() {
   const contractShort = contract.content_hash.replace("sha256:", "").slice(0, 16);
   const ledgerBytes = bytesHash(LEDGER_PATH);
   const ledgerShort = ledgerBytes.replace("sha256:", "").slice(0, 16);
+  const queryTitle = "Deflated Sharpe ratio calculator (PSR and DSR)";
+  const houseLabel = "Deflated Sharpe calculator";
   const description =
-    "Calculate Probabilistic and Deflated Sharpe ratios while exposing trial count, dispersion, " +
-    "sample length and non-normal return assumptions behind each result.";
+    "Calculate the Probabilistic and Deflated Sharpe Ratio (PSR and DSR), exposing trial count, " +
+    "dispersion, sample length and non-normal return assumptions.";
   const defaults = {
     observed_sharpe_annualized: 1.5,
     observations: 730,
@@ -125,7 +127,8 @@ function main() {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "WebApplication",
-    name: "Deflated Sharpe selection pressure calculator",
+    name: queryTitle,
+    alternateName: houseLabel,
     url: `${ORIGIN}/tools/deflated-sharpe`,
     description,
     applicationCategory: "FinanceApplication",
@@ -141,7 +144,7 @@ function main() {
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Deflated Sharpe calculator | Canli Capital</title>
+<title>${escapeHtml(queryTitle)} | Canli Capital</title>
 <meta name="description" content="${escapeHtml(description)}" />
 <link rel="canonical" href="${ORIGIN}/tools/deflated-sharpe" />
 <meta name="author" content="Arhan Canli" />
@@ -149,12 +152,12 @@ function main() {
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Canli Capital" />
-<meta property="og:title" content="Deflated Sharpe selection pressure calculator" />
+<meta property="og:title" content="${escapeHtml(queryTitle)}" />
 <meta property="og:description" content="${escapeHtml(description)}" />
 <meta property="og:url" content="${ORIGIN}/tools/deflated-sharpe" />
 <meta property="og:image" content="${ORIGIN}/og.png" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Deflated Sharpe selection pressure calculator" />
+<meta name="twitter:title" content="${escapeHtml(queryTitle)}" />
 <meta name="twitter:description" content="${escapeHtml(description)}" />
 <meta name="twitter:image" content="${ORIGIN}/og.png" />
 <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
@@ -173,9 +176,9 @@ ${renderProductShellHeader({ active: "methodology" })}
 <main>
   <section class="dsr-hero" aria-labelledby="dsr-title">
     <div class="dsr-hero__copy">
-      <p class="dsr-kicker"><span>Open research instrument</span><span>Contract v${escapeHtml(contract.version)}</span></p>
-      <h1 id="dsr-title">How much Sharpe survives the search?</h1>
-      <p class="dsr-hero__lead">A strong backtest is less surprising after a long search. Put the observed Sharpe, return shape and complete selection process on the same surface. The calculator reproduces ALPHAC's per-period PSR and DSR formulas in your browser.</p>
+      <p class="dsr-kicker"><span>Open research instrument</span><span>${escapeHtml(houseLabel)}</span><span>Contract v${escapeHtml(contract.version)}</span></p>
+      <h1 id="dsr-title">${escapeHtml(queryTitle)}</h1>
+      <p class="dsr-hero__lead">How much Sharpe survives the search? A strong backtest is less surprising after a long search. Put the observed Sharpe, return shape and complete selection process on the same surface. The calculator reproduces ALPHAC's per-period PSR and DSR formulas in your browser.</p>
       <div class="dsr-hero__actions">
         <a class="dsr-button dsr-button--primary" href="#calculator">Open the pressure chamber</a>
         <a class="dsr-button" href="${ALPHAC_ROOT}/${contract.source_bindings.implementation.path}" rel="noreferrer">Inspect the Python source <span aria-hidden="true">↗</span></a>
@@ -200,7 +203,7 @@ ${renderProductShellHeader({ active: "methodology" })}
 
   <section class="dsr-workbench" id="calculator" aria-labelledby="calculator-title">
     <header class="dsr-section-head">
-      <div><p class="dsr-label">Selection pressure chamber</p><h2 id="calculator-title">One result. The whole search behind it.</h2></div>
+      <div><p class="dsr-label">Selection pressure chamber</p><h2 id="calculator-title">How many trials did you run?</h2><p class="dsr-hero__lead">One result. The whole search behind it.</p></div>
       <div class="dsr-workbench__tools">
         <button type="button" id="dsr-reset">Restore sourced preset</button>
         <button type="button" id="dsr-copy">Copy calculation link</button>
@@ -256,7 +259,7 @@ ${renderProductShellHeader({ active: "methodology" })}
   </section>
 
   <section class="dsr-explain" aria-labelledby="explain-title">
-    <header class="dsr-section-head"><div><p class="dsr-label">Read the result</p><h2 id="explain-title">PSR asks about the sample. DSR asks about the search.</h2></div></header>
+    <header class="dsr-section-head"><div><p class="dsr-label">Read the result</p><h2 id="explain-title">What is a deflated Sharpe ratio?</h2><p class="dsr-hero__lead">PSR asks about the sample. DSR asks about the search.</p></div></header>
     <div class="dsr-explain__grid">
       <article><span>PSR</span><h3>Was the observed Sharpe above a benchmark?</h3><p>Probabilistic Sharpe Ratio adjusts for sample length, skew and non-excess kurtosis. The zero-benchmark result does not know how many alternatives were tried.</p></article>
       <article><span>SR*</span><h3>What would the best null trial look like?</h3><p>The expected maximum rises with the number of effectively independent trials and their cross-trial Sharpe dispersion.</p></article>
@@ -288,6 +291,11 @@ ${renderProductShellHeader({ active: "methodology" })}
       <a href="${reference.url}" rel="noreferrer"><span>Primary paper</span><strong>Bailey and López de Prado</strong><small>${escapeHtml(reference.publication)}</small></a>
     </div>
     <p class="dsr-source__boundary">${escapeHtml(contract.claim_boundary)}</p>
+    <p class="dsr-source__boundary">A deflated Sharpe asks whether one result survives the search
+      that produced it. <a href="/tools/backtest-overfitting">The probability of backtest overfitting
+      calculator</a> asks the sharper question of whether the in-sample winner predicts anything
+      out of sample. Run the same arithmetic against your own numbers through
+      <a href="/developers#api-deflated-sharpe">the validation API</a>.</p>
   </section>
 </main>
 ${renderProductShellFooter()}

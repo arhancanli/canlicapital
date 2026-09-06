@@ -24,6 +24,7 @@ import { fileURLToPath } from "node:url";
 
 import { LIMITS } from "../api/_lib/limits.js";
 import { MANIFEST } from "../api/_lib/manifest.js";
+import { requestSchemaFor } from "../api/_lib/schema.js";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const OUT = resolve(ROOT, "public", "api", "v1");
@@ -302,15 +303,73 @@ function main() {
           data: { type: "object" }, receipt: { type: "object" }, error: { type: "object" },
         },
       },
+      // Aggregates only (public/glassbox never carries per-key or per-client rows). null until
+      // supabase/migrations/20260906_usage_summary.sql (and, for the two source-breakdown maps,
+      // 20260906_usage_summary_v2.sql) is applied, or on any transient store error. Each map is
+      // capped at its top ten entries by count, keyed by host or by label, never by key or client.
+      UsageSummary: {
+        type: "object",
+        nullable: true,
+        oneOf: [
+          { type: "null" },
+          {
+            type: "object",
+            required: ["validations_today", "validations_total", "keys_issued_today", "as_of_utc_day"],
+            properties: {
+              validations_today: { type: "integer", minimum: 0 },
+              validations_total: { type: "integer", minimum: 0 },
+              keys_issued_today: { type: "integer", minimum: 0 },
+              as_of_utc_day: { type: "string", format: "date" },
+              keys_by_source_host_today: {
+                type: "object", nullable: true,
+                description: "Top ten Referer hosts (lowercase, no path or query) among keys issued today, by count. Absent until 20260906_usage_summary_v2.sql is applied.",
+                additionalProperties: { type: "integer", minimum: 0 },
+              },
+              keys_by_label_today: {
+                type: "object", nullable: true,
+                description: "Top ten POST /api/v1/keys label values among keys issued today, by count. Absent until 20260906_usage_summary_v2.sql is applied.",
+                additionalProperties: { type: "integer", minimum: 0 },
+              },
+            },
+          },
+        ],
+      },
     },
   };
   const envelopeResponse = (description) => ({ description, content: { "application/json": { schema: { $ref: "#/components/schemas/Envelope" } } } });
   for (const m of MANIFEST) {
     const op = { summary: m.summary, operationId: m.path.replace(/^\/api\/v1\//, "").replace(/[^a-z]+/g, "_"), responses: { 200: envelopeResponse("The envelope with data"), 400: envelopeResponse("Malformed request"), 405: envelopeResponse("Wrong method") } };
     if (m.method === "POST") {
-      op.requestBody = { required: true, content: { "application/json": { schema: { type: "object" }, example: m.requestExample } } };
+      // A route can declare `modes`: a discriminated union of input shapes rather than one
+      // optional-property bag. Each mode gets its own schema inside a oneOf, with its OWN
+      // required list, typed the same way requestSchemaFor infers types for a single-shape
+      // route, so the document does not claim a request can mix fields from either shape.
+      const requestSchema = m.modes
+        ? { oneOf: m.modes.map((mode) => ({
+            ...requestSchemaFor({ requestExample: mode.example, requestOptional: Object.keys(mode.example).filter((k) => !mode.required.includes(k)) }),
+            title: mode.name,
+            description: mode.label ?? mode.name,
+          })) }
+        : requestSchemaFor(m);
+      op.requestBody = { required: true, content: { "application/json": { schema: requestSchema, ...(m.modes ? { examples: Object.fromEntries(m.modes.map((mode) => [mode.name, { summary: mode.label ?? mode.name, value: mode.example }])) } : { example: m.requestExample }) } } };
       op.responses[413] = envelopeResponse(`Body over ${LIMITS.max_body_bytes} bytes`);
       op.responses[422] = envelopeResponse("Input the validator refuses, with the reason");
+    }
+    if (m.path === "/api/v1/validate/status") {
+      op.responses[200] = {
+        description: "Service, store and usage status.",
+        content: { "application/json": { schema: { allOf: [
+          { $ref: "#/components/schemas/Envelope" },
+          { type: "object", properties: { data: { type: "object", properties: {
+            service: { type: "string" },
+            store_reachable: { type: "boolean" },
+            quotas: { type: "object" },
+            usage: { $ref: "#/components/schemas/UsageSummary" },
+            usage_available: { type: "boolean" },
+          } } } },
+        ] } } },
+      };
+      op.responses[503] = envelopeResponse("The store is unreachable; usage is still reported, as null");
     }
     if (m.keyed) {
       op.security = [{ bearerKey: [] }];
@@ -325,6 +384,16 @@ function main() {
     if (m.path.includes("{id}")) {
       op.parameters = [{ name: "id", in: "path", required: true, schema: { type: "string", pattern: "^[0-9a-f]{24}$" } }];
       op.responses[404] = envelopeResponse("No such receipt");
+    }
+    // The badge route returns an SVG image, never the JSON envelope: it is documented with its
+    // own response type rather than inheriting the generic envelope shape every other route gets.
+    if (m.path === "/api/v1/receipts/{id}/badge.svg") {
+      const svgResponse = (description) => ({ description, content: { "image/svg+xml": { schema: { type: "string" } } } });
+      op.responses[200] = svgResponse(
+        "An SVG badge: the formula version and the receipt id prefix only, rendered from the stored receipt's own fields. Never the words verified, approved, passed, certified or profitable, and never a pass/fail mark. The <title> element carries the receipt's own sample-size or trial-count fact as alt text.",
+      );
+      op.responses[404] = svgResponse('Unknown receipt id: a plain grey "receipt not found" badge.');
+      delete op.responses[400];
     }
     openapi.paths[m.path] = { ...(openapi.paths[m.path] ?? {}), [m.method.toLowerCase()]: op };
   }

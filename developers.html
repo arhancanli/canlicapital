@@ -44,6 +44,7 @@
 <a class="cc-shell__link" href="/trials">Trials</a>
 <a class="cc-shell__link" href="/systems">Systems</a>
 <a class="cc-shell__link" href="/methodology">Methodology</a>
+<a class="cc-shell__link" href="/developers" aria-current="page" data-current="true">Developers</a>
 <a class="cc-shell__link" href="/verify">Verify</a>
   </nav>
   <details class="cc-shell__index">
@@ -56,6 +57,7 @@
 <a class="cc-shell__panel-link" href="/trials">Trials</a>
 <a class="cc-shell__panel-link" href="/systems">Systems</a>
 <a class="cc-shell__panel-link" href="/methodology">Methodology</a>
+<a class="cc-shell__panel-link" href="/developers" aria-current="page" data-current="true">Developers</a>
 <a class="cc-shell__panel-link" href="/verify">Verify</a></nav>
       </div>
       <div>
@@ -67,10 +69,13 @@
 <a class="cc-shell__panel-link" href="/measurements">Measurements</a></nav>
       </div>
       <div>
-        <span class="cc-shell__panel-label">Open source</span>
+        <span class="cc-shell__panel-label">Tools</span>
+        <nav aria-label="Interactive tools"><a class="cc-shell__panel-link" href="/tools">All tools</a></nav>
+      </div>
+      <div>
+        <span class="cc-shell__panel-label">Reproducible code</span>
         <nav aria-label="Source code"><a class="cc-shell__panel-link" href="/engineering">Engineering hub</a>
 <a class="cc-shell__panel-link" href="/notes">Engineering notes</a>
-<a class="cc-shell__panel-link" href="/developers">Developers / API</a>
 <a class="cc-shell__panel-link" href="/standards/paper-evidence">Evidence standard</a>
 <a class="cc-shell__panel-link" href="https://github.com/arhancanli/alphac" rel="noreferrer">alphac (engine)</a>
 <a class="cc-shell__panel-link" href="https://github.com/arhancanli/canli-pit-lake" rel="noreferrer">canli-pit-lake</a>
@@ -84,19 +89,199 @@
 </header>
 <main id="content">
   <section class="dev-hero">
-    <p class="dev-kicker"><span>Public API</span><span>v1</span></p>
+    <p class="dev-kicker"><span>Public API</span><span aria-hidden="true"> &middot; </span><span>v1</span></p>
     <h1>Every response says what it cannot be used to claim.</h1>
     <p class="dev-lead">The read endpoints need no key: static JSON, regenerated on each publish.
       The validation endpoints take a free key and run your numbers through the same arithmetic this
       record is held to, then hand back a receipt you can cite. An API is the easiest place on a
       site to lose a claim boundary, because nobody reads one by eye, so the boundary is part of
-      the envelope rather than part of the documentation.</p>
+      the envelope rather than part of the documentation. The same <a href="/open">honesty pledge</a>
+      that governs the published record governs every response here.</p>
     <div class="dev-downloads">
       <a class="dev-button dev-button--primary" href="/api/v1">Discovery document</a>
       <a class="dev-button" href="/api/v1/openapi">OpenAPI document</a>
       <a class="dev-button" href="/standards/paper-evidence">The record standard</a>
+      <a class="dev-button" href="/tools">Run the same arithmetic in a browser calculator</a>
     </div>
   </section>
+
+  <section class="dev-section dev-quickstart" id="quickstart">
+    <h2>Quickstart</h2>
+    <p class="dev-note">Three steps, in the order you need them. Every block below is copy-ready,
+      and the key you get in step one drops straight into the rest.</p>
+    <ol class="dev-steps">
+      <li class="dev-step">
+        <h3>1. Get a key</h3>
+        <p class="dev-note">No signup, no email.
+          <a href="/api/v1/validate/status"><code>GET /api/v1/validate/status</code></a> is the
+          one-line check that the service is up before you start.</p>
+        <button type="button" class="dev-button dev-button--primary" id="dev-get-key-button">Get a free key</button>
+        <div class="dev-key-result" id="dev-key-result" hidden></div>
+        <p class="dev-key-error" id="dev-key-error" hidden role="alert"></p>
+        <p class="dev-note">Or from a terminal, in the language you have open:</p>
+        <div class="dev-snippets">
+      <div class="dev-snippet"><p class="dev-snippet-label">curl</p><pre class="dev-code"><code>curl -X POST https://canlicapital.com/api/v1/keys \
+  -H &quot;Content-Type: application/json&quot; \
+  -d &#39;{&quot;label&quot;:&quot;quickstart-curl&quot;}&#39;</code></pre></div>
+      <div class="dev-snippet"><p class="dev-snippet-label">Python</p><pre class="dev-code"><code>import json
+import urllib.request
+
+body = {&quot;label&quot;:&quot;quickstart-python&quot;}
+req = urllib.request.Request(&quot;https://canlicapital.com/api/v1/keys&quot;, data=json.dumps(body).encode(&quot;utf-8&quot;), method=&quot;POST&quot;)
+req.add_header(&quot;Content-Type&quot;, &quot;application/json&quot;)
+with urllib.request.urlopen(req) as response:
+    print(response.read().decode(&quot;utf-8&quot;))</code></pre></div>
+      <div class="dev-snippet"><p class="dev-snippet-label">JavaScript</p><pre class="dev-code"><code>const body = {&quot;label&quot;:&quot;quickstart-js&quot;};
+const response = await fetch(&quot;https://canlicapital.com/api/v1/keys&quot;, {
+  method: &quot;POST&quot;,
+  headers: { &quot;Content-Type&quot;: &quot;application/json&quot; },
+  body: JSON.stringify(body),
+});
+console.log(await response.json());</code></pre></div>
+    </div>
+        <p class="dev-note">The key is returned once. Only its hash is kept, so store it now.</p>
+      </li>
+      <li class="dev-step">
+        <h3>2. Validate your own numbers</h3>
+        <p class="dev-note">Probabilistic and deflated Sharpe from the seven contract inputs, or from a return series plus the trials behind it.</p>
+        <div class="dev-mode">
+      <p class="dev-note"><strong>Mode 1: the seven contract inputs</strong></p>
+      <div class="dev-snippets">
+      <div class="dev-snippet"><p class="dev-snippet-label">curl</p><pre class="dev-code"><code>curl -X POST https://canlicapital.com/api/v1/validate/deflated-sharpe \
+  -H &quot;Authorization: Bearer $CANLI_KEY&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -d &#39;{&quot;observed_sharpe_annualized&quot;:1.5,&quot;observations&quot;:730,&quot;periods_per_year&quot;:365,&quot;skew&quot;:-0.5,&quot;non_excess_kurtosis&quot;:5,&quot;effective_independent_trials&quot;:229,&quot;cross_trial_sharpe_sd_annualized&quot;:0.57}&#39;</code></pre></div>
+      <div class="dev-snippet"><p class="dev-snippet-label">Python</p><pre class="dev-code"><code>import json
+import urllib.request
+
+body = {&quot;observed_sharpe_annualized&quot;:1.5,&quot;observations&quot;:730,&quot;periods_per_year&quot;:365,&quot;skew&quot;:-0.5,&quot;non_excess_kurtosis&quot;:5,&quot;effective_independent_trials&quot;:229,&quot;cross_trial_sharpe_sd_annualized&quot;:0.57}
+req = urllib.request.Request(&quot;https://canlicapital.com/api/v1/validate/deflated-sharpe&quot;, data=json.dumps(body).encode(&quot;utf-8&quot;), method=&quot;POST&quot;)
+req.add_header(&quot;Content-Type&quot;, &quot;application/json&quot;)
+req.add_header(&quot;Authorization&quot;, &quot;Bearer $CANLI_KEY&quot;)
+with urllib.request.urlopen(req) as response:
+    print(response.read().decode(&quot;utf-8&quot;))</code></pre></div>
+      <div class="dev-snippet"><p class="dev-snippet-label">JavaScript</p><pre class="dev-code"><code>const body = {&quot;observed_sharpe_annualized&quot;:1.5,&quot;observations&quot;:730,&quot;periods_per_year&quot;:365,&quot;skew&quot;:-0.5,&quot;non_excess_kurtosis&quot;:5,&quot;effective_independent_trials&quot;:229,&quot;cross_trial_sharpe_sd_annualized&quot;:0.57};
+const response = await fetch(&quot;https://canlicapital.com/api/v1/validate/deflated-sharpe&quot;, {
+  method: &quot;POST&quot;,
+  headers: { &quot;Content-Type&quot;: &quot;application/json&quot;, &quot;Authorization&quot;: &quot;Bearer $CANLI_KEY&quot; },
+  body: JSON.stringify(body),
+});
+console.log(await response.json());</code></pre></div>
+      </div>
+    </div>
+    <div class="dev-mode">
+      <p class="dev-note"><strong>Mode 2: a return series plus the trials behind it</strong></p>
+      <div class="dev-snippets">
+      <div class="dev-snippet"><p class="dev-snippet-label">curl</p><pre class="dev-code"><code>curl -X POST https://canlicapital.com/api/v1/validate/deflated-sharpe \
+  -H &quot;Authorization: Bearer $CANLI_KEY&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -d &#39;{&quot;returns&quot;:[0.004,-0.002,0.007,0.001,-0.003,0.005,0.002,-0.001],&quot;periods_per_year&quot;:252,&quot;effective_independent_trials&quot;:30,&quot;cross_trial_sharpe_sd_annualized&quot;:0.5}&#39;</code></pre></div>
+      <div class="dev-snippet"><p class="dev-snippet-label">Python</p><pre class="dev-code"><code>import json
+import urllib.request
+
+body = {&quot;returns&quot;:[0.004,-0.002,0.007,0.001,-0.003,0.005,0.002,-0.001],&quot;periods_per_year&quot;:252,&quot;effective_independent_trials&quot;:30,&quot;cross_trial_sharpe_sd_annualized&quot;:0.5}
+req = urllib.request.Request(&quot;https://canlicapital.com/api/v1/validate/deflated-sharpe&quot;, data=json.dumps(body).encode(&quot;utf-8&quot;), method=&quot;POST&quot;)
+req.add_header(&quot;Content-Type&quot;, &quot;application/json&quot;)
+req.add_header(&quot;Authorization&quot;, &quot;Bearer $CANLI_KEY&quot;)
+with urllib.request.urlopen(req) as response:
+    print(response.read().decode(&quot;utf-8&quot;))</code></pre></div>
+      <div class="dev-snippet"><p class="dev-snippet-label">JavaScript</p><pre class="dev-code"><code>const body = {&quot;returns&quot;:[0.004,-0.002,0.007,0.001,-0.003,0.005,0.002,-0.001],&quot;periods_per_year&quot;:252,&quot;effective_independent_trials&quot;:30,&quot;cross_trial_sharpe_sd_annualized&quot;:0.5};
+const response = await fetch(&quot;https://canlicapital.com/api/v1/validate/deflated-sharpe&quot;, {
+  method: &quot;POST&quot;,
+  headers: { &quot;Content-Type&quot;: &quot;application/json&quot;, &quot;Authorization&quot;: &quot;Bearer $CANLI_KEY&quot; },
+  body: JSON.stringify(body),
+});
+console.log(await response.json());</code></pre></div>
+      </div>
+    </div>
+        <p class="dev-note">The other three validators are documented <a href="#validation">below</a>.</p>
+      </li>
+      <li class="dev-step">
+        <h3>3. Fetch the receipt</h3>
+        <p class="dev-note">Every verdict carries <code>receipt.url</code>. It is immutable and
+          cacheable forever, so anyone, not only the caller, can fetch and recompute it.</p>
+        <pre class="dev-code"><code>curl https://canlicapital.com/api/v1/receipts/{id}</code></pre>
+        <p class="dev-note">Its response carries <code>badge_url</code> and <code>embed_markdown</code>:
+          a badge showing only the formula version and the receipt id prefix, never a pass or fail
+          mark. Drop the embed straight into a README:</p>
+        <pre class="dev-code"><code>[![Canli receipt](https://canlicapital.com/api/v1/receipts/{id}/badge.svg)](https://canlicapital.com/api/v1/receipts/{id})</code></pre>
+      </li>
+    </ol>
+  </section>
+  <script>(function () {
+  "use strict";
+  function replaceKeyInSnippets(key) {
+    var blocks = document.querySelectorAll("pre.dev-code");
+    for (var i = 0; i < blocks.length; i++) {
+      var target = blocks[i].querySelector("code") || blocks[i];
+      target.textContent = target.textContent.replace(/\$CANLI_KEY/g, function () { return key; });
+    }
+  }
+  function el(tag, className, text) {
+    var node = document.createElement(tag);
+    if (className) node.className = className;
+    if (text) node.textContent = text;
+    return node;
+  }
+  function showKeyResult(data) {
+    var box = document.getElementById("dev-key-result");
+    if (!box || !data || !data.key) return;
+    box.innerHTML = "";
+    var value = el("p", "dev-key-value");
+    value.appendChild(el("code", "", data.key));
+    var copyButton = el("button", "dev-button", "Copy");
+    copyButton.type = "button";
+    copyButton.addEventListener("click", function () {
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(data.key);
+    });
+    box.appendChild(value);
+    box.appendChild(copyButton);
+    box.appendChild(el("p", "dev-key-note", data.note || "Store this key now. It cannot be shown again."));
+    box.appendChild(el("p", "dev-key-remaining", "Keys remaining today: " + data.keys_remaining_today));
+    box.hidden = false;
+    replaceKeyInSnippets(data.key);
+  }
+  function showKeyError(message) {
+    var box = document.getElementById("dev-key-error");
+    if (!box) return;
+    box.textContent = message || "The key service is unavailable. Use the curl command below.";
+    box.hidden = false;
+  }
+  function wire() {
+    var button = document.getElementById("dev-get-key-button");
+    if (!button) return;
+    button.addEventListener("click", function () {
+      button.disabled = true;
+      var errorBox = document.getElementById("dev-key-error");
+      if (errorBox) errorBox.hidden = true;
+      fetch("/api/v1/keys", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ label: "developers-page" }),
+      }).then(function (response) {
+        return response.json().then(function (payload) {
+          return { status: response.status, payload: payload };
+        });
+      }).then(function (result) {
+        button.disabled = false;
+        if (result.status === 201) {
+          showKeyResult(result.payload && result.payload.data);
+        } else {
+          var message = result.payload && result.payload.error && result.payload.error.message;
+          showKeyError(message);
+        }
+      }).catch(function () {
+        button.disabled = false;
+        showKeyError("Could not reach the key service. Use the curl command below.");
+      });
+    });
+  }
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", wire);
+  } else {
+    wire();
+  }
+})();</script>
 
   <section class="dev-section">
     <h2>Read endpoints, no key</h2>
@@ -127,24 +312,148 @@
         <tr><td><code>POST /api/v1/validate/breadth</code></td><td>Book Sharpe ceiling from per-sleeve quality and average pairwise correlation, and the sleeves a target needs.</td></tr>
         <tr><td><code>GET /api/v1/validate/status</code></td><td>Service and store status with the quota constants in force.</td></tr>
         <tr><td><code>GET /api/v1/receipts/{id}</code></td><td>A stored verdict by content-hash id. Immutable.</td></tr>
+        <tr><td><code>GET /api/v1/receipts/{id}/badge.svg</code></td><td>An embeddable SVG badge for a receipt: the formula version and the receipt id prefix only, never a pass or fail mark.</td></tr>
       </tbody>
     </table>
     <h3>First, issue a key</h3>
-    <pre class="dev-code"><code>curl -X POST https://canlicapital.com/api/v1/keys -H "Content-Type: application/json" -d '{"label":"my-backtest-runner"}'</code></pre>
+    <div class="dev-snippets">
+      <div class="dev-snippet"><p class="dev-snippet-label">curl</p><pre class="dev-code"><code>curl -X POST https://canlicapital.com/api/v1/keys \
+  -H &quot;Content-Type: application/json&quot; \
+  -d &#39;{&quot;label&quot;:&quot;quickstart-curl&quot;}&#39;</code></pre></div>
+      <div class="dev-snippet"><p class="dev-snippet-label">Python</p><pre class="dev-code"><code>import json
+import urllib.request
+
+body = {&quot;label&quot;:&quot;quickstart-python&quot;}
+req = urllib.request.Request(&quot;https://canlicapital.com/api/v1/keys&quot;, data=json.dumps(body).encode(&quot;utf-8&quot;), method=&quot;POST&quot;)
+req.add_header(&quot;Content-Type&quot;, &quot;application/json&quot;)
+with urllib.request.urlopen(req) as response:
+    print(response.read().decode(&quot;utf-8&quot;))</code></pre></div>
+      <div class="dev-snippet"><p class="dev-snippet-label">JavaScript</p><pre class="dev-code"><code>const body = {&quot;label&quot;:&quot;quickstart-js&quot;};
+const response = await fetch(&quot;https://canlicapital.com/api/v1/keys&quot;, {
+  method: &quot;POST&quot;,
+  headers: { &quot;Content-Type&quot;: &quot;application/json&quot; },
+  body: JSON.stringify(body),
+});
+console.log(await response.json());</code></pre></div>
+    </div>
     <p class="dev-note">The key is returned once. Only its hash is kept.</p>
     <h3>Then validate</h3>
-    <article class="dev-endpoint"><h4><code>POST /api/v1/validate/deflated-sharpe</code></h4><p>Probabilistic and deflated Sharpe from the seven contract inputs, or from a return series plus the trials behind it.</p><pre class="dev-code"><code>curl -X POST https://canlicapital.com/api/v1/validate/deflated-sharpe \
-  -H &quot;Authorization: Bearer $CANLI_KEY&quot; -H &quot;Content-Type: application/json&quot; \
-  -d &#39;{&quot;returns&quot;:[0.004,-0.002,0.007,0.001,-0.003,0.005,0.002,-0.001],&quot;periods_per_year&quot;:252,&quot;effective_independent_trials&quot;:30,&quot;cross_trial_sharpe_sd_annualized&quot;:0.5}&#39;</code></pre></article>
-    <article class="dev-endpoint"><h4><code>POST /api/v1/validate/overfitting</code></h4><p>Probability of backtest overfitting by CSCV over the returns of every variant tried.</p><pre class="dev-code"><code>curl -X POST https://canlicapital.com/api/v1/validate/overfitting \
-  -H &quot;Authorization: Bearer $CANLI_KEY&quot; -H &quot;Content-Type: application/json&quot; \
-  -d &#39;{&quot;matrix&quot;:[[0.01,0.002,-0.004],[-0.003,0.001,0.006],[0.004,-0.002,0.001],[0.002,0.003,-0.001]],&quot;n_splits&quot;:4}&#39;</code></pre></article>
-    <article class="dev-endpoint"><h4><code>POST /api/v1/validate/paper-evidence</code></h4><p>Conformance of a performance record against the canli.paper-evidence.v0 standard.</p><pre class="dev-code"><code>curl -X POST https://canlicapital.com/api/v1/validate/paper-evidence \
-  -H &quot;Authorization: Bearer $CANLI_KEY&quot; -H &quot;Content-Type: application/json&quot; \
-  -d &#39;{&quot;record&quot;:{&quot;schema&quot;:&quot;canli.paper-evidence.v0&quot;}}&#39;</code></pre></article>
-    <article class="dev-endpoint"><h4><code>POST /api/v1/validate/breadth</code></h4><p>Book Sharpe ceiling from per-sleeve quality and average pairwise correlation, and the sleeves a target needs.</p><pre class="dev-code"><code>curl -X POST https://canlicapital.com/api/v1/validate/breadth \
-  -H &quot;Authorization: Bearer $CANLI_KEY&quot; -H &quot;Content-Type: application/json&quot; \
-  -d &#39;{&quot;sleeve_sharpe&quot;:0.5,&quot;average_pairwise_correlation&quot;:0.05,&quot;sleeves&quot;:4,&quot;target&quot;:1.5}&#39;</code></pre></article>
+    <article class="dev-endpoint" id="api-deflated-sharpe"><h4><code>POST /api/v1/validate/deflated-sharpe</code></h4><p>Probabilistic and deflated Sharpe from the seven contract inputs, or from a return series plus the trials behind it.</p><div class="dev-mode">
+      <p class="dev-note"><strong>Mode 1: the seven contract inputs</strong></p>
+      <div class="dev-snippets">
+      <div class="dev-snippet"><p class="dev-snippet-label">curl</p><pre class="dev-code"><code>curl -X POST https://canlicapital.com/api/v1/validate/deflated-sharpe \
+  -H &quot;Authorization: Bearer $CANLI_KEY&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -d &#39;{&quot;observed_sharpe_annualized&quot;:1.5,&quot;observations&quot;:730,&quot;periods_per_year&quot;:365,&quot;skew&quot;:-0.5,&quot;non_excess_kurtosis&quot;:5,&quot;effective_independent_trials&quot;:229,&quot;cross_trial_sharpe_sd_annualized&quot;:0.57}&#39;</code></pre></div>
+      <div class="dev-snippet"><p class="dev-snippet-label">Python</p><pre class="dev-code"><code>import json
+import urllib.request
+
+body = {&quot;observed_sharpe_annualized&quot;:1.5,&quot;observations&quot;:730,&quot;periods_per_year&quot;:365,&quot;skew&quot;:-0.5,&quot;non_excess_kurtosis&quot;:5,&quot;effective_independent_trials&quot;:229,&quot;cross_trial_sharpe_sd_annualized&quot;:0.57}
+req = urllib.request.Request(&quot;https://canlicapital.com/api/v1/validate/deflated-sharpe&quot;, data=json.dumps(body).encode(&quot;utf-8&quot;), method=&quot;POST&quot;)
+req.add_header(&quot;Content-Type&quot;, &quot;application/json&quot;)
+req.add_header(&quot;Authorization&quot;, &quot;Bearer $CANLI_KEY&quot;)
+with urllib.request.urlopen(req) as response:
+    print(response.read().decode(&quot;utf-8&quot;))</code></pre></div>
+      <div class="dev-snippet"><p class="dev-snippet-label">JavaScript</p><pre class="dev-code"><code>const body = {&quot;observed_sharpe_annualized&quot;:1.5,&quot;observations&quot;:730,&quot;periods_per_year&quot;:365,&quot;skew&quot;:-0.5,&quot;non_excess_kurtosis&quot;:5,&quot;effective_independent_trials&quot;:229,&quot;cross_trial_sharpe_sd_annualized&quot;:0.57};
+const response = await fetch(&quot;https://canlicapital.com/api/v1/validate/deflated-sharpe&quot;, {
+  method: &quot;POST&quot;,
+  headers: { &quot;Content-Type&quot;: &quot;application/json&quot;, &quot;Authorization&quot;: &quot;Bearer $CANLI_KEY&quot; },
+  body: JSON.stringify(body),
+});
+console.log(await response.json());</code></pre></div>
+      </div>
+    </div>
+    <div class="dev-mode">
+      <p class="dev-note"><strong>Mode 2: a return series plus the trials behind it</strong></p>
+      <div class="dev-snippets">
+      <div class="dev-snippet"><p class="dev-snippet-label">curl</p><pre class="dev-code"><code>curl -X POST https://canlicapital.com/api/v1/validate/deflated-sharpe \
+  -H &quot;Authorization: Bearer $CANLI_KEY&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -d &#39;{&quot;returns&quot;:[0.004,-0.002,0.007,0.001,-0.003,0.005,0.002,-0.001],&quot;periods_per_year&quot;:252,&quot;effective_independent_trials&quot;:30,&quot;cross_trial_sharpe_sd_annualized&quot;:0.5}&#39;</code></pre></div>
+      <div class="dev-snippet"><p class="dev-snippet-label">Python</p><pre class="dev-code"><code>import json
+import urllib.request
+
+body = {&quot;returns&quot;:[0.004,-0.002,0.007,0.001,-0.003,0.005,0.002,-0.001],&quot;periods_per_year&quot;:252,&quot;effective_independent_trials&quot;:30,&quot;cross_trial_sharpe_sd_annualized&quot;:0.5}
+req = urllib.request.Request(&quot;https://canlicapital.com/api/v1/validate/deflated-sharpe&quot;, data=json.dumps(body).encode(&quot;utf-8&quot;), method=&quot;POST&quot;)
+req.add_header(&quot;Content-Type&quot;, &quot;application/json&quot;)
+req.add_header(&quot;Authorization&quot;, &quot;Bearer $CANLI_KEY&quot;)
+with urllib.request.urlopen(req) as response:
+    print(response.read().decode(&quot;utf-8&quot;))</code></pre></div>
+      <div class="dev-snippet"><p class="dev-snippet-label">JavaScript</p><pre class="dev-code"><code>const body = {&quot;returns&quot;:[0.004,-0.002,0.007,0.001,-0.003,0.005,0.002,-0.001],&quot;periods_per_year&quot;:252,&quot;effective_independent_trials&quot;:30,&quot;cross_trial_sharpe_sd_annualized&quot;:0.5};
+const response = await fetch(&quot;https://canlicapital.com/api/v1/validate/deflated-sharpe&quot;, {
+  method: &quot;POST&quot;,
+  headers: { &quot;Content-Type&quot;: &quot;application/json&quot;, &quot;Authorization&quot;: &quot;Bearer $CANLI_KEY&quot; },
+  body: JSON.stringify(body),
+});
+console.log(await response.json());</code></pre></div>
+      </div>
+    </div><p class="dev-note"><a href="/tools/deflated-sharpe">Try it in the browser, no key required</a></p></article>
+    <article class="dev-endpoint" id="api-overfitting"><h4><code>POST /api/v1/validate/overfitting</code></h4><p>Probability of backtest overfitting by CSCV over the returns of every variant tried.</p><div class="dev-snippets">
+      <div class="dev-snippet"><p class="dev-snippet-label">curl</p><pre class="dev-code"><code>curl -X POST https://canlicapital.com/api/v1/validate/overfitting \
+  -H &quot;Authorization: Bearer $CANLI_KEY&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -d &#39;{&quot;matrix&quot;:[[0.01,0.002,-0.004],[-0.003,0.001,0.006],[0.004,-0.002,0.001],[0.002,0.003,-0.001]],&quot;n_splits&quot;:4}&#39;</code></pre></div>
+      <div class="dev-snippet"><p class="dev-snippet-label">Python</p><pre class="dev-code"><code>import json
+import urllib.request
+
+body = {&quot;matrix&quot;:[[0.01,0.002,-0.004],[-0.003,0.001,0.006],[0.004,-0.002,0.001],[0.002,0.003,-0.001]],&quot;n_splits&quot;:4}
+req = urllib.request.Request(&quot;https://canlicapital.com/api/v1/validate/overfitting&quot;, data=json.dumps(body).encode(&quot;utf-8&quot;), method=&quot;POST&quot;)
+req.add_header(&quot;Content-Type&quot;, &quot;application/json&quot;)
+req.add_header(&quot;Authorization&quot;, &quot;Bearer $CANLI_KEY&quot;)
+with urllib.request.urlopen(req) as response:
+    print(response.read().decode(&quot;utf-8&quot;))</code></pre></div>
+      <div class="dev-snippet"><p class="dev-snippet-label">JavaScript</p><pre class="dev-code"><code>const body = {&quot;matrix&quot;:[[0.01,0.002,-0.004],[-0.003,0.001,0.006],[0.004,-0.002,0.001],[0.002,0.003,-0.001]],&quot;n_splits&quot;:4};
+const response = await fetch(&quot;https://canlicapital.com/api/v1/validate/overfitting&quot;, {
+  method: &quot;POST&quot;,
+  headers: { &quot;Content-Type&quot;: &quot;application/json&quot;, &quot;Authorization&quot;: &quot;Bearer $CANLI_KEY&quot; },
+  body: JSON.stringify(body),
+});
+console.log(await response.json());</code></pre></div>
+    </div><p class="dev-note"><a href="/tools/backtest-overfitting">Try it in the browser, no key required</a></p></article>
+    <article class="dev-endpoint" id="api-paper-evidence"><h4><code>POST /api/v1/validate/paper-evidence</code></h4><p>Conformance of a performance record against the canli.paper-evidence.v0 standard.</p><div class="dev-snippets">
+      <div class="dev-snippet"><p class="dev-snippet-label">curl</p><pre class="dev-code"><code>curl -X POST https://canlicapital.com/api/v1/validate/paper-evidence \
+  -H &quot;Authorization: Bearer $CANLI_KEY&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -d &#39;{&quot;record&quot;:{&quot;schema&quot;:&quot;canli.paper-evidence.v0&quot;}}&#39;</code></pre></div>
+      <div class="dev-snippet"><p class="dev-snippet-label">Python</p><pre class="dev-code"><code>import json
+import urllib.request
+
+body = {&quot;record&quot;:{&quot;schema&quot;:&quot;canli.paper-evidence.v0&quot;}}
+req = urllib.request.Request(&quot;https://canlicapital.com/api/v1/validate/paper-evidence&quot;, data=json.dumps(body).encode(&quot;utf-8&quot;), method=&quot;POST&quot;)
+req.add_header(&quot;Content-Type&quot;, &quot;application/json&quot;)
+req.add_header(&quot;Authorization&quot;, &quot;Bearer $CANLI_KEY&quot;)
+with urllib.request.urlopen(req) as response:
+    print(response.read().decode(&quot;utf-8&quot;))</code></pre></div>
+      <div class="dev-snippet"><p class="dev-snippet-label">JavaScript</p><pre class="dev-code"><code>const body = {&quot;record&quot;:{&quot;schema&quot;:&quot;canli.paper-evidence.v0&quot;}};
+const response = await fetch(&quot;https://canlicapital.com/api/v1/validate/paper-evidence&quot;, {
+  method: &quot;POST&quot;,
+  headers: { &quot;Content-Type&quot;: &quot;application/json&quot;, &quot;Authorization&quot;: &quot;Bearer $CANLI_KEY&quot; },
+  body: JSON.stringify(body),
+});
+console.log(await response.json());</code></pre></div>
+    </div></article>
+    <article class="dev-endpoint" id="api-breadth"><h4><code>POST /api/v1/validate/breadth</code></h4><p>Book Sharpe ceiling from per-sleeve quality and average pairwise correlation, and the sleeves a target needs.</p><div class="dev-snippets">
+      <div class="dev-snippet"><p class="dev-snippet-label">curl</p><pre class="dev-code"><code>curl -X POST https://canlicapital.com/api/v1/validate/breadth \
+  -H &quot;Authorization: Bearer $CANLI_KEY&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -d &#39;{&quot;sleeve_sharpe&quot;:0.5,&quot;average_pairwise_correlation&quot;:0.05,&quot;sleeves&quot;:4,&quot;target&quot;:1.5}&#39;</code></pre></div>
+      <div class="dev-snippet"><p class="dev-snippet-label">Python</p><pre class="dev-code"><code>import json
+import urllib.request
+
+body = {&quot;sleeve_sharpe&quot;:0.5,&quot;average_pairwise_correlation&quot;:0.05,&quot;sleeves&quot;:4,&quot;target&quot;:1.5}
+req = urllib.request.Request(&quot;https://canlicapital.com/api/v1/validate/breadth&quot;, data=json.dumps(body).encode(&quot;utf-8&quot;), method=&quot;POST&quot;)
+req.add_header(&quot;Content-Type&quot;, &quot;application/json&quot;)
+req.add_header(&quot;Authorization&quot;, &quot;Bearer $CANLI_KEY&quot;)
+with urllib.request.urlopen(req) as response:
+    print(response.read().decode(&quot;utf-8&quot;))</code></pre></div>
+      <div class="dev-snippet"><p class="dev-snippet-label">JavaScript</p><pre class="dev-code"><code>const body = {&quot;sleeve_sharpe&quot;:0.5,&quot;average_pairwise_correlation&quot;:0.05,&quot;sleeves&quot;:4,&quot;target&quot;:1.5};
+const response = await fetch(&quot;https://canlicapital.com/api/v1/validate/breadth&quot;, {
+  method: &quot;POST&quot;,
+  headers: { &quot;Content-Type&quot;: &quot;application/json&quot;, &quot;Authorization&quot;: &quot;Bearer $CANLI_KEY&quot; },
+  body: JSON.stringify(body),
+});
+console.log(await response.json());</code></pre></div>
+    </div><p class="dev-note"><a href="/tools/breadth">Try it in the browser, no key required</a></p></article>
     <h3>Then cite the receipt</h3>
     <p class="dev-note">Every verdict carries <code>receipt.url</code>. <code>GET /api/v1/receipts/{id}</code>
       returns the stored output, the input hash, and the content hash of every core and contract that
@@ -168,6 +477,12 @@
     </table>
     <p class="dev-note">Every response carries <code>X-RateLimit-Limit</code>, <code>X-RateLimit-Remaining</code>
       and <code>X-RateLimit-Reset</code>. A 429 carries <code>Retry-After</code>.</p>
+    <h3>What happens to a key after you have it</h3>
+    <ul class="dev-list">
+      <li>Keys do not expire once issued.</li>
+      <li>There is no self-serve revoke or rotate endpoint in v1. If a key is compromised or simply unwanted, issue a new key and stop using the old one; the old one keeps working until someone revokes it by hand on the server side.</li>
+      <li>&quot;Client&quot;, for the daily key-issuance quota, means the request&#39;s IP address hashed together with a salt that rotates every UTC day, not a stored account. A shared office or NAT IP address draws from the same pool of 5 keys a day as every other request behind it.</li>
+    </ul>
   </section>
 
   <section class="dev-section" id="not-established">
@@ -241,7 +556,9 @@
     </nav>
     <nav aria-label="Interactive tools">
       <span>Run it yourself</span>
+      <a href="/tools">All calculators</a>
       <a href="/tools/deflated-sharpe">Deflated Sharpe calculator</a>
+      <a href="/tools/backtest-overfitting">Backtest overfitting calculator</a>
       <a href="/tools/selection-risk">Selection Risk Lab</a>
       <a href="/tools/breadth">Breadth Lab</a>
       <a href="/tools/execution">Execution Reality Lab</a>
@@ -250,9 +567,9 @@
     </nav>
     <nav aria-label="Open source">
       <span>Source code</span>
+      <a href="/developers">Developers</a>
       <a href="/engineering">Engineering</a>
       <a href="/notes">Engineering notes</a>
-      <a href="/developers">Developers</a>
       <a href="/standards/paper-evidence">Evidence standard</a>
       <a href="https://github.com/arhancanli/alphac" rel="noreferrer">alphac engine</a>
       <a href="https://github.com/arhancanli/canli-pit-lake" rel="noreferrer">canli-pit-lake</a>

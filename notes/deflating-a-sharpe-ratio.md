@@ -53,10 +53,12 @@ SR* = sqrt(V[SR]) * ( (1 - g) * Q(1 - 1/N)  +  g * Q(1 - 1/(N*e)) )
     e = exp(1)
 ```
 
+## What is a deflated Sharpe ratio
+
 The **Deflated Sharpe Ratio** is simply the PSR evaluated against that benchmark instead of
 zero: `DSR = PSR(SR*)`.
 
-## The demonstration
+## How many trials did you run?
 
 One return series. Unchanged. The only thing that moves is how many trials you admit to,
 against a trial family whose per-period Sharpes scatter with standard deviation 0.02:

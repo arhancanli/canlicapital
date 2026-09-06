@@ -19,8 +19,9 @@ import {
   renderProductShellStylesheet,
 } from "./product-shell.mjs";
 
-import { LIMITS, LIMITS_TEXT } from "../api/_lib/limits.js";
-import { MANIFEST } from "../api/_lib/manifest.js";
+import { KEY_LIFECYCLE_TEXT, LIMITS, LIMITS_TEXT } from "../api/_lib/limits.js";
+import { MANIFEST, SNIPPET_LABELS } from "../api/_lib/manifest.js";
+import { renderAll, renderCurl, renderJs, renderPython } from "./render-snippets.mjs";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const ORIGIN = "https://canlicapital.com";
@@ -30,6 +31,32 @@ const PUB = resolve(ROOT, "public/standards/paper-evidence/v0");
 const esc = (v) =>
   String(v).replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;")
     .replaceAll('"', "&quot;").replaceAll("'", "&#39;");
+
+// curl, Python and JavaScript, side by side, generated from the SAME manifest requestExample
+// (see scripts/render-snippets.mjs). One route, three copy-ready blocks; none can name a body
+// its own handler would refuse, because a test round-trips every one of them.
+const LANG_LABEL = { curl: "curl", python: "Python", javascript: "JavaScript" };
+const blocksFromPairs = (pairs) =>
+  pairs.map(({ lang, code }) => `<div class="dev-snippet"><p class="dev-snippet-label">${esc(LANG_LABEL[lang])}</p><pre class="dev-code"><code>${esc(code)}</code></pre></div>`).join("\n      ");
+const languageBlocks = (m, example) => blocksFromPairs(renderAll(m, example));
+
+// A route can declare `modes`: a discriminated union of input shapes (deflated-sharpe's seven
+// contract fields OR a return series plus its trials) rather than one flattened example. Such a
+// route gets one labelled group of three language blocks PER MODE, so a developer sees every
+// shape the handler accepts instead of one example that could only ever show one of them.
+function snippetsBlock(m) {
+  if (Array.isArray(m.modes) && m.modes.length) {
+    return m.modes.map((mode) => `<div class="dev-mode">
+      <p class="dev-note"><strong>${esc(mode.label ?? mode.name)}</strong></p>
+      <div class="dev-snippets">
+      ${languageBlocks(m, mode.example)}
+      </div>
+    </div>`).join("\n    ");
+  }
+  return `<div class="dev-snippets">
+      ${languageBlocks(m)}
+    </div>`;
+}
 
 function publishArtifacts() {
   mkdirSync(resolve(PUB, "vectors"), { recursive: true });
@@ -176,6 +203,9 @@ ${renderProductShellHeader({ active: "" })}
       and the build fails if it ever stops conforming. Writing it was the useful part: mapping your
       own record into a schema that asks what you do not know is where you find out whether you can
       answer.</p>
+    <p class="dev-note">Checking a submission of your own against this schema does not have to stay
+      private: the <a href="/developers#validation">free keyed API</a> returns a receipt id with every
+      verdict, and that id is exactly what a submission can cite as evidence the check ran.</p>
     <div class="dev-downloads">
       <a class="dev-button dev-button--primary" href="/standards/paper-evidence/v0/schema.json">JSON Schema</a>
       <a class="dev-button" href="/standards/paper-evidence/v0/vectors/valid-alphac-book.json">Valid instance</a>
@@ -217,7 +247,116 @@ function buildDevelopers() {
     .filter(([path, def]) => def.get && !MANIFEST.some((m) => m.path === path))
     .map(([path, def]) => ({ path, summary: def.get.summary }));
   const validators = MANIFEST.filter((m) => m.method === "POST" && m.keyed);
-  const curl = (m) => `curl -X POST https://canlicapital.com${m.path} \\\n  -H "Authorization: Bearer $CANLI_KEY" -H "Content-Type: application/json" \\\n  -d '${JSON.stringify(m.requestExample)}'`;
+  const keysRoute = MANIFEST.find((m) => m.path === "/api/v1/keys");
+  const firstValidator = validators[0];
+
+  // POST /api/v1/keys, once, but each language gets its OWN default label rather than the one
+  // manifest example repeated three times: an unedited copy-paste from curl, Python or the "Get a
+  // key" button each stamps a different string on the issued key's row, so a count of api_keys
+  // grouped by label is a source breakdown with no tracking parameter (SNIPPET_LABELS is the one
+  // table; nothing here is typed a second time).
+  const keysSnippetsBlock = () => {
+    const withLabel = (label) => ({ ...keysRoute.requestExample, label });
+    const pairs = [
+      { lang: "curl", code: renderCurl(keysRoute, withLabel(SNIPPET_LABELS.quickstartCurl)) },
+      { lang: "python", code: renderPython(keysRoute, withLabel(SNIPPET_LABELS.quickstartPython)) },
+      { lang: "javascript", code: renderJs(keysRoute, withLabel(SNIPPET_LABELS.quickstartJs)) },
+    ];
+    return `<div class="dev-snippets">\n      ${blocksFromPairs(pairs)}\n    </div>`;
+  };
+
+  // Vanilla JS, no dependency, defensive: every DOM lookup checks its own result before touching
+  // it, and every failure path falls back to the curl block that is always on the page. Without
+  // this script the page reads exactly as it does today; there is no loading placeholder, only a
+  // button that does nothing until it runs. The $CANLI_KEY placeholder and the pre.dev-code
+  // selector are shared with every snippet on the page (curl, Python and JavaScript alike), so one
+  // key issuance updates all of them. String.replace is called with a REPLACER FUNCTION, never a
+  // replacement string, because a $ inside the substituted text (a key or a JSON body) would
+  // otherwise be read as a $-substitution pattern by String.replace itself.
+  const QUICKSTART_SCRIPT = `(function () {
+  "use strict";
+  function replaceKeyInSnippets(key) {
+    var blocks = document.querySelectorAll("pre.dev-code");
+    for (var i = 0; i < blocks.length; i++) {
+      var target = blocks[i].querySelector("code") || blocks[i];
+      target.textContent = target.textContent.replace(/\\$CANLI_KEY/g, function () { return key; });
+    }
+  }
+  function el(tag, className, text) {
+    var node = document.createElement(tag);
+    if (className) node.className = className;
+    if (text) node.textContent = text;
+    return node;
+  }
+  function showKeyResult(data) {
+    var box = document.getElementById("dev-key-result");
+    if (!box || !data || !data.key) return;
+    box.innerHTML = "";
+    var value = el("p", "dev-key-value");
+    value.appendChild(el("code", "", data.key));
+    var copyButton = el("button", "dev-button", "Copy");
+    copyButton.type = "button";
+    copyButton.addEventListener("click", function () {
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(data.key);
+    });
+    box.appendChild(value);
+    box.appendChild(copyButton);
+    box.appendChild(el("p", "dev-key-note", data.note || "Store this key now. It cannot be shown again."));
+    box.appendChild(el("p", "dev-key-remaining", "Keys remaining today: " + data.keys_remaining_today));
+    box.hidden = false;
+    replaceKeyInSnippets(data.key);
+  }
+  function showKeyError(message) {
+    var box = document.getElementById("dev-key-error");
+    if (!box) return;
+    box.textContent = message || "The key service is unavailable. Use the curl command below.";
+    box.hidden = false;
+  }
+  function wire() {
+    var button = document.getElementById("dev-get-key-button");
+    if (!button) return;
+    button.addEventListener("click", function () {
+      button.disabled = true;
+      var errorBox = document.getElementById("dev-key-error");
+      if (errorBox) errorBox.hidden = true;
+      fetch("/api/v1/keys", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ label: ${JSON.stringify(SNIPPET_LABELS.developersPage)} }),
+      }).then(function (response) {
+        return response.json().then(function (payload) {
+          return { status: response.status, payload: payload };
+        });
+      }).then(function (result) {
+        button.disabled = false;
+        if (result.status === 201) {
+          showKeyResult(result.payload && result.payload.data);
+        } else {
+          var message = result.payload && result.payload.error && result.payload.error.message;
+          showKeyError(message);
+        }
+      }).catch(function () {
+        button.disabled = false;
+        showKeyError("Could not reach the key service. Use the curl command below.");
+      });
+    });
+  }
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", wire);
+  } else {
+    wire();
+  }
+})();`;
+  // The browser calculators that compute the same arithmetic as one of these routes. Only
+  // routes with an actual matching tool are listed: the Selection Risk and Execution Reality
+  // labs run synthetic demonstrations with no general-purpose API equivalent, so they are not
+  // named here rather than pointed at a route that would not agree with them.
+  const TOOL_PAGE_FOR = {
+    "/api/v1/validate/deflated-sharpe": "/tools/deflated-sharpe",
+    "/api/v1/validate/overfitting": "/tools/backtest-overfitting",
+    "/api/v1/validate/breadth": "/tools/breadth",
+  };
+  const endpointSlug = (path) => path.split("/").pop();
 
   const description =
     "A read API over the Canli Capital paper record, and a free keyed API that runs your numbers " +
@@ -241,22 +380,61 @@ function buildDevelopers() {
   })}
 <body class="dev-page">
 <a class="dev-skip" href="#content">Skip to content</a>
-${renderProductShellHeader({ active: "" })}
+${renderProductShellHeader({ active: "developers" })}
 <main id="content">
   <section class="dev-hero">
-    <p class="dev-kicker"><span>Public API</span><span>v1</span></p>
+    <p class="dev-kicker"><span>Public API</span><span aria-hidden="true"> &middot; </span><span>v1</span></p>
     <h1>Every response says what it cannot be used to claim.</h1>
     <p class="dev-lead">The read endpoints need no key: static JSON, regenerated on each publish.
       The validation endpoints take a free key and run your numbers through the same arithmetic this
       record is held to, then hand back a receipt you can cite. An API is the easiest place on a
       site to lose a claim boundary, because nobody reads one by eye, so the boundary is part of
-      the envelope rather than part of the documentation.</p>
+      the envelope rather than part of the documentation. The same <a href="/open">honesty pledge</a>
+      that governs the published record governs every response here.</p>
     <div class="dev-downloads">
       <a class="dev-button dev-button--primary" href="/api/v1">Discovery document</a>
       <a class="dev-button" href="/api/v1/openapi">OpenAPI document</a>
       <a class="dev-button" href="/standards/paper-evidence">The record standard</a>
+      <a class="dev-button" href="/tools">Run the same arithmetic in a browser calculator</a>
     </div>
   </section>
+
+  <section class="dev-section dev-quickstart" id="quickstart">
+    <h2>Quickstart</h2>
+    <p class="dev-note">Three steps, in the order you need them. Every block below is copy-ready,
+      and the key you get in step one drops straight into the rest.</p>
+    <ol class="dev-steps">
+      <li class="dev-step">
+        <h3>1. Get a key</h3>
+        <p class="dev-note">No signup, no email.
+          <a href="/api/v1/validate/status"><code>GET /api/v1/validate/status</code></a> is the
+          one-line check that the service is up before you start.</p>
+        <button type="button" class="dev-button dev-button--primary" id="dev-get-key-button">Get a free key</button>
+        <div class="dev-key-result" id="dev-key-result" hidden></div>
+        <p class="dev-key-error" id="dev-key-error" hidden role="alert"></p>
+        <p class="dev-note">Or from a terminal, in the language you have open:</p>
+        ${keysSnippetsBlock()}
+        <p class="dev-note">The key is returned once. Only its hash is kept, so store it now.</p>
+      </li>
+      <li class="dev-step">
+        <h3>2. Validate your own numbers</h3>
+        <p class="dev-note">${esc(firstValidator.summary)}</p>
+        ${snippetsBlock(firstValidator)}
+        <p class="dev-note">The other three validators are documented <a href="#validation">below</a>.</p>
+      </li>
+      <li class="dev-step">
+        <h3>3. Fetch the receipt</h3>
+        <p class="dev-note">Every verdict carries <code>receipt.url</code>. It is immutable and
+          cacheable forever, so anyone, not only the caller, can fetch and recompute it.</p>
+        <pre class="dev-code"><code>curl https://canlicapital.com/api/v1/receipts/{id}</code></pre>
+        <p class="dev-note">Its response carries <code>badge_url</code> and <code>embed_markdown</code>:
+          a badge showing only the formula version and the receipt id prefix, never a pass or fail
+          mark. Drop the embed straight into a README:</p>
+        <pre class="dev-code"><code>[![Canli receipt](https://canlicapital.com/api/v1/receipts/{id}/badge.svg)](https://canlicapital.com/api/v1/receipts/{id})</code></pre>
+      </li>
+    </ol>
+  </section>
+  <script>${QUICKSTART_SCRIPT}</script>
 
   <section class="dev-section">
     <h2>Read endpoints, no key</h2>
@@ -279,10 +457,10 @@ ${renderProductShellHeader({ active: "" })}
       </tbody>
     </table>
     <h3>First, issue a key</h3>
-    <pre class="dev-code"><code>curl -X POST https://canlicapital.com/api/v1/keys -H "Content-Type: application/json" -d '{"label":"my-backtest-runner"}'</code></pre>
+    ${keysSnippetsBlock()}
     <p class="dev-note">The key is returned once. Only its hash is kept.</p>
     <h3>Then validate</h3>
-    ${validators.map((m) => `<article class="dev-endpoint"><h4><code>${esc(m.method)} ${esc(m.path)}</code></h4><p>${esc(m.summary)}</p><pre class="dev-code"><code>${esc(curl(m))}</code></pre></article>`).join("\n    ")}
+    ${validators.map((m) => `<article class="dev-endpoint" id="api-${esc(endpointSlug(m.path))}"><h4><code>${esc(m.method)} ${esc(m.path)}</code></h4><p>${esc(m.summary)}</p>${snippetsBlock(m)}${TOOL_PAGE_FOR[m.path] ? `<p class="dev-note"><a href="${esc(TOOL_PAGE_FOR[m.path])}">Try it in the browser, no key required</a></p>` : ""}</article>`).join("\n    ")}
     <h3>Then cite the receipt</h3>
     <p class="dev-note">Every verdict carries <code>receipt.url</code>. <code>GET /api/v1/receipts/{id}</code>
       returns the stored output, the input hash, and the content hash of every core and contract that
@@ -306,6 +484,10 @@ ${renderProductShellHeader({ active: "" })}
     </table>
     <p class="dev-note">Every response carries <code>X-RateLimit-Limit</code>, <code>X-RateLimit-Remaining</code>
       and <code>X-RateLimit-Reset</code>. A 429 carries <code>Retry-After</code>.</p>
+    <h3>What happens to a key after you have it</h3>
+    <ul class="dev-list">
+      ${KEY_LIFECYCLE_TEXT.map((t) => `<li>${esc(t)}</li>`).join("\n      ")}
+    </ul>
   </section>
 
   <section class="dev-section" id="not-established">

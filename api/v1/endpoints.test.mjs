@@ -16,8 +16,8 @@ const VECTORS = JSON.parse(readFileSync(resolve(ROOT, "standards/validation-api/
 test("the manifest names every route file and every route has a summary and an example", () => {
   const paths = MANIFEST.map((m) => `${m.method} ${m.path}`).sort();
   assert.deepEqual(paths, [
-    "GET /api/v1/receipts/{id}", "GET /api/v1/validate/status", "POST /api/v1/keys",
-    "POST /api/v1/validate/breadth", "POST /api/v1/validate/deflated-sharpe",
+    "GET /api/v1/receipts/{id}", "GET /api/v1/receipts/{id}/badge.svg", "GET /api/v1/validate/status",
+    "POST /api/v1/keys", "POST /api/v1/validate/breadth", "POST /api/v1/validate/deflated-sharpe",
     "POST /api/v1/validate/overfitting", "POST /api/v1/validate/paper-evidence",
   ]);
   for (const m of MANIFEST) { assert.ok(m.summary.length > 20, m.path); if (m.method === "POST") assert.ok(m.requestExample, m.path); }
@@ -33,6 +33,17 @@ test("deflated-sharpe accepts contract inputs or a series, and refuses both at o
   assert.ok(Math.abs(series.result.deflated_sharpe_ratio - v.expected.dsr) < 1e-6);
   assert.throws(() => dsr({ returns: v.returns, observed_sharpe_annualized: 1, periods_per_year: 252, effective_independent_trials: 2, cross_trial_sharpe_sd_annualized: 0.1 }), /either/);
   assert.throws(() => dsr({ returns: new Array(20001).fill(0.001), periods_per_year: 252, effective_independent_trials: 2, cross_trial_sharpe_sd_annualized: 0.1 }), /observations/);
+});
+
+test("deflated-sharpe's declared modes round-trip through its own validator, both of them", () => {
+  const entry = MANIFEST.find((m) => m.path === "/api/v1/validate/deflated-sharpe");
+  assert.equal(entry.modes.length, 2);
+  for (const mode of entry.modes) {
+    for (const key of mode.required) assert.ok(key in mode.example, `${mode.name} example is missing required field ${key}`);
+    const out = dsr(mode.example);
+    assert.equal(out.input_mode, mode.name, `${mode.name} example did not resolve to its own input_mode`);
+    assert.ok(Number.isFinite(out.result.deflated_sharpe_ratio), `${mode.name} example did not produce a finite deflated Sharpe`);
+  }
 });
 
 test("overfitting caps variants and combinations and reports the sampler honestly", () => {
