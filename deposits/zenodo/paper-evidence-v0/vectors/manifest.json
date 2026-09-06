@@ -1,0 +1,96 @@
+{
+  "schema": "canli.paper-evidence.v0",
+  "vectors": [
+    {
+      "name": "valid-alphac-book",
+      "expect": "VALID",
+      "pointer": null,
+      "violates": null,
+      "why": "The publisher's own live record. If this ever stops conforming, the build fails."
+    },
+    {
+      "name": "invalid-missing-required-claim-maturity",
+      "expect": "INVALID",
+      "pointer": "/",
+      "violates": "required: claim_maturity",
+      "why": "A record that never says what it fails to establish is the defect this standard exists to prevent."
+    },
+    {
+      "name": "invalid-empty-does-not-establish",
+      "expect": "INVALID",
+      "pointer": "/claim_maturity/does_not_establish",
+      "violates": "minItems: 1",
+      "why": "Every record fails to establish something. An empty list means the publisher did not look."
+    },
+    {
+      "name": "invalid-unknown-capital-kind",
+      "expect": "INVALID",
+      "pointer": "/capital/kind",
+      "violates": "enum",
+      "why": "Capital kind is enumerated so it cannot be softened into prose."
+    },
+    {
+      "name": "invalid-wrong-schema-id",
+      "expect": "INVALID",
+      "pointer": "/schema",
+      "violates": "const",
+      "why": "A record claiming a version it does not implement is worse than an unversioned one."
+    },
+    {
+      "name": "invalid-unexpected-property",
+      "expect": "INVALID",
+      "pointer": "/returns/annualized_return_pct",
+      "violates": "additionalProperties: false",
+      "why": "Extra fields are where unreviewed claims enter a standardised record."
+    },
+    {
+      "name": "invalid-malformed-sha256",
+      "expect": "INVALID",
+      "pointer": "/provenance/source_bindings/0/sha256",
+      "violates": "pattern",
+      "why": "A truncated or mistyped digest cannot be checked, so it is not provenance."
+    },
+    {
+      "name": "invalid-impossible-date",
+      "expect": "INVALID",
+      "pointer": "/period/first_observation",
+      "violates": "format: date",
+      "why": "A regex accepts 2026-02-30. A record's period must be a date that exists."
+    },
+    {
+      "name": "invalid-no-source-bindings",
+      "expect": "INVALID",
+      "pointer": "/provenance/source_bindings",
+      "violates": "minItems: 1",
+      "why": "A record bound to nothing is an assertion."
+    },
+    {
+      "name": "invalid-semantic-unreportable-sharpe-reported",
+      "expect": "INVALID",
+      "pointer": "/returns/sharpe_annualised",
+      "violates": "semantic: sharpe_reportable false but a Sharpe is published",
+      "why": "Declaring the sample cannot support a figure and then publishing it anyway."
+    },
+    {
+      "name": "invalid-semantic-paper-net-of-realised",
+      "expect": "INVALID",
+      "pointer": "/returns/basis",
+      "violates": "semantic: PAPER capital cannot be net of REALISED costs",
+      "why": "Realised costs require funded execution. This is how a paper record acquires the authority of a funded one."
+    },
+    {
+      "name": "invalid-semantic-uncounted-trials",
+      "expect": "INVALID",
+      "pointer": "/selection/trial_count",
+      "violates": "semantic: trials_counted true but trial_count null",
+      "why": "Claiming to count trials without a count."
+    },
+    {
+      "name": "invalid-semantic-reversed-period",
+      "expect": "INVALID",
+      "pointer": "/period",
+      "violates": "semantic: first_observation after last_observation",
+      "why": "A period that runs backwards passes every type check."
+    }
+  ]
+}
