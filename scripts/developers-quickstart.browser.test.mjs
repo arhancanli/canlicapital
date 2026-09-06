@@ -41,6 +41,9 @@ async function withPage(baseUrl, run) {
     // The page loads Google Fonts over the network; abort them so the test is fast and does not
     // depend on outbound network access this sandbox may not have.
     await context.route(/fonts\.(googleapis|gstatic)\.com/, (route) => route.abort());
+    // The Copy button uses navigator.clipboard.writeText, which Chromium refuses without an
+    // explicit grant even on a same-origin page under test.
+    await context.grantPermissions(["clipboard-write"]);
     const page = await context.newPage();
     await run(page, context);
   } finally {
@@ -77,6 +80,9 @@ test("a successful key issuance fills the block, shows the once-only note, and s
     // Before the click: no placeholder, nothing shown, the curl fallback is what a crawler sees.
     assert.equal(await page.locator("#dev-key-result").getAttribute("hidden"), "", "the result box starts hidden");
     assert.equal((await page.locator("#dev-key-result").innerText()).trim(), "");
+    // The key result is the only confirmation a visitor gets; it must be announced.
+    assert.equal(await page.locator("#dev-key-result").getAttribute("role"), "status");
+    assert.equal(await page.locator("#dev-key-result").getAttribute("aria-live"), "polite");
 
     await page.click("#dev-get-key-button");
     await page.waitForSelector("#dev-key-result:not([hidden])");
@@ -91,6 +97,46 @@ test("a successful key issuance fills the block, shows the once-only note, and s
     assert.ok(!snippets.some((t) => t.includes("$CANLI_KEY")), "no snippet should still show the placeholder after success");
 
     assert.equal(await page.locator("#dev-key-error").getAttribute("hidden"), "", "no error shown on success");
+
+    // The Copy button confirms, then restores, inside the same live region.
+    const copyButton = page.locator("#dev-key-result button");
+    await assert.doesNotReject(copyButton.waitFor({ state: "visible", timeout: 2000 }));
+    await copyButton.click();
+    await page.waitForFunction(() => document.querySelector("#dev-key-result button")?.textContent === "Copied");
+    await page.waitForFunction(() => document.querySelector("#dev-key-result button")?.textContent === "Copy", null, { timeout: 3000 });
+  });
+});
+
+test("the Get-a-free-key button shows a busy state while the request is in flight, and restores after", async () => {
+  await withPage(baseUrl, async (page, context) => {
+    await context.route("**/api/v1/keys", async (route) => {
+      // Hold the response open briefly so the in-flight state is observable
+      // rather than racing a same-tick resolution.
+      await new Promise((r) => setTimeout(r, 300));
+      await route.fulfill({
+        status: 201,
+        contentType: "application/json",
+        body: JSON.stringify({
+          schema: "canli.api.v1",
+          endpoint: "/api/v1/keys",
+          data: { key: "ck_live_BUSY_STATE_TEST", label: "developers page", quotas: { keys_per_client_per_day: 5 }, keys_remaining_today: 4, note: "note" },
+        }),
+      });
+    });
+    await page.goto(`${baseUrl}/developers.html`, { waitUntil: "domcontentloaded" });
+
+    const button = page.locator("#dev-get-key-button");
+    const restLabel = await button.textContent();
+    await button.click();
+
+    assert.equal(await button.getAttribute("aria-busy"), "true", "aria-busy must be set while the request is in flight");
+    assert.equal((await button.textContent()).trim(), "Requesting key…", "the button's own label must show real progress");
+    assert.equal(await button.isDisabled(), true);
+
+    await page.waitForSelector("#dev-key-result:not([hidden])");
+    assert.equal(await button.getAttribute("aria-busy"), null, "aria-busy must be cleared once the request settles");
+    assert.equal((await button.textContent()).trim(), restLabel.trim(), "the button must restore its resting label");
+    assert.equal(await button.isDisabled(), false);
   });
 });
 

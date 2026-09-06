@@ -336,7 +336,11 @@ function buildDevelopers() {
     var copyButton = el("button", "dev-button", "Copy");
     copyButton.type = "button";
     copyButton.addEventListener("click", function () {
-      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(data.key);
+      if (!(navigator.clipboard && navigator.clipboard.writeText)) return;
+      navigator.clipboard.writeText(data.key).then(function () {
+        copyButton.textContent = "Copied";
+        window.setTimeout(function () { copyButton.textContent = "Copy"; }, 1800);
+      });
     });
     box.appendChild(value);
     box.appendChild(copyButton);
@@ -354,8 +358,12 @@ function buildDevelopers() {
   function wire() {
     var button = document.getElementById("dev-get-key-button");
     if (!button) return;
+    var restLabel = button.textContent;
+    var busyLabel = "Requesting key…";
     button.addEventListener("click", function () {
       button.disabled = true;
+      button.setAttribute("aria-busy", "true");
+      button.textContent = busyLabel;
       var errorBox = document.getElementById("dev-key-error");
       if (errorBox) errorBox.hidden = true;
       fetch("/api/v1/keys", {
@@ -368,6 +376,8 @@ function buildDevelopers() {
         });
       }).then(function (result) {
         button.disabled = false;
+        button.removeAttribute("aria-busy");
+        button.textContent = restLabel;
         if (result.status === 201) {
           showKeyResult(result.payload && result.payload.data);
         } else {
@@ -376,6 +386,8 @@ function buildDevelopers() {
         }
       }).catch(function () {
         button.disabled = false;
+        button.removeAttribute("aria-busy");
+        button.textContent = restLabel;
         showKeyError("Could not reach the key service. Use the curl command below.");
       });
     });
@@ -449,7 +461,7 @@ ${renderProductShellHeader({ active: "developers" })}
           <a href="/api/v1/validate/status"><code>GET /api/v1/validate/status</code></a> is the
           one-line check that the service is up before you start.</p>
         <button type="button" class="dev-button dev-button--primary" id="dev-get-key-button">Get a free key</button>
-        <div class="dev-key-result" id="dev-key-result" hidden></div>
+        <div class="dev-key-result" id="dev-key-result" role="status" aria-live="polite" hidden></div>
         <p class="dev-key-error" id="dev-key-error" hidden role="alert"></p>
         <p class="dev-note">Or from a terminal, in the language you have open:</p>
         ${keysSnippetsBlock()}
