@@ -5,7 +5,7 @@ import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import test from "node:test";
 
-import { LIMITS, LIMITS_TEXT } from "../api/_lib/limits.js";
+import { KEY_LIFECYCLE_TEXT, LIMITS, LIMITS_TEXT } from "../api/_lib/limits.js";
 import { BINDINGS } from "../api/_lib/bindings.generated.js";
 import { MANIFEST } from "../api/_lib/manifest.js";
 
@@ -29,6 +29,31 @@ test("the quota constants are the documented values and every one has a sentence
   assert.ok(Object.isFrozen(LIMITS));
   assert.ok(LIMITS_TEXT.length >= 4);
   for (const line of LIMITS_TEXT) assert.ok(!line.includes("\u2014"), "no em dashes in published copy");
+});
+
+test("key-lifecycle facts are published: no expiry, no self-serve revoke or rotate, and what a client is", () => {
+  assert.ok(KEY_LIFECYCLE_TEXT.length >= 3);
+  const joined = KEY_LIFECYCLE_TEXT.join(" ").toLowerCase();
+  assert.match(joined, /do not expire|does not expire/);
+  assert.match(joined, /no self-serve revoke/);
+  assert.match(joined, /issue a new (key|one)/);
+  assert.match(joined, /client/);
+  assert.match(joined, /ip address/);
+  assert.match(joined, /salt/);
+  // A numeral, not a version tag like "v1": mirrors audit-published-numbers.mjs's own rule that a
+  // digit preceded by a word character (as in v1, v0) is an identifier, not a published claim.
+  const NUMERAL = /(?<![\w.])\d+/g;
+  for (const line of KEY_LIFECYCLE_TEXT) {
+    assert.ok(!line.includes("\u2014"), "no em dashes in published copy");
+    for (const token of line.match(NUMERAL) ?? []) {
+      assert.ok(Object.values(LIMITS).some((v) => String(v) === token), `${token} in key-lifecycle text is not a published LIMITS value`);
+    }
+  }
+});
+
+test("the published limits artifact carries the key-lifecycle facts", () => {
+  const limits = JSON.parse(readFileSync(resolve(ROOT, "public/glassbox/validation_api_limits.json"), "utf8"));
+  assert.deepEqual(limits.key_lifecycle_text, KEY_LIFECYCLE_TEXT);
 });
 
 test("the committed bindings and limits artifact are current", () => {

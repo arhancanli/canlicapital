@@ -409,6 +409,12 @@ console.log(await response.json());</code></pre></div>
     </table>
     <p class="dev-note">Every response carries <code>X-RateLimit-Limit</code>, <code>X-RateLimit-Remaining</code>
       and <code>X-RateLimit-Reset</code>. A 429 carries <code>Retry-After</code>.</p>
+    <h3>What happens to a key after you have it</h3>
+    <ul class="dev-list">
+      <li>Keys do not expire once issued.</li>
+      <li>There is no self-serve revoke or rotate endpoint in v1. If a key is compromised or simply unwanted, issue a new key and stop using the old one; the old one keeps working until someone revokes it by hand on the server side.</li>
+      <li>&quot;Client&quot;, for the daily key-issuance quota, means the request&#39;s IP address hashed together with a salt that rotates every UTC day, not a stored account. A shared office or NAT IP address draws from the same pool of 5 keys a day as every other request behind it.</li>
+    </ul>
   </section>
 
   <section class="dev-section" id="not-established">

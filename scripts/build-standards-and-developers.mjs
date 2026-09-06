@@ -19,7 +19,7 @@ import {
   renderProductShellStylesheet,
 } from "./product-shell.mjs";
 
-import { LIMITS, LIMITS_TEXT } from "../api/_lib/limits.js";
+import { KEY_LIFECYCLE_TEXT, LIMITS, LIMITS_TEXT } from "../api/_lib/limits.js";
 import { MANIFEST } from "../api/_lib/manifest.js";
 import { renderAll } from "./render-snippets.mjs";
 
@@ -434,6 +434,10 @@ ${renderProductShellHeader({ active: "" })}
     </table>
     <p class="dev-note">Every response carries <code>X-RateLimit-Limit</code>, <code>X-RateLimit-Remaining</code>
       and <code>X-RateLimit-Reset</code>. A 429 carries <code>Retry-After</code>.</p>
+    <h3>What happens to a key after you have it</h3>
+    <ul class="dev-list">
+      ${KEY_LIFECYCLE_TEXT.map((t) => `<li>${esc(t)}</li>`).join("\n      ")}
+    </ul>
   </section>
 
   <section class="dev-section" id="not-established">
