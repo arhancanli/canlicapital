@@ -694,7 +694,7 @@ const breadcrumbs = (trail) => ({
   })),
 });
 
-function pageHtml({ title, shortTitle, description, slug, body, sourceFile, sourceSha256, sources = [], related = "" }) {
+function pageHtml({ title, shortTitle, description, slug, body, sourceFile, sourceSha256, sources = [], related = "", citation }) {
   const url = `${ORIGIN}/research/${slug}`;
   const trail = breadcrumbs([
     ["Canli Capital", ORIGIN],
@@ -797,12 +797,15 @@ ${body}
       <p class="paper__links">
         <a href="/research/${sourceFile}">Read the unrendered source</a>
         <span aria-hidden="true"> / </span>
-        <a href="/research/citations/${slug}.bib" download>Cite this report</a>
-        <span aria-hidden="true"> / </span>
         <a href="/open">Inspect the underlying artifacts</a>
         <span aria-hidden="true"> / </span>
         <a href="/research">All research</a>
       </p>
+      <details class="paper__citation">
+        <summary>Cite this report</summary>
+        <pre><code>${escapeHtml(citation)}</code></pre>
+        <a href="/research/citations/${slug}.bib" download>Download BibTeX</a>
+      </details>
       <p class="paper__boundary">
         Published as evidence, not as a claim about future performance. The figures quoted here
         are reproducible from the artifacts linked above.
@@ -1006,6 +1009,7 @@ function main() {
         body,
         sourceSha256: sha256(paper.markdown),
         related: relatedSection(paper, papers),
+        citation: bibtex(paper),
       })),
     );
     writeFileSync(resolve(CITATION_DIR, `${paper.slug}.bib`), bibtex(paper));

@@ -230,7 +230,8 @@ body.paper {
   font: 400 0.86em/1.4 var(--mono);
   word-break: break-word;
 }
-.paper__body pre {
+.paper__body pre,
+.paper__citation pre {
   margin: 26px 0;
   padding: 18px 20px;
   overflow-x: auto;          /* wide code scrolls in its own box, never the page */
@@ -238,7 +239,8 @@ body.paper {
   background: var(--void-raised);
   font: 400 13px/1.6 var(--mono);
 }
-.paper__body pre code { padding: 0; border: 0; background: none; font-size: inherit; }
+.paper__body pre code,
+.paper__citation pre code { padding: 0; border: 0; background: none; font-size: inherit; }
 
 /* Tables carry most of the numeric evidence in these documents, so they get the
    same care as the prose: they scroll inside their own box rather than pushing
@@ -280,6 +282,11 @@ body.paper {
 .paper__links { margin: 0 0 16px; font: 500 12px/1.6 var(--mono); letter-spacing: 0.02em; }
 .paper__links a { color: var(--muted); text-decoration: none; }
 .paper__links a:hover { color: var(--oxide); text-decoration: underline; }
+.paper__citation { margin: 0 0 16px; font: 500 12px/1.6 var(--mono); letter-spacing: 0.02em; }
+.paper__citation summary { cursor: pointer; color: var(--muted); }
+.paper__citation summary:hover { color: var(--oxide); }
+.paper__citation a { color: var(--muted); text-decoration: none; }
+.paper__citation a:hover { color: var(--oxide); text-decoration: underline; }
 .paper__boundary { margin: 0; max-width: 62ch; color: var(--faint); font-size: 13px; line-height: 1.6; }
 
 @media (max-width: 640px) {
