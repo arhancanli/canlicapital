@@ -65,10 +65,15 @@
       <div>
         <span class="cc-shell__panel-label">Institution</span>
         <nav aria-label="Institution routes"><a class="cc-shell__panel-link" href="/progress">Corrections</a>
-<a class="cc-shell__panel-link" href="/performance">Status</a>
+<a class="cc-shell__panel-link" href="/performance">Performance</a>
 <a class="cc-shell__panel-link" href="/founder">Founder</a>
 <a class="cc-shell__panel-link" href="/open">Open data</a>
 <a class="cc-shell__panel-link" href="/measurements">Measurements</a></nav>
+      </div>
+      <div>
+        <span class="cc-shell__panel-label">Tools</span>
+        <nav aria-label="Tools"><a class="cc-shell__panel-link" href="/tools">All tools</a>
+<a class="cc-shell__panel-link" href="/how-to-validate-a-backtest">How to validate a backtest</a></nav>
       </div>
       <div>
         <span class="cc-shell__panel-label">Reproducible code</span>
@@ -90,7 +95,7 @@
     <div class="union-hero__copy">
       <p class="union-kicker"><span>Complete selection denominator</span><span>Union accounting v2</span></p>
       <h1 id="union-title">The denominator is public.</h1>
-      <p>Every measured identity makes the next result less surprising. This is the complete search behind ALPHAC: first measurements, duplicate-window removal, family concentration, incomplete evidence and the one sealed prospective identity.</p>
+      <p>Every measured identity makes the next result less surprising. This is the complete search behind ALPHAC: first measurements, duplicate-window removal, family concentration, incomplete evidence and the one sealed prospective identity. Canli Capital, the research house that publishes ALPHAC, runs this calculator free, with no account or key required.</p>
       <div class="union-actions"><a href="#union-explorer">Interrogate the union</a><a href="/tools/deflated-sharpe">Calculate the selection penalty</a></div>
     </div>
     <div class="union-counter" aria-label="Current selection denominator">
@@ -107,7 +112,7 @@
 
   <section class="union-boundary" aria-label="Claim boundary"><strong>Accounting, not performance</strong><p>This ledger proves what was measured and how selection N is counted. It does not prove that any identity is profitable, independent, or admissible. A complete packet is not a passed strategy, and neither complete packet status nor a positive Sharpe point estimate implies admission.</p></section>
 
-  <section class="union-workbench" id="union-explorer" aria-labelledby="explorer-title">
+  <section class="union-workbench" id="union-explorer" tabindex="-1" aria-labelledby="explorer-title">
     <header class="union-section-head"><div><p class="union-label">Search ledger</p><h2 id="explorer-title">229 identities. One immutable denominator.</h2></div><div class="union-tools"><button id="union-copy" type="button">Copy filtered link</button><button id="union-export" type="button">Export filtered JSON</button></div></header>
     <div class="union-filterbar">
       <label><span>Search identity</span><input id="union-query" type="search" placeholder="Key, config, label or family" /></label>
@@ -243,12 +248,14 @@
     <nav aria-label="Institution and authorship">
       <span>Institution</span>
       <a href="/progress">Corrections</a>
-      <a href="/performance">Status</a>
+      <a href="/performance">Performance</a>
       <a href="/founder">Arhan Canli</a>
     </nav>
-    <nav aria-label="Interactive tools">
+    <nav aria-label="Calculators">
       <span>Run it yourself</span>
+      <a href="/tools">All calculators</a>
       <a href="/tools/deflated-sharpe">Deflated Sharpe calculator</a>
+      <a href="/tools/backtest-overfitting">Backtest overfitting calculator</a>
       <a href="/tools/selection-risk">Selection Risk Lab</a>
       <a href="/tools/breadth">Breadth Lab</a>
       <a href="/tools/execution">Execution Reality Lab</a>

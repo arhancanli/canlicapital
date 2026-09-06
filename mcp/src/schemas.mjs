@@ -123,6 +123,13 @@ export const LIMITS_SENTENCES = Object.freeze({
   quotas: "Quotas: 1000 validations per key per UTC day, 5 keys per client per UTC day, 1048576 bytes per request, 20000 observations per series, 200 variants per matrix.",
 });
 
+// The MCP registry caps server.json's top-level description at 100 characters (its 422 reads
+// "expected length <= 100"), shorter than any sentence above. That one description carries this
+// clause instead: the verbatim tail of `notAdmission`, so it cannot drift from the boundary
+// language either (test/schemas.test.mjs pins the tail, test/registry-files.test.mjs the cap).
+export const REGISTRY_LIMITS_CLAUSE = "is not admission to anything and is not a forecast.";
+export const REGISTRY_DESCRIPTION_MAX = 100;
+
 // One tool description per tool, each stating (in one sentence lifted from the boundary language
 // above) what the tool's result cannot be used to claim, so an agent sees this before it ever
 // calls the tool, not only inside the returned envelope.

@@ -204,7 +204,7 @@ ${renderProductShellStylesheet()}
 <body class="paper">
 <a class="paper__skip" href="#content">Skip to content</a>
 ${renderProductShellHeader({ active: "verify" })}
-<main class="paper__main" id="content">
+<main class="paper__main" id="content" tabindex="-1">
   <article class="paper__article">
     <p class="paper__eyebrow"><a href="/open">The glass box</a></p>
     <h1 class="paper__title">How to verify us</h1>
@@ -227,7 +227,11 @@ ${renderProductShellHeader({ active: "verify" })}
         all ${artifacts.length} of them from files downloaded straight off this site and confirms
         every one matches. You need no repository, install or private data. The Python standard library is
         enough.</p>
-        <pre class="verify__code" tabindex="0" aria-label="Level 1 content-hash verification command"><code>${escapeHtml(l1Command)}</code></pre>
+        <details class="verify__disclosure">
+          <summary>Show the command (lists all ${artifacts.length} files it downloads)</summary>
+          <pre class="verify__code" tabindex="0" aria-label="Level 1 content-hash verification command"><code id="l1-command">${escapeHtml(l1Command)}</code></pre>
+          <button type="button" class="verify__copy" id="l1-copy">Copy command</button>
+        </details>
         <p>You should see <code>L1 content hashes : ${artifacts.length} reproduced, 0 failed</code>.
         If any line says FAIL, a published file no longer matches the hash it was published with,
         and the kit exits non-zero. That is the kit working, not the kit breaking.</p>
@@ -299,6 +303,20 @@ ${renderProductShellHeader({ active: "verify" })}
     </div>
   </article>
 </main>
+<script>(function () {
+  "use strict";
+  var button = document.getElementById("l1-copy");
+  var code = document.getElementById("l1-command");
+  if (!button || !code) return;
+  var restLabel = button.textContent;
+  button.addEventListener("click", function () {
+    if (!(navigator.clipboard && navigator.clipboard.writeText)) return;
+    navigator.clipboard.writeText(code.textContent).then(function () {
+      button.textContent = "Copied";
+      window.setTimeout(function () { button.textContent = restLabel; }, 1800);
+    });
+  });
+})();</script>
 ${renderProductShellFooter()}
 </body>
 </html>

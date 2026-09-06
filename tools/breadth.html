@@ -63,14 +63,15 @@
       <div>
         <span class="cc-shell__panel-label">Institution</span>
         <nav aria-label="Institution routes"><a class="cc-shell__panel-link" href="/progress">Corrections</a>
-<a class="cc-shell__panel-link" href="/performance">Status</a>
+<a class="cc-shell__panel-link" href="/performance">Performance</a>
 <a class="cc-shell__panel-link" href="/founder">Founder</a>
 <a class="cc-shell__panel-link" href="/open">Open data</a>
 <a class="cc-shell__panel-link" href="/measurements">Measurements</a></nav>
       </div>
       <div>
         <span class="cc-shell__panel-label">Tools</span>
-        <nav aria-label="Interactive tools"><a class="cc-shell__panel-link" href="/tools">All tools</a></nav>
+        <nav aria-label="Tools"><a class="cc-shell__panel-link" href="/tools">All tools</a>
+<a class="cc-shell__panel-link" href="/how-to-validate-a-backtest">How to validate a backtest</a></nav>
       </div>
       <div>
         <span class="cc-shell__panel-label">Reproducible code</span>
@@ -96,11 +97,12 @@
       <code>s &times; sqrt(N / (1 + (N-1) &times; rho))</code>. Take that to the limit and the
       ceiling is <code>s / sqrt(rho)</code>, which does not contain N at all. Past a point, breadth
       is not the lever and correlation is. This is the most important arithmetic in this project
-      and it decides whether its own objective is reachable.</p>
+      and it decides whether its own objective is reachable. Canli Capital, the research house
+      that publishes ALPHAC, runs this calculator free, with no account or key required.</p>
     <p class="lab-boundary"><strong>What this is.</strong> Closed-form arithmetic under strong assumptions. It shows the SHAPE of the constraint breadth operates under. It is not a forecast of any book, and no output here is a performance claim.</p>
   </section>
 
-  <section class="lab-lab" id="lab" aria-labelledby="lab-lab-title">
+  <section class="lab-lab" id="lab" tabindex="-1" aria-labelledby="lab-lab-title">
     <h2 id="lab-lab-title" class="lab-visually-hidden">The lab</h2>
     <div class="lab-controls">
       <label class="lab-field" for="lab-sharpe">
@@ -216,10 +218,10 @@
     <nav aria-label="Institution and authorship">
       <span>Institution</span>
       <a href="/progress">Corrections</a>
-      <a href="/performance">Status</a>
+      <a href="/performance">Performance</a>
       <a href="/founder">Arhan Canli</a>
     </nav>
-    <nav aria-label="Interactive tools">
+    <nav aria-label="Calculators">
       <span>Run it yourself</span>
       <a href="/tools">All calculators</a>
       <a href="/tools/deflated-sharpe">Deflated Sharpe calculator</a>

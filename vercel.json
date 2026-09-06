@@ -58,11 +58,20 @@
       ]
     },
     {
+      "source": "/(.*)\\.(mp4|webm)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=604800"
+        }
+      ]
+    },
+    {
       "source": "/",
       "headers": [
         {
           "key": "Cache-Control",
-          "value": "no-cache"
+          "value": "public, max-age=0, must-revalidate, stale-while-revalidate=60"
         }
       ]
     },
@@ -71,7 +80,7 @@
       "headers": [
         {
           "key": "Cache-Control",
-          "value": "no-cache"
+          "value": "public, max-age=0, must-revalidate, stale-while-revalidate=60"
         }
       ]
     },
@@ -147,16 +156,25 @@
         },
         {
           "key": "Cache-Control",
-          "value": "no-cache"
+          "value": "public, max-age=0, must-revalidate, stale-while-revalidate=60"
         }
       ]
     },
     {
-      "source": "/(systems|research|performance|progress|open)",
+      "source": "/(systems|research|performance|progress|open|measurements|trials|verify|review|foundry|founder|methodology|engineering|notes|developers|costs|tools|how-to-validate-a-backtest)",
       "headers": [
         {
           "key": "Cache-Control",
-          "value": "no-cache"
+          "value": "public, max-age=0, must-revalidate, stale-while-revalidate=60"
+        }
+      ]
+    },
+    {
+      "source": "/(research|measurements|trials|notes|tools|standards)/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate, stale-while-revalidate=60"
         }
       ]
     }

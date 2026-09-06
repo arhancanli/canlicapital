@@ -114,7 +114,7 @@ ${renderProductShellHeader({ active: "trials" })}
     <div class="union-hero__copy">
       <p class="union-kicker"><span>Complete selection denominator</span><span>Union accounting v2</span></p>
       <h1 id="union-title">The denominator is public.</h1>
-      <p>Every measured identity makes the next result less surprising. This is the complete search behind ALPHAC: first measurements, duplicate-window removal, family concentration, incomplete evidence and the one sealed prospective identity.</p>
+      <p>Every measured identity makes the next result less surprising. This is the complete search behind ALPHAC: first measurements, duplicate-window removal, family concentration, incomplete evidence and the one sealed prospective identity. Canli Capital, the research house that publishes ALPHAC, runs this calculator free, with no account or key required.</p>
       <div class="union-actions"><a href="#union-explorer">Interrogate the union</a><a href="/tools/deflated-sharpe">Calculate the selection penalty</a></div>
     </div>
     <div class="union-counter" aria-label="Current selection denominator">
@@ -131,7 +131,7 @@ ${renderProductShellHeader({ active: "trials" })}
 
   <section class="union-boundary" aria-label="Claim boundary"><strong>Accounting, not performance</strong><p>${escapeHtml(union.claim_boundary)} A complete packet is not a passed strategy, and neither complete packet status nor a positive Sharpe point estimate implies admission.</p></section>
 
-  <section class="union-workbench" id="union-explorer" aria-labelledby="explorer-title">
+  <section class="union-workbench" id="union-explorer" tabindex="-1" aria-labelledby="explorer-title">
     <header class="union-section-head"><div><p class="union-label">Search ledger</p><h2 id="explorer-title">${facts.selection_n} identities. One immutable denominator.</h2></div><div class="union-tools"><button id="union-copy" type="button">Copy filtered link</button><button id="union-export" type="button">Export filtered JSON</button></div></header>
     <div class="union-filterbar">
       <label><span>Search identity</span><input id="union-query" type="search" placeholder="Key, config, label or family" /></label>

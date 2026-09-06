@@ -196,15 +196,18 @@ ${renderProductShellHeader({ active: "" })}
   <section class="lab-hero" aria-labelledby="lab-title">
     <p class="lab-kicker"><span>Open research instrument</span><span>${esc(houseLabel)}</span><span>Educational, not evidence</span></p>
     <h1 id="lab-title">${esc(queryTitle)}</h1>
-    <p class="lab-lead">Find an edge that is not there. The series below is a driftless random walk. Its true Sharpe ratio is
+    <p class="lab-lead">This is selection risk, also called selection bias: searching enough configurations
+      turns pure noise into a result that looks like an edge. Find an edge that is not there. The series
+      below is a driftless random walk. Its true Sharpe ratio is
       <strong>${g.true_sharpe}</strong>, by construction, and no setting of any control can change
       that. Search it anyway. The lab counts every parameter set you try and deflates your best
       result against your own search, so you can watch a good-looking number turn into what it
-      actually is.</p>
+      actually is. Canli Capital, the research house that publishes ALPHAC, runs this calculator
+      free, with no account or key required.</p>
     <p class="lab-boundary"><strong>What this is.</strong> ${esc(c.claim_boundary)}</p>
   </section>
 
-  <section class="lab-lab" id="lab" aria-labelledby="lab-lab-title">
+  <section class="lab-lab" id="lab" tabindex="-1" aria-labelledby="lab-lab-title">
     <h2 id="lab-lab-title" class="lab-visually-hidden">The lab</h2>
     <div class="lab-controls">
       ${num("lab-seed", "Series seed", d.seed, 1, 999999, 1, `${g.bars} bars, ${g.process}`)}

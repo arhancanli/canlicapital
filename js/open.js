@@ -48,10 +48,14 @@ const FILES = {
   // alphaforge/scripts/capacity_export.py. Drives section 05 (the curve + the
   // four-row book table) and appears in the verifiability rail by its hash.
   capacity: "capacity.json",
-  // The signed, append-only transparency chain (scripts/transparency_log.py): every published
-  // day of the live record, Ed25519-signed and hash-chained, so history is provably un-edited.
-  transparency: "transparency_log.json",
 };
+
+// The signed, append-only transparency chain (scripts/transparency_log.py) is
+// 5.7 MB decoded; bindTransparency only ever reads head.seq, head.chain_hash,
+// distinct_days, entry_count, public_key_ed25519_hex and verify. Fetched apart
+// from FILES/BASE so this page loads the head-only artifact build-api.mjs
+// derives from the same log, not the whole thing.
+const TRANSPARENCY_HEAD_ARTIFACT = "/api/v1/chain/head.json";
 
 const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
@@ -1070,7 +1074,12 @@ async function boot() {
     const ar = await fetch(`${BASE}ots/anchors.json`, { cache: "no-cache" });
     if (ar.ok) anchors = await ar.json();
   } catch { /* anchor render is best-effort; the chain still binds without it */ }
-  bindTransparency(data.transparency, anchors);
+  let transparency = null;
+  try {
+    const tr = await fetch(TRANSPARENCY_HEAD_ARTIFACT, { cache: "no-cache" });
+    if (tr.ok) transparency = (await tr.json()).data;
+  } catch { /* transparency render is best-effort */ }
+  bindTransparency(transparency, anchors);
 
   let commitment = null;
   try {

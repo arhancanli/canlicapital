@@ -190,7 +190,7 @@ ${renderProductShellStylesheet()}
 <body class="founder-page">
 <a class="founder-skip" href="#content">Skip to content</a>
 ${renderProductShellHeader({ active: "founder" })}
-<main id="content">
+<main id="content" tabindex="-1">
   <section class="founder-hero" aria-labelledby="founder-title">
     <div class="founder-hero__grid" aria-hidden="true"></div>
     <div class="founder-hero__copy">

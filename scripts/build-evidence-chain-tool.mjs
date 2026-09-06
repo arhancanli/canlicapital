@@ -161,7 +161,7 @@ ${renderProductShellHeader({ active: "verify" })}
     <div class="chain-hero__copy">
       <p class="chain-kicker"><span>Public verification instrument</span><span>Record schema v2</span></p>
       <h1 id="chain-title">Do not trust the timeline. Break it.</h1>
-      <p class="chain-hero__lead">This browser re-derives every chain hash, checks every predecessor link and verifies every Ed25519 signature against the published key. Pick any historical entry, inspect what was signed, then alter a local copy and watch the proof fail.</p>
+      <p class="chain-hero__lead">This browser re-derives every chain hash, checks every predecessor link and verifies every Ed25519 signature against the published key. Pick any historical entry, inspect what was signed, then alter a local copy and watch the proof fail. Canli Capital, the research house that publishes ALPHAC, runs this calculator free, with no account or key required.</p>
       <div class="chain-hero__actions">
         <a class="chain-button chain-button--primary" href="#microscope">Open the chain microscope</a>
         <a class="chain-button" href="/glassbox/verify_transparency.py">Download the full Python verifier</a>
@@ -187,7 +187,7 @@ ${renderProductShellHeader({ active: "verify" })}
     <p>Broker truth, pre-boundary payload contents, record completeness or the absence of an unpublished alternate chain.</p>
   </section>
 
-  <section class="chain-workbench" id="microscope" aria-labelledby="microscope-title">
+  <section class="chain-workbench" id="microscope" tabindex="-1" aria-labelledby="microscope-title">
     <header class="chain-section-head">
       <div><p class="chain-label">Chain microscope</p><h2 id="microscope-title">${entries.length} entries. Every dependency exposed.</h2></div>
       <div class="chain-verification">

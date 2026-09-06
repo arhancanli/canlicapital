@@ -93,7 +93,9 @@ function head({ title, description, route, jsonLd, sources }) {
 <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" />
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" />
+<link rel="stylesheet" media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" />
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" /></noscript>
 ${renderProductShellStylesheet()}
 <link rel="stylesheet" href="/css/developers.css" />
 <script type="application/ld+json">${JSON.stringify(jsonLd)}</script>
@@ -240,6 +242,43 @@ ${renderProductShellFooter()}
   return { invalid: invalid.length, required: required.length, vectorCount };
 }
 
+// Pulls one fenced code block out of a markdown file by the heading right above it, so a snippet
+// shown on the site is read from the same file an agent (or a person) reads directly, rather than
+// typed a second time and left free to drift from it. Throws loudly if the heading or the fence is
+// gone, rather than silently rendering an empty block, because a missing snippet is a build defect.
+function extractReadmeFence(markdown, heading, lang) {
+  const headingIndex = markdown.indexOf(`## ${heading}`);
+  if (headingIndex === -1) throw new Error(`mcp/README.md: no "## ${heading}" heading found`);
+  const fenceMark = "```" + lang;
+  const fenceOpen = markdown.indexOf(fenceMark, headingIndex);
+  if (fenceOpen === -1) throw new Error(`mcp/README.md: no ${fenceMark} fence under "## ${heading}"`);
+  const bodyStart = markdown.indexOf("\n", fenceOpen) + 1;
+  const fenceClose = markdown.indexOf("```", bodyStart);
+  if (fenceClose === -1) throw new Error(`mcp/README.md: unterminated fence under "## ${heading}"`);
+  return markdown.slice(bodyStart, fenceClose).trimEnd();
+}
+
+// The short "From your AI assistant" block on /developers: the MCP server wraps the same seven
+// routes documented below it, read from mcp/package.json and mcp/README.md rather than typed
+// here, so this section cannot drift from what an agent running that package actually sees.
+function mcpAssistantSection() {
+  const mcpPkg = JSON.parse(readFileSync(resolve(ROOT, "mcp/package.json"), "utf8"));
+  const readme = readFileSync(resolve(ROOT, "mcp/README.md"), "utf8");
+  const claudeCodeInstall = extractReadmeFence(readme, "Claude Code", "bash");
+  const claudeDesktopJson = extractReadmeFence(readme, "Claude Desktop", "json");
+  const npmUrl = `https://www.npmjs.com/package/${mcpPkg.name}`;
+  return `<section class="dev-section" id="ai-assistant">
+    <h2>From your AI assistant</h2>
+    <p class="dev-note">This API is also an MCP server, so a coding assistant can call the
+      routes on this page as tools instead of writing requests by hand. Every tool it exposes
+      returns the full envelope, the same way every route on this page does, so the assistant
+      sees what a number cannot be used to claim, not only the number.</p>
+    <div class="dev-snippet"><p class="dev-snippet-label">Claude Code</p><pre class="dev-code"><code>${esc(claudeCodeInstall)}</code></pre></div>
+    <div class="dev-snippet"><p class="dev-snippet-label">Claude Desktop</p><pre class="dev-code"><code>${esc(claudeDesktopJson)}</code></pre></div>
+    <p class="dev-note"><a href="${esc(npmUrl)}" rel="noreferrer">${esc(mcpPkg.name)} on npm</a>, with the full tool list and what each one does not establish.</p>
+  </section>`;
+}
+
 function buildDevelopers() {
   const index = JSON.parse(readFileSync(resolve(ROOT, "public/api/v1/index.json"), "utf8"));
   const openapi = JSON.parse(readFileSync(resolve(ROOT, "public/api/v1/openapi.json"), "utf8"));
@@ -297,7 +336,11 @@ function buildDevelopers() {
     var copyButton = el("button", "dev-button", "Copy");
     copyButton.type = "button";
     copyButton.addEventListener("click", function () {
-      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(data.key);
+      if (!(navigator.clipboard && navigator.clipboard.writeText)) return;
+      navigator.clipboard.writeText(data.key).then(function () {
+        copyButton.textContent = "Copied";
+        window.setTimeout(function () { copyButton.textContent = "Copy"; }, 1800);
+      });
     });
     box.appendChild(value);
     box.appendChild(copyButton);
@@ -315,8 +358,12 @@ function buildDevelopers() {
   function wire() {
     var button = document.getElementById("dev-get-key-button");
     if (!button) return;
+    var restLabel = button.textContent;
+    var busyLabel = "Requesting key…";
     button.addEventListener("click", function () {
       button.disabled = true;
+      button.setAttribute("aria-busy", "true");
+      button.textContent = busyLabel;
       var errorBox = document.getElementById("dev-key-error");
       if (errorBox) errorBox.hidden = true;
       fetch("/api/v1/keys", {
@@ -329,6 +376,8 @@ function buildDevelopers() {
         });
       }).then(function (result) {
         button.disabled = false;
+        button.removeAttribute("aria-busy");
+        button.textContent = restLabel;
         if (result.status === 201) {
           showKeyResult(result.payload && result.payload.data);
         } else {
@@ -337,6 +386,8 @@ function buildDevelopers() {
         }
       }).catch(function () {
         button.disabled = false;
+        button.removeAttribute("aria-busy");
+        button.textContent = restLabel;
         showKeyError("Could not reach the key service. Use the curl command below.");
       });
     });
@@ -381,7 +432,7 @@ function buildDevelopers() {
 <body class="dev-page">
 <a class="dev-skip" href="#content">Skip to content</a>
 ${renderProductShellHeader({ active: "developers" })}
-<main id="content">
+<main id="content" tabindex="-1">
   <section class="dev-hero">
     <p class="dev-kicker"><span>Public API</span><span aria-hidden="true"> &middot; </span><span>v1</span></p>
     <h1>Every response says what it cannot be used to claim.</h1>
@@ -410,7 +461,7 @@ ${renderProductShellHeader({ active: "developers" })}
           <a href="/api/v1/validate/status"><code>GET /api/v1/validate/status</code></a> is the
           one-line check that the service is up before you start.</p>
         <button type="button" class="dev-button dev-button--primary" id="dev-get-key-button">Get a free key</button>
-        <div class="dev-key-result" id="dev-key-result" hidden></div>
+        <div class="dev-key-result" id="dev-key-result" role="status" aria-live="polite" hidden></div>
         <p class="dev-key-error" id="dev-key-error" hidden role="alert"></p>
         <p class="dev-note">Or from a terminal, in the language you have open:</p>
         ${keysSnippetsBlock()}
@@ -436,6 +487,8 @@ ${renderProductShellHeader({ active: "developers" })}
   </section>
   <script>${QUICKSTART_SCRIPT}</script>
 
+  ${mcpAssistantSection()}
+
   <section class="dev-section">
     <h2>Read endpoints, no key</h2>
     <table class="dev-table">
@@ -453,7 +506,13 @@ ${renderProductShellHeader({ active: "developers" })}
     <table class="dev-table">
       <thead><tr><th>Route</th><th>What it does</th></tr></thead>
       <tbody>
-        ${MANIFEST.map((m) => `<tr><td><code>${esc(m.method)} ${esc(m.path)}</code></td><td>${esc(m.summary)}</td></tr>`).join("\n        ")}
+        ${MANIFEST.map((m) => {
+          // "Book" is jargon the first time a reader meets it on this page (this table row);
+          // gloss it here only, not in the identical summary repeated below in the endpoint
+          // detail card, so the definition lives in exactly one place.
+          const gloss = m.path === "/api/v1/validate/breadth" ? " (book: the set of sleeves run together)" : "";
+          return `<tr><td><code>${esc(m.method)} ${esc(m.path)}</code></td><td>${esc(m.summary)}${esc(gloss)}</td></tr>`;
+        }).join("\n        ")}
       </tbody>
     </table>
     <h3>First, issue a key</h3>

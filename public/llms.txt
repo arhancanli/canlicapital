@@ -15,9 +15,11 @@
 
 - [Home](https://canlicapital.com/): What the project is and where to go next.
 - [Methodology](https://canlicapital.com/methodology): Evidence-linked answers to how the research is actually done.
+- [How to validate a backtest](https://canlicapital.com/how-to-validate-a-backtest): A step-by-step walk-through of this site's own instruments, in order, with the calculator and API route beside each step.
 - [Status](https://canlicapital.com/performance): The honest numbers and what each one is and is not.
 - [Verify](https://canlicapital.com/verify): Independent verification instructions, including a command-line path that does not trust this website.
 - [Engineering](https://canlicapital.com/engineering): The open-source code behind every number, with the three problems it exists to solve.
+- [Tools](https://canlicapital.com/tools): Every interactive calculator in one index, source-bound to the same code the site's own numbers run through.
 
 ## Open source
 
@@ -41,6 +43,8 @@ Post-mortems and derivations. These describe method and engineering; none is a p
 - [OpenAPI 3.1 document](https://canlicapital.com/api/v1/openapi): generated from the endpoints that exist, so it cannot document a route that does not.
 - [Discovery document](https://canlicapital.com/api/v1): every endpoint, with the limits of the API as a whole.
 - [canli.paper-evidence.v0](https://canlicapital.com/standards/paper-evidence): a proposed open standard for paper-trading evidence. Its required fields are the ones a performance claim usually omits, including a mandatory list of what the record does NOT establish. Schema, 12 conformance vectors and a zero-dependency validator are published; there are no independent implementations yet.
+- [MCP server](https://www.npmjs.com/package/canli-validation-mcp): `npx -y canli-validation-mcp`. Wraps the same validation API as callable tools for a coding agent: issue a free key, validate a Sharpe ratio or a backtest, fetch a receipt, check service status.
+- [GitHub Action](https://github.com/arhancanli/validate-backtest-action): `uses: arhancanli/validate-backtest-action@v0`. Runs the same validation API against a submitted return series inside CI, so a failing check can gate a merge.
 
 ## Evidence and corrections
 
@@ -75,7 +79,7 @@ The research corpus is 111 documents across 13 topics, including work that faile
 
 ## Machine-readable
 
-- [Sitemap](https://canlicapital.com/sitemap.xml): all 262 indexable routes.
+- [Sitemap](https://canlicapital.com/sitemap.xml): all 263 indexable routes.
 - [Full text](https://canlicapital.com/llms-full.txt): every research document, engineering note and paper abstract concatenated into one file, so a model can read the whole corpus without sampling it.
 - [Paper state](https://canlicapital.com/paper-state.json): the live record as JSON, the source every page renders from.
 - [Research index](https://canlicapital.com/research-index.json): 111 documents with citation metadata.

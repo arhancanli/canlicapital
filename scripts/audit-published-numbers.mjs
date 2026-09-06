@@ -205,6 +205,25 @@ function rounds(scope, target, decimals) {
  * the artifact match to within 0.05 of a dollar, which no compact rendering can
  * ever satisfy, and the rule would be decorative.
  */
+/**
+ * A compact figure with a trailing "+" ("24.7M+") is a floor, not a rounding: it claims AT
+ * LEAST that figure at that precision, so 24,750,503 is honestly "24.7M+" although it rounds
+ * to 24.8M. Some artifact value must sit in [target, target + one unit of the last digit).
+ */
+function floorsScaled(scope, target, decimals, scale) {
+  const { values } = scope;
+  const step = 10 ** -decimals * scale;
+  const slack = Number.EPSILON * Math.abs(target) * 8;
+  let lo = 0;
+  let hi = values.length;
+  while (lo < hi) {
+    const mid = (lo + hi) >> 1;
+    if (values[mid] < target - slack) lo = mid + 1;
+    else hi = mid;
+  }
+  return lo < values.length && values[lo] < target + step - slack;
+}
+
 function roundsScaled(scope, target, decimals, scale) {
   const { values } = scope;
   const tolerance = 0.5 * 10 ** -decimals * scale + Number.EPSILON * Math.abs(target) * 8;
@@ -299,8 +318,12 @@ for (const file of htmlFiles) {
   // compact figure without anybody adding it to a list.
   const COMPACT_SCALE = { K: 1e3, M: 1e6, B: 1e9, T: 1e12 };
   const compactScaleOf = new Map();
-  for (const match of text.matchAll(/(?<![\w.])(-?\d[\d,]*(?:\.\d+)?)\s?([KMBT])\b/g)) {
+  // A trailing "+" marks the figure as a floor (see floorsScaled); read with the suffix, as a
+  // rule, so any future "N+" compact figure is judged the same way without a list.
+  const compactFloor = new Set();
+  for (const match of text.matchAll(/(?<![\w.])(-?\d[\d,]*(?:\.\d+)?)\s?([KMBT])(\+?)(?!\w)/g)) {
     compactScaleOf.set(match[1], COMPACT_SCALE[match[2]]);
+    if (match[3] === "+") compactFloor.add(match[1]);
   }
 
   for (const token of new Set(text.match(NUMERAL) || [])) {
@@ -311,8 +334,12 @@ for (const file of htmlFiles) {
     const decimals = (bare.split(".")[1] || "").length;
 
     if (scope.verbatim.has(token) || scope.verbatim.has(bare)) { reasons.EXACT += 1; continue; }
-    if (Number.isFinite(value) && rounds(scope, value, decimals)) { reasons.ROUNDED += 1; continue; }
-    if (Number.isFinite(value) && rounds(scope, value / 100, decimals + 2)) {
+    // A token that carries a compact suffix ("24.7M", "$993.9K") means value times scale and
+    // nothing else, so the bare-number rules below do not apply to it: "24.8" beside an "M"
+    // must not trace through some unrelated artifact value that rounds to 24.8.
+    const scale = compactScaleOf.get(token) ?? compactScaleOf.get(bare);
+    if (!scale && Number.isFinite(value) && rounds(scope, value, decimals)) { reasons.ROUNDED += 1; continue; }
+    if (!scale && Number.isFinite(value) && rounds(scope, value / 100, decimals + 2)) {
       reasons.PERCENT += 1;
       continue;
     }
@@ -323,10 +350,17 @@ for (const file of htmlFiles) {
     // cleanly while plain numerals of the same wrongness were caught. A
     // low-information rule is only safe where the candidate set is the handful of
     // artifacts the page names.
-    const scale = compactScaleOf.get(token) ?? compactScaleOf.get(bare);
-    if (scoped && scale && Number.isFinite(value) && roundsScaled(scope, value * scale, decimals, scale)) {
-      reasons.COMPACT += 1;
-      continue;
+    if (scoped && scale && Number.isFinite(value)) {
+      // A "+" figure is judged ONLY as a floor: "24.8M+" is false for 24,750,503 even though
+      // 24,750,503 rounds to 24.8M.
+      const isFloor = compactFloor.has(token) || compactFloor.has(bare);
+      const traced = isFloor
+        ? floorsScaled(scope, value * scale, decimals, scale)
+        : roundsScaled(scope, value * scale, decimals, scale);
+      if (traced) {
+        reasons.COMPACT += 1;
+        continue;
+      }
     }
     if (/^(19|20)\d\d$/.test(bare) || dateParts.has(bare)) { reasons.DATE += 1; continue; }
     if (structure.has(bare)) { reasons.STRUCTURE += 1; continue; }

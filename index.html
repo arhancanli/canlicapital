@@ -14,6 +14,7 @@
   <meta name="theme-color" content="#07121c" />
   <meta name="color-scheme" content="light dark" />
   <link rel="canonical" href="https://canlicapital.com/" />
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Canli Capital" />
   <meta property="og:title" content="Canli Capital: audit a live systematic portfolio" />
@@ -21,6 +22,9 @@
   <meta property="og:url" content="https://canlicapital.com/" />
   <meta property="og:image" content="https://canlicapital.com/og.png" />
   <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Canli Capital: audit a live systematic portfolio" />
+  <meta name="twitter:description" content="Canli Capital is a public platform to watch a live paper-traded systematic portfolio, inspect its decisions, and reproduce research." />
+  <meta name="twitter:image" content="https://canlicapital.com/og.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" />
@@ -81,14 +85,15 @@
       <div>
         <span class="cc-shell__panel-label">Institution</span>
         <nav aria-label="Institution routes"><a class="cc-shell__panel-link" href="/progress">Corrections</a>
-<a class="cc-shell__panel-link" href="/performance">Status</a>
+<a class="cc-shell__panel-link" href="/performance">Performance</a>
 <a class="cc-shell__panel-link" href="/founder">Founder</a>
 <a class="cc-shell__panel-link" href="/open">Open data</a>
 <a class="cc-shell__panel-link" href="/measurements">Measurements</a></nav>
       </div>
       <div>
         <span class="cc-shell__panel-label">Tools</span>
-        <nav aria-label="Interactive tools"><a class="cc-shell__panel-link" href="/tools">All tools</a></nav>
+        <nav aria-label="Tools"><a class="cc-shell__panel-link" href="/tools">All tools</a>
+<a class="cc-shell__panel-link" href="/how-to-validate-a-backtest">How to validate a backtest</a></nav>
       </div>
       <div>
         <span class="cc-shell__panel-label">Reproducible code</span>
@@ -122,7 +127,7 @@
         <p class="hero__lead">Canli Capital is a research and verification platform where you can watch ALPHAC, its live paper-traded systematic portfolio, inspect its decisions, and reproduce selected research.</p>
         <div class="hero__actions">
           <a class="button button--primary" href="https://app.canlicapital.com/dashboard">View the live record <span aria-hidden="true">↗</span></a>
-          <a class="button button--ghost" href="/developers">Validate your own numbers</a>
+          <a class="button button--ghost" href="/tools">Validate your own numbers</a>
           <a class="button button--ghost" href="/methodology">Read the methodology</a>
         </div>
         <p class="hero__boundary"><strong>Current boundary.</strong> The public ALPHAC record uses paper execution. Any separately funded account remains outside the published strategy record until it has a governed broker attestation.</p>
@@ -131,7 +136,7 @@
       <aside class="live-console" aria-label="Interactive ALPHAC paper execution console">
         <div class="console-bar"><div><span class="console-light" aria-hidden="true"></span><strong>Evidence console</strong><span>ALPHAC / Paper</span></div><time id="console-time">Signed 05 Sept 2026, 20:26 UTC</time></div>
         <div class="console-tabs" role="group" aria-label="Choose a paper equity curve">
-          <button type="button" data-curve-key="alphac" aria-pressed="true">Composite</button><button type="button" data-curve-key="alphamax" aria-pressed="false">AlphaMax</button><button type="button" data-curve-key="managed_futures" aria-pressed="false">AlphaTrend</button><button type="button" data-curve-key="alphavintage" aria-pressed="false">Vintage</button><button type="button" data-curve-key="alphaforge" aria-pressed="false">Forge</button>
+          <button type="button" data-curve-key="alphac" aria-pressed="true">Composite</button><button type="button" data-curve-key="alphamax" aria-pressed="false">AlphaMax</button><button type="button" data-curve-key="managed_futures" aria-pressed="false">AlphaTrend</button><button type="button" data-curve-key="alphavintage" aria-pressed="false">AlphaVintage</button><button type="button" data-curve-key="alphaforge" aria-pressed="false">AlphaForge</button>
         </div>
         <div class="console-chart">
           <div class="chart-heading"><span>Normalized equity</span><strong>Observed / paper</strong></div>
@@ -157,7 +162,7 @@
       <div class="offering__intro"><h2 id="offering-title">Three ways in, depending on what you came to check.</h2><p>Nothing is gated and nothing needs an account. Prefer to run the numbers yourself first? <a href="/tools">Every calculator this project publishes</a> is free and source-bound.</p></div>
       <div class="offering__grid">
         <article><span>To see what it does</span><h3>The live paper record</h3><p>Equity, positions, decisions and broker reconciliation, republished hourly. Paper throughout, never funded.</p><p class="offering__stat"><strong id="card-equity-marks">28</strong> published equity marks <span>&middot;</span> <strong id="card-broker-accounts">3</strong> broker accounts reconciled</p><a href="https://app.canlicapital.com/dashboard">Open the live record <span aria-hidden="true">↗</span></a></article>
-        <article><span>To decide whether to believe it</span><h3>The research, and the retractions</h3><p>Every hypothesis tested, the ones that failed, and the figures since withdrawn.</p><p class="offering__stat"><strong id="card-research-docs">111</strong> documents <span>&middot;</span> <strong id="card-research-kills">46</strong> published kills <span>&middot;</span> <strong id="card-trial-ids">228</strong> trial identities</p><a href="/progress">Read the corrections <span aria-hidden="true">→</span></a></article>
+        <article><span>To decide whether to believe it</span><h3>The research, and the retractions</h3><p>Every hypothesis tested, the ones that failed, and the figures since withdrawn.</p><p class="offering__stat"><strong id="card-research-docs">111</strong> documents <span>&middot;</span> <strong id="card-research-kills">46</strong> published kills <span>&middot;</span> <strong id="card-trial-ids">228</strong> trial identities (the retired legacy set)</p><a href="/progress">Read the corrections <span aria-hidden="true">→</span></a></article>
         <article><span>To check the arithmetic yourself</span><h3>Run your own numbers</h3><p>Free key, no account. Send your own returns through the same validation arithmetic the record is held to, and get back a receipt you can cite. Behind it sit three open repositories: the engine, the point-in-time data layer and the backtester.</p><p class="offering__stat"><strong id="card-tests">1,220</strong> tests passing <span>&middot;</span> mypy --strict across <strong id="card-typed-files">83</strong> files</p><a href="/developers">Validate your numbers <span aria-hidden="true">→</span></a></article>
         <article><span>Hard boundary</span><h3>Research, not a fund</h3><p>No managed capital, copy-trading, promised return, or investment advice.</p><p class="offering__stat"><strong id="card-external-reviews">0</strong> external reviews <span>&middot;</span> <strong id="card-replications">0</strong> independent replications, so every claim here is still self-graded, not outside-checked</p><a href="/methodology">Read boundaries <span aria-hidden="true">→</span></a></article>
       </div>
@@ -245,8 +250,11 @@
       <div class="system-films__grid">
         <article class="system-film" data-film-card="engine" data-playback="poster">
           <div class="system-film__frame">
-            <img src="/system-films/engine-poster.png" loading="lazy" decoding="async" alt="" width="1280" height="720" data-film-poster />
-            <video muted loop playsinline preload="none" data-poster="/system-films/engine-poster.png" aria-hidden="true" data-film-video>
+            <picture>
+              <source srcset="/system-films/engine-poster.webp" type="image/webp" />
+              <img src="/system-films/engine-poster.png" loading="lazy" decoding="async" alt="" width="1280" height="720" data-film-poster />
+            </picture>
+            <video muted loop playsinline preload="none" data-poster="/system-films/engine-poster.webp" aria-hidden="true" data-film-video>
               <source data-src="/system-films/engine.webm" type="video/webm" />
               <source data-src="/system-films/engine.mp4" type="video/mp4" />
             </video>
@@ -263,8 +271,11 @@
         </article>
         <article class="system-film" data-film-card="broker" data-playback="poster">
           <div class="system-film__frame">
-            <img src="/system-films/broker-poster.png" loading="lazy" decoding="async" alt="" width="1280" height="720" data-film-poster />
-            <video muted loop playsinline preload="none" data-poster="/system-films/broker-poster.png" aria-hidden="true" data-film-video>
+            <picture>
+              <source srcset="/system-films/broker-poster.webp" type="image/webp" />
+              <img src="/system-films/broker-poster.png" loading="lazy" decoding="async" alt="" width="1280" height="720" data-film-poster />
+            </picture>
+            <video muted loop playsinline preload="none" data-poster="/system-films/broker-poster.webp" aria-hidden="true" data-film-video>
               <source data-src="/system-films/broker.webm" type="video/webm" />
               <source data-src="/system-films/broker.mp4" type="video/mp4" />
             </video>
@@ -281,8 +292,11 @@
         </article>
         <article class="system-film" data-film-card="record" data-playback="poster">
           <div class="system-film__frame">
-            <img src="/system-films/record-poster.png" loading="lazy" decoding="async" alt="" width="1280" height="720" data-film-poster />
-            <video muted loop playsinline preload="none" data-poster="/system-films/record-poster.png" aria-hidden="true" data-film-video>
+            <picture>
+              <source srcset="/system-films/record-poster.webp" type="image/webp" />
+              <img src="/system-films/record-poster.png" loading="lazy" decoding="async" alt="" width="1280" height="720" data-film-poster />
+            </picture>
+            <video muted loop playsinline preload="none" data-poster="/system-films/record-poster.webp" aria-hidden="true" data-film-video>
               <source data-src="/system-films/record.webm" type="video/webm" />
               <source data-src="/system-films/record.mp4" type="video/mp4" />
             </video>
@@ -360,10 +374,10 @@
     <nav aria-label="Institution and authorship">
       <span>Institution</span>
       <a href="/progress">Corrections</a>
-      <a href="/performance">Status</a>
+      <a href="/performance">Performance</a>
       <a href="/founder">Arhan Canli</a>
     </nav>
-    <nav aria-label="Interactive tools">
+    <nav aria-label="Calculators">
       <span>Run it yourself</span>
       <a href="/tools">All calculators</a>
       <a href="/tools/deflated-sharpe">Deflated Sharpe calculator</a>

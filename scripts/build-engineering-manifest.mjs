@@ -23,7 +23,7 @@
 // =============================================================================
 
 import { createHash } from "node:crypto";
-import { writeFileSync } from "node:fs";
+import { readFileSync, readdirSync, writeFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -32,6 +32,39 @@ import { canonicalJson as canonical } from "./canonical-json.mjs";
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const OUT = resolve(ROOT, "public", "glassbox", "engineering_open_source.json");
 const RAW = "https://raw.githubusercontent.com/arhancanli";
+
+// Two shipped ways to run this site's validators from OUTSIDE a browser: an MCP server and a
+// GitHub Action, neither of which is an extraction of the trading engine, so neither belongs in
+// `extractions` or its totals above. File counts for the MCP server are read straight out of this
+// checkout's own mcp/ directory (no network needed, always current); the Action's repository is
+// not part of this checkout, so its entry carries no typed number at all rather than one this
+// script cannot verify.
+function describeMcpServer() {
+  const dir = resolve(ROOT, "mcp");
+  const pkg = JSON.parse(readFileSync(resolve(dir, "package.json"), "utf8"));
+  const files_source = readdirSync(resolve(dir, "src")).filter((f) => f.endsWith(".mjs")).length;
+  const files_test = readdirSync(resolve(dir, "test")).filter((f) => f.endsWith(".test.mjs")).length;
+  return {
+    name: pkg.name,
+    kind: "MCP server",
+    version: pkg.version,
+    url: `https://www.npmjs.com/package/${pkg.name}`,
+    install: `npx -y ${pkg.name}`,
+    files_source,
+    files_test,
+    note: "Wraps the same validation API as callable tools, published from this repository's mcp/ directory.",
+  };
+}
+
+function describeGithubAction() {
+  return {
+    name: "validate-backtest-action",
+    kind: "GitHub Action",
+    url: "https://github.com/arhancanli/validate-backtest-action",
+    usage: "uses: arhancanli/validate-backtest-action@v0",
+    note: "Runs the same validation API against a submitted return series inside CI. A separate repository from this checkout, so no file count is claimed here.",
+  };
+}
 
 
 //: Verification results measured by running the repository's own gates. The
@@ -175,6 +208,7 @@ const payload = {
   },
   deflation_demonstration: DEFLATION_DEMONSTRATION,
   parity_incident: PARITY_INCIDENT,
+  developer_interfaces: [describeMcpServer(), describeGithubAction()],
 };
 payload.content_hash = `sha256:${createHash("sha256").update(canonical(payload)).digest("hex")}`;
 writeFileSync(OUT, `${JSON.stringify(payload, null, 2)}\n`);

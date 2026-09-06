@@ -13,6 +13,10 @@ supabase
 **/*.test.mjs
 **/*.test.js
 integrations
-mcp
+# mcp/ is a separate package, but the developers page generator reads its README and package.json
+# at build time (the assistant block and the published version), so those two stay in the upload.
+mcp/*
+!mcp/README.md
+!mcp/package.json
 deposits
 action

@@ -471,7 +471,11 @@ async function hydrateEvidence() {
     broker: "/glassbox/alpaca_broker_reconciliation.json",
     researchIndex: "/research-index.json",
     kills: "/glassbox/kill_log.json",
-    transparency: "/glassbox/transparency_log.json",
+    // hydrateTransparency only ever reads head.seq, head.chain_hash,
+    // head.generated_at and entry_count. The full signed chain is 5.7 MB
+    // decoded; this head-only artifact (built by scripts/build-api.mjs from
+    // the same log) carries those same four fields and nothing else.
+    transparency: "/api/v1/chain/head.json",
     costs: "/glassbox/cost_model_realism.json",
     films: "/system-films/state.json",
   };
@@ -520,7 +524,9 @@ async function hydrateEvidence() {
     const killed = Number(data.kills.killed_count || 0) + Number(data.kills.screen_killed_count || 0);
     byId("research-killed").textContent = integer.format(killed);
   }
-  if (data.transparency) hydrateTransparency(data.transparency);
+  // data.transparency is now the /api/v1/chain/head.json envelope; unwrap to
+  // the same shape hydrateTransparency always expected (head + entry_count).
+  if (data.transparency) hydrateTransparency(data.transparency.data);
   if (data.costs) hydrateCosts(data.costs);
   if (data.films) hydrateSystemFilmState(data.films);
   if (claims) prepareEvidenceCore(data, claims);

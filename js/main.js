@@ -289,55 +289,23 @@ function initMobileProgress() {
 }
 
 // =============================================================================
-// 8. SCENE + OFFSCREEN/VISIBILITY PAUSE
+// 8. SCENE (dead path removed)
+// -----------------------------------------------------------------------------
+// This used to compose the three.js manifold via a dynamic import of
+// ./scene.js, gated on a `<canvas id="scene">` existing on the page. No page
+// ever shipped that canvas (verified with grep across every page before this
+// was removed), so the import never actually ran: `!canvas` was always true
+// and the function always returned null on the first check. Vite still had to
+// bundle ./scene.js and ./shaders.js as a lazy chunk regardless, because
+// static analysis of a dynamic import cannot know a DOM element never exists,
+// so the deploy carried three (526 kB / 131.5 kB gzip, the single largest
+// chunk on the site) with zero real loads. js/scene.js, js/shaders.js and the
+// `three` dependency are deleted; this stub keeps initScene's contract (adds
+// .no-webgl, returns null) for the one caller in boot() below.
 // =============================================================================
 async function initScene() {
-  const canvas = document.getElementById("scene");
-  if (!useCanvas || !canvas) {
-    document.body.classList.add("no-webgl");
-    return null;
-  }
-  const { createScene, readPriorArc } = await import("./scene.js");
-  const scene = createScene(canvas, { reducedMotion: prefersReduced, mobile: isMobile });
-
-  canvas.classList.add("is-ready");
-
-  if (prefersReduced) {
-    // One composed static frame, frozen at THIS page's chapter of the manifold
-    // (its still position on the global state arc) so the page's thesis is
-    // legible even with motion off. The landing's default still is mid-arc.
-    if (typeof scene.setScroll === "function") scene.setScroll(PAGE.sceneStill);
-    scene.renderOnce();
-    return scene;
-  }
-
-  // Seed this page's manifold at the start of its band, then (if a prior page in
-  // this session wrote its last arc frame) ease FROM that frame to the band so a
-  // sub-page entry reads as the camera flying here under the curtain, not a cut.
-  // The whole property then feels like one continuous flight across navigations.
-  // Every call is guarded; on a fresh load (no prior arc) this is a clean entry.
-  if (typeof scene.setScroll === "function") scene.setScroll(PAGE.sceneBand[0]);
-  if (!isMobile && typeof scene.enterFrom === "function" && typeof readPriorArc === "function") {
-    const prior = readPriorArc();
-    if (prior) scene.enterFrom(prior.p, prior.c);
-  }
-
-  scene.start();
-
-  // P0-A: pause ONLY when the tab is hidden, never on scroll position. The canvas
-  // is position:fixed inset:0 (it is the whole-page backdrop), but it is declared
-  // early in the DOM, so an element-intersection observer marked it "not
-  // intersecting" the instant the reader scrolled past its DOM-flow origin and
-  // froze the manifold mid-page (the "stops toward the end" report). The scene
-  // must live from load until the tab is hidden, independent of scroll. A
-  // tab-visibility pause is the only correct power saver here.
-  document.addEventListener("visibilitychange", () => {
-    if (document.hidden) scene.stop();
-    else scene.start();
-  });
-
-  window.addEventListener("resize", () => scene.resize());
-  return scene;
+  document.body.classList.add("no-webgl");
+  return null;
 }
 
 // =============================================================================

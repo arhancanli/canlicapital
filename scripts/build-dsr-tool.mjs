@@ -95,8 +95,8 @@ function main() {
   const queryTitle = "Deflated Sharpe ratio calculator (PSR and DSR)";
   const houseLabel = "Deflated Sharpe calculator";
   const description =
-    "Calculate the Probabilistic and Deflated Sharpe Ratio (PSR and DSR), exposing trial count, " +
-    "dispersion, sample length and non-normal return assumptions.";
+    "A Probabilistic Sharpe ratio calculator that also reports its Deflated form, exposing trial " +
+    "count, dispersion, sample length and non-normal return assumptions.";
   const defaults = {
     observed_sharpe_annualized: 1.5,
     observations: 730,
@@ -178,21 +178,23 @@ ${renderProductShellHeader({ active: "methodology" })}
     <div class="dsr-hero__copy">
       <p class="dsr-kicker"><span>Open research instrument</span><span>${escapeHtml(houseLabel)}</span><span>Contract v${escapeHtml(contract.version)}</span></p>
       <h1 id="dsr-title">${escapeHtml(queryTitle)}</h1>
-      <p class="dsr-hero__lead">How much Sharpe survives the search? A strong backtest is less surprising after a long search. Put the observed Sharpe, return shape and complete selection process on the same surface. The calculator reproduces ALPHAC's per-period PSR and DSR formulas in your browser.</p>
+      <p class="dsr-hero__lead">This is a Probabilistic Sharpe ratio calculator that also reports its Deflated form. How much Sharpe survives the search? A strong backtest is less surprising after a long search. Put the observed Sharpe, return shape and complete selection process on the same surface. The calculator reproduces ALPHAC's per-period PSR and DSR formulas in your browser. Canli Capital, the research house that publishes ALPHAC, runs this calculator free, with no account or key required.</p>
       <div class="dsr-hero__actions">
         <a class="dsr-button dsr-button--primary" href="#calculator">Open the pressure chamber</a>
         <a class="dsr-button" href="${ALPHAC_ROOT}/${contract.source_bindings.implementation.path}" rel="noreferrer">Inspect the Python source <span aria-hidden="true">↗</span></a>
       </div>
     </div>
     <aside class="dsr-union" aria-label="Current ALPHAC trial accounting preset">
-      <div class="dsr-union__head"><span>Current union preset</span><strong>Source-bound</strong></div>
+      <div class="dsr-union__head"><span>What this preset loads (current union preset)</span><strong>Source-bound</strong></div>
       <dl>
-        <div><dt>Hypothesis identities</dt><dd>${selection.n_hypotheses}</dd></div>
+        <div><dt>Ideas tested (hypothesis identities)</dt><dd>${selection.n_hypotheses}</dd></div>
         <div><dt>Per-period V[SR]</dt><dd>${selection.sharpe_variance.toPrecision(7)}</dd></div>
-        <div><dt>Selection unit</dt><dd>First immutable record</dd></div>
+        <div><dt>What counts as one try (selection unit)</dt><dd>First immutable record</dd></div>
         <div><dt>Claim status</dt><dd>Accounting, not performance</dd></div>
       </dl>
-      <p>${escapeHtml(ledger.claim_boundary)}</p>
+      <p>This count is the full union, including the one live prospective identity not yet
+        admitted; a retired legacy set published elsewhere on the site is smaller by that one
+        identity. ${escapeHtml(ledger.claim_boundary)}</p>
     </aside>
   </section>
 
@@ -201,7 +203,7 @@ ${renderProductShellHeader({ active: "methodology" })}
     <p>The current-union preset supplies only trial count and dispersion. The observed Sharpe, sample length, skew and kurtosis are illustrative until you replace them. No output on this page is an ALPHAC performance claim or an admission verdict.</p>
   </section>
 
-  <section class="dsr-workbench" id="calculator" aria-labelledby="calculator-title">
+  <section class="dsr-workbench" id="calculator" tabindex="-1" aria-labelledby="calculator-title">
     <header class="dsr-section-head">
       <div><p class="dsr-label">Selection pressure chamber</p><h2 id="calculator-title">How many trials did you run?</h2><p class="dsr-hero__lead">One result. The whole search behind it.</p></div>
       <div class="dsr-workbench__tools">

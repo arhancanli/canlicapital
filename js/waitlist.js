@@ -34,7 +34,7 @@ const MSG = {
 };
 
 const SUBMIT_LABEL = "Request early access";
-const SUBMIT_BUSY = "Adding you...";
+const SUBMIT_BUSY = "Adding you…";
 
 // Same validation shape used elsewhere in the build: a non-empty local part, an
 // at sign, a domain, a dot, and a tld. Intentionally permissive, since the

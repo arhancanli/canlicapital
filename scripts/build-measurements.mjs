@@ -46,6 +46,9 @@ const PUBLISHER = "Canli Capital";
 const TITLE_SUFFIX = " / Canli Capital";
 const DESCRIPTION_MAX = 165;
 import { editableDashForms, emDashCharacter, normalizeEditableCopy } from "./editable-copy.mjs";
+import { describeProvenanceUrl } from "./describe-provenance-url.mjs";
+
+const URL_VALUE = /^https?:\/\//i;
 
 const escapeHtml = (value) =>
   normalizeEditableCopy(value)
@@ -81,20 +84,20 @@ function humanise(path) {
     .join(" / ");
 }
 
-const slugify = (path) => path.replace(/[._]/g, "-").toLowerCase();
+export const slugify = (path) => path.replace(/[._]/g, "-").toLowerCase();
 
 // ---------------------------------------------------------------------------
 // DISCOVERY. An artifact is anything carrying this engine's schema stamp or a
 // claim boundary, at the top level of research.json or one level inside it.
 // ---------------------------------------------------------------------------
-const isArtifact = (value) =>
+export const isArtifact = (value) =>
   value !== null &&
   typeof value === "object" &&
   !Array.isArray(value) &&
   ("claim_boundary" in value ||
     (typeof value.schema === "string" && value.schema.startsWith("canli.")));
 
-function discover(research) {
+export function discover(research) {
   const found = [];
   for (const [key, value] of Object.entries(research)) {
     if (value === null || typeof value !== "object" || Array.isArray(value)) continue;
@@ -120,12 +123,21 @@ const PROSE_MIN = 80;
 
 const isScalar = (v) => v === null || ["string", "number", "boolean"].includes(typeof v);
 
+// A provenance URL (a Yahoo Finance chart endpoint, a CFTC dataset resource) is not a sentence
+// a reader chose to write; it is a value that happens to be a string starting with "http". Its
+// EXACT bytes belong in the href, unconditionally. Its VISIBLE text should be a name, not a query
+// string full of timestamps -- so every scalar renderer routes a URL through the same descriptive
+// label rather than printing it verbatim.
 function formatScalar(value) {
   if (value === null) return "Not reported";
   if (typeof value === "boolean") return value ? "yes" : "no";
   if (typeof value === "number") {
     if (Number.isInteger(value)) return escapeHtml(String(value));
     return escapeHtml(Math.abs(value) < 0.001 ? value.toExponential(3) : value.toFixed(6));
+  }
+  if (typeof value === "string" && URL_VALUE.test(value)) {
+    const label = describeProvenanceUrl(value);
+    if (label) return `<a href="${escapeHtml(value)}" rel="noreferrer">${escapeHtml(label)}</a>`;
   }
   return escapeHtml(value);
 }
@@ -161,7 +173,7 @@ function renderTable(key, rows) {
 
 function renderValue(key, value, depth, rawUrl) {
   if (isScalar(value)) {
-    if (typeof value === "string" && value.length >= PROSE_MIN) {
+    if (typeof value === "string" && value.length >= PROSE_MIN && !URL_VALUE.test(value)) {
       return `<p class="measure__prose"><strong>${escapeHtml(humanise(key))}.</strong> ${escapeHtml(value)}</p>`;
     }
     return renderScalarList([[key, value]]);
@@ -209,8 +221,11 @@ function renderBody(data, depth, rawUrl) {
   // in the field list would bury it among the numbers it is supposed to qualify.
   const entries = Object.entries(data).filter(([key]) => key !== "claim_boundary");
   // Short scalars gather into one definition list. Long prose, objects and arrays render in place,
-  // in the artifact's own order.
-  const isShortScalar = (v) => isScalar(v) && !(typeof v === "string" && v.length >= PROSE_MIN);
+  // in the artifact's own order. A URL is never prose regardless of its length: a 99-character
+  // Yahoo or CFTC endpoint is still one value that starts with "http", not a paragraph, and routing
+  // it here keeps it out of the escaped-verbatim prose branch and into formatScalar's link handling.
+  const isShortScalar = (v) =>
+    isScalar(v) && !(typeof v === "string" && v.length >= PROSE_MIN && !URL_VALUE.test(v));
   const scalars = entries.filter(([, v]) => isShortScalar(v));
   const rest = entries.filter(([, v]) => !isShortScalar(v));
   const parts = [];
@@ -309,7 +324,7 @@ function boundaryOf(data) {
  *  four of them shipped that way until the number-trace guard was scoped to declared sources and
  *  the missing files turned up as untraceable numbers.
  */
-function rawArtifactUrl(path, research) {
+export function rawArtifactUrl(path, research) {
   const segments = path.split(".");
   // The producer declares any key whose filename it cannot predict. Guessing first and declaring
   // second is how four of these links came to 404.
@@ -506,4 +521,9 @@ signature against the published bundle. The written-up versions live in
   for (const { path } of artifacts) console.log(`    ${path}`);
 }
 
-main();
+// Run only when invoked directly (`node scripts/build-measurements.mjs`), not when another
+// script imports `discover`/`rawArtifactUrl`/`slugify` to compute sitemap lastmod without
+// re-running this entire build as a side effect of importing it.
+if (import.meta.url === `file://${process.argv[1]}`) {
+  main();
+}

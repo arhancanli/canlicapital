@@ -65,7 +65,7 @@ const TOOLS = [
     slug: "breadth",
     title: "Portfolio breadth calculator",
     house: "Breadth Lab",
-    sentence: "Computes how much a book of N sleeves is worth, and the correlation ceiling that no amount of breadth can pass.",
+    sentence: "Computes how much a book (the set of sleeves run together) of N sleeves is worth, and the correlation ceiling that no amount of breadth can pass.",
   },
   {
     slug: "trial-accounting",
@@ -133,7 +133,9 @@ const html = `<!doctype html>
 <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" />
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" />
+<link rel="stylesheet" media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" />
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" /></noscript>
 ${renderProductShellStylesheet()}
 <link rel="stylesheet" href="/css/lab.css" />
 <link rel="stylesheet" href="/css/tools-hub.css" />
@@ -146,10 +148,11 @@ ${renderProductShellHeader({ active: "" })}
   <section class="lab-hero" aria-labelledby="tools-title">
     <p class="lab-kicker"><span>Open research instruments</span><span>${TOOLS.length} calculators</span></p>
     <h1 id="tools-title">Every calculator, in one place.</h1>
-    <p class="lab-lead">Each of these runs entirely in your browser, is free, requires no account,
-      and is built from the same source-bound arithmetic this project's own published record is
-      held to. Most started life under a house name; each now names itself for what it computes,
-      and keeps the house name as a subtitle where one exists.</p>
+    <p class="lab-lead">Canli Capital, the research house that publishes ALPHAC, built each of these.
+      Every one runs entirely in your browser, is free, requires no account or key, and is built
+      from the same source-bound arithmetic this project's own published record is held to. Most
+      started life under a house name; each now names itself for what it computes, and keeps the
+      house name as a subtitle where one exists.</p>
   </section>
 
   <section class="tools-grid" id="tools-list" aria-label="All calculators">
@@ -179,6 +182,8 @@ ${renderProductShellHeader({ active: "" })}
       <a href="/developers">the API quickstart</a> for the deflated-Sharpe, overfitting and breadth
       routes. None of these tools writes to any ledger, artifact or published record; every input
       stays in your browser.</p>
+    <p class="lab-source">For the full walk-through with the API route beside each calculator, see
+      <a href="/how-to-validate-a-backtest">how to validate a backtest</a>.</p>
   </section>
 </main>
 ${renderProductShellFooter()}

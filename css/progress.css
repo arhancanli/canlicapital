@@ -260,6 +260,21 @@
 .phases__note { color: var(--grey-700); margin-top: var(--s-6); max-width: 64ch; }
 
 /* =============================================================================
+   THE CORRECTIONS RECORD
+   -----------------------------------------------------------------------------
+   Generated at prebuild by scripts/build-progress-corrections.mjs from every
+   CORRECTION-prefixed entry in public/paper-state.json's transparency log. Plain
+   bordered rows, newest first: the same hairline-row grammar as .ledger below it
+   (var(--grey-850) border-top, .body-l for the quoted text), no new color, no
+   new motion, no per-entry decoration.
+   ========================================================================== */
+.corrections-list { list-style: none; margin: var(--s-6) 0 0; padding: 0; }
+.corrections-item { padding: var(--s-5) 0; border-top: 1px solid var(--grey-850); }
+.corrections-list .corrections-item:last-child { border-bottom: 1px solid var(--grey-850); }
+.corrections-item__text { color: var(--paper-dim); max-width: 74ch; }
+.corrections-item__date { color: var(--paper); font-style: normal; }
+
+/* =============================================================================
    THE EDGE STATUS LEDGER
    -----------------------------------------------------------------------------
    Two honest rows: what the build HAS proven (the engineering and the integrity)

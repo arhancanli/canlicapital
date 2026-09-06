@@ -9,9 +9,33 @@
   --cc-mint: #58e0b5;
   --cc-amber: #f1b85b;
   --cc-red: #ff6f73;
-  --cc-shell-display: "Bricolage Grotesque", "Arial Narrow", system-ui, sans-serif;
-  --cc-shell-body: "Inter", system-ui, sans-serif;
+  --cc-shell-display: "Bricolage Grotesque", "Bricolage Grotesque Fallback", "Arial Narrow", system-ui, sans-serif;
+  --cc-shell-body: "Inter", "Inter Fallback", system-ui, sans-serif;
   --cc-shell-data: "IBM Plex Mono", ui-monospace, monospace;
+}
+
+/* Metric-matched local stand-ins for the two webfonts above, so a page that
+   loads this shell without css/home.css still gets the same swap-CLS fix.
+   Same derivation and values as css/home.css: Inter/Bricolage Grotesque's own
+   metrics (via @capsizecss/metrics) against Arial's, re-scaled so size-adjust
+   matches average character width and ascent/descent/line-gap-override match
+   the line box at that scale. Declaring the same @font-face twice across two
+   stylesheets is harmless; the browser only ever needs the one relevant here. */
+@font-face {
+  font-family: "Inter Fallback";
+  src: local("Arial");
+  size-adjust: 107.12%;
+  ascent-override: 90.44%;
+  descent-override: 22.52%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: "Bricolage Grotesque Fallback";
+  src: local("Arial");
+  size-adjust: 105.43%;
+  ascent-override: 88.21%;
+  descent-override: 25.61%;
+  line-gap-override: 0%;
 }
 
 .cc-shell,
