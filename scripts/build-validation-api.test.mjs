@@ -114,6 +114,15 @@ test("vercel.json gives the function routes no-store and receipts an immutable c
   assert.equal(bySource["/api/v1/validate/(.*)"]["Cache-Control"], "no-store");
   assert.equal(bySource["/api/v1/keys"]["Cache-Control"], "no-store");
   assert.match(bySource["/api/v1/receipts/(.*)"]["Cache-Control"], /immutable/);
+  // The system-film videos, cached the same way as the image rule right above
+  // it in vercel.json (public, 7 days, no immutable: these are re-rendered
+  // from live artifacts, not fingerprinted build output).
+  assert.equal(
+    bySource["/(.*)\\.(svg|png|jpg|jpeg|webp|avif|ico)"]["Cache-Control"],
+    bySource["/(.*)\\.(mp4|webm)"]["Cache-Control"],
+    "the video cache rule should match the image rule's style",
+  );
+  assert.equal(bySource["/(.*)\\.(mp4|webm)"]["Cache-Control"], "public, max-age=604800");
 });
 
 test("/developers ships no loading placeholder: the key result and error boxes are hidden and empty in the static HTML", () => {
