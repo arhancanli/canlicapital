@@ -65,7 +65,7 @@ const TOOLS = [
     slug: "breadth",
     title: "Portfolio breadth calculator",
     house: "Breadth Lab",
-    sentence: "Computes how much a book of N sleeves is worth, and the correlation ceiling that no amount of breadth can pass.",
+    sentence: "Computes how much a book (the set of sleeves run together) of N sleeves is worth, and the correlation ceiling that no amount of breadth can pass.",
   },
   {
     slug: "trial-accounting",
@@ -148,10 +148,11 @@ ${renderProductShellHeader({ active: "" })}
   <section class="lab-hero" aria-labelledby="tools-title">
     <p class="lab-kicker"><span>Open research instruments</span><span>${TOOLS.length} calculators</span></p>
     <h1 id="tools-title">Every calculator, in one place.</h1>
-    <p class="lab-lead">Each of these runs entirely in your browser, is free, requires no account,
-      and is built from the same source-bound arithmetic this project's own published record is
-      held to. Most started life under a house name; each now names itself for what it computes,
-      and keeps the house name as a subtitle where one exists.</p>
+    <p class="lab-lead">Canli Capital, the research house that publishes ALPHAC, built each of these.
+      Every one runs entirely in your browser, is free, requires no account or key, and is built
+      from the same source-bound arithmetic this project's own published record is held to. Most
+      started life under a house name; each now names itself for what it computes, and keeps the
+      house name as a subtitle where one exists.</p>
   </section>
 
   <section class="tools-grid" id="tools-list" aria-label="All calculators">

@@ -233,7 +233,8 @@ ${renderProductShellHeader({ active: "" })}
       that ranked best on your in-sample data also rank well out of sample, or did it just win a
       popularity contest against the noise in that one split? Paste a matrix of per-period returns,
       one column per configuration, and it runs Combinatorially Symmetric Cross-Validation (CSCV)
-      entirely in your browser.</p>
+      entirely in your browser. Canli Capital, the research house that publishes ALPHAC, runs this
+      calculator free, with no account or key required.</p>
     <p class="lab-boundary"><strong>What this is.</strong> ${esc(contract.claim_boundary)}</p>
   </section>
 

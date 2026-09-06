@@ -202,7 +202,8 @@ ${renderProductShellHeader({ active: "" })}
       <strong>${g.true_sharpe}</strong>, by construction, and no setting of any control can change
       that. Search it anyway. The lab counts every parameter set you try and deflates your best
       result against your own search, so you can watch a good-looking number turn into what it
-      actually is.</p>
+      actually is. Canli Capital, the research house that publishes ALPHAC, runs this calculator
+      free, with no account or key required.</p>
     <p class="lab-boundary"><strong>What this is.</strong> ${esc(c.claim_boundary)}</p>
   </section>
 

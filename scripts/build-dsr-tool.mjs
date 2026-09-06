@@ -178,7 +178,7 @@ ${renderProductShellHeader({ active: "methodology" })}
     <div class="dsr-hero__copy">
       <p class="dsr-kicker"><span>Open research instrument</span><span>${escapeHtml(houseLabel)}</span><span>Contract v${escapeHtml(contract.version)}</span></p>
       <h1 id="dsr-title">${escapeHtml(queryTitle)}</h1>
-      <p class="dsr-hero__lead">This is a Probabilistic Sharpe ratio calculator that also reports its Deflated form. How much Sharpe survives the search? A strong backtest is less surprising after a long search. Put the observed Sharpe, return shape and complete selection process on the same surface. The calculator reproduces ALPHAC's per-period PSR and DSR formulas in your browser.</p>
+      <p class="dsr-hero__lead">This is a Probabilistic Sharpe ratio calculator that also reports its Deflated form. How much Sharpe survives the search? A strong backtest is less surprising after a long search. Put the observed Sharpe, return shape and complete selection process on the same surface. The calculator reproduces ALPHAC's per-period PSR and DSR formulas in your browser. Canli Capital, the research house that publishes ALPHAC, runs this calculator free, with no account or key required.</p>
       <div class="dsr-hero__actions">
         <a class="dsr-button dsr-button--primary" href="#calculator">Open the pressure chamber</a>
         <a class="dsr-button" href="${ALPHAC_ROOT}/${contract.source_bindings.implementation.path}" rel="noreferrer">Inspect the Python source <span aria-hidden="true">↗</span></a>

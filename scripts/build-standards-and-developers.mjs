@@ -506,7 +506,13 @@ ${renderProductShellHeader({ active: "developers" })}
     <table class="dev-table">
       <thead><tr><th>Route</th><th>What it does</th></tr></thead>
       <tbody>
-        ${MANIFEST.map((m) => `<tr><td><code>${esc(m.method)} ${esc(m.path)}</code></td><td>${esc(m.summary)}</td></tr>`).join("\n        ")}
+        ${MANIFEST.map((m) => {
+          // "Book" is jargon the first time a reader meets it on this page (this table row);
+          // gloss it here only, not in the identical summary repeated below in the endpoint
+          // detail card, so the definition lives in exactly one place.
+          const gloss = m.path === "/api/v1/validate/breadth" ? " (book: the set of sleeves run together)" : "";
+          return `<tr><td><code>${esc(m.method)} ${esc(m.path)}</code></td><td>${esc(m.summary)}${esc(gloss)}</td></tr>`;
+        }).join("\n        ")}
       </tbody>
     </table>
     <h3>First, issue a key</h3>

@@ -342,7 +342,7 @@ console.log(await response.json());</code></pre></div>
         <tr><td><code>POST /api/v1/validate/deflated-sharpe</code></td><td>Probabilistic and deflated Sharpe from the seven contract inputs, or from a return series plus the trials behind it.</td></tr>
         <tr><td><code>POST /api/v1/validate/overfitting</code></td><td>Probability of backtest overfitting by CSCV over the returns of every variant tried.</td></tr>
         <tr><td><code>POST /api/v1/validate/paper-evidence</code></td><td>Conformance of a performance record against the canli.paper-evidence.v0 standard.</td></tr>
-        <tr><td><code>POST /api/v1/validate/breadth</code></td><td>Book Sharpe ceiling from per-sleeve quality and average pairwise correlation, and the sleeves a target needs.</td></tr>
+        <tr><td><code>POST /api/v1/validate/breadth</code></td><td>Book Sharpe ceiling from per-sleeve quality and average pairwise correlation, and the sleeves a target needs. (book: the set of sleeves run together)</td></tr>
         <tr><td><code>GET /api/v1/validate/status</code></td><td>Service and store status with the quota constants in force.</td></tr>
         <tr><td><code>GET /api/v1/receipts/{id}</code></td><td>A stored verdict by content-hash id. Immutable.</td></tr>
         <tr><td><code>GET /api/v1/receipts/{id}/badge.svg</code></td><td>An embeddable SVG badge for a receipt: the formula version and the receipt id prefix only, never a pass or fail mark.</td></tr>
