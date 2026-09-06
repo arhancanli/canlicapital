@@ -23,3 +23,13 @@ test("refuses malformed JSON and non-object roots", async () => {
   await assert.rejects(readJsonBody(req("{not json"), 1024), (e) => e.status === 400 && e.code === "invalid_json");
   await assert.rejects(readJsonBody(req("[1,2]"), 1024), (e) => e.status === 400 && e.code === "not_an_object");
 });
+
+test("an empty body is still invalid_json by default, but valid when allowEmpty is set", async () => {
+  await assert.rejects(readJsonBody(req(""), 1024), (e) => e.status === 400 && e.code === "invalid_json");
+  assert.deepEqual(await readJsonBody(req(""), 1024, { allowEmpty: true }), {});
+  assert.deepEqual(await readJsonBody(req("   "), 1024, { allowEmpty: true }), {});
+});
+
+test("allowEmpty does not weaken malformed-but-nonempty bodies", async () => {
+  await assert.rejects(readJsonBody(req("{not json"), 1024, { allowEmpty: true }), (e) => e.status === 400 && e.code === "invalid_json");
+});

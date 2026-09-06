@@ -3,7 +3,7 @@ export class BodyError extends Error {
   constructor(status, code, message) { super(message); this.status = status; this.code = code; }
 }
 
-export async function readJsonBody(req, maxBytes) {
+export async function readJsonBody(req, maxBytes, { allowEmpty = false } = {}) {
   const declared = Number(req.headers?.["content-length"]);
   if (Number.isFinite(declared) && declared > maxBytes) throw new BodyError(413, "payload_too_large", `Request body exceeds ${maxBytes} bytes`);
   if (req.body !== undefined && req.body !== null && typeof req.body === "object" && !Buffer.isBuffer(req.body)) {
@@ -21,6 +21,7 @@ export async function readJsonBody(req, maxBytes) {
     chunks.push(chunk);
   }
   const raw = typeof req.body === "string" ? req.body : Buffer.concat(chunks).toString("utf8");
+  if (allowEmpty && raw.trim() === "") return {};
   let parsed;
   try { parsed = JSON.parse(raw); } catch { throw new BodyError(400, "invalid_json", "Request body is not valid JSON"); }
   if (parsed === null || typeof parsed !== "object" || Array.isArray(parsed)) throw new BodyError(400, "not_an_object", "Request body must be a JSON object");

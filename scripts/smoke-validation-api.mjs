@@ -8,6 +8,14 @@ const base = process.argv[2];
 if (!base) { console.error("usage: smoke-validation-api.mjs https://<deployment>"); process.exit(2); }
 const j = async (res) => { const text = await res.text(); try { return { status: res.status, body: JSON.parse(text), headers: res.headers }; } catch { throw new Error(`non-JSON ${res.status}: ${text.slice(0, 200)}`); } };
 
+// Non-key-consuming: a malformed body must be rejected before any key is issued, not fall through
+// to an empty body and burn one of the client's five daily keys on a shell-quoting typo.
+const malformed = await j(await fetch(`${base}/api/v1/keys`, { method: "POST", headers: { "Content-Type": "application/json" }, body: "{not json" }));
+assert.equal(malformed.status, 400, JSON.stringify(malformed.body));
+assert.equal(malformed.body.error?.code, "invalid_json", JSON.stringify(malformed.body));
+assert.equal(malformed.body.data?.key, undefined, "malformed JSON must not issue a key");
+console.log("ok malformed-json probe on /api/v1/keys (no key consumed)");
+
 const keyRes = await j(await fetch(`${base}/api/v1/keys`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ label: "smoke" }) }));
 assert.equal(keyRes.status, 201, JSON.stringify(keyRes.body));
 const key = keyRes.body.data.key;
