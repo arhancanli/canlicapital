@@ -59,7 +59,10 @@ export const LOCAL_CONTEXT_WINDOW = 80;
 export const KEYWORD_NUMERAL_WINDOW = 80;
 
 const SCAN_EXTENSIONS = new Set([".md", ".json", ".txt", ".js", ".html"]);
-const SKIP_DIRS = new Set(["node_modules", ".git"]);
+// design-system / .design-sync / .ds-sync / ds-bundle are the Claude Design React wrapper
+// package and its converter staging area: neither publishes a claim, so neither belongs in
+// this scan.
+const SKIP_DIRS = new Set(["node_modules", ".git", "design-system", ".design-sync", ".ds-sync", "ds-bundle"]);
 
 // -----------------------------------------------------------------------------
 // Seeded rules (same format as ~/alphaforge/docs/retracted_claims.txt)

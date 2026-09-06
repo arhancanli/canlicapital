@@ -31,3 +31,17 @@ public/contracts/public-claims.json
 ruvector.db
 supabase/.temp/
 __pycache__/
+
+# design-system/ (canli-design-system, the React wrapper package for Claude Design sync) and
+# its Claude Design converter staging area: build output and installed dependencies are
+# regenerated, never source.
+design-system/node_modules/
+design-system/dist/
+# Byte-for-byte copy of ../../scripts/product-shell.mjs, written fresh by
+# design-system/scripts/build.mjs on every build. See .design-sync/NOTES.md item 3.
+design-system/src/shell/generated-product-shell.mjs
+.ds-sync/
+ds-bundle/
+.design-sync/.cache/
+.design-sync/learnings/
+.design-sync/node_modules
