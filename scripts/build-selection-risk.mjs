@@ -134,14 +134,17 @@ function main() {
   const s = c.statistics;
   const d = c.defaults;
 
+  const queryTitle = "Backtest selection risk simulator";
+  const houseLabel = "Selection Risk Lab";
   const description =
-    "Search a series that provably has no edge, and watch what your best result is worth once " +
-    "the search is counted against it.";
+    "A backtest selection risk simulator: search a series with provably no edge and watch your " +
+    "best result deflated once the search is counted against it.";
 
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
-    name: "Selection Risk Lab",
+    name: queryTitle,
+    alternateName: houseLabel,
     applicationCategory: "EducationalApplication",
     operatingSystem: "Any modern browser",
     url: `${ORIGIN}/tools/selection-risk`,
@@ -162,7 +165,7 @@ function main() {
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Selection Risk Lab | Canli Capital</title>
+<title>${esc(queryTitle)} | Canli Capital</title>
 <meta name="description" content="${esc(description)}" />
 <link rel="canonical" href="${ORIGIN}/tools/selection-risk" />
 <meta name="author" content="Arhan Canli" />
@@ -170,12 +173,12 @@ function main() {
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Canli Capital" />
-<meta property="og:title" content="Selection Risk Lab" />
+<meta property="og:title" content="${esc(queryTitle)}" />
 <meta property="og:description" content="${esc(description)}" />
 <meta property="og:url" content="${ORIGIN}/tools/selection-risk" />
 <meta property="og:image" content="${ORIGIN}/og.png" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Selection Risk Lab" />
+<meta name="twitter:title" content="${esc(queryTitle)}" />
 <meta name="twitter:description" content="${esc(description)}" />
 <meta name="twitter:image" content="${ORIGIN}/og.png" />
 <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
@@ -191,9 +194,9 @@ ${renderProductShellStylesheet()}
 ${renderProductShellHeader({ active: "" })}
 <main>
   <section class="lab-hero" aria-labelledby="lab-title">
-    <p class="lab-kicker"><span>Open research instrument</span><span>Educational, not evidence</span></p>
-    <h1 id="lab-title">Find an edge that is not there.</h1>
-    <p class="lab-lead">The series below is a driftless random walk. Its true Sharpe ratio is
+    <p class="lab-kicker"><span>Open research instrument</span><span>${esc(houseLabel)}</span><span>Educational, not evidence</span></p>
+    <h1 id="lab-title">${esc(queryTitle)}</h1>
+    <p class="lab-lead">Find an edge that is not there. The series below is a driftless random walk. Its true Sharpe ratio is
       <strong>${g.true_sharpe}</strong>, by construction, and no setting of any control can change
       that. Search it anyway. The lab counts every parameter set you try and deflates your best
       result against your own search, so you can watch a good-looking number turn into what it

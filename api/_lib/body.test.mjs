@@ -23,3 +23,22 @@ test("refuses malformed JSON and non-object roots", async () => {
   await assert.rejects(readJsonBody(req("{not json"), 1024), (e) => e.status === 400 && e.code === "invalid_json");
   await assert.rejects(readJsonBody(req("[1,2]"), 1024), (e) => e.status === 400 && e.code === "not_an_object");
 });
+
+test("an empty body is still invalid_json by default, but valid when allowEmpty is set", async () => {
+  await assert.rejects(readJsonBody(req(""), 1024), (e) => e.status === 400 && e.code === "invalid_json");
+  assert.deepEqual(await readJsonBody(req(""), 1024, { allowEmpty: true }), {});
+  assert.deepEqual(await readJsonBody(req("   "), 1024, { allowEmpty: true }), {});
+});
+
+test("allowEmpty does not weaken malformed-but-nonempty bodies", async () => {
+  await assert.rejects(readJsonBody(req("{not json"), 1024, { allowEmpty: true }), (e) => e.status === 400 && e.code === "invalid_json");
+});
+
+test("a Vercel pre-parse failure (body getter throws on malformed JSON) is invalid_json, not unreadable", async () => {
+  // Production caught this: Vercel's Node runtime parses application/json bodies lazily and
+  // throws on first access when the JSON is malformed, before our own parser ever runs. The
+  // handler mapped that generic throw to 400 unreadable_body; the contract says invalid_json.
+  const throwing = Object.assign(Readable.from([]), { headers: { "content-length": "9" } });
+  Object.defineProperty(throwing, "body", { get() { throw new Error("Invalid JSON"); } });
+  await assert.rejects(readJsonBody(throwing, 1024, { allowEmpty: true }), (e) => e instanceof BodyError && e.status === 400 && e.code === "invalid_json");
+});

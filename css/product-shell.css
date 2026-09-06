@@ -309,8 +309,8 @@
 @media (max-width: 640px) {
   .cc-shell { grid-template-columns: minmax(0, 1fr) auto auto; }
   /* Below 640px the row cannot hold brand + menu + CTA + source without crowding.
-     The control is dropped rather than shrunk, because the expanded menu carries an
-     "Open source" group with every repository, so nothing becomes unreachable. */
+     The control is dropped rather than shrunk, because the expanded menu carries a
+     "Reproducible code" group with every repository, so nothing becomes unreachable. */
   .cc-shell__source { display: none; }
   .cc-shell__brand { font-size: 0.82rem; }
   .cc-shell__mark { width: 23px; transform: scale(.9); transform-origin: left center; }

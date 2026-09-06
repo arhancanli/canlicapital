@@ -1,0 +1,41 @@
+# RETRACTED CLAIMS (recurring-draft mirror) — the blocklist that stops a withdrawn
+# number from reappearing, bare, in a generated weekly/monthly draft.
+#
+# WHY THIS FILE EXISTS HERE. scripts/draft-recurring-post.mjs reads the site's own
+# glass-box artifacts (kill_log.json, transparency_log.json, paper-state.json,
+# program_status.json) and turns them into prose. Several of those artifacts still
+# CONTAIN the withdrawn figures, quoted inside their own retraction sentences (that is
+# correct: deleting the history would be its own dishonesty). A drafting tool that
+# lifts a phrase or a number out of its retraction sentence without the retraction
+# would re-publish the exact claim the signed chain already withdrew. This file is a
+# local, generator-scoped mirror of the engine repo's canonical blocklist
+# (~/alphaforge/docs/retracted_claims.txt), kept in sync by hand because the two repos
+# do not share a dependency graph. Same format, same rules; see that file for the
+# incident history behind each entry.
+#
+# FORMAT — three required "::"-separated fields and one optional fourth field (NOT
+# "|": the patterns themselves contain alternation):
+#   <seq> :: <regex that must not be ASSERTED bare> :: <retraction regex> :: <local non-claim regex>
+#
+# A match on field 2 is a violation ONLY when field 3 (the retraction language) is
+# ALSO present somewhere in the surrounding window. That keeps a retracted number
+# quotable inside its own retraction. The optional field 4 excuses only a narrow,
+# unambiguous local non-claim (for example a JSON key that happens to share the
+# digits) and applies regardless of field 3.
+#
+# A blank field 3 means the claim may not appear at all, in any context.
+
+24 :: DSR 0\.83 :: withdraw|WITHDRAWN|wrong|WRONG|re-derived|RE-DERIVED|old 0\.83|previously|we published DSR
+24 :: first (new )?sleeve to (CLEAR|clear) (multiple-testing )?deflation :: withdraw|WITHDRAWN|wrong|WRONG|re-derived|RE-DERIVED|called it
+24 :: statistically real,? (rather than|not) a backtest fluke :: withdraw|WITHDRAWN|wrong|WRONG|re-derived|RE-DERIVED|called it|we called|CORRECTION
+21 :: forward Sharpe of 1\.46 :: in-sample|deflat|withdraw|WITHDRAWN
+-- :: fixed 40/40/20 :: not the fixed|no longer|previously|superseded|this block said|this artifact previously said|Corrected 20
+-- :: equal-risk combination of the first two :: until|previously|no longer
+-- :: decorrelation is the edge :: withdraw|WITHDRAWN|wrong|WRONG|previously|we called|we call|CORRECTION|correcting
+-- :: entries">--</span> days hashed ::
+-- :: entry_count[^,}]*}} days ::
+-- :: 0\.3403 :: withdraw|WITHDRAWN|superseded|KILLED|CORRECTION|we published|we said|not the :: ["']gross_mean["']\s*:\s*0\.3403
+-- :: Newey-West t of 1\.82 :: withdraw|WITHDRAWN|superseded|KILLED|CORRECTION|we published|we said
+-- :: net Sharpe 0\.34 with :: withdraw|WITHDRAWN|superseded|KILLED|CORRECTION|we published|we said
+-- :: needs futures data we have not yet invested in :: CORRECTION|wrong|WRONG|stale|withdraw|WITHDRAWN|no longer
+-- :: next breadth would be managed-futures trend :: CORRECTION|wrong|WRONG|stale|withdraw|WITHDRAWN|no longer

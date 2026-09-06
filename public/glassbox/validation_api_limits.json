@@ -16,6 +16,11 @@
     "The receipt is content-hashed and reproducible from the open-source core it names. It is not signed.",
     "Quotas: 1000 validations per key per UTC day, 5 keys per client per UTC day, 1048576 bytes per request, 20000 observations per series, 200 variants per matrix."
   ],
+  "key_lifecycle_text": [
+    "Keys do not expire once issued.",
+    "There is no self-serve revoke or rotate endpoint in v1. If a key is compromised or simply unwanted, issue a new key and stop using the old one; the old one keeps working until someone revokes it by hand on the server side.",
+    "\"Client\", for the daily key-issuance quota, means the request's IP address hashed together with a salt that rotates every UTC day, not a stored account. A shared office or NAT IP address draws from the same pool of 5 keys a day as every other request behind it."
+  ],
   "receipt_id_hex_chars": 24,
   "http_status": {
     "ok": 200,

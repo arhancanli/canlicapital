@@ -3,21 +3,21 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Selection Risk Lab | Canli Capital</title>
-<meta name="description" content="Search a series that provably has no edge, and watch what your best result is worth once the search is counted against it." />
+<title>Backtest selection risk simulator | Canli Capital</title>
+<meta name="description" content="A backtest selection risk simulator: search a series with provably no edge and watch your best result deflated once the search is counted against it." />
 <link rel="canonical" href="https://canlicapital.com/tools/selection-risk" />
 <meta name="author" content="Arhan Canli" />
 <meta name="canli:sources" content="selection_risk_lab_contract.json" />
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Canli Capital" />
-<meta property="og:title" content="Selection Risk Lab" />
-<meta property="og:description" content="Search a series that provably has no edge, and watch what your best result is worth once the search is counted against it." />
+<meta property="og:title" content="Backtest selection risk simulator" />
+<meta property="og:description" content="A backtest selection risk simulator: search a series with provably no edge and watch your best result deflated once the search is counted against it." />
 <meta property="og:url" content="https://canlicapital.com/tools/selection-risk" />
 <meta property="og:image" content="https://canlicapital.com/og.png" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Selection Risk Lab" />
-<meta name="twitter:description" content="Search a series that provably has no edge, and watch what your best result is worth once the search is counted against it." />
+<meta name="twitter:title" content="Backtest selection risk simulator" />
+<meta name="twitter:description" content="A backtest selection risk simulator: search a series with provably no edge and watch your best result deflated once the search is counted against it." />
 <meta name="twitter:image" content="https://canlicapital.com/og.png" />
 <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -25,7 +25,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" />
 <link rel="stylesheet" href="/css/product-shell.css" />
 <link rel="stylesheet" href="/css/lab.css" />
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Selection Risk Lab","applicationCategory":"EducationalApplication","operatingSystem":"Any modern browser","url":"https://canlicapital.com/tools/selection-risk","description":"Search a series that provably has no edge, and watch what your best result is worth once the search is counted against it.","author":{"@id":"https://canlicapital.com/#arhan-canli"},"isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Backtest selection risk simulator","alternateName":"Selection Risk Lab","applicationCategory":"EducationalApplication","operatingSystem":"Any modern browser","url":"https://canlicapital.com/tools/selection-risk","description":"A backtest selection risk simulator: search a series with provably no edge and watch your best result deflated once the search is counted against it.","author":{"@id":"https://canlicapital.com/#arhan-canli"},"isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
 </head>
 <body class="lab-page">
 <a class="lab-skip" href="#lab">Skip to the lab</a>
@@ -44,6 +44,7 @@
 <a class="cc-shell__link" href="/trials">Trials</a>
 <a class="cc-shell__link" href="/systems">Systems</a>
 <a class="cc-shell__link" href="/methodology">Methodology</a>
+<a class="cc-shell__link" href="/developers">Developers</a>
 <a class="cc-shell__link" href="/verify">Verify</a>
   </nav>
   <details class="cc-shell__index">
@@ -56,6 +57,7 @@
 <a class="cc-shell__panel-link" href="/trials">Trials</a>
 <a class="cc-shell__panel-link" href="/systems">Systems</a>
 <a class="cc-shell__panel-link" href="/methodology">Methodology</a>
+<a class="cc-shell__panel-link" href="/developers">Developers</a>
 <a class="cc-shell__panel-link" href="/verify">Verify</a></nav>
       </div>
       <div>
@@ -67,10 +69,9 @@
 <a class="cc-shell__panel-link" href="/measurements">Measurements</a></nav>
       </div>
       <div>
-        <span class="cc-shell__panel-label">Open source</span>
+        <span class="cc-shell__panel-label">Reproducible code</span>
         <nav aria-label="Source code"><a class="cc-shell__panel-link" href="/engineering">Engineering hub</a>
 <a class="cc-shell__panel-link" href="/notes">Engineering notes</a>
-<a class="cc-shell__panel-link" href="/developers">Developers / API</a>
 <a class="cc-shell__panel-link" href="/standards/paper-evidence">Evidence standard</a>
 <a class="cc-shell__panel-link" href="https://github.com/arhancanli/alphac" rel="noreferrer">alphac (engine)</a>
 <a class="cc-shell__panel-link" href="https://github.com/arhancanli/canli-pit-lake" rel="noreferrer">canli-pit-lake</a>
@@ -84,9 +85,9 @@
 </header>
 <main>
   <section class="lab-hero" aria-labelledby="lab-title">
-    <p class="lab-kicker"><span>Open research instrument</span><span>Educational, not evidence</span></p>
-    <h1 id="lab-title">Find an edge that is not there.</h1>
-    <p class="lab-lead">The series below is a driftless random walk. Its true Sharpe ratio is
+    <p class="lab-kicker"><span>Open research instrument</span><span>Selection Risk Lab</span><span>Educational, not evidence</span></p>
+    <h1 id="lab-title">Backtest selection risk simulator</h1>
+    <p class="lab-lead">Find an edge that is not there. The series below is a driftless random walk. Its true Sharpe ratio is
       <strong>0</strong>, by construction, and no setting of any control can change
       that. Search it anyway. The lab counts every parameter set you try and deflates your best
       result against your own search, so you can watch a good-looking number turn into what it
@@ -229,9 +230,9 @@
     </nav>
     <nav aria-label="Open source">
       <span>Source code</span>
+      <a href="/developers">Developers</a>
       <a href="/engineering">Engineering</a>
       <a href="/notes">Engineering notes</a>
-      <a href="/developers">Developers</a>
       <a href="/standards/paper-evidence">Evidence standard</a>
       <a href="https://github.com/arhancanli/alphac" rel="noreferrer">alphac engine</a>
       <a href="https://github.com/arhancanli/canli-pit-lake" rel="noreferrer">canli-pit-lake</a>

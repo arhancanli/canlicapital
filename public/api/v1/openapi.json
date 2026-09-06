@@ -252,7 +252,13 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "object"
+                "type": "object",
+                "properties": {
+                  "label": {
+                    "type": "string"
+                  }
+                },
+                "required": []
               },
               "example": {
                 "label": "my-backtest-runner"
@@ -343,22 +349,105 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "object"
+                "oneOf": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "observed_sharpe_annualized": {
+                        "type": "number"
+                      },
+                      "observations": {
+                        "type": "number"
+                      },
+                      "periods_per_year": {
+                        "type": "number"
+                      },
+                      "skew": {
+                        "type": "number"
+                      },
+                      "non_excess_kurtosis": {
+                        "type": "number"
+                      },
+                      "effective_independent_trials": {
+                        "type": "number"
+                      },
+                      "cross_trial_sharpe_sd_annualized": {
+                        "type": "number"
+                      }
+                    },
+                    "required": [
+                      "observed_sharpe_annualized",
+                      "observations",
+                      "periods_per_year",
+                      "skew",
+                      "non_excess_kurtosis",
+                      "effective_independent_trials",
+                      "cross_trial_sharpe_sd_annualized"
+                    ],
+                    "title": "contract_inputs",
+                    "description": "Mode 1: the seven contract inputs"
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "returns": {
+                        "type": "array",
+                        "items": {
+                          "type": "number"
+                        }
+                      },
+                      "periods_per_year": {
+                        "type": "number"
+                      },
+                      "effective_independent_trials": {
+                        "type": "number"
+                      },
+                      "cross_trial_sharpe_sd_annualized": {
+                        "type": "number"
+                      }
+                    },
+                    "required": [
+                      "returns",
+                      "periods_per_year",
+                      "effective_independent_trials",
+                      "cross_trial_sharpe_sd_annualized"
+                    ],
+                    "title": "return_series",
+                    "description": "Mode 2: a return series plus the trials behind it"
+                  }
+                ]
               },
-              "example": {
-                "returns": [
-                  0.004,
-                  -0.002,
-                  0.007,
-                  0.001,
-                  -0.003,
-                  0.005,
-                  0.002,
-                  -0.001
-                ],
-                "periods_per_year": 252,
-                "effective_independent_trials": 30,
-                "cross_trial_sharpe_sd_annualized": 0.5
+              "examples": {
+                "contract_inputs": {
+                  "summary": "Mode 1: the seven contract inputs",
+                  "value": {
+                    "observed_sharpe_annualized": 1.5,
+                    "observations": 730,
+                    "periods_per_year": 365,
+                    "skew": -0.5,
+                    "non_excess_kurtosis": 5,
+                    "effective_independent_trials": 229,
+                    "cross_trial_sharpe_sd_annualized": 0.57
+                  }
+                },
+                "return_series": {
+                  "summary": "Mode 2: a return series plus the trials behind it",
+                  "value": {
+                    "returns": [
+                      0.004,
+                      -0.002,
+                      0.007,
+                      0.001,
+                      -0.003,
+                      0.005,
+                      0.002,
+                      -0.001
+                    ],
+                    "periods_per_year": 252,
+                    "effective_independent_trials": 30,
+                    "cross_trial_sharpe_sd_annualized": 0.5
+                  }
+                }
               }
             }
           }
@@ -451,7 +540,32 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "object"
+                "type": "object",
+                "properties": {
+                  "matrix": {
+                    "type": "array",
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "type": "number"
+                      }
+                    }
+                  },
+                  "n_splits": {
+                    "type": "number"
+                  },
+                  "max_combinations": {
+                    "type": "number",
+                    "description": "Defaults to the service ceiling; may not exceed it."
+                  },
+                  "seed": {
+                    "type": "number",
+                    "description": "Defaults to 42. Seeds the service's own sampler for the non-exhaustive case."
+                  }
+                },
+                "required": [
+                  "matrix"
+                ]
               },
               "example": {
                 "matrix": [
@@ -569,7 +683,23 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "object"
+                "type": "object",
+                "properties": {
+                  "record": {
+                    "type": "object",
+                    "properties": {
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "schema"
+                    ]
+                  }
+                },
+                "required": [
+                  "record"
+                ]
               },
               "example": {
                 "record": {
@@ -667,7 +797,25 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "object"
+                "type": "object",
+                "properties": {
+                  "sleeve_sharpe": {
+                    "type": "number"
+                  },
+                  "average_pairwise_correlation": {
+                    "type": "number"
+                  },
+                  "sleeves": {
+                    "type": "number"
+                  },
+                  "target": {
+                    "type": "number"
+                  }
+                },
+                "required": [
+                  "sleeve_sharpe",
+                  "average_pairwise_correlation"
+                ]
               },
               "example": {
                 "sleeve_sharpe": 0.5,
@@ -691,11 +839,40 @@
         "operationId": "validate_status",
         "responses": {
           "200": {
-            "description": "The envelope with data",
+            "description": "Service, store and usage status.",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Envelope"
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/Envelope"
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "data": {
+                          "type": "object",
+                          "properties": {
+                            "service": {
+                              "type": "string"
+                            },
+                            "store_reachable": {
+                              "type": "boolean"
+                            },
+                            "quotas": {
+                              "type": "object"
+                            },
+                            "usage": {
+                              "$ref": "#/components/schemas/UsageSummary"
+                            },
+                            "usage_available": {
+                              "type": "boolean"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
                 }
               }
             }
@@ -712,6 +889,16 @@
           },
           "405": {
             "description": "Wrong method",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Envelope"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "The store is unreachable; usage is still reported, as null",
             "content": {
               "application/json": {
                 "schema": {
@@ -754,6 +941,55 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Envelope"
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "Wrong method",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Envelope"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{24}$"
+            }
+          }
+        ]
+      }
+    },
+    "/api/v1/receipts/{id}/badge.svg": {
+      "get": {
+        "summary": "An embeddable SVG badge for a receipt: the formula version and the receipt id prefix only, never a pass or fail mark.",
+        "operationId": "receipts_id_badge_svg",
+        "responses": {
+          "200": {
+            "description": "An SVG badge: the formula version and the receipt id prefix only, rendered from the stored receipt's own fields. Never the words verified, approved, passed, certified or profitable, and never a pass/fail mark. The <title> element carries the receipt's own sample-size or trial-count fact as alt text.",
+            "content": {
+              "image/svg+xml": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Unknown receipt id: a plain grey \"receipt not found\" badge.",
+            "content": {
+              "image/svg+xml": {
+                "schema": {
+                  "type": "string"
                 }
               }
             }
@@ -848,6 +1084,60 @@
             "type": "object"
           }
         }
+      },
+      "UsageSummary": {
+        "type": "object",
+        "nullable": true,
+        "oneOf": [
+          {
+            "type": "null"
+          },
+          {
+            "type": "object",
+            "required": [
+              "validations_today",
+              "validations_total",
+              "keys_issued_today",
+              "as_of_utc_day"
+            ],
+            "properties": {
+              "validations_today": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "validations_total": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "keys_issued_today": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "as_of_utc_day": {
+                "type": "string",
+                "format": "date"
+              },
+              "keys_by_source_host_today": {
+                "type": "object",
+                "nullable": true,
+                "description": "Top ten Referer hosts (lowercase, no path or query) among keys issued today, by count. Absent until 20260906_usage_summary_v2.sql is applied.",
+                "additionalProperties": {
+                  "type": "integer",
+                  "minimum": 0
+                }
+              },
+              "keys_by_label_today": {
+                "type": "object",
+                "nullable": true,
+                "description": "Top ten POST /api/v1/keys label values among keys issued today, by count. Absent until 20260906_usage_summary_v2.sql is applied.",
+                "additionalProperties": {
+                  "type": "integer",
+                  "minimum": 0
+                }
+              }
+            }
+          }
+        ]
       }
     }
   }

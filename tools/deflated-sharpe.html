@@ -3,21 +3,21 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Deflated Sharpe calculator | Canli Capital</title>
-<meta name="description" content="Calculate Probabilistic and Deflated Sharpe ratios while exposing trial count, dispersion, sample length and non-normal return assumptions behind each result." />
+<title>Deflated Sharpe ratio calculator (PSR and DSR) | Canli Capital</title>
+<meta name="description" content="Calculate the Probabilistic and Deflated Sharpe Ratio (PSR and DSR), exposing trial count, dispersion, sample length and non-normal return assumptions." />
 <link rel="canonical" href="https://canlicapital.com/tools/deflated-sharpe" />
 <meta name="author" content="Arhan Canli" />
 <meta name="canli:sources" content="deflated_sharpe_calculator_contract.json trial_ledger.json" />
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Canli Capital" />
-<meta property="og:title" content="Deflated Sharpe selection pressure calculator" />
-<meta property="og:description" content="Calculate Probabilistic and Deflated Sharpe ratios while exposing trial count, dispersion, sample length and non-normal return assumptions behind each result." />
+<meta property="og:title" content="Deflated Sharpe ratio calculator (PSR and DSR)" />
+<meta property="og:description" content="Calculate the Probabilistic and Deflated Sharpe Ratio (PSR and DSR), exposing trial count, dispersion, sample length and non-normal return assumptions." />
 <meta property="og:url" content="https://canlicapital.com/tools/deflated-sharpe" />
 <meta property="og:image" content="https://canlicapital.com/og.png" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Deflated Sharpe selection pressure calculator" />
-<meta name="twitter:description" content="Calculate Probabilistic and Deflated Sharpe ratios while exposing trial count, dispersion, sample length and non-normal return assumptions behind each result." />
+<meta name="twitter:title" content="Deflated Sharpe ratio calculator (PSR and DSR)" />
+<meta name="twitter:description" content="Calculate the Probabilistic and Deflated Sharpe Ratio (PSR and DSR), exposing trial count, dispersion, sample length and non-normal return assumptions." />
 <meta name="twitter:image" content="https://canlicapital.com/og.png" />
 <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -27,7 +27,7 @@
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=optional" /></noscript>
 <link rel="stylesheet" href="/css/product-shell.css" />
 <link rel="stylesheet" href="/css/dsr-tool.css" />
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Deflated Sharpe selection pressure calculator","url":"https://canlicapital.com/tools/deflated-sharpe","description":"Calculate Probabilistic and Deflated Sharpe ratios while exposing trial count, dispersion, sample length and non-normal return assumptions behind each result.","applicationCategory":"FinanceApplication","operatingSystem":"Any modern web browser","author":{"@id":"https://canlicapital.com/#arhan-canli"},"creator":{"@id":"https://canlicapital.com/#arhan-canli"},"isAccessibleForFree":true,"citation":"https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2460551"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Deflated Sharpe ratio calculator (PSR and DSR)","alternateName":"Deflated Sharpe calculator","url":"https://canlicapital.com/tools/deflated-sharpe","description":"Calculate the Probabilistic and Deflated Sharpe Ratio (PSR and DSR), exposing trial count, dispersion, sample length and non-normal return assumptions.","applicationCategory":"FinanceApplication","operatingSystem":"Any modern web browser","author":{"@id":"https://canlicapital.com/#arhan-canli"},"creator":{"@id":"https://canlicapital.com/#arhan-canli"},"isAccessibleForFree":true,"citation":"https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2460551"}</script>
 </head>
 <body class="dsr-page">
 <a class="dsr-skip" href="#calculator">Skip to calculator</a>
@@ -46,6 +46,7 @@
 <a class="cc-shell__link" href="/trials">Trials</a>
 <a class="cc-shell__link" href="/systems">Systems</a>
 <a class="cc-shell__link" href="/methodology" aria-current="page" data-current="true">Methodology</a>
+<a class="cc-shell__link" href="/developers">Developers</a>
 <a class="cc-shell__link" href="/verify">Verify</a>
   </nav>
   <details class="cc-shell__index">
@@ -58,6 +59,7 @@
 <a class="cc-shell__panel-link" href="/trials">Trials</a>
 <a class="cc-shell__panel-link" href="/systems">Systems</a>
 <a class="cc-shell__panel-link" href="/methodology" aria-current="page" data-current="true">Methodology</a>
+<a class="cc-shell__panel-link" href="/developers">Developers</a>
 <a class="cc-shell__panel-link" href="/verify">Verify</a></nav>
       </div>
       <div>
@@ -69,10 +71,13 @@
 <a class="cc-shell__panel-link" href="/measurements">Measurements</a></nav>
       </div>
       <div>
-        <span class="cc-shell__panel-label">Open source</span>
+        <span class="cc-shell__panel-label">Tools</span>
+        <nav aria-label="Interactive tools"><a class="cc-shell__panel-link" href="/tools">All tools</a></nav>
+      </div>
+      <div>
+        <span class="cc-shell__panel-label">Reproducible code</span>
         <nav aria-label="Source code"><a class="cc-shell__panel-link" href="/engineering">Engineering hub</a>
 <a class="cc-shell__panel-link" href="/notes">Engineering notes</a>
-<a class="cc-shell__panel-link" href="/developers">Developers / API</a>
 <a class="cc-shell__panel-link" href="/standards/paper-evidence">Evidence standard</a>
 <a class="cc-shell__panel-link" href="https://github.com/arhancanli/alphac" rel="noreferrer">alphac (engine)</a>
 <a class="cc-shell__panel-link" href="https://github.com/arhancanli/canli-pit-lake" rel="noreferrer">canli-pit-lake</a>
@@ -87,9 +92,9 @@
 <main>
   <section class="dsr-hero" aria-labelledby="dsr-title">
     <div class="dsr-hero__copy">
-      <p class="dsr-kicker"><span>Open research instrument</span><span>Contract v1.0.0</span></p>
-      <h1 id="dsr-title">How much Sharpe survives the search?</h1>
-      <p class="dsr-hero__lead">A strong backtest is less surprising after a long search. Put the observed Sharpe, return shape and complete selection process on the same surface. The calculator reproduces ALPHAC's per-period PSR and DSR formulas in your browser.</p>
+      <p class="dsr-kicker"><span>Open research instrument</span><span>Deflated Sharpe calculator</span><span>Contract v1.0.0</span></p>
+      <h1 id="dsr-title">Deflated Sharpe ratio calculator (PSR and DSR)</h1>
+      <p class="dsr-hero__lead">How much Sharpe survives the search? A strong backtest is less surprising after a long search. Put the observed Sharpe, return shape and complete selection process on the same surface. The calculator reproduces ALPHAC's per-period PSR and DSR formulas in your browser.</p>
       <div class="dsr-hero__actions">
         <a class="dsr-button dsr-button--primary" href="#calculator">Open the pressure chamber</a>
         <a class="dsr-button" href="https://github.com/arhancanli/alphac/blob/9b92f5128acfdabbc9c3160348004c5b3eba6f05/src/alphaforge/validation/dsr.py" rel="noreferrer">Inspect the Python source <span aria-hidden="true">↗</span></a>
@@ -114,7 +119,7 @@
 
   <section class="dsr-workbench" id="calculator" aria-labelledby="calculator-title">
     <header class="dsr-section-head">
-      <div><p class="dsr-label">Selection pressure chamber</p><h2 id="calculator-title">One result. The whole search behind it.</h2></div>
+      <div><p class="dsr-label">Selection pressure chamber</p><h2 id="calculator-title">How many trials did you run?</h2><p class="dsr-hero__lead">One result. The whole search behind it.</p></div>
       <div class="dsr-workbench__tools">
         <button type="button" id="dsr-reset">Restore sourced preset</button>
         <button type="button" id="dsr-copy">Copy calculation link</button>
@@ -167,7 +172,7 @@
           <div class="dsr-selection-seal">
             <span>Published union context</span>
             <strong>229 identities</strong>
-            <code>b00807c5ad048866...</code>
+            <code>a22a23dbfe48e5e7...</code>
             <p>Reducing the trial count or dispersion after observing outcomes flatters DSR. The selection union must be defined independently of the selected result.</p>
           </div>
         </fieldset>
@@ -198,7 +203,7 @@
   </section>
 
   <section class="dsr-explain" aria-labelledby="explain-title">
-    <header class="dsr-section-head"><div><p class="dsr-label">Read the result</p><h2 id="explain-title">PSR asks about the sample. DSR asks about the search.</h2></div></header>
+    <header class="dsr-section-head"><div><p class="dsr-label">Read the result</p><h2 id="explain-title">What is a deflated Sharpe ratio?</h2><p class="dsr-hero__lead">PSR asks about the sample. DSR asks about the search.</p></div></header>
     <div class="dsr-explain__grid">
       <article><span>PSR</span><h3>Was the observed Sharpe above a benchmark?</h3><p>Probabilistic Sharpe Ratio adjusts for sample length, skew and non-excess kurtosis. The zero-benchmark result does not know how many alternatives were tried.</p></article>
       <article><span>SR*</span><h3>What would the best null trial look like?</h3><p>The expected maximum rises with the number of effectively independent trials and their cross-trial Sharpe dispersion.</p></article>
@@ -225,11 +230,16 @@
     <div><p class="dsr-label">Reproduce and inspect</p><h2 id="source-title">The interface is downstream of the evidence.</h2></div>
     <div class="dsr-source__ledger">
       <a href="/glassbox/deflated_sharpe_calculator_contract.json"><span>Formula contract</span><strong>4f0043376bff896f...</strong><small>Golden vectors and policy boundary</small></a>
-      <a href="/glassbox/trial_ledger.json"><span>Trial union</span><strong>b00807c5ad048866...</strong><small>Current N and identity-aligned V[SR]</small></a>
+      <a href="/glassbox/trial_ledger.json"><span>Trial union</span><strong>a22a23dbfe48e5e7...</strong><small>Current N and identity-aligned V[SR]</small></a>
       <a href="https://github.com/arhancanli/alphac/blob/9b92f5128acfdabbc9c3160348004c5b3eba6f05/src/alphaforge/validation/dsr.py" rel="noreferrer"><span>Python implementation</span><strong>ac2f18440e21b824...</strong><small>Production arithmetic in ALPHAC</small></a>
       <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2460551" rel="noreferrer"><span>Primary paper</span><strong>Bailey and López de Prado</strong><small>Journal of Portfolio Management 40(5), 94-107 (2014)</small></a>
     </div>
     <p class="dsr-source__boundary">This contract reproduces ALPHAC&#39;s PSR and DSR arithmetic for supplied inputs. It does not validate a strategy, prove profitability, estimate current portfolio performance, or replace the complete admission contract.</p>
+    <p class="dsr-source__boundary">A deflated Sharpe asks whether one result survives the search
+      that produced it. <a href="/tools/backtest-overfitting">The probability of backtest overfitting
+      calculator</a> asks the sharper question of whether the in-sample winner predicts anything
+      out of sample. Run the same arithmetic against your own numbers through
+      <a href="/developers#api-deflated-sharpe">the validation API</a>.</p>
   </section>
 </main>
 <footer class="cc-footer" id="footer" data-product-shell="v3">
@@ -261,7 +271,9 @@
     </nav>
     <nav aria-label="Interactive tools">
       <span>Run it yourself</span>
+      <a href="/tools">All calculators</a>
       <a href="/tools/deflated-sharpe">Deflated Sharpe calculator</a>
+      <a href="/tools/backtest-overfitting">Backtest overfitting calculator</a>
       <a href="/tools/selection-risk">Selection Risk Lab</a>
       <a href="/tools/breadth">Breadth Lab</a>
       <a href="/tools/execution">Execution Reality Lab</a>
@@ -270,9 +282,9 @@
     </nav>
     <nav aria-label="Open source">
       <span>Source code</span>
+      <a href="/developers">Developers</a>
       <a href="/engineering">Engineering</a>
       <a href="/notes">Engineering notes</a>
-      <a href="/developers">Developers</a>
       <a href="/standards/paper-evidence">Evidence standard</a>
       <a href="https://github.com/arhancanli/alphac" rel="noreferrer">alphac engine</a>
       <a href="https://github.com/arhancanli/canli-pit-lake" rel="noreferrer">canli-pit-lake</a>
@@ -286,7 +298,7 @@
     <span>Copyright Arhan Canli</span>
   </div>
 </footer>
-<script type="application/json" id="dsr-tool-config">{"schema":"canli.dsr-tool-client-config.v1","defaults":{"observed_sharpe_annualized":1.5,"observations":730,"periods_per_year":365,"skew":-0.5,"non_excess_kurtosis":5,"effective_independent_trials":229,"cross_trial_sharpe_sd_annualized":0.5737620035120672},"current_union":{"n_hypotheses":229,"sharpe_variance_per_period":0.0009019255799292642,"generated_at":"2026-09-05T18:27:14.301769+00:00","source_content_hash":"sha256:f78f9ebf80caba965c67edba7ab453c4b46e97a3421a4840e0944b82e153e928","source_bytes_sha256":"sha256:b00807c5ad048866d85f79b37a976b59a5fe3e2e113b77b67ecaf899dafe523c"},"contract":{"content_hash":"sha256:4f0043376bff896f427e0314e7e29848751424863337fcf0bfd7ec9429502b8a","claim_boundary":"This contract reproduces ALPHAC's PSR and DSR arithmetic for supplied inputs. It does not validate a strategy, prove profitability, estimate current portfolio performance, or replace the complete admission contract.","policy":{"admission_schema":"canli.alphac-sleeve-admission-contract.v7","per_sleeve_dsr":"mandatory_measurement_not_a_universal_gate","incremental_admission":"not_decided_by_dsr_alone","full_union_book_maturity_threshold":0.95,"threshold_context":"The 0.95 threshold applies to a full-union portfolio-maturity claim. It is not a per-sleeve gate and a calculator result is not an admission verdict."},"selection_warning":"Reducing the trial count or dispersion after observing outcomes flatters DSR. The selection union must be defined independently of the selected result.","test_vectors":[{"id":"daily_long_sample_heavy_tail","inputs":{"observed_sharpe_annualized":1.5,"observations":730,"periods_per_year":365,"skew":-0.5,"non_excess_kurtosis":5,"effective_independent_trials":229,"cross_trial_sharpe_sd_annualized":0.57},"outputs":{"observed_sharpe_per_period":0.07851358838853206,"cross_trial_sharpe_variance_per_period":0.0008901369863013697,"expected_max_sharpe_per_period":0.08382167718470863,"expected_max_sharpe_annualized":1.6014108940590446,"psr_against_zero":0.9809279924681973,"deflated_sharpe_ratio":0.44426268122044366,"non_normality_variance_term":1.04542117775591}},{"id":"trading_days_short_search","inputs":{"observed_sharpe_annualized":1,"observations":252,"periods_per_year":252,"skew":0,"non_excess_kurtosis":3,"effective_independent_trials":10,"cross_trial_sharpe_sd_annualized":0.5},"outputs":{"observed_sharpe_per_period":0.0629940788348712,"cross_trial_sharpe_variance_per_period":0.0009920634920634918,"expected_max_sharpe_per_period":0.049595184764089716,"expected_max_sharpe_annualized":0.7872991506724859,"psr_against_zero":0.84062387995459,"deflated_sharpe_ratio":0.5839730560867282,"non_normality_variance_term":1.001984126984127}},{"id":"large_search_negative_skew","inputs":{"observed_sharpe_annualized":2.2,"observations":1260,"periods_per_year":252,"skew":-1,"non_excess_kurtosis":9,"effective_independent_trials":1000,"cross_trial_sharpe_sd_annualized":0.75},"outputs":{"observed_sharpe_per_period":0.13858697343671667,"cross_trial_sharpe_variance_per_period":0.0022321428571428566,"expected_max_sharpe_per_period":0.153790035936073,"expected_max_sharpe_annualized":2.4413411352392136,"psr_against_zero":0.9999970868543218,"deflated_sharpe_ratio":0.3095140591397488,"non_normality_variance_term":1.1769996718494151}}]}}</script>
+<script type="application/json" id="dsr-tool-config">{"schema":"canli.dsr-tool-client-config.v1","defaults":{"observed_sharpe_annualized":1.5,"observations":730,"periods_per_year":365,"skew":-0.5,"non_excess_kurtosis":5,"effective_independent_trials":229,"cross_trial_sharpe_sd_annualized":0.5737620035120672},"current_union":{"n_hypotheses":229,"sharpe_variance_per_period":0.0009019255799292642,"generated_at":"2026-09-05T20:27:10.960755+00:00","source_content_hash":"sha256:e6334194b7dddeda5c04e689b4949945dfec9b7994f1703766b618ca01ce009f","source_bytes_sha256":"sha256:a22a23dbfe48e5e7f29260d9ea952cb79951af789e207eea8585a67b194134aa"},"contract":{"content_hash":"sha256:4f0043376bff896f427e0314e7e29848751424863337fcf0bfd7ec9429502b8a","claim_boundary":"This contract reproduces ALPHAC's PSR and DSR arithmetic for supplied inputs. It does not validate a strategy, prove profitability, estimate current portfolio performance, or replace the complete admission contract.","policy":{"admission_schema":"canli.alphac-sleeve-admission-contract.v7","per_sleeve_dsr":"mandatory_measurement_not_a_universal_gate","incremental_admission":"not_decided_by_dsr_alone","full_union_book_maturity_threshold":0.95,"threshold_context":"The 0.95 threshold applies to a full-union portfolio-maturity claim. It is not a per-sleeve gate and a calculator result is not an admission verdict."},"selection_warning":"Reducing the trial count or dispersion after observing outcomes flatters DSR. The selection union must be defined independently of the selected result.","test_vectors":[{"id":"daily_long_sample_heavy_tail","inputs":{"observed_sharpe_annualized":1.5,"observations":730,"periods_per_year":365,"skew":-0.5,"non_excess_kurtosis":5,"effective_independent_trials":229,"cross_trial_sharpe_sd_annualized":0.57},"outputs":{"observed_sharpe_per_period":0.07851358838853206,"cross_trial_sharpe_variance_per_period":0.0008901369863013697,"expected_max_sharpe_per_period":0.08382167718470863,"expected_max_sharpe_annualized":1.6014108940590446,"psr_against_zero":0.9809279924681973,"deflated_sharpe_ratio":0.44426268122044366,"non_normality_variance_term":1.04542117775591}},{"id":"trading_days_short_search","inputs":{"observed_sharpe_annualized":1,"observations":252,"periods_per_year":252,"skew":0,"non_excess_kurtosis":3,"effective_independent_trials":10,"cross_trial_sharpe_sd_annualized":0.5},"outputs":{"observed_sharpe_per_period":0.0629940788348712,"cross_trial_sharpe_variance_per_period":0.0009920634920634918,"expected_max_sharpe_per_period":0.049595184764089716,"expected_max_sharpe_annualized":0.7872991506724859,"psr_against_zero":0.84062387995459,"deflated_sharpe_ratio":0.5839730560867282,"non_normality_variance_term":1.001984126984127}},{"id":"large_search_negative_skew","inputs":{"observed_sharpe_annualized":2.2,"observations":1260,"periods_per_year":252,"skew":-1,"non_excess_kurtosis":9,"effective_independent_trials":1000,"cross_trial_sharpe_sd_annualized":0.75},"outputs":{"observed_sharpe_per_period":0.13858697343671667,"cross_trial_sharpe_variance_per_period":0.0022321428571428566,"expected_max_sharpe_per_period":0.153790035936073,"expected_max_sharpe_annualized":2.4413411352392136,"psr_against_zero":0.9999970868543218,"deflated_sharpe_ratio":0.3095140591397488,"non_normality_variance_term":1.1769996718494151}}]}}</script>
 <script type="module" src="/js/dsr-tool.js"></script>
 </body>
 </html>

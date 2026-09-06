@@ -1,0 +1,51 @@
+{
+  "_comment": "Zenodo deposition metadata, shaped for POST /api/deposit/depositions/{id}/metadata (a JSON body wrapping this object under a top-level 'metadata' key). Draft only. The owner reviews every field in deposits/OWNER_CHECKLIST.md before anything is uploaded; nothing here has been sent to Zenodo.",
+  "metadata": {
+    "upload_type": "software",
+    "title": "canli.paper-evidence.v0: an open standard for paper-trading evidence, its schema, validator and conformance vectors",
+    "creators": [
+      {
+        "name": "Canli, Arhan",
+        "affiliation": "Canli Capital"
+      }
+    ],
+    "description": "<p><strong>PREPRINT. NOT PEER REVIEWED.</strong> This is a proposed open standard, not a performance claim. It has one implementation, the author's own, and no independent implementation as of this deposit.</p><p>canli.paper-evidence.v0 is a JSON Schema for reporting paper-traded and simulated strategy performance. Its required top-level members are the fields a performance claim usually omits: what kind of capital produced the record (paper, funded or simulated), whether the strategy identity was frozen before its returns were opened, the cost basis, how many trials were run and whether they were counted, what has since been withdrawn, at least one source binding a reader can check without trusting the publisher, and a mandatory list of what the record does NOT establish.</p><p>This deposit contains the schema (schema.json), a zero-dependency JavaScript validator (paper-evidence-core.js) implementing the subset of JSON Schema the standard uses plus the semantic checks shape alone cannot express, twelve invalid conformance vectors (each breaking exactly one rule) and one valid vector, and a SHA-256 manifest (MANIFEST.sha256) so every file's integrity can be checked without trusting this record.</p><p>The valid vector, vectors/valid-alphac-book.json, is a real instance: the author's own live paper-traded book as of the date it was generated. Its capital is MIXED (ALPACA PAPER fills for three sleeves, RESEARCH SIMULATION fills for the crypto sleeve, both disclosed in the record's own capital.notes field), and it explicitly declines to report a Sharpe ratio or an established maximum drawdown, because the underlying sample is too short to support either. That vector is included as a worked example of the schema, not as a return claim by this deposit: read it as a demonstration of what full disclosure looks like, and see the live version at the source binding below for anything current.</p><p>Development uses reviewed AI-assisted tooling, but project ownership, research decisions, methodology, claims, and publication responsibility remain with Arhan Canli.</p><p>Standard and live validator API: https://canlicapital.com/standards/paper-evidence. Source: https://github.com/arhancanli/canlicapital (the site and standard), https://github.com/arhancanli/canli-backtest and https://github.com/arhancanli/canli-pit-lake (the engine repositories the standard is designed to describe).</p>",
+    "access_right": "open",
+    "license": "MIT",
+    "keywords": [
+      "quantitative finance",
+      "paper trading",
+      "reproducible research",
+      "JSON Schema",
+      "open standard",
+      "backtesting",
+      "deflated Sharpe ratio",
+      "multiple testing",
+      "systematic trading"
+    ],
+    "related_identifiers": [
+      {
+        "identifier": "https://canlicapital.com/standards/paper-evidence",
+        "relation": "isSupplementTo",
+        "resource_type": "publication-technicalnote"
+      },
+      {
+        "identifier": "https://github.com/arhancanli/canlicapital",
+        "relation": "isSupplementTo",
+        "resource_type": "software"
+      },
+      {
+        "identifier": "https://github.com/arhancanli/canli-backtest",
+        "relation": "isSupplementTo",
+        "resource_type": "software"
+      },
+      {
+        "identifier": "https://github.com/arhancanli/canli-pit-lake",
+        "relation": "isSupplementTo",
+        "resource_type": "software"
+      }
+    ],
+    "version": "0",
+    "language": "eng"
+  }
+}

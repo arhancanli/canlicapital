@@ -80,11 +80,12 @@ body.lab-page { margin: 0; color: var(--lab-ink); background: var(--lab-paper); 
 .lab-controls { display: grid; gap: 18px; padding: clamp(20px, 2.2vw, 28px); background: #fff; border: 1px solid var(--lab-line); }
 .lab-field { display: grid; gap: 6px; }
 .lab-field__label { font-size: 0.78rem; font-weight: 600; letter-spacing: 0.02em; }
-.lab-field input {
+.lab-field input, .lab-field textarea {
   width: 100%; padding: 10px 12px; color: var(--lab-ink); background: var(--lab-paper);
   border: 1px solid var(--lab-line); border-radius: 2px;
   font: 500 1rem "IBM Plex Mono", monospace;
 }
+.lab-field textarea { min-height: 160px; font-size: 0.82rem; line-height: 1.5; resize: vertical; }
 .lab-field__note { color: var(--lab-muted); font-size: 0.74rem; line-height: 1.45; }
 .lab-actions { display: flex; flex-wrap: wrap; gap: 8px; }
 .lab-button {

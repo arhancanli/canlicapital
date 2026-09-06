@@ -22,3 +22,18 @@ export function clientHash(req, salt, now = new Date()) {
   const day = now.toISOString().slice(0, 10);
   return createHash("sha256").update(`${salt}|${day}|${ip}`).digest("hex");
 }
+
+// The HOST of the Referer header only, lowercase, never the path or query: enough to attribute a
+// key issuance to a source (a README, a forum post, this site) without carrying any tracking
+// parameter into the store. Missing or unparseable (a relative path, free text, a schemeless
+// fragment with no host) is null rather than a guess.
+export function refererHost(req) {
+  const header = req.headers?.referer ?? req.headers?.referrer;
+  if (!header) return null;
+  try {
+    const host = new URL(String(header)).host;
+    return host ? host.toLowerCase() : null;
+  } catch {
+    return null;
+  }
+}

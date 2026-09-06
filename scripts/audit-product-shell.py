@@ -41,12 +41,11 @@ ROUTES = (
     "/tools/execution",
 )
 
-EXPECTED_CORE = {"Live", "Research", "Trials", "Systems", "Methodology", "Verify"}
+EXPECTED_CORE = {"Live", "Research", "Trials", "Systems", "Methodology", "Developers", "Verify"}
 EXPECTED_INSTITUTION = {"Corrections", "Status", "Founder", "Open data", "Measurements"}
 EXPECTED_SOURCE = {
     "Engineering hub",
     "Engineering notes",
-    "Developers / API",
     "Evidence standard",
     "alphac (engine)",
     "canli-pit-lake",

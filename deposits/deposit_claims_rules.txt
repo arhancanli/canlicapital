@@ -1,0 +1,111 @@
+# DEPOSIT CLAIMS RULES -- seeded from the engine's retracted-claims blocklist so a withdrawn
+# number cannot enter a Zenodo deposit package the way it once reached the live site.
+#
+# SOURCE. Every rule from here to the "END OF SEEDED RULES" marker below is copied unedited from
+# the ALPHAC engine at ~/alphaforge/docs/retracted_claims.txt, copied into this repo on 2026-09-06
+# for use by scripts/check-deposit-claims.mjs. The format, the field meanings, the window sizes
+# and the exemption logic are unchanged; see that script (and its Python sibling,
+# ~/alphaforge/scripts/check_retracted_claims.py, which this file's format mirrors) for how the
+# fields are read. Do not edit a copied rule to make a deposit pass. If a deposit trips a rule,
+# the fix is to remove the claim from the deposit, not to narrow the rule.
+#
+# A deposit gets its OWN rules appended after the marker, for numbers that are specific to what
+# is or is not fit to deposit (as opposed to what is or is not fit for the live site).
+#
+# ---- BEGIN RULES COPIED FROM ~/alphaforge/docs/retracted_claims.txt (2026-09-06) ----
+#
+# RETRACTED CLAIMS -- the blocklist that makes a retraction stick.
+#
+# WHY THIS FILE EXISTS. On 2026-08-06 the signed chain formally withdrew AlphaTrend's DSR of 0.83,
+# in entry [24], with the words "was wrong when we wrote it and has been wrong every day since".
+# Six days later the number was still on the homepage, still in the /progress social-unfurl card
+# that people see WITHOUT opening the site, and still asserted as fact in three glass-box JSON
+# artifacts. The retraction had updated the log and nothing else. The site was simultaneously
+# publishing the correction and the thing it corrected, from the same pipeline, in the same run.
+#
+# That is the second time: transparency [21] records the social card advertising a forward Sharpe
+# we had stopped believing weeks earlier. A retraction that only appends to the log is not a
+# retraction, it is a footnote. So: WITHDRAWING A CLAIM MEANS ADDING A LINE HERE IN THE SAME
+# COMMIT. Nothing enforces that but this comment and the fact that the check runs before deploy.
+#
+# FORMAT -- three required "::"-separated fields and one optional fourth field (NOT "|": the
+# patterns themselves contain alternation,
+# and splitting on "|" tore this file's own regexes in half the first time):
+#   <seq> :: <regex that must not be ASSERTED> :: <retraction regex> :: <local non-claim regex>
+#
+# The third field is what keeps this honest rather than merely silencing. A retracted number MUST
+# still be quotable inside its own retraction -- deleting the history would be its own dishonesty.
+# So a match is a violation ONLY when the exemption pattern is absent from the surrounding window.
+# That means the check cannot be satisfied by hiding the number; it is satisfied by explaining it.
+# The optional fourth field is narrower. It may excuse only an unambiguous local metric assignment
+# that happens to share the digits, never a whole file or a nearby assertion.
+#
+# A blank exemption field means the claim may not appear at all, in any context.
+
+24 :: DSR 0\.83 :: withdraw|WITHDRAWN|wrong|WRONG|re-derived|RE-DERIVED|old 0\.83|previously|we published DSR
+24 :: first (new )?sleeve to (CLEAR|clear) (multiple-testing )?deflation :: withdraw|WITHDRAWN|wrong|WRONG|re-derived|RE-DERIVED|called it
+24 :: statistically real,? (rather than|not) a backtest fluke :: withdraw|WITHDRAWN|wrong|WRONG|re-derived|RE-DERIVED|called it|we called|CORRECTION
+21 :: forward Sharpe of 1\.46 :: in-sample|deflat|withdraw|WITHDRAWN
+# The book has run FOUR sleeves at equal quarters since 2026-08-10. Any surviving text describing
+# the old fixed 40/40/20 or a two/three-sleeve book overstates neither returns nor risk, but it
+# does describe a book we are not running -- which is the same defect class as the rest of this file.
+-- :: fixed 40/40/20 :: not the fixed|no longer|previously|superseded|this block said|this artifact previously said|Corrected 20
+-- :: equal-risk combination of the first two :: until|previously|no longer
+# rho_bar was corrected from about -0.02 to +0.0274 on 2026-08-06; the negative figure and the
+# claim that decorrelation IS the edge were both withdrawn.
+-- :: decorrelation is the edge :: withdraw|WITHDRAWN|wrong|WRONG|previously|we called|we call|CORRECTION|correcting
+
+# The signed chain holds 239 ENTRIES across 39 DISTINCT DATES. Presenting the entry count
+# as a day count overstates the length of the record ~6x. js/holdings.js already said
+# "entries"; index.html still said "days" -- the number was data-bound, the noun was not.
+-- :: entries">--</span> days hashed :: 
+-- :: entry_count[^,}]*}} days ::
+
+# 2026-08-18 -- THE GATE WAS CRYING WOLF, AND BECAUSE IT ONLY WARNS, NOBODY HEARD IT.
+# A run of check_retracted_claims.py found 4 "violations", and all 4 were the CORRECTIONS
+# themselves quoting the claim they withdraw -- precisely the usage the third field exists to
+# permit. The exemption alternations simply did not contain this project's own retraction
+# vocabulary: the record says "CORRECTION 2026-08-06 --" and "the sleeve we called '...'", while
+# the rules listed only "called it" and "previously". So the honesty gate had been failing on its
+# own honesty, every run, into a log read by nobody, which is the same as no gate at all.
+#
+# Widening an exemption is the one edit this file warns against, so, stated exactly: the terms
+# added below are CORRECTION, correcting, we call and we called. Each is an unambiguous marker
+# that the surrounding text is a retraction -- a passage containing "CORRECTION 2026-08-06" is
+# definitionally a correction. No pattern in the SECOND field was touched; nothing that was
+# blocked before is permitted now except where a correction is present in the same window.
+# The rule was not weakened. The rule was taught the words we actually use to retract.
+
+# 2026-08-19 -- ALPHAVINTAGE. Deployed 2026-08-10 at a quarter of the book on a verdict of ADD
+# (net Sharpe 0.3403, Newey-West t 1.82). Re-run 2026-08-16 with a calendar correction that
+# retains zero-exposure sessions: net Sharpe 0.2298, NW t 1.267, check `b_nw_t_ge_1p5` FALSE, and
+# artifacts/probe/cpi_surprise_size/result.json records `verdict: KILLED`. The published block in
+# scripts/paper_trading_state.py was hard-coded and never tracked the artifact, so the superseded
+# figures sat on the live site for three days describing a killed candidate as a validated one.
+# The numbers must remain quotable inside their own retraction; they may not be asserted bare.
+# The historical K30 curve legitimately contains `"gross_mean": 0.340330...`; that is neither
+# AlphaVintage nor Sharpe. The fourth field excludes only that exact local key/value assignment.
+# A `net_sharpe`, prose Sharpe, or any other bare 0.3403 remains blocked by the same second field.
+-- :: 0\.3403 :: withdraw|WITHDRAWN|superseded|KILLED|CORRECTION|we published|we said|not the :: ["']gross_mean["']\s*:\s*0\.3403
+-- :: Newey-West t of 1\.82 :: withdraw|WITHDRAWN|superseded|KILLED|CORRECTION|we published|we said
+-- :: net Sharpe 0\.34 with :: withdraw|WITHDRAWN|superseded|KILLED|CORRECTION|we published|we said
+# 2026-09-06 -- /progress kept a roadmap sentence written before AlphaTrend joined the book:
+# managed-futures trend was described as a future breadth needing futures data, on a page whose own
+# description counted four live sleeves. Sentence-class rules; the CORRECTION entry that quotes it passes.
+-- :: needs futures data we have not yet invested in :: CORRECTION|wrong|WRONG|stale|withdraw|WITHDRAWN|no longer
+-- :: next breadth would be managed-futures trend :: CORRECTION|wrong|WRONG|stale|withdraw|WITHDRAWN|no longer
+#
+# ---- END OF SEEDED RULES COPIED FROM ~/alphaforge/docs/retracted_claims.txt ----
+
+# 2026-09-06 -- DEPOSIT-SPECIFIC RULES.
+#
+# The structural check (a specific sleeve's Sharpe, CAGR, drawdown or equity curve must name a
+# BUNDLE_INCOMPLETE bundle and its blockers in the same neighbourhood, or the check fails) is
+# implemented directly in scripts/check-deposit-claims.mjs, not as a "::" rule here, because it is
+# a relationship between a number and its disclosure rather than a fixed string or regex. See the
+# script's STRUCTURAL_RULE section for that logic and its documented blind spot.
+#
+# No deposit-only "::" rules are needed yet beyond the seeded set above: nothing in
+# deposits/zenodo/paper-evidence-v0 or deposits/zenodo/notes-2026-09 states a retracted figure.
+# Add a rule here, in the same format, the day a deposit needs one -- in the same commit that
+# would otherwise let the number through, per the discipline this file was copied from.

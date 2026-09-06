@@ -1,0 +1,50 @@
+{
+  "_comment": "Zenodo deposition metadata, shaped for POST /api/deposit/depositions/{id}/metadata (a JSON body wrapping this object under a top-level 'metadata' key). Draft only. The owner reviews every field in deposits/OWNER_CHECKLIST.md before anything is uploaded; nothing here has been sent to Zenodo. 'version' is a batch label (this is the first Zenodo deposit of engineering notes, prepared 2026-09), not a semantic version of either note.",
+  "metadata": {
+    "upload_type": "publication",
+    "publication_type": "preprint",
+    "title": "Two engineering notes: deflating a Sharpe ratio, and a parity check that could not fail",
+    "creators": [
+      {
+        "name": "Canli, Arhan",
+        "affiliation": "Canli Capital"
+      }
+    ],
+    "description": "<p><strong>PREPRINT. NOT PEER REVIEWED.</strong> Two short engineering notes, deposited together.</p><p><strong>The arithmetic of not fooling yourself</strong> (deflating-a-sharpe-ratio.md) derives the Probabilistic and Deflated Sharpe Ratio (Bailey and Lopez de Prado) and Probability of Backtest Overfitting (Bailey, Borwein, Lopez de Prado, Zhu) from first principles, using a RESEARCH SIMULATION: a synthetic example series with an illustrative Sharpe ratio, used only to demonstrate how the correction responds to trial count. No strategy, sleeve or book is named or evidenced in this note, and no number in it is a performance claim about any real trading. The note also documents its own earlier mistake: a first published version used the wrong variance parameter and reported a demonstration figure that argued against its own thesis while appearing to confirm it. That retraction is kept inside the note, not deleted, because a number nobody can check is not something anybody can correct.</p><p><strong>Seventy files that were never meant to be public</strong> (seventy-files.md) is a parity post-mortem: an extraction tool that verified two open-source repositories were faithful copies of a private engine, and was structurally incapable of failing, because it compared each published file against the very folder it had copied it from rather than against the public GitHub history. It contains no performance figures, no Sharpe, CAGR, drawdown or equity curve of any kind; it is an account of a software defect and its fix.</p><p>Development uses reviewed AI-assisted tooling, but project ownership, research decisions, methodology, claims, and publication responsibility remain with Arhan Canli.</p><p>Live versions: https://canlicapital.com/notes/deflating-a-sharpe-ratio and https://canlicapital.com/notes/seventy-files. Referenced source: https://github.com/arhancanli/canli-backtest and https://github.com/arhancanli/canli-pit-lake.</p>",
+    "access_right": "open",
+    "license": "CC-BY-4.0",
+    "keywords": [
+      "deflated Sharpe ratio",
+      "probabilistic Sharpe ratio",
+      "probability of backtest overfitting",
+      "multiple testing",
+      "reproducible research",
+      "software parity",
+      "quantitative finance"
+    ],
+    "related_identifiers": [
+      {
+        "identifier": "https://canlicapital.com/notes/deflating-a-sharpe-ratio",
+        "relation": "isSupplementTo",
+        "resource_type": "publication-technicalnote"
+      },
+      {
+        "identifier": "https://canlicapital.com/notes/seventy-files",
+        "relation": "isSupplementTo",
+        "resource_type": "publication-technicalnote"
+      },
+      {
+        "identifier": "https://github.com/arhancanli/canli-backtest",
+        "relation": "isSupplementTo",
+        "resource_type": "software"
+      },
+      {
+        "identifier": "https://github.com/arhancanli/canli-pit-lake",
+        "relation": "isSupplementTo",
+        "resource_type": "software"
+      }
+    ],
+    "version": "2026-09",
+    "language": "eng"
+  }
+}

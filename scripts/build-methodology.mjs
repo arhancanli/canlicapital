@@ -123,6 +123,20 @@ function questions(f) {
       ],
     },
     {
+      id: "validate-a-backtest",
+      q: "How to validate a backtest",
+      a: `<p>Point-in-time data, no lookahead in execution, deflation against the complete trial
+      count, and out-of-sample overfitting checked directly rather than assumed away. Run each check
+      against your own numbers through the API quickstart, or in a browser calculator, before taking
+      a Sharpe ratio at face value.</p>`,
+      links: [
+        ["API quickstart: issue a key, then validate", "/developers#validation"],
+        ["Deflated Sharpe ratio calculator (PSR and DSR)", "/tools/deflated-sharpe"],
+        ["Probability of backtest overfitting calculator", "/tools/backtest-overfitting"],
+        ["Every calculator, in one place", "/tools"],
+      ],
+    },
+    {
       id: "publish-failures",
       q: "Why do you publish strategies that failed?",
       a: `<p>Because the failures are the denominator. A deflated result is only honest if the

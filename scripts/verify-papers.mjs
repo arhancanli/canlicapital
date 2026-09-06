@@ -15,6 +15,7 @@ import { dirname, resolve, basename } from "node:path";
 import { fileURLToPath } from "node:url";
 import { IMMUTABLE_PAPER_SHORT_TITLES } from "./paper-presentation.mjs";
 import { normalizeEditableCopy } from "./editable-copy.mjs";
+import { canonicalJson as canonicalJsonShared } from "./canonical-json.mjs";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const DIST = resolve(ROOT, "dist");
@@ -1101,6 +1102,107 @@ if (existsSync(dsrToolFile)) {
   check(
     readFileSync(methodologyFile, "utf8").includes('href="/tools/deflated-sharpe"'),
     "/methodology does not link to the Deflated Sharpe calculator",
+  );
+}
+
+// ---------------------------------------------------------------------------
+// 13b. /tools/backtest-overfitting: the CSCV calculator's worked example stays
+//      bound to its published contract and the golden-vector source it was
+//      computed from, and it stays reachable from the pages that named it.
+// ---------------------------------------------------------------------------
+const pboToolFile = resolve(DIST, "tools/backtest-overfitting.html");
+check(existsSync(pboToolFile), "no /tools/backtest-overfitting page was built");
+if (existsSync(pboToolFile)) {
+  const pboToolHtml = readFileSync(pboToolFile, "utf8");
+  const pboContractPath = resolve(DIST, "glassbox/backtest_overfitting_calculator_contract.json");
+  const pboContract = JSON.parse(readFileSync(pboContractPath, "utf8"));
+  const pboPayload = { ...pboContract };
+  delete pboPayload.content_hash;
+  // The shared, Python-matching canonicaliser, not this file's local simple one: the worked
+  // example embeds a 160x8 float matrix, and plain JSON.stringify formats at least one of those
+  // floats differently from json.dumps, which the local canonicaliser does not correct for.
+  const observedPboHash = `sha256:${sha256(canonicalJsonShared(pboPayload))}`;
+
+  check(
+    pboContract.schema === "canli.alphac-backtest-overfitting-calculator-contract.v1" &&
+      pboContract.status === "REFERENCE_IMPLEMENTATION_CONTRACT" &&
+      pboContract.content_hash === observedPboHash,
+    "/tools/backtest-overfitting contract is unsupported or its content hash does not reproduce",
+  );
+  check(
+    Number.isInteger(pboContract.worked_example?.computed?.n_combinations) &&
+      pboContract.worked_example.computed.n_combinations > 0,
+    "/tools/backtest-overfitting worked example carries no computed split count",
+  );
+  check(
+    pboToolHtml.includes(`<link rel="canonical" href="${ORIGIN}/tools/backtest-overfitting"`),
+    "/tools/backtest-overfitting has no self-canonical",
+  );
+  check(
+    pboToolHtml.includes('"@type":"WebApplication"') &&
+      pboToolHtml.includes(`"author":{"@id":"${ORIGIN}/#arhan-canli"}`),
+    "/tools/backtest-overfitting lacks WebApplication markup or founder attribution",
+  );
+  check(
+    pboToolHtml.includes('content="backtest_overfitting_calculator_contract.json"'),
+    "/tools/backtest-overfitting does not declare its exact source artifact",
+  );
+  check(
+    /does not know where your matrix came from/i.test(pboToolHtml) &&
+      /not proof a strategy is deployable/i.test(pboToolHtml),
+    "/tools/backtest-overfitting omits its claim boundary",
+  );
+  check(
+    sitemap.includes(`<loc>${ORIGIN}/tools/backtest-overfitting</loc>`),
+    "/tools/backtest-overfitting is not in the sitemap",
+  );
+  check(
+    readFileSync(dsrToolFile, "utf8").includes('href="/tools/backtest-overfitting"'),
+    "/tools/deflated-sharpe does not link to the backtest-overfitting calculator",
+  );
+  const developersHtml = readFileSync(resolve(DIST, "developers.html"), "utf8");
+  check(
+    developersHtml.includes('href="/tools/backtest-overfitting"') &&
+      developersHtml.includes('id="api-overfitting"'),
+    "/developers does not link the overfitting endpoint to its browser calculator",
+  );
+}
+
+// ---------------------------------------------------------------------------
+// 13c. /tools: the index of every calculator. Every calculator it names must
+//      be a real built page, and it must be reachable from /developers and
+//      the shared shell rather than only from the tool pages themselves.
+// ---------------------------------------------------------------------------
+const toolsHubFile = resolve(DIST, "tools.html");
+check(existsSync(toolsHubFile), "no /tools hub page was built");
+if (existsSync(toolsHubFile)) {
+  const toolsHubHtml = readFileSync(toolsHubFile, "utf8");
+  const toolLinks = [...toolsHubHtml.matchAll(/href="(\/tools\/[a-z-]+)"/g)].map((m) => m[1]);
+  check(
+    new Set(toolLinks).size >= 7,
+    `/tools links only ${new Set(toolLinks).size} distinct calculators, fewer than the published set`,
+  );
+  for (const href of new Set(toolLinks)) {
+    check(
+      existsSync(resolve(DIST, `${href.replace(/^\//, "")}.html`)),
+      `/tools links ${href}, which is not a built page`,
+    );
+  }
+  check(
+    toolsHubHtml.includes(`<link rel="canonical" href="${ORIGIN}/tools"`),
+    "/tools has no self-canonical",
+  );
+  check(
+    toolsHubHtml.includes('"@type":"CollectionPage"') && toolsHubHtml.includes('"@type":"ItemList"'),
+    "/tools lacks CollectionPage or ItemList structured data",
+  );
+  check(sitemap.includes(`<loc>${ORIGIN}/tools</loc>`), "/tools is not in the sitemap");
+  const developersHubHtml = readFileSync(resolve(DIST, "developers.html"), "utf8");
+  check(developersHubHtml.includes('href="/tools"'), "/developers has no link to the /tools hub");
+  const shellHtml = readFileSync(resolve(DIST, "index.html"), "utf8");
+  check(
+    shellHtml.includes('href="/tools"'),
+    "the shared product shell (header or footer) has no link to the /tools hub",
   );
 }
 
