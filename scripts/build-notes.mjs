@@ -278,7 +278,7 @@ function renderNote(note, siblings) {
 <body class="note-page">
 <a class="note-skip" href="#content">Skip to content</a>
 ${renderProductShellHeader({ active: "" })}
-<main id="content">
+<main id="content" tabindex="-1">
   <article class="note">
     <nav class="note-trail" aria-label="Breadcrumb">
       <a href="/notes">Engineering notes</a>
@@ -341,7 +341,7 @@ function renderIndex(notes) {
 <body class="note-page note-index-page">
 <a class="note-skip" href="#content">Skip to content</a>
 ${renderProductShellHeader({ active: "" })}
-<main id="content">
+<main id="content" tabindex="-1">
   <section class="note-hero">
     <p class="note-kicker">Engineering notes</p>
     <h1>What went wrong, and what the arithmetic actually says.</h1>

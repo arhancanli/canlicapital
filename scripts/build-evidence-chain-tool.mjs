@@ -187,7 +187,7 @@ ${renderProductShellHeader({ active: "verify" })}
     <p>Broker truth, pre-boundary payload contents, record completeness or the absence of an unpublished alternate chain.</p>
   </section>
 
-  <section class="chain-workbench" id="microscope" aria-labelledby="microscope-title">
+  <section class="chain-workbench" id="microscope" tabindex="-1" aria-labelledby="microscope-title">
     <header class="chain-section-head">
       <div><p class="chain-label">Chain microscope</p><h2 id="microscope-title">${entries.length} entries. Every dependency exposed.</h2></div>
       <div class="chain-verification">

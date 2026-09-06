@@ -402,7 +402,7 @@ ${renderProductShellStylesheet()}
 <body class="paper">
 <a class="paper__skip" href="#content">Skip to content</a>
 ${renderProductShellHeader({ active: "methodology" })}
-<main class="paper__main" id="content">
+<main class="paper__main" id="content" tabindex="-1">
   <article class="paper__article">
     <p class="paper__eyebrow"><a href="/research">Research</a></p>
     <h1 class="paper__title">Quantitative research methodology</h1>

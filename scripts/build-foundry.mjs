@@ -157,7 +157,7 @@ ${renderProductShellStylesheet()}
 <body class="foundry-page">
 <a class="foundry-skip" href="#content">Skip to content</a>
 ${renderProductShellHeader({ active: "" })}
-<main id="content">
+<main id="content" tabindex="-1">
   <section class="foundry-hero" aria-labelledby="foundry-title">
     <div class="foundry-hero__copy">
       <p class="foundry-kicker">ALPHAC Foundry / design status</p>

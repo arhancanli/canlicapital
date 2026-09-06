@@ -237,7 +237,7 @@ ${renderProductShellHeader({ active: "" })}
     <p class="lab-boundary"><strong>What this is.</strong> ${esc(contract.claim_boundary)}</p>
   </section>
 
-  <section class="lab-lab" id="lab" aria-labelledby="lab-lab-title">
+  <section class="lab-lab" id="lab" tabindex="-1" aria-labelledby="lab-lab-title">
     <h2 id="lab-lab-title" class="lab-visually-hidden">The calculator</h2>
     <div class="lab-controls">
       <label class="lab-field" for="pbo-matrix">

@@ -201,7 +201,7 @@ ${renderProductShellHeader({ active: "methodology" })}
     <p>The current-union preset supplies only trial count and dispersion. The observed Sharpe, sample length, skew and kurtosis are illustrative until you replace them. No output on this page is an ALPHAC performance claim or an admission verdict.</p>
   </section>
 
-  <section class="dsr-workbench" id="calculator" aria-labelledby="calculator-title">
+  <section class="dsr-workbench" id="calculator" tabindex="-1" aria-labelledby="calculator-title">
     <header class="dsr-section-head">
       <div><p class="dsr-label">Selection pressure chamber</p><h2 id="calculator-title">How many trials did you run?</h2><p class="dsr-hero__lead">One result. The whole search behind it.</p></div>
       <div class="dsr-workbench__tools">

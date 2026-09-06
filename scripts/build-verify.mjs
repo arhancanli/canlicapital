@@ -204,7 +204,7 @@ ${renderProductShellStylesheet()}
 <body class="paper">
 <a class="paper__skip" href="#content">Skip to content</a>
 ${renderProductShellHeader({ active: "verify" })}
-<main class="paper__main" id="content">
+<main class="paper__main" id="content" tabindex="-1">
   <article class="paper__article">
     <p class="paper__eyebrow"><a href="/open">The glass box</a></p>
     <h1 class="paper__title">How to verify us</h1>

@@ -206,7 +206,7 @@ ${renderProductShellHeader({ active: "" })}
     <p class="lab-boundary"><strong>What this is.</strong> ${esc(c.claim_boundary)}</p>
   </section>
 
-  <section class="lab-lab" id="lab" aria-labelledby="lab-lab-title">
+  <section class="lab-lab" id="lab" tabindex="-1" aria-labelledby="lab-lab-title">
     <h2 id="lab-lab-title" class="lab-visually-hidden">The lab</h2>
     <div class="lab-controls">
       ${num("lab-seed", "Series seed", d.seed, 1, 999999, 1, `${g.bars} bars, ${g.process}`)}

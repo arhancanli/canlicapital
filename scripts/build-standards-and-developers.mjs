@@ -420,7 +420,7 @@ function buildDevelopers() {
 <body class="dev-page">
 <a class="dev-skip" href="#content">Skip to content</a>
 ${renderProductShellHeader({ active: "developers" })}
-<main id="content">
+<main id="content" tabindex="-1">
   <section class="dev-hero">
     <p class="dev-kicker"><span>Public API</span><span aria-hidden="true"> &middot; </span><span>v1</span></p>
     <h1>Every response says what it cannot be used to claim.</h1>
