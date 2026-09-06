@@ -36,9 +36,24 @@ const esc = (v) =>
 // (see scripts/render-snippets.mjs). One route, three copy-ready blocks; none can name a body
 // its own handler would refuse, because a test round-trips every one of them.
 const LANG_LABEL = { curl: "curl", python: "Python", javascript: "JavaScript" };
+const languageBlocks = (m, example) =>
+  renderAll(m, example).map(({ lang, code }) => `<div class="dev-snippet"><p class="dev-snippet-label">${esc(LANG_LABEL[lang])}</p><pre class="dev-code"><code>${esc(code)}</code></pre></div>`).join("\n      ");
+
+// A route can declare `modes`: a discriminated union of input shapes (deflated-sharpe's seven
+// contract fields OR a return series plus its trials) rather than one flattened example. Such a
+// route gets one labelled group of three language blocks PER MODE, so a developer sees every
+// shape the handler accepts instead of one example that could only ever show one of them.
 function snippetsBlock(m) {
+  if (Array.isArray(m.modes) && m.modes.length) {
+    return m.modes.map((mode) => `<div class="dev-mode">
+      <p class="dev-note"><strong>${esc(mode.label ?? mode.name)}</strong></p>
+      <div class="dev-snippets">
+      ${languageBlocks(m, mode.example)}
+      </div>
+    </div>`).join("\n    ");
+  }
   return `<div class="dev-snippets">
-      ${renderAll(m).map(({ lang, code }) => `<div class="dev-snippet"><p class="dev-snippet-label">${esc(LANG_LABEL[lang])}</p><pre class="dev-code"><code>${esc(code)}</code></pre></div>`).join("\n      ")}
+      ${languageBlocks(m)}
     </div>`;
 }
 

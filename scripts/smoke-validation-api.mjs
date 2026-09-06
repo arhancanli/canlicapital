@@ -41,4 +41,20 @@ const unauth = await j(await fetch(`${base}/api/v1/validate/breadth`, { method: 
 assert.equal(unauth.status, 401);
 const status = await j(await fetch(`${base}/api/v1/validate/status`));
 assert.equal(status.status, 200, JSON.stringify(status.body).slice(0, 200));
+// usage is null until supabase/migrations/20260906_usage_summary.sql is applied; once it is, the
+// aggregate must carry all four fields with the right types. Either way this is not a 5xx.
+assert.ok("usage" in status.body.data, "status response is missing the usage key");
+assert.ok("usage_available" in status.body.data, "status response is missing usage_available");
+if (status.body.data.usage !== null) {
+  const u = status.body.data.usage;
+  assert.equal(status.body.data.usage_available, true);
+  assert.ok(Number.isInteger(u.validations_today), "usage.validations_today should be an integer");
+  assert.ok(Number.isInteger(u.validations_total), "usage.validations_total should be an integer");
+  assert.ok(Number.isInteger(u.keys_issued_today), "usage.keys_issued_today should be an integer");
+  assert.match(u.as_of_utc_day, /^\d{4}-\d{2}-\d{2}$/, "usage.as_of_utc_day should be a UTC date string");
+  console.log("usage", u);
+} else {
+  assert.equal(status.body.data.usage_available, false);
+  console.log("usage not yet available (migration not applied, or a transient store error)");
+}
 console.log("smoke passed against", base);

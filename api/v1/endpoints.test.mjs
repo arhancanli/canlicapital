@@ -35,6 +35,17 @@ test("deflated-sharpe accepts contract inputs or a series, and refuses both at o
   assert.throws(() => dsr({ returns: new Array(20001).fill(0.001), periods_per_year: 252, effective_independent_trials: 2, cross_trial_sharpe_sd_annualized: 0.1 }), /observations/);
 });
 
+test("deflated-sharpe's declared modes round-trip through its own validator, both of them", () => {
+  const entry = MANIFEST.find((m) => m.path === "/api/v1/validate/deflated-sharpe");
+  assert.equal(entry.modes.length, 2);
+  for (const mode of entry.modes) {
+    for (const key of mode.required) assert.ok(key in mode.example, `${mode.name} example is missing required field ${key}`);
+    const out = dsr(mode.example);
+    assert.equal(out.input_mode, mode.name, `${mode.name} example did not resolve to its own input_mode`);
+    assert.ok(Number.isFinite(out.result.deflated_sharpe_ratio), `${mode.name} example did not produce a finite deflated Sharpe`);
+  }
+});
+
 test("overfitting caps variants and combinations and reports the sampler honestly", () => {
   const v = VECTORS.pbo[0];
   const out = pbo({ matrix: v.matrix, n_splits: v.n_splits });

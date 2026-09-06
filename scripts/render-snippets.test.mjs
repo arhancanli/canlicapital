@@ -45,3 +45,41 @@ test("python source parses under python3's own syntax", async () => {
     }
   }
 });
+
+// A route can declare `modes`: a discriminated union of input shapes (deflated-sharpe's seven
+// contract fields OR a return series plus its trials). The renderers take an explicit example
+// override for exactly this case; build-standards-and-developers.mjs calls renderAll(m,
+// mode.example) once per mode so a developer sees every shape in every language.
+const MODED_ROUTES = MANIFEST.filter((m) => Array.isArray(m.modes) && m.modes.length);
+
+test("a moded route has more than one mode to render", () => {
+  assert.ok(MODED_ROUTES.length > 0, "at least one manifest route should declare modes");
+});
+
+test("renderAll(m, mode.example) embeds that mode's own JSON body, in every language, distinct per mode", () => {
+  for (const m of MODED_ROUTES) {
+    const renderedPerMode = m.modes.map((mode) => renderAll(m, mode.example));
+    for (const [i, mode] of m.modes.entries()) {
+      for (const { lang, code } of renderedPerMode[i]) {
+        const body = lang === "curl" ? code.match(/-d '(.+)'$/s)?.[1]
+          : lang === "python" ? code.match(/^body = (.+)$/m)?.[1]
+          : code.match(/^const body = (.+);$/m)?.[1];
+        assert.ok(body, `${m.path} mode ${mode.name} (${lang}): snippet has no body`);
+        assert.deepEqual(JSON.parse(body), mode.example, `${m.path} mode ${mode.name} (${lang}): body drifted from its own example`);
+      }
+    }
+    // The two modes' curl bodies must actually differ, or the "per mode" rendering is decorative.
+    const curlBodies = renderedPerMode.map((snippets) => snippets.find((s) => s.lang === "curl").code);
+    assert.equal(new Set(curlBodies).size, curlBodies.length, `${m.path}: modes rendered identical snippets`);
+  }
+});
+
+test("a moded route's keyed placeholder is present in every mode's snippets when the route is keyed", () => {
+  for (const m of MODED_ROUTES) {
+    for (const mode of m.modes) {
+      for (const { lang, code } of renderAll(m, mode.example)) {
+        assert.equal(code.includes("Bearer $CANLI_KEY"), m.keyed, `${m.path} mode ${mode.name} (${lang})`);
+      }
+    }
+  }
+});

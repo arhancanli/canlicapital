@@ -19,17 +19,27 @@ export const MANIFEST = Object.freeze([
     path: "/api/v1/validate/deflated-sharpe", method: "POST", keyed: true,
     summary: "Probabilistic and deflated Sharpe from the seven contract inputs, or from a return series plus the trials behind it.",
     requestExample: { returns: [0.004, -0.002, 0.007, 0.001, -0.003, 0.005, 0.002, -0.001], periods_per_year: 252, effective_independent_trials: 30, cross_trial_sharpe_sd_annualized: 0.5 },
-    // Either the return series shown in the example, or the seven contract fields below, never
-    // both. No single field is unconditionally required, so none is listed as required; the
-    // description says which combinations the handler accepts.
-    requestOptional: ["returns", "periods_per_year", "effective_independent_trials", "cross_trial_sharpe_sd_annualized"],
-    requestExtraProperties: {
-      observed_sharpe_annualized: { type: "number", description: "Contract-input mode only." },
-      observations: { type: "number", description: "Contract-input mode only." },
-      skew: { type: "number", description: "Contract-input mode only." },
-      non_excess_kurtosis: { type: "number", description: "Contract-input mode only." },
-    },
-    requestDescription: "Send either a return series (returns, periods_per_year, effective_independent_trials, cross_trial_sharpe_sd_annualized) or all seven contract fields (observed_sharpe_annualized, observations, periods_per_year, skew, non_excess_kurtosis, effective_independent_trials, cross_trial_sharpe_sd_annualized), never both.",
+    // Two input shapes, not one flattened optional-property bag: a request is either the seven
+    // contract fields, or a return series plus the trials behind it. Each mode names its own
+    // required fields and its own example, so OpenAPI can render them as `oneOf` and a developer
+    // sees both instead of one example that silently mixes fields from either shape. (This
+    // replaces requestOptional/requestExtraProperties/requestDescription for this route: those
+    // described the same two-shape reality as one flattened optional-property bag.)
+    modes: [
+      {
+        name: "contract_inputs",
+        label: "Mode 1: the seven contract inputs",
+        required: ["observed_sharpe_annualized", "observations", "periods_per_year", "skew", "non_excess_kurtosis", "effective_independent_trials", "cross_trial_sharpe_sd_annualized"],
+        // Same vector as daily_long_sample_heavy_tail in deflated_sharpe_calculator_contract.json.
+        example: { observed_sharpe_annualized: 1.5, observations: 730, periods_per_year: 365, skew: -0.5, non_excess_kurtosis: 5.0, effective_independent_trials: 229, cross_trial_sharpe_sd_annualized: 0.57 },
+      },
+      {
+        name: "return_series",
+        label: "Mode 2: a return series plus the trials behind it",
+        required: ["returns", "periods_per_year", "effective_independent_trials", "cross_trial_sharpe_sd_annualized"],
+        example: { returns: [0.004, -0.002, 0.007, 0.001, -0.003, 0.005, 0.002, -0.001], periods_per_year: 252, effective_independent_trials: 30, cross_trial_sharpe_sd_annualized: 0.5 },
+      },
+    ],
   },
   {
     path: "/api/v1/validate/overfitting", method: "POST", keyed: true,

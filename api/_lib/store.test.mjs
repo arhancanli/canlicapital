@@ -43,3 +43,23 @@ test("saveReceipt posts with resolution=ignore-duplicates so a replay is idempot
   const store = createStore({ url: "https://x.supabase.co", serviceKey: "svc", fetchImpl: f });
   await store.saveReceipt({ id: "deadbeef", endpoint: "validate/breadth", input_sha256: "a", output: {}, bindings: {} });
 });
+
+test("usageSummary calls the RPC with the service key and returns the aggregate object", async () => {
+  const aggregate = { validations_today: 12, validations_total: 340, keys_issued_today: 2, as_of_utc_day: "2026-09-06" };
+  const f = fakeFetch([["/rest/v1/rpc/usage_summary", (init) => { assert.equal(init.body, "{}"); return ok(aggregate); }]]);
+  const store = createStore({ url: "https://x.supabase.co", serviceKey: "svc", fetchImpl: f });
+  assert.deepEqual(await store.usageSummary(), aggregate);
+  assert.equal(f.calls[0].init.headers.apikey, "svc");
+});
+
+test("usageSummary surfaces a missing function (migration not yet applied) as StoreError", async () => {
+  const f = fakeFetch([["/rest/v1/rpc/usage_summary", () => ok({ code: "PGRST202", message: "Could not find the function public.usage_summary" }, 404)]]);
+  const store = createStore({ url: "https://x.supabase.co", serviceKey: "svc", fetchImpl: f });
+  await assert.rejects(store.usageSummary(), (e) => e instanceof StoreError && e.status === 404);
+});
+
+test("usageSummary propagates a network failure without swallowing it", async () => {
+  const f = async () => { throw new TypeError("fetch failed"); };
+  const store = createStore({ url: "https://x.supabase.co", serviceKey: "svc", fetchImpl: f });
+  await assert.rejects(store.usageSummary(), /fetch failed/);
+});

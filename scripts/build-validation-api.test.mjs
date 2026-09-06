@@ -125,3 +125,45 @@ test("/developers documents every manifest route, the quotas, and what a verdict
   assert.match(html, /<meta name="canli:sources" content="[^"]*validation_api_limits\.json/);
   assert.ok(!html.includes("\u2014"), "no em dashes");
 });
+
+test("deflated-sharpe declares two input modes, and openapi documents them as oneOf", () => {
+  const dsr = MANIFEST.find((m) => m.path === "/api/v1/validate/deflated-sharpe");
+  assert.ok(Array.isArray(dsr.modes) && dsr.modes.length === 2, "deflated-sharpe should declare two modes");
+  for (const mode of dsr.modes) {
+    assert.ok(mode.name && mode.required?.length && mode.example, `mode ${mode.name} needs name, required and example`);
+    for (const key of mode.required) assert.ok(key in mode.example, `${mode.name} example is missing required field ${key}`);
+  }
+  const openapi = JSON.parse(readFileSync(resolve(ROOT, "public/api/v1/openapi.json"), "utf8"));
+  const schema = openapi.paths["/api/v1/validate/deflated-sharpe"].post.requestBody.content["application/json"].schema;
+  assert.ok(Array.isArray(schema.oneOf), "requestBody schema should be a oneOf");
+  assert.equal(schema.oneOf.length, 2);
+  for (const s of schema.oneOf) assert.ok(Array.isArray(s.required) && s.required.length > 0, "each oneOf entry needs its own required list");
+  const requiredSets = schema.oneOf.map((s) => [...s.required].sort().join(","));
+  assert.notEqual(requiredSets[0], requiredSets[1], "the two modes must have distinct required fields");
+});
+
+test("openapi documents usage (nullable) with its four fields on the status response", () => {
+  const openapi = JSON.parse(readFileSync(resolve(ROOT, "public/api/v1/openapi.json"), "utf8"));
+  const okResponse = openapi.paths["/api/v1/validate/status"].get.responses["200"];
+  assert.match(JSON.stringify(okResponse), /"usage"/, "status 200 response should reference usage");
+  const usageSchema = openapi.components.schemas.UsageSummary;
+  assert.ok(usageSchema, "openapi should declare a UsageSummary schema");
+  const usageJson = JSON.stringify(usageSchema);
+  for (const field of ["validations_today", "validations_total", "keys_issued_today", "as_of_utc_day"]) {
+    assert.match(usageJson, new RegExp(field), `UsageSummary should name ${field}`);
+  }
+  assert.match(usageJson, /"null"/, "usage must be documented as nullable");
+});
+
+test("/developers renders a labelled snippet for each deflated-sharpe input mode", () => {
+  const html = readFileSync(resolve(ROOT, "developers.html"), "utf8");
+  const dsr = MANIFEST.find((m) => m.path === "/api/v1/validate/deflated-sharpe");
+  for (const mode of dsr.modes) {
+    assert.ok(html.includes(mode.label ?? mode.name), `missing label for mode ${mode.name}`);
+  }
+  // Distinct request bodies actually appear, not one example flattened over both modes. The page
+  // HTML-escapes the JSON in each snippet, so the field names (which need no escaping) are the
+  // reliable markers that BOTH shapes were rendered rather than one repeated twice.
+  assert.ok(html.includes("observed_sharpe_annualized"), "contract-inputs example missing from /developers");
+  assert.ok(html.includes("&quot;returns&quot;:["), "return-series example missing from /developers");
+});

@@ -37,5 +37,8 @@ export function createStore({ url, serviceKey, fetchImpl = globalThis.fetch }) {
       const rows = await call("/receipts?select=id&limit=1", { method: "GET" });
       return Array.isArray(rows);
     },
+    async usageSummary() {
+      return call("/rpc/usage_summary", { method: "POST", body: "{}" });
+    },
   };
 }

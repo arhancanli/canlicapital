@@ -303,15 +303,61 @@ function main() {
           data: { type: "object" }, receipt: { type: "object" }, error: { type: "object" },
         },
       },
+      // Aggregates only (public/glassbox never carries per-key or per-client rows). null until
+      // supabase/migrations/20260906_usage_summary.sql is applied, or on any transient store error.
+      UsageSummary: {
+        type: "object",
+        nullable: true,
+        oneOf: [
+          { type: "null" },
+          {
+            type: "object",
+            required: ["validations_today", "validations_total", "keys_issued_today", "as_of_utc_day"],
+            properties: {
+              validations_today: { type: "integer", minimum: 0 },
+              validations_total: { type: "integer", minimum: 0 },
+              keys_issued_today: { type: "integer", minimum: 0 },
+              as_of_utc_day: { type: "string", format: "date" },
+            },
+          },
+        ],
+      },
     },
   };
   const envelopeResponse = (description) => ({ description, content: { "application/json": { schema: { $ref: "#/components/schemas/Envelope" } } } });
   for (const m of MANIFEST) {
     const op = { summary: m.summary, operationId: m.path.replace(/^\/api\/v1\//, "").replace(/[^a-z]+/g, "_"), responses: { 200: envelopeResponse("The envelope with data"), 400: envelopeResponse("Malformed request"), 405: envelopeResponse("Wrong method") } };
     if (m.method === "POST") {
-      op.requestBody = { required: true, content: { "application/json": { schema: requestSchemaFor(m), example: m.requestExample } } };
+      // A route can declare `modes`: a discriminated union of input shapes rather than one
+      // optional-property bag. Each mode gets its own schema inside a oneOf, with its OWN
+      // required list, typed the same way requestSchemaFor infers types for a single-shape
+      // route, so the document does not claim a request can mix fields from either shape.
+      const requestSchema = m.modes
+        ? { oneOf: m.modes.map((mode) => ({
+            ...requestSchemaFor({ requestExample: mode.example, requestOptional: Object.keys(mode.example).filter((k) => !mode.required.includes(k)) }),
+            title: mode.name,
+            description: mode.label ?? mode.name,
+          })) }
+        : requestSchemaFor(m);
+      op.requestBody = { required: true, content: { "application/json": { schema: requestSchema, ...(m.modes ? { examples: Object.fromEntries(m.modes.map((mode) => [mode.name, { summary: mode.label ?? mode.name, value: mode.example }])) } : { example: m.requestExample }) } } };
       op.responses[413] = envelopeResponse(`Body over ${LIMITS.max_body_bytes} bytes`);
       op.responses[422] = envelopeResponse("Input the validator refuses, with the reason");
+    }
+    if (m.path === "/api/v1/validate/status") {
+      op.responses[200] = {
+        description: "Service, store and usage status.",
+        content: { "application/json": { schema: { allOf: [
+          { $ref: "#/components/schemas/Envelope" },
+          { type: "object", properties: { data: { type: "object", properties: {
+            service: { type: "string" },
+            store_reachable: { type: "boolean" },
+            quotas: { type: "object" },
+            usage: { $ref: "#/components/schemas/UsageSummary" },
+            usage_available: { type: "boolean" },
+          } } } },
+        ] } } },
+      };
+      op.responses[503] = envelopeResponse("The store is unreachable; usage is still reported, as null");
     }
     if (m.keyed) {
       op.security = [{ bearerKey: [] }];
