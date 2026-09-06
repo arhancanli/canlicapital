@@ -3,21 +3,21 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Breadth Lab | Canli Capital</title>
-<meta name="description" content="How much a book of N sleeves is worth, and the ceiling that no amount of breadth can pass." />
+<title>Portfolio breadth calculator | Canli Capital</title>
+<meta name="description" content="A portfolio breadth calculator: how much a book of N sleeves is worth, and the correlation ceiling that no amount of breadth can pass." />
 <link rel="canonical" href="https://canlicapital.com/tools/breadth" />
 <meta name="author" content="Arhan Canli" />
 <meta name="canli:sources" content="breadth_lab_contract.json public-claims.json" />
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Canli Capital" />
-<meta property="og:title" content="Breadth Lab" />
-<meta property="og:description" content="How much a book of N sleeves is worth, and the ceiling that no amount of breadth can pass." />
+<meta property="og:title" content="Portfolio breadth calculator" />
+<meta property="og:description" content="A portfolio breadth calculator: how much a book of N sleeves is worth, and the correlation ceiling that no amount of breadth can pass." />
 <meta property="og:url" content="https://canlicapital.com/tools/breadth" />
 <meta property="og:image" content="https://canlicapital.com/og.png" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Breadth Lab" />
-<meta name="twitter:description" content="How much a book of N sleeves is worth, and the ceiling that no amount of breadth can pass." />
+<meta name="twitter:title" content="Portfolio breadth calculator" />
+<meta name="twitter:description" content="A portfolio breadth calculator: how much a book of N sleeves is worth, and the correlation ceiling that no amount of breadth can pass." />
 <meta name="twitter:image" content="https://canlicapital.com/og.png" />
 <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -25,7 +25,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" />
 <link rel="stylesheet" href="/css/product-shell.css" />
 <link rel="stylesheet" href="/css/lab.css" />
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Breadth Lab","applicationCategory":"EducationalApplication","operatingSystem":"Any modern browser","url":"https://canlicapital.com/tools/breadth","description":"How much a book of N sleeves is worth, and the ceiling that no amount of breadth can pass.","author":{"@id":"https://canlicapital.com/#arhan-canli"},"isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Portfolio breadth calculator","alternateName":"Breadth Lab","applicationCategory":"EducationalApplication","operatingSystem":"Any modern browser","url":"https://canlicapital.com/tools/breadth","description":"A portfolio breadth calculator: how much a book of N sleeves is worth, and the correlation ceiling that no amount of breadth can pass.","author":{"@id":"https://canlicapital.com/#arhan-canli"},"isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
 </head>
 <body class="lab-page">
 <a class="lab-skip" href="#lab">Skip to the lab</a>
@@ -85,9 +85,9 @@
 </header>
 <main>
   <section class="lab-hero" aria-labelledby="lab-title">
-    <p class="lab-kicker"><span>Open research instrument</span><span>Arithmetic, not a forecast</span></p>
-    <h1 id="lab-title">More sleeves stops working, and you can see where.</h1>
-    <p class="lab-lead">A book of equally weighted sleeves, each worth <strong>s</strong>, sharing a
+    <p class="lab-kicker"><span>Open research instrument</span><span>Breadth Lab</span><span>Arithmetic, not a forecast</span></p>
+    <h1 id="lab-title">Portfolio breadth calculator</h1>
+    <p class="lab-lead">More sleeves stops working, and you can see where. A book of equally weighted sleeves, each worth <strong>s</strong>, sharing a
       pairwise correlation <strong>rho</strong>, is worth
       <code>s &times; sqrt(N / (1 + (N-1) &times; rho))</code>. Take that to the limit and the
       ceiling is <code>s / sqrt(rho)</code>, which does not contain N at all. Past a point, breadth

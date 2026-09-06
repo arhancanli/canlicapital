@@ -99,16 +99,18 @@ const field = (id, label, value, min, max, step, note) => `<label class="lab-fie
     <span class="lab-field__note">${esc(note)}</span>
   </label>`;
 
+const queryTitle = "Execution assumptions cost calculator";
+const houseLabel = "Execution Reality Lab";
 const description =
-  "The same strategy priced under six execution assumptions, and a measurement of which of them " +
-  "are costs and which are re-timings.";
+  "An execution assumptions cost calculator: price one strategy under six fill, delay and impact " +
+  "assumptions, and see which are costs and which are re-timings.";
 
 const html = `<!doctype html>
 <html lang="en" data-page="execution">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Execution Reality Lab | Canli Capital</title>
+<title>${esc(queryTitle)} | Canli Capital</title>
 <meta name="description" content="${esc(description)}" />
 <link rel="canonical" href="${ORIGIN}/tools/execution" />
 <meta name="author" content="Arhan Canli" />
@@ -116,12 +118,12 @@ const html = `<!doctype html>
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Canli Capital" />
-<meta property="og:title" content="Execution Reality Lab" />
+<meta property="og:title" content="${esc(queryTitle)}" />
 <meta property="og:description" content="${esc(description)}" />
 <meta property="og:url" content="${ORIGIN}/tools/execution" />
 <meta property="og:image" content="${ORIGIN}/og.png" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Execution Reality Lab" />
+<meta name="twitter:title" content="${esc(queryTitle)}" />
 <meta name="twitter:description" content="${esc(description)}" />
 <meta name="twitter:image" content="${ORIGIN}/og.png" />
 <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
@@ -131,7 +133,8 @@ const html = `<!doctype html>
 ${renderProductShellStylesheet()}
 <link rel="stylesheet" href="/css/lab.css" />
 <script type="application/ld+json">${JSON.stringify({
-  "@context": "https://schema.org", "@type": "SoftwareApplication", name: "Execution Reality Lab",
+  "@context": "https://schema.org", "@type": "SoftwareApplication", name: queryTitle,
+  alternateName: houseLabel,
   applicationCategory: "EducationalApplication", operatingSystem: "Any modern browser",
   url: `${ORIGIN}/tools/execution`, description, author: { "@id": `${ORIGIN}/#arhan-canli` },
   isAccessibleForFree: true, offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
@@ -142,9 +145,9 @@ ${renderProductShellStylesheet()}
 ${renderProductShellHeader({ active: "" })}
 <main>
   <section class="lab-hero" aria-labelledby="lab-title">
-    <p class="lab-kicker"><span>Open research instrument</span><span>Educational, not evidence</span></p>
-    <h1 id="lab-title">Not every execution assumption is a cost.</h1>
-    <p class="lab-lead">A backtest that subtracts a number for slippage has assumed every execution
+    <p class="lab-kicker"><span>Open research instrument</span><span>${esc(houseLabel)}</span><span>Educational, not evidence</span></p>
+    <h1 id="lab-title">${esc(queryTitle)}</h1>
+    <p class="lab-lead">Not every execution assumption is a cost. A backtest that subtracts a number for slippage has assumed every execution
       assumption behaves the same way. They do not. Some reduce the result on
       <strong>every single series</strong>. Others change <em>which</em> prices you get, hurt on
       average, and flip sign often enough that a fixed haircut misstates them. On one equity chart

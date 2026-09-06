@@ -117,13 +117,17 @@ const preset = (key) => {
   return `<button type="button" class="lab-button" data-preset='${JSON.stringify({ s: x.s, rho: x.rho, n: x.n, target: x.target })}'>${esc(x.label)}</button>`;
 };
 
+const queryTitle = "Portfolio breadth calculator";
+const houseLabel = "Breadth Lab";
 const description =
-  "How much a book of N sleeves is worth, and the ceiling that no amount of breadth can pass.";
+  "A portfolio breadth calculator: how much a book of N sleeves is worth, and the correlation " +
+  "ceiling that no amount of breadth can pass.";
 
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
-  name: "Breadth Lab",
+  name: queryTitle,
+  alternateName: houseLabel,
   applicationCategory: "EducationalApplication",
   operatingSystem: "Any modern browser",
   url: `${ORIGIN}/tools/breadth`,
@@ -138,7 +142,7 @@ const html = `<!doctype html>
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Breadth Lab | Canli Capital</title>
+<title>${esc(queryTitle)} | Canli Capital</title>
 <meta name="description" content="${esc(description)}" />
 <link rel="canonical" href="${ORIGIN}/tools/breadth" />
 <meta name="author" content="Arhan Canli" />
@@ -146,12 +150,12 @@ const html = `<!doctype html>
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Canli Capital" />
-<meta property="og:title" content="Breadth Lab" />
+<meta property="og:title" content="${esc(queryTitle)}" />
 <meta property="og:description" content="${esc(description)}" />
 <meta property="og:url" content="${ORIGIN}/tools/breadth" />
 <meta property="og:image" content="${ORIGIN}/og.png" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Breadth Lab" />
+<meta name="twitter:title" content="${esc(queryTitle)}" />
 <meta name="twitter:description" content="${esc(description)}" />
 <meta name="twitter:image" content="${ORIGIN}/og.png" />
 <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
@@ -167,9 +171,9 @@ ${renderProductShellStylesheet()}
 ${renderProductShellHeader({ active: "" })}
 <main>
   <section class="lab-hero" aria-labelledby="lab-title">
-    <p class="lab-kicker"><span>Open research instrument</span><span>Arithmetic, not a forecast</span></p>
-    <h1 id="lab-title">More sleeves stops working, and you can see where.</h1>
-    <p class="lab-lead">A book of equally weighted sleeves, each worth <strong>s</strong>, sharing a
+    <p class="lab-kicker"><span>Open research instrument</span><span>${esc(houseLabel)}</span><span>Arithmetic, not a forecast</span></p>
+    <h1 id="lab-title">${esc(queryTitle)}</h1>
+    <p class="lab-lead">More sleeves stops working, and you can see where. A book of equally weighted sleeves, each worth <strong>s</strong>, sharing a
       pairwise correlation <strong>rho</strong>, is worth
       <code>s &times; sqrt(N / (1 + (N-1) &times; rho))</code>. Take that to the limit and the
       ceiling is <code>s / sqrt(rho)</code>, which does not contain N at all. Past a point, breadth
