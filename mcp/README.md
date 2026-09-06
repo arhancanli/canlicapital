@@ -7,7 +7,9 @@ service status. Every tool returns the full API envelope as its result text, suc
 so the agent cannot see a number without the sentences beside it that say what the number does
 not establish.
 
-This package is not published to npm. Run it from a local checkout, as shown below.
+This package is published to npm as [`canli-validation-mcp`](https://www.npmjs.com/package/canli-validation-mcp).
+Run it with `npx`, no install step, as shown below. A local checkout is only needed to develop or
+test this package itself; see "Local checkout" near the bottom.
 
 ## What the API is (and is not)
 
@@ -54,10 +56,9 @@ disk.
 
 ## Install
 
-```bash
-cd mcp
-npm ci
-```
+No install step. `npx` fetches the published package on first run, so every client config below
+just spawns `npx -y canli-validation-mcp`. See "Local checkout" near the bottom to develop or test
+this package itself instead of running the published one.
 
 ## Claude Desktop
 
@@ -66,30 +67,24 @@ Add to `claude_desktop_config.json` (Settings, Developer, Edit Config):
 ```json
 {
   "mcpServers": {
-    "canlicapital-validation": {
-      "command": "node",
-      "args": ["/absolute/path/to/meridian/mcp/src/server.mjs"],
-      "env": {
-        "CANLI_API_BASE": "https://canlicapital.com"
-      }
+    "canli": {
+      "command": "npx",
+      "args": ["-y", "canli-validation-mcp"]
     }
   }
 }
 ```
 
-Replace `/absolute/path/to/meridian` with the real path to this checkout, then restart Claude
-Desktop.
+Restart Claude Desktop afterward. Add an `"env"` object with `CANLI_API_BASE` to point this at a
+preview deployment instead of the default.
 
 ## Claude Code
 
 ```bash
-claude mcp add canlicapital-validation \
-  --env CANLI_API_BASE=https://canlicapital.com \
-  -- node /absolute/path/to/meridian/mcp/src/server.mjs
+claude mcp add canli -- npx -y canli-validation-mcp
 ```
 
-Run `claude mcp list` to confirm it is registered, and `claude mcp remove canlicapital-validation`
-to remove it.
+Run `claude mcp list` to confirm it is registered, and `claude mcp remove canli` to remove it.
 
 ## Generic stdio client
 
@@ -101,8 +96,8 @@ import { Client } from "@modelcontextprotocol/sdk/client/index.js";
 import { StdioClientTransport } from "@modelcontextprotocol/sdk/client/stdio.js";
 
 const transport = new StdioClientTransport({
-  command: "node",
-  args: ["/absolute/path/to/meridian/mcp/src/server.mjs"],
+  command: "npx",
+  args: ["-y", "canli-validation-mcp"],
   env: { ...process.env, CANLI_API_BASE: "https://canlicapital.com" },
 });
 
@@ -146,6 +141,19 @@ Every envelope this server returns carries these sentences, verbatim, from the A
 Each tool's description also states one of these sentences, so an agent sees the boundary before
 it calls the tool, not only after. No tool in this server strips `limits` or `receipt.url` from
 a response; the full envelope is always the result text.
+
+## Local checkout
+
+Only needed to develop or test this package itself, not to run the published one.
+
+```bash
+cd mcp
+npm ci
+node src/server.mjs
+```
+
+Point a client at the checkout instead of npm by spawning `node /absolute/path/to/meridian/mcp/src/server.mjs`
+in place of `npx -y canli-validation-mcp` in any config above.
 
 ## Testing
 

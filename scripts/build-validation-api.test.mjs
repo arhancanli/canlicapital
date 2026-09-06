@@ -208,3 +208,15 @@ test("/developers renders every snippet's own default label, so a breakdown by l
     assert.ok(html.includes(label), `label "${label}" missing from /developers`);
   }
 });
+
+test("/developers carries the MCP install line and the npm link, read from mcp/ rather than typed here", () => {
+  const html = readFileSync(resolve(ROOT, "developers.html"), "utf8");
+  const mcpPkg = JSON.parse(readFileSync(resolve(ROOT, "mcp/package.json"), "utf8"));
+  const readme = readFileSync(resolve(ROOT, "mcp/README.md"), "utf8");
+  const installLine = readme.match(/```bash\nclaude mcp add[^\n]*\n```/)?.[0].replace(/```bash\n|\n```/g, "");
+  assert.ok(installLine, "mcp/README.md must carry a `claude mcp add` bash fence to render on /developers");
+  assert.ok(html.includes(installLine), `/developers is missing the Claude Code install line: ${installLine}`);
+  const npmUrl = `https://www.npmjs.com/package/${mcpPkg.name}`;
+  assert.ok(html.includes(npmUrl), `/developers is missing the npm link: ${npmUrl}`);
+  assert.ok(!html.includes("\u2014"), "no em dashes");
+});

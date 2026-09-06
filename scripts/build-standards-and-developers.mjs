@@ -240,6 +240,43 @@ ${renderProductShellFooter()}
   return { invalid: invalid.length, required: required.length, vectorCount };
 }
 
+// Pulls one fenced code block out of a markdown file by the heading right above it, so a snippet
+// shown on the site is read from the same file an agent (or a person) reads directly, rather than
+// typed a second time and left free to drift from it. Throws loudly if the heading or the fence is
+// gone, rather than silently rendering an empty block, because a missing snippet is a build defect.
+function extractReadmeFence(markdown, heading, lang) {
+  const headingIndex = markdown.indexOf(`## ${heading}`);
+  if (headingIndex === -1) throw new Error(`mcp/README.md: no "## ${heading}" heading found`);
+  const fenceMark = "```" + lang;
+  const fenceOpen = markdown.indexOf(fenceMark, headingIndex);
+  if (fenceOpen === -1) throw new Error(`mcp/README.md: no ${fenceMark} fence under "## ${heading}"`);
+  const bodyStart = markdown.indexOf("\n", fenceOpen) + 1;
+  const fenceClose = markdown.indexOf("```", bodyStart);
+  if (fenceClose === -1) throw new Error(`mcp/README.md: unterminated fence under "## ${heading}"`);
+  return markdown.slice(bodyStart, fenceClose).trimEnd();
+}
+
+// The short "From your AI assistant" block on /developers: the MCP server wraps the same seven
+// routes documented below it, read from mcp/package.json and mcp/README.md rather than typed
+// here, so this section cannot drift from what an agent running that package actually sees.
+function mcpAssistantSection() {
+  const mcpPkg = JSON.parse(readFileSync(resolve(ROOT, "mcp/package.json"), "utf8"));
+  const readme = readFileSync(resolve(ROOT, "mcp/README.md"), "utf8");
+  const claudeCodeInstall = extractReadmeFence(readme, "Claude Code", "bash");
+  const claudeDesktopJson = extractReadmeFence(readme, "Claude Desktop", "json");
+  const npmUrl = `https://www.npmjs.com/package/${mcpPkg.name}`;
+  return `<section class="dev-section" id="ai-assistant">
+    <h2>From your AI assistant</h2>
+    <p class="dev-note">This API is also an MCP server, so a coding assistant can call the
+      routes on this page as tools instead of writing requests by hand. Every tool it exposes
+      returns the full envelope, the same way every route on this page does, so the assistant
+      sees what a number cannot be used to claim, not only the number.</p>
+    <div class="dev-snippet"><p class="dev-snippet-label">Claude Code</p><pre class="dev-code"><code>${esc(claudeCodeInstall)}</code></pre></div>
+    <div class="dev-snippet"><p class="dev-snippet-label">Claude Desktop</p><pre class="dev-code"><code>${esc(claudeDesktopJson)}</code></pre></div>
+    <p class="dev-note"><a href="${esc(npmUrl)}" rel="noreferrer">${esc(mcpPkg.name)} on npm</a>, with the full tool list and what each one does not establish.</p>
+  </section>`;
+}
+
 function buildDevelopers() {
   const index = JSON.parse(readFileSync(resolve(ROOT, "public/api/v1/index.json"), "utf8"));
   const openapi = JSON.parse(readFileSync(resolve(ROOT, "public/api/v1/openapi.json"), "utf8"));
@@ -435,6 +472,8 @@ ${renderProductShellHeader({ active: "developers" })}
     </ol>
   </section>
   <script>${QUICKSTART_SCRIPT}</script>
+
+  ${mcpAssistantSection()}
 
   <section class="dev-section">
     <h2>Read endpoints, no key</h2>

@@ -1,0 +1,35 @@
+# Smithery configuration: https://smithery.ai/docs/config#smitheryyaml
+#
+# canli-validation-mcp speaks stdio only, over the published npm package. This file is the
+# local/CLI install path: it tells Smithery's search index and its CLI (`npx -y @smithery/cli
+# install canli-validation-mcp`) the exact command to spawn, the same command Claude Desktop or
+# Claude Code would run directly (see mcp/README.md). It does not, by itself, give Smithery's
+# hosted Playground or a managed HTTP endpoint; see mcp/REGISTRIES.md for why and what a
+# container-runtime deployment would additionally require.
+startCommand:
+  type: stdio
+  configSchema:
+    type: object
+    properties:
+      canliApiBase:
+        type: string
+        description: >-
+          Base URL of the canlicapital.com validation API. Defaults to
+          https://canlicapital.com; point it at a preview deployment for testing.
+      canliKey:
+        type: string
+        description: >-
+          An already issued canlicapital.com validation key. When set, get_key reports it is
+          already configured instead of issuing a new one.
+  commandFunction: |-
+    (config) => ({
+      command: 'npx',
+      args: ['-y', 'canli-validation-mcp'],
+      env: Object.assign(
+        {},
+        config.canliApiBase ? { CANLI_API_BASE: config.canliApiBase } : {},
+        config.canliKey ? { CANLI_KEY: config.canliKey } : {}
+      )
+    })
+  exampleConfig:
+    canliApiBase: https://canlicapital.com

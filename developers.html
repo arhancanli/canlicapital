@@ -283,6 +283,24 @@ console.log(await response.json());</code></pre></div>
   }
 })();</script>
 
+  <section class="dev-section" id="ai-assistant">
+    <h2>From your AI assistant</h2>
+    <p class="dev-note">This API is also an MCP server, so a coding assistant can call the
+      routes on this page as tools instead of writing requests by hand. Every tool it exposes
+      returns the full envelope, the same way every route on this page does, so the assistant
+      sees what a number cannot be used to claim, not only the number.</p>
+    <div class="dev-snippet"><p class="dev-snippet-label">Claude Code</p><pre class="dev-code"><code>claude mcp add canli -- npx -y canli-validation-mcp</code></pre></div>
+    <div class="dev-snippet"><p class="dev-snippet-label">Claude Desktop</p><pre class="dev-code"><code>{
+  &quot;mcpServers&quot;: {
+    &quot;canli&quot;: {
+      &quot;command&quot;: &quot;npx&quot;,
+      &quot;args&quot;: [&quot;-y&quot;, &quot;canli-validation-mcp&quot;]
+    }
+  }
+}</code></pre></div>
+    <p class="dev-note"><a href="https://www.npmjs.com/package/canli-validation-mcp" rel="noreferrer">canli-validation-mcp on npm</a>, with the full tool list and what each one does not establish.</p>
+  </section>
+
   <section class="dev-section">
     <h2>Read endpoints, no key</h2>
     <table class="dev-table">
