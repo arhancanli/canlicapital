@@ -14,9 +14,11 @@ below run from `mcp/`.
 ### Step 0: the registry will refuse the package until it can verify ownership
 
 The registry checks that the npm package it is pointed at carries a matching `mcpName` field
-inside its own `package.json`. The package already published, `canli-validation-mcp@0.1.1`, does
-not carry that field, because it did not exist yet when 0.1.1 was published. npm versions are
-immutable, so this cannot be patched onto 0.1.1; it needs a new version.
+inside its own `package.json`. The package already published, `canli-validation-mcp@0.1.0`, does
+not carry that field, because it did not exist yet when 0.1.0 was published. npm versions are
+immutable, so this cannot be patched onto 0.1.0; version 0.1.1 in this repository carries it and
+must be published (`npm publish --access public` from mcp/, in a real terminal for the 2FA prompt)
+before the registry publish below.
 
 ```bash
 cd mcp
