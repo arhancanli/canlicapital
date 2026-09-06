@@ -1,4 +1,4 @@
-# @canlicapital/validation-mcp
+# canli-validation-mcp
 
 An MCP (Model Context Protocol) server over canlicapital.com's free, keyed validation API. It
 gives a coding agent seven tools: issue a free key, run the four validators (deflated Sharpe,
