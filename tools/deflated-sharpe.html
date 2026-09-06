@@ -4,7 +4,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Deflated Sharpe ratio calculator (PSR and DSR) | Canli Capital</title>
-<meta name="description" content="Calculate the Probabilistic and Deflated Sharpe Ratio (PSR and DSR), exposing trial count, dispersion, sample length and non-normal return assumptions." />
+<meta name="description" content="A Probabilistic Sharpe ratio calculator that also reports its Deflated form, exposing trial count, dispersion, sample length and non-normal return assumptions." />
 <link rel="canonical" href="https://canlicapital.com/tools/deflated-sharpe" />
 <meta name="author" content="Arhan Canli" />
 <meta name="canli:sources" content="deflated_sharpe_calculator_contract.json trial_ledger.json" />
@@ -12,12 +12,12 @@
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Canli Capital" />
 <meta property="og:title" content="Deflated Sharpe ratio calculator (PSR and DSR)" />
-<meta property="og:description" content="Calculate the Probabilistic and Deflated Sharpe Ratio (PSR and DSR), exposing trial count, dispersion, sample length and non-normal return assumptions." />
+<meta property="og:description" content="A Probabilistic Sharpe ratio calculator that also reports its Deflated form, exposing trial count, dispersion, sample length and non-normal return assumptions." />
 <meta property="og:url" content="https://canlicapital.com/tools/deflated-sharpe" />
 <meta property="og:image" content="https://canlicapital.com/og.png" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Deflated Sharpe ratio calculator (PSR and DSR)" />
-<meta name="twitter:description" content="Calculate the Probabilistic and Deflated Sharpe Ratio (PSR and DSR), exposing trial count, dispersion, sample length and non-normal return assumptions." />
+<meta name="twitter:description" content="A Probabilistic Sharpe ratio calculator that also reports its Deflated form, exposing trial count, dispersion, sample length and non-normal return assumptions." />
 <meta name="twitter:image" content="https://canlicapital.com/og.png" />
 <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -27,7 +27,7 @@
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=optional" /></noscript>
 <link rel="stylesheet" href="/css/product-shell.css" />
 <link rel="stylesheet" href="/css/dsr-tool.css" />
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Deflated Sharpe ratio calculator (PSR and DSR)","alternateName":"Deflated Sharpe calculator","url":"https://canlicapital.com/tools/deflated-sharpe","description":"Calculate the Probabilistic and Deflated Sharpe Ratio (PSR and DSR), exposing trial count, dispersion, sample length and non-normal return assumptions.","applicationCategory":"FinanceApplication","operatingSystem":"Any modern web browser","author":{"@id":"https://canlicapital.com/#arhan-canli"},"creator":{"@id":"https://canlicapital.com/#arhan-canli"},"isAccessibleForFree":true,"citation":"https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2460551"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Deflated Sharpe ratio calculator (PSR and DSR)","alternateName":"Deflated Sharpe calculator","url":"https://canlicapital.com/tools/deflated-sharpe","description":"A Probabilistic Sharpe ratio calculator that also reports its Deflated form, exposing trial count, dispersion, sample length and non-normal return assumptions.","applicationCategory":"FinanceApplication","operatingSystem":"Any modern web browser","author":{"@id":"https://canlicapital.com/#arhan-canli"},"creator":{"@id":"https://canlicapital.com/#arhan-canli"},"isAccessibleForFree":true,"citation":"https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2460551"}</script>
 </head>
 <body class="dsr-page">
 <a class="dsr-skip" href="#calculator">Skip to calculator</a>
@@ -72,7 +72,8 @@
       </div>
       <div>
         <span class="cc-shell__panel-label">Tools</span>
-        <nav aria-label="Interactive tools"><a class="cc-shell__panel-link" href="/tools">All tools</a></nav>
+        <nav aria-label="Interactive tools"><a class="cc-shell__panel-link" href="/tools">All tools</a>
+<a class="cc-shell__panel-link" href="/how-to-validate-a-backtest">How to validate a backtest</a></nav>
       </div>
       <div>
         <span class="cc-shell__panel-label">Reproducible code</span>
@@ -94,7 +95,7 @@
     <div class="dsr-hero__copy">
       <p class="dsr-kicker"><span>Open research instrument</span><span>Deflated Sharpe calculator</span><span>Contract v1.0.0</span></p>
       <h1 id="dsr-title">Deflated Sharpe ratio calculator (PSR and DSR)</h1>
-      <p class="dsr-hero__lead">How much Sharpe survives the search? A strong backtest is less surprising after a long search. Put the observed Sharpe, return shape and complete selection process on the same surface. The calculator reproduces ALPHAC's per-period PSR and DSR formulas in your browser.</p>
+      <p class="dsr-hero__lead">This is a Probabilistic Sharpe ratio calculator that also reports its Deflated form. How much Sharpe survives the search? A strong backtest is less surprising after a long search. Put the observed Sharpe, return shape and complete selection process on the same surface. The calculator reproduces ALPHAC's per-period PSR and DSR formulas in your browser.</p>
       <div class="dsr-hero__actions">
         <a class="dsr-button dsr-button--primary" href="#calculator">Open the pressure chamber</a>
         <a class="dsr-button" href="https://github.com/arhancanli/alphac/blob/9b92f5128acfdabbc9c3160348004c5b3eba6f05/src/alphaforge/validation/dsr.py" rel="noreferrer">Inspect the Python source <span aria-hidden="true">↗</span></a>

@@ -196,7 +196,9 @@ ${renderProductShellHeader({ active: "" })}
   <section class="lab-hero" aria-labelledby="lab-title">
     <p class="lab-kicker"><span>Open research instrument</span><span>${esc(houseLabel)}</span><span>Educational, not evidence</span></p>
     <h1 id="lab-title">${esc(queryTitle)}</h1>
-    <p class="lab-lead">Find an edge that is not there. The series below is a driftless random walk. Its true Sharpe ratio is
+    <p class="lab-lead">This is selection risk, also called selection bias: searching enough configurations
+      turns pure noise into a result that looks like an edge. Find an edge that is not there. The series
+      below is a driftless random walk. Its true Sharpe ratio is
       <strong>${g.true_sharpe}</strong>, by construction, and no setting of any control can change
       that. Search it anyway. The lab counts every parameter set you try and deflates your best
       result against your own search, so you can watch a good-looking number turn into what it

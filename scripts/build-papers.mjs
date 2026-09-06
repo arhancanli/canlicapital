@@ -188,6 +188,7 @@ const STATIC_ROUTES = [
   { path: "/foundry", priority: "0.8", changefreq: "weekly" },
   { path: "/founder", priority: "0.7", changefreq: "monthly" },
   { path: "/methodology", priority: "0.9", changefreq: "weekly" },
+  { path: "/how-to-validate-a-backtest", priority: "0.8", changefreq: "monthly" },
   { path: "/engineering", priority: "0.9", changefreq: "weekly" },
   { path: "/notes", priority: "0.9", changefreq: "weekly" },
   { path: "/developers", priority: "0.9", changefreq: "weekly" },
@@ -268,6 +269,7 @@ const PAGE_SOURCES = {
     "measurements",
   ],
   "/engineering": ["scripts/build-engineering.mjs", "public/glassbox/engineering_open_source.json"],
+  "/how-to-validate-a-backtest": ["scripts/build-how-to-validate-a-backtest.mjs"],
   "/developers": [
     // Owned by another generator (scripts/build-standards-and-developers.mjs) this fix does not
     // edit; listed here only so /developers gets a real content date instead of the build date.

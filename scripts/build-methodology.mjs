@@ -128,8 +128,12 @@ function questions(f) {
       a: `<p>Point-in-time data, no lookahead in execution, deflation against the complete trial
       count, and out-of-sample overfitting checked directly rather than assumed away. Run each check
       against your own numbers through the API quickstart, or in a browser calculator, before taking
-      a Sharpe ratio at face value.</p>`,
+      a Sharpe ratio at face value.</p>
+      <p>The full order, one sentence per step with the calculator and API route beside it, is
+      published as its own page: <a href="/how-to-validate-a-backtest">how to validate a
+      backtest</a>.</p>`,
       links: [
+        ["The full step-by-step walk-through", "/how-to-validate-a-backtest"],
         ["API quickstart: issue a key, then validate", "/developers#validation"],
         ["Deflated Sharpe ratio calculator (PSR and DSR)", "/tools/deflated-sharpe"],
         ["Probability of backtest overfitting calculator", "/tools/backtest-overfitting"],

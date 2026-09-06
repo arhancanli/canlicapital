@@ -47,6 +47,7 @@ const SECONDARY_LINKS = Object.freeze([
 //: category instead, one click from the same "More" menu every page already has.
 const TOOLS_LINKS = Object.freeze([
   { key: "tools", label: "All tools", href: "/tools" },
+  { key: "how-to-validate-a-backtest", label: "How to validate a backtest", href: "/how-to-validate-a-backtest" },
 ]);
 
 const GITHUB_MARK =

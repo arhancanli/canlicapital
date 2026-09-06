@@ -181,6 +181,8 @@ ${renderProductShellHeader({ active: "" })}
       <a href="/developers">the API quickstart</a> for the deflated-Sharpe, overfitting and breadth
       routes. None of these tools writes to any ledger, artifact or published record; every input
       stays in your browser.</p>
+    <p class="lab-source">For the full walk-through with the API route beside each calculator, see
+      <a href="/how-to-validate-a-backtest">how to validate a backtest</a>.</p>
   </section>
 </main>
 ${renderProductShellFooter()}

@@ -88,6 +88,7 @@ say("## Start here");
 say();
 say(`- [Home](${ORIGIN}/): What the project is and where to go next.`);
 say(`- [Methodology](${ORIGIN}/methodology): Evidence-linked answers to how the research is actually done.`);
+say(`- [How to validate a backtest](${ORIGIN}/how-to-validate-a-backtest): A step-by-step walk-through of this site's own instruments, in order, with the calculator and API route beside each step.`);
 say(`- [Status](${ORIGIN}/performance): The honest numbers and what each one is and is not.`);
 say(`- [Verify](${ORIGIN}/verify): Independent verification instructions, including a command-line path that does not trust this website.`);
 say(`- [Engineering](${ORIGIN}/engineering): The open-source code behind every number, with the three problems it exists to solve.`);

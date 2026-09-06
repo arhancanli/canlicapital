@@ -157,6 +157,7 @@ export default defineConfig({
         foundry: resolve(root, "foundry.html"),
         founder: resolve(root, "founder.html"),
         methodology: resolve(root, "methodology.html"),
+        howToValidateABacktest: resolve(root, "how-to-validate-a-backtest.html"),
         engineering: resolve(root, "engineering.html"),
         notes: resolve(root, "notes.html"),
         developers: resolve(root, "developers.html"),
