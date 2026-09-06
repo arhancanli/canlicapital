@@ -81,20 +81,20 @@ function humanise(path) {
     .join(" / ");
 }
 
-const slugify = (path) => path.replace(/[._]/g, "-").toLowerCase();
+export const slugify = (path) => path.replace(/[._]/g, "-").toLowerCase();
 
 // ---------------------------------------------------------------------------
 // DISCOVERY. An artifact is anything carrying this engine's schema stamp or a
 // claim boundary, at the top level of research.json or one level inside it.
 // ---------------------------------------------------------------------------
-const isArtifact = (value) =>
+export const isArtifact = (value) =>
   value !== null &&
   typeof value === "object" &&
   !Array.isArray(value) &&
   ("claim_boundary" in value ||
     (typeof value.schema === "string" && value.schema.startsWith("canli.")));
 
-function discover(research) {
+export function discover(research) {
   const found = [];
   for (const [key, value] of Object.entries(research)) {
     if (value === null || typeof value !== "object" || Array.isArray(value)) continue;
@@ -309,7 +309,7 @@ function boundaryOf(data) {
  *  four of them shipped that way until the number-trace guard was scoped to declared sources and
  *  the missing files turned up as untraceable numbers.
  */
-function rawArtifactUrl(path, research) {
+export function rawArtifactUrl(path, research) {
   const segments = path.split(".");
   // The producer declares any key whose filename it cannot predict. Guessing first and declaring
   // second is how four of these links came to 404.
@@ -506,4 +506,9 @@ signature against the published bundle. The written-up versions live in
   for (const { path } of artifacts) console.log(`    ${path}`);
 }
 
-main();
+// Run only when invoked directly (`node scripts/build-measurements.mjs`), not when another
+// script imports `discover`/`rawArtifactUrl`/`slugify` to compute sitemap lastmod without
+// re-running this entire build as a side effect of importing it.
+if (import.meta.url === `file://${process.argv[1]}`) {
+  main();
+}
