@@ -126,3 +126,12 @@ body.dev-page { margin: 0; color: var(--dev-ink); background: var(--dev-paper); 
 .dev-step h3 { margin: 0 0 10px; font-size: 1.05rem; font-weight: 600; letter-spacing: -0.01em; }
 .dev-step .dev-note { margin-bottom: 14px; }
 .dev-step .dev-note:last-child { margin-bottom: 0; margin-top: 14px; }
+
+/* Get-a-key button result, populated by the inline script. Hidden by default: no loading
+   placeholder ever ships in the static HTML a crawler sees. */
+.dev-key-result { margin: 14px 0; padding: 14px 16px; border: 2px solid var(--dev-mint); background: #eafff5; }
+.dev-key-value { margin: 0 0 10px; }
+.dev-key-value code { display: inline-block; padding: 4px 8px; font-size: 0.95rem; background: #fff; border: 1px solid var(--dev-line); word-break: break-all; }
+.dev-key-note { margin: 10px 0 0; font-weight: 600; color: var(--dev-ink); }
+.dev-key-remaining { margin: 6px 0 0; color: var(--dev-muted); font-size: 0.88rem; }
+.dev-key-error { margin: 14px 0; padding: 10px 14px; color: #7a1f1a; background: #fdecea; border: 1px solid #e2a29c; }

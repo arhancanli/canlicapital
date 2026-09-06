@@ -77,6 +77,20 @@ test("vercel.json gives the function routes no-store and receipts an immutable c
   assert.match(bySource["/api/v1/receipts/(.*)"]["Cache-Control"], /immutable/);
 });
 
+test("/developers ships no loading placeholder: the key result and error boxes are hidden and empty in the static HTML", () => {
+  const html = readFileSync(resolve(ROOT, "developers.html"), "utf8");
+  const resultBox = html.match(/<div class="dev-key-result"[^>]*>([\s\S]*?)<\/div>/);
+  assert.ok(resultBox, "the key-result box is missing");
+  assert.match(resultBox[0], /\bhidden\b/, "the key-result box must be hidden without JS");
+  assert.equal(resultBox[1].trim(), "", "the key-result box must be empty in static HTML, never a loading placeholder");
+  const errorBox = html.match(/<p class="dev-key-error"[^>]*>([\s\S]*?)<\/p>/);
+  assert.ok(errorBox, "the key-error box is missing");
+  assert.match(errorBox[0], /\bhidden\b/, "the key-error box must be hidden without JS");
+  assert.equal(errorBox[1].trim(), "", "the key-error box must be empty in static HTML");
+  assert.ok(html.includes("dev-get-key-button"), "the get-a-key button must be present");
+  assert.ok(html.includes("$CANLI_KEY"), "the curl fallback with the placeholder must be present");
+});
+
 test("/developers documents every manifest route, the quotas, and what a verdict does not establish", () => {
   const html = readFileSync(resolve(ROOT, "developers.html"), "utf8");
   for (const m of MANIFEST) assert.ok(html.includes(`${m.method} ${m.path}`), `${m.method} ${m.path} missing from /developers`);

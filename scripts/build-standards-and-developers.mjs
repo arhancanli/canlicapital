@@ -222,6 +222,89 @@ function buildDevelopers() {
   const curl = (m) => `curl -X POST https://canlicapital.com${m.path} \\\n  -H "Authorization: Bearer $CANLI_KEY" -H "Content-Type: application/json" \\\n  -d '${JSON.stringify(m.requestExample)}'`;
   const curlKeys = `curl -X POST https://canlicapital.com/api/v1/keys -H "Content-Type: application/json" -d '${JSON.stringify(keysRoute.requestExample)}'`;
 
+  // Vanilla JS, no dependency, defensive: every DOM lookup checks its own result before touching
+  // it, and every failure path falls back to the curl block that is always on the page. Without
+  // this script the page reads exactly as it does today; there is no loading placeholder, only a
+  // button that does nothing until it runs. The $CANLI_KEY placeholder and the pre.dev-code
+  // selector are shared with every snippet on the page (curl, Python and JavaScript alike), so one
+  // key issuance updates all of them. String.replace is called with a REPLACER FUNCTION, never a
+  // replacement string, because a $ inside the substituted text (a key or a JSON body) would
+  // otherwise be read as a $-substitution pattern by String.replace itself.
+  const QUICKSTART_SCRIPT = `(function () {
+  "use strict";
+  function replaceKeyInSnippets(key) {
+    var blocks = document.querySelectorAll("pre.dev-code");
+    for (var i = 0; i < blocks.length; i++) {
+      var target = blocks[i].querySelector("code") || blocks[i];
+      target.textContent = target.textContent.replace(/\\$CANLI_KEY/g, function () { return key; });
+    }
+  }
+  function el(tag, className, text) {
+    var node = document.createElement(tag);
+    if (className) node.className = className;
+    if (text) node.textContent = text;
+    return node;
+  }
+  function showKeyResult(data) {
+    var box = document.getElementById("dev-key-result");
+    if (!box || !data || !data.key) return;
+    box.innerHTML = "";
+    var value = el("p", "dev-key-value");
+    value.appendChild(el("code", "", data.key));
+    var copyButton = el("button", "dev-button", "Copy");
+    copyButton.type = "button";
+    copyButton.addEventListener("click", function () {
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(data.key);
+    });
+    box.appendChild(value);
+    box.appendChild(copyButton);
+    box.appendChild(el("p", "dev-key-note", data.note || "Store this key now. It cannot be shown again."));
+    box.appendChild(el("p", "dev-key-remaining", "Keys remaining today: " + data.keys_remaining_today));
+    box.hidden = false;
+    replaceKeyInSnippets(data.key);
+  }
+  function showKeyError(message) {
+    var box = document.getElementById("dev-key-error");
+    if (!box) return;
+    box.textContent = message || "The key service is unavailable. Use the curl command below.";
+    box.hidden = false;
+  }
+  function wire() {
+    var button = document.getElementById("dev-get-key-button");
+    if (!button) return;
+    button.addEventListener("click", function () {
+      button.disabled = true;
+      var errorBox = document.getElementById("dev-key-error");
+      if (errorBox) errorBox.hidden = true;
+      fetch("/api/v1/keys", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ label: "developers page" }),
+      }).then(function (response) {
+        return response.json().then(function (payload) {
+          return { status: response.status, payload: payload };
+        });
+      }).then(function (result) {
+        button.disabled = false;
+        if (result.status === 201) {
+          showKeyResult(result.payload && result.payload.data);
+        } else {
+          var message = result.payload && result.payload.error && result.payload.error.message;
+          showKeyError(message);
+        }
+      }).catch(function () {
+        button.disabled = false;
+        showKeyError("Could not reach the key service. Use the curl command below.");
+      });
+    });
+  }
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", wire);
+  } else {
+    wire();
+  }
+})();`;
+
   const description =
     "A read API over the Canli Capital paper record, and a free keyed API that runs your numbers " +
     "through the same validation arithmetic. Each response states its limits.";
@@ -271,6 +354,10 @@ ${renderProductShellHeader({ active: "" })}
         <p class="dev-note">No signup, no email.
           <a href="/api/v1/validate/status"><code>GET /api/v1/validate/status</code></a> is the
           one-line check that the service is up before you start.</p>
+        <button type="button" class="dev-button dev-button--primary" id="dev-get-key-button">Get a free key</button>
+        <div class="dev-key-result" id="dev-key-result" hidden></div>
+        <p class="dev-key-error" id="dev-key-error" hidden role="alert"></p>
+        <p class="dev-note">Or from a terminal:</p>
         <pre class="dev-code"><code>${esc(curlKeys)}</code></pre>
         <p class="dev-note">The key is returned once. Only its hash is kept, so store it now.</p>
       </li>
@@ -288,6 +375,7 @@ ${renderProductShellHeader({ active: "" })}
       </li>
     </ol>
   </section>
+  <script>${QUICKSTART_SCRIPT}</script>
 
   <section class="dev-section">
     <h2>Read endpoints, no key</h2>
