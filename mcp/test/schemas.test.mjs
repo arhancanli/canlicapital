@@ -29,9 +29,20 @@ const repoRoot = path.resolve(fileURLToPath(import.meta.url), "../../..");
 const readJson = (relPath) => JSON.parse(readFileSync(path.join(repoRoot, relPath), "utf8"));
 const manifestExample = (routePath) => MANIFEST.find((m) => m.path === routePath).requestExample;
 
+
+// The published OpenAPI documents deflated-sharpe as a oneOf with two named examples
+// (contract_inputs, return_series) since the two-mode schema shipped; older builds carried a
+// single top-level example. Accept either shape and fail loudly if neither is present.
+function returnSeriesExample(openapi) {
+  const body = openapi.paths["/api/v1/validate/deflated-sharpe"].post.requestBody.content["application/json"];
+  const example = body.examples?.return_series?.value ?? body.example;
+  if (!example || !Array.isArray(example.returns)) throw new Error("OpenAPI carries no return-series example for deflated-sharpe");
+  return example;
+}
+
 test("deflated-sharpe: accepts the OpenAPI return-series example verbatim", () => {
   const openapi = readJson("public/api/v1/openapi.json");
-  const example = openapi.paths["/api/v1/validate/deflated-sharpe"].post.requestBody.content["application/json"].example;
+  const example = returnSeriesExample(openapi);
   const result = deflatedSharpeInput.safeParse(example);
   assert.equal(result.success, true, JSON.stringify(result.error?.issues));
 });
@@ -45,7 +56,7 @@ test("deflated-sharpe: accepts the seven-field contract example verbatim", () =>
 
 test("deflated-sharpe: rejects a mixed input carrying fields from both modes", () => {
   const openapi = readJson("public/api/v1/openapi.json");
-  const returnSeries = openapi.paths["/api/v1/validate/deflated-sharpe"].post.requestBody.content["application/json"].example;
+  const returnSeries = returnSeriesExample(openapi);
   const contract = readJson("public/glassbox/deflated_sharpe_calculator_contract.json");
   const contractFields = contract.test_vectors.find((v) => v.id === "trading_days_short_search").inputs;
   const mixed = { ...returnSeries, ...contractFields };
