@@ -217,7 +217,10 @@ function buildDevelopers() {
     .filter(([path, def]) => def.get && !MANIFEST.some((m) => m.path === path))
     .map(([path, def]) => ({ path, summary: def.get.summary }));
   const validators = MANIFEST.filter((m) => m.method === "POST" && m.keyed);
+  const keysRoute = MANIFEST.find((m) => m.path === "/api/v1/keys");
+  const firstValidator = validators[0];
   const curl = (m) => `curl -X POST https://canlicapital.com${m.path} \\\n  -H "Authorization: Bearer $CANLI_KEY" -H "Content-Type: application/json" \\\n  -d '${JSON.stringify(m.requestExample)}'`;
+  const curlKeys = `curl -X POST https://canlicapital.com/api/v1/keys -H "Content-Type: application/json" -d '${JSON.stringify(keysRoute.requestExample)}'`;
 
   const description =
     "A read API over the Canli Capital paper record, and a free keyed API that runs your numbers " +
@@ -258,6 +261,34 @@ ${renderProductShellHeader({ active: "" })}
     </div>
   </section>
 
+  <section class="dev-section dev-quickstart" id="quickstart">
+    <h2>Quickstart</h2>
+    <p class="dev-note">Three steps, in the order you need them. Every block below is copy-ready,
+      and the key you get in step one drops straight into the rest.</p>
+    <ol class="dev-steps">
+      <li class="dev-step">
+        <h3>1. Get a key</h3>
+        <p class="dev-note">No signup, no email.
+          <a href="/api/v1/validate/status"><code>GET /api/v1/validate/status</code></a> is the
+          one-line check that the service is up before you start.</p>
+        <pre class="dev-code"><code>${esc(curlKeys)}</code></pre>
+        <p class="dev-note">The key is returned once. Only its hash is kept, so store it now.</p>
+      </li>
+      <li class="dev-step">
+        <h3>2. Validate your own numbers</h3>
+        <p class="dev-note">${esc(firstValidator.summary)}</p>
+        <pre class="dev-code"><code>${esc(curl(firstValidator))}</code></pre>
+        <p class="dev-note">The other three validators are documented <a href="#validation">below</a>.</p>
+      </li>
+      <li class="dev-step">
+        <h3>3. Fetch the receipt</h3>
+        <p class="dev-note">Every verdict carries <code>receipt.url</code>. It is immutable and
+          cacheable forever, so anyone, not only the caller, can fetch and recompute it.</p>
+        <pre class="dev-code"><code>curl https://canlicapital.com/api/v1/receipts/{id}</code></pre>
+      </li>
+    </ol>
+  </section>
+
   <section class="dev-section">
     <h2>Read endpoints, no key</h2>
     <table class="dev-table">
@@ -279,7 +310,7 @@ ${renderProductShellHeader({ active: "" })}
       </tbody>
     </table>
     <h3>First, issue a key</h3>
-    <pre class="dev-code"><code>curl -X POST https://canlicapital.com/api/v1/keys -H "Content-Type: application/json" -d '{"label":"my-backtest-runner"}'</code></pre>
+    <pre class="dev-code"><code>${esc(curlKeys)}</code></pre>
     <p class="dev-note">The key is returned once. Only its hash is kept.</p>
     <h3>Then validate</h3>
     ${validators.map((m) => `<article class="dev-endpoint"><h4><code>${esc(m.method)} ${esc(m.path)}</code></h4><p>${esc(m.summary)}</p><pre class="dev-code"><code>${esc(curl(m))}</code></pre></article>`).join("\n    ")}
