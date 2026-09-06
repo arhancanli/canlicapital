@@ -9,7 +9,10 @@
       "summary": "Issue a free key. Returned once; only its hash is stored.",
       "requestExample": {
         "label": "my-backtest-runner"
-      }
+      },
+      "requestOptional": [
+        "label"
+      ]
     },
     {
       "path": "/api/v1/validate/deflated-sharpe",
@@ -30,7 +33,32 @@
         "periods_per_year": 252,
         "effective_independent_trials": 30,
         "cross_trial_sharpe_sd_annualized": 0.5
-      }
+      },
+      "requestOptional": [
+        "returns",
+        "periods_per_year",
+        "effective_independent_trials",
+        "cross_trial_sharpe_sd_annualized"
+      ],
+      "requestExtraProperties": {
+        "observed_sharpe_annualized": {
+          "type": "number",
+          "description": "Contract-input mode only."
+        },
+        "observations": {
+          "type": "number",
+          "description": "Contract-input mode only."
+        },
+        "skew": {
+          "type": "number",
+          "description": "Contract-input mode only."
+        },
+        "non_excess_kurtosis": {
+          "type": "number",
+          "description": "Contract-input mode only."
+        }
+      },
+      "requestDescription": "Send either a return series (returns, periods_per_year, effective_independent_trials, cross_trial_sharpe_sd_annualized) or all seven contract fields (observed_sharpe_annualized, observations, periods_per_year, skew, non_excess_kurtosis, effective_independent_trials, cross_trial_sharpe_sd_annualized), never both."
     },
     {
       "path": "/api/v1/validate/overfitting",
@@ -61,6 +89,19 @@
           ]
         ],
         "n_splits": 4
+      },
+      "requestOptional": [
+        "n_splits"
+      ],
+      "requestExtraProperties": {
+        "max_combinations": {
+          "type": "number",
+          "description": "Defaults to the service ceiling; may not exceed it."
+        },
+        "seed": {
+          "type": "number",
+          "description": "Defaults to 42. Seeds the service's own sampler for the non-exhaustive case."
+        }
       }
     },
     {
@@ -72,7 +113,8 @@
         "record": {
           "schema": "canli.paper-evidence.v0"
         }
-      }
+      },
+      "requestOptional": []
     },
     {
       "path": "/api/v1/validate/breadth",
@@ -84,7 +126,11 @@
         "average_pairwise_correlation": 0.05,
         "sleeves": 4,
         "target": 1.5
-      }
+      },
+      "requestOptional": [
+        "sleeves",
+        "target"
+      ]
     },
     {
       "path": "/api/v1/validate/status",

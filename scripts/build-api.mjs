@@ -24,6 +24,7 @@ import { fileURLToPath } from "node:url";
 
 import { LIMITS } from "../api/_lib/limits.js";
 import { MANIFEST } from "../api/_lib/manifest.js";
+import { requestSchemaFor } from "../api/_lib/schema.js";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const OUT = resolve(ROOT, "public", "api", "v1");
@@ -308,7 +309,7 @@ function main() {
   for (const m of MANIFEST) {
     const op = { summary: m.summary, operationId: m.path.replace(/^\/api\/v1\//, "").replace(/[^a-z]+/g, "_"), responses: { 200: envelopeResponse("The envelope with data"), 400: envelopeResponse("Malformed request"), 405: envelopeResponse("Wrong method") } };
     if (m.method === "POST") {
-      op.requestBody = { required: true, content: { "application/json": { schema: { type: "object" }, example: m.requestExample } } };
+      op.requestBody = { required: true, content: { "application/json": { schema: requestSchemaFor(m), example: m.requestExample } } };
       op.responses[413] = envelopeResponse(`Body over ${LIMITS.max_body_bytes} bytes`);
       op.responses[422] = envelopeResponse("Input the validator refuses, with the reason");
     }

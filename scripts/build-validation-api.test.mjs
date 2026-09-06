@@ -11,6 +11,16 @@ import { MANIFEST } from "../api/_lib/manifest.js";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 
+// The route's own body validator, one per POST path, so the round-trip test below proves the
+// OpenAPI example is accepted by the SAME function the live handler runs, not a stand-in for it.
+const BODY_VALIDATORS = {
+  "/api/v1/keys": async () => (await import("../api/v1/keys.js")).validateBody,
+  "/api/v1/validate/deflated-sharpe": async () => (await import("../api/v1/validate/deflated-sharpe.js")).compute,
+  "/api/v1/validate/overfitting": async () => (await import("../api/v1/validate/overfitting.js")).compute,
+  "/api/v1/validate/paper-evidence": async () => (await import("../api/v1/validate/paper-evidence.js")).compute,
+  "/api/v1/validate/breadth": async () => (await import("../api/v1/validate/breadth.js")).compute,
+};
+
 test("the quota constants are the documented values and every one has a sentence", () => {
   assert.deepEqual(LIMITS, {
     validations_per_key_per_day: 1000, keys_per_client_per_day: 5, max_body_bytes: 1048576,
@@ -41,6 +51,22 @@ test("openapi documents every manifest route with the right method and a 429 for
     if (m.keyed) { assert.ok(entry.responses["429"], `${m.path} lacks 429`); assert.deepEqual(entry.security, [{ bearerKey: [] }]); }
   }
   assert.equal(openapi.components.securitySchemes.bearerKey.scheme, "bearer");
+});
+
+test("every POST route's request schema has properties, and its example round-trips through its own validator", async () => {
+  const openapi = JSON.parse(readFileSync(resolve(ROOT, "public/api/v1/openapi.json"), "utf8"));
+  for (const m of MANIFEST.filter((r) => r.method === "POST")) {
+    const body = openapi.paths[m.path]?.post?.requestBody;
+    assert.ok(body, `${m.path} has no requestBody`);
+    const media = body.content["application/json"];
+    assert.ok(media.schema.properties && Object.keys(media.schema.properties).length > 0, `${m.path} schema has no properties`);
+    assert.ok(Array.isArray(media.schema.required), `${m.path} schema has no required array`);
+    assert.deepEqual(media.example, m.requestExample, `${m.path} example is missing or has drifted from the manifest`);
+    const loadValidator = BODY_VALIDATORS[m.path];
+    assert.ok(loadValidator, `${m.path} has no registered body validator for this test`);
+    const validate = await loadValidator();
+    assert.doesNotThrow(() => validate(m.requestExample), `${m.path}: its own documented example does not pass its own validator`);
+  }
 });
 
 test("vercel.json gives the function routes no-store and receipts an immutable cache", () => {

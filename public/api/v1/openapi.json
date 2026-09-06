@@ -252,7 +252,13 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "object"
+                "type": "object",
+                "properties": {
+                  "label": {
+                    "type": "string"
+                  }
+                },
+                "required": []
               },
               "example": {
                 "label": "my-backtest-runner"
@@ -343,7 +349,42 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "object"
+                "type": "object",
+                "properties": {
+                  "returns": {
+                    "type": "array",
+                    "items": {
+                      "type": "number"
+                    }
+                  },
+                  "periods_per_year": {
+                    "type": "number"
+                  },
+                  "effective_independent_trials": {
+                    "type": "number"
+                  },
+                  "cross_trial_sharpe_sd_annualized": {
+                    "type": "number"
+                  },
+                  "observed_sharpe_annualized": {
+                    "type": "number",
+                    "description": "Contract-input mode only."
+                  },
+                  "observations": {
+                    "type": "number",
+                    "description": "Contract-input mode only."
+                  },
+                  "skew": {
+                    "type": "number",
+                    "description": "Contract-input mode only."
+                  },
+                  "non_excess_kurtosis": {
+                    "type": "number",
+                    "description": "Contract-input mode only."
+                  }
+                },
+                "required": [],
+                "description": "Send either a return series (returns, periods_per_year, effective_independent_trials, cross_trial_sharpe_sd_annualized) or all seven contract fields (observed_sharpe_annualized, observations, periods_per_year, skew, non_excess_kurtosis, effective_independent_trials, cross_trial_sharpe_sd_annualized), never both."
               },
               "example": {
                 "returns": [
@@ -451,7 +492,32 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "object"
+                "type": "object",
+                "properties": {
+                  "matrix": {
+                    "type": "array",
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "type": "number"
+                      }
+                    }
+                  },
+                  "n_splits": {
+                    "type": "number"
+                  },
+                  "max_combinations": {
+                    "type": "number",
+                    "description": "Defaults to the service ceiling; may not exceed it."
+                  },
+                  "seed": {
+                    "type": "number",
+                    "description": "Defaults to 42. Seeds the service's own sampler for the non-exhaustive case."
+                  }
+                },
+                "required": [
+                  "matrix"
+                ]
               },
               "example": {
                 "matrix": [
@@ -569,7 +635,23 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "object"
+                "type": "object",
+                "properties": {
+                  "record": {
+                    "type": "object",
+                    "properties": {
+                      "schema": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "schema"
+                    ]
+                  }
+                },
+                "required": [
+                  "record"
+                ]
               },
               "example": {
                 "record": {
@@ -667,7 +749,25 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "object"
+                "type": "object",
+                "properties": {
+                  "sleeve_sharpe": {
+                    "type": "number"
+                  },
+                  "average_pairwise_correlation": {
+                    "type": "number"
+                  },
+                  "sleeves": {
+                    "type": "number"
+                  },
+                  "target": {
+                    "type": "number"
+                  }
+                },
+                "required": [
+                  "sleeve_sharpe",
+                  "average_pairwise_correlation"
+                ]
               },
               "example": {
                 "sleeve_sharpe": 0.5,
