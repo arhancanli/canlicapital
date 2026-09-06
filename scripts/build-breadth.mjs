@@ -253,7 +253,9 @@ ${renderProductShellHeader({ active: "" })}
     <p class="lab-source">Rendered from
       <a href="/glassbox/${SOURCE_NAME}"><code>${SOURCE_NAME}</code></a>. Related:
       <a href="/tools/selection-risk">the Selection Risk Lab</a> and
-      <a href="/notes/deflating-a-sharpe-ratio">the arithmetic of not fooling yourself</a>.</p>
+      <a href="/notes/deflating-a-sharpe-ratio">the arithmetic of not fooling yourself</a>. Run this
+      same ceiling arithmetic against your own sleeve count and correlation through
+      <a href="/developers#api-breadth">the validation API</a>.</p>
   </section>
 </main>
 ${renderProductShellFooter()}
