@@ -22,8 +22,9 @@ before the registry publish below.
 
 ```bash
 cd mcp
-# add to package.json:
-#   "mcpName": "io.github.arhancanli/canli-validation-mcp"
+# package.json already carries "mcpName": "io.github.arhancanli/canli-validation-mcp"
+# and version 0.1.1; publish it as canli-validation-mcp@0.1.1 (2FA prompt, so a real terminal):
+npm publish --access public
 npm version patch
 npm publish --access public
 ```
