@@ -659,6 +659,17 @@ body.paper {
   font-size: 0.8em;
   color: var(--muted);
 }
+.verify__disclosure summary { cursor: pointer; color: var(--muted); font: 500 0.86em/1.5 var(--mono); }
+.verify__disclosure summary:hover { color: var(--oxide); }
+.verify__copy {
+  padding: 6px 12px;
+  border: 1px solid var(--line-strong);
+  background: none;
+  color: var(--muted);
+  font: 500 0.8em/1.4 var(--mono);
+  cursor: pointer;
+}
+.verify__copy:hover { color: var(--oxide); border-color: var(--oxide); }
 
 /* /methodology — the evidence line under each answer. An FAQ that explains a principle without
    pointing at the document where the principle cost something is a brochure, so the links are set
