@@ -968,6 +968,55 @@
           }
         ]
       }
+    },
+    "/api/v1/receipts/{id}/badge.svg": {
+      "get": {
+        "summary": "An embeddable SVG badge for a receipt: the formula version and the receipt id prefix only, never a pass or fail mark.",
+        "operationId": "receipts_id_badge_svg",
+        "responses": {
+          "200": {
+            "description": "An SVG badge: the formula version and the receipt id prefix only, rendered from the stored receipt's own fields. Never the words verified, approved, passed, certified or profitable, and never a pass/fail mark. The <title> element carries the receipt's own sample-size or trial-count fact as alt text.",
+            "content": {
+              "image/svg+xml": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Unknown receipt id: a plain grey \"receipt not found\" badge.",
+            "content": {
+              "image/svg+xml": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "Wrong method",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Envelope"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{24}$"
+            }
+          }
+        ]
+      }
     }
   },
   "components": {
@@ -1067,6 +1116,24 @@
               "as_of_utc_day": {
                 "type": "string",
                 "format": "date"
+              },
+              "keys_by_source_host_today": {
+                "type": "object",
+                "nullable": true,
+                "description": "Top ten Referer hosts (lowercase, no path or query) among keys issued today, by count. Absent until 20260906_usage_summary_v2.sql is applied.",
+                "additionalProperties": {
+                  "type": "integer",
+                  "minimum": 0
+                }
+              },
+              "keys_by_label_today": {
+                "type": "object",
+                "nullable": true,
+                "description": "Top ten POST /api/v1/keys label values among keys issued today, by count. Absent until 20260906_usage_summary_v2.sql is applied.",
+                "additionalProperties": {
+                  "type": "integer",
+                  "minimum": 0
+                }
               }
             }
           }

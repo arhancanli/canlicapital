@@ -1,5 +1,5 @@
 // api/v1/keys.js
-import { clientHash, generateKey, hashKey } from "../_lib/auth.js";
+import { clientHash, generateKey, hashKey, refererHost } from "../_lib/auth.js";
 import { BodyError, readJsonBody } from "../_lib/body.js";
 import { envelope, errorEnvelope, send } from "../_lib/envelope.js";
 import { defaultStore } from "../_lib/handler.js";
@@ -30,7 +30,7 @@ export default async function handler(req, res) {
   const salt = process.env.API_CLIENT_SALT;
   if (!salt) { console.error("[validation-api] API_CLIENT_SALT is not set"); return fail(res, 503, "store_unavailable", "Key issuance is not configured"); }
   let out;
-  try { out = await defaultStore().issueKey({ clientHash: clientHash(req, salt), dailyLimit: LIMITS.keys_per_client_per_day, keyHash: hashKey(key), label }); } catch (e) {
+  try { out = await defaultStore().issueKey({ clientHash: clientHash(req, salt), dailyLimit: LIMITS.keys_per_client_per_day, keyHash: hashKey(key), label, sourceHost: refererHost(req) }); } catch (e) {
     console.error("[validation-api] issue_key failed", e.status ?? "", e.message);
     return fail(res, 503, "store_unavailable", "The key store is unavailable; try again shortly");
   }

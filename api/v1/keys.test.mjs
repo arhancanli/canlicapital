@@ -84,3 +84,31 @@ test("validateBody accepts a missing label and rejects nothing by type coercion"
   assert.deepEqual(validateBody({ label: "abc" }), { label: "abc" });
   assert.deepEqual(validateBody({ label: 5 }), { label: null });
 });
+
+// Source attribution without a tracking parameter: the Referer header's host, lowercase, path and
+// query stripped, reaches the store's issue_key call. This is the store CALL SHAPE test the launch
+// kit plan asks for; it never touches a live database, only the fetch stub keys.test.mjs already
+// uses for the rest of this handler.
+test("a Referer header's host reaches the store as p_source_host, path and query stripped", async () => {
+  let sentHost;
+  globalThis.fetch = async (url, init) => {
+    if (String(url).includes("/rpc/issue_key")) sentHost = JSON.parse(init.body).p_source_host;
+    return { ok: true, status: 200, json: async () => ({ issued: true, remaining: 4 }), text: async () => "" };
+  };
+  const res = makeRes();
+  await handler(makeReq("", { referer: "https://GitHub.com/some/repo?tab=readme" }), res);
+  assert.equal(res.statusCode, 201, res.body);
+  assert.equal(sentHost, "github.com");
+});
+
+test("no Referer header reaches the store as a null source host, not a guess", async () => {
+  let sentHost = "unset";
+  globalThis.fetch = async (url, init) => {
+    if (String(url).includes("/rpc/issue_key")) sentHost = JSON.parse(init.body).p_source_host;
+    return { ok: true, status: 200, json: async () => ({ issued: true, remaining: 4 }), text: async () => "" };
+  };
+  const res = makeRes();
+  await handler(makeReq(""), res);
+  assert.equal(res.statusCode, 201, res.body);
+  assert.equal(sentHost, null);
+});

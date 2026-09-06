@@ -65,4 +65,20 @@ export const MANIFEST = Object.freeze([
   },
   { path: "/api/v1/validate/status", method: "GET", keyed: false, summary: "Service and store status with the quota constants in force." },
   { path: "/api/v1/receipts/{id}", method: "GET", keyed: false, summary: "A stored verdict by content-hash id. Immutable." },
+  {
+    path: "/api/v1/receipts/{id}/badge.svg", method: "GET", keyed: false,
+    summary: "An embeddable SVG badge for a receipt: the formula version and the receipt id prefix only, never a pass or fail mark.",
+  },
 ]);
+
+// The default `label` each integration on this site sends with its own POST /api/v1/keys call, so
+// a count of api_keys grouped by label is a source breakdown with no tracking parameter. One
+// table: the browser "Get a key" button and the curl, Python and JavaScript quickstart blocks on
+// /developers all read these same four strings, so changing where a label points is a change in
+// exactly one place, not three.
+export const SNIPPET_LABELS = Object.freeze({
+  developersPage: "developers-page",
+  quickstartCurl: "quickstart-curl",
+  quickstartPython: "quickstart-python",
+  quickstartJs: "quickstart-js",
+});

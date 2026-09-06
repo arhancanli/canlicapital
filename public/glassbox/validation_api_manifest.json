@@ -167,6 +167,12 @@
       "method": "GET",
       "keyed": false,
       "summary": "A stored verdict by content-hash id. Immutable."
+    },
+    {
+      "path": "/api/v1/receipts/{id}/badge.svg",
+      "method": "GET",
+      "keyed": false,
+      "summary": "An embeddable SVG badge for a receipt: the formula version and the receipt id prefix only, never a pass or fail mark."
     }
   ],
   "claim_boundary": "The routes this API serves and the example request each documents. Examples are illustrative inputs, not data about any strategy."

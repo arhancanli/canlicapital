@@ -44,6 +44,18 @@ test("saveReceipt posts with resolution=ignore-duplicates so a replay is idempot
   await store.saveReceipt({ id: "deadbeef", endpoint: "validate/breadth", input_sha256: "a", output: {}, bindings: {} });
 });
 
+test("issueKey sends p_source_host from the caller, defaulting to null when omitted", async () => {
+  const f = fakeFetch([["/rest/v1/rpc/issue_key", (init) => { assert.equal(JSON.parse(init.body).p_source_host, "github.com"); return ok({ issued: true, remaining: 4 }); }]]);
+  const store = createStore({ url: "https://x.supabase.co", serviceKey: "svc", fetchImpl: f });
+  assert.deepEqual(await store.issueKey({ clientHash: "h", dailyLimit: 5, keyHash: "kh", label: "l", sourceHost: "github.com" }), { issued: true, remaining: 4 });
+});
+
+test("issueKey omits no host as null, never as an empty string or undefined key", async () => {
+  const f = fakeFetch([["/rest/v1/rpc/issue_key", (init) => { const body = JSON.parse(init.body); assert.equal(body.p_source_host, null); assert.ok("p_source_host" in body); return ok({ issued: true, remaining: 4 }); }]]);
+  const store = createStore({ url: "https://x.supabase.co", serviceKey: "svc", fetchImpl: f });
+  await store.issueKey({ clientHash: "h", dailyLimit: 5, keyHash: "kh", label: "l" });
+});
+
 test("usageSummary calls the RPC with the service key and returns the aggregate object", async () => {
   const aggregate = { validations_today: 12, validations_total: 340, keys_issued_today: 2, as_of_utc_day: "2026-09-06" };
   const f = fakeFetch([["/rest/v1/rpc/usage_summary", (init) => { assert.equal(init.body, "{}"); return ok(aggregate); }]]);

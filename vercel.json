@@ -112,6 +112,15 @@
       ]
     },
     {
+      "source": "/api/v1/receipts/(.*)/badge.svg",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=86400"
+        }
+      ]
+    },
+    {
       "source": "/(.*)\\.json",
       "headers": [
         {
@@ -193,6 +202,10 @@
     {
       "source": "/api/v1/openapi",
       "destination": "/api/v1/openapi.json"
+    },
+    {
+      "source": "/api/v1/receipts/:id/badge.svg",
+      "destination": "/api/v1/receipts/:id/badge"
     }
   ]
 }

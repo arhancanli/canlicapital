@@ -7,7 +7,7 @@ import test from "node:test";
 
 import { KEY_LIFECYCLE_TEXT, LIMITS, LIMITS_TEXT } from "../api/_lib/limits.js";
 import { BINDINGS } from "../api/_lib/bindings.generated.js";
-import { MANIFEST } from "../api/_lib/manifest.js";
+import { MANIFEST, SNIPPET_LABELS } from "../api/_lib/manifest.js";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 
@@ -156,14 +156,17 @@ test("deflated-sharpe declares two input modes, and openapi documents them as on
   assert.notEqual(requiredSets[0], requiredSets[1], "the two modes must have distinct required fields");
 });
 
-test("openapi documents usage (nullable) with its four fields on the status response", () => {
+test("openapi documents usage (nullable) with its six fields on the status response", () => {
   const openapi = JSON.parse(readFileSync(resolve(ROOT, "public/api/v1/openapi.json"), "utf8"));
   const okResponse = openapi.paths["/api/v1/validate/status"].get.responses["200"];
   assert.match(JSON.stringify(okResponse), /"usage"/, "status 200 response should reference usage");
   const usageSchema = openapi.components.schemas.UsageSummary;
   assert.ok(usageSchema, "openapi should declare a UsageSummary schema");
   const usageJson = JSON.stringify(usageSchema);
-  for (const field of ["validations_today", "validations_total", "keys_issued_today", "as_of_utc_day"]) {
+  for (const field of [
+    "validations_today", "validations_total", "keys_issued_today", "as_of_utc_day",
+    "keys_by_source_host_today", "keys_by_label_today",
+  ]) {
     assert.match(usageJson, new RegExp(field), `UsageSummary should name ${field}`);
   }
   assert.match(usageJson, /"null"/, "usage must be documented as nullable");
@@ -180,4 +183,28 @@ test("/developers renders a labelled snippet for each deflated-sharpe input mode
   // reliable markers that BOTH shapes were rendered rather than one repeated twice.
   assert.ok(html.includes("observed_sharpe_annualized"), "contract-inputs example missing from /developers");
   assert.ok(html.includes("&quot;returns&quot;:["), "return-series example missing from /developers");
+});
+
+test("openapi documents the receipt badge route as an SVG response, never the JSON envelope", () => {
+  const openapi = JSON.parse(readFileSync(resolve(ROOT, "public/api/v1/openapi.json"), "utf8"));
+  const op = openapi.paths["/api/v1/receipts/{id}/badge.svg"]?.get;
+  assert.ok(op, "the receipt badge route is missing from openapi");
+  assert.ok(op.responses["200"]?.content?.["image/svg+xml"], "badge 200 response should be image/svg+xml");
+  assert.ok(op.responses["404"]?.content?.["image/svg+xml"], "badge 404 response should be image/svg+xml");
+  assert.ok(!op.responses["200"]?.content?.["application/json"], "badge 200 response should not be the JSON envelope");
+  assert.equal(op.parameters?.[0]?.name, "id");
+});
+
+test("SNIPPET_LABELS gives each integration on /developers a distinct, plain default label", () => {
+  const values = Object.values(SNIPPET_LABELS);
+  assert.ok(values.length >= 4, "expected at least the four launch-kit-plan integrations");
+  assert.equal(new Set(values).size, values.length, "snippet labels must be pairwise distinct");
+  for (const v of values) assert.match(v, /^[a-z0-9-]+$/, `${v} should be a plain lowercase label, not a tracking parameter`);
+});
+
+test("/developers renders every snippet's own default label, so a breakdown by label is a source breakdown", () => {
+  const html = readFileSync(resolve(ROOT, "developers.html"), "utf8");
+  for (const label of Object.values(SNIPPET_LABELS)) {
+    assert.ok(html.includes(label), `label "${label}" missing from /developers`);
+  }
 });

@@ -22,8 +22,8 @@ export function createStore({ url, serviceKey, fetchImpl = globalThis.fetch }) {
       const remaining = await call("/rpc/consume_quota", { method: "POST", body: JSON.stringify({ p_key_hash: keyHash, p_daily_limit: dailyLimit }) });
       return { remaining: Number(remaining) };
     },
-    async issueKey({ clientHash, dailyLimit, keyHash, label }) {
-      const out = await call("/rpc/issue_key", { method: "POST", body: JSON.stringify({ p_client_hash: clientHash, p_daily_limit: dailyLimit, p_key_hash: keyHash, p_label: label ?? null }) });
+    async issueKey({ clientHash, dailyLimit, keyHash, label, sourceHost }) {
+      const out = await call("/rpc/issue_key", { method: "POST", body: JSON.stringify({ p_client_hash: clientHash, p_daily_limit: dailyLimit, p_key_hash: keyHash, p_label: label ?? null, p_source_host: sourceHost ?? null }) });
       return { issued: Boolean(out?.issued), remaining: Number(out?.remaining ?? 0) };
     },
     async saveReceipt(receipt) {

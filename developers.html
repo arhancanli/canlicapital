@@ -117,16 +117,16 @@
         <div class="dev-snippets">
       <div class="dev-snippet"><p class="dev-snippet-label">curl</p><pre class="dev-code"><code>curl -X POST https://canlicapital.com/api/v1/keys \
   -H &quot;Content-Type: application/json&quot; \
-  -d &#39;{&quot;label&quot;:&quot;my-backtest-runner&quot;}&#39;</code></pre></div>
+  -d &#39;{&quot;label&quot;:&quot;quickstart-curl&quot;}&#39;</code></pre></div>
       <div class="dev-snippet"><p class="dev-snippet-label">Python</p><pre class="dev-code"><code>import json
 import urllib.request
 
-body = {&quot;label&quot;:&quot;my-backtest-runner&quot;}
+body = {&quot;label&quot;:&quot;quickstart-python&quot;}
 req = urllib.request.Request(&quot;https://canlicapital.com/api/v1/keys&quot;, data=json.dumps(body).encode(&quot;utf-8&quot;), method=&quot;POST&quot;)
 req.add_header(&quot;Content-Type&quot;, &quot;application/json&quot;)
 with urllib.request.urlopen(req) as response:
     print(response.read().decode(&quot;utf-8&quot;))</code></pre></div>
-      <div class="dev-snippet"><p class="dev-snippet-label">JavaScript</p><pre class="dev-code"><code>const body = {&quot;label&quot;:&quot;my-backtest-runner&quot;};
+      <div class="dev-snippet"><p class="dev-snippet-label">JavaScript</p><pre class="dev-code"><code>const body = {&quot;label&quot;:&quot;quickstart-js&quot;};
 const response = await fetch(&quot;https://canlicapital.com/api/v1/keys&quot;, {
   method: &quot;POST&quot;,
   headers: { &quot;Content-Type&quot;: &quot;application/json&quot; },
@@ -196,6 +196,10 @@ console.log(await response.json());</code></pre></div>
         <p class="dev-note">Every verdict carries <code>receipt.url</code>. It is immutable and
           cacheable forever, so anyone, not only the caller, can fetch and recompute it.</p>
         <pre class="dev-code"><code>curl https://canlicapital.com/api/v1/receipts/{id}</code></pre>
+        <p class="dev-note">Its response carries <code>badge_url</code> and <code>embed_markdown</code>:
+          a badge showing only the formula version and the receipt id prefix, never a pass or fail
+          mark. Drop the embed straight into a README:</p>
+        <pre class="dev-code"><code>[![Canli receipt](https://canlicapital.com/api/v1/receipts/{id}/badge.svg)](https://canlicapital.com/api/v1/receipts/{id})</code></pre>
       </li>
     </ol>
   </section>
@@ -248,7 +252,7 @@ console.log(await response.json());</code></pre></div>
       fetch("/api/v1/keys", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ label: "developers page" }),
+        body: JSON.stringify({ label: "developers-page" }),
       }).then(function (response) {
         return response.json().then(function (payload) {
           return { status: response.status, payload: payload };
@@ -303,22 +307,23 @@ console.log(await response.json());</code></pre></div>
         <tr><td><code>POST /api/v1/validate/breadth</code></td><td>Book Sharpe ceiling from per-sleeve quality and average pairwise correlation, and the sleeves a target needs.</td></tr>
         <tr><td><code>GET /api/v1/validate/status</code></td><td>Service and store status with the quota constants in force.</td></tr>
         <tr><td><code>GET /api/v1/receipts/{id}</code></td><td>A stored verdict by content-hash id. Immutable.</td></tr>
+        <tr><td><code>GET /api/v1/receipts/{id}/badge.svg</code></td><td>An embeddable SVG badge for a receipt: the formula version and the receipt id prefix only, never a pass or fail mark.</td></tr>
       </tbody>
     </table>
     <h3>First, issue a key</h3>
     <div class="dev-snippets">
       <div class="dev-snippet"><p class="dev-snippet-label">curl</p><pre class="dev-code"><code>curl -X POST https://canlicapital.com/api/v1/keys \
   -H &quot;Content-Type: application/json&quot; \
-  -d &#39;{&quot;label&quot;:&quot;my-backtest-runner&quot;}&#39;</code></pre></div>
+  -d &#39;{&quot;label&quot;:&quot;quickstart-curl&quot;}&#39;</code></pre></div>
       <div class="dev-snippet"><p class="dev-snippet-label">Python</p><pre class="dev-code"><code>import json
 import urllib.request
 
-body = {&quot;label&quot;:&quot;my-backtest-runner&quot;}
+body = {&quot;label&quot;:&quot;quickstart-python&quot;}
 req = urllib.request.Request(&quot;https://canlicapital.com/api/v1/keys&quot;, data=json.dumps(body).encode(&quot;utf-8&quot;), method=&quot;POST&quot;)
 req.add_header(&quot;Content-Type&quot;, &quot;application/json&quot;)
 with urllib.request.urlopen(req) as response:
     print(response.read().decode(&quot;utf-8&quot;))</code></pre></div>
-      <div class="dev-snippet"><p class="dev-snippet-label">JavaScript</p><pre class="dev-code"><code>const body = {&quot;label&quot;:&quot;my-backtest-runner&quot;};
+      <div class="dev-snippet"><p class="dev-snippet-label">JavaScript</p><pre class="dev-code"><code>const body = {&quot;label&quot;:&quot;quickstart-js&quot;};
 const response = await fetch(&quot;https://canlicapital.com/api/v1/keys&quot;, {
   method: &quot;POST&quot;,
   headers: { &quot;Content-Type&quot;: &quot;application/json&quot; },

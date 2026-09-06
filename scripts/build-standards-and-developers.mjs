@@ -20,8 +20,8 @@ import {
 } from "./product-shell.mjs";
 
 import { KEY_LIFECYCLE_TEXT, LIMITS, LIMITS_TEXT } from "../api/_lib/limits.js";
-import { MANIFEST } from "../api/_lib/manifest.js";
-import { renderAll } from "./render-snippets.mjs";
+import { MANIFEST, SNIPPET_LABELS } from "../api/_lib/manifest.js";
+import { renderAll, renderCurl, renderJs, renderPython } from "./render-snippets.mjs";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const ORIGIN = "https://canlicapital.com";
@@ -36,8 +36,9 @@ const esc = (v) =>
 // (see scripts/render-snippets.mjs). One route, three copy-ready blocks; none can name a body
 // its own handler would refuse, because a test round-trips every one of them.
 const LANG_LABEL = { curl: "curl", python: "Python", javascript: "JavaScript" };
-const languageBlocks = (m, example) =>
-  renderAll(m, example).map(({ lang, code }) => `<div class="dev-snippet"><p class="dev-snippet-label">${esc(LANG_LABEL[lang])}</p><pre class="dev-code"><code>${esc(code)}</code></pre></div>`).join("\n      ");
+const blocksFromPairs = (pairs) =>
+  pairs.map(({ lang, code }) => `<div class="dev-snippet"><p class="dev-snippet-label">${esc(LANG_LABEL[lang])}</p><pre class="dev-code"><code>${esc(code)}</code></pre></div>`).join("\n      ");
+const languageBlocks = (m, example) => blocksFromPairs(renderAll(m, example));
 
 // A route can declare `modes`: a discriminated union of input shapes (deflated-sharpe's seven
 // contract fields OR a return series plus its trials) rather than one flattened example. Such a
@@ -249,6 +250,21 @@ function buildDevelopers() {
   const keysRoute = MANIFEST.find((m) => m.path === "/api/v1/keys");
   const firstValidator = validators[0];
 
+  // POST /api/v1/keys, once, but each language gets its OWN default label rather than the one
+  // manifest example repeated three times: an unedited copy-paste from curl, Python or the "Get a
+  // key" button each stamps a different string on the issued key's row, so a count of api_keys
+  // grouped by label is a source breakdown with no tracking parameter (SNIPPET_LABELS is the one
+  // table; nothing here is typed a second time).
+  const keysSnippetsBlock = () => {
+    const withLabel = (label) => ({ ...keysRoute.requestExample, label });
+    const pairs = [
+      { lang: "curl", code: renderCurl(keysRoute, withLabel(SNIPPET_LABELS.quickstartCurl)) },
+      { lang: "python", code: renderPython(keysRoute, withLabel(SNIPPET_LABELS.quickstartPython)) },
+      { lang: "javascript", code: renderJs(keysRoute, withLabel(SNIPPET_LABELS.quickstartJs)) },
+    ];
+    return `<div class="dev-snippets">\n      ${blocksFromPairs(pairs)}\n    </div>`;
+  };
+
   // Vanilla JS, no dependency, defensive: every DOM lookup checks its own result before touching
   // it, and every failure path falls back to the curl block that is always on the page. Without
   // this script the page reads exactly as it does today; there is no loading placeholder, only a
@@ -306,7 +322,7 @@ function buildDevelopers() {
       fetch("/api/v1/keys", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ label: "developers page" }),
+        body: JSON.stringify({ label: ${JSON.stringify(SNIPPET_LABELS.developersPage)} }),
       }).then(function (response) {
         return response.json().then(function (payload) {
           return { status: response.status, payload: payload };
@@ -386,7 +402,7 @@ ${renderProductShellHeader({ active: "developers" })}
         <div class="dev-key-result" id="dev-key-result" hidden></div>
         <p class="dev-key-error" id="dev-key-error" hidden role="alert"></p>
         <p class="dev-note">Or from a terminal, in the language you have open:</p>
-        ${snippetsBlock(keysRoute)}
+        ${keysSnippetsBlock()}
         <p class="dev-note">The key is returned once. Only its hash is kept, so store it now.</p>
       </li>
       <li class="dev-step">
@@ -400,6 +416,10 @@ ${renderProductShellHeader({ active: "developers" })}
         <p class="dev-note">Every verdict carries <code>receipt.url</code>. It is immutable and
           cacheable forever, so anyone, not only the caller, can fetch and recompute it.</p>
         <pre class="dev-code"><code>curl https://canlicapital.com/api/v1/receipts/{id}</code></pre>
+        <p class="dev-note">Its response carries <code>badge_url</code> and <code>embed_markdown</code>:
+          a badge showing only the formula version and the receipt id prefix, never a pass or fail
+          mark. Drop the embed straight into a README:</p>
+        <pre class="dev-code"><code>[![Canli receipt](https://canlicapital.com/api/v1/receipts/{id}/badge.svg)](https://canlicapital.com/api/v1/receipts/{id})</code></pre>
       </li>
     </ol>
   </section>
@@ -426,7 +446,7 @@ ${renderProductShellHeader({ active: "developers" })}
       </tbody>
     </table>
     <h3>First, issue a key</h3>
-    ${snippetsBlock(keysRoute)}
+    ${keysSnippetsBlock()}
     <p class="dev-note">The key is returned once. Only its hash is kept.</p>
     <h3>Then validate</h3>
     ${validators.map((m) => `<article class="dev-endpoint"><h4><code>${esc(m.method)} ${esc(m.path)}</code></h4><p>${esc(m.summary)}</p>${snippetsBlock(m)}</article>`).join("\n    ")}

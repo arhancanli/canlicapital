@@ -61,6 +61,23 @@ test("an unreachable store keeps the existing 503 store_reachable behavior and s
   assert.equal(body.data.usage_available, false);
 });
 
+// usage_summary_v2 (supabase/migrations/20260906_usage_summary_v2.sql) adds two aggregate maps.
+// The status handler does not know their shape; it passes through whatever the store returns, so
+// this test proves that passthrough rather than re-asserting the RPC's own SQL.
+test("the two new usage maps pass through to data.usage unchanged, whenever the store carries them", async () => {
+  const usage = {
+    validations_today: 3, validations_total: 90, keys_issued_today: 2, as_of_utc_day: "2026-09-06",
+    keys_by_source_host_today: { "github.com": 1, unknown: 1 },
+    keys_by_label_today: { "quickstart-curl": 1, "developers-page": 1 },
+  };
+  const res = makeRes();
+  await createStatusHandler({ store: fakeStore({ usage }) })(makeReq(), res);
+  assert.equal(res.statusCode, 200);
+  const body = res.json();
+  assert.deepEqual(body.data.usage.keys_by_source_host_today, usage.keys_by_source_host_today);
+  assert.deepEqual(body.data.usage.keys_by_label_today, usage.keys_by_label_today);
+});
+
 test("GET only", async () => {
   const res = makeRes();
   await createStatusHandler({ store: fakeStore() })({ method: "POST" }, res);
