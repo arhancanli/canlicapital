@@ -360,7 +360,8 @@ ${renderProductShellHeader({ active: "developers" })}
       The validation endpoints take a free key and run your numbers through the same arithmetic this
       record is held to, then hand back a receipt you can cite. An API is the easiest place on a
       site to lose a claim boundary, because nobody reads one by eye, so the boundary is part of
-      the envelope rather than part of the documentation.</p>
+      the envelope rather than part of the documentation. The same <a href="/open">honesty pledge</a>
+      that governs the published record governs every response here.</p>
     <div class="dev-downloads">
       <a class="dev-button dev-button--primary" href="/api/v1">Discovery document</a>
       <a class="dev-button" href="/api/v1/openapi">OpenAPI document</a>
