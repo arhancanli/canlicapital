@@ -11,7 +11,9 @@ import { fileURLToPath } from "node:url";
 import test from "node:test";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
-const SKIP_DIRS = new Set(["node_modules", "dist", ".git", "artifacts"]);
+// Backups, agent worktrees and scratch trees are not the site: a stale copy of index.html under
+// .bak/ or another agent's checkout under .claude/worktrees must not fail the guard for this tree.
+const SKIP_DIRS = new Set(["node_modules", "dist", ".git", "artifacts", ".bak", ".claude", ".firecrawl", "test-results"]);
 
 function walk(dir, out = []) {
   for (const entry of readdirSync(dir, { withFileTypes: true })) {
