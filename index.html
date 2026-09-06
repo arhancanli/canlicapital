@@ -62,6 +62,7 @@
 <a class="cc-shell__link" href="/trials">Trials</a>
 <a class="cc-shell__link" href="/systems">Systems</a>
 <a class="cc-shell__link" href="/methodology">Methodology</a>
+<a class="cc-shell__link" href="/developers">Developers</a>
 <a class="cc-shell__link" href="/verify">Verify</a>
   </nav>
   <details class="cc-shell__index">
@@ -74,6 +75,7 @@
 <a class="cc-shell__panel-link" href="/trials">Trials</a>
 <a class="cc-shell__panel-link" href="/systems">Systems</a>
 <a class="cc-shell__panel-link" href="/methodology">Methodology</a>
+<a class="cc-shell__panel-link" href="/developers">Developers</a>
 <a class="cc-shell__panel-link" href="/verify">Verify</a></nav>
       </div>
       <div>
@@ -88,7 +90,6 @@
         <span class="cc-shell__panel-label">Open source</span>
         <nav aria-label="Source code"><a class="cc-shell__panel-link" href="/engineering">Engineering hub</a>
 <a class="cc-shell__panel-link" href="/notes">Engineering notes</a>
-<a class="cc-shell__panel-link" href="/developers">Developers / API</a>
 <a class="cc-shell__panel-link" href="/standards/paper-evidence">Evidence standard</a>
 <a class="cc-shell__panel-link" href="https://github.com/arhancanli/alphac" rel="noreferrer">alphac (engine)</a>
 <a class="cc-shell__panel-link" href="https://github.com/arhancanli/canli-pit-lake" rel="noreferrer">canli-pit-lake</a>
@@ -123,7 +124,7 @@
       </div>
 
       <aside class="live-console" aria-label="Interactive ALPHAC paper execution console">
-        <div class="console-bar"><div><span class="console-light" aria-hidden="true"></span><strong>Evidence console</strong><span>ALPHAC / Paper</span></div><time id="console-time">Signed 05 Sept 2026, 17:26 UTC</time></div>
+        <div class="console-bar"><div><span class="console-light" aria-hidden="true"></span><strong>Evidence console</strong><span>ALPHAC / Paper</span></div><time id="console-time">Signed 05 Sept 2026, 20:26 UTC</time></div>
         <div class="console-tabs" role="group" aria-label="Choose a paper equity curve">
           <button type="button" data-curve-key="alphac" aria-pressed="true">Composite</button><button type="button" data-curve-key="alphamax" aria-pressed="false">AlphaMax</button><button type="button" data-curve-key="managed_futures" aria-pressed="false">AlphaTrend</button><button type="button" data-curve-key="alphavintage" aria-pressed="false">Vintage</button><button type="button" data-curve-key="alphaforge" aria-pressed="false">Forge</button>
         </div>
@@ -137,7 +138,7 @@
           <span class="chart-label chart-label--start" id="chart-start">07 Aug</span><span class="chart-label chart-label--end" id="chart-end">05 Sept</span>
         </div>
         <dl class="console-metrics">
-          <div><dt>Paper return</dt><dd id="metric-live-return">−2.69%</dd><dd class="metric-basis">Observed</dd></div><div><dt>Max drawdown</dt><dd id="metric-live-drawdown">−3.00%</dd><dd class="metric-basis">Observed</dd></div><div><dt>Realized vol</dt><dd id="metric-live-vol">5.48%</dd><dd class="metric-basis">Observed</dd></div><div><dt>Validation</dt><dd id="metric-grade">C+</dd><dd class="metric-basis">Internal grade</dd></div>
+          <div><dt>Paper return</dt><dd id="metric-live-return">−2.54%</dd><dd class="metric-basis">Observed</dd></div><div><dt>Max drawdown</dt><dd id="metric-live-drawdown">−3.00%</dd><dd class="metric-basis">Observed</dd></div><div><dt>Realized vol</dt><dd id="metric-live-vol">5.63%</dd><dd class="metric-basis">Observed</dd></div><div><dt>Validation</dt><dd id="metric-grade">C+</dd><dd class="metric-basis">Internal grade</dd></div>
         </dl>
         <div class="evidence-chain" aria-label="Evidence publication chain">
           <div><span>01</span><strong>Broker</strong><small id="console-broker">3 dedicated accounts · PASS</small></div><i aria-hidden="true">→</i><div><span>02</span><strong>Ledger</strong><small id="console-book">192 positions · 0 orders</small></div><i aria-hidden="true">→</i><div><span>03</span><strong>Signed record</strong><small>Append-only chain</small></div><i aria-hidden="true">→</i><div><span>04</span><strong>Public mirror</strong><small>Open JSON + reports</small></div>
@@ -175,7 +176,7 @@
       <section class="evidence-detail" aria-labelledby="evidence-detail-title">
         <header class="evidence-detail__head">
           <div><p class="eyebrow">Record freshness and execution basis</p><h3 id="evidence-detail-title">The operating facts behind the curve.</h3></div>
-          <div class="signed-head"><span>Latest signed record</span><strong id="evidence-signed-time">05 Sept 2026, 17:26 UTC</strong><small id="evidence-chain-head">seq 739 / 8279167ebbf5b4fb…</small><a href="/verify">Verify this record <span aria-hidden="true">↗</span></a></div>
+          <div class="signed-head"><span>Latest signed record</span><strong id="evidence-signed-time">05 Sept 2026, 20:26 UTC</strong><small id="evidence-chain-head">seq 742 / 4599e25dbe26a8b5…</small><a href="/verify">Verify this record <span aria-hidden="true">↗</span></a></div>
         </header>
         <div class="evidence-detail__grid">
           <article><span>Forward window</span><strong id="evidence-forward-window">07 Aug to 05 Sept</strong><p id="evidence-forward-days">29 paper-trading days, 27 return observations.</p><a href="/measurements/forward-evidence-maturity">Open maturity record</a></article>
@@ -185,9 +186,9 @@
         </div>
         <div class="broker-matrix" aria-label="Execution status by sleeve">
           <div class="broker-matrix__heading"><span>Sleeve</span><span>Execution</span><span>Latest observation</span><span>State</span></div>
-          <div data-broker-row="alphamax"><strong>AlphaMax</strong><span>Alpaca paper</span><span data-broker-observation>175 positions / 05 Sept 2026, 17:25 UTC</span><em data-broker-state>Pass</em></div>
-          <div data-broker-row="managed_futures"><strong>AlphaTrend</strong><span>Alpaca paper</span><span data-broker-observation>15 positions / 05 Sept 2026, 17:25 UTC</span><em data-broker-state>Pass</em></div>
-          <div data-broker-row="alphavintage"><strong>AlphaVintage</strong><span>Alpaca paper</span><span data-broker-observation>2 positions / 05 Sept 2026, 17:25 UTC</span><em data-broker-state>Pass</em></div>
+          <div data-broker-row="alphamax"><strong>AlphaMax</strong><span>Alpaca paper</span><span data-broker-observation>175 positions / 05 Sept 2026, 20:25 UTC</span><em data-broker-state>Pass</em></div>
+          <div data-broker-row="managed_futures"><strong>AlphaTrend</strong><span>Alpaca paper</span><span data-broker-observation>15 positions / 05 Sept 2026, 20:25 UTC</span><em data-broker-state>Pass</em></div>
+          <div data-broker-row="alphavintage"><strong>AlphaVintage</strong><span>Alpaca paper</span><span data-broker-observation>2 positions / 05 Sept 2026, 20:25 UTC</span><em data-broker-state>Pass</em></div>
           <div data-broker-row="alphaforge"><strong>AlphaForge</strong><span>Local paper</span><span>Live exchange books, simulated fills</span><em data-broker-state="local">Local only</em></div>
         </div>
         <div class="validation-callout" data-validation-state="loading"><span class="validation-callout__signal" aria-hidden="true"></span><div><strong id="evidence-validation-label">Broker pass / forward goals open / C+</strong><p id="evidence-validation-reason">Broker reconciliation passes. The forward record is still too young to establish the performance objectives.</p></div><a href="/measurements/program-status">Read grading contract</a></div>
@@ -223,7 +224,7 @@
             <div><span>Trial identities</span><strong id="core-trial-count">228</strong></div>
             <div><span>Killed or screened</span><strong id="core-kill-count">46</strong></div>
             <div><span>Active sleeves</span><strong id="core-sleeve-count">4</strong></div>
-            <div><span>Signed entries</span><strong id="core-signed-count">740</strong></div>
+            <div><span>Signed entries</span><strong id="core-signed-count">743</strong></div>
           </div>
           <div class="core-progress" aria-hidden="true"><span id="core-progress-fill"></span></div>
         </div>
@@ -368,9 +369,9 @@
     </nav>
     <nav aria-label="Open source">
       <span>Source code</span>
+      <a href="/developers">Developers</a>
       <a href="/engineering">Engineering</a>
       <a href="/notes">Engineering notes</a>
-      <a href="/developers">Developers</a>
       <a href="/standards/paper-evidence">Evidence standard</a>
       <a href="https://github.com/arhancanli/alphac" rel="noreferrer">alphac engine</a>
       <a href="https://github.com/arhancanli/canli-pit-lake" rel="noreferrer">canli-pit-lake</a>

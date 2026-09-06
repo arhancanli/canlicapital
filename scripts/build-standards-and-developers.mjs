@@ -351,7 +351,7 @@ function buildDevelopers() {
   })}
 <body class="dev-page">
 <a class="dev-skip" href="#content">Skip to content</a>
-${renderProductShellHeader({ active: "" })}
+${renderProductShellHeader({ active: "developers" })}
 <main id="content">
   <section class="dev-hero">
     <p class="dev-kicker"><span>Public API</span><span>v1</span></p>

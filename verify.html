@@ -29,7 +29,7 @@
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wdth,wght@75..100,400..700&family=Newsreader:opsz,wght@6..72,300..600&display=optional" /></noscript>
 <link rel="stylesheet" href="./css/paper.css" />
 <link rel="stylesheet" href="/css/product-shell.css" />
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"HowTo","name":"How to verify the Canli Capital published record","description":"Recompute every published hash with nothing but Python, check the signatures and the append-only chain, re-run the engine. Exact commands, and what each cannot show.","url":"https://canlicapital.com/verify","author":{"@type":"Person","@id":"https://canlicapital.com/#arhan-canli","name":"Arhan Canli"},"publisher":{"@type":"Organization","@id":"https://canlicapital.com/#organization","name":"Canli Capital"},"step":[{"@type":"HowToStep","name":"Recompute the content hashes","text":"Download the 159 published artifacts and reproduce.py, then run it. Python standard library only.","url":"https://canlicapital.com/verify#l1"},{"@type":"HowToStep","name":"Check the signatures and the append-only chain","text":"Verify the Ed25519 signatures on the signed commitments and re-derive all 741 links of the transparency chain.","url":"https://canlicapital.com/verify#l2"},{"@type":"HowToStep","name":"Re-run the engine determinism test","text":"Clone the repository and run the golden-master test, which reproduces a scripted fixture byte for byte.","url":"https://canlicapital.com/verify#l3"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"HowTo","name":"How to verify the Canli Capital published record","description":"Recompute every published hash with nothing but Python, check the signatures and the append-only chain, re-run the engine. Exact commands, and what each cannot show.","url":"https://canlicapital.com/verify","author":{"@type":"Person","@id":"https://canlicapital.com/#arhan-canli","name":"Arhan Canli"},"publisher":{"@type":"Organization","@id":"https://canlicapital.com/#organization","name":"Canli Capital"},"step":[{"@type":"HowToStep","name":"Recompute the content hashes","text":"Download the 159 published artifacts and reproduce.py, then run it. Python standard library only.","url":"https://canlicapital.com/verify#l1"},{"@type":"HowToStep","name":"Check the signatures and the append-only chain","text":"Verify the Ed25519 signatures on the signed commitments and re-derive all 743 links of the transparency chain.","url":"https://canlicapital.com/verify#l2"},{"@type":"HowToStep","name":"Re-run the engine determinism test","text":"Clone the repository and run the golden-master test, which reproduces a scripted fixture byte for byte.","url":"https://canlicapital.com/verify#l3"}]}</script>
 </head>
 <body class="paper">
 <a class="paper__skip" href="#content">Skip to content</a>
@@ -48,6 +48,7 @@
 <a class="cc-shell__link" href="/trials">Trials</a>
 <a class="cc-shell__link" href="/systems">Systems</a>
 <a class="cc-shell__link" href="/methodology">Methodology</a>
+<a class="cc-shell__link" href="/developers">Developers</a>
 <a class="cc-shell__link" href="/verify" aria-current="page" data-current="true">Verify</a>
   </nav>
   <details class="cc-shell__index">
@@ -60,6 +61,7 @@
 <a class="cc-shell__panel-link" href="/trials">Trials</a>
 <a class="cc-shell__panel-link" href="/systems">Systems</a>
 <a class="cc-shell__panel-link" href="/methodology">Methodology</a>
+<a class="cc-shell__panel-link" href="/developers">Developers</a>
 <a class="cc-shell__panel-link" href="/verify" aria-current="page" data-current="true">Verify</a></nav>
       </div>
       <div>
@@ -74,7 +76,6 @@
         <span class="cc-shell__panel-label">Open source</span>
         <nav aria-label="Source code"><a class="cc-shell__panel-link" href="/engineering">Engineering hub</a>
 <a class="cc-shell__panel-link" href="/notes">Engineering notes</a>
-<a class="cc-shell__panel-link" href="/developers">Developers / API</a>
 <a class="cc-shell__panel-link" href="/standards/paper-evidence">Evidence standard</a>
 <a class="cc-shell__panel-link" href="https://github.com/arhancanli/alphac" rel="noreferrer">alphac (engine)</a>
 <a class="cc-shell__panel-link" href="https://github.com/arhancanli/canli-pit-lake" rel="noreferrer">canli-pit-lake</a>
@@ -230,7 +231,7 @@ python3 reproduce.py --dir .
 curl -sO https://canlicapital.com/glassbox/transparency_log.json
 curl -sO https://canlicapital.com/glassbox/verify_transparency.py
 python3 verify_transparency.py transparency_log.json</code></pre>
-        <p>The chain currently holds 741 entries, from 2026-06-27 to
+        <p>The chain currently holds 743 entries, from 2026-06-27 to
         2026-09-05, signed under the public key
         <code class="verify__key">0c6606a6b0c5b66fbf3b78521c85e72019484e0177d04a873a651179175ac095</code>. If any earlier entry had
         been altered, that entry's chain hash and every later signature would fail here.</p>
@@ -329,9 +330,9 @@ uv run python scripts/reproduce.py</code></pre>
     </nav>
     <nav aria-label="Open source">
       <span>Source code</span>
+      <a href="/developers">Developers</a>
       <a href="/engineering">Engineering</a>
       <a href="/notes">Engineering notes</a>
-      <a href="/developers">Developers</a>
       <a href="/standards/paper-evidence">Evidence standard</a>
       <a href="https://github.com/arhancanli/alphac" rel="noreferrer">alphac engine</a>
       <a href="https://github.com/arhancanli/canli-pit-lake" rel="noreferrer">canli-pit-lake</a>

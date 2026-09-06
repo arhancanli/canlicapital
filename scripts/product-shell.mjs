@@ -4,13 +4,19 @@ const PRIMARY_LINKS = Object.freeze([
   { key: "trials", label: "Trials", href: "/trials" },
   { key: "systems", label: "Systems", href: "/systems" },
   { key: "methodology", label: "Methodology", href: "/methodology" },
+  { key: "developers", label: "Developers", href: "/developers" },
   { key: "verify", label: "Verify", href: "/verify" },
 ]);
 
-//: The open-source surface. Deliberately NOT a seventh PRIMARY_LINKS entry: the
-//: navigation's job is to name the few things a visitor chooses between, and "read the
-//: code" is an action taken from anywhere, like Verify. It renders as its own control
-//: next to the CTA so it is prominent without adding a category to learn.
+//: The repositories. Deliberately NOT a PRIMARY_LINKS entry: the navigation's job is to
+//: name the few things a visitor chooses between, and "read the engine's source" is an
+//: action taken from anywhere, like Verify. It renders as its own control next to the
+//: CTA so it is prominent without adding a category to learn.
+//:
+//: Developers / API used to sit in this same reasoning and lived in the disclosure below
+//: it. That was wrong: the API is not a reference for reading the engine, it is the
+//: product a visitor came here to use, so it earns the first-class nav slot above that a
+//: repository does not. The repositories stay here, in the disclosure.
 const SOURCE_LINK = Object.freeze({
   key: "engineering",
   label: "Source",
@@ -21,7 +27,6 @@ const SOURCE_LINK = Object.freeze({
 const SOURCE_REPOS = Object.freeze([
   { label: "Engineering hub", href: "/engineering" },
   { label: "Engineering notes", href: "/notes" },
-  { label: "Developers / API", href: "/developers" },
   { label: "Evidence standard", href: "/standards/paper-evidence" },
   { label: "alphac (engine)", href: "https://github.com/arhancanli/alphac", external: true },
   { label: "canli-pit-lake", href: "https://github.com/arhancanli/canli-pit-lake", external: true },
@@ -145,9 +150,9 @@ export function renderProductShellFooter() {
     </nav>
     <nav aria-label="Open source">
       <span>Source code</span>
+      <a href="/developers">Developers</a>
       <a href="/engineering">Engineering</a>
       <a href="/notes">Engineering notes</a>
-      <a href="/developers">Developers</a>
       <a href="/standards/paper-evidence">Evidence standard</a>
       <a href="https://github.com/arhancanli/alphac" rel="noreferrer">alphac engine</a>
       <a href="https://github.com/arhancanli/canli-pit-lake" rel="noreferrer">canli-pit-lake</a>
