@@ -63,10 +63,15 @@
       <div>
         <span class="cc-shell__panel-label">Institution</span>
         <nav aria-label="Institution routes"><a class="cc-shell__panel-link" href="/progress">Corrections</a>
-<a class="cc-shell__panel-link" href="/performance">Status</a>
+<a class="cc-shell__panel-link" href="/performance">Performance</a>
 <a class="cc-shell__panel-link" href="/founder">Founder</a>
 <a class="cc-shell__panel-link" href="/open">Open data</a>
 <a class="cc-shell__panel-link" href="/measurements">Measurements</a></nav>
+      </div>
+      <div>
+        <span class="cc-shell__panel-label">Tools</span>
+        <nav aria-label="Tools"><a class="cc-shell__panel-link" href="/tools">All tools</a>
+<a class="cc-shell__panel-link" href="/how-to-validate-a-backtest">How to validate a backtest</a></nav>
       </div>
       <div>
         <span class="cc-shell__panel-label">Reproducible code</span>
@@ -87,15 +92,18 @@
   <section class="lab-hero" aria-labelledby="lab-title">
     <p class="lab-kicker"><span>Open research instrument</span><span>Selection Risk Lab</span><span>Educational, not evidence</span></p>
     <h1 id="lab-title">Backtest selection risk simulator</h1>
-    <p class="lab-lead">Find an edge that is not there. The series below is a driftless random walk. Its true Sharpe ratio is
+    <p class="lab-lead">This is selection risk, also called selection bias: searching enough configurations
+      turns pure noise into a result that looks like an edge. Find an edge that is not there. The series
+      below is a driftless random walk. Its true Sharpe ratio is
       <strong>0</strong>, by construction, and no setting of any control can change
       that. Search it anyway. The lab counts every parameter set you try and deflates your best
       result against your own search, so you can watch a good-looking number turn into what it
-      actually is.</p>
+      actually is. Canli Capital, the research house that publishes ALPHAC, runs this calculator
+      free, with no account or key required.</p>
     <p class="lab-boundary"><strong>What this is.</strong> A teaching instrument. It runs on a synthetic series with no edge, spends no research hypothesis, writes to no ledger, and produces no ALPHAC performance claim. Nothing a visitor generates here is evidence about any strategy.</p>
   </section>
 
-  <section class="lab-lab" id="lab" aria-labelledby="lab-lab-title">
+  <section class="lab-lab" id="lab" tabindex="-1" aria-labelledby="lab-lab-title">
     <h2 id="lab-lab-title" class="lab-visually-hidden">The lab</h2>
     <div class="lab-controls">
       <label class="lab-field" for="lab-seed">
@@ -216,12 +224,14 @@
     <nav aria-label="Institution and authorship">
       <span>Institution</span>
       <a href="/progress">Corrections</a>
-      <a href="/performance">Status</a>
+      <a href="/performance">Performance</a>
       <a href="/founder">Arhan Canli</a>
     </nav>
-    <nav aria-label="Interactive tools">
+    <nav aria-label="Calculators">
       <span>Run it yourself</span>
+      <a href="/tools">All calculators</a>
       <a href="/tools/deflated-sharpe">Deflated Sharpe calculator</a>
+      <a href="/tools/backtest-overfitting">Backtest overfitting calculator</a>
       <a href="/tools/selection-risk">Selection Risk Lab</a>
       <a href="/tools/breadth">Breadth Lab</a>
       <a href="/tools/execution">Execution Reality Lab</a>

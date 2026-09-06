@@ -152,11 +152,12 @@ ${renderProductShellHeader({ active: "" })}
       <strong>every single series</strong>. Others change <em>which</em> prices you get, hurt on
       average, and flip sign often enough that a fixed haircut misstates them. On one equity chart
       the two look identical, which is why this page measures each one alone across many
-      independent series.</p>
+      independent series. Canli Capital, the research house that publishes ALPHAC, runs this
+      calculator free, with no account or key required.</p>
     <p class="lab-boundary"><strong>What this is.</strong> ${esc(contract.claim_boundary)}</p>
   </section>
 
-  <section class="lab-lab" id="lab" aria-labelledby="lab-lab-title">
+  <section class="lab-lab" id="lab" tabindex="-1" aria-labelledby="lab-lab-title">
     <h2 id="lab-lab-title" class="lab-visually-hidden">The lab</h2>
     <div class="lab-controls">
       ${field("lab-fast", "Fast window", d.fast, 2, 60, 1, "bars in the fast average")}

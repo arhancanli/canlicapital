@@ -6,6 +6,7 @@ import { fileURLToPath } from "node:url";
 import { spawn } from "node:child_process";
 import ffmpegPath from "ffmpeg-static";
 import { chromium } from "playwright";
+import { buildPosterWebp } from "./build-system-film-poster-webp.mjs";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const OUTPUT = resolve(ROOT, "public/system-films");
@@ -88,6 +89,10 @@ try {
     await page.evaluate(() => window.seekSystemFilm(7.25));
     const poster = resolve(OUTPUT, `${id}-poster.png`);
     await page.screenshot({ path: poster });
+    // A 960-wide WebP beside the 1280x720 PNG: the lazy poster renders at
+    // roughly 400 CSS px on the homepage, so the PNG's full resolution and
+    // format are pure weight. See build-system-film-poster-webp.mjs.
+    const { record: posterWebpRecord } = await buildPosterWebp(poster);
 
     const webm = resolve(OUTPUT, `${id}.webm`);
     const mp4 = resolve(OUTPUT, `${id}.mp4`);
@@ -107,6 +112,7 @@ try {
         webm: { path: `/system-films/${id}.webm`, ...(await fileRecord(webm)) },
         h264: { path: `/system-films/${id}.mp4`, ...(await fileRecord(mp4)) },
         poster: { path: `/system-films/${id}-poster.png`, ...(await fileRecord(poster)) },
+        poster_webp: { path: `/system-films/${id}-poster.webp`, ...posterWebpRecord },
       },
     });
   }

@@ -21,7 +21,9 @@
 <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" />
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" />
+<link rel="stylesheet" media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" />
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" /></noscript>
 <link rel="stylesheet" href="/css/product-shell.css" />
 <link rel="stylesheet" href="/css/lab.css" />
 <link rel="stylesheet" href="/css/tools-hub.css" />
@@ -63,14 +65,15 @@
       <div>
         <span class="cc-shell__panel-label">Institution</span>
         <nav aria-label="Institution routes"><a class="cc-shell__panel-link" href="/progress">Corrections</a>
-<a class="cc-shell__panel-link" href="/performance">Status</a>
+<a class="cc-shell__panel-link" href="/performance">Performance</a>
 <a class="cc-shell__panel-link" href="/founder">Founder</a>
 <a class="cc-shell__panel-link" href="/open">Open data</a>
 <a class="cc-shell__panel-link" href="/measurements">Measurements</a></nav>
       </div>
       <div>
         <span class="cc-shell__panel-label">Tools</span>
-        <nav aria-label="Interactive tools"><a class="cc-shell__panel-link" href="/tools">All tools</a></nav>
+        <nav aria-label="Tools"><a class="cc-shell__panel-link" href="/tools">All tools</a>
+<a class="cc-shell__panel-link" href="/how-to-validate-a-backtest">How to validate a backtest</a></nav>
       </div>
       <div>
         <span class="cc-shell__panel-label">Reproducible code</span>
@@ -91,10 +94,11 @@
   <section class="lab-hero" aria-labelledby="tools-title">
     <p class="lab-kicker"><span>Open research instruments</span><span>7 calculators</span></p>
     <h1 id="tools-title">Every calculator, in one place.</h1>
-    <p class="lab-lead">Each of these runs entirely in your browser, is free, requires no account,
-      and is built from the same source-bound arithmetic this project's own published record is
-      held to. Most started life under a house name; each now names itself for what it computes,
-      and keeps the house name as a subtitle where one exists.</p>
+    <p class="lab-lead">Canli Capital, the research house that publishes ALPHAC, built each of these.
+      Every one runs entirely in your browser, is free, requires no account or key, and is built
+      from the same source-bound arithmetic this project's own published record is held to. Most
+      started life under a house name; each now names itself for what it computes, and keeps the
+      house name as a subtitle where one exists.</p>
   </section>
 
   <section class="tools-grid" id="tools-list" aria-label="All calculators">
@@ -121,7 +125,7 @@
     <article class="tools-card">
         <h2><a href="/tools/breadth">Portfolio breadth calculator</a></h2>
         <p class="tools-card__house">Breadth Lab</p>
-        <p>Computes how much a book of N sleeves is worth, and the correlation ceiling that no amount of breadth can pass.</p>
+        <p>Computes how much a book (the set of sleeves run together) of N sleeves is worth, and the correlation ceiling that no amount of breadth can pass.</p>
       </article>
     <article class="tools-card">
         <h2><a href="/tools/trial-accounting">Trial accounting explorer</a></h2>
@@ -158,6 +162,8 @@
       <a href="/developers">the API quickstart</a> for the deflated-Sharpe, overfitting and breadth
       routes. None of these tools writes to any ledger, artifact or published record; every input
       stays in your browser.</p>
+    <p class="lab-source">For the full walk-through with the API route beside each calculator, see
+      <a href="/how-to-validate-a-backtest">how to validate a backtest</a>.</p>
   </section>
 </main>
 <footer class="cc-footer" id="footer" data-product-shell="v3">
@@ -184,10 +190,10 @@
     <nav aria-label="Institution and authorship">
       <span>Institution</span>
       <a href="/progress">Corrections</a>
-      <a href="/performance">Status</a>
+      <a href="/performance">Performance</a>
       <a href="/founder">Arhan Canli</a>
     </nav>
-    <nav aria-label="Interactive tools">
+    <nav aria-label="Calculators">
       <span>Run it yourself</span>
       <a href="/tools">All calculators</a>
       <a href="/tools/deflated-sharpe">Deflated Sharpe calculator</a>

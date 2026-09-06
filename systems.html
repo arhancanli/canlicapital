@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Canli Capital / Systems, the architecture of the engine</title>
   <meta name="description" content="How the ALPHAC engine works end to end: a point-in-time data lake, an IC-weighted factor library, a risk-aware portfolio, and a 24/7 paper-trading loop." />
+  <meta name="canli:sources" content="public-claims.json paper-state.json alpaca_broker_reconciliation.json research-index.json kill_log.json transparency_log.json cost_model_realism.json state.json live_console_statistics.json engineering_open_source.json stanford_cs_evidence_map.json data_lake_scale.json">
   <meta name="author" content="Arhan Canli" />
   <meta name="theme-color" content="#0A0B0D" />
   <meta name="color-scheme" content="dark" />
@@ -185,14 +186,15 @@
       <div>
         <span class="cc-shell__panel-label">Institution</span>
         <nav aria-label="Institution routes"><a class="cc-shell__panel-link" href="/progress">Corrections</a>
-<a class="cc-shell__panel-link" href="/performance">Status</a>
+<a class="cc-shell__panel-link" href="/performance">Performance</a>
 <a class="cc-shell__panel-link" href="/founder">Founder</a>
 <a class="cc-shell__panel-link" href="/open">Open data</a>
 <a class="cc-shell__panel-link" href="/measurements">Measurements</a></nav>
       </div>
       <div>
         <span class="cc-shell__panel-label">Tools</span>
-        <nav aria-label="Interactive tools"><a class="cc-shell__panel-link" href="/tools">All tools</a></nav>
+        <nav aria-label="Tools"><a class="cc-shell__panel-link" href="/tools">All tools</a>
+<a class="cc-shell__panel-link" href="/how-to-validate-a-backtest">How to validate a backtest</a></nav>
       </div>
       <div>
         <span class="cc-shell__panel-label">Reproducible code</span>
@@ -1052,10 +1054,10 @@
     <nav aria-label="Institution and authorship">
       <span>Institution</span>
       <a href="/progress">Corrections</a>
-      <a href="/performance">Status</a>
+      <a href="/performance">Performance</a>
       <a href="/founder">Arhan Canli</a>
     </nav>
-    <nav aria-label="Interactive tools">
+    <nav aria-label="Calculators">
       <span>Run it yourself</span>
       <a href="/tools">All calculators</a>
       <a href="/tools/deflated-sharpe">Deflated Sharpe calculator</a>
@@ -1085,7 +1087,6 @@
   </div>
 </footer>
 
-  <script type="module" src="./js/waitlist.js"></script>
   <script type="module" src="./js/main.js"></script>
   <!-- The /systems interactive layer: pipeline spine, schematic reveals, the
        drawdown ladder, the gauntlet seam draw, and the single flareBloom. Loaded

@@ -247,7 +247,9 @@ function pageHead({ title, socialTitle, description, route, extraJsonLd, sources
 <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" />
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" />
+<link rel="stylesheet" media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" />
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" /></noscript>
 ${renderProductShellStylesheet()}
 <link rel="stylesheet" href="/css/notes.css" />
 <script type="application/ld+json">${JSON.stringify(extraJsonLd)}</script>
@@ -276,7 +278,7 @@ function renderNote(note, siblings) {
 <body class="note-page">
 <a class="note-skip" href="#content">Skip to content</a>
 ${renderProductShellHeader({ active: "" })}
-<main id="content">
+<main id="content" tabindex="-1">
   <article class="note">
     <nav class="note-trail" aria-label="Breadcrumb">
       <a href="/notes">Engineering notes</a>
@@ -339,7 +341,7 @@ function renderIndex(notes) {
 <body class="note-page note-index-page">
 <a class="note-skip" href="#content">Skip to content</a>
 ${renderProductShellHeader({ active: "" })}
-<main id="content">
+<main id="content" tabindex="-1">
   <section class="note-hero">
     <p class="note-kicker">Engineering notes</p>
     <h1>What went wrong, and what the arithmetic actually says.</h1>

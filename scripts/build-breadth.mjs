@@ -178,11 +178,12 @@ ${renderProductShellHeader({ active: "" })}
       <code>s &times; sqrt(N / (1 + (N-1) &times; rho))</code>. Take that to the limit and the
       ceiling is <code>s / sqrt(rho)</code>, which does not contain N at all. Past a point, breadth
       is not the lever and correlation is. This is the most important arithmetic in this project
-      and it decides whether its own objective is reachable.</p>
+      and it decides whether its own objective is reachable. Canli Capital, the research house
+      that publishes ALPHAC, runs this calculator free, with no account or key required.</p>
     <p class="lab-boundary"><strong>What this is.</strong> ${esc(c.claim_boundary)}</p>
   </section>
 
-  <section class="lab-lab" id="lab" aria-labelledby="lab-lab-title">
+  <section class="lab-lab" id="lab" tabindex="-1" aria-labelledby="lab-lab-title">
     <h2 id="lab-lab-title" class="lab-visually-hidden">The lab</h2>
     <div class="lab-controls">
       ${field("lab-sharpe", "Sharpe per sleeve", p.published_book.s, 0, 3, 0.05, "s, the same for every sleeve")}

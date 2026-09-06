@@ -65,10 +65,15 @@
       <div>
         <span class="cc-shell__panel-label">Institution</span>
         <nav aria-label="Institution routes"><a class="cc-shell__panel-link" href="/progress">Corrections</a>
-<a class="cc-shell__panel-link" href="/performance">Status</a>
+<a class="cc-shell__panel-link" href="/performance">Performance</a>
 <a class="cc-shell__panel-link" href="/founder">Founder</a>
 <a class="cc-shell__panel-link" href="/open">Open data</a>
 <a class="cc-shell__panel-link" href="/measurements">Measurements</a></nav>
+      </div>
+      <div>
+        <span class="cc-shell__panel-label">Tools</span>
+        <nav aria-label="Tools"><a class="cc-shell__panel-link" href="/tools">All tools</a>
+<a class="cc-shell__panel-link" href="/how-to-validate-a-backtest">How to validate a backtest</a></nav>
       </div>
       <div>
         <span class="cc-shell__panel-label">Reproducible code</span>
@@ -90,7 +95,7 @@
     <div class="chain-hero__copy">
       <p class="chain-kicker"><span>Public verification instrument</span><span>Record schema v2</span></p>
       <h1 id="chain-title">Do not trust the timeline. Break it.</h1>
-      <p class="chain-hero__lead">This browser re-derives every chain hash, checks every predecessor link and verifies every Ed25519 signature against the published key. Pick any historical entry, inspect what was signed, then alter a local copy and watch the proof fail.</p>
+      <p class="chain-hero__lead">This browser re-derives every chain hash, checks every predecessor link and verifies every Ed25519 signature against the published key. Pick any historical entry, inspect what was signed, then alter a local copy and watch the proof fail. Canli Capital, the research house that publishes ALPHAC, runs this calculator free, with no account or key required.</p>
       <div class="chain-hero__actions">
         <a class="chain-button chain-button--primary" href="#microscope">Open the chain microscope</a>
         <a class="chain-button" href="/glassbox/verify_transparency.py">Download the full Python verifier</a>
@@ -116,7 +121,7 @@
     <p>Broker truth, pre-boundary payload contents, record completeness or the absence of an unpublished alternate chain.</p>
   </section>
 
-  <section class="chain-workbench" id="microscope" aria-labelledby="microscope-title">
+  <section class="chain-workbench" id="microscope" tabindex="-1" aria-labelledby="microscope-title">
     <header class="chain-section-head">
       <div><p class="chain-label">Chain microscope</p><h2 id="microscope-title">743 entries. Every dependency exposed.</h2></div>
       <div class="chain-verification">
@@ -235,12 +240,14 @@
     <nav aria-label="Institution and authorship">
       <span>Institution</span>
       <a href="/progress">Corrections</a>
-      <a href="/performance">Status</a>
+      <a href="/performance">Performance</a>
       <a href="/founder">Arhan Canli</a>
     </nav>
-    <nav aria-label="Interactive tools">
+    <nav aria-label="Calculators">
       <span>Run it yourself</span>
+      <a href="/tools">All calculators</a>
       <a href="/tools/deflated-sharpe">Deflated Sharpe calculator</a>
+      <a href="/tools/backtest-overfitting">Backtest overfitting calculator</a>
       <a href="/tools/selection-risk">Selection Risk Lab</a>
       <a href="/tools/breadth">Breadth Lab</a>
       <a href="/tools/execution">Execution Reality Lab</a>

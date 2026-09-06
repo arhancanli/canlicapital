@@ -67,10 +67,15 @@
       <div>
         <span class="cc-shell__panel-label">Institution</span>
         <nav aria-label="Institution routes"><a class="cc-shell__panel-link" href="/progress">Corrections</a>
-<a class="cc-shell__panel-link" href="/performance">Status</a>
+<a class="cc-shell__panel-link" href="/performance">Performance</a>
 <a class="cc-shell__panel-link" href="/founder">Founder</a>
 <a class="cc-shell__panel-link" href="/open">Open data</a>
 <a class="cc-shell__panel-link" href="/measurements" aria-current="page" data-current="true">Measurements</a></nav>
+      </div>
+      <div>
+        <span class="cc-shell__panel-label">Tools</span>
+        <nav aria-label="Tools"><a class="cc-shell__panel-link" href="/tools">All tools</a>
+<a class="cc-shell__panel-link" href="/how-to-validate-a-backtest">How to validate a backtest</a></nav>
       </div>
       <div>
         <span class="cc-shell__panel-label">Reproducible code</span>
@@ -443,8 +448,8 @@
 <div class="measure__row"><dt>Vintage cutoff inclusive</dt><dd>2026-07-15</dd></div>
 </dl>
 <figure class="measure__tablewrap"><figcaption>Records</figcaption><table class="measure__table"><thead><tr><th scope="col">First observation</th><th scope="col">First vintage</th><th scope="col">Last observation</th><th scope="col">Last vintage</th><th scope="col">Normalized file</th><th scope="col">Normalized sha256</th><th scope="col">Normalized table content hash</th><th scope="col">Official variable page</th><th scope="col">Raw file</th><th scope="col">Raw sha256</th><th scope="col">Resolved download url</th><th scope="col">Rows</th><th scope="col">Series</th></tr></thead><tbody>
-<tr><td>1947-01-01</td><td>1998-11-15</td><td>2026-06-01</td><td>2026-07-15</td><td>PCPI_vintage_long.parquet</td><td>387b8155f73d15a1a6b9ad8a4d3b9315ec03f1c8881f2fae0efe5ddc1290e0a4</td><td>sha256:1e0284a66f96a1ef1799d5854e453ea0fde82fc30b5de880986cc0fc7f51050d</td><td>https://www.philadelphiafed.org/surveys-and-data/real-time-data-research/pcpi</td><td>pcpiMvMd.xlsx</td><td>11851cd13c73b743bc3be30564fc18283cedd11211a070a3a82ce6b64b6cca10</td><td>https://www.philadelphiafed.org/-/media/FRBP/Assets/Surveys-And-Data/real-time-data/data-files/xlsx/pcpiMvMd.xlsx?sc_lang=en&amp;hash=E41A743DC6423F950B10C3DE7A4F674D</td><td>317682</td><td>PCPI</td></tr>
-<tr><td>1947-01-01</td><td>1998-11-15</td><td>2026-06-01</td><td>2026-07-15</td><td>PCPIX_vintage_long.parquet</td><td>e764f0b4f68cbc77c2586d4ff9a298ec3ed7a80a5d93bab6216c6461cb6800ca</td><td>sha256:6cc69ec1ac788d0a0cbeb4e2b16034d1bc99670aeaa1a248e0cef4aa7534b70a</td><td>https://www.philadelphiafed.org/surveys-and-data/real-time-data-research/pcpix</td><td>pcpixMvMd.xlsx</td><td>dcdab3493a10a880312164f8da7e1ac98c44b5c76080e9314c89dc74c9dd3e38</td><td>https://www.philadelphiafed.org/-/media/FRBP/Assets/Surveys-And-Data/real-time-data/data-files/xlsx/pcpixMvMd.xlsx?sc_lang=en&amp;hash=C6DFB09386E1C79B336AB19F748ADB82</td><td>317682</td><td>PCPIX</td></tr>
+<tr><td>1947-01-01</td><td>1998-11-15</td><td>2026-06-01</td><td>2026-07-15</td><td>PCPI_vintage_long.parquet</td><td>387b8155f73d15a1a6b9ad8a4d3b9315ec03f1c8881f2fae0efe5ddc1290e0a4</td><td>sha256:1e0284a66f96a1ef1799d5854e453ea0fde82fc30b5de880986cc0fc7f51050d</td><td><a href="https://www.philadelphiafed.org/surveys-and-data/real-time-data-research/pcpi" rel="noreferrer">Philadelphia Fed real-time CPI vintage file</a></td><td>pcpiMvMd.xlsx</td><td>11851cd13c73b743bc3be30564fc18283cedd11211a070a3a82ce6b64b6cca10</td><td><a href="https://www.philadelphiafed.org/-/media/FRBP/Assets/Surveys-And-Data/real-time-data/data-files/xlsx/pcpiMvMd.xlsx?sc_lang=en&amp;hash=E41A743DC6423F950B10C3DE7A4F674D" rel="noreferrer">Philadelphia Fed real-time CPI vintage file</a></td><td>317682</td><td>PCPI</td></tr>
+<tr><td>1947-01-01</td><td>1998-11-15</td><td>2026-06-01</td><td>2026-07-15</td><td>PCPIX_vintage_long.parquet</td><td>e764f0b4f68cbc77c2586d4ff9a298ec3ed7a80a5d93bab6216c6461cb6800ca</td><td>sha256:6cc69ec1ac788d0a0cbeb4e2b16034d1bc99670aeaa1a248e0cef4aa7534b70a</td><td><a href="https://www.philadelphiafed.org/surveys-and-data/real-time-data-research/pcpix" rel="noreferrer">Philadelphia Fed real-time core CPI vintage file</a></td><td>pcpixMvMd.xlsx</td><td>dcdab3493a10a880312164f8da7e1ac98c44b5c76080e9314c89dc74c9dd3e38</td><td><a href="https://www.philadelphiafed.org/-/media/FRBP/Assets/Surveys-And-Data/real-time-data/data-files/xlsx/pcpixMvMd.xlsx?sc_lang=en&amp;hash=C6DFB09386E1C79B336AB19F748ADB82" rel="noreferrer">Philadelphia Fed real-time core CPI vintage file</a></td><td>317682</td><td>PCPIX</td></tr>
 </tbody></table></figure>
 </section>
 <section class="measure__sub"><h4>Source bindings</h4>
@@ -518,12 +523,12 @@
 <div class="measure__row"><dt>Schema</dt><dd>canli.alphac-yahoo-etf-portable-fetch.v1</dd></div>
 <div class="measure__row"><dt>Source</dt><dd>Yahoo Finance chart service</dd></div>
 <div class="measure__row"><dt>Start inclusive</dt><dd>2001-06-27</dd></div>
-<div class="measure__row"><dt>Terms</dt><dd>https://legal.yahoo.com/us/en/yahoo/terms/otos/index.html</dd></div>
+<div class="measure__row"><dt>Terms</dt><dd><a href="https://legal.yahoo.com/us/en/yahoo/terms/otos/index.html" rel="noreferrer">legal.yahoo.com record</a></dd></div>
 </dl>
 <figure class="measure__tablewrap"><figcaption>Records</figcaption><table class="measure__table"><thead><tr><th scope="col">First date</th><th scope="col">Last date</th><th scope="col">Normalized sha256</th><th scope="col">Normalized table content hash</th><th scope="col">Raw sha256</th><th scope="col">Resolved download url</th><th scope="col">Rows</th><th scope="col">Symbol</th></tr></thead><tbody>
-<tr><td>2001-06-27</td><td>2026-08-21</td><td>60fc6da41040bd7f60c82b7b5724408644b320416d676cb5964059631b4046cb</td><td>sha256:a5ee9509e78e9fe8d0d2e182b1af2b128ec8ed0cd82185b8d847a04bdf7de768</td><td>6f96408a2784a135236057d77138eb77cbb485482e2fc63135b71be05e9ef01e</td><td>https://query1.finance.yahoo.com/v8/finance/chart/IWM?period1=993600000&amp;period2=1787356800&amp;interval=1d&amp;events=div%2Csplits</td><td>6325</td><td>IWM</td></tr>
-<tr><td>2001-06-27</td><td>2026-08-21</td><td>6037827cf464b000046b25ab8548aa8c1ba5b62e863cb5af4e3e559f5bdff788</td><td>sha256:c03ddda47d85620c56385d1d953be6d04db0bd22811537a8562e7e994a3bc985</td><td>70f64dd527999fe96e34704463557f8720513fe5897def72462148bf5d2cb3bc</td><td>https://query1.finance.yahoo.com/v8/finance/chart/SPY?period1=993600000&amp;period2=1787356800&amp;interval=1d&amp;events=div%2Csplits</td><td>6325</td><td>SPY</td></tr>
-<tr><td>2001-06-27</td><td>2026-08-21</td><td>7650c438af4e3bb8c191ef99d16ffdad8245369369d930c61b64e325a0eccd3a</td><td>sha256:7a88298e03e58c5c337436da66678bfd5527efafa089363e1df395e3fc6669c1</td><td>a9e077628ea9d738906736b39717fec39d89637a7d851c2014bb9aae8f82d54d</td><td>https://query1.finance.yahoo.com/v8/finance/chart/QQQ?period1=993600000&amp;period2=1787356800&amp;interval=1d&amp;events=div%2Csplits</td><td>6325</td><td>QQQ</td></tr>
+<tr><td>2001-06-27</td><td>2026-08-21</td><td>60fc6da41040bd7f60c82b7b5724408644b320416d676cb5964059631b4046cb</td><td>sha256:a5ee9509e78e9fe8d0d2e182b1af2b128ec8ed0cd82185b8d847a04bdf7de768</td><td>6f96408a2784a135236057d77138eb77cbb485482e2fc63135b71be05e9ef01e</td><td><a href="https://query1.finance.yahoo.com/v8/finance/chart/IWM?period1=993600000&amp;period2=1787356800&amp;interval=1d&amp;events=div%2Csplits" rel="noreferrer">Yahoo Finance chart endpoint for IWM</a></td><td>6325</td><td>IWM</td></tr>
+<tr><td>2001-06-27</td><td>2026-08-21</td><td>6037827cf464b000046b25ab8548aa8c1ba5b62e863cb5af4e3e559f5bdff788</td><td>sha256:c03ddda47d85620c56385d1d953be6d04db0bd22811537a8562e7e994a3bc985</td><td>70f64dd527999fe96e34704463557f8720513fe5897def72462148bf5d2cb3bc</td><td><a href="https://query1.finance.yahoo.com/v8/finance/chart/SPY?period1=993600000&amp;period2=1787356800&amp;interval=1d&amp;events=div%2Csplits" rel="noreferrer">Yahoo Finance chart endpoint for SPY</a></td><td>6325</td><td>SPY</td></tr>
+<tr><td>2001-06-27</td><td>2026-08-21</td><td>7650c438af4e3bb8c191ef99d16ffdad8245369369d930c61b64e325a0eccd3a</td><td>sha256:7a88298e03e58c5c337436da66678bfd5527efafa089363e1df395e3fc6669c1</td><td>a9e077628ea9d738906736b39717fec39d89637a7d851c2014bb9aae8f82d54d</td><td><a href="https://query1.finance.yahoo.com/v8/finance/chart/QQQ?period1=993600000&amp;period2=1787356800&amp;interval=1d&amp;events=div%2Csplits" rel="noreferrer">Yahoo Finance chart endpoint for QQQ</a></td><td>6325</td><td>QQQ</td></tr>
 </tbody></table></figure>
 </section>
 <p class="measure__label">Market input comparisons</p><p class="measure__deep">Nested beyond what this page renders. <a href="/glassbox/research.json">Read it in the artifact</a>.</p>
@@ -2264,12 +2269,14 @@ artifact the engine wrote.</p>
     <nav aria-label="Institution and authorship">
       <span>Institution</span>
       <a href="/progress">Corrections</a>
-      <a href="/performance">Status</a>
+      <a href="/performance">Performance</a>
       <a href="/founder">Arhan Canli</a>
     </nav>
-    <nav aria-label="Interactive tools">
+    <nav aria-label="Calculators">
       <span>Run it yourself</span>
+      <a href="/tools">All calculators</a>
       <a href="/tools/deflated-sharpe">Deflated Sharpe calculator</a>
+      <a href="/tools/backtest-overfitting">Backtest overfitting calculator</a>
       <a href="/tools/selection-risk">Selection Risk Lab</a>
       <a href="/tools/breadth">Breadth Lab</a>
       <a href="/tools/execution">Execution Reality Lab</a>
