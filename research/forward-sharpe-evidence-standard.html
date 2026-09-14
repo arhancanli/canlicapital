@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html data-reader="research" lang="en">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -38,51 +38,46 @@
 <link rel="stylesheet" href="/css/product-shell.css" />
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"ScholarlyArticle","headline":"When a Forward Sharpe Ratio Becomes Evidence","description":"A forward Sharpe ratio should not become a headline merely because a short paper-trading curve can produce one.","url":"https://canlicapital.com/research/forward-sharpe-evidence-standard","inLanguage":"en","isAccessibleForFree":true,"datePublished":"2026","author":{"@type":"Person","@id":"https://canlicapital.com/#arhan-canli","name":"Arhan Canli","jobTitle":"Founder and Quantitative Researcher","url":"https://canlicapital.com/founder","sameAs":["https://github.com/arhancanli"],"affiliation":{"@type":"Organization","@id":"https://canlicapital.com/#organization","name":"Canli Capital","url":"https://canlicapital.com/"}},"publisher":{"@type":"Organization","@id":"https://canlicapital.com/#organization","name":"Canli Capital","url":"https://canlicapital.com/","logo":{"@type":"ImageObject","url":"https://canlicapital.com/brand-mark.svg"}},"isPartOf":{"@type":"Periodical","name":"Canli Capital Research","url":"https://canlicapital.com/research"},"encodingFormat":"text/html","associatedMedia":{"@type":"MediaObject","contentUrl":"https://canlicapital.com/research/forward-sharpe-evidence-standard.md","encodingFormat":"text/markdown"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Canli Capital","item":"https://canlicapital.com"},{"@type":"ListItem","position":2,"name":"Research","item":"https://canlicapital.com/research"},{"@type":"ListItem","position":3,"name":"When a Forward Sharpe Ratio Becomes Evidence","item":"https://canlicapital.com/research/forward-sharpe-evidence-standard"}]}</script>
-</head>
+
+<link rel="stylesheet" href="/css/reader-experience.css" />
+<!-- release-style:start --><link rel="stylesheet" href="/css/release-readiness.css" /><!-- release-style:end --></head>
 <body class="paper">
 <a class="paper__skip" href="#content">Skip to content</a>
-<header class="cc-shell" id="nav" data-product-shell="v3">
+<header class="cc-shell" id="nav" data-product-shell="v3" data-shell-revision="4">
   <a class="cc-shell__brand" href="/" aria-label="Canli Capital, home">
     <span class="cc-shell__mark" aria-hidden="true"><i></i></span>
     <span>Canli Capital</span>
   </a>
-  <a class="cc-shell__status" href="/measurements/alpaca-broker-reconciliation" aria-label="Current record status">
-    <span class="status-dot" aria-hidden="true"></span>
-    <span>Public paper record</span>
-  </a>
   <nav class="cc-shell__primary" aria-label="Primary navigation">
-<a class="cc-shell__link" href="https://app.canlicapital.com/dashboard" rel="noreferrer">Live</a>
-<a class="cc-shell__link" href="/research" aria-current="page" data-current="true">Research</a>
-<a class="cc-shell__link" href="/trials">Trials</a>
 <a class="cc-shell__link" href="/systems">Systems</a>
-<a class="cc-shell__link" href="/methodology">Methodology</a>
+<a class="cc-shell__link" href="/research" data-current="true">Research</a>
 <a class="cc-shell__link" href="/developers">Developers</a>
 <a class="cc-shell__link" href="/verify">Verify</a>
   </nav>
   <details class="cc-shell__index">
-    <summary><span class="cc-shell__index-wide">More</span><span class="cc-shell__index-compact">Menu</span></summary>
+    <summary><span class="cc-shell__index-wide">Explore</span><span class="cc-shell__index-compact">Menu</span></summary>
     <div class="cc-shell__panel">
       <div>
-        <span class="cc-shell__panel-label">Core</span>
+        <span class="cc-shell__panel-label">Research &amp; strategies</span>
         <nav aria-label="Core routes"><a class="cc-shell__panel-link" href="https://app.canlicapital.com/dashboard" rel="noreferrer">Live</a>
-<a class="cc-shell__panel-link" href="/research" aria-current="page" data-current="true">Research</a>
+<a class="cc-shell__panel-link" href="/research" data-current="true">Research</a>
 <a class="cc-shell__panel-link" href="/trials">Trials</a>
 <a class="cc-shell__panel-link" href="/systems">Systems</a>
 <a class="cc-shell__panel-link" href="/methodology">Methodology</a>
-<a class="cc-shell__panel-link" href="/developers">Developers</a>
-<a class="cc-shell__panel-link" href="/verify">Verify</a></nav>
+<a class="cc-shell__panel-link" href="/performance">Performance</a></nav>
       </div>
       <div>
-        <span class="cc-shell__panel-label">Institution</span>
-        <nav aria-label="Institution routes"><a class="cc-shell__panel-link" href="/progress">Corrections</a>
-<a class="cc-shell__panel-link" href="/performance">Performance</a>
+        <span class="cc-shell__panel-label">Evidence &amp; accountability</span>
+        <nav aria-label="Institution routes"><a class="cc-shell__panel-link" href="/verify">Verify</a>
+<a class="cc-shell__panel-link" href="/progress">Corrections</a>
 <a class="cc-shell__panel-link" href="/founder">Founder</a>
 <a class="cc-shell__panel-link" href="/open">Open data</a>
 <a class="cc-shell__panel-link" href="/measurements">Measurements</a></nav>
       </div>
       <div>
-        <span class="cc-shell__panel-label">Tools</span>
-        <nav aria-label="Tools"><a class="cc-shell__panel-link" href="/tools">All tools</a>
+        <span class="cc-shell__panel-label">Build &amp; reproduce</span>
+        <nav aria-label="Tools"><a class="cc-shell__panel-link" href="/developers">Developers</a>
+<a class="cc-shell__panel-link" href="/tools">All tools</a>
 <a class="cc-shell__panel-link" href="/how-to-validate-a-backtest">How to validate a backtest</a></nav>
       </div>
       <div>
@@ -94,13 +89,17 @@
 <a class="cc-shell__panel-link" href="https://github.com/arhancanli/canli-pit-lake" rel="noreferrer">canli-pit-lake</a>
 <a class="cc-shell__panel-link" href="https://github.com/arhancanli/canli-backtest" rel="noreferrer">canli-backtest</a></nav>
       </div>
-      <p>Observed, simulated, model-estimated and planned claims remain visibly separate.</p>
+      <div class="cc-shell__panel-foot">
+        <a class="cc-shell__status" href="/measurements/alpaca-broker-reconciliation" aria-label="Current record status"><span class="status-dot" aria-hidden="true"></span><span>Public paper record</span></a>
+        <p>Observed, simulated, model-estimated and planned claims remain visibly separate.</p>
+      </div>
     </div>
   </details>
   <a class="cc-shell__source" href="/engineering" title="Open-source engineering: the engine, the data layer and the backtester"><svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true" focusable="false"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg><span>Source</span></a>
-  <a class="cc-shell__cta" href="https://app.canlicapital.com/dashboard">Enter live record <span aria-hidden="true">↗</span></a>
+  <a class="cc-shell__cta" href="https://app.canlicapital.com/dashboard">Live record <span aria-hidden="true">↗</span></a>
+  <script type="module" src="/js/navigation.js"></script>
 </header>
-<main class="paper__main" id="content">
+<main class="paper__main" id="content"><!-- reader-index:start --><aside class="reader-index"><a class="reader-index__back" href="/research">Explore research</a><details><summary>In this document</summary><nav aria-label="Document sections"><a href="#reader-section-1">Abstract</a><a href="#reader-section-2">1. The claim being controlled</a><a href="#reader-section-3">2. Return series and annualization</a><a href="#reader-section-4">3. Probability that Sharpe exceeds the target</a><a href="#reader-section-5">4. Frozen evidence states</a><a href="#reader-section-6">5. Provenance is part of the statistic</a><a href="#reader-section-7">6. Three drawdown quantities, not one</a><a href="#reader-section-8">7. Diversification evidence is a separate gate</a><a href="#reader-section-9">8. Reproduction and mutation checks</a><a href="#reader-section-10">9. Limits</a><a href="#reader-section-11">Claim boundary</a><a href="#reader-section-12">References</a></nav></details><a class="reader-index__verify" href="/verify">How to verify a claim ↗</a></aside><!-- reader-index:end -->
   <article class="paper__article">
     <p class="paper__eyebrow"><a href="/research">Research</a></p>
     <h1 class="paper__title">When a Forward Sharpe Ratio Becomes Evidence</h1>
@@ -110,7 +109,7 @@
 produce one. This paper defines the precommitted evidence states used by ALPHAC: when a point
 estimate may be shown, when a target is only observed, and what must be true before the target can
 be described as statistically established.</p>
-<h2>Abstract</h2>
+<h2 id="reader-section-1" data-reader-anchor="true">Abstract</h2>
 <p>The easiest time to report an extraordinary risk-adjusted return is when the record is shortest.
 Sampling error is widest, the worst regime may not have occurred, and one favorable sequence can
 dominate the estimate. ALPHAC therefore separates four states: an immature record, an
@@ -124,7 +123,7 @@ fresh passing broker reconciliation are mandatory provenance gates. Realized dra
 expected maximum drawdown, and modeled tail drawdown are reported as different quantities. The
 standard is deliberately harder to satisfy than displaying a computed ratio because its purpose is
 to prevent a target from becoming an achievement through presentation alone.</p>
-<h2>1. The claim being controlled</h2>
+<h2 id="reader-section-2" data-reader-anchor="true">1. The claim being controlled</h2>
 <p>A Sharpe ratio is a ratio of estimated mean excess return to estimated return volatility. Both
 terms are uncertain, and their ratio is especially unstable over a short record. Annualization does
 not create information: multiplying a daily ratio by the square root of 365 changes its unit, not
@@ -140,7 +139,7 @@ precommitted probability and sample length.</li>
 </ol>
 <p>These statements are not interchangeable. In particular, a point estimate at or above 1.5 is an
 observation about the sample. It is not statistical establishment of a forward Sharpe of 1.5.</p>
-<h2>2. Return series and annualization</h2>
+<h2 id="reader-section-3" data-reader-anchor="true">2. Return series and annualization</h2>
 <p>The input is the flagship paper curve: strictly increasing UTC dates and finite, strictly positive
 equity marks. For consecutive published marks (E_{t-1}) and (E_t), the simple return is</p>
 <p>[
@@ -162,7 +161,7 @@ SR_{ann} = SR_d\sqrt{365}.
 <p>The 365-day convention matches the flagship&#39;s cross-asset paper calendar and the engine&#39;s frozen
 daily analytics convention. It is a reporting convention only. The probabilistic calculation uses
 the per-period ratio and the actual return count.</p>
-<h2>3. Probability that Sharpe exceeds the target</h2>
+<h2 id="reader-section-4" data-reader-anchor="true">3. Probability that Sharpe exceeds the target</h2>
 <p>The Probabilistic Sharpe Ratio accounts for finite sample length and non-normal return moments. Let
 (\gamma_3) be sample skewness and (\gamma_4) non-excess kurtosis, where a Gaussian distribution
 has kurtosis 3. Against per-period benchmark (SR^*), the probability is</p>
@@ -178,8 +177,8 @@ it does not establish that the governing 1.5 target has been reached.</p>
 <p>The implementation calls the same tested Probabilistic Sharpe Ratio routine used by the research
 engine. It does not feed an annualized ratio into a per-period formula. The annualized target is
 converted to the daily benchmark first, and (T) remains the count of daily return observations.</p>
-<h2>4. Frozen evidence states</h2>
-<table>
+<h2 id="reader-section-5" data-reader-anchor="true">4. Frozen evidence states</h2>
+<table tabindex="0" data-reader-focus="true">
 <thead>
 <tr>
 <th>State</th>
@@ -217,7 +216,7 @@ converted to the daily benchmark first, and (T) remains the count of daily retur
 annual figure. The 756-return establishment threshold aligns the live claim with the research
 program&#39;s three-year minimum out-of-sample evidence horizon. Neither number is selected from the
 observed result. Both were frozen while the current record remained immature.</p>
-<h2>5. Provenance is part of the statistic</h2>
+<h2 id="reader-section-6" data-reader-anchor="true">5. Provenance is part of the statistic</h2>
 <p>A return series cannot establish the performance of a specification unless the specification and
 record are identifiable. Every one of the following checks is mandatory:</p>
 <ul>
@@ -251,7 +250,7 @@ first genuine complete cycle is persisted, the public maturity state is
 <p>Any trading configuration change starts a new evidence epoch. Returns from materially different
 specifications cannot be pooled silently. The live-change declaration records the boundary, and a
 new contract must state whether any prior observations remain admissible for a new claim.</p>
-<h2>6. Three drawdown quantities, not one</h2>
+<h2 id="reader-section-7" data-reader-anchor="true">6. Three drawdown quantities, not one</h2>
 <p>The public record distinguishes:</p>
 <ol>
 <li><strong>Realized live maximum drawdown:</strong> the deepest peak-to-trough decline observed in the paper
@@ -284,7 +283,7 @@ or dynamic ladder state.
 <code>/glassbox/forward_drawdown_evidence.json</code> records the failed equivalence checks and binds the study,
 contracts and implementation sources by SHA-256. The maturity report labels the objective
 <code>LIVE_EXPECTED_MAX_DRAWDOWN_NOT_ESTABLISHED</code>.</p>
-<h2>7. Diversification evidence is a separate gate</h2>
+<h2 id="reader-section-8" data-reader-anchor="true">7. Diversification evidence is a separate gate</h2>
 <p>The exact current-composition diversification study uses the same four fixed-weight sleeve curves,
 missing-mark policy and strategic overlay as the current drawdown study. Sleeve correlation is
 computed from the four sleeve returns; the overlay remains separate. The 1,061-row research window
@@ -299,7 +298,7 @@ adjudicated, and “near zero” is not used as a substitute for the signed gate
 marginal historical book-Sharpe diagnostics, all labelled research simulation rather than forward
 evidence. The research curves end before the broker-reconciled record begins, so live-forward
 diversification remains unestablished.</p>
-<h2>8. Reproduction and mutation checks</h2>
+<h2 id="reader-section-9" data-reader-anchor="true">8. Reproduction and mutation checks</h2>
 <p>The evaluator is <code>scripts/evaluate_forward_evidence_maturity.py</code>. It reads twelve authorities:</p>
 <ul>
 <li><code>config/forward_evidence_contract.json</code>;</li>
@@ -334,7 +333,7 @@ with the complete attribution verdict above. The first successful receipt is the
 exact deployment receipt, preventing later cycles from rewriting the historical claim about what
 first proved the runtime.</p>
 <p>Run the focused verification with:</p>
-<pre><code class="language-text">uv run python scripts/evaluate_forward_evidence_maturity.py
+<pre tabindex="0" data-reader-focus="true"><code class="language-text">uv run python scripts/evaluate_forward_evidence_maturity.py
 uv run pytest -q tests/unit/test_forward_drawdown_evidence.py tests/unit/test_forward_evidence_maturity.py
 </code></pre>
 <p>The tests construct synthetic curves for every evidence state. They also mutate the configuration
@@ -343,7 +342,7 @@ crypto-attribution completeness. Drawdown-specific mutations alter the simulatio
 study cell, quantile ordering and declared live configuration. Every mutation must fail closed. The
 test for statistical establishment uses a sufficiently long synthetic series; it does not weaken
 the 756-return gate to make a short fixture pass.</p>
-<h2>9. Limits</h2>
+<h2 id="reader-section-10" data-reader-anchor="true">9. Limits</h2>
 <p>This standard governs the language used for one continuous paper-trading specification. It does
 not turn paper execution into funded performance, prove that fills scale to institutional capital,
 eliminate non-stationarity, or guarantee that a statistically established historical ratio will
@@ -354,12 +353,12 @@ attestation.</p>
 still carry the full search context through Deflated Sharpe Ratio and the union trial ledger. The
 forward paper specification is evaluated as a predeclared continuous record; it is not permission
 to select the best live variant after observing several.</p>
-<h2>Claim boundary</h2>
+<h2 id="reader-section-11" data-reader-anchor="true">Claim boundary</h2>
 <p>This is a methodology and disclosure standard authored by Arhan Canli. It defines when ALPHAC may
 describe a paper-trading Sharpe target as observed or statistically established. It makes no claim
 that the current record has established the target, no claim of real-money performance, and no
 guarantee of future returns or maximum loss.</p>
-<h2>References</h2>
+<h2 id="reader-section-12" data-reader-anchor="true">References</h2>
 <ul>
 <li>Bailey, David H., and Marcos López de Prado. “The Sharpe Ratio Efficient Frontier.” <em>Journal of
 Risk</em> 15, no. 2 (2012).</li>
@@ -385,7 +384,7 @@ Bias, Backtest Overfitting, and Non-Normality.” <em>Journal of Portfolio Manag
       </p>
       <details class="paper__citation">
         <summary>Cite this report</summary>
-        <pre><code>@techreport{canli2026forwardsharpeevidencestandard,
+        <pre tabindex="0" data-reader-focus="true"><code>@techreport{canli2026forwardsharpeevidencestandard,
   author      = {Canli, Arhan},
   title       = {When a Forward Sharpe Ratio Becomes Evidence},
   institution = {Canli Capital},
@@ -403,7 +402,27 @@ Bias, Backtest Overfitting, and Non-Normality.” <em>Journal of Portfolio Manag
     </footer>
   </article>
 </main>
-<footer class="cc-footer" id="footer" data-product-shell="v3">
+<footer class="cc-footer" id="footer" data-product-shell="v3" data-shell-revision="4">
+  <details class="cc-footer__context"><summary>About the research-to-record workflow</summary><section class="cc-handoff" aria-labelledby="cc-handoff-title">
+    <div class="cc-handoff__viewport">
+      <div class="cc-handoff__intro"><p>Research → Validation → Publication</p><h2 id="cc-handoff-title">From an idea.<br />To a record.</h2><p>Carry the inputs, assumptions and limits with the result. The evidence should survive every handoff.</p></div>
+      <div class="cc-handoff__stage" aria-hidden="true">
+        <svg class="cc-handoff__route" viewBox="0 0 1000 300" preserveAspectRatio="none"><path class="cc-handoff__track" d="M120 210C280 210 310 85 500 85S720 210 880 210"/><path class="cc-handoff__trace" pathLength="1" d="M120 210C280 210 310 85 500 85S720 210 880 210"/></svg>
+        <div class="cc-handoff__dock cc-handoff__dock--inputs"><i></i><i></i><i></i></div>
+        <div class="cc-handoff__gate"><i></i><i></i><i></i></div>
+        <div class="cc-handoff__dock cc-handoff__dock--record"><i></i><i></i><i></i></div>
+        <div class="cc-handoff__packet">
+          <img src="/cinema/optical-master-v3-1536.webp" width="1536" height="1536" loading="lazy" alt="" />
+        </div>
+      </div>
+      <div class="cc-handoff__steps">
+        <a href="/research" data-handoff-step="0"><span>Define</span><strong>The research packet</strong><small>Inputs, rules and the failed trials.</small><em>Inspect the research ↗</em></a>
+        <a href="/developers#validation" data-handoff-step="1"><span>Reproduce</span><strong>The calculation receipt</strong><small>Your inputs. Declared arithmetic.</small><em>Explore the validation API ↗</em></a>
+        <a href="/verify" data-handoff-step="2"><span>Inspect</span><strong>The published record</strong><small>Sources, corrections and boundaries.</small><em>Verify the evidence ↗</em></a>
+      </div>
+      <p class="cc-handoff__boundary">Conceptual workflow. This animation sends no request. A receipt is not proof of future returns.</p>
+    </div>
+  </section></details>
   <div class="cc-footer__lead">
     <a class="cc-footer__brand" href="/">Canli Capital</a>
     <p>Build the claim. Publish the evidence. Keep the failures.</p>
@@ -458,6 +477,9 @@ Bias, Backtest Overfitting, and Non-Normality.” <em>Journal of Portfolio Manag
     record begins 2026-08-07; the years before it are engineering, not track record.</p>
     <span>Copyright Arhan Canli</span>
   </div>
+  <div class="cc-footer__wordmark" aria-hidden="true">Canli Capital<span><svg viewBox="0 0 80 80" focusable="false" aria-hidden="true"><path d="M12 68 68 12M12 12h56v56" fill="none" stroke="currentColor" stroke-width="4" /></svg></span></div>
+  <script type="module" src="/js/site-motion.js"></script>
 </footer>
-</body>
+
+<script type="module" src="/js/reader-experience.js"></script></body>
 </html>

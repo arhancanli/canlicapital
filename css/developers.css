@@ -20,6 +20,15 @@
 
 * { box-sizing: border-box; }
 body.dev-page { margin: 0; color: var(--dev-ink); background: var(--dev-paper); font-family: Inter, Arial, sans-serif; }
+body.dev-page { --dev-night: #080b10; --dev-paper: #f2f4f8; --dev-mint: #dce5ff; --dev-cyan: #b5c8ff; }
+.dev-page [id] { scroll-margin-top: 105px; }
+.dev-page .dev-hero { background: #080b10; }
+.dev-page .dev-hero h1 { max-width: 21ch; font-weight: 500; line-height: 1.02; letter-spacing: -.045em; }
+.dev-page .dev-hero .dev-lead { max-width: 65ch; font-weight: 400; }
+.dev-hero-note { max-width: 78ch; color: #b4bfd2; font-size: .85rem; line-height: 1.7; margin-top: 23px; }
+.dev-hero-note a { color: #d1dcff; text-underline-offset: 4px; }
+.dev-page .dev-button { border-radius: 25px; }
+.dev-page .dev-hero .dev-button--primary:hover { color: #080b10; background: #fff; }
 .dev-page code { font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 0.9em; word-break: break-word; }
 
 .dev-skip {
@@ -125,6 +134,7 @@ body.dev-page { margin: 0; color: var(--dev-ink); background: var(--dev-paper); 
 .dev-snippet { min-width: 0; }
 .dev-snippet-label { margin: 0 0 4px; color: var(--dev-muted); font: 500 0.68rem/1.4 "IBM Plex Mono", monospace; letter-spacing: 0.08em; text-transform: uppercase; }
 .dev-snippet .dev-code { margin-top: 0; max-height: 320px; }
+.dev-code:focus-visible, .dev-table:focus-visible { outline: 3px solid var(--cin-blue); outline-offset: 3px; scroll-margin-top: 100px; }
 
 /* Quickstart: three copy-ready steps, first thing under the H1. Added for the super-easy setup. */
 .dev-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: 22px; margin: 0; padding: 0; list-style: none; }

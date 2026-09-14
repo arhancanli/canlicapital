@@ -27,52 +27,47 @@
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=optional" /></noscript>
 <link rel="stylesheet" href="/css/product-shell.css" />
 <link rel="stylesheet" href="/css/dsr-tool.css" />
+<link rel="stylesheet" href="/css/tool-experience.css" />
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Deflated Sharpe ratio calculator (PSR and DSR)","alternateName":"Deflated Sharpe calculator","url":"https://canlicapital.com/tools/deflated-sharpe","description":"A Probabilistic Sharpe ratio calculator that also reports its Deflated form, exposing trial count, dispersion, sample length and non-normal return assumptions.","applicationCategory":"FinanceApplication","operatingSystem":"Any modern web browser","author":{"@id":"https://canlicapital.com/#arhan-canli"},"creator":{"@id":"https://canlicapital.com/#arhan-canli"},"isAccessibleForFree":true,"citation":"https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2460551"}</script>
-</head>
+
+<!-- release-style:start --><link rel="stylesheet" href="/css/release-readiness.css" /><!-- release-style:end --></head>
 <body class="dsr-page">
 <a class="dsr-skip" href="#calculator">Skip to calculator</a>
-<header class="cc-shell" id="nav" data-product-shell="v3">
+<header class="cc-shell" id="nav" data-product-shell="v3" data-shell-revision="4">
   <a class="cc-shell__brand" href="/" aria-label="Canli Capital, home">
     <span class="cc-shell__mark" aria-hidden="true"><i></i></span>
     <span>Canli Capital</span>
   </a>
-  <a class="cc-shell__status" href="/measurements/alpaca-broker-reconciliation" aria-label="Current record status">
-    <span class="status-dot" aria-hidden="true"></span>
-    <span>Public paper record</span>
-  </a>
   <nav class="cc-shell__primary" aria-label="Primary navigation">
-<a class="cc-shell__link" href="https://app.canlicapital.com/dashboard" rel="noreferrer">Live</a>
-<a class="cc-shell__link" href="/research">Research</a>
-<a class="cc-shell__link" href="/trials">Trials</a>
 <a class="cc-shell__link" href="/systems">Systems</a>
-<a class="cc-shell__link" href="/methodology" aria-current="page" data-current="true">Methodology</a>
+<a class="cc-shell__link" href="/research">Research</a>
 <a class="cc-shell__link" href="/developers">Developers</a>
 <a class="cc-shell__link" href="/verify">Verify</a>
   </nav>
   <details class="cc-shell__index">
-    <summary><span class="cc-shell__index-wide">More</span><span class="cc-shell__index-compact">Menu</span></summary>
+    <summary><span class="cc-shell__index-wide">Explore</span><span class="cc-shell__index-compact">Menu</span></summary>
     <div class="cc-shell__panel">
       <div>
-        <span class="cc-shell__panel-label">Core</span>
+        <span class="cc-shell__panel-label">Research &amp; strategies</span>
         <nav aria-label="Core routes"><a class="cc-shell__panel-link" href="https://app.canlicapital.com/dashboard" rel="noreferrer">Live</a>
 <a class="cc-shell__panel-link" href="/research">Research</a>
 <a class="cc-shell__panel-link" href="/trials">Trials</a>
 <a class="cc-shell__panel-link" href="/systems">Systems</a>
-<a class="cc-shell__panel-link" href="/methodology" aria-current="page" data-current="true">Methodology</a>
-<a class="cc-shell__panel-link" href="/developers">Developers</a>
-<a class="cc-shell__panel-link" href="/verify">Verify</a></nav>
+<a class="cc-shell__panel-link" href="/methodology" data-current="true">Methodology</a>
+<a class="cc-shell__panel-link" href="/performance">Performance</a></nav>
       </div>
       <div>
-        <span class="cc-shell__panel-label">Institution</span>
-        <nav aria-label="Institution routes"><a class="cc-shell__panel-link" href="/progress">Corrections</a>
-<a class="cc-shell__panel-link" href="/performance">Performance</a>
+        <span class="cc-shell__panel-label">Evidence &amp; accountability</span>
+        <nav aria-label="Institution routes"><a class="cc-shell__panel-link" href="/verify">Verify</a>
+<a class="cc-shell__panel-link" href="/progress">Corrections</a>
 <a class="cc-shell__panel-link" href="/founder">Founder</a>
 <a class="cc-shell__panel-link" href="/open">Open data</a>
 <a class="cc-shell__panel-link" href="/measurements">Measurements</a></nav>
       </div>
       <div>
-        <span class="cc-shell__panel-label">Tools</span>
-        <nav aria-label="Tools"><a class="cc-shell__panel-link" href="/tools">All tools</a>
+        <span class="cc-shell__panel-label">Build &amp; reproduce</span>
+        <nav aria-label="Tools"><a class="cc-shell__panel-link" href="/developers">Developers</a>
+<a class="cc-shell__panel-link" href="/tools">All tools</a>
 <a class="cc-shell__panel-link" href="/how-to-validate-a-backtest">How to validate a backtest</a></nav>
       </div>
       <div>
@@ -84,11 +79,15 @@
 <a class="cc-shell__panel-link" href="https://github.com/arhancanli/canli-pit-lake" rel="noreferrer">canli-pit-lake</a>
 <a class="cc-shell__panel-link" href="https://github.com/arhancanli/canli-backtest" rel="noreferrer">canli-backtest</a></nav>
       </div>
-      <p>Observed, simulated, model-estimated and planned claims remain visibly separate.</p>
+      <div class="cc-shell__panel-foot">
+        <a class="cc-shell__status" href="/measurements/alpaca-broker-reconciliation" aria-label="Current record status"><span class="status-dot" aria-hidden="true"></span><span>Public paper record</span></a>
+        <p>Observed, simulated, model-estimated and planned claims remain visibly separate.</p>
+      </div>
     </div>
   </details>
   <a class="cc-shell__source" href="/engineering" title="Open-source engineering: the engine, the data layer and the backtester"><svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true" focusable="false"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg><span>Source</span></a>
-  <a class="cc-shell__cta" href="https://app.canlicapital.com/dashboard">Enter live record <span aria-hidden="true">↗</span></a>
+  <a class="cc-shell__cta" href="https://app.canlicapital.com/dashboard">Live record <span aria-hidden="true">↗</span></a>
+  <script type="module" src="/js/navigation.js"></script>
 </header>
 <main>
   <section class="dsr-hero" aria-labelledby="dsr-title">
@@ -175,7 +174,7 @@
           <div class="dsr-selection-seal">
             <span>Published union context</span>
             <strong>229 identities</strong>
-            <code>a22a23dbfe48e5e7...</code>
+            <code>e5a1ee200f71f515...</code>
             <p>Reducing the trial count or dispersion after observing outcomes flatters DSR. The selection union must be defined independently of the selected result.</p>
           </div>
         </fieldset>
@@ -195,10 +194,10 @@
           <div class="dsr-rail__axis"><span id="dsr-axis-min">...</span><span>Annualized Sharpe</span><span id="dsr-axis-max">...</span></div>
         </div>
         <dl class="dsr-readout">
-          <div><dt>PSR against zero</dt><dd id="dsr-psr">...</dd><small>Sampling uncertainty only</small></div>
-          <div><dt>Best-by-luck benchmark</dt><dd id="dsr-benchmark">...</dd><small>Annualized for display</small></div>
-          <div><dt>Search haircut</dt><dd id="dsr-haircut">...</dd><small>Observed minus benchmark</small></div>
-          <div><dt>Non-normality term</dt><dd id="dsr-variance-term">...</dd><small>Must remain positive</small></div>
+          <div><dt>PSR against zero</dt><dd id="dsr-psr">...</dd><dd class="dsr-readout-note"><small>Sampling uncertainty only</small></dd></div>
+          <div><dt>Best-by-luck benchmark</dt><dd id="dsr-benchmark">...</dd><dd class="dsr-readout-note"><small>Annualized for display</small></dd></div>
+          <div><dt>Search haircut</dt><dd id="dsr-haircut">...</dd><dd class="dsr-readout-note"><small>Observed minus benchmark</small></dd></div>
+          <div><dt>Non-normality term</dt><dd id="dsr-variance-term">...</dd><dd class="dsr-readout-note"><small>Must remain positive</small></dd></div>
         </dl>
         <p class="dsr-error" id="dsr-error" role="alert" hidden></p>
       </section>
@@ -233,7 +232,7 @@
     <div><p class="dsr-label">Reproduce and inspect</p><h2 id="source-title">The interface is downstream of the evidence.</h2></div>
     <div class="dsr-source__ledger">
       <a href="/glassbox/deflated_sharpe_calculator_contract.json"><span>Formula contract</span><strong>4f0043376bff896f...</strong><small>Golden vectors and policy boundary</small></a>
-      <a href="/glassbox/trial_ledger.json"><span>Trial union</span><strong>a22a23dbfe48e5e7...</strong><small>Current N and identity-aligned V[SR]</small></a>
+      <a href="/glassbox/trial_ledger.json"><span>Trial union</span><strong>e5a1ee200f71f515...</strong><small>Current N and identity-aligned V[SR]</small></a>
       <a href="https://github.com/arhancanli/alphac/blob/9b92f5128acfdabbc9c3160348004c5b3eba6f05/src/alphaforge/validation/dsr.py" rel="noreferrer"><span>Python implementation</span><strong>ac2f18440e21b824...</strong><small>Production arithmetic in ALPHAC</small></a>
       <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2460551" rel="noreferrer"><span>Primary paper</span><strong>Bailey and López de Prado</strong><small>Journal of Portfolio Management 40(5), 94-107 (2014)</small></a>
     </div>
@@ -245,7 +244,27 @@
       <a href="/developers#api-deflated-sharpe">the validation API</a>.</p>
   </section>
 </main>
-<footer class="cc-footer" id="footer" data-product-shell="v3">
+<footer class="cc-footer" id="footer" data-product-shell="v3" data-shell-revision="4">
+  <details class="cc-footer__context"><summary>About the research-to-record workflow</summary><section class="cc-handoff" aria-labelledby="cc-handoff-title">
+    <div class="cc-handoff__viewport">
+      <div class="cc-handoff__intro"><p>Research → Validation → Publication</p><h2 id="cc-handoff-title">From an idea.<br />To a record.</h2><p>Carry the inputs, assumptions and limits with the result. The evidence should survive every handoff.</p></div>
+      <div class="cc-handoff__stage" aria-hidden="true">
+        <svg class="cc-handoff__route" viewBox="0 0 1000 300" preserveAspectRatio="none"><path class="cc-handoff__track" d="M120 210C280 210 310 85 500 85S720 210 880 210"/><path class="cc-handoff__trace" pathLength="1" d="M120 210C280 210 310 85 500 85S720 210 880 210"/></svg>
+        <div class="cc-handoff__dock cc-handoff__dock--inputs"><i></i><i></i><i></i></div>
+        <div class="cc-handoff__gate"><i></i><i></i><i></i></div>
+        <div class="cc-handoff__dock cc-handoff__dock--record"><i></i><i></i><i></i></div>
+        <div class="cc-handoff__packet">
+          <img src="/cinema/optical-master-v3-1536.webp" width="1536" height="1536" loading="lazy" alt="" />
+        </div>
+      </div>
+      <div class="cc-handoff__steps">
+        <a href="/research" data-handoff-step="0"><span>Define</span><strong>The research packet</strong><small>Inputs, rules and the failed trials.</small><em>Inspect the research ↗</em></a>
+        <a href="/developers#validation" data-handoff-step="1"><span>Reproduce</span><strong>The calculation receipt</strong><small>Your inputs. Declared arithmetic.</small><em>Explore the validation API ↗</em></a>
+        <a href="/verify" data-handoff-step="2"><span>Inspect</span><strong>The published record</strong><small>Sources, corrections and boundaries.</small><em>Verify the evidence ↗</em></a>
+      </div>
+      <p class="cc-handoff__boundary">Conceptual workflow. This animation sends no request. A receipt is not proof of future returns.</p>
+    </div>
+  </section></details>
   <div class="cc-footer__lead">
     <a class="cc-footer__brand" href="/">Canli Capital</a>
     <p>Build the claim. Publish the evidence. Keep the failures.</p>
@@ -300,8 +319,10 @@
     record begins 2026-08-07; the years before it are engineering, not track record.</p>
     <span>Copyright Arhan Canli</span>
   </div>
+  <div class="cc-footer__wordmark" aria-hidden="true">Canli Capital<span><svg viewBox="0 0 80 80" focusable="false" aria-hidden="true"><path d="M12 68 68 12M12 12h56v56" fill="none" stroke="currentColor" stroke-width="4" /></svg></span></div>
+  <script type="module" src="/js/site-motion.js"></script>
 </footer>
-<script type="application/json" id="dsr-tool-config">{"schema":"canli.dsr-tool-client-config.v1","defaults":{"observed_sharpe_annualized":1.5,"observations":730,"periods_per_year":365,"skew":-0.5,"non_excess_kurtosis":5,"effective_independent_trials":229,"cross_trial_sharpe_sd_annualized":0.5737620035120672},"current_union":{"n_hypotheses":229,"sharpe_variance_per_period":0.0009019255799292642,"generated_at":"2026-09-05T20:27:10.960755+00:00","source_content_hash":"sha256:e6334194b7dddeda5c04e689b4949945dfec9b7994f1703766b618ca01ce009f","source_bytes_sha256":"sha256:a22a23dbfe48e5e7f29260d9ea952cb79951af789e207eea8585a67b194134aa"},"contract":{"content_hash":"sha256:4f0043376bff896f427e0314e7e29848751424863337fcf0bfd7ec9429502b8a","claim_boundary":"This contract reproduces ALPHAC's PSR and DSR arithmetic for supplied inputs. It does not validate a strategy, prove profitability, estimate current portfolio performance, or replace the complete admission contract.","policy":{"admission_schema":"canli.alphac-sleeve-admission-contract.v7","per_sleeve_dsr":"mandatory_measurement_not_a_universal_gate","incremental_admission":"not_decided_by_dsr_alone","full_union_book_maturity_threshold":0.95,"threshold_context":"The 0.95 threshold applies to a full-union portfolio-maturity claim. It is not a per-sleeve gate and a calculator result is not an admission verdict."},"selection_warning":"Reducing the trial count or dispersion after observing outcomes flatters DSR. The selection union must be defined independently of the selected result.","test_vectors":[{"id":"daily_long_sample_heavy_tail","inputs":{"observed_sharpe_annualized":1.5,"observations":730,"periods_per_year":365,"skew":-0.5,"non_excess_kurtosis":5,"effective_independent_trials":229,"cross_trial_sharpe_sd_annualized":0.57},"outputs":{"observed_sharpe_per_period":0.07851358838853206,"cross_trial_sharpe_variance_per_period":0.0008901369863013697,"expected_max_sharpe_per_period":0.08382167718470863,"expected_max_sharpe_annualized":1.6014108940590446,"psr_against_zero":0.9809279924681973,"deflated_sharpe_ratio":0.44426268122044366,"non_normality_variance_term":1.04542117775591}},{"id":"trading_days_short_search","inputs":{"observed_sharpe_annualized":1,"observations":252,"periods_per_year":252,"skew":0,"non_excess_kurtosis":3,"effective_independent_trials":10,"cross_trial_sharpe_sd_annualized":0.5},"outputs":{"observed_sharpe_per_period":0.0629940788348712,"cross_trial_sharpe_variance_per_period":0.0009920634920634918,"expected_max_sharpe_per_period":0.049595184764089716,"expected_max_sharpe_annualized":0.7872991506724859,"psr_against_zero":0.84062387995459,"deflated_sharpe_ratio":0.5839730560867282,"non_normality_variance_term":1.001984126984127}},{"id":"large_search_negative_skew","inputs":{"observed_sharpe_annualized":2.2,"observations":1260,"periods_per_year":252,"skew":-1,"non_excess_kurtosis":9,"effective_independent_trials":1000,"cross_trial_sharpe_sd_annualized":0.75},"outputs":{"observed_sharpe_per_period":0.13858697343671667,"cross_trial_sharpe_variance_per_period":0.0022321428571428566,"expected_max_sharpe_per_period":0.153790035936073,"expected_max_sharpe_annualized":2.4413411352392136,"psr_against_zero":0.9999970868543218,"deflated_sharpe_ratio":0.3095140591397488,"non_normality_variance_term":1.1769996718494151}}]}}</script>
+<script type="application/json" id="dsr-tool-config">{"schema":"canli.dsr-tool-client-config.v1","defaults":{"observed_sharpe_annualized":1.5,"observations":730,"periods_per_year":365,"skew":-0.5,"non_excess_kurtosis":5,"effective_independent_trials":229,"cross_trial_sharpe_sd_annualized":0.5737620035120672},"current_union":{"n_hypotheses":229,"sharpe_variance_per_period":0.0009019255799292642,"generated_at":"2026-09-08T15:26:45.788832+00:00","source_content_hash":"sha256:f7fc561edd5489e77bd1db5f078a259a439e5b89b0957b0cece0a62a63bd0a00","source_bytes_sha256":"sha256:e5a1ee200f71f5150314dd7d64ec5b2e71e06a839a11bf9aa49ccaf30b46ff2a"},"contract":{"content_hash":"sha256:4f0043376bff896f427e0314e7e29848751424863337fcf0bfd7ec9429502b8a","claim_boundary":"This contract reproduces ALPHAC's PSR and DSR arithmetic for supplied inputs. It does not validate a strategy, prove profitability, estimate current portfolio performance, or replace the complete admission contract.","policy":{"admission_schema":"canli.alphac-sleeve-admission-contract.v7","per_sleeve_dsr":"mandatory_measurement_not_a_universal_gate","incremental_admission":"not_decided_by_dsr_alone","full_union_book_maturity_threshold":0.95,"threshold_context":"The 0.95 threshold applies to a full-union portfolio-maturity claim. It is not a per-sleeve gate and a calculator result is not an admission verdict."},"selection_warning":"Reducing the trial count or dispersion after observing outcomes flatters DSR. The selection union must be defined independently of the selected result.","test_vectors":[{"id":"daily_long_sample_heavy_tail","inputs":{"observed_sharpe_annualized":1.5,"observations":730,"periods_per_year":365,"skew":-0.5,"non_excess_kurtosis":5,"effective_independent_trials":229,"cross_trial_sharpe_sd_annualized":0.57},"outputs":{"observed_sharpe_per_period":0.07851358838853206,"cross_trial_sharpe_variance_per_period":0.0008901369863013697,"expected_max_sharpe_per_period":0.08382167718470863,"expected_max_sharpe_annualized":1.6014108940590446,"psr_against_zero":0.9809279924681973,"deflated_sharpe_ratio":0.44426268122044366,"non_normality_variance_term":1.04542117775591}},{"id":"trading_days_short_search","inputs":{"observed_sharpe_annualized":1,"observations":252,"periods_per_year":252,"skew":0,"non_excess_kurtosis":3,"effective_independent_trials":10,"cross_trial_sharpe_sd_annualized":0.5},"outputs":{"observed_sharpe_per_period":0.0629940788348712,"cross_trial_sharpe_variance_per_period":0.0009920634920634918,"expected_max_sharpe_per_period":0.049595184764089716,"expected_max_sharpe_annualized":0.7872991506724859,"psr_against_zero":0.84062387995459,"deflated_sharpe_ratio":0.5839730560867282,"non_normality_variance_term":1.001984126984127}},{"id":"large_search_negative_skew","inputs":{"observed_sharpe_annualized":2.2,"observations":1260,"periods_per_year":252,"skew":-1,"non_excess_kurtosis":9,"effective_independent_trials":1000,"cross_trial_sharpe_sd_annualized":0.75},"outputs":{"observed_sharpe_per_period":0.13858697343671667,"cross_trial_sharpe_variance_per_period":0.0022321428571428566,"expected_max_sharpe_per_period":0.153790035936073,"expected_max_sharpe_annualized":2.4413411352392136,"psr_against_zero":0.9999970868543218,"deflated_sharpe_ratio":0.3095140591397488,"non_normality_variance_term":1.1769996718494151}}]}}</script>
 <script type="module" src="/js/dsr-tool.js"></script>
 </body>
 </html>

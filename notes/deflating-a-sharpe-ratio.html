@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-page="notes">
+<html data-reader="notes" lang="en" data-page="notes">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -27,51 +27,46 @@
 <link rel="stylesheet" href="/css/product-shell.css" />
 <link rel="stylesheet" href="/css/notes.css" />
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"The arithmetic of not fooling yourself","description":"A Sharpe ratio of 1.14 with a p-value of 0.017. Publishable, on the face of it. Whether it means anything depends entirely on a number that does not appear in it: how many things you tried before this one.","url":"https://canlicapital.com/notes/deflating-a-sharpe-ratio","datePublished":"2026-08-27","dateModified":"2026-08-27","wordCount":1309,"inLanguage":"en","author":{"@id":"https://canlicapital.com/#arhan-canli"},"publisher":{"@id":"https://canlicapital.com/#organization"},"mainEntityOfPage":"https://canlicapital.com/notes/deflating-a-sharpe-ratio","isPartOf":{"@type":"Blog","@id":"https://canlicapital.com/notes","name":"Engineering notes"}}</script>
-</head>
+
+<link rel="stylesheet" href="/css/reader-experience.css" />
+<!-- release-style:start --><link rel="stylesheet" href="/css/release-readiness.css" /><!-- release-style:end --></head>
 <body class="note-page">
 <a class="note-skip" href="#content">Skip to content</a>
-<header class="cc-shell" id="nav" data-product-shell="v3">
+<header class="cc-shell" id="nav" data-product-shell="v3" data-shell-revision="4">
   <a class="cc-shell__brand" href="/" aria-label="Canli Capital, home">
     <span class="cc-shell__mark" aria-hidden="true"><i></i></span>
     <span>Canli Capital</span>
   </a>
-  <a class="cc-shell__status" href="/measurements/alpaca-broker-reconciliation" aria-label="Current record status">
-    <span class="status-dot" aria-hidden="true"></span>
-    <span>Public paper record</span>
-  </a>
   <nav class="cc-shell__primary" aria-label="Primary navigation">
-<a class="cc-shell__link" href="https://app.canlicapital.com/dashboard" rel="noreferrer">Live</a>
-<a class="cc-shell__link" href="/research">Research</a>
-<a class="cc-shell__link" href="/trials">Trials</a>
 <a class="cc-shell__link" href="/systems">Systems</a>
-<a class="cc-shell__link" href="/methodology">Methodology</a>
+<a class="cc-shell__link" href="/research">Research</a>
 <a class="cc-shell__link" href="/developers">Developers</a>
 <a class="cc-shell__link" href="/verify">Verify</a>
   </nav>
   <details class="cc-shell__index">
-    <summary><span class="cc-shell__index-wide">More</span><span class="cc-shell__index-compact">Menu</span></summary>
+    <summary><span class="cc-shell__index-wide">Explore</span><span class="cc-shell__index-compact">Menu</span></summary>
     <div class="cc-shell__panel">
       <div>
-        <span class="cc-shell__panel-label">Core</span>
+        <span class="cc-shell__panel-label">Research &amp; strategies</span>
         <nav aria-label="Core routes"><a class="cc-shell__panel-link" href="https://app.canlicapital.com/dashboard" rel="noreferrer">Live</a>
 <a class="cc-shell__panel-link" href="/research">Research</a>
 <a class="cc-shell__panel-link" href="/trials">Trials</a>
 <a class="cc-shell__panel-link" href="/systems">Systems</a>
 <a class="cc-shell__panel-link" href="/methodology">Methodology</a>
-<a class="cc-shell__panel-link" href="/developers">Developers</a>
-<a class="cc-shell__panel-link" href="/verify">Verify</a></nav>
+<a class="cc-shell__panel-link" href="/performance">Performance</a></nav>
       </div>
       <div>
-        <span class="cc-shell__panel-label">Institution</span>
-        <nav aria-label="Institution routes"><a class="cc-shell__panel-link" href="/progress">Corrections</a>
-<a class="cc-shell__panel-link" href="/performance">Performance</a>
+        <span class="cc-shell__panel-label">Evidence &amp; accountability</span>
+        <nav aria-label="Institution routes"><a class="cc-shell__panel-link" href="/verify">Verify</a>
+<a class="cc-shell__panel-link" href="/progress">Corrections</a>
 <a class="cc-shell__panel-link" href="/founder">Founder</a>
 <a class="cc-shell__panel-link" href="/open">Open data</a>
 <a class="cc-shell__panel-link" href="/measurements">Measurements</a></nav>
       </div>
       <div>
-        <span class="cc-shell__panel-label">Tools</span>
-        <nav aria-label="Tools"><a class="cc-shell__panel-link" href="/tools">All tools</a>
+        <span class="cc-shell__panel-label">Build &amp; reproduce</span>
+        <nav aria-label="Tools"><a class="cc-shell__panel-link" href="/developers">Developers</a>
+<a class="cc-shell__panel-link" href="/tools">All tools</a>
 <a class="cc-shell__panel-link" href="/how-to-validate-a-backtest">How to validate a backtest</a></nav>
       </div>
       <div>
@@ -83,13 +78,17 @@
 <a class="cc-shell__panel-link" href="https://github.com/arhancanli/canli-pit-lake" rel="noreferrer">canli-pit-lake</a>
 <a class="cc-shell__panel-link" href="https://github.com/arhancanli/canli-backtest" rel="noreferrer">canli-backtest</a></nav>
       </div>
-      <p>Observed, simulated, model-estimated and planned claims remain visibly separate.</p>
+      <div class="cc-shell__panel-foot">
+        <a class="cc-shell__status" href="/measurements/alpaca-broker-reconciliation" aria-label="Current record status"><span class="status-dot" aria-hidden="true"></span><span>Public paper record</span></a>
+        <p>Observed, simulated, model-estimated and planned claims remain visibly separate.</p>
+      </div>
     </div>
   </details>
   <a class="cc-shell__source" href="/engineering" title="Open-source engineering: the engine, the data layer and the backtester"><svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true" focusable="false"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg><span>Source</span></a>
-  <a class="cc-shell__cta" href="https://app.canlicapital.com/dashboard">Enter live record <span aria-hidden="true">↗</span></a>
+  <a class="cc-shell__cta" href="https://app.canlicapital.com/dashboard">Live record <span aria-hidden="true">↗</span></a>
+  <script type="module" src="/js/navigation.js"></script>
 </header>
-<main id="content" tabindex="-1">
+<main id="content" tabindex="-1"><!-- reader-index:start --><aside class="reader-index"><a class="reader-index__back" href="/notes">Explore notes</a><details><summary>In this document</summary><nav aria-label="Document sections"><a href="#reader-section-1">The problem, stated precisely</a><a href="#reader-section-2">Why the benchmark must not be zero</a><a href="#reader-section-3">What is a deflated Sharpe ratio</a><a href="#reader-section-4">How many trials did you run?</a><a href="#reader-section-5">The trap I fell into while writing this</a><a href="#reader-section-6">The second instrument: does the winner survive?</a><a href="#reader-section-7">What it costs</a><a href="#reader-section-8">Three rules I would keep</a><a href="#reader-section-9">More notes</a></nav></details><a class="reader-index__verify" href="/verify">How to verify a claim ↗</a></aside><!-- reader-index:end -->
   <article class="note">
     <nav class="note-trail" aria-label="Breadcrumb">
       <a href="/notes">Engineering notes</a>
@@ -107,7 +106,7 @@
 <p><strong>Published 2026-08-27. Every figure below is printed by
 <a href="https://github.com/arhancanli/canli-backtest/blob/main/benchmarks/validation_throughput.py"><code>benchmarks/validation_throughput.py</code></a>
 in <code>canli-backtest</code>. Run it and you get these numbers.</strong></p>
-<h2>The problem, stated precisely</h2>
+<h2 id="reader-section-1" data-reader-anchor="true">The problem, stated precisely</h2>
 <p>Take a strategy with 1,260 daily returns, about five years. It has an annualised Sharpe ratio
 of <strong>+1.139</strong>.</p>
 <p>The first correction anyone should apply is for sample size and shape. A Sharpe estimated from
@@ -115,7 +114,7 @@ of <strong>+1.139</strong>.</p>
 Prado&#39;s <strong>Probabilistic Sharpe Ratio</strong> does this. For an observed per-period Sharpe <code>SR</code>
 against a benchmark <code>SR*</code>, over <code>T</code> observations, with sample skewness <code>g3</code> and non-excess
 sample kurtosis <code>g4</code>:</p>
-<pre><code>PSR(SR*) = Phi(z)
+<pre tabindex="0" data-reader-focus="true"><code>PSR(SR*) = Phi(z)
 
                  (SR - SR*) * sqrt(T - 1)
     z = -----------------------------------------
@@ -127,26 +126,26 @@ noise.</p>
 <p>That number is correct and it is close to useless, because it answers the question &quot;is this one
 series distinguishable from zero&quot; when the question that matters is &quot;is the <em>best of everything
 I tried</em> distinguishable from zero.&quot;</p>
-<h2>Why the benchmark must not be zero</h2>
+<h2 id="reader-section-2" data-reader-anchor="true">Why the benchmark must not be zero</h2>
 <p>If you run <code>N</code> strategy variants that genuinely have no edge, their estimated Sharpe ratios
 still scatter. The maximum of <code>N</code> draws from that scatter is not zero. It is a positive number
 that grows with <code>N</code>, and it grows whether or not any variant has an edge.</p>
 <p>So the honest benchmark is not zero. It is the Sharpe that the <em>luckiest of N nothing-strategies</em>
 would be expected to produce. Using the expected maximum of <code>N</code> draws with cross-trial Sharpe
 variance <code>V[SR]</code>:</p>
-<pre><code>SR* = sqrt(V[SR]) * ( (1 - g) * Q(1 - 1/N)  +  g * Q(1 - 1/(N*e)) )
+<pre tabindex="0" data-reader-focus="true"><code>SR* = sqrt(V[SR]) * ( (1 - g) * Q(1 - 1/N)  +  g * Q(1 - 1/(N*e)) )
 
     Q = Phi^-1, the normal quantile function
     g = 0.5772156649, the Euler-Mascheroni constant
     e = exp(1)
 </code></pre>
-<h2>What is a deflated Sharpe ratio</h2>
+<h2 id="reader-section-3" data-reader-anchor="true">What is a deflated Sharpe ratio</h2>
 <p>The <strong>Deflated Sharpe Ratio</strong> is simply the PSR evaluated against that benchmark instead of
 zero: <code>DSR = PSR(SR*)</code>.</p>
-<h2>How many trials did you run?</h2>
+<h2 id="reader-section-4" data-reader-anchor="true">How many trials did you run?</h2>
 <p>One return series. Unchanged. The only thing that moves is how many trials you admit to,
 against a trial family whose per-period Sharpes scatter with standard deviation 0.02:</p>
-<table>
+<table tabindex="0" data-reader-focus="true">
 <thead>
 <tr>
 <th align="right">trials <code>N</code></th>
@@ -186,7 +185,7 @@ the same Sharpe of 1.14 is <strong>admissible if you tried two things and inadmi
 ten</strong>.</p>
 <p>That is the entire argument for a trial ledger. The denominator is not paperwork. It is half of
 the result.</p>
-<h2>The trap I fell into while writing this</h2>
+<h2 id="reader-section-5" data-reader-anchor="true">The trap I fell into while writing this</h2>
 <p>The first version of this note, and the README that shipped with the repository, used
 <code>sr_trials_variance = 0.04</code> and reported that the same Sharpe deflates to <strong>0.000</strong> at 200
 trials. I published that. It is wrong, and the way it is wrong is more instructive than the
@@ -209,7 +208,7 @@ sentence.</strong> Nothing checks it. The types agree, the function returns, the
 and the conclusion is unaffected in direction so it never looks wrong. The only defence I know
 is to sweep the parameter you claim is driving the result and confirm it actually drives it. If
 the answer barely moves across the sweep, your headline is about something else.</p>
-<h2>The second instrument: does the winner survive?</h2>
+<h2 id="reader-section-6" data-reader-anchor="true">The second instrument: does the winner survive?</h2>
 <p>Deflation asks whether one Sharpe survives the search that produced it. <strong>Probability of
 Backtest Overfitting</strong> asks a sharper question: does in-sample rank predict out-of-sample rank
 at all?</p>
@@ -233,13 +232,13 @@ It returns <strong>0.569</strong>.</p>
 assertion, in the same run. If the implementation ever started finding structure in noise, that
 figure would move before the timing did, and a benchmark that only measured speed would stay
 green while computing nonsense.</p>
-<h2>What it costs</h2>
+<h2 id="reader-section-7" data-reader-anchor="true">What it costs</h2>
 <p>PBO over 2,000 observations and 100 configurations, 5,000 sampled splits: <strong>1.6 seconds</strong>. A
 deflated Sharpe on 1,260 daily returns: about <strong>300 microseconds</strong>.</p>
 <p>The point is not that these are fast. It is that at 300 microseconds there is no resource
 argument for running the honest test only on the candidate you already like. The reason people
 skip it is not compute.</p>
-<h2>Three rules I would keep</h2>
+<h2 id="reader-section-8" data-reader-anchor="true">Three rules I would keep</h2>
 <ol>
 <li><strong>The benchmark is never zero.</strong> If you selected the thing you are testing, the null it must
 beat is the best of what you searched.</li>
@@ -265,13 +264,33 @@ no edge and then deflates whatever you find against your own search.</em></p>
       <a href="/performance">status</a>, the withdrawn figures on <a href="/progress">corrections</a>,
       and the code on <a href="/engineering">engineering</a>.</p>
       <div class="note-more">
-        <h2>More notes</h2>
+        <h2 id="reader-section-9" data-reader-anchor="true">More notes</h2>
         <ul><li><a href="/notes/one-symbol">The one symbol that explained the whole gap</a></li><li><a href="/notes/seventy-files">Seventy files that were never meant to be public</a></li><li><a href="/notes/the-trade-that-lost-99-percent">The trade that lost 99 percent, and the guard I did not add</a></li></ul>
       </div>
     </footer>
   </article>
 </main>
-<footer class="cc-footer" id="footer" data-product-shell="v3">
+<footer class="cc-footer" id="footer" data-product-shell="v3" data-shell-revision="4">
+  <details class="cc-footer__context"><summary>About the research-to-record workflow</summary><section class="cc-handoff" aria-labelledby="cc-handoff-title">
+    <div class="cc-handoff__viewport">
+      <div class="cc-handoff__intro"><p>Research → Validation → Publication</p><h2 id="cc-handoff-title">From an idea.<br />To a record.</h2><p>Carry the inputs, assumptions and limits with the result. The evidence should survive every handoff.</p></div>
+      <div class="cc-handoff__stage" aria-hidden="true">
+        <svg class="cc-handoff__route" viewBox="0 0 1000 300" preserveAspectRatio="none"><path class="cc-handoff__track" d="M120 210C280 210 310 85 500 85S720 210 880 210"/><path class="cc-handoff__trace" pathLength="1" d="M120 210C280 210 310 85 500 85S720 210 880 210"/></svg>
+        <div class="cc-handoff__dock cc-handoff__dock--inputs"><i></i><i></i><i></i></div>
+        <div class="cc-handoff__gate"><i></i><i></i><i></i></div>
+        <div class="cc-handoff__dock cc-handoff__dock--record"><i></i><i></i><i></i></div>
+        <div class="cc-handoff__packet">
+          <img src="/cinema/optical-master-v3-1536.webp" width="1536" height="1536" loading="lazy" alt="" />
+        </div>
+      </div>
+      <div class="cc-handoff__steps">
+        <a href="/research" data-handoff-step="0"><span>Define</span><strong>The research packet</strong><small>Inputs, rules and the failed trials.</small><em>Inspect the research ↗</em></a>
+        <a href="/developers#validation" data-handoff-step="1"><span>Reproduce</span><strong>The calculation receipt</strong><small>Your inputs. Declared arithmetic.</small><em>Explore the validation API ↗</em></a>
+        <a href="/verify" data-handoff-step="2"><span>Inspect</span><strong>The published record</strong><small>Sources, corrections and boundaries.</small><em>Verify the evidence ↗</em></a>
+      </div>
+      <p class="cc-handoff__boundary">Conceptual workflow. This animation sends no request. A receipt is not proof of future returns.</p>
+    </div>
+  </section></details>
   <div class="cc-footer__lead">
     <a class="cc-footer__brand" href="/">Canli Capital</a>
     <p>Build the claim. Publish the evidence. Keep the failures.</p>
@@ -326,6 +345,9 @@ no edge and then deflates whatever you find against your own search.</em></p>
     record begins 2026-08-07; the years before it are engineering, not track record.</p>
     <span>Copyright Arhan Canli</span>
   </div>
+  <div class="cc-footer__wordmark" aria-hidden="true">Canli Capital<span><svg viewBox="0 0 80 80" focusable="false" aria-hidden="true"><path d="M12 68 68 12M12 12h56v56" fill="none" stroke="currentColor" stroke-width="4" /></svg></span></div>
+  <script type="module" src="/js/site-motion.js"></script>
 </footer>
-</body>
+
+<script type="module" src="/js/reader-experience.js"></script></body>
 </html>

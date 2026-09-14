@@ -1,0 +1,60 @@
+@import url('./cinema-tokens.css');
+
+/* The shared shell is authored once and regenerated across all public routes. */
+.cc-shell[data-product-shell] { background: var(--cin-header-background); border-color: var(--cin-night-rule); min-height: 78px; color: var(--cin-white); font-family: var(--cin-reading); }
+.cc-shell[data-product-shell] .cc-shell__brand { text-transform: uppercase; font-family: var(--cin-display); font-size: 1rem; letter-spacing: -.04em; }
+.cc-shell[data-product-shell] .cc-shell__mark i { border-color: var(--cin-white); }
+.cc-shell[data-product-shell] .cc-shell__primary { font-family: var(--cin-data); font-size: .64rem; }
+.cc-shell[data-product-shell] .cc-shell__cta { background: var(--cin-white); color: var(--cin-ink); border-radius: var(--cin-button-radius); }
+.cc-shell[data-product-shell] .cc-shell__cta:hover { background: var(--cin-copper); }
+.cc-shell[data-product-shell] .cc-shell__source { border: 0; padding-left: 0; padding-right: 0; }
+.cc-shell[data-product-shell] .cc-shell__panel { background: var(--cin-paper); color: var(--cin-ink); border-color: var(--cin-day-rule); box-shadow: 0 25px 60px var(--cin-shadow); }
+.cc-shell[data-product-shell] .cc-shell__panel-label { color: var(--cin-gray); }
+.cc-shell[data-product-shell] .cc-shell__panel-link { color: var(--cin-ink); border-color: var(--cin-day-rule); }
+.cc-shell[data-product-shell] .cc-shell__panel > *, .cc-footer[data-product-shell] .cc-footer__lead > * { min-width: 0; }
+.cc-shell[data-product-shell] .cc-shell__panel-link, .cc-footer[data-product-shell] :is(a, p) { overflow-wrap: anywhere; }
+.cc-shell[data-product-shell] .cc-shell__panel-link:hover { color: var(--cin-blue); }
+.cc-shell[data-product-shell] .cc-shell__panel > p { color: var(--cin-gray); border-color: var(--cin-day-rule); }
+.cc-shell[data-product-shell] .cc-shell__panel > div:first-child .cc-shell__panel-link { font-family: var(--cin-display); font-size: 1.5rem; letter-spacing: -.04em; }
+.cinema-home .cc-shell[data-product-shell] { margin-bottom: -78px; background: var(--cin-carbon); backdrop-filter: none; }
+.cinema-home .cc-shell[data-product-shell].is-top { background: linear-gradient(var(--cin-overlay), var(--cin-shadow)); }
+
+.cc-footer[data-product-shell] { display: block; background: var(--cin-footer-background); color: var(--cin-ink); border-top: 1px solid var(--cin-day-rule); padding-top: 75px; padding-bottom: 0; overflow: hidden; }
+.cc-footer[data-product-shell] .cc-footer__lead { border-color: var(--cin-day-rule); display: grid; grid-template-columns: 1fr 1fr; align-items: start; gap: 50px; }
+.cc-footer[data-product-shell] .cc-footer__brand { color: var(--cin-ink) !important; font: 500 2.6rem/1 var(--cin-display); letter-spacing: -.055em; text-transform: uppercase; }
+.cc-footer[data-product-shell] .cc-footer__lead p { color: var(--cin-gray); font-size: .95rem; line-height: 1.7; max-width: 35ch; }
+.cc-footer[data-product-shell] .cc-footer__routes { grid-template-columns: repeat(5, minmax(0, 1fr)); border-color: var(--cin-day-rule); padding: 45px 0 35px; }
+.cc-footer[data-product-shell] .cc-footer__routes nav > span { color: var(--cin-gray); }
+.cc-footer[data-product-shell] .cc-footer__routes a { color: var(--cin-ink); font-size: .73rem; }
+.cc-footer[data-product-shell] .cc-footer__routes a:hover { color: var(--cin-blue); }
+.cc-footer[data-product-shell] .cc-footer__boundary { color: var(--cin-gray); border-color: var(--cin-day-rule); padding-top: 25px; margin-top: 15px; }
+.cc-footer[data-product-shell] .cc-footer__wordmark { margin: 55px 0 -1.5vw; color: var(--cin-ink); font: 500 clamp(4rem, 11.8vw, 20rem)/.95 var(--cin-display); letter-spacing: -.075em; white-space: nowrap; text-transform: uppercase; user-select: none; }
+.cc-footer[data-product-shell] .cc-footer__wordmark span { color: var(--cin-blue); }
+.cc-footer[data-product-shell] .cc-footer__wordmark svg { display: inline-block; width: 1em; height: 1em; vertical-align: -.1em; }
+
+/* Matching entrances for the existing functional hubs. Their content and IDs stay. */
+body:has(.sys-hero), body:has(.research-hero), body:has(.perf-hero) { --void: var(--cin-carbon); --ink: var(--cin-carbon); --paper: var(--cin-white); --paper-dim: var(--cin-silver); --grey-900: var(--cin-ink); --signal: var(--cin-blue-light); }
+body .sys-hero, body .research-hero, body .perf-hero { background: var(--cin-carbon); isolation: isolate; position: relative; overflow: hidden; }
+body .sys-hero::after, body .research-hero::after, body .perf-hero::after { content: ""; position: absolute; z-index: -1; inset: 0; background: linear-gradient(90deg, var(--cin-carbon) 15%, var(--cin-overlay) 45%, var(--cin-clear)), url('/cinema/engine-hero.webp') right center / cover; opacity: .8; pointer-events: none; }
+body .research-hero::after { background-image: linear-gradient(90deg, var(--cin-carbon) 15%, var(--cin-overlay) 45%, var(--cin-clear)), url('/cinema/engine-api.webp'); }
+body .sys-hero h1, body .research-hero h1, body .perf-hero h1 { font-family: var(--cin-display); font-size: clamp(4rem, 8vw, 10rem); line-height: .98; text-transform: uppercase; letter-spacing: -.06em; }
+body .sys-hero .eyebrow, body .research-hero .eyebrow, body .perf-hero .eyebrow { color: var(--cin-silver); }
+body.dev-page { background: var(--cin-paper); color: var(--cin-ink); }
+body.dev-page .dev-hero { position: relative; isolation: isolate; overflow: hidden; background: var(--cin-carbon); color: var(--cin-white); padding: clamp(70px, 8vw, 130px) clamp(25px, 5vw, 80px); margin-bottom: 50px; }
+body.dev-page .dev-hero::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, var(--cin-carbon) 5%, var(--cin-overlay) 50%, var(--cin-shadow)), url('/cinema/engine-api.webp') center / cover; }
+body.dev-page .dev-hero h1 { font-family: var(--cin-display); font-size: clamp(3.3rem, 6vw, 6.5rem); text-transform: uppercase; line-height: .98; letter-spacing: -.055em; max-width: 14ch; }
+body.dev-page .dev-hero p { color: var(--cin-silver); max-width: 60ch; }
+body.dev-page .dev-hero a { color: var(--cin-white); }
+body.dev-page .dev-hero .dev-kicker { color: var(--cin-blue-light); }
+
+@media (max-width: 767px) {
+  .cinema-home .cc-shell[data-product-shell] { margin-bottom: -70px; }
+  .cc-shell[data-product-shell] .cc-shell__brand { font-size: .85rem; }
+  .cc-shell[data-product-shell] .cc-shell__panel > div:first-child .cc-shell__panel-link { font-size: 1.25rem; }
+  .cc-footer[data-product-shell] .cc-footer__lead { grid-template-columns: 1fr; gap: 25px; }
+  .cc-footer[data-product-shell] .cc-footer__brand { font-size: 2.1rem; }
+  .cc-footer[data-product-shell] .cc-footer__routes { grid-template-columns: 1fr 1fr; gap: 30px; }
+  .cc-footer[data-product-shell] .cc-footer__wordmark { font-size: 11vw; margin-top: 45px; }
+  body .sys-hero h1, body .research-hero h1, body .perf-hero h1 { font-size: clamp(3rem, 13vw, 5rem); }
+  body.dev-page .dev-hero { padding: 70px 25px; }
+}

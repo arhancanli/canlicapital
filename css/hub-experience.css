@@ -1,0 +1,94 @@
+/* Phase 6 only. Scoped roots prevent article/tool/home regressions. */
+html[data-hub] { scroll-padding-top: 100px; }
+html[data-hub] body { --hub-paper:#f4f4f4; --hub-ink:#111; --hub-blue:#0016cb; --hub-muted:#58616b; }
+html[data-hub] .hub-index { display:flex; flex-wrap:wrap; align-items:center; gap:12px 28px; padding:20px 4vw; border-bottom:1px solid #c3c8d2; background:#f4f4f4; color:#111; font:500 13px/1.5 'Inter',sans-serif; }
+.hub-index > span { color:#58616b; font:11px/1.5 'IBM Plex Mono',monospace; margin-right:auto; }
+.hub-index a { color:#111; text-decoration:none; padding-block:8px; }
+.hub-index a:hover { color:#0016cb; text-decoration:underline; text-underline-offset:5px; }
+html[data-hub] main :is(a,button,input,summary):focus-visible { outline:2px solid #5972ff; outline-offset:5px; }
+html[data-hub] main [id] { scroll-margin-top:110px; }
+/* The opening explains the subject; diagrams provide the visual evidence below. */
+html[data-hub] body :is(.sys-hero,.research-hero,.perf-hero) { min-height:0; padding:64px 4vw 56px; background:#f4f4f4; color:#111; }
+html[data-hub] body :is(.sys-hero,.research-hero,.perf-hero)::after { display:none; }
+html[data-hub] :is(.hero__ghost,.research-hero__ghost,.cc-optical-backdrop) { display:none; }
+html[data-hub] body :is(.sys-hero__body,.research-hero .hero__body,.perf-hero .hero__body) { display:flex; flex-direction:column; align-items:flex-start; gap:24px; position:relative; }
+html[data-hub] body :is(.sys-hero,.research-hero,.perf-hero) h1 { color:#111; font:500 clamp(3rem,5.7vw,6.2rem)/1.06 'Chakra Petch',sans-serif; letter-spacing:-.045em; max-width:23ch; margin:0; }
+html[data-hub] body :is(.sys-hero,.research-hero,.perf-hero) :is(.hero__sub,.sys-hero__sub,.research-hero__lede) { position:static; color:#343b46; width:auto; max-width:76ch; margin:0; font:400 18px/1.7 'Inter',sans-serif; }
+html[data-hub] body :is(.sys-hero,.research-hero,.perf-hero) :is(.hero__sub,.sys-hero__sub,.research-hero__lede,.research-hero__proof) { align-self:flex-start; letter-spacing:normal; }
+html[data-hub] body :is(.sys-hero,.research-hero,.perf-hero) { --signal:#0016cb; --paper:#111; --paper-dim:#58616b; --grey-700:#58616b; }
+html[data-hub] .research-hero__proof span { color:inherit; }
+html[data-hub] body :is(.sys-hero,.research-hero,.perf-hero) .hero__status { position:static; width:fit-content; margin:0 0 28px; background:#fff; border-color:#b8bfce; color:#343b46; }
+html[data-hub] body :is(.sys-hero,.research-hero,.perf-hero) .hero__status span { color:#343b46; }
+html[data-hub="systems"] .sys-pipe { display:none; }
+html[data-hub] .research-hero__lede::before { display:none; }
+html[data-hub] body :is(.sys-hero,.research-hero,.perf-hero) :is(.eyebrow,.sys-hero__index,.sys-scope,.standfirst,.research-hero__proof) { color:#343b46; margin:0; border-color:#aab2c0; max-width:100ch; }
+html[data-hub] body :is(.sys-hero,.research-hero,.perf-hero) strong { color:#111; }
+html[data-hub] .hero__scroll { position:static; display:inline-flex; margin-top:28px; color:#0016cb; }
+html[data-hub] .hero__scroll-line { display:none; }
+html[data-hub] :is(.mono-label,.label) { font-size:max(11px,.7rem); }
+/* Systems: a chapter headline spans the page, then the real operating exhibit. */
+html[data-hub="systems"] .sys-chapter { padding-block:72px; }
+html[data-hub="systems"] .sys-chapter__grid { display:block; }
+html[data-hub="systems"] .sys-chapter__aside { position:static; margin-bottom:36px; }
+html[data-hub="systems"] .sys-chapter__head { max-width:26ch; font:500 clamp(2.3rem,4.5vw,4.6rem)/1.08 'Chakra Petch',sans-serif; }
+html[data-hub="systems"] .sys-chapter__main { width:100%; gap:28px; }
+html[data-hub="systems"] .sys-body { max-width:84ch; font-size:17px; line-height:1.75; }
+html[data-hub="systems"] .sys-flow { width:100%; }
+html[data-hub="systems"] .sys-pair { gap:32px; }
+/* Performance: tighter reading chapters; keep verdicts and animated test states. */
+html[data-hub="performance"] .perf-chapter { padding-block:64px; }
+html[data-hub="performance"] :is(.perf-chapter__title,.standing__title) { font:500 clamp(2.3rem,4.5vw,4.6rem)/1.08 'Chakra Petch',sans-serif; max-width:28ch; }
+/* Research: distinct strategy exhibits and a plain searchable archive. */
+html[data-hub="research"] :is(.factors,.book,.method,.frontier,.roadmap) { padding-block:64px; }
+html[data-hub="research"] :is(.factors__title,.book__title,.method__title-head,.frontier__title,.roadmap__title) { font:500 clamp(2.3rem,4.5vw,4.6rem)/1.08 'Chakra Petch',sans-serif; max-width:26ch; }
+html[data-hub="research"] .book__sleeves { gap:24px; }
+html[data-hub="research"] .sleeve { padding:28px; border-top:3px solid #a4b7ff; }
+html[data-hub="research"] .sleeve__name { font:500 25px/1.2 'Chakra Petch',sans-serif; }
+html[data-hub="research"] #researchLibrary { padding-top:56px; margin-top:64px; }
+html[data-hub="research"] #researchLibrary::before { display:none; }
+/* Rulebook and indexes are reading rooms, not a paper card inside another page. */
+html[data-hub] body.paper { background:#f4f4f4; background-image:none; --ink:#111; --muted:#58616b; --faint:#58616b; --signal-blue:#0016cb; }
+html[data-hub] .paper__main { padding:0 0 72px; }
+html[data-hub] .paper__article { max-width:1320px; border:0; box-shadow:none; padding:60px 4vw; background:transparent; overflow:visible; }
+html[data-hub] .paper__title { max-width:24ch; font:500 clamp(2.7rem,5vw,5rem)/1.07 'Chakra Petch',sans-serif; letter-spacing:-.035em; }
+html[data-hub] .paper__body > :is(p,section),html[data-hub] .paper__footer { max-width:82ch; }
+html[data-hub] .paper__body { font:400 17px/1.8 'Inter',sans-serif; }
+html[data-hub] .paper__body h2 { font:500 clamp(1.65rem,2.7vw,2.5rem)/1.2 'Chakra Petch',sans-serif; }
+html[data-hub] .paper__body .verify__level { padding-top:36px; margin-top:40px; }
+html[data-hub="measurements"] .paper__body > section { max-width:none; }
+html[data-hub] :is(.measure__card,.research-library--hub .research-library__item) { border-bottom:1px solid #b8bfce; padding:26px 0; }
+html[data-hub] .measure__card { display:grid; grid-template-columns:1fr 1.1fr; gap:40px; }
+html[data-hub] .measure__card h3 { font:500 24px/1.25 'Chakra Petch',sans-serif; }
+html[data-hub] .measure__card p { font:400 15px/1.7 'Inter',sans-serif; }
+html[data-hub="topic"] .research-library__link { display:grid; grid-template-columns:1fr 1.1fr; gap:40px; text-decoration:none; }
+html[data-hub="topic"] .research-library__title { font:500 24px/1.25 'Chakra Petch',sans-serif; color:#111; }
+html[data-hub="topic"] .research-library__desc { display:block; color:#58616b; font:400 15px/1.7 'Inter',sans-serif; }
+.hub-search { margin:32px 0 12px; padding:24px 0; border-block:1px solid #b8bfce; display:grid; grid-template-columns:1fr auto; gap:12px 20px; color:#111; }
+.hub-search label,.hub-search p { grid-column:1/-1; margin:0; font:12px/1.6 'IBM Plex Mono',monospace; }
+.hub-search input { min-width:0; width:100%; padding:14px; border:1px solid #87909e; background:#fff; color:#111; font:16px/1.5 'Inter',sans-serif; }
+.hub-search button { padding:12px 20px; border:0; border-radius:28px; background:#0016cb; color:white; font:500 13px/1.4 'Inter',sans-serif; }
+html[data-hub] [hidden] { display:none !important; }
+/* Criticism and research-only boundaries retain their own exhibits. */
+html[data-hub] :is(.review-hero,.foundry-hero) { min-height:0; padding:64px 4vw; }
+html[data-hub] :is(.review-hero,.foundry-hero) h1 { font:500 clamp(2.7rem,4.8vw,5rem)/1.07 'Chakra Petch',sans-serif; max-width:23ch; }
+html[data-hub] :is(.review-section,.foundry-section) { padding-block:64px; }
+html[data-hub] :is(.review-section__head,.foundry-section__head) h2 { font:500 clamp(2rem,3.6vw,3.8rem)/1.12 'Chakra Petch',sans-serif; }
+@media(max-width:760px){
+ html[data-hub] .hub-index { padding:14px 24px; gap:4px 20px; }
+ .hub-index>span { flex-basis:100%; }
+ html[data-hub] body :is(.sys-hero,.research-hero,.perf-hero,.review-hero,.foundry-hero) { padding:40px 24px; }
+ html[data-hub] .paper__article { padding:40px 24px; }
+ html[data-hub] :is(.measure__card,.research-library--hub .research-library__link) { grid-template-columns:1fr; gap:14px; }
+ html[data-hub] .hub-search { grid-template-columns:1fr; }
+ .hub-search button { justify-self:start; }
+ html[data-hub="systems"] .sys-chapter { padding-block:44px; }
+}
+/* Readable diagram annotations and valid definition-list notes. */
+html[data-hub="systems"] .flow { color: #0016cb; opacity:1; }
+html[data-hub="review"] .review-boundary,
+html[data-hub="foundry"] .foundry-network__sanitizer,
+html[data-hub="foundry"] .foundry-close { background: #0016cb; }
+html[data-hub="foundry"] .foundry-network__public > span { color: #243943; }
+html[data-hub="foundry"] .foundry-migration__copy .foundry-kicker,
+html[data-hub="foundry"] .foundry-migration__copy a { color: #0016cb; }
+html[data-hub] .hub-definition-note { margin: 0; font: inherit; }

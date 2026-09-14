@@ -32,6 +32,7 @@
 // grammar: a one-shot onEnter that hands a section's data viz its reveal as it
 // scrolls into view. No new easing, no second timeline engine.
 import gsap from "gsap";
+import { enhanceResearchLibrary } from './research-library-search.js';
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -883,6 +884,7 @@ function bindFrontier(d) {
           item.appendChild(link);
           libraryList.appendChild(item);
         });
+        enhanceResearchLibrary(libraryWrap, libraryList);
       })
       .catch(() => {});
   }

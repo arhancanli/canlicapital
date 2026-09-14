@@ -1,0 +1,30 @@
+.cinema-home .has-strategy-exhibition { padding-inline: 0; max-width: none; }
+.has-strategy-exhibition > .section-heading,
+.has-strategy-exhibition > .sleeves-footer { margin-inline: 3vw; }
+.strategy-exhibition { position: relative; height: calc(100svh - 78px); overflow: hidden; background: #000; }
+.cinema-home .strategy-exhibition .sleeve-table { display: flex; width: 400%; height: calc(100% - 76px); border: 0; gap: 0; background: transparent; }
+.cinema-home .strategy-exhibition .sleeve-row,
+.cinema-home .strategy-exhibition .sleeve-row:nth-child(even) {
+  flex: 0 0 25%; width: 25%; min-width: 0; min-height: 0; box-sizing: border-box;
+  padding: 60px 5vw 36px; display: grid; grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto 1fr auto; gap: 24px 8vw; overflow: hidden; isolation: isolate;
+  background: radial-gradient(ellipse at 78% 60%, #10234a 0%, #000 65%);
+}
+.cinema-home .strategy-exhibition .sleeve-row:nth-child(2) { background: radial-gradient(ellipse at 70% 35%, #222b37, #000 65%); }
+.cinema-home .strategy-exhibition .sleeve-row:nth-child(3) { background: radial-gradient(ellipse at 82% 75%, #28221d, #000 65%); }
+.cinema-home .strategy-exhibition .sleeve-row:nth-child(4) { background: radial-gradient(ellipse at 65% 60%, #071e58, #000 65%); }
+.cinema-home .strategy-exhibition .sleeve-name { grid-column: 1 / -1; }
+.cinema-home .strategy-exhibition .sleeve-name h3 { font-size: clamp(5rem, 9vw, 10rem); line-height: 1; margin-top: 20px; }
+.cinema-home .strategy-exhibition .sleeve-row > p { grid-column: 1; grid-row: 2; font-size: clamp(1rem, 1.4vw, 1.3rem); max-width: 32ch; }
+.cinema-home .strategy-exhibition .sleeve-row dl { grid-column: 1; grid-row: 3; align-self: end; }
+.cinema-home .strategy-exhibition .sleeve-state { grid-column: 2; grid-row: 3; align-self: end; flex-wrap: wrap; }
+.cinema-home .strategy-exhibition .strategy-optic { z-index: -1; top: -10%; right: -7%; width: 76%; height: 120%; object-fit: contain; }
+.cinema-home .strategy-exhibition .sleeve-row::after { z-index: -1; background: linear-gradient(90deg, #000b, transparent 72%); }
+.strategy-exhibition__controls { position: absolute; bottom: 0; inset-inline: 0; display: grid; grid-template-columns: repeat(4, 1fr); height: 76px; background: #000; border-top: 1px solid #ffffff40; }
+.strategy-exhibition__controls button { background: transparent; color: #b8c3d2; border: 0; border-right: 1px solid #ffffff30; font: 500 .8rem 'IBM Plex Mono', monospace; cursor: pointer; }
+.strategy-exhibition__controls button[aria-current] { background: #0016cb; color: #fff; }
+.strategy-exhibition__controls button:focus-visible { outline: 2px solid #fff; outline-offset: -6px; }
+.strategy-exhibition__field { position: absolute; z-index: -2; inset: 0; width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
+.cinema-home .strategy-exhibition .sleeve-row:first-child .strategy-optic { display: none; }
+.cinema-home .strategy-exhibition .sleeve-row:first-child::after { background: linear-gradient(90deg, #000b, #0002 80%), linear-gradient(0deg, #000e, transparent 45%); }
+.strategy-exhibition__art-note { position: absolute; top: 28px; right: 5vw; color: #bdc7d7; font: .6rem 'IBM Plex Mono', monospace; }

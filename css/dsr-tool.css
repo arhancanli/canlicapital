@@ -76,7 +76,9 @@ button { color: inherit; }
   border-bottom: 1px solid var(--dsr-line);
 }
 
-.dsr-hero__copy { max-width: 820px; }
+.dsr-hero__copy { max-width: 820px; min-width: 0; }
+.dsr-hero > * { min-width: 0; }
+.dsr-hero h1 { overflow-wrap: anywhere; hyphens: auto; }
 .dsr-kicker,
 .dsr-label {
   margin: 0;
@@ -100,7 +102,7 @@ button { color: inherit; }
   max-width: 850px;
   margin: 28px 0 24px;
   font-size: clamp(4.2rem, 9vw, 9rem);
-  line-height: 0.79;
+  line-height: 0.98;
   text-transform: uppercase;
 }
 .dsr-hero__lead { max-width: 66ch; margin: 0; color: #b4c5ca; font-size: clamp(0.95rem, 1.25vw, 1.12rem); }
@@ -283,7 +285,7 @@ button { color: inherit; }
 
 @media (max-width: 760px) {
   .dsr-hero { padding-top: 78px; }
-  .dsr-hero h1 { font-size: clamp(3rem, 16.5vw, 6rem); }
+  .dsr-hero h1 { font-size: clamp(2.2rem, 10.5vw, 3.2rem); letter-spacing: -.025em; }
   .dsr-kicker { align-items: flex-start; flex-direction: column; gap: 6px; }
   .dsr-boundary { grid-template-columns: 1fr; gap: 8px; }
   .dsr-section-head { grid-template-columns: 1fr; }

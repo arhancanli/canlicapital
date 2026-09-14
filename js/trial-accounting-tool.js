@@ -84,11 +84,12 @@ function renderInspector(identity) {
 }
 
 function renderResults(filters) {
+  if (!state.union) return;
   state.filtered = filterTrialUnion(state.union, filters);
   byId("union-visible").textContent = String(state.filtered.length);
   const visible = new Set(state.filtered.map((identity) => identity.hypothesis_key));
   byId("union-matrix").innerHTML = state.union.identities.map((identity) =>
-    `<button type="button" role="listitem" data-identity="${escapeHtml(identity.hypothesis_key)}" data-state="${escapeHtml(identity.status)}" data-visible="${visible.has(identity.hypothesis_key)}" aria-label="${escapeHtml(identity.label)}, ${escapeHtml(statusLabel[identity.status])}"></button>`
+    `<button type="button" data-identity="${escapeHtml(identity.hypothesis_key)}" data-state="${escapeHtml(identity.status)}" data-visible="${visible.has(identity.hypothesis_key)}" aria-label="${escapeHtml(identity.label)}, ${escapeHtml(statusLabel[identity.status])}"></button>`
   ).join("");
   byId("union-list").innerHTML = state.filtered.length
     ? state.filtered.map((identity) => `<button type="button" data-identity="${escapeHtml(identity.hypothesis_key)}" data-state="${escapeHtml(identity.status)}"><code>${escapeHtml(identity.hypothesis_key)}</code><span>${escapeHtml(identity.label)}</span><small>${escapeHtml(identity.family_title)}</small><strong>${escapeHtml(statusLabel[identity.status])}</strong></button>`).join("")
@@ -118,13 +119,18 @@ function populateControls(filters) {
 }
 
 async function copyLink() {
-  await navigator.clipboard.writeText(location.href);
   const button = byId("union-copy");
-  button.textContent = "Copied";
-  setTimeout(() => { button.textContent = "Copy filtered link"; }, 1300);
+  try {
+    await navigator.clipboard.writeText(location.href);
+    button.textContent = "Copied";
+    setTimeout(() => { button.textContent = "Copy filtered link"; }, 1300);
+  } catch {
+    button.textContent = "Copy the link from your address bar";
+  }
 }
 
 function exportFiltered() {
+  if (!state.union) return;
   const payload = {
     schema: "canli.trial-accounting-filter-export.v1",
     selection_n: state.union.facts.selection_n,
@@ -142,6 +148,8 @@ function exportFiltered() {
 }
 
 async function load() {
+  const controls = document.querySelectorAll('.union-workbench button,.union-workbench input,.union-workbench select');
+  controls.forEach((control) => { control.disabled = true; });
   try {
     const sourceOrder = ["ledger", "manifest", "index", "prospective"];
     const responses = await Promise.all(sourceOrder.map((name) => fetch(config.source_urls[name], { cache: "no-store" })));
@@ -153,6 +161,7 @@ async function load() {
     const requested = state.union.identities.find((identity) => identity.hypothesis_key === filters.identity);
     if (requested) state.selected = requested;
     renderResults(filtersFromControls());
+    controls.forEach((control) => { control.disabled = false; });
   } catch (error) {
     byId("union-list").innerHTML = `<p class="union-empty">${escapeHtml(error.message)}</p>`;
     byId("union-inspector").innerHTML = `<p>FAIL CLOSED</p>`;

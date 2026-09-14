@@ -16,6 +16,7 @@ import { fileURLToPath } from "node:url";
 import { IMMUTABLE_PAPER_SHORT_TITLES } from "./paper-presentation.mjs";
 import { normalizeEditableCopy } from "./editable-copy.mjs";
 import { canonicalJson as canonicalJsonShared } from "./canonical-json.mjs";
+import { imageProse } from './lib/image-prose.mjs';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const DIST = resolve(ROOT, "dist");
@@ -624,7 +625,7 @@ if (existsSync(founderFile)) {
   // check fire on any icon added to the shell. Adding one GitHub mark introduced
   // 47 "untraceable" numbers, all of them path data. Stripped for the same reason
   // <script> and <pre> already are.
-  const prose = founderHtml
+  const prose = imageProse(founderHtml)
     .replace(/<script[\s\S]*?<\/script>/g, " ")
     .replace(/<head>[\s\S]*?<\/head>/g, " ")
     .replace(/<svg[\s\S]*?<\/svg>/g, " ")

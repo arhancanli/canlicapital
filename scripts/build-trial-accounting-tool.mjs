@@ -104,6 +104,7 @@ function main() {
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=optional" /></noscript>
 ${renderProductShellStylesheet()}
 <link rel="stylesheet" href="/css/trial-accounting-tool.css" />
+<link rel="stylesheet" href="/css/tool-experience.css" />
 <script type="application/ld+json">${JSON.stringify(jsonLd)}</script>
 </head>
 <body class="union-page">
@@ -143,7 +144,7 @@ ${renderProductShellHeader({ active: "trials" })}
     <div class="union-ledger">
       <section class="union-map" aria-label="Identity map and filtered trial list">
         <header><div><span>Visible identities</span><strong id="union-visible">${facts.selection_n}</strong></div><p>Selection N remains <b>${facts.selection_n}</b></p></header>
-        <div class="union-matrix" id="union-matrix" role="list" aria-label="Complete identity union"></div>
+        <div class="union-matrix" id="union-matrix" role="group" aria-label="Complete identity union"></div>
         <div class="union-list" id="union-list"></div>
       </section>
       <aside class="union-inspector" id="union-inspector" aria-live="polite">

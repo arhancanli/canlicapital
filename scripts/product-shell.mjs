@@ -1,3 +1,5 @@
+import { renderOpticalHandoff } from './optical-handoff.mjs';
+
 const PRIMARY_LINKS = Object.freeze([
   { key: "live", label: "Live", href: "https://app.canlicapital.com/dashboard", external: true },
   { key: "research", label: "Research", href: "/research" },
@@ -65,7 +67,9 @@ function renderSourceLink(active) {
 }
 
 function activeAttributes(link, active) {
-  return link.key === active ? ' aria-current="page" data-current="true"' : "";
+  // Generators sometimes supply a parent family for a nested article. Mark the
+  // section here; navigation.js marks aria-current=page only for an exact URL.
+  return link.key === active ? ' data-current="true"' : "";
 }
 
 function renderLinks(links, active, className) {
@@ -85,47 +89,48 @@ export function renderProductShellHeader({ active = "", dynamicStatus = false } 
   const statusId = dynamicStatus ? ' id="header-broker-status"' : "";
   const statusClass = dynamicStatus ? "cc-shell__status header-status" : "cc-shell__status";
   const statusText = dynamicStatus ? "Broker record loading…" : "Public paper record";
-  return `<header class="cc-shell" id="nav" data-product-shell="v3">
+  return `<header class="cc-shell" id="nav" data-product-shell="v3" data-shell-revision="4">
   <a class="cc-shell__brand" href="/" aria-label="Canli Capital, home">
     <span class="cc-shell__mark" aria-hidden="true"><i></i></span>
     <span>Canli Capital</span>
   </a>
-  <a class="${statusClass}" href="/measurements/alpaca-broker-reconciliation" aria-label="Current record status">
-    <span class="status-dot" aria-hidden="true"></span>
-    <span${statusId}>${statusText}</span>
-  </a>
   <nav class="cc-shell__primary" aria-label="Primary navigation">
-${renderLinks(PRIMARY_LINKS, active, "cc-shell__link")}
+${renderLinks(["systems", "research", "developers", "verify"].map(key => PRIMARY_LINKS.find(link => link.key === key)), active, "cc-shell__link")}
   </nav>
   <details class="cc-shell__index">
-    <summary><span class="cc-shell__index-wide">More</span><span class="cc-shell__index-compact">Menu</span></summary>
+    <summary><span class="cc-shell__index-wide">Explore</span><span class="cc-shell__index-compact">Menu</span></summary>
     <div class="cc-shell__panel">
       <div>
-        <span class="cc-shell__panel-label">Core</span>
-        <nav aria-label="Core routes">${renderLinks(PRIMARY_LINKS, active, "cc-shell__panel-link")}</nav>
+        <span class="cc-shell__panel-label">Research &amp; strategies</span>
+        <nav aria-label="Core routes">${renderLinks([...PRIMARY_LINKS.filter(link => !["developers", "verify"].includes(link.key)), ...SECONDARY_LINKS.filter(link => link.key === "performance")], active, "cc-shell__panel-link")}</nav>
       </div>
       <div>
-        <span class="cc-shell__panel-label">Institution</span>
-        <nav aria-label="Institution routes">${renderLinks(SECONDARY_LINKS, active, "cc-shell__panel-link")}</nav>
+        <span class="cc-shell__panel-label">Evidence &amp; accountability</span>
+        <nav aria-label="Institution routes">${renderLinks([...PRIMARY_LINKS.filter(link => link.key === "verify"), ...SECONDARY_LINKS.filter(link => link.key !== "performance")], active, "cc-shell__panel-link")}</nav>
       </div>
       <div>
-        <span class="cc-shell__panel-label">Tools</span>
-        <nav aria-label="Tools">${renderLinks(TOOLS_LINKS, active, "cc-shell__panel-link")}</nav>
+        <span class="cc-shell__panel-label">Build &amp; reproduce</span>
+        <nav aria-label="Tools">${renderLinks([...PRIMARY_LINKS.filter(link => link.key === "developers"), ...TOOLS_LINKS], active, "cc-shell__panel-link")}</nav>
       </div>
       <div>
         <span class="cc-shell__panel-label">Reproducible code</span>
         <nav aria-label="Source code">${SOURCE_REPOS.map((r) => `<a class="cc-shell__panel-link" href="${r.href}"${r.external ? ' rel="noreferrer"' : ""}>${r.label}</a>`).join("\n")}</nav>
       </div>
-      <p>Observed, simulated, model-estimated and planned claims remain visibly separate.</p>
+      <div class="cc-shell__panel-foot">
+        <a class="${statusClass}" href="/measurements/alpaca-broker-reconciliation" aria-label="Current record status"><span class="status-dot" aria-hidden="true"></span><span${statusId}>${statusText}</span></a>
+        <p>Observed, simulated, model-estimated and planned claims remain visibly separate.</p>
+      </div>
     </div>
   </details>
   ${renderSourceLink(active)}
-  <a class="cc-shell__cta" href="https://app.canlicapital.com/dashboard">Enter live record <span aria-hidden="true">↗</span></a>
+  <a class="cc-shell__cta" href="https://app.canlicapital.com/dashboard">Live record <span aria-hidden="true">↗</span></a>
+  <script type="module" src="/js/navigation.js"></script>
 </header>`;
 }
 
 export function renderProductShellFooter() {
-  return `<footer class="cc-footer" id="footer" data-product-shell="v3">
+  return `<footer class="cc-footer" id="footer" data-product-shell="v3" data-shell-revision="4">
+  <details class="cc-footer__context"><summary>About the research-to-record workflow</summary>${renderOpticalHandoff()}</details>
   <div class="cc-footer__lead">
     <a class="cc-footer__brand" href="/">Canli Capital</a>
     <p>Build the claim. Publish the evidence. Keep the failures.</p>
@@ -180,6 +185,8 @@ export function renderProductShellFooter() {
     record begins 2026-08-07; the years before it are engineering, not track record.</p>
     <span>Copyright Arhan Canli</span>
   </div>
+  <div class="cc-footer__wordmark" aria-hidden="true">Canli Capital<span><svg viewBox="0 0 80 80" focusable="false" aria-hidden="true"><path d="M12 68 68 12M12 12h56v56" fill="none" stroke="currentColor" stroke-width="4" /></svg></span></div>
+  <script type="module" src="/js/site-motion.js"></script>
 </footer>`;
 }
 

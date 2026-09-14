@@ -168,6 +168,7 @@ function main() {
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=optional" /></noscript>
 ${renderProductShellStylesheet()}
 <link rel="stylesheet" href="/css/dsr-tool.css" />
+<link rel="stylesheet" href="/css/tool-experience.css" />
 <script type="application/ld+json">${JSON.stringify(jsonLd)}</script>
 </head>
 <body class="dsr-page">
@@ -250,10 +251,10 @@ ${renderProductShellHeader({ active: "methodology" })}
           <div class="dsr-rail__axis"><span id="dsr-axis-min">...</span><span>Annualized Sharpe</span><span id="dsr-axis-max">...</span></div>
         </div>
         <dl class="dsr-readout">
-          <div><dt>PSR against zero</dt><dd id="dsr-psr">...</dd><small>Sampling uncertainty only</small></div>
-          <div><dt>Best-by-luck benchmark</dt><dd id="dsr-benchmark">...</dd><small>Annualized for display</small></div>
-          <div><dt>Search haircut</dt><dd id="dsr-haircut">...</dd><small>Observed minus benchmark</small></div>
-          <div><dt>Non-normality term</dt><dd id="dsr-variance-term">...</dd><small>Must remain positive</small></div>
+          <div><dt>PSR against zero</dt><dd id="dsr-psr">...</dd><dd class="dsr-readout-note"><small>Sampling uncertainty only</small></dd></div>
+          <div><dt>Best-by-luck benchmark</dt><dd id="dsr-benchmark">...</dd><dd class="dsr-readout-note"><small>Annualized for display</small></dd></div>
+          <div><dt>Search haircut</dt><dd id="dsr-haircut">...</dd><dd class="dsr-readout-note"><small>Observed minus benchmark</small></dd></div>
+          <div><dt>Non-normality term</dt><dd id="dsr-variance-term">...</dd><dd class="dsr-readout-note"><small>Must remain positive</small></dd></div>
         </dl>
         <p class="dsr-error" id="dsr-error" role="alert" hidden></p>
       </section>

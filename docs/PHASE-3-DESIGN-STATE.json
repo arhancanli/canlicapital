@@ -1,0 +1,25 @@
+{
+  "status": "implemented and verified locally; user visual review pending; Phase 4 awaiting permission",
+  "figmaFile": "n3MbdBAC6STjHudQocaZa7",
+  "compositionPage": "0:1",
+  "desktop": "121:100",
+  "mobile": "121:101",
+  "sections": {
+    "record": ["124:100", "124:137"],
+    "api": ["124:180", "124:214"],
+    "optionalRoomClosed": ["129:160", "129:164"],
+    "research": ["126:108", "126:155"],
+    "evidence": ["127:112", "127:189"],
+    "accountability": ["127:272", "127:295"],
+    "faq": ["127:318", "127:345"],
+    "access": ["128:148", "128:167"],
+    "homeEnding": ["128:192", "128:206"]
+  },
+  "reused": ["Canli colors and typography", "Action components", "Question components with full answer properties", "Existing editable research covers"],
+  "scope": "Responsive storyboards, not pixel-exact browser replicas. Expanded optional-room media and detailed live tables remain authoritative in the tested website.",
+  "preview": "http://127.0.0.1:4188",
+  "qa": "artifacts/qa/phase3-publication",
+  "review": "docs/PHASE-3-PUBLICATION-REVIEW.md",
+  "openRisk": "Initial desktop CLS-sum 0.2824 was not reproduced in four controlled traces; retained for shared-shell/release investigation, not declared fixed.",
+  "nextGate": "Explicit user approval before Phase 4; no deployment or real external submissions authorized by this phase."
+}

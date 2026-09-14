@@ -1,3 +1,7 @@
+@import url('./cinema-shell.css');
+@import url('./site-motion.css');
+@import url('./optical-handoff.css');
+@import url('./navigation-system.css');
 :root {
   --cc-night: #06111b;
   --cc-carbon: #0a1722;
@@ -371,3 +375,29 @@
 body { overflow-wrap: break-word; }
 pre, code, kbd, samp { overflow-wrap: normal; }
 pre { overflow-x: auto; }
+
+/* Shared identity for the open engine and its complete research library. */
+:root { --cc-night: #080b10; --cc-carbon: #111723; --cc-cobalt: #476dff; }
+.cc-shell { background: #080b10f5; min-height: 84px; border-bottom-color: #ffffff1c; }
+.cc-shell__brand { font-size: 1.02rem; letter-spacing: -.035em; }
+.cc-shell__primary { gap: clamp(18px, 2.4vw, 42px); }
+.cc-shell__link { font-size: .73rem; }
+.cc-shell__cta { border-radius: 28px; padding-inline: 23px; }
+.cc-shell__status { border: 0; padding-inline: 0; }
+.cc-shell__index summary { border-radius: 24px; }
+.cc-shell__panel { border-radius: 0 0 16px 16px; background: #101722; }
+.cc-footer { background: #080b10; }
+.cc-footer__brand { letter-spacing: -.055em; }
+@view-transition { navigation: auto; }
+::view-transition-old(root) { animation: cc-page-out .16s ease both; }
+::view-transition-new(root) { animation: cc-page-in .24s ease both; }
+@keyframes cc-page-out { to { opacity: 0; } }
+@keyframes cc-page-in { from { opacity: 0; transform: translateY(6px); } }
+@media (max-width: 640px) {
+  .cc-shell { min-height: 70px; }
+  .cc-shell__brand { font-size: .87rem; }
+  .cc-shell__cta { padding-inline: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(root), ::view-transition-new(root) { animation: none; }
+}

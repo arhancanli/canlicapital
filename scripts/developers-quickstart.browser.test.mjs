@@ -60,6 +60,49 @@ test.before(async () => {
 });
 test.after(() => new Promise((r) => server.close(r)));
 
+test("generated code examples and tables remain keyboard-scrollable without JavaScript", async () => {
+  const browser = await chromium.launch();
+  try {
+    const context = await browser.newContext({ javaScriptEnabled: false, viewport: { width: 390, height: 844 } });
+    await context.route(/fonts\.(googleapis|gstatic)\.com/, route => route.abort());
+    const page = await context.newPage();
+    await page.goto(baseUrl, { waitUntil: "load" });
+    for (const region of await page.locator("pre.dev-code, table.dev-table").all()) {
+      assert.equal(await region.getAttribute("tabindex"), "0");
+      assert.ok(await region.getAttribute("aria-label"));
+    }
+    const blocks = page.locator("pre.dev-code");
+    const scrollableIndex = await blocks.evaluateAll(nodes => nodes.findIndex(el => el.scrollHeight > el.clientHeight + 10));
+    assert.ok(scrollableIndex >= 0, "Exercise a genuinely scrollable code example");
+    const code = blocks.nth(scrollableIndex);
+    await code.focus();
+    assert.equal(await code.evaluate(el => document.activeElement === el), true);
+    const before = await code.evaluate(el => el.scrollTop);
+    await page.keyboard.press("PageDown");
+    await page.waitForTimeout(250);
+    assert.ok(await code.evaluate(el => el.scrollTop) > before, "PageDown should scroll the focused code example");
+  } finally { await browser.close(); }
+});
+
+test("language tabs preserve examples and support arrow, Home and End navigation", async () => {
+  await withPage(baseUrl, async page => {
+    await page.goto(`${baseUrl}/developers.html`, { waitUntil: "load" });
+    const group = page.locator('.dev-snippets.is-workbench').first();
+    const tabs = group.getByRole('tab');
+    assert.equal(await tabs.count(), 3);
+    assert.equal(await group.locator('.dev-snippet:not([hidden])').count(), 1);
+    await tabs.first().focus();
+    await page.keyboard.press('ArrowRight');
+    assert.equal(await tabs.nth(1).getAttribute('aria-selected'), 'true');
+    assert.equal(await group.locator('.dev-snippet').nth(1).isVisible(), true);
+    await page.keyboard.press('End');
+    assert.equal(await tabs.nth(2).getAttribute('aria-selected'), 'true');
+    await page.keyboard.press('Home');
+    assert.equal(await tabs.first().getAttribute('aria-selected'), 'true');
+    assert.equal(await group.locator('pre.dev-code').count(), 3);
+  });
+});
+
 test("a successful key issuance fills the block, shows the once-only note, and substitutes the key into every snippet", async () => {
   const fakeKey = "ck_live_FAKE_TEST_KEY_0123456789ABCDEF";
   const note = "Store this key now. Only its hash is kept and it cannot be shown again.";
