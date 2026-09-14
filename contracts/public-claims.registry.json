@@ -144,7 +144,7 @@
     {
       "id": "objective.forward-sharpe",
       "label": "Forward Sharpe objective",
-      "description": "Prospective forward Sharpe objective for the ALPHAC portfolio.",
+      "description": "Owner's forward Sharpe target for the combined ALPHAC paper portfolio, net of costs; not achieved.",
       "maturity": "planned",
       "value_type": "number",
       "format": "decimal",
@@ -154,8 +154,8 @@
     },
     {
       "id": "objective.expected-max-drawdown",
-      "label": "Expected maximum drawdown objective",
-      "description": "Portfolio objective for expected maximum drawdown.",
+      "label": "Maximum drawdown bound",
+      "description": "Owner's bound on the combined book's realized maximum drawdown; the modeled expected-drawdown objective is published separately and never mixed with it.",
       "maturity": "planned",
       "value_type": "number",
       "format": "percent",
@@ -203,7 +203,7 @@
     {
       "id": "sleeves.target",
       "label": "Sleeve breadth objective",
-      "description": "Maximum governed architecture objective for portfolio breadth.",
+      "description": "Owner's minimum for portfolio breadth: at least this many qualified, economically distinct sleeves.",
       "maturity": "planned",
       "value_type": "integer",
       "format": "count",
