@@ -11,7 +11,23 @@ const failures = [];
 const check = (condition, message) => { if (!condition) failures.push(message); };
 
 check(source.packets.length === 228, `source index has ${source.packets.length} packets, expected 228`);
-check(pages.length === source.packets.length, `built ${pages.length} trial pages for ${source.packets.length} packets`);
+// The forward epoch (2026-09-15): every published forward packet has a page, and the page count
+// is exactly legacy plus forward, so a page cannot appear for an identity no index binds.
+const forwardPath = resolve(ROOT, "public/glassbox/trial-packets/forward_index.json");
+const forward = existsSync(forwardPath) ? JSON.parse(readFileSync(forwardPath, "utf8")) : null;
+const forwardRows = forward ? forward.packets.filter((row) => row.public_path) : [];
+check(pages.length === source.packets.length + forwardRows.length,
+  `built ${pages.length} trial pages for ${source.packets.length} legacy + ${forwardRows.length} forward packets`);
+for (const row of forwardRows) {
+  const name = `${row.hypothesis_key}.html`;
+  check(pages.includes(name), `${row.hypothesis_key} (forward) has no HTML evidence page`);
+  if (!pages.includes(name)) continue;
+  const html = readFileSync(resolve(DIST, "trials", name), "utf8");
+  check(html.includes(`<link rel="canonical" href="https://canlicapital.com/trials/${row.hypothesis_key}"`), `${name} has no self-canonical`);
+  check(html.includes("Forward epoch"), `${name} does not name its epoch`);
+  check(html.includes(`href="/glassbox/trial-packets/${row.hypothesis_key}.json"`), `${name} does not link its raw packet`);
+  check(!html.includes("trial-dist__plot"), `${name} ranks a forward identity in the legacy distribution`);
+}
 check(existsSync(resolve(DIST, "trials.html")), "trial index page was not built");
 for (const packet of source.packets) {
   const name = `${packet.hypothesis_key}.html`;
