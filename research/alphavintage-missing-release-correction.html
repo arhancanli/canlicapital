@@ -1,5 +1,5 @@
 <!doctype html>
-<html data-reader="research" lang="en">
+<html lang="en">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -38,9 +38,7 @@
 <link rel="stylesheet" href="/css/product-shell.css" />
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"ScholarlyArticle","headline":"AlphaVintage missing-release correction protocol","description":"The point-in-time RTDSM lake has no October 2025 headline or core CPI level.","url":"https://canlicapital.com/research/alphavintage-missing-release-correction","inLanguage":"en","isAccessibleForFree":true,"datePublished":"2026","author":{"@type":"Person","@id":"https://canlicapital.com/#arhan-canli","name":"Arhan Canli","jobTitle":"Founder and Quantitative Researcher","url":"https://canlicapital.com/founder","sameAs":["https://github.com/arhancanli"],"affiliation":{"@type":"Organization","@id":"https://canlicapital.com/#organization","name":"Canli Capital","url":"https://canlicapital.com/"}},"publisher":{"@type":"Organization","@id":"https://canlicapital.com/#organization","name":"Canli Capital","url":"https://canlicapital.com/","logo":{"@type":"ImageObject","url":"https://canlicapital.com/brand-mark.svg"}},"isPartOf":{"@type":"Periodical","name":"Canli Capital Research","url":"https://canlicapital.com/research"},"encodingFormat":"text/html","associatedMedia":{"@type":"MediaObject","contentUrl":"https://canlicapital.com/research/alphavintage-missing-release-correction.md","encodingFormat":"text/markdown"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Canli Capital","item":"https://canlicapital.com"},{"@type":"ListItem","position":2,"name":"Research","item":"https://canlicapital.com/research"},{"@type":"ListItem","position":3,"name":"AlphaVintage missing-release correction protocol","item":"https://canlicapital.com/research/alphavintage-missing-release-correction"}]}</script>
-
-<link rel="stylesheet" href="/css/reader-experience.css" />
-<!-- release-style:start --><link rel="stylesheet" href="/css/release-readiness.css" /><!-- release-style:end --></head>
+</head>
 <body class="paper">
 <a class="paper__skip" href="#content">Skip to content</a>
 <header class="cc-shell" id="nav" data-product-shell="v3" data-shell-revision="4">
@@ -99,20 +97,20 @@
   <a class="cc-shell__cta" href="https://app.canlicapital.com/dashboard">Live record <span aria-hidden="true">↗</span></a>
   <script type="module" src="/js/navigation.js"></script>
 </header>
-<main class="paper__main" id="content"><!-- reader-index:start --><aside class="reader-index"><a class="reader-index__back" href="/research">Explore research</a><details><summary>In this document</summary><nav aria-label="Document sections"><a href="#reader-section-1">Confirmed defect</a><a href="#reader-section-2">Correction locked before revised performance</a><a href="#reader-section-3">Re-evaluation rule</a><a href="#reader-section-4">Calendar-integrity defect found during re-evaluation</a><a href="#reader-section-5">Sealed outcome</a></nav></details><a class="reader-index__verify" href="/verify">How to verify a claim ↗</a></aside><!-- reader-index:end -->
+<main class="paper__main" id="content">
   <article class="paper__article">
     <p class="paper__eyebrow"><a href="/research">Research</a></p>
     <h1 class="paper__title">AlphaVintage missing-release correction protocol</h1>
     <p class="paper__byline">By <span rel="author">Arhan Canli</span>, Canli Capital</p>
     <div class="paper__body">
-<div class="research-masthead"><dl class="research-masthead__facts"><div><dt>Declared</dt><dd>2026-08-16</dd></div><div><dt>Status</dt><dd>REVISED RETURNS SEALED / VERDICT KILLED</dd></div><div><dt>Hypothesis-ledger impact</dt><dd>zero new hypotheses; this repairs an existing identity.</dd></div></dl></div><h2 id="reader-section-1" data-reader-anchor="true">Confirmed defect</h2>
+<div class="research-masthead"><dl class="research-masthead__facts"><div><dt>Declared</dt><dd>2026-08-16</dd></div><div><dt>Status</dt><dd>REVISED RETURNS SEALED / VERDICT KILLED</dd></div><div><dt>Hypothesis-ledger impact</dt><dd>zero new hypotheses; this repairs an existing identity.</dd></div></dl></div><h2>Confirmed defect</h2>
 <p>The point-in-time RTDSM lake has no October 2025 headline or core CPI level.  The December 15,
 2025 vintage contains November, but its immediately preceding October level is null.  The locked
 signal function computed monthly log differences, dropped null differences, and selected the last
 remaining difference as the newly released surprise.  Consequently an older computable change
 could be repeated under a later vintage date even though no new month-over-month CPI change was
 computable.  This is fail-open behavior and can splice a stale signal into a new holding period.</p>
-<h2 id="reader-section-2" data-reader-anchor="true">Correction locked before revised performance</h2>
+<h2>Correction locked before revised performance</h2>
 <p>For every monthly vintage dated <code>V</code>:</p>
 <ol>
 <li>The newly released observation must be the calendar month immediately preceding <code>V</code>.</li>
@@ -125,20 +123,20 @@ substitution is permitted.</li>
 <p>The live writer imports the research signal function directly, so this one correction governs
 both paths.  Regression tests must pin the exact November-present/October-missing shape before any
 revised curve is generated.</p>
-<h2 id="reader-section-3" data-reader-anchor="true">Re-evaluation rule</h2>
+<h2>Re-evaluation rule</h2>
 <p>After code and tests pass, regenerate the existing AlphaVintage result once under the corrected
 data rule.  Do not tune AR lags, sign, clip, costs, entry timing, instruments, scale, or gates.  The
 revised result replaces the invalid result whether it improves or worsens.  Publish the before/after
 metrics, changed vintage count, curve hash, code hash, and unchanged hypothesis count.  If any
 admission gate no longer clears, remove the sleeve from research-validated/book arithmetic; do not
 respecify it.</p>
-<h2 id="reader-section-4" data-reader-anchor="true">Calendar-integrity defect found during re-evaluation</h2>
+<h2>Calendar-integrity defect found during re-evaluation</h2>
 <p>The prior curve persisted only <code>net[w.abs() &gt; 0]</code>. That deleted zero-exposure trading sessions
 inside the first-to-last activity window, including the monthly transition dates. An active-day
 sample is not a portfolio return calendar and inflates annualization. The corrected curve retains
 every trading session between first and last exposure and records an explicit zero when the sleeve
 has no position. No return-bearing observation was added, removed, or tuned.</p>
-<h2 id="reader-section-5" data-reader-anchor="true">Sealed outcome</h2>
+<h2>Sealed outcome</h2>
 <p>The unchanged identity was regenerated once after both corrections. Calendar-correct net Sharpe is
 <code>0.2298358829</code>, Newey-West t is <code>1.2673190577</code>, and maximum drawdown is approximately <code>-25.1%</code>
 over 6,296 portfolio sessions (5,998 active sessions). The superseded active-day Sharpe was
@@ -167,7 +165,7 @@ AlphaVintage is not research-admitted. This correction adds zero hypotheses.</p>
       </p>
       <details class="paper__citation">
         <summary>Cite this report</summary>
-        <pre tabindex="0" data-reader-focus="true"><code>@techreport{canli2026alphavintagemissingreleasecorrection,
+        <pre><code>@techreport{canli2026alphavintagemissingreleasecorrection,
   author      = {Canli, Arhan},
   title       = {AlphaVintage missing-release correction protocol},
   institution = {Canli Capital},
@@ -263,6 +261,5 @@ AlphaVintage is not research-admitted. This correction adds zero hypotheses.</p>
   <div class="cc-footer__wordmark" aria-hidden="true">Canli Capital<span><svg viewBox="0 0 80 80" focusable="false" aria-hidden="true"><path d="M12 68 68 12M12 12h56v56" fill="none" stroke="currentColor" stroke-width="4" /></svg></span></div>
   <script type="module" src="/js/site-motion.js"></script>
 </footer>
-
-<script type="module" src="/js/reader-experience.js"></script></body>
+</body>
 </html>

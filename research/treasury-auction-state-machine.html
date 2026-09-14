@@ -1,5 +1,5 @@
 <!doctype html>
-<html data-reader="research" lang="en">
+<html lang="en">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -38,9 +38,7 @@
 <link rel="stylesheet" href="/css/product-shell.css" />
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"ScholarlyArticle","headline":"Treasury auction concession: point-in-time schedule state machine","description":"The original literature identity enters a relative-value position ten XNYS sessions before each fixed-rate 2-year Treasury auction, reverses after the…","url":"https://canlicapital.com/research/treasury-auction-state-machine","inLanguage":"en","isAccessibleForFree":true,"datePublished":"2026","author":{"@type":"Person","@id":"https://canlicapital.com/#arhan-canli","name":"Arhan Canli","jobTitle":"Founder and Quantitative Researcher","url":"https://canlicapital.com/founder","sameAs":["https://github.com/arhancanli"],"affiliation":{"@type":"Organization","@id":"https://canlicapital.com/#organization","name":"Canli Capital","url":"https://canlicapital.com/"}},"publisher":{"@type":"Organization","@id":"https://canlicapital.com/#organization","name":"Canli Capital","url":"https://canlicapital.com/","logo":{"@type":"ImageObject","url":"https://canlicapital.com/brand-mark.svg"}},"isPartOf":{"@type":"Periodical","name":"Canli Capital Research","url":"https://canlicapital.com/research"},"encodingFormat":"text/html","associatedMedia":{"@type":"MediaObject","contentUrl":"https://canlicapital.com/research/treasury-auction-state-machine.md","encodingFormat":"text/markdown"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Canli Capital","item":"https://canlicapital.com"},{"@type":"ListItem","position":2,"name":"Research","item":"https://canlicapital.com/research"},{"@type":"ListItem","position":3,"name":"Treasury auction concession: point-in-time schedule state machine","item":"https://canlicapital.com/research/treasury-auction-state-machine"}]}</script>
-
-<link rel="stylesheet" href="/css/reader-experience.css" />
-<!-- release-style:start --><link rel="stylesheet" href="/css/release-readiness.css" /><!-- release-style:end --></head>
+</head>
 <body class="paper">
 <a class="paper__skip" href="#content">Skip to content</a>
 <header class="cc-shell" id="nav" data-product-shell="v3" data-shell-revision="4">
@@ -99,13 +97,13 @@
   <a class="cc-shell__cta" href="https://app.canlicapital.com/dashboard">Live record <span aria-hidden="true">↗</span></a>
   <script type="module" src="/js/navigation.js"></script>
 </header>
-<main class="paper__main" id="content"><!-- reader-index:start --><aside class="reader-index"><a class="reader-index__back" href="/research">Explore research</a><details><summary>In this document</summary><nav aria-label="Document sections"><a href="#reader-section-1">Why the identity needs a state machine</a><a href="#reader-section-2">Frozen event and decision clock</a><a href="#reader-section-3">Position identity carried forward</a><a href="#reader-section-4">States</a><a href="#reader-section-5">Transition rules</a><a href="#reader-section-6">Revisions in the sealed 2013–2025 panel</a><a href="#reader-section-7">Overlap policy</a><a href="#reader-section-8">Fail-closed conditions</a><a href="#reader-section-9">Technical gates</a><a href="#reader-section-10">Approval boundary</a></nav></details><a class="reader-index__verify" href="/verify">How to verify a claim ↗</a></aside><!-- reader-index:end -->
+<main class="paper__main" id="content">
   <article class="paper__article">
     <p class="paper__eyebrow"><a href="/research">Research</a></p>
     <h1 class="paper__title">Treasury auction concession: point-in-time schedule state machine</h1>
     <p class="paper__byline">By <span rel="author">Arhan Canli</span>, Canli Capital</p>
     <div class="paper__body">
-<div class="research-masthead"><dl class="research-masthead__facts"><div><dt>Prepared</dt><dd>2026-08-26</dd></div><div><dt>Stage</dt><dd>no-price, no-return identity redesign</dd></div><div><dt>Family trial account</dt><dd><code>treasury_auction_concession</code></dd></div><div><dt>Author technical approval</dt><dd>not yet recorded</dd></div><div><dt>Return execution authorized</dt><dd>no</dd></div></dl></div><h2 id="reader-section-1" data-reader-anchor="true">Why the identity needs a state machine</h2>
+<div class="research-masthead"><dl class="research-masthead__facts"><div><dt>Prepared</dt><dd>2026-08-26</dd></div><div><dt>Stage</dt><dd>no-price, no-return identity redesign</dd></div><div><dt>Family trial account</dt><dd><code>treasury_auction_concession</code></dd></div><div><dt>Author technical approval</dt><dd>not yet recorded</dd></div><div><dt>Return execution authorized</dt><dd>no</dd></div></dl></div><h2>Why the identity needs a state machine</h2>
 <p>The original literature identity enters a relative-value position ten XNYS sessions before each
 fixed-rate 2-year Treasury auction, reverses after the auction, and exits ten sessions later. That
 clock is not observable from formal auction announcements alone. The sealed archive audit proves
@@ -116,7 +114,7 @@ the economic direction and ten-session windows fixed while declaring how an impl
 would react to the calendar information available at each decision time.</p>
 <p>This document does not select prices, load returns, claim a premium, or admit a sleeve. It prepares
 one identity for Arhan Canli&#39;s technical review.</p>
-<h2 id="reader-section-2" data-reader-anchor="true">Frozen event and decision clock</h2>
+<h2>Frozen event and decision clock</h2>
 <ul>
 <li>Eligible event: nominal, fixed-rate 2-year US Treasury note auction.</li>
 <li>Research interval: 2013-01-01 through 2025-12-31 for the sealed historical audit.</li>
@@ -133,7 +131,7 @@ observable by that close.</li>
 <p>The state machine does not infer when an archive document was originally published. Historical
 knowability uses only a sealed official release date or a Wayback capture timestamp. A capture is an
 upper bound on when a date was observable, never evidence that it was known earlier.</p>
-<h2 id="reader-section-3" data-reader-anchor="true">Position identity carried forward</h2>
+<h2>Position identity carried forward</h2>
 <p>The state machine changes only the event clock. It does not alter the literature direction:</p>
 <ol>
 <li>The pre-auction leg is the locked short on-the-run 2-year note position against the declared
@@ -144,7 +142,7 @@ directional proxy, or a different maturity.</li>
 <li>Exact instruments, hedge ratios, rolls, timestamps, commissions, bid/ask costs, market impact,
 and margin remain mandatory fields in the later return preregistration.</li>
 </ol>
-<h2 id="reader-section-4" data-reader-anchor="true">States</h2>
+<h2>States</h2>
 <p><code>UNOBSERVED</code>
 : No usable tentative date is known. No pre-auction position is allowed.</p>
 <p><code>TENTATIVE_ARMED</code>
@@ -170,8 +168,8 @@ active through the auction-day close.</p>
 entered at the auction-day close.</p>
 <p><code>CLOSED</code>
 : The post leg exits at T+10. Event attribution and all costs remain attached to that event identity.</p>
-<h2 id="reader-section-5" data-reader-anchor="true">Transition rules</h2>
-<table tabindex="0" data-reader-focus="true">
+<h2>Transition rules</h2>
+<table>
 <thead>
 <tr>
 <th>Current state</th>
@@ -255,7 +253,7 @@ entered at the auction-day close.</p>
 </tbody></table>
 <p>An announcement or update without an intraday publication timestamp is treated conservatively as
 actionable at the next XNYS close. A replacement pre leg is never backdated.</p>
-<h2 id="reader-section-6" data-reader-anchor="true">Revisions in the sealed 2013–2025 panel</h2>
+<h2>Revisions in the sealed 2013–2025 panel</h2>
 <p>The five known tentative-date changes receive deterministic treatment:</p>
 <ul>
 <li>Four dates had already crossed their tentative T−10 entry before the formal revision. Their pre
@@ -269,17 +267,17 @@ pre-and-post path.</li>
 </ul>
 <p>These classifications are inputs, not performance-based exclusions. Every skipped or shortened pre
 leg remains in the event ledger.</p>
-<h2 id="reader-section-7" data-reader-anchor="true">Overlap policy</h2>
+<h2>Overlap policy</h2>
 <p>Monthly T−10/T+10 windows can overlap. No event is dropped because a neighboring event exists.
 Each event retains its own state and gross target. The later execution preregistration must aggregate
 simultaneous targets into one net order while preserving event-level theoretical legs, realized
 fills, allocated fees, and any cancellation. It may not keep only the more profitable attribution.</p>
-<h2 id="reader-section-8" data-reader-anchor="true">Fail-closed conditions</h2>
+<h2>Fail-closed conditions</h2>
 <p>The event closes without a post leg if the auction is cancelled, the official announcement or
 result cannot be source-bound by the decision cutoff, the auction date is not a valid declared
 trading session, or the relevant instrument cannot be traded under the frozen execution contract.
 Missing records are never replaced by the final calendar.</p>
-<h2 id="reader-section-9" data-reader-anchor="true">Technical gates</h2>
+<h2>Technical gates</h2>
 <p>The no-return audit passes only when:</p>
 <ol>
 <li>All 156 sealed events map to exactly one state path.</li>
@@ -296,7 +294,7 @@ deterministic under the XNYS calendar.</li>
 hindsight. The candidate remains <code>identity-redesign-required</code> until Arhan records technical approval.
 Even after approval, a separate checksum-bound return preregistration is required before any market
 data is opened.</p>
-<h2 id="reader-section-10" data-reader-anchor="true">Approval boundary</h2>
+<h2>Approval boundary</h2>
 <p>Prepared for review; not approved. Arhan must independently confirm the position identity, decision
 timing, cancellation rule, post-only treatment, overlap accounting, and kill conditions. Automation
 may test and package this protocol but may not supply that approval or authorize a return run.</p>
@@ -318,7 +316,7 @@ may test and package this protocol but may not supply that approval or authorize
       </p>
       <details class="paper__citation">
         <summary>Cite this report</summary>
-        <pre tabindex="0" data-reader-focus="true"><code>@techreport{canli2026treasuryauctionstatemachine,
+        <pre><code>@techreport{canli2026treasuryauctionstatemachine,
   author      = {Canli, Arhan},
   title       = {Treasury auction concession: point-in-time schedule state machine},
   institution = {Canli Capital},
@@ -414,6 +412,5 @@ may test and package this protocol but may not supply that approval or authorize
   <div class="cc-footer__wordmark" aria-hidden="true">Canli Capital<span><svg viewBox="0 0 80 80" focusable="false" aria-hidden="true"><path d="M12 68 68 12M12 12h56v56" fill="none" stroke="currentColor" stroke-width="4" /></svg></span></div>
   <script type="module" src="/js/site-motion.js"></script>
 </footer>
-
-<script type="module" src="/js/reader-experience.js"></script></body>
+</body>
 </html>

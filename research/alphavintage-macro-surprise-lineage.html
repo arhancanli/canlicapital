@@ -1,5 +1,5 @@
 <!doctype html>
-<html data-reader="research" lang="en">
+<html lang="en">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -38,9 +38,7 @@
 <link rel="stylesheet" href="/css/product-shell.css" />
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"ScholarlyArticle","headline":"Point-in-Time Inflation Surprise and the Equity Size Spread","description":"This paper reports a point-in-time inflation-surprise strategy applied to the dollar-neutral IWM-minus-SPY equity size spread.","url":"https://canlicapital.com/research/alphavintage-macro-surprise-lineage","inLanguage":"en","isAccessibleForFree":true,"datePublished":"2026","author":{"@type":"Person","@id":"https://canlicapital.com/#arhan-canli","name":"Arhan Canli","jobTitle":"Founder and Quantitative Researcher","url":"https://canlicapital.com/founder","sameAs":["https://github.com/arhancanli"],"affiliation":{"@type":"Organization","@id":"https://canlicapital.com/#organization","name":"Canli Capital","url":"https://canlicapital.com/"}},"publisher":{"@type":"Organization","@id":"https://canlicapital.com/#organization","name":"Canli Capital","url":"https://canlicapital.com/","logo":{"@type":"ImageObject","url":"https://canlicapital.com/brand-mark.svg"}},"isPartOf":{"@type":"Periodical","name":"Canli Capital Research","url":"https://canlicapital.com/research"},"encodingFormat":"text/html","associatedMedia":{"@type":"MediaObject","contentUrl":"https://canlicapital.com/research/alphavintage-macro-surprise-lineage.md","encodingFormat":"text/markdown"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Canli Capital","item":"https://canlicapital.com"},{"@type":"ListItem","position":2,"name":"Research","item":"https://canlicapital.com/research"},{"@type":"ListItem","position":3,"name":"Point-in-Time Inflation Surprise and the Equity Size Spread","item":"https://canlicapital.com/research/alphavintage-macro-surprise-lineage"}]}</script>
-
-<link rel="stylesheet" href="/css/reader-experience.css" />
-<!-- release-style:start --><link rel="stylesheet" href="/css/release-readiness.css" /><!-- release-style:end --></head>
+</head>
 <body class="paper">
 <a class="paper__skip" href="#content">Skip to content</a>
 <header class="cc-shell" id="nav" data-product-shell="v3" data-shell-revision="4">
@@ -99,15 +97,15 @@
   <a class="cc-shell__cta" href="https://app.canlicapital.com/dashboard">Live record <span aria-hidden="true">↗</span></a>
   <script type="module" src="/js/navigation.js"></script>
 </header>
-<main class="paper__main" id="content"><!-- reader-index:start --><aside class="reader-index"><a class="reader-index__back" href="/research">Explore research</a><details><summary>In this document</summary><nav aria-label="Document sections"><a href="#reader-section-1">A corrected null, a deployment-governance failure, and a frozen forward experiment</a><a href="#reader-section-2">Abstract</a><a href="#reader-section-3">1. Claim boundary</a><a href="#reader-section-4">2. Motivation and prior evidence</a><a href="#reader-section-5">3. Frozen specification</a><a href="#reader-section-6">4. Preregistered decision rule and trial lineage</a><a href="#reader-section-7">5. Integrity corrections</a><a href="#reader-section-8">6. Deployment chronology and governance finding</a><a href="#reader-section-9">7. Portfolio evidence: diversification without standalone validation</a><a href="#reader-section-10">8. Execution, capacity, and unresolved realism</a><a href="#reader-section-11">9. Reproducibility and provenance</a><a href="#reader-section-12">10. Limitations</a><a href="#reader-section-13">11. Conclusion</a><a href="#reader-section-14">References</a><a href="#reader-section-15">Authorship and contribution statement</a></nav></details><a class="reader-index__verify" href="/verify">How to verify a claim ↗</a></aside><!-- reader-index:end -->
+<main class="paper__main" id="content">
   <article class="paper__article">
     <p class="paper__eyebrow"><a href="/research">Research</a></p>
     <h1 class="paper__title">Point-in-Time Inflation Surprise and the Equity Size Spread</h1>
     <p class="paper__byline">By <span rel="author">Arhan Canli</span>, Canli Capital</p>
     <div class="paper__body">
-<h2 id="reader-section-1" data-reader-anchor="true">A corrected null, a deployment-governance failure, and a frozen forward experiment</h2>
+<h2>A corrected null, a deployment-governance failure, and a frozen forward experiment</h2>
 <p><strong>Author:</strong> Arhan Canli, Founder and Quantitative Researcher, Canli Capital<br><strong>System:</strong> ALPHAC / AlphaC Algorithms · AlphaVintage sleeve<br><strong>Version:</strong> 1.0, 2026-08-23<br><strong>Status:</strong> public working paper; not peer reviewed<br><strong>Capital boundary:</strong> historical research simulation and a separately labelled Alpaca paper account</p>
-<h2 id="reader-section-2" data-reader-anchor="true">Abstract</h2>
+<h2>Abstract</h2>
 <p>This paper reports a point-in-time inflation-surprise strategy applied to the dollar-neutral
 IWM-minus-SPY equity size spread. The fixed specification constructs headline and core CPI
 surprises from expanding AR(3) forecasts fit within each historical macro-data vintage, enters
@@ -127,7 +125,7 @@ experiment whose continuation, correction history, and conflict between standalo
 portfolio diversification are disclosed here. The central result is therefore not a profitable
 anomaly claim. It is an auditable case study in point-in-time data engineering, falsification, and
 deployment governance.</p>
-<h2 id="reader-section-3" data-reader-anchor="true">1. Claim boundary</h2>
+<h2>1. Claim boundary</h2>
 <p>The corrected historical signal is <strong>not research-admitted</strong>. The Alpaca account is paper-only;
 its broker-derived record is self-published, short, and not an independent attestation. Nothing in
 this paper establishes funded performance, a forward Sharpe, an expected live drawdown, causal
@@ -140,7 +138,7 @@ the measured window, though not prospectively established.</li>
 <li><strong>Should it remain allocated?</strong> No conclusion is drawn here. The current paper allocation is a
 frozen experiment, not an endorsement.</li>
 </ol>
-<h2 id="reader-section-4" data-reader-anchor="true">2. Motivation and prior evidence</h2>
+<h2>2. Motivation and prior evidence</h2>
 <p>Macroeconomic announcements can move equities through discount-rate, risk-premium, and cash-flow
 channels. Pearce and Roley (1984) emphasize the unexpected component of announcements; Wachter and
 Zhu (2018) study the concentration of equity premia around scheduled announcements; Modugno and
@@ -158,9 +156,9 @@ financing and margin channels, producing a gradual relative rotation from IWM to
 a falsifiable economic story, not evidence that the effect exists. The experiment does not isolate
 financing costs, margins, institutional flows, or announcement-time reactions, so the mechanism
 remains conjectural.</p>
-<h2 id="reader-section-5" data-reader-anchor="true">3. Frozen specification</h2>
+<h2>3. Frozen specification</h2>
 <p>The implementation is <code>scripts/probe_cpi_surprise_size.py</code>. Exactly one configuration was tried:</p>
-<table tabindex="0" data-reader-focus="true">
+<table>
 <thead>
 <tr>
 <th>Element</th>
@@ -224,7 +222,7 @@ change.</p>
 <p>The portfolio return calendar retains every exchange session between first and last exposure.
 Sessions with no position receive an explicit zero. This is necessary because annualizing only
 active observations changes the time basis of the estimator.</p>
-<h2 id="reader-section-6" data-reader-anchor="true">4. Preregistered decision rule and trial lineage</h2>
+<h2>4. Preregistered decision rule and trial lineage</h2>
 <p>The candidate was to be added only if all four conditions held:</p>
 <ul>
 <li>standalone net Sharpe exceeded its correlation-adjusted book hurdle;</li>
@@ -236,7 +234,7 @@ active observations changes the time basis of the estimator.</p>
 macro-vintage variants were declared and reported as the same information family, not independent
 sleeves. The public family lineage therefore contains seven immutable identities. The correction
 repaired the existing CPI identity and spent <strong>zero</strong> additional return hypotheses.</p>
-<h2 id="reader-section-7" data-reader-anchor="true">5. Integrity corrections</h2>
+<h2>5. Integrity corrections</h2>
 <h3>5.1 Missing-release fail-open defect</h3>
 <p>The historical lake contains no October 2025 headline or core CPI level. A later vintage could
 contain November while the immediately preceding October value remained absent. The old
@@ -252,7 +250,7 @@ it is retained solely in the correction record.</p>
 <p>The correction protocol was written before revised performance was opened. AR lags, direction,
 clipping, costs, timing, instruments, scale, and gates were unchanged. The revised result replaced
 the prior result whether better or worse.</p>
-<table tabindex="0" data-reader-focus="true">
+<table>
 <thead>
 <tr>
 <th>Measurement</th>
@@ -308,7 +306,7 @@ the prior result whether better or worse.</p>
 </tbody></table>
 <p>Three of four reading checks remained true; the significance check failed. A near-pass is a fail
 under a preregistered conjunction. No threshold was lowered to preserve the sleeve.</p>
-<h2 id="reader-section-8" data-reader-anchor="true">6. Deployment chronology and governance finding</h2>
+<h2>6. Deployment chronology and governance finding</h2>
 <p>AlphaVintage first held a position in its dedicated Alpaca paper account on <strong>2026-08-10</strong>. The
 corrected re-evaluation was sealed on <strong>2026-08-16</strong>. The public state continued displaying the
 superseded 0.3403 Sharpe and 1.82 t-statistic until <strong>2026-08-19</strong>. That three-day publication lag
@@ -321,7 +319,7 @@ it does not convert the historical null into alpha evidence.</p>
 <p>The process lesson is concrete: deployment eligibility must require a machine-verified sealed
 outcome, and public claims must be generated from the same artifact rather than copied into prose.
 The project now treats correction latency and source binding as engineering controls.</p>
-<h2 id="reader-section-9" data-reader-anchor="true">7. Portfolio evidence: diversification without standalone validation</h2>
+<h2>7. Portfolio evidence: diversification without standalone validation</h2>
 <p>On the current 1,061-row common research window, AlphaVintage&#39;s correlations to the other sleeves
 are +0.0393 to crypto carry, -0.0620 to equity momentum, and -0.0444 to managed-futures trend. Its
 fixed-to-cash marginal contribution changes full-book research Sharpe from 1.7909 without the
@@ -336,7 +334,7 @@ and do not authorize a reweighting decision.</p>
 dilution alone is not evidence of alpha. Conversely, deleting a frozen sleeve after seeing the
 comparison would select the composition in sample. The forward experiment exists to resolve that
 tension prospectively.</p>
-<h2 id="reader-section-10" data-reader-anchor="true">8. Execution, capacity, and unresolved realism</h2>
+<h2>8. Execution, capacity, and unresolved realism</h2>
 <p>IWM and SPY are liquid exchange-traded funds, and monthly turnover is low by construction. That
 does not make the backtest executable by default. The historical model uses a fixed 6 bp one-way
 cost per leg and does not fully model bid-ask variation, short borrow availability and fees,
@@ -346,9 +344,9 @@ capacity claim therefore remains <strong>not established</strong>.</p>
 <p>The Alpaca paper record can test order generation, broker marks, holdings, fills, and operational
 continuity. It cannot test borrow economics or market impact with real capital. Funded deployment
 would require a new capital decision and a separately governed evidence standard.</p>
-<h2 id="reader-section-11" data-reader-anchor="true">9. Reproducibility and provenance</h2>
+<h2>9. Reproducibility and provenance</h2>
 <p>Canonical commands:</p>
-<pre tabindex="0" data-reader-focus="true"><code class="language-text">uv run python scripts/probe_cpi_surprise_size.py
+<pre><code class="language-text">uv run python scripts/probe_cpi_surprise_size.py
 uv run python scripts/export_alphavintage_sealed_outcome.py
 uv run python scripts/analyze_current_book_diversification.py
 uv run python scripts/analyze_book_without_alphavintage.py
@@ -404,7 +402,7 @@ environment bindings, a data-rights manifest, checksums, a software bill of mate
 and the portable receipts. Data-rights review, exact AlphaMax historical-input recovery, a complete
 multi-sleeve end-to-end reproduction, and independent human reproduction remain explicit blockers
 before the release can be called externally replicated.</p>
-<h2 id="reader-section-12" data-reader-anchor="true">10. Limitations</h2>
+<h2>10. Limitations</h2>
 <ul>
 <li>The surprise is an AR residual, not a survey-based market expectation.</li>
 <li>The vintage stamp is conservative but is not the exact BLS release timestamp for every month.</li>
@@ -417,7 +415,7 @@ research multiplicity.</li>
 <li>Historical diversification is measured on a post-2022 window and is not crisis-complete.</li>
 <li>The forward record is too short to support a performance or drawdown conclusion.</li>
 </ul>
-<h2 id="reader-section-13" data-reader-anchor="true">11. Conclusion</h2>
+<h2>11. Conclusion</h2>
 <p>The point-in-time CPI-surprise size-spread hypothesis did not survive its corrected locked test.
 That result remains published because a research platform is more credible when failed signals,
 software defects, delayed corrections, and awkward deployment decisions are first-class evidence.
@@ -425,7 +423,7 @@ AlphaVintage&#39;s low measured dependence makes it a useful frozen forward expe
 make it a validated alpha sleeve. Success for this project means resolving that distinction with
 time, broker-reconciled evidence, and independent reproduction, not changing the standard after
 seeing the answer.</p>
-<h2 id="reader-section-14" data-reader-anchor="true">References</h2>
+<h2>References</h2>
 <ul>
 <li>Croushore, D., and T. Stark (1999/2001), “A Real-Time Data Set for Macroeconomists: Does the
 Data Vintage Matter?”, Federal Reserve Bank of Philadelphia Working Paper 99-21 and <em>Journal of
@@ -444,7 +442,7 @@ Federal Reserve Finance and Economics Discussion Series 2025-007.
 </ol>
 </li>
 </ul>
-<h2 id="reader-section-15" data-reader-anchor="true">Authorship and contribution statement</h2>
+<h2>Authorship and contribution statement</h2>
 <p><strong>Arhan Canli</strong> directed the research, specified the strategy and governance, built the software
 and evidence system, investigated the corrections, and wrote the paper. AI assisted development
 and editing; he remains responsible for every claim, decision, and correction.</p>
@@ -466,7 +464,7 @@ and editing; he remains responsible for every claim, decision, and correction.</
       </p>
       <details class="paper__citation">
         <summary>Cite this report</summary>
-        <pre tabindex="0" data-reader-focus="true"><code>@techreport{canli2026alphavintagemacrosurpriselineage,
+        <pre><code>@techreport{canli2026alphavintagemacrosurpriselineage,
   author      = {Canli, Arhan},
   title       = {Point-in-Time Inflation Surprise and the Equity Size Spread},
   institution = {Canli Capital},
@@ -562,6 +560,5 @@ and editing; he remains responsible for every claim, decision, and correction.</
   <div class="cc-footer__wordmark" aria-hidden="true">Canli Capital<span><svg viewBox="0 0 80 80" focusable="false" aria-hidden="true"><path d="M12 68 68 12M12 12h56v56" fill="none" stroke="currentColor" stroke-width="4" /></svg></span></div>
   <script type="module" src="/js/site-motion.js"></script>
 </footer>
-
-<script type="module" src="/js/reader-experience.js"></script></body>
+</body>
 </html>

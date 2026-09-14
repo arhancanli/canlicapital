@@ -1,5 +1,5 @@
 <!doctype html>
-<html data-reader="research" lang="en">
+<html lang="en">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -38,9 +38,7 @@
 <link rel="stylesheet" href="/css/product-shell.css" />
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"ScholarlyArticle","headline":"Petroleum inventory scarcity: a preregistered negative result","description":"This study tests one preregistered implementation of petroleum-inventory scarcity using EIA first-release data and liquid exchange-traded energy proxies.","url":"https://canlicapital.com/research/energy-inventory-lineage","inLanguage":"en","isAccessibleForFree":true,"datePublished":"2026","author":{"@type":"Person","@id":"https://canlicapital.com/#arhan-canli","name":"Arhan Canli","jobTitle":"Founder and Quantitative Researcher","url":"https://canlicapital.com/founder","sameAs":["https://github.com/arhancanli"],"affiliation":{"@type":"Organization","@id":"https://canlicapital.com/#organization","name":"Canli Capital","url":"https://canlicapital.com/"}},"publisher":{"@type":"Organization","@id":"https://canlicapital.com/#organization","name":"Canli Capital","url":"https://canlicapital.com/","logo":{"@type":"ImageObject","url":"https://canlicapital.com/brand-mark.svg"}},"isPartOf":{"@type":"Periodical","name":"Canli Capital Research","url":"https://canlicapital.com/research"},"encodingFormat":"text/html","associatedMedia":{"@type":"MediaObject","contentUrl":"https://canlicapital.com/research/energy-inventory-lineage.md","encodingFormat":"text/markdown"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Canli Capital","item":"https://canlicapital.com"},{"@type":"ListItem","position":2,"name":"Research","item":"https://canlicapital.com/research"},{"@type":"ListItem","position":3,"name":"Petroleum inventory scarcity","item":"https://canlicapital.com/research/energy-inventory-lineage"}]}</script>
-
-<link rel="stylesheet" href="/css/reader-experience.css" />
-<!-- release-style:start --><link rel="stylesheet" href="/css/release-readiness.css" /><!-- release-style:end --></head>
+</head>
 <body class="paper">
 <a class="paper__skip" href="#content">Skip to content</a>
 <header class="cc-shell" id="nav" data-product-shell="v3" data-shell-revision="4">
@@ -99,13 +97,13 @@
   <a class="cc-shell__cta" href="https://app.canlicapital.com/dashboard">Live record <span aria-hidden="true">↗</span></a>
   <script type="module" src="/js/navigation.js"></script>
 </header>
-<main class="paper__main" id="content"><!-- reader-index:start --><aside class="reader-index"><a class="reader-index__back" href="/research">Explore research</a><details><summary>In this document</summary><nav aria-label="Document sections"><a href="#reader-section-1">Abstract</a><a href="#reader-section-2">Economic hypothesis</a><a href="#reader-section-3">Preregistered implementation</a><a href="#reader-section-4">Result</a><a href="#reader-section-5">Diversification did not rescue the return</a><a href="#reader-section-6">Gate decision and provenance</a><a href="#reader-section-7">Reproduction and decision</a></nav></details><a class="reader-index__verify" href="/verify">How to verify a claim ↗</a></aside><!-- reader-index:end -->
+<main class="paper__main" id="content">
   <article class="paper__article">
     <p class="paper__eyebrow"><a href="/research">Research</a></p>
     <h1 class="paper__title">Petroleum inventory scarcity: a preregistered negative result</h1>
     <p class="paper__byline">By <span rel="author">Arhan Canli</span>, Canli Capital</p>
     <div class="paper__body">
-<div class="research-masthead"><dl class="research-masthead__facts"><div><dt>Author</dt><dd>Arhan Canli, Founder and Quantitative Researcher, Canli Capital</dd></div><div><dt>Family key</dt><dd><code>energy_inventory</code> ·</dd></div><div><dt>System</dt><dd>ALPHAC / AlphaForge</dd></div><div><dt>Status</dt><dd>public research record; not peer reviewed; not an investment solicitation</dd></div><div><dt>Evidence date</dt><dd>2026-08-22</dd></div></dl></div><h2 id="reader-section-1" data-reader-anchor="true">Abstract</h2>
+<div class="research-masthead"><dl class="research-masthead__facts"><div><dt>Author</dt><dd>Arhan Canli, Founder and Quantitative Researcher, Canli Capital</dd></div><div><dt>Family key</dt><dd><code>energy_inventory</code> ·</dd></div><div><dt>System</dt><dd>ALPHAC / AlphaForge</dd></div><div><dt>Status</dt><dd>public research record; not peer reviewed; not an investment solicitation</dd></div><div><dt>Evidence date</dt><dd>2026-08-22</dd></div></dl></div><h2>Abstract</h2>
 <p>This study tests one preregistered implementation of petroleum-inventory scarcity using EIA
 first-release data and liquid exchange-traded energy proxies. The signal enters on the next market
 open after release, normalizes inventory surprises against five years of seasonal history, and
@@ -114,7 +112,7 @@ skew was -1.5157, and kurtosis was 30.2245. The fuller probe measured net Sharpe
 t-statistic -1.8450, DSR effectively zero, and maximum drawdown of 41.05%. It passed exposure and
 correlation checks but failed the return, robustness, product-consistency, portfolio, and capacity
 gates. The verdict is KILL and the family contributes zero sleeves.</p>
-<h2 id="reader-section-2" data-reader-anchor="true">Economic hypothesis</h2>
+<h2>Economic hypothesis</h2>
 <p>Petroleum inventories connect physical scarcity to spot and futures prices. Low inventories can
 raise convenience yield because holding the physical commodity protects production and delivery
 needs. Gorton, Hayashi, and Rouwenhorst document broad relationships between commodity inventories,
@@ -125,7 +123,7 @@ incremental information that can be traded after publication, once normal season
 commodity beta are controlled. This timing distinction is essential. A relation visible in
 revised inventory history or contemporaneous prices is not necessarily available to a trader at
 the next session open.</p>
-<h2 id="reader-section-3" data-reader-anchor="true">Preregistered implementation</h2>
+<h2>Preregistered implementation</h2>
 <p>The single charged probe uses USO and UGA as energy return proxies and DBC as the hedge instrument.
 The inventory score is normalized using five seasonal years, scaled over 52 weeks, and clipped to
 the interval [-3, 3]. Positions enter at the next session open after the EIA release. DBC hedge
@@ -134,8 +132,8 @@ points for USO, 10 for UGA, and 3 for DBC. The out-of-sample period begins in 20
 <p>This is one configuration. PBO is not defined because no selection surface exists inside the
 probe. The identity is still charged to the 228-trial global union for selection-adjusted
 inference.</p>
-<h2 id="reader-section-4" data-reader-anchor="true">Result</h2>
-<table tabindex="0" data-reader-focus="true">
+<h2>Result</h2>
+<table>
 <thead>
 <tr>
 <th>Measure</th>
@@ -178,7 +176,7 @@ inference.</p>
 <p>Both standalone products were negative: USO Sharpe was -0.4603 and UGA Sharpe was -0.7426. The
 twice-cost result moved farther below zero. The negative left tail and high turnover make the
 failure economically stronger than a marginally insignificant mean.</p>
-<h2 id="reader-section-5" data-reader-anchor="true">Diversification did not rescue the return</h2>
+<h2>Diversification did not rescue the return</h2>
 <p>The candidate had low ordinary correlation with the four comparison sleeves. Average correlation
 was 0.0012 and the largest pair was 0.0323. The largest stressed correlation was 0.0790. Those
 figures clear the probe&#39;s overlap thresholds, but low correlation is not a sufficient admission
@@ -190,7 +188,7 @@ stable diversification premium.</p>
 <p>The proxy capacity calculation was also poor. At 1% of ADV, the fifth-percentile estimate was only
 $14,919. This model is not a market-capacity certification, but it decisively fails the
 preregistered $5 million floor.</p>
-<h2 id="reader-section-6" data-reader-anchor="true">Gate decision and provenance</h2>
+<h2>Gate decision and provenance</h2>
 <p>Five of thirteen preregistered research checks passed. Exposure and correlation limits passed;
 minimum Sharpe, DSR, Newey-West significance, twice-cost Sharpe, product consistency, mean-zero
 book contribution, leave-one-year-out stability, and capacity did not. The machine verdict is
@@ -200,9 +198,9 @@ receipt records 5,119 USO bars, 4,645 UGA bars, and 5,163 DBC bars, with persist
 and an ingestion timestamp inside the execution window. This establishes local source identity,
 not redistribution rights, exact historical loader bytes, or independent replication. Raw rows
 remain withheld.</p>
-<h2 id="reader-section-7" data-reader-anchor="true">Reproduction and decision</h2>
+<h2>Reproduction and decision</h2>
 <p>The governed probe command is:</p>
-<pre tabindex="0" data-reader-focus="true"><code class="language-text">uv run python scripts/probe_eia_petroleum_inventory.py
+<pre><code class="language-text">uv run python scripts/probe_eia_petroleum_inventory.py
 </code></pre>
 <p>The result is bound by its preregistration, input manifest, runner hash, environment lock, and
 admission-contract hash. The family packet is
@@ -228,7 +226,7 @@ by <strong>Arhan Canli</strong>; no historical result is relabeled as Alpaca or 
       </p>
       <details class="paper__citation">
         <summary>Cite this report</summary>
-        <pre tabindex="0" data-reader-focus="true"><code>@techreport{canli2026energyinventorylineage,
+        <pre><code>@techreport{canli2026energyinventorylineage,
   author      = {Canli, Arhan},
   title       = {Petroleum inventory scarcity: a preregistered negative result},
   institution = {Canli Capital},
@@ -324,6 +322,5 @@ by <strong>Arhan Canli</strong>; no historical result is relabeled as Alpaca or 
   <div class="cc-footer__wordmark" aria-hidden="true">Canli Capital<span><svg viewBox="0 0 80 80" focusable="false" aria-hidden="true"><path d="M12 68 68 12M12 12h56v56" fill="none" stroke="currentColor" stroke-width="4" /></svg></span></div>
   <script type="module" src="/js/site-motion.js"></script>
 </footer>
-
-<script type="module" src="/js/reader-experience.js"></script></body>
+</body>
 </html>

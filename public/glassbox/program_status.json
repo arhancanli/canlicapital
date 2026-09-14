@@ -63,14 +63,14 @@
   "forward_record": {
     "capital_kind": "PAPER_ONLY",
     "go_live_date": "2026-08-07",
-    "state_generated_at": "2026-09-08T15:25:50.496931+00:00",
-    "live_days": 32,
+    "state_generated_at": "2026-09-14T10:26:19.414969+00:00",
+    "live_days": 38,
     "first_mark": "2026-08-07",
-    "last_mark": "2026-09-08",
+    "last_mark": "2026-09-14",
     "normalized_starting_equity": 100000.0,
-    "normalized_current_equity": 97218.99,
-    "cumulative_return": -0.02781009999999995,
-    "curve_points": 31,
+    "normalized_current_equity": 97293.83,
+    "cumulative_return": -0.027061699999999966,
+    "curve_points": 37,
     "curve_basis": "Normalized composite of constituent paper curves plus the disclosed overlay; not a direct broker account balance.",
     "honest_forward_sharpe_estimate": "0.3 to 0.9 (the +10% beta does NOT improve this \u2014 it adds bull upside + crash risk, not risk-adjusted quality; real chance of ~0 yr1)",
     "in_sample_sharpe": 1.78,
@@ -84,17 +84,17 @@
       "why": "A record that cannot say which configuration produced it cannot be read as one experiment. This stamp is what lets a reader tell a continuous forward test from a curve that changed underneath itself."
     },
     "continuity": {
-      "as_of": "2026-09-08",
+      "as_of": "2026-09-14",
       "author": "Arhan Canli",
       "claim_boundary": "Reads the per-sleeve trading databases read-only. Opens no market data, registers no hypothesis identity and changes nothing. Corrects session-date classification only; it changes no mark, equity, return, order, fill or configuration. 0 trials.",
-      "content_hash": "sha256:04d23da6dfcdd345055c1f75fbad32c506fe9846a0536bf93ac76f272daec7e0",
+      "content_hash": "sha256:e768dcfc7b9ee2733c892be46de51b8c916ea56b915d62759fbf115d9236df3b",
       "correction": {
         "documentation": "docs/design/CORRECTION_ALPACA_SESSION_DATE_CONTINUITY.md",
         "raw_marks_rewritten": false,
         "status": "CORRECTED",
         "withdrawn_finding": "The v1 UTC-calendar audit called 2026-08-10 a systemic gap. The three Alpaca rows stamped 2026-08-11T00:00:00Z are the finalized 2026-08-10 XNYS closes."
       },
-      "days_since_go_live": 33,
+      "days_since_go_live": 39,
       "go_live_date": "2026-08-07",
       "how_a_gap_is_classified": "Crypto marks and expectations use UTC calendar dates. Alpaca 1D midnight-UTC marks map to the preceding XNYS session; equity expectations come from XNYS sessions, so weekends and exchange holidays are legitimate absences.",
       "max_gap_rate_threshold": 0.2,
@@ -102,14 +102,14 @@
       "schema": "canli.alphac-record-continuity.v1",
       "sleeves": {
         "alphaforge": {
-          "calendar_days_marked": 30,
+          "calendar_days_marked": 36,
           "database": "var/trading_crypto_perp.sqlite",
           "database_exists": true,
-          "days_expected": 33,
-          "days_marked": 30,
-          "days_since_go_live": 33,
+          "days_expected": 39,
+          "days_marked": 36,
+          "days_since_go_live": 39,
           "expected_calendar": "UTC_24_7",
-          "gap_rate": 0.09090909090909091,
+          "gap_rate": 0.07692307692307693,
           "legitimate_absence_days": [],
           "legitimate_absences": 0,
           "longest_consecutive_gap": 2,
@@ -123,12 +123,12 @@
           "trades_24_7": true
         },
         "alphamax": {
-          "calendar_days_marked": 22,
+          "calendar_days_marked": 26,
           "database": "var/trading_equity.sqlite",
           "database_exists": true,
-          "days_expected": 22,
-          "days_marked": 22,
-          "days_since_go_live": 33,
+          "days_expected": 26,
+          "days_marked": 26,
+          "days_since_go_live": 39,
           "expected_calendar": "XNYS",
           "gap_rate": 0.0,
           "legitimate_absence_days": [
@@ -142,9 +142,11 @@
             "2026-08-30",
             "2026-09-05",
             "2026-09-06",
-            "2026-09-07"
+            "2026-09-07",
+            "2026-09-12",
+            "2026-09-13"
           ],
-          "legitimate_absences": 11,
+          "legitimate_absences": 13,
           "longest_consecutive_gap": 0,
           "mark_date_convention": "ALPACA_1D_CLOSE_D_STAMPED_D_PLUS_1_00_UTC",
           "real_gap_days": [],
@@ -152,12 +154,12 @@
           "trades_24_7": false
         },
         "alphavintage": {
-          "calendar_days_marked": 22,
+          "calendar_days_marked": 26,
           "database": "var/trading_alphavintage.sqlite",
           "database_exists": true,
-          "days_expected": 22,
-          "days_marked": 22,
-          "days_since_go_live": 33,
+          "days_expected": 26,
+          "days_marked": 26,
+          "days_since_go_live": 39,
           "expected_calendar": "XNYS",
           "gap_rate": 0.0,
           "legitimate_absence_days": [
@@ -171,9 +173,11 @@
             "2026-08-30",
             "2026-09-05",
             "2026-09-06",
-            "2026-09-07"
+            "2026-09-07",
+            "2026-09-12",
+            "2026-09-13"
           ],
-          "legitimate_absences": 11,
+          "legitimate_absences": 13,
           "longest_consecutive_gap": 0,
           "mark_date_convention": "ALPACA_1D_CLOSE_D_STAMPED_D_PLUS_1_00_UTC",
           "real_gap_days": [],
@@ -181,12 +185,12 @@
           "trades_24_7": false
         },
         "managed_futures": {
-          "calendar_days_marked": 22,
+          "calendar_days_marked": 26,
           "database": "var/trading_managed_futures.sqlite",
           "database_exists": true,
-          "days_expected": 22,
-          "days_marked": 22,
-          "days_since_go_live": 33,
+          "days_expected": 26,
+          "days_marked": 26,
+          "days_since_go_live": 39,
           "expected_calendar": "XNYS",
           "gap_rate": 0.0,
           "legitimate_absence_days": [
@@ -200,9 +204,11 @@
             "2026-08-30",
             "2026-09-05",
             "2026-09-06",
-            "2026-09-07"
+            "2026-09-07",
+            "2026-09-12",
+            "2026-09-13"
           ],
-          "legitimate_absences": 11,
+          "legitimate_absences": 13,
           "longest_consecutive_gap": 0,
           "mark_date_convention": "ALPACA_1D_CLOSE_D_STAMPED_D_PLUS_1_00_UTC",
           "real_gap_days": [],
@@ -214,7 +220,7 @@
       "systemic_note": "Dates that are expected and missing on EVERY sleeve's own calendar are systemic \u2014 the tick did not run or did not mark \u2014 rather than a fault in any one sleeve.",
       "threshold_basis": "Declared, not fitted. A threshold derived from today's gap rate would pass whatever the gap rate happens to be, which is not a threshold.",
       "what_this_does_not_measure": "Whether a mark is CORRECT \u2014 only whether one exists. A sleeve marking the same equity every day would show a perfect continuity record and a frozen curve. That is the publish gate's job (check_published_state), not this one's.",
-      "worst_gap_rate": 0.09090909090909091
+      "worst_gap_rate": 0.07692307692307693
     },
     "evidence_maturity": {
       "status": "IMMATURE_RECORD_TOO_SHORT",
@@ -222,11 +228,11 @@
       "provenance_passes": true,
       "failed_provenance_checks": [],
       "sharpe": {
-        "daily_return_observations": 30,
+        "daily_return_observations": 36,
         "estimate_minimum": 252,
         "establishment_minimum": 756,
-        "observations_to_estimate": 222,
-        "observations_to_establishment": 726,
+        "observations_to_estimate": 216,
+        "observations_to_establishment": 720,
         "annualization_days": 365.0,
         "target": 1.5,
         "target_exceedance_probability_min": 0.95,
@@ -242,8 +248,8 @@
         "expected_max_drawdown_target": 0.11,
         "study_production_labelled_expected_max_drawdown": 0.10251155801473733,
         "study_production_labelled_p95_max_drawdown": 0.1876321103559252,
-        "current_composition_conservative_expected_max_drawdown": 0.09318244729779511,
-        "current_composition_conservative_p95_max_drawdown": 0.16451439325766742,
+        "current_composition_conservative_expected_max_drawdown": 0.09318244555751289,
+        "current_composition_conservative_p95_max_drawdown": 0.16451438282127803,
         "current_composition_study_status": "CURRENT_COMPOSITION_EXPECTED_WITHIN_OBJECTIVE_HISTORICAL_TAIL_COVERAGE_INCOMPLETE",
         "current_composition_expected_within_objective": true,
         "current_composition_p95_within_objective": false,
@@ -284,24 +290,24 @@
         "effective_independent_sleeves_participation_ratio": 3.8988014966039604,
         "marginal_book_sharpe_research_diagnostics": {
           "alphavintage_live": {
-            "book_sharpe_with_sleeve": 1.784628162403188,
-            "book_sharpe_with_sleeve_replaced_by_cash": 1.7908857104987552,
-            "marginal_book_sharpe_delta": -0.0062575480955673335
+            "book_sharpe_with_sleeve": 1.7846281959332158,
+            "book_sharpe_with_sleeve_replaced_by_cash": 1.7908857792436268,
+            "marginal_book_sharpe_delta": -0.006257583310411041
           },
           "crypto_carry_wk": {
-            "book_sharpe_with_sleeve": 1.784628162403188,
-            "book_sharpe_with_sleeve_replaced_by_cash": 1.2520344847842815,
-            "marginal_book_sharpe_delta": 0.5325936776189064
+            "book_sharpe_with_sleeve": 1.7846281959332158,
+            "book_sharpe_with_sleeve_replaced_by_cash": 1.2520345235962755,
+            "marginal_book_sharpe_delta": 0.5325936723369402
           },
           "k30_dn_63": {
-            "book_sharpe_with_sleeve": 1.784628162403188,
-            "book_sharpe_with_sleeve_replaced_by_cash": 1.6377956760429815,
-            "marginal_book_sharpe_delta": 0.1468324863602064
+            "book_sharpe_with_sleeve": 1.7846281959332158,
+            "book_sharpe_with_sleeve_replaced_by_cash": 1.6377957832661092,
+            "marginal_book_sharpe_delta": 0.14683241266710656
           },
           "managed_futures": {
-            "book_sharpe_with_sleeve": 1.784628162403188,
-            "book_sharpe_with_sleeve_replaced_by_cash": 1.8754660396405889,
-            "marginal_book_sharpe_delta": -0.090837877237401
+            "book_sharpe_with_sleeve": 1.7846281959332158,
+            "book_sharpe_with_sleeve_replaced_by_cash": 1.8754660609269067,
+            "marginal_book_sharpe_delta": -0.09083786499369095
           }
         },
         "checks": {
@@ -326,7 +332,7 @@
       "diversification_evidence_public_path": "/glassbox/current_book_diversification.json",
       "contract_public_path": "/glassbox/forward_evidence_contract.json",
       "methodology_paper_public_path": "/research/forward-sharpe-evidence-standard",
-      "content_hash": "sha256:319ca0b9042de5b1f9346ffcb42115d067808aa13861f1c18bfe889b0c14daac"
+      "content_hash": "sha256:1c7138902655945aaaca4443928d1aaafcddf596f0f3d96ccfac6a9379783865"
     }
   },
   "execution_provenance": {
@@ -341,7 +347,7 @@
         "key": "alphac",
         "name": "ALPHAC",
         "go_live": "2026-08-07",
-        "last_mark": "2026-09-08",
+        "last_mark": "2026-09-14",
         "execution": {
           "record_kind": "DERIVED_PAPER_BOOK",
           "capital_kind": "PAPER_ONLY",
@@ -355,7 +361,7 @@
         "key": "alphamax",
         "name": "AlphaMax",
         "go_live": "2026-08-07",
-        "last_mark": "2026-09-08",
+        "last_mark": "2026-09-14",
         "execution": {
           "record_kind": "BROKER_EXECUTED_PAPER",
           "capital_kind": "PAPER_ONLY",
@@ -369,7 +375,7 @@
         "key": "managed_futures",
         "name": "AlphaTrend",
         "go_live": "2026-08-07",
-        "last_mark": "2026-09-08",
+        "last_mark": "2026-09-14",
         "execution": {
           "record_kind": "BROKER_EXECUTED_PAPER",
           "capital_kind": "PAPER_ONLY",
@@ -383,7 +389,7 @@
         "key": "alphavintage",
         "name": "AlphaVintage",
         "go_live": "2026-08-07",
-        "last_mark": "2026-09-08",
+        "last_mark": "2026-09-14",
         "execution": {
           "record_kind": "BROKER_EXECUTED_PAPER",
           "capital_kind": "PAPER_ONLY",
@@ -397,7 +403,7 @@
         "key": "alphaforge",
         "name": "AlphaForge",
         "go_live": "2026-08-07",
-        "last_mark": "2026-09-08",
+        "last_mark": "2026-09-14",
         "execution": {
           "record_kind": "LOCALLY_SIMULATED_PAPER_FILLS",
           "capital_kind": "PAPER_ONLY",
@@ -411,7 +417,7 @@
     "broker_reconciliation_claim": "BROKER_DERIVED_LOCAL_PUBLICATION_NOT_EXTERNALLY_ATTESTED",
     "broker_reconciliation": {
       "status": "PASS",
-      "generated_at": "2026-09-08T15:25:37.212857+00:00",
+      "generated_at": "2026-09-14T10:26:05.069301+00:00",
       "reconciled_alpaca_sleeves": 3,
       "unique_dedicated_accounts": true,
       "public_path": "/glassbox/alpaca_broker_reconciliation.json",
@@ -420,9 +426,9 @@
   },
   "research_governance": {
     "trial_accounting": {
-      "distinct_hypothesis_identities": 229,
+      "distinct_hypothesis_identities": 347,
       "hypothesis_identity_budget": 400,
-      "budget_remaining": 171,
+      "budget_remaining": 53,
       "budget_status": "PASS",
       "research_status": "ACTIVE_STAGED_PROSPECTIVE_BUDGET"
     },
@@ -554,14 +560,27 @@
       "verified_family_paper_bindings": 228,
       "published_identity_packets": 229,
       "prospective_epoch": {
-        "observed_identities": 1,
+        "observed_identities": 119,
+        "by_status": {
+          "GOVERNED_SERIAL_PACKET_CLOSED": 1,
+          "IMPORTED_RESERVED_MEASURED_UNCLOSED": 118,
+          "MEASURED_WITHOUT_RESERVATION": 0,
+          "RESERVED_MEASURED_UNCLOSED": 0
+        },
+        "latest_reservation_ordinal": 347,
+        "reservation_ordinals_contiguous": true,
+        "distinct_families": 40,
+        "admitted_identities": 0,
+        "register_public_path": "/glassbox/prospective_epoch_register.json",
+        "register_content_hash": "sha256:4037d3a66a639cc0e10dd1407dd3b76a16fc466f2e3f856b1935b3cbda6315f5",
+        "governed_serial_identity": "crypto_carry_portable_v1",
         "complete_identity_packets": 1,
         "candidate_evidence_complete_for_admission": false,
         "final_disposition": "INCOMPLETE",
         "admitted": false,
         "identity_packet_public_path": "/glassbox/trial-packets/da5f5f47f99f9bd2.json",
         "trial_paper_public_path": "/research/crypto-carry-portable-v1",
-        "claim_boundary": "The prospective packet is complete as evidence accounting, while the candidate evidence required for admission is incomplete."
+        "claim_boundary": "The governed serial identity's packet is complete as evidence accounting while its candidate evidence for admission is incomplete. 118 further prospective identities were reserved and measured without a closing packet; they count in selection N and establish nothing."
       },
       "new_return_identity_gate": {
         "status": "OPEN_SERIAL_PACKET_COMPLETE",
@@ -574,28 +593,28 @@
         "implementation": "src/alphaforge/validation/trial_reservation.py",
         "prior_forward_identity_packet_policy": "SERIAL_COMPLETE_PACKET_BEFORE_NEXT_FORWARD_IDENTITY",
         "legacy_epoch_closure_public_path": "/glassbox/legacy_research_epoch_closure.json",
-        "claim_boundary": "The legacy epoch is retired fail-closed: no historical identity is admission-eligible or reusable, and missing packet sections remain missing. A genuinely new identity may run only after its exact pre-result reservation validates. Frozen live paper execution is unaffected. The first prospective identity now has a complete, hash-valid evidence-accounting packet and a final INCOMPLETE / NOT ADMITTED decision, so it no longer blocks the serial queue. Every later forward identity remains subject to the same rule before another can compute returns."
+        "claim_boundary": "The legacy epoch is retired fail-closed: no historical identity is admission-eligible or reusable, and missing packet sections remain missing. A genuinely new identity may run only after its exact pre-result reservation validates. Frozen live paper execution is unaffected. The first prospective identity has a complete, hash-valid evidence-accounting packet and a final INCOMPLETE / NOT ADMITTED decision, so it does not block the serial queue. 118 later prospective identities were reserved and measured in a second checkout without closing packets and were imported into the union on 2026-09-14; the serial packet rule was not applied to them and this record says so rather than pretending otherwise. Every later forward identity remains subject to the same rule before another can compute returns."
       },
-      "required_trial_packets": 229,
+      "required_trial_packets": 347,
       "manifest_public_path": "/glassbox/trial_packet_manifest.json",
       "identity_packet_index_public_path": "/glassbox/trial-packets/index.json",
       "manifest_source_sha256": "0147dd8e631ca24257e2db384bf01d4637a79371f1754b284f3f7e9637c1369c",
-      "claim_boundary": "The 228-identity historical manifest remains a retired fail-closed epoch with 226 incomplete packets. The separate prospective identity has a complete hash-valid accounting packet, but its candidate evidence is incomplete and it is not admitted. Packet publication or accounting completeness is not validation, admission, independent replication, or a future-return claim."
+      "claim_boundary": "The 228-identity historical manifest remains a retired fail-closed epoch with 226 incomplete packets. The prospective epoch holds 119 identities: one governed serial identity with a complete hash-valid accounting packet whose candidate evidence is incomplete and which is not admitted, and 118 reserved, measured, unclosed identities. Packet publication or accounting completeness is not validation, admission, independent replication, or a future-return claim."
     }
   },
   "source_provenance": {
     "paper_state": {
       "path": "data/paper/state.json",
-      "sha256": "8a5c086884f16b1e8e26a11b9b5bcedc75fe51f7fa8f5356b3ee6ece7d6c89f2"
+      "sha256": "eb8dfdd7500035a4f70d185f7c0a5d42202b2ba21b3824c6ef3f4cd8ac41c635"
     },
     "forward_evidence_maturity": {
       "path": "artifacts/engineering/forward_evidence_maturity.json",
-      "sha256": "766242f27276bb77a01a0fcd58c2313621eab41f8f068268d9f4487ee44dd44d",
-      "content_hash": "sha256:319ca0b9042de5b1f9346ffcb42115d067808aa13861f1c18bfe889b0c14daac"
+      "sha256": "c0c98bdf236c3e57b9d5a182910f7216f9cd0d5a34b7531a479c68b2d4f3929c",
+      "content_hash": "sha256:1c7138902655945aaaca4443928d1aaafcddf596f0f3d96ccfac6a9379783865"
     },
     "forward_sleeve_contribution": {
       "path": "artifacts/engineering/forward_sleeve_contribution.json",
-      "sha256": "d48906098b30e4adb2f14e37a01d56623cd660c6cf675ef96dc18d5e6851dccb"
+      "sha256": "91ba8b0bb0643eecd16d048dc4b7c4bcaec62794faa9010bcf50c387ee7c75a8"
     },
     "admission_contract": {
       "path": "config/sleeve_admission_contract.json",
@@ -603,7 +622,7 @@
     },
     "trial_policy": {
       "path": "config/trial_accounting.json",
-      "sha256": "f15af7c989aded5da6c5259a7f7e5587377ab33977b5cd3c5b2395a84ea45043"
+      "sha256": "fd10d721991f83d91287febe8b70708cab8424dfce4a271f8866346b6b8547f0"
     },
     "admission_v7_promotion": {
       "path": "config/admission_v7_promotion.json",
@@ -615,6 +634,6 @@
       "sha256": "ea5254cd4463d94fde7e57558a8906dc06ef321bddd0aab0074f768d9778a521"
     }
   },
-  "generated_at": "2026-09-08T15:26:48.683178+00:00",
-  "content_hash": "sha256:285949a2184beb11908f4cb9b0ac2b072fc1bf3b4c588fc7a86653f0454f71c2"
+  "generated_at": "2026-09-14T10:49:58.296025+00:00",
+  "content_hash": "sha256:b8d1c698aeaeec88e4859c821922fe53d4584817d7303dc63e25f341eab4b2f8"
 }

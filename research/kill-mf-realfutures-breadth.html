@@ -1,5 +1,5 @@
 <!doctype html>
-<html data-reader="research" lang="en">
+<html lang="en">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -38,9 +38,7 @@
 <link rel="stylesheet" href="/css/product-shell.css" />
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"ScholarlyArticle","headline":"Real-Futures Breadth for the Trend Sleeve (probe): a killed candidate","description":"We had been treating 'buy real futures data for genuine breadth' as the roadmap for the trend sleeve, on the theory that Sharpe scales with the square root…","url":"https://canlicapital.com/research/kill-mf-realfutures-breadth","inLanguage":"en","isAccessibleForFree":true,"datePublished":"2026","author":{"@type":"Person","@id":"https://canlicapital.com/#arhan-canli","name":"Arhan Canli","jobTitle":"Founder and Quantitative Researcher","url":"https://canlicapital.com/founder","sameAs":["https://github.com/arhancanli"],"affiliation":{"@type":"Organization","@id":"https://canlicapital.com/#organization","name":"Canli Capital","url":"https://canlicapital.com/"}},"publisher":{"@type":"Organization","@id":"https://canlicapital.com/#organization","name":"Canli Capital","url":"https://canlicapital.com/","logo":{"@type":"ImageObject","url":"https://canlicapital.com/brand-mark.svg"}},"isPartOf":{"@type":"Periodical","name":"Canli Capital Research","url":"https://canlicapital.com/research"},"encodingFormat":"text/html","associatedMedia":{"@type":"MediaObject","contentUrl":"https://canlicapital.com/research/kill-mf-realfutures-breadth.md","encodingFormat":"text/markdown"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Canli Capital","item":"https://canlicapital.com"},{"@type":"ListItem","position":2,"name":"Research","item":"https://canlicapital.com/research"},{"@type":"ListItem","position":3,"name":"Real-Futures Breadth for the Trend Sleeve: killed","item":"https://canlicapital.com/research/kill-mf-realfutures-breadth"}]}</script>
-
-<link rel="stylesheet" href="/css/reader-experience.css" />
-<!-- release-style:start --><link rel="stylesheet" href="/css/release-readiness.css" /><!-- release-style:end --></head>
+</head>
 <body class="paper">
 <a class="paper__skip" href="#content">Skip to content</a>
 <header class="cc-shell" id="nav" data-product-shell="v3" data-shell-revision="4">
@@ -99,17 +97,17 @@
   <a class="cc-shell__cta" href="https://app.canlicapital.com/dashboard">Live record <span aria-hidden="true">↗</span></a>
   <script type="module" src="/js/navigation.js"></script>
 </header>
-<main class="paper__main" id="content"><!-- reader-index:start --><aside class="reader-index"><a class="reader-index__back" href="/research">Explore research</a><details><summary>In this document</summary><nav aria-label="Document sections"><a href="#reader-section-1">Why it was worth testing</a><a href="#reader-section-2">The result</a><a href="#reader-section-3">What this does and does not say</a></nav></details><a class="reader-index__verify" href="/verify">How to verify a claim ↗</a></aside><!-- reader-index:end -->
+<main class="paper__main" id="content">
   <article class="paper__article">
     <p class="paper__eyebrow"><a href="/research">Research</a></p>
     <h1 class="paper__title">Real-Futures Breadth for the Trend Sleeve (probe): a killed candidate</h1>
     <p class="paper__byline">By <span rel="author">Arhan Canli</span>, Canli Capital</p>
     <div class="paper__body">
 <div class="research-masthead"><p class="research-masthead__verdict" data-verdict="killed"><span>Verdict</span><strong>KILLED</strong></p><dl class="research-masthead__facts"><div><dt>Stage</dt><dd>screen prototype</dd></div><div><dt>Identity</dt><dd><code>mf_realfutures_breadth</code></dd></div></dl></div><p>We had been treating &#39;buy real futures data for genuine breadth&#39; as the roadmap for the trend sleeve, on the theory that Sharpe scales with the square root of effective breadth and 17 ETFs cannot supply it. Half of that is right: measured effective breadth is 9.1 for 38 real futures versus 5.3 for the live 17-ETF basket (and only 3.5 for a 33-ETF expansion we already killed; more names, LESS breadth, which is why it failed). The other half is wrong. On an identical construction, identical costs and the identical 2010-2026 common window, the 38-market futures book returns net Sharpe -0.148 against the ETF sleeve&#39;s +0.498, independently reproducing an earlier -0.24 result we had discounted as a possible one-off. It is not a data fault: across all 38 back-adjusted series there is exactly one single-day move above 25%. Breadth MULTIPLIES the average per-market edge; where that edge is absent, more breadth buys more of nothing and 7.3x turnover instead of 4.3x. The capital-gated futures path is therefore NOT validated and we have stopped citing it. Reproduce: the probe is in the session record; data is data/lake_fut_real (38 markets).</p>
-<h2 id="reader-section-1" data-reader-anchor="true">Why it was worth testing</h2>
+<h2>Why it was worth testing</h2>
 <p>This died at the screen stage, before a full walk-forward was ever run. Screening exists so that ideas which cannot clear a coarse, cost-aware bar do not consume the far more expensive machinery behind it. A screen kill is a cheap kill, and it is published for the same reason as an expensive one: the trial was still spent, and it still raises the evidence bar for everything already in the book.</p>
-<h2 id="reader-section-2" data-reader-anchor="true">The result</h2>
-<table tabindex="0" data-reader-focus="true">
+<h2>The result</h2>
+<table>
 <thead>
 <tr>
 <th>Measure</th>
@@ -121,7 +119,7 @@
 <td>-0.1480</td>
 </tr>
 </tbody></table>
-<h2 id="reader-section-3" data-reader-anchor="true">What this does and does not say</h2>
+<h2>What this does and does not say</h2>
 <p>It says this configuration, on this data, net of the costs we charge, did not clear the bar it pre-registered. It does not say the underlying economic effect does not exist, that no implementation of it works, or that someone with different data or different execution would reach the same conclusion. A null is evidence about a test, not a proof about a market.</p>
 <p>It also does not say the trial was free. Every hypothesis tested raises the deflated-Sharpe hurdle for every sleeve already in the book, including the ones that survived. That is why the kill count is published beside the survivor count rather than behind it.</p>
 
@@ -140,7 +138,7 @@
       </p>
       <details class="paper__citation">
         <summary>Cite this report</summary>
-        <pre tabindex="0" data-reader-focus="true"><code>@techreport{canli2026killmfrealfuturesbreadth,
+        <pre><code>@techreport{canli2026killmfrealfuturesbreadth,
   author      = {Canli, Arhan},
   title       = {Real-Futures Breadth for the Trend Sleeve (probe): a killed candidate},
   institution = {Canli Capital},
@@ -236,6 +234,5 @@
   <div class="cc-footer__wordmark" aria-hidden="true">Canli Capital<span><svg viewBox="0 0 80 80" focusable="false" aria-hidden="true"><path d="M12 68 68 12M12 12h56v56" fill="none" stroke="currentColor" stroke-width="4" /></svg></span></div>
   <script type="module" src="/js/site-motion.js"></script>
 </footer>
-
-<script type="module" src="/js/reader-experience.js"></script></body>
+</body>
 </html>

@@ -1,5 +1,5 @@
 <!doctype html>
-<html data-reader="research" lang="en">
+<html lang="en">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -38,9 +38,7 @@
 <link rel="stylesheet" href="/css/product-shell.css" />
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"ScholarlyArticle","headline":"Dated-futures execution foundation","description":"AlphaForge can now represent a dated futures contract as a first-class FUTURE instrument and make deterministic lifecycle decisions without using…","url":"https://canlicapital.com/research/futures-execution-foundation","inLanguage":"en","isAccessibleForFree":true,"datePublished":"2026","author":{"@type":"Person","@id":"https://canlicapital.com/#arhan-canli","name":"Arhan Canli","jobTitle":"Founder and Quantitative Researcher","url":"https://canlicapital.com/founder","sameAs":["https://github.com/arhancanli"],"affiliation":{"@type":"Organization","@id":"https://canlicapital.com/#organization","name":"Canli Capital","url":"https://canlicapital.com/"}},"publisher":{"@type":"Organization","@id":"https://canlicapital.com/#organization","name":"Canli Capital","url":"https://canlicapital.com/","logo":{"@type":"ImageObject","url":"https://canlicapital.com/brand-mark.svg"}},"isPartOf":{"@type":"Periodical","name":"Canli Capital Research","url":"https://canlicapital.com/research"},"encodingFormat":"text/html","associatedMedia":{"@type":"MediaObject","contentUrl":"https://canlicapital.com/research/futures-execution-foundation.md","encodingFormat":"text/markdown"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Canli Capital","item":"https://canlicapital.com"},{"@type":"ListItem","position":2,"name":"Research","item":"https://canlicapital.com/research"},{"@type":"ListItem","position":3,"name":"Dated-futures execution foundation","item":"https://canlicapital.com/research/futures-execution-foundation"}]}</script>
-
-<link rel="stylesheet" href="/css/reader-experience.css" />
-<!-- release-style:start --><link rel="stylesheet" href="/css/release-readiness.css" /><!-- release-style:end --></head>
+</head>
 <body class="paper">
 <a class="paper__skip" href="#content">Skip to content</a>
 <header class="cc-shell" id="nav" data-product-shell="v3" data-shell-revision="4">
@@ -99,7 +97,7 @@
   <a class="cc-shell__cta" href="https://app.canlicapital.com/dashboard">Live record <span aria-hidden="true">↗</span></a>
   <script type="module" src="/js/navigation.js"></script>
 </header>
-<main class="paper__main" id="content"><!-- reader-index:start --><aside class="reader-index"><a class="reader-index__back" href="/research">Explore research</a><details><summary>In this document</summary><nav aria-label="Document sections"><a href="#reader-section-1">Implemented contract</a><a href="#reader-section-2">Fail-closed integration boundary</a></nav></details><a class="reader-index__verify" href="/verify">How to verify a claim ↗</a></aside><!-- reader-index:end -->
+<main class="paper__main" id="content">
   <article class="paper__article">
     <p class="paper__eyebrow"><a href="/research">Research</a></p>
     <h1 class="paper__title">Dated-futures execution foundation</h1>
@@ -109,7 +107,7 @@
 make deterministic lifecycle decisions without using information unavailable at the decision
 time. The current AlphaTrend implementation remains a managed-futures <strong>ETF proxy</strong>. Nothing in
 this foundation relabels its evidence as direct futures evidence.</p>
-<h2 id="reader-section-1" data-reader-anchor="true">Implemented contract</h2>
+<h2>Implemented contract</h2>
 <p>Each dated contract carries its canonical instrument identity, root, contract month, listing time,
 metadata availability time, first-notice time, last-trade time, multiplier and tick size. Contract
 metadata or liquidity stamped after a decision raises <code>LookaheadError</code>.</p>
@@ -128,7 +126,7 @@ locked volume ratio for every required confirmation observation. Missing data me
 <p>The execution guard separately identifies locked limit-up, locked limit-down and generic missing
 liquidity from a point-in-time effective price band. Daily variation margin is an explicit signed
 cashflow: <code>contracts × multiplier × (current settlement − prior settlement)</code>.</p>
-<h2 id="reader-section-2" data-reader-anchor="true">Fail-closed integration boundary</h2>
+<h2>Fail-closed integration boundary</h2>
 <p>The shared instrument taxonomy accepts dated futures, but the generic calendar and transaction
 cost paths reject them. There is deliberately no fallback to NYSE sessions, 24/7 crypto time, or
 Binance spot commissions. Product-specific sources must land before an end-to-end futures run can
@@ -162,7 +160,7 @@ be valid.</p>
       </p>
       <details class="paper__citation">
         <summary>Cite this report</summary>
-        <pre tabindex="0" data-reader-focus="true"><code>@techreport{canli2026futuresexecutionfoundation,
+        <pre><code>@techreport{canli2026futuresexecutionfoundation,
   author      = {Canli, Arhan},
   title       = {Dated-futures execution foundation},
   institution = {Canli Capital},
@@ -258,6 +256,5 @@ be valid.</p>
   <div class="cc-footer__wordmark" aria-hidden="true">Canli Capital<span><svg viewBox="0 0 80 80" focusable="false" aria-hidden="true"><path d="M12 68 68 12M12 12h56v56" fill="none" stroke="currentColor" stroke-width="4" /></svg></span></div>
   <script type="module" src="/js/site-motion.js"></script>
 </footer>
-
-<script type="module" src="/js/reader-experience.js"></script></body>
+</body>
 </html>

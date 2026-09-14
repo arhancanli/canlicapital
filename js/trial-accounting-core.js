@@ -2,12 +2,53 @@ const LEDGER_SCHEMA = "glassbox.trial-ledger/2";
 const MANIFEST_SCHEMA = "canli.alphac-trial-packet-manifest.v2";
 const INDEX_SCHEMA = "canli.alphac-identity-trial-packet-index.v2";
 const PROSPECTIVE_SCHEMA = "canli.alphac-public-prospective-trial-record.v1";
+const REGISTER_SCHEMA = "canli.alphac-prospective-epoch-register.v1";
+const REGISTER_GOVERNED = "GOVERNED_SERIAL_PACKET_CLOSED";
 
 const STATUS = Object.freeze({
   LEGACY_COMPLETE: "legacy_complete_packet",
   LEGACY_INCOMPLETE: "legacy_incomplete_packet",
   PROSPECTIVE_FINAL_INCOMPLETE: "prospective_final_incomplete_not_admitted",
+  PROSPECTIVE_UNCLOSED: "prospective_reserved_measured_unclosed",
 });
+
+// A prospective identity that was reserved and measured but never closed with a packet. Every
+// one of these sits in selection N like any other identity; none has a public evidence page yet.
+function registerIdentity(row, family) {
+  requireCondition(row.admitted === false, `Register row ${row.hypothesis_key} claims admission`);
+  requireCondition(row.packet_complete === false, `Register row ${row.hypothesis_key} claims a packet`);
+  return {
+    hypothesis_key: row.hypothesis_key,
+    config_hash: row.config_hash,
+    label: row.return_identity_id || row.hypothesis_key,
+    family_key: row.family_trial_account || "unreserved",
+    family_title: family?.title || row.family_trial_account || "No reservation on file",
+    sleeve: family?.sleeve || "Prospective research",
+    first_recorded_at: row.first_measurement?.recorded_at || null,
+    ledger_profile: row.ledger_path,
+    measurement: {
+      observations: row.first_measurement?.n_obs ?? null,
+      annualized_sharpe: row.first_measurement?.sharpe_ann ?? null,
+      skew: null,
+      kurtosis: null,
+      deflated_sharpe_ratio: null,
+    },
+    status: STATUS.PROSPECTIVE_UNCLOSED,
+    packet_complete: false,
+    admitted: false,
+    source_epoch: "prospective",
+    verified_sections: [],
+    missing_sections: ["closing_packet"],
+    packet_status: row.status,
+    packet_path: null,
+    public_page: null,
+    family_paper: null,
+    blockers: [{ code: row.status, required_section: "closing_packet" }],
+    reservation_ordinal: row.reservation_ordinal,
+    disposition: row.final_disposition || "UNCLOSED",
+    source_kind: row.source?.kind || "canonical",
+  };
+}
 
 function requireCondition(condition, message) {
   if (!condition) throw new Error(message);
@@ -97,11 +138,12 @@ function prospectiveIdentity(record, family) {
   };
 }
 
-export function buildTrialUnion(ledger, manifest, packetIndex, prospective) {
+export function buildTrialUnion(ledger, manifest, packetIndex, prospective, register) {
   requireCondition(ledger?.schema === LEDGER_SCHEMA, "Trial ledger schema mismatch");
   requireCondition(manifest?.schema === MANIFEST_SCHEMA, "Trial manifest schema mismatch");
   requireCondition(packetIndex?.schema === INDEX_SCHEMA, "Trial packet index schema mismatch");
   requireCondition(prospective?.schema === PROSPECTIVE_SCHEMA, "Prospective record schema mismatch");
+  requireCondition(register?.schema === REGISTER_SCHEMA, "Prospective epoch register schema mismatch");
   requireCondition(
     ledger.immutable_execution_records -
       ledger.window_only_remeasurements -
@@ -120,15 +162,40 @@ export function buildTrialUnion(ledger, manifest, packetIndex, prospective) {
       manifest.summary.published_identity_packets === packetIndex.summary.published_identity_packets,
     "Legacy packet counts do not reconcile",
   );
+  // The prospective epoch is every identity measured after the legacy closure. Until
+  // 2026-09-14 it was one identity, and this check read the single record; it now reads the
+  // derived register, so a second checkout's measurements cannot hide from selection N again.
+  const epoch = register.summary;
   requireCondition(
-    manifest.summary.distinct_hypothesis_identities + prospective.identity.hypotheses_spent ===
+    epoch.identity_arithmetic_holds === true &&
+      register.identities.length === epoch.observed_identities &&
+      epoch.legacy_retired_identities === manifest.summary.distinct_hypothesis_identities,
+    "Prospective epoch register does not reconcile with the legacy manifest",
+  );
+  requireCondition(
+    manifest.summary.distinct_hypothesis_identities + epoch.observed_identities ===
       ledger.distinct_hypothesis_identities,
     "Legacy plus prospective identities do not equal selection N",
   );
   requireCondition(
-    prospective.identity.reservation_ordinal === ledger.distinct_hypothesis_identities &&
-      prospective.metrics.union_hypothesis_identities === ledger.distinct_hypothesis_identities,
-    "Prospective reservation is not bound to current selection N",
+    epoch.latest_reservation_ordinal === ledger.distinct_hypothesis_identities &&
+      epoch.union_identities === ledger.distinct_hypothesis_identities &&
+      prospective.epoch?.observed_identities === epoch.observed_identities,
+    "Prospective epoch is not bound to current selection N",
+  );
+  const governedRow = register.identities.find(
+    (row) => row.hypothesis_key === prospective.identity.hypothesis_key,
+  );
+  requireCondition(
+    governedRow?.status === REGISTER_GOVERNED &&
+      governedRow.reservation_ordinal === prospective.identity.reservation_ordinal &&
+      prospective.metrics.union_hypothesis_identities === prospective.identity.reservation_ordinal,
+    "Governed prospective identity is not the register's closed serial packet",
+  );
+  requireCondition(
+    register.identities.filter((row) => row.status === REGISTER_GOVERNED).length ===
+      prospective.identity.hypotheses_spent,
+    "Governed packet count does not match the prospective record",
   );
 
   requireUnique(manifest.identities.map((identity) => identity.hypothesis_key), "Legacy keys");
@@ -138,12 +205,18 @@ export function buildTrialUnion(ledger, manifest, packetIndex, prospective) {
     manifest.research_families.map((family) => [family.research_family_key, family]),
   );
   const identities = manifest.identities.map((identity) => legacyIdentity(identity, packetByKey));
-  identities.push(
-    prospectiveIdentity(
-      prospective,
-      familyByKey.get(prospective.identity.family_trial_account),
-    ),
-  );
+  for (const row of register.identities) {
+    if (row.hypothesis_key === prospective.identity.hypothesis_key) {
+      identities.push(
+        prospectiveIdentity(
+          prospective,
+          familyByKey.get(prospective.identity.family_trial_account),
+        ),
+      );
+    } else {
+      identities.push(registerIdentity(row, familyByKey.get(row.family_trial_account)));
+    }
+  }
   requireUnique(identities.map((identity) => identity.hypothesis_key), "Union keys");
 
   const familyCounts = new Map();
@@ -185,8 +258,11 @@ export function buildTrialUnion(ledger, manifest, packetIndex, prospective) {
       legacy_identities: manifest.summary.distinct_hypothesis_identities,
       legacy_complete_packets: manifest.summary.complete_trial_packets,
       legacy_incomplete_packets: manifest.summary.incomplete_trial_packets,
-      prospective_identities: prospective.identity.hypotheses_spent,
-      prospective_admitted: prospective.decision.admitted,
+      prospective_identities: epoch.observed_identities,
+      prospective_governed_packets: prospective.identity.hypotheses_spent,
+      prospective_unclosed: epoch.observed_identities - prospective.identity.hypotheses_spent,
+      prospective_admitted: prospective.decision.admitted || epoch.admitted_identities > 0,
+      prospective_latest_reservation_ordinal: epoch.latest_reservation_ordinal,
     },
     claim_boundary: ledger.claim_boundary,
   };

@@ -1,5 +1,5 @@
 <!doctype html>
-<html data-reader="research" lang="en">
+<html lang="en">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -38,9 +38,7 @@
 <link rel="stylesheet" href="/css/product-shell.css" />
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"ScholarlyArticle","headline":"Engineering quality boundary","description":"This page reports the current static-quality boundary honestly. It is engineering evidence, not investment-performance evidence, and generating it evaluates…","url":"https://canlicapital.com/research/engineering-quality","inLanguage":"en","isAccessibleForFree":true,"datePublished":"2026","author":{"@type":"Person","@id":"https://canlicapital.com/#arhan-canli","name":"Arhan Canli","jobTitle":"Founder and Quantitative Researcher","url":"https://canlicapital.com/founder","sameAs":["https://github.com/arhancanli"],"affiliation":{"@type":"Organization","@id":"https://canlicapital.com/#organization","name":"Canli Capital","url":"https://canlicapital.com/"}},"publisher":{"@type":"Organization","@id":"https://canlicapital.com/#organization","name":"Canli Capital","url":"https://canlicapital.com/","logo":{"@type":"ImageObject","url":"https://canlicapital.com/brand-mark.svg"}},"isPartOf":{"@type":"Periodical","name":"Canli Capital Research","url":"https://canlicapital.com/research"},"encodingFormat":"text/html","associatedMedia":{"@type":"MediaObject","contentUrl":"https://canlicapital.com/research/engineering-quality.md","encodingFormat":"text/markdown"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Canli Capital","item":"https://canlicapital.com"},{"@type":"ListItem","position":2,"name":"Research","item":"https://canlicapital.com/research"},{"@type":"ListItem","position":3,"name":"Engineering quality boundary","item":"https://canlicapital.com/research/engineering-quality"}]}</script>
-
-<link rel="stylesheet" href="/css/reader-experience.css" />
-<!-- release-style:start --><link rel="stylesheet" href="/css/release-readiness.css" /><!-- release-style:end --></head>
+</head>
 <body class="paper">
 <a class="paper__skip" href="#content">Skip to content</a>
 <header class="cc-shell" id="nav" data-product-shell="v3" data-shell-revision="4">
@@ -99,7 +97,7 @@
   <a class="cc-shell__cta" href="https://app.canlicapital.com/dashboard">Live record <span aria-hidden="true">↗</span></a>
   <script type="module" src="/js/navigation.js"></script>
 </header>
-<main class="paper__main" id="content"><!-- reader-index:start --><aside class="reader-index"><a class="reader-index__back" href="/research">Explore research</a><details><summary>In this document</summary><nav aria-label="Document sections"><a href="#reader-section-1">Verified clean scopes</a><a href="#reader-section-2">Explicit debt</a><a href="#reader-section-3">Reproduction</a></nav></details><a class="reader-index__verify" href="/verify">How to verify a claim ↗</a></aside><!-- reader-index:end -->
+<main class="paper__main" id="content">
   <article class="paper__article">
     <p class="paper__eyebrow"><a href="/research">Research</a></p>
     <h1 class="paper__title">Engineering quality boundary</h1>
@@ -107,7 +105,7 @@
     <div class="paper__body">
 <p>This page reports the current static-quality boundary honestly. It is engineering evidence, not
 investment-performance evidence, and generating it evaluates no return stream or hypothesis.</p>
-<h2 id="reader-section-1" data-reader-anchor="true">Verified clean scopes</h2>
+<h2>Verified clean scopes</h2>
 <p>The production package under <code>src/alphaforge</code> and the complete <code>tests</code> tree pass the repository&#39;s
 configured Ruff rules. The production package also passes strict mypy across all 162 modules, and
 the current non-network test suite contains 3,961 passing tests. Twelve credentialed network tests
@@ -117,7 +115,7 @@ remain deliberately deselected from the offline suite.</p>
 Canli Capital site workspaces. Those 37 checks remain part of the complete local offline suite;
 they are not represented as portable CI coverage. The marker makes this distinction visible in
 test collection instead of allowing a clean runner to fail on undeclared local dependencies.</p>
-<h2 id="reader-section-2" data-reader-anchor="true">Explicit debt</h2>
+<h2>Explicit debt</h2>
 <p>The <code>scripts</code> tree contains historical probes, one-off data collectors, diagnostics, and active
 operational exporters accumulated across the research program. It is not Ruff-clean. The
 machine-readable contract enumerates every current finding by rule and file and binds each debt
@@ -127,9 +125,9 @@ unclean repository clean. Historical scripts will be remediated in reviewed batc
 active operational and publication paths before archived exploratory probes. Bulk autofix is not
 used across return-generating scripts because even apparently stylistic rewrites deserve tests and
 review when they sit near research evidence.</p>
-<h2 id="reader-section-3" data-reader-anchor="true">Reproduction</h2>
+<h2>Reproduction</h2>
 <p>Run:</p>
-<pre tabindex="0" data-reader-focus="true"><code class="language-text">uv run ruff check src/alphaforge
+<pre><code class="language-text">uv run ruff check src/alphaforge
 uv run ruff check tests
 uv run ruff check scripts
 uv run mypy --strict src/alphaforge
@@ -154,7 +152,7 @@ clean claim.</p>
       </p>
       <details class="paper__citation">
         <summary>Cite this report</summary>
-        <pre tabindex="0" data-reader-focus="true"><code>@techreport{canli2026engineeringquality,
+        <pre><code>@techreport{canli2026engineeringquality,
   author      = {Canli, Arhan},
   title       = {Engineering quality boundary},
   institution = {Canli Capital},
@@ -250,6 +248,5 @@ clean claim.</p>
   <div class="cc-footer__wordmark" aria-hidden="true">Canli Capital<span><svg viewBox="0 0 80 80" focusable="false" aria-hidden="true"><path d="M12 68 68 12M12 12h56v56" fill="none" stroke="currentColor" stroke-width="4" /></svg></span></div>
   <script type="module" src="/js/site-motion.js"></script>
 </footer>
-
-<script type="module" src="/js/reader-experience.js"></script></body>
+</body>
 </html>

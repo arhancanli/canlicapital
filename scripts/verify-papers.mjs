@@ -1308,7 +1308,9 @@ if (existsSync(trialToolFile)) {
   const manifestBytes = readFileSync(resolve(DIST, "glassbox/trial_packet_manifest.json"));
   const packetIndexBytes = readFileSync(resolve(DIST, "glassbox/trial-packets/index.json"));
   const prospectiveBytes = readFileSync(resolve(DIST, "glassbox/prospective_trial_record.json"));
+  const registerBytes = readFileSync(resolve(DIST, "glassbox/prospective_epoch_register.json"));
   const ledger = JSON.parse(ledgerBytes);
+  const register = JSON.parse(registerBytes);
   const manifest = JSON.parse(manifestBytes);
   const packetIndex = JSON.parse(packetIndexBytes);
   const prospective = JSON.parse(prospectiveBytes);
@@ -1331,15 +1333,28 @@ if (existsSync(trialToolFile)) {
         manifest.summary.distinct_hypothesis_identities,
     "/tools/trial-accounting legacy packet corpus is internally inconsistent",
   );
+  // The prospective epoch is every identity measured after the legacy closure, published as a
+  // derived register (2026-09-14). The governed serial identity keeps its own record; the
+  // register carries the rest, so legacy + register = N and the newest reservation ordinal is N.
+  const governedRow = register.identities.find(
+    (row) => row.hypothesis_key === prospective.identity.hypothesis_key,
+  );
   check(
     prospective.schema === "canli.alphac-public-prospective-trial-record.v1" &&
+      register.schema === "canli.alphac-prospective-epoch-register.v1" &&
+      register.summary.identity_arithmetic_holds === true &&
+      register.identities.length === register.summary.observed_identities &&
       prospective.identity.hypotheses_spent === 1 &&
-      prospective.identity.reservation_ordinal === selectionN &&
-      prospective.metrics.union_hypothesis_identities === selectionN &&
+      governedRow?.status === "GOVERNED_SERIAL_PACKET_CLOSED" &&
+      governedRow.reservation_ordinal === prospective.identity.reservation_ordinal &&
+      prospective.metrics.union_hypothesis_identities === prospective.identity.reservation_ordinal &&
+      prospective.epoch?.observed_identities === register.summary.observed_identities &&
+      register.summary.latest_reservation_ordinal === selectionN &&
       prospective.packet.complete === true &&
       prospective.decision.admitted === false &&
+      register.summary.admitted_identities === 0 &&
       prospective.gate_assessment.admission_status === "INCOMPLETE_NOT_ADMITTED" &&
-      manifest.summary.distinct_hypothesis_identities + prospective.identity.hypotheses_spent ===
+      manifest.summary.distinct_hypothesis_identities + register.summary.observed_identities ===
         selectionN,
     "/tools/trial-accounting prospective identity is not separately reserved and not admitted",
   );
@@ -1351,13 +1366,14 @@ if (existsSync(trialToolFile)) {
   );
   check(
     trialToolHtml.includes(
-      'content="trial_ledger.json trial_packet_manifest.json trial-packets/index.json prospective_trial_record.json"',
+      'content="trial_ledger.json trial_packet_manifest.json trial-packets/index.json prospective_trial_record.json prospective_epoch_register.json"',
     ) &&
       trialToolHtml.includes(`sha256:${sha256(ledgerBytes)}`) &&
       trialToolHtml.includes(`sha256:${sha256(manifestBytes)}`) &&
       trialToolHtml.includes(`sha256:${sha256(packetIndexBytes)}`) &&
-      trialToolHtml.includes(`sha256:${sha256(prospectiveBytes)}`),
-    "/tools/trial-accounting does not declare and hash all four exact public sources",
+      trialToolHtml.includes(`sha256:${sha256(prospectiveBytes)}`) &&
+      trialToolHtml.includes(`sha256:${sha256(registerBytes)}`),
+    "/tools/trial-accounting does not declare and hash all five exact public sources",
   );
   check(
     trialToolHtml.includes(`<strong>${ledger.immutable_execution_records}</strong>`) &&
@@ -1371,7 +1387,10 @@ if (existsSync(trialToolFile)) {
   check(
     /Accounting, not performance/i.test(trialToolHtml) &&
       /complete packet is not a passed strategy/i.test(trialToolHtml) &&
-      /prospective identity remains not admitted/i.test(trialToolHtml) &&
+      /no prospective identity is admitted/i.test(trialToolHtml) &&
+      trialToolHtml.includes(
+        `${register.summary.observed_identities - prospective.identity.hypotheses_spent} reserved and measured without a closing packet`,
+      ) &&
       /not live returns, rankings, admission scores or recommendations/i.test(trialToolHtml),
     "/tools/trial-accounting omits its accounting, admission or performance boundary",
   );

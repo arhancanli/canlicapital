@@ -1,5 +1,5 @@
 <!doctype html>
-<html data-reader="research" lang="en">
+<html lang="en">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -38,9 +38,7 @@
 <link rel="stylesheet" href="/css/product-shell.css" />
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"ScholarlyArticle","headline":"Crypto volatility risk premium: one proxy trial and a published null","description":"AlphaForge tested one preregistered BTC/ETH volatility-risk-premium timing rule from 2021-03-24 through 2026-06-01.","url":"https://canlicapital.com/research/crypto-vrp-lineage","inLanguage":"en","isAccessibleForFree":true,"datePublished":"2026","author":{"@type":"Person","@id":"https://canlicapital.com/#arhan-canli","name":"Arhan Canli","jobTitle":"Founder and Quantitative Researcher","url":"https://canlicapital.com/founder","sameAs":["https://github.com/arhancanli"],"affiliation":{"@type":"Organization","@id":"https://canlicapital.com/#organization","name":"Canli Capital","url":"https://canlicapital.com/"}},"publisher":{"@type":"Organization","@id":"https://canlicapital.com/#organization","name":"Canli Capital","url":"https://canlicapital.com/","logo":{"@type":"ImageObject","url":"https://canlicapital.com/brand-mark.svg"}},"isPartOf":{"@type":"Periodical","name":"Canli Capital Research","url":"https://canlicapital.com/research"},"encodingFormat":"text/html","associatedMedia":{"@type":"MediaObject","contentUrl":"https://canlicapital.com/research/crypto-vrp-lineage.md","encodingFormat":"text/markdown"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Canli Capital","item":"https://canlicapital.com"},{"@type":"ListItem","position":2,"name":"Research","item":"https://canlicapital.com/research"},{"@type":"ListItem","position":3,"name":"AlphaForge crypto VRP proxy lineage","item":"https://canlicapital.com/research/crypto-vrp-lineage"}]}</script>
-
-<link rel="stylesheet" href="/css/reader-experience.css" />
-<!-- release-style:start --><link rel="stylesheet" href="/css/release-readiness.css" /><!-- release-style:end --></head>
+</head>
 <body class="paper">
 <a class="paper__skip" href="#content">Skip to content</a>
 <header class="cc-shell" id="nav" data-product-shell="v3" data-shell-revision="4">
@@ -99,13 +97,13 @@
   <a class="cc-shell__cta" href="https://app.canlicapital.com/dashboard">Live record <span aria-hidden="true">↗</span></a>
   <script type="module" src="/js/navigation.js"></script>
 </header>
-<main class="paper__main" id="content"><!-- reader-index:start --><aside class="reader-index"><a class="reader-index__back" href="/research">Explore research</a><details><summary>In this document</summary><nav aria-label="Document sections"><a href="#reader-section-1">Abstract</a><a href="#reader-section-2">Claim boundary</a><a href="#reader-section-3">Mechanism and falsifiable hypothesis</a><a href="#reader-section-4">Complete trial accounting</a><a href="#reader-section-5">Result and risk interpretation</a><a href="#reader-section-6">Capacity, overlap, and sleeve decision</a><a href="#reader-section-7">Reproduction and authorship</a><a href="#reader-section-8">Conclusion</a></nav></details><a class="reader-index__verify" href="/verify">How to verify a claim ↗</a></aside><!-- reader-index:end -->
+<main class="paper__main" id="content">
   <article class="paper__article">
     <p class="paper__eyebrow"><a href="/research">Research</a></p>
     <h1 class="paper__title">Crypto volatility risk premium: one proxy trial and a published null</h1>
     <p class="paper__byline">By <span rel="author">Arhan Canli</span>, Canli Capital</p>
     <div class="paper__body">
-<div class="research-masthead"><dl class="research-masthead__facts"><div><dt>Author</dt><dd>Arhan Canli, Founder, System Architect, and Quantitative Researcher, Canli Capital</dd></div><div><dt>Research system</dt><dd>ALPHAC / AlphaForge</dd></div><div><dt>Family key</dt><dd><code>crypto_volatility_risk_premium</code></dd></div><div><dt>Status</dt><dd>public research record; not peer reviewed; not an investment solicitation</dd></div><div><dt>Evidence date</dt><dd>2026-08-22</dd></div></dl></div><h2 id="reader-section-1" data-reader-anchor="true">Abstract</h2>
+<div class="research-masthead"><dl class="research-masthead__facts"><div><dt>Author</dt><dd>Arhan Canli, Founder, System Architect, and Quantitative Researcher, Canli Capital</dd></div><div><dt>Research system</dt><dd>ALPHAC / AlphaForge</dd></div><div><dt>Family key</dt><dd><code>crypto_volatility_risk_premium</code></dd></div><div><dt>Status</dt><dd>public research record; not peer reviewed; not an investment solicitation</dd></div><div><dt>Evidence date</dt><dd>2026-08-22</dd></div></dl></div><h2>Abstract</h2>
 <p>AlphaForge tested one preregistered BTC/ETH volatility-risk-premium timing rule from 2021-03-24
 through 2026-06-01. It compared Deribit DVOL closes with a seven-day Yang–Zhang realized-
 volatility estimate, entered only when the spread exceeded two volatility points, charged 10 basis
@@ -117,13 +115,13 @@ DVOL-minus-realized spread was +0.044 and positive on 72.99% of days; an always-
 proxy showed Sharpe 2.4818 but skew -5.4874. ETH&#39;s corresponding always-short proxy showed Sharpe
 0.5309 and skew -10.6795. Those attractive averages coexist with catastrophic left tails. This
 family is not a sleeve, is not in an Alpaca account, and has no broker-reconciled forward record.</p>
-<h2 id="reader-section-2" data-reader-anchor="true">Claim boundary</h2>
+<h2>Claim boundary</h2>
 <p>This paper establishes the economic question, exact historical proxy, one charged identity,
 persisted null, and source hashes. It does <strong>not</strong> establish executable option P&amp;L, option-surface
 history, capacity, live execution, expected maximum drawdown, forward Sharpe, or future return.
 DVOL is an index and the variance-swap expression is a signal-validity proxy. It omits the option
 strip, tradable quotes and sizes, strike interpolation, margin, hedging, jumps, and gap execution.</p>
-<h2 id="reader-section-3" data-reader-anchor="true">Mechanism and falsifiable hypothesis</h2>
+<h2>Mechanism and falsifiable hypothesis</h2>
 <p>Option-implied variance can exceed subsequently realized variance because sellers of convex
 downside insurance require compensation. Carr and Wu formalize model-free variance-swap rates and
 document variance risk premia (<a href="https://academic.oup.com/rfs/article-abstract/22/3/1311/1581057">Review of Financial Studies</a>).
@@ -133,7 +131,7 @@ volatility should identify days when short-variance compensation exceeds crash a
 The hypothesis is falsified if the preregistered timing return is negative, remains deeply
 left-skewed, or fails selection adjustment. All three occurred.</p>
 <p>For currency <code>i</code> and day <code>t</code>, the implementation was:</p>
-<pre tabindex="0" data-reader-focus="true"><code class="language-text">VRP(i,t)      = DVOL(i,t) - YangZhangRV_7d(i,t)
+<pre><code class="language-text">VRP(i,t)      = DVOL(i,t) - YangZhangRV_7d(i,t)
 signal(i,t)   = max(0, VRP(i,t) - 0.02)
 gross(i,t+1)  = DVOL(i,t)^2 / 365 - log_return(i,t+1)^2
 proxy_return  = signal(i,t) * gross(i,t+1) - 0.001 * abs(change(signal))
@@ -142,9 +140,9 @@ proxy_return  = signal(i,t) * gross(i,t+1) - 0.001 * abs(change(signal))
 available OHLC. BTC and ETH proxy returns were equal weighted, normalized by a one-day-lagged
 expanding standard deviation, and scored only after the warmup. The direction was never inverted
 after seeing the result.</p>
-<h2 id="reader-section-4" data-reader-anchor="true">Complete trial accounting</h2>
+<h2>Complete trial accounting</h2>
 <p>The union contains exactly one identity in <code>crypto_volatility_risk_premium</code>:</p>
-<table tabindex="0" data-reader-focus="true">
+<table>
 <thead>
 <tr>
 <th>Hypothesis key</th>
@@ -168,8 +166,8 @@ after seeing the result.</p>
 the historical DSR cannot be reconstructed honestly from rounded summary statistics alone and is
 therefore labeled artifact-era evidence, not a current-union restatement. The identity remains
 charged to the union regardless of its failure.</p>
-<h2 id="reader-section-5" data-reader-anchor="true">Result and risk interpretation</h2>
-<table tabindex="0" data-reader-focus="true">
+<h2>Result and risk interpretation</h2>
+<table>
 <thead>
 <tr>
 <th>Measure</th>
@@ -205,7 +203,7 @@ volatility do not share a perfectly matched horizon; a variance-swap formula is 
 option strip; and the 10-basis-point signal-turnover charge is not a full options execution,
 hedging, and margin model. These limitations weaken positive claims. They do not rehabilitate a
 negative result.</p>
-<h2 id="reader-section-6" data-reader-anchor="true">Capacity, overlap, and sleeve decision</h2>
+<h2>Capacity, overlap, and sleeve decision</h2>
 <p>No options capacity sweep exists. There is no historical bid/ask surface, quote size, portfolio
 margin replay, delta-hedging ledger, or broker-reconciled forward option record. Capacity is
 <strong>unmeasured</strong>.</p>
@@ -216,7 +214,7 @@ against live sleeves pending; no independence claim is made.</p>
 a separately preregistered, point-in-time options-surface implementation with executable quotes,
 defined-loss construction, hedging and margin costs, capacity, current-union deflation, and
 forward broker reconciliation. It would be a new charged trial, not a revision of this null.</p>
-<h2 id="reader-section-7" data-reader-anchor="true">Reproduction and authorship</h2>
+<h2>Reproduction and authorship</h2>
 <ul>
 <li><code>scripts/exp2_crypto_vrp.py</code>: frozen proxy construction and original measurement driver.</li>
 <li><code>artifacts/exp2/20260625T094710Z/exp2_metrics.json</code>: persisted historical report.</li>
@@ -232,7 +230,7 @@ that missing private market data is disclosed rather than confused with public b
 <p>This research record and its ALPHAC implementation were authored and directed by <strong>Arhan Canli</strong>,
 Founder of Canli Capital. Authorship does not convert an internal result into peer review or
 independent verification.</p>
-<h2 id="reader-section-8" data-reader-anchor="true">Conclusion</h2>
+<h2>Conclusion</h2>
 <p>The contribution is the rejection, not a strategy claim. A positive average crypto variance
 premium and a high naive Sharpe did not survive timing, costs, tail-risk inspection, or deflation.
 The honest sleeve count contributed by this family is zero.</p>
@@ -254,7 +252,7 @@ The honest sleeve count contributed by this family is zero.</p>
       </p>
       <details class="paper__citation">
         <summary>Cite this report</summary>
-        <pre tabindex="0" data-reader-focus="true"><code>@techreport{canli2026cryptovrplineage,
+        <pre><code>@techreport{canli2026cryptovrplineage,
   author      = {Canli, Arhan},
   title       = {Crypto volatility risk premium: one proxy trial and a published null},
   institution = {Canli Capital},
@@ -350,6 +348,5 @@ The honest sleeve count contributed by this family is zero.</p>
   <div class="cc-footer__wordmark" aria-hidden="true">Canli Capital<span><svg viewBox="0 0 80 80" focusable="false" aria-hidden="true"><path d="M12 68 68 12M12 12h56v56" fill="none" stroke="currentColor" stroke-width="4" /></svg></span></div>
   <script type="module" src="/js/site-motion.js"></script>
 </footer>
-
-<script type="module" src="/js/reader-experience.js"></script></body>
+</body>
 </html>
