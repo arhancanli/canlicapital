@@ -1,5 +1,5 @@
 <!doctype html>
-<html data-reader="research" lang="en">
+<html lang="en">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -38,9 +38,7 @@
 <link rel="stylesheet" href="/css/product-shell.css" />
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"ScholarlyArticle","headline":"When Crypto Carry Became Crash Exposure: The LABUSDT Incident","description":"AlphaForge bought LABUSDT at a paper fill of 16.150421 USDT on 5 July 2026 while its point-in-time funding signal was negative.","url":"https://canlicapital.com/research/crypto-lab-carry-crash-incident","inLanguage":"en","isAccessibleForFree":true,"datePublished":"2026","author":{"@type":"Person","@id":"https://canlicapital.com/#arhan-canli","name":"Arhan Canli","jobTitle":"Founder and Quantitative Researcher","url":"https://canlicapital.com/founder","sameAs":["https://github.com/arhancanli"],"affiliation":{"@type":"Organization","@id":"https://canlicapital.com/#organization","name":"Canli Capital","url":"https://canlicapital.com/"}},"publisher":{"@type":"Organization","@id":"https://canlicapital.com/#organization","name":"Canli Capital","url":"https://canlicapital.com/","logo":{"@type":"ImageObject","url":"https://canlicapital.com/brand-mark.svg"}},"isPartOf":{"@type":"Periodical","name":"Canli Capital Research","url":"https://canlicapital.com/research"},"encodingFormat":"text/html","associatedMedia":{"@type":"MediaObject","contentUrl":"https://canlicapital.com/research/crypto-lab-carry-crash-incident.md","encodingFormat":"text/markdown"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Canli Capital","item":"https://canlicapital.com"},{"@type":"ListItem","position":2,"name":"Research","item":"https://canlicapital.com/research"},{"@type":"ListItem","position":3,"name":"LABUSDT carry-crash incident","item":"https://canlicapital.com/research/crypto-lab-carry-crash-incident"}]}</script>
-
-<link rel="stylesheet" href="/css/reader-experience.css" />
-<!-- release-style:start --><link rel="stylesheet" href="/css/release-readiness.css" /><!-- release-style:end --></head>
+</head>
 <body class="paper">
 <a class="paper__skip" href="#content">Skip to content</a>
 <header class="cc-shell" id="nav" data-product-shell="v3" data-shell-revision="4">
@@ -99,13 +97,13 @@
   <a class="cc-shell__cta" href="https://app.canlicapital.com/dashboard">Live record <span aria-hidden="true">↗</span></a>
   <script type="module" src="/js/navigation.js"></script>
 </header>
-<main class="paper__main" id="content"><!-- reader-index:start --><aside class="reader-index"><a class="reader-index__back" href="/research">Explore research</a><details><summary>In this document</summary><nav aria-label="Document sections"><a href="#reader-section-1">Abstract</a><a href="#reader-section-2">Claim boundary</a><a href="#reader-section-3">What happened</a><a href="#reader-section-4">Why this was carry risk, not a broken symbol</a><a href="#reader-section-5">Why no jump filter is being added</a><a href="#reader-section-6">Prospective observability correction</a><a href="#reader-section-7">Conclusion</a></nav></details><a class="reader-index__verify" href="/verify">How to verify a claim ↗</a></aside><!-- reader-index:end -->
+<main class="paper__main" id="content">
   <article class="paper__article">
     <p class="paper__eyebrow"><a href="/research">Research</a></p>
     <h1 class="paper__title">When Crypto Carry Became Crash Exposure: The LABUSDT Incident</h1>
     <p class="paper__byline">By <span rel="author">Arhan Canli</span>, Canli Capital</p>
     <div class="paper__body">
-<div class="research-masthead"><dl class="research-masthead__facts"><div><dt>Author</dt><dd>Arhan Canli, Founder, System Architect, and Quantitative Researcher, Canli Capital</dd></div><div><dt>Research system</dt><dd>ALPHAC / AlphaForge</dd></div><div><dt>Status</dt><dd>public incident research; not peer reviewed; not investment advice</dd></div><div><dt>Evidence date</dt><dd>2026-08-23</dd></div><div><dt>Machine evidence</dt><dd><code>/glassbox/crypto_lab_carry_crash_incident.json</code></dd></div></dl></div><h2 id="reader-section-1" data-reader-anchor="true">Abstract</h2>
+<div class="research-masthead"><dl class="research-masthead__facts"><div><dt>Author</dt><dd>Arhan Canli, Founder, System Architect, and Quantitative Researcher, Canli Capital</dd></div><div><dt>Research system</dt><dd>ALPHAC / AlphaForge</dd></div><div><dt>Status</dt><dd>public incident research; not peer reviewed; not investment advice</dd></div><div><dt>Evidence date</dt><dd>2026-08-23</dd></div><div><dt>Machine evidence</dt><dd><code>/glassbox/crypto_lab_carry_crash_incident.json</code></dd></div></dl></div><h2>Abstract</h2>
 <p>AlphaForge bought LABUSDT at a paper fill of 16.150421 USDT on 5 July 2026 while its
 point-in-time funding signal was negative. It closed the same 114-token long at 0.155300 USDT on
 30 July and opened a short at the same rebalance. The long lost 99.04% on price and produced a
@@ -118,12 +116,12 @@ identify the strategy mechanism, and improve prospective attribution. The episod
 the flagship forward record began on 7 August, so it does not explain the current flagship loss.
 The investigation instead exposed an observability defect: historical position snapshots retained
 quantity and average entry but not each cycle&#39;s exact mark and unrealized profit or loss.</p>
-<h2 id="reader-section-2" data-reader-anchor="true">Claim boundary</h2>
+<h2>Claim boundary</h2>
 <p>This is a forensic description of one paper-traded episode. It spends zero return hypotheses,
 does not estimate Sharpe or expected maximum drawdown, does not authorize a parameter or weight
 change, and does not rewrite any equity mark. The external sources corroborate market context;
 the immutable local fill ledger is authoritative for AlphaForge&#39;s own execution claim.</p>
-<h2 id="reader-section-3" data-reader-anchor="true">What happened</h2>
+<h2>What happened</h2>
 <p>The frozen ledger contains three LABUSDT fills:</p>
 <ol>
 <li>buy 114 LAB at 16.150421 USDT on 5 July 2026;</li>
@@ -131,12 +129,12 @@ the immutable local fill ledger is authoritative for AlphaForge&#39;s own execut
 <li>sell 5,467 LAB at 0.155300 USDT, opening the new short.</li>
 </ol>
 <p>The long episode&#39;s gross price P&amp;L is</p>
-<pre tabindex="0" data-reader-focus="true"><code class="language-text">114 × (0.155300 − 16.150421) = −1,823.44 USDT
+<pre><code class="language-text">114 × (0.155300 − 16.150421) = −1,823.44 USDT
 </code></pre>
 <p>Entry and close fees add 0.93 USDT, producing net price P&amp;L of approximately −1,824.37 USDT.
 This calculation excludes funding cashflows because the historical store did not retain an
 instrument-level funding-payment ledger sufficient to reproduce that component independently.</p>
-<h2 id="reader-section-4" data-reader-anchor="true">Why this was carry risk, not a broken symbol</h2>
+<h2>Why this was carry risk, not a broken symbol</h2>
 <p>Funding was negative when the long was selected. A negative rate means shorts pay longs, so the
 frozen carry signal ranked LAB as a long candidate. During the holding interval, the funding
 regime changed sign. The scheduled rebalance then closed the long and opened a short. That is the
@@ -148,7 +146,7 @@ collapse through July, while <a href="https://phemex.com/announcements/phemex-wi
 documents a contemporaneous venue response. Neither source proves AlphaForge&#39;s execution; the
 signed local ledger does that. Together they reject the narrower hypothesis that 16.15 to 0.155
 was merely a local decimal or contract-identity error.</p>
-<h2 id="reader-section-5" data-reader-anchor="true">Why no jump filter is being added</h2>
+<h2>Why no jump filter is being added</h2>
 <p>A filter that refuses to mark a held position after a large price move would make reported equity
 false. A filter that removes LAB only after observing this crash would also be an unregistered,
 event-fitted strategy change. Neither is acceptable. The loss remains in the AlphaForge record,
@@ -157,7 +155,7 @@ and no live weight or signal parameter changes because of this incident.</p>
 concentration, or crash-risk rule can improve expected portfolio Sharpe without merely deleting
 the realized loser. That requires a new identity, frozen rule, complete historical replay,
 multiple-testing charge, and forward transition: not an incident patch.</p>
-<h2 id="reader-section-6" data-reader-anchor="true">Prospective observability correction</h2>
+<h2>Prospective observability correction</h2>
 <p>The investigation could reproduce aggregate sleeve equity and fills but could not allocate every
 subsequent mark-to-market change by instrument. <code>positions_snapshots</code> stored quantity, average
 entry, and opening timestamp only. Aggregate equity is insufficient to reconstruct historical
@@ -172,7 +170,7 @@ instrument marks, and those marks will not be invented.</p>
 <p>Legacy rows migrate additively and remain null for these fields. This improves future sleeve-risk
 diagnosis without changing orders, signals, weights, historical marks, or the governing forward
 Sharpe contract.</p>
-<h2 id="reader-section-7" data-reader-anchor="true">Conclusion</h2>
+<h2>Conclusion</h2>
 <p>LAB was a genuine adverse market event and an example of the left-tail exposure embedded in
 crypto carry. The institutional response is not to delete the loss. It is to preserve it, state
 what the evidence can and cannot reconstruct, and ensure future position-level losses are
@@ -195,7 +193,7 @@ independently attributable from the same marks used in account equity.</p>
       </p>
       <details class="paper__citation">
         <summary>Cite this report</summary>
-        <pre tabindex="0" data-reader-focus="true"><code>@techreport{canli2026cryptolabcarrycrashincident,
+        <pre><code>@techreport{canli2026cryptolabcarrycrashincident,
   author      = {Canli, Arhan},
   title       = {When Crypto Carry Became Crash Exposure: The LABUSDT Incident},
   institution = {Canli Capital},
@@ -291,6 +289,5 @@ independently attributable from the same marks used in account equity.</p>
   <div class="cc-footer__wordmark" aria-hidden="true">Canli Capital<span><svg viewBox="0 0 80 80" focusable="false" aria-hidden="true"><path d="M12 68 68 12M12 12h56v56" fill="none" stroke="currentColor" stroke-width="4" /></svg></span></div>
   <script type="module" src="/js/site-motion.js"></script>
 </footer>
-
-<script type="module" src="/js/reader-experience.js"></script></body>
+</body>
 </html>

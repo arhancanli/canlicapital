@@ -1,5 +1,5 @@
 <!doctype html>
-<html data-reader="research" lang="en">
+<html lang="en">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -38,9 +38,7 @@
 <link rel="stylesheet" href="/css/product-shell.css" />
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"ScholarlyArticle","headline":"Equity low beta: two negative identities and no defensive sleeve","description":"Two historical identities test a 252-session equity beta rank. The implemented portfolio seeks a long-low-beta, short-high-beta spread under rank allocation.","url":"https://canlicapital.com/research/equity-low-beta-lineage","inLanguage":"en","isAccessibleForFree":true,"datePublished":"2026","author":{"@type":"Person","@id":"https://canlicapital.com/#arhan-canli","name":"Arhan Canli","jobTitle":"Founder and Quantitative Researcher","url":"https://canlicapital.com/founder","sameAs":["https://github.com/arhancanli"],"affiliation":{"@type":"Organization","@id":"https://canlicapital.com/#organization","name":"Canli Capital","url":"https://canlicapital.com/"}},"publisher":{"@type":"Organization","@id":"https://canlicapital.com/#organization","name":"Canli Capital","url":"https://canlicapital.com/","logo":{"@type":"ImageObject","url":"https://canlicapital.com/brand-mark.svg"}},"isPartOf":{"@type":"Periodical","name":"Canli Capital Research","url":"https://canlicapital.com/research"},"encodingFormat":"text/html","associatedMedia":{"@type":"MediaObject","contentUrl":"https://canlicapital.com/research/equity-low-beta-lineage.md","encodingFormat":"text/markdown"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Canli Capital","item":"https://canlicapital.com"},{"@type":"ListItem","position":2,"name":"Research","item":"https://canlicapital.com/research"},{"@type":"ListItem","position":3,"name":"Equity low beta","item":"https://canlicapital.com/research/equity-low-beta-lineage"}]}</script>
-
-<link rel="stylesheet" href="/css/reader-experience.css" />
-<!-- release-style:start --><link rel="stylesheet" href="/css/release-readiness.css" /><!-- release-style:end --></head>
+</head>
 <body class="paper">
 <a class="paper__skip" href="#content">Skip to content</a>
 <header class="cc-shell" id="nav" data-product-shell="v3" data-shell-revision="4">
@@ -99,13 +97,13 @@
   <a class="cc-shell__cta" href="https://app.canlicapital.com/dashboard">Live record <span aria-hidden="true">↗</span></a>
   <script type="module" src="/js/navigation.js"></script>
 </header>
-<main class="paper__main" id="content"><!-- reader-index:start --><aside class="reader-index"><a class="reader-index__back" href="/research">Explore research</a><details><summary>In this document</summary><nav aria-label="Document sections"><a href="#reader-section-1">Abstract</a><a href="#reader-section-2">Hypothesis and economic prior</a><a href="#reader-section-3">Recorded designs</a><a href="#reader-section-4">Why the longer sample does not rescue the signal</a><a href="#reader-section-5">Execution and portfolio boundary</a><a href="#reader-section-6">Reproduction path and next valid test</a></nav></details><a class="reader-index__verify" href="/verify">How to verify a claim ↗</a></aside><!-- reader-index:end -->
+<main class="paper__main" id="content">
   <article class="paper__article">
     <p class="paper__eyebrow"><a href="/research">Research</a></p>
     <h1 class="paper__title">Equity low beta: two negative identities and no defensive sleeve</h1>
     <p class="paper__byline">By <span rel="author">Arhan Canli</span>, Canli Capital</p>
     <div class="paper__body">
-<div class="research-masthead"><dl class="research-masthead__facts"><div><dt>Author</dt><dd>Arhan Canli, Founder and Quantitative Researcher, Canli Capital</dd></div><div><dt>Family key</dt><dd><code>equity_low_beta</code> ·</dd></div><div><dt>System</dt><dd>ALPHAC / AlphaForge</dd></div><div><dt>Status</dt><dd>public research record; not peer reviewed; not an investment solicitation</dd></div><div><dt>Evidence date</dt><dd>2026-08-22</dd></div></dl></div><h2 id="reader-section-1" data-reader-anchor="true">Abstract</h2>
+<div class="research-masthead"><dl class="research-masthead__facts"><div><dt>Author</dt><dd>Arhan Canli, Founder and Quantitative Researcher, Canli Capital</dd></div><div><dt>Family key</dt><dd><code>equity_low_beta</code> ·</dd></div><div><dt>System</dt><dd>ALPHAC / AlphaForge</dd></div><div><dt>Status</dt><dd>public research record; not peer reviewed; not an investment solicitation</dd></div><div><dt>Evidence date</dt><dd>2026-08-22</dd></div></dl></div><h2>Abstract</h2>
 <p>Two historical identities test a 252-session equity beta rank. The implemented portfolio seeks a
 long-low-beta, short-high-beta spread under rank allocation. The shorter configuration reports
 annualized Sharpe -0.5995 over 728 observations. A deep-history configuration reports -0.0679 over
@@ -114,7 +112,7 @@ sleeve. The extreme higher moments in the longer summary also make a curve-level
 they are not treated as evidence of an attractive positive tail. Exact curves, maximum drawdown,
 current-union DSR, capacity, and forward execution are not established. The family contributes
 zero sleeves.</p>
-<h2 id="reader-section-2" data-reader-anchor="true">Hypothesis and economic prior</h2>
+<h2>Hypothesis and economic prior</h2>
 <p>The low-beta hypothesis asks whether equities with low trailing exposure to the market earn a
 better risk-adjusted return than high-beta equities after portfolio scaling and implementation
 costs. Frazzini and Pedersen connect a betting-against-beta premium to leverage constraints:
@@ -125,10 +123,10 @@ depend on beta estimation, volatility scaling, financing, short availability, se
 microcaps, delistings, corporate actions, and the universe definition. A low-beta rank can also
 overlap quality, profitability, size, and market-timing exposures. ALPHAC therefore treats the two
 rows as implementations of one defensive family, not separate sleeves.</p>
-<h2 id="reader-section-3" data-reader-anchor="true">Recorded designs</h2>
+<h2>Recorded designs</h2>
 <p>Both identities use signal <code>eq_bab_252</code>, rank allocation, 252 training bars, 63 test bars, and a
 10-basis-point no-trade band. They differ in historical scope and rebalance cadence.</p>
-<table tabindex="0" data-reader-focus="true">
+<table>
 <thead>
 <tr>
 <th>Identity</th>
@@ -170,7 +168,7 @@ and kurtosis show that the annualized Sharpe is not a sufficient description. A 
 large observations, stale prices, corporate-action discontinuities, changing universe coverage,
 or genuine jump returns could generate such moments. The summary cannot adjudicate among those
 possibilities.</p>
-<h2 id="reader-section-4" data-reader-anchor="true">Why the longer sample does not rescue the signal</h2>
+<h2>Why the longer sample does not rescue the signal</h2>
 <p>A longer date range increases chronology, not automatically identification. The deep-history
 configuration changes the available universe and rebalance cadence alongside the sample period.
 It is therefore not a clean extension of the 375-identifier test. Comparing -0.5995 with -0.0679
@@ -179,7 +177,7 @@ does not isolate a time effect, a breadth effect, or a cadence effect.</p>
 Without daily returns, block dependence, event concentration, and drawdown cannot be measured.
 No DSR is reconstructed from summary moments, and no favorable sign is inferred from the positive
 skew. A strategy can have rare positive jumps and still be unusable or incorrectly measured.</p>
-<h2 id="reader-section-5" data-reader-anchor="true">Execution and portfolio boundary</h2>
+<h2>Execution and portfolio boundary</h2>
 <p>The family packet does not establish borrow availability, short rebates, financing, market impact,
 turnover, or capacity. Those omissions are especially material for the high-beta short leg, where
 borrow and distress risk can be concentrated. There is also no identity-matched portfolio
@@ -187,7 +185,7 @@ correlation study. Conceptual distinctness from AlphaMax momentum or equity qual
 diversification.</p>
 <p>No broker-reconciled forward record exists for either identity. No AlphaMax return, Alpaca paper
 return, or other sleeve result is relabeled as low beta.</p>
-<h2 id="reader-section-6" data-reader-anchor="true">Reproduction path and next valid test</h2>
+<h2>Reproduction path and next valid test</h2>
 <p><a href="/glassbox/equity_low_beta_family.json"><code>equity_low_beta_family.json</code></a> binds the two hypothesis
 keys, config hashes, signal names, first ledger summaries, and immutable ledger hash. It also marks
 maximum drawdown, capacity, and broker-forward evidence as unestablished.</p>
@@ -216,7 +214,7 @@ one contains unresolved extreme moments. Research and implementation were direct
       </p>
       <details class="paper__citation">
         <summary>Cite this report</summary>
-        <pre tabindex="0" data-reader-focus="true"><code>@techreport{canli2026equitylowbetalineage,
+        <pre><code>@techreport{canli2026equitylowbetalineage,
   author      = {Canli, Arhan},
   title       = {Equity low beta: two negative identities and no defensive sleeve},
   institution = {Canli Capital},
@@ -312,6 +310,5 @@ one contains unresolved extreme moments. Research and implementation were direct
   <div class="cc-footer__wordmark" aria-hidden="true">Canli Capital<span><svg viewBox="0 0 80 80" focusable="false" aria-hidden="true"><path d="M12 68 68 12M12 12h56v56" fill="none" stroke="currentColor" stroke-width="4" /></svg></span></div>
   <script type="module" src="/js/site-motion.js"></script>
 </footer>
-
-<script type="module" src="/js/reader-experience.js"></script></body>
+</body>
 </html>

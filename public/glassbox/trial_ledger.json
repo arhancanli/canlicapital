@@ -2,21 +2,21 @@
   "schema": "glassbox.trial-ledger/2",
   "claim_boundary": "This ledger proves what was measured and how selection N is counted. It does not prove that any identity is profitable, independent, or admissible.",
   "accounting_equation": "immutable execution records - window-only remeasurements - cross-profile duplicate identities = distinct union hypothesis identities",
-  "immutable_execution_records": 301,
-  "distinct_config_hashes": 301,
+  "immutable_execution_records": 419,
+  "distinct_config_hashes": 419,
   "window_only_remeasurements": 72,
   "cross_profile_duplicate_identities": 0,
-  "distinct_hypothesis_identities": 229,
+  "distinct_hypothesis_identities": 347,
   "selection_statistics": {
     "unit": "first_immutable_record_per_hypothesis",
-    "n_hypotheses": 229,
-    "sharpe_variance": 0.0009019255799292642,
-    "audit_raw_record_sharpe_variance": 0.0007326666145874145,
+    "n_hypotheses": 347,
+    "sharpe_variance": 0.0012540206457914785,
+    "audit_raw_record_sharpe_variance": 0.0010727105051428205,
     "interpretation": "Operational window remeasurements remain public but cannot alter selection N or selection V[SR]."
   },
-  "ledger_profiles": 8,
+  "ledger_profiles": 126,
   "hypothesis_identity_budget": 400,
-  "budget_remaining": 171,
+  "budget_remaining": 53,
   "budget_status": "PASS",
   "research_status": "ACTIVE_STAGED_PROSPECTIVE_BUDGET",
   "definitions": {
@@ -86,6 +86,1068 @@
     "status": "CORRECTED"
   },
   "profiles": [
+    {
+      "profile": "baseline",
+      "source_path": "artifacts/analysis/alphac_capital_budget_20260913/baseline/experiments.jsonl",
+      "immutable_execution_records": 1,
+      "distinct_config_hashes": 1,
+      "hypothesis_identities": 1,
+      "window_only_remeasurements": 0,
+      "latest_recorded_at": "2026-09-13T06:36:42.129000+00:00"
+    },
+    {
+      "profile": "baseline_stress",
+      "source_path": "artifacts/analysis/alphac_capital_budget_20260913/baseline_stress/experiments.jsonl",
+      "immutable_execution_records": 1,
+      "distinct_config_hashes": 1,
+      "hypothesis_identities": 1,
+      "window_only_remeasurements": 0,
+      "latest_recorded_at": "2026-09-13T06:36:45.741000+00:00"
+    },
+    {
+      "profile": "candidate",
+      "source_path": "artifacts/analysis/alphac_capital_budget_20260913/candidate/experiments.jsonl",
+      "immutable_execution_records": 1,
+      "distinct_config_hashes": 1,
+      "hypothesis_identities": 1,
+      "window_only_remeasurements": 0,
+      "latest_recorded_at": "2026-09-13T06:36:43.930000+00:00"
+    },
+    {
+      "profile": "candidate_stress",
+      "source_path": "artifacts/analysis/alphac_capital_budget_20260913/candidate_stress/experiments.jsonl",
+      "immutable_execution_records": 1,
+      "distinct_config_hashes": 1,
+      "hypothesis_identities": 1,
+      "window_only_remeasurements": 0,
+      "latest_recorded_at": "2026-09-13T06:36:47.558000+00:00"
+    },
+    {
+      "profile": "baseline",
+      "source_path": "artifacts/analysis/alphac_category_targets_20260913/baseline/experiments.jsonl",
+      "immutable_execution_records": 1,
+      "distinct_config_hashes": 1,
+      "hypothesis_identities": 1,
+      "window_only_remeasurements": 0,
+      "latest_recorded_at": "2026-09-13T07:33:47.915000+00:00"
+    },
+    {
+      "profile": "baseline_stress",
+      "source_path": "artifacts/analysis/alphac_category_targets_20260913/baseline_stress/experiments.jsonl",
+      "immutable_execution_records": 1,
+      "distinct_config_hashes": 1,
+      "hypothesis_identities": 1,
+      "window_only_remeasurements": 0,
+      "latest_recorded_at": "2026-09-13T07:33:50.399000+00:00"
+    },
+    {
+      "profile": "candidate",
+      "source_path": "artifacts/analysis/alphac_category_targets_20260913/candidate/experiments.jsonl",
+      "immutable_execution_records": 1,
+      "distinct_config_hashes": 1,
+      "hypothesis_identities": 1,
+      "window_only_remeasurements": 0,
+      "latest_recorded_at": "2026-09-13T07:33:52.894000+00:00"
+    },
+    {
+      "profile": "candidate_stress",
+      "source_path": "artifacts/analysis/alphac_category_targets_20260913/candidate_stress/experiments.jsonl",
+      "immutable_execution_records": 1,
+      "distinct_config_hashes": 1,
+      "hypothesis_identities": 1,
+      "window_only_remeasurements": 0,
+      "latest_recorded_at": "2026-09-13T07:33:55.410000+00:00"
+    },
+    {
+      "profile": "baseline",
+      "source_path": "artifacts/analysis/alphac_confirmation_combined_20260913/baseline/experiments.jsonl",
+      "immutable_execution_records": 1,
+      "distinct_config_hashes": 1,
+      "hypothesis_identities": 1,
+      "window_only_remeasurements": 0,
+      "latest_recorded_at": "2026-09-13T06:31:33.955000+00:00"
+    },
+    {
+      "profile": "baseline_stress",
+      "source_path": "artifacts/analysis/alphac_confirmation_combined_20260913/baseline_stress/experiments.jsonl",
+      "immutable_execution_records": 1,
+      "distinct_config_hashes": 1,
+      "hypothesis_identities": 1,
+      "window_only_remeasurements": 0,
+      "latest_recorded_at": "2026-09-13T06:31:37.591000+00:00"
+    },
+    {
+      "profile": "candidate",
+      "source_path": "artifacts/analysis/alphac_confirmation_combined_20260913/candidate/experiments.jsonl",
+      "immutable_execution_records": 1,
+      "distinct_config_hashes": 1,
+      "hypothesis_identities": 1,
+      "window_only_remeasurements": 0,
+      "latest_recorded_at": "2026-09-13T06:31:35.780000+00:00"
+    },
+    {
+      "profile": "candidate_stress",
+      "source_path": "artifacts/analysis/alphac_confirmation_combined_20260913/candidate_stress/experiments.jsonl",
+      "immutable_execution_records": 1,
+      "distinct_config_hashes": 1,
+      "hypothesis_identities": 1,
+      "window_only_remeasurements": 0,
+      "latest_recorded_at": "2026-09-13T06:31:39.407000+00:00"
+    },
+    {
+      "profile": "cost_stress",
+      "source_path": "artifacts/analysis/alphac_inverse_vol_20260913/cost_stress/experiments.jsonl",
+      "immutable_execution_records": 1,
+      "distinct_config_hashes": 1,
+      "hypothesis_identities": 1,
+      "window_only_remeasurements": 0,
+      "latest_recorded_at": "2026-09-13T06:12:27.932000+00:00"
+    },
+    {
+      "profile": "primary",
+      "source_path": "artifacts/analysis/alphac_inverse_vol_20260913/primary/experiments.jsonl",
+      "immutable_execution_records": 1,
+      "distinct_config_hashes": 1,
+      "hypothesis_identities": 1,
+      "window_only_remeasurements": 0,
+      "latest_recorded_at": "2026-09-13T06:12:26.417000+00:00"
+    },
+    {
+      "profile": "baseline",
+      "source_path": "artifacts/analysis/alphac_positive_targets_20260913/baseline/experiments.jsonl",
+      "immutable_execution_records": 1,
+      "distinct_config_hashes": 1,
+      "hypothesis_identities": 1,
+      "window_only_remeasurements": 0,
+      "latest_recorded_at": "2026-09-13T07:17:26.332000+00:00"
+    },
+    {
+      "profile": "baseline",
+      "source_path": "artifacts/analysis/alphac_positive_targets_20260913_attempt2/baseline/experiments.jsonl",
+      "immutable_execution_records": 1,
+      "distinct_config_hashes": 1,
+      "hypothesis_identities": 1,
+      "window_only_remeasurements": 0,
+      "latest_recorded_at": "2026-09-13T07:17:50.692000+00:00"
+    },
+    {
+      "profile": "baseline_stress",
+      "source_path": "artifacts/analysis/alphac_positive_targets_20260913_attempt2/baseline_stress/experiments.jsonl",
+      "immutable_execution_records": 1,
+      "distinct_config_hashes": 1,
+      "hypothesis_identities": 1,
+      "window_only_remeasurements": 0,
+      "latest_recorded_at": "2026-09-13T07:17:53.114000+00:00"
+    },
+    {
+      "profile": "candidate",
+      "source_path": "artifacts/analysis/alphac_positive_targets_20260913_attempt2/candidate/experiments.jsonl",
+      "immutable_execution_records": 1,
+      "distinct_config_hashes": 1,
+      "hypothesis_identities": 1,
+      "window_only_remeasurements": 0,
+      "latest_recorded_at": "2026-09-13T07:17:55.502000+00:00"
+    },
+    {
+      "profile": "candidate_stress",
+      "source_path": "artifacts/analysis/alphac_positive_targets_20260913_attempt2/candidate_stress/experiments.jsonl",
+      "immutable_execution_records": 1,
+      "distinct_config_hashes": 1,
+      "hypothesis_identities": 1,
+      "window_only_remeasurements": 0,
+      "latest_recorded_at": "2026-09-13T07:17:57.889000+00:00"
+    },
+    {
+      "profile": "cost_stress",
+      "source_path": "artifacts/analysis/alphac_vol_control_20260913/cost_stress/experiments.jsonl",
+      "immutable_execution_records": 1,
+      "distinct_config_hashes": 1,
+      "hypothesis_identities": 1,
+      "window_only_remeasurements": 0,
+      "latest_recorded_at": "2026-09-13T06:01:51.242000+00:00"
+    },
+    {
+      "profile": "primary",
+      "source_path": "artifacts/analysis/alphac_vol_control_20260913/primary/experiments.jsonl",
+      "immutable_execution_records": 1,
+      "distinct_config_hashes": 1,
+      "hypothesis_identities": 1,
+      "window_only_remeasurements": 0,
+      "latest_recorded_at": "2026-09-13T06:01:49.630000+00:00"
+    },
+    {
+      "profile": "sessions",
+      "source_path": "artifacts/analysis/alphamax_covariance_basis_20260913/sessions/experiments.jsonl",
+      "immutable_execution_records": 1,
+      "distinct_config_hashes": 1,
+      "hypothesis_identities": 1,
+      "window_only_remeasurements": 0,
+      "latest_recorded_at": "2026-09-13T10:14:59.254000+00:00"
+    },
+    {
+      "profile": "sessions_splits",
+      "source_path": "artifacts/analysis/alphamax_covariance_basis_20260913/sessions_splits/experiments.jsonl",
+      "immutable_execution_records": 1,
+      "distinct_config_hashes": 1,
+      "hypothesis_identities": 1,
+      "window_only_remeasurements": 0,
+      "latest_recorded_at": "2026-09-13T10:16:43.267000+00:00"
+    },
+    {
+      "profile": "sessions_splits_stress",
+      "source_path": "artifacts/analysis/alphamax_covariance_basis_20260913/sessions_splits_stress/experiments.jsonl",
+      "immutable_execution_records": 1,
+      "distinct_config_hashes": 1,
+      "hypothesis_identities": 1,
+      "window_only_remeasurements": 0,
+      "latest_recorded_at": "2026-09-13T10:17:29.069000+00:00"
+    },
+    {
+      "profile": "sessions_stress",
+      "source_path": "artifacts/analysis/alphamax_covariance_basis_20260913/sessions_stress/experiments.jsonl",
+      "immutable_execution_records": 1,
+      "distinct_config_hashes": 1,
+      "hypothesis_identities": 1,
+      "window_only_remeasurements": 0,
+      "latest_recorded_at": "2026-09-13T10:15:59.637000+00:00"
+    },
+    {
+      "profile": "baseline",
+      "source_path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/experiments.jsonl",
+      "immutable_execution_records": 1,
+      "distinct_config_hashes": 1,
+      "hypothesis_identities": 1,
+      "window_only_remeasurements": 0,
+      "latest_recorded_at": "2026-09-13T10:53:26.149000+00:00"
+    },
+    {
+      "profile": "baseline_stress",
+      "source_path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline_stress/experiments.jsonl",
+      "immutable_execution_records": 1,
+      "distinct_config_hashes": 1,
+      "hypothesis_identities": 1,
+      "window_only_remeasurements": 0,
+      "latest_recorded_at": "2026-09-13T10:56:30.906000+00:00"
+    },
+    {
+      "profile": "baseline",
+      "source_path": "artifacts/analysis/alphamax_full2022_baseline_20260913/baseline/experiments.jsonl",
+      "immutable_execution_records": 1,
+      "distinct_config_hashes": 1,
+      "hypothesis_identities": 1,
+      "window_only_remeasurements": 0,
+      "latest_recorded_at": "2026-09-13T09:37:35.965000+00:00"
+    },
+    {
+      "profile": "baseline",
+      "source_path": "artifacts/analysis/alphamax_full2022_baseline_v2_20260913/baseline/experiments.jsonl",
+      "immutable_execution_records": 1,
+      "distinct_config_hashes": 1,
+      "hypothesis_identities": 1,
+      "window_only_remeasurements": 0,
+      "latest_recorded_at": "2026-09-13T09:40:39.323000+00:00"
+    },
+    {
+      "profile": "cost_stress",
+      "source_path": "artifacts/analysis/alphamax_full2022_baseline_v2_20260913/cost_stress/experiments.jsonl",
+      "immutable_execution_records": 1,
+      "distinct_config_hashes": 1,
+      "hypothesis_identities": 1,
+      "window_only_remeasurements": 0,
+      "latest_recorded_at": "2026-09-13T09:45:34.119000+00:00"
+    },
+    {
+      "profile": "candidate",
+      "source_path": "artifacts/analysis/alphamax_path_momentum_20260913/candidate/experiments.jsonl",
+      "immutable_execution_records": 1,
+      "distinct_config_hashes": 1,
+      "hypothesis_identities": 1,
+      "window_only_remeasurements": 0,
+      "latest_recorded_at": "2026-09-13T15:41:24.597000+00:00"
+    },
+    {
+      "profile": "candidate",
+      "source_path": "artifacts/analysis/alphamax_session_cooldown_20260913/candidate/experiments.jsonl",
+      "immutable_execution_records": 1,
+      "distinct_config_hashes": 1,
+      "hypothesis_identities": 1,
+      "window_only_remeasurements": 0,
+      "latest_recorded_at": "2026-09-13T11:19:22.250000+00:00"
+    },
+    {
+      "profile": "candidate_stress",
+      "source_path": "artifacts/analysis/alphamax_session_cooldown_20260913/candidate_stress/experiments.jsonl",
+      "immutable_execution_records": 1,
+      "distinct_config_hashes": 1,
+      "hypothesis_identities": 1,
+      "window_only_remeasurements": 0,
+      "latest_recorded_at": "2026-09-13T11:20:28.792000+00:00"
+    },
+    {
+      "profile": "baseline",
+      "source_path": "artifacts/analysis/alphamax_share_ratio_20260913/baseline/experiments.jsonl",
+      "immutable_execution_records": 1,
+      "distinct_config_hashes": 1,
+      "hypothesis_identities": 1,
+      "window_only_remeasurements": 0,
+      "latest_recorded_at": "2026-09-13T10:03:36.743000+00:00"
+    },
+    {
+      "profile": "baseline_stress",
+      "source_path": "artifacts/analysis/alphamax_share_ratio_20260913/baseline_stress/experiments.jsonl",
+      "immutable_execution_records": 1,
+      "distinct_config_hashes": 1,
+      "hypothesis_identities": 1,
+      "window_only_remeasurements": 0,
+      "latest_recorded_at": "2026-09-13T10:04:20.562000+00:00"
+    },
+    {
+      "profile": "momentum",
+      "source_path": "artifacts/analysis/alphamax_share_ratio_20260913/momentum/experiments.jsonl",
+      "immutable_execution_records": 1,
+      "distinct_config_hashes": 1,
+      "hypothesis_identities": 1,
+      "window_only_remeasurements": 0,
+      "latest_recorded_at": "2026-09-13T10:05:36.469000+00:00"
+    },
+    {
+      "profile": "momentum_sigma",
+      "source_path": "artifacts/analysis/alphamax_share_ratio_20260913/momentum_sigma/experiments.jsonl",
+      "immutable_execution_records": 1,
+      "distinct_config_hashes": 1,
+      "hypothesis_identities": 1,
+      "window_only_remeasurements": 0,
+      "latest_recorded_at": "2026-09-13T10:07:02.305000+00:00"
+    },
+    {
+      "profile": "momentum_sigma_stress",
+      "source_path": "artifacts/analysis/alphamax_share_ratio_20260913/momentum_sigma_stress/experiments.jsonl",
+      "immutable_execution_records": 1,
+      "distinct_config_hashes": 1,
+      "hypothesis_identities": 1,
+      "window_only_remeasurements": 0,
+      "latest_recorded_at": "2026-09-13T10:07:39.497000+00:00"
+    },
+    {
+      "profile": "momentum_stress",
+      "source_path": "artifacts/analysis/alphamax_share_ratio_20260913/momentum_stress/experiments.jsonl",
+      "immutable_execution_records": 1,
+      "distinct_config_hashes": 1,
+      "hypothesis_identities": 1,
+      "window_only_remeasurements": 0,
+      "latest_recorded_at": "2026-09-13T10:06:21.554000+00:00"
+    },
+    {
+      "profile": "candidate",
+      "source_path": "artifacts/analysis/alphamax_total_return_momentum_20260913/candidate/experiments.jsonl",
+      "immutable_execution_records": 1,
+      "distinct_config_hashes": 1,
+      "hypothesis_identities": 1,
+      "window_only_remeasurements": 0,
+      "latest_recorded_at": "2026-09-13T15:58:05.010000+00:00"
+    },
+    {
+      "profile": "alphatrend_cash_retention_20260912",
+      "source_path": "artifacts/analysis/alphatrend_cash_retention_20260912/experiments.jsonl",
+      "immutable_execution_records": 1,
+      "distinct_config_hashes": 1,
+      "hypothesis_identities": 1,
+      "window_only_remeasurements": 0,
+      "latest_recorded_at": "2026-09-12T03:43:01.200000+00:00"
+    },
+    {
+      "profile": "baseline",
+      "source_path": "artifacts/analysis/alphatrend_category_targets_20260913/baseline/experiments.jsonl",
+      "immutable_execution_records": 1,
+      "distinct_config_hashes": 1,
+      "hypothesis_identities": 1,
+      "window_only_remeasurements": 0,
+      "latest_recorded_at": "2026-09-13T07:31:49.372000+00:00"
+    },
+    {
+      "profile": "baseline_stress",
+      "source_path": "artifacts/analysis/alphatrend_category_targets_20260913/baseline_stress/experiments.jsonl",
+      "immutable_execution_records": 1,
+      "distinct_config_hashes": 1,
+      "hypothesis_identities": 1,
+      "window_only_remeasurements": 0,
+      "latest_recorded_at": "2026-09-13T07:32:10.709000+00:00"
+    },
+    {
+      "profile": "candidate",
+      "source_path": "artifacts/analysis/alphatrend_category_targets_20260913/candidate/experiments.jsonl",
+      "immutable_execution_records": 1,
+      "distinct_config_hashes": 1,
+      "hypothesis_identities": 1,
+      "window_only_remeasurements": 0,
+      "latest_recorded_at": "2026-09-13T07:32:32.191000+00:00"
+    },
+    {
+      "profile": "candidate_stress",
+      "source_path": "artifacts/analysis/alphatrend_category_targets_20260913/candidate_stress/experiments.jsonl",
+      "immutable_execution_records": 1,
+      "distinct_config_hashes": 1,
+      "hypothesis_identities": 1,
+      "window_only_remeasurements": 0,
+      "latest_recorded_at": "2026-09-13T07:32:53.870000+00:00"
+    },
+    {
+      "profile": "baseline",
+      "source_path": "artifacts/analysis/alphatrend_causal_continuous_20260912/baseline/experiments.jsonl",
+      "immutable_execution_records": 1,
+      "distinct_config_hashes": 1,
+      "hypothesis_identities": 1,
+      "window_only_remeasurements": 0,
+      "latest_recorded_at": "2026-09-12T04:52:51.446000+00:00"
+    },
+    {
+      "profile": "candidate",
+      "source_path": "artifacts/analysis/alphatrend_causal_continuous_20260912/candidate/experiments.jsonl",
+      "immutable_execution_records": 1,
+      "distinct_config_hashes": 1,
+      "hypothesis_identities": 1,
+      "window_only_remeasurements": 0,
+      "latest_recorded_at": "2026-09-12T04:53:01.687000+00:00"
+    },
+    {
+      "profile": "baseline",
+      "source_path": "artifacts/analysis/alphatrend_causal_stress_20260912/baseline/experiments.jsonl",
+      "immutable_execution_records": 1,
+      "distinct_config_hashes": 1,
+      "hypothesis_identities": 1,
+      "window_only_remeasurements": 0,
+      "latest_recorded_at": "2026-09-12T05:01:18.848000+00:00"
+    },
+    {
+      "profile": "candidate",
+      "source_path": "artifacts/analysis/alphatrend_causal_stress_20260912/candidate/experiments.jsonl",
+      "immutable_execution_records": 1,
+      "distinct_config_hashes": 1,
+      "hypothesis_identities": 1,
+      "window_only_remeasurements": 0,
+      "latest_recorded_at": "2026-09-12T05:01:30.035000+00:00"
+    },
+    {
+      "profile": "baseline",
+      "source_path": "artifacts/analysis/alphatrend_confirmation_20260913/baseline/experiments.jsonl",
+      "immutable_execution_records": 1,
+      "distinct_config_hashes": 1,
+      "hypothesis_identities": 1,
+      "window_only_remeasurements": 0,
+      "latest_recorded_at": "2026-09-13T06:25:54.375000+00:00"
+    },
+    {
+      "profile": "baseline_stress",
+      "source_path": "artifacts/analysis/alphatrend_confirmation_20260913/baseline_stress/experiments.jsonl",
+      "immutable_execution_records": 1,
+      "distinct_config_hashes": 1,
+      "hypothesis_identities": 1,
+      "window_only_remeasurements": 0,
+      "latest_recorded_at": "2026-09-13T06:26:34.760000+00:00"
+    },
+    {
+      "profile": "candidate",
+      "source_path": "artifacts/analysis/alphatrend_confirmation_20260913/candidate/experiments.jsonl",
+      "immutable_execution_records": 1,
+      "distinct_config_hashes": 1,
+      "hypothesis_identities": 1,
+      "window_only_remeasurements": 0,
+      "latest_recorded_at": "2026-09-13T06:26:14.420000+00:00"
+    },
+    {
+      "profile": "candidate_stress",
+      "source_path": "artifacts/analysis/alphatrend_confirmation_20260913/candidate_stress/experiments.jsonl",
+      "immutable_execution_records": 1,
+      "distinct_config_hashes": 1,
+      "hypothesis_identities": 1,
+      "window_only_remeasurements": 0,
+      "latest_recorded_at": "2026-09-13T06:26:55.315000+00:00"
+    },
+    {
+      "profile": "alphatrend_cost_development_20260911_attempt2",
+      "source_path": "artifacts/analysis/alphatrend_cost_development_20260911_attempt2/experiments.jsonl",
+      "immutable_execution_records": 1,
+      "distinct_config_hashes": 1,
+      "hypothesis_identities": 1,
+      "window_only_remeasurements": 0,
+      "latest_recorded_at": "2026-09-11T19:00:46.676000+00:00"
+    },
+    {
+      "profile": "alphatrend_directional_20260912_attempt2",
+      "source_path": "artifacts/analysis/alphatrend_directional_20260912_attempt2/experiments.jsonl",
+      "immutable_execution_records": 1,
+      "distinct_config_hashes": 1,
+      "hypothesis_identities": 1,
+      "window_only_remeasurements": 0,
+      "latest_recorded_at": "2026-09-12T04:02:53.327000+00:00"
+    },
+    {
+      "profile": "baseline",
+      "source_path": "artifacts/analysis/alphatrend_directional_validation_20260912/baseline/experiments.jsonl",
+      "immutable_execution_records": 1,
+      "distinct_config_hashes": 1,
+      "hypothesis_identities": 1,
+      "window_only_remeasurements": 0,
+      "latest_recorded_at": "2026-09-12T04:13:39.187000+00:00"
+    },
+    {
+      "profile": "candidate",
+      "source_path": "artifacts/analysis/alphatrend_directional_validation_20260912/candidate/experiments.jsonl",
+      "immutable_execution_records": 1,
+      "distinct_config_hashes": 1,
+      "hypothesis_identities": 1,
+      "window_only_remeasurements": 0,
+      "latest_recorded_at": "2026-09-12T04:13:59.257000+00:00"
+    },
+    {
+      "profile": "baseline",
+      "source_path": "artifacts/analysis/alphatrend_positive_targets_20260913/baseline/experiments.jsonl",
+      "immutable_execution_records": 1,
+      "distinct_config_hashes": 1,
+      "hypothesis_identities": 1,
+      "window_only_remeasurements": 0,
+      "latest_recorded_at": "2026-09-13T07:14:09.170000+00:00"
+    },
+    {
+      "profile": "baseline_stress",
+      "source_path": "artifacts/analysis/alphatrend_positive_targets_20260913/baseline_stress/experiments.jsonl",
+      "immutable_execution_records": 1,
+      "distinct_config_hashes": 1,
+      "hypothesis_identities": 1,
+      "window_only_remeasurements": 0,
+      "latest_recorded_at": "2026-09-13T07:14:32.253000+00:00"
+    },
+    {
+      "profile": "candidate",
+      "source_path": "artifacts/analysis/alphatrend_positive_targets_20260913/candidate/experiments.jsonl",
+      "immutable_execution_records": 1,
+      "distinct_config_hashes": 1,
+      "hypothesis_identities": 1,
+      "window_only_remeasurements": 0,
+      "latest_recorded_at": "2026-09-13T07:14:54.976000+00:00"
+    },
+    {
+      "profile": "candidate_stress",
+      "source_path": "artifacts/analysis/alphatrend_positive_targets_20260913/candidate_stress/experiments.jsonl",
+      "immutable_execution_records": 1,
+      "distinct_config_hashes": 1,
+      "hypothesis_identities": 1,
+      "window_only_remeasurements": 0,
+      "latest_recorded_at": "2026-09-13T07:15:17.688000+00:00"
+    },
+    {
+      "profile": "baseline",
+      "source_path": "artifacts/analysis/alphatrend_retrospective_comparison_20260912/baseline/experiments.jsonl",
+      "immutable_execution_records": 1,
+      "distinct_config_hashes": 1,
+      "hypothesis_identities": 1,
+      "window_only_remeasurements": 0,
+      "latest_recorded_at": "2026-09-12T12:06:02.502000+00:00"
+    },
+    {
+      "profile": "candidate",
+      "source_path": "artifacts/analysis/alphatrend_retrospective_comparison_20260912/candidate/experiments.jsonl",
+      "immutable_execution_records": 1,
+      "distinct_config_hashes": 1,
+      "hypothesis_identities": 1,
+      "window_only_remeasurements": 0,
+      "latest_recorded_at": "2026-09-12T12:06:29.768000+00:00"
+    },
+    {
+      "profile": "normal",
+      "source_path": "artifacts/analysis/bil_cash_2022_20260913/normal/experiments.jsonl",
+      "immutable_execution_records": 1,
+      "distinct_config_hashes": 1,
+      "hypothesis_identities": 1,
+      "window_only_remeasurements": 0,
+      "latest_recorded_at": "2026-09-13T14:07:04.931000+00:00"
+    },
+    {
+      "profile": "stress",
+      "source_path": "artifacts/analysis/bil_cash_2022_20260913/stress/experiments.jsonl",
+      "immutable_execution_records": 1,
+      "distinct_config_hashes": 1,
+      "hypothesis_identities": 1,
+      "window_only_remeasurements": 0,
+      "latest_recorded_at": "2026-09-13T14:07:32.908000+00:00"
+    },
+    {
+      "profile": "normal",
+      "source_path": "artifacts/analysis/bil_cash_20260913/normal/experiments.jsonl",
+      "immutable_execution_records": 1,
+      "distinct_config_hashes": 1,
+      "hypothesis_identities": 1,
+      "window_only_remeasurements": 0,
+      "latest_recorded_at": "2026-09-13T13:59:57.086000+00:00"
+    },
+    {
+      "profile": "stress",
+      "source_path": "artifacts/analysis/bil_cash_20260913/stress/experiments.jsonl",
+      "immutable_execution_records": 1,
+      "distinct_config_hashes": 1,
+      "hypothesis_identities": 1,
+      "window_only_remeasurements": 0,
+      "latest_recorded_at": "2026-09-13T14:03:23.913000+00:00"
+    },
+    {
+      "profile": "normal",
+      "source_path": "artifacts/analysis/bil_funded_account_20260913/normal/experiments.jsonl",
+      "immutable_execution_records": 1,
+      "distinct_config_hashes": 1,
+      "hypothesis_identities": 1,
+      "window_only_remeasurements": 0,
+      "latest_recorded_at": "2026-09-13T17:13:07.834000+00:00"
+    },
+    {
+      "profile": "stress",
+      "source_path": "artifacts/analysis/bil_funded_account_20260913/stress/experiments.jsonl",
+      "immutable_execution_records": 1,
+      "distinct_config_hashes": 1,
+      "hypothesis_identities": 1,
+      "window_only_remeasurements": 0,
+      "latest_recorded_at": "2026-09-13T17:14:02.177000+00:00"
+    },
+    {
+      "profile": "baseline",
+      "source_path": "artifacts/analysis/combined_2022_corrected_max_20260913/baseline/experiments.jsonl",
+      "immutable_execution_records": 1,
+      "distinct_config_hashes": 1,
+      "hypothesis_identities": 1,
+      "window_only_remeasurements": 0,
+      "latest_recorded_at": "2026-09-13T10:25:09.136000+00:00"
+    },
+    {
+      "profile": "baseline_stress",
+      "source_path": "artifacts/analysis/combined_2022_corrected_max_20260913/baseline_stress/experiments.jsonl",
+      "immutable_execution_records": 1,
+      "distinct_config_hashes": 1,
+      "hypothesis_identities": 1,
+      "window_only_remeasurements": 0,
+      "latest_recorded_at": "2026-09-13T10:26:14.321000+00:00"
+    },
+    {
+      "profile": "baseline",
+      "source_path": "artifacts/analysis/combined_2022_diagnostic_20260913/baseline/experiments.jsonl",
+      "immutable_execution_records": 1,
+      "distinct_config_hashes": 1,
+      "hypothesis_identities": 1,
+      "window_only_remeasurements": 0,
+      "latest_recorded_at": "2026-09-13T09:54:06.195000+00:00"
+    },
+    {
+      "profile": "baseline_stress",
+      "source_path": "artifacts/analysis/combined_2022_diagnostic_20260913/baseline_stress/experiments.jsonl",
+      "immutable_execution_records": 1,
+      "distinct_config_hashes": 1,
+      "hypothesis_identities": 1,
+      "window_only_remeasurements": 0,
+      "latest_recorded_at": "2026-09-13T09:55:14.155000+00:00"
+    },
+    {
+      "profile": "candidate",
+      "source_path": "artifacts/analysis/combined_2022_diagnostic_20260913/candidate/experiments.jsonl",
+      "immutable_execution_records": 1,
+      "distinct_config_hashes": 1,
+      "hypothesis_identities": 1,
+      "window_only_remeasurements": 0,
+      "latest_recorded_at": "2026-09-13T09:54:56.074000+00:00"
+    },
+    {
+      "profile": "candidate_stress",
+      "source_path": "artifacts/analysis/combined_2022_diagnostic_20260913/candidate_stress/experiments.jsonl",
+      "immutable_execution_records": 1,
+      "distinct_config_hashes": 1,
+      "hypothesis_identities": 1,
+      "window_only_remeasurements": 0,
+      "latest_recorded_at": "2026-09-13T09:55:33.304000+00:00"
+    },
+    {
+      "profile": "baseline",
+      "source_path": "artifacts/analysis/combined_2022_eligible_core_20260913/baseline/experiments.jsonl",
+      "immutable_execution_records": 1,
+      "distinct_config_hashes": 1,
+      "hypothesis_identities": 1,
+      "window_only_remeasurements": 0,
+      "latest_recorded_at": "2026-09-13T10:29:04.596000+00:00"
+    },
+    {
+      "profile": "baseline_stress",
+      "source_path": "artifacts/analysis/combined_2022_eligible_core_20260913/baseline_stress/experiments.jsonl",
+      "immutable_execution_records": 1,
+      "distinct_config_hashes": 1,
+      "hypothesis_identities": 1,
+      "window_only_remeasurements": 0,
+      "latest_recorded_at": "2026-09-13T10:29:51.910000+00:00"
+    },
+    {
+      "profile": "candidate",
+      "source_path": "artifacts/analysis/combined_crypto_observed_carry_20260913/candidate/experiments.jsonl",
+      "immutable_execution_records": 1,
+      "distinct_config_hashes": 1,
+      "hypothesis_identities": 1,
+      "window_only_remeasurements": 0,
+      "latest_recorded_at": "2026-09-13T12:28:19.400000+00:00"
+    },
+    {
+      "profile": "candidate_stress",
+      "source_path": "artifacts/analysis/combined_crypto_observed_carry_20260913/candidate_stress/experiments.jsonl",
+      "immutable_execution_records": 1,
+      "distinct_config_hashes": 1,
+      "hypothesis_identities": 1,
+      "window_only_remeasurements": 0,
+      "latest_recorded_at": "2026-09-13T12:28:58.210000+00:00"
+    },
+    {
+      "profile": "candidate",
+      "source_path": "artifacts/analysis/combined_crypto_retention_20260913/candidate/experiments.jsonl",
+      "immutable_execution_records": 1,
+      "distinct_config_hashes": 1,
+      "hypothesis_identities": 1,
+      "window_only_remeasurements": 0,
+      "latest_recorded_at": "2026-09-13T11:47:27.317000+00:00"
+    },
+    {
+      "profile": "candidate_stress",
+      "source_path": "artifacts/analysis/combined_crypto_retention_20260913/candidate_stress/experiments.jsonl",
+      "immutable_execution_records": 1,
+      "distinct_config_hashes": 1,
+      "hypothesis_identities": 1,
+      "window_only_remeasurements": 0,
+      "latest_recorded_at": "2026-09-13T11:48:05.604000+00:00"
+    },
+    {
+      "profile": "candidate",
+      "source_path": "artifacts/analysis/combined_crypto_risk_rank_20260913/candidate/experiments.jsonl",
+      "immutable_execution_records": 1,
+      "distinct_config_hashes": 1,
+      "hypothesis_identities": 1,
+      "window_only_remeasurements": 0,
+      "latest_recorded_at": "2026-09-13T12:41:42.152000+00:00"
+    },
+    {
+      "profile": "candidate_stress",
+      "source_path": "artifacts/analysis/combined_crypto_risk_rank_20260913/candidate_stress/experiments.jsonl",
+      "immutable_execution_records": 1,
+      "distinct_config_hashes": 1,
+      "hypothesis_identities": 1,
+      "window_only_remeasurements": 0,
+      "latest_recorded_at": "2026-09-13T12:42:31.918000+00:00"
+    },
+    {
+      "profile": "baseline",
+      "source_path": "artifacts/analysis/combined_extended_reference_20260913/baseline/experiments.jsonl",
+      "immutable_execution_records": 1,
+      "distinct_config_hashes": 1,
+      "hypothesis_identities": 1,
+      "window_only_remeasurements": 0,
+      "latest_recorded_at": "2026-09-13T11:13:21.647000+00:00"
+    },
+    {
+      "profile": "baseline_stress",
+      "source_path": "artifacts/analysis/combined_extended_reference_20260913/baseline_stress/experiments.jsonl",
+      "immutable_execution_records": 1,
+      "distinct_config_hashes": 1,
+      "hypothesis_identities": 1,
+      "window_only_remeasurements": 0,
+      "latest_recorded_at": "2026-09-13T11:14:47.017000+00:00"
+    },
+    {
+      "profile": "normal_v2",
+      "source_path": "artifacts/analysis/combined_group_risk_20260913/normal_v2/experiments.jsonl",
+      "immutable_execution_records": 1,
+      "distinct_config_hashes": 1,
+      "hypothesis_identities": 1,
+      "window_only_remeasurements": 0,
+      "latest_recorded_at": "2026-09-13T14:37:31.568000+00:00"
+    },
+    {
+      "profile": "normal",
+      "source_path": "artifacts/analysis/combined_path_momentum_20260913/normal/experiments.jsonl",
+      "immutable_execution_records": 1,
+      "distinct_config_hashes": 1,
+      "hypothesis_identities": 1,
+      "window_only_remeasurements": 0,
+      "latest_recorded_at": "2026-09-13T15:47:29.485000+00:00"
+    },
+    {
+      "profile": "candidate",
+      "source_path": "artifacts/analysis/combined_session_cooldown_20260913/candidate/experiments.jsonl",
+      "immutable_execution_records": 1,
+      "distinct_config_hashes": 1,
+      "hypothesis_identities": 1,
+      "window_only_remeasurements": 0,
+      "latest_recorded_at": "2026-09-13T11:23:05.202000+00:00"
+    },
+    {
+      "profile": "candidate_stress",
+      "source_path": "artifacts/analysis/combined_session_cooldown_20260913/candidate_stress/experiments.jsonl",
+      "immutable_execution_records": 1,
+      "distinct_config_hashes": 1,
+      "hypothesis_identities": 1,
+      "window_only_remeasurements": 0,
+      "latest_recorded_at": "2026-09-13T11:23:18.655000+00:00"
+    },
+    {
+      "profile": "normal",
+      "source_path": "artifacts/analysis/combined_total_return_momentum_20260913/normal/experiments.jsonl",
+      "immutable_execution_records": 1,
+      "distinct_config_hashes": 1,
+      "hypothesis_identities": 1,
+      "window_only_remeasurements": 0,
+      "latest_recorded_at": "2026-09-13T16:10:42.407000+00:00"
+    },
+    {
+      "profile": "baseline",
+      "source_path": "artifacts/analysis/crypto_continuous_account_20260913/baseline/experiments.jsonl",
+      "immutable_execution_records": 1,
+      "distinct_config_hashes": 1,
+      "hypothesis_identities": 1,
+      "window_only_remeasurements": 0,
+      "latest_recorded_at": "2026-09-13T16:52:42.424000+00:00"
+    },
+    {
+      "profile": "baseline_stress",
+      "source_path": "artifacts/analysis/crypto_continuous_account_20260913/baseline_stress/experiments.jsonl",
+      "immutable_execution_records": 1,
+      "distinct_config_hashes": 1,
+      "hypothesis_identities": 1,
+      "window_only_remeasurements": 0,
+      "latest_recorded_at": "2026-09-13T16:56:22.594000+00:00"
+    },
+    {
+      "profile": "baseline",
+      "source_path": "artifacts/analysis/crypto_extended_reference_20260913/baseline/experiments.jsonl",
+      "immutable_execution_records": 1,
+      "distinct_config_hashes": 1,
+      "hypothesis_identities": 1,
+      "window_only_remeasurements": 0,
+      "latest_recorded_at": "2026-09-13T11:00:36.578000+00:00"
+    },
+    {
+      "profile": "baseline_stress",
+      "source_path": "artifacts/analysis/crypto_extended_reference_20260913/baseline_stress/experiments.jsonl",
+      "immutable_execution_records": 1,
+      "distinct_config_hashes": 1,
+      "hypothesis_identities": 1,
+      "window_only_remeasurements": 0,
+      "latest_recorded_at": "2026-09-13T11:03:35.611000+00:00"
+    },
+    {
+      "profile": "terminal_lower",
+      "source_path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_lower/experiments.jsonl",
+      "immutable_execution_records": 1,
+      "distinct_config_hashes": 1,
+      "hypothesis_identities": 1,
+      "window_only_remeasurements": 0,
+      "latest_recorded_at": "2026-09-13T09:05:36.196000+00:00"
+    },
+    {
+      "profile": "terminal_lower_cost_stress",
+      "source_path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_lower_cost_stress/experiments.jsonl",
+      "immutable_execution_records": 1,
+      "distinct_config_hashes": 1,
+      "hypothesis_identities": 1,
+      "window_only_remeasurements": 0,
+      "latest_recorded_at": "2026-09-13T09:08:50.888000+00:00"
+    },
+    {
+      "profile": "terminal_upper",
+      "source_path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_upper/experiments.jsonl",
+      "immutable_execution_records": 1,
+      "distinct_config_hashes": 1,
+      "hypothesis_identities": 1,
+      "window_only_remeasurements": 0,
+      "latest_recorded_at": "2026-09-13T09:10:28.724000+00:00"
+    },
+    {
+      "profile": "terminal_upper_cost_stress",
+      "source_path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_upper_cost_stress/experiments.jsonl",
+      "immutable_execution_records": 1,
+      "distinct_config_hashes": 1,
+      "hypothesis_identities": 1,
+      "window_only_remeasurements": 0,
+      "latest_recorded_at": "2026-09-13T09:11:32.641000+00:00"
+    },
+    {
+      "profile": "baseline",
+      "source_path": "artifacts/analysis/crypto_funded_reference_20260913/baseline/experiments.jsonl",
+      "immutable_execution_records": 1,
+      "distinct_config_hashes": 1,
+      "hypothesis_identities": 1,
+      "window_only_remeasurements": 0,
+      "latest_recorded_at": "2026-09-13T16:43:16.986000+00:00"
+    },
+    {
+      "profile": "candidate",
+      "source_path": "artifacts/analysis/crypto_observed_carry_20260913/candidate/experiments.jsonl",
+      "immutable_execution_records": 1,
+      "distinct_config_hashes": 1,
+      "hypothesis_identities": 1,
+      "window_only_remeasurements": 0,
+      "latest_recorded_at": "2026-09-13T12:24:56.656000+00:00"
+    },
+    {
+      "profile": "candidate_stress",
+      "source_path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/experiments.jsonl",
+      "immutable_execution_records": 1,
+      "distinct_config_hashes": 1,
+      "hypothesis_identities": 1,
+      "window_only_remeasurements": 0,
+      "latest_recorded_at": "2026-09-13T12:26:37.357000+00:00"
+    },
+    {
+      "profile": "candidate",
+      "source_path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/experiments.jsonl",
+      "immutable_execution_records": 1,
+      "distinct_config_hashes": 1,
+      "hypothesis_identities": 1,
+      "window_only_remeasurements": 0,
+      "latest_recorded_at": "2026-09-13T11:38:51.013000+00:00"
+    },
+    {
+      "profile": "candidate_stress",
+      "source_path": "artifacts/analysis/crypto_rank_retention_20260913/candidate_stress/experiments.jsonl",
+      "immutable_execution_records": 1,
+      "distinct_config_hashes": 1,
+      "hypothesis_identities": 1,
+      "window_only_remeasurements": 0,
+      "latest_recorded_at": "2026-09-13T11:45:09.343000+00:00"
+    },
+    {
+      "profile": "candidate",
+      "source_path": "artifacts/analysis/crypto_risk_normalized_rank_20260913/candidate/experiments.jsonl",
+      "immutable_execution_records": 1,
+      "distinct_config_hashes": 1,
+      "hypothesis_identities": 1,
+      "window_only_remeasurements": 0,
+      "latest_recorded_at": "2026-09-13T12:37:47.147000+00:00"
+    },
+    {
+      "profile": "candidate_stress",
+      "source_path": "artifacts/analysis/crypto_risk_normalized_rank_20260913/candidate_stress/experiments.jsonl",
+      "immutable_execution_records": 1,
+      "distinct_config_hashes": 1,
+      "hypothesis_identities": 1,
+      "window_only_remeasurements": 0,
+      "latest_recorded_at": "2026-09-13T12:39:21.438000+00:00"
+    },
+    {
+      "profile": "original_close_control",
+      "source_path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/original_close_control/experiments.jsonl",
+      "immutable_execution_records": 1,
+      "distinct_config_hashes": 1,
+      "hypothesis_identities": 1,
+      "window_only_remeasurements": 0,
+      "latest_recorded_at": "2026-09-13T08:50:24.260000+00:00"
+    },
+    {
+      "profile": "repaired_close_control",
+      "source_path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/repaired_close_control/experiments.jsonl",
+      "immutable_execution_records": 1,
+      "distinct_config_hashes": 1,
+      "hypothesis_identities": 1,
+      "window_only_remeasurements": 0,
+      "latest_recorded_at": "2026-09-13T08:54:26.762000+00:00"
+    },
+    {
+      "profile": "repaired_open_control",
+      "source_path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/repaired_open_control/experiments.jsonl",
+      "immutable_execution_records": 1,
+      "distinct_config_hashes": 1,
+      "hypothesis_identities": 1,
+      "window_only_remeasurements": 0,
+      "latest_recorded_at": "2026-09-13T08:57:12.695000+00:00"
+    },
+    {
+      "profile": "terminal_lower",
+      "source_path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/terminal_lower/experiments.jsonl",
+      "immutable_execution_records": 1,
+      "distinct_config_hashes": 1,
+      "hypothesis_identities": 1,
+      "window_only_remeasurements": 0,
+      "latest_recorded_at": "2026-09-13T08:59:36.406000+00:00"
+    },
+    {
+      "profile": "terminal_lower_cost_stress",
+      "source_path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/terminal_lower_cost_stress/experiments.jsonl",
+      "immutable_execution_records": 1,
+      "distinct_config_hashes": 1,
+      "hypothesis_identities": 1,
+      "window_only_remeasurements": 0,
+      "latest_recorded_at": "2026-09-13T09:01:03.759000+00:00"
+    },
+    {
+      "profile": "terminal_upper",
+      "source_path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/terminal_upper/experiments.jsonl",
+      "immutable_execution_records": 1,
+      "distinct_config_hashes": 1,
+      "hypothesis_identities": 1,
+      "window_only_remeasurements": 0,
+      "latest_recorded_at": "2026-09-13T09:01:30.441000+00:00"
+    },
+    {
+      "profile": "terminal_upper_cost_stress",
+      "source_path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/terminal_upper_cost_stress/experiments.jsonl",
+      "immutable_execution_records": 1,
+      "distinct_config_hashes": 1,
+      "hypothesis_identities": 1,
+      "window_only_remeasurements": 0,
+      "latest_recorded_at": "2026-09-13T09:02:02.748000+00:00"
+    },
+    {
+      "profile": "normal",
+      "source_path": "artifacts/analysis/earnings_change_20260913_v2/normal/experiments.jsonl",
+      "immutable_execution_records": 1,
+      "distinct_config_hashes": 1,
+      "hypothesis_identities": 1,
+      "window_only_remeasurements": 0,
+      "latest_recorded_at": "2026-09-13T13:31:38.564000+00:00"
+    },
+    {
+      "profile": "baseline",
+      "source_path": "artifacts/analysis/trend_extended_reference_20260913/baseline/experiments.jsonl",
+      "immutable_execution_records": 1,
+      "distinct_config_hashes": 1,
+      "hypothesis_identities": 1,
+      "window_only_remeasurements": 0,
+      "latest_recorded_at": "2026-09-13T11:07:27.275000+00:00"
+    },
+    {
+      "profile": "baseline_stress",
+      "source_path": "artifacts/analysis/trend_extended_reference_20260913/baseline_stress/experiments.jsonl",
+      "immutable_execution_records": 1,
+      "distinct_config_hashes": 1,
+      "hypothesis_identities": 1,
+      "window_only_remeasurements": 0,
+      "latest_recorded_at": "2026-09-13T11:10:37.954000+00:00"
+    },
+    {
+      "profile": "baseline",
+      "source_path": "artifacts/analysis/trend_funded_account_20260913/baseline/experiments.jsonl",
+      "immutable_execution_records": 1,
+      "distinct_config_hashes": 1,
+      "hypothesis_identities": 1,
+      "window_only_remeasurements": 0,
+      "latest_recorded_at": "2026-09-13T17:02:40.810000+00:00"
+    },
+    {
+      "profile": "baseline_stress",
+      "source_path": "artifacts/analysis/trend_funded_account_20260913/baseline_stress/experiments.jsonl",
+      "immutable_execution_records": 1,
+      "distinct_config_hashes": 1,
+      "hypothesis_identities": 1,
+      "window_only_remeasurements": 0,
+      "latest_recorded_at": "2026-09-13T17:10:45.915000+00:00"
+    },
+    {
+      "profile": "baseline",
+      "source_path": "artifacts/analysis/trend_group_risk_20260913/baseline/experiments.jsonl",
+      "immutable_execution_records": 1,
+      "distinct_config_hashes": 1,
+      "hypothesis_identities": 1,
+      "window_only_remeasurements": 0,
+      "latest_recorded_at": "2026-09-13T14:34:10.243000+00:00"
+    },
     {
       "profile": "20260625T075446Z",
       "source_path": "artifacts/exp1/20260625T075446Z/experiments.jsonl",
@@ -161,94 +1223,94 @@
   ],
   "recent_hypothesis_identities": [
     {
-      "hypothesis_key": "da5f5f47f99f9bd2",
-      "config_hash": "50d9e8b059fee773",
+      "hypothesis_key": "f2a1b9e302db7a53",
+      "config_hash": "258aa5864203acc2",
+      "label": "unlabelled registered identity",
+      "ledger_profile": "stress",
+      "first_recorded_at": "2026-09-13T17:14:02.177000+00:00",
+      "observations": 1248,
+      "annualized_sharpe_observed": -0.931217
+    },
+    {
+      "hypothesis_key": "40fde3467693c4c5",
+      "config_hash": "753f452ed60ece6e",
+      "label": "unlabelled registered identity",
+      "ledger_profile": "normal",
+      "first_recorded_at": "2026-09-13T17:13:07.834000+00:00",
+      "observations": 1248,
+      "annualized_sharpe_observed": -0.882872
+    },
+    {
+      "hypothesis_key": "4343650e7f9f5517",
+      "config_hash": "034f496522c76bfc",
+      "label": "mf_trend_63 + mf_trend_126 + mf_trend_252",
+      "ledger_profile": "baseline_stress",
+      "first_recorded_at": "2026-09-13T17:10:45.915000+00:00",
+      "observations": 854,
+      "annualized_sharpe_observed": -0.074537
+    },
+    {
+      "hypothesis_key": "5bb33ba832874159",
+      "config_hash": "d0b7ab247a319e1f",
+      "label": "mf_trend_63 + mf_trend_126 + mf_trend_252",
+      "ledger_profile": "baseline",
+      "first_recorded_at": "2026-09-13T17:02:40.810000+00:00",
+      "observations": 854,
+      "annualized_sharpe_observed": 0.055254
+    },
+    {
+      "hypothesis_key": "8948763f0f12d809",
+      "config_hash": "27f3a8e86fe95c8c",
       "label": "carry_fund_21",
-      "ledger_profile": "var",
-      "first_recorded_at": "2026-08-23T22:29:16.391000+00:00",
-      "observations": 1574,
-      "annualized_sharpe_observed": 0.968898
+      "ledger_profile": "baseline_stress",
+      "first_recorded_at": "2026-09-13T16:56:22.594000+00:00",
+      "observations": 1248,
+      "annualized_sharpe_observed": 1.115275
     },
     {
-      "hypothesis_key": "7843716d6bab8d5b",
-      "config_hash": "09f8fee4e13a004d",
-      "label": "alphatrend_breadth",
-      "ledger_profile": "var",
-      "first_recorded_at": "2026-08-17T00:00:00.077000+00:00",
-      "observations": 5161,
-      "annualized_sharpe_observed": 0.204
+      "hypothesis_key": "bda8570351dd27b2",
+      "config_hash": "1b45dce57d687394",
+      "label": "carry_fund_21",
+      "ledger_profile": "baseline",
+      "first_recorded_at": "2026-09-13T16:52:42.424000+00:00",
+      "observations": 1248,
+      "annualized_sharpe_observed": 1.532947
     },
     {
-      "hypothesis_key": "0b91174c6e27a1f3",
-      "config_hash": "ea967116409691ab",
-      "label": "alphatrend_breadth",
-      "ledger_profile": "var",
-      "first_recorded_at": "2026-08-17T00:00:00.076000+00:00",
-      "observations": 5161,
-      "annualized_sharpe_observed": 0.217
+      "hypothesis_key": "8b0d95f75eaa71ae",
+      "config_hash": "074a4aeaab05263a",
+      "label": "carry_fund_21",
+      "ledger_profile": "baseline",
+      "first_recorded_at": "2026-09-13T16:43:16.986000+00:00",
+      "observations": 1248,
+      "annualized_sharpe_observed": 1.562314
     },
     {
-      "hypothesis_key": "c8d703989f9e36ca",
-      "config_hash": "dc78c2c55edfc678",
-      "label": "alphatrend_breadth",
-      "ledger_profile": "var",
-      "first_recorded_at": "2026-08-17T00:00:00.075000+00:00",
-      "observations": 5161,
-      "annualized_sharpe_observed": 0.128
+      "hypothesis_key": "9cea7ff09cf1a9fd",
+      "config_hash": "f0eba2e9b7157672",
+      "label": "unlabelled registered identity",
+      "ledger_profile": "normal",
+      "first_recorded_at": "2026-09-13T16:10:42.407000+00:00",
+      "observations": 1248,
+      "annualized_sharpe_observed": 0.744115
     },
     {
-      "hypothesis_key": "e60ed7b6904004af",
-      "config_hash": "356929813b18d8db",
-      "label": "alphatrend_breadth",
-      "ledger_profile": "var",
-      "first_recorded_at": "2026-08-17T00:00:00.074000+00:00",
-      "observations": 5161,
-      "annualized_sharpe_observed": 0.289
+      "hypothesis_key": "db3d6b1de6c7efd4",
+      "config_hash": "8d7ca3403ba91e2c",
+      "label": "eq_mom_252_21",
+      "ledger_profile": "candidate",
+      "first_recorded_at": "2026-09-13T15:58:05.010000+00:00",
+      "observations": 856,
+      "annualized_sharpe_observed": 0.685406
     },
     {
-      "hypothesis_key": "0c5ddfb3d5b52ca5",
-      "config_hash": "18165c784f0332de",
-      "label": "alphatrend_arp",
-      "ledger_profile": "var",
-      "first_recorded_at": "2026-08-17T00:00:00.073000+00:00",
-      "observations": 5161,
-      "annualized_sharpe_observed": 0.271
-    },
-    {
-      "hypothesis_key": "f4d5aef87af5cc92",
-      "config_hash": "7845a023b51f8f68",
-      "label": "alphatrend_arp",
-      "ledger_profile": "var",
-      "first_recorded_at": "2026-08-17T00:00:00.072000+00:00",
-      "observations": 5161,
-      "annualized_sharpe_observed": 0.186
-    },
-    {
-      "hypothesis_key": "084a8fc5292327ee",
-      "config_hash": "8808d789acccaf3a",
-      "label": "alphatrend_arp",
-      "ledger_profile": "var",
-      "first_recorded_at": "2026-08-17T00:00:00.071000+00:00",
-      "observations": 5161,
-      "annualized_sharpe_observed": 0.289
-    },
-    {
-      "hypothesis_key": "69bb7543e8ff821a",
-      "config_hash": "2e43cbf9baacfce4",
-      "label": "alphamax_turnover",
-      "ledger_profile": "var",
-      "first_recorded_at": "2026-08-17T00:00:00.070000+00:00",
-      "observations": 5356,
-      "annualized_sharpe_observed": -0.184506
-    },
-    {
-      "hypothesis_key": "4efe32b9ba20a8c8",
-      "config_hash": "72a8345cfc18db7a",
-      "label": "alphamax_turnover",
-      "ledger_profile": "var",
-      "first_recorded_at": "2026-08-17T00:00:00.069000+00:00",
-      "observations": 5356,
-      "annualized_sharpe_observed": -0.191819
+      "hypothesis_key": "2aec4c4ff0073e13",
+      "config_hash": "be14a2185fd5d9c3",
+      "label": "unlabelled registered identity",
+      "ledger_profile": "normal",
+      "first_recorded_at": "2026-09-13T15:47:29.485000+00:00",
+      "observations": 1248,
+      "annualized_sharpe_observed": 0.596442
     }
   ],
   "policy_source_path": "config/trial_accounting.json",
@@ -277,6 +1339,6 @@
       }
     }
   },
-  "generated_at": "2026-09-08T15:26:45.788832+00:00",
-  "content_hash": "sha256:f7fc561edd5489e77bd1db5f078a259a439e5b89b0957b0cece0a62a63bd0a00"
+  "generated_at": "2026-09-14T10:49:57.259958+00:00",
+  "content_hash": "sha256:ce0bbfa70d5532c881c716581ed085327d742671f044e859d1a33932d9cc1a99"
 }

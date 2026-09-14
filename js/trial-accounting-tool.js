@@ -11,6 +11,7 @@ const statusLabel = {
   [TRIAL_UNION_STATUS.LEGACY_COMPLETE]: "COMPLETE EVIDENCED PACKET",
   [TRIAL_UNION_STATUS.LEGACY_INCOMPLETE]: "INCOMPLETE LEGACY PACKET",
   [TRIAL_UNION_STATUS.PROSPECTIVE_FINAL_INCOMPLETE]: "PROSPECTIVE / NOT ADMITTED",
+  [TRIAL_UNION_STATUS.PROSPECTIVE_UNCLOSED]: "PROSPECTIVE / MEASURED, NOT CLOSED",
 };
 const escapeHtml = (value) =>
   String(value ?? "")
@@ -75,7 +76,7 @@ function renderInspector(identity) {
       <div><dt>Admitted</dt><dd>NO</dd></div>
     </dl>
     <div class="union-inspector__coverage"><span>Evidence coverage</span><strong>${completeSections} verified / ${missingSections} missing or unevaluated</strong><i style="--coverage:${completeSections / Math.max(1, completeSections + missingSections)}"></i></div>
-    <div class="union-inspector__links"><a href="${safePublicHref(identity.public_page)}">Open public evidence page</a><a href="${safePublicHref(identity.packet_path)}">Download exact packet</a>${identity.family_paper ? `<a href="${safePublicHref(identity.family_paper)}">Read bound research</a>` : ""}</div>
+    <div class="union-inspector__links">${identity.public_page ? `<a href="${safePublicHref(identity.public_page)}">Open public evidence page</a>` : "<span>No public evidence page yet</span>"}${identity.packet_path ? `<a href="${safePublicHref(identity.packet_path)}">Download exact packet</a>` : "<span>No closing packet</span>"}${identity.family_paper ? `<a href="${safePublicHref(identity.family_paper)}">Read bound research</a>` : ""}</div>
     <p class="union-inspector__boundary">Packet completeness describes evidence accounting only. This identity is not presented as admitted, live or predictive.</p>`;
   document.querySelectorAll("[data-identity]").forEach((element) => {
     element.dataset.selected = String(element.dataset.identity === identity.hypothesis_key);
@@ -151,11 +152,11 @@ async function load() {
   const controls = document.querySelectorAll('.union-workbench button,.union-workbench input,.union-workbench select');
   controls.forEach((control) => { control.disabled = true; });
   try {
-    const sourceOrder = ["ledger", "manifest", "index", "prospective"];
+    const sourceOrder = ["ledger", "manifest", "index", "prospective", "register"];
     const responses = await Promise.all(sourceOrder.map((name) => fetch(config.source_urls[name], { cache: "no-store" })));
     if (responses.some((response) => !response.ok)) throw new Error("A trial-accounting source could not be loaded");
-    const [ledger, manifest, index, prospective] = await Promise.all(responses.map((response) => response.json()));
-    state.union = buildTrialUnion(ledger, manifest, index, prospective);
+    const [ledger, manifest, index, prospective, register] = await Promise.all(responses.map((response) => response.json()));
+    state.union = buildTrialUnion(ledger, manifest, index, prospective, register);
     const filters = filtersFromUrl();
     populateControls(filters);
     const requested = state.union.identities.find((identity) => identity.hypothesis_key === filters.identity);

@@ -1,5 +1,5 @@
 <!doctype html>
-<html data-reader="research" lang="en">
+<html lang="en">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -38,9 +38,7 @@
 <link rel="stylesheet" href="/css/product-shell.css" />
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"ScholarlyArticle","headline":"Active ownership escalation; Schedule 13D Item 4 source-schema v3","description":"V2 used the unchanged 160-accession sample and added the SEC structured Schedule 13D schema, but the implementation required the primary bytes to begin with…","url":"https://canlicapital.com/research/active-ownership-item4-v3-feasibility","inLanguage":"en","isAccessibleForFree":true,"datePublished":"2026","author":{"@type":"Person","@id":"https://canlicapital.com/#arhan-canli","name":"Arhan Canli","jobTitle":"Founder and Quantitative Researcher","url":"https://canlicapital.com/founder","sameAs":["https://github.com/arhancanli"],"affiliation":{"@type":"Organization","@id":"https://canlicapital.com/#organization","name":"Canli Capital","url":"https://canlicapital.com/"}},"publisher":{"@type":"Organization","@id":"https://canlicapital.com/#organization","name":"Canli Capital","url":"https://canlicapital.com/","logo":{"@type":"ImageObject","url":"https://canlicapital.com/brand-mark.svg"}},"isPartOf":{"@type":"Periodical","name":"Canli Capital Research","url":"https://canlicapital.com/research"},"encodingFormat":"text/html","associatedMedia":{"@type":"MediaObject","contentUrl":"https://canlicapital.com/research/active-ownership-item4-v3-feasibility.md","encodingFormat":"text/markdown"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Canli Capital","item":"https://canlicapital.com"},{"@type":"ListItem","position":2,"name":"Research","item":"https://canlicapital.com/research"},{"@type":"ListItem","position":3,"name":"Active ownership Item 4 v3","item":"https://canlicapital.com/research/active-ownership-item4-v3-feasibility"}]}</script>
-
-<link rel="stylesheet" href="/css/reader-experience.css" />
-<!-- release-style:start --><link rel="stylesheet" href="/css/release-readiness.css" /><!-- release-style:end --></head>
+</head>
 <body class="paper">
 <a class="paper__skip" href="#content">Skip to content</a>
 <header class="cc-shell" id="nav" data-product-shell="v3" data-shell-revision="4">
@@ -99,14 +97,14 @@
   <a class="cc-shell__cta" href="https://app.canlicapital.com/dashboard">Live record <span aria-hidden="true">↗</span></a>
   <script type="module" src="/js/navigation.js"></script>
 </header>
-<main class="paper__main" id="content"><!-- reader-index:start --><aside class="reader-index"><a class="reader-index__back" href="/research">Explore research</a><details><summary>In this document</summary><nav aria-label="Document sections"><a href="#reader-section-1">Why v3 is a source correction, not parser tuning</a><a href="#reader-section-2">Unchanged machine and human gates</a><a href="#reader-section-3">Pre-label scoring clarification: 2026-08-22</a><a href="#reader-section-4">Prospective gate-interpretation audit: 2026-08-26</a><a href="#reader-section-5">Machine outputs</a><a href="#reader-section-6">Claim boundary</a></nav></details><a class="reader-index__verify" href="/verify">How to verify a claim ↗</a></aside><!-- reader-index:end -->
+<main class="paper__main" id="content">
   <article class="paper__article">
     <p class="paper__eyebrow"><a href="/research">Research</a></p>
     <h1 class="paper__title">Active ownership escalation; Schedule 13D Item 4 source-schema v3</h1>
     <p class="paper__byline">By <span rel="author">Arhan Canli</span>, Canli Capital</p>
     <div class="paper__body">
 <div class="research-masthead"><dl class="research-masthead__facts"><div><dt>Author</dt><dd>Arhan Canli</dd></div><div><dt>Declared</dt><dd>2026-08-16 after v2 closed <code>DATA_GATED</code> and before running v3 aggregate results.</dd></div><div><dt>Stage</dt><dd>document/classifier feasibility only. Prices, returns, event outcomes, and portfolio data</dd></div></dl></div><p>remain forbidden; zero return identities are spent.</p>
-<h2 id="reader-section-1" data-reader-anchor="true">Why v3 is a source correction, not parser tuning</h2>
+<h2>Why v3 is a source correction, not parser tuning</h2>
 <p>V2 used the unchanged 160-accession sample and added the SEC structured Schedule 13D schema, but
 the implementation required the primary bytes to begin with an XML declaration. Actual EDGAR SGML
 wraps structured primary documents inside an outer <code>&lt;XML&gt;</code> envelope, so all ten sampled 2025
@@ -124,7 +122,7 @@ unchanged.</li>
 <p>No heading phrase, minimum length, active-intent classifier, ownership regex, sample row, threshold,
 or label is changed. The original 160 accessions remain frozen. This protocol does not replace or
 erase either failed result.</p>
-<h2 id="reader-section-2" data-reader-anchor="true">Unchanged machine and human gates</h2>
+<h2>Unchanged machine and human gates</h2>
 <ul>
 <li>160/160 submissions succeed;</li>
 <li>at least 98% have one exact primary after the sequence-1 rule;</li>
@@ -137,7 +135,7 @@ and 90% exact ownership agreement.</li>
 <p>Machine success with incomplete labels is <code>HUMAN_AUDIT_REQUIRED</code>, not a pass to returns. Any machine
 failure is <code>DATA_GATED</code>. The unchanged sample may be used as a source-schema regression corpus; a
 future return protocol still requires a disjoint untouched event holdout.</p>
-<h2 id="reader-section-3" data-reader-anchor="true">Pre-label scoring clarification: 2026-08-22</h2>
+<h2>Pre-label scoring clarification: 2026-08-22</h2>
 <p>The original scorer left <code>ownership_exact_rate</code> permanently null, making the declared ownership
 gate impossible to pass even after all labels were complete. Before any of the 48 human labels was
 opened, the scoring contract was therefore completed as follows: the frozen machine percentage
@@ -159,7 +157,7 @@ labels. The packet and its deterministic handoff archive deliberately exclude ma
 classifications, matched sentences, percentage candidates, prices, and returns. Structural
 verification cannot itself prove reviewer independence or label correctness; those remain the
 reviewer&#39;s attested responsibility and the subsequent frozen scoring gate.</p>
-<h2 id="reader-section-4" data-reader-anchor="true">Prospective gate-interpretation audit: 2026-08-26</h2>
+<h2>Prospective gate-interpretation audit: 2026-08-26</h2>
 <p>Before any human labels or return data were opened, the discrete reachability and statistical
 meaning of the 48-row gate were audited in
 <code>docs/design/ACTIVE_OWNERSHIP_HUMAN_GATE_AUDIT.md</code>. The existing 95% precision, 80% recall, and 90%
@@ -172,13 +170,13 @@ confidence bounds. Before sleeve admission, a disjoint independent confirmatory 
 the same thresholds on one-sided 95% exact lower bounds. This interpretation was fixed while all
 48 human labels remained blank and zero return identities had been spent; it cannot rescue a known
 classification or investment outcome.</p>
-<h2 id="reader-section-5" data-reader-anchor="true">Machine outputs</h2>
+<h2>Machine outputs</h2>
 <ul>
 <li><code>artifacts/feasibility/active_ownership_13d_item4_v3/document_audit.parquet</code></li>
 <li><code>artifacts/feasibility/active_ownership_13d_item4_v3/frozen_human_labels.csv</code></li>
 <li><code>artifacts/feasibility/active_ownership_13d_item4_v3/result.json</code></li>
 </ul>
-<h2 id="reader-section-6" data-reader-anchor="true">Claim boundary</h2>
+<h2>Claim boundary</h2>
 <p>V3 can establish document extraction feasibility only. It cannot establish classification accuracy
 until frozen labels are complete, and it cannot establish returns, Sharpe, drawdown, correlation,
 capacity, or sleeve admission.</p>
@@ -200,7 +198,7 @@ capacity, or sleeve admission.</p>
       </p>
       <details class="paper__citation">
         <summary>Cite this report</summary>
-        <pre tabindex="0" data-reader-focus="true"><code>@techreport{canli2026activeownershipitem4v3feasibility,
+        <pre><code>@techreport{canli2026activeownershipitem4v3feasibility,
   author      = {Canli, Arhan},
   title       = {Active ownership escalation; Schedule 13D Item 4 source-schema v3},
   institution = {Canli Capital},
@@ -296,6 +294,5 @@ capacity, or sleeve admission.</p>
   <div class="cc-footer__wordmark" aria-hidden="true">Canli Capital<span><svg viewBox="0 0 80 80" focusable="false" aria-hidden="true"><path d="M12 68 68 12M12 12h56v56" fill="none" stroke="currentColor" stroke-width="4" /></svg></span></div>
   <script type="module" src="/js/site-motion.js"></script>
 </footer>
-
-<script type="module" src="/js/reader-experience.js"></script></body>
+</body>
 </html>

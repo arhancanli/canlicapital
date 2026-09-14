@@ -1,13 +1,13 @@
 {
   "aligned_5y_10y": {
     "first_observation": "2003-01-02",
-    "last_observation": "2026-09-04",
+    "last_observation": "2026-09-08",
     "null_cells": 0,
-    "rows": 5924
+    "rows": 5925
   },
   "author": "Arhan Canli",
   "claim_boundary": "No sign, horizon, return, Sharpe, drawdown, correlation, capacity, execution quality, or sleeve-admission claim is authorized.",
-  "content_hash": "sha256:d7381862ee1fe020a4d76759971233d663634d55b018fdcb3f97868ed65993f0",
+  "content_hash": "sha256:7f72a311e5e91e0808b7d41d3e66d396748f69552cea80244f5ee370e32a446e",
   "cpi_vintage_inventory": {
     "first_true_release": "1998-11-15",
     "last_true_release": "2026-08-15",
@@ -17,7 +17,7 @@
     "true_first_releases": 336
   },
   "decision": "DATA_GATED",
-  "evidence_date": "2026-09-04",
+  "evidence_date": "2026-09-08",
   "execution_source_inventory": {
     "declared_roots": [
       "data/lake_fixed_income/tips",
@@ -63,23 +63,23 @@
   "signal_inventory": {
     "10": {
       "first_observation": "2003-01-02",
-      "last_observation": "2026-09-04",
+      "last_observation": "2026-09-08",
       "null_cells": 0,
       "path": "data/lake_macro_vintage/tier1_daily/T10YIE.parquet",
       "publication_is_next_business_day": true,
-      "rows": 5924,
-      "sha256": "521edb2dd0a9312322fc725e0b7f0cc65fcff6a9e6a8c318998d61296a72243d",
+      "rows": 5925,
+      "sha256": "fad590905f313dce2f5f946dd73fee48e7ffb956b31f4d08a99ee3e4687ee4f6",
       "sorted_dates": true,
       "unique_dates": true
     },
     "5": {
       "first_observation": "2003-01-02",
-      "last_observation": "2026-09-04",
+      "last_observation": "2026-09-08",
       "null_cells": 0,
       "path": "data/lake_macro_vintage/tier1_daily/T5YIE.parquet",
       "publication_is_next_business_day": true,
-      "rows": 5924,
-      "sha256": "4fa8645c7bd35bd775592d764f5294a2a049734426ce6eae4d0d393994ec414b",
+      "rows": 5925,
+      "sha256": "93659ea8b59085e889d36e4a997069e971b193e0e5ad1c15583f722eace283b2",
       "sorted_dates": true,
       "unique_dates": true
     }
@@ -89,7 +89,7 @@
     "arrival_log_sha256": "86bac7b5c3874368603fdc5c8901ce487debff555fb1633026eaef56fbb315aa",
     "current_snapshot_is_not_historical_vintage_proof": true,
     "meta_path": "data/lake_macro_vintage/meta.json",
-    "meta_sha256": "c2510e5faa5c96287a46c04eda8d7b0afba6a6eba729a7c6eb94a63acf13b89f"
+    "meta_sha256": "8e214dc5b960509d418b4aa0c0f38db5cff50f5f964244293ecbcfdc8bb1dead"
   },
   "stage": "signal_and_execution_source_audit_no_prices_no_returns",
   "supersedes_reachability_claim": "OBTAINABLE_FROM_DATA_THIS_REPO_ALREADY_HOLDS is too broad. The held files support 5Y/10Y signal-source depth and vintage CPI, not the complete point-in-time, instrument-level, executable identity."

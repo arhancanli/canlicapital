@@ -1,5 +1,5 @@
 <!doctype html>
-<html data-reader="research" lang="en">
+<html lang="en">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -38,9 +38,7 @@
 <link rel="stylesheet" href="/css/product-shell.css" />
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"ScholarlyArticle","headline":"Options dispersion: locked no-return data and execution-feasibility protocol","description":"Can one point-in-time S&P 500 index-versus-constituent option book be reconstructed with enough quote, membership, corporate-action, settlement, and…","url":"https://canlicapital.com/research/options-dispersion-feasibility","inLanguage":"en","isAccessibleForFree":true,"datePublished":"2026","author":{"@type":"Person","@id":"https://canlicapital.com/#arhan-canli","name":"Arhan Canli","jobTitle":"Founder and Quantitative Researcher","url":"https://canlicapital.com/founder","sameAs":["https://github.com/arhancanli"],"affiliation":{"@type":"Organization","@id":"https://canlicapital.com/#organization","name":"Canli Capital","url":"https://canlicapital.com/"}},"publisher":{"@type":"Organization","@id":"https://canlicapital.com/#organization","name":"Canli Capital","url":"https://canlicapital.com/","logo":{"@type":"ImageObject","url":"https://canlicapital.com/brand-mark.svg"}},"isPartOf":{"@type":"Periodical","name":"Canli Capital Research","url":"https://canlicapital.com/research"},"encodingFormat":"text/html","associatedMedia":{"@type":"MediaObject","contentUrl":"https://canlicapital.com/research/options-dispersion-feasibility.md","encodingFormat":"text/markdown"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Canli Capital","item":"https://canlicapital.com"},{"@type":"ListItem","position":2,"name":"Research","item":"https://canlicapital.com/research"},{"@type":"ListItem","position":3,"name":"Options dispersion: feasibility protocol","item":"https://canlicapital.com/research/options-dispersion-feasibility"}]}</script>
-
-<link rel="stylesheet" href="/css/reader-experience.css" />
-<!-- release-style:start --><link rel="stylesheet" href="/css/release-readiness.css" /><!-- release-style:end --></head>
+</head>
 <body class="paper">
 <a class="paper__skip" href="#content">Skip to content</a>
 <header class="cc-shell" id="nav" data-product-shell="v3" data-shell-revision="4">
@@ -99,13 +97,13 @@
   <a class="cc-shell__cta" href="https://app.canlicapital.com/dashboard">Live record <span aria-hidden="true">↗</span></a>
   <script type="module" src="/js/navigation.js"></script>
 </header>
-<main class="paper__main" id="content"><!-- reader-index:start --><aside class="reader-index"><a class="reader-index__back" href="/research">Explore research</a><details><summary>In this document</summary><nav aria-label="Document sections"><a href="#reader-section-1">Question</a><a href="#reader-section-2">Frozen research identity</a><a href="#reader-section-3">Frozen source hierarchy</a><a href="#reader-section-4">Locked feasibility gates</a><a href="#reader-section-5">Decisions</a><a href="#reader-section-6">Credential boundary</a></nav></details><a class="reader-index__verify" href="/verify">How to verify a claim ↗</a></aside><!-- reader-index:end -->
+<main class="paper__main" id="content">
   <article class="paper__article">
     <p class="paper__eyebrow"><a href="/research">Research</a></p>
     <h1 class="paper__title">Options dispersion: locked no-return data and execution-feasibility protocol</h1>
     <p class="paper__byline">By <span rel="author">Arhan Canli</span>, Canli Capital</p>
     <div class="paper__body">
-<div class="research-masthead"><dl class="research-masthead__facts"><div><dt>Declared</dt><dd>2026-08-16</dd></div><div><dt>Return data</dt><dd>prohibited</dd></div><div><dt>Hypotheses spent</dt><dd>zero</dd></div><div><dt>Family trial account</dt><dd><code>options_dispersion</code></dd></div></dl></div><h2 id="reader-section-1" data-reader-anchor="true">Question</h2>
+<div class="research-masthead"><dl class="research-masthead__facts"><div><dt>Declared</dt><dd>2026-08-16</dd></div><div><dt>Return data</dt><dd>prohibited</dd></div><div><dt>Hypotheses spent</dt><dd>zero</dd></div><div><dt>Family trial account</dt><dd><code>options_dispersion</code></dd></div></dl></div><h2>Question</h2>
 <p>Can one point-in-time S&amp;P 500 index-versus-constituent option book be reconstructed with enough
 quote, membership, corporate-action, settlement, and executable-cost fidelity to justify one later
 return preregistration?</p>
@@ -113,7 +111,7 @@ return preregistration?</p>
 index membership, dividends, rates, corporate actions, exercise/settlement rules, and missingness.
 It may not calculate strategy P&amp;L, forward realized variance, Sharpe ratio, drawdown, portfolio
 correlation, or any return-conditioned threshold.</p>
-<h2 id="reader-section-2" data-reader-anchor="true">Frozen research identity</h2>
+<h2>Frozen research identity</h2>
 <ul>
 <li>Underlying index: S&amp;P 500 / SPX.</li>
 <li>Constituent basket: the 50 largest eligible optionable constituents using membership and float
@@ -128,7 +126,7 @@ and minimum-strike-count rules as the independent reference implementation.</li>
 are both published; no date is eligible below the locked coverage gate.</li>
 <li>No sign, entry threshold, holding return, or performance criterion is selected in this audit.</li>
 </ul>
-<h2 id="reader-section-3" data-reader-anchor="true">Frozen source hierarchy</h2>
+<h2>Frozen source hierarchy</h2>
 <ol>
 <li>OptionMetrics IvyDB US end-of-day option prices, permanent security IDs, rates, dividends,
 corporate actions, and surfaces from 1996 onward.</li>
@@ -141,7 +139,7 @@ a deterministic calibration-date sample rather than as a substitute history.</li
 <p>Indicative option feeds, today’s constituent list applied backward, midpoint-only bars, adjusted
 contracts without deliverable lineage, and vendor surfaces without their timestamp/vintage are
 inadmissible.</p>
-<h2 id="reader-section-4" data-reader-anchor="true">Locked feasibility gates</h2>
+<h2>Locked feasibility gates</h2>
 <p>All gates pass before a return protocol can be written:</p>
 <ol>
 <li>At least 15 complete calendar years spanning 2008–2009, 2020, 2022, and 2024–2025.</li>
@@ -171,7 +169,7 @@ margin, exercise, settlement, halts, exchange outages, and corporate actions.</l
 Unavailable disaster wings make the date ineligible; they are never synthesized.</li>
 <li>Return data opened and return identities spent remain exactly zero.</li>
 </ol>
-<h2 id="reader-section-5" data-reader-anchor="true">Decisions</h2>
+<h2>Decisions</h2>
 <ul>
 <li><code>PASS_TO_RETURN_PREREGISTRATION</code>: every gate passes and all manifests are hash-bound.</li>
 <li><code>DATA_GATED</code>: a named licensed dataset can resolve a failed lineage or quote-size gate.</li>
@@ -181,7 +179,7 @@ unavailable at adequate coverage.</li>
 constituent/contract state rewrote history.</li>
 </ul>
 <p>Passing permits exactly one separately sealed 30-day return identity. It does not admit a sleeve.</p>
-<h2 id="reader-section-6" data-reader-anchor="true">Credential boundary</h2>
+<h2>Credential boundary</h2>
 <p>No Alpaca key is requested for the historical decision because Alpaca&#39;s options history begins in
 February 2024. The first useful access is OptionMetrics IvyDB US through a direct license or WRDS,
 plus point-in-time S&amp;P membership. Cboe DataShop is second, scoped to deterministic quote-size
@@ -206,7 +204,7 @@ written to source, artifacts, logs, or research pages.</p>
       </p>
       <details class="paper__citation">
         <summary>Cite this report</summary>
-        <pre tabindex="0" data-reader-focus="true"><code>@techreport{canli2026optionsdispersionfeasibility,
+        <pre><code>@techreport{canli2026optionsdispersionfeasibility,
   author      = {Canli, Arhan},
   title       = {Options dispersion: locked no-return data and execution-feasibility protocol},
   institution = {Canli Capital},
@@ -302,6 +300,5 @@ written to source, artifacts, logs, or research pages.</p>
   <div class="cc-footer__wordmark" aria-hidden="true">Canli Capital<span><svg viewBox="0 0 80 80" focusable="false" aria-hidden="true"><path d="M12 68 68 12M12 12h56v56" fill="none" stroke="currentColor" stroke-width="4" /></svg></span></div>
   <script type="module" src="/js/site-motion.js"></script>
 </footer>
-
-<script type="module" src="/js/reader-experience.js"></script></body>
+</body>
 </html>

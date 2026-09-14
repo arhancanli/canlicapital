@@ -1,5 +1,5 @@
 <!doctype html>
-<html data-reader="research" lang="en">
+<html lang="en">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -38,9 +38,7 @@
 <link rel="stylesheet" href="/css/product-shell.css" />
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"ScholarlyArticle","headline":"Merger arbitrage v2: point-in-time announcement identity","description":"The original metadata protocol required one preceding Item 1.01 8-K inside 60 days for at least 80% of all target-side deal anchors. It failed at 67.02%.","url":"https://canlicapital.com/research/merger-announcement-identity-v2","inLanguage":"en","isAccessibleForFree":true,"datePublished":"2026","author":{"@type":"Person","@id":"https://canlicapital.com/#arhan-canli","name":"Arhan Canli","jobTitle":"Founder and Quantitative Researcher","url":"https://canlicapital.com/founder","sameAs":["https://github.com/arhancanli"],"affiliation":{"@type":"Organization","@id":"https://canlicapital.com/#organization","name":"Canli Capital","url":"https://canlicapital.com/"}},"publisher":{"@type":"Organization","@id":"https://canlicapital.com/#organization","name":"Canli Capital","url":"https://canlicapital.com/","logo":{"@type":"ImageObject","url":"https://canlicapital.com/brand-mark.svg"}},"isPartOf":{"@type":"Periodical","name":"Canli Capital Research","url":"https://canlicapital.com/research"},"encodingFormat":"text/html","associatedMedia":{"@type":"MediaObject","contentUrl":"https://canlicapital.com/research/merger-announcement-identity-v2.md","encodingFormat":"text/markdown"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Canli Capital","item":"https://canlicapital.com"},{"@type":"ListItem","position":2,"name":"Research","item":"https://canlicapital.com/research"},{"@type":"ListItem","position":3,"name":"Merger arbitrage v2: point-in-time announcement identity","item":"https://canlicapital.com/research/merger-announcement-identity-v2"}]}</script>
-
-<link rel="stylesheet" href="/css/reader-experience.css" />
-<!-- release-style:start --><link rel="stylesheet" href="/css/release-readiness.css" /><!-- release-style:end --></head>
+</head>
 <body class="paper">
 <a class="paper__skip" href="#content">Skip to content</a>
 <header class="cc-shell" id="nav" data-product-shell="v3" data-shell-revision="4">
@@ -99,13 +97,13 @@
   <a class="cc-shell__cta" href="https://app.canlicapital.com/dashboard">Live record <span aria-hidden="true">↗</span></a>
   <script type="module" src="/js/navigation.js"></script>
 </header>
-<main class="paper__main" id="content"><!-- reader-index:start --><aside class="reader-index"><a class="reader-index__back" href="/research">Explore research</a><details><summary>In this document</summary><nav aria-label="Document sections"><a href="#reader-section-1">Why this is a new identity</a><a href="#reader-section-2">Mechanism and claim boundary</a><a href="#reader-section-3">Frozen strata</a><a href="#reader-section-4">Announcement resolver</a><a href="#reader-section-5">Disjoint confirmation corpus</a><a href="#reader-section-6">Independent review gates</a><a href="#reader-section-7">Fail-closed sequence</a></nav></details><a class="reader-index__verify" href="/verify">How to verify a claim ↗</a></aside><!-- reader-index:end -->
+<main class="paper__main" id="content">
   <article class="paper__article">
     <p class="paper__eyebrow"><a href="/research">Research</a></p>
     <h1 class="paper__title">Merger arbitrage v2: point-in-time announcement identity</h1>
     <p class="paper__byline">By <span rel="author">Arhan Canli</span>, Canli Capital</p>
     <div class="paper__body">
-<div class="research-masthead"><dl class="research-masthead__facts"><div><dt>Prepared</dt><dd>2026-08-26</dd></div><div><dt>Stage</dt><dd>prospective no-price, no-return identity redesign</dd></div><div><dt>Family trial account</dt><dd><code>merger_arbitrage</code></dd></div><div><dt>Technical authorship approval</dt><dd>not yet recorded</dd></div><div><dt>Return execution authorized</dt><dd>no</dd></div></dl></div><h2 id="reader-section-1" data-reader-anchor="true">Why this is a new identity</h2>
+<div class="research-masthead"><dl class="research-masthead__facts"><div><dt>Prepared</dt><dd>2026-08-26</dd></div><div><dt>Stage</dt><dd>prospective no-price, no-return identity redesign</dd></div><div><dt>Family trial account</dt><dd><code>merger_arbitrage</code></dd></div><div><dt>Technical authorship approval</dt><dd>not yet recorded</dd></div><div><dt>Return execution authorized</dt><dd>no</dd></div></dl></div><h2>Why this is a new identity</h2>
 <p>The original metadata protocol required one preceding Item 1.01 8-K inside 60 days for at least
 80% of all target-side deal anchors. It failed at 67.02%. The failure was not homogeneous:
 <code>SC 14D9</code> tender-offer anchors reached 86.65%, while <code>DEFM14A</code> merger-proxy anchors reached 61.33%.
@@ -115,7 +113,7 @@ neither one cleanly.</p>
 reuse the tender stratum as if it were prospective evidence. It defines a materially new identity,
 keeps both strata, and reserves 2006–2015 as a disjoint confirmation period. The 2016–2025 result
 may explain the redesign but may not validate it.</p>
-<h2 id="reader-section-2" data-reader-anchor="true">Mechanism and claim boundary</h2>
+<h2>Mechanism and claim boundary</h2>
 <p>The candidate is the contractual spread on an announced all-cash acquisition of a US-listed
 public target. Entry cannot precede a source-bound SEC acceptance timestamp that identifies the
 same target, counterparty, cash consideration, and binding merger agreement or commenced tender
@@ -124,7 +122,7 @@ CVRs, appraisal trades, hostile proposals, and transactions without a determinis
 record are outside this identity.</p>
 <p>This protocol contains no prices, returns, break losses, Sharpe ratios, drawdowns, correlations,
 capacity estimates, or sleeve-admission evidence. It spends zero return hypotheses.</p>
-<h2 id="reader-section-3" data-reader-anchor="true">Frozen strata</h2>
+<h2>Frozen strata</h2>
 <p>Discovery begins from unamended target-side filings and never treats the discovery filing as the
 historical entry time:</p>
 <ol>
@@ -134,7 +132,7 @@ historical entry time:</p>
 <p>Every acquisition, extraction, coverage, and accuracy statistic is reported separately by stratum.
 Both strata must pass. An aggregate result cannot rescue a failed stratum, and no row may be moved
 between strata after its documents are read.</p>
-<h2 id="reader-section-4" data-reader-anchor="true">Announcement resolver</h2>
+<h2>Announcement resolver</h2>
 <p>For each anchor, search at most 365 calendar days backward using only filings accepted no later
 than the anchor. The broad search interval locates source documents; it is not a trading window and
 does not authorize backdating.</p>
@@ -158,7 +156,7 @@ counterparties, consideration values, transaction types, or subject-company link
 <li><code>UNRESOLVED_CONFLICT</code>;</li>
 <li><code>OUT_OF_SCOPE_NON_CASH_OR_COMPLEX_CONSIDERATION</code>.</li>
 </ul>
-<h2 id="reader-section-5" data-reader-anchor="true">Disjoint confirmation corpus</h2>
+<h2>Disjoint confirmation corpus</h2>
 <p>The confirmation interval is 2006-01-01 through 2015-12-31, disjoint from the 2016–2025
 exploratory result. No confirmation filing, document, machine prediction, or human label has been
 opened for this design.</p>
@@ -170,7 +168,7 @@ Fewer than 20 eligible anchors in any cell produces <code>DATA_GATED_NO_CROSS_CE
 <p>Selection uses no document text, machine prediction, human label, price, return, or realized deal
 outcome. All accessions from the 2016–2025 exploratory corpus are excluded even though the periods
 are already disjoint.</p>
-<h2 id="reader-section-6" data-reader-anchor="true">Independent review gates</h2>
+<h2>Independent review gates</h2>
 <p>An independent reviewer, blind to machine outputs and all prices and returns, labels every selected
 anchor from the frozen source packet. AI or automated labeling assistance is prohibited. Raw
 confusion counts and unresolved cases are published.</p>
@@ -190,7 +188,7 @@ SHA-256 lineage for every selected row.</li>
 row; a small denominator cannot pass by omission. Underpowered denominators remain data-gated.</p>
 <p>These thresholds do not prove alpha. They establish only that the event clock and transaction
 identity can be reconstructed without hindsight at the declared error rate.</p>
-<h2 id="reader-section-7" data-reader-anchor="true">Fail-closed sequence</h2>
+<h2>Fail-closed sequence</h2>
 <ol>
 <li>This technical draft must pass its structural audit.</li>
 <li>Arhan independently reviews and either approves the exact design or records required changes.</li>
@@ -220,7 +218,7 @@ or interpret a technical pass as a sleeve admission.</p>
       </p>
       <details class="paper__citation">
         <summary>Cite this report</summary>
-        <pre tabindex="0" data-reader-focus="true"><code>@techreport{canli2026mergerannouncementidentityv2,
+        <pre><code>@techreport{canli2026mergerannouncementidentityv2,
   author      = {Canli, Arhan},
   title       = {Merger arbitrage v2: point-in-time announcement identity},
   institution = {Canli Capital},
@@ -316,6 +314,5 @@ or interpret a technical pass as a sleeve admission.</p>
   <div class="cc-footer__wordmark" aria-hidden="true">Canli Capital<span><svg viewBox="0 0 80 80" focusable="false" aria-hidden="true"><path d="M12 68 68 12M12 12h56v56" fill="none" stroke="currentColor" stroke-width="4" /></svg></span></div>
   <script type="module" src="/js/site-motion.js"></script>
 </footer>
-
-<script type="module" src="/js/reader-experience.js"></script></body>
+</body>
 </html>

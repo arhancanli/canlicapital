@@ -5,30 +5,84 @@
   "does_not_prove": "It does not establish when an unanchored entry was first published, make opaque payload hashes reconstructable, prove that the data came from Alpaca, or rule out an unpublished alternative chain.",
   "how_to_verify": [
     "pip install opentimestamps-client",
-    "Download a head file and its proof from this folder, e.g. seq0784_c8acac3c7b34.head.txt and seq0784_c8acac3c7b34.head.txt.ots",
+    "Download a head file and its proof from this folder, e.g. seq0917_7a6c1bcc7bd1.head.txt and seq0917_7a6c1bcc7bd1.head.txt.ots",
     "Run:  ots verify <file>.head.txt.ots   (it reports the Bitcoin block + time the head was committed)",
     "Confirm the chain_hash inside the head file matches the head in transparency_log.json.",
     "Or upload the .ots proof at https://opentimestamps.org"
   ],
   "head_anchor": {
-    "seq": 784,
-    "date": "2026-09-07",
-    "chain_hash": "c8acac3c7b34e41b7a47ce658a000791eef6b59c15003da0e72c6409471e920f",
-    "head_file": "seq0784_c8acac3c7b34.head.txt",
-    "ots_file": "seq0784_c8acac3c7b34.head.txt.ots",
+    "seq": 917,
+    "date": "2026-09-13",
+    "chain_hash": "7a6c1bcc7bd180b0cac141887bfbebc07b0167896eb40e809c264b1b1ca4a60b",
+    "head_file": "seq0917_7a6c1bcc7bd1.head.txt",
+    "ots_file": "seq0917_7a6c1bcc7bd1.head.txt.ots",
     "status": "pending"
   },
-  "anchor_count": 65,
-  "bitcoin_confirmed_count": 64,
+  "anchor_count": 71,
+  "bitcoin_confirmed_count": 70,
   "calendar_pending_count": 1,
   "anchors": [
+    {
+      "seq": 917,
+      "date": "2026-09-13",
+      "chain_hash": "7a6c1bcc7bd180b0cac141887bfbebc07b0167896eb40e809c264b1b1ca4a60b",
+      "head_file": "seq0917_7a6c1bcc7bd1.head.txt",
+      "ots_file": "seq0917_7a6c1bcc7bd1.head.txt.ots",
+      "status": "pending"
+    },
+    {
+      "seq": 893,
+      "date": "2026-09-12",
+      "chain_hash": "26cd884acd9d9809a4686267b2d1eee32588baac43b0168409d2e618d2c0a914",
+      "head_file": "seq0893_26cd884acd9d.head.txt",
+      "ots_file": "seq0893_26cd884acd9d.head.txt.ots",
+      "status": "bitcoin",
+      "bitcoin_block_height": 966725
+    },
+    {
+      "seq": 869,
+      "date": "2026-09-11",
+      "chain_hash": "89507d78baa02e3a1e2bddaac6f13002d3e657a4caf99624982ded41f694dfe5",
+      "head_file": "seq0869_89507d78baa0.head.txt",
+      "ots_file": "seq0869_89507d78baa0.head.txt.ots",
+      "status": "bitcoin",
+      "bitcoin_block_height": 966571
+    },
+    {
+      "seq": 844,
+      "date": "2026-09-10",
+      "chain_hash": "e204c494e48b7c263704515fe3a73217b21485469629e8bf340e5ecfc5a857f0",
+      "head_file": "seq0844_e204c494e48b.head.txt",
+      "ots_file": "seq0844_e204c494e48b.head.txt.ots",
+      "status": "bitcoin",
+      "bitcoin_block_height": 966421
+    },
+    {
+      "seq": 822,
+      "date": "2026-09-09",
+      "chain_hash": "26cdb2bd96bd34262c33d79ce3bac655d51bcffdf8103b0c033057b9b7b63dae",
+      "head_file": "seq0822_26cdb2bd96bd.head.txt",
+      "ots_file": "seq0822_26cdb2bd96bd.head.txt.ots",
+      "status": "bitcoin",
+      "bitcoin_block_height": 966277
+    },
+    {
+      "seq": 803,
+      "date": "2026-09-08",
+      "chain_hash": "e42128ffcd1942601aa5115c84c17bf7c23588d0c7c2e59f2529b9cbef3f1997",
+      "head_file": "seq0803_e42128ffcd19.head.txt",
+      "ots_file": "seq0803_e42128ffcd19.head.txt.ots",
+      "status": "bitcoin",
+      "bitcoin_block_height": 966120
+    },
     {
       "seq": 784,
       "date": "2026-09-07",
       "chain_hash": "c8acac3c7b34e41b7a47ce658a000791eef6b59c15003da0e72c6409471e920f",
       "head_file": "seq0784_c8acac3c7b34.head.txt",
       "ots_file": "seq0784_c8acac3c7b34.head.txt.ots",
-      "status": "pending"
+      "status": "bitcoin",
+      "bitcoin_block_height": 965981
     },
     {
       "seq": 767,

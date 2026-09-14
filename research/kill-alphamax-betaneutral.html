@@ -1,5 +1,5 @@
 <!doctype html>
-<html data-reader="research" lang="en">
+<html lang="en">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -38,9 +38,7 @@
 <link rel="stylesheet" href="/css/product-shell.css" />
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"ScholarlyArticle","headline":"Beta-Neutral Momentum Construction (campaign): a killed candidate","description":"The premise was that a dollar-neutral momentum book carries hidden NEGATIVE market beta, so a junk rally hurts both legs at once.","url":"https://canlicapital.com/research/kill-alphamax-betaneutral","inLanguage":"en","isAccessibleForFree":true,"datePublished":"2026","author":{"@type":"Person","@id":"https://canlicapital.com/#arhan-canli","name":"Arhan Canli","jobTitle":"Founder and Quantitative Researcher","url":"https://canlicapital.com/founder","sameAs":["https://github.com/arhancanli"],"affiliation":{"@type":"Organization","@id":"https://canlicapital.com/#organization","name":"Canli Capital","url":"https://canlicapital.com/"}},"publisher":{"@type":"Organization","@id":"https://canlicapital.com/#organization","name":"Canli Capital","url":"https://canlicapital.com/","logo":{"@type":"ImageObject","url":"https://canlicapital.com/brand-mark.svg"}},"isPartOf":{"@type":"Periodical","name":"Canli Capital Research","url":"https://canlicapital.com/research"},"encodingFormat":"text/html","associatedMedia":{"@type":"MediaObject","contentUrl":"https://canlicapital.com/research/kill-alphamax-betaneutral.md","encodingFormat":"text/markdown"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Canli Capital","item":"https://canlicapital.com"},{"@type":"ListItem","position":2,"name":"Research","item":"https://canlicapital.com/research"},{"@type":"ListItem","position":3,"name":"Beta-Neutral Momentum Construction: killed","item":"https://canlicapital.com/research/kill-alphamax-betaneutral"}]}</script>
-
-<link rel="stylesheet" href="/css/reader-experience.css" />
-<!-- release-style:start --><link rel="stylesheet" href="/css/release-readiness.css" /><!-- release-style:end --></head>
+</head>
 <body class="paper">
 <a class="paper__skip" href="#content">Skip to content</a>
 <header class="cc-shell" id="nav" data-product-shell="v3" data-shell-revision="4">
@@ -99,17 +97,17 @@
   <a class="cc-shell__cta" href="https://app.canlicapital.com/dashboard">Live record <span aria-hidden="true">↗</span></a>
   <script type="module" src="/js/navigation.js"></script>
 </header>
-<main class="paper__main" id="content"><!-- reader-index:start --><aside class="reader-index"><a class="reader-index__back" href="/research">Explore research</a><details><summary>In this document</summary><nav aria-label="Document sections"><a href="#reader-section-1">Why it was worth testing</a><a href="#reader-section-2">The result</a><a href="#reader-section-3">What this does and does not say</a></nav></details><a class="reader-index__verify" href="/verify">How to verify a claim ↗</a></aside><!-- reader-index:end -->
+<main class="paper__main" id="content">
   <article class="paper__article">
     <p class="paper__eyebrow"><a href="/research">Research</a></p>
     <h1 class="paper__title">Beta-Neutral Momentum Construction (campaign): a killed candidate</h1>
     <p class="paper__byline">By <span rel="author">Arhan Canli</span>, Canli Capital</p>
     <div class="paper__body">
 <div class="research-masthead"><p class="research-masthead__verdict" data-verdict="killed"><span>Verdict</span><strong>KILLED</strong></p><dl class="research-masthead__facts"><div><dt>Stage</dt><dd>screen prototype</dd></div><div><dt>Identity</dt><dd><code>alphamax_betaneutral</code></dd></div></dl></div><p>The premise was that a dollar-neutral momentum book carries hidden NEGATIVE market beta, so a junk rally hurts both legs at once. Measuring the premise first killed it. On the research panel (2005-2026) the book&#39;s mean rolling 63-day beta is -0.014 (essentially zero. On the LIVE book it is +0.319, and the LONG leg is the high-beta side (leg beta 1.932 long vs 1.238 short)) the opposite of the premise. The treatment is then regime-dependent with opposite signs: research net Sharpe 0.160 to 0.361 (bootstrap P(dSharpe&lt;=0)=0.0225), LIVE 0.921 to 0.570 (P=0.938). It also barely touches the episode it was designed for (0.2 points of a 9.5-point loss on research, 0.7 of 10.5 live) and it buys beta-neutrality by selling dollar-neutrality: net exposure runs to +/-34% of gross, which breaks the market-neutral mandate. Not adopted. 0 trial slots burned. Reproduce: scripts/probe_alphamax_betaneutral.py.</p>
-<h2 id="reader-section-1" data-reader-anchor="true">Why it was worth testing</h2>
+<h2>Why it was worth testing</h2>
 <p>This died at the screen stage, before a full walk-forward was ever run. Screening exists so that ideas which cannot clear a coarse, cost-aware bar do not consume the far more expensive machinery behind it. A screen kill is a cheap kill, and it is published for the same reason as an expensive one: the trial was still spent, and it still raises the evidence bar for everything already in the book.</p>
-<h2 id="reader-section-2" data-reader-anchor="true">The result</h2>
-<table tabindex="0" data-reader-focus="true">
+<h2>The result</h2>
+<table>
 <thead>
 <tr>
 <th>Measure</th>
@@ -121,7 +119,7 @@
 <td>0.5700</td>
 </tr>
 </tbody></table>
-<h2 id="reader-section-3" data-reader-anchor="true">What this does and does not say</h2>
+<h2>What this does and does not say</h2>
 <p>It says this configuration, on this data, net of the costs we charge, did not clear the bar it pre-registered. It does not say the underlying economic effect does not exist, that no implementation of it works, or that someone with different data or different execution would reach the same conclusion. A null is evidence about a test, not a proof about a market.</p>
 <p>It also does not say the trial was free. Every hypothesis tested raises the deflated-Sharpe hurdle for every sleeve already in the book, including the ones that survived. That is why the kill count is published beside the survivor count rather than behind it.</p>
 
@@ -142,7 +140,7 @@
       </p>
       <details class="paper__citation">
         <summary>Cite this report</summary>
-        <pre tabindex="0" data-reader-focus="true"><code>@techreport{canli2026killalphamaxbetaneutral,
+        <pre><code>@techreport{canli2026killalphamaxbetaneutral,
   author      = {Canli, Arhan},
   title       = {Beta-Neutral Momentum Construction (campaign): a killed candidate},
   institution = {Canli Capital},
@@ -238,6 +236,5 @@
   <div class="cc-footer__wordmark" aria-hidden="true">Canli Capital<span><svg viewBox="0 0 80 80" focusable="false" aria-hidden="true"><path d="M12 68 68 12M12 12h56v56" fill="none" stroke="currentColor" stroke-width="4" /></svg></span></div>
   <script type="module" src="/js/site-motion.js"></script>
 </footer>
-
-<script type="module" src="/js/reader-experience.js"></script></body>
+</body>
 </html>

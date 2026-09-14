@@ -1,5 +1,5 @@
 <!doctype html>
-<html data-reader="research" lang="en">
+<html lang="en">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -38,9 +38,7 @@
 <link rel="stylesheet" href="/css/product-shell.css" />
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"ScholarlyArticle","headline":"PRE-REGISTRATION; post-publication pre-FOMC announcement drift","description":"Declared 2026-08-16 after official schedule-lineage PASS and before opening any market return associated with this identity.","url":"https://canlicapital.com/research/prereg-pre-fomc-announcement-drift","inLanguage":"en","isAccessibleForFree":true,"datePublished":"2026","author":{"@type":"Person","@id":"https://canlicapital.com/#arhan-canli","name":"Arhan Canli","jobTitle":"Founder and Quantitative Researcher","url":"https://canlicapital.com/founder","sameAs":["https://github.com/arhancanli"],"affiliation":{"@type":"Organization","@id":"https://canlicapital.com/#organization","name":"Canli Capital","url":"https://canlicapital.com/"}},"publisher":{"@type":"Organization","@id":"https://canlicapital.com/#organization","name":"Canli Capital","url":"https://canlicapital.com/","logo":{"@type":"ImageObject","url":"https://canlicapital.com/brand-mark.svg"}},"isPartOf":{"@type":"Periodical","name":"Canli Capital Research","url":"https://canlicapital.com/research"},"encodingFormat":"text/html","associatedMedia":{"@type":"MediaObject","contentUrl":"https://canlicapital.com/research/prereg-pre-fomc-announcement-drift.md","encodingFormat":"text/markdown"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Canli Capital","item":"https://canlicapital.com"},{"@type":"ListItem","position":2,"name":"Research","item":"https://canlicapital.com/research"},{"@type":"ListItem","position":3,"name":"PRE-REGISTRATION; post-publication pre-FOMC announcement drift","item":"https://canlicapital.com/research/prereg-pre-fomc-announcement-drift"}]}</script>
-
-<link rel="stylesheet" href="/css/reader-experience.css" />
-<!-- release-style:start --><link rel="stylesheet" href="/css/release-readiness.css" /><!-- release-style:end --></head>
+</head>
 <body class="paper">
 <a class="paper__skip" href="#content">Skip to content</a>
 <header class="cc-shell" id="nav" data-product-shell="v3" data-shell-revision="4">
@@ -99,7 +97,7 @@
   <a class="cc-shell__cta" href="https://app.canlicapital.com/dashboard">Live record <span aria-hidden="true">↗</span></a>
   <script type="module" src="/js/navigation.js"></script>
 </header>
-<main class="paper__main" id="content"><!-- reader-index:start --><aside class="reader-index"><a class="reader-index__back" href="/research">Explore research</a><details><summary>In this document</summary><nav aria-label="Document sections"><a href="#reader-section-1">Mechanism and direction</a><a href="#reader-section-2">Event universe and point-in-time state</a><a href="#reader-section-3">Instrument, clock, and execution</a><a href="#reader-section-4">Locked matched control</a><a href="#reader-section-5">Evaluation and untouched holdout</a><a href="#reader-section-6">Kill rules</a><a href="#reader-section-7">Primary references</a></nav></details><a class="reader-index__verify" href="/verify">How to verify a claim ↗</a></aside><!-- reader-index:end -->
+<main class="paper__main" id="content">
   <article class="paper__article">
     <p class="paper__eyebrow"><a href="/research">Research</a></p>
     <h1 class="paper__title">PRE-REGISTRATION; post-publication pre-FOMC announcement drift</h1>
@@ -107,12 +105,12 @@
     <div class="paper__body">
 <p><strong>Declared 2026-08-16 after official schedule-lineage PASS and before opening any market return
 associated with this identity. One direction, one instrument, one timing window, one hypothesis.</strong></p>
-<h2 id="reader-section-1" data-reader-anchor="true">Mechanism and direction</h2>
+<h2>Mechanism and direction</h2>
 <p>The prior is a temporary equity risk premium immediately before scheduled FOMC decisions. The
 locked direction is <strong>long US equities before the announcement</strong>. A negative result is not
 inverted. Earlier published evidence that the effect disappeared is treated as a reason to expect
 a kill; 1994–2015 is not opened as a rescue sample.</p>
-<h2 id="reader-section-2" data-reader-anchor="true">Event universe and point-in-time state</h2>
+<h2>Event universe and point-in-time state</h2>
 <ul>
 <li>Primary period: 2016-01-01 through 2025-12-31, entirely after the original result was public.</li>
 <li>The event source is the sealed 80-row annual-schedule artifact. Seventy-nine slots end in a
@@ -124,7 +122,7 @@ at the first executable quote and retain the realized P&amp;L. For the sealed 20
 <li>Unscheduled meetings, notation votes, press conferences, minutes, speeches, and SEP labels do
 not create additional trades or filters.</li>
 </ul>
-<h2 id="reader-section-3" data-reader-anchor="true">Instrument, clock, and execution</h2>
+<h2>Instrument, clock, and execution</h2>
 <ul>
 <li>Primary instrument: SPY common shares, long only, unlevered sleeve notional.</li>
 <li>Entry: buy at the first executable NBBO ask at or after 2:00:00 p.m. America/New_York on the
@@ -142,13 +140,13 @@ remain flat.</li>
 entry means no trade. SPY splits and distributions are applied from point-in-time corporate
 actions; an unresolved action fails the run.</li>
 </ul>
-<h2 id="reader-section-4" data-reader-anchor="true">Locked matched control</h2>
+<h2>Locked matched control</h2>
 <p>For each completed event, compute the same SPY clock-window return on the four immediately prior
 same-weekday non-FOMC weeks. Exclude a control if its window overlaps any scheduled FOMC slot; do
 not replace it with a later or hand-selected day. The primary observation is event net return
 minus the mean of available controls. Fewer than three valid controls makes the event unusable and
 fails completeness rather than silently dropping it.</p>
-<h2 id="reader-section-5" data-reader-anchor="true">Evaluation and untouched holdout</h2>
+<h2>Evaluation and untouched holdout</h2>
 <ul>
 <li>2016–2022 is the frozen pre-holdout panel. 2023–2025 is the untouched holdout and may be opened
 only if ingestion, lineage, execution replay, and pre-holdout code checks pass without changing
@@ -168,7 +166,7 @@ mean-zero control, and every leave-one-calendar-year-out recomputation.</li>
 <li>Capacity uses observed executable SPY quote size and a conservative 1% of trailing 21-session
 median dollar ADV. Report at least $1M, $5M, and $10M notional points with fill ratio and costs.</li>
 </ul>
-<h2 id="reader-section-6" data-reader-anchor="true">Kill rules</h2>
+<h2>Kill rules</h2>
 <p>Kill if any applies:</p>
 <ol>
 <li>Net event Sharpe &lt; 0.40, stressed Sharpe &lt; 0.40, Newey–West t &lt; 2.0, or DSR &lt; 0.95.</li>
@@ -185,7 +183,7 @@ substitute, sign flip, pre-2016 sample, or event subset may rescue it.</li>
 <p>If research passes but historical NBBO depth or quote provenance is incomplete, return
 <code>DATA-ESCALATE</code>, not <code>ADD</code>. Alpaca is relevant only for later shadow execution; it cannot replace
 the historical research feed.</p>
-<pre tabindex="0" data-reader-focus="true"><code class="language-prereg">profile: pre_fomc_announcement_drift_v1
+<pre><code class="language-prereg">profile: pre_fomc_announcement_drift_v1
 lake_dir: data/raw/pre_fomc_announcement_drift/market_nbbo
 alpha_names: spy_pre_fomc_24h_excess
 allocator: event_only_long_flat
@@ -200,7 +198,7 @@ preholdout_end: 2022-12-31
 holdout_start: 2023-01-01
 holdout_end: 2025-12-31
 </code></pre>
-<h2 id="reader-section-7" data-reader-anchor="true">Primary references</h2>
+<h2>Primary references</h2>
 <ul>
 <li>Federal Reserve annual schedule releases and historical calendar: official source URLs are
 sealed in <code>annual_schedule_events.parquet</code>.</li>
@@ -226,7 +224,7 @@ sealed in <code>annual_schedule_events.parquet</code>.</li>
       </p>
       <details class="paper__citation">
         <summary>Cite this report</summary>
-        <pre tabindex="0" data-reader-focus="true"><code>@techreport{canli2026preregprefomcannouncementdrift,
+        <pre><code>@techreport{canli2026preregprefomcannouncementdrift,
   author      = {Canli, Arhan},
   title       = {PRE-REGISTRATION; post-publication pre-FOMC announcement drift},
   institution = {Canli Capital},
@@ -322,6 +320,5 @@ sealed in <code>annual_schedule_events.parquet</code>.</li>
   <div class="cc-footer__wordmark" aria-hidden="true">Canli Capital<span><svg viewBox="0 0 80 80" focusable="false" aria-hidden="true"><path d="M12 68 68 12M12 12h56v56" fill="none" stroke="currentColor" stroke-width="4" /></svg></span></div>
   <script type="module" src="/js/site-motion.js"></script>
 </footer>
-
-<script type="module" src="/js/reader-experience.js"></script></body>
+</body>
 </html>

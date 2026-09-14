@@ -1,5 +1,5 @@
 <!doctype html>
-<html data-reader="research" lang="en">
+<html lang="en">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -38,9 +38,7 @@
 <link rel="stylesheet" href="/css/product-shell.css" />
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"ScholarlyArticle","headline":"When a Forward Sharpe Ratio Becomes Evidence","description":"A forward Sharpe ratio should not become a headline merely because a short paper-trading curve can produce one.","url":"https://canlicapital.com/research/forward-sharpe-evidence-standard","inLanguage":"en","isAccessibleForFree":true,"datePublished":"2026","author":{"@type":"Person","@id":"https://canlicapital.com/#arhan-canli","name":"Arhan Canli","jobTitle":"Founder and Quantitative Researcher","url":"https://canlicapital.com/founder","sameAs":["https://github.com/arhancanli"],"affiliation":{"@type":"Organization","@id":"https://canlicapital.com/#organization","name":"Canli Capital","url":"https://canlicapital.com/"}},"publisher":{"@type":"Organization","@id":"https://canlicapital.com/#organization","name":"Canli Capital","url":"https://canlicapital.com/","logo":{"@type":"ImageObject","url":"https://canlicapital.com/brand-mark.svg"}},"isPartOf":{"@type":"Periodical","name":"Canli Capital Research","url":"https://canlicapital.com/research"},"encodingFormat":"text/html","associatedMedia":{"@type":"MediaObject","contentUrl":"https://canlicapital.com/research/forward-sharpe-evidence-standard.md","encodingFormat":"text/markdown"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Canli Capital","item":"https://canlicapital.com"},{"@type":"ListItem","position":2,"name":"Research","item":"https://canlicapital.com/research"},{"@type":"ListItem","position":3,"name":"When a Forward Sharpe Ratio Becomes Evidence","item":"https://canlicapital.com/research/forward-sharpe-evidence-standard"}]}</script>
-
-<link rel="stylesheet" href="/css/reader-experience.css" />
-<!-- release-style:start --><link rel="stylesheet" href="/css/release-readiness.css" /><!-- release-style:end --></head>
+</head>
 <body class="paper">
 <a class="paper__skip" href="#content">Skip to content</a>
 <header class="cc-shell" id="nav" data-product-shell="v3" data-shell-revision="4">
@@ -99,7 +97,7 @@
   <a class="cc-shell__cta" href="https://app.canlicapital.com/dashboard">Live record <span aria-hidden="true">↗</span></a>
   <script type="module" src="/js/navigation.js"></script>
 </header>
-<main class="paper__main" id="content"><!-- reader-index:start --><aside class="reader-index"><a class="reader-index__back" href="/research">Explore research</a><details><summary>In this document</summary><nav aria-label="Document sections"><a href="#reader-section-1">Abstract</a><a href="#reader-section-2">1. The claim being controlled</a><a href="#reader-section-3">2. Return series and annualization</a><a href="#reader-section-4">3. Probability that Sharpe exceeds the target</a><a href="#reader-section-5">4. Frozen evidence states</a><a href="#reader-section-6">5. Provenance is part of the statistic</a><a href="#reader-section-7">6. Three drawdown quantities, not one</a><a href="#reader-section-8">7. Diversification evidence is a separate gate</a><a href="#reader-section-9">8. Reproduction and mutation checks</a><a href="#reader-section-10">9. Limits</a><a href="#reader-section-11">Claim boundary</a><a href="#reader-section-12">References</a></nav></details><a class="reader-index__verify" href="/verify">How to verify a claim ↗</a></aside><!-- reader-index:end -->
+<main class="paper__main" id="content">
   <article class="paper__article">
     <p class="paper__eyebrow"><a href="/research">Research</a></p>
     <h1 class="paper__title">When a Forward Sharpe Ratio Becomes Evidence</h1>
@@ -109,7 +107,7 @@
 produce one. This paper defines the precommitted evidence states used by ALPHAC: when a point
 estimate may be shown, when a target is only observed, and what must be true before the target can
 be described as statistically established.</p>
-<h2 id="reader-section-1" data-reader-anchor="true">Abstract</h2>
+<h2>Abstract</h2>
 <p>The easiest time to report an extraordinary risk-adjusted return is when the record is shortest.
 Sampling error is widest, the worst regime may not have occurred, and one favorable sequence can
 dominate the estimate. ALPHAC therefore separates four states: an immature record, an
@@ -123,7 +121,7 @@ fresh passing broker reconciliation are mandatory provenance gates. Realized dra
 expected maximum drawdown, and modeled tail drawdown are reported as different quantities. The
 standard is deliberately harder to satisfy than displaying a computed ratio because its purpose is
 to prevent a target from becoming an achievement through presentation alone.</p>
-<h2 id="reader-section-2" data-reader-anchor="true">1. The claim being controlled</h2>
+<h2>1. The claim being controlled</h2>
 <p>A Sharpe ratio is a ratio of estimated mean excess return to estimated return volatility. Both
 terms are uncertain, and their ratio is especially unstable over a short record. Annualization does
 not create information: multiplying a daily ratio by the square root of 365 changes its unit, not
@@ -139,7 +137,7 @@ precommitted probability and sample length.</li>
 </ol>
 <p>These statements are not interchangeable. In particular, a point estimate at or above 1.5 is an
 observation about the sample. It is not statistical establishment of a forward Sharpe of 1.5.</p>
-<h2 id="reader-section-3" data-reader-anchor="true">2. Return series and annualization</h2>
+<h2>2. Return series and annualization</h2>
 <p>The input is the flagship paper curve: strictly increasing UTC dates and finite, strictly positive
 equity marks. For consecutive published marks (E_{t-1}) and (E_t), the simple return is</p>
 <p>[
@@ -161,7 +159,7 @@ SR_{ann} = SR_d\sqrt{365}.
 <p>The 365-day convention matches the flagship&#39;s cross-asset paper calendar and the engine&#39;s frozen
 daily analytics convention. It is a reporting convention only. The probabilistic calculation uses
 the per-period ratio and the actual return count.</p>
-<h2 id="reader-section-4" data-reader-anchor="true">3. Probability that Sharpe exceeds the target</h2>
+<h2>3. Probability that Sharpe exceeds the target</h2>
 <p>The Probabilistic Sharpe Ratio accounts for finite sample length and non-normal return moments. Let
 (\gamma_3) be sample skewness and (\gamma_4) non-excess kurtosis, where a Gaussian distribution
 has kurtosis 3. Against per-period benchmark (SR^*), the probability is</p>
@@ -177,8 +175,8 @@ it does not establish that the governing 1.5 target has been reached.</p>
 <p>The implementation calls the same tested Probabilistic Sharpe Ratio routine used by the research
 engine. It does not feed an annualized ratio into a per-period formula. The annualized target is
 converted to the daily benchmark first, and (T) remains the count of daily return observations.</p>
-<h2 id="reader-section-5" data-reader-anchor="true">4. Frozen evidence states</h2>
-<table tabindex="0" data-reader-focus="true">
+<h2>4. Frozen evidence states</h2>
+<table>
 <thead>
 <tr>
 <th>State</th>
@@ -216,7 +214,7 @@ converted to the daily benchmark first, and (T) remains the count of daily retur
 annual figure. The 756-return establishment threshold aligns the live claim with the research
 program&#39;s three-year minimum out-of-sample evidence horizon. Neither number is selected from the
 observed result. Both were frozen while the current record remained immature.</p>
-<h2 id="reader-section-6" data-reader-anchor="true">5. Provenance is part of the statistic</h2>
+<h2>5. Provenance is part of the statistic</h2>
 <p>A return series cannot establish the performance of a specification unless the specification and
 record are identifiable. Every one of the following checks is mandatory:</p>
 <ul>
@@ -250,7 +248,7 @@ first genuine complete cycle is persisted, the public maturity state is
 <p>Any trading configuration change starts a new evidence epoch. Returns from materially different
 specifications cannot be pooled silently. The live-change declaration records the boundary, and a
 new contract must state whether any prior observations remain admissible for a new claim.</p>
-<h2 id="reader-section-7" data-reader-anchor="true">6. Three drawdown quantities, not one</h2>
+<h2>6. Three drawdown quantities, not one</h2>
 <p>The public record distinguishes:</p>
 <ol>
 <li><strong>Realized live maximum drawdown:</strong> the deepest peak-to-trough decline observed in the paper
@@ -283,7 +281,7 @@ or dynamic ladder state.
 <code>/glassbox/forward_drawdown_evidence.json</code> records the failed equivalence checks and binds the study,
 contracts and implementation sources by SHA-256. The maturity report labels the objective
 <code>LIVE_EXPECTED_MAX_DRAWDOWN_NOT_ESTABLISHED</code>.</p>
-<h2 id="reader-section-8" data-reader-anchor="true">7. Diversification evidence is a separate gate</h2>
+<h2>7. Diversification evidence is a separate gate</h2>
 <p>The exact current-composition diversification study uses the same four fixed-weight sleeve curves,
 missing-mark policy and strategic overlay as the current drawdown study. Sleeve correlation is
 computed from the four sleeve returns; the overlay remains separate. The 1,061-row research window
@@ -298,7 +296,7 @@ adjudicated, and “near zero” is not used as a substitute for the signed gate
 marginal historical book-Sharpe diagnostics, all labelled research simulation rather than forward
 evidence. The research curves end before the broker-reconciled record begins, so live-forward
 diversification remains unestablished.</p>
-<h2 id="reader-section-9" data-reader-anchor="true">8. Reproduction and mutation checks</h2>
+<h2>8. Reproduction and mutation checks</h2>
 <p>The evaluator is <code>scripts/evaluate_forward_evidence_maturity.py</code>. It reads twelve authorities:</p>
 <ul>
 <li><code>config/forward_evidence_contract.json</code>;</li>
@@ -333,7 +331,7 @@ with the complete attribution verdict above. The first successful receipt is the
 exact deployment receipt, preventing later cycles from rewriting the historical claim about what
 first proved the runtime.</p>
 <p>Run the focused verification with:</p>
-<pre tabindex="0" data-reader-focus="true"><code class="language-text">uv run python scripts/evaluate_forward_evidence_maturity.py
+<pre><code class="language-text">uv run python scripts/evaluate_forward_evidence_maturity.py
 uv run pytest -q tests/unit/test_forward_drawdown_evidence.py tests/unit/test_forward_evidence_maturity.py
 </code></pre>
 <p>The tests construct synthetic curves for every evidence state. They also mutate the configuration
@@ -342,7 +340,7 @@ crypto-attribution completeness. Drawdown-specific mutations alter the simulatio
 study cell, quantile ordering and declared live configuration. Every mutation must fail closed. The
 test for statistical establishment uses a sufficiently long synthetic series; it does not weaken
 the 756-return gate to make a short fixture pass.</p>
-<h2 id="reader-section-10" data-reader-anchor="true">9. Limits</h2>
+<h2>9. Limits</h2>
 <p>This standard governs the language used for one continuous paper-trading specification. It does
 not turn paper execution into funded performance, prove that fills scale to institutional capital,
 eliminate non-stationarity, or guarantee that a statistically established historical ratio will
@@ -353,12 +351,12 @@ attestation.</p>
 still carry the full search context through Deflated Sharpe Ratio and the union trial ledger. The
 forward paper specification is evaluated as a predeclared continuous record; it is not permission
 to select the best live variant after observing several.</p>
-<h2 id="reader-section-11" data-reader-anchor="true">Claim boundary</h2>
+<h2>Claim boundary</h2>
 <p>This is a methodology and disclosure standard authored by Arhan Canli. It defines when ALPHAC may
 describe a paper-trading Sharpe target as observed or statistically established. It makes no claim
 that the current record has established the target, no claim of real-money performance, and no
 guarantee of future returns or maximum loss.</p>
-<h2 id="reader-section-12" data-reader-anchor="true">References</h2>
+<h2>References</h2>
 <ul>
 <li>Bailey, David H., and Marcos López de Prado. “The Sharpe Ratio Efficient Frontier.” <em>Journal of
 Risk</em> 15, no. 2 (2012).</li>
@@ -384,7 +382,7 @@ Bias, Backtest Overfitting, and Non-Normality.” <em>Journal of Portfolio Manag
       </p>
       <details class="paper__citation">
         <summary>Cite this report</summary>
-        <pre tabindex="0" data-reader-focus="true"><code>@techreport{canli2026forwardsharpeevidencestandard,
+        <pre><code>@techreport{canli2026forwardsharpeevidencestandard,
   author      = {Canli, Arhan},
   title       = {When a Forward Sharpe Ratio Becomes Evidence},
   institution = {Canli Capital},
@@ -480,6 +478,5 @@ Bias, Backtest Overfitting, and Non-Normality.” <em>Journal of Portfolio Manag
   <div class="cc-footer__wordmark" aria-hidden="true">Canli Capital<span><svg viewBox="0 0 80 80" focusable="false" aria-hidden="true"><path d="M12 68 68 12M12 12h56v56" fill="none" stroke="currentColor" stroke-width="4" /></svg></span></div>
   <script type="module" src="/js/site-motion.js"></script>
 </footer>
-
-<script type="module" src="/js/reader-experience.js"></script></body>
+</body>
 </html>

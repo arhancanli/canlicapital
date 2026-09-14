@@ -13,7 +13,8 @@ const ledger = readJson("../public/glassbox/trial_ledger.json");
 const manifest = readJson("../public/glassbox/trial_packet_manifest.json");
 const index = readJson("../public/glassbox/trial-packets/index.json");
 const prospective = readJson("../public/glassbox/prospective_trial_record.json");
-const union = buildTrialUnion(ledger, manifest, index, prospective);
+const register = readJson("../public/glassbox/prospective_epoch_register.json");
+const union = buildTrialUnion(ledger, manifest, index, prospective, register);
 
 test("complete trial union reconciles records, identities, packets and prospective reservation", () => {
   assert.equal(union.identities.length, ledger.distinct_hypothesis_identities);
@@ -37,6 +38,10 @@ test("packet completeness never becomes admission", () => {
   });
   assert.equal(prospectiveIdentity.length, prospective.identity.hypotheses_spent);
   assert.ok(prospectiveIdentity.every((identity) => identity.packet_complete && !identity.admitted));
+  const unclosed = filterTrialUnion(union, { status: TRIAL_UNION_STATUS.PROSPECTIVE_UNCLOSED });
+  assert.equal(unclosed.length, register.summary.observed_identities - prospective.identity.hypotheses_spent);
+  assert.equal(union.facts.prospective_identities, register.summary.observed_identities);
+  assert.ok(unclosed.every((identity) => !identity.packet_complete && !identity.admitted && identity.public_page === null));
 });
 
 test("family filtering preserves the immutable union denominator", () => {
@@ -56,7 +61,7 @@ test("search resolves exact identity, config, label and family fields", () => {
 
 test("unknown source schemas fail closed", () => {
   assert.throws(
-    () => buildTrialUnion({ ...ledger, schema: "unknown" }, manifest, index, prospective),
+    () => buildTrialUnion({ ...ledger, schema: "unknown" }, manifest, index, prospective, register),
     /schema mismatch/,
   );
 });

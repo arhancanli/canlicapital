@@ -1,5 +1,5 @@
 <!doctype html>
-<html data-reader="research" lang="en">
+<html lang="en">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -38,9 +38,7 @@
 <link rel="stylesheet" href="/css/product-shell.css" />
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"ScholarlyArticle","headline":"A hash-bound prospective test of cross-sectional perpetual-futures carry","description":"This paper reports the first ALPHAC crypto-carry identity whose data decision, code, environment, trial parameters, and private execution inputs were frozen…","url":"https://canlicapital.com/research/crypto-carry-portable-v1","inLanguage":"en","isAccessibleForFree":true,"datePublished":"2026","author":{"@type":"Person","@id":"https://canlicapital.com/#arhan-canli","name":"Arhan Canli","jobTitle":"Founder and Quantitative Researcher","url":"https://canlicapital.com/founder","sameAs":["https://github.com/arhancanli"],"affiliation":{"@type":"Organization","@id":"https://canlicapital.com/#organization","name":"Canli Capital","url":"https://canlicapital.com/"}},"publisher":{"@type":"Organization","@id":"https://canlicapital.com/#organization","name":"Canli Capital","url":"https://canlicapital.com/","logo":{"@type":"ImageObject","url":"https://canlicapital.com/brand-mark.svg"}},"isPartOf":{"@type":"Periodical","name":"Canli Capital Research","url":"https://canlicapital.com/research"},"encodingFormat":"text/html","associatedMedia":{"@type":"MediaObject","contentUrl":"https://canlicapital.com/research/crypto-carry-portable-v1.md","encodingFormat":"text/markdown"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Canli Capital","item":"https://canlicapital.com"},{"@type":"ListItem","position":2,"name":"Research","item":"https://canlicapital.com/research"},{"@type":"ListItem","position":3,"name":"Crypto carry: sealed historical simulation","item":"https://canlicapital.com/research/crypto-carry-portable-v1"}]}</script>
-
-<link rel="stylesheet" href="/css/reader-experience.css" />
-<!-- release-style:start --><link rel="stylesheet" href="/css/release-readiness.css" /><!-- release-style:end --></head>
+</head>
 <body class="paper">
 <a class="paper__skip" href="#content">Skip to content</a>
 <header class="cc-shell" id="nav" data-product-shell="v3" data-shell-revision="4">
@@ -99,14 +97,14 @@
   <a class="cc-shell__cta" href="https://app.canlicapital.com/dashboard">Live record <span aria-hidden="true">↗</span></a>
   <script type="module" src="/js/navigation.js"></script>
 </header>
-<main class="paper__main" id="content"><!-- reader-index:start --><aside class="reader-index"><a class="reader-index__back" href="/research">Explore research</a><details><summary>In this document</summary><nav aria-label="Document sections"><a href="#reader-section-1">Abstract</a><a href="#reader-section-2">1. Contribution and claim boundary</a><a href="#reader-section-3">2. Hypothesis and related literature</a><a href="#reader-section-4">3. Prospective design</a><a href="#reader-section-5">4. Primary result</a><a href="#reader-section-6">5. Admission audit and unresolved evidence</a><a href="#reader-section-7">6. Relationship to the historical crypto-carry result</a><a href="#reader-section-8">7. Reproducibility and data-rights boundary</a><a href="#reader-section-9">8. Threats to validity</a><a href="#reader-section-10">9. Conclusion</a><a href="#reader-section-11">References</a><a href="#reader-section-12">Authorship and credit</a></nav></details><a class="reader-index__verify" href="/verify">How to verify a claim ↗</a></aside><!-- reader-index:end -->
+<main class="paper__main" id="content">
   <article class="paper__article">
     <p class="paper__eyebrow"><a href="/research">Research</a></p>
     <h1 class="paper__title">A hash-bound prospective test of cross-sectional perpetual-futures carry</h1>
     <p class="paper__byline">By <span rel="author">Arhan Canli</span>, Canli Capital</p>
     <div class="paper__body">
 <div class="research-masthead"><dl class="research-masthead__facts"><div><dt>Author</dt><dd>Arhan Canli, Founder, System Architect, and Quantitative Researcher, Canli Capital</dd></div><div><dt>Research system</dt><dd>ALPHAC / AlphaForge</dd></div><div><dt>Trial</dt><dd><code>crypto_carry_portable_v1</code></dd></div><div><dt>Hypothesis identity</dt><dd><code>da5f5f47f99f9bd2</code></dd></div><div><dt>Evidence date</dt><dd>2026-08-24</dd></div><div><dt>Status</dt><dd>working paper; historical simulation; admission incomplete; not externally submitted or</dd></div></dl></div><p>peer reviewed; not an investment solicitation</p>
-<h2 id="reader-section-1" data-reader-anchor="true">Abstract</h2>
+<h2>Abstract</h2>
 <p>This paper reports the first ALPHAC crypto-carry identity whose data decision, code, environment,
 trial parameters, and private execution inputs were frozen before its return path was computed.
 The experiment tests whether a weekly, cross-sectional funding-rate signal in USD Tether
@@ -131,7 +129,7 @@ because no eligible path matrix was generated; it is reported as null rather tha
 primary-result seal, the next forward identity remained mechanically blocked pending a complete
 packet. This result demonstrates a promising frozen simulation and a strict research-governance
 process, not a validated sleeve or expected future performance.</p>
-<h2 id="reader-section-2" data-reader-anchor="true">1. Contribution and claim boundary</h2>
+<h2>1. Contribution and claim boundary</h2>
 <p>The contribution is primarily methodological. The experiment joins five controls that the earlier
 crypto-carry result did not preserve together:</p>
 <ol>
@@ -154,7 +152,7 @@ snapshot, code, environment, and governing contract.</li>
 capacity, diversification, expected book drawdown, peer review, external publication, or future
 return. The raw and derived market rows are not licensed for public redistribution. A checksum
 proves byte identity, not economic correctness.</p>
-<h2 id="reader-section-3" data-reader-anchor="true">2. Hypothesis and related literature</h2>
+<h2>2. Hypothesis and related literature</h2>
 <p>Perpetual futures use recurring funding transfers to keep a non-expiring contract near its spot
 index. Positive funding ordinarily transfers value from longs to shorts; negative funding reverses
 the direction. Persistent funding can therefore represent compensation for supplying balance
@@ -180,7 +178,7 @@ costs, or result.</p>
 <p>The falsifiable alternative is that the spread is unstable, selected from a large research union,
 insufficient after stress and impact, positively exposed to the existing book, or operationally
 untradeable. Any of those outcomes prevents admission even when the primary Sharpe is positive.</p>
-<h2 id="reader-section-4" data-reader-anchor="true">3. Prospective design</h2>
+<h2>3. Prospective design</h2>
 <h3>3.1 Identity and trial accounting</h3>
 <p>The preregistration was frozen before portable-v1 returns were computed. It fixed family account
 <code>crypto_carry</code>, return identity <code>crypto_carry_portable_v1</code>, config hash <code>50d9e8b059fee773</code>, and
@@ -208,7 +206,7 @@ while retaining its original validity timestamp as lineage. That rule was frozen
 before returns, but it prevents an independent historical-metadata claim.</p>
 <h3>3.3 Walk-forward and execution model</h3>
 <p>The trial configuration was fixed as follows:</p>
-<table tabindex="0" data-reader-focus="true">
+<table>
 <thead>
 <tr>
 <th>Parameter</th>
@@ -283,11 +281,11 @@ impact at larger capital.</p>
 <code>c8b573712103907130a301f22d578feb07e31de0939339450f766b2d037df822</code>.
 The snapshot is private because redistribution rights are not established. Its public receipt
 exposes hashes, counts, and methods only.</p>
-<h2 id="reader-section-5" data-reader-anchor="true">4. Primary result</h2>
+<h2>4. Primary result</h2>
 <p>The stitched out-of-sample path begins after the first training window, on 8 February 2022, and
 ends on 1 June 2026. Headline ratios use Coordinated Universal Time (UTC) day-last equity and daily
 simple returns; hourly ratios are diagnostics.</p>
-<table tabindex="0" data-reader-focus="true">
+<table>
 <thead>
 <tr>
 <th>Measure</th>
@@ -359,7 +357,7 @@ contract removed. Suppressing the low DSR would be equally misleading. This pape
 <p>Sixteen of 25 walk-forward legs had positive Sharpe and nine were nonpositive. Leg Sharpe ranged
 from -2.4817 to 6.6152, with median 0.4756. Short legs make the extrema noisy, so they are reported
 as diagnostics rather than independent trials or confidence intervals.</p>
-<table tabindex="0" data-reader-focus="true">
+<table>
 <thead>
 <tr>
 <th>UTC calendar segment</th>
@@ -403,7 +401,7 @@ as diagnostics rather than independent trials or confidence intervals.</p>
 partial year. Removing one calendar year at a time leaves annualized Sharpe between 0.6232 and
 1.4346; the minimum occurs when the partial 2026 segment is excluded. This same-path diagnostic
 is encouraging but does not substitute for a preregistered regime stress or a path matrix.</p>
-<h2 id="reader-section-6" data-reader-anchor="true">5. Admission audit and unresolved evidence</h2>
+<h2>5. Admission audit and unresolved evidence</h2>
 <p>The primary path clears two directly evaluated v7 thresholds: net Sharpe is above 0.15 and 1,574
 daily observations exceed the 756-observation minimum. DSR is present, satisfying its measurement
 requirement. Those facts are necessary and insufficient.</p>
@@ -431,13 +429,13 @@ cross-validation (CSCV). Reporting null is not a pass; it also is not the fabric
 candidate simulation; the other is a distributional estimand for the combined book. The book
 quantity remains unmeasured.</p>
 <p>The formal disposition is therefore:</p>
-<pre tabindex="0" data-reader-focus="true"><code class="language-text">INCOMPLETE / NOT ADMITTED
+<pre><code class="language-text">INCOMPLETE / NOT ADMITTED
 </code></pre>
 <p>It is not <code>KILL</code> because no measured applicable gate has yet been shown to fail in the sealed
 receipt. It is not <code>ADMIT</code> because the listed required gates are unmeasured. The final evidence
 packet may close the identity as permanently incomplete, but packet completion cannot convert the
 candidate into an admission. No threshold has been altered after observing the result.</p>
-<h2 id="reader-section-7" data-reader-anchor="true">6. Relationship to the historical crypto-carry result</h2>
+<h2>6. Relationship to the historical crypto-carry result</h2>
 <p>The earlier selected <code>crypto_carry_wk</code> artifact reported Sharpe 0.6766, 19.60% maximum drawdown,
 and final simulated equity of $138,236.27 over the same ending date. A current-state attempt to
 replay that historical configuration produced Sharpe 0.1065 and final equity $103,335.16. The old
@@ -447,14 +445,14 @@ attributable.</p>
 bytes, 57-name eligible set, prospective v7 reservation, and exact pre-execution snapshot. Its
 Sharpe of 0.9689 is a new first measurement, not evidence that the historical 0.6766 was correct.
 The historical correction remains open and independently visible in the family lineage paper.</p>
-<h2 id="reader-section-8" data-reader-anchor="true">7. Reproducibility and data-rights boundary</h2>
+<h2>7. Reproducibility and data-rights boundary</h2>
 <p>The publication-safe result receipt is
 <code>artifacts/research/crypto_carry_portable_v1_result.json</code>. It binds the preregistration, reservation,
 run configuration, v7 contract, exact ledger record, result inventory, and verified private input
 snapshot. Its initial content hash is
 <code>sha256:00c516f5c5465e399aff5a03f99e65897c370c88482a4387c3e34ac0668a3c7f</code>.</p>
 <p>The receipt can be regenerated and compared without computing a new return path:</p>
-<pre tabindex="0" data-reader-focus="true"><code class="language-bash">uv run python scripts/seal_crypto_carry_portable_v1_result.py --check
+<pre><code class="language-bash">uv run python scripts/seal_crypto_carry_portable_v1_result.py --check
 </code></pre>
 <p>This command rehashes every private snapshot leaf, recomputes the same-path diagnostics from the
 sealed equity curve, and fails if any bound result, ledger record, source, environment, or contract
@@ -464,7 +462,7 @@ the market path from the intended public bundle because the underlying archive r
 signal frame are private. Public redistribution remains prohibited unless each source&#39;s rights are
 established. An exact clean-environment replay from a rights-cleared input package and an
 independent human reproduction are still required before those statuses can be claimed.</p>
-<h2 id="reader-section-9" data-reader-anchor="true">8. Threats to validity</h2>
+<h2>8. Threats to validity</h2>
 <p>The central threats are explicit:</p>
 <ul>
 <li><strong>Selection burden:</strong> the low DSR shows that one attractive path must be interpreted in the
@@ -484,7 +482,7 @@ record.</li>
 </ul>
 <p>These limitations define the next research work; they are not footnotes that a positive Sharpe can
 cancel.</p>
-<h2 id="reader-section-10" data-reader-anchor="true">9. Conclusion</h2>
+<h2>9. Conclusion</h2>
 <p>Portable v1 is the strongest ALPHAC crypto-carry result in provenance quality, not yet in admission
 status. One registered and fully input-snapshotted simulation produced Sharpe 0.9689 with 12.30%
 maximum drawdown and positive leave-one-year-out diagnostics. The same result also produced DSR
@@ -493,7 +491,7 @@ and book-risk evidence required by the governing contract.</p>
 <p>The correct scientific conclusion is neither promotional success nor automatic rejection. It is a
 promising, immutable primary measurement held at <code>INCOMPLETE / NOT ADMITTED</code> while the missing
 tests remain missing. The work is credible only if that boundary survives publication unchanged.</p>
-<h2 id="reader-section-11" data-reader-anchor="true">References</h2>
+<h2>References</h2>
 <ol>
 <li>Ackerer, D., Hugonnier, J., &amp; Jermann, U. J. <em>Perpetual Futures Pricing</em>.
 <a href="https://doi.org/10.3386/w32936">NBER Working Paper 32936</a>.</li>
@@ -511,7 +509,7 @@ Selection Bias, Backtest Overfitting, and Non-Normality</em>.
 Backtest Overfitting</em>.
 <a href="https://doi.org/10.21314/JCF.2016.322">Journal of Computational Finance</a>.</li>
 </ol>
-<h2 id="reader-section-12" data-reader-anchor="true">Authorship and credit</h2>
+<h2>Authorship and credit</h2>
 <p>Arhan Canli conceived the ALPHAC research program, designed and implemented the AlphaForge system,
 specified the prospective trial and governance controls, assembled and audited the evidence, and
 is the accountable author of this paper. Tool-assisted drafting or engineering does not transfer
@@ -535,7 +533,7 @@ peer review, external replication, or investment endorsement is implied.</p>
       </p>
       <details class="paper__citation">
         <summary>Cite this report</summary>
-        <pre tabindex="0" data-reader-focus="true"><code>@techreport{canli2026cryptocarryportablev1,
+        <pre><code>@techreport{canli2026cryptocarryportablev1,
   author      = {Canli, Arhan},
   title       = {A hash-bound prospective test of cross-sectional perpetual-futures carry},
   institution = {Canli Capital},
@@ -631,6 +629,5 @@ peer review, external replication, or investment endorsement is implied.</p>
   <div class="cc-footer__wordmark" aria-hidden="true">Canli Capital<span><svg viewBox="0 0 80 80" focusable="false" aria-hidden="true"><path d="M12 68 68 12M12 12h56v56" fill="none" stroke="currentColor" stroke-width="4" /></svg></span></div>
   <script type="module" src="/js/site-motion.js"></script>
 </footer>
-
-<script type="module" src="/js/reader-experience.js"></script></body>
+</body>
 </html>
