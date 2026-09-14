@@ -15,6 +15,10 @@ import {
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const PACKET_DIR = resolve(ROOT, "public/glassbox/trial-packets");
 const INDEX_PATH = resolve(PACKET_DIR, "index.json");
+// Every identity measured after the legacy epoch closed (2026-09-15): bound by hash to its
+// packet and its final closure by the engine's build_forward_identity_packet_index.py. Optional
+// until the engine publishes it; absent, the register is the legacy 228 alone, as before.
+const FORWARD_INDEX_PATH = resolve(PACKET_DIR, "forward_index.json");
 const DISTRIBUTION_PATH = resolve(ROOT, "public/glassbox/trial_sharpe_distribution.json");
 const OUT_DIR = resolve(ROOT, "trials");
 const ORIGIN = "https://canlicapital.com";
@@ -29,13 +33,18 @@ const escapeHtml = (value) => normalizeEditableCopy(value)
   .replaceAll('"', "&quot;")
   .replaceAll("'", "&#39;");
 
+// Python's json.dumps(sort_keys=True, separators=(",", ":")) escapes every non-ASCII character
+// as \uXXXX (ensure_ascii); JSON.stringify keeps it raw. The hashes were computed on the Python
+// form, so the JavaScript form must match it character for character. Identical for ASCII input.
+const asciiString = (value) => JSON.stringify(value)
+  .replace(/[\u007f-\uffff]/g, (c) => `\\u${c.charCodeAt(0).toString(16).padStart(4, "0")}`);
 const canonical = (value) => {
   if (Array.isArray(value)) return `[${value.map(canonical).join(",")}]`;
   if (value && typeof value === "object") {
     return `{${Object.keys(value).sort().map((key) =>
-      `${JSON.stringify(key)}:${canonical(value[key])}`).join(",")}}`;
+      `${asciiString(key)}:${canonical(value[key])}`).join(",")}}`;
   }
-  return JSON.stringify(value);
+  return typeof value === "string" ? asciiString(value) : JSON.stringify(value);
 };
 
 function validateHash(payload, path) {
@@ -174,10 +183,29 @@ function distributionPlot(distribution, sharpe) {
   </svg>`;
 }
 
-function heroBlock(packet, distribution) {
+// A forward-epoch identity is not ranked in the legacy distribution: that population is the
+// 228 retired identities, and placing a later identity among them would compare two epochs
+// as one. Its panel states the register status and the final closure instead.
+function forwardPanel(row) {
+  const closure = row.closure ?? {};
+  const disposition = closure.final_disposition ? humanise(closure.final_disposition) : "Unclosed";
+  const admitted = closure.admitted ? "admitted" : "not admitted";
+  const kind = closure.kind === "development"
+    ? "a development closure: the decision the study that ran this identity already made, imported and recorded, computing nothing"
+    : closure.kind === "governed"
+      ? "a governed closure under the admission contract and a validated pre-result reservation"
+      : "no final closure yet; the identity is measured and counted against the budget and nothing else";
+  return `<div class="trial-dist">
+    <p class="trial-dist__label">Forward epoch</p>
+    <p class="trial-dist__caption">Measured after the legacy epoch closed, under reservation ordinal <strong>${escapeHtml(displayValue(row.reservation_ordinal))}</strong>. Register status <strong>${escapeHtml(humanise(row.register_status))}</strong>. Final disposition <strong>${escapeHtml(disposition)}</strong>, ${admitted}: ${escapeHtml(kind)}.</p>
+    <p class="trial-dist__caption">Not ranked in the legacy distribution: that population is the retired epoch, and this identity belongs to the one after it.</p>
+  </div>`;
+}
+
+function heroBlock(packet, distribution, forwardRow = null) {
   const measurement = packet.immutable_first_measurement ?? {};
   const sharpe = typeof measurement.annualized_sharpe === "number" ? measurement.annualized_sharpe : null;
-  const entry = distribution.ranked.find((r) => r.hypothesis_key === packet.hypothesis_key) ?? null;
+  const entry = forwardRow ? null : distribution.ranked.find((r) => r.hypothesis_key === packet.hypothesis_key) ?? null;
   const state = packet.complete ? "Complete" : "Incomplete";
 
   // A trial with no recorded first measurement says so. Rendering a dash where a
@@ -192,30 +220,30 @@ function heroBlock(packet, distribution) {
 
   return `<section class="trial-hero" aria-labelledby="trial-hero-title">
   <p class="trial-hero__eyebrow"><a href="/trials">Trial evidence</a> <span>/</span> ${escapeHtml(humanise(packet.research_family_key))}</p>
-  <h1 class="trial-hero__title" id="trial-hero-title">${escapeHtml(humanise(packet.label))}</h1>
+  <h1 class="trial-hero__title" id="trial-hero-title">${escapeHtml(humanise(packet.label ?? packet.hypothesis_key))}</h1>
   <p class="trial-hero__key">Hypothesis key <code>${escapeHtml(packet.hypothesis_key)}</code> <em class="trial-hero__state trial-hero__state--${packet.complete ? "complete" : "incomplete"}">${state}</em></p>
   <div class="trial-hero__measure">${figure}</div>
-  <div class="trial-dist">
+  ${forwardRow ? forwardPanel(forwardRow) : `<div class="trial-dist">
     <p class="trial-dist__label">Where this sits among every trial ever recorded</p>
     ${distributionPlot(distribution, sharpe)}
     <p class="trial-dist__axis"><span>${distribution.summary.minimum}</span><span>Sharpe ratio</span><span>${distribution.summary.maximum}</span></p>
     <p class="trial-dist__legend"><span class="trial-dist__swatch trial-dist__swatch--here"></span>this trial <span class="trial-dist__swatch trial-dist__swatch--median"></span>median <span class="trial-dist__swatch trial-dist__swatch--zero"></span>zero</p>
     ${placement}
-  </div>
+  </div>`}
 </section>`;
 }
 
 function facts(packet) {
-  const measurement = packet.immutable_first_measurement;
+  const measurement = packet.immutable_first_measurement ?? {};
   const values = [
     ["Hypothesis key", packet.hypothesis_key],
     ["Configuration hash", packet.config_hash],
     ["Research family", humanise(packet.research_family_key)],
     ["Packet status", packet.packet_status],
-    ["Observations", measurement.observations],
-    ["Annualized Sharpe", measurement.annualized_sharpe],
-    ["Skew", measurement.skew],
-    ["Kurtosis", measurement.kurtosis],
+    ["Observations", measurement.observations ?? measurement.n_obs ?? null],
+    ["Annualized Sharpe", measurement.annualized_sharpe ?? measurement.sharpe_ann ?? null],
+    ["Skew", measurement.skew ?? null],
+    ["Kurtosis", measurement.kurtosis ?? null],
   ];
   return `<dl class="trial__facts">${values.map(([label, value]) =>
     `<div><dt>${escapeHtml(label)}</dt><dd>${escapeHtml(displayValue(value))}</dd></div>`).join("")}</dl>`;
@@ -250,24 +278,32 @@ function coverage(packet) {
 }
 
 function configuration(packet) {
-  return `<dl class="trial__config">${Object.entries(packet.configuration).map(([key, value]) =>
+  return `<dl class="trial__config">${Object.entries(packet.configuration ?? {}).map(([key, value]) =>
     `<div><dt>${escapeHtml(humanise(key))}</dt><dd>${escapeHtml(displayValue(value))}</dd></div>`).join("")}</dl>`;
 }
 
-function trialPage(packet, distribution) {
+function trialPage(packet, distribution, forwardRow = null) {
   const key = packet.hypothesis_key;
   const rawPath = `trial-packets/${key}.json`;
   const rawUrl = `/glassbox/${rawPath}`;
-  const completeLabel = packet.complete ? "complete evidenced packet" : "incomplete evidence packet";
+  const completeLabel = (packet.complete ? "complete evidenced packet" : "incomplete evidence packet")
+    + (forwardRow ? ", forward epoch" : "");
   const description = `Trial ${key}: ${completeLabel}. Inspect its immutable first measurement, configuration, evidence coverage, claim boundary, and machine source.`;
   const status = packet.complete ? "Complete" : "Incomplete";
-  const recorded = new Date(packet.immutable_first_measurement.recorded_at_unix_ms).toISOString();
+  // An imported forward packet carries its first measurement in the ledger's own shape; the
+  // legacy builder's unix-ms field is not always there. Render what is recorded, never a
+  // fabricated date.
+  const measurementRecord = packet.immutable_first_measurement ?? {};
+  const recorded = typeof measurementRecord.recorded_at_unix_ms === "number"
+    ? new Date(measurementRecord.recorded_at_unix_ms).toISOString()
+    : (measurementRecord.recorded_at ?? packet.evidence_date ?? null);
   const familyLink = packet.family_paper_public_path
     ? `<a href="${escapeHtml(canonicalPublicPath(packet.family_paper_public_path))}">Read the family paper</a> · ` : "";
-  const blockers = packet.completion_assessment.blockers ?? [];
+  const assessment = packet.completion_assessment ?? {};
+  const blockers = assessment.blockers ?? [];
   const blockerHtml = blockers.length ? `<ul>${blockers.map((blocker) =>
     `<li><strong>${escapeHtml(humanise(blocker.code ?? "blocker"))}.</strong> ${escapeHtml(blocker.finding ?? "")}</li>`).join("")}</ul>` :
-    `<p>${escapeHtml(packet.completion_assessment.claim_boundary)}</p>`;
+    `<p>${escapeHtml(assessment.claim_boundary ?? assessment.status ?? packet.packet_status ?? "")}</p>`;
   const body = `
 <aside class="measure__boundary"><h2>Claim boundary</h2><p>${escapeHtml(packet.claim_boundary)}</p></aside>
 <section class="measure__section"><h2>Immutable first measurement</h2>${facts(packet)}</section>
@@ -279,13 +315,13 @@ function trialPage(packet, distribution) {
 <p class="trial__hash">Packet content hash <code>${escapeHtml(packet.content_hash)}</code></p></section>`;
   return shell({
     title: `${humanise(packet.research_family_key)} trial ${key.slice(0, 8)} / Canli`,
-    socialTitle: `${humanise(packet.label)} / Canli Capital`,
+    socialTitle: `${humanise(packet.label ?? packet.hypothesis_key)} / Canli Capital`,
     description,
     canonicalUrl: `${ORIGIN}/trials/${key}`,
     source: `${rawPath} trial_sharpe_distribution.json`,
     eyebrow: `<a href="/trials">Trial evidence</a> / ${escapeHtml(humanise(packet.research_family_key))}`,
-    h1: humanise(packet.label),
-    hero: heroBlock(packet, distribution),
+    h1: humanise(packet.label ?? packet.hypothesis_key),
+    hero: heroBlock(packet, distribution, forwardRow),
     body,
     // Incomplete packets stay publicly addressable and their links remain crawlable, but they are
     // evidence-accounting records rather than standalone search documents. Only a packet that
@@ -296,7 +332,8 @@ function trialPage(packet, distribution) {
     jsonLd: {
       "@context": "https://schema.org", "@type": "Dataset",
       name: `Trial evidence packet ${key}`, description, url: `${ORIGIN}/trials/${key}`,
-      identifier: key, dateCreated: recorded, dateModified: packet.evidence_date,
+      identifier: key, ...(recorded ? { dateCreated: recorded } : {}),
+      ...(packet.evidence_date ? { dateModified: packet.evidence_date } : {}),
       creator: { "@type": "Person", "@id": `${ORIGIN}/#arhan-canli`, name: AUTHOR, url: `${ORIGIN}/founder` },
       publisher: { "@type": "Organization", name: PUBLISHER, url: `${ORIGIN}/` },
       isAccessibleForFree: true,
@@ -327,7 +364,7 @@ function main() {
   rmSync(OUT_DIR, { recursive: true, force: true });
   mkdirSync(OUT_DIR, { recursive: true });
 
-  const packets = index.packets.map((entry) => {
+  const boundPacket = (entry) => {
     const path = resolve(PACKET_DIR, `${entry.hypothesis_key}.json`);
     const packet = JSON.parse(readFileSync(path, "utf8"));
     const packetBytes = readFileSync(path);
@@ -335,9 +372,30 @@ function main() {
     if (fileHash !== entry.packet_file_sha256 || packet.content_hash !== entry.packet_content_hash || packet.hypothesis_key !== entry.hypothesis_key) {
       throw new Error(`${entry.hypothesis_key}: index-to-packet binding mismatch`);
     }
+    return packet;
+  };
+  const packets = index.packets.map((entry) => {
+    const packet = boundPacket(entry);
     writeFileSync(resolve(OUT_DIR, `${entry.hypothesis_key}.html`), trialPage(packet, distribution));
     return packet;
   });
+
+  // The forward epoch: every identity measured after the legacy closure, each bound by hash to
+  // its packet and its final closure. A key in both indexes is two epochs claiming one identity.
+  const forwardIndex = existsSync(FORWARD_INDEX_PATH)
+    ? JSON.parse(readFileSync(FORWARD_INDEX_PATH, "utf8")) : null;
+  const forward = [];
+  if (forwardIndex) {
+    validateHash(forwardIndex, FORWARD_INDEX_PATH);
+    const legacyKeys = new Set(index.packets.map((entry) => entry.hypothesis_key));
+    for (const row of forwardIndex.packets) {
+      if (legacyKeys.has(row.hypothesis_key)) throw new Error(`${row.hypothesis_key}: in both epochs`);
+      if (!row.public_path) continue;
+      const packet = boundPacket(row);
+      writeFileSync(resolve(OUT_DIR, `${row.hypothesis_key}.html`), trialPage(packet, distribution, row));
+      forward.push({ packet, row });
+    }
+  }
 
   const groups = new Map();
   for (const packet of packets) {
@@ -347,20 +405,44 @@ function main() {
   }
   const complete = packets.filter((packet) => packet.complete).length;
   const families = [...groups.entries()].sort(([a], [b]) => a.localeCompare(b));
+  const forwardHtml = (fwdIndex, fwd) => {
+    if (!fwdIndex) return "";
+    const summary = fwdIndex.summary;
+    const groups = new Map();
+    for (const item of fwd) {
+      const rows = groups.get(item.packet.research_family_key) ?? [];
+      rows.push(item);
+      groups.set(item.packet.research_family_key, rows);
+    }
+    const dispositions = Object.entries(summary.by_final_disposition ?? {})
+      .map(([name, count]) => `${count} ${escapeHtml(humanise(name))}`).join(", ");
+    const sections = [...groups.entries()].sort(([a], [b]) => a.localeCompare(b)).map(([family, rows]) =>
+      `<section class="trial__family"><h2>${escapeHtml(humanise(family))}</h2>
+      <ul class="trial__cards">${rows.sort((a, b) => a.packet.hypothesis_key.localeCompare(b.packet.hypothesis_key)).map(({ packet, row }) =>
+        `<li><a href="/trials/${packet.hypothesis_key}"><code>${packet.hypothesis_key}</code><span>${escapeHtml(packet.label ?? packet.hypothesis_key)}</span>` +
+        `<strong class="${packet.complete ? "trial__state--complete" : "trial__state--incomplete"}">${escapeHtml(humanise(row.closure?.final_disposition ?? "unclosed"))}</strong></a></li>`).join("")}</ul>
+    </section>`).join("");
+    return `<section class="trial__epoch"><h2>Forward epoch</h2>
+<p class="measure__lead">${summary.forward_identities} identities measured after the legacy epoch closed, each bound by hash to its packet and its final closure: ${summary.closed_identities} closed (${dispositions}), ${summary.admitted_identities} admitted, ${summary.pending_packets} awaiting a packet. Listing is not admission; a closed identity is one whose decision is on file.</p>
+<aside class="measure__boundary"><h2>Claim boundary</h2><p>${escapeHtml(fwdIndex.claim_boundary)}</p></aside>
+<p><a href="/glassbox/trial-packets/forward_index.json">Download the forward packet index</a></p>${sections}</section>`;
+  };
   const familyHtml = families.map(([family, rows]) => `<section class="trial__family">
     <h2>${escapeHtml(humanise(family))}</h2><p>Registered identities in this family are listed below.</p>
     <ul class="trial__cards">${rows.sort((a, b) => a.hypothesis_key.localeCompare(b.hypothesis_key)).map((packet) =>
       `<li><a href="/trials/${packet.hypothesis_key}"><code>${packet.hypothesis_key}</code><span>${escapeHtml(packet.label)}</span>` +
       `<strong class="${packet.complete ? "trial__state--complete" : "trial__state--incomplete"}">${packet.complete ? "complete" : "incomplete"}</strong></a></li>`).join("")}</ul>
   </section>`).join("");
-  const description = `The complete ALPHAC hypothesis register: 228 immutable trial identities, each with its first measurement, evidence coverage, and machine-readable packet.`;
+  const forwardSummary = forwardIndex?.summary ?? null;
+  const totalIdentities = packets.length + (forwardSummary?.forward_identities ?? 0);
+  const description = `The complete ALPHAC hypothesis register: ${totalIdentities} immutable trial identities (${packets.length} in the retired legacy epoch${forwardSummary ? `, ${forwardSummary.forward_identities} measured since` : ""}), each with its first measurement, evidence coverage, and machine-readable packet.`;
   const body = `<p class="measure__lead">Every return identity is listed here exactly once. Each page
 binds the immutable first measurement to the evidence that survives today. Only ${complete} packets
 currently satisfy every required section; the remaining debt is shown rather than hidden.</p>
 <aside class="measure__boundary"><h2>Claim boundary</h2><p>${escapeHtml(index.claim_boundary)}</p></aside>
 <p><a href="/tools/trial-accounting">Explore the complete selection denominator</a> ·
 <a href="/glassbox/trial-packets/index.json">Download the packet index</a> ·
-<a href="/measurements/trial-accounting">Verify trial accounting</a></p>${familyHtml}`;
+<a href="/measurements/trial-accounting">Verify trial accounting</a></p>${familyHtml}${forwardHtml(forwardIndex, forward)}`;
   writeFileSync(resolve(ROOT, "trials.html"), shell({
     title: "Quantitative research trial register / Canli Capital", description,
     canonicalUrl: `${ORIGIN}/trials`, source: "trial-packets/index.json",
@@ -372,7 +454,8 @@ currently satisfy every required section; the remaining debt is shown rather tha
       hasPart: packets.map((packet) => ({ "@type": "Dataset", name: packet.label, url: `${ORIGIN}/trials/${packet.hypothesis_key}` })),
     },
   }));
-  console.log(`rendered ${packets.length} trial evidence pages (${complete} complete, ${packets.length - complete} incomplete)`);
+  console.log(`rendered ${packets.length} legacy trial evidence pages (${complete} complete, ${packets.length - complete} incomplete)`
+    + (forwardIndex ? ` and ${forward.length} forward-epoch pages` : " and no forward epoch index"));
 }
 
 main();
