@@ -139,6 +139,7 @@ const html = `<!doctype html>
 ${renderProductShellStylesheet()}
 <link rel="stylesheet" href="/css/lab.css" />
 <link rel="stylesheet" href="/css/tools-hub.css" />
+<link rel="stylesheet" href="/css/tool-experience.css" />
 <script type="application/ld+json">${JSON.stringify(jsonLd)}</script>
 </head>
 <body class="lab-page tools-hub-page">

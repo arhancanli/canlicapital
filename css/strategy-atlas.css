@@ -1,0 +1,49 @@
+/* Full-width mechanism studies. Native image detail never sits behind copy. */
+.cinema-home #sleeves { background: var(--cin-paper); color: var(--cin-ink); }
+.cinema-home #sleeves .sleeve-table { display: block; background: transparent; border: 0; }
+.cinema-home #sleeves .sleeve-row {
+  position: relative; display: grid; grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto auto auto; gap: 20px 40px; isolation: isolate;
+  padding: 52px 4vw 36px; margin: 0; min-height: 0;
+  color: var(--cin-ink); background: var(--cin-paper); border: 0;
+  border-top: 1px solid #1113;
+}
+.cinema-home #sleeves .sleeve-row::after { display: none; }
+.cinema-home #sleeves .sleeve-index { color: var(--cin-blue); top: 32px; right: 4vw; left: auto; }
+.cinema-home #sleeves .sleeve-name { grid-column: 1 / -1; grid-row: 1; }
+.cinema-home #sleeves .sleeve-name span { color: var(--cin-blue); font-size: .75rem; }
+.cinema-home #sleeves .sleeve-name h3 { color: var(--cin-ink); font-size: clamp(3rem, 7.8vw, 8rem); font-weight: 500; margin: 12px 0 0; line-height: 1; }
+.cinema-home #sleeves .sleeve-row > p { grid-column: 1 / -1; grid-row: 2; align-self: start; color: #343b46; font-size: 1rem; max-width: 70ch; margin: 0; }
+.strategy-study { grid-column: 1 / -1; grid-row: 3; min-height: 0; margin: 0; position: relative; overflow: hidden; }
+.strategy-study img { display: block; width: 100%; height: clamp(250px, 35vw, 480px); object-fit: contain; }
+.strategy-study figcaption { padding: 15px 0 8px; color: var(--cin-blue); font: 500 clamp(.8rem, 1.15vw, 1rem)/1.5 var(--cin-data); }
+.strategy-study small { display: block; color: #4c5361; font: .65rem/1.5 var(--cin-data); }
+.cinema-home #sleeves .sleeve-row dl { grid-row: 4; grid-column: 1; display: flex; gap: 36px; margin: 0; border-color: #1113; padding-top: 20px; }
+.cinema-home #sleeves .sleeve-row dt { color: #4c5361; font-size: .7rem; }
+.cinema-home #sleeves .sleeve-row dd { color: var(--cin-ink); font-size: .85rem; }
+.cinema-home #sleeves .sleeve-state { grid-row: 4; grid-column: 2; align-self: end; justify-content: flex-end; flex-wrap: wrap; gap: 10px; }
+.cinema-home #sleeves .sleeve-state small { color: #343b46; font-size: .75rem; }
+.cinema-home #sleeves .state-pill { color: #00169c; background: #e3e8ff; border: 1px solid #8999dc; }
+.cinema-home #sleeves .state-pill--local { color: #713007; background: #ffeddf; border-color: #b88765; }
+.cinema-home #sleeves .sleeves-footer { color: var(--cin-ink); border-color: #1113; }
+.cinema-home #sleeves .sleeves-footer :is(span, small) { color: #4c5361; }
+.cinema-home #sleeves .sleeves-footer a { color: var(--cin-blue); }
+.cinema-home .has-strategy-exhibition { padding-inline: 0; max-width: none; }
+.has-strategy-exhibition > .section-heading,
+.has-strategy-exhibition > .sleeves-footer { margin-inline: 4vw; }
+.strategy-exhibition { position: relative; height: calc(100svh - 78px); overflow: hidden; background: var(--cin-paper); }
+.cinema-home #sleeves .strategy-exhibition .sleeve-table { display: flex; width: 400%; height: calc(100% - 68px); gap: 0; }
+.cinema-home #sleeves .strategy-exhibition .sleeve-row { flex: 0 0 25%; width: 25%; min-width: 0; box-sizing: border-box; grid-template-rows: auto auto minmax(0, 1fr) auto; padding-top: 28px; gap: 14px 40px; }
+.strategy-exhibition .strategy-study { display: flex; flex-direction: column; align-self: stretch; height: 100%; }
+.strategy-exhibition .strategy-study img { flex: 1 1 0; min-height: 0; height: 0; object-fit: contain; }
+.strategy-exhibition__controls { position: absolute; bottom: 0; inset-inline: 0; display: grid; grid-template-columns: repeat(4, 1fr); height: 68px; background: var(--cin-paper); border-top: 1px solid #1113; }
+.strategy-exhibition__controls button { background: transparent; color: var(--cin-ink); border: 0; border-right: 1px solid #1113; font: 500 .8rem var(--cin-data); cursor: pointer; }
+.strategy-exhibition__controls button[aria-current] { background: var(--cin-blue); color: white; }
+.strategy-exhibition__controls button:focus-visible { outline: 3px solid currentColor; outline-offset: -7px; }
+@media (max-width: 700px) {
+  .cinema-home #sleeves { padding-inline: 0; }
+  .cinema-home #sleeves > .section-heading, .cinema-home #sleeves > .sleeves-footer { margin-inline: 24px; }
+  .cinema-home #sleeves .sleeve-row { padding: 36px 24px; gap: 20px; grid-template-columns: 1fr; }
+  .cinema-home #sleeves .sleeve-row .sleeve-state { grid-row: 5; grid-column: 1; justify-content: flex-start; }
+  .strategy-study img { height: auto; aspect-ratio: 2; width: 100%; }
+}

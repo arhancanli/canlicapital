@@ -20,7 +20,7 @@ export async function initEvidenceCore(section) {
   const canvas = section?.querySelector("#evidence-core-canvas");
   if (!canvas) return;
 
-  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const motionPreference = window.matchMedia("(prefers-reduced-motion: reduce)");
 
   let trials;
   try {
@@ -52,18 +52,23 @@ export async function initEvidenceCore(section) {
   const setChapter = (index) => {
     if (index === shown) return;
     shown = index;
-    chapters.forEach((li, i) => li.classList.toggle("is-active", i === index));
+    chapters.forEach((li, i) => {
+      li.classList.toggle("is-active", i === index);
+      li.querySelector('button')?.setAttribute('aria-pressed', String(i === index));
+    });
     if (label && names[index]) label.textContent = names[index];
   };
 
-  if (reducedMotion) {
+  const renderStatic = () => {
     // A single frame at the union state: the one arrangement that carries the
     // finding rather than the transition into it.
-    scene.setProgress(0.5);
+    scene.stop();
+    section.dataset.motion = "static";
+    const index = section.dataset.selectedCore === undefined ? 2 : Math.min(4, Math.max(0, Number(section.dataset.selectedCore)));
+    scene.setProgress(index / 4);
     scene.renderOnce();
-    setChapter(2);
-    return;
-  }
+    setChapter(index);
+  };
 
   // Progress is how far the section has travelled ACROSS the viewport, not how
   // far it has been scrolled past its own pin. The pin version left 119px of
@@ -72,28 +77,44 @@ export async function initEvidenceCore(section) {
   // the section plus a screen -- about 1,900px -- without adding a pixel to the
   // page.
   const update = () => {
-    const rect = section.getBoundingClientRect();
+    if (section.dataset.selectedCore !== undefined) {
+      const index = Math.min(4, Math.max(0, Number(section.dataset.selectedCore)));
+      scene.setProgress(index / 4); scene.renderOnce(); setChapter(index); return;
+    }
+    if (motionPreference.matches) return;
     // The pin is stuck for the whole section, so progress is how far the section
     // has been scrolled THROUGH, which is exactly the distance the pin stays on
     // screen. Every state therefore gets a real share of the scroll.
-    const travel = Math.max(1, rect.height - window.innerHeight);
-    const progress = Math.min(1, Math.max(0, -rect.top / travel));
+    const stage = section.querySelector('.evidence-core__stage').getBoundingClientRect();
+    const travel = Math.max(1, stage.height + window.innerHeight * .5);
+    const progress = Math.min(1, Math.max(0, (window.innerHeight * .75 - stage.top) / travel));
     scene.setProgress(progress);
     setChapter(scene.chapterAt(progress));
   };
-  update();
+  let nearViewport = false;
+  const syncPlayback = () => {
+    if (motionPreference.matches) { renderStatic(); return; }
+    section.dataset.motion = "scroll";
+    update();
+    if (nearViewport && document.visibilityState === "visible") scene.start();
+    else scene.stop();
+  };
+  motionPreference.addEventListener("change", syncPlayback);
+  section.addEventListener('core:select', () => {
+    shown = -1;
+    if (section.dataset.selectedCore === undefined && motionPreference.matches) renderStatic();
+    else update();
+  });
+  syncPlayback();
   window.addEventListener("scroll", update, { passive: true });
   window.addEventListener("resize", update, { passive: true });
 
   const observer = new IntersectionObserver((entries) => {
     for (const entry of entries) {
-      if (entry.isIntersecting && document.visibilityState === "visible") scene.start();
-      else scene.stop();
+      nearViewport = entry.isIntersecting;
+      syncPlayback();
     }
   }, { threshold: 0 });
   observer.observe(section);
-  document.addEventListener("visibilitychange", () => {
-    if (document.visibilityState === "hidden") scene.stop();
-    else if (section.getBoundingClientRect().bottom > 0) scene.start();
-  });
+  document.addEventListener("visibilitychange", syncPlayback);
 }

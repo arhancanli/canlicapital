@@ -37,7 +37,7 @@ const esc = (v) =>
 // its own handler would refuse, because a test round-trips every one of them.
 const LANG_LABEL = { curl: "curl", python: "Python", javascript: "JavaScript" };
 const blocksFromPairs = (pairs) =>
-  pairs.map(({ lang, code }) => `<div class="dev-snippet"><p class="dev-snippet-label">${esc(LANG_LABEL[lang])}</p><pre class="dev-code"><code>${esc(code)}</code></pre></div>`).join("\n      ");
+  pairs.map(({ lang, code }) => `<div class="dev-snippet"><p class="dev-snippet-label">${esc(LANG_LABEL[lang])}</p><pre class="dev-code" tabindex="0" aria-label="${esc(LANG_LABEL[lang])} code example"><code>${esc(code)}</code></pre></div>`).join("\n      ");
 const languageBlocks = (m, example) => blocksFromPairs(renderAll(m, example));
 
 // A route can declare `modes`: a discriminated union of input shapes (deflated-sharpe's seven
@@ -98,6 +98,7 @@ function head({ title, description, route, jsonLd, sources }) {
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" /></noscript>
 ${renderProductShellStylesheet()}
 <link rel="stylesheet" href="/css/developers.css" />
+${route === "/developers" ? '<link rel="stylesheet" href="/css/developer-workbench.css" /><link rel="stylesheet" href="/css/developer-experience.css" />' : ""}
 <script type="application/ld+json">${JSON.stringify(jsonLd)}</script>
 </head>`;
 }
@@ -190,7 +191,7 @@ ${renderProductShellHeader({ active: "" })}
       declare</em>. That second number is the one worth having: a vector failing for an unrelated
       reason looks like a passing test while hiding a rule that does not work.
       <a href="/glassbox/paper_evidence_conformance.json">The receipt</a> is published.</p>
-    <table class="dev-table">
+    <table class="dev-table" tabindex="0" aria-label="Conformance vectors">
       <thead><tr><th>Vector</th><th>Violates</th><th>Why it matters</th></tr></thead>
       <tbody>
         ${invalid.map((v) => `<tr><td><a href="/standards/paper-evidence/v0/vectors/${esc(v.name)}.json"><code>${esc(v.name.replace("invalid-", ""))}</code></a></td><td><code>${esc(v.violates)}</code></td><td>${esc(v.why)}</td></tr>`).join("\n        ")}
@@ -273,8 +274,8 @@ function mcpAssistantSection() {
       routes on this page as tools instead of writing requests by hand. Every tool it exposes
       returns the full envelope, the same way every route on this page does, so the assistant
       sees what a number cannot be used to claim, not only the number.</p>
-    <div class="dev-snippet"><p class="dev-snippet-label">Claude Code</p><pre class="dev-code"><code>${esc(claudeCodeInstall)}</code></pre></div>
-    <div class="dev-snippet"><p class="dev-snippet-label">Claude Desktop</p><pre class="dev-code"><code>${esc(claudeDesktopJson)}</code></pre></div>
+    <div class="dev-snippet"><p class="dev-snippet-label">Claude Code</p><pre class="dev-code" tabindex="0" aria-label="Claude Code configuration"><code>${esc(claudeCodeInstall)}</code></pre></div>
+    <div class="dev-snippet"><p class="dev-snippet-label">Claude Desktop</p><pre class="dev-code" tabindex="0" aria-label="Claude Desktop configuration"><code>${esc(claudeDesktopJson)}</code></pre></div>
     <p class="dev-note"><a href="${esc(npmUrl)}" rel="noreferrer">${esc(mcpPkg.name)} on npm</a>, with the full tool list and what each one does not establish.</p>
   </section>`;
 }
@@ -314,11 +315,13 @@ function buildDevelopers() {
   // otherwise be read as a $-substitution pattern by String.replace itself.
   const QUICKSTART_SCRIPT = `(function () {
   "use strict";
+  var snippetTemplates = new WeakMap();
   function replaceKeyInSnippets(key) {
     var blocks = document.querySelectorAll("pre.dev-code");
     for (var i = 0; i < blocks.length; i++) {
       var target = blocks[i].querySelector("code") || blocks[i];
-      target.textContent = target.textContent.replace(/\\$CANLI_KEY/g, function () { return key; });
+      if (!snippetTemplates.has(target)) snippetTemplates.set(target, target.textContent);
+      target.textContent = snippetTemplates.get(target).replace(/\\$CANLI_KEY/g, function () { return key; });
     }
   }
   function el(tag, className, text) {
@@ -336,10 +339,15 @@ function buildDevelopers() {
     var copyButton = el("button", "dev-button", "Copy");
     copyButton.type = "button";
     copyButton.addEventListener("click", function () {
-      if (!(navigator.clipboard && navigator.clipboard.writeText)) return;
+      if (!(navigator.clipboard && navigator.clipboard.writeText)) {
+        showKeyError("Clipboard unavailable. Select the key above and copy it manually.");
+        return;
+      }
       navigator.clipboard.writeText(data.key).then(function () {
         copyButton.textContent = "Copied";
         window.setTimeout(function () { copyButton.textContent = "Copy"; }, 1800);
+      }).catch(function () {
+        showKeyError("Clipboard permission was denied. Select the key above and copy it manually.");
       });
     });
     box.appendChild(value);
@@ -366,7 +374,10 @@ function buildDevelopers() {
       button.textContent = busyLabel;
       var errorBox = document.getElementById("dev-key-error");
       if (errorBox) errorBox.hidden = true;
+      var controller = new AbortController();
+      var timeout = window.setTimeout(function () { controller.abort(); }, 15000);
       fetch("/api/v1/keys", {
+        signal: controller.signal,
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ label: ${JSON.stringify(SNIPPET_LABELS.developersPage)} }),
@@ -375,20 +386,29 @@ function buildDevelopers() {
           return { status: response.status, payload: payload };
         });
       }).then(function (result) {
+        window.clearTimeout(timeout);
         button.disabled = false;
         button.removeAttribute("aria-busy");
         button.textContent = restLabel;
         if (result.status === 201) {
-          showKeyResult(result.payload && result.payload.data);
+          var data = result.payload && result.payload.data;
+          if (!data || typeof data.key !== "string" || !data.key.trim()) {
+            showKeyError("The service returned no usable key. No key has been added to the examples.");
+            return;
+          }
+          showKeyResult(data);
         } else {
           var message = result.payload && result.payload.error && result.payload.error.message;
           showKeyError(message);
         }
       }).catch(function () {
+        window.clearTimeout(timeout);
         button.disabled = false;
         button.removeAttribute("aria-busy");
         button.textContent = restLabel;
-        showKeyError("Could not reach the key service. Use the curl command below.");
+        showKeyError(controller.signal.aborted
+          ? "The request timed out. It may have reached the service; check your connection before requesting again."
+          : "Could not reach the key service. Use the curl command below.");
       });
     });
   }
@@ -435,21 +455,24 @@ ${renderProductShellHeader({ active: "developers" })}
 <main id="content" tabindex="-1">
   <section class="dev-hero">
     <p class="dev-kicker"><span>Public API</span><span aria-hidden="true"> &middot; </span><span>v1</span></p>
-    <h1>Every response says what it cannot be used to claim.</h1>
-    <p class="dev-lead">The read endpoints need no key: static JSON, regenerated on each publish.
-      The validation endpoints take a free key and run your numbers through the same arithmetic this
-      record is held to, then hand back a receipt you can cite. An API is the easiest place on a
-      site to lose a claim boundary, because nobody reads one by eye, so the boundary is part of
-      the envelope rather than part of the documentation. The same <a href="/open">honesty pledge</a>
-      that governs the published record governs every response here.</p>
+    <h1>Validate your backtest.<br />Keep the receipt.</h1>
+    <p class="dev-lead">Bring your own returns. Check selection bias, backtest overfitting,
+      portfolio breadth, and paper evidence with the tools we use in our own research.
+      Get a reproducible receipt, with the inputs, calculation, and limitations together.</p>
+    <p class="dev-hero-note">Free key. No signup or email. Python, JavaScript, and curl examples.
+      Public record snapshots are also available without a key.</p>
     <div class="dev-downloads">
-      <a class="dev-button dev-button--primary" href="/api/v1">Discovery document</a>
+      <a class="dev-button dev-button--primary" href="#quickstart">Get a free API key ↘</a>
+      <a class="dev-button" href="#validation">Explore the validators</a>
+      <a class="dev-button" href="/api/v1">Discovery document</a>
       <a class="dev-button" href="/api/v1/openapi">OpenAPI document</a>
       <a class="dev-button" href="/standards/paper-evidence">The record standard</a>
-      <a class="dev-button" href="/tools">Run the same arithmetic in a browser calculator</a>
     </div>
+    <p class="dev-hero-note">Prefer a browser? <a href="/tools">Try the free calculators.</a>
+      Every response includes its scope and limits under our <a href="/open">honesty pledge</a>.</p>
   </section>
 
+  <nav class="dev-page-index" aria-label="Developer guide sections"><a href="#quickstart">Get started</a><a href="#validation">Validators</a><a href="#quotas">Quotas</a><a href="#not-established">Result boundaries</a><a href="#ai-assistant">AI assistants</a></nav>
   <section class="dev-section dev-quickstart" id="quickstart">
     <h2>Quickstart</h2>
     <p class="dev-note">Three steps, in the order you need them. Every block below is copy-ready,
@@ -477,21 +500,22 @@ ${renderProductShellHeader({ active: "developers" })}
         <h3>3. Fetch the receipt</h3>
         <p class="dev-note">Every verdict carries <code>receipt.url</code>. It is immutable and
           cacheable forever, so anyone, not only the caller, can fetch and recompute it.</p>
-        <pre class="dev-code"><code>curl https://canlicapital.com/api/v1/receipts/{id}</code></pre>
+        <pre class="dev-code" tabindex="0" aria-label="Fetch a receipt with curl"><code>curl https://canlicapital.com/api/v1/receipts/{id}</code></pre>
         <p class="dev-note">Its response carries <code>badge_url</code> and <code>embed_markdown</code>:
           a badge showing only the formula version and the receipt id prefix, never a pass or fail
           mark. Drop the embed straight into a README:</p>
-        <pre class="dev-code"><code>[![Canli receipt](https://canlicapital.com/api/v1/receipts/{id}/badge.svg)](https://canlicapital.com/api/v1/receipts/{id})</code></pre>
+        <pre class="dev-code" tabindex="0" aria-label="Receipt badge Markdown"><code>[![Canli receipt](https://canlicapital.com/api/v1/receipts/{id}/badge.svg)](https://canlicapital.com/api/v1/receipts/{id})</code></pre>
       </li>
     </ol>
   </section>
   <script>${QUICKSTART_SCRIPT}</script>
+  <script type="module" src="/js/developer-workbench.js"></script>
 
   ${mcpAssistantSection()}
 
   <section class="dev-section">
     <h2>Read endpoints, no key</h2>
-    <table class="dev-table">
+    <table class="dev-table" tabindex="0" aria-label="Public read endpoints">
       <thead><tr><th>Path</th><th>What it returns</th></tr></thead>
       <tbody>
         ${summaries.map((e) => `<tr><td><a href="${esc(e.path)}"><code>GET ${esc(e.path)}</code></a></td><td>${esc(e.summary)}</td></tr>`).join("\n        ")}
@@ -503,7 +527,7 @@ ${renderProductShellHeader({ active: "developers" })}
     <h2>Validation endpoints, free key</h2>
     <p class="dev-note">Send your own numbers; get back the arithmetic this house runs on itself.
       Nothing you send is stored. Each verdict returns a receipt anyone can recompute.</p>
-    <table class="dev-table">
+    <table class="dev-table" tabindex="0" aria-label="Validation endpoints">
       <thead><tr><th>Route</th><th>What it does</th></tr></thead>
       <tbody>
         ${MANIFEST.map((m) => {
@@ -530,7 +554,7 @@ ${renderProductShellHeader({ active: "developers" })}
 
   <section class="dev-section" id="quotas">
     <h2>Quotas, public and enforced from one source</h2>
-    <table class="dev-table">
+    <table class="dev-table" tabindex="0" aria-label="API quotas">
       <thead><tr><th>Limit</th><th>Value</th></tr></thead>
       <tbody>
         <tr><td>Validations per key per UTC day</td><td>${LIMITS.validations_per_key_per_day}</td></tr>

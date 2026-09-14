@@ -1,0 +1,98 @@
+/* Phase 7: publication reading surfaces, never original publication artifacts. */
+html[data-reader] {scroll-padding-top:100px;}
+html[data-reader] body.paper {background:#f4f4f4;color:#111;--ink:#111;--paper-tone:#343b46;--muted:#58616b;--faint:#58616b;--signal-blue:#0016cb;--body:'Inter',sans-serif;--display:'Chakra Petch',sans-serif;}
+html[data-reader] .paper__main {display:grid;grid-template-columns:230px minmax(0,1fr);gap:48px;max-width:1440px;margin:auto;padding:56px 4vw 80px;align-items:start;}
+html[data-reader] .paper__article {width:100%;max-width:none;min-width:0;margin:0;padding:0;border:0;box-shadow:none;background:transparent;overflow:visible;}
+html[data-reader] .paper__title {font:500 clamp(2.3rem,4vw,4.5rem)/1.12 'Chakra Petch',sans-serif;letter-spacing:-.035em;max-width:25ch;overflow-wrap:anywhere;}
+html[data-reader] .paper__body {font:400 17px/1.8 'Inter',sans-serif;}
+html[data-reader] .paper__body :is(h2,h3,h4) {font-family:'Chakra Petch',sans-serif;letter-spacing:-.02em;}
+html[data-reader] .paper__body h2 {font-size:clamp(1.6rem,2.4vw,2.35rem);line-height:1.25;margin-top:56px;}
+html[data-reader] .paper__body :is(p,li) {max-width:80ch;}
+html[data-reader] :is(pre,code,dd,td) {overflow-wrap:anywhere;}
+html[data-reader] pre {max-width:100%;overflow:auto;background:#fff;border-color:#c3c8d2;}
+html[data-reader] pre,html[data-reader] pre code {color:#343b46;}
+html[data-reader="founder"] code,html[data-reader="notes"] th code {color:#343b46;}
+html[data-reader="publication"] .publication-abstract__note,
+html[data-reader="publication"] .publication-abstract__note a {color:#58616b;opacity:1;}
+html[data-reader="publication"] .publication-author a {text-decoration:underline;text-underline-offset:4px;}
+html[data-reader] .reader-definition-note {margin:0;font:inherit;}
+html[data-reader] :is(pre,table):focus-visible {outline:2px solid #5972ff;outline-offset:4px;}
+html[data-reader] .paper__body table {max-width:100%;}
+html[data-reader] .paper__body blockquote {background:#fff;border-left:3px solid #0016cb;padding:20px 24px;}
+html[data-reader] [id] {scroll-margin-top:110px;}
+html[data-reader] main :is(a,button,summary):focus-visible {outline:2px solid #5972ff;outline-offset:4px;}
+.reader-index {position:sticky;top:110px;color:#111;font:13px/1.6 'Inter',sans-serif;border-top:3px solid #0016cb;padding-top:20px;min-width:0;}
+.reader-index a {display:block;color:#58616b;text-decoration:none;padding:7px 0;overflow-wrap:anywhere;}
+.reader-index a:hover,.reader-index a[aria-current] {color:#0016cb;text-decoration:underline;text-underline-offset:4px;}
+.reader-index .reader-index__back {color:#0016cb;font-weight:500;}
+.reader-index details {border-block:1px solid #c3c8d2;margin:20px 0;padding:16px 0;}
+.reader-index summary {cursor:pointer;font-weight:600;color:#111;}
+.reader-index nav {max-height:55vh;overflow:auto;padding-right:12px;margin-top:16px;}
+.reader-index__verify {font-size:12px;}
+/* Trial packets keep their distribution and declared completeness up front. */
+html[data-reader="trials"] .trial-hero {background:#f4f4f4;color:#111;padding:48px 4vw;border-bottom:1px solid #c3c8d2;}
+html[data-reader="trials"] .trial-hero__title {font:500 clamp(2.3rem,4.4vw,4.8rem)/1.1 'Chakra Petch',sans-serif;max-width:25ch;color:#111;}
+html[data-reader="trials"] .trial-hero__measure {background:#fff;}
+html[data-reader="trials"] .trial-hero :is(p,span,small,code,strong,a) {color:#343b46;}
+html[data-reader="trials"] .trial-hero__eyebrow a {color:#0016cb;}
+html[data-reader="trials"] .trial-hero__state {color:#704300;background:#fff0d5;border-color:#a56b11;}
+html[data-reader="trials"] .trial-hero__state--complete {color:#064e3b;background:#d8f7e8;border-color:#187c5d;}
+html[data-reader="trials"] .trial-dist__axis span {opacity:1;}
+html[data-reader="trials"] .trial-hero__figure {padding:24px;}
+html[data-reader="trials"] .trial-dist__ticks {stroke:#58616b;}
+html[data-reader="trials"] .trial-dist__ticks line {stroke:#87909e;}
+html[data-reader="trials"] .trial-dist__zero {stroke:#58616b;}
+html[data-reader="trials"] .trial-dist__median {stroke:#0016cb;}
+html[data-reader="trials"] .trial-dist__here {stroke:#a94700;}
+html[data-reader="trials"] .trial-dist__dot {fill:#a94700;}
+html[data-reader="trials"] .trial-dist__swatch--here {background:#a94700;}
+html[data-reader="trials"] .trial-dist__swatch--median {background:#0016cb;}
+html[data-reader="trials"] .trial-dist__swatch--zero {background:#58616b;}
+html[data-reader="trials"] .trial-dist__plot {background:#fff;}
+html[data-reader="trials"] .trial-dist strong {color:#111;}
+/* Top-level operating pages keep their purpose-built exhibits. */
+html[data-reader] main:not(.paper__main)>.reader-index {position:static;margin:24px 4vw;padding:16px 0;display:flex;align-items:start;gap:32px;flex-wrap:wrap;background:#f4f4f4;}
+html[data-reader] main:not(.paper__main)>.reader-index details {margin:0;padding:0;border:0;flex:1;min-width:230px;}
+html[data-reader] main:not(.paper__main)>.reader-index nav {max-height:220px;}
+html[data-reader] :is(.eng-hero,.founder-hero,.dev-hero) {padding-block:56px;min-height:0;}
+html[data-reader] :is(.eng-hero,.founder-hero,.dev-hero) h1 {font:500 clamp(2.7rem,4.8vw,5rem)/1.1 'Chakra Petch',sans-serif;max-width:24ch;}
+html[data-reader] :is(.eng-section,.founder-section,.dev-section) {padding-block:60px;}
+html[data-reader="publication"] .publication-hero {padding:56px 4vw;min-height:0;}
+html[data-reader="publication"] .publication-hero h1 {font:500 clamp(2.4rem,4.5vw,4.5rem)/1.12 'Chakra Petch',sans-serif;max-width:30ch;}
+html[data-reader="notes"] .note {max-width:960px;margin:auto;padding:48px 4vw;}
+html[data-reader="notes"] .note-body {font:400 17px/1.8 'Inter',sans-serif;}
+html[data-reader="notes"] .note-body :is(h2,h3) {font-family:'Chakra Petch',sans-serif;line-height:1.25;}
+@media(max-width:1000px){
+ html[data-reader] .paper__main {grid-template-columns:minmax(0,1fr);gap:32px;padding:28px 24px 56px;}
+ .reader-index {position:static;}
+ .reader-index nav {max-height:240px;}
+ .reader-index details {margin:12px 0;padding:12px 0;}
+ html[data-reader] .paper__title {font-size:clamp(2rem,6vw,3.5rem);}
+ html[data-reader] .paper__body {font-size:16px;line-height:1.75;}
+ html[data-reader] .trial-hero {padding-inline:24px;}
+}
+@media print {html[data-reader] .paper__main {display:block;padding:0;} .reader-index {display:none;}}
+/* These introductions lead to the evidence, not a second promotional screen. */
+html[data-reader="open"] .open-hero,
+html[data-reader="progress"] .hero {min-height:0;padding:48px 4vw;background:#f4f4f4;color:#111;--paper:#111;--paper-dim:#343b46;--grey-700:#58616b;--signal:#0016cb;}
+html[data-reader="open"] .open-hero::after,
+html[data-reader="progress"] .hero::after,
+html[data-reader] :is(.open-hero__ghost,.hero__ghost) {display:none;}
+html[data-reader="open"] .hero__body,
+html[data-reader="progress"] .hero__body {display:flex;flex-direction:column;align-items:flex-start;gap:24px;}
+html[data-reader="open"] .hero__word,
+html[data-reader="progress"] .hero__word {font:500 clamp(3rem,5vw,5rem)/1.08 'Chakra Petch',sans-serif;max-width:22ch;margin:0;}
+html[data-reader="open"] :is(.open-hero__lede,.hero__sub),
+html[data-reader="progress"] .hero__sub {position:static;align-self:flex-start;max-width:76ch;width:auto;margin:0;font:400 18px/1.7 'Inter',sans-serif;letter-spacing:normal;color:#343b46;}
+html[data-reader="open"] .open-hero__lede::before {display:none;}
+html[data-reader="open"] body .open-hero .hero__body .hero__sub,
+html[data-reader="progress"] body .hero .hero__body .hero__sub {align-self:flex-start;}
+html[data-reader="open"] .hero__status,
+html[data-reader="progress"] .hero__status {position:static;margin:0 0 28px;background:#fff;color:#343b46;width:fit-content;}
+html[data-reader="open"] .hero__scroll,
+html[data-reader="progress"] .hero__scroll {position:static;margin-top:24px;display:inline-flex;color:#0016cb;}
+@media(max-width:760px){
+ html[data-reader="measurements"] .measure__row {grid-template-columns:1fr;gap:8px;padding-block:16px;}
+ html[data-reader="open"] .open-hero,html[data-reader="progress"] .hero {padding:36px 24px;}
+ html[data-reader] main:not(.paper__main)>.reader-index {padding:16px;gap:16px;}
+}

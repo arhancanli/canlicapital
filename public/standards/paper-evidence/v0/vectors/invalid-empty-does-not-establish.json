@@ -1,6 +1,6 @@
 {
   "schema": "canli.paper-evidence.v0",
-  "generated_at": "2026-09-06T09:50:25Z",
+  "generated_at": "2026-09-10T14:00:12Z",
   "capital": {
     "kind": "PAPER",
     "execution": "MIXED",
@@ -20,14 +20,14 @@
   },
   "period": {
     "first_observation": "2026-08-07",
-    "last_observation": "2026-09-05",
-    "observation_count": 27,
+    "last_observation": "2026-09-08",
+    "observation_count": 30,
     "frequency": "DAILY",
     "calendar": "UTC daily marks; sleeves trade on their own venue calendars"
   },
   "returns": {
     "basis": "NET_OF_MODELLED_COSTS",
-    "cumulative": -0.025361100000000025,
+    "cumulative": -0.02781009999999995,
     "annualised": null,
     "sharpe_annualised": null,
     "sharpe_reportable": false,
@@ -73,7 +73,7 @@
   "risk": {
     "max_drawdown_realised": -0.045,
     "drawdown_basis": "OBSERVED",
-    "max_drawdown_model_expected": 0.09318244707449024,
+    "max_drawdown_model_expected": 0.09318244729779511,
     "exposure_notes": "The realised figure is descriptive of a short sample. The model estimate is not established by live evidence."
   },
   "corrections": {
@@ -85,17 +85,17 @@
     "source_bindings": [
       {
         "path": "public/paper-state.json",
-        "sha256": "44856762908fdc961fed817d95e753c96b05d58fd245b68e3b085e5ca15bd224",
+        "sha256": "8a5c086884f16b1e8e26a11b9b5bcedc75fe51f7fa8f5356b3ee6ece7d6c89f2",
         "url": "https://canlicapital.com/paper-state.json"
       },
       {
         "path": "public/contracts/public-claims.json",
-        "sha256": "938aadc418aea2e7aa54158770e640126e844d0e1e46f0002df8a25f7c2cfe0e",
+        "sha256": "2c4473abadae5f89d721ce170d4f1e96996bb15876fb6b56f971d2c803479bcc",
         "url": "https://canlicapital.com/contracts/public-claims.json"
       },
       {
         "path": "public/glassbox/alpaca_broker_reconciliation.json",
-        "sha256": "e6ff727d772b8ffba32e18b2893e8f2bb88f704c48d0e6b98dabce242dcf0389",
+        "sha256": "70d554618f8f417a405c58354e33db45e6f7926c65ca8a4219046c51e6417e2b",
         "url": "https://canlicapital.com/glassbox/alpaca_broker_reconciliation.json"
       }
     ],
@@ -106,7 +106,7 @@
   },
   "claim_maturity": {
     "establishes": [
-      "A 27-observation paper record with broker reconciliation on 3 sleeves.",
+      "A 30-observation paper record with broker reconciliation on 3 sleeves.",
       "That every published figure traces to a hash-bound artifact."
     ],
     "does_not_establish": [],

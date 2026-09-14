@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html data-reader="research" lang="en">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -38,51 +38,46 @@
 <link rel="stylesheet" href="/css/product-shell.css" />
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"ScholarlyArticle","headline":"Crypto momentum: complete trial lineage and failed sleeve-admission evidence","description":"AlphaForge tested cross-sectional and time-series momentum in perpetual-futures prices.","url":"https://canlicapital.com/research/crypto-momentum-lineage","inLanguage":"en","isAccessibleForFree":true,"datePublished":"2026","author":{"@type":"Person","@id":"https://canlicapital.com/#arhan-canli","name":"Arhan Canli","jobTitle":"Founder and Quantitative Researcher","url":"https://canlicapital.com/founder","sameAs":["https://github.com/arhancanli"],"affiliation":{"@type":"Organization","@id":"https://canlicapital.com/#organization","name":"Canli Capital","url":"https://canlicapital.com/"}},"publisher":{"@type":"Organization","@id":"https://canlicapital.com/#organization","name":"Canli Capital","url":"https://canlicapital.com/","logo":{"@type":"ImageObject","url":"https://canlicapital.com/brand-mark.svg"}},"isPartOf":{"@type":"Periodical","name":"Canli Capital Research","url":"https://canlicapital.com/research"},"encodingFormat":"text/html","associatedMedia":{"@type":"MediaObject","contentUrl":"https://canlicapital.com/research/crypto-momentum-lineage.md","encodingFormat":"text/markdown"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Canli Capital","item":"https://canlicapital.com"},{"@type":"ListItem","position":2,"name":"Research","item":"https://canlicapital.com/research"},{"@type":"ListItem","position":3,"name":"AlphaForge crypto momentum: complete trial lineage","item":"https://canlicapital.com/research/crypto-momentum-lineage"}]}</script>
-</head>
+
+<link rel="stylesheet" href="/css/reader-experience.css" />
+<!-- release-style:start --><link rel="stylesheet" href="/css/release-readiness.css" /><!-- release-style:end --></head>
 <body class="paper">
 <a class="paper__skip" href="#content">Skip to content</a>
-<header class="cc-shell" id="nav" data-product-shell="v3">
+<header class="cc-shell" id="nav" data-product-shell="v3" data-shell-revision="4">
   <a class="cc-shell__brand" href="/" aria-label="Canli Capital, home">
     <span class="cc-shell__mark" aria-hidden="true"><i></i></span>
     <span>Canli Capital</span>
   </a>
-  <a class="cc-shell__status" href="/measurements/alpaca-broker-reconciliation" aria-label="Current record status">
-    <span class="status-dot" aria-hidden="true"></span>
-    <span>Public paper record</span>
-  </a>
   <nav class="cc-shell__primary" aria-label="Primary navigation">
-<a class="cc-shell__link" href="https://app.canlicapital.com/dashboard" rel="noreferrer">Live</a>
-<a class="cc-shell__link" href="/research" aria-current="page" data-current="true">Research</a>
-<a class="cc-shell__link" href="/trials">Trials</a>
 <a class="cc-shell__link" href="/systems">Systems</a>
-<a class="cc-shell__link" href="/methodology">Methodology</a>
+<a class="cc-shell__link" href="/research" data-current="true">Research</a>
 <a class="cc-shell__link" href="/developers">Developers</a>
 <a class="cc-shell__link" href="/verify">Verify</a>
   </nav>
   <details class="cc-shell__index">
-    <summary><span class="cc-shell__index-wide">More</span><span class="cc-shell__index-compact">Menu</span></summary>
+    <summary><span class="cc-shell__index-wide">Explore</span><span class="cc-shell__index-compact">Menu</span></summary>
     <div class="cc-shell__panel">
       <div>
-        <span class="cc-shell__panel-label">Core</span>
+        <span class="cc-shell__panel-label">Research &amp; strategies</span>
         <nav aria-label="Core routes"><a class="cc-shell__panel-link" href="https://app.canlicapital.com/dashboard" rel="noreferrer">Live</a>
-<a class="cc-shell__panel-link" href="/research" aria-current="page" data-current="true">Research</a>
+<a class="cc-shell__panel-link" href="/research" data-current="true">Research</a>
 <a class="cc-shell__panel-link" href="/trials">Trials</a>
 <a class="cc-shell__panel-link" href="/systems">Systems</a>
 <a class="cc-shell__panel-link" href="/methodology">Methodology</a>
-<a class="cc-shell__panel-link" href="/developers">Developers</a>
-<a class="cc-shell__panel-link" href="/verify">Verify</a></nav>
+<a class="cc-shell__panel-link" href="/performance">Performance</a></nav>
       </div>
       <div>
-        <span class="cc-shell__panel-label">Institution</span>
-        <nav aria-label="Institution routes"><a class="cc-shell__panel-link" href="/progress">Corrections</a>
-<a class="cc-shell__panel-link" href="/performance">Performance</a>
+        <span class="cc-shell__panel-label">Evidence &amp; accountability</span>
+        <nav aria-label="Institution routes"><a class="cc-shell__panel-link" href="/verify">Verify</a>
+<a class="cc-shell__panel-link" href="/progress">Corrections</a>
 <a class="cc-shell__panel-link" href="/founder">Founder</a>
 <a class="cc-shell__panel-link" href="/open">Open data</a>
 <a class="cc-shell__panel-link" href="/measurements">Measurements</a></nav>
       </div>
       <div>
-        <span class="cc-shell__panel-label">Tools</span>
-        <nav aria-label="Tools"><a class="cc-shell__panel-link" href="/tools">All tools</a>
+        <span class="cc-shell__panel-label">Build &amp; reproduce</span>
+        <nav aria-label="Tools"><a class="cc-shell__panel-link" href="/developers">Developers</a>
+<a class="cc-shell__panel-link" href="/tools">All tools</a>
 <a class="cc-shell__panel-link" href="/how-to-validate-a-backtest">How to validate a backtest</a></nav>
       </div>
       <div>
@@ -94,19 +89,23 @@
 <a class="cc-shell__panel-link" href="https://github.com/arhancanli/canli-pit-lake" rel="noreferrer">canli-pit-lake</a>
 <a class="cc-shell__panel-link" href="https://github.com/arhancanli/canli-backtest" rel="noreferrer">canli-backtest</a></nav>
       </div>
-      <p>Observed, simulated, model-estimated and planned claims remain visibly separate.</p>
+      <div class="cc-shell__panel-foot">
+        <a class="cc-shell__status" href="/measurements/alpaca-broker-reconciliation" aria-label="Current record status"><span class="status-dot" aria-hidden="true"></span><span>Public paper record</span></a>
+        <p>Observed, simulated, model-estimated and planned claims remain visibly separate.</p>
+      </div>
     </div>
   </details>
   <a class="cc-shell__source" href="/engineering" title="Open-source engineering: the engine, the data layer and the backtester"><svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true" focusable="false"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg><span>Source</span></a>
-  <a class="cc-shell__cta" href="https://app.canlicapital.com/dashboard">Enter live record <span aria-hidden="true">↗</span></a>
+  <a class="cc-shell__cta" href="https://app.canlicapital.com/dashboard">Live record <span aria-hidden="true">↗</span></a>
+  <script type="module" src="/js/navigation.js"></script>
 </header>
-<main class="paper__main" id="content">
+<main class="paper__main" id="content"><!-- reader-index:start --><aside class="reader-index"><a class="reader-index__back" href="/research">Explore research</a><details><summary>In this document</summary><nav aria-label="Document sections"><a href="#reader-section-1">Abstract</a><a href="#reader-section-2">Claim boundary</a><a href="#reader-section-3">Economic hypotheses</a><a href="#reader-section-4">Exact ALPHAC implementation</a><a href="#reader-section-5">Complete trial lineage</a><a href="#reader-section-6">Results</a><a href="#reader-section-7">Diversification diagnostic: low correlation is insufficient</a><a href="#reader-section-8">Capacity and execution boundary</a><a href="#reader-section-9">Overlap and sleeve decision</a><a href="#reader-section-10">Reproduction map</a><a href="#reader-section-11">Packet completeness</a><a href="#reader-section-12">Decision</a></nav></details><a class="reader-index__verify" href="/verify">How to verify a claim ↗</a></aside><!-- reader-index:end -->
   <article class="paper__article">
     <p class="paper__eyebrow"><a href="/research">Research</a></p>
     <h1 class="paper__title">Crypto momentum: complete trial lineage and failed sleeve-admission evidence</h1>
     <p class="paper__byline">By <span rel="author">Arhan Canli</span>, Canli Capital</p>
     <div class="paper__body">
-<div class="research-masthead"><dl class="research-masthead__facts"><div><dt>Author</dt><dd>Arhan Canli, Founder, System Architect, and Quantitative Researcher, Canli Capital</dd></div><div><dt>Research system</dt><dd>ALPHAC / AlphaForge</dd></div><div><dt>Family key</dt><dd><code>crypto_momentum</code></dd></div><div><dt>Status</dt><dd>public research record; not peer reviewed; not an investment solicitation</dd></div><div><dt>Evidence date</dt><dd>2026-08-22</dd></div></dl></div><h2>Abstract</h2>
+<div class="research-masthead"><dl class="research-masthead__facts"><div><dt>Author</dt><dd>Arhan Canli, Founder, System Architect, and Quantitative Researcher, Canli Capital</dd></div><div><dt>Research system</dt><dd>ALPHAC / AlphaForge</dd></div><div><dt>Family key</dt><dd><code>crypto_momentum</code></dd></div><div><dt>Status</dt><dd>public research record; not peer reviewed; not an investment solicitation</dd></div><div><dt>Evidence date</dt><dd>2026-08-22</dd></div></dl></div><h2 id="reader-section-1" data-reader-anchor="true">Abstract</h2>
 <p>AlphaForge tested cross-sectional and time-series momentum in perpetual-futures prices. This paper
 reconciles all 18 charged crypto-momentum hypothesis identities recorded from 2026-06-20 through
 2026-06-25. The best persisted result, a 21-day time-series momentum signal rebalanced weekly, had
@@ -120,7 +119,7 @@ but the combined Sharpe was only 0.0556 and even the reported decorrelated ceili
 Diversification without standalone edge does not earn a sleeve slot. No persisted momentum
 capacity sweep exists. This family is research-only: it is not validated, admitted, live, or part
 of an Alpaca paper account.</p>
-<h2>Claim boundary</h2>
+<h2 id="reader-section-2" data-reader-anchor="true">Claim boundary</h2>
 <p>This paper establishes only that:</p>
 <ol>
 <li>the economic hypotheses and implemented formulas can be stated precisely;</li>
@@ -133,7 +132,7 @@ of an Alpaca paper account.</p>
 alpha source, future return, live execution record, or investable product. Artifact-era DSR values
 use the selection context stored when each run was produced; this paper does not mislabel them as
 restatements against the current 228-identity union.</p>
-<h2>Economic hypotheses</h2>
+<h2 id="reader-section-3" data-reader-anchor="true">Economic hypotheses</h2>
 <p>The cross-sectional hypothesis is that assets with stronger recent returns than peers continue to
 outperform those with weaker returns over the next holding interval. The time-series hypothesis is
 that an asset&#39;s own normalized trailing return predicts the sign and relative strength of its next
@@ -157,18 +156,18 @@ that signal frequency matters (<a href="https://doi.org/10.1002/fut.22425">Journ
 </ul>
 <p>These studies do not validate AlphaForge&#39;s universe history, feature timestamps, transaction-cost
 model, trial search, or implementation.</p>
-<h2>Exact ALPHAC implementation</h2>
+<h2 id="reader-section-4" data-reader-anchor="true">Exact ALPHAC implementation</h2>
 <p>Let <code>C(i,t)</code> be the point-in-time close for instrument <code>i</code> at hourly decision bar <code>t</code>. Missing
 history remains missing rather than being backfilled from the future.</p>
 <p>For long horizon <code>L</code> and short skip <code>S</code>, cross-sectional momentum is:</p>
-<pre><code class="language-text">mom_xs_L_S(i,t) = ln(C(i,t-S) / C(i,t-L))
+<pre tabindex="0" data-reader-focus="true"><code class="language-text">mom_xs_L_S(i,t) = ln(C(i,t-S) / C(i,t-L))
 </code></pre>
 <p>The charged variants use <code>L=168</code> with <code>S=24</code>; <code>L=504</code> with <code>S=48</code>; and <code>L=2160</code> with <code>S=168</code>.
 They correspond approximately to seven-day/one-day-skip, 21-day/two-day-skip, and
 90-day/seven-day-skip signals on hourly bars.
 The values are ranked across the complete point-in-time universe at each decision.</p>
 <p>For horizon <code>L</code>, time-series momentum is:</p>
-<pre><code class="language-text">mom_ts_L(i,t) = ln(C(i,t) / C(i,t-L)) / (EWMA_vol_168(i,t) * sqrt(L))
+<pre tabindex="0" data-reader-focus="true"><code class="language-text">mom_ts_L(i,t) = ln(C(i,t) / C(i,t-L)) / (EWMA_vol_168(i,t) * sqrt(L))
 </code></pre>
 <p>The charged horizons are 168, 504, and 2160 hourly bars. The denominator scales trailing returns
 by a 168-hour exponentially weighted volatility estimate. Positive values imply long direction and
@@ -178,9 +177,9 @@ gap risk or make signals comparable when data quality differs across instruments
 legs, 6,048 training bars, 1,512 test bars, 72 purge bars, and 168 embargo bars. Charged variants
 change signal horizon, blend, allocator, rebalance cadence, or half-universe split. Such changes
 remain distinct hypotheses even when they share one economic mechanism.</p>
-<h2>Complete trial lineage</h2>
+<h2 id="reader-section-5" data-reader-anchor="true">Complete trial lineage</h2>
 <p>The public family packet binds 18 immutable identities to <code>crypto_momentum</code>:</p>
-<table>
+<table tabindex="0" data-reader-focus="true">
 <thead>
 <tr>
 <th>Machine-label group</th>
@@ -244,10 +243,10 @@ include durable artifact ledgers. This correction ran no experiment. The recover
 hypothesis key, immutable ledger source, source hash, compact configuration, persisted result, and
 artifact-era validation verdict. The global identity join remains available at
 <a href="/glassbox/trial_packet_manifest.json"><code>/glassbox/trial_packet_manifest.json</code></a>.</p>
-<h2>Results</h2>
+<h2 id="reader-section-6" data-reader-anchor="true">Results</h2>
 <h3>Best persisted specification</h3>
 <p>The strongest artifact is weekly <code>mom_ts_504</code> with rank allocation:</p>
-<table>
+<table tabindex="0" data-reader-focus="true">
 <thead>
 <tr>
 <th>Measure</th>
@@ -292,7 +291,7 @@ confirmatory result. It fails the governing DSR threshold and its drawdown excee
 11% expected-maximum-drawdown objective.</p>
 <h3>Worst persisted specification</h3>
 <p>Daily <code>mom_xs_168_24</code> is the clearest falsification:</p>
-<table>
+<table tabindex="0" data-reader-focus="true">
 <thead>
 <tr>
 <th>Measure</th>
@@ -332,7 +331,7 @@ confirmatory result. It fails the governing DSR threshold and its drawdown excee
 that the best setting has isolated a stable law. Across the complete family, annualized Sharpe
 ranges from -1.1690 to +0.4863 and maximum drawdown ranges from 15.15% to 50.64%. Zero of 18
 persisted validations clears its artifact-era DSR gate.</p>
-<h2>Diversification diagnostic: low correlation is insufficient</h2>
+<h2 id="reader-section-7" data-reader-anchor="true">Diversification diagnostic: low correlation is insufficient</h2>
 <p>The recovered <code>exp1</code> momentum blend measured annualized Sharpe 0.0780, maximum drawdown 20.94%,
 and artifact-era DSR 0.5607. Against its carry diagnostic, full-sample correlation was +0.0444;
 correlation was -0.5768 on the combined book&#39;s worst 2.5% of days and -0.6290 when either sleeve
@@ -341,7 +340,7 @@ was in its worst 2.5%. Those correlations appear attractive in isolation.</p>
 artifact&#39;s decorrelated Sharpe ceiling was only 0.1206. Negative stress correlation cannot rescue
 two weak expected-return processes. The test therefore supports a null: momentum does not earn a
 separate sleeve slot merely because it sometimes offsets carry.</p>
-<h2>Capacity and execution boundary</h2>
+<h2 id="reader-section-8" data-reader-anchor="true">Capacity and execution boundary</h2>
 <p>No persisted crypto-momentum capacity sweep changes capital while holding the momentum return
 hypothesis fixed. Capacity is therefore <strong>unmeasured</strong>, not zero and not positive. Turnover as high
 as 129.02x, fees, venue concentration, order-book depth, funding, and crowding make extrapolation
@@ -350,7 +349,7 @@ especially unsafe.</p>
 AlphaForge&#39;s incumbent paper experiment is funding carry; AlphaMax and AlphaTrend already express
 related price-trend mechanisms in equities and managed futures. Crypto momentum is not an Alpaca
 paper sleeve, not an AlphaVintage result, and not included in published live returns.</p>
-<h2>Overlap and sleeve decision</h2>
+<h2 id="reader-section-9" data-reader-anchor="true">Overlap and sleeve decision</h2>
 <p>Crypto momentum, AlphaMax equity momentum, and AlphaTrend managed-futures trend differ in market,
 formation horizon, and portfolio construction, but all monetize persistence in prices. They are
 not automatically three independent economic mechanisms. Under the research taxonomy, the 18
@@ -359,7 +358,7 @@ crypto variants form one family and at most one sleeve candidate.</p>
 crypto-only point-in-time universe, net positive standalone evidence after current union
 deflation, measured capacity, and contemporaneous return correlations against the actual live
 books, including stress windows. None is presently established.</p>
-<h2>Reproduction map</h2>
+<h2 id="reader-section-10" data-reader-anchor="true">Reproduction map</h2>
 <ul>
 <li><code>src/alphaforge/features/library/momentum.py</code>: signal formulas and point-in-time feature code.</li>
 <li><code>docs/design/alphaDesign.md</code>: original momentum specification and research contract.</li>
@@ -377,13 +376,13 @@ machine-readable packet.</li>
 <p>Reproduction requires the pinned project environment and underlying market-data lake. The public
 packet proves the claims made here and hashes their source artifacts; it does not imply that every
 venue or vendor dataset may be redistributed.</p>
-<h2>Packet completeness</h2>
+<h2 id="reader-section-11" data-reader-anchor="true">Packet completeness</h2>
 <p>This family paper verifies shared identity, authorship, mechanism, literature, family accounting,
 and stable-publication sections for 18 identities. It does not retroactively manufacture exact
 identity-level preregistrations, full return bundles, environment snapshots, or capacity studies.
 All 18 trial packets therefore remain incomplete until every required section is proved. A family
 paper is meaningful coverage, not a completed identity packet.</p>
-<h2>Decision</h2>
+<h2 id="reader-section-12" data-reader-anchor="true">Decision</h2>
 <p><strong>Research decision:</strong> reject sleeve admission. Preserve all 18 identities, including the severe
 negative result and the recovered mixed-universe diagnostic. Do not search additional momentum
 variants without a new mechanism and explicit family budget.</p>
@@ -410,7 +409,7 @@ result, failed deflation, 50.64% adverse drawdown, overlap, and non-admission eq
       </p>
       <details class="paper__citation">
         <summary>Cite this report</summary>
-        <pre><code>@techreport{canli2026cryptomomentumlineage,
+        <pre tabindex="0" data-reader-focus="true"><code>@techreport{canli2026cryptomomentumlineage,
   author      = {Canli, Arhan},
   title       = {Crypto momentum: complete trial lineage and failed sleeve-admission evidence},
   institution = {Canli Capital},
@@ -428,7 +427,27 @@ result, failed deflation, 50.64% adverse drawdown, overlap, and non-admission eq
     </footer>
   </article>
 </main>
-<footer class="cc-footer" id="footer" data-product-shell="v3">
+<footer class="cc-footer" id="footer" data-product-shell="v3" data-shell-revision="4">
+  <details class="cc-footer__context"><summary>About the research-to-record workflow</summary><section class="cc-handoff" aria-labelledby="cc-handoff-title">
+    <div class="cc-handoff__viewport">
+      <div class="cc-handoff__intro"><p>Research → Validation → Publication</p><h2 id="cc-handoff-title">From an idea.<br />To a record.</h2><p>Carry the inputs, assumptions and limits with the result. The evidence should survive every handoff.</p></div>
+      <div class="cc-handoff__stage" aria-hidden="true">
+        <svg class="cc-handoff__route" viewBox="0 0 1000 300" preserveAspectRatio="none"><path class="cc-handoff__track" d="M120 210C280 210 310 85 500 85S720 210 880 210"/><path class="cc-handoff__trace" pathLength="1" d="M120 210C280 210 310 85 500 85S720 210 880 210"/></svg>
+        <div class="cc-handoff__dock cc-handoff__dock--inputs"><i></i><i></i><i></i></div>
+        <div class="cc-handoff__gate"><i></i><i></i><i></i></div>
+        <div class="cc-handoff__dock cc-handoff__dock--record"><i></i><i></i><i></i></div>
+        <div class="cc-handoff__packet">
+          <img src="/cinema/optical-master-v3-1536.webp" width="1536" height="1536" loading="lazy" alt="" />
+        </div>
+      </div>
+      <div class="cc-handoff__steps">
+        <a href="/research" data-handoff-step="0"><span>Define</span><strong>The research packet</strong><small>Inputs, rules and the failed trials.</small><em>Inspect the research ↗</em></a>
+        <a href="/developers#validation" data-handoff-step="1"><span>Reproduce</span><strong>The calculation receipt</strong><small>Your inputs. Declared arithmetic.</small><em>Explore the validation API ↗</em></a>
+        <a href="/verify" data-handoff-step="2"><span>Inspect</span><strong>The published record</strong><small>Sources, corrections and boundaries.</small><em>Verify the evidence ↗</em></a>
+      </div>
+      <p class="cc-handoff__boundary">Conceptual workflow. This animation sends no request. A receipt is not proof of future returns.</p>
+    </div>
+  </section></details>
   <div class="cc-footer__lead">
     <a class="cc-footer__brand" href="/">Canli Capital</a>
     <p>Build the claim. Publish the evidence. Keep the failures.</p>
@@ -483,6 +502,9 @@ result, failed deflation, 50.64% adverse drawdown, overlap, and non-admission eq
     record begins 2026-08-07; the years before it are engineering, not track record.</p>
     <span>Copyright Arhan Canli</span>
   </div>
+  <div class="cc-footer__wordmark" aria-hidden="true">Canli Capital<span><svg viewBox="0 0 80 80" focusable="false" aria-hidden="true"><path d="M12 68 68 12M12 12h56v56" fill="none" stroke="currentColor" stroke-width="4" /></svg></span></div>
+  <script type="module" src="/js/site-motion.js"></script>
 </footer>
-</body>
+
+<script type="module" src="/js/reader-experience.js"></script></body>
 </html>

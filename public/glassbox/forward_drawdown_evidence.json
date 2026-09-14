@@ -2,7 +2,7 @@
   "author": "Arhan Canli",
   "capital_kind": "PAPER_ONLY",
   "claim_boundary": "The sealed study cell is a 96-path, two-year, fourteen-sleeve, daily simulation at a 10% book-level volatility target. It is not an estimate of today's four-sleeve, mixed-timebase, fixed-weight live paper composite, which applies no second book-level volatility target or drawdown ladder after constituent sizing. The 10.25% study expectation and 18.76% study p95 remain published. A separate zero-drift current-composition study maps the exact fixed weights and overlay at 9.32% conservative expected and 16.45% p95 maximum drawdown. That stronger model still does not establish live expected or tail maximum drawdown because its common history begins after COVID and 2022 and it does not replay constituent instrument, execution-gap or ladder state.",
-  "content_hash": "sha256:ae7c9e96e35afd241cf16e998220553f072e0db90af9e1e111272a9c7e9fc71c",
+  "content_hash": "sha256:d0ea9d6d1d2797447eaf202f4c6e9ff1af3926e2f227657cfb731dd7e9d954b8",
   "current_book_study": {
     "calibration": {
       "calendar_days": 1061,
@@ -15,13 +15,13 @@
       ],
       "end": "2026-06-01",
       "exact_component_reconstruction_max_abs_error": 0.0,
-      "observed_book_annualized_volatility": 0.05213553880476738,
-      "observed_book_max_drawdown": 0.04508709586830517,
-      "observed_book_sharpe_simulation_not_forward_evidence": 1.7846281669176056,
+      "observed_book_annualized_volatility": 0.05213553856763064,
+      "observed_book_max_drawdown": 0.045087084600001326,
+      "observed_book_sharpe_simulation_not_forward_evidence": 1.784628162403188,
       "sample_mean_removed_before_modeling": true,
       "start": "2023-07-07"
     },
-    "content_hash": "sha256:f89282b8754ad257a5bce3d603ab5b7e940abe67f0cb9f0dc8f6d57ba89b0e71",
+    "content_hash": "sha256:5a2f862bf205319243b250a0df8cd211d6e7c68eaf0d20fa8fca9235fba4e66b",
     "design": {
       "bootstrap_primary_block_days": 63,
       "bootstrap_seed": 20260823,
@@ -49,8 +49,8 @@
   },
   "integrity_passes": true,
   "objective": {
-    "current_composition_conservative_expected_max_drawdown": 0.09318244707449024,
-    "current_composition_conservative_p95_max_drawdown": 0.16451439272324467,
+    "current_composition_conservative_expected_max_drawdown": 0.09318244729779511,
+    "current_composition_conservative_p95_max_drawdown": 0.16451439325766742,
     "current_composition_expected_within_objective": true,
     "current_composition_p95_within_objective": false,
     "expected_max_drawdown_target": 0.11,
@@ -114,7 +114,7 @@
     },
     "current_book_drawdown_model": {
       "path": "artifacts/analysis/current_book_drawdown/result.json",
-      "sha256": "44d8fb315eeb21f033b4070c19d17faea9dd0e4e52a8b9b9036a7d7818313e3d"
+      "sha256": "1e94c58fcbce21998ad5216564fea1b3fc477185ce2ce07e14aa57815b2d17ab"
     },
     "drawdown_model": {
       "path": "artifacts/analysis/drawdown_live_estimator/result.json",

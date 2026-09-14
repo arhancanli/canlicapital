@@ -1,5 +1,9 @@
 import { curveStatistics } from "./curve-stats.js";
 import { formatCompactCurrency } from "./format.js";
+import { prepareFilmPoster } from "./film-poster.js";
+import { enhanceCommandCopy } from "./command-copy.js";
+
+enhanceCommandCopy();
 
 const byId = (id) => document.getElementById(id);
 
@@ -302,6 +306,11 @@ function hydrateTransparency(transparency) {
     ? "Latest signed state loaded"
     : `Signed ${dateTime.format(signedAt)}`;
   byId("core-signed-count").textContent = integer.format(Number(transparency.entry_count || 0));
+  const count = Number(transparency.entry_count);
+  if (Number.isSafeInteger(count) && count >= 0) {
+    byId("trust-chain").textContent = integer.format(count);
+    byId("trust-chain").title = `Published chain as of ${Number.isNaN(signedAt.valueOf()) ? head.generated_at : dateTime.format(signedAt)}`;
+  }
 }
 
 function hydrateCosts(costs) {
@@ -375,6 +384,7 @@ function prepareSystemFilmPlayback() {
   document.querySelectorAll("[data-film-card]").forEach((card) => {
     const video = card.querySelector("[data-film-video]");
     const toggle = card.querySelector("[data-film-toggle]");
+    prepareFilmPoster(card);
     if (!video || !toggle) return;
 
     let attached = false;
@@ -538,6 +548,7 @@ form?.addEventListener("submit", async (event) => {
   const email = byId("email");
   const status = byId("form-status");
   const button = form.querySelector("button[type='submit']");
+  if (button.disabled) return;
   status.dataset.error = "false";
   if (!email.validity.valid) {
     status.textContent = "Enter a valid email address.";
@@ -550,22 +561,30 @@ form?.addEventListener("submit", async (event) => {
   email.removeAttribute("aria-invalid");
   button.disabled = true;
   status.textContent = "Joining research updates…";
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 15000);
+  let failureMessage = "Could not save your email. Try again shortly.";
   try {
     const payload = Object.fromEntries(new FormData(form));
     const response = await fetch(form.action, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload),
+      signal: controller.signal,
     });
+    if (response.status === 429) failureMessage = "Too many requests. Wait a minute and try again.";
     const result = await response.json();
     if (!response.ok || !result.ok) throw new Error(result.error || "Could not save right now.");
     form.reset();
     email.removeAttribute("aria-invalid");
     status.textContent = "You're on the research update list. The public record stays open either way.";
   } catch (error) {
-    status.textContent = error.message || "Could not save right now. Try again shortly.";
+    status.textContent = error.name === "AbortError"
+      ? "The request timed out. Your subscription was not confirmed. Try again."
+      : failureMessage;
     status.dataset.error = "true";
   } finally {
+    clearTimeout(timeout);
     button.disabled = false;
   }
 });

@@ -187,6 +187,7 @@ function main() {
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" />
 ${renderProductShellStylesheet()}
 <link rel="stylesheet" href="/css/lab.css" />
+<link rel="stylesheet" href="/css/tool-experience.css" />
 <script type="application/ld+json">${JSON.stringify(jsonLd)}</script>
 </head>
 <body class="lab-page">
