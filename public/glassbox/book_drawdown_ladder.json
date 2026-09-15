@@ -1,0 +1,337 @@
+{
+  "activation": {
+    "activated_on": "2026-09-15",
+    "activation_procedure": [
+      "1. Owner decision recorded here as activation.decision (date, reason, who).",
+      "2. Set activation.live to true in this file; set BOOK_LEVEL_DRAWDOWN_LADDER in scripts/paper_trading_state.py to this ladder so the published aggregation policy stops declaring 'no book-level ladder' (tests/unit/test_live_change_is_declared.py pins that declaration).",
+      "3. Re-run scripts/export_live_config_fingerprint.py; write the change_log entry in config/live_change_contract.json with contaminates_forward_record true and the activation date; re-pin declared_fingerprint and forward_evidence_contract.required_live_config_fingerprint; re-pin scripts/analyze_current_book_drawdown.py.",
+      "4. rsync the checkout to Frankfurt so the crypto loop reads the contract with live true (source https, the public artifact); confirm cycle.book_ladder appears in its log with book_applied true.",
+      "5. Mark the forward record: returns before and after the activation date are separate evidence epochs and are not pooled."
+    ],
+    "decision": {
+      "by": "Arhan Canli (owner)",
+      "how": "scripts/activate_book_drawdown_brake.py",
+      "recorded_at": "2026-09-14T20:46:56.027679+00:00",
+      "words": "i give you full permision for the activiations so you can go ahead"
+    },
+    "live": true,
+    "one_switch": "This flag. Read at trade time by alphaforge.risk.book_ladder.BookLadderProvider (every sleeve) and hashed into the live-configuration fingerprint (scripts/export_live_config_fingerprint.py risk_path_settings.book_ladder_activation_live), so the public contract, the trading path and the live-change guard cannot disagree about whether the brake is on.",
+    "progress_2026_09_14": {
+      "consumers_wired_default_off": [
+        "scripts/live_cycle.py (equity sleeves): target weights multiplied by the reading; a multiplier of 0 becomes a flatten; one loud line per cycle; fail-open at 1.0 with the error printed",
+        "alphaforge.portfolio.strategy.BlendStrategy(book_multiplier=...) (crypto loop via paper_cmds._build_loop): applied after the sleeve ladder; halts every bar at 0; rescales every bar below 1; pre-multiplier book persisted per cycle (strategy_last_targets) and restored on boot so a de-gross acts on the next hold bar under --once"
+      ],
+      "fingerprint": "coverage extended 2026-09-14 (live_change_contract.json change_log entry 7); activation false is the declared state",
+      "health": "scripts/health_check.py C12-book-ladder: FAIL when the artifact or consumer file is missing or unbound, FAIL critical on FLAT_HALTED (owner rearm required), WARN at HALF_GROSS or when stale",
+      "producer": "scripts/book_drawdown_ladder.py replays the combined book's published daily marks (data/paper/state.json live_curve) through this ladder every publish; artifact artifacts/engineering/book_drawdown_ladder.json (published as /glassbox/book_drawdown_ladder.json on both hosts) and consumer file var/book_ladder/current.json, bound by content hash. State is derived from the whole marked history each run, never stored.",
+      "rearm_register": "config/book_ladder_rearms.json; a FLAT_HALTED book stays flat until a dated owner entry there, and the ladder restarts with the high-water mark reset to the first mark on or after that date"
+    },
+    "requires": [
+      "an owner decision recorded here as activation.decision, because a live-configuration fingerprint change starts a new forward-evidence epoch",
+      "a live_change_contract.json change_log entry and re-pinned fingerprint",
+      "each sleeve loop reading the book-level multiplier before sizing, with a restart-safe persisted ladder state (the crypto ladder's 2026-09-05 lesson)"
+    ],
+    "status_after_activation": "MECHANISM_LIVE_BOUND_ENFORCED_UP_TO_ONE_DAY_OVERSHOOT"
+  },
+  "as_of": "2026-09-15",
+  "author": "Arhan Canli",
+  "bindings": {
+    "contract": {
+      "path": "config/drawdown_control_contract.json",
+      "sha256": "sha256:b4700b1d6318d98767cef8344d868368ea3713778343d6f3181de3bab9c3a505",
+      "status": "MECHANISM_LIVE_BOUND_ENFORCED_UP_TO_ONE_DAY_OVERSHOOT"
+    },
+    "live_curve_source": {
+      "generated_at": "2026-09-15T14:26:38.169169+00:00",
+      "path": "data/paper/state.json",
+      "sha256": "sha256:ebb6b1225d7b3081c68c5bd1dafcaea279efc9b099dd34cc42c517ab0e09dabf"
+    },
+    "rearms_register": {
+      "entries": 0,
+      "path": "config/book_ladder_rearms.json"
+    }
+  },
+  "capital_kind": "PAPER_ONLY",
+  "claim_boundary": "The declared book-level drawdown ladder replayed over the combined book's published daily paper marks. It reports the multiplier the contract would have in force today. Whether any live cycle applies it is recorded in config/live_change_contract.json and config/drawdown_control_contract.json activation; a multiplier of 1.0 means the brake is not engaged, not that it is absent. A brake bounds each drawdown episode up to a one-day overshoot; it does not make losses impossible.",
+  "content_hash": "sha256:9658c37c570b1318ca3504f0e645476e265b68101b0882983d8fb3ffa311c004",
+  "daily": [
+    {
+      "date": "2026-08-08",
+      "drawdown": 0.0,
+      "high_water_mark": 100000.0,
+      "multiplier_applied_to_this_day": 1.0,
+      "state_after_close": "NORMAL"
+    },
+    {
+      "date": "2026-08-11",
+      "drawdown": 0.0,
+      "high_water_mark": 100021.62,
+      "multiplier_applied_to_this_day": 1.0,
+      "state_after_close": "NORMAL"
+    },
+    {
+      "date": "2026-08-12",
+      "drawdown": 0.0010284776431335185,
+      "high_water_mark": 100021.62,
+      "multiplier_applied_to_this_day": 1.0,
+      "state_after_close": "NORMAL"
+    },
+    {
+      "date": "2026-08-13",
+      "drawdown": 0.0,
+      "high_water_mark": 100103.25,
+      "multiplier_applied_to_this_day": 1.0,
+      "state_after_close": "NORMAL"
+    },
+    {
+      "date": "2026-08-14",
+      "drawdown": 0.0017116327391967223,
+      "high_water_mark": 100103.25,
+      "multiplier_applied_to_this_day": 1.0,
+      "state_after_close": "NORMAL"
+    },
+    {
+      "date": "2026-08-15",
+      "drawdown": 0.0013825724938999473,
+      "high_water_mark": 100103.25,
+      "multiplier_applied_to_this_day": 1.0,
+      "state_after_close": "NORMAL"
+    },
+    {
+      "date": "2026-08-16",
+      "drawdown": 0.00126589296551316,
+      "high_water_mark": 100103.25,
+      "multiplier_applied_to_this_day": 1.0,
+      "state_after_close": "NORMAL"
+    },
+    {
+      "date": "2026-08-17",
+      "drawdown": 0.0017820600230261663,
+      "high_water_mark": 100103.25,
+      "multiplier_applied_to_this_day": 1.0,
+      "state_after_close": "NORMAL"
+    },
+    {
+      "date": "2026-08-18",
+      "drawdown": 0.0,
+      "high_water_mark": 100108.02,
+      "multiplier_applied_to_this_day": 1.0,
+      "state_after_close": "NORMAL"
+    },
+    {
+      "date": "2026-08-19",
+      "drawdown": 0.009422222115670675,
+      "high_water_mark": 100108.02,
+      "multiplier_applied_to_this_day": 1.0,
+      "state_after_close": "NORMAL"
+    },
+    {
+      "date": "2026-08-20",
+      "drawdown": 0.010889237445711242,
+      "high_water_mark": 100108.02,
+      "multiplier_applied_to_this_day": 1.0,
+      "state_after_close": "NORMAL"
+    },
+    {
+      "date": "2026-08-21",
+      "drawdown": 0.013237101283193886,
+      "high_water_mark": 100108.02,
+      "multiplier_applied_to_this_day": 1.0,
+      "state_after_close": "NORMAL"
+    },
+    {
+      "date": "2026-08-22",
+      "drawdown": 0.0161042042385815,
+      "high_water_mark": 100108.02,
+      "multiplier_applied_to_this_day": 1.0,
+      "state_after_close": "NORMAL"
+    },
+    {
+      "date": "2026-08-23",
+      "drawdown": 0.018051900337255677,
+      "high_water_mark": 100108.02,
+      "multiplier_applied_to_this_day": 1.0,
+      "state_after_close": "NORMAL"
+    },
+    {
+      "date": "2026-08-24",
+      "drawdown": 0.019262192979144,
+      "high_water_mark": 100108.02,
+      "multiplier_applied_to_this_day": 1.0,
+      "state_after_close": "NORMAL"
+    },
+    {
+      "date": "2026-08-25",
+      "drawdown": 0.024572356940033346,
+      "high_water_mark": 100108.02,
+      "multiplier_applied_to_this_day": 1.0,
+      "state_after_close": "NORMAL"
+    },
+    {
+      "date": "2026-08-26",
+      "drawdown": 0.025978637875367028,
+      "high_water_mark": 100108.02,
+      "multiplier_applied_to_this_day": 1.0,
+      "state_after_close": "NORMAL"
+    },
+    {
+      "date": "2026-08-27",
+      "drawdown": 0.024921879385887413,
+      "high_water_mark": 100108.02,
+      "multiplier_applied_to_this_day": 1.0,
+      "state_after_close": "NORMAL"
+    },
+    {
+      "date": "2026-08-28",
+      "drawdown": 0.02464377978907195,
+      "high_water_mark": 100108.02,
+      "multiplier_applied_to_this_day": 1.0,
+      "state_after_close": "NORMAL"
+    },
+    {
+      "date": "2026-08-29",
+      "drawdown": 0.029810498699305077,
+      "high_water_mark": 100108.02,
+      "multiplier_applied_to_this_day": 1.0,
+      "state_after_close": "NORMAL"
+    },
+    {
+      "date": "2026-08-30",
+      "drawdown": 0.029037433764048104,
+      "high_water_mark": 100108.02,
+      "multiplier_applied_to_this_day": 1.0,
+      "state_after_close": "NORMAL"
+    },
+    {
+      "date": "2026-08-31",
+      "drawdown": 0.029012560632005302,
+      "high_water_mark": 100108.02,
+      "multiplier_applied_to_this_day": 1.0,
+      "state_after_close": "NORMAL"
+    },
+    {
+      "date": "2026-09-01",
+      "drawdown": 0.025586361612186637,
+      "high_water_mark": 100108.02,
+      "multiplier_applied_to_this_day": 1.0,
+      "state_after_close": "NORMAL"
+    },
+    {
+      "date": "2026-09-02",
+      "drawdown": 0.022407195747153885,
+      "high_water_mark": 100108.02,
+      "multiplier_applied_to_this_day": 1.0,
+      "state_after_close": "NORMAL"
+    },
+    {
+      "date": "2026-09-03",
+      "drawdown": 0.02628540650389455,
+      "high_water_mark": 100108.02,
+      "multiplier_applied_to_this_day": 1.0,
+      "state_after_close": "NORMAL"
+    },
+    {
+      "date": "2026-09-04",
+      "drawdown": 0.03000239141679173,
+      "high_water_mark": 100108.02,
+      "multiplier_applied_to_this_day": 1.0,
+      "state_after_close": "NORMAL"
+    },
+    {
+      "date": "2026-09-05",
+      "drawdown": 0.027443255795090216,
+      "high_water_mark": 100108.02,
+      "multiplier_applied_to_this_day": 1.0,
+      "state_after_close": "NORMAL"
+    },
+    {
+      "date": "2026-09-06",
+      "drawdown": 0.038708387200146466,
+      "high_water_mark": 100108.02,
+      "multiplier_applied_to_this_day": 1.0,
+      "state_after_close": "NORMAL"
+    },
+    {
+      "date": "2026-09-07",
+      "drawdown": 0.0324266727081407,
+      "high_water_mark": 100108.02,
+      "multiplier_applied_to_this_day": 1.0,
+      "state_after_close": "NORMAL"
+    },
+    {
+      "date": "2026-09-08",
+      "drawdown": 0.03198734726748165,
+      "high_water_mark": 100108.02,
+      "multiplier_applied_to_this_day": 1.0,
+      "state_after_close": "NORMAL"
+    },
+    {
+      "date": "2026-09-09",
+      "drawdown": 0.02938256095765357,
+      "high_water_mark": 100108.02,
+      "multiplier_applied_to_this_day": 1.0,
+      "state_after_close": "NORMAL"
+    },
+    {
+      "date": "2026-09-10",
+      "drawdown": 0.02646191583851132,
+      "high_water_mark": 100108.02,
+      "multiplier_applied_to_this_day": 1.0,
+      "state_after_close": "NORMAL"
+    },
+    {
+      "date": "2026-09-11",
+      "drawdown": 0.029132630932067194,
+      "high_water_mark": 100108.02,
+      "multiplier_applied_to_this_day": 1.0,
+      "state_after_close": "NORMAL"
+    },
+    {
+      "date": "2026-09-12",
+      "drawdown": 0.028924156126552192,
+      "high_water_mark": 100108.02,
+      "multiplier_applied_to_this_day": 1.0,
+      "state_after_close": "NORMAL"
+    },
+    {
+      "date": "2026-09-13",
+      "drawdown": 0.027554335806461938,
+      "high_water_mark": 100108.02,
+      "multiplier_applied_to_this_day": 1.0,
+      "state_after_close": "NORMAL"
+    },
+    {
+      "date": "2026-09-14",
+      "drawdown": 0.026962375242263414,
+      "high_water_mark": 100108.02,
+      "multiplier_applied_to_this_day": 1.0,
+      "state_after_close": "NORMAL"
+    },
+    {
+      "date": "2026-09-15",
+      "drawdown": 0.028848937377844552,
+      "high_water_mark": 100108.02,
+      "multiplier_applied_to_this_day": 1.0,
+      "state_after_close": "NORMAL"
+    }
+  ],
+  "days_at_reduced_gross": 0,
+  "drawdown": 0.028848937377844552,
+  "equity": 97220.01,
+  "generated_at": "2026-09-15T14:26:38.760134+00:00",
+  "gross_multiplier": 1.0,
+  "halts": [],
+  "high_water_mark": 100108.02,
+  "ladder": {
+    "dd_flat_frac": 0.1,
+    "dd_half_frac": 0.05,
+    "flat_state": "ABSORBING_UNTIL_OWNER_REARM",
+    "release_frac_of_half": 0.75
+  },
+  "marks": 38,
+  "max_drawdown_all_time_peak": 0.038708387200146466,
+  "rearms_applied": [],
+  "rearms_unused": [],
+  "schema": "canli.alphac-book-drawdown-ladder.v1",
+  "state": "NORMAL"
+}

@@ -102,14 +102,14 @@
 <dl class="measure__facts">
 <div class="measure__row"><dt>Author</dt><dd>Arhan Canli</dd></div>
 <div class="measure__row"><dt>Capital kind</dt><dd>PAPER_ONLY</dd></div>
-<div class="measure__row"><dt>Content hash</dt><dd>sha256:438472c508760f9068ba4b9141755279bcd43c40c50429ec53ce34b1eb4c5349</dd></div>
+<div class="measure__row"><dt>Content hash</dt><dd>sha256:49dd77930a834bf31072bad934d291627d34d88303f391ca69c98d92a74ffe1f</dd></div>
 <div class="measure__row"><dt>Integrity passes</dt><dd>yes</dd></div>
 <div class="measure__row"><dt>Schema</dt><dd>canli.alphac-forward-drawdown-evidence.v1</dd></div>
 <div class="measure__row"><dt>Status</dt><dd>CURRENT_COMPOSITION_EXPECTED_WITHIN_OBJECTIVE_LIVE_NOT_ESTABLISHED</dd></div>
 </dl>
 <section class="measure__sub"><h3>Current book study</h3>
 <dl class="measure__facts">
-<div class="measure__row"><dt>Content hash</dt><dd>sha256:04a84088fa267fdb56779412419b3c001eb47dd9602518e8534da24631f95819</dd></div>
+<div class="measure__row"><dt>Content hash</dt><dd>sha256:a01d6f0860c1a0c94789c378d02a8f652f30b22ae4b85a0d4d5340f13c8f3718</dd></div>
 </dl>
 <section class="measure__sub"><h4>Calibration</h4>
 <dl class="measure__facts">
@@ -159,7 +159,6 @@
 <section class="measure__sub"><h3>Production equivalence</h3>
 <dl class="measure__facts">
 <div class="measure__row"><dt>Declared constituent blend strategy volatility target</dt><dd>0.150000</dd></div>
-<div class="measure__row"><dt>Declared live book level drawdown ladder</dt><dd>Not reported</dd></div>
 <div class="measure__row"><dt>Declared live book level volatility target</dt><dd>Not reported</dd></div>
 <div class="measure__row"><dt>Declared live sleeves</dt><dd>4</dd></div>
 <div class="measure__row"><dt>Passes</dt><dd>no</dd></div>
@@ -176,11 +175,22 @@
 </section>
 <section class="measure__sub"><h4>Declared live book aggregation</h4>
 <dl class="measure__facts">
-<div class="measure__row"><dt>Book level drawdown ladder</dt><dd>Not reported</dd></div>
 <div class="measure__row"><dt>Book level vol target ann</dt><dd>Not reported</dd></div>
 <div class="measure__row"><dt>Missing mark policy</dt><dd>ZERO_CONTRIBUTION_ON_MISSING_DAILY_SLEEVE_MARK</dd></div>
 <div class="measure__row"><dt>Scheme</dt><dd>fixed</dd></div>
 <div class="measure__row"><dt>Strategic overlay is book vol scaled</dt><dd>no</dd></div>
+</dl>
+<p class="measure__label">Book level drawdown ladder</p><p class="measure__deep">7 further fields. <a href="/glassbox/forward_drawdown_evidence.json">Read them in the artifact</a>.</p>
+</section>
+<section class="measure__sub"><h4>Declared live book level drawdown ladder</h4>
+<dl class="measure__facts">
+<div class="measure__row"><dt>Activated on</dt><dd>2026-09-15</dd></div>
+<div class="measure__row"><dt>Applied by</dt><dd>every sleeve multiplies its target gross by the published book multiplier</dd></div>
+<div class="measure__row"><dt>Dd flat frac</dt><dd>0.100000</dd></div>
+<div class="measure__row"><dt>Dd half frac</dt><dd>0.050000</dd></div>
+<div class="measure__row"><dt>Flat state</dt><dd>ABSORBING_UNTIL_OWNER_REARM</dd></div>
+<div class="measure__row"><dt>Release frac of half</dt><dd>0.750000</dd></div>
+<div class="measure__row"><dt>Source</dt><dd>config/drawdown_control_contract.json</dd></div>
 </dl>
 </section>
 <section class="measure__sub"><h4>Declared live strategy defaults</h4>
@@ -215,7 +225,7 @@
 <section class="measure__sub"><h4>Current book drawdown model</h4>
 <dl class="measure__facts">
 <div class="measure__row"><dt>Path</dt><dd>artifacts/analysis/current_book_drawdown/result.json</dd></div>
-<div class="measure__row"><dt>Sha256</dt><dd>58686e804aa1166bcd12bf7c317c7126120329c0b8b92f922ba3a992d3128c5b</dd></div>
+<div class="measure__row"><dt>Sha256</dt><dd>bb9a5642699202686fae42fd8a9dd95922f1e376caa2c9a9497c13499081b763</dd></div>
 </dl>
 </section>
 <section class="measure__sub"><h4>Drawdown model</h4>
@@ -227,19 +237,19 @@
 <section class="measure__sub"><h4>Forward contract</h4>
 <dl class="measure__facts">
 <div class="measure__row"><dt>Path</dt><dd>config/forward_evidence_contract.json</dd></div>
-<div class="measure__row"><dt>Sha256</dt><dd>d1b0c97921d9c8b96de7af275b18b9d0ffbfe1332a078061135e8d044ba3981a</dd></div>
+<div class="measure__row"><dt>Sha256</dt><dd>51396b2a1f4360520101c53ed7d128213f24fdc92bc45eb8955fa21bf8a70c6e</dd></div>
 </dl>
 </section>
 <section class="measure__sub"><h4>Live change contract</h4>
 <dl class="measure__facts">
 <div class="measure__row"><dt>Path</dt><dd>config/live_change_contract.json</dd></div>
-<div class="measure__row"><dt>Sha256</dt><dd>5b7fa2e700cf29d3e4ef38eff2d745fe0dcec234133da899fd291e8b92c709fe</dd></div>
+<div class="measure__row"><dt>Sha256</dt><dd>4e16b8a02d6907667dc161c84c21876b58c7644225fe84e7884c29e04947fff4</dd></div>
 </dl>
 </section>
 <section class="measure__sub"><h4>Strategy</h4>
 <dl class="measure__facts">
 <div class="measure__row"><dt>Path</dt><dd>src/alphaforge/portfolio/strategy.py</dd></div>
-<div class="measure__row"><dt>Sha256</dt><dd>e1308c8bf6560a759983d1bd2fbef505050340ccce4ef42499d6943c559d5263</dd></div>
+<div class="measure__row"><dt>Sha256</dt><dd>f8b0776ccfa8af8f0a5588d33b6a58410e76d4dddf92fb18fa4dcafbcebf3805</dd></div>
 </dl>
 </section>
 </section>

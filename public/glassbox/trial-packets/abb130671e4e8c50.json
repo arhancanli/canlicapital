@@ -1,0 +1,1065 @@
+{
+  "claim_boundary": "2023\u2013June2026 retrospective crypto horizon extension; calendar/accounting verified, source availability, metadata, funding, settlement and benchmark remain modeled. No combined qualification, new sleeve, untouched OOS or admission.",
+  "complete": true,
+  "completion_assessment": {
+    "candidate_evidence_complete_for_admission": false,
+    "disposition": "INCOMPLETE_NOT_ADMITTED",
+    "packet_evidence_accounting_complete": true
+  },
+  "config_hash": "a40f6d8bd1ade405",
+  "configuration": {
+    "allocator": "rank",
+    "alpha_names": [
+      "carry_observed_21"
+    ],
+    "end": 1780358400000,
+    "instrument_ids": [
+      "BINANCE:PERP:1000PEPEUSDT",
+      "BINANCE:PERP:1000SHIBUSDT",
+      "BINANCE:PERP:AAVEUSDT",
+      "BINANCE:PERP:ADAUSDT",
+      "BINANCE:PERP:APEUSDT",
+      "BINANCE:PERP:APTUSDT",
+      "BINANCE:PERP:ARBUSDT",
+      "BINANCE:PERP:ATOMUSDT",
+      "BINANCE:PERP:AVAXUSDT",
+      "BINANCE:PERP:AXSUSDT",
+      "BINANCE:PERP:BCHUSDT",
+      "BINANCE:PERP:BLZUSDT",
+      "BINANCE:PERP:BNBUSDT",
+      "BINANCE:PERP:BTCUSDT",
+      "BINANCE:PERP:CHZUSDT",
+      "BINANCE:PERP:COMPUSDT",
+      "BINANCE:PERP:DOGEUSDT",
+      "BINANCE:PERP:DOTUSDT",
+      "BINANCE:PERP:EOSUSDT",
+      "BINANCE:PERP:ETCUSDT",
+      "BINANCE:PERP:ETHUSDT",
+      "BINANCE:PERP:FILUSDT",
+      "BINANCE:PERP:FTMUSDT",
+      "BINANCE:PERP:GALAUSDT",
+      "BINANCE:PERP:INJUSDT",
+      "BINANCE:PERP:LINAUSDT",
+      "BINANCE:PERP:LINKUSDT",
+      "BINANCE:PERP:LTCUSDT",
+      "BINANCE:PERP:LUNAUSDT",
+      "BINANCE:PERP:MANAUSDT",
+      "BINANCE:PERP:MATICUSDT",
+      "BINANCE:PERP:MKRUSDT",
+      "BINANCE:PERP:NEARUSDT",
+      "BINANCE:PERP:OPUSDT",
+      "BINANCE:PERP:REEFUSDT",
+      "BINANCE:PERP:RNDRUSDT",
+      "BINANCE:PERP:RUNEUSDT",
+      "BINANCE:PERP:SANDUSDT",
+      "BINANCE:PERP:SEIUSDT",
+      "BINANCE:PERP:SOLUSDT",
+      "BINANCE:PERP:SUIUSDT",
+      "BINANCE:PERP:SUSHIUSDT",
+      "BINANCE:PERP:SXPUSDT",
+      "BINANCE:PERP:TIAUSDT",
+      "BINANCE:PERP:TOMOUSDT",
+      "BINANCE:PERP:TRXUSDT",
+      "BINANCE:PERP:UNIUSDT",
+      "BINANCE:PERP:WAVESUSDT",
+      "BINANCE:PERP:WLDUSDT",
+      "BINANCE:PERP:XLMUSDT",
+      "BINANCE:PERP:XRPUSDT"
+    ],
+    "no_trade_band": 0.001,
+    "rebalance_bars": 168,
+    "research_engine": {
+      "carry_terminal_eligibility": true,
+      "input_manifest_sha256": "fa19afdd65c0f65db565534ca5fbab6ca77cc845e07031dd9fd28a63cd519818",
+      "metadata_mode": "MODELED_HISTORICAL_APPLICABILITY_NOT_OBSERVED_PIT",
+      "scenario": {
+        "data": "repaired_snapshot",
+        "execution_cost_multiplier": 2,
+        "fee_fraction": 0.001,
+        "funding_mark": "interval_open_proxy",
+        "id": "candidate_stress",
+        "price": "0.006944333333333333333333333333",
+        "terminal": true,
+        "terminal_basis": "modeled",
+        "terminal_instrument": "BINANCE:PERP:LUNAUSDT",
+        "terminal_ts": 1652369400000
+      },
+      "terminal_event_source_sha256": "cc123c7095a90c6401471ad95305948365b77f34d9eaf822b2849a265afc5da0",
+      "timing_mode": "Research bar-close availability; source-session equity alignment required; historical corporate-action and borrow limits retained"
+    },
+    "start": 1650672000000,
+    "test_bars": 1512,
+    "train_bars": 6048
+  },
+  "content_hash": "sha256:6ce39d6b29c33c18105230ab5687e8ff403d0d7e8d8d8bb1450f9d8dffec8498",
+  "hypothesis_key": "abb130671e4e8c50",
+  "immutable_first_measurement": {
+    "config": {
+      "allocator": "rank",
+      "alpha_names": [
+        "carry_observed_21"
+      ],
+      "end": 1780358400000,
+      "instrument_ids": [
+        "BINANCE:PERP:1000PEPEUSDT",
+        "BINANCE:PERP:1000SHIBUSDT",
+        "BINANCE:PERP:AAVEUSDT",
+        "BINANCE:PERP:ADAUSDT",
+        "BINANCE:PERP:APEUSDT",
+        "BINANCE:PERP:APTUSDT",
+        "BINANCE:PERP:ARBUSDT",
+        "BINANCE:PERP:ATOMUSDT",
+        "BINANCE:PERP:AVAXUSDT",
+        "BINANCE:PERP:AXSUSDT",
+        "BINANCE:PERP:BCHUSDT",
+        "BINANCE:PERP:BLZUSDT",
+        "BINANCE:PERP:BNBUSDT",
+        "BINANCE:PERP:BTCUSDT",
+        "BINANCE:PERP:CHZUSDT",
+        "BINANCE:PERP:COMPUSDT",
+        "BINANCE:PERP:DOGEUSDT",
+        "BINANCE:PERP:DOTUSDT",
+        "BINANCE:PERP:EOSUSDT",
+        "BINANCE:PERP:ETCUSDT",
+        "BINANCE:PERP:ETHUSDT",
+        "BINANCE:PERP:FILUSDT",
+        "BINANCE:PERP:FTMUSDT",
+        "BINANCE:PERP:GALAUSDT",
+        "BINANCE:PERP:INJUSDT",
+        "BINANCE:PERP:LINAUSDT",
+        "BINANCE:PERP:LINKUSDT",
+        "BINANCE:PERP:LTCUSDT",
+        "BINANCE:PERP:LUNAUSDT",
+        "BINANCE:PERP:MANAUSDT",
+        "BINANCE:PERP:MATICUSDT",
+        "BINANCE:PERP:MKRUSDT",
+        "BINANCE:PERP:NEARUSDT",
+        "BINANCE:PERP:OPUSDT",
+        "BINANCE:PERP:REEFUSDT",
+        "BINANCE:PERP:RNDRUSDT",
+        "BINANCE:PERP:RUNEUSDT",
+        "BINANCE:PERP:SANDUSDT",
+        "BINANCE:PERP:SEIUSDT",
+        "BINANCE:PERP:SOLUSDT",
+        "BINANCE:PERP:SUIUSDT",
+        "BINANCE:PERP:SUSHIUSDT",
+        "BINANCE:PERP:SXPUSDT",
+        "BINANCE:PERP:TIAUSDT",
+        "BINANCE:PERP:TOMOUSDT",
+        "BINANCE:PERP:TRXUSDT",
+        "BINANCE:PERP:UNIUSDT",
+        "BINANCE:PERP:WAVESUSDT",
+        "BINANCE:PERP:WLDUSDT",
+        "BINANCE:PERP:XLMUSDT",
+        "BINANCE:PERP:XRPUSDT"
+      ],
+      "no_trade_band": 0.001,
+      "rebalance_bars": 168,
+      "research_engine": {
+        "carry_terminal_eligibility": true,
+        "input_manifest_sha256": "fa19afdd65c0f65db565534ca5fbab6ca77cc845e07031dd9fd28a63cd519818",
+        "metadata_mode": "MODELED_HISTORICAL_APPLICABILITY_NOT_OBSERVED_PIT",
+        "scenario": {
+          "data": "repaired_snapshot",
+          "execution_cost_multiplier": 2,
+          "fee_fraction": 0.001,
+          "funding_mark": "interval_open_proxy",
+          "id": "candidate_stress",
+          "price": "0.006944333333333333333333333333",
+          "terminal": true,
+          "terminal_basis": "modeled",
+          "terminal_instrument": "BINANCE:PERP:LUNAUSDT",
+          "terminal_ts": 1652369400000
+        },
+        "terminal_event_source_sha256": "cc123c7095a90c6401471ad95305948365b77f34d9eaf822b2849a265afc5da0",
+        "timing_mode": "Research bar-close availability; source-session equity alignment required; historical corporate-action and borrow limits retained"
+      },
+      "start": 1650672000000,
+      "test_bars": 1512,
+      "train_bars": 6048
+    },
+    "config_hash": "a40f6d8bd1ade405",
+    "kurtosis": 9.777626109180915,
+    "n_obs": 1249,
+    "now_ms": 1789302397357,
+    "sharpe_ann": 1.1617722532685832,
+    "sharpe_per_period": 0.060809938996231314,
+    "skew": 0.37392988657278814
+  },
+  "imported_from_external_tree": {
+    "external_content_hash": "sha256:e29d3d8e85aee54c08615a46c9fa7586c4a47cebe3fd6acecebcc353f9afdaad",
+    "imported_on": "2026-09-14T19:35:24+00:00",
+    "tree": "/Users/arhancanli/alphac-prospective-pause-20260911"
+  },
+  "missing_sections": [],
+  "packet_status": "COMPLETE_ACCOUNTING_FINAL_KILLED_NOT_ADMITTED",
+  "partial_sections": [],
+  "required_sections": {
+    "admission_or_kill_decision": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/reservation.json",
+          "sha256": "5bf6a0936be86f9a0728931bb2e5ffb803b4f4aecbcf44633db2486f42b6f980"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/preregistration.json",
+          "sha256": "adea05a075392e2d72103a55922e46e38c0c5879b749f46a3f22266ff74c1a51"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/reservation_validation.json",
+          "sha256": "0dbe25199d7556760c900a0cf7bfae90a8ef97fe31953ed6b13e9c8434f5a618"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/experiments.jsonl",
+          "sha256": "82425297a1633b6a1b090e484a252c381b7a5fa8328efed1ffc851623504e2c6"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/execution_complete.json",
+          "sha256": "dee91b8bdbf06be863a4d84287b8addf9ec79327631cb23753bf00c278aab2e8"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/independent_audit.json",
+          "sha256": "c6504ddf9ba3611b736c3b6d198974c259e62383c9c9d1b877440156d7b2490a"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/calendar2023_2026_audit.json",
+          "sha256": "d7c88f5ebc699c602acaa273a564b239f5fe245928406bf10bc2fb3c8c4c5037"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/calendar2023_2026.csv",
+          "sha256": "148468fa5f8bfa542b1060c54c750aa04293eaab21faa4ad665986302ca2cad7"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/terminal_invariants.json",
+          "sha256": "880b8fb3410ee5014ff8190837cd9a466c23b9b1b1a09f7397c24f823170c32e"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/boundary_audit.json",
+          "sha256": "5ba02b121ce1822d4e32dec313d048d65291adcb3a1ec0477f3f07cd57d1131a"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/REPORT.md",
+          "sha256": "964e138185a656bc970b39581ce511597a7b9304dc8525d176e1a52819df4bb3"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/run/walkforward.json",
+          "sha256": "611ee8e5c617dd40e442896d17922b6a43b8e86e6a029fb1172f4485e0b8797e"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/protocol.json",
+          "sha256": "9e8773781535e1e8aa0300cff41c792908c3ee5e568f029a768ea08caf180684"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/input_manifest.json",
+          "sha256": "fa19afdd65c0f65db565534ca5fbab6ca77cc845e07031dd9fd28a63cd519818"
+        },
+        {
+          "path": "scripts/close_crypto_observed_arm.py",
+          "sha256": "5f4c3cf610355f505cae065e08c0a17985314b73f6cbfb5caf95ddb56f18c8a7"
+        },
+        {
+          "path": "scripts/audit_crypto_observed_accounting.py",
+          "sha256": "a67c83ef944f881826668cdff3bf30655ed8977890454d6107033091cd3fc4be"
+        },
+        {
+          "path": "scripts/audit_crypto_observed_horizon.py",
+          "sha256": "0ea6ade1cd386568e9c223f412f69531316f4115ae875e15db9a9e883a6e13c8"
+        },
+        {
+          "path": "scripts/audit_crypto_observed_boundaries.py",
+          "sha256": "c59c259d4d54b30280b50bfdc7d9edf4c9e8094b03968e61c6cc9fb6d7d1c92a"
+        },
+        {
+          "content_hash": "sha256:487bfececb7a6fe2efbb6a9756c43d738ee37d8879d79a41cfe150f4ccdb8de5",
+          "path": "artifacts/research/development_closures/abb130671e4e8c50_admission_closure.json",
+          "sha256": "9defc35d790e871ee3d088d3e301201476422cc23fc60e5a4ad5fe9289a6ef6d",
+          "type": "final_development_admission_closure"
+        }
+      ],
+      "statement": "2023\u2013June2026 retrospective crypto horizon extension; calendar/accounting verified, source availability, metadata, funding, settlement and benchmark remain modeled. No combined qualification, new sleeve, untouched OOS or admission.",
+      "status": "VERIFIED_FINAL_DEVELOPMENT_CLOSURE_KILL"
+    },
+    "code_environment_and_reproduction": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/reservation.json",
+          "sha256": "5bf6a0936be86f9a0728931bb2e5ffb803b4f4aecbcf44633db2486f42b6f980"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/preregistration.json",
+          "sha256": "adea05a075392e2d72103a55922e46e38c0c5879b749f46a3f22266ff74c1a51"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/reservation_validation.json",
+          "sha256": "0dbe25199d7556760c900a0cf7bfae90a8ef97fe31953ed6b13e9c8434f5a618"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/experiments.jsonl",
+          "sha256": "82425297a1633b6a1b090e484a252c381b7a5fa8328efed1ffc851623504e2c6"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/execution_complete.json",
+          "sha256": "dee91b8bdbf06be863a4d84287b8addf9ec79327631cb23753bf00c278aab2e8"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/independent_audit.json",
+          "sha256": "c6504ddf9ba3611b736c3b6d198974c259e62383c9c9d1b877440156d7b2490a"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/calendar2023_2026_audit.json",
+          "sha256": "d7c88f5ebc699c602acaa273a564b239f5fe245928406bf10bc2fb3c8c4c5037"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/calendar2023_2026.csv",
+          "sha256": "148468fa5f8bfa542b1060c54c750aa04293eaab21faa4ad665986302ca2cad7"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/terminal_invariants.json",
+          "sha256": "880b8fb3410ee5014ff8190837cd9a466c23b9b1b1a09f7397c24f823170c32e"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/boundary_audit.json",
+          "sha256": "5ba02b121ce1822d4e32dec313d048d65291adcb3a1ec0477f3f07cd57d1131a"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/REPORT.md",
+          "sha256": "964e138185a656bc970b39581ce511597a7b9304dc8525d176e1a52819df4bb3"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/run/walkforward.json",
+          "sha256": "611ee8e5c617dd40e442896d17922b6a43b8e86e6a029fb1172f4485e0b8797e"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/protocol.json",
+          "sha256": "9e8773781535e1e8aa0300cff41c792908c3ee5e568f029a768ea08caf180684"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/input_manifest.json",
+          "sha256": "fa19afdd65c0f65db565534ca5fbab6ca77cc845e07031dd9fd28a63cd519818"
+        },
+        {
+          "path": "scripts/close_crypto_observed_arm.py",
+          "sha256": "5f4c3cf610355f505cae065e08c0a17985314b73f6cbfb5caf95ddb56f18c8a7"
+        },
+        {
+          "path": "scripts/audit_crypto_observed_accounting.py",
+          "sha256": "a67c83ef944f881826668cdff3bf30655ed8977890454d6107033091cd3fc4be"
+        },
+        {
+          "path": "scripts/audit_crypto_observed_horizon.py",
+          "sha256": "0ea6ade1cd386568e9c223f412f69531316f4115ae875e15db9a9e883a6e13c8"
+        },
+        {
+          "path": "scripts/audit_crypto_observed_boundaries.py",
+          "sha256": "c59c259d4d54b30280b50bfdc7d9edf4c9e8094b03968e61c6cc9fb6d7d1c92a"
+        }
+      ],
+      "statement": "2023\u2013June2026 retrospective crypto horizon extension; calendar/accounting verified, source availability, metadata, funding, settlement and benchmark remain modeled. No combined qualification, new sleeve, untouched OOS or admission.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "economic_mechanism_and_falsifiable_hypothesis": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/reservation.json",
+          "sha256": "5bf6a0936be86f9a0728931bb2e5ffb803b4f4aecbcf44633db2486f42b6f980"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/preregistration.json",
+          "sha256": "adea05a075392e2d72103a55922e46e38c0c5879b749f46a3f22266ff74c1a51"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/reservation_validation.json",
+          "sha256": "0dbe25199d7556760c900a0cf7bfae90a8ef97fe31953ed6b13e9c8434f5a618"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/experiments.jsonl",
+          "sha256": "82425297a1633b6a1b090e484a252c381b7a5fa8328efed1ffc851623504e2c6"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/execution_complete.json",
+          "sha256": "dee91b8bdbf06be863a4d84287b8addf9ec79327631cb23753bf00c278aab2e8"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/independent_audit.json",
+          "sha256": "c6504ddf9ba3611b736c3b6d198974c259e62383c9c9d1b877440156d7b2490a"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/calendar2023_2026_audit.json",
+          "sha256": "d7c88f5ebc699c602acaa273a564b239f5fe245928406bf10bc2fb3c8c4c5037"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/calendar2023_2026.csv",
+          "sha256": "148468fa5f8bfa542b1060c54c750aa04293eaab21faa4ad665986302ca2cad7"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/terminal_invariants.json",
+          "sha256": "880b8fb3410ee5014ff8190837cd9a466c23b9b1b1a09f7397c24f823170c32e"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/boundary_audit.json",
+          "sha256": "5ba02b121ce1822d4e32dec313d048d65291adcb3a1ec0477f3f07cd57d1131a"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/REPORT.md",
+          "sha256": "964e138185a656bc970b39581ce511597a7b9304dc8525d176e1a52819df4bb3"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/run/walkforward.json",
+          "sha256": "611ee8e5c617dd40e442896d17922b6a43b8e86e6a029fb1172f4485e0b8797e"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/protocol.json",
+          "sha256": "9e8773781535e1e8aa0300cff41c792908c3ee5e568f029a768ea08caf180684"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/input_manifest.json",
+          "sha256": "fa19afdd65c0f65db565534ca5fbab6ca77cc845e07031dd9fd28a63cd519818"
+        },
+        {
+          "path": "scripts/close_crypto_observed_arm.py",
+          "sha256": "5f4c3cf610355f505cae065e08c0a17985314b73f6cbfb5caf95ddb56f18c8a7"
+        },
+        {
+          "path": "scripts/audit_crypto_observed_accounting.py",
+          "sha256": "a67c83ef944f881826668cdff3bf30655ed8977890454d6107033091cd3fc4be"
+        },
+        {
+          "path": "scripts/audit_crypto_observed_horizon.py",
+          "sha256": "0ea6ade1cd386568e9c223f412f69531316f4115ae875e15db9a9e883a6e13c8"
+        },
+        {
+          "path": "scripts/audit_crypto_observed_boundaries.py",
+          "sha256": "c59c259d4d54b30280b50bfdc7d9edf4c9e8094b03968e61c6cc9fb6d7d1c92a"
+        }
+      ],
+      "statement": "2023\u2013June2026 retrospective crypto horizon extension; calendar/accounting verified, source availability, metadata, funding, settlement and benchmark remain modeled. No combined qualification, new sleeve, untouched OOS or admission.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "execution_and_cost_model": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/reservation.json",
+          "sha256": "5bf6a0936be86f9a0728931bb2e5ffb803b4f4aecbcf44633db2486f42b6f980"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/preregistration.json",
+          "sha256": "adea05a075392e2d72103a55922e46e38c0c5879b749f46a3f22266ff74c1a51"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/reservation_validation.json",
+          "sha256": "0dbe25199d7556760c900a0cf7bfae90a8ef97fe31953ed6b13e9c8434f5a618"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/experiments.jsonl",
+          "sha256": "82425297a1633b6a1b090e484a252c381b7a5fa8328efed1ffc851623504e2c6"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/execution_complete.json",
+          "sha256": "dee91b8bdbf06be863a4d84287b8addf9ec79327631cb23753bf00c278aab2e8"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/independent_audit.json",
+          "sha256": "c6504ddf9ba3611b736c3b6d198974c259e62383c9c9d1b877440156d7b2490a"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/calendar2023_2026_audit.json",
+          "sha256": "d7c88f5ebc699c602acaa273a564b239f5fe245928406bf10bc2fb3c8c4c5037"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/calendar2023_2026.csv",
+          "sha256": "148468fa5f8bfa542b1060c54c750aa04293eaab21faa4ad665986302ca2cad7"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/terminal_invariants.json",
+          "sha256": "880b8fb3410ee5014ff8190837cd9a466c23b9b1b1a09f7397c24f823170c32e"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/boundary_audit.json",
+          "sha256": "5ba02b121ce1822d4e32dec313d048d65291adcb3a1ec0477f3f07cd57d1131a"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/REPORT.md",
+          "sha256": "964e138185a656bc970b39581ce511597a7b9304dc8525d176e1a52819df4bb3"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/run/walkforward.json",
+          "sha256": "611ee8e5c617dd40e442896d17922b6a43b8e86e6a029fb1172f4485e0b8797e"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/protocol.json",
+          "sha256": "9e8773781535e1e8aa0300cff41c792908c3ee5e568f029a768ea08caf180684"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/input_manifest.json",
+          "sha256": "fa19afdd65c0f65db565534ca5fbab6ca77cc845e07031dd9fd28a63cd519818"
+        },
+        {
+          "path": "scripts/close_crypto_observed_arm.py",
+          "sha256": "5f4c3cf610355f505cae065e08c0a17985314b73f6cbfb5caf95ddb56f18c8a7"
+        },
+        {
+          "path": "scripts/audit_crypto_observed_accounting.py",
+          "sha256": "a67c83ef944f881826668cdff3bf30655ed8977890454d6107033091cd3fc4be"
+        },
+        {
+          "path": "scripts/audit_crypto_observed_horizon.py",
+          "sha256": "0ea6ade1cd386568e9c223f412f69531316f4115ae875e15db9a9e883a6e13c8"
+        },
+        {
+          "path": "scripts/audit_crypto_observed_boundaries.py",
+          "sha256": "c59c259d4d54b30280b50bfdc7d9edf4c9e8094b03968e61c6cc9fb6d7d1c92a"
+        }
+      ],
+      "statement": "2023\u2013June2026 retrospective crypto horizon extension; calendar/accounting verified, source availability, metadata, funding, settlement and benchmark remain modeled. No combined qualification, new sleeve, untouched OOS or admission.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "family_and_union_trial_accounting": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/reservation.json",
+          "sha256": "5bf6a0936be86f9a0728931bb2e5ffb803b4f4aecbcf44633db2486f42b6f980"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/preregistration.json",
+          "sha256": "adea05a075392e2d72103a55922e46e38c0c5879b749f46a3f22266ff74c1a51"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/reservation_validation.json",
+          "sha256": "0dbe25199d7556760c900a0cf7bfae90a8ef97fe31953ed6b13e9c8434f5a618"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/experiments.jsonl",
+          "sha256": "82425297a1633b6a1b090e484a252c381b7a5fa8328efed1ffc851623504e2c6"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/execution_complete.json",
+          "sha256": "dee91b8bdbf06be863a4d84287b8addf9ec79327631cb23753bf00c278aab2e8"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/independent_audit.json",
+          "sha256": "c6504ddf9ba3611b736c3b6d198974c259e62383c9c9d1b877440156d7b2490a"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/calendar2023_2026_audit.json",
+          "sha256": "d7c88f5ebc699c602acaa273a564b239f5fe245928406bf10bc2fb3c8c4c5037"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/calendar2023_2026.csv",
+          "sha256": "148468fa5f8bfa542b1060c54c750aa04293eaab21faa4ad665986302ca2cad7"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/terminal_invariants.json",
+          "sha256": "880b8fb3410ee5014ff8190837cd9a466c23b9b1b1a09f7397c24f823170c32e"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/boundary_audit.json",
+          "sha256": "5ba02b121ce1822d4e32dec313d048d65291adcb3a1ec0477f3f07cd57d1131a"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/REPORT.md",
+          "sha256": "964e138185a656bc970b39581ce511597a7b9304dc8525d176e1a52819df4bb3"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/run/walkforward.json",
+          "sha256": "611ee8e5c617dd40e442896d17922b6a43b8e86e6a029fb1172f4485e0b8797e"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/protocol.json",
+          "sha256": "9e8773781535e1e8aa0300cff41c792908c3ee5e568f029a768ea08caf180684"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/input_manifest.json",
+          "sha256": "fa19afdd65c0f65db565534ca5fbab6ca77cc845e07031dd9fd28a63cd519818"
+        },
+        {
+          "path": "scripts/close_crypto_observed_arm.py",
+          "sha256": "5f4c3cf610355f505cae065e08c0a17985314b73f6cbfb5caf95ddb56f18c8a7"
+        },
+        {
+          "path": "scripts/audit_crypto_observed_accounting.py",
+          "sha256": "a67c83ef944f881826668cdff3bf30655ed8977890454d6107033091cd3fc4be"
+        },
+        {
+          "path": "scripts/audit_crypto_observed_horizon.py",
+          "sha256": "0ea6ade1cd386568e9c223f412f69531316f4115ae875e15db9a9e883a6e13c8"
+        },
+        {
+          "path": "scripts/audit_crypto_observed_boundaries.py",
+          "sha256": "c59c259d4d54b30280b50bfdc7d9edf4c9e8094b03968e61c6cc9fb6d7d1c92a"
+        }
+      ],
+      "statement": "2023\u2013June2026 retrospective crypto horizon extension; calendar/accounting verified, source availability, metadata, funding, settlement and benchmark remain modeled. No combined qualification, new sleeve, untouched OOS or admission.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "identity_and_authorship": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/reservation.json",
+          "sha256": "5bf6a0936be86f9a0728931bb2e5ffb803b4f4aecbcf44633db2486f42b6f980"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/preregistration.json",
+          "sha256": "adea05a075392e2d72103a55922e46e38c0c5879b749f46a3f22266ff74c1a51"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/reservation_validation.json",
+          "sha256": "0dbe25199d7556760c900a0cf7bfae90a8ef97fe31953ed6b13e9c8434f5a618"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/experiments.jsonl",
+          "sha256": "82425297a1633b6a1b090e484a252c381b7a5fa8328efed1ffc851623504e2c6"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/execution_complete.json",
+          "sha256": "dee91b8bdbf06be863a4d84287b8addf9ec79327631cb23753bf00c278aab2e8"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/independent_audit.json",
+          "sha256": "c6504ddf9ba3611b736c3b6d198974c259e62383c9c9d1b877440156d7b2490a"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/calendar2023_2026_audit.json",
+          "sha256": "d7c88f5ebc699c602acaa273a564b239f5fe245928406bf10bc2fb3c8c4c5037"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/calendar2023_2026.csv",
+          "sha256": "148468fa5f8bfa542b1060c54c750aa04293eaab21faa4ad665986302ca2cad7"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/terminal_invariants.json",
+          "sha256": "880b8fb3410ee5014ff8190837cd9a466c23b9b1b1a09f7397c24f823170c32e"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/boundary_audit.json",
+          "sha256": "5ba02b121ce1822d4e32dec313d048d65291adcb3a1ec0477f3f07cd57d1131a"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/REPORT.md",
+          "sha256": "964e138185a656bc970b39581ce511597a7b9304dc8525d176e1a52819df4bb3"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/run/walkforward.json",
+          "sha256": "611ee8e5c617dd40e442896d17922b6a43b8e86e6a029fb1172f4485e0b8797e"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/protocol.json",
+          "sha256": "9e8773781535e1e8aa0300cff41c792908c3ee5e568f029a768ea08caf180684"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/input_manifest.json",
+          "sha256": "fa19afdd65c0f65db565534ca5fbab6ca77cc845e07031dd9fd28a63cd519818"
+        },
+        {
+          "path": "scripts/close_crypto_observed_arm.py",
+          "sha256": "5f4c3cf610355f505cae065e08c0a17985314b73f6cbfb5caf95ddb56f18c8a7"
+        },
+        {
+          "path": "scripts/audit_crypto_observed_accounting.py",
+          "sha256": "a67c83ef944f881826668cdff3bf30655ed8977890454d6107033091cd3fc4be"
+        },
+        {
+          "path": "scripts/audit_crypto_observed_horizon.py",
+          "sha256": "0ea6ade1cd386568e9c223f412f69531316f4115ae875e15db9a9e883a6e13c8"
+        },
+        {
+          "path": "scripts/audit_crypto_observed_boundaries.py",
+          "sha256": "c59c259d4d54b30280b50bfdc7d9edf4c9e8094b03968e61c6cc9fb6d7d1c92a"
+        }
+      ],
+      "statement": "2023\u2013June2026 retrospective crypto horizon extension; calendar/accounting verified, source availability, metadata, funding, settlement and benchmark remain modeled. No combined qualification, new sleeve, untouched OOS or admission.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "literature_and_overlap_decision": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/reservation.json",
+          "sha256": "5bf6a0936be86f9a0728931bb2e5ffb803b4f4aecbcf44633db2486f42b6f980"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/preregistration.json",
+          "sha256": "adea05a075392e2d72103a55922e46e38c0c5879b749f46a3f22266ff74c1a51"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/reservation_validation.json",
+          "sha256": "0dbe25199d7556760c900a0cf7bfae90a8ef97fe31953ed6b13e9c8434f5a618"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/experiments.jsonl",
+          "sha256": "82425297a1633b6a1b090e484a252c381b7a5fa8328efed1ffc851623504e2c6"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/execution_complete.json",
+          "sha256": "dee91b8bdbf06be863a4d84287b8addf9ec79327631cb23753bf00c278aab2e8"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/independent_audit.json",
+          "sha256": "c6504ddf9ba3611b736c3b6d198974c259e62383c9c9d1b877440156d7b2490a"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/calendar2023_2026_audit.json",
+          "sha256": "d7c88f5ebc699c602acaa273a564b239f5fe245928406bf10bc2fb3c8c4c5037"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/calendar2023_2026.csv",
+          "sha256": "148468fa5f8bfa542b1060c54c750aa04293eaab21faa4ad665986302ca2cad7"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/terminal_invariants.json",
+          "sha256": "880b8fb3410ee5014ff8190837cd9a466c23b9b1b1a09f7397c24f823170c32e"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/boundary_audit.json",
+          "sha256": "5ba02b121ce1822d4e32dec313d048d65291adcb3a1ec0477f3f07cd57d1131a"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/REPORT.md",
+          "sha256": "964e138185a656bc970b39581ce511597a7b9304dc8525d176e1a52819df4bb3"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/run/walkforward.json",
+          "sha256": "611ee8e5c617dd40e442896d17922b6a43b8e86e6a029fb1172f4485e0b8797e"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/protocol.json",
+          "sha256": "9e8773781535e1e8aa0300cff41c792908c3ee5e568f029a768ea08caf180684"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/input_manifest.json",
+          "sha256": "fa19afdd65c0f65db565534ca5fbab6ca77cc845e07031dd9fd28a63cd519818"
+        },
+        {
+          "path": "scripts/close_crypto_observed_arm.py",
+          "sha256": "5f4c3cf610355f505cae065e08c0a17985314b73f6cbfb5caf95ddb56f18c8a7"
+        },
+        {
+          "path": "scripts/audit_crypto_observed_accounting.py",
+          "sha256": "a67c83ef944f881826668cdff3bf30655ed8977890454d6107033091cd3fc4be"
+        },
+        {
+          "path": "scripts/audit_crypto_observed_horizon.py",
+          "sha256": "0ea6ade1cd386568e9c223f412f69531316f4115ae875e15db9a9e883a6e13c8"
+        },
+        {
+          "path": "scripts/audit_crypto_observed_boundaries.py",
+          "sha256": "c59c259d4d54b30280b50bfdc7d9edf4c9e8094b03968e61c6cc9fb6d7d1c92a"
+        }
+      ],
+      "statement": "2023\u2013June2026 retrospective crypto horizon extension; calendar/accounting verified, source availability, metadata, funding, settlement and benchmark remain modeled. No combined qualification, new sleeve, untouched OOS or admission.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "machine_readable_packet_and_stable_public_paper": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/reservation.json",
+          "sha256": "5bf6a0936be86f9a0728931bb2e5ffb803b4f4aecbcf44633db2486f42b6f980"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/preregistration.json",
+          "sha256": "adea05a075392e2d72103a55922e46e38c0c5879b749f46a3f22266ff74c1a51"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/reservation_validation.json",
+          "sha256": "0dbe25199d7556760c900a0cf7bfae90a8ef97fe31953ed6b13e9c8434f5a618"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/experiments.jsonl",
+          "sha256": "82425297a1633b6a1b090e484a252c381b7a5fa8328efed1ffc851623504e2c6"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/execution_complete.json",
+          "sha256": "dee91b8bdbf06be863a4d84287b8addf9ec79327631cb23753bf00c278aab2e8"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/independent_audit.json",
+          "sha256": "c6504ddf9ba3611b736c3b6d198974c259e62383c9c9d1b877440156d7b2490a"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/calendar2023_2026_audit.json",
+          "sha256": "d7c88f5ebc699c602acaa273a564b239f5fe245928406bf10bc2fb3c8c4c5037"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/calendar2023_2026.csv",
+          "sha256": "148468fa5f8bfa542b1060c54c750aa04293eaab21faa4ad665986302ca2cad7"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/terminal_invariants.json",
+          "sha256": "880b8fb3410ee5014ff8190837cd9a466c23b9b1b1a09f7397c24f823170c32e"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/boundary_audit.json",
+          "sha256": "5ba02b121ce1822d4e32dec313d048d65291adcb3a1ec0477f3f07cd57d1131a"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/REPORT.md",
+          "sha256": "964e138185a656bc970b39581ce511597a7b9304dc8525d176e1a52819df4bb3"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/run/walkforward.json",
+          "sha256": "611ee8e5c617dd40e442896d17922b6a43b8e86e6a029fb1172f4485e0b8797e"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/protocol.json",
+          "sha256": "9e8773781535e1e8aa0300cff41c792908c3ee5e568f029a768ea08caf180684"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/input_manifest.json",
+          "sha256": "fa19afdd65c0f65db565534ca5fbab6ca77cc845e07031dd9fd28a63cd519818"
+        },
+        {
+          "path": "scripts/close_crypto_observed_arm.py",
+          "sha256": "5f4c3cf610355f505cae065e08c0a17985314b73f6cbfb5caf95ddb56f18c8a7"
+        },
+        {
+          "path": "scripts/audit_crypto_observed_accounting.py",
+          "sha256": "a67c83ef944f881826668cdff3bf30655ed8977890454d6107033091cd3fc4be"
+        },
+        {
+          "path": "scripts/audit_crypto_observed_horizon.py",
+          "sha256": "0ea6ade1cd386568e9c223f412f69531316f4115ae875e15db9a9e883a6e13c8"
+        },
+        {
+          "path": "scripts/audit_crypto_observed_boundaries.py",
+          "sha256": "c59c259d4d54b30280b50bfdc7d9edf4c9e8094b03968e61c6cc9fb6d7d1c92a"
+        }
+      ],
+      "statement": "2023\u2013June2026 retrospective crypto horizon extension; calendar/accounting verified, source availability, metadata, funding, settlement and benchmark remain modeled. No combined qualification, new sleeve, untouched OOS or admission.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "point_in_time_data_and_survivorship_controls": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/reservation.json",
+          "sha256": "5bf6a0936be86f9a0728931bb2e5ffb803b4f4aecbcf44633db2486f42b6f980"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/preregistration.json",
+          "sha256": "adea05a075392e2d72103a55922e46e38c0c5879b749f46a3f22266ff74c1a51"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/reservation_validation.json",
+          "sha256": "0dbe25199d7556760c900a0cf7bfae90a8ef97fe31953ed6b13e9c8434f5a618"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/experiments.jsonl",
+          "sha256": "82425297a1633b6a1b090e484a252c381b7a5fa8328efed1ffc851623504e2c6"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/execution_complete.json",
+          "sha256": "dee91b8bdbf06be863a4d84287b8addf9ec79327631cb23753bf00c278aab2e8"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/independent_audit.json",
+          "sha256": "c6504ddf9ba3611b736c3b6d198974c259e62383c9c9d1b877440156d7b2490a"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/calendar2023_2026_audit.json",
+          "sha256": "d7c88f5ebc699c602acaa273a564b239f5fe245928406bf10bc2fb3c8c4c5037"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/calendar2023_2026.csv",
+          "sha256": "148468fa5f8bfa542b1060c54c750aa04293eaab21faa4ad665986302ca2cad7"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/terminal_invariants.json",
+          "sha256": "880b8fb3410ee5014ff8190837cd9a466c23b9b1b1a09f7397c24f823170c32e"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/boundary_audit.json",
+          "sha256": "5ba02b121ce1822d4e32dec313d048d65291adcb3a1ec0477f3f07cd57d1131a"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/REPORT.md",
+          "sha256": "964e138185a656bc970b39581ce511597a7b9304dc8525d176e1a52819df4bb3"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/run/walkforward.json",
+          "sha256": "611ee8e5c617dd40e442896d17922b6a43b8e86e6a029fb1172f4485e0b8797e"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/protocol.json",
+          "sha256": "9e8773781535e1e8aa0300cff41c792908c3ee5e568f029a768ea08caf180684"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/input_manifest.json",
+          "sha256": "fa19afdd65c0f65db565534ca5fbab6ca77cc845e07031dd9fd28a63cd519818"
+        },
+        {
+          "path": "scripts/close_crypto_observed_arm.py",
+          "sha256": "5f4c3cf610355f505cae065e08c0a17985314b73f6cbfb5caf95ddb56f18c8a7"
+        },
+        {
+          "path": "scripts/audit_crypto_observed_accounting.py",
+          "sha256": "a67c83ef944f881826668cdff3bf30655ed8977890454d6107033091cd3fc4be"
+        },
+        {
+          "path": "scripts/audit_crypto_observed_horizon.py",
+          "sha256": "0ea6ade1cd386568e9c223f412f69531316f4115ae875e15db9a9e883a6e13c8"
+        },
+        {
+          "path": "scripts/audit_crypto_observed_boundaries.py",
+          "sha256": "c59c259d4d54b30280b50bfdc7d9edf4c9e8094b03968e61c6cc9fb6d7d1c92a"
+        }
+      ],
+      "statement": "2023\u2013June2026 retrospective crypto horizon extension; calendar/accounting verified, source availability, metadata, funding, settlement and benchmark remain modeled. No combined qualification, new sleeve, untouched OOS or admission.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "preregistration_and_hashes": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/reservation.json",
+          "sha256": "5bf6a0936be86f9a0728931bb2e5ffb803b4f4aecbcf44633db2486f42b6f980"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/preregistration.json",
+          "sha256": "adea05a075392e2d72103a55922e46e38c0c5879b749f46a3f22266ff74c1a51"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/reservation_validation.json",
+          "sha256": "0dbe25199d7556760c900a0cf7bfae90a8ef97fe31953ed6b13e9c8434f5a618"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/experiments.jsonl",
+          "sha256": "82425297a1633b6a1b090e484a252c381b7a5fa8328efed1ffc851623504e2c6"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/execution_complete.json",
+          "sha256": "dee91b8bdbf06be863a4d84287b8addf9ec79327631cb23753bf00c278aab2e8"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/independent_audit.json",
+          "sha256": "c6504ddf9ba3611b736c3b6d198974c259e62383c9c9d1b877440156d7b2490a"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/calendar2023_2026_audit.json",
+          "sha256": "d7c88f5ebc699c602acaa273a564b239f5fe245928406bf10bc2fb3c8c4c5037"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/calendar2023_2026.csv",
+          "sha256": "148468fa5f8bfa542b1060c54c750aa04293eaab21faa4ad665986302ca2cad7"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/terminal_invariants.json",
+          "sha256": "880b8fb3410ee5014ff8190837cd9a466c23b9b1b1a09f7397c24f823170c32e"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/boundary_audit.json",
+          "sha256": "5ba02b121ce1822d4e32dec313d048d65291adcb3a1ec0477f3f07cd57d1131a"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/REPORT.md",
+          "sha256": "964e138185a656bc970b39581ce511597a7b9304dc8525d176e1a52819df4bb3"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/run/walkforward.json",
+          "sha256": "611ee8e5c617dd40e442896d17922b6a43b8e86e6a029fb1172f4485e0b8797e"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/protocol.json",
+          "sha256": "9e8773781535e1e8aa0300cff41c792908c3ee5e568f029a768ea08caf180684"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/input_manifest.json",
+          "sha256": "fa19afdd65c0f65db565534ca5fbab6ca77cc845e07031dd9fd28a63cd519818"
+        },
+        {
+          "path": "scripts/close_crypto_observed_arm.py",
+          "sha256": "5f4c3cf610355f505cae065e08c0a17985314b73f6cbfb5caf95ddb56f18c8a7"
+        },
+        {
+          "path": "scripts/audit_crypto_observed_accounting.py",
+          "sha256": "a67c83ef944f881826668cdff3bf30655ed8977890454d6107033091cd3fc4be"
+        },
+        {
+          "path": "scripts/audit_crypto_observed_horizon.py",
+          "sha256": "0ea6ade1cd386568e9c223f412f69531316f4115ae875e15db9a9e883a6e13c8"
+        },
+        {
+          "path": "scripts/audit_crypto_observed_boundaries.py",
+          "sha256": "c59c259d4d54b30280b50bfdc7d9edf4c9e8094b03968e61c6cc9fb6d7d1c92a"
+        }
+      ],
+      "statement": "2023\u2013June2026 retrospective crypto horizon extension; calendar/accounting verified, source availability, metadata, funding, settlement and benchmark remain modeled. No combined qualification, new sleeve, untouched OOS or admission.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "result_uncertainty_stress_capacity_and_diversification": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/reservation.json",
+          "sha256": "5bf6a0936be86f9a0728931bb2e5ffb803b4f4aecbcf44633db2486f42b6f980"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/preregistration.json",
+          "sha256": "adea05a075392e2d72103a55922e46e38c0c5879b749f46a3f22266ff74c1a51"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/reservation_validation.json",
+          "sha256": "0dbe25199d7556760c900a0cf7bfae90a8ef97fe31953ed6b13e9c8434f5a618"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/experiments.jsonl",
+          "sha256": "82425297a1633b6a1b090e484a252c381b7a5fa8328efed1ffc851623504e2c6"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/execution_complete.json",
+          "sha256": "dee91b8bdbf06be863a4d84287b8addf9ec79327631cb23753bf00c278aab2e8"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/independent_audit.json",
+          "sha256": "c6504ddf9ba3611b736c3b6d198974c259e62383c9c9d1b877440156d7b2490a"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/calendar2023_2026_audit.json",
+          "sha256": "d7c88f5ebc699c602acaa273a564b239f5fe245928406bf10bc2fb3c8c4c5037"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/calendar2023_2026.csv",
+          "sha256": "148468fa5f8bfa542b1060c54c750aa04293eaab21faa4ad665986302ca2cad7"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/terminal_invariants.json",
+          "sha256": "880b8fb3410ee5014ff8190837cd9a466c23b9b1b1a09f7397c24f823170c32e"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/boundary_audit.json",
+          "sha256": "5ba02b121ce1822d4e32dec313d048d65291adcb3a1ec0477f3f07cd57d1131a"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/REPORT.md",
+          "sha256": "964e138185a656bc970b39581ce511597a7b9304dc8525d176e1a52819df4bb3"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/run/walkforward.json",
+          "sha256": "611ee8e5c617dd40e442896d17922b6a43b8e86e6a029fb1172f4485e0b8797e"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/protocol.json",
+          "sha256": "9e8773781535e1e8aa0300cff41c792908c3ee5e568f029a768ea08caf180684"
+        },
+        {
+          "path": "artifacts/analysis/crypto_observed_carry_20260913/input_manifest.json",
+          "sha256": "fa19afdd65c0f65db565534ca5fbab6ca77cc845e07031dd9fd28a63cd519818"
+        },
+        {
+          "path": "scripts/close_crypto_observed_arm.py",
+          "sha256": "5f4c3cf610355f505cae065e08c0a17985314b73f6cbfb5caf95ddb56f18c8a7"
+        },
+        {
+          "path": "scripts/audit_crypto_observed_accounting.py",
+          "sha256": "a67c83ef944f881826668cdff3bf30655ed8977890454d6107033091cd3fc4be"
+        },
+        {
+          "path": "scripts/audit_crypto_observed_horizon.py",
+          "sha256": "0ea6ade1cd386568e9c223f412f69531316f4115ae875e15db9a9e883a6e13c8"
+        },
+        {
+          "path": "scripts/audit_crypto_observed_boundaries.py",
+          "sha256": "c59c259d4d54b30280b50bfdc7d9edf4c9e8094b03968e61c6cc9fb6d7d1c92a"
+        }
+      ],
+      "statement": "2023\u2013June2026 retrospective crypto horizon extension; calendar/accounting verified, source availability, metadata, funding, settlement and benchmark remain modeled. No combined qualification, new sleeve, untouched OOS or admission.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    }
+  },
+  "research_family_key": "managed_futures_trend",
+  "schema": "canli.alphac-identity-trial-packet.v2"
+}

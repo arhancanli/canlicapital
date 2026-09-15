@@ -1,0 +1,645 @@
+{
+  "claim_boundary": "Cash implementation diagnostic only. Both horizon pairs and their frozen gates required; no admission or reference adoption.",
+  "complete": true,
+  "completion_assessment": {
+    "candidate_evidence_complete_for_admission": false,
+    "disposition": "DIAGNOSTIC_ARM_ACCOUNTED",
+    "packet_evidence_accounting_complete": true
+  },
+  "config_hash": "fc615c17957989d7",
+  "configuration": {
+    "arm": "stress",
+    "family": "bil_cash_implementation_2022_validation",
+    "input_manifest_sha256": "09becf0c0f3898f34fe635b7660b534b71e2b3b076700da0e24972d902eeb67a",
+    "spec_sha256": "725a001bdcb0202df444883b831dfdc30ec5f4c641ed901120cb05fe5b1cea8b"
+  },
+  "content_hash": "sha256:7ac1b85c0b781d70cb455eaaafb19d19f7c0435929ed1af2dec6ade4775ef3ed",
+  "hypothesis_key": "f7a2b02448f5d522",
+  "immutable_first_measurement": {
+    "config": {
+      "arm": "stress",
+      "family": "bil_cash_implementation_2022_validation",
+      "input_manifest_sha256": "09becf0c0f3898f34fe635b7660b534b71e2b3b076700da0e24972d902eeb67a",
+      "spec_sha256": "725a001bdcb0202df444883b831dfdc30ec5f4c641ed901120cb05fe5b1cea8b"
+    },
+    "config_hash": "fc615c17957989d7",
+    "kurtosis": 6.495825955234245,
+    "n_obs": 365,
+    "now_ms": 1789308452908,
+    "sharpe_ann": 1.216366823894566,
+    "sharpe_per_period": 0.06366754942714935,
+    "skew": -0.5583438535496874
+  },
+  "imported_from_external_tree": {
+    "external_content_hash": "sha256:42a0a596a6919635277b0f1c30be46d3331864b6d54b2eb8c408bd8357d34d84",
+    "imported_on": "2026-09-14T19:36:11+00:00",
+    "tree": "/Users/arhancanli/alphac-prospective-pause-20260911"
+  },
+  "missing_sections": [],
+  "packet_status": "COMPLETE_ACCOUNTING_FINAL_KILLED_NOT_ADMITTED",
+  "partial_sections": [],
+  "required_sections": {
+    "admission_or_kill_decision": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/bil_cash_2022_20260913/stress/reservation.json",
+          "sha256": "57e4f4468973eed597f591af006b3740b81e58d6ff57a2a5833a5ca22c3850e6"
+        },
+        {
+          "path": "artifacts/analysis/bil_cash_2022_20260913/stress/reservation_validation.json",
+          "sha256": "6f889a7425408fe1acede3f548cb875df2e4d60978ecc52b72035aeb715c95d7"
+        },
+        {
+          "path": "artifacts/analysis/bil_cash_2022_20260913/stress/preregistration.json",
+          "sha256": "cfdcc1b6c2b0ee47061c83791b64da60fd70636b3cc885dd40c6391247099063"
+        },
+        {
+          "path": "artifacts/analysis/bil_cash_2022_20260913/stress/immutable_measurement.json",
+          "sha256": "5d8e1e049704bf8ab943bc61f11b47afcc368a6d3f9815e675324963c59755e4"
+        },
+        {
+          "path": "artifacts/analysis/bil_cash_2022_20260913/stress/experiments.jsonl",
+          "sha256": "2adb43e52584096b50c7ce41b42002104ba1a46e6cfeff9b19caf9950415b365"
+        },
+        {
+          "path": "artifacts/analysis/bil_cash_2022_20260913/stress/independent_audit.json",
+          "sha256": "b4587bea3e92761b89642d596c86fab2a9659b9918190772297cb8ee42532c1f"
+        },
+        {
+          "path": "artifacts/analysis/bil_cash_2022_20260913/stress/result.json",
+          "sha256": "18038d51216515857f8bc8b1044ad1c543572efdd33562ef11a456bb88179478"
+        },
+        {
+          "path": "artifacts/analysis/bil_cash_2022_20260913/stress/ledger.csv",
+          "sha256": "376ad3d0099488354e470b9fe3418817b8c8af6b20f895471f03862441873807"
+        },
+        {
+          "path": "artifacts/analysis/bil_cash_2022_20260913/stress/daily.csv",
+          "sha256": "5103d7a5934ea349448d2547dd3958f139fd7c7940d3759e56e8696ba030b3da"
+        },
+        {
+          "path": "artifacts/analysis/bil_cash_2022_20260913/protocol.json",
+          "sha256": "725a001bdcb0202df444883b831dfdc30ec5f4c641ed901120cb05fe5b1cea8b"
+        },
+        {
+          "path": "artifacts/analysis/bil_cash_2022_20260913/input_manifest.json",
+          "sha256": "09becf0c0f3898f34fe635b7660b534b71e2b3b076700da0e24972d902eeb67a"
+        },
+        {
+          "path": "scripts/close_bil_cash_2022_trial.py",
+          "sha256": "d8980ab7186763cb71950cdebc14ae90365448050a4d1254f8a60dd2cd63fa55"
+        },
+        {
+          "content_hash": "sha256:d694235bb03670b95f616e0b5e0a383abc0c029eba9fbbdfba1705c5ac105c44",
+          "path": "artifacts/research/development_closures/f7a2b02448f5d522_admission_closure.json",
+          "sha256": "5186e04c137015a487642707e77a274d5422dfa3ee3079b9146d16f96dc57aa7",
+          "type": "final_development_admission_closure"
+        }
+      ],
+      "statement": "Diagnostic arm measured and accounted; reference adoption requires this2022 pair and prior main-period pair to pass their frozen gates. No admission.",
+      "status": "VERIFIED_FINAL_DEVELOPMENT_CLOSURE_KILL"
+    },
+    "code_environment_and_reproduction": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/bil_cash_2022_20260913/stress/reservation.json",
+          "sha256": "57e4f4468973eed597f591af006b3740b81e58d6ff57a2a5833a5ca22c3850e6"
+        },
+        {
+          "path": "artifacts/analysis/bil_cash_2022_20260913/stress/reservation_validation.json",
+          "sha256": "6f889a7425408fe1acede3f548cb875df2e4d60978ecc52b72035aeb715c95d7"
+        },
+        {
+          "path": "artifacts/analysis/bil_cash_2022_20260913/stress/preregistration.json",
+          "sha256": "cfdcc1b6c2b0ee47061c83791b64da60fd70636b3cc885dd40c6391247099063"
+        },
+        {
+          "path": "artifacts/analysis/bil_cash_2022_20260913/stress/immutable_measurement.json",
+          "sha256": "5d8e1e049704bf8ab943bc61f11b47afcc368a6d3f9815e675324963c59755e4"
+        },
+        {
+          "path": "artifacts/analysis/bil_cash_2022_20260913/stress/experiments.jsonl",
+          "sha256": "2adb43e52584096b50c7ce41b42002104ba1a46e6cfeff9b19caf9950415b365"
+        },
+        {
+          "path": "artifacts/analysis/bil_cash_2022_20260913/stress/independent_audit.json",
+          "sha256": "b4587bea3e92761b89642d596c86fab2a9659b9918190772297cb8ee42532c1f"
+        },
+        {
+          "path": "artifacts/analysis/bil_cash_2022_20260913/stress/result.json",
+          "sha256": "18038d51216515857f8bc8b1044ad1c543572efdd33562ef11a456bb88179478"
+        },
+        {
+          "path": "artifacts/analysis/bil_cash_2022_20260913/stress/ledger.csv",
+          "sha256": "376ad3d0099488354e470b9fe3418817b8c8af6b20f895471f03862441873807"
+        },
+        {
+          "path": "artifacts/analysis/bil_cash_2022_20260913/stress/daily.csv",
+          "sha256": "5103d7a5934ea349448d2547dd3958f139fd7c7940d3759e56e8696ba030b3da"
+        },
+        {
+          "path": "artifacts/analysis/bil_cash_2022_20260913/protocol.json",
+          "sha256": "725a001bdcb0202df444883b831dfdc30ec5f4c641ed901120cb05fe5b1cea8b"
+        },
+        {
+          "path": "artifacts/analysis/bil_cash_2022_20260913/input_manifest.json",
+          "sha256": "09becf0c0f3898f34fe635b7660b534b71e2b3b076700da0e24972d902eeb67a"
+        },
+        {
+          "path": "scripts/close_bil_cash_2022_trial.py",
+          "sha256": "d8980ab7186763cb71950cdebc14ae90365448050a4d1254f8a60dd2cd63fa55"
+        }
+      ],
+      "statement": "Hash-bound inputs/code files; eight synthetic ledger tests passed. Independent cumulative cash/share/issuer entitlement audit checks 365 days. Not independent full environment reproduction.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "economic_mechanism_and_falsifiable_hypothesis": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/bil_cash_2022_20260913/stress/reservation.json",
+          "sha256": "57e4f4468973eed597f591af006b3740b81e58d6ff57a2a5833a5ca22c3850e6"
+        },
+        {
+          "path": "artifacts/analysis/bil_cash_2022_20260913/stress/reservation_validation.json",
+          "sha256": "6f889a7425408fe1acede3f548cb875df2e4d60978ecc52b72035aeb715c95d7"
+        },
+        {
+          "path": "artifacts/analysis/bil_cash_2022_20260913/stress/preregistration.json",
+          "sha256": "cfdcc1b6c2b0ee47061c83791b64da60fd70636b3cc885dd40c6391247099063"
+        },
+        {
+          "path": "artifacts/analysis/bil_cash_2022_20260913/stress/immutable_measurement.json",
+          "sha256": "5d8e1e049704bf8ab943bc61f11b47afcc368a6d3f9815e675324963c59755e4"
+        },
+        {
+          "path": "artifacts/analysis/bil_cash_2022_20260913/stress/experiments.jsonl",
+          "sha256": "2adb43e52584096b50c7ce41b42002104ba1a46e6cfeff9b19caf9950415b365"
+        },
+        {
+          "path": "artifacts/analysis/bil_cash_2022_20260913/stress/independent_audit.json",
+          "sha256": "b4587bea3e92761b89642d596c86fab2a9659b9918190772297cb8ee42532c1f"
+        },
+        {
+          "path": "artifacts/analysis/bil_cash_2022_20260913/stress/result.json",
+          "sha256": "18038d51216515857f8bc8b1044ad1c543572efdd33562ef11a456bb88179478"
+        },
+        {
+          "path": "artifacts/analysis/bil_cash_2022_20260913/stress/ledger.csv",
+          "sha256": "376ad3d0099488354e470b9fe3418817b8c8af6b20f895471f03862441873807"
+        },
+        {
+          "path": "artifacts/analysis/bil_cash_2022_20260913/stress/daily.csv",
+          "sha256": "5103d7a5934ea349448d2547dd3958f139fd7c7940d3759e56e8696ba030b3da"
+        },
+        {
+          "path": "artifacts/analysis/bil_cash_2022_20260913/protocol.json",
+          "sha256": "725a001bdcb0202df444883b831dfdc30ec5f4c641ed901120cb05fe5b1cea8b"
+        },
+        {
+          "path": "artifacts/analysis/bil_cash_2022_20260913/input_manifest.json",
+          "sha256": "09becf0c0f3898f34fe635b7660b534b71e2b3b076700da0e24972d902eeb67a"
+        },
+        {
+          "path": "scripts/close_bil_cash_2022_trial.py",
+          "sha256": "d8980ab7186763cb71950cdebc14ae90365448050a4d1254f8a60dd2cd63fa55"
+        }
+      ],
+      "statement": "Replace fixed32.5% zero-yield cash with BIL; monthly integer buys, issuer dividend receivables. No alpha-sleeve novelty claim.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "execution_and_cost_model": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/bil_cash_2022_20260913/stress/reservation.json",
+          "sha256": "57e4f4468973eed597f591af006b3740b81e58d6ff57a2a5833a5ca22c3850e6"
+        },
+        {
+          "path": "artifacts/analysis/bil_cash_2022_20260913/stress/reservation_validation.json",
+          "sha256": "6f889a7425408fe1acede3f548cb875df2e4d60978ecc52b72035aeb715c95d7"
+        },
+        {
+          "path": "artifacts/analysis/bil_cash_2022_20260913/stress/preregistration.json",
+          "sha256": "cfdcc1b6c2b0ee47061c83791b64da60fd70636b3cc885dd40c6391247099063"
+        },
+        {
+          "path": "artifacts/analysis/bil_cash_2022_20260913/stress/immutable_measurement.json",
+          "sha256": "5d8e1e049704bf8ab943bc61f11b47afcc368a6d3f9815e675324963c59755e4"
+        },
+        {
+          "path": "artifacts/analysis/bil_cash_2022_20260913/stress/experiments.jsonl",
+          "sha256": "2adb43e52584096b50c7ce41b42002104ba1a46e6cfeff9b19caf9950415b365"
+        },
+        {
+          "path": "artifacts/analysis/bil_cash_2022_20260913/stress/independent_audit.json",
+          "sha256": "b4587bea3e92761b89642d596c86fab2a9659b9918190772297cb8ee42532c1f"
+        },
+        {
+          "path": "artifacts/analysis/bil_cash_2022_20260913/stress/result.json",
+          "sha256": "18038d51216515857f8bc8b1044ad1c543572efdd33562ef11a456bb88179478"
+        },
+        {
+          "path": "artifacts/analysis/bil_cash_2022_20260913/stress/ledger.csv",
+          "sha256": "376ad3d0099488354e470b9fe3418817b8c8af6b20f895471f03862441873807"
+        },
+        {
+          "path": "artifacts/analysis/bil_cash_2022_20260913/stress/daily.csv",
+          "sha256": "5103d7a5934ea349448d2547dd3958f139fd7c7940d3759e56e8696ba030b3da"
+        },
+        {
+          "path": "artifacts/analysis/bil_cash_2022_20260913/protocol.json",
+          "sha256": "725a001bdcb0202df444883b831dfdc30ec5f4c641ed901120cb05fe5b1cea8b"
+        },
+        {
+          "path": "artifacts/analysis/bil_cash_2022_20260913/input_manifest.json",
+          "sha256": "09becf0c0f3898f34fe635b7660b534b71e2b3b076700da0e24972d902eeb67a"
+        },
+        {
+          "path": "scripts/close_bil_cash_2022_trial.py",
+          "sha256": "d8980ab7186763cb71950cdebc14ae90365448050a4d1254f8a60dd2cd63fa55"
+        }
+      ],
+      "statement": "Raw-open all-in modeled purchase charge6bp normal12bp stress. Issuer ex/pay dates; end-pay-date settlement, no borrowing, no unpaid-dividend reinvestment. Terminal receivables retained; no terminal liquidation. Actual fills/settlement/capacity unverified.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "family_and_union_trial_accounting": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/bil_cash_2022_20260913/stress/reservation.json",
+          "sha256": "57e4f4468973eed597f591af006b3740b81e58d6ff57a2a5833a5ca22c3850e6"
+        },
+        {
+          "path": "artifacts/analysis/bil_cash_2022_20260913/stress/reservation_validation.json",
+          "sha256": "6f889a7425408fe1acede3f548cb875df2e4d60978ecc52b72035aeb715c95d7"
+        },
+        {
+          "path": "artifacts/analysis/bil_cash_2022_20260913/stress/preregistration.json",
+          "sha256": "cfdcc1b6c2b0ee47061c83791b64da60fd70636b3cc885dd40c6391247099063"
+        },
+        {
+          "path": "artifacts/analysis/bil_cash_2022_20260913/stress/immutable_measurement.json",
+          "sha256": "5d8e1e049704bf8ab943bc61f11b47afcc368a6d3f9815e675324963c59755e4"
+        },
+        {
+          "path": "artifacts/analysis/bil_cash_2022_20260913/stress/experiments.jsonl",
+          "sha256": "2adb43e52584096b50c7ce41b42002104ba1a46e6cfeff9b19caf9950415b365"
+        },
+        {
+          "path": "artifacts/analysis/bil_cash_2022_20260913/stress/independent_audit.json",
+          "sha256": "b4587bea3e92761b89642d596c86fab2a9659b9918190772297cb8ee42532c1f"
+        },
+        {
+          "path": "artifacts/analysis/bil_cash_2022_20260913/stress/result.json",
+          "sha256": "18038d51216515857f8bc8b1044ad1c543572efdd33562ef11a456bb88179478"
+        },
+        {
+          "path": "artifacts/analysis/bil_cash_2022_20260913/stress/ledger.csv",
+          "sha256": "376ad3d0099488354e470b9fe3418817b8c8af6b20f895471f03862441873807"
+        },
+        {
+          "path": "artifacts/analysis/bil_cash_2022_20260913/stress/daily.csv",
+          "sha256": "5103d7a5934ea349448d2547dd3958f139fd7c7940d3759e56e8696ba030b3da"
+        },
+        {
+          "path": "artifacts/analysis/bil_cash_2022_20260913/protocol.json",
+          "sha256": "725a001bdcb0202df444883b831dfdc30ec5f4c641ed901120cb05fe5b1cea8b"
+        },
+        {
+          "path": "artifacts/analysis/bil_cash_2022_20260913/input_manifest.json",
+          "sha256": "09becf0c0f3898f34fe635b7660b534b71e2b3b076700da0e24972d902eeb67a"
+        },
+        {
+          "path": "scripts/close_bil_cash_2022_trial.py",
+          "sha256": "d8980ab7186763cb71950cdebc14ae90365448050a4d1254f8a60dd2cd63fa55"
+        }
+      ],
+      "statement": "Canonical reservation and immutable combined measurement retained. Cash-subbook ledger belongs to this implementation identity, not a qualified new alpha sleeve. Failed preflight attempts preserved.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "identity_and_authorship": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/bil_cash_2022_20260913/stress/reservation.json",
+          "sha256": "57e4f4468973eed597f591af006b3740b81e58d6ff57a2a5833a5ca22c3850e6"
+        },
+        {
+          "path": "artifacts/analysis/bil_cash_2022_20260913/stress/reservation_validation.json",
+          "sha256": "6f889a7425408fe1acede3f548cb875df2e4d60978ecc52b72035aeb715c95d7"
+        },
+        {
+          "path": "artifacts/analysis/bil_cash_2022_20260913/stress/preregistration.json",
+          "sha256": "cfdcc1b6c2b0ee47061c83791b64da60fd70636b3cc885dd40c6391247099063"
+        },
+        {
+          "path": "artifacts/analysis/bil_cash_2022_20260913/stress/immutable_measurement.json",
+          "sha256": "5d8e1e049704bf8ab943bc61f11b47afcc368a6d3f9815e675324963c59755e4"
+        },
+        {
+          "path": "artifacts/analysis/bil_cash_2022_20260913/stress/experiments.jsonl",
+          "sha256": "2adb43e52584096b50c7ce41b42002104ba1a46e6cfeff9b19caf9950415b365"
+        },
+        {
+          "path": "artifacts/analysis/bil_cash_2022_20260913/stress/independent_audit.json",
+          "sha256": "b4587bea3e92761b89642d596c86fab2a9659b9918190772297cb8ee42532c1f"
+        },
+        {
+          "path": "artifacts/analysis/bil_cash_2022_20260913/stress/result.json",
+          "sha256": "18038d51216515857f8bc8b1044ad1c543572efdd33562ef11a456bb88179478"
+        },
+        {
+          "path": "artifacts/analysis/bil_cash_2022_20260913/stress/ledger.csv",
+          "sha256": "376ad3d0099488354e470b9fe3418817b8c8af6b20f895471f03862441873807"
+        },
+        {
+          "path": "artifacts/analysis/bil_cash_2022_20260913/stress/daily.csv",
+          "sha256": "5103d7a5934ea349448d2547dd3958f139fd7c7940d3759e56e8696ba030b3da"
+        },
+        {
+          "path": "artifacts/analysis/bil_cash_2022_20260913/protocol.json",
+          "sha256": "725a001bdcb0202df444883b831dfdc30ec5f4c641ed901120cb05fe5b1cea8b"
+        },
+        {
+          "path": "artifacts/analysis/bil_cash_2022_20260913/input_manifest.json",
+          "sha256": "09becf0c0f3898f34fe635b7660b534b71e2b3b076700da0e24972d902eeb67a"
+        },
+        {
+          "path": "scripts/close_bil_cash_2022_trial.py",
+          "sha256": "d8980ab7186763cb71950cdebc14ae90365448050a4d1254f8a60dd2cd63fa55"
+        }
+      ],
+      "statement": "Authorized agent research in this worktree. No independent reviewer or external authorship verification.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "literature_and_overlap_decision": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/bil_cash_2022_20260913/stress/reservation.json",
+          "sha256": "57e4f4468973eed597f591af006b3740b81e58d6ff57a2a5833a5ca22c3850e6"
+        },
+        {
+          "path": "artifacts/analysis/bil_cash_2022_20260913/stress/reservation_validation.json",
+          "sha256": "6f889a7425408fe1acede3f548cb875df2e4d60978ecc52b72035aeb715c95d7"
+        },
+        {
+          "path": "artifacts/analysis/bil_cash_2022_20260913/stress/preregistration.json",
+          "sha256": "cfdcc1b6c2b0ee47061c83791b64da60fd70636b3cc885dd40c6391247099063"
+        },
+        {
+          "path": "artifacts/analysis/bil_cash_2022_20260913/stress/immutable_measurement.json",
+          "sha256": "5d8e1e049704bf8ab943bc61f11b47afcc368a6d3f9815e675324963c59755e4"
+        },
+        {
+          "path": "artifacts/analysis/bil_cash_2022_20260913/stress/experiments.jsonl",
+          "sha256": "2adb43e52584096b50c7ce41b42002104ba1a46e6cfeff9b19caf9950415b365"
+        },
+        {
+          "path": "artifacts/analysis/bil_cash_2022_20260913/stress/independent_audit.json",
+          "sha256": "b4587bea3e92761b89642d596c86fab2a9659b9918190772297cb8ee42532c1f"
+        },
+        {
+          "path": "artifacts/analysis/bil_cash_2022_20260913/stress/result.json",
+          "sha256": "18038d51216515857f8bc8b1044ad1c543572efdd33562ef11a456bb88179478"
+        },
+        {
+          "path": "artifacts/analysis/bil_cash_2022_20260913/stress/ledger.csv",
+          "sha256": "376ad3d0099488354e470b9fe3418817b8c8af6b20f895471f03862441873807"
+        },
+        {
+          "path": "artifacts/analysis/bil_cash_2022_20260913/stress/daily.csv",
+          "sha256": "5103d7a5934ea349448d2547dd3958f139fd7c7940d3759e56e8696ba030b3da"
+        },
+        {
+          "path": "artifacts/analysis/bil_cash_2022_20260913/protocol.json",
+          "sha256": "725a001bdcb0202df444883b831dfdc30ec5f4c641ed901120cb05fe5b1cea8b"
+        },
+        {
+          "path": "artifacts/analysis/bil_cash_2022_20260913/input_manifest.json",
+          "sha256": "09becf0c0f3898f34fe635b7660b534b71e2b3b076700da0e24972d902eeb67a"
+        },
+        {
+          "path": "scripts/close_bil_cash_2022_trial.py",
+          "sha256": "d8980ab7186763cb71950cdebc14ae90365448050a4d1254f8a60dd2cd63fa55"
+        }
+      ],
+      "statement": "Cash implementation of short Treasury ETF exposure; not claimed new alpha mechanism. Does not count toward15 distinct sleeves.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "machine_readable_packet_and_stable_public_paper": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/bil_cash_2022_20260913/stress/reservation.json",
+          "sha256": "57e4f4468973eed597f591af006b3740b81e58d6ff57a2a5833a5ca22c3850e6"
+        },
+        {
+          "path": "artifacts/analysis/bil_cash_2022_20260913/stress/reservation_validation.json",
+          "sha256": "6f889a7425408fe1acede3f548cb875df2e4d60978ecc52b72035aeb715c95d7"
+        },
+        {
+          "path": "artifacts/analysis/bil_cash_2022_20260913/stress/preregistration.json",
+          "sha256": "cfdcc1b6c2b0ee47061c83791b64da60fd70636b3cc885dd40c6391247099063"
+        },
+        {
+          "path": "artifacts/analysis/bil_cash_2022_20260913/stress/immutable_measurement.json",
+          "sha256": "5d8e1e049704bf8ab943bc61f11b47afcc368a6d3f9815e675324963c59755e4"
+        },
+        {
+          "path": "artifacts/analysis/bil_cash_2022_20260913/stress/experiments.jsonl",
+          "sha256": "2adb43e52584096b50c7ce41b42002104ba1a46e6cfeff9b19caf9950415b365"
+        },
+        {
+          "path": "artifacts/analysis/bil_cash_2022_20260913/stress/independent_audit.json",
+          "sha256": "b4587bea3e92761b89642d596c86fab2a9659b9918190772297cb8ee42532c1f"
+        },
+        {
+          "path": "artifacts/analysis/bil_cash_2022_20260913/stress/result.json",
+          "sha256": "18038d51216515857f8bc8b1044ad1c543572efdd33562ef11a456bb88179478"
+        },
+        {
+          "path": "artifacts/analysis/bil_cash_2022_20260913/stress/ledger.csv",
+          "sha256": "376ad3d0099488354e470b9fe3418817b8c8af6b20f895471f03862441873807"
+        },
+        {
+          "path": "artifacts/analysis/bil_cash_2022_20260913/stress/daily.csv",
+          "sha256": "5103d7a5934ea349448d2547dd3958f139fd7c7940d3759e56e8696ba030b3da"
+        },
+        {
+          "path": "artifacts/analysis/bil_cash_2022_20260913/protocol.json",
+          "sha256": "725a001bdcb0202df444883b831dfdc30ec5f4c641ed901120cb05fe5b1cea8b"
+        },
+        {
+          "path": "artifacts/analysis/bil_cash_2022_20260913/input_manifest.json",
+          "sha256": "09becf0c0f3898f34fe635b7660b534b71e2b3b076700da0e24972d902eeb67a"
+        },
+        {
+          "path": "scripts/close_bil_cash_2022_trial.py",
+          "sha256": "d8980ab7186763cb71950cdebc14ae90365448050a4d1254f8a60dd2cd63fa55"
+        }
+      ],
+      "statement": "Local evidence packet with hashes. Public paths in reservation are intended identifiers; no verified remote publication.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "point_in_time_data_and_survivorship_controls": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/bil_cash_2022_20260913/stress/reservation.json",
+          "sha256": "57e4f4468973eed597f591af006b3740b81e58d6ff57a2a5833a5ca22c3850e6"
+        },
+        {
+          "path": "artifacts/analysis/bil_cash_2022_20260913/stress/reservation_validation.json",
+          "sha256": "6f889a7425408fe1acede3f548cb875df2e4d60978ecc52b72035aeb715c95d7"
+        },
+        {
+          "path": "artifacts/analysis/bil_cash_2022_20260913/stress/preregistration.json",
+          "sha256": "cfdcc1b6c2b0ee47061c83791b64da60fd70636b3cc885dd40c6391247099063"
+        },
+        {
+          "path": "artifacts/analysis/bil_cash_2022_20260913/stress/immutable_measurement.json",
+          "sha256": "5d8e1e049704bf8ab943bc61f11b47afcc368a6d3f9815e675324963c59755e4"
+        },
+        {
+          "path": "artifacts/analysis/bil_cash_2022_20260913/stress/experiments.jsonl",
+          "sha256": "2adb43e52584096b50c7ce41b42002104ba1a46e6cfeff9b19caf9950415b365"
+        },
+        {
+          "path": "artifacts/analysis/bil_cash_2022_20260913/stress/independent_audit.json",
+          "sha256": "b4587bea3e92761b89642d596c86fab2a9659b9918190772297cb8ee42532c1f"
+        },
+        {
+          "path": "artifacts/analysis/bil_cash_2022_20260913/stress/result.json",
+          "sha256": "18038d51216515857f8bc8b1044ad1c543572efdd33562ef11a456bb88179478"
+        },
+        {
+          "path": "artifacts/analysis/bil_cash_2022_20260913/stress/ledger.csv",
+          "sha256": "376ad3d0099488354e470b9fe3418817b8c8af6b20f895471f03862441873807"
+        },
+        {
+          "path": "artifacts/analysis/bil_cash_2022_20260913/stress/daily.csv",
+          "sha256": "5103d7a5934ea349448d2547dd3958f139fd7c7940d3759e56e8696ba030b3da"
+        },
+        {
+          "path": "artifacts/analysis/bil_cash_2022_20260913/protocol.json",
+          "sha256": "725a001bdcb0202df444883b831dfdc30ec5f4c641ed901120cb05fe5b1cea8b"
+        },
+        {
+          "path": "artifacts/analysis/bil_cash_2022_20260913/input_manifest.json",
+          "sha256": "09becf0c0f3898f34fe635b7660b534b71e2b3b076700da0e24972d902eeb67a"
+        },
+        {
+          "path": "scripts/close_bil_cash_2022_trial.py",
+          "sha256": "d8980ab7186763cb71950cdebc14ae90365448050a4d1254f8a60dd2cd63fa55"
+        }
+      ],
+      "statement": "Current issuer distribution workbook and current-vintage provider raw prices. All1358 requested source sessions passed prior coverage audit. Issuer/vendor conflicts retained. Historical publication vintages and actual broker payments not verified.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "preregistration_and_hashes": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/bil_cash_2022_20260913/stress/reservation.json",
+          "sha256": "57e4f4468973eed597f591af006b3740b81e58d6ff57a2a5833a5ca22c3850e6"
+        },
+        {
+          "path": "artifacts/analysis/bil_cash_2022_20260913/stress/reservation_validation.json",
+          "sha256": "6f889a7425408fe1acede3f548cb875df2e4d60978ecc52b72035aeb715c95d7"
+        },
+        {
+          "path": "artifacts/analysis/bil_cash_2022_20260913/stress/preregistration.json",
+          "sha256": "cfdcc1b6c2b0ee47061c83791b64da60fd70636b3cc885dd40c6391247099063"
+        },
+        {
+          "path": "artifacts/analysis/bil_cash_2022_20260913/stress/immutable_measurement.json",
+          "sha256": "5d8e1e049704bf8ab943bc61f11b47afcc368a6d3f9815e675324963c59755e4"
+        },
+        {
+          "path": "artifacts/analysis/bil_cash_2022_20260913/stress/experiments.jsonl",
+          "sha256": "2adb43e52584096b50c7ce41b42002104ba1a46e6cfeff9b19caf9950415b365"
+        },
+        {
+          "path": "artifacts/analysis/bil_cash_2022_20260913/stress/independent_audit.json",
+          "sha256": "b4587bea3e92761b89642d596c86fab2a9659b9918190772297cb8ee42532c1f"
+        },
+        {
+          "path": "artifacts/analysis/bil_cash_2022_20260913/stress/result.json",
+          "sha256": "18038d51216515857f8bc8b1044ad1c543572efdd33562ef11a456bb88179478"
+        },
+        {
+          "path": "artifacts/analysis/bil_cash_2022_20260913/stress/ledger.csv",
+          "sha256": "376ad3d0099488354e470b9fe3418817b8c8af6b20f895471f03862441873807"
+        },
+        {
+          "path": "artifacts/analysis/bil_cash_2022_20260913/stress/daily.csv",
+          "sha256": "5103d7a5934ea349448d2547dd3958f139fd7c7940d3759e56e8696ba030b3da"
+        },
+        {
+          "path": "artifacts/analysis/bil_cash_2022_20260913/protocol.json",
+          "sha256": "725a001bdcb0202df444883b831dfdc30ec5f4c641ed901120cb05fe5b1cea8b"
+        },
+        {
+          "path": "artifacts/analysis/bil_cash_2022_20260913/input_manifest.json",
+          "sha256": "09becf0c0f3898f34fe635b7660b534b71e2b3b076700da0e24972d902eeb67a"
+        },
+        {
+          "path": "scripts/close_bil_cash_2022_trial.py",
+          "sha256": "d8980ab7186763cb71950cdebc14ae90365448050a4d1254f8a60dd2cd63fa55"
+        }
+      ],
+      "statement": "Frozen design before returns; runner and input manifest bound; canonical reservation validation/preflight precede ledger computation. Original zero-yield baseline retained.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "result_uncertainty_stress_capacity_and_diversification": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/bil_cash_2022_20260913/stress/reservation.json",
+          "sha256": "57e4f4468973eed597f591af006b3740b81e58d6ff57a2a5833a5ca22c3850e6"
+        },
+        {
+          "path": "artifacts/analysis/bil_cash_2022_20260913/stress/reservation_validation.json",
+          "sha256": "6f889a7425408fe1acede3f548cb875df2e4d60978ecc52b72035aeb715c95d7"
+        },
+        {
+          "path": "artifacts/analysis/bil_cash_2022_20260913/stress/preregistration.json",
+          "sha256": "cfdcc1b6c2b0ee47061c83791b64da60fd70636b3cc885dd40c6391247099063"
+        },
+        {
+          "path": "artifacts/analysis/bil_cash_2022_20260913/stress/immutable_measurement.json",
+          "sha256": "5d8e1e049704bf8ab943bc61f11b47afcc368a6d3f9815e675324963c59755e4"
+        },
+        {
+          "path": "artifacts/analysis/bil_cash_2022_20260913/stress/experiments.jsonl",
+          "sha256": "2adb43e52584096b50c7ce41b42002104ba1a46e6cfeff9b19caf9950415b365"
+        },
+        {
+          "path": "artifacts/analysis/bil_cash_2022_20260913/stress/independent_audit.json",
+          "sha256": "b4587bea3e92761b89642d596c86fab2a9659b9918190772297cb8ee42532c1f"
+        },
+        {
+          "path": "artifacts/analysis/bil_cash_2022_20260913/stress/result.json",
+          "sha256": "18038d51216515857f8bc8b1044ad1c543572efdd33562ef11a456bb88179478"
+        },
+        {
+          "path": "artifacts/analysis/bil_cash_2022_20260913/stress/ledger.csv",
+          "sha256": "376ad3d0099488354e470b9fe3418817b8c8af6b20f895471f03862441873807"
+        },
+        {
+          "path": "artifacts/analysis/bil_cash_2022_20260913/stress/daily.csv",
+          "sha256": "5103d7a5934ea349448d2547dd3958f139fd7c7940d3759e56e8696ba030b3da"
+        },
+        {
+          "path": "artifacts/analysis/bil_cash_2022_20260913/protocol.json",
+          "sha256": "725a001bdcb0202df444883b831dfdc30ec5f4c641ed901120cb05fe5b1cea8b"
+        },
+        {
+          "path": "artifacts/analysis/bil_cash_2022_20260913/input_manifest.json",
+          "sha256": "09becf0c0f3898f34fe635b7660b534b71e2b3b076700da0e24972d902eeb67a"
+        },
+        {
+          "path": "scripts/close_bil_cash_2022_trial.py",
+          "sha256": "d8980ab7186763cb71950cdebc14ae90365448050a4d1254f8a60dd2cd63fa55"
+        }
+      ],
+      "statement": "Retrospective fixed-weight combined research proxy; daily statistics, not intraday risk. Source/cost/collateral/rebalancing limitations remain. This arm passes or fails only its saved gates; not untouched OOS, capacity,15-sleeve or launch evidence.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    }
+  },
+  "research_family_key": "bil_cash_implementation_2022_validation",
+  "schema": "canli.alphac-identity-trial-packet.v2"
+}

@@ -1,0 +1,513 @@
+{
+  "claim_boundary": "Retrospective fixed-weight combined research proxy; 22.5% each Max/crypto/confirmedTrend and32.5%zero-yield cash. Full NAV DFF benchmark. Source-session equity vs fullUTC crypto alignment verified, but intraday synchronization, inter-sleeve rebalance execution, collateral and funding/borrow/metadata source timing remain modeled. No new sleeve, untouched OOS, admission or launch evidence.",
+  "complete": true,
+  "completion_assessment": {
+    "candidate_evidence_complete_for_admission": false,
+    "disposition": "INCOMPLETE_NOT_ADMITTED",
+    "packet_evidence_accounting_complete": true
+  },
+  "config_hash": "b5cc659a22732942",
+  "configuration": {
+    "arm": "candidate_stress",
+    "family": "combined_session_cooldown",
+    "input_manifest_sha256": "cb756848b26dea175eef15718d16ffda5a52640b5ec0c98592dd9a5ca7064c14",
+    "spec_sha256": "904aad59143b6613f239fc0d64dcc8925f287dd491311c5cf09f79e3756199a5"
+  },
+  "content_hash": "sha256:f781cefb55870b4cc990b22eceafa5cf6a0dd2bd9ac428e0f0b98443fb70f5a4",
+  "hypothesis_key": "5539d5c5e13535f1",
+  "immutable_first_measurement": {
+    "config": {
+      "arm": "candidate_stress",
+      "family": "combined_session_cooldown",
+      "input_manifest_sha256": "cb756848b26dea175eef15718d16ffda5a52640b5ec0c98592dd9a5ca7064c14",
+      "spec_sha256": "904aad59143b6613f239fc0d64dcc8925f287dd491311c5cf09f79e3756199a5"
+    },
+    "config_hash": "b5cc659a22732942",
+    "kurtosis": 6.119772569466448,
+    "n_obs": 1248,
+    "now_ms": 1789298598655,
+    "sharpe_ann": 0.07952321872490384,
+    "sharpe_per_period": 0.00416243550819887,
+    "skew": -0.038568853212605586
+  },
+  "imported_from_external_tree": {
+    "external_content_hash": "sha256:898ac51d5328a82c803559d3985a975dcc9b7dbdd849f8a4124af1f7f168c3c6",
+    "imported_on": "2026-09-14T19:35:24+00:00",
+    "tree": "/Users/arhancanli/alphac-prospective-pause-20260911"
+  },
+  "missing_sections": [],
+  "packet_status": "COMPLETE_ACCOUNTING_FINAL_KILLED_NOT_ADMITTED",
+  "partial_sections": [],
+  "required_sections": {
+    "admission_or_kill_decision": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/combined_session_cooldown_20260913/candidate_stress/daily.csv",
+          "sha256": "acd40f858fc2eb9e97110a840fcde83b3204e1ce25329ea9fb027b57e3883e51"
+        },
+        {
+          "path": "artifacts/analysis/combined_session_cooldown_20260913/candidate_stress/experiments.jsonl",
+          "sha256": "25e036197be44f64ed316d03dd67d0e2567bcb7a650796bd122b300351978522"
+        },
+        {
+          "path": "artifacts/analysis/combined_session_cooldown_20260913/candidate_stress/preregistration.json",
+          "sha256": "7e18d32ec721a6b0f93acce0ba679030ccb8b10332c7f36ebc24788233c3aea0"
+        },
+        {
+          "path": "artifacts/analysis/combined_session_cooldown_20260913/candidate_stress/reservation.json",
+          "sha256": "ecf97b973bf77ad11393a0f77575959bca7c9dbff318d4ae0d7e9b370efdf8f9"
+        },
+        {
+          "path": "artifacts/analysis/combined_session_cooldown_20260913/candidate_stress/reservation_validation.json",
+          "sha256": "868e5af3a7dec02583fde51149ea7916ac6842084ef7e230021923d0d08ced29"
+        },
+        {
+          "path": "artifacts/analysis/combined_session_cooldown_20260913/candidate_stress/result.json",
+          "sha256": "0774e00cd8d2bffe78754b489b1d2bdbc0928c32b8a50bb7b58fbac2c173a111"
+        },
+        {
+          "path": "artifacts/analysis/combined_session_cooldown_20260913/input_manifest.json",
+          "sha256": "cb756848b26dea175eef15718d16ffda5a52640b5ec0c98592dd9a5ca7064c14"
+        },
+        {
+          "path": "artifacts/analysis/combined_session_cooldown_20260913/protocol.json",
+          "sha256": "786d54c32a0501ad01d6364d48cb0c8387102fcfc1d5b33ce63ef4e09dd758ae"
+        },
+        {
+          "path": "scripts/run_combined_session_cooldown.py",
+          "sha256": "460a9da08c475d4ddf8957534c56bb37e7b574000e09fd146c4613fd9583ba8b"
+        },
+        {
+          "content_hash": "sha256:231a1bb8388915ad6ee7d2b264385bf74e75b78d0eb1bfe1c6582776a5b17206",
+          "path": "artifacts/research/development_closures/5539d5c5e13535f1_admission_closure.json",
+          "sha256": "bf8ef9023e74794d4068dd4a7a49d9696b58bd091c266775de4b860e677fea3d",
+          "type": "final_development_admission_closure"
+        }
+      ],
+      "statement": "Retrospective fixed-weight combined research proxy; 22.5% each Max/crypto/confirmedTrend and32.5%zero-yield cash. Full NAV DFF benchmark. Source-session equity vs fullUTC crypto alignment verified, but intraday synchronization, inter-sleeve rebalance execution, collateral and funding/borrow/metadata source timing remain modeled. No new sleeve, untouched OOS, admission or launch evidence.",
+      "status": "VERIFIED_FINAL_DEVELOPMENT_CLOSURE_KILL"
+    },
+    "code_environment_and_reproduction": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/combined_session_cooldown_20260913/candidate_stress/daily.csv",
+          "sha256": "acd40f858fc2eb9e97110a840fcde83b3204e1ce25329ea9fb027b57e3883e51"
+        },
+        {
+          "path": "artifacts/analysis/combined_session_cooldown_20260913/candidate_stress/experiments.jsonl",
+          "sha256": "25e036197be44f64ed316d03dd67d0e2567bcb7a650796bd122b300351978522"
+        },
+        {
+          "path": "artifacts/analysis/combined_session_cooldown_20260913/candidate_stress/preregistration.json",
+          "sha256": "7e18d32ec721a6b0f93acce0ba679030ccb8b10332c7f36ebc24788233c3aea0"
+        },
+        {
+          "path": "artifacts/analysis/combined_session_cooldown_20260913/candidate_stress/reservation.json",
+          "sha256": "ecf97b973bf77ad11393a0f77575959bca7c9dbff318d4ae0d7e9b370efdf8f9"
+        },
+        {
+          "path": "artifacts/analysis/combined_session_cooldown_20260913/candidate_stress/reservation_validation.json",
+          "sha256": "868e5af3a7dec02583fde51149ea7916ac6842084ef7e230021923d0d08ced29"
+        },
+        {
+          "path": "artifacts/analysis/combined_session_cooldown_20260913/candidate_stress/result.json",
+          "sha256": "0774e00cd8d2bffe78754b489b1d2bdbc0928c32b8a50bb7b58fbac2c173a111"
+        },
+        {
+          "path": "artifacts/analysis/combined_session_cooldown_20260913/input_manifest.json",
+          "sha256": "cb756848b26dea175eef15718d16ffda5a52640b5ec0c98592dd9a5ca7064c14"
+        },
+        {
+          "path": "artifacts/analysis/combined_session_cooldown_20260913/protocol.json",
+          "sha256": "786d54c32a0501ad01d6364d48cb0c8387102fcfc1d5b33ce63ef4e09dd758ae"
+        },
+        {
+          "path": "scripts/run_combined_session_cooldown.py",
+          "sha256": "460a9da08c475d4ddf8957534c56bb37e7b574000e09fd146c4613fd9583ba8b"
+        }
+      ],
+      "statement": "Retrospective fixed-weight combined research proxy; 22.5% each Max/crypto/confirmedTrend and32.5%zero-yield cash. Full NAV DFF benchmark. Source-session equity vs fullUTC crypto alignment verified, but intraday synchronization, inter-sleeve rebalance execution, collateral and funding/borrow/metadata source timing remain modeled. No new sleeve, untouched OOS, admission or launch evidence.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "economic_mechanism_and_falsifiable_hypothesis": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/combined_session_cooldown_20260913/candidate_stress/daily.csv",
+          "sha256": "acd40f858fc2eb9e97110a840fcde83b3204e1ce25329ea9fb027b57e3883e51"
+        },
+        {
+          "path": "artifacts/analysis/combined_session_cooldown_20260913/candidate_stress/experiments.jsonl",
+          "sha256": "25e036197be44f64ed316d03dd67d0e2567bcb7a650796bd122b300351978522"
+        },
+        {
+          "path": "artifacts/analysis/combined_session_cooldown_20260913/candidate_stress/preregistration.json",
+          "sha256": "7e18d32ec721a6b0f93acce0ba679030ccb8b10332c7f36ebc24788233c3aea0"
+        },
+        {
+          "path": "artifacts/analysis/combined_session_cooldown_20260913/candidate_stress/reservation.json",
+          "sha256": "ecf97b973bf77ad11393a0f77575959bca7c9dbff318d4ae0d7e9b370efdf8f9"
+        },
+        {
+          "path": "artifacts/analysis/combined_session_cooldown_20260913/candidate_stress/reservation_validation.json",
+          "sha256": "868e5af3a7dec02583fde51149ea7916ac6842084ef7e230021923d0d08ced29"
+        },
+        {
+          "path": "artifacts/analysis/combined_session_cooldown_20260913/candidate_stress/result.json",
+          "sha256": "0774e00cd8d2bffe78754b489b1d2bdbc0928c32b8a50bb7b58fbac2c173a111"
+        },
+        {
+          "path": "artifacts/analysis/combined_session_cooldown_20260913/input_manifest.json",
+          "sha256": "cb756848b26dea175eef15718d16ffda5a52640b5ec0c98592dd9a5ca7064c14"
+        },
+        {
+          "path": "artifacts/analysis/combined_session_cooldown_20260913/protocol.json",
+          "sha256": "786d54c32a0501ad01d6364d48cb0c8387102fcfc1d5b33ce63ef4e09dd758ae"
+        },
+        {
+          "path": "scripts/run_combined_session_cooldown.py",
+          "sha256": "460a9da08c475d4ddf8957534c56bb37e7b574000e09fd146c4613fd9583ba8b"
+        }
+      ],
+      "statement": "Retrospective fixed-weight combined research proxy; 22.5% each Max/crypto/confirmedTrend and32.5%zero-yield cash. Full NAV DFF benchmark. Source-session equity vs fullUTC crypto alignment verified, but intraday synchronization, inter-sleeve rebalance execution, collateral and funding/borrow/metadata source timing remain modeled. No new sleeve, untouched OOS, admission or launch evidence.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "execution_and_cost_model": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/combined_session_cooldown_20260913/candidate_stress/daily.csv",
+          "sha256": "acd40f858fc2eb9e97110a840fcde83b3204e1ce25329ea9fb027b57e3883e51"
+        },
+        {
+          "path": "artifacts/analysis/combined_session_cooldown_20260913/candidate_stress/experiments.jsonl",
+          "sha256": "25e036197be44f64ed316d03dd67d0e2567bcb7a650796bd122b300351978522"
+        },
+        {
+          "path": "artifacts/analysis/combined_session_cooldown_20260913/candidate_stress/preregistration.json",
+          "sha256": "7e18d32ec721a6b0f93acce0ba679030ccb8b10332c7f36ebc24788233c3aea0"
+        },
+        {
+          "path": "artifacts/analysis/combined_session_cooldown_20260913/candidate_stress/reservation.json",
+          "sha256": "ecf97b973bf77ad11393a0f77575959bca7c9dbff318d4ae0d7e9b370efdf8f9"
+        },
+        {
+          "path": "artifacts/analysis/combined_session_cooldown_20260913/candidate_stress/reservation_validation.json",
+          "sha256": "868e5af3a7dec02583fde51149ea7916ac6842084ef7e230021923d0d08ced29"
+        },
+        {
+          "path": "artifacts/analysis/combined_session_cooldown_20260913/candidate_stress/result.json",
+          "sha256": "0774e00cd8d2bffe78754b489b1d2bdbc0928c32b8a50bb7b58fbac2c173a111"
+        },
+        {
+          "path": "artifacts/analysis/combined_session_cooldown_20260913/input_manifest.json",
+          "sha256": "cb756848b26dea175eef15718d16ffda5a52640b5ec0c98592dd9a5ca7064c14"
+        },
+        {
+          "path": "artifacts/analysis/combined_session_cooldown_20260913/protocol.json",
+          "sha256": "786d54c32a0501ad01d6364d48cb0c8387102fcfc1d5b33ce63ef4e09dd758ae"
+        },
+        {
+          "path": "scripts/run_combined_session_cooldown.py",
+          "sha256": "460a9da08c475d4ddf8957534c56bb37e7b574000e09fd146c4613fd9583ba8b"
+        }
+      ],
+      "statement": "Retrospective fixed-weight combined research proxy; 22.5% each Max/crypto/confirmedTrend and32.5%zero-yield cash. Full NAV DFF benchmark. Source-session equity vs fullUTC crypto alignment verified, but intraday synchronization, inter-sleeve rebalance execution, collateral and funding/borrow/metadata source timing remain modeled. No new sleeve, untouched OOS, admission or launch evidence.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "family_and_union_trial_accounting": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/combined_session_cooldown_20260913/candidate_stress/daily.csv",
+          "sha256": "acd40f858fc2eb9e97110a840fcde83b3204e1ce25329ea9fb027b57e3883e51"
+        },
+        {
+          "path": "artifacts/analysis/combined_session_cooldown_20260913/candidate_stress/experiments.jsonl",
+          "sha256": "25e036197be44f64ed316d03dd67d0e2567bcb7a650796bd122b300351978522"
+        },
+        {
+          "path": "artifacts/analysis/combined_session_cooldown_20260913/candidate_stress/preregistration.json",
+          "sha256": "7e18d32ec721a6b0f93acce0ba679030ccb8b10332c7f36ebc24788233c3aea0"
+        },
+        {
+          "path": "artifacts/analysis/combined_session_cooldown_20260913/candidate_stress/reservation.json",
+          "sha256": "ecf97b973bf77ad11393a0f77575959bca7c9dbff318d4ae0d7e9b370efdf8f9"
+        },
+        {
+          "path": "artifacts/analysis/combined_session_cooldown_20260913/candidate_stress/reservation_validation.json",
+          "sha256": "868e5af3a7dec02583fde51149ea7916ac6842084ef7e230021923d0d08ced29"
+        },
+        {
+          "path": "artifacts/analysis/combined_session_cooldown_20260913/candidate_stress/result.json",
+          "sha256": "0774e00cd8d2bffe78754b489b1d2bdbc0928c32b8a50bb7b58fbac2c173a111"
+        },
+        {
+          "path": "artifacts/analysis/combined_session_cooldown_20260913/input_manifest.json",
+          "sha256": "cb756848b26dea175eef15718d16ffda5a52640b5ec0c98592dd9a5ca7064c14"
+        },
+        {
+          "path": "artifacts/analysis/combined_session_cooldown_20260913/protocol.json",
+          "sha256": "786d54c32a0501ad01d6364d48cb0c8387102fcfc1d5b33ce63ef4e09dd758ae"
+        },
+        {
+          "path": "scripts/run_combined_session_cooldown.py",
+          "sha256": "460a9da08c475d4ddf8957534c56bb37e7b574000e09fd146c4613fd9583ba8b"
+        }
+      ],
+      "statement": "Retrospective fixed-weight combined research proxy; 22.5% each Max/crypto/confirmedTrend and32.5%zero-yield cash. Full NAV DFF benchmark. Source-session equity vs fullUTC crypto alignment verified, but intraday synchronization, inter-sleeve rebalance execution, collateral and funding/borrow/metadata source timing remain modeled. No new sleeve, untouched OOS, admission or launch evidence.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "identity_and_authorship": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/combined_session_cooldown_20260913/candidate_stress/daily.csv",
+          "sha256": "acd40f858fc2eb9e97110a840fcde83b3204e1ce25329ea9fb027b57e3883e51"
+        },
+        {
+          "path": "artifacts/analysis/combined_session_cooldown_20260913/candidate_stress/experiments.jsonl",
+          "sha256": "25e036197be44f64ed316d03dd67d0e2567bcb7a650796bd122b300351978522"
+        },
+        {
+          "path": "artifacts/analysis/combined_session_cooldown_20260913/candidate_stress/preregistration.json",
+          "sha256": "7e18d32ec721a6b0f93acce0ba679030ccb8b10332c7f36ebc24788233c3aea0"
+        },
+        {
+          "path": "artifacts/analysis/combined_session_cooldown_20260913/candidate_stress/reservation.json",
+          "sha256": "ecf97b973bf77ad11393a0f77575959bca7c9dbff318d4ae0d7e9b370efdf8f9"
+        },
+        {
+          "path": "artifacts/analysis/combined_session_cooldown_20260913/candidate_stress/reservation_validation.json",
+          "sha256": "868e5af3a7dec02583fde51149ea7916ac6842084ef7e230021923d0d08ced29"
+        },
+        {
+          "path": "artifacts/analysis/combined_session_cooldown_20260913/candidate_stress/result.json",
+          "sha256": "0774e00cd8d2bffe78754b489b1d2bdbc0928c32b8a50bb7b58fbac2c173a111"
+        },
+        {
+          "path": "artifacts/analysis/combined_session_cooldown_20260913/input_manifest.json",
+          "sha256": "cb756848b26dea175eef15718d16ffda5a52640b5ec0c98592dd9a5ca7064c14"
+        },
+        {
+          "path": "artifacts/analysis/combined_session_cooldown_20260913/protocol.json",
+          "sha256": "786d54c32a0501ad01d6364d48cb0c8387102fcfc1d5b33ce63ef4e09dd758ae"
+        },
+        {
+          "path": "scripts/run_combined_session_cooldown.py",
+          "sha256": "460a9da08c475d4ddf8957534c56bb37e7b574000e09fd146c4613fd9583ba8b"
+        }
+      ],
+      "statement": "Retrospective fixed-weight combined research proxy; 22.5% each Max/crypto/confirmedTrend and32.5%zero-yield cash. Full NAV DFF benchmark. Source-session equity vs fullUTC crypto alignment verified, but intraday synchronization, inter-sleeve rebalance execution, collateral and funding/borrow/metadata source timing remain modeled. No new sleeve, untouched OOS, admission or launch evidence.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "literature_and_overlap_decision": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/combined_session_cooldown_20260913/candidate_stress/daily.csv",
+          "sha256": "acd40f858fc2eb9e97110a840fcde83b3204e1ce25329ea9fb027b57e3883e51"
+        },
+        {
+          "path": "artifacts/analysis/combined_session_cooldown_20260913/candidate_stress/experiments.jsonl",
+          "sha256": "25e036197be44f64ed316d03dd67d0e2567bcb7a650796bd122b300351978522"
+        },
+        {
+          "path": "artifacts/analysis/combined_session_cooldown_20260913/candidate_stress/preregistration.json",
+          "sha256": "7e18d32ec721a6b0f93acce0ba679030ccb8b10332c7f36ebc24788233c3aea0"
+        },
+        {
+          "path": "artifacts/analysis/combined_session_cooldown_20260913/candidate_stress/reservation.json",
+          "sha256": "ecf97b973bf77ad11393a0f77575959bca7c9dbff318d4ae0d7e9b370efdf8f9"
+        },
+        {
+          "path": "artifacts/analysis/combined_session_cooldown_20260913/candidate_stress/reservation_validation.json",
+          "sha256": "868e5af3a7dec02583fde51149ea7916ac6842084ef7e230021923d0d08ced29"
+        },
+        {
+          "path": "artifacts/analysis/combined_session_cooldown_20260913/candidate_stress/result.json",
+          "sha256": "0774e00cd8d2bffe78754b489b1d2bdbc0928c32b8a50bb7b58fbac2c173a111"
+        },
+        {
+          "path": "artifacts/analysis/combined_session_cooldown_20260913/input_manifest.json",
+          "sha256": "cb756848b26dea175eef15718d16ffda5a52640b5ec0c98592dd9a5ca7064c14"
+        },
+        {
+          "path": "artifacts/analysis/combined_session_cooldown_20260913/protocol.json",
+          "sha256": "786d54c32a0501ad01d6364d48cb0c8387102fcfc1d5b33ce63ef4e09dd758ae"
+        },
+        {
+          "path": "scripts/run_combined_session_cooldown.py",
+          "sha256": "460a9da08c475d4ddf8957534c56bb37e7b574000e09fd146c4613fd9583ba8b"
+        }
+      ],
+      "statement": "Retrospective fixed-weight combined research proxy; 22.5% each Max/crypto/confirmedTrend and32.5%zero-yield cash. Full NAV DFF benchmark. Source-session equity vs fullUTC crypto alignment verified, but intraday synchronization, inter-sleeve rebalance execution, collateral and funding/borrow/metadata source timing remain modeled. No new sleeve, untouched OOS, admission or launch evidence.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "machine_readable_packet_and_stable_public_paper": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/combined_session_cooldown_20260913/candidate_stress/daily.csv",
+          "sha256": "acd40f858fc2eb9e97110a840fcde83b3204e1ce25329ea9fb027b57e3883e51"
+        },
+        {
+          "path": "artifacts/analysis/combined_session_cooldown_20260913/candidate_stress/experiments.jsonl",
+          "sha256": "25e036197be44f64ed316d03dd67d0e2567bcb7a650796bd122b300351978522"
+        },
+        {
+          "path": "artifacts/analysis/combined_session_cooldown_20260913/candidate_stress/preregistration.json",
+          "sha256": "7e18d32ec721a6b0f93acce0ba679030ccb8b10332c7f36ebc24788233c3aea0"
+        },
+        {
+          "path": "artifacts/analysis/combined_session_cooldown_20260913/candidate_stress/reservation.json",
+          "sha256": "ecf97b973bf77ad11393a0f77575959bca7c9dbff318d4ae0d7e9b370efdf8f9"
+        },
+        {
+          "path": "artifacts/analysis/combined_session_cooldown_20260913/candidate_stress/reservation_validation.json",
+          "sha256": "868e5af3a7dec02583fde51149ea7916ac6842084ef7e230021923d0d08ced29"
+        },
+        {
+          "path": "artifacts/analysis/combined_session_cooldown_20260913/candidate_stress/result.json",
+          "sha256": "0774e00cd8d2bffe78754b489b1d2bdbc0928c32b8a50bb7b58fbac2c173a111"
+        },
+        {
+          "path": "artifacts/analysis/combined_session_cooldown_20260913/input_manifest.json",
+          "sha256": "cb756848b26dea175eef15718d16ffda5a52640b5ec0c98592dd9a5ca7064c14"
+        },
+        {
+          "path": "artifacts/analysis/combined_session_cooldown_20260913/protocol.json",
+          "sha256": "786d54c32a0501ad01d6364d48cb0c8387102fcfc1d5b33ce63ef4e09dd758ae"
+        },
+        {
+          "path": "scripts/run_combined_session_cooldown.py",
+          "sha256": "460a9da08c475d4ddf8957534c56bb37e7b574000e09fd146c4613fd9583ba8b"
+        }
+      ],
+      "statement": "Retrospective fixed-weight combined research proxy; 22.5% each Max/crypto/confirmedTrend and32.5%zero-yield cash. Full NAV DFF benchmark. Source-session equity vs fullUTC crypto alignment verified, but intraday synchronization, inter-sleeve rebalance execution, collateral and funding/borrow/metadata source timing remain modeled. No new sleeve, untouched OOS, admission or launch evidence.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "point_in_time_data_and_survivorship_controls": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/combined_session_cooldown_20260913/candidate_stress/daily.csv",
+          "sha256": "acd40f858fc2eb9e97110a840fcde83b3204e1ce25329ea9fb027b57e3883e51"
+        },
+        {
+          "path": "artifacts/analysis/combined_session_cooldown_20260913/candidate_stress/experiments.jsonl",
+          "sha256": "25e036197be44f64ed316d03dd67d0e2567bcb7a650796bd122b300351978522"
+        },
+        {
+          "path": "artifacts/analysis/combined_session_cooldown_20260913/candidate_stress/preregistration.json",
+          "sha256": "7e18d32ec721a6b0f93acce0ba679030ccb8b10332c7f36ebc24788233c3aea0"
+        },
+        {
+          "path": "artifacts/analysis/combined_session_cooldown_20260913/candidate_stress/reservation.json",
+          "sha256": "ecf97b973bf77ad11393a0f77575959bca7c9dbff318d4ae0d7e9b370efdf8f9"
+        },
+        {
+          "path": "artifacts/analysis/combined_session_cooldown_20260913/candidate_stress/reservation_validation.json",
+          "sha256": "868e5af3a7dec02583fde51149ea7916ac6842084ef7e230021923d0d08ced29"
+        },
+        {
+          "path": "artifacts/analysis/combined_session_cooldown_20260913/candidate_stress/result.json",
+          "sha256": "0774e00cd8d2bffe78754b489b1d2bdbc0928c32b8a50bb7b58fbac2c173a111"
+        },
+        {
+          "path": "artifacts/analysis/combined_session_cooldown_20260913/input_manifest.json",
+          "sha256": "cb756848b26dea175eef15718d16ffda5a52640b5ec0c98592dd9a5ca7064c14"
+        },
+        {
+          "path": "artifacts/analysis/combined_session_cooldown_20260913/protocol.json",
+          "sha256": "786d54c32a0501ad01d6364d48cb0c8387102fcfc1d5b33ce63ef4e09dd758ae"
+        },
+        {
+          "path": "scripts/run_combined_session_cooldown.py",
+          "sha256": "460a9da08c475d4ddf8957534c56bb37e7b574000e09fd146c4613fd9583ba8b"
+        }
+      ],
+      "statement": "Retrospective fixed-weight combined research proxy; 22.5% each Max/crypto/confirmedTrend and32.5%zero-yield cash. Full NAV DFF benchmark. Source-session equity vs fullUTC crypto alignment verified, but intraday synchronization, inter-sleeve rebalance execution, collateral and funding/borrow/metadata source timing remain modeled. No new sleeve, untouched OOS, admission or launch evidence.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "preregistration_and_hashes": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/combined_session_cooldown_20260913/candidate_stress/daily.csv",
+          "sha256": "acd40f858fc2eb9e97110a840fcde83b3204e1ce25329ea9fb027b57e3883e51"
+        },
+        {
+          "path": "artifacts/analysis/combined_session_cooldown_20260913/candidate_stress/experiments.jsonl",
+          "sha256": "25e036197be44f64ed316d03dd67d0e2567bcb7a650796bd122b300351978522"
+        },
+        {
+          "path": "artifacts/analysis/combined_session_cooldown_20260913/candidate_stress/preregistration.json",
+          "sha256": "7e18d32ec721a6b0f93acce0ba679030ccb8b10332c7f36ebc24788233c3aea0"
+        },
+        {
+          "path": "artifacts/analysis/combined_session_cooldown_20260913/candidate_stress/reservation.json",
+          "sha256": "ecf97b973bf77ad11393a0f77575959bca7c9dbff318d4ae0d7e9b370efdf8f9"
+        },
+        {
+          "path": "artifacts/analysis/combined_session_cooldown_20260913/candidate_stress/reservation_validation.json",
+          "sha256": "868e5af3a7dec02583fde51149ea7916ac6842084ef7e230021923d0d08ced29"
+        },
+        {
+          "path": "artifacts/analysis/combined_session_cooldown_20260913/candidate_stress/result.json",
+          "sha256": "0774e00cd8d2bffe78754b489b1d2bdbc0928c32b8a50bb7b58fbac2c173a111"
+        },
+        {
+          "path": "artifacts/analysis/combined_session_cooldown_20260913/input_manifest.json",
+          "sha256": "cb756848b26dea175eef15718d16ffda5a52640b5ec0c98592dd9a5ca7064c14"
+        },
+        {
+          "path": "artifacts/analysis/combined_session_cooldown_20260913/protocol.json",
+          "sha256": "786d54c32a0501ad01d6364d48cb0c8387102fcfc1d5b33ce63ef4e09dd758ae"
+        },
+        {
+          "path": "scripts/run_combined_session_cooldown.py",
+          "sha256": "460a9da08c475d4ddf8957534c56bb37e7b574000e09fd146c4613fd9583ba8b"
+        }
+      ],
+      "statement": "Retrospective fixed-weight combined research proxy; 22.5% each Max/crypto/confirmedTrend and32.5%zero-yield cash. Full NAV DFF benchmark. Source-session equity vs fullUTC crypto alignment verified, but intraday synchronization, inter-sleeve rebalance execution, collateral and funding/borrow/metadata source timing remain modeled. No new sleeve, untouched OOS, admission or launch evidence.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "result_uncertainty_stress_capacity_and_diversification": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/combined_session_cooldown_20260913/candidate_stress/daily.csv",
+          "sha256": "acd40f858fc2eb9e97110a840fcde83b3204e1ce25329ea9fb027b57e3883e51"
+        },
+        {
+          "path": "artifacts/analysis/combined_session_cooldown_20260913/candidate_stress/experiments.jsonl",
+          "sha256": "25e036197be44f64ed316d03dd67d0e2567bcb7a650796bd122b300351978522"
+        },
+        {
+          "path": "artifacts/analysis/combined_session_cooldown_20260913/candidate_stress/preregistration.json",
+          "sha256": "7e18d32ec721a6b0f93acce0ba679030ccb8b10332c7f36ebc24788233c3aea0"
+        },
+        {
+          "path": "artifacts/analysis/combined_session_cooldown_20260913/candidate_stress/reservation.json",
+          "sha256": "ecf97b973bf77ad11393a0f77575959bca7c9dbff318d4ae0d7e9b370efdf8f9"
+        },
+        {
+          "path": "artifacts/analysis/combined_session_cooldown_20260913/candidate_stress/reservation_validation.json",
+          "sha256": "868e5af3a7dec02583fde51149ea7916ac6842084ef7e230021923d0d08ced29"
+        },
+        {
+          "path": "artifacts/analysis/combined_session_cooldown_20260913/candidate_stress/result.json",
+          "sha256": "0774e00cd8d2bffe78754b489b1d2bdbc0928c32b8a50bb7b58fbac2c173a111"
+        },
+        {
+          "path": "artifacts/analysis/combined_session_cooldown_20260913/input_manifest.json",
+          "sha256": "cb756848b26dea175eef15718d16ffda5a52640b5ec0c98592dd9a5ca7064c14"
+        },
+        {
+          "path": "artifacts/analysis/combined_session_cooldown_20260913/protocol.json",
+          "sha256": "786d54c32a0501ad01d6364d48cb0c8387102fcfc1d5b33ce63ef4e09dd758ae"
+        },
+        {
+          "path": "scripts/run_combined_session_cooldown.py",
+          "sha256": "460a9da08c475d4ddf8957534c56bb37e7b574000e09fd146c4613fd9583ba8b"
+        }
+      ],
+      "statement": "Retrospective fixed-weight combined research proxy; 22.5% each Max/crypto/confirmedTrend and32.5%zero-yield cash. Full NAV DFF benchmark. Source-session equity vs fullUTC crypto alignment verified, but intraday synchronization, inter-sleeve rebalance execution, collateral and funding/borrow/metadata source timing remain modeled. No new sleeve, untouched OOS, admission or launch evidence.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    }
+  },
+  "research_family_key": "managed_futures_trend",
+  "schema": "canli.alphac-identity-trial-packet.v2"
+}

@@ -1,0 +1,937 @@
+{
+  "claim_boundary": "Current-vintage development comparison on inspected history; explicit raw fills and payable dividends. Modeled costs/borrow, static metadata, no contemporaneous publication or historical borrow proof. No untouched test, independent reproduction, capacity validation or admission. Saved-event quantities and NAV reconcile; daily borrow attribution is modeled. Recorded prices/fees and settlement amounts remain inputs. No source/execution qualification.",
+  "complete": true,
+  "completion_assessment": {
+    "candidate_evidence_complete_for_admission": false,
+    "disposition": "INCOMPLETE_NOT_ADMITTED",
+    "packet_evidence_accounting_complete": true
+  },
+  "config_hash": "034f496522c76bfc",
+  "configuration": {
+    "allocator": "trend",
+    "alpha_names": [
+      "mf_trend_63",
+      "mf_trend_126",
+      "mf_trend_252"
+    ],
+    "cost_stress": true,
+    "cov_halflife_days": null,
+    "cov_min_periods": 240,
+    "cov_window_bars": 720,
+    "direction_confirmation": true,
+    "end": 1780358400000,
+    "evaluation_policy": "continuous_retrospective_payable_book_v1",
+    "extended_reference_spec_sha256": "e66e99f7b8e0daf002541ce3e60f4df285a3781a00dcd49a1c685788021562a0",
+    "history_start": 1325548800000,
+    "implementation_manifest_sha256": "8f8bc96bef4d185ad7241ebcd6de1510e867da259f955cc1efc79f14dcb9b046",
+    "initial_cash": 22500.0,
+    "input_binding": {
+      "execution_mode": "RETROSPECTIVE_CURRENT_VINTAGE",
+      "mode": "DIAGNOSTIC_CURRENT_VINTAGE",
+      "paired_input_sha256": "5f977ccd06240643eb1787d214b7ec31c0a92df1fcb1e40014ba710c218a8064",
+      "point_in_time_proven": false,
+      "quote_volume": "raw_close_times_raw_volume_proxy",
+      "raw_label_convention": "raw_open_cash_accrual_fixed_release_v2",
+      "raw_label_input_sha256": "e8e1b01cd0f10308d0a2d2717e5cf8e74dff49810ab4137e34b763993d85de5a",
+      "raw_label_mode": "DIAGNOSTIC_CURRENT_VINTAGE",
+      "retrospective_vintage_ms": 1789214263591,
+      "risk_prices": "synthetic_returns_raw_position_marks_v1"
+    },
+    "instrument_ids": [
+      "XUSE:CASH:DBAUSD",
+      "XUSE:CASH:DBCUSD",
+      "XUSE:CASH:EEMUSD",
+      "XUSE:CASH:EFAUSD",
+      "XUSE:CASH:FXEUSD",
+      "XUSE:CASH:FXYUSD",
+      "XUSE:CASH:GLDUSD",
+      "XUSE:CASH:IEFUSD",
+      "XUSE:CASH:IWMUSD",
+      "XUSE:CASH:QQQUSD",
+      "XUSE:CASH:SHYUSD",
+      "XUSE:CASH:SLVUSD",
+      "XUSE:CASH:SPYUSD",
+      "XUSE:CASH:TLTUSD",
+      "XUSE:CASH:UNGUSD",
+      "XUSE:CASH:USOUSD",
+      "XUSE:CASH:UUPUSD"
+    ],
+    "metric_basis": "xnys_252_sessions_elapsed_cagr_v1",
+    "no_trade_band": 0.001,
+    "positive_targets": false,
+    "rebalance_bars": 10,
+    "resolved_settings": {
+      "costs": {
+        "default_half_spread_bps": 2.5,
+        "equity_borrow_bps_annual": 100.0,
+        "equity_commission_bps": 2.0,
+        "equity_half_spread_bps": 6.0,
+        "impact_coef": 2.0,
+        "latency_addon_bps": 4.0,
+        "perp_maker_bps": 2.0,
+        "perp_taker_bps": 5.0
+      },
+      "data": {
+        "asset_class": "equity",
+        "backfill_start": "2001-01-01T00:00:00Z",
+        "exchange": "polygon",
+        "ingest_grace_ms": 30000,
+        "timeframe": "1d"
+      },
+      "live": {
+        "cycle_grace_s": 90,
+        "paper": true,
+        "tick_sleep_s": 45
+      },
+      "portfolio": {
+        "dollar_neutral": false,
+        "gross_max": 1.0,
+        "net_max": 1.0,
+        "no_trade_band": 0.001,
+        "rank_top_k": null,
+        "risk_aversion": 7.0,
+        "turnover_max": 0.1,
+        "vol_scale_max": 3.0,
+        "vol_target_ann": 0.15,
+        "w_max": 0.34
+      },
+      "quality": {
+        "bad_print_reversion_frac": 0.5,
+        "bad_print_vol_frac": 0.25,
+        "downtime_frac": 0.8,
+        "ewma_span_bars": 168,
+        "min_history_bars": 24,
+        "outlier_k": 8.0,
+        "stale_run_bars": 12
+      },
+      "risk": {
+        "clamp_reduce_only_adv": true,
+        "dd_flat_halt": -0.45,
+        "dd_halve_gross": -0.3,
+        "flat_cooldown_bars": 336,
+        "max_gross": 1.0,
+        "max_net": 1.0,
+        "max_order_adv_frac": 0.01,
+        "max_position_frac": 0.34,
+        "price_collar_frac": 0.05,
+        "staleness_max_bars": 2,
+        "var_confidence": 0.99,
+        "var_window_days": 365
+      },
+      "signals": {
+        "horizon_bars": 21,
+        "ic_target": 0.02
+      },
+      "universe": {
+        "entry_rank": 20,
+        "exit_rank": 25,
+        "rank_window_days": 30,
+        "rebalance": "monthly",
+        "size": 20
+      }
+    },
+    "saved_signal_filter": "ts_open<end",
+    "saved_signal_sha256": "e0d6c54d659790e2a8ef4e3d2871a0c427b7278e45987a7b09d226df713da5b0",
+    "start": 1672531200000,
+    "trend_blend_normalization": "cross_sectional_zscore",
+    "trend_ic_history_anchor": 1325548800000,
+    "trend_label_availability": "raw_cash_exit_session_close_v2"
+  },
+  "content_hash": "sha256:1909230acfc87ca5628839a30ff9bcd024f7c46b0e8cec592dda9b496f7fa907",
+  "hypothesis_key": "4343650e7f9f5517",
+  "immutable_first_measurement": {
+    "config": {
+      "allocator": "trend",
+      "alpha_names": [
+        "mf_trend_63",
+        "mf_trend_126",
+        "mf_trend_252"
+      ],
+      "cost_stress": true,
+      "cov_halflife_days": null,
+      "cov_min_periods": 240,
+      "cov_window_bars": 720,
+      "direction_confirmation": true,
+      "end": 1780358400000,
+      "evaluation_policy": "continuous_retrospective_payable_book_v1",
+      "extended_reference_spec_sha256": "e66e99f7b8e0daf002541ce3e60f4df285a3781a00dcd49a1c685788021562a0",
+      "history_start": 1325548800000,
+      "implementation_manifest_sha256": "8f8bc96bef4d185ad7241ebcd6de1510e867da259f955cc1efc79f14dcb9b046",
+      "initial_cash": 22500.0,
+      "input_binding": {
+        "execution_mode": "RETROSPECTIVE_CURRENT_VINTAGE",
+        "mode": "DIAGNOSTIC_CURRENT_VINTAGE",
+        "paired_input_sha256": "5f977ccd06240643eb1787d214b7ec31c0a92df1fcb1e40014ba710c218a8064",
+        "point_in_time_proven": false,
+        "quote_volume": "raw_close_times_raw_volume_proxy",
+        "raw_label_convention": "raw_open_cash_accrual_fixed_release_v2",
+        "raw_label_input_sha256": "e8e1b01cd0f10308d0a2d2717e5cf8e74dff49810ab4137e34b763993d85de5a",
+        "raw_label_mode": "DIAGNOSTIC_CURRENT_VINTAGE",
+        "retrospective_vintage_ms": 1789214263591,
+        "risk_prices": "synthetic_returns_raw_position_marks_v1"
+      },
+      "instrument_ids": [
+        "XUSE:CASH:DBAUSD",
+        "XUSE:CASH:DBCUSD",
+        "XUSE:CASH:EEMUSD",
+        "XUSE:CASH:EFAUSD",
+        "XUSE:CASH:FXEUSD",
+        "XUSE:CASH:FXYUSD",
+        "XUSE:CASH:GLDUSD",
+        "XUSE:CASH:IEFUSD",
+        "XUSE:CASH:IWMUSD",
+        "XUSE:CASH:QQQUSD",
+        "XUSE:CASH:SHYUSD",
+        "XUSE:CASH:SLVUSD",
+        "XUSE:CASH:SPYUSD",
+        "XUSE:CASH:TLTUSD",
+        "XUSE:CASH:UNGUSD",
+        "XUSE:CASH:USOUSD",
+        "XUSE:CASH:UUPUSD"
+      ],
+      "metric_basis": "xnys_252_sessions_elapsed_cagr_v1",
+      "no_trade_band": 0.001,
+      "positive_targets": false,
+      "rebalance_bars": 10,
+      "resolved_settings": {
+        "costs": {
+          "default_half_spread_bps": 2.5,
+          "equity_borrow_bps_annual": 100.0,
+          "equity_commission_bps": 2.0,
+          "equity_half_spread_bps": 6.0,
+          "impact_coef": 2.0,
+          "latency_addon_bps": 4.0,
+          "perp_maker_bps": 2.0,
+          "perp_taker_bps": 5.0
+        },
+        "data": {
+          "asset_class": "equity",
+          "backfill_start": "2001-01-01T00:00:00Z",
+          "exchange": "polygon",
+          "ingest_grace_ms": 30000,
+          "timeframe": "1d"
+        },
+        "live": {
+          "cycle_grace_s": 90,
+          "paper": true,
+          "tick_sleep_s": 45
+        },
+        "portfolio": {
+          "dollar_neutral": false,
+          "gross_max": 1.0,
+          "net_max": 1.0,
+          "no_trade_band": 0.001,
+          "rank_top_k": null,
+          "risk_aversion": 7.0,
+          "turnover_max": 0.1,
+          "vol_scale_max": 3.0,
+          "vol_target_ann": 0.15,
+          "w_max": 0.34
+        },
+        "quality": {
+          "bad_print_reversion_frac": 0.5,
+          "bad_print_vol_frac": 0.25,
+          "downtime_frac": 0.8,
+          "ewma_span_bars": 168,
+          "min_history_bars": 24,
+          "outlier_k": 8.0,
+          "stale_run_bars": 12
+        },
+        "risk": {
+          "clamp_reduce_only_adv": true,
+          "dd_flat_halt": -0.45,
+          "dd_halve_gross": -0.3,
+          "flat_cooldown_bars": 336,
+          "max_gross": 1.0,
+          "max_net": 1.0,
+          "max_order_adv_frac": 0.01,
+          "max_position_frac": 0.34,
+          "price_collar_frac": 0.05,
+          "staleness_max_bars": 2,
+          "var_confidence": 0.99,
+          "var_window_days": 365
+        },
+        "signals": {
+          "horizon_bars": 21,
+          "ic_target": 0.02
+        },
+        "universe": {
+          "entry_rank": 20,
+          "exit_rank": 25,
+          "rank_window_days": 30,
+          "rebalance": "monthly",
+          "size": 20
+        }
+      },
+      "saved_signal_filter": "ts_open<end",
+      "saved_signal_sha256": "e0d6c54d659790e2a8ef4e3d2871a0c427b7278e45987a7b09d226df713da5b0",
+      "start": 1672531200000,
+      "trend_blend_normalization": "cross_sectional_zscore",
+      "trend_ic_history_anchor": 1325548800000,
+      "trend_label_availability": "raw_cash_exit_session_close_v2"
+    },
+    "config_hash": "034f496522c76bfc",
+    "kurtosis": 5.827202104331268,
+    "n_obs": 854,
+    "now_ms": 1789319445915,
+    "sharpe_ann": -0.07453696928601361,
+    "sharpe_per_period": -0.004695387719315515,
+    "skew": -0.6830998939800915
+  },
+  "imported_from_external_tree": {
+    "external_content_hash": "sha256:8084608b602b46f91d1c51c5e85cea481a1723e26fada4d6a25c58dace48c4c4",
+    "imported_on": "2026-09-14T19:36:11+00:00",
+    "tree": "/Users/arhancanli/alphac-prospective-pause-20260911"
+  },
+  "missing_sections": [],
+  "packet_status": "COMPLETE_ACCOUNTING_FINAL_KILLED_NOT_ADMITTED",
+  "partial_sections": [],
+  "required_sections": {
+    "admission_or_kill_decision": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/baseline_stress/reservation.json",
+          "sha256": "75e78e04f51ab8b5496ae5c358b37c03d52ed23594110f4c7e6966c608f3f05e"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/baseline_stress/preregistration.json",
+          "sha256": "b6569386a07af874ff457c0fda8b0ad55c23158864cab06b382b6c2c3ee7fe00"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/baseline_stress/reservation_validation.json",
+          "sha256": "73224516e1702f26e0e9133f3e58e1fa4743214e547d7d1c0212e213a9e72a3e"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/baseline_stress/experiments.jsonl",
+          "sha256": "be0218b58878f9bc131876a0b5a3239515660bc0879c3885081ed328d1cedabd"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/baseline_stress/result.json",
+          "sha256": "255f289b7063dc5add4e3b043f26c48d60f36d09d78499f8937607fef4366222"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/baseline_stress/REPORT.md",
+          "sha256": "6b921dc8535011b19dfb7553df54a517fa08eb707d7c1ddfa18a4d04cb2909a0"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/baseline_stress/funded_session_audit.json",
+          "sha256": "72df0dfd565b90a3bdf8aa98a3fcb7fd3601dc85c8d9b63cef9917f9db2ca842"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/baseline_stress/quantity_calendar_audit.json",
+          "sha256": "78de83d5586269de9f8133200d2a5daf04bea1d537b47e75f818f25ad6ddd04e"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/baseline_stress/funded_calendar.csv",
+          "sha256": "476c295a6a5967dfe5e98d82209cc3ddc47a216b31418a90b6980f510528d277"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/baseline_stress/run/run_meta.json",
+          "sha256": "f16cc9cca084b21841805b071d27a3cf7237bd99021757a28130cd17ca227068"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/baseline_stress/run/session_summary.json",
+          "sha256": "cd19dce7b5b8217cfbffc843b1b66eb3454b5b59a6f34886cf1196d42ab8b94a"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/protocol.json",
+          "sha256": "ff4e32f05646b26513fbf5e0b9a76dd4879de240e88e93fe0707b57618e49cf7"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/input_manifest.json",
+          "sha256": "8f8bc96bef4d185ad7241ebcd6de1510e867da259f955cc1efc79f14dcb9b046"
+        },
+        {
+          "content_hash": "sha256:02feafd248d5da89b11c133948e0bd4c00ef8d2284ec48a8161b90e6b574b162",
+          "path": "artifacts/research/development_closures/4343650e7f9f5517_admission_closure.json",
+          "sha256": "44af60d807db91091de00f6247eb3c3eb91d2a8f47260236e68f4665dacb5492",
+          "type": "final_development_admission_closure"
+        }
+      ],
+      "statement": "Current-vintage development comparison on inspected history; explicit raw fills and payable dividends. Modeled costs/borrow, static metadata, no contemporaneous publication or historical borrow proof. No untouched test, independent reproduction, capacity validation or admission. Saved-event quantities and NAV reconcile; daily borrow attribution is modeled. Recorded prices/fees and settlement amounts remain inputs. No source/execution qualification.",
+      "status": "VERIFIED_FINAL_DEVELOPMENT_CLOSURE_KILL"
+    },
+    "code_environment_and_reproduction": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/baseline_stress/reservation.json",
+          "sha256": "75e78e04f51ab8b5496ae5c358b37c03d52ed23594110f4c7e6966c608f3f05e"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/baseline_stress/preregistration.json",
+          "sha256": "b6569386a07af874ff457c0fda8b0ad55c23158864cab06b382b6c2c3ee7fe00"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/baseline_stress/reservation_validation.json",
+          "sha256": "73224516e1702f26e0e9133f3e58e1fa4743214e547d7d1c0212e213a9e72a3e"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/baseline_stress/experiments.jsonl",
+          "sha256": "be0218b58878f9bc131876a0b5a3239515660bc0879c3885081ed328d1cedabd"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/baseline_stress/result.json",
+          "sha256": "255f289b7063dc5add4e3b043f26c48d60f36d09d78499f8937607fef4366222"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/baseline_stress/REPORT.md",
+          "sha256": "6b921dc8535011b19dfb7553df54a517fa08eb707d7c1ddfa18a4d04cb2909a0"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/baseline_stress/funded_session_audit.json",
+          "sha256": "72df0dfd565b90a3bdf8aa98a3fcb7fd3601dc85c8d9b63cef9917f9db2ca842"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/baseline_stress/quantity_calendar_audit.json",
+          "sha256": "78de83d5586269de9f8133200d2a5daf04bea1d537b47e75f818f25ad6ddd04e"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/baseline_stress/funded_calendar.csv",
+          "sha256": "476c295a6a5967dfe5e98d82209cc3ddc47a216b31418a90b6980f510528d277"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/baseline_stress/run/run_meta.json",
+          "sha256": "f16cc9cca084b21841805b071d27a3cf7237bd99021757a28130cd17ca227068"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/baseline_stress/run/session_summary.json",
+          "sha256": "cd19dce7b5b8217cfbffc843b1b66eb3454b5b59a6f34886cf1196d42ab8b94a"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/protocol.json",
+          "sha256": "ff4e32f05646b26513fbf5e0b9a76dd4879de240e88e93fe0707b57618e49cf7"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/input_manifest.json",
+          "sha256": "8f8bc96bef4d185ad7241ebcd6de1510e867da259f955cc1efc79f14dcb9b046"
+        }
+      ],
+      "statement": "Current-vintage development comparison on inspected history; explicit raw fills and payable dividends. Modeled costs/borrow, static metadata, no contemporaneous publication or historical borrow proof. No untouched test, independent reproduction, capacity validation or admission. Saved-event quantities and NAV reconcile; daily borrow attribution is modeled. Recorded prices/fees and settlement amounts remain inputs. No source/execution qualification.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "economic_mechanism_and_falsifiable_hypothesis": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/baseline_stress/reservation.json",
+          "sha256": "75e78e04f51ab8b5496ae5c358b37c03d52ed23594110f4c7e6966c608f3f05e"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/baseline_stress/preregistration.json",
+          "sha256": "b6569386a07af874ff457c0fda8b0ad55c23158864cab06b382b6c2c3ee7fe00"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/baseline_stress/reservation_validation.json",
+          "sha256": "73224516e1702f26e0e9133f3e58e1fa4743214e547d7d1c0212e213a9e72a3e"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/baseline_stress/experiments.jsonl",
+          "sha256": "be0218b58878f9bc131876a0b5a3239515660bc0879c3885081ed328d1cedabd"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/baseline_stress/result.json",
+          "sha256": "255f289b7063dc5add4e3b043f26c48d60f36d09d78499f8937607fef4366222"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/baseline_stress/REPORT.md",
+          "sha256": "6b921dc8535011b19dfb7553df54a517fa08eb707d7c1ddfa18a4d04cb2909a0"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/baseline_stress/funded_session_audit.json",
+          "sha256": "72df0dfd565b90a3bdf8aa98a3fcb7fd3601dc85c8d9b63cef9917f9db2ca842"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/baseline_stress/quantity_calendar_audit.json",
+          "sha256": "78de83d5586269de9f8133200d2a5daf04bea1d537b47e75f818f25ad6ddd04e"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/baseline_stress/funded_calendar.csv",
+          "sha256": "476c295a6a5967dfe5e98d82209cc3ddc47a216b31418a90b6980f510528d277"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/baseline_stress/run/run_meta.json",
+          "sha256": "f16cc9cca084b21841805b071d27a3cf7237bd99021757a28130cd17ca227068"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/baseline_stress/run/session_summary.json",
+          "sha256": "cd19dce7b5b8217cfbffc843b1b66eb3454b5b59a6f34886cf1196d42ab8b94a"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/protocol.json",
+          "sha256": "ff4e32f05646b26513fbf5e0b9a76dd4879de240e88e93fe0707b57618e49cf7"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/input_manifest.json",
+          "sha256": "8f8bc96bef4d185ad7241ebcd6de1510e867da259f955cc1efc79f14dcb9b046"
+        }
+      ],
+      "statement": "Current-vintage development comparison on inspected history; explicit raw fills and payable dividends. Modeled costs/borrow, static metadata, no contemporaneous publication or historical borrow proof. No untouched test, independent reproduction, capacity validation or admission. Saved-event quantities and NAV reconcile; daily borrow attribution is modeled. Recorded prices/fees and settlement amounts remain inputs. No source/execution qualification.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "execution_and_cost_model": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/baseline_stress/reservation.json",
+          "sha256": "75e78e04f51ab8b5496ae5c358b37c03d52ed23594110f4c7e6966c608f3f05e"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/baseline_stress/preregistration.json",
+          "sha256": "b6569386a07af874ff457c0fda8b0ad55c23158864cab06b382b6c2c3ee7fe00"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/baseline_stress/reservation_validation.json",
+          "sha256": "73224516e1702f26e0e9133f3e58e1fa4743214e547d7d1c0212e213a9e72a3e"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/baseline_stress/experiments.jsonl",
+          "sha256": "be0218b58878f9bc131876a0b5a3239515660bc0879c3885081ed328d1cedabd"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/baseline_stress/result.json",
+          "sha256": "255f289b7063dc5add4e3b043f26c48d60f36d09d78499f8937607fef4366222"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/baseline_stress/REPORT.md",
+          "sha256": "6b921dc8535011b19dfb7553df54a517fa08eb707d7c1ddfa18a4d04cb2909a0"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/baseline_stress/funded_session_audit.json",
+          "sha256": "72df0dfd565b90a3bdf8aa98a3fcb7fd3601dc85c8d9b63cef9917f9db2ca842"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/baseline_stress/quantity_calendar_audit.json",
+          "sha256": "78de83d5586269de9f8133200d2a5daf04bea1d537b47e75f818f25ad6ddd04e"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/baseline_stress/funded_calendar.csv",
+          "sha256": "476c295a6a5967dfe5e98d82209cc3ddc47a216b31418a90b6980f510528d277"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/baseline_stress/run/run_meta.json",
+          "sha256": "f16cc9cca084b21841805b071d27a3cf7237bd99021757a28130cd17ca227068"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/baseline_stress/run/session_summary.json",
+          "sha256": "cd19dce7b5b8217cfbffc843b1b66eb3454b5b59a6f34886cf1196d42ab8b94a"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/protocol.json",
+          "sha256": "ff4e32f05646b26513fbf5e0b9a76dd4879de240e88e93fe0707b57618e49cf7"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/input_manifest.json",
+          "sha256": "8f8bc96bef4d185ad7241ebcd6de1510e867da259f955cc1efc79f14dcb9b046"
+        }
+      ],
+      "statement": "Current-vintage development comparison on inspected history; explicit raw fills and payable dividends. Modeled costs/borrow, static metadata, no contemporaneous publication or historical borrow proof. No untouched test, independent reproduction, capacity validation or admission. Saved-event quantities and NAV reconcile; daily borrow attribution is modeled. Recorded prices/fees and settlement amounts remain inputs. No source/execution qualification.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "family_and_union_trial_accounting": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/baseline_stress/reservation.json",
+          "sha256": "75e78e04f51ab8b5496ae5c358b37c03d52ed23594110f4c7e6966c608f3f05e"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/baseline_stress/preregistration.json",
+          "sha256": "b6569386a07af874ff457c0fda8b0ad55c23158864cab06b382b6c2c3ee7fe00"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/baseline_stress/reservation_validation.json",
+          "sha256": "73224516e1702f26e0e9133f3e58e1fa4743214e547d7d1c0212e213a9e72a3e"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/baseline_stress/experiments.jsonl",
+          "sha256": "be0218b58878f9bc131876a0b5a3239515660bc0879c3885081ed328d1cedabd"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/baseline_stress/result.json",
+          "sha256": "255f289b7063dc5add4e3b043f26c48d60f36d09d78499f8937607fef4366222"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/baseline_stress/REPORT.md",
+          "sha256": "6b921dc8535011b19dfb7553df54a517fa08eb707d7c1ddfa18a4d04cb2909a0"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/baseline_stress/funded_session_audit.json",
+          "sha256": "72df0dfd565b90a3bdf8aa98a3fcb7fd3601dc85c8d9b63cef9917f9db2ca842"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/baseline_stress/quantity_calendar_audit.json",
+          "sha256": "78de83d5586269de9f8133200d2a5daf04bea1d537b47e75f818f25ad6ddd04e"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/baseline_stress/funded_calendar.csv",
+          "sha256": "476c295a6a5967dfe5e98d82209cc3ddc47a216b31418a90b6980f510528d277"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/baseline_stress/run/run_meta.json",
+          "sha256": "f16cc9cca084b21841805b071d27a3cf7237bd99021757a28130cd17ca227068"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/baseline_stress/run/session_summary.json",
+          "sha256": "cd19dce7b5b8217cfbffc843b1b66eb3454b5b59a6f34886cf1196d42ab8b94a"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/protocol.json",
+          "sha256": "ff4e32f05646b26513fbf5e0b9a76dd4879de240e88e93fe0707b57618e49cf7"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/input_manifest.json",
+          "sha256": "8f8bc96bef4d185ad7241ebcd6de1510e867da259f955cc1efc79f14dcb9b046"
+        }
+      ],
+      "statement": "Current-vintage development comparison on inspected history; explicit raw fills and payable dividends. Modeled costs/borrow, static metadata, no contemporaneous publication or historical borrow proof. No untouched test, independent reproduction, capacity validation or admission. Saved-event quantities and NAV reconcile; daily borrow attribution is modeled. Recorded prices/fees and settlement amounts remain inputs. No source/execution qualification.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "identity_and_authorship": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/baseline_stress/reservation.json",
+          "sha256": "75e78e04f51ab8b5496ae5c358b37c03d52ed23594110f4c7e6966c608f3f05e"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/baseline_stress/preregistration.json",
+          "sha256": "b6569386a07af874ff457c0fda8b0ad55c23158864cab06b382b6c2c3ee7fe00"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/baseline_stress/reservation_validation.json",
+          "sha256": "73224516e1702f26e0e9133f3e58e1fa4743214e547d7d1c0212e213a9e72a3e"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/baseline_stress/experiments.jsonl",
+          "sha256": "be0218b58878f9bc131876a0b5a3239515660bc0879c3885081ed328d1cedabd"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/baseline_stress/result.json",
+          "sha256": "255f289b7063dc5add4e3b043f26c48d60f36d09d78499f8937607fef4366222"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/baseline_stress/REPORT.md",
+          "sha256": "6b921dc8535011b19dfb7553df54a517fa08eb707d7c1ddfa18a4d04cb2909a0"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/baseline_stress/funded_session_audit.json",
+          "sha256": "72df0dfd565b90a3bdf8aa98a3fcb7fd3601dc85c8d9b63cef9917f9db2ca842"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/baseline_stress/quantity_calendar_audit.json",
+          "sha256": "78de83d5586269de9f8133200d2a5daf04bea1d537b47e75f818f25ad6ddd04e"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/baseline_stress/funded_calendar.csv",
+          "sha256": "476c295a6a5967dfe5e98d82209cc3ddc47a216b31418a90b6980f510528d277"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/baseline_stress/run/run_meta.json",
+          "sha256": "f16cc9cca084b21841805b071d27a3cf7237bd99021757a28130cd17ca227068"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/baseline_stress/run/session_summary.json",
+          "sha256": "cd19dce7b5b8217cfbffc843b1b66eb3454b5b59a6f34886cf1196d42ab8b94a"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/protocol.json",
+          "sha256": "ff4e32f05646b26513fbf5e0b9a76dd4879de240e88e93fe0707b57618e49cf7"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/input_manifest.json",
+          "sha256": "8f8bc96bef4d185ad7241ebcd6de1510e867da259f955cc1efc79f14dcb9b046"
+        }
+      ],
+      "statement": "Current-vintage development comparison on inspected history; explicit raw fills and payable dividends. Modeled costs/borrow, static metadata, no contemporaneous publication or historical borrow proof. No untouched test, independent reproduction, capacity validation or admission. Saved-event quantities and NAV reconcile; daily borrow attribution is modeled. Recorded prices/fees and settlement amounts remain inputs. No source/execution qualification.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "literature_and_overlap_decision": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/baseline_stress/reservation.json",
+          "sha256": "75e78e04f51ab8b5496ae5c358b37c03d52ed23594110f4c7e6966c608f3f05e"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/baseline_stress/preregistration.json",
+          "sha256": "b6569386a07af874ff457c0fda8b0ad55c23158864cab06b382b6c2c3ee7fe00"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/baseline_stress/reservation_validation.json",
+          "sha256": "73224516e1702f26e0e9133f3e58e1fa4743214e547d7d1c0212e213a9e72a3e"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/baseline_stress/experiments.jsonl",
+          "sha256": "be0218b58878f9bc131876a0b5a3239515660bc0879c3885081ed328d1cedabd"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/baseline_stress/result.json",
+          "sha256": "255f289b7063dc5add4e3b043f26c48d60f36d09d78499f8937607fef4366222"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/baseline_stress/REPORT.md",
+          "sha256": "6b921dc8535011b19dfb7553df54a517fa08eb707d7c1ddfa18a4d04cb2909a0"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/baseline_stress/funded_session_audit.json",
+          "sha256": "72df0dfd565b90a3bdf8aa98a3fcb7fd3601dc85c8d9b63cef9917f9db2ca842"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/baseline_stress/quantity_calendar_audit.json",
+          "sha256": "78de83d5586269de9f8133200d2a5daf04bea1d537b47e75f818f25ad6ddd04e"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/baseline_stress/funded_calendar.csv",
+          "sha256": "476c295a6a5967dfe5e98d82209cc3ddc47a216b31418a90b6980f510528d277"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/baseline_stress/run/run_meta.json",
+          "sha256": "f16cc9cca084b21841805b071d27a3cf7237bd99021757a28130cd17ca227068"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/baseline_stress/run/session_summary.json",
+          "sha256": "cd19dce7b5b8217cfbffc843b1b66eb3454b5b59a6f34886cf1196d42ab8b94a"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/protocol.json",
+          "sha256": "ff4e32f05646b26513fbf5e0b9a76dd4879de240e88e93fe0707b57618e49cf7"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/input_manifest.json",
+          "sha256": "8f8bc96bef4d185ad7241ebcd6de1510e867da259f955cc1efc79f14dcb9b046"
+        }
+      ],
+      "statement": "Current-vintage development comparison on inspected history; explicit raw fills and payable dividends. Modeled costs/borrow, static metadata, no contemporaneous publication or historical borrow proof. No untouched test, independent reproduction, capacity validation or admission. Saved-event quantities and NAV reconcile; daily borrow attribution is modeled. Recorded prices/fees and settlement amounts remain inputs. No source/execution qualification.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "machine_readable_packet_and_stable_public_paper": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/baseline_stress/reservation.json",
+          "sha256": "75e78e04f51ab8b5496ae5c358b37c03d52ed23594110f4c7e6966c608f3f05e"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/baseline_stress/preregistration.json",
+          "sha256": "b6569386a07af874ff457c0fda8b0ad55c23158864cab06b382b6c2c3ee7fe00"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/baseline_stress/reservation_validation.json",
+          "sha256": "73224516e1702f26e0e9133f3e58e1fa4743214e547d7d1c0212e213a9e72a3e"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/baseline_stress/experiments.jsonl",
+          "sha256": "be0218b58878f9bc131876a0b5a3239515660bc0879c3885081ed328d1cedabd"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/baseline_stress/result.json",
+          "sha256": "255f289b7063dc5add4e3b043f26c48d60f36d09d78499f8937607fef4366222"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/baseline_stress/REPORT.md",
+          "sha256": "6b921dc8535011b19dfb7553df54a517fa08eb707d7c1ddfa18a4d04cb2909a0"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/baseline_stress/funded_session_audit.json",
+          "sha256": "72df0dfd565b90a3bdf8aa98a3fcb7fd3601dc85c8d9b63cef9917f9db2ca842"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/baseline_stress/quantity_calendar_audit.json",
+          "sha256": "78de83d5586269de9f8133200d2a5daf04bea1d537b47e75f818f25ad6ddd04e"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/baseline_stress/funded_calendar.csv",
+          "sha256": "476c295a6a5967dfe5e98d82209cc3ddc47a216b31418a90b6980f510528d277"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/baseline_stress/run/run_meta.json",
+          "sha256": "f16cc9cca084b21841805b071d27a3cf7237bd99021757a28130cd17ca227068"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/baseline_stress/run/session_summary.json",
+          "sha256": "cd19dce7b5b8217cfbffc843b1b66eb3454b5b59a6f34886cf1196d42ab8b94a"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/protocol.json",
+          "sha256": "ff4e32f05646b26513fbf5e0b9a76dd4879de240e88e93fe0707b57618e49cf7"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/input_manifest.json",
+          "sha256": "8f8bc96bef4d185ad7241ebcd6de1510e867da259f955cc1efc79f14dcb9b046"
+        }
+      ],
+      "statement": "Current-vintage development comparison on inspected history; explicit raw fills and payable dividends. Modeled costs/borrow, static metadata, no contemporaneous publication or historical borrow proof. No untouched test, independent reproduction, capacity validation or admission. Saved-event quantities and NAV reconcile; daily borrow attribution is modeled. Recorded prices/fees and settlement amounts remain inputs. No source/execution qualification.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "point_in_time_data_and_survivorship_controls": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/baseline_stress/reservation.json",
+          "sha256": "75e78e04f51ab8b5496ae5c358b37c03d52ed23594110f4c7e6966c608f3f05e"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/baseline_stress/preregistration.json",
+          "sha256": "b6569386a07af874ff457c0fda8b0ad55c23158864cab06b382b6c2c3ee7fe00"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/baseline_stress/reservation_validation.json",
+          "sha256": "73224516e1702f26e0e9133f3e58e1fa4743214e547d7d1c0212e213a9e72a3e"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/baseline_stress/experiments.jsonl",
+          "sha256": "be0218b58878f9bc131876a0b5a3239515660bc0879c3885081ed328d1cedabd"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/baseline_stress/result.json",
+          "sha256": "255f289b7063dc5add4e3b043f26c48d60f36d09d78499f8937607fef4366222"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/baseline_stress/REPORT.md",
+          "sha256": "6b921dc8535011b19dfb7553df54a517fa08eb707d7c1ddfa18a4d04cb2909a0"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/baseline_stress/funded_session_audit.json",
+          "sha256": "72df0dfd565b90a3bdf8aa98a3fcb7fd3601dc85c8d9b63cef9917f9db2ca842"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/baseline_stress/quantity_calendar_audit.json",
+          "sha256": "78de83d5586269de9f8133200d2a5daf04bea1d537b47e75f818f25ad6ddd04e"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/baseline_stress/funded_calendar.csv",
+          "sha256": "476c295a6a5967dfe5e98d82209cc3ddc47a216b31418a90b6980f510528d277"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/baseline_stress/run/run_meta.json",
+          "sha256": "f16cc9cca084b21841805b071d27a3cf7237bd99021757a28130cd17ca227068"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/baseline_stress/run/session_summary.json",
+          "sha256": "cd19dce7b5b8217cfbffc843b1b66eb3454b5b59a6f34886cf1196d42ab8b94a"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/protocol.json",
+          "sha256": "ff4e32f05646b26513fbf5e0b9a76dd4879de240e88e93fe0707b57618e49cf7"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/input_manifest.json",
+          "sha256": "8f8bc96bef4d185ad7241ebcd6de1510e867da259f955cc1efc79f14dcb9b046"
+        }
+      ],
+      "statement": "Current-vintage development comparison on inspected history; explicit raw fills and payable dividends. Modeled costs/borrow, static metadata, no contemporaneous publication or historical borrow proof. No untouched test, independent reproduction, capacity validation or admission. Saved-event quantities and NAV reconcile; daily borrow attribution is modeled. Recorded prices/fees and settlement amounts remain inputs. No source/execution qualification.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "preregistration_and_hashes": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/baseline_stress/reservation.json",
+          "sha256": "75e78e04f51ab8b5496ae5c358b37c03d52ed23594110f4c7e6966c608f3f05e"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/baseline_stress/preregistration.json",
+          "sha256": "b6569386a07af874ff457c0fda8b0ad55c23158864cab06b382b6c2c3ee7fe00"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/baseline_stress/reservation_validation.json",
+          "sha256": "73224516e1702f26e0e9133f3e58e1fa4743214e547d7d1c0212e213a9e72a3e"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/baseline_stress/experiments.jsonl",
+          "sha256": "be0218b58878f9bc131876a0b5a3239515660bc0879c3885081ed328d1cedabd"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/baseline_stress/result.json",
+          "sha256": "255f289b7063dc5add4e3b043f26c48d60f36d09d78499f8937607fef4366222"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/baseline_stress/REPORT.md",
+          "sha256": "6b921dc8535011b19dfb7553df54a517fa08eb707d7c1ddfa18a4d04cb2909a0"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/baseline_stress/funded_session_audit.json",
+          "sha256": "72df0dfd565b90a3bdf8aa98a3fcb7fd3601dc85c8d9b63cef9917f9db2ca842"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/baseline_stress/quantity_calendar_audit.json",
+          "sha256": "78de83d5586269de9f8133200d2a5daf04bea1d537b47e75f818f25ad6ddd04e"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/baseline_stress/funded_calendar.csv",
+          "sha256": "476c295a6a5967dfe5e98d82209cc3ddc47a216b31418a90b6980f510528d277"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/baseline_stress/run/run_meta.json",
+          "sha256": "f16cc9cca084b21841805b071d27a3cf7237bd99021757a28130cd17ca227068"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/baseline_stress/run/session_summary.json",
+          "sha256": "cd19dce7b5b8217cfbffc843b1b66eb3454b5b59a6f34886cf1196d42ab8b94a"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/protocol.json",
+          "sha256": "ff4e32f05646b26513fbf5e0b9a76dd4879de240e88e93fe0707b57618e49cf7"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/input_manifest.json",
+          "sha256": "8f8bc96bef4d185ad7241ebcd6de1510e867da259f955cc1efc79f14dcb9b046"
+        }
+      ],
+      "statement": "Current-vintage development comparison on inspected history; explicit raw fills and payable dividends. Modeled costs/borrow, static metadata, no contemporaneous publication or historical borrow proof. No untouched test, independent reproduction, capacity validation or admission. Saved-event quantities and NAV reconcile; daily borrow attribution is modeled. Recorded prices/fees and settlement amounts remain inputs. No source/execution qualification.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "result_uncertainty_stress_capacity_and_diversification": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/baseline_stress/reservation.json",
+          "sha256": "75e78e04f51ab8b5496ae5c358b37c03d52ed23594110f4c7e6966c608f3f05e"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/baseline_stress/preregistration.json",
+          "sha256": "b6569386a07af874ff457c0fda8b0ad55c23158864cab06b382b6c2c3ee7fe00"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/baseline_stress/reservation_validation.json",
+          "sha256": "73224516e1702f26e0e9133f3e58e1fa4743214e547d7d1c0212e213a9e72a3e"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/baseline_stress/experiments.jsonl",
+          "sha256": "be0218b58878f9bc131876a0b5a3239515660bc0879c3885081ed328d1cedabd"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/baseline_stress/result.json",
+          "sha256": "255f289b7063dc5add4e3b043f26c48d60f36d09d78499f8937607fef4366222"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/baseline_stress/REPORT.md",
+          "sha256": "6b921dc8535011b19dfb7553df54a517fa08eb707d7c1ddfa18a4d04cb2909a0"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/baseline_stress/funded_session_audit.json",
+          "sha256": "72df0dfd565b90a3bdf8aa98a3fcb7fd3601dc85c8d9b63cef9917f9db2ca842"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/baseline_stress/quantity_calendar_audit.json",
+          "sha256": "78de83d5586269de9f8133200d2a5daf04bea1d537b47e75f818f25ad6ddd04e"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/baseline_stress/funded_calendar.csv",
+          "sha256": "476c295a6a5967dfe5e98d82209cc3ddc47a216b31418a90b6980f510528d277"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/baseline_stress/run/run_meta.json",
+          "sha256": "f16cc9cca084b21841805b071d27a3cf7237bd99021757a28130cd17ca227068"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/baseline_stress/run/session_summary.json",
+          "sha256": "cd19dce7b5b8217cfbffc843b1b66eb3454b5b59a6f34886cf1196d42ab8b94a"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/protocol.json",
+          "sha256": "ff4e32f05646b26513fbf5e0b9a76dd4879de240e88e93fe0707b57618e49cf7"
+        },
+        {
+          "path": "artifacts/analysis/trend_funded_account_20260913/input_manifest.json",
+          "sha256": "8f8bc96bef4d185ad7241ebcd6de1510e867da259f955cc1efc79f14dcb9b046"
+        }
+      ],
+      "statement": "Current-vintage development comparison on inspected history; explicit raw fills and payable dividends. Modeled costs/borrow, static metadata, no contemporaneous publication or historical borrow proof. No untouched test, independent reproduction, capacity validation or admission. Saved-event quantities and NAV reconcile; daily borrow attribution is modeled. Recorded prices/fees and settlement amounts remain inputs. No source/execution qualification.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    }
+  },
+  "research_family_key": "managed_futures_trend",
+  "schema": "canli.alphac-identity-trial-packet.v2"
+}

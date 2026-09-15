@@ -101,12 +101,26 @@
 <section class="measure__section"><h2 id="reader-section-2" data-reader-anchor="true">The measurement</h2>
 <dl class="measure__facts">
 <div class="measure__row"><dt>Schema</dt><dd>canli.alphac-forward-evidence-maturity.v1</dd></div>
-<div class="measure__row"><dt>Generated at</dt><dd>2026-09-14T10:26:52.464069+00:00</dd></div>
+<div class="measure__row"><dt>Curve basis</dt><dd>cost_charged_curve</dd></div>
+<div class="measure__row"><dt>Generated at</dt><dd>2026-09-15T14:27:29.083022+00:00</dd></div>
 <div class="measure__row"><dt>Author</dt><dd>Arhan Canli</dd></div>
 <div class="measure__row"><dt>Capital kind</dt><dd>PAPER_ONLY</dd></div>
 <div class="measure__row"><dt>Status</dt><dd>IMMATURE_RECORD_TOO_SHORT</dd></div>
-<div class="measure__row"><dt>Content hash</dt><dd>sha256:1c7138902655945aaaca4443928d1aaafcddf596f0f3d96ccfac6a9379783865</dd></div>
+<div class="measure__row"><dt>Content hash</dt><dd>sha256:17cfc1705204526042d3c558049d3849d54917b115fc42d7c0bb7d187f51b4c2</dd></div>
 </dl>
+<section class="measure__sub"><h3>Cost realism</h3>
+<dl class="measure__facts">
+<div class="measure__row"><dt>Contract</dt><dd>config/cost_realism_contract.json</dd></div>
+<div class="measure__row"><dt>Curve basis</dt><dd>cost_charged_curve</dd></div>
+<div class="measure__row"><dt>Status</dt><dd>CHARGED_BY_MODEL_ON_ALPACA_SLEEVES</dd></div>
+</dl>
+<section class="measure__sub"><h4>Sleeves</h4>
+<p class="measure__label">Alphamax</p><p class="measure__deep">4 further fields. <a href="/glassbox/forward_evidence_maturity.json">Read them in the artifact</a>.</p>
+<p class="measure__label">Managed futures</p><p class="measure__deep">4 further fields. <a href="/glassbox/forward_evidence_maturity.json">Read them in the artifact</a>.</p>
+<p class="measure__label">Alphavintage</p><p class="measure__deep">4 further fields. <a href="/glassbox/forward_evidence_maturity.json">Read them in the artifact</a>.</p>
+<p class="measure__label">Alphaforge</p><p class="measure__deep">4 further fields. <a href="/glassbox/forward_evidence_maturity.json">Read them in the artifact</a>.</p>
+</section>
+</section>
 <section class="measure__sub"><h3>Provenance gate</h3>
 <dl class="measure__facts">
 <div class="measure__row"><dt>Passes</dt><dd>yes</dd></div>
@@ -164,24 +178,44 @@
 </section>
 <section class="measure__sub"><h3>Record</h3>
 <dl class="measure__facts">
-<div class="measure__row"><dt>First mark</dt><dd>2026-08-07</dd></div>
-<div class="measure__row"><dt>Last mark</dt><dd>2026-09-14</dd></div>
-<div class="measure__row"><dt>Curve points</dt><dd>37</dd></div>
-<div class="measure__row"><dt>Daily return observations</dt><dd>36</dd></div>
-<div class="measure__row"><dt>Cumulative return</dt><dd>-0.027062</dd></div>
+<div class="measure__row"><dt>First mark</dt><dd>2026-09-15</dd></div>
+<div class="measure__row"><dt>Last mark</dt><dd>2026-09-15</dd></div>
+<div class="measure__row"><dt>Curve points</dt><dd>1</dd></div>
+<div class="measure__row"><dt>Daily return observations</dt><dd>0</dd></div>
+<div class="measure__row"><dt>Cumulative return</dt><dd>0</dd></div>
 <div class="measure__row"><dt>Return frequency</dt><dd>CONSECUTIVE_PUBLISHED_UTC_DAILY_MARKS_NO_SYNTHETIC_FILL</dd></div>
-<div class="measure__row"><dt>Configuration fingerprint</dt><dd>sha256:fe82c4eeed742289bfcfee5d39856ee2bb8ca9cfe209bcc7e34abff98553706d</dd></div>
+<div class="measure__row"><dt>Configuration fingerprint</dt><dd>sha256:553aff517efdc069c2ee80747ef9a9d750da817ceeab8dbc344cae050b814e09</dd></div>
 </dl>
+<section class="measure__sub"><h4>Evidence epoch</h4>
+<dl class="measure__facts">
+<div class="measure__row"><dt>Starts on</dt><dd>2026-09-15</dd></div>
+</dl>
+<p class="measure__prose"><strong>Declared change.</strong> drawdown control v1 ACTIVATED: config/drawdown_control_contract.json activation.live is true and configs/base.yaml risk.book_ladder.source is https. From this date every sleeve multiplies its target gross by the BOOK-level multiplier the publisher derives from the combined book&#39;s published marks: half gross at 5.0% below the high-water mark, flat at 10.0%, absorbing until an owner rearm in config/</p>
+<p class="measure__prose"><strong>Rule.</strong> the latest live_change_contract change_log entry with contaminates_forward_record true starts the current epoch; prior returns are published separately and never pooled</p>
+</section>
+<figure class="measure__tablewrap"><figcaption>Prior epochs</figcaption><table class="measure__table" tabindex="0" data-reader-focus="true"><thead><tr><th scope="col">First mark</th><th scope="col">Last mark</th><th scope="col">Curve points</th><th scope="col">Daily return observations</th><th scope="col">Cumulative return</th><th scope="col">Realized max drawdown</th><th scope="col">Ended by</th><th scope="col">Pooled with current epoch</th></tr></thead><tbody>
+<tr><td>2026-08-07</td><td>2026-09-14</td><td>37</td><td>36</td><td>-0.026457</td><td>0.038964</td><td>drawdown control v1 ACTIVATED: config/drawdown_control_contract.json activation.live is true and configs/base.yaml risk.book_ladder.source is https. From this date every sleeve multiplies its target g</td><td>no</td></tr>
+</tbody></table></figure>
+<section class="measure__sub"><h4>Whole record</h4>
+<dl class="measure__facts">
+<div class="measure__row"><dt>First mark</dt><dd>2026-08-07</dd></div>
+<div class="measure__row"><dt>Last mark</dt><dd>2026-09-15</dd></div>
+<div class="measure__row"><dt>Curve points</dt><dd>38</dd></div>
+<div class="measure__row"><dt>Daily return observations</dt><dd>37</dd></div>
+<div class="measure__row"><dt>Cumulative return</dt><dd>-0.028358</dd></div>
+</dl>
+</section>
 </section>
 <section class="measure__sub"><h3>Sharpe evidence</h3>
 <dl class="measure__facts">
-<div class="measure__row"><dt>Daily return observations</dt><dd>36</dd></div>
+<div class="measure__row"><dt>Daily return observations</dt><dd>0</dd></div>
 <div class="measure__row"><dt>Estimate minimum</dt><dd>252</dd></div>
 <div class="measure__row"><dt>Establishment minimum</dt><dd>756</dd></div>
-<div class="measure__row"><dt>Observations to estimate</dt><dd>216</dd></div>
-<div class="measure__row"><dt>Observations to establishment</dt><dd>720</dd></div>
+<div class="measure__row"><dt>Observations to estimate</dt><dd>252</dd></div>
+<div class="measure__row"><dt>Observations to establishment</dt><dd>756</dd></div>
 <div class="measure__row"><dt>Annualization days</dt><dd>365</dd></div>
-<div class="measure__row"><dt>Target</dt><dd>1.500000</dd></div>
+<div class="measure__row"><dt>Target</dt><dd>2</dd></div>
+<div class="measure__row"><dt>Target source</dt><dd>config/owner_goals.json</dd></div>
 <div class="measure__row"><dt>Target exceedance probability min</dt><dd>0.950000</dd></div>
 <div class="measure__row"><dt>Annualized point estimate</dt><dd>Not reported</dd></div>
 <div class="measure__row"><dt>Probability true sharpe exceeds target</dt><dd>Not reported</dd></div>
@@ -189,11 +223,19 @@
 <div class="measure__row"><dt>Target statistically established</dt><dd>no</dd></div>
 <div class="measure__row"><dt>Status</dt><dd>IMMATURE_RECORD_TOO_SHORT</dd></div>
 </dl>
+<figure class="measure__tablewrap"><figcaption>Target history</figcaption><table class="measure__table" tabindex="0" data-reader-focus="true"><thead><tr><th scope="col">Target</th><th scope="col">In force from</th><th scope="col">Superseded on</th><th scope="col">Source</th><th scope="col">Record status when superseded</th><th scope="col">Daily returns when superseded</th><th scope="col">Note</th></tr></thead><tbody>
+<tr><td>1.500000</td><td>2026-08-21</td><td>2026-09-14</td><td>config/sleeve_admission_contract.json objective.honest_forward_sharpe_target (contract v6, carried into v7)</td><td>IMMATURE_RECORD_TOO_SHORT</td><td>36</td><td>No point estimate was ever published against this target; the record was 36 returns short of the 252 the estimate needs when the target moved.</td></tr>
+<tr><td>2</td><td>2026-09-14</td><td>Not reported</td><td>config/owner_goals.json (owner goals recorded 2026-09-12, confirmed 2026-09-14)</td><td>Not reported</td><td>Not reported</td><td>The owner&#39;s combined-portfolio goal, net of costs. A target change is an evaluation change, not a trading change: it restarts no forward-evidence epoch and pools nothing.</td></tr>
+</tbody></table></figure>
 </section>
 <section class="measure__sub"><h3>Drawdown evidence</h3>
 <dl class="measure__facts">
-<div class="measure__row"><dt>Realized live max drawdown</dt><dd>0.038708</dd></div>
+<div class="measure__row"><dt>Realized live max drawdown</dt><dd>0.038964</dd></div>
 <div class="measure__row"><dt>Realized status</dt><dd>DESCRIPTIVE_TO_DATE_NOT_EXPECTED_MAX_DRAWDOWN</dd></div>
+<div class="measure__row"><dt>Realized max drawdown bound</dt><dd>0.100000</dd></div>
+<div class="measure__row"><dt>Realized max drawdown bound statistic</dt><dd>REALIZED_MAXIMUM_DRAWDOWN</dd></div>
+<div class="measure__row"><dt>Realized max drawdown bound source</dt><dd>config/owner_goals.json</dd></div>
+<div class="measure__row"><dt>Realized within owner bound</dt><dd>yes</dd></div>
 <div class="measure__row"><dt>Expected max drawdown target</dt><dd>0.110000</dd></div>
 <div class="measure__row"><dt>Study production labelled expected max drawdown</dt><dd>0.102512</dd></div>
 <div class="measure__row"><dt>Study production labelled p95 max drawdown</dt><dd>0.187632</dd></div>
@@ -204,6 +246,7 @@
 <div class="measure__row"><dt>Study status</dt><dd>CURRENT_COMPOSITION_EXPECTED_WITHIN_OBJECTIVE_LIVE_NOT_ESTABLISHED</dd></div>
 <div class="measure__row"><dt>Production equivalence passes</dt><dd>no</dd></div>
 </dl>
+<p class="measure__prose"><strong>Realized within owner bound note.</strong> Descriptive: realized drawdown inside the bound to date establishes nothing about future drawdown; the mechanism that acts on the bound is config/drawdown_control_contract.json.</p>
 <p class="measure__prose"><strong>Current composition study status.</strong> CURRENT_COMPOSITION_EXPECTED_WITHIN_OBJECTIVE_HISTORICAL_TAIL_COVERAGE_INCOMPLETE</p>
 <p class="measure__label">Current composition failed establishment dimensions</p><ul class="measure__list"><li>COMMON_WINDOW_BEGINS_AFTER_COVID_AND_2022</li><li>ABSENT_CRISIS_CANNOT_APPEAR_IN_BLOCK_BOOTSTRAP</li><li>REGIME_MODEL_HAS_NO_STRESS_VOLATILITY_MULTIPLIER</li><li>CONSTITUENT_INSTRUMENT_AND_LADDER_STATE_NOT_REPLAYED</li><li>EXECUTION_GAPS_AND_LIQUIDITY_FEEDBACK_NOT_MODELED</li></ul>
 <p class="measure__label">Production equivalence failed checks</p><ul class="measure__list"><li>sleeve_count_matches_live_book</li><li>book_level_volatility_target_matches_live_composite</li><li>book_level_risk_overlay_matches_live_composite</li><li>single_daily_timebase_matches_mixed_live_timebases</li><li>covariance_halflife_has_one_duration_across_live_sleeves</li><li>production_shrinkage_is_inside_simulation</li></ul>
@@ -215,7 +258,7 @@
 <div class="measure__row"><dt>Current sleeves</dt><dd>4</dd></div>
 <div class="measure__row"><dt>Target total sleeves</dt><dd>14</dd></div>
 <div class="measure__row"><dt>Average pairwise correlation</dt><dd>0.024827</dd></div>
-<div class="measure__row"><dt>Average pairwise correlation objective</dt><dd>-0.030000</dd></div>
+<div class="measure__row"><dt>Average pairwise correlation objective</dt><dd>-0.051161</dd></div>
 <div class="measure__row"><dt>Active v7 has no global average correlation point gate</dt><dd>yes</dd></div>
 <div class="measure__row"><dt>Active v7 candidate average correlation gate</dt><dd>0</dd></div>
 <div class="measure__row"><dt>Historical v6 global average correlation point gate</dt><dd>0</dd></div>
@@ -251,25 +294,25 @@
 <section class="measure__sub"><h4>Contract</h4>
 <dl class="measure__facts">
 <div class="measure__row"><dt>Path</dt><dd>config/forward_evidence_contract.json</dd></div>
-<div class="measure__row"><dt>Sha256</dt><dd>d1b0c97921d9c8b96de7af275b18b9d0ffbfe1332a078061135e8d044ba3981a</dd></div>
+<div class="measure__row"><dt>Sha256</dt><dd>51396b2a1f4360520101c53ed7d128213f24fdc92bc45eb8955fa21bf8a70c6e</dd></div>
 </dl>
 </section>
 <section class="measure__sub"><h4>Paper state</h4>
 <dl class="measure__facts">
 <div class="measure__row"><dt>Path</dt><dd>data/paper/state.json</dd></div>
-<div class="measure__row"><dt>Sha256</dt><dd>eb8dfdd7500035a4f70d185f7c0a5d42202b2ba21b3824c6ef3f4cd8ac41c635</dd></div>
+<div class="measure__row"><dt>Sha256</dt><dd>ebb6b1225d7b3081c68c5bd1dafcaea279efc9b099dd34cc42c517ab0e09dabf</dd></div>
 </dl>
 </section>
 <section class="measure__sub"><h4>Record continuity</h4>
 <dl class="measure__facts">
 <div class="measure__row"><dt>Path</dt><dd>artifacts/engineering/record_continuity.json</dd></div>
-<div class="measure__row"><dt>Sha256</dt><dd>2e16f944f27222c3bdbfc04dbe1b893f0f971fc318df7fa7f734f3a016324691</dd></div>
+<div class="measure__row"><dt>Sha256</dt><dd>495cf7aee2576cdd47a9862c7fa66ca35c4c08787b5db89390d48c1964c26170</dd></div>
 </dl>
 </section>
 <section class="measure__sub"><h4>Broker reconciliation</h4>
 <dl class="measure__facts">
 <div class="measure__row"><dt>Path</dt><dd>artifacts/engineering/alpaca_broker_reconciliation.json</dd></div>
-<div class="measure__row"><dt>Sha256</dt><dd>9ed31f31f1da6a8947641ec926b1a1788a96081b8a5719914807cff68e0be804</dd></div>
+<div class="measure__row"><dt>Sha256</dt><dd>373d3854d1ae6bbdd3ef54397fcf63ffd5f6f9c99085eddaa0469b2321ac4af7</dd></div>
 </dl>
 </section>
 <section class="measure__sub"><h4>Drawdown model</h4>
@@ -281,43 +324,43 @@
 <section class="measure__sub"><h4>Current book drawdown</h4>
 <dl class="measure__facts">
 <div class="measure__row"><dt>Path</dt><dd>artifacts/analysis/current_book_drawdown/result.json</dd></div>
-<div class="measure__row"><dt>Sha256</dt><dd>58686e804aa1166bcd12bf7c317c7126120329c0b8b92f922ba3a992d3128c5b</dd></div>
+<div class="measure__row"><dt>Sha256</dt><dd>bb9a5642699202686fae42fd8a9dd95922f1e376caa2c9a9497c13499081b763</dd></div>
 </dl>
 </section>
 <section class="measure__sub"><h4>Current book diversification</h4>
 <dl class="measure__facts">
 <div class="measure__row"><dt>Path</dt><dd>artifacts/analysis/current_book_diversification/result.json</dd></div>
-<div class="measure__row"><dt>Sha256</dt><dd>a842c950375d575bd46cdd71adeb90dc3fb508b53e4ef421322da98c94de5f77</dd></div>
+<div class="measure__row"><dt>Sha256</dt><dd>f96455df98a8a68c0481f4e568bd572627ba06585659bbd45740c5c932409c8f</dd></div>
 </dl>
 </section>
 <section class="measure__sub"><h4>Drawdown evidence</h4>
 <dl class="measure__facts">
 <div class="measure__row"><dt>Path</dt><dd>artifacts/engineering/forward_drawdown_evidence.json</dd></div>
-<div class="measure__row"><dt>Sha256</dt><dd>32b3bbf2a6bf97150cf3fa5b333fa8062724cf05944098559b78bcac44a074c6</dd></div>
+<div class="measure__row"><dt>Sha256</dt><dd>4b8632d6bd187a34ff425c4dfb6bb4a652fbdde80a2691190d9e6ce9f8b0b7fa</dd></div>
 </dl>
 </section>
 <section class="measure__sub"><h4>Methodology paper</h4>
 <dl class="measure__facts">
 <div class="measure__row"><dt>Path</dt><dd>docs/research/FORWARD_SHARPE_EVIDENCE_STANDARD.md</dd></div>
-<div class="measure__row"><dt>Sha256</dt><dd>aeba2fc6ff13effd1a363119f883bf4f56948e0bb5395f659632d2a67517571c</dd></div>
+<div class="measure__row"><dt>Sha256</dt><dd>f16bff68f829309319c3671de4187f6a6ba8f83b4eaa65f3ffb705b4f4fa9325</dd></div>
 </dl>
 </section>
 <section class="measure__sub"><h4>Transparency chain</h4>
 <dl class="measure__facts">
 <div class="measure__row"><dt>Path</dt><dd>meridian/public/glassbox/transparency_log.json</dd></div>
-<div class="measure__row"><dt>Sha256</dt><dd>346d41ebb218f89676e21ed716c2d79e6c2e4fdc18c7b67787f5a5760b4c9a6b</dd></div>
+<div class="measure__row"><dt>Sha256</dt><dd>351451cc8da178d6c734bfd98d859d4c2fd3202f5a6eb3a2baefedbf64c565e7</dd></div>
 </dl>
 </section>
 <section class="measure__sub"><h4>Crypto position attribution</h4>
 <dl class="measure__facts">
 <div class="measure__row"><dt>Path</dt><dd>artifacts/engineering/crypto_position_attribution.json</dd></div>
-<div class="measure__row"><dt>Sha256</dt><dd>ec379a91869fc1aaf0709e60d10cc81bdb3b9a54a0bf068f9cab09c1b4a1ebe4</dd></div>
+<div class="measure__row"><dt>Sha256</dt><dd>9a329e7f90f799614f4541f705189823f3c6d9ce13bb69de6caafda0434b39bc</dd></div>
 </dl>
 </section>
 <section class="measure__sub"><h4>Crypto position attribution rollout</h4>
 <dl class="measure__facts">
 <div class="measure__row"><dt>Path</dt><dd>artifacts/engineering/crypto_position_attribution_rollout_verification.json</dd></div>
-<div class="measure__row"><dt>Sha256</dt><dd>60abe0e0374d5b1599784a1104f6a65604bb211810a26c58aa29db229a7b217d</dd></div>
+<div class="measure__row"><dt>Sha256</dt><dd>eadab7ba40dd86c2880ac913667a3fd32b69317a33b1338cd1475aeafd4e4863</dd></div>
 </dl>
 </section>
 </section>

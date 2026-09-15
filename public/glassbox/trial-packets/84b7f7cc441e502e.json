@@ -1,0 +1,513 @@
+{
+  "claim_boundary": "Retrospective eligible-core diagnostic selected after observing2022; not untouched validation. 22.5% each Max/crypto/confirmedTrend; failedVintage22.5% and price-onlyoverlay10% become 32.5% idlecash at zero yield. No reallocation to surviving sleeves. DFF benchmark charged against entire NAV; cash is not a new sleeve. Source-day marks, static subbook weights, financing/collateral, inter-sleeve rebalancing and PIT limitations remain. Normal/stressed subbook paths reused; no actual liquidation or live exposure change. Not qualified, no new independent alpha or launch evidence.",
+  "complete": true,
+  "completion_assessment": {
+    "candidate_evidence_complete_for_admission": false,
+    "disposition": "INCOMPLETE_NOT_ADMITTED",
+    "packet_evidence_accounting_complete": true
+  },
+  "config_hash": "bdfba9f990db4db6",
+  "configuration": {
+    "arm": "baseline",
+    "family": "combined_2022_eligible_core",
+    "input_manifest_sha256": "8efdcf10a8dd7ae8896e20756d823efad45c2f759230ae8c427ce3afc1edb040",
+    "spec_sha256": "87d70c456b136d2e9cc98447134727eba25869a22215336996f680d6b5a605da"
+  },
+  "content_hash": "sha256:b9211686961c19db4f4d412e245ba34f1bc75f6416bc3c6fa117edd6da6a8430",
+  "hypothesis_key": "84b7f7cc441e502e",
+  "immutable_first_measurement": {
+    "config": {
+      "arm": "baseline",
+      "family": "combined_2022_eligible_core",
+      "input_manifest_sha256": "8efdcf10a8dd7ae8896e20756d823efad45c2f759230ae8c427ce3afc1edb040",
+      "spec_sha256": "87d70c456b136d2e9cc98447134727eba25869a22215336996f680d6b5a605da"
+    },
+    "config_hash": "bdfba9f990db4db6",
+    "kurtosis": 6.331920929594048,
+    "n_obs": 365,
+    "now_ms": 1789295344596,
+    "sharpe_ann": 1.2306926597024812,
+    "sharpe_per_period": 0.06441739794444558,
+    "skew": -0.5356813323551041
+  },
+  "imported_from_external_tree": {
+    "external_content_hash": "sha256:c5b6d5e26dec510bc2bd0ee659559bdec2d23f6ed4861022a4e44c47207bdca1",
+    "imported_on": "2026-09-14T19:35:24+00:00",
+    "tree": "/Users/arhancanli/alphac-prospective-pause-20260911"
+  },
+  "missing_sections": [],
+  "packet_status": "COMPLETE_ACCOUNTING_FINAL_KILLED_NOT_ADMITTED",
+  "partial_sections": [],
+  "required_sections": {
+    "admission_or_kill_decision": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/combined_2022_eligible_core_20260913/baseline/daily.csv",
+          "sha256": "049f97b5b4d52dfe5403f2a495f08fbc844a45ee64f307c2912ad73986cace5d"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_eligible_core_20260913/baseline/experiments.jsonl",
+          "sha256": "e3a89dae8fbc2ff7201a1547df3072fe107cbd0045651319aab627920f10bd33"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_eligible_core_20260913/baseline/preregistration.json",
+          "sha256": "de8a8727bcd428b28338674790e8bfe891e6479b8fbaf3560dc44d912ff43c68"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_eligible_core_20260913/baseline/reservation.json",
+          "sha256": "00c32ebed39cb311d7b8ada9546cad4faaca66e1e11b071952301fb8cd1bd640"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_eligible_core_20260913/baseline/reservation_validation.json",
+          "sha256": "e30a180123e18b612580776864eaa26066e139a1a8d00f68f7f68ebbc2955eb6"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_eligible_core_20260913/baseline/result.json",
+          "sha256": "622b6b57ea6504dd502ca0946d7a0ae617c39c4761e14d6c67407b45996a61b6"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_eligible_core_20260913/input_manifest.json",
+          "sha256": "8efdcf10a8dd7ae8896e20756d823efad45c2f759230ae8c427ce3afc1edb040"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_eligible_core_20260913/protocol.json",
+          "sha256": "3d26d3b1adc2dd83e5d27dbe0a31fd23e47b9364f24eb40e13d6f1ca77e48f34"
+        },
+        {
+          "path": "scripts/run_combined_2022_eligible_core.py",
+          "sha256": "e7ad2697b10f70a472b579449b07351f3576696db7b695f6d72f00c96a5d9179"
+        },
+        {
+          "content_hash": "sha256:c3c22b944421856e1c2db57d05daeee276310c5139f781f5ee8da10367928d36",
+          "path": "artifacts/research/development_closures/84b7f7cc441e502e_admission_closure.json",
+          "sha256": "209b07552016f0c82a34ca46f681100c03f2c6da26e0c3d82642d336b547dfd0",
+          "type": "final_development_admission_closure"
+        }
+      ],
+      "statement": "Retrospective eligible-core diagnostic selected after observing2022; not untouched validation. 22.5% each Max/crypto/confirmedTrend; failedVintage22.5% and price-onlyoverlay10% become 32.5% idlecash at zero yield. No reallocation to surviving sleeves. DFF benchmark charged against entire NAV; cash is not a new sleeve. Source-day marks, static subbook weights, financing/collateral, inter-sleeve rebalancing and PIT limitations remain. Normal/stressed subbook paths reused; no actual liquidation or live exposure change. Not qualified, no new independent alpha or launch evidence.",
+      "status": "VERIFIED_FINAL_DEVELOPMENT_CLOSURE_KILL"
+    },
+    "code_environment_and_reproduction": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/combined_2022_eligible_core_20260913/baseline/daily.csv",
+          "sha256": "049f97b5b4d52dfe5403f2a495f08fbc844a45ee64f307c2912ad73986cace5d"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_eligible_core_20260913/baseline/experiments.jsonl",
+          "sha256": "e3a89dae8fbc2ff7201a1547df3072fe107cbd0045651319aab627920f10bd33"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_eligible_core_20260913/baseline/preregistration.json",
+          "sha256": "de8a8727bcd428b28338674790e8bfe891e6479b8fbaf3560dc44d912ff43c68"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_eligible_core_20260913/baseline/reservation.json",
+          "sha256": "00c32ebed39cb311d7b8ada9546cad4faaca66e1e11b071952301fb8cd1bd640"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_eligible_core_20260913/baseline/reservation_validation.json",
+          "sha256": "e30a180123e18b612580776864eaa26066e139a1a8d00f68f7f68ebbc2955eb6"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_eligible_core_20260913/baseline/result.json",
+          "sha256": "622b6b57ea6504dd502ca0946d7a0ae617c39c4761e14d6c67407b45996a61b6"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_eligible_core_20260913/input_manifest.json",
+          "sha256": "8efdcf10a8dd7ae8896e20756d823efad45c2f759230ae8c427ce3afc1edb040"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_eligible_core_20260913/protocol.json",
+          "sha256": "3d26d3b1adc2dd83e5d27dbe0a31fd23e47b9364f24eb40e13d6f1ca77e48f34"
+        },
+        {
+          "path": "scripts/run_combined_2022_eligible_core.py",
+          "sha256": "e7ad2697b10f70a472b579449b07351f3576696db7b695f6d72f00c96a5d9179"
+        }
+      ],
+      "statement": "Retrospective eligible-core diagnostic selected after observing2022; not untouched validation. 22.5% each Max/crypto/confirmedTrend; failedVintage22.5% and price-onlyoverlay10% become 32.5% idlecash at zero yield. No reallocation to surviving sleeves. DFF benchmark charged against entire NAV; cash is not a new sleeve. Source-day marks, static subbook weights, financing/collateral, inter-sleeve rebalancing and PIT limitations remain. Normal/stressed subbook paths reused; no actual liquidation or live exposure change. Not qualified, no new independent alpha or launch evidence.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "economic_mechanism_and_falsifiable_hypothesis": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/combined_2022_eligible_core_20260913/baseline/daily.csv",
+          "sha256": "049f97b5b4d52dfe5403f2a495f08fbc844a45ee64f307c2912ad73986cace5d"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_eligible_core_20260913/baseline/experiments.jsonl",
+          "sha256": "e3a89dae8fbc2ff7201a1547df3072fe107cbd0045651319aab627920f10bd33"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_eligible_core_20260913/baseline/preregistration.json",
+          "sha256": "de8a8727bcd428b28338674790e8bfe891e6479b8fbaf3560dc44d912ff43c68"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_eligible_core_20260913/baseline/reservation.json",
+          "sha256": "00c32ebed39cb311d7b8ada9546cad4faaca66e1e11b071952301fb8cd1bd640"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_eligible_core_20260913/baseline/reservation_validation.json",
+          "sha256": "e30a180123e18b612580776864eaa26066e139a1a8d00f68f7f68ebbc2955eb6"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_eligible_core_20260913/baseline/result.json",
+          "sha256": "622b6b57ea6504dd502ca0946d7a0ae617c39c4761e14d6c67407b45996a61b6"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_eligible_core_20260913/input_manifest.json",
+          "sha256": "8efdcf10a8dd7ae8896e20756d823efad45c2f759230ae8c427ce3afc1edb040"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_eligible_core_20260913/protocol.json",
+          "sha256": "3d26d3b1adc2dd83e5d27dbe0a31fd23e47b9364f24eb40e13d6f1ca77e48f34"
+        },
+        {
+          "path": "scripts/run_combined_2022_eligible_core.py",
+          "sha256": "e7ad2697b10f70a472b579449b07351f3576696db7b695f6d72f00c96a5d9179"
+        }
+      ],
+      "statement": "Retrospective eligible-core diagnostic selected after observing2022; not untouched validation. 22.5% each Max/crypto/confirmedTrend; failedVintage22.5% and price-onlyoverlay10% become 32.5% idlecash at zero yield. No reallocation to surviving sleeves. DFF benchmark charged against entire NAV; cash is not a new sleeve. Source-day marks, static subbook weights, financing/collateral, inter-sleeve rebalancing and PIT limitations remain. Normal/stressed subbook paths reused; no actual liquidation or live exposure change. Not qualified, no new independent alpha or launch evidence.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "execution_and_cost_model": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/combined_2022_eligible_core_20260913/baseline/daily.csv",
+          "sha256": "049f97b5b4d52dfe5403f2a495f08fbc844a45ee64f307c2912ad73986cace5d"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_eligible_core_20260913/baseline/experiments.jsonl",
+          "sha256": "e3a89dae8fbc2ff7201a1547df3072fe107cbd0045651319aab627920f10bd33"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_eligible_core_20260913/baseline/preregistration.json",
+          "sha256": "de8a8727bcd428b28338674790e8bfe891e6479b8fbaf3560dc44d912ff43c68"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_eligible_core_20260913/baseline/reservation.json",
+          "sha256": "00c32ebed39cb311d7b8ada9546cad4faaca66e1e11b071952301fb8cd1bd640"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_eligible_core_20260913/baseline/reservation_validation.json",
+          "sha256": "e30a180123e18b612580776864eaa26066e139a1a8d00f68f7f68ebbc2955eb6"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_eligible_core_20260913/baseline/result.json",
+          "sha256": "622b6b57ea6504dd502ca0946d7a0ae617c39c4761e14d6c67407b45996a61b6"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_eligible_core_20260913/input_manifest.json",
+          "sha256": "8efdcf10a8dd7ae8896e20756d823efad45c2f759230ae8c427ce3afc1edb040"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_eligible_core_20260913/protocol.json",
+          "sha256": "3d26d3b1adc2dd83e5d27dbe0a31fd23e47b9364f24eb40e13d6f1ca77e48f34"
+        },
+        {
+          "path": "scripts/run_combined_2022_eligible_core.py",
+          "sha256": "e7ad2697b10f70a472b579449b07351f3576696db7b695f6d72f00c96a5d9179"
+        }
+      ],
+      "statement": "Retrospective eligible-core diagnostic selected after observing2022; not untouched validation. 22.5% each Max/crypto/confirmedTrend; failedVintage22.5% and price-onlyoverlay10% become 32.5% idlecash at zero yield. No reallocation to surviving sleeves. DFF benchmark charged against entire NAV; cash is not a new sleeve. Source-day marks, static subbook weights, financing/collateral, inter-sleeve rebalancing and PIT limitations remain. Normal/stressed subbook paths reused; no actual liquidation or live exposure change. Not qualified, no new independent alpha or launch evidence.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "family_and_union_trial_accounting": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/combined_2022_eligible_core_20260913/baseline/daily.csv",
+          "sha256": "049f97b5b4d52dfe5403f2a495f08fbc844a45ee64f307c2912ad73986cace5d"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_eligible_core_20260913/baseline/experiments.jsonl",
+          "sha256": "e3a89dae8fbc2ff7201a1547df3072fe107cbd0045651319aab627920f10bd33"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_eligible_core_20260913/baseline/preregistration.json",
+          "sha256": "de8a8727bcd428b28338674790e8bfe891e6479b8fbaf3560dc44d912ff43c68"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_eligible_core_20260913/baseline/reservation.json",
+          "sha256": "00c32ebed39cb311d7b8ada9546cad4faaca66e1e11b071952301fb8cd1bd640"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_eligible_core_20260913/baseline/reservation_validation.json",
+          "sha256": "e30a180123e18b612580776864eaa26066e139a1a8d00f68f7f68ebbc2955eb6"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_eligible_core_20260913/baseline/result.json",
+          "sha256": "622b6b57ea6504dd502ca0946d7a0ae617c39c4761e14d6c67407b45996a61b6"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_eligible_core_20260913/input_manifest.json",
+          "sha256": "8efdcf10a8dd7ae8896e20756d823efad45c2f759230ae8c427ce3afc1edb040"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_eligible_core_20260913/protocol.json",
+          "sha256": "3d26d3b1adc2dd83e5d27dbe0a31fd23e47b9364f24eb40e13d6f1ca77e48f34"
+        },
+        {
+          "path": "scripts/run_combined_2022_eligible_core.py",
+          "sha256": "e7ad2697b10f70a472b579449b07351f3576696db7b695f6d72f00c96a5d9179"
+        }
+      ],
+      "statement": "Retrospective eligible-core diagnostic selected after observing2022; not untouched validation. 22.5% each Max/crypto/confirmedTrend; failedVintage22.5% and price-onlyoverlay10% become 32.5% idlecash at zero yield. No reallocation to surviving sleeves. DFF benchmark charged against entire NAV; cash is not a new sleeve. Source-day marks, static subbook weights, financing/collateral, inter-sleeve rebalancing and PIT limitations remain. Normal/stressed subbook paths reused; no actual liquidation or live exposure change. Not qualified, no new independent alpha or launch evidence.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "identity_and_authorship": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/combined_2022_eligible_core_20260913/baseline/daily.csv",
+          "sha256": "049f97b5b4d52dfe5403f2a495f08fbc844a45ee64f307c2912ad73986cace5d"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_eligible_core_20260913/baseline/experiments.jsonl",
+          "sha256": "e3a89dae8fbc2ff7201a1547df3072fe107cbd0045651319aab627920f10bd33"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_eligible_core_20260913/baseline/preregistration.json",
+          "sha256": "de8a8727bcd428b28338674790e8bfe891e6479b8fbaf3560dc44d912ff43c68"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_eligible_core_20260913/baseline/reservation.json",
+          "sha256": "00c32ebed39cb311d7b8ada9546cad4faaca66e1e11b071952301fb8cd1bd640"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_eligible_core_20260913/baseline/reservation_validation.json",
+          "sha256": "e30a180123e18b612580776864eaa26066e139a1a8d00f68f7f68ebbc2955eb6"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_eligible_core_20260913/baseline/result.json",
+          "sha256": "622b6b57ea6504dd502ca0946d7a0ae617c39c4761e14d6c67407b45996a61b6"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_eligible_core_20260913/input_manifest.json",
+          "sha256": "8efdcf10a8dd7ae8896e20756d823efad45c2f759230ae8c427ce3afc1edb040"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_eligible_core_20260913/protocol.json",
+          "sha256": "3d26d3b1adc2dd83e5d27dbe0a31fd23e47b9364f24eb40e13d6f1ca77e48f34"
+        },
+        {
+          "path": "scripts/run_combined_2022_eligible_core.py",
+          "sha256": "e7ad2697b10f70a472b579449b07351f3576696db7b695f6d72f00c96a5d9179"
+        }
+      ],
+      "statement": "Retrospective eligible-core diagnostic selected after observing2022; not untouched validation. 22.5% each Max/crypto/confirmedTrend; failedVintage22.5% and price-onlyoverlay10% become 32.5% idlecash at zero yield. No reallocation to surviving sleeves. DFF benchmark charged against entire NAV; cash is not a new sleeve. Source-day marks, static subbook weights, financing/collateral, inter-sleeve rebalancing and PIT limitations remain. Normal/stressed subbook paths reused; no actual liquidation or live exposure change. Not qualified, no new independent alpha or launch evidence.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "literature_and_overlap_decision": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/combined_2022_eligible_core_20260913/baseline/daily.csv",
+          "sha256": "049f97b5b4d52dfe5403f2a495f08fbc844a45ee64f307c2912ad73986cace5d"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_eligible_core_20260913/baseline/experiments.jsonl",
+          "sha256": "e3a89dae8fbc2ff7201a1547df3072fe107cbd0045651319aab627920f10bd33"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_eligible_core_20260913/baseline/preregistration.json",
+          "sha256": "de8a8727bcd428b28338674790e8bfe891e6479b8fbaf3560dc44d912ff43c68"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_eligible_core_20260913/baseline/reservation.json",
+          "sha256": "00c32ebed39cb311d7b8ada9546cad4faaca66e1e11b071952301fb8cd1bd640"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_eligible_core_20260913/baseline/reservation_validation.json",
+          "sha256": "e30a180123e18b612580776864eaa26066e139a1a8d00f68f7f68ebbc2955eb6"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_eligible_core_20260913/baseline/result.json",
+          "sha256": "622b6b57ea6504dd502ca0946d7a0ae617c39c4761e14d6c67407b45996a61b6"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_eligible_core_20260913/input_manifest.json",
+          "sha256": "8efdcf10a8dd7ae8896e20756d823efad45c2f759230ae8c427ce3afc1edb040"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_eligible_core_20260913/protocol.json",
+          "sha256": "3d26d3b1adc2dd83e5d27dbe0a31fd23e47b9364f24eb40e13d6f1ca77e48f34"
+        },
+        {
+          "path": "scripts/run_combined_2022_eligible_core.py",
+          "sha256": "e7ad2697b10f70a472b579449b07351f3576696db7b695f6d72f00c96a5d9179"
+        }
+      ],
+      "statement": "Retrospective eligible-core diagnostic selected after observing2022; not untouched validation. 22.5% each Max/crypto/confirmedTrend; failedVintage22.5% and price-onlyoverlay10% become 32.5% idlecash at zero yield. No reallocation to surviving sleeves. DFF benchmark charged against entire NAV; cash is not a new sleeve. Source-day marks, static subbook weights, financing/collateral, inter-sleeve rebalancing and PIT limitations remain. Normal/stressed subbook paths reused; no actual liquidation or live exposure change. Not qualified, no new independent alpha or launch evidence.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "machine_readable_packet_and_stable_public_paper": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/combined_2022_eligible_core_20260913/baseline/daily.csv",
+          "sha256": "049f97b5b4d52dfe5403f2a495f08fbc844a45ee64f307c2912ad73986cace5d"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_eligible_core_20260913/baseline/experiments.jsonl",
+          "sha256": "e3a89dae8fbc2ff7201a1547df3072fe107cbd0045651319aab627920f10bd33"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_eligible_core_20260913/baseline/preregistration.json",
+          "sha256": "de8a8727bcd428b28338674790e8bfe891e6479b8fbaf3560dc44d912ff43c68"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_eligible_core_20260913/baseline/reservation.json",
+          "sha256": "00c32ebed39cb311d7b8ada9546cad4faaca66e1e11b071952301fb8cd1bd640"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_eligible_core_20260913/baseline/reservation_validation.json",
+          "sha256": "e30a180123e18b612580776864eaa26066e139a1a8d00f68f7f68ebbc2955eb6"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_eligible_core_20260913/baseline/result.json",
+          "sha256": "622b6b57ea6504dd502ca0946d7a0ae617c39c4761e14d6c67407b45996a61b6"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_eligible_core_20260913/input_manifest.json",
+          "sha256": "8efdcf10a8dd7ae8896e20756d823efad45c2f759230ae8c427ce3afc1edb040"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_eligible_core_20260913/protocol.json",
+          "sha256": "3d26d3b1adc2dd83e5d27dbe0a31fd23e47b9364f24eb40e13d6f1ca77e48f34"
+        },
+        {
+          "path": "scripts/run_combined_2022_eligible_core.py",
+          "sha256": "e7ad2697b10f70a472b579449b07351f3576696db7b695f6d72f00c96a5d9179"
+        }
+      ],
+      "statement": "Retrospective eligible-core diagnostic selected after observing2022; not untouched validation. 22.5% each Max/crypto/confirmedTrend; failedVintage22.5% and price-onlyoverlay10% become 32.5% idlecash at zero yield. No reallocation to surviving sleeves. DFF benchmark charged against entire NAV; cash is not a new sleeve. Source-day marks, static subbook weights, financing/collateral, inter-sleeve rebalancing and PIT limitations remain. Normal/stressed subbook paths reused; no actual liquidation or live exposure change. Not qualified, no new independent alpha or launch evidence.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "point_in_time_data_and_survivorship_controls": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/combined_2022_eligible_core_20260913/baseline/daily.csv",
+          "sha256": "049f97b5b4d52dfe5403f2a495f08fbc844a45ee64f307c2912ad73986cace5d"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_eligible_core_20260913/baseline/experiments.jsonl",
+          "sha256": "e3a89dae8fbc2ff7201a1547df3072fe107cbd0045651319aab627920f10bd33"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_eligible_core_20260913/baseline/preregistration.json",
+          "sha256": "de8a8727bcd428b28338674790e8bfe891e6479b8fbaf3560dc44d912ff43c68"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_eligible_core_20260913/baseline/reservation.json",
+          "sha256": "00c32ebed39cb311d7b8ada9546cad4faaca66e1e11b071952301fb8cd1bd640"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_eligible_core_20260913/baseline/reservation_validation.json",
+          "sha256": "e30a180123e18b612580776864eaa26066e139a1a8d00f68f7f68ebbc2955eb6"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_eligible_core_20260913/baseline/result.json",
+          "sha256": "622b6b57ea6504dd502ca0946d7a0ae617c39c4761e14d6c67407b45996a61b6"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_eligible_core_20260913/input_manifest.json",
+          "sha256": "8efdcf10a8dd7ae8896e20756d823efad45c2f759230ae8c427ce3afc1edb040"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_eligible_core_20260913/protocol.json",
+          "sha256": "3d26d3b1adc2dd83e5d27dbe0a31fd23e47b9364f24eb40e13d6f1ca77e48f34"
+        },
+        {
+          "path": "scripts/run_combined_2022_eligible_core.py",
+          "sha256": "e7ad2697b10f70a472b579449b07351f3576696db7b695f6d72f00c96a5d9179"
+        }
+      ],
+      "statement": "Retrospective eligible-core diagnostic selected after observing2022; not untouched validation. 22.5% each Max/crypto/confirmedTrend; failedVintage22.5% and price-onlyoverlay10% become 32.5% idlecash at zero yield. No reallocation to surviving sleeves. DFF benchmark charged against entire NAV; cash is not a new sleeve. Source-day marks, static subbook weights, financing/collateral, inter-sleeve rebalancing and PIT limitations remain. Normal/stressed subbook paths reused; no actual liquidation or live exposure change. Not qualified, no new independent alpha or launch evidence.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "preregistration_and_hashes": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/combined_2022_eligible_core_20260913/baseline/daily.csv",
+          "sha256": "049f97b5b4d52dfe5403f2a495f08fbc844a45ee64f307c2912ad73986cace5d"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_eligible_core_20260913/baseline/experiments.jsonl",
+          "sha256": "e3a89dae8fbc2ff7201a1547df3072fe107cbd0045651319aab627920f10bd33"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_eligible_core_20260913/baseline/preregistration.json",
+          "sha256": "de8a8727bcd428b28338674790e8bfe891e6479b8fbaf3560dc44d912ff43c68"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_eligible_core_20260913/baseline/reservation.json",
+          "sha256": "00c32ebed39cb311d7b8ada9546cad4faaca66e1e11b071952301fb8cd1bd640"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_eligible_core_20260913/baseline/reservation_validation.json",
+          "sha256": "e30a180123e18b612580776864eaa26066e139a1a8d00f68f7f68ebbc2955eb6"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_eligible_core_20260913/baseline/result.json",
+          "sha256": "622b6b57ea6504dd502ca0946d7a0ae617c39c4761e14d6c67407b45996a61b6"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_eligible_core_20260913/input_manifest.json",
+          "sha256": "8efdcf10a8dd7ae8896e20756d823efad45c2f759230ae8c427ce3afc1edb040"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_eligible_core_20260913/protocol.json",
+          "sha256": "3d26d3b1adc2dd83e5d27dbe0a31fd23e47b9364f24eb40e13d6f1ca77e48f34"
+        },
+        {
+          "path": "scripts/run_combined_2022_eligible_core.py",
+          "sha256": "e7ad2697b10f70a472b579449b07351f3576696db7b695f6d72f00c96a5d9179"
+        }
+      ],
+      "statement": "Retrospective eligible-core diagnostic selected after observing2022; not untouched validation. 22.5% each Max/crypto/confirmedTrend; failedVintage22.5% and price-onlyoverlay10% become 32.5% idlecash at zero yield. No reallocation to surviving sleeves. DFF benchmark charged against entire NAV; cash is not a new sleeve. Source-day marks, static subbook weights, financing/collateral, inter-sleeve rebalancing and PIT limitations remain. Normal/stressed subbook paths reused; no actual liquidation or live exposure change. Not qualified, no new independent alpha or launch evidence.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "result_uncertainty_stress_capacity_and_diversification": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/combined_2022_eligible_core_20260913/baseline/daily.csv",
+          "sha256": "049f97b5b4d52dfe5403f2a495f08fbc844a45ee64f307c2912ad73986cace5d"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_eligible_core_20260913/baseline/experiments.jsonl",
+          "sha256": "e3a89dae8fbc2ff7201a1547df3072fe107cbd0045651319aab627920f10bd33"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_eligible_core_20260913/baseline/preregistration.json",
+          "sha256": "de8a8727bcd428b28338674790e8bfe891e6479b8fbaf3560dc44d912ff43c68"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_eligible_core_20260913/baseline/reservation.json",
+          "sha256": "00c32ebed39cb311d7b8ada9546cad4faaca66e1e11b071952301fb8cd1bd640"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_eligible_core_20260913/baseline/reservation_validation.json",
+          "sha256": "e30a180123e18b612580776864eaa26066e139a1a8d00f68f7f68ebbc2955eb6"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_eligible_core_20260913/baseline/result.json",
+          "sha256": "622b6b57ea6504dd502ca0946d7a0ae617c39c4761e14d6c67407b45996a61b6"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_eligible_core_20260913/input_manifest.json",
+          "sha256": "8efdcf10a8dd7ae8896e20756d823efad45c2f759230ae8c427ce3afc1edb040"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_eligible_core_20260913/protocol.json",
+          "sha256": "3d26d3b1adc2dd83e5d27dbe0a31fd23e47b9364f24eb40e13d6f1ca77e48f34"
+        },
+        {
+          "path": "scripts/run_combined_2022_eligible_core.py",
+          "sha256": "e7ad2697b10f70a472b579449b07351f3576696db7b695f6d72f00c96a5d9179"
+        }
+      ],
+      "statement": "Retrospective eligible-core diagnostic selected after observing2022; not untouched validation. 22.5% each Max/crypto/confirmedTrend; failedVintage22.5% and price-onlyoverlay10% become 32.5% idlecash at zero yield. No reallocation to surviving sleeves. DFF benchmark charged against entire NAV; cash is not a new sleeve. Source-day marks, static subbook weights, financing/collateral, inter-sleeve rebalancing and PIT limitations remain. Normal/stressed subbook paths reused; no actual liquidation or live exposure change. Not qualified, no new independent alpha or launch evidence.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    }
+  },
+  "research_family_key": "managed_futures_trend",
+  "schema": "canli.alphac-identity-trial-packet.v2"
+}

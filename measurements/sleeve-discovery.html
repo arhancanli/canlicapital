@@ -108,6 +108,50 @@
 </dl>
 <section class="measure__sub"><h3>Objective</h3>
 <dl class="measure__facts">
+<div class="measure__row"><dt>Source</dt><dd>config/owner_goals.json</dd></div>
+<div class="measure__row"><dt>Source schema</dt><dd>canli.alphac-owner-goals.v1</dd></div>
+<div class="measure__row"><dt>Recorded on</dt><dd>2026-09-12</dd></div>
+<div class="measure__row"><dt>In force from</dt><dd>2026-09-14</dd></div>
+<div class="measure__row"><dt>Honest forward sharpe target</dt><dd>2</dd></div>
+<div class="measure__row"><dt>Honest forward sharpe comparison</dt><dd>ABOVE</dd></div>
+<div class="measure__row"><dt>Portfolio max drawdown target</dt><dd>0.100000</dd></div>
+<div class="measure__row"><dt>Portfolio max drawdown comparison</dt><dd>AT_MOST</dd></div>
+<div class="measure__row"><dt>Portfolio max drawdown statistic</dt><dd>REALIZED_MAXIMUM_DRAWDOWN_BOUND</dd></div>
+<div class="measure__row"><dt>Portfolio max drawdown mechanism status</dt><dd>DECLARED_LADDER_DERIVED_FROM_BOUND_MEASURED_NOT_LIVE</dd></div>
+<div class="measure__row"><dt>Expected max drawdown objective</dt><dd>0.110000</dd></div>
+<div class="measure__row"><dt>Expected max drawdown objective statistic</dt><dd>expected_maximum_drawdown</dd></div>
+<div class="measure__row"><dt>Target total sleeves</dt><dd>14</dd></div>
+<div class="measure__row"><dt>Target total sleeves comparison</dt><dd>AT_LEAST</dd></div>
+<div class="measure__row"><dt>Target sleeve count</dt><dd>14</dd></div>
+<div class="measure__row"><dt>Average pairwise correlation objective</dt><dd>-0.051161</dd></div>
+<div class="measure__row"><dt>Targets are admission evidence</dt><dd>no</dd></div>
+<div class="measure__row"><dt>Current sleeves</dt><dd>4</dd></div>
+<div class="measure__row"><dt>Minimum new sleeves</dt><dd>10</dd></div>
+<div class="measure__row"><dt>Candidate atlas minimum</dt><dd>200</dd></div>
+</dl>
+<p class="measure__prose"><strong>Honest forward sharpe basis.</strong> Annualized (365-day convention) from consecutive published UTC daily paper marks, net of modeled costs, zero excess-return benchmark, evaluated by scripts/evaluate_forward_evidence_maturity.py under config/forward_evidence_contract.json (252 returns before an estimate, 756 and PSR &gt;= 0.95 before establishment).</p>
+<p class="measure__prose"><strong>Portfolio max drawdown mechanism.</strong> config/drawdown_control_contract.json v1.1 declares half gross at 5 percent below the high-water mark and flat at 10 percent, absorbing until an owner rearm; every parameter is derived from this bound (half = bound / 2, flat = bound) and measured by docs/design/DRAWDOWN_CONTROL_V1_PROTOCOL.md on the current-composition study paths. A brake bounds each episode up to a one-day overshoot and does not make losses impossible. It is not activated.</p>
+<p class="measure__prose"><strong>Expected max drawdown objective note.</strong> The admission contract&#39;s sealed expected-maximum-drawdown objective and gate, evaluated on the current-composition drawdown study. Not the owner&#39;s bound: the bound is on realized maximum drawdown and is portfolio_max_drawdown_target.</p>
+<p class="measure__prose"><strong>Average pairwise correlation objective note.</strong> An objective, not a gate: the average pairwise correlation at which 14 sleeves of the quality the sealed contract measured reach 3 in-sample, which is forward 2 on the optimistic end of the measured haircut. Derived by inverting the published identity; the PSD floor at this sleeve count is -0.0769.</p>
+<section class="measure__sub"><h4>Implied in sample target</h4>
+<dl class="measure__facts">
+<div class="measure__row"><dt>At 1 5x haircut</dt><dd>3</dd></div>
+<div class="measure__row"><dt>At 2 0x haircut</dt><dd>4</dd></div>
+<div class="measure__row"><dt>At 3 0x haircut</dt><dd>6</dd></div>
+</dl>
+</section>
+<p class="measure__label">Portfolio sharpe target</p><ul class="measure__list"><li>3</li><li>4</li></ul>
+<p class="measure__prose"><strong>Portfolio sharpe target unit.</strong> IN-SAMPLE, being the band an honest forward 2 implies at the 1.5x and 2x ends of this book&#39;s own measured backtest-to-forward haircut. The headline target is the forward figure.</p>
+<section class="measure__sub"><h4>Backtest to forward haircut</h4>
+<dl class="measure__facts">
+<div class="measure__row"><dt>Measured on this book</dt><dd>in-sample equal-risk ~1.04 against an honest forward of 0.3-0.9</dd></div>
+</dl>
+<p class="measure__prose"><strong>Note.</strong> The haircut IS the uncertainty. Until the forward record is long enough to speak, every in-sample figure should be read through it, and the range is this book&#39;s own published pair rather than a convention borrowed from elsewhere.</p>
+<p class="measure__label">Range</p><ul class="measure__list"><li>1.500000</li><li>3</li></ul>
+</section>
+<p class="measure__prose"><strong>What reaching it requires.</strong> At 14 sleeves of the quality the sealed contract measured (0.464 on the four-curve basis), the low end of the band (3 in-sample, 2 forward on the optimistic haircut) needs an average pairwise correlation of -0.0512 against a floor of -0.0769 (inside the floor). At the +0.00 gate exactly it needs a mean standalone Sharpe of 0.802. The distance from today&#39;s measured quality has to be bought with per-sleeve quality, genuinely negative correlation, or both; the sleeve count alone buys none of it.</p>
+<section class="measure__sub"><h4>Superseded admission contract objective</h4>
+<dl class="measure__facts">
 <div class="measure__row"><dt>Average pairwise correlation objective</dt><dd>-0.030000</dd></div>
 <div class="measure__row"><dt>Honest forward sharpe target</dt><dd>1.500000</dd></div>
 <div class="measure__row"><dt>Minimum new sleeves</dt><dd>10</dd></div>
@@ -117,32 +161,23 @@
 <div class="measure__row"><dt>Portfolio p95 max drawdown must be published</dt><dd>yes</dd></div>
 <div class="measure__row"><dt>Target total sleeves</dt><dd>14</dd></div>
 <div class="measure__row"><dt>Targets are admission evidence</dt><dd>no</dd></div>
-<div class="measure__row"><dt>Target sleeve count</dt><dd>14</dd></div>
-<div class="measure__row"><dt>Candidate atlas minimum</dt><dd>200</dd></div>
+<div class="measure__row"><dt>Superseded on</dt><dd>2026-09-14</dd></div>
+<div class="measure__row"><dt>Sealed by</dt><dd>config/admission_v7_promotion.json</dd></div>
+<div class="measure__row"><dt>Sealed sha256</dt><dd>6bc72c1f47675b4e14897e1ba3aad6e56aba9b5f013a7b9bae57f930e8d3b8b6</dd></div>
 </dl>
 <p class="measure__prose"><strong>Average pairwise correlation objective note.</strong> An objective, not a gate. -0.03 is the average pairwise correlation at which fourteen sleeves of measured quality reach 2.5. Thresholds are gates and live in &#39;thresholds&#39;; anything that is not enforced must not sit there wearing a gate&#39;s costume.</p>
-<section class="measure__sub"><h4>Backtest to forward haircut</h4>
-<dl class="measure__facts">
-<div class="measure__row"><dt>Measured on this book</dt><dd>in-sample equal-risk ~1.04 against an honest forward of 0.3-0.9</dd></div>
-</dl>
-<p class="measure__prose"><strong>Note.</strong> The haircut IS the uncertainty. Until the forward record is long enough to speak, every in-sample figure should be read through it, and the range is this book&#39;s own published pair rather than a convention borrowed from elsewhere.</p>
-<p class="measure__label">Range</p><ul class="measure__list"><li>1.500000</li><li>3</li></ul>
-</section>
-<section class="measure__sub"><h4>Implied in sample target</h4>
-<dl class="measure__facts">
-<div class="measure__row"><dt>At 1 5x haircut</dt><dd>2.250000</dd></div>
-<div class="measure__row"><dt>At 2 0x haircut</dt><dd>3</dd></div>
-<div class="measure__row"><dt>At 3 0x haircut</dt><dd>4.500000</dd></div>
-</dl>
-</section>
+<p class="measure__label">Backtest to forward haircut</p><p class="measure__deep">3 further fields. <a href="/glassbox/sleeve_discovery.json">Read them in the artifact</a>.</p>
+<p class="measure__label">Implied in sample target</p><p class="measure__deep">3 further fields. <a href="/glassbox/sleeve_discovery.json">Read them in the artifact</a>.</p>
 <p class="measure__label">Portfolio sharpe target</p><ul class="measure__list"><li>2.250000</li><li>3</li></ul>
 <p class="measure__prose"><strong>Portfolio sharpe target unit.</strong> IN-SAMPLE, being the band that an honest forward 1.5 implies at the 1.5x and 2.0x ends of this book&#39;s own measured haircut. The headline target is honest_forward_sharpe_target.</p>
 <p class="measure__label">Superseded in sample sharpe target</p><ul class="measure__list"><li>2</li><li>2.500000</li></ul>
 <p class="measure__prose"><strong>Superseded reason.</strong> Stated in-sample with no haircut named, and unreachable as a forward result: a verified forward 2.0 at measured per-sleeve quality needs an average pairwise correlation of -0.062 against a PSD floor of -0.077. Withdrawn 2026-08-21 and replaced with an honest FORWARD target of 1.5, which is inside the floor at every plausible quality.</p>
 <p class="measure__prose"><strong>What reaching it requires.</strong> Both halves, not either: an average pairwise correlation meaningfully BELOW zero, and per-sleeve quality above roughly 0.60. At today&#39;s measured 0.469 the forward target is reachable only at a correlation near -0.030 and only on the optimistic haircut.</p>
 <p class="measure__prose"><strong>Why this is not a retreat.</strong> The rarer thing was never the number. A forward Sharpe near 1.5 that is genuinely verifiable -- signed forward record, every killed candidate published in full, gates that provably bite, and the arithmetic showing where the gate falls short of the target printed on the same page as the target -- is harder to find than a 2.5 nobody can check.</p>
+<p class="measure__prose"><strong>Why the bytes stand.</strong> The contract&#39;s bytes are sealed by config/admission_v7_promotion.json and its objective was never an admission gate (targets_are_admission_evidence is false), so the goals move without any gate moving. The superseded figures are published beside the governing ones, dated, as history.</p>
+</section>
 <p class="measure__prose"><strong>Portfolio requirement.</strong> Improve the combined book through independent economic return sources, not leverage or selection of the prettiest backtest.</p>
-<p class="measure__prose"><strong>Admission rule.</strong> A target never creates a sleeve. Fourteen is reached only if ten or more new identities independently clear every admission gate; otherwise the book remains smaller.</p>
+<p class="measure__prose"><strong>Admission rule.</strong> A target never creates a sleeve. The owner&#39;s minimum is reached only if enough new identities independently clear every admission gate; otherwise the book remains smaller.</p>
 </section>
 <section class="measure__sub"><h3>Admission gates</h3>
 <dl class="measure__facts">
@@ -198,6 +233,43 @@
 <p class="measure__prose"><strong>Average pairwise correlation max.</strong> Replaced prospectively in v7 because applying a final global level to each incremental admission was path-dependent. A candidate must now average no more than zero correlation to the existing book and must strictly reduce the book&#39;s global average; the -0.03 portfolio objective remains mandatory to publish.</p>
 </section>
 <section class="measure__sub"><h3>Frontier arithmetic</h3>
+<dl class="measure__facts">
+<div class="measure__row"><dt>Identity</dt><dd>S_book = s_bar * sqrt(N / (1 + (N - 1) * rho_bar))</dd></div>
+<div class="measure__row"><dt>Source</dt><dd>config/owner_goals.json projected on the sealed contract&#39;s identity and inputs</dd></div>
+<div class="measure__row"><dt>Target sleeve count</dt><dd>14</dd></div>
+<div class="measure__row"><dt>Honest forward sharpe target</dt><dd>2</dd></div>
+<div class="measure__row"><dt>Psd floor at target n</dt><dd>-0.076923</dd></div>
+<div class="measure__row"><dt>Incremental candidate average correlation gate</dt><dd>0</dd></div>
+<div class="measure__row"><dt>Incremental book average correlation delta gate exclusive</dt><dd>0</dd></div>
+<div class="measure__row"><dt>Incremental gates alone establish objective floor</dt><dd>no</dd></div>
+<div class="measure__row"><dt>Incremental gates alone establish objective ceiling</dt><dd>no</dd></div>
+</dl>
+<p class="measure__label">In sample support band</p><ul class="measure__list"><li>3</li><li>4</li></ul>
+<p class="measure__prose"><strong>In sample support band unit.</strong> IN-SAMPLE, being the band an honest forward 2 implies at the 1.5x and 2x ends of this book&#39;s own measured backtest-to-forward haircut. The headline target is the forward figure.</p>
+<p class="measure__prose"><strong>Psd floor note.</strong> Average pairwise correlation cannot fall below -1/(N-1) for any real correlation matrix. At 14 sleeves the floor is -0.0769.</p>
+<section class="measure__sub"><h4>Book sharpe ceiling at zero global correlation</h4>
+<dl class="measure__facts">
+<div class="measure__row"><dt>S bar four curve basis</dt><dd>1.736129</dd></div>
+<div class="measure__row"><dt>S bar traded basis</dt><dd>1.979337</dd></div>
+</dl>
+</section>
+<section class="measure__sub"><h4>Correlation required at measured quality</h4>
+<p class="measure__label">Four curve basis</p><p class="measure__deep">3 further fields. <a href="/glassbox/sleeve_discovery.json">Read them in the artifact</a>.</p>
+<p class="measure__label">Traded basis</p><p class="measure__deep">3 further fields. <a href="/glassbox/sleeve_discovery.json">Read them in the artifact</a>.</p>
+<p class="measure__prose"><strong>Note.</strong> Hold quality where the sealed contract measured it and read off the average pairwise correlation each end of the band demands at the owner&#39;s sleeve count.</p>
+</section>
+<section class="measure__sub"><h4>Quality precondition at the gate</h4>
+<dl class="measure__facts">
+<div class="measure__row"><dt>S bar measured four curve basis</dt><dd>0.464000</dd></div>
+<div class="measure__row"><dt>S bar measured traded basis</dt><dd>0.529000</dd></div>
+<div class="measure__row"><dt>S bar required for 3</dt><dd>0.801784</dd></div>
+<div class="measure__row"><dt>S bar required for 4</dt><dd>1.069045</dd></div>
+</dl>
+<p class="measure__prose"><strong>Note.</strong> What the correlation gate alone does NOT buy. At the gate exactly, reaching each end of the band requires at least this average standalone Sharpe across 14 sleeves.</p>
+</section>
+<p class="measure__prose"><strong>Honest reading.</strong> At 14 sleeves of the quality the sealed contract measured (0.464 on the four-curve basis), the low end of the band (3 in-sample, 2 forward on the optimistic haircut) needs an average pairwise correlation of -0.0512 against a floor of -0.0769 (inside the floor). At the +0.00 gate exactly it needs a mean standalone Sharpe of 0.802. The distance from today&#39;s measured quality has to be bought with per-sleeve quality, genuinely negative correlation, or both; the sleeve count alone buys none of it.</p>
+</section>
+<section class="measure__sub"><h3>Superseded admission contract frontier arithmetic</h3>
 <dl class="measure__facts">
 <div class="measure__row"><dt>Identity</dt><dd>S_book = s_bar * sqrt(N / (1 + (N - 1) * rho_bar))</dd></div>
 <div class="measure__row"><dt>Incremental book average correlation delta gate exclusive</dt><dd>0</dd></div>

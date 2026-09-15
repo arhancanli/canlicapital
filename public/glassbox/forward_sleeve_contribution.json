@@ -1,7 +1,7 @@
 {
   "author": "Arhan Canli",
   "claim_boundary": "Descriptive arithmetic attribution of the published paper curve only. It is not a Sharpe estimate, evidence of expected sleeve performance, permission to reweight, or a return trial. The strategic-overlay residual is not alpha.",
-  "content_hash": "sha256:93ca3c49bc44e3579112cee1d78a3315b4f07aab1737eaefb655485651d1ce13",
+  "content_hash": "sha256:8240aca25eedb1438d5d1c070a5036bc0d5bb357c6e7ad533ae12062d7dfe5f5",
   "daily": [
     {
       "book_return": 0.0,
@@ -389,36 +389,47 @@
       "strategic_overlay_and_rounding_residual": -8.603229517678557e-09
     },
     {
-      "book_return": -0.0005729863735458585,
+      "book_return": 0.0006087338202998005,
       "date": "2026-09-14",
       "sleeve_contributions": {
-        "crypto": 0.0006973792623166108,
-        "equity": -0.0009994605204766138,
-        "macro_surprise": -0.00017029127080422923,
-        "managed_futures": -0.00010053903398252184
+        "crypto": 0.000831837199992469,
+        "equity": 0.0,
+        "macro_surprise": 0.0,
+        "managed_futures": 0.0
       },
-      "strategic_overlay_and_rounding_residual": -7.481059910441346e-08
+      "strategic_overlay_and_rounding_residual": -0.00022310337969266847
+    },
+    {
+      "book_return": -0.0019388378080968938,
+      "date": "2026-09-15",
+      "sleeve_contributions": {
+        "crypto": 0.0006535366189952541,
+        "equity": -0.0026375087271715836,
+        "macro_surprise": 0.0001352047482924834,
+        "managed_futures": -9.002903634725001e-05
+      },
+      "strategic_overlay_and_rounding_residual": -4.1411865797646996e-08
     }
   ],
   "decision": "MONITOR_ONLY_NO_WEIGHT_CHANGE",
   "largest_loss_driver": {
-    "absolute_share_of_negative_book_return": 0.8987936081405873,
-    "additive_contribution": -0.024456584932899206,
+    "absolute_share_of_negative_book_return": 0.846286837603957,
+    "additive_contribution": -0.023668590376228094,
     "dominates_current_loss": true,
     "sleeve": "crypto"
   },
   "record": {
-    "book_additive_return": -0.02721045711873127,
-    "daily_return_observations": 36,
+    "book_additive_return": -0.027967574732982503,
+    "daily_return_observations": 37,
     "first_mark": "2026-08-07",
-    "last_mark": "2026-09-14"
+    "last_mark": "2026-09-15"
   },
   "schema": "canli.alphac-forward-sleeve-contribution.v1",
   "sleeve_additive_contributions": {
-    "crypto": -0.024456584932899206,
-    "equity": -0.0032846509980002936,
-    "macro_surprise": -0.0009540944564336851,
-    "managed_futures": 0.002037054390344656
+    "crypto": -0.023668590376228094,
+    "equity": -0.004922699204695263,
+    "macro_surprise": -0.0006485984373369724,
+    "managed_futures": 0.0020475643879799277
   },
   "source_bindings": {
     "committed_weight_schedule": {
@@ -445,8 +456,8 @@
     },
     "paper_state": {
       "path": "data/paper/state.json",
-      "sha256": "eb8dfdd7500035a4f70d185f7c0a5d42202b2ba21b3824c6ef3f4cd8ac41c635"
+      "sha256": "ebb6b1225d7b3081c68c5bd1dafcaea279efc9b099dd34cc42c517ab0e09dabf"
     }
   },
-  "strategic_overlay_and_rounding_residual": -0.0005521811217427397
+  "strategic_overlay_and_rounding_residual": -0.0007752511027021014
 }

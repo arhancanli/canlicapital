@@ -1,0 +1,595 @@
+{
+  "claim_boundary": "Accounting is complete, admission evidence is not. Fixed stress measurement does not establish capacity or untouched performance.",
+  "complete": true,
+  "completion_assessment": {
+    "candidate_evidence_complete_for_admission": false,
+    "disposition": "INCOMPLETE_NOT_ADMITTED",
+    "packet_evidence_accounting_complete": true
+  },
+  "config_hash": "0acb46e6726d7575",
+  "configuration": {
+    "allocator": "trend",
+    "alpha_names": [
+      "mf_trend_63",
+      "mf_trend_126",
+      "mf_trend_252"
+    ],
+    "end": 1787529600000,
+    "execution_cost_scenario": {
+      "name": "double_all_modeled_costs_v1",
+      "resolved_costs": {
+        "default_half_spread_bps": 2.5,
+        "equity_borrow_bps_annual": 100.0,
+        "equity_commission_bps": 2.0,
+        "equity_half_spread_bps": 6.0,
+        "impact_coef": 2.0,
+        "latency_addon_bps": 4.0,
+        "perp_maker_bps": 2.0,
+        "perp_taker_bps": 5.0
+      }
+    },
+    "instrument_ids": [
+      "XUSE:CASH:DBAUSD",
+      "XUSE:CASH:DBCUSD",
+      "XUSE:CASH:EEMUSD",
+      "XUSE:CASH:EFAUSD",
+      "XUSE:CASH:FXEUSD",
+      "XUSE:CASH:FXYUSD",
+      "XUSE:CASH:GLDUSD",
+      "XUSE:CASH:IEFUSD",
+      "XUSE:CASH:IWMUSD",
+      "XUSE:CASH:QQQUSD",
+      "XUSE:CASH:SHYUSD",
+      "XUSE:CASH:SLVUSD",
+      "XUSE:CASH:SPYUSD",
+      "XUSE:CASH:TLTUSD",
+      "XUSE:CASH:UNGUSD",
+      "XUSE:CASH:USOUSD",
+      "XUSE:CASH:UUPUSD"
+    ],
+    "no_trade_band": 0.001,
+    "rebalance_bars": 10,
+    "start": 1041379200000,
+    "test_bars": 126,
+    "train_bars": 504,
+    "trend_blend_normalization": "directional_rms"
+  },
+  "content_hash": "sha256:c4788ad6e117f4a2c841b8dca2864d23b1443734599f76079ae738108ead6e24",
+  "hypothesis_key": "4d7793cfffb17091",
+  "immutable_first_measurement": {
+    "config": {
+      "allocator": "trend",
+      "alpha_names": [
+        "mf_trend_63",
+        "mf_trend_126",
+        "mf_trend_252"
+      ],
+      "end": 1787529600000,
+      "execution_cost_scenario": {
+        "name": "double_all_modeled_costs_v1",
+        "resolved_costs": {
+          "default_half_spread_bps": 2.5,
+          "equity_borrow_bps_annual": 100.0,
+          "equity_commission_bps": 2.0,
+          "equity_half_spread_bps": 6.0,
+          "impact_coef": 2.0,
+          "latency_addon_bps": 4.0,
+          "perp_maker_bps": 2.0,
+          "perp_taker_bps": 5.0
+        }
+      },
+      "instrument_ids": [
+        "XUSE:CASH:DBAUSD",
+        "XUSE:CASH:DBCUSD",
+        "XUSE:CASH:EEMUSD",
+        "XUSE:CASH:EFAUSD",
+        "XUSE:CASH:FXEUSD",
+        "XUSE:CASH:FXYUSD",
+        "XUSE:CASH:GLDUSD",
+        "XUSE:CASH:IEFUSD",
+        "XUSE:CASH:IWMUSD",
+        "XUSE:CASH:QQQUSD",
+        "XUSE:CASH:SHYUSD",
+        "XUSE:CASH:SLVUSD",
+        "XUSE:CASH:SPYUSD",
+        "XUSE:CASH:TLTUSD",
+        "XUSE:CASH:UNGUSD",
+        "XUSE:CASH:USOUSD",
+        "XUSE:CASH:UUPUSD"
+      ],
+      "no_trade_band": 0.001,
+      "rebalance_bars": 10,
+      "start": 1041379200000,
+      "test_bars": 126,
+      "train_bars": 504,
+      "trend_blend_normalization": "directional_rms"
+    },
+    "config_hash": "0acb46e6726d7575",
+    "kurtosis": 13.740618990246796,
+    "n_obs": 5190,
+    "now_ms": 1789186439257,
+    "sharpe_ann": 0.5416602680310787,
+    "sharpe_per_period": 0.028351794220409378,
+    "skew": 0.053189472770872215
+  },
+  "imported_from_external_tree": {
+    "external_content_hash": "sha256:2976905d7da38e1d2a47fbf5d5231dfa4a98e4b635202bb5d48246c5db168b7f",
+    "imported_on": "2026-09-14T19:34:52+00:00",
+    "tree": "/Users/arhancanli/alphac-prospective-pause-20260911"
+  },
+  "missing_sections": [],
+  "packet_status": "COMPLETE_ACCOUNTING_FINAL_KILLED_NOT_ADMITTED",
+  "partial_sections": [],
+  "required_sections": {
+    "admission_or_kill_decision": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/alphatrend_directional_validation_20260912/candidate/reservation.json",
+          "sha256": "c49ccb88fefd4bbef64acde899a7646af7e91805ffd295d5e6cc27f5a49e6c9d"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_directional_validation_20260912/candidate/preregistration.json",
+          "sha256": "d49cf57fd1d3bc745bace42693ffe1230df82dd610e9b3c6591dbe04a8b7ff70"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_directional_validation_20260912/candidate/reservation_validation.json",
+          "sha256": "ffcbe56686fdf8c7e576d24e17ec0e5ad9c85f8a144f046a23954a60cf2c6433"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_directional_validation_20260912/candidate/experiments.jsonl",
+          "sha256": "5e6d6188a230b5298089193300499afabde24b0af65fd33e5c300395377be18b"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_directional_validation_20260912/candidate/result.json",
+          "sha256": "bb666d940327cf3b0f12115012ff61adf100406db21afb2729d913fb9dda4517"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_directional_validation_20260912/candidate/REPORT.md",
+          "sha256": "57194e44821c589fb38ed535ac674c63721effffac97a40fa68763b2f28ab99a"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_directional_validation_20260912/candidate/run/walkforward.json",
+          "sha256": "25405e926c5d7ede4b116aaf7551566233d7cde869b5819225773fc3c2b7bda1"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_directional_validation_20260912/candidate/run/input_snapshot/manifest.json",
+          "sha256": "6381a8cab26eb8e7953fa91fc2814c1f80215c4679205af1e68ec9629c2ab43e"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_directional_validation_20260912/protocol.json",
+          "sha256": "ed468ba992ac8368c2a5fa3888a3c7c227943a61410e1bdcbbccc029f5fd8cc9"
+        },
+        {
+          "content_hash": "sha256:3bd1e23fdae67d4940a1a557e8c0c8e4a43301d70d88c658011829229931e92d",
+          "path": "artifacts/research/development_closures/4d7793cfffb17091_admission_closure.json",
+          "sha256": "b4debec19fce476fb378bae3f967a4846e21dd832c07702a63a93c6c02e665d2",
+          "type": "final_development_admission_closure"
+        }
+      ],
+      "statement": "Single preregistered stress arm completed. No admission. Paired robustness decision is made only after both fixed arms.",
+      "status": "VERIFIED_FINAL_DEVELOPMENT_CLOSURE_KILL"
+    },
+    "code_environment_and_reproduction": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/alphatrend_directional_validation_20260912/candidate/reservation.json",
+          "sha256": "c49ccb88fefd4bbef64acde899a7646af7e91805ffd295d5e6cc27f5a49e6c9d"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_directional_validation_20260912/candidate/preregistration.json",
+          "sha256": "d49cf57fd1d3bc745bace42693ffe1230df82dd610e9b3c6591dbe04a8b7ff70"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_directional_validation_20260912/candidate/reservation_validation.json",
+          "sha256": "ffcbe56686fdf8c7e576d24e17ec0e5ad9c85f8a144f046a23954a60cf2c6433"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_directional_validation_20260912/candidate/experiments.jsonl",
+          "sha256": "5e6d6188a230b5298089193300499afabde24b0af65fd33e5c300395377be18b"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_directional_validation_20260912/candidate/result.json",
+          "sha256": "bb666d940327cf3b0f12115012ff61adf100406db21afb2729d913fb9dda4517"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_directional_validation_20260912/candidate/REPORT.md",
+          "sha256": "57194e44821c589fb38ed535ac674c63721effffac97a40fa68763b2f28ab99a"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_directional_validation_20260912/candidate/run/walkforward.json",
+          "sha256": "25405e926c5d7ede4b116aaf7551566233d7cde869b5819225773fc3c2b7bda1"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_directional_validation_20260912/candidate/run/input_snapshot/manifest.json",
+          "sha256": "6381a8cab26eb8e7953fa91fc2814c1f80215c4679205af1e68ec9629c2ab43e"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_directional_validation_20260912/protocol.json",
+          "sha256": "ed468ba992ac8368c2a5fa3888a3c7c227943a61410e1bdcbbccc029f5fd8cc9"
+        }
+      ],
+      "statement": "Source-bound development stress evidence is preserved locally. Fixed ETF basket and already-inspected historical data; no independent reproduction, public publication, data-licensing clearance, untouched validation or admission is claimed. All previous trials remain counted in the complete union.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "economic_mechanism_and_falsifiable_hypothesis": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/alphatrend_directional_validation_20260912/candidate/reservation.json",
+          "sha256": "c49ccb88fefd4bbef64acde899a7646af7e91805ffd295d5e6cc27f5a49e6c9d"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_directional_validation_20260912/candidate/preregistration.json",
+          "sha256": "d49cf57fd1d3bc745bace42693ffe1230df82dd610e9b3c6591dbe04a8b7ff70"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_directional_validation_20260912/candidate/reservation_validation.json",
+          "sha256": "ffcbe56686fdf8c7e576d24e17ec0e5ad9c85f8a144f046a23954a60cf2c6433"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_directional_validation_20260912/candidate/experiments.jsonl",
+          "sha256": "5e6d6188a230b5298089193300499afabde24b0af65fd33e5c300395377be18b"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_directional_validation_20260912/candidate/result.json",
+          "sha256": "bb666d940327cf3b0f12115012ff61adf100406db21afb2729d913fb9dda4517"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_directional_validation_20260912/candidate/REPORT.md",
+          "sha256": "57194e44821c589fb38ed535ac674c63721effffac97a40fa68763b2f28ab99a"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_directional_validation_20260912/candidate/run/walkforward.json",
+          "sha256": "25405e926c5d7ede4b116aaf7551566233d7cde869b5819225773fc3c2b7bda1"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_directional_validation_20260912/candidate/run/input_snapshot/manifest.json",
+          "sha256": "6381a8cab26eb8e7953fa91fc2814c1f80215c4679205af1e68ec9629c2ab43e"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_directional_validation_20260912/protocol.json",
+          "sha256": "ed468ba992ac8368c2a5fa3888a3c7c227943a61410e1bdcbbccc029f5fd8cc9"
+        }
+      ],
+      "statement": "Fixed 2x cost replay of the parent strategy. Not a new independent economic mechanism. No tuning or candidate selection.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "execution_and_cost_model": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/alphatrend_directional_validation_20260912/candidate/reservation.json",
+          "sha256": "c49ccb88fefd4bbef64acde899a7646af7e91805ffd295d5e6cc27f5a49e6c9d"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_directional_validation_20260912/candidate/preregistration.json",
+          "sha256": "d49cf57fd1d3bc745bace42693ffe1230df82dd610e9b3c6591dbe04a8b7ff70"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_directional_validation_20260912/candidate/reservation_validation.json",
+          "sha256": "ffcbe56686fdf8c7e576d24e17ec0e5ad9c85f8a144f046a23954a60cf2c6433"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_directional_validation_20260912/candidate/experiments.jsonl",
+          "sha256": "5e6d6188a230b5298089193300499afabde24b0af65fd33e5c300395377be18b"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_directional_validation_20260912/candidate/result.json",
+          "sha256": "bb666d940327cf3b0f12115012ff61adf100406db21afb2729d913fb9dda4517"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_directional_validation_20260912/candidate/REPORT.md",
+          "sha256": "57194e44821c589fb38ed535ac674c63721effffac97a40fa68763b2f28ab99a"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_directional_validation_20260912/candidate/run/walkforward.json",
+          "sha256": "25405e926c5d7ede4b116aaf7551566233d7cde869b5819225773fc3c2b7bda1"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_directional_validation_20260912/candidate/run/input_snapshot/manifest.json",
+          "sha256": "6381a8cab26eb8e7953fa91fc2814c1f80215c4679205af1e68ec9629c2ab43e"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_directional_validation_20260912/protocol.json",
+          "sha256": "ed468ba992ac8368c2a5fa3888a3c7c227943a61410e1bdcbbccc029f5fd8cc9"
+        }
+      ],
+      "statement": "Commission, spread, latency, impact coefficient and modeled borrow doubled. Positions, actual order sizes and risk paths recomputed by engine. Historical borrow availability and live fills remain unverified.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "family_and_union_trial_accounting": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/alphatrend_directional_validation_20260912/candidate/reservation.json",
+          "sha256": "c49ccb88fefd4bbef64acde899a7646af7e91805ffd295d5e6cc27f5a49e6c9d"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_directional_validation_20260912/candidate/preregistration.json",
+          "sha256": "d49cf57fd1d3bc745bace42693ffe1230df82dd610e9b3c6591dbe04a8b7ff70"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_directional_validation_20260912/candidate/reservation_validation.json",
+          "sha256": "ffcbe56686fdf8c7e576d24e17ec0e5ad9c85f8a144f046a23954a60cf2c6433"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_directional_validation_20260912/candidate/experiments.jsonl",
+          "sha256": "5e6d6188a230b5298089193300499afabde24b0af65fd33e5c300395377be18b"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_directional_validation_20260912/candidate/result.json",
+          "sha256": "bb666d940327cf3b0f12115012ff61adf100406db21afb2729d913fb9dda4517"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_directional_validation_20260912/candidate/REPORT.md",
+          "sha256": "57194e44821c589fb38ed535ac674c63721effffac97a40fa68763b2f28ab99a"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_directional_validation_20260912/candidate/run/walkforward.json",
+          "sha256": "25405e926c5d7ede4b116aaf7551566233d7cde869b5819225773fc3c2b7bda1"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_directional_validation_20260912/candidate/run/input_snapshot/manifest.json",
+          "sha256": "6381a8cab26eb8e7953fa91fc2814c1f80215c4679205af1e68ec9629c2ab43e"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_directional_validation_20260912/protocol.json",
+          "sha256": "ed468ba992ac8368c2a5fa3888a3c7c227943a61410e1bdcbbccc029f5fd8cc9"
+        }
+      ],
+      "statement": "Source-bound development stress evidence is preserved locally. Fixed ETF basket and already-inspected historical data; no independent reproduction, public publication, data-licensing clearance, untouched validation or admission is claimed. All previous trials remain counted in the complete union.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "identity_and_authorship": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/alphatrend_directional_validation_20260912/candidate/reservation.json",
+          "sha256": "c49ccb88fefd4bbef64acde899a7646af7e91805ffd295d5e6cc27f5a49e6c9d"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_directional_validation_20260912/candidate/preregistration.json",
+          "sha256": "d49cf57fd1d3bc745bace42693ffe1230df82dd610e9b3c6591dbe04a8b7ff70"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_directional_validation_20260912/candidate/reservation_validation.json",
+          "sha256": "ffcbe56686fdf8c7e576d24e17ec0e5ad9c85f8a144f046a23954a60cf2c6433"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_directional_validation_20260912/candidate/experiments.jsonl",
+          "sha256": "5e6d6188a230b5298089193300499afabde24b0af65fd33e5c300395377be18b"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_directional_validation_20260912/candidate/result.json",
+          "sha256": "bb666d940327cf3b0f12115012ff61adf100406db21afb2729d913fb9dda4517"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_directional_validation_20260912/candidate/REPORT.md",
+          "sha256": "57194e44821c589fb38ed535ac674c63721effffac97a40fa68763b2f28ab99a"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_directional_validation_20260912/candidate/run/walkforward.json",
+          "sha256": "25405e926c5d7ede4b116aaf7551566233d7cde869b5819225773fc3c2b7bda1"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_directional_validation_20260912/candidate/run/input_snapshot/manifest.json",
+          "sha256": "6381a8cab26eb8e7953fa91fc2814c1f80215c4679205af1e68ec9629c2ab43e"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_directional_validation_20260912/protocol.json",
+          "sha256": "ed468ba992ac8368c2a5fa3888a3c7c227943a61410e1bdcbbccc029f5fd8cc9"
+        }
+      ],
+      "statement": "Source-bound development stress evidence is preserved locally. Fixed ETF basket and already-inspected historical data; no independent reproduction, public publication, data-licensing clearance, untouched validation or admission is claimed. All previous trials remain counted in the complete union.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "literature_and_overlap_decision": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/alphatrend_directional_validation_20260912/candidate/reservation.json",
+          "sha256": "c49ccb88fefd4bbef64acde899a7646af7e91805ffd295d5e6cc27f5a49e6c9d"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_directional_validation_20260912/candidate/preregistration.json",
+          "sha256": "d49cf57fd1d3bc745bace42693ffe1230df82dd610e9b3c6591dbe04a8b7ff70"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_directional_validation_20260912/candidate/reservation_validation.json",
+          "sha256": "ffcbe56686fdf8c7e576d24e17ec0e5ad9c85f8a144f046a23954a60cf2c6433"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_directional_validation_20260912/candidate/experiments.jsonl",
+          "sha256": "5e6d6188a230b5298089193300499afabde24b0af65fd33e5c300395377be18b"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_directional_validation_20260912/candidate/result.json",
+          "sha256": "bb666d940327cf3b0f12115012ff61adf100406db21afb2729d913fb9dda4517"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_directional_validation_20260912/candidate/REPORT.md",
+          "sha256": "57194e44821c589fb38ed535ac674c63721effffac97a40fa68763b2f28ab99a"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_directional_validation_20260912/candidate/run/walkforward.json",
+          "sha256": "25405e926c5d7ede4b116aaf7551566233d7cde869b5819225773fc3c2b7bda1"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_directional_validation_20260912/candidate/run/input_snapshot/manifest.json",
+          "sha256": "6381a8cab26eb8e7953fa91fc2814c1f80215c4679205af1e68ec9629c2ab43e"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_directional_validation_20260912/protocol.json",
+          "sha256": "ed468ba992ac8368c2a5fa3888a3c7c227943a61410e1bdcbbccc029f5fd8cc9"
+        }
+      ],
+      "statement": "Source-bound development stress evidence is preserved locally. Fixed ETF basket and already-inspected historical data; no independent reproduction, public publication, data-licensing clearance, untouched validation or admission is claimed. All previous trials remain counted in the complete union.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "machine_readable_packet_and_stable_public_paper": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/alphatrend_directional_validation_20260912/candidate/reservation.json",
+          "sha256": "c49ccb88fefd4bbef64acde899a7646af7e91805ffd295d5e6cc27f5a49e6c9d"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_directional_validation_20260912/candidate/preregistration.json",
+          "sha256": "d49cf57fd1d3bc745bace42693ffe1230df82dd610e9b3c6591dbe04a8b7ff70"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_directional_validation_20260912/candidate/reservation_validation.json",
+          "sha256": "ffcbe56686fdf8c7e576d24e17ec0e5ad9c85f8a144f046a23954a60cf2c6433"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_directional_validation_20260912/candidate/experiments.jsonl",
+          "sha256": "5e6d6188a230b5298089193300499afabde24b0af65fd33e5c300395377be18b"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_directional_validation_20260912/candidate/result.json",
+          "sha256": "bb666d940327cf3b0f12115012ff61adf100406db21afb2729d913fb9dda4517"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_directional_validation_20260912/candidate/REPORT.md",
+          "sha256": "57194e44821c589fb38ed535ac674c63721effffac97a40fa68763b2f28ab99a"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_directional_validation_20260912/candidate/run/walkforward.json",
+          "sha256": "25405e926c5d7ede4b116aaf7551566233d7cde869b5819225773fc3c2b7bda1"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_directional_validation_20260912/candidate/run/input_snapshot/manifest.json",
+          "sha256": "6381a8cab26eb8e7953fa91fc2814c1f80215c4679205af1e68ec9629c2ab43e"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_directional_validation_20260912/protocol.json",
+          "sha256": "ed468ba992ac8368c2a5fa3888a3c7c227943a61410e1bdcbbccc029f5fd8cc9"
+        }
+      ],
+      "statement": "Source-bound development stress evidence is preserved locally. Fixed ETF basket and already-inspected historical data; no independent reproduction, public publication, data-licensing clearance, untouched validation or admission is claimed. All previous trials remain counted in the complete union.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "point_in_time_data_and_survivorship_controls": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/alphatrend_directional_validation_20260912/candidate/reservation.json",
+          "sha256": "c49ccb88fefd4bbef64acde899a7646af7e91805ffd295d5e6cc27f5a49e6c9d"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_directional_validation_20260912/candidate/preregistration.json",
+          "sha256": "d49cf57fd1d3bc745bace42693ffe1230df82dd610e9b3c6591dbe04a8b7ff70"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_directional_validation_20260912/candidate/reservation_validation.json",
+          "sha256": "ffcbe56686fdf8c7e576d24e17ec0e5ad9c85f8a144f046a23954a60cf2c6433"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_directional_validation_20260912/candidate/experiments.jsonl",
+          "sha256": "5e6d6188a230b5298089193300499afabde24b0af65fd33e5c300395377be18b"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_directional_validation_20260912/candidate/result.json",
+          "sha256": "bb666d940327cf3b0f12115012ff61adf100406db21afb2729d913fb9dda4517"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_directional_validation_20260912/candidate/REPORT.md",
+          "sha256": "57194e44821c589fb38ed535ac674c63721effffac97a40fa68763b2f28ab99a"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_directional_validation_20260912/candidate/run/walkforward.json",
+          "sha256": "25405e926c5d7ede4b116aaf7551566233d7cde869b5819225773fc3c2b7bda1"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_directional_validation_20260912/candidate/run/input_snapshot/manifest.json",
+          "sha256": "6381a8cab26eb8e7953fa91fc2814c1f80215c4679205af1e68ec9629c2ab43e"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_directional_validation_20260912/protocol.json",
+          "sha256": "ed468ba992ac8368c2a5fa3888a3c7c227943a61410e1bdcbbccc029f5fd8cc9"
+        }
+      ],
+      "statement": "Source-bound development stress evidence is preserved locally. Fixed ETF basket and already-inspected historical data; no independent reproduction, public publication, data-licensing clearance, untouched validation or admission is claimed. All previous trials remain counted in the complete union.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "preregistration_and_hashes": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/alphatrend_directional_validation_20260912/candidate/reservation.json",
+          "sha256": "c49ccb88fefd4bbef64acde899a7646af7e91805ffd295d5e6cc27f5a49e6c9d"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_directional_validation_20260912/candidate/preregistration.json",
+          "sha256": "d49cf57fd1d3bc745bace42693ffe1230df82dd610e9b3c6591dbe04a8b7ff70"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_directional_validation_20260912/candidate/reservation_validation.json",
+          "sha256": "ffcbe56686fdf8c7e576d24e17ec0e5ad9c85f8a144f046a23954a60cf2c6433"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_directional_validation_20260912/candidate/experiments.jsonl",
+          "sha256": "5e6d6188a230b5298089193300499afabde24b0af65fd33e5c300395377be18b"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_directional_validation_20260912/candidate/result.json",
+          "sha256": "bb666d940327cf3b0f12115012ff61adf100406db21afb2729d913fb9dda4517"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_directional_validation_20260912/candidate/REPORT.md",
+          "sha256": "57194e44821c589fb38ed535ac674c63721effffac97a40fa68763b2f28ab99a"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_directional_validation_20260912/candidate/run/walkforward.json",
+          "sha256": "25405e926c5d7ede4b116aaf7551566233d7cde869b5819225773fc3c2b7bda1"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_directional_validation_20260912/candidate/run/input_snapshot/manifest.json",
+          "sha256": "6381a8cab26eb8e7953fa91fc2814c1f80215c4679205af1e68ec9629c2ab43e"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_directional_validation_20260912/protocol.json",
+          "sha256": "ed468ba992ac8368c2a5fa3888a3c7c227943a61410e1bdcbbccc029f5fd8cc9"
+        }
+      ],
+      "statement": "Reservation and protocol validated before returns; snapshots and full cost settings are bound. No public release was performed.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "result_uncertainty_stress_capacity_and_diversification": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/alphatrend_directional_validation_20260912/candidate/reservation.json",
+          "sha256": "c49ccb88fefd4bbef64acde899a7646af7e91805ffd295d5e6cc27f5a49e6c9d"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_directional_validation_20260912/candidate/preregistration.json",
+          "sha256": "d49cf57fd1d3bc745bace42693ffe1230df82dd610e9b3c6591dbe04a8b7ff70"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_directional_validation_20260912/candidate/reservation_validation.json",
+          "sha256": "ffcbe56686fdf8c7e576d24e17ec0e5ad9c85f8a144f046a23954a60cf2c6433"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_directional_validation_20260912/candidate/experiments.jsonl",
+          "sha256": "5e6d6188a230b5298089193300499afabde24b0af65fd33e5c300395377be18b"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_directional_validation_20260912/candidate/result.json",
+          "sha256": "bb666d940327cf3b0f12115012ff61adf100406db21afb2729d913fb9dda4517"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_directional_validation_20260912/candidate/REPORT.md",
+          "sha256": "57194e44821c589fb38ed535ac674c63721effffac97a40fa68763b2f28ab99a"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_directional_validation_20260912/candidate/run/walkforward.json",
+          "sha256": "25405e926c5d7ede4b116aaf7551566233d7cde869b5819225773fc3c2b7bda1"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_directional_validation_20260912/candidate/run/input_snapshot/manifest.json",
+          "sha256": "6381a8cab26eb8e7953fa91fc2814c1f80215c4679205af1e68ec9629c2ab43e"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_directional_validation_20260912/protocol.json",
+          "sha256": "ed468ba992ac8368c2a5fa3888a3c7c227943a61410e1bdcbbccc029f5fd8cc9"
+        }
+      ],
+      "statement": "One full-engine doubled-cost scenario measured. Capacity, independent replication, untouched validation and portfolio integration remain unmeasured. Parent diagnostics do not establish them.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    }
+  },
+  "research_family_key": "managed_futures_trend",
+  "schema": "canli.alphac-identity-trial-packet.v2"
+}

@@ -1,7 +1,7 @@
 {
   "author": "Arhan Canli",
   "claim_boundary": "Forensic description of one paper-traded LABUSDT episode. It spends zero return hypotheses, does not estimate Sharpe or expected performance, does not authorize a strategy change, and does not rewrite the published equity record.",
-  "content_hash": "sha256:2d36d4d691d1083fc9ae82e68dd243e230b1c3649ac2f7a3b5594a8c34619268",
+  "content_hash": "sha256:263e8ca5aa53c0a6d8247c4c8cbedc84847701c01e8513f1a1f93f29a4e799cc",
   "decision": "PRESERVE_LOSS_NO_PRICE_JUMP_GUARD_NO_WEIGHT_CHANGE",
   "execution_sequence": {
     "long_close": {
@@ -79,12 +79,18 @@
   "source_bindings": {
     "paper_execution_database": {
       "path": "var/trading_crypto_perp.sqlite",
-      "sha256": "74ffca176552fca9570c6a6d3d8bfc231cee92828d4c2a3fd30360a613157da2"
+      "sha256": "00d55bb5ed631074362e8726e17833487abb9308602fd348275e2bd23f42f571"
     },
     "point_in_time_funding": {
       "path": "data/lake/funding/instrument_id=BINANCE:PERP:LABUSDT/year=2026/data.parquet",
-      "sha256": "9eaafd38b0059e8eb2ef3add2e9b0c78af923b81373bad45e9de3a81b96f2263"
+      "sha256": "e91c48a0b757e763f931fc426f799acd96e9b74fc76f16876c384e7686d1f8cd"
     }
+  },
+  "subsequent_activity": {
+    "fills_after_sealed_episode": 1,
+    "first_utc": "2026-09-10T00:00:00Z",
+    "last_utc": "2026-09-10T00:00:00Z",
+    "note": "Fills after the short reversal belong to ordinary later rebalances and are not part of the sealed episode; they are counted here so the record says the instrument kept trading rather than pretending the story ended."
   },
   "verdict": "GENUINE_MARKET_CRASH_NOT_CONTRACT_IDENTITY_DEFECT"
 }

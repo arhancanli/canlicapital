@@ -1,0 +1,653 @@
+{
+  "claim_boundary": "Fixed corrected-label, uninterrupted-book development comparison on already inspected ETF history. Costs and risk paths recomputed. Parity evidence covers sampled inputs and interfaces; does not establish live availability. No independent reproduction, historical borrow availability, capacity, untouched tests, licensing or publication established. No admission. All previous hypotheses and invalidated simulations remain counted.",
+  "complete": true,
+  "completion_assessment": {
+    "candidate_evidence_complete_for_admission": false,
+    "disposition": "INCOMPLETE_NOT_ADMITTED",
+    "packet_evidence_accounting_complete": true
+  },
+  "config_hash": "fe7949291cc2ce68",
+  "configuration": {
+    "allocator": "trend",
+    "alpha_names": [
+      "mf_trend_63",
+      "mf_trend_126",
+      "mf_trend_252"
+    ],
+    "cov_halflife_days": null,
+    "cov_min_periods": 240,
+    "cov_window_bars": 720,
+    "end": 1787529600000,
+    "evaluation_policy": "continuous_single_book_v1",
+    "execution_cost_scenario": {
+      "name": "double_all_modeled_costs_v1",
+      "resolved_costs": {
+        "default_half_spread_bps": 2.5,
+        "equity_borrow_bps_annual": 100.0,
+        "equity_commission_bps": 2.0,
+        "equity_half_spread_bps": 6.0,
+        "impact_coef": 2.0,
+        "latency_addon_bps": 4.0,
+        "perp_maker_bps": 2.0,
+        "perp_taker_bps": 5.0
+      }
+    },
+    "history_start": 1041379200000,
+    "initial_cash": 100000.0,
+    "instrument_ids": [
+      "XUSE:CASH:DBAUSD",
+      "XUSE:CASH:DBCUSD",
+      "XUSE:CASH:EEMUSD",
+      "XUSE:CASH:EFAUSD",
+      "XUSE:CASH:FXEUSD",
+      "XUSE:CASH:FXYUSD",
+      "XUSE:CASH:GLDUSD",
+      "XUSE:CASH:IEFUSD",
+      "XUSE:CASH:IWMUSD",
+      "XUSE:CASH:QQQUSD",
+      "XUSE:CASH:SHYUSD",
+      "XUSE:CASH:SLVUSD",
+      "XUSE:CASH:SPYUSD",
+      "XUSE:CASH:TLTUSD",
+      "XUSE:CASH:UNGUSD",
+      "XUSE:CASH:USOUSD",
+      "XUSE:CASH:UUPUSD"
+    ],
+    "metric_basis": "xnys_252_sessions_elapsed_cagr_v1",
+    "no_trade_band": 0.001,
+    "rebalance_bars": 10,
+    "start": 1136246400000,
+    "trend_blend_normalization": "directional_rms",
+    "trend_ic_history_anchor": 1073001600000,
+    "trend_label_availability": "exit_session_close_v1"
+  },
+  "content_hash": "sha256:efc3027d2da7476c42ac21a00f83b4700695b1651cb548104df9815b034ddb7f",
+  "hypothesis_key": "e7c03d85c7f196b9",
+  "immutable_first_measurement": {
+    "config": {
+      "allocator": "trend",
+      "alpha_names": [
+        "mf_trend_63",
+        "mf_trend_126",
+        "mf_trend_252"
+      ],
+      "cov_halflife_days": null,
+      "cov_min_periods": 240,
+      "cov_window_bars": 720,
+      "end": 1787529600000,
+      "evaluation_policy": "continuous_single_book_v1",
+      "execution_cost_scenario": {
+        "name": "double_all_modeled_costs_v1",
+        "resolved_costs": {
+          "default_half_spread_bps": 2.5,
+          "equity_borrow_bps_annual": 100.0,
+          "equity_commission_bps": 2.0,
+          "equity_half_spread_bps": 6.0,
+          "impact_coef": 2.0,
+          "latency_addon_bps": 4.0,
+          "perp_maker_bps": 2.0,
+          "perp_taker_bps": 5.0
+        }
+      },
+      "history_start": 1041379200000,
+      "initial_cash": 100000.0,
+      "instrument_ids": [
+        "XUSE:CASH:DBAUSD",
+        "XUSE:CASH:DBCUSD",
+        "XUSE:CASH:EEMUSD",
+        "XUSE:CASH:EFAUSD",
+        "XUSE:CASH:FXEUSD",
+        "XUSE:CASH:FXYUSD",
+        "XUSE:CASH:GLDUSD",
+        "XUSE:CASH:IEFUSD",
+        "XUSE:CASH:IWMUSD",
+        "XUSE:CASH:QQQUSD",
+        "XUSE:CASH:SHYUSD",
+        "XUSE:CASH:SLVUSD",
+        "XUSE:CASH:SPYUSD",
+        "XUSE:CASH:TLTUSD",
+        "XUSE:CASH:UNGUSD",
+        "XUSE:CASH:USOUSD",
+        "XUSE:CASH:UUPUSD"
+      ],
+      "metric_basis": "xnys_252_sessions_elapsed_cagr_v1",
+      "no_trade_band": 0.001,
+      "rebalance_bars": 10,
+      "start": 1136246400000,
+      "trend_blend_normalization": "directional_rms",
+      "trend_ic_history_anchor": 1073001600000,
+      "trend_label_availability": "exit_session_close_v1"
+    },
+    "config_hash": "fe7949291cc2ce68",
+    "kurtosis": 13.358164152120107,
+    "n_obs": 5190,
+    "now_ms": 1789189290035,
+    "sharpe_ann": 0.5059107890330624,
+    "sharpe_per_period": 0.03186938412776063,
+    "skew": 0.05652999122525727
+  },
+  "imported_from_external_tree": {
+    "external_content_hash": "sha256:0e9ce98d22fcbf524d4a940f404182e0f3804e29ec752c11d89c93e21a4b3e6e",
+    "imported_on": "2026-09-14T19:34:52+00:00",
+    "tree": "/Users/arhancanli/alphac-prospective-pause-20260911"
+  },
+  "missing_sections": [],
+  "packet_status": "COMPLETE_ACCOUNTING_FINAL_KILLED_NOT_ADMITTED",
+  "partial_sections": [],
+  "required_sections": {
+    "admission_or_kill_decision": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/alphatrend_causal_stress_20260912/candidate/reservation.json",
+          "sha256": "a2b25b35b5008367dda2e995d8f121f4370cf56d33930c8b24456d93250ebabd"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_causal_stress_20260912/candidate/preregistration.json",
+          "sha256": "5decd07996b44a9884ae492cbedeb95f12f33ad2bd8c39f9a2d7417a91aab464"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_causal_stress_20260912/candidate/reservation_validation.json",
+          "sha256": "5fd39851169cdef7aabfee1c97655669940fd85fa0f8139aef762ea89b690f72"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_causal_stress_20260912/candidate/experiments.jsonl",
+          "sha256": "29de0f225b9b8a95e5dbb147e4573a78b4d6d75398875510245b782e04f5340c"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_causal_stress_20260912/candidate/result.json",
+          "sha256": "e0be24a73048fa9df67310d738141e5343ff47d5bebcea6d33a6781319ba61bc"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_causal_stress_20260912/candidate/REPORT.md",
+          "sha256": "6289d53c7e15f54790eb6e64e318b0439e1658c865a750ed11aead22b883733b"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_causal_stress_20260912/candidate/run/run_meta.json",
+          "sha256": "d61b7f69dfb1089a202e5e138032fe1c07a73937a71ccbc0a19b401898389188"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_causal_stress_20260912/candidate/run/session_summary.json",
+          "sha256": "1afe0c6a1c92dd57c8aaee744abfa49540db457fe8af09d2595f53ed706e30fa"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_causal_stress_20260912/candidate/run/input_snapshot/manifest.json",
+          "sha256": "a2944e8748452f335e68f709cb295bd6b100862ef7aed375c5ec61bdcc6e3e75"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_causal_stress_20260912/protocol.json",
+          "sha256": "32b053add853a6df4a0ac758bd60105947a9256c015735889dc67673b3a435b1"
+        },
+        {
+          "content_hash": "sha256:258d496be2170a946d70559bbdbd19e0a9e80be6db6880807349cf6a0198833d",
+          "path": "artifacts/research/development_closures/e7c03d85c7f196b9_admission_closure.json",
+          "sha256": "e4608a5113168b14d72229ec7e524bcda75c060f76cd65747409c95e5fb0b329",
+          "type": "final_development_admission_closure"
+        }
+      ],
+      "statement": "Accounting only. No admission; paired decision follows both arms. Legacy candidate remains on hold.",
+      "status": "VERIFIED_FINAL_DEVELOPMENT_CLOSURE_KILL"
+    },
+    "code_environment_and_reproduction": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/alphatrend_causal_stress_20260912/candidate/reservation.json",
+          "sha256": "a2b25b35b5008367dda2e995d8f121f4370cf56d33930c8b24456d93250ebabd"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_causal_stress_20260912/candidate/preregistration.json",
+          "sha256": "5decd07996b44a9884ae492cbedeb95f12f33ad2bd8c39f9a2d7417a91aab464"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_causal_stress_20260912/candidate/reservation_validation.json",
+          "sha256": "5fd39851169cdef7aabfee1c97655669940fd85fa0f8139aef762ea89b690f72"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_causal_stress_20260912/candidate/experiments.jsonl",
+          "sha256": "29de0f225b9b8a95e5dbb147e4573a78b4d6d75398875510245b782e04f5340c"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_causal_stress_20260912/candidate/result.json",
+          "sha256": "e0be24a73048fa9df67310d738141e5343ff47d5bebcea6d33a6781319ba61bc"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_causal_stress_20260912/candidate/REPORT.md",
+          "sha256": "6289d53c7e15f54790eb6e64e318b0439e1658c865a750ed11aead22b883733b"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_causal_stress_20260912/candidate/run/run_meta.json",
+          "sha256": "d61b7f69dfb1089a202e5e138032fe1c07a73937a71ccbc0a19b401898389188"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_causal_stress_20260912/candidate/run/session_summary.json",
+          "sha256": "1afe0c6a1c92dd57c8aaee744abfa49540db457fe8af09d2595f53ed706e30fa"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_causal_stress_20260912/candidate/run/input_snapshot/manifest.json",
+          "sha256": "a2944e8748452f335e68f709cb295bd6b100862ef7aed375c5ec61bdcc6e3e75"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_causal_stress_20260912/protocol.json",
+          "sha256": "32b053add853a6df4a0ac758bd60105947a9256c015735889dc67673b3a435b1"
+        }
+      ],
+      "statement": "Fixed corrected-label, uninterrupted-book development comparison on already inspected ETF history. Costs and risk paths recomputed. Parity evidence covers sampled inputs and interfaces; does not establish live availability. No independent reproduction, historical borrow availability, capacity, untouched tests, licensing or publication established. No admission. All previous hypotheses and invalidated simulations remain counted.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "economic_mechanism_and_falsifiable_hypothesis": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/alphatrend_causal_stress_20260912/candidate/reservation.json",
+          "sha256": "a2b25b35b5008367dda2e995d8f121f4370cf56d33930c8b24456d93250ebabd"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_causal_stress_20260912/candidate/preregistration.json",
+          "sha256": "5decd07996b44a9884ae492cbedeb95f12f33ad2bd8c39f9a2d7417a91aab464"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_causal_stress_20260912/candidate/reservation_validation.json",
+          "sha256": "5fd39851169cdef7aabfee1c97655669940fd85fa0f8139aef762ea89b690f72"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_causal_stress_20260912/candidate/experiments.jsonl",
+          "sha256": "29de0f225b9b8a95e5dbb147e4573a78b4d6d75398875510245b782e04f5340c"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_causal_stress_20260912/candidate/result.json",
+          "sha256": "e0be24a73048fa9df67310d738141e5343ff47d5bebcea6d33a6781319ba61bc"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_causal_stress_20260912/candidate/REPORT.md",
+          "sha256": "6289d53c7e15f54790eb6e64e318b0439e1658c865a750ed11aead22b883733b"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_causal_stress_20260912/candidate/run/run_meta.json",
+          "sha256": "d61b7f69dfb1089a202e5e138032fe1c07a73937a71ccbc0a19b401898389188"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_causal_stress_20260912/candidate/run/session_summary.json",
+          "sha256": "1afe0c6a1c92dd57c8aaee744abfa49540db457fe8af09d2595f53ed706e30fa"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_causal_stress_20260912/candidate/run/input_snapshot/manifest.json",
+          "sha256": "a2944e8748452f335e68f709cb295bd6b100862ef7aed375c5ec61bdcc6e3e75"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_causal_stress_20260912/protocol.json",
+          "sha256": "32b053add853a6df4a0ac758bd60105947a9256c015735889dc67673b3a435b1"
+        }
+      ],
+      "statement": "Compare centered vs RMS trend with causal IC release and a continuous portfolio. Require higher Sharpe/CAGR, no worse drawdown and lower turnover. This is one family, not an independent sleeve.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "execution_and_cost_model": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/alphatrend_causal_stress_20260912/candidate/reservation.json",
+          "sha256": "a2b25b35b5008367dda2e995d8f121f4370cf56d33930c8b24456d93250ebabd"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_causal_stress_20260912/candidate/preregistration.json",
+          "sha256": "5decd07996b44a9884ae492cbedeb95f12f33ad2bd8c39f9a2d7417a91aab464"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_causal_stress_20260912/candidate/reservation_validation.json",
+          "sha256": "5fd39851169cdef7aabfee1c97655669940fd85fa0f8139aef762ea89b690f72"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_causal_stress_20260912/candidate/experiments.jsonl",
+          "sha256": "29de0f225b9b8a95e5dbb147e4573a78b4d6d75398875510245b782e04f5340c"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_causal_stress_20260912/candidate/result.json",
+          "sha256": "e0be24a73048fa9df67310d738141e5343ff47d5bebcea6d33a6781319ba61bc"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_causal_stress_20260912/candidate/REPORT.md",
+          "sha256": "6289d53c7e15f54790eb6e64e318b0439e1658c865a750ed11aead22b883733b"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_causal_stress_20260912/candidate/run/run_meta.json",
+          "sha256": "d61b7f69dfb1089a202e5e138032fe1c07a73937a71ccbc0a19b401898389188"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_causal_stress_20260912/candidate/run/session_summary.json",
+          "sha256": "1afe0c6a1c92dd57c8aaee744abfa49540db457fe8af09d2595f53ed706e30fa"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_causal_stress_20260912/candidate/run/input_snapshot/manifest.json",
+          "sha256": "a2944e8748452f335e68f709cb295bd6b100862ef7aed375c5ec61bdcc6e3e75"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_causal_stress_20260912/protocol.json",
+          "sha256": "32b053add853a6df4a0ac758bd60105947a9256c015735889dc67673b3a435b1"
+        }
+      ],
+      "statement": "NextOpenFill with all five cost components doubled. No artificial leg resets. No verified historical borrow availability or live fills.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "family_and_union_trial_accounting": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/alphatrend_causal_stress_20260912/candidate/reservation.json",
+          "sha256": "a2b25b35b5008367dda2e995d8f121f4370cf56d33930c8b24456d93250ebabd"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_causal_stress_20260912/candidate/preregistration.json",
+          "sha256": "5decd07996b44a9884ae492cbedeb95f12f33ad2bd8c39f9a2d7417a91aab464"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_causal_stress_20260912/candidate/reservation_validation.json",
+          "sha256": "5fd39851169cdef7aabfee1c97655669940fd85fa0f8139aef762ea89b690f72"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_causal_stress_20260912/candidate/experiments.jsonl",
+          "sha256": "29de0f225b9b8a95e5dbb147e4573a78b4d6d75398875510245b782e04f5340c"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_causal_stress_20260912/candidate/result.json",
+          "sha256": "e0be24a73048fa9df67310d738141e5343ff47d5bebcea6d33a6781319ba61bc"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_causal_stress_20260912/candidate/REPORT.md",
+          "sha256": "6289d53c7e15f54790eb6e64e318b0439e1658c865a750ed11aead22b883733b"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_causal_stress_20260912/candidate/run/run_meta.json",
+          "sha256": "d61b7f69dfb1089a202e5e138032fe1c07a73937a71ccbc0a19b401898389188"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_causal_stress_20260912/candidate/run/session_summary.json",
+          "sha256": "1afe0c6a1c92dd57c8aaee744abfa49540db457fe8af09d2595f53ed706e30fa"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_causal_stress_20260912/candidate/run/input_snapshot/manifest.json",
+          "sha256": "a2944e8748452f335e68f709cb295bd6b100862ef7aed375c5ec61bdcc6e3e75"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_causal_stress_20260912/protocol.json",
+          "sha256": "32b053add853a6df4a0ac758bd60105947a9256c015735889dc67673b3a435b1"
+        }
+      ],
+      "statement": "Fixed corrected-label, uninterrupted-book development comparison on already inspected ETF history. Costs and risk paths recomputed. Parity evidence covers sampled inputs and interfaces; does not establish live availability. No independent reproduction, historical borrow availability, capacity, untouched tests, licensing or publication established. No admission. All previous hypotheses and invalidated simulations remain counted.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "identity_and_authorship": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/alphatrend_causal_stress_20260912/candidate/reservation.json",
+          "sha256": "a2b25b35b5008367dda2e995d8f121f4370cf56d33930c8b24456d93250ebabd"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_causal_stress_20260912/candidate/preregistration.json",
+          "sha256": "5decd07996b44a9884ae492cbedeb95f12f33ad2bd8c39f9a2d7417a91aab464"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_causal_stress_20260912/candidate/reservation_validation.json",
+          "sha256": "5fd39851169cdef7aabfee1c97655669940fd85fa0f8139aef762ea89b690f72"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_causal_stress_20260912/candidate/experiments.jsonl",
+          "sha256": "29de0f225b9b8a95e5dbb147e4573a78b4d6d75398875510245b782e04f5340c"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_causal_stress_20260912/candidate/result.json",
+          "sha256": "e0be24a73048fa9df67310d738141e5343ff47d5bebcea6d33a6781319ba61bc"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_causal_stress_20260912/candidate/REPORT.md",
+          "sha256": "6289d53c7e15f54790eb6e64e318b0439e1658c865a750ed11aead22b883733b"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_causal_stress_20260912/candidate/run/run_meta.json",
+          "sha256": "d61b7f69dfb1089a202e5e138032fe1c07a73937a71ccbc0a19b401898389188"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_causal_stress_20260912/candidate/run/session_summary.json",
+          "sha256": "1afe0c6a1c92dd57c8aaee744abfa49540db457fe8af09d2595f53ed706e30fa"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_causal_stress_20260912/candidate/run/input_snapshot/manifest.json",
+          "sha256": "a2944e8748452f335e68f709cb295bd6b100862ef7aed375c5ec61bdcc6e3e75"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_causal_stress_20260912/protocol.json",
+          "sha256": "32b053add853a6df4a0ac758bd60105947a9256c015735889dc67673b3a435b1"
+        }
+      ],
+      "statement": "Fixed corrected-label, uninterrupted-book development comparison on already inspected ETF history. Costs and risk paths recomputed. Parity evidence covers sampled inputs and interfaces; does not establish live availability. No independent reproduction, historical borrow availability, capacity, untouched tests, licensing or publication established. No admission. All previous hypotheses and invalidated simulations remain counted.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "literature_and_overlap_decision": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/alphatrend_causal_stress_20260912/candidate/reservation.json",
+          "sha256": "a2b25b35b5008367dda2e995d8f121f4370cf56d33930c8b24456d93250ebabd"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_causal_stress_20260912/candidate/preregistration.json",
+          "sha256": "5decd07996b44a9884ae492cbedeb95f12f33ad2bd8c39f9a2d7417a91aab464"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_causal_stress_20260912/candidate/reservation_validation.json",
+          "sha256": "5fd39851169cdef7aabfee1c97655669940fd85fa0f8139aef762ea89b690f72"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_causal_stress_20260912/candidate/experiments.jsonl",
+          "sha256": "29de0f225b9b8a95e5dbb147e4573a78b4d6d75398875510245b782e04f5340c"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_causal_stress_20260912/candidate/result.json",
+          "sha256": "e0be24a73048fa9df67310d738141e5343ff47d5bebcea6d33a6781319ba61bc"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_causal_stress_20260912/candidate/REPORT.md",
+          "sha256": "6289d53c7e15f54790eb6e64e318b0439e1658c865a750ed11aead22b883733b"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_causal_stress_20260912/candidate/run/run_meta.json",
+          "sha256": "d61b7f69dfb1089a202e5e138032fe1c07a73937a71ccbc0a19b401898389188"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_causal_stress_20260912/candidate/run/session_summary.json",
+          "sha256": "1afe0c6a1c92dd57c8aaee744abfa49540db457fe8af09d2595f53ed706e30fa"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_causal_stress_20260912/candidate/run/input_snapshot/manifest.json",
+          "sha256": "a2944e8748452f335e68f709cb295bd6b100862ef7aed375c5ec61bdcc6e3e75"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_causal_stress_20260912/protocol.json",
+          "sha256": "32b053add853a6df4a0ac758bd60105947a9256c015735889dc67673b3a435b1"
+        }
+      ],
+      "statement": "Fixed corrected-label, uninterrupted-book development comparison on already inspected ETF history. Costs and risk paths recomputed. Parity evidence covers sampled inputs and interfaces; does not establish live availability. No independent reproduction, historical borrow availability, capacity, untouched tests, licensing or publication established. No admission. All previous hypotheses and invalidated simulations remain counted.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "machine_readable_packet_and_stable_public_paper": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/alphatrend_causal_stress_20260912/candidate/reservation.json",
+          "sha256": "a2b25b35b5008367dda2e995d8f121f4370cf56d33930c8b24456d93250ebabd"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_causal_stress_20260912/candidate/preregistration.json",
+          "sha256": "5decd07996b44a9884ae492cbedeb95f12f33ad2bd8c39f9a2d7417a91aab464"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_causal_stress_20260912/candidate/reservation_validation.json",
+          "sha256": "5fd39851169cdef7aabfee1c97655669940fd85fa0f8139aef762ea89b690f72"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_causal_stress_20260912/candidate/experiments.jsonl",
+          "sha256": "29de0f225b9b8a95e5dbb147e4573a78b4d6d75398875510245b782e04f5340c"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_causal_stress_20260912/candidate/result.json",
+          "sha256": "e0be24a73048fa9df67310d738141e5343ff47d5bebcea6d33a6781319ba61bc"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_causal_stress_20260912/candidate/REPORT.md",
+          "sha256": "6289d53c7e15f54790eb6e64e318b0439e1658c865a750ed11aead22b883733b"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_causal_stress_20260912/candidate/run/run_meta.json",
+          "sha256": "d61b7f69dfb1089a202e5e138032fe1c07a73937a71ccbc0a19b401898389188"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_causal_stress_20260912/candidate/run/session_summary.json",
+          "sha256": "1afe0c6a1c92dd57c8aaee744abfa49540db457fe8af09d2595f53ed706e30fa"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_causal_stress_20260912/candidate/run/input_snapshot/manifest.json",
+          "sha256": "a2944e8748452f335e68f709cb295bd6b100862ef7aed375c5ec61bdcc6e3e75"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_causal_stress_20260912/protocol.json",
+          "sha256": "32b053add853a6df4a0ac758bd60105947a9256c015735889dc67673b3a435b1"
+        }
+      ],
+      "statement": "Fixed corrected-label, uninterrupted-book development comparison on already inspected ETF history. Costs and risk paths recomputed. Parity evidence covers sampled inputs and interfaces; does not establish live availability. No independent reproduction, historical borrow availability, capacity, untouched tests, licensing or publication established. No admission. All previous hypotheses and invalidated simulations remain counted.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "point_in_time_data_and_survivorship_controls": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/alphatrend_causal_stress_20260912/candidate/reservation.json",
+          "sha256": "a2b25b35b5008367dda2e995d8f121f4370cf56d33930c8b24456d93250ebabd"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_causal_stress_20260912/candidate/preregistration.json",
+          "sha256": "5decd07996b44a9884ae492cbedeb95f12f33ad2bd8c39f9a2d7417a91aab464"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_causal_stress_20260912/candidate/reservation_validation.json",
+          "sha256": "5fd39851169cdef7aabfee1c97655669940fd85fa0f8139aef762ea89b690f72"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_causal_stress_20260912/candidate/experiments.jsonl",
+          "sha256": "29de0f225b9b8a95e5dbb147e4573a78b4d6d75398875510245b782e04f5340c"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_causal_stress_20260912/candidate/result.json",
+          "sha256": "e0be24a73048fa9df67310d738141e5343ff47d5bebcea6d33a6781319ba61bc"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_causal_stress_20260912/candidate/REPORT.md",
+          "sha256": "6289d53c7e15f54790eb6e64e318b0439e1658c865a750ed11aead22b883733b"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_causal_stress_20260912/candidate/run/run_meta.json",
+          "sha256": "d61b7f69dfb1089a202e5e138032fe1c07a73937a71ccbc0a19b401898389188"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_causal_stress_20260912/candidate/run/session_summary.json",
+          "sha256": "1afe0c6a1c92dd57c8aaee744abfa49540db457fe8af09d2595f53ed706e30fa"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_causal_stress_20260912/candidate/run/input_snapshot/manifest.json",
+          "sha256": "a2944e8748452f335e68f709cb295bd6b100862ef7aed375c5ec61bdcc6e3e75"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_causal_stress_20260912/protocol.json",
+          "sha256": "32b053add853a6df4a0ac758bd60105947a9256c015735889dc67673b3a435b1"
+        }
+      ],
+      "statement": "Fixed corrected-label, uninterrupted-book development comparison on already inspected ETF history. Costs and risk paths recomputed. Parity evidence covers sampled inputs and interfaces; does not establish live availability. No independent reproduction, historical borrow availability, capacity, untouched tests, licensing or publication established. No admission. All previous hypotheses and invalidated simulations remain counted.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "preregistration_and_hashes": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/alphatrend_causal_stress_20260912/candidate/reservation.json",
+          "sha256": "a2b25b35b5008367dda2e995d8f121f4370cf56d33930c8b24456d93250ebabd"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_causal_stress_20260912/candidate/preregistration.json",
+          "sha256": "5decd07996b44a9884ae492cbedeb95f12f33ad2bd8c39f9a2d7417a91aab464"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_causal_stress_20260912/candidate/reservation_validation.json",
+          "sha256": "5fd39851169cdef7aabfee1c97655669940fd85fa0f8139aef762ea89b690f72"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_causal_stress_20260912/candidate/experiments.jsonl",
+          "sha256": "29de0f225b9b8a95e5dbb147e4573a78b4d6d75398875510245b782e04f5340c"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_causal_stress_20260912/candidate/result.json",
+          "sha256": "e0be24a73048fa9df67310d738141e5343ff47d5bebcea6d33a6781319ba61bc"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_causal_stress_20260912/candidate/REPORT.md",
+          "sha256": "6289d53c7e15f54790eb6e64e318b0439e1658c865a750ed11aead22b883733b"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_causal_stress_20260912/candidate/run/run_meta.json",
+          "sha256": "d61b7f69dfb1089a202e5e138032fe1c07a73937a71ccbc0a19b401898389188"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_causal_stress_20260912/candidate/run/session_summary.json",
+          "sha256": "1afe0c6a1c92dd57c8aaee744abfa49540db457fe8af09d2595f53ed706e30fa"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_causal_stress_20260912/candidate/run/input_snapshot/manifest.json",
+          "sha256": "a2944e8748452f335e68f709cb295bd6b100862ef7aed375c5ec61bdcc6e3e75"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_causal_stress_20260912/protocol.json",
+          "sha256": "32b053add853a6df4a0ac758bd60105947a9256c015735889dc67673b3a435b1"
+        }
+      ],
+      "statement": "Fixed corrected-label, uninterrupted-book development comparison on already inspected ETF history. Costs and risk paths recomputed. Parity evidence covers sampled inputs and interfaces; does not establish live availability. No independent reproduction, historical borrow availability, capacity, untouched tests, licensing or publication established. No admission. All previous hypotheses and invalidated simulations remain counted.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "result_uncertainty_stress_capacity_and_diversification": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/alphatrend_causal_stress_20260912/candidate/reservation.json",
+          "sha256": "a2b25b35b5008367dda2e995d8f121f4370cf56d33930c8b24456d93250ebabd"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_causal_stress_20260912/candidate/preregistration.json",
+          "sha256": "5decd07996b44a9884ae492cbedeb95f12f33ad2bd8c39f9a2d7417a91aab464"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_causal_stress_20260912/candidate/reservation_validation.json",
+          "sha256": "5fd39851169cdef7aabfee1c97655669940fd85fa0f8139aef762ea89b690f72"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_causal_stress_20260912/candidate/experiments.jsonl",
+          "sha256": "29de0f225b9b8a95e5dbb147e4573a78b4d6d75398875510245b782e04f5340c"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_causal_stress_20260912/candidate/result.json",
+          "sha256": "e0be24a73048fa9df67310d738141e5343ff47d5bebcea6d33a6781319ba61bc"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_causal_stress_20260912/candidate/REPORT.md",
+          "sha256": "6289d53c7e15f54790eb6e64e318b0439e1658c865a750ed11aead22b883733b"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_causal_stress_20260912/candidate/run/run_meta.json",
+          "sha256": "d61b7f69dfb1089a202e5e138032fe1c07a73937a71ccbc0a19b401898389188"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_causal_stress_20260912/candidate/run/session_summary.json",
+          "sha256": "1afe0c6a1c92dd57c8aaee744abfa49540db457fe8af09d2595f53ed706e30fa"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_causal_stress_20260912/candidate/run/input_snapshot/manifest.json",
+          "sha256": "a2944e8748452f335e68f709cb295bd6b100862ef7aed375c5ec61bdcc6e3e75"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_causal_stress_20260912/protocol.json",
+          "sha256": "32b053add853a6df4a0ac758bd60105947a9256c015735889dc67673b3a435b1"
+        }
+      ],
+      "statement": "Fixed corrected-label, uninterrupted-book development comparison on already inspected ETF history. Costs and risk paths recomputed. Parity evidence covers sampled inputs and interfaces; does not establish live availability. No independent reproduction, historical borrow availability, capacity, untouched tests, licensing or publication established. No admission. All previous hypotheses and invalidated simulations remain counted.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    }
+  },
+  "research_family_key": "managed_futures_trend",
+  "schema": "canli.alphac-identity-trial-packet.v2"
+}
