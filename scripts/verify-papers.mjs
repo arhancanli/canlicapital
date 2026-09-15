@@ -1320,6 +1320,13 @@ if (existsSync(trialToolFile)) {
   const manifest = JSON.parse(manifestBytes);
   const packetIndex = JSON.parse(packetIndexBytes);
   const prospective = JSON.parse(prospectiveBytes);
+  // A governed row other than the serial identity is a batch closure under the v2 full-evidence
+  // reservation (2026-09-15); there may be any number of them.
+  const governedBatchRows = register.identities.filter(
+    (row) =>
+      row.status === "GOVERNED_SERIAL_PACKET_CLOSED" &&
+      row.hypothesis_key !== prospective.identity.hypothesis_key,
+  ).length;
   const selectionN = ledger.distinct_hypothesis_identities;
 
   check(
@@ -1396,19 +1403,20 @@ if (existsSync(trialToolFile)) {
       /complete packet is not a passed strategy/i.test(trialToolHtml) &&
       /no prospective identity is admitted/i.test(trialToolHtml) &&
       trialToolHtml.includes(`${unclosedRows} reserved and measured without a closing packet`) &&
+      trialToolHtml.includes(`${governedBatchRows} closed by a governed batch closure`) &&
       trialToolHtml.includes(`${developmentClosedRows} closed by a development closure`) &&
       /not live returns, rankings, admission scores or recommendations/i.test(trialToolHtml),
     "/tools/trial-accounting omits its accounting, admission or performance boundary",
   );
   // The forward packet index (2026-09-15) binds every closed forward identity to its packet and
-  // final closure; the tool links a development-closed identity only through it.
+  // final closure; the tool links a closed identity's packet only through it.
   check(
     forwardIndex.schema === "canli.alphac-forward-identity-packet-index.v1" &&
       forwardIndex.summary.forward_identities === register.summary.observed_identities &&
       forwardIndex.summary.closed_identities === register.summary.closed_identities &&
       forwardIndex.summary.admitted_identities === 0 &&
       forwardIndex.summary.identities_in_both_epochs === 0 &&
-      prospective.identity.hypotheses_spent + developmentClosedRows + unclosedRows ===
+      prospective.identity.hypotheses_spent + governedBatchRows + developmentClosedRows + unclosedRows ===
         register.summary.observed_identities,
     "/tools/trial-accounting forward packet index does not describe the prospective epoch",
   );

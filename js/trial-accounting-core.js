@@ -12,15 +12,18 @@ const STATUS = Object.freeze({
   LEGACY_COMPLETE: "legacy_complete_packet",
   LEGACY_INCOMPLETE: "legacy_incomplete_packet",
   PROSPECTIVE_FINAL_INCOMPLETE: "prospective_final_incomplete_not_admitted",
+  PROSPECTIVE_GOVERNED_CLOSED: "prospective_governed_closed_not_admitted",
   PROSPECTIVE_DEVELOPMENT_CLOSED: "prospective_development_closed_not_admitted",
   PROSPECTIVE_UNCLOSED: "prospective_reserved_measured_unclosed",
 });
 
-// Every prospective identity other than the governed serial one. Since 2026-09-15 the register
-// carries two kinds. An unclosed identity was reserved and measured but has no closing packet; it
-// sits in selection N with no public evidence page. A development-closed identity carries the
-// decision its own study already made, imported and recorded as a final closure, never an
-// admission; it links a packet and a page only when the forward packet index binds both.
+// Every prospective identity other than the serial governed one, which keeps its own record.
+// Three kinds reach this function. A governed batch closure decides an identity reserved under
+// the v2 full-evidence template (from 2026-09-15); its packet may still be owed, and it links a
+// packet and a page only when the forward packet index publishes one. A development closure
+// carries the decision its own study already made, imported and recorded; it links only what the
+// forward index binds. An unclosed identity was reserved and measured with no closing packet.
+// None of them is ever an admission.
 function registerIdentity(row, family, forwardRow) {
   const key = row.hypothesis_key;
   requireCondition(row.admitted === false, `Register row ${key} claims admission`);
@@ -47,6 +50,35 @@ function registerIdentity(row, family, forwardRow) {
     reservation_ordinal: row.reservation_ordinal,
     source_kind: row.source?.kind || "canonical",
   };
+  if (row.status === REGISTER_GOVERNED) {
+    requireCondition(
+      row.closure_kind === "governed" &&
+        typeof row.final_disposition === "string" &&
+        forwardRow?.register_status === row.status &&
+        forwardRow.config_hash === row.config_hash &&
+        forwardRow.reservation_ordinal === row.reservation_ordinal &&
+        forwardRow.closure?.kind === "governed" &&
+        forwardRow.closure.admitted === false &&
+        forwardRow.closure.final_disposition === row.final_disposition,
+      `Register row ${key} claims a governed closure the forward packet index does not bind`,
+    );
+    const published = forwardRow.public_path !== null && forwardRow.public_path !== undefined;
+    requireCondition(
+      !published || (forwardRow.complete === true && FORWARD_PACKET_PATH.test(forwardRow.public_path)),
+      `Register row ${key} publishes a governed packet the forward packet index does not bind`,
+    );
+    return {
+      ...identity,
+      status: STATUS.PROSPECTIVE_GOVERNED_CLOSED,
+      packet_complete: published,
+      missing_sections: published ? [] : ["identity_packet"],
+      packet_status: forwardRow.packet_status ?? row.status,
+      packet_path: published ? forwardRow.public_path : null,
+      public_page: published ? `/trials/${key}` : null,
+      blockers: published ? [] : [{ code: "IDENTITY_PACKET_PENDING", required_section: "identity_packet" }],
+      disposition: row.final_disposition,
+    };
+  }
   if (row.packet_complete !== true) {
     requireCondition(
       row.packet_complete === false && !row.closure_kind && !forwardRow?.public_path,
@@ -99,6 +131,14 @@ function requireCondition(condition, message) {
 
 function requireUnique(values, label) {
   requireCondition(new Set(values).size === values.length, `${label} are not unique`);
+}
+
+function countDispositions(identities) {
+  const counts = {};
+  for (const disposition of identities.map((identity) => identity.disposition).sort()) {
+    counts[disposition] = (counts[disposition] || 0) + 1;
+  }
+  return counts;
 }
 
 function legacyIdentity(identity, packetByKey) {
@@ -245,8 +285,10 @@ export function buildTrialUnion(ledger, manifest, packetIndex, prospective, regi
       prospective.metrics.union_hypothesis_identities === prospective.identity.reservation_ordinal,
     "Governed prospective identity is not the register's closed serial packet",
   );
+  // The serial governed identity keeps its own record; every other governed row is a batch
+  // closure under the v2 template, and there may be any number of them.
   requireCondition(
-    register.identities.filter((row) => row.status === REGISTER_GOVERNED).length ===
+    register.identities.filter((row) => row.status === REGISTER_GOVERNED).length >=
       prospective.identity.hypotheses_spent,
     "Governed packet count does not match the prospective record",
   );
@@ -296,19 +338,17 @@ export function buildTrialUnion(ledger, manifest, packetIndex, prospective, regi
   requireUnique(identities.map((identity) => identity.hypothesis_key), "Union keys");
 
   const byStatus = (status) => identities.filter((identity) => identity.status === status);
-  const governedPackets = byStatus(STATUS.PROSPECTIVE_FINAL_INCOMPLETE).length;
+  const governedSerial = byStatus(STATUS.PROSPECTIVE_FINAL_INCOMPLETE).length;
+  const governedBatch = byStatus(STATUS.PROSPECTIVE_GOVERNED_CLOSED);
   const developmentClosed = byStatus(STATUS.PROSPECTIVE_DEVELOPMENT_CLOSED);
   const unclosed = byStatus(STATUS.PROSPECTIVE_UNCLOSED).length;
+  const closed = governedSerial + governedBatch.length + developmentClosed.length;
   requireCondition(
-    governedPackets === prospective.identity.hypotheses_spent &&
-      governedPackets + developmentClosed.length + unclosed === epoch.observed_identities &&
-      governedPackets + developmentClosed.length === epoch.closed_identities,
+    governedSerial === prospective.identity.hypotheses_spent &&
+      closed + unclosed === epoch.observed_identities &&
+      closed === epoch.closed_identities,
     "Prospective identities do not partition into governed, development-closed and unclosed",
   );
-  const developmentDispositions = {};
-  for (const disposition of developmentClosed.map((identity) => identity.disposition).sort()) {
-    developmentDispositions[disposition] = (developmentDispositions[disposition] || 0) + 1;
-  }
 
   const familyCounts = new Map();
   for (const identity of identities) {
@@ -350,9 +390,14 @@ export function buildTrialUnion(ledger, manifest, packetIndex, prospective, regi
       legacy_complete_packets: manifest.summary.complete_trial_packets,
       legacy_incomplete_packets: manifest.summary.incomplete_trial_packets,
       prospective_identities: epoch.observed_identities,
-      prospective_governed_packets: governedPackets,
+      prospective_governed_packets: governedSerial,
+      prospective_governed_batch_closures: governedBatch.length,
+      prospective_governed_batch_dispositions: countDispositions(governedBatch),
+      prospective_governed_batch_packets_pending: governedBatch.filter(
+        (identity) => !identity.packet_complete,
+      ).length,
       prospective_development_closures: developmentClosed.length,
-      prospective_development_dispositions: developmentDispositions,
+      prospective_development_dispositions: countDispositions(developmentClosed),
       prospective_unclosed: unclosed,
       prospective_admitted: prospective.decision.admitted || epoch.admitted_identities > 0,
       prospective_latest_reservation_ordinal: epoch.latest_reservation_ordinal,

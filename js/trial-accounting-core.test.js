@@ -18,6 +18,7 @@ const forwardIndex = readJson("../public/glassbox/trial-packets/forward_index.js
 const union = buildTrialUnion(ledger, manifest, index, prospective, register, forwardIndex);
 
 const DEVELOPMENT_CLOSED = "DEVELOPMENT_CLOSURE_FINAL_NOT_ADMITTED";
+const GOVERNED = "GOVERNED_SERIAL_PACKET_CLOSED";
 const closedKey = register.identities.find((row) => row.status === DEVELOPMENT_CLOSED)?.hypothesis_key;
 
 // A copy of the register and the forward index with one identity's rows changed, so a refusal
@@ -33,6 +34,20 @@ function withIdentity(key, { row: changeRow = (row) => row, forward: changeForwa
   );
   return () => buildTrialUnion(ledger, manifest, index, prospective, nextRegister, nextForward);
 }
+
+// A development-closed identity re-cast as a v2 governed batch closure whose packet the seal has
+// not written yet: the shape the register and forward index publish right after a batch seal.
+const asGovernedBatchClosure = {
+  row: (row) => ({ ...row, status: GOVERNED, closure_kind: "governed", final_disposition: "KILL" }),
+  forward: (row) => ({
+    ...row,
+    register_status: GOVERNED,
+    closure: { ...row.closure, kind: "governed", final_disposition: "KILL", admitted: false },
+    packet_status: "PACKET_PENDING",
+    public_path: null,
+    complete: false,
+  }),
+};
 
 test("complete trial union reconciles records, identities, packets and prospective reservation", () => {
   assert.equal(union.identities.length, ledger.distinct_hypothesis_identities);
@@ -64,9 +79,12 @@ test("packet completeness never becomes admission", () => {
   const closed = filterTrialUnion(union, { status: TRIAL_UNION_STATUS.PROSPECTIVE_DEVELOPMENT_CLOSED });
   assert.equal(closed.length, register.identities.filter((row) => row.status === DEVELOPMENT_CLOSED).length);
   assert.ok(closed.every((identity) => identity.packet_complete && !identity.admitted));
+  const governedBatch = filterTrialUnion(union, { status: TRIAL_UNION_STATUS.PROSPECTIVE_GOVERNED_CLOSED });
+  assert.ok(governedBatch.every((identity) => !identity.admitted));
   assert.equal(union.facts.prospective_identities, register.summary.observed_identities);
   assert.equal(
     union.facts.prospective_governed_packets +
+      union.facts.prospective_governed_batch_closures +
       union.facts.prospective_development_closures +
       union.facts.prospective_unclosed,
     register.summary.observed_identities,
@@ -86,6 +104,81 @@ test("a development-closed identity links only the packet the forward index bind
   assert.deepEqual(
     Object.values(union.facts.prospective_development_dispositions).reduce((a, b) => a + b, 0),
     closed.length,
+  );
+});
+
+test("a governed batch closure with its packet still owed is closed, not admitted, and links nothing", () => {
+  const built = withIdentity(closedKey, asGovernedBatchClosure)();
+  const [identity] = filterTrialUnion(built, { query: closedKey });
+  assert.equal(identity.status, TRIAL_UNION_STATUS.PROSPECTIVE_GOVERNED_CLOSED);
+  assert.equal(identity.disposition, "KILL");
+  assert.equal(identity.admitted, false);
+  assert.equal(identity.packet_complete, false);
+  assert.equal(identity.packet_path, null);
+  assert.equal(identity.public_page, null);
+  assert.deepEqual(identity.missing_sections, ["identity_packet"]);
+  // One development closure became one more governed batch closure, on top of whatever the
+  // published register already carries.
+  assert.equal(
+    built.facts.prospective_governed_batch_closures,
+    union.facts.prospective_governed_batch_closures + 1,
+  );
+  assert.equal(
+    built.facts.prospective_governed_batch_packets_pending,
+    union.facts.prospective_governed_batch_packets_pending + 1,
+  );
+  assert.equal(
+    built.facts.prospective_governed_batch_dispositions.KILL,
+    (union.facts.prospective_governed_batch_dispositions.KILL ?? 0) + 1,
+  );
+  assert.equal(built.facts.prospective_development_closures, union.facts.prospective_development_closures - 1);
+});
+
+test("a published governed batch closure links exactly the packet the forward index binds", () => {
+  const forwardByKey = new Map(forwardIndex.packets.map((row) => [row.hypothesis_key, row]));
+  const governedBatch = filterTrialUnion(union, {
+    status: TRIAL_UNION_STATUS.PROSPECTIVE_GOVERNED_CLOSED,
+  });
+  assert.equal(governedBatch.length, union.facts.prospective_governed_batch_closures);
+  for (const identity of governedBatch) {
+    const row = forwardByKey.get(identity.hypothesis_key);
+    assert.equal(identity.admitted, false);
+    assert.equal(identity.disposition, row.closure.final_disposition);
+    assert.equal(row.closure.kind, "governed");
+    if (identity.packet_complete) {
+      assert.equal(identity.packet_path, row.public_path);
+      assert.equal(identity.public_page, `/trials/${identity.hypothesis_key}`);
+    } else {
+      assert.equal(identity.packet_path, null);
+      assert.equal(identity.public_page, null);
+    }
+  }
+});
+
+test("a governed batch closure the forward index contradicts, or a stray packet path, fails closed", () => {
+  assert.throws(
+    withIdentity(closedKey, {
+      row: asGovernedBatchClosure.row,
+      forward: (row) => {
+        const governed = asGovernedBatchClosure.forward(row);
+        return { ...governed, closure: { ...governed.closure, final_disposition: "ADMIT" } };
+      },
+    }),
+    /governed closure the forward packet index does not bind/,
+  );
+  assert.throws(
+    withIdentity(closedKey, {
+      row: asGovernedBatchClosure.row,
+      forward: (row) => ({ ...asGovernedBatchClosure.forward(row), public_path: "/elsewhere.json" }),
+    }),
+    /publishes a governed packet the forward packet index does not bind/,
+  );
+  assert.throws(
+    withIdentity(closedKey, {
+      row: (row) => ({ ...asGovernedBatchClosure.row(row), admitted: true }),
+      forward: asGovernedBatchClosure.forward,
+    }),
+    /claims admission/,
   );
 });
 

@@ -11,6 +11,7 @@ const statusLabel = {
   [TRIAL_UNION_STATUS.LEGACY_COMPLETE]: "COMPLETE EVIDENCED PACKET",
   [TRIAL_UNION_STATUS.LEGACY_INCOMPLETE]: "INCOMPLETE LEGACY PACKET",
   [TRIAL_UNION_STATUS.PROSPECTIVE_FINAL_INCOMPLETE]: "PROSPECTIVE / GOVERNED PACKET, NOT ADMITTED",
+  [TRIAL_UNION_STATUS.PROSPECTIVE_GOVERNED_CLOSED]: "PROSPECTIVE / GOVERNED BATCH CLOSURE, NOT ADMITTED",
   [TRIAL_UNION_STATUS.PROSPECTIVE_DEVELOPMENT_CLOSED]: "PROSPECTIVE / DEVELOPMENT CLOSURE, NOT ADMITTED",
   [TRIAL_UNION_STATUS.PROSPECTIVE_UNCLOSED]: "PROSPECTIVE / MEASURED, NOT CLOSED",
 };
@@ -77,10 +78,10 @@ function renderInspector(identity) {
       ${identity.disposition && identity.disposition !== "UNCLOSED" ? `<div><dt>Final disposition</dt><dd>${escapeHtml(identity.disposition)}</dd></div>` : ""}
       <div><dt>Admitted</dt><dd>NO</dd></div>
     </dl>
-    ${identity.status === TRIAL_UNION_STATUS.PROSPECTIVE_DEVELOPMENT_CLOSED
+    ${identity.status === TRIAL_UNION_STATUS.PROSPECTIVE_DEVELOPMENT_CLOSED || identity.status === TRIAL_UNION_STATUS.PROSPECTIVE_GOVERNED_CLOSED
       ? `<div class="union-inspector__coverage"><span>Packet status</span><strong>${escapeHtml(identity.packet_status)}</strong><i style="--coverage:0"></i></div>`
       : `<div class="union-inspector__coverage"><span>Evidence coverage</span><strong>${completeSections} verified / ${missingSections} missing or unevaluated</strong><i style="--coverage:${completeSections / Math.max(1, completeSections + missingSections)}"></i></div>`}
-    <div class="union-inspector__links">${identity.public_page ? `<a href="${safePublicHref(identity.public_page)}">Open public evidence page</a>` : "<span>No public evidence page yet</span>"}${identity.packet_path ? `<a href="${safePublicHref(identity.packet_path)}">Download exact packet</a>` : "<span>No closing packet</span>"}${identity.family_paper ? `<a href="${safePublicHref(identity.family_paper)}">Read bound research</a>` : ""}</div>
+    <div class="union-inspector__links">${identity.public_page ? `<a href="${safePublicHref(identity.public_page)}">Open public evidence page</a>` : "<span>No public evidence page yet</span>"}${identity.packet_path ? `<a href="${safePublicHref(identity.packet_path)}">Download exact packet</a>` : `<span>${identity.status === TRIAL_UNION_STATUS.PROSPECTIVE_GOVERNED_CLOSED ? "Identity packet pending" : "No closing packet"}</span>`}${identity.family_paper ? `<a href="${safePublicHref(identity.family_paper)}">Read bound research</a>` : ""}</div>
     <p class="union-inspector__boundary">Packet completeness describes evidence accounting only. This identity is not presented as admitted, live or predictive.</p>`;
   document.querySelectorAll("[data-identity]").forEach((element) => {
     element.dataset.selected = String(element.dataset.identity === identity.hypothesis_key);
