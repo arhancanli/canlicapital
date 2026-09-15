@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>When a Forward Sharpe Ratio Becomes Evidence | Canli Capital</title>
 <meta name="description" content="A forward Sharpe ratio should not become a headline merely because a short paper-trading curve can produce one." />
-<meta name="alphac-source-sha256" content="aeba2fc6ff13effd1a363119f883bf4f56948e0bb5395f659632d2a67517571c" />
+<meta name="alphac-source-sha256" content="f16bff68f829309319c3671de4187f6a6ba8f83b4eaa65f3ffb705b4f4fa9325" />
 
 <link rel="canonical" href="https://canlicapital.com/research/forward-sharpe-evidence-standard" />
 <meta name="author" content="Arhan Canli" />
@@ -103,7 +103,7 @@
     <h1 class="paper__title">When a Forward Sharpe Ratio Becomes Evidence</h1>
     <p class="paper__byline">By <span rel="author">Arhan Canli</span>, Canli Capital</p>
     <div class="paper__body">
-<div class="research-masthead"><dl class="research-masthead__facts"><div><dt>Author</dt><dd>Arhan Canli</dd></div><div><dt>Affiliation</dt><dd>Canli Capital / AlphaC Algorithms</dd></div><div><dt>Version</dt><dd>1.0, 2026</dd></div><div><dt>Capital boundary</dt><dd>Alpaca and AlphaForge paper trading only; no real capital</dd></div><div><dt>Machine contract</dt><dd><code>/glassbox/forward_evidence_contract.json</code></dd></div><div><dt>Current evaluation</dt><dd><code>/glassbox/forward_evidence_maturity.json</code></dd></div></dl></div><p>A forward Sharpe ratio should not become a headline merely because a short paper-trading curve can
+<div class="research-masthead"><dl class="research-masthead__facts"><div><dt>Author</dt><dd>Arhan Canli</dd></div><div><dt>Affiliation</dt><dd>Canli Capital / AlphaC Algorithms</dd></div><div><dt>Version</dt><dd>1.1, 2026 (target history in section 1.1)</dd></div><div><dt>Capital boundary</dt><dd>Alpaca and AlphaForge paper trading only; no real capital</dd></div><div><dt>Machine contract</dt><dd><code>/glassbox/forward_evidence_contract.json</code></dd></div><div><dt>Current evaluation</dt><dd><code>/glassbox/forward_evidence_maturity.json</code></dd></div></dl></div><p>A forward Sharpe ratio should not become a headline merely because a short paper-trading curve can
 produce one. This paper defines the precommitted evidence states used by ALPHAC: when a point
 estimate may be shown, when a target is only observed, and what must be true before the target can
 be described as statistically established.</p>
@@ -115,8 +115,8 @@ estimate-eligible record, a point target that has been observed but not establis
 that has cleared a frozen sample-length and Probabilistic Sharpe Ratio threshold. The rule requires
 252 observed daily returns before publishing a mature point estimate and 756 before statistical
 establishment is possible. Establishment additionally requires an annualized point Sharpe of at
-least 1.5 and at least 0.95 probability, under the non-normal Probabilistic Sharpe Ratio formula,
-that the true annualized Sharpe exceeds 1.5. Configuration continuity, record continuity, and a
+least 2.0 and at least 0.95 probability, under the non-normal Probabilistic Sharpe Ratio formula,
+that the true annualized Sharpe exceeds 2.0. Configuration continuity, record continuity, and a
 fresh passing broker reconciliation are mandatory provenance gates. Realized drawdown, modeled
 expected maximum drawdown, and modeled tail drawdown are reported as different quantities. The
 standard is deliberately harder to satisfy than displaying a computed ratio because its purpose is
@@ -135,8 +135,19 @@ record supports one of these progressively stronger statements:</p>
 <li>the evidence supports the stronger claim that the true Sharpe exceeds the target with the
 precommitted probability and sample length.</li>
 </ol>
-<p>These statements are not interchangeable. In particular, a point estimate at or above 1.5 is an
-observation about the sample. It is not statistical establishment of a forward Sharpe of 1.5.</p>
+<p>These statements are not interchangeable. In particular, a point estimate at or above 2.0 is an
+observation about the sample. It is not statistical establishment of a forward Sharpe of 2.0.</p>
+<h3>1.1 The governing target and its history</h3>
+<p>The governing target is read from the machine contract&#39;s <code>forward_sharpe_target</code>, which is itself
+projected from the owner&#39;s goals (<code>config/owner_goals.json</code>). It has moved once. From 2026-08-21 to
+2026-09-14 the target was 1.5, the honest forward figure admission contract v6 adopted when it
+withdrew an in-sample 2.0 to 2.5 objective. From 2026-09-14 it is 2.0, the owner&#39;s combined-book
+goal net of costs, recorded on 2026-09-12 and confirmed on 2026-09-14. When the target moved the
+record held 36 daily returns, 216 short of the 252 an estimate needs, so no point estimate was ever
+published against 1.5 and nothing was regraded. A target change is an evaluation change, not a
+trading change: it restarts no forward-evidence epoch and pools nothing. Every change is appended to
+<code>forward_sharpe_target_history</code> in the contract with the record&#39;s status on the day it was
+superseded, and the record is always evaluated against the target in force at evaluation time.</p>
 <h2>2. Return series and annualization</h2>
 <p>The input is the flagship paper curve: strictly increasing UTC dates and finite, strictly positive
 equity marks. For consecutive published marks (E_{t-1}) and (E_t), the simple return is</p>
@@ -169,9 +180,9 @@ PSR(SR^<em>) = \Phi\left(
 {\sqrt{1-\gamma_3 SR_d + \frac{\gamma_4-1}{4}SR_d^2}}
 \right).
 ]</p>
-<p>ALPHAC sets (SR^*=1.5/\sqrt{365}). This is stricter and more relevant than testing only whether
+<p>ALPHAC sets (SR^*=2.0/\sqrt{365}). This is stricter and more relevant than testing only whether
 Sharpe is positive. A probability that the true Sharpe exceeds zero may establish a positive edge;
-it does not establish that the governing 1.5 target has been reached.</p>
+it does not establish that the governing 2.0 target has been reached.</p>
 <p>The implementation calls the same tested Probabilistic Sharpe Ratio routine used by the research
 engine. It does not feed an annualized ratio into a per-period formula. The annualized target is
 converted to the daily benchmark first, and (T) remains the count of daily return observations.</p>
@@ -192,16 +203,16 @@ converted to the daily benchmark first, and (T) remains the count of daily retur
 <tr>
 <td><code>ESTIMATE_ELIGIBLE_TARGET_NOT_OBSERVED</code></td>
 <td align="right">At least 252 returns</td>
-<td>Publish the point estimate and probability; state that the 1.5 target is not observed.</td>
+<td>Publish the point estimate and probability; state that the 2.0 target is not observed.</td>
 </tr>
 <tr>
 <td><code>TARGET_OBSERVED_NOT_ESTABLISHED</code></td>
-<td align="right">Point Sharpe at least 1.5, but the establishment conditions are incomplete</td>
+<td align="right">Point Sharpe at least 2.0, but the establishment conditions are incomplete</td>
 <td>State that the sample point estimate crossed the target and explicitly state that it is not established.</td>
 </tr>
 <tr>
 <td><code>TARGET_STATISTICALLY_ESTABLISHED</code></td>
-<td align="right">At least 756 returns, point Sharpe at least 1.5, and (PSR(1.5)\ge0.95)</td>
+<td align="right">At least 756 returns, point Sharpe at least 2.0, and (PSR(2.0)\ge0.95)</td>
 <td>State that the forward paper record statistically establishes the target under this contract, while retaining the paper-capital boundary.</td>
 </tr>
 <tr>
@@ -263,7 +274,11 @@ beside the expected value because an acceptable mean can coexist with an unaccep
 </ol>
 <p>The expected maximum-drawdown objective is not a stop-loss and does not imply that losses are
 bounded at 11%. A realized drawdown below 11% does not establish the modeled objective, and a model
-estimate below 11% does not guarantee future realized losses.</p>
+estimate below 11% does not guarantee future realized losses. Separately, the owner&#39;s bound on
+realized maximum drawdown is 10% (<code>realized_max_drawdown_bound</code>, in force 2026-09-14): the
+evaluation publishes realized drawdown against it at every mark, never mixes it with the modeled
+11% objective, and a realized drawdown inside the bound to date establishes nothing about future
+drawdown.</p>
 <p>The sealed current study uses 96 two-year paths, fourteen daily sleeves and a 10% annualized
 book-level volatility target. The declared live paper composite has four sleeves, mixed hourly and
 daily timebases, fixed weights and no second book-level volatility target or drawdown ladder after

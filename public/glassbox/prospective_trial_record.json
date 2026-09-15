@@ -18,13 +18,14 @@
     "union_hypothesis_identities": 347,
     "latest_reservation_ordinal": 347,
     "by_status": {
+      "DEVELOPMENT_CLOSURE_FINAL_NOT_ADMITTED": 118,
       "GOVERNED_SERIAL_PACKET_CLOSED": 1,
-      "IMPORTED_RESERVED_MEASURED_UNCLOSED": 118,
+      "IMPORTED_RESERVED_MEASURED_UNCLOSED": 0,
       "MEASURED_WITHOUT_RESERVATION": 0,
       "RESERVED_MEASURED_UNCLOSED": 0
     },
     "register_public_path": "/glassbox/prospective_epoch_register.json",
-    "register_content_hash": "sha256:4037d3a66a639cc0e10dd1407dd3b76a16fc466f2e3f856b1935b3cbda6315f5"
+    "register_content_hash": "sha256:d24e33efbb841484656bd4038ec6f78379a4b22125ada794da05203e039aed99"
   },
   "classification": {
     "evidence_type": "HISTORICAL_WALK_FORWARD_SIMULATION",
@@ -232,20 +233,22 @@
     "content_hash": "sha256:9ba408cb3c1d9accd91eddd25a079995a8d42aa6b7456dd6afd22539917ce40a"
   },
   "future_protocol": {
-    "status": "TEMPLATE_NOT_IN_FORCE_NO_RETURN_AUTHORIZATION",
+    "status": "IN_FORCE",
     "scope": {
       "applies_to_known_results": false,
-      "earliest_possible_reservation_ordinal": 230,
+      "earliest_possible_reservation_ordinal": 348,
       "requires_separate_policy_promotion": true
     },
-    "audit_status": "PASS_TEMPLATE_FAIL_CLOSED_NOT_ACTIVE_ZERO_RETURN",
-    "remaining_before_promotion": [
-      "SATISFIABILITY_AUDIT_PASSES",
-      "TRIAL_ACCOUNTING_BATCH_AND_DIAGNOSTIC_CLASSIFICATION_PROMOTED",
-      "SERIALITY_GUARD_SUPPORTS_PREDECLARED_BATCH",
-      "PUBLIC_PROJECTION_TESTS_PASS",
-      "OWNER_PROMOTION_RECORDED"
-    ],
+    "audit_status": "PASS_TEMPLATE_PROMOTED_IN_FORCE_RETURN_BY_VALIDATED_RESERVATION_ONLY",
+    "remaining_before_promotion": [],
+    "promotion": {
+      "receipt_public_path": "/glassbox/forward_full_evidence_reservation_v2_promotion.json",
+      "content_hash": "sha256:b909390bc6d722691080049f6682f5ad033bc820dd206c81fd2d2715695b19ab",
+      "promoted_at": "2026-09-14",
+      "authorized_by": "i want you to focus on adding sleeves improving each sleeves sharpe ratio returs cagr max dd and everything go agead make sure everything is perfect and i give you full permision for the activiations so you can go ahead",
+      "effective_on_or_after_reservation_ordinal": 348,
+      "applies_to_known_results": false
+    },
     "claim_boundary": "This is a fail-closed design template, not an active policy, reservation, candidate, result, or return authorization. Null and empty fields must be filled and hash-bound before validation. It cannot be applied to a known result."
   },
   "public_paths": {
@@ -262,8 +265,8 @@
     "closure_sha256": "83c330782c7178315ad55648b18db31a3798e767ffdbdd8c0fe2af7c76beeef1",
     "packet_sha256": "c46b821057d5991b713f673db74e92c416167513481c433fadae6c7ead7657f9",
     "paper_sha256": "141bbf970993a5ee594d27ddd8c55dc8aeb2944dc7cd0bd24712e53e307188c5",
-    "future_template_sha256": "f7f55bd4237cc19fdc69ae7aba19e05d14263a710725948cc04753e981b236f5",
-    "future_template_audit_sha256": "e1a15b846502e5d28b318b59af9328ded14be5972d00a63ab3c9766536b96521",
+    "future_template_sha256": "f3aca315937b2a02664a988ff7c402565a04b169ee79ba9a6ea8a10d1f75098b",
+    "future_template_audit_sha256": "2e5d17511c16e980dbaa5b76aac422437b65f23fb64558a39e282611ee29d126",
     "portable_lake_readiness_sha256": "e6c829153b60ac5fef16d35abe052e9efa720f96a61e4106ccb35c2c4f8ae441",
     "portable_prerun_readiness_sha256": "15de6929185213098ec2c3864b6ac16ae0c1a328003feda547dd90624502f702",
     "private_input_snapshot_manifest_sha256": "a1ac28f065bffcc761f9a3b8f7058deb55f8d7672f72770d27b02fd07ade1156"

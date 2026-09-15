@@ -2,37 +2,59 @@
   "author": "Arhan Canli",
   "authority": "FRANKFURT_CRYPTO_PAPER_HOST_SOLE_REMOTE_WRITER",
   "claim_boundary": "This receipt proves only a successful read-only preflight at the stated instant. It does not claim deployment, schema migration, position-attribution completeness, a natural marked cycle, mature forward evidence, or real-capital trading.",
-  "content_hash": "sha256:f86fb76e861c359530b08641a5fd3e1ffa66c6a2ddaa5e7cb6277e0a1711bc11",
+  "content_hash": "sha256:795d385fd9395671958dee148045e3a4f2b13aeab2b213854407cab926f80ea3",
   "deployment_authorized": false,
   "forced_cycle_run": false,
-  "observed_at_utc": "2026-08-25T14:54:22.909779+00:00",
+  "observed_at_utc": "2026-09-14T22:20:52.676412+00:00",
   "passes_read_only_preflight": true,
   "remote_mutations_performed": false,
   "remote_query_performed": true,
   "remote_snapshot": {
     "database_exists": true,
-    "database_sha256": "b5d117cf821735f8b0f5d7d6f8a6750b4f601f60f3408aa5c4d60f2588eab266",
+    "database_sha256": "8fccbd5986a1cd662bf767b0e1df677446839af507d7dc855d91f53b441923d7",
     "files": {
-      "src/alphaforge/execution/paper.py": "f6f0872748a2791ff989660b74d02fc9482bac3d9a492114a702d4813d3a96a2",
-      "src/alphaforge/live/loop.py": "c54e33eda08d8c0b9b020d570306045fd9846a59caccd4dea2e68b561187ab28",
-      "src/alphaforge/live/store.py": "aa815f09a2eee9528ca878e510dd4e69041a1de378d8e0b28ce5f54044c6a8d5"
+      "config/drawdown_control_contract.json": null,
+      "configs/base.yaml": "6177d3f33089e7c0f6f8d99bc97e66d75f3d596e7593806b79c89cedebde15fa",
+      "src/alphaforge/cli/paper_cmds.py": "8beb82224aa096ef592f59d0508409632c310faf46bbeb16a73c6bccc34dc963",
+      "src/alphaforge/config/settings.py": "a8baa6cff327f8a8f0a43f62d4a10ebbef85e2233fed31b719b6263b1cd896ad",
+      "src/alphaforge/execution/paper.py": "975e5362afb144c083bc9f196a508af2d75d6492061b71f404dd9d5229d0c278",
+      "src/alphaforge/live/loop.py": "772b59d59edae637eed05109928d711eb88dc4c982288e930c8e482926bd5aa6",
+      "src/alphaforge/live/store.py": "2bd76f4dc7342113bf8a0311dc9bf177b76ed043e3b61442799fd8cf8554b431",
+      "src/alphaforge/portfolio/strategy.py": "e1308c8bf6560a759983d1bd2fbef505050340ccce4ef42499d6943c559d5263",
+      "src/alphaforge/risk/book_ladder.py": null,
+      "src/alphaforge/risk/ladder_paths.py": null,
+      "src/alphaforge/validation/trial_reservation.py": "4c8f0ebe98470d63f378e75608aad38bdd36887ec70a0b9b2aa9f6fa4c56538e"
     },
-    "latest_equity_cycle_ts": 1787666400000,
+    "latest_equity_cycle_ts": 1789423200000,
     "position_snapshot_columns": [
       "cycle_ts",
       "instrument_id",
       "qty",
       "avg_entry_price",
-      "opened_ts"
+      "opened_ts",
+      "mark_price",
+      "mark_source",
+      "market_value_quote",
+      "unrealized_pnl_quote"
     ],
     "service_state": "inactive",
+    "tables": [
+      "cycles",
+      "equity_curve",
+      "fills",
+      "ladder_state",
+      "orders",
+      "paper_state",
+      "positions_snapshots",
+      "sqlite_sequence"
+    ],
     "timer_state": "active"
   },
   "schema": "canli.alphac-crypto-position-attribution-vps-preflight-observation.v1",
   "source_bindings": {
-    "deployment_tool_sha256": "ff202f703949e58c47b58f7f34f41e7d404df3184103964aacc2e699145df812",
+    "deployment_tool_sha256": "d45ec75a586cba2e3043f37b0c4b50de8231c65d3a3bfee8fcb2e1174d4f0e35",
     "preflight_contract_path": "artifacts/engineering/crypto_position_attribution_vps_preflight.json",
-    "preflight_contract_sha256": "c53f6bf71fdd6c7cea2439a5fa709e9d32d19424f1157a36c5709d557c82a377"
+    "preflight_contract_sha256": "b4c6495e51ba9fe015a9250cbe6765a59547b1b54bf8f2c218326dd8e60f40c9"
   },
   "status": "PASS_READ_ONLY_PREFLIGHT_DEPLOYMENT_NOT_AUTHORIZED"
 }

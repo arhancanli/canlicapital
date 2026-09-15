@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Current-book diversification: the confidence-bound result</title>
 <meta name="description" content="The long-run portfolio objective is approximately −0.03 average correlation. The current measured point is 0.0548 above it." />
-<meta name="alphac-source-sha256" content="e6122c351d79f53d0a34928aa72ec2712b46b0c536e331a132bc71858f6ae27c" />
+<meta name="alphac-source-sha256" content="4e20f7c539fdc977521df7d7cbdba0b8ca05d610108f2d8da5e49076f7942e09" />
 
 <link rel="canonical" href="https://canlicapital.com/research/current-book-diversification-model" />
 <meta name="author" content="Arhan Canli" />
@@ -294,7 +294,8 @@ the governing average-correlation point gate is not.</p>
 <p>It does not establish live-forward diversification. The frozen research curves end before the
 broker-reconciled forward record begins; the returns were known before the protocol; no independent
 human replication exists; and the window is not crisis-complete. It proves neither alpha nor the
-1.5 forward-Sharpe objective and spends zero new hypothesis identities.</p>
+governing forward-Sharpe objective (1.5 when this study was sealed; 2.0 since 2026-09-14 under
+<code>config/owner_goals.json</code>) and spends zero new hypothesis identities.</p>
 <h2>Reproduction</h2>
 <pre><code class="language-bash">uv run python scripts/analyze_current_book_diversification.py
 </code></pre>

@@ -319,9 +319,9 @@
         ],
         "pair": "AlphaMax|AlphaTrend",
         "resolved_at_95": true,
-        "rho": 0.21002198225676125,
+        "rho": 0.21003647886971527,
         "shares_factor_family": true,
-        "standard_errors_from_zero": 6.93
+        "standard_errors_from_zero": 6.94
       },
       {
         "crisis_directions": [
@@ -364,7 +364,7 @@
         ],
         "pair": "AlphaTrend|AlphaVintage",
         "resolved_at_95": false,
-        "rho": -0.04426900904426509,
+        "rho": -0.044267234897722905,
         "shares_factor_family": false,
         "standard_errors_from_zero": 1.44
       },
@@ -379,7 +379,7 @@
         ],
         "pair": "AlphaForge|AlphaTrend",
         "resolved_at_95": false,
-        "rho": 0.02285646544202205,
+        "rho": 0.022859622846078544,
         "shares_factor_family": false,
         "standard_errors_from_zero": 0.74
       },
@@ -400,7 +400,8 @@
       }
     ],
     "resolved_pairs": 2,
-    "rho_bar": 0.026036646115348446,
+    "rho_bar": 0.026039884142607227,
+    "sleeves_now": 4,
     "standard_error_per_pair": 0.0307,
     "the_axis_with_no_local_evidence": "Crisis direction. This book holds one SHORT_LIQUIDITY sleeve, so no pair isolates it and nothing here tests it. It decides fourteen of the twenty rankings below, and that is the single weakest joint in this artifact.",
     "unresolved_pairs": 4,
@@ -442,18 +443,20 @@
   "what_the_ordering_is_for": {
     "candidate_average_correlation_gate": 0.0,
     "extends": "artifacts/analysis/breadth_acquisition/result.json, which reached the same conclusion against the superseded 0.15 gate.",
-    "forward_sharpe_at_that_rho_bar_optimistic_haircut": 1.157,
-    "forward_sharpe_at_the_objective_optimistic_haircut": 1.498,
-    "in_sample_sharpe_at_that_rho_bar": 1.736,
-    "in_sample_sharpe_at_the_objective": 2.247,
-    "objective_rho_bar": -0.03,
+    "forward_sharpe_at_that_rho_bar_optimistic_haircut": 1.145,
+    "forward_sharpe_at_the_objective_optimistic_haircut": 2.0,
+    "honest_forward_sharpe_target": 2.0,
+    "in_sample_sharpe_at_that_rho_bar": 1.717,
+    "in_sample_sharpe_at_the_objective": 3.0,
+    "objective_rho_bar": -0.05116116239316238,
+    "objective_source": "config/owner_goals.json",
     "pairs_new": 85,
     "pairs_now": 6,
-    "required_average_over_the_new_pairs": -0.03396,
+    "required_average_over_the_new_pairs": -0.05661,
     "rho_bar_if_the_aggregate_new_edges_sit_at_the_incremental_boundary": 0.001717,
-    "rho_bar_now": 0.026036646115348446,
+    "rho_bar_now": 0.026039884142607227,
     "sleeves_now": 4,
     "sleeves_target": 14,
-    "the_gap": "The aggregate new edges landing exactly on the +0.00 incremental boundary gives a book average of +0.0017 and a forward Sharpe of 1.16 on this book's own optimistic haircut. The gate is necessary and it is not sufficient, and the shortfall is 0.34 of forward Sharpe. Ordering by expected orthogonality is the only lever that acts on the difference, because the incremental boundary cannot."
+    "the_gap": "The aggregate new edges landing exactly on the +0.00 incremental boundary gives a book average of +0.0017 and a forward Sharpe of 1.14 on this book's own optimistic haircut. The gate is necessary and it is not sufficient, and the shortfall is 0.86 of forward Sharpe. Ordering by expected orthogonality is the only lever that acts on the difference, because the incremental boundary cannot."
   }
 }

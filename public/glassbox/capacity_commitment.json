@@ -14,12 +14,12 @@
     "crypto_sr_decay": "0.40 @ $100k -> 0.04 @ $1M -> -0.37 @ $10M (MEASURED, verdict.md sweep)",
     "equity_core_threshold_usd": 100000000.0,
     "forward_sharpe": "0.7 central, 0.4 floor, 1.2 ceiling",
-    "source": "glassbox/capacity.json sha256:b26d7391964b0976c14ceb67a1ac9710b7516dea77a55ded4fb614dcfbf09579"
+    "source": "glassbox/capacity.json sha256:841383d40d297310d5b7c49254cfc260bb973983dafbea1d1eaede07795e6c8b"
   },
   "honest_scope": "A governance pledge about how we will treat capacity, signed so it cannot be quietly edited. NOT investment advice, an offer, or a solicitation. Crypto capacity is MEASURED; equity capacity is MODELED (the equity sleeve is not yet at scale). See glassbox/capacity.json for the full basis labels.",
-  "as_of": "2026-09-13",
-  "payload_sha256": "4adc932db7321b1afde29c128256d816c5d7939969d7d618f508768703856316",
-  "signature_ed25519": "1e653e7df22919b63838afe169d4921dad4f5b2dfc2ccb9158fee28f22348fe1725d0325b958d307056966c82cc262b520f104abf6aad7a6ce4293a15f071302",
+  "as_of": "2026-09-14",
+  "payload_sha256": "f2c72ea1567ccd7884f6de5972561b538ace3ea5e028be063982e8898c730b55",
+  "signature_ed25519": "2f1c5dbc4b27643db414bbd616ee154a1565a0b3aa8f9363f6ecd69fbea9cd64d123adb132c60fc1c20e8edf33ec509fe012c2c7433da54def2c493833f1ef09",
   "public_key_ed25519_hex": "0c6606a6b0c5b66fbf3b78521c85e72019484e0177d04a873a651179175ac095",
   "verify": "Take this object, remove the 4 fields {payload_sha256, signature_ed25519, public_key_ed25519_hex, verify}, serialize the rest as canonical JSON (sorted keys, compact separators), sha256 it (must equal payload_sha256), then check the Ed25519 signature over that hash against the public key. Same key as the transparency chain."
 }

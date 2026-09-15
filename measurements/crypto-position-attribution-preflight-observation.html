@@ -102,10 +102,10 @@
 <dl class="measure__facts">
 <div class="measure__row"><dt>Author</dt><dd>Arhan Canli</dd></div>
 <div class="measure__row"><dt>Authority</dt><dd>FRANKFURT_CRYPTO_PAPER_HOST_SOLE_REMOTE_WRITER</dd></div>
-<div class="measure__row"><dt>Content hash</dt><dd>sha256:f86fb76e861c359530b08641a5fd3e1ffa66c6a2ddaa5e7cb6277e0a1711bc11</dd></div>
+<div class="measure__row"><dt>Content hash</dt><dd>sha256:795d385fd9395671958dee148045e3a4f2b13aeab2b213854407cab926f80ea3</dd></div>
 <div class="measure__row"><dt>Deployment authorized</dt><dd>no</dd></div>
 <div class="measure__row"><dt>Forced cycle run</dt><dd>no</dd></div>
-<div class="measure__row"><dt>Observed at utc</dt><dd>2026-08-25T14:54:22.909779+00:00</dd></div>
+<div class="measure__row"><dt>Observed at utc</dt><dd>2026-09-14T22:20:52.676412+00:00</dd></div>
 <div class="measure__row"><dt>Passes read only preflight</dt><dd>yes</dd></div>
 <div class="measure__row"><dt>Remote mutations performed</dt><dd>no</dd></div>
 <div class="measure__row"><dt>Remote query performed</dt><dd>yes</dd></div>
@@ -115,25 +115,34 @@
 <section class="measure__sub"><h3>Remote snapshot</h3>
 <dl class="measure__facts">
 <div class="measure__row"><dt>Database exists</dt><dd>yes</dd></div>
-<div class="measure__row"><dt>Database sha256</dt><dd>b5d117cf821735f8b0f5d7d6f8a6750b4f601f60f3408aa5c4d60f2588eab266</dd></div>
-<div class="measure__row"><dt>Latest equity cycle ts</dt><dd>1787666400000</dd></div>
+<div class="measure__row"><dt>Database sha256</dt><dd>8fccbd5986a1cd662bf767b0e1df677446839af507d7dc855d91f53b441923d7</dd></div>
+<div class="measure__row"><dt>Latest equity cycle ts</dt><dd>1789423200000</dd></div>
 <div class="measure__row"><dt>Service state</dt><dd>inactive</dd></div>
 <div class="measure__row"><dt>Timer state</dt><dd>active</dd></div>
 </dl>
 <section class="measure__sub"><h4>Files</h4>
 <dl class="measure__facts">
-<div class="measure__row"><dt>Src/alphaforge/execution/paper / Py</dt><dd>f6f0872748a2791ff989660b74d02fc9482bac3d9a492114a702d4813d3a96a2</dd></div>
-<div class="measure__row"><dt>Src/alphaforge/live/loop / Py</dt><dd>c54e33eda08d8c0b9b020d570306045fd9846a59caccd4dea2e68b561187ab28</dd></div>
-<div class="measure__row"><dt>Src/alphaforge/live/store / Py</dt><dd>aa815f09a2eee9528ca878e510dd4e69041a1de378d8e0b28ce5f54044c6a8d5</dd></div>
+<div class="measure__row"><dt>Config/drawdown control contract / Json</dt><dd>Not reported</dd></div>
+<div class="measure__row"><dt>Configs/base / Yaml</dt><dd>6177d3f33089e7c0f6f8d99bc97e66d75f3d596e7593806b79c89cedebde15fa</dd></div>
+<div class="measure__row"><dt>Src/alphaforge/cli/paper cmds / Py</dt><dd>8beb82224aa096ef592f59d0508409632c310faf46bbeb16a73c6bccc34dc963</dd></div>
+<div class="measure__row"><dt>Src/alphaforge/config/settings / Py</dt><dd>a8baa6cff327f8a8f0a43f62d4a10ebbef85e2233fed31b719b6263b1cd896ad</dd></div>
+<div class="measure__row"><dt>Src/alphaforge/execution/paper / Py</dt><dd>975e5362afb144c083bc9f196a508af2d75d6492061b71f404dd9d5229d0c278</dd></div>
+<div class="measure__row"><dt>Src/alphaforge/live/loop / Py</dt><dd>772b59d59edae637eed05109928d711eb88dc4c982288e930c8e482926bd5aa6</dd></div>
+<div class="measure__row"><dt>Src/alphaforge/live/store / Py</dt><dd>2bd76f4dc7342113bf8a0311dc9bf177b76ed043e3b61442799fd8cf8554b431</dd></div>
+<div class="measure__row"><dt>Src/alphaforge/portfolio/strategy / Py</dt><dd>e1308c8bf6560a759983d1bd2fbef505050340ccce4ef42499d6943c559d5263</dd></div>
+<div class="measure__row"><dt>Src/alphaforge/risk/book ladder / Py</dt><dd>Not reported</dd></div>
+<div class="measure__row"><dt>Src/alphaforge/risk/ladder paths / Py</dt><dd>Not reported</dd></div>
+<div class="measure__row"><dt>Src/alphaforge/validation/trial reservation / Py</dt><dd>4c8f0ebe98470d63f378e75608aad38bdd36887ec70a0b9b2aa9f6fa4c56538e</dd></div>
 </dl>
 </section>
-<p class="measure__label">Position snapshot columns</p><ul class="measure__list"><li>cycle_ts</li><li>instrument_id</li><li>qty</li><li>avg_entry_price</li><li>opened_ts</li></ul>
+<p class="measure__label">Position snapshot columns</p><ul class="measure__list"><li>cycle_ts</li><li>instrument_id</li><li>qty</li><li>avg_entry_price</li><li>opened_ts</li><li>mark_price</li><li>mark_source</li><li>market_value_quote</li><li>unrealized_pnl_quote</li></ul>
+<p class="measure__label">Tables</p><ul class="measure__list"><li>cycles</li><li>equity_curve</li><li>fills</li><li>ladder_state</li><li>orders</li><li>paper_state</li><li>positions_snapshots</li><li>sqlite_sequence</li></ul>
 </section>
 <section class="measure__sub"><h3>Source bindings</h3>
 <dl class="measure__facts">
-<div class="measure__row"><dt>Deployment tool sha256</dt><dd>ff202f703949e58c47b58f7f34f41e7d404df3184103964aacc2e699145df812</dd></div>
+<div class="measure__row"><dt>Deployment tool sha256</dt><dd>d45ec75a586cba2e3043f37b0c4b50de8231c65d3a3bfee8fcb2e1174d4f0e35</dd></div>
 <div class="measure__row"><dt>Preflight contract path</dt><dd>artifacts/engineering/crypto_position_attribution_vps_preflight.json</dd></div>
-<div class="measure__row"><dt>Preflight contract sha256</dt><dd>c53f6bf71fdd6c7cea2439a5fa709e9d32d19424f1157a36c5709d557c82a377</dd></div>
+<div class="measure__row"><dt>Preflight contract sha256</dt><dd>b4c6495e51ba9fe015a9250cbe6765a59547b1b54bf8f2c218326dd8e60f40c9</dd></div>
 </dl>
 </section>
 </section>

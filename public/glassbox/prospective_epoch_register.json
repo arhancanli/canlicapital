@@ -1,13 +1,15 @@
 {
   "author": "Arhan Canli",
   "claim_boundary": "One row per hypothesis identity measured after the legacy epoch closed, with its reservation, first immutable measurement and evidence status. Listing an identity is not admission, validation or a performance claim; an unclosed identity has been measured and counted against the budget and nothing else. Legacy retired identities plus these rows equal selection N by construction, or this file is not written.",
-  "content_hash": "sha256:f58c5596a87fb38a34523f914cc639a4e1f4292b89924a42bf3e6bd1b8063364",
-  "generated_at": "2026-09-14T10:54:01.891620+00:00",
+  "content_hash": "sha256:d24e33efbb841484656bd4038ec6f78379a4b22125ada794da05203e039aed99",
+  "generated_at": "2026-09-15T14:26:56.243438+00:00",
   "identities": [
     {
       "admitted": false,
       "arm": null,
+      "closure_kind": "governed",
       "closure_path": "artifacts/research/crypto_carry_portable_v1_admission_closure.json",
+      "closure_schema": "canli.alphac-crypto-carry-portable-admission-closure.v1",
       "config_hash": "50d9e8b059fee773",
       "family_trial_account": "crypto_carry",
       "final_disposition": "INCOMPLETE",
@@ -33,10 +35,12 @@
     {
       "admitted": false,
       "arm": null,
-      "closure_path": null,
+      "closure_kind": "development",
+      "closure_path": "artifacts/research/development_closures/0d1ecbac03f062ab_admission_closure.json",
+      "closure_schema": "canli.alphac-development-trial-admission-closure.v1",
       "config_hash": "89e313502446e33a",
       "family_trial_account": "managed_futures_trend",
-      "final_disposition": null,
+      "final_disposition": "KILL",
       "first_measurement": {
         "n_obs": 5190,
         "recorded_at": "2026-09-11T19:00:46.676000+00:00",
@@ -45,7 +49,7 @@
       },
       "hypothesis_key": "0d1ecbac03f062ab",
       "ledger_path": "artifacts/analysis/alphatrend_cost_development_20260911_attempt2/experiments.jsonl",
-      "packet_complete": false,
+      "packet_complete": true,
       "reservation_ordinal": 230,
       "reservation_path": "artifacts/analysis/alphatrend_cost_development_20260911_attempt2/reservation.json",
       "reserved_at": "2026-09-11T19:00:22.216375+00:00",
@@ -54,15 +58,17 @@
         "kind": "imported",
         "receipt": "artifacts/audit/external_ledger_import_20260914T095114Z.json"
       },
-      "status": "IMPORTED_RESERVED_MEASURED_UNCLOSED"
+      "status": "DEVELOPMENT_CLOSURE_FINAL_NOT_ADMITTED"
     },
     {
       "admitted": false,
       "arm": null,
-      "closure_path": null,
+      "closure_kind": "development",
+      "closure_path": "artifacts/research/development_closures/e05ed6acb9f4f880_admission_closure.json",
+      "closure_schema": "canli.alphac-development-trial-admission-closure.v1",
       "config_hash": "5c13e2df9313de49",
       "family_trial_account": "managed_futures_trend",
-      "final_disposition": null,
+      "final_disposition": "KILL",
       "first_measurement": {
         "n_obs": 5190,
         "recorded_at": "2026-09-12T03:43:01.200000+00:00",
@@ -71,7 +77,7 @@
       },
       "hypothesis_key": "e05ed6acb9f4f880",
       "ledger_path": "artifacts/analysis/alphatrend_cash_retention_20260912/experiments.jsonl",
-      "packet_complete": false,
+      "packet_complete": true,
       "reservation_ordinal": 231,
       "reservation_path": "artifacts/analysis/alphatrend_cash_retention_20260912/reservation.json",
       "reserved_at": "2026-09-12T03:42:36.609721+00:00",
@@ -80,15 +86,17 @@
         "kind": "imported",
         "receipt": "artifacts/audit/external_ledger_import_20260914T095114Z.json"
       },
-      "status": "IMPORTED_RESERVED_MEASURED_UNCLOSED"
+      "status": "DEVELOPMENT_CLOSURE_FINAL_NOT_ADMITTED"
     },
     {
       "admitted": false,
       "arm": null,
-      "closure_path": null,
+      "closure_kind": "development",
+      "closure_path": "artifacts/research/development_closures/ec7ec19175ac10a9_admission_closure.json",
+      "closure_schema": "canli.alphac-development-trial-admission-closure.v1",
       "config_hash": "6c30cd801e1a1455",
       "family_trial_account": "managed_futures_trend",
-      "final_disposition": null,
+      "final_disposition": "KILL",
       "first_measurement": {
         "n_obs": 5190,
         "recorded_at": "2026-09-12T04:02:53.327000+00:00",
@@ -97,7 +105,7 @@
       },
       "hypothesis_key": "ec7ec19175ac10a9",
       "ledger_path": "artifacts/analysis/alphatrend_directional_20260912_attempt2/experiments.jsonl",
-      "packet_complete": false,
+      "packet_complete": true,
       "reservation_ordinal": 232,
       "reservation_path": "artifacts/analysis/alphatrend_directional_20260912_attempt2/reservation.json",
       "reserved_at": "2026-09-12T04:02:32.063741+00:00",
@@ -106,15 +114,17 @@
         "kind": "imported",
         "receipt": "artifacts/audit/external_ledger_import_20260914T095114Z.json"
       },
-      "status": "IMPORTED_RESERVED_MEASURED_UNCLOSED"
+      "status": "DEVELOPMENT_CLOSURE_FINAL_NOT_ADMITTED"
     },
     {
       "admitted": false,
       "arm": null,
-      "closure_path": null,
+      "closure_kind": "development",
+      "closure_path": "artifacts/research/development_closures/6f5e71ec657beef2_admission_closure.json",
+      "closure_schema": "canli.alphac-development-trial-admission-closure.v1",
       "config_hash": "788422302e475b11",
       "family_trial_account": "managed_futures_trend",
-      "final_disposition": null,
+      "final_disposition": "KILL",
       "first_measurement": {
         "n_obs": 5190,
         "recorded_at": "2026-09-12T04:13:39.187000+00:00",
@@ -123,7 +133,7 @@
       },
       "hypothesis_key": "6f5e71ec657beef2",
       "ledger_path": "artifacts/analysis/alphatrend_directional_validation_20260912/baseline/experiments.jsonl",
-      "packet_complete": false,
+      "packet_complete": true,
       "reservation_ordinal": 233,
       "reservation_path": "artifacts/analysis/alphatrend_directional_validation_20260912/baseline/reservation.json",
       "reserved_at": "2026-09-12T04:13:19.436550+00:00",
@@ -132,15 +142,17 @@
         "kind": "imported",
         "receipt": "artifacts/audit/external_ledger_import_20260914T095114Z.json"
       },
-      "status": "IMPORTED_RESERVED_MEASURED_UNCLOSED"
+      "status": "DEVELOPMENT_CLOSURE_FINAL_NOT_ADMITTED"
     },
     {
       "admitted": false,
       "arm": null,
-      "closure_path": null,
+      "closure_kind": "development",
+      "closure_path": "artifacts/research/development_closures/4d7793cfffb17091_admission_closure.json",
+      "closure_schema": "canli.alphac-development-trial-admission-closure.v1",
       "config_hash": "0acb46e6726d7575",
       "family_trial_account": "managed_futures_trend",
-      "final_disposition": null,
+      "final_disposition": "KILL",
       "first_measurement": {
         "n_obs": 5190,
         "recorded_at": "2026-09-12T04:13:59.257000+00:00",
@@ -149,7 +161,7 @@
       },
       "hypothesis_key": "4d7793cfffb17091",
       "ledger_path": "artifacts/analysis/alphatrend_directional_validation_20260912/candidate/experiments.jsonl",
-      "packet_complete": false,
+      "packet_complete": true,
       "reservation_ordinal": 234,
       "reservation_path": "artifacts/analysis/alphatrend_directional_validation_20260912/candidate/reservation.json",
       "reserved_at": "2026-09-12T04:13:39.479651+00:00",
@@ -158,15 +170,17 @@
         "kind": "imported",
         "receipt": "artifacts/audit/external_ledger_import_20260914T095114Z.json"
       },
-      "status": "IMPORTED_RESERVED_MEASURED_UNCLOSED"
+      "status": "DEVELOPMENT_CLOSURE_FINAL_NOT_ADMITTED"
     },
     {
       "admitted": false,
       "arm": null,
-      "closure_path": null,
+      "closure_kind": "development",
+      "closure_path": "artifacts/research/development_closures/2ab27017e93d15a4_admission_closure.json",
+      "closure_schema": "canli.alphac-development-trial-admission-closure.v1",
       "config_hash": "917d5169355d600f",
       "family_trial_account": "managed_futures_trend",
-      "final_disposition": null,
+      "final_disposition": "KILL",
       "first_measurement": {
         "n_obs": 5190,
         "recorded_at": "2026-09-12T04:52:51.446000+00:00",
@@ -175,7 +189,7 @@
       },
       "hypothesis_key": "2ab27017e93d15a4",
       "ledger_path": "artifacts/analysis/alphatrend_causal_continuous_20260912/baseline/experiments.jsonl",
-      "packet_complete": false,
+      "packet_complete": true,
       "reservation_ordinal": 235,
       "reservation_path": "artifacts/analysis/alphatrend_causal_continuous_20260912/baseline/reservation.json",
       "reserved_at": "2026-09-12T04:52:41.797328+00:00",
@@ -184,15 +198,17 @@
         "kind": "imported",
         "receipt": "artifacts/audit/external_ledger_import_20260914T095114Z.json"
       },
-      "status": "IMPORTED_RESERVED_MEASURED_UNCLOSED"
+      "status": "DEVELOPMENT_CLOSURE_FINAL_NOT_ADMITTED"
     },
     {
       "admitted": false,
       "arm": null,
-      "closure_path": null,
+      "closure_kind": "development",
+      "closure_path": "artifacts/research/development_closures/59901461092dd7a6_admission_closure.json",
+      "closure_schema": "canli.alphac-development-trial-admission-closure.v1",
       "config_hash": "15f89e7f56b7c764",
       "family_trial_account": "managed_futures_trend",
-      "final_disposition": null,
+      "final_disposition": "KILL",
       "first_measurement": {
         "n_obs": 5190,
         "recorded_at": "2026-09-12T04:53:01.687000+00:00",
@@ -201,7 +217,7 @@
       },
       "hypothesis_key": "59901461092dd7a6",
       "ledger_path": "artifacts/analysis/alphatrend_causal_continuous_20260912/candidate/experiments.jsonl",
-      "packet_complete": false,
+      "packet_complete": true,
       "reservation_ordinal": 236,
       "reservation_path": "artifacts/analysis/alphatrend_causal_continuous_20260912/candidate/reservation.json",
       "reserved_at": "2026-09-12T04:52:52.293579+00:00",
@@ -210,15 +226,17 @@
         "kind": "imported",
         "receipt": "artifacts/audit/external_ledger_import_20260914T095114Z.json"
       },
-      "status": "IMPORTED_RESERVED_MEASURED_UNCLOSED"
+      "status": "DEVELOPMENT_CLOSURE_FINAL_NOT_ADMITTED"
     },
     {
       "admitted": false,
       "arm": null,
-      "closure_path": null,
+      "closure_kind": "development",
+      "closure_path": "artifacts/research/development_closures/11b181067d8da228_admission_closure.json",
+      "closure_schema": "canli.alphac-development-trial-admission-closure.v1",
       "config_hash": "5eb0aa6336f81747",
       "family_trial_account": "managed_futures_trend",
-      "final_disposition": null,
+      "final_disposition": "KILL",
       "first_measurement": {
         "n_obs": 5190,
         "recorded_at": "2026-09-12T05:01:18.848000+00:00",
@@ -227,7 +245,7 @@
       },
       "hypothesis_key": "11b181067d8da228",
       "ledger_path": "artifacts/analysis/alphatrend_causal_stress_20260912/baseline/experiments.jsonl",
-      "packet_complete": false,
+      "packet_complete": true,
       "reservation_ordinal": 237,
       "reservation_path": "artifacts/analysis/alphatrend_causal_stress_20260912/baseline/reservation.json",
       "reserved_at": "2026-09-12T05:01:07.880761+00:00",
@@ -236,15 +254,17 @@
         "kind": "imported",
         "receipt": "artifacts/audit/external_ledger_import_20260914T095114Z.json"
       },
-      "status": "IMPORTED_RESERVED_MEASURED_UNCLOSED"
+      "status": "DEVELOPMENT_CLOSURE_FINAL_NOT_ADMITTED"
     },
     {
       "admitted": false,
       "arm": null,
-      "closure_path": null,
+      "closure_kind": "development",
+      "closure_path": "artifacts/research/development_closures/e7c03d85c7f196b9_admission_closure.json",
+      "closure_schema": "canli.alphac-development-trial-admission-closure.v1",
       "config_hash": "fe7949291cc2ce68",
       "family_trial_account": "managed_futures_trend",
-      "final_disposition": null,
+      "final_disposition": "KILL",
       "first_measurement": {
         "n_obs": 5190,
         "recorded_at": "2026-09-12T05:01:30.035000+00:00",
@@ -253,7 +273,7 @@
       },
       "hypothesis_key": "e7c03d85c7f196b9",
       "ledger_path": "artifacts/analysis/alphatrend_causal_stress_20260912/candidate/experiments.jsonl",
-      "packet_complete": false,
+      "packet_complete": true,
       "reservation_ordinal": 238,
       "reservation_path": "artifacts/analysis/alphatrend_causal_stress_20260912/candidate/reservation.json",
       "reserved_at": "2026-09-12T05:01:19.264235+00:00",
@@ -262,15 +282,17 @@
         "kind": "imported",
         "receipt": "artifacts/audit/external_ledger_import_20260914T095114Z.json"
       },
-      "status": "IMPORTED_RESERVED_MEASURED_UNCLOSED"
+      "status": "DEVELOPMENT_CLOSURE_FINAL_NOT_ADMITTED"
     },
     {
       "admitted": false,
       "arm": null,
-      "closure_path": null,
+      "closure_kind": "development",
+      "closure_path": "artifacts/research/development_closures/2877bd5fcfbf7967_admission_closure.json",
+      "closure_schema": "canli.alphac-development-trial-admission-closure.v1",
       "config_hash": "bfabd729109ca9ce",
       "family_trial_account": "managed_futures_trend",
-      "final_disposition": null,
+      "final_disposition": "KILL",
       "first_measurement": {
         "n_obs": 2939,
         "recorded_at": "2026-09-12T12:06:02.502000+00:00",
@@ -279,7 +301,7 @@
       },
       "hypothesis_key": "2877bd5fcfbf7967",
       "ledger_path": "artifacts/analysis/alphatrend_retrospective_comparison_20260912/baseline/experiments.jsonl",
-      "packet_complete": false,
+      "packet_complete": true,
       "reservation_ordinal": 239,
       "reservation_path": "artifacts/analysis/alphatrend_retrospective_comparison_20260912/baseline/reservation.json",
       "reserved_at": "2026-09-12T12:05:37.348606+00:00",
@@ -288,15 +310,17 @@
         "kind": "imported",
         "receipt": "artifacts/audit/external_ledger_import_20260914T095114Z.json"
       },
-      "status": "IMPORTED_RESERVED_MEASURED_UNCLOSED"
+      "status": "DEVELOPMENT_CLOSURE_FINAL_NOT_ADMITTED"
     },
     {
       "admitted": false,
       "arm": null,
-      "closure_path": null,
+      "closure_kind": "development",
+      "closure_path": "artifacts/research/development_closures/45c8d387e6e0b6c5_admission_closure.json",
+      "closure_schema": "canli.alphac-development-trial-admission-closure.v1",
       "config_hash": "c9789f841f503deb",
       "family_trial_account": "managed_futures_trend",
-      "final_disposition": null,
+      "final_disposition": "KILL",
       "first_measurement": {
         "n_obs": 2939,
         "recorded_at": "2026-09-12T12:06:29.768000+00:00",
@@ -305,7 +329,7 @@
       },
       "hypothesis_key": "45c8d387e6e0b6c5",
       "ledger_path": "artifacts/analysis/alphatrend_retrospective_comparison_20260912/candidate/experiments.jsonl",
-      "packet_complete": false,
+      "packet_complete": true,
       "reservation_ordinal": 240,
       "reservation_path": "artifacts/analysis/alphatrend_retrospective_comparison_20260912/candidate/reservation.json",
       "reserved_at": "2026-09-12T12:06:04.554953+00:00",
@@ -314,15 +338,17 @@
         "kind": "imported",
         "receipt": "artifacts/audit/external_ledger_import_20260914T095114Z.json"
       },
-      "status": "IMPORTED_RESERVED_MEASURED_UNCLOSED"
+      "status": "DEVELOPMENT_CLOSURE_FINAL_NOT_ADMITTED"
     },
     {
       "admitted": false,
       "arm": "weekly_unlevered_63day_5pct_vol_target",
-      "closure_path": null,
+      "closure_kind": "development",
+      "closure_path": "artifacts/research/development_closures/cee0d1d2e4812438_admission_closure.json",
+      "closure_schema": "canli.alphac-development-trial-admission-closure.v1",
       "config_hash": "9e91d66021bcf3d9",
       "family_trial_account": "alphac_combined_risk_control",
-      "final_disposition": null,
+      "final_disposition": "KILL",
       "first_measurement": {
         "n_obs": 1061,
         "recorded_at": "2026-09-13T06:01:49.630000+00:00",
@@ -331,7 +357,7 @@
       },
       "hypothesis_key": "cee0d1d2e4812438",
       "ledger_path": "artifacts/analysis/alphac_vol_control_20260913/primary/experiments.jsonl",
-      "packet_complete": false,
+      "packet_complete": true,
       "reservation_ordinal": 241,
       "reservation_path": "artifacts/analysis/alphac_vol_control_20260913/primary/reservation.json",
       "reserved_at": "2026-09-13T06:01:48.752399+00:00",
@@ -340,15 +366,17 @@
         "kind": "imported",
         "receipt": "artifacts/audit/external_ledger_import_20260914T095114Z.json"
       },
-      "status": "IMPORTED_RESERVED_MEASURED_UNCLOSED"
+      "status": "DEVELOPMENT_CLOSURE_FINAL_NOT_ADMITTED"
     },
     {
       "admitted": false,
       "arm": "weekly_unlevered_63day_5pct_vol_target",
-      "closure_path": null,
+      "closure_kind": "development",
+      "closure_path": "artifacts/research/development_closures/58f38da29d87f8e2_admission_closure.json",
+      "closure_schema": "canli.alphac-development-trial-admission-closure.v1",
       "config_hash": "8a0bec657e196a39",
       "family_trial_account": "alphac_combined_risk_control",
-      "final_disposition": null,
+      "final_disposition": "KILL",
       "first_measurement": {
         "n_obs": 1061,
         "recorded_at": "2026-09-13T06:01:51.242000+00:00",
@@ -357,7 +385,7 @@
       },
       "hypothesis_key": "58f38da29d87f8e2",
       "ledger_path": "artifacts/analysis/alphac_vol_control_20260913/cost_stress/experiments.jsonl",
-      "packet_complete": false,
+      "packet_complete": true,
       "reservation_ordinal": 242,
       "reservation_path": "artifacts/analysis/alphac_vol_control_20260913/cost_stress/reservation.json",
       "reserved_at": "2026-09-13T06:01:50.426771+00:00",
@@ -366,15 +394,17 @@
         "kind": "imported",
         "receipt": "artifacts/audit/external_ledger_import_20260914T095114Z.json"
       },
-      "status": "IMPORTED_RESERVED_MEASURED_UNCLOSED"
+      "status": "DEVELOPMENT_CLOSURE_FINAL_NOT_ADMITTED"
     },
     {
       "admitted": false,
       "arm": "weekly_126day_bounded_inverse_volatility",
-      "closure_path": null,
+      "closure_kind": "development",
+      "closure_path": "artifacts/research/development_closures/eda3f81bac790cf7_admission_closure.json",
+      "closure_schema": "canli.alphac-development-trial-admission-closure.v1",
       "config_hash": "51a994cd8d9e1543",
       "family_trial_account": "alphac_combined_inverse_vol_allocation",
-      "final_disposition": null,
+      "final_disposition": "KILL",
       "first_measurement": {
         "n_obs": 1061,
         "recorded_at": "2026-09-13T06:12:26.417000+00:00",
@@ -383,7 +413,7 @@
       },
       "hypothesis_key": "eda3f81bac790cf7",
       "ledger_path": "artifacts/analysis/alphac_inverse_vol_20260913/primary/experiments.jsonl",
-      "packet_complete": false,
+      "packet_complete": true,
       "reservation_ordinal": 243,
       "reservation_path": "artifacts/analysis/alphac_inverse_vol_20260913/primary/reservation.json",
       "reserved_at": "2026-09-13T06:12:25.637157+00:00",
@@ -392,15 +422,17 @@
         "kind": "imported",
         "receipt": "artifacts/audit/external_ledger_import_20260914T095114Z.json"
       },
-      "status": "IMPORTED_RESERVED_MEASURED_UNCLOSED"
+      "status": "DEVELOPMENT_CLOSURE_FINAL_NOT_ADMITTED"
     },
     {
       "admitted": false,
       "arm": "weekly_126day_bounded_inverse_volatility",
-      "closure_path": null,
+      "closure_kind": "development",
+      "closure_path": "artifacts/research/development_closures/cdb9f69db00a92c2_admission_closure.json",
+      "closure_schema": "canli.alphac-development-trial-admission-closure.v1",
       "config_hash": "47412900259751e3",
       "family_trial_account": "alphac_combined_inverse_vol_allocation",
-      "final_disposition": null,
+      "final_disposition": "KILL",
       "first_measurement": {
         "n_obs": 1061,
         "recorded_at": "2026-09-13T06:12:27.932000+00:00",
@@ -409,7 +441,7 @@
       },
       "hypothesis_key": "cdb9f69db00a92c2",
       "ledger_path": "artifacts/analysis/alphac_inverse_vol_20260913/cost_stress/experiments.jsonl",
-      "packet_complete": false,
+      "packet_complete": true,
       "reservation_ordinal": 244,
       "reservation_path": "artifacts/analysis/alphac_inverse_vol_20260913/cost_stress/reservation.json",
       "reserved_at": "2026-09-13T06:12:27.138856+00:00",
@@ -418,15 +450,17 @@
         "kind": "imported",
         "receipt": "artifacts/audit/external_ledger_import_20260914T095114Z.json"
       },
-      "status": "IMPORTED_RESERVED_MEASURED_UNCLOSED"
+      "status": "DEVELOPMENT_CLOSURE_FINAL_NOT_ADMITTED"
     },
     {
       "admitted": false,
       "arm": null,
-      "closure_path": null,
+      "closure_kind": "development",
+      "closure_path": "artifacts/research/development_closures/4f32c6d04365b7b9_admission_closure.json",
+      "closure_schema": "canli.alphac-development-trial-admission-closure.v1",
       "config_hash": "0d27a33cb0ceb9e9",
       "family_trial_account": "alphatrend_direction_confirmation",
-      "final_disposition": null,
+      "final_disposition": "KILL",
       "first_measurement": {
         "n_obs": 2939,
         "recorded_at": "2026-09-13T06:25:54.375000+00:00",
@@ -435,7 +469,7 @@
       },
       "hypothesis_key": "4f32c6d04365b7b9",
       "ledger_path": "artifacts/analysis/alphatrend_confirmation_20260913/baseline/experiments.jsonl",
-      "packet_complete": false,
+      "packet_complete": true,
       "reservation_ordinal": 245,
       "reservation_path": "artifacts/analysis/alphatrend_confirmation_20260913/baseline/reservation.json",
       "reserved_at": "2026-09-13T06:25:36.390403+00:00",
@@ -444,15 +478,17 @@
         "kind": "imported",
         "receipt": "artifacts/audit/external_ledger_import_20260914T095114Z.json"
       },
-      "status": "IMPORTED_RESERVED_MEASURED_UNCLOSED"
+      "status": "DEVELOPMENT_CLOSURE_FINAL_NOT_ADMITTED"
     },
     {
       "admitted": false,
       "arm": null,
-      "closure_path": null,
+      "closure_kind": "development",
+      "closure_path": "artifacts/research/development_closures/955436d71656447b_admission_closure.json",
+      "closure_schema": "canli.alphac-development-trial-admission-closure.v1",
       "config_hash": "fd8bc0cd35f56c9b",
       "family_trial_account": "alphatrend_direction_confirmation",
-      "final_disposition": null,
+      "final_disposition": "KILL",
       "first_measurement": {
         "n_obs": 2939,
         "recorded_at": "2026-09-13T06:26:14.420000+00:00",
@@ -461,7 +497,7 @@
       },
       "hypothesis_key": "955436d71656447b",
       "ledger_path": "artifacts/analysis/alphatrend_confirmation_20260913/candidate/experiments.jsonl",
-      "packet_complete": false,
+      "packet_complete": true,
       "reservation_ordinal": 246,
       "reservation_path": "artifacts/analysis/alphatrend_confirmation_20260913/candidate/reservation.json",
       "reserved_at": "2026-09-13T06:25:56.871188+00:00",
@@ -470,15 +506,17 @@
         "kind": "imported",
         "receipt": "artifacts/audit/external_ledger_import_20260914T095114Z.json"
       },
-      "status": "IMPORTED_RESERVED_MEASURED_UNCLOSED"
+      "status": "DEVELOPMENT_CLOSURE_FINAL_NOT_ADMITTED"
     },
     {
       "admitted": false,
       "arm": null,
-      "closure_path": null,
+      "closure_kind": "development",
+      "closure_path": "artifacts/research/development_closures/430fa1893fb19e03_admission_closure.json",
+      "closure_schema": "canli.alphac-development-trial-admission-closure.v1",
       "config_hash": "adef5549ff5e3483",
       "family_trial_account": "alphatrend_direction_confirmation",
-      "final_disposition": null,
+      "final_disposition": "KILL",
       "first_measurement": {
         "n_obs": 2939,
         "recorded_at": "2026-09-13T06:26:34.760000+00:00",
@@ -487,7 +525,7 @@
       },
       "hypothesis_key": "430fa1893fb19e03",
       "ledger_path": "artifacts/analysis/alphatrend_confirmation_20260913/baseline_stress/experiments.jsonl",
-      "packet_complete": false,
+      "packet_complete": true,
       "reservation_ordinal": 247,
       "reservation_path": "artifacts/analysis/alphatrend_confirmation_20260913/baseline_stress/reservation.json",
       "reserved_at": "2026-09-13T06:26:16.954179+00:00",
@@ -496,15 +534,17 @@
         "kind": "imported",
         "receipt": "artifacts/audit/external_ledger_import_20260914T095114Z.json"
       },
-      "status": "IMPORTED_RESERVED_MEASURED_UNCLOSED"
+      "status": "DEVELOPMENT_CLOSURE_FINAL_NOT_ADMITTED"
     },
     {
       "admitted": false,
       "arm": null,
-      "closure_path": null,
+      "closure_kind": "development",
+      "closure_path": "artifacts/research/development_closures/aaa2201f460e1996_admission_closure.json",
+      "closure_schema": "canli.alphac-development-trial-admission-closure.v1",
       "config_hash": "a5571d4c610f13ac",
       "family_trial_account": "alphatrend_direction_confirmation",
-      "final_disposition": null,
+      "final_disposition": "KILL",
       "first_measurement": {
         "n_obs": 2939,
         "recorded_at": "2026-09-13T06:26:55.315000+00:00",
@@ -513,7 +553,7 @@
       },
       "hypothesis_key": "aaa2201f460e1996",
       "ledger_path": "artifacts/analysis/alphatrend_confirmation_20260913/candidate_stress/experiments.jsonl",
-      "packet_complete": false,
+      "packet_complete": true,
       "reservation_ordinal": 248,
       "reservation_path": "artifacts/analysis/alphatrend_confirmation_20260913/candidate_stress/reservation.json",
       "reserved_at": "2026-09-13T06:26:37.309975+00:00",
@@ -522,15 +562,17 @@
         "kind": "imported",
         "receipt": "artifacts/audit/external_ledger_import_20260914T095114Z.json"
       },
-      "status": "IMPORTED_RESERVED_MEASURED_UNCLOSED"
+      "status": "DEVELOPMENT_CLOSURE_FINAL_NOT_ADMITTED"
     },
     {
       "admitted": false,
       "arm": "baseline",
-      "closure_path": null,
+      "closure_kind": "development",
+      "closure_path": "artifacts/research/development_closures/2eb0d56d5acfb1a9_admission_closure.json",
+      "closure_schema": "canli.alphac-development-trial-admission-closure.v1",
       "config_hash": "8a1dd5709fa77d77",
       "family_trial_account": "alphac_confirmation_combined",
-      "final_disposition": null,
+      "final_disposition": "KILL",
       "first_measurement": {
         "n_obs": 1061,
         "recorded_at": "2026-09-13T06:31:33.955000+00:00",
@@ -539,7 +581,7 @@
       },
       "hypothesis_key": "2eb0d56d5acfb1a9",
       "ledger_path": "artifacts/analysis/alphac_confirmation_combined_20260913/baseline/experiments.jsonl",
-      "packet_complete": false,
+      "packet_complete": true,
       "reservation_ordinal": 249,
       "reservation_path": "artifacts/analysis/alphac_confirmation_combined_20260913/baseline/reservation.json",
       "reserved_at": "2026-09-13T06:31:33.049328+00:00",
@@ -548,15 +590,17 @@
         "kind": "imported",
         "receipt": "artifacts/audit/external_ledger_import_20260914T095114Z.json"
       },
-      "status": "IMPORTED_RESERVED_MEASURED_UNCLOSED"
+      "status": "DEVELOPMENT_CLOSURE_FINAL_NOT_ADMITTED"
     },
     {
       "admitted": false,
       "arm": "candidate",
-      "closure_path": null,
+      "closure_kind": "development",
+      "closure_path": "artifacts/research/development_closures/0580e819b608a5ea_admission_closure.json",
+      "closure_schema": "canli.alphac-development-trial-admission-closure.v1",
       "config_hash": "c84609678aac340c",
       "family_trial_account": "alphac_confirmation_combined",
-      "final_disposition": null,
+      "final_disposition": "KILL",
       "first_measurement": {
         "n_obs": 1061,
         "recorded_at": "2026-09-13T06:31:35.780000+00:00",
@@ -565,7 +609,7 @@
       },
       "hypothesis_key": "0580e819b608a5ea",
       "ledger_path": "artifacts/analysis/alphac_confirmation_combined_20260913/candidate/experiments.jsonl",
-      "packet_complete": false,
+      "packet_complete": true,
       "reservation_ordinal": 250,
       "reservation_path": "artifacts/analysis/alphac_confirmation_combined_20260913/candidate/reservation.json",
       "reserved_at": "2026-09-13T06:31:34.868648+00:00",
@@ -574,15 +618,17 @@
         "kind": "imported",
         "receipt": "artifacts/audit/external_ledger_import_20260914T095114Z.json"
       },
-      "status": "IMPORTED_RESERVED_MEASURED_UNCLOSED"
+      "status": "DEVELOPMENT_CLOSURE_FINAL_NOT_ADMITTED"
     },
     {
       "admitted": false,
       "arm": "baseline_stress",
-      "closure_path": null,
+      "closure_kind": "development",
+      "closure_path": "artifacts/research/development_closures/e68817bfc95556ca_admission_closure.json",
+      "closure_schema": "canli.alphac-development-trial-admission-closure.v1",
       "config_hash": "b68527dd9736269f",
       "family_trial_account": "alphac_confirmation_combined",
-      "final_disposition": null,
+      "final_disposition": "KILL",
       "first_measurement": {
         "n_obs": 1061,
         "recorded_at": "2026-09-13T06:31:37.591000+00:00",
@@ -591,7 +637,7 @@
       },
       "hypothesis_key": "e68817bfc95556ca",
       "ledger_path": "artifacts/analysis/alphac_confirmation_combined_20260913/baseline_stress/experiments.jsonl",
-      "packet_complete": false,
+      "packet_complete": true,
       "reservation_ordinal": 251,
       "reservation_path": "artifacts/analysis/alphac_confirmation_combined_20260913/baseline_stress/reservation.json",
       "reserved_at": "2026-09-13T06:31:36.678101+00:00",
@@ -600,15 +646,17 @@
         "kind": "imported",
         "receipt": "artifacts/audit/external_ledger_import_20260914T095114Z.json"
       },
-      "status": "IMPORTED_RESERVED_MEASURED_UNCLOSED"
+      "status": "DEVELOPMENT_CLOSURE_FINAL_NOT_ADMITTED"
     },
     {
       "admitted": false,
       "arm": "candidate_stress",
-      "closure_path": null,
+      "closure_kind": "development",
+      "closure_path": "artifacts/research/development_closures/86602e1cb8733911_admission_closure.json",
+      "closure_schema": "canli.alphac-development-trial-admission-closure.v1",
       "config_hash": "b3ab366534dcb814",
       "family_trial_account": "alphac_confirmation_combined",
-      "final_disposition": null,
+      "final_disposition": "KILL",
       "first_measurement": {
         "n_obs": 1061,
         "recorded_at": "2026-09-13T06:31:39.407000+00:00",
@@ -617,7 +665,7 @@
       },
       "hypothesis_key": "86602e1cb8733911",
       "ledger_path": "artifacts/analysis/alphac_confirmation_combined_20260913/candidate_stress/experiments.jsonl",
-      "packet_complete": false,
+      "packet_complete": true,
       "reservation_ordinal": 252,
       "reservation_path": "artifacts/analysis/alphac_confirmation_combined_20260913/candidate_stress/reservation.json",
       "reserved_at": "2026-09-13T06:31:38.466949+00:00",
@@ -626,15 +674,17 @@
         "kind": "imported",
         "receipt": "artifacts/audit/external_ledger_import_20260914T095114Z.json"
       },
-      "status": "IMPORTED_RESERVED_MEASURED_UNCLOSED"
+      "status": "DEVELOPMENT_CLOSURE_FINAL_NOT_ADMITTED"
     },
     {
       "admitted": false,
       "arm": "baseline",
-      "closure_path": null,
+      "closure_kind": "development",
+      "closure_path": "artifacts/research/development_closures/a4156d579f4fb478_admission_closure.json",
+      "closure_schema": "canli.alphac-development-trial-admission-closure.v1",
       "config_hash": "c827e836540327fe",
       "family_trial_account": "alphac_capital_budget",
-      "final_disposition": null,
+      "final_disposition": "KILL",
       "first_measurement": {
         "n_obs": 1061,
         "recorded_at": "2026-09-13T06:36:42.129000+00:00",
@@ -643,7 +693,7 @@
       },
       "hypothesis_key": "a4156d579f4fb478",
       "ledger_path": "artifacts/analysis/alphac_capital_budget_20260913/baseline/experiments.jsonl",
-      "packet_complete": false,
+      "packet_complete": true,
       "reservation_ordinal": 253,
       "reservation_path": "artifacts/analysis/alphac_capital_budget_20260913/baseline/reservation.json",
       "reserved_at": "2026-09-13T06:36:41.210883+00:00",
@@ -652,15 +702,17 @@
         "kind": "imported",
         "receipt": "artifacts/audit/external_ledger_import_20260914T095114Z.json"
       },
-      "status": "IMPORTED_RESERVED_MEASURED_UNCLOSED"
+      "status": "DEVELOPMENT_CLOSURE_FINAL_NOT_ADMITTED"
     },
     {
       "admitted": false,
       "arm": "candidate",
-      "closure_path": null,
+      "closure_kind": "development",
+      "closure_path": "artifacts/research/development_closures/de6f97daf23d8c7c_admission_closure.json",
+      "closure_schema": "canli.alphac-development-trial-admission-closure.v1",
       "config_hash": "3f99a0c37001654d",
       "family_trial_account": "alphac_capital_budget",
-      "final_disposition": null,
+      "final_disposition": "KILL",
       "first_measurement": {
         "n_obs": 1061,
         "recorded_at": "2026-09-13T06:36:43.930000+00:00",
@@ -669,7 +721,7 @@
       },
       "hypothesis_key": "de6f97daf23d8c7c",
       "ledger_path": "artifacts/analysis/alphac_capital_budget_20260913/candidate/experiments.jsonl",
-      "packet_complete": false,
+      "packet_complete": true,
       "reservation_ordinal": 254,
       "reservation_path": "artifacts/analysis/alphac_capital_budget_20260913/candidate/reservation.json",
       "reserved_at": "2026-09-13T06:36:43.028696+00:00",
@@ -678,15 +730,17 @@
         "kind": "imported",
         "receipt": "artifacts/audit/external_ledger_import_20260914T095114Z.json"
       },
-      "status": "IMPORTED_RESERVED_MEASURED_UNCLOSED"
+      "status": "DEVELOPMENT_CLOSURE_FINAL_NOT_ADMITTED"
     },
     {
       "admitted": false,
       "arm": "baseline_stress",
-      "closure_path": null,
+      "closure_kind": "development",
+      "closure_path": "artifacts/research/development_closures/d5753605b5b462e4_admission_closure.json",
+      "closure_schema": "canli.alphac-development-trial-admission-closure.v1",
       "config_hash": "eb4ebc67f9cfee55",
       "family_trial_account": "alphac_capital_budget",
-      "final_disposition": null,
+      "final_disposition": "KILL",
       "first_measurement": {
         "n_obs": 1061,
         "recorded_at": "2026-09-13T06:36:45.741000+00:00",
@@ -695,7 +749,7 @@
       },
       "hypothesis_key": "d5753605b5b462e4",
       "ledger_path": "artifacts/analysis/alphac_capital_budget_20260913/baseline_stress/experiments.jsonl",
-      "packet_complete": false,
+      "packet_complete": true,
       "reservation_ordinal": 255,
       "reservation_path": "artifacts/analysis/alphac_capital_budget_20260913/baseline_stress/reservation.json",
       "reserved_at": "2026-09-13T06:36:44.833951+00:00",
@@ -704,15 +758,17 @@
         "kind": "imported",
         "receipt": "artifacts/audit/external_ledger_import_20260914T095114Z.json"
       },
-      "status": "IMPORTED_RESERVED_MEASURED_UNCLOSED"
+      "status": "DEVELOPMENT_CLOSURE_FINAL_NOT_ADMITTED"
     },
     {
       "admitted": false,
       "arm": "candidate_stress",
-      "closure_path": null,
+      "closure_kind": "development",
+      "closure_path": "artifacts/research/development_closures/e183735bf4e1e9d9_admission_closure.json",
+      "closure_schema": "canli.alphac-development-trial-admission-closure.v1",
       "config_hash": "09c6711b949b4689",
       "family_trial_account": "alphac_capital_budget",
-      "final_disposition": null,
+      "final_disposition": "KILL",
       "first_measurement": {
         "n_obs": 1061,
         "recorded_at": "2026-09-13T06:36:47.558000+00:00",
@@ -721,7 +777,7 @@
       },
       "hypothesis_key": "e183735bf4e1e9d9",
       "ledger_path": "artifacts/analysis/alphac_capital_budget_20260913/candidate_stress/experiments.jsonl",
-      "packet_complete": false,
+      "packet_complete": true,
       "reservation_ordinal": 256,
       "reservation_path": "artifacts/analysis/alphac_capital_budget_20260913/candidate_stress/reservation.json",
       "reserved_at": "2026-09-13T06:36:46.635425+00:00",
@@ -730,15 +786,17 @@
         "kind": "imported",
         "receipt": "artifacts/audit/external_ledger_import_20260914T095114Z.json"
       },
-      "status": "IMPORTED_RESERVED_MEASURED_UNCLOSED"
+      "status": "DEVELOPMENT_CLOSURE_FINAL_NOT_ADMITTED"
     },
     {
       "admitted": false,
       "arm": null,
-      "closure_path": null,
+      "closure_kind": "development",
+      "closure_path": "artifacts/research/development_closures/0c9f361e535c5d86_admission_closure.json",
+      "closure_schema": "canli.alphac-development-trial-admission-closure.v1",
       "config_hash": "dd93b0f3616bed03",
       "family_trial_account": "alphatrend_positive_targets",
-      "final_disposition": null,
+      "final_disposition": "KILL",
       "first_measurement": {
         "n_obs": 2939,
         "recorded_at": "2026-09-13T07:14:09.170000+00:00",
@@ -747,7 +805,7 @@
       },
       "hypothesis_key": "0c9f361e535c5d86",
       "ledger_path": "artifacts/analysis/alphatrend_positive_targets_20260913/baseline/experiments.jsonl",
-      "packet_complete": false,
+      "packet_complete": true,
       "reservation_ordinal": 257,
       "reservation_path": "artifacts/analysis/alphatrend_positive_targets_20260913/baseline/reservation.json",
       "reserved_at": "2026-09-13T07:13:49.598291+00:00",
@@ -756,15 +814,17 @@
         "kind": "imported",
         "receipt": "artifacts/audit/external_ledger_import_20260914T095114Z.json"
       },
-      "status": "IMPORTED_RESERVED_MEASURED_UNCLOSED"
+      "status": "DEVELOPMENT_CLOSURE_FINAL_NOT_ADMITTED"
     },
     {
       "admitted": false,
       "arm": null,
-      "closure_path": null,
+      "closure_kind": "development",
+      "closure_path": "artifacts/research/development_closures/969c2a1f4f532e27_admission_closure.json",
+      "closure_schema": "canli.alphac-development-trial-admission-closure.v1",
       "config_hash": "3d8c495ad74bb0b4",
       "family_trial_account": "alphatrend_positive_targets",
-      "final_disposition": null,
+      "final_disposition": "KILL",
       "first_measurement": {
         "n_obs": 2939,
         "recorded_at": "2026-09-13T07:14:32.253000+00:00",
@@ -773,7 +833,7 @@
       },
       "hypothesis_key": "969c2a1f4f532e27",
       "ledger_path": "artifacts/analysis/alphatrend_positive_targets_20260913/baseline_stress/experiments.jsonl",
-      "packet_complete": false,
+      "packet_complete": true,
       "reservation_ordinal": 258,
       "reservation_path": "artifacts/analysis/alphatrend_positive_targets_20260913/baseline_stress/reservation.json",
       "reserved_at": "2026-09-13T07:14:12.264415+00:00",
@@ -782,15 +842,17 @@
         "kind": "imported",
         "receipt": "artifacts/audit/external_ledger_import_20260914T095114Z.json"
       },
-      "status": "IMPORTED_RESERVED_MEASURED_UNCLOSED"
+      "status": "DEVELOPMENT_CLOSURE_FINAL_NOT_ADMITTED"
     },
     {
       "admitted": false,
       "arm": null,
-      "closure_path": null,
+      "closure_kind": "development",
+      "closure_path": "artifacts/research/development_closures/f0b05f15dd2b20ca_admission_closure.json",
+      "closure_schema": "canli.alphac-development-trial-admission-closure.v1",
       "config_hash": "38fba73705267fa9",
       "family_trial_account": "alphatrend_positive_targets",
-      "final_disposition": null,
+      "final_disposition": "KILL",
       "first_measurement": {
         "n_obs": 2939,
         "recorded_at": "2026-09-13T07:14:54.976000+00:00",
@@ -799,7 +861,7 @@
       },
       "hypothesis_key": "f0b05f15dd2b20ca",
       "ledger_path": "artifacts/analysis/alphatrend_positive_targets_20260913/candidate/experiments.jsonl",
-      "packet_complete": false,
+      "packet_complete": true,
       "reservation_ordinal": 259,
       "reservation_path": "artifacts/analysis/alphatrend_positive_targets_20260913/candidate/reservation.json",
       "reserved_at": "2026-09-13T07:14:35.303652+00:00",
@@ -808,15 +870,17 @@
         "kind": "imported",
         "receipt": "artifacts/audit/external_ledger_import_20260914T095114Z.json"
       },
-      "status": "IMPORTED_RESERVED_MEASURED_UNCLOSED"
+      "status": "DEVELOPMENT_CLOSURE_FINAL_NOT_ADMITTED"
     },
     {
       "admitted": false,
       "arm": null,
-      "closure_path": null,
+      "closure_kind": "development",
+      "closure_path": "artifacts/research/development_closures/2cca32a1a9c5068a_admission_closure.json",
+      "closure_schema": "canli.alphac-development-trial-admission-closure.v1",
       "config_hash": "b123d29b97a4a0da",
       "family_trial_account": "alphatrend_positive_targets",
-      "final_disposition": null,
+      "final_disposition": "KILL",
       "first_measurement": {
         "n_obs": 2939,
         "recorded_at": "2026-09-13T07:15:17.688000+00:00",
@@ -825,7 +889,7 @@
       },
       "hypothesis_key": "2cca32a1a9c5068a",
       "ledger_path": "artifacts/analysis/alphatrend_positive_targets_20260913/candidate_stress/experiments.jsonl",
-      "packet_complete": false,
+      "packet_complete": true,
       "reservation_ordinal": 260,
       "reservation_path": "artifacts/analysis/alphatrend_positive_targets_20260913/candidate_stress/reservation.json",
       "reserved_at": "2026-09-13T07:14:57.995260+00:00",
@@ -834,15 +898,17 @@
         "kind": "imported",
         "receipt": "artifacts/audit/external_ledger_import_20260914T095114Z.json"
       },
-      "status": "IMPORTED_RESERVED_MEASURED_UNCLOSED"
+      "status": "DEVELOPMENT_CLOSURE_FINAL_NOT_ADMITTED"
     },
     {
       "admitted": false,
       "arm": "baseline",
-      "closure_path": null,
+      "closure_kind": "development",
+      "closure_path": "artifacts/research/development_closures/09740a3c432e9305_admission_closure.json",
+      "closure_schema": "canli.alphac-development-trial-admission-closure.v1",
       "config_hash": "33fc80a9595a0727",
       "family_trial_account": "alphac_positive_targets",
-      "final_disposition": null,
+      "final_disposition": "KILL",
       "first_measurement": {
         "n_obs": 1061,
         "recorded_at": "2026-09-13T07:17:26.332000+00:00",
@@ -851,7 +917,7 @@
       },
       "hypothesis_key": "09740a3c432e9305",
       "ledger_path": "artifacts/analysis/alphac_positive_targets_20260913/baseline/experiments.jsonl",
-      "packet_complete": false,
+      "packet_complete": true,
       "reservation_ordinal": 261,
       "reservation_path": "artifacts/analysis/alphac_positive_targets_20260913/baseline/reservation.json",
       "reserved_at": "2026-09-13T07:16:36.355756+00:00",
@@ -860,15 +926,17 @@
         "kind": "imported",
         "receipt": "artifacts/audit/external_ledger_import_20260914T095114Z.json"
       },
-      "status": "IMPORTED_RESERVED_MEASURED_UNCLOSED"
+      "status": "DEVELOPMENT_CLOSURE_FINAL_NOT_ADMITTED"
     },
     {
       "admitted": false,
       "arm": "baseline",
-      "closure_path": null,
+      "closure_kind": "development",
+      "closure_path": "artifacts/research/development_closures/84d6ff8d0e1804c5_admission_closure.json",
+      "closure_schema": "canli.alphac-development-trial-admission-closure.v1",
       "config_hash": "1944fe48a61955d3",
       "family_trial_account": "alphac_positive_targets",
-      "final_disposition": null,
+      "final_disposition": "KILL",
       "first_measurement": {
         "n_obs": 1061,
         "recorded_at": "2026-09-13T07:17:50.692000+00:00",
@@ -877,7 +945,7 @@
       },
       "hypothesis_key": "84d6ff8d0e1804c5",
       "ledger_path": "artifacts/analysis/alphac_positive_targets_20260913_attempt2/baseline/experiments.jsonl",
-      "packet_complete": false,
+      "packet_complete": true,
       "reservation_ordinal": 262,
       "reservation_path": "artifacts/analysis/alphac_positive_targets_20260913_attempt2/baseline/reservation.json",
       "reserved_at": "2026-09-13T07:17:49.304485+00:00",
@@ -886,15 +954,17 @@
         "kind": "imported",
         "receipt": "artifacts/audit/external_ledger_import_20260914T095114Z.json"
       },
-      "status": "IMPORTED_RESERVED_MEASURED_UNCLOSED"
+      "status": "DEVELOPMENT_CLOSURE_FINAL_NOT_ADMITTED"
     },
     {
       "admitted": false,
       "arm": "baseline_stress",
-      "closure_path": null,
+      "closure_kind": "development",
+      "closure_path": "artifacts/research/development_closures/8e364c64bfcf14b1_admission_closure.json",
+      "closure_schema": "canli.alphac-development-trial-admission-closure.v1",
       "config_hash": "638bb9db149b79b8",
       "family_trial_account": "alphac_positive_targets",
-      "final_disposition": null,
+      "final_disposition": "KILL",
       "first_measurement": {
         "n_obs": 1061,
         "recorded_at": "2026-09-13T07:17:53.114000+00:00",
@@ -903,7 +973,7 @@
       },
       "hypothesis_key": "8e364c64bfcf14b1",
       "ledger_path": "artifacts/analysis/alphac_positive_targets_20260913_attempt2/baseline_stress/experiments.jsonl",
-      "packet_complete": false,
+      "packet_complete": true,
       "reservation_ordinal": 263,
       "reservation_path": "artifacts/analysis/alphac_positive_targets_20260913_attempt2/baseline_stress/reservation.json",
       "reserved_at": "2026-09-13T07:17:51.835832+00:00",
@@ -912,15 +982,17 @@
         "kind": "imported",
         "receipt": "artifacts/audit/external_ledger_import_20260914T095114Z.json"
       },
-      "status": "IMPORTED_RESERVED_MEASURED_UNCLOSED"
+      "status": "DEVELOPMENT_CLOSURE_FINAL_NOT_ADMITTED"
     },
     {
       "admitted": false,
       "arm": "candidate",
-      "closure_path": null,
+      "closure_kind": "development",
+      "closure_path": "artifacts/research/development_closures/55428567ddb507a5_admission_closure.json",
+      "closure_schema": "canli.alphac-development-trial-admission-closure.v1",
       "config_hash": "888fe8e69201cfd8",
       "family_trial_account": "alphac_positive_targets",
-      "final_disposition": null,
+      "final_disposition": "KILL",
       "first_measurement": {
         "n_obs": 1061,
         "recorded_at": "2026-09-13T07:17:55.502000+00:00",
@@ -929,7 +1001,7 @@
       },
       "hypothesis_key": "55428567ddb507a5",
       "ledger_path": "artifacts/analysis/alphac_positive_targets_20260913_attempt2/candidate/experiments.jsonl",
-      "packet_complete": false,
+      "packet_complete": true,
       "reservation_ordinal": 264,
       "reservation_path": "artifacts/analysis/alphac_positive_targets_20260913_attempt2/candidate/reservation.json",
       "reserved_at": "2026-09-13T07:17:54.287334+00:00",
@@ -938,15 +1010,17 @@
         "kind": "imported",
         "receipt": "artifacts/audit/external_ledger_import_20260914T095114Z.json"
       },
-      "status": "IMPORTED_RESERVED_MEASURED_UNCLOSED"
+      "status": "DEVELOPMENT_CLOSURE_FINAL_NOT_ADMITTED"
     },
     {
       "admitted": false,
       "arm": "candidate_stress",
-      "closure_path": null,
+      "closure_kind": "development",
+      "closure_path": "artifacts/research/development_closures/f351e0333893f021_admission_closure.json",
+      "closure_schema": "canli.alphac-development-trial-admission-closure.v1",
       "config_hash": "182062c333a8721d",
       "family_trial_account": "alphac_positive_targets",
-      "final_disposition": null,
+      "final_disposition": "KILL",
       "first_measurement": {
         "n_obs": 1061,
         "recorded_at": "2026-09-13T07:17:57.889000+00:00",
@@ -955,7 +1029,7 @@
       },
       "hypothesis_key": "f351e0333893f021",
       "ledger_path": "artifacts/analysis/alphac_positive_targets_20260913_attempt2/candidate_stress/experiments.jsonl",
-      "packet_complete": false,
+      "packet_complete": true,
       "reservation_ordinal": 265,
       "reservation_path": "artifacts/analysis/alphac_positive_targets_20260913_attempt2/candidate_stress/reservation.json",
       "reserved_at": "2026-09-13T07:17:56.642637+00:00",
@@ -964,15 +1038,17 @@
         "kind": "imported",
         "receipt": "artifacts/audit/external_ledger_import_20260914T095114Z.json"
       },
-      "status": "IMPORTED_RESERVED_MEASURED_UNCLOSED"
+      "status": "DEVELOPMENT_CLOSURE_FINAL_NOT_ADMITTED"
     },
     {
       "admitted": false,
       "arm": null,
-      "closure_path": null,
+      "closure_kind": "development",
+      "closure_path": "artifacts/research/development_closures/27daac3528193d2d_admission_closure.json",
+      "closure_schema": "canli.alphac-development-trial-admission-closure.v1",
       "config_hash": "2bf69cc38b012958",
       "family_trial_account": "alphatrend_category_targets",
-      "final_disposition": null,
+      "final_disposition": "KILL",
       "first_measurement": {
         "n_obs": 2939,
         "recorded_at": "2026-09-13T07:31:49.372000+00:00",
@@ -981,7 +1057,7 @@
       },
       "hypothesis_key": "27daac3528193d2d",
       "ledger_path": "artifacts/analysis/alphatrend_category_targets_20260913/baseline/experiments.jsonl",
-      "packet_complete": false,
+      "packet_complete": true,
       "reservation_ordinal": 266,
       "reservation_path": "artifacts/analysis/alphatrend_category_targets_20260913/baseline/reservation.json",
       "reserved_at": "2026-09-13T07:31:31.023748+00:00",
@@ -990,15 +1066,17 @@
         "kind": "imported",
         "receipt": "artifacts/audit/external_ledger_import_20260914T095114Z.json"
       },
-      "status": "IMPORTED_RESERVED_MEASURED_UNCLOSED"
+      "status": "DEVELOPMENT_CLOSURE_FINAL_NOT_ADMITTED"
     },
     {
       "admitted": false,
       "arm": null,
-      "closure_path": null,
+      "closure_kind": "development",
+      "closure_path": "artifacts/research/development_closures/e25ef3fb769aedd3_admission_closure.json",
+      "closure_schema": "canli.alphac-development-trial-admission-closure.v1",
       "config_hash": "98a61161c204d3e9",
       "family_trial_account": "alphatrend_category_targets",
-      "final_disposition": null,
+      "final_disposition": "KILL",
       "first_measurement": {
         "n_obs": 2939,
         "recorded_at": "2026-09-13T07:32:10.709000+00:00",
@@ -1007,7 +1085,7 @@
       },
       "hypothesis_key": "e25ef3fb769aedd3",
       "ledger_path": "artifacts/analysis/alphatrend_category_targets_20260913/baseline_stress/experiments.jsonl",
-      "packet_complete": false,
+      "packet_complete": true,
       "reservation_ordinal": 267,
       "reservation_path": "artifacts/analysis/alphatrend_category_targets_20260913/baseline_stress/reservation.json",
       "reserved_at": "2026-09-13T07:31:52.318624+00:00",
@@ -1016,15 +1094,17 @@
         "kind": "imported",
         "receipt": "artifacts/audit/external_ledger_import_20260914T095114Z.json"
       },
-      "status": "IMPORTED_RESERVED_MEASURED_UNCLOSED"
+      "status": "DEVELOPMENT_CLOSURE_FINAL_NOT_ADMITTED"
     },
     {
       "admitted": false,
       "arm": null,
-      "closure_path": null,
+      "closure_kind": "development",
+      "closure_path": "artifacts/research/development_closures/5c49f2aea0087c42_admission_closure.json",
+      "closure_schema": "canli.alphac-development-trial-admission-closure.v1",
       "config_hash": "a1f227528e8de8ef",
       "family_trial_account": "alphatrend_category_targets",
-      "final_disposition": null,
+      "final_disposition": "KILL",
       "first_measurement": {
         "n_obs": 2939,
         "recorded_at": "2026-09-13T07:32:32.191000+00:00",
@@ -1033,7 +1113,7 @@
       },
       "hypothesis_key": "5c49f2aea0087c42",
       "ledger_path": "artifacts/analysis/alphatrend_category_targets_20260913/candidate/experiments.jsonl",
-      "packet_complete": false,
+      "packet_complete": true,
       "reservation_ordinal": 268,
       "reservation_path": "artifacts/analysis/alphatrend_category_targets_20260913/candidate/reservation.json",
       "reserved_at": "2026-09-13T07:32:13.580962+00:00",
@@ -1042,15 +1122,17 @@
         "kind": "imported",
         "receipt": "artifacts/audit/external_ledger_import_20260914T095114Z.json"
       },
-      "status": "IMPORTED_RESERVED_MEASURED_UNCLOSED"
+      "status": "DEVELOPMENT_CLOSURE_FINAL_NOT_ADMITTED"
     },
     {
       "admitted": false,
       "arm": null,
-      "closure_path": null,
+      "closure_kind": "development",
+      "closure_path": "artifacts/research/development_closures/3b647789d4eed310_admission_closure.json",
+      "closure_schema": "canli.alphac-development-trial-admission-closure.v1",
       "config_hash": "b0005af8782546f1",
       "family_trial_account": "alphatrend_category_targets",
-      "final_disposition": null,
+      "final_disposition": "KILL",
       "first_measurement": {
         "n_obs": 2939,
         "recorded_at": "2026-09-13T07:32:53.870000+00:00",
@@ -1059,7 +1141,7 @@
       },
       "hypothesis_key": "3b647789d4eed310",
       "ledger_path": "artifacts/analysis/alphatrend_category_targets_20260913/candidate_stress/experiments.jsonl",
-      "packet_complete": false,
+      "packet_complete": true,
       "reservation_ordinal": 269,
       "reservation_path": "artifacts/analysis/alphatrend_category_targets_20260913/candidate_stress/reservation.json",
       "reserved_at": "2026-09-13T07:32:35.121169+00:00",
@@ -1068,15 +1150,17 @@
         "kind": "imported",
         "receipt": "artifacts/audit/external_ledger_import_20260914T095114Z.json"
       },
-      "status": "IMPORTED_RESERVED_MEASURED_UNCLOSED"
+      "status": "DEVELOPMENT_CLOSURE_FINAL_NOT_ADMITTED"
     },
     {
       "admitted": false,
       "arm": "baseline",
-      "closure_path": null,
+      "closure_kind": "development",
+      "closure_path": "artifacts/research/development_closures/633a12ead7f24c03_admission_closure.json",
+      "closure_schema": "canli.alphac-development-trial-admission-closure.v1",
       "config_hash": "72fa6eeaec427062",
       "family_trial_account": "alphac_category_targets",
-      "final_disposition": null,
+      "final_disposition": "KILL",
       "first_measurement": {
         "n_obs": 1061,
         "recorded_at": "2026-09-13T07:33:47.915000+00:00",
@@ -1085,7 +1169,7 @@
       },
       "hypothesis_key": "633a12ead7f24c03",
       "ledger_path": "artifacts/analysis/alphac_category_targets_20260913/baseline/experiments.jsonl",
-      "packet_complete": false,
+      "packet_complete": true,
       "reservation_ordinal": 270,
       "reservation_path": "artifacts/analysis/alphac_category_targets_20260913/baseline/reservation.json",
       "reserved_at": "2026-09-13T07:33:46.449200+00:00",
@@ -1094,15 +1178,17 @@
         "kind": "imported",
         "receipt": "artifacts/audit/external_ledger_import_20260914T095114Z.json"
       },
-      "status": "IMPORTED_RESERVED_MEASURED_UNCLOSED"
+      "status": "DEVELOPMENT_CLOSURE_FINAL_NOT_ADMITTED"
     },
     {
       "admitted": false,
       "arm": "baseline_stress",
-      "closure_path": null,
+      "closure_kind": "development",
+      "closure_path": "artifacts/research/development_closures/dda12ea02118de76_admission_closure.json",
+      "closure_schema": "canli.alphac-development-trial-admission-closure.v1",
       "config_hash": "156cdcdd7371f1a0",
       "family_trial_account": "alphac_category_targets",
-      "final_disposition": null,
+      "final_disposition": "KILL",
       "first_measurement": {
         "n_obs": 1061,
         "recorded_at": "2026-09-13T07:33:50.399000+00:00",
@@ -1111,7 +1197,7 @@
       },
       "hypothesis_key": "dda12ea02118de76",
       "ledger_path": "artifacts/analysis/alphac_category_targets_20260913/baseline_stress/experiments.jsonl",
-      "packet_complete": false,
+      "packet_complete": true,
       "reservation_ordinal": 271,
       "reservation_path": "artifacts/analysis/alphac_category_targets_20260913/baseline_stress/reservation.json",
       "reserved_at": "2026-09-13T07:33:49.090680+00:00",
@@ -1120,15 +1206,17 @@
         "kind": "imported",
         "receipt": "artifacts/audit/external_ledger_import_20260914T095114Z.json"
       },
-      "status": "IMPORTED_RESERVED_MEASURED_UNCLOSED"
+      "status": "DEVELOPMENT_CLOSURE_FINAL_NOT_ADMITTED"
     },
     {
       "admitted": false,
       "arm": "candidate",
-      "closure_path": null,
+      "closure_kind": "development",
+      "closure_path": "artifacts/research/development_closures/23ff72bd20753c74_admission_closure.json",
+      "closure_schema": "canli.alphac-development-trial-admission-closure.v1",
       "config_hash": "2704b4602c1181a8",
       "family_trial_account": "alphac_category_targets",
-      "final_disposition": null,
+      "final_disposition": "KILL",
       "first_measurement": {
         "n_obs": 1061,
         "recorded_at": "2026-09-13T07:33:52.894000+00:00",
@@ -1137,7 +1225,7 @@
       },
       "hypothesis_key": "23ff72bd20753c74",
       "ledger_path": "artifacts/analysis/alphac_category_targets_20260913/candidate/experiments.jsonl",
-      "packet_complete": false,
+      "packet_complete": true,
       "reservation_ordinal": 272,
       "reservation_path": "artifacts/analysis/alphac_category_targets_20260913/candidate/reservation.json",
       "reserved_at": "2026-09-13T07:33:51.627569+00:00",
@@ -1146,15 +1234,17 @@
         "kind": "imported",
         "receipt": "artifacts/audit/external_ledger_import_20260914T095114Z.json"
       },
-      "status": "IMPORTED_RESERVED_MEASURED_UNCLOSED"
+      "status": "DEVELOPMENT_CLOSURE_FINAL_NOT_ADMITTED"
     },
     {
       "admitted": false,
       "arm": "candidate_stress",
-      "closure_path": null,
+      "closure_kind": "development",
+      "closure_path": "artifacts/research/development_closures/4b26bd573532be44_admission_closure.json",
+      "closure_schema": "canli.alphac-development-trial-admission-closure.v1",
       "config_hash": "addd963d65f4f3b6",
       "family_trial_account": "alphac_category_targets",
-      "final_disposition": null,
+      "final_disposition": "KILL",
       "first_measurement": {
         "n_obs": 1061,
         "recorded_at": "2026-09-13T07:33:55.410000+00:00",
@@ -1163,7 +1253,7 @@
       },
       "hypothesis_key": "4b26bd573532be44",
       "ledger_path": "artifacts/analysis/alphac_category_targets_20260913/candidate_stress/experiments.jsonl",
-      "packet_complete": false,
+      "packet_complete": true,
       "reservation_ordinal": 273,
       "reservation_path": "artifacts/analysis/alphac_category_targets_20260913/candidate_stress/reservation.json",
       "reserved_at": "2026-09-13T07:33:54.131111+00:00",
@@ -1172,15 +1262,17 @@
         "kind": "imported",
         "receipt": "artifacts/audit/external_ledger_import_20260914T095114Z.json"
       },
-      "status": "IMPORTED_RESERVED_MEASURED_UNCLOSED"
+      "status": "DEVELOPMENT_CLOSURE_FINAL_NOT_ADMITTED"
     },
     {
       "admitted": false,
       "arm": null,
-      "closure_path": null,
+      "closure_kind": "development",
+      "closure_path": "artifacts/research/development_closures/534bfa3e20e7941d_admission_closure.json",
+      "closure_schema": "canli.alphac-development-trial-admission-closure.v1",
       "config_hash": "89472e66507e8bcb",
       "family_trial_account": "crypto_terminal_correction",
-      "final_disposition": null,
+      "final_disposition": "KILL",
       "first_measurement": {
         "n_obs": 126,
         "recorded_at": "2026-09-13T08:50:24.260000+00:00",
@@ -1189,7 +1281,7 @@
       },
       "hypothesis_key": "534bfa3e20e7941d",
       "ledger_path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/original_close_control/experiments.jsonl",
-      "packet_complete": false,
+      "packet_complete": true,
       "reservation_ordinal": 274,
       "reservation_path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/original_close_control/reservation.json",
       "reserved_at": "2026-09-13T08:50:24.260549+00:00",
@@ -1198,15 +1290,17 @@
         "kind": "imported",
         "receipt": "artifacts/audit/external_ledger_import_20260914T095114Z.json"
       },
-      "status": "IMPORTED_RESERVED_MEASURED_UNCLOSED"
+      "status": "DEVELOPMENT_CLOSURE_FINAL_NOT_ADMITTED"
     },
     {
       "admitted": false,
       "arm": null,
-      "closure_path": null,
+      "closure_kind": "development",
+      "closure_path": "artifacts/research/development_closures/3f818ff9abc4d7a3_admission_closure.json",
+      "closure_schema": "canli.alphac-development-trial-admission-closure.v1",
       "config_hash": "063ef77f4347d81a",
       "family_trial_account": "crypto_terminal_correction",
-      "final_disposition": null,
+      "final_disposition": "KILL",
       "first_measurement": {
         "n_obs": 126,
         "recorded_at": "2026-09-13T08:54:26.762000+00:00",
@@ -1215,7 +1309,7 @@
       },
       "hypothesis_key": "3f818ff9abc4d7a3",
       "ledger_path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/repaired_close_control/experiments.jsonl",
-      "packet_complete": false,
+      "packet_complete": true,
       "reservation_ordinal": 275,
       "reservation_path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/repaired_close_control/reservation.json",
       "reserved_at": "2026-09-13T08:54:26.762091+00:00",
@@ -1224,15 +1318,17 @@
         "kind": "imported",
         "receipt": "artifacts/audit/external_ledger_import_20260914T095114Z.json"
       },
-      "status": "IMPORTED_RESERVED_MEASURED_UNCLOSED"
+      "status": "DEVELOPMENT_CLOSURE_FINAL_NOT_ADMITTED"
     },
     {
       "admitted": false,
       "arm": null,
-      "closure_path": null,
+      "closure_kind": "development",
+      "closure_path": "artifacts/research/development_closures/15944723ff35820c_admission_closure.json",
+      "closure_schema": "canli.alphac-development-trial-admission-closure.v1",
       "config_hash": "8b7d6a156eda4ffd",
       "family_trial_account": "crypto_terminal_correction",
-      "final_disposition": null,
+      "final_disposition": "KILL",
       "first_measurement": {
         "n_obs": 126,
         "recorded_at": "2026-09-13T08:57:12.695000+00:00",
@@ -1241,7 +1337,7 @@
       },
       "hypothesis_key": "15944723ff35820c",
       "ledger_path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/repaired_open_control/experiments.jsonl",
-      "packet_complete": false,
+      "packet_complete": true,
       "reservation_ordinal": 276,
       "reservation_path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/repaired_open_control/reservation.json",
       "reserved_at": "2026-09-13T08:57:12.695996+00:00",
@@ -1250,15 +1346,17 @@
         "kind": "imported",
         "receipt": "artifacts/audit/external_ledger_import_20260914T095114Z.json"
       },
-      "status": "IMPORTED_RESERVED_MEASURED_UNCLOSED"
+      "status": "DEVELOPMENT_CLOSURE_FINAL_NOT_ADMITTED"
     },
     {
       "admitted": false,
       "arm": null,
-      "closure_path": null,
+      "closure_kind": "development",
+      "closure_path": "artifacts/research/development_closures/6f5d48b3e7fa839e_admission_closure.json",
+      "closure_schema": "canli.alphac-development-trial-admission-closure.v1",
       "config_hash": "54a6904133755516",
       "family_trial_account": "crypto_terminal_correction",
-      "final_disposition": null,
+      "final_disposition": "KILL",
       "first_measurement": {
         "n_obs": 126,
         "recorded_at": "2026-09-13T08:59:36.406000+00:00",
@@ -1267,7 +1365,7 @@
       },
       "hypothesis_key": "6f5d48b3e7fa839e",
       "ledger_path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/terminal_lower/experiments.jsonl",
-      "packet_complete": false,
+      "packet_complete": true,
       "reservation_ordinal": 277,
       "reservation_path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/terminal_lower/reservation.json",
       "reserved_at": "2026-09-13T08:59:36.406829+00:00",
@@ -1276,15 +1374,17 @@
         "kind": "imported",
         "receipt": "artifacts/audit/external_ledger_import_20260914T095114Z.json"
       },
-      "status": "IMPORTED_RESERVED_MEASURED_UNCLOSED"
+      "status": "DEVELOPMENT_CLOSURE_FINAL_NOT_ADMITTED"
     },
     {
       "admitted": false,
       "arm": null,
-      "closure_path": null,
+      "closure_kind": "development",
+      "closure_path": "artifacts/research/development_closures/a202b7ddba9a01cb_admission_closure.json",
+      "closure_schema": "canli.alphac-development-trial-admission-closure.v1",
       "config_hash": "40955aa5c3f4c588",
       "family_trial_account": "crypto_terminal_correction",
-      "final_disposition": null,
+      "final_disposition": "KILL",
       "first_measurement": {
         "n_obs": 126,
         "recorded_at": "2026-09-13T09:01:03.759000+00:00",
@@ -1293,7 +1393,7 @@
       },
       "hypothesis_key": "a202b7ddba9a01cb",
       "ledger_path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/terminal_lower_cost_stress/experiments.jsonl",
-      "packet_complete": false,
+      "packet_complete": true,
       "reservation_ordinal": 278,
       "reservation_path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/terminal_lower_cost_stress/reservation.json",
       "reserved_at": "2026-09-13T09:01:03.759094+00:00",
@@ -1302,15 +1402,17 @@
         "kind": "imported",
         "receipt": "artifacts/audit/external_ledger_import_20260914T095114Z.json"
       },
-      "status": "IMPORTED_RESERVED_MEASURED_UNCLOSED"
+      "status": "DEVELOPMENT_CLOSURE_FINAL_NOT_ADMITTED"
     },
     {
       "admitted": false,
       "arm": null,
-      "closure_path": null,
+      "closure_kind": "development",
+      "closure_path": "artifacts/research/development_closures/0d9f059958b06e1e_admission_closure.json",
+      "closure_schema": "canli.alphac-development-trial-admission-closure.v1",
       "config_hash": "967b634a44c9461a",
       "family_trial_account": "crypto_terminal_correction",
-      "final_disposition": null,
+      "final_disposition": "KILL",
       "first_measurement": {
         "n_obs": 126,
         "recorded_at": "2026-09-13T09:01:30.441000+00:00",
@@ -1319,7 +1421,7 @@
       },
       "hypothesis_key": "0d9f059958b06e1e",
       "ledger_path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/terminal_upper/experiments.jsonl",
-      "packet_complete": false,
+      "packet_complete": true,
       "reservation_ordinal": 279,
       "reservation_path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/terminal_upper/reservation.json",
       "reserved_at": "2026-09-13T09:01:30.441097+00:00",
@@ -1328,15 +1430,17 @@
         "kind": "imported",
         "receipt": "artifacts/audit/external_ledger_import_20260914T095114Z.json"
       },
-      "status": "IMPORTED_RESERVED_MEASURED_UNCLOSED"
+      "status": "DEVELOPMENT_CLOSURE_FINAL_NOT_ADMITTED"
     },
     {
       "admitted": false,
       "arm": null,
-      "closure_path": null,
+      "closure_kind": "development",
+      "closure_path": "artifacts/research/development_closures/d98bec43c934709a_admission_closure.json",
+      "closure_schema": "canli.alphac-development-trial-admission-closure.v1",
       "config_hash": "6626d3d1209e675e",
       "family_trial_account": "crypto_terminal_correction",
-      "final_disposition": null,
+      "final_disposition": "KILL",
       "first_measurement": {
         "n_obs": 126,
         "recorded_at": "2026-09-13T09:02:02.748000+00:00",
@@ -1345,7 +1449,7 @@
       },
       "hypothesis_key": "d98bec43c934709a",
       "ledger_path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/terminal_upper_cost_stress/experiments.jsonl",
-      "packet_complete": false,
+      "packet_complete": true,
       "reservation_ordinal": 280,
       "reservation_path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/terminal_upper_cost_stress/reservation.json",
       "reserved_at": "2026-09-13T09:02:02.748010+00:00",
@@ -1354,15 +1458,17 @@
         "kind": "imported",
         "receipt": "artifacts/audit/external_ledger_import_20260914T095114Z.json"
       },
-      "status": "IMPORTED_RESERVED_MEASURED_UNCLOSED"
+      "status": "DEVELOPMENT_CLOSURE_FINAL_NOT_ADMITTED"
     },
     {
       "admitted": false,
       "arm": null,
-      "closure_path": null,
+      "closure_kind": "development",
+      "closure_path": "artifacts/research/development_closures/3c6e3e32e286e0ae_admission_closure.json",
+      "closure_schema": "canli.alphac-development-trial-admission-closure.v1",
       "config_hash": "e9790a6eadaa6d1b",
       "family_trial_account": "crypto_full2022_extension",
-      "final_disposition": null,
+      "final_disposition": "KILL",
       "first_measurement": {
         "n_obs": 366,
         "recorded_at": "2026-09-13T09:05:36.196000+00:00",
@@ -1371,7 +1477,7 @@
       },
       "hypothesis_key": "3c6e3e32e286e0ae",
       "ledger_path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_lower/experiments.jsonl",
-      "packet_complete": false,
+      "packet_complete": true,
       "reservation_ordinal": 281,
       "reservation_path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_lower/reservation.json",
       "reserved_at": "2026-09-13T09:05:36.196396+00:00",
@@ -1380,15 +1486,17 @@
         "kind": "imported",
         "receipt": "artifacts/audit/external_ledger_import_20260914T095114Z.json"
       },
-      "status": "IMPORTED_RESERVED_MEASURED_UNCLOSED"
+      "status": "DEVELOPMENT_CLOSURE_FINAL_NOT_ADMITTED"
     },
     {
       "admitted": false,
       "arm": null,
-      "closure_path": null,
+      "closure_kind": "development",
+      "closure_path": "artifacts/research/development_closures/48f7cb60382bdd98_admission_closure.json",
+      "closure_schema": "canli.alphac-development-trial-admission-closure.v1",
       "config_hash": "d0a03e38b94585d7",
       "family_trial_account": "crypto_full2022_extension",
-      "final_disposition": null,
+      "final_disposition": "KILL",
       "first_measurement": {
         "n_obs": 366,
         "recorded_at": "2026-09-13T09:08:50.888000+00:00",
@@ -1397,7 +1505,7 @@
       },
       "hypothesis_key": "48f7cb60382bdd98",
       "ledger_path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_lower_cost_stress/experiments.jsonl",
-      "packet_complete": false,
+      "packet_complete": true,
       "reservation_ordinal": 282,
       "reservation_path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_lower_cost_stress/reservation.json",
       "reserved_at": "2026-09-13T09:08:50.888301+00:00",
@@ -1406,15 +1514,17 @@
         "kind": "imported",
         "receipt": "artifacts/audit/external_ledger_import_20260914T095114Z.json"
       },
-      "status": "IMPORTED_RESERVED_MEASURED_UNCLOSED"
+      "status": "DEVELOPMENT_CLOSURE_FINAL_NOT_ADMITTED"
     },
     {
       "admitted": false,
       "arm": null,
-      "closure_path": null,
+      "closure_kind": "development",
+      "closure_path": "artifacts/research/development_closures/08b7ae91b9cd942b_admission_closure.json",
+      "closure_schema": "canli.alphac-development-trial-admission-closure.v1",
       "config_hash": "eb8e1d511301ae70",
       "family_trial_account": "crypto_full2022_extension",
-      "final_disposition": null,
+      "final_disposition": "KILL",
       "first_measurement": {
         "n_obs": 366,
         "recorded_at": "2026-09-13T09:10:28.724000+00:00",
@@ -1423,7 +1533,7 @@
       },
       "hypothesis_key": "08b7ae91b9cd942b",
       "ledger_path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_upper/experiments.jsonl",
-      "packet_complete": false,
+      "packet_complete": true,
       "reservation_ordinal": 283,
       "reservation_path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_upper/reservation.json",
       "reserved_at": "2026-09-13T09:10:28.724091+00:00",
@@ -1432,15 +1542,17 @@
         "kind": "imported",
         "receipt": "artifacts/audit/external_ledger_import_20260914T095114Z.json"
       },
-      "status": "IMPORTED_RESERVED_MEASURED_UNCLOSED"
+      "status": "DEVELOPMENT_CLOSURE_FINAL_NOT_ADMITTED"
     },
     {
       "admitted": false,
       "arm": null,
-      "closure_path": null,
+      "closure_kind": "development",
+      "closure_path": "artifacts/research/development_closures/82217eab6d3860b5_admission_closure.json",
+      "closure_schema": "canli.alphac-development-trial-admission-closure.v1",
       "config_hash": "4d3580f6fe4ae0ac",
       "family_trial_account": "crypto_full2022_extension",
-      "final_disposition": null,
+      "final_disposition": "KILL",
       "first_measurement": {
         "n_obs": 366,
         "recorded_at": "2026-09-13T09:11:32.641000+00:00",
@@ -1449,7 +1561,7 @@
       },
       "hypothesis_key": "82217eab6d3860b5",
       "ledger_path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_upper_cost_stress/experiments.jsonl",
-      "packet_complete": false,
+      "packet_complete": true,
       "reservation_ordinal": 284,
       "reservation_path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_upper_cost_stress/reservation.json",
       "reserved_at": "2026-09-13T09:11:32.641044+00:00",
@@ -1458,15 +1570,17 @@
         "kind": "imported",
         "receipt": "artifacts/audit/external_ledger_import_20260914T095114Z.json"
       },
-      "status": "IMPORTED_RESERVED_MEASURED_UNCLOSED"
+      "status": "DEVELOPMENT_CLOSURE_FINAL_NOT_ADMITTED"
     },
     {
       "admitted": false,
       "arm": null,
-      "closure_path": null,
+      "closure_kind": "development",
+      "closure_path": "artifacts/research/development_closures/66d48edd39ac6709_admission_closure.json",
+      "closure_schema": "canli.alphac-development-trial-admission-closure.v1",
       "config_hash": "7f35450d31c3007a",
       "family_trial_account": "alphamax_full2022_baseline",
-      "final_disposition": null,
+      "final_disposition": "KILL",
       "first_measurement": {
         "n_obs": 0,
         "recorded_at": "2026-09-13T09:37:35.965000+00:00",
@@ -1475,7 +1589,7 @@
       },
       "hypothesis_key": "66d48edd39ac6709",
       "ledger_path": "artifacts/analysis/alphamax_full2022_baseline_20260913/baseline/experiments.jsonl",
-      "packet_complete": false,
+      "packet_complete": true,
       "reservation_ordinal": 285,
       "reservation_path": "artifacts/analysis/alphamax_full2022_baseline_20260913/baseline/reservation.json",
       "reserved_at": "2026-09-13T09:31:56.587279+00:00",
@@ -1484,15 +1598,17 @@
         "kind": "imported",
         "receipt": "artifacts/audit/external_ledger_import_20260914T095114Z.json"
       },
-      "status": "IMPORTED_RESERVED_MEASURED_UNCLOSED"
+      "status": "DEVELOPMENT_CLOSURE_FINAL_NOT_ADMITTED"
     },
     {
       "admitted": false,
       "arm": null,
-      "closure_path": null,
+      "closure_kind": "development",
+      "closure_path": "artifacts/research/development_closures/4d83dd4cb9c4094a_admission_closure.json",
+      "closure_schema": "canli.alphac-development-trial-admission-closure.v1",
       "config_hash": "656729f90b169f46",
       "family_trial_account": "alphamax_full2022_baseline_v2",
-      "final_disposition": null,
+      "final_disposition": "KILL",
       "first_measurement": {
         "n_obs": 252,
         "recorded_at": "2026-09-13T09:40:39.323000+00:00",
@@ -1501,7 +1617,7 @@
       },
       "hypothesis_key": "4d83dd4cb9c4094a",
       "ledger_path": "artifacts/analysis/alphamax_full2022_baseline_v2_20260913/baseline/experiments.jsonl",
-      "packet_complete": false,
+      "packet_complete": true,
       "reservation_ordinal": 286,
       "reservation_path": "artifacts/analysis/alphamax_full2022_baseline_v2_20260913/baseline/reservation.json",
       "reserved_at": "2026-09-13T09:40:39.323655+00:00",
@@ -1510,15 +1626,17 @@
         "kind": "imported",
         "receipt": "artifacts/audit/external_ledger_import_20260914T095114Z.json"
       },
-      "status": "IMPORTED_RESERVED_MEASURED_UNCLOSED"
+      "status": "DEVELOPMENT_CLOSURE_FINAL_NOT_ADMITTED"
     },
     {
       "admitted": false,
       "arm": null,
-      "closure_path": null,
+      "closure_kind": "development",
+      "closure_path": "artifacts/research/development_closures/75a62d53a1152610_admission_closure.json",
+      "closure_schema": "canli.alphac-development-trial-admission-closure.v1",
       "config_hash": "5b9d2de2a7eaa51c",
       "family_trial_account": "alphamax_full2022_baseline_v2",
-      "final_disposition": null,
+      "final_disposition": "KILL",
       "first_measurement": {
         "n_obs": 252,
         "recorded_at": "2026-09-13T09:45:34.119000+00:00",
@@ -1527,7 +1645,7 @@
       },
       "hypothesis_key": "75a62d53a1152610",
       "ledger_path": "artifacts/analysis/alphamax_full2022_baseline_v2_20260913/cost_stress/experiments.jsonl",
-      "packet_complete": false,
+      "packet_complete": true,
       "reservation_ordinal": 287,
       "reservation_path": "artifacts/analysis/alphamax_full2022_baseline_v2_20260913/cost_stress/reservation.json",
       "reserved_at": "2026-09-13T09:45:34.119837+00:00",
@@ -1536,15 +1654,17 @@
         "kind": "imported",
         "receipt": "artifacts/audit/external_ledger_import_20260914T095114Z.json"
       },
-      "status": "IMPORTED_RESERVED_MEASURED_UNCLOSED"
+      "status": "DEVELOPMENT_CLOSURE_FINAL_NOT_ADMITTED"
     },
     {
       "admitted": false,
       "arm": "baseline",
-      "closure_path": null,
+      "closure_kind": "development",
+      "closure_path": "artifacts/research/development_closures/8118fdfe8128b646_admission_closure.json",
+      "closure_schema": "canli.alphac-development-trial-admission-closure.v1",
       "config_hash": "ac7dc102a41cd7fc",
       "family_trial_account": "combined_2022_source_day_diagnostic",
-      "final_disposition": null,
+      "final_disposition": "KILL",
       "first_measurement": {
         "n_obs": 365,
         "recorded_at": "2026-09-13T09:54:06.195000+00:00",
@@ -1553,7 +1673,7 @@
       },
       "hypothesis_key": "8118fdfe8128b646",
       "ledger_path": "artifacts/analysis/combined_2022_diagnostic_20260913/baseline/experiments.jsonl",
-      "packet_complete": false,
+      "packet_complete": true,
       "reservation_ordinal": 288,
       "reservation_path": "artifacts/analysis/combined_2022_diagnostic_20260913/baseline/reservation.json",
       "reserved_at": "2026-09-13T09:54:06.195974+00:00",
@@ -1562,15 +1682,17 @@
         "kind": "imported",
         "receipt": "artifacts/audit/external_ledger_import_20260914T095114Z.json"
       },
-      "status": "IMPORTED_RESERVED_MEASURED_UNCLOSED"
+      "status": "DEVELOPMENT_CLOSURE_FINAL_NOT_ADMITTED"
     },
     {
       "admitted": false,
       "arm": "candidate",
-      "closure_path": null,
+      "closure_kind": "development",
+      "closure_path": "artifacts/research/development_closures/14dab0e0c8e89fe2_admission_closure.json",
+      "closure_schema": "canli.alphac-development-trial-admission-closure.v1",
       "config_hash": "04f64b6ca47c465b",
       "family_trial_account": "combined_2022_source_day_diagnostic",
-      "final_disposition": null,
+      "final_disposition": "KILL",
       "first_measurement": {
         "n_obs": 365,
         "recorded_at": "2026-09-13T09:54:56.074000+00:00",
@@ -1579,7 +1701,7 @@
       },
       "hypothesis_key": "14dab0e0c8e89fe2",
       "ledger_path": "artifacts/analysis/combined_2022_diagnostic_20260913/candidate/experiments.jsonl",
-      "packet_complete": false,
+      "packet_complete": true,
       "reservation_ordinal": 289,
       "reservation_path": "artifacts/analysis/combined_2022_diagnostic_20260913/candidate/reservation.json",
       "reserved_at": "2026-09-13T09:54:56.074855+00:00",
@@ -1588,15 +1710,17 @@
         "kind": "imported",
         "receipt": "artifacts/audit/external_ledger_import_20260914T095114Z.json"
       },
-      "status": "IMPORTED_RESERVED_MEASURED_UNCLOSED"
+      "status": "DEVELOPMENT_CLOSURE_FINAL_NOT_ADMITTED"
     },
     {
       "admitted": false,
       "arm": "baseline_stress",
-      "closure_path": null,
+      "closure_kind": "development",
+      "closure_path": "artifacts/research/development_closures/1eaf19babf064691_admission_closure.json",
+      "closure_schema": "canli.alphac-development-trial-admission-closure.v1",
       "config_hash": "63b878ad2958e34e",
       "family_trial_account": "combined_2022_source_day_diagnostic",
-      "final_disposition": null,
+      "final_disposition": "KILL",
       "first_measurement": {
         "n_obs": 365,
         "recorded_at": "2026-09-13T09:55:14.155000+00:00",
@@ -1605,7 +1729,7 @@
       },
       "hypothesis_key": "1eaf19babf064691",
       "ledger_path": "artifacts/analysis/combined_2022_diagnostic_20260913/baseline_stress/experiments.jsonl",
-      "packet_complete": false,
+      "packet_complete": true,
       "reservation_ordinal": 290,
       "reservation_path": "artifacts/analysis/combined_2022_diagnostic_20260913/baseline_stress/reservation.json",
       "reserved_at": "2026-09-13T09:55:14.155477+00:00",
@@ -1614,15 +1738,17 @@
         "kind": "imported",
         "receipt": "artifacts/audit/external_ledger_import_20260914T095114Z.json"
       },
-      "status": "IMPORTED_RESERVED_MEASURED_UNCLOSED"
+      "status": "DEVELOPMENT_CLOSURE_FINAL_NOT_ADMITTED"
     },
     {
       "admitted": false,
       "arm": "candidate_stress",
-      "closure_path": null,
+      "closure_kind": "development",
+      "closure_path": "artifacts/research/development_closures/fc0c2dc0e78f6e28_admission_closure.json",
+      "closure_schema": "canli.alphac-development-trial-admission-closure.v1",
       "config_hash": "3935a8bd731e51fa",
       "family_trial_account": "combined_2022_source_day_diagnostic",
-      "final_disposition": null,
+      "final_disposition": "KILL",
       "first_measurement": {
         "n_obs": 365,
         "recorded_at": "2026-09-13T09:55:33.304000+00:00",
@@ -1631,7 +1757,7 @@
       },
       "hypothesis_key": "fc0c2dc0e78f6e28",
       "ledger_path": "artifacts/analysis/combined_2022_diagnostic_20260913/candidate_stress/experiments.jsonl",
-      "packet_complete": false,
+      "packet_complete": true,
       "reservation_ordinal": 291,
       "reservation_path": "artifacts/analysis/combined_2022_diagnostic_20260913/candidate_stress/reservation.json",
       "reserved_at": "2026-09-13T09:55:33.304438+00:00",
@@ -1640,15 +1766,17 @@
         "kind": "imported",
         "receipt": "artifacts/audit/external_ledger_import_20260914T095114Z.json"
       },
-      "status": "IMPORTED_RESERVED_MEASURED_UNCLOSED"
+      "status": "DEVELOPMENT_CLOSURE_FINAL_NOT_ADMITTED"
     },
     {
       "admitted": false,
       "arm": null,
-      "closure_path": null,
+      "closure_kind": "development",
+      "closure_path": "artifacts/research/development_closures/9a254f32a1c54d58_admission_closure.json",
+      "closure_schema": "canli.alphac-development-trial-admission-closure.v1",
       "config_hash": "b7ca0620bd300573",
       "family_trial_account": "alphamax_share_ratio",
-      "final_disposition": null,
+      "final_disposition": "KILL",
       "first_measurement": {
         "n_obs": 252,
         "recorded_at": "2026-09-13T10:03:36.743000+00:00",
@@ -1657,7 +1785,7 @@
       },
       "hypothesis_key": "9a254f32a1c54d58",
       "ledger_path": "artifacts/analysis/alphamax_share_ratio_20260913/baseline/experiments.jsonl",
-      "packet_complete": false,
+      "packet_complete": true,
       "reservation_ordinal": 292,
       "reservation_path": "artifacts/analysis/alphamax_share_ratio_20260913/baseline/reservation.json",
       "reserved_at": "2026-09-13T10:03:36.743928+00:00",
@@ -1666,15 +1794,17 @@
         "kind": "imported",
         "receipt": "artifacts/audit/external_ledger_import_20260914T095114Z.json"
       },
-      "status": "IMPORTED_RESERVED_MEASURED_UNCLOSED"
+      "status": "DEVELOPMENT_CLOSURE_FINAL_NOT_ADMITTED"
     },
     {
       "admitted": false,
       "arm": null,
-      "closure_path": null,
+      "closure_kind": "development",
+      "closure_path": "artifacts/research/development_closures/81407bf39281cc1a_admission_closure.json",
+      "closure_schema": "canli.alphac-development-trial-admission-closure.v1",
       "config_hash": "61fb48dfb7bc33fc",
       "family_trial_account": "alphamax_share_ratio",
-      "final_disposition": null,
+      "final_disposition": "KILL",
       "first_measurement": {
         "n_obs": 252,
         "recorded_at": "2026-09-13T10:04:20.562000+00:00",
@@ -1683,7 +1813,7 @@
       },
       "hypothesis_key": "81407bf39281cc1a",
       "ledger_path": "artifacts/analysis/alphamax_share_ratio_20260913/baseline_stress/experiments.jsonl",
-      "packet_complete": false,
+      "packet_complete": true,
       "reservation_ordinal": 293,
       "reservation_path": "artifacts/analysis/alphamax_share_ratio_20260913/baseline_stress/reservation.json",
       "reserved_at": "2026-09-13T10:04:20.562723+00:00",
@@ -1692,15 +1822,17 @@
         "kind": "imported",
         "receipt": "artifacts/audit/external_ledger_import_20260914T095114Z.json"
       },
-      "status": "IMPORTED_RESERVED_MEASURED_UNCLOSED"
+      "status": "DEVELOPMENT_CLOSURE_FINAL_NOT_ADMITTED"
     },
     {
       "admitted": false,
       "arm": null,
-      "closure_path": null,
+      "closure_kind": "development",
+      "closure_path": "artifacts/research/development_closures/33bafcfb7e3bb700_admission_closure.json",
+      "closure_schema": "canli.alphac-development-trial-admission-closure.v1",
       "config_hash": "69a4c06b1ade6cf7",
       "family_trial_account": "alphamax_share_ratio",
-      "final_disposition": null,
+      "final_disposition": "KILL",
       "first_measurement": {
         "n_obs": 252,
         "recorded_at": "2026-09-13T10:05:36.469000+00:00",
@@ -1709,7 +1841,7 @@
       },
       "hypothesis_key": "33bafcfb7e3bb700",
       "ledger_path": "artifacts/analysis/alphamax_share_ratio_20260913/momentum/experiments.jsonl",
-      "packet_complete": false,
+      "packet_complete": true,
       "reservation_ordinal": 294,
       "reservation_path": "artifacts/analysis/alphamax_share_ratio_20260913/momentum/reservation.json",
       "reserved_at": "2026-09-13T10:05:36.469816+00:00",
@@ -1718,15 +1850,17 @@
         "kind": "imported",
         "receipt": "artifacts/audit/external_ledger_import_20260914T095114Z.json"
       },
-      "status": "IMPORTED_RESERVED_MEASURED_UNCLOSED"
+      "status": "DEVELOPMENT_CLOSURE_FINAL_NOT_ADMITTED"
     },
     {
       "admitted": false,
       "arm": null,
-      "closure_path": null,
+      "closure_kind": "development",
+      "closure_path": "artifacts/research/development_closures/1c6866279655b6c6_admission_closure.json",
+      "closure_schema": "canli.alphac-development-trial-admission-closure.v1",
       "config_hash": "1d500af29297efd3",
       "family_trial_account": "alphamax_share_ratio",
-      "final_disposition": null,
+      "final_disposition": "KILL",
       "first_measurement": {
         "n_obs": 252,
         "recorded_at": "2026-09-13T10:06:21.554000+00:00",
@@ -1735,7 +1869,7 @@
       },
       "hypothesis_key": "1c6866279655b6c6",
       "ledger_path": "artifacts/analysis/alphamax_share_ratio_20260913/momentum_stress/experiments.jsonl",
-      "packet_complete": false,
+      "packet_complete": true,
       "reservation_ordinal": 295,
       "reservation_path": "artifacts/analysis/alphamax_share_ratio_20260913/momentum_stress/reservation.json",
       "reserved_at": "2026-09-13T10:06:21.554196+00:00",
@@ -1744,15 +1878,17 @@
         "kind": "imported",
         "receipt": "artifacts/audit/external_ledger_import_20260914T095114Z.json"
       },
-      "status": "IMPORTED_RESERVED_MEASURED_UNCLOSED"
+      "status": "DEVELOPMENT_CLOSURE_FINAL_NOT_ADMITTED"
     },
     {
       "admitted": false,
       "arm": null,
-      "closure_path": null,
+      "closure_kind": "development",
+      "closure_path": "artifacts/research/development_closures/74a7efa0c3b6bd8d_admission_closure.json",
+      "closure_schema": "canli.alphac-development-trial-admission-closure.v1",
       "config_hash": "4bf61a3128aad3c7",
       "family_trial_account": "alphamax_share_ratio",
-      "final_disposition": null,
+      "final_disposition": "KILL",
       "first_measurement": {
         "n_obs": 252,
         "recorded_at": "2026-09-13T10:07:02.305000+00:00",
@@ -1761,7 +1897,7 @@
       },
       "hypothesis_key": "74a7efa0c3b6bd8d",
       "ledger_path": "artifacts/analysis/alphamax_share_ratio_20260913/momentum_sigma/experiments.jsonl",
-      "packet_complete": false,
+      "packet_complete": true,
       "reservation_ordinal": 296,
       "reservation_path": "artifacts/analysis/alphamax_share_ratio_20260913/momentum_sigma/reservation.json",
       "reserved_at": "2026-09-13T10:07:02.305905+00:00",
@@ -1770,15 +1906,17 @@
         "kind": "imported",
         "receipt": "artifacts/audit/external_ledger_import_20260914T095114Z.json"
       },
-      "status": "IMPORTED_RESERVED_MEASURED_UNCLOSED"
+      "status": "DEVELOPMENT_CLOSURE_FINAL_NOT_ADMITTED"
     },
     {
       "admitted": false,
       "arm": null,
-      "closure_path": null,
+      "closure_kind": "development",
+      "closure_path": "artifacts/research/development_closures/37444615beaef541_admission_closure.json",
+      "closure_schema": "canli.alphac-development-trial-admission-closure.v1",
       "config_hash": "39ab201aeb4e966b",
       "family_trial_account": "alphamax_share_ratio",
-      "final_disposition": null,
+      "final_disposition": "KILL",
       "first_measurement": {
         "n_obs": 252,
         "recorded_at": "2026-09-13T10:07:39.497000+00:00",
@@ -1787,7 +1925,7 @@
       },
       "hypothesis_key": "37444615beaef541",
       "ledger_path": "artifacts/analysis/alphamax_share_ratio_20260913/momentum_sigma_stress/experiments.jsonl",
-      "packet_complete": false,
+      "packet_complete": true,
       "reservation_ordinal": 297,
       "reservation_path": "artifacts/analysis/alphamax_share_ratio_20260913/momentum_sigma_stress/reservation.json",
       "reserved_at": "2026-09-13T10:07:39.497727+00:00",
@@ -1796,15 +1934,17 @@
         "kind": "imported",
         "receipt": "artifacts/audit/external_ledger_import_20260914T095114Z.json"
       },
-      "status": "IMPORTED_RESERVED_MEASURED_UNCLOSED"
+      "status": "DEVELOPMENT_CLOSURE_FINAL_NOT_ADMITTED"
     },
     {
       "admitted": false,
       "arm": null,
-      "closure_path": null,
+      "closure_kind": "development",
+      "closure_path": "artifacts/research/development_closures/e1b170029ad22073_admission_closure.json",
+      "closure_schema": "canli.alphac-development-trial-admission-closure.v1",
       "config_hash": "1a7407937c6ba666",
       "family_trial_account": "alphamax_covariance_basis",
-      "final_disposition": null,
+      "final_disposition": "KILL",
       "first_measurement": {
         "n_obs": 252,
         "recorded_at": "2026-09-13T10:14:59.254000+00:00",
@@ -1813,7 +1953,7 @@
       },
       "hypothesis_key": "e1b170029ad22073",
       "ledger_path": "artifacts/analysis/alphamax_covariance_basis_20260913/sessions/experiments.jsonl",
-      "packet_complete": false,
+      "packet_complete": true,
       "reservation_ordinal": 298,
       "reservation_path": "artifacts/analysis/alphamax_covariance_basis_20260913/sessions/reservation.json",
       "reserved_at": "2026-09-13T10:14:59.254011+00:00",
@@ -1822,15 +1962,17 @@
         "kind": "imported",
         "receipt": "artifacts/audit/external_ledger_import_20260914T095114Z.json"
       },
-      "status": "IMPORTED_RESERVED_MEASURED_UNCLOSED"
+      "status": "DEVELOPMENT_CLOSURE_FINAL_NOT_ADMITTED"
     },
     {
       "admitted": false,
       "arm": null,
-      "closure_path": null,
+      "closure_kind": "development",
+      "closure_path": "artifacts/research/development_closures/05d472cea4fe851b_admission_closure.json",
+      "closure_schema": "canli.alphac-development-trial-admission-closure.v1",
       "config_hash": "87e3a0e938505d66",
       "family_trial_account": "alphamax_covariance_basis",
-      "final_disposition": null,
+      "final_disposition": "KILL",
       "first_measurement": {
         "n_obs": 252,
         "recorded_at": "2026-09-13T10:15:59.637000+00:00",
@@ -1839,7 +1981,7 @@
       },
       "hypothesis_key": "05d472cea4fe851b",
       "ledger_path": "artifacts/analysis/alphamax_covariance_basis_20260913/sessions_stress/experiments.jsonl",
-      "packet_complete": false,
+      "packet_complete": true,
       "reservation_ordinal": 299,
       "reservation_path": "artifacts/analysis/alphamax_covariance_basis_20260913/sessions_stress/reservation.json",
       "reserved_at": "2026-09-13T10:15:59.637986+00:00",
@@ -1848,15 +1990,17 @@
         "kind": "imported",
         "receipt": "artifacts/audit/external_ledger_import_20260914T095114Z.json"
       },
-      "status": "IMPORTED_RESERVED_MEASURED_UNCLOSED"
+      "status": "DEVELOPMENT_CLOSURE_FINAL_NOT_ADMITTED"
     },
     {
       "admitted": false,
       "arm": null,
-      "closure_path": null,
+      "closure_kind": "development",
+      "closure_path": "artifacts/research/development_closures/b65635017a8c1c86_admission_closure.json",
+      "closure_schema": "canli.alphac-development-trial-admission-closure.v1",
       "config_hash": "beaea32b1e315763",
       "family_trial_account": "alphamax_covariance_basis",
-      "final_disposition": null,
+      "final_disposition": "KILL",
       "first_measurement": {
         "n_obs": 252,
         "recorded_at": "2026-09-13T10:16:43.267000+00:00",
@@ -1865,7 +2009,7 @@
       },
       "hypothesis_key": "b65635017a8c1c86",
       "ledger_path": "artifacts/analysis/alphamax_covariance_basis_20260913/sessions_splits/experiments.jsonl",
-      "packet_complete": false,
+      "packet_complete": true,
       "reservation_ordinal": 300,
       "reservation_path": "artifacts/analysis/alphamax_covariance_basis_20260913/sessions_splits/reservation.json",
       "reserved_at": "2026-09-13T10:16:43.267547+00:00",
@@ -1874,15 +2018,17 @@
         "kind": "imported",
         "receipt": "artifacts/audit/external_ledger_import_20260914T095114Z.json"
       },
-      "status": "IMPORTED_RESERVED_MEASURED_UNCLOSED"
+      "status": "DEVELOPMENT_CLOSURE_FINAL_NOT_ADMITTED"
     },
     {
       "admitted": false,
       "arm": null,
-      "closure_path": null,
+      "closure_kind": "development",
+      "closure_path": "artifacts/research/development_closures/1af346382c8f733e_admission_closure.json",
+      "closure_schema": "canli.alphac-development-trial-admission-closure.v1",
       "config_hash": "25070da75589ab2e",
       "family_trial_account": "alphamax_covariance_basis",
-      "final_disposition": null,
+      "final_disposition": "KILL",
       "first_measurement": {
         "n_obs": 252,
         "recorded_at": "2026-09-13T10:17:29.069000+00:00",
@@ -1891,7 +2037,7 @@
       },
       "hypothesis_key": "1af346382c8f733e",
       "ledger_path": "artifacts/analysis/alphamax_covariance_basis_20260913/sessions_splits_stress/experiments.jsonl",
-      "packet_complete": false,
+      "packet_complete": true,
       "reservation_ordinal": 301,
       "reservation_path": "artifacts/analysis/alphamax_covariance_basis_20260913/sessions_splits_stress/reservation.json",
       "reserved_at": "2026-09-13T10:17:29.069979+00:00",
@@ -1900,15 +2046,17 @@
         "kind": "imported",
         "receipt": "artifacts/audit/external_ledger_import_20260914T095114Z.json"
       },
-      "status": "IMPORTED_RESERVED_MEASURED_UNCLOSED"
+      "status": "DEVELOPMENT_CLOSURE_FINAL_NOT_ADMITTED"
     },
     {
       "admitted": false,
       "arm": "baseline",
-      "closure_path": null,
+      "closure_kind": "development",
+      "closure_path": "artifacts/research/development_closures/ca2f7f7fc9b0a6eb_admission_closure.json",
+      "closure_schema": "canli.alphac-development-trial-admission-closure.v1",
       "config_hash": "d99a359dcdb0acd6",
       "family_trial_account": "combined_2022_corrected_max",
-      "final_disposition": null,
+      "final_disposition": "KILL",
       "first_measurement": {
         "n_obs": 365,
         "recorded_at": "2026-09-13T10:25:09.136000+00:00",
@@ -1917,7 +2065,7 @@
       },
       "hypothesis_key": "ca2f7f7fc9b0a6eb",
       "ledger_path": "artifacts/analysis/combined_2022_corrected_max_20260913/baseline/experiments.jsonl",
-      "packet_complete": false,
+      "packet_complete": true,
       "reservation_ordinal": 302,
       "reservation_path": "artifacts/analysis/combined_2022_corrected_max_20260913/baseline/reservation.json",
       "reserved_at": "2026-09-13T10:25:09.136722+00:00",
@@ -1926,15 +2074,17 @@
         "kind": "imported",
         "receipt": "artifacts/audit/external_ledger_import_20260914T095114Z.json"
       },
-      "status": "IMPORTED_RESERVED_MEASURED_UNCLOSED"
+      "status": "DEVELOPMENT_CLOSURE_FINAL_NOT_ADMITTED"
     },
     {
       "admitted": false,
       "arm": "baseline_stress",
-      "closure_path": null,
+      "closure_kind": "development",
+      "closure_path": "artifacts/research/development_closures/ec5dccd300b4e1c3_admission_closure.json",
+      "closure_schema": "canli.alphac-development-trial-admission-closure.v1",
       "config_hash": "1ebbb8e94fc8c846",
       "family_trial_account": "combined_2022_corrected_max",
-      "final_disposition": null,
+      "final_disposition": "KILL",
       "first_measurement": {
         "n_obs": 365,
         "recorded_at": "2026-09-13T10:26:14.321000+00:00",
@@ -1943,7 +2093,7 @@
       },
       "hypothesis_key": "ec5dccd300b4e1c3",
       "ledger_path": "artifacts/analysis/combined_2022_corrected_max_20260913/baseline_stress/experiments.jsonl",
-      "packet_complete": false,
+      "packet_complete": true,
       "reservation_ordinal": 303,
       "reservation_path": "artifacts/analysis/combined_2022_corrected_max_20260913/baseline_stress/reservation.json",
       "reserved_at": "2026-09-13T10:26:14.321778+00:00",
@@ -1952,15 +2102,17 @@
         "kind": "imported",
         "receipt": "artifacts/audit/external_ledger_import_20260914T095114Z.json"
       },
-      "status": "IMPORTED_RESERVED_MEASURED_UNCLOSED"
+      "status": "DEVELOPMENT_CLOSURE_FINAL_NOT_ADMITTED"
     },
     {
       "admitted": false,
       "arm": "baseline",
-      "closure_path": null,
+      "closure_kind": "development",
+      "closure_path": "artifacts/research/development_closures/84b7f7cc441e502e_admission_closure.json",
+      "closure_schema": "canli.alphac-development-trial-admission-closure.v1",
       "config_hash": "bdfba9f990db4db6",
       "family_trial_account": "combined_2022_eligible_core",
-      "final_disposition": null,
+      "final_disposition": "KILL",
       "first_measurement": {
         "n_obs": 365,
         "recorded_at": "2026-09-13T10:29:04.596000+00:00",
@@ -1969,7 +2121,7 @@
       },
       "hypothesis_key": "84b7f7cc441e502e",
       "ledger_path": "artifacts/analysis/combined_2022_eligible_core_20260913/baseline/experiments.jsonl",
-      "packet_complete": false,
+      "packet_complete": true,
       "reservation_ordinal": 304,
       "reservation_path": "artifacts/analysis/combined_2022_eligible_core_20260913/baseline/reservation.json",
       "reserved_at": "2026-09-13T10:29:04.596191+00:00",
@@ -1978,15 +2130,17 @@
         "kind": "imported",
         "receipt": "artifacts/audit/external_ledger_import_20260914T095114Z.json"
       },
-      "status": "IMPORTED_RESERVED_MEASURED_UNCLOSED"
+      "status": "DEVELOPMENT_CLOSURE_FINAL_NOT_ADMITTED"
     },
     {
       "admitted": false,
       "arm": "baseline_stress",
-      "closure_path": null,
+      "closure_kind": "development",
+      "closure_path": "artifacts/research/development_closures/c1668ad8948a44f0_admission_closure.json",
+      "closure_schema": "canli.alphac-development-trial-admission-closure.v1",
       "config_hash": "58d5041ab894be79",
       "family_trial_account": "combined_2022_eligible_core",
-      "final_disposition": null,
+      "final_disposition": "KILL",
       "first_measurement": {
         "n_obs": 365,
         "recorded_at": "2026-09-13T10:29:51.910000+00:00",
@@ -1995,7 +2149,7 @@
       },
       "hypothesis_key": "c1668ad8948a44f0",
       "ledger_path": "artifacts/analysis/combined_2022_eligible_core_20260913/baseline_stress/experiments.jsonl",
-      "packet_complete": false,
+      "packet_complete": true,
       "reservation_ordinal": 305,
       "reservation_path": "artifacts/analysis/combined_2022_eligible_core_20260913/baseline_stress/reservation.json",
       "reserved_at": "2026-09-13T10:29:51.910617+00:00",
@@ -2004,15 +2158,17 @@
         "kind": "imported",
         "receipt": "artifacts/audit/external_ledger_import_20260914T095114Z.json"
       },
-      "status": "IMPORTED_RESERVED_MEASURED_UNCLOSED"
+      "status": "DEVELOPMENT_CLOSURE_FINAL_NOT_ADMITTED"
     },
     {
       "admitted": false,
       "arm": null,
-      "closure_path": null,
+      "closure_kind": "development",
+      "closure_path": "artifacts/research/development_closures/01ab3f4839ed9e4e_admission_closure.json",
+      "closure_schema": "canli.alphac-development-trial-admission-closure.v1",
       "config_hash": "fc900a2297750f0c",
       "family_trial_account": "alphamax_extended_reference",
-      "final_disposition": null,
+      "final_disposition": "KILL",
       "first_measurement": {
         "n_obs": 856,
         "recorded_at": "2026-09-13T10:53:26.149000+00:00",
@@ -2021,7 +2177,7 @@
       },
       "hypothesis_key": "01ab3f4839ed9e4e",
       "ledger_path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/experiments.jsonl",
-      "packet_complete": false,
+      "packet_complete": true,
       "reservation_ordinal": 306,
       "reservation_path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/reservation.json",
       "reserved_at": "2026-09-13T10:53:26.149291+00:00",
@@ -2030,15 +2186,17 @@
         "kind": "imported",
         "receipt": "artifacts/audit/external_ledger_import_20260914T095114Z.json"
       },
-      "status": "IMPORTED_RESERVED_MEASURED_UNCLOSED"
+      "status": "DEVELOPMENT_CLOSURE_FINAL_NOT_ADMITTED"
     },
     {
       "admitted": false,
       "arm": null,
-      "closure_path": null,
+      "closure_kind": "development",
+      "closure_path": "artifacts/research/development_closures/526b59ddae5094ea_admission_closure.json",
+      "closure_schema": "canli.alphac-development-trial-admission-closure.v1",
       "config_hash": "5708859920718907",
       "family_trial_account": "alphamax_extended_reference",
-      "final_disposition": null,
+      "final_disposition": "KILL",
       "first_measurement": {
         "n_obs": 856,
         "recorded_at": "2026-09-13T10:56:30.906000+00:00",
@@ -2047,7 +2205,7 @@
       },
       "hypothesis_key": "526b59ddae5094ea",
       "ledger_path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline_stress/experiments.jsonl",
-      "packet_complete": false,
+      "packet_complete": true,
       "reservation_ordinal": 307,
       "reservation_path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline_stress/reservation.json",
       "reserved_at": "2026-09-13T10:56:30.906643+00:00",
@@ -2056,15 +2214,17 @@
         "kind": "imported",
         "receipt": "artifacts/audit/external_ledger_import_20260914T095114Z.json"
       },
-      "status": "IMPORTED_RESERVED_MEASURED_UNCLOSED"
+      "status": "DEVELOPMENT_CLOSURE_FINAL_NOT_ADMITTED"
     },
     {
       "admitted": false,
       "arm": null,
-      "closure_path": null,
+      "closure_kind": "development",
+      "closure_path": "artifacts/research/development_closures/ebce6195b2fa3a0e_admission_closure.json",
+      "closure_schema": "canli.alphac-development-trial-admission-closure.v1",
       "config_hash": "f4e9e3d49c05de4c",
       "family_trial_account": "crypto_extended_reference",
-      "final_disposition": null,
+      "final_disposition": "KILL",
       "first_measurement": {
         "n_obs": 1249,
         "recorded_at": "2026-09-13T11:00:36.578000+00:00",
@@ -2073,7 +2233,7 @@
       },
       "hypothesis_key": "ebce6195b2fa3a0e",
       "ledger_path": "artifacts/analysis/crypto_extended_reference_20260913/baseline/experiments.jsonl",
-      "packet_complete": false,
+      "packet_complete": true,
       "reservation_ordinal": 308,
       "reservation_path": "artifacts/analysis/crypto_extended_reference_20260913/baseline/reservation.json",
       "reserved_at": "2026-09-13T11:00:36.578913+00:00",
@@ -2082,15 +2242,17 @@
         "kind": "imported",
         "receipt": "artifacts/audit/external_ledger_import_20260914T095114Z.json"
       },
-      "status": "IMPORTED_RESERVED_MEASURED_UNCLOSED"
+      "status": "DEVELOPMENT_CLOSURE_FINAL_NOT_ADMITTED"
     },
     {
       "admitted": false,
       "arm": null,
-      "closure_path": null,
+      "closure_kind": "development",
+      "closure_path": "artifacts/research/development_closures/441aff4aff83abbc_admission_closure.json",
+      "closure_schema": "canli.alphac-development-trial-admission-closure.v1",
       "config_hash": "6ae40747b1721dd7",
       "family_trial_account": "crypto_extended_reference",
-      "final_disposition": null,
+      "final_disposition": "KILL",
       "first_measurement": {
         "n_obs": 1249,
         "recorded_at": "2026-09-13T11:03:35.611000+00:00",
@@ -2099,7 +2261,7 @@
       },
       "hypothesis_key": "441aff4aff83abbc",
       "ledger_path": "artifacts/analysis/crypto_extended_reference_20260913/baseline_stress/experiments.jsonl",
-      "packet_complete": false,
+      "packet_complete": true,
       "reservation_ordinal": 309,
       "reservation_path": "artifacts/analysis/crypto_extended_reference_20260913/baseline_stress/reservation.json",
       "reserved_at": "2026-09-13T11:03:35.611329+00:00",
@@ -2108,15 +2270,17 @@
         "kind": "imported",
         "receipt": "artifacts/audit/external_ledger_import_20260914T095114Z.json"
       },
-      "status": "IMPORTED_RESERVED_MEASURED_UNCLOSED"
+      "status": "DEVELOPMENT_CLOSURE_FINAL_NOT_ADMITTED"
     },
     {
       "admitted": false,
       "arm": null,
-      "closure_path": null,
+      "closure_kind": "development",
+      "closure_path": "artifacts/research/development_closures/f2c5f2dfc8b7c1c3_admission_closure.json",
+      "closure_schema": "canli.alphac-development-trial-admission-closure.v1",
       "config_hash": "4ece24fdebf3af6f",
       "family_trial_account": "confirmed_trend_extended_reference",
-      "final_disposition": null,
+      "final_disposition": "KILL",
       "first_measurement": {
         "n_obs": 856,
         "recorded_at": "2026-09-13T11:07:27.275000+00:00",
@@ -2125,7 +2289,7 @@
       },
       "hypothesis_key": "f2c5f2dfc8b7c1c3",
       "ledger_path": "artifacts/analysis/trend_extended_reference_20260913/baseline/experiments.jsonl",
-      "packet_complete": false,
+      "packet_complete": true,
       "reservation_ordinal": 310,
       "reservation_path": "artifacts/analysis/trend_extended_reference_20260913/baseline/reservation.json",
       "reserved_at": "2026-09-13T11:07:16.056860+00:00",
@@ -2134,15 +2298,17 @@
         "kind": "imported",
         "receipt": "artifacts/audit/external_ledger_import_20260914T095114Z.json"
       },
-      "status": "IMPORTED_RESERVED_MEASURED_UNCLOSED"
+      "status": "DEVELOPMENT_CLOSURE_FINAL_NOT_ADMITTED"
     },
     {
       "admitted": false,
       "arm": null,
-      "closure_path": null,
+      "closure_kind": "development",
+      "closure_path": "artifacts/research/development_closures/a84cebfa1940bd32_admission_closure.json",
+      "closure_schema": "canli.alphac-development-trial-admission-closure.v1",
       "config_hash": "0e27f7c613fee378",
       "family_trial_account": "confirmed_trend_extended_reference",
-      "final_disposition": null,
+      "final_disposition": "KILL",
       "first_measurement": {
         "n_obs": 856,
         "recorded_at": "2026-09-13T11:10:37.954000+00:00",
@@ -2151,7 +2317,7 @@
       },
       "hypothesis_key": "a84cebfa1940bd32",
       "ledger_path": "artifacts/analysis/trend_extended_reference_20260913/baseline_stress/experiments.jsonl",
-      "packet_complete": false,
+      "packet_complete": true,
       "reservation_ordinal": 311,
       "reservation_path": "artifacts/analysis/trend_extended_reference_20260913/baseline_stress/reservation.json",
       "reserved_at": "2026-09-13T11:10:24.855503+00:00",
@@ -2160,15 +2326,17 @@
         "kind": "imported",
         "receipt": "artifacts/audit/external_ledger_import_20260914T095114Z.json"
       },
-      "status": "IMPORTED_RESERVED_MEASURED_UNCLOSED"
+      "status": "DEVELOPMENT_CLOSURE_FINAL_NOT_ADMITTED"
     },
     {
       "admitted": false,
       "arm": "baseline",
-      "closure_path": null,
+      "closure_kind": "development",
+      "closure_path": "artifacts/research/development_closures/fb59066688a7b656_admission_closure.json",
+      "closure_schema": "canli.alphac-development-trial-admission-closure.v1",
       "config_hash": "eede568b17705379",
       "family_trial_account": "combined_extended_reference",
-      "final_disposition": null,
+      "final_disposition": "KILL",
       "first_measurement": {
         "n_obs": 1248,
         "recorded_at": "2026-09-13T11:13:21.647000+00:00",
@@ -2177,7 +2345,7 @@
       },
       "hypothesis_key": "fb59066688a7b656",
       "ledger_path": "artifacts/analysis/combined_extended_reference_20260913/baseline/experiments.jsonl",
-      "packet_complete": false,
+      "packet_complete": true,
       "reservation_ordinal": 312,
       "reservation_path": "artifacts/analysis/combined_extended_reference_20260913/baseline/reservation.json",
       "reserved_at": "2026-09-13T11:13:21.647920+00:00",
@@ -2186,15 +2354,17 @@
         "kind": "imported",
         "receipt": "artifacts/audit/external_ledger_import_20260914T095114Z.json"
       },
-      "status": "IMPORTED_RESERVED_MEASURED_UNCLOSED"
+      "status": "DEVELOPMENT_CLOSURE_FINAL_NOT_ADMITTED"
     },
     {
       "admitted": false,
       "arm": "baseline_stress",
-      "closure_path": null,
+      "closure_kind": "development",
+      "closure_path": "artifacts/research/development_closures/cabb3d5fc410c38b_admission_closure.json",
+      "closure_schema": "canli.alphac-development-trial-admission-closure.v1",
       "config_hash": "c118f8edcc21b420",
       "family_trial_account": "combined_extended_reference",
-      "final_disposition": null,
+      "final_disposition": "KILL",
       "first_measurement": {
         "n_obs": 1248,
         "recorded_at": "2026-09-13T11:14:47.017000+00:00",
@@ -2203,7 +2373,7 @@
       },
       "hypothesis_key": "cabb3d5fc410c38b",
       "ledger_path": "artifacts/analysis/combined_extended_reference_20260913/baseline_stress/experiments.jsonl",
-      "packet_complete": false,
+      "packet_complete": true,
       "reservation_ordinal": 313,
       "reservation_path": "artifacts/analysis/combined_extended_reference_20260913/baseline_stress/reservation.json",
       "reserved_at": "2026-09-13T11:14:47.017884+00:00",
@@ -2212,15 +2382,17 @@
         "kind": "imported",
         "receipt": "artifacts/audit/external_ledger_import_20260914T095114Z.json"
       },
-      "status": "IMPORTED_RESERVED_MEASURED_UNCLOSED"
+      "status": "DEVELOPMENT_CLOSURE_FINAL_NOT_ADMITTED"
     },
     {
       "admitted": false,
       "arm": null,
-      "closure_path": null,
+      "closure_kind": "development",
+      "closure_path": "artifacts/research/development_closures/f60f9f27aef9138d_admission_closure.json",
+      "closure_schema": "canli.alphac-development-trial-admission-closure.v1",
       "config_hash": "5e588c2d58b4446b",
       "family_trial_account": "alphamax_session_cooldown",
-      "final_disposition": null,
+      "final_disposition": "KILL",
       "first_measurement": {
         "n_obs": 856,
         "recorded_at": "2026-09-13T11:19:22.250000+00:00",
@@ -2229,7 +2401,7 @@
       },
       "hypothesis_key": "f60f9f27aef9138d",
       "ledger_path": "artifacts/analysis/alphamax_session_cooldown_20260913/candidate/experiments.jsonl",
-      "packet_complete": false,
+      "packet_complete": true,
       "reservation_ordinal": 314,
       "reservation_path": "artifacts/analysis/alphamax_session_cooldown_20260913/candidate/reservation.json",
       "reserved_at": "2026-09-13T11:19:22.250828+00:00",
@@ -2238,15 +2410,17 @@
         "kind": "imported",
         "receipt": "artifacts/audit/external_ledger_import_20260914T095114Z.json"
       },
-      "status": "IMPORTED_RESERVED_MEASURED_UNCLOSED"
+      "status": "DEVELOPMENT_CLOSURE_FINAL_NOT_ADMITTED"
     },
     {
       "admitted": false,
       "arm": null,
-      "closure_path": null,
+      "closure_kind": "development",
+      "closure_path": "artifacts/research/development_closures/6033a8ec08ed974b_admission_closure.json",
+      "closure_schema": "canli.alphac-development-trial-admission-closure.v1",
       "config_hash": "ec1ee6b06babc27e",
       "family_trial_account": "alphamax_session_cooldown",
-      "final_disposition": null,
+      "final_disposition": "KILL",
       "first_measurement": {
         "n_obs": 856,
         "recorded_at": "2026-09-13T11:20:28.792000+00:00",
@@ -2255,7 +2429,7 @@
       },
       "hypothesis_key": "6033a8ec08ed974b",
       "ledger_path": "artifacts/analysis/alphamax_session_cooldown_20260913/candidate_stress/experiments.jsonl",
-      "packet_complete": false,
+      "packet_complete": true,
       "reservation_ordinal": 315,
       "reservation_path": "artifacts/analysis/alphamax_session_cooldown_20260913/candidate_stress/reservation.json",
       "reserved_at": "2026-09-13T11:20:28.792736+00:00",
@@ -2264,15 +2438,17 @@
         "kind": "imported",
         "receipt": "artifacts/audit/external_ledger_import_20260914T095114Z.json"
       },
-      "status": "IMPORTED_RESERVED_MEASURED_UNCLOSED"
+      "status": "DEVELOPMENT_CLOSURE_FINAL_NOT_ADMITTED"
     },
     {
       "admitted": false,
       "arm": "candidate",
-      "closure_path": null,
+      "closure_kind": "development",
+      "closure_path": "artifacts/research/development_closures/742ee252f0877aa3_admission_closure.json",
+      "closure_schema": "canli.alphac-development-trial-admission-closure.v1",
       "config_hash": "d60fade51fbd88ae",
       "family_trial_account": "combined_session_cooldown",
-      "final_disposition": null,
+      "final_disposition": "KILL",
       "first_measurement": {
         "n_obs": 1248,
         "recorded_at": "2026-09-13T11:23:05.202000+00:00",
@@ -2281,7 +2457,7 @@
       },
       "hypothesis_key": "742ee252f0877aa3",
       "ledger_path": "artifacts/analysis/combined_session_cooldown_20260913/candidate/experiments.jsonl",
-      "packet_complete": false,
+      "packet_complete": true,
       "reservation_ordinal": 316,
       "reservation_path": "artifacts/analysis/combined_session_cooldown_20260913/candidate/reservation.json",
       "reserved_at": "2026-09-13T11:23:05.202916+00:00",
@@ -2290,15 +2466,17 @@
         "kind": "imported",
         "receipt": "artifacts/audit/external_ledger_import_20260914T095114Z.json"
       },
-      "status": "IMPORTED_RESERVED_MEASURED_UNCLOSED"
+      "status": "DEVELOPMENT_CLOSURE_FINAL_NOT_ADMITTED"
     },
     {
       "admitted": false,
       "arm": "candidate_stress",
-      "closure_path": null,
+      "closure_kind": "development",
+      "closure_path": "artifacts/research/development_closures/5539d5c5e13535f1_admission_closure.json",
+      "closure_schema": "canli.alphac-development-trial-admission-closure.v1",
       "config_hash": "b5cc659a22732942",
       "family_trial_account": "combined_session_cooldown",
-      "final_disposition": null,
+      "final_disposition": "KILL",
       "first_measurement": {
         "n_obs": 1248,
         "recorded_at": "2026-09-13T11:23:18.655000+00:00",
@@ -2307,7 +2485,7 @@
       },
       "hypothesis_key": "5539d5c5e13535f1",
       "ledger_path": "artifacts/analysis/combined_session_cooldown_20260913/candidate_stress/experiments.jsonl",
-      "packet_complete": false,
+      "packet_complete": true,
       "reservation_ordinal": 317,
       "reservation_path": "artifacts/analysis/combined_session_cooldown_20260913/candidate_stress/reservation.json",
       "reserved_at": "2026-09-13T11:23:18.655777+00:00",
@@ -2316,15 +2494,17 @@
         "kind": "imported",
         "receipt": "artifacts/audit/external_ledger_import_20260914T095114Z.json"
       },
-      "status": "IMPORTED_RESERVED_MEASURED_UNCLOSED"
+      "status": "DEVELOPMENT_CLOSURE_FINAL_NOT_ADMITTED"
     },
     {
       "admitted": false,
       "arm": null,
-      "closure_path": null,
+      "closure_kind": "development",
+      "closure_path": "artifacts/research/development_closures/74276700e3f152f3_admission_closure.json",
+      "closure_schema": "canli.alphac-development-trial-admission-closure.v1",
       "config_hash": "4600b8eeb5b52662",
       "family_trial_account": "crypto_rank_retention",
-      "final_disposition": null,
+      "final_disposition": "KILL",
       "first_measurement": {
         "n_obs": 1249,
         "recorded_at": "2026-09-13T11:38:51.013000+00:00",
@@ -2333,7 +2513,7 @@
       },
       "hypothesis_key": "74276700e3f152f3",
       "ledger_path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/experiments.jsonl",
-      "packet_complete": false,
+      "packet_complete": true,
       "reservation_ordinal": 318,
       "reservation_path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/reservation.json",
       "reserved_at": "2026-09-13T11:38:51.013996+00:00",
@@ -2342,15 +2522,17 @@
         "kind": "imported",
         "receipt": "artifacts/audit/external_ledger_import_20260914T095114Z.json"
       },
-      "status": "IMPORTED_RESERVED_MEASURED_UNCLOSED"
+      "status": "DEVELOPMENT_CLOSURE_FINAL_NOT_ADMITTED"
     },
     {
       "admitted": false,
       "arm": null,
-      "closure_path": null,
+      "closure_kind": "development",
+      "closure_path": "artifacts/research/development_closures/d33e26d6b05ae095_admission_closure.json",
+      "closure_schema": "canli.alphac-development-trial-admission-closure.v1",
       "config_hash": "98f24769d038a03e",
       "family_trial_account": "crypto_rank_retention",
-      "final_disposition": null,
+      "final_disposition": "KILL",
       "first_measurement": {
         "n_obs": 1249,
         "recorded_at": "2026-09-13T11:45:09.343000+00:00",
@@ -2359,7 +2541,7 @@
       },
       "hypothesis_key": "d33e26d6b05ae095",
       "ledger_path": "artifacts/analysis/crypto_rank_retention_20260913/candidate_stress/experiments.jsonl",
-      "packet_complete": false,
+      "packet_complete": true,
       "reservation_ordinal": 319,
       "reservation_path": "artifacts/analysis/crypto_rank_retention_20260913/candidate_stress/reservation.json",
       "reserved_at": "2026-09-13T11:45:09.343009+00:00",
@@ -2368,15 +2550,17 @@
         "kind": "imported",
         "receipt": "artifacts/audit/external_ledger_import_20260914T095114Z.json"
       },
-      "status": "IMPORTED_RESERVED_MEASURED_UNCLOSED"
+      "status": "DEVELOPMENT_CLOSURE_FINAL_NOT_ADMITTED"
     },
     {
       "admitted": false,
       "arm": "candidate",
-      "closure_path": null,
+      "closure_kind": "development",
+      "closure_path": "artifacts/research/development_closures/6ab4cee0ccf72ec1_admission_closure.json",
+      "closure_schema": "canli.alphac-development-trial-admission-closure.v1",
       "config_hash": "d40d28a6b728e45b",
       "family_trial_account": "combined_crypto_retention",
-      "final_disposition": null,
+      "final_disposition": "KILL",
       "first_measurement": {
         "n_obs": 1248,
         "recorded_at": "2026-09-13T11:47:27.317000+00:00",
@@ -2385,7 +2569,7 @@
       },
       "hypothesis_key": "6ab4cee0ccf72ec1",
       "ledger_path": "artifacts/analysis/combined_crypto_retention_20260913/candidate/experiments.jsonl",
-      "packet_complete": false,
+      "packet_complete": true,
       "reservation_ordinal": 320,
       "reservation_path": "artifacts/analysis/combined_crypto_retention_20260913/candidate/reservation.json",
       "reserved_at": "2026-09-13T11:47:27.317815+00:00",
@@ -2394,15 +2578,17 @@
         "kind": "imported",
         "receipt": "artifacts/audit/external_ledger_import_20260914T095114Z.json"
       },
-      "status": "IMPORTED_RESERVED_MEASURED_UNCLOSED"
+      "status": "DEVELOPMENT_CLOSURE_FINAL_NOT_ADMITTED"
     },
     {
       "admitted": false,
       "arm": "candidate_stress",
-      "closure_path": null,
+      "closure_kind": "development",
+      "closure_path": "artifacts/research/development_closures/fa0f3fbea52b8327_admission_closure.json",
+      "closure_schema": "canli.alphac-development-trial-admission-closure.v1",
       "config_hash": "f8875ccbf229b774",
       "family_trial_account": "combined_crypto_retention",
-      "final_disposition": null,
+      "final_disposition": "KILL",
       "first_measurement": {
         "n_obs": 1248,
         "recorded_at": "2026-09-13T11:48:05.604000+00:00",
@@ -2411,7 +2597,7 @@
       },
       "hypothesis_key": "fa0f3fbea52b8327",
       "ledger_path": "artifacts/analysis/combined_crypto_retention_20260913/candidate_stress/experiments.jsonl",
-      "packet_complete": false,
+      "packet_complete": true,
       "reservation_ordinal": 321,
       "reservation_path": "artifacts/analysis/combined_crypto_retention_20260913/candidate_stress/reservation.json",
       "reserved_at": "2026-09-13T11:48:05.604915+00:00",
@@ -2420,15 +2606,17 @@
         "kind": "imported",
         "receipt": "artifacts/audit/external_ledger_import_20260914T095114Z.json"
       },
-      "status": "IMPORTED_RESERVED_MEASURED_UNCLOSED"
+      "status": "DEVELOPMENT_CLOSURE_FINAL_NOT_ADMITTED"
     },
     {
       "admitted": false,
       "arm": null,
-      "closure_path": null,
+      "closure_kind": "development",
+      "closure_path": "artifacts/research/development_closures/21be25ff2f49bc0d_admission_closure.json",
+      "closure_schema": "canli.alphac-development-trial-admission-closure.v1",
       "config_hash": "68616c99b5c26810",
       "family_trial_account": "crypto_extended_reference",
-      "final_disposition": null,
+      "final_disposition": "KILL",
       "first_measurement": {
         "n_obs": 1249,
         "recorded_at": "2026-09-13T12:24:56.656000+00:00",
@@ -2437,7 +2625,7 @@
       },
       "hypothesis_key": "21be25ff2f49bc0d",
       "ledger_path": "artifacts/analysis/crypto_observed_carry_20260913/candidate/experiments.jsonl",
-      "packet_complete": false,
+      "packet_complete": true,
       "reservation_ordinal": 322,
       "reservation_path": "artifacts/analysis/crypto_observed_carry_20260913/candidate/reservation.json",
       "reserved_at": "2026-09-13T12:24:56.656471+00:00",
@@ -2446,15 +2634,17 @@
         "kind": "imported",
         "receipt": "artifacts/audit/external_ledger_import_20260914T095114Z.json"
       },
-      "status": "IMPORTED_RESERVED_MEASURED_UNCLOSED"
+      "status": "DEVELOPMENT_CLOSURE_FINAL_NOT_ADMITTED"
     },
     {
       "admitted": false,
       "arm": null,
-      "closure_path": null,
+      "closure_kind": "development",
+      "closure_path": "artifacts/research/development_closures/abb130671e4e8c50_admission_closure.json",
+      "closure_schema": "canli.alphac-development-trial-admission-closure.v1",
       "config_hash": "a40f6d8bd1ade405",
       "family_trial_account": "crypto_extended_reference",
-      "final_disposition": null,
+      "final_disposition": "KILL",
       "first_measurement": {
         "n_obs": 1249,
         "recorded_at": "2026-09-13T12:26:37.357000+00:00",
@@ -2463,7 +2653,7 @@
       },
       "hypothesis_key": "abb130671e4e8c50",
       "ledger_path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/experiments.jsonl",
-      "packet_complete": false,
+      "packet_complete": true,
       "reservation_ordinal": 323,
       "reservation_path": "artifacts/analysis/crypto_observed_carry_20260913/candidate_stress/reservation.json",
       "reserved_at": "2026-09-13T12:26:37.357819+00:00",
@@ -2472,15 +2662,17 @@
         "kind": "imported",
         "receipt": "artifacts/audit/external_ledger_import_20260914T095114Z.json"
       },
-      "status": "IMPORTED_RESERVED_MEASURED_UNCLOSED"
+      "status": "DEVELOPMENT_CLOSURE_FINAL_NOT_ADMITTED"
     },
     {
       "admitted": false,
       "arm": "candidate",
-      "closure_path": null,
+      "closure_kind": "development",
+      "closure_path": "artifacts/research/development_closures/5ec589ad2081e1da_admission_closure.json",
+      "closure_schema": "canli.alphac-development-trial-admission-closure.v1",
       "config_hash": "96f6edf1d210c24a",
       "family_trial_account": "combined_crypto_observed_carry",
-      "final_disposition": null,
+      "final_disposition": "KILL",
       "first_measurement": {
         "n_obs": 1248,
         "recorded_at": "2026-09-13T12:28:19.400000+00:00",
@@ -2489,7 +2681,7 @@
       },
       "hypothesis_key": "5ec589ad2081e1da",
       "ledger_path": "artifacts/analysis/combined_crypto_observed_carry_20260913/candidate/experiments.jsonl",
-      "packet_complete": false,
+      "packet_complete": true,
       "reservation_ordinal": 324,
       "reservation_path": "artifacts/analysis/combined_crypto_observed_carry_20260913/candidate/reservation.json",
       "reserved_at": "2026-09-13T12:28:19.400145+00:00",
@@ -2498,15 +2690,17 @@
         "kind": "imported",
         "receipt": "artifacts/audit/external_ledger_import_20260914T095114Z.json"
       },
-      "status": "IMPORTED_RESERVED_MEASURED_UNCLOSED"
+      "status": "DEVELOPMENT_CLOSURE_FINAL_NOT_ADMITTED"
     },
     {
       "admitted": false,
       "arm": "candidate_stress",
-      "closure_path": null,
+      "closure_kind": "development",
+      "closure_path": "artifacts/research/development_closures/ffa8134aa551560b_admission_closure.json",
+      "closure_schema": "canli.alphac-development-trial-admission-closure.v1",
       "config_hash": "18b398fe2d7841b9",
       "family_trial_account": "combined_crypto_observed_carry",
-      "final_disposition": null,
+      "final_disposition": "KILL",
       "first_measurement": {
         "n_obs": 1248,
         "recorded_at": "2026-09-13T12:28:58.210000+00:00",
@@ -2515,7 +2709,7 @@
       },
       "hypothesis_key": "ffa8134aa551560b",
       "ledger_path": "artifacts/analysis/combined_crypto_observed_carry_20260913/candidate_stress/experiments.jsonl",
-      "packet_complete": false,
+      "packet_complete": true,
       "reservation_ordinal": 325,
       "reservation_path": "artifacts/analysis/combined_crypto_observed_carry_20260913/candidate_stress/reservation.json",
       "reserved_at": "2026-09-13T12:28:58.210708+00:00",
@@ -2524,15 +2718,17 @@
         "kind": "imported",
         "receipt": "artifacts/audit/external_ledger_import_20260914T095114Z.json"
       },
-      "status": "IMPORTED_RESERVED_MEASURED_UNCLOSED"
+      "status": "DEVELOPMENT_CLOSURE_FINAL_NOT_ADMITTED"
     },
     {
       "admitted": false,
       "arm": null,
-      "closure_path": null,
+      "closure_kind": "development",
+      "closure_path": "artifacts/research/development_closures/4963dee96e4ce7c8_admission_closure.json",
+      "closure_schema": "canli.alphac-development-trial-admission-closure.v1",
       "config_hash": "85de6f8b71856ec9",
       "family_trial_account": "crypto_extended_reference",
-      "final_disposition": null,
+      "final_disposition": "KILL",
       "first_measurement": {
         "n_obs": 1249,
         "recorded_at": "2026-09-13T12:37:47.147000+00:00",
@@ -2541,7 +2737,7 @@
       },
       "hypothesis_key": "4963dee96e4ce7c8",
       "ledger_path": "artifacts/analysis/crypto_risk_normalized_rank_20260913/candidate/experiments.jsonl",
-      "packet_complete": false,
+      "packet_complete": true,
       "reservation_ordinal": 326,
       "reservation_path": "artifacts/analysis/crypto_risk_normalized_rank_20260913/candidate/reservation.json",
       "reserved_at": "2026-09-13T12:37:47.147046+00:00",
@@ -2550,15 +2746,17 @@
         "kind": "imported",
         "receipt": "artifacts/audit/external_ledger_import_20260914T095114Z.json"
       },
-      "status": "IMPORTED_RESERVED_MEASURED_UNCLOSED"
+      "status": "DEVELOPMENT_CLOSURE_FINAL_NOT_ADMITTED"
     },
     {
       "admitted": false,
       "arm": null,
-      "closure_path": null,
+      "closure_kind": "development",
+      "closure_path": "artifacts/research/development_closures/fd927c9246f55cf3_admission_closure.json",
+      "closure_schema": "canli.alphac-development-trial-admission-closure.v1",
       "config_hash": "98198a58b9b39d9d",
       "family_trial_account": "crypto_extended_reference",
-      "final_disposition": null,
+      "final_disposition": "KILL",
       "first_measurement": {
         "n_obs": 1249,
         "recorded_at": "2026-09-13T12:39:21.438000+00:00",
@@ -2567,7 +2765,7 @@
       },
       "hypothesis_key": "fd927c9246f55cf3",
       "ledger_path": "artifacts/analysis/crypto_risk_normalized_rank_20260913/candidate_stress/experiments.jsonl",
-      "packet_complete": false,
+      "packet_complete": true,
       "reservation_ordinal": 327,
       "reservation_path": "artifacts/analysis/crypto_risk_normalized_rank_20260913/candidate_stress/reservation.json",
       "reserved_at": "2026-09-13T12:39:21.438077+00:00",
@@ -2576,15 +2774,17 @@
         "kind": "imported",
         "receipt": "artifacts/audit/external_ledger_import_20260914T095114Z.json"
       },
-      "status": "IMPORTED_RESERVED_MEASURED_UNCLOSED"
+      "status": "DEVELOPMENT_CLOSURE_FINAL_NOT_ADMITTED"
     },
     {
       "admitted": false,
       "arm": "candidate",
-      "closure_path": null,
+      "closure_kind": "development",
+      "closure_path": "artifacts/research/development_closures/a43791ac42d15fb2_admission_closure.json",
+      "closure_schema": "canli.alphac-development-trial-admission-closure.v1",
       "config_hash": "10e0b9946eac83c7",
       "family_trial_account": "combined_crypto_risk_rank",
-      "final_disposition": null,
+      "final_disposition": "KILL",
       "first_measurement": {
         "n_obs": 1248,
         "recorded_at": "2026-09-13T12:41:42.152000+00:00",
@@ -2593,7 +2793,7 @@
       },
       "hypothesis_key": "a43791ac42d15fb2",
       "ledger_path": "artifacts/analysis/combined_crypto_risk_rank_20260913/candidate/experiments.jsonl",
-      "packet_complete": false,
+      "packet_complete": true,
       "reservation_ordinal": 328,
       "reservation_path": "artifacts/analysis/combined_crypto_risk_rank_20260913/candidate/reservation.json",
       "reserved_at": "2026-09-13T12:41:42.152900+00:00",
@@ -2602,15 +2802,17 @@
         "kind": "imported",
         "receipt": "artifacts/audit/external_ledger_import_20260914T095114Z.json"
       },
-      "status": "IMPORTED_RESERVED_MEASURED_UNCLOSED"
+      "status": "DEVELOPMENT_CLOSURE_FINAL_NOT_ADMITTED"
     },
     {
       "admitted": false,
       "arm": "candidate_stress",
-      "closure_path": null,
+      "closure_kind": "development",
+      "closure_path": "artifacts/research/development_closures/a18db0c465e764c7_admission_closure.json",
+      "closure_schema": "canli.alphac-development-trial-admission-closure.v1",
       "config_hash": "9df6253e792897b5",
       "family_trial_account": "combined_crypto_risk_rank",
-      "final_disposition": null,
+      "final_disposition": "KILL",
       "first_measurement": {
         "n_obs": 1248,
         "recorded_at": "2026-09-13T12:42:31.918000+00:00",
@@ -2619,7 +2821,7 @@
       },
       "hypothesis_key": "a18db0c465e764c7",
       "ledger_path": "artifacts/analysis/combined_crypto_risk_rank_20260913/candidate_stress/experiments.jsonl",
-      "packet_complete": false,
+      "packet_complete": true,
       "reservation_ordinal": 329,
       "reservation_path": "artifacts/analysis/combined_crypto_risk_rank_20260913/candidate_stress/reservation.json",
       "reserved_at": "2026-09-13T12:42:31.918730+00:00",
@@ -2628,15 +2830,17 @@
         "kind": "imported",
         "receipt": "artifacts/audit/external_ledger_import_20260914T095114Z.json"
       },
-      "status": "IMPORTED_RESERVED_MEASURED_UNCLOSED"
+      "status": "DEVELOPMENT_CLOSURE_FINAL_NOT_ADMITTED"
     },
     {
       "admitted": false,
       "arm": null,
-      "closure_path": null,
+      "closure_kind": "development",
+      "closure_path": "artifacts/research/development_closures/b617ee32069d2f7f_admission_closure.json",
+      "closure_schema": "canli.alphac-development-trial-admission-closure.v1",
       "config_hash": "6cd2a49aa4cf2ee4",
       "family_trial_account": "filing_seasonal_common_income_change",
-      "final_disposition": null,
+      "final_disposition": "KILL",
       "first_measurement": {
         "n_obs": 857,
         "recorded_at": "2026-09-13T13:31:38.564000+00:00",
@@ -2645,7 +2849,7 @@
       },
       "hypothesis_key": "b617ee32069d2f7f",
       "ledger_path": "artifacts/analysis/earnings_change_20260913_v2/normal/experiments.jsonl",
-      "packet_complete": false,
+      "packet_complete": true,
       "reservation_ordinal": 330,
       "reservation_path": "artifacts/analysis/earnings_change_20260913_v2/normal/reservation.json",
       "reserved_at": "2026-09-13T13:31:38.564455+00:00",
@@ -2654,15 +2858,17 @@
         "kind": "imported",
         "receipt": "artifacts/audit/external_ledger_import_20260914T095114Z.json"
       },
-      "status": "IMPORTED_RESERVED_MEASURED_UNCLOSED"
+      "status": "DEVELOPMENT_CLOSURE_FINAL_NOT_ADMITTED"
     },
     {
       "admitted": false,
       "arm": "normal",
-      "closure_path": null,
+      "closure_kind": "development",
+      "closure_path": "artifacts/research/development_closures/b589416ad7232197_admission_closure.json",
+      "closure_schema": "canli.alphac-development-trial-admission-closure.v1",
       "config_hash": "0bd253e9a36b3ca3",
       "family_trial_account": "bil_cash_implementation",
-      "final_disposition": null,
+      "final_disposition": "KILL",
       "first_measurement": {
         "n_obs": 1248,
         "recorded_at": "2026-09-13T13:59:57.086000+00:00",
@@ -2671,7 +2877,7 @@
       },
       "hypothesis_key": "b589416ad7232197",
       "ledger_path": "artifacts/analysis/bil_cash_20260913/normal/experiments.jsonl",
-      "packet_complete": false,
+      "packet_complete": true,
       "reservation_ordinal": 331,
       "reservation_path": "artifacts/analysis/bil_cash_20260913/normal/reservation.json",
       "reserved_at": "2026-09-13T13:59:57.086392+00:00",
@@ -2680,15 +2886,17 @@
         "kind": "imported",
         "receipt": "artifacts/audit/external_ledger_import_20260914T095114Z.json"
       },
-      "status": "IMPORTED_RESERVED_MEASURED_UNCLOSED"
+      "status": "DEVELOPMENT_CLOSURE_FINAL_NOT_ADMITTED"
     },
     {
       "admitted": false,
       "arm": "stress",
-      "closure_path": null,
+      "closure_kind": "development",
+      "closure_path": "artifacts/research/development_closures/54a40cbe227c582f_admission_closure.json",
+      "closure_schema": "canli.alphac-development-trial-admission-closure.v1",
       "config_hash": "2aa05b6abb6aa7bf",
       "family_trial_account": "bil_cash_implementation",
-      "final_disposition": null,
+      "final_disposition": "KILL",
       "first_measurement": {
         "n_obs": 1248,
         "recorded_at": "2026-09-13T14:03:23.913000+00:00",
@@ -2697,7 +2905,7 @@
       },
       "hypothesis_key": "54a40cbe227c582f",
       "ledger_path": "artifacts/analysis/bil_cash_20260913/stress/experiments.jsonl",
-      "packet_complete": false,
+      "packet_complete": true,
       "reservation_ordinal": 332,
       "reservation_path": "artifacts/analysis/bil_cash_20260913/stress_preflight_attempt1/reservation.json",
       "reserved_at": "2026-09-13T14:00:32.466491+00:00",
@@ -2706,15 +2914,17 @@
         "kind": "imported",
         "receipt": "artifacts/audit/external_ledger_import_20260914T095114Z.json"
       },
-      "status": "IMPORTED_RESERVED_MEASURED_UNCLOSED"
+      "status": "DEVELOPMENT_CLOSURE_FINAL_NOT_ADMITTED"
     },
     {
       "admitted": false,
       "arm": "normal",
-      "closure_path": null,
+      "closure_kind": "development",
+      "closure_path": "artifacts/research/development_closures/b94f57f13b2597d9_admission_closure.json",
+      "closure_schema": "canli.alphac-development-trial-admission-closure.v1",
       "config_hash": "bdebd1894fe56360",
       "family_trial_account": "bil_cash_implementation_2022_validation",
-      "final_disposition": null,
+      "final_disposition": "KILL",
       "first_measurement": {
         "n_obs": 365,
         "recorded_at": "2026-09-13T14:07:04.931000+00:00",
@@ -2723,7 +2933,7 @@
       },
       "hypothesis_key": "b94f57f13b2597d9",
       "ledger_path": "artifacts/analysis/bil_cash_2022_20260913/normal/experiments.jsonl",
-      "packet_complete": false,
+      "packet_complete": true,
       "reservation_ordinal": 333,
       "reservation_path": "artifacts/analysis/bil_cash_2022_20260913/normal/reservation.json",
       "reserved_at": "2026-09-13T14:07:04.931389+00:00",
@@ -2732,15 +2942,17 @@
         "kind": "imported",
         "receipt": "artifacts/audit/external_ledger_import_20260914T095114Z.json"
       },
-      "status": "IMPORTED_RESERVED_MEASURED_UNCLOSED"
+      "status": "DEVELOPMENT_CLOSURE_FINAL_NOT_ADMITTED"
     },
     {
       "admitted": false,
       "arm": "stress",
-      "closure_path": null,
+      "closure_kind": "development",
+      "closure_path": "artifacts/research/development_closures/f7a2b02448f5d522_admission_closure.json",
+      "closure_schema": "canli.alphac-development-trial-admission-closure.v1",
       "config_hash": "fc615c17957989d7",
       "family_trial_account": "bil_cash_implementation_2022_validation",
-      "final_disposition": null,
+      "final_disposition": "KILL",
       "first_measurement": {
         "n_obs": 365,
         "recorded_at": "2026-09-13T14:07:32.908000+00:00",
@@ -2749,7 +2961,7 @@
       },
       "hypothesis_key": "f7a2b02448f5d522",
       "ledger_path": "artifacts/analysis/bil_cash_2022_20260913/stress/experiments.jsonl",
-      "packet_complete": false,
+      "packet_complete": true,
       "reservation_ordinal": 334,
       "reservation_path": "artifacts/analysis/bil_cash_2022_20260913/stress/reservation.json",
       "reserved_at": "2026-09-13T14:07:32.908081+00:00",
@@ -2758,15 +2970,17 @@
         "kind": "imported",
         "receipt": "artifacts/audit/external_ledger_import_20260914T095114Z.json"
       },
-      "status": "IMPORTED_RESERVED_MEASURED_UNCLOSED"
+      "status": "DEVELOPMENT_CLOSURE_FINAL_NOT_ADMITTED"
     },
     {
       "admitted": false,
       "arm": null,
-      "closure_path": null,
+      "closure_kind": "development",
+      "closure_path": "artifacts/research/development_closures/e13e55febb0166a3_admission_closure.json",
+      "closure_schema": "canli.alphac-development-trial-admission-closure.v1",
       "config_hash": "04f76a71e7ffda45",
       "family_trial_account": "trend_fixed_asset_group_risk",
-      "final_disposition": null,
+      "final_disposition": "KILL",
       "first_measurement": {
         "n_obs": 856,
         "recorded_at": "2026-09-13T14:34:10.243000+00:00",
@@ -2775,7 +2989,7 @@
       },
       "hypothesis_key": "e13e55febb0166a3",
       "ledger_path": "artifacts/analysis/trend_group_risk_20260913/baseline/experiments.jsonl",
-      "packet_complete": false,
+      "packet_complete": true,
       "reservation_ordinal": 335,
       "reservation_path": "artifacts/analysis/trend_group_risk_20260913/baseline/reservation.json",
       "reserved_at": "2026-09-13T14:33:57.846240+00:00",
@@ -2784,15 +2998,17 @@
         "kind": "imported",
         "receipt": "artifacts/audit/external_ledger_import_20260914T095114Z.json"
       },
-      "status": "IMPORTED_RESERVED_MEASURED_UNCLOSED"
+      "status": "DEVELOPMENT_CLOSURE_FINAL_NOT_ADMITTED"
     },
     {
       "admitted": false,
       "arm": "normal",
-      "closure_path": null,
+      "closure_kind": "development",
+      "closure_path": "artifacts/research/development_closures/c34273b2e685819c_admission_closure.json",
+      "closure_schema": "canli.alphac-development-trial-admission-closure.v1",
       "config_hash": "8876e4ab5c41f459",
       "family_trial_account": "trend_fixed_asset_group_risk",
-      "final_disposition": null,
+      "final_disposition": "KILL",
       "first_measurement": {
         "n_obs": 1248,
         "recorded_at": "2026-09-13T14:37:31.568000+00:00",
@@ -2801,7 +3017,7 @@
       },
       "hypothesis_key": "c34273b2e685819c",
       "ledger_path": "artifacts/analysis/combined_group_risk_20260913/normal_v2/experiments.jsonl",
-      "packet_complete": false,
+      "packet_complete": true,
       "reservation_ordinal": 336,
       "reservation_path": "artifacts/analysis/combined_group_risk_20260913/normal_v2/reservation.json",
       "reserved_at": "2026-09-13T14:37:31.568735+00:00",
@@ -2810,15 +3026,17 @@
         "kind": "imported",
         "receipt": "artifacts/audit/external_ledger_import_20260914T095114Z.json"
       },
-      "status": "IMPORTED_RESERVED_MEASURED_UNCLOSED"
+      "status": "DEVELOPMENT_CLOSURE_FINAL_NOT_ADMITTED"
     },
     {
       "admitted": false,
       "arm": null,
-      "closure_path": null,
+      "closure_kind": "development",
+      "closure_path": "artifacts/research/development_closures/44da7a6140622ff6_admission_closure.json",
+      "closure_schema": "canli.alphac-development-trial-admission-closure.v1",
       "config_hash": "ada12dd829ebde6a",
       "family_trial_account": "alphamax_path_momentum",
-      "final_disposition": null,
+      "final_disposition": "KILL",
       "first_measurement": {
         "n_obs": 856,
         "recorded_at": "2026-09-13T15:41:24.597000+00:00",
@@ -2827,7 +3045,7 @@
       },
       "hypothesis_key": "44da7a6140622ff6",
       "ledger_path": "artifacts/analysis/alphamax_path_momentum_20260913/candidate/experiments.jsonl",
-      "packet_complete": false,
+      "packet_complete": true,
       "reservation_ordinal": 337,
       "reservation_path": "artifacts/analysis/alphamax_path_momentum_20260913/candidate/reservation.json",
       "reserved_at": "2026-09-13T15:41:24.597478+00:00",
@@ -2836,15 +3054,17 @@
         "kind": "imported",
         "receipt": "artifacts/audit/external_ledger_import_20260914T095114Z.json"
       },
-      "status": "IMPORTED_RESERVED_MEASURED_UNCLOSED"
+      "status": "DEVELOPMENT_CLOSURE_FINAL_NOT_ADMITTED"
     },
     {
       "admitted": false,
       "arm": "normal",
-      "closure_path": null,
+      "closure_kind": "development",
+      "closure_path": "artifacts/research/development_closures/2aec4c4ff0073e13_admission_closure.json",
+      "closure_schema": "canli.alphac-development-trial-admission-closure.v1",
       "config_hash": "be14a2185fd5d9c3",
       "family_trial_account": "alphamax_path_momentum",
-      "final_disposition": null,
+      "final_disposition": "KILL",
       "first_measurement": {
         "n_obs": 1248,
         "recorded_at": "2026-09-13T15:47:29.485000+00:00",
@@ -2853,7 +3073,7 @@
       },
       "hypothesis_key": "2aec4c4ff0073e13",
       "ledger_path": "artifacts/analysis/combined_path_momentum_20260913/normal/experiments.jsonl",
-      "packet_complete": false,
+      "packet_complete": true,
       "reservation_ordinal": 338,
       "reservation_path": "artifacts/analysis/combined_path_momentum_20260913/normal/reservation.json",
       "reserved_at": "2026-09-13T15:47:29.485567+00:00",
@@ -2862,15 +3082,17 @@
         "kind": "imported",
         "receipt": "artifacts/audit/external_ledger_import_20260914T095114Z.json"
       },
-      "status": "IMPORTED_RESERVED_MEASURED_UNCLOSED"
+      "status": "DEVELOPMENT_CLOSURE_FINAL_NOT_ADMITTED"
     },
     {
       "admitted": false,
       "arm": null,
-      "closure_path": null,
+      "closure_kind": "development",
+      "closure_path": "artifacts/research/development_closures/db3d6b1de6c7efd4_admission_closure.json",
+      "closure_schema": "canli.alphac-development-trial-admission-closure.v1",
       "config_hash": "8d7ca3403ba91e2c",
       "family_trial_account": "alphamax_total_return_momentum",
-      "final_disposition": null,
+      "final_disposition": "KILL",
       "first_measurement": {
         "n_obs": 856,
         "recorded_at": "2026-09-13T15:58:05.010000+00:00",
@@ -2879,7 +3101,7 @@
       },
       "hypothesis_key": "db3d6b1de6c7efd4",
       "ledger_path": "artifacts/analysis/alphamax_total_return_momentum_20260913/candidate/experiments.jsonl",
-      "packet_complete": false,
+      "packet_complete": true,
       "reservation_ordinal": 339,
       "reservation_path": "artifacts/analysis/alphamax_total_return_momentum_20260913/candidate/reservation.json",
       "reserved_at": "2026-09-13T15:58:05.010612+00:00",
@@ -2888,15 +3110,17 @@
         "kind": "imported",
         "receipt": "artifacts/audit/external_ledger_import_20260914T095114Z.json"
       },
-      "status": "IMPORTED_RESERVED_MEASURED_UNCLOSED"
+      "status": "DEVELOPMENT_CLOSURE_FINAL_NOT_ADMITTED"
     },
     {
       "admitted": false,
       "arm": "normal",
-      "closure_path": null,
+      "closure_kind": "development",
+      "closure_path": "artifacts/research/development_closures/9cea7ff09cf1a9fd_admission_closure.json",
+      "closure_schema": "canli.alphac-development-trial-admission-closure.v1",
       "config_hash": "f0eba2e9b7157672",
       "family_trial_account": "alphamax_total_return_momentum",
-      "final_disposition": null,
+      "final_disposition": "KILL",
       "first_measurement": {
         "n_obs": 1248,
         "recorded_at": "2026-09-13T16:10:42.407000+00:00",
@@ -2905,7 +3129,7 @@
       },
       "hypothesis_key": "9cea7ff09cf1a9fd",
       "ledger_path": "artifacts/analysis/combined_total_return_momentum_20260913/normal/experiments.jsonl",
-      "packet_complete": false,
+      "packet_complete": true,
       "reservation_ordinal": 340,
       "reservation_path": "artifacts/analysis/combined_total_return_momentum_20260913/normal/reservation.json",
       "reserved_at": "2026-09-13T16:10:42.407962+00:00",
@@ -2914,15 +3138,17 @@
         "kind": "imported",
         "receipt": "artifacts/audit/external_ledger_import_20260914T095114Z.json"
       },
-      "status": "IMPORTED_RESERVED_MEASURED_UNCLOSED"
+      "status": "DEVELOPMENT_CLOSURE_FINAL_NOT_ADMITTED"
     },
     {
       "admitted": false,
       "arm": null,
-      "closure_path": null,
+      "closure_kind": "development",
+      "closure_path": "artifacts/research/development_closures/8b0d95f75eaa71ae_admission_closure.json",
+      "closure_schema": "canli.alphac-development-trial-admission-closure.v1",
       "config_hash": "074a4aeaab05263a",
       "family_trial_account": "crypto_funded_reference",
-      "final_disposition": null,
+      "final_disposition": "KILL",
       "first_measurement": {
         "n_obs": 1248,
         "recorded_at": "2026-09-13T16:43:16.986000+00:00",
@@ -2931,7 +3157,7 @@
       },
       "hypothesis_key": "8b0d95f75eaa71ae",
       "ledger_path": "artifacts/analysis/crypto_funded_reference_20260913/baseline/experiments.jsonl",
-      "packet_complete": false,
+      "packet_complete": true,
       "reservation_ordinal": 341,
       "reservation_path": "artifacts/analysis/crypto_funded_reference_20260913/baseline/reservation.json",
       "reserved_at": "2026-09-13T16:43:16.986181+00:00",
@@ -2940,15 +3166,17 @@
         "kind": "imported",
         "receipt": "artifacts/audit/external_ledger_import_20260914T095114Z.json"
       },
-      "status": "IMPORTED_RESERVED_MEASURED_UNCLOSED"
+      "status": "DEVELOPMENT_CLOSURE_FINAL_NOT_ADMITTED"
     },
     {
       "admitted": false,
       "arm": null,
-      "closure_path": null,
+      "closure_kind": "development",
+      "closure_path": "artifacts/research/development_closures/bda8570351dd27b2_admission_closure.json",
+      "closure_schema": "canli.alphac-development-trial-admission-closure.v1",
       "config_hash": "1b45dce57d687394",
       "family_trial_account": "crypto_continuous_account",
-      "final_disposition": null,
+      "final_disposition": "KILL",
       "first_measurement": {
         "n_obs": 1248,
         "recorded_at": "2026-09-13T16:52:42.424000+00:00",
@@ -2957,7 +3185,7 @@
       },
       "hypothesis_key": "bda8570351dd27b2",
       "ledger_path": "artifacts/analysis/crypto_continuous_account_20260913/baseline/experiments.jsonl",
-      "packet_complete": false,
+      "packet_complete": true,
       "reservation_ordinal": 342,
       "reservation_path": "artifacts/analysis/crypto_continuous_account_20260913/baseline/reservation.json",
       "reserved_at": "2026-09-13T16:52:42.424181+00:00",
@@ -2966,15 +3194,17 @@
         "kind": "imported",
         "receipt": "artifacts/audit/external_ledger_import_20260914T095114Z.json"
       },
-      "status": "IMPORTED_RESERVED_MEASURED_UNCLOSED"
+      "status": "DEVELOPMENT_CLOSURE_FINAL_NOT_ADMITTED"
     },
     {
       "admitted": false,
       "arm": null,
-      "closure_path": null,
+      "closure_kind": "development",
+      "closure_path": "artifacts/research/development_closures/8948763f0f12d809_admission_closure.json",
+      "closure_schema": "canli.alphac-development-trial-admission-closure.v1",
       "config_hash": "27f3a8e86fe95c8c",
       "family_trial_account": "crypto_continuous_account",
-      "final_disposition": null,
+      "final_disposition": "KILL",
       "first_measurement": {
         "n_obs": 1248,
         "recorded_at": "2026-09-13T16:56:22.594000+00:00",
@@ -2983,7 +3213,7 @@
       },
       "hypothesis_key": "8948763f0f12d809",
       "ledger_path": "artifacts/analysis/crypto_continuous_account_20260913/baseline_stress/experiments.jsonl",
-      "packet_complete": false,
+      "packet_complete": true,
       "reservation_ordinal": 343,
       "reservation_path": "artifacts/analysis/crypto_continuous_account_20260913/baseline_stress/reservation.json",
       "reserved_at": "2026-09-13T16:56:22.594667+00:00",
@@ -2992,15 +3222,17 @@
         "kind": "imported",
         "receipt": "artifacts/audit/external_ledger_import_20260914T095114Z.json"
       },
-      "status": "IMPORTED_RESERVED_MEASURED_UNCLOSED"
+      "status": "DEVELOPMENT_CLOSURE_FINAL_NOT_ADMITTED"
     },
     {
       "admitted": false,
       "arm": null,
-      "closure_path": null,
+      "closure_kind": "development",
+      "closure_path": "artifacts/research/development_closures/5bb33ba832874159_admission_closure.json",
+      "closure_schema": "canli.alphac-development-trial-admission-closure.v1",
       "config_hash": "d0b7ab247a319e1f",
       "family_trial_account": "confirmed_trend_funded_account",
-      "final_disposition": null,
+      "final_disposition": "KILL",
       "first_measurement": {
         "n_obs": 854,
         "recorded_at": "2026-09-13T17:02:40.810000+00:00",
@@ -3009,7 +3241,7 @@
       },
       "hypothesis_key": "5bb33ba832874159",
       "ledger_path": "artifacts/analysis/trend_funded_account_20260913/baseline/experiments.jsonl",
-      "packet_complete": false,
+      "packet_complete": true,
       "reservation_ordinal": 344,
       "reservation_path": "artifacts/analysis/trend_funded_account_20260913/baseline/reservation.json",
       "reserved_at": "2026-09-13T17:02:27.477904+00:00",
@@ -3018,15 +3250,17 @@
         "kind": "imported",
         "receipt": "artifacts/audit/external_ledger_import_20260914T095114Z.json"
       },
-      "status": "IMPORTED_RESERVED_MEASURED_UNCLOSED"
+      "status": "DEVELOPMENT_CLOSURE_FINAL_NOT_ADMITTED"
     },
     {
       "admitted": false,
       "arm": null,
-      "closure_path": null,
+      "closure_kind": "development",
+      "closure_path": "artifacts/research/development_closures/4343650e7f9f5517_admission_closure.json",
+      "closure_schema": "canli.alphac-development-trial-admission-closure.v1",
       "config_hash": "034f496522c76bfc",
       "family_trial_account": "confirmed_trend_funded_account",
-      "final_disposition": null,
+      "final_disposition": "KILL",
       "first_measurement": {
         "n_obs": 854,
         "recorded_at": "2026-09-13T17:10:45.915000+00:00",
@@ -3035,7 +3269,7 @@
       },
       "hypothesis_key": "4343650e7f9f5517",
       "ledger_path": "artifacts/analysis/trend_funded_account_20260913/baseline_stress/experiments.jsonl",
-      "packet_complete": false,
+      "packet_complete": true,
       "reservation_ordinal": 345,
       "reservation_path": "artifacts/analysis/trend_funded_account_20260913/baseline_stress/reservation.json",
       "reserved_at": "2026-09-13T17:10:32.653586+00:00",
@@ -3044,15 +3278,17 @@
         "kind": "imported",
         "receipt": "artifacts/audit/external_ledger_import_20260914T095114Z.json"
       },
-      "status": "IMPORTED_RESERVED_MEASURED_UNCLOSED"
+      "status": "DEVELOPMENT_CLOSURE_FINAL_NOT_ADMITTED"
     },
     {
       "admitted": false,
       "arm": "normal",
-      "closure_path": null,
+      "closure_kind": "development",
+      "closure_path": "artifacts/research/development_closures/40fde3467693c4c5_admission_closure.json",
+      "closure_schema": "canli.alphac-development-trial-admission-closure.v1",
       "config_hash": "753f452ed60ece6e",
       "family_trial_account": "bil_funded_account",
-      "final_disposition": null,
+      "final_disposition": "KILL",
       "first_measurement": {
         "n_obs": 1248,
         "recorded_at": "2026-09-13T17:13:07.834000+00:00",
@@ -3061,7 +3297,7 @@
       },
       "hypothesis_key": "40fde3467693c4c5",
       "ledger_path": "artifacts/analysis/bil_funded_account_20260913/normal/experiments.jsonl",
-      "packet_complete": false,
+      "packet_complete": true,
       "reservation_ordinal": 346,
       "reservation_path": "artifacts/analysis/bil_funded_account_20260913/normal/reservation.json",
       "reserved_at": "2026-09-13T17:13:07.834492+00:00",
@@ -3070,15 +3306,17 @@
         "kind": "imported",
         "receipt": "artifacts/audit/external_ledger_import_20260914T095114Z.json"
       },
-      "status": "IMPORTED_RESERVED_MEASURED_UNCLOSED"
+      "status": "DEVELOPMENT_CLOSURE_FINAL_NOT_ADMITTED"
     },
     {
       "admitted": false,
       "arm": "stress",
-      "closure_path": null,
+      "closure_kind": "development",
+      "closure_path": "artifacts/research/development_closures/f2a1b9e302db7a53_admission_closure.json",
+      "closure_schema": "canli.alphac-development-trial-admission-closure.v1",
       "config_hash": "258aa5864203acc2",
       "family_trial_account": "bil_funded_account",
-      "final_disposition": null,
+      "final_disposition": "KILL",
       "first_measurement": {
         "n_obs": 1248,
         "recorded_at": "2026-09-13T17:14:02.177000+00:00",
@@ -3087,7 +3325,7 @@
       },
       "hypothesis_key": "f2a1b9e302db7a53",
       "ledger_path": "artifacts/analysis/bil_funded_account_20260913/stress/experiments.jsonl",
-      "packet_complete": false,
+      "packet_complete": true,
       "reservation_ordinal": 347,
       "reservation_path": "artifacts/analysis/bil_funded_account_20260913/stress/reservation.json",
       "reserved_at": "2026-09-13T17:14:02.177004+00:00",
@@ -3096,7 +3334,7 @@
         "kind": "imported",
         "receipt": "artifacts/audit/external_ledger_import_20260914T095114Z.json"
       },
-      "status": "IMPORTED_RESERVED_MEASURED_UNCLOSED"
+      "status": "DEVELOPMENT_CLOSURE_FINAL_NOT_ADMITTED"
     }
   ],
   "schema": "canli.alphac-prospective-epoch-register.v1",
@@ -3111,12 +3349,18 @@
   },
   "summary": {
     "admitted_identities": 0,
+    "by_final_disposition": {
+      "INCOMPLETE": 1,
+      "KILL": 118
+    },
     "by_status": {
+      "DEVELOPMENT_CLOSURE_FINAL_NOT_ADMITTED": 118,
       "GOVERNED_SERIAL_PACKET_CLOSED": 1,
-      "IMPORTED_RESERVED_MEASURED_UNCLOSED": 118,
+      "IMPORTED_RESERVED_MEASURED_UNCLOSED": 0,
       "MEASURED_WITHOUT_RESERVATION": 0,
       "RESERVED_MEASURED_UNCLOSED": 0
     },
+    "closed_identities": 119,
     "distinct_families": 40,
     "duplicate_reservation_records": [
       {
@@ -3173,6 +3417,7 @@
     "observed_identities": 119,
     "reservation_ordinal_gaps": [],
     "reservation_ordinals_contiguous": true,
+    "unclosed_identities": 0,
     "union_identities": 347
   }
 }

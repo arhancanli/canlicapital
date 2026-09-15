@@ -102,7 +102,7 @@
 <dl class="measure__facts">
 <div class="measure__row"><dt>Author</dt><dd>Arhan Canli</dd></div>
 <div class="measure__row"><dt>Capital kind</dt><dd>RESEARCH_SIMULATION_OVER_PAPER_SPECIFICATION</dd></div>
-<div class="measure__row"><dt>Content hash</dt><dd>sha256:2053c50a290070d771d376626fa7b571cbed2d5943bec45a6a64e9176d71c852</dd></div>
+<div class="measure__row"><dt>Content hash</dt><dd>sha256:30fbfefc8bbe85f1e63c80f30160403999c8a76f02dd36d0c86e903214429b22</dd></div>
 <div class="measure__row"><dt>Schema</dt><dd>canli.alphac-current-book-diversification-study.v1</dd></div>
 <div class="measure__row"><dt>Status</dt><dd>CURRENT_COMPOSITION_DIVERSIFICATION_OBJECTIVE_GAP_RESEARCH_ONLY</dd></div>
 </dl>
@@ -121,17 +121,17 @@
 </section>
 <section class="measure__sub"><h3>Configuration</h3>
 <dl class="measure__facts">
-<div class="measure__row"><dt>Live fingerprint</dt><dd>sha256:fe82c4eeed742289bfcfee5d39856ee2bb8ca9cfe209bcc7e34abff98553706d</dd></div>
+<div class="measure__row"><dt>Live fingerprint</dt><dd>sha256:553aff517efdc069c2ee80747ef9a9d750da817ceeab8dbc344cae050b814e09</dd></div>
 <div class="measure__row"><dt>Strategic tilt pct</dt><dd>0.100000</dd></div>
 </dl>
 <section class="measure__sub"><h4>Aggregation</h4>
 <dl class="measure__facts">
-<div class="measure__row"><dt>Book level drawdown ladder</dt><dd>Not reported</dd></div>
 <div class="measure__row"><dt>Book level vol target ann</dt><dd>Not reported</dd></div>
 <div class="measure__row"><dt>Missing mark policy</dt><dd>ZERO_CONTRIBUTION_ON_MISSING_DAILY_SLEEVE_MARK</dd></div>
 <div class="measure__row"><dt>Scheme</dt><dd>fixed</dd></div>
 <div class="measure__row"><dt>Strategic overlay is book vol scaled</dt><dd>no</dd></div>
 </dl>
+<p class="measure__label">Book level drawdown ladder</p><p class="measure__deep">7 further fields. <a href="/glassbox/current_book_diversification.json">Read them in the artifact</a>.</p>
 </section>
 <p class="measure__label">Sleeves</p><ul class="measure__list"><li>alphavintage_live</li><li>crypto_carry_wk</li><li>k30_dn_63</li><li>managed_futures</li></ul>
 <section class="measure__sub"><h4>Strategic tilt mix</h4>
@@ -155,11 +155,11 @@
 <div class="measure__row"><dt>Active v7 book average correlation delta gate exclusive</dt><dd>0</dd></div>
 <div class="measure__row"><dt>Active v7 candidate average correlation gate</dt><dd>0</dd></div>
 <div class="measure__row"><dt>Active v7 has no global average correlation point gate</dt><dd>yes</dd></div>
-<div class="measure__row"><dt>Average pairwise correlation objective</dt><dd>-0.030000</dd></div>
+<div class="measure__row"><dt>Average pairwise correlation objective</dt><dd>-0.051161</dd></div>
 <div class="measure__row"><dt>Average pairwise correlation upper 95 gate</dt><dd>0.100000</dd></div>
 <div class="measure__row"><dt>Average pairwise upper 95</dt><dd>0.048708</dd></div>
 <div class="measure__row"><dt>Current sleeves</dt><dd>4</dd></div>
-<div class="measure__row"><dt>Distance from average correlation objective</dt><dd>0.054827</dd></div>
+<div class="measure__row"><dt>Distance from average correlation objective</dt><dd>0.075989</dd></div>
 <div class="measure__row"><dt>Existing sleeves are not retroactively adjudicated</dt><dd>yes</dd></div>
 <div class="measure__row"><dt>Historical v6 global average correlation point check</dt><dd>no</dd></div>
 <div class="measure__row"><dt>Historical v6 global average correlation point gate</dt><dd>0</dd></div>
@@ -167,6 +167,8 @@
 <div class="measure__row"><dt>Maximum pairwise upper 95</dt><dd>0.302519</dd></div>
 <div class="measure__row"><dt>Meets active correlation objective</dt><dd>no</dd></div>
 <div class="measure__row"><dt>Minimum new sleeves</dt><dd>10</dd></div>
+<div class="measure__row"><dt>Objective in force from</dt><dd>2026-09-14</dd></div>
+<div class="measure__row"><dt>Objective source</dt><dd>config/owner_goals.json</dd></div>
 <div class="measure__row"><dt>Ordinary pairwise correlation point gate</dt><dd>0.350000</dd></div>
 <div class="measure__row"><dt>Ordinary pairwise correlation upper 95 gate</dt><dd>0.350000</dd></div>
 <div class="measure__row"><dt>Passes all active v7 risk comparisons</dt><dd>yes</dd></div>
@@ -174,6 +176,7 @@
 <div class="measure__row"><dt>Stressed pairwise design value not observed</dt><dd>0.500000</dd></div>
 <div class="measure__row"><dt>Target total sleeves</dt><dd>14</dd></div>
 </dl>
+<p class="measure__prose"><strong>Average pairwise correlation objective note.</strong> An objective, not a gate: the average pairwise correlation at which 14 sleeves of the quality the sealed contract measured reach 3 in-sample, which is forward 2 on the optimistic end of the measured haircut. Derived by inverting the published identity; the PSD floor at this sleeve count is -0.0769.</p>
 <section class="measure__sub"><h4>Checks</h4>
 <dl class="measure__facts">
 <div class="measure__row"><dt>Average pairwise upper 95</dt><dd>yes</dd></div>
@@ -181,6 +184,14 @@
 <div class="measure__row"><dt>Ordinary pairwise point</dt><dd>yes</dd></div>
 <div class="measure__row"><dt>Ordinary pairwise upper 95</dt><dd>yes</dd></div>
 <div class="measure__row"><dt>Stressed pairwise design</dt><dd>yes</dd></div>
+</dl>
+</section>
+<section class="measure__sub"><h4>Superseded admission contract objective</h4>
+<dl class="measure__facts">
+<div class="measure__row"><dt>Average pairwise correlation objective</dt><dd>-0.030000</dd></div>
+<div class="measure__row"><dt>Minimum new sleeves</dt><dd>10</dd></div>
+<div class="measure__row"><dt>Superseded on</dt><dd>2026-09-14</dd></div>
+<div class="measure__row"><dt>Target total sleeves</dt><dd>14</dd></div>
 </dl>
 </section>
 </section>
@@ -217,15 +228,15 @@
 </section>
 <section class="measure__sub"><h4>Current book drawdown</h4>
 <dl class="measure__facts">
-<div class="measure__row"><dt>Content hash</dt><dd>sha256:04a84088fa267fdb56779412419b3c001eb47dd9602518e8534da24631f95819</dd></div>
+<div class="measure__row"><dt>Content hash</dt><dd>sha256:a01d6f0860c1a0c94789c378d02a8f652f30b22ae4b85a0d4d5340f13c8f3718</dd></div>
 <div class="measure__row"><dt>Path</dt><dd>artifacts/analysis/current_book_drawdown/result.json</dd></div>
-<div class="measure__row"><dt>Sha256</dt><dd>58686e804aa1166bcd12bf7c317c7126120329c0b8b92f922ba3a992d3128c5b</dd></div>
+<div class="measure__row"><dt>Sha256</dt><dd>bb9a5642699202686fae42fd8a9dd95922f1e376caa2c9a9497c13499081b763</dd></div>
 </dl>
 </section>
 <section class="measure__sub"><h4>Drawdown implementation</h4>
 <dl class="measure__facts">
 <div class="measure__row"><dt>Path</dt><dd>scripts/analyze_current_book_drawdown.py</dd></div>
-<div class="measure__row"><dt>Sha256</dt><dd>24d93be7cb2a6d6c1a64a7e219b4c1bc5c7d00b6d48ec2123ef0068ee6cd526e</dd></div>
+<div class="measure__row"><dt>Sha256</dt><dd>e13078ee8dfc4cddff57a5c381905f63fe6afdccefb0dd8f700af1c70817e902</dd></div>
 </dl>
 </section>
 <section class="measure__sub"><h4>Legacy v6 admission contract</h4>
@@ -237,7 +248,7 @@
 <section class="measure__sub"><h4>Live contract</h4>
 <dl class="measure__facts">
 <div class="measure__row"><dt>Path</dt><dd>config/live_change_contract.json</dd></div>
-<div class="measure__row"><dt>Sha256</dt><dd>5b7fa2e700cf29d3e4ef38eff2d745fe0dcec234133da899fd291e8b92c709fe</dd></div>
+<div class="measure__row"><dt>Sha256</dt><dd>4e16b8a02d6907667dc161c84c21876b58c7644225fe84e7884c29e04947fff4</dd></div>
 </dl>
 </section>
 <section class="measure__sub"><h4>Market factor implementation</h4>
@@ -249,13 +260,13 @@
 <section class="measure__sub"><h4>Market factor source corpus</h4>
 <dl class="measure__facts">
 <div class="measure__row"><dt>Files</dt><dd>33</dd></div>
-<div class="measure__row"><dt>Manifest sha256</dt><dd>35fba45d1629f130d6d34604d22942e15270883509ebece43194c015f02b2095</dd></div>
+<div class="measure__row"><dt>Manifest sha256</dt><dd>d2c0e47d877ed83500b8b5b19497f90408d7bdd936fcb2a8f1c5e7e58aec2238</dd></div>
 </dl>
 </section>
 <section class="measure__sub"><h4>Paper state builder</h4>
 <dl class="measure__facts">
 <div class="measure__row"><dt>Path</dt><dd>scripts/paper_trading_state.py</dd></div>
-<div class="measure__row"><dt>Sha256</dt><dd>77e13f75835caf9cafecea0b9b0abc01a1c0f22d51c2aecd5a8a4bcbc3e7d6be</dd></div>
+<div class="measure__row"><dt>Sha256</dt><dd>c805a9b13d68cb39a49e8c204be8e700745feab89a1a4e5b019928dbee730e29</dd></div>
 </dl>
 </section>
 <section class="measure__sub"><h4>Protocol</h4>
@@ -275,7 +286,7 @@
 <section class="measure__sub"><h4>Study implementation</h4>
 <dl class="measure__facts">
 <div class="measure__row"><dt>Path</dt><dd>scripts/analyze_current_book_diversification.py</dd></div>
-<div class="measure__row"><dt>Sha256</dt><dd>8309f592bfca5c1c011d60013bc0a65bdd4fb6bf83f26347c817151fb71aa6f2</dd></div>
+<div class="measure__row"><dt>Sha256</dt><dd>b1beabaf02f16577bef8b4e9400592bc5a5354722093b706c29782ba7eb28563</dd></div>
 </dl>
 </section>
 </section>

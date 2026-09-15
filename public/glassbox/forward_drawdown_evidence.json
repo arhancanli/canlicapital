@@ -2,7 +2,7 @@
   "author": "Arhan Canli",
   "capital_kind": "PAPER_ONLY",
   "claim_boundary": "The sealed study cell is a 96-path, two-year, fourteen-sleeve, daily simulation at a 10% book-level volatility target. It is not an estimate of today's four-sleeve, mixed-timebase, fixed-weight live paper composite, which applies no second book-level volatility target or drawdown ladder after constituent sizing. The 10.25% study expectation and 18.76% study p95 remain published. A separate zero-drift current-composition study maps the exact fixed weights and overlay at 9.32% conservative expected and 16.45% p95 maximum drawdown. That stronger model still does not establish live expected or tail maximum drawdown because its common history begins after COVID and 2022 and it does not replay constituent instrument, execution-gap or ladder state.",
-  "content_hash": "sha256:438472c508760f9068ba4b9141755279bcd43c40c50429ec53ce34b1eb4c5349",
+  "content_hash": "sha256:49dd77930a834bf31072bad934d291627d34d88303f391ca69c98d92a74ffe1f",
   "current_book_study": {
     "calibration": {
       "calendar_days": 1061,
@@ -15,13 +15,13 @@
       ],
       "end": "2026-06-01",
       "exact_component_reconstruction_max_abs_error": 0.0,
-      "observed_book_annualized_volatility": 0.052135537998890605,
-      "observed_book_max_drawdown": 0.04508708468741085,
-      "observed_book_sharpe_simulation_not_forward_evidence": 1.7846281959332158,
+      "observed_book_annualized_volatility": 0.05213554034328471,
+      "observed_book_max_drawdown": 0.045087085423501816,
+      "observed_book_sharpe_simulation_not_forward_evidence": 1.7846280932113476,
       "sample_mean_removed_before_modeling": true,
       "start": "2023-07-07"
     },
-    "content_hash": "sha256:04a84088fa267fdb56779412419b3c001eb47dd9602518e8534da24631f95819",
+    "content_hash": "sha256:a01d6f0860c1a0c94789c378d02a8f652f30b22ae4b85a0d4d5340f13c8f3718",
     "design": {
       "bootstrap_primary_block_days": 63,
       "bootstrap_seed": 20260823,
@@ -49,8 +49,8 @@
   },
   "integrity_passes": true,
   "objective": {
-    "current_composition_conservative_expected_max_drawdown": 0.09318244555751289,
-    "current_composition_conservative_p95_max_drawdown": 0.16451438282127803,
+    "current_composition_conservative_expected_max_drawdown": 0.09318244911641102,
+    "current_composition_conservative_p95_max_drawdown": 0.16451439178221056,
     "current_composition_expected_within_objective": true,
     "current_composition_p95_within_objective": false,
     "expected_max_drawdown_target": 0.11,
@@ -72,14 +72,30 @@
     },
     "declared_constituent_blend_strategy_volatility_target": 0.15,
     "declared_live_book_aggregation": {
-      "book_level_drawdown_ladder": null,
+      "book_level_drawdown_ladder": {
+        "activated_on": "2026-09-15",
+        "applied_by": "every sleeve multiplies its target gross by the published book multiplier",
+        "dd_flat_frac": 0.1,
+        "dd_half_frac": 0.05,
+        "flat_state": "ABSORBING_UNTIL_OWNER_REARM",
+        "release_frac_of_half": 0.75,
+        "source": "config/drawdown_control_contract.json"
+      },
       "book_level_vol_target_ann": null,
-      "claim_boundary": "Constituent strategies own their internal sizing. ALPHAC combines their realized returns at the committed fixed-weight schedule and adds the separately disclosed strategic overlay. It does not apply a second book-level volatility target or drawdown ladder.",
+      "claim_boundary": "Constituent strategies own their internal sizing. ALPHAC combines their realized returns at the committed fixed-weight schedule and adds the separately disclosed strategic overlay. It applies no second book-level volatility target. It does apply the declared book-level drawdown ladder (half gross at 5.0% below the high-water mark, flat at 10.0%, absorbing until an owner rearm), which every sleeve reads before sizing.",
       "missing_mark_policy": "ZERO_CONTRIBUTION_ON_MISSING_DAILY_SLEEVE_MARK",
       "scheme": "fixed",
       "strategic_overlay_is_book_vol_scaled": false
     },
-    "declared_live_book_level_drawdown_ladder": null,
+    "declared_live_book_level_drawdown_ladder": {
+      "activated_on": "2026-09-15",
+      "applied_by": "every sleeve multiplies its target gross by the published book multiplier",
+      "dd_flat_frac": 0.1,
+      "dd_half_frac": 0.05,
+      "flat_state": "ABSORBING_UNTIL_OWNER_REARM",
+      "release_frac_of_half": 0.75,
+      "source": "config/drawdown_control_contract.json"
+    },
     "declared_live_book_level_volatility_target": null,
     "declared_live_sleeves": 4,
     "declared_live_strategy_defaults": {
@@ -114,7 +130,7 @@
     },
     "current_book_drawdown_model": {
       "path": "artifacts/analysis/current_book_drawdown/result.json",
-      "sha256": "58686e804aa1166bcd12bf7c317c7126120329c0b8b92f922ba3a992d3128c5b"
+      "sha256": "bb9a5642699202686fae42fd8a9dd95922f1e376caa2c9a9497c13499081b763"
     },
     "drawdown_model": {
       "path": "artifacts/analysis/drawdown_live_estimator/result.json",
@@ -122,15 +138,15 @@
     },
     "forward_contract": {
       "path": "config/forward_evidence_contract.json",
-      "sha256": "d1b0c97921d9c8b96de7af275b18b9d0ffbfe1332a078061135e8d044ba3981a"
+      "sha256": "51396b2a1f4360520101c53ed7d128213f24fdc92bc45eb8955fa21bf8a70c6e"
     },
     "live_change_contract": {
       "path": "config/live_change_contract.json",
-      "sha256": "5b7fa2e700cf29d3e4ef38eff2d745fe0dcec234133da899fd291e8b92c709fe"
+      "sha256": "4e16b8a02d6907667dc161c84c21876b58c7644225fe84e7884c29e04947fff4"
     },
     "strategy": {
       "path": "src/alphaforge/portfolio/strategy.py",
-      "sha256": "e1308c8bf6560a759983d1bd2fbef505050340ccce4ef42499d6943c559d5263"
+      "sha256": "f8b0776ccfa8af8f0a5588d33b6a58410e76d4dddf92fb18fa4dcafbcebf3805"
     }
   },
   "status": "CURRENT_COMPOSITION_EXPECTED_WITHIN_OBJECTIVE_LIVE_NOT_ESTABLISHED",

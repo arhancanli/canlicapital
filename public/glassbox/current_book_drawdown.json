@@ -11,9 +11,9 @@
     ],
     "end": "2026-06-01",
     "exact_component_reconstruction_max_abs_error": 0.0,
-    "observed_book_annualized_volatility": 0.052135537998890605,
-    "observed_book_max_drawdown": 0.04508708468741085,
-    "observed_book_sharpe_simulation_not_forward_evidence": 1.7846281959332158,
+    "observed_book_annualized_volatility": 0.05213554034328471,
+    "observed_book_max_drawdown": 0.045087085423501816,
+    "observed_book_sharpe_simulation_not_forward_evidence": 1.7846280932113476,
     "sample_mean_removed_before_modeling": true,
     "start": "2023-07-07"
   },
@@ -21,14 +21,22 @@
   "claim_boundary": "This is a zero-drift two-year risk simulation of the exact current four-sleeve fixed-weight research composition and strategic overlay. It is stronger mapping evidence than the fourteen-sleeve frontier cell, but it is not a funded result, a loss limit, a guarantee, or an established live expected-drawdown estimate. The common window begins after COVID and 2022, and neither model replays constituent instrument, execution-gap or ladder state.",
   "configuration": {
     "aggregation": {
-      "book_level_drawdown_ladder": null,
+      "book_level_drawdown_ladder": {
+        "activated_on": "2026-09-15",
+        "applied_by": "every sleeve multiplies its target gross by the published book multiplier",
+        "dd_flat_frac": 0.1,
+        "dd_half_frac": 0.05,
+        "flat_state": "ABSORBING_UNTIL_OWNER_REARM",
+        "release_frac_of_half": 0.75,
+        "source": "config/drawdown_control_contract.json"
+      },
       "book_level_vol_target_ann": null,
-      "claim_boundary": "Constituent strategies own their internal sizing. ALPHAC combines their realized returns at the committed fixed-weight schedule and adds the separately disclosed strategic overlay. It does not apply a second book-level volatility target or drawdown ladder.",
+      "claim_boundary": "Constituent strategies own their internal sizing. ALPHAC combines their realized returns at the committed fixed-weight schedule and adds the separately disclosed strategic overlay. It applies no second book-level volatility target. It does apply the declared book-level drawdown ladder (half gross at 5.0% below the high-water mark, flat at 10.0%, absorbing until an owner rearm), which every sleeve reads before sizing.",
       "missing_mark_policy": "ZERO_CONTRIBUTION_ON_MISSING_DAILY_SLEEVE_MARK",
       "scheme": "fixed",
       "strategic_overlay_is_book_vol_scaled": false
     },
-    "live_fingerprint": "sha256:fe82c4eeed742289bfcfee5d39856ee2bb8ca9cfe209bcc7e34abff98553706d",
+    "live_fingerprint": "sha256:553aff517efdc069c2ee80747ef9a9d750da817ceeab8dbc344cae050b814e09",
     "sleeves": [
       "alphavintage_live",
       "crypto_carry_wk",
@@ -47,7 +55,7 @@
       "managed_futures": 0.25
     }
   },
-  "content_hash": "sha256:04a84088fa267fdb56779412419b3c001eb47dd9602518e8534da24631f95819",
+  "content_hash": "sha256:a01d6f0860c1a0c94789c378d02a8f652f30b22ae4b85a0d4d5340f13c8f3718",
   "design": {
     "bootstrap_primary_block_days": 63,
     "bootstrap_seed": 20260823,
@@ -74,22 +82,22 @@
   "models": {
     "circular_moving_block_bootstrap": {
       "126": {
-        "expected_max_drawdown": 0.07409229698275471,
-        "max_drawdown_stderr": 0.0002475750931618302,
-        "median_max_drawdown": 0.06948727672366845,
-        "p95_max_drawdown": 0.12149848277687468
+        "expected_max_drawdown": 0.07409229613072171,
+        "max_drawdown_stderr": 0.00024757509258068036,
+        "median_max_drawdown": 0.06948727957350748,
+        "p95_max_drawdown": 0.1214984813585497
       },
       "21": {
-        "expected_max_drawdown": 0.0796064947608176,
-        "max_drawdown_stderr": 0.000318279662452755,
-        "median_max_drawdown": 0.07332458780231121,
-        "p95_max_drawdown": 0.14111917201126653
+        "expected_max_drawdown": 0.07960649543491158,
+        "max_drawdown_stderr": 0.00031827966867598555,
+        "median_max_drawdown": 0.07332457961288935,
+        "p95_max_drawdown": 0.14111921012995163
       },
       "63": {
-        "expected_max_drawdown": 0.07833345519452796,
-        "max_drawdown_stderr": 0.00028862845937699546,
-        "median_max_drawdown": 0.0734936238547309,
-        "p95_max_drawdown": 0.13347000307185705
+        "expected_max_drawdown": 0.07833345590324241,
+        "max_drawdown_stderr": 0.0002886284615925221,
+        "median_max_drawdown": 0.07349359885144635,
+        "p95_max_drawdown": 0.13346998093975856
       }
     },
     "correlation_regime": {
@@ -97,37 +105,37 @@
         "calm_correlation": [
           [
             1.0,
-            0.039263626988087795,
-            -0.06196020201990141,
-            -0.04438969572740402,
-            -0.03329465552428106
+            0.03926362698808802,
+            -0.06196020201990153,
+            -0.04438969572740409,
+            -0.03329455447944708
           ],
           [
-            0.039263626988087795,
+            0.03926362698808802,
             1.0,
-            -0.013369983642823888,
-            0.019668844934251216,
-            0.012445225905428986
+            -0.013369983642825368,
+            0.019668844934250845,
+            0.012445299435145104
           ],
           [
-            -0.06196020201990141,
-            -0.013369983642823888,
+            -0.06196020201990153,
+            -0.013369983642825368,
             1.0,
-            0.20975189522943605,
-            -0.004174314894550422
+            0.20975189522943732,
+            -0.004174365682357693
           ],
           [
-            -0.04438969572740402,
-            0.019668844934251216,
-            0.20975189522943605,
+            -0.04438969572740409,
+            0.019668844934250845,
+            0.20975189522943732,
             1.0,
-            0.005934744254898072
+            0.005934677532775557
           ],
           [
-            -0.03329465552428106,
-            0.012445225905428986,
-            -0.004174314894550422,
-            0.005934744254898072,
+            -0.03329455447944708,
+            0.012445299435145104,
+            -0.004174365682357693,
+            0.005934677532775557,
             1.0
           ]
         ],
@@ -136,7 +144,7 @@
           0.001566264938956614,
           0.0014170675485880642,
           0.00044178704910863417,
-          0.0014041873813779436
+          0.001404187522915685
         ],
         "simulated_stress_day_fraction": 0.11922027397260274,
         "stress_correlation": [
@@ -177,16 +185,16 @@
           ]
         ]
       },
-      "expected_max_drawdown": 0.09318244555751289,
-      "max_drawdown_stderr": 0.00037836430853936854,
-      "median_max_drawdown": 0.08585056922869688,
-      "p95_max_drawdown": 0.16451438282127803
+      "expected_max_drawdown": 0.09318244911641102,
+      "max_drawdown_stderr": 0.00037836432185898376,
+      "median_max_drawdown": 0.08585057684418257,
+      "p95_max_drawdown": 0.16451439178221056
     }
   },
   "objective": {
-    "conservative_modeled_expected_max_drawdown": 0.09318244555751289,
+    "conservative_modeled_expected_max_drawdown": 0.09318244911641102,
     "conservative_modeled_expected_within_target": true,
-    "conservative_modeled_p95_max_drawdown": 0.16451438282127803,
+    "conservative_modeled_p95_max_drawdown": 0.16451439178221056,
     "conservative_modeled_p95_within_target": false,
     "expected_max_drawdown_target": 0.11,
     "live_expected_max_drawdown_established": false
@@ -203,7 +211,7 @@
     },
     "live_contract": {
       "path": "config/live_change_contract.json",
-      "sha256": "5b7fa2e700cf29d3e4ef38eff2d745fe0dcec234133da899fd291e8b92c709fe"
+      "sha256": "4e16b8a02d6907667dc161c84c21876b58c7644225fe84e7884c29e04947fff4"
     },
     "market_factor_implementation": {
       "path": "src/alphaforge/portfolio/market_factor.py",
@@ -211,11 +219,11 @@
     },
     "market_factor_source_corpus": {
       "files": 33,
-      "manifest_sha256": "35fba45d1629f130d6d34604d22942e15270883509ebece43194c015f02b2095"
+      "manifest_sha256": "d2c0e47d877ed83500b8b5b19497f90408d7bdd936fcb2a8f1c5e7e58aec2238"
     },
     "paper_state_builder": {
       "path": "scripts/paper_trading_state.py",
-      "sha256": "77e13f75835caf9cafecea0b9b0abc01a1c0f22d51c2aecd5a8a4bcbc3e7d6be"
+      "sha256": "c805a9b13d68cb39a49e8c204be8e700745feab89a1a4e5b019928dbee730e29"
     },
     "protocol": {
       "path": "docs/design/CURRENT_BOOK_DRAWDOWN_STUDY_PROTOCOL.md",

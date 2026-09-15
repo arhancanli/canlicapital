@@ -1,6 +1,6 @@
 {
   "schema": "canli.paper-evidence.v0",
-  "generated_at": "2026-09-14T10:59:22Z",
+  "generated_at": "2026-09-15T15:20:35Z",
   "capital": {
     "kind": "PAPER",
     "execution": "MIXED",
@@ -20,14 +20,14 @@
   },
   "period": {
     "first_observation": "2026-08-07",
-    "last_observation": "2026-09-14",
-    "observation_count": 36,
+    "last_observation": "2026-09-15",
+    "observation_count": 0,
     "frequency": "DAILY",
     "calendar": "UTC daily marks; sleeves trade on their own venue calendars"
   },
   "returns": {
     "basis": "NET_OF_REALISED_COSTS",
-    "cumulative": -0.027061699999999966,
+    "cumulative": -0.0277999000000001,
     "annualised": null,
     "sharpe_annualised": null,
     "sharpe_reportable": false,
@@ -73,7 +73,7 @@
   "risk": {
     "max_drawdown_realised": -0.045,
     "drawdown_basis": "OBSERVED",
-    "max_drawdown_model_expected": 0.09318244555751289,
+    "max_drawdown_model_expected": 0.09318244911641102,
     "exposure_notes": "The realised figure is descriptive of a short sample. The model estimate is not established by live evidence."
   },
   "corrections": {
@@ -90,12 +90,12 @@
       },
       {
         "path": "public/contracts/public-claims.json",
-        "sha256": "0bbc7c5e96333167d10c641fa5a1f4d8c8d2213afb5419d36794b7090c893536",
+        "sha256": "179596863b50985f5ef2fd486934e91c4e657ecb88df0377bca5b6eb3caf40f1",
         "url": "https://canlicapital.com/contracts/public-claims.json"
       },
       {
         "path": "public/glassbox/alpaca_broker_reconciliation.json",
-        "sha256": "9ed31f31f1da6a8947641ec926b1a1788a96081b8a5719914807cff68e0be804",
+        "sha256": "373d3854d1ae6bbdd3ef54397fcf63ffd5f6f9c99085eddaa0469b2321ac4af7",
         "url": "https://canlicapital.com/glassbox/alpaca_broker_reconciliation.json"
       }
     ],
@@ -106,11 +106,11 @@
   },
   "claim_maturity": {
     "establishes": [
-      "A 36-observation paper record with broker reconciliation on 3 sleeves.",
+      "A 0-observation paper record with broker reconciliation on 3 sleeves.",
       "That every published figure traces to a hash-bound artifact."
     ],
     "does_not_establish": [
-      "A forward Sharpe ratio. 252 observations are required to estimate one and this record has 36.",
+      "A forward Sharpe ratio. 252 observations are required to estimate one and this record has 0.",
       "An expected maximum drawdown. The realised figure describes a short sample and the model estimate is not live evidence.",
       "Live-forward diversification between sleeves.",
       "A return net of every cost. Several cost categories are not charged at all and every one of them flatters, so this figure is an upper bound. The full ledger is at /costs.",
