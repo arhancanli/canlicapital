@@ -10,7 +10,8 @@ const state = { union: null, filtered: [], selected: null };
 const statusLabel = {
   [TRIAL_UNION_STATUS.LEGACY_COMPLETE]: "COMPLETE EVIDENCED PACKET",
   [TRIAL_UNION_STATUS.LEGACY_INCOMPLETE]: "INCOMPLETE LEGACY PACKET",
-  [TRIAL_UNION_STATUS.PROSPECTIVE_FINAL_INCOMPLETE]: "PROSPECTIVE / NOT ADMITTED",
+  [TRIAL_UNION_STATUS.PROSPECTIVE_FINAL_INCOMPLETE]: "PROSPECTIVE / GOVERNED PACKET, NOT ADMITTED",
+  [TRIAL_UNION_STATUS.PROSPECTIVE_DEVELOPMENT_CLOSED]: "PROSPECTIVE / DEVELOPMENT CLOSURE, NOT ADMITTED",
   [TRIAL_UNION_STATUS.PROSPECTIVE_UNCLOSED]: "PROSPECTIVE / MEASURED, NOT CLOSED",
 };
 const escapeHtml = (value) =>
@@ -73,9 +74,12 @@ function renderInspector(identity) {
       <div><dt>First recorded</dt><dd>${escapeHtml(identity.first_recorded_at || `Reservation ${identity.reservation_ordinal}`)}</dd></div>
       <div><dt>Historical observations</dt><dd>${escapeHtml(identity.measurement.observations ?? "Not measured")}</dd></div>
       <div><dt>Historical Sharpe</dt><dd>${escapeHtml(formatNumber(identity.measurement.annualized_sharpe))}</dd></div>
+      ${identity.disposition && identity.disposition !== "UNCLOSED" ? `<div><dt>Final disposition</dt><dd>${escapeHtml(identity.disposition)}</dd></div>` : ""}
       <div><dt>Admitted</dt><dd>NO</dd></div>
     </dl>
-    <div class="union-inspector__coverage"><span>Evidence coverage</span><strong>${completeSections} verified / ${missingSections} missing or unevaluated</strong><i style="--coverage:${completeSections / Math.max(1, completeSections + missingSections)}"></i></div>
+    ${identity.status === TRIAL_UNION_STATUS.PROSPECTIVE_DEVELOPMENT_CLOSED
+      ? `<div class="union-inspector__coverage"><span>Packet status</span><strong>${escapeHtml(identity.packet_status)}</strong><i style="--coverage:0"></i></div>`
+      : `<div class="union-inspector__coverage"><span>Evidence coverage</span><strong>${completeSections} verified / ${missingSections} missing or unevaluated</strong><i style="--coverage:${completeSections / Math.max(1, completeSections + missingSections)}"></i></div>`}
     <div class="union-inspector__links">${identity.public_page ? `<a href="${safePublicHref(identity.public_page)}">Open public evidence page</a>` : "<span>No public evidence page yet</span>"}${identity.packet_path ? `<a href="${safePublicHref(identity.packet_path)}">Download exact packet</a>` : "<span>No closing packet</span>"}${identity.family_paper ? `<a href="${safePublicHref(identity.family_paper)}">Read bound research</a>` : ""}</div>
     <p class="union-inspector__boundary">Packet completeness describes evidence accounting only. This identity is not presented as admitted, live or predictive.</p>`;
   document.querySelectorAll("[data-identity]").forEach((element) => {
@@ -152,11 +156,11 @@ async function load() {
   const controls = document.querySelectorAll('.union-workbench button,.union-workbench input,.union-workbench select');
   controls.forEach((control) => { control.disabled = true; });
   try {
-    const sourceOrder = ["ledger", "manifest", "index", "prospective", "register"];
+    const sourceOrder = ["ledger", "manifest", "index", "prospective", "register", "forward"];
     const responses = await Promise.all(sourceOrder.map((name) => fetch(config.source_urls[name], { cache: "no-store" })));
     if (responses.some((response) => !response.ok)) throw new Error("A trial-accounting source could not be loaded");
-    const [ledger, manifest, index, prospective, register] = await Promise.all(responses.map((response) => response.json()));
-    state.union = buildTrialUnion(ledger, manifest, index, prospective, register);
+    const [ledger, manifest, index, prospective, register, forward] = await Promise.all(responses.map((response) => response.json()));
+    state.union = buildTrialUnion(ledger, manifest, index, prospective, register, forward);
     const filters = filtersFromUrl();
     populateControls(filters);
     const requested = state.union.identities.find((identity) => identity.hypothesis_key === filters.identity);

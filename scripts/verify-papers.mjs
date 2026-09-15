@@ -1309,8 +1309,14 @@ if (existsSync(trialToolFile)) {
   const packetIndexBytes = readFileSync(resolve(DIST, "glassbox/trial-packets/index.json"));
   const prospectiveBytes = readFileSync(resolve(DIST, "glassbox/prospective_trial_record.json"));
   const registerBytes = readFileSync(resolve(DIST, "glassbox/prospective_epoch_register.json"));
+  const forwardIndexBytes = readFileSync(resolve(DIST, "glassbox/trial-packets/forward_index.json"));
   const ledger = JSON.parse(ledgerBytes);
   const register = JSON.parse(registerBytes);
+  const forwardIndex = JSON.parse(forwardIndexBytes);
+  const unclosedRows = register.identities.filter((row) => row.packet_complete === false).length;
+  const developmentClosedRows = register.identities.filter(
+    (row) => row.status === "DEVELOPMENT_CLOSURE_FINAL_NOT_ADMITTED" && row.packet_complete === true,
+  ).length;
   const manifest = JSON.parse(manifestBytes);
   const packetIndex = JSON.parse(packetIndexBytes);
   const prospective = JSON.parse(prospectiveBytes);
@@ -1366,14 +1372,15 @@ if (existsSync(trialToolFile)) {
   );
   check(
     trialToolHtml.includes(
-      'content="trial_ledger.json trial_packet_manifest.json trial-packets/index.json prospective_trial_record.json prospective_epoch_register.json"',
+      'content="trial_ledger.json trial_packet_manifest.json trial-packets/index.json prospective_trial_record.json prospective_epoch_register.json trial-packets/forward_index.json"',
     ) &&
       trialToolHtml.includes(`sha256:${sha256(ledgerBytes)}`) &&
       trialToolHtml.includes(`sha256:${sha256(manifestBytes)}`) &&
       trialToolHtml.includes(`sha256:${sha256(packetIndexBytes)}`) &&
       trialToolHtml.includes(`sha256:${sha256(prospectiveBytes)}`) &&
-      trialToolHtml.includes(`sha256:${sha256(registerBytes)}`),
-    "/tools/trial-accounting does not declare and hash all five exact public sources",
+      trialToolHtml.includes(`sha256:${sha256(registerBytes)}`) &&
+      trialToolHtml.includes(`sha256:${sha256(forwardIndexBytes)}`),
+    "/tools/trial-accounting does not declare and hash all six exact public sources",
   );
   check(
     trialToolHtml.includes(`<strong>${ledger.immutable_execution_records}</strong>`) &&
@@ -1388,11 +1395,22 @@ if (existsSync(trialToolFile)) {
     /Accounting, not performance/i.test(trialToolHtml) &&
       /complete packet is not a passed strategy/i.test(trialToolHtml) &&
       /no prospective identity is admitted/i.test(trialToolHtml) &&
-      trialToolHtml.includes(
-        `${register.summary.observed_identities - prospective.identity.hypotheses_spent} reserved and measured without a closing packet`,
-      ) &&
+      trialToolHtml.includes(`${unclosedRows} reserved and measured without a closing packet`) &&
+      trialToolHtml.includes(`${developmentClosedRows} closed by a development closure`) &&
       /not live returns, rankings, admission scores or recommendations/i.test(trialToolHtml),
     "/tools/trial-accounting omits its accounting, admission or performance boundary",
+  );
+  // The forward packet index (2026-09-15) binds every closed forward identity to its packet and
+  // final closure; the tool links a development-closed identity only through it.
+  check(
+    forwardIndex.schema === "canli.alphac-forward-identity-packet-index.v1" &&
+      forwardIndex.summary.forward_identities === register.summary.observed_identities &&
+      forwardIndex.summary.closed_identities === register.summary.closed_identities &&
+      forwardIndex.summary.admitted_identities === 0 &&
+      forwardIndex.summary.identities_in_both_epochs === 0 &&
+      prospective.identity.hypotheses_spent + developmentClosedRows + unclosedRows ===
+        register.summary.observed_identities,
+    "/tools/trial-accounting forward packet index does not describe the prospective epoch",
   );
   check(
     sitemap.includes(`<loc>${ORIGIN}/tools/trial-accounting</loc>`),
@@ -1644,7 +1662,7 @@ console.log(
     `checkpoint bindings, claim limits, structured data, internal links and sitemap discovery`,
 );
 console.log(
-  `verified /tools/trial-accounting: complete 229-identity union, exact source hashes, packet ` +
+  `verified /tools/trial-accounting: complete ${JSON.parse(readFileSync(resolve(DIST, "glassbox/trial_ledger.json"), "utf8")).distinct_hypothesis_identities}-identity union, exact source hashes, packet ` +
     `debt, prospective non-admission, claim boundaries, internal links and sitemap discovery`,
 );
 console.log(
