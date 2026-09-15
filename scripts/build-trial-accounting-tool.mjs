@@ -20,6 +20,7 @@ const SOURCES = Object.freeze({
   index: "trial-packets/index.json",
   prospective: "prospective_trial_record.json",
   register: "prospective_epoch_register.json",
+  forward: "trial-packets/forward_index.json",
 });
 const sourcePath = (name) => resolve(GLASSBOX, SOURCES[name]);
 const readJson = (name) => JSON.parse(readFileSync(sourcePath(name), "utf8"));
@@ -41,6 +42,7 @@ function main() {
     documents.index,
     documents.prospective,
     documents.register,
+    documents.forward,
   );
   const { facts } = union;
   const sourceHashes = Object.fromEntries(Object.keys(SOURCES).map((name) => [name, bytesHash(name)]));
@@ -117,7 +119,7 @@ ${renderProductShellHeader({ active: "trials" })}
     <div class="union-hero__copy">
       <p class="union-kicker"><span>Complete selection denominator</span><span>Union accounting v2</span></p>
       <h1 id="union-title">The denominator is public.</h1>
-      <p>Every measured identity makes the next result less surprising. This is the complete search behind ALPHAC: first measurements, duplicate-window removal, family concentration, incomplete evidence and the one sealed prospective identity. Canli Capital, the research house that publishes ALPHAC, runs this calculator free, with no account or key required.</p>
+      <p>Every measured identity makes the next result less surprising. This is the complete search behind ALPHAC: first measurements, duplicate-window removal, family concentration, incomplete evidence and every prospective identity measured after the legacy epoch closed, with its closure or the lack of one. Canli Capital, the research house that publishes ALPHAC, runs this calculator free, with no account or key required.</p>
       <div class="union-actions"><a href="#union-explorer">Interrogate the union</a><a href="/tools/deflated-sharpe">Calculate the selection penalty</a></div>
     </div>
     <div class="union-counter" aria-label="Current selection denominator">
@@ -139,7 +141,7 @@ ${renderProductShellHeader({ active: "trials" })}
     <div class="union-filterbar">
       <label><span>Search identity</span><input id="union-query" type="search" placeholder="Key, config, label or family" /></label>
       <label><span>Research family</span><select id="union-family"><option value="all">All families</option></select></label>
-      <label><span>Evidence state</span><select id="union-status"><option value="all">All states</option><option value="legacy_complete_packet">Complete legacy packet</option><option value="legacy_incomplete_packet">Incomplete legacy packet</option><option value="prospective_final_incomplete_not_admitted">Prospective, closed, not admitted</option><option value="prospective_reserved_measured_unclosed">Prospective, measured, not closed</option></select></label>
+      <label><span>Evidence state</span><select id="union-status"><option value="all">All states</option><option value="legacy_complete_packet">Complete legacy packet</option><option value="legacy_incomplete_packet">Incomplete legacy packet</option><option value="prospective_final_incomplete_not_admitted">Prospective, governed packet, not admitted</option><option value="prospective_development_closed_not_admitted">Prospective, development closure, not admitted</option><option value="prospective_reserved_measured_unclosed">Prospective, measured, not closed</option></select></label>
       <label><span>Sleeve context</span><select id="union-sleeve"><option value="all">All sleeves</option></select></label>
       <button id="union-reset" type="button">Reset</button>
     </div>
@@ -157,7 +159,7 @@ ${renderProductShellHeader({ active: "trials" })}
 
   <section class="union-families" aria-labelledby="families-title">
     <header class="union-section-head"><div><p class="union-label">Search concentration</p><h2 id="families-title">A family count is part of the result.</h2></div></header>
-    <div class="union-families__grid"><ol>${familyRows}</ol><div class="union-debt"><span>Legacy packet coverage</span><strong>${facts.legacy_complete_packets}<small> complete</small></strong><strong>${facts.legacy_incomplete_packets}<small> incomplete</small></strong><p>The prospective epoch holds ${facts.prospective_identities} identities: ${facts.prospective_governed_packets} with a closed packet (complete evidence accounting, final incomplete, not admitted) and ${facts.prospective_unclosed} reserved and measured without a closing packet. They are shown separately rather than added to the legacy completion rate.</p></div></div>
+    <div class="union-families__grid"><ol>${familyRows}</ol><div class="union-debt"><span>Legacy packet coverage</span><strong>${facts.legacy_complete_packets}<small> complete</small></strong><strong>${facts.legacy_incomplete_packets}<small> incomplete</small></strong><p>The prospective epoch holds ${facts.prospective_identities} identities: ${facts.prospective_governed_packets} with a governed closing packet (complete evidence accounting, final incomplete, not admitted), ${facts.prospective_development_closures} closed by a development closure (the decision each study already made, imported and recorded: ${Object.entries(facts.prospective_development_dispositions).map(([disposition, count]) => `${count} final ${escapeHtml(disposition)}`).join(", ") || "none yet"}; none admitted) and ${facts.prospective_unclosed} reserved and measured without a closing packet. They are shown separately rather than added to the legacy completion rate.</p></div></div>
   </section>
 
   <section class="union-rules" aria-labelledby="rules-title">

@@ -327,6 +327,9 @@ body.union-page {
 .union-matrix button[data-state="prospective_final_incomplete_not_admitted"] {
   background: var(--u-orange);
 }
+.union-matrix button[data-state="prospective_development_closed_not_admitted"] {
+  background: #5f6158;
+}
 .union-matrix button[data-visible="false"] {
   opacity: 0.12;
 }
@@ -380,6 +383,11 @@ body.union-page {
   strong {
   color: #c3431e;
 }
+.union-list
+  button[data-state="prospective_development_closed_not_admitted"]
+  strong {
+  color: #4f5149;
+}
 .union-empty {
   padding: 50px;
   color: var(--u-muted);
@@ -407,6 +415,10 @@ body.union-page {
 }
 .union-inspector__status[data-state="prospective_final_incomplete_not_admitted"] {
   background: var(--u-orange);
+}
+.union-inspector__status[data-state="prospective_development_closed_not_admitted"] {
+  color: #f2f3ed;
+  background: #5f6158;
 }
 .union-inspector__key {
   margin: 27px 0 10px !important;

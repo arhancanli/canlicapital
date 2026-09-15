@@ -27,6 +27,8 @@ for (const row of forwardRows) {
   check(html.includes("Forward epoch"), `${name} does not name its epoch`);
   check(html.includes(`href="/glassbox/trial-packets/${row.hypothesis_key}.json"`), `${name} does not link its raw packet`);
   check(!html.includes("trial-dist__plot"), `${name} ranks a forward identity in the legacy distribution`);
+  check(html.includes('name="robots" content="noindex, follow,'), `${name} (forward) is indexable`);
+  check(!sitemap.includes(`<loc>https://canlicapital.com/trials/${row.hypothesis_key}</loc>`), `${name} (forward) is in the sitemap`);
 }
 check(existsSync(resolve(DIST, "trials.html")), "trial index page was not built");
 for (const packet of source.packets) {
