@@ -715,16 +715,22 @@ function bindFrontier(d) {
   const auditSummary = audit.summary || {};
   const admissionContract = (d.sleeve_admission_contract || {}).contract || {};
 
-  if (Array.isArray(target) && target.length === 2 && Number.isFinite(count)) {
+  if (
+    Array.isArray(target) &&
+    target.length === 2 &&
+    Number.isFinite(count) &&
+    Number.isFinite(objective.honest_forward_sharpe_target) &&
+    Number.isFinite(objective.minimum_new_sleeves)
+  ) {
     const drawdown = Number.isFinite(objective.portfolio_max_drawdown_target)
       ? ` and approximately ${(objective.portfolio_max_drawdown_target * 100).toFixed(0)}% maximum drawdown`
       : "";
     setHook(
       "sd",
       "objective",
-      `The objective is an honest FORWARD portfolio Sharpe of ${(objective.honest_forward_sharpe_target || 1.5).toFixed(1)} across ${count} evidence-backed sleeves, including at least ${objective.minimum_new_sleeves || 10} new admissions${drawdown}. This book's own measured gap between backtest and honest forward is 1.5x to 3x, so that target implies an in-sample ${target[0].toFixed(2)} to ${target[1].toFixed(2)}. Both are published because they are different numbers. Targets never lower an admission gate.`,
+      `The objective is an honest FORWARD portfolio Sharpe of ${Number(objective.honest_forward_sharpe_target).toFixed(1)} across ${count} evidence-backed sleeves, including at least ${Number(objective.minimum_new_sleeves)} new admissions${drawdown}. This book's own measured gap between backtest and honest forward is 1.5x to 3x, so that target implies an in-sample ${target[0].toFixed(2)} to ${target[1].toFixed(2)}. Both are published because they are different numbers. Targets never lower an admission gate.`,
     );
-    setHook("sd", "breadth", `${count} sleeves / >= ${objective.minimum_new_sleeves || 10} new`);
+    setHook("sd", "breadth", `${count} sleeves / >= ${Number(objective.minimum_new_sleeves)} new`);
   } else if (Array.isArray(target) && target.length === 2 && Array.isArray(count) && count.length === 2) {
     setHook(
       "sd",
