@@ -30,9 +30,26 @@ function walk(dir, accept, skip = new Set()) {
 
 const htmlFiles = walk(
   ROOT,
-  (file) => extname(file) === ".html",
+  // Reference captures are third-party evidence, not editable product copy.
+  // Keep auditing every product HTML file, including the actual homepage.
+  (file) => extname(file) === ".html" && !relative(ROOT, file).replaceAll("\\", "/").startsWith("artifacts/reference/"),
   // .claude holds agent worktrees (whole checkouts at an older commit), never site pages.
-  new Set(["node_modules", "dist", ".git", ".bak", "public", ".claude", ".firecrawl", "test-results"]),
+  // design-system / .design-sync / .ds-sync / ds-bundle are the Claude Design React wrapper
+  // package and its converter staging area, neither of which publishes any site page.
+  new Set([
+    "node_modules",
+    "dist",
+    ".git",
+    ".bak",
+    "public",
+    ".claude",
+    ".firecrawl",
+    "test-results",
+    "design-system",
+    ".design-sync",
+    ".ds-sync",
+    "ds-bundle",
+  ]),
 );
 const publicationFiles = walk(
   resolve(ROOT, "public/publication"),

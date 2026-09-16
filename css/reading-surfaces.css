@@ -1,0 +1,67 @@
+/* Phase 13: explanatory reading surfaces, scoped to the five reviewed pages.
+   Chart canvases retain their own colors; this is not a global inversion. */
+html:is([data-page="systems"],[data-page="research"],[data-page="performance"],[data-page="progress"]),
+html:is([data-page="systems"],[data-page="research"],[data-page="performance"],[data-page="progress"]) body {
+ color-scheme:light; background:#f4f4f4;
+ --void:#f4f4f4;--ink:#fff;--paper:#111;--paper-dim:#343b46;
+ --grey-700:#58616b;--grey-600:#58616b;--grey-850:#d2d6df;--grey-825:#aab2c0;--grey-900:#e7eaf2;
+ --signal:#0016cb;--signal-deep:#0016cb;--signal-glow:rgba(0,22,203,.12);--signal-faint:rgba(0,22,203,.05);
+ --serif:'Chakra Petch',sans-serif;--ui:'Inter',sans-serif;--mono:'IBM Plex Mono',monospace;
+ --line:#c3c8d2;
+}
+html:is([data-page="systems"],[data-page="research"],[data-page="performance"],[data-page="progress"]) body {background:#f4f4f4;color:#111;}
+html:is([data-page="systems"],[data-page="research"],[data-page="performance"],[data-page="progress"]) main {background:#f4f4f4;color:#111;}
+html:is([data-page="systems"],[data-page="research"],[data-page="performance"],[data-page="progress"]) main :is(h1,h2,h3) {text-wrap:balance;}
+/* An operating chapter has a stable title rail, not repeated hero-sized bands. */
+html[data-hub="systems"] .sys-chapter {border-bottom:1px solid #c3c8d2;padding-block:64px;}
+html[data-hub="systems"] .sys-chapter__grid {display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:56px;align-items:start;}
+html[data-hub="systems"] .sys-chapter__aside {position:sticky;top:110px;margin:0;}
+html[data-hub="systems"] .sys-chapter__head {font-size:clamp(2rem,3.3vw,3.6rem);}
+html[data-hub="systems"] .sys-chapter__main {min-width:0;}
+html[data-hub="systems"] .sys-body {font-size:16px;line-height:1.8;}
+html[data-hub="systems"] :is(.flow,.sys-data-line) {border-color:#c3c8d2;}
+html[data-hub="systems"] :is(.sys-custody__stage,.sys-custody__note,.sys-custody__proof) {color:#58616b;}
+html[data-hub="systems"] .sys-custody__proof a {color:#0016cb;}
+/* The archive is a searchable reading room; its research exhibits stay intact. */
+html[data-page="research"] #researchLibrary {background:#fff;border-top:4px solid #0016cb;padding:56px clamp(24px,4vw,64px);}
+html[data-page="research"] .research-library__link:hover {opacity:1;background:#eef0ff;}
+html[data-page="research"] .research-library__link:hover .research-library__title {color:#0016cb;}
+html[data-page="research"] .archive-search {background:#f4f4f4;border-color:#aab2c0;}
+html[data-page="research"] #researchLibrary :is(.research-library__title,#archive-query) {color:#111;}
+html[data-page="research"] #researchLibrary :is(.research-library__desc,[data-rl="lead"],label,.archive-search__status) {color:#58616b;}
+html[data-page="research"] #archive-query::placeholder {color:#58616b;opacity:1;}
+html[data-page="research"] #researchLibrary .archive-search button {background:#0016cb;color:#fff;}
+html[data-page="research"] #researchLibrary .research-library__link:hover .research-library__title {color:#0016cb;}
+/* Canvas plot colors are authored for dark ink. Preserve that contrast locally,
+   while the surrounding explanation and limitations remain on paper. */
+html[data-page="performance"] :is(.results__chart,.capacity__plot) {background:#111;--paper:#fff;--paper-dim:#d7deea;--grey-700:#b8c3d1;--grey-600:#b8c3d1;--signal:#8ca2ff;}
+html[data-page="performance"] .gpin__right {background:transparent;}
+html[data-page="performance"] .gstep {border-top:3px solid #0016cb;background:#fff;}
+/* Corrections remain one complete chronology, with date and prose separated. */
+html[data-page="progress"] #corrections {background:#fff;border-top:4px solid #0016cb;}
+html[data-page="progress"] main > .section {padding-block:64px;}
+html[data-page="progress"] #corrections :is(p,li) {max-width:82ch;line-height:1.8;}
+/* Authorship uses the same palette while retaining its evidence walkthrough. */
+html[data-reader="founder"] {color-scheme:light;background:#f4f4f4;--founder-night:#f4f4f4;--founder-carbon:#fff;--founder-chalk:#111;--founder-muted:#58616b;--founder-line:#c3c8d2;--founder-cobalt:#0016cb;--founder-cyan:#0016cb;--founder-mint:#176644;--founder-amber:#7a5100;--founder-display:'Chakra Petch',sans-serif;}
+html[data-reader="founder"] body.founder-page {background:#f4f4f4;color:#111;}
+html[data-reader="founder"] :is(.founder-hero,.founder-section) {background:#f4f4f4;}
+html[data-reader="founder"] .founder-hero::before,html[data-reader="founder"] .founder-hero__grid {display:none;}
+html[data-reader="founder"] :is(.founder-contribution,.founder-commitment) {background:#fff;}
+html[data-reader="founder"] .founder-close {background:#0016cb;color:#fff;--founder-chalk:#fff;--founder-muted:#e5e9ff;--founder-cyan:#fff;}
+html[data-reader="founder"] :is(.founder-hero__copy>p,.founder-section__head>p,.founder-ledger__body,.founder-ledger__boundary,.founder-spine__card p,.founder-boundary,.founder-commitment p) {color:#343b46;}
+html[data-reader="founder"] :is(.founder-spine__card,.founder-status) {background:#fff;}
+html[data-reader="founder"] .founder-status>p {color:#58616b;}
+html[data-reader="founder"] .founder-button {color:#0016cb;border-color:#0016cb;}
+html[data-reader="founder"] .founder-button--primary {background:#0016cb;color:#fff;}
+html[data-reader="founder"] .founder-close .founder-button {color:#fff;border-color:#fff;}
+html[data-reader="founder"] .founder-close .founder-button--primary {background:#fff;color:#0016cb;}
+html[data-reader="founder"] .founder-commitment pre {color:#176644;}
+html[data-reader="founder"] .founder-close p {color:#fff;}
+html[data-reader="founder"] .founder-burden__intro>p {color:#343b46;}
+html[data-reader="founder"] .founder-commitment > div > p:last-child {color:#343b46;}
+@media(max-width:900px){
+ html[data-hub="systems"] .sys-chapter__grid {grid-template-columns:1fr;gap:28px;}
+ html[data-hub="systems"] .sys-chapter__aside {position:static;}
+ html[data-hub="systems"] .sys-chapter {padding-block:40px;}
+ html[data-page="research"] #researchLibrary {padding:32px 24px;}
+}

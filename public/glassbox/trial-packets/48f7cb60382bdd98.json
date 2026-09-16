@@ -1,0 +1,991 @@
+{
+  "claim_boundary": "Full2022 retrospective crypto horizon extension; calendar/accounting verified, source availability, metadata, funding, settlement and benchmark remain modeled. No combined qualification, new sleeve, untouched OOS or admission.",
+  "complete": true,
+  "completion_assessment": {
+    "candidate_evidence_complete_for_admission": false,
+    "disposition": "INCOMPLETE_NOT_ADMITTED",
+    "packet_evidence_accounting_complete": true
+  },
+  "config_hash": "d0a03e38b94585d7",
+  "configuration": {
+    "allocator": "rank",
+    "alpha_names": [
+      "carry_fund_21"
+    ],
+    "end": 1672531200000,
+    "instrument_ids": [
+      "BINANCE:PERP:1000PEPEUSDT",
+      "BINANCE:PERP:1000SHIBUSDT",
+      "BINANCE:PERP:AAVEUSDT",
+      "BINANCE:PERP:ADAUSDT",
+      "BINANCE:PERP:APEUSDT",
+      "BINANCE:PERP:APTUSDT",
+      "BINANCE:PERP:ARBUSDT",
+      "BINANCE:PERP:ATOMUSDT",
+      "BINANCE:PERP:AVAXUSDT",
+      "BINANCE:PERP:AXSUSDT",
+      "BINANCE:PERP:BCHUSDT",
+      "BINANCE:PERP:BLZUSDT",
+      "BINANCE:PERP:BNBUSDT",
+      "BINANCE:PERP:BTCUSDT",
+      "BINANCE:PERP:CHZUSDT",
+      "BINANCE:PERP:COMPUSDT",
+      "BINANCE:PERP:CRVUSDT",
+      "BINANCE:PERP:DOGEUSDT",
+      "BINANCE:PERP:DOTUSDT",
+      "BINANCE:PERP:EOSUSDT",
+      "BINANCE:PERP:ETCUSDT",
+      "BINANCE:PERP:ETHUSDT",
+      "BINANCE:PERP:FILUSDT",
+      "BINANCE:PERP:FTMUSDT",
+      "BINANCE:PERP:GALAUSDT",
+      "BINANCE:PERP:ICPUSDT",
+      "BINANCE:PERP:INJUSDT",
+      "BINANCE:PERP:LDOUSDT",
+      "BINANCE:PERP:LINAUSDT",
+      "BINANCE:PERP:LINKUSDT",
+      "BINANCE:PERP:LRCUSDT",
+      "BINANCE:PERP:LTCUSDT",
+      "BINANCE:PERP:LUNAUSDT",
+      "BINANCE:PERP:MANAUSDT",
+      "BINANCE:PERP:MATICUSDT",
+      "BINANCE:PERP:MKRUSDT",
+      "BINANCE:PERP:NEARUSDT",
+      "BINANCE:PERP:OCEANUSDT",
+      "BINANCE:PERP:OPUSDT",
+      "BINANCE:PERP:REEFUSDT",
+      "BINANCE:PERP:RNDRUSDT",
+      "BINANCE:PERP:RUNEUSDT",
+      "BINANCE:PERP:SANDUSDT",
+      "BINANCE:PERP:SEIUSDT",
+      "BINANCE:PERP:SOLUSDT",
+      "BINANCE:PERP:SUIUSDT",
+      "BINANCE:PERP:SUSHIUSDT",
+      "BINANCE:PERP:SXPUSDT",
+      "BINANCE:PERP:THETAUSDT",
+      "BINANCE:PERP:TIAUSDT",
+      "BINANCE:PERP:TOMOUSDT",
+      "BINANCE:PERP:TRXUSDT",
+      "BINANCE:PERP:UNIUSDT",
+      "BINANCE:PERP:VETUSDT",
+      "BINANCE:PERP:WAVESUSDT",
+      "BINANCE:PERP:WLDUSDT",
+      "BINANCE:PERP:XLMUSDT",
+      "BINANCE:PERP:XRPUSDT"
+    ],
+    "no_trade_band": 0.001,
+    "rebalance_bars": 168,
+    "research_engine": {
+      "carry_terminal_eligibility": true,
+      "input_manifest_sha256": "1b6e18c65eb3e119b119785a015857954ff428067fdf7cabbb78f4646948efbf",
+      "metadata_mode": "MODELED_HISTORICAL_APPLICABILITY_NOT_OBSERVED_PIT",
+      "scenario": {
+        "data": "repaired_snapshot",
+        "execution_cost_multiplier": 2,
+        "fee_fraction": 0.001,
+        "funding_mark": "interval_open_proxy",
+        "id": "terminal_lower_cost_stress",
+        "price": "0.006944333333333333333333333333",
+        "terminal": true,
+        "terminal_basis": "modeled",
+        "terminal_instrument": "BINANCE:PERP:LUNAUSDT",
+        "terminal_ts": 1652369400000
+      },
+      "terminal_event_source_sha256": "54f615f42cd90d48344646b169da4e94c7aa9c8ee82ef6ed8f3a0b4737a8f525",
+      "timing_mode": "Retrospective reconstructed terminal notice; funding lag model unchanged; bar-close availability model."
+    },
+    "start": 1619136000000,
+    "test_bars": 1512,
+    "train_bars": 6048
+  },
+  "content_hash": "sha256:86c9ca036c5914b792afb18ed364fe6407f24aa4ccea6537e8e3b50f4467efd0",
+  "hypothesis_key": "48f7cb60382bdd98",
+  "immutable_first_measurement": {
+    "config": {
+      "allocator": "rank",
+      "alpha_names": [
+        "carry_fund_21"
+      ],
+      "end": 1672531200000,
+      "instrument_ids": [
+        "BINANCE:PERP:1000PEPEUSDT",
+        "BINANCE:PERP:1000SHIBUSDT",
+        "BINANCE:PERP:AAVEUSDT",
+        "BINANCE:PERP:ADAUSDT",
+        "BINANCE:PERP:APEUSDT",
+        "BINANCE:PERP:APTUSDT",
+        "BINANCE:PERP:ARBUSDT",
+        "BINANCE:PERP:ATOMUSDT",
+        "BINANCE:PERP:AVAXUSDT",
+        "BINANCE:PERP:AXSUSDT",
+        "BINANCE:PERP:BCHUSDT",
+        "BINANCE:PERP:BLZUSDT",
+        "BINANCE:PERP:BNBUSDT",
+        "BINANCE:PERP:BTCUSDT",
+        "BINANCE:PERP:CHZUSDT",
+        "BINANCE:PERP:COMPUSDT",
+        "BINANCE:PERP:CRVUSDT",
+        "BINANCE:PERP:DOGEUSDT",
+        "BINANCE:PERP:DOTUSDT",
+        "BINANCE:PERP:EOSUSDT",
+        "BINANCE:PERP:ETCUSDT",
+        "BINANCE:PERP:ETHUSDT",
+        "BINANCE:PERP:FILUSDT",
+        "BINANCE:PERP:FTMUSDT",
+        "BINANCE:PERP:GALAUSDT",
+        "BINANCE:PERP:ICPUSDT",
+        "BINANCE:PERP:INJUSDT",
+        "BINANCE:PERP:LDOUSDT",
+        "BINANCE:PERP:LINAUSDT",
+        "BINANCE:PERP:LINKUSDT",
+        "BINANCE:PERP:LRCUSDT",
+        "BINANCE:PERP:LTCUSDT",
+        "BINANCE:PERP:LUNAUSDT",
+        "BINANCE:PERP:MANAUSDT",
+        "BINANCE:PERP:MATICUSDT",
+        "BINANCE:PERP:MKRUSDT",
+        "BINANCE:PERP:NEARUSDT",
+        "BINANCE:PERP:OCEANUSDT",
+        "BINANCE:PERP:OPUSDT",
+        "BINANCE:PERP:REEFUSDT",
+        "BINANCE:PERP:RNDRUSDT",
+        "BINANCE:PERP:RUNEUSDT",
+        "BINANCE:PERP:SANDUSDT",
+        "BINANCE:PERP:SEIUSDT",
+        "BINANCE:PERP:SOLUSDT",
+        "BINANCE:PERP:SUIUSDT",
+        "BINANCE:PERP:SUSHIUSDT",
+        "BINANCE:PERP:SXPUSDT",
+        "BINANCE:PERP:THETAUSDT",
+        "BINANCE:PERP:TIAUSDT",
+        "BINANCE:PERP:TOMOUSDT",
+        "BINANCE:PERP:TRXUSDT",
+        "BINANCE:PERP:UNIUSDT",
+        "BINANCE:PERP:VETUSDT",
+        "BINANCE:PERP:WAVESUSDT",
+        "BINANCE:PERP:WLDUSDT",
+        "BINANCE:PERP:XLMUSDT",
+        "BINANCE:PERP:XRPUSDT"
+      ],
+      "no_trade_band": 0.001,
+      "rebalance_bars": 168,
+      "research_engine": {
+        "carry_terminal_eligibility": true,
+        "input_manifest_sha256": "1b6e18c65eb3e119b119785a015857954ff428067fdf7cabbb78f4646948efbf",
+        "metadata_mode": "MODELED_HISTORICAL_APPLICABILITY_NOT_OBSERVED_PIT",
+        "scenario": {
+          "data": "repaired_snapshot",
+          "execution_cost_multiplier": 2,
+          "fee_fraction": 0.001,
+          "funding_mark": "interval_open_proxy",
+          "id": "terminal_lower_cost_stress",
+          "price": "0.006944333333333333333333333333",
+          "terminal": true,
+          "terminal_basis": "modeled",
+          "terminal_instrument": "BINANCE:PERP:LUNAUSDT",
+          "terminal_ts": 1652369400000
+        },
+        "terminal_event_source_sha256": "54f615f42cd90d48344646b169da4e94c7aa9c8ee82ef6ed8f3a0b4737a8f525",
+        "timing_mode": "Retrospective reconstructed terminal notice; funding lag model unchanged; bar-close availability model."
+      },
+      "start": 1619136000000,
+      "test_bars": 1512,
+      "train_bars": 6048
+    },
+    "config_hash": "d0a03e38b94585d7",
+    "kurtosis": 13.970747905887347,
+    "n_obs": 366,
+    "now_ms": 1789290530888,
+    "sharpe_ann": 0.7920603030978643,
+    "sharpe_per_period": 0.041458331077547775,
+    "skew": -0.6075524667498544
+  },
+  "imported_from_external_tree": {
+    "external_content_hash": "sha256:34adb75a15084da0c5cdba41674dadd5047a5101a9df1238dd4cef1f47e556b6",
+    "imported_on": "2026-09-14T19:35:24+00:00",
+    "tree": "/Users/arhancanli/alphac-prospective-pause-20260911"
+  },
+  "missing_sections": [],
+  "packet_status": "COMPLETE_ACCOUNTING_FINAL_KILLED_NOT_ADMITTED",
+  "partial_sections": [],
+  "required_sections": {
+    "admission_or_kill_decision": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_lower_cost_stress/reservation.json",
+          "sha256": "4d1ca0a4ac76681b5bac0f5f8d212359973f18060655ef7701ff8c6d55bbde88"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_lower_cost_stress/preregistration.json",
+          "sha256": "976e60eede782c4518f9b9b9e9e9af30a72125e08cd0fdea18222807ec808e76"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_lower_cost_stress/reservation_validation.json",
+          "sha256": "4adf3bd7dc02b446bce12919aace847eddf2f68061b4ff16cee82a28115686ed"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_lower_cost_stress/experiments.jsonl",
+          "sha256": "0978a9204c23dd1e394f7c8e8240f0c822e45aef7062f898aab4357530f86cf7"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_lower_cost_stress/execution_complete.json",
+          "sha256": "28cab20bed91a9f267be07b35c6ef613204de9a25cb4100f3a9682786b958248"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_lower_cost_stress/independent_audit.json",
+          "sha256": "f01c52f7f3c5964a7168d8666c034913cbaa32c35a07142f29873200352b196e"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_lower_cost_stress/calendar2022_audit.json",
+          "sha256": "6083532e7ecf3e22ad0440ca65689d1fbfc14125825159c1f9feed023b3af3cf"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_lower_cost_stress/calendar2022.csv",
+          "sha256": "7fbc3492d8384d2112627616eca8e5be725243aa7a029c54e66530bc788a998b"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_lower_cost_stress/terminal_invariants.json",
+          "sha256": "636b81afc27d2153f825f2f27d9907ecfc590b0f5d5166da162abe89c4a60fae"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_lower_cost_stress/REPORT.md",
+          "sha256": "fe8005db6f04d155c95b6ceb297d36acba012b0502a7da7f9819af6b55f30819"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_lower_cost_stress/run/walkforward.json",
+          "sha256": "2e5fcfb8d1db4043d851506192cd4986f245e44a30b21d8d878b46d9237a1f48"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/protocol.json",
+          "sha256": "2c2d7257b1e3dae9cb2cef6d3b495be351efbecb6071b531e62308718136336a"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/input_manifest.json",
+          "sha256": "1b6e18c65eb3e119b119785a015857954ff428067fdf7cabbb78f4646948efbf"
+        },
+        {
+          "path": "scripts/close_crypto_full2022_arm.py",
+          "sha256": "e4b732917ae48c1e8bb352fc1ec429c0a47cc426be60e3ebd1d3c655d7195b21"
+        },
+        {
+          "path": "scripts/audit_crypto_full2022_accounting.py",
+          "sha256": "68b5ec21744af8ec6f9aabdff87abf7130df161f940a2592bd53f729f22542af"
+        },
+        {
+          "path": "scripts/audit_crypto_full2022_horizon.py",
+          "sha256": "6efa1316ba2ed2ec8bead413fcb2018bdde5a22911e1a03fa1b87010577f161c"
+        },
+        {
+          "content_hash": "sha256:3d8af35d20dd2a542fe8d0f74beac9e48666c9fb14d28a35a6425b0bcab796a7",
+          "path": "artifacts/research/development_closures/48f7cb60382bdd98_admission_closure.json",
+          "sha256": "85311501d628312f67abbd5e92654f068cc331e072b566aa6594fcf123363a9c",
+          "type": "final_development_admission_closure"
+        }
+      ],
+      "statement": "Full2022 retrospective crypto horizon extension; calendar/accounting verified, source availability, metadata, funding, settlement and benchmark remain modeled. No combined qualification, new sleeve, untouched OOS or admission.",
+      "status": "VERIFIED_FINAL_DEVELOPMENT_CLOSURE_KILL"
+    },
+    "code_environment_and_reproduction": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_lower_cost_stress/reservation.json",
+          "sha256": "4d1ca0a4ac76681b5bac0f5f8d212359973f18060655ef7701ff8c6d55bbde88"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_lower_cost_stress/preregistration.json",
+          "sha256": "976e60eede782c4518f9b9b9e9e9af30a72125e08cd0fdea18222807ec808e76"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_lower_cost_stress/reservation_validation.json",
+          "sha256": "4adf3bd7dc02b446bce12919aace847eddf2f68061b4ff16cee82a28115686ed"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_lower_cost_stress/experiments.jsonl",
+          "sha256": "0978a9204c23dd1e394f7c8e8240f0c822e45aef7062f898aab4357530f86cf7"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_lower_cost_stress/execution_complete.json",
+          "sha256": "28cab20bed91a9f267be07b35c6ef613204de9a25cb4100f3a9682786b958248"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_lower_cost_stress/independent_audit.json",
+          "sha256": "f01c52f7f3c5964a7168d8666c034913cbaa32c35a07142f29873200352b196e"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_lower_cost_stress/calendar2022_audit.json",
+          "sha256": "6083532e7ecf3e22ad0440ca65689d1fbfc14125825159c1f9feed023b3af3cf"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_lower_cost_stress/calendar2022.csv",
+          "sha256": "7fbc3492d8384d2112627616eca8e5be725243aa7a029c54e66530bc788a998b"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_lower_cost_stress/terminal_invariants.json",
+          "sha256": "636b81afc27d2153f825f2f27d9907ecfc590b0f5d5166da162abe89c4a60fae"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_lower_cost_stress/REPORT.md",
+          "sha256": "fe8005db6f04d155c95b6ceb297d36acba012b0502a7da7f9819af6b55f30819"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_lower_cost_stress/run/walkforward.json",
+          "sha256": "2e5fcfb8d1db4043d851506192cd4986f245e44a30b21d8d878b46d9237a1f48"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/protocol.json",
+          "sha256": "2c2d7257b1e3dae9cb2cef6d3b495be351efbecb6071b531e62308718136336a"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/input_manifest.json",
+          "sha256": "1b6e18c65eb3e119b119785a015857954ff428067fdf7cabbb78f4646948efbf"
+        },
+        {
+          "path": "scripts/close_crypto_full2022_arm.py",
+          "sha256": "e4b732917ae48c1e8bb352fc1ec429c0a47cc426be60e3ebd1d3c655d7195b21"
+        },
+        {
+          "path": "scripts/audit_crypto_full2022_accounting.py",
+          "sha256": "68b5ec21744af8ec6f9aabdff87abf7130df161f940a2592bd53f729f22542af"
+        },
+        {
+          "path": "scripts/audit_crypto_full2022_horizon.py",
+          "sha256": "6efa1316ba2ed2ec8bead413fcb2018bdde5a22911e1a03fa1b87010577f161c"
+        }
+      ],
+      "statement": "Full2022 retrospective crypto horizon extension; calendar/accounting verified, source availability, metadata, funding, settlement and benchmark remain modeled. No combined qualification, new sleeve, untouched OOS or admission.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "economic_mechanism_and_falsifiable_hypothesis": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_lower_cost_stress/reservation.json",
+          "sha256": "4d1ca0a4ac76681b5bac0f5f8d212359973f18060655ef7701ff8c6d55bbde88"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_lower_cost_stress/preregistration.json",
+          "sha256": "976e60eede782c4518f9b9b9e9e9af30a72125e08cd0fdea18222807ec808e76"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_lower_cost_stress/reservation_validation.json",
+          "sha256": "4adf3bd7dc02b446bce12919aace847eddf2f68061b4ff16cee82a28115686ed"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_lower_cost_stress/experiments.jsonl",
+          "sha256": "0978a9204c23dd1e394f7c8e8240f0c822e45aef7062f898aab4357530f86cf7"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_lower_cost_stress/execution_complete.json",
+          "sha256": "28cab20bed91a9f267be07b35c6ef613204de9a25cb4100f3a9682786b958248"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_lower_cost_stress/independent_audit.json",
+          "sha256": "f01c52f7f3c5964a7168d8666c034913cbaa32c35a07142f29873200352b196e"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_lower_cost_stress/calendar2022_audit.json",
+          "sha256": "6083532e7ecf3e22ad0440ca65689d1fbfc14125825159c1f9feed023b3af3cf"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_lower_cost_stress/calendar2022.csv",
+          "sha256": "7fbc3492d8384d2112627616eca8e5be725243aa7a029c54e66530bc788a998b"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_lower_cost_stress/terminal_invariants.json",
+          "sha256": "636b81afc27d2153f825f2f27d9907ecfc590b0f5d5166da162abe89c4a60fae"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_lower_cost_stress/REPORT.md",
+          "sha256": "fe8005db6f04d155c95b6ceb297d36acba012b0502a7da7f9819af6b55f30819"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_lower_cost_stress/run/walkforward.json",
+          "sha256": "2e5fcfb8d1db4043d851506192cd4986f245e44a30b21d8d878b46d9237a1f48"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/protocol.json",
+          "sha256": "2c2d7257b1e3dae9cb2cef6d3b495be351efbecb6071b531e62308718136336a"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/input_manifest.json",
+          "sha256": "1b6e18c65eb3e119b119785a015857954ff428067fdf7cabbb78f4646948efbf"
+        },
+        {
+          "path": "scripts/close_crypto_full2022_arm.py",
+          "sha256": "e4b732917ae48c1e8bb352fc1ec429c0a47cc426be60e3ebd1d3c655d7195b21"
+        },
+        {
+          "path": "scripts/audit_crypto_full2022_accounting.py",
+          "sha256": "68b5ec21744af8ec6f9aabdff87abf7130df161f940a2592bd53f729f22542af"
+        },
+        {
+          "path": "scripts/audit_crypto_full2022_horizon.py",
+          "sha256": "6efa1316ba2ed2ec8bead413fcb2018bdde5a22911e1a03fa1b87010577f161c"
+        }
+      ],
+      "statement": "Full2022 retrospective crypto horizon extension; calendar/accounting verified, source availability, metadata, funding, settlement and benchmark remain modeled. No combined qualification, new sleeve, untouched OOS or admission.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "execution_and_cost_model": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_lower_cost_stress/reservation.json",
+          "sha256": "4d1ca0a4ac76681b5bac0f5f8d212359973f18060655ef7701ff8c6d55bbde88"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_lower_cost_stress/preregistration.json",
+          "sha256": "976e60eede782c4518f9b9b9e9e9af30a72125e08cd0fdea18222807ec808e76"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_lower_cost_stress/reservation_validation.json",
+          "sha256": "4adf3bd7dc02b446bce12919aace847eddf2f68061b4ff16cee82a28115686ed"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_lower_cost_stress/experiments.jsonl",
+          "sha256": "0978a9204c23dd1e394f7c8e8240f0c822e45aef7062f898aab4357530f86cf7"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_lower_cost_stress/execution_complete.json",
+          "sha256": "28cab20bed91a9f267be07b35c6ef613204de9a25cb4100f3a9682786b958248"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_lower_cost_stress/independent_audit.json",
+          "sha256": "f01c52f7f3c5964a7168d8666c034913cbaa32c35a07142f29873200352b196e"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_lower_cost_stress/calendar2022_audit.json",
+          "sha256": "6083532e7ecf3e22ad0440ca65689d1fbfc14125825159c1f9feed023b3af3cf"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_lower_cost_stress/calendar2022.csv",
+          "sha256": "7fbc3492d8384d2112627616eca8e5be725243aa7a029c54e66530bc788a998b"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_lower_cost_stress/terminal_invariants.json",
+          "sha256": "636b81afc27d2153f825f2f27d9907ecfc590b0f5d5166da162abe89c4a60fae"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_lower_cost_stress/REPORT.md",
+          "sha256": "fe8005db6f04d155c95b6ceb297d36acba012b0502a7da7f9819af6b55f30819"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_lower_cost_stress/run/walkforward.json",
+          "sha256": "2e5fcfb8d1db4043d851506192cd4986f245e44a30b21d8d878b46d9237a1f48"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/protocol.json",
+          "sha256": "2c2d7257b1e3dae9cb2cef6d3b495be351efbecb6071b531e62308718136336a"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/input_manifest.json",
+          "sha256": "1b6e18c65eb3e119b119785a015857954ff428067fdf7cabbb78f4646948efbf"
+        },
+        {
+          "path": "scripts/close_crypto_full2022_arm.py",
+          "sha256": "e4b732917ae48c1e8bb352fc1ec429c0a47cc426be60e3ebd1d3c655d7195b21"
+        },
+        {
+          "path": "scripts/audit_crypto_full2022_accounting.py",
+          "sha256": "68b5ec21744af8ec6f9aabdff87abf7130df161f940a2592bd53f729f22542af"
+        },
+        {
+          "path": "scripts/audit_crypto_full2022_horizon.py",
+          "sha256": "6efa1316ba2ed2ec8bead413fcb2018bdde5a22911e1a03fa1b87010577f161c"
+        }
+      ],
+      "statement": "Full2022 retrospective crypto horizon extension; calendar/accounting verified, source availability, metadata, funding, settlement and benchmark remain modeled. No combined qualification, new sleeve, untouched OOS or admission.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "family_and_union_trial_accounting": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_lower_cost_stress/reservation.json",
+          "sha256": "4d1ca0a4ac76681b5bac0f5f8d212359973f18060655ef7701ff8c6d55bbde88"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_lower_cost_stress/preregistration.json",
+          "sha256": "976e60eede782c4518f9b9b9e9e9af30a72125e08cd0fdea18222807ec808e76"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_lower_cost_stress/reservation_validation.json",
+          "sha256": "4adf3bd7dc02b446bce12919aace847eddf2f68061b4ff16cee82a28115686ed"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_lower_cost_stress/experiments.jsonl",
+          "sha256": "0978a9204c23dd1e394f7c8e8240f0c822e45aef7062f898aab4357530f86cf7"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_lower_cost_stress/execution_complete.json",
+          "sha256": "28cab20bed91a9f267be07b35c6ef613204de9a25cb4100f3a9682786b958248"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_lower_cost_stress/independent_audit.json",
+          "sha256": "f01c52f7f3c5964a7168d8666c034913cbaa32c35a07142f29873200352b196e"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_lower_cost_stress/calendar2022_audit.json",
+          "sha256": "6083532e7ecf3e22ad0440ca65689d1fbfc14125825159c1f9feed023b3af3cf"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_lower_cost_stress/calendar2022.csv",
+          "sha256": "7fbc3492d8384d2112627616eca8e5be725243aa7a029c54e66530bc788a998b"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_lower_cost_stress/terminal_invariants.json",
+          "sha256": "636b81afc27d2153f825f2f27d9907ecfc590b0f5d5166da162abe89c4a60fae"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_lower_cost_stress/REPORT.md",
+          "sha256": "fe8005db6f04d155c95b6ceb297d36acba012b0502a7da7f9819af6b55f30819"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_lower_cost_stress/run/walkforward.json",
+          "sha256": "2e5fcfb8d1db4043d851506192cd4986f245e44a30b21d8d878b46d9237a1f48"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/protocol.json",
+          "sha256": "2c2d7257b1e3dae9cb2cef6d3b495be351efbecb6071b531e62308718136336a"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/input_manifest.json",
+          "sha256": "1b6e18c65eb3e119b119785a015857954ff428067fdf7cabbb78f4646948efbf"
+        },
+        {
+          "path": "scripts/close_crypto_full2022_arm.py",
+          "sha256": "e4b732917ae48c1e8bb352fc1ec429c0a47cc426be60e3ebd1d3c655d7195b21"
+        },
+        {
+          "path": "scripts/audit_crypto_full2022_accounting.py",
+          "sha256": "68b5ec21744af8ec6f9aabdff87abf7130df161f940a2592bd53f729f22542af"
+        },
+        {
+          "path": "scripts/audit_crypto_full2022_horizon.py",
+          "sha256": "6efa1316ba2ed2ec8bead413fcb2018bdde5a22911e1a03fa1b87010577f161c"
+        }
+      ],
+      "statement": "Full2022 retrospective crypto horizon extension; calendar/accounting verified, source availability, metadata, funding, settlement and benchmark remain modeled. No combined qualification, new sleeve, untouched OOS or admission.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "identity_and_authorship": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_lower_cost_stress/reservation.json",
+          "sha256": "4d1ca0a4ac76681b5bac0f5f8d212359973f18060655ef7701ff8c6d55bbde88"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_lower_cost_stress/preregistration.json",
+          "sha256": "976e60eede782c4518f9b9b9e9e9af30a72125e08cd0fdea18222807ec808e76"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_lower_cost_stress/reservation_validation.json",
+          "sha256": "4adf3bd7dc02b446bce12919aace847eddf2f68061b4ff16cee82a28115686ed"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_lower_cost_stress/experiments.jsonl",
+          "sha256": "0978a9204c23dd1e394f7c8e8240f0c822e45aef7062f898aab4357530f86cf7"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_lower_cost_stress/execution_complete.json",
+          "sha256": "28cab20bed91a9f267be07b35c6ef613204de9a25cb4100f3a9682786b958248"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_lower_cost_stress/independent_audit.json",
+          "sha256": "f01c52f7f3c5964a7168d8666c034913cbaa32c35a07142f29873200352b196e"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_lower_cost_stress/calendar2022_audit.json",
+          "sha256": "6083532e7ecf3e22ad0440ca65689d1fbfc14125825159c1f9feed023b3af3cf"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_lower_cost_stress/calendar2022.csv",
+          "sha256": "7fbc3492d8384d2112627616eca8e5be725243aa7a029c54e66530bc788a998b"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_lower_cost_stress/terminal_invariants.json",
+          "sha256": "636b81afc27d2153f825f2f27d9907ecfc590b0f5d5166da162abe89c4a60fae"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_lower_cost_stress/REPORT.md",
+          "sha256": "fe8005db6f04d155c95b6ceb297d36acba012b0502a7da7f9819af6b55f30819"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_lower_cost_stress/run/walkforward.json",
+          "sha256": "2e5fcfb8d1db4043d851506192cd4986f245e44a30b21d8d878b46d9237a1f48"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/protocol.json",
+          "sha256": "2c2d7257b1e3dae9cb2cef6d3b495be351efbecb6071b531e62308718136336a"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/input_manifest.json",
+          "sha256": "1b6e18c65eb3e119b119785a015857954ff428067fdf7cabbb78f4646948efbf"
+        },
+        {
+          "path": "scripts/close_crypto_full2022_arm.py",
+          "sha256": "e4b732917ae48c1e8bb352fc1ec429c0a47cc426be60e3ebd1d3c655d7195b21"
+        },
+        {
+          "path": "scripts/audit_crypto_full2022_accounting.py",
+          "sha256": "68b5ec21744af8ec6f9aabdff87abf7130df161f940a2592bd53f729f22542af"
+        },
+        {
+          "path": "scripts/audit_crypto_full2022_horizon.py",
+          "sha256": "6efa1316ba2ed2ec8bead413fcb2018bdde5a22911e1a03fa1b87010577f161c"
+        }
+      ],
+      "statement": "Full2022 retrospective crypto horizon extension; calendar/accounting verified, source availability, metadata, funding, settlement and benchmark remain modeled. No combined qualification, new sleeve, untouched OOS or admission.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "literature_and_overlap_decision": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_lower_cost_stress/reservation.json",
+          "sha256": "4d1ca0a4ac76681b5bac0f5f8d212359973f18060655ef7701ff8c6d55bbde88"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_lower_cost_stress/preregistration.json",
+          "sha256": "976e60eede782c4518f9b9b9e9e9af30a72125e08cd0fdea18222807ec808e76"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_lower_cost_stress/reservation_validation.json",
+          "sha256": "4adf3bd7dc02b446bce12919aace847eddf2f68061b4ff16cee82a28115686ed"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_lower_cost_stress/experiments.jsonl",
+          "sha256": "0978a9204c23dd1e394f7c8e8240f0c822e45aef7062f898aab4357530f86cf7"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_lower_cost_stress/execution_complete.json",
+          "sha256": "28cab20bed91a9f267be07b35c6ef613204de9a25cb4100f3a9682786b958248"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_lower_cost_stress/independent_audit.json",
+          "sha256": "f01c52f7f3c5964a7168d8666c034913cbaa32c35a07142f29873200352b196e"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_lower_cost_stress/calendar2022_audit.json",
+          "sha256": "6083532e7ecf3e22ad0440ca65689d1fbfc14125825159c1f9feed023b3af3cf"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_lower_cost_stress/calendar2022.csv",
+          "sha256": "7fbc3492d8384d2112627616eca8e5be725243aa7a029c54e66530bc788a998b"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_lower_cost_stress/terminal_invariants.json",
+          "sha256": "636b81afc27d2153f825f2f27d9907ecfc590b0f5d5166da162abe89c4a60fae"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_lower_cost_stress/REPORT.md",
+          "sha256": "fe8005db6f04d155c95b6ceb297d36acba012b0502a7da7f9819af6b55f30819"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_lower_cost_stress/run/walkforward.json",
+          "sha256": "2e5fcfb8d1db4043d851506192cd4986f245e44a30b21d8d878b46d9237a1f48"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/protocol.json",
+          "sha256": "2c2d7257b1e3dae9cb2cef6d3b495be351efbecb6071b531e62308718136336a"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/input_manifest.json",
+          "sha256": "1b6e18c65eb3e119b119785a015857954ff428067fdf7cabbb78f4646948efbf"
+        },
+        {
+          "path": "scripts/close_crypto_full2022_arm.py",
+          "sha256": "e4b732917ae48c1e8bb352fc1ec429c0a47cc426be60e3ebd1d3c655d7195b21"
+        },
+        {
+          "path": "scripts/audit_crypto_full2022_accounting.py",
+          "sha256": "68b5ec21744af8ec6f9aabdff87abf7130df161f940a2592bd53f729f22542af"
+        },
+        {
+          "path": "scripts/audit_crypto_full2022_horizon.py",
+          "sha256": "6efa1316ba2ed2ec8bead413fcb2018bdde5a22911e1a03fa1b87010577f161c"
+        }
+      ],
+      "statement": "Full2022 retrospective crypto horizon extension; calendar/accounting verified, source availability, metadata, funding, settlement and benchmark remain modeled. No combined qualification, new sleeve, untouched OOS or admission.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "machine_readable_packet_and_stable_public_paper": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_lower_cost_stress/reservation.json",
+          "sha256": "4d1ca0a4ac76681b5bac0f5f8d212359973f18060655ef7701ff8c6d55bbde88"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_lower_cost_stress/preregistration.json",
+          "sha256": "976e60eede782c4518f9b9b9e9e9af30a72125e08cd0fdea18222807ec808e76"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_lower_cost_stress/reservation_validation.json",
+          "sha256": "4adf3bd7dc02b446bce12919aace847eddf2f68061b4ff16cee82a28115686ed"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_lower_cost_stress/experiments.jsonl",
+          "sha256": "0978a9204c23dd1e394f7c8e8240f0c822e45aef7062f898aab4357530f86cf7"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_lower_cost_stress/execution_complete.json",
+          "sha256": "28cab20bed91a9f267be07b35c6ef613204de9a25cb4100f3a9682786b958248"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_lower_cost_stress/independent_audit.json",
+          "sha256": "f01c52f7f3c5964a7168d8666c034913cbaa32c35a07142f29873200352b196e"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_lower_cost_stress/calendar2022_audit.json",
+          "sha256": "6083532e7ecf3e22ad0440ca65689d1fbfc14125825159c1f9feed023b3af3cf"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_lower_cost_stress/calendar2022.csv",
+          "sha256": "7fbc3492d8384d2112627616eca8e5be725243aa7a029c54e66530bc788a998b"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_lower_cost_stress/terminal_invariants.json",
+          "sha256": "636b81afc27d2153f825f2f27d9907ecfc590b0f5d5166da162abe89c4a60fae"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_lower_cost_stress/REPORT.md",
+          "sha256": "fe8005db6f04d155c95b6ceb297d36acba012b0502a7da7f9819af6b55f30819"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_lower_cost_stress/run/walkforward.json",
+          "sha256": "2e5fcfb8d1db4043d851506192cd4986f245e44a30b21d8d878b46d9237a1f48"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/protocol.json",
+          "sha256": "2c2d7257b1e3dae9cb2cef6d3b495be351efbecb6071b531e62308718136336a"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/input_manifest.json",
+          "sha256": "1b6e18c65eb3e119b119785a015857954ff428067fdf7cabbb78f4646948efbf"
+        },
+        {
+          "path": "scripts/close_crypto_full2022_arm.py",
+          "sha256": "e4b732917ae48c1e8bb352fc1ec429c0a47cc426be60e3ebd1d3c655d7195b21"
+        },
+        {
+          "path": "scripts/audit_crypto_full2022_accounting.py",
+          "sha256": "68b5ec21744af8ec6f9aabdff87abf7130df161f940a2592bd53f729f22542af"
+        },
+        {
+          "path": "scripts/audit_crypto_full2022_horizon.py",
+          "sha256": "6efa1316ba2ed2ec8bead413fcb2018bdde5a22911e1a03fa1b87010577f161c"
+        }
+      ],
+      "statement": "Full2022 retrospective crypto horizon extension; calendar/accounting verified, source availability, metadata, funding, settlement and benchmark remain modeled. No combined qualification, new sleeve, untouched OOS or admission.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "point_in_time_data_and_survivorship_controls": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_lower_cost_stress/reservation.json",
+          "sha256": "4d1ca0a4ac76681b5bac0f5f8d212359973f18060655ef7701ff8c6d55bbde88"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_lower_cost_stress/preregistration.json",
+          "sha256": "976e60eede782c4518f9b9b9e9e9af30a72125e08cd0fdea18222807ec808e76"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_lower_cost_stress/reservation_validation.json",
+          "sha256": "4adf3bd7dc02b446bce12919aace847eddf2f68061b4ff16cee82a28115686ed"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_lower_cost_stress/experiments.jsonl",
+          "sha256": "0978a9204c23dd1e394f7c8e8240f0c822e45aef7062f898aab4357530f86cf7"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_lower_cost_stress/execution_complete.json",
+          "sha256": "28cab20bed91a9f267be07b35c6ef613204de9a25cb4100f3a9682786b958248"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_lower_cost_stress/independent_audit.json",
+          "sha256": "f01c52f7f3c5964a7168d8666c034913cbaa32c35a07142f29873200352b196e"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_lower_cost_stress/calendar2022_audit.json",
+          "sha256": "6083532e7ecf3e22ad0440ca65689d1fbfc14125825159c1f9feed023b3af3cf"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_lower_cost_stress/calendar2022.csv",
+          "sha256": "7fbc3492d8384d2112627616eca8e5be725243aa7a029c54e66530bc788a998b"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_lower_cost_stress/terminal_invariants.json",
+          "sha256": "636b81afc27d2153f825f2f27d9907ecfc590b0f5d5166da162abe89c4a60fae"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_lower_cost_stress/REPORT.md",
+          "sha256": "fe8005db6f04d155c95b6ceb297d36acba012b0502a7da7f9819af6b55f30819"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_lower_cost_stress/run/walkforward.json",
+          "sha256": "2e5fcfb8d1db4043d851506192cd4986f245e44a30b21d8d878b46d9237a1f48"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/protocol.json",
+          "sha256": "2c2d7257b1e3dae9cb2cef6d3b495be351efbecb6071b531e62308718136336a"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/input_manifest.json",
+          "sha256": "1b6e18c65eb3e119b119785a015857954ff428067fdf7cabbb78f4646948efbf"
+        },
+        {
+          "path": "scripts/close_crypto_full2022_arm.py",
+          "sha256": "e4b732917ae48c1e8bb352fc1ec429c0a47cc426be60e3ebd1d3c655d7195b21"
+        },
+        {
+          "path": "scripts/audit_crypto_full2022_accounting.py",
+          "sha256": "68b5ec21744af8ec6f9aabdff87abf7130df161f940a2592bd53f729f22542af"
+        },
+        {
+          "path": "scripts/audit_crypto_full2022_horizon.py",
+          "sha256": "6efa1316ba2ed2ec8bead413fcb2018bdde5a22911e1a03fa1b87010577f161c"
+        }
+      ],
+      "statement": "Full2022 retrospective crypto horizon extension; calendar/accounting verified, source availability, metadata, funding, settlement and benchmark remain modeled. No combined qualification, new sleeve, untouched OOS or admission.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "preregistration_and_hashes": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_lower_cost_stress/reservation.json",
+          "sha256": "4d1ca0a4ac76681b5bac0f5f8d212359973f18060655ef7701ff8c6d55bbde88"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_lower_cost_stress/preregistration.json",
+          "sha256": "976e60eede782c4518f9b9b9e9e9af30a72125e08cd0fdea18222807ec808e76"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_lower_cost_stress/reservation_validation.json",
+          "sha256": "4adf3bd7dc02b446bce12919aace847eddf2f68061b4ff16cee82a28115686ed"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_lower_cost_stress/experiments.jsonl",
+          "sha256": "0978a9204c23dd1e394f7c8e8240f0c822e45aef7062f898aab4357530f86cf7"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_lower_cost_stress/execution_complete.json",
+          "sha256": "28cab20bed91a9f267be07b35c6ef613204de9a25cb4100f3a9682786b958248"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_lower_cost_stress/independent_audit.json",
+          "sha256": "f01c52f7f3c5964a7168d8666c034913cbaa32c35a07142f29873200352b196e"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_lower_cost_stress/calendar2022_audit.json",
+          "sha256": "6083532e7ecf3e22ad0440ca65689d1fbfc14125825159c1f9feed023b3af3cf"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_lower_cost_stress/calendar2022.csv",
+          "sha256": "7fbc3492d8384d2112627616eca8e5be725243aa7a029c54e66530bc788a998b"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_lower_cost_stress/terminal_invariants.json",
+          "sha256": "636b81afc27d2153f825f2f27d9907ecfc590b0f5d5166da162abe89c4a60fae"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_lower_cost_stress/REPORT.md",
+          "sha256": "fe8005db6f04d155c95b6ceb297d36acba012b0502a7da7f9819af6b55f30819"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_lower_cost_stress/run/walkforward.json",
+          "sha256": "2e5fcfb8d1db4043d851506192cd4986f245e44a30b21d8d878b46d9237a1f48"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/protocol.json",
+          "sha256": "2c2d7257b1e3dae9cb2cef6d3b495be351efbecb6071b531e62308718136336a"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/input_manifest.json",
+          "sha256": "1b6e18c65eb3e119b119785a015857954ff428067fdf7cabbb78f4646948efbf"
+        },
+        {
+          "path": "scripts/close_crypto_full2022_arm.py",
+          "sha256": "e4b732917ae48c1e8bb352fc1ec429c0a47cc426be60e3ebd1d3c655d7195b21"
+        },
+        {
+          "path": "scripts/audit_crypto_full2022_accounting.py",
+          "sha256": "68b5ec21744af8ec6f9aabdff87abf7130df161f940a2592bd53f729f22542af"
+        },
+        {
+          "path": "scripts/audit_crypto_full2022_horizon.py",
+          "sha256": "6efa1316ba2ed2ec8bead413fcb2018bdde5a22911e1a03fa1b87010577f161c"
+        }
+      ],
+      "statement": "Full2022 retrospective crypto horizon extension; calendar/accounting verified, source availability, metadata, funding, settlement and benchmark remain modeled. No combined qualification, new sleeve, untouched OOS or admission.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "result_uncertainty_stress_capacity_and_diversification": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_lower_cost_stress/reservation.json",
+          "sha256": "4d1ca0a4ac76681b5bac0f5f8d212359973f18060655ef7701ff8c6d55bbde88"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_lower_cost_stress/preregistration.json",
+          "sha256": "976e60eede782c4518f9b9b9e9e9af30a72125e08cd0fdea18222807ec808e76"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_lower_cost_stress/reservation_validation.json",
+          "sha256": "4adf3bd7dc02b446bce12919aace847eddf2f68061b4ff16cee82a28115686ed"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_lower_cost_stress/experiments.jsonl",
+          "sha256": "0978a9204c23dd1e394f7c8e8240f0c822e45aef7062f898aab4357530f86cf7"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_lower_cost_stress/execution_complete.json",
+          "sha256": "28cab20bed91a9f267be07b35c6ef613204de9a25cb4100f3a9682786b958248"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_lower_cost_stress/independent_audit.json",
+          "sha256": "f01c52f7f3c5964a7168d8666c034913cbaa32c35a07142f29873200352b196e"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_lower_cost_stress/calendar2022_audit.json",
+          "sha256": "6083532e7ecf3e22ad0440ca65689d1fbfc14125825159c1f9feed023b3af3cf"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_lower_cost_stress/calendar2022.csv",
+          "sha256": "7fbc3492d8384d2112627616eca8e5be725243aa7a029c54e66530bc788a998b"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_lower_cost_stress/terminal_invariants.json",
+          "sha256": "636b81afc27d2153f825f2f27d9907ecfc590b0f5d5166da162abe89c4a60fae"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_lower_cost_stress/REPORT.md",
+          "sha256": "fe8005db6f04d155c95b6ceb297d36acba012b0502a7da7f9819af6b55f30819"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/terminal_lower_cost_stress/run/walkforward.json",
+          "sha256": "2e5fcfb8d1db4043d851506192cd4986f245e44a30b21d8d878b46d9237a1f48"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/protocol.json",
+          "sha256": "2c2d7257b1e3dae9cb2cef6d3b495be351efbecb6071b531e62308718136336a"
+        },
+        {
+          "path": "artifacts/analysis/crypto_full2022_terminal_20260913/input_manifest.json",
+          "sha256": "1b6e18c65eb3e119b119785a015857954ff428067fdf7cabbb78f4646948efbf"
+        },
+        {
+          "path": "scripts/close_crypto_full2022_arm.py",
+          "sha256": "e4b732917ae48c1e8bb352fc1ec429c0a47cc426be60e3ebd1d3c655d7195b21"
+        },
+        {
+          "path": "scripts/audit_crypto_full2022_accounting.py",
+          "sha256": "68b5ec21744af8ec6f9aabdff87abf7130df161f940a2592bd53f729f22542af"
+        },
+        {
+          "path": "scripts/audit_crypto_full2022_horizon.py",
+          "sha256": "6efa1316ba2ed2ec8bead413fcb2018bdde5a22911e1a03fa1b87010577f161c"
+        }
+      ],
+      "statement": "Full2022 retrospective crypto horizon extension; calendar/accounting verified, source availability, metadata, funding, settlement and benchmark remain modeled. No combined qualification, new sleeve, untouched OOS or admission.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    }
+  },
+  "research_family_key": "managed_futures_trend",
+  "schema": "canli.alphac-identity-trial-packet.v2"
+}

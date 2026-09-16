@@ -1,0 +1,803 @@
+{
+  "claim_boundary": "Current-vintage development comparison on inspected history; explicit raw fills and payable dividends. Modeled costs/borrow, static metadata, no contemporaneous publication or historical borrow proof. No untouched test, independent reproduction, capacity validation or admission. Accounting complete; comparative decision follows both fixed arms.",
+  "complete": true,
+  "completion_assessment": {
+    "candidate_evidence_complete_for_admission": false,
+    "disposition": "INCOMPLETE_NOT_ADMITTED",
+    "packet_evidence_accounting_complete": true
+  },
+  "config_hash": "3d8c495ad74bb0b4",
+  "configuration": {
+    "allocator": "trend",
+    "alpha_names": [
+      "mf_trend_63",
+      "mf_trend_126",
+      "mf_trend_252"
+    ],
+    "cost_stress": true,
+    "cov_halflife_days": null,
+    "cov_min_periods": 240,
+    "cov_window_bars": 720,
+    "direction_confirmation": true,
+    "end": 1789171200000,
+    "evaluation_policy": "continuous_retrospective_payable_book_v1",
+    "history_start": 1325548800000,
+    "implementation_manifest_sha256": "5df2462265b65f1bb56fd5fe425bb91a6db1e060cda25d8c21bc105328c8a8bd",
+    "initial_cash": 100000.0,
+    "input_binding": {
+      "execution_mode": "RETROSPECTIVE_CURRENT_VINTAGE",
+      "mode": "DIAGNOSTIC_CURRENT_VINTAGE",
+      "paired_input_sha256": "5f977ccd06240643eb1787d214b7ec31c0a92df1fcb1e40014ba710c218a8064",
+      "point_in_time_proven": false,
+      "quote_volume": "raw_close_times_raw_volume_proxy",
+      "raw_label_convention": "raw_open_cash_accrual_fixed_release_v2",
+      "raw_label_input_sha256": "e8e1b01cd0f10308d0a2d2717e5cf8e74dff49810ab4137e34b763993d85de5a",
+      "raw_label_mode": "DIAGNOSTIC_CURRENT_VINTAGE",
+      "retrospective_vintage_ms": 1789214263591,
+      "risk_prices": "synthetic_returns_raw_position_marks_v1"
+    },
+    "instrument_ids": [
+      "XUSE:CASH:DBAUSD",
+      "XUSE:CASH:DBCUSD",
+      "XUSE:CASH:EEMUSD",
+      "XUSE:CASH:EFAUSD",
+      "XUSE:CASH:FXEUSD",
+      "XUSE:CASH:FXYUSD",
+      "XUSE:CASH:GLDUSD",
+      "XUSE:CASH:IEFUSD",
+      "XUSE:CASH:IWMUSD",
+      "XUSE:CASH:QQQUSD",
+      "XUSE:CASH:SHYUSD",
+      "XUSE:CASH:SLVUSD",
+      "XUSE:CASH:SPYUSD",
+      "XUSE:CASH:TLTUSD",
+      "XUSE:CASH:UNGUSD",
+      "XUSE:CASH:USOUSD",
+      "XUSE:CASH:UUPUSD"
+    ],
+    "metric_basis": "xnys_252_sessions_elapsed_cagr_v1",
+    "no_trade_band": 0.001,
+    "positive_targets": false,
+    "positive_targets_spec_sha256": "1eb5ab560a2f23156840cfbdc6083fd2d561ec5fac8783f6c38eed775b697b75",
+    "rebalance_bars": 10,
+    "resolved_settings": {
+      "costs": {
+        "default_half_spread_bps": 2.5,
+        "equity_borrow_bps_annual": 100.0,
+        "equity_commission_bps": 2.0,
+        "equity_half_spread_bps": 6.0,
+        "impact_coef": 2.0,
+        "latency_addon_bps": 4.0,
+        "perp_maker_bps": 2.0,
+        "perp_taker_bps": 5.0
+      },
+      "data": {
+        "asset_class": "equity",
+        "backfill_start": "2001-01-01T00:00:00Z",
+        "exchange": "polygon",
+        "ingest_grace_ms": 30000,
+        "timeframe": "1d"
+      },
+      "live": {
+        "cycle_grace_s": 90,
+        "paper": true,
+        "tick_sleep_s": 45
+      },
+      "portfolio": {
+        "dollar_neutral": false,
+        "gross_max": 1.0,
+        "net_max": 1.0,
+        "no_trade_band": 0.001,
+        "rank_top_k": null,
+        "risk_aversion": 7.0,
+        "turnover_max": 0.1,
+        "vol_scale_max": 3.0,
+        "vol_target_ann": 0.15,
+        "w_max": 0.34
+      },
+      "quality": {
+        "bad_print_reversion_frac": 0.5,
+        "bad_print_vol_frac": 0.25,
+        "downtime_frac": 0.8,
+        "ewma_span_bars": 168,
+        "min_history_bars": 24,
+        "outlier_k": 8.0,
+        "stale_run_bars": 12
+      },
+      "risk": {
+        "clamp_reduce_only_adv": true,
+        "dd_flat_halt": -0.45,
+        "dd_halve_gross": -0.3,
+        "flat_cooldown_bars": 336,
+        "max_gross": 1.0,
+        "max_net": 1.0,
+        "max_order_adv_frac": 0.01,
+        "max_position_frac": 0.34,
+        "price_collar_frac": 0.05,
+        "staleness_max_bars": 2,
+        "var_confidence": 0.99,
+        "var_window_days": 365
+      },
+      "signals": {
+        "horizon_bars": 21,
+        "ic_target": 0.02
+      },
+      "universe": {
+        "entry_rank": 20,
+        "exit_rank": 25,
+        "rank_window_days": 30,
+        "rebalance": "monthly",
+        "size": 20
+      }
+    },
+    "saved_signal_sha256": "e0d6c54d659790e2a8ef4e3d2871a0c427b7278e45987a7b09d226df713da5b0",
+    "start": 1420156800000,
+    "trend_blend_normalization": "cross_sectional_zscore",
+    "trend_ic_history_anchor": 1325548800000,
+    "trend_label_availability": "raw_cash_exit_session_close_v2"
+  },
+  "content_hash": "sha256:3fda407e824934a2e88c6b357bee54ca26ab7f1d92a2925d14cb40c1e166136d",
+  "hypothesis_key": "969c2a1f4f532e27",
+  "immutable_first_measurement": {
+    "config": {
+      "allocator": "trend",
+      "alpha_names": [
+        "mf_trend_63",
+        "mf_trend_126",
+        "mf_trend_252"
+      ],
+      "cost_stress": true,
+      "cov_halflife_days": null,
+      "cov_min_periods": 240,
+      "cov_window_bars": 720,
+      "direction_confirmation": true,
+      "end": 1789171200000,
+      "evaluation_policy": "continuous_retrospective_payable_book_v1",
+      "history_start": 1325548800000,
+      "implementation_manifest_sha256": "5df2462265b65f1bb56fd5fe425bb91a6db1e060cda25d8c21bc105328c8a8bd",
+      "initial_cash": 100000.0,
+      "input_binding": {
+        "execution_mode": "RETROSPECTIVE_CURRENT_VINTAGE",
+        "mode": "DIAGNOSTIC_CURRENT_VINTAGE",
+        "paired_input_sha256": "5f977ccd06240643eb1787d214b7ec31c0a92df1fcb1e40014ba710c218a8064",
+        "point_in_time_proven": false,
+        "quote_volume": "raw_close_times_raw_volume_proxy",
+        "raw_label_convention": "raw_open_cash_accrual_fixed_release_v2",
+        "raw_label_input_sha256": "e8e1b01cd0f10308d0a2d2717e5cf8e74dff49810ab4137e34b763993d85de5a",
+        "raw_label_mode": "DIAGNOSTIC_CURRENT_VINTAGE",
+        "retrospective_vintage_ms": 1789214263591,
+        "risk_prices": "synthetic_returns_raw_position_marks_v1"
+      },
+      "instrument_ids": [
+        "XUSE:CASH:DBAUSD",
+        "XUSE:CASH:DBCUSD",
+        "XUSE:CASH:EEMUSD",
+        "XUSE:CASH:EFAUSD",
+        "XUSE:CASH:FXEUSD",
+        "XUSE:CASH:FXYUSD",
+        "XUSE:CASH:GLDUSD",
+        "XUSE:CASH:IEFUSD",
+        "XUSE:CASH:IWMUSD",
+        "XUSE:CASH:QQQUSD",
+        "XUSE:CASH:SHYUSD",
+        "XUSE:CASH:SLVUSD",
+        "XUSE:CASH:SPYUSD",
+        "XUSE:CASH:TLTUSD",
+        "XUSE:CASH:UNGUSD",
+        "XUSE:CASH:USOUSD",
+        "XUSE:CASH:UUPUSD"
+      ],
+      "metric_basis": "xnys_252_sessions_elapsed_cagr_v1",
+      "no_trade_band": 0.001,
+      "positive_targets": false,
+      "positive_targets_spec_sha256": "1eb5ab560a2f23156840cfbdc6083fd2d561ec5fac8783f6c38eed775b697b75",
+      "rebalance_bars": 10,
+      "resolved_settings": {
+        "costs": {
+          "default_half_spread_bps": 2.5,
+          "equity_borrow_bps_annual": 100.0,
+          "equity_commission_bps": 2.0,
+          "equity_half_spread_bps": 6.0,
+          "impact_coef": 2.0,
+          "latency_addon_bps": 4.0,
+          "perp_maker_bps": 2.0,
+          "perp_taker_bps": 5.0
+        },
+        "data": {
+          "asset_class": "equity",
+          "backfill_start": "2001-01-01T00:00:00Z",
+          "exchange": "polygon",
+          "ingest_grace_ms": 30000,
+          "timeframe": "1d"
+        },
+        "live": {
+          "cycle_grace_s": 90,
+          "paper": true,
+          "tick_sleep_s": 45
+        },
+        "portfolio": {
+          "dollar_neutral": false,
+          "gross_max": 1.0,
+          "net_max": 1.0,
+          "no_trade_band": 0.001,
+          "rank_top_k": null,
+          "risk_aversion": 7.0,
+          "turnover_max": 0.1,
+          "vol_scale_max": 3.0,
+          "vol_target_ann": 0.15,
+          "w_max": 0.34
+        },
+        "quality": {
+          "bad_print_reversion_frac": 0.5,
+          "bad_print_vol_frac": 0.25,
+          "downtime_frac": 0.8,
+          "ewma_span_bars": 168,
+          "min_history_bars": 24,
+          "outlier_k": 8.0,
+          "stale_run_bars": 12
+        },
+        "risk": {
+          "clamp_reduce_only_adv": true,
+          "dd_flat_halt": -0.45,
+          "dd_halve_gross": -0.3,
+          "flat_cooldown_bars": 336,
+          "max_gross": 1.0,
+          "max_net": 1.0,
+          "max_order_adv_frac": 0.01,
+          "max_position_frac": 0.34,
+          "price_collar_frac": 0.05,
+          "staleness_max_bars": 2,
+          "var_confidence": 0.99,
+          "var_window_days": 365
+        },
+        "signals": {
+          "horizon_bars": 21,
+          "ic_target": 0.02
+        },
+        "universe": {
+          "entry_rank": 20,
+          "exit_rank": 25,
+          "rank_window_days": 30,
+          "rebalance": "monthly",
+          "size": 20
+        }
+      },
+      "saved_signal_sha256": "e0d6c54d659790e2a8ef4e3d2871a0c427b7278e45987a7b09d226df713da5b0",
+      "start": 1420156800000,
+      "trend_blend_normalization": "cross_sectional_zscore",
+      "trend_ic_history_anchor": 1325548800000,
+      "trend_label_availability": "raw_cash_exit_session_close_v2"
+    },
+    "config_hash": "3d8c495ad74bb0b4",
+    "kurtosis": 6.1498259643866,
+    "n_obs": 2939,
+    "now_ms": 1789283672253,
+    "sharpe_ann": 0.17188956076028583,
+    "sharpe_per_period": 0.010828024541424829,
+    "skew": -0.39614407625309506
+  },
+  "imported_from_external_tree": {
+    "external_content_hash": "sha256:36248e4986c75304ef37ca7f87c265433c114df66ea6a3fc8d6bdbca5a034d48",
+    "imported_on": "2026-09-14T19:35:24+00:00",
+    "tree": "/Users/arhancanli/alphac-prospective-pause-20260911"
+  },
+  "missing_sections": [],
+  "packet_status": "COMPLETE_ACCOUNTING_FINAL_KILLED_NOT_ADMITTED",
+  "partial_sections": [],
+  "required_sections": {
+    "admission_or_kill_decision": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/alphatrend_positive_targets_20260913/baseline_stress/reservation.json",
+          "sha256": "170c67d4734e7b3c4bb30e65a0a8c11df89796da0c3a1ac19d4c05c0b543ca21"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_positive_targets_20260913/baseline_stress/preregistration.json",
+          "sha256": "bad9ed8bd218006b21824871b622a0b4e0f4b8a5d00397044d54137f133e3ea4"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_positive_targets_20260913/baseline_stress/reservation_validation.json",
+          "sha256": "533f50b2addfa396ecb09c2f78aa9e6ca0ef272a992ddc69da312228801a091a"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_positive_targets_20260913/baseline_stress/experiments.jsonl",
+          "sha256": "29593c276c7158cfed647fe3beba76c1527425f8fcb4d2a0339063ad8e996011"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_positive_targets_20260913/baseline_stress/result.json",
+          "sha256": "3fb53a14cd56c02300df68a7e66f1e8e591100ff340f1950d85165fb243856de"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_positive_targets_20260913/baseline_stress/REPORT.md",
+          "sha256": "046192c2fc8fac6020016ea19f14bd7e317751187a262759f7fa374689fc46d7"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_positive_targets_20260913/baseline_stress/run/run_meta.json",
+          "sha256": "a0391e8f7e0e8e494cffaf29f3730f6496a9fe775e839b0d3a8b06ea0b95cb11"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_positive_targets_20260913/baseline_stress/run/session_summary.json",
+          "sha256": "9fff4b31d9629668866056b7663d7c0e4e4c2a20e8cb22e24afbd421f0a2dff7"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_positive_targets_20260913/protocol.json",
+          "sha256": "62cd7fd50f02802d77179773e2327060af50dfce0924cc6caa00938d2ba8ff8d"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_positive_targets_20260913/input_manifest.json",
+          "sha256": "5df2462265b65f1bb56fd5fe425bb91a6db1e060cda25d8c21bc105328c8a8bd"
+        },
+        {
+          "content_hash": "sha256:4220d046f522503279a817ab92d3bf3c4a81f9eee3e6275250b2da8905be826d",
+          "path": "artifacts/research/development_closures/969c2a1f4f532e27_admission_closure.json",
+          "sha256": "28343118d80c3d51e534369c811969e9ef389dfbef30f2b53dd4c33a6b36e38b",
+          "type": "final_development_admission_closure"
+        }
+      ],
+      "statement": "Current-vintage development comparison on inspected history; explicit raw fills and payable dividends. Modeled costs/borrow, static metadata, no contemporaneous publication or historical borrow proof. No untouched test, independent reproduction, capacity validation or admission. Accounting complete; comparative decision follows both fixed arms.",
+      "status": "VERIFIED_FINAL_DEVELOPMENT_CLOSURE_KILL"
+    },
+    "code_environment_and_reproduction": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/alphatrend_positive_targets_20260913/baseline_stress/reservation.json",
+          "sha256": "170c67d4734e7b3c4bb30e65a0a8c11df89796da0c3a1ac19d4c05c0b543ca21"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_positive_targets_20260913/baseline_stress/preregistration.json",
+          "sha256": "bad9ed8bd218006b21824871b622a0b4e0f4b8a5d00397044d54137f133e3ea4"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_positive_targets_20260913/baseline_stress/reservation_validation.json",
+          "sha256": "533f50b2addfa396ecb09c2f78aa9e6ca0ef272a992ddc69da312228801a091a"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_positive_targets_20260913/baseline_stress/experiments.jsonl",
+          "sha256": "29593c276c7158cfed647fe3beba76c1527425f8fcb4d2a0339063ad8e996011"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_positive_targets_20260913/baseline_stress/result.json",
+          "sha256": "3fb53a14cd56c02300df68a7e66f1e8e591100ff340f1950d85165fb243856de"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_positive_targets_20260913/baseline_stress/REPORT.md",
+          "sha256": "046192c2fc8fac6020016ea19f14bd7e317751187a262759f7fa374689fc46d7"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_positive_targets_20260913/baseline_stress/run/run_meta.json",
+          "sha256": "a0391e8f7e0e8e494cffaf29f3730f6496a9fe775e839b0d3a8b06ea0b95cb11"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_positive_targets_20260913/baseline_stress/run/session_summary.json",
+          "sha256": "9fff4b31d9629668866056b7663d7c0e4e4c2a20e8cb22e24afbd421f0a2dff7"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_positive_targets_20260913/protocol.json",
+          "sha256": "62cd7fd50f02802d77179773e2327060af50dfce0924cc6caa00938d2ba8ff8d"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_positive_targets_20260913/input_manifest.json",
+          "sha256": "5df2462265b65f1bb56fd5fe425bb91a6db1e060cda25d8c21bc105328c8a8bd"
+        }
+      ],
+      "statement": "Current-vintage development comparison on inspected history; explicit raw fills and payable dividends. Modeled costs/borrow, static metadata, no contemporaneous publication or historical borrow proof. No untouched test, independent reproduction, capacity validation or admission. Accounting complete; comparative decision follows both fixed arms.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "economic_mechanism_and_falsifiable_hypothesis": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/alphatrend_positive_targets_20260913/baseline_stress/reservation.json",
+          "sha256": "170c67d4734e7b3c4bb30e65a0a8c11df89796da0c3a1ac19d4c05c0b543ca21"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_positive_targets_20260913/baseline_stress/preregistration.json",
+          "sha256": "bad9ed8bd218006b21824871b622a0b4e0f4b8a5d00397044d54137f133e3ea4"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_positive_targets_20260913/baseline_stress/reservation_validation.json",
+          "sha256": "533f50b2addfa396ecb09c2f78aa9e6ca0ef272a992ddc69da312228801a091a"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_positive_targets_20260913/baseline_stress/experiments.jsonl",
+          "sha256": "29593c276c7158cfed647fe3beba76c1527425f8fcb4d2a0339063ad8e996011"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_positive_targets_20260913/baseline_stress/result.json",
+          "sha256": "3fb53a14cd56c02300df68a7e66f1e8e591100ff340f1950d85165fb243856de"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_positive_targets_20260913/baseline_stress/REPORT.md",
+          "sha256": "046192c2fc8fac6020016ea19f14bd7e317751187a262759f7fa374689fc46d7"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_positive_targets_20260913/baseline_stress/run/run_meta.json",
+          "sha256": "a0391e8f7e0e8e494cffaf29f3730f6496a9fe775e839b0d3a8b06ea0b95cb11"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_positive_targets_20260913/baseline_stress/run/session_summary.json",
+          "sha256": "9fff4b31d9629668866056b7663d7c0e4e4c2a20e8cb22e24afbd421f0a2dff7"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_positive_targets_20260913/protocol.json",
+          "sha256": "62cd7fd50f02802d77179773e2327060af50dfce0924cc6caa00938d2ba8ff8d"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_positive_targets_20260913/input_manifest.json",
+          "sha256": "5df2462265b65f1bb56fd5fe425bb91a6db1e060cda25d8c21bc105328c8a8bd"
+        }
+      ],
+      "statement": "Current-vintage development comparison on inspected history; explicit raw fills and payable dividends. Modeled costs/borrow, static metadata, no contemporaneous publication or historical borrow proof. No untouched test, independent reproduction, capacity validation or admission. Accounting complete; comparative decision follows both fixed arms.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "execution_and_cost_model": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/alphatrend_positive_targets_20260913/baseline_stress/reservation.json",
+          "sha256": "170c67d4734e7b3c4bb30e65a0a8c11df89796da0c3a1ac19d4c05c0b543ca21"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_positive_targets_20260913/baseline_stress/preregistration.json",
+          "sha256": "bad9ed8bd218006b21824871b622a0b4e0f4b8a5d00397044d54137f133e3ea4"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_positive_targets_20260913/baseline_stress/reservation_validation.json",
+          "sha256": "533f50b2addfa396ecb09c2f78aa9e6ca0ef272a992ddc69da312228801a091a"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_positive_targets_20260913/baseline_stress/experiments.jsonl",
+          "sha256": "29593c276c7158cfed647fe3beba76c1527425f8fcb4d2a0339063ad8e996011"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_positive_targets_20260913/baseline_stress/result.json",
+          "sha256": "3fb53a14cd56c02300df68a7e66f1e8e591100ff340f1950d85165fb243856de"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_positive_targets_20260913/baseline_stress/REPORT.md",
+          "sha256": "046192c2fc8fac6020016ea19f14bd7e317751187a262759f7fa374689fc46d7"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_positive_targets_20260913/baseline_stress/run/run_meta.json",
+          "sha256": "a0391e8f7e0e8e494cffaf29f3730f6496a9fe775e839b0d3a8b06ea0b95cb11"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_positive_targets_20260913/baseline_stress/run/session_summary.json",
+          "sha256": "9fff4b31d9629668866056b7663d7c0e4e4c2a20e8cb22e24afbd421f0a2dff7"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_positive_targets_20260913/protocol.json",
+          "sha256": "62cd7fd50f02802d77179773e2327060af50dfce0924cc6caa00938d2ba8ff8d"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_positive_targets_20260913/input_manifest.json",
+          "sha256": "5df2462265b65f1bb56fd5fe425bb91a6db1e060cda25d8c21bc105328c8a8bd"
+        }
+      ],
+      "statement": "Current-vintage development comparison on inspected history; explicit raw fills and payable dividends. Modeled costs/borrow, static metadata, no contemporaneous publication or historical borrow proof. No untouched test, independent reproduction, capacity validation or admission. Accounting complete; comparative decision follows both fixed arms.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "family_and_union_trial_accounting": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/alphatrend_positive_targets_20260913/baseline_stress/reservation.json",
+          "sha256": "170c67d4734e7b3c4bb30e65a0a8c11df89796da0c3a1ac19d4c05c0b543ca21"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_positive_targets_20260913/baseline_stress/preregistration.json",
+          "sha256": "bad9ed8bd218006b21824871b622a0b4e0f4b8a5d00397044d54137f133e3ea4"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_positive_targets_20260913/baseline_stress/reservation_validation.json",
+          "sha256": "533f50b2addfa396ecb09c2f78aa9e6ca0ef272a992ddc69da312228801a091a"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_positive_targets_20260913/baseline_stress/experiments.jsonl",
+          "sha256": "29593c276c7158cfed647fe3beba76c1527425f8fcb4d2a0339063ad8e996011"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_positive_targets_20260913/baseline_stress/result.json",
+          "sha256": "3fb53a14cd56c02300df68a7e66f1e8e591100ff340f1950d85165fb243856de"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_positive_targets_20260913/baseline_stress/REPORT.md",
+          "sha256": "046192c2fc8fac6020016ea19f14bd7e317751187a262759f7fa374689fc46d7"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_positive_targets_20260913/baseline_stress/run/run_meta.json",
+          "sha256": "a0391e8f7e0e8e494cffaf29f3730f6496a9fe775e839b0d3a8b06ea0b95cb11"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_positive_targets_20260913/baseline_stress/run/session_summary.json",
+          "sha256": "9fff4b31d9629668866056b7663d7c0e4e4c2a20e8cb22e24afbd421f0a2dff7"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_positive_targets_20260913/protocol.json",
+          "sha256": "62cd7fd50f02802d77179773e2327060af50dfce0924cc6caa00938d2ba8ff8d"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_positive_targets_20260913/input_manifest.json",
+          "sha256": "5df2462265b65f1bb56fd5fe425bb91a6db1e060cda25d8c21bc105328c8a8bd"
+        }
+      ],
+      "statement": "Current-vintage development comparison on inspected history; explicit raw fills and payable dividends. Modeled costs/borrow, static metadata, no contemporaneous publication or historical borrow proof. No untouched test, independent reproduction, capacity validation or admission. Accounting complete; comparative decision follows both fixed arms.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "identity_and_authorship": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/alphatrend_positive_targets_20260913/baseline_stress/reservation.json",
+          "sha256": "170c67d4734e7b3c4bb30e65a0a8c11df89796da0c3a1ac19d4c05c0b543ca21"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_positive_targets_20260913/baseline_stress/preregistration.json",
+          "sha256": "bad9ed8bd218006b21824871b622a0b4e0f4b8a5d00397044d54137f133e3ea4"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_positive_targets_20260913/baseline_stress/reservation_validation.json",
+          "sha256": "533f50b2addfa396ecb09c2f78aa9e6ca0ef272a992ddc69da312228801a091a"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_positive_targets_20260913/baseline_stress/experiments.jsonl",
+          "sha256": "29593c276c7158cfed647fe3beba76c1527425f8fcb4d2a0339063ad8e996011"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_positive_targets_20260913/baseline_stress/result.json",
+          "sha256": "3fb53a14cd56c02300df68a7e66f1e8e591100ff340f1950d85165fb243856de"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_positive_targets_20260913/baseline_stress/REPORT.md",
+          "sha256": "046192c2fc8fac6020016ea19f14bd7e317751187a262759f7fa374689fc46d7"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_positive_targets_20260913/baseline_stress/run/run_meta.json",
+          "sha256": "a0391e8f7e0e8e494cffaf29f3730f6496a9fe775e839b0d3a8b06ea0b95cb11"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_positive_targets_20260913/baseline_stress/run/session_summary.json",
+          "sha256": "9fff4b31d9629668866056b7663d7c0e4e4c2a20e8cb22e24afbd421f0a2dff7"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_positive_targets_20260913/protocol.json",
+          "sha256": "62cd7fd50f02802d77179773e2327060af50dfce0924cc6caa00938d2ba8ff8d"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_positive_targets_20260913/input_manifest.json",
+          "sha256": "5df2462265b65f1bb56fd5fe425bb91a6db1e060cda25d8c21bc105328c8a8bd"
+        }
+      ],
+      "statement": "Current-vintage development comparison on inspected history; explicit raw fills and payable dividends. Modeled costs/borrow, static metadata, no contemporaneous publication or historical borrow proof. No untouched test, independent reproduction, capacity validation or admission. Accounting complete; comparative decision follows both fixed arms.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "literature_and_overlap_decision": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/alphatrend_positive_targets_20260913/baseline_stress/reservation.json",
+          "sha256": "170c67d4734e7b3c4bb30e65a0a8c11df89796da0c3a1ac19d4c05c0b543ca21"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_positive_targets_20260913/baseline_stress/preregistration.json",
+          "sha256": "bad9ed8bd218006b21824871b622a0b4e0f4b8a5d00397044d54137f133e3ea4"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_positive_targets_20260913/baseline_stress/reservation_validation.json",
+          "sha256": "533f50b2addfa396ecb09c2f78aa9e6ca0ef272a992ddc69da312228801a091a"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_positive_targets_20260913/baseline_stress/experiments.jsonl",
+          "sha256": "29593c276c7158cfed647fe3beba76c1527425f8fcb4d2a0339063ad8e996011"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_positive_targets_20260913/baseline_stress/result.json",
+          "sha256": "3fb53a14cd56c02300df68a7e66f1e8e591100ff340f1950d85165fb243856de"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_positive_targets_20260913/baseline_stress/REPORT.md",
+          "sha256": "046192c2fc8fac6020016ea19f14bd7e317751187a262759f7fa374689fc46d7"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_positive_targets_20260913/baseline_stress/run/run_meta.json",
+          "sha256": "a0391e8f7e0e8e494cffaf29f3730f6496a9fe775e839b0d3a8b06ea0b95cb11"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_positive_targets_20260913/baseline_stress/run/session_summary.json",
+          "sha256": "9fff4b31d9629668866056b7663d7c0e4e4c2a20e8cb22e24afbd421f0a2dff7"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_positive_targets_20260913/protocol.json",
+          "sha256": "62cd7fd50f02802d77179773e2327060af50dfce0924cc6caa00938d2ba8ff8d"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_positive_targets_20260913/input_manifest.json",
+          "sha256": "5df2462265b65f1bb56fd5fe425bb91a6db1e060cda25d8c21bc105328c8a8bd"
+        }
+      ],
+      "statement": "Current-vintage development comparison on inspected history; explicit raw fills and payable dividends. Modeled costs/borrow, static metadata, no contemporaneous publication or historical borrow proof. No untouched test, independent reproduction, capacity validation or admission. Accounting complete; comparative decision follows both fixed arms.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "machine_readable_packet_and_stable_public_paper": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/alphatrend_positive_targets_20260913/baseline_stress/reservation.json",
+          "sha256": "170c67d4734e7b3c4bb30e65a0a8c11df89796da0c3a1ac19d4c05c0b543ca21"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_positive_targets_20260913/baseline_stress/preregistration.json",
+          "sha256": "bad9ed8bd218006b21824871b622a0b4e0f4b8a5d00397044d54137f133e3ea4"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_positive_targets_20260913/baseline_stress/reservation_validation.json",
+          "sha256": "533f50b2addfa396ecb09c2f78aa9e6ca0ef272a992ddc69da312228801a091a"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_positive_targets_20260913/baseline_stress/experiments.jsonl",
+          "sha256": "29593c276c7158cfed647fe3beba76c1527425f8fcb4d2a0339063ad8e996011"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_positive_targets_20260913/baseline_stress/result.json",
+          "sha256": "3fb53a14cd56c02300df68a7e66f1e8e591100ff340f1950d85165fb243856de"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_positive_targets_20260913/baseline_stress/REPORT.md",
+          "sha256": "046192c2fc8fac6020016ea19f14bd7e317751187a262759f7fa374689fc46d7"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_positive_targets_20260913/baseline_stress/run/run_meta.json",
+          "sha256": "a0391e8f7e0e8e494cffaf29f3730f6496a9fe775e839b0d3a8b06ea0b95cb11"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_positive_targets_20260913/baseline_stress/run/session_summary.json",
+          "sha256": "9fff4b31d9629668866056b7663d7c0e4e4c2a20e8cb22e24afbd421f0a2dff7"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_positive_targets_20260913/protocol.json",
+          "sha256": "62cd7fd50f02802d77179773e2327060af50dfce0924cc6caa00938d2ba8ff8d"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_positive_targets_20260913/input_manifest.json",
+          "sha256": "5df2462265b65f1bb56fd5fe425bb91a6db1e060cda25d8c21bc105328c8a8bd"
+        }
+      ],
+      "statement": "Current-vintage development comparison on inspected history; explicit raw fills and payable dividends. Modeled costs/borrow, static metadata, no contemporaneous publication or historical borrow proof. No untouched test, independent reproduction, capacity validation or admission. Accounting complete; comparative decision follows both fixed arms.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "point_in_time_data_and_survivorship_controls": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/alphatrend_positive_targets_20260913/baseline_stress/reservation.json",
+          "sha256": "170c67d4734e7b3c4bb30e65a0a8c11df89796da0c3a1ac19d4c05c0b543ca21"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_positive_targets_20260913/baseline_stress/preregistration.json",
+          "sha256": "bad9ed8bd218006b21824871b622a0b4e0f4b8a5d00397044d54137f133e3ea4"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_positive_targets_20260913/baseline_stress/reservation_validation.json",
+          "sha256": "533f50b2addfa396ecb09c2f78aa9e6ca0ef272a992ddc69da312228801a091a"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_positive_targets_20260913/baseline_stress/experiments.jsonl",
+          "sha256": "29593c276c7158cfed647fe3beba76c1527425f8fcb4d2a0339063ad8e996011"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_positive_targets_20260913/baseline_stress/result.json",
+          "sha256": "3fb53a14cd56c02300df68a7e66f1e8e591100ff340f1950d85165fb243856de"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_positive_targets_20260913/baseline_stress/REPORT.md",
+          "sha256": "046192c2fc8fac6020016ea19f14bd7e317751187a262759f7fa374689fc46d7"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_positive_targets_20260913/baseline_stress/run/run_meta.json",
+          "sha256": "a0391e8f7e0e8e494cffaf29f3730f6496a9fe775e839b0d3a8b06ea0b95cb11"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_positive_targets_20260913/baseline_stress/run/session_summary.json",
+          "sha256": "9fff4b31d9629668866056b7663d7c0e4e4c2a20e8cb22e24afbd421f0a2dff7"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_positive_targets_20260913/protocol.json",
+          "sha256": "62cd7fd50f02802d77179773e2327060af50dfce0924cc6caa00938d2ba8ff8d"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_positive_targets_20260913/input_manifest.json",
+          "sha256": "5df2462265b65f1bb56fd5fe425bb91a6db1e060cda25d8c21bc105328c8a8bd"
+        }
+      ],
+      "statement": "Current-vintage development comparison on inspected history; explicit raw fills and payable dividends. Modeled costs/borrow, static metadata, no contemporaneous publication or historical borrow proof. No untouched test, independent reproduction, capacity validation or admission. Accounting complete; comparative decision follows both fixed arms.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "preregistration_and_hashes": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/alphatrend_positive_targets_20260913/baseline_stress/reservation.json",
+          "sha256": "170c67d4734e7b3c4bb30e65a0a8c11df89796da0c3a1ac19d4c05c0b543ca21"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_positive_targets_20260913/baseline_stress/preregistration.json",
+          "sha256": "bad9ed8bd218006b21824871b622a0b4e0f4b8a5d00397044d54137f133e3ea4"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_positive_targets_20260913/baseline_stress/reservation_validation.json",
+          "sha256": "533f50b2addfa396ecb09c2f78aa9e6ca0ef272a992ddc69da312228801a091a"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_positive_targets_20260913/baseline_stress/experiments.jsonl",
+          "sha256": "29593c276c7158cfed647fe3beba76c1527425f8fcb4d2a0339063ad8e996011"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_positive_targets_20260913/baseline_stress/result.json",
+          "sha256": "3fb53a14cd56c02300df68a7e66f1e8e591100ff340f1950d85165fb243856de"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_positive_targets_20260913/baseline_stress/REPORT.md",
+          "sha256": "046192c2fc8fac6020016ea19f14bd7e317751187a262759f7fa374689fc46d7"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_positive_targets_20260913/baseline_stress/run/run_meta.json",
+          "sha256": "a0391e8f7e0e8e494cffaf29f3730f6496a9fe775e839b0d3a8b06ea0b95cb11"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_positive_targets_20260913/baseline_stress/run/session_summary.json",
+          "sha256": "9fff4b31d9629668866056b7663d7c0e4e4c2a20e8cb22e24afbd421f0a2dff7"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_positive_targets_20260913/protocol.json",
+          "sha256": "62cd7fd50f02802d77179773e2327060af50dfce0924cc6caa00938d2ba8ff8d"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_positive_targets_20260913/input_manifest.json",
+          "sha256": "5df2462265b65f1bb56fd5fe425bb91a6db1e060cda25d8c21bc105328c8a8bd"
+        }
+      ],
+      "statement": "Current-vintage development comparison on inspected history; explicit raw fills and payable dividends. Modeled costs/borrow, static metadata, no contemporaneous publication or historical borrow proof. No untouched test, independent reproduction, capacity validation or admission. Accounting complete; comparative decision follows both fixed arms.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "result_uncertainty_stress_capacity_and_diversification": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/alphatrend_positive_targets_20260913/baseline_stress/reservation.json",
+          "sha256": "170c67d4734e7b3c4bb30e65a0a8c11df89796da0c3a1ac19d4c05c0b543ca21"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_positive_targets_20260913/baseline_stress/preregistration.json",
+          "sha256": "bad9ed8bd218006b21824871b622a0b4e0f4b8a5d00397044d54137f133e3ea4"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_positive_targets_20260913/baseline_stress/reservation_validation.json",
+          "sha256": "533f50b2addfa396ecb09c2f78aa9e6ca0ef272a992ddc69da312228801a091a"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_positive_targets_20260913/baseline_stress/experiments.jsonl",
+          "sha256": "29593c276c7158cfed647fe3beba76c1527425f8fcb4d2a0339063ad8e996011"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_positive_targets_20260913/baseline_stress/result.json",
+          "sha256": "3fb53a14cd56c02300df68a7e66f1e8e591100ff340f1950d85165fb243856de"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_positive_targets_20260913/baseline_stress/REPORT.md",
+          "sha256": "046192c2fc8fac6020016ea19f14bd7e317751187a262759f7fa374689fc46d7"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_positive_targets_20260913/baseline_stress/run/run_meta.json",
+          "sha256": "a0391e8f7e0e8e494cffaf29f3730f6496a9fe775e839b0d3a8b06ea0b95cb11"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_positive_targets_20260913/baseline_stress/run/session_summary.json",
+          "sha256": "9fff4b31d9629668866056b7663d7c0e4e4c2a20e8cb22e24afbd421f0a2dff7"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_positive_targets_20260913/protocol.json",
+          "sha256": "62cd7fd50f02802d77179773e2327060af50dfce0924cc6caa00938d2ba8ff8d"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_positive_targets_20260913/input_manifest.json",
+          "sha256": "5df2462265b65f1bb56fd5fe425bb91a6db1e060cda25d8c21bc105328c8a8bd"
+        }
+      ],
+      "statement": "Current-vintage development comparison on inspected history; explicit raw fills and payable dividends. Modeled costs/borrow, static metadata, no contemporaneous publication or historical borrow proof. No untouched test, independent reproduction, capacity validation or admission. Accounting complete; comparative decision follows both fixed arms.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    }
+  },
+  "research_family_key": "managed_futures_trend",
+  "schema": "canli.alphac-identity-trial-packet.v2"
+}

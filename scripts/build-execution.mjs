@@ -132,6 +132,7 @@ const html = `<!doctype html>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" />
 ${renderProductShellStylesheet()}
 <link rel="stylesheet" href="/css/lab.css" />
+<link rel="stylesheet" href="/css/tool-experience.css" />
 <script type="application/ld+json">${JSON.stringify({
   "@context": "https://schema.org", "@type": "SoftwareApplication", name: queryTitle,
   alternateName: houseLabel,

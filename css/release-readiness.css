@@ -1,0 +1,24 @@
+/* Phase 8: last-loaded local type and verified contrast fixes. */
+@import url('./reading-surfaces.css');
+@font-face {
+ font-family:'Inter';src:url('/fonts/inter/InterVariable.woff2') format('woff2');
+ font-style:normal;font-weight:100 900;font-display:optional;
+}
+.cinema-home #sleeves .section-heading .eyebrow {color:#0016cb;}
+.cinema-home #sleeves :is(.section-heading>p,.sleeves__stat) {color:#58616b;}
+.cinema-home #sleeves :is(#sleeves-correlation,#correlation-reading) {color:#111;}
+html[data-reader="research"] .research-masthead__verdict span {opacity:1;}
+html[data-reader="notes"] .note-body em code {color:#343b46;}
+.research-execution-basis {padding:16px 20px;border-left:3px solid #0016cb;background:#fff;color:#343b46;max-width:76ch;font:400 15px/1.7 'Inter',sans-serif;}
+/* Cross-document snapshots intermittently fail on the long, animated pages.
+   Use native navigation; keep the independently tested in-page motion. */
+@view-transition {navigation:none;}
+.cinema-home.atlas-complete .api-preview pre {white-space:pre;overflow-wrap:normal;word-break:normal;overflow-x:auto;min-width:0;max-width:100%;font-size:clamp(.8rem,1.2vw,1.15rem);overscroll-behavior-x:contain;}
+.api-command-copy {justify-self:start;min-height:44px;padding:10px 20px;border:1px solid #0016cb;background:#fff;color:#0016cb;border-radius:24px;font:500 13px 'Inter',sans-serif;cursor:pointer;}
+.api-command-copy:hover {background:#0016cb;color:#fff;}
+.api-command-copy:focus-visible,.api-preview pre:focus-visible {outline:3px solid #0016cb;outline-offset:4px;}
+.api-command-status {color:#343b46;font:13px/1.5 'Inter',sans-serif;}
+.film-poster-status {position:absolute;inset:30% 10%;z-index:2;color:#fff;font:16px/1.6 'Inter',sans-serif;max-width:52ch;}
+.film-poster-status[hidden] {display:none;}
+.system-film[data-poster-state="unavailable"] picture {visibility:hidden;}
+.system-film[data-playback="playing"] .film-poster-status {display:none;}

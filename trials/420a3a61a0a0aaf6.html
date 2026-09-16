@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html data-reader="trials" lang="en">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -30,51 +30,46 @@
 <link rel="stylesheet" href="../css/paper.css" />
 <link rel="stylesheet" href="/css/product-shell.css" />
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"Trial evidence packet 420a3a61a0a0aaf6","description":"Trial 420a3a61a0a0aaf6: incomplete evidence packet. Inspect its immutable first measurement, configuration, evidence coverage, claim boundary, and machine source.","url":"https://canlicapital.com/trials/420a3a61a0a0aaf6","identifier":"420a3a61a0a0aaf6","dateCreated":"2026-07-27T06:37:10.470Z","dateModified":"2026-08-22","creator":{"@type":"Person","@id":"https://canlicapital.com/#arhan-canli","name":"Arhan Canli","url":"https://canlicapital.com/founder"},"publisher":{"@type":"Organization","name":"Canli Capital","url":"https://canlicapital.com/"},"isAccessibleForFree":true,"distribution":{"@type":"DataDownload","encodingFormat":"application/json","contentUrl":"https://canlicapital.com/glassbox/trial-packets/420a3a61a0a0aaf6.json"}}</script>
-</head>
+
+<link rel="stylesheet" href="/css/reader-experience.css" />
+<!-- release-style:start --><link rel="stylesheet" href="/css/release-readiness.css" /><!-- release-style:end --></head>
 <body class="paper">
 <a class="paper__skip" href="#content">Skip to content</a>
-<header class="cc-shell" id="nav" data-product-shell="v3">
+<header class="cc-shell" id="nav" data-product-shell="v3" data-shell-revision="4">
   <a class="cc-shell__brand" href="/" aria-label="Canli Capital, home">
     <span class="cc-shell__mark" aria-hidden="true"><i></i></span>
     <span>Canli Capital</span>
   </a>
-  <a class="cc-shell__status" href="/measurements/alpaca-broker-reconciliation" aria-label="Current record status">
-    <span class="status-dot" aria-hidden="true"></span>
-    <span>Public paper record</span>
-  </a>
   <nav class="cc-shell__primary" aria-label="Primary navigation">
-<a class="cc-shell__link" href="https://app.canlicapital.com/dashboard" rel="noreferrer">Live</a>
-<a class="cc-shell__link" href="/research">Research</a>
-<a class="cc-shell__link" href="/trials" aria-current="page" data-current="true">Trials</a>
 <a class="cc-shell__link" href="/systems">Systems</a>
-<a class="cc-shell__link" href="/methodology">Methodology</a>
+<a class="cc-shell__link" href="/research">Research</a>
 <a class="cc-shell__link" href="/developers">Developers</a>
 <a class="cc-shell__link" href="/verify">Verify</a>
   </nav>
   <details class="cc-shell__index">
-    <summary><span class="cc-shell__index-wide">More</span><span class="cc-shell__index-compact">Menu</span></summary>
+    <summary><span class="cc-shell__index-wide">Explore</span><span class="cc-shell__index-compact">Menu</span></summary>
     <div class="cc-shell__panel">
       <div>
-        <span class="cc-shell__panel-label">Core</span>
+        <span class="cc-shell__panel-label">Research &amp; strategies</span>
         <nav aria-label="Core routes"><a class="cc-shell__panel-link" href="https://app.canlicapital.com/dashboard" rel="noreferrer">Live</a>
 <a class="cc-shell__panel-link" href="/research">Research</a>
-<a class="cc-shell__panel-link" href="/trials" aria-current="page" data-current="true">Trials</a>
+<a class="cc-shell__panel-link" href="/trials" data-current="true">Trials</a>
 <a class="cc-shell__panel-link" href="/systems">Systems</a>
 <a class="cc-shell__panel-link" href="/methodology">Methodology</a>
-<a class="cc-shell__panel-link" href="/developers">Developers</a>
-<a class="cc-shell__panel-link" href="/verify">Verify</a></nav>
+<a class="cc-shell__panel-link" href="/performance">Performance</a></nav>
       </div>
       <div>
-        <span class="cc-shell__panel-label">Institution</span>
-        <nav aria-label="Institution routes"><a class="cc-shell__panel-link" href="/progress">Corrections</a>
-<a class="cc-shell__panel-link" href="/performance">Performance</a>
+        <span class="cc-shell__panel-label">Evidence &amp; accountability</span>
+        <nav aria-label="Institution routes"><a class="cc-shell__panel-link" href="/verify">Verify</a>
+<a class="cc-shell__panel-link" href="/progress">Corrections</a>
 <a class="cc-shell__panel-link" href="/founder">Founder</a>
 <a class="cc-shell__panel-link" href="/open">Open data</a>
 <a class="cc-shell__panel-link" href="/measurements">Measurements</a></nav>
       </div>
       <div>
-        <span class="cc-shell__panel-label">Tools</span>
-        <nav aria-label="Tools"><a class="cc-shell__panel-link" href="/tools">All tools</a>
+        <span class="cc-shell__panel-label">Build &amp; reproduce</span>
+        <nav aria-label="Tools"><a class="cc-shell__panel-link" href="/developers">Developers</a>
+<a class="cc-shell__panel-link" href="/tools">All tools</a>
 <a class="cc-shell__panel-link" href="/how-to-validate-a-backtest">How to validate a backtest</a></nav>
       </div>
       <div>
@@ -86,11 +81,15 @@
 <a class="cc-shell__panel-link" href="https://github.com/arhancanli/canli-pit-lake" rel="noreferrer">canli-pit-lake</a>
 <a class="cc-shell__panel-link" href="https://github.com/arhancanli/canli-backtest" rel="noreferrer">canli-backtest</a></nav>
       </div>
-      <p>Observed, simulated, model-estimated and planned claims remain visibly separate.</p>
+      <div class="cc-shell__panel-foot">
+        <a class="cc-shell__status" href="/measurements/alpaca-broker-reconciliation" aria-label="Current record status"><span class="status-dot" aria-hidden="true"></span><span>Public paper record</span></a>
+        <p>Observed, simulated, model-estimated and planned claims remain visibly separate.</p>
+      </div>
     </div>
   </details>
   <a class="cc-shell__source" href="/engineering" title="Open-source engineering: the engine, the data layer and the backtester"><svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true" focusable="false"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg><span>Source</span></a>
-  <a class="cc-shell__cta" href="https://app.canlicapital.com/dashboard">Enter live record <span aria-hidden="true">↗</span></a>
+  <a class="cc-shell__cta" href="https://app.canlicapital.com/dashboard">Live record <span aria-hidden="true">↗</span></a>
+  <script type="module" src="/js/navigation.js"></script>
 </header>
 <section class="trial-hero" aria-labelledby="trial-hero-title">
   <p class="trial-hero__eyebrow"><a href="/trials">Trial evidence</a> <span>/</span> Managed Futures Trend</p>
@@ -107,13 +106,13 @@
     <p class="trial-dist__caption">This trial ranks <strong>158 of 224</strong> measured identities, at the <strong>70.5th</strong> percentile. The median trial recorded here scores 0.0247, and 53.1% score above zero at all.</p>
   </div>
 </section>
-<main class="paper__main" id="content"><article class="paper__article">
+<main class="paper__main" id="content"><!-- reader-index:start --><aside class="reader-index"><a class="reader-index__back" href="/trials">Explore trials</a><details><summary>In this document</summary><nav aria-label="Document sections"><a href="#reader-section-1">Claim boundary</a><a href="#reader-section-2">Immutable first measurement</a><a href="#reader-section-3">Evidence coverage</a><a href="#reader-section-4">Completion assessment</a><a href="#reader-section-5">Frozen configuration</a><a href="#reader-section-6">Verify the packet</a></nav></details><a class="reader-index__verify" href="/verify">How to verify a claim ↗</a></aside><!-- reader-index:end --><article class="paper__article">
   
   <p class="paper__byline">By <span rel="author">Arhan Canli</span>, Canli Capital</p>
   <div class="paper__body">
-<aside class="measure__boundary"><h2>Claim boundary</h2><p>This stable packet proves the exact identity, immutable first measurement, and current evidence state. INCOMPLETE means missing sections remain missing; packet publication is not validation, admission, or a future-return claim.</p></aside>
-<section class="measure__section"><h2>Immutable first measurement</h2><dl class="trial__facts"><div><dt>Hypothesis key</dt><dd>420a3a61a0a0aaf6</dd></div><div><dt>Configuration hash</dt><dd>06555b46e9b0a140</dd></div><div><dt>Research family</dt><dd>Managed Futures Trend</dd></div><div><dt>Packet status</dt><dd>INCOMPLETE_BACKFILL_REQUIRED</dd></div><div><dt>Observations</dt><dd>5,169</dd></div><div><dt>Annualized Sharpe</dt><dd>0.2363902</dd></div><div><dt>Skew</dt><dd>0.296956</dd></div><div><dt>Kurtosis</dt><dd>16.92362</dd></div></dl></section>
-<section class="measure__section"><h2>Evidence coverage</h2><ol class="trial__spine"><li class="trial__section trial__section--missing">
+<aside class="measure__boundary"><h2 id="reader-section-1" data-reader-anchor="true">Claim boundary</h2><p>This stable packet proves the exact identity, immutable first measurement, and current evidence state. INCOMPLETE means missing sections remain missing; packet publication is not validation, admission, or a future-return claim.</p></aside>
+<section class="measure__section"><h2 id="reader-section-2" data-reader-anchor="true">Immutable first measurement</h2><dl class="trial__facts"><div><dt>Hypothesis key</dt><dd>420a3a61a0a0aaf6</dd></div><div><dt>Configuration hash</dt><dd>06555b46e9b0a140</dd></div><div><dt>Research family</dt><dd>Managed Futures Trend</dd></div><div><dt>Packet status</dt><dd>INCOMPLETE_BACKFILL_REQUIRED</dd></div><div><dt>Observations</dt><dd>5,169</dd></div><div><dt>Annualized Sharpe</dt><dd>0.2363902</dd></div><div><dt>Skew</dt><dd>0.296956</dd></div><div><dt>Kurtosis</dt><dd>16.92362</dd></div></dl></section>
+<section class="measure__section"><h2 id="reader-section-3" data-reader-anchor="true">Evidence coverage</h2><ol class="trial__spine"><li class="trial__section trial__section--missing">
       <div class="trial__section-head"><h3>Admission Or Kill Decision</h3>
       <span>missing</span></div><p class="trial__absence">No identity-level evidence is bound.</p></li><li class="trial__section trial__section--missing">
       <div class="trial__section-head"><h3>Code Environment And Reproduction</h3>
@@ -136,13 +135,33 @@
       <span>missing</span></div><p class="trial__absence">No identity-level evidence is bound.</p></li><li class="trial__section trial__section--missing">
       <div class="trial__section-head"><h3>Result Uncertainty Stress Capacity And Diversification</h3>
       <span>missing</span></div><p class="trial__absence">No identity-level evidence is bound.</p></li></ol></section>
-<section class="measure__section"><h2>Completion assessment</h2><ul><li><strong>IDENTITY PREREGISTRATION AND ORIGINAL ENVIRONMENT NOT BOUND.</strong> The canonical family audit binds this identity to its immutable ledger measurement, but does not bind an identity-level preregistration, original code commit, runner hash, lockfile, and input snapshot. Those missing historical fields cannot be reconstructed from the family summary.</li><li><strong>IDENTITY LEVEL DECISION PACKET NOT PRESERVED.</strong> The family-level admission status is PAPER_EVIDENCE_COLLECTION_NOT_ESTABLISHED; it is not a preserved identity-level gate decision under the complete packet contract.</li><li><strong>IMMUTABLE SUMMARY LACKS COMPLETE IDENTITY CURVE.</strong> The immutable ledger summary preserves the first measurement but not the complete identity-level curve, uncertainty, stress, capacity, and diversification evidence required for packet completion.</li><li><strong>IDENTITY CAPACITY NOT MEASURED.</strong> The canonical family audit records capacity as UNMEASURED_NO_PERSISTED_CAPACITY_SWEEP; no identity-level capacity evidence can be credited.</li></ul></section>
-<section class="measure__section"><h2>Frozen configuration</h2><dl class="trial__config"><div><dt>Allocator</dt><dd>trend</dd></div><div><dt>Alpha Names</dt><dd>mf_trend_63, mf_trend_126, mf_trend_252</dd></div><div><dt>End</dt><dd>1,785,196,800,000</dd></div><div><dt>Instrument Ids</dt><dd>List preserved in the machine-readable packet</dd></div><div><dt>No Trade Band</dt><dd>0.001</dd></div><div><dt>Rebalance Bars</dt><dd>10</dd></div><div><dt>Start</dt><dd>1,041,379,200,000</dd></div><div><dt>Test Bars</dt><dd>126</dd></div><div><dt>Train Bars</dt><dd>504</dd></div></dl></section>
-<section class="measure__section"><h2>Verify the packet</h2>
+<section class="measure__section"><h2 id="reader-section-4" data-reader-anchor="true">Completion assessment</h2><ul><li><strong>IDENTITY PREREGISTRATION AND ORIGINAL ENVIRONMENT NOT BOUND.</strong> The canonical family audit binds this identity to its immutable ledger measurement, but does not bind an identity-level preregistration, original code commit, runner hash, lockfile, and input snapshot. Those missing historical fields cannot be reconstructed from the family summary.</li><li><strong>IDENTITY LEVEL DECISION PACKET NOT PRESERVED.</strong> The family-level admission status is PAPER_EVIDENCE_COLLECTION_NOT_ESTABLISHED; it is not a preserved identity-level gate decision under the complete packet contract.</li><li><strong>IMMUTABLE SUMMARY LACKS COMPLETE IDENTITY CURVE.</strong> The immutable ledger summary preserves the first measurement but not the complete identity-level curve, uncertainty, stress, capacity, and diversification evidence required for packet completion.</li><li><strong>IDENTITY CAPACITY NOT MEASURED.</strong> The canonical family audit records capacity as UNMEASURED_NO_PERSISTED_CAPACITY_SWEEP; no identity-level capacity evidence can be credited.</li></ul></section>
+<section class="measure__section"><h2 id="reader-section-5" data-reader-anchor="true">Frozen configuration</h2><dl class="trial__config"><div><dt>Allocator</dt><dd>trend</dd></div><div><dt>Alpha Names</dt><dd>mf_trend_63, mf_trend_126, mf_trend_252</dd></div><div><dt>End</dt><dd>1,785,196,800,000</dd></div><div><dt>Instrument Ids</dt><dd>List preserved in the machine-readable packet</dd></div><div><dt>No Trade Band</dt><dd>0.001</dd></div><div><dt>Rebalance Bars</dt><dd>10</dd></div><div><dt>Start</dt><dd>1,041,379,200,000</dd></div><div><dt>Test Bars</dt><dd>126</dd></div><div><dt>Train Bars</dt><dd>504</dd></div></dl></section>
+<section class="measure__section"><h2 id="reader-section-6" data-reader-anchor="true">Verify the packet</h2>
 <p><a href="/research/alphatrend-managed-futures-lineage">Read the family paper</a> · <a href="/glassbox/trial-packets/420a3a61a0a0aaf6.json">Download the machine-readable packet</a> · <a href="/trials">All trials</a></p>
 <p class="trial__hash">Packet content hash <code>sha256:dcfbacba0699056b689d860b45dc487e172ee82fabb9dc9b6e9d83fe341d9f74</code></p></section></div>
 </article></main>
-<footer class="cc-footer" id="footer" data-product-shell="v3">
+<footer class="cc-footer" id="footer" data-product-shell="v3" data-shell-revision="4">
+  <details class="cc-footer__context"><summary>About the research-to-record workflow</summary><section class="cc-handoff" aria-labelledby="cc-handoff-title">
+    <div class="cc-handoff__viewport">
+      <div class="cc-handoff__intro"><p>Research → Validation → Publication</p><h2 id="cc-handoff-title">From an idea.<br />To a record.</h2><p>Carry the inputs, assumptions and limits with the result. The evidence should survive every handoff.</p></div>
+      <div class="cc-handoff__stage" aria-hidden="true">
+        <svg class="cc-handoff__route" viewBox="0 0 1000 300" preserveAspectRatio="none"><path class="cc-handoff__track" d="M120 210C280 210 310 85 500 85S720 210 880 210"/><path class="cc-handoff__trace" pathLength="1" d="M120 210C280 210 310 85 500 85S720 210 880 210"/></svg>
+        <div class="cc-handoff__dock cc-handoff__dock--inputs"><i></i><i></i><i></i></div>
+        <div class="cc-handoff__gate"><i></i><i></i><i></i></div>
+        <div class="cc-handoff__dock cc-handoff__dock--record"><i></i><i></i><i></i></div>
+        <div class="cc-handoff__packet">
+          <img src="/cinema/optical-master-v3-1536.webp" width="1536" height="1536" loading="lazy" alt="" />
+        </div>
+      </div>
+      <div class="cc-handoff__steps">
+        <a href="/research" data-handoff-step="0"><span>Define</span><strong>The research packet</strong><small>Inputs, rules and the failed trials.</small><em>Inspect the research ↗</em></a>
+        <a href="/developers#validation" data-handoff-step="1"><span>Reproduce</span><strong>The calculation receipt</strong><small>Your inputs. Declared arithmetic.</small><em>Explore the validation API ↗</em></a>
+        <a href="/verify" data-handoff-step="2"><span>Inspect</span><strong>The published record</strong><small>Sources, corrections and boundaries.</small><em>Verify the evidence ↗</em></a>
+      </div>
+      <p class="cc-handoff__boundary">Conceptual workflow. This animation sends no request. A receipt is not proof of future returns.</p>
+    </div>
+  </section></details>
   <div class="cc-footer__lead">
     <a class="cc-footer__brand" href="/">Canli Capital</a>
     <p>Build the claim. Publish the evidence. Keep the failures.</p>
@@ -197,5 +216,8 @@
     record begins 2026-08-07; the years before it are engineering, not track record.</p>
     <span>Copyright Arhan Canli</span>
   </div>
+  <div class="cc-footer__wordmark" aria-hidden="true">Canli Capital<span><svg viewBox="0 0 80 80" focusable="false" aria-hidden="true"><path d="M12 68 68 12M12 12h56v56" fill="none" stroke="currentColor" stroke-width="4" /></svg></span></div>
+  <script type="module" src="/js/site-motion.js"></script>
 </footer>
-</body></html>
+
+<script type="module" src="/js/reader-experience.js"></script></body></html>

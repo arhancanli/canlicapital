@@ -1,0 +1,429 @@
+{
+  "claim_boundary": "Known-history combined portfolio development experiment; fixed parameters, cost proxy only, zero cash benchmark, additive overlay and inherited calendar limitations. No untouched validation, independent replication, capacity or admission.",
+  "complete": true,
+  "completion_assessment": {
+    "candidate_evidence_complete_for_admission": false,
+    "disposition": "INCOMPLETE_NOT_ADMITTED",
+    "packet_evidence_accounting_complete": true
+  },
+  "config_hash": "47412900259751e3",
+  "configuration": {
+    "candidate": "weekly_126day_bounded_inverse_volatility",
+    "cost_rate": 0.0005,
+    "family": "alphac_combined_inverse_vol_allocation",
+    "implementation_sha256": "fea78ee925aa3b166ee209f72d2ea9b047b26c8a5411f56d66daa25683134656",
+    "input_sha256": "33bd6d2bb0539767516104774d90017b8012a27622656b74d98ad4643662a948",
+    "spec_sha256": "824d387a1d16df759c41b50de9fc69b1d3dbfe30d70adcf316acca637476291a"
+  },
+  "content_hash": "sha256:08dd43d3ab6d2b43b9e6662aaeb6735801b340ce15244ae64fb178320ed183cf",
+  "hypothesis_key": "cdb9f69db00a92c2",
+  "immutable_first_measurement": {
+    "config": {
+      "candidate": "weekly_126day_bounded_inverse_volatility",
+      "cost_rate": 0.0005,
+      "family": "alphac_combined_inverse_vol_allocation",
+      "implementation_sha256": "fea78ee925aa3b166ee209f72d2ea9b047b26c8a5411f56d66daa25683134656",
+      "input_sha256": "33bd6d2bb0539767516104774d90017b8012a27622656b74d98ad4643662a948",
+      "spec_sha256": "824d387a1d16df759c41b50de9fc69b1d3dbfe30d70adcf316acca637476291a"
+    },
+    "config_hash": "47412900259751e3",
+    "kurtosis": 5.918133439635186,
+    "n_obs": 1061,
+    "now_ms": 1789279947932,
+    "sharpe_ann": 1.576295851815213,
+    "sharpe_per_period": 0.08250709579198011,
+    "skew": 0.10369671555296539
+  },
+  "imported_from_external_tree": {
+    "external_content_hash": "sha256:59d031fbbbf69945818e323f293d5d72ec23707993886179002fb6df4defc169",
+    "imported_on": "2026-09-14T19:35:24+00:00",
+    "tree": "/Users/arhancanli/alphac-prospective-pause-20260911"
+  },
+  "missing_sections": [],
+  "packet_status": "COMPLETE_ACCOUNTING_FINAL_KILLED_NOT_ADMITTED",
+  "partial_sections": [],
+  "required_sections": {
+    "admission_or_kill_decision": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/alphac_inverse_vol_20260913/cost_stress/REPORT.md",
+          "sha256": "e6c733f57160162f3da053a106641406d932ea8c5f844f82dd138c63c627a6f0"
+        },
+        {
+          "path": "artifacts/analysis/alphac_inverse_vol_20260913/cost_stress/daily.csv",
+          "sha256": "11a2ad515e3e76a6975ef7b5c9b0d13cecd0e9ea7f81b696a85f34e90dda7812"
+        },
+        {
+          "path": "artifacts/analysis/alphac_inverse_vol_20260913/cost_stress/experiments.jsonl",
+          "sha256": "19980b970c304d4b7fc0c78cedc2c049a3714952613fdb65e9ad977f9f416c94"
+        },
+        {
+          "path": "artifacts/analysis/alphac_inverse_vol_20260913/cost_stress/preregistration.json",
+          "sha256": "0d7eafe60d5f2a11f6d437988b2c575ea0f54bf8f58f9f8624df09ce4f96c3e3"
+        },
+        {
+          "path": "artifacts/analysis/alphac_inverse_vol_20260913/cost_stress/reservation.json",
+          "sha256": "1fc45b1486b50e4ea2931ae5de480eed18e190a3f08b6916f4b31712360ff501"
+        },
+        {
+          "path": "artifacts/analysis/alphac_inverse_vol_20260913/cost_stress/reservation_validation.json",
+          "sha256": "d442afa202b0a3bcc48d48a852f73a9fcbe0e8d4837fa89b9d59b52a22487901"
+        },
+        {
+          "path": "artifacts/analysis/alphac_inverse_vol_20260913/cost_stress/result.json",
+          "sha256": "5b95f6027855dba4083ad9989aa01b5deed6c34884180e17d683575489e3a46b"
+        },
+        {
+          "content_hash": "sha256:49d0ffb7085858f268716acfbd0776f9fdfe7ed940496d76dc200eafdb2ce0b3",
+          "path": "artifacts/research/development_closures/cdb9f69db00a92c2_admission_closure.json",
+          "sha256": "40446ad1bb905a74c850a7e40bf51fb46950bf493a09db48aaa119a116bf7f8d",
+          "type": "final_development_admission_closure"
+        }
+      ],
+      "statement": "Known-history combined portfolio development experiment; fixed parameters, cost proxy only, zero cash benchmark, additive overlay and inherited calendar limitations. No untouched validation, independent replication, capacity or admission.",
+      "status": "VERIFIED_FINAL_DEVELOPMENT_CLOSURE_KILL"
+    },
+    "code_environment_and_reproduction": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/alphac_inverse_vol_20260913/cost_stress/REPORT.md",
+          "sha256": "e6c733f57160162f3da053a106641406d932ea8c5f844f82dd138c63c627a6f0"
+        },
+        {
+          "path": "artifacts/analysis/alphac_inverse_vol_20260913/cost_stress/daily.csv",
+          "sha256": "11a2ad515e3e76a6975ef7b5c9b0d13cecd0e9ea7f81b696a85f34e90dda7812"
+        },
+        {
+          "path": "artifacts/analysis/alphac_inverse_vol_20260913/cost_stress/experiments.jsonl",
+          "sha256": "19980b970c304d4b7fc0c78cedc2c049a3714952613fdb65e9ad977f9f416c94"
+        },
+        {
+          "path": "artifacts/analysis/alphac_inverse_vol_20260913/cost_stress/preregistration.json",
+          "sha256": "0d7eafe60d5f2a11f6d437988b2c575ea0f54bf8f58f9f8624df09ce4f96c3e3"
+        },
+        {
+          "path": "artifacts/analysis/alphac_inverse_vol_20260913/cost_stress/reservation.json",
+          "sha256": "1fc45b1486b50e4ea2931ae5de480eed18e190a3f08b6916f4b31712360ff501"
+        },
+        {
+          "path": "artifacts/analysis/alphac_inverse_vol_20260913/cost_stress/reservation_validation.json",
+          "sha256": "d442afa202b0a3bcc48d48a852f73a9fcbe0e8d4837fa89b9d59b52a22487901"
+        },
+        {
+          "path": "artifacts/analysis/alphac_inverse_vol_20260913/cost_stress/result.json",
+          "sha256": "5b95f6027855dba4083ad9989aa01b5deed6c34884180e17d683575489e3a46b"
+        }
+      ],
+      "statement": "Known-history combined portfolio development experiment; fixed parameters, cost proxy only, zero cash benchmark, additive overlay and inherited calendar limitations. No untouched validation, independent replication, capacity or admission.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "economic_mechanism_and_falsifiable_hypothesis": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/alphac_inverse_vol_20260913/cost_stress/REPORT.md",
+          "sha256": "e6c733f57160162f3da053a106641406d932ea8c5f844f82dd138c63c627a6f0"
+        },
+        {
+          "path": "artifacts/analysis/alphac_inverse_vol_20260913/cost_stress/daily.csv",
+          "sha256": "11a2ad515e3e76a6975ef7b5c9b0d13cecd0e9ea7f81b696a85f34e90dda7812"
+        },
+        {
+          "path": "artifacts/analysis/alphac_inverse_vol_20260913/cost_stress/experiments.jsonl",
+          "sha256": "19980b970c304d4b7fc0c78cedc2c049a3714952613fdb65e9ad977f9f416c94"
+        },
+        {
+          "path": "artifacts/analysis/alphac_inverse_vol_20260913/cost_stress/preregistration.json",
+          "sha256": "0d7eafe60d5f2a11f6d437988b2c575ea0f54bf8f58f9f8624df09ce4f96c3e3"
+        },
+        {
+          "path": "artifacts/analysis/alphac_inverse_vol_20260913/cost_stress/reservation.json",
+          "sha256": "1fc45b1486b50e4ea2931ae5de480eed18e190a3f08b6916f4b31712360ff501"
+        },
+        {
+          "path": "artifacts/analysis/alphac_inverse_vol_20260913/cost_stress/reservation_validation.json",
+          "sha256": "d442afa202b0a3bcc48d48a852f73a9fcbe0e8d4837fa89b9d59b52a22487901"
+        },
+        {
+          "path": "artifacts/analysis/alphac_inverse_vol_20260913/cost_stress/result.json",
+          "sha256": "5b95f6027855dba4083ad9989aa01b5deed6c34884180e17d683575489e3a46b"
+        }
+      ],
+      "statement": "Known-history combined portfolio development experiment; fixed parameters, cost proxy only, zero cash benchmark, additive overlay and inherited calendar limitations. No untouched validation, independent replication, capacity or admission.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "execution_and_cost_model": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/alphac_inverse_vol_20260913/cost_stress/REPORT.md",
+          "sha256": "e6c733f57160162f3da053a106641406d932ea8c5f844f82dd138c63c627a6f0"
+        },
+        {
+          "path": "artifacts/analysis/alphac_inverse_vol_20260913/cost_stress/daily.csv",
+          "sha256": "11a2ad515e3e76a6975ef7b5c9b0d13cecd0e9ea7f81b696a85f34e90dda7812"
+        },
+        {
+          "path": "artifacts/analysis/alphac_inverse_vol_20260913/cost_stress/experiments.jsonl",
+          "sha256": "19980b970c304d4b7fc0c78cedc2c049a3714952613fdb65e9ad977f9f416c94"
+        },
+        {
+          "path": "artifacts/analysis/alphac_inverse_vol_20260913/cost_stress/preregistration.json",
+          "sha256": "0d7eafe60d5f2a11f6d437988b2c575ea0f54bf8f58f9f8624df09ce4f96c3e3"
+        },
+        {
+          "path": "artifacts/analysis/alphac_inverse_vol_20260913/cost_stress/reservation.json",
+          "sha256": "1fc45b1486b50e4ea2931ae5de480eed18e190a3f08b6916f4b31712360ff501"
+        },
+        {
+          "path": "artifacts/analysis/alphac_inverse_vol_20260913/cost_stress/reservation_validation.json",
+          "sha256": "d442afa202b0a3bcc48d48a852f73a9fcbe0e8d4837fa89b9d59b52a22487901"
+        },
+        {
+          "path": "artifacts/analysis/alphac_inverse_vol_20260913/cost_stress/result.json",
+          "sha256": "5b95f6027855dba4083ad9989aa01b5deed6c34884180e17d683575489e3a46b"
+        }
+      ],
+      "statement": "Known-history combined portfolio development experiment; fixed parameters, cost proxy only, zero cash benchmark, additive overlay and inherited calendar limitations. No untouched validation, independent replication, capacity or admission.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "family_and_union_trial_accounting": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/alphac_inverse_vol_20260913/cost_stress/REPORT.md",
+          "sha256": "e6c733f57160162f3da053a106641406d932ea8c5f844f82dd138c63c627a6f0"
+        },
+        {
+          "path": "artifacts/analysis/alphac_inverse_vol_20260913/cost_stress/daily.csv",
+          "sha256": "11a2ad515e3e76a6975ef7b5c9b0d13cecd0e9ea7f81b696a85f34e90dda7812"
+        },
+        {
+          "path": "artifacts/analysis/alphac_inverse_vol_20260913/cost_stress/experiments.jsonl",
+          "sha256": "19980b970c304d4b7fc0c78cedc2c049a3714952613fdb65e9ad977f9f416c94"
+        },
+        {
+          "path": "artifacts/analysis/alphac_inverse_vol_20260913/cost_stress/preregistration.json",
+          "sha256": "0d7eafe60d5f2a11f6d437988b2c575ea0f54bf8f58f9f8624df09ce4f96c3e3"
+        },
+        {
+          "path": "artifacts/analysis/alphac_inverse_vol_20260913/cost_stress/reservation.json",
+          "sha256": "1fc45b1486b50e4ea2931ae5de480eed18e190a3f08b6916f4b31712360ff501"
+        },
+        {
+          "path": "artifacts/analysis/alphac_inverse_vol_20260913/cost_stress/reservation_validation.json",
+          "sha256": "d442afa202b0a3bcc48d48a852f73a9fcbe0e8d4837fa89b9d59b52a22487901"
+        },
+        {
+          "path": "artifacts/analysis/alphac_inverse_vol_20260913/cost_stress/result.json",
+          "sha256": "5b95f6027855dba4083ad9989aa01b5deed6c34884180e17d683575489e3a46b"
+        }
+      ],
+      "statement": "Known-history combined portfolio development experiment; fixed parameters, cost proxy only, zero cash benchmark, additive overlay and inherited calendar limitations. No untouched validation, independent replication, capacity or admission.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "identity_and_authorship": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/alphac_inverse_vol_20260913/cost_stress/REPORT.md",
+          "sha256": "e6c733f57160162f3da053a106641406d932ea8c5f844f82dd138c63c627a6f0"
+        },
+        {
+          "path": "artifacts/analysis/alphac_inverse_vol_20260913/cost_stress/daily.csv",
+          "sha256": "11a2ad515e3e76a6975ef7b5c9b0d13cecd0e9ea7f81b696a85f34e90dda7812"
+        },
+        {
+          "path": "artifacts/analysis/alphac_inverse_vol_20260913/cost_stress/experiments.jsonl",
+          "sha256": "19980b970c304d4b7fc0c78cedc2c049a3714952613fdb65e9ad977f9f416c94"
+        },
+        {
+          "path": "artifacts/analysis/alphac_inverse_vol_20260913/cost_stress/preregistration.json",
+          "sha256": "0d7eafe60d5f2a11f6d437988b2c575ea0f54bf8f58f9f8624df09ce4f96c3e3"
+        },
+        {
+          "path": "artifacts/analysis/alphac_inverse_vol_20260913/cost_stress/reservation.json",
+          "sha256": "1fc45b1486b50e4ea2931ae5de480eed18e190a3f08b6916f4b31712360ff501"
+        },
+        {
+          "path": "artifacts/analysis/alphac_inverse_vol_20260913/cost_stress/reservation_validation.json",
+          "sha256": "d442afa202b0a3bcc48d48a852f73a9fcbe0e8d4837fa89b9d59b52a22487901"
+        },
+        {
+          "path": "artifacts/analysis/alphac_inverse_vol_20260913/cost_stress/result.json",
+          "sha256": "5b95f6027855dba4083ad9989aa01b5deed6c34884180e17d683575489e3a46b"
+        }
+      ],
+      "statement": "Known-history combined portfolio development experiment; fixed parameters, cost proxy only, zero cash benchmark, additive overlay and inherited calendar limitations. No untouched validation, independent replication, capacity or admission.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "literature_and_overlap_decision": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/alphac_inverse_vol_20260913/cost_stress/REPORT.md",
+          "sha256": "e6c733f57160162f3da053a106641406d932ea8c5f844f82dd138c63c627a6f0"
+        },
+        {
+          "path": "artifacts/analysis/alphac_inverse_vol_20260913/cost_stress/daily.csv",
+          "sha256": "11a2ad515e3e76a6975ef7b5c9b0d13cecd0e9ea7f81b696a85f34e90dda7812"
+        },
+        {
+          "path": "artifacts/analysis/alphac_inverse_vol_20260913/cost_stress/experiments.jsonl",
+          "sha256": "19980b970c304d4b7fc0c78cedc2c049a3714952613fdb65e9ad977f9f416c94"
+        },
+        {
+          "path": "artifacts/analysis/alphac_inverse_vol_20260913/cost_stress/preregistration.json",
+          "sha256": "0d7eafe60d5f2a11f6d437988b2c575ea0f54bf8f58f9f8624df09ce4f96c3e3"
+        },
+        {
+          "path": "artifacts/analysis/alphac_inverse_vol_20260913/cost_stress/reservation.json",
+          "sha256": "1fc45b1486b50e4ea2931ae5de480eed18e190a3f08b6916f4b31712360ff501"
+        },
+        {
+          "path": "artifacts/analysis/alphac_inverse_vol_20260913/cost_stress/reservation_validation.json",
+          "sha256": "d442afa202b0a3bcc48d48a852f73a9fcbe0e8d4837fa89b9d59b52a22487901"
+        },
+        {
+          "path": "artifacts/analysis/alphac_inverse_vol_20260913/cost_stress/result.json",
+          "sha256": "5b95f6027855dba4083ad9989aa01b5deed6c34884180e17d683575489e3a46b"
+        }
+      ],
+      "statement": "Known-history combined portfolio development experiment; fixed parameters, cost proxy only, zero cash benchmark, additive overlay and inherited calendar limitations. No untouched validation, independent replication, capacity or admission.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "machine_readable_packet_and_stable_public_paper": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/alphac_inverse_vol_20260913/cost_stress/REPORT.md",
+          "sha256": "e6c733f57160162f3da053a106641406d932ea8c5f844f82dd138c63c627a6f0"
+        },
+        {
+          "path": "artifacts/analysis/alphac_inverse_vol_20260913/cost_stress/daily.csv",
+          "sha256": "11a2ad515e3e76a6975ef7b5c9b0d13cecd0e9ea7f81b696a85f34e90dda7812"
+        },
+        {
+          "path": "artifacts/analysis/alphac_inverse_vol_20260913/cost_stress/experiments.jsonl",
+          "sha256": "19980b970c304d4b7fc0c78cedc2c049a3714952613fdb65e9ad977f9f416c94"
+        },
+        {
+          "path": "artifacts/analysis/alphac_inverse_vol_20260913/cost_stress/preregistration.json",
+          "sha256": "0d7eafe60d5f2a11f6d437988b2c575ea0f54bf8f58f9f8624df09ce4f96c3e3"
+        },
+        {
+          "path": "artifacts/analysis/alphac_inverse_vol_20260913/cost_stress/reservation.json",
+          "sha256": "1fc45b1486b50e4ea2931ae5de480eed18e190a3f08b6916f4b31712360ff501"
+        },
+        {
+          "path": "artifacts/analysis/alphac_inverse_vol_20260913/cost_stress/reservation_validation.json",
+          "sha256": "d442afa202b0a3bcc48d48a852f73a9fcbe0e8d4837fa89b9d59b52a22487901"
+        },
+        {
+          "path": "artifacts/analysis/alphac_inverse_vol_20260913/cost_stress/result.json",
+          "sha256": "5b95f6027855dba4083ad9989aa01b5deed6c34884180e17d683575489e3a46b"
+        }
+      ],
+      "statement": "Known-history combined portfolio development experiment; fixed parameters, cost proxy only, zero cash benchmark, additive overlay and inherited calendar limitations. No untouched validation, independent replication, capacity or admission.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "point_in_time_data_and_survivorship_controls": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/alphac_inverse_vol_20260913/cost_stress/REPORT.md",
+          "sha256": "e6c733f57160162f3da053a106641406d932ea8c5f844f82dd138c63c627a6f0"
+        },
+        {
+          "path": "artifacts/analysis/alphac_inverse_vol_20260913/cost_stress/daily.csv",
+          "sha256": "11a2ad515e3e76a6975ef7b5c9b0d13cecd0e9ea7f81b696a85f34e90dda7812"
+        },
+        {
+          "path": "artifacts/analysis/alphac_inverse_vol_20260913/cost_stress/experiments.jsonl",
+          "sha256": "19980b970c304d4b7fc0c78cedc2c049a3714952613fdb65e9ad977f9f416c94"
+        },
+        {
+          "path": "artifacts/analysis/alphac_inverse_vol_20260913/cost_stress/preregistration.json",
+          "sha256": "0d7eafe60d5f2a11f6d437988b2c575ea0f54bf8f58f9f8624df09ce4f96c3e3"
+        },
+        {
+          "path": "artifacts/analysis/alphac_inverse_vol_20260913/cost_stress/reservation.json",
+          "sha256": "1fc45b1486b50e4ea2931ae5de480eed18e190a3f08b6916f4b31712360ff501"
+        },
+        {
+          "path": "artifacts/analysis/alphac_inverse_vol_20260913/cost_stress/reservation_validation.json",
+          "sha256": "d442afa202b0a3bcc48d48a852f73a9fcbe0e8d4837fa89b9d59b52a22487901"
+        },
+        {
+          "path": "artifacts/analysis/alphac_inverse_vol_20260913/cost_stress/result.json",
+          "sha256": "5b95f6027855dba4083ad9989aa01b5deed6c34884180e17d683575489e3a46b"
+        }
+      ],
+      "statement": "Known-history combined portfolio development experiment; fixed parameters, cost proxy only, zero cash benchmark, additive overlay and inherited calendar limitations. No untouched validation, independent replication, capacity or admission.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "preregistration_and_hashes": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/alphac_inverse_vol_20260913/cost_stress/REPORT.md",
+          "sha256": "e6c733f57160162f3da053a106641406d932ea8c5f844f82dd138c63c627a6f0"
+        },
+        {
+          "path": "artifacts/analysis/alphac_inverse_vol_20260913/cost_stress/daily.csv",
+          "sha256": "11a2ad515e3e76a6975ef7b5c9b0d13cecd0e9ea7f81b696a85f34e90dda7812"
+        },
+        {
+          "path": "artifacts/analysis/alphac_inverse_vol_20260913/cost_stress/experiments.jsonl",
+          "sha256": "19980b970c304d4b7fc0c78cedc2c049a3714952613fdb65e9ad977f9f416c94"
+        },
+        {
+          "path": "artifacts/analysis/alphac_inverse_vol_20260913/cost_stress/preregistration.json",
+          "sha256": "0d7eafe60d5f2a11f6d437988b2c575ea0f54bf8f58f9f8624df09ce4f96c3e3"
+        },
+        {
+          "path": "artifacts/analysis/alphac_inverse_vol_20260913/cost_stress/reservation.json",
+          "sha256": "1fc45b1486b50e4ea2931ae5de480eed18e190a3f08b6916f4b31712360ff501"
+        },
+        {
+          "path": "artifacts/analysis/alphac_inverse_vol_20260913/cost_stress/reservation_validation.json",
+          "sha256": "d442afa202b0a3bcc48d48a852f73a9fcbe0e8d4837fa89b9d59b52a22487901"
+        },
+        {
+          "path": "artifacts/analysis/alphac_inverse_vol_20260913/cost_stress/result.json",
+          "sha256": "5b95f6027855dba4083ad9989aa01b5deed6c34884180e17d683575489e3a46b"
+        }
+      ],
+      "statement": "Known-history combined portfolio development experiment; fixed parameters, cost proxy only, zero cash benchmark, additive overlay and inherited calendar limitations. No untouched validation, independent replication, capacity or admission.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "result_uncertainty_stress_capacity_and_diversification": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/alphac_inverse_vol_20260913/cost_stress/REPORT.md",
+          "sha256": "e6c733f57160162f3da053a106641406d932ea8c5f844f82dd138c63c627a6f0"
+        },
+        {
+          "path": "artifacts/analysis/alphac_inverse_vol_20260913/cost_stress/daily.csv",
+          "sha256": "11a2ad515e3e76a6975ef7b5c9b0d13cecd0e9ea7f81b696a85f34e90dda7812"
+        },
+        {
+          "path": "artifacts/analysis/alphac_inverse_vol_20260913/cost_stress/experiments.jsonl",
+          "sha256": "19980b970c304d4b7fc0c78cedc2c049a3714952613fdb65e9ad977f9f416c94"
+        },
+        {
+          "path": "artifacts/analysis/alphac_inverse_vol_20260913/cost_stress/preregistration.json",
+          "sha256": "0d7eafe60d5f2a11f6d437988b2c575ea0f54bf8f58f9f8624df09ce4f96c3e3"
+        },
+        {
+          "path": "artifacts/analysis/alphac_inverse_vol_20260913/cost_stress/reservation.json",
+          "sha256": "1fc45b1486b50e4ea2931ae5de480eed18e190a3f08b6916f4b31712360ff501"
+        },
+        {
+          "path": "artifacts/analysis/alphac_inverse_vol_20260913/cost_stress/reservation_validation.json",
+          "sha256": "d442afa202b0a3bcc48d48a852f73a9fcbe0e8d4837fa89b9d59b52a22487901"
+        },
+        {
+          "path": "artifacts/analysis/alphac_inverse_vol_20260913/cost_stress/result.json",
+          "sha256": "5b95f6027855dba4083ad9989aa01b5deed6c34884180e17d683575489e3a46b"
+        }
+      ],
+      "statement": "Known-history combined portfolio development experiment; fixed parameters, cost proxy only, zero cash benchmark, additive overlay and inherited calendar limitations. No untouched validation, independent replication, capacity or admission.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    }
+  },
+  "research_family_key": "managed_futures_trend",
+  "schema": "canli.alphac-identity-trial-packet.v2"
+}

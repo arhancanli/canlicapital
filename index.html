@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Canli Capital: audit a live systematic portfolio</title>
-  <meta name="description" content="Canli Capital is a public platform to watch a live paper-traded systematic portfolio, inspect its decisions, and reproduce research." />
+  <title>Canli Capital: systematic strategies, built in the open</title>
+  <meta name="description" content="Explore ALPHAC's running paper strategies, follow the research, and use our free developer API to validate your own returns." />
   <meta name="author" content="Arhan Canli" />
   <!-- The COMPLETE set of published artifacts this page renders from, exactly the
        paths js/home.js fetches. Declaring it scopes audit-published-numbers to
@@ -17,13 +17,13 @@
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Canli Capital" />
-  <meta property="og:title" content="Canli Capital: audit a live systematic portfolio" />
-  <meta property="og:description" content="Canli Capital is a public platform to watch a live paper-traded systematic portfolio, inspect its decisions, and reproduce research." />
+  <meta property="og:title" content="Canli Capital: systematic strategies, built in the open" />
+  <meta property="og:description" content="Explore ALPHAC's running paper strategies, follow the research, and use our free developer API to validate your own returns." />
   <meta property="og:url" content="https://canlicapital.com/" />
   <meta property="og:image" content="https://canlicapital.com/og.png" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Canli Capital: audit a live systematic portfolio" />
-  <meta name="twitter:description" content="Canli Capital is a public platform to watch a live paper-traded systematic portfolio, inspect its decisions, and reproduce research." />
+  <meta name="twitter:title" content="Canli Capital: systematic strategies, built in the open" />
+  <meta name="twitter:description" content="Explore ALPHAC's running paper strategies, follow the research, and use our free developer API to validate your own returns." />
   <meta name="twitter:image" content="https://canlicapital.com/og.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -36,6 +36,16 @@
   <link rel="stylesheet" href="/css/home.css" />
   <link rel="stylesheet" href="/css/flow.css" />
   <link rel="stylesheet" href="/css/product-shell.css" />
+  <link rel="stylesheet" href="/css/cinematic-home.css" />
+  <link rel="stylesheet" href="/css/optical-opening.css" />
+  <link rel="stylesheet" href="/css/optical-journey.css" />
+  <link rel="stylesheet" href="/css/cohesive-journey.css" />
+  <link rel="stylesheet" href="/css/distinct-scenes.css" />
+  <link rel="stylesheet" href="/css/lower-chapters.css" />
+  <link rel="stylesheet" href="/css/strategy-atlas.css" />
+  <link rel="stylesheet" href="/css/atlas-opening.css" />
+  <link rel="stylesheet" href="/css/decision-journey.css" />
+  <link rel="stylesheet" href="/css/publication-chapters.css" />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -46,53 +56,47 @@
     ]
   }
   </script>
-</head>
-<body>
+
+<!-- release-style:start --><link rel="stylesheet" href="/css/release-readiness.css" /><!-- release-style:end --></head>
+<body class="cinema-home atlas-complete">
   <div class="flow-thread" aria-hidden="true"></div>
   <a class="skip-link" href="#main">Skip to content</a>
 
-  <header class="cc-shell" id="nav" data-product-shell="v3">
+  <header class="cc-shell" id="nav" data-product-shell="v3" data-shell-revision="4">
   <a class="cc-shell__brand" href="/" aria-label="Canli Capital, home">
     <span class="cc-shell__mark" aria-hidden="true"><i></i></span>
     <span>Canli Capital</span>
   </a>
-  <a class="cc-shell__status header-status" href="/measurements/alpaca-broker-reconciliation" aria-label="Current record status">
-    <span class="status-dot" aria-hidden="true"></span>
-    <span id="header-broker-status">3 Alpaca paper accounts reconciled</span>
-  </a>
   <nav class="cc-shell__primary" aria-label="Primary navigation">
-<a class="cc-shell__link" href="https://app.canlicapital.com/dashboard" rel="noreferrer">Live</a>
-<a class="cc-shell__link" href="/research">Research</a>
-<a class="cc-shell__link" href="/trials">Trials</a>
 <a class="cc-shell__link" href="/systems">Systems</a>
-<a class="cc-shell__link" href="/methodology">Methodology</a>
+<a class="cc-shell__link" href="/research">Research</a>
 <a class="cc-shell__link" href="/developers">Developers</a>
 <a class="cc-shell__link" href="/verify">Verify</a>
   </nav>
   <details class="cc-shell__index">
-    <summary><span class="cc-shell__index-wide">More</span><span class="cc-shell__index-compact">Menu</span></summary>
+    <summary><span class="cc-shell__index-wide">Explore</span><span class="cc-shell__index-compact">Menu</span></summary>
     <div class="cc-shell__panel">
       <div>
-        <span class="cc-shell__panel-label">Core</span>
+        <span class="cc-shell__panel-label">Research &amp; strategies</span>
         <nav aria-label="Core routes"><a class="cc-shell__panel-link" href="https://app.canlicapital.com/dashboard" rel="noreferrer">Live</a>
 <a class="cc-shell__panel-link" href="/research">Research</a>
 <a class="cc-shell__panel-link" href="/trials">Trials</a>
 <a class="cc-shell__panel-link" href="/systems">Systems</a>
 <a class="cc-shell__panel-link" href="/methodology">Methodology</a>
-<a class="cc-shell__panel-link" href="/developers">Developers</a>
-<a class="cc-shell__panel-link" href="/verify">Verify</a></nav>
+<a class="cc-shell__panel-link" href="/performance">Performance</a></nav>
       </div>
       <div>
-        <span class="cc-shell__panel-label">Institution</span>
-        <nav aria-label="Institution routes"><a class="cc-shell__panel-link" href="/progress">Corrections</a>
-<a class="cc-shell__panel-link" href="/performance">Performance</a>
+        <span class="cc-shell__panel-label">Evidence &amp; accountability</span>
+        <nav aria-label="Institution routes"><a class="cc-shell__panel-link" href="/verify">Verify</a>
+<a class="cc-shell__panel-link" href="/progress">Corrections</a>
 <a class="cc-shell__panel-link" href="/founder">Founder</a>
 <a class="cc-shell__panel-link" href="/open">Open data</a>
 <a class="cc-shell__panel-link" href="/measurements">Measurements</a></nav>
       </div>
       <div>
-        <span class="cc-shell__panel-label">Tools</span>
-        <nav aria-label="Tools"><a class="cc-shell__panel-link" href="/tools">All tools</a>
+        <span class="cc-shell__panel-label">Build &amp; reproduce</span>
+        <nav aria-label="Tools"><a class="cc-shell__panel-link" href="/developers">Developers</a>
+<a class="cc-shell__panel-link" href="/tools">All tools</a>
 <a class="cc-shell__panel-link" href="/how-to-validate-a-backtest">How to validate a backtest</a></nav>
       </div>
       <div>
@@ -104,110 +108,107 @@
 <a class="cc-shell__panel-link" href="https://github.com/arhancanli/canli-pit-lake" rel="noreferrer">canli-pit-lake</a>
 <a class="cc-shell__panel-link" href="https://github.com/arhancanli/canli-backtest" rel="noreferrer">canli-backtest</a></nav>
       </div>
-      <p>Observed, simulated, model-estimated and planned claims remain visibly separate.</p>
+      <div class="cc-shell__panel-foot">
+        <a class="cc-shell__status header-status" href="/measurements/alpaca-broker-reconciliation" aria-label="Current record status"><span class="status-dot" aria-hidden="true"></span><span id="header-broker-status">3 Alpaca paper accounts reconciled</span></a>
+        <p>Observed, simulated, model-estimated and planned claims remain visibly separate.</p>
+      </div>
     </div>
   </details>
   <a class="cc-shell__source" href="/engineering" title="Open-source engineering: the engine, the data layer and the backtester"><svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true" focusable="false"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg><span>Source</span></a>
-  <a class="cc-shell__cta" href="https://app.canlicapital.com/dashboard">Enter live record <span aria-hidden="true">↗</span></a>
+  <a class="cc-shell__cta" href="https://app.canlicapital.com/dashboard">Live record <span aria-hidden="true">↗</span></a>
+  <script type="module" src="/js/navigation.js"></script>
 </header>
 
   <main id="main" tabindex="-1">
-    <section class="hero" aria-labelledby="hero-title">
-      <canvas id="entry-scene" class="entry-scene" aria-hidden="true"></canvas>
-      <div class="hero-grid" aria-hidden="true"></div>
+    <section class="hero cinema-hero" aria-labelledby="hero-title">
+      <picture class="cinema-hero__art"><img src="/cinema/atlas/hero-1920.webp" srcset="/cinema/atlas/hero-960.webp 960w, /cinema/atlas/hero-1920.webp 1920w, /cinema/atlas/hero-3840.webp 3840w" sizes="100vw" width="3840" height="1920" alt="Four labeled mechanism studies: equity ranking, market trends, an inflation spread and funding carry. Conceptual illustrations, not market data." fetchpriority="high" /></picture>
+      <nav class="cinema-hero__index" aria-label="Homepage chapters"><a href="#sleeves">The strategies</a><a href="#live-record">The record</a><a href="#developer-api">For developers</a><a href="#research">The research</a></nav>
+      <div class="hero__copy">
+        <p class="eyebrow">Independent systematic research</p>
+        <h1 id="hero-title">Our strategies.<br /><span>Built in the open.</span></h1>
+        <p class="hero__lead">Our own strategies. Running on paper.<br />The research, results and changes are yours to inspect.</p>
+        <div class="hero__actions">
+          <a class="button button--primary" href="#sleeves">Explore the strategies <span aria-hidden="true">↘</span></a>
+          <a class="button button--ghost" href="/developers#quickstart">Get a free API key <span aria-hidden="true">↗</span></a>
+        </div>
+        <p class="hero__boundary">Research, not a fund. Paper execution, not funded returns.</p>
+      </div>
       <div class="hero-status" aria-label="Current program status">
         <div><span>Record basis</span><strong id="hero-record-basis">Observed paper</strong></div>
         <div><span>Broker execution</span><strong id="hero-broker-execution">3 Alpaca paper sleeves</strong></div>
         <div><span>Paper record</span><strong id="hero-paper-since">Since 07 Aug 2026</strong></div>
         <div><span>Internal validation</span><strong id="hero-grade">Self-grade C+</strong></div>
       </div>
-      <div class="hero__copy">
-        <p class="eyebrow"><span class="signal-pulse" aria-hidden="true"></span> Canli Capital / Public systematic research</p>
-        <h1 id="hero-title">A systematic portfolio you can audit while it runs.</h1>
-        <p class="hero__lead">Canli Capital is a research and verification platform where you can watch ALPHAC, its live paper-traded systematic portfolio, inspect its decisions, and reproduce selected research.</p>
-        <div class="hero__actions">
-          <a class="button button--primary" href="https://app.canlicapital.com/dashboard">View the live record <span aria-hidden="true">↗</span></a>
-          <a class="button button--ghost" href="/tools">Validate your own numbers</a>
-          <a class="button button--ghost" href="/methodology">Read the methodology</a>
+      <div class="cinema-hero__foot"><a href="#introduction">Scroll to look inside <span aria-hidden="true">↓</span></a><span>Mechanism studies / not performance data</span></div>
+    </section>
+    <div class="optical-threshold" aria-hidden="true"><div class="optical-threshold__light"></div></div>
+    <section class="cinema-intro" id="introduction" aria-labelledby="intro-title">
+      <p class="eyebrow">Meet ALPHAC</p>
+      <h2 id="intro-title">The strategy.<br />The work.<br /><span>The whole picture.</span></h2>
+      <div class="cinema-intro__copy"><p>We build systematic strategies and put their work in public view. Not just the attractive charts. The rules. The failed ideas. The observations. The corrections.</p><p>ALPHAC brings that work together. Follow the paper record, inspect the evidence, or use the validation API for your own research.</p><a class="cinema-link" href="/open">See what stays open <span aria-hidden="true">↗</span></a></div>
+      <div class="cinema-intro__signature" aria-hidden="true">ALPHAC<span><svg viewBox="0 0 80 80" focusable="false" aria-hidden="true"><path d="M12 68 68 12M12 12h56v56" fill="none" stroke="currentColor" stroke-width="4" /></svg></span></div>
+    </section>
+    <div class="research-journey"><div class="research-journey__content">
+    <section class="cinema-process" aria-label="Research, observation and publication">
+      <div class="cinema-process__viewport">
+        <div class="cinema-process__art" data-instrument-sequence data-atlas-process><picture><img src="/cinema/atlas/process-1920.webp" srcset="/cinema/atlas/process-960.webp 960w, /cinema/atlas/process-1920.webp 1920w, /cinema/atlas/process-3840.webp 3840w" sizes="100vw" width="3840" height="1920" loading="lazy" alt="Research inputs, paper observations and a published record represented as three connected documents. Conceptual illustration, not an actual order replay." /></picture><span>Research → Paper observations → Published record / conceptual sequence</span></div>
+        <div class="cinema-process__track">
+          <article class="cinema-process__chapter" data-process-step="0"><div><p class="eyebrow">01 / Research</p><h2>Define.<br />Then test.</h2></div><div><p>Fix the data, parameters and decision rules. Test the idea. Keep the failed trials in the record.</p><a class="cinema-link" href="/research">Inside the research <span aria-hidden="true">↗</span></a></div></article>
+          <article class="cinema-process__chapter" data-process-step="1"><div><p class="eyebrow">02 / Paper execution</p><h2>Run.<br />Observe.</h2></div><div><p>Separate strategies. Separate execution boundaries. Inspect what the broker observed and what was locally simulated.</p><a class="cinema-link" href="#live-record">Inspect the observations <span aria-hidden="true">↘</span></a></div></article>
+          <article class="cinema-process__chapter" data-process-step="2"><div><p class="eyebrow">03 / Publication</p><h2>Publish.<br />Keep learning.</h2></div><div><p>Show the results and their limits. Document corrections. An improvement is a claim to examine, not a promised return.</p><a class="cinema-link" href="/progress">Follow the changes <span aria-hidden="true">↗</span></a></div></article>
         </div>
-        <p class="hero__boundary"><strong>Current boundary.</strong> The public ALPHAC record uses paper execution. Any separately funded account remains outside the published strategy record until it has a governed broker attestation.</p>
       </div>
-
-      <aside class="live-console" aria-label="Interactive ALPHAC paper execution console">
-        <div class="console-bar"><div><span class="console-light" aria-hidden="true"></span><strong>Evidence console</strong><span>ALPHAC / Paper</span></div><time id="console-time">Signed 05 Sept 2026, 20:26 UTC</time></div>
+    </section>
+    <section class="sleeves section" id="sleeves" aria-labelledby="sleeves-title">
+      <div class="section-heading section-heading--split"><div><p class="eyebrow">Current portfolio architecture</p><h2 id="sleeves-title"><span id="current-sleeve-count">4</span> strategies.<br />One open engine.</h2></div><p>The current target mix is equal-weighted. Correlation is measured on the disclosed research window; live-forward diversification is not yet established.</p><p class="sleeves__stat">Average pairwise correlation <strong id="sleeves-correlation">+0.0248</strong> <span>&middot;</span> measured on the research window, not the forward record</p></div>
+      <div class="sleeve-table">
+        <article class="sleeve-row" data-sleeve="alphamax"><div class="sleeve-index">01</div><div class="sleeve-name"><span>US equity momentum</span><h3>AlphaMax</h3></div><p>Cross-sectional momentum across a survivorship-free US equity universe.</p><dl><div><dt>Execution</dt><dd>Alpaca paper</dd></div><div><dt>Target weight</dt><dd>25%</dd></div></dl><div class="sleeve-state"><span class="state-pill state-pill--broker">Observed broker</span><small id="sleeve-alphamax-state">$980.1K equity · 174 positions</small></div></article>
+        <article class="sleeve-row" data-sleeve="managed_futures"><div class="sleeve-index">02</div><div class="sleeve-name"><span>Managed futures</span><h3>AlphaTrend</h3></div><p>Time-series trend across liquid equity, rates, commodity, and FX proxies.</p><dl><div><dt>Execution</dt><dd>Alpaca paper</dd></div><div><dt>Target weight</dt><dd>25%</dd></div></dl><div class="sleeve-state"><span class="state-pill state-pill--broker">Observed broker</span><small id="sleeve-managed_futures-state">$1M equity · 15 positions</small></div></article>
+        <article class="sleeve-row" data-sleeve="alphavintage"><div class="sleeve-index">03</div><div class="sleeve-name"><span>Macro surprise</span><h3>AlphaVintage</h3></div><p>A point-in-time inflation-surprise spread expressed through IWM and SPY.</p><dl><div><dt>Execution</dt><dd>Alpaca paper</dd></div><div><dt>Target weight</dt><dd>25%</dd></div></dl><div class="sleeve-state"><span class="state-pill state-pill--broker">Observed broker</span><small id="sleeve-alphavintage-state">$995.9K equity · 2 positions</small></div></article>
+        <article class="sleeve-row" data-sleeve="alphaforge"><div class="sleeve-index">04</div><div class="sleeve-name"><span>Crypto funding carry</span><h3>AlphaForge</h3></div><p>Funding-rate carry across perpetual futures, marked from live exchange books.</p><dl><div><dt>Execution</dt><dd>Local paper</dd></div><div><dt>Target weight</dt><dd>25%</dd></div></dl><div class="sleeve-state"><span class="state-pill state-pill--local">Observed local</span><small>Live books, simulated fills</small></div></article>
+      </div>
+      <div class="sleeves-footer"><div><span>Research-window correlation</span><small>Simulated / not live-forward proof</small></div><strong id="correlation-reading">+0.0248</strong><a href="/systems">Inspect every system <span aria-hidden="true">→</span></a></div>
+    </section>
+    <section class="record-chapter" id="live-record" aria-labelledby="record-chapter-title">
+      <div class="record-chapter__copy"><p class="eyebrow">The running record</p><h2 id="record-chapter-title">The record.<br />Without the gloss.</h2><p>Published paper equity, positions and broker observations. Switch between the composite and each strategy. The negative days stay in the curve.</p><a class="cinema-link" href="https://app.canlicapital.com/dashboard">Open the live dashboard <span aria-hidden="true">↗</span></a></div>
+            <aside class="live-console" aria-label="Interactive ALPHAC paper execution console">
+        <div class="console-bar"><div><span class="console-light" aria-hidden="true"></span><strong>Evidence console</strong><span>ALPHAC / Paper</span></div><time id="console-time">Signed 15 Sept 2026, 14:27 UTC</time></div>
         <div class="console-tabs" role="group" aria-label="Choose a paper equity curve">
           <button type="button" data-curve-key="alphac" aria-pressed="true">Composite</button><button type="button" data-curve-key="alphamax" aria-pressed="false">AlphaMax</button><button type="button" data-curve-key="managed_futures" aria-pressed="false">AlphaTrend</button><button type="button" data-curve-key="alphavintage" aria-pressed="false">AlphaVintage</button><button type="button" data-curve-key="alphaforge" aria-pressed="false">AlphaForge</button>
         </div>
         <div class="console-chart">
           <div class="chart-heading"><span>Normalized equity</span><strong>Observed / paper</strong></div>
           <svg viewBox="0 0 760 320" preserveAspectRatio="none" role="img" aria-labelledby="chart-title chart-description">
-            <title id="chart-title">ALPHAC paper equity curve</title><desc id="chart-description">ALPHAC has 28 published paper equity marks from 07 Aug through 05 Sept.</desc>
+            <title id="chart-title">ALPHAC paper equity curve</title><desc id="chart-description">ALPHAC has 37 published paper equity marks from 07 Aug through 14 Sept.</desc>
             <g class="chart-grid" aria-hidden="true"><path d="M0 64H760M0 128H760M0 192H760M0 256H760" /><path d="M152 0V320M304 0V320M456 0V320M608 0V320" /></g>
             <path class="chart-area" id="equity-area" d="" /><path class="chart-line" id="equity-path" d="" /><circle class="chart-node" id="equity-node" cx="0" cy="0" r="5" />
           </svg>
-          <span class="chart-label chart-label--start" id="chart-start">07 Aug</span><span class="chart-label chart-label--end" id="chart-end">05 Sept</span>
+          <span class="chart-label chart-label--start" id="chart-start">07 Aug</span><span class="chart-label chart-label--end" id="chart-end">14 Sept</span>
         </div>
         <dl class="console-metrics">
-          <div><dt>Paper return</dt><dd id="metric-live-return">−2.54%</dd><dd class="metric-basis">Observed</dd></div><div><dt>Max drawdown</dt><dd id="metric-live-drawdown">−3.00%</dd><dd class="metric-basis">Observed</dd></div><div><dt>Realized vol</dt><dd id="metric-live-vol">5.63%</dd><dd class="metric-basis">Observed</dd></div><div><dt>Validation</dt><dd id="metric-grade">C+</dd><dd class="metric-basis">Internal grade</dd></div>
+          <div><dt>Paper return</dt><dd id="metric-live-return">−2.71%</dd><dd class="metric-basis">Observed</dd></div><div><dt>Max drawdown</dt><dd id="metric-live-drawdown">−3.87%</dd><dd class="metric-basis">Observed</dd></div><div><dt>Realized vol</dt><dd id="metric-live-vol">6.67%</dd><dd class="metric-basis">Observed</dd></div><div><dt>Validation</dt><dd id="metric-grade">C+</dd><dd class="metric-basis">Internal grade</dd></div>
         </dl>
         <div class="evidence-chain" aria-label="Evidence publication chain">
-          <div><span>01</span><strong>Broker</strong><small id="console-broker">3 dedicated accounts · PASS</small></div><i aria-hidden="true">→</i><div><span>02</span><strong>Ledger</strong><small id="console-book">192 positions · 0 orders</small></div><i aria-hidden="true">→</i><div><span>03</span><strong>Signed record</strong><small>Append-only chain</small></div><i aria-hidden="true">→</i><div><span>04</span><strong>Public mirror</strong><small>Open JSON + reports</small></div>
+          <div><span>01</span><strong>Broker</strong><small id="console-broker">3 dedicated accounts · PASS</small></div><i aria-hidden="true">→</i><div><span>02</span><strong>Ledger</strong><small id="console-book">191 positions · 26 orders</small></div><i aria-hidden="true">→</i><div><span>03</span><strong>Signed record</strong><small>Append-only chain</small></div><i aria-hidden="true">→</i><div><span>04</span><strong>Public mirror</strong><small>Open JSON + reports</small></div>
         </div>
         <div class="console-foot"><span>Self-published broker-derived evidence</span><a href="/verify">Verify the record <span aria-hidden="true">→</span></a></div>
       </aside>
     </section>
+    <section class="developer-chapter" id="developer-api" aria-labelledby="developer-chapter-title">
+      <img class="developer-chapter__art" src="/cinema/optical-master-v3.webp" srcset="/cinema/optical-master-v3-1536.webp 1536w, /cinema/optical-master-v3.webp 3840w" sizes="(max-width: 767px) 680px, (min-width: 1500px) 1500px, 100vw" width="3840" height="3840" loading="lazy" alt="Original conceptual optical-glass assembly, not trading hardware." />
+      <div class="developer-chapter__copy"><p class="eyebrow">Built for your research, too</p><h2 id="developer-chapter-title">Your numbers.<br />Our tools.</h2><p>Bring your own returns to the Canli Capital API. Check selection bias, backtest overfitting, portfolio breadth, and paper evidence. Get a reproducible receipt you can inspect and share.</p><p>Free API key. No account required. Examples for Python, JavaScript, and curl.</p><div class="hero__actions"><a class="button button--primary" href="/developers#quickstart">Get a free API key <span aria-hidden="true">↗</span></a><a class="button button--ghost" href="/developers#validation">Explore the API</a></div></div>
+      <div class="api-preview" aria-label="Developer workflow"><div class="api-preview__bar"><span>CANLI CAPITAL / VALIDATION API</span><span>Python · JavaScript · curl</span></div><div class="api-preview__body"><p>One request. Inspectable arithmetic.</p><pre><code>curl https://canlicapital.com/api/v1/status</code></pre><p>Start with the public status endpoint. Generate a free key to run the validation tools against your own inputs.</p><ul class="api-preview__steps"><li><span aria-hidden="true">↗</span> Selection bias and backtest overfitting</li><li><span aria-hidden="true">↗</span> Portfolio breadth and execution assumptions</li><li><span aria-hidden="true">↗</span> Reproducible receipts and declared limits</li></ul><p>Receipts record the calculation and inputs. They do not establish future performance.</p></div></div>
+    </section>
 
+    <details class="deep-record" id="record-details"><summary><span>Go deeper</span><strong>The full evidence room</strong><span class="deep-record__hint">Operating facts, system films, trial history and claim boundaries</span><span class="deep-record__icon" aria-hidden="true">+</span></summary><div class="deep-record__body">
     <section class="offering" aria-labelledby="offering-title">
       <div class="section-kicker"><span>What you get</span><small>Open now / no paid plan</small></div>
-      <div class="offering__intro"><h2 id="offering-title">Three ways in, depending on what you came to check.</h2><p>Nothing is gated and nothing needs an account. Prefer to run the numbers yourself first? <a href="/tools">Every calculator this project publishes</a> is free and source-bound.</p></div>
+      <div class="offering__intro"><h2 id="offering-title">The work stays open.</h2><p>Research, execution, and improvement belong in the same record. Inspect the decisions, reproduce the calculations, and see the corrections. Our <a href="/tools">free research tools</a> are open to everyone.</p></div>
       <div class="offering__grid">
-        <article><span>To see what it does</span><h3>The live paper record</h3><p>Equity, positions, decisions and broker reconciliation, republished hourly. Paper throughout, never funded.</p><p class="offering__stat"><strong id="card-equity-marks">28</strong> published equity marks <span>&middot;</span> <strong id="card-broker-accounts">3</strong> broker accounts reconciled</p><a href="https://app.canlicapital.com/dashboard">Open the live record <span aria-hidden="true">↗</span></a></article>
+        <article><span>To see what it does</span><h3>The live paper record</h3><p>Equity, positions, decisions and broker reconciliation, republished hourly. Paper throughout, never funded.</p><p class="offering__stat"><strong id="card-equity-marks">37</strong> published equity marks <span>&middot;</span> <strong id="card-broker-accounts">3</strong> broker accounts reconciled</p><a href="https://app.canlicapital.com/dashboard">Open the live record <span aria-hidden="true">↗</span></a></article>
         <article><span>To decide whether to believe it</span><h3>The research, and the retractions</h3><p>Every hypothesis tested, the ones that failed, and the figures since withdrawn.</p><p class="offering__stat"><strong id="card-research-docs">111</strong> documents <span>&middot;</span> <strong id="card-research-kills">46</strong> published kills <span>&middot;</span> <strong id="card-trial-ids">228</strong> trial identities (the retired legacy set)</p><a href="/progress">Read the corrections <span aria-hidden="true">→</span></a></article>
         <article><span>To check the arithmetic yourself</span><h3>Run your own numbers</h3><p>Free key, no account. Send your own returns through the same validation arithmetic the record is held to, and get back a receipt you can cite. Behind it sit three open repositories: the engine, the point-in-time data layer and the backtester.</p><p class="offering__stat"><strong id="card-tests">1,220</strong> tests passing <span>&middot;</span> mypy --strict across <strong id="card-typed-files">83</strong> files</p><a href="/developers">Validate your numbers <span aria-hidden="true">→</span></a></article>
         <article><span>Hard boundary</span><h3>Research, not a fund</h3><p>No managed capital, copy-trading, promised return, or investment advice.</p><p class="offering__stat"><strong id="card-external-reviews">0</strong> external reviews <span>&middot;</span> <strong id="card-replications">0</strong> independent replications, so every claim here is still self-graded, not outside-checked</p><a href="/methodology">Read boundaries <span aria-hidden="true">→</span></a></article>
-      </div>
-    </section>
-
-    <section class="evidence section" id="evidence" aria-labelledby="evidence-title">
-      <div class="section-heading section-heading--split"><div><p class="eyebrow">Dated evidence dashboard</p><h2 id="evidence-title">What was observed, what was simulated, and what is still only a goal.</h2></div><p>Performance targets never inherit the styling of earned results. Every figure below is bound by the same <a href="/open">honesty pledge</a> published in full.</p></div>
-      <div class="evidence-ledger">
-        <article class="evidence-ledger__primary"><div class="evidence-ledger__label"><span>Current forward record</span><em class="basis basis--observed">Observed / paper</em></div><strong id="evidence-observations">27</strong><p>daily return observations</p><a href="/measurements/forward-evidence-maturity">Inspect maturity evidence <span aria-hidden="true">↗</span></a></article>
-        <article><span>Alpaca execution</span><strong id="evidence-accounts">3 / paper</strong><small>Dedicated paper sleeves</small></article>
-        <article><span>Broker book</span><strong id="evidence-positions">192 / 0</strong><small>Positions / open orders</small></article>
-        <article><span>Funded strategy record</span><strong>Not active</strong><small>Any separate $1 account is not yet attested here</small></article>
-        <article><span>Validation</span><strong id="evidence-status">Broker pass</strong><small>Green only when reconciliation passes</small></article>
-      </div>
-      <div class="evidence-frontier" aria-label="Objectives and model estimates">
-        <article><em class="basis basis--planned">Objective</em><span>Forward Sharpe</span><strong id="objective-forward-sharpe">1.50</strong><small>Not yet estimated from the forward record</small></article>
-        <article><em class="basis basis--planned">Objective</em><span>Expected max drawdown</span><strong id="objective-max-drawdown">11.00%</strong><small>Portfolio objective, not a guarantee</small></article>
-        <article><em class="basis basis--estimated">Model estimate</em><span>Expected max drawdown</span><strong id="model-expected-drawdown">9.32%</strong><small>Current composition / not live established</small></article>
-        <article><em class="basis basis--estimated">Model estimate</em><span>p95 max drawdown</span><strong id="model-p95-drawdown">16.45%</strong><small>Published even though it exceeds the objective</small></article>
-      </div>
-      <section class="evidence-detail" aria-labelledby="evidence-detail-title">
-        <header class="evidence-detail__head">
-          <div><p class="eyebrow">Record freshness and execution basis</p><h3 id="evidence-detail-title">The operating facts behind the curve.</h3></div>
-          <div class="signed-head"><span>Latest signed record</span><strong id="evidence-signed-time">05 Sept 2026, 20:26 UTC</strong><small id="evidence-chain-head">seq 742 / 4599e25dbe26a8b5…</small><a href="/verify">Verify this record <span aria-hidden="true">↗</span></a></div>
-        </header>
-        <div class="evidence-detail__grid">
-          <article><span>Forward window</span><strong id="evidence-forward-window">07 Aug to 05 Sept</strong><p id="evidence-forward-days">29 paper-trading days, 27 return observations.</p><a href="/measurements/forward-evidence-maturity">Open maturity record</a></article>
-          <article><span>Broker exposure</span><strong id="evidence-gross-range">28.1% to 71.2% gross</strong><p id="evidence-net-range">−0.08% to +31.30% net across dedicated broker accounts. Not a composite exposure.</p><a href="/measurements/alpaca-broker-reconciliation">Open broker evidence</a></article>
-          <article><span>Forward turnover</span><strong>Not published</strong><p>The public record does not yet expose a governed composite turnover series.</p><a href="/methodology">Read the measurement rule</a></article>
-          <article><span>Observed slippage</span><strong id="evidence-slippage-state">Not measurable</strong><p id="evidence-slippage-note">Equity fills lack a decision-price reference. The measured crypto component predates the current forward window.</p><a href="/measurements/cost-model-realism">Open cost evidence</a></article>
-        </div>
-        <div class="broker-matrix" aria-label="Execution status by sleeve">
-          <div class="broker-matrix__heading"><span>Sleeve</span><span>Execution</span><span>Latest observation</span><span>State</span></div>
-          <div data-broker-row="alphamax"><strong>AlphaMax</strong><span>Alpaca paper</span><span data-broker-observation>175 positions / 05 Sept 2026, 20:25 UTC</span><em data-broker-state>Pass</em></div>
-          <div data-broker-row="managed_futures"><strong>AlphaTrend</strong><span>Alpaca paper</span><span data-broker-observation>15 positions / 05 Sept 2026, 20:25 UTC</span><em data-broker-state>Pass</em></div>
-          <div data-broker-row="alphavintage"><strong>AlphaVintage</strong><span>Alpaca paper</span><span data-broker-observation>2 positions / 05 Sept 2026, 20:25 UTC</span><em data-broker-state>Pass</em></div>
-          <div data-broker-row="alphaforge"><strong>AlphaForge</strong><span>Local paper</span><span>Live exchange books, simulated fills</span><em data-broker-state="local">Local only</em></div>
-        </div>
-        <div class="validation-callout" data-validation-state="loading"><span class="validation-callout__signal" aria-hidden="true"></span><div><strong id="evidence-validation-label">Broker pass / forward goals open / C+</strong><p id="evidence-validation-reason">Broker reconciliation passes. The forward record is still too young to establish the performance objectives.</p></div><a href="/measurements/program-status">Read grading contract</a></div>
-      </section>
-      <div class="basis-grid" aria-labelledby="basis-title">
-        <div class="basis-grid__heading"><p class="eyebrow">Evidence grammar</p><h3 id="basis-title">Three labels. No ambiguity.</h3></div>
-        <article><em class="basis basis--observed">Observed</em><h3>Broker & paper record</h3><p>Marks, positions, orders, and drawdown already recorded by the current paper system.</p></article>
-        <article><em class="basis basis--simulated">Simulated</em><h3>Research evidence</h3><p>Walk-forward, stress, and capacity results under declared data and cost assumptions.</p></article>
-        <article><em class="basis basis--planned">Planned</em><h3><span id="target-sleeve-count">14</span>-sleeve frontier</h3><p>A governed breadth objective. It is not represented as a current portfolio achievement.</p></article>
       </div>
     </section>
 
@@ -234,7 +235,7 @@
             <div><span>Trial identities</span><strong id="core-trial-count">228</strong></div>
             <div><span>Killed or screened</span><strong id="core-kill-count">46</strong></div>
             <div><span>Active sleeves</span><strong id="core-sleeve-count">4</strong></div>
-            <div><span>Signed entries</span><strong id="core-signed-count">743</strong></div>
+            <div><span>Signed entries</span><strong id="core-signed-count">953</strong></div>
           </div>
           <div class="core-progress" aria-hidden="true"><span id="core-progress-fill"></span></div>
         </div>
@@ -322,35 +323,102 @@
       </ol>
     </section>
 
-    <section class="sleeves section" id="sleeves" aria-labelledby="sleeves-title">
-      <div class="section-heading section-heading--split"><div><p class="eyebrow">Current portfolio architecture</p><h2 id="sleeves-title"><span id="current-sleeve-count">4</span> sleeves. Different mechanisms. One risk budget.</h2></div><p>The current target mix is equal-weighted. Correlation is measured on the disclosed research window; live-forward diversification is not yet established.</p><p class="sleeves__stat">Average pairwise correlation <strong id="sleeves-correlation">+0.0248</strong> <span>&middot;</span> measured on the research window, not the forward record</p></div>
-      <div class="sleeve-table">
-        <article class="sleeve-row" data-sleeve="alphamax"><div class="sleeve-index">01</div><div class="sleeve-name"><span>US equity momentum</span><h3>AlphaMax</h3></div><p>Cross-sectional momentum across a survivorship-free US equity universe.</p><dl><div><dt>Execution</dt><dd>Alpaca paper</dd></div><div><dt>Target weight</dt><dd>25%</dd></div></dl><div class="sleeve-state"><span class="state-pill state-pill--broker">Observed broker</span><small id="sleeve-alphamax-state">$985.5K equity · 175 positions</small></div></article>
-        <article class="sleeve-row" data-sleeve="managed_futures"><div class="sleeve-index">02</div><div class="sleeve-name"><span>Managed futures</span><h3>AlphaTrend</h3></div><p>Time-series trend across liquid equity, rates, commodity, and FX proxies.</p><dl><div><dt>Execution</dt><dd>Alpaca paper</dd></div><div><dt>Target weight</dt><dd>25%</dd></div></dl><div class="sleeve-state"><span class="state-pill state-pill--broker">Observed broker</span><small id="sleeve-managed_futures-state">$1M equity · 15 positions</small></div></article>
-        <article class="sleeve-row" data-sleeve="alphavintage"><div class="sleeve-index">03</div><div class="sleeve-name"><span>Macro surprise</span><h3>AlphaVintage</h3></div><p>A point-in-time inflation-surprise spread expressed through IWM and SPY.</p><dl><div><dt>Execution</dt><dd>Alpaca paper</dd></div><div><dt>Target weight</dt><dd>25%</dd></div></dl><div class="sleeve-state"><span class="state-pill state-pill--broker">Observed broker</span><small id="sleeve-alphavintage-state">$993.1K equity · 2 positions</small></div></article>
-        <article class="sleeve-row" data-sleeve="alphaforge"><div class="sleeve-index">04</div><div class="sleeve-name"><span>Crypto funding carry</span><h3>AlphaForge</h3></div><p>Funding-rate carry across perpetual futures, marked from live exchange books.</p><dl><div><dt>Execution</dt><dd>Local paper</dd></div><div><dt>Target weight</dt><dd>25%</dd></div></dl><div class="sleeve-state"><span class="state-pill state-pill--local">Observed local</span><small>Live books, simulated fills</small></div></article>
-      </div>
-      <div class="sleeves-footer"><div><span>Research-window correlation</span><small>Simulated / not live-forward proof</small></div><strong id="correlation-reading">+0.0248</strong><a href="/systems">Inspect every system <span aria-hidden="true">→</span></a></div>
-    </section>
 
+
+    </div></details>
     <section class="research" id="research" aria-labelledby="research-title">
       <div class="research__intro"><p class="eyebrow">Open research book</p><h2 id="research-title">The failed trials stay visible.</h2><p>The goal is not to look right in hindsight. It is to preserve what was tested, what failed, what changed, and which claims remain unearned.</p><div class="research-counts"><div><strong id="research-documents">111</strong><span>published documents</span></div><div><strong id="research-killed">46</strong><span>rejected or screen-killed</span></div></div><p class="research-accounting-note">Hypothesis identities, family decisions, and complete trial packets are separate accounting units. The <a href="/trials">trial ledger</a> shows the denominator.</p><a class="button button--light" href="/research">Read the research library</a></div>
       <div class="paper-stack"><a class="paper-card" href="/research/crypto-carry-portable-v1"><span>Portable reproduction</span><h3>Crypto Carry, without the private lake</h3><p>A bounded package for reproducing the selected carry result from public inputs.</p><em>Read paper <span aria-hidden="true">↗</span></em></a><a class="paper-card" href="/research/corporate-action-basis-reconstruction"><span>Data integrity</span><h3>Corporate-action basis reconstruction</h3><p>Why split and dividend semantics can move an apparently stable equity result.</p><em>Read paper <span aria-hidden="true">↗</span></em></a><a class="paper-card" href="/research/forward-sharpe-evidence-standard"><span>Research standard</span><h3>What would count as forward Sharpe evidence?</h3><p>The observation, provenance, and maturity requirements fixed before the result arrives.</p><em>Read paper <span aria-hidden="true">↗</span></em></a></div>
     </section>
 
-    <section class="trust section" id="trust" aria-labelledby="trust-title">
-      <div class="section-heading section-heading--split"><div><p class="eyebrow">Authorship & accountability</p><h2 id="trust-title">Built by Arhan Canli. Audited in public.</h2></div><p>Canli Capital is currently a research project, not a fund or investment adviser. Arhan is the named author of the research, code, corrections, and public operating record.</p></div>
-      <div class="trust-grid"><article><span>Founder</span><h3>Arhan Canli / Dubai</h3><p>Quantitative researcher and builder of ALPHAC.</p><p class="trust__stat">Building since <strong>July 2024</strong> <span>&middot;</span> public record from <strong id="trust-record-start">07 Aug 2026</strong></p><a href="/founder">Founder record</a></article><article><span>Method contract</span><h3>Prospective admission v7</h3><p>New sleeve decisions are graded under the in-force rules.</p><p class="trust__stat"><strong id="trust-sleeves">4</strong> admitted of a <strong id="trust-target">14</strong>-sleeve objective</p><a href="/methodology">Read methodology</a></article><article><span>Execution boundary</span><h3>Paper record, real broker plumbing</h3><p>Alpaca paper fills and local simulated crypto fills are never presented as funded execution.</p><p class="trust__stat"><strong id="trust-accounts">3</strong> dedicated accounts <span>&middot;</span> <strong id="trust-funded">0</strong> funded</p><a href="/measurements/alpaca-broker-reconciliation">Broker evidence</a></article><article><span>Incident policy</span><h3>Append, explain, preserve</h3><p>A correction keeps the superseded claim and the evidence that exposed it.</p><p class="trust__stat"><strong id="trust-chain">538</strong> signed entries, append-only</p><a href="/progress">Correction record</a></article></div>
+    <details class="deep-record deep-record--facts" id="evidence-details" open><summary><span>Know the limits</span><strong>Every claim has a basis</strong><span class="deep-record__hint">Observed, simulated and planned. Inspect the complete dated dashboard.</span><span class="deep-record__icon" aria-hidden="true">+</span></summary><div class="deep-record__body">
+    <section class="evidence section" id="evidence" aria-labelledby="evidence-title">
+      <div class="section-heading section-heading--split"><div><p class="eyebrow">Dated evidence dashboard</p><h2 id="evidence-title">What was observed, what was simulated, and what is still only a goal.</h2></div><p>Performance targets never inherit the styling of earned results. Every figure below is bound by the same <a href="/open">honesty pledge</a> published in full.</p></div>
+      <div class="evidence-ledger">
+        <article class="evidence-ledger__primary"><div class="evidence-ledger__label"><span>Current forward record</span><em class="basis basis--observed">Observed / paper</em></div><strong id="evidence-observations">0</strong><p>daily return observations</p><a href="/measurements/forward-evidence-maturity">Inspect maturity evidence <span aria-hidden="true">↗</span></a></article>
+        <article><span>Alpaca execution</span><strong id="evidence-accounts">3 / paper</strong><small>Dedicated paper sleeves</small></article>
+        <article><span>Broker book</span><strong id="evidence-positions">191 / 26</strong><small>Positions / open orders</small></article>
+        <article><span>Funded strategy record</span><strong>Not active</strong><small>Any separate $1 account is not yet attested here</small></article>
+        <article><span>Validation</span><strong id="evidence-status">Broker pass</strong><small>Green only when reconciliation passes</small></article>
+      </div>
+      <div class="evidence-frontier" aria-label="Objectives and model estimates">
+        <article><em class="basis basis--planned">Objective</em><span>Forward Sharpe</span><strong id="objective-forward-sharpe">2.00</strong><small>Not yet estimated from the forward record</small></article>
+        <article><em class="basis basis--planned">Objective</em><span>Expected max drawdown</span><strong id="objective-max-drawdown">10.00%</strong><small>Portfolio objective, not a guarantee</small></article>
+        <article><em class="basis basis--estimated">Model estimate</em><span>Expected max drawdown</span><strong id="model-expected-drawdown">9.32%</strong><small>Current composition / not live established</small></article>
+        <article><em class="basis basis--estimated">Model estimate</em><span>p95 max drawdown</span><strong id="model-p95-drawdown">16.45%</strong><small>Published even though it exceeds the objective</small></article>
+      </div>
+      <section class="evidence-detail" aria-labelledby="evidence-detail-title">
+        <header class="evidence-detail__head">
+          <div><p class="eyebrow">Record freshness and execution basis</p><h3 id="evidence-detail-title">The operating facts behind the curve.</h3></div>
+          <div class="signed-head"><span>Latest signed record</span><strong id="evidence-signed-time">15 Sept 2026, 14:27 UTC</strong><small id="evidence-chain-head">seq 952 / 255006641c7d3cd6…</small><a href="/verify">Verify this record <span aria-hidden="true">↗</span></a></div>
+        </header>
+        <div class="evidence-detail__grid">
+          <article><span>Forward window</span><strong id="evidence-forward-window">07 Aug to 15 Sept</strong><p id="evidence-forward-days">39 paper-trading days, 0 return observations.</p><a href="/measurements/forward-evidence-maturity">Open maturity record</a></article>
+          <article><span>Broker exposure</span><strong id="evidence-gross-range">27.9% to 71.1% gross</strong><p id="evidence-net-range">+0.12% to +31.25% net across dedicated broker accounts. Not a composite exposure.</p><a href="/measurements/alpaca-broker-reconciliation">Open broker evidence</a></article>
+          <article><span>Forward turnover</span><strong>Not published</strong><p>The public record does not yet expose a governed composite turnover series.</p><a href="/methodology">Read the measurement rule</a></article>
+          <article><span>Observed slippage</span><strong id="evidence-slippage-state">Not measurable</strong><p id="evidence-slippage-note">Equity fills lack a decision-price reference. The measured crypto component predates the current forward window.</p><a href="/measurements/cost-model-realism">Open cost evidence</a></article>
+        </div>
+        <div class="broker-matrix" aria-label="Execution status by sleeve">
+          <div class="broker-matrix__heading"><span>Sleeve</span><span>Execution</span><span>Latest observation</span><span>State</span></div>
+          <div data-broker-row="alphamax"><strong>AlphaMax</strong><span>Alpaca paper</span><span data-broker-observation>174 positions / 15 Sept 2026, 14:25 UTC</span><em data-broker-state>Pass</em></div>
+          <div data-broker-row="managed_futures"><strong>AlphaTrend</strong><span>Alpaca paper</span><span data-broker-observation>15 positions / 15 Sept 2026, 14:25 UTC</span><em data-broker-state>Pass</em></div>
+          <div data-broker-row="alphavintage"><strong>AlphaVintage</strong><span>Alpaca paper</span><span data-broker-observation>2 positions / 15 Sept 2026, 14:25 UTC</span><em data-broker-state>Pass</em></div>
+          <div data-broker-row="alphaforge"><strong>AlphaForge</strong><span>Local paper</span><span>Live exchange books, simulated fills</span><em data-broker-state="local">Local only</em></div>
+        </div>
+        <div class="validation-callout" data-validation-state="loading"><span class="validation-callout__signal" aria-hidden="true"></span><div><strong id="evidence-validation-label">Broker pass / forward goals open / C+</strong><p id="evidence-validation-reason">Broker reconciliation passes. The forward record is still too young to establish the performance objectives.</p></div><a href="/measurements/program-status">Read grading contract</a></div>
+      </section>
+      <div class="basis-grid" aria-labelledby="basis-title">
+        <div class="basis-grid__heading"><p class="eyebrow">Evidence grammar</p><h3 id="basis-title">Three labels. No ambiguity.</h3></div>
+        <article><em class="basis basis--observed">Observed</em><h3>Broker & paper record</h3><p>Marks, positions, orders, and drawdown already recorded by the current paper system.</p></article>
+        <article><em class="basis basis--simulated">Simulated</em><h3>Research evidence</h3><p>Walk-forward, stress, and capacity results under declared data and cost assumptions.</p></article>
+        <article><em class="basis basis--planned">Planned</em><h3><span id="target-sleeve-count">14</span>-sleeve frontier</h3><p>A governed breadth objective. It is not represented as a current portfolio achievement.</p></article>
+      </div>
     </section>
 
+    </div></details>
+    <section class="trust section" id="trust" aria-labelledby="trust-title">
+      <div class="section-heading section-heading--split"><div><p class="eyebrow">Authorship & accountability</p><h2 id="trust-title">A named builder.<br />An open record.</h2></div><p>Built by Arhan Canli in Dubai. Research, code, corrections and operating evidence carry a name. This is a research project, not a fund or investment adviser.</p></div>
+      <div class="trust-grid"><article><span>Founder</span><h3>Arhan Canli / Dubai</h3><p>Quantitative researcher and builder of ALPHAC.</p><p class="trust__stat">Building since <strong>July 2024</strong> <span>&middot;</span> public record from <strong id="trust-record-start">07 Aug 2026</strong></p><a href="/founder">Founder record</a></article><article><span>Method contract</span><h3>Prospective admission v7</h3><p>New sleeve decisions are graded under the in-force rules.</p><p class="trust__stat"><strong id="trust-sleeves">4</strong> admitted of a <strong id="trust-target">14</strong>-sleeve objective</p><a href="/methodology">Read methodology</a></article><article><span>Execution boundary</span><h3>Paper record, real broker plumbing</h3><p>Alpaca paper fills and local simulated crypto fills are never presented as funded execution.</p><p class="trust__stat"><strong id="trust-accounts">3</strong> dedicated accounts <span>&middot;</span> <strong id="trust-funded">0</strong> funded</p><a href="/measurements/alpaca-broker-reconciliation">Broker evidence</a></article><article><span>Incident policy</span><h3>Append, explain, preserve</h3><p>A correction keeps the superseded claim and the evidence that exposed it.</p><p class="trust__stat"><strong id="trust-chain">953</strong> signed entries, append-only</p><a href="/progress">Correction record</a></article></div>
+    </section>
+
+    <section class="home-questions section" aria-labelledby="home-questions-title">
+      <div><p class="eyebrow">Before you go further</p><h2 id="home-questions-title">Good questions.<br />Clear boundaries.</h2><a href="/methodology">Read the full methodology ↗</a></div>
+      <div class="home-questions__list">
+        <details><summary>Are these strategies trading real capital?</summary><p>The published strategy record is paper execution, not funded trading. Three sleeves use Alpaca paper accounts; AlphaForge uses local simulated fills from live exchange books. Paper results do not establish executable future returns. <a href="/performance">Inspect the record and its basis.</a></p></details>
+        <details><summary>What does “glassbox” mean here?</summary><p>You can inspect the research, strategy rules, paper observations, failed work and corrections. The public record is self-published; transparency is not the same as an independent audit. <a href="/verify">See how to verify the evidence.</a></p></details>
+        <details><summary>What can I do with an API key?</summary><p>Submit your own research inputs to the validation tools and inspect their calculation receipts. The developer page includes key generation and Python, JavaScript and curl examples. A validation result is not an endorsement of a strategy. <a href="/developers#quickstart">Start with the developer quickstart.</a></p></details>
+        <details><summary>Can I invest or copy the trades?</summary><p>Canli Capital is a research project, not a fund or investment adviser. This site does not offer managed capital or copy-trading. <a href="/open">Read the project's boundaries.</a></p></details>
+      </div>
+    </section>
     <section class="access" id="access" aria-labelledby="access-title">
       <div><p class="eyebrow">Research access</p><h2 id="access-title">Start with the evidence.</h2><p>The dashboard and research library need no account. Join only for research releases and future account features. No paid plan is currently offered.</p></div>
       <div class="access__actions"><a class="button button--primary" href="https://app.canlicapital.com/dashboard">View the live record <span aria-hidden="true">↗</span></a><a class="button button--ghost-light" href="/research">Open research</a></div>
       <form class="access-form" id="waitlist-form" action="/api/waitlist" method="post" novalidate><label for="email">Research release notes</label><div class="access-form__control"><input id="email" name="email" type="email" autocomplete="email" inputmode="email" spellcheck="false" placeholder="you@example.com…" required aria-describedby="form-status" /><button type="submit">Join updates</button></div><div class="honeypot"><label for="company">Leave this field blank</label><input id="company" name="company" tabindex="-1" autocomplete="off" /></div><p id="form-status" role="status" aria-live="polite">Optional release notes only. The public record is already open.</p></form>
     </section>
+    </div></div>
   </main>
 
-  <footer class="cc-footer" id="footer" data-product-shell="v3">
+  <footer class="cc-footer" id="footer" data-product-shell="v3" data-shell-revision="4">
+  <details class="cc-footer__context"><summary>About the research-to-record workflow</summary><section class="cc-handoff" aria-labelledby="cc-handoff-title">
+    <div class="cc-handoff__viewport">
+      <div class="cc-handoff__intro"><p>Research → Validation → Publication</p><h2 id="cc-handoff-title">From an idea.<br />To a record.</h2><p>Carry the inputs, assumptions and limits with the result. The evidence should survive every handoff.</p></div>
+      <div class="cc-handoff__stage" aria-hidden="true">
+        <svg class="cc-handoff__route" viewBox="0 0 1000 300" preserveAspectRatio="none"><path class="cc-handoff__track" d="M120 210C280 210 310 85 500 85S720 210 880 210"/><path class="cc-handoff__trace" pathLength="1" d="M120 210C280 210 310 85 500 85S720 210 880 210"/></svg>
+        <div class="cc-handoff__dock cc-handoff__dock--inputs"><i></i><i></i><i></i></div>
+        <div class="cc-handoff__gate"><i></i><i></i><i></i></div>
+        <div class="cc-handoff__dock cc-handoff__dock--record"><i></i><i></i><i></i></div>
+        <div class="cc-handoff__packet">
+          <img src="/cinema/optical-master-v3-1536.webp" width="1536" height="1536" loading="lazy" alt="" />
+        </div>
+      </div>
+      <div class="cc-handoff__steps">
+        <a href="/research" data-handoff-step="0"><span>Define</span><strong>The research packet</strong><small>Inputs, rules and the failed trials.</small><em>Inspect the research ↗</em></a>
+        <a href="/developers#validation" data-handoff-step="1"><span>Reproduce</span><strong>The calculation receipt</strong><small>Your inputs. Declared arithmetic.</small><em>Explore the validation API ↗</em></a>
+        <a href="/verify" data-handoff-step="2"><span>Inspect</span><strong>The published record</strong><small>Sources, corrections and boundaries.</small><em>Verify the evidence ↗</em></a>
+      </div>
+      <p class="cc-handoff__boundary">Conceptual workflow. This animation sends no request. A receipt is not proof of future returns.</p>
+    </div>
+  </section></details>
   <div class="cc-footer__lead">
     <a class="cc-footer__brand" href="/">Canli Capital</a>
     <p>Build the claim. Publish the evidence. Keep the failures.</p>
@@ -405,8 +473,19 @@
     record begins 2026-08-07; the years before it are engineering, not track record.</p>
     <span>Copyright Arhan Canli</span>
   </div>
+  <div class="cc-footer__wordmark" aria-hidden="true">Canli Capital<span><svg viewBox="0 0 80 80" focusable="false" aria-hidden="true"><path d="M12 68 68 12M12 12h56v56" fill="none" stroke="currentColor" stroke-width="4" /></svg></span></div>
+  <script type="module" src="/js/site-motion.js"></script>
 </footer>
-  <script type="module" src="/js/entry-mount.js"></script>
+  <script type="module" src="/js/cinematic-home.js"></script>
   <script type="module" src="/js/home.js"></script>
+  <script>
+    // Local-only design capture; never loads third-party tooling for visitors.
+    if (['localhost', '127.0.0.1'].includes(location.hostname) && location.hash.includes('figmacapture=')) {
+      const capture = document.createElement('script');
+      capture.src = 'https://mcp.figma.com/mcp/html-to-design/capture.js';
+      capture.async = true;
+      document.head.append(capture);
+    }
+  </script>
 </body>
 </html>

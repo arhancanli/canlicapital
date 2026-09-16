@@ -236,6 +236,1081 @@
       }
     },
     {
+      "artifact_path": null,
+      "artifact_sha256": null,
+      "config_hash": "dd93b0f3616bed03",
+      "configuration": {
+        "allocator": "trend",
+        "alpha_names": [
+          "mf_trend_63",
+          "mf_trend_126",
+          "mf_trend_252"
+        ],
+        "cost_stress": false,
+        "cov_halflife_days": null,
+        "cov_min_periods": 240,
+        "cov_window_bars": 720,
+        "direction_confirmation": true,
+        "end": 1789171200000,
+        "evaluation_policy": "continuous_retrospective_payable_book_v1",
+        "history_start": 1325548800000,
+        "implementation_manifest_sha256": "5df2462265b65f1bb56fd5fe425bb91a6db1e060cda25d8c21bc105328c8a8bd",
+        "initial_cash": 100000.0,
+        "input_binding": {
+          "execution_mode": "RETROSPECTIVE_CURRENT_VINTAGE",
+          "mode": "DIAGNOSTIC_CURRENT_VINTAGE",
+          "paired_input_sha256": "5f977ccd06240643eb1787d214b7ec31c0a92df1fcb1e40014ba710c218a8064",
+          "point_in_time_proven": false,
+          "quote_volume": "raw_close_times_raw_volume_proxy",
+          "raw_label_convention": "raw_open_cash_accrual_fixed_release_v2",
+          "raw_label_input_sha256": "e8e1b01cd0f10308d0a2d2717e5cf8e74dff49810ab4137e34b763993d85de5a",
+          "raw_label_mode": "DIAGNOSTIC_CURRENT_VINTAGE",
+          "retrospective_vintage_ms": 1789214263591,
+          "risk_prices": "synthetic_returns_raw_position_marks_v1"
+        },
+        "instrument_ids": [
+          "XUSE:CASH:DBAUSD",
+          "XUSE:CASH:DBCUSD",
+          "XUSE:CASH:EEMUSD",
+          "XUSE:CASH:EFAUSD",
+          "XUSE:CASH:FXEUSD",
+          "XUSE:CASH:FXYUSD",
+          "XUSE:CASH:GLDUSD",
+          "XUSE:CASH:IEFUSD",
+          "XUSE:CASH:IWMUSD",
+          "XUSE:CASH:QQQUSD",
+          "XUSE:CASH:SHYUSD",
+          "XUSE:CASH:SLVUSD",
+          "XUSE:CASH:SPYUSD",
+          "XUSE:CASH:TLTUSD",
+          "XUSE:CASH:UNGUSD",
+          "XUSE:CASH:USOUSD",
+          "XUSE:CASH:UUPUSD"
+        ],
+        "metric_basis": "xnys_252_sessions_elapsed_cagr_v1",
+        "no_trade_band": 0.001,
+        "positive_targets": false,
+        "positive_targets_spec_sha256": "1eb5ab560a2f23156840cfbdc6083fd2d561ec5fac8783f6c38eed775b697b75",
+        "rebalance_bars": 10,
+        "resolved_settings": {
+          "costs": {
+            "default_half_spread_bps": 2.5,
+            "equity_borrow_bps_annual": 50.0,
+            "equity_commission_bps": 1.0,
+            "equity_half_spread_bps": 3.0,
+            "impact_coef": 1.0,
+            "latency_addon_bps": 2.0,
+            "perp_maker_bps": 2.0,
+            "perp_taker_bps": 5.0
+          },
+          "data": {
+            "asset_class": "equity",
+            "backfill_start": "2001-01-01T00:00:00Z",
+            "exchange": "polygon",
+            "ingest_grace_ms": 30000,
+            "timeframe": "1d"
+          },
+          "live": {
+            "cycle_grace_s": 90,
+            "paper": true,
+            "tick_sleep_s": 45
+          },
+          "portfolio": {
+            "dollar_neutral": false,
+            "gross_max": 1.0,
+            "net_max": 1.0,
+            "no_trade_band": 0.001,
+            "rank_top_k": null,
+            "risk_aversion": 7.0,
+            "turnover_max": 0.1,
+            "vol_scale_max": 3.0,
+            "vol_target_ann": 0.15,
+            "w_max": 0.34
+          },
+          "quality": {
+            "bad_print_reversion_frac": 0.5,
+            "bad_print_vol_frac": 0.25,
+            "downtime_frac": 0.8,
+            "ewma_span_bars": 168,
+            "min_history_bars": 24,
+            "outlier_k": 8.0,
+            "stale_run_bars": 12
+          },
+          "risk": {
+            "clamp_reduce_only_adv": true,
+            "dd_flat_halt": -0.45,
+            "dd_halve_gross": -0.3,
+            "flat_cooldown_bars": 336,
+            "max_gross": 1.0,
+            "max_net": 1.0,
+            "max_order_adv_frac": 0.01,
+            "max_position_frac": 0.34,
+            "price_collar_frac": 0.05,
+            "staleness_max_bars": 2,
+            "var_confidence": 0.99,
+            "var_window_days": 365
+          },
+          "signals": {
+            "horizon_bars": 21,
+            "ic_target": 0.02
+          },
+          "universe": {
+            "entry_rank": 20,
+            "exit_rank": 25,
+            "rank_window_days": 30,
+            "rebalance": "monthly",
+            "size": 20
+          }
+        },
+        "saved_signal_sha256": "e0d6c54d659790e2a8ef4e3d2871a0c427b7278e45987a7b09d226df713da5b0",
+        "start": 1420156800000,
+        "trend_blend_normalization": "cross_sectional_zscore",
+        "trend_ic_history_anchor": 1325548800000,
+        "trend_label_availability": "raw_cash_exit_session_close_v2"
+      },
+      "evidence_grade": "immutable_ledger_summary_only",
+      "hypothesis_key": "0c9f361e535c5d86",
+      "ledger_source_path": "artifacts/analysis/alphatrend_positive_targets_20260913/baseline/experiments.jsonl",
+      "result": {
+        "annualized_sharpe": 0.2903696034909428,
+        "artifact_era_dsr": null,
+        "kurtosis": 6.147699000194615,
+        "maximum_drawdown": null,
+        "observations": 2939,
+        "skew": -0.4008512817652573
+      }
+    },
+    {
+      "artifact_path": null,
+      "artifact_sha256": null,
+      "config_hash": "89e313502446e33a",
+      "configuration": {
+        "allocator": "trend",
+        "alpha_names": [
+          "mf_trend_63",
+          "mf_trend_126",
+          "mf_trend_252"
+        ],
+        "end": 1787529600000,
+        "instrument_ids": [
+          "XUSE:CASH:DBAUSD",
+          "XUSE:CASH:DBCUSD",
+          "XUSE:CASH:EEMUSD",
+          "XUSE:CASH:EFAUSD",
+          "XUSE:CASH:FXEUSD",
+          "XUSE:CASH:FXYUSD",
+          "XUSE:CASH:GLDUSD",
+          "XUSE:CASH:IEFUSD",
+          "XUSE:CASH:IWMUSD",
+          "XUSE:CASH:QQQUSD",
+          "XUSE:CASH:SHYUSD",
+          "XUSE:CASH:SLVUSD",
+          "XUSE:CASH:SPYUSD",
+          "XUSE:CASH:TLTUSD",
+          "XUSE:CASH:UNGUSD",
+          "XUSE:CASH:USOUSD",
+          "XUSE:CASH:UUPUSD"
+        ],
+        "no_trade_band": 0.001,
+        "rebalance_bars": 10,
+        "start": 1041379200000,
+        "test_bars": 126,
+        "train_bars": 504,
+        "trend_cost_gate": {
+          "basis": "modeled",
+          "horizon_bars": 21,
+          "periods_per_year": 252.0,
+          "rows": [
+            {
+              "end_ms": 1787529600000,
+              "instrument_id": "XUSE:CASH:DBAUSD",
+              "known_ms": 0,
+              "round_trip_fraction": 0.002464911064067352,
+              "side": "long",
+              "source": "frozen_development_scenario_v1",
+              "start_ms": 0
+            },
+            {
+              "end_ms": 1787529600000,
+              "instrument_id": "XUSE:CASH:DBAUSD",
+              "known_ms": 0,
+              "round_trip_fraction": 0.002875869968176941,
+              "side": "short",
+              "source": "frozen_development_scenario_v1",
+              "start_ms": 0
+            },
+            {
+              "end_ms": 1787529600000,
+              "instrument_id": "XUSE:CASH:DBCUSD",
+              "known_ms": 0,
+              "round_trip_fraction": 0.002464911064067352,
+              "side": "long",
+              "source": "frozen_development_scenario_v1",
+              "start_ms": 0
+            },
+            {
+              "end_ms": 1787529600000,
+              "instrument_id": "XUSE:CASH:DBCUSD",
+              "known_ms": 0,
+              "round_trip_fraction": 0.002875869968176941,
+              "side": "short",
+              "source": "frozen_development_scenario_v1",
+              "start_ms": 0
+            },
+            {
+              "end_ms": 1787529600000,
+              "instrument_id": "XUSE:CASH:EEMUSD",
+              "known_ms": 0,
+              "round_trip_fraction": 0.002464911064067352,
+              "side": "long",
+              "source": "frozen_development_scenario_v1",
+              "start_ms": 0
+            },
+            {
+              "end_ms": 1787529600000,
+              "instrument_id": "XUSE:CASH:EEMUSD",
+              "known_ms": 0,
+              "round_trip_fraction": 0.002875869968176941,
+              "side": "short",
+              "source": "frozen_development_scenario_v1",
+              "start_ms": 0
+            },
+            {
+              "end_ms": 1787529600000,
+              "instrument_id": "XUSE:CASH:EFAUSD",
+              "known_ms": 0,
+              "round_trip_fraction": 0.002464911064067352,
+              "side": "long",
+              "source": "frozen_development_scenario_v1",
+              "start_ms": 0
+            },
+            {
+              "end_ms": 1787529600000,
+              "instrument_id": "XUSE:CASH:EFAUSD",
+              "known_ms": 0,
+              "round_trip_fraction": 0.002875869968176941,
+              "side": "short",
+              "source": "frozen_development_scenario_v1",
+              "start_ms": 0
+            },
+            {
+              "end_ms": 1787529600000,
+              "instrument_id": "XUSE:CASH:FXEUSD",
+              "known_ms": 0,
+              "round_trip_fraction": 0.002464911064067352,
+              "side": "long",
+              "source": "frozen_development_scenario_v1",
+              "start_ms": 0
+            },
+            {
+              "end_ms": 1787529600000,
+              "instrument_id": "XUSE:CASH:FXEUSD",
+              "known_ms": 0,
+              "round_trip_fraction": 0.002875869968176941,
+              "side": "short",
+              "source": "frozen_development_scenario_v1",
+              "start_ms": 0
+            },
+            {
+              "end_ms": 1787529600000,
+              "instrument_id": "XUSE:CASH:FXYUSD",
+              "known_ms": 0,
+              "round_trip_fraction": 0.002464911064067352,
+              "side": "long",
+              "source": "frozen_development_scenario_v1",
+              "start_ms": 0
+            },
+            {
+              "end_ms": 1787529600000,
+              "instrument_id": "XUSE:CASH:FXYUSD",
+              "known_ms": 0,
+              "round_trip_fraction": 0.002875869968176941,
+              "side": "short",
+              "source": "frozen_development_scenario_v1",
+              "start_ms": 0
+            },
+            {
+              "end_ms": 1787529600000,
+              "instrument_id": "XUSE:CASH:GLDUSD",
+              "known_ms": 0,
+              "round_trip_fraction": 0.002464911064067352,
+              "side": "long",
+              "source": "frozen_development_scenario_v1",
+              "start_ms": 0
+            },
+            {
+              "end_ms": 1787529600000,
+              "instrument_id": "XUSE:CASH:GLDUSD",
+              "known_ms": 0,
+              "round_trip_fraction": 0.002875869968176941,
+              "side": "short",
+              "source": "frozen_development_scenario_v1",
+              "start_ms": 0
+            },
+            {
+              "end_ms": 1787529600000,
+              "instrument_id": "XUSE:CASH:IEFUSD",
+              "known_ms": 0,
+              "round_trip_fraction": 0.002464911064067352,
+              "side": "long",
+              "source": "frozen_development_scenario_v1",
+              "start_ms": 0
+            },
+            {
+              "end_ms": 1787529600000,
+              "instrument_id": "XUSE:CASH:IEFUSD",
+              "known_ms": 0,
+              "round_trip_fraction": 0.002875869968176941,
+              "side": "short",
+              "source": "frozen_development_scenario_v1",
+              "start_ms": 0
+            },
+            {
+              "end_ms": 1787529600000,
+              "instrument_id": "XUSE:CASH:IWMUSD",
+              "known_ms": 0,
+              "round_trip_fraction": 0.002464911064067352,
+              "side": "long",
+              "source": "frozen_development_scenario_v1",
+              "start_ms": 0
+            },
+            {
+              "end_ms": 1787529600000,
+              "instrument_id": "XUSE:CASH:IWMUSD",
+              "known_ms": 0,
+              "round_trip_fraction": 0.002875869968176941,
+              "side": "short",
+              "source": "frozen_development_scenario_v1",
+              "start_ms": 0
+            },
+            {
+              "end_ms": 1787529600000,
+              "instrument_id": "XUSE:CASH:QQQUSD",
+              "known_ms": 0,
+              "round_trip_fraction": 0.002464911064067352,
+              "side": "long",
+              "source": "frozen_development_scenario_v1",
+              "start_ms": 0
+            },
+            {
+              "end_ms": 1787529600000,
+              "instrument_id": "XUSE:CASH:QQQUSD",
+              "known_ms": 0,
+              "round_trip_fraction": 0.002875869968176941,
+              "side": "short",
+              "source": "frozen_development_scenario_v1",
+              "start_ms": 0
+            },
+            {
+              "end_ms": 1787529600000,
+              "instrument_id": "XUSE:CASH:SHYUSD",
+              "known_ms": 0,
+              "round_trip_fraction": 0.002464911064067352,
+              "side": "long",
+              "source": "frozen_development_scenario_v1",
+              "start_ms": 0
+            },
+            {
+              "end_ms": 1787529600000,
+              "instrument_id": "XUSE:CASH:SHYUSD",
+              "known_ms": 0,
+              "round_trip_fraction": 0.002875869968176941,
+              "side": "short",
+              "source": "frozen_development_scenario_v1",
+              "start_ms": 0
+            },
+            {
+              "end_ms": 1787529600000,
+              "instrument_id": "XUSE:CASH:SLVUSD",
+              "known_ms": 0,
+              "round_trip_fraction": 0.002464911064067352,
+              "side": "long",
+              "source": "frozen_development_scenario_v1",
+              "start_ms": 0
+            },
+            {
+              "end_ms": 1787529600000,
+              "instrument_id": "XUSE:CASH:SLVUSD",
+              "known_ms": 0,
+              "round_trip_fraction": 0.002875869968176941,
+              "side": "short",
+              "source": "frozen_development_scenario_v1",
+              "start_ms": 0
+            },
+            {
+              "end_ms": 1787529600000,
+              "instrument_id": "XUSE:CASH:SPYUSD",
+              "known_ms": 0,
+              "round_trip_fraction": 0.002464911064067352,
+              "side": "long",
+              "source": "frozen_development_scenario_v1",
+              "start_ms": 0
+            },
+            {
+              "end_ms": 1787529600000,
+              "instrument_id": "XUSE:CASH:SPYUSD",
+              "known_ms": 0,
+              "round_trip_fraction": 0.002875869968176941,
+              "side": "short",
+              "source": "frozen_development_scenario_v1",
+              "start_ms": 0
+            },
+            {
+              "end_ms": 1787529600000,
+              "instrument_id": "XUSE:CASH:TLTUSD",
+              "known_ms": 0,
+              "round_trip_fraction": 0.002464911064067352,
+              "side": "long",
+              "source": "frozen_development_scenario_v1",
+              "start_ms": 0
+            },
+            {
+              "end_ms": 1787529600000,
+              "instrument_id": "XUSE:CASH:TLTUSD",
+              "known_ms": 0,
+              "round_trip_fraction": 0.002875869968176941,
+              "side": "short",
+              "source": "frozen_development_scenario_v1",
+              "start_ms": 0
+            },
+            {
+              "end_ms": 1787529600000,
+              "instrument_id": "XUSE:CASH:UNGUSD",
+              "known_ms": 0,
+              "round_trip_fraction": 0.002464911064067352,
+              "side": "long",
+              "source": "frozen_development_scenario_v1",
+              "start_ms": 0
+            },
+            {
+              "end_ms": 1787529600000,
+              "instrument_id": "XUSE:CASH:UNGUSD",
+              "known_ms": 0,
+              "round_trip_fraction": 0.002875869968176941,
+              "side": "short",
+              "source": "frozen_development_scenario_v1",
+              "start_ms": 0
+            },
+            {
+              "end_ms": 1787529600000,
+              "instrument_id": "XUSE:CASH:USOUSD",
+              "known_ms": 0,
+              "round_trip_fraction": 0.002464911064067352,
+              "side": "long",
+              "source": "frozen_development_scenario_v1",
+              "start_ms": 0
+            },
+            {
+              "end_ms": 1787529600000,
+              "instrument_id": "XUSE:CASH:USOUSD",
+              "known_ms": 0,
+              "round_trip_fraction": 0.002875869968176941,
+              "side": "short",
+              "source": "frozen_development_scenario_v1",
+              "start_ms": 0
+            },
+            {
+              "end_ms": 1787529600000,
+              "instrument_id": "XUSE:CASH:UUPUSD",
+              "known_ms": 0,
+              "round_trip_fraction": 0.002464911064067352,
+              "side": "long",
+              "source": "frozen_development_scenario_v1",
+              "start_ms": 0
+            },
+            {
+              "end_ms": 1787529600000,
+              "instrument_id": "XUSE:CASH:UUPUSD",
+              "known_ms": 0,
+              "round_trip_fraction": 0.002875869968176941,
+              "side": "short",
+              "source": "frozen_development_scenario_v1",
+              "start_ms": 0
+            }
+          ],
+          "sha256": "0090aab07087832ac1b54d70a647ea833dd82c1c443753a7f42703561796a831"
+        }
+      },
+      "evidence_grade": "immutable_ledger_summary_only",
+      "hypothesis_key": "0d1ecbac03f062ab",
+      "ledger_source_path": "artifacts/analysis/alphatrend_cost_development_20260911_attempt2/experiments.jsonl",
+      "result": {
+        "annualized_sharpe": 0.21263801399816315,
+        "artifact_era_dsr": null,
+        "kurtosis": 10.172774855755868,
+        "maximum_drawdown": null,
+        "observations": 5190,
+        "skew": -0.34373529522169904
+      }
+    },
+    {
+      "artifact_path": null,
+      "artifact_sha256": null,
+      "config_hash": "5eb0aa6336f81747",
+      "configuration": {
+        "allocator": "trend",
+        "alpha_names": [
+          "mf_trend_63",
+          "mf_trend_126",
+          "mf_trend_252"
+        ],
+        "cov_halflife_days": null,
+        "cov_min_periods": 240,
+        "cov_window_bars": 720,
+        "end": 1787529600000,
+        "evaluation_policy": "continuous_single_book_v1",
+        "execution_cost_scenario": {
+          "name": "double_all_modeled_costs_v1",
+          "resolved_costs": {
+            "default_half_spread_bps": 2.5,
+            "equity_borrow_bps_annual": 100.0,
+            "equity_commission_bps": 2.0,
+            "equity_half_spread_bps": 6.0,
+            "impact_coef": 2.0,
+            "latency_addon_bps": 4.0,
+            "perp_maker_bps": 2.0,
+            "perp_taker_bps": 5.0
+          }
+        },
+        "history_start": 1041379200000,
+        "initial_cash": 100000.0,
+        "instrument_ids": [
+          "XUSE:CASH:DBAUSD",
+          "XUSE:CASH:DBCUSD",
+          "XUSE:CASH:EEMUSD",
+          "XUSE:CASH:EFAUSD",
+          "XUSE:CASH:FXEUSD",
+          "XUSE:CASH:FXYUSD",
+          "XUSE:CASH:GLDUSD",
+          "XUSE:CASH:IEFUSD",
+          "XUSE:CASH:IWMUSD",
+          "XUSE:CASH:QQQUSD",
+          "XUSE:CASH:SHYUSD",
+          "XUSE:CASH:SLVUSD",
+          "XUSE:CASH:SPYUSD",
+          "XUSE:CASH:TLTUSD",
+          "XUSE:CASH:UNGUSD",
+          "XUSE:CASH:USOUSD",
+          "XUSE:CASH:UUPUSD"
+        ],
+        "metric_basis": "xnys_252_sessions_elapsed_cagr_v1",
+        "no_trade_band": 0.001,
+        "rebalance_bars": 10,
+        "start": 1136246400000,
+        "trend_ic_history_anchor": 1073001600000,
+        "trend_label_availability": "exit_session_close_v1"
+      },
+      "evidence_grade": "immutable_ledger_summary_only",
+      "hypothesis_key": "11b181067d8da228",
+      "ledger_source_path": "artifacts/analysis/alphatrend_causal_stress_20260912/baseline/experiments.jsonl",
+      "result": {
+        "annualized_sharpe": 0.014804757121449843,
+        "artifact_era_dsr": null,
+        "kurtosis": 14.436102285169627,
+        "maximum_drawdown": null,
+        "observations": 5190,
+        "skew": 0.12265070450485782
+      }
+    },
+    {
+      "artifact_path": null,
+      "artifact_sha256": null,
+      "config_hash": "2bf69cc38b012958",
+      "configuration": {
+        "allocator": "trend",
+        "alpha_names": [
+          "mf_trend_63",
+          "mf_trend_126",
+          "mf_trend_252"
+        ],
+        "category_targets": false,
+        "category_targets_spec_sha256": "f959b7ed215b1e836c3e419d59a0e7641dbbd5ddb95bd2ed98c5e9fe1233dba3",
+        "cost_stress": false,
+        "cov_halflife_days": null,
+        "cov_min_periods": 240,
+        "cov_window_bars": 720,
+        "direction_confirmation": true,
+        "end": 1789171200000,
+        "evaluation_policy": "continuous_retrospective_payable_book_v1",
+        "history_start": 1325548800000,
+        "implementation_manifest_sha256": "cdadb279638b7cbdaaeb1db8f302be3a522f3997edb7cda36b6be3376420331d",
+        "initial_cash": 100000.0,
+        "input_binding": {
+          "execution_mode": "RETROSPECTIVE_CURRENT_VINTAGE",
+          "mode": "DIAGNOSTIC_CURRENT_VINTAGE",
+          "paired_input_sha256": "5f977ccd06240643eb1787d214b7ec31c0a92df1fcb1e40014ba710c218a8064",
+          "point_in_time_proven": false,
+          "quote_volume": "raw_close_times_raw_volume_proxy",
+          "raw_label_convention": "raw_open_cash_accrual_fixed_release_v2",
+          "raw_label_input_sha256": "e8e1b01cd0f10308d0a2d2717e5cf8e74dff49810ab4137e34b763993d85de5a",
+          "raw_label_mode": "DIAGNOSTIC_CURRENT_VINTAGE",
+          "retrospective_vintage_ms": 1789214263591,
+          "risk_prices": "synthetic_returns_raw_position_marks_v1"
+        },
+        "instrument_ids": [
+          "XUSE:CASH:DBAUSD",
+          "XUSE:CASH:DBCUSD",
+          "XUSE:CASH:EEMUSD",
+          "XUSE:CASH:EFAUSD",
+          "XUSE:CASH:FXEUSD",
+          "XUSE:CASH:FXYUSD",
+          "XUSE:CASH:GLDUSD",
+          "XUSE:CASH:IEFUSD",
+          "XUSE:CASH:IWMUSD",
+          "XUSE:CASH:QQQUSD",
+          "XUSE:CASH:SHYUSD",
+          "XUSE:CASH:SLVUSD",
+          "XUSE:CASH:SPYUSD",
+          "XUSE:CASH:TLTUSD",
+          "XUSE:CASH:UNGUSD",
+          "XUSE:CASH:USOUSD",
+          "XUSE:CASH:UUPUSD"
+        ],
+        "metric_basis": "xnys_252_sessions_elapsed_cagr_v1",
+        "no_trade_band": 0.001,
+        "rebalance_bars": 10,
+        "resolved_settings": {
+          "costs": {
+            "default_half_spread_bps": 2.5,
+            "equity_borrow_bps_annual": 50.0,
+            "equity_commission_bps": 1.0,
+            "equity_half_spread_bps": 3.0,
+            "impact_coef": 1.0,
+            "latency_addon_bps": 2.0,
+            "perp_maker_bps": 2.0,
+            "perp_taker_bps": 5.0
+          },
+          "data": {
+            "asset_class": "equity",
+            "backfill_start": "2001-01-01T00:00:00Z",
+            "exchange": "polygon",
+            "ingest_grace_ms": 30000,
+            "timeframe": "1d"
+          },
+          "live": {
+            "cycle_grace_s": 90,
+            "paper": true,
+            "tick_sleep_s": 45
+          },
+          "portfolio": {
+            "dollar_neutral": false,
+            "gross_max": 1.0,
+            "net_max": 1.0,
+            "no_trade_band": 0.001,
+            "rank_top_k": null,
+            "risk_aversion": 7.0,
+            "turnover_max": 0.1,
+            "vol_scale_max": 3.0,
+            "vol_target_ann": 0.15,
+            "w_max": 0.34
+          },
+          "quality": {
+            "bad_print_reversion_frac": 0.5,
+            "bad_print_vol_frac": 0.25,
+            "downtime_frac": 0.8,
+            "ewma_span_bars": 168,
+            "min_history_bars": 24,
+            "outlier_k": 8.0,
+            "stale_run_bars": 12
+          },
+          "risk": {
+            "clamp_reduce_only_adv": true,
+            "dd_flat_halt": -0.45,
+            "dd_halve_gross": -0.3,
+            "flat_cooldown_bars": 336,
+            "max_gross": 1.0,
+            "max_net": 1.0,
+            "max_order_adv_frac": 0.01,
+            "max_position_frac": 0.34,
+            "price_collar_frac": 0.05,
+            "staleness_max_bars": 2,
+            "var_confidence": 0.99,
+            "var_window_days": 365
+          },
+          "signals": {
+            "horizon_bars": 21,
+            "ic_target": 0.02
+          },
+          "universe": {
+            "entry_rank": 20,
+            "exit_rank": 25,
+            "rank_window_days": 30,
+            "rebalance": "monthly",
+            "size": 20
+          }
+        },
+        "saved_signal_sha256": "e0d6c54d659790e2a8ef4e3d2871a0c427b7278e45987a7b09d226df713da5b0",
+        "start": 1420156800000,
+        "trend_blend_normalization": "cross_sectional_zscore",
+        "trend_ic_history_anchor": 1325548800000,
+        "trend_label_availability": "raw_cash_exit_session_close_v2"
+      },
+      "evidence_grade": "immutable_ledger_summary_only",
+      "hypothesis_key": "27daac3528193d2d",
+      "ledger_source_path": "artifacts/analysis/alphatrend_category_targets_20260913/baseline/experiments.jsonl",
+      "result": {
+        "annualized_sharpe": 0.9794229498648296,
+        "artifact_era_dsr": null,
+        "kurtosis": 6.183850776616712,
+        "maximum_drawdown": null,
+        "observations": 2939,
+        "skew": -0.6918822559787947
+      }
+    },
+    {
+      "artifact_path": null,
+      "artifact_sha256": null,
+      "config_hash": "bfabd729109ca9ce",
+      "configuration": {
+        "allocator": "trend",
+        "alpha_names": [
+          "mf_trend_63",
+          "mf_trend_126",
+          "mf_trend_252"
+        ],
+        "cov_halflife_days": null,
+        "cov_min_periods": 240,
+        "cov_window_bars": 720,
+        "end": 1789171200000,
+        "evaluation_policy": "continuous_retrospective_payable_book_v1",
+        "history_start": 1325548800000,
+        "implementation_manifest_sha256": "c138ef478493f744f7f55ec9bfb9e2a7aff7bf3057b43ce6ee5b89d8be122b3a",
+        "initial_cash": 100000.0,
+        "input_binding": {
+          "execution_mode": "RETROSPECTIVE_CURRENT_VINTAGE",
+          "mode": "DIAGNOSTIC_CURRENT_VINTAGE",
+          "paired_input_sha256": "5f977ccd06240643eb1787d214b7ec31c0a92df1fcb1e40014ba710c218a8064",
+          "point_in_time_proven": false,
+          "quote_volume": "raw_close_times_raw_volume_proxy",
+          "raw_label_convention": "raw_open_cash_accrual_fixed_release_v2",
+          "raw_label_input_sha256": "e8e1b01cd0f10308d0a2d2717e5cf8e74dff49810ab4137e34b763993d85de5a",
+          "raw_label_mode": "DIAGNOSTIC_CURRENT_VINTAGE",
+          "retrospective_vintage_ms": 1789214263591,
+          "risk_prices": "synthetic_returns_raw_position_marks_v1"
+        },
+        "instrument_ids": [
+          "XUSE:CASH:DBAUSD",
+          "XUSE:CASH:DBCUSD",
+          "XUSE:CASH:EEMUSD",
+          "XUSE:CASH:EFAUSD",
+          "XUSE:CASH:FXEUSD",
+          "XUSE:CASH:FXYUSD",
+          "XUSE:CASH:GLDUSD",
+          "XUSE:CASH:IEFUSD",
+          "XUSE:CASH:IWMUSD",
+          "XUSE:CASH:QQQUSD",
+          "XUSE:CASH:SHYUSD",
+          "XUSE:CASH:SLVUSD",
+          "XUSE:CASH:SPYUSD",
+          "XUSE:CASH:TLTUSD",
+          "XUSE:CASH:UNGUSD",
+          "XUSE:CASH:USOUSD",
+          "XUSE:CASH:UUPUSD"
+        ],
+        "metric_basis": "xnys_252_sessions_elapsed_cagr_v1",
+        "no_trade_band": 0.001,
+        "rebalance_bars": 10,
+        "resolved_settings": {
+          "costs": {
+            "default_half_spread_bps": 2.5,
+            "equity_borrow_bps_annual": 50.0,
+            "equity_commission_bps": 1.0,
+            "equity_half_spread_bps": 3.0,
+            "impact_coef": 1.0,
+            "latency_addon_bps": 2.0,
+            "perp_maker_bps": 2.0,
+            "perp_taker_bps": 5.0
+          },
+          "data": {
+            "asset_class": "equity",
+            "backfill_start": "2001-01-01T00:00:00Z",
+            "exchange": "polygon",
+            "ingest_grace_ms": 30000,
+            "timeframe": "1d"
+          },
+          "live": {
+            "cycle_grace_s": 90,
+            "paper": true,
+            "tick_sleep_s": 45
+          },
+          "portfolio": {
+            "dollar_neutral": false,
+            "gross_max": 1.0,
+            "net_max": 1.0,
+            "no_trade_band": 0.001,
+            "rank_top_k": null,
+            "risk_aversion": 7.0,
+            "turnover_max": 0.1,
+            "vol_scale_max": 3.0,
+            "vol_target_ann": 0.15,
+            "w_max": 0.34
+          },
+          "quality": {
+            "bad_print_reversion_frac": 0.5,
+            "bad_print_vol_frac": 0.25,
+            "downtime_frac": 0.8,
+            "ewma_span_bars": 168,
+            "min_history_bars": 24,
+            "outlier_k": 8.0,
+            "stale_run_bars": 12
+          },
+          "risk": {
+            "clamp_reduce_only_adv": true,
+            "dd_flat_halt": -0.45,
+            "dd_halve_gross": -0.3,
+            "flat_cooldown_bars": 336,
+            "max_gross": 1.0,
+            "max_net": 1.0,
+            "max_order_adv_frac": 0.01,
+            "max_position_frac": 0.34,
+            "price_collar_frac": 0.05,
+            "staleness_max_bars": 2,
+            "var_confidence": 0.99,
+            "var_window_days": 365
+          },
+          "signals": {
+            "horizon_bars": 21,
+            "ic_target": 0.02
+          },
+          "universe": {
+            "entry_rank": 20,
+            "exit_rank": 25,
+            "rank_window_days": 30,
+            "rebalance": "monthly",
+            "size": 20
+          }
+        },
+        "start": 1420156800000,
+        "trend_blend_normalization": "cross_sectional_zscore",
+        "trend_ic_history_anchor": 1325548800000,
+        "trend_label_availability": "raw_cash_exit_session_close_v2"
+      },
+      "evidence_grade": "immutable_ledger_summary_only",
+      "hypothesis_key": "2877bd5fcfbf7967",
+      "ledger_source_path": "artifacts/analysis/alphatrend_retrospective_comparison_20260912/baseline/experiments.jsonl",
+      "result": {
+        "annualized_sharpe": 0.19717420556774473,
+        "artifact_era_dsr": null,
+        "kurtosis": 6.463113737449765,
+        "maximum_drawdown": null,
+        "observations": 2939,
+        "skew": -0.26708934049847594
+      }
+    },
+    {
+      "artifact_path": null,
+      "artifact_sha256": null,
+      "config_hash": "917d5169355d600f",
+      "configuration": {
+        "allocator": "trend",
+        "alpha_names": [
+          "mf_trend_63",
+          "mf_trend_126",
+          "mf_trend_252"
+        ],
+        "cov_halflife_days": null,
+        "cov_min_periods": 240,
+        "cov_window_bars": 720,
+        "end": 1787529600000,
+        "evaluation_policy": "continuous_single_book_v1",
+        "execution_cost_scenario": {
+          "name": "original_base_costs",
+          "resolved_costs": {
+            "default_half_spread_bps": 2.5,
+            "equity_borrow_bps_annual": 50.0,
+            "equity_commission_bps": 1.0,
+            "equity_half_spread_bps": 3.0,
+            "impact_coef": 1.0,
+            "latency_addon_bps": 2.0,
+            "perp_maker_bps": 2.0,
+            "perp_taker_bps": 5.0
+          }
+        },
+        "history_start": 1041379200000,
+        "initial_cash": 100000.0,
+        "instrument_ids": [
+          "XUSE:CASH:DBAUSD",
+          "XUSE:CASH:DBCUSD",
+          "XUSE:CASH:EEMUSD",
+          "XUSE:CASH:EFAUSD",
+          "XUSE:CASH:FXEUSD",
+          "XUSE:CASH:FXYUSD",
+          "XUSE:CASH:GLDUSD",
+          "XUSE:CASH:IEFUSD",
+          "XUSE:CASH:IWMUSD",
+          "XUSE:CASH:QQQUSD",
+          "XUSE:CASH:SHYUSD",
+          "XUSE:CASH:SLVUSD",
+          "XUSE:CASH:SPYUSD",
+          "XUSE:CASH:TLTUSD",
+          "XUSE:CASH:UNGUSD",
+          "XUSE:CASH:USOUSD",
+          "XUSE:CASH:UUPUSD"
+        ],
+        "no_trade_band": 0.001,
+        "rebalance_bars": 10,
+        "start": 1136246400000,
+        "trend_ic_history_anchor": 1073001600000,
+        "trend_label_availability": "exit_session_close_v1"
+      },
+      "evidence_grade": "immutable_ledger_summary_only",
+      "hypothesis_key": "2ab27017e93d15a4",
+      "ledger_source_path": "artifacts/analysis/alphatrend_causal_continuous_20260912/baseline/experiments.jsonl",
+      "result": {
+        "annualized_sharpe": 0.1736506525464701,
+        "artifact_era_dsr": null,
+        "kurtosis": 14.591906569025667,
+        "maximum_drawdown": null,
+        "observations": 5190,
+        "skew": 0.11712326481109715
+      }
+    },
+    {
+      "artifact_path": null,
+      "artifact_sha256": null,
+      "config_hash": "b123d29b97a4a0da",
+      "configuration": {
+        "allocator": "trend",
+        "alpha_names": [
+          "mf_trend_63",
+          "mf_trend_126",
+          "mf_trend_252"
+        ],
+        "cost_stress": true,
+        "cov_halflife_days": null,
+        "cov_min_periods": 240,
+        "cov_window_bars": 720,
+        "direction_confirmation": true,
+        "end": 1789171200000,
+        "evaluation_policy": "continuous_retrospective_payable_book_v1",
+        "history_start": 1325548800000,
+        "implementation_manifest_sha256": "5df2462265b65f1bb56fd5fe425bb91a6db1e060cda25d8c21bc105328c8a8bd",
+        "initial_cash": 100000.0,
+        "input_binding": {
+          "execution_mode": "RETROSPECTIVE_CURRENT_VINTAGE",
+          "mode": "DIAGNOSTIC_CURRENT_VINTAGE",
+          "paired_input_sha256": "5f977ccd06240643eb1787d214b7ec31c0a92df1fcb1e40014ba710c218a8064",
+          "point_in_time_proven": false,
+          "quote_volume": "raw_close_times_raw_volume_proxy",
+          "raw_label_convention": "raw_open_cash_accrual_fixed_release_v2",
+          "raw_label_input_sha256": "e8e1b01cd0f10308d0a2d2717e5cf8e74dff49810ab4137e34b763993d85de5a",
+          "raw_label_mode": "DIAGNOSTIC_CURRENT_VINTAGE",
+          "retrospective_vintage_ms": 1789214263591,
+          "risk_prices": "synthetic_returns_raw_position_marks_v1"
+        },
+        "instrument_ids": [
+          "XUSE:CASH:DBAUSD",
+          "XUSE:CASH:DBCUSD",
+          "XUSE:CASH:EEMUSD",
+          "XUSE:CASH:EFAUSD",
+          "XUSE:CASH:FXEUSD",
+          "XUSE:CASH:FXYUSD",
+          "XUSE:CASH:GLDUSD",
+          "XUSE:CASH:IEFUSD",
+          "XUSE:CASH:IWMUSD",
+          "XUSE:CASH:QQQUSD",
+          "XUSE:CASH:SHYUSD",
+          "XUSE:CASH:SLVUSD",
+          "XUSE:CASH:SPYUSD",
+          "XUSE:CASH:TLTUSD",
+          "XUSE:CASH:UNGUSD",
+          "XUSE:CASH:USOUSD",
+          "XUSE:CASH:UUPUSD"
+        ],
+        "metric_basis": "xnys_252_sessions_elapsed_cagr_v1",
+        "no_trade_band": 0.001,
+        "positive_targets": true,
+        "positive_targets_spec_sha256": "1eb5ab560a2f23156840cfbdc6083fd2d561ec5fac8783f6c38eed775b697b75",
+        "rebalance_bars": 10,
+        "resolved_settings": {
+          "costs": {
+            "default_half_spread_bps": 2.5,
+            "equity_borrow_bps_annual": 100.0,
+            "equity_commission_bps": 2.0,
+            "equity_half_spread_bps": 6.0,
+            "impact_coef": 2.0,
+            "latency_addon_bps": 4.0,
+            "perp_maker_bps": 2.0,
+            "perp_taker_bps": 5.0
+          },
+          "data": {
+            "asset_class": "equity",
+            "backfill_start": "2001-01-01T00:00:00Z",
+            "exchange": "polygon",
+            "ingest_grace_ms": 30000,
+            "timeframe": "1d"
+          },
+          "live": {
+            "cycle_grace_s": 90,
+            "paper": true,
+            "tick_sleep_s": 45
+          },
+          "portfolio": {
+            "dollar_neutral": false,
+            "gross_max": 1.0,
+            "net_max": 1.0,
+            "no_trade_band": 0.001,
+            "rank_top_k": null,
+            "risk_aversion": 7.0,
+            "turnover_max": 0.1,
+            "vol_scale_max": 3.0,
+            "vol_target_ann": 0.15,
+            "w_max": 0.34
+          },
+          "quality": {
+            "bad_print_reversion_frac": 0.5,
+            "bad_print_vol_frac": 0.25,
+            "downtime_frac": 0.8,
+            "ewma_span_bars": 168,
+            "min_history_bars": 24,
+            "outlier_k": 8.0,
+            "stale_run_bars": 12
+          },
+          "risk": {
+            "clamp_reduce_only_adv": true,
+            "dd_flat_halt": -0.45,
+            "dd_halve_gross": -0.3,
+            "flat_cooldown_bars": 336,
+            "max_gross": 1.0,
+            "max_net": 1.0,
+            "max_order_adv_frac": 0.01,
+            "max_position_frac": 0.34,
+            "price_collar_frac": 0.05,
+            "staleness_max_bars": 2,
+            "var_confidence": 0.99,
+            "var_window_days": 365
+          },
+          "signals": {
+            "horizon_bars": 21,
+            "ic_target": 0.02
+          },
+          "universe": {
+            "entry_rank": 20,
+            "exit_rank": 25,
+            "rank_window_days": 30,
+            "rebalance": "monthly",
+            "size": 20
+          }
+        },
+        "saved_signal_sha256": "e0d6c54d659790e2a8ef4e3d2871a0c427b7278e45987a7b09d226df713da5b0",
+        "start": 1420156800000,
+        "trend_blend_normalization": "cross_sectional_zscore",
+        "trend_ic_history_anchor": 1325548800000,
+        "trend_label_availability": "raw_cash_exit_session_close_v2"
+      },
+      "evidence_grade": "immutable_ledger_summary_only",
+      "hypothesis_key": "2cca32a1a9c5068a",
+      "ledger_source_path": "artifacts/analysis/alphatrend_positive_targets_20260913/candidate_stress/experiments.jsonl",
+      "result": {
+        "annualized_sharpe": 0.943544413751928,
+        "artifact_era_dsr": null,
+        "kurtosis": 6.218933599139411,
+        "maximum_drawdown": null,
+        "observations": 2939,
+        "skew": -0.6971595907124833
+      }
+    },
+    {
       "artifact_path": "artifacts/sweep/mf_trend/walkforward.json",
       "artifact_sha256": "cb641dc1f452d0058cfe2fb3c6d187f4147259a98c8ddfef4f19d7eeab93e184",
       "config_hash": "82d9878e5289643f",
@@ -322,6 +1397,151 @@
         "maximum_drawdown": null,
         "observations": 5151,
         "skew": null
+      }
+    },
+    {
+      "artifact_path": null,
+      "artifact_sha256": null,
+      "config_hash": "b0005af8782546f1",
+      "configuration": {
+        "allocator": "trend",
+        "alpha_names": [
+          "mf_trend_63",
+          "mf_trend_126",
+          "mf_trend_252"
+        ],
+        "category_targets": true,
+        "category_targets_spec_sha256": "f959b7ed215b1e836c3e419d59a0e7641dbbd5ddb95bd2ed98c5e9fe1233dba3",
+        "cost_stress": true,
+        "cov_halflife_days": null,
+        "cov_min_periods": 240,
+        "cov_window_bars": 720,
+        "direction_confirmation": true,
+        "end": 1789171200000,
+        "evaluation_policy": "continuous_retrospective_payable_book_v1",
+        "history_start": 1325548800000,
+        "implementation_manifest_sha256": "cdadb279638b7cbdaaeb1db8f302be3a522f3997edb7cda36b6be3376420331d",
+        "initial_cash": 100000.0,
+        "input_binding": {
+          "execution_mode": "RETROSPECTIVE_CURRENT_VINTAGE",
+          "mode": "DIAGNOSTIC_CURRENT_VINTAGE",
+          "paired_input_sha256": "5f977ccd06240643eb1787d214b7ec31c0a92df1fcb1e40014ba710c218a8064",
+          "point_in_time_proven": false,
+          "quote_volume": "raw_close_times_raw_volume_proxy",
+          "raw_label_convention": "raw_open_cash_accrual_fixed_release_v2",
+          "raw_label_input_sha256": "e8e1b01cd0f10308d0a2d2717e5cf8e74dff49810ab4137e34b763993d85de5a",
+          "raw_label_mode": "DIAGNOSTIC_CURRENT_VINTAGE",
+          "retrospective_vintage_ms": 1789214263591,
+          "risk_prices": "synthetic_returns_raw_position_marks_v1"
+        },
+        "instrument_ids": [
+          "XUSE:CASH:DBAUSD",
+          "XUSE:CASH:DBCUSD",
+          "XUSE:CASH:EEMUSD",
+          "XUSE:CASH:EFAUSD",
+          "XUSE:CASH:FXEUSD",
+          "XUSE:CASH:FXYUSD",
+          "XUSE:CASH:GLDUSD",
+          "XUSE:CASH:IEFUSD",
+          "XUSE:CASH:IWMUSD",
+          "XUSE:CASH:QQQUSD",
+          "XUSE:CASH:SHYUSD",
+          "XUSE:CASH:SLVUSD",
+          "XUSE:CASH:SPYUSD",
+          "XUSE:CASH:TLTUSD",
+          "XUSE:CASH:UNGUSD",
+          "XUSE:CASH:USOUSD",
+          "XUSE:CASH:UUPUSD"
+        ],
+        "metric_basis": "xnys_252_sessions_elapsed_cagr_v1",
+        "no_trade_band": 0.001,
+        "rebalance_bars": 10,
+        "resolved_settings": {
+          "costs": {
+            "default_half_spread_bps": 2.5,
+            "equity_borrow_bps_annual": 100.0,
+            "equity_commission_bps": 2.0,
+            "equity_half_spread_bps": 6.0,
+            "impact_coef": 2.0,
+            "latency_addon_bps": 4.0,
+            "perp_maker_bps": 2.0,
+            "perp_taker_bps": 5.0
+          },
+          "data": {
+            "asset_class": "equity",
+            "backfill_start": "2001-01-01T00:00:00Z",
+            "exchange": "polygon",
+            "ingest_grace_ms": 30000,
+            "timeframe": "1d"
+          },
+          "live": {
+            "cycle_grace_s": 90,
+            "paper": true,
+            "tick_sleep_s": 45
+          },
+          "portfolio": {
+            "dollar_neutral": false,
+            "gross_max": 1.0,
+            "net_max": 1.0,
+            "no_trade_band": 0.001,
+            "rank_top_k": null,
+            "risk_aversion": 7.0,
+            "turnover_max": 0.1,
+            "vol_scale_max": 3.0,
+            "vol_target_ann": 0.15,
+            "w_max": 0.34
+          },
+          "quality": {
+            "bad_print_reversion_frac": 0.5,
+            "bad_print_vol_frac": 0.25,
+            "downtime_frac": 0.8,
+            "ewma_span_bars": 168,
+            "min_history_bars": 24,
+            "outlier_k": 8.0,
+            "stale_run_bars": 12
+          },
+          "risk": {
+            "clamp_reduce_only_adv": true,
+            "dd_flat_halt": -0.45,
+            "dd_halve_gross": -0.3,
+            "flat_cooldown_bars": 336,
+            "max_gross": 1.0,
+            "max_net": 1.0,
+            "max_order_adv_frac": 0.01,
+            "max_position_frac": 0.34,
+            "price_collar_frac": 0.05,
+            "staleness_max_bars": 2,
+            "var_confidence": 0.99,
+            "var_window_days": 365
+          },
+          "signals": {
+            "horizon_bars": 21,
+            "ic_target": 0.02
+          },
+          "universe": {
+            "entry_rank": 20,
+            "exit_rank": 25,
+            "rank_window_days": 30,
+            "rebalance": "monthly",
+            "size": 20
+          }
+        },
+        "saved_signal_sha256": "e0d6c54d659790e2a8ef4e3d2871a0c427b7278e45987a7b09d226df713da5b0",
+        "start": 1420156800000,
+        "trend_blend_normalization": "cross_sectional_zscore",
+        "trend_ic_history_anchor": 1325548800000,
+        "trend_label_availability": "raw_cash_exit_session_close_v2"
+      },
+      "evidence_grade": "immutable_ledger_summary_only",
+      "hypothesis_key": "3b647789d4eed310",
+      "ledger_source_path": "artifacts/analysis/alphatrend_category_targets_20260913/candidate_stress/experiments.jsonl",
+      "result": {
+        "annualized_sharpe": 0.5530063658097162,
+        "artifact_era_dsr": null,
+        "kurtosis": 4.8823089861498286,
+        "maximum_drawdown": null,
+        "observations": 2939,
+        "skew": -0.4031304189252091
       }
     },
     {
@@ -421,6 +1641,643 @@
       }
     },
     {
+      "artifact_path": null,
+      "artifact_sha256": null,
+      "config_hash": "adef5549ff5e3483",
+      "configuration": {
+        "allocator": "trend",
+        "alpha_names": [
+          "mf_trend_63",
+          "mf_trend_126",
+          "mf_trend_252"
+        ],
+        "confirmation_spec_sha256": "740e1b4fa807401ce858402d8d0111c9b188330438f2ce8a6df27a8ad01f1ada",
+        "cost_stress": true,
+        "cov_halflife_days": null,
+        "cov_min_periods": 240,
+        "cov_window_bars": 720,
+        "direction_confirmation": false,
+        "end": 1789171200000,
+        "evaluation_policy": "continuous_retrospective_payable_book_v1",
+        "history_start": 1325548800000,
+        "implementation_manifest_sha256": "a894557041038e4a577e7a5f99a08694913c33a6502aae907c3ff08934bc8a1d",
+        "initial_cash": 100000.0,
+        "input_binding": {
+          "execution_mode": "RETROSPECTIVE_CURRENT_VINTAGE",
+          "mode": "DIAGNOSTIC_CURRENT_VINTAGE",
+          "paired_input_sha256": "5f977ccd06240643eb1787d214b7ec31c0a92df1fcb1e40014ba710c218a8064",
+          "point_in_time_proven": false,
+          "quote_volume": "raw_close_times_raw_volume_proxy",
+          "raw_label_convention": "raw_open_cash_accrual_fixed_release_v2",
+          "raw_label_input_sha256": "e8e1b01cd0f10308d0a2d2717e5cf8e74dff49810ab4137e34b763993d85de5a",
+          "raw_label_mode": "DIAGNOSTIC_CURRENT_VINTAGE",
+          "retrospective_vintage_ms": 1789214263591,
+          "risk_prices": "synthetic_returns_raw_position_marks_v1"
+        },
+        "instrument_ids": [
+          "XUSE:CASH:DBAUSD",
+          "XUSE:CASH:DBCUSD",
+          "XUSE:CASH:EEMUSD",
+          "XUSE:CASH:EFAUSD",
+          "XUSE:CASH:FXEUSD",
+          "XUSE:CASH:FXYUSD",
+          "XUSE:CASH:GLDUSD",
+          "XUSE:CASH:IEFUSD",
+          "XUSE:CASH:IWMUSD",
+          "XUSE:CASH:QQQUSD",
+          "XUSE:CASH:SHYUSD",
+          "XUSE:CASH:SLVUSD",
+          "XUSE:CASH:SPYUSD",
+          "XUSE:CASH:TLTUSD",
+          "XUSE:CASH:UNGUSD",
+          "XUSE:CASH:USOUSD",
+          "XUSE:CASH:UUPUSD"
+        ],
+        "metric_basis": "xnys_252_sessions_elapsed_cagr_v1",
+        "no_trade_band": 0.001,
+        "rebalance_bars": 10,
+        "resolved_settings": {
+          "costs": {
+            "default_half_spread_bps": 2.5,
+            "equity_borrow_bps_annual": 100.0,
+            "equity_commission_bps": 2.0,
+            "equity_half_spread_bps": 6.0,
+            "impact_coef": 2.0,
+            "latency_addon_bps": 4.0,
+            "perp_maker_bps": 2.0,
+            "perp_taker_bps": 5.0
+          },
+          "data": {
+            "asset_class": "equity",
+            "backfill_start": "2001-01-01T00:00:00Z",
+            "exchange": "polygon",
+            "ingest_grace_ms": 30000,
+            "timeframe": "1d"
+          },
+          "live": {
+            "cycle_grace_s": 90,
+            "paper": true,
+            "tick_sleep_s": 45
+          },
+          "portfolio": {
+            "dollar_neutral": false,
+            "gross_max": 1.0,
+            "net_max": 1.0,
+            "no_trade_band": 0.001,
+            "rank_top_k": null,
+            "risk_aversion": 7.0,
+            "turnover_max": 0.1,
+            "vol_scale_max": 3.0,
+            "vol_target_ann": 0.15,
+            "w_max": 0.34
+          },
+          "quality": {
+            "bad_print_reversion_frac": 0.5,
+            "bad_print_vol_frac": 0.25,
+            "downtime_frac": 0.8,
+            "ewma_span_bars": 168,
+            "min_history_bars": 24,
+            "outlier_k": 8.0,
+            "stale_run_bars": 12
+          },
+          "risk": {
+            "clamp_reduce_only_adv": true,
+            "dd_flat_halt": -0.45,
+            "dd_halve_gross": -0.3,
+            "flat_cooldown_bars": 336,
+            "max_gross": 1.0,
+            "max_net": 1.0,
+            "max_order_adv_frac": 0.01,
+            "max_position_frac": 0.34,
+            "price_collar_frac": 0.05,
+            "staleness_max_bars": 2,
+            "var_confidence": 0.99,
+            "var_window_days": 365
+          },
+          "signals": {
+            "horizon_bars": 21,
+            "ic_target": 0.02
+          },
+          "universe": {
+            "entry_rank": 20,
+            "exit_rank": 25,
+            "rank_window_days": 30,
+            "rebalance": "monthly",
+            "size": 20
+          }
+        },
+        "saved_signal_sha256": "e0d6c54d659790e2a8ef4e3d2871a0c427b7278e45987a7b09d226df713da5b0",
+        "start": 1420156800000,
+        "trend_blend_normalization": "cross_sectional_zscore",
+        "trend_ic_history_anchor": 1325548800000,
+        "trend_label_availability": "raw_cash_exit_session_close_v2"
+      },
+      "evidence_grade": "immutable_ledger_summary_only",
+      "hypothesis_key": "430fa1893fb19e03",
+      "ledger_source_path": "artifacts/analysis/alphatrend_confirmation_20260913/baseline_stress/experiments.jsonl",
+      "result": {
+        "annualized_sharpe": 0.050040975485103056,
+        "artifact_era_dsr": null,
+        "kurtosis": 6.522048991364855,
+        "maximum_drawdown": null,
+        "observations": 2939,
+        "skew": -0.2696256476250061
+      }
+    },
+    {
+      "artifact_path": null,
+      "artifact_sha256": null,
+      "config_hash": "034f496522c76bfc",
+      "configuration": {
+        "allocator": "trend",
+        "alpha_names": [
+          "mf_trend_63",
+          "mf_trend_126",
+          "mf_trend_252"
+        ],
+        "cost_stress": true,
+        "cov_halflife_days": null,
+        "cov_min_periods": 240,
+        "cov_window_bars": 720,
+        "direction_confirmation": true,
+        "end": 1780358400000,
+        "evaluation_policy": "continuous_retrospective_payable_book_v1",
+        "extended_reference_spec_sha256": "e66e99f7b8e0daf002541ce3e60f4df285a3781a00dcd49a1c685788021562a0",
+        "history_start": 1325548800000,
+        "implementation_manifest_sha256": "8f8bc96bef4d185ad7241ebcd6de1510e867da259f955cc1efc79f14dcb9b046",
+        "initial_cash": 22500.0,
+        "input_binding": {
+          "execution_mode": "RETROSPECTIVE_CURRENT_VINTAGE",
+          "mode": "DIAGNOSTIC_CURRENT_VINTAGE",
+          "paired_input_sha256": "5f977ccd06240643eb1787d214b7ec31c0a92df1fcb1e40014ba710c218a8064",
+          "point_in_time_proven": false,
+          "quote_volume": "raw_close_times_raw_volume_proxy",
+          "raw_label_convention": "raw_open_cash_accrual_fixed_release_v2",
+          "raw_label_input_sha256": "e8e1b01cd0f10308d0a2d2717e5cf8e74dff49810ab4137e34b763993d85de5a",
+          "raw_label_mode": "DIAGNOSTIC_CURRENT_VINTAGE",
+          "retrospective_vintage_ms": 1789214263591,
+          "risk_prices": "synthetic_returns_raw_position_marks_v1"
+        },
+        "instrument_ids": [
+          "XUSE:CASH:DBAUSD",
+          "XUSE:CASH:DBCUSD",
+          "XUSE:CASH:EEMUSD",
+          "XUSE:CASH:EFAUSD",
+          "XUSE:CASH:FXEUSD",
+          "XUSE:CASH:FXYUSD",
+          "XUSE:CASH:GLDUSD",
+          "XUSE:CASH:IEFUSD",
+          "XUSE:CASH:IWMUSD",
+          "XUSE:CASH:QQQUSD",
+          "XUSE:CASH:SHYUSD",
+          "XUSE:CASH:SLVUSD",
+          "XUSE:CASH:SPYUSD",
+          "XUSE:CASH:TLTUSD",
+          "XUSE:CASH:UNGUSD",
+          "XUSE:CASH:USOUSD",
+          "XUSE:CASH:UUPUSD"
+        ],
+        "metric_basis": "xnys_252_sessions_elapsed_cagr_v1",
+        "no_trade_band": 0.001,
+        "positive_targets": false,
+        "rebalance_bars": 10,
+        "resolved_settings": {
+          "costs": {
+            "default_half_spread_bps": 2.5,
+            "equity_borrow_bps_annual": 100.0,
+            "equity_commission_bps": 2.0,
+            "equity_half_spread_bps": 6.0,
+            "impact_coef": 2.0,
+            "latency_addon_bps": 4.0,
+            "perp_maker_bps": 2.0,
+            "perp_taker_bps": 5.0
+          },
+          "data": {
+            "asset_class": "equity",
+            "backfill_start": "2001-01-01T00:00:00Z",
+            "exchange": "polygon",
+            "ingest_grace_ms": 30000,
+            "timeframe": "1d"
+          },
+          "live": {
+            "cycle_grace_s": 90,
+            "paper": true,
+            "tick_sleep_s": 45
+          },
+          "portfolio": {
+            "dollar_neutral": false,
+            "gross_max": 1.0,
+            "net_max": 1.0,
+            "no_trade_band": 0.001,
+            "rank_top_k": null,
+            "risk_aversion": 7.0,
+            "turnover_max": 0.1,
+            "vol_scale_max": 3.0,
+            "vol_target_ann": 0.15,
+            "w_max": 0.34
+          },
+          "quality": {
+            "bad_print_reversion_frac": 0.5,
+            "bad_print_vol_frac": 0.25,
+            "downtime_frac": 0.8,
+            "ewma_span_bars": 168,
+            "min_history_bars": 24,
+            "outlier_k": 8.0,
+            "stale_run_bars": 12
+          },
+          "risk": {
+            "clamp_reduce_only_adv": true,
+            "dd_flat_halt": -0.45,
+            "dd_halve_gross": -0.3,
+            "flat_cooldown_bars": 336,
+            "max_gross": 1.0,
+            "max_net": 1.0,
+            "max_order_adv_frac": 0.01,
+            "max_position_frac": 0.34,
+            "price_collar_frac": 0.05,
+            "staleness_max_bars": 2,
+            "var_confidence": 0.99,
+            "var_window_days": 365
+          },
+          "signals": {
+            "horizon_bars": 21,
+            "ic_target": 0.02
+          },
+          "universe": {
+            "entry_rank": 20,
+            "exit_rank": 25,
+            "rank_window_days": 30,
+            "rebalance": "monthly",
+            "size": 20
+          }
+        },
+        "saved_signal_filter": "ts_open<end",
+        "saved_signal_sha256": "e0d6c54d659790e2a8ef4e3d2871a0c427b7278e45987a7b09d226df713da5b0",
+        "start": 1672531200000,
+        "trend_blend_normalization": "cross_sectional_zscore",
+        "trend_ic_history_anchor": 1325548800000,
+        "trend_label_availability": "raw_cash_exit_session_close_v2"
+      },
+      "evidence_grade": "immutable_ledger_summary_only",
+      "hypothesis_key": "4343650e7f9f5517",
+      "ledger_source_path": "artifacts/analysis/trend_funded_account_20260913/baseline_stress/experiments.jsonl",
+      "result": {
+        "annualized_sharpe": -0.07453696928601361,
+        "artifact_era_dsr": null,
+        "kurtosis": 5.827202104331268,
+        "maximum_drawdown": null,
+        "observations": 854,
+        "skew": -0.6830998939800915
+      }
+    },
+    {
+      "artifact_path": null,
+      "artifact_sha256": null,
+      "config_hash": "c9789f841f503deb",
+      "configuration": {
+        "allocator": "trend",
+        "alpha_names": [
+          "mf_trend_63",
+          "mf_trend_126",
+          "mf_trend_252"
+        ],
+        "cov_halflife_days": null,
+        "cov_min_periods": 240,
+        "cov_window_bars": 720,
+        "end": 1789171200000,
+        "evaluation_policy": "continuous_retrospective_payable_book_v1",
+        "history_start": 1325548800000,
+        "implementation_manifest_sha256": "c138ef478493f744f7f55ec9bfb9e2a7aff7bf3057b43ce6ee5b89d8be122b3a",
+        "initial_cash": 100000.0,
+        "input_binding": {
+          "execution_mode": "RETROSPECTIVE_CURRENT_VINTAGE",
+          "mode": "DIAGNOSTIC_CURRENT_VINTAGE",
+          "paired_input_sha256": "5f977ccd06240643eb1787d214b7ec31c0a92df1fcb1e40014ba710c218a8064",
+          "point_in_time_proven": false,
+          "quote_volume": "raw_close_times_raw_volume_proxy",
+          "raw_label_convention": "raw_open_cash_accrual_fixed_release_v2",
+          "raw_label_input_sha256": "e8e1b01cd0f10308d0a2d2717e5cf8e74dff49810ab4137e34b763993d85de5a",
+          "raw_label_mode": "DIAGNOSTIC_CURRENT_VINTAGE",
+          "retrospective_vintage_ms": 1789214263591,
+          "risk_prices": "synthetic_returns_raw_position_marks_v1"
+        },
+        "instrument_ids": [
+          "XUSE:CASH:DBAUSD",
+          "XUSE:CASH:DBCUSD",
+          "XUSE:CASH:EEMUSD",
+          "XUSE:CASH:EFAUSD",
+          "XUSE:CASH:FXEUSD",
+          "XUSE:CASH:FXYUSD",
+          "XUSE:CASH:GLDUSD",
+          "XUSE:CASH:IEFUSD",
+          "XUSE:CASH:IWMUSD",
+          "XUSE:CASH:QQQUSD",
+          "XUSE:CASH:SHYUSD",
+          "XUSE:CASH:SLVUSD",
+          "XUSE:CASH:SPYUSD",
+          "XUSE:CASH:TLTUSD",
+          "XUSE:CASH:UNGUSD",
+          "XUSE:CASH:USOUSD",
+          "XUSE:CASH:UUPUSD"
+        ],
+        "metric_basis": "xnys_252_sessions_elapsed_cagr_v1",
+        "no_trade_band": 0.001,
+        "rebalance_bars": 10,
+        "resolved_settings": {
+          "costs": {
+            "default_half_spread_bps": 2.5,
+            "equity_borrow_bps_annual": 50.0,
+            "equity_commission_bps": 1.0,
+            "equity_half_spread_bps": 3.0,
+            "impact_coef": 1.0,
+            "latency_addon_bps": 2.0,
+            "perp_maker_bps": 2.0,
+            "perp_taker_bps": 5.0
+          },
+          "data": {
+            "asset_class": "equity",
+            "backfill_start": "2001-01-01T00:00:00Z",
+            "exchange": "polygon",
+            "ingest_grace_ms": 30000,
+            "timeframe": "1d"
+          },
+          "live": {
+            "cycle_grace_s": 90,
+            "paper": true,
+            "tick_sleep_s": 45
+          },
+          "portfolio": {
+            "dollar_neutral": false,
+            "gross_max": 1.0,
+            "net_max": 1.0,
+            "no_trade_band": 0.001,
+            "rank_top_k": null,
+            "risk_aversion": 7.0,
+            "turnover_max": 0.1,
+            "vol_scale_max": 3.0,
+            "vol_target_ann": 0.15,
+            "w_max": 0.34
+          },
+          "quality": {
+            "bad_print_reversion_frac": 0.5,
+            "bad_print_vol_frac": 0.25,
+            "downtime_frac": 0.8,
+            "ewma_span_bars": 168,
+            "min_history_bars": 24,
+            "outlier_k": 8.0,
+            "stale_run_bars": 12
+          },
+          "risk": {
+            "clamp_reduce_only_adv": true,
+            "dd_flat_halt": -0.45,
+            "dd_halve_gross": -0.3,
+            "flat_cooldown_bars": 336,
+            "max_gross": 1.0,
+            "max_net": 1.0,
+            "max_order_adv_frac": 0.01,
+            "max_position_frac": 0.34,
+            "price_collar_frac": 0.05,
+            "staleness_max_bars": 2,
+            "var_confidence": 0.99,
+            "var_window_days": 365
+          },
+          "signals": {
+            "horizon_bars": 21,
+            "ic_target": 0.02
+          },
+          "universe": {
+            "entry_rank": 20,
+            "exit_rank": 25,
+            "rank_window_days": 30,
+            "rebalance": "monthly",
+            "size": 20
+          }
+        },
+        "start": 1420156800000,
+        "trend_blend_normalization": "directional_rms",
+        "trend_ic_history_anchor": 1325548800000,
+        "trend_label_availability": "raw_cash_exit_session_close_v2"
+      },
+      "evidence_grade": "immutable_ledger_summary_only",
+      "hypothesis_key": "45c8d387e6e0b6c5",
+      "ledger_source_path": "artifacts/analysis/alphatrend_retrospective_comparison_20260912/candidate/experiments.jsonl",
+      "result": {
+        "annualized_sharpe": 0.15819799763551404,
+        "artifact_era_dsr": null,
+        "kurtosis": 8.393202599177089,
+        "maximum_drawdown": null,
+        "observations": 2939,
+        "skew": -0.6323310842329114
+      }
+    },
+    {
+      "artifact_path": null,
+      "artifact_sha256": null,
+      "config_hash": "0acb46e6726d7575",
+      "configuration": {
+        "allocator": "trend",
+        "alpha_names": [
+          "mf_trend_63",
+          "mf_trend_126",
+          "mf_trend_252"
+        ],
+        "end": 1787529600000,
+        "execution_cost_scenario": {
+          "name": "double_all_modeled_costs_v1",
+          "resolved_costs": {
+            "default_half_spread_bps": 2.5,
+            "equity_borrow_bps_annual": 100.0,
+            "equity_commission_bps": 2.0,
+            "equity_half_spread_bps": 6.0,
+            "impact_coef": 2.0,
+            "latency_addon_bps": 4.0,
+            "perp_maker_bps": 2.0,
+            "perp_taker_bps": 5.0
+          }
+        },
+        "instrument_ids": [
+          "XUSE:CASH:DBAUSD",
+          "XUSE:CASH:DBCUSD",
+          "XUSE:CASH:EEMUSD",
+          "XUSE:CASH:EFAUSD",
+          "XUSE:CASH:FXEUSD",
+          "XUSE:CASH:FXYUSD",
+          "XUSE:CASH:GLDUSD",
+          "XUSE:CASH:IEFUSD",
+          "XUSE:CASH:IWMUSD",
+          "XUSE:CASH:QQQUSD",
+          "XUSE:CASH:SHYUSD",
+          "XUSE:CASH:SLVUSD",
+          "XUSE:CASH:SPYUSD",
+          "XUSE:CASH:TLTUSD",
+          "XUSE:CASH:UNGUSD",
+          "XUSE:CASH:USOUSD",
+          "XUSE:CASH:UUPUSD"
+        ],
+        "no_trade_band": 0.001,
+        "rebalance_bars": 10,
+        "start": 1041379200000,
+        "test_bars": 126,
+        "train_bars": 504,
+        "trend_blend_normalization": "directional_rms"
+      },
+      "evidence_grade": "immutable_ledger_summary_only",
+      "hypothesis_key": "4d7793cfffb17091",
+      "ledger_source_path": "artifacts/analysis/alphatrend_directional_validation_20260912/candidate/experiments.jsonl",
+      "result": {
+        "annualized_sharpe": 0.5416602680310787,
+        "artifact_era_dsr": null,
+        "kurtosis": 13.740618990246796,
+        "maximum_drawdown": null,
+        "observations": 5190,
+        "skew": 0.053189472770872215
+      }
+    },
+    {
+      "artifact_path": null,
+      "artifact_sha256": null,
+      "config_hash": "0d27a33cb0ceb9e9",
+      "configuration": {
+        "allocator": "trend",
+        "alpha_names": [
+          "mf_trend_63",
+          "mf_trend_126",
+          "mf_trend_252"
+        ],
+        "confirmation_spec_sha256": "740e1b4fa807401ce858402d8d0111c9b188330438f2ce8a6df27a8ad01f1ada",
+        "cost_stress": false,
+        "cov_halflife_days": null,
+        "cov_min_periods": 240,
+        "cov_window_bars": 720,
+        "direction_confirmation": false,
+        "end": 1789171200000,
+        "evaluation_policy": "continuous_retrospective_payable_book_v1",
+        "history_start": 1325548800000,
+        "implementation_manifest_sha256": "a894557041038e4a577e7a5f99a08694913c33a6502aae907c3ff08934bc8a1d",
+        "initial_cash": 100000.0,
+        "input_binding": {
+          "execution_mode": "RETROSPECTIVE_CURRENT_VINTAGE",
+          "mode": "DIAGNOSTIC_CURRENT_VINTAGE",
+          "paired_input_sha256": "5f977ccd06240643eb1787d214b7ec31c0a92df1fcb1e40014ba710c218a8064",
+          "point_in_time_proven": false,
+          "quote_volume": "raw_close_times_raw_volume_proxy",
+          "raw_label_convention": "raw_open_cash_accrual_fixed_release_v2",
+          "raw_label_input_sha256": "e8e1b01cd0f10308d0a2d2717e5cf8e74dff49810ab4137e34b763993d85de5a",
+          "raw_label_mode": "DIAGNOSTIC_CURRENT_VINTAGE",
+          "retrospective_vintage_ms": 1789214263591,
+          "risk_prices": "synthetic_returns_raw_position_marks_v1"
+        },
+        "instrument_ids": [
+          "XUSE:CASH:DBAUSD",
+          "XUSE:CASH:DBCUSD",
+          "XUSE:CASH:EEMUSD",
+          "XUSE:CASH:EFAUSD",
+          "XUSE:CASH:FXEUSD",
+          "XUSE:CASH:FXYUSD",
+          "XUSE:CASH:GLDUSD",
+          "XUSE:CASH:IEFUSD",
+          "XUSE:CASH:IWMUSD",
+          "XUSE:CASH:QQQUSD",
+          "XUSE:CASH:SHYUSD",
+          "XUSE:CASH:SLVUSD",
+          "XUSE:CASH:SPYUSD",
+          "XUSE:CASH:TLTUSD",
+          "XUSE:CASH:UNGUSD",
+          "XUSE:CASH:USOUSD",
+          "XUSE:CASH:UUPUSD"
+        ],
+        "metric_basis": "xnys_252_sessions_elapsed_cagr_v1",
+        "no_trade_band": 0.001,
+        "rebalance_bars": 10,
+        "resolved_settings": {
+          "costs": {
+            "default_half_spread_bps": 2.5,
+            "equity_borrow_bps_annual": 50.0,
+            "equity_commission_bps": 1.0,
+            "equity_half_spread_bps": 3.0,
+            "impact_coef": 1.0,
+            "latency_addon_bps": 2.0,
+            "perp_maker_bps": 2.0,
+            "perp_taker_bps": 5.0
+          },
+          "data": {
+            "asset_class": "equity",
+            "backfill_start": "2001-01-01T00:00:00Z",
+            "exchange": "polygon",
+            "ingest_grace_ms": 30000,
+            "timeframe": "1d"
+          },
+          "live": {
+            "cycle_grace_s": 90,
+            "paper": true,
+            "tick_sleep_s": 45
+          },
+          "portfolio": {
+            "dollar_neutral": false,
+            "gross_max": 1.0,
+            "net_max": 1.0,
+            "no_trade_band": 0.001,
+            "rank_top_k": null,
+            "risk_aversion": 7.0,
+            "turnover_max": 0.1,
+            "vol_scale_max": 3.0,
+            "vol_target_ann": 0.15,
+            "w_max": 0.34
+          },
+          "quality": {
+            "bad_print_reversion_frac": 0.5,
+            "bad_print_vol_frac": 0.25,
+            "downtime_frac": 0.8,
+            "ewma_span_bars": 168,
+            "min_history_bars": 24,
+            "outlier_k": 8.0,
+            "stale_run_bars": 12
+          },
+          "risk": {
+            "clamp_reduce_only_adv": true,
+            "dd_flat_halt": -0.45,
+            "dd_halve_gross": -0.3,
+            "flat_cooldown_bars": 336,
+            "max_gross": 1.0,
+            "max_net": 1.0,
+            "max_order_adv_frac": 0.01,
+            "max_position_frac": 0.34,
+            "price_collar_frac": 0.05,
+            "staleness_max_bars": 2,
+            "var_confidence": 0.99,
+            "var_window_days": 365
+          },
+          "signals": {
+            "horizon_bars": 21,
+            "ic_target": 0.02
+          },
+          "universe": {
+            "entry_rank": 20,
+            "exit_rank": 25,
+            "rank_window_days": 30,
+            "rebalance": "monthly",
+            "size": 20
+          }
+        },
+        "saved_signal_sha256": "e0d6c54d659790e2a8ef4e3d2871a0c427b7278e45987a7b09d226df713da5b0",
+        "start": 1420156800000,
+        "trend_blend_normalization": "cross_sectional_zscore",
+        "trend_ic_history_anchor": 1325548800000,
+        "trend_label_availability": "raw_cash_exit_session_close_v2"
+      },
+      "evidence_grade": "immutable_ledger_summary_only",
+      "hypothesis_key": "4f32c6d04365b7b9",
+      "ledger_source_path": "artifacts/analysis/alphatrend_confirmation_20260913/baseline/experiments.jsonl",
+      "result": {
+        "annualized_sharpe": 0.19717420556774473,
+        "artifact_era_dsr": null,
+        "kurtosis": 6.463113737449765,
+        "maximum_drawdown": null,
+        "observations": 2939,
+        "skew": -0.26708934049847594
+      }
+    },
+    {
       "artifact_path": "artifacts/sweep/fut_real2/walkforward.json",
       "artifact_sha256": "ada977db1f24b16cfdc3b1c4a561945c2e98c6e05dadd31c220b56ae9e795516",
       "config_hash": "6a3b0d615898ef14",
@@ -497,6 +2354,366 @@
     {
       "artifact_path": null,
       "artifact_sha256": null,
+      "config_hash": "15f89e7f56b7c764",
+      "configuration": {
+        "allocator": "trend",
+        "alpha_names": [
+          "mf_trend_63",
+          "mf_trend_126",
+          "mf_trend_252"
+        ],
+        "cov_halflife_days": null,
+        "cov_min_periods": 240,
+        "cov_window_bars": 720,
+        "end": 1787529600000,
+        "evaluation_policy": "continuous_single_book_v1",
+        "execution_cost_scenario": {
+          "name": "original_base_costs",
+          "resolved_costs": {
+            "default_half_spread_bps": 2.5,
+            "equity_borrow_bps_annual": 50.0,
+            "equity_commission_bps": 1.0,
+            "equity_half_spread_bps": 3.0,
+            "impact_coef": 1.0,
+            "latency_addon_bps": 2.0,
+            "perp_maker_bps": 2.0,
+            "perp_taker_bps": 5.0
+          }
+        },
+        "history_start": 1041379200000,
+        "initial_cash": 100000.0,
+        "instrument_ids": [
+          "XUSE:CASH:DBAUSD",
+          "XUSE:CASH:DBCUSD",
+          "XUSE:CASH:EEMUSD",
+          "XUSE:CASH:EFAUSD",
+          "XUSE:CASH:FXEUSD",
+          "XUSE:CASH:FXYUSD",
+          "XUSE:CASH:GLDUSD",
+          "XUSE:CASH:IEFUSD",
+          "XUSE:CASH:IWMUSD",
+          "XUSE:CASH:QQQUSD",
+          "XUSE:CASH:SHYUSD",
+          "XUSE:CASH:SLVUSD",
+          "XUSE:CASH:SPYUSD",
+          "XUSE:CASH:TLTUSD",
+          "XUSE:CASH:UNGUSD",
+          "XUSE:CASH:USOUSD",
+          "XUSE:CASH:UUPUSD"
+        ],
+        "no_trade_band": 0.001,
+        "rebalance_bars": 10,
+        "start": 1136246400000,
+        "trend_blend_normalization": "directional_rms",
+        "trend_ic_history_anchor": 1073001600000,
+        "trend_label_availability": "exit_session_close_v1"
+      },
+      "evidence_grade": "immutable_ledger_summary_only",
+      "hypothesis_key": "59901461092dd7a6",
+      "ledger_source_path": "artifacts/analysis/alphatrend_causal_continuous_20260912/candidate/experiments.jsonl",
+      "result": {
+        "annualized_sharpe": 0.7168789894078961,
+        "artifact_era_dsr": null,
+        "kurtosis": 13.390751683351443,
+        "maximum_drawdown": null,
+        "observations": 5190,
+        "skew": 0.05690061701135766
+      }
+    },
+    {
+      "artifact_path": null,
+      "artifact_sha256": null,
+      "config_hash": "d0b7ab247a319e1f",
+      "configuration": {
+        "allocator": "trend",
+        "alpha_names": [
+          "mf_trend_63",
+          "mf_trend_126",
+          "mf_trend_252"
+        ],
+        "cost_stress": false,
+        "cov_halflife_days": null,
+        "cov_min_periods": 240,
+        "cov_window_bars": 720,
+        "direction_confirmation": true,
+        "end": 1780358400000,
+        "evaluation_policy": "continuous_retrospective_payable_book_v1",
+        "extended_reference_spec_sha256": "e66e99f7b8e0daf002541ce3e60f4df285a3781a00dcd49a1c685788021562a0",
+        "history_start": 1325548800000,
+        "implementation_manifest_sha256": "8f8bc96bef4d185ad7241ebcd6de1510e867da259f955cc1efc79f14dcb9b046",
+        "initial_cash": 22500.0,
+        "input_binding": {
+          "execution_mode": "RETROSPECTIVE_CURRENT_VINTAGE",
+          "mode": "DIAGNOSTIC_CURRENT_VINTAGE",
+          "paired_input_sha256": "5f977ccd06240643eb1787d214b7ec31c0a92df1fcb1e40014ba710c218a8064",
+          "point_in_time_proven": false,
+          "quote_volume": "raw_close_times_raw_volume_proxy",
+          "raw_label_convention": "raw_open_cash_accrual_fixed_release_v2",
+          "raw_label_input_sha256": "e8e1b01cd0f10308d0a2d2717e5cf8e74dff49810ab4137e34b763993d85de5a",
+          "raw_label_mode": "DIAGNOSTIC_CURRENT_VINTAGE",
+          "retrospective_vintage_ms": 1789214263591,
+          "risk_prices": "synthetic_returns_raw_position_marks_v1"
+        },
+        "instrument_ids": [
+          "XUSE:CASH:DBAUSD",
+          "XUSE:CASH:DBCUSD",
+          "XUSE:CASH:EEMUSD",
+          "XUSE:CASH:EFAUSD",
+          "XUSE:CASH:FXEUSD",
+          "XUSE:CASH:FXYUSD",
+          "XUSE:CASH:GLDUSD",
+          "XUSE:CASH:IEFUSD",
+          "XUSE:CASH:IWMUSD",
+          "XUSE:CASH:QQQUSD",
+          "XUSE:CASH:SHYUSD",
+          "XUSE:CASH:SLVUSD",
+          "XUSE:CASH:SPYUSD",
+          "XUSE:CASH:TLTUSD",
+          "XUSE:CASH:UNGUSD",
+          "XUSE:CASH:USOUSD",
+          "XUSE:CASH:UUPUSD"
+        ],
+        "metric_basis": "xnys_252_sessions_elapsed_cagr_v1",
+        "no_trade_band": 0.001,
+        "positive_targets": false,
+        "rebalance_bars": 10,
+        "resolved_settings": {
+          "costs": {
+            "default_half_spread_bps": 2.5,
+            "equity_borrow_bps_annual": 50.0,
+            "equity_commission_bps": 1.0,
+            "equity_half_spread_bps": 3.0,
+            "impact_coef": 1.0,
+            "latency_addon_bps": 2.0,
+            "perp_maker_bps": 2.0,
+            "perp_taker_bps": 5.0
+          },
+          "data": {
+            "asset_class": "equity",
+            "backfill_start": "2001-01-01T00:00:00Z",
+            "exchange": "polygon",
+            "ingest_grace_ms": 30000,
+            "timeframe": "1d"
+          },
+          "live": {
+            "cycle_grace_s": 90,
+            "paper": true,
+            "tick_sleep_s": 45
+          },
+          "portfolio": {
+            "dollar_neutral": false,
+            "gross_max": 1.0,
+            "net_max": 1.0,
+            "no_trade_band": 0.001,
+            "rank_top_k": null,
+            "risk_aversion": 7.0,
+            "turnover_max": 0.1,
+            "vol_scale_max": 3.0,
+            "vol_target_ann": 0.15,
+            "w_max": 0.34
+          },
+          "quality": {
+            "bad_print_reversion_frac": 0.5,
+            "bad_print_vol_frac": 0.25,
+            "downtime_frac": 0.8,
+            "ewma_span_bars": 168,
+            "min_history_bars": 24,
+            "outlier_k": 8.0,
+            "stale_run_bars": 12
+          },
+          "risk": {
+            "clamp_reduce_only_adv": true,
+            "dd_flat_halt": -0.45,
+            "dd_halve_gross": -0.3,
+            "flat_cooldown_bars": 336,
+            "max_gross": 1.0,
+            "max_net": 1.0,
+            "max_order_adv_frac": 0.01,
+            "max_position_frac": 0.34,
+            "price_collar_frac": 0.05,
+            "staleness_max_bars": 2,
+            "var_confidence": 0.99,
+            "var_window_days": 365
+          },
+          "signals": {
+            "horizon_bars": 21,
+            "ic_target": 0.02
+          },
+          "universe": {
+            "entry_rank": 20,
+            "exit_rank": 25,
+            "rank_window_days": 30,
+            "rebalance": "monthly",
+            "size": 20
+          }
+        },
+        "saved_signal_filter": "ts_open<end",
+        "saved_signal_sha256": "e0d6c54d659790e2a8ef4e3d2871a0c427b7278e45987a7b09d226df713da5b0",
+        "start": 1672531200000,
+        "trend_blend_normalization": "cross_sectional_zscore",
+        "trend_ic_history_anchor": 1325548800000,
+        "trend_label_availability": "raw_cash_exit_session_close_v2"
+      },
+      "evidence_grade": "immutable_ledger_summary_only",
+      "hypothesis_key": "5bb33ba832874159",
+      "ledger_source_path": "artifacts/analysis/trend_funded_account_20260913/baseline/experiments.jsonl",
+      "result": {
+        "annualized_sharpe": 0.05525366804088751,
+        "artifact_era_dsr": null,
+        "kurtosis": 5.843318083485324,
+        "maximum_drawdown": null,
+        "observations": 854,
+        "skew": -0.6831743658431582
+      }
+    },
+    {
+      "artifact_path": null,
+      "artifact_sha256": null,
+      "config_hash": "a1f227528e8de8ef",
+      "configuration": {
+        "allocator": "trend",
+        "alpha_names": [
+          "mf_trend_63",
+          "mf_trend_126",
+          "mf_trend_252"
+        ],
+        "category_targets": true,
+        "category_targets_spec_sha256": "f959b7ed215b1e836c3e419d59a0e7641dbbd5ddb95bd2ed98c5e9fe1233dba3",
+        "cost_stress": false,
+        "cov_halflife_days": null,
+        "cov_min_periods": 240,
+        "cov_window_bars": 720,
+        "direction_confirmation": true,
+        "end": 1789171200000,
+        "evaluation_policy": "continuous_retrospective_payable_book_v1",
+        "history_start": 1325548800000,
+        "implementation_manifest_sha256": "cdadb279638b7cbdaaeb1db8f302be3a522f3997edb7cda36b6be3376420331d",
+        "initial_cash": 100000.0,
+        "input_binding": {
+          "execution_mode": "RETROSPECTIVE_CURRENT_VINTAGE",
+          "mode": "DIAGNOSTIC_CURRENT_VINTAGE",
+          "paired_input_sha256": "5f977ccd06240643eb1787d214b7ec31c0a92df1fcb1e40014ba710c218a8064",
+          "point_in_time_proven": false,
+          "quote_volume": "raw_close_times_raw_volume_proxy",
+          "raw_label_convention": "raw_open_cash_accrual_fixed_release_v2",
+          "raw_label_input_sha256": "e8e1b01cd0f10308d0a2d2717e5cf8e74dff49810ab4137e34b763993d85de5a",
+          "raw_label_mode": "DIAGNOSTIC_CURRENT_VINTAGE",
+          "retrospective_vintage_ms": 1789214263591,
+          "risk_prices": "synthetic_returns_raw_position_marks_v1"
+        },
+        "instrument_ids": [
+          "XUSE:CASH:DBAUSD",
+          "XUSE:CASH:DBCUSD",
+          "XUSE:CASH:EEMUSD",
+          "XUSE:CASH:EFAUSD",
+          "XUSE:CASH:FXEUSD",
+          "XUSE:CASH:FXYUSD",
+          "XUSE:CASH:GLDUSD",
+          "XUSE:CASH:IEFUSD",
+          "XUSE:CASH:IWMUSD",
+          "XUSE:CASH:QQQUSD",
+          "XUSE:CASH:SHYUSD",
+          "XUSE:CASH:SLVUSD",
+          "XUSE:CASH:SPYUSD",
+          "XUSE:CASH:TLTUSD",
+          "XUSE:CASH:UNGUSD",
+          "XUSE:CASH:USOUSD",
+          "XUSE:CASH:UUPUSD"
+        ],
+        "metric_basis": "xnys_252_sessions_elapsed_cagr_v1",
+        "no_trade_band": 0.001,
+        "rebalance_bars": 10,
+        "resolved_settings": {
+          "costs": {
+            "default_half_spread_bps": 2.5,
+            "equity_borrow_bps_annual": 50.0,
+            "equity_commission_bps": 1.0,
+            "equity_half_spread_bps": 3.0,
+            "impact_coef": 1.0,
+            "latency_addon_bps": 2.0,
+            "perp_maker_bps": 2.0,
+            "perp_taker_bps": 5.0
+          },
+          "data": {
+            "asset_class": "equity",
+            "backfill_start": "2001-01-01T00:00:00Z",
+            "exchange": "polygon",
+            "ingest_grace_ms": 30000,
+            "timeframe": "1d"
+          },
+          "live": {
+            "cycle_grace_s": 90,
+            "paper": true,
+            "tick_sleep_s": 45
+          },
+          "portfolio": {
+            "dollar_neutral": false,
+            "gross_max": 1.0,
+            "net_max": 1.0,
+            "no_trade_band": 0.001,
+            "rank_top_k": null,
+            "risk_aversion": 7.0,
+            "turnover_max": 0.1,
+            "vol_scale_max": 3.0,
+            "vol_target_ann": 0.15,
+            "w_max": 0.34
+          },
+          "quality": {
+            "bad_print_reversion_frac": 0.5,
+            "bad_print_vol_frac": 0.25,
+            "downtime_frac": 0.8,
+            "ewma_span_bars": 168,
+            "min_history_bars": 24,
+            "outlier_k": 8.0,
+            "stale_run_bars": 12
+          },
+          "risk": {
+            "clamp_reduce_only_adv": true,
+            "dd_flat_halt": -0.45,
+            "dd_halve_gross": -0.3,
+            "flat_cooldown_bars": 336,
+            "max_gross": 1.0,
+            "max_net": 1.0,
+            "max_order_adv_frac": 0.01,
+            "max_position_frac": 0.34,
+            "price_collar_frac": 0.05,
+            "staleness_max_bars": 2,
+            "var_confidence": 0.99,
+            "var_window_days": 365
+          },
+          "signals": {
+            "horizon_bars": 21,
+            "ic_target": 0.02
+          },
+          "universe": {
+            "entry_rank": 20,
+            "exit_rank": 25,
+            "rank_window_days": 30,
+            "rebalance": "monthly",
+            "size": 20
+          }
+        },
+        "saved_signal_sha256": "e0d6c54d659790e2a8ef4e3d2871a0c427b7278e45987a7b09d226df713da5b0",
+        "start": 1420156800000,
+        "trend_blend_normalization": "cross_sectional_zscore",
+        "trend_ic_history_anchor": 1325548800000,
+        "trend_label_availability": "raw_cash_exit_session_close_v2"
+      },
+      "evidence_grade": "immutable_ledger_summary_only",
+      "hypothesis_key": "5c49f2aea0087c42",
+      "ledger_source_path": "artifacts/analysis/alphatrend_category_targets_20260913/candidate/experiments.jsonl",
+      "result": {
+        "annualized_sharpe": 0.6672996119424527,
+        "artifact_era_dsr": null,
+        "kurtosis": 4.916540329538627,
+        "maximum_drawdown": null,
+        "observations": 2939,
+        "skew": -0.40534195181104515
+      }
+    },
+    {
+      "artifact_path": null,
+      "artifact_sha256": null,
       "config_hash": "f583cd411d242b30",
       "configuration": {
         "allocator": "trend",
@@ -536,6 +2753,68 @@
         "maximum_drawdown": null,
         "observations": 5171,
         "skew": 0.16225018921428247
+      }
+    },
+    {
+      "artifact_path": null,
+      "artifact_sha256": null,
+      "config_hash": "788422302e475b11",
+      "configuration": {
+        "allocator": "trend",
+        "alpha_names": [
+          "mf_trend_63",
+          "mf_trend_126",
+          "mf_trend_252"
+        ],
+        "end": 1787529600000,
+        "execution_cost_scenario": {
+          "name": "double_all_modeled_costs_v1",
+          "resolved_costs": {
+            "default_half_spread_bps": 2.5,
+            "equity_borrow_bps_annual": 100.0,
+            "equity_commission_bps": 2.0,
+            "equity_half_spread_bps": 6.0,
+            "impact_coef": 2.0,
+            "latency_addon_bps": 4.0,
+            "perp_maker_bps": 2.0,
+            "perp_taker_bps": 5.0
+          }
+        },
+        "instrument_ids": [
+          "XUSE:CASH:DBAUSD",
+          "XUSE:CASH:DBCUSD",
+          "XUSE:CASH:EEMUSD",
+          "XUSE:CASH:EFAUSD",
+          "XUSE:CASH:FXEUSD",
+          "XUSE:CASH:FXYUSD",
+          "XUSE:CASH:GLDUSD",
+          "XUSE:CASH:IEFUSD",
+          "XUSE:CASH:IWMUSD",
+          "XUSE:CASH:QQQUSD",
+          "XUSE:CASH:SHYUSD",
+          "XUSE:CASH:SLVUSD",
+          "XUSE:CASH:SPYUSD",
+          "XUSE:CASH:TLTUSD",
+          "XUSE:CASH:UNGUSD",
+          "XUSE:CASH:USOUSD",
+          "XUSE:CASH:UUPUSD"
+        ],
+        "no_trade_band": 0.001,
+        "rebalance_bars": 10,
+        "start": 1041379200000,
+        "test_bars": 126,
+        "train_bars": 504
+      },
+      "evidence_grade": "immutable_ledger_summary_only",
+      "hypothesis_key": "6f5e71ec657beef2",
+      "ledger_source_path": "artifacts/analysis/alphatrend_directional_validation_20260912/baseline/experiments.jsonl",
+      "result": {
+        "annualized_sharpe": 0.15018407370958523,
+        "artifact_era_dsr": null,
+        "kurtosis": 17.17225273077936,
+        "maximum_drawdown": null,
+        "observations": 5190,
+        "skew": 0.32694170438201153
       }
     },
     {
@@ -705,6 +2984,585 @@
       }
     },
     {
+      "artifact_path": null,
+      "artifact_sha256": null,
+      "config_hash": "fd8bc0cd35f56c9b",
+      "configuration": {
+        "allocator": "trend",
+        "alpha_names": [
+          "mf_trend_63",
+          "mf_trend_126",
+          "mf_trend_252"
+        ],
+        "confirmation_spec_sha256": "740e1b4fa807401ce858402d8d0111c9b188330438f2ce8a6df27a8ad01f1ada",
+        "cost_stress": false,
+        "cov_halflife_days": null,
+        "cov_min_periods": 240,
+        "cov_window_bars": 720,
+        "direction_confirmation": true,
+        "end": 1789171200000,
+        "evaluation_policy": "continuous_retrospective_payable_book_v1",
+        "history_start": 1325548800000,
+        "implementation_manifest_sha256": "a894557041038e4a577e7a5f99a08694913c33a6502aae907c3ff08934bc8a1d",
+        "initial_cash": 100000.0,
+        "input_binding": {
+          "execution_mode": "RETROSPECTIVE_CURRENT_VINTAGE",
+          "mode": "DIAGNOSTIC_CURRENT_VINTAGE",
+          "paired_input_sha256": "5f977ccd06240643eb1787d214b7ec31c0a92df1fcb1e40014ba710c218a8064",
+          "point_in_time_proven": false,
+          "quote_volume": "raw_close_times_raw_volume_proxy",
+          "raw_label_convention": "raw_open_cash_accrual_fixed_release_v2",
+          "raw_label_input_sha256": "e8e1b01cd0f10308d0a2d2717e5cf8e74dff49810ab4137e34b763993d85de5a",
+          "raw_label_mode": "DIAGNOSTIC_CURRENT_VINTAGE",
+          "retrospective_vintage_ms": 1789214263591,
+          "risk_prices": "synthetic_returns_raw_position_marks_v1"
+        },
+        "instrument_ids": [
+          "XUSE:CASH:DBAUSD",
+          "XUSE:CASH:DBCUSD",
+          "XUSE:CASH:EEMUSD",
+          "XUSE:CASH:EFAUSD",
+          "XUSE:CASH:FXEUSD",
+          "XUSE:CASH:FXYUSD",
+          "XUSE:CASH:GLDUSD",
+          "XUSE:CASH:IEFUSD",
+          "XUSE:CASH:IWMUSD",
+          "XUSE:CASH:QQQUSD",
+          "XUSE:CASH:SHYUSD",
+          "XUSE:CASH:SLVUSD",
+          "XUSE:CASH:SPYUSD",
+          "XUSE:CASH:TLTUSD",
+          "XUSE:CASH:UNGUSD",
+          "XUSE:CASH:USOUSD",
+          "XUSE:CASH:UUPUSD"
+        ],
+        "metric_basis": "xnys_252_sessions_elapsed_cagr_v1",
+        "no_trade_band": 0.001,
+        "rebalance_bars": 10,
+        "resolved_settings": {
+          "costs": {
+            "default_half_spread_bps": 2.5,
+            "equity_borrow_bps_annual": 50.0,
+            "equity_commission_bps": 1.0,
+            "equity_half_spread_bps": 3.0,
+            "impact_coef": 1.0,
+            "latency_addon_bps": 2.0,
+            "perp_maker_bps": 2.0,
+            "perp_taker_bps": 5.0
+          },
+          "data": {
+            "asset_class": "equity",
+            "backfill_start": "2001-01-01T00:00:00Z",
+            "exchange": "polygon",
+            "ingest_grace_ms": 30000,
+            "timeframe": "1d"
+          },
+          "live": {
+            "cycle_grace_s": 90,
+            "paper": true,
+            "tick_sleep_s": 45
+          },
+          "portfolio": {
+            "dollar_neutral": false,
+            "gross_max": 1.0,
+            "net_max": 1.0,
+            "no_trade_band": 0.001,
+            "rank_top_k": null,
+            "risk_aversion": 7.0,
+            "turnover_max": 0.1,
+            "vol_scale_max": 3.0,
+            "vol_target_ann": 0.15,
+            "w_max": 0.34
+          },
+          "quality": {
+            "bad_print_reversion_frac": 0.5,
+            "bad_print_vol_frac": 0.25,
+            "downtime_frac": 0.8,
+            "ewma_span_bars": 168,
+            "min_history_bars": 24,
+            "outlier_k": 8.0,
+            "stale_run_bars": 12
+          },
+          "risk": {
+            "clamp_reduce_only_adv": true,
+            "dd_flat_halt": -0.45,
+            "dd_halve_gross": -0.3,
+            "flat_cooldown_bars": 336,
+            "max_gross": 1.0,
+            "max_net": 1.0,
+            "max_order_adv_frac": 0.01,
+            "max_position_frac": 0.34,
+            "price_collar_frac": 0.05,
+            "staleness_max_bars": 2,
+            "var_confidence": 0.99,
+            "var_window_days": 365
+          },
+          "signals": {
+            "horizon_bars": 21,
+            "ic_target": 0.02
+          },
+          "universe": {
+            "entry_rank": 20,
+            "exit_rank": 25,
+            "rank_window_days": 30,
+            "rebalance": "monthly",
+            "size": 20
+          }
+        },
+        "saved_signal_sha256": "e0d6c54d659790e2a8ef4e3d2871a0c427b7278e45987a7b09d226df713da5b0",
+        "start": 1420156800000,
+        "trend_blend_normalization": "cross_sectional_zscore",
+        "trend_ic_history_anchor": 1325548800000,
+        "trend_label_availability": "raw_cash_exit_session_close_v2"
+      },
+      "evidence_grade": "immutable_ledger_summary_only",
+      "hypothesis_key": "955436d71656447b",
+      "ledger_source_path": "artifacts/analysis/alphatrend_confirmation_20260913/candidate/experiments.jsonl",
+      "result": {
+        "annualized_sharpe": 0.2903696034909428,
+        "artifact_era_dsr": null,
+        "kurtosis": 6.147699000194615,
+        "maximum_drawdown": null,
+        "observations": 2939,
+        "skew": -0.4008512817652573
+      }
+    },
+    {
+      "artifact_path": null,
+      "artifact_sha256": null,
+      "config_hash": "3d8c495ad74bb0b4",
+      "configuration": {
+        "allocator": "trend",
+        "alpha_names": [
+          "mf_trend_63",
+          "mf_trend_126",
+          "mf_trend_252"
+        ],
+        "cost_stress": true,
+        "cov_halflife_days": null,
+        "cov_min_periods": 240,
+        "cov_window_bars": 720,
+        "direction_confirmation": true,
+        "end": 1789171200000,
+        "evaluation_policy": "continuous_retrospective_payable_book_v1",
+        "history_start": 1325548800000,
+        "implementation_manifest_sha256": "5df2462265b65f1bb56fd5fe425bb91a6db1e060cda25d8c21bc105328c8a8bd",
+        "initial_cash": 100000.0,
+        "input_binding": {
+          "execution_mode": "RETROSPECTIVE_CURRENT_VINTAGE",
+          "mode": "DIAGNOSTIC_CURRENT_VINTAGE",
+          "paired_input_sha256": "5f977ccd06240643eb1787d214b7ec31c0a92df1fcb1e40014ba710c218a8064",
+          "point_in_time_proven": false,
+          "quote_volume": "raw_close_times_raw_volume_proxy",
+          "raw_label_convention": "raw_open_cash_accrual_fixed_release_v2",
+          "raw_label_input_sha256": "e8e1b01cd0f10308d0a2d2717e5cf8e74dff49810ab4137e34b763993d85de5a",
+          "raw_label_mode": "DIAGNOSTIC_CURRENT_VINTAGE",
+          "retrospective_vintage_ms": 1789214263591,
+          "risk_prices": "synthetic_returns_raw_position_marks_v1"
+        },
+        "instrument_ids": [
+          "XUSE:CASH:DBAUSD",
+          "XUSE:CASH:DBCUSD",
+          "XUSE:CASH:EEMUSD",
+          "XUSE:CASH:EFAUSD",
+          "XUSE:CASH:FXEUSD",
+          "XUSE:CASH:FXYUSD",
+          "XUSE:CASH:GLDUSD",
+          "XUSE:CASH:IEFUSD",
+          "XUSE:CASH:IWMUSD",
+          "XUSE:CASH:QQQUSD",
+          "XUSE:CASH:SHYUSD",
+          "XUSE:CASH:SLVUSD",
+          "XUSE:CASH:SPYUSD",
+          "XUSE:CASH:TLTUSD",
+          "XUSE:CASH:UNGUSD",
+          "XUSE:CASH:USOUSD",
+          "XUSE:CASH:UUPUSD"
+        ],
+        "metric_basis": "xnys_252_sessions_elapsed_cagr_v1",
+        "no_trade_band": 0.001,
+        "positive_targets": false,
+        "positive_targets_spec_sha256": "1eb5ab560a2f23156840cfbdc6083fd2d561ec5fac8783f6c38eed775b697b75",
+        "rebalance_bars": 10,
+        "resolved_settings": {
+          "costs": {
+            "default_half_spread_bps": 2.5,
+            "equity_borrow_bps_annual": 100.0,
+            "equity_commission_bps": 2.0,
+            "equity_half_spread_bps": 6.0,
+            "impact_coef": 2.0,
+            "latency_addon_bps": 4.0,
+            "perp_maker_bps": 2.0,
+            "perp_taker_bps": 5.0
+          },
+          "data": {
+            "asset_class": "equity",
+            "backfill_start": "2001-01-01T00:00:00Z",
+            "exchange": "polygon",
+            "ingest_grace_ms": 30000,
+            "timeframe": "1d"
+          },
+          "live": {
+            "cycle_grace_s": 90,
+            "paper": true,
+            "tick_sleep_s": 45
+          },
+          "portfolio": {
+            "dollar_neutral": false,
+            "gross_max": 1.0,
+            "net_max": 1.0,
+            "no_trade_band": 0.001,
+            "rank_top_k": null,
+            "risk_aversion": 7.0,
+            "turnover_max": 0.1,
+            "vol_scale_max": 3.0,
+            "vol_target_ann": 0.15,
+            "w_max": 0.34
+          },
+          "quality": {
+            "bad_print_reversion_frac": 0.5,
+            "bad_print_vol_frac": 0.25,
+            "downtime_frac": 0.8,
+            "ewma_span_bars": 168,
+            "min_history_bars": 24,
+            "outlier_k": 8.0,
+            "stale_run_bars": 12
+          },
+          "risk": {
+            "clamp_reduce_only_adv": true,
+            "dd_flat_halt": -0.45,
+            "dd_halve_gross": -0.3,
+            "flat_cooldown_bars": 336,
+            "max_gross": 1.0,
+            "max_net": 1.0,
+            "max_order_adv_frac": 0.01,
+            "max_position_frac": 0.34,
+            "price_collar_frac": 0.05,
+            "staleness_max_bars": 2,
+            "var_confidence": 0.99,
+            "var_window_days": 365
+          },
+          "signals": {
+            "horizon_bars": 21,
+            "ic_target": 0.02
+          },
+          "universe": {
+            "entry_rank": 20,
+            "exit_rank": 25,
+            "rank_window_days": 30,
+            "rebalance": "monthly",
+            "size": 20
+          }
+        },
+        "saved_signal_sha256": "e0d6c54d659790e2a8ef4e3d2871a0c427b7278e45987a7b09d226df713da5b0",
+        "start": 1420156800000,
+        "trend_blend_normalization": "cross_sectional_zscore",
+        "trend_ic_history_anchor": 1325548800000,
+        "trend_label_availability": "raw_cash_exit_session_close_v2"
+      },
+      "evidence_grade": "immutable_ledger_summary_only",
+      "hypothesis_key": "969c2a1f4f532e27",
+      "ledger_source_path": "artifacts/analysis/alphatrend_positive_targets_20260913/baseline_stress/experiments.jsonl",
+      "result": {
+        "annualized_sharpe": 0.17188956076028583,
+        "artifact_era_dsr": null,
+        "kurtosis": 6.1498259643866,
+        "maximum_drawdown": null,
+        "observations": 2939,
+        "skew": -0.39614407625309506
+      }
+    },
+    {
+      "artifact_path": null,
+      "artifact_sha256": null,
+      "config_hash": "0e27f7c613fee378",
+      "configuration": {
+        "allocator": "trend",
+        "alpha_names": [
+          "mf_trend_63",
+          "mf_trend_126",
+          "mf_trend_252"
+        ],
+        "cost_stress": true,
+        "cov_halflife_days": null,
+        "cov_min_periods": 240,
+        "cov_window_bars": 720,
+        "direction_confirmation": true,
+        "end": 1780358400000,
+        "evaluation_policy": "continuous_retrospective_payable_book_v1",
+        "extended_reference_spec_sha256": "ba3b6276fbfdbd668a5980ed1dc99c7d557f5745b0f60f8bb9421a7ba75b1764",
+        "history_start": 1325548800000,
+        "implementation_manifest_sha256": "09b75ddf047331b9e2129e1486360fe32bb46a991f2e37e6a65acf82ffea48f3",
+        "initial_cash": 100000.0,
+        "input_binding": {
+          "execution_mode": "RETROSPECTIVE_CURRENT_VINTAGE",
+          "mode": "DIAGNOSTIC_CURRENT_VINTAGE",
+          "paired_input_sha256": "5f977ccd06240643eb1787d214b7ec31c0a92df1fcb1e40014ba710c218a8064",
+          "point_in_time_proven": false,
+          "quote_volume": "raw_close_times_raw_volume_proxy",
+          "raw_label_convention": "raw_open_cash_accrual_fixed_release_v2",
+          "raw_label_input_sha256": "e8e1b01cd0f10308d0a2d2717e5cf8e74dff49810ab4137e34b763993d85de5a",
+          "raw_label_mode": "DIAGNOSTIC_CURRENT_VINTAGE",
+          "retrospective_vintage_ms": 1789214263591,
+          "risk_prices": "synthetic_returns_raw_position_marks_v1"
+        },
+        "instrument_ids": [
+          "XUSE:CASH:DBAUSD",
+          "XUSE:CASH:DBCUSD",
+          "XUSE:CASH:EEMUSD",
+          "XUSE:CASH:EFAUSD",
+          "XUSE:CASH:FXEUSD",
+          "XUSE:CASH:FXYUSD",
+          "XUSE:CASH:GLDUSD",
+          "XUSE:CASH:IEFUSD",
+          "XUSE:CASH:IWMUSD",
+          "XUSE:CASH:QQQUSD",
+          "XUSE:CASH:SHYUSD",
+          "XUSE:CASH:SLVUSD",
+          "XUSE:CASH:SPYUSD",
+          "XUSE:CASH:TLTUSD",
+          "XUSE:CASH:UNGUSD",
+          "XUSE:CASH:USOUSD",
+          "XUSE:CASH:UUPUSD"
+        ],
+        "metric_basis": "xnys_252_sessions_elapsed_cagr_v1",
+        "no_trade_band": 0.001,
+        "positive_targets": false,
+        "rebalance_bars": 10,
+        "resolved_settings": {
+          "costs": {
+            "default_half_spread_bps": 2.5,
+            "equity_borrow_bps_annual": 100.0,
+            "equity_commission_bps": 2.0,
+            "equity_half_spread_bps": 6.0,
+            "impact_coef": 2.0,
+            "latency_addon_bps": 4.0,
+            "perp_maker_bps": 2.0,
+            "perp_taker_bps": 5.0
+          },
+          "data": {
+            "asset_class": "equity",
+            "backfill_start": "2001-01-01T00:00:00Z",
+            "exchange": "polygon",
+            "ingest_grace_ms": 30000,
+            "timeframe": "1d"
+          },
+          "live": {
+            "cycle_grace_s": 90,
+            "paper": true,
+            "tick_sleep_s": 45
+          },
+          "portfolio": {
+            "dollar_neutral": false,
+            "gross_max": 1.0,
+            "net_max": 1.0,
+            "no_trade_band": 0.001,
+            "rank_top_k": null,
+            "risk_aversion": 7.0,
+            "turnover_max": 0.1,
+            "vol_scale_max": 3.0,
+            "vol_target_ann": 0.15,
+            "w_max": 0.34
+          },
+          "quality": {
+            "bad_print_reversion_frac": 0.5,
+            "bad_print_vol_frac": 0.25,
+            "downtime_frac": 0.8,
+            "ewma_span_bars": 168,
+            "min_history_bars": 24,
+            "outlier_k": 8.0,
+            "stale_run_bars": 12
+          },
+          "risk": {
+            "clamp_reduce_only_adv": true,
+            "dd_flat_halt": -0.45,
+            "dd_halve_gross": -0.3,
+            "flat_cooldown_bars": 336,
+            "max_gross": 1.0,
+            "max_net": 1.0,
+            "max_order_adv_frac": 0.01,
+            "max_position_frac": 0.34,
+            "price_collar_frac": 0.05,
+            "staleness_max_bars": 2,
+            "var_confidence": 0.99,
+            "var_window_days": 365
+          },
+          "signals": {
+            "horizon_bars": 21,
+            "ic_target": 0.02
+          },
+          "universe": {
+            "entry_rank": 20,
+            "exit_rank": 25,
+            "rank_window_days": 30,
+            "rebalance": "monthly",
+            "size": 20
+          }
+        },
+        "saved_signal_filter": "ts_open<end",
+        "saved_signal_sha256": "e0d6c54d659790e2a8ef4e3d2871a0c427b7278e45987a7b09d226df713da5b0",
+        "start": 1672272000000,
+        "trend_blend_normalization": "cross_sectional_zscore",
+        "trend_ic_history_anchor": 1325548800000,
+        "trend_label_availability": "raw_cash_exit_session_close_v2"
+      },
+      "evidence_grade": "immutable_ledger_summary_only",
+      "hypothesis_key": "a84cebfa1940bd32",
+      "ledger_source_path": "artifacts/analysis/trend_extended_reference_20260913/baseline_stress/experiments.jsonl",
+      "result": {
+        "annualized_sharpe": 0.13050927269736476,
+        "artifact_era_dsr": null,
+        "kurtosis": 6.736369534542657,
+        "maximum_drawdown": null,
+        "observations": 856,
+        "skew": -0.5515953321611036
+      }
+    },
+    {
+      "artifact_path": null,
+      "artifact_sha256": null,
+      "config_hash": "a5571d4c610f13ac",
+      "configuration": {
+        "allocator": "trend",
+        "alpha_names": [
+          "mf_trend_63",
+          "mf_trend_126",
+          "mf_trend_252"
+        ],
+        "confirmation_spec_sha256": "740e1b4fa807401ce858402d8d0111c9b188330438f2ce8a6df27a8ad01f1ada",
+        "cost_stress": true,
+        "cov_halflife_days": null,
+        "cov_min_periods": 240,
+        "cov_window_bars": 720,
+        "direction_confirmation": true,
+        "end": 1789171200000,
+        "evaluation_policy": "continuous_retrospective_payable_book_v1",
+        "history_start": 1325548800000,
+        "implementation_manifest_sha256": "a894557041038e4a577e7a5f99a08694913c33a6502aae907c3ff08934bc8a1d",
+        "initial_cash": 100000.0,
+        "input_binding": {
+          "execution_mode": "RETROSPECTIVE_CURRENT_VINTAGE",
+          "mode": "DIAGNOSTIC_CURRENT_VINTAGE",
+          "paired_input_sha256": "5f977ccd06240643eb1787d214b7ec31c0a92df1fcb1e40014ba710c218a8064",
+          "point_in_time_proven": false,
+          "quote_volume": "raw_close_times_raw_volume_proxy",
+          "raw_label_convention": "raw_open_cash_accrual_fixed_release_v2",
+          "raw_label_input_sha256": "e8e1b01cd0f10308d0a2d2717e5cf8e74dff49810ab4137e34b763993d85de5a",
+          "raw_label_mode": "DIAGNOSTIC_CURRENT_VINTAGE",
+          "retrospective_vintage_ms": 1789214263591,
+          "risk_prices": "synthetic_returns_raw_position_marks_v1"
+        },
+        "instrument_ids": [
+          "XUSE:CASH:DBAUSD",
+          "XUSE:CASH:DBCUSD",
+          "XUSE:CASH:EEMUSD",
+          "XUSE:CASH:EFAUSD",
+          "XUSE:CASH:FXEUSD",
+          "XUSE:CASH:FXYUSD",
+          "XUSE:CASH:GLDUSD",
+          "XUSE:CASH:IEFUSD",
+          "XUSE:CASH:IWMUSD",
+          "XUSE:CASH:QQQUSD",
+          "XUSE:CASH:SHYUSD",
+          "XUSE:CASH:SLVUSD",
+          "XUSE:CASH:SPYUSD",
+          "XUSE:CASH:TLTUSD",
+          "XUSE:CASH:UNGUSD",
+          "XUSE:CASH:USOUSD",
+          "XUSE:CASH:UUPUSD"
+        ],
+        "metric_basis": "xnys_252_sessions_elapsed_cagr_v1",
+        "no_trade_band": 0.001,
+        "rebalance_bars": 10,
+        "resolved_settings": {
+          "costs": {
+            "default_half_spread_bps": 2.5,
+            "equity_borrow_bps_annual": 100.0,
+            "equity_commission_bps": 2.0,
+            "equity_half_spread_bps": 6.0,
+            "impact_coef": 2.0,
+            "latency_addon_bps": 4.0,
+            "perp_maker_bps": 2.0,
+            "perp_taker_bps": 5.0
+          },
+          "data": {
+            "asset_class": "equity",
+            "backfill_start": "2001-01-01T00:00:00Z",
+            "exchange": "polygon",
+            "ingest_grace_ms": 30000,
+            "timeframe": "1d"
+          },
+          "live": {
+            "cycle_grace_s": 90,
+            "paper": true,
+            "tick_sleep_s": 45
+          },
+          "portfolio": {
+            "dollar_neutral": false,
+            "gross_max": 1.0,
+            "net_max": 1.0,
+            "no_trade_band": 0.001,
+            "rank_top_k": null,
+            "risk_aversion": 7.0,
+            "turnover_max": 0.1,
+            "vol_scale_max": 3.0,
+            "vol_target_ann": 0.15,
+            "w_max": 0.34
+          },
+          "quality": {
+            "bad_print_reversion_frac": 0.5,
+            "bad_print_vol_frac": 0.25,
+            "downtime_frac": 0.8,
+            "ewma_span_bars": 168,
+            "min_history_bars": 24,
+            "outlier_k": 8.0,
+            "stale_run_bars": 12
+          },
+          "risk": {
+            "clamp_reduce_only_adv": true,
+            "dd_flat_halt": -0.45,
+            "dd_halve_gross": -0.3,
+            "flat_cooldown_bars": 336,
+            "max_gross": 1.0,
+            "max_net": 1.0,
+            "max_order_adv_frac": 0.01,
+            "max_position_frac": 0.34,
+            "price_collar_frac": 0.05,
+            "staleness_max_bars": 2,
+            "var_confidence": 0.99,
+            "var_window_days": 365
+          },
+          "signals": {
+            "horizon_bars": 21,
+            "ic_target": 0.02
+          },
+          "universe": {
+            "entry_rank": 20,
+            "exit_rank": 25,
+            "rank_window_days": 30,
+            "rebalance": "monthly",
+            "size": 20
+          }
+        },
+        "saved_signal_sha256": "e0d6c54d659790e2a8ef4e3d2871a0c427b7278e45987a7b09d226df713da5b0",
+        "start": 1420156800000,
+        "trend_blend_normalization": "cross_sectional_zscore",
+        "trend_ic_history_anchor": 1325548800000,
+        "trend_label_availability": "raw_cash_exit_session_close_v2"
+      },
+      "evidence_grade": "immutable_ledger_summary_only",
+      "hypothesis_key": "aaa2201f460e1996",
+      "ledger_source_path": "artifacts/analysis/alphatrend_confirmation_20260913/candidate_stress/experiments.jsonl",
+      "result": {
+        "annualized_sharpe": 0.17188956076028583,
+        "artifact_era_dsr": null,
+        "kurtosis": 6.1498259643866,
+        "maximum_drawdown": null,
+        "observations": 2939,
+        "skew": -0.39614407625309506
+      }
+    },
+    {
       "artifact_path": "artifacts/sweep/alphatrend_breadth/report.json",
       "artifact_sha256": "c9eb52113b13647d468957136732792051b96ce9ec2437337298049bacaf0244",
       "config_hash": "dc78c2c55edfc678",
@@ -861,6 +3719,662 @@
       }
     },
     {
+      "artifact_path": null,
+      "artifact_sha256": null,
+      "config_hash": "5c13e2df9313de49",
+      "configuration": {
+        "allocator": "trend",
+        "alpha_names": [
+          "mf_trend_63",
+          "mf_trend_126",
+          "mf_trend_252"
+        ],
+        "end": 1787529600000,
+        "instrument_ids": [
+          "XUSE:CASH:DBAUSD",
+          "XUSE:CASH:DBCUSD",
+          "XUSE:CASH:EEMUSD",
+          "XUSE:CASH:EFAUSD",
+          "XUSE:CASH:FXEUSD",
+          "XUSE:CASH:FXYUSD",
+          "XUSE:CASH:GLDUSD",
+          "XUSE:CASH:IEFUSD",
+          "XUSE:CASH:IWMUSD",
+          "XUSE:CASH:QQQUSD",
+          "XUSE:CASH:SHYUSD",
+          "XUSE:CASH:SLVUSD",
+          "XUSE:CASH:SPYUSD",
+          "XUSE:CASH:TLTUSD",
+          "XUSE:CASH:UNGUSD",
+          "XUSE:CASH:USOUSD",
+          "XUSE:CASH:UUPUSD"
+        ],
+        "no_trade_band": 0.001,
+        "rebalance_bars": 10,
+        "start": 1041379200000,
+        "test_bars": 126,
+        "train_bars": 504,
+        "trend_cost_gate": {
+          "allocation_mode": "retain_cash",
+          "basis": "modeled",
+          "horizon_bars": 21,
+          "periods_per_year": 252.0,
+          "rows": [
+            {
+              "end_ms": 1787529600000,
+              "instrument_id": "XUSE:CASH:DBAUSD",
+              "known_ms": 0,
+              "round_trip_fraction": 0.002464911064067352,
+              "side": "long",
+              "source": "frozen_development_scenario_v1",
+              "start_ms": 0
+            },
+            {
+              "end_ms": 1787529600000,
+              "instrument_id": "XUSE:CASH:DBAUSD",
+              "known_ms": 0,
+              "round_trip_fraction": 0.002875869968176941,
+              "side": "short",
+              "source": "frozen_development_scenario_v1",
+              "start_ms": 0
+            },
+            {
+              "end_ms": 1787529600000,
+              "instrument_id": "XUSE:CASH:DBCUSD",
+              "known_ms": 0,
+              "round_trip_fraction": 0.002464911064067352,
+              "side": "long",
+              "source": "frozen_development_scenario_v1",
+              "start_ms": 0
+            },
+            {
+              "end_ms": 1787529600000,
+              "instrument_id": "XUSE:CASH:DBCUSD",
+              "known_ms": 0,
+              "round_trip_fraction": 0.002875869968176941,
+              "side": "short",
+              "source": "frozen_development_scenario_v1",
+              "start_ms": 0
+            },
+            {
+              "end_ms": 1787529600000,
+              "instrument_id": "XUSE:CASH:EEMUSD",
+              "known_ms": 0,
+              "round_trip_fraction": 0.002464911064067352,
+              "side": "long",
+              "source": "frozen_development_scenario_v1",
+              "start_ms": 0
+            },
+            {
+              "end_ms": 1787529600000,
+              "instrument_id": "XUSE:CASH:EEMUSD",
+              "known_ms": 0,
+              "round_trip_fraction": 0.002875869968176941,
+              "side": "short",
+              "source": "frozen_development_scenario_v1",
+              "start_ms": 0
+            },
+            {
+              "end_ms": 1787529600000,
+              "instrument_id": "XUSE:CASH:EFAUSD",
+              "known_ms": 0,
+              "round_trip_fraction": 0.002464911064067352,
+              "side": "long",
+              "source": "frozen_development_scenario_v1",
+              "start_ms": 0
+            },
+            {
+              "end_ms": 1787529600000,
+              "instrument_id": "XUSE:CASH:EFAUSD",
+              "known_ms": 0,
+              "round_trip_fraction": 0.002875869968176941,
+              "side": "short",
+              "source": "frozen_development_scenario_v1",
+              "start_ms": 0
+            },
+            {
+              "end_ms": 1787529600000,
+              "instrument_id": "XUSE:CASH:FXEUSD",
+              "known_ms": 0,
+              "round_trip_fraction": 0.002464911064067352,
+              "side": "long",
+              "source": "frozen_development_scenario_v1",
+              "start_ms": 0
+            },
+            {
+              "end_ms": 1787529600000,
+              "instrument_id": "XUSE:CASH:FXEUSD",
+              "known_ms": 0,
+              "round_trip_fraction": 0.002875869968176941,
+              "side": "short",
+              "source": "frozen_development_scenario_v1",
+              "start_ms": 0
+            },
+            {
+              "end_ms": 1787529600000,
+              "instrument_id": "XUSE:CASH:FXYUSD",
+              "known_ms": 0,
+              "round_trip_fraction": 0.002464911064067352,
+              "side": "long",
+              "source": "frozen_development_scenario_v1",
+              "start_ms": 0
+            },
+            {
+              "end_ms": 1787529600000,
+              "instrument_id": "XUSE:CASH:FXYUSD",
+              "known_ms": 0,
+              "round_trip_fraction": 0.002875869968176941,
+              "side": "short",
+              "source": "frozen_development_scenario_v1",
+              "start_ms": 0
+            },
+            {
+              "end_ms": 1787529600000,
+              "instrument_id": "XUSE:CASH:GLDUSD",
+              "known_ms": 0,
+              "round_trip_fraction": 0.002464911064067352,
+              "side": "long",
+              "source": "frozen_development_scenario_v1",
+              "start_ms": 0
+            },
+            {
+              "end_ms": 1787529600000,
+              "instrument_id": "XUSE:CASH:GLDUSD",
+              "known_ms": 0,
+              "round_trip_fraction": 0.002875869968176941,
+              "side": "short",
+              "source": "frozen_development_scenario_v1",
+              "start_ms": 0
+            },
+            {
+              "end_ms": 1787529600000,
+              "instrument_id": "XUSE:CASH:IEFUSD",
+              "known_ms": 0,
+              "round_trip_fraction": 0.002464911064067352,
+              "side": "long",
+              "source": "frozen_development_scenario_v1",
+              "start_ms": 0
+            },
+            {
+              "end_ms": 1787529600000,
+              "instrument_id": "XUSE:CASH:IEFUSD",
+              "known_ms": 0,
+              "round_trip_fraction": 0.002875869968176941,
+              "side": "short",
+              "source": "frozen_development_scenario_v1",
+              "start_ms": 0
+            },
+            {
+              "end_ms": 1787529600000,
+              "instrument_id": "XUSE:CASH:IWMUSD",
+              "known_ms": 0,
+              "round_trip_fraction": 0.002464911064067352,
+              "side": "long",
+              "source": "frozen_development_scenario_v1",
+              "start_ms": 0
+            },
+            {
+              "end_ms": 1787529600000,
+              "instrument_id": "XUSE:CASH:IWMUSD",
+              "known_ms": 0,
+              "round_trip_fraction": 0.002875869968176941,
+              "side": "short",
+              "source": "frozen_development_scenario_v1",
+              "start_ms": 0
+            },
+            {
+              "end_ms": 1787529600000,
+              "instrument_id": "XUSE:CASH:QQQUSD",
+              "known_ms": 0,
+              "round_trip_fraction": 0.002464911064067352,
+              "side": "long",
+              "source": "frozen_development_scenario_v1",
+              "start_ms": 0
+            },
+            {
+              "end_ms": 1787529600000,
+              "instrument_id": "XUSE:CASH:QQQUSD",
+              "known_ms": 0,
+              "round_trip_fraction": 0.002875869968176941,
+              "side": "short",
+              "source": "frozen_development_scenario_v1",
+              "start_ms": 0
+            },
+            {
+              "end_ms": 1787529600000,
+              "instrument_id": "XUSE:CASH:SHYUSD",
+              "known_ms": 0,
+              "round_trip_fraction": 0.002464911064067352,
+              "side": "long",
+              "source": "frozen_development_scenario_v1",
+              "start_ms": 0
+            },
+            {
+              "end_ms": 1787529600000,
+              "instrument_id": "XUSE:CASH:SHYUSD",
+              "known_ms": 0,
+              "round_trip_fraction": 0.002875869968176941,
+              "side": "short",
+              "source": "frozen_development_scenario_v1",
+              "start_ms": 0
+            },
+            {
+              "end_ms": 1787529600000,
+              "instrument_id": "XUSE:CASH:SLVUSD",
+              "known_ms": 0,
+              "round_trip_fraction": 0.002464911064067352,
+              "side": "long",
+              "source": "frozen_development_scenario_v1",
+              "start_ms": 0
+            },
+            {
+              "end_ms": 1787529600000,
+              "instrument_id": "XUSE:CASH:SLVUSD",
+              "known_ms": 0,
+              "round_trip_fraction": 0.002875869968176941,
+              "side": "short",
+              "source": "frozen_development_scenario_v1",
+              "start_ms": 0
+            },
+            {
+              "end_ms": 1787529600000,
+              "instrument_id": "XUSE:CASH:SPYUSD",
+              "known_ms": 0,
+              "round_trip_fraction": 0.002464911064067352,
+              "side": "long",
+              "source": "frozen_development_scenario_v1",
+              "start_ms": 0
+            },
+            {
+              "end_ms": 1787529600000,
+              "instrument_id": "XUSE:CASH:SPYUSD",
+              "known_ms": 0,
+              "round_trip_fraction": 0.002875869968176941,
+              "side": "short",
+              "source": "frozen_development_scenario_v1",
+              "start_ms": 0
+            },
+            {
+              "end_ms": 1787529600000,
+              "instrument_id": "XUSE:CASH:TLTUSD",
+              "known_ms": 0,
+              "round_trip_fraction": 0.002464911064067352,
+              "side": "long",
+              "source": "frozen_development_scenario_v1",
+              "start_ms": 0
+            },
+            {
+              "end_ms": 1787529600000,
+              "instrument_id": "XUSE:CASH:TLTUSD",
+              "known_ms": 0,
+              "round_trip_fraction": 0.002875869968176941,
+              "side": "short",
+              "source": "frozen_development_scenario_v1",
+              "start_ms": 0
+            },
+            {
+              "end_ms": 1787529600000,
+              "instrument_id": "XUSE:CASH:UNGUSD",
+              "known_ms": 0,
+              "round_trip_fraction": 0.002464911064067352,
+              "side": "long",
+              "source": "frozen_development_scenario_v1",
+              "start_ms": 0
+            },
+            {
+              "end_ms": 1787529600000,
+              "instrument_id": "XUSE:CASH:UNGUSD",
+              "known_ms": 0,
+              "round_trip_fraction": 0.002875869968176941,
+              "side": "short",
+              "source": "frozen_development_scenario_v1",
+              "start_ms": 0
+            },
+            {
+              "end_ms": 1787529600000,
+              "instrument_id": "XUSE:CASH:USOUSD",
+              "known_ms": 0,
+              "round_trip_fraction": 0.002464911064067352,
+              "side": "long",
+              "source": "frozen_development_scenario_v1",
+              "start_ms": 0
+            },
+            {
+              "end_ms": 1787529600000,
+              "instrument_id": "XUSE:CASH:USOUSD",
+              "known_ms": 0,
+              "round_trip_fraction": 0.002875869968176941,
+              "side": "short",
+              "source": "frozen_development_scenario_v1",
+              "start_ms": 0
+            },
+            {
+              "end_ms": 1787529600000,
+              "instrument_id": "XUSE:CASH:UUPUSD",
+              "known_ms": 0,
+              "round_trip_fraction": 0.002464911064067352,
+              "side": "long",
+              "source": "frozen_development_scenario_v1",
+              "start_ms": 0
+            },
+            {
+              "end_ms": 1787529600000,
+              "instrument_id": "XUSE:CASH:UUPUSD",
+              "known_ms": 0,
+              "round_trip_fraction": 0.002875869968176941,
+              "side": "short",
+              "source": "frozen_development_scenario_v1",
+              "start_ms": 0
+            }
+          ],
+          "sha256": "deffff9d2deb0f97350fd39df455eee92557b777a3f1ba243e5523684cda6622"
+        }
+      },
+      "evidence_grade": "immutable_ledger_summary_only",
+      "hypothesis_key": "e05ed6acb9f4f880",
+      "ledger_source_path": "artifacts/analysis/alphatrend_cash_retention_20260912/experiments.jsonl",
+      "result": {
+        "annualized_sharpe": 0.21785179989642856,
+        "artifact_era_dsr": null,
+        "kurtosis": 15.289203793600914,
+        "maximum_drawdown": null,
+        "observations": 5190,
+        "skew": -0.16234184808813154
+      }
+    },
+    {
+      "artifact_path": null,
+      "artifact_sha256": null,
+      "config_hash": "04f76a71e7ffda45",
+      "configuration": {
+        "allocator": "trend",
+        "alpha_names": [
+          "mf_trend_63",
+          "mf_trend_126",
+          "mf_trend_252"
+        ],
+        "cost_stress": false,
+        "cov_halflife_days": null,
+        "cov_min_periods": 240,
+        "cov_window_bars": 720,
+        "direction_confirmation": true,
+        "end": 1780358400000,
+        "evaluation_policy": "continuous_retrospective_payable_book_v1",
+        "extended_reference_spec_sha256": "676b9579db1fa15c92051db47d74d5f61fd0214a487e4303088a9fa2a9282561",
+        "fixed_group_risk": true,
+        "history_start": 1325548800000,
+        "implementation_manifest_sha256": "77bc6800a46ef0ba885f8f85e513096ad255e590b8b53c5feae3ec5bb7803720",
+        "initial_cash": 100000.0,
+        "input_binding": {
+          "execution_mode": "RETROSPECTIVE_CURRENT_VINTAGE",
+          "mode": "DIAGNOSTIC_CURRENT_VINTAGE",
+          "paired_input_sha256": "5f977ccd06240643eb1787d214b7ec31c0a92df1fcb1e40014ba710c218a8064",
+          "point_in_time_proven": false,
+          "quote_volume": "raw_close_times_raw_volume_proxy",
+          "raw_label_convention": "raw_open_cash_accrual_fixed_release_v2",
+          "raw_label_input_sha256": "e8e1b01cd0f10308d0a2d2717e5cf8e74dff49810ab4137e34b763993d85de5a",
+          "raw_label_mode": "DIAGNOSTIC_CURRENT_VINTAGE",
+          "retrospective_vintage_ms": 1789214263591,
+          "risk_prices": "synthetic_returns_raw_position_marks_v1"
+        },
+        "instrument_ids": [
+          "XUSE:CASH:DBAUSD",
+          "XUSE:CASH:DBCUSD",
+          "XUSE:CASH:EEMUSD",
+          "XUSE:CASH:EFAUSD",
+          "XUSE:CASH:FXEUSD",
+          "XUSE:CASH:FXYUSD",
+          "XUSE:CASH:GLDUSD",
+          "XUSE:CASH:IEFUSD",
+          "XUSE:CASH:IWMUSD",
+          "XUSE:CASH:QQQUSD",
+          "XUSE:CASH:SHYUSD",
+          "XUSE:CASH:SLVUSD",
+          "XUSE:CASH:SPYUSD",
+          "XUSE:CASH:TLTUSD",
+          "XUSE:CASH:UNGUSD",
+          "XUSE:CASH:USOUSD",
+          "XUSE:CASH:UUPUSD"
+        ],
+        "metric_basis": "xnys_252_sessions_elapsed_cagr_v1",
+        "no_trade_band": 0.001,
+        "positive_targets": false,
+        "rebalance_bars": 10,
+        "resolved_settings": {
+          "costs": {
+            "default_half_spread_bps": 2.5,
+            "equity_borrow_bps_annual": 50.0,
+            "equity_commission_bps": 1.0,
+            "equity_half_spread_bps": 3.0,
+            "impact_coef": 1.0,
+            "latency_addon_bps": 2.0,
+            "perp_maker_bps": 2.0,
+            "perp_taker_bps": 5.0
+          },
+          "data": {
+            "asset_class": "equity",
+            "backfill_start": "2001-01-01T00:00:00Z",
+            "exchange": "polygon",
+            "ingest_grace_ms": 30000,
+            "timeframe": "1d"
+          },
+          "live": {
+            "cycle_grace_s": 90,
+            "paper": true,
+            "tick_sleep_s": 45
+          },
+          "portfolio": {
+            "dollar_neutral": false,
+            "gross_max": 1.0,
+            "net_max": 1.0,
+            "no_trade_band": 0.001,
+            "rank_top_k": null,
+            "risk_aversion": 7.0,
+            "turnover_max": 0.1,
+            "vol_scale_max": 3.0,
+            "vol_target_ann": 0.15,
+            "w_max": 0.34
+          },
+          "quality": {
+            "bad_print_reversion_frac": 0.5,
+            "bad_print_vol_frac": 0.25,
+            "downtime_frac": 0.8,
+            "ewma_span_bars": 168,
+            "min_history_bars": 24,
+            "outlier_k": 8.0,
+            "stale_run_bars": 12
+          },
+          "risk": {
+            "clamp_reduce_only_adv": true,
+            "dd_flat_halt": -0.45,
+            "dd_halve_gross": -0.3,
+            "flat_cooldown_bars": 336,
+            "max_gross": 1.0,
+            "max_net": 1.0,
+            "max_order_adv_frac": 0.01,
+            "max_position_frac": 0.34,
+            "price_collar_frac": 0.05,
+            "staleness_max_bars": 2,
+            "var_confidence": 0.99,
+            "var_window_days": 365
+          },
+          "signals": {
+            "horizon_bars": 21,
+            "ic_target": 0.02
+          },
+          "universe": {
+            "entry_rank": 20,
+            "exit_rank": 25,
+            "rank_window_days": 30,
+            "rebalance": "monthly",
+            "size": 20
+          }
+        },
+        "saved_signal_filter": "ts_open<end",
+        "saved_signal_sha256": "e0d6c54d659790e2a8ef4e3d2871a0c427b7278e45987a7b09d226df713da5b0",
+        "start": 1672272000000,
+        "trend_blend_normalization": "cross_sectional_zscore",
+        "trend_ic_history_anchor": 1325548800000,
+        "trend_label_availability": "raw_cash_exit_session_close_v2"
+      },
+      "evidence_grade": "immutable_ledger_summary_only",
+      "hypothesis_key": "e13e55febb0166a3",
+      "ledger_source_path": "artifacts/analysis/trend_group_risk_20260913/baseline/experiments.jsonl",
+      "result": {
+        "annualized_sharpe": 0.1295613281344296,
+        "artifact_era_dsr": null,
+        "kurtosis": 6.1857631948087475,
+        "maximum_drawdown": null,
+        "observations": 856,
+        "skew": -0.5383488921241676
+      }
+    },
+    {
+      "artifact_path": null,
+      "artifact_sha256": null,
+      "config_hash": "98a61161c204d3e9",
+      "configuration": {
+        "allocator": "trend",
+        "alpha_names": [
+          "mf_trend_63",
+          "mf_trend_126",
+          "mf_trend_252"
+        ],
+        "category_targets": false,
+        "category_targets_spec_sha256": "f959b7ed215b1e836c3e419d59a0e7641dbbd5ddb95bd2ed98c5e9fe1233dba3",
+        "cost_stress": true,
+        "cov_halflife_days": null,
+        "cov_min_periods": 240,
+        "cov_window_bars": 720,
+        "direction_confirmation": true,
+        "end": 1789171200000,
+        "evaluation_policy": "continuous_retrospective_payable_book_v1",
+        "history_start": 1325548800000,
+        "implementation_manifest_sha256": "cdadb279638b7cbdaaeb1db8f302be3a522f3997edb7cda36b6be3376420331d",
+        "initial_cash": 100000.0,
+        "input_binding": {
+          "execution_mode": "RETROSPECTIVE_CURRENT_VINTAGE",
+          "mode": "DIAGNOSTIC_CURRENT_VINTAGE",
+          "paired_input_sha256": "5f977ccd06240643eb1787d214b7ec31c0a92df1fcb1e40014ba710c218a8064",
+          "point_in_time_proven": false,
+          "quote_volume": "raw_close_times_raw_volume_proxy",
+          "raw_label_convention": "raw_open_cash_accrual_fixed_release_v2",
+          "raw_label_input_sha256": "e8e1b01cd0f10308d0a2d2717e5cf8e74dff49810ab4137e34b763993d85de5a",
+          "raw_label_mode": "DIAGNOSTIC_CURRENT_VINTAGE",
+          "retrospective_vintage_ms": 1789214263591,
+          "risk_prices": "synthetic_returns_raw_position_marks_v1"
+        },
+        "instrument_ids": [
+          "XUSE:CASH:DBAUSD",
+          "XUSE:CASH:DBCUSD",
+          "XUSE:CASH:EEMUSD",
+          "XUSE:CASH:EFAUSD",
+          "XUSE:CASH:FXEUSD",
+          "XUSE:CASH:FXYUSD",
+          "XUSE:CASH:GLDUSD",
+          "XUSE:CASH:IEFUSD",
+          "XUSE:CASH:IWMUSD",
+          "XUSE:CASH:QQQUSD",
+          "XUSE:CASH:SHYUSD",
+          "XUSE:CASH:SLVUSD",
+          "XUSE:CASH:SPYUSD",
+          "XUSE:CASH:TLTUSD",
+          "XUSE:CASH:UNGUSD",
+          "XUSE:CASH:USOUSD",
+          "XUSE:CASH:UUPUSD"
+        ],
+        "metric_basis": "xnys_252_sessions_elapsed_cagr_v1",
+        "no_trade_band": 0.001,
+        "rebalance_bars": 10,
+        "resolved_settings": {
+          "costs": {
+            "default_half_spread_bps": 2.5,
+            "equity_borrow_bps_annual": 100.0,
+            "equity_commission_bps": 2.0,
+            "equity_half_spread_bps": 6.0,
+            "impact_coef": 2.0,
+            "latency_addon_bps": 4.0,
+            "perp_maker_bps": 2.0,
+            "perp_taker_bps": 5.0
+          },
+          "data": {
+            "asset_class": "equity",
+            "backfill_start": "2001-01-01T00:00:00Z",
+            "exchange": "polygon",
+            "ingest_grace_ms": 30000,
+            "timeframe": "1d"
+          },
+          "live": {
+            "cycle_grace_s": 90,
+            "paper": true,
+            "tick_sleep_s": 45
+          },
+          "portfolio": {
+            "dollar_neutral": false,
+            "gross_max": 1.0,
+            "net_max": 1.0,
+            "no_trade_band": 0.001,
+            "rank_top_k": null,
+            "risk_aversion": 7.0,
+            "turnover_max": 0.1,
+            "vol_scale_max": 3.0,
+            "vol_target_ann": 0.15,
+            "w_max": 0.34
+          },
+          "quality": {
+            "bad_print_reversion_frac": 0.5,
+            "bad_print_vol_frac": 0.25,
+            "downtime_frac": 0.8,
+            "ewma_span_bars": 168,
+            "min_history_bars": 24,
+            "outlier_k": 8.0,
+            "stale_run_bars": 12
+          },
+          "risk": {
+            "clamp_reduce_only_adv": true,
+            "dd_flat_halt": -0.45,
+            "dd_halve_gross": -0.3,
+            "flat_cooldown_bars": 336,
+            "max_gross": 1.0,
+            "max_net": 1.0,
+            "max_order_adv_frac": 0.01,
+            "max_position_frac": 0.34,
+            "price_collar_frac": 0.05,
+            "staleness_max_bars": 2,
+            "var_confidence": 0.99,
+            "var_window_days": 365
+          },
+          "signals": {
+            "horizon_bars": 21,
+            "ic_target": 0.02
+          },
+          "universe": {
+            "entry_rank": 20,
+            "exit_rank": 25,
+            "rank_window_days": 30,
+            "rebalance": "monthly",
+            "size": 20
+          }
+        },
+        "saved_signal_sha256": "e0d6c54d659790e2a8ef4e3d2871a0c427b7278e45987a7b09d226df713da5b0",
+        "start": 1420156800000,
+        "trend_blend_normalization": "cross_sectional_zscore",
+        "trend_ic_history_anchor": 1325548800000,
+        "trend_label_availability": "raw_cash_exit_session_close_v2"
+      },
+      "evidence_grade": "immutable_ledger_summary_only",
+      "hypothesis_key": "e25ef3fb769aedd3",
+      "ledger_source_path": "artifacts/analysis/alphatrend_category_targets_20260913/baseline_stress/experiments.jsonl",
+      "result": {
+        "annualized_sharpe": 0.943544413751928,
+        "artifact_era_dsr": null,
+        "kurtosis": 6.218933599139411,
+        "maximum_drawdown": null,
+        "observations": 2939,
+        "skew": -0.6971595907124833
+      }
+    },
+    {
       "artifact_path": "artifacts/sweep/alphatrend_breadth/report.json",
       "artifact_sha256": "c9eb52113b13647d468957136732792051b96ce9ec2437337298049bacaf0244",
       "config_hash": "356929813b18d8db",
@@ -910,6 +4424,417 @@
         "observations": 5161,
         "realized_basket": "BASE_17",
         "skew": 0.006
+      }
+    },
+    {
+      "artifact_path": null,
+      "artifact_sha256": null,
+      "config_hash": "fe7949291cc2ce68",
+      "configuration": {
+        "allocator": "trend",
+        "alpha_names": [
+          "mf_trend_63",
+          "mf_trend_126",
+          "mf_trend_252"
+        ],
+        "cov_halflife_days": null,
+        "cov_min_periods": 240,
+        "cov_window_bars": 720,
+        "end": 1787529600000,
+        "evaluation_policy": "continuous_single_book_v1",
+        "execution_cost_scenario": {
+          "name": "double_all_modeled_costs_v1",
+          "resolved_costs": {
+            "default_half_spread_bps": 2.5,
+            "equity_borrow_bps_annual": 100.0,
+            "equity_commission_bps": 2.0,
+            "equity_half_spread_bps": 6.0,
+            "impact_coef": 2.0,
+            "latency_addon_bps": 4.0,
+            "perp_maker_bps": 2.0,
+            "perp_taker_bps": 5.0
+          }
+        },
+        "history_start": 1041379200000,
+        "initial_cash": 100000.0,
+        "instrument_ids": [
+          "XUSE:CASH:DBAUSD",
+          "XUSE:CASH:DBCUSD",
+          "XUSE:CASH:EEMUSD",
+          "XUSE:CASH:EFAUSD",
+          "XUSE:CASH:FXEUSD",
+          "XUSE:CASH:FXYUSD",
+          "XUSE:CASH:GLDUSD",
+          "XUSE:CASH:IEFUSD",
+          "XUSE:CASH:IWMUSD",
+          "XUSE:CASH:QQQUSD",
+          "XUSE:CASH:SHYUSD",
+          "XUSE:CASH:SLVUSD",
+          "XUSE:CASH:SPYUSD",
+          "XUSE:CASH:TLTUSD",
+          "XUSE:CASH:UNGUSD",
+          "XUSE:CASH:USOUSD",
+          "XUSE:CASH:UUPUSD"
+        ],
+        "metric_basis": "xnys_252_sessions_elapsed_cagr_v1",
+        "no_trade_band": 0.001,
+        "rebalance_bars": 10,
+        "start": 1136246400000,
+        "trend_blend_normalization": "directional_rms",
+        "trend_ic_history_anchor": 1073001600000,
+        "trend_label_availability": "exit_session_close_v1"
+      },
+      "evidence_grade": "immutable_ledger_summary_only",
+      "hypothesis_key": "e7c03d85c7f196b9",
+      "ledger_source_path": "artifacts/analysis/alphatrend_causal_stress_20260912/candidate/experiments.jsonl",
+      "result": {
+        "annualized_sharpe": 0.5059107890330624,
+        "artifact_era_dsr": null,
+        "kurtosis": 13.358164152120107,
+        "maximum_drawdown": null,
+        "observations": 5190,
+        "skew": 0.05652999122525727
+      }
+    },
+    {
+      "artifact_path": null,
+      "artifact_sha256": null,
+      "config_hash": "6c30cd801e1a1455",
+      "configuration": {
+        "allocator": "trend",
+        "alpha_names": [
+          "mf_trend_63",
+          "mf_trend_126",
+          "mf_trend_252"
+        ],
+        "end": 1787529600000,
+        "instrument_ids": [
+          "XUSE:CASH:DBAUSD",
+          "XUSE:CASH:DBCUSD",
+          "XUSE:CASH:EEMUSD",
+          "XUSE:CASH:EFAUSD",
+          "XUSE:CASH:FXEUSD",
+          "XUSE:CASH:FXYUSD",
+          "XUSE:CASH:GLDUSD",
+          "XUSE:CASH:IEFUSD",
+          "XUSE:CASH:IWMUSD",
+          "XUSE:CASH:QQQUSD",
+          "XUSE:CASH:SHYUSD",
+          "XUSE:CASH:SLVUSD",
+          "XUSE:CASH:SPYUSD",
+          "XUSE:CASH:TLTUSD",
+          "XUSE:CASH:UNGUSD",
+          "XUSE:CASH:USOUSD",
+          "XUSE:CASH:UUPUSD"
+        ],
+        "no_trade_band": 0.001,
+        "rebalance_bars": 10,
+        "start": 1041379200000,
+        "test_bars": 126,
+        "train_bars": 504,
+        "trend_blend_normalization": "directional_rms"
+      },
+      "evidence_grade": "immutable_ledger_summary_only",
+      "hypothesis_key": "ec7ec19175ac10a9",
+      "ledger_source_path": "artifacts/analysis/alphatrend_directional_20260912_attempt2/experiments.jsonl",
+      "result": {
+        "annualized_sharpe": 0.6769805025793424,
+        "artifact_era_dsr": null,
+        "kurtosis": 13.783098964687202,
+        "maximum_drawdown": null,
+        "observations": 5190,
+        "skew": 0.046979459002114525
+      }
+    },
+    {
+      "artifact_path": null,
+      "artifact_sha256": null,
+      "config_hash": "38fba73705267fa9",
+      "configuration": {
+        "allocator": "trend",
+        "alpha_names": [
+          "mf_trend_63",
+          "mf_trend_126",
+          "mf_trend_252"
+        ],
+        "cost_stress": false,
+        "cov_halflife_days": null,
+        "cov_min_periods": 240,
+        "cov_window_bars": 720,
+        "direction_confirmation": true,
+        "end": 1789171200000,
+        "evaluation_policy": "continuous_retrospective_payable_book_v1",
+        "history_start": 1325548800000,
+        "implementation_manifest_sha256": "5df2462265b65f1bb56fd5fe425bb91a6db1e060cda25d8c21bc105328c8a8bd",
+        "initial_cash": 100000.0,
+        "input_binding": {
+          "execution_mode": "RETROSPECTIVE_CURRENT_VINTAGE",
+          "mode": "DIAGNOSTIC_CURRENT_VINTAGE",
+          "paired_input_sha256": "5f977ccd06240643eb1787d214b7ec31c0a92df1fcb1e40014ba710c218a8064",
+          "point_in_time_proven": false,
+          "quote_volume": "raw_close_times_raw_volume_proxy",
+          "raw_label_convention": "raw_open_cash_accrual_fixed_release_v2",
+          "raw_label_input_sha256": "e8e1b01cd0f10308d0a2d2717e5cf8e74dff49810ab4137e34b763993d85de5a",
+          "raw_label_mode": "DIAGNOSTIC_CURRENT_VINTAGE",
+          "retrospective_vintage_ms": 1789214263591,
+          "risk_prices": "synthetic_returns_raw_position_marks_v1"
+        },
+        "instrument_ids": [
+          "XUSE:CASH:DBAUSD",
+          "XUSE:CASH:DBCUSD",
+          "XUSE:CASH:EEMUSD",
+          "XUSE:CASH:EFAUSD",
+          "XUSE:CASH:FXEUSD",
+          "XUSE:CASH:FXYUSD",
+          "XUSE:CASH:GLDUSD",
+          "XUSE:CASH:IEFUSD",
+          "XUSE:CASH:IWMUSD",
+          "XUSE:CASH:QQQUSD",
+          "XUSE:CASH:SHYUSD",
+          "XUSE:CASH:SLVUSD",
+          "XUSE:CASH:SPYUSD",
+          "XUSE:CASH:TLTUSD",
+          "XUSE:CASH:UNGUSD",
+          "XUSE:CASH:USOUSD",
+          "XUSE:CASH:UUPUSD"
+        ],
+        "metric_basis": "xnys_252_sessions_elapsed_cagr_v1",
+        "no_trade_band": 0.001,
+        "positive_targets": true,
+        "positive_targets_spec_sha256": "1eb5ab560a2f23156840cfbdc6083fd2d561ec5fac8783f6c38eed775b697b75",
+        "rebalance_bars": 10,
+        "resolved_settings": {
+          "costs": {
+            "default_half_spread_bps": 2.5,
+            "equity_borrow_bps_annual": 50.0,
+            "equity_commission_bps": 1.0,
+            "equity_half_spread_bps": 3.0,
+            "impact_coef": 1.0,
+            "latency_addon_bps": 2.0,
+            "perp_maker_bps": 2.0,
+            "perp_taker_bps": 5.0
+          },
+          "data": {
+            "asset_class": "equity",
+            "backfill_start": "2001-01-01T00:00:00Z",
+            "exchange": "polygon",
+            "ingest_grace_ms": 30000,
+            "timeframe": "1d"
+          },
+          "live": {
+            "cycle_grace_s": 90,
+            "paper": true,
+            "tick_sleep_s": 45
+          },
+          "portfolio": {
+            "dollar_neutral": false,
+            "gross_max": 1.0,
+            "net_max": 1.0,
+            "no_trade_band": 0.001,
+            "rank_top_k": null,
+            "risk_aversion": 7.0,
+            "turnover_max": 0.1,
+            "vol_scale_max": 3.0,
+            "vol_target_ann": 0.15,
+            "w_max": 0.34
+          },
+          "quality": {
+            "bad_print_reversion_frac": 0.5,
+            "bad_print_vol_frac": 0.25,
+            "downtime_frac": 0.8,
+            "ewma_span_bars": 168,
+            "min_history_bars": 24,
+            "outlier_k": 8.0,
+            "stale_run_bars": 12
+          },
+          "risk": {
+            "clamp_reduce_only_adv": true,
+            "dd_flat_halt": -0.45,
+            "dd_halve_gross": -0.3,
+            "flat_cooldown_bars": 336,
+            "max_gross": 1.0,
+            "max_net": 1.0,
+            "max_order_adv_frac": 0.01,
+            "max_position_frac": 0.34,
+            "price_collar_frac": 0.05,
+            "staleness_max_bars": 2,
+            "var_confidence": 0.99,
+            "var_window_days": 365
+          },
+          "signals": {
+            "horizon_bars": 21,
+            "ic_target": 0.02
+          },
+          "universe": {
+            "entry_rank": 20,
+            "exit_rank": 25,
+            "rank_window_days": 30,
+            "rebalance": "monthly",
+            "size": 20
+          }
+        },
+        "saved_signal_sha256": "e0d6c54d659790e2a8ef4e3d2871a0c427b7278e45987a7b09d226df713da5b0",
+        "start": 1420156800000,
+        "trend_blend_normalization": "cross_sectional_zscore",
+        "trend_ic_history_anchor": 1325548800000,
+        "trend_label_availability": "raw_cash_exit_session_close_v2"
+      },
+      "evidence_grade": "immutable_ledger_summary_only",
+      "hypothesis_key": "f0b05f15dd2b20ca",
+      "ledger_source_path": "artifacts/analysis/alphatrend_positive_targets_20260913/candidate/experiments.jsonl",
+      "result": {
+        "annualized_sharpe": 0.9794229498648296,
+        "artifact_era_dsr": null,
+        "kurtosis": 6.183850776616712,
+        "maximum_drawdown": null,
+        "observations": 2939,
+        "skew": -0.6918822559787947
+      }
+    },
+    {
+      "artifact_path": null,
+      "artifact_sha256": null,
+      "config_hash": "4ece24fdebf3af6f",
+      "configuration": {
+        "allocator": "trend",
+        "alpha_names": [
+          "mf_trend_63",
+          "mf_trend_126",
+          "mf_trend_252"
+        ],
+        "cost_stress": false,
+        "cov_halflife_days": null,
+        "cov_min_periods": 240,
+        "cov_window_bars": 720,
+        "direction_confirmation": true,
+        "end": 1780358400000,
+        "evaluation_policy": "continuous_retrospective_payable_book_v1",
+        "extended_reference_spec_sha256": "ba3b6276fbfdbd668a5980ed1dc99c7d557f5745b0f60f8bb9421a7ba75b1764",
+        "history_start": 1325548800000,
+        "implementation_manifest_sha256": "09b75ddf047331b9e2129e1486360fe32bb46a991f2e37e6a65acf82ffea48f3",
+        "initial_cash": 100000.0,
+        "input_binding": {
+          "execution_mode": "RETROSPECTIVE_CURRENT_VINTAGE",
+          "mode": "DIAGNOSTIC_CURRENT_VINTAGE",
+          "paired_input_sha256": "5f977ccd06240643eb1787d214b7ec31c0a92df1fcb1e40014ba710c218a8064",
+          "point_in_time_proven": false,
+          "quote_volume": "raw_close_times_raw_volume_proxy",
+          "raw_label_convention": "raw_open_cash_accrual_fixed_release_v2",
+          "raw_label_input_sha256": "e8e1b01cd0f10308d0a2d2717e5cf8e74dff49810ab4137e34b763993d85de5a",
+          "raw_label_mode": "DIAGNOSTIC_CURRENT_VINTAGE",
+          "retrospective_vintage_ms": 1789214263591,
+          "risk_prices": "synthetic_returns_raw_position_marks_v1"
+        },
+        "instrument_ids": [
+          "XUSE:CASH:DBAUSD",
+          "XUSE:CASH:DBCUSD",
+          "XUSE:CASH:EEMUSD",
+          "XUSE:CASH:EFAUSD",
+          "XUSE:CASH:FXEUSD",
+          "XUSE:CASH:FXYUSD",
+          "XUSE:CASH:GLDUSD",
+          "XUSE:CASH:IEFUSD",
+          "XUSE:CASH:IWMUSD",
+          "XUSE:CASH:QQQUSD",
+          "XUSE:CASH:SHYUSD",
+          "XUSE:CASH:SLVUSD",
+          "XUSE:CASH:SPYUSD",
+          "XUSE:CASH:TLTUSD",
+          "XUSE:CASH:UNGUSD",
+          "XUSE:CASH:USOUSD",
+          "XUSE:CASH:UUPUSD"
+        ],
+        "metric_basis": "xnys_252_sessions_elapsed_cagr_v1",
+        "no_trade_band": 0.001,
+        "positive_targets": false,
+        "rebalance_bars": 10,
+        "resolved_settings": {
+          "costs": {
+            "default_half_spread_bps": 2.5,
+            "equity_borrow_bps_annual": 50.0,
+            "equity_commission_bps": 1.0,
+            "equity_half_spread_bps": 3.0,
+            "impact_coef": 1.0,
+            "latency_addon_bps": 2.0,
+            "perp_maker_bps": 2.0,
+            "perp_taker_bps": 5.0
+          },
+          "data": {
+            "asset_class": "equity",
+            "backfill_start": "2001-01-01T00:00:00Z",
+            "exchange": "polygon",
+            "ingest_grace_ms": 30000,
+            "timeframe": "1d"
+          },
+          "live": {
+            "cycle_grace_s": 90,
+            "paper": true,
+            "tick_sleep_s": 45
+          },
+          "portfolio": {
+            "dollar_neutral": false,
+            "gross_max": 1.0,
+            "net_max": 1.0,
+            "no_trade_band": 0.001,
+            "rank_top_k": null,
+            "risk_aversion": 7.0,
+            "turnover_max": 0.1,
+            "vol_scale_max": 3.0,
+            "vol_target_ann": 0.15,
+            "w_max": 0.34
+          },
+          "quality": {
+            "bad_print_reversion_frac": 0.5,
+            "bad_print_vol_frac": 0.25,
+            "downtime_frac": 0.8,
+            "ewma_span_bars": 168,
+            "min_history_bars": 24,
+            "outlier_k": 8.0,
+            "stale_run_bars": 12
+          },
+          "risk": {
+            "clamp_reduce_only_adv": true,
+            "dd_flat_halt": -0.45,
+            "dd_halve_gross": -0.3,
+            "flat_cooldown_bars": 336,
+            "max_gross": 1.0,
+            "max_net": 1.0,
+            "max_order_adv_frac": 0.01,
+            "max_position_frac": 0.34,
+            "price_collar_frac": 0.05,
+            "staleness_max_bars": 2,
+            "var_confidence": 0.99,
+            "var_window_days": 365
+          },
+          "signals": {
+            "horizon_bars": 21,
+            "ic_target": 0.02
+          },
+          "universe": {
+            "entry_rank": 20,
+            "exit_rank": 25,
+            "rank_window_days": 30,
+            "rebalance": "monthly",
+            "size": 20
+          }
+        },
+        "saved_signal_filter": "ts_open<end",
+        "saved_signal_sha256": "e0d6c54d659790e2a8ef4e3d2871a0c427b7278e45987a7b09d226df713da5b0",
+        "start": 1672272000000,
+        "trend_blend_normalization": "cross_sectional_zscore",
+        "trend_ic_history_anchor": 1325548800000,
+        "trend_label_availability": "raw_cash_exit_session_close_v2"
+      },
+      "evidence_grade": "immutable_ledger_summary_only",
+      "hypothesis_key": "f2c5f2dfc8b7c1c3",
+      "ledger_source_path": "artifacts/analysis/trend_extended_reference_20260913/baseline/experiments.jsonl",
+      "result": {
+        "annualized_sharpe": 0.2659832909269983,
+        "artifact_era_dsr": null,
+        "kurtosis": 6.702095833046836,
+        "maximum_drawdown": null,
+        "observations": 856,
+        "skew": -0.5530167543955896
       }
     },
     {
@@ -1059,11 +4984,13 @@
     "artifact_era_dsr_gate_passes": 0,
     "capacity_status": "UNMEASURED_NO_PERSISTED_CAPACITY_SWEEP",
     "complete_walkforward_artifacts": 6,
-    "distinct_hypothesis_identities": 21,
-    "finite_sharpe_identities": 19,
+    "distinct_hypothesis_identities": 49,
+    "finite_sharpe_identities": 47,
     "identities_with_artifact_era_dsr": 13,
-    "immutable_ledger_only_identities": 8,
-    "maximum_annualized_sharpe": 0.344510359843972,
+    "identities_with_trial_packets": 21,
+    "identities_without_trial_packets": 28,
+    "immutable_ledger_only_identities": 36,
+    "maximum_annualized_sharpe": 0.9794229498648296,
     "minimum_annualized_sharpe": -0.2375633317789115,
     "persisted_summary_only_identities": 7
   }

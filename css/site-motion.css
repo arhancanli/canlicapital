@@ -1,0 +1,31 @@
+/* Approved optical language, shared by all generated public pages. */
+@font-face { font-family: 'Chakra Petch'; src: url('/fonts/chakra-petch/ChakraPetch-Bold.ttf') format('truetype'); font-weight: 700; font-style: normal; font-display: swap; }
+.cc-reading-progress { position: fixed; z-index: 110; left: 0; right: 0; top: 0; height: 2px; background: #ff5500; transform-origin: left; pointer-events: none; }
+.cc-chapter-rule { display: block; position: absolute; top: 0; left: 0; width: 100%; height: 1px; background: currentColor; opacity: .22; transform-origin: left; pointer-events: none; }
+[data-optical-chapter] { position: relative; }
+body:not(.cinema-home) main :is(h1, h2) { font-family: var(--cin-display, 'Chakra Petch', sans-serif); font-weight: 700; letter-spacing: -.035em; }
+body .trial-hero h1 { font-family: var(--cin-display, 'Chakra Petch', sans-serif); font-weight: 700; letter-spacing: -.035em; }
+body:not(.cinema-home) main h2 { text-wrap: balance; }
+body:not(.cinema-home) :is(.sys-hero, .research-hero, .perf-hero, .dev-hero)::after {
+  background-image: linear-gradient(90deg, #000 5%, #000000c0 42%, #00000030), url('/cinema/optical-master-v3.webp');
+  background-size: cover, auto 140%; background-position: center, right center; background-repeat: no-repeat;
+}
+body:not(.cinema-home) :is(.sys-hero, .research-hero, .perf-hero, .dev-hero) h1 { font-weight: 700; }
+.cc-optical-backdrop { position: absolute; z-index: -1; inset: -10% 0; background: url('/cinema/optical-master-v3.webp') right center / auto 125% no-repeat; pointer-events: none; }
+body:not(.cinema-home) :is(.sys-hero, .research-hero, .perf-hero, .dev-hero).has-optical-backdrop::after { background: linear-gradient(90deg, #000 5%, #000000c0 42%, #00000030); }
+.cc-footer[data-product-shell] .cc-footer__wordmark { font-weight: 700; }
+.cc-footer[data-product-shell] .cc-footer__brand { font-weight: 700; }
+.cc-footer[data-product-shell] .cc-footer__wordmark span { display: inline-block; }
+.cc-shell[data-product-shell] summary { white-space: nowrap; }
+/* Offscreen positioning must not leave a border sliver visible or depend on motion. */
+body > :is(.skip-link, .dev-skip) { top: -120px; transform: none; transition: none; }
+body > :is(.skip-link, .dev-skip):focus { top: 12px; transform: none; }
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .cc-shell__panel-link, .cc-footer__routes a { transition: color .2s, translate .3s; }
+  .cc-shell__panel-link:hover, .cc-footer__routes a:hover { translate: 4px 0; }
+  main :is(button, .button) { transition: background-color .2s, color .2s, border-color .2s, box-shadow .2s; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cc-reading-progress { display: none; }
+  .cc-chapter-rule { transform: none !important; }
+}

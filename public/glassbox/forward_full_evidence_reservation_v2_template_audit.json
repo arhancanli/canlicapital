@@ -1,7 +1,7 @@
 {
   "author": "Arhan Canli",
   "claim_boundary": "This audit proves the design template is fail-closed, return-blind, and aligned with selected current contract constants. It does not promote the template, alter the active policy, authorize a reservation, validate a candidate, or compute returns.",
-  "content_hash": "sha256:452234b1e4075ba2d2f6abd164d8d260c351b5a916ede6c5f4091522be3a2f05",
+  "content_hash": "sha256:c9a27861466b219106b9d95be8afc975f2f0bf3b447e0480898855f16f8ac505",
   "contract_reference": {
     "derived_checks": {
       "bootstrap_block_size": 21,
@@ -28,25 +28,26 @@
     "return_authorized": false,
     "returns_computed": false
   },
+  "promotion_receipt": {
+    "content_hash": "sha256:b909390bc6d722691080049f6682f5ad033bc820dd206c81fd2d2715695b19ab",
+    "effective_on_or_after_reservation_ordinal": 348,
+    "path": "config/forward_full_evidence_reservation_v2_promotion.json",
+    "promoted_at": "2026-09-14",
+    "sha256": "cec157cbe6985a2ba289d05756f855af64ea85b5583c8bcc630e1b0f6193a1dc"
+  },
   "protocol": {
     "bytes": 8388,
     "path": "docs/design/FORWARD_FULL_EVIDENCE_RESERVATION_V2.md",
     "sha256": "3a0bced3e2b063c4f04152335625218013446e1e9eafac3a9268933171426c27"
   },
-  "remaining_before_promotion": [
-    "SATISFIABILITY_AUDIT_PASSES",
-    "TRIAL_ACCOUNTING_BATCH_AND_DIAGNOSTIC_CLASSIFICATION_PROMOTED",
-    "SERIALITY_GUARD_SUPPORTS_PREDECLARED_BATCH",
-    "PUBLIC_PROJECTION_TESTS_PASS",
-    "OWNER_PROMOTION_RECORDED"
-  ],
+  "remaining_before_promotion": [],
   "schema": "canli.alphac-forward-full-evidence-template-audit.v1",
-  "status": "PASS_TEMPLATE_FAIL_CLOSED_NOT_ACTIVE_ZERO_RETURN",
+  "status": "PASS_TEMPLATE_PROMOTED_IN_FORCE_RETURN_BY_VALIDATED_RESERVATION_ONLY",
   "template": {
-    "bytes": 3741,
+    "bytes": 4387,
     "path": "config/forward_full_evidence_reservation_v2_template.json",
     "schema": "canli.alphac-forward-full-evidence-reservation-template.v2",
-    "sha256": "f7f55bd4237cc19fdc69ae7aba19e05d14263a710725948cc04753e981b236f5",
-    "status": "TEMPLATE_NOT_IN_FORCE_NO_RETURN_AUTHORIZATION"
+    "sha256": "f3aca315937b2a02664a988ff7c402565a04b169ee79ba9a6ea8a10d1f75098b",
+    "status": "IN_FORCE"
   }
 }

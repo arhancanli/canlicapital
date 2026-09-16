@@ -1,6 +1,50 @@
 {
   "schema": "canli.alphac-forward-evidence-maturity.v1",
-  "generated_at": "2026-09-05T20:27:07.800580+00:00",
+  "curve_basis": "cost_charged_curve",
+  "cost_realism": {
+    "contract": "config/cost_realism_contract.json",
+    "curve_basis": "cost_charged_curve",
+    "status": "CHARGED_BY_MODEL_ON_ALPACA_SLEEVES",
+    "sleeves": {
+      "alphamax": {
+        "status": "CHARGED_BY_MODEL",
+        "cumulative_drag_bps_of_base": 27.97,
+        "total_charged_usd": 2796.98,
+        "not_charged": [
+          "latency_slippage",
+          "financing_margin_interest",
+          "cash_yield_on_idle_capital"
+        ]
+      },
+      "managed_futures": {
+        "status": "CHARGED_BY_MODEL",
+        "cumulative_drag_bps_of_base": 8.63,
+        "total_charged_usd": 863.14,
+        "not_charged": [
+          "latency_slippage",
+          "financing_margin_interest",
+          "cash_yield_on_idle_capital"
+        ]
+      },
+      "alphavintage": {
+        "status": "CHARGED_BY_MODEL",
+        "cumulative_drag_bps_of_base": 12.8,
+        "total_charged_usd": 1277.71,
+        "not_charged": [
+          "latency_slippage",
+          "financing_margin_interest",
+          "cash_yield_on_idle_capital"
+        ]
+      },
+      "alphaforge": {
+        "status": "CHARGED_AT_SOURCE",
+        "cumulative_drag_bps_of_base": null,
+        "total_charged_usd": null,
+        "not_charged": []
+      }
+    }
+  },
+  "generated_at": "2026-09-15T14:27:29.083022+00:00",
   "author": "Arhan Canli",
   "capital_kind": "PAPER_ONLY",
   "status": "IMMATURE_RECORD_TOO_SHORT",
@@ -57,22 +101,64 @@
     "transparency_state_validation_error": null
   },
   "record": {
-    "first_mark": "2026-08-07",
-    "last_mark": "2026-09-05",
-    "curve_points": 28,
-    "daily_return_observations": 27,
-    "cumulative_return": -0.025361100000000025,
+    "first_mark": "2026-09-15",
+    "last_mark": "2026-09-15",
+    "curve_points": 1,
+    "daily_return_observations": 0,
+    "cumulative_return": 0.0,
     "return_frequency": "CONSECUTIVE_PUBLISHED_UTC_DAILY_MARKS_NO_SYNTHETIC_FILL",
-    "configuration_fingerprint": "sha256:fe82c4eeed742289bfcfee5d39856ee2bb8ca9cfe209bcc7e34abff98553706d"
+    "configuration_fingerprint": "sha256:553aff517efdc069c2ee80747ef9a9d750da817ceeab8dbc344cae050b814e09",
+    "evidence_epoch": {
+      "starts_on": "2026-09-15",
+      "declared_change": "drawdown control v1 ACTIVATED: config/drawdown_control_contract.json activation.live is true and configs/base.yaml risk.book_ladder.source is https. From this date every sleeve multiplies its target gross by the BOOK-level multiplier the publisher derives from the combined book's published marks: half gross at 5.0% below the high-water mark, flat at 10.0%, absorbing until an owner rearm in config/",
+      "rule": "the latest live_change_contract change_log entry with contaminates_forward_record true starts the current epoch; prior returns are published separately and never pooled"
+    },
+    "prior_epochs": [
+      {
+        "first_mark": "2026-08-07",
+        "last_mark": "2026-09-14",
+        "curve_points": 37,
+        "daily_return_observations": 36,
+        "cumulative_return": -0.026456799999999947,
+        "realized_max_drawdown": 0.03896378215437013,
+        "ended_by": "drawdown control v1 ACTIVATED: config/drawdown_control_contract.json activation.live is true and configs/base.yaml risk.book_ladder.source is https. From this date every sleeve multiplies its target g",
+        "pooled_with_current_epoch": false
+      }
+    ],
+    "whole_record": {
+      "first_mark": "2026-08-07",
+      "last_mark": "2026-09-15",
+      "curve_points": 38,
+      "daily_return_observations": 37,
+      "cumulative_return": -0.028357999999999994
+    }
   },
   "sharpe_evidence": {
-    "daily_return_observations": 27,
+    "daily_return_observations": 0,
     "estimate_minimum": 252,
     "establishment_minimum": 756,
-    "observations_to_estimate": 225,
-    "observations_to_establishment": 729,
+    "observations_to_estimate": 252,
+    "observations_to_establishment": 756,
     "annualization_days": 365.0,
-    "target": 1.5,
+    "target": 2.0,
+    "target_source": "config/owner_goals.json",
+    "target_history": [
+      {
+        "target": 1.5,
+        "in_force_from": "2026-08-21",
+        "superseded_on": "2026-09-14",
+        "source": "config/sleeve_admission_contract.json objective.honest_forward_sharpe_target (contract v6, carried into v7)",
+        "record_status_when_superseded": "IMMATURE_RECORD_TOO_SHORT",
+        "daily_returns_when_superseded": 36,
+        "note": "No point estimate was ever published against this target; the record was 36 returns short of the 252 the estimate needs when the target moved."
+      },
+      {
+        "target": 2.0,
+        "in_force_from": "2026-09-14",
+        "source": "config/owner_goals.json (owner goals recorded 2026-09-12, confirmed 2026-09-14)",
+        "note": "The owner's combined-portfolio goal, net of costs. A target change is an evaluation change, not a trading change: it restarts no forward-evidence epoch and pools nothing."
+      }
+    ],
     "target_exceedance_probability_min": 0.95,
     "annualized_point_estimate": null,
     "probability_true_sharpe_exceeds_target": null,
@@ -81,13 +167,18 @@
     "status": "IMMATURE_RECORD_TOO_SHORT"
   },
   "drawdown_evidence": {
-    "realized_live_max_drawdown": 0.03000239141679173,
+    "realized_live_max_drawdown": 0.03896378215437013,
     "realized_status": "DESCRIPTIVE_TO_DATE_NOT_EXPECTED_MAX_DRAWDOWN",
+    "realized_max_drawdown_bound": 0.1,
+    "realized_max_drawdown_bound_statistic": "REALIZED_MAXIMUM_DRAWDOWN",
+    "realized_max_drawdown_bound_source": "config/owner_goals.json",
+    "realized_within_owner_bound": true,
+    "realized_within_owner_bound_note": "Descriptive: realized drawdown inside the bound to date establishes nothing about future drawdown; the mechanism that acts on the bound is config/drawdown_control_contract.json.",
     "expected_max_drawdown_target": 0.11,
     "study_production_labelled_expected_max_drawdown": 0.10251155801473733,
     "study_production_labelled_p95_max_drawdown": 0.1876321103559252,
-    "current_composition_conservative_expected_max_drawdown": 0.09318244707449024,
-    "current_composition_conservative_p95_max_drawdown": 0.16451439272324467,
+    "current_composition_conservative_expected_max_drawdown": 0.09318244911641102,
+    "current_composition_conservative_p95_max_drawdown": 0.16451439178221056,
     "current_composition_study_status": "CURRENT_COMPOSITION_EXPECTED_WITHIN_OBJECTIVE_HISTORICAL_TAIL_COVERAGE_INCOMPLETE",
     "current_composition_expected_within_objective": true,
     "current_composition_p95_within_objective": false,
@@ -115,7 +206,7 @@
     "current_sleeves": 4,
     "target_total_sleeves": 14,
     "average_pairwise_correlation": 0.024827414293607856,
-    "average_pairwise_correlation_objective": -0.03,
+    "average_pairwise_correlation_objective": -0.05116116239316238,
     "active_v7_has_no_global_average_correlation_point_gate": true,
     "active_v7_candidate_average_correlation_gate": 0.0,
     "historical_v6_global_average_correlation_point_gate": 0.0,
@@ -128,24 +219,24 @@
     "effective_independent_sleeves_participation_ratio": 3.8988014966039604,
     "marginal_book_sharpe_research_diagnostics": {
       "alphavintage_live": {
-        "book_sharpe_with_sleeve": 1.7846281669176056,
-        "book_sharpe_with_sleeve_replaced_by_cash": 1.7908857604795474,
-        "marginal_book_sharpe_delta": -0.006257593561941777
+        "book_sharpe_with_sleeve": 1.7846280932113476,
+        "book_sharpe_with_sleeve_replaced_by_cash": 1.7908856987600663,
+        "marginal_book_sharpe_delta": -0.006257605548718681
       },
       "crypto_carry_wk": {
-        "book_sharpe_with_sleeve": 1.7846281669176056,
-        "book_sharpe_with_sleeve_replaced_by_cash": 1.252034546324405,
-        "marginal_book_sharpe_delta": 0.5325936205932007
+        "book_sharpe_with_sleeve": 1.7846280932113476,
+        "book_sharpe_with_sleeve_replaced_by_cash": 1.2520344519823685,
+        "marginal_book_sharpe_delta": 0.5325936412289791
       },
       "k30_dn_63": {
-        "book_sharpe_with_sleeve": 1.7846281669176056,
-        "book_sharpe_with_sleeve_replaced_by_cash": 1.6377956654461165,
-        "marginal_book_sharpe_delta": 0.14683250147148907
+        "book_sharpe_with_sleeve": 1.7846280932113476,
+        "book_sharpe_with_sleeve_replaced_by_cash": 1.637795624376064,
+        "marginal_book_sharpe_delta": 0.14683246883528356
       },
       "managed_futures": {
-        "book_sharpe_with_sleeve": 1.7846281669176056,
-        "book_sharpe_with_sleeve_replaced_by_cash": 1.875466015776462,
-        "marginal_book_sharpe_delta": -0.09083784885885637
+        "book_sharpe_with_sleeve": 1.7846280932113476,
+        "book_sharpe_with_sleeve_replaced_by_cash": 1.8754659368350433,
+        "marginal_book_sharpe_delta": -0.09083784362369562
       }
     },
     "checks": {
@@ -168,19 +259,19 @@
   "source_bindings": {
     "contract": {
       "path": "config/forward_evidence_contract.json",
-      "sha256": "d1b0c97921d9c8b96de7af275b18b9d0ffbfe1332a078061135e8d044ba3981a"
+      "sha256": "51396b2a1f4360520101c53ed7d128213f24fdc92bc45eb8955fa21bf8a70c6e"
     },
     "paper_state": {
       "path": "data/paper/state.json",
-      "sha256": "44856762908fdc961fed817d95e753c96b05d58fd245b68e3b085e5ca15bd224"
+      "sha256": "ebb6b1225d7b3081c68c5bd1dafcaea279efc9b099dd34cc42c517ab0e09dabf"
     },
     "record_continuity": {
       "path": "artifacts/engineering/record_continuity.json",
-      "sha256": "189aafe18ad09331608a938853cacbbaf0c58d9423ba7eca372ff79e44152001"
+      "sha256": "495cf7aee2576cdd47a9862c7fa66ca35c4c08787b5db89390d48c1964c26170"
     },
     "broker_reconciliation": {
       "path": "artifacts/engineering/alpaca_broker_reconciliation.json",
-      "sha256": "e6ff727d772b8ffba32e18b2893e8f2bb88f704c48d0e6b98dabce242dcf0389"
+      "sha256": "373d3854d1ae6bbdd3ef54397fcf63ffd5f6f9c99085eddaa0469b2321ac4af7"
     },
     "drawdown_model": {
       "path": "artifacts/analysis/drawdown_live_estimator/result.json",
@@ -188,33 +279,33 @@
     },
     "current_book_drawdown": {
       "path": "artifacts/analysis/current_book_drawdown/result.json",
-      "sha256": "44d8fb315eeb21f033b4070c19d17faea9dd0e4e52a8b9b9036a7d7818313e3d"
+      "sha256": "bb9a5642699202686fae42fd8a9dd95922f1e376caa2c9a9497c13499081b763"
     },
     "current_book_diversification": {
       "path": "artifacts/analysis/current_book_diversification/result.json",
-      "sha256": "513c0aec24163e4241da0ec332accc86e9516741be1c409c5b2a1c5857dce8a8"
+      "sha256": "f96455df98a8a68c0481f4e568bd572627ba06585659bbd45740c5c932409c8f"
     },
     "drawdown_evidence": {
       "path": "artifacts/engineering/forward_drawdown_evidence.json",
-      "sha256": "2e8fcbcc6dde076ac3cd50cf9ee44c4aa28a60ef54f403d1e893be2dbba1f729"
+      "sha256": "4b8632d6bd187a34ff425c4dfb6bb4a652fbdde80a2691190d9e6ce9f8b0b7fa"
     },
     "methodology_paper": {
       "path": "docs/research/FORWARD_SHARPE_EVIDENCE_STANDARD.md",
-      "sha256": "aeba2fc6ff13effd1a363119f883bf4f56948e0bb5395f659632d2a67517571c"
+      "sha256": "f16bff68f829309319c3671de4187f6a6ba8f83b4eaa65f3ffb705b4f4fa9325"
     },
     "transparency_chain": {
       "path": "meridian/public/glassbox/transparency_log.json",
-      "sha256": "04474fc17cd44a5ca9fdf92a64494b6eb9a35ed5833764ea0d6497fe3d513cec"
+      "sha256": "351451cc8da178d6c734bfd98d859d4c2fd3202f5a6eb3a2baefedbf64c565e7"
     },
     "crypto_position_attribution": {
       "path": "artifacts/engineering/crypto_position_attribution.json",
-      "sha256": "d5354c0914a66bb329e81f64a676bf9442bcf921ef5aa57d7e9b4a89bd1ea82f"
+      "sha256": "9a329e7f90f799614f4541f705189823f3c6d9ce13bb69de6caafda0434b39bc"
     },
     "crypto_position_attribution_rollout": {
       "path": "artifacts/engineering/crypto_position_attribution_rollout_verification.json",
-      "sha256": "a2cc6feba0363e6f0d2bfdb8fc745107a433dda17705bf712071739908b0fa29"
+      "sha256": "eadab7ba40dd86c2880ac913667a3fd32b69317a33b1338cd1475aeafd4e4863"
     }
   },
   "claim_boundary": "Paper-only, self-published evidence. An immature or observed Sharpe is not an established Sharpe. Realized maximum drawdown is not expected maximum drawdown, and the modeled expectation is not a live guarantee.",
-  "content_hash": "sha256:512a84734ae737800005a0b025c387e013e88828a01ee63c033dbb2a8f7f90ce"
+  "content_hash": "sha256:17cfc1705204526042d3c558049d3849d54917b115fc42d7c0bb7d187f51b4c2"
 }

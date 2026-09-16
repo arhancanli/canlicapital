@@ -8,6 +8,7 @@ import { canonical, contentId, sha256Hex } from "./canonical.js";
 import { envelope, errorEnvelope, nextUtcMidnightIso, quotaHeaders, send } from "./envelope.js";
 import { LIMITS, LIMITS_TEXT } from "./limits.js";
 import { createStore } from "./store.js";
+import { receiptOrigin } from "./receipt-origin.js";
 
 const ORIGIN = "https://canlicapital.com";
 
@@ -60,7 +61,7 @@ export function validatorHandler({ endpoint, sourcesPaths, compute, store, now =
     const bindings = Object.fromEntries(sources.map((s) => [s.path, s.sha256]));
     const id = contentId({ endpoint, input_sha256, output: data, bindings });
     const output_sha256 = `sha256:${sha256Hex(canonical(data))}`;
-    const receipt = { id, url: `${ORIGIN}/api/v1/receipts/${id}`, input_sha256, output_sha256 };
+    const receipt = { id, url: `${receiptOrigin()}/api/v1/receipts/${id}`, input_sha256, output_sha256 };
     let stored = true;
     try { await activeStore.saveReceipt({ id, key_id: null, endpoint, input_sha256, output: data, bindings }); } catch (e) {
       stored = false;

@@ -2,41 +2,89 @@
   "schema": "canli.alphac-sleeve-atlas.v2",
   "as_of": "2026-08-22",
   "objective": {
+    "source": "config/owner_goals.json",
+    "source_schema": "canli.alphac-owner-goals.v1",
+    "recorded_on": "2026-09-12",
+    "in_force_from": "2026-09-14",
+    "honest_forward_sharpe_target": 2.0,
+    "honest_forward_sharpe_comparison": "ABOVE",
+    "honest_forward_sharpe_basis": "Annualized (365-day convention) from consecutive published UTC daily paper marks, net of modeled costs, zero excess-return benchmark, evaluated by scripts/evaluate_forward_evidence_maturity.py under config/forward_evidence_contract.json (252 returns before an estimate, 756 and PSR >= 0.95 before establishment).",
+    "portfolio_max_drawdown_target": 0.1,
+    "portfolio_max_drawdown_comparison": "AT_MOST",
+    "portfolio_max_drawdown_statistic": "REALIZED_MAXIMUM_DRAWDOWN_BOUND",
+    "portfolio_max_drawdown_mechanism": "config/drawdown_control_contract.json declares half gross at 5.5 percent below the high-water mark and flat at 11 percent, absorbing until an owner rearm. That ladder was measured against the superseded 11 percent objective and CANNOT enforce a 10 percent bound; a ladder consistent with this bound (flat at or below 10 percent) must be measured with scripts/analyze_drawdown_control.py and declared before activation. A brake bounds each episode up to a one-day overshoot and does not make losses impossible.",
+    "portfolio_max_drawdown_mechanism_status": "DECLARED_LADDER_INCONSISTENT_WITH_BOUND_REMEASUREMENT_REQUIRED_BEFORE_ACTIVATION",
+    "expected_max_drawdown_objective": 0.11,
+    "expected_max_drawdown_objective_statistic": "expected_maximum_drawdown",
+    "expected_max_drawdown_objective_note": "The admission contract's sealed expected-maximum-drawdown objective and gate, evaluated on the current-composition drawdown study. Not the owner's bound: the bound is on realized maximum drawdown and is portfolio_max_drawdown_target.",
     "target_total_sleeves": 14,
-    "minimum_new_sleeves": 10,
+    "target_total_sleeves_comparison": "AT_LEAST",
+    "target_sleeve_count": 14,
+    "average_pairwise_correlation_objective": -0.05116116239316238,
+    "average_pairwise_correlation_objective_note": "An objective, not a gate: the average pairwise correlation at which 14 sleeves of the quality the sealed contract measured reach 3 in-sample, which is forward 2 on the optimistic end of the measured haircut. Derived by inverting the published identity; the PSD floor at this sleeve count is -0.0769.",
+    "implied_in_sample_target": {
+      "at_1_5x_haircut": 3.0,
+      "at_2_0x_haircut": 4.0,
+      "at_3_0x_haircut": 6.0
+    },
     "portfolio_sharpe_target": [
-      2.25,
-      3.0
+      3.0,
+      4.0
     ],
-    "portfolio_max_drawdown_target": 0.11,
-    "targets_are_admission_evidence": false,
-    "portfolio_max_drawdown_statistic": "expected_maximum_drawdown",
-    "portfolio_p95_max_drawdown_is_gated": false,
-    "portfolio_p95_max_drawdown_must_be_published": true,
-    "average_pairwise_correlation_objective": -0.03,
-    "average_pairwise_correlation_objective_note": "An objective, not a gate. -0.03 is the average pairwise correlation at which fourteen sleeves of measured quality reach 2.5. Thresholds are gates and live in 'thresholds'; anything that is not enforced must not sit there wearing a gate's costume.",
-    "honest_forward_sharpe_target": 1.5,
-    "superseded_in_sample_sharpe_target": [
-      2.0,
-      2.5
-    ],
-    "superseded_reason": "Stated in-sample with no haircut named, and unreachable as a forward result: a verified forward 2.0 at measured per-sleeve quality needs an average pairwise correlation of -0.062 against a PSD floor of -0.077. Withdrawn 2026-08-21 and replaced with an honest FORWARD target of 1.5, which is inside the floor at every plausible quality.",
+    "portfolio_sharpe_target_unit": "IN-SAMPLE, being the band an honest forward 2 implies at the 1.5x and 2x ends of this book's own measured backtest-to-forward haircut. The headline target is the forward figure.",
     "backtest_to_forward_haircut": {
       "measured_on_this_book": "in-sample equal-risk ~1.04 against an honest forward of 0.3-0.9",
+      "note": "The haircut IS the uncertainty. Until the forward record is long enough to speak, every in-sample figure should be read through it, and the range is this book's own published pair rather than a convention borrowed from elsewhere.",
       "range": [
         1.5,
         3.0
+      ]
+    },
+    "targets_are_admission_evidence": false,
+    "what_reaching_it_requires": "At 14 sleeves of the quality the sealed contract measured (0.464 on the four-curve basis), the low end of the band (3 in-sample, 2 forward on the optimistic haircut) needs an average pairwise correlation of -0.0512 against a floor of -0.0769 (inside the floor). At the +0.00 gate exactly it needs a mean standalone Sharpe of 0.802. The distance from today's measured quality has to be bought with per-sleeve quality, genuinely negative correlation, or both; the sleeve count alone buys none of it.",
+    "superseded_admission_contract_objective": {
+      "average_pairwise_correlation_objective": -0.03,
+      "average_pairwise_correlation_objective_note": "An objective, not a gate. -0.03 is the average pairwise correlation at which fourteen sleeves of measured quality reach 2.5. Thresholds are gates and live in 'thresholds'; anything that is not enforced must not sit there wearing a gate's costume.",
+      "backtest_to_forward_haircut": {
+        "measured_on_this_book": "in-sample equal-risk ~1.04 against an honest forward of 0.3-0.9",
+        "note": "The haircut IS the uncertainty. Until the forward record is long enough to speak, every in-sample figure should be read through it, and the range is this book's own published pair rather than a convention borrowed from elsewhere.",
+        "range": [
+          1.5,
+          3.0
+        ]
+      },
+      "honest_forward_sharpe_target": 1.5,
+      "implied_in_sample_target": {
+        "at_1_5x_haircut": 2.25,
+        "at_2_0x_haircut": 3.0,
+        "at_3_0x_haircut": 4.5
+      },
+      "minimum_new_sleeves": 10,
+      "portfolio_max_drawdown_statistic": "expected_maximum_drawdown",
+      "portfolio_max_drawdown_target": 0.11,
+      "portfolio_p95_max_drawdown_is_gated": false,
+      "portfolio_p95_max_drawdown_must_be_published": true,
+      "portfolio_sharpe_target": [
+        2.25,
+        3.0
       ],
-      "note": "The haircut IS the uncertainty. Until the forward record is long enough to speak, every in-sample figure should be read through it, and the range is this book's own published pair rather than a convention borrowed from elsewhere."
+      "portfolio_sharpe_target_unit": "IN-SAMPLE, being the band that an honest forward 1.5 implies at the 1.5x and 2.0x ends of this book's own measured haircut. The headline target is honest_forward_sharpe_target.",
+      "superseded_in_sample_sharpe_target": [
+        2.0,
+        2.5
+      ],
+      "superseded_reason": "Stated in-sample with no haircut named, and unreachable as a forward result: a verified forward 2.0 at measured per-sleeve quality needs an average pairwise correlation of -0.062 against a PSD floor of -0.077. Withdrawn 2026-08-21 and replaced with an honest FORWARD target of 1.5, which is inside the floor at every plausible quality.",
+      "target_total_sleeves": 14,
+      "targets_are_admission_evidence": false,
+      "what_reaching_it_requires": "Both halves, not either: an average pairwise correlation meaningfully BELOW zero, and per-sleeve quality above roughly 0.60. At today's measured 0.469 the forward target is reachable only at a correlation near -0.030 and only on the optimistic haircut.",
+      "why_this_is_not_a_retreat": "The rarer thing was never the number. A forward Sharpe near 1.5 that is genuinely verifiable -- signed forward record, every killed candidate published in full, gates that provably bite, and the arithmetic showing where the gate falls short of the target printed on the same page as the target -- is harder to find than a 2.5 nobody can check.",
+      "superseded_on": "2026-09-14",
+      "sealed_by": "config/admission_v7_promotion.json",
+      "sealed_sha256": "6bc72c1f47675b4e14897e1ba3aad6e56aba9b5f013a7b9bae57f930e8d3b8b6",
+      "why_the_bytes_stand": "The contract's bytes are sealed by config/admission_v7_promotion.json and its objective was never an admission gate (targets_are_admission_evidence is false), so the goals move without any gate moving. The superseded figures are published beside the governing ones, dated, as history."
     },
-    "implied_in_sample_target": {
-      "at_1_5x_haircut": 2.25,
-      "at_2_0x_haircut": 3.0,
-      "at_3_0x_haircut": 4.5
-    },
-    "what_reaching_it_requires": "Both halves, not either: an average pairwise correlation meaningfully BELOW zero, and per-sleeve quality above roughly 0.60. At today's measured 0.469 the forward target is reachable only at a correlation near -0.030 and only on the optimistic haircut.",
-    "why_this_is_not_a_retreat": "The rarer thing was never the number. A forward Sharpe near 1.5 that is genuinely verifiable -- signed forward record, every killed candidate published in full, gates that provably bite, and the arithmetic showing where the gate falls short of the target printed on the same page as the target -- is harder to find than a 2.5 nobody can check.",
-    "portfolio_sharpe_target_unit": "IN-SAMPLE, being the band that an honest forward 1.5 implies at the 1.5x and 2.0x ends of this book's own measured haircut. The headline target is honest_forward_sharpe_target.",
+    "current_sleeves": 4,
+    "minimum_new_sleeves": 10,
     "targets_are_promises": false
   },
   "governance": {
@@ -180,7 +228,9 @@
       "lineage_evidence": [
         "config/sleeve_discovery.json#candidates:merger_arbitrage",
         "docs/design/FEASIBILITY_MERGER_ARBITRAGE.md",
-        "artifacts/feasibility/merger_arbitrage/result.json"
+        "artifacts/feasibility/merger_arbitrage/result.json",
+        "docs/design/FEASIBILITY_MERGER_ANNOUNCEMENT_IDENTITY_V2.md",
+        "artifacts/feasibility/merger_arbitrage/announcement_confirmatory_design.json"
       ],
       "forward_experiment": null,
       "return_outcome": null
@@ -1521,7 +1571,9 @@
       "lineage_evidence": [
         "config/sleeve_discovery.json#candidates:merger_arbitrage",
         "docs/design/FEASIBILITY_MERGER_ARBITRAGE.md",
-        "artifacts/feasibility/merger_arbitrage/result.json"
+        "artifacts/feasibility/merger_arbitrage/result.json",
+        "docs/design/FEASIBILITY_MERGER_ANNOUNCEMENT_IDENTITY_V2.md",
+        "artifacts/feasibility/merger_arbitrage/announcement_confirmatory_design.json"
       ],
       "forward_experiment": null,
       "screen_state": "UNSCREENED_NO_RETURN",
@@ -1547,7 +1599,9 @@
       "lineage_evidence": [
         "config/sleeve_discovery.json#candidates:merger_arbitrage",
         "docs/design/FEASIBILITY_MERGER_ARBITRAGE.md",
-        "artifacts/feasibility/merger_arbitrage/result.json"
+        "artifacts/feasibility/merger_arbitrage/result.json",
+        "docs/design/FEASIBILITY_MERGER_ANNOUNCEMENT_IDENTITY_V2.md",
+        "artifacts/feasibility/merger_arbitrage/announcement_confirmatory_design.json"
       ],
       "forward_experiment": null,
       "screen_state": "UNSCREENED_NO_RETURN",
@@ -1573,7 +1627,9 @@
       "lineage_evidence": [
         "config/sleeve_discovery.json#candidates:merger_arbitrage",
         "docs/design/FEASIBILITY_MERGER_ARBITRAGE.md",
-        "artifacts/feasibility/merger_arbitrage/result.json"
+        "artifacts/feasibility/merger_arbitrage/result.json",
+        "docs/design/FEASIBILITY_MERGER_ANNOUNCEMENT_IDENTITY_V2.md",
+        "artifacts/feasibility/merger_arbitrage/announcement_confirmatory_design.json"
       ],
       "forward_experiment": null,
       "screen_state": "UNSCREENED_NO_RETURN",
@@ -1599,7 +1655,9 @@
       "lineage_evidence": [
         "config/sleeve_discovery.json#candidates:merger_arbitrage",
         "docs/design/FEASIBILITY_MERGER_ARBITRAGE.md",
-        "artifacts/feasibility/merger_arbitrage/result.json"
+        "artifacts/feasibility/merger_arbitrage/result.json",
+        "docs/design/FEASIBILITY_MERGER_ANNOUNCEMENT_IDENTITY_V2.md",
+        "artifacts/feasibility/merger_arbitrage/announcement_confirmatory_design.json"
       ],
       "forward_experiment": null,
       "screen_state": "UNSCREENED_NO_RETURN",
@@ -1625,7 +1683,9 @@
       "lineage_evidence": [
         "config/sleeve_discovery.json#candidates:merger_arbitrage",
         "docs/design/FEASIBILITY_MERGER_ARBITRAGE.md",
-        "artifacts/feasibility/merger_arbitrage/result.json"
+        "artifacts/feasibility/merger_arbitrage/result.json",
+        "docs/design/FEASIBILITY_MERGER_ANNOUNCEMENT_IDENTITY_V2.md",
+        "artifacts/feasibility/merger_arbitrage/announcement_confirmatory_design.json"
       ],
       "forward_experiment": null,
       "screen_state": "UNSCREENED_NO_RETURN",
@@ -1651,7 +1711,9 @@
       "lineage_evidence": [
         "config/sleeve_discovery.json#candidates:merger_arbitrage",
         "docs/design/FEASIBILITY_MERGER_ARBITRAGE.md",
-        "artifacts/feasibility/merger_arbitrage/result.json"
+        "artifacts/feasibility/merger_arbitrage/result.json",
+        "docs/design/FEASIBILITY_MERGER_ANNOUNCEMENT_IDENTITY_V2.md",
+        "artifacts/feasibility/merger_arbitrage/announcement_confirmatory_design.json"
       ],
       "forward_experiment": null,
       "screen_state": "UNSCREENED_NO_RETURN",
@@ -7198,5 +7260,5 @@
       "family_trial_account": "sovereign_cds_fx_dislocation"
     }
   ],
-  "content_hash": "sha256:f1feb79173794e13cdae737d7679cc56e9cc42657507f1484c095e4c0252ffd2"
+  "content_hash": "sha256:bc16c98391c4ea367398bd26ff24c4754b432f1739a19b37f60f9b33fb01cc5b"
 }

@@ -109,6 +109,9 @@ function mount() {
       output.statusLabel.textContent = "Input state";
       output.status.textContent = "Cannot calculate";
       output.value.textContent = "Invalid";
+      output.thresholdNote.textContent = 'Correct the inputs to calculate a new result. The rail shows the previous valid calculation.';
+      output.chamber.dataset.reference = 'invalid';
+      for (const name of ['psr', 'benchmark', 'haircut', 'varianceTerm']) output[name].textContent = 'Unavailable';
       output.error.hidden = false;
       output.error.textContent = error.message;
       lastInputs = null;

@@ -41,8 +41,9 @@ ROUTES = (
     "/tools/execution",
 )
 
-EXPECTED_CORE = {"Live", "Research", "Trials", "Systems", "Methodology", "Developers", "Verify"}
-EXPECTED_INSTITUTION = {"Corrections", "Status", "Founder", "Open data", "Measurements"}
+EXPECTED_CORE = {"Live", "Research", "Trials", "Systems", "Methodology", "Performance"}
+EXPECTED_PRIMARY = {"Research", "Systems", "Developers", "Verify"}
+EXPECTED_INSTITUTION = {"Verify", "Corrections", "Founder", "Open data", "Measurements"}
 EXPECTED_SOURCE = {
     "Engineering hub",
     "Engineering notes",
@@ -56,7 +57,7 @@ EXPECTED_SOURCE = {
 #: carries the repositories instead. Asserted rather than assumed, because "the
 #: button disappeared on mobile" and "the button was removed" look identical in a
 #: screenshot, and only one of them is intended.
-SOURCE_CONTROL_HIDDEN_BELOW_PX = 640
+SOURCE_CONTROL_HIDDEN_BELOW_PX = 1280
 
 
 def audit_route(browser, route: str, *, mobile: bool = False) -> dict[str, object]:
@@ -79,7 +80,9 @@ def audit_route(browser, route: str, *, mobile: bool = False) -> dict[str, objec
     assert page.locator("footer.site-footer, footer.footer").count() == 0
 
     core_links = set(header.locator(".cc-shell__primary .cc-shell__link").all_inner_texts())
-    assert core_links == EXPECTED_CORE, f"{route}: primary routes differ: {core_links}"
+    assert core_links == EXPECTED_PRIMARY, f"{route}: primary routes differ: {core_links}"
+    panel_core = set(header.locator("nav[aria-label='Core routes'] a").all_text_contents())
+    assert panel_core == EXPECTED_CORE, f"{route}: the full menu lost core routes: {panel_core}"
     assert header.locator(".cc-shell__cta").get_attribute("href") == "https://app.canlicapital.com/dashboard"
     source = header.locator(".cc-shell__source")
     assert source.count() == 1, f"{route}: expected exactly one source control"

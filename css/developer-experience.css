@@ -1,0 +1,44 @@
+/* Phase 5: the API guide is a working document, not a decorative terminal. */
+html[data-page="developers"] body { --dev-paper: #f4f4f4; --dev-ink: #111; --dev-muted: #58616b; }
+html[data-page="developers"] body .dev-hero { background: #f4f4f4; color: #111; padding: 70px 4vw 52px; margin: 0; border-bottom: 1px solid #b8bfce; }
+html[data-page="developers"] .dev-hero::after,
+html[data-page="developers"] .dev-hero .cc-optical-backdrop { display: none; }
+html[data-page="developers"] body .dev-hero h1 { max-width: 22ch; font-size: clamp(3rem,7vw,7.6rem); font-weight: 500; line-height: .98; }
+html[data-page="developers"] body .dev-hero :is(p,.dev-kicker) { color: #343b46; }
+html[data-page="developers"] body .dev-hero a { color: #0016cb; }
+html[data-page="developers"] .dev-lead { max-width: 72ch; font-size: 18px; }
+html[data-page="developers"] .dev-hero-note { max-width: 82ch; }
+html[data-page="developers"] .dev-downloads { margin-top: 30px; gap: 12px; }
+html[data-page="developers"] .dev-button { min-height: 48px; font: 500 12px/1.35 Inter,sans-serif; text-transform: none; letter-spacing: 0; padding: 12px 21px; cursor: pointer; }
+html[data-page="developers"] body .dev-button--primary { color: white; background: #0016cb; border-color: #0016cb; }
+html[data-page="developers"] body.dev-page .dev-hero .dev-button--primary { color: white; }
+html[data-page="developers"] body .dev-button--primary:hover { color: white; background: #111; border-color: #111; }
+html[data-page="developers"] body .dev-button:disabled { cursor: wait; opacity: .7; }
+.dev-page-index { display: flex; flex-wrap: wrap; gap: 8px 32px; padding: 18px 4vw; background: #111; color: white; }
+.dev-page-index a { display: inline-flex; align-items: center; min-height: 44px; color: white; font: 500 13px/1.4 Inter,sans-serif; text-decoration: none; }
+.dev-page-index a:hover { text-decoration: underline; text-underline-offset: 6px; }
+html[data-page="developers"] .dev-section { padding: 64px 4vw; }
+html[data-page="developers"] .dev-section h2 { font-size: clamp(2rem,3.5vw,3.7rem); max-width: 28ch; }
+html[data-page="developers"] .dev-quickstart { background: white; }
+html[data-page="developers"] .dev-quickstart h2 { font-size: clamp(3rem,5vw,5.6rem); }
+html[data-page="developers"] .dev-step { padding: 36px 0 46px; grid-template-columns: minmax(220px,.65fr) minmax(0,1.35fr); }
+html[data-page="developers"] .dev-step h3 { font-size: clamp(1.8rem,2.8vw,3rem); }
+html[data-page="developers"] .dev-key-result { border-color: #0016cb; background: #edf0ff; padding: 24px; }
+html[data-page="developers"] .dev-key-result[hidden],html[data-page="developers"] .dev-key-error[hidden] { display: none; }
+html[data-page="developers"] .dev-key-error { padding: 18px 22px; border-left: 4px solid #8c2923; color: #7a1f1a; line-height: 1.6; }
+html[data-page="developers"] #validation .dev-endpoint { display: grid; grid-template-columns: minmax(220px,.65fr) minmax(0,1.35fr); gap: 20px 6vw; padding: 38px 0; border-top: 1px solid #b8bfce; }
+html[data-page="developers"] #validation .dev-endpoint > * { min-width: 0; grid-column: 2; }
+html[data-page="developers"] #validation .dev-endpoint h4 { grid-column: 1; grid-row: 1 / span 3; font: 500 clamp(1.15rem,1.6vw,1.7rem)/1.4 'IBM Plex Mono',monospace; }
+html[data-page="developers"] .dev-grid article { padding: 28px; border-top: 3px solid #0016cb; }
+html[data-page="developers"] .dev-section--tail { padding-block: 70px; }
+.dev-copy-status { color: #58616b; font: 12px/1.5 Inter,sans-serif; }
+.is-workbench .dev-copy-status { padding: 0 24px 16px; color: #d9dde6; }
+.dev-copy-example { margin: 0 24px 18px; padding: 10px 16px; min-height: 44px; color: #fff; background: transparent; border: 1px solid #aeb6c8; font: 12px Inter,sans-serif; cursor: pointer; }
+@media(max-width:800px) {
+ html[data-page="developers"] body .dev-hero { padding: 48px 24px 36px; }
+ html[data-page="developers"] .dev-section { padding: 42px 24px; }
+ html[data-page="developers"] #validation .dev-endpoint { display: block; }
+ html[data-page="developers"] #validation .dev-endpoint > * + * { margin-top: 18px; }
+ .dev-page-index { padding-inline: 24px; gap: 4px 22px; }
+ html[data-page="developers"] .dev-downloads .dev-button { flex-grow: 1; justify-content: center; }
+}

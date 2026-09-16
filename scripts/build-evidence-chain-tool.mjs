@@ -151,6 +151,7 @@ function main() {
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=optional" /></noscript>
 ${renderProductShellStylesheet()}
 <link rel="stylesheet" href="/css/evidence-chain-tool.css" />
+<link rel="stylesheet" href="/css/tool-experience.css" />
 <script type="application/ld+json">${JSON.stringify(jsonLd)}</script>
 </head>
 <body class="chain-page">

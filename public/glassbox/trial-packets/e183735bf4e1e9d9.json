@@ -1,0 +1,425 @@
+{
+  "claim_boundary": "Known-history combined portfolio development experiment; fixed parameters, capital-budget proxy, lagged modeled DFF benchmark, unresolved internal financing and limitations. No untouched validation, independent replication, capacity or admission.",
+  "complete": true,
+  "completion_assessment": {
+    "candidate_evidence_complete_for_admission": false,
+    "disposition": "INCOMPLETE_NOT_ADMITTED",
+    "packet_evidence_accounting_complete": true
+  },
+  "config_hash": "09c6711b949b4689",
+  "configuration": {
+    "arm": "candidate_stress",
+    "family": "alphac_capital_budget",
+    "input_manifest_sha256": "abcf9e8911977604ee2573087db488a490969e31200d6d104e74eab82ec98cfd",
+    "spec_sha256": "602e87a2647085b6d52643bd0bbede39acced20d62acc040ac19b0b027e6fafc"
+  },
+  "content_hash": "sha256:92d747a0f8e9db8349bd6b4c2a717ad5756c9530d66d6a761315306d1bd7f3f9",
+  "hypothesis_key": "e183735bf4e1e9d9",
+  "immutable_first_measurement": {
+    "config": {
+      "arm": "candidate_stress",
+      "family": "alphac_capital_budget",
+      "input_manifest_sha256": "abcf9e8911977604ee2573087db488a490969e31200d6d104e74eab82ec98cfd",
+      "spec_sha256": "602e87a2647085b6d52643bd0bbede39acced20d62acc040ac19b0b027e6fafc"
+    },
+    "config_hash": "09c6711b949b4689",
+    "kurtosis": 5.221492820824487,
+    "n_obs": 1061,
+    "now_ms": 1789281407558,
+    "sharpe_ann": 0.8905438573441787,
+    "sharpe_per_period": 0.046613195904970976,
+    "skew": -0.008867612819275887
+  },
+  "imported_from_external_tree": {
+    "external_content_hash": "sha256:e69c04bd9e5a44b23cdb9e690f3d7ef051563cc2bf5a926ba49105dcc436f9b5",
+    "imported_on": "2026-09-14T19:35:24+00:00",
+    "tree": "/Users/arhancanli/alphac-prospective-pause-20260911"
+  },
+  "missing_sections": [],
+  "packet_status": "COMPLETE_ACCOUNTING_FINAL_KILLED_NOT_ADMITTED",
+  "partial_sections": [],
+  "required_sections": {
+    "admission_or_kill_decision": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/alphac_capital_budget_20260913/candidate_stress/REPORT.md",
+          "sha256": "e11a3a45159c3b2dc122cb7a0eb65c1d55ec3abf9fe25af8ea44adad6654c31c"
+        },
+        {
+          "path": "artifacts/analysis/alphac_capital_budget_20260913/candidate_stress/daily.csv",
+          "sha256": "ebaeafa49c0651f8e0760428780af3c460d50e2f7fcd4eb3617ce91a804b0afb"
+        },
+        {
+          "path": "artifacts/analysis/alphac_capital_budget_20260913/candidate_stress/experiments.jsonl",
+          "sha256": "5a52ced4ada52c2bf19911e4e43659babe483269093f42617593f520c3f89b0c"
+        },
+        {
+          "path": "artifacts/analysis/alphac_capital_budget_20260913/candidate_stress/preregistration.json",
+          "sha256": "89912926b8311a0952a196176984642e8925b1e678199eeea4104e221ad6d22d"
+        },
+        {
+          "path": "artifacts/analysis/alphac_capital_budget_20260913/candidate_stress/reservation.json",
+          "sha256": "ecc9e6afd18cb10f646886d80da5f1d479691bce8038969dc0bff155632098be"
+        },
+        {
+          "path": "artifacts/analysis/alphac_capital_budget_20260913/candidate_stress/reservation_validation.json",
+          "sha256": "e45f43d30ccc85bf649e0e39ab15645f0620b9d26a250c4d7b82fe197ffb871e"
+        },
+        {
+          "path": "artifacts/analysis/alphac_capital_budget_20260913/candidate_stress/result.json",
+          "sha256": "65db6d5d5cdfa042922ea9eb801f9aba860b1283d41ac68bdba3f8311e563950"
+        },
+        {
+          "content_hash": "sha256:d084d4c4990544f71919639fea38f0ae418bc191e5f233ae19c04adb84e462f3",
+          "path": "artifacts/research/development_closures/e183735bf4e1e9d9_admission_closure.json",
+          "sha256": "3663762e57a6e31628747c6146406f1f2f167e5e552b3fb8f2a67b7ec221c922",
+          "type": "final_development_admission_closure"
+        }
+      ],
+      "statement": "Known-history combined portfolio development experiment; fixed parameters, capital-budget proxy, lagged modeled DFF benchmark, unresolved internal financing and limitations. No untouched validation, independent replication, capacity or admission.",
+      "status": "VERIFIED_FINAL_DEVELOPMENT_CLOSURE_KILL"
+    },
+    "code_environment_and_reproduction": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/alphac_capital_budget_20260913/candidate_stress/REPORT.md",
+          "sha256": "e11a3a45159c3b2dc122cb7a0eb65c1d55ec3abf9fe25af8ea44adad6654c31c"
+        },
+        {
+          "path": "artifacts/analysis/alphac_capital_budget_20260913/candidate_stress/daily.csv",
+          "sha256": "ebaeafa49c0651f8e0760428780af3c460d50e2f7fcd4eb3617ce91a804b0afb"
+        },
+        {
+          "path": "artifacts/analysis/alphac_capital_budget_20260913/candidate_stress/experiments.jsonl",
+          "sha256": "5a52ced4ada52c2bf19911e4e43659babe483269093f42617593f520c3f89b0c"
+        },
+        {
+          "path": "artifacts/analysis/alphac_capital_budget_20260913/candidate_stress/preregistration.json",
+          "sha256": "89912926b8311a0952a196176984642e8925b1e678199eeea4104e221ad6d22d"
+        },
+        {
+          "path": "artifacts/analysis/alphac_capital_budget_20260913/candidate_stress/reservation.json",
+          "sha256": "ecc9e6afd18cb10f646886d80da5f1d479691bce8038969dc0bff155632098be"
+        },
+        {
+          "path": "artifacts/analysis/alphac_capital_budget_20260913/candidate_stress/reservation_validation.json",
+          "sha256": "e45f43d30ccc85bf649e0e39ab15645f0620b9d26a250c4d7b82fe197ffb871e"
+        },
+        {
+          "path": "artifacts/analysis/alphac_capital_budget_20260913/candidate_stress/result.json",
+          "sha256": "65db6d5d5cdfa042922ea9eb801f9aba860b1283d41ac68bdba3f8311e563950"
+        }
+      ],
+      "statement": "Known-history combined portfolio development experiment; fixed parameters, capital-budget proxy, lagged modeled DFF benchmark, unresolved internal financing and limitations. No untouched validation, independent replication, capacity or admission.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "economic_mechanism_and_falsifiable_hypothesis": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/alphac_capital_budget_20260913/candidate_stress/REPORT.md",
+          "sha256": "e11a3a45159c3b2dc122cb7a0eb65c1d55ec3abf9fe25af8ea44adad6654c31c"
+        },
+        {
+          "path": "artifacts/analysis/alphac_capital_budget_20260913/candidate_stress/daily.csv",
+          "sha256": "ebaeafa49c0651f8e0760428780af3c460d50e2f7fcd4eb3617ce91a804b0afb"
+        },
+        {
+          "path": "artifacts/analysis/alphac_capital_budget_20260913/candidate_stress/experiments.jsonl",
+          "sha256": "5a52ced4ada52c2bf19911e4e43659babe483269093f42617593f520c3f89b0c"
+        },
+        {
+          "path": "artifacts/analysis/alphac_capital_budget_20260913/candidate_stress/preregistration.json",
+          "sha256": "89912926b8311a0952a196176984642e8925b1e678199eeea4104e221ad6d22d"
+        },
+        {
+          "path": "artifacts/analysis/alphac_capital_budget_20260913/candidate_stress/reservation.json",
+          "sha256": "ecc9e6afd18cb10f646886d80da5f1d479691bce8038969dc0bff155632098be"
+        },
+        {
+          "path": "artifacts/analysis/alphac_capital_budget_20260913/candidate_stress/reservation_validation.json",
+          "sha256": "e45f43d30ccc85bf649e0e39ab15645f0620b9d26a250c4d7b82fe197ffb871e"
+        },
+        {
+          "path": "artifacts/analysis/alphac_capital_budget_20260913/candidate_stress/result.json",
+          "sha256": "65db6d5d5cdfa042922ea9eb801f9aba860b1283d41ac68bdba3f8311e563950"
+        }
+      ],
+      "statement": "Known-history combined portfolio development experiment; fixed parameters, capital-budget proxy, lagged modeled DFF benchmark, unresolved internal financing and limitations. No untouched validation, independent replication, capacity or admission.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "execution_and_cost_model": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/alphac_capital_budget_20260913/candidate_stress/REPORT.md",
+          "sha256": "e11a3a45159c3b2dc122cb7a0eb65c1d55ec3abf9fe25af8ea44adad6654c31c"
+        },
+        {
+          "path": "artifacts/analysis/alphac_capital_budget_20260913/candidate_stress/daily.csv",
+          "sha256": "ebaeafa49c0651f8e0760428780af3c460d50e2f7fcd4eb3617ce91a804b0afb"
+        },
+        {
+          "path": "artifacts/analysis/alphac_capital_budget_20260913/candidate_stress/experiments.jsonl",
+          "sha256": "5a52ced4ada52c2bf19911e4e43659babe483269093f42617593f520c3f89b0c"
+        },
+        {
+          "path": "artifacts/analysis/alphac_capital_budget_20260913/candidate_stress/preregistration.json",
+          "sha256": "89912926b8311a0952a196176984642e8925b1e678199eeea4104e221ad6d22d"
+        },
+        {
+          "path": "artifacts/analysis/alphac_capital_budget_20260913/candidate_stress/reservation.json",
+          "sha256": "ecc9e6afd18cb10f646886d80da5f1d479691bce8038969dc0bff155632098be"
+        },
+        {
+          "path": "artifacts/analysis/alphac_capital_budget_20260913/candidate_stress/reservation_validation.json",
+          "sha256": "e45f43d30ccc85bf649e0e39ab15645f0620b9d26a250c4d7b82fe197ffb871e"
+        },
+        {
+          "path": "artifacts/analysis/alphac_capital_budget_20260913/candidate_stress/result.json",
+          "sha256": "65db6d5d5cdfa042922ea9eb801f9aba860b1283d41ac68bdba3f8311e563950"
+        }
+      ],
+      "statement": "Known-history combined portfolio development experiment; fixed parameters, capital-budget proxy, lagged modeled DFF benchmark, unresolved internal financing and limitations. No untouched validation, independent replication, capacity or admission.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "family_and_union_trial_accounting": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/alphac_capital_budget_20260913/candidate_stress/REPORT.md",
+          "sha256": "e11a3a45159c3b2dc122cb7a0eb65c1d55ec3abf9fe25af8ea44adad6654c31c"
+        },
+        {
+          "path": "artifacts/analysis/alphac_capital_budget_20260913/candidate_stress/daily.csv",
+          "sha256": "ebaeafa49c0651f8e0760428780af3c460d50e2f7fcd4eb3617ce91a804b0afb"
+        },
+        {
+          "path": "artifacts/analysis/alphac_capital_budget_20260913/candidate_stress/experiments.jsonl",
+          "sha256": "5a52ced4ada52c2bf19911e4e43659babe483269093f42617593f520c3f89b0c"
+        },
+        {
+          "path": "artifacts/analysis/alphac_capital_budget_20260913/candidate_stress/preregistration.json",
+          "sha256": "89912926b8311a0952a196176984642e8925b1e678199eeea4104e221ad6d22d"
+        },
+        {
+          "path": "artifacts/analysis/alphac_capital_budget_20260913/candidate_stress/reservation.json",
+          "sha256": "ecc9e6afd18cb10f646886d80da5f1d479691bce8038969dc0bff155632098be"
+        },
+        {
+          "path": "artifacts/analysis/alphac_capital_budget_20260913/candidate_stress/reservation_validation.json",
+          "sha256": "e45f43d30ccc85bf649e0e39ab15645f0620b9d26a250c4d7b82fe197ffb871e"
+        },
+        {
+          "path": "artifacts/analysis/alphac_capital_budget_20260913/candidate_stress/result.json",
+          "sha256": "65db6d5d5cdfa042922ea9eb801f9aba860b1283d41ac68bdba3f8311e563950"
+        }
+      ],
+      "statement": "Known-history combined portfolio development experiment; fixed parameters, capital-budget proxy, lagged modeled DFF benchmark, unresolved internal financing and limitations. No untouched validation, independent replication, capacity or admission.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "identity_and_authorship": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/alphac_capital_budget_20260913/candidate_stress/REPORT.md",
+          "sha256": "e11a3a45159c3b2dc122cb7a0eb65c1d55ec3abf9fe25af8ea44adad6654c31c"
+        },
+        {
+          "path": "artifacts/analysis/alphac_capital_budget_20260913/candidate_stress/daily.csv",
+          "sha256": "ebaeafa49c0651f8e0760428780af3c460d50e2f7fcd4eb3617ce91a804b0afb"
+        },
+        {
+          "path": "artifacts/analysis/alphac_capital_budget_20260913/candidate_stress/experiments.jsonl",
+          "sha256": "5a52ced4ada52c2bf19911e4e43659babe483269093f42617593f520c3f89b0c"
+        },
+        {
+          "path": "artifacts/analysis/alphac_capital_budget_20260913/candidate_stress/preregistration.json",
+          "sha256": "89912926b8311a0952a196176984642e8925b1e678199eeea4104e221ad6d22d"
+        },
+        {
+          "path": "artifacts/analysis/alphac_capital_budget_20260913/candidate_stress/reservation.json",
+          "sha256": "ecc9e6afd18cb10f646886d80da5f1d479691bce8038969dc0bff155632098be"
+        },
+        {
+          "path": "artifacts/analysis/alphac_capital_budget_20260913/candidate_stress/reservation_validation.json",
+          "sha256": "e45f43d30ccc85bf649e0e39ab15645f0620b9d26a250c4d7b82fe197ffb871e"
+        },
+        {
+          "path": "artifacts/analysis/alphac_capital_budget_20260913/candidate_stress/result.json",
+          "sha256": "65db6d5d5cdfa042922ea9eb801f9aba860b1283d41ac68bdba3f8311e563950"
+        }
+      ],
+      "statement": "Known-history combined portfolio development experiment; fixed parameters, capital-budget proxy, lagged modeled DFF benchmark, unresolved internal financing and limitations. No untouched validation, independent replication, capacity or admission.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "literature_and_overlap_decision": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/alphac_capital_budget_20260913/candidate_stress/REPORT.md",
+          "sha256": "e11a3a45159c3b2dc122cb7a0eb65c1d55ec3abf9fe25af8ea44adad6654c31c"
+        },
+        {
+          "path": "artifacts/analysis/alphac_capital_budget_20260913/candidate_stress/daily.csv",
+          "sha256": "ebaeafa49c0651f8e0760428780af3c460d50e2f7fcd4eb3617ce91a804b0afb"
+        },
+        {
+          "path": "artifacts/analysis/alphac_capital_budget_20260913/candidate_stress/experiments.jsonl",
+          "sha256": "5a52ced4ada52c2bf19911e4e43659babe483269093f42617593f520c3f89b0c"
+        },
+        {
+          "path": "artifacts/analysis/alphac_capital_budget_20260913/candidate_stress/preregistration.json",
+          "sha256": "89912926b8311a0952a196176984642e8925b1e678199eeea4104e221ad6d22d"
+        },
+        {
+          "path": "artifacts/analysis/alphac_capital_budget_20260913/candidate_stress/reservation.json",
+          "sha256": "ecc9e6afd18cb10f646886d80da5f1d479691bce8038969dc0bff155632098be"
+        },
+        {
+          "path": "artifacts/analysis/alphac_capital_budget_20260913/candidate_stress/reservation_validation.json",
+          "sha256": "e45f43d30ccc85bf649e0e39ab15645f0620b9d26a250c4d7b82fe197ffb871e"
+        },
+        {
+          "path": "artifacts/analysis/alphac_capital_budget_20260913/candidate_stress/result.json",
+          "sha256": "65db6d5d5cdfa042922ea9eb801f9aba860b1283d41ac68bdba3f8311e563950"
+        }
+      ],
+      "statement": "Known-history combined portfolio development experiment; fixed parameters, capital-budget proxy, lagged modeled DFF benchmark, unresolved internal financing and limitations. No untouched validation, independent replication, capacity or admission.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "machine_readable_packet_and_stable_public_paper": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/alphac_capital_budget_20260913/candidate_stress/REPORT.md",
+          "sha256": "e11a3a45159c3b2dc122cb7a0eb65c1d55ec3abf9fe25af8ea44adad6654c31c"
+        },
+        {
+          "path": "artifacts/analysis/alphac_capital_budget_20260913/candidate_stress/daily.csv",
+          "sha256": "ebaeafa49c0651f8e0760428780af3c460d50e2f7fcd4eb3617ce91a804b0afb"
+        },
+        {
+          "path": "artifacts/analysis/alphac_capital_budget_20260913/candidate_stress/experiments.jsonl",
+          "sha256": "5a52ced4ada52c2bf19911e4e43659babe483269093f42617593f520c3f89b0c"
+        },
+        {
+          "path": "artifacts/analysis/alphac_capital_budget_20260913/candidate_stress/preregistration.json",
+          "sha256": "89912926b8311a0952a196176984642e8925b1e678199eeea4104e221ad6d22d"
+        },
+        {
+          "path": "artifacts/analysis/alphac_capital_budget_20260913/candidate_stress/reservation.json",
+          "sha256": "ecc9e6afd18cb10f646886d80da5f1d479691bce8038969dc0bff155632098be"
+        },
+        {
+          "path": "artifacts/analysis/alphac_capital_budget_20260913/candidate_stress/reservation_validation.json",
+          "sha256": "e45f43d30ccc85bf649e0e39ab15645f0620b9d26a250c4d7b82fe197ffb871e"
+        },
+        {
+          "path": "artifacts/analysis/alphac_capital_budget_20260913/candidate_stress/result.json",
+          "sha256": "65db6d5d5cdfa042922ea9eb801f9aba860b1283d41ac68bdba3f8311e563950"
+        }
+      ],
+      "statement": "Known-history combined portfolio development experiment; fixed parameters, capital-budget proxy, lagged modeled DFF benchmark, unresolved internal financing and limitations. No untouched validation, independent replication, capacity or admission.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "point_in_time_data_and_survivorship_controls": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/alphac_capital_budget_20260913/candidate_stress/REPORT.md",
+          "sha256": "e11a3a45159c3b2dc122cb7a0eb65c1d55ec3abf9fe25af8ea44adad6654c31c"
+        },
+        {
+          "path": "artifacts/analysis/alphac_capital_budget_20260913/candidate_stress/daily.csv",
+          "sha256": "ebaeafa49c0651f8e0760428780af3c460d50e2f7fcd4eb3617ce91a804b0afb"
+        },
+        {
+          "path": "artifacts/analysis/alphac_capital_budget_20260913/candidate_stress/experiments.jsonl",
+          "sha256": "5a52ced4ada52c2bf19911e4e43659babe483269093f42617593f520c3f89b0c"
+        },
+        {
+          "path": "artifacts/analysis/alphac_capital_budget_20260913/candidate_stress/preregistration.json",
+          "sha256": "89912926b8311a0952a196176984642e8925b1e678199eeea4104e221ad6d22d"
+        },
+        {
+          "path": "artifacts/analysis/alphac_capital_budget_20260913/candidate_stress/reservation.json",
+          "sha256": "ecc9e6afd18cb10f646886d80da5f1d479691bce8038969dc0bff155632098be"
+        },
+        {
+          "path": "artifacts/analysis/alphac_capital_budget_20260913/candidate_stress/reservation_validation.json",
+          "sha256": "e45f43d30ccc85bf649e0e39ab15645f0620b9d26a250c4d7b82fe197ffb871e"
+        },
+        {
+          "path": "artifacts/analysis/alphac_capital_budget_20260913/candidate_stress/result.json",
+          "sha256": "65db6d5d5cdfa042922ea9eb801f9aba860b1283d41ac68bdba3f8311e563950"
+        }
+      ],
+      "statement": "Known-history combined portfolio development experiment; fixed parameters, capital-budget proxy, lagged modeled DFF benchmark, unresolved internal financing and limitations. No untouched validation, independent replication, capacity or admission.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "preregistration_and_hashes": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/alphac_capital_budget_20260913/candidate_stress/REPORT.md",
+          "sha256": "e11a3a45159c3b2dc122cb7a0eb65c1d55ec3abf9fe25af8ea44adad6654c31c"
+        },
+        {
+          "path": "artifacts/analysis/alphac_capital_budget_20260913/candidate_stress/daily.csv",
+          "sha256": "ebaeafa49c0651f8e0760428780af3c460d50e2f7fcd4eb3617ce91a804b0afb"
+        },
+        {
+          "path": "artifacts/analysis/alphac_capital_budget_20260913/candidate_stress/experiments.jsonl",
+          "sha256": "5a52ced4ada52c2bf19911e4e43659babe483269093f42617593f520c3f89b0c"
+        },
+        {
+          "path": "artifacts/analysis/alphac_capital_budget_20260913/candidate_stress/preregistration.json",
+          "sha256": "89912926b8311a0952a196176984642e8925b1e678199eeea4104e221ad6d22d"
+        },
+        {
+          "path": "artifacts/analysis/alphac_capital_budget_20260913/candidate_stress/reservation.json",
+          "sha256": "ecc9e6afd18cb10f646886d80da5f1d479691bce8038969dc0bff155632098be"
+        },
+        {
+          "path": "artifacts/analysis/alphac_capital_budget_20260913/candidate_stress/reservation_validation.json",
+          "sha256": "e45f43d30ccc85bf649e0e39ab15645f0620b9d26a250c4d7b82fe197ffb871e"
+        },
+        {
+          "path": "artifacts/analysis/alphac_capital_budget_20260913/candidate_stress/result.json",
+          "sha256": "65db6d5d5cdfa042922ea9eb801f9aba860b1283d41ac68bdba3f8311e563950"
+        }
+      ],
+      "statement": "Known-history combined portfolio development experiment; fixed parameters, capital-budget proxy, lagged modeled DFF benchmark, unresolved internal financing and limitations. No untouched validation, independent replication, capacity or admission.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "result_uncertainty_stress_capacity_and_diversification": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/alphac_capital_budget_20260913/candidate_stress/REPORT.md",
+          "sha256": "e11a3a45159c3b2dc122cb7a0eb65c1d55ec3abf9fe25af8ea44adad6654c31c"
+        },
+        {
+          "path": "artifacts/analysis/alphac_capital_budget_20260913/candidate_stress/daily.csv",
+          "sha256": "ebaeafa49c0651f8e0760428780af3c460d50e2f7fcd4eb3617ce91a804b0afb"
+        },
+        {
+          "path": "artifacts/analysis/alphac_capital_budget_20260913/candidate_stress/experiments.jsonl",
+          "sha256": "5a52ced4ada52c2bf19911e4e43659babe483269093f42617593f520c3f89b0c"
+        },
+        {
+          "path": "artifacts/analysis/alphac_capital_budget_20260913/candidate_stress/preregistration.json",
+          "sha256": "89912926b8311a0952a196176984642e8925b1e678199eeea4104e221ad6d22d"
+        },
+        {
+          "path": "artifacts/analysis/alphac_capital_budget_20260913/candidate_stress/reservation.json",
+          "sha256": "ecc9e6afd18cb10f646886d80da5f1d479691bce8038969dc0bff155632098be"
+        },
+        {
+          "path": "artifacts/analysis/alphac_capital_budget_20260913/candidate_stress/reservation_validation.json",
+          "sha256": "e45f43d30ccc85bf649e0e39ab15645f0620b9d26a250c4d7b82fe197ffb871e"
+        },
+        {
+          "path": "artifacts/analysis/alphac_capital_budget_20260913/candidate_stress/result.json",
+          "sha256": "65db6d5d5cdfa042922ea9eb801f9aba860b1283d41ac68bdba3f8311e563950"
+        }
+      ],
+      "statement": "Known-history combined portfolio development experiment; fixed parameters, capital-budget proxy, lagged modeled DFF benchmark, unresolved internal financing and limitations. No untouched validation, independent replication, capacity or admission.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    }
+  },
+  "research_family_key": "managed_futures_trend",
+  "schema": "canli.alphac-identity-trial-packet.v2"
+}

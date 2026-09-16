@@ -133,9 +133,18 @@ def audit_page(
             assert not label, "entry scene is not ready but carries a description of data it never drew"
 
     assert hero.is_visible()
-    assert hero.inner_text() == "A systematic portfolio you can audit while it runs."
-    assert page.get_by_role("link", name="View the live record").first.is_visible()
-    assert page.get_by_role("link", name="Read the methodology").first.is_visible()
+    # Display uses CSS uppercase; test the accessible wording, not its casing.
+    assert "built to run." in hero.inner_text().casefold() and "question." in hero.inner_text().casefold()
+    assert page.get_by_role("link", name="Explore the strategies").is_visible()
+    assert page.get_by_role("link", name="Get a free API key").first.is_visible()
+    assert page.locator('.cinema-hero__art img').evaluate("img => img.complete && img.naturalWidth > 0")
+    # The complete records now live in explicit, native evidence disclosures.
+    # Open them as a reader would; keep all prior data/functionality assertions.
+    for disclosure in page.locator('.deep-record').all():
+        assert disclosure.get_attribute('open') is None
+        disclosure.locator(':scope > summary').click()
+        assert disclosure.get_attribute('open') is not None
+    assert page.locator('#developer-api a[href="/developers#quickstart"]').count() == 1
     assert page.locator(".live-console").is_visible()
     assert page.locator(".evidence-ledger").is_visible()
     assert page.locator("#trace-title").is_visible()
@@ -178,7 +187,8 @@ def audit_page(
     console_box = page.locator(".live-console").bounding_box()
     console_above_initial_fold = bool(console_box and console_box["y"] < height)
     if width >= 1000 and not reduced_motion:
-        assert console_above_initial_fold
+        visual_box = page.locator(".cinema-hero__art").bounding_box()
+        assert visual_box and visual_box["width"] >= width * .9, "opening artwork must span the composition"
 
     initial_path = page.locator("#equity-path").get_attribute("d")
     page.get_by_role("button", name="Forge").click()
@@ -201,6 +211,12 @@ def audit_page(
         assert page.locator("#core-stage-label").inner_text() != "Idea field"
         core_screenshot = OUTPUT / "evidence-core-desktop.png"
         page.screenshot(path=str(core_screenshot), full_page=False)
+    elif width >= 1000 and reduced_motion:
+        # The existing data renderer preserves the real union as one still
+        # frame; reduced motion does not require replacing WebGL with CSS.
+        page.wait_for_function("document.querySelector('#evidence-core').dataset.motion === 'static'")
+        assert evidence_core.get_attribute("data-renderer") == "webgl"
+        core_screenshot = None
     else:
         assert evidence_core.get_attribute("data-renderer") == "static"
         core_screenshot = None

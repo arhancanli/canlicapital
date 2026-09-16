@@ -1,0 +1,645 @@
+{
+  "claim_boundary": "Cash implementation diagnostic only. Combined design and separate2022 gates required; no admission or reference adoption.",
+  "complete": true,
+  "completion_assessment": {
+    "candidate_evidence_complete_for_admission": false,
+    "disposition": "DIAGNOSTIC_ARM_ACCOUNTED",
+    "packet_evidence_accounting_complete": true
+  },
+  "config_hash": "753f452ed60ece6e",
+  "configuration": {
+    "arm": "normal",
+    "family": "bil_funded_account",
+    "input_manifest_sha256": "b7fc5d830919b1a15f0d35235fe9e361bd2ccb933e7c98d4dfabc9fa553b337d",
+    "spec_sha256": "ddabd67d08f836f04dae399d3e7f4ff086fbd97f0db3ab437029a44e74a95350"
+  },
+  "content_hash": "sha256:9c3911b069c675a533f01f34fc80afe71ad0c79bc4b446b537e3be5d427de4ed",
+  "hypothesis_key": "40fde3467693c4c5",
+  "immutable_first_measurement": {
+    "config": {
+      "arm": "normal",
+      "family": "bil_funded_account",
+      "input_manifest_sha256": "b7fc5d830919b1a15f0d35235fe9e361bd2ccb933e7c98d4dfabc9fa553b337d",
+      "spec_sha256": "ddabd67d08f836f04dae399d3e7f4ff086fbd97f0db3ab437029a44e74a95350"
+    },
+    "config_hash": "753f452ed60ece6e",
+    "kurtosis": 4.474551123593878,
+    "n_obs": 1248,
+    "now_ms": 1789319587834,
+    "sharpe_ann": -0.8828719097827485,
+    "sharpe_per_period": -0.046211627816319954,
+    "skew": 1.1051212693355867
+  },
+  "imported_from_external_tree": {
+    "external_content_hash": "sha256:ad3c52feba43cba5f682df7fb22b82d30e83e6618c0c90c0f5615207a0bac47c",
+    "imported_on": "2026-09-14T19:36:11+00:00",
+    "tree": "/Users/arhancanli/alphac-prospective-pause-20260911"
+  },
+  "missing_sections": [],
+  "packet_status": "COMPLETE_ACCOUNTING_FINAL_KILLED_NOT_ADMITTED",
+  "partial_sections": [],
+  "required_sections": {
+    "admission_or_kill_decision": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/bil_funded_account_20260913/normal/reservation.json",
+          "sha256": "fb62b65e4ed28b5315f3028167847cfc08c3d15c21d6928db896123671faa5a8"
+        },
+        {
+          "path": "artifacts/analysis/bil_funded_account_20260913/normal/reservation_validation.json",
+          "sha256": "bdc17874d06f20c2c581998103b94da49c61136cc8a89ad1ad349cdb99d2640d"
+        },
+        {
+          "path": "artifacts/analysis/bil_funded_account_20260913/normal/preregistration.json",
+          "sha256": "e40c92c142e519bb31c991e777574632a325ba565b753f42d5514a1f81e7f169"
+        },
+        {
+          "path": "artifacts/analysis/bil_funded_account_20260913/normal/immutable_measurement.json",
+          "sha256": "522e63fdbf97db857ef3207f888da9fdb4ff7ca7b98638611460e1917671f00f"
+        },
+        {
+          "path": "artifacts/analysis/bil_funded_account_20260913/normal/experiments.jsonl",
+          "sha256": "8e044b0a88fe5a569a9815a2f57944a1c8fde3bd7bcef9a2be4f2c055320e52f"
+        },
+        {
+          "path": "artifacts/analysis/bil_funded_account_20260913/normal/independent_audit.json",
+          "sha256": "7f6287fd112e8696fbb2a4c8059453b082a72546dd397e890a79e406d1bebbba"
+        },
+        {
+          "path": "artifacts/analysis/bil_funded_account_20260913/normal/result.json",
+          "sha256": "e0cc8b00d64dd7a4e54b1e9c57d65a7c9ed328885190e843a435ec700a7a7a37"
+        },
+        {
+          "path": "artifacts/analysis/bil_funded_account_20260913/normal/ledger.csv",
+          "sha256": "0c4c6af27457072822f4b39cbd6a0cb29ebd121ab1bcaa60c6dda020caaa04f7"
+        },
+        {
+          "path": "artifacts/analysis/bil_funded_account_20260913/normal/daily.csv",
+          "sha256": "817f495057d71182c20480c47a681e38b038d7859671966e900cfc417fff8b1e"
+        },
+        {
+          "path": "artifacts/analysis/bil_funded_account_20260913/protocol.json",
+          "sha256": "eddfbdd9256d3b2eb97ad871399fc1296cb3b8b819a171ce11755c276603b607"
+        },
+        {
+          "path": "artifacts/analysis/bil_funded_account_20260913/input_manifest.json",
+          "sha256": "b7fc5d830919b1a15f0d35235fe9e361bd2ccb933e7c98d4dfabc9fa553b337d"
+        },
+        {
+          "path": "scripts/close_bil_funded_trial.py",
+          "sha256": "0985e9b3b50b8617951e12bd0564cda465747d0f909b1b1ac1ba7a536d16b0fd"
+        },
+        {
+          "content_hash": "sha256:b86a616a305e3233bb181d56998abf3c72269c7ec0a46a08884b0e120395ab4f",
+          "path": "artifacts/research/development_closures/40fde3467693c4c5_admission_closure.json",
+          "sha256": "62232b1b5185db36ab2a6567c79b541b2be1de427fa073fde6bcdebe104d5fa5",
+          "type": "final_development_admission_closure"
+        }
+      ],
+      "statement": "Diagnostic arm measured and accounted; combined design requires both arms and separate 2022 evaluation before reference adoption. No admission.",
+      "status": "VERIFIED_FINAL_DEVELOPMENT_CLOSURE_KILL"
+    },
+    "code_environment_and_reproduction": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/bil_funded_account_20260913/normal/reservation.json",
+          "sha256": "fb62b65e4ed28b5315f3028167847cfc08c3d15c21d6928db896123671faa5a8"
+        },
+        {
+          "path": "artifacts/analysis/bil_funded_account_20260913/normal/reservation_validation.json",
+          "sha256": "bdc17874d06f20c2c581998103b94da49c61136cc8a89ad1ad349cdb99d2640d"
+        },
+        {
+          "path": "artifacts/analysis/bil_funded_account_20260913/normal/preregistration.json",
+          "sha256": "e40c92c142e519bb31c991e777574632a325ba565b753f42d5514a1f81e7f169"
+        },
+        {
+          "path": "artifacts/analysis/bil_funded_account_20260913/normal/immutable_measurement.json",
+          "sha256": "522e63fdbf97db857ef3207f888da9fdb4ff7ca7b98638611460e1917671f00f"
+        },
+        {
+          "path": "artifacts/analysis/bil_funded_account_20260913/normal/experiments.jsonl",
+          "sha256": "8e044b0a88fe5a569a9815a2f57944a1c8fde3bd7bcef9a2be4f2c055320e52f"
+        },
+        {
+          "path": "artifacts/analysis/bil_funded_account_20260913/normal/independent_audit.json",
+          "sha256": "7f6287fd112e8696fbb2a4c8059453b082a72546dd397e890a79e406d1bebbba"
+        },
+        {
+          "path": "artifacts/analysis/bil_funded_account_20260913/normal/result.json",
+          "sha256": "e0cc8b00d64dd7a4e54b1e9c57d65a7c9ed328885190e843a435ec700a7a7a37"
+        },
+        {
+          "path": "artifacts/analysis/bil_funded_account_20260913/normal/ledger.csv",
+          "sha256": "0c4c6af27457072822f4b39cbd6a0cb29ebd121ab1bcaa60c6dda020caaa04f7"
+        },
+        {
+          "path": "artifacts/analysis/bil_funded_account_20260913/normal/daily.csv",
+          "sha256": "817f495057d71182c20480c47a681e38b038d7859671966e900cfc417fff8b1e"
+        },
+        {
+          "path": "artifacts/analysis/bil_funded_account_20260913/protocol.json",
+          "sha256": "eddfbdd9256d3b2eb97ad871399fc1296cb3b8b819a171ce11755c276603b607"
+        },
+        {
+          "path": "artifacts/analysis/bil_funded_account_20260913/input_manifest.json",
+          "sha256": "b7fc5d830919b1a15f0d35235fe9e361bd2ccb933e7c98d4dfabc9fa553b337d"
+        },
+        {
+          "path": "scripts/close_bil_funded_trial.py",
+          "sha256": "0985e9b3b50b8617951e12bd0564cda465747d0f909b1b1ac1ba7a536d16b0fd"
+        }
+      ],
+      "statement": "271 hash-bound inputs/code files; eight synthetic ledger tests passed. Independent cumulative cash/share/issuer entitlement audit checks 1248 days. Not independent full environment reproduction.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "economic_mechanism_and_falsifiable_hypothesis": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/bil_funded_account_20260913/normal/reservation.json",
+          "sha256": "fb62b65e4ed28b5315f3028167847cfc08c3d15c21d6928db896123671faa5a8"
+        },
+        {
+          "path": "artifacts/analysis/bil_funded_account_20260913/normal/reservation_validation.json",
+          "sha256": "bdc17874d06f20c2c581998103b94da49c61136cc8a89ad1ad349cdb99d2640d"
+        },
+        {
+          "path": "artifacts/analysis/bil_funded_account_20260913/normal/preregistration.json",
+          "sha256": "e40c92c142e519bb31c991e777574632a325ba565b753f42d5514a1f81e7f169"
+        },
+        {
+          "path": "artifacts/analysis/bil_funded_account_20260913/normal/immutable_measurement.json",
+          "sha256": "522e63fdbf97db857ef3207f888da9fdb4ff7ca7b98638611460e1917671f00f"
+        },
+        {
+          "path": "artifacts/analysis/bil_funded_account_20260913/normal/experiments.jsonl",
+          "sha256": "8e044b0a88fe5a569a9815a2f57944a1c8fde3bd7bcef9a2be4f2c055320e52f"
+        },
+        {
+          "path": "artifacts/analysis/bil_funded_account_20260913/normal/independent_audit.json",
+          "sha256": "7f6287fd112e8696fbb2a4c8059453b082a72546dd397e890a79e406d1bebbba"
+        },
+        {
+          "path": "artifacts/analysis/bil_funded_account_20260913/normal/result.json",
+          "sha256": "e0cc8b00d64dd7a4e54b1e9c57d65a7c9ed328885190e843a435ec700a7a7a37"
+        },
+        {
+          "path": "artifacts/analysis/bil_funded_account_20260913/normal/ledger.csv",
+          "sha256": "0c4c6af27457072822f4b39cbd6a0cb29ebd121ab1bcaa60c6dda020caaa04f7"
+        },
+        {
+          "path": "artifacts/analysis/bil_funded_account_20260913/normal/daily.csv",
+          "sha256": "817f495057d71182c20480c47a681e38b038d7859671966e900cfc417fff8b1e"
+        },
+        {
+          "path": "artifacts/analysis/bil_funded_account_20260913/protocol.json",
+          "sha256": "eddfbdd9256d3b2eb97ad871399fc1296cb3b8b819a171ce11755c276603b607"
+        },
+        {
+          "path": "artifacts/analysis/bil_funded_account_20260913/input_manifest.json",
+          "sha256": "b7fc5d830919b1a15f0d35235fe9e361bd2ccb933e7c98d4dfabc9fa553b337d"
+        },
+        {
+          "path": "scripts/close_bil_funded_trial.py",
+          "sha256": "0985e9b3b50b8617951e12bd0564cda465747d0f909b1b1ac1ba7a536d16b0fd"
+        }
+      ],
+      "statement": "Allocate32500 actual initial cash to BIL with no inter-sleeve transfers; monthly integer buys, issuer dividend receivables. No alpha-sleeve novelty claim.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "execution_and_cost_model": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/bil_funded_account_20260913/normal/reservation.json",
+          "sha256": "fb62b65e4ed28b5315f3028167847cfc08c3d15c21d6928db896123671faa5a8"
+        },
+        {
+          "path": "artifacts/analysis/bil_funded_account_20260913/normal/reservation_validation.json",
+          "sha256": "bdc17874d06f20c2c581998103b94da49c61136cc8a89ad1ad349cdb99d2640d"
+        },
+        {
+          "path": "artifacts/analysis/bil_funded_account_20260913/normal/preregistration.json",
+          "sha256": "e40c92c142e519bb31c991e777574632a325ba565b753f42d5514a1f81e7f169"
+        },
+        {
+          "path": "artifacts/analysis/bil_funded_account_20260913/normal/immutable_measurement.json",
+          "sha256": "522e63fdbf97db857ef3207f888da9fdb4ff7ca7b98638611460e1917671f00f"
+        },
+        {
+          "path": "artifacts/analysis/bil_funded_account_20260913/normal/experiments.jsonl",
+          "sha256": "8e044b0a88fe5a569a9815a2f57944a1c8fde3bd7bcef9a2be4f2c055320e52f"
+        },
+        {
+          "path": "artifacts/analysis/bil_funded_account_20260913/normal/independent_audit.json",
+          "sha256": "7f6287fd112e8696fbb2a4c8059453b082a72546dd397e890a79e406d1bebbba"
+        },
+        {
+          "path": "artifacts/analysis/bil_funded_account_20260913/normal/result.json",
+          "sha256": "e0cc8b00d64dd7a4e54b1e9c57d65a7c9ed328885190e843a435ec700a7a7a37"
+        },
+        {
+          "path": "artifacts/analysis/bil_funded_account_20260913/normal/ledger.csv",
+          "sha256": "0c4c6af27457072822f4b39cbd6a0cb29ebd121ab1bcaa60c6dda020caaa04f7"
+        },
+        {
+          "path": "artifacts/analysis/bil_funded_account_20260913/normal/daily.csv",
+          "sha256": "817f495057d71182c20480c47a681e38b038d7859671966e900cfc417fff8b1e"
+        },
+        {
+          "path": "artifacts/analysis/bil_funded_account_20260913/protocol.json",
+          "sha256": "eddfbdd9256d3b2eb97ad871399fc1296cb3b8b819a171ce11755c276603b607"
+        },
+        {
+          "path": "artifacts/analysis/bil_funded_account_20260913/input_manifest.json",
+          "sha256": "b7fc5d830919b1a15f0d35235fe9e361bd2ccb933e7c98d4dfabc9fa553b337d"
+        },
+        {
+          "path": "scripts/close_bil_funded_trial.py",
+          "sha256": "0985e9b3b50b8617951e12bd0564cda465747d0f909b1b1ac1ba7a536d16b0fd"
+        }
+      ],
+      "statement": "Raw-open all-in modeled purchase charge6bp normal12bp stress. Issuer ex/pay dates; end-pay-date settlement, no borrowing, no unpaid-dividend reinvestment. Terminal receivables retained; no terminal liquidation. Actual fills/settlement/capacity unverified.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "family_and_union_trial_accounting": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/bil_funded_account_20260913/normal/reservation.json",
+          "sha256": "fb62b65e4ed28b5315f3028167847cfc08c3d15c21d6928db896123671faa5a8"
+        },
+        {
+          "path": "artifacts/analysis/bil_funded_account_20260913/normal/reservation_validation.json",
+          "sha256": "bdc17874d06f20c2c581998103b94da49c61136cc8a89ad1ad349cdb99d2640d"
+        },
+        {
+          "path": "artifacts/analysis/bil_funded_account_20260913/normal/preregistration.json",
+          "sha256": "e40c92c142e519bb31c991e777574632a325ba565b753f42d5514a1f81e7f169"
+        },
+        {
+          "path": "artifacts/analysis/bil_funded_account_20260913/normal/immutable_measurement.json",
+          "sha256": "522e63fdbf97db857ef3207f888da9fdb4ff7ca7b98638611460e1917671f00f"
+        },
+        {
+          "path": "artifacts/analysis/bil_funded_account_20260913/normal/experiments.jsonl",
+          "sha256": "8e044b0a88fe5a569a9815a2f57944a1c8fde3bd7bcef9a2be4f2c055320e52f"
+        },
+        {
+          "path": "artifacts/analysis/bil_funded_account_20260913/normal/independent_audit.json",
+          "sha256": "7f6287fd112e8696fbb2a4c8059453b082a72546dd397e890a79e406d1bebbba"
+        },
+        {
+          "path": "artifacts/analysis/bil_funded_account_20260913/normal/result.json",
+          "sha256": "e0cc8b00d64dd7a4e54b1e9c57d65a7c9ed328885190e843a435ec700a7a7a37"
+        },
+        {
+          "path": "artifacts/analysis/bil_funded_account_20260913/normal/ledger.csv",
+          "sha256": "0c4c6af27457072822f4b39cbd6a0cb29ebd121ab1bcaa60c6dda020caaa04f7"
+        },
+        {
+          "path": "artifacts/analysis/bil_funded_account_20260913/normal/daily.csv",
+          "sha256": "817f495057d71182c20480c47a681e38b038d7859671966e900cfc417fff8b1e"
+        },
+        {
+          "path": "artifacts/analysis/bil_funded_account_20260913/protocol.json",
+          "sha256": "eddfbdd9256d3b2eb97ad871399fc1296cb3b8b819a171ce11755c276603b607"
+        },
+        {
+          "path": "artifacts/analysis/bil_funded_account_20260913/input_manifest.json",
+          "sha256": "b7fc5d830919b1a15f0d35235fe9e361bd2ccb933e7c98d4dfabc9fa553b337d"
+        },
+        {
+          "path": "scripts/close_bil_funded_trial.py",
+          "sha256": "0985e9b3b50b8617951e12bd0564cda465747d0f909b1b1ac1ba7a536d16b0fd"
+        }
+      ],
+      "statement": "Canonical reservation and immutable standalone funded measurement retained. Cash-subbook ledger belongs to this implementation identity, not a qualified new alpha sleeve. Failed preflight attempts preserved.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "identity_and_authorship": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/bil_funded_account_20260913/normal/reservation.json",
+          "sha256": "fb62b65e4ed28b5315f3028167847cfc08c3d15c21d6928db896123671faa5a8"
+        },
+        {
+          "path": "artifacts/analysis/bil_funded_account_20260913/normal/reservation_validation.json",
+          "sha256": "bdc17874d06f20c2c581998103b94da49c61136cc8a89ad1ad349cdb99d2640d"
+        },
+        {
+          "path": "artifacts/analysis/bil_funded_account_20260913/normal/preregistration.json",
+          "sha256": "e40c92c142e519bb31c991e777574632a325ba565b753f42d5514a1f81e7f169"
+        },
+        {
+          "path": "artifacts/analysis/bil_funded_account_20260913/normal/immutable_measurement.json",
+          "sha256": "522e63fdbf97db857ef3207f888da9fdb4ff7ca7b98638611460e1917671f00f"
+        },
+        {
+          "path": "artifacts/analysis/bil_funded_account_20260913/normal/experiments.jsonl",
+          "sha256": "8e044b0a88fe5a569a9815a2f57944a1c8fde3bd7bcef9a2be4f2c055320e52f"
+        },
+        {
+          "path": "artifacts/analysis/bil_funded_account_20260913/normal/independent_audit.json",
+          "sha256": "7f6287fd112e8696fbb2a4c8059453b082a72546dd397e890a79e406d1bebbba"
+        },
+        {
+          "path": "artifacts/analysis/bil_funded_account_20260913/normal/result.json",
+          "sha256": "e0cc8b00d64dd7a4e54b1e9c57d65a7c9ed328885190e843a435ec700a7a7a37"
+        },
+        {
+          "path": "artifacts/analysis/bil_funded_account_20260913/normal/ledger.csv",
+          "sha256": "0c4c6af27457072822f4b39cbd6a0cb29ebd121ab1bcaa60c6dda020caaa04f7"
+        },
+        {
+          "path": "artifacts/analysis/bil_funded_account_20260913/normal/daily.csv",
+          "sha256": "817f495057d71182c20480c47a681e38b038d7859671966e900cfc417fff8b1e"
+        },
+        {
+          "path": "artifacts/analysis/bil_funded_account_20260913/protocol.json",
+          "sha256": "eddfbdd9256d3b2eb97ad871399fc1296cb3b8b819a171ce11755c276603b607"
+        },
+        {
+          "path": "artifacts/analysis/bil_funded_account_20260913/input_manifest.json",
+          "sha256": "b7fc5d830919b1a15f0d35235fe9e361bd2ccb933e7c98d4dfabc9fa553b337d"
+        },
+        {
+          "path": "scripts/close_bil_funded_trial.py",
+          "sha256": "0985e9b3b50b8617951e12bd0564cda465747d0f909b1b1ac1ba7a536d16b0fd"
+        }
+      ],
+      "statement": "Authorized agent research in this worktree. No independent reviewer or external authorship verification.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "literature_and_overlap_decision": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/bil_funded_account_20260913/normal/reservation.json",
+          "sha256": "fb62b65e4ed28b5315f3028167847cfc08c3d15c21d6928db896123671faa5a8"
+        },
+        {
+          "path": "artifacts/analysis/bil_funded_account_20260913/normal/reservation_validation.json",
+          "sha256": "bdc17874d06f20c2c581998103b94da49c61136cc8a89ad1ad349cdb99d2640d"
+        },
+        {
+          "path": "artifacts/analysis/bil_funded_account_20260913/normal/preregistration.json",
+          "sha256": "e40c92c142e519bb31c991e777574632a325ba565b753f42d5514a1f81e7f169"
+        },
+        {
+          "path": "artifacts/analysis/bil_funded_account_20260913/normal/immutable_measurement.json",
+          "sha256": "522e63fdbf97db857ef3207f888da9fdb4ff7ca7b98638611460e1917671f00f"
+        },
+        {
+          "path": "artifacts/analysis/bil_funded_account_20260913/normal/experiments.jsonl",
+          "sha256": "8e044b0a88fe5a569a9815a2f57944a1c8fde3bd7bcef9a2be4f2c055320e52f"
+        },
+        {
+          "path": "artifacts/analysis/bil_funded_account_20260913/normal/independent_audit.json",
+          "sha256": "7f6287fd112e8696fbb2a4c8059453b082a72546dd397e890a79e406d1bebbba"
+        },
+        {
+          "path": "artifacts/analysis/bil_funded_account_20260913/normal/result.json",
+          "sha256": "e0cc8b00d64dd7a4e54b1e9c57d65a7c9ed328885190e843a435ec700a7a7a37"
+        },
+        {
+          "path": "artifacts/analysis/bil_funded_account_20260913/normal/ledger.csv",
+          "sha256": "0c4c6af27457072822f4b39cbd6a0cb29ebd121ab1bcaa60c6dda020caaa04f7"
+        },
+        {
+          "path": "artifacts/analysis/bil_funded_account_20260913/normal/daily.csv",
+          "sha256": "817f495057d71182c20480c47a681e38b038d7859671966e900cfc417fff8b1e"
+        },
+        {
+          "path": "artifacts/analysis/bil_funded_account_20260913/protocol.json",
+          "sha256": "eddfbdd9256d3b2eb97ad871399fc1296cb3b8b819a171ce11755c276603b607"
+        },
+        {
+          "path": "artifacts/analysis/bil_funded_account_20260913/input_manifest.json",
+          "sha256": "b7fc5d830919b1a15f0d35235fe9e361bd2ccb933e7c98d4dfabc9fa553b337d"
+        },
+        {
+          "path": "scripts/close_bil_funded_trial.py",
+          "sha256": "0985e9b3b50b8617951e12bd0564cda465747d0f909b1b1ac1ba7a536d16b0fd"
+        }
+      ],
+      "statement": "Cash implementation of short Treasury ETF exposure; not claimed new alpha mechanism. Does not count toward15 distinct sleeves.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "machine_readable_packet_and_stable_public_paper": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/bil_funded_account_20260913/normal/reservation.json",
+          "sha256": "fb62b65e4ed28b5315f3028167847cfc08c3d15c21d6928db896123671faa5a8"
+        },
+        {
+          "path": "artifacts/analysis/bil_funded_account_20260913/normal/reservation_validation.json",
+          "sha256": "bdc17874d06f20c2c581998103b94da49c61136cc8a89ad1ad349cdb99d2640d"
+        },
+        {
+          "path": "artifacts/analysis/bil_funded_account_20260913/normal/preregistration.json",
+          "sha256": "e40c92c142e519bb31c991e777574632a325ba565b753f42d5514a1f81e7f169"
+        },
+        {
+          "path": "artifacts/analysis/bil_funded_account_20260913/normal/immutable_measurement.json",
+          "sha256": "522e63fdbf97db857ef3207f888da9fdb4ff7ca7b98638611460e1917671f00f"
+        },
+        {
+          "path": "artifacts/analysis/bil_funded_account_20260913/normal/experiments.jsonl",
+          "sha256": "8e044b0a88fe5a569a9815a2f57944a1c8fde3bd7bcef9a2be4f2c055320e52f"
+        },
+        {
+          "path": "artifacts/analysis/bil_funded_account_20260913/normal/independent_audit.json",
+          "sha256": "7f6287fd112e8696fbb2a4c8059453b082a72546dd397e890a79e406d1bebbba"
+        },
+        {
+          "path": "artifacts/analysis/bil_funded_account_20260913/normal/result.json",
+          "sha256": "e0cc8b00d64dd7a4e54b1e9c57d65a7c9ed328885190e843a435ec700a7a7a37"
+        },
+        {
+          "path": "artifacts/analysis/bil_funded_account_20260913/normal/ledger.csv",
+          "sha256": "0c4c6af27457072822f4b39cbd6a0cb29ebd121ab1bcaa60c6dda020caaa04f7"
+        },
+        {
+          "path": "artifacts/analysis/bil_funded_account_20260913/normal/daily.csv",
+          "sha256": "817f495057d71182c20480c47a681e38b038d7859671966e900cfc417fff8b1e"
+        },
+        {
+          "path": "artifacts/analysis/bil_funded_account_20260913/protocol.json",
+          "sha256": "eddfbdd9256d3b2eb97ad871399fc1296cb3b8b819a171ce11755c276603b607"
+        },
+        {
+          "path": "artifacts/analysis/bil_funded_account_20260913/input_manifest.json",
+          "sha256": "b7fc5d830919b1a15f0d35235fe9e361bd2ccb933e7c98d4dfabc9fa553b337d"
+        },
+        {
+          "path": "scripts/close_bil_funded_trial.py",
+          "sha256": "0985e9b3b50b8617951e12bd0564cda465747d0f909b1b1ac1ba7a536d16b0fd"
+        }
+      ],
+      "statement": "Local evidence packet with hashes. Public paths in reservation are intended identifiers; no verified remote publication.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "point_in_time_data_and_survivorship_controls": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/bil_funded_account_20260913/normal/reservation.json",
+          "sha256": "fb62b65e4ed28b5315f3028167847cfc08c3d15c21d6928db896123671faa5a8"
+        },
+        {
+          "path": "artifacts/analysis/bil_funded_account_20260913/normal/reservation_validation.json",
+          "sha256": "bdc17874d06f20c2c581998103b94da49c61136cc8a89ad1ad349cdb99d2640d"
+        },
+        {
+          "path": "artifacts/analysis/bil_funded_account_20260913/normal/preregistration.json",
+          "sha256": "e40c92c142e519bb31c991e777574632a325ba565b753f42d5514a1f81e7f169"
+        },
+        {
+          "path": "artifacts/analysis/bil_funded_account_20260913/normal/immutable_measurement.json",
+          "sha256": "522e63fdbf97db857ef3207f888da9fdb4ff7ca7b98638611460e1917671f00f"
+        },
+        {
+          "path": "artifacts/analysis/bil_funded_account_20260913/normal/experiments.jsonl",
+          "sha256": "8e044b0a88fe5a569a9815a2f57944a1c8fde3bd7bcef9a2be4f2c055320e52f"
+        },
+        {
+          "path": "artifacts/analysis/bil_funded_account_20260913/normal/independent_audit.json",
+          "sha256": "7f6287fd112e8696fbb2a4c8059453b082a72546dd397e890a79e406d1bebbba"
+        },
+        {
+          "path": "artifacts/analysis/bil_funded_account_20260913/normal/result.json",
+          "sha256": "e0cc8b00d64dd7a4e54b1e9c57d65a7c9ed328885190e843a435ec700a7a7a37"
+        },
+        {
+          "path": "artifacts/analysis/bil_funded_account_20260913/normal/ledger.csv",
+          "sha256": "0c4c6af27457072822f4b39cbd6a0cb29ebd121ab1bcaa60c6dda020caaa04f7"
+        },
+        {
+          "path": "artifacts/analysis/bil_funded_account_20260913/normal/daily.csv",
+          "sha256": "817f495057d71182c20480c47a681e38b038d7859671966e900cfc417fff8b1e"
+        },
+        {
+          "path": "artifacts/analysis/bil_funded_account_20260913/protocol.json",
+          "sha256": "eddfbdd9256d3b2eb97ad871399fc1296cb3b8b819a171ce11755c276603b607"
+        },
+        {
+          "path": "artifacts/analysis/bil_funded_account_20260913/input_manifest.json",
+          "sha256": "b7fc5d830919b1a15f0d35235fe9e361bd2ccb933e7c98d4dfabc9fa553b337d"
+        },
+        {
+          "path": "scripts/close_bil_funded_trial.py",
+          "sha256": "0985e9b3b50b8617951e12bd0564cda465747d0f909b1b1ac1ba7a536d16b0fd"
+        }
+      ],
+      "statement": "Current issuer distribution workbook and current-vintage provider raw prices. All1358 requested source sessions passed prior coverage audit. Issuer/vendor conflicts retained. Historical publication vintages and actual broker payments not verified.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "preregistration_and_hashes": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/bil_funded_account_20260913/normal/reservation.json",
+          "sha256": "fb62b65e4ed28b5315f3028167847cfc08c3d15c21d6928db896123671faa5a8"
+        },
+        {
+          "path": "artifacts/analysis/bil_funded_account_20260913/normal/reservation_validation.json",
+          "sha256": "bdc17874d06f20c2c581998103b94da49c61136cc8a89ad1ad349cdb99d2640d"
+        },
+        {
+          "path": "artifacts/analysis/bil_funded_account_20260913/normal/preregistration.json",
+          "sha256": "e40c92c142e519bb31c991e777574632a325ba565b753f42d5514a1f81e7f169"
+        },
+        {
+          "path": "artifacts/analysis/bil_funded_account_20260913/normal/immutable_measurement.json",
+          "sha256": "522e63fdbf97db857ef3207f888da9fdb4ff7ca7b98638611460e1917671f00f"
+        },
+        {
+          "path": "artifacts/analysis/bil_funded_account_20260913/normal/experiments.jsonl",
+          "sha256": "8e044b0a88fe5a569a9815a2f57944a1c8fde3bd7bcef9a2be4f2c055320e52f"
+        },
+        {
+          "path": "artifacts/analysis/bil_funded_account_20260913/normal/independent_audit.json",
+          "sha256": "7f6287fd112e8696fbb2a4c8059453b082a72546dd397e890a79e406d1bebbba"
+        },
+        {
+          "path": "artifacts/analysis/bil_funded_account_20260913/normal/result.json",
+          "sha256": "e0cc8b00d64dd7a4e54b1e9c57d65a7c9ed328885190e843a435ec700a7a7a37"
+        },
+        {
+          "path": "artifacts/analysis/bil_funded_account_20260913/normal/ledger.csv",
+          "sha256": "0c4c6af27457072822f4b39cbd6a0cb29ebd121ab1bcaa60c6dda020caaa04f7"
+        },
+        {
+          "path": "artifacts/analysis/bil_funded_account_20260913/normal/daily.csv",
+          "sha256": "817f495057d71182c20480c47a681e38b038d7859671966e900cfc417fff8b1e"
+        },
+        {
+          "path": "artifacts/analysis/bil_funded_account_20260913/protocol.json",
+          "sha256": "eddfbdd9256d3b2eb97ad871399fc1296cb3b8b819a171ce11755c276603b607"
+        },
+        {
+          "path": "artifacts/analysis/bil_funded_account_20260913/input_manifest.json",
+          "sha256": "b7fc5d830919b1a15f0d35235fe9e361bd2ccb933e7c98d4dfabc9fa553b337d"
+        },
+        {
+          "path": "scripts/close_bil_funded_trial.py",
+          "sha256": "0985e9b3b50b8617951e12bd0564cda465747d0f909b1b1ac1ba7a536d16b0fd"
+        }
+      ],
+      "statement": "Frozen design before returns; runner and input manifest bound; canonical reservation validation/preflight precede ledger computation. Original zero-yield baseline retained.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "result_uncertainty_stress_capacity_and_diversification": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/bil_funded_account_20260913/normal/reservation.json",
+          "sha256": "fb62b65e4ed28b5315f3028167847cfc08c3d15c21d6928db896123671faa5a8"
+        },
+        {
+          "path": "artifacts/analysis/bil_funded_account_20260913/normal/reservation_validation.json",
+          "sha256": "bdc17874d06f20c2c581998103b94da49c61136cc8a89ad1ad349cdb99d2640d"
+        },
+        {
+          "path": "artifacts/analysis/bil_funded_account_20260913/normal/preregistration.json",
+          "sha256": "e40c92c142e519bb31c991e777574632a325ba565b753f42d5514a1f81e7f169"
+        },
+        {
+          "path": "artifacts/analysis/bil_funded_account_20260913/normal/immutable_measurement.json",
+          "sha256": "522e63fdbf97db857ef3207f888da9fdb4ff7ca7b98638611460e1917671f00f"
+        },
+        {
+          "path": "artifacts/analysis/bil_funded_account_20260913/normal/experiments.jsonl",
+          "sha256": "8e044b0a88fe5a569a9815a2f57944a1c8fde3bd7bcef9a2be4f2c055320e52f"
+        },
+        {
+          "path": "artifacts/analysis/bil_funded_account_20260913/normal/independent_audit.json",
+          "sha256": "7f6287fd112e8696fbb2a4c8059453b082a72546dd397e890a79e406d1bebbba"
+        },
+        {
+          "path": "artifacts/analysis/bil_funded_account_20260913/normal/result.json",
+          "sha256": "e0cc8b00d64dd7a4e54b1e9c57d65a7c9ed328885190e843a435ec700a7a7a37"
+        },
+        {
+          "path": "artifacts/analysis/bil_funded_account_20260913/normal/ledger.csv",
+          "sha256": "0c4c6af27457072822f4b39cbd6a0cb29ebd121ab1bcaa60c6dda020caaa04f7"
+        },
+        {
+          "path": "artifacts/analysis/bil_funded_account_20260913/normal/daily.csv",
+          "sha256": "817f495057d71182c20480c47a681e38b038d7859671966e900cfc417fff8b1e"
+        },
+        {
+          "path": "artifacts/analysis/bil_funded_account_20260913/protocol.json",
+          "sha256": "eddfbdd9256d3b2eb97ad871399fc1296cb3b8b819a171ce11755c276603b607"
+        },
+        {
+          "path": "artifacts/analysis/bil_funded_account_20260913/input_manifest.json",
+          "sha256": "b7fc5d830919b1a15f0d35235fe9e361bd2ccb933e7c98d4dfabc9fa553b337d"
+        },
+        {
+          "path": "scripts/close_bil_funded_trial.py",
+          "sha256": "0985e9b3b50b8617951e12bd0564cda465747d0f909b1b1ac1ba7a536d16b0fd"
+        }
+      ],
+      "statement": "Retrospective standalone funded cash account; daily statistics, not intraday risk. Source/cost/collateral/rebalancing limitations remain. This arm passes or fails only its saved gates; not untouched OOS, capacity,15-sleeve or launch evidence.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    }
+  },
+  "research_family_key": "bil_funded_account",
+  "schema": "canli.alphac-identity-trial-packet.v2"
+}

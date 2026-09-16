@@ -1,0 +1,513 @@
+{
+  "claim_boundary": "Retrospective diagnostic, not synchronized executable NAV or qualification. Source-day equity closes and full UTC crypto days grouped by economic date, with modeled equity overnight accrual allocation. Vintage is a killed CPI probe; its log-spread-as-simple-return construction is retained without endorsement. BTC perpetual/SPY overlay uses price returns without funding, dividends or execution costs. Daily fixed capital weights imply uncharged inter-sleeve rebalancing; cash financing, collateral and PIT availability unverified. Stress doubles only Max/crypto/Trend costs. No new qualified sleeve, untouched validation or launch authorization evidence.",
+  "complete": true,
+  "completion_assessment": {
+    "candidate_evidence_complete_for_admission": false,
+    "disposition": "INCOMPLETE_NOT_ADMITTED",
+    "packet_evidence_accounting_complete": true
+  },
+  "config_hash": "04f64b6ca47c465b",
+  "configuration": {
+    "arm": "candidate",
+    "family": "combined_2022_source_day_diagnostic",
+    "input_manifest_sha256": "aa9d19982e74410508075fa19d05b02855b1c771838f1f4049126d0e2ad86330",
+    "spec_sha256": "2c14e4dc05e7d02b8422b67aec91ce9b6736c0db083fe88db39be9254290d87c"
+  },
+  "content_hash": "sha256:fa054883b10ebe258fa290579811f3e2963311dc017d5fe5156e851c44714dc7",
+  "hypothesis_key": "14dab0e0c8e89fe2",
+  "immutable_first_measurement": {
+    "config": {
+      "arm": "candidate",
+      "family": "combined_2022_source_day_diagnostic",
+      "input_manifest_sha256": "aa9d19982e74410508075fa19d05b02855b1c771838f1f4049126d0e2ad86330",
+      "spec_sha256": "2c14e4dc05e7d02b8422b67aec91ce9b6736c0db083fe88db39be9254290d87c"
+    },
+    "config_hash": "04f64b6ca47c465b",
+    "kurtosis": 5.532569202740306,
+    "n_obs": 365,
+    "now_ms": 1789293296074,
+    "sharpe_ann": -0.3165805990238153,
+    "sharpe_per_period": -0.0165705858957005,
+    "skew": -0.21697375143284925
+  },
+  "imported_from_external_tree": {
+    "external_content_hash": "sha256:94775542579b4c475cf589c8f9706278bde6760f37d396b8cfb17c534c2bc4c8",
+    "imported_on": "2026-09-14T19:35:24+00:00",
+    "tree": "/Users/arhancanli/alphac-prospective-pause-20260911"
+  },
+  "missing_sections": [],
+  "packet_status": "COMPLETE_ACCOUNTING_FINAL_KILLED_NOT_ADMITTED",
+  "partial_sections": [],
+  "required_sections": {
+    "admission_or_kill_decision": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/combined_2022_diagnostic_20260913/candidate/daily.csv",
+          "sha256": "c38385c280336beca5faea4505491d66a9ae6b1e25e0d677840b3d3d677c3e9f"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_diagnostic_20260913/candidate/experiments.jsonl",
+          "sha256": "b1df2d335f3bf9d4edc422efacbd3de415022fcb53d6939c7f96e8d9f42b2d37"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_diagnostic_20260913/candidate/preregistration.json",
+          "sha256": "dedcef2247692f010b10b21f0d328d46918b74886d73b56ce2de98ac64f6938d"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_diagnostic_20260913/candidate/reservation.json",
+          "sha256": "3b9fca0e2412b0a1dc45c79615ff969c225a9effb99928319b112123dae10c08"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_diagnostic_20260913/candidate/reservation_validation.json",
+          "sha256": "ac848e1c27d4b6a3d105e0744252df2935bcd1effbc40ef1d0eed3c6f9a84bc5"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_diagnostic_20260913/candidate/result.json",
+          "sha256": "9ac8592c5987e1cc9deca2d16cb077225d212dd881524984fa97abd154c9ea19"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_diagnostic_20260913/input_manifest.json",
+          "sha256": "aa9d19982e74410508075fa19d05b02855b1c771838f1f4049126d0e2ad86330"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_diagnostic_20260913/protocol.json",
+          "sha256": "692129ee2533975bfe518629c0129a7460a7b7aef82f538a2ee471f38895e935"
+        },
+        {
+          "path": "scripts/run_combined_2022_diagnostic.py",
+          "sha256": "b805f6edb11fd8b53cadb21ec854a8aebba1554213d4ac40a993175a0c21314f"
+        },
+        {
+          "content_hash": "sha256:6ff5fe2377c30b071d843c722958aee01aaea7ae3a5a268bd9bd751350b50bc8",
+          "path": "artifacts/research/development_closures/14dab0e0c8e89fe2_admission_closure.json",
+          "sha256": "97a951568dfe9ee5f4e1c21c67f954e139dc9554f80527b6eef02cebc983dd9d",
+          "type": "final_development_admission_closure"
+        }
+      ],
+      "statement": "Retrospective diagnostic, not synchronized executable NAV or qualification. Source-day equity closes and full UTC crypto days grouped by economic date, with modeled equity overnight accrual allocation. Vintage is a killed CPI probe; its log-spread-as-simple-return construction is retained without endorsement. BTC perpetual/SPY overlay uses price returns without funding, dividends or execution costs. Daily fixed capital weights imply uncharged inter-sleeve rebalancing; cash financing, collateral and PIT availability unverified. Stress doubles only Max/crypto/Trend costs. No new qualified sleeve, untouched validation or launch authorization evidence.",
+      "status": "VERIFIED_FINAL_DEVELOPMENT_CLOSURE_KILL"
+    },
+    "code_environment_and_reproduction": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/combined_2022_diagnostic_20260913/candidate/daily.csv",
+          "sha256": "c38385c280336beca5faea4505491d66a9ae6b1e25e0d677840b3d3d677c3e9f"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_diagnostic_20260913/candidate/experiments.jsonl",
+          "sha256": "b1df2d335f3bf9d4edc422efacbd3de415022fcb53d6939c7f96e8d9f42b2d37"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_diagnostic_20260913/candidate/preregistration.json",
+          "sha256": "dedcef2247692f010b10b21f0d328d46918b74886d73b56ce2de98ac64f6938d"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_diagnostic_20260913/candidate/reservation.json",
+          "sha256": "3b9fca0e2412b0a1dc45c79615ff969c225a9effb99928319b112123dae10c08"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_diagnostic_20260913/candidate/reservation_validation.json",
+          "sha256": "ac848e1c27d4b6a3d105e0744252df2935bcd1effbc40ef1d0eed3c6f9a84bc5"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_diagnostic_20260913/candidate/result.json",
+          "sha256": "9ac8592c5987e1cc9deca2d16cb077225d212dd881524984fa97abd154c9ea19"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_diagnostic_20260913/input_manifest.json",
+          "sha256": "aa9d19982e74410508075fa19d05b02855b1c771838f1f4049126d0e2ad86330"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_diagnostic_20260913/protocol.json",
+          "sha256": "692129ee2533975bfe518629c0129a7460a7b7aef82f538a2ee471f38895e935"
+        },
+        {
+          "path": "scripts/run_combined_2022_diagnostic.py",
+          "sha256": "b805f6edb11fd8b53cadb21ec854a8aebba1554213d4ac40a993175a0c21314f"
+        }
+      ],
+      "statement": "Retrospective diagnostic, not synchronized executable NAV or qualification. Source-day equity closes and full UTC crypto days grouped by economic date, with modeled equity overnight accrual allocation. Vintage is a killed CPI probe; its log-spread-as-simple-return construction is retained without endorsement. BTC perpetual/SPY overlay uses price returns without funding, dividends or execution costs. Daily fixed capital weights imply uncharged inter-sleeve rebalancing; cash financing, collateral and PIT availability unverified. Stress doubles only Max/crypto/Trend costs. No new qualified sleeve, untouched validation or launch authorization evidence.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "economic_mechanism_and_falsifiable_hypothesis": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/combined_2022_diagnostic_20260913/candidate/daily.csv",
+          "sha256": "c38385c280336beca5faea4505491d66a9ae6b1e25e0d677840b3d3d677c3e9f"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_diagnostic_20260913/candidate/experiments.jsonl",
+          "sha256": "b1df2d335f3bf9d4edc422efacbd3de415022fcb53d6939c7f96e8d9f42b2d37"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_diagnostic_20260913/candidate/preregistration.json",
+          "sha256": "dedcef2247692f010b10b21f0d328d46918b74886d73b56ce2de98ac64f6938d"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_diagnostic_20260913/candidate/reservation.json",
+          "sha256": "3b9fca0e2412b0a1dc45c79615ff969c225a9effb99928319b112123dae10c08"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_diagnostic_20260913/candidate/reservation_validation.json",
+          "sha256": "ac848e1c27d4b6a3d105e0744252df2935bcd1effbc40ef1d0eed3c6f9a84bc5"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_diagnostic_20260913/candidate/result.json",
+          "sha256": "9ac8592c5987e1cc9deca2d16cb077225d212dd881524984fa97abd154c9ea19"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_diagnostic_20260913/input_manifest.json",
+          "sha256": "aa9d19982e74410508075fa19d05b02855b1c771838f1f4049126d0e2ad86330"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_diagnostic_20260913/protocol.json",
+          "sha256": "692129ee2533975bfe518629c0129a7460a7b7aef82f538a2ee471f38895e935"
+        },
+        {
+          "path": "scripts/run_combined_2022_diagnostic.py",
+          "sha256": "b805f6edb11fd8b53cadb21ec854a8aebba1554213d4ac40a993175a0c21314f"
+        }
+      ],
+      "statement": "Retrospective diagnostic, not synchronized executable NAV or qualification. Source-day equity closes and full UTC crypto days grouped by economic date, with modeled equity overnight accrual allocation. Vintage is a killed CPI probe; its log-spread-as-simple-return construction is retained without endorsement. BTC perpetual/SPY overlay uses price returns without funding, dividends or execution costs. Daily fixed capital weights imply uncharged inter-sleeve rebalancing; cash financing, collateral and PIT availability unverified. Stress doubles only Max/crypto/Trend costs. No new qualified sleeve, untouched validation or launch authorization evidence.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "execution_and_cost_model": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/combined_2022_diagnostic_20260913/candidate/daily.csv",
+          "sha256": "c38385c280336beca5faea4505491d66a9ae6b1e25e0d677840b3d3d677c3e9f"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_diagnostic_20260913/candidate/experiments.jsonl",
+          "sha256": "b1df2d335f3bf9d4edc422efacbd3de415022fcb53d6939c7f96e8d9f42b2d37"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_diagnostic_20260913/candidate/preregistration.json",
+          "sha256": "dedcef2247692f010b10b21f0d328d46918b74886d73b56ce2de98ac64f6938d"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_diagnostic_20260913/candidate/reservation.json",
+          "sha256": "3b9fca0e2412b0a1dc45c79615ff969c225a9effb99928319b112123dae10c08"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_diagnostic_20260913/candidate/reservation_validation.json",
+          "sha256": "ac848e1c27d4b6a3d105e0744252df2935bcd1effbc40ef1d0eed3c6f9a84bc5"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_diagnostic_20260913/candidate/result.json",
+          "sha256": "9ac8592c5987e1cc9deca2d16cb077225d212dd881524984fa97abd154c9ea19"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_diagnostic_20260913/input_manifest.json",
+          "sha256": "aa9d19982e74410508075fa19d05b02855b1c771838f1f4049126d0e2ad86330"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_diagnostic_20260913/protocol.json",
+          "sha256": "692129ee2533975bfe518629c0129a7460a7b7aef82f538a2ee471f38895e935"
+        },
+        {
+          "path": "scripts/run_combined_2022_diagnostic.py",
+          "sha256": "b805f6edb11fd8b53cadb21ec854a8aebba1554213d4ac40a993175a0c21314f"
+        }
+      ],
+      "statement": "Retrospective diagnostic, not synchronized executable NAV or qualification. Source-day equity closes and full UTC crypto days grouped by economic date, with modeled equity overnight accrual allocation. Vintage is a killed CPI probe; its log-spread-as-simple-return construction is retained without endorsement. BTC perpetual/SPY overlay uses price returns without funding, dividends or execution costs. Daily fixed capital weights imply uncharged inter-sleeve rebalancing; cash financing, collateral and PIT availability unverified. Stress doubles only Max/crypto/Trend costs. No new qualified sleeve, untouched validation or launch authorization evidence.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "family_and_union_trial_accounting": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/combined_2022_diagnostic_20260913/candidate/daily.csv",
+          "sha256": "c38385c280336beca5faea4505491d66a9ae6b1e25e0d677840b3d3d677c3e9f"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_diagnostic_20260913/candidate/experiments.jsonl",
+          "sha256": "b1df2d335f3bf9d4edc422efacbd3de415022fcb53d6939c7f96e8d9f42b2d37"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_diagnostic_20260913/candidate/preregistration.json",
+          "sha256": "dedcef2247692f010b10b21f0d328d46918b74886d73b56ce2de98ac64f6938d"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_diagnostic_20260913/candidate/reservation.json",
+          "sha256": "3b9fca0e2412b0a1dc45c79615ff969c225a9effb99928319b112123dae10c08"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_diagnostic_20260913/candidate/reservation_validation.json",
+          "sha256": "ac848e1c27d4b6a3d105e0744252df2935bcd1effbc40ef1d0eed3c6f9a84bc5"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_diagnostic_20260913/candidate/result.json",
+          "sha256": "9ac8592c5987e1cc9deca2d16cb077225d212dd881524984fa97abd154c9ea19"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_diagnostic_20260913/input_manifest.json",
+          "sha256": "aa9d19982e74410508075fa19d05b02855b1c771838f1f4049126d0e2ad86330"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_diagnostic_20260913/protocol.json",
+          "sha256": "692129ee2533975bfe518629c0129a7460a7b7aef82f538a2ee471f38895e935"
+        },
+        {
+          "path": "scripts/run_combined_2022_diagnostic.py",
+          "sha256": "b805f6edb11fd8b53cadb21ec854a8aebba1554213d4ac40a993175a0c21314f"
+        }
+      ],
+      "statement": "Retrospective diagnostic, not synchronized executable NAV or qualification. Source-day equity closes and full UTC crypto days grouped by economic date, with modeled equity overnight accrual allocation. Vintage is a killed CPI probe; its log-spread-as-simple-return construction is retained without endorsement. BTC perpetual/SPY overlay uses price returns without funding, dividends or execution costs. Daily fixed capital weights imply uncharged inter-sleeve rebalancing; cash financing, collateral and PIT availability unverified. Stress doubles only Max/crypto/Trend costs. No new qualified sleeve, untouched validation or launch authorization evidence.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "identity_and_authorship": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/combined_2022_diagnostic_20260913/candidate/daily.csv",
+          "sha256": "c38385c280336beca5faea4505491d66a9ae6b1e25e0d677840b3d3d677c3e9f"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_diagnostic_20260913/candidate/experiments.jsonl",
+          "sha256": "b1df2d335f3bf9d4edc422efacbd3de415022fcb53d6939c7f96e8d9f42b2d37"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_diagnostic_20260913/candidate/preregistration.json",
+          "sha256": "dedcef2247692f010b10b21f0d328d46918b74886d73b56ce2de98ac64f6938d"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_diagnostic_20260913/candidate/reservation.json",
+          "sha256": "3b9fca0e2412b0a1dc45c79615ff969c225a9effb99928319b112123dae10c08"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_diagnostic_20260913/candidate/reservation_validation.json",
+          "sha256": "ac848e1c27d4b6a3d105e0744252df2935bcd1effbc40ef1d0eed3c6f9a84bc5"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_diagnostic_20260913/candidate/result.json",
+          "sha256": "9ac8592c5987e1cc9deca2d16cb077225d212dd881524984fa97abd154c9ea19"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_diagnostic_20260913/input_manifest.json",
+          "sha256": "aa9d19982e74410508075fa19d05b02855b1c771838f1f4049126d0e2ad86330"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_diagnostic_20260913/protocol.json",
+          "sha256": "692129ee2533975bfe518629c0129a7460a7b7aef82f538a2ee471f38895e935"
+        },
+        {
+          "path": "scripts/run_combined_2022_diagnostic.py",
+          "sha256": "b805f6edb11fd8b53cadb21ec854a8aebba1554213d4ac40a993175a0c21314f"
+        }
+      ],
+      "statement": "Retrospective diagnostic, not synchronized executable NAV or qualification. Source-day equity closes and full UTC crypto days grouped by economic date, with modeled equity overnight accrual allocation. Vintage is a killed CPI probe; its log-spread-as-simple-return construction is retained without endorsement. BTC perpetual/SPY overlay uses price returns without funding, dividends or execution costs. Daily fixed capital weights imply uncharged inter-sleeve rebalancing; cash financing, collateral and PIT availability unverified. Stress doubles only Max/crypto/Trend costs. No new qualified sleeve, untouched validation or launch authorization evidence.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "literature_and_overlap_decision": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/combined_2022_diagnostic_20260913/candidate/daily.csv",
+          "sha256": "c38385c280336beca5faea4505491d66a9ae6b1e25e0d677840b3d3d677c3e9f"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_diagnostic_20260913/candidate/experiments.jsonl",
+          "sha256": "b1df2d335f3bf9d4edc422efacbd3de415022fcb53d6939c7f96e8d9f42b2d37"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_diagnostic_20260913/candidate/preregistration.json",
+          "sha256": "dedcef2247692f010b10b21f0d328d46918b74886d73b56ce2de98ac64f6938d"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_diagnostic_20260913/candidate/reservation.json",
+          "sha256": "3b9fca0e2412b0a1dc45c79615ff969c225a9effb99928319b112123dae10c08"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_diagnostic_20260913/candidate/reservation_validation.json",
+          "sha256": "ac848e1c27d4b6a3d105e0744252df2935bcd1effbc40ef1d0eed3c6f9a84bc5"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_diagnostic_20260913/candidate/result.json",
+          "sha256": "9ac8592c5987e1cc9deca2d16cb077225d212dd881524984fa97abd154c9ea19"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_diagnostic_20260913/input_manifest.json",
+          "sha256": "aa9d19982e74410508075fa19d05b02855b1c771838f1f4049126d0e2ad86330"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_diagnostic_20260913/protocol.json",
+          "sha256": "692129ee2533975bfe518629c0129a7460a7b7aef82f538a2ee471f38895e935"
+        },
+        {
+          "path": "scripts/run_combined_2022_diagnostic.py",
+          "sha256": "b805f6edb11fd8b53cadb21ec854a8aebba1554213d4ac40a993175a0c21314f"
+        }
+      ],
+      "statement": "Retrospective diagnostic, not synchronized executable NAV or qualification. Source-day equity closes and full UTC crypto days grouped by economic date, with modeled equity overnight accrual allocation. Vintage is a killed CPI probe; its log-spread-as-simple-return construction is retained without endorsement. BTC perpetual/SPY overlay uses price returns without funding, dividends or execution costs. Daily fixed capital weights imply uncharged inter-sleeve rebalancing; cash financing, collateral and PIT availability unverified. Stress doubles only Max/crypto/Trend costs. No new qualified sleeve, untouched validation or launch authorization evidence.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "machine_readable_packet_and_stable_public_paper": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/combined_2022_diagnostic_20260913/candidate/daily.csv",
+          "sha256": "c38385c280336beca5faea4505491d66a9ae6b1e25e0d677840b3d3d677c3e9f"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_diagnostic_20260913/candidate/experiments.jsonl",
+          "sha256": "b1df2d335f3bf9d4edc422efacbd3de415022fcb53d6939c7f96e8d9f42b2d37"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_diagnostic_20260913/candidate/preregistration.json",
+          "sha256": "dedcef2247692f010b10b21f0d328d46918b74886d73b56ce2de98ac64f6938d"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_diagnostic_20260913/candidate/reservation.json",
+          "sha256": "3b9fca0e2412b0a1dc45c79615ff969c225a9effb99928319b112123dae10c08"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_diagnostic_20260913/candidate/reservation_validation.json",
+          "sha256": "ac848e1c27d4b6a3d105e0744252df2935bcd1effbc40ef1d0eed3c6f9a84bc5"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_diagnostic_20260913/candidate/result.json",
+          "sha256": "9ac8592c5987e1cc9deca2d16cb077225d212dd881524984fa97abd154c9ea19"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_diagnostic_20260913/input_manifest.json",
+          "sha256": "aa9d19982e74410508075fa19d05b02855b1c771838f1f4049126d0e2ad86330"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_diagnostic_20260913/protocol.json",
+          "sha256": "692129ee2533975bfe518629c0129a7460a7b7aef82f538a2ee471f38895e935"
+        },
+        {
+          "path": "scripts/run_combined_2022_diagnostic.py",
+          "sha256": "b805f6edb11fd8b53cadb21ec854a8aebba1554213d4ac40a993175a0c21314f"
+        }
+      ],
+      "statement": "Retrospective diagnostic, not synchronized executable NAV or qualification. Source-day equity closes and full UTC crypto days grouped by economic date, with modeled equity overnight accrual allocation. Vintage is a killed CPI probe; its log-spread-as-simple-return construction is retained without endorsement. BTC perpetual/SPY overlay uses price returns without funding, dividends or execution costs. Daily fixed capital weights imply uncharged inter-sleeve rebalancing; cash financing, collateral and PIT availability unverified. Stress doubles only Max/crypto/Trend costs. No new qualified sleeve, untouched validation or launch authorization evidence.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "point_in_time_data_and_survivorship_controls": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/combined_2022_diagnostic_20260913/candidate/daily.csv",
+          "sha256": "c38385c280336beca5faea4505491d66a9ae6b1e25e0d677840b3d3d677c3e9f"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_diagnostic_20260913/candidate/experiments.jsonl",
+          "sha256": "b1df2d335f3bf9d4edc422efacbd3de415022fcb53d6939c7f96e8d9f42b2d37"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_diagnostic_20260913/candidate/preregistration.json",
+          "sha256": "dedcef2247692f010b10b21f0d328d46918b74886d73b56ce2de98ac64f6938d"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_diagnostic_20260913/candidate/reservation.json",
+          "sha256": "3b9fca0e2412b0a1dc45c79615ff969c225a9effb99928319b112123dae10c08"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_diagnostic_20260913/candidate/reservation_validation.json",
+          "sha256": "ac848e1c27d4b6a3d105e0744252df2935bcd1effbc40ef1d0eed3c6f9a84bc5"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_diagnostic_20260913/candidate/result.json",
+          "sha256": "9ac8592c5987e1cc9deca2d16cb077225d212dd881524984fa97abd154c9ea19"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_diagnostic_20260913/input_manifest.json",
+          "sha256": "aa9d19982e74410508075fa19d05b02855b1c771838f1f4049126d0e2ad86330"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_diagnostic_20260913/protocol.json",
+          "sha256": "692129ee2533975bfe518629c0129a7460a7b7aef82f538a2ee471f38895e935"
+        },
+        {
+          "path": "scripts/run_combined_2022_diagnostic.py",
+          "sha256": "b805f6edb11fd8b53cadb21ec854a8aebba1554213d4ac40a993175a0c21314f"
+        }
+      ],
+      "statement": "Retrospective diagnostic, not synchronized executable NAV or qualification. Source-day equity closes and full UTC crypto days grouped by economic date, with modeled equity overnight accrual allocation. Vintage is a killed CPI probe; its log-spread-as-simple-return construction is retained without endorsement. BTC perpetual/SPY overlay uses price returns without funding, dividends or execution costs. Daily fixed capital weights imply uncharged inter-sleeve rebalancing; cash financing, collateral and PIT availability unverified. Stress doubles only Max/crypto/Trend costs. No new qualified sleeve, untouched validation or launch authorization evidence.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "preregistration_and_hashes": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/combined_2022_diagnostic_20260913/candidate/daily.csv",
+          "sha256": "c38385c280336beca5faea4505491d66a9ae6b1e25e0d677840b3d3d677c3e9f"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_diagnostic_20260913/candidate/experiments.jsonl",
+          "sha256": "b1df2d335f3bf9d4edc422efacbd3de415022fcb53d6939c7f96e8d9f42b2d37"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_diagnostic_20260913/candidate/preregistration.json",
+          "sha256": "dedcef2247692f010b10b21f0d328d46918b74886d73b56ce2de98ac64f6938d"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_diagnostic_20260913/candidate/reservation.json",
+          "sha256": "3b9fca0e2412b0a1dc45c79615ff969c225a9effb99928319b112123dae10c08"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_diagnostic_20260913/candidate/reservation_validation.json",
+          "sha256": "ac848e1c27d4b6a3d105e0744252df2935bcd1effbc40ef1d0eed3c6f9a84bc5"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_diagnostic_20260913/candidate/result.json",
+          "sha256": "9ac8592c5987e1cc9deca2d16cb077225d212dd881524984fa97abd154c9ea19"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_diagnostic_20260913/input_manifest.json",
+          "sha256": "aa9d19982e74410508075fa19d05b02855b1c771838f1f4049126d0e2ad86330"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_diagnostic_20260913/protocol.json",
+          "sha256": "692129ee2533975bfe518629c0129a7460a7b7aef82f538a2ee471f38895e935"
+        },
+        {
+          "path": "scripts/run_combined_2022_diagnostic.py",
+          "sha256": "b805f6edb11fd8b53cadb21ec854a8aebba1554213d4ac40a993175a0c21314f"
+        }
+      ],
+      "statement": "Retrospective diagnostic, not synchronized executable NAV or qualification. Source-day equity closes and full UTC crypto days grouped by economic date, with modeled equity overnight accrual allocation. Vintage is a killed CPI probe; its log-spread-as-simple-return construction is retained without endorsement. BTC perpetual/SPY overlay uses price returns without funding, dividends or execution costs. Daily fixed capital weights imply uncharged inter-sleeve rebalancing; cash financing, collateral and PIT availability unverified. Stress doubles only Max/crypto/Trend costs. No new qualified sleeve, untouched validation or launch authorization evidence.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "result_uncertainty_stress_capacity_and_diversification": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/combined_2022_diagnostic_20260913/candidate/daily.csv",
+          "sha256": "c38385c280336beca5faea4505491d66a9ae6b1e25e0d677840b3d3d677c3e9f"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_diagnostic_20260913/candidate/experiments.jsonl",
+          "sha256": "b1df2d335f3bf9d4edc422efacbd3de415022fcb53d6939c7f96e8d9f42b2d37"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_diagnostic_20260913/candidate/preregistration.json",
+          "sha256": "dedcef2247692f010b10b21f0d328d46918b74886d73b56ce2de98ac64f6938d"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_diagnostic_20260913/candidate/reservation.json",
+          "sha256": "3b9fca0e2412b0a1dc45c79615ff969c225a9effb99928319b112123dae10c08"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_diagnostic_20260913/candidate/reservation_validation.json",
+          "sha256": "ac848e1c27d4b6a3d105e0744252df2935bcd1effbc40ef1d0eed3c6f9a84bc5"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_diagnostic_20260913/candidate/result.json",
+          "sha256": "9ac8592c5987e1cc9deca2d16cb077225d212dd881524984fa97abd154c9ea19"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_diagnostic_20260913/input_manifest.json",
+          "sha256": "aa9d19982e74410508075fa19d05b02855b1c771838f1f4049126d0e2ad86330"
+        },
+        {
+          "path": "artifacts/analysis/combined_2022_diagnostic_20260913/protocol.json",
+          "sha256": "692129ee2533975bfe518629c0129a7460a7b7aef82f538a2ee471f38895e935"
+        },
+        {
+          "path": "scripts/run_combined_2022_diagnostic.py",
+          "sha256": "b805f6edb11fd8b53cadb21ec854a8aebba1554213d4ac40a993175a0c21314f"
+        }
+      ],
+      "statement": "Retrospective diagnostic, not synchronized executable NAV or qualification. Source-day equity closes and full UTC crypto days grouped by economic date, with modeled equity overnight accrual allocation. Vintage is a killed CPI probe; its log-spread-as-simple-return construction is retained without endorsement. BTC perpetual/SPY overlay uses price returns without funding, dividends or execution costs. Daily fixed capital weights imply uncharged inter-sleeve rebalancing; cash financing, collateral and PIT availability unverified. Stress doubles only Max/crypto/Trend costs. No new qualified sleeve, untouched validation or launch authorization evidence.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    }
+  },
+  "research_family_key": "managed_futures_trend",
+  "schema": "canli.alphac-identity-trial-packet.v2"
+}

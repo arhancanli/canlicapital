@@ -1,0 +1,23 @@
+{
+  "date": "2026-09-10",
+  "phase": 9,
+  "status": "preview deployed; hosted front-end checks passed; API integration blocked by missing preview configuration",
+  "previewUrl": "https://meridian-f3xjbosh7-arhans-projects-ac470eaa.vercel.app",
+  "deploymentId": "dpl_AjbtGrNihgt6JKW4TdHZh6R5zGDc",
+  "deploymentTarget": "preview",
+  "deploymentReady": true,
+  "productionPromoted": false,
+  "gitPushed": false,
+  "environmentVariablesAdded": false,
+  "hostedRoutesPassed": 489,
+  "additionalHttpChecksPassed": 30,
+  "additionalHttpChecksFailed": 1,
+  "protectedOriginalDocumentsMatched": 16,
+  "hostedBrowserJourneyCases": 8,
+  "hostedFailureCases": 20,
+  "actualSafariRoutes": 6,
+  "blocker": "Preview has no environment variables; validation/status returns 500 because SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY are missing",
+  "nextApproval": "Isolated preview backend configuration and separately agreed controlled integration tests",
+  "securityFollowUp": "Rotate Anthropic API credential unexpectedly exposed by a process diagnostic; no credential value is stored here",
+  "userVisualApproval": "pending"
+}

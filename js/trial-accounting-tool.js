@@ -10,7 +10,10 @@ const state = { union: null, filtered: [], selected: null };
 const statusLabel = {
   [TRIAL_UNION_STATUS.LEGACY_COMPLETE]: "COMPLETE EVIDENCED PACKET",
   [TRIAL_UNION_STATUS.LEGACY_INCOMPLETE]: "INCOMPLETE LEGACY PACKET",
-  [TRIAL_UNION_STATUS.PROSPECTIVE_FINAL_INCOMPLETE]: "PROSPECTIVE / NOT ADMITTED",
+  [TRIAL_UNION_STATUS.PROSPECTIVE_FINAL_INCOMPLETE]: "PROSPECTIVE / GOVERNED PACKET, NOT ADMITTED",
+  [TRIAL_UNION_STATUS.PROSPECTIVE_GOVERNED_CLOSED]: "PROSPECTIVE / GOVERNED BATCH CLOSURE, NOT ADMITTED",
+  [TRIAL_UNION_STATUS.PROSPECTIVE_DEVELOPMENT_CLOSED]: "PROSPECTIVE / DEVELOPMENT CLOSURE, NOT ADMITTED",
+  [TRIAL_UNION_STATUS.PROSPECTIVE_UNCLOSED]: "PROSPECTIVE / MEASURED, NOT CLOSED",
 };
 const escapeHtml = (value) =>
   String(value ?? "")
@@ -72,10 +75,13 @@ function renderInspector(identity) {
       <div><dt>First recorded</dt><dd>${escapeHtml(identity.first_recorded_at || `Reservation ${identity.reservation_ordinal}`)}</dd></div>
       <div><dt>Historical observations</dt><dd>${escapeHtml(identity.measurement.observations ?? "Not measured")}</dd></div>
       <div><dt>Historical Sharpe</dt><dd>${escapeHtml(formatNumber(identity.measurement.annualized_sharpe))}</dd></div>
+      ${identity.disposition && identity.disposition !== "UNCLOSED" ? `<div><dt>Final disposition</dt><dd>${escapeHtml(identity.disposition)}</dd></div>` : ""}
       <div><dt>Admitted</dt><dd>NO</dd></div>
     </dl>
-    <div class="union-inspector__coverage"><span>Evidence coverage</span><strong>${completeSections} verified / ${missingSections} missing or unevaluated</strong><i style="--coverage:${completeSections / Math.max(1, completeSections + missingSections)}"></i></div>
-    <div class="union-inspector__links"><a href="${safePublicHref(identity.public_page)}">Open public evidence page</a><a href="${safePublicHref(identity.packet_path)}">Download exact packet</a>${identity.family_paper ? `<a href="${safePublicHref(identity.family_paper)}">Read bound research</a>` : ""}</div>
+    ${identity.status === TRIAL_UNION_STATUS.PROSPECTIVE_DEVELOPMENT_CLOSED || identity.status === TRIAL_UNION_STATUS.PROSPECTIVE_GOVERNED_CLOSED
+      ? `<div class="union-inspector__coverage"><span>Packet status</span><strong>${escapeHtml(identity.packet_status)}</strong><i style="--coverage:0"></i></div>`
+      : `<div class="union-inspector__coverage"><span>Evidence coverage</span><strong>${completeSections} verified / ${missingSections} missing or unevaluated</strong><i style="--coverage:${completeSections / Math.max(1, completeSections + missingSections)}"></i></div>`}
+    <div class="union-inspector__links">${identity.public_page ? `<a href="${safePublicHref(identity.public_page)}">Open public evidence page</a>` : "<span>No public evidence page yet</span>"}${identity.packet_path ? `<a href="${safePublicHref(identity.packet_path)}">Download exact packet</a>` : `<span>${identity.status === TRIAL_UNION_STATUS.PROSPECTIVE_GOVERNED_CLOSED ? "Identity packet pending" : "No closing packet"}</span>`}${identity.family_paper ? `<a href="${safePublicHref(identity.family_paper)}">Read bound research</a>` : ""}</div>
     <p class="union-inspector__boundary">Packet completeness describes evidence accounting only. This identity is not presented as admitted, live or predictive.</p>`;
   document.querySelectorAll("[data-identity]").forEach((element) => {
     element.dataset.selected = String(element.dataset.identity === identity.hypothesis_key);
@@ -84,11 +90,12 @@ function renderInspector(identity) {
 }
 
 function renderResults(filters) {
+  if (!state.union) return;
   state.filtered = filterTrialUnion(state.union, filters);
   byId("union-visible").textContent = String(state.filtered.length);
   const visible = new Set(state.filtered.map((identity) => identity.hypothesis_key));
   byId("union-matrix").innerHTML = state.union.identities.map((identity) =>
-    `<button type="button" role="listitem" data-identity="${escapeHtml(identity.hypothesis_key)}" data-state="${escapeHtml(identity.status)}" data-visible="${visible.has(identity.hypothesis_key)}" aria-label="${escapeHtml(identity.label)}, ${escapeHtml(statusLabel[identity.status])}"></button>`
+    `<button type="button" data-identity="${escapeHtml(identity.hypothesis_key)}" data-state="${escapeHtml(identity.status)}" data-visible="${visible.has(identity.hypothesis_key)}" aria-label="${escapeHtml(identity.label)}, ${escapeHtml(statusLabel[identity.status])}"></button>`
   ).join("");
   byId("union-list").innerHTML = state.filtered.length
     ? state.filtered.map((identity) => `<button type="button" data-identity="${escapeHtml(identity.hypothesis_key)}" data-state="${escapeHtml(identity.status)}"><code>${escapeHtml(identity.hypothesis_key)}</code><span>${escapeHtml(identity.label)}</span><small>${escapeHtml(identity.family_title)}</small><strong>${escapeHtml(statusLabel[identity.status])}</strong></button>`).join("")
@@ -118,13 +125,18 @@ function populateControls(filters) {
 }
 
 async function copyLink() {
-  await navigator.clipboard.writeText(location.href);
   const button = byId("union-copy");
-  button.textContent = "Copied";
-  setTimeout(() => { button.textContent = "Copy filtered link"; }, 1300);
+  try {
+    await navigator.clipboard.writeText(location.href);
+    button.textContent = "Copied";
+    setTimeout(() => { button.textContent = "Copy filtered link"; }, 1300);
+  } catch {
+    button.textContent = "Copy the link from your address bar";
+  }
 }
 
 function exportFiltered() {
+  if (!state.union) return;
   const payload = {
     schema: "canli.trial-accounting-filter-export.v1",
     selection_n: state.union.facts.selection_n,
@@ -142,17 +154,20 @@ function exportFiltered() {
 }
 
 async function load() {
+  const controls = document.querySelectorAll('.union-workbench button,.union-workbench input,.union-workbench select');
+  controls.forEach((control) => { control.disabled = true; });
   try {
-    const sourceOrder = ["ledger", "manifest", "index", "prospective"];
+    const sourceOrder = ["ledger", "manifest", "index", "prospective", "register", "forward"];
     const responses = await Promise.all(sourceOrder.map((name) => fetch(config.source_urls[name], { cache: "no-store" })));
     if (responses.some((response) => !response.ok)) throw new Error("A trial-accounting source could not be loaded");
-    const [ledger, manifest, index, prospective] = await Promise.all(responses.map((response) => response.json()));
-    state.union = buildTrialUnion(ledger, manifest, index, prospective);
+    const [ledger, manifest, index, prospective, register, forward] = await Promise.all(responses.map((response) => response.json()));
+    state.union = buildTrialUnion(ledger, manifest, index, prospective, register, forward);
     const filters = filtersFromUrl();
     populateControls(filters);
     const requested = state.union.identities.find((identity) => identity.hypothesis_key === filters.identity);
     if (requested) state.selected = requested;
     renderResults(filtersFromControls());
+    controls.forEach((control) => { control.disabled = false; });
   } catch (error) {
     byId("union-list").innerHTML = `<p class="union-empty">${escapeHtml(error.message)}</p>`;
     byId("union-inspector").innerHTML = `<p>FAIL CLOSED</p>`;

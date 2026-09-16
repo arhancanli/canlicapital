@@ -2,12 +2,31 @@
 # Vercel's 15,000-file cap (15,005) because three agent worktrees under .claude/ and the local
 # dist/ rode along, and the landing deploy failed three times. Vercel rebuilds dist/ itself.
 .claude
+.claude-flow
+.env*
+.vercel
+.git
+node_modules
+ruvector.db
 .bak
 .firecrawl
 .github
 dist
 test-results
-artifacts/qa
+# Build-time route inventory is required by the reader and release generators.
+# Keep every other QA output (especially browser screenshots) out of uploads.
+artifacts/qa/*
+!artifacts/qa/redesign-scope
+artifacts/qa/redesign-scope/*
+!artifacts/qa/redesign-scope/inventory.json
+# Render sources, reference captures and tool binaries are local authoring inputs.
+# Shippable imagery and films already live in public/.
+artifacts/generated
+artifacts/production
+artifacts/reference
+artifacts/seo
+artifacts/toolchain
+artifacts/tooling
 docs
 supabase
 **/*.test.mjs
@@ -20,3 +39,9 @@ mcp/*
 !mcp/package.json
 deposits
 action
+# canli-design-system (the Claude Design React wrapper package) and its converter staging
+# area: neither ships with the site build.
+design-system
+.design-sync
+.ds-sync
+ds-bundle

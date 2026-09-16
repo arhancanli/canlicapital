@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Managed Futures Trend trial 37444615 / Canli</title>
+<meta name="description" content="Trial 37444615beaef541: complete accounting packet, forward epoch. Inspect its first measurement, configuration, final closure, claim boundary, and machine source." />
+<link rel="canonical" href="https://canlicapital.com/trials/37444615beaef541" />
+<meta name="author" content="Arhan Canli" />
+<meta name="canli:sources" content="trial-packets/37444615beaef541.json trial_sharpe_distribution.json trial-packets/forward_index.json" />
+<meta name="robots" content="noindex, follow, max-snippet:-1, max-image-preview:large" />
+<meta property="og:type" content="article" />
+<meta property="og:site_name" content="Canli Capital" />
+<meta property="og:title" content="37444615beaef541 / Canli Capital" />
+<meta property="og:description" content="Trial 37444615beaef541: complete accounting packet, forward epoch. Inspect its first measurement, configuration, final closure, claim boundary, and machine source." />
+<meta property="og:url" content="https://canlicapital.com/trials/37444615beaef541" />
+<meta property="og:image" content="https://canlicapital.com/og.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="37444615beaef541 / Canli Capital" />
+<meta name="twitter:description" content="Trial 37444615beaef541: complete accounting packet, forward epoch. Inspect its first measurement, configuration, final closure, claim boundary, and machine source." />
+<meta name="twitter:image" content="https://canlicapital.com/og.png" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="icon" href="/favicon.ico" sizes="any" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&amp;family=Instrument+Sans:wdth,wght@75..100,400..700&amp;family=Newsreader:opsz,wght@6..72,300..600&amp;display=optional" />
+<link rel="stylesheet" media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&amp;family=Instrument+Sans:wdth,wght@75..100,400..700&amp;family=Newsreader:opsz,wght@6..72,300..600&amp;display=optional" />
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&amp;family=Instrument+Sans:wdth,wght@75..100,400..700&amp;family=Newsreader:opsz,wght@6..72,300..600&amp;display=optional" /></noscript>
+<link rel="stylesheet" href="../css/paper.css" />
+<link rel="stylesheet" href="/css/product-shell.css" />
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"Trial evidence packet 37444615beaef541","description":"Trial 37444615beaef541: complete accounting packet, forward epoch. Inspect its first measurement, configuration, final closure, claim boundary, and machine source.","url":"https://canlicapital.com/trials/37444615beaef541","identifier":"37444615beaef541","creator":{"@type":"Person","@id":"https://canlicapital.com/#arhan-canli","name":"Arhan Canli","url":"https://canlicapital.com/founder"},"publisher":{"@type":"Organization","name":"Canli Capital","url":"https://canlicapital.com/"},"isAccessibleForFree":true,"distribution":{"@type":"DataDownload","encodingFormat":"application/json","contentUrl":"https://canlicapital.com/glassbox/trial-packets/37444615beaef541.json"}}</script>
+</head>
+<body class="paper">
+<a class="paper__skip" href="#content">Skip to content</a>
+<header class="cc-shell" id="nav" data-product-shell="v3" data-shell-revision="4">
+  <a class="cc-shell__brand" href="/" aria-label="Canli Capital, home">
+    <span class="cc-shell__mark" aria-hidden="true"><i></i></span>
+    <span>Canli Capital</span>
+  </a>
+  <nav class="cc-shell__primary" aria-label="Primary navigation">
+<a class="cc-shell__link" href="/systems">Systems</a>
+<a class="cc-shell__link" href="/research">Research</a>
+<a class="cc-shell__link" href="/developers">Developers</a>
+<a class="cc-shell__link" href="/verify">Verify</a>
+  </nav>
+  <details class="cc-shell__index">
+    <summary><span class="cc-shell__index-wide">Explore</span><span class="cc-shell__index-compact">Menu</span></summary>
+    <div class="cc-shell__panel">
+      <div>
+        <span class="cc-shell__panel-label">Research &amp; strategies</span>
+        <nav aria-label="Core routes"><a class="cc-shell__panel-link" href="https://app.canlicapital.com/dashboard" rel="noreferrer">Live</a>
+<a class="cc-shell__panel-link" href="/research">Research</a>
+<a class="cc-shell__panel-link" href="/trials" data-current="true">Trials</a>
+<a class="cc-shell__panel-link" href="/systems">Systems</a>
+<a class="cc-shell__panel-link" href="/methodology">Methodology</a>
+<a class="cc-shell__panel-link" href="/performance">Performance</a></nav>
+      </div>
+      <div>
+        <span class="cc-shell__panel-label">Evidence &amp; accountability</span>
+        <nav aria-label="Institution routes"><a class="cc-shell__panel-link" href="/verify">Verify</a>
+<a class="cc-shell__panel-link" href="/progress">Corrections</a>
+<a class="cc-shell__panel-link" href="/founder">Founder</a>
+<a class="cc-shell__panel-link" href="/open">Open data</a>
+<a class="cc-shell__panel-link" href="/measurements">Measurements</a></nav>
+      </div>
+      <div>
+        <span class="cc-shell__panel-label">Build &amp; reproduce</span>
+        <nav aria-label="Tools"><a class="cc-shell__panel-link" href="/developers">Developers</a>
+<a class="cc-shell__panel-link" href="/tools">All tools</a>
+<a class="cc-shell__panel-link" href="/how-to-validate-a-backtest">How to validate a backtest</a></nav>
+      </div>
+      <div>
+        <span class="cc-shell__panel-label">Reproducible code</span>
+        <nav aria-label="Source code"><a class="cc-shell__panel-link" href="/engineering">Engineering hub</a>
+<a class="cc-shell__panel-link" href="/notes">Engineering notes</a>
+<a class="cc-shell__panel-link" href="/standards/paper-evidence">Evidence standard</a>
+<a class="cc-shell__panel-link" href="https://github.com/arhancanli/alphac" rel="noreferrer">alphac (engine)</a>
+<a class="cc-shell__panel-link" href="https://github.com/arhancanli/canli-pit-lake" rel="noreferrer">canli-pit-lake</a>
+<a class="cc-shell__panel-link" href="https://github.com/arhancanli/canli-backtest" rel="noreferrer">canli-backtest</a></nav>
+      </div>
+      <div class="cc-shell__panel-foot">
+        <a class="cc-shell__status" href="/measurements/alpaca-broker-reconciliation" aria-label="Current record status"><span class="status-dot" aria-hidden="true"></span><span>Public paper record</span></a>
+        <p>Observed, simulated, model-estimated and planned claims remain visibly separate.</p>
+      </div>
+    </div>
+  </details>
+  <a class="cc-shell__source" href="/engineering" title="Open-source engineering: the engine, the data layer and the backtester"><svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true" focusable="false"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg><span>Source</span></a>
+  <a class="cc-shell__cta" href="https://app.canlicapital.com/dashboard">Live record <span aria-hidden="true">↗</span></a>
+  <script type="module" src="/js/navigation.js"></script>
+</header>
+<section class="trial-hero" aria-labelledby="trial-hero-title">
+  <p class="trial-hero__eyebrow"><a href="/trials">Trial evidence</a> <span>/</span> Managed Futures Trend</p>
+  <h1 class="trial-hero__title" id="trial-hero-title">37444615beaef541</h1>
+  <p class="trial-hero__key">Hypothesis key <code>37444615beaef541</code> <em class="trial-hero__state trial-hero__state--complete">Complete</em></p>
+  <div class="trial-hero__measure"><div class="trial-hero__figure trial-hero__figure--absent"><span>First measurement</span><strong>Not recorded</strong><small>This identity carries no first-measurement Sharpe. It is one of 4 such identities.</small></div></div>
+  <div class="trial-dist">
+    <p class="trial-dist__label">Forward epoch</p>
+    <p class="trial-dist__caption">Measured after the legacy epoch closed, under reservation ordinal <strong>297</strong>. Register status <strong>DEVELOPMENT CLOSURE FINAL NOT ADMITTED</strong>. Final disposition <strong>KILL</strong>, not admitted: a development closure: the decision the study that ran this identity already made, imported and recorded, computing nothing.</p>
+    <p class="trial-dist__caption">Not ranked in the legacy distribution: that population is the retired epoch, and this identity belongs to the one after it.</p>
+  </div>
+</section>
+<main class="paper__main" id="content"><article class="paper__article">
+  
+  <p class="paper__byline">By <span rel="author">Arhan Canli</span>, Canli Capital</p>
+  <div class="paper__body">
+<aside class="measure__boundary"><h2>Claim boundary</h2><p>Retrospective standalone baseline, not untouched OOS or combined qualification. DFF is a current-vintage reporting proxy with modeled publication dates, not certified cash yield. Static borrow and modeled metadata, corporate actions and final-recorded-close liquidation remain. The last source session is Dec30; no invented Dec31 price or financing observation.</p></aside>
+<section class="measure__section"><h2>Immutable first measurement</h2><dl class="trial__facts"><div><dt>Hypothesis key</dt><dd>37444615beaef541</dd></div><div><dt>Configuration hash</dt><dd>39ab201aeb4e966b</dd></div><div><dt>Research family</dt><dd>Managed Futures Trend</dd></div><div><dt>Packet status</dt><dd>COMPLETE_ACCOUNTING_FINAL_KILLED_NOT_ADMITTED</dd></div><div><dt>Observations</dt><dd>252</dd></div><div><dt>Annualized Sharpe</dt><dd>1.484529</dd></div><div><dt>Skew</dt><dd>-0.766821</dd></div><div><dt>Kurtosis</dt><dd>6.338597</dd></div></dl></section>
+<section class="measure__section"><h2>Evidence coverage</h2><ol class="trial__spine"><li class="trial__section trial__section--verified">
+      <div class="trial__section-head"><h3>Admission Or Kill Decision</h3>
+      <span>verified</span></div><ul class="trial__evidence"><li><span>Evidence</span><code>4e914c4ff37a3b9bdf09443cf6023e20ed5d3df4efd2d15033f3cbe48e270e3f</code></li><li><span>Evidence</span><code>89040da68467115c27641df363a82fdee02871a88a4953da89938faeec497dc5</code></li><li><span>Evidence</span><code>dcd934168f2ad9039be6150222c79e8f9c6176b4cd3d16c8952bba442ff088e3</code></li><li><span>Evidence</span><code>273aa9901c51a047379e031d3dbfe975815ebe4329b50aa86f002bed3af03d8a</code></li><li><span>Evidence</span><code>0ac8dd5430c52cf447f0a2af6ba816be18de26a687d01a32d090416f5c96ca25</code></li><li><span>Evidence</span><code>d1a52e27d3e49625ec916b76df0555fec68c1cc12b6111bd6954f29e8b23461d</code></li><li><span>Evidence</span><code>a6d5cd9fceedebb6c431921c81787625d35bc765d50bb0b59fddfb4381369983</code></li><li><span>Evidence</span><code>117e4bd142d2e3603f7c9d0dc5da5aced50185c7205908d947ea6f90eeca7f65</code></li><li><span>Evidence</span><code>863369d4a567f3dc5d9d3d16824fefc7ca3c993d3df2deb10a9f5de0b930bf96</code></li><li><span>Evidence</span><code>cf7176b687b05d07124352dbdd5eff1a3b26532695ace33688870781104c05af</code></li><li><span>Evidence</span><code>3fdc7fa1385188353922c2dbdb123d74fd0dbe75be932a81b78e3a42b1e99f0b</code></li><li><span>Evidence</span><code>d35add997d6a280b7012ee6efbaf2fb9b9e0e3a1f8e6a0c50e3c60a0a1374e1f</code></li><li><span>Evidence</span><code>24a368f23ba9d56e2ad45e414c49c53119ccba9589d42de189159995e1a18ab2</code></li><li><span>Evidence</span><code>cc6c0812b71abd5c0a49badbd2e9b2b12789495fecae7893f098f7a3354c956e</code></li><li><span>Evidence</span><code>adad6ef73316f8cc2f30daa994cbe80d36b48ecccccca48a82c59291503c80da</code></li><li><span>Evidence</span><code>bdd41b83d636efa9aae7fe3c666d5a43db132068498d1c800a29c36b86c894d9</code></li><li><span>Evidence</span><code>10926b74b75529701865ce7ad1f699db78814c0dc29a028e68c0f3d2e3ee43b2</code></li><li><span>Final Development Admission Closure</span><code>ba9735733683343cf676be5d920e23abebd850bfffad2e954c00c78273c89f74</code></li></ul></li><li class="trial__section trial__section--verified">
+      <div class="trial__section-head"><h3>Code Environment And Reproduction</h3>
+      <span>verified</span></div><ul class="trial__evidence"><li><span>Evidence</span><code>4e914c4ff37a3b9bdf09443cf6023e20ed5d3df4efd2d15033f3cbe48e270e3f</code></li><li><span>Evidence</span><code>89040da68467115c27641df363a82fdee02871a88a4953da89938faeec497dc5</code></li><li><span>Evidence</span><code>dcd934168f2ad9039be6150222c79e8f9c6176b4cd3d16c8952bba442ff088e3</code></li><li><span>Evidence</span><code>273aa9901c51a047379e031d3dbfe975815ebe4329b50aa86f002bed3af03d8a</code></li><li><span>Evidence</span><code>0ac8dd5430c52cf447f0a2af6ba816be18de26a687d01a32d090416f5c96ca25</code></li><li><span>Evidence</span><code>d1a52e27d3e49625ec916b76df0555fec68c1cc12b6111bd6954f29e8b23461d</code></li><li><span>Evidence</span><code>a6d5cd9fceedebb6c431921c81787625d35bc765d50bb0b59fddfb4381369983</code></li><li><span>Evidence</span><code>117e4bd142d2e3603f7c9d0dc5da5aced50185c7205908d947ea6f90eeca7f65</code></li><li><span>Evidence</span><code>863369d4a567f3dc5d9d3d16824fefc7ca3c993d3df2deb10a9f5de0b930bf96</code></li><li><span>Evidence</span><code>cf7176b687b05d07124352dbdd5eff1a3b26532695ace33688870781104c05af</code></li><li><span>Evidence</span><code>3fdc7fa1385188353922c2dbdb123d74fd0dbe75be932a81b78e3a42b1e99f0b</code></li><li><span>Evidence</span><code>d35add997d6a280b7012ee6efbaf2fb9b9e0e3a1f8e6a0c50e3c60a0a1374e1f</code></li><li><span>Evidence</span><code>24a368f23ba9d56e2ad45e414c49c53119ccba9589d42de189159995e1a18ab2</code></li><li><span>Evidence</span><code>cc6c0812b71abd5c0a49badbd2e9b2b12789495fecae7893f098f7a3354c956e</code></li><li><span>Evidence</span><code>adad6ef73316f8cc2f30daa994cbe80d36b48ecccccca48a82c59291503c80da</code></li><li><span>Evidence</span><code>bdd41b83d636efa9aae7fe3c666d5a43db132068498d1c800a29c36b86c894d9</code></li><li><span>Evidence</span><code>10926b74b75529701865ce7ad1f699db78814c0dc29a028e68c0f3d2e3ee43b2</code></li></ul></li><li class="trial__section trial__section--verified">
+      <div class="trial__section-head"><h3>Economic Mechanism And Falsifiable Hypothesis</h3>
+      <span>verified</span></div><ul class="trial__evidence"><li><span>Evidence</span><code>4e914c4ff37a3b9bdf09443cf6023e20ed5d3df4efd2d15033f3cbe48e270e3f</code></li><li><span>Evidence</span><code>89040da68467115c27641df363a82fdee02871a88a4953da89938faeec497dc5</code></li><li><span>Evidence</span><code>dcd934168f2ad9039be6150222c79e8f9c6176b4cd3d16c8952bba442ff088e3</code></li><li><span>Evidence</span><code>273aa9901c51a047379e031d3dbfe975815ebe4329b50aa86f002bed3af03d8a</code></li><li><span>Evidence</span><code>0ac8dd5430c52cf447f0a2af6ba816be18de26a687d01a32d090416f5c96ca25</code></li><li><span>Evidence</span><code>d1a52e27d3e49625ec916b76df0555fec68c1cc12b6111bd6954f29e8b23461d</code></li><li><span>Evidence</span><code>a6d5cd9fceedebb6c431921c81787625d35bc765d50bb0b59fddfb4381369983</code></li><li><span>Evidence</span><code>117e4bd142d2e3603f7c9d0dc5da5aced50185c7205908d947ea6f90eeca7f65</code></li><li><span>Evidence</span><code>863369d4a567f3dc5d9d3d16824fefc7ca3c993d3df2deb10a9f5de0b930bf96</code></li><li><span>Evidence</span><code>cf7176b687b05d07124352dbdd5eff1a3b26532695ace33688870781104c05af</code></li><li><span>Evidence</span><code>3fdc7fa1385188353922c2dbdb123d74fd0dbe75be932a81b78e3a42b1e99f0b</code></li><li><span>Evidence</span><code>d35add997d6a280b7012ee6efbaf2fb9b9e0e3a1f8e6a0c50e3c60a0a1374e1f</code></li><li><span>Evidence</span><code>24a368f23ba9d56e2ad45e414c49c53119ccba9589d42de189159995e1a18ab2</code></li><li><span>Evidence</span><code>cc6c0812b71abd5c0a49badbd2e9b2b12789495fecae7893f098f7a3354c956e</code></li><li><span>Evidence</span><code>adad6ef73316f8cc2f30daa994cbe80d36b48ecccccca48a82c59291503c80da</code></li><li><span>Evidence</span><code>bdd41b83d636efa9aae7fe3c666d5a43db132068498d1c800a29c36b86c894d9</code></li><li><span>Evidence</span><code>10926b74b75529701865ce7ad1f699db78814c0dc29a028e68c0f3d2e3ee43b2</code></li></ul></li><li class="trial__section trial__section--verified">
+      <div class="trial__section-head"><h3>Execution And Cost Model</h3>
+      <span>verified</span></div><ul class="trial__evidence"><li><span>Evidence</span><code>4e914c4ff37a3b9bdf09443cf6023e20ed5d3df4efd2d15033f3cbe48e270e3f</code></li><li><span>Evidence</span><code>89040da68467115c27641df363a82fdee02871a88a4953da89938faeec497dc5</code></li><li><span>Evidence</span><code>dcd934168f2ad9039be6150222c79e8f9c6176b4cd3d16c8952bba442ff088e3</code></li><li><span>Evidence</span><code>273aa9901c51a047379e031d3dbfe975815ebe4329b50aa86f002bed3af03d8a</code></li><li><span>Evidence</span><code>0ac8dd5430c52cf447f0a2af6ba816be18de26a687d01a32d090416f5c96ca25</code></li><li><span>Evidence</span><code>d1a52e27d3e49625ec916b76df0555fec68c1cc12b6111bd6954f29e8b23461d</code></li><li><span>Evidence</span><code>a6d5cd9fceedebb6c431921c81787625d35bc765d50bb0b59fddfb4381369983</code></li><li><span>Evidence</span><code>117e4bd142d2e3603f7c9d0dc5da5aced50185c7205908d947ea6f90eeca7f65</code></li><li><span>Evidence</span><code>863369d4a567f3dc5d9d3d16824fefc7ca3c993d3df2deb10a9f5de0b930bf96</code></li><li><span>Evidence</span><code>cf7176b687b05d07124352dbdd5eff1a3b26532695ace33688870781104c05af</code></li><li><span>Evidence</span><code>3fdc7fa1385188353922c2dbdb123d74fd0dbe75be932a81b78e3a42b1e99f0b</code></li><li><span>Evidence</span><code>d35add997d6a280b7012ee6efbaf2fb9b9e0e3a1f8e6a0c50e3c60a0a1374e1f</code></li><li><span>Evidence</span><code>24a368f23ba9d56e2ad45e414c49c53119ccba9589d42de189159995e1a18ab2</code></li><li><span>Evidence</span><code>cc6c0812b71abd5c0a49badbd2e9b2b12789495fecae7893f098f7a3354c956e</code></li><li><span>Evidence</span><code>adad6ef73316f8cc2f30daa994cbe80d36b48ecccccca48a82c59291503c80da</code></li><li><span>Evidence</span><code>bdd41b83d636efa9aae7fe3c666d5a43db132068498d1c800a29c36b86c894d9</code></li><li><span>Evidence</span><code>10926b74b75529701865ce7ad1f699db78814c0dc29a028e68c0f3d2e3ee43b2</code></li></ul></li><li class="trial__section trial__section--verified">
+      <div class="trial__section-head"><h3>Family And Union Trial Accounting</h3>
+      <span>verified</span></div><ul class="trial__evidence"><li><span>Evidence</span><code>4e914c4ff37a3b9bdf09443cf6023e20ed5d3df4efd2d15033f3cbe48e270e3f</code></li><li><span>Evidence</span><code>89040da68467115c27641df363a82fdee02871a88a4953da89938faeec497dc5</code></li><li><span>Evidence</span><code>dcd934168f2ad9039be6150222c79e8f9c6176b4cd3d16c8952bba442ff088e3</code></li><li><span>Evidence</span><code>273aa9901c51a047379e031d3dbfe975815ebe4329b50aa86f002bed3af03d8a</code></li><li><span>Evidence</span><code>0ac8dd5430c52cf447f0a2af6ba816be18de26a687d01a32d090416f5c96ca25</code></li><li><span>Evidence</span><code>d1a52e27d3e49625ec916b76df0555fec68c1cc12b6111bd6954f29e8b23461d</code></li><li><span>Evidence</span><code>a6d5cd9fceedebb6c431921c81787625d35bc765d50bb0b59fddfb4381369983</code></li><li><span>Evidence</span><code>117e4bd142d2e3603f7c9d0dc5da5aced50185c7205908d947ea6f90eeca7f65</code></li><li><span>Evidence</span><code>863369d4a567f3dc5d9d3d16824fefc7ca3c993d3df2deb10a9f5de0b930bf96</code></li><li><span>Evidence</span><code>cf7176b687b05d07124352dbdd5eff1a3b26532695ace33688870781104c05af</code></li><li><span>Evidence</span><code>3fdc7fa1385188353922c2dbdb123d74fd0dbe75be932a81b78e3a42b1e99f0b</code></li><li><span>Evidence</span><code>d35add997d6a280b7012ee6efbaf2fb9b9e0e3a1f8e6a0c50e3c60a0a1374e1f</code></li><li><span>Evidence</span><code>24a368f23ba9d56e2ad45e414c49c53119ccba9589d42de189159995e1a18ab2</code></li><li><span>Evidence</span><code>cc6c0812b71abd5c0a49badbd2e9b2b12789495fecae7893f098f7a3354c956e</code></li><li><span>Evidence</span><code>adad6ef73316f8cc2f30daa994cbe80d36b48ecccccca48a82c59291503c80da</code></li><li><span>Evidence</span><code>bdd41b83d636efa9aae7fe3c666d5a43db132068498d1c800a29c36b86c894d9</code></li><li><span>Evidence</span><code>10926b74b75529701865ce7ad1f699db78814c0dc29a028e68c0f3d2e3ee43b2</code></li></ul></li><li class="trial__section trial__section--verified">
+      <div class="trial__section-head"><h3>Identity And Authorship</h3>
+      <span>verified</span></div><ul class="trial__evidence"><li><span>Evidence</span><code>4e914c4ff37a3b9bdf09443cf6023e20ed5d3df4efd2d15033f3cbe48e270e3f</code></li><li><span>Evidence</span><code>89040da68467115c27641df363a82fdee02871a88a4953da89938faeec497dc5</code></li><li><span>Evidence</span><code>dcd934168f2ad9039be6150222c79e8f9c6176b4cd3d16c8952bba442ff088e3</code></li><li><span>Evidence</span><code>273aa9901c51a047379e031d3dbfe975815ebe4329b50aa86f002bed3af03d8a</code></li><li><span>Evidence</span><code>0ac8dd5430c52cf447f0a2af6ba816be18de26a687d01a32d090416f5c96ca25</code></li><li><span>Evidence</span><code>d1a52e27d3e49625ec916b76df0555fec68c1cc12b6111bd6954f29e8b23461d</code></li><li><span>Evidence</span><code>a6d5cd9fceedebb6c431921c81787625d35bc765d50bb0b59fddfb4381369983</code></li><li><span>Evidence</span><code>117e4bd142d2e3603f7c9d0dc5da5aced50185c7205908d947ea6f90eeca7f65</code></li><li><span>Evidence</span><code>863369d4a567f3dc5d9d3d16824fefc7ca3c993d3df2deb10a9f5de0b930bf96</code></li><li><span>Evidence</span><code>cf7176b687b05d07124352dbdd5eff1a3b26532695ace33688870781104c05af</code></li><li><span>Evidence</span><code>3fdc7fa1385188353922c2dbdb123d74fd0dbe75be932a81b78e3a42b1e99f0b</code></li><li><span>Evidence</span><code>d35add997d6a280b7012ee6efbaf2fb9b9e0e3a1f8e6a0c50e3c60a0a1374e1f</code></li><li><span>Evidence</span><code>24a368f23ba9d56e2ad45e414c49c53119ccba9589d42de189159995e1a18ab2</code></li><li><span>Evidence</span><code>cc6c0812b71abd5c0a49badbd2e9b2b12789495fecae7893f098f7a3354c956e</code></li><li><span>Evidence</span><code>adad6ef73316f8cc2f30daa994cbe80d36b48ecccccca48a82c59291503c80da</code></li><li><span>Evidence</span><code>bdd41b83d636efa9aae7fe3c666d5a43db132068498d1c800a29c36b86c894d9</code></li><li><span>Evidence</span><code>10926b74b75529701865ce7ad1f699db78814c0dc29a028e68c0f3d2e3ee43b2</code></li></ul></li><li class="trial__section trial__section--verified">
+      <div class="trial__section-head"><h3>Literature And Overlap Decision</h3>
+      <span>verified</span></div><ul class="trial__evidence"><li><span>Evidence</span><code>4e914c4ff37a3b9bdf09443cf6023e20ed5d3df4efd2d15033f3cbe48e270e3f</code></li><li><span>Evidence</span><code>89040da68467115c27641df363a82fdee02871a88a4953da89938faeec497dc5</code></li><li><span>Evidence</span><code>dcd934168f2ad9039be6150222c79e8f9c6176b4cd3d16c8952bba442ff088e3</code></li><li><span>Evidence</span><code>273aa9901c51a047379e031d3dbfe975815ebe4329b50aa86f002bed3af03d8a</code></li><li><span>Evidence</span><code>0ac8dd5430c52cf447f0a2af6ba816be18de26a687d01a32d090416f5c96ca25</code></li><li><span>Evidence</span><code>d1a52e27d3e49625ec916b76df0555fec68c1cc12b6111bd6954f29e8b23461d</code></li><li><span>Evidence</span><code>a6d5cd9fceedebb6c431921c81787625d35bc765d50bb0b59fddfb4381369983</code></li><li><span>Evidence</span><code>117e4bd142d2e3603f7c9d0dc5da5aced50185c7205908d947ea6f90eeca7f65</code></li><li><span>Evidence</span><code>863369d4a567f3dc5d9d3d16824fefc7ca3c993d3df2deb10a9f5de0b930bf96</code></li><li><span>Evidence</span><code>cf7176b687b05d07124352dbdd5eff1a3b26532695ace33688870781104c05af</code></li><li><span>Evidence</span><code>3fdc7fa1385188353922c2dbdb123d74fd0dbe75be932a81b78e3a42b1e99f0b</code></li><li><span>Evidence</span><code>d35add997d6a280b7012ee6efbaf2fb9b9e0e3a1f8e6a0c50e3c60a0a1374e1f</code></li><li><span>Evidence</span><code>24a368f23ba9d56e2ad45e414c49c53119ccba9589d42de189159995e1a18ab2</code></li><li><span>Evidence</span><code>cc6c0812b71abd5c0a49badbd2e9b2b12789495fecae7893f098f7a3354c956e</code></li><li><span>Evidence</span><code>adad6ef73316f8cc2f30daa994cbe80d36b48ecccccca48a82c59291503c80da</code></li><li><span>Evidence</span><code>bdd41b83d636efa9aae7fe3c666d5a43db132068498d1c800a29c36b86c894d9</code></li><li><span>Evidence</span><code>10926b74b75529701865ce7ad1f699db78814c0dc29a028e68c0f3d2e3ee43b2</code></li></ul></li><li class="trial__section trial__section--verified">
+      <div class="trial__section-head"><h3>Machine Readable Packet And Stable Public Paper</h3>
+      <span>verified</span></div><ul class="trial__evidence"><li><span>Evidence</span><code>4e914c4ff37a3b9bdf09443cf6023e20ed5d3df4efd2d15033f3cbe48e270e3f</code></li><li><span>Evidence</span><code>89040da68467115c27641df363a82fdee02871a88a4953da89938faeec497dc5</code></li><li><span>Evidence</span><code>dcd934168f2ad9039be6150222c79e8f9c6176b4cd3d16c8952bba442ff088e3</code></li><li><span>Evidence</span><code>273aa9901c51a047379e031d3dbfe975815ebe4329b50aa86f002bed3af03d8a</code></li><li><span>Evidence</span><code>0ac8dd5430c52cf447f0a2af6ba816be18de26a687d01a32d090416f5c96ca25</code></li><li><span>Evidence</span><code>d1a52e27d3e49625ec916b76df0555fec68c1cc12b6111bd6954f29e8b23461d</code></li><li><span>Evidence</span><code>a6d5cd9fceedebb6c431921c81787625d35bc765d50bb0b59fddfb4381369983</code></li><li><span>Evidence</span><code>117e4bd142d2e3603f7c9d0dc5da5aced50185c7205908d947ea6f90eeca7f65</code></li><li><span>Evidence</span><code>863369d4a567f3dc5d9d3d16824fefc7ca3c993d3df2deb10a9f5de0b930bf96</code></li><li><span>Evidence</span><code>cf7176b687b05d07124352dbdd5eff1a3b26532695ace33688870781104c05af</code></li><li><span>Evidence</span><code>3fdc7fa1385188353922c2dbdb123d74fd0dbe75be932a81b78e3a42b1e99f0b</code></li><li><span>Evidence</span><code>d35add997d6a280b7012ee6efbaf2fb9b9e0e3a1f8e6a0c50e3c60a0a1374e1f</code></li><li><span>Evidence</span><code>24a368f23ba9d56e2ad45e414c49c53119ccba9589d42de189159995e1a18ab2</code></li><li><span>Evidence</span><code>cc6c0812b71abd5c0a49badbd2e9b2b12789495fecae7893f098f7a3354c956e</code></li><li><span>Evidence</span><code>adad6ef73316f8cc2f30daa994cbe80d36b48ecccccca48a82c59291503c80da</code></li><li><span>Evidence</span><code>bdd41b83d636efa9aae7fe3c666d5a43db132068498d1c800a29c36b86c894d9</code></li><li><span>Evidence</span><code>10926b74b75529701865ce7ad1f699db78814c0dc29a028e68c0f3d2e3ee43b2</code></li></ul></li><li class="trial__section trial__section--verified">
+      <div class="trial__section-head"><h3>Point In Time Data And Survivorship Controls</h3>
+      <span>verified</span></div><ul class="trial__evidence"><li><span>Evidence</span><code>4e914c4ff37a3b9bdf09443cf6023e20ed5d3df4efd2d15033f3cbe48e270e3f</code></li><li><span>Evidence</span><code>89040da68467115c27641df363a82fdee02871a88a4953da89938faeec497dc5</code></li><li><span>Evidence</span><code>dcd934168f2ad9039be6150222c79e8f9c6176b4cd3d16c8952bba442ff088e3</code></li><li><span>Evidence</span><code>273aa9901c51a047379e031d3dbfe975815ebe4329b50aa86f002bed3af03d8a</code></li><li><span>Evidence</span><code>0ac8dd5430c52cf447f0a2af6ba816be18de26a687d01a32d090416f5c96ca25</code></li><li><span>Evidence</span><code>d1a52e27d3e49625ec916b76df0555fec68c1cc12b6111bd6954f29e8b23461d</code></li><li><span>Evidence</span><code>a6d5cd9fceedebb6c431921c81787625d35bc765d50bb0b59fddfb4381369983</code></li><li><span>Evidence</span><code>117e4bd142d2e3603f7c9d0dc5da5aced50185c7205908d947ea6f90eeca7f65</code></li><li><span>Evidence</span><code>863369d4a567f3dc5d9d3d16824fefc7ca3c993d3df2deb10a9f5de0b930bf96</code></li><li><span>Evidence</span><code>cf7176b687b05d07124352dbdd5eff1a3b26532695ace33688870781104c05af</code></li><li><span>Evidence</span><code>3fdc7fa1385188353922c2dbdb123d74fd0dbe75be932a81b78e3a42b1e99f0b</code></li><li><span>Evidence</span><code>d35add997d6a280b7012ee6efbaf2fb9b9e0e3a1f8e6a0c50e3c60a0a1374e1f</code></li><li><span>Evidence</span><code>24a368f23ba9d56e2ad45e414c49c53119ccba9589d42de189159995e1a18ab2</code></li><li><span>Evidence</span><code>cc6c0812b71abd5c0a49badbd2e9b2b12789495fecae7893f098f7a3354c956e</code></li><li><span>Evidence</span><code>adad6ef73316f8cc2f30daa994cbe80d36b48ecccccca48a82c59291503c80da</code></li><li><span>Evidence</span><code>bdd41b83d636efa9aae7fe3c666d5a43db132068498d1c800a29c36b86c894d9</code></li><li><span>Evidence</span><code>10926b74b75529701865ce7ad1f699db78814c0dc29a028e68c0f3d2e3ee43b2</code></li></ul></li><li class="trial__section trial__section--verified">
+      <div class="trial__section-head"><h3>Preregistration And Hashes</h3>
+      <span>verified</span></div><ul class="trial__evidence"><li><span>Evidence</span><code>4e914c4ff37a3b9bdf09443cf6023e20ed5d3df4efd2d15033f3cbe48e270e3f</code></li><li><span>Evidence</span><code>89040da68467115c27641df363a82fdee02871a88a4953da89938faeec497dc5</code></li><li><span>Evidence</span><code>dcd934168f2ad9039be6150222c79e8f9c6176b4cd3d16c8952bba442ff088e3</code></li><li><span>Evidence</span><code>273aa9901c51a047379e031d3dbfe975815ebe4329b50aa86f002bed3af03d8a</code></li><li><span>Evidence</span><code>0ac8dd5430c52cf447f0a2af6ba816be18de26a687d01a32d090416f5c96ca25</code></li><li><span>Evidence</span><code>d1a52e27d3e49625ec916b76df0555fec68c1cc12b6111bd6954f29e8b23461d</code></li><li><span>Evidence</span><code>a6d5cd9fceedebb6c431921c81787625d35bc765d50bb0b59fddfb4381369983</code></li><li><span>Evidence</span><code>117e4bd142d2e3603f7c9d0dc5da5aced50185c7205908d947ea6f90eeca7f65</code></li><li><span>Evidence</span><code>863369d4a567f3dc5d9d3d16824fefc7ca3c993d3df2deb10a9f5de0b930bf96</code></li><li><span>Evidence</span><code>cf7176b687b05d07124352dbdd5eff1a3b26532695ace33688870781104c05af</code></li><li><span>Evidence</span><code>3fdc7fa1385188353922c2dbdb123d74fd0dbe75be932a81b78e3a42b1e99f0b</code></li><li><span>Evidence</span><code>d35add997d6a280b7012ee6efbaf2fb9b9e0e3a1f8e6a0c50e3c60a0a1374e1f</code></li><li><span>Evidence</span><code>24a368f23ba9d56e2ad45e414c49c53119ccba9589d42de189159995e1a18ab2</code></li><li><span>Evidence</span><code>cc6c0812b71abd5c0a49badbd2e9b2b12789495fecae7893f098f7a3354c956e</code></li><li><span>Evidence</span><code>adad6ef73316f8cc2f30daa994cbe80d36b48ecccccca48a82c59291503c80da</code></li><li><span>Evidence</span><code>bdd41b83d636efa9aae7fe3c666d5a43db132068498d1c800a29c36b86c894d9</code></li><li><span>Evidence</span><code>10926b74b75529701865ce7ad1f699db78814c0dc29a028e68c0f3d2e3ee43b2</code></li></ul></li><li class="trial__section trial__section--verified">
+      <div class="trial__section-head"><h3>Result Uncertainty Stress Capacity And Diversification</h3>
+      <span>verified</span></div><ul class="trial__evidence"><li><span>Evidence</span><code>4e914c4ff37a3b9bdf09443cf6023e20ed5d3df4efd2d15033f3cbe48e270e3f</code></li><li><span>Evidence</span><code>89040da68467115c27641df363a82fdee02871a88a4953da89938faeec497dc5</code></li><li><span>Evidence</span><code>dcd934168f2ad9039be6150222c79e8f9c6176b4cd3d16c8952bba442ff088e3</code></li><li><span>Evidence</span><code>273aa9901c51a047379e031d3dbfe975815ebe4329b50aa86f002bed3af03d8a</code></li><li><span>Evidence</span><code>0ac8dd5430c52cf447f0a2af6ba816be18de26a687d01a32d090416f5c96ca25</code></li><li><span>Evidence</span><code>d1a52e27d3e49625ec916b76df0555fec68c1cc12b6111bd6954f29e8b23461d</code></li><li><span>Evidence</span><code>a6d5cd9fceedebb6c431921c81787625d35bc765d50bb0b59fddfb4381369983</code></li><li><span>Evidence</span><code>117e4bd142d2e3603f7c9d0dc5da5aced50185c7205908d947ea6f90eeca7f65</code></li><li><span>Evidence</span><code>863369d4a567f3dc5d9d3d16824fefc7ca3c993d3df2deb10a9f5de0b930bf96</code></li><li><span>Evidence</span><code>cf7176b687b05d07124352dbdd5eff1a3b26532695ace33688870781104c05af</code></li><li><span>Evidence</span><code>3fdc7fa1385188353922c2dbdb123d74fd0dbe75be932a81b78e3a42b1e99f0b</code></li><li><span>Evidence</span><code>d35add997d6a280b7012ee6efbaf2fb9b9e0e3a1f8e6a0c50e3c60a0a1374e1f</code></li><li><span>Evidence</span><code>24a368f23ba9d56e2ad45e414c49c53119ccba9589d42de189159995e1a18ab2</code></li><li><span>Evidence</span><code>cc6c0812b71abd5c0a49badbd2e9b2b12789495fecae7893f098f7a3354c956e</code></li><li><span>Evidence</span><code>adad6ef73316f8cc2f30daa994cbe80d36b48ecccccca48a82c59291503c80da</code></li><li><span>Evidence</span><code>bdd41b83d636efa9aae7fe3c666d5a43db132068498d1c800a29c36b86c894d9</code></li><li><span>Evidence</span><code>10926b74b75529701865ce7ad1f699db78814c0dc29a028e68c0f3d2e3ee43b2</code></li></ul></li></ol></section>
+<section class="measure__section"><h2>Completion assessment</h2><p>COMPLETE_ACCOUNTING_FINAL_KILLED_NOT_ADMITTED</p></section>
+<section class="measure__section"><h2>Frozen configuration</h2><dl class="trial__config"><div><dt>Allocator</dt><dd>rank</dd></div><div><dt>Alpha Names</dt><dd>eq_mom_252_21</dd></div><div><dt>End</dt><dd>1,672,531,200,000</dd></div><div><dt>Instrument Ids</dt><dd>List preserved in the machine-readable packet</dd></div><div><dt>No Trade Band</dt><dd>0.001</dd></div><div><dt>Rebalance Bars</dt><dd>63</dd></div><div><dt>Research Engine</dt><dd>Nested object preserved in the machine-readable packet</dd></div><div><dt>Start</dt><dd>1,609,286,400,000</dd></div><div><dt>Test Bars</dt><dd>63</dd></div><div><dt>Train Bars</dt><dd>252</dd></div></dl></section>
+<section class="measure__section"><h2>Verify the packet</h2>
+<p><a href="/glassbox/trial-packets/37444615beaef541.json">Download the machine-readable packet</a> · <a href="/trials">All trials</a></p>
+<p class="trial__hash">Packet content hash <code>sha256:672338b9a6e552fd07c71ed3985dbcbb01f996e701381de72188657d22c732ed</code></p></section></div>
+</article></main>
+<footer class="cc-footer" id="footer" data-product-shell="v3" data-shell-revision="4">
+  <details class="cc-footer__context"><summary>About the research-to-record workflow</summary><section class="cc-handoff" aria-labelledby="cc-handoff-title">
+    <div class="cc-handoff__viewport">
+      <div class="cc-handoff__intro"><p>Research → Validation → Publication</p><h2 id="cc-handoff-title">From an idea.<br />To a record.</h2><p>Carry the inputs, assumptions and limits with the result. The evidence should survive every handoff.</p></div>
+      <div class="cc-handoff__stage" aria-hidden="true">
+        <svg class="cc-handoff__route" viewBox="0 0 1000 300" preserveAspectRatio="none"><path class="cc-handoff__track" d="M120 210C280 210 310 85 500 85S720 210 880 210"/><path class="cc-handoff__trace" pathLength="1" d="M120 210C280 210 310 85 500 85S720 210 880 210"/></svg>
+        <div class="cc-handoff__dock cc-handoff__dock--inputs"><i></i><i></i><i></i></div>
+        <div class="cc-handoff__gate"><i></i><i></i><i></i></div>
+        <div class="cc-handoff__dock cc-handoff__dock--record"><i></i><i></i><i></i></div>
+        <div class="cc-handoff__packet">
+          <img src="/cinema/optical-master-v3-1536.webp" width="1536" height="1536" loading="lazy" alt="" />
+        </div>
+      </div>
+      <div class="cc-handoff__steps">
+        <a href="/research" data-handoff-step="0"><span>Define</span><strong>The research packet</strong><small>Inputs, rules and the failed trials.</small><em>Inspect the research ↗</em></a>
+        <a href="/developers#validation" data-handoff-step="1"><span>Reproduce</span><strong>The calculation receipt</strong><small>Your inputs. Declared arithmetic.</small><em>Explore the validation API ↗</em></a>
+        <a href="/verify" data-handoff-step="2"><span>Inspect</span><strong>The published record</strong><small>Sources, corrections and boundaries.</small><em>Verify the evidence ↗</em></a>
+      </div>
+      <p class="cc-handoff__boundary">Conceptual workflow. This animation sends no request. A receipt is not proof of future returns.</p>
+    </div>
+  </section></details>
+  <div class="cc-footer__lead">
+    <a class="cc-footer__brand" href="/">Canli Capital</a>
+    <p>Build the claim. Publish the evidence. Keep the failures.</p>
+  </div>
+  <div class="cc-footer__routes">
+    <nav aria-label="Portfolio and research">
+      <span>Research system</span>
+      <a href="https://app.canlicapital.com/dashboard">Live record</a>
+      <a href="/systems">ALPHAC systems</a>
+      <a href="/research">Research papers</a>
+      <a href="/trials">Trial union</a>
+    </nav>
+    <nav aria-label="Evidence and verification">
+      <span>Evidence</span>
+      <a href="/methodology">Methodology</a>
+      <a href="/costs">What costs are charged</a>
+      <a href="/verify">Verify record</a>
+      <a href="/measurements">Measurements</a>
+      <a href="/open">Open data</a>
+    </nav>
+    <nav aria-label="Institution and authorship">
+      <span>Institution</span>
+      <a href="/progress">Corrections</a>
+      <a href="/performance">Performance</a>
+      <a href="/founder">Arhan Canli</a>
+    </nav>
+    <nav aria-label="Calculators">
+      <span>Run it yourself</span>
+      <a href="/tools">All calculators</a>
+      <a href="/tools/deflated-sharpe">Deflated Sharpe calculator</a>
+      <a href="/tools/backtest-overfitting">Backtest overfitting calculator</a>
+      <a href="/tools/selection-risk">Selection Risk Lab</a>
+      <a href="/tools/breadth">Breadth Lab</a>
+      <a href="/tools/execution">Execution Reality Lab</a>
+      <a href="/tools/trial-accounting">Trial accounting</a>
+      <a href="/tools/evidence-chain">Evidence chain</a>
+    </nav>
+    <nav aria-label="Open source">
+      <span>Source code</span>
+      <a href="/developers">Developers</a>
+      <a href="/engineering">Engineering</a>
+      <a href="/notes">Engineering notes</a>
+      <a href="/standards/paper-evidence">Evidence standard</a>
+      <a href="https://github.com/arhancanli/alphac" rel="noreferrer">alphac engine</a>
+      <a href="https://github.com/arhancanli/canli-pit-lake" rel="noreferrer">canli-pit-lake</a>
+      <a href="https://github.com/arhancanli/canli-backtest" rel="noreferrer">canli-backtest</a>
+    </nav>
+  </div>
+  <div class="cc-footer__boundary">
+    <p>Research and paper execution only. No managed capital, copy trading, investment advice or promised return.</p>
+    <p>Engineered independently by Arhan Canli in Dubai since July 2024. The public paper
+    record begins 2026-08-07; the years before it are engineering, not track record.</p>
+    <span>Copyright Arhan Canli</span>
+  </div>
+  <div class="cc-footer__wordmark" aria-hidden="true">Canli Capital<span><svg viewBox="0 0 80 80" focusable="false" aria-hidden="true"><path d="M12 68 68 12M12 12h56v56" fill="none" stroke="currentColor" stroke-width="4" /></svg></span></div>
+  <script type="module" src="/js/site-motion.js"></script>
+</footer>
+</body></html>
