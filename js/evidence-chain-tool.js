@@ -172,13 +172,33 @@ async function runMutation() {
 
 async function copyEntry() {
   const button = byId("chain-copy");
-  await navigator.clipboard.writeText(JSON.stringify(log.entries[selectedSequence], null, 2));
   const original = button.textContent;
-  button.textContent = "Copied";
-  window.setTimeout(() => { button.textContent = original; }, 1400);
+  if (!log?.entries?.[selectedSequence]) return;
+  try {
+    await navigator.clipboard.writeText(JSON.stringify(log.entries[selectedSequence], null, 2));
+    button.textContent = "Copied";
+    window.setTimeout(() => { button.textContent = original; }, 1400);
+  } catch {
+    button.textContent = "Clipboard unavailable. Copy the JSON below.";
+    let fallback = document.getElementById("chain-copy-fallback");
+    if (!fallback) {
+      fallback = document.createElement("textarea");
+      fallback.id = "chain-copy-fallback";
+      fallback.className = "chain-copy-fallback";
+      fallback.readOnly = true;
+      fallback.rows = 8;
+      fallback.setAttribute("aria-label", "Selected entry JSON, copy manually");
+      button.after(fallback);
+    }
+    fallback.value = JSON.stringify(log.entries[selectedSequence], null, 2);
+    fallback.focus();
+    fallback.select();
+  }
 }
 
 async function load() {
+  const controls = [range, ...['chain-prev','chain-next','chain-boundary-jump','chain-head-jump','chain-verify','chain-mutate','chain-copy'].map(byId)];
+  controls.forEach((control) => { control.disabled = true; });
   try {
     const [logResponse, anchorResponse] = await Promise.all([
       fetch(config.source_urls.log, { cache: "no-store" }),
@@ -188,9 +208,11 @@ async function load() {
     [log, anchors] = await Promise.all([logResponse.json(), anchorResponse.json()]);
     anchorBySequence = new Map(anchors.anchors.map((anchor) => [anchor.seq, anchor]));
     selectedSequence = querySequence();
+    controls.forEach((control) => { control.disabled = false; });
     renderEntry(selectedSequence, { updateHistory: false });
     await runVerification();
   } catch (error) {
+    controls.forEach((control) => { control.disabled = true; });
     const status = byId("chain-verification-status");
     status.dataset.state = "fail";
     status.textContent = "FAIL";

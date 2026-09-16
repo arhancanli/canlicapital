@@ -1,0 +1,469 @@
+{
+  "claim_boundary": "Known-history combined portfolio development experiment; fixed parameters, capital-budget proxy, lagged modeled DFF benchmark, unresolved internal financing and limitations. No untouched validation, independent replication, capacity or admission.",
+  "complete": true,
+  "completion_assessment": {
+    "candidate_evidence_complete_for_admission": false,
+    "disposition": "INCOMPLETE_NOT_ADMITTED",
+    "packet_evidence_accounting_complete": true
+  },
+  "config_hash": "72fa6eeaec427062",
+  "configuration": {
+    "arm": "baseline",
+    "family": "alphac_category_targets",
+    "input_manifest_sha256": "a272360dd68a381f8a33ddadc272e2a35dbfb41ba8a5d5aeec52b7a7b6e559fa",
+    "spec_sha256": "d44aa9416b8643258c7eb3338ef769dcf3b9d98edaf499776bce9d4755f43dce"
+  },
+  "content_hash": "sha256:898cd7d8fda84cc90a768bfc84ae5abd20d4d3ef61556b8e200ee84ca57c1c0f",
+  "hypothesis_key": "633a12ead7f24c03",
+  "immutable_first_measurement": {
+    "config": {
+      "arm": "baseline",
+      "family": "alphac_category_targets",
+      "input_manifest_sha256": "a272360dd68a381f8a33ddadc272e2a35dbfb41ba8a5d5aeec52b7a7b6e559fa",
+      "spec_sha256": "d44aa9416b8643258c7eb3338ef769dcf3b9d98edaf499776bce9d4755f43dce"
+    },
+    "config_hash": "72fa6eeaec427062",
+    "kurtosis": 5.2629296544811295,
+    "n_obs": 1061,
+    "now_ms": 1789284827915,
+    "sharpe_ann": 1.1065158070539947,
+    "sharpe_per_period": 0.057917684413627796,
+    "skew": -0.009450899968145752
+  },
+  "imported_from_external_tree": {
+    "external_content_hash": "sha256:2f679a25b95bbaf023f5a09ddc505c28234bfb7cb0778234abedb01825d09be5",
+    "imported_on": "2026-09-14T19:35:24+00:00",
+    "tree": "/Users/arhancanli/alphac-prospective-pause-20260911"
+  },
+  "missing_sections": [],
+  "packet_status": "COMPLETE_ACCOUNTING_FINAL_KILLED_NOT_ADMITTED",
+  "partial_sections": [],
+  "required_sections": {
+    "admission_or_kill_decision": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/alphac_category_targets_20260913/baseline/REPORT.md",
+          "sha256": "e11a3a45159c3b2dc122cb7a0eb65c1d55ec3abf9fe25af8ea44adad6654c31c"
+        },
+        {
+          "path": "artifacts/analysis/alphac_category_targets_20260913/baseline/daily.csv",
+          "sha256": "93b04c913f87c6175b4f9aa10592da4b2028481294cf4cbed56506db926da320"
+        },
+        {
+          "path": "artifacts/analysis/alphac_category_targets_20260913/baseline/experiments.jsonl",
+          "sha256": "2da70e2e05848197cfeb4cc88f12757934813715cbdc61953529ca0f35ab5e28"
+        },
+        {
+          "path": "artifacts/analysis/alphac_category_targets_20260913/baseline/preregistration.json",
+          "sha256": "4e381ddc1bffc1493b57859facb60529f319cb990741e900f853d061bd996ede"
+        },
+        {
+          "path": "artifacts/analysis/alphac_category_targets_20260913/baseline/replay_parity.json",
+          "sha256": "44ee3732fc71856835ffce7741fb18a0d9f91c804e085f29ac231cbac820c73d"
+        },
+        {
+          "path": "artifacts/analysis/alphac_category_targets_20260913/baseline/reservation.json",
+          "sha256": "ab3f7e6eb9bc2f7fddddf535fe70a23c6e57890ed95af0e0a367c8778e91bbaa"
+        },
+        {
+          "path": "artifacts/analysis/alphac_category_targets_20260913/baseline/reservation_validation.json",
+          "sha256": "f6d0602f75329688f7ebefa76c7ce4d92b77b860a3dd19d9be02af83090f3681"
+        },
+        {
+          "path": "artifacts/analysis/alphac_category_targets_20260913/baseline/result.json",
+          "sha256": "c69819a43957aaf14fc1627c0aa47575a59cfa3f4cc871f89798e62f9256b6ec"
+        },
+        {
+          "content_hash": "sha256:6ad91aeac0c9d2d6a1a81d436cedad0ef8b55dfc2d2a089c47bdec6238640e19",
+          "path": "artifacts/research/development_closures/633a12ead7f24c03_admission_closure.json",
+          "sha256": "7b3ff50256962ded7493c9073ae40733c90c1df9caef5b69708d70e2931d61d5",
+          "type": "final_development_admission_closure"
+        }
+      ],
+      "statement": "Known-history combined portfolio development experiment; fixed parameters, capital-budget proxy, lagged modeled DFF benchmark, unresolved internal financing and limitations. No untouched validation, independent replication, capacity or admission.",
+      "status": "VERIFIED_FINAL_DEVELOPMENT_CLOSURE_KILL"
+    },
+    "code_environment_and_reproduction": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/alphac_category_targets_20260913/baseline/REPORT.md",
+          "sha256": "e11a3a45159c3b2dc122cb7a0eb65c1d55ec3abf9fe25af8ea44adad6654c31c"
+        },
+        {
+          "path": "artifacts/analysis/alphac_category_targets_20260913/baseline/daily.csv",
+          "sha256": "93b04c913f87c6175b4f9aa10592da4b2028481294cf4cbed56506db926da320"
+        },
+        {
+          "path": "artifacts/analysis/alphac_category_targets_20260913/baseline/experiments.jsonl",
+          "sha256": "2da70e2e05848197cfeb4cc88f12757934813715cbdc61953529ca0f35ab5e28"
+        },
+        {
+          "path": "artifacts/analysis/alphac_category_targets_20260913/baseline/preregistration.json",
+          "sha256": "4e381ddc1bffc1493b57859facb60529f319cb990741e900f853d061bd996ede"
+        },
+        {
+          "path": "artifacts/analysis/alphac_category_targets_20260913/baseline/replay_parity.json",
+          "sha256": "44ee3732fc71856835ffce7741fb18a0d9f91c804e085f29ac231cbac820c73d"
+        },
+        {
+          "path": "artifacts/analysis/alphac_category_targets_20260913/baseline/reservation.json",
+          "sha256": "ab3f7e6eb9bc2f7fddddf535fe70a23c6e57890ed95af0e0a367c8778e91bbaa"
+        },
+        {
+          "path": "artifacts/analysis/alphac_category_targets_20260913/baseline/reservation_validation.json",
+          "sha256": "f6d0602f75329688f7ebefa76c7ce4d92b77b860a3dd19d9be02af83090f3681"
+        },
+        {
+          "path": "artifacts/analysis/alphac_category_targets_20260913/baseline/result.json",
+          "sha256": "c69819a43957aaf14fc1627c0aa47575a59cfa3f4cc871f89798e62f9256b6ec"
+        }
+      ],
+      "statement": "Known-history combined portfolio development experiment; fixed parameters, capital-budget proxy, lagged modeled DFF benchmark, unresolved internal financing and limitations. No untouched validation, independent replication, capacity or admission.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "economic_mechanism_and_falsifiable_hypothesis": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/alphac_category_targets_20260913/baseline/REPORT.md",
+          "sha256": "e11a3a45159c3b2dc122cb7a0eb65c1d55ec3abf9fe25af8ea44adad6654c31c"
+        },
+        {
+          "path": "artifacts/analysis/alphac_category_targets_20260913/baseline/daily.csv",
+          "sha256": "93b04c913f87c6175b4f9aa10592da4b2028481294cf4cbed56506db926da320"
+        },
+        {
+          "path": "artifacts/analysis/alphac_category_targets_20260913/baseline/experiments.jsonl",
+          "sha256": "2da70e2e05848197cfeb4cc88f12757934813715cbdc61953529ca0f35ab5e28"
+        },
+        {
+          "path": "artifacts/analysis/alphac_category_targets_20260913/baseline/preregistration.json",
+          "sha256": "4e381ddc1bffc1493b57859facb60529f319cb990741e900f853d061bd996ede"
+        },
+        {
+          "path": "artifacts/analysis/alphac_category_targets_20260913/baseline/replay_parity.json",
+          "sha256": "44ee3732fc71856835ffce7741fb18a0d9f91c804e085f29ac231cbac820c73d"
+        },
+        {
+          "path": "artifacts/analysis/alphac_category_targets_20260913/baseline/reservation.json",
+          "sha256": "ab3f7e6eb9bc2f7fddddf535fe70a23c6e57890ed95af0e0a367c8778e91bbaa"
+        },
+        {
+          "path": "artifacts/analysis/alphac_category_targets_20260913/baseline/reservation_validation.json",
+          "sha256": "f6d0602f75329688f7ebefa76c7ce4d92b77b860a3dd19d9be02af83090f3681"
+        },
+        {
+          "path": "artifacts/analysis/alphac_category_targets_20260913/baseline/result.json",
+          "sha256": "c69819a43957aaf14fc1627c0aa47575a59cfa3f4cc871f89798e62f9256b6ec"
+        }
+      ],
+      "statement": "Known-history combined portfolio development experiment; fixed parameters, capital-budget proxy, lagged modeled DFF benchmark, unresolved internal financing and limitations. No untouched validation, independent replication, capacity or admission.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "execution_and_cost_model": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/alphac_category_targets_20260913/baseline/REPORT.md",
+          "sha256": "e11a3a45159c3b2dc122cb7a0eb65c1d55ec3abf9fe25af8ea44adad6654c31c"
+        },
+        {
+          "path": "artifacts/analysis/alphac_category_targets_20260913/baseline/daily.csv",
+          "sha256": "93b04c913f87c6175b4f9aa10592da4b2028481294cf4cbed56506db926da320"
+        },
+        {
+          "path": "artifacts/analysis/alphac_category_targets_20260913/baseline/experiments.jsonl",
+          "sha256": "2da70e2e05848197cfeb4cc88f12757934813715cbdc61953529ca0f35ab5e28"
+        },
+        {
+          "path": "artifacts/analysis/alphac_category_targets_20260913/baseline/preregistration.json",
+          "sha256": "4e381ddc1bffc1493b57859facb60529f319cb990741e900f853d061bd996ede"
+        },
+        {
+          "path": "artifacts/analysis/alphac_category_targets_20260913/baseline/replay_parity.json",
+          "sha256": "44ee3732fc71856835ffce7741fb18a0d9f91c804e085f29ac231cbac820c73d"
+        },
+        {
+          "path": "artifacts/analysis/alphac_category_targets_20260913/baseline/reservation.json",
+          "sha256": "ab3f7e6eb9bc2f7fddddf535fe70a23c6e57890ed95af0e0a367c8778e91bbaa"
+        },
+        {
+          "path": "artifacts/analysis/alphac_category_targets_20260913/baseline/reservation_validation.json",
+          "sha256": "f6d0602f75329688f7ebefa76c7ce4d92b77b860a3dd19d9be02af83090f3681"
+        },
+        {
+          "path": "artifacts/analysis/alphac_category_targets_20260913/baseline/result.json",
+          "sha256": "c69819a43957aaf14fc1627c0aa47575a59cfa3f4cc871f89798e62f9256b6ec"
+        }
+      ],
+      "statement": "Known-history combined portfolio development experiment; fixed parameters, capital-budget proxy, lagged modeled DFF benchmark, unresolved internal financing and limitations. No untouched validation, independent replication, capacity or admission.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "family_and_union_trial_accounting": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/alphac_category_targets_20260913/baseline/REPORT.md",
+          "sha256": "e11a3a45159c3b2dc122cb7a0eb65c1d55ec3abf9fe25af8ea44adad6654c31c"
+        },
+        {
+          "path": "artifacts/analysis/alphac_category_targets_20260913/baseline/daily.csv",
+          "sha256": "93b04c913f87c6175b4f9aa10592da4b2028481294cf4cbed56506db926da320"
+        },
+        {
+          "path": "artifacts/analysis/alphac_category_targets_20260913/baseline/experiments.jsonl",
+          "sha256": "2da70e2e05848197cfeb4cc88f12757934813715cbdc61953529ca0f35ab5e28"
+        },
+        {
+          "path": "artifacts/analysis/alphac_category_targets_20260913/baseline/preregistration.json",
+          "sha256": "4e381ddc1bffc1493b57859facb60529f319cb990741e900f853d061bd996ede"
+        },
+        {
+          "path": "artifacts/analysis/alphac_category_targets_20260913/baseline/replay_parity.json",
+          "sha256": "44ee3732fc71856835ffce7741fb18a0d9f91c804e085f29ac231cbac820c73d"
+        },
+        {
+          "path": "artifacts/analysis/alphac_category_targets_20260913/baseline/reservation.json",
+          "sha256": "ab3f7e6eb9bc2f7fddddf535fe70a23c6e57890ed95af0e0a367c8778e91bbaa"
+        },
+        {
+          "path": "artifacts/analysis/alphac_category_targets_20260913/baseline/reservation_validation.json",
+          "sha256": "f6d0602f75329688f7ebefa76c7ce4d92b77b860a3dd19d9be02af83090f3681"
+        },
+        {
+          "path": "artifacts/analysis/alphac_category_targets_20260913/baseline/result.json",
+          "sha256": "c69819a43957aaf14fc1627c0aa47575a59cfa3f4cc871f89798e62f9256b6ec"
+        }
+      ],
+      "statement": "Known-history combined portfolio development experiment; fixed parameters, capital-budget proxy, lagged modeled DFF benchmark, unresolved internal financing and limitations. No untouched validation, independent replication, capacity or admission.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "identity_and_authorship": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/alphac_category_targets_20260913/baseline/REPORT.md",
+          "sha256": "e11a3a45159c3b2dc122cb7a0eb65c1d55ec3abf9fe25af8ea44adad6654c31c"
+        },
+        {
+          "path": "artifacts/analysis/alphac_category_targets_20260913/baseline/daily.csv",
+          "sha256": "93b04c913f87c6175b4f9aa10592da4b2028481294cf4cbed56506db926da320"
+        },
+        {
+          "path": "artifacts/analysis/alphac_category_targets_20260913/baseline/experiments.jsonl",
+          "sha256": "2da70e2e05848197cfeb4cc88f12757934813715cbdc61953529ca0f35ab5e28"
+        },
+        {
+          "path": "artifacts/analysis/alphac_category_targets_20260913/baseline/preregistration.json",
+          "sha256": "4e381ddc1bffc1493b57859facb60529f319cb990741e900f853d061bd996ede"
+        },
+        {
+          "path": "artifacts/analysis/alphac_category_targets_20260913/baseline/replay_parity.json",
+          "sha256": "44ee3732fc71856835ffce7741fb18a0d9f91c804e085f29ac231cbac820c73d"
+        },
+        {
+          "path": "artifacts/analysis/alphac_category_targets_20260913/baseline/reservation.json",
+          "sha256": "ab3f7e6eb9bc2f7fddddf535fe70a23c6e57890ed95af0e0a367c8778e91bbaa"
+        },
+        {
+          "path": "artifacts/analysis/alphac_category_targets_20260913/baseline/reservation_validation.json",
+          "sha256": "f6d0602f75329688f7ebefa76c7ce4d92b77b860a3dd19d9be02af83090f3681"
+        },
+        {
+          "path": "artifacts/analysis/alphac_category_targets_20260913/baseline/result.json",
+          "sha256": "c69819a43957aaf14fc1627c0aa47575a59cfa3f4cc871f89798e62f9256b6ec"
+        }
+      ],
+      "statement": "Known-history combined portfolio development experiment; fixed parameters, capital-budget proxy, lagged modeled DFF benchmark, unresolved internal financing and limitations. No untouched validation, independent replication, capacity or admission.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "literature_and_overlap_decision": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/alphac_category_targets_20260913/baseline/REPORT.md",
+          "sha256": "e11a3a45159c3b2dc122cb7a0eb65c1d55ec3abf9fe25af8ea44adad6654c31c"
+        },
+        {
+          "path": "artifacts/analysis/alphac_category_targets_20260913/baseline/daily.csv",
+          "sha256": "93b04c913f87c6175b4f9aa10592da4b2028481294cf4cbed56506db926da320"
+        },
+        {
+          "path": "artifacts/analysis/alphac_category_targets_20260913/baseline/experiments.jsonl",
+          "sha256": "2da70e2e05848197cfeb4cc88f12757934813715cbdc61953529ca0f35ab5e28"
+        },
+        {
+          "path": "artifacts/analysis/alphac_category_targets_20260913/baseline/preregistration.json",
+          "sha256": "4e381ddc1bffc1493b57859facb60529f319cb990741e900f853d061bd996ede"
+        },
+        {
+          "path": "artifacts/analysis/alphac_category_targets_20260913/baseline/replay_parity.json",
+          "sha256": "44ee3732fc71856835ffce7741fb18a0d9f91c804e085f29ac231cbac820c73d"
+        },
+        {
+          "path": "artifacts/analysis/alphac_category_targets_20260913/baseline/reservation.json",
+          "sha256": "ab3f7e6eb9bc2f7fddddf535fe70a23c6e57890ed95af0e0a367c8778e91bbaa"
+        },
+        {
+          "path": "artifacts/analysis/alphac_category_targets_20260913/baseline/reservation_validation.json",
+          "sha256": "f6d0602f75329688f7ebefa76c7ce4d92b77b860a3dd19d9be02af83090f3681"
+        },
+        {
+          "path": "artifacts/analysis/alphac_category_targets_20260913/baseline/result.json",
+          "sha256": "c69819a43957aaf14fc1627c0aa47575a59cfa3f4cc871f89798e62f9256b6ec"
+        }
+      ],
+      "statement": "Known-history combined portfolio development experiment; fixed parameters, capital-budget proxy, lagged modeled DFF benchmark, unresolved internal financing and limitations. No untouched validation, independent replication, capacity or admission.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "machine_readable_packet_and_stable_public_paper": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/alphac_category_targets_20260913/baseline/REPORT.md",
+          "sha256": "e11a3a45159c3b2dc122cb7a0eb65c1d55ec3abf9fe25af8ea44adad6654c31c"
+        },
+        {
+          "path": "artifacts/analysis/alphac_category_targets_20260913/baseline/daily.csv",
+          "sha256": "93b04c913f87c6175b4f9aa10592da4b2028481294cf4cbed56506db926da320"
+        },
+        {
+          "path": "artifacts/analysis/alphac_category_targets_20260913/baseline/experiments.jsonl",
+          "sha256": "2da70e2e05848197cfeb4cc88f12757934813715cbdc61953529ca0f35ab5e28"
+        },
+        {
+          "path": "artifacts/analysis/alphac_category_targets_20260913/baseline/preregistration.json",
+          "sha256": "4e381ddc1bffc1493b57859facb60529f319cb990741e900f853d061bd996ede"
+        },
+        {
+          "path": "artifacts/analysis/alphac_category_targets_20260913/baseline/replay_parity.json",
+          "sha256": "44ee3732fc71856835ffce7741fb18a0d9f91c804e085f29ac231cbac820c73d"
+        },
+        {
+          "path": "artifacts/analysis/alphac_category_targets_20260913/baseline/reservation.json",
+          "sha256": "ab3f7e6eb9bc2f7fddddf535fe70a23c6e57890ed95af0e0a367c8778e91bbaa"
+        },
+        {
+          "path": "artifacts/analysis/alphac_category_targets_20260913/baseline/reservation_validation.json",
+          "sha256": "f6d0602f75329688f7ebefa76c7ce4d92b77b860a3dd19d9be02af83090f3681"
+        },
+        {
+          "path": "artifacts/analysis/alphac_category_targets_20260913/baseline/result.json",
+          "sha256": "c69819a43957aaf14fc1627c0aa47575a59cfa3f4cc871f89798e62f9256b6ec"
+        }
+      ],
+      "statement": "Known-history combined portfolio development experiment; fixed parameters, capital-budget proxy, lagged modeled DFF benchmark, unresolved internal financing and limitations. No untouched validation, independent replication, capacity or admission.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "point_in_time_data_and_survivorship_controls": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/alphac_category_targets_20260913/baseline/REPORT.md",
+          "sha256": "e11a3a45159c3b2dc122cb7a0eb65c1d55ec3abf9fe25af8ea44adad6654c31c"
+        },
+        {
+          "path": "artifacts/analysis/alphac_category_targets_20260913/baseline/daily.csv",
+          "sha256": "93b04c913f87c6175b4f9aa10592da4b2028481294cf4cbed56506db926da320"
+        },
+        {
+          "path": "artifacts/analysis/alphac_category_targets_20260913/baseline/experiments.jsonl",
+          "sha256": "2da70e2e05848197cfeb4cc88f12757934813715cbdc61953529ca0f35ab5e28"
+        },
+        {
+          "path": "artifacts/analysis/alphac_category_targets_20260913/baseline/preregistration.json",
+          "sha256": "4e381ddc1bffc1493b57859facb60529f319cb990741e900f853d061bd996ede"
+        },
+        {
+          "path": "artifacts/analysis/alphac_category_targets_20260913/baseline/replay_parity.json",
+          "sha256": "44ee3732fc71856835ffce7741fb18a0d9f91c804e085f29ac231cbac820c73d"
+        },
+        {
+          "path": "artifacts/analysis/alphac_category_targets_20260913/baseline/reservation.json",
+          "sha256": "ab3f7e6eb9bc2f7fddddf535fe70a23c6e57890ed95af0e0a367c8778e91bbaa"
+        },
+        {
+          "path": "artifacts/analysis/alphac_category_targets_20260913/baseline/reservation_validation.json",
+          "sha256": "f6d0602f75329688f7ebefa76c7ce4d92b77b860a3dd19d9be02af83090f3681"
+        },
+        {
+          "path": "artifacts/analysis/alphac_category_targets_20260913/baseline/result.json",
+          "sha256": "c69819a43957aaf14fc1627c0aa47575a59cfa3f4cc871f89798e62f9256b6ec"
+        }
+      ],
+      "statement": "Known-history combined portfolio development experiment; fixed parameters, capital-budget proxy, lagged modeled DFF benchmark, unresolved internal financing and limitations. No untouched validation, independent replication, capacity or admission.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "preregistration_and_hashes": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/alphac_category_targets_20260913/baseline/REPORT.md",
+          "sha256": "e11a3a45159c3b2dc122cb7a0eb65c1d55ec3abf9fe25af8ea44adad6654c31c"
+        },
+        {
+          "path": "artifacts/analysis/alphac_category_targets_20260913/baseline/daily.csv",
+          "sha256": "93b04c913f87c6175b4f9aa10592da4b2028481294cf4cbed56506db926da320"
+        },
+        {
+          "path": "artifacts/analysis/alphac_category_targets_20260913/baseline/experiments.jsonl",
+          "sha256": "2da70e2e05848197cfeb4cc88f12757934813715cbdc61953529ca0f35ab5e28"
+        },
+        {
+          "path": "artifacts/analysis/alphac_category_targets_20260913/baseline/preregistration.json",
+          "sha256": "4e381ddc1bffc1493b57859facb60529f319cb990741e900f853d061bd996ede"
+        },
+        {
+          "path": "artifacts/analysis/alphac_category_targets_20260913/baseline/replay_parity.json",
+          "sha256": "44ee3732fc71856835ffce7741fb18a0d9f91c804e085f29ac231cbac820c73d"
+        },
+        {
+          "path": "artifacts/analysis/alphac_category_targets_20260913/baseline/reservation.json",
+          "sha256": "ab3f7e6eb9bc2f7fddddf535fe70a23c6e57890ed95af0e0a367c8778e91bbaa"
+        },
+        {
+          "path": "artifacts/analysis/alphac_category_targets_20260913/baseline/reservation_validation.json",
+          "sha256": "f6d0602f75329688f7ebefa76c7ce4d92b77b860a3dd19d9be02af83090f3681"
+        },
+        {
+          "path": "artifacts/analysis/alphac_category_targets_20260913/baseline/result.json",
+          "sha256": "c69819a43957aaf14fc1627c0aa47575a59cfa3f4cc871f89798e62f9256b6ec"
+        }
+      ],
+      "statement": "Known-history combined portfolio development experiment; fixed parameters, capital-budget proxy, lagged modeled DFF benchmark, unresolved internal financing and limitations. No untouched validation, independent replication, capacity or admission.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "result_uncertainty_stress_capacity_and_diversification": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/alphac_category_targets_20260913/baseline/REPORT.md",
+          "sha256": "e11a3a45159c3b2dc122cb7a0eb65c1d55ec3abf9fe25af8ea44adad6654c31c"
+        },
+        {
+          "path": "artifacts/analysis/alphac_category_targets_20260913/baseline/daily.csv",
+          "sha256": "93b04c913f87c6175b4f9aa10592da4b2028481294cf4cbed56506db926da320"
+        },
+        {
+          "path": "artifacts/analysis/alphac_category_targets_20260913/baseline/experiments.jsonl",
+          "sha256": "2da70e2e05848197cfeb4cc88f12757934813715cbdc61953529ca0f35ab5e28"
+        },
+        {
+          "path": "artifacts/analysis/alphac_category_targets_20260913/baseline/preregistration.json",
+          "sha256": "4e381ddc1bffc1493b57859facb60529f319cb990741e900f853d061bd996ede"
+        },
+        {
+          "path": "artifacts/analysis/alphac_category_targets_20260913/baseline/replay_parity.json",
+          "sha256": "44ee3732fc71856835ffce7741fb18a0d9f91c804e085f29ac231cbac820c73d"
+        },
+        {
+          "path": "artifacts/analysis/alphac_category_targets_20260913/baseline/reservation.json",
+          "sha256": "ab3f7e6eb9bc2f7fddddf535fe70a23c6e57890ed95af0e0a367c8778e91bbaa"
+        },
+        {
+          "path": "artifacts/analysis/alphac_category_targets_20260913/baseline/reservation_validation.json",
+          "sha256": "f6d0602f75329688f7ebefa76c7ce4d92b77b860a3dd19d9be02af83090f3681"
+        },
+        {
+          "path": "artifacts/analysis/alphac_category_targets_20260913/baseline/result.json",
+          "sha256": "c69819a43957aaf14fc1627c0aa47575a59cfa3f4cc871f89798e62f9256b6ec"
+        }
+      ],
+      "statement": "Known-history combined portfolio development experiment; fixed parameters, capital-budget proxy, lagged modeled DFF benchmark, unresolved internal financing and limitations. No untouched validation, independent replication, capacity or admission.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    }
+  },
+  "research_family_key": "managed_futures_trend",
+  "schema": "canli.alphac-identity-trial-packet.v2"
+}

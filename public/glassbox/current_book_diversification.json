@@ -235,14 +235,22 @@
   "claim_boundary": "Retrospective diversification measurement of the exact current four-sleeve research specification and strategic overlay. It does not establish live-forward correlation, alpha, the 1.5 Sharpe objective, a reweighting decision, or retroactive admission. The return data were known before this protocol and the research window ends before the broker-reconciled forward record begins.",
   "configuration": {
     "aggregation": {
-      "book_level_drawdown_ladder": null,
+      "book_level_drawdown_ladder": {
+        "activated_on": "2026-09-15",
+        "applied_by": "every sleeve multiplies its target gross by the published book multiplier",
+        "dd_flat_frac": 0.1,
+        "dd_half_frac": 0.05,
+        "flat_state": "ABSORBING_UNTIL_OWNER_REARM",
+        "release_frac_of_half": 0.75,
+        "source": "config/drawdown_control_contract.json"
+      },
       "book_level_vol_target_ann": null,
-      "claim_boundary": "Constituent strategies own their internal sizing. ALPHAC combines their realized returns at the committed fixed-weight schedule and adds the separately disclosed strategic overlay. It does not apply a second book-level volatility target or drawdown ladder.",
+      "claim_boundary": "Constituent strategies own their internal sizing. ALPHAC combines their realized returns at the committed fixed-weight schedule and adds the separately disclosed strategic overlay. It applies no second book-level volatility target. It does apply the declared book-level drawdown ladder (half gross at 5.0% below the high-water mark, flat at 10.0%, absorbing until an owner rearm), which every sleeve reads before sizing.",
       "missing_mark_policy": "ZERO_CONTRIBUTION_ON_MISSING_DAILY_SLEEVE_MARK",
       "scheme": "fixed",
       "strategic_overlay_is_book_vol_scaled": false
     },
-    "live_fingerprint": "sha256:fe82c4eeed742289bfcfee5d39856ee2bb8ca9cfe209bcc7e34abff98553706d",
+    "live_fingerprint": "sha256:553aff517efdc069c2ee80747ef9a9d750da817ceeab8dbc344cae050b814e09",
     "sleeves": [
       "alphavintage_live",
       "crypto_carry_wk",
@@ -261,7 +269,7 @@
       "managed_futures": 0.25
     }
   },
-  "content_hash": "sha256:53750ccd855a98be49e3c7537e7847db832aa86bb6f968b1e8ed68c9d265a2e5",
+  "content_hash": "sha256:30fbfefc8bbe85f1e63c80f30160403999c8a76f02dd36d0c86e903214429b22",
   "failed_establishment_dimensions": [
     "RESEARCH_CURVES_END_BEFORE_BROKER_RECONCILED_FORWARD_RECORD",
     "RETURN_DATA_WERE_KNOWN_BEFORE_PROTOCOL",
@@ -272,7 +280,8 @@
     "active_v7_book_average_correlation_delta_gate_exclusive": 0.0,
     "active_v7_candidate_average_correlation_gate": 0.0,
     "active_v7_has_no_global_average_correlation_point_gate": true,
-    "average_pairwise_correlation_objective": -0.03,
+    "average_pairwise_correlation_objective": -0.05116116239316238,
+    "average_pairwise_correlation_objective_note": "An objective, not a gate: the average pairwise correlation at which 14 sleeves of the quality the sealed contract measured reach 3 in-sample, which is forward 2 on the optimistic end of the measured haircut. Derived by inverting the published identity; the PSD floor at this sleeve count is -0.0769.",
     "average_pairwise_correlation_upper_95_gate": 0.1,
     "average_pairwise_upper_95": 0.04870778381377487,
     "checks": {
@@ -283,7 +292,7 @@
       "stressed_pairwise_design": true
     },
     "current_sleeves": 4,
-    "distance_from_average_correlation_objective": 0.05482741429360785,
+    "distance_from_average_correlation_objective": 0.07598857668677024,
     "existing_sleeves_are_not_retroactively_adjudicated": true,
     "historical_v6_global_average_correlation_point_check": false,
     "historical_v6_global_average_correlation_point_gate": 0.0,
@@ -291,11 +300,19 @@
     "maximum_pairwise_upper_95": 0.3025187934584474,
     "meets_active_correlation_objective": false,
     "minimum_new_sleeves": 10,
+    "objective_in_force_from": "2026-09-14",
+    "objective_source": "config/owner_goals.json",
     "ordinary_pairwise_correlation_point_gate": 0.35,
     "ordinary_pairwise_correlation_upper_95_gate": 0.35,
     "passes_all_active_v7_risk_comparisons": true,
     "stressed_pairwise_correlation_gate": 0.5,
     "stressed_pairwise_design_value_not_observed": 0.5,
+    "superseded_admission_contract_objective": {
+      "average_pairwise_correlation_objective": -0.03,
+      "minimum_new_sleeves": 10,
+      "superseded_on": "2026-09-14",
+      "target_total_sleeves": 14
+    },
     "target_total_sleeves": 14
   },
   "observed": {
@@ -329,27 +346,27 @@
     "diversification_ratio_sleeves_only": 1.8153132626773805,
     "effective_independent_sleeves_participation_ratio": 3.8988014966039604,
     "exact_component_reconstruction_max_abs_error": 0.0,
-    "full_book_sharpe_research_simulation_not_forward_evidence": 1.7846281669176056,
+    "full_book_sharpe_research_simulation_not_forward_evidence": 1.7846280932113476,
     "marginal_book_sharpe_research_diagnostics": {
       "alphavintage_live": {
-        "book_sharpe_with_sleeve": 1.7846281669176056,
-        "book_sharpe_with_sleeve_replaced_by_cash": 1.7908857604795474,
-        "marginal_book_sharpe_delta": -0.006257593561941777
+        "book_sharpe_with_sleeve": 1.7846280932113476,
+        "book_sharpe_with_sleeve_replaced_by_cash": 1.7908856987600663,
+        "marginal_book_sharpe_delta": -0.006257605548718681
       },
       "crypto_carry_wk": {
-        "book_sharpe_with_sleeve": 1.7846281669176056,
-        "book_sharpe_with_sleeve_replaced_by_cash": 1.252034546324405,
-        "marginal_book_sharpe_delta": 0.5325936205932007
+        "book_sharpe_with_sleeve": 1.7846280932113476,
+        "book_sharpe_with_sleeve_replaced_by_cash": 1.2520344519823685,
+        "marginal_book_sharpe_delta": 0.5325936412289791
       },
       "k30_dn_63": {
-        "book_sharpe_with_sleeve": 1.7846281669176056,
-        "book_sharpe_with_sleeve_replaced_by_cash": 1.6377956654461165,
-        "marginal_book_sharpe_delta": 0.14683250147148907
+        "book_sharpe_with_sleeve": 1.7846280932113476,
+        "book_sharpe_with_sleeve_replaced_by_cash": 1.637795624376064,
+        "marginal_book_sharpe_delta": 0.14683246883528356
       },
       "managed_futures": {
-        "book_sharpe_with_sleeve": 1.7846281669176056,
-        "book_sharpe_with_sleeve_replaced_by_cash": 1.875466015776462,
-        "marginal_book_sharpe_delta": -0.09083784885885637
+        "book_sharpe_with_sleeve": 1.7846280932113476,
+        "book_sharpe_with_sleeve_replaced_by_cash": 1.8754659368350433,
+        "marginal_book_sharpe_delta": -0.09083784362369562
       }
     },
     "maximum_pairwise_correlation": 0.20975189522943685,
@@ -409,13 +426,13 @@
       "sha256": "f63f2bc83ddf739f7e91c0ba8b2cd095984f26148461b56ddbb7a69c8ccd9c07"
     },
     "current_book_drawdown": {
-      "content_hash": "sha256:f89282b8754ad257a5bce3d603ab5b7e940abe67f0cb9f0dc8f6d57ba89b0e71",
+      "content_hash": "sha256:a01d6f0860c1a0c94789c378d02a8f652f30b22ae4b85a0d4d5340f13c8f3718",
       "path": "artifacts/analysis/current_book_drawdown/result.json",
-      "sha256": "44d8fb315eeb21f033b4070c19d17faea9dd0e4e52a8b9b9036a7d7818313e3d"
+      "sha256": "bb9a5642699202686fae42fd8a9dd95922f1e376caa2c9a9497c13499081b763"
     },
     "drawdown_implementation": {
       "path": "scripts/analyze_current_book_drawdown.py",
-      "sha256": "24d93be7cb2a6d6c1a64a7e219b4c1bc5c7d00b6d48ec2123ef0068ee6cd526e"
+      "sha256": "e13078ee8dfc4cddff57a5c381905f63fe6afdccefb0dd8f700af1c70817e902"
     },
     "legacy_v6_admission_contract": {
       "path": "config/archive/sleeve_admission_contract_v6_superseded.json",
@@ -423,7 +440,7 @@
     },
     "live_contract": {
       "path": "config/live_change_contract.json",
-      "sha256": "5b7fa2e700cf29d3e4ef38eff2d745fe0dcec234133da899fd291e8b92c709fe"
+      "sha256": "4e16b8a02d6907667dc161c84c21876b58c7644225fe84e7884c29e04947fff4"
     },
     "market_factor_implementation": {
       "path": "src/alphaforge/portfolio/market_factor.py",
@@ -431,11 +448,11 @@
     },
     "market_factor_source_corpus": {
       "files": 33,
-      "manifest_sha256": "5315fa1d24a21b5656d9296fbc54ecb3e82f7a4c19ff9c38f7a92189656ba850"
+      "manifest_sha256": "d2c0e47d877ed83500b8b5b19497f90408d7bdd936fcb2a8f1c5e7e58aec2238"
     },
     "paper_state_builder": {
       "path": "scripts/paper_trading_state.py",
-      "sha256": "82555044f3b93acc32110863d00a4cba799171fdf6e2f4e7cba1b3c801f2020f"
+      "sha256": "c805a9b13d68cb39a49e8c204be8e700745feab89a1a4e5b019928dbee730e29"
     },
     "protocol": {
       "path": "docs/design/CURRENT_BOOK_DIVERSIFICATION_STUDY_PROTOCOL.md",
@@ -449,7 +466,7 @@
     },
     "study_implementation": {
       "path": "scripts/analyze_current_book_diversification.py",
-      "sha256": "8309f592bfca5c1c011d60013bc0a65bdd4fb6bf83f26347c817151fb71aa6f2"
+      "sha256": "b1beabaf02f16577bef8b4e9400592bc5a5354722093b706c29782ba7eb28563"
     }
   },
   "status": "CURRENT_COMPOSITION_DIVERSIFICATION_OBJECTIVE_GAP_RESEARCH_ONLY",

@@ -1,0 +1,1005 @@
+{
+  "claim_boundary": "Continuous22500capital crypto normal-cost retrospective diagnostic; one physical ledger and19model switches verified. No combined result or sleeve qualification. Recorded fill prices/fees/marks and modeled data/metadata/funding/DFF/USDT assumptions remain. Stress and otherfundedsubaccounts outstanding;15distinctqualifiedsleeves andcombined>2excessSharpe not established.",
+  "complete": true,
+  "completion_assessment": {
+    "candidate_evidence_complete_for_admission": false,
+    "disposition": "NORMAL_ACCOUNTING_VALID_STRESS_NEXT",
+    "packet_evidence_accounting_complete": true
+  },
+  "config_hash": "1b45dce57d687394",
+  "configuration": {
+    "allocator": "rank",
+    "alpha_names": [
+      "carry_fund_21"
+    ],
+    "end": 1780358400000,
+    "instrument_ids": [
+      "BINANCE:PERP:1000PEPEUSDT",
+      "BINANCE:PERP:1000SHIBUSDT",
+      "BINANCE:PERP:AAVEUSDT",
+      "BINANCE:PERP:ADAUSDT",
+      "BINANCE:PERP:APEUSDT",
+      "BINANCE:PERP:APTUSDT",
+      "BINANCE:PERP:ARBUSDT",
+      "BINANCE:PERP:ATOMUSDT",
+      "BINANCE:PERP:AVAXUSDT",
+      "BINANCE:PERP:AXSUSDT",
+      "BINANCE:PERP:BCHUSDT",
+      "BINANCE:PERP:BLZUSDT",
+      "BINANCE:PERP:BNBUSDT",
+      "BINANCE:PERP:BTCUSDT",
+      "BINANCE:PERP:CHZUSDT",
+      "BINANCE:PERP:COMPUSDT",
+      "BINANCE:PERP:DOGEUSDT",
+      "BINANCE:PERP:DOTUSDT",
+      "BINANCE:PERP:EOSUSDT",
+      "BINANCE:PERP:ETCUSDT",
+      "BINANCE:PERP:ETHUSDT",
+      "BINANCE:PERP:FILUSDT",
+      "BINANCE:PERP:FTMUSDT",
+      "BINANCE:PERP:GALAUSDT",
+      "BINANCE:PERP:INJUSDT",
+      "BINANCE:PERP:LINAUSDT",
+      "BINANCE:PERP:LINKUSDT",
+      "BINANCE:PERP:LTCUSDT",
+      "BINANCE:PERP:LUNAUSDT",
+      "BINANCE:PERP:MANAUSDT",
+      "BINANCE:PERP:MATICUSDT",
+      "BINANCE:PERP:MKRUSDT",
+      "BINANCE:PERP:NEARUSDT",
+      "BINANCE:PERP:OPUSDT",
+      "BINANCE:PERP:REEFUSDT",
+      "BINANCE:PERP:RNDRUSDT",
+      "BINANCE:PERP:RUNEUSDT",
+      "BINANCE:PERP:SANDUSDT",
+      "BINANCE:PERP:SEIUSDT",
+      "BINANCE:PERP:SOLUSDT",
+      "BINANCE:PERP:SUIUSDT",
+      "BINANCE:PERP:SUSHIUSDT",
+      "BINANCE:PERP:SXPUSDT",
+      "BINANCE:PERP:TIAUSDT",
+      "BINANCE:PERP:TOMOUSDT",
+      "BINANCE:PERP:TRXUSDT",
+      "BINANCE:PERP:UNIUSDT",
+      "BINANCE:PERP:WAVESUSDT",
+      "BINANCE:PERP:WLDUSDT",
+      "BINANCE:PERP:XLMUSDT",
+      "BINANCE:PERP:XRPUSDT"
+    ],
+    "no_trade_band": 0.001,
+    "rebalance_bars": 168,
+    "research_engine": {
+      "capital_inception": 1672531200000,
+      "carry_terminal_eligibility": true,
+      "continuous_accounting": {
+        "boundary_orders": "Old interval final decision orders execute at their next eligible open across boundary. Only terminal horizon leaves last orders unfilled. No reset-to-cash, fabricated liquidation or externally injected cash.",
+        "durability": "One physical run saved in durable_legs/000; run_meta stores20model schedule intervals and19position/equity transition observations. Not20independent physical legs.",
+        "failure_policy": "Accounting validity determines progression, not performance direction; after valid normal replay, stress must use identical continuous policy. No parameter tuning.",
+        "physical_engine_runs": 1,
+        "physical_ledger_instances": 1,
+        "predecessor": "Initial22500deposit atJan1; no pre-inception trading, same29952hour testgrid asfailed341.",
+        "retained_state": "Positions, cash, costs, funding pointers, pending orders, terminal eligibility and risk state persist in one engine.",
+        "signal_intervals": 20,
+        "switch_timing": "First close of each test interval, matching legacy first decision timing; preserve a single BlendStrategy and load_leg rebalance-clock reset."
+      },
+      "funded_policy_sha256": "12fd96b42ad4bd815c67693bb2cefcb0dd53d3a0ebadd825b1825b18981dd088",
+      "initial_cash": 22500,
+      "input_manifest_sha256": "53887de58cd691775e74535e0bf1c5661e3819034535efe726ff837909fad728",
+      "metadata_mode": "MODELED_HISTORICAL_APPLICABILITY_NOT_OBSERVED_PIT",
+      "scenario": {
+        "data": "repaired_snapshot",
+        "execution_cost_multiplier": 1,
+        "fee_fraction": 0.0005,
+        "funding_mark": "interval_open_proxy",
+        "id": "baseline",
+        "price": "0.006944333333333333333333333333",
+        "terminal": true,
+        "terminal_basis": "modeled",
+        "terminal_instrument": "BINANCE:PERP:LUNAUSDT",
+        "terminal_ts": 1652369400000
+      },
+      "terminal_event_source_sha256": "d246a5811caecb823238d863d98f6968d6acf83ef4ed6ddc76fba3e96a299904",
+      "timing_mode": "Research bar-close availability; source-session equity alignment required; historical corporate-action and borrow limits retained"
+    },
+    "start": 1650672000000,
+    "test_bars": 1512,
+    "train_bars": 6048
+  },
+  "content_hash": "sha256:22add8628738c68c51bafdd034a89ef13af89224c69e7d1cf0395b4dee47c2d0",
+  "hypothesis_key": "bda8570351dd27b2",
+  "immutable_first_measurement": {
+    "config": {
+      "allocator": "rank",
+      "alpha_names": [
+        "carry_fund_21"
+      ],
+      "end": 1780358400000,
+      "instrument_ids": [
+        "BINANCE:PERP:1000PEPEUSDT",
+        "BINANCE:PERP:1000SHIBUSDT",
+        "BINANCE:PERP:AAVEUSDT",
+        "BINANCE:PERP:ADAUSDT",
+        "BINANCE:PERP:APEUSDT",
+        "BINANCE:PERP:APTUSDT",
+        "BINANCE:PERP:ARBUSDT",
+        "BINANCE:PERP:ATOMUSDT",
+        "BINANCE:PERP:AVAXUSDT",
+        "BINANCE:PERP:AXSUSDT",
+        "BINANCE:PERP:BCHUSDT",
+        "BINANCE:PERP:BLZUSDT",
+        "BINANCE:PERP:BNBUSDT",
+        "BINANCE:PERP:BTCUSDT",
+        "BINANCE:PERP:CHZUSDT",
+        "BINANCE:PERP:COMPUSDT",
+        "BINANCE:PERP:DOGEUSDT",
+        "BINANCE:PERP:DOTUSDT",
+        "BINANCE:PERP:EOSUSDT",
+        "BINANCE:PERP:ETCUSDT",
+        "BINANCE:PERP:ETHUSDT",
+        "BINANCE:PERP:FILUSDT",
+        "BINANCE:PERP:FTMUSDT",
+        "BINANCE:PERP:GALAUSDT",
+        "BINANCE:PERP:INJUSDT",
+        "BINANCE:PERP:LINAUSDT",
+        "BINANCE:PERP:LINKUSDT",
+        "BINANCE:PERP:LTCUSDT",
+        "BINANCE:PERP:LUNAUSDT",
+        "BINANCE:PERP:MANAUSDT",
+        "BINANCE:PERP:MATICUSDT",
+        "BINANCE:PERP:MKRUSDT",
+        "BINANCE:PERP:NEARUSDT",
+        "BINANCE:PERP:OPUSDT",
+        "BINANCE:PERP:REEFUSDT",
+        "BINANCE:PERP:RNDRUSDT",
+        "BINANCE:PERP:RUNEUSDT",
+        "BINANCE:PERP:SANDUSDT",
+        "BINANCE:PERP:SEIUSDT",
+        "BINANCE:PERP:SOLUSDT",
+        "BINANCE:PERP:SUIUSDT",
+        "BINANCE:PERP:SUSHIUSDT",
+        "BINANCE:PERP:SXPUSDT",
+        "BINANCE:PERP:TIAUSDT",
+        "BINANCE:PERP:TOMOUSDT",
+        "BINANCE:PERP:TRXUSDT",
+        "BINANCE:PERP:UNIUSDT",
+        "BINANCE:PERP:WAVESUSDT",
+        "BINANCE:PERP:WLDUSDT",
+        "BINANCE:PERP:XLMUSDT",
+        "BINANCE:PERP:XRPUSDT"
+      ],
+      "no_trade_band": 0.001,
+      "rebalance_bars": 168,
+      "research_engine": {
+        "capital_inception": 1672531200000,
+        "carry_terminal_eligibility": true,
+        "continuous_accounting": {
+          "boundary_orders": "Old interval final decision orders execute at their next eligible open across boundary. Only terminal horizon leaves last orders unfilled. No reset-to-cash, fabricated liquidation or externally injected cash.",
+          "durability": "One physical run saved in durable_legs/000; run_meta stores20model schedule intervals and19position/equity transition observations. Not20independent physical legs.",
+          "failure_policy": "Accounting validity determines progression, not performance direction; after valid normal replay, stress must use identical continuous policy. No parameter tuning.",
+          "physical_engine_runs": 1,
+          "physical_ledger_instances": 1,
+          "predecessor": "Initial22500deposit atJan1; no pre-inception trading, same29952hour testgrid asfailed341.",
+          "retained_state": "Positions, cash, costs, funding pointers, pending orders, terminal eligibility and risk state persist in one engine.",
+          "signal_intervals": 20,
+          "switch_timing": "First close of each test interval, matching legacy first decision timing; preserve a single BlendStrategy and load_leg rebalance-clock reset."
+        },
+        "funded_policy_sha256": "12fd96b42ad4bd815c67693bb2cefcb0dd53d3a0ebadd825b1825b18981dd088",
+        "initial_cash": 22500,
+        "input_manifest_sha256": "53887de58cd691775e74535e0bf1c5661e3819034535efe726ff837909fad728",
+        "metadata_mode": "MODELED_HISTORICAL_APPLICABILITY_NOT_OBSERVED_PIT",
+        "scenario": {
+          "data": "repaired_snapshot",
+          "execution_cost_multiplier": 1,
+          "fee_fraction": 0.0005,
+          "funding_mark": "interval_open_proxy",
+          "id": "baseline",
+          "price": "0.006944333333333333333333333333",
+          "terminal": true,
+          "terminal_basis": "modeled",
+          "terminal_instrument": "BINANCE:PERP:LUNAUSDT",
+          "terminal_ts": 1652369400000
+        },
+        "terminal_event_source_sha256": "d246a5811caecb823238d863d98f6968d6acf83ef4ed6ddc76fba3e96a299904",
+        "timing_mode": "Research bar-close availability; source-session equity alignment required; historical corporate-action and borrow limits retained"
+      },
+      "start": 1650672000000,
+      "test_bars": 1512,
+      "train_bars": 6048
+    },
+    "config_hash": "1b45dce57d687394",
+    "kurtosis": 9.223875390759162,
+    "n_obs": 1248,
+    "now_ms": 1789318362424,
+    "sharpe_ann": 1.532946929861842,
+    "sharpe_per_period": 0.08023810951509106,
+    "skew": 0.4254285213697476
+  },
+  "imported_from_external_tree": {
+    "external_content_hash": "sha256:ef1c3c769b05d262c256d308f0a5cda44b68e7153f59387ffd723766032bc3c6",
+    "imported_on": "2026-09-14T19:36:11+00:00",
+    "tree": "/Users/arhancanli/alphac-prospective-pause-20260911"
+  },
+  "missing_sections": [],
+  "packet_status": "COMPLETE_ACCOUNTING_FINAL_KILLED_NOT_ADMITTED",
+  "partial_sections": [],
+  "required_sections": {
+    "admission_or_kill_decision": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/baseline/quantity_audit.json",
+          "sha256": "92a14ae3b924719e4ff5d6eb653475920f73c055f787234b0e3fcc19aef1188c"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/baseline/calendar2023_2026_audit.json",
+          "sha256": "d5adfb9045470c929dbdf424ad284c75cc05a2438f58f9ea9de3ee9f10ebf28c"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/baseline/REPORT.md",
+          "sha256": "03ea593e8a2c41466f7273164245dd4be81e8d36e17f209b3e12bd58cd4fbf0b"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/baseline/execution_complete.json",
+          "sha256": "ab1bf279557c94c084d42e18937be715caf677cbd360fbe34ad4442cf5f0bfc9"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/baseline/experiments.jsonl",
+          "sha256": "de0c6d8e6ea40dd22550d0624aa82ee6a70fd4c77d554a9225bd70acde5f7a62"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/baseline/reservation.json",
+          "sha256": "f1c7d2a2c4767c531267140c0d532aec6cf7aed6c435f26e3fef7ea391d317ba"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/baseline/reservation_validation.json",
+          "sha256": "de4cefa7ce1cdeb896b629f84d9c537142ee5d3d3d4c49a89ca96e4c5c321f49"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/baseline/preregistration.json",
+          "sha256": "be3b347426206f8ebd1182e1ccde82e79b4a981bf69b3ebe11b8e6c8eb34d50d"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/baseline/calendar2023_2026.csv",
+          "sha256": "4b91a448bc113b6817e5ebc87a97d524d370e9649c7150cea61659d877f608bb"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/baseline/independent_audit.json",
+          "sha256": "4c5252ac42ee416b8a76fa07a499256b14ee1ac62cca250e3a220412cef459f0"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/baseline/boundary_audit.json",
+          "sha256": "e8840514b515b3fd9b16c9cfa2fdc3b1ff208bc41d21f97612a6ee2bac10d2ff"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/protocol.json",
+          "sha256": "ae84445269940dcd3f5758160b2a8df888a08b702ef870559b34fbd6566a10b3"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/input_manifest.json",
+          "sha256": "53887de58cd691775e74535e0bf1c5661e3819034535efe726ff837909fad728"
+        },
+        {
+          "path": "evidence/crypto-continuous-account-20260913/EXPERIMENT_SPEC.json",
+          "sha256": "d246a5811caecb823238d863d98f6968d6acf83ef4ed6ddc76fba3e96a299904"
+        },
+        {
+          "path": "evidence/crypto-continuous-account-20260913/test_result.txt",
+          "sha256": "0cd05b908e9989b81ec3278ca3800318abdbde5d05b34e10151233b7d9e25493"
+        },
+        {
+          "path": "scripts/continuous_crypto_runner.py",
+          "sha256": "f25e8256198b4258e9de43ad21b3eb4894974653134127d651aed48604db1b27"
+        },
+        {
+          "content_hash": "sha256:1dce5d0366f678ee2e966d58db57149f3c65d2fcb3a888d200eba38821608129",
+          "path": "artifacts/research/development_closures/bda8570351dd27b2_admission_closure.json",
+          "sha256": "dfddc7b94aaef663fdb5329dceffd96ec9e99d26513b577266666a876a2d2900",
+          "type": "final_development_admission_closure"
+        }
+      ],
+      "statement": "Continuous22500capital crypto normal-cost retrospective diagnostic; one physical ledger and19model switches verified. No combined result or sleeve qualification. Recorded fill prices/fees/marks and modeled data/metadata/funding/DFF/USDT assumptions remain. Stress and otherfundedsubaccounts outstanding;15distinctqualifiedsleeves andcombined>2excessSharpe not established.",
+      "status": "VERIFIED_FINAL_DEVELOPMENT_CLOSURE_KILL"
+    },
+    "code_environment_and_reproduction": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/baseline/quantity_audit.json",
+          "sha256": "92a14ae3b924719e4ff5d6eb653475920f73c055f787234b0e3fcc19aef1188c"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/baseline/calendar2023_2026_audit.json",
+          "sha256": "d5adfb9045470c929dbdf424ad284c75cc05a2438f58f9ea9de3ee9f10ebf28c"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/baseline/REPORT.md",
+          "sha256": "03ea593e8a2c41466f7273164245dd4be81e8d36e17f209b3e12bd58cd4fbf0b"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/baseline/execution_complete.json",
+          "sha256": "ab1bf279557c94c084d42e18937be715caf677cbd360fbe34ad4442cf5f0bfc9"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/baseline/experiments.jsonl",
+          "sha256": "de0c6d8e6ea40dd22550d0624aa82ee6a70fd4c77d554a9225bd70acde5f7a62"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/baseline/reservation.json",
+          "sha256": "f1c7d2a2c4767c531267140c0d532aec6cf7aed6c435f26e3fef7ea391d317ba"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/baseline/reservation_validation.json",
+          "sha256": "de4cefa7ce1cdeb896b629f84d9c537142ee5d3d3d4c49a89ca96e4c5c321f49"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/baseline/preregistration.json",
+          "sha256": "be3b347426206f8ebd1182e1ccde82e79b4a981bf69b3ebe11b8e6c8eb34d50d"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/baseline/calendar2023_2026.csv",
+          "sha256": "4b91a448bc113b6817e5ebc87a97d524d370e9649c7150cea61659d877f608bb"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/baseline/independent_audit.json",
+          "sha256": "4c5252ac42ee416b8a76fa07a499256b14ee1ac62cca250e3a220412cef459f0"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/baseline/boundary_audit.json",
+          "sha256": "e8840514b515b3fd9b16c9cfa2fdc3b1ff208bc41d21f97612a6ee2bac10d2ff"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/protocol.json",
+          "sha256": "ae84445269940dcd3f5758160b2a8df888a08b702ef870559b34fbd6566a10b3"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/input_manifest.json",
+          "sha256": "53887de58cd691775e74535e0bf1c5661e3819034535efe726ff837909fad728"
+        },
+        {
+          "path": "evidence/crypto-continuous-account-20260913/EXPERIMENT_SPEC.json",
+          "sha256": "d246a5811caecb823238d863d98f6968d6acf83ef4ed6ddc76fba3e96a299904"
+        },
+        {
+          "path": "evidence/crypto-continuous-account-20260913/test_result.txt",
+          "sha256": "0cd05b908e9989b81ec3278ca3800318abdbde5d05b34e10151233b7d9e25493"
+        },
+        {
+          "path": "scripts/continuous_crypto_runner.py",
+          "sha256": "f25e8256198b4258e9de43ad21b3eb4894974653134127d651aed48604db1b27"
+        }
+      ],
+      "statement": "Continuous22500capital crypto normal-cost retrospective diagnostic; one physical ledger and19model switches verified. No combined result or sleeve qualification. Recorded fill prices/fees/marks and modeled data/metadata/funding/DFF/USDT assumptions remain. Stress and otherfundedsubaccounts outstanding;15distinctqualifiedsleeves andcombined>2excessSharpe not established.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "economic_mechanism_and_falsifiable_hypothesis": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/baseline/quantity_audit.json",
+          "sha256": "92a14ae3b924719e4ff5d6eb653475920f73c055f787234b0e3fcc19aef1188c"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/baseline/calendar2023_2026_audit.json",
+          "sha256": "d5adfb9045470c929dbdf424ad284c75cc05a2438f58f9ea9de3ee9f10ebf28c"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/baseline/REPORT.md",
+          "sha256": "03ea593e8a2c41466f7273164245dd4be81e8d36e17f209b3e12bd58cd4fbf0b"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/baseline/execution_complete.json",
+          "sha256": "ab1bf279557c94c084d42e18937be715caf677cbd360fbe34ad4442cf5f0bfc9"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/baseline/experiments.jsonl",
+          "sha256": "de0c6d8e6ea40dd22550d0624aa82ee6a70fd4c77d554a9225bd70acde5f7a62"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/baseline/reservation.json",
+          "sha256": "f1c7d2a2c4767c531267140c0d532aec6cf7aed6c435f26e3fef7ea391d317ba"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/baseline/reservation_validation.json",
+          "sha256": "de4cefa7ce1cdeb896b629f84d9c537142ee5d3d3d4c49a89ca96e4c5c321f49"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/baseline/preregistration.json",
+          "sha256": "be3b347426206f8ebd1182e1ccde82e79b4a981bf69b3ebe11b8e6c8eb34d50d"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/baseline/calendar2023_2026.csv",
+          "sha256": "4b91a448bc113b6817e5ebc87a97d524d370e9649c7150cea61659d877f608bb"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/baseline/independent_audit.json",
+          "sha256": "4c5252ac42ee416b8a76fa07a499256b14ee1ac62cca250e3a220412cef459f0"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/baseline/boundary_audit.json",
+          "sha256": "e8840514b515b3fd9b16c9cfa2fdc3b1ff208bc41d21f97612a6ee2bac10d2ff"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/protocol.json",
+          "sha256": "ae84445269940dcd3f5758160b2a8df888a08b702ef870559b34fbd6566a10b3"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/input_manifest.json",
+          "sha256": "53887de58cd691775e74535e0bf1c5661e3819034535efe726ff837909fad728"
+        },
+        {
+          "path": "evidence/crypto-continuous-account-20260913/EXPERIMENT_SPEC.json",
+          "sha256": "d246a5811caecb823238d863d98f6968d6acf83ef4ed6ddc76fba3e96a299904"
+        },
+        {
+          "path": "evidence/crypto-continuous-account-20260913/test_result.txt",
+          "sha256": "0cd05b908e9989b81ec3278ca3800318abdbde5d05b34e10151233b7d9e25493"
+        },
+        {
+          "path": "scripts/continuous_crypto_runner.py",
+          "sha256": "f25e8256198b4258e9de43ad21b3eb4894974653134127d651aed48604db1b27"
+        }
+      ],
+      "statement": "Continuous22500capital crypto normal-cost retrospective diagnostic; one physical ledger and19model switches verified. No combined result or sleeve qualification. Recorded fill prices/fees/marks and modeled data/metadata/funding/DFF/USDT assumptions remain. Stress and otherfundedsubaccounts outstanding;15distinctqualifiedsleeves andcombined>2excessSharpe not established.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "execution_and_cost_model": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/baseline/quantity_audit.json",
+          "sha256": "92a14ae3b924719e4ff5d6eb653475920f73c055f787234b0e3fcc19aef1188c"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/baseline/calendar2023_2026_audit.json",
+          "sha256": "d5adfb9045470c929dbdf424ad284c75cc05a2438f58f9ea9de3ee9f10ebf28c"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/baseline/REPORT.md",
+          "sha256": "03ea593e8a2c41466f7273164245dd4be81e8d36e17f209b3e12bd58cd4fbf0b"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/baseline/execution_complete.json",
+          "sha256": "ab1bf279557c94c084d42e18937be715caf677cbd360fbe34ad4442cf5f0bfc9"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/baseline/experiments.jsonl",
+          "sha256": "de0c6d8e6ea40dd22550d0624aa82ee6a70fd4c77d554a9225bd70acde5f7a62"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/baseline/reservation.json",
+          "sha256": "f1c7d2a2c4767c531267140c0d532aec6cf7aed6c435f26e3fef7ea391d317ba"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/baseline/reservation_validation.json",
+          "sha256": "de4cefa7ce1cdeb896b629f84d9c537142ee5d3d3d4c49a89ca96e4c5c321f49"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/baseline/preregistration.json",
+          "sha256": "be3b347426206f8ebd1182e1ccde82e79b4a981bf69b3ebe11b8e6c8eb34d50d"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/baseline/calendar2023_2026.csv",
+          "sha256": "4b91a448bc113b6817e5ebc87a97d524d370e9649c7150cea61659d877f608bb"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/baseline/independent_audit.json",
+          "sha256": "4c5252ac42ee416b8a76fa07a499256b14ee1ac62cca250e3a220412cef459f0"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/baseline/boundary_audit.json",
+          "sha256": "e8840514b515b3fd9b16c9cfa2fdc3b1ff208bc41d21f97612a6ee2bac10d2ff"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/protocol.json",
+          "sha256": "ae84445269940dcd3f5758160b2a8df888a08b702ef870559b34fbd6566a10b3"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/input_manifest.json",
+          "sha256": "53887de58cd691775e74535e0bf1c5661e3819034535efe726ff837909fad728"
+        },
+        {
+          "path": "evidence/crypto-continuous-account-20260913/EXPERIMENT_SPEC.json",
+          "sha256": "d246a5811caecb823238d863d98f6968d6acf83ef4ed6ddc76fba3e96a299904"
+        },
+        {
+          "path": "evidence/crypto-continuous-account-20260913/test_result.txt",
+          "sha256": "0cd05b908e9989b81ec3278ca3800318abdbde5d05b34e10151233b7d9e25493"
+        },
+        {
+          "path": "scripts/continuous_crypto_runner.py",
+          "sha256": "f25e8256198b4258e9de43ad21b3eb4894974653134127d651aed48604db1b27"
+        }
+      ],
+      "statement": "Continuous22500capital crypto normal-cost retrospective diagnostic; one physical ledger and19model switches verified. No combined result or sleeve qualification. Recorded fill prices/fees/marks and modeled data/metadata/funding/DFF/USDT assumptions remain. Stress and otherfundedsubaccounts outstanding;15distinctqualifiedsleeves andcombined>2excessSharpe not established.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "family_and_union_trial_accounting": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/baseline/quantity_audit.json",
+          "sha256": "92a14ae3b924719e4ff5d6eb653475920f73c055f787234b0e3fcc19aef1188c"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/baseline/calendar2023_2026_audit.json",
+          "sha256": "d5adfb9045470c929dbdf424ad284c75cc05a2438f58f9ea9de3ee9f10ebf28c"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/baseline/REPORT.md",
+          "sha256": "03ea593e8a2c41466f7273164245dd4be81e8d36e17f209b3e12bd58cd4fbf0b"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/baseline/execution_complete.json",
+          "sha256": "ab1bf279557c94c084d42e18937be715caf677cbd360fbe34ad4442cf5f0bfc9"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/baseline/experiments.jsonl",
+          "sha256": "de0c6d8e6ea40dd22550d0624aa82ee6a70fd4c77d554a9225bd70acde5f7a62"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/baseline/reservation.json",
+          "sha256": "f1c7d2a2c4767c531267140c0d532aec6cf7aed6c435f26e3fef7ea391d317ba"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/baseline/reservation_validation.json",
+          "sha256": "de4cefa7ce1cdeb896b629f84d9c537142ee5d3d3d4c49a89ca96e4c5c321f49"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/baseline/preregistration.json",
+          "sha256": "be3b347426206f8ebd1182e1ccde82e79b4a981bf69b3ebe11b8e6c8eb34d50d"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/baseline/calendar2023_2026.csv",
+          "sha256": "4b91a448bc113b6817e5ebc87a97d524d370e9649c7150cea61659d877f608bb"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/baseline/independent_audit.json",
+          "sha256": "4c5252ac42ee416b8a76fa07a499256b14ee1ac62cca250e3a220412cef459f0"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/baseline/boundary_audit.json",
+          "sha256": "e8840514b515b3fd9b16c9cfa2fdc3b1ff208bc41d21f97612a6ee2bac10d2ff"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/protocol.json",
+          "sha256": "ae84445269940dcd3f5758160b2a8df888a08b702ef870559b34fbd6566a10b3"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/input_manifest.json",
+          "sha256": "53887de58cd691775e74535e0bf1c5661e3819034535efe726ff837909fad728"
+        },
+        {
+          "path": "evidence/crypto-continuous-account-20260913/EXPERIMENT_SPEC.json",
+          "sha256": "d246a5811caecb823238d863d98f6968d6acf83ef4ed6ddc76fba3e96a299904"
+        },
+        {
+          "path": "evidence/crypto-continuous-account-20260913/test_result.txt",
+          "sha256": "0cd05b908e9989b81ec3278ca3800318abdbde5d05b34e10151233b7d9e25493"
+        },
+        {
+          "path": "scripts/continuous_crypto_runner.py",
+          "sha256": "f25e8256198b4258e9de43ad21b3eb4894974653134127d651aed48604db1b27"
+        }
+      ],
+      "statement": "Continuous22500capital crypto normal-cost retrospective diagnostic; one physical ledger and19model switches verified. No combined result or sleeve qualification. Recorded fill prices/fees/marks and modeled data/metadata/funding/DFF/USDT assumptions remain. Stress and otherfundedsubaccounts outstanding;15distinctqualifiedsleeves andcombined>2excessSharpe not established.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "identity_and_authorship": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/baseline/quantity_audit.json",
+          "sha256": "92a14ae3b924719e4ff5d6eb653475920f73c055f787234b0e3fcc19aef1188c"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/baseline/calendar2023_2026_audit.json",
+          "sha256": "d5adfb9045470c929dbdf424ad284c75cc05a2438f58f9ea9de3ee9f10ebf28c"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/baseline/REPORT.md",
+          "sha256": "03ea593e8a2c41466f7273164245dd4be81e8d36e17f209b3e12bd58cd4fbf0b"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/baseline/execution_complete.json",
+          "sha256": "ab1bf279557c94c084d42e18937be715caf677cbd360fbe34ad4442cf5f0bfc9"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/baseline/experiments.jsonl",
+          "sha256": "de0c6d8e6ea40dd22550d0624aa82ee6a70fd4c77d554a9225bd70acde5f7a62"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/baseline/reservation.json",
+          "sha256": "f1c7d2a2c4767c531267140c0d532aec6cf7aed6c435f26e3fef7ea391d317ba"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/baseline/reservation_validation.json",
+          "sha256": "de4cefa7ce1cdeb896b629f84d9c537142ee5d3d3d4c49a89ca96e4c5c321f49"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/baseline/preregistration.json",
+          "sha256": "be3b347426206f8ebd1182e1ccde82e79b4a981bf69b3ebe11b8e6c8eb34d50d"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/baseline/calendar2023_2026.csv",
+          "sha256": "4b91a448bc113b6817e5ebc87a97d524d370e9649c7150cea61659d877f608bb"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/baseline/independent_audit.json",
+          "sha256": "4c5252ac42ee416b8a76fa07a499256b14ee1ac62cca250e3a220412cef459f0"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/baseline/boundary_audit.json",
+          "sha256": "e8840514b515b3fd9b16c9cfa2fdc3b1ff208bc41d21f97612a6ee2bac10d2ff"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/protocol.json",
+          "sha256": "ae84445269940dcd3f5758160b2a8df888a08b702ef870559b34fbd6566a10b3"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/input_manifest.json",
+          "sha256": "53887de58cd691775e74535e0bf1c5661e3819034535efe726ff837909fad728"
+        },
+        {
+          "path": "evidence/crypto-continuous-account-20260913/EXPERIMENT_SPEC.json",
+          "sha256": "d246a5811caecb823238d863d98f6968d6acf83ef4ed6ddc76fba3e96a299904"
+        },
+        {
+          "path": "evidence/crypto-continuous-account-20260913/test_result.txt",
+          "sha256": "0cd05b908e9989b81ec3278ca3800318abdbde5d05b34e10151233b7d9e25493"
+        },
+        {
+          "path": "scripts/continuous_crypto_runner.py",
+          "sha256": "f25e8256198b4258e9de43ad21b3eb4894974653134127d651aed48604db1b27"
+        }
+      ],
+      "statement": "Continuous22500capital crypto normal-cost retrospective diagnostic; one physical ledger and19model switches verified. No combined result or sleeve qualification. Recorded fill prices/fees/marks and modeled data/metadata/funding/DFF/USDT assumptions remain. Stress and otherfundedsubaccounts outstanding;15distinctqualifiedsleeves andcombined>2excessSharpe not established.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "literature_and_overlap_decision": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/baseline/quantity_audit.json",
+          "sha256": "92a14ae3b924719e4ff5d6eb653475920f73c055f787234b0e3fcc19aef1188c"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/baseline/calendar2023_2026_audit.json",
+          "sha256": "d5adfb9045470c929dbdf424ad284c75cc05a2438f58f9ea9de3ee9f10ebf28c"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/baseline/REPORT.md",
+          "sha256": "03ea593e8a2c41466f7273164245dd4be81e8d36e17f209b3e12bd58cd4fbf0b"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/baseline/execution_complete.json",
+          "sha256": "ab1bf279557c94c084d42e18937be715caf677cbd360fbe34ad4442cf5f0bfc9"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/baseline/experiments.jsonl",
+          "sha256": "de0c6d8e6ea40dd22550d0624aa82ee6a70fd4c77d554a9225bd70acde5f7a62"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/baseline/reservation.json",
+          "sha256": "f1c7d2a2c4767c531267140c0d532aec6cf7aed6c435f26e3fef7ea391d317ba"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/baseline/reservation_validation.json",
+          "sha256": "de4cefa7ce1cdeb896b629f84d9c537142ee5d3d3d4c49a89ca96e4c5c321f49"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/baseline/preregistration.json",
+          "sha256": "be3b347426206f8ebd1182e1ccde82e79b4a981bf69b3ebe11b8e6c8eb34d50d"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/baseline/calendar2023_2026.csv",
+          "sha256": "4b91a448bc113b6817e5ebc87a97d524d370e9649c7150cea61659d877f608bb"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/baseline/independent_audit.json",
+          "sha256": "4c5252ac42ee416b8a76fa07a499256b14ee1ac62cca250e3a220412cef459f0"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/baseline/boundary_audit.json",
+          "sha256": "e8840514b515b3fd9b16c9cfa2fdc3b1ff208bc41d21f97612a6ee2bac10d2ff"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/protocol.json",
+          "sha256": "ae84445269940dcd3f5758160b2a8df888a08b702ef870559b34fbd6566a10b3"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/input_manifest.json",
+          "sha256": "53887de58cd691775e74535e0bf1c5661e3819034535efe726ff837909fad728"
+        },
+        {
+          "path": "evidence/crypto-continuous-account-20260913/EXPERIMENT_SPEC.json",
+          "sha256": "d246a5811caecb823238d863d98f6968d6acf83ef4ed6ddc76fba3e96a299904"
+        },
+        {
+          "path": "evidence/crypto-continuous-account-20260913/test_result.txt",
+          "sha256": "0cd05b908e9989b81ec3278ca3800318abdbde5d05b34e10151233b7d9e25493"
+        },
+        {
+          "path": "scripts/continuous_crypto_runner.py",
+          "sha256": "f25e8256198b4258e9de43ad21b3eb4894974653134127d651aed48604db1b27"
+        }
+      ],
+      "statement": "Continuous22500capital crypto normal-cost retrospective diagnostic; one physical ledger and19model switches verified. No combined result or sleeve qualification. Recorded fill prices/fees/marks and modeled data/metadata/funding/DFF/USDT assumptions remain. Stress and otherfundedsubaccounts outstanding;15distinctqualifiedsleeves andcombined>2excessSharpe not established.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "machine_readable_packet_and_stable_public_paper": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/baseline/quantity_audit.json",
+          "sha256": "92a14ae3b924719e4ff5d6eb653475920f73c055f787234b0e3fcc19aef1188c"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/baseline/calendar2023_2026_audit.json",
+          "sha256": "d5adfb9045470c929dbdf424ad284c75cc05a2438f58f9ea9de3ee9f10ebf28c"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/baseline/REPORT.md",
+          "sha256": "03ea593e8a2c41466f7273164245dd4be81e8d36e17f209b3e12bd58cd4fbf0b"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/baseline/execution_complete.json",
+          "sha256": "ab1bf279557c94c084d42e18937be715caf677cbd360fbe34ad4442cf5f0bfc9"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/baseline/experiments.jsonl",
+          "sha256": "de0c6d8e6ea40dd22550d0624aa82ee6a70fd4c77d554a9225bd70acde5f7a62"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/baseline/reservation.json",
+          "sha256": "f1c7d2a2c4767c531267140c0d532aec6cf7aed6c435f26e3fef7ea391d317ba"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/baseline/reservation_validation.json",
+          "sha256": "de4cefa7ce1cdeb896b629f84d9c537142ee5d3d3d4c49a89ca96e4c5c321f49"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/baseline/preregistration.json",
+          "sha256": "be3b347426206f8ebd1182e1ccde82e79b4a981bf69b3ebe11b8e6c8eb34d50d"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/baseline/calendar2023_2026.csv",
+          "sha256": "4b91a448bc113b6817e5ebc87a97d524d370e9649c7150cea61659d877f608bb"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/baseline/independent_audit.json",
+          "sha256": "4c5252ac42ee416b8a76fa07a499256b14ee1ac62cca250e3a220412cef459f0"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/baseline/boundary_audit.json",
+          "sha256": "e8840514b515b3fd9b16c9cfa2fdc3b1ff208bc41d21f97612a6ee2bac10d2ff"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/protocol.json",
+          "sha256": "ae84445269940dcd3f5758160b2a8df888a08b702ef870559b34fbd6566a10b3"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/input_manifest.json",
+          "sha256": "53887de58cd691775e74535e0bf1c5661e3819034535efe726ff837909fad728"
+        },
+        {
+          "path": "evidence/crypto-continuous-account-20260913/EXPERIMENT_SPEC.json",
+          "sha256": "d246a5811caecb823238d863d98f6968d6acf83ef4ed6ddc76fba3e96a299904"
+        },
+        {
+          "path": "evidence/crypto-continuous-account-20260913/test_result.txt",
+          "sha256": "0cd05b908e9989b81ec3278ca3800318abdbde5d05b34e10151233b7d9e25493"
+        },
+        {
+          "path": "scripts/continuous_crypto_runner.py",
+          "sha256": "f25e8256198b4258e9de43ad21b3eb4894974653134127d651aed48604db1b27"
+        }
+      ],
+      "statement": "Continuous22500capital crypto normal-cost retrospective diagnostic; one physical ledger and19model switches verified. No combined result or sleeve qualification. Recorded fill prices/fees/marks and modeled data/metadata/funding/DFF/USDT assumptions remain. Stress and otherfundedsubaccounts outstanding;15distinctqualifiedsleeves andcombined>2excessSharpe not established.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "point_in_time_data_and_survivorship_controls": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/baseline/quantity_audit.json",
+          "sha256": "92a14ae3b924719e4ff5d6eb653475920f73c055f787234b0e3fcc19aef1188c"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/baseline/calendar2023_2026_audit.json",
+          "sha256": "d5adfb9045470c929dbdf424ad284c75cc05a2438f58f9ea9de3ee9f10ebf28c"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/baseline/REPORT.md",
+          "sha256": "03ea593e8a2c41466f7273164245dd4be81e8d36e17f209b3e12bd58cd4fbf0b"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/baseline/execution_complete.json",
+          "sha256": "ab1bf279557c94c084d42e18937be715caf677cbd360fbe34ad4442cf5f0bfc9"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/baseline/experiments.jsonl",
+          "sha256": "de0c6d8e6ea40dd22550d0624aa82ee6a70fd4c77d554a9225bd70acde5f7a62"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/baseline/reservation.json",
+          "sha256": "f1c7d2a2c4767c531267140c0d532aec6cf7aed6c435f26e3fef7ea391d317ba"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/baseline/reservation_validation.json",
+          "sha256": "de4cefa7ce1cdeb896b629f84d9c537142ee5d3d3d4c49a89ca96e4c5c321f49"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/baseline/preregistration.json",
+          "sha256": "be3b347426206f8ebd1182e1ccde82e79b4a981bf69b3ebe11b8e6c8eb34d50d"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/baseline/calendar2023_2026.csv",
+          "sha256": "4b91a448bc113b6817e5ebc87a97d524d370e9649c7150cea61659d877f608bb"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/baseline/independent_audit.json",
+          "sha256": "4c5252ac42ee416b8a76fa07a499256b14ee1ac62cca250e3a220412cef459f0"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/baseline/boundary_audit.json",
+          "sha256": "e8840514b515b3fd9b16c9cfa2fdc3b1ff208bc41d21f97612a6ee2bac10d2ff"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/protocol.json",
+          "sha256": "ae84445269940dcd3f5758160b2a8df888a08b702ef870559b34fbd6566a10b3"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/input_manifest.json",
+          "sha256": "53887de58cd691775e74535e0bf1c5661e3819034535efe726ff837909fad728"
+        },
+        {
+          "path": "evidence/crypto-continuous-account-20260913/EXPERIMENT_SPEC.json",
+          "sha256": "d246a5811caecb823238d863d98f6968d6acf83ef4ed6ddc76fba3e96a299904"
+        },
+        {
+          "path": "evidence/crypto-continuous-account-20260913/test_result.txt",
+          "sha256": "0cd05b908e9989b81ec3278ca3800318abdbde5d05b34e10151233b7d9e25493"
+        },
+        {
+          "path": "scripts/continuous_crypto_runner.py",
+          "sha256": "f25e8256198b4258e9de43ad21b3eb4894974653134127d651aed48604db1b27"
+        }
+      ],
+      "statement": "Continuous22500capital crypto normal-cost retrospective diagnostic; one physical ledger and19model switches verified. No combined result or sleeve qualification. Recorded fill prices/fees/marks and modeled data/metadata/funding/DFF/USDT assumptions remain. Stress and otherfundedsubaccounts outstanding;15distinctqualifiedsleeves andcombined>2excessSharpe not established.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "preregistration_and_hashes": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/baseline/quantity_audit.json",
+          "sha256": "92a14ae3b924719e4ff5d6eb653475920f73c055f787234b0e3fcc19aef1188c"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/baseline/calendar2023_2026_audit.json",
+          "sha256": "d5adfb9045470c929dbdf424ad284c75cc05a2438f58f9ea9de3ee9f10ebf28c"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/baseline/REPORT.md",
+          "sha256": "03ea593e8a2c41466f7273164245dd4be81e8d36e17f209b3e12bd58cd4fbf0b"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/baseline/execution_complete.json",
+          "sha256": "ab1bf279557c94c084d42e18937be715caf677cbd360fbe34ad4442cf5f0bfc9"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/baseline/experiments.jsonl",
+          "sha256": "de0c6d8e6ea40dd22550d0624aa82ee6a70fd4c77d554a9225bd70acde5f7a62"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/baseline/reservation.json",
+          "sha256": "f1c7d2a2c4767c531267140c0d532aec6cf7aed6c435f26e3fef7ea391d317ba"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/baseline/reservation_validation.json",
+          "sha256": "de4cefa7ce1cdeb896b629f84d9c537142ee5d3d3d4c49a89ca96e4c5c321f49"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/baseline/preregistration.json",
+          "sha256": "be3b347426206f8ebd1182e1ccde82e79b4a981bf69b3ebe11b8e6c8eb34d50d"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/baseline/calendar2023_2026.csv",
+          "sha256": "4b91a448bc113b6817e5ebc87a97d524d370e9649c7150cea61659d877f608bb"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/baseline/independent_audit.json",
+          "sha256": "4c5252ac42ee416b8a76fa07a499256b14ee1ac62cca250e3a220412cef459f0"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/baseline/boundary_audit.json",
+          "sha256": "e8840514b515b3fd9b16c9cfa2fdc3b1ff208bc41d21f97612a6ee2bac10d2ff"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/protocol.json",
+          "sha256": "ae84445269940dcd3f5758160b2a8df888a08b702ef870559b34fbd6566a10b3"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/input_manifest.json",
+          "sha256": "53887de58cd691775e74535e0bf1c5661e3819034535efe726ff837909fad728"
+        },
+        {
+          "path": "evidence/crypto-continuous-account-20260913/EXPERIMENT_SPEC.json",
+          "sha256": "d246a5811caecb823238d863d98f6968d6acf83ef4ed6ddc76fba3e96a299904"
+        },
+        {
+          "path": "evidence/crypto-continuous-account-20260913/test_result.txt",
+          "sha256": "0cd05b908e9989b81ec3278ca3800318abdbde5d05b34e10151233b7d9e25493"
+        },
+        {
+          "path": "scripts/continuous_crypto_runner.py",
+          "sha256": "f25e8256198b4258e9de43ad21b3eb4894974653134127d651aed48604db1b27"
+        }
+      ],
+      "statement": "Continuous22500capital crypto normal-cost retrospective diagnostic; one physical ledger and19model switches verified. No combined result or sleeve qualification. Recorded fill prices/fees/marks and modeled data/metadata/funding/DFF/USDT assumptions remain. Stress and otherfundedsubaccounts outstanding;15distinctqualifiedsleeves andcombined>2excessSharpe not established.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "result_uncertainty_stress_capacity_and_diversification": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/baseline/quantity_audit.json",
+          "sha256": "92a14ae3b924719e4ff5d6eb653475920f73c055f787234b0e3fcc19aef1188c"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/baseline/calendar2023_2026_audit.json",
+          "sha256": "d5adfb9045470c929dbdf424ad284c75cc05a2438f58f9ea9de3ee9f10ebf28c"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/baseline/REPORT.md",
+          "sha256": "03ea593e8a2c41466f7273164245dd4be81e8d36e17f209b3e12bd58cd4fbf0b"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/baseline/execution_complete.json",
+          "sha256": "ab1bf279557c94c084d42e18937be715caf677cbd360fbe34ad4442cf5f0bfc9"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/baseline/experiments.jsonl",
+          "sha256": "de0c6d8e6ea40dd22550d0624aa82ee6a70fd4c77d554a9225bd70acde5f7a62"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/baseline/reservation.json",
+          "sha256": "f1c7d2a2c4767c531267140c0d532aec6cf7aed6c435f26e3fef7ea391d317ba"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/baseline/reservation_validation.json",
+          "sha256": "de4cefa7ce1cdeb896b629f84d9c537142ee5d3d3d4c49a89ca96e4c5c321f49"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/baseline/preregistration.json",
+          "sha256": "be3b347426206f8ebd1182e1ccde82e79b4a981bf69b3ebe11b8e6c8eb34d50d"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/baseline/calendar2023_2026.csv",
+          "sha256": "4b91a448bc113b6817e5ebc87a97d524d370e9649c7150cea61659d877f608bb"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/baseline/independent_audit.json",
+          "sha256": "4c5252ac42ee416b8a76fa07a499256b14ee1ac62cca250e3a220412cef459f0"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/baseline/boundary_audit.json",
+          "sha256": "e8840514b515b3fd9b16c9cfa2fdc3b1ff208bc41d21f97612a6ee2bac10d2ff"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/protocol.json",
+          "sha256": "ae84445269940dcd3f5758160b2a8df888a08b702ef870559b34fbd6566a10b3"
+        },
+        {
+          "path": "artifacts/analysis/crypto_continuous_account_20260913/input_manifest.json",
+          "sha256": "53887de58cd691775e74535e0bf1c5661e3819034535efe726ff837909fad728"
+        },
+        {
+          "path": "evidence/crypto-continuous-account-20260913/EXPERIMENT_SPEC.json",
+          "sha256": "d246a5811caecb823238d863d98f6968d6acf83ef4ed6ddc76fba3e96a299904"
+        },
+        {
+          "path": "evidence/crypto-continuous-account-20260913/test_result.txt",
+          "sha256": "0cd05b908e9989b81ec3278ca3800318abdbde5d05b34e10151233b7d9e25493"
+        },
+        {
+          "path": "scripts/continuous_crypto_runner.py",
+          "sha256": "f25e8256198b4258e9de43ad21b3eb4894974653134127d651aed48604db1b27"
+        }
+      ],
+      "statement": "Continuous22500capital crypto normal-cost retrospective diagnostic; one physical ledger and19model switches verified. No combined result or sleeve qualification. Recorded fill prices/fees/marks and modeled data/metadata/funding/DFF/USDT assumptions remain. Stress and otherfundedsubaccounts outstanding;15distinctqualifiedsleeves andcombined>2excessSharpe not established.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    }
+  },
+  "research_family_key": "crypto_continuous_account",
+  "schema": "canli.alphac-identity-trial-packet.v2"
+}

@@ -4,20 +4,20 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Trial-accounting explorer | Canli Capital</title>
-<meta name="description" content="Explore every ALPHAC hypothesis identity behind selection N, including duplicate-window removal, family concentration, packet debt and the sealed prospective trial." />
+<meta name="description" content="Explore every ALPHAC hypothesis identity behind selection N, including duplicate-window removal, family concentration, packet debt and the prospective epoch." />
 <link rel="canonical" href="https://canlicapital.com/tools/trial-accounting" />
 <meta name="author" content="Arhan Canli" />
-<meta name="canli:sources" content="trial_ledger.json trial_packet_manifest.json trial-packets/index.json prospective_trial_record.json" />
+<meta name="canli:sources" content="trial_ledger.json trial_packet_manifest.json trial-packets/index.json prospective_trial_record.json prospective_epoch_register.json trial-packets/forward_index.json" />
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Canli Capital" />
 <meta property="og:title" content="ALPHAC trial-accounting explorer" />
-<meta property="og:description" content="Explore every ALPHAC hypothesis identity behind selection N, including duplicate-window removal, family concentration, packet debt and the sealed prospective trial." />
+<meta property="og:description" content="Explore every ALPHAC hypothesis identity behind selection N, including duplicate-window removal, family concentration, packet debt and the prospective epoch." />
 <meta property="og:url" content="https://canlicapital.com/tools/trial-accounting" />
 <meta property="og:image" content="https://canlicapital.com/og.png" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="ALPHAC trial-accounting explorer" />
-<meta name="twitter:description" content="Explore every ALPHAC hypothesis identity behind selection N, including duplicate-window removal, family concentration, packet debt and the sealed prospective trial." />
+<meta name="twitter:description" content="Explore every ALPHAC hypothesis identity behind selection N, including duplicate-window removal, family concentration, packet debt and the prospective epoch." />
 <meta name="twitter:image" content="https://canlicapital.com/og.png" />
 <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -27,52 +27,46 @@
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=optional" /></noscript>
 <link rel="stylesheet" href="/css/product-shell.css" />
 <link rel="stylesheet" href="/css/trial-accounting-tool.css" />
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"ALPHAC trial-accounting explorer","url":"https://canlicapital.com/tools/trial-accounting","description":"Explore every ALPHAC hypothesis identity behind selection N, including duplicate-window removal, family concentration, packet debt and the sealed prospective trial.","applicationCategory":"FinanceApplication","operatingSystem":"Any modern web browser","author":{"@id":"https://canlicapital.com/#arhan-canli"},"creator":{"@id":"https://canlicapital.com/#arhan-canli"},"isAccessibleForFree":true}</script>
+<link rel="stylesheet" href="/css/tool-experience.css" />
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"ALPHAC trial-accounting explorer","url":"https://canlicapital.com/tools/trial-accounting","description":"Explore every ALPHAC hypothesis identity behind selection N, including duplicate-window removal, family concentration, packet debt and the prospective epoch.","applicationCategory":"FinanceApplication","operatingSystem":"Any modern web browser","author":{"@id":"https://canlicapital.com/#arhan-canli"},"creator":{"@id":"https://canlicapital.com/#arhan-canli"},"isAccessibleForFree":true}</script>
 </head>
 <body class="union-page">
 <a class="union-skip" href="#union-explorer">Skip to the trial union</a>
-<header class="cc-shell" id="nav" data-product-shell="v3">
+<header class="cc-shell" id="nav" data-product-shell="v3" data-shell-revision="4">
   <a class="cc-shell__brand" href="/" aria-label="Canli Capital, home">
     <span class="cc-shell__mark" aria-hidden="true"><i></i></span>
     <span>Canli Capital</span>
   </a>
-  <a class="cc-shell__status" href="/measurements/alpaca-broker-reconciliation" aria-label="Current record status">
-    <span class="status-dot" aria-hidden="true"></span>
-    <span>Public paper record</span>
-  </a>
   <nav class="cc-shell__primary" aria-label="Primary navigation">
-<a class="cc-shell__link" href="https://app.canlicapital.com/dashboard" rel="noreferrer">Live</a>
-<a class="cc-shell__link" href="/research">Research</a>
-<a class="cc-shell__link" href="/trials" aria-current="page" data-current="true">Trials</a>
 <a class="cc-shell__link" href="/systems">Systems</a>
-<a class="cc-shell__link" href="/methodology">Methodology</a>
+<a class="cc-shell__link" href="/research">Research</a>
 <a class="cc-shell__link" href="/developers">Developers</a>
 <a class="cc-shell__link" href="/verify">Verify</a>
   </nav>
   <details class="cc-shell__index">
-    <summary><span class="cc-shell__index-wide">More</span><span class="cc-shell__index-compact">Menu</span></summary>
+    <summary><span class="cc-shell__index-wide">Explore</span><span class="cc-shell__index-compact">Menu</span></summary>
     <div class="cc-shell__panel">
       <div>
-        <span class="cc-shell__panel-label">Core</span>
+        <span class="cc-shell__panel-label">Research &amp; strategies</span>
         <nav aria-label="Core routes"><a class="cc-shell__panel-link" href="https://app.canlicapital.com/dashboard" rel="noreferrer">Live</a>
 <a class="cc-shell__panel-link" href="/research">Research</a>
-<a class="cc-shell__panel-link" href="/trials" aria-current="page" data-current="true">Trials</a>
+<a class="cc-shell__panel-link" href="/trials" data-current="true">Trials</a>
 <a class="cc-shell__panel-link" href="/systems">Systems</a>
 <a class="cc-shell__panel-link" href="/methodology">Methodology</a>
-<a class="cc-shell__panel-link" href="/developers">Developers</a>
-<a class="cc-shell__panel-link" href="/verify">Verify</a></nav>
+<a class="cc-shell__panel-link" href="/performance">Performance</a></nav>
       </div>
       <div>
-        <span class="cc-shell__panel-label">Institution</span>
-        <nav aria-label="Institution routes"><a class="cc-shell__panel-link" href="/progress">Corrections</a>
-<a class="cc-shell__panel-link" href="/performance">Performance</a>
+        <span class="cc-shell__panel-label">Evidence &amp; accountability</span>
+        <nav aria-label="Institution routes"><a class="cc-shell__panel-link" href="/verify">Verify</a>
+<a class="cc-shell__panel-link" href="/progress">Corrections</a>
 <a class="cc-shell__panel-link" href="/founder">Founder</a>
 <a class="cc-shell__panel-link" href="/open">Open data</a>
 <a class="cc-shell__panel-link" href="/measurements">Measurements</a></nav>
       </div>
       <div>
-        <span class="cc-shell__panel-label">Tools</span>
-        <nav aria-label="Tools"><a class="cc-shell__panel-link" href="/tools">All tools</a>
+        <span class="cc-shell__panel-label">Build &amp; reproduce</span>
+        <nav aria-label="Tools"><a class="cc-shell__panel-link" href="/developers">Developers</a>
+<a class="cc-shell__panel-link" href="/tools">All tools</a>
 <a class="cc-shell__panel-link" href="/how-to-validate-a-backtest">How to validate a backtest</a></nav>
       </div>
       <div>
@@ -84,47 +78,51 @@
 <a class="cc-shell__panel-link" href="https://github.com/arhancanli/canli-pit-lake" rel="noreferrer">canli-pit-lake</a>
 <a class="cc-shell__panel-link" href="https://github.com/arhancanli/canli-backtest" rel="noreferrer">canli-backtest</a></nav>
       </div>
-      <p>Observed, simulated, model-estimated and planned claims remain visibly separate.</p>
+      <div class="cc-shell__panel-foot">
+        <a class="cc-shell__status" href="/measurements/alpaca-broker-reconciliation" aria-label="Current record status"><span class="status-dot" aria-hidden="true"></span><span>Public paper record</span></a>
+        <p>Observed, simulated, model-estimated and planned claims remain visibly separate.</p>
+      </div>
     </div>
   </details>
   <a class="cc-shell__source" href="/engineering" title="Open-source engineering: the engine, the data layer and the backtester"><svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true" focusable="false"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg><span>Source</span></a>
-  <a class="cc-shell__cta" href="https://app.canlicapital.com/dashboard">Enter live record <span aria-hidden="true">↗</span></a>
+  <a class="cc-shell__cta" href="https://app.canlicapital.com/dashboard">Live record <span aria-hidden="true">↗</span></a>
+  <script type="module" src="/js/navigation.js"></script>
 </header>
 <main>
   <section class="union-hero" aria-labelledby="union-title">
     <div class="union-hero__copy">
       <p class="union-kicker"><span>Complete selection denominator</span><span>Union accounting v2</span></p>
       <h1 id="union-title">The denominator is public.</h1>
-      <p>Every measured identity makes the next result less surprising. This is the complete search behind ALPHAC: first measurements, duplicate-window removal, family concentration, incomplete evidence and the one sealed prospective identity. Canli Capital, the research house that publishes ALPHAC, runs this calculator free, with no account or key required.</p>
+      <p>Every measured identity makes the next result less surprising. This is the complete search behind ALPHAC: first measurements, duplicate-window removal, family concentration, incomplete evidence and every prospective identity measured after the legacy epoch closed, with its closure or the lack of one. Canli Capital, the research house that publishes ALPHAC, runs this calculator free, with no account or key required.</p>
       <div class="union-actions"><a href="#union-explorer">Interrogate the union</a><a href="/tools/deflated-sharpe">Calculate the selection penalty</a></div>
     </div>
     <div class="union-counter" aria-label="Current selection denominator">
-      <span>Selection N</span><strong>229</strong><p>Immutable until a new identity is reserved. Filters below never change this number.</p>
+      <span>Selection N</span><strong>347</strong><p>Immutable until a new identity is reserved. Filters below never change this number.</p>
     </div>
   </section>
 
   <section class="union-equation" aria-label="Trial-accounting equation">
-    <div><span>Immutable execution records</span><strong>301</strong></div>
+    <div><span>Immutable execution records</span><strong>419</strong></div>
     <i>−</i><div><span>Window-only remeasurements</span><strong>72</strong></div>
     <i>−</i><div><span>Cross-profile duplicates</span><strong>0</strong></div>
-    <i>=</i><div class="union-equation__result"><span>Distinct union identities</span><strong>229</strong></div>
+    <i>=</i><div class="union-equation__result"><span>Distinct union identities</span><strong>347</strong></div>
   </section>
 
   <section class="union-boundary" aria-label="Claim boundary"><strong>Accounting, not performance</strong><p>This ledger proves what was measured and how selection N is counted. It does not prove that any identity is profitable, independent, or admissible. A complete packet is not a passed strategy, and neither complete packet status nor a positive Sharpe point estimate implies admission.</p></section>
 
   <section class="union-workbench" id="union-explorer" tabindex="-1" aria-labelledby="explorer-title">
-    <header class="union-section-head"><div><p class="union-label">Search ledger</p><h2 id="explorer-title">229 identities. One immutable denominator.</h2></div><div class="union-tools"><button id="union-copy" type="button">Copy filtered link</button><button id="union-export" type="button">Export filtered JSON</button></div></header>
+    <header class="union-section-head"><div><p class="union-label">Search ledger</p><h2 id="explorer-title">347 identities. One immutable denominator.</h2></div><div class="union-tools"><button id="union-copy" type="button">Copy filtered link</button><button id="union-export" type="button">Export filtered JSON</button></div></header>
     <div class="union-filterbar">
       <label><span>Search identity</span><input id="union-query" type="search" placeholder="Key, config, label or family" /></label>
       <label><span>Research family</span><select id="union-family"><option value="all">All families</option></select></label>
-      <label><span>Evidence state</span><select id="union-status"><option value="all">All states</option><option value="legacy_complete_packet">Complete legacy packet</option><option value="legacy_incomplete_packet">Incomplete legacy packet</option><option value="prospective_final_incomplete_not_admitted">Prospective, not admitted</option></select></label>
+      <label><span>Evidence state</span><select id="union-status"><option value="all">All states</option><option value="legacy_complete_packet">Complete legacy packet</option><option value="legacy_incomplete_packet">Incomplete legacy packet</option><option value="prospective_final_incomplete_not_admitted">Prospective, governed packet, not admitted</option><option value="prospective_governed_closed_not_admitted">Prospective, governed batch closure, not admitted</option><option value="prospective_development_closed_not_admitted">Prospective, development closure, not admitted</option><option value="prospective_reserved_measured_unclosed">Prospective, measured, not closed</option></select></label>
       <label><span>Sleeve context</span><select id="union-sleeve"><option value="all">All sleeves</option></select></label>
       <button id="union-reset" type="button">Reset</button>
     </div>
     <div class="union-ledger">
       <section class="union-map" aria-label="Identity map and filtered trial list">
-        <header><div><span>Visible identities</span><strong id="union-visible">229</strong></div><p>Selection N remains <b>229</b></p></header>
-        <div class="union-matrix" id="union-matrix" role="list" aria-label="Complete identity union"></div>
+        <header><div><span>Visible identities</span><strong id="union-visible">347</strong></div><p>Selection N remains <b>347</b></p></header>
+        <div class="union-matrix" id="union-matrix" role="group" aria-label="Complete identity union"></div>
         <div class="union-list" id="union-list"></div>
       </section>
       <aside class="union-inspector" id="union-inspector" aria-live="polite">
@@ -135,96 +133,306 @@
 
   <section class="union-families" aria-labelledby="families-title">
     <header class="union-section-head"><div><p class="union-label">Search concentration</p><h2 id="families-title">A family count is part of the result.</h2></div></header>
-    <div class="union-families__grid"><ol><li style="--family-share:0.5021834061135371">
+    <div class="union-families__grid"><ol><li style="--family-share:0.3314121037463977">
         <span>01</span>
         <strong>AlphaMax equity momentum and construction</strong>
         <i aria-hidden="true"></i>
         <b>115</b>
-      </li><li style="--family-share:0.11353711790393013">
+      </li><li style="--family-share:0.09221902017291066">
         <span>02</span>
+        <strong>Managed-futures trend</strong>
+        <i aria-hidden="true"></i>
+        <b>32</b>
+      </li><li style="--family-share:0.07492795389048991">
+        <span>03</span>
         <strong>Crypto perpetual-futures carry</strong>
         <i aria-hidden="true"></i>
         <b>26</b>
-      </li><li style="--family-share:0.09170305676855896">
-        <span>03</span>
-        <strong>Managed-futures trend</strong>
-        <i aria-hidden="true"></i>
-        <b>21</b>
-      </li><li style="--family-share:0.07860262008733625">
+      </li><li style="--family-share:0.05187319884726225">
         <span>04</span>
         <strong>Crypto time-series and cross-sectional momentum</strong>
         <i aria-hidden="true"></i>
         <b>18</b>
-      </li><li style="--family-share:0.056768558951965066">
+      </li><li style="--family-share:0.037463976945244955">
         <span>05</span>
         <strong>Equity value, issuance, and investment</strong>
         <i aria-hidden="true"></i>
         <b>13</b>
-      </li><li style="--family-share:0.048034934497816595">
+      </li><li style="--family-share:0.03170028818443804">
         <span>06</span>
         <strong>Equity fundamental quality</strong>
         <i aria-hidden="true"></i>
         <b>11</b>
-      </li><li style="--family-share:0.03056768558951965">
+      </li><li style="--family-share:0.020172910662824207">
         <span>07</span>
         <strong>Crypto multi-factor allocator, regime, and ML engine</strong>
         <i aria-hidden="true"></i>
         <b>7</b>
-      </li><li style="--family-share:0.03056768558951965">
+      </li><li style="--family-share:0.020172910662824207">
         <span>08</span>
+        <strong>crypto_terminal_correction</strong>
+        <i aria-hidden="true"></i>
+        <b>7</b>
+      </li><li style="--family-share:0.020172910662824207">
+        <span>09</span>
         <strong>Point-in-time macroeconomic trend</strong>
         <i aria-hidden="true"></i>
         <b>7</b>
-      </li><li style="--family-share:0.008733624454148471">
-        <span>09</span>
+      </li><li style="--family-share:0.01729106628242075">
+        <span>10</span>
+        <strong>alphamax_share_ratio</strong>
+        <i aria-hidden="true"></i>
+        <b>6</b>
+      </li><li style="--family-share:0.01729106628242075">
+        <span>11</span>
+        <strong>crypto_extended_reference</strong>
+        <i aria-hidden="true"></i>
+        <b>6</b>
+      </li><li style="--family-share:0.01440922190201729">
+        <span>12</span>
+        <strong>alphac_positive_targets</strong>
+        <i aria-hidden="true"></i>
+        <b>5</b>
+      </li><li style="--family-share:0.011527377521613832">
+        <span>13</span>
+        <strong>alphac_capital_budget</strong>
+        <i aria-hidden="true"></i>
+        <b>4</b>
+      </li><li style="--family-share:0.011527377521613832">
+        <span>14</span>
+        <strong>alphac_category_targets</strong>
+        <i aria-hidden="true"></i>
+        <b>4</b>
+      </li><li style="--family-share:0.011527377521613832">
+        <span>15</span>
+        <strong>alphac_confirmation_combined</strong>
+        <i aria-hidden="true"></i>
+        <b>4</b>
+      </li><li style="--family-share:0.011527377521613832">
+        <span>16</span>
+        <strong>alphamax_covariance_basis</strong>
+        <i aria-hidden="true"></i>
+        <b>4</b>
+      </li><li style="--family-share:0.011527377521613832">
+        <span>17</span>
+        <strong>alphatrend_category_targets</strong>
+        <i aria-hidden="true"></i>
+        <b>4</b>
+      </li><li style="--family-share:0.011527377521613832">
+        <span>18</span>
+        <strong>alphatrend_direction_confirmation</strong>
+        <i aria-hidden="true"></i>
+        <b>4</b>
+      </li><li style="--family-share:0.011527377521613832">
+        <span>19</span>
+        <strong>alphatrend_positive_targets</strong>
+        <i aria-hidden="true"></i>
+        <b>4</b>
+      </li><li style="--family-share:0.011527377521613832">
+        <span>20</span>
+        <strong>combined_2022_source_day_diagnostic</strong>
+        <i aria-hidden="true"></i>
+        <b>4</b>
+      </li><li style="--family-share:0.011527377521613832">
+        <span>21</span>
+        <strong>crypto_full2022_extension</strong>
+        <i aria-hidden="true"></i>
+        <b>4</b>
+      </li><li style="--family-share:0.005763688760806916">
+        <span>22</span>
+        <strong>alphac_combined_inverse_vol_allocation</strong>
+        <i aria-hidden="true"></i>
+        <b>2</b>
+      </li><li style="--family-share:0.005763688760806916">
+        <span>23</span>
+        <strong>alphac_combined_risk_control</strong>
+        <i aria-hidden="true"></i>
+        <b>2</b>
+      </li><li style="--family-share:0.005763688760806916">
+        <span>24</span>
+        <strong>alphamax_extended_reference</strong>
+        <i aria-hidden="true"></i>
+        <b>2</b>
+      </li><li style="--family-share:0.005763688760806916">
+        <span>25</span>
+        <strong>alphamax_full2022_baseline_v2</strong>
+        <i aria-hidden="true"></i>
+        <b>2</b>
+      </li><li style="--family-share:0.005763688760806916">
+        <span>26</span>
+        <strong>alphamax_path_momentum</strong>
+        <i aria-hidden="true"></i>
+        <b>2</b>
+      </li><li style="--family-share:0.005763688760806916">
+        <span>27</span>
+        <strong>alphamax_session_cooldown</strong>
+        <i aria-hidden="true"></i>
+        <b>2</b>
+      </li><li style="--family-share:0.005763688760806916">
+        <span>28</span>
+        <strong>alphamax_total_return_momentum</strong>
+        <i aria-hidden="true"></i>
+        <b>2</b>
+      </li><li style="--family-share:0.005763688760806916">
+        <span>29</span>
+        <strong>bil_cash_implementation</strong>
+        <i aria-hidden="true"></i>
+        <b>2</b>
+      </li><li style="--family-share:0.005763688760806916">
+        <span>30</span>
+        <strong>bil_cash_implementation_2022_validation</strong>
+        <i aria-hidden="true"></i>
+        <b>2</b>
+      </li><li style="--family-share:0.005763688760806916">
+        <span>31</span>
+        <strong>bil_funded_account</strong>
+        <i aria-hidden="true"></i>
+        <b>2</b>
+      </li><li style="--family-share:0.005763688760806916">
+        <span>32</span>
+        <strong>combined_2022_corrected_max</strong>
+        <i aria-hidden="true"></i>
+        <b>2</b>
+      </li><li style="--family-share:0.005763688760806916">
+        <span>33</span>
+        <strong>combined_2022_eligible_core</strong>
+        <i aria-hidden="true"></i>
+        <b>2</b>
+      </li><li style="--family-share:0.005763688760806916">
+        <span>34</span>
+        <strong>combined_crypto_observed_carry</strong>
+        <i aria-hidden="true"></i>
+        <b>2</b>
+      </li><li style="--family-share:0.005763688760806916">
+        <span>35</span>
+        <strong>combined_crypto_retention</strong>
+        <i aria-hidden="true"></i>
+        <b>2</b>
+      </li><li style="--family-share:0.005763688760806916">
+        <span>36</span>
+        <strong>combined_crypto_risk_rank</strong>
+        <i aria-hidden="true"></i>
+        <b>2</b>
+      </li><li style="--family-share:0.005763688760806916">
+        <span>37</span>
+        <strong>combined_extended_reference</strong>
+        <i aria-hidden="true"></i>
+        <b>2</b>
+      </li><li style="--family-share:0.005763688760806916">
+        <span>38</span>
+        <strong>combined_session_cooldown</strong>
+        <i aria-hidden="true"></i>
+        <b>2</b>
+      </li><li style="--family-share:0.005763688760806916">
+        <span>39</span>
+        <strong>confirmed_trend_extended_reference</strong>
+        <i aria-hidden="true"></i>
+        <b>2</b>
+      </li><li style="--family-share:0.005763688760806916">
+        <span>40</span>
+        <strong>confirmed_trend_funded_account</strong>
+        <i aria-hidden="true"></i>
+        <b>2</b>
+      </li><li style="--family-share:0.005763688760806916">
+        <span>41</span>
         <strong>Crypto low-volatility and low-beta factors</strong>
         <i aria-hidden="true"></i>
         <b>2</b>
-      </li><li style="--family-share:0.008733624454148471">
-        <span>10</span>
+      </li><li style="--family-share:0.005763688760806916">
+        <span>42</span>
         <strong>Crypto short-horizon residual reversal</strong>
         <i aria-hidden="true"></i>
         <b>2</b>
-      </li><li style="--family-share:0.008733624454148471">
-        <span>11</span>
+      </li><li style="--family-share:0.005763688760806916">
+        <span>43</span>
+        <strong>crypto_continuous_account</strong>
+        <i aria-hidden="true"></i>
+        <b>2</b>
+      </li><li style="--family-share:0.005763688760806916">
+        <span>44</span>
+        <strong>crypto_rank_retention</strong>
+        <i aria-hidden="true"></i>
+        <b>2</b>
+      </li><li style="--family-share:0.005763688760806916">
+        <span>45</span>
         <strong>Equity insider activity</strong>
         <i aria-hidden="true"></i>
         <b>2</b>
-      </li><li style="--family-share:0.008733624454148471">
-        <span>12</span>
+      </li><li style="--family-share:0.005763688760806916">
+        <span>46</span>
         <strong>Equity low-beta and defensive factors</strong>
         <i aria-hidden="true"></i>
         <b>2</b>
-      </li><li style="--family-share:0.004366812227074236">
-        <span>13</span>
+      </li><li style="--family-share:0.005763688760806916">
+        <span>47</span>
+        <strong>trend_fixed_asset_group_risk</strong>
+        <i aria-hidden="true"></i>
+        <b>2</b>
+      </li><li style="--family-share:0.002881844380403458">
+        <span>48</span>
+        <strong>alphamax_full2022_baseline</strong>
+        <i aria-hidden="true"></i>
+        <b>1</b>
+      </li><li style="--family-share:0.002881844380403458">
+        <span>49</span>
         <strong>Crypto volatility risk-premium proxy</strong>
         <i aria-hidden="true"></i>
         <b>1</b>
-      </li><li style="--family-share:0.004366812227074236">
-        <span>14</span>
+      </li><li style="--family-share:0.002881844380403458">
+        <span>50</span>
+        <strong>crypto_funded_reference</strong>
+        <i aria-hidden="true"></i>
+        <b>1</b>
+      </li><li style="--family-share:0.002881844380403458">
+        <span>51</span>
         <strong>Energy inventory scarcity</strong>
         <i aria-hidden="true"></i>
         <b>1</b>
-      </li><li style="--family-share:0.004366812227074236">
-        <span>15</span>
+      </li><li style="--family-share:0.002881844380403458">
+        <span>52</span>
         <strong>Equity filing and narrative change</strong>
         <i aria-hidden="true"></i>
         <b>1</b>
-      </li></ol><div class="union-debt"><span>Legacy packet coverage</span><strong>2<small> complete</small></strong><strong>226<small> incomplete</small></strong><p>The one prospective packet has complete evidence accounting but a final incomplete, not-admitted disposition. It is shown separately rather than added to the legacy completion rate.</p></div></div>
+      </li><li style="--family-share:0.002881844380403458">
+        <span>53</span>
+        <strong>filing_seasonal_common_income_change</strong>
+        <i aria-hidden="true"></i>
+        <b>1</b>
+      </li></ol><div class="union-debt"><span>Legacy packet coverage</span><strong>2<small> complete</small></strong><strong>226<small> incomplete</small></strong><p>The prospective epoch holds 119 identities: 1 with a governed closing packet (complete evidence accounting, final incomplete, not admitted), 0 closed by a governed batch closure (a full-evidence reservation decided under the admission contract: none yet; none admitted), 118 closed by a development closure (the decision each study already made, imported and recorded: 118 final KILL; none admitted) and 0 reserved and measured without a closing packet. They are shown separately rather than added to the legacy completion rate.</p></div></div>
   </section>
 
   <section class="union-rules" aria-labelledby="rules-title">
     <header class="union-section-head"><div><p class="union-label">What the number means</p><h2 id="rules-title">Three rules stop the denominator from shrinking.</h2></div></header>
-    <div><article><span>01</span><h3>Count the first immutable identity</h3><p>Selection N uses one first record per economic or parameter identity. Better or worse remeasurement windows stay public without becoming extra identities.</p></article><article><span>02</span><h3>Keep the evidence debt</h3><p>An incomplete historical packet remains in N. Missing preregistration, environment or decision evidence cannot be repaired by deleting the attempt.</p></article><article><span>03</span><h3>Separate accounting from admission</h3><p>Packet completeness describes evidence coverage. Admission requires the full current contract. The prospective identity remains not admitted.</p></article></div>
+    <div><article><span>01</span><h3>Count the first immutable identity</h3><p>Selection N uses one first record per economic or parameter identity. Better or worse remeasurement windows stay public without becoming extra identities.</p></article><article><span>02</span><h3>Keep the evidence debt</h3><p>An incomplete historical packet remains in N. Missing preregistration, environment or decision evidence cannot be repaired by deleting the attempt.</p></article><article><span>03</span><h3>Separate accounting from admission</h3><p>Packet completeness describes evidence coverage. Admission requires the full current contract. No prospective identity is admitted.</p></article></div>
   </section>
 
   <section class="union-sources" aria-labelledby="sources-title">
     <header class="union-section-head"><div><p class="union-label">Exact sources</p><h2 id="sources-title">Take the denominator with you.</h2></div></header>
-    <div><a href="/glassbox/trial_ledger.json"><span>ledger</span><strong>trial_ledger.json</strong><code>sha256:a22a23dbfe48e5e7f29260d9ea952cb79951af789e207eea8585a67b194134aa</code></a><a href="/glassbox/trial_packet_manifest.json"><span>manifest</span><strong>trial_packet_manifest.json</strong><code>sha256:0147dd8e631ca24257e2db384bf01d4637a79371f1754b284f3f7e9637c1369c</code></a><a href="/glassbox/trial-packets/index.json"><span>index</span><strong>trial-packets/index.json</strong><code>sha256:9829f34f2f441a17fb6966dbedb548e0834d6bd55ec4ef903049d8dc4433d594</code></a><a href="/glassbox/prospective_trial_record.json"><span>prospective</span><strong>prospective_trial_record.json</strong><code>sha256:596693028319d31915d31a0896bd64bab084c47a798a7e19cc27920ca748efa8</code></a></div>
+    <div><a href="/glassbox/trial_ledger.json"><span>ledger</span><strong>trial_ledger.json</strong><code>sha256:0363baf9886b82a9e272cceedf7c525900fc7dad3415b4dd240a6e22582677a7</code></a><a href="/glassbox/trial_packet_manifest.json"><span>manifest</span><strong>trial_packet_manifest.json</strong><code>sha256:0147dd8e631ca24257e2db384bf01d4637a79371f1754b284f3f7e9637c1369c</code></a><a href="/glassbox/trial-packets/index.json"><span>index</span><strong>trial-packets/index.json</strong><code>sha256:9829f34f2f441a17fb6966dbedb548e0834d6bd55ec4ef903049d8dc4433d594</code></a><a href="/glassbox/prospective_trial_record.json"><span>prospective</span><strong>prospective_trial_record.json</strong><code>sha256:646198a467dfae0231bc6f6ac906f948a34f0bdeb44309cfc3550f24487a9edf</code></a><a href="/glassbox/prospective_epoch_register.json"><span>register</span><strong>prospective_epoch_register.json</strong><code>sha256:ccf5ea508607c383009b6dda6d4ac277cb9aac3ad02d2bb167725338c85ed249</code></a><a href="/glassbox/trial-packets/forward_index.json"><span>forward</span><strong>trial-packets/forward_index.json</strong><code>sha256:c595e780c1b5c0bea9a04ab95fb9c9830fdbceb5b14ce92fdf45fe8bcf101e3d</code></a></div>
     <p>Visible measurements are historical simulation fields carried by the packet manifest. They are not live returns, rankings, admission scores or recommendations.</p>
   </section>
 </main>
-<footer class="cc-footer" id="footer" data-product-shell="v3">
+<footer class="cc-footer" id="footer" data-product-shell="v3" data-shell-revision="4">
+  <details class="cc-footer__context"><summary>About the research-to-record workflow</summary><section class="cc-handoff" aria-labelledby="cc-handoff-title">
+    <div class="cc-handoff__viewport">
+      <div class="cc-handoff__intro"><p>Research → Validation → Publication</p><h2 id="cc-handoff-title">From an idea.<br />To a record.</h2><p>Carry the inputs, assumptions and limits with the result. The evidence should survive every handoff.</p></div>
+      <div class="cc-handoff__stage" aria-hidden="true">
+        <svg class="cc-handoff__route" viewBox="0 0 1000 300" preserveAspectRatio="none"><path class="cc-handoff__track" d="M120 210C280 210 310 85 500 85S720 210 880 210"/><path class="cc-handoff__trace" pathLength="1" d="M120 210C280 210 310 85 500 85S720 210 880 210"/></svg>
+        <div class="cc-handoff__dock cc-handoff__dock--inputs"><i></i><i></i><i></i></div>
+        <div class="cc-handoff__gate"><i></i><i></i><i></i></div>
+        <div class="cc-handoff__dock cc-handoff__dock--record"><i></i><i></i><i></i></div>
+        <div class="cc-handoff__packet">
+          <img src="/cinema/optical-master-v3-1536.webp" width="1536" height="1536" loading="lazy" alt="" />
+        </div>
+      </div>
+      <div class="cc-handoff__steps">
+        <a href="/research" data-handoff-step="0"><span>Define</span><strong>The research packet</strong><small>Inputs, rules and the failed trials.</small><em>Inspect the research ↗</em></a>
+        <a href="/developers#validation" data-handoff-step="1"><span>Reproduce</span><strong>The calculation receipt</strong><small>Your inputs. Declared arithmetic.</small><em>Explore the validation API ↗</em></a>
+        <a href="/verify" data-handoff-step="2"><span>Inspect</span><strong>The published record</strong><small>Sources, corrections and boundaries.</small><em>Verify the evidence ↗</em></a>
+      </div>
+      <p class="cc-handoff__boundary">Conceptual workflow. This animation sends no request. A receipt is not proof of future returns.</p>
+    </div>
+  </section></details>
   <div class="cc-footer__lead">
     <a class="cc-footer__brand" href="/">Canli Capital</a>
     <p>Build the claim. Publish the evidence. Keep the failures.</p>
@@ -279,7 +487,9 @@
     record begins 2026-08-07; the years before it are engineering, not track record.</p>
     <span>Copyright Arhan Canli</span>
   </div>
+  <div class="cc-footer__wordmark" aria-hidden="true">Canli Capital<span><svg viewBox="0 0 80 80" focusable="false" aria-hidden="true"><path d="M12 68 68 12M12 12h56v56" fill="none" stroke="currentColor" stroke-width="4" /></svg></span></div>
+  <script type="module" src="/js/site-motion.js"></script>
 </footer>
-<script id="trial-accounting-config" type="application/json">{"schema":"canli.trial-accounting-explorer-config.v1","source_urls":{"ledger":"/glassbox/trial_ledger.json","manifest":"/glassbox/trial_packet_manifest.json","index":"/glassbox/trial-packets/index.json","prospective":"/glassbox/prospective_trial_record.json"},"source_hashes":{"ledger":"sha256:a22a23dbfe48e5e7f29260d9ea952cb79951af789e207eea8585a67b194134aa","manifest":"sha256:0147dd8e631ca24257e2db384bf01d4637a79371f1754b284f3f7e9637c1369c","index":"sha256:9829f34f2f441a17fb6966dbedb548e0834d6bd55ec4ef903049d8dc4433d594","prospective":"sha256:596693028319d31915d31a0896bd64bab084c47a798a7e19cc27920ca748efa8"},"facts":{"immutable_execution_records":301,"window_only_remeasurements":72,"cross_profile_duplicate_identities":0,"selection_n":229,"selection_variance":0.0009019255799292642,"budget":400,"budget_remaining":171,"legacy_identities":228,"legacy_complete_packets":2,"legacy_incomplete_packets":226,"prospective_identities":1,"prospective_admitted":false}}</script>
+<script id="trial-accounting-config" type="application/json">{"schema":"canli.trial-accounting-explorer-config.v1","source_urls":{"ledger":"/glassbox/trial_ledger.json","manifest":"/glassbox/trial_packet_manifest.json","index":"/glassbox/trial-packets/index.json","prospective":"/glassbox/prospective_trial_record.json","register":"/glassbox/prospective_epoch_register.json","forward":"/glassbox/trial-packets/forward_index.json"},"source_hashes":{"ledger":"sha256:0363baf9886b82a9e272cceedf7c525900fc7dad3415b4dd240a6e22582677a7","manifest":"sha256:0147dd8e631ca24257e2db384bf01d4637a79371f1754b284f3f7e9637c1369c","index":"sha256:9829f34f2f441a17fb6966dbedb548e0834d6bd55ec4ef903049d8dc4433d594","prospective":"sha256:646198a467dfae0231bc6f6ac906f948a34f0bdeb44309cfc3550f24487a9edf","register":"sha256:ccf5ea508607c383009b6dda6d4ac277cb9aac3ad02d2bb167725338c85ed249","forward":"sha256:c595e780c1b5c0bea9a04ab95fb9c9830fdbceb5b14ce92fdf45fe8bcf101e3d"},"facts":{"immutable_execution_records":419,"window_only_remeasurements":72,"cross_profile_duplicate_identities":0,"selection_n":347,"selection_variance":0.0012540206457914785,"budget":400,"budget_remaining":53,"legacy_identities":228,"legacy_complete_packets":2,"legacy_incomplete_packets":226,"prospective_identities":119,"prospective_governed_packets":1,"prospective_governed_batch_closures":0,"prospective_governed_batch_dispositions":{},"prospective_governed_batch_packets_pending":0,"prospective_development_closures":118,"prospective_development_dispositions":{"KILL":118},"prospective_unclosed":0,"prospective_admitted":false,"prospective_latest_reservation_ordinal":347}}</script>
 <script type="module" src="/js/trial-accounting-tool.js"></script>
 </body></html>

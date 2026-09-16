@@ -19,6 +19,8 @@ const SOURCES = Object.freeze({
   manifest: "trial_packet_manifest.json",
   index: "trial-packets/index.json",
   prospective: "prospective_trial_record.json",
+  register: "prospective_epoch_register.json",
+  forward: "trial-packets/forward_index.json",
 });
 const sourcePath = (name) => resolve(GLASSBOX, SOURCES[name]);
 const readJson = (name) => JSON.parse(readFileSync(sourcePath(name), "utf8"));
@@ -39,6 +41,8 @@ function main() {
     documents.manifest,
     documents.index,
     documents.prospective,
+    documents.register,
+    documents.forward,
   );
   const { facts } = union;
   const sourceHashes = Object.fromEntries(Object.keys(SOURCES).map((name) => [name, bytesHash(name)]));
@@ -51,7 +55,7 @@ function main() {
     facts,
   };
   const description =
-    "Explore every ALPHAC hypothesis identity behind selection N, including duplicate-window removal, family concentration, packet debt and the sealed prospective trial.";
+    "Explore every ALPHAC hypothesis identity behind selection N, including duplicate-window removal, family concentration, packet debt and the prospective epoch.";
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "WebApplication",
@@ -104,6 +108,7 @@ function main() {
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=optional" /></noscript>
 ${renderProductShellStylesheet()}
 <link rel="stylesheet" href="/css/trial-accounting-tool.css" />
+<link rel="stylesheet" href="/css/tool-experience.css" />
 <script type="application/ld+json">${JSON.stringify(jsonLd)}</script>
 </head>
 <body class="union-page">
@@ -114,7 +119,7 @@ ${renderProductShellHeader({ active: "trials" })}
     <div class="union-hero__copy">
       <p class="union-kicker"><span>Complete selection denominator</span><span>Union accounting v2</span></p>
       <h1 id="union-title">The denominator is public.</h1>
-      <p>Every measured identity makes the next result less surprising. This is the complete search behind ALPHAC: first measurements, duplicate-window removal, family concentration, incomplete evidence and the one sealed prospective identity. Canli Capital, the research house that publishes ALPHAC, runs this calculator free, with no account or key required.</p>
+      <p>Every measured identity makes the next result less surprising. This is the complete search behind ALPHAC: first measurements, duplicate-window removal, family concentration, incomplete evidence and every prospective identity measured after the legacy epoch closed, with its closure or the lack of one. Canli Capital, the research house that publishes ALPHAC, runs this calculator free, with no account or key required.</p>
       <div class="union-actions"><a href="#union-explorer">Interrogate the union</a><a href="/tools/deflated-sharpe">Calculate the selection penalty</a></div>
     </div>
     <div class="union-counter" aria-label="Current selection denominator">
@@ -136,14 +141,14 @@ ${renderProductShellHeader({ active: "trials" })}
     <div class="union-filterbar">
       <label><span>Search identity</span><input id="union-query" type="search" placeholder="Key, config, label or family" /></label>
       <label><span>Research family</span><select id="union-family"><option value="all">All families</option></select></label>
-      <label><span>Evidence state</span><select id="union-status"><option value="all">All states</option><option value="legacy_complete_packet">Complete legacy packet</option><option value="legacy_incomplete_packet">Incomplete legacy packet</option><option value="prospective_final_incomplete_not_admitted">Prospective, not admitted</option></select></label>
+      <label><span>Evidence state</span><select id="union-status"><option value="all">All states</option><option value="legacy_complete_packet">Complete legacy packet</option><option value="legacy_incomplete_packet">Incomplete legacy packet</option><option value="prospective_final_incomplete_not_admitted">Prospective, governed packet, not admitted</option><option value="prospective_governed_closed_not_admitted">Prospective, governed batch closure, not admitted</option><option value="prospective_development_closed_not_admitted">Prospective, development closure, not admitted</option><option value="prospective_reserved_measured_unclosed">Prospective, measured, not closed</option></select></label>
       <label><span>Sleeve context</span><select id="union-sleeve"><option value="all">All sleeves</option></select></label>
       <button id="union-reset" type="button">Reset</button>
     </div>
     <div class="union-ledger">
       <section class="union-map" aria-label="Identity map and filtered trial list">
         <header><div><span>Visible identities</span><strong id="union-visible">${facts.selection_n}</strong></div><p>Selection N remains <b>${facts.selection_n}</b></p></header>
-        <div class="union-matrix" id="union-matrix" role="list" aria-label="Complete identity union"></div>
+        <div class="union-matrix" id="union-matrix" role="group" aria-label="Complete identity union"></div>
         <div class="union-list" id="union-list"></div>
       </section>
       <aside class="union-inspector" id="union-inspector" aria-live="polite">
@@ -154,12 +159,12 @@ ${renderProductShellHeader({ active: "trials" })}
 
   <section class="union-families" aria-labelledby="families-title">
     <header class="union-section-head"><div><p class="union-label">Search concentration</p><h2 id="families-title">A family count is part of the result.</h2></div></header>
-    <div class="union-families__grid"><ol>${familyRows}</ol><div class="union-debt"><span>Legacy packet coverage</span><strong>${facts.legacy_complete_packets}<small> complete</small></strong><strong>${facts.legacy_incomplete_packets}<small> incomplete</small></strong><p>The one prospective packet has complete evidence accounting but a final incomplete, not-admitted disposition. It is shown separately rather than added to the legacy completion rate.</p></div></div>
+    <div class="union-families__grid"><ol>${familyRows}</ol><div class="union-debt"><span>Legacy packet coverage</span><strong>${facts.legacy_complete_packets}<small> complete</small></strong><strong>${facts.legacy_incomplete_packets}<small> incomplete</small></strong><p>The prospective epoch holds ${facts.prospective_identities} identities: ${facts.prospective_governed_packets} with a governed closing packet (complete evidence accounting, final incomplete, not admitted), ${facts.prospective_governed_batch_closures} closed by a governed batch closure (a full-evidence reservation decided under the admission contract: ${Object.entries(facts.prospective_governed_batch_dispositions).map(([disposition, count]) => `${count} final ${escapeHtml(disposition)}`).join(", ") || "none yet"}${facts.prospective_governed_batch_packets_pending ? `, ${facts.prospective_governed_batch_packets_pending} with its identity packet still owed` : ""}; none admitted), ${facts.prospective_development_closures} closed by a development closure (the decision each study already made, imported and recorded: ${Object.entries(facts.prospective_development_dispositions).map(([disposition, count]) => `${count} final ${escapeHtml(disposition)}`).join(", ") || "none yet"}; none admitted) and ${facts.prospective_unclosed} reserved and measured without a closing packet. They are shown separately rather than added to the legacy completion rate.</p></div></div>
   </section>
 
   <section class="union-rules" aria-labelledby="rules-title">
     <header class="union-section-head"><div><p class="union-label">What the number means</p><h2 id="rules-title">Three rules stop the denominator from shrinking.</h2></div></header>
-    <div><article><span>01</span><h3>Count the first immutable identity</h3><p>Selection N uses one first record per economic or parameter identity. Better or worse remeasurement windows stay public without becoming extra identities.</p></article><article><span>02</span><h3>Keep the evidence debt</h3><p>An incomplete historical packet remains in N. Missing preregistration, environment or decision evidence cannot be repaired by deleting the attempt.</p></article><article><span>03</span><h3>Separate accounting from admission</h3><p>Packet completeness describes evidence coverage. Admission requires the full current contract. The prospective identity remains not admitted.</p></article></div>
+    <div><article><span>01</span><h3>Count the first immutable identity</h3><p>Selection N uses one first record per economic or parameter identity. Better or worse remeasurement windows stay public without becoming extra identities.</p></article><article><span>02</span><h3>Keep the evidence debt</h3><p>An incomplete historical packet remains in N. Missing preregistration, environment or decision evidence cannot be repaired by deleting the attempt.</p></article><article><span>03</span><h3>Separate accounting from admission</h3><p>Packet completeness describes evidence coverage. Admission requires the full current contract. No prospective identity is admitted.</p></article></div>
   </section>
 
   <section class="union-sources" aria-labelledby="sources-title">

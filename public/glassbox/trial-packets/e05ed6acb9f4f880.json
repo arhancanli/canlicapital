@@ -1,0 +1,1197 @@
+{
+  "claim_boundary": "Complete means every evidence section is accounted for by measured sources or explicit hash-bound limitations, following the existing final-incomplete packet convention. Admission evidence is NOT complete. No capacity, stress, independent reproduction or public publication is fabricated.",
+  "complete": true,
+  "completion_assessment": {
+    "candidate_evidence_complete_for_admission": false,
+    "disposition": "INCOMPLETE_NOT_ADMITTED",
+    "packet_evidence_accounting_complete": true
+  },
+  "config_hash": "5c13e2df9313de49",
+  "configuration": {
+    "allocator": "trend",
+    "alpha_names": [
+      "mf_trend_63",
+      "mf_trend_126",
+      "mf_trend_252"
+    ],
+    "end": 1787529600000,
+    "instrument_ids": [
+      "XUSE:CASH:DBAUSD",
+      "XUSE:CASH:DBCUSD",
+      "XUSE:CASH:EEMUSD",
+      "XUSE:CASH:EFAUSD",
+      "XUSE:CASH:FXEUSD",
+      "XUSE:CASH:FXYUSD",
+      "XUSE:CASH:GLDUSD",
+      "XUSE:CASH:IEFUSD",
+      "XUSE:CASH:IWMUSD",
+      "XUSE:CASH:QQQUSD",
+      "XUSE:CASH:SHYUSD",
+      "XUSE:CASH:SLVUSD",
+      "XUSE:CASH:SPYUSD",
+      "XUSE:CASH:TLTUSD",
+      "XUSE:CASH:UNGUSD",
+      "XUSE:CASH:USOUSD",
+      "XUSE:CASH:UUPUSD"
+    ],
+    "no_trade_band": 0.001,
+    "rebalance_bars": 10,
+    "start": 1041379200000,
+    "test_bars": 126,
+    "train_bars": 504,
+    "trend_cost_gate": {
+      "allocation_mode": "retain_cash",
+      "basis": "modeled",
+      "horizon_bars": 21,
+      "periods_per_year": 252.0,
+      "rows": [
+        {
+          "end_ms": 1787529600000,
+          "instrument_id": "XUSE:CASH:DBAUSD",
+          "known_ms": 0,
+          "round_trip_fraction": 0.002464911064067352,
+          "side": "long",
+          "source": "frozen_development_scenario_v1",
+          "start_ms": 0
+        },
+        {
+          "end_ms": 1787529600000,
+          "instrument_id": "XUSE:CASH:DBAUSD",
+          "known_ms": 0,
+          "round_trip_fraction": 0.002875869968176941,
+          "side": "short",
+          "source": "frozen_development_scenario_v1",
+          "start_ms": 0
+        },
+        {
+          "end_ms": 1787529600000,
+          "instrument_id": "XUSE:CASH:DBCUSD",
+          "known_ms": 0,
+          "round_trip_fraction": 0.002464911064067352,
+          "side": "long",
+          "source": "frozen_development_scenario_v1",
+          "start_ms": 0
+        },
+        {
+          "end_ms": 1787529600000,
+          "instrument_id": "XUSE:CASH:DBCUSD",
+          "known_ms": 0,
+          "round_trip_fraction": 0.002875869968176941,
+          "side": "short",
+          "source": "frozen_development_scenario_v1",
+          "start_ms": 0
+        },
+        {
+          "end_ms": 1787529600000,
+          "instrument_id": "XUSE:CASH:EEMUSD",
+          "known_ms": 0,
+          "round_trip_fraction": 0.002464911064067352,
+          "side": "long",
+          "source": "frozen_development_scenario_v1",
+          "start_ms": 0
+        },
+        {
+          "end_ms": 1787529600000,
+          "instrument_id": "XUSE:CASH:EEMUSD",
+          "known_ms": 0,
+          "round_trip_fraction": 0.002875869968176941,
+          "side": "short",
+          "source": "frozen_development_scenario_v1",
+          "start_ms": 0
+        },
+        {
+          "end_ms": 1787529600000,
+          "instrument_id": "XUSE:CASH:EFAUSD",
+          "known_ms": 0,
+          "round_trip_fraction": 0.002464911064067352,
+          "side": "long",
+          "source": "frozen_development_scenario_v1",
+          "start_ms": 0
+        },
+        {
+          "end_ms": 1787529600000,
+          "instrument_id": "XUSE:CASH:EFAUSD",
+          "known_ms": 0,
+          "round_trip_fraction": 0.002875869968176941,
+          "side": "short",
+          "source": "frozen_development_scenario_v1",
+          "start_ms": 0
+        },
+        {
+          "end_ms": 1787529600000,
+          "instrument_id": "XUSE:CASH:FXEUSD",
+          "known_ms": 0,
+          "round_trip_fraction": 0.002464911064067352,
+          "side": "long",
+          "source": "frozen_development_scenario_v1",
+          "start_ms": 0
+        },
+        {
+          "end_ms": 1787529600000,
+          "instrument_id": "XUSE:CASH:FXEUSD",
+          "known_ms": 0,
+          "round_trip_fraction": 0.002875869968176941,
+          "side": "short",
+          "source": "frozen_development_scenario_v1",
+          "start_ms": 0
+        },
+        {
+          "end_ms": 1787529600000,
+          "instrument_id": "XUSE:CASH:FXYUSD",
+          "known_ms": 0,
+          "round_trip_fraction": 0.002464911064067352,
+          "side": "long",
+          "source": "frozen_development_scenario_v1",
+          "start_ms": 0
+        },
+        {
+          "end_ms": 1787529600000,
+          "instrument_id": "XUSE:CASH:FXYUSD",
+          "known_ms": 0,
+          "round_trip_fraction": 0.002875869968176941,
+          "side": "short",
+          "source": "frozen_development_scenario_v1",
+          "start_ms": 0
+        },
+        {
+          "end_ms": 1787529600000,
+          "instrument_id": "XUSE:CASH:GLDUSD",
+          "known_ms": 0,
+          "round_trip_fraction": 0.002464911064067352,
+          "side": "long",
+          "source": "frozen_development_scenario_v1",
+          "start_ms": 0
+        },
+        {
+          "end_ms": 1787529600000,
+          "instrument_id": "XUSE:CASH:GLDUSD",
+          "known_ms": 0,
+          "round_trip_fraction": 0.002875869968176941,
+          "side": "short",
+          "source": "frozen_development_scenario_v1",
+          "start_ms": 0
+        },
+        {
+          "end_ms": 1787529600000,
+          "instrument_id": "XUSE:CASH:IEFUSD",
+          "known_ms": 0,
+          "round_trip_fraction": 0.002464911064067352,
+          "side": "long",
+          "source": "frozen_development_scenario_v1",
+          "start_ms": 0
+        },
+        {
+          "end_ms": 1787529600000,
+          "instrument_id": "XUSE:CASH:IEFUSD",
+          "known_ms": 0,
+          "round_trip_fraction": 0.002875869968176941,
+          "side": "short",
+          "source": "frozen_development_scenario_v1",
+          "start_ms": 0
+        },
+        {
+          "end_ms": 1787529600000,
+          "instrument_id": "XUSE:CASH:IWMUSD",
+          "known_ms": 0,
+          "round_trip_fraction": 0.002464911064067352,
+          "side": "long",
+          "source": "frozen_development_scenario_v1",
+          "start_ms": 0
+        },
+        {
+          "end_ms": 1787529600000,
+          "instrument_id": "XUSE:CASH:IWMUSD",
+          "known_ms": 0,
+          "round_trip_fraction": 0.002875869968176941,
+          "side": "short",
+          "source": "frozen_development_scenario_v1",
+          "start_ms": 0
+        },
+        {
+          "end_ms": 1787529600000,
+          "instrument_id": "XUSE:CASH:QQQUSD",
+          "known_ms": 0,
+          "round_trip_fraction": 0.002464911064067352,
+          "side": "long",
+          "source": "frozen_development_scenario_v1",
+          "start_ms": 0
+        },
+        {
+          "end_ms": 1787529600000,
+          "instrument_id": "XUSE:CASH:QQQUSD",
+          "known_ms": 0,
+          "round_trip_fraction": 0.002875869968176941,
+          "side": "short",
+          "source": "frozen_development_scenario_v1",
+          "start_ms": 0
+        },
+        {
+          "end_ms": 1787529600000,
+          "instrument_id": "XUSE:CASH:SHYUSD",
+          "known_ms": 0,
+          "round_trip_fraction": 0.002464911064067352,
+          "side": "long",
+          "source": "frozen_development_scenario_v1",
+          "start_ms": 0
+        },
+        {
+          "end_ms": 1787529600000,
+          "instrument_id": "XUSE:CASH:SHYUSD",
+          "known_ms": 0,
+          "round_trip_fraction": 0.002875869968176941,
+          "side": "short",
+          "source": "frozen_development_scenario_v1",
+          "start_ms": 0
+        },
+        {
+          "end_ms": 1787529600000,
+          "instrument_id": "XUSE:CASH:SLVUSD",
+          "known_ms": 0,
+          "round_trip_fraction": 0.002464911064067352,
+          "side": "long",
+          "source": "frozen_development_scenario_v1",
+          "start_ms": 0
+        },
+        {
+          "end_ms": 1787529600000,
+          "instrument_id": "XUSE:CASH:SLVUSD",
+          "known_ms": 0,
+          "round_trip_fraction": 0.002875869968176941,
+          "side": "short",
+          "source": "frozen_development_scenario_v1",
+          "start_ms": 0
+        },
+        {
+          "end_ms": 1787529600000,
+          "instrument_id": "XUSE:CASH:SPYUSD",
+          "known_ms": 0,
+          "round_trip_fraction": 0.002464911064067352,
+          "side": "long",
+          "source": "frozen_development_scenario_v1",
+          "start_ms": 0
+        },
+        {
+          "end_ms": 1787529600000,
+          "instrument_id": "XUSE:CASH:SPYUSD",
+          "known_ms": 0,
+          "round_trip_fraction": 0.002875869968176941,
+          "side": "short",
+          "source": "frozen_development_scenario_v1",
+          "start_ms": 0
+        },
+        {
+          "end_ms": 1787529600000,
+          "instrument_id": "XUSE:CASH:TLTUSD",
+          "known_ms": 0,
+          "round_trip_fraction": 0.002464911064067352,
+          "side": "long",
+          "source": "frozen_development_scenario_v1",
+          "start_ms": 0
+        },
+        {
+          "end_ms": 1787529600000,
+          "instrument_id": "XUSE:CASH:TLTUSD",
+          "known_ms": 0,
+          "round_trip_fraction": 0.002875869968176941,
+          "side": "short",
+          "source": "frozen_development_scenario_v1",
+          "start_ms": 0
+        },
+        {
+          "end_ms": 1787529600000,
+          "instrument_id": "XUSE:CASH:UNGUSD",
+          "known_ms": 0,
+          "round_trip_fraction": 0.002464911064067352,
+          "side": "long",
+          "source": "frozen_development_scenario_v1",
+          "start_ms": 0
+        },
+        {
+          "end_ms": 1787529600000,
+          "instrument_id": "XUSE:CASH:UNGUSD",
+          "known_ms": 0,
+          "round_trip_fraction": 0.002875869968176941,
+          "side": "short",
+          "source": "frozen_development_scenario_v1",
+          "start_ms": 0
+        },
+        {
+          "end_ms": 1787529600000,
+          "instrument_id": "XUSE:CASH:USOUSD",
+          "known_ms": 0,
+          "round_trip_fraction": 0.002464911064067352,
+          "side": "long",
+          "source": "frozen_development_scenario_v1",
+          "start_ms": 0
+        },
+        {
+          "end_ms": 1787529600000,
+          "instrument_id": "XUSE:CASH:USOUSD",
+          "known_ms": 0,
+          "round_trip_fraction": 0.002875869968176941,
+          "side": "short",
+          "source": "frozen_development_scenario_v1",
+          "start_ms": 0
+        },
+        {
+          "end_ms": 1787529600000,
+          "instrument_id": "XUSE:CASH:UUPUSD",
+          "known_ms": 0,
+          "round_trip_fraction": 0.002464911064067352,
+          "side": "long",
+          "source": "frozen_development_scenario_v1",
+          "start_ms": 0
+        },
+        {
+          "end_ms": 1787529600000,
+          "instrument_id": "XUSE:CASH:UUPUSD",
+          "known_ms": 0,
+          "round_trip_fraction": 0.002875869968176941,
+          "side": "short",
+          "source": "frozen_development_scenario_v1",
+          "start_ms": 0
+        }
+      ],
+      "sha256": "deffff9d2deb0f97350fd39df455eee92557b777a3f1ba243e5523684cda6622"
+    }
+  },
+  "content_hash": "sha256:69b9e3312a54c74a936b181ae68b59c9fc27d48d3a0f46af76a6af2de3e91522",
+  "hypothesis_key": "e05ed6acb9f4f880",
+  "immutable_first_measurement": {
+    "config": {
+      "allocator": "trend",
+      "alpha_names": [
+        "mf_trend_63",
+        "mf_trend_126",
+        "mf_trend_252"
+      ],
+      "end": 1787529600000,
+      "instrument_ids": [
+        "XUSE:CASH:DBAUSD",
+        "XUSE:CASH:DBCUSD",
+        "XUSE:CASH:EEMUSD",
+        "XUSE:CASH:EFAUSD",
+        "XUSE:CASH:FXEUSD",
+        "XUSE:CASH:FXYUSD",
+        "XUSE:CASH:GLDUSD",
+        "XUSE:CASH:IEFUSD",
+        "XUSE:CASH:IWMUSD",
+        "XUSE:CASH:QQQUSD",
+        "XUSE:CASH:SHYUSD",
+        "XUSE:CASH:SLVUSD",
+        "XUSE:CASH:SPYUSD",
+        "XUSE:CASH:TLTUSD",
+        "XUSE:CASH:UNGUSD",
+        "XUSE:CASH:USOUSD",
+        "XUSE:CASH:UUPUSD"
+      ],
+      "no_trade_band": 0.001,
+      "rebalance_bars": 10,
+      "start": 1041379200000,
+      "test_bars": 126,
+      "train_bars": 504,
+      "trend_cost_gate": {
+        "allocation_mode": "retain_cash",
+        "basis": "modeled",
+        "horizon_bars": 21,
+        "periods_per_year": 252.0,
+        "rows": [
+          {
+            "end_ms": 1787529600000,
+            "instrument_id": "XUSE:CASH:DBAUSD",
+            "known_ms": 0,
+            "round_trip_fraction": 0.002464911064067352,
+            "side": "long",
+            "source": "frozen_development_scenario_v1",
+            "start_ms": 0
+          },
+          {
+            "end_ms": 1787529600000,
+            "instrument_id": "XUSE:CASH:DBAUSD",
+            "known_ms": 0,
+            "round_trip_fraction": 0.002875869968176941,
+            "side": "short",
+            "source": "frozen_development_scenario_v1",
+            "start_ms": 0
+          },
+          {
+            "end_ms": 1787529600000,
+            "instrument_id": "XUSE:CASH:DBCUSD",
+            "known_ms": 0,
+            "round_trip_fraction": 0.002464911064067352,
+            "side": "long",
+            "source": "frozen_development_scenario_v1",
+            "start_ms": 0
+          },
+          {
+            "end_ms": 1787529600000,
+            "instrument_id": "XUSE:CASH:DBCUSD",
+            "known_ms": 0,
+            "round_trip_fraction": 0.002875869968176941,
+            "side": "short",
+            "source": "frozen_development_scenario_v1",
+            "start_ms": 0
+          },
+          {
+            "end_ms": 1787529600000,
+            "instrument_id": "XUSE:CASH:EEMUSD",
+            "known_ms": 0,
+            "round_trip_fraction": 0.002464911064067352,
+            "side": "long",
+            "source": "frozen_development_scenario_v1",
+            "start_ms": 0
+          },
+          {
+            "end_ms": 1787529600000,
+            "instrument_id": "XUSE:CASH:EEMUSD",
+            "known_ms": 0,
+            "round_trip_fraction": 0.002875869968176941,
+            "side": "short",
+            "source": "frozen_development_scenario_v1",
+            "start_ms": 0
+          },
+          {
+            "end_ms": 1787529600000,
+            "instrument_id": "XUSE:CASH:EFAUSD",
+            "known_ms": 0,
+            "round_trip_fraction": 0.002464911064067352,
+            "side": "long",
+            "source": "frozen_development_scenario_v1",
+            "start_ms": 0
+          },
+          {
+            "end_ms": 1787529600000,
+            "instrument_id": "XUSE:CASH:EFAUSD",
+            "known_ms": 0,
+            "round_trip_fraction": 0.002875869968176941,
+            "side": "short",
+            "source": "frozen_development_scenario_v1",
+            "start_ms": 0
+          },
+          {
+            "end_ms": 1787529600000,
+            "instrument_id": "XUSE:CASH:FXEUSD",
+            "known_ms": 0,
+            "round_trip_fraction": 0.002464911064067352,
+            "side": "long",
+            "source": "frozen_development_scenario_v1",
+            "start_ms": 0
+          },
+          {
+            "end_ms": 1787529600000,
+            "instrument_id": "XUSE:CASH:FXEUSD",
+            "known_ms": 0,
+            "round_trip_fraction": 0.002875869968176941,
+            "side": "short",
+            "source": "frozen_development_scenario_v1",
+            "start_ms": 0
+          },
+          {
+            "end_ms": 1787529600000,
+            "instrument_id": "XUSE:CASH:FXYUSD",
+            "known_ms": 0,
+            "round_trip_fraction": 0.002464911064067352,
+            "side": "long",
+            "source": "frozen_development_scenario_v1",
+            "start_ms": 0
+          },
+          {
+            "end_ms": 1787529600000,
+            "instrument_id": "XUSE:CASH:FXYUSD",
+            "known_ms": 0,
+            "round_trip_fraction": 0.002875869968176941,
+            "side": "short",
+            "source": "frozen_development_scenario_v1",
+            "start_ms": 0
+          },
+          {
+            "end_ms": 1787529600000,
+            "instrument_id": "XUSE:CASH:GLDUSD",
+            "known_ms": 0,
+            "round_trip_fraction": 0.002464911064067352,
+            "side": "long",
+            "source": "frozen_development_scenario_v1",
+            "start_ms": 0
+          },
+          {
+            "end_ms": 1787529600000,
+            "instrument_id": "XUSE:CASH:GLDUSD",
+            "known_ms": 0,
+            "round_trip_fraction": 0.002875869968176941,
+            "side": "short",
+            "source": "frozen_development_scenario_v1",
+            "start_ms": 0
+          },
+          {
+            "end_ms": 1787529600000,
+            "instrument_id": "XUSE:CASH:IEFUSD",
+            "known_ms": 0,
+            "round_trip_fraction": 0.002464911064067352,
+            "side": "long",
+            "source": "frozen_development_scenario_v1",
+            "start_ms": 0
+          },
+          {
+            "end_ms": 1787529600000,
+            "instrument_id": "XUSE:CASH:IEFUSD",
+            "known_ms": 0,
+            "round_trip_fraction": 0.002875869968176941,
+            "side": "short",
+            "source": "frozen_development_scenario_v1",
+            "start_ms": 0
+          },
+          {
+            "end_ms": 1787529600000,
+            "instrument_id": "XUSE:CASH:IWMUSD",
+            "known_ms": 0,
+            "round_trip_fraction": 0.002464911064067352,
+            "side": "long",
+            "source": "frozen_development_scenario_v1",
+            "start_ms": 0
+          },
+          {
+            "end_ms": 1787529600000,
+            "instrument_id": "XUSE:CASH:IWMUSD",
+            "known_ms": 0,
+            "round_trip_fraction": 0.002875869968176941,
+            "side": "short",
+            "source": "frozen_development_scenario_v1",
+            "start_ms": 0
+          },
+          {
+            "end_ms": 1787529600000,
+            "instrument_id": "XUSE:CASH:QQQUSD",
+            "known_ms": 0,
+            "round_trip_fraction": 0.002464911064067352,
+            "side": "long",
+            "source": "frozen_development_scenario_v1",
+            "start_ms": 0
+          },
+          {
+            "end_ms": 1787529600000,
+            "instrument_id": "XUSE:CASH:QQQUSD",
+            "known_ms": 0,
+            "round_trip_fraction": 0.002875869968176941,
+            "side": "short",
+            "source": "frozen_development_scenario_v1",
+            "start_ms": 0
+          },
+          {
+            "end_ms": 1787529600000,
+            "instrument_id": "XUSE:CASH:SHYUSD",
+            "known_ms": 0,
+            "round_trip_fraction": 0.002464911064067352,
+            "side": "long",
+            "source": "frozen_development_scenario_v1",
+            "start_ms": 0
+          },
+          {
+            "end_ms": 1787529600000,
+            "instrument_id": "XUSE:CASH:SHYUSD",
+            "known_ms": 0,
+            "round_trip_fraction": 0.002875869968176941,
+            "side": "short",
+            "source": "frozen_development_scenario_v1",
+            "start_ms": 0
+          },
+          {
+            "end_ms": 1787529600000,
+            "instrument_id": "XUSE:CASH:SLVUSD",
+            "known_ms": 0,
+            "round_trip_fraction": 0.002464911064067352,
+            "side": "long",
+            "source": "frozen_development_scenario_v1",
+            "start_ms": 0
+          },
+          {
+            "end_ms": 1787529600000,
+            "instrument_id": "XUSE:CASH:SLVUSD",
+            "known_ms": 0,
+            "round_trip_fraction": 0.002875869968176941,
+            "side": "short",
+            "source": "frozen_development_scenario_v1",
+            "start_ms": 0
+          },
+          {
+            "end_ms": 1787529600000,
+            "instrument_id": "XUSE:CASH:SPYUSD",
+            "known_ms": 0,
+            "round_trip_fraction": 0.002464911064067352,
+            "side": "long",
+            "source": "frozen_development_scenario_v1",
+            "start_ms": 0
+          },
+          {
+            "end_ms": 1787529600000,
+            "instrument_id": "XUSE:CASH:SPYUSD",
+            "known_ms": 0,
+            "round_trip_fraction": 0.002875869968176941,
+            "side": "short",
+            "source": "frozen_development_scenario_v1",
+            "start_ms": 0
+          },
+          {
+            "end_ms": 1787529600000,
+            "instrument_id": "XUSE:CASH:TLTUSD",
+            "known_ms": 0,
+            "round_trip_fraction": 0.002464911064067352,
+            "side": "long",
+            "source": "frozen_development_scenario_v1",
+            "start_ms": 0
+          },
+          {
+            "end_ms": 1787529600000,
+            "instrument_id": "XUSE:CASH:TLTUSD",
+            "known_ms": 0,
+            "round_trip_fraction": 0.002875869968176941,
+            "side": "short",
+            "source": "frozen_development_scenario_v1",
+            "start_ms": 0
+          },
+          {
+            "end_ms": 1787529600000,
+            "instrument_id": "XUSE:CASH:UNGUSD",
+            "known_ms": 0,
+            "round_trip_fraction": 0.002464911064067352,
+            "side": "long",
+            "source": "frozen_development_scenario_v1",
+            "start_ms": 0
+          },
+          {
+            "end_ms": 1787529600000,
+            "instrument_id": "XUSE:CASH:UNGUSD",
+            "known_ms": 0,
+            "round_trip_fraction": 0.002875869968176941,
+            "side": "short",
+            "source": "frozen_development_scenario_v1",
+            "start_ms": 0
+          },
+          {
+            "end_ms": 1787529600000,
+            "instrument_id": "XUSE:CASH:USOUSD",
+            "known_ms": 0,
+            "round_trip_fraction": 0.002464911064067352,
+            "side": "long",
+            "source": "frozen_development_scenario_v1",
+            "start_ms": 0
+          },
+          {
+            "end_ms": 1787529600000,
+            "instrument_id": "XUSE:CASH:USOUSD",
+            "known_ms": 0,
+            "round_trip_fraction": 0.002875869968176941,
+            "side": "short",
+            "source": "frozen_development_scenario_v1",
+            "start_ms": 0
+          },
+          {
+            "end_ms": 1787529600000,
+            "instrument_id": "XUSE:CASH:UUPUSD",
+            "known_ms": 0,
+            "round_trip_fraction": 0.002464911064067352,
+            "side": "long",
+            "source": "frozen_development_scenario_v1",
+            "start_ms": 0
+          },
+          {
+            "end_ms": 1787529600000,
+            "instrument_id": "XUSE:CASH:UUPUSD",
+            "known_ms": 0,
+            "round_trip_fraction": 0.002875869968176941,
+            "side": "short",
+            "source": "frozen_development_scenario_v1",
+            "start_ms": 0
+          }
+        ],
+        "sha256": "deffff9d2deb0f97350fd39df455eee92557b777a3f1ba243e5523684cda6622"
+      }
+    },
+    "config_hash": "5c13e2df9313de49",
+    "kurtosis": 15.289203793600914,
+    "n_obs": 5190,
+    "now_ms": 1789184581200,
+    "sharpe_ann": 0.21785179989642856,
+    "sharpe_per_period": 0.011402884364512695,
+    "skew": -0.16234184808813154
+  },
+  "imported_from_external_tree": {
+    "external_content_hash": "sha256:c838495ab473ee12f610add6d9dcefe5ae286e9d6c6f30ddea3e00e154e0039e",
+    "imported_on": "2026-09-14T19:32:41+00:00",
+    "tree": "/Users/arhancanli/alphac-prospective-pause-20260911"
+  },
+  "missing_sections": [],
+  "packet_status": "COMPLETE_ACCOUNTING_FINAL_KILLED_NOT_ADMITTED",
+  "partial_sections": [],
+  "required_sections": {
+    "admission_or_kill_decision": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/alphatrend_cash_retention_20260912/reservation.json",
+          "sha256": "cfbfd204a8e92c2462f43eb7a0ccacb95524b111e41c9f525ed09598799b866e"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_cash_retention_20260912/reservation_validation.json",
+          "sha256": "9f9c0d34c68b27acf253090d600080de0b50f3e5ea04daf69e31c376d1997b14"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_cash_retention_20260912/preregistration.json",
+          "sha256": "98c0e75cfe4111d0ef7efaa3f9001a4ce4329d310b28cf1f1fc6f7f83751dcf9"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_cash_retention_20260912/input_manifest.json",
+          "sha256": "cfc0a8c21906d220436289801f288048a163b4fb26eadf38ec6b60f1d8312b0b"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_cash_retention_20260912/environment.json",
+          "sha256": "cc16106c24f905748ccd6888adfe078282af8368da326d683a61c30597584238"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_cash_retention_20260912/comparison.json",
+          "sha256": "359613a788c4ff27e6e209983cb3199f257712eec2036fc5b1d281147b12ac69"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_cash_retention_20260912/experiments.jsonl",
+          "sha256": "a7c4f40e17fc979b17c22f5fa27425fd72a95ce9d8d6bc738d8774f2bbacc49c"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_cash_retention_20260912/REPORT.md",
+          "sha256": "98020aab964f83145f255f7a680359f23aa3e2b4a5f4e1551c5fa1fce76b4c06"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_cash_retention_20260912/admission_evidence_accounting.json",
+          "sha256": "3a5035df11db3043485bed2d7e20cfb0ee0c85fd10a02e3b7185848431a4b7cc"
+        },
+        {
+          "content_hash": "sha256:5560082dcb2aa4d61d9249845a8c6f4c95d74310af5c7a80df1de1d63ecf48f3",
+          "path": "artifacts/research/development_closures/e05ed6acb9f4f880_admission_closure.json",
+          "sha256": "8de66c94b969f46dab41498a30133ebcab4bc150a462535db0e08e7ccffd81b6",
+          "type": "final_development_admission_closure"
+        }
+      ],
+      "statement": "Development rule failed. Retire this construction under its scenario. Full admission evaluation is INCOMPLETE_NOT_ADMITTED.",
+      "status": "VERIFIED_FINAL_DEVELOPMENT_CLOSURE_KILL"
+    },
+    "code_environment_and_reproduction": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/alphatrend_cash_retention_20260912/reservation.json",
+          "sha256": "cfbfd204a8e92c2462f43eb7a0ccacb95524b111e41c9f525ed09598799b866e"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_cash_retention_20260912/reservation_validation.json",
+          "sha256": "9f9c0d34c68b27acf253090d600080de0b50f3e5ea04daf69e31c376d1997b14"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_cash_retention_20260912/preregistration.json",
+          "sha256": "98c0e75cfe4111d0ef7efaa3f9001a4ce4329d310b28cf1f1fc6f7f83751dcf9"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_cash_retention_20260912/input_manifest.json",
+          "sha256": "cfc0a8c21906d220436289801f288048a163b4fb26eadf38ec6b60f1d8312b0b"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_cash_retention_20260912/environment.json",
+          "sha256": "cc16106c24f905748ccd6888adfe078282af8368da326d683a61c30597584238"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_cash_retention_20260912/comparison.json",
+          "sha256": "359613a788c4ff27e6e209983cb3199f257712eec2036fc5b1d281147b12ac69"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_cash_retention_20260912/experiments.jsonl",
+          "sha256": "a7c4f40e17fc979b17c22f5fa27425fd72a95ce9d8d6bc738d8774f2bbacc49c"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_cash_retention_20260912/REPORT.md",
+          "sha256": "98020aab964f83145f255f7a680359f23aa3e2b4a5f4e1551c5fa1fce76b4c06"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_cash_retention_20260912/admission_evidence_accounting.json",
+          "sha256": "3a5035df11db3043485bed2d7e20cfb0ee0c85fd10a02e3b7185848431a4b7cc"
+        }
+      ],
+      "statement": "Runner, locked environment, sealed inputs and baseline reference comparison are preserved. No independent third-party reproduction is claimed.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "economic_mechanism_and_falsifiable_hypothesis": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/alphatrend_cash_retention_20260912/reservation.json",
+          "sha256": "cfbfd204a8e92c2462f43eb7a0ccacb95524b111e41c9f525ed09598799b866e"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_cash_retention_20260912/reservation_validation.json",
+          "sha256": "9f9c0d34c68b27acf253090d600080de0b50f3e5ea04daf69e31c376d1997b14"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_cash_retention_20260912/preregistration.json",
+          "sha256": "98c0e75cfe4111d0ef7efaa3f9001a4ce4329d310b28cf1f1fc6f7f83751dcf9"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_cash_retention_20260912/input_manifest.json",
+          "sha256": "cfc0a8c21906d220436289801f288048a163b4fb26eadf38ec6b60f1d8312b0b"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_cash_retention_20260912/environment.json",
+          "sha256": "cc16106c24f905748ccd6888adfe078282af8368da326d683a61c30597584238"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_cash_retention_20260912/comparison.json",
+          "sha256": "359613a788c4ff27e6e209983cb3199f257712eec2036fc5b1d281147b12ac69"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_cash_retention_20260912/experiments.jsonl",
+          "sha256": "a7c4f40e17fc979b17c22f5fa27425fd72a95ce9d8d6bc738d8774f2bbacc49c"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_cash_retention_20260912/REPORT.md",
+          "sha256": "98020aab964f83145f255f7a680359f23aa3e2b4a5f4e1551c5fa1fce76b4c06"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_cash_retention_20260912/admission_evidence_accounting.json",
+          "sha256": "3a5035df11db3043485bed2d7e20cfb0ee0c85fd10a02e3b7185848431a4b7cc"
+        }
+      ],
+      "statement": "The cost filter sought improved net risk-adjusted returns by removing weak expected returns. The predeclared comparison rejected it.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "execution_and_cost_model": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/alphatrend_cash_retention_20260912/reservation.json",
+          "sha256": "cfbfd204a8e92c2462f43eb7a0ccacb95524b111e41c9f525ed09598799b866e"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_cash_retention_20260912/reservation_validation.json",
+          "sha256": "9f9c0d34c68b27acf253090d600080de0b50f3e5ea04daf69e31c376d1997b14"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_cash_retention_20260912/preregistration.json",
+          "sha256": "98c0e75cfe4111d0ef7efaa3f9001a4ce4329d310b28cf1f1fc6f7f83751dcf9"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_cash_retention_20260912/input_manifest.json",
+          "sha256": "cfc0a8c21906d220436289801f288048a163b4fb26eadf38ec6b60f1d8312b0b"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_cash_retention_20260912/environment.json",
+          "sha256": "cc16106c24f905748ccd6888adfe078282af8368da326d683a61c30597584238"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_cash_retention_20260912/comparison.json",
+          "sha256": "359613a788c4ff27e6e209983cb3199f257712eec2036fc5b1d281147b12ac69"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_cash_retention_20260912/experiments.jsonl",
+          "sha256": "a7c4f40e17fc979b17c22f5fa27425fd72a95ce9d8d6bc738d8774f2bbacc49c"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_cash_retention_20260912/REPORT.md",
+          "sha256": "98020aab964f83145f255f7a680359f23aa3e2b4a5f4e1551c5fa1fce76b4c06"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_cash_retention_20260912/admission_evidence_accounting.json",
+          "sha256": "3a5035df11db3043485bed2d7e20cfb0ee0c85fd10a02e3b7185848431a4b7cc"
+        }
+      ],
+      "statement": "Both arms used matched modeled costs. Dated broker-level borrow, live implementation shortfall and capacity validation were not collected.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "family_and_union_trial_accounting": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/alphatrend_cash_retention_20260912/reservation.json",
+          "sha256": "cfbfd204a8e92c2462f43eb7a0ccacb95524b111e41c9f525ed09598799b866e"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_cash_retention_20260912/reservation_validation.json",
+          "sha256": "9f9c0d34c68b27acf253090d600080de0b50f3e5ea04daf69e31c376d1997b14"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_cash_retention_20260912/preregistration.json",
+          "sha256": "98c0e75cfe4111d0ef7efaa3f9001a4ce4329d310b28cf1f1fc6f7f83751dcf9"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_cash_retention_20260912/input_manifest.json",
+          "sha256": "cfc0a8c21906d220436289801f288048a163b4fb26eadf38ec6b60f1d8312b0b"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_cash_retention_20260912/environment.json",
+          "sha256": "cc16106c24f905748ccd6888adfe078282af8368da326d683a61c30597584238"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_cash_retention_20260912/comparison.json",
+          "sha256": "359613a788c4ff27e6e209983cb3199f257712eec2036fc5b1d281147b12ac69"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_cash_retention_20260912/experiments.jsonl",
+          "sha256": "a7c4f40e17fc979b17c22f5fa27425fd72a95ce9d8d6bc738d8774f2bbacc49c"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_cash_retention_20260912/REPORT.md",
+          "sha256": "98020aab964f83145f255f7a680359f23aa3e2b4a5f4e1551c5fa1fce76b4c06"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_cash_retention_20260912/admission_evidence_accounting.json",
+          "sha256": "3a5035df11db3043485bed2d7e20cfb0ee0c85fd10a02e3b7185848431a4b7cc"
+        }
+      ],
+      "statement": "The new identity remains in the discoverable experiment union; rejecting it does not remove it from selection accounting.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "identity_and_authorship": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/alphatrend_cash_retention_20260912/reservation.json",
+          "sha256": "cfbfd204a8e92c2462f43eb7a0ccacb95524b111e41c9f525ed09598799b866e"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_cash_retention_20260912/reservation_validation.json",
+          "sha256": "9f9c0d34c68b27acf253090d600080de0b50f3e5ea04daf69e31c376d1997b14"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_cash_retention_20260912/preregistration.json",
+          "sha256": "98c0e75cfe4111d0ef7efaa3f9001a4ce4329d310b28cf1f1fc6f7f83751dcf9"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_cash_retention_20260912/input_manifest.json",
+          "sha256": "cfc0a8c21906d220436289801f288048a163b4fb26eadf38ec6b60f1d8312b0b"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_cash_retention_20260912/environment.json",
+          "sha256": "cc16106c24f905748ccd6888adfe078282af8368da326d683a61c30597584238"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_cash_retention_20260912/comparison.json",
+          "sha256": "359613a788c4ff27e6e209983cb3199f257712eec2036fc5b1d281147b12ac69"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_cash_retention_20260912/experiments.jsonl",
+          "sha256": "a7c4f40e17fc979b17c22f5fa27425fd72a95ce9d8d6bc738d8774f2bbacc49c"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_cash_retention_20260912/REPORT.md",
+          "sha256": "98020aab964f83145f255f7a680359f23aa3e2b4a5f4e1551c5fa1fce76b4c06"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_cash_retention_20260912/admission_evidence_accounting.json",
+          "sha256": "3a5035df11db3043485bed2d7e20cfb0ee0c85fd10a02e3b7185848431a4b7cc"
+        }
+      ],
+      "statement": "User-directed ALPHAC research, implementation and evaluation by Codex; not independent replication.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "literature_and_overlap_decision": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/alphatrend_cash_retention_20260912/reservation.json",
+          "sha256": "cfbfd204a8e92c2462f43eb7a0ccacb95524b111e41c9f525ed09598799b866e"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_cash_retention_20260912/reservation_validation.json",
+          "sha256": "9f9c0d34c68b27acf253090d600080de0b50f3e5ea04daf69e31c376d1997b14"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_cash_retention_20260912/preregistration.json",
+          "sha256": "98c0e75cfe4111d0ef7efaa3f9001a4ce4329d310b28cf1f1fc6f7f83751dcf9"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_cash_retention_20260912/input_manifest.json",
+          "sha256": "cfc0a8c21906d220436289801f288048a163b4fb26eadf38ec6b60f1d8312b0b"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_cash_retention_20260912/environment.json",
+          "sha256": "cc16106c24f905748ccd6888adfe078282af8368da326d683a61c30597584238"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_cash_retention_20260912/comparison.json",
+          "sha256": "359613a788c4ff27e6e209983cb3199f257712eec2036fc5b1d281147b12ac69"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_cash_retention_20260912/experiments.jsonl",
+          "sha256": "a7c4f40e17fc979b17c22f5fa27425fd72a95ce9d8d6bc738d8774f2bbacc49c"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_cash_retention_20260912/REPORT.md",
+          "sha256": "98020aab964f83145f255f7a680359f23aa3e2b4a5f4e1551c5fa1fce76b4c06"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_cash_retention_20260912/admission_evidence_accounting.json",
+          "sha256": "3a5035df11db3043485bed2d7e20cfb0ee0c85fd10a02e3b7185848431a4b7cc"
+        }
+      ],
+      "statement": "A construction variant of existing managed-futures trend, not a new independent sleeve. No new literature review or independent mechanism is claimed.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "machine_readable_packet_and_stable_public_paper": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/alphatrend_cash_retention_20260912/reservation.json",
+          "sha256": "cfbfd204a8e92c2462f43eb7a0ccacb95524b111e41c9f525ed09598799b866e"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_cash_retention_20260912/reservation_validation.json",
+          "sha256": "9f9c0d34c68b27acf253090d600080de0b50f3e5ea04daf69e31c376d1997b14"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_cash_retention_20260912/preregistration.json",
+          "sha256": "98c0e75cfe4111d0ef7efaa3f9001a4ce4329d310b28cf1f1fc6f7f83751dcf9"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_cash_retention_20260912/input_manifest.json",
+          "sha256": "cfc0a8c21906d220436289801f288048a163b4fb26eadf38ec6b60f1d8312b0b"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_cash_retention_20260912/environment.json",
+          "sha256": "cc16106c24f905748ccd6888adfe078282af8368da326d683a61c30597584238"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_cash_retention_20260912/comparison.json",
+          "sha256": "359613a788c4ff27e6e209983cb3199f257712eec2036fc5b1d281147b12ac69"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_cash_retention_20260912/experiments.jsonl",
+          "sha256": "a7c4f40e17fc979b17c22f5fa27425fd72a95ce9d8d6bc738d8774f2bbacc49c"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_cash_retention_20260912/REPORT.md",
+          "sha256": "98020aab964f83145f255f7a680359f23aa3e2b4a5f4e1551c5fa1fce76b4c06"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_cash_retention_20260912/admission_evidence_accounting.json",
+          "sha256": "3a5035df11db3043485bed2d7e20cfb0ee0c85fd10a02e3b7185848431a4b7cc"
+        }
+      ],
+      "statement": "Local machine-readable comparison and report are preserved. Reserved public URLs were not published; external distribution remains unestablished.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "point_in_time_data_and_survivorship_controls": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/alphatrend_cash_retention_20260912/reservation.json",
+          "sha256": "cfbfd204a8e92c2462f43eb7a0ccacb95524b111e41c9f525ed09598799b866e"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_cash_retention_20260912/reservation_validation.json",
+          "sha256": "9f9c0d34c68b27acf253090d600080de0b50f3e5ea04daf69e31c376d1997b14"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_cash_retention_20260912/preregistration.json",
+          "sha256": "98c0e75cfe4111d0ef7efaa3f9001a4ce4329d310b28cf1f1fc6f7f83751dcf9"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_cash_retention_20260912/input_manifest.json",
+          "sha256": "cfc0a8c21906d220436289801f288048a163b4fb26eadf38ec6b60f1d8312b0b"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_cash_retention_20260912/environment.json",
+          "sha256": "cc16106c24f905748ccd6888adfe078282af8368da326d683a61c30597584238"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_cash_retention_20260912/comparison.json",
+          "sha256": "359613a788c4ff27e6e209983cb3199f257712eec2036fc5b1d281147b12ac69"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_cash_retention_20260912/experiments.jsonl",
+          "sha256": "a7c4f40e17fc979b17c22f5fa27425fd72a95ce9d8d6bc738d8774f2bbacc49c"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_cash_retention_20260912/REPORT.md",
+          "sha256": "98020aab964f83145f255f7a680359f23aa3e2b4a5f4e1551c5fa1fce76b4c06"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_cash_retention_20260912/admission_evidence_accounting.json",
+          "sha256": "3a5035df11db3043485bed2d7e20cfb0ee0c85fd10a02e3b7185848431a4b7cc"
+        }
+      ],
+      "statement": "Previously inspected sealed inputs were reused. This is development evidence; historical short availability and untouched evaluation are not established.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "preregistration_and_hashes": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/alphatrend_cash_retention_20260912/reservation.json",
+          "sha256": "cfbfd204a8e92c2462f43eb7a0ccacb95524b111e41c9f525ed09598799b866e"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_cash_retention_20260912/reservation_validation.json",
+          "sha256": "9f9c0d34c68b27acf253090d600080de0b50f3e5ea04daf69e31c376d1997b14"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_cash_retention_20260912/preregistration.json",
+          "sha256": "98c0e75cfe4111d0ef7efaa3f9001a4ce4329d310b28cf1f1fc6f7f83751dcf9"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_cash_retention_20260912/input_manifest.json",
+          "sha256": "cfc0a8c21906d220436289801f288048a163b4fb26eadf38ec6b60f1d8312b0b"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_cash_retention_20260912/environment.json",
+          "sha256": "cc16106c24f905748ccd6888adfe078282af8368da326d683a61c30597584238"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_cash_retention_20260912/comparison.json",
+          "sha256": "359613a788c4ff27e6e209983cb3199f257712eec2036fc5b1d281147b12ac69"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_cash_retention_20260912/experiments.jsonl",
+          "sha256": "a7c4f40e17fc979b17c22f5fa27425fd72a95ce9d8d6bc738d8774f2bbacc49c"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_cash_retention_20260912/REPORT.md",
+          "sha256": "98020aab964f83145f255f7a680359f23aa3e2b4a5f4e1551c5fa1fce76b4c06"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_cash_retention_20260912/admission_evidence_accounting.json",
+          "sha256": "3a5035df11db3043485bed2d7e20cfb0ee0c85fd10a02e3b7185848431a4b7cc"
+        }
+      ],
+      "statement": "Reservation and source hashes were validated before computation; all available bindings are preserved.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "result_uncertainty_stress_capacity_and_diversification": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/alphatrend_cash_retention_20260912/reservation.json",
+          "sha256": "cfbfd204a8e92c2462f43eb7a0ccacb95524b111e41c9f525ed09598799b866e"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_cash_retention_20260912/reservation_validation.json",
+          "sha256": "9f9c0d34c68b27acf253090d600080de0b50f3e5ea04daf69e31c376d1997b14"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_cash_retention_20260912/preregistration.json",
+          "sha256": "98c0e75cfe4111d0ef7efaa3f9001a4ce4329d310b28cf1f1fc6f7f83751dcf9"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_cash_retention_20260912/input_manifest.json",
+          "sha256": "cfc0a8c21906d220436289801f288048a163b4fb26eadf38ec6b60f1d8312b0b"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_cash_retention_20260912/environment.json",
+          "sha256": "cc16106c24f905748ccd6888adfe078282af8368da326d683a61c30597584238"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_cash_retention_20260912/comparison.json",
+          "sha256": "359613a788c4ff27e6e209983cb3199f257712eec2036fc5b1d281147b12ac69"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_cash_retention_20260912/experiments.jsonl",
+          "sha256": "a7c4f40e17fc979b17c22f5fa27425fd72a95ce9d8d6bc738d8774f2bbacc49c"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_cash_retention_20260912/REPORT.md",
+          "sha256": "98020aab964f83145f255f7a680359f23aa3e2b4a5f4e1551c5fa1fce76b4c06"
+        },
+        {
+          "path": "artifacts/analysis/alphatrend_cash_retention_20260912/admission_evidence_accounting.json",
+          "sha256": "3a5035df11db3043485bed2d7e20cfb0ee0c85fd10a02e3b7185848431a4b7cc"
+        }
+      ],
+      "statement": "Paired summary and allocation diagnostics are preserved. Independent uncertainty validation, capacity sweep, cost stress sweep, portfolio integration and PBO were not run. These are explicit admission blockers, not passing gates.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    }
+  },
+  "research_family_key": "managed_futures_trend",
+  "schema": "canli.alphac-identity-trial-packet.v2"
+}

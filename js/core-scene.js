@@ -52,7 +52,7 @@ void main() {
   vec2 d = gl_PointCoord - vec2(0.5);
   float r = dot(d, d);
   if (r > 0.25) discard;
-  float soft = smoothstep(0.25, 0.02, r);
+  float soft = 1.0 - smoothstep(0.02, 0.25, r);
   vec3 cyan = vec3(0.40, 0.84, 1.00);
   vec3 mint = vec3(0.35, 0.88, 0.71);
   vec3 amber = vec3(0.95, 0.72, 0.36);
@@ -154,7 +154,7 @@ function buildStates(trials) {
 
 export function createCoreScene(canvas, trials) {
   if (!Array.isArray(trials) || trials.length === 0) return null;
-  const gl = canvas.getContext("webgl", { antialias: true, alpha: true, premultipliedAlpha: false });
+  const gl = canvas.getContext("webgl", { antialias: true, alpha: true, premultipliedAlpha: true });
   if (!gl) return null;
 
   const built = buildStates(trials);
@@ -189,7 +189,8 @@ export function createCoreScene(canvas, trials) {
   };
 
   gl.enable(gl.BLEND);
-  gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
+  // Store premultiplied RGB with independent alpha, matching the compositor.
+  gl.blendFuncSeparate(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA, gl.ONE, gl.ONE_MINUS_SRC_ALPHA);
   gl.clearColor(0, 0, 0, 0);
 
   let progress = 0;
@@ -241,7 +242,8 @@ export function createCoreScene(canvas, trials) {
     belowZero: built.belowZero,
     chapterAt: (value) => Math.min(4, Math.max(0, Math.round(value * 4))),
     setProgress(value) { progress = Math.max(0, Math.min(1, value)); },
-    renderOnce() { draw(performance.now()); },
+    // A running scene already owns a RAF; never fork a second render loop.
+    renderOnce() { if (!running) draw(performance.now()); },
     start() { if (!running) { running = true; frame = requestAnimationFrame(draw); } },
     stop() { running = false; cancelAnimationFrame(frame); },
   };

@@ -1,0 +1,1067 @@
+{
+  "claim_boundary": "2023\u2013June2026 retrospective crypto horizon extension; calendar/accounting verified, source availability, metadata, funding, settlement and benchmark remain modeled. No combined qualification, new sleeve, untouched OOS or admission.",
+  "complete": true,
+  "completion_assessment": {
+    "candidate_evidence_complete_for_admission": false,
+    "disposition": "INCOMPLETE_NOT_ADMITTED",
+    "packet_evidence_accounting_complete": true
+  },
+  "config_hash": "4600b8eeb5b52662",
+  "configuration": {
+    "allocator": "rank",
+    "alpha_names": [
+      "carry_fund_21"
+    ],
+    "end": 1780358400000,
+    "instrument_ids": [
+      "BINANCE:PERP:1000PEPEUSDT",
+      "BINANCE:PERP:1000SHIBUSDT",
+      "BINANCE:PERP:AAVEUSDT",
+      "BINANCE:PERP:ADAUSDT",
+      "BINANCE:PERP:APEUSDT",
+      "BINANCE:PERP:APTUSDT",
+      "BINANCE:PERP:ARBUSDT",
+      "BINANCE:PERP:ATOMUSDT",
+      "BINANCE:PERP:AVAXUSDT",
+      "BINANCE:PERP:AXSUSDT",
+      "BINANCE:PERP:BCHUSDT",
+      "BINANCE:PERP:BLZUSDT",
+      "BINANCE:PERP:BNBUSDT",
+      "BINANCE:PERP:BTCUSDT",
+      "BINANCE:PERP:CHZUSDT",
+      "BINANCE:PERP:COMPUSDT",
+      "BINANCE:PERP:DOGEUSDT",
+      "BINANCE:PERP:DOTUSDT",
+      "BINANCE:PERP:EOSUSDT",
+      "BINANCE:PERP:ETCUSDT",
+      "BINANCE:PERP:ETHUSDT",
+      "BINANCE:PERP:FILUSDT",
+      "BINANCE:PERP:FTMUSDT",
+      "BINANCE:PERP:GALAUSDT",
+      "BINANCE:PERP:INJUSDT",
+      "BINANCE:PERP:LINAUSDT",
+      "BINANCE:PERP:LINKUSDT",
+      "BINANCE:PERP:LTCUSDT",
+      "BINANCE:PERP:LUNAUSDT",
+      "BINANCE:PERP:MANAUSDT",
+      "BINANCE:PERP:MATICUSDT",
+      "BINANCE:PERP:MKRUSDT",
+      "BINANCE:PERP:NEARUSDT",
+      "BINANCE:PERP:OPUSDT",
+      "BINANCE:PERP:REEFUSDT",
+      "BINANCE:PERP:RNDRUSDT",
+      "BINANCE:PERP:RUNEUSDT",
+      "BINANCE:PERP:SANDUSDT",
+      "BINANCE:PERP:SEIUSDT",
+      "BINANCE:PERP:SOLUSDT",
+      "BINANCE:PERP:SUIUSDT",
+      "BINANCE:PERP:SUSHIUSDT",
+      "BINANCE:PERP:SXPUSDT",
+      "BINANCE:PERP:TIAUSDT",
+      "BINANCE:PERP:TOMOUSDT",
+      "BINANCE:PERP:TRXUSDT",
+      "BINANCE:PERP:UNIUSDT",
+      "BINANCE:PERP:WAVESUSDT",
+      "BINANCE:PERP:WLDUSDT",
+      "BINANCE:PERP:XLMUSDT",
+      "BINANCE:PERP:XRPUSDT"
+    ],
+    "no_trade_band": 0.001,
+    "rebalance_bars": 168,
+    "research_engine": {
+      "carry_terminal_eligibility": true,
+      "input_manifest_sha256": "43c1319f1c1505b9f407c501ac9fbe280b139e6ad04090ac8702f64fed9fa9fe",
+      "metadata_mode": "MODELED_HISTORICAL_APPLICABILITY_NOT_OBSERVED_PIT",
+      "scenario": {
+        "data": "repaired_snapshot",
+        "execution_cost_multiplier": 1,
+        "fee_fraction": 0.0005,
+        "funding_mark": "interval_open_proxy",
+        "id": "candidate",
+        "price": "0.006944333333333333333333333333",
+        "retention_buffer_ranks": 1,
+        "terminal": true,
+        "terminal_basis": "modeled",
+        "terminal_instrument": "BINANCE:PERP:LUNAUSDT",
+        "terminal_ts": 1652369400000
+      },
+      "terminal_event_source_sha256": "517036a231245c69a966cdf0eed19b816792697ee28e04611510dfc3c0dc1b5b",
+      "timing_mode": "Research bar-close availability; source-session equity alignment required; historical corporate-action and borrow limits retained"
+    },
+    "start": 1650672000000,
+    "test_bars": 1512,
+    "train_bars": 6048
+  },
+  "content_hash": "sha256:b8b89355cb0a17d8e650b0ff471dfe06edf39f194c9b63fddc200af6412095bc",
+  "hypothesis_key": "74276700e3f152f3",
+  "immutable_first_measurement": {
+    "config": {
+      "allocator": "rank",
+      "alpha_names": [
+        "carry_fund_21"
+      ],
+      "end": 1780358400000,
+      "instrument_ids": [
+        "BINANCE:PERP:1000PEPEUSDT",
+        "BINANCE:PERP:1000SHIBUSDT",
+        "BINANCE:PERP:AAVEUSDT",
+        "BINANCE:PERP:ADAUSDT",
+        "BINANCE:PERP:APEUSDT",
+        "BINANCE:PERP:APTUSDT",
+        "BINANCE:PERP:ARBUSDT",
+        "BINANCE:PERP:ATOMUSDT",
+        "BINANCE:PERP:AVAXUSDT",
+        "BINANCE:PERP:AXSUSDT",
+        "BINANCE:PERP:BCHUSDT",
+        "BINANCE:PERP:BLZUSDT",
+        "BINANCE:PERP:BNBUSDT",
+        "BINANCE:PERP:BTCUSDT",
+        "BINANCE:PERP:CHZUSDT",
+        "BINANCE:PERP:COMPUSDT",
+        "BINANCE:PERP:DOGEUSDT",
+        "BINANCE:PERP:DOTUSDT",
+        "BINANCE:PERP:EOSUSDT",
+        "BINANCE:PERP:ETCUSDT",
+        "BINANCE:PERP:ETHUSDT",
+        "BINANCE:PERP:FILUSDT",
+        "BINANCE:PERP:FTMUSDT",
+        "BINANCE:PERP:GALAUSDT",
+        "BINANCE:PERP:INJUSDT",
+        "BINANCE:PERP:LINAUSDT",
+        "BINANCE:PERP:LINKUSDT",
+        "BINANCE:PERP:LTCUSDT",
+        "BINANCE:PERP:LUNAUSDT",
+        "BINANCE:PERP:MANAUSDT",
+        "BINANCE:PERP:MATICUSDT",
+        "BINANCE:PERP:MKRUSDT",
+        "BINANCE:PERP:NEARUSDT",
+        "BINANCE:PERP:OPUSDT",
+        "BINANCE:PERP:REEFUSDT",
+        "BINANCE:PERP:RNDRUSDT",
+        "BINANCE:PERP:RUNEUSDT",
+        "BINANCE:PERP:SANDUSDT",
+        "BINANCE:PERP:SEIUSDT",
+        "BINANCE:PERP:SOLUSDT",
+        "BINANCE:PERP:SUIUSDT",
+        "BINANCE:PERP:SUSHIUSDT",
+        "BINANCE:PERP:SXPUSDT",
+        "BINANCE:PERP:TIAUSDT",
+        "BINANCE:PERP:TOMOUSDT",
+        "BINANCE:PERP:TRXUSDT",
+        "BINANCE:PERP:UNIUSDT",
+        "BINANCE:PERP:WAVESUSDT",
+        "BINANCE:PERP:WLDUSDT",
+        "BINANCE:PERP:XLMUSDT",
+        "BINANCE:PERP:XRPUSDT"
+      ],
+      "no_trade_band": 0.001,
+      "rebalance_bars": 168,
+      "research_engine": {
+        "carry_terminal_eligibility": true,
+        "input_manifest_sha256": "43c1319f1c1505b9f407c501ac9fbe280b139e6ad04090ac8702f64fed9fa9fe",
+        "metadata_mode": "MODELED_HISTORICAL_APPLICABILITY_NOT_OBSERVED_PIT",
+        "scenario": {
+          "data": "repaired_snapshot",
+          "execution_cost_multiplier": 1,
+          "fee_fraction": 0.0005,
+          "funding_mark": "interval_open_proxy",
+          "id": "candidate",
+          "price": "0.006944333333333333333333333333",
+          "retention_buffer_ranks": 1,
+          "terminal": true,
+          "terminal_basis": "modeled",
+          "terminal_instrument": "BINANCE:PERP:LUNAUSDT",
+          "terminal_ts": 1652369400000
+        },
+        "terminal_event_source_sha256": "517036a231245c69a966cdf0eed19b816792697ee28e04611510dfc3c0dc1b5b",
+        "timing_mode": "Research bar-close availability; source-session equity alignment required; historical corporate-action and borrow limits retained"
+      },
+      "start": 1650672000000,
+      "test_bars": 1512,
+      "train_bars": 6048
+    },
+    "config_hash": "4600b8eeb5b52662",
+    "kurtosis": 9.33678553629047,
+    "n_obs": 1249,
+    "now_ms": 1789299531013,
+    "sharpe_ann": 1.048099344126796,
+    "sharpe_per_period": 0.05486002699670779,
+    "skew": -0.5091862320508506
+  },
+  "imported_from_external_tree": {
+    "external_content_hash": "sha256:2ebec640e1d0695b8f0cdca7dcdde36af15b8683727a3ff4b840a0f15b56fb43",
+    "imported_on": "2026-09-14T19:35:24+00:00",
+    "tree": "/Users/arhancanli/alphac-prospective-pause-20260911"
+  },
+  "missing_sections": [],
+  "packet_status": "COMPLETE_ACCOUNTING_FINAL_KILLED_NOT_ADMITTED",
+  "partial_sections": [],
+  "required_sections": {
+    "admission_or_kill_decision": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/reservation.json",
+          "sha256": "c87390df14813e39c4246f308e2a1c61a0c69e3831437a117f0e1677a02479eb"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/preregistration.json",
+          "sha256": "0e6041e31fc4cdd7bbfff730c30106ddd47c5f31a965f3b8fbaece98f0f4ca2f"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/reservation_validation.json",
+          "sha256": "2a29d6647e348005bf13bccd89bb4776ec5615256d886a870f39a3d26cd1754b"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/experiments.jsonl",
+          "sha256": "70d8c254c1d33a1f2a0e11cb3455fc099d8807447550b9aa24fa572f8080c27c"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/execution_complete.json",
+          "sha256": "dee91b8bdbf06be863a4d84287b8addf9ec79327631cb23753bf00c278aab2e8"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/independent_audit.json",
+          "sha256": "f7dd9f70ffb6b559ee5721fb56f26e75f44ee6d7b72536d75cb52f1e483b7fbd"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/calendar2023_2026_audit.json",
+          "sha256": "b6b9d370f33b01c5f8d680140d29f552b2f8d0d164a693b72cf11204b6eecbcc"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/calendar2023_2026.csv",
+          "sha256": "54b14a3cbc051db641f5b27d96e7ee1b5c3890393be6a4a7e7b0b0464c4bf13e"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/terminal_invariants.json",
+          "sha256": "b9407c25486b8f86a38f438dfa1308ea3a372998f999b0b2d1230b59b846c175"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/boundary_audit.json",
+          "sha256": "056f8fdb89ad1d673cd5bf6a1caf08931b72ac68b2235ef63dd3cc8ae6b2887b"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/REPORT.md",
+          "sha256": "1ef26d54869240a4956d813bd0e609fd8e5df9f8b6db4ff8c2253c5e5693843b"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/run/walkforward.json",
+          "sha256": "f2f8743dd1b7dff9d139c71eebf3414ffeb7d89489328fd37c08274bf319805e"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/protocol.json",
+          "sha256": "6b18fc7c6a147568d9a4b8b85ccec3d95f27da03e685470354e64f77b34e6e4d"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/input_manifest.json",
+          "sha256": "43c1319f1c1505b9f407c501ac9fbe280b139e6ad04090ac8702f64fed9fa9fe"
+        },
+        {
+          "path": "scripts/close_crypto_retention_arm.py",
+          "sha256": "95b4f096cb1d13436da13a947bef8279f409c008cbd7061ff790a2fecf2035db"
+        },
+        {
+          "path": "scripts/audit_crypto_retention_accounting.py",
+          "sha256": "af973cf3cdcaa4858ed3bb427dd90204eac08f264a90ca83025f21cd989804f3"
+        },
+        {
+          "path": "scripts/audit_crypto_retention_horizon.py",
+          "sha256": "44a32a020e45ff11cfe6b543ec04f32fea1d16d966aa12ec5c1671ea0a017297"
+        },
+        {
+          "path": "scripts/audit_crypto_retention_boundaries.py",
+          "sha256": "5f32d6b312588b2b9ae5b8e57407b4c5594e75ec756d02322749b8e21faad15e"
+        },
+        {
+          "content_hash": "sha256:2403b80cf43f397cbb7ee892b234a924c50414a61276ac159dbfa62392075c5b",
+          "path": "artifacts/research/development_closures/74276700e3f152f3_admission_closure.json",
+          "sha256": "4c6c228c5d5a04ba7d23b509903f332dbb4b8cbc5a9e1ad03438cd1aa0894188",
+          "type": "final_development_admission_closure"
+        }
+      ],
+      "statement": "2023\u2013June2026 retrospective crypto horizon extension; calendar/accounting verified, source availability, metadata, funding, settlement and benchmark remain modeled. No combined qualification, new sleeve, untouched OOS or admission.",
+      "status": "VERIFIED_FINAL_DEVELOPMENT_CLOSURE_KILL"
+    },
+    "code_environment_and_reproduction": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/reservation.json",
+          "sha256": "c87390df14813e39c4246f308e2a1c61a0c69e3831437a117f0e1677a02479eb"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/preregistration.json",
+          "sha256": "0e6041e31fc4cdd7bbfff730c30106ddd47c5f31a965f3b8fbaece98f0f4ca2f"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/reservation_validation.json",
+          "sha256": "2a29d6647e348005bf13bccd89bb4776ec5615256d886a870f39a3d26cd1754b"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/experiments.jsonl",
+          "sha256": "70d8c254c1d33a1f2a0e11cb3455fc099d8807447550b9aa24fa572f8080c27c"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/execution_complete.json",
+          "sha256": "dee91b8bdbf06be863a4d84287b8addf9ec79327631cb23753bf00c278aab2e8"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/independent_audit.json",
+          "sha256": "f7dd9f70ffb6b559ee5721fb56f26e75f44ee6d7b72536d75cb52f1e483b7fbd"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/calendar2023_2026_audit.json",
+          "sha256": "b6b9d370f33b01c5f8d680140d29f552b2f8d0d164a693b72cf11204b6eecbcc"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/calendar2023_2026.csv",
+          "sha256": "54b14a3cbc051db641f5b27d96e7ee1b5c3890393be6a4a7e7b0b0464c4bf13e"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/terminal_invariants.json",
+          "sha256": "b9407c25486b8f86a38f438dfa1308ea3a372998f999b0b2d1230b59b846c175"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/boundary_audit.json",
+          "sha256": "056f8fdb89ad1d673cd5bf6a1caf08931b72ac68b2235ef63dd3cc8ae6b2887b"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/REPORT.md",
+          "sha256": "1ef26d54869240a4956d813bd0e609fd8e5df9f8b6db4ff8c2253c5e5693843b"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/run/walkforward.json",
+          "sha256": "f2f8743dd1b7dff9d139c71eebf3414ffeb7d89489328fd37c08274bf319805e"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/protocol.json",
+          "sha256": "6b18fc7c6a147568d9a4b8b85ccec3d95f27da03e685470354e64f77b34e6e4d"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/input_manifest.json",
+          "sha256": "43c1319f1c1505b9f407c501ac9fbe280b139e6ad04090ac8702f64fed9fa9fe"
+        },
+        {
+          "path": "scripts/close_crypto_retention_arm.py",
+          "sha256": "95b4f096cb1d13436da13a947bef8279f409c008cbd7061ff790a2fecf2035db"
+        },
+        {
+          "path": "scripts/audit_crypto_retention_accounting.py",
+          "sha256": "af973cf3cdcaa4858ed3bb427dd90204eac08f264a90ca83025f21cd989804f3"
+        },
+        {
+          "path": "scripts/audit_crypto_retention_horizon.py",
+          "sha256": "44a32a020e45ff11cfe6b543ec04f32fea1d16d966aa12ec5c1671ea0a017297"
+        },
+        {
+          "path": "scripts/audit_crypto_retention_boundaries.py",
+          "sha256": "5f32d6b312588b2b9ae5b8e57407b4c5594e75ec756d02322749b8e21faad15e"
+        }
+      ],
+      "statement": "2023\u2013June2026 retrospective crypto horizon extension; calendar/accounting verified, source availability, metadata, funding, settlement and benchmark remain modeled. No combined qualification, new sleeve, untouched OOS or admission.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "economic_mechanism_and_falsifiable_hypothesis": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/reservation.json",
+          "sha256": "c87390df14813e39c4246f308e2a1c61a0c69e3831437a117f0e1677a02479eb"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/preregistration.json",
+          "sha256": "0e6041e31fc4cdd7bbfff730c30106ddd47c5f31a965f3b8fbaece98f0f4ca2f"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/reservation_validation.json",
+          "sha256": "2a29d6647e348005bf13bccd89bb4776ec5615256d886a870f39a3d26cd1754b"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/experiments.jsonl",
+          "sha256": "70d8c254c1d33a1f2a0e11cb3455fc099d8807447550b9aa24fa572f8080c27c"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/execution_complete.json",
+          "sha256": "dee91b8bdbf06be863a4d84287b8addf9ec79327631cb23753bf00c278aab2e8"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/independent_audit.json",
+          "sha256": "f7dd9f70ffb6b559ee5721fb56f26e75f44ee6d7b72536d75cb52f1e483b7fbd"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/calendar2023_2026_audit.json",
+          "sha256": "b6b9d370f33b01c5f8d680140d29f552b2f8d0d164a693b72cf11204b6eecbcc"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/calendar2023_2026.csv",
+          "sha256": "54b14a3cbc051db641f5b27d96e7ee1b5c3890393be6a4a7e7b0b0464c4bf13e"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/terminal_invariants.json",
+          "sha256": "b9407c25486b8f86a38f438dfa1308ea3a372998f999b0b2d1230b59b846c175"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/boundary_audit.json",
+          "sha256": "056f8fdb89ad1d673cd5bf6a1caf08931b72ac68b2235ef63dd3cc8ae6b2887b"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/REPORT.md",
+          "sha256": "1ef26d54869240a4956d813bd0e609fd8e5df9f8b6db4ff8c2253c5e5693843b"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/run/walkforward.json",
+          "sha256": "f2f8743dd1b7dff9d139c71eebf3414ffeb7d89489328fd37c08274bf319805e"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/protocol.json",
+          "sha256": "6b18fc7c6a147568d9a4b8b85ccec3d95f27da03e685470354e64f77b34e6e4d"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/input_manifest.json",
+          "sha256": "43c1319f1c1505b9f407c501ac9fbe280b139e6ad04090ac8702f64fed9fa9fe"
+        },
+        {
+          "path": "scripts/close_crypto_retention_arm.py",
+          "sha256": "95b4f096cb1d13436da13a947bef8279f409c008cbd7061ff790a2fecf2035db"
+        },
+        {
+          "path": "scripts/audit_crypto_retention_accounting.py",
+          "sha256": "af973cf3cdcaa4858ed3bb427dd90204eac08f264a90ca83025f21cd989804f3"
+        },
+        {
+          "path": "scripts/audit_crypto_retention_horizon.py",
+          "sha256": "44a32a020e45ff11cfe6b543ec04f32fea1d16d966aa12ec5c1671ea0a017297"
+        },
+        {
+          "path": "scripts/audit_crypto_retention_boundaries.py",
+          "sha256": "5f32d6b312588b2b9ae5b8e57407b4c5594e75ec756d02322749b8e21faad15e"
+        }
+      ],
+      "statement": "2023\u2013June2026 retrospective crypto horizon extension; calendar/accounting verified, source availability, metadata, funding, settlement and benchmark remain modeled. No combined qualification, new sleeve, untouched OOS or admission.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "execution_and_cost_model": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/reservation.json",
+          "sha256": "c87390df14813e39c4246f308e2a1c61a0c69e3831437a117f0e1677a02479eb"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/preregistration.json",
+          "sha256": "0e6041e31fc4cdd7bbfff730c30106ddd47c5f31a965f3b8fbaece98f0f4ca2f"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/reservation_validation.json",
+          "sha256": "2a29d6647e348005bf13bccd89bb4776ec5615256d886a870f39a3d26cd1754b"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/experiments.jsonl",
+          "sha256": "70d8c254c1d33a1f2a0e11cb3455fc099d8807447550b9aa24fa572f8080c27c"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/execution_complete.json",
+          "sha256": "dee91b8bdbf06be863a4d84287b8addf9ec79327631cb23753bf00c278aab2e8"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/independent_audit.json",
+          "sha256": "f7dd9f70ffb6b559ee5721fb56f26e75f44ee6d7b72536d75cb52f1e483b7fbd"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/calendar2023_2026_audit.json",
+          "sha256": "b6b9d370f33b01c5f8d680140d29f552b2f8d0d164a693b72cf11204b6eecbcc"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/calendar2023_2026.csv",
+          "sha256": "54b14a3cbc051db641f5b27d96e7ee1b5c3890393be6a4a7e7b0b0464c4bf13e"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/terminal_invariants.json",
+          "sha256": "b9407c25486b8f86a38f438dfa1308ea3a372998f999b0b2d1230b59b846c175"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/boundary_audit.json",
+          "sha256": "056f8fdb89ad1d673cd5bf6a1caf08931b72ac68b2235ef63dd3cc8ae6b2887b"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/REPORT.md",
+          "sha256": "1ef26d54869240a4956d813bd0e609fd8e5df9f8b6db4ff8c2253c5e5693843b"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/run/walkforward.json",
+          "sha256": "f2f8743dd1b7dff9d139c71eebf3414ffeb7d89489328fd37c08274bf319805e"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/protocol.json",
+          "sha256": "6b18fc7c6a147568d9a4b8b85ccec3d95f27da03e685470354e64f77b34e6e4d"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/input_manifest.json",
+          "sha256": "43c1319f1c1505b9f407c501ac9fbe280b139e6ad04090ac8702f64fed9fa9fe"
+        },
+        {
+          "path": "scripts/close_crypto_retention_arm.py",
+          "sha256": "95b4f096cb1d13436da13a947bef8279f409c008cbd7061ff790a2fecf2035db"
+        },
+        {
+          "path": "scripts/audit_crypto_retention_accounting.py",
+          "sha256": "af973cf3cdcaa4858ed3bb427dd90204eac08f264a90ca83025f21cd989804f3"
+        },
+        {
+          "path": "scripts/audit_crypto_retention_horizon.py",
+          "sha256": "44a32a020e45ff11cfe6b543ec04f32fea1d16d966aa12ec5c1671ea0a017297"
+        },
+        {
+          "path": "scripts/audit_crypto_retention_boundaries.py",
+          "sha256": "5f32d6b312588b2b9ae5b8e57407b4c5594e75ec756d02322749b8e21faad15e"
+        }
+      ],
+      "statement": "2023\u2013June2026 retrospective crypto horizon extension; calendar/accounting verified, source availability, metadata, funding, settlement and benchmark remain modeled. No combined qualification, new sleeve, untouched OOS or admission.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "family_and_union_trial_accounting": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/reservation.json",
+          "sha256": "c87390df14813e39c4246f308e2a1c61a0c69e3831437a117f0e1677a02479eb"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/preregistration.json",
+          "sha256": "0e6041e31fc4cdd7bbfff730c30106ddd47c5f31a965f3b8fbaece98f0f4ca2f"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/reservation_validation.json",
+          "sha256": "2a29d6647e348005bf13bccd89bb4776ec5615256d886a870f39a3d26cd1754b"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/experiments.jsonl",
+          "sha256": "70d8c254c1d33a1f2a0e11cb3455fc099d8807447550b9aa24fa572f8080c27c"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/execution_complete.json",
+          "sha256": "dee91b8bdbf06be863a4d84287b8addf9ec79327631cb23753bf00c278aab2e8"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/independent_audit.json",
+          "sha256": "f7dd9f70ffb6b559ee5721fb56f26e75f44ee6d7b72536d75cb52f1e483b7fbd"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/calendar2023_2026_audit.json",
+          "sha256": "b6b9d370f33b01c5f8d680140d29f552b2f8d0d164a693b72cf11204b6eecbcc"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/calendar2023_2026.csv",
+          "sha256": "54b14a3cbc051db641f5b27d96e7ee1b5c3890393be6a4a7e7b0b0464c4bf13e"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/terminal_invariants.json",
+          "sha256": "b9407c25486b8f86a38f438dfa1308ea3a372998f999b0b2d1230b59b846c175"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/boundary_audit.json",
+          "sha256": "056f8fdb89ad1d673cd5bf6a1caf08931b72ac68b2235ef63dd3cc8ae6b2887b"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/REPORT.md",
+          "sha256": "1ef26d54869240a4956d813bd0e609fd8e5df9f8b6db4ff8c2253c5e5693843b"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/run/walkforward.json",
+          "sha256": "f2f8743dd1b7dff9d139c71eebf3414ffeb7d89489328fd37c08274bf319805e"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/protocol.json",
+          "sha256": "6b18fc7c6a147568d9a4b8b85ccec3d95f27da03e685470354e64f77b34e6e4d"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/input_manifest.json",
+          "sha256": "43c1319f1c1505b9f407c501ac9fbe280b139e6ad04090ac8702f64fed9fa9fe"
+        },
+        {
+          "path": "scripts/close_crypto_retention_arm.py",
+          "sha256": "95b4f096cb1d13436da13a947bef8279f409c008cbd7061ff790a2fecf2035db"
+        },
+        {
+          "path": "scripts/audit_crypto_retention_accounting.py",
+          "sha256": "af973cf3cdcaa4858ed3bb427dd90204eac08f264a90ca83025f21cd989804f3"
+        },
+        {
+          "path": "scripts/audit_crypto_retention_horizon.py",
+          "sha256": "44a32a020e45ff11cfe6b543ec04f32fea1d16d966aa12ec5c1671ea0a017297"
+        },
+        {
+          "path": "scripts/audit_crypto_retention_boundaries.py",
+          "sha256": "5f32d6b312588b2b9ae5b8e57407b4c5594e75ec756d02322749b8e21faad15e"
+        }
+      ],
+      "statement": "2023\u2013June2026 retrospective crypto horizon extension; calendar/accounting verified, source availability, metadata, funding, settlement and benchmark remain modeled. No combined qualification, new sleeve, untouched OOS or admission.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "identity_and_authorship": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/reservation.json",
+          "sha256": "c87390df14813e39c4246f308e2a1c61a0c69e3831437a117f0e1677a02479eb"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/preregistration.json",
+          "sha256": "0e6041e31fc4cdd7bbfff730c30106ddd47c5f31a965f3b8fbaece98f0f4ca2f"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/reservation_validation.json",
+          "sha256": "2a29d6647e348005bf13bccd89bb4776ec5615256d886a870f39a3d26cd1754b"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/experiments.jsonl",
+          "sha256": "70d8c254c1d33a1f2a0e11cb3455fc099d8807447550b9aa24fa572f8080c27c"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/execution_complete.json",
+          "sha256": "dee91b8bdbf06be863a4d84287b8addf9ec79327631cb23753bf00c278aab2e8"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/independent_audit.json",
+          "sha256": "f7dd9f70ffb6b559ee5721fb56f26e75f44ee6d7b72536d75cb52f1e483b7fbd"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/calendar2023_2026_audit.json",
+          "sha256": "b6b9d370f33b01c5f8d680140d29f552b2f8d0d164a693b72cf11204b6eecbcc"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/calendar2023_2026.csv",
+          "sha256": "54b14a3cbc051db641f5b27d96e7ee1b5c3890393be6a4a7e7b0b0464c4bf13e"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/terminal_invariants.json",
+          "sha256": "b9407c25486b8f86a38f438dfa1308ea3a372998f999b0b2d1230b59b846c175"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/boundary_audit.json",
+          "sha256": "056f8fdb89ad1d673cd5bf6a1caf08931b72ac68b2235ef63dd3cc8ae6b2887b"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/REPORT.md",
+          "sha256": "1ef26d54869240a4956d813bd0e609fd8e5df9f8b6db4ff8c2253c5e5693843b"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/run/walkforward.json",
+          "sha256": "f2f8743dd1b7dff9d139c71eebf3414ffeb7d89489328fd37c08274bf319805e"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/protocol.json",
+          "sha256": "6b18fc7c6a147568d9a4b8b85ccec3d95f27da03e685470354e64f77b34e6e4d"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/input_manifest.json",
+          "sha256": "43c1319f1c1505b9f407c501ac9fbe280b139e6ad04090ac8702f64fed9fa9fe"
+        },
+        {
+          "path": "scripts/close_crypto_retention_arm.py",
+          "sha256": "95b4f096cb1d13436da13a947bef8279f409c008cbd7061ff790a2fecf2035db"
+        },
+        {
+          "path": "scripts/audit_crypto_retention_accounting.py",
+          "sha256": "af973cf3cdcaa4858ed3bb427dd90204eac08f264a90ca83025f21cd989804f3"
+        },
+        {
+          "path": "scripts/audit_crypto_retention_horizon.py",
+          "sha256": "44a32a020e45ff11cfe6b543ec04f32fea1d16d966aa12ec5c1671ea0a017297"
+        },
+        {
+          "path": "scripts/audit_crypto_retention_boundaries.py",
+          "sha256": "5f32d6b312588b2b9ae5b8e57407b4c5594e75ec756d02322749b8e21faad15e"
+        }
+      ],
+      "statement": "2023\u2013June2026 retrospective crypto horizon extension; calendar/accounting verified, source availability, metadata, funding, settlement and benchmark remain modeled. No combined qualification, new sleeve, untouched OOS or admission.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "literature_and_overlap_decision": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/reservation.json",
+          "sha256": "c87390df14813e39c4246f308e2a1c61a0c69e3831437a117f0e1677a02479eb"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/preregistration.json",
+          "sha256": "0e6041e31fc4cdd7bbfff730c30106ddd47c5f31a965f3b8fbaece98f0f4ca2f"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/reservation_validation.json",
+          "sha256": "2a29d6647e348005bf13bccd89bb4776ec5615256d886a870f39a3d26cd1754b"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/experiments.jsonl",
+          "sha256": "70d8c254c1d33a1f2a0e11cb3455fc099d8807447550b9aa24fa572f8080c27c"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/execution_complete.json",
+          "sha256": "dee91b8bdbf06be863a4d84287b8addf9ec79327631cb23753bf00c278aab2e8"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/independent_audit.json",
+          "sha256": "f7dd9f70ffb6b559ee5721fb56f26e75f44ee6d7b72536d75cb52f1e483b7fbd"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/calendar2023_2026_audit.json",
+          "sha256": "b6b9d370f33b01c5f8d680140d29f552b2f8d0d164a693b72cf11204b6eecbcc"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/calendar2023_2026.csv",
+          "sha256": "54b14a3cbc051db641f5b27d96e7ee1b5c3890393be6a4a7e7b0b0464c4bf13e"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/terminal_invariants.json",
+          "sha256": "b9407c25486b8f86a38f438dfa1308ea3a372998f999b0b2d1230b59b846c175"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/boundary_audit.json",
+          "sha256": "056f8fdb89ad1d673cd5bf6a1caf08931b72ac68b2235ef63dd3cc8ae6b2887b"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/REPORT.md",
+          "sha256": "1ef26d54869240a4956d813bd0e609fd8e5df9f8b6db4ff8c2253c5e5693843b"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/run/walkforward.json",
+          "sha256": "f2f8743dd1b7dff9d139c71eebf3414ffeb7d89489328fd37c08274bf319805e"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/protocol.json",
+          "sha256": "6b18fc7c6a147568d9a4b8b85ccec3d95f27da03e685470354e64f77b34e6e4d"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/input_manifest.json",
+          "sha256": "43c1319f1c1505b9f407c501ac9fbe280b139e6ad04090ac8702f64fed9fa9fe"
+        },
+        {
+          "path": "scripts/close_crypto_retention_arm.py",
+          "sha256": "95b4f096cb1d13436da13a947bef8279f409c008cbd7061ff790a2fecf2035db"
+        },
+        {
+          "path": "scripts/audit_crypto_retention_accounting.py",
+          "sha256": "af973cf3cdcaa4858ed3bb427dd90204eac08f264a90ca83025f21cd989804f3"
+        },
+        {
+          "path": "scripts/audit_crypto_retention_horizon.py",
+          "sha256": "44a32a020e45ff11cfe6b543ec04f32fea1d16d966aa12ec5c1671ea0a017297"
+        },
+        {
+          "path": "scripts/audit_crypto_retention_boundaries.py",
+          "sha256": "5f32d6b312588b2b9ae5b8e57407b4c5594e75ec756d02322749b8e21faad15e"
+        }
+      ],
+      "statement": "2023\u2013June2026 retrospective crypto horizon extension; calendar/accounting verified, source availability, metadata, funding, settlement and benchmark remain modeled. No combined qualification, new sleeve, untouched OOS or admission.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "machine_readable_packet_and_stable_public_paper": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/reservation.json",
+          "sha256": "c87390df14813e39c4246f308e2a1c61a0c69e3831437a117f0e1677a02479eb"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/preregistration.json",
+          "sha256": "0e6041e31fc4cdd7bbfff730c30106ddd47c5f31a965f3b8fbaece98f0f4ca2f"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/reservation_validation.json",
+          "sha256": "2a29d6647e348005bf13bccd89bb4776ec5615256d886a870f39a3d26cd1754b"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/experiments.jsonl",
+          "sha256": "70d8c254c1d33a1f2a0e11cb3455fc099d8807447550b9aa24fa572f8080c27c"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/execution_complete.json",
+          "sha256": "dee91b8bdbf06be863a4d84287b8addf9ec79327631cb23753bf00c278aab2e8"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/independent_audit.json",
+          "sha256": "f7dd9f70ffb6b559ee5721fb56f26e75f44ee6d7b72536d75cb52f1e483b7fbd"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/calendar2023_2026_audit.json",
+          "sha256": "b6b9d370f33b01c5f8d680140d29f552b2f8d0d164a693b72cf11204b6eecbcc"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/calendar2023_2026.csv",
+          "sha256": "54b14a3cbc051db641f5b27d96e7ee1b5c3890393be6a4a7e7b0b0464c4bf13e"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/terminal_invariants.json",
+          "sha256": "b9407c25486b8f86a38f438dfa1308ea3a372998f999b0b2d1230b59b846c175"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/boundary_audit.json",
+          "sha256": "056f8fdb89ad1d673cd5bf6a1caf08931b72ac68b2235ef63dd3cc8ae6b2887b"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/REPORT.md",
+          "sha256": "1ef26d54869240a4956d813bd0e609fd8e5df9f8b6db4ff8c2253c5e5693843b"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/run/walkforward.json",
+          "sha256": "f2f8743dd1b7dff9d139c71eebf3414ffeb7d89489328fd37c08274bf319805e"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/protocol.json",
+          "sha256": "6b18fc7c6a147568d9a4b8b85ccec3d95f27da03e685470354e64f77b34e6e4d"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/input_manifest.json",
+          "sha256": "43c1319f1c1505b9f407c501ac9fbe280b139e6ad04090ac8702f64fed9fa9fe"
+        },
+        {
+          "path": "scripts/close_crypto_retention_arm.py",
+          "sha256": "95b4f096cb1d13436da13a947bef8279f409c008cbd7061ff790a2fecf2035db"
+        },
+        {
+          "path": "scripts/audit_crypto_retention_accounting.py",
+          "sha256": "af973cf3cdcaa4858ed3bb427dd90204eac08f264a90ca83025f21cd989804f3"
+        },
+        {
+          "path": "scripts/audit_crypto_retention_horizon.py",
+          "sha256": "44a32a020e45ff11cfe6b543ec04f32fea1d16d966aa12ec5c1671ea0a017297"
+        },
+        {
+          "path": "scripts/audit_crypto_retention_boundaries.py",
+          "sha256": "5f32d6b312588b2b9ae5b8e57407b4c5594e75ec756d02322749b8e21faad15e"
+        }
+      ],
+      "statement": "2023\u2013June2026 retrospective crypto horizon extension; calendar/accounting verified, source availability, metadata, funding, settlement and benchmark remain modeled. No combined qualification, new sleeve, untouched OOS or admission.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "point_in_time_data_and_survivorship_controls": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/reservation.json",
+          "sha256": "c87390df14813e39c4246f308e2a1c61a0c69e3831437a117f0e1677a02479eb"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/preregistration.json",
+          "sha256": "0e6041e31fc4cdd7bbfff730c30106ddd47c5f31a965f3b8fbaece98f0f4ca2f"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/reservation_validation.json",
+          "sha256": "2a29d6647e348005bf13bccd89bb4776ec5615256d886a870f39a3d26cd1754b"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/experiments.jsonl",
+          "sha256": "70d8c254c1d33a1f2a0e11cb3455fc099d8807447550b9aa24fa572f8080c27c"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/execution_complete.json",
+          "sha256": "dee91b8bdbf06be863a4d84287b8addf9ec79327631cb23753bf00c278aab2e8"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/independent_audit.json",
+          "sha256": "f7dd9f70ffb6b559ee5721fb56f26e75f44ee6d7b72536d75cb52f1e483b7fbd"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/calendar2023_2026_audit.json",
+          "sha256": "b6b9d370f33b01c5f8d680140d29f552b2f8d0d164a693b72cf11204b6eecbcc"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/calendar2023_2026.csv",
+          "sha256": "54b14a3cbc051db641f5b27d96e7ee1b5c3890393be6a4a7e7b0b0464c4bf13e"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/terminal_invariants.json",
+          "sha256": "b9407c25486b8f86a38f438dfa1308ea3a372998f999b0b2d1230b59b846c175"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/boundary_audit.json",
+          "sha256": "056f8fdb89ad1d673cd5bf6a1caf08931b72ac68b2235ef63dd3cc8ae6b2887b"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/REPORT.md",
+          "sha256": "1ef26d54869240a4956d813bd0e609fd8e5df9f8b6db4ff8c2253c5e5693843b"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/run/walkforward.json",
+          "sha256": "f2f8743dd1b7dff9d139c71eebf3414ffeb7d89489328fd37c08274bf319805e"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/protocol.json",
+          "sha256": "6b18fc7c6a147568d9a4b8b85ccec3d95f27da03e685470354e64f77b34e6e4d"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/input_manifest.json",
+          "sha256": "43c1319f1c1505b9f407c501ac9fbe280b139e6ad04090ac8702f64fed9fa9fe"
+        },
+        {
+          "path": "scripts/close_crypto_retention_arm.py",
+          "sha256": "95b4f096cb1d13436da13a947bef8279f409c008cbd7061ff790a2fecf2035db"
+        },
+        {
+          "path": "scripts/audit_crypto_retention_accounting.py",
+          "sha256": "af973cf3cdcaa4858ed3bb427dd90204eac08f264a90ca83025f21cd989804f3"
+        },
+        {
+          "path": "scripts/audit_crypto_retention_horizon.py",
+          "sha256": "44a32a020e45ff11cfe6b543ec04f32fea1d16d966aa12ec5c1671ea0a017297"
+        },
+        {
+          "path": "scripts/audit_crypto_retention_boundaries.py",
+          "sha256": "5f32d6b312588b2b9ae5b8e57407b4c5594e75ec756d02322749b8e21faad15e"
+        }
+      ],
+      "statement": "2023\u2013June2026 retrospective crypto horizon extension; calendar/accounting verified, source availability, metadata, funding, settlement and benchmark remain modeled. No combined qualification, new sleeve, untouched OOS or admission.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "preregistration_and_hashes": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/reservation.json",
+          "sha256": "c87390df14813e39c4246f308e2a1c61a0c69e3831437a117f0e1677a02479eb"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/preregistration.json",
+          "sha256": "0e6041e31fc4cdd7bbfff730c30106ddd47c5f31a965f3b8fbaece98f0f4ca2f"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/reservation_validation.json",
+          "sha256": "2a29d6647e348005bf13bccd89bb4776ec5615256d886a870f39a3d26cd1754b"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/experiments.jsonl",
+          "sha256": "70d8c254c1d33a1f2a0e11cb3455fc099d8807447550b9aa24fa572f8080c27c"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/execution_complete.json",
+          "sha256": "dee91b8bdbf06be863a4d84287b8addf9ec79327631cb23753bf00c278aab2e8"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/independent_audit.json",
+          "sha256": "f7dd9f70ffb6b559ee5721fb56f26e75f44ee6d7b72536d75cb52f1e483b7fbd"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/calendar2023_2026_audit.json",
+          "sha256": "b6b9d370f33b01c5f8d680140d29f552b2f8d0d164a693b72cf11204b6eecbcc"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/calendar2023_2026.csv",
+          "sha256": "54b14a3cbc051db641f5b27d96e7ee1b5c3890393be6a4a7e7b0b0464c4bf13e"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/terminal_invariants.json",
+          "sha256": "b9407c25486b8f86a38f438dfa1308ea3a372998f999b0b2d1230b59b846c175"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/boundary_audit.json",
+          "sha256": "056f8fdb89ad1d673cd5bf6a1caf08931b72ac68b2235ef63dd3cc8ae6b2887b"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/REPORT.md",
+          "sha256": "1ef26d54869240a4956d813bd0e609fd8e5df9f8b6db4ff8c2253c5e5693843b"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/run/walkforward.json",
+          "sha256": "f2f8743dd1b7dff9d139c71eebf3414ffeb7d89489328fd37c08274bf319805e"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/protocol.json",
+          "sha256": "6b18fc7c6a147568d9a4b8b85ccec3d95f27da03e685470354e64f77b34e6e4d"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/input_manifest.json",
+          "sha256": "43c1319f1c1505b9f407c501ac9fbe280b139e6ad04090ac8702f64fed9fa9fe"
+        },
+        {
+          "path": "scripts/close_crypto_retention_arm.py",
+          "sha256": "95b4f096cb1d13436da13a947bef8279f409c008cbd7061ff790a2fecf2035db"
+        },
+        {
+          "path": "scripts/audit_crypto_retention_accounting.py",
+          "sha256": "af973cf3cdcaa4858ed3bb427dd90204eac08f264a90ca83025f21cd989804f3"
+        },
+        {
+          "path": "scripts/audit_crypto_retention_horizon.py",
+          "sha256": "44a32a020e45ff11cfe6b543ec04f32fea1d16d966aa12ec5c1671ea0a017297"
+        },
+        {
+          "path": "scripts/audit_crypto_retention_boundaries.py",
+          "sha256": "5f32d6b312588b2b9ae5b8e57407b4c5594e75ec756d02322749b8e21faad15e"
+        }
+      ],
+      "statement": "2023\u2013June2026 retrospective crypto horizon extension; calendar/accounting verified, source availability, metadata, funding, settlement and benchmark remain modeled. No combined qualification, new sleeve, untouched OOS or admission.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "result_uncertainty_stress_capacity_and_diversification": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/reservation.json",
+          "sha256": "c87390df14813e39c4246f308e2a1c61a0c69e3831437a117f0e1677a02479eb"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/preregistration.json",
+          "sha256": "0e6041e31fc4cdd7bbfff730c30106ddd47c5f31a965f3b8fbaece98f0f4ca2f"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/reservation_validation.json",
+          "sha256": "2a29d6647e348005bf13bccd89bb4776ec5615256d886a870f39a3d26cd1754b"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/experiments.jsonl",
+          "sha256": "70d8c254c1d33a1f2a0e11cb3455fc099d8807447550b9aa24fa572f8080c27c"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/execution_complete.json",
+          "sha256": "dee91b8bdbf06be863a4d84287b8addf9ec79327631cb23753bf00c278aab2e8"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/independent_audit.json",
+          "sha256": "f7dd9f70ffb6b559ee5721fb56f26e75f44ee6d7b72536d75cb52f1e483b7fbd"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/calendar2023_2026_audit.json",
+          "sha256": "b6b9d370f33b01c5f8d680140d29f552b2f8d0d164a693b72cf11204b6eecbcc"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/calendar2023_2026.csv",
+          "sha256": "54b14a3cbc051db641f5b27d96e7ee1b5c3890393be6a4a7e7b0b0464c4bf13e"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/terminal_invariants.json",
+          "sha256": "b9407c25486b8f86a38f438dfa1308ea3a372998f999b0b2d1230b59b846c175"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/boundary_audit.json",
+          "sha256": "056f8fdb89ad1d673cd5bf6a1caf08931b72ac68b2235ef63dd3cc8ae6b2887b"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/REPORT.md",
+          "sha256": "1ef26d54869240a4956d813bd0e609fd8e5df9f8b6db4ff8c2253c5e5693843b"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/candidate/run/walkforward.json",
+          "sha256": "f2f8743dd1b7dff9d139c71eebf3414ffeb7d89489328fd37c08274bf319805e"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/protocol.json",
+          "sha256": "6b18fc7c6a147568d9a4b8b85ccec3d95f27da03e685470354e64f77b34e6e4d"
+        },
+        {
+          "path": "artifacts/analysis/crypto_rank_retention_20260913/input_manifest.json",
+          "sha256": "43c1319f1c1505b9f407c501ac9fbe280b139e6ad04090ac8702f64fed9fa9fe"
+        },
+        {
+          "path": "scripts/close_crypto_retention_arm.py",
+          "sha256": "95b4f096cb1d13436da13a947bef8279f409c008cbd7061ff790a2fecf2035db"
+        },
+        {
+          "path": "scripts/audit_crypto_retention_accounting.py",
+          "sha256": "af973cf3cdcaa4858ed3bb427dd90204eac08f264a90ca83025f21cd989804f3"
+        },
+        {
+          "path": "scripts/audit_crypto_retention_horizon.py",
+          "sha256": "44a32a020e45ff11cfe6b543ec04f32fea1d16d966aa12ec5c1671ea0a017297"
+        },
+        {
+          "path": "scripts/audit_crypto_retention_boundaries.py",
+          "sha256": "5f32d6b312588b2b9ae5b8e57407b4c5594e75ec756d02322749b8e21faad15e"
+        }
+      ],
+      "statement": "2023\u2013June2026 retrospective crypto horizon extension; calendar/accounting verified, source availability, metadata, funding, settlement and benchmark remain modeled. No combined qualification, new sleeve, untouched OOS or admission.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    }
+  },
+  "research_family_key": "managed_futures_trend",
+  "schema": "canli.alphac-identity-trial-packet.v2"
+}

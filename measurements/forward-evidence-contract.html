@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html data-reader="measurements" lang="en">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -30,51 +30,46 @@
 <link rel="stylesheet" href="../css/paper.css" />
 <link rel="stylesheet" href="/css/product-shell.css" />
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"Forward evidence contract","description":"This contract freezes how forward evidence will be described before the record is mature.","url":"https://canlicapital.com/measurements/forward-evidence-contract","creator":{"@type":"Person","name":"Arhan Canli"},"publisher":{"@type":"Organization","name":"Canli Capital","url":"https://canlicapital.com/"},"isAccessibleForFree":true,"distribution":{"@type":"DataDownload","encodingFormat":"application/json","contentUrl":"https://canlicapital.com/glassbox/forward_evidence_contract.json"}}</script>
-</head>
+
+<link rel="stylesheet" href="/css/reader-experience.css" />
+<!-- release-style:start --><link rel="stylesheet" href="/css/release-readiness.css" /><!-- release-style:end --></head>
 <body class="paper">
 <a class="paper__skip" href="#content">Skip to content</a>
-<header class="cc-shell" id="nav" data-product-shell="v3">
+<header class="cc-shell" id="nav" data-product-shell="v3" data-shell-revision="4">
   <a class="cc-shell__brand" href="/" aria-label="Canli Capital, home">
     <span class="cc-shell__mark" aria-hidden="true"><i></i></span>
     <span>Canli Capital</span>
   </a>
-  <a class="cc-shell__status" href="/measurements/alpaca-broker-reconciliation" aria-label="Current record status">
-    <span class="status-dot" aria-hidden="true"></span>
-    <span>Public paper record</span>
-  </a>
   <nav class="cc-shell__primary" aria-label="Primary navigation">
-<a class="cc-shell__link" href="https://app.canlicapital.com/dashboard" rel="noreferrer">Live</a>
-<a class="cc-shell__link" href="/research">Research</a>
-<a class="cc-shell__link" href="/trials">Trials</a>
 <a class="cc-shell__link" href="/systems">Systems</a>
-<a class="cc-shell__link" href="/methodology">Methodology</a>
+<a class="cc-shell__link" href="/research">Research</a>
 <a class="cc-shell__link" href="/developers">Developers</a>
 <a class="cc-shell__link" href="/verify">Verify</a>
   </nav>
   <details class="cc-shell__index">
-    <summary><span class="cc-shell__index-wide">More</span><span class="cc-shell__index-compact">Menu</span></summary>
+    <summary><span class="cc-shell__index-wide">Explore</span><span class="cc-shell__index-compact">Menu</span></summary>
     <div class="cc-shell__panel">
       <div>
-        <span class="cc-shell__panel-label">Core</span>
+        <span class="cc-shell__panel-label">Research &amp; strategies</span>
         <nav aria-label="Core routes"><a class="cc-shell__panel-link" href="https://app.canlicapital.com/dashboard" rel="noreferrer">Live</a>
 <a class="cc-shell__panel-link" href="/research">Research</a>
 <a class="cc-shell__panel-link" href="/trials">Trials</a>
 <a class="cc-shell__panel-link" href="/systems">Systems</a>
 <a class="cc-shell__panel-link" href="/methodology">Methodology</a>
-<a class="cc-shell__panel-link" href="/developers">Developers</a>
-<a class="cc-shell__panel-link" href="/verify">Verify</a></nav>
+<a class="cc-shell__panel-link" href="/performance">Performance</a></nav>
       </div>
       <div>
-        <span class="cc-shell__panel-label">Institution</span>
-        <nav aria-label="Institution routes"><a class="cc-shell__panel-link" href="/progress">Corrections</a>
-<a class="cc-shell__panel-link" href="/performance">Performance</a>
+        <span class="cc-shell__panel-label">Evidence &amp; accountability</span>
+        <nav aria-label="Institution routes"><a class="cc-shell__panel-link" href="/verify">Verify</a>
+<a class="cc-shell__panel-link" href="/progress">Corrections</a>
 <a class="cc-shell__panel-link" href="/founder">Founder</a>
 <a class="cc-shell__panel-link" href="/open">Open data</a>
-<a class="cc-shell__panel-link" href="/measurements" aria-current="page" data-current="true">Measurements</a></nav>
+<a class="cc-shell__panel-link" href="/measurements" data-current="true">Measurements</a></nav>
       </div>
       <div>
-        <span class="cc-shell__panel-label">Tools</span>
-        <nav aria-label="Tools"><a class="cc-shell__panel-link" href="/tools">All tools</a>
+        <span class="cc-shell__panel-label">Build &amp; reproduce</span>
+        <nav aria-label="Tools"><a class="cc-shell__panel-link" href="/developers">Developers</a>
+<a class="cc-shell__panel-link" href="/tools">All tools</a>
 <a class="cc-shell__panel-link" href="/how-to-validate-a-backtest">How to validate a backtest</a></nav>
       </div>
       <div>
@@ -86,34 +81,42 @@
 <a class="cc-shell__panel-link" href="https://github.com/arhancanli/canli-pit-lake" rel="noreferrer">canli-pit-lake</a>
 <a class="cc-shell__panel-link" href="https://github.com/arhancanli/canli-backtest" rel="noreferrer">canli-backtest</a></nav>
       </div>
-      <p>Observed, simulated, model-estimated and planned claims remain visibly separate.</p>
+      <div class="cc-shell__panel-foot">
+        <a class="cc-shell__status" href="/measurements/alpaca-broker-reconciliation" aria-label="Current record status"><span class="status-dot" aria-hidden="true"></span><span>Public paper record</span></a>
+        <p>Observed, simulated, model-estimated and planned claims remain visibly separate.</p>
+      </div>
     </div>
   </details>
   <a class="cc-shell__source" href="/engineering" title="Open-source engineering: the engine, the data layer and the backtester"><svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true" focusable="false"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg><span>Source</span></a>
-  <a class="cc-shell__cta" href="https://app.canlicapital.com/dashboard">Enter live record <span aria-hidden="true">↗</span></a>
+  <a class="cc-shell__cta" href="https://app.canlicapital.com/dashboard">Live record <span aria-hidden="true">↗</span></a>
+  <script type="module" src="/js/navigation.js"></script>
 </header>
-<main class="paper__main" id="content">
+<main class="paper__main" id="content"><!-- reader-index:start --><aside class="reader-index"><a class="reader-index__back" href="/measurements">Explore measurements</a><details><summary>In this document</summary><nav aria-label="Document sections"><a href="#reader-section-1">What this measurement does and does not claim</a><a href="#reader-section-2">The measurement</a><a href="#reader-section-3">Check it yourself</a></nav></details><a class="reader-index__verify" href="/verify">How to verify a claim ↗</a></aside><!-- reader-index:end -->
   <article class="paper__article">
     <p class="paper__eyebrow"><a href="/measurements">Measurements</a></p>
     <h1 class="paper__title">Forward evidence contract</h1>
     <p class="paper__byline">By <span rel="author">Arhan Canli</span>, Canli Capital</p>
     <div class="paper__body">
-<aside class="measure__boundary"><h2>What this measurement does and does not claim</h2><p>This contract freezes how forward evidence will be described before the record is mature. It does not guarantee a Sharpe ratio, convert paper trading into real capital, establish expected drawdown from realized history, or treat a non-equivalent simulation cell as a live-book risk estimate.</p></aside>
-<section class="measure__section"><h2>The measurement</h2>
+<aside class="measure__boundary"><h2 id="reader-section-1" data-reader-anchor="true">What this measurement does and does not claim</h2><p>This contract freezes how forward evidence will be described before the record is mature. It does not guarantee a Sharpe ratio, convert paper trading into real capital, establish expected drawdown from realized history, or treat a non-equivalent simulation cell as a live-book risk estimate.</p></aside>
+<section class="measure__section"><h2 id="reader-section-2" data-reader-anchor="true">The measurement</h2>
 <dl class="measure__facts">
-<div class="measure__row"><dt>Schema</dt><dd>canli.alphac-forward-evidence-contract.v6</dd></div>
+<div class="measure__row"><dt>Schema</dt><dd>canli.alphac-forward-evidence-contract.v7</dd></div>
 <div class="measure__row"><dt>Author</dt><dd>Arhan Canli</dd></div>
 <div class="measure__row"><dt>Capital kind</dt><dd>PAPER_ONLY</dd></div>
 <div class="measure__row"><dt>Return frequency</dt><dd>CONSECUTIVE_PUBLISHED_UTC_DAILY_MARKS_NO_SYNTHETIC_FILL</dd></div>
 <div class="measure__row"><dt>Annualization days</dt><dd>365</dd></div>
 <div class="measure__row"><dt>Minimum daily returns for estimate</dt><dd>252</dd></div>
 <div class="measure__row"><dt>Minimum daily returns for establishment</dt><dd>756</dd></div>
-<div class="measure__row"><dt>Forward sharpe target</dt><dd>1.500000</dd></div>
+<div class="measure__row"><dt>Forward sharpe target</dt><dd>2</dd></div>
+<div class="measure__row"><dt>Forward sharpe target source</dt><dd>config/owner_goals.json</dd></div>
 <div class="measure__row"><dt>Target exceedance probability min</dt><dd>0.950000</dd></div>
 <div class="measure__row"><dt>Expected max drawdown target</dt><dd>0.110000</dd></div>
+<div class="measure__row"><dt>Realized max drawdown bound</dt><dd>0.100000</dd></div>
+<div class="measure__row"><dt>Realized max drawdown bound statistic</dt><dd>REALIZED_MAXIMUM_DRAWDOWN</dd></div>
+<div class="measure__row"><dt>Realized max drawdown bound source</dt><dd>config/owner_goals.json</dd></div>
 <div class="measure__row"><dt>Broker reconciliation max age hours</dt><dd>36</dd></div>
 <div class="measure__row"><dt>Broker state lag tolerance hours</dt><dd>1</dd></div>
-<div class="measure__row"><dt>Required live config fingerprint</dt><dd>sha256:fe82c4eeed742289bfcfee5d39856ee2bb8ca9cfe209bcc7e34abff98553706d</dd></div>
+<div class="measure__row"><dt>Required live config fingerprint</dt><dd>sha256:553aff517efdc069c2ee80747ef9a9d750da817ceeab8dbc344cae050b814e09</dd></div>
 <div class="measure__row"><dt>Required continuity schema</dt><dd>canli.alphac-record-continuity.v1</dd></div>
 <div class="measure__row"><dt>Required broker reconciliation schema</dt><dd>canli.alphac-alpaca-broker-reconciliation.v1</dd></div>
 <div class="measure__row"><dt>Required drawdown model schema</dt><dd>canli.alphac-drawdown-live-estimator.v1</dd></div>
@@ -126,20 +129,28 @@
 <div class="measure__row"><dt>Required crypto position attribution rollout schema</dt><dd>canli.alphac-crypto-position-attribution-rollout-verification.v1</dd></div>
 <div class="measure__row"><dt>Methodology paper public path</dt><dd>/research/forward-sharpe-evidence-standard</dd></div>
 </dl>
+<figure class="measure__tablewrap"><figcaption>Forward sharpe target history</figcaption><table class="measure__table" tabindex="0" data-reader-focus="true"><thead><tr><th scope="col">Target</th><th scope="col">In force from</th><th scope="col">Superseded on</th><th scope="col">Source</th><th scope="col">Record status when superseded</th><th scope="col">Daily returns when superseded</th><th scope="col">Note</th></tr></thead><tbody>
+<tr><td>1.500000</td><td>2026-08-21</td><td>2026-09-14</td><td>config/sleeve_admission_contract.json objective.honest_forward_sharpe_target (contract v6, carried into v7)</td><td>IMMATURE_RECORD_TOO_SHORT</td><td>36</td><td>No point estimate was ever published against this target; the record was 36 returns short of the 252 the estimate needs when the target moved.</td></tr>
+<tr><td>2</td><td>2026-09-14</td><td>Not reported</td><td>config/owner_goals.json (owner goals recorded 2026-09-12, confirmed 2026-09-14)</td><td>Not reported</td><td>Not reported</td><td>The owner&#39;s combined-portfolio goal, net of costs. A target change is an evaluation change, not a trading change: it restarts no forward-evidence epoch and pools nothing.</td></tr>
+</tbody></table></figure>
+<p class="measure__prose"><strong>Expected max drawdown target note.</strong> The sealed modeled objective (config/sleeve_admission_contract.json objective.portfolio_max_drawdown_target and thresholds.book_expected_max_drawdown_max), evaluated on the current-composition drawdown study. It is not the owner&#39;s realized bound, which is realized_max_drawdown_bound.</p>
+<p class="measure__prose"><strong>Realized max drawdown bound note.</strong> The owner&#39;s bound on the combined book&#39;s realized maximum drawdown (10 percent, restated 2026-09-14), stronger than and separate from the expected-maximum-drawdown objective above, which stays at the sealed 11 percent as the modeled objective. The evaluation publishes realized drawdown against the bound every mark; a realized drawdown inside the bound to date establishes nothing about future drawdown. The declared drawdown-control ladder (flat at 11 percent) was measured against the 11 percent objective and cannot enforce this bound; a consistent ladder must be measured and declared before activation.</p>
 <section class="measure__sub"><h3>Rules</h3>
 <p class="measure__prose"><strong>Estimate eligible.</strong> At least 252 finite non-constant returns from consecutive published daily marks, plus every provenance gate passing.</p>
-<p class="measure__prose"><strong>Target observed.</strong> The annualized point Sharpe is at least 1.5; this is not statistical establishment.</p>
-<p class="measure__prose"><strong>Target statistically established.</strong> At least 756 returns and PSR probability that the true annualized Sharpe exceeds 1.5 of at least 0.95, plus every provenance gate passing.</p>
+<p class="measure__prose"><strong>Target observed.</strong> The annualized point Sharpe is at least the governing forward_sharpe_target; this is not statistical establishment.</p>
+<p class="measure__prose"><strong>Target statistically established.</strong> At least 756 returns and PSR probability that the true annualized Sharpe exceeds the governing forward_sharpe_target of at least 0.95, plus every provenance gate passing.</p>
 <p class="measure__prose"><strong>Drawdown.</strong> Realized live maximum drawdown is always published. A simulation may be published only with p95, exact configuration mapping and explicit failed establishment dimensions. The older 14-sleeve daily study applies a 10% book-level volatility target and is not an estimate of the current four-sleeve fixed-weight composite. The zero-drift current-composition study maps the exact weights and strategic overlay and may be compared with the 11% objective, but its post-2022 common window and omitted constituent instrument, execution-gap and ladder state mean neither expected value nor p95 establishes live expected drawdown.</p>
 <p class="measure__prose"><strong>Diversification.</strong> The exact current-composition research study must publish average sleeve correlation, its synchronized block-bootstrap upper 95% bound, the maximum ordinary pair and its upper bound, the stressed design value, effective sleeve and diversification-ratio diagnostics, and fixed-to-cash marginal historical book-Sharpe deltas. Every threshold comes from the sleeve-admission contract. A positive average correlation fails the non-positive point gate even when described as near zero. Research-window evidence never establishes live-forward diversification and never retroactively adjudicates an existing sleeve.</p>
-<p class="measure__prose"><strong>Configuration change.</strong> A live-configuration fingerprint change starts a new evidence epoch; pre-change and post-change returns cannot be silently pooled.</p>
+<p class="measure__prose"><strong>Configuration change.</strong> A live-configuration change that re-sizes the traded book starts a new evidence epoch; pre-change and post-change returns cannot be silently pooled. The current epoch starts on the date of the latest config/live_change_contract.json change_log entry whose contaminates_forward_record is true (a coverage extension declares false and starts no epoch); the returns before it are published as a prior epoch beside the current one and never added to it. Realized maximum drawdown stays descriptive over the whole record.</p>
 <p class="measure__prose"><strong>Missing marks.</strong> Missing calendar dates are not filled with zero returns. The continuity audit is a separate mandatory gate.</p>
 <p class="measure__prose"><strong>Public chain.</strong> The current paper state must exactly equal the canonical payload disclosed in the signed transparency-chain head. Link continuity, every Ed25519 signature, every disclosed payload hash, and the prospective disclosure boundary must validate. Historical opaque commitments remain explicitly incomplete and are not reconstructed.</p>
 <p class="measure__prose"><strong>Crypto position attribution.</strong> The latest locally simulated crypto paper cycle must be non-empty, persist complete order-book marks for every open position, independently reproduce each stored market value and unrealized P&amp;L from quantity, mark, and entry price, and reconcile cash plus marked market value to account equity within the frozen tolerances. A flat cycle cannot vacuously certify the mark path. Entry-price fallback marks, non-finite values, non-positive prices, missing prospective fields, position-count mismatch, stale cycle coverage, position-arithmetic residual, or equity-reconciliation residual fail provenance closed. Historical rows are never backfilled.</p>
 <p class="measure__prose"><strong>Crypto position attribution rollout.</strong> A hash-bound deployment receipt and the frozen first later non-empty natural cycle must prove the mark-aware runtime operated on the sole-writer Frankfurt paper host without a forced cycle. Before deployment, missing receipt evidence is published deterministically and fails closed without querying Frankfurt. A successful first-cycle receipt is immutable for that exact deployment receipt.</p>
+<p class="measure__prose"><strong>Target change.</strong> The governing forward Sharpe target is read from config/owner_goals.json and every change is appended to forward_sharpe_target_history with the record&#39;s status on the day it was superseded. A target change is an evaluation change, never a trading change: it restarts no forward-evidence epoch, pools no returns, and regrades no earlier evaluation. The record is always evaluated against the target in force at evaluation time.</p>
+<p class="measure__prose"><strong>Realized drawdown bound.</strong> The owner&#39;s realized maximum-drawdown bound is published beside the modeled expected-maximum-drawdown objective and never mixed with it. Realized drawdown inside the bound to date is descriptive; it does not establish that future drawdown stays inside the bound, and the mechanism that acts on it is config/drawdown_control_contract.json.</p>
 </section>
 </section>
-<section class="measure__section"><h2>Check it yourself</h2>
+<section class="measure__section"><h2 id="reader-section-3" data-reader-anchor="true">Check it yourself</h2>
 <p>Every figure above is read from <a href="/glassbox/forward_evidence_contract.json"><code>/glassbox/forward_evidence_contract.json</code></a>, the
 artifact the engine wrote.</p>
 <p><a href="/measurements">All 89 measurements</a> &middot;
@@ -149,7 +160,27 @@ artifact the engine wrote.</p>
     </div>
   </article>
 </main>
-<footer class="cc-footer" id="footer" data-product-shell="v3">
+<footer class="cc-footer" id="footer" data-product-shell="v3" data-shell-revision="4">
+  <details class="cc-footer__context"><summary>About the research-to-record workflow</summary><section class="cc-handoff" aria-labelledby="cc-handoff-title">
+    <div class="cc-handoff__viewport">
+      <div class="cc-handoff__intro"><p>Research → Validation → Publication</p><h2 id="cc-handoff-title">From an idea.<br />To a record.</h2><p>Carry the inputs, assumptions and limits with the result. The evidence should survive every handoff.</p></div>
+      <div class="cc-handoff__stage" aria-hidden="true">
+        <svg class="cc-handoff__route" viewBox="0 0 1000 300" preserveAspectRatio="none"><path class="cc-handoff__track" d="M120 210C280 210 310 85 500 85S720 210 880 210"/><path class="cc-handoff__trace" pathLength="1" d="M120 210C280 210 310 85 500 85S720 210 880 210"/></svg>
+        <div class="cc-handoff__dock cc-handoff__dock--inputs"><i></i><i></i><i></i></div>
+        <div class="cc-handoff__gate"><i></i><i></i><i></i></div>
+        <div class="cc-handoff__dock cc-handoff__dock--record"><i></i><i></i><i></i></div>
+        <div class="cc-handoff__packet">
+          <img src="/cinema/optical-master-v3-1536.webp" width="1536" height="1536" loading="lazy" alt="" />
+        </div>
+      </div>
+      <div class="cc-handoff__steps">
+        <a href="/research" data-handoff-step="0"><span>Define</span><strong>The research packet</strong><small>Inputs, rules and the failed trials.</small><em>Inspect the research ↗</em></a>
+        <a href="/developers#validation" data-handoff-step="1"><span>Reproduce</span><strong>The calculation receipt</strong><small>Your inputs. Declared arithmetic.</small><em>Explore the validation API ↗</em></a>
+        <a href="/verify" data-handoff-step="2"><span>Inspect</span><strong>The published record</strong><small>Sources, corrections and boundaries.</small><em>Verify the evidence ↗</em></a>
+      </div>
+      <p class="cc-handoff__boundary">Conceptual workflow. This animation sends no request. A receipt is not proof of future returns.</p>
+    </div>
+  </section></details>
   <div class="cc-footer__lead">
     <a class="cc-footer__brand" href="/">Canli Capital</a>
     <p>Build the claim. Publish the evidence. Keep the failures.</p>
@@ -204,6 +235,9 @@ artifact the engine wrote.</p>
     record begins 2026-08-07; the years before it are engineering, not track record.</p>
     <span>Copyright Arhan Canli</span>
   </div>
+  <div class="cc-footer__wordmark" aria-hidden="true">Canli Capital<span><svg viewBox="0 0 80 80" focusable="false" aria-hidden="true"><path d="M12 68 68 12M12 12h56v56" fill="none" stroke="currentColor" stroke-width="4" /></svg></span></div>
+  <script type="module" src="/js/site-motion.js"></script>
 </footer>
-</body>
+
+<script type="module" src="/js/reader-experience.js"></script></body>
 </html>

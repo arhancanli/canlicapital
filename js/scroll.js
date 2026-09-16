@@ -234,6 +234,19 @@ export function initScroll({ scene, page }) {
     lenis.on("scroll", ScrollTrigger.update);
     gsap.ticker.add((time) => lenis.raf(time * 1000));
     gsap.ticker.lagSmoothing(0);
+    // Search changes document height while an anchor tween may still be running.
+    // Hand control back to the reader before filtering, instead of chasing an
+    // obsolete destination or triggering every window resize listener.
+    document.addEventListener('focusin', (event) => {
+      if (event.target.matches('.archive-search input, .hub-search input')) {
+        lenis.scrollTo(window.scrollY, { immediate: true, force: true });
+      }
+    });
+    window.addEventListener('canli:content-layout', () => {
+      lenis.resize();
+      lenis.scrollTo(window.scrollY, { immediate: true, force: true });
+      ScrollTrigger.refresh();
+    });
   }
 
   const scrollTo = (target) => {

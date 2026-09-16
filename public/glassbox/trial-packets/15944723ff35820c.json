@@ -1,0 +1,891 @@
+{
+  "claim_boundary": "Retrospective crypto correction diagnostic, not exact legacy replay or qualified alpha. Static metadata applicability, funding marks, publication lag and terminal prices are modeled. All scenarios retained; remaining scenario comparisons pending; benchmark limitations retained. No untouched OOS, independent external reproduction, capacity proof or admission.",
+  "complete": true,
+  "completion_assessment": {
+    "candidate_evidence_complete_for_admission": false,
+    "disposition": "INCOMPLETE_NOT_ADMITTED",
+    "packet_evidence_accounting_complete": true
+  },
+  "config_hash": "8b7d6a156eda4ffd",
+  "configuration": {
+    "allocator": "rank",
+    "alpha_names": [
+      "carry_fund_21"
+    ],
+    "end": 1655164800000,
+    "instrument_ids": [
+      "BINANCE:PERP:1000PEPEUSDT",
+      "BINANCE:PERP:1000SHIBUSDT",
+      "BINANCE:PERP:AAVEUSDT",
+      "BINANCE:PERP:ADAUSDT",
+      "BINANCE:PERP:APEUSDT",
+      "BINANCE:PERP:APTUSDT",
+      "BINANCE:PERP:ARBUSDT",
+      "BINANCE:PERP:ATOMUSDT",
+      "BINANCE:PERP:AVAXUSDT",
+      "BINANCE:PERP:AXSUSDT",
+      "BINANCE:PERP:BCHUSDT",
+      "BINANCE:PERP:BLZUSDT",
+      "BINANCE:PERP:BNBUSDT",
+      "BINANCE:PERP:BTCUSDT",
+      "BINANCE:PERP:CHZUSDT",
+      "BINANCE:PERP:COMPUSDT",
+      "BINANCE:PERP:CRVUSDT",
+      "BINANCE:PERP:DOGEUSDT",
+      "BINANCE:PERP:DOTUSDT",
+      "BINANCE:PERP:EOSUSDT",
+      "BINANCE:PERP:ETCUSDT",
+      "BINANCE:PERP:ETHUSDT",
+      "BINANCE:PERP:FILUSDT",
+      "BINANCE:PERP:FTMUSDT",
+      "BINANCE:PERP:GALAUSDT",
+      "BINANCE:PERP:ICPUSDT",
+      "BINANCE:PERP:INJUSDT",
+      "BINANCE:PERP:LDOUSDT",
+      "BINANCE:PERP:LINAUSDT",
+      "BINANCE:PERP:LINKUSDT",
+      "BINANCE:PERP:LRCUSDT",
+      "BINANCE:PERP:LTCUSDT",
+      "BINANCE:PERP:LUNAUSDT",
+      "BINANCE:PERP:MANAUSDT",
+      "BINANCE:PERP:MATICUSDT",
+      "BINANCE:PERP:MKRUSDT",
+      "BINANCE:PERP:NEARUSDT",
+      "BINANCE:PERP:OCEANUSDT",
+      "BINANCE:PERP:OPUSDT",
+      "BINANCE:PERP:REEFUSDT",
+      "BINANCE:PERP:RNDRUSDT",
+      "BINANCE:PERP:RUNEUSDT",
+      "BINANCE:PERP:SANDUSDT",
+      "BINANCE:PERP:SEIUSDT",
+      "BINANCE:PERP:SOLUSDT",
+      "BINANCE:PERP:SUIUSDT",
+      "BINANCE:PERP:SUSHIUSDT",
+      "BINANCE:PERP:SXPUSDT",
+      "BINANCE:PERP:THETAUSDT",
+      "BINANCE:PERP:TIAUSDT",
+      "BINANCE:PERP:TOMOUSDT",
+      "BINANCE:PERP:TRXUSDT",
+      "BINANCE:PERP:UNIUSDT",
+      "BINANCE:PERP:VETUSDT",
+      "BINANCE:PERP:WAVESUSDT",
+      "BINANCE:PERP:WLDUSDT",
+      "BINANCE:PERP:XLMUSDT",
+      "BINANCE:PERP:XRPUSDT"
+    ],
+    "no_trade_band": 0.001,
+    "rebalance_bars": 168,
+    "research_engine": {
+      "carry_terminal_eligibility": true,
+      "input_manifest_sha256": "4191187155e54c1fff1f9b58b8b48c0292a81f0e9537a687ebc8a58091c16877",
+      "metadata_mode": "MODELED_HISTORICAL_APPLICABILITY_NOT_OBSERVED_PIT",
+      "scenario": {
+        "data": "repaired_snapshot",
+        "funding_mark": "interval_open_proxy",
+        "id": "repaired_open_control",
+        "terminal": false
+      },
+      "terminal_event_source_sha256": "4c4882cf44ff4119ede369b3a3572af4d8583c83dac7c4a3c4774e36b16fbd5c",
+      "timing_mode": "Retrospective reconstructed terminal notice; funding lag model unchanged; bar-close availability model."
+    },
+    "start": 1622505600000,
+    "test_bars": 1512,
+    "train_bars": 6048
+  },
+  "content_hash": "sha256:51c6956c6ce4204f4e00a947c6ea70f526307c92a57af0113905b030e92ae6f2",
+  "hypothesis_key": "15944723ff35820c",
+  "immutable_first_measurement": {
+    "config": {
+      "allocator": "rank",
+      "alpha_names": [
+        "carry_fund_21"
+      ],
+      "end": 1655164800000,
+      "instrument_ids": [
+        "BINANCE:PERP:1000PEPEUSDT",
+        "BINANCE:PERP:1000SHIBUSDT",
+        "BINANCE:PERP:AAVEUSDT",
+        "BINANCE:PERP:ADAUSDT",
+        "BINANCE:PERP:APEUSDT",
+        "BINANCE:PERP:APTUSDT",
+        "BINANCE:PERP:ARBUSDT",
+        "BINANCE:PERP:ATOMUSDT",
+        "BINANCE:PERP:AVAXUSDT",
+        "BINANCE:PERP:AXSUSDT",
+        "BINANCE:PERP:BCHUSDT",
+        "BINANCE:PERP:BLZUSDT",
+        "BINANCE:PERP:BNBUSDT",
+        "BINANCE:PERP:BTCUSDT",
+        "BINANCE:PERP:CHZUSDT",
+        "BINANCE:PERP:COMPUSDT",
+        "BINANCE:PERP:CRVUSDT",
+        "BINANCE:PERP:DOGEUSDT",
+        "BINANCE:PERP:DOTUSDT",
+        "BINANCE:PERP:EOSUSDT",
+        "BINANCE:PERP:ETCUSDT",
+        "BINANCE:PERP:ETHUSDT",
+        "BINANCE:PERP:FILUSDT",
+        "BINANCE:PERP:FTMUSDT",
+        "BINANCE:PERP:GALAUSDT",
+        "BINANCE:PERP:ICPUSDT",
+        "BINANCE:PERP:INJUSDT",
+        "BINANCE:PERP:LDOUSDT",
+        "BINANCE:PERP:LINAUSDT",
+        "BINANCE:PERP:LINKUSDT",
+        "BINANCE:PERP:LRCUSDT",
+        "BINANCE:PERP:LTCUSDT",
+        "BINANCE:PERP:LUNAUSDT",
+        "BINANCE:PERP:MANAUSDT",
+        "BINANCE:PERP:MATICUSDT",
+        "BINANCE:PERP:MKRUSDT",
+        "BINANCE:PERP:NEARUSDT",
+        "BINANCE:PERP:OCEANUSDT",
+        "BINANCE:PERP:OPUSDT",
+        "BINANCE:PERP:REEFUSDT",
+        "BINANCE:PERP:RNDRUSDT",
+        "BINANCE:PERP:RUNEUSDT",
+        "BINANCE:PERP:SANDUSDT",
+        "BINANCE:PERP:SEIUSDT",
+        "BINANCE:PERP:SOLUSDT",
+        "BINANCE:PERP:SUIUSDT",
+        "BINANCE:PERP:SUSHIUSDT",
+        "BINANCE:PERP:SXPUSDT",
+        "BINANCE:PERP:THETAUSDT",
+        "BINANCE:PERP:TIAUSDT",
+        "BINANCE:PERP:TOMOUSDT",
+        "BINANCE:PERP:TRXUSDT",
+        "BINANCE:PERP:UNIUSDT",
+        "BINANCE:PERP:VETUSDT",
+        "BINANCE:PERP:WAVESUSDT",
+        "BINANCE:PERP:WLDUSDT",
+        "BINANCE:PERP:XLMUSDT",
+        "BINANCE:PERP:XRPUSDT"
+      ],
+      "no_trade_band": 0.001,
+      "rebalance_bars": 168,
+      "research_engine": {
+        "carry_terminal_eligibility": true,
+        "input_manifest_sha256": "4191187155e54c1fff1f9b58b8b48c0292a81f0e9537a687ebc8a58091c16877",
+        "metadata_mode": "MODELED_HISTORICAL_APPLICABILITY_NOT_OBSERVED_PIT",
+        "scenario": {
+          "data": "repaired_snapshot",
+          "funding_mark": "interval_open_proxy",
+          "id": "repaired_open_control",
+          "terminal": false
+        },
+        "terminal_event_source_sha256": "4c4882cf44ff4119ede369b3a3572af4d8583c83dac7c4a3c4774e36b16fbd5c",
+        "timing_mode": "Retrospective reconstructed terminal notice; funding lag model unchanged; bar-close availability model."
+      },
+      "start": 1622505600000,
+      "test_bars": 1512,
+      "train_bars": 6048
+    },
+    "config_hash": "8b7d6a156eda4ffd",
+    "kurtosis": 7.657124228627493,
+    "n_obs": 126,
+    "now_ms": 1789289832695,
+    "sharpe_ann": 0.03759710537886684,
+    "sharpe_per_period": 0.0019679224375444104,
+    "skew": -0.7926715137557641
+  },
+  "imported_from_external_tree": {
+    "external_content_hash": "sha256:bdd41c7261c4072f4faaca13c2377c164348e3e665b80789ced50e8f128f9bef",
+    "imported_on": "2026-09-14T19:35:24+00:00",
+    "tree": "/Users/arhancanli/alphac-prospective-pause-20260911"
+  },
+  "missing_sections": [],
+  "packet_status": "COMPLETE_ACCOUNTING_FINAL_KILLED_NOT_ADMITTED",
+  "partial_sections": [],
+  "required_sections": {
+    "admission_or_kill_decision": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/repaired_open_control/reservation.json",
+          "sha256": "8ca0f635f3e40a90d9b0efc29b04fe71f84c7be4deb3126da8307352c645d4a7"
+        },
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/repaired_open_control/preregistration.json",
+          "sha256": "1364023f2b7bd80b468645a311ddc36fb8b09658ea9447162343b4a8d181dfb7"
+        },
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/repaired_open_control/reservation_validation.json",
+          "sha256": "2aec80934ae530a6ed33c98965e3833ff7e52db1c3b031542513026c117cd973"
+        },
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/repaired_open_control/experiments.jsonl",
+          "sha256": "69133d21ecab98709be50b46871acdae2cc38e84d822219687f61daf79b32cb4"
+        },
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/repaired_open_control/execution_complete.json",
+          "sha256": "c76d1ff8eec25f514f209f33fefb4e13aefc29cb2c6a3a6915fe182a79faa4c1"
+        },
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/repaired_open_control/independent_audit.json",
+          "sha256": "139b4f2dd1533c7846758de6619ac47d6574530cbc27f124a13f55d8a57d3212"
+        },
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/repaired_open_control/REPORT.md",
+          "sha256": "1b14fcb3acf998e3613ec23aa7a90913b72e0ecdd9deb86c47daf9ea20a55e2c"
+        },
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/repaired_open_control/run/walkforward.json",
+          "sha256": "6b5c9234a3214f10aaf23347352b179b6b3a0a856881b1ff3a55914050286f5b"
+        },
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/repaired_open_control/excess_benchmark_audit.json",
+          "sha256": "611f26fd328216eb7bae0c0afa08549519441f6867808f1a0b67b649d091fa6d"
+        },
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/repaired_open_control/excess_benchmark_days.csv",
+          "sha256": "4e385f0967aaa1836f9acccf2146752f118aff14bc673b4d7b8faeb7ab3eda67"
+        },
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/protocol.json",
+          "sha256": "72b8001951a8f05008c3d671c65fe66fcdc9acfc64e370204f1315b6ebfb1ea0"
+        },
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/input_manifest.json",
+          "sha256": "4191187155e54c1fff1f9b58b8b48c0292a81f0e9537a687ebc8a58091c16877"
+        },
+        {
+          "path": "scripts/audit_crypto_terminal_arm.py",
+          "sha256": "071b033ff263ffbdefb7ec07af94f45b386fa94ea5b8e69dadd6b8f9ba7a6edd"
+        },
+        {
+          "path": "scripts/close_crypto_terminal_arm_v2.py",
+          "sha256": "9df127b1a867f52ddd9627b695e9f3b31d8f7f1404bb541b035c9b76ce8b36bb"
+        },
+        {
+          "content_hash": "sha256:a13b9fb20b79611fefe59514d74d0141a1c5546210d37e0d6272198031bebeae",
+          "path": "artifacts/research/development_closures/15944723ff35820c_admission_closure.json",
+          "sha256": "11116efe5d84e3939d0bb18c5d51ef75731f8b7bfb59308c1f731229eb553553",
+          "type": "final_development_admission_closure"
+        }
+      ],
+      "statement": "Retrospective crypto correction diagnostic, not exact legacy replay or qualified alpha. Static metadata applicability, funding marks, publication lag and terminal prices are modeled. All scenarios retained; remaining scenario comparisons pending; benchmark limitations retained. No untouched OOS, independent external reproduction, capacity proof or admission.",
+      "status": "VERIFIED_FINAL_DEVELOPMENT_CLOSURE_KILL"
+    },
+    "code_environment_and_reproduction": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/repaired_open_control/reservation.json",
+          "sha256": "8ca0f635f3e40a90d9b0efc29b04fe71f84c7be4deb3126da8307352c645d4a7"
+        },
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/repaired_open_control/preregistration.json",
+          "sha256": "1364023f2b7bd80b468645a311ddc36fb8b09658ea9447162343b4a8d181dfb7"
+        },
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/repaired_open_control/reservation_validation.json",
+          "sha256": "2aec80934ae530a6ed33c98965e3833ff7e52db1c3b031542513026c117cd973"
+        },
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/repaired_open_control/experiments.jsonl",
+          "sha256": "69133d21ecab98709be50b46871acdae2cc38e84d822219687f61daf79b32cb4"
+        },
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/repaired_open_control/execution_complete.json",
+          "sha256": "c76d1ff8eec25f514f209f33fefb4e13aefc29cb2c6a3a6915fe182a79faa4c1"
+        },
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/repaired_open_control/independent_audit.json",
+          "sha256": "139b4f2dd1533c7846758de6619ac47d6574530cbc27f124a13f55d8a57d3212"
+        },
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/repaired_open_control/REPORT.md",
+          "sha256": "1b14fcb3acf998e3613ec23aa7a90913b72e0ecdd9deb86c47daf9ea20a55e2c"
+        },
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/repaired_open_control/run/walkforward.json",
+          "sha256": "6b5c9234a3214f10aaf23347352b179b6b3a0a856881b1ff3a55914050286f5b"
+        },
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/repaired_open_control/excess_benchmark_audit.json",
+          "sha256": "611f26fd328216eb7bae0c0afa08549519441f6867808f1a0b67b649d091fa6d"
+        },
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/repaired_open_control/excess_benchmark_days.csv",
+          "sha256": "4e385f0967aaa1836f9acccf2146752f118aff14bc673b4d7b8faeb7ab3eda67"
+        },
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/protocol.json",
+          "sha256": "72b8001951a8f05008c3d671c65fe66fcdc9acfc64e370204f1315b6ebfb1ea0"
+        },
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/input_manifest.json",
+          "sha256": "4191187155e54c1fff1f9b58b8b48c0292a81f0e9537a687ebc8a58091c16877"
+        },
+        {
+          "path": "scripts/audit_crypto_terminal_arm.py",
+          "sha256": "071b033ff263ffbdefb7ec07af94f45b386fa94ea5b8e69dadd6b8f9ba7a6edd"
+        },
+        {
+          "path": "scripts/close_crypto_terminal_arm_v2.py",
+          "sha256": "9df127b1a867f52ddd9627b695e9f3b31d8f7f1404bb541b035c9b76ce8b36bb"
+        }
+      ],
+      "statement": "Retrospective crypto correction diagnostic, not exact legacy replay or qualified alpha. Static metadata applicability, funding marks, publication lag and terminal prices are modeled. All scenarios retained; remaining scenario comparisons pending; benchmark limitations retained. No untouched OOS, independent external reproduction, capacity proof or admission.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "economic_mechanism_and_falsifiable_hypothesis": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/repaired_open_control/reservation.json",
+          "sha256": "8ca0f635f3e40a90d9b0efc29b04fe71f84c7be4deb3126da8307352c645d4a7"
+        },
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/repaired_open_control/preregistration.json",
+          "sha256": "1364023f2b7bd80b468645a311ddc36fb8b09658ea9447162343b4a8d181dfb7"
+        },
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/repaired_open_control/reservation_validation.json",
+          "sha256": "2aec80934ae530a6ed33c98965e3833ff7e52db1c3b031542513026c117cd973"
+        },
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/repaired_open_control/experiments.jsonl",
+          "sha256": "69133d21ecab98709be50b46871acdae2cc38e84d822219687f61daf79b32cb4"
+        },
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/repaired_open_control/execution_complete.json",
+          "sha256": "c76d1ff8eec25f514f209f33fefb4e13aefc29cb2c6a3a6915fe182a79faa4c1"
+        },
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/repaired_open_control/independent_audit.json",
+          "sha256": "139b4f2dd1533c7846758de6619ac47d6574530cbc27f124a13f55d8a57d3212"
+        },
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/repaired_open_control/REPORT.md",
+          "sha256": "1b14fcb3acf998e3613ec23aa7a90913b72e0ecdd9deb86c47daf9ea20a55e2c"
+        },
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/repaired_open_control/run/walkforward.json",
+          "sha256": "6b5c9234a3214f10aaf23347352b179b6b3a0a856881b1ff3a55914050286f5b"
+        },
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/repaired_open_control/excess_benchmark_audit.json",
+          "sha256": "611f26fd328216eb7bae0c0afa08549519441f6867808f1a0b67b649d091fa6d"
+        },
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/repaired_open_control/excess_benchmark_days.csv",
+          "sha256": "4e385f0967aaa1836f9acccf2146752f118aff14bc673b4d7b8faeb7ab3eda67"
+        },
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/protocol.json",
+          "sha256": "72b8001951a8f05008c3d671c65fe66fcdc9acfc64e370204f1315b6ebfb1ea0"
+        },
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/input_manifest.json",
+          "sha256": "4191187155e54c1fff1f9b58b8b48c0292a81f0e9537a687ebc8a58091c16877"
+        },
+        {
+          "path": "scripts/audit_crypto_terminal_arm.py",
+          "sha256": "071b033ff263ffbdefb7ec07af94f45b386fa94ea5b8e69dadd6b8f9ba7a6edd"
+        },
+        {
+          "path": "scripts/close_crypto_terminal_arm_v2.py",
+          "sha256": "9df127b1a867f52ddd9627b695e9f3b31d8f7f1404bb541b035c9b76ce8b36bb"
+        }
+      ],
+      "statement": "Retrospective crypto correction diagnostic, not exact legacy replay or qualified alpha. Static metadata applicability, funding marks, publication lag and terminal prices are modeled. All scenarios retained; remaining scenario comparisons pending; benchmark limitations retained. No untouched OOS, independent external reproduction, capacity proof or admission.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "execution_and_cost_model": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/repaired_open_control/reservation.json",
+          "sha256": "8ca0f635f3e40a90d9b0efc29b04fe71f84c7be4deb3126da8307352c645d4a7"
+        },
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/repaired_open_control/preregistration.json",
+          "sha256": "1364023f2b7bd80b468645a311ddc36fb8b09658ea9447162343b4a8d181dfb7"
+        },
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/repaired_open_control/reservation_validation.json",
+          "sha256": "2aec80934ae530a6ed33c98965e3833ff7e52db1c3b031542513026c117cd973"
+        },
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/repaired_open_control/experiments.jsonl",
+          "sha256": "69133d21ecab98709be50b46871acdae2cc38e84d822219687f61daf79b32cb4"
+        },
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/repaired_open_control/execution_complete.json",
+          "sha256": "c76d1ff8eec25f514f209f33fefb4e13aefc29cb2c6a3a6915fe182a79faa4c1"
+        },
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/repaired_open_control/independent_audit.json",
+          "sha256": "139b4f2dd1533c7846758de6619ac47d6574530cbc27f124a13f55d8a57d3212"
+        },
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/repaired_open_control/REPORT.md",
+          "sha256": "1b14fcb3acf998e3613ec23aa7a90913b72e0ecdd9deb86c47daf9ea20a55e2c"
+        },
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/repaired_open_control/run/walkforward.json",
+          "sha256": "6b5c9234a3214f10aaf23347352b179b6b3a0a856881b1ff3a55914050286f5b"
+        },
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/repaired_open_control/excess_benchmark_audit.json",
+          "sha256": "611f26fd328216eb7bae0c0afa08549519441f6867808f1a0b67b649d091fa6d"
+        },
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/repaired_open_control/excess_benchmark_days.csv",
+          "sha256": "4e385f0967aaa1836f9acccf2146752f118aff14bc673b4d7b8faeb7ab3eda67"
+        },
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/protocol.json",
+          "sha256": "72b8001951a8f05008c3d671c65fe66fcdc9acfc64e370204f1315b6ebfb1ea0"
+        },
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/input_manifest.json",
+          "sha256": "4191187155e54c1fff1f9b58b8b48c0292a81f0e9537a687ebc8a58091c16877"
+        },
+        {
+          "path": "scripts/audit_crypto_terminal_arm.py",
+          "sha256": "071b033ff263ffbdefb7ec07af94f45b386fa94ea5b8e69dadd6b8f9ba7a6edd"
+        },
+        {
+          "path": "scripts/close_crypto_terminal_arm_v2.py",
+          "sha256": "9df127b1a867f52ddd9627b695e9f3b31d8f7f1404bb541b035c9b76ce8b36bb"
+        }
+      ],
+      "statement": "Retrospective crypto correction diagnostic, not exact legacy replay or qualified alpha. Static metadata applicability, funding marks, publication lag and terminal prices are modeled. All scenarios retained; remaining scenario comparisons pending; benchmark limitations retained. No untouched OOS, independent external reproduction, capacity proof or admission.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "family_and_union_trial_accounting": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/repaired_open_control/reservation.json",
+          "sha256": "8ca0f635f3e40a90d9b0efc29b04fe71f84c7be4deb3126da8307352c645d4a7"
+        },
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/repaired_open_control/preregistration.json",
+          "sha256": "1364023f2b7bd80b468645a311ddc36fb8b09658ea9447162343b4a8d181dfb7"
+        },
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/repaired_open_control/reservation_validation.json",
+          "sha256": "2aec80934ae530a6ed33c98965e3833ff7e52db1c3b031542513026c117cd973"
+        },
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/repaired_open_control/experiments.jsonl",
+          "sha256": "69133d21ecab98709be50b46871acdae2cc38e84d822219687f61daf79b32cb4"
+        },
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/repaired_open_control/execution_complete.json",
+          "sha256": "c76d1ff8eec25f514f209f33fefb4e13aefc29cb2c6a3a6915fe182a79faa4c1"
+        },
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/repaired_open_control/independent_audit.json",
+          "sha256": "139b4f2dd1533c7846758de6619ac47d6574530cbc27f124a13f55d8a57d3212"
+        },
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/repaired_open_control/REPORT.md",
+          "sha256": "1b14fcb3acf998e3613ec23aa7a90913b72e0ecdd9deb86c47daf9ea20a55e2c"
+        },
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/repaired_open_control/run/walkforward.json",
+          "sha256": "6b5c9234a3214f10aaf23347352b179b6b3a0a856881b1ff3a55914050286f5b"
+        },
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/repaired_open_control/excess_benchmark_audit.json",
+          "sha256": "611f26fd328216eb7bae0c0afa08549519441f6867808f1a0b67b649d091fa6d"
+        },
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/repaired_open_control/excess_benchmark_days.csv",
+          "sha256": "4e385f0967aaa1836f9acccf2146752f118aff14bc673b4d7b8faeb7ab3eda67"
+        },
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/protocol.json",
+          "sha256": "72b8001951a8f05008c3d671c65fe66fcdc9acfc64e370204f1315b6ebfb1ea0"
+        },
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/input_manifest.json",
+          "sha256": "4191187155e54c1fff1f9b58b8b48c0292a81f0e9537a687ebc8a58091c16877"
+        },
+        {
+          "path": "scripts/audit_crypto_terminal_arm.py",
+          "sha256": "071b033ff263ffbdefb7ec07af94f45b386fa94ea5b8e69dadd6b8f9ba7a6edd"
+        },
+        {
+          "path": "scripts/close_crypto_terminal_arm_v2.py",
+          "sha256": "9df127b1a867f52ddd9627b695e9f3b31d8f7f1404bb541b035c9b76ce8b36bb"
+        }
+      ],
+      "statement": "Retrospective crypto correction diagnostic, not exact legacy replay or qualified alpha. Static metadata applicability, funding marks, publication lag and terminal prices are modeled. All scenarios retained; remaining scenario comparisons pending; benchmark limitations retained. No untouched OOS, independent external reproduction, capacity proof or admission.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "identity_and_authorship": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/repaired_open_control/reservation.json",
+          "sha256": "8ca0f635f3e40a90d9b0efc29b04fe71f84c7be4deb3126da8307352c645d4a7"
+        },
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/repaired_open_control/preregistration.json",
+          "sha256": "1364023f2b7bd80b468645a311ddc36fb8b09658ea9447162343b4a8d181dfb7"
+        },
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/repaired_open_control/reservation_validation.json",
+          "sha256": "2aec80934ae530a6ed33c98965e3833ff7e52db1c3b031542513026c117cd973"
+        },
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/repaired_open_control/experiments.jsonl",
+          "sha256": "69133d21ecab98709be50b46871acdae2cc38e84d822219687f61daf79b32cb4"
+        },
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/repaired_open_control/execution_complete.json",
+          "sha256": "c76d1ff8eec25f514f209f33fefb4e13aefc29cb2c6a3a6915fe182a79faa4c1"
+        },
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/repaired_open_control/independent_audit.json",
+          "sha256": "139b4f2dd1533c7846758de6619ac47d6574530cbc27f124a13f55d8a57d3212"
+        },
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/repaired_open_control/REPORT.md",
+          "sha256": "1b14fcb3acf998e3613ec23aa7a90913b72e0ecdd9deb86c47daf9ea20a55e2c"
+        },
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/repaired_open_control/run/walkforward.json",
+          "sha256": "6b5c9234a3214f10aaf23347352b179b6b3a0a856881b1ff3a55914050286f5b"
+        },
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/repaired_open_control/excess_benchmark_audit.json",
+          "sha256": "611f26fd328216eb7bae0c0afa08549519441f6867808f1a0b67b649d091fa6d"
+        },
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/repaired_open_control/excess_benchmark_days.csv",
+          "sha256": "4e385f0967aaa1836f9acccf2146752f118aff14bc673b4d7b8faeb7ab3eda67"
+        },
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/protocol.json",
+          "sha256": "72b8001951a8f05008c3d671c65fe66fcdc9acfc64e370204f1315b6ebfb1ea0"
+        },
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/input_manifest.json",
+          "sha256": "4191187155e54c1fff1f9b58b8b48c0292a81f0e9537a687ebc8a58091c16877"
+        },
+        {
+          "path": "scripts/audit_crypto_terminal_arm.py",
+          "sha256": "071b033ff263ffbdefb7ec07af94f45b386fa94ea5b8e69dadd6b8f9ba7a6edd"
+        },
+        {
+          "path": "scripts/close_crypto_terminal_arm_v2.py",
+          "sha256": "9df127b1a867f52ddd9627b695e9f3b31d8f7f1404bb541b035c9b76ce8b36bb"
+        }
+      ],
+      "statement": "Retrospective crypto correction diagnostic, not exact legacy replay or qualified alpha. Static metadata applicability, funding marks, publication lag and terminal prices are modeled. All scenarios retained; remaining scenario comparisons pending; benchmark limitations retained. No untouched OOS, independent external reproduction, capacity proof or admission.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "literature_and_overlap_decision": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/repaired_open_control/reservation.json",
+          "sha256": "8ca0f635f3e40a90d9b0efc29b04fe71f84c7be4deb3126da8307352c645d4a7"
+        },
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/repaired_open_control/preregistration.json",
+          "sha256": "1364023f2b7bd80b468645a311ddc36fb8b09658ea9447162343b4a8d181dfb7"
+        },
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/repaired_open_control/reservation_validation.json",
+          "sha256": "2aec80934ae530a6ed33c98965e3833ff7e52db1c3b031542513026c117cd973"
+        },
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/repaired_open_control/experiments.jsonl",
+          "sha256": "69133d21ecab98709be50b46871acdae2cc38e84d822219687f61daf79b32cb4"
+        },
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/repaired_open_control/execution_complete.json",
+          "sha256": "c76d1ff8eec25f514f209f33fefb4e13aefc29cb2c6a3a6915fe182a79faa4c1"
+        },
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/repaired_open_control/independent_audit.json",
+          "sha256": "139b4f2dd1533c7846758de6619ac47d6574530cbc27f124a13f55d8a57d3212"
+        },
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/repaired_open_control/REPORT.md",
+          "sha256": "1b14fcb3acf998e3613ec23aa7a90913b72e0ecdd9deb86c47daf9ea20a55e2c"
+        },
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/repaired_open_control/run/walkforward.json",
+          "sha256": "6b5c9234a3214f10aaf23347352b179b6b3a0a856881b1ff3a55914050286f5b"
+        },
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/repaired_open_control/excess_benchmark_audit.json",
+          "sha256": "611f26fd328216eb7bae0c0afa08549519441f6867808f1a0b67b649d091fa6d"
+        },
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/repaired_open_control/excess_benchmark_days.csv",
+          "sha256": "4e385f0967aaa1836f9acccf2146752f118aff14bc673b4d7b8faeb7ab3eda67"
+        },
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/protocol.json",
+          "sha256": "72b8001951a8f05008c3d671c65fe66fcdc9acfc64e370204f1315b6ebfb1ea0"
+        },
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/input_manifest.json",
+          "sha256": "4191187155e54c1fff1f9b58b8b48c0292a81f0e9537a687ebc8a58091c16877"
+        },
+        {
+          "path": "scripts/audit_crypto_terminal_arm.py",
+          "sha256": "071b033ff263ffbdefb7ec07af94f45b386fa94ea5b8e69dadd6b8f9ba7a6edd"
+        },
+        {
+          "path": "scripts/close_crypto_terminal_arm_v2.py",
+          "sha256": "9df127b1a867f52ddd9627b695e9f3b31d8f7f1404bb541b035c9b76ce8b36bb"
+        }
+      ],
+      "statement": "Retrospective crypto correction diagnostic, not exact legacy replay or qualified alpha. Static metadata applicability, funding marks, publication lag and terminal prices are modeled. All scenarios retained; remaining scenario comparisons pending; benchmark limitations retained. No untouched OOS, independent external reproduction, capacity proof or admission.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "machine_readable_packet_and_stable_public_paper": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/repaired_open_control/reservation.json",
+          "sha256": "8ca0f635f3e40a90d9b0efc29b04fe71f84c7be4deb3126da8307352c645d4a7"
+        },
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/repaired_open_control/preregistration.json",
+          "sha256": "1364023f2b7bd80b468645a311ddc36fb8b09658ea9447162343b4a8d181dfb7"
+        },
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/repaired_open_control/reservation_validation.json",
+          "sha256": "2aec80934ae530a6ed33c98965e3833ff7e52db1c3b031542513026c117cd973"
+        },
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/repaired_open_control/experiments.jsonl",
+          "sha256": "69133d21ecab98709be50b46871acdae2cc38e84d822219687f61daf79b32cb4"
+        },
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/repaired_open_control/execution_complete.json",
+          "sha256": "c76d1ff8eec25f514f209f33fefb4e13aefc29cb2c6a3a6915fe182a79faa4c1"
+        },
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/repaired_open_control/independent_audit.json",
+          "sha256": "139b4f2dd1533c7846758de6619ac47d6574530cbc27f124a13f55d8a57d3212"
+        },
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/repaired_open_control/REPORT.md",
+          "sha256": "1b14fcb3acf998e3613ec23aa7a90913b72e0ecdd9deb86c47daf9ea20a55e2c"
+        },
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/repaired_open_control/run/walkforward.json",
+          "sha256": "6b5c9234a3214f10aaf23347352b179b6b3a0a856881b1ff3a55914050286f5b"
+        },
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/repaired_open_control/excess_benchmark_audit.json",
+          "sha256": "611f26fd328216eb7bae0c0afa08549519441f6867808f1a0b67b649d091fa6d"
+        },
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/repaired_open_control/excess_benchmark_days.csv",
+          "sha256": "4e385f0967aaa1836f9acccf2146752f118aff14bc673b4d7b8faeb7ab3eda67"
+        },
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/protocol.json",
+          "sha256": "72b8001951a8f05008c3d671c65fe66fcdc9acfc64e370204f1315b6ebfb1ea0"
+        },
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/input_manifest.json",
+          "sha256": "4191187155e54c1fff1f9b58b8b48c0292a81f0e9537a687ebc8a58091c16877"
+        },
+        {
+          "path": "scripts/audit_crypto_terminal_arm.py",
+          "sha256": "071b033ff263ffbdefb7ec07af94f45b386fa94ea5b8e69dadd6b8f9ba7a6edd"
+        },
+        {
+          "path": "scripts/close_crypto_terminal_arm_v2.py",
+          "sha256": "9df127b1a867f52ddd9627b695e9f3b31d8f7f1404bb541b035c9b76ce8b36bb"
+        }
+      ],
+      "statement": "Retrospective crypto correction diagnostic, not exact legacy replay or qualified alpha. Static metadata applicability, funding marks, publication lag and terminal prices are modeled. All scenarios retained; remaining scenario comparisons pending; benchmark limitations retained. No untouched OOS, independent external reproduction, capacity proof or admission.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "point_in_time_data_and_survivorship_controls": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/repaired_open_control/reservation.json",
+          "sha256": "8ca0f635f3e40a90d9b0efc29b04fe71f84c7be4deb3126da8307352c645d4a7"
+        },
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/repaired_open_control/preregistration.json",
+          "sha256": "1364023f2b7bd80b468645a311ddc36fb8b09658ea9447162343b4a8d181dfb7"
+        },
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/repaired_open_control/reservation_validation.json",
+          "sha256": "2aec80934ae530a6ed33c98965e3833ff7e52db1c3b031542513026c117cd973"
+        },
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/repaired_open_control/experiments.jsonl",
+          "sha256": "69133d21ecab98709be50b46871acdae2cc38e84d822219687f61daf79b32cb4"
+        },
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/repaired_open_control/execution_complete.json",
+          "sha256": "c76d1ff8eec25f514f209f33fefb4e13aefc29cb2c6a3a6915fe182a79faa4c1"
+        },
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/repaired_open_control/independent_audit.json",
+          "sha256": "139b4f2dd1533c7846758de6619ac47d6574530cbc27f124a13f55d8a57d3212"
+        },
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/repaired_open_control/REPORT.md",
+          "sha256": "1b14fcb3acf998e3613ec23aa7a90913b72e0ecdd9deb86c47daf9ea20a55e2c"
+        },
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/repaired_open_control/run/walkforward.json",
+          "sha256": "6b5c9234a3214f10aaf23347352b179b6b3a0a856881b1ff3a55914050286f5b"
+        },
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/repaired_open_control/excess_benchmark_audit.json",
+          "sha256": "611f26fd328216eb7bae0c0afa08549519441f6867808f1a0b67b649d091fa6d"
+        },
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/repaired_open_control/excess_benchmark_days.csv",
+          "sha256": "4e385f0967aaa1836f9acccf2146752f118aff14bc673b4d7b8faeb7ab3eda67"
+        },
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/protocol.json",
+          "sha256": "72b8001951a8f05008c3d671c65fe66fcdc9acfc64e370204f1315b6ebfb1ea0"
+        },
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/input_manifest.json",
+          "sha256": "4191187155e54c1fff1f9b58b8b48c0292a81f0e9537a687ebc8a58091c16877"
+        },
+        {
+          "path": "scripts/audit_crypto_terminal_arm.py",
+          "sha256": "071b033ff263ffbdefb7ec07af94f45b386fa94ea5b8e69dadd6b8f9ba7a6edd"
+        },
+        {
+          "path": "scripts/close_crypto_terminal_arm_v2.py",
+          "sha256": "9df127b1a867f52ddd9627b695e9f3b31d8f7f1404bb541b035c9b76ce8b36bb"
+        }
+      ],
+      "statement": "Retrospective crypto correction diagnostic, not exact legacy replay or qualified alpha. Static metadata applicability, funding marks, publication lag and terminal prices are modeled. All scenarios retained; remaining scenario comparisons pending; benchmark limitations retained. No untouched OOS, independent external reproduction, capacity proof or admission.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "preregistration_and_hashes": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/repaired_open_control/reservation.json",
+          "sha256": "8ca0f635f3e40a90d9b0efc29b04fe71f84c7be4deb3126da8307352c645d4a7"
+        },
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/repaired_open_control/preregistration.json",
+          "sha256": "1364023f2b7bd80b468645a311ddc36fb8b09658ea9447162343b4a8d181dfb7"
+        },
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/repaired_open_control/reservation_validation.json",
+          "sha256": "2aec80934ae530a6ed33c98965e3833ff7e52db1c3b031542513026c117cd973"
+        },
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/repaired_open_control/experiments.jsonl",
+          "sha256": "69133d21ecab98709be50b46871acdae2cc38e84d822219687f61daf79b32cb4"
+        },
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/repaired_open_control/execution_complete.json",
+          "sha256": "c76d1ff8eec25f514f209f33fefb4e13aefc29cb2c6a3a6915fe182a79faa4c1"
+        },
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/repaired_open_control/independent_audit.json",
+          "sha256": "139b4f2dd1533c7846758de6619ac47d6574530cbc27f124a13f55d8a57d3212"
+        },
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/repaired_open_control/REPORT.md",
+          "sha256": "1b14fcb3acf998e3613ec23aa7a90913b72e0ecdd9deb86c47daf9ea20a55e2c"
+        },
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/repaired_open_control/run/walkforward.json",
+          "sha256": "6b5c9234a3214f10aaf23347352b179b6b3a0a856881b1ff3a55914050286f5b"
+        },
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/repaired_open_control/excess_benchmark_audit.json",
+          "sha256": "611f26fd328216eb7bae0c0afa08549519441f6867808f1a0b67b649d091fa6d"
+        },
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/repaired_open_control/excess_benchmark_days.csv",
+          "sha256": "4e385f0967aaa1836f9acccf2146752f118aff14bc673b4d7b8faeb7ab3eda67"
+        },
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/protocol.json",
+          "sha256": "72b8001951a8f05008c3d671c65fe66fcdc9acfc64e370204f1315b6ebfb1ea0"
+        },
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/input_manifest.json",
+          "sha256": "4191187155e54c1fff1f9b58b8b48c0292a81f0e9537a687ebc8a58091c16877"
+        },
+        {
+          "path": "scripts/audit_crypto_terminal_arm.py",
+          "sha256": "071b033ff263ffbdefb7ec07af94f45b386fa94ea5b8e69dadd6b8f9ba7a6edd"
+        },
+        {
+          "path": "scripts/close_crypto_terminal_arm_v2.py",
+          "sha256": "9df127b1a867f52ddd9627b695e9f3b31d8f7f1404bb541b035c9b76ce8b36bb"
+        }
+      ],
+      "statement": "Retrospective crypto correction diagnostic, not exact legacy replay or qualified alpha. Static metadata applicability, funding marks, publication lag and terminal prices are modeled. All scenarios retained; remaining scenario comparisons pending; benchmark limitations retained. No untouched OOS, independent external reproduction, capacity proof or admission.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "result_uncertainty_stress_capacity_and_diversification": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/repaired_open_control/reservation.json",
+          "sha256": "8ca0f635f3e40a90d9b0efc29b04fe71f84c7be4deb3126da8307352c645d4a7"
+        },
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/repaired_open_control/preregistration.json",
+          "sha256": "1364023f2b7bd80b468645a311ddc36fb8b09658ea9447162343b4a8d181dfb7"
+        },
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/repaired_open_control/reservation_validation.json",
+          "sha256": "2aec80934ae530a6ed33c98965e3833ff7e52db1c3b031542513026c117cd973"
+        },
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/repaired_open_control/experiments.jsonl",
+          "sha256": "69133d21ecab98709be50b46871acdae2cc38e84d822219687f61daf79b32cb4"
+        },
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/repaired_open_control/execution_complete.json",
+          "sha256": "c76d1ff8eec25f514f209f33fefb4e13aefc29cb2c6a3a6915fe182a79faa4c1"
+        },
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/repaired_open_control/independent_audit.json",
+          "sha256": "139b4f2dd1533c7846758de6619ac47d6574530cbc27f124a13f55d8a57d3212"
+        },
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/repaired_open_control/REPORT.md",
+          "sha256": "1b14fcb3acf998e3613ec23aa7a90913b72e0ecdd9deb86c47daf9ea20a55e2c"
+        },
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/repaired_open_control/run/walkforward.json",
+          "sha256": "6b5c9234a3214f10aaf23347352b179b6b3a0a856881b1ff3a55914050286f5b"
+        },
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/repaired_open_control/excess_benchmark_audit.json",
+          "sha256": "611f26fd328216eb7bae0c0afa08549519441f6867808f1a0b67b649d091fa6d"
+        },
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/repaired_open_control/excess_benchmark_days.csv",
+          "sha256": "4e385f0967aaa1836f9acccf2146752f118aff14bc673b4d7b8faeb7ab3eda67"
+        },
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/protocol.json",
+          "sha256": "72b8001951a8f05008c3d671c65fe66fcdc9acfc64e370204f1315b6ebfb1ea0"
+        },
+        {
+          "path": "artifacts/analysis/crypto_terminal_comparison_20260913_attempt2/input_manifest.json",
+          "sha256": "4191187155e54c1fff1f9b58b8b48c0292a81f0e9537a687ebc8a58091c16877"
+        },
+        {
+          "path": "scripts/audit_crypto_terminal_arm.py",
+          "sha256": "071b033ff263ffbdefb7ec07af94f45b386fa94ea5b8e69dadd6b8f9ba7a6edd"
+        },
+        {
+          "path": "scripts/close_crypto_terminal_arm_v2.py",
+          "sha256": "9df127b1a867f52ddd9627b695e9f3b31d8f7f1404bb541b035c9b76ce8b36bb"
+        }
+      ],
+      "statement": "Retrospective crypto correction diagnostic, not exact legacy replay or qualified alpha. Static metadata applicability, funding marks, publication lag and terminal prices are modeled. All scenarios retained; remaining scenario comparisons pending; benchmark limitations retained. No untouched OOS, independent external reproduction, capacity proof or admission.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    }
+  },
+  "research_family_key": "managed_futures_trend",
+  "schema": "canli.alphac-identity-trial-packet.v2"
+}

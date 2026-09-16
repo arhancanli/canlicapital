@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html data-reader="measurements" lang="en">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -30,51 +30,46 @@
 <link rel="stylesheet" href="../css/paper.css" />
 <link rel="stylesheet" href="/css/product-shell.css" />
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"Sleeve discovery","description":"Sleeve discovery: a read-only artifact regenerated from the engine run that produced it, published so the figure and its limits can be checked together.","url":"https://canlicapital.com/measurements/sleeve-discovery","creator":{"@type":"Person","name":"Arhan Canli"},"publisher":{"@type":"Organization","name":"Canli Capital","url":"https://canlicapital.com/"},"isAccessibleForFree":true,"distribution":{"@type":"DataDownload","encodingFormat":"application/json","contentUrl":"https://canlicapital.com/glassbox/sleeve_discovery.json"}}</script>
-</head>
+
+<link rel="stylesheet" href="/css/reader-experience.css" />
+<!-- release-style:start --><link rel="stylesheet" href="/css/release-readiness.css" /><!-- release-style:end --></head>
 <body class="paper">
 <a class="paper__skip" href="#content">Skip to content</a>
-<header class="cc-shell" id="nav" data-product-shell="v3">
+<header class="cc-shell" id="nav" data-product-shell="v3" data-shell-revision="4">
   <a class="cc-shell__brand" href="/" aria-label="Canli Capital, home">
     <span class="cc-shell__mark" aria-hidden="true"><i></i></span>
     <span>Canli Capital</span>
   </a>
-  <a class="cc-shell__status" href="/measurements/alpaca-broker-reconciliation" aria-label="Current record status">
-    <span class="status-dot" aria-hidden="true"></span>
-    <span>Public paper record</span>
-  </a>
   <nav class="cc-shell__primary" aria-label="Primary navigation">
-<a class="cc-shell__link" href="https://app.canlicapital.com/dashboard" rel="noreferrer">Live</a>
-<a class="cc-shell__link" href="/research">Research</a>
-<a class="cc-shell__link" href="/trials">Trials</a>
 <a class="cc-shell__link" href="/systems">Systems</a>
-<a class="cc-shell__link" href="/methodology">Methodology</a>
+<a class="cc-shell__link" href="/research">Research</a>
 <a class="cc-shell__link" href="/developers">Developers</a>
 <a class="cc-shell__link" href="/verify">Verify</a>
   </nav>
   <details class="cc-shell__index">
-    <summary><span class="cc-shell__index-wide">More</span><span class="cc-shell__index-compact">Menu</span></summary>
+    <summary><span class="cc-shell__index-wide">Explore</span><span class="cc-shell__index-compact">Menu</span></summary>
     <div class="cc-shell__panel">
       <div>
-        <span class="cc-shell__panel-label">Core</span>
+        <span class="cc-shell__panel-label">Research &amp; strategies</span>
         <nav aria-label="Core routes"><a class="cc-shell__panel-link" href="https://app.canlicapital.com/dashboard" rel="noreferrer">Live</a>
 <a class="cc-shell__panel-link" href="/research">Research</a>
 <a class="cc-shell__panel-link" href="/trials">Trials</a>
 <a class="cc-shell__panel-link" href="/systems">Systems</a>
 <a class="cc-shell__panel-link" href="/methodology">Methodology</a>
-<a class="cc-shell__panel-link" href="/developers">Developers</a>
-<a class="cc-shell__panel-link" href="/verify">Verify</a></nav>
+<a class="cc-shell__panel-link" href="/performance">Performance</a></nav>
       </div>
       <div>
-        <span class="cc-shell__panel-label">Institution</span>
-        <nav aria-label="Institution routes"><a class="cc-shell__panel-link" href="/progress">Corrections</a>
-<a class="cc-shell__panel-link" href="/performance">Performance</a>
+        <span class="cc-shell__panel-label">Evidence &amp; accountability</span>
+        <nav aria-label="Institution routes"><a class="cc-shell__panel-link" href="/verify">Verify</a>
+<a class="cc-shell__panel-link" href="/progress">Corrections</a>
 <a class="cc-shell__panel-link" href="/founder">Founder</a>
 <a class="cc-shell__panel-link" href="/open">Open data</a>
-<a class="cc-shell__panel-link" href="/measurements" aria-current="page" data-current="true">Measurements</a></nav>
+<a class="cc-shell__panel-link" href="/measurements" data-current="true">Measurements</a></nav>
       </div>
       <div>
-        <span class="cc-shell__panel-label">Tools</span>
-        <nav aria-label="Tools"><a class="cc-shell__panel-link" href="/tools">All tools</a>
+        <span class="cc-shell__panel-label">Build &amp; reproduce</span>
+        <nav aria-label="Tools"><a class="cc-shell__panel-link" href="/developers">Developers</a>
+<a class="cc-shell__panel-link" href="/tools">All tools</a>
 <a class="cc-shell__panel-link" href="/how-to-validate-a-backtest">How to validate a backtest</a></nav>
       </div>
       <div>
@@ -86,20 +81,24 @@
 <a class="cc-shell__panel-link" href="https://github.com/arhancanli/canli-pit-lake" rel="noreferrer">canli-pit-lake</a>
 <a class="cc-shell__panel-link" href="https://github.com/arhancanli/canli-backtest" rel="noreferrer">canli-backtest</a></nav>
       </div>
-      <p>Observed, simulated, model-estimated and planned claims remain visibly separate.</p>
+      <div class="cc-shell__panel-foot">
+        <a class="cc-shell__status" href="/measurements/alpaca-broker-reconciliation" aria-label="Current record status"><span class="status-dot" aria-hidden="true"></span><span>Public paper record</span></a>
+        <p>Observed, simulated, model-estimated and planned claims remain visibly separate.</p>
+      </div>
     </div>
   </details>
   <a class="cc-shell__source" href="/engineering" title="Open-source engineering: the engine, the data layer and the backtester"><svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true" focusable="false"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg><span>Source</span></a>
-  <a class="cc-shell__cta" href="https://app.canlicapital.com/dashboard">Enter live record <span aria-hidden="true">↗</span></a>
+  <a class="cc-shell__cta" href="https://app.canlicapital.com/dashboard">Live record <span aria-hidden="true">↗</span></a>
+  <script type="module" src="/js/navigation.js"></script>
 </header>
-<main class="paper__main" id="content">
+<main class="paper__main" id="content"><!-- reader-index:start --><aside class="reader-index"><a class="reader-index__back" href="/measurements">Explore measurements</a><details><summary>In this document</summary><nav aria-label="Document sections"><a href="#reader-section-1">What this measurement does and does not claim</a><a href="#reader-section-2">The measurement</a><a href="#reader-section-3">Check it yourself</a></nav></details><a class="reader-index__verify" href="/verify">How to verify a claim ↗</a></aside><!-- reader-index:end -->
   <article class="paper__article">
     <p class="paper__eyebrow"><a href="/measurements">Measurements</a></p>
     <h1 class="paper__title">Sleeve discovery</h1>
     <p class="paper__byline">By <span rel="author">Arhan Canli</span>, Canli Capital</p>
     <div class="paper__body">
-<aside class="measure__boundary"><h2>What this measurement does and does not claim</h2><p>This artifact carries no separate claim-boundary field. Read it as a record of what was measured, not as a claim about future performance.</p></aside>
-<section class="measure__section"><h2>The measurement</h2>
+<aside class="measure__boundary"><h2 id="reader-section-1" data-reader-anchor="true">What this measurement does and does not claim</h2><p>This artifact carries no separate claim-boundary field. Read it as a record of what was measured, not as a claim about future performance.</p></aside>
+<section class="measure__section"><h2 id="reader-section-2" data-reader-anchor="true">The measurement</h2>
 <dl class="measure__facts">
 <div class="measure__row"><dt>Schema</dt><dd>canli.sleeve-discovery.v2</dd></div>
 <div class="measure__row"><dt>Program</dt><dd>ALPHAC breadth program</dd></div>
@@ -108,6 +107,50 @@
 <div class="measure__row"><dt>Source path</dt><dd>config/sleeve_discovery.json</dd></div>
 </dl>
 <section class="measure__sub"><h3>Objective</h3>
+<dl class="measure__facts">
+<div class="measure__row"><dt>Source</dt><dd>config/owner_goals.json</dd></div>
+<div class="measure__row"><dt>Source schema</dt><dd>canli.alphac-owner-goals.v1</dd></div>
+<div class="measure__row"><dt>Recorded on</dt><dd>2026-09-12</dd></div>
+<div class="measure__row"><dt>In force from</dt><dd>2026-09-14</dd></div>
+<div class="measure__row"><dt>Honest forward sharpe target</dt><dd>2</dd></div>
+<div class="measure__row"><dt>Honest forward sharpe comparison</dt><dd>ABOVE</dd></div>
+<div class="measure__row"><dt>Portfolio max drawdown target</dt><dd>0.100000</dd></div>
+<div class="measure__row"><dt>Portfolio max drawdown comparison</dt><dd>AT_MOST</dd></div>
+<div class="measure__row"><dt>Portfolio max drawdown statistic</dt><dd>REALIZED_MAXIMUM_DRAWDOWN_BOUND</dd></div>
+<div class="measure__row"><dt>Portfolio max drawdown mechanism status</dt><dd>DECLARED_LADDER_DERIVED_FROM_BOUND_MEASURED_NOT_LIVE</dd></div>
+<div class="measure__row"><dt>Expected max drawdown objective</dt><dd>0.110000</dd></div>
+<div class="measure__row"><dt>Expected max drawdown objective statistic</dt><dd>expected_maximum_drawdown</dd></div>
+<div class="measure__row"><dt>Target total sleeves</dt><dd>14</dd></div>
+<div class="measure__row"><dt>Target total sleeves comparison</dt><dd>AT_LEAST</dd></div>
+<div class="measure__row"><dt>Target sleeve count</dt><dd>14</dd></div>
+<div class="measure__row"><dt>Average pairwise correlation objective</dt><dd>-0.051161</dd></div>
+<div class="measure__row"><dt>Targets are admission evidence</dt><dd>no</dd></div>
+<div class="measure__row"><dt>Current sleeves</dt><dd>4</dd></div>
+<div class="measure__row"><dt>Minimum new sleeves</dt><dd>10</dd></div>
+<div class="measure__row"><dt>Candidate atlas minimum</dt><dd>200</dd></div>
+</dl>
+<p class="measure__prose"><strong>Honest forward sharpe basis.</strong> Annualized (365-day convention) from consecutive published UTC daily paper marks, net of modeled costs, zero excess-return benchmark, evaluated by scripts/evaluate_forward_evidence_maturity.py under config/forward_evidence_contract.json (252 returns before an estimate, 756 and PSR &gt;= 0.95 before establishment).</p>
+<p class="measure__prose"><strong>Portfolio max drawdown mechanism.</strong> config/drawdown_control_contract.json v1.1 declares half gross at 5 percent below the high-water mark and flat at 10 percent, absorbing until an owner rearm; every parameter is derived from this bound (half = bound / 2, flat = bound) and measured by docs/design/DRAWDOWN_CONTROL_V1_PROTOCOL.md on the current-composition study paths. A brake bounds each episode up to a one-day overshoot and does not make losses impossible. It is not activated.</p>
+<p class="measure__prose"><strong>Expected max drawdown objective note.</strong> The admission contract&#39;s sealed expected-maximum-drawdown objective and gate, evaluated on the current-composition drawdown study. Not the owner&#39;s bound: the bound is on realized maximum drawdown and is portfolio_max_drawdown_target.</p>
+<p class="measure__prose"><strong>Average pairwise correlation objective note.</strong> An objective, not a gate: the average pairwise correlation at which 14 sleeves of the quality the sealed contract measured reach 3 in-sample, which is forward 2 on the optimistic end of the measured haircut. Derived by inverting the published identity; the PSD floor at this sleeve count is -0.0769.</p>
+<section class="measure__sub"><h4>Implied in sample target</h4>
+<dl class="measure__facts">
+<div class="measure__row"><dt>At 1 5x haircut</dt><dd>3</dd></div>
+<div class="measure__row"><dt>At 2 0x haircut</dt><dd>4</dd></div>
+<div class="measure__row"><dt>At 3 0x haircut</dt><dd>6</dd></div>
+</dl>
+</section>
+<p class="measure__label">Portfolio sharpe target</p><ul class="measure__list"><li>3</li><li>4</li></ul>
+<p class="measure__prose"><strong>Portfolio sharpe target unit.</strong> IN-SAMPLE, being the band an honest forward 2 implies at the 1.5x and 2x ends of this book&#39;s own measured backtest-to-forward haircut. The headline target is the forward figure.</p>
+<section class="measure__sub"><h4>Backtest to forward haircut</h4>
+<dl class="measure__facts">
+<div class="measure__row"><dt>Measured on this book</dt><dd>in-sample equal-risk ~1.04 against an honest forward of 0.3-0.9</dd></div>
+</dl>
+<p class="measure__prose"><strong>Note.</strong> The haircut IS the uncertainty. Until the forward record is long enough to speak, every in-sample figure should be read through it, and the range is this book&#39;s own published pair rather than a convention borrowed from elsewhere.</p>
+<p class="measure__label">Range</p><ul class="measure__list"><li>1.500000</li><li>3</li></ul>
+</section>
+<p class="measure__prose"><strong>What reaching it requires.</strong> At 14 sleeves of the quality the sealed contract measured (0.464 on the four-curve basis), the low end of the band (3 in-sample, 2 forward on the optimistic haircut) needs an average pairwise correlation of -0.0512 against a floor of -0.0769 (inside the floor). At the +0.00 gate exactly it needs a mean standalone Sharpe of 0.802. The distance from today&#39;s measured quality has to be bought with per-sleeve quality, genuinely negative correlation, or both; the sleeve count alone buys none of it.</p>
+<section class="measure__sub"><h4>Superseded admission contract objective</h4>
 <dl class="measure__facts">
 <div class="measure__row"><dt>Average pairwise correlation objective</dt><dd>-0.030000</dd></div>
 <div class="measure__row"><dt>Honest forward sharpe target</dt><dd>1.500000</dd></div>
@@ -118,32 +161,23 @@
 <div class="measure__row"><dt>Portfolio p95 max drawdown must be published</dt><dd>yes</dd></div>
 <div class="measure__row"><dt>Target total sleeves</dt><dd>14</dd></div>
 <div class="measure__row"><dt>Targets are admission evidence</dt><dd>no</dd></div>
-<div class="measure__row"><dt>Target sleeve count</dt><dd>14</dd></div>
-<div class="measure__row"><dt>Candidate atlas minimum</dt><dd>200</dd></div>
+<div class="measure__row"><dt>Superseded on</dt><dd>2026-09-14</dd></div>
+<div class="measure__row"><dt>Sealed by</dt><dd>config/admission_v7_promotion.json</dd></div>
+<div class="measure__row"><dt>Sealed sha256</dt><dd>6bc72c1f47675b4e14897e1ba3aad6e56aba9b5f013a7b9bae57f930e8d3b8b6</dd></div>
 </dl>
 <p class="measure__prose"><strong>Average pairwise correlation objective note.</strong> An objective, not a gate. -0.03 is the average pairwise correlation at which fourteen sleeves of measured quality reach 2.5. Thresholds are gates and live in &#39;thresholds&#39;; anything that is not enforced must not sit there wearing a gate&#39;s costume.</p>
-<section class="measure__sub"><h4>Backtest to forward haircut</h4>
-<dl class="measure__facts">
-<div class="measure__row"><dt>Measured on this book</dt><dd>in-sample equal-risk ~1.04 against an honest forward of 0.3-0.9</dd></div>
-</dl>
-<p class="measure__prose"><strong>Note.</strong> The haircut IS the uncertainty. Until the forward record is long enough to speak, every in-sample figure should be read through it, and the range is this book&#39;s own published pair rather than a convention borrowed from elsewhere.</p>
-<p class="measure__label">Range</p><ul class="measure__list"><li>1.500000</li><li>3</li></ul>
-</section>
-<section class="measure__sub"><h4>Implied in sample target</h4>
-<dl class="measure__facts">
-<div class="measure__row"><dt>At 1 5x haircut</dt><dd>2.250000</dd></div>
-<div class="measure__row"><dt>At 2 0x haircut</dt><dd>3</dd></div>
-<div class="measure__row"><dt>At 3 0x haircut</dt><dd>4.500000</dd></div>
-</dl>
-</section>
+<p class="measure__label">Backtest to forward haircut</p><p class="measure__deep">3 further fields. <a href="/glassbox/sleeve_discovery.json">Read them in the artifact</a>.</p>
+<p class="measure__label">Implied in sample target</p><p class="measure__deep">3 further fields. <a href="/glassbox/sleeve_discovery.json">Read them in the artifact</a>.</p>
 <p class="measure__label">Portfolio sharpe target</p><ul class="measure__list"><li>2.250000</li><li>3</li></ul>
 <p class="measure__prose"><strong>Portfolio sharpe target unit.</strong> IN-SAMPLE, being the band that an honest forward 1.5 implies at the 1.5x and 2.0x ends of this book&#39;s own measured haircut. The headline target is honest_forward_sharpe_target.</p>
 <p class="measure__label">Superseded in sample sharpe target</p><ul class="measure__list"><li>2</li><li>2.500000</li></ul>
 <p class="measure__prose"><strong>Superseded reason.</strong> Stated in-sample with no haircut named, and unreachable as a forward result: a verified forward 2.0 at measured per-sleeve quality needs an average pairwise correlation of -0.062 against a PSD floor of -0.077. Withdrawn 2026-08-21 and replaced with an honest FORWARD target of 1.5, which is inside the floor at every plausible quality.</p>
 <p class="measure__prose"><strong>What reaching it requires.</strong> Both halves, not either: an average pairwise correlation meaningfully BELOW zero, and per-sleeve quality above roughly 0.60. At today&#39;s measured 0.469 the forward target is reachable only at a correlation near -0.030 and only on the optimistic haircut.</p>
 <p class="measure__prose"><strong>Why this is not a retreat.</strong> The rarer thing was never the number. A forward Sharpe near 1.5 that is genuinely verifiable -- signed forward record, every killed candidate published in full, gates that provably bite, and the arithmetic showing where the gate falls short of the target printed on the same page as the target -- is harder to find than a 2.5 nobody can check.</p>
+<p class="measure__prose"><strong>Why the bytes stand.</strong> The contract&#39;s bytes are sealed by config/admission_v7_promotion.json and its objective was never an admission gate (targets_are_admission_evidence is false), so the goals move without any gate moving. The superseded figures are published beside the governing ones, dated, as history.</p>
+</section>
 <p class="measure__prose"><strong>Portfolio requirement.</strong> Improve the combined book through independent economic return sources, not leverage or selection of the prettiest backtest.</p>
-<p class="measure__prose"><strong>Admission rule.</strong> A target never creates a sleeve. Fourteen is reached only if ten or more new identities independently clear every admission gate; otherwise the book remains smaller.</p>
+<p class="measure__prose"><strong>Admission rule.</strong> A target never creates a sleeve. The owner&#39;s minimum is reached only if enough new identities independently clear every admission gate; otherwise the book remains smaller.</p>
 </section>
 <section class="measure__sub"><h3>Admission gates</h3>
 <dl class="measure__facts">
@@ -181,7 +215,7 @@
 <p class="measure__prose"><strong>Finding.</strong> The v1 queue accidentally relisted eight previously tested families. They are preserved below as retired, not presented as fresh research.</p>
 </section>
 <p class="measure__label">Candidates</p><p class="measure__deep">Nested beyond what this page renders. <a href="/glassbox/sleeve_discovery.json">Read it in the artifact</a>.</p>
-<figure class="measure__tablewrap"><figcaption>Retired candidates</figcaption><table class="measure__table"><thead><tr><th scope="col">Id</th><th scope="col">Public result</th><th scope="col">Verdict</th><th scope="col">Net sharpe</th><th scope="col">Dsr</th><th scope="col">Newey west t</th><th scope="col">Average correlation</th><th scope="col">Max pair correlation</th><th scope="col">Capacity p05 usd at 1pct adv</th><th scope="col">Reason</th></tr></thead><tbody>
+<figure class="measure__tablewrap"><figcaption>Retired candidates</figcaption><table class="measure__table" tabindex="0" data-reader-focus="true"><thead><tr><th scope="col">Id</th><th scope="col">Public result</th><th scope="col">Verdict</th><th scope="col">Net sharpe</th><th scope="col">Dsr</th><th scope="col">Newey west t</th><th scope="col">Average correlation</th><th scope="col">Max pair correlation</th><th scope="col">Capacity p05 usd at 1pct adv</th><th scope="col">Reason</th></tr></thead><tbody>
 <tr><td>futures_curve_carry</td><td>futcarry_xs and xasset_carry</td><td>KILLED</td><td>Not reported</td><td>Not reported</td><td>Not reported</td><td>Not reported</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
 <tr><td>options_variance_premium</td><td>equity_vrp and crypto_vrp</td><td>KILLED</td><td>Not reported</td><td>Not reported</td><td>Not reported</td><td>Not reported</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
 <tr><td>post_earnings_drift</td><td>equity_pead</td><td>KILLED</td><td>Not reported</td><td>Not reported</td><td>Not reported</td><td>Not reported</td><td>Not reported</td><td>Not reported</td><td>Not reported</td></tr>
@@ -199,6 +233,43 @@
 <p class="measure__prose"><strong>Average pairwise correlation max.</strong> Replaced prospectively in v7 because applying a final global level to each incremental admission was path-dependent. A candidate must now average no more than zero correlation to the existing book and must strictly reduce the book&#39;s global average; the -0.03 portfolio objective remains mandatory to publish.</p>
 </section>
 <section class="measure__sub"><h3>Frontier arithmetic</h3>
+<dl class="measure__facts">
+<div class="measure__row"><dt>Identity</dt><dd>S_book = s_bar * sqrt(N / (1 + (N - 1) * rho_bar))</dd></div>
+<div class="measure__row"><dt>Source</dt><dd>config/owner_goals.json projected on the sealed contract&#39;s identity and inputs</dd></div>
+<div class="measure__row"><dt>Target sleeve count</dt><dd>14</dd></div>
+<div class="measure__row"><dt>Honest forward sharpe target</dt><dd>2</dd></div>
+<div class="measure__row"><dt>Psd floor at target n</dt><dd>-0.076923</dd></div>
+<div class="measure__row"><dt>Incremental candidate average correlation gate</dt><dd>0</dd></div>
+<div class="measure__row"><dt>Incremental book average correlation delta gate exclusive</dt><dd>0</dd></div>
+<div class="measure__row"><dt>Incremental gates alone establish objective floor</dt><dd>no</dd></div>
+<div class="measure__row"><dt>Incremental gates alone establish objective ceiling</dt><dd>no</dd></div>
+</dl>
+<p class="measure__label">In sample support band</p><ul class="measure__list"><li>3</li><li>4</li></ul>
+<p class="measure__prose"><strong>In sample support band unit.</strong> IN-SAMPLE, being the band an honest forward 2 implies at the 1.5x and 2x ends of this book&#39;s own measured backtest-to-forward haircut. The headline target is the forward figure.</p>
+<p class="measure__prose"><strong>Psd floor note.</strong> Average pairwise correlation cannot fall below -1/(N-1) for any real correlation matrix. At 14 sleeves the floor is -0.0769.</p>
+<section class="measure__sub"><h4>Book sharpe ceiling at zero global correlation</h4>
+<dl class="measure__facts">
+<div class="measure__row"><dt>S bar four curve basis</dt><dd>1.736129</dd></div>
+<div class="measure__row"><dt>S bar traded basis</dt><dd>1.979337</dd></div>
+</dl>
+</section>
+<section class="measure__sub"><h4>Correlation required at measured quality</h4>
+<p class="measure__label">Four curve basis</p><p class="measure__deep">3 further fields. <a href="/glassbox/sleeve_discovery.json">Read them in the artifact</a>.</p>
+<p class="measure__label">Traded basis</p><p class="measure__deep">3 further fields. <a href="/glassbox/sleeve_discovery.json">Read them in the artifact</a>.</p>
+<p class="measure__prose"><strong>Note.</strong> Hold quality where the sealed contract measured it and read off the average pairwise correlation each end of the band demands at the owner&#39;s sleeve count.</p>
+</section>
+<section class="measure__sub"><h4>Quality precondition at the gate</h4>
+<dl class="measure__facts">
+<div class="measure__row"><dt>S bar measured four curve basis</dt><dd>0.464000</dd></div>
+<div class="measure__row"><dt>S bar measured traded basis</dt><dd>0.529000</dd></div>
+<div class="measure__row"><dt>S bar required for 3</dt><dd>0.801784</dd></div>
+<div class="measure__row"><dt>S bar required for 4</dt><dd>1.069045</dd></div>
+</dl>
+<p class="measure__prose"><strong>Note.</strong> What the correlation gate alone does NOT buy. At the gate exactly, reaching each end of the band requires at least this average standalone Sharpe across 14 sleeves.</p>
+</section>
+<p class="measure__prose"><strong>Honest reading.</strong> At 14 sleeves of the quality the sealed contract measured (0.464 on the four-curve basis), the low end of the band (3 in-sample, 2 forward on the optimistic haircut) needs an average pairwise correlation of -0.0512 against a floor of -0.0769 (inside the floor). At the +0.00 gate exactly it needs a mean standalone Sharpe of 0.802. The distance from today&#39;s measured quality has to be bought with per-sleeve quality, genuinely negative correlation, or both; the sleeve count alone buys none of it.</p>
+</section>
+<section class="measure__sub"><h3>Superseded admission contract frontier arithmetic</h3>
 <dl class="measure__facts">
 <div class="measure__row"><dt>Identity</dt><dd>S_book = s_bar * sqrt(N / (1 + (N - 1) * rho_bar))</dd></div>
 <div class="measure__row"><dt>Incremental book average correlation delta gate exclusive</dt><dd>0</dd></div>
@@ -233,7 +304,7 @@
 </section>
 </section>
 </section>
-<section class="measure__section"><h2>Check it yourself</h2>
+<section class="measure__section"><h2 id="reader-section-3" data-reader-anchor="true">Check it yourself</h2>
 <p>Every figure above is read from <a href="/glassbox/sleeve_discovery.json"><code>/glassbox/sleeve_discovery.json</code></a>, the
 artifact the engine wrote.</p>
 <p><a href="/measurements">All 89 measurements</a> &middot;
@@ -243,7 +314,27 @@ artifact the engine wrote.</p>
     </div>
   </article>
 </main>
-<footer class="cc-footer" id="footer" data-product-shell="v3">
+<footer class="cc-footer" id="footer" data-product-shell="v3" data-shell-revision="4">
+  <details class="cc-footer__context"><summary>About the research-to-record workflow</summary><section class="cc-handoff" aria-labelledby="cc-handoff-title">
+    <div class="cc-handoff__viewport">
+      <div class="cc-handoff__intro"><p>Research → Validation → Publication</p><h2 id="cc-handoff-title">From an idea.<br />To a record.</h2><p>Carry the inputs, assumptions and limits with the result. The evidence should survive every handoff.</p></div>
+      <div class="cc-handoff__stage" aria-hidden="true">
+        <svg class="cc-handoff__route" viewBox="0 0 1000 300" preserveAspectRatio="none"><path class="cc-handoff__track" d="M120 210C280 210 310 85 500 85S720 210 880 210"/><path class="cc-handoff__trace" pathLength="1" d="M120 210C280 210 310 85 500 85S720 210 880 210"/></svg>
+        <div class="cc-handoff__dock cc-handoff__dock--inputs"><i></i><i></i><i></i></div>
+        <div class="cc-handoff__gate"><i></i><i></i><i></i></div>
+        <div class="cc-handoff__dock cc-handoff__dock--record"><i></i><i></i><i></i></div>
+        <div class="cc-handoff__packet">
+          <img src="/cinema/optical-master-v3-1536.webp" width="1536" height="1536" loading="lazy" alt="" />
+        </div>
+      </div>
+      <div class="cc-handoff__steps">
+        <a href="/research" data-handoff-step="0"><span>Define</span><strong>The research packet</strong><small>Inputs, rules and the failed trials.</small><em>Inspect the research ↗</em></a>
+        <a href="/developers#validation" data-handoff-step="1"><span>Reproduce</span><strong>The calculation receipt</strong><small>Your inputs. Declared arithmetic.</small><em>Explore the validation API ↗</em></a>
+        <a href="/verify" data-handoff-step="2"><span>Inspect</span><strong>The published record</strong><small>Sources, corrections and boundaries.</small><em>Verify the evidence ↗</em></a>
+      </div>
+      <p class="cc-handoff__boundary">Conceptual workflow. This animation sends no request. A receipt is not proof of future returns.</p>
+    </div>
+  </section></details>
   <div class="cc-footer__lead">
     <a class="cc-footer__brand" href="/">Canli Capital</a>
     <p>Build the claim. Publish the evidence. Keep the failures.</p>
@@ -298,6 +389,9 @@ artifact the engine wrote.</p>
     record begins 2026-08-07; the years before it are engineering, not track record.</p>
     <span>Copyright Arhan Canli</span>
   </div>
+  <div class="cc-footer__wordmark" aria-hidden="true">Canli Capital<span><svg viewBox="0 0 80 80" focusable="false" aria-hidden="true"><path d="M12 68 68 12M12 12h56v56" fill="none" stroke="currentColor" stroke-width="4" /></svg></span></div>
+  <script type="module" src="/js/site-motion.js"></script>
 </footer>
-</body>
+
+<script type="module" src="/js/reader-experience.js"></script></body>
 </html>

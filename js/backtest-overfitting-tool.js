@@ -101,7 +101,8 @@ function mount() {
       };
     } catch (error) {
       output.verdict.dataset.state = "idle";
-      output.verdict.textContent = "Fix the input below and run again.";
+      output.verdict.textContent = "Check the inputs and run again.";
+      for (const name of ['value', 'combinations', 'sampler', 'blockLength', 'meanIs', 'meanOos', 'degraded']) output[name].textContent = 'Unavailable';
       output.warning.hidden = false;
       output.warning.textContent = error.message;
       lastRun = null;

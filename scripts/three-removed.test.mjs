@@ -13,7 +13,22 @@ import test from "node:test";
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 // Backups, agent worktrees and scratch trees are not the site: a stale copy of index.html under
 // .bak/ or another agent's checkout under .claude/worktrees must not fail the guard for this tree.
-const SKIP_DIRS = new Set(["node_modules", "dist", ".git", "artifacts", ".bak", ".claude", ".firecrawl", "test-results"]);
+const SKIP_DIRS = new Set([
+  "node_modules",
+  "dist",
+  ".git",
+  "artifacts",
+  ".bak",
+  ".claude",
+  ".firecrawl",
+  "test-results",
+  // The Claude Design React wrapper package and its converter staging area: neither is a
+  // site page and neither ships.
+  "design-system",
+  ".design-sync",
+  ".ds-sync",
+  "ds-bundle",
+]);
 
 function walk(dir, out = []) {
   for (const entry of readdirSync(dir, { withFileTypes: true })) {
@@ -48,10 +63,13 @@ test("js/scene.js and js/shaders.js are deleted", () => {
   assert.ok(!existsSync(resolve(ROOT, "js/shaders.js")));
 });
 
-test("three is not a dependency and not chunked by vite.config.js", () => {
+test("three stays development-only and is not imported or chunked by the website", () => {
   const pkg = JSON.parse(readFileSync(resolve(ROOT, "package.json"), "utf8"));
   assert.ok(!("three" in (pkg.dependencies || {})), "three is still in package.json dependencies");
-  assert.ok(!("three" in (pkg.devDependencies || {})), "three is still in package.json devDependencies");
+  // The Blender/GLB toolchain diagnostic intentionally uses Three.js. It is
+  // development tooling only; the public site uses rendered frame sequences.
+  const runtimeImports = jsFiles.filter((f) => /(?:from\s*|import\s*\()\s*['"]three(?:\/|['"])/.test(readFileSync(f, "utf8")));
+  assert.deepEqual(runtimeImports, [], `unexpected runtime Three.js import: ${runtimeImports.join(", ")}`);
   const viteConfig = readFileSync(resolve(ROOT, "vite.config.js"), "utf8");
   assert.ok(!viteConfig.includes("node_modules/three"), "vite.config.js still chunks node_modules/three");
 });

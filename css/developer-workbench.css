@@ -1,0 +1,88 @@
+/* API documentation is a working instrument, not three miniature terminals. */
+html[data-page="developers"] {
+  --workbench-carbon: #080b10;
+  --workbench-paper: #f4f4f4;
+  --workbench-blue: #0016cb;
+}
+html[data-page="developers"] .dev-section h2 {
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: clamp(2.2rem, 4.5vw, 4.8rem);
+  line-height: 1.05;
+  letter-spacing: -.045em;
+  text-transform: uppercase;
+}
+html[data-page="developers"] .dev-steps {
+  display: block;
+  margin-top: 56px;
+  border-top: 1px solid #aeb3bd;
+}
+html[data-page="developers"] .dev-step {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(220px, .65fr) minmax(0, 1.35fr);
+  gap: 16px 6vw;
+  padding: 48px 0 64px;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid #aeb3bd;
+}
+html[data-page="developers"] .dev-step > * { grid-column: 2; margin-block: 0; min-width: 0; }
+html[data-page="developers"] .dev-step > h3 {
+  grid-column: 1;
+  grid-row: 1 / span 2;
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: clamp(1.9rem, 3vw, 3.4rem);
+  line-height: 1.1;
+  letter-spacing: -.04em;
+  max-width: 13ch;
+}
+html[data-page="developers"] .dev-step > button { justify-self: start; }
+html[data-page="developers"] .dev-snippets.is-workbench {
+  display: block;
+  min-width: 0;
+  background: var(--workbench-carbon);
+  color: var(--workbench-paper);
+  border: 1px solid #303844;
+}
+.dev-language-tabs { display: flex; flex-wrap: wrap; border-bottom: 1px solid #303844; }
+.dev-language-tabs button {
+  position: relative;
+  padding: 15px 20px;
+  border: 0;
+  border-right: 1px solid #303844;
+  background: transparent;
+  color: #bac4d3;
+  font: 500 .75rem 'IBM Plex Mono', monospace;
+  cursor: pointer;
+  min-height: 48px;
+}
+.dev-language-tabs button[aria-selected="true"] { background: var(--workbench-blue); color: white; }
+.dev-language-tabs button:focus-visible { outline: 2px solid #fff; outline-offset: -5px; }
+.is-workbench > .dev-snippet[hidden] { display: none !important; }
+.is-workbench > .dev-snippet > .dev-snippet-label { display: none; }
+html[data-page="developers"] .is-workbench .dev-code {
+  margin: 0;
+  padding: clamp(18px, 2.5vw, 32px);
+  max-height: 440px;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: #e0e8f5;
+  font-size: .82rem;
+  line-height: 1.7;
+  white-space: pre;
+  word-break: normal;
+}
+html[data-page="developers"] .is-workbench .dev-code:focus-visible { outline: 2px solid #8da8ff; outline-offset: -4px; }
+html[data-page="developers"] .dev-mode + .dev-mode { margin-top: 24px; }
+html[data-page="developers"] .dev-table { border-radius: 0; }
+html[data-page="developers"] .dev-table th { background: var(--workbench-carbon); color: white; }
+html[data-page="developers"] .dev-table td { padding-block: 20px; }
+html[data-page="developers"] .dev-section--tail { background: var(--workbench-blue); color: white; }
+html[data-page="developers"] .dev-section--tail :is(h2, p, li, a, strong, code) { color: white; }
+@media (max-width: 800px) {
+  html[data-page="developers"] .dev-step { display: block; padding-block: 32px 44px; }
+  html[data-page="developers"] .dev-step > * + * { margin-top: 20px; }
+  html[data-page="developers"] .dev-step > h3 { max-width: 20ch; }
+  .dev-language-tabs button { flex: 1; padding-inline: 12px; }
+}

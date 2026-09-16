@@ -2,18 +2,18 @@
   "archives": 5,
   "author": "Arhan Canli",
   "claim_boundary": "This proves deterministic archive construction, safe extraction and internal file checksum integrity in a temporary workspace outside the repository. It does not recompute returns, establish raw-input portability, constitute independent replication, or claim external submission.",
-  "content_hash": "sha256:4e6b49fc2c52edfb30e0c688f0953c0cfae339efa0df230914e27d832f76e695",
+  "content_hash": "sha256:88e2f4e19be30c9bb691f63d5d63088de356abfbc67057f4d23a0719217fef30",
   "failures": [],
   "independent_replication": false,
   "records": [
     {
       "archive": "artifacts/publication/wave1_release_candidates/alphavintage-v1.0.0-preparation-bundle.tar.gz",
-      "bytes": 452952,
+      "bytes": 452976,
       "deterministic_second_build_identical": true,
       "passed": true,
       "public_path": "/release-candidates/alphavintage-v1.0.0-preparation-bundle.tar.gz",
       "registry_key": "alphavintage_macro_surprise",
-      "sha256": "ca77205dd0d84d7e5e6b0c0f9d3a683259922495680d21a2717e938da64ef886",
+      "sha256": "fbf2d495fb285231ce84911d32967c3c6d20fed3d4aa0103f7019fc36e1ced19",
       "verification": {
         "archive_member_count": 39,
         "checksum_exit_code": 0,
@@ -27,12 +27,12 @@
     },
     {
       "archive": "artifacts/publication/wave1_release_candidates/crypto-carry-v0.1.0-preparation-bundle.tar.gz",
-      "bytes": 413917,
+      "bytes": 413913,
       "deterministic_second_build_identical": true,
       "passed": true,
       "public_path": "/release-candidates/crypto-carry-v0.1.0-preparation-bundle.tar.gz",
       "registry_key": "alphaforge_crypto_carry",
-      "sha256": "3e70974cfb43081a63fe05559dee2b2a670432edb63a9f795cb1d839716e735b",
+      "sha256": "38e8b905bf9a75ad4f23cb0ede0002c838513405698c847b69a951f8dddb0181",
       "verification": {
         "archive_member_count": 32,
         "checksum_exit_code": 0,
@@ -46,12 +46,12 @@
     },
     {
       "archive": "artifacts/publication/wave1_release_candidates/alphamax-v0.1.0-preparation-bundle.tar.gz",
-      "bytes": 422721,
+      "bytes": 422730,
       "deterministic_second_build_identical": true,
       "passed": true,
       "public_path": "/release-candidates/alphamax-v0.1.0-preparation-bundle.tar.gz",
       "registry_key": "alphamax_equity_momentum",
-      "sha256": "6a2d1e607f492a0403156f5004c54a522c0448f92f816763871e0e57568274e6",
+      "sha256": "44663cf3f1f9750c085bf3e630f75b6b46857cc4c808f93e2749c391589b3302",
       "verification": {
         "archive_member_count": 30,
         "checksum_exit_code": 0,
@@ -70,7 +70,7 @@
       "passed": true,
       "public_path": "/release-candidates/alphatrend-v0.1.0-preparation-bundle.tar.gz",
       "registry_key": "alphatrend_managed_futures",
-      "sha256": "d0013e6510d5d0a2f900c531e387da1eae9b76603f504c2bbd5a68dd090c3c6b",
+      "sha256": "d3787a18af97ed71f201c9975842b0eb4d482299d6cfdaa88b878edde8ef7c76",
       "verification": {
         "archive_member_count": 24,
         "checksum_exit_code": 0,
@@ -106,13 +106,13 @@
   "schema": "canli.alphac-wave1-release-candidates.v1",
   "source_bindings": {
     "data_rights_audit": {
-      "content_hash": "sha256:091c15f0c80e675f6e59a03a07f5a5bfae4c9dd821f12851bbfb67364846a174",
+      "content_hash": "sha256:cec7dc386397e09f4164a32add63c06d5d7c2c6d6913b29b3e03149c471e8b95",
       "path": "artifacts/publication/wave1_data_rights_audit.json",
-      "sha256": "427664d30b81c62804fcb898c8af265f02c26dc5fe9f7ab0f954107785fe7df6"
+      "sha256": "dd049c82eba385f4fea569cf090a3563b354c7204475957bcedfb12a1664290a"
     },
     "submission_plan": {
       "path": "artifacts/publication/external_submission_plan.json",
-      "sha256": "1cd829b5d8573bc3edb2d24a8ed2c49df5c2d0c35a8a790360da44bbb279f89e"
+      "sha256": "fd2a77ac46311e658d9c9976617e429f71bc9cba424ef32cdfcffc7f4d13b208"
     }
   },
   "status": "PASS_PORTABLE_ARCHIVE_INTEGRITY_ONLY",

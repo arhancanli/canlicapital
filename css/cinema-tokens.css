@@ -1,0 +1,47 @@
+/* Primitive -> semantic -> component. Shared by the full public site. */
+@font-face {
+  font-family: "Chakra Petch";
+  src: url('/fonts/chakra-petch/ChakraPetch-Medium.ttf') format('truetype');
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+}
+:root {
+  --cin-carbon: #000000;
+  --cin-white: #ffffff;
+  --cin-paper: #f4f4f4;
+  --cin-ink: #111111;
+  --cin-blue: #0016cb;
+  --cin-copper: #ff5500;
+  --cin-gray: #58616b;
+  --cin-silver: #bac3ce;
+  --cin-night-rule: #ffffff29;
+  --cin-day-rule: #13161929;
+  --cin-blue-light: #9fb4ff;
+  --cin-overlay: #060709dd;
+  --cin-clear: #06070900;
+  --cin-shadow: #06070966;
+  --cin-hero-scrim: #000000a6;
+  --cin-display: "Chakra Petch", "Arial Narrow", sans-serif;
+  --cin-reading: "Inter", "Inter Fallback", Arial, sans-serif;
+  --cin-data: "IBM Plex Mono", monospace;
+  --cin-surface: var(--cin-paper);
+  --cin-surface-dark: var(--cin-carbon);
+  --cin-text: var(--cin-ink);
+  --cin-text-reverse: var(--cin-white);
+  --cin-text-muted: var(--cin-gray);
+  --cin-action: var(--cin-blue);
+  --cin-action-hover: var(--cin-copper);
+  --cin-gutter: clamp(22px, 2.3vw, 60px);
+  --cin-section-space: clamp(76px, 9vw, 150px);
+  --cin-heading: clamp(3rem, 6.1vw, 7.5rem);
+  --cin-button-radius: 100px;
+  --cin-button-height: 48px;
+  --cin-button-padding-x: 23px;
+  --cin-button-padding-y: 0px;
+  --cin-action-gap: 12px;
+  --cin-button-background: var(--cin-action);
+  --cin-button-text: var(--cin-white);
+  --cin-header-background: var(--cin-surface-dark);
+  --cin-footer-background: var(--cin-surface);
+}

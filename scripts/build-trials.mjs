@@ -286,9 +286,15 @@ function trialPage(packet, distribution, forwardRow = null) {
   const key = packet.hypothesis_key;
   const rawPath = `trial-packets/${key}.json`;
   const rawUrl = `/glassbox/${rawPath}`;
-  const completeLabel = (packet.complete ? "complete evidenced packet" : "incomplete evidence packet")
-    + (forwardRow ? ", forward epoch" : "");
-  const description = `Trial ${key}: ${completeLabel}. Inspect its immutable first measurement, configuration, evidence coverage, claim boundary, and machine source.`;
+  // A forward-epoch packet states its own evidence class: a governed packet is evidenced, a
+  // development closure is complete as accounting only. Neither is ranked against the legacy
+  // epoch or invited into the index (see robots below).
+  const completeLabel = forwardRow
+    ? `${forwardRow.packet_status?.startsWith("COMPLETE_EVIDENCED") ? "complete evidenced packet" : packet.complete ? "complete accounting packet" : "incomplete evidence packet"}, forward epoch`
+    : packet.complete ? "complete evidenced packet" : "incomplete evidence packet";
+  const description = forwardRow
+    ? `Trial ${key}: ${completeLabel}. Inspect its first measurement, configuration, final closure, claim boundary, and machine source.`
+    : `Trial ${key}: ${completeLabel}. Inspect its immutable first measurement, configuration, evidence coverage, claim boundary, and machine source.`;
   const status = packet.complete ? "Complete" : "Incomplete";
   // An imported forward packet carries its first measurement in the ledger's own shape; the
   // legacy builder's unix-ms field is not always there. Render what is recorded, never a
@@ -318,15 +324,21 @@ function trialPage(packet, distribution, forwardRow = null) {
     socialTitle: `${humanise(packet.label ?? packet.hypothesis_key)} / Canli Capital`,
     description,
     canonicalUrl: `${ORIGIN}/trials/${key}`,
-    source: `${rawPath} trial_sharpe_distribution.json`,
+    // A forward page renders its reservation ordinal and final closure from the forward index, so
+    // it declares that index; every figure it shows must trace to a declared source.
+    source: forwardRow
+      ? `${rawPath} trial_sharpe_distribution.json trial-packets/forward_index.json`
+      : `${rawPath} trial_sharpe_distribution.json`,
     eyebrow: `<a href="/trials">Trial evidence</a> / ${escapeHtml(humanise(packet.research_family_key))}`,
     h1: humanise(packet.label ?? packet.hypothesis_key),
     hero: heroBlock(packet, distribution, forwardRow),
     body,
     // Incomplete packets stay publicly addressable and their links remain crawlable, but they are
-    // evidence-accounting records rather than standalone search documents. Only a packet that
-    // satisfies every frozen section is invited into the index.
-    robots: packet.complete
+    // evidence-accounting records rather than standalone search documents. Only a legacy packet
+    // that satisfies every frozen section is invited into the index. A forward-epoch page is never
+    // indexed: a development closure is complete as accounting, not as evidence, and the governed
+    // identity's search document is /measurements/prospective-trial-record.
+    robots: packet.complete && !forwardRow
       ? "index, follow, max-snippet:-1, max-image-preview:large"
       : "noindex, follow, max-snippet:-1, max-image-preview:large",
     jsonLd: {
@@ -435,7 +447,7 @@ function main() {
   </section>`).join("");
   const forwardSummary = forwardIndex?.summary ?? null;
   const totalIdentities = packets.length + (forwardSummary?.forward_identities ?? 0);
-  const description = `The complete ALPHAC hypothesis register: ${totalIdentities} immutable trial identities (${packets.length} in the retired legacy epoch${forwardSummary ? `, ${forwardSummary.forward_identities} measured since` : ""}), each with its first measurement, evidence coverage, and machine-readable packet.`;
+  const description = `ALPHAC hypothesis register: ${totalIdentities} trial identities (${packets.length} legacy${forwardSummary ? `, ${forwardSummary.forward_identities} forward epoch` : ""}), each with its first measurement, evidence coverage and machine-readable packet.`;
   const body = `<p class="measure__lead">Every return identity is listed here exactly once. Each page
 binds the immutable first measurement to the evidence that survives today. Only ${complete} packets
 currently satisfy every required section; the remaining debt is shown rather than hidden.</p>

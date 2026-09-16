@@ -1,0 +1,51 @@
+/* The corpus remains complete. Art belongs to the archive masthead, not the evidence. */
+#researchLibrary {
+  position: relative;
+  max-width: none;
+  width: 100%;
+  margin-top: clamp(70px, 10vw, 160px);
+  padding-top: clamp(70px, 10vw, 150px);
+  isolation: isolate;
+  border-top: 1px solid #687386;
+}
+#researchLibrary::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto;
+  height: 420px;
+  background: linear-gradient(90deg, #080b10 5%, #080b10a6 60%, #080b1080),
+    linear-gradient(0deg, #080b10, transparent 80%),
+    url('/cinema/optical-archive-v1.webp') center 40% / cover;
+  z-index: -1;
+  pointer-events: none;
+}
+#researchLibrary .frontier__title {
+  max-width: 17ch;
+  font: 500 clamp(2.8rem, 6vw, 6rem)/1.02 'Chakra Petch', sans-serif;
+  letter-spacing: -.045em;
+  text-transform: uppercase;
+}
+#researchLibrary .frontier__lead { max-width: 65ch; color: #c7cfda; }
+#researchLibrary .research-topics { margin-block: 40px; gap: 8px; }
+#researchLibrary .research-topics__link { padding: 14px; color: #d5dce7; background: #080b10; }
+#researchLibrary .research-topics__count { color: #adb9cc; }
+.archive-search { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 12px 24px; padding-block: 32px; border-top: 1px solid #687386; }
+.archive-search label { grid-column: 1 / -1; font: 500 .75rem 'IBM Plex Mono', monospace; color: #d5dce7; }
+.archive-search input { width: 100%; min-width: 0; border: 0; border-bottom: 1px solid #687386; border-radius: 0; padding: 15px 0; background: transparent; color: white; font: 400 clamp(1.1rem, 2vw, 1.8rem) 'Inter', sans-serif; }
+.archive-search input::placeholder { color: #9eabbd; opacity: 1; }
+.archive-search button { align-self: center; min-height: 44px; padding: 10px 16px; border: 1px solid #687386; color: white; background: #0016cb; cursor: pointer; }
+.archive-search__status { grid-column: 1 / -1; min-height: 1.6em; margin: 0; color: #adb9cc; font: .75rem/1.6 'IBM Plex Mono', monospace; }
+#researchLibraryList { margin-top: 0; }
+#researchLibraryList .research-library__item[hidden] { display: none !important; }
+#researchLibraryList .research-library__link { grid-template-columns: minmax(0, 1fr) minmax(0, .8fr); gap: 24px 6vw; padding-block: 28px; }
+#researchLibraryList .research-library__title { font: 500 clamp(1.3rem, 2vw, 2rem)/1.2 'Chakra Petch', sans-serif; letter-spacing: -.025em; color: #f4f4f4; }
+#researchLibraryList .research-library__desc { color: #adb9cc; font: .88rem/1.6 'Inter', sans-serif; }
+#researchLibraryList .research-library__link:hover { opacity: 1; }
+#researchLibraryList .research-library__link:hover .research-library__title { color: #a4b7ff; }
+#researchLibrary :is(a, button, input):focus-visible { outline: 2px solid #a4b7ff; outline-offset: 5px; }
+@media (max-width: 640px) {
+  #researchLibraryList .research-library__link { grid-template-columns: 1fr; gap: 12px; padding-block: 24px; }
+  #researchLibraryList .research-library__desc { display: block; }
+  .archive-search { grid-template-columns: minmax(0, 1fr); }
+  .archive-search button { justify-self: start; }
+}

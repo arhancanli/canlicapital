@@ -7,7 +7,7 @@
     "short_description": "Designed and implemented a quantitative-research and publication system spanning data engineering, statistical validation, paper execution, provenance, testing and public web interfaces. Published negative results and corrections alongside surviving hypotheses so every performance claim can be traced to evidence."
   },
   "claim_boundary": "This is a source-bound portfolio evidence map. It supports concise factual writing but does not prove admissions impact, external use, independent review or unaided authorship.",
-  "content_hash": "sha256:bb653bf9cef5123e24611f22677d70592cfcfeda0d88b82f9d8c54028bccefd3",
+  "content_hash": "sha256:4094a8e729388991a20eb5148b07746c981eadd38e63568e6546afe181e47a51",
   "contribution_map": {
     "ai_assisted_tooling": {
       "not_permitted_to_claim": [
@@ -52,9 +52,9 @@
       "boundary": "The forward Sharpe, drawdown and diversification objectives are not established.",
       "claim": "The project refuses to infer success from an immature forward record.",
       "facts": {
-        "cumulative_return": -0.02213339999999997,
+        "cumulative_return": 0.0,
         "current_sleeves": 4,
-        "daily_return_observations": 17,
+        "daily_return_observations": 0,
         "provenance_passes": true,
         "sharpe_status": "IMMATURE_RECORD_TOO_SHORT",
         "target_sleeves": 14
@@ -102,10 +102,15 @@
       "boundary": "Targets are objectives, not achieved results; legacy trials cannot be regraded.",
       "claim": "Admission v7 separates incremental decisions from portfolio-maturity claims.",
       "facts": {
-        "average_pairwise_correlation_objective": -0.03,
-        "expected_maximum_drawdown_target": 0.11,
-        "honest_forward_sharpe_target": 1.5,
+        "average_pairwise_correlation_objective": -0.05116116239316238,
+        "expected_maximum_drawdown_objective": 0.11,
+        "honest_forward_sharpe_target": 2.0,
+        "objective_in_force_from": "2026-09-14",
         "prospective_gate_audit_read_candidate_returns": 0,
+        "realized_maximum_drawdown_bound": 0.1,
+        "superseded_v7_expected_maximum_drawdown_target": 0.11,
+        "superseded_v7_forward_sharpe_target": 1.5,
+        "superseded_v7_target_sleeves": 14,
         "target_sleeves": 14
       }
     },
@@ -171,7 +176,7 @@
       {
         "end_second": 90,
         "label": "End with the burden",
-        "narration": "The forward record has only 17 daily observations, external reviews remain at zero, and Foundry is planned not applied. The open burden is part of the result.",
+        "narration": "The forward record has only 0 daily observations, external reviews remain at zero, and Foundry is planned not applied. The open burden is part of the result.",
         "screen": "/founder#open-burden",
         "start_second": 76
       }
@@ -189,15 +194,15 @@
     },
     "all_sleeve_archives": {
       "path": "artifacts/publication/all_sleeve_review_archives.json",
-      "sha256": "22208565d1b90ca16ec150132e13231ee9b2a096ffd0b0359bfadc9a927b7ee4"
+      "sha256": "0f807d0c19fa58acb89e82f01a14732924fe6f2bccd7c69b69ceeb982e4bfe5c"
     },
     "broker": {
       "path": "artifacts/engineering/alpaca_broker_reconciliation.json",
-      "sha256": "9d9262c3fac97b0b176bea9e3ba9231e0a0d1daca497bac8a76d57d03c7a68e6"
+      "sha256": "373d3854d1ae6bbdd3ef54397fcf63ffd5f6f9c99085eddaa0469b2321ac4af7"
     },
     "clean_reproduction": {
       "path": "artifacts/publication/clean_workspace_reproduction_audit.json",
-      "sha256": "6fca2b0c5026cc77fbfc4ba3d8109c8d33ced29ae6bee6472926f3fccd1c7177"
+      "sha256": "7155770f57ddbc826e635c0b42c00c9750281200e118ae015ba5a6b6c9b05c40"
     },
     "external_review": {
       "path": "artifacts/publication/external_reviewer_packets.json",
@@ -209,7 +214,7 @@
     },
     "forward": {
       "path": "artifacts/engineering/forward_evidence_maturity.json",
-      "sha256": "30ebfa091d86de44af42bab9b56597d371473f801c164a6cbc4d8fac1e27ee93"
+      "sha256": "7d1752b43526d6e2f042fa980d1f2e80295d445422fa349eaf4314049dd53739"
     },
     "foundry_deployment": {
       "path": "config/foundry_deployment_manifest.json",
@@ -227,13 +232,17 @@
       "path": "artifacts/engineering/mutation_ledger.json",
       "sha256": "7068686b9aa8a0f78b9e0f84ec7b2ba5d7de9a29b9c756c22d8dfa91031864a2"
     },
+    "owner_goals": {
+      "path": "config/owner_goals.json",
+      "sha256": "3a05ea986fb096932356b0a4075159b1093b2591bfbd82a52913fb3f2da77963"
+    },
     "prospective_trial": {
       "path": "artifacts/research/crypto_carry_portable_v1_result.json",
       "sha256": "bca34612b3f683666e5738fbbe352be7953a233b4fd6689ba1111d56385e916c"
     },
     "publication": {
       "path": "artifacts/audit/external_publication_readiness.json",
-      "sha256": "3d7327b7d1f121e27276a2ce42fc375cf701b3a78912a4a88715de6e6663e903"
+      "sha256": "4e0c0555849c7f969c1c20f093dccecebb38edb7b113432dbd6a3004ed8b5935"
     },
     "publication_standard": {
       "path": "docs/design/EXTERNAL_RESEARCH_PUBLICATION_STANDARD.md",
@@ -245,7 +254,7 @@
     },
     "submission_worksheets": {
       "path": "artifacts/publication/repository_submission_worksheets.json",
-      "sha256": "6a9c3e1c925a519f5814f4b078cb65b6459fb769e7a50698de1ad4c87ced1fa3"
+      "sha256": "f2b98070ef842fcaf6036352142a3b9c6b99a38384d38a95df11433cbbb53169"
     },
     "trial_packets": {
       "path": "artifacts/research/trial_packet_manifest.json",

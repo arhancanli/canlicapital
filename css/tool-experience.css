@@ -1,0 +1,80 @@
+/* Phase 5: each instrument keeps its own chart, arithmetic and verdict semantics. */
+body.lab-page { --lab-paper: #f4f4f4; --lab-ink: #111; --lab-muted: #58616b; --lab-line: #c3c8d2; background: #f4f4f4; }
+body.lab-page .lab-hero { color: #111; background: #f4f4f4; padding: 54px 4vw 40px; border-bottom: 1px solid #b8bfce; }
+body.lab-page .lab-hero h1 { font-family: 'Chakra Petch',sans-serif; font-size: clamp(2.7rem,4.6vw,5rem); font-weight: 500; line-height: 1.03; max-width: 24ch; }
+body.lab-page .lab-hero :is(.lab-lead,.lab-boundary) { color: #343b46; max-width: 82ch; }
+body.lab-page .lab-hero :is(.lab-kicker,strong) { color: #0016cb; }
+body.lab-page .lab-boundary { margin-top: 22px; padding-top: 16px; border-color: #b8bfce; }
+body.lab-page .lab-lab { padding: 40px 4vw 56px; gap: 24px; grid-template-columns: minmax(220px,.75fr) minmax(0,1.65fr) minmax(210px,.8fr); }
+body.lab-page .lab-controls { border-top: 4px solid #0016cb; padding: 24px; gap: 20px; }
+body.lab-page .lab-field__label { font-size: 13px; }
+body.lab-page .lab-field__note { font-size: 12px; line-height: 1.6; }
+body.lab-page .lab-field :is(input,textarea,select) { background: #fff; border-color: #87909e; }
+body.lab-page .lab-button { min-height: 44px; padding: 12px 16px; line-height: 1.4; border-radius: 24px; }
+body.lab-page .lab-button--primary { background: #0016cb; color: #fff; border-color: #0016cb; }
+body.lab-page .lab-button--primary:hover { background: #111; border-color: #111; }
+body.lab-page .lab-warning { color: #9b2925; }
+body.lab-page .lab-chart-wrap { background: #111; padding: 26px; border: 0; }
+body.lab-page .lab-stats dd { font-size: clamp(1.25rem,2vw,2rem); color: #0016cb; }
+body.lab-page .lab-stats :is(#pbo-sampler,#pbo-combinations) { font: 500 16px/1.5 'Inter',sans-serif; color: #343b46; overflow-wrap: normal; }
+body.lab-page .lab-ledger h3 { font: 500 23px/1.2 'Chakra Petch',sans-serif; }
+body.lab-page .lab-notes { padding: 42px 4vw 64px; border-top: 1px solid #b8bfce; }
+body.lab-page .lab-notes h2 { font: 500 clamp(1.8rem,3vw,3rem)/1.1 'Chakra Petch',sans-serif; }
+body.lab-page .lab-notes__grid { gap: 28px; }
+body.lab-page .lab-notes__grid article { border: 0; border-top: 2px solid #111; padding: 24px 0; background: transparent; }
+body.lab-page .lab-notes__grid h3 { font: 500 21px/1.25 'Chakra Petch',sans-serif; }
+/* Directory: full-width entries make purpose and destination readable together. */
+html[data-page="tools"] .lab-hero h1 { font-size: clamp(3.2rem,6vw,6.8rem); }
+html[data-page="tools"] .tools-grid { display: block; padding: 0 4vw 64px; }
+html[data-page="tools"] .tools-card { position: relative; display: grid; grid-template-columns: 1.2fr 1fr; gap: 14px 7vw; padding: 36px 38px 36px 0; background: transparent; border: 0; border-bottom: 1px solid #b8bfce; }
+html[data-page="tools"] .tools-card h2 { grid-column: 1; grid-row: 1 / span 2; font: 500 clamp(1.7rem,2.6vw,2.7rem)/1.15 'Chakra Petch',sans-serif; max-width: 25ch; }
+html[data-page="tools"] .tools-card h2 a { color: #111; text-underline-offset: 6px; }
+html[data-page="tools"] .tools-card h2 a:hover { color: #0016cb; }
+html[data-page="tools"] .tools-card :is(p,.tools-card__house) { grid-column: 2; }
+html[data-page="tools"] .tools-card__house { color: #0016cb; margin: 0; }
+html[data-page="tools"] .tools-card::after { content: '↗'; position: absolute; right: 0; top: 36px; color: #0016cb; font-size: 25px; }
+/* Dense proof instruments retain a dark working surface, with quieter entrances. */
+body.dsr-page { --dsr-display: 'Chakra Petch',sans-serif; --dsr-night: #111; --dsr-muted: #b3bdc9; --dsr-faint: #9da8b9; --dsr-ledger: #a8b9ff; background: #111; }
+body.dsr-page::before { display: none; }
+body.dsr-page .dsr-hero { min-height: 0; padding: 60px 4vw 48px; gap: 5vw; }
+body.dsr-page .dsr-hero h1 { font-size: clamp(2.7rem,4.5vw,5rem); line-height: 1.04; }
+body.dsr-page .dsr-workbench { padding-inline: 4vw; }
+body.dsr-page .dsr-chamber { background: #0b1020; }
+body.dsr-page .dsr-readout-note { font-size: 12px; margin: 8px 0 0; }
+body.lab-page .cc-table-scroll > .lab-table { display: table; width: max-content; min-width: 100%; overflow: visible; }
+body.union-page :is(.union-workbench,.union-families,.union-sources) { --u-muted: #4c535b; }
+body.union-page .union-list strong { color: #4c535b; }
+body.union-page .union-debt > p { color: #41474e; }
+body.union-page { --u-paper: #f4f4f4; }
+body.union-page .union-section-head h2 { font: 500 clamp(2.3rem,4vw,4rem)/1.08 'Chakra Petch',sans-serif; max-width: 25ch; }
+body.union-page .union-inspector h3 { font-size: clamp(1.4rem,2vw,2rem); line-height: 1.18; }
+body.union-page #union-reset { background: #0016cb; color: #fff; }
+body.chain-page .chain-section-head h2,
+body.chain-page .chain-mutation h2 { font-size: clamp(2.3rem,4vw,4rem); line-height: 1.08; max-width: 25ch; }
+body.union-page :is(.union-label,.union-tools button,.union-inspector dt,.union-inspector__key) { font-size: 11px; line-height: 1.5; }
+body.union-page :is(.union-filters input,.union-filters select) { font-size: 13px; }
+body.chain-page :is(.chain-label,.chain-button,.chain-terminal dt,.chain-map__legend,.chain-map__axis,.chain-verification span,.chain-entry > header span,.chain-entry__signature > span,.chain-proof__score span,.chain-proof li small,.chain-proof li b,.chain-source__grid span) { font-size: 11px; line-height: 1.5; }
+body.chain-page :is(.chain-entry__signature code,.chain-proof > p code,.chain-source__grid code,.chain-mutation__lab code,.chain-entry__signature button) { font-size: 12px; line-height: 1.65; }
+body.dsr-page :is(.dsr-explain,.dsr-policy,.dsr-source) { padding: 56px 4vw; }
+body.chain-page { --chain-display: 'Chakra Petch',sans-serif; --chain-bg: #111; --chain-muted: #b6c0cc; --chain-faint: #9da8b9; background: #111; }
+body.chain-page .chain-hero { min-height: 0; padding: 60px 4vw 48px; background: #111; gap: 5vw; }
+body.chain-page .chain-hero h1 { font-size: clamp(2.7rem,4.5vw,5rem); line-height: 1.04; }
+body.chain-page .chain-hero__lead { margin-top: 24px; }
+.chain-copy-fallback { grid-column: 1 / -1; width: 100%; padding: 16px; background: #111; color: #fff; font: 12px/1.5 'IBM Plex Mono',monospace; border: 1px solid #a8b9ff; resize: vertical; }
+body.chain-page :is(.chain-workbench,.chain-mutation,.chain-layers,.chain-source) { padding: 56px 4vw; }
+body.union-page .union-hero { min-height: 0; padding: 60px 4vw 48px; gap: 5vw; }
+body.union-page .union-hero h1 { font-family: 'Chakra Petch',sans-serif; font-size: clamp(2.7rem,4.5vw,5rem); line-height: 1.04; }
+body.union-page :is(.union-workbench,.union-families,.union-rules,.union-sources) { padding: 56px 4vw; }
+body:is(.lab-page,.dsr-page,.chain-page,.union-page) main :is(button,input,select,textarea) { scroll-margin-top: 112px; }
+body:is(.lab-page,.dsr-page,.chain-page,.union-page) main button:disabled { cursor: wait; opacity: .65; }
+@media(max-width:1100px) { body.lab-page .lab-lab { grid-template-columns: 1fr; } }
+@media(max-width:700px) {
+ body.lab-page .lab-hero,body.dsr-page .dsr-hero,body.chain-page .chain-hero,body.union-page .union-hero { padding: 40px 24px 32px; }
+ body.lab-page :is(.lab-lab,.lab-notes) { padding: 32px 24px; }
+ html[data-page="tools"] .tools-grid { padding-inline: 24px; }
+ html[data-page="tools"] .tools-card { display: block; padding-block: 28px; }
+ html[data-page="tools"] .tools-card h2 { margin-bottom: 18px; }
+ html[data-page="tools"] .tools-card__house { margin-bottom: 10px; }
+ body.lab-page .lab-chart-wrap { padding: 16px; }
+ body.dsr-page :is(.dsr-workbench,.dsr-explain,.dsr-policy,.dsr-source),body.chain-page :is(.chain-workbench,.chain-mutation,.chain-layers,.chain-source),body.union-page :is(.union-workbench,.union-families,.union-rules,.union-sources) { padding: 40px 24px; }
+}

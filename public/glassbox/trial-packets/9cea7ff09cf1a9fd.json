@@ -1,0 +1,601 @@
+{
+  "claim_boundary": "Retrospective fixed dividend-aware momentum substitution in an existing AlphaMax sleeve. Normal combined excess gain and no-lower-return gates failed; stop candidate, no stress/2022 or parameter rescue. No admission, new distinct sleeve, live qualification or publication claim. Current-vintage sources, modeled metadata/borrow/action timing and daily fixed subbook-weight proxy remain. Standalone feature reconstruction is from bound source/code; runtime feature snapshot absent; full raw-fill quantity/impact reconstruction not claimed.",
+  "complete": true,
+  "completion_assessment": {
+    "candidate_evidence_complete_for_admission": false,
+    "disposition": "FAILED_NORMAL_COMBINED_GATE",
+    "packet_evidence_accounting_complete": true
+  },
+  "config_hash": "f0eba2e9b7157672",
+  "configuration": {
+    "arm": "normal",
+    "family": "alphamax_total_return_momentum_combined",
+    "manifest_sha256": "2a5a36f765fc24076d29a74f9e41fe5983f4508715aa1532c5c81fb94e26fc92",
+    "spec_sha256": "8186c460dc08a0fce7bfda32d5deee538bda6348ca4b6d7aa096fe365d0be0db"
+  },
+  "content_hash": "sha256:2d6279d3c72b1a353074334ac4d336045a496b04e3642a7bede0f8c7ce0da839",
+  "hypothesis_key": "9cea7ff09cf1a9fd",
+  "immutable_first_measurement": {
+    "config": {
+      "arm": "normal",
+      "family": "alphamax_total_return_momentum_combined",
+      "manifest_sha256": "2a5a36f765fc24076d29a74f9e41fe5983f4508715aa1532c5c81fb94e26fc92",
+      "spec_sha256": "8186c460dc08a0fce7bfda32d5deee538bda6348ca4b6d7aa096fe365d0be0db"
+    },
+    "config_hash": "f0eba2e9b7157672",
+    "kurtosis": 6.1054161056225675,
+    "n_obs": 1248,
+    "now_ms": 1789315842407,
+    "sharpe_ann": 0.7441151017692841,
+    "sharpe_per_period": 0.038948764542669476,
+    "skew": 0.001423791843618453
+  },
+  "imported_from_external_tree": {
+    "external_content_hash": "sha256:1cb62e07b3688bde7299825f9e8b02f089df33efba3b476edd88eec888a78d70",
+    "imported_on": "2026-09-14T19:36:11+00:00",
+    "tree": "/Users/arhancanli/alphac-prospective-pause-20260911"
+  },
+  "missing_sections": [],
+  "packet_status": "COMPLETE_ACCOUNTING_FINAL_KILLED_NOT_ADMITTED",
+  "partial_sections": [],
+  "required_sections": {
+    "admission_or_kill_decision": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/combined_total_return_momentum_20260913/normal/input_manifest.json",
+          "sha256": "2a5a36f765fc24076d29a74f9e41fe5983f4508715aa1532c5c81fb94e26fc92"
+        },
+        {
+          "path": "artifacts/analysis/combined_total_return_momentum_20260913/normal/result.json",
+          "sha256": "55ed599ec180cd95f4867fc4f29e2bf3c2662b9452f657eb048556d02ac30493"
+        },
+        {
+          "path": "artifacts/analysis/combined_total_return_momentum_20260913/normal/daily.csv",
+          "sha256": "6d2642bf2099e62fbf72c010058d911ec8214a5c577a0dd82a418a822eb11bae"
+        },
+        {
+          "path": "artifacts/analysis/combined_total_return_momentum_20260913/normal/experiments.jsonl",
+          "sha256": "5f3d779d9b2c8309f9c765690f730ee53c95cf358e1e6e2dd46d46a1ee4242d2"
+        },
+        {
+          "path": "artifacts/analysis/combined_total_return_momentum_20260913/normal/reservation.json",
+          "sha256": "0f782d97b8eb0eb1345efc9ce8f81647b1119b8c3c609118b1d8f4fcec5c0ed6"
+        },
+        {
+          "path": "artifacts/analysis/combined_total_return_momentum_20260913/normal/reservation_validation.json",
+          "sha256": "2c4052c0800b0b6483016987ac520760ace325774eab44f888535fae0ab7c780"
+        },
+        {
+          "path": "artifacts/analysis/combined_total_return_momentum_20260913/normal/preregistration.json",
+          "sha256": "c04de2e2ea9e2ff4217456c9950869e0276655078c5b060f0d14a56b75d6f38c"
+        },
+        {
+          "path": "artifacts/analysis/combined_total_return_momentum_20260913/normal/independent_audit.json",
+          "sha256": "d135d4ac2131ebfb772ceb947c7c63602fe8cd5de79bb664b1fe998b1f2ad111"
+        },
+        {
+          "path": "scripts/close_combined_total_return_momentum.py",
+          "sha256": "3ba0f33c8aa67316f1baa0e278d54533928514ec75511fae555d1a322b3fc6e7"
+        },
+        {
+          "path": "evidence/alphamax-dividend-momentum-feasibility-20260913/DESIGN.json",
+          "sha256": "8186c460dc08a0fce7bfda32d5deee538bda6348ca4b6d7aa096fe365d0be0db"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_total_return_momentum_20260913/candidate/closure.json",
+          "sha256": "27eee3e45afc3633a865f8b4b8df2784616470385084cab5b04679d4346d9a07"
+        },
+        {
+          "content_hash": "sha256:dfc3e50973546e6134a3c00bc71301de30d2532064a42b11f631f430f24266a2",
+          "path": "artifacts/research/development_closures/9cea7ff09cf1a9fd_admission_closure.json",
+          "sha256": "c6beea0067f7ad47a36f221ef43fc317557a765986f56b41db17e34c988e8a36",
+          "type": "final_development_admission_closure"
+        }
+      ],
+      "statement": "Retrospective fixed dividend-aware momentum substitution in an existing AlphaMax sleeve. Normal combined excess gain and no-lower-return gates failed; stop candidate, no stress/2022 or parameter rescue. No admission, new distinct sleeve, live qualification or publication claim. Current-vintage sources, modeled metadata/borrow/action timing and daily fixed subbook-weight proxy remain. Standalone feature reconstruction is from bound source/code; runtime feature snapshot absent; full raw-fill quantity/impact reconstruction not claimed.",
+      "status": "VERIFIED_FINAL_DEVELOPMENT_CLOSURE_KILL"
+    },
+    "code_environment_and_reproduction": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/combined_total_return_momentum_20260913/normal/input_manifest.json",
+          "sha256": "2a5a36f765fc24076d29a74f9e41fe5983f4508715aa1532c5c81fb94e26fc92"
+        },
+        {
+          "path": "artifacts/analysis/combined_total_return_momentum_20260913/normal/result.json",
+          "sha256": "55ed599ec180cd95f4867fc4f29e2bf3c2662b9452f657eb048556d02ac30493"
+        },
+        {
+          "path": "artifacts/analysis/combined_total_return_momentum_20260913/normal/daily.csv",
+          "sha256": "6d2642bf2099e62fbf72c010058d911ec8214a5c577a0dd82a418a822eb11bae"
+        },
+        {
+          "path": "artifacts/analysis/combined_total_return_momentum_20260913/normal/experiments.jsonl",
+          "sha256": "5f3d779d9b2c8309f9c765690f730ee53c95cf358e1e6e2dd46d46a1ee4242d2"
+        },
+        {
+          "path": "artifacts/analysis/combined_total_return_momentum_20260913/normal/reservation.json",
+          "sha256": "0f782d97b8eb0eb1345efc9ce8f81647b1119b8c3c609118b1d8f4fcec5c0ed6"
+        },
+        {
+          "path": "artifacts/analysis/combined_total_return_momentum_20260913/normal/reservation_validation.json",
+          "sha256": "2c4052c0800b0b6483016987ac520760ace325774eab44f888535fae0ab7c780"
+        },
+        {
+          "path": "artifacts/analysis/combined_total_return_momentum_20260913/normal/preregistration.json",
+          "sha256": "c04de2e2ea9e2ff4217456c9950869e0276655078c5b060f0d14a56b75d6f38c"
+        },
+        {
+          "path": "artifacts/analysis/combined_total_return_momentum_20260913/normal/independent_audit.json",
+          "sha256": "d135d4ac2131ebfb772ceb947c7c63602fe8cd5de79bb664b1fe998b1f2ad111"
+        },
+        {
+          "path": "scripts/close_combined_total_return_momentum.py",
+          "sha256": "3ba0f33c8aa67316f1baa0e278d54533928514ec75511fae555d1a322b3fc6e7"
+        },
+        {
+          "path": "evidence/alphamax-dividend-momentum-feasibility-20260913/DESIGN.json",
+          "sha256": "8186c460dc08a0fce7bfda32d5deee538bda6348ca4b6d7aa096fe365d0be0db"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_total_return_momentum_20260913/candidate/closure.json",
+          "sha256": "27eee3e45afc3633a865f8b4b8df2784616470385084cab5b04679d4346d9a07"
+        }
+      ],
+      "statement": "Retrospective fixed dividend-aware momentum substitution in an existing AlphaMax sleeve. Normal combined excess gain and no-lower-return gates failed; stop candidate, no stress/2022 or parameter rescue. No admission, new distinct sleeve, live qualification or publication claim. Current-vintage sources, modeled metadata/borrow/action timing and daily fixed subbook-weight proxy remain. Standalone feature reconstruction is from bound source/code; runtime feature snapshot absent; full raw-fill quantity/impact reconstruction not claimed.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "economic_mechanism_and_falsifiable_hypothesis": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/combined_total_return_momentum_20260913/normal/input_manifest.json",
+          "sha256": "2a5a36f765fc24076d29a74f9e41fe5983f4508715aa1532c5c81fb94e26fc92"
+        },
+        {
+          "path": "artifacts/analysis/combined_total_return_momentum_20260913/normal/result.json",
+          "sha256": "55ed599ec180cd95f4867fc4f29e2bf3c2662b9452f657eb048556d02ac30493"
+        },
+        {
+          "path": "artifacts/analysis/combined_total_return_momentum_20260913/normal/daily.csv",
+          "sha256": "6d2642bf2099e62fbf72c010058d911ec8214a5c577a0dd82a418a822eb11bae"
+        },
+        {
+          "path": "artifacts/analysis/combined_total_return_momentum_20260913/normal/experiments.jsonl",
+          "sha256": "5f3d779d9b2c8309f9c765690f730ee53c95cf358e1e6e2dd46d46a1ee4242d2"
+        },
+        {
+          "path": "artifacts/analysis/combined_total_return_momentum_20260913/normal/reservation.json",
+          "sha256": "0f782d97b8eb0eb1345efc9ce8f81647b1119b8c3c609118b1d8f4fcec5c0ed6"
+        },
+        {
+          "path": "artifacts/analysis/combined_total_return_momentum_20260913/normal/reservation_validation.json",
+          "sha256": "2c4052c0800b0b6483016987ac520760ace325774eab44f888535fae0ab7c780"
+        },
+        {
+          "path": "artifacts/analysis/combined_total_return_momentum_20260913/normal/preregistration.json",
+          "sha256": "c04de2e2ea9e2ff4217456c9950869e0276655078c5b060f0d14a56b75d6f38c"
+        },
+        {
+          "path": "artifacts/analysis/combined_total_return_momentum_20260913/normal/independent_audit.json",
+          "sha256": "d135d4ac2131ebfb772ceb947c7c63602fe8cd5de79bb664b1fe998b1f2ad111"
+        },
+        {
+          "path": "scripts/close_combined_total_return_momentum.py",
+          "sha256": "3ba0f33c8aa67316f1baa0e278d54533928514ec75511fae555d1a322b3fc6e7"
+        },
+        {
+          "path": "evidence/alphamax-dividend-momentum-feasibility-20260913/DESIGN.json",
+          "sha256": "8186c460dc08a0fce7bfda32d5deee538bda6348ca4b6d7aa096fe365d0be0db"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_total_return_momentum_20260913/candidate/closure.json",
+          "sha256": "27eee3e45afc3633a865f8b4b8df2784616470385084cab5b04679d4346d9a07"
+        }
+      ],
+      "statement": "Retrospective fixed dividend-aware momentum substitution in an existing AlphaMax sleeve. Normal combined excess gain and no-lower-return gates failed; stop candidate, no stress/2022 or parameter rescue. No admission, new distinct sleeve, live qualification or publication claim. Current-vintage sources, modeled metadata/borrow/action timing and daily fixed subbook-weight proxy remain. Standalone feature reconstruction is from bound source/code; runtime feature snapshot absent; full raw-fill quantity/impact reconstruction not claimed.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "execution_and_cost_model": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/combined_total_return_momentum_20260913/normal/input_manifest.json",
+          "sha256": "2a5a36f765fc24076d29a74f9e41fe5983f4508715aa1532c5c81fb94e26fc92"
+        },
+        {
+          "path": "artifacts/analysis/combined_total_return_momentum_20260913/normal/result.json",
+          "sha256": "55ed599ec180cd95f4867fc4f29e2bf3c2662b9452f657eb048556d02ac30493"
+        },
+        {
+          "path": "artifacts/analysis/combined_total_return_momentum_20260913/normal/daily.csv",
+          "sha256": "6d2642bf2099e62fbf72c010058d911ec8214a5c577a0dd82a418a822eb11bae"
+        },
+        {
+          "path": "artifacts/analysis/combined_total_return_momentum_20260913/normal/experiments.jsonl",
+          "sha256": "5f3d779d9b2c8309f9c765690f730ee53c95cf358e1e6e2dd46d46a1ee4242d2"
+        },
+        {
+          "path": "artifacts/analysis/combined_total_return_momentum_20260913/normal/reservation.json",
+          "sha256": "0f782d97b8eb0eb1345efc9ce8f81647b1119b8c3c609118b1d8f4fcec5c0ed6"
+        },
+        {
+          "path": "artifacts/analysis/combined_total_return_momentum_20260913/normal/reservation_validation.json",
+          "sha256": "2c4052c0800b0b6483016987ac520760ace325774eab44f888535fae0ab7c780"
+        },
+        {
+          "path": "artifacts/analysis/combined_total_return_momentum_20260913/normal/preregistration.json",
+          "sha256": "c04de2e2ea9e2ff4217456c9950869e0276655078c5b060f0d14a56b75d6f38c"
+        },
+        {
+          "path": "artifacts/analysis/combined_total_return_momentum_20260913/normal/independent_audit.json",
+          "sha256": "d135d4ac2131ebfb772ceb947c7c63602fe8cd5de79bb664b1fe998b1f2ad111"
+        },
+        {
+          "path": "scripts/close_combined_total_return_momentum.py",
+          "sha256": "3ba0f33c8aa67316f1baa0e278d54533928514ec75511fae555d1a322b3fc6e7"
+        },
+        {
+          "path": "evidence/alphamax-dividend-momentum-feasibility-20260913/DESIGN.json",
+          "sha256": "8186c460dc08a0fce7bfda32d5deee538bda6348ca4b6d7aa096fe365d0be0db"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_total_return_momentum_20260913/candidate/closure.json",
+          "sha256": "27eee3e45afc3633a865f8b4b8df2784616470385084cab5b04679d4346d9a07"
+        }
+      ],
+      "statement": "Retrospective fixed dividend-aware momentum substitution in an existing AlphaMax sleeve. Normal combined excess gain and no-lower-return gates failed; stop candidate, no stress/2022 or parameter rescue. No admission, new distinct sleeve, live qualification or publication claim. Current-vintage sources, modeled metadata/borrow/action timing and daily fixed subbook-weight proxy remain. Standalone feature reconstruction is from bound source/code; runtime feature snapshot absent; full raw-fill quantity/impact reconstruction not claimed.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "family_and_union_trial_accounting": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/combined_total_return_momentum_20260913/normal/input_manifest.json",
+          "sha256": "2a5a36f765fc24076d29a74f9e41fe5983f4508715aa1532c5c81fb94e26fc92"
+        },
+        {
+          "path": "artifacts/analysis/combined_total_return_momentum_20260913/normal/result.json",
+          "sha256": "55ed599ec180cd95f4867fc4f29e2bf3c2662b9452f657eb048556d02ac30493"
+        },
+        {
+          "path": "artifacts/analysis/combined_total_return_momentum_20260913/normal/daily.csv",
+          "sha256": "6d2642bf2099e62fbf72c010058d911ec8214a5c577a0dd82a418a822eb11bae"
+        },
+        {
+          "path": "artifacts/analysis/combined_total_return_momentum_20260913/normal/experiments.jsonl",
+          "sha256": "5f3d779d9b2c8309f9c765690f730ee53c95cf358e1e6e2dd46d46a1ee4242d2"
+        },
+        {
+          "path": "artifacts/analysis/combined_total_return_momentum_20260913/normal/reservation.json",
+          "sha256": "0f782d97b8eb0eb1345efc9ce8f81647b1119b8c3c609118b1d8f4fcec5c0ed6"
+        },
+        {
+          "path": "artifacts/analysis/combined_total_return_momentum_20260913/normal/reservation_validation.json",
+          "sha256": "2c4052c0800b0b6483016987ac520760ace325774eab44f888535fae0ab7c780"
+        },
+        {
+          "path": "artifacts/analysis/combined_total_return_momentum_20260913/normal/preregistration.json",
+          "sha256": "c04de2e2ea9e2ff4217456c9950869e0276655078c5b060f0d14a56b75d6f38c"
+        },
+        {
+          "path": "artifacts/analysis/combined_total_return_momentum_20260913/normal/independent_audit.json",
+          "sha256": "d135d4ac2131ebfb772ceb947c7c63602fe8cd5de79bb664b1fe998b1f2ad111"
+        },
+        {
+          "path": "scripts/close_combined_total_return_momentum.py",
+          "sha256": "3ba0f33c8aa67316f1baa0e278d54533928514ec75511fae555d1a322b3fc6e7"
+        },
+        {
+          "path": "evidence/alphamax-dividend-momentum-feasibility-20260913/DESIGN.json",
+          "sha256": "8186c460dc08a0fce7bfda32d5deee538bda6348ca4b6d7aa096fe365d0be0db"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_total_return_momentum_20260913/candidate/closure.json",
+          "sha256": "27eee3e45afc3633a865f8b4b8df2784616470385084cab5b04679d4346d9a07"
+        }
+      ],
+      "statement": "Retrospective fixed dividend-aware momentum substitution in an existing AlphaMax sleeve. Normal combined excess gain and no-lower-return gates failed; stop candidate, no stress/2022 or parameter rescue. No admission, new distinct sleeve, live qualification or publication claim. Current-vintage sources, modeled metadata/borrow/action timing and daily fixed subbook-weight proxy remain. Standalone feature reconstruction is from bound source/code; runtime feature snapshot absent; full raw-fill quantity/impact reconstruction not claimed.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "identity_and_authorship": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/combined_total_return_momentum_20260913/normal/input_manifest.json",
+          "sha256": "2a5a36f765fc24076d29a74f9e41fe5983f4508715aa1532c5c81fb94e26fc92"
+        },
+        {
+          "path": "artifacts/analysis/combined_total_return_momentum_20260913/normal/result.json",
+          "sha256": "55ed599ec180cd95f4867fc4f29e2bf3c2662b9452f657eb048556d02ac30493"
+        },
+        {
+          "path": "artifacts/analysis/combined_total_return_momentum_20260913/normal/daily.csv",
+          "sha256": "6d2642bf2099e62fbf72c010058d911ec8214a5c577a0dd82a418a822eb11bae"
+        },
+        {
+          "path": "artifacts/analysis/combined_total_return_momentum_20260913/normal/experiments.jsonl",
+          "sha256": "5f3d779d9b2c8309f9c765690f730ee53c95cf358e1e6e2dd46d46a1ee4242d2"
+        },
+        {
+          "path": "artifacts/analysis/combined_total_return_momentum_20260913/normal/reservation.json",
+          "sha256": "0f782d97b8eb0eb1345efc9ce8f81647b1119b8c3c609118b1d8f4fcec5c0ed6"
+        },
+        {
+          "path": "artifacts/analysis/combined_total_return_momentum_20260913/normal/reservation_validation.json",
+          "sha256": "2c4052c0800b0b6483016987ac520760ace325774eab44f888535fae0ab7c780"
+        },
+        {
+          "path": "artifacts/analysis/combined_total_return_momentum_20260913/normal/preregistration.json",
+          "sha256": "c04de2e2ea9e2ff4217456c9950869e0276655078c5b060f0d14a56b75d6f38c"
+        },
+        {
+          "path": "artifacts/analysis/combined_total_return_momentum_20260913/normal/independent_audit.json",
+          "sha256": "d135d4ac2131ebfb772ceb947c7c63602fe8cd5de79bb664b1fe998b1f2ad111"
+        },
+        {
+          "path": "scripts/close_combined_total_return_momentum.py",
+          "sha256": "3ba0f33c8aa67316f1baa0e278d54533928514ec75511fae555d1a322b3fc6e7"
+        },
+        {
+          "path": "evidence/alphamax-dividend-momentum-feasibility-20260913/DESIGN.json",
+          "sha256": "8186c460dc08a0fce7bfda32d5deee538bda6348ca4b6d7aa096fe365d0be0db"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_total_return_momentum_20260913/candidate/closure.json",
+          "sha256": "27eee3e45afc3633a865f8b4b8df2784616470385084cab5b04679d4346d9a07"
+        }
+      ],
+      "statement": "Retrospective fixed dividend-aware momentum substitution in an existing AlphaMax sleeve. Normal combined excess gain and no-lower-return gates failed; stop candidate, no stress/2022 or parameter rescue. No admission, new distinct sleeve, live qualification or publication claim. Current-vintage sources, modeled metadata/borrow/action timing and daily fixed subbook-weight proxy remain. Standalone feature reconstruction is from bound source/code; runtime feature snapshot absent; full raw-fill quantity/impact reconstruction not claimed.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "literature_and_overlap_decision": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/combined_total_return_momentum_20260913/normal/input_manifest.json",
+          "sha256": "2a5a36f765fc24076d29a74f9e41fe5983f4508715aa1532c5c81fb94e26fc92"
+        },
+        {
+          "path": "artifacts/analysis/combined_total_return_momentum_20260913/normal/result.json",
+          "sha256": "55ed599ec180cd95f4867fc4f29e2bf3c2662b9452f657eb048556d02ac30493"
+        },
+        {
+          "path": "artifacts/analysis/combined_total_return_momentum_20260913/normal/daily.csv",
+          "sha256": "6d2642bf2099e62fbf72c010058d911ec8214a5c577a0dd82a418a822eb11bae"
+        },
+        {
+          "path": "artifacts/analysis/combined_total_return_momentum_20260913/normal/experiments.jsonl",
+          "sha256": "5f3d779d9b2c8309f9c765690f730ee53c95cf358e1e6e2dd46d46a1ee4242d2"
+        },
+        {
+          "path": "artifacts/analysis/combined_total_return_momentum_20260913/normal/reservation.json",
+          "sha256": "0f782d97b8eb0eb1345efc9ce8f81647b1119b8c3c609118b1d8f4fcec5c0ed6"
+        },
+        {
+          "path": "artifacts/analysis/combined_total_return_momentum_20260913/normal/reservation_validation.json",
+          "sha256": "2c4052c0800b0b6483016987ac520760ace325774eab44f888535fae0ab7c780"
+        },
+        {
+          "path": "artifacts/analysis/combined_total_return_momentum_20260913/normal/preregistration.json",
+          "sha256": "c04de2e2ea9e2ff4217456c9950869e0276655078c5b060f0d14a56b75d6f38c"
+        },
+        {
+          "path": "artifacts/analysis/combined_total_return_momentum_20260913/normal/independent_audit.json",
+          "sha256": "d135d4ac2131ebfb772ceb947c7c63602fe8cd5de79bb664b1fe998b1f2ad111"
+        },
+        {
+          "path": "scripts/close_combined_total_return_momentum.py",
+          "sha256": "3ba0f33c8aa67316f1baa0e278d54533928514ec75511fae555d1a322b3fc6e7"
+        },
+        {
+          "path": "evidence/alphamax-dividend-momentum-feasibility-20260913/DESIGN.json",
+          "sha256": "8186c460dc08a0fce7bfda32d5deee538bda6348ca4b6d7aa096fe365d0be0db"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_total_return_momentum_20260913/candidate/closure.json",
+          "sha256": "27eee3e45afc3633a865f8b4b8df2784616470385084cab5b04679d4346d9a07"
+        }
+      ],
+      "statement": "Retrospective fixed dividend-aware momentum substitution in an existing AlphaMax sleeve. Normal combined excess gain and no-lower-return gates failed; stop candidate, no stress/2022 or parameter rescue. No admission, new distinct sleeve, live qualification or publication claim. Current-vintage sources, modeled metadata/borrow/action timing and daily fixed subbook-weight proxy remain. Standalone feature reconstruction is from bound source/code; runtime feature snapshot absent; full raw-fill quantity/impact reconstruction not claimed.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "machine_readable_packet_and_stable_public_paper": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/combined_total_return_momentum_20260913/normal/input_manifest.json",
+          "sha256": "2a5a36f765fc24076d29a74f9e41fe5983f4508715aa1532c5c81fb94e26fc92"
+        },
+        {
+          "path": "artifacts/analysis/combined_total_return_momentum_20260913/normal/result.json",
+          "sha256": "55ed599ec180cd95f4867fc4f29e2bf3c2662b9452f657eb048556d02ac30493"
+        },
+        {
+          "path": "artifacts/analysis/combined_total_return_momentum_20260913/normal/daily.csv",
+          "sha256": "6d2642bf2099e62fbf72c010058d911ec8214a5c577a0dd82a418a822eb11bae"
+        },
+        {
+          "path": "artifacts/analysis/combined_total_return_momentum_20260913/normal/experiments.jsonl",
+          "sha256": "5f3d779d9b2c8309f9c765690f730ee53c95cf358e1e6e2dd46d46a1ee4242d2"
+        },
+        {
+          "path": "artifacts/analysis/combined_total_return_momentum_20260913/normal/reservation.json",
+          "sha256": "0f782d97b8eb0eb1345efc9ce8f81647b1119b8c3c609118b1d8f4fcec5c0ed6"
+        },
+        {
+          "path": "artifacts/analysis/combined_total_return_momentum_20260913/normal/reservation_validation.json",
+          "sha256": "2c4052c0800b0b6483016987ac520760ace325774eab44f888535fae0ab7c780"
+        },
+        {
+          "path": "artifacts/analysis/combined_total_return_momentum_20260913/normal/preregistration.json",
+          "sha256": "c04de2e2ea9e2ff4217456c9950869e0276655078c5b060f0d14a56b75d6f38c"
+        },
+        {
+          "path": "artifacts/analysis/combined_total_return_momentum_20260913/normal/independent_audit.json",
+          "sha256": "d135d4ac2131ebfb772ceb947c7c63602fe8cd5de79bb664b1fe998b1f2ad111"
+        },
+        {
+          "path": "scripts/close_combined_total_return_momentum.py",
+          "sha256": "3ba0f33c8aa67316f1baa0e278d54533928514ec75511fae555d1a322b3fc6e7"
+        },
+        {
+          "path": "evidence/alphamax-dividend-momentum-feasibility-20260913/DESIGN.json",
+          "sha256": "8186c460dc08a0fce7bfda32d5deee538bda6348ca4b6d7aa096fe365d0be0db"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_total_return_momentum_20260913/candidate/closure.json",
+          "sha256": "27eee3e45afc3633a865f8b4b8df2784616470385084cab5b04679d4346d9a07"
+        }
+      ],
+      "statement": "Retrospective fixed dividend-aware momentum substitution in an existing AlphaMax sleeve. Normal combined excess gain and no-lower-return gates failed; stop candidate, no stress/2022 or parameter rescue. No admission, new distinct sleeve, live qualification or publication claim. Current-vintage sources, modeled metadata/borrow/action timing and daily fixed subbook-weight proxy remain. Standalone feature reconstruction is from bound source/code; runtime feature snapshot absent; full raw-fill quantity/impact reconstruction not claimed.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "point_in_time_data_and_survivorship_controls": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/combined_total_return_momentum_20260913/normal/input_manifest.json",
+          "sha256": "2a5a36f765fc24076d29a74f9e41fe5983f4508715aa1532c5c81fb94e26fc92"
+        },
+        {
+          "path": "artifacts/analysis/combined_total_return_momentum_20260913/normal/result.json",
+          "sha256": "55ed599ec180cd95f4867fc4f29e2bf3c2662b9452f657eb048556d02ac30493"
+        },
+        {
+          "path": "artifacts/analysis/combined_total_return_momentum_20260913/normal/daily.csv",
+          "sha256": "6d2642bf2099e62fbf72c010058d911ec8214a5c577a0dd82a418a822eb11bae"
+        },
+        {
+          "path": "artifacts/analysis/combined_total_return_momentum_20260913/normal/experiments.jsonl",
+          "sha256": "5f3d779d9b2c8309f9c765690f730ee53c95cf358e1e6e2dd46d46a1ee4242d2"
+        },
+        {
+          "path": "artifacts/analysis/combined_total_return_momentum_20260913/normal/reservation.json",
+          "sha256": "0f782d97b8eb0eb1345efc9ce8f81647b1119b8c3c609118b1d8f4fcec5c0ed6"
+        },
+        {
+          "path": "artifacts/analysis/combined_total_return_momentum_20260913/normal/reservation_validation.json",
+          "sha256": "2c4052c0800b0b6483016987ac520760ace325774eab44f888535fae0ab7c780"
+        },
+        {
+          "path": "artifacts/analysis/combined_total_return_momentum_20260913/normal/preregistration.json",
+          "sha256": "c04de2e2ea9e2ff4217456c9950869e0276655078c5b060f0d14a56b75d6f38c"
+        },
+        {
+          "path": "artifacts/analysis/combined_total_return_momentum_20260913/normal/independent_audit.json",
+          "sha256": "d135d4ac2131ebfb772ceb947c7c63602fe8cd5de79bb664b1fe998b1f2ad111"
+        },
+        {
+          "path": "scripts/close_combined_total_return_momentum.py",
+          "sha256": "3ba0f33c8aa67316f1baa0e278d54533928514ec75511fae555d1a322b3fc6e7"
+        },
+        {
+          "path": "evidence/alphamax-dividend-momentum-feasibility-20260913/DESIGN.json",
+          "sha256": "8186c460dc08a0fce7bfda32d5deee538bda6348ca4b6d7aa096fe365d0be0db"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_total_return_momentum_20260913/candidate/closure.json",
+          "sha256": "27eee3e45afc3633a865f8b4b8df2784616470385084cab5b04679d4346d9a07"
+        }
+      ],
+      "statement": "Retrospective fixed dividend-aware momentum substitution in an existing AlphaMax sleeve. Normal combined excess gain and no-lower-return gates failed; stop candidate, no stress/2022 or parameter rescue. No admission, new distinct sleeve, live qualification or publication claim. Current-vintage sources, modeled metadata/borrow/action timing and daily fixed subbook-weight proxy remain. Standalone feature reconstruction is from bound source/code; runtime feature snapshot absent; full raw-fill quantity/impact reconstruction not claimed.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "preregistration_and_hashes": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/combined_total_return_momentum_20260913/normal/input_manifest.json",
+          "sha256": "2a5a36f765fc24076d29a74f9e41fe5983f4508715aa1532c5c81fb94e26fc92"
+        },
+        {
+          "path": "artifacts/analysis/combined_total_return_momentum_20260913/normal/result.json",
+          "sha256": "55ed599ec180cd95f4867fc4f29e2bf3c2662b9452f657eb048556d02ac30493"
+        },
+        {
+          "path": "artifacts/analysis/combined_total_return_momentum_20260913/normal/daily.csv",
+          "sha256": "6d2642bf2099e62fbf72c010058d911ec8214a5c577a0dd82a418a822eb11bae"
+        },
+        {
+          "path": "artifacts/analysis/combined_total_return_momentum_20260913/normal/experiments.jsonl",
+          "sha256": "5f3d779d9b2c8309f9c765690f730ee53c95cf358e1e6e2dd46d46a1ee4242d2"
+        },
+        {
+          "path": "artifacts/analysis/combined_total_return_momentum_20260913/normal/reservation.json",
+          "sha256": "0f782d97b8eb0eb1345efc9ce8f81647b1119b8c3c609118b1d8f4fcec5c0ed6"
+        },
+        {
+          "path": "artifacts/analysis/combined_total_return_momentum_20260913/normal/reservation_validation.json",
+          "sha256": "2c4052c0800b0b6483016987ac520760ace325774eab44f888535fae0ab7c780"
+        },
+        {
+          "path": "artifacts/analysis/combined_total_return_momentum_20260913/normal/preregistration.json",
+          "sha256": "c04de2e2ea9e2ff4217456c9950869e0276655078c5b060f0d14a56b75d6f38c"
+        },
+        {
+          "path": "artifacts/analysis/combined_total_return_momentum_20260913/normal/independent_audit.json",
+          "sha256": "d135d4ac2131ebfb772ceb947c7c63602fe8cd5de79bb664b1fe998b1f2ad111"
+        },
+        {
+          "path": "scripts/close_combined_total_return_momentum.py",
+          "sha256": "3ba0f33c8aa67316f1baa0e278d54533928514ec75511fae555d1a322b3fc6e7"
+        },
+        {
+          "path": "evidence/alphamax-dividend-momentum-feasibility-20260913/DESIGN.json",
+          "sha256": "8186c460dc08a0fce7bfda32d5deee538bda6348ca4b6d7aa096fe365d0be0db"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_total_return_momentum_20260913/candidate/closure.json",
+          "sha256": "27eee3e45afc3633a865f8b4b8df2784616470385084cab5b04679d4346d9a07"
+        }
+      ],
+      "statement": "Retrospective fixed dividend-aware momentum substitution in an existing AlphaMax sleeve. Normal combined excess gain and no-lower-return gates failed; stop candidate, no stress/2022 or parameter rescue. No admission, new distinct sleeve, live qualification or publication claim. Current-vintage sources, modeled metadata/borrow/action timing and daily fixed subbook-weight proxy remain. Standalone feature reconstruction is from bound source/code; runtime feature snapshot absent; full raw-fill quantity/impact reconstruction not claimed.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "result_uncertainty_stress_capacity_and_diversification": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/combined_total_return_momentum_20260913/normal/input_manifest.json",
+          "sha256": "2a5a36f765fc24076d29a74f9e41fe5983f4508715aa1532c5c81fb94e26fc92"
+        },
+        {
+          "path": "artifacts/analysis/combined_total_return_momentum_20260913/normal/result.json",
+          "sha256": "55ed599ec180cd95f4867fc4f29e2bf3c2662b9452f657eb048556d02ac30493"
+        },
+        {
+          "path": "artifacts/analysis/combined_total_return_momentum_20260913/normal/daily.csv",
+          "sha256": "6d2642bf2099e62fbf72c010058d911ec8214a5c577a0dd82a418a822eb11bae"
+        },
+        {
+          "path": "artifacts/analysis/combined_total_return_momentum_20260913/normal/experiments.jsonl",
+          "sha256": "5f3d779d9b2c8309f9c765690f730ee53c95cf358e1e6e2dd46d46a1ee4242d2"
+        },
+        {
+          "path": "artifacts/analysis/combined_total_return_momentum_20260913/normal/reservation.json",
+          "sha256": "0f782d97b8eb0eb1345efc9ce8f81647b1119b8c3c609118b1d8f4fcec5c0ed6"
+        },
+        {
+          "path": "artifacts/analysis/combined_total_return_momentum_20260913/normal/reservation_validation.json",
+          "sha256": "2c4052c0800b0b6483016987ac520760ace325774eab44f888535fae0ab7c780"
+        },
+        {
+          "path": "artifacts/analysis/combined_total_return_momentum_20260913/normal/preregistration.json",
+          "sha256": "c04de2e2ea9e2ff4217456c9950869e0276655078c5b060f0d14a56b75d6f38c"
+        },
+        {
+          "path": "artifacts/analysis/combined_total_return_momentum_20260913/normal/independent_audit.json",
+          "sha256": "d135d4ac2131ebfb772ceb947c7c63602fe8cd5de79bb664b1fe998b1f2ad111"
+        },
+        {
+          "path": "scripts/close_combined_total_return_momentum.py",
+          "sha256": "3ba0f33c8aa67316f1baa0e278d54533928514ec75511fae555d1a322b3fc6e7"
+        },
+        {
+          "path": "evidence/alphamax-dividend-momentum-feasibility-20260913/DESIGN.json",
+          "sha256": "8186c460dc08a0fce7bfda32d5deee538bda6348ca4b6d7aa096fe365d0be0db"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_total_return_momentum_20260913/candidate/closure.json",
+          "sha256": "27eee3e45afc3633a865f8b4b8df2784616470385084cab5b04679d4346d9a07"
+        }
+      ],
+      "statement": "Retrospective fixed dividend-aware momentum substitution in an existing AlphaMax sleeve. Normal combined excess gain and no-lower-return gates failed; stop candidate, no stress/2022 or parameter rescue. No admission, new distinct sleeve, live qualification or publication claim. Current-vintage sources, modeled metadata/borrow/action timing and daily fixed subbook-weight proxy remain. Standalone feature reconstruction is from bound source/code; runtime feature snapshot absent; full raw-fill quantity/impact reconstruction not claimed.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    }
+  },
+  "research_family_key": "alphamax_total_return_momentum",
+  "schema": "canli.alphac-identity-trial-packet.v2"
+}

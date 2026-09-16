@@ -1,0 +1,54 @@
+.cc-footer[data-product-shell] { overflow: clip; }
+.cc-handoff { margin: -75px calc(-1 * clamp(22px, 4.5vw, 76px)) 75px; color: #fff; background: #000; position: relative; }
+.cc-handoff__viewport { padding: 65px clamp(22px, 4.5vw, 76px) 30px; }
+.cc-handoff__intro { display: grid; grid-template-columns: 1.1fr .9fr; gap: 14px 12vw; align-items: end; }
+.cc-handoff__intro > p:first-child { grid-column: 1 / -1; margin: 0; font: .62rem/1.5 var(--cin-data); color: #aabaff; text-transform: uppercase; letter-spacing: .1em; }
+.cc-footer .cc-handoff__intro h2 { margin: 0; color: #fff; font: 700 clamp(2.8rem, 5vw, 6rem)/.98 var(--cin-display); letter-spacing: -.035em; text-transform: uppercase; }
+.cc-handoff__intro > p:last-child { margin: 0; max-width: 37ch; color: #bac3ce; font: .9rem/1.7 var(--cin-reading); }
+.cc-handoff__stage { position: relative; height: clamp(230px, 32vh, 340px); margin: 15px 0 0; perspective: 900px; }
+.cc-handoff__route { position: absolute; width: 100%; height: 100%; overflow: visible; }
+.cc-handoff__route path { fill: none; vector-effect: non-scaling-stroke; stroke-width: 1; }
+.cc-handoff__track { stroke: #ffffff26; }
+.cc-handoff__trace { stroke: #ff5500; stroke-dasharray: 1; stroke-dashoffset: 0; }
+.cc-handoff__packet { position: absolute; left: 12%; top: 70%; width: clamp(115px, 12vw, 180px); margin-left: clamp(-90px, -6vw, -57.5px); margin-top: -110px; filter: drop-shadow(0 12px 22px #0016cb60); }
+.cc-handoff__packet svg { width: 100%; height: auto; overflow: visible; display: block; }
+.cc-handoff__packet img { width: 100%; height: auto; display: block; }
+.cc-handoff__dock { position: absolute; width: 95px; height: 48px; top: 70%; transform: translate(-50%, -10%); }
+.cc-handoff__dock--inputs { left: 12%; }
+.cc-handoff__dock--record { left: 88%; }
+.cc-handoff__dock i { display: block; position: absolute; width: 100%; height: 34px; border: 1px solid #8198ff80; background: #0016cb15; transform: skewY(-12deg); }
+.cc-handoff__dock i:nth-child(2) { top: 10px; }
+.cc-handoff__dock i:nth-child(3) { top: 20px; }
+.cc-handoff__gate { position: absolute; width: 150px; height: 150px; left: 50%; top: 29%; transform: translate(-50%, -50%); }
+.cc-handoff__gate i { position: absolute; inset: 0; border: 1px solid #617aff; border-radius: 50%; transform: rotateY(55deg); box-shadow: 0 0 30px #0016cb22; }
+.cc-handoff__gate i:nth-child(2) { transform: translateX(-18px) rotateY(55deg); opacity: .5; }
+.cc-handoff__gate i:nth-child(3) { transform: translateX(18px) rotateY(55deg); opacity: .5; }
+.cc-handoff__steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 4vw; }
+.cc-footer .cc-handoff__steps a { display: grid; align-content: start; gap: 12px; padding: 20px 0; border-top: 1px solid #ffffff35; color: #fff; position: relative; }
+.cc-handoff__steps a::before { content: ''; position: absolute; height: 2px; background: #ff5500; top: -1px; left: 0; width: 100%; transform: scaleX(0); transform-origin: left; transition: transform .35s; }
+.cc-handoff__steps a.is-current::before, .cc-handoff__steps a:hover::before, .cc-handoff__steps a:focus-visible::before { transform: scaleX(1); }
+.cc-handoff__steps span { color: #aabaff; font: .6rem/1.5 var(--cin-data); text-transform: uppercase; }
+.cc-handoff__steps strong { font: 700 clamp(1.2rem, 1.8vw, 2rem)/1.1 var(--cin-display); }
+.cc-handoff__steps small { color: #bac3ce; font: .8rem/1.5 var(--cin-reading); }
+.cc-handoff__steps em { color: #fff; font: normal .7rem/1.5 var(--cin-reading); margin-top: 5px; }
+.cc-handoff__boundary { font: .6rem/1.6 var(--cin-data); color: #bac3ce; margin: 15px 0 0; max-width: 80ch; }
+@media (min-width: 1000px) and (min-height: 780px) and (prefers-reduced-motion: no-preference) {
+  .cc-handoff.is-kinetic { height: 220svh; }
+  .cc-handoff.is-kinetic .cc-handoff__viewport { position: sticky; top: 78px; }
+}
+@media (max-width: 767px) {
+  .cc-handoff__viewport { padding-top: 65px; }
+  .cc-handoff__intro { grid-template-columns: 1fr; gap: 22px; }
+  .cc-handoff__intro h2 { font-size: clamp(2.5rem, 11vw, 4rem); }
+  .cc-handoff__intro > p:last-child { font-size: .85rem; }
+  .cc-handoff__stage { height: 250px; margin-top: 35px; }
+  .cc-handoff__gate { width: 100px; height: 100px; }
+  .cc-handoff__packet { width: 105px; margin-left: -52px; margin-top: -80px; }
+  .cc-handoff__dock { width: 52px; }
+  .cc-handoff__steps { grid-template-columns: 1fr; gap: 0; }
+  .cc-footer .cc-handoff__steps a { gap: 9px; padding: 22px 0; }
+  .cc-handoff__steps strong { font-size: 1.6rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cc-handoff__steps a::before { transition: none; }
+}

@@ -1,0 +1,1027 @@
+{
+  "claim_boundary": "Retrospective group-sizing diagnostic only; no admission, new sleeve or live implementation.",
+  "complete": true,
+  "completion_assessment": {
+    "candidate_evidence_complete_for_admission": false,
+    "disposition": "NORMAL_STANDALONE_ACCOUNTED",
+    "packet_evidence_accounting_complete": true
+  },
+  "config_hash": "04f76a71e7ffda45",
+  "configuration": {
+    "allocator": "trend",
+    "alpha_names": [
+      "mf_trend_63",
+      "mf_trend_126",
+      "mf_trend_252"
+    ],
+    "cost_stress": false,
+    "cov_halflife_days": null,
+    "cov_min_periods": 240,
+    "cov_window_bars": 720,
+    "direction_confirmation": true,
+    "end": 1780358400000,
+    "evaluation_policy": "continuous_retrospective_payable_book_v1",
+    "extended_reference_spec_sha256": "676b9579db1fa15c92051db47d74d5f61fd0214a487e4303088a9fa2a9282561",
+    "fixed_group_risk": true,
+    "history_start": 1325548800000,
+    "implementation_manifest_sha256": "77bc6800a46ef0ba885f8f85e513096ad255e590b8b53c5feae3ec5bb7803720",
+    "initial_cash": 100000.0,
+    "input_binding": {
+      "execution_mode": "RETROSPECTIVE_CURRENT_VINTAGE",
+      "mode": "DIAGNOSTIC_CURRENT_VINTAGE",
+      "paired_input_sha256": "5f977ccd06240643eb1787d214b7ec31c0a92df1fcb1e40014ba710c218a8064",
+      "point_in_time_proven": false,
+      "quote_volume": "raw_close_times_raw_volume_proxy",
+      "raw_label_convention": "raw_open_cash_accrual_fixed_release_v2",
+      "raw_label_input_sha256": "e8e1b01cd0f10308d0a2d2717e5cf8e74dff49810ab4137e34b763993d85de5a",
+      "raw_label_mode": "DIAGNOSTIC_CURRENT_VINTAGE",
+      "retrospective_vintage_ms": 1789214263591,
+      "risk_prices": "synthetic_returns_raw_position_marks_v1"
+    },
+    "instrument_ids": [
+      "XUSE:CASH:DBAUSD",
+      "XUSE:CASH:DBCUSD",
+      "XUSE:CASH:EEMUSD",
+      "XUSE:CASH:EFAUSD",
+      "XUSE:CASH:FXEUSD",
+      "XUSE:CASH:FXYUSD",
+      "XUSE:CASH:GLDUSD",
+      "XUSE:CASH:IEFUSD",
+      "XUSE:CASH:IWMUSD",
+      "XUSE:CASH:QQQUSD",
+      "XUSE:CASH:SHYUSD",
+      "XUSE:CASH:SLVUSD",
+      "XUSE:CASH:SPYUSD",
+      "XUSE:CASH:TLTUSD",
+      "XUSE:CASH:UNGUSD",
+      "XUSE:CASH:USOUSD",
+      "XUSE:CASH:UUPUSD"
+    ],
+    "metric_basis": "xnys_252_sessions_elapsed_cagr_v1",
+    "no_trade_band": 0.001,
+    "positive_targets": false,
+    "rebalance_bars": 10,
+    "resolved_settings": {
+      "costs": {
+        "default_half_spread_bps": 2.5,
+        "equity_borrow_bps_annual": 50.0,
+        "equity_commission_bps": 1.0,
+        "equity_half_spread_bps": 3.0,
+        "impact_coef": 1.0,
+        "latency_addon_bps": 2.0,
+        "perp_maker_bps": 2.0,
+        "perp_taker_bps": 5.0
+      },
+      "data": {
+        "asset_class": "equity",
+        "backfill_start": "2001-01-01T00:00:00Z",
+        "exchange": "polygon",
+        "ingest_grace_ms": 30000,
+        "timeframe": "1d"
+      },
+      "live": {
+        "cycle_grace_s": 90,
+        "paper": true,
+        "tick_sleep_s": 45
+      },
+      "portfolio": {
+        "dollar_neutral": false,
+        "gross_max": 1.0,
+        "net_max": 1.0,
+        "no_trade_band": 0.001,
+        "rank_top_k": null,
+        "risk_aversion": 7.0,
+        "turnover_max": 0.1,
+        "vol_scale_max": 3.0,
+        "vol_target_ann": 0.15,
+        "w_max": 0.34
+      },
+      "quality": {
+        "bad_print_reversion_frac": 0.5,
+        "bad_print_vol_frac": 0.25,
+        "downtime_frac": 0.8,
+        "ewma_span_bars": 168,
+        "min_history_bars": 24,
+        "outlier_k": 8.0,
+        "stale_run_bars": 12
+      },
+      "risk": {
+        "clamp_reduce_only_adv": true,
+        "dd_flat_halt": -0.45,
+        "dd_halve_gross": -0.3,
+        "flat_cooldown_bars": 336,
+        "max_gross": 1.0,
+        "max_net": 1.0,
+        "max_order_adv_frac": 0.01,
+        "max_position_frac": 0.34,
+        "price_collar_frac": 0.05,
+        "staleness_max_bars": 2,
+        "var_confidence": 0.99,
+        "var_window_days": 365
+      },
+      "signals": {
+        "horizon_bars": 21,
+        "ic_target": 0.02
+      },
+      "universe": {
+        "entry_rank": 20,
+        "exit_rank": 25,
+        "rank_window_days": 30,
+        "rebalance": "monthly",
+        "size": 20
+      }
+    },
+    "saved_signal_filter": "ts_open<end",
+    "saved_signal_sha256": "e0d6c54d659790e2a8ef4e3d2871a0c427b7278e45987a7b09d226df713da5b0",
+    "start": 1672272000000,
+    "trend_blend_normalization": "cross_sectional_zscore",
+    "trend_ic_history_anchor": 1325548800000,
+    "trend_label_availability": "raw_cash_exit_session_close_v2"
+  },
+  "content_hash": "sha256:491e245f061fa3ca2c5a3433880492741177080c2a9616e4fdf255b5142d047e",
+  "hypothesis_key": "e13e55febb0166a3",
+  "immutable_first_measurement": {
+    "config": {
+      "allocator": "trend",
+      "alpha_names": [
+        "mf_trend_63",
+        "mf_trend_126",
+        "mf_trend_252"
+      ],
+      "cost_stress": false,
+      "cov_halflife_days": null,
+      "cov_min_periods": 240,
+      "cov_window_bars": 720,
+      "direction_confirmation": true,
+      "end": 1780358400000,
+      "evaluation_policy": "continuous_retrospective_payable_book_v1",
+      "extended_reference_spec_sha256": "676b9579db1fa15c92051db47d74d5f61fd0214a487e4303088a9fa2a9282561",
+      "fixed_group_risk": true,
+      "history_start": 1325548800000,
+      "implementation_manifest_sha256": "77bc6800a46ef0ba885f8f85e513096ad255e590b8b53c5feae3ec5bb7803720",
+      "initial_cash": 100000.0,
+      "input_binding": {
+        "execution_mode": "RETROSPECTIVE_CURRENT_VINTAGE",
+        "mode": "DIAGNOSTIC_CURRENT_VINTAGE",
+        "paired_input_sha256": "5f977ccd06240643eb1787d214b7ec31c0a92df1fcb1e40014ba710c218a8064",
+        "point_in_time_proven": false,
+        "quote_volume": "raw_close_times_raw_volume_proxy",
+        "raw_label_convention": "raw_open_cash_accrual_fixed_release_v2",
+        "raw_label_input_sha256": "e8e1b01cd0f10308d0a2d2717e5cf8e74dff49810ab4137e34b763993d85de5a",
+        "raw_label_mode": "DIAGNOSTIC_CURRENT_VINTAGE",
+        "retrospective_vintage_ms": 1789214263591,
+        "risk_prices": "synthetic_returns_raw_position_marks_v1"
+      },
+      "instrument_ids": [
+        "XUSE:CASH:DBAUSD",
+        "XUSE:CASH:DBCUSD",
+        "XUSE:CASH:EEMUSD",
+        "XUSE:CASH:EFAUSD",
+        "XUSE:CASH:FXEUSD",
+        "XUSE:CASH:FXYUSD",
+        "XUSE:CASH:GLDUSD",
+        "XUSE:CASH:IEFUSD",
+        "XUSE:CASH:IWMUSD",
+        "XUSE:CASH:QQQUSD",
+        "XUSE:CASH:SHYUSD",
+        "XUSE:CASH:SLVUSD",
+        "XUSE:CASH:SPYUSD",
+        "XUSE:CASH:TLTUSD",
+        "XUSE:CASH:UNGUSD",
+        "XUSE:CASH:USOUSD",
+        "XUSE:CASH:UUPUSD"
+      ],
+      "metric_basis": "xnys_252_sessions_elapsed_cagr_v1",
+      "no_trade_band": 0.001,
+      "positive_targets": false,
+      "rebalance_bars": 10,
+      "resolved_settings": {
+        "costs": {
+          "default_half_spread_bps": 2.5,
+          "equity_borrow_bps_annual": 50.0,
+          "equity_commission_bps": 1.0,
+          "equity_half_spread_bps": 3.0,
+          "impact_coef": 1.0,
+          "latency_addon_bps": 2.0,
+          "perp_maker_bps": 2.0,
+          "perp_taker_bps": 5.0
+        },
+        "data": {
+          "asset_class": "equity",
+          "backfill_start": "2001-01-01T00:00:00Z",
+          "exchange": "polygon",
+          "ingest_grace_ms": 30000,
+          "timeframe": "1d"
+        },
+        "live": {
+          "cycle_grace_s": 90,
+          "paper": true,
+          "tick_sleep_s": 45
+        },
+        "portfolio": {
+          "dollar_neutral": false,
+          "gross_max": 1.0,
+          "net_max": 1.0,
+          "no_trade_band": 0.001,
+          "rank_top_k": null,
+          "risk_aversion": 7.0,
+          "turnover_max": 0.1,
+          "vol_scale_max": 3.0,
+          "vol_target_ann": 0.15,
+          "w_max": 0.34
+        },
+        "quality": {
+          "bad_print_reversion_frac": 0.5,
+          "bad_print_vol_frac": 0.25,
+          "downtime_frac": 0.8,
+          "ewma_span_bars": 168,
+          "min_history_bars": 24,
+          "outlier_k": 8.0,
+          "stale_run_bars": 12
+        },
+        "risk": {
+          "clamp_reduce_only_adv": true,
+          "dd_flat_halt": -0.45,
+          "dd_halve_gross": -0.3,
+          "flat_cooldown_bars": 336,
+          "max_gross": 1.0,
+          "max_net": 1.0,
+          "max_order_adv_frac": 0.01,
+          "max_position_frac": 0.34,
+          "price_collar_frac": 0.05,
+          "staleness_max_bars": 2,
+          "var_confidence": 0.99,
+          "var_window_days": 365
+        },
+        "signals": {
+          "horizon_bars": 21,
+          "ic_target": 0.02
+        },
+        "universe": {
+          "entry_rank": 20,
+          "exit_rank": 25,
+          "rank_window_days": 30,
+          "rebalance": "monthly",
+          "size": 20
+        }
+      },
+      "saved_signal_filter": "ts_open<end",
+      "saved_signal_sha256": "e0d6c54d659790e2a8ef4e3d2871a0c427b7278e45987a7b09d226df713da5b0",
+      "start": 1672272000000,
+      "trend_blend_normalization": "cross_sectional_zscore",
+      "trend_ic_history_anchor": 1325548800000,
+      "trend_label_availability": "raw_cash_exit_session_close_v2"
+    },
+    "config_hash": "04f76a71e7ffda45",
+    "kurtosis": 6.1857631948087475,
+    "n_obs": 856,
+    "now_ms": 1789310050243,
+    "sharpe_ann": 0.1295613281344296,
+    "sharpe_per_period": 0.008161596518450874,
+    "skew": -0.5383488921241676
+  },
+  "imported_from_external_tree": {
+    "external_content_hash": "sha256:9801be9857c9fd46a4624370da65c485ca5d6a98fe12b936505258d475a7bf31",
+    "imported_on": "2026-09-14T19:36:11+00:00",
+    "tree": "/Users/arhancanli/alphac-prospective-pause-20260911"
+  },
+  "missing_sections": [],
+  "packet_status": "COMPLETE_ACCOUNTING_FINAL_KILLED_NOT_ADMITTED",
+  "partial_sections": [],
+  "required_sections": {
+    "admission_or_kill_decision": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/audit_closure.json",
+          "sha256": "206f842c3642e37ee0f1a1f206d286e897d582b2441c1a8a4fb86d8e18823916"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/result.json",
+          "sha256": "79ffd61fead5d84016c80bb4ca817a2182ebcea9bf3a12c7eba9667ba05315c2"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/REPORT.md",
+          "sha256": "234e51a99b3e21f269ccdce7a3ff1eddf6f855e6ed10efc20827a5e96daa4f3d"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/direction_audit.json",
+          "sha256": "e5dbb31781d93737cead25cb553e94819062608808c0be87094a2866d7f3424a"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/measurement_status.json",
+          "sha256": "6fe7b649fd2ab6aa997720defb5784986f0b26f73f214b1fda03e529d2c64245"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/signals.parquet",
+          "sha256": "f1e3834513b14dbc258d3fcd162bdb042f5c586fbb389263c5c0be5084552c0f"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/calendar2023_2026_excess.csv",
+          "sha256": "d16938e74f8c784ac6f56485c551a4cca6db72a161bebde49fd75b2404e4fee7"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/experiments.jsonl",
+          "sha256": "79fa3c3e186ae0b1ac8ca294d475a94c95c356b9584f636e01a3a8727409730b"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/reservation.json",
+          "sha256": "6b70e33f6a41499e143871125e405ae415955f6ea04a30ee928e413d1612145a"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/reservation_validation.json",
+          "sha256": "777d8580c86d78d86457da254c87429d2802fe570375ce837ebcca406ebc636a"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/preregistration.json",
+          "sha256": "08001a311c98effa56b6d410a6569eb89740b1b2a4d26e19a578a52b27a133bf"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/group_risk_audit.json",
+          "sha256": "8c72ce2bb7f38d567d0e41fa395d8cc9eb34323df66eb24f891ae46e144c35f9"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/independent_audit.json",
+          "sha256": "535da3d46be561f15e6bf8782b45958f4c4e0d612f6885082cfd8c425ba4608f"
+        },
+        {
+          "path": "evidence/trend-group-risk-design-20260913/EXPERIMENT_SPEC.json",
+          "sha256": "676b9579db1fa15c92051db47d74d5f61fd0214a487e4303088a9fa2a9282561"
+        },
+        {
+          "path": "scripts/close_group_risk_identity.py",
+          "sha256": "38e245bb89e6383516c4bb124aa00a2880d805442ae6b027764d52a892dc6a03"
+        },
+        {
+          "content_hash": "sha256:9daf2607e463adbea66215ba99729cdca49ba52d66435d7ec363c7dba98e7ac0",
+          "path": "artifacts/research/development_closures/e13e55febb0166a3_admission_closure.json",
+          "sha256": "7d63816c95093f0ac03fadc2824977ba162c274cab8b3db32bcba104fee36d18",
+          "type": "final_development_admission_closure"
+        }
+      ],
+      "statement": "Combined gate result controls progression; standalone descriptive. No admission or reference substitution. Normal combined comparison pending.",
+      "status": "VERIFIED_FINAL_DEVELOPMENT_CLOSURE_KILL"
+    },
+    "code_environment_and_reproduction": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/audit_closure.json",
+          "sha256": "206f842c3642e37ee0f1a1f206d286e897d582b2441c1a8a4fb86d8e18823916"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/result.json",
+          "sha256": "79ffd61fead5d84016c80bb4ca817a2182ebcea9bf3a12c7eba9667ba05315c2"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/REPORT.md",
+          "sha256": "234e51a99b3e21f269ccdce7a3ff1eddf6f855e6ed10efc20827a5e96daa4f3d"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/direction_audit.json",
+          "sha256": "e5dbb31781d93737cead25cb553e94819062608808c0be87094a2866d7f3424a"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/measurement_status.json",
+          "sha256": "6fe7b649fd2ab6aa997720defb5784986f0b26f73f214b1fda03e529d2c64245"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/signals.parquet",
+          "sha256": "f1e3834513b14dbc258d3fcd162bdb042f5c586fbb389263c5c0be5084552c0f"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/calendar2023_2026_excess.csv",
+          "sha256": "d16938e74f8c784ac6f56485c551a4cca6db72a161bebde49fd75b2404e4fee7"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/experiments.jsonl",
+          "sha256": "79fa3c3e186ae0b1ac8ca294d475a94c95c356b9584f636e01a3a8727409730b"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/reservation.json",
+          "sha256": "6b70e33f6a41499e143871125e405ae415955f6ea04a30ee928e413d1612145a"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/reservation_validation.json",
+          "sha256": "777d8580c86d78d86457da254c87429d2802fe570375ce837ebcca406ebc636a"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/preregistration.json",
+          "sha256": "08001a311c98effa56b6d410a6569eb89740b1b2a4d26e19a578a52b27a133bf"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/group_risk_audit.json",
+          "sha256": "8c72ce2bb7f38d567d0e41fa395d8cc9eb34323df66eb24f891ae46e144c35f9"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/independent_audit.json",
+          "sha256": "535da3d46be561f15e6bf8782b45958f4c4e0d612f6885082cfd8c425ba4608f"
+        },
+        {
+          "path": "evidence/trend-group-risk-design-20260913/EXPERIMENT_SPEC.json",
+          "sha256": "676b9579db1fa15c92051db47d74d5f61fd0214a487e4303088a9fa2a9282561"
+        },
+        {
+          "path": "scripts/close_group_risk_identity.py",
+          "sha256": "38e245bb89e6383516c4bb124aa00a2880d805442ae6b027764d52a892dc6a03"
+        }
+      ],
+      "statement": "Isolated group allocator/strategy/bundle with17 synthetic tests across unit and full-engine scope. Saved accounting independently reconstructed; not independent historical source certification.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "economic_mechanism_and_falsifiable_hypothesis": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/audit_closure.json",
+          "sha256": "206f842c3642e37ee0f1a1f206d286e897d582b2441c1a8a4fb86d8e18823916"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/result.json",
+          "sha256": "79ffd61fead5d84016c80bb4ca817a2182ebcea9bf3a12c7eba9667ba05315c2"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/REPORT.md",
+          "sha256": "234e51a99b3e21f269ccdce7a3ff1eddf6f855e6ed10efc20827a5e96daa4f3d"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/direction_audit.json",
+          "sha256": "e5dbb31781d93737cead25cb553e94819062608808c0be87094a2866d7f3424a"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/measurement_status.json",
+          "sha256": "6fe7b649fd2ab6aa997720defb5784986f0b26f73f214b1fda03e529d2c64245"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/signals.parquet",
+          "sha256": "f1e3834513b14dbc258d3fcd162bdb042f5c586fbb389263c5c0be5084552c0f"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/calendar2023_2026_excess.csv",
+          "sha256": "d16938e74f8c784ac6f56485c551a4cca6db72a161bebde49fd75b2404e4fee7"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/experiments.jsonl",
+          "sha256": "79fa3c3e186ae0b1ac8ca294d475a94c95c356b9584f636e01a3a8727409730b"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/reservation.json",
+          "sha256": "6b70e33f6a41499e143871125e405ae415955f6ea04a30ee928e413d1612145a"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/reservation_validation.json",
+          "sha256": "777d8580c86d78d86457da254c87429d2802fe570375ce837ebcca406ebc636a"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/preregistration.json",
+          "sha256": "08001a311c98effa56b6d410a6569eb89740b1b2a4d26e19a578a52b27a133bf"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/group_risk_audit.json",
+          "sha256": "8c72ce2bb7f38d567d0e41fa395d8cc9eb34323df66eb24f891ae46e144c35f9"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/independent_audit.json",
+          "sha256": "535da3d46be561f15e6bf8782b45958f4c4e0d612f6885082cfd8c425ba4608f"
+        },
+        {
+          "path": "evidence/trend-group-risk-design-20260913/EXPERIMENT_SPEC.json",
+          "sha256": "676b9579db1fa15c92051db47d74d5f61fd0214a487e4303088a9fa2a9282561"
+        },
+        {
+          "path": "scripts/close_group_risk_identity.py",
+          "sha256": "38e245bb89e6383516c4bb124aa00a2880d805442ae6b027764d52a892dc6a03"
+        }
+      ],
+      "statement": "Equal stand-alone estimated risk of four fixed asset-class groups before original gross/name caps, using existing causal covariance and unchanged forecast signs. No newly distinct alpha sleeve.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "execution_and_cost_model": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/audit_closure.json",
+          "sha256": "206f842c3642e37ee0f1a1f206d286e897d582b2441c1a8a4fb86d8e18823916"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/result.json",
+          "sha256": "79ffd61fead5d84016c80bb4ca817a2182ebcea9bf3a12c7eba9667ba05315c2"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/REPORT.md",
+          "sha256": "234e51a99b3e21f269ccdce7a3ff1eddf6f855e6ed10efc20827a5e96daa4f3d"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/direction_audit.json",
+          "sha256": "e5dbb31781d93737cead25cb553e94819062608808c0be87094a2866d7f3424a"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/measurement_status.json",
+          "sha256": "6fe7b649fd2ab6aa997720defb5784986f0b26f73f214b1fda03e529d2c64245"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/signals.parquet",
+          "sha256": "f1e3834513b14dbc258d3fcd162bdb042f5c586fbb389263c5c0be5084552c0f"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/calendar2023_2026_excess.csv",
+          "sha256": "d16938e74f8c784ac6f56485c551a4cca6db72a161bebde49fd75b2404e4fee7"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/experiments.jsonl",
+          "sha256": "79fa3c3e186ae0b1ac8ca294d475a94c95c356b9584f636e01a3a8727409730b"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/reservation.json",
+          "sha256": "6b70e33f6a41499e143871125e405ae415955f6ea04a30ee928e413d1612145a"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/reservation_validation.json",
+          "sha256": "777d8580c86d78d86457da254c87429d2802fe570375ce837ebcca406ebc636a"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/preregistration.json",
+          "sha256": "08001a311c98effa56b6d410a6569eb89740b1b2a4d26e19a578a52b27a133bf"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/group_risk_audit.json",
+          "sha256": "8c72ce2bb7f38d567d0e41fa395d8cc9eb34323df66eb24f891ae46e144c35f9"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/independent_audit.json",
+          "sha256": "535da3d46be561f15e6bf8782b45958f4c4e0d612f6885082cfd8c425ba4608f"
+        },
+        {
+          "path": "evidence/trend-group-risk-design-20260913/EXPERIMENT_SPEC.json",
+          "sha256": "676b9579db1fa15c92051db47d74d5f61fd0214a487e4303088a9fa2a9282561"
+        },
+        {
+          "path": "scripts/close_group_risk_identity.py",
+          "sha256": "38e245bb89e6383516c4bb124aa00a2880d805442ae6b027764d52a892dc6a03"
+        }
+      ],
+      "statement": "Same raw-open and payable dividend engine as reference; normal commission/spread/impact/latency/borrow settings retained. Group sizing only. Final caps/vol overlay may break group-risk equality. Inter-sleeve rebalancing/collateral remain modeled.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "family_and_union_trial_accounting": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/audit_closure.json",
+          "sha256": "206f842c3642e37ee0f1a1f206d286e897d582b2441c1a8a4fb86d8e18823916"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/result.json",
+          "sha256": "79ffd61fead5d84016c80bb4ca817a2182ebcea9bf3a12c7eba9667ba05315c2"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/REPORT.md",
+          "sha256": "234e51a99b3e21f269ccdce7a3ff1eddf6f855e6ed10efc20827a5e96daa4f3d"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/direction_audit.json",
+          "sha256": "e5dbb31781d93737cead25cb553e94819062608808c0be87094a2866d7f3424a"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/measurement_status.json",
+          "sha256": "6fe7b649fd2ab6aa997720defb5784986f0b26f73f214b1fda03e529d2c64245"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/signals.parquet",
+          "sha256": "f1e3834513b14dbc258d3fcd162bdb042f5c586fbb389263c5c0be5084552c0f"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/calendar2023_2026_excess.csv",
+          "sha256": "d16938e74f8c784ac6f56485c551a4cca6db72a161bebde49fd75b2404e4fee7"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/experiments.jsonl",
+          "sha256": "79fa3c3e186ae0b1ac8ca294d475a94c95c356b9584f636e01a3a8727409730b"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/reservation.json",
+          "sha256": "6b70e33f6a41499e143871125e405ae415955f6ea04a30ee928e413d1612145a"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/reservation_validation.json",
+          "sha256": "777d8580c86d78d86457da254c87429d2802fe570375ce837ebcca406ebc636a"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/preregistration.json",
+          "sha256": "08001a311c98effa56b6d410a6569eb89740b1b2a4d26e19a578a52b27a133bf"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/group_risk_audit.json",
+          "sha256": "8c72ce2bb7f38d567d0e41fa395d8cc9eb34323df66eb24f891ae46e144c35f9"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/independent_audit.json",
+          "sha256": "535da3d46be561f15e6bf8782b45958f4c4e0d612f6885082cfd8c425ba4608f"
+        },
+        {
+          "path": "evidence/trend-group-risk-design-20260913/EXPERIMENT_SPEC.json",
+          "sha256": "676b9579db1fa15c92051db47d74d5f61fd0214a487e4303088a9fa2a9282561"
+        },
+        {
+          "path": "scripts/close_group_risk_identity.py",
+          "sha256": "38e245bb89e6383516c4bb124aa00a2880d805442ae6b027764d52a892dc6a03"
+        }
+      ],
+      "statement": "Canonical validated reservation before candidate return identity, immutable first measured record retained. Existing failed category short-mask and other trials preserved.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "identity_and_authorship": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/audit_closure.json",
+          "sha256": "206f842c3642e37ee0f1a1f206d286e897d582b2441c1a8a4fb86d8e18823916"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/result.json",
+          "sha256": "79ffd61fead5d84016c80bb4ca817a2182ebcea9bf3a12c7eba9667ba05315c2"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/REPORT.md",
+          "sha256": "234e51a99b3e21f269ccdce7a3ff1eddf6f855e6ed10efc20827a5e96daa4f3d"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/direction_audit.json",
+          "sha256": "e5dbb31781d93737cead25cb553e94819062608808c0be87094a2866d7f3424a"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/measurement_status.json",
+          "sha256": "6fe7b649fd2ab6aa997720defb5784986f0b26f73f214b1fda03e529d2c64245"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/signals.parquet",
+          "sha256": "f1e3834513b14dbc258d3fcd162bdb042f5c586fbb389263c5c0be5084552c0f"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/calendar2023_2026_excess.csv",
+          "sha256": "d16938e74f8c784ac6f56485c551a4cca6db72a161bebde49fd75b2404e4fee7"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/experiments.jsonl",
+          "sha256": "79fa3c3e186ae0b1ac8ca294d475a94c95c356b9584f636e01a3a8727409730b"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/reservation.json",
+          "sha256": "6b70e33f6a41499e143871125e405ae415955f6ea04a30ee928e413d1612145a"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/reservation_validation.json",
+          "sha256": "777d8580c86d78d86457da254c87429d2802fe570375ce837ebcca406ebc636a"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/preregistration.json",
+          "sha256": "08001a311c98effa56b6d410a6569eb89740b1b2a4d26e19a578a52b27a133bf"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/group_risk_audit.json",
+          "sha256": "8c72ce2bb7f38d567d0e41fa395d8cc9eb34323df66eb24f891ae46e144c35f9"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/independent_audit.json",
+          "sha256": "535da3d46be561f15e6bf8782b45958f4c4e0d612f6885082cfd8c425ba4608f"
+        },
+        {
+          "path": "evidence/trend-group-risk-design-20260913/EXPERIMENT_SPEC.json",
+          "sha256": "676b9579db1fa15c92051db47d74d5f61fd0214a487e4303088a9fa2a9282561"
+        },
+        {
+          "path": "scripts/close_group_risk_identity.py",
+          "sha256": "38e245bb89e6383516c4bb124aa00a2880d805442ae6b027764d52a892dc6a03"
+        }
+      ],
+      "statement": "Authorized agent research in local worktree. No independent reviewer or authorship verification claimed.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "literature_and_overlap_decision": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/audit_closure.json",
+          "sha256": "206f842c3642e37ee0f1a1f206d286e897d582b2441c1a8a4fb86d8e18823916"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/result.json",
+          "sha256": "79ffd61fead5d84016c80bb4ca817a2182ebcea9bf3a12c7eba9667ba05315c2"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/REPORT.md",
+          "sha256": "234e51a99b3e21f269ccdce7a3ff1eddf6f855e6ed10efc20827a5e96daa4f3d"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/direction_audit.json",
+          "sha256": "e5dbb31781d93737cead25cb553e94819062608808c0be87094a2866d7f3424a"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/measurement_status.json",
+          "sha256": "6fe7b649fd2ab6aa997720defb5784986f0b26f73f214b1fda03e529d2c64245"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/signals.parquet",
+          "sha256": "f1e3834513b14dbc258d3fcd162bdb042f5c586fbb389263c5c0be5084552c0f"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/calendar2023_2026_excess.csv",
+          "sha256": "d16938e74f8c784ac6f56485c551a4cca6db72a161bebde49fd75b2404e4fee7"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/experiments.jsonl",
+          "sha256": "79fa3c3e186ae0b1ac8ca294d475a94c95c356b9584f636e01a3a8727409730b"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/reservation.json",
+          "sha256": "6b70e33f6a41499e143871125e405ae415955f6ea04a30ee928e413d1612145a"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/reservation_validation.json",
+          "sha256": "777d8580c86d78d86457da254c87429d2802fe570375ce837ebcca406ebc636a"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/preregistration.json",
+          "sha256": "08001a311c98effa56b6d410a6569eb89740b1b2a4d26e19a578a52b27a133bf"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/group_risk_audit.json",
+          "sha256": "8c72ce2bb7f38d567d0e41fa395d8cc9eb34323df66eb24f891ae46e144c35f9"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/independent_audit.json",
+          "sha256": "535da3d46be561f15e6bf8782b45958f4c4e0d612f6885082cfd8c425ba4608f"
+        },
+        {
+          "path": "evidence/trend-group-risk-design-20260913/EXPERIMENT_SPEC.json",
+          "sha256": "676b9579db1fa15c92051db47d74d5f61fd0214a487e4303088a9fa2a9282561"
+        },
+        {
+          "path": "scripts/close_group_risk_identity.py",
+          "sha256": "38e245bb89e6383516c4bb124aa00a2880d805442ae6b027764d52a892dc6a03"
+        }
+      ],
+      "statement": "Portfolio-construction hypothesis within existing Trend, not a new forecast or literature novelty claim. Config-name prior review non-exhaustive; retains all eligible signs unlike retired short masks.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "machine_readable_packet_and_stable_public_paper": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/audit_closure.json",
+          "sha256": "206f842c3642e37ee0f1a1f206d286e897d582b2441c1a8a4fb86d8e18823916"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/result.json",
+          "sha256": "79ffd61fead5d84016c80bb4ca817a2182ebcea9bf3a12c7eba9667ba05315c2"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/REPORT.md",
+          "sha256": "234e51a99b3e21f269ccdce7a3ff1eddf6f855e6ed10efc20827a5e96daa4f3d"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/direction_audit.json",
+          "sha256": "e5dbb31781d93737cead25cb553e94819062608808c0be87094a2866d7f3424a"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/measurement_status.json",
+          "sha256": "6fe7b649fd2ab6aa997720defb5784986f0b26f73f214b1fda03e529d2c64245"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/signals.parquet",
+          "sha256": "f1e3834513b14dbc258d3fcd162bdb042f5c586fbb389263c5c0be5084552c0f"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/calendar2023_2026_excess.csv",
+          "sha256": "d16938e74f8c784ac6f56485c551a4cca6db72a161bebde49fd75b2404e4fee7"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/experiments.jsonl",
+          "sha256": "79fa3c3e186ae0b1ac8ca294d475a94c95c356b9584f636e01a3a8727409730b"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/reservation.json",
+          "sha256": "6b70e33f6a41499e143871125e405ae415955f6ea04a30ee928e413d1612145a"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/reservation_validation.json",
+          "sha256": "777d8580c86d78d86457da254c87429d2802fe570375ce837ebcca406ebc636a"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/preregistration.json",
+          "sha256": "08001a311c98effa56b6d410a6569eb89740b1b2a4d26e19a578a52b27a133bf"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/group_risk_audit.json",
+          "sha256": "8c72ce2bb7f38d567d0e41fa395d8cc9eb34323df66eb24f891ae46e144c35f9"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/independent_audit.json",
+          "sha256": "535da3d46be561f15e6bf8782b45958f4c4e0d612f6885082cfd8c425ba4608f"
+        },
+        {
+          "path": "evidence/trend-group-risk-design-20260913/EXPERIMENT_SPEC.json",
+          "sha256": "676b9579db1fa15c92051db47d74d5f61fd0214a487e4303088a9fa2a9282561"
+        },
+        {
+          "path": "scripts/close_group_risk_identity.py",
+          "sha256": "38e245bb89e6383516c4bb124aa00a2880d805442ae6b027764d52a892dc6a03"
+        }
+      ],
+      "statement": "Local hash-bound packet and reports only. Reservation public paths are intended identifiers, not verified remote publication.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "point_in_time_data_and_survivorship_controls": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/audit_closure.json",
+          "sha256": "206f842c3642e37ee0f1a1f206d286e897d582b2441c1a8a4fb86d8e18823916"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/result.json",
+          "sha256": "79ffd61fead5d84016c80bb4ca817a2182ebcea9bf3a12c7eba9667ba05315c2"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/REPORT.md",
+          "sha256": "234e51a99b3e21f269ccdce7a3ff1eddf6f855e6ed10efc20827a5e96daa4f3d"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/direction_audit.json",
+          "sha256": "e5dbb31781d93737cead25cb553e94819062608808c0be87094a2866d7f3424a"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/measurement_status.json",
+          "sha256": "6fe7b649fd2ab6aa997720defb5784986f0b26f73f214b1fda03e529d2c64245"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/signals.parquet",
+          "sha256": "f1e3834513b14dbc258d3fcd162bdb042f5c586fbb389263c5c0be5084552c0f"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/calendar2023_2026_excess.csv",
+          "sha256": "d16938e74f8c784ac6f56485c551a4cca6db72a161bebde49fd75b2404e4fee7"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/experiments.jsonl",
+          "sha256": "79fa3c3e186ae0b1ac8ca294d475a94c95c356b9584f636e01a3a8727409730b"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/reservation.json",
+          "sha256": "6b70e33f6a41499e143871125e405ae415955f6ea04a30ee928e413d1612145a"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/reservation_validation.json",
+          "sha256": "777d8580c86d78d86457da254c87429d2802fe570375ce837ebcca406ebc636a"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/preregistration.json",
+          "sha256": "08001a311c98effa56b6d410a6569eb89740b1b2a4d26e19a578a52b27a133bf"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/group_risk_audit.json",
+          "sha256": "8c72ce2bb7f38d567d0e41fa395d8cc9eb34323df66eb24f891ae46e144c35f9"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/independent_audit.json",
+          "sha256": "535da3d46be561f15e6bf8782b45958f4c4e0d612f6885082cfd8c425ba4608f"
+        },
+        {
+          "path": "evidence/trend-group-risk-design-20260913/EXPERIMENT_SPEC.json",
+          "sha256": "676b9579db1fa15c92051db47d74d5f61fd0214a487e4303088a9fa2a9282561"
+        },
+        {
+          "path": "scripts/close_group_risk_identity.py",
+          "sha256": "38e245bb89e6383516c4bb124aa00a2880d805442ae6b027764d52a892dc6a03"
+        }
+      ],
+      "statement": "Retrospective inspected historical forecasts/current-vintage data, synthetic dividend-reinvestment feature prices, raw execution and modeled action/borrow metadata. No untouched OOS or historical publication-vintage claim.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "preregistration_and_hashes": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/audit_closure.json",
+          "sha256": "206f842c3642e37ee0f1a1f206d286e897d582b2441c1a8a4fb86d8e18823916"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/result.json",
+          "sha256": "79ffd61fead5d84016c80bb4ca817a2182ebcea9bf3a12c7eba9667ba05315c2"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/REPORT.md",
+          "sha256": "234e51a99b3e21f269ccdce7a3ff1eddf6f855e6ed10efc20827a5e96daa4f3d"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/direction_audit.json",
+          "sha256": "e5dbb31781d93737cead25cb553e94819062608808c0be87094a2866d7f3424a"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/measurement_status.json",
+          "sha256": "6fe7b649fd2ab6aa997720defb5784986f0b26f73f214b1fda03e529d2c64245"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/signals.parquet",
+          "sha256": "f1e3834513b14dbc258d3fcd162bdb042f5c586fbb389263c5c0be5084552c0f"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/calendar2023_2026_excess.csv",
+          "sha256": "d16938e74f8c784ac6f56485c551a4cca6db72a161bebde49fd75b2404e4fee7"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/experiments.jsonl",
+          "sha256": "79fa3c3e186ae0b1ac8ca294d475a94c95c356b9584f636e01a3a8727409730b"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/reservation.json",
+          "sha256": "6b70e33f6a41499e143871125e405ae415955f6ea04a30ee928e413d1612145a"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/reservation_validation.json",
+          "sha256": "777d8580c86d78d86457da254c87429d2802fe570375ce837ebcca406ebc636a"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/preregistration.json",
+          "sha256": "08001a311c98effa56b6d410a6569eb89740b1b2a4d26e19a578a52b27a133bf"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/group_risk_audit.json",
+          "sha256": "8c72ce2bb7f38d567d0e41fa395d8cc9eb34323df66eb24f891ae46e144c35f9"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/independent_audit.json",
+          "sha256": "535da3d46be561f15e6bf8782b45958f4c4e0d612f6885082cfd8c425ba4608f"
+        },
+        {
+          "path": "evidence/trend-group-risk-design-20260913/EXPERIMENT_SPEC.json",
+          "sha256": "676b9579db1fa15c92051db47d74d5f61fd0214a487e4303088a9fa2a9282561"
+        },
+        {
+          "path": "scripts/close_group_risk_identity.py",
+          "sha256": "38e245bb89e6383516c4bb124aa00a2880d805442ae6b027764d52a892dc6a03"
+        }
+      ],
+      "statement": "Fixed group design, gates and source hashes before candidate replay. Canonical reservation and prepared runner manifest retained; allocation/risk/price baselines not overwritten.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "result_uncertainty_stress_capacity_and_diversification": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/audit_closure.json",
+          "sha256": "206f842c3642e37ee0f1a1f206d286e897d582b2441c1a8a4fb86d8e18823916"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/result.json",
+          "sha256": "79ffd61fead5d84016c80bb4ca817a2182ebcea9bf3a12c7eba9667ba05315c2"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/REPORT.md",
+          "sha256": "234e51a99b3e21f269ccdce7a3ff1eddf6f855e6ed10efc20827a5e96daa4f3d"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/direction_audit.json",
+          "sha256": "e5dbb31781d93737cead25cb553e94819062608808c0be87094a2866d7f3424a"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/measurement_status.json",
+          "sha256": "6fe7b649fd2ab6aa997720defb5784986f0b26f73f214b1fda03e529d2c64245"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/signals.parquet",
+          "sha256": "f1e3834513b14dbc258d3fcd162bdb042f5c586fbb389263c5c0be5084552c0f"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/calendar2023_2026_excess.csv",
+          "sha256": "d16938e74f8c784ac6f56485c551a4cca6db72a161bebde49fd75b2404e4fee7"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/experiments.jsonl",
+          "sha256": "79fa3c3e186ae0b1ac8ca294d475a94c95c356b9584f636e01a3a8727409730b"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/reservation.json",
+          "sha256": "6b70e33f6a41499e143871125e405ae415955f6ea04a30ee928e413d1612145a"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/reservation_validation.json",
+          "sha256": "777d8580c86d78d86457da254c87429d2802fe570375ce837ebcca406ebc636a"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/preregistration.json",
+          "sha256": "08001a311c98effa56b6d410a6569eb89740b1b2a4d26e19a578a52b27a133bf"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/group_risk_audit.json",
+          "sha256": "8c72ce2bb7f38d567d0e41fa395d8cc9eb34323df66eb24f891ae46e144c35f9"
+        },
+        {
+          "path": "artifacts/analysis/trend_group_risk_20260913/baseline/independent_audit.json",
+          "sha256": "535da3d46be561f15e6bf8782b45958f4c4e0d612f6885082cfd8c425ba4608f"
+        },
+        {
+          "path": "evidence/trend-group-risk-design-20260913/EXPERIMENT_SPEC.json",
+          "sha256": "676b9579db1fa15c92051db47d74d5f61fd0214a487e4303088a9fa2a9282561"
+        },
+        {
+          "path": "scripts/close_group_risk_identity.py",
+          "sha256": "38e245bb89e6383516c4bb124aa00a2880d805442ae6b027764d52a892dc6a03"
+        }
+      ],
+      "statement": "Jan2023\u2013June1 2026 frozen evaluation; daily drawdown is not intraday risk, bootstrap or capacity certification. No2Sharpe/15sleeve/launch qualification. Failed normal combined gate prevents further performance trials for this design.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    }
+  },
+  "research_family_key": "trend_fixed_asset_group_risk",
+  "schema": "canli.alphac-identity-trial-packet.v2"
+}

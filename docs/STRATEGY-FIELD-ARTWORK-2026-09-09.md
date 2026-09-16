@@ -1,0 +1,11 @@
+# Original strategy landscape
+
+Generated using the built-in OpenAI image-generation tool, following the imagegen skill. Source saved in `artifacts/production/strategy-field-v1.png`; web asset in `public/cinema/strategy-field-v1.webp`. Native output is 1672 × 941. WebP quality 92, approximately 296 KB; no upscaling or claim of native 4K.
+
+The first desktop strategy stage now uses this original conceptual landscape instead of its repeated optical ring. Visible caption identifies it as conceptual, not trading infrastructure. Image lazy-loads only in the desktop enhancement and is removed on reduced-motion/mobile teardown. Existing strategy data and labels are unchanged. Remaining stages still require bespoke environments and matching Figma designs.
+
+Production build, Chromium/WebKit stage regressions, decoded-image checks, reverse navigation, mobile/reduced-motion fallback, and 489-page content preservation passed. Rendered composition was inspected at `artifacts/qa/strategy-exhibition/chromium-0.png`.
+
+## Final prompt
+
+Use case: stylized-concept. Asset type: panoramic cinematic website background for Canli Capital's systematic research strategy exhibition. Create an original photoreal architectural 3D scene, landscape 16:9, maximum available detail. A monumental glass-and-titanium research landscape: long slender copper conductors run along a dark polished floor and branch through a receding field of upright crystal-glass fins, a precise engineered spatial installation. Low oblique camera looking from lower left toward distant upper right. Thin cobalt edge light refracts through the glass; restrained warm copper glints. Deep nearly black architectural space, physically convincing reflections and surface imperfections, clear silhouettes, no fog wash. The right half contains the most striking dimensional structure; upper left and lower left are dark quiet negative space for real HTML strategy headings and descriptions. No circular rings, no disks, no glowing orbs, no charts, no numbers, no text, no logos, no computer screens, no people. This is conceptual art, not a realistic claim about financial infrastructure. Avoid generic sci-fi server rooms and excessive neon. Crisp premium material photography with cinematic depth, no flat gradient-only backdrop.

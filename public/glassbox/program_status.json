@@ -13,8 +13,36 @@
     "person_public_path": "/founder"
   },
   "objective": {
-    "average_pairwise_correlation_objective": -0.03,
-    "average_pairwise_correlation_objective_note": "An objective, not a gate. -0.03 is the average pairwise correlation at which fourteen sleeves of measured quality reach 2.5. Thresholds are gates and live in 'thresholds'; anything that is not enforced must not sit there wearing a gate's costume.",
+    "source": "config/owner_goals.json",
+    "source_schema": "canli.alphac-owner-goals.v1",
+    "recorded_on": "2026-09-12",
+    "in_force_from": "2026-09-14",
+    "honest_forward_sharpe_target": 2.0,
+    "honest_forward_sharpe_comparison": "ABOVE",
+    "honest_forward_sharpe_basis": "Annualized (365-day convention) from consecutive published UTC daily paper marks, net of modeled costs, zero excess-return benchmark, evaluated by scripts/evaluate_forward_evidence_maturity.py under config/forward_evidence_contract.json (252 returns before an estimate, 756 and PSR >= 0.95 before establishment).",
+    "portfolio_max_drawdown_target": 0.1,
+    "portfolio_max_drawdown_comparison": "AT_MOST",
+    "portfolio_max_drawdown_statistic": "REALIZED_MAXIMUM_DRAWDOWN_BOUND",
+    "portfolio_max_drawdown_mechanism": "config/drawdown_control_contract.json v1.1 declares half gross at 5 percent below the high-water mark and flat at 10 percent, absorbing until an owner rearm; every parameter is derived from this bound (half = bound / 2, flat = bound) and measured by docs/design/DRAWDOWN_CONTROL_V1_PROTOCOL.md on the current-composition study paths. A brake bounds each episode up to a one-day overshoot and does not make losses impossible. It is not activated.",
+    "portfolio_max_drawdown_mechanism_status": "DECLARED_LADDER_DERIVED_FROM_BOUND_MEASURED_NOT_LIVE",
+    "expected_max_drawdown_objective": 0.11,
+    "expected_max_drawdown_objective_statistic": "expected_maximum_drawdown",
+    "expected_max_drawdown_objective_note": "The admission contract's sealed expected-maximum-drawdown objective and gate, evaluated on the current-composition drawdown study. Not the owner's bound: the bound is on realized maximum drawdown and is portfolio_max_drawdown_target.",
+    "target_total_sleeves": 14,
+    "target_total_sleeves_comparison": "AT_LEAST",
+    "target_sleeve_count": 14,
+    "average_pairwise_correlation_objective": -0.05116116239316238,
+    "average_pairwise_correlation_objective_note": "An objective, not a gate: the average pairwise correlation at which 14 sleeves of the quality the sealed contract measured reach 3 in-sample, which is forward 2 on the optimistic end of the measured haircut. Derived by inverting the published identity; the PSD floor at this sleeve count is -0.0769.",
+    "implied_in_sample_target": {
+      "at_1_5x_haircut": 3.0,
+      "at_2_0x_haircut": 4.0,
+      "at_3_0x_haircut": 6.0
+    },
+    "portfolio_sharpe_target": [
+      3.0,
+      4.0
+    ],
+    "portfolio_sharpe_target_unit": "IN-SAMPLE, being the band an honest forward 2 implies at the 1.5x and 2x ends of this book's own measured backtest-to-forward haircut. The headline target is the forward figure.",
     "backtest_to_forward_haircut": {
       "measured_on_this_book": "in-sample equal-risk ~1.04 against an honest forward of 0.3-0.9",
       "note": "The haircut IS the uncertainty. Until the forward record is long enough to speak, every in-sample figure should be read through it, and the range is this book's own published pair rather than a convention borrowed from elsewhere.",
@@ -23,38 +51,163 @@
         3.0
       ]
     },
-    "honest_forward_sharpe_target": 1.5,
-    "implied_in_sample_target": {
-      "at_1_5x_haircut": 2.25,
-      "at_2_0x_haircut": 3.0,
-      "at_3_0x_haircut": 4.5
-    },
-    "minimum_new_sleeves": 10,
-    "portfolio_max_drawdown_statistic": "expected_maximum_drawdown",
-    "portfolio_max_drawdown_target": 0.11,
-    "portfolio_p95_max_drawdown_is_gated": false,
-    "portfolio_p95_max_drawdown_must_be_published": true,
-    "portfolio_sharpe_target": [
-      2.25,
-      3.0
-    ],
-    "portfolio_sharpe_target_unit": "IN-SAMPLE, being the band that an honest forward 1.5 implies at the 1.5x and 2.0x ends of this book's own measured haircut. The headline target is honest_forward_sharpe_target.",
-    "superseded_in_sample_sharpe_target": [
-      2.0,
-      2.5
-    ],
-    "superseded_reason": "Stated in-sample with no haircut named, and unreachable as a forward result: a verified forward 2.0 at measured per-sleeve quality needs an average pairwise correlation of -0.062 against a PSD floor of -0.077. Withdrawn 2026-08-21 and replaced with an honest FORWARD target of 1.5, which is inside the floor at every plausible quality.",
-    "target_total_sleeves": 14,
     "targets_are_admission_evidence": false,
-    "what_reaching_it_requires": "Both halves, not either: an average pairwise correlation meaningfully BELOW zero, and per-sleeve quality above roughly 0.60. At today's measured 0.469 the forward target is reachable only at a correlation near -0.030 and only on the optimistic haircut.",
-    "why_this_is_not_a_retreat": "The rarer thing was never the number. A forward Sharpe near 1.5 that is genuinely verifiable -- signed forward record, every killed candidate published in full, gates that provably bite, and the arithmetic showing where the gate falls short of the target printed on the same page as the target -- is harder to find than a 2.5 nobody can check."
+    "what_reaching_it_requires": "At 14 sleeves of the quality the sealed contract measured (0.464 on the four-curve basis), the low end of the band (3 in-sample, 2 forward on the optimistic haircut) needs an average pairwise correlation of -0.0512 against a floor of -0.0769 (inside the floor). At the +0.00 gate exactly it needs a mean standalone Sharpe of 0.802. The distance from today's measured quality has to be bought with per-sleeve quality, genuinely negative correlation, or both; the sleeve count alone buys none of it.",
+    "superseded_admission_contract_objective": {
+      "average_pairwise_correlation_objective": -0.03,
+      "average_pairwise_correlation_objective_note": "An objective, not a gate. -0.03 is the average pairwise correlation at which fourteen sleeves of measured quality reach 2.5. Thresholds are gates and live in 'thresholds'; anything that is not enforced must not sit there wearing a gate's costume.",
+      "backtest_to_forward_haircut": {
+        "measured_on_this_book": "in-sample equal-risk ~1.04 against an honest forward of 0.3-0.9",
+        "note": "The haircut IS the uncertainty. Until the forward record is long enough to speak, every in-sample figure should be read through it, and the range is this book's own published pair rather than a convention borrowed from elsewhere.",
+        "range": [
+          1.5,
+          3.0
+        ]
+      },
+      "honest_forward_sharpe_target": 1.5,
+      "implied_in_sample_target": {
+        "at_1_5x_haircut": 2.25,
+        "at_2_0x_haircut": 3.0,
+        "at_3_0x_haircut": 4.5
+      },
+      "minimum_new_sleeves": 10,
+      "portfolio_max_drawdown_statistic": "expected_maximum_drawdown",
+      "portfolio_max_drawdown_target": 0.11,
+      "portfolio_p95_max_drawdown_is_gated": false,
+      "portfolio_p95_max_drawdown_must_be_published": true,
+      "portfolio_sharpe_target": [
+        2.25,
+        3.0
+      ],
+      "portfolio_sharpe_target_unit": "IN-SAMPLE, being the band that an honest forward 1.5 implies at the 1.5x and 2.0x ends of this book's own measured haircut. The headline target is honest_forward_sharpe_target.",
+      "superseded_in_sample_sharpe_target": [
+        2.0,
+        2.5
+      ],
+      "superseded_reason": "Stated in-sample with no haircut named, and unreachable as a forward result: a verified forward 2.0 at measured per-sleeve quality needs an average pairwise correlation of -0.062 against a PSD floor of -0.077. Withdrawn 2026-08-21 and replaced with an honest FORWARD target of 1.5, which is inside the floor at every plausible quality.",
+      "target_total_sleeves": 14,
+      "targets_are_admission_evidence": false,
+      "what_reaching_it_requires": "Both halves, not either: an average pairwise correlation meaningfully BELOW zero, and per-sleeve quality above roughly 0.60. At today's measured 0.469 the forward target is reachable only at a correlation near -0.030 and only on the optimistic haircut.",
+      "why_this_is_not_a_retreat": "The rarer thing was never the number. A forward Sharpe near 1.5 that is genuinely verifiable -- signed forward record, every killed candidate published in full, gates that provably bite, and the arithmetic showing where the gate falls short of the target printed on the same page as the target -- is harder to find than a 2.5 nobody can check.",
+      "superseded_on": "2026-09-14",
+      "sealed_by": "config/admission_v7_promotion.json",
+      "sealed_sha256": "6bc72c1f47675b4e14897e1ba3aad6e56aba9b5f013a7b9bae57f930e8d3b8b6",
+      "why_the_bytes_stand": "The contract's bytes are sealed by config/admission_v7_promotion.json and its objective was never an admission gate (targets_are_admission_evidence is false), so the goals move without any gate moving. The superseded figures are published beside the governing ones, dated, as history."
+    },
+    "current_sleeves": 4,
+    "minimum_new_sleeves": 10
+  },
+  "objective_frontier": {
+    "identity": "S_book = s_bar * sqrt(N / (1 + (N - 1) * rho_bar))",
+    "source": "config/owner_goals.json projected on the sealed contract's identity and inputs",
+    "target_sleeve_count": 14,
+    "honest_forward_sharpe_target": 2.0,
+    "in_sample_support_band": [
+      3.0,
+      4.0
+    ],
+    "in_sample_support_band_unit": "IN-SAMPLE, being the band an honest forward 2 implies at the 1.5x and 2x ends of this book's own measured backtest-to-forward haircut. The headline target is the forward figure.",
+    "psd_floor_at_target_n": -0.07692307692307693,
+    "psd_floor_note": "Average pairwise correlation cannot fall below -1/(N-1) for any real correlation matrix. At 14 sleeves the floor is -0.0769.",
+    "incremental_candidate_average_correlation_gate": 0.0,
+    "incremental_book_average_correlation_delta_gate_exclusive": 0.0,
+    "incremental_gates_alone_establish_objective_floor": false,
+    "incremental_gates_alone_establish_objective_ceiling": false,
+    "book_sharpe_ceiling_at_zero_global_correlation": {
+      "s_bar_four_curve_basis": 1.736129027463109,
+      "s_bar_traded_basis": 1.979336757603415
+    },
+    "correlation_required_at_measured_quality": {
+      "four_curve_basis": {
+        "rho_bar_required_for_3": -0.05116116239316238,
+        "rho_bar_required_for_4": -0.062432,
+        "inside_psd_floor_at_low_end": true
+      },
+      "traded_basis": {
+        "rho_bar_required_for_3": -0.04343782905982906,
+        "rho_bar_required_for_4": -0.05808762499999999,
+        "inside_psd_floor_at_low_end": true
+      },
+      "note": "Hold quality where the sealed contract measured it and read off the average pairwise correlation each end of the band demands at the owner's sleeve count."
+    },
+    "quality_precondition_at_the_gate": {
+      "s_bar_measured_four_curve_basis": 0.464,
+      "s_bar_measured_traded_basis": 0.529,
+      "s_bar_required_for_3": 0.8017837257372732,
+      "s_bar_required_for_4": 1.0690449676496976,
+      "note": "What the correlation gate alone does NOT buy. At the gate exactly, reaching each end of the band requires at least this average standalone Sharpe across 14 sleeves."
+    },
+    "honest_reading": "At 14 sleeves of the quality the sealed contract measured (0.464 on the four-curve basis), the low end of the band (3 in-sample, 2 forward on the optimistic haircut) needs an average pairwise correlation of -0.0512 against a floor of -0.0769 (inside the floor). At the +0.00 gate exactly it needs a mean standalone Sharpe of 0.802. The distance from today's measured quality has to be bought with per-sleeve quality, genuinely negative correlation, or both; the sleeve count alone buys none of it.",
+    "claim_boundary": "Derived from the governing identity alone. Reads no data, runs no backtest, spends no hypothesis, and claims no candidate's correlation, sign or return. It states what the owner's goal requires, not that it is reachable."
+  },
+  "governing_goals": {
+    "path": "config/owner_goals.json",
+    "schema": "canli.alphac-owner-goals.v1",
+    "status": "IN_FORCE_NOT_ACHIEVED",
+    "recorded_on": "2026-09-12",
+    "in_force_from": "2026-09-14",
+    "source_document": "docs/design/ALPHAC_OWNER_GOALS_2026-09-12.md",
+    "decision": {
+      "recorded_at": "2026-09-14T18:05:00+00:00",
+      "by": "Arhan Canli (owner)",
+      "words": "no let me break down the goals for you so basically we are trying to make alphac like the worlds first open glassbox style algorithm which devs can use via api keys and mcp servers to build there own mobdels fine tune it make it better and also we are making everything we do out in the open published all tests everything and for alphac the goal is 2 sharpe ratio 14 plus sleeves 10 percent max dd and also all of the other things being perfect and us doing extremely rigiourus tests on it and also not forgeting reach life cosst which may occur on it on our paper live and also eventually turning this into a real hedgefund",
+      "earlier_words_same_day": "no the sharpe target is 2 and also in general make sure everything is the best",
+      "context": "Operator session 2026-09-14 (docs/design/OPERATOR_LOG_2026-09.md). The owner corrected the operator twice: first that the forward Sharpe target is 2, not the admission contract's 1.5; then the full goal set, which moves the sleeve minimum to 14 and the maximum-drawdown bound to 10 percent from the 15 and 11 percent the 2026-09-12 document recorded.",
+      "how": "This file, projected by src/alphaforge/research/owner_goals.py into every public objective block; config/forward_evidence_contract.json forward_sharpe_target_history and realized_max_drawdown_bound record the same goals on the evaluation side."
+    },
+    "program": {
+      "open_glassbox": {
+        "goal": "The world's first open glassbox-style algorithm: the method, every version, cost, uncertainty, failure and reproducible evidence published as they are produced.",
+        "quoted": "we are making everything we do out in the open published all tests everything",
+        "status": "IN_PROGRESS_NOT_A_NOVELTY_CLAIM",
+        "reported_in": "the canlicapital.com glassbox surface (public/glassbox), docs/design/OPERATOR_LOG_2026-09.md, every trial packet under artifacts/research"
+      },
+      "developer_platform": {
+        "goal": "Developers use ALPHAC through API keys and MCP servers to build their own models, fine-tune it and improve it.",
+        "quoted": "devs can use via api keys and mcp servers to build there own mobdels fine tune it make it better",
+        "status": "DOWNSTREAM_OF_ALGORITHM_AND_OPERATIONAL_EVIDENCE",
+        "launch_requirements": [
+          "access control",
+          "key lifecycle",
+          "usage limits",
+          "documentation",
+          "data rights"
+        ]
+      },
+      "rigorous_testing": {
+        "goal": "Extremely rigorous tests of everything, published: point-in-time data, cash and dividend accounting, leakage checks, full trial accounting, untouched prospective validation, stressed dependence, realistic execution and financing, capacity, reproducible outputs, restart and reconciliation, honest forward records, and mutation-tested guards.",
+        "quoted": "us doing extremely rigiourus tests on it",
+        "status": "ONGOING",
+        "reported_in": "tests/, artifacts/engineering/mutation_ledger.json, .github/workflows/ci.yml"
+      },
+      "real_life_costs_on_paper_live": {
+        "goal": "The paper-live record carries every cost a funded book would pay where it occurs: commissions, spread and slippage, financing and funding, borrow, market impact at the intended capacity; none assumed away and none applied only in research.",
+        "quoted": "not forgeting reach life cosst which may occur on it on our paper live",
+        "status": "EQUITY_PAPER_LIVE_CHARGED_BY_MODEL_BESIDE_BROKER_NAV_LATENCY_FINANCING_CASH_YIELD_NOT_CHARGED",
+        "reported_in": "docs/design/COST_REALISM_AUDIT_2026-09-14.md (cost by cost, research against paper-live, with file and line evidence); src/alphaforge/costs; the per-sleeve execution disclosures in the publication bundle",
+        "audit": "docs/design/COST_REALISM_AUDIT_2026-09-14.md",
+        "finding_2026_09_14": "The crypto sleeve charges commission, real spread and impact (fills walk the live book) and perpetual funding; the equity sleeves' published NAV is the broker's paper equity verbatim and charges no commission, spread, impact, borrow or financing; cash yield and FX are unmodelled on every path. Until the repair lands the forward record is gross of equity frictions.",
+        "contract": "config/cost_realism_contract.json",
+        "repair_2026_09_15": "scripts/derive_cost_charged_live_curves.py charges every Alpaca fill commission, half spread and square-root impact through research's own cost model and the reconstructed short book the borrow rate; data/paper/state.json publishes cost_charged_curve beside live_curve per sleeve and for the book; the broker NAV is unchanged. Latency, financing, cash yield and FX remain NOT_CHARGED with reasons in the contract, so the record is net of the charged rows and still gross of those."
+      },
+      "real_hedge_fund": {
+        "goal": "Eventually a real hedge fund, downstream of the paper evidence.",
+        "quoted": "eventually turning this into a real hedgefund",
+        "status": "NOT_STARTED_PAPER_ONLY",
+        "boundary": "Paper results never convert into real capital by presentation; capital_kind stays PAPER_ONLY until a separately declared launch decision."
+      }
+    }
   },
   "achievement": {
-    "forward_sharpe_target": 1.5,
+    "forward_sharpe_target": 2.0,
     "forward_sharpe_status": "IMMATURE_RECORD_TOO_SHORT",
     "forward_sharpe_underlying_status": "IMMATURE_RECORD_TOO_SHORT",
     "expected_max_drawdown_target": 0.11,
     "expected_max_drawdown_status": "MODELED_CURRENT_COMPOSITION_WITHIN_OBJECTIVE_LIVE_EXPECTED_MAX_DRAWDOWN_NOT_ESTABLISHED",
+    "realized_max_drawdown_bound": 0.1,
+    "realized_max_drawdown_bound_mechanism_status": "DECLARED_LADDER_DERIVED_FROM_BOUND_MEASURED_NOT_LIVE",
+    "realized_max_drawdown_to_date": 0.03896378215437013,
+    "realized_within_bound_to_date": true,
     "target_sleeves": 14,
     "current_sleeves": 4,
     "new_sleeves_admitted_by_atlas": 0,
@@ -63,38 +216,38 @@
   "forward_record": {
     "capital_kind": "PAPER_ONLY",
     "go_live_date": "2026-08-07",
-    "state_generated_at": "2026-09-05T20:26:57.831615+00:00",
-    "live_days": 29,
+    "state_generated_at": "2026-09-15T14:26:38.169169+00:00",
+    "live_days": 39,
     "first_mark": "2026-08-07",
-    "last_mark": "2026-09-05",
+    "last_mark": "2026-09-15",
     "normalized_starting_equity": 100000.0,
-    "normalized_current_equity": 97463.89,
-    "cumulative_return": -0.025361100000000025,
-    "curve_points": 28,
+    "normalized_current_equity": 97220.01,
+    "cumulative_return": -0.0277999000000001,
+    "curve_points": 38,
     "curve_basis": "Normalized composite of constituent paper curves plus the disclosed overlay; not a direct broker account balance.",
     "honest_forward_sharpe_estimate": "0.3 to 0.9 (the +10% beta does NOT improve this \u2014 it adds bull upside + crash risk, not risk-adjusted quality; real chance of ~0 yr1)",
     "in_sample_sharpe": 1.78,
     "in_sample_label": "SIMULATION_NOT_EVIDENCE",
     "live_config": {
-      "fingerprint": "sha256:fe82c4eeed742289bfcfee5d39856ee2bb8ca9cfe209bcc7e34abff98553706d",
-      "declared_fingerprint": "sha256:fe82c4eeed742289bfcfee5d39856ee2bb8ca9cfe209bcc7e34abff98553706d",
+      "fingerprint": "sha256:553aff517efdc069c2ee80747ef9a9d750da817ceeab8dbc344cae050b814e09",
+      "declared_fingerprint": "sha256:553aff517efdc069c2ee80747ef9a9d750da817ceeab8dbc344cae050b814e09",
       "matches_declaration": true,
       "declared_in": "config/live_change_contract.json",
       "what_it_covers": "Every setting that decides how the live book trades: the BlendStrategy defaults that reach production because no call site overrides them; the constituent overlay, drawdown ladder and per-name clip read from Settings; and the flagship's sleeve composition, weights, disclosed tilt and separate aggregation policy. Derived from inspect.signature, Settings and the published state, never from a hand-maintained list.",
       "why": "A record that cannot say which configuration produced it cannot be read as one experiment. This stamp is what lets a reader tell a continuous forward test from a curve that changed underneath itself."
     },
     "continuity": {
-      "as_of": "2026-09-05",
+      "as_of": "2026-09-15",
       "author": "Arhan Canli",
       "claim_boundary": "Reads the per-sleeve trading databases read-only. Opens no market data, registers no hypothesis identity and changes nothing. Corrects session-date classification only; it changes no mark, equity, return, order, fill or configuration. 0 trials.",
-      "content_hash": "sha256:cc52b98250f767a2507eb8630c84f210a35cc46c0efd44630dec706ead359e43",
+      "content_hash": "sha256:5b0f1486cd740956548cb44fadd5af7410a8c26eb76e8f2b39c38488c4533dac",
       "correction": {
         "documentation": "docs/design/CORRECTION_ALPACA_SESSION_DATE_CONTINUITY.md",
         "raw_marks_rewritten": false,
         "status": "CORRECTED",
         "withdrawn_finding": "The v1 UTC-calendar audit called 2026-08-10 a systemic gap. The three Alpaca rows stamped 2026-08-11T00:00:00Z are the finalized 2026-08-10 XNYS closes."
       },
-      "days_since_go_live": 30,
+      "days_since_go_live": 40,
       "go_live_date": "2026-08-07",
       "how_a_gap_is_classified": "Crypto marks and expectations use UTC calendar dates. Alpaca 1D midnight-UTC marks map to the preceding XNYS session; equity expectations come from XNYS sessions, so weekends and exchange holidays are legitimate absences.",
       "max_gap_rate_threshold": 0.2,
@@ -102,14 +255,14 @@
       "schema": "canli.alphac-record-continuity.v1",
       "sleeves": {
         "alphaforge": {
-          "calendar_days_marked": 27,
+          "calendar_days_marked": 37,
           "database": "var/trading_crypto_perp.sqlite",
           "database_exists": true,
-          "days_expected": 30,
-          "days_marked": 27,
-          "days_since_go_live": 30,
+          "days_expected": 40,
+          "days_marked": 37,
+          "days_since_go_live": 40,
           "expected_calendar": "UTC_24_7",
-          "gap_rate": 0.1,
+          "gap_rate": 0.075,
           "legitimate_absence_days": [],
           "legitimate_absences": 0,
           "longest_consecutive_gap": 2,
@@ -123,12 +276,12 @@
           "trades_24_7": true
         },
         "alphamax": {
-          "calendar_days_marked": 21,
+          "calendar_days_marked": 27,
           "database": "var/trading_equity.sqlite",
           "database_exists": true,
-          "days_expected": 21,
-          "days_marked": 21,
-          "days_since_go_live": 30,
+          "days_expected": 27,
+          "days_marked": 27,
+          "days_since_go_live": 40,
           "expected_calendar": "XNYS",
           "gap_rate": 0.0,
           "legitimate_absence_days": [
@@ -140,9 +293,13 @@
             "2026-08-23",
             "2026-08-29",
             "2026-08-30",
-            "2026-09-05"
+            "2026-09-05",
+            "2026-09-06",
+            "2026-09-07",
+            "2026-09-12",
+            "2026-09-13"
           ],
-          "legitimate_absences": 9,
+          "legitimate_absences": 13,
           "longest_consecutive_gap": 0,
           "mark_date_convention": "ALPACA_1D_CLOSE_D_STAMPED_D_PLUS_1_00_UTC",
           "real_gap_days": [],
@@ -150,12 +307,12 @@
           "trades_24_7": false
         },
         "alphavintage": {
-          "calendar_days_marked": 21,
+          "calendar_days_marked": 27,
           "database": "var/trading_alphavintage.sqlite",
           "database_exists": true,
-          "days_expected": 21,
-          "days_marked": 21,
-          "days_since_go_live": 30,
+          "days_expected": 27,
+          "days_marked": 27,
+          "days_since_go_live": 40,
           "expected_calendar": "XNYS",
           "gap_rate": 0.0,
           "legitimate_absence_days": [
@@ -167,9 +324,13 @@
             "2026-08-23",
             "2026-08-29",
             "2026-08-30",
-            "2026-09-05"
+            "2026-09-05",
+            "2026-09-06",
+            "2026-09-07",
+            "2026-09-12",
+            "2026-09-13"
           ],
-          "legitimate_absences": 9,
+          "legitimate_absences": 13,
           "longest_consecutive_gap": 0,
           "mark_date_convention": "ALPACA_1D_CLOSE_D_STAMPED_D_PLUS_1_00_UTC",
           "real_gap_days": [],
@@ -177,12 +338,12 @@
           "trades_24_7": false
         },
         "managed_futures": {
-          "calendar_days_marked": 21,
+          "calendar_days_marked": 27,
           "database": "var/trading_managed_futures.sqlite",
           "database_exists": true,
-          "days_expected": 21,
-          "days_marked": 21,
-          "days_since_go_live": 30,
+          "days_expected": 27,
+          "days_marked": 27,
+          "days_since_go_live": 40,
           "expected_calendar": "XNYS",
           "gap_rate": 0.0,
           "legitimate_absence_days": [
@@ -194,9 +355,13 @@
             "2026-08-23",
             "2026-08-29",
             "2026-08-30",
-            "2026-09-05"
+            "2026-09-05",
+            "2026-09-06",
+            "2026-09-07",
+            "2026-09-12",
+            "2026-09-13"
           ],
-          "legitimate_absences": 9,
+          "legitimate_absences": 13,
           "longest_consecutive_gap": 0,
           "mark_date_convention": "ALPACA_1D_CLOSE_D_STAMPED_D_PLUS_1_00_UTC",
           "real_gap_days": [],
@@ -208,7 +373,7 @@
       "systemic_note": "Dates that are expected and missing on EVERY sleeve's own calendar are systemic \u2014 the tick did not run or did not mark \u2014 rather than a fault in any one sleeve.",
       "threshold_basis": "Declared, not fitted. A threshold derived from today's gap rate would pass whatever the gap rate happens to be, which is not a threshold.",
       "what_this_does_not_measure": "Whether a mark is CORRECT \u2014 only whether one exists. A sleeve marking the same equity every day would show a perfect continuity record and a frozen curve. That is the publish gate's job (check_published_state), not this one's.",
-      "worst_gap_rate": 0.1
+      "worst_gap_rate": 0.075
     },
     "evidence_maturity": {
       "status": "IMMATURE_RECORD_TOO_SHORT",
@@ -216,13 +381,31 @@
       "provenance_passes": true,
       "failed_provenance_checks": [],
       "sharpe": {
-        "daily_return_observations": 27,
+        "daily_return_observations": 0,
         "estimate_minimum": 252,
         "establishment_minimum": 756,
-        "observations_to_estimate": 225,
-        "observations_to_establishment": 729,
+        "observations_to_estimate": 252,
+        "observations_to_establishment": 756,
         "annualization_days": 365.0,
-        "target": 1.5,
+        "target": 2.0,
+        "target_source": "config/owner_goals.json",
+        "target_history": [
+          {
+            "target": 1.5,
+            "in_force_from": "2026-08-21",
+            "superseded_on": "2026-09-14",
+            "source": "config/sleeve_admission_contract.json objective.honest_forward_sharpe_target (contract v6, carried into v7)",
+            "record_status_when_superseded": "IMMATURE_RECORD_TOO_SHORT",
+            "daily_returns_when_superseded": 36,
+            "note": "No point estimate was ever published against this target; the record was 36 returns short of the 252 the estimate needs when the target moved."
+          },
+          {
+            "target": 2.0,
+            "in_force_from": "2026-09-14",
+            "source": "config/owner_goals.json (owner goals recorded 2026-09-12, confirmed 2026-09-14)",
+            "note": "The owner's combined-portfolio goal, net of costs. A target change is an evaluation change, not a trading change: it restarts no forward-evidence epoch and pools nothing."
+          }
+        ],
         "target_exceedance_probability_min": 0.95,
         "annualized_point_estimate": null,
         "probability_true_sharpe_exceeds_target": null,
@@ -231,13 +414,18 @@
         "status": "IMMATURE_RECORD_TOO_SHORT"
       },
       "drawdown": {
-        "realized_live_max_drawdown": 0.03000239141679173,
+        "realized_live_max_drawdown": 0.03896378215437013,
         "realized_status": "DESCRIPTIVE_TO_DATE_NOT_EXPECTED_MAX_DRAWDOWN",
+        "realized_max_drawdown_bound": 0.1,
+        "realized_max_drawdown_bound_statistic": "REALIZED_MAXIMUM_DRAWDOWN",
+        "realized_max_drawdown_bound_source": "config/owner_goals.json",
+        "realized_within_owner_bound": true,
+        "realized_within_owner_bound_note": "Descriptive: realized drawdown inside the bound to date establishes nothing about future drawdown; the mechanism that acts on the bound is config/drawdown_control_contract.json.",
         "expected_max_drawdown_target": 0.11,
         "study_production_labelled_expected_max_drawdown": 0.10251155801473733,
         "study_production_labelled_p95_max_drawdown": 0.1876321103559252,
-        "current_composition_conservative_expected_max_drawdown": 0.09318244707449024,
-        "current_composition_conservative_p95_max_drawdown": 0.16451439272324467,
+        "current_composition_conservative_expected_max_drawdown": 0.09318244911641102,
+        "current_composition_conservative_p95_max_drawdown": 0.16451439178221056,
         "current_composition_study_status": "CURRENT_COMPOSITION_EXPECTED_WITHIN_OBJECTIVE_HISTORICAL_TAIL_COVERAGE_INCOMPLETE",
         "current_composition_expected_within_objective": true,
         "current_composition_p95_within_objective": false,
@@ -265,7 +453,7 @@
         "current_sleeves": 4,
         "target_total_sleeves": 14,
         "average_pairwise_correlation": 0.024827414293607856,
-        "average_pairwise_correlation_objective": -0.03,
+        "average_pairwise_correlation_objective": -0.05116116239316238,
         "active_v7_has_no_global_average_correlation_point_gate": true,
         "active_v7_candidate_average_correlation_gate": 0.0,
         "historical_v6_global_average_correlation_point_gate": 0.0,
@@ -278,24 +466,24 @@
         "effective_independent_sleeves_participation_ratio": 3.8988014966039604,
         "marginal_book_sharpe_research_diagnostics": {
           "alphavintage_live": {
-            "book_sharpe_with_sleeve": 1.7846281669176056,
-            "book_sharpe_with_sleeve_replaced_by_cash": 1.7908857604795474,
-            "marginal_book_sharpe_delta": -0.006257593561941777
+            "book_sharpe_with_sleeve": 1.7846280932113476,
+            "book_sharpe_with_sleeve_replaced_by_cash": 1.7908856987600663,
+            "marginal_book_sharpe_delta": -0.006257605548718681
           },
           "crypto_carry_wk": {
-            "book_sharpe_with_sleeve": 1.7846281669176056,
-            "book_sharpe_with_sleeve_replaced_by_cash": 1.252034546324405,
-            "marginal_book_sharpe_delta": 0.5325936205932007
+            "book_sharpe_with_sleeve": 1.7846280932113476,
+            "book_sharpe_with_sleeve_replaced_by_cash": 1.2520344519823685,
+            "marginal_book_sharpe_delta": 0.5325936412289791
           },
           "k30_dn_63": {
-            "book_sharpe_with_sleeve": 1.7846281669176056,
-            "book_sharpe_with_sleeve_replaced_by_cash": 1.6377956654461165,
-            "marginal_book_sharpe_delta": 0.14683250147148907
+            "book_sharpe_with_sleeve": 1.7846280932113476,
+            "book_sharpe_with_sleeve_replaced_by_cash": 1.637795624376064,
+            "marginal_book_sharpe_delta": 0.14683246883528356
           },
           "managed_futures": {
-            "book_sharpe_with_sleeve": 1.7846281669176056,
-            "book_sharpe_with_sleeve_replaced_by_cash": 1.875466015776462,
-            "marginal_book_sharpe_delta": -0.09083784885885637
+            "book_sharpe_with_sleeve": 1.7846280932113476,
+            "book_sharpe_with_sleeve_replaced_by_cash": 1.8754659368350433,
+            "marginal_book_sharpe_delta": -0.09083784362369562
           }
         },
         "checks": {
@@ -320,7 +508,7 @@
       "diversification_evidence_public_path": "/glassbox/current_book_diversification.json",
       "contract_public_path": "/glassbox/forward_evidence_contract.json",
       "methodology_paper_public_path": "/research/forward-sharpe-evidence-standard",
-      "content_hash": "sha256:512a84734ae737800005a0b025c387e013e88828a01ee63c033dbb2a8f7f90ce"
+      "content_hash": "sha256:17cfc1705204526042d3c558049d3849d54917b115fc42d7c0bb7d187f51b4c2"
     }
   },
   "execution_provenance": {
@@ -335,7 +523,7 @@
         "key": "alphac",
         "name": "ALPHAC",
         "go_live": "2026-08-07",
-        "last_mark": "2026-09-05",
+        "last_mark": "2026-09-15",
         "execution": {
           "record_kind": "DERIVED_PAPER_BOOK",
           "capital_kind": "PAPER_ONLY",
@@ -349,7 +537,7 @@
         "key": "alphamax",
         "name": "AlphaMax",
         "go_live": "2026-08-07",
-        "last_mark": "2026-09-05",
+        "last_mark": "2026-09-15",
         "execution": {
           "record_kind": "BROKER_EXECUTED_PAPER",
           "capital_kind": "PAPER_ONLY",
@@ -363,7 +551,7 @@
         "key": "managed_futures",
         "name": "AlphaTrend",
         "go_live": "2026-08-07",
-        "last_mark": "2026-09-05",
+        "last_mark": "2026-09-15",
         "execution": {
           "record_kind": "BROKER_EXECUTED_PAPER",
           "capital_kind": "PAPER_ONLY",
@@ -377,7 +565,7 @@
         "key": "alphavintage",
         "name": "AlphaVintage",
         "go_live": "2026-08-07",
-        "last_mark": "2026-09-05",
+        "last_mark": "2026-09-15",
         "execution": {
           "record_kind": "BROKER_EXECUTED_PAPER",
           "capital_kind": "PAPER_ONLY",
@@ -391,7 +579,7 @@
         "key": "alphaforge",
         "name": "AlphaForge",
         "go_live": "2026-08-07",
-        "last_mark": "2026-09-05",
+        "last_mark": "2026-09-15",
         "execution": {
           "record_kind": "LOCALLY_SIMULATED_PAPER_FILLS",
           "capital_kind": "PAPER_ONLY",
@@ -405,7 +593,7 @@
     "broker_reconciliation_claim": "BROKER_DERIVED_LOCAL_PUBLICATION_NOT_EXTERNALLY_ATTESTED",
     "broker_reconciliation": {
       "status": "PASS",
-      "generated_at": "2026-09-05T20:25:45.379967+00:00",
+      "generated_at": "2026-09-15T14:25:51.106056+00:00",
       "reconciled_alpaca_sleeves": 3,
       "unique_dedicated_accounts": true,
       "public_path": "/glassbox/alpaca_broker_reconciliation.json",
@@ -414,9 +602,9 @@
   },
   "research_governance": {
     "trial_accounting": {
-      "distinct_hypothesis_identities": 229,
+      "distinct_hypothesis_identities": 347,
       "hypothesis_identity_budget": 400,
-      "budget_remaining": 171,
+      "budget_remaining": 53,
       "budget_status": "PASS",
       "research_status": "ACTIVE_STAGED_PROSPECTIVE_BUDGET"
     },
@@ -543,19 +731,53 @@
         }
       ],
       "trial_packet_coverage_status": "INCOMPLETE_LEGACY_BACKFILL_PROSPECTIVE_SERIAL_COMPLETE",
-      "complete_trial_packets": 3,
+      "complete_trial_packets": 121,
       "candidate_mapped_identities": 198,
       "verified_family_paper_bindings": 228,
-      "published_identity_packets": 229,
+      "published_identity_packets": 347,
+      "forward_identity_packets": {
+        "admitted_identities": 0,
+        "by_final_disposition": {
+          "INCOMPLETE": 1,
+          "KILL": 118
+        },
+        "by_packet_status": {
+          "COMPLETE_ACCOUNTING_FINAL_KILLED_NOT_ADMITTED": 118,
+          "COMPLETE_EVIDENCED_FINAL_INCOMPLETE_NOT_ADMITTED": 1
+        },
+        "closed_identities": 119,
+        "complete_packets": 119,
+        "forward_identities": 119,
+        "identities_in_both_epochs": 0,
+        "legacy_identities": 228,
+        "pending_packets": 0,
+        "published_packets": 119,
+        "index_public_path": "/glassbox/trial-packets/forward_index.json",
+        "register_content_hash": "sha256:d24e33efbb841484656bd4038ec6f78379a4b22125ada794da05203e039aed99"
+      },
       "prospective_epoch": {
-        "observed_identities": 1,
+        "observed_identities": 119,
+        "by_status": {
+          "DEVELOPMENT_CLOSURE_FINAL_NOT_ADMITTED": 118,
+          "GOVERNED_SERIAL_PACKET_CLOSED": 1,
+          "IMPORTED_RESERVED_MEASURED_UNCLOSED": 0,
+          "MEASURED_WITHOUT_RESERVATION": 0,
+          "RESERVED_MEASURED_UNCLOSED": 0
+        },
+        "latest_reservation_ordinal": 347,
+        "reservation_ordinals_contiguous": true,
+        "distinct_families": 40,
+        "admitted_identities": 0,
+        "register_public_path": "/glassbox/prospective_epoch_register.json",
+        "register_content_hash": "sha256:d24e33efbb841484656bd4038ec6f78379a4b22125ada794da05203e039aed99",
+        "governed_serial_identity": "crypto_carry_portable_v1",
         "complete_identity_packets": 1,
         "candidate_evidence_complete_for_admission": false,
         "final_disposition": "INCOMPLETE",
         "admitted": false,
         "identity_packet_public_path": "/glassbox/trial-packets/da5f5f47f99f9bd2.json",
         "trial_paper_public_path": "/research/crypto-carry-portable-v1",
-        "claim_boundary": "The prospective packet is complete as evidence accounting, while the candidate evidence required for admission is incomplete."
+        "claim_boundary": "The governed serial identity's packet is complete as evidence accounting while its candidate evidence for admission is incomplete. 118 further prospective identities were reserved and measured without a closing packet; they count in selection N and establish nothing."
       },
       "new_return_identity_gate": {
         "status": "OPEN_SERIAL_PACKET_COMPLETE",
@@ -568,28 +790,28 @@
         "implementation": "src/alphaforge/validation/trial_reservation.py",
         "prior_forward_identity_packet_policy": "SERIAL_COMPLETE_PACKET_BEFORE_NEXT_FORWARD_IDENTITY",
         "legacy_epoch_closure_public_path": "/glassbox/legacy_research_epoch_closure.json",
-        "claim_boundary": "The legacy epoch is retired fail-closed: no historical identity is admission-eligible or reusable, and missing packet sections remain missing. A genuinely new identity may run only after its exact pre-result reservation validates. Frozen live paper execution is unaffected. The first prospective identity now has a complete, hash-valid evidence-accounting packet and a final INCOMPLETE / NOT ADMITTED decision, so it no longer blocks the serial queue. Every later forward identity remains subject to the same rule before another can compute returns."
+        "claim_boundary": "The legacy epoch is retired fail-closed: no historical identity is admission-eligible or reusable, and missing packet sections remain missing. A genuinely new identity may run only after its exact pre-result reservation validates. Frozen live paper execution is unaffected. The first prospective identity has a complete, hash-valid evidence-accounting packet and a final INCOMPLETE / NOT ADMITTED decision, so it does not block the serial queue. 118 later prospective identities were reserved and measured in a second checkout without closing packets and were imported into the union on 2026-09-14; the serial packet rule was not applied to them and this record says so rather than pretending otherwise. Every later forward identity remains subject to the same rule before another can compute returns."
       },
-      "required_trial_packets": 229,
+      "required_trial_packets": 347,
       "manifest_public_path": "/glassbox/trial_packet_manifest.json",
       "identity_packet_index_public_path": "/glassbox/trial-packets/index.json",
       "manifest_source_sha256": "0147dd8e631ca24257e2db384bf01d4637a79371f1754b284f3f7e9637c1369c",
-      "claim_boundary": "The 228-identity historical manifest remains a retired fail-closed epoch with 226 incomplete packets. The separate prospective identity has a complete hash-valid accounting packet, but its candidate evidence is incomplete and it is not admitted. Packet publication or accounting completeness is not validation, admission, independent replication, or a future-return claim."
+      "claim_boundary": "The 228-identity historical manifest remains a retired fail-closed epoch with 226 incomplete packets. The prospective epoch holds 119 identities: one governed serial identity with a complete hash-valid accounting packet whose candidate evidence is incomplete and which is not admitted, and 118 reserved, measured, unclosed identities. Packet publication or accounting completeness is not validation, admission, independent replication, or a future-return claim."
     }
   },
   "source_provenance": {
     "paper_state": {
       "path": "data/paper/state.json",
-      "sha256": "44856762908fdc961fed817d95e753c96b05d58fd245b68e3b085e5ca15bd224"
+      "sha256": "ebb6b1225d7b3081c68c5bd1dafcaea279efc9b099dd34cc42c517ab0e09dabf"
     },
     "forward_evidence_maturity": {
       "path": "artifacts/engineering/forward_evidence_maturity.json",
-      "sha256": "f5ce7c6291e8e4d26739c5eac5ee423ce28e4ed27d30ee7f68cee01d14e15e31",
-      "content_hash": "sha256:512a84734ae737800005a0b025c387e013e88828a01ee63c033dbb2a8f7f90ce"
+      "sha256": "7d1752b43526d6e2f042fa980d1f2e80295d445422fa349eaf4314049dd53739",
+      "content_hash": "sha256:17cfc1705204526042d3c558049d3849d54917b115fc42d7c0bb7d187f51b4c2"
     },
     "forward_sleeve_contribution": {
       "path": "artifacts/engineering/forward_sleeve_contribution.json",
-      "sha256": "3108a90e767ba23799ad04fbd42b27d3273b05650142d98ce4cb55d24a2d1d37"
+      "sha256": "3786915f4ab5dfde9910d71f60b04b38703d7c3d0bd6dae9c71feebc6205bdb9"
     },
     "admission_contract": {
       "path": "config/sleeve_admission_contract.json",
@@ -606,9 +828,9 @@
     },
     "sleeve_atlas": {
       "path": "artifacts/discovery/sleeve_atlas.json",
-      "sha256": "ea5254cd4463d94fde7e57558a8906dc06ef321bddd0aab0074f768d9778a521"
+      "sha256": "7fde8afdcc572ad7d8a6f38992510ffd0a6c693f27720598556e0cd9c3ddfd93"
     }
   },
-  "generated_at": "2026-09-05T20:27:11.952635+00:00",
-  "content_hash": "sha256:3799167ee547ac25eec9e8a98d133d3cf4e725f5419e015f28d0a4961150265f"
+  "generated_at": "2026-09-15T14:27:46.941118+00:00",
+  "content_hash": "sha256:04c867e0526360df3dc887a73e26ac0e9578893dd6af194afd367860a7d15b0e"
 }

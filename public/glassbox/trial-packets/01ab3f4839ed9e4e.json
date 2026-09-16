@@ -1,0 +1,1625 @@
+{
+  "claim_boundary": "Retrospective standalone baseline, not untouched OOS or combined qualification. DFF is a current-vintage reporting proxy with modeled publication dates, not certified cash yield. Static borrow and modeled metadata, corporate actions and final-recorded-close liquidation remain. The last source session is June1 2026; unresolved old EWMA split boundaries remain.",
+  "complete": true,
+  "completion_assessment": {
+    "candidate_evidence_complete_for_admission": false,
+    "disposition": "INCOMPLETE_NOT_ADMITTED",
+    "packet_evidence_accounting_complete": true
+  },
+  "config_hash": "fc900a2297750f0c",
+  "configuration": {
+    "allocator": "rank",
+    "alpha_names": [
+      "eq_mom_252_21"
+    ],
+    "end": 1780358400000,
+    "instrument_ids": [
+      "XUSE:CASH:AALUSD",
+      "XUSE:CASH:AAOIUSD",
+      "XUSE:CASH:AAPLUSD",
+      "XUSE:CASH:AAUSD",
+      "XUSE:CASH:ABBVUSD",
+      "XUSE:CASH:ABMDUSD",
+      "XUSE:CASH:ABNBUSD",
+      "XUSE:CASH:ABTUSD",
+      "XUSE:CASH:ACHRUSD",
+      "XUSE:CASH:ACNUSD",
+      "XUSE:CASH:ADBEUSD",
+      "XUSE:CASH:ADIUSD",
+      "XUSE:CASH:ADPUSD",
+      "XUSE:CASH:ADSKUSD",
+      "XUSE:CASH:AFRMUSD",
+      "XUSE:CASH:AIUSD",
+      "XUSE:CASH:AJGUSD",
+      "XUSE:CASH:ALABUSD",
+      "XUSE:CASH:ALBUSD",
+      "XUSE:CASH:ALGNUSD",
+      "XUSE:CASH:AMATUSD",
+      "XUSE:CASH:AMCUSD",
+      "XUSE:CASH:AMDUSD",
+      "XUSE:CASH:AMGNUSD",
+      "XUSE:CASH:AMTUSD",
+      "XUSE:CASH:AMZNUSD",
+      "XUSE:CASH:ANETUSD",
+      "XUSE:CASH:AONUSD",
+      "XUSE:CASH:APDUSD",
+      "XUSE:CASH:APHUSD",
+      "XUSE:CASH:APOUSD",
+      "XUSE:CASH:APPUSD",
+      "XUSE:CASH:ARMUSD",
+      "XUSE:CASH:ASMLUSD",
+      "XUSE:CASH:ASTSUSD",
+      "XUSE:CASH:ATVIUSD",
+      "XUSE:CASH:AVGOUSD",
+      "XUSE:CASH:AVLRUSD",
+      "XUSE:CASH:AXONUSD",
+      "XUSE:CASH:AXPUSD",
+      "XUSE:CASH:AXTIUSD",
+      "XUSE:CASH:AZNUSD",
+      "XUSE:CASH:AZOUSD",
+      "XUSE:CASH:BABAUSD",
+      "XUSE:CASH:BACUSD",
+      "XUSE:CASH:BAUSD",
+      "XUSE:CASH:BBAIUSD",
+      "XUSE:CASH:BBBYUSD",
+      "XUSE:CASH:BDXUSD",
+      "XUSE:CASH:BEUSD",
+      "XUSE:CASH:BIDUUSD",
+      "XUSE:CASH:BIIBUSD",
+      "XUSE:CASH:BKNGUSD",
+      "XUSE:CASH:BKRUSD",
+      "XUSE:CASH:BLKUSD",
+      "XUSE:CASH:BMNRUSD",
+      "XUSE:CASH:BMYUSD",
+      "XUSE:CASH:BPUSD",
+      "XUSE:CASH:BRKBUSD",
+      "XUSE:CASH:BSXUSD",
+      "XUSE:CASH:BXUSD",
+      "XUSE:CASH:CARUSD",
+      "XUSE:CASH:CATUSD",
+      "XUSE:CASH:CBUSD",
+      "XUSE:CASH:CCIUSD",
+      "XUSE:CASH:CCLUSD",
+      "XUSE:CASH:CDNSUSD",
+      "XUSE:CASH:CEGUSD",
+      "XUSE:CASH:CFUSD",
+      "XUSE:CASH:CHTRUSD",
+      "XUSE:CASH:CIENUSD",
+      "XUSE:CASH:CIFRUSD",
+      "XUSE:CASH:CIUSD",
+      "XUSE:CASH:CLFUSD",
+      "XUSE:CASH:CLRUSD",
+      "XUSE:CASH:CLSKUSD",
+      "XUSE:CASH:CLSUSD",
+      "XUSE:CASH:CLUSD",
+      "XUSE:CASH:CMCSAUSD",
+      "XUSE:CASH:CMEUSD",
+      "XUSE:CASH:CMGUSD",
+      "XUSE:CASH:CMIUSD",
+      "XUSE:CASH:CNCUSD",
+      "XUSE:CASH:COFUSD",
+      "XUSE:CASH:COHRUSD",
+      "XUSE:CASH:COINUSD",
+      "XUSE:CASH:COPUSD",
+      "XUSE:CASH:COSTUSD",
+      "XUSE:CASH:COUPUSD",
+      "XUSE:CASH:CRCLUSD",
+      "XUSE:CASH:CRDOUSD",
+      "XUSE:CASH:CRHUSD",
+      "XUSE:CASH:CRMUSD",
+      "XUSE:CASH:CRWDUSD",
+      "XUSE:CASH:CRWVUSD",
+      "XUSE:CASH:CSCOUSD",
+      "XUSE:CASH:CSXUSD",
+      "XUSE:CASH:CUSD",
+      "XUSE:CASH:CVNAUSD",
+      "XUSE:CASH:CVSUSD",
+      "XUSE:CASH:CVXUSD",
+      "XUSE:CASH:DALUSD",
+      "XUSE:CASH:DASHUSD",
+      "XUSE:CASH:DDOGUSD",
+      "XUSE:CASH:DECKUSD",
+      "XUSE:CASH:DELLUSD",
+      "XUSE:CASH:DEUSD",
+      "XUSE:CASH:DGUSD",
+      "XUSE:CASH:DHIUSD",
+      "XUSE:CASH:DHRUSD",
+      "XUSE:CASH:DISUSD",
+      "XUSE:CASH:DJTUSD",
+      "XUSE:CASH:DKNGUSD",
+      "XUSE:CASH:DLRUSD",
+      "XUSE:CASH:DLTRUSD",
+      "XUSE:CASH:DOCUUSD",
+      "XUSE:CASH:DUKUSD",
+      "XUSE:CASH:DUOLUSD",
+      "XUSE:CASH:DUSD",
+      "XUSE:CASH:DVNUSD",
+      "XUSE:CASH:DXCMUSD",
+      "XUSE:CASH:EAUSD",
+      "XUSE:CASH:EBAYUSD",
+      "XUSE:CASH:ELUSD",
+      "XUSE:CASH:ELVUSD",
+      "XUSE:CASH:ENPHUSD",
+      "XUSE:CASH:EOGUSD",
+      "XUSE:CASH:EQIXUSD",
+      "XUSE:CASH:ETNUSD",
+      "XUSE:CASH:ETSYUSD",
+      "XUSE:CASH:EWUSD",
+      "XUSE:CASH:EXPEUSD",
+      "XUSE:CASH:FANGUSD",
+      "XUSE:CASH:FCXUSD",
+      "XUSE:CASH:FDXUSD",
+      "XUSE:CASH:FERGUSD",
+      "XUSE:CASH:FIGUSD",
+      "XUSE:CASH:FISUSD",
+      "XUSE:CASH:FISVUSD",
+      "XUSE:CASH:FIXUSD",
+      "XUSE:CASH:FLUTUSD",
+      "XUSE:CASH:FSLRUSD",
+      "XUSE:CASH:FTNTUSD",
+      "XUSE:CASH:FUSD",
+      "XUSE:CASH:FUTUUSD",
+      "XUSE:CASH:GEUSD",
+      "XUSE:CASH:GEVUSD",
+      "XUSE:CASH:GILDUSD",
+      "XUSE:CASH:GLWUSD",
+      "XUSE:CASH:GMEUSD",
+      "XUSE:CASH:GMUSD",
+      "XUSE:CASH:GNRCUSD",
+      "XUSE:CASH:GOLDUSD",
+      "XUSE:CASH:GOOGLUSD",
+      "XUSE:CASH:GSUSD",
+      "XUSE:CASH:HALUSD",
+      "XUSE:CASH:HBANUSD",
+      "XUSE:CASH:HCAUSD",
+      "XUSE:CASH:HDUSD",
+      "XUSE:CASH:HESUSD",
+      "XUSE:CASH:HIMSUSD",
+      "XUSE:CASH:HLTUSD",
+      "XUSE:CASH:HLUSD",
+      "XUSE:CASH:HONUSD",
+      "XUSE:CASH:HOODUSD",
+      "XUSE:CASH:HPEUSD",
+      "XUSE:CASH:HPQUSD",
+      "XUSE:CASH:HSYUSD",
+      "XUSE:CASH:HUMUSD",
+      "XUSE:CASH:HZNPUSD",
+      "XUSE:CASH:IBMUSD",
+      "XUSE:CASH:ICEUSD",
+      "XUSE:CASH:INTCUSD",
+      "XUSE:CASH:INTUUSD",
+      "XUSE:CASH:IONQUSD",
+      "XUSE:CASH:IPUSD",
+      "XUSE:CASH:IRENUSD",
+      "XUSE:CASH:ISRGUSD",
+      "XUSE:CASH:JCIUSD",
+      "XUSE:CASH:JDUSD",
+      "XUSE:CASH:JNJUSD",
+      "XUSE:CASH:JOBYUSD",
+      "XUSE:CASH:JPMUSD",
+      "XUSE:CASH:KKRUSD",
+      "XUSE:CASH:KLACUSD",
+      "XUSE:CASH:KMBUSD",
+      "XUSE:CASH:KOUSD",
+      "XUSE:CASH:KRUSD",
+      "XUSE:CASH:KUSD",
+      "XUSE:CASH:KVUEUSD",
+      "XUSE:CASH:LCIDUSD",
+      "XUSE:CASH:LINUSD",
+      "XUSE:CASH:LITEUSD",
+      "XUSE:CASH:LIUSD",
+      "XUSE:CASH:LLYUSD",
+      "XUSE:CASH:LMTUSD",
+      "XUSE:CASH:LNGUSD",
+      "XUSE:CASH:LOWUSD",
+      "XUSE:CASH:LRCXUSD",
+      "XUSE:CASH:LULUUSD",
+      "XUSE:CASH:MARAUSD",
+      "XUSE:CASH:MARUSD",
+      "XUSE:CASH:MAUSD",
+      "XUSE:CASH:MCDUSD",
+      "XUSE:CASH:MCHPUSD",
+      "XUSE:CASH:MCKUSD",
+      "XUSE:CASH:MCOUSD",
+      "XUSE:CASH:MDBUSD",
+      "XUSE:CASH:MDLZUSD",
+      "XUSE:CASH:MDTUSD",
+      "XUSE:CASH:MELIUSD",
+      "XUSE:CASH:METAUSD",
+      "XUSE:CASH:METUSD",
+      "XUSE:CASH:MMMUSD",
+      "XUSE:CASH:MNSTUSD",
+      "XUSE:CASH:MOSUSD",
+      "XUSE:CASH:MOUSD",
+      "XUSE:CASH:MPCUSD",
+      "XUSE:CASH:MPUSD",
+      "XUSE:CASH:MPWRUSD",
+      "XUSE:CASH:MRKUSD",
+      "XUSE:CASH:MRNAUSD",
+      "XUSE:CASH:MROUSD",
+      "XUSE:CASH:MRVLUSD",
+      "XUSE:CASH:MSFTUSD",
+      "XUSE:CASH:MSIUSD",
+      "XUSE:CASH:MSTRUSD",
+      "XUSE:CASH:MSUSD",
+      "XUSE:CASH:MUUSD",
+      "XUSE:CASH:NBISUSD",
+      "XUSE:CASH:NCLHUSD",
+      "XUSE:CASH:NEEUSD",
+      "XUSE:CASH:NEMUSD",
+      "XUSE:CASH:NETUSD",
+      "XUSE:CASH:NFLXUSD",
+      "XUSE:CASH:NIOUSD",
+      "XUSE:CASH:NKEUSD",
+      "XUSE:CASH:NOCUSD",
+      "XUSE:CASH:NOKUSD",
+      "XUSE:CASH:NOWUSD",
+      "XUSE:CASH:NSCUSD",
+      "XUSE:CASH:NUEUSD",
+      "XUSE:CASH:NUUSD",
+      "XUSE:CASH:NVAXUSD",
+      "XUSE:CASH:NVDAUSD",
+      "XUSE:CASH:NVOUSD",
+      "XUSE:CASH:NXPIUSD",
+      "XUSE:CASH:OKEUSD",
+      "XUSE:CASH:OKLOUSD",
+      "XUSE:CASH:ONDSUSD",
+      "XUSE:CASH:ONUSD",
+      "XUSE:CASH:OPENUSD",
+      "XUSE:CASH:ORCLUSD",
+      "XUSE:CASH:ORLYUSD",
+      "XUSE:CASH:OSCRUSD",
+      "XUSE:CASH:OUSD",
+      "XUSE:CASH:OXYUSD",
+      "XUSE:CASH:PANWUSD",
+      "XUSE:CASH:PCGUSD",
+      "XUSE:CASH:PDDUSD",
+      "XUSE:CASH:PEPUSD",
+      "XUSE:CASH:PFEUSD",
+      "XUSE:CASH:PGRUSD",
+      "XUSE:CASH:PGUSD",
+      "XUSE:CASH:PHUSD",
+      "XUSE:CASH:PLDUSD",
+      "XUSE:CASH:PLTRUSD",
+      "XUSE:CASH:PLUGUSD",
+      "XUSE:CASH:PMUSD",
+      "XUSE:CASH:PNCUSD",
+      "XUSE:CASH:PSAUSD",
+      "XUSE:CASH:PSXUSD",
+      "XUSE:CASH:PXDUSD",
+      "XUSE:CASH:PYPLUSD",
+      "XUSE:CASH:QBTSUSD",
+      "XUSE:CASH:QCOMUSD",
+      "XUSE:CASH:QSUSD",
+      "XUSE:CASH:QUBTUSD",
+      "XUSE:CASH:RBLXUSD",
+      "XUSE:CASH:RCLUSD",
+      "XUSE:CASH:RDDTUSD",
+      "XUSE:CASH:REGNUSD",
+      "XUSE:CASH:RFUSD",
+      "XUSE:CASH:RGTIUSD",
+      "XUSE:CASH:RIOTUSD",
+      "XUSE:CASH:RIVNUSD",
+      "XUSE:CASH:RKLBUSD",
+      "XUSE:CASH:RKTUSD",
+      "XUSE:CASH:ROKUUSD",
+      "XUSE:CASH:RTXUSD",
+      "XUSE:CASH:SATSUSD",
+      "XUSE:CASH:SBUXUSD",
+      "XUSE:CASH:SCHWUSD",
+      "XUSE:CASH:SEUSD",
+      "XUSE:CASH:SHWUSD",
+      "XUSE:CASH:SLBUSD",
+      "XUSE:CASH:SMCIUSD",
+      "XUSE:CASH:SMRUSD",
+      "XUSE:CASH:SNAPUSD",
+      "XUSE:CASH:SNDKUSD",
+      "XUSE:CASH:SNOWUSD",
+      "XUSE:CASH:SNPSUSD",
+      "XUSE:CASH:SOFIUSD",
+      "XUSE:CASH:SOUNUSD",
+      "XUSE:CASH:SOUSD",
+      "XUSE:CASH:SPGIUSD",
+      "XUSE:CASH:SPOTUSD",
+      "XUSE:CASH:STXUSD",
+      "XUSE:CASH:STZUSD",
+      "XUSE:CASH:SWNUSD",
+      "XUSE:CASH:SWUSD",
+      "XUSE:CASH:SYKUSD",
+      "XUSE:CASH:TEAMUSD",
+      "XUSE:CASH:TEMUSD",
+      "XUSE:CASH:TERUSD",
+      "XUSE:CASH:TFCUSD",
+      "XUSE:CASH:TGTUSD",
+      "XUSE:CASH:TJXUSD",
+      "XUSE:CASH:TMOUSD",
+      "XUSE:CASH:TMUSUSD",
+      "XUSE:CASH:TSLAUSD",
+      "XUSE:CASH:TTDUSD",
+      "XUSE:CASH:TTUSD",
+      "XUSE:CASH:TTWOUSD",
+      "XUSE:CASH:TUSD",
+      "XUSE:CASH:TWLOUSD",
+      "XUSE:CASH:TWTRUSD",
+      "XUSE:CASH:TXNUSD",
+      "XUSE:CASH:UALUSD",
+      "XUSE:CASH:UBERUSD",
+      "XUSE:CASH:ULTAUSD",
+      "XUSE:CASH:UNHUSD",
+      "XUSE:CASH:UNPUSD",
+      "XUSE:CASH:UPSTUSD",
+      "XUSE:CASH:UPSUSD",
+      "XUSE:CASH:URIUSD",
+      "XUSE:CASH:USBUSD",
+      "XUSE:CASH:UUSD",
+      "XUSE:CASH:VICIUSD",
+      "XUSE:CASH:VKTXUSD",
+      "XUSE:CASH:VLOUSD",
+      "XUSE:CASH:VMWUSD",
+      "XUSE:CASH:VRTUSD",
+      "XUSE:CASH:VRTXUSD",
+      "XUSE:CASH:VSTUSD",
+      "XUSE:CASH:VUSD",
+      "XUSE:CASH:VZUSD",
+      "XUSE:CASH:WBDUSD",
+      "XUSE:CASH:WDAYUSD",
+      "XUSE:CASH:WDCUSD",
+      "XUSE:CASH:WFCUSD",
+      "XUSE:CASH:WMTUSD",
+      "XUSE:CASH:XOMUSD",
+      "XUSE:CASH:XUSD",
+      "XUSE:CASH:XYZUSD",
+      "XUSE:CASH:ZMUSD",
+      "XUSE:CASH:ZSUSD",
+      "XUSE:CASH:ZTSUSD"
+    ],
+    "no_trade_band": 0.001,
+    "rebalance_bars": 63,
+    "research_engine": {
+      "design_source_sha256": "caf75973d75bbb14ae5685a49ec4522ead2045f223ecd231019a0881460f475e",
+      "input_manifest_sha256": "c8bd75f854d10236e52fea2e4f9279c9ea73398c5ffc0b3847ba69c5c09d4cdf",
+      "leg_persistence": "save_each_engine_result_before_next_leg_v1",
+      "metadata_mode": "MODELED_HISTORICAL_APPLICABILITY_NOT_OBSERVED_PIT",
+      "scenario": {
+        "correction_mode": "momentum_sigma",
+        "covariance_basis": "sessions_splits",
+        "execution_cost_multiplier": 1,
+        "id": "baseline"
+      },
+      "tail_policy": "merge_singleton_into_previous_keep_previous_training_v1",
+      "timing_mode": "Research bar-close availability; source-session equity alignment required; historical corporate-action and borrow limits retained"
+    },
+    "start": 1640736000000,
+    "test_bars": 63,
+    "train_bars": 252
+  },
+  "content_hash": "sha256:943e610f786ad56a83b6086a70f519e409b49c8c84b3c14357f4cb343b5cf5ae",
+  "hypothesis_key": "01ab3f4839ed9e4e",
+  "immutable_first_measurement": {
+    "config": {
+      "allocator": "rank",
+      "alpha_names": [
+        "eq_mom_252_21"
+      ],
+      "end": 1780358400000,
+      "instrument_ids": [
+        "XUSE:CASH:AALUSD",
+        "XUSE:CASH:AAOIUSD",
+        "XUSE:CASH:AAPLUSD",
+        "XUSE:CASH:AAUSD",
+        "XUSE:CASH:ABBVUSD",
+        "XUSE:CASH:ABMDUSD",
+        "XUSE:CASH:ABNBUSD",
+        "XUSE:CASH:ABTUSD",
+        "XUSE:CASH:ACHRUSD",
+        "XUSE:CASH:ACNUSD",
+        "XUSE:CASH:ADBEUSD",
+        "XUSE:CASH:ADIUSD",
+        "XUSE:CASH:ADPUSD",
+        "XUSE:CASH:ADSKUSD",
+        "XUSE:CASH:AFRMUSD",
+        "XUSE:CASH:AIUSD",
+        "XUSE:CASH:AJGUSD",
+        "XUSE:CASH:ALABUSD",
+        "XUSE:CASH:ALBUSD",
+        "XUSE:CASH:ALGNUSD",
+        "XUSE:CASH:AMATUSD",
+        "XUSE:CASH:AMCUSD",
+        "XUSE:CASH:AMDUSD",
+        "XUSE:CASH:AMGNUSD",
+        "XUSE:CASH:AMTUSD",
+        "XUSE:CASH:AMZNUSD",
+        "XUSE:CASH:ANETUSD",
+        "XUSE:CASH:AONUSD",
+        "XUSE:CASH:APDUSD",
+        "XUSE:CASH:APHUSD",
+        "XUSE:CASH:APOUSD",
+        "XUSE:CASH:APPUSD",
+        "XUSE:CASH:ARMUSD",
+        "XUSE:CASH:ASMLUSD",
+        "XUSE:CASH:ASTSUSD",
+        "XUSE:CASH:ATVIUSD",
+        "XUSE:CASH:AVGOUSD",
+        "XUSE:CASH:AVLRUSD",
+        "XUSE:CASH:AXONUSD",
+        "XUSE:CASH:AXPUSD",
+        "XUSE:CASH:AXTIUSD",
+        "XUSE:CASH:AZNUSD",
+        "XUSE:CASH:AZOUSD",
+        "XUSE:CASH:BABAUSD",
+        "XUSE:CASH:BACUSD",
+        "XUSE:CASH:BAUSD",
+        "XUSE:CASH:BBAIUSD",
+        "XUSE:CASH:BBBYUSD",
+        "XUSE:CASH:BDXUSD",
+        "XUSE:CASH:BEUSD",
+        "XUSE:CASH:BIDUUSD",
+        "XUSE:CASH:BIIBUSD",
+        "XUSE:CASH:BKNGUSD",
+        "XUSE:CASH:BKRUSD",
+        "XUSE:CASH:BLKUSD",
+        "XUSE:CASH:BMNRUSD",
+        "XUSE:CASH:BMYUSD",
+        "XUSE:CASH:BPUSD",
+        "XUSE:CASH:BRKBUSD",
+        "XUSE:CASH:BSXUSD",
+        "XUSE:CASH:BXUSD",
+        "XUSE:CASH:CARUSD",
+        "XUSE:CASH:CATUSD",
+        "XUSE:CASH:CBUSD",
+        "XUSE:CASH:CCIUSD",
+        "XUSE:CASH:CCLUSD",
+        "XUSE:CASH:CDNSUSD",
+        "XUSE:CASH:CEGUSD",
+        "XUSE:CASH:CFUSD",
+        "XUSE:CASH:CHTRUSD",
+        "XUSE:CASH:CIENUSD",
+        "XUSE:CASH:CIFRUSD",
+        "XUSE:CASH:CIUSD",
+        "XUSE:CASH:CLFUSD",
+        "XUSE:CASH:CLRUSD",
+        "XUSE:CASH:CLSKUSD",
+        "XUSE:CASH:CLSUSD",
+        "XUSE:CASH:CLUSD",
+        "XUSE:CASH:CMCSAUSD",
+        "XUSE:CASH:CMEUSD",
+        "XUSE:CASH:CMGUSD",
+        "XUSE:CASH:CMIUSD",
+        "XUSE:CASH:CNCUSD",
+        "XUSE:CASH:COFUSD",
+        "XUSE:CASH:COHRUSD",
+        "XUSE:CASH:COINUSD",
+        "XUSE:CASH:COPUSD",
+        "XUSE:CASH:COSTUSD",
+        "XUSE:CASH:COUPUSD",
+        "XUSE:CASH:CRCLUSD",
+        "XUSE:CASH:CRDOUSD",
+        "XUSE:CASH:CRHUSD",
+        "XUSE:CASH:CRMUSD",
+        "XUSE:CASH:CRWDUSD",
+        "XUSE:CASH:CRWVUSD",
+        "XUSE:CASH:CSCOUSD",
+        "XUSE:CASH:CSXUSD",
+        "XUSE:CASH:CUSD",
+        "XUSE:CASH:CVNAUSD",
+        "XUSE:CASH:CVSUSD",
+        "XUSE:CASH:CVXUSD",
+        "XUSE:CASH:DALUSD",
+        "XUSE:CASH:DASHUSD",
+        "XUSE:CASH:DDOGUSD",
+        "XUSE:CASH:DECKUSD",
+        "XUSE:CASH:DELLUSD",
+        "XUSE:CASH:DEUSD",
+        "XUSE:CASH:DGUSD",
+        "XUSE:CASH:DHIUSD",
+        "XUSE:CASH:DHRUSD",
+        "XUSE:CASH:DISUSD",
+        "XUSE:CASH:DJTUSD",
+        "XUSE:CASH:DKNGUSD",
+        "XUSE:CASH:DLRUSD",
+        "XUSE:CASH:DLTRUSD",
+        "XUSE:CASH:DOCUUSD",
+        "XUSE:CASH:DUKUSD",
+        "XUSE:CASH:DUOLUSD",
+        "XUSE:CASH:DUSD",
+        "XUSE:CASH:DVNUSD",
+        "XUSE:CASH:DXCMUSD",
+        "XUSE:CASH:EAUSD",
+        "XUSE:CASH:EBAYUSD",
+        "XUSE:CASH:ELUSD",
+        "XUSE:CASH:ELVUSD",
+        "XUSE:CASH:ENPHUSD",
+        "XUSE:CASH:EOGUSD",
+        "XUSE:CASH:EQIXUSD",
+        "XUSE:CASH:ETNUSD",
+        "XUSE:CASH:ETSYUSD",
+        "XUSE:CASH:EWUSD",
+        "XUSE:CASH:EXPEUSD",
+        "XUSE:CASH:FANGUSD",
+        "XUSE:CASH:FCXUSD",
+        "XUSE:CASH:FDXUSD",
+        "XUSE:CASH:FERGUSD",
+        "XUSE:CASH:FIGUSD",
+        "XUSE:CASH:FISUSD",
+        "XUSE:CASH:FISVUSD",
+        "XUSE:CASH:FIXUSD",
+        "XUSE:CASH:FLUTUSD",
+        "XUSE:CASH:FSLRUSD",
+        "XUSE:CASH:FTNTUSD",
+        "XUSE:CASH:FUSD",
+        "XUSE:CASH:FUTUUSD",
+        "XUSE:CASH:GEUSD",
+        "XUSE:CASH:GEVUSD",
+        "XUSE:CASH:GILDUSD",
+        "XUSE:CASH:GLWUSD",
+        "XUSE:CASH:GMEUSD",
+        "XUSE:CASH:GMUSD",
+        "XUSE:CASH:GNRCUSD",
+        "XUSE:CASH:GOLDUSD",
+        "XUSE:CASH:GOOGLUSD",
+        "XUSE:CASH:GSUSD",
+        "XUSE:CASH:HALUSD",
+        "XUSE:CASH:HBANUSD",
+        "XUSE:CASH:HCAUSD",
+        "XUSE:CASH:HDUSD",
+        "XUSE:CASH:HESUSD",
+        "XUSE:CASH:HIMSUSD",
+        "XUSE:CASH:HLTUSD",
+        "XUSE:CASH:HLUSD",
+        "XUSE:CASH:HONUSD",
+        "XUSE:CASH:HOODUSD",
+        "XUSE:CASH:HPEUSD",
+        "XUSE:CASH:HPQUSD",
+        "XUSE:CASH:HSYUSD",
+        "XUSE:CASH:HUMUSD",
+        "XUSE:CASH:HZNPUSD",
+        "XUSE:CASH:IBMUSD",
+        "XUSE:CASH:ICEUSD",
+        "XUSE:CASH:INTCUSD",
+        "XUSE:CASH:INTUUSD",
+        "XUSE:CASH:IONQUSD",
+        "XUSE:CASH:IPUSD",
+        "XUSE:CASH:IRENUSD",
+        "XUSE:CASH:ISRGUSD",
+        "XUSE:CASH:JCIUSD",
+        "XUSE:CASH:JDUSD",
+        "XUSE:CASH:JNJUSD",
+        "XUSE:CASH:JOBYUSD",
+        "XUSE:CASH:JPMUSD",
+        "XUSE:CASH:KKRUSD",
+        "XUSE:CASH:KLACUSD",
+        "XUSE:CASH:KMBUSD",
+        "XUSE:CASH:KOUSD",
+        "XUSE:CASH:KRUSD",
+        "XUSE:CASH:KUSD",
+        "XUSE:CASH:KVUEUSD",
+        "XUSE:CASH:LCIDUSD",
+        "XUSE:CASH:LINUSD",
+        "XUSE:CASH:LITEUSD",
+        "XUSE:CASH:LIUSD",
+        "XUSE:CASH:LLYUSD",
+        "XUSE:CASH:LMTUSD",
+        "XUSE:CASH:LNGUSD",
+        "XUSE:CASH:LOWUSD",
+        "XUSE:CASH:LRCXUSD",
+        "XUSE:CASH:LULUUSD",
+        "XUSE:CASH:MARAUSD",
+        "XUSE:CASH:MARUSD",
+        "XUSE:CASH:MAUSD",
+        "XUSE:CASH:MCDUSD",
+        "XUSE:CASH:MCHPUSD",
+        "XUSE:CASH:MCKUSD",
+        "XUSE:CASH:MCOUSD",
+        "XUSE:CASH:MDBUSD",
+        "XUSE:CASH:MDLZUSD",
+        "XUSE:CASH:MDTUSD",
+        "XUSE:CASH:MELIUSD",
+        "XUSE:CASH:METAUSD",
+        "XUSE:CASH:METUSD",
+        "XUSE:CASH:MMMUSD",
+        "XUSE:CASH:MNSTUSD",
+        "XUSE:CASH:MOSUSD",
+        "XUSE:CASH:MOUSD",
+        "XUSE:CASH:MPCUSD",
+        "XUSE:CASH:MPUSD",
+        "XUSE:CASH:MPWRUSD",
+        "XUSE:CASH:MRKUSD",
+        "XUSE:CASH:MRNAUSD",
+        "XUSE:CASH:MROUSD",
+        "XUSE:CASH:MRVLUSD",
+        "XUSE:CASH:MSFTUSD",
+        "XUSE:CASH:MSIUSD",
+        "XUSE:CASH:MSTRUSD",
+        "XUSE:CASH:MSUSD",
+        "XUSE:CASH:MUUSD",
+        "XUSE:CASH:NBISUSD",
+        "XUSE:CASH:NCLHUSD",
+        "XUSE:CASH:NEEUSD",
+        "XUSE:CASH:NEMUSD",
+        "XUSE:CASH:NETUSD",
+        "XUSE:CASH:NFLXUSD",
+        "XUSE:CASH:NIOUSD",
+        "XUSE:CASH:NKEUSD",
+        "XUSE:CASH:NOCUSD",
+        "XUSE:CASH:NOKUSD",
+        "XUSE:CASH:NOWUSD",
+        "XUSE:CASH:NSCUSD",
+        "XUSE:CASH:NUEUSD",
+        "XUSE:CASH:NUUSD",
+        "XUSE:CASH:NVAXUSD",
+        "XUSE:CASH:NVDAUSD",
+        "XUSE:CASH:NVOUSD",
+        "XUSE:CASH:NXPIUSD",
+        "XUSE:CASH:OKEUSD",
+        "XUSE:CASH:OKLOUSD",
+        "XUSE:CASH:ONDSUSD",
+        "XUSE:CASH:ONUSD",
+        "XUSE:CASH:OPENUSD",
+        "XUSE:CASH:ORCLUSD",
+        "XUSE:CASH:ORLYUSD",
+        "XUSE:CASH:OSCRUSD",
+        "XUSE:CASH:OUSD",
+        "XUSE:CASH:OXYUSD",
+        "XUSE:CASH:PANWUSD",
+        "XUSE:CASH:PCGUSD",
+        "XUSE:CASH:PDDUSD",
+        "XUSE:CASH:PEPUSD",
+        "XUSE:CASH:PFEUSD",
+        "XUSE:CASH:PGRUSD",
+        "XUSE:CASH:PGUSD",
+        "XUSE:CASH:PHUSD",
+        "XUSE:CASH:PLDUSD",
+        "XUSE:CASH:PLTRUSD",
+        "XUSE:CASH:PLUGUSD",
+        "XUSE:CASH:PMUSD",
+        "XUSE:CASH:PNCUSD",
+        "XUSE:CASH:PSAUSD",
+        "XUSE:CASH:PSXUSD",
+        "XUSE:CASH:PXDUSD",
+        "XUSE:CASH:PYPLUSD",
+        "XUSE:CASH:QBTSUSD",
+        "XUSE:CASH:QCOMUSD",
+        "XUSE:CASH:QSUSD",
+        "XUSE:CASH:QUBTUSD",
+        "XUSE:CASH:RBLXUSD",
+        "XUSE:CASH:RCLUSD",
+        "XUSE:CASH:RDDTUSD",
+        "XUSE:CASH:REGNUSD",
+        "XUSE:CASH:RFUSD",
+        "XUSE:CASH:RGTIUSD",
+        "XUSE:CASH:RIOTUSD",
+        "XUSE:CASH:RIVNUSD",
+        "XUSE:CASH:RKLBUSD",
+        "XUSE:CASH:RKTUSD",
+        "XUSE:CASH:ROKUUSD",
+        "XUSE:CASH:RTXUSD",
+        "XUSE:CASH:SATSUSD",
+        "XUSE:CASH:SBUXUSD",
+        "XUSE:CASH:SCHWUSD",
+        "XUSE:CASH:SEUSD",
+        "XUSE:CASH:SHWUSD",
+        "XUSE:CASH:SLBUSD",
+        "XUSE:CASH:SMCIUSD",
+        "XUSE:CASH:SMRUSD",
+        "XUSE:CASH:SNAPUSD",
+        "XUSE:CASH:SNDKUSD",
+        "XUSE:CASH:SNOWUSD",
+        "XUSE:CASH:SNPSUSD",
+        "XUSE:CASH:SOFIUSD",
+        "XUSE:CASH:SOUNUSD",
+        "XUSE:CASH:SOUSD",
+        "XUSE:CASH:SPGIUSD",
+        "XUSE:CASH:SPOTUSD",
+        "XUSE:CASH:STXUSD",
+        "XUSE:CASH:STZUSD",
+        "XUSE:CASH:SWNUSD",
+        "XUSE:CASH:SWUSD",
+        "XUSE:CASH:SYKUSD",
+        "XUSE:CASH:TEAMUSD",
+        "XUSE:CASH:TEMUSD",
+        "XUSE:CASH:TERUSD",
+        "XUSE:CASH:TFCUSD",
+        "XUSE:CASH:TGTUSD",
+        "XUSE:CASH:TJXUSD",
+        "XUSE:CASH:TMOUSD",
+        "XUSE:CASH:TMUSUSD",
+        "XUSE:CASH:TSLAUSD",
+        "XUSE:CASH:TTDUSD",
+        "XUSE:CASH:TTUSD",
+        "XUSE:CASH:TTWOUSD",
+        "XUSE:CASH:TUSD",
+        "XUSE:CASH:TWLOUSD",
+        "XUSE:CASH:TWTRUSD",
+        "XUSE:CASH:TXNUSD",
+        "XUSE:CASH:UALUSD",
+        "XUSE:CASH:UBERUSD",
+        "XUSE:CASH:ULTAUSD",
+        "XUSE:CASH:UNHUSD",
+        "XUSE:CASH:UNPUSD",
+        "XUSE:CASH:UPSTUSD",
+        "XUSE:CASH:UPSUSD",
+        "XUSE:CASH:URIUSD",
+        "XUSE:CASH:USBUSD",
+        "XUSE:CASH:UUSD",
+        "XUSE:CASH:VICIUSD",
+        "XUSE:CASH:VKTXUSD",
+        "XUSE:CASH:VLOUSD",
+        "XUSE:CASH:VMWUSD",
+        "XUSE:CASH:VRTUSD",
+        "XUSE:CASH:VRTXUSD",
+        "XUSE:CASH:VSTUSD",
+        "XUSE:CASH:VUSD",
+        "XUSE:CASH:VZUSD",
+        "XUSE:CASH:WBDUSD",
+        "XUSE:CASH:WDAYUSD",
+        "XUSE:CASH:WDCUSD",
+        "XUSE:CASH:WFCUSD",
+        "XUSE:CASH:WMTUSD",
+        "XUSE:CASH:XOMUSD",
+        "XUSE:CASH:XUSD",
+        "XUSE:CASH:XYZUSD",
+        "XUSE:CASH:ZMUSD",
+        "XUSE:CASH:ZSUSD",
+        "XUSE:CASH:ZTSUSD"
+      ],
+      "no_trade_band": 0.001,
+      "rebalance_bars": 63,
+      "research_engine": {
+        "design_source_sha256": "caf75973d75bbb14ae5685a49ec4522ead2045f223ecd231019a0881460f475e",
+        "input_manifest_sha256": "c8bd75f854d10236e52fea2e4f9279c9ea73398c5ffc0b3847ba69c5c09d4cdf",
+        "leg_persistence": "save_each_engine_result_before_next_leg_v1",
+        "metadata_mode": "MODELED_HISTORICAL_APPLICABILITY_NOT_OBSERVED_PIT",
+        "scenario": {
+          "correction_mode": "momentum_sigma",
+          "covariance_basis": "sessions_splits",
+          "execution_cost_multiplier": 1,
+          "id": "baseline"
+        },
+        "tail_policy": "merge_singleton_into_previous_keep_previous_training_v1",
+        "timing_mode": "Research bar-close availability; source-session equity alignment required; historical corporate-action and borrow limits retained"
+      },
+      "start": 1640736000000,
+      "test_bars": 63,
+      "train_bars": 252
+    },
+    "config_hash": "fc900a2297750f0c",
+    "kurtosis": 9.792714728183364,
+    "n_obs": 856,
+    "now_ms": 1789296806149,
+    "sharpe_ann": 0.15019831756572805,
+    "sharpe_per_period": 0.007861739254670397,
+    "skew": -0.7623685570691648
+  },
+  "imported_from_external_tree": {
+    "external_content_hash": "sha256:8b37ead27d507746d4dc5c578c06b9bfc223f451f3f7d8ceb286e4108ca463f2",
+    "imported_on": "2026-09-14T19:35:24+00:00",
+    "tree": "/Users/arhancanli/alphac-prospective-pause-20260911"
+  },
+  "missing_sections": [],
+  "packet_status": "COMPLETE_ACCOUNTING_FINAL_KILLED_NOT_ADMITTED",
+  "partial_sections": [],
+  "required_sections": {
+    "admission_or_kill_decision": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/reservation.json",
+          "sha256": "4c4b03749264a5dc09c36e5d2c9403eef04d429ffd4c65aaed1ad81e96be0cb4"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/preregistration.json",
+          "sha256": "e31aab76cebece10e2a986718775bb92b67f9dc6775851491f808d62e7690fb4"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/reservation_validation.json",
+          "sha256": "90fde25e2c091f7f0c771aae2a8f022b44eee236885119112c5b0f6ba19ec845"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/experiments.jsonl",
+          "sha256": "e1eeddab353574cf119e9cc5d9c8134a5a1df1aa74abd4ac39536f07f8437e9a"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/execution_complete.json",
+          "sha256": "f482db09d61f1850675e943a74a5872a756c7b944b9f9118da08344fa0e186ff"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/independent_audit.json",
+          "sha256": "7d5c2613026ab43ba84fbf8b2bca08fc53fa286e2f462c261137d70cbf792653"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/calendar2023_2026.csv",
+          "sha256": "d8a5f920ad7e972771ffe1dbb8f572203bb9727bf2e5eb29a1066d7d56328bfa"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/benchmark_policy.json",
+          "sha256": "1d33cf07b565c91857b9734d0be8159599a5d292d1ec83b80d340d72077eedaf"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/benchmark_audit.json",
+          "sha256": "fc6198021be484421faa6e67498a410976a83977f724aa76802b4212b5199944"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/calendar2023_2026_excess.csv",
+          "sha256": "6b2e56c5ee35893832322f0983ac33ef1e3c268e2be5285413bbb21ba1213ee9"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/benchmark_daily_alignment.csv",
+          "sha256": "fd9c401ab06f5dc5865a07a109d41fe91c93b734059118e48a4c21085d322b72"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/FINAL_REPORT.md",
+          "sha256": "3e7cbaa223d0466d8b31caaaab219ea530ee05f7d862def6a0e09abd9a375ae4"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/run/walkforward.json",
+          "sha256": "bf1f446bafaf8ab7a5a8b18494416b8ada23dd2e0ecc8a1024fa26e3adc0ad0f"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/protocol.json",
+          "sha256": "14547dfca1fba5a997104f5f89d8e2f283277b5dbe43ad486f57da9e28c73f12"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/input_manifest.json",
+          "sha256": "c8bd75f854d10236e52fea2e4f9279c9ea73398c5ffc0b3847ba69c5c09d4cdf"
+        },
+        {
+          "path": "scripts/close_alphamax_extended_reference.py",
+          "sha256": "a43e12b134f928169dfe1e2b446a1bad1cafd5628cb65e050723941bf344036f"
+        },
+        {
+          "path": "scripts/audit_alphamax_extended_reference.py",
+          "sha256": "47cdaf7f84381764d18ce7998be8c97b7e845c292f9f1f5b4c04e4091dc7b0cb"
+        },
+        {
+          "content_hash": "sha256:a45a18a71ba63902e6b2b48a3a88674a0046d26764cfc50303075309babc1473",
+          "path": "artifacts/research/development_closures/01ab3f4839ed9e4e_admission_closure.json",
+          "sha256": "bbdc1f251e4a547e7d9f6ac18ead9183c94e9ec7e46cdabb5e4af42c8fb372fa",
+          "type": "final_development_admission_closure"
+        }
+      ],
+      "statement": "Retrospective standalone baseline, not untouched OOS or combined qualification. DFF is a current-vintage reporting proxy with modeled publication dates, not certified cash yield. Static borrow and modeled metadata, corporate actions and final-recorded-close liquidation remain. The last source session is June1 2026; unresolved old EWMA split boundaries remain.",
+      "status": "VERIFIED_FINAL_DEVELOPMENT_CLOSURE_KILL"
+    },
+    "code_environment_and_reproduction": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/reservation.json",
+          "sha256": "4c4b03749264a5dc09c36e5d2c9403eef04d429ffd4c65aaed1ad81e96be0cb4"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/preregistration.json",
+          "sha256": "e31aab76cebece10e2a986718775bb92b67f9dc6775851491f808d62e7690fb4"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/reservation_validation.json",
+          "sha256": "90fde25e2c091f7f0c771aae2a8f022b44eee236885119112c5b0f6ba19ec845"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/experiments.jsonl",
+          "sha256": "e1eeddab353574cf119e9cc5d9c8134a5a1df1aa74abd4ac39536f07f8437e9a"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/execution_complete.json",
+          "sha256": "f482db09d61f1850675e943a74a5872a756c7b944b9f9118da08344fa0e186ff"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/independent_audit.json",
+          "sha256": "7d5c2613026ab43ba84fbf8b2bca08fc53fa286e2f462c261137d70cbf792653"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/calendar2023_2026.csv",
+          "sha256": "d8a5f920ad7e972771ffe1dbb8f572203bb9727bf2e5eb29a1066d7d56328bfa"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/benchmark_policy.json",
+          "sha256": "1d33cf07b565c91857b9734d0be8159599a5d292d1ec83b80d340d72077eedaf"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/benchmark_audit.json",
+          "sha256": "fc6198021be484421faa6e67498a410976a83977f724aa76802b4212b5199944"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/calendar2023_2026_excess.csv",
+          "sha256": "6b2e56c5ee35893832322f0983ac33ef1e3c268e2be5285413bbb21ba1213ee9"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/benchmark_daily_alignment.csv",
+          "sha256": "fd9c401ab06f5dc5865a07a109d41fe91c93b734059118e48a4c21085d322b72"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/FINAL_REPORT.md",
+          "sha256": "3e7cbaa223d0466d8b31caaaab219ea530ee05f7d862def6a0e09abd9a375ae4"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/run/walkforward.json",
+          "sha256": "bf1f446bafaf8ab7a5a8b18494416b8ada23dd2e0ecc8a1024fa26e3adc0ad0f"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/protocol.json",
+          "sha256": "14547dfca1fba5a997104f5f89d8e2f283277b5dbe43ad486f57da9e28c73f12"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/input_manifest.json",
+          "sha256": "c8bd75f854d10236e52fea2e4f9279c9ea73398c5ffc0b3847ba69c5c09d4cdf"
+        },
+        {
+          "path": "scripts/close_alphamax_extended_reference.py",
+          "sha256": "a43e12b134f928169dfe1e2b446a1bad1cafd5628cb65e050723941bf344036f"
+        },
+        {
+          "path": "scripts/audit_alphamax_extended_reference.py",
+          "sha256": "47cdaf7f84381764d18ce7998be8c97b7e845c292f9f1f5b4c04e4091dc7b0cb"
+        }
+      ],
+      "statement": "Retrospective standalone baseline, not untouched OOS or combined qualification. DFF is a current-vintage reporting proxy with modeled publication dates, not certified cash yield. Static borrow and modeled metadata, corporate actions and final-recorded-close liquidation remain. The last source session is June1 2026; unresolved old EWMA split boundaries remain.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "economic_mechanism_and_falsifiable_hypothesis": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/reservation.json",
+          "sha256": "4c4b03749264a5dc09c36e5d2c9403eef04d429ffd4c65aaed1ad81e96be0cb4"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/preregistration.json",
+          "sha256": "e31aab76cebece10e2a986718775bb92b67f9dc6775851491f808d62e7690fb4"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/reservation_validation.json",
+          "sha256": "90fde25e2c091f7f0c771aae2a8f022b44eee236885119112c5b0f6ba19ec845"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/experiments.jsonl",
+          "sha256": "e1eeddab353574cf119e9cc5d9c8134a5a1df1aa74abd4ac39536f07f8437e9a"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/execution_complete.json",
+          "sha256": "f482db09d61f1850675e943a74a5872a756c7b944b9f9118da08344fa0e186ff"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/independent_audit.json",
+          "sha256": "7d5c2613026ab43ba84fbf8b2bca08fc53fa286e2f462c261137d70cbf792653"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/calendar2023_2026.csv",
+          "sha256": "d8a5f920ad7e972771ffe1dbb8f572203bb9727bf2e5eb29a1066d7d56328bfa"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/benchmark_policy.json",
+          "sha256": "1d33cf07b565c91857b9734d0be8159599a5d292d1ec83b80d340d72077eedaf"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/benchmark_audit.json",
+          "sha256": "fc6198021be484421faa6e67498a410976a83977f724aa76802b4212b5199944"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/calendar2023_2026_excess.csv",
+          "sha256": "6b2e56c5ee35893832322f0983ac33ef1e3c268e2be5285413bbb21ba1213ee9"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/benchmark_daily_alignment.csv",
+          "sha256": "fd9c401ab06f5dc5865a07a109d41fe91c93b734059118e48a4c21085d322b72"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/FINAL_REPORT.md",
+          "sha256": "3e7cbaa223d0466d8b31caaaab219ea530ee05f7d862def6a0e09abd9a375ae4"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/run/walkforward.json",
+          "sha256": "bf1f446bafaf8ab7a5a8b18494416b8ada23dd2e0ecc8a1024fa26e3adc0ad0f"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/protocol.json",
+          "sha256": "14547dfca1fba5a997104f5f89d8e2f283277b5dbe43ad486f57da9e28c73f12"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/input_manifest.json",
+          "sha256": "c8bd75f854d10236e52fea2e4f9279c9ea73398c5ffc0b3847ba69c5c09d4cdf"
+        },
+        {
+          "path": "scripts/close_alphamax_extended_reference.py",
+          "sha256": "a43e12b134f928169dfe1e2b446a1bad1cafd5628cb65e050723941bf344036f"
+        },
+        {
+          "path": "scripts/audit_alphamax_extended_reference.py",
+          "sha256": "47cdaf7f84381764d18ce7998be8c97b7e845c292f9f1f5b4c04e4091dc7b0cb"
+        }
+      ],
+      "statement": "Retrospective standalone baseline, not untouched OOS or combined qualification. DFF is a current-vintage reporting proxy with modeled publication dates, not certified cash yield. Static borrow and modeled metadata, corporate actions and final-recorded-close liquidation remain. The last source session is June1 2026; unresolved old EWMA split boundaries remain.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "execution_and_cost_model": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/reservation.json",
+          "sha256": "4c4b03749264a5dc09c36e5d2c9403eef04d429ffd4c65aaed1ad81e96be0cb4"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/preregistration.json",
+          "sha256": "e31aab76cebece10e2a986718775bb92b67f9dc6775851491f808d62e7690fb4"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/reservation_validation.json",
+          "sha256": "90fde25e2c091f7f0c771aae2a8f022b44eee236885119112c5b0f6ba19ec845"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/experiments.jsonl",
+          "sha256": "e1eeddab353574cf119e9cc5d9c8134a5a1df1aa74abd4ac39536f07f8437e9a"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/execution_complete.json",
+          "sha256": "f482db09d61f1850675e943a74a5872a756c7b944b9f9118da08344fa0e186ff"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/independent_audit.json",
+          "sha256": "7d5c2613026ab43ba84fbf8b2bca08fc53fa286e2f462c261137d70cbf792653"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/calendar2023_2026.csv",
+          "sha256": "d8a5f920ad7e972771ffe1dbb8f572203bb9727bf2e5eb29a1066d7d56328bfa"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/benchmark_policy.json",
+          "sha256": "1d33cf07b565c91857b9734d0be8159599a5d292d1ec83b80d340d72077eedaf"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/benchmark_audit.json",
+          "sha256": "fc6198021be484421faa6e67498a410976a83977f724aa76802b4212b5199944"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/calendar2023_2026_excess.csv",
+          "sha256": "6b2e56c5ee35893832322f0983ac33ef1e3c268e2be5285413bbb21ba1213ee9"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/benchmark_daily_alignment.csv",
+          "sha256": "fd9c401ab06f5dc5865a07a109d41fe91c93b734059118e48a4c21085d322b72"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/FINAL_REPORT.md",
+          "sha256": "3e7cbaa223d0466d8b31caaaab219ea530ee05f7d862def6a0e09abd9a375ae4"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/run/walkforward.json",
+          "sha256": "bf1f446bafaf8ab7a5a8b18494416b8ada23dd2e0ecc8a1024fa26e3adc0ad0f"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/protocol.json",
+          "sha256": "14547dfca1fba5a997104f5f89d8e2f283277b5dbe43ad486f57da9e28c73f12"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/input_manifest.json",
+          "sha256": "c8bd75f854d10236e52fea2e4f9279c9ea73398c5ffc0b3847ba69c5c09d4cdf"
+        },
+        {
+          "path": "scripts/close_alphamax_extended_reference.py",
+          "sha256": "a43e12b134f928169dfe1e2b446a1bad1cafd5628cb65e050723941bf344036f"
+        },
+        {
+          "path": "scripts/audit_alphamax_extended_reference.py",
+          "sha256": "47cdaf7f84381764d18ce7998be8c97b7e845c292f9f1f5b4c04e4091dc7b0cb"
+        }
+      ],
+      "statement": "Retrospective standalone baseline, not untouched OOS or combined qualification. DFF is a current-vintage reporting proxy with modeled publication dates, not certified cash yield. Static borrow and modeled metadata, corporate actions and final-recorded-close liquidation remain. The last source session is June1 2026; unresolved old EWMA split boundaries remain.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "family_and_union_trial_accounting": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/reservation.json",
+          "sha256": "4c4b03749264a5dc09c36e5d2c9403eef04d429ffd4c65aaed1ad81e96be0cb4"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/preregistration.json",
+          "sha256": "e31aab76cebece10e2a986718775bb92b67f9dc6775851491f808d62e7690fb4"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/reservation_validation.json",
+          "sha256": "90fde25e2c091f7f0c771aae2a8f022b44eee236885119112c5b0f6ba19ec845"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/experiments.jsonl",
+          "sha256": "e1eeddab353574cf119e9cc5d9c8134a5a1df1aa74abd4ac39536f07f8437e9a"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/execution_complete.json",
+          "sha256": "f482db09d61f1850675e943a74a5872a756c7b944b9f9118da08344fa0e186ff"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/independent_audit.json",
+          "sha256": "7d5c2613026ab43ba84fbf8b2bca08fc53fa286e2f462c261137d70cbf792653"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/calendar2023_2026.csv",
+          "sha256": "d8a5f920ad7e972771ffe1dbb8f572203bb9727bf2e5eb29a1066d7d56328bfa"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/benchmark_policy.json",
+          "sha256": "1d33cf07b565c91857b9734d0be8159599a5d292d1ec83b80d340d72077eedaf"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/benchmark_audit.json",
+          "sha256": "fc6198021be484421faa6e67498a410976a83977f724aa76802b4212b5199944"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/calendar2023_2026_excess.csv",
+          "sha256": "6b2e56c5ee35893832322f0983ac33ef1e3c268e2be5285413bbb21ba1213ee9"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/benchmark_daily_alignment.csv",
+          "sha256": "fd9c401ab06f5dc5865a07a109d41fe91c93b734059118e48a4c21085d322b72"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/FINAL_REPORT.md",
+          "sha256": "3e7cbaa223d0466d8b31caaaab219ea530ee05f7d862def6a0e09abd9a375ae4"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/run/walkforward.json",
+          "sha256": "bf1f446bafaf8ab7a5a8b18494416b8ada23dd2e0ecc8a1024fa26e3adc0ad0f"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/protocol.json",
+          "sha256": "14547dfca1fba5a997104f5f89d8e2f283277b5dbe43ad486f57da9e28c73f12"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/input_manifest.json",
+          "sha256": "c8bd75f854d10236e52fea2e4f9279c9ea73398c5ffc0b3847ba69c5c09d4cdf"
+        },
+        {
+          "path": "scripts/close_alphamax_extended_reference.py",
+          "sha256": "a43e12b134f928169dfe1e2b446a1bad1cafd5628cb65e050723941bf344036f"
+        },
+        {
+          "path": "scripts/audit_alphamax_extended_reference.py",
+          "sha256": "47cdaf7f84381764d18ce7998be8c97b7e845c292f9f1f5b4c04e4091dc7b0cb"
+        }
+      ],
+      "statement": "Retrospective standalone baseline, not untouched OOS or combined qualification. DFF is a current-vintage reporting proxy with modeled publication dates, not certified cash yield. Static borrow and modeled metadata, corporate actions and final-recorded-close liquidation remain. The last source session is June1 2026; unresolved old EWMA split boundaries remain.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "identity_and_authorship": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/reservation.json",
+          "sha256": "4c4b03749264a5dc09c36e5d2c9403eef04d429ffd4c65aaed1ad81e96be0cb4"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/preregistration.json",
+          "sha256": "e31aab76cebece10e2a986718775bb92b67f9dc6775851491f808d62e7690fb4"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/reservation_validation.json",
+          "sha256": "90fde25e2c091f7f0c771aae2a8f022b44eee236885119112c5b0f6ba19ec845"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/experiments.jsonl",
+          "sha256": "e1eeddab353574cf119e9cc5d9c8134a5a1df1aa74abd4ac39536f07f8437e9a"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/execution_complete.json",
+          "sha256": "f482db09d61f1850675e943a74a5872a756c7b944b9f9118da08344fa0e186ff"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/independent_audit.json",
+          "sha256": "7d5c2613026ab43ba84fbf8b2bca08fc53fa286e2f462c261137d70cbf792653"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/calendar2023_2026.csv",
+          "sha256": "d8a5f920ad7e972771ffe1dbb8f572203bb9727bf2e5eb29a1066d7d56328bfa"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/benchmark_policy.json",
+          "sha256": "1d33cf07b565c91857b9734d0be8159599a5d292d1ec83b80d340d72077eedaf"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/benchmark_audit.json",
+          "sha256": "fc6198021be484421faa6e67498a410976a83977f724aa76802b4212b5199944"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/calendar2023_2026_excess.csv",
+          "sha256": "6b2e56c5ee35893832322f0983ac33ef1e3c268e2be5285413bbb21ba1213ee9"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/benchmark_daily_alignment.csv",
+          "sha256": "fd9c401ab06f5dc5865a07a109d41fe91c93b734059118e48a4c21085d322b72"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/FINAL_REPORT.md",
+          "sha256": "3e7cbaa223d0466d8b31caaaab219ea530ee05f7d862def6a0e09abd9a375ae4"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/run/walkforward.json",
+          "sha256": "bf1f446bafaf8ab7a5a8b18494416b8ada23dd2e0ecc8a1024fa26e3adc0ad0f"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/protocol.json",
+          "sha256": "14547dfca1fba5a997104f5f89d8e2f283277b5dbe43ad486f57da9e28c73f12"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/input_manifest.json",
+          "sha256": "c8bd75f854d10236e52fea2e4f9279c9ea73398c5ffc0b3847ba69c5c09d4cdf"
+        },
+        {
+          "path": "scripts/close_alphamax_extended_reference.py",
+          "sha256": "a43e12b134f928169dfe1e2b446a1bad1cafd5628cb65e050723941bf344036f"
+        },
+        {
+          "path": "scripts/audit_alphamax_extended_reference.py",
+          "sha256": "47cdaf7f84381764d18ce7998be8c97b7e845c292f9f1f5b4c04e4091dc7b0cb"
+        }
+      ],
+      "statement": "Retrospective standalone baseline, not untouched OOS or combined qualification. DFF is a current-vintage reporting proxy with modeled publication dates, not certified cash yield. Static borrow and modeled metadata, corporate actions and final-recorded-close liquidation remain. The last source session is June1 2026; unresolved old EWMA split boundaries remain.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "literature_and_overlap_decision": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/reservation.json",
+          "sha256": "4c4b03749264a5dc09c36e5d2c9403eef04d429ffd4c65aaed1ad81e96be0cb4"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/preregistration.json",
+          "sha256": "e31aab76cebece10e2a986718775bb92b67f9dc6775851491f808d62e7690fb4"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/reservation_validation.json",
+          "sha256": "90fde25e2c091f7f0c771aae2a8f022b44eee236885119112c5b0f6ba19ec845"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/experiments.jsonl",
+          "sha256": "e1eeddab353574cf119e9cc5d9c8134a5a1df1aa74abd4ac39536f07f8437e9a"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/execution_complete.json",
+          "sha256": "f482db09d61f1850675e943a74a5872a756c7b944b9f9118da08344fa0e186ff"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/independent_audit.json",
+          "sha256": "7d5c2613026ab43ba84fbf8b2bca08fc53fa286e2f462c261137d70cbf792653"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/calendar2023_2026.csv",
+          "sha256": "d8a5f920ad7e972771ffe1dbb8f572203bb9727bf2e5eb29a1066d7d56328bfa"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/benchmark_policy.json",
+          "sha256": "1d33cf07b565c91857b9734d0be8159599a5d292d1ec83b80d340d72077eedaf"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/benchmark_audit.json",
+          "sha256": "fc6198021be484421faa6e67498a410976a83977f724aa76802b4212b5199944"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/calendar2023_2026_excess.csv",
+          "sha256": "6b2e56c5ee35893832322f0983ac33ef1e3c268e2be5285413bbb21ba1213ee9"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/benchmark_daily_alignment.csv",
+          "sha256": "fd9c401ab06f5dc5865a07a109d41fe91c93b734059118e48a4c21085d322b72"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/FINAL_REPORT.md",
+          "sha256": "3e7cbaa223d0466d8b31caaaab219ea530ee05f7d862def6a0e09abd9a375ae4"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/run/walkforward.json",
+          "sha256": "bf1f446bafaf8ab7a5a8b18494416b8ada23dd2e0ecc8a1024fa26e3adc0ad0f"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/protocol.json",
+          "sha256": "14547dfca1fba5a997104f5f89d8e2f283277b5dbe43ad486f57da9e28c73f12"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/input_manifest.json",
+          "sha256": "c8bd75f854d10236e52fea2e4f9279c9ea73398c5ffc0b3847ba69c5c09d4cdf"
+        },
+        {
+          "path": "scripts/close_alphamax_extended_reference.py",
+          "sha256": "a43e12b134f928169dfe1e2b446a1bad1cafd5628cb65e050723941bf344036f"
+        },
+        {
+          "path": "scripts/audit_alphamax_extended_reference.py",
+          "sha256": "47cdaf7f84381764d18ce7998be8c97b7e845c292f9f1f5b4c04e4091dc7b0cb"
+        }
+      ],
+      "statement": "Retrospective standalone baseline, not untouched OOS or combined qualification. DFF is a current-vintage reporting proxy with modeled publication dates, not certified cash yield. Static borrow and modeled metadata, corporate actions and final-recorded-close liquidation remain. The last source session is June1 2026; unresolved old EWMA split boundaries remain.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "machine_readable_packet_and_stable_public_paper": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/reservation.json",
+          "sha256": "4c4b03749264a5dc09c36e5d2c9403eef04d429ffd4c65aaed1ad81e96be0cb4"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/preregistration.json",
+          "sha256": "e31aab76cebece10e2a986718775bb92b67f9dc6775851491f808d62e7690fb4"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/reservation_validation.json",
+          "sha256": "90fde25e2c091f7f0c771aae2a8f022b44eee236885119112c5b0f6ba19ec845"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/experiments.jsonl",
+          "sha256": "e1eeddab353574cf119e9cc5d9c8134a5a1df1aa74abd4ac39536f07f8437e9a"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/execution_complete.json",
+          "sha256": "f482db09d61f1850675e943a74a5872a756c7b944b9f9118da08344fa0e186ff"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/independent_audit.json",
+          "sha256": "7d5c2613026ab43ba84fbf8b2bca08fc53fa286e2f462c261137d70cbf792653"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/calendar2023_2026.csv",
+          "sha256": "d8a5f920ad7e972771ffe1dbb8f572203bb9727bf2e5eb29a1066d7d56328bfa"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/benchmark_policy.json",
+          "sha256": "1d33cf07b565c91857b9734d0be8159599a5d292d1ec83b80d340d72077eedaf"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/benchmark_audit.json",
+          "sha256": "fc6198021be484421faa6e67498a410976a83977f724aa76802b4212b5199944"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/calendar2023_2026_excess.csv",
+          "sha256": "6b2e56c5ee35893832322f0983ac33ef1e3c268e2be5285413bbb21ba1213ee9"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/benchmark_daily_alignment.csv",
+          "sha256": "fd9c401ab06f5dc5865a07a109d41fe91c93b734059118e48a4c21085d322b72"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/FINAL_REPORT.md",
+          "sha256": "3e7cbaa223d0466d8b31caaaab219ea530ee05f7d862def6a0e09abd9a375ae4"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/run/walkforward.json",
+          "sha256": "bf1f446bafaf8ab7a5a8b18494416b8ada23dd2e0ecc8a1024fa26e3adc0ad0f"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/protocol.json",
+          "sha256": "14547dfca1fba5a997104f5f89d8e2f283277b5dbe43ad486f57da9e28c73f12"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/input_manifest.json",
+          "sha256": "c8bd75f854d10236e52fea2e4f9279c9ea73398c5ffc0b3847ba69c5c09d4cdf"
+        },
+        {
+          "path": "scripts/close_alphamax_extended_reference.py",
+          "sha256": "a43e12b134f928169dfe1e2b446a1bad1cafd5628cb65e050723941bf344036f"
+        },
+        {
+          "path": "scripts/audit_alphamax_extended_reference.py",
+          "sha256": "47cdaf7f84381764d18ce7998be8c97b7e845c292f9f1f5b4c04e4091dc7b0cb"
+        }
+      ],
+      "statement": "Retrospective standalone baseline, not untouched OOS or combined qualification. DFF is a current-vintage reporting proxy with modeled publication dates, not certified cash yield. Static borrow and modeled metadata, corporate actions and final-recorded-close liquidation remain. The last source session is June1 2026; unresolved old EWMA split boundaries remain.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "point_in_time_data_and_survivorship_controls": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/reservation.json",
+          "sha256": "4c4b03749264a5dc09c36e5d2c9403eef04d429ffd4c65aaed1ad81e96be0cb4"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/preregistration.json",
+          "sha256": "e31aab76cebece10e2a986718775bb92b67f9dc6775851491f808d62e7690fb4"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/reservation_validation.json",
+          "sha256": "90fde25e2c091f7f0c771aae2a8f022b44eee236885119112c5b0f6ba19ec845"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/experiments.jsonl",
+          "sha256": "e1eeddab353574cf119e9cc5d9c8134a5a1df1aa74abd4ac39536f07f8437e9a"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/execution_complete.json",
+          "sha256": "f482db09d61f1850675e943a74a5872a756c7b944b9f9118da08344fa0e186ff"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/independent_audit.json",
+          "sha256": "7d5c2613026ab43ba84fbf8b2bca08fc53fa286e2f462c261137d70cbf792653"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/calendar2023_2026.csv",
+          "sha256": "d8a5f920ad7e972771ffe1dbb8f572203bb9727bf2e5eb29a1066d7d56328bfa"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/benchmark_policy.json",
+          "sha256": "1d33cf07b565c91857b9734d0be8159599a5d292d1ec83b80d340d72077eedaf"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/benchmark_audit.json",
+          "sha256": "fc6198021be484421faa6e67498a410976a83977f724aa76802b4212b5199944"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/calendar2023_2026_excess.csv",
+          "sha256": "6b2e56c5ee35893832322f0983ac33ef1e3c268e2be5285413bbb21ba1213ee9"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/benchmark_daily_alignment.csv",
+          "sha256": "fd9c401ab06f5dc5865a07a109d41fe91c93b734059118e48a4c21085d322b72"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/FINAL_REPORT.md",
+          "sha256": "3e7cbaa223d0466d8b31caaaab219ea530ee05f7d862def6a0e09abd9a375ae4"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/run/walkforward.json",
+          "sha256": "bf1f446bafaf8ab7a5a8b18494416b8ada23dd2e0ecc8a1024fa26e3adc0ad0f"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/protocol.json",
+          "sha256": "14547dfca1fba5a997104f5f89d8e2f283277b5dbe43ad486f57da9e28c73f12"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/input_manifest.json",
+          "sha256": "c8bd75f854d10236e52fea2e4f9279c9ea73398c5ffc0b3847ba69c5c09d4cdf"
+        },
+        {
+          "path": "scripts/close_alphamax_extended_reference.py",
+          "sha256": "a43e12b134f928169dfe1e2b446a1bad1cafd5628cb65e050723941bf344036f"
+        },
+        {
+          "path": "scripts/audit_alphamax_extended_reference.py",
+          "sha256": "47cdaf7f84381764d18ce7998be8c97b7e845c292f9f1f5b4c04e4091dc7b0cb"
+        }
+      ],
+      "statement": "Retrospective standalone baseline, not untouched OOS or combined qualification. DFF is a current-vintage reporting proxy with modeled publication dates, not certified cash yield. Static borrow and modeled metadata, corporate actions and final-recorded-close liquidation remain. The last source session is June1 2026; unresolved old EWMA split boundaries remain.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "preregistration_and_hashes": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/reservation.json",
+          "sha256": "4c4b03749264a5dc09c36e5d2c9403eef04d429ffd4c65aaed1ad81e96be0cb4"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/preregistration.json",
+          "sha256": "e31aab76cebece10e2a986718775bb92b67f9dc6775851491f808d62e7690fb4"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/reservation_validation.json",
+          "sha256": "90fde25e2c091f7f0c771aae2a8f022b44eee236885119112c5b0f6ba19ec845"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/experiments.jsonl",
+          "sha256": "e1eeddab353574cf119e9cc5d9c8134a5a1df1aa74abd4ac39536f07f8437e9a"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/execution_complete.json",
+          "sha256": "f482db09d61f1850675e943a74a5872a756c7b944b9f9118da08344fa0e186ff"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/independent_audit.json",
+          "sha256": "7d5c2613026ab43ba84fbf8b2bca08fc53fa286e2f462c261137d70cbf792653"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/calendar2023_2026.csv",
+          "sha256": "d8a5f920ad7e972771ffe1dbb8f572203bb9727bf2e5eb29a1066d7d56328bfa"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/benchmark_policy.json",
+          "sha256": "1d33cf07b565c91857b9734d0be8159599a5d292d1ec83b80d340d72077eedaf"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/benchmark_audit.json",
+          "sha256": "fc6198021be484421faa6e67498a410976a83977f724aa76802b4212b5199944"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/calendar2023_2026_excess.csv",
+          "sha256": "6b2e56c5ee35893832322f0983ac33ef1e3c268e2be5285413bbb21ba1213ee9"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/benchmark_daily_alignment.csv",
+          "sha256": "fd9c401ab06f5dc5865a07a109d41fe91c93b734059118e48a4c21085d322b72"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/FINAL_REPORT.md",
+          "sha256": "3e7cbaa223d0466d8b31caaaab219ea530ee05f7d862def6a0e09abd9a375ae4"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/run/walkforward.json",
+          "sha256": "bf1f446bafaf8ab7a5a8b18494416b8ada23dd2e0ecc8a1024fa26e3adc0ad0f"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/protocol.json",
+          "sha256": "14547dfca1fba5a997104f5f89d8e2f283277b5dbe43ad486f57da9e28c73f12"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/input_manifest.json",
+          "sha256": "c8bd75f854d10236e52fea2e4f9279c9ea73398c5ffc0b3847ba69c5c09d4cdf"
+        },
+        {
+          "path": "scripts/close_alphamax_extended_reference.py",
+          "sha256": "a43e12b134f928169dfe1e2b446a1bad1cafd5628cb65e050723941bf344036f"
+        },
+        {
+          "path": "scripts/audit_alphamax_extended_reference.py",
+          "sha256": "47cdaf7f84381764d18ce7998be8c97b7e845c292f9f1f5b4c04e4091dc7b0cb"
+        }
+      ],
+      "statement": "Retrospective standalone baseline, not untouched OOS or combined qualification. DFF is a current-vintage reporting proxy with modeled publication dates, not certified cash yield. Static borrow and modeled metadata, corporate actions and final-recorded-close liquidation remain. The last source session is June1 2026; unresolved old EWMA split boundaries remain.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    },
+    "result_uncertainty_stress_capacity_and_diversification": {
+      "evidence": [
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/reservation.json",
+          "sha256": "4c4b03749264a5dc09c36e5d2c9403eef04d429ffd4c65aaed1ad81e96be0cb4"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/preregistration.json",
+          "sha256": "e31aab76cebece10e2a986718775bb92b67f9dc6775851491f808d62e7690fb4"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/reservation_validation.json",
+          "sha256": "90fde25e2c091f7f0c771aae2a8f022b44eee236885119112c5b0f6ba19ec845"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/experiments.jsonl",
+          "sha256": "e1eeddab353574cf119e9cc5d9c8134a5a1df1aa74abd4ac39536f07f8437e9a"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/execution_complete.json",
+          "sha256": "f482db09d61f1850675e943a74a5872a756c7b944b9f9118da08344fa0e186ff"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/independent_audit.json",
+          "sha256": "7d5c2613026ab43ba84fbf8b2bca08fc53fa286e2f462c261137d70cbf792653"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/calendar2023_2026.csv",
+          "sha256": "d8a5f920ad7e972771ffe1dbb8f572203bb9727bf2e5eb29a1066d7d56328bfa"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/benchmark_policy.json",
+          "sha256": "1d33cf07b565c91857b9734d0be8159599a5d292d1ec83b80d340d72077eedaf"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/benchmark_audit.json",
+          "sha256": "fc6198021be484421faa6e67498a410976a83977f724aa76802b4212b5199944"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/calendar2023_2026_excess.csv",
+          "sha256": "6b2e56c5ee35893832322f0983ac33ef1e3c268e2be5285413bbb21ba1213ee9"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/benchmark_daily_alignment.csv",
+          "sha256": "fd9c401ab06f5dc5865a07a109d41fe91c93b734059118e48a4c21085d322b72"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/FINAL_REPORT.md",
+          "sha256": "3e7cbaa223d0466d8b31caaaab219ea530ee05f7d862def6a0e09abd9a375ae4"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/baseline/run/walkforward.json",
+          "sha256": "bf1f446bafaf8ab7a5a8b18494416b8ada23dd2e0ecc8a1024fa26e3adc0ad0f"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/protocol.json",
+          "sha256": "14547dfca1fba5a997104f5f89d8e2f283277b5dbe43ad486f57da9e28c73f12"
+        },
+        {
+          "path": "artifacts/analysis/alphamax_extended_reference_20260913/input_manifest.json",
+          "sha256": "c8bd75f854d10236e52fea2e4f9279c9ea73398c5ffc0b3847ba69c5c09d4cdf"
+        },
+        {
+          "path": "scripts/close_alphamax_extended_reference.py",
+          "sha256": "a43e12b134f928169dfe1e2b446a1bad1cafd5628cb65e050723941bf344036f"
+        },
+        {
+          "path": "scripts/audit_alphamax_extended_reference.py",
+          "sha256": "47cdaf7f84381764d18ce7998be8c97b7e845c292f9f1f5b4c04e4091dc7b0cb"
+        }
+      ],
+      "statement": "Retrospective standalone baseline, not untouched OOS or combined qualification. DFF is a current-vintage reporting proxy with modeled publication dates, not certified cash yield. Static borrow and modeled metadata, corporate actions and final-recorded-close liquidation remain. The last source session is June1 2026; unresolved old EWMA split boundaries remain.",
+      "status": "MEASURED_EVIDENCE_OR_EXPLICIT_BOUND_LIMITATION"
+    }
+  },
+  "research_family_key": "managed_futures_trend",
+  "schema": "canli.alphac-identity-trial-packet.v2"
+}

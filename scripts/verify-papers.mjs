@@ -16,6 +16,7 @@ import { fileURLToPath } from "node:url";
 import { IMMUTABLE_PAPER_SHORT_TITLES } from "./paper-presentation.mjs";
 import { normalizeEditableCopy } from "./editable-copy.mjs";
 import { canonicalJson as canonicalJsonShared } from "./canonical-json.mjs";
+import { imageProse } from './lib/image-prose.mjs';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const DIST = resolve(ROOT, "dist");
@@ -624,7 +625,7 @@ if (existsSync(founderFile)) {
   // check fire on any icon added to the shell. Adding one GitHub mark introduced
   // 47 "untraceable" numbers, all of them path data. Stripped for the same reason
   // <script> and <pre> already are.
-  const prose = founderHtml
+  const prose = imageProse(founderHtml)
     .replace(/<script[\s\S]*?<\/script>/g, " ")
     .replace(/<head>[\s\S]*?<\/head>/g, " ")
     .replace(/<svg[\s\S]*?<\/svg>/g, " ")
@@ -1307,10 +1308,25 @@ if (existsSync(trialToolFile)) {
   const manifestBytes = readFileSync(resolve(DIST, "glassbox/trial_packet_manifest.json"));
   const packetIndexBytes = readFileSync(resolve(DIST, "glassbox/trial-packets/index.json"));
   const prospectiveBytes = readFileSync(resolve(DIST, "glassbox/prospective_trial_record.json"));
+  const registerBytes = readFileSync(resolve(DIST, "glassbox/prospective_epoch_register.json"));
+  const forwardIndexBytes = readFileSync(resolve(DIST, "glassbox/trial-packets/forward_index.json"));
   const ledger = JSON.parse(ledgerBytes);
+  const register = JSON.parse(registerBytes);
+  const forwardIndex = JSON.parse(forwardIndexBytes);
+  const unclosedRows = register.identities.filter((row) => row.packet_complete === false).length;
+  const developmentClosedRows = register.identities.filter(
+    (row) => row.status === "DEVELOPMENT_CLOSURE_FINAL_NOT_ADMITTED" && row.packet_complete === true,
+  ).length;
   const manifest = JSON.parse(manifestBytes);
   const packetIndex = JSON.parse(packetIndexBytes);
   const prospective = JSON.parse(prospectiveBytes);
+  // A governed row other than the serial identity is a batch closure under the v2 full-evidence
+  // reservation (2026-09-15); there may be any number of them.
+  const governedBatchRows = register.identities.filter(
+    (row) =>
+      row.status === "GOVERNED_SERIAL_PACKET_CLOSED" &&
+      row.hypothesis_key !== prospective.identity.hypothesis_key,
+  ).length;
   const selectionN = ledger.distinct_hypothesis_identities;
 
   check(
@@ -1330,15 +1346,28 @@ if (existsSync(trialToolFile)) {
         manifest.summary.distinct_hypothesis_identities,
     "/tools/trial-accounting legacy packet corpus is internally inconsistent",
   );
+  // The prospective epoch is every identity measured after the legacy closure, published as a
+  // derived register (2026-09-14). The governed serial identity keeps its own record; the
+  // register carries the rest, so legacy + register = N and the newest reservation ordinal is N.
+  const governedRow = register.identities.find(
+    (row) => row.hypothesis_key === prospective.identity.hypothesis_key,
+  );
   check(
     prospective.schema === "canli.alphac-public-prospective-trial-record.v1" &&
+      register.schema === "canli.alphac-prospective-epoch-register.v1" &&
+      register.summary.identity_arithmetic_holds === true &&
+      register.identities.length === register.summary.observed_identities &&
       prospective.identity.hypotheses_spent === 1 &&
-      prospective.identity.reservation_ordinal === selectionN &&
-      prospective.metrics.union_hypothesis_identities === selectionN &&
+      governedRow?.status === "GOVERNED_SERIAL_PACKET_CLOSED" &&
+      governedRow.reservation_ordinal === prospective.identity.reservation_ordinal &&
+      prospective.metrics.union_hypothesis_identities === prospective.identity.reservation_ordinal &&
+      prospective.epoch?.observed_identities === register.summary.observed_identities &&
+      register.summary.latest_reservation_ordinal === selectionN &&
       prospective.packet.complete === true &&
       prospective.decision.admitted === false &&
+      register.summary.admitted_identities === 0 &&
       prospective.gate_assessment.admission_status === "INCOMPLETE_NOT_ADMITTED" &&
-      manifest.summary.distinct_hypothesis_identities + prospective.identity.hypotheses_spent ===
+      manifest.summary.distinct_hypothesis_identities + register.summary.observed_identities ===
         selectionN,
     "/tools/trial-accounting prospective identity is not separately reserved and not admitted",
   );
@@ -1350,13 +1379,15 @@ if (existsSync(trialToolFile)) {
   );
   check(
     trialToolHtml.includes(
-      'content="trial_ledger.json trial_packet_manifest.json trial-packets/index.json prospective_trial_record.json"',
+      'content="trial_ledger.json trial_packet_manifest.json trial-packets/index.json prospective_trial_record.json prospective_epoch_register.json trial-packets/forward_index.json"',
     ) &&
       trialToolHtml.includes(`sha256:${sha256(ledgerBytes)}`) &&
       trialToolHtml.includes(`sha256:${sha256(manifestBytes)}`) &&
       trialToolHtml.includes(`sha256:${sha256(packetIndexBytes)}`) &&
-      trialToolHtml.includes(`sha256:${sha256(prospectiveBytes)}`),
-    "/tools/trial-accounting does not declare and hash all four exact public sources",
+      trialToolHtml.includes(`sha256:${sha256(prospectiveBytes)}`) &&
+      trialToolHtml.includes(`sha256:${sha256(registerBytes)}`) &&
+      trialToolHtml.includes(`sha256:${sha256(forwardIndexBytes)}`),
+    "/tools/trial-accounting does not declare and hash all six exact public sources",
   );
   check(
     trialToolHtml.includes(`<strong>${ledger.immutable_execution_records}</strong>`) &&
@@ -1370,9 +1401,24 @@ if (existsSync(trialToolFile)) {
   check(
     /Accounting, not performance/i.test(trialToolHtml) &&
       /complete packet is not a passed strategy/i.test(trialToolHtml) &&
-      /prospective identity remains not admitted/i.test(trialToolHtml) &&
+      /no prospective identity is admitted/i.test(trialToolHtml) &&
+      trialToolHtml.includes(`${unclosedRows} reserved and measured without a closing packet`) &&
+      trialToolHtml.includes(`${governedBatchRows} closed by a governed batch closure`) &&
+      trialToolHtml.includes(`${developmentClosedRows} closed by a development closure`) &&
       /not live returns, rankings, admission scores or recommendations/i.test(trialToolHtml),
     "/tools/trial-accounting omits its accounting, admission or performance boundary",
+  );
+  // The forward packet index (2026-09-15) binds every closed forward identity to its packet and
+  // final closure; the tool links a closed identity's packet only through it.
+  check(
+    forwardIndex.schema === "canli.alphac-forward-identity-packet-index.v1" &&
+      forwardIndex.summary.forward_identities === register.summary.observed_identities &&
+      forwardIndex.summary.closed_identities === register.summary.closed_identities &&
+      forwardIndex.summary.admitted_identities === 0 &&
+      forwardIndex.summary.identities_in_both_epochs === 0 &&
+      prospective.identity.hypotheses_spent + governedBatchRows + developmentClosedRows + unclosedRows ===
+        register.summary.observed_identities,
+    "/tools/trial-accounting forward packet index does not describe the prospective epoch",
   );
   check(
     sitemap.includes(`<loc>${ORIGIN}/tools/trial-accounting</loc>`),
@@ -1624,7 +1670,7 @@ console.log(
     `checkpoint bindings, claim limits, structured data, internal links and sitemap discovery`,
 );
 console.log(
-  `verified /tools/trial-accounting: complete 229-identity union, exact source hashes, packet ` +
+  `verified /tools/trial-accounting: complete ${JSON.parse(readFileSync(resolve(DIST, "glassbox/trial_ledger.json"), "utf8")).distinct_hypothesis_identities}-identity union, exact source hashes, packet ` +
     `debt, prospective non-admission, claim boundaries, internal links and sitemap discovery`,
 );
 console.log(

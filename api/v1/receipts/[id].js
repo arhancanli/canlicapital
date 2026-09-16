@@ -2,8 +2,7 @@
 import { envelope, errorEnvelope, send } from "../../_lib/envelope.js";
 import { defaultStore } from "../../_lib/handler.js";
 import { LIMITS_TEXT } from "../../_lib/limits.js";
-
-const ORIGIN = "https://canlicapital.com";
+import { receiptOrigin } from "../../_lib/receipt-origin.js";
 
 // A factory, like createStatusHandler in ../validate/status.js: the default export below is this
 // factory called with no arguments, so the deployed route's behaviour is unchanged, and a test can
@@ -21,8 +20,9 @@ export function createReceiptHandler({ store } = {}) {
     // The README embed snippet /developers publishes verbatim: a badge image linking to this same
     // JSON endpoint. Both fields are derived from `id`, never stored, so they cannot drift from
     // the badge route itself (api/v1/receipts/[id]/badge.js).
-    const badge_url = `${ORIGIN}/api/v1/receipts/${id}/badge.svg`;
-    const receipt_url = `${ORIGIN}/api/v1/receipts/${id}`;
+    const origin = receiptOrigin();
+    const badge_url = `${origin}/api/v1/receipts/${id}/badge.svg`;
+    const receipt_url = `${origin}/api/v1/receipts/${id}`;
     const embed_markdown = `[![Canli receipt](${badge_url})](${receipt_url})`;
     return send(res, 200, envelope({
       endpoint: `receipts/${id}`,
