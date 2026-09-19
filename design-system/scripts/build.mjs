@@ -25,6 +25,8 @@ function generateProductShellCopy() {
   mkdirSync(toDir, { recursive: true });
   const to = resolve(toDir, "generated-product-shell.mjs");
   copyFileSync(from, to);
+  // Keep the shell's local dependency beside the generated copy.
+  copyFileSync(resolve(siteRoot, 'scripts/optical-handoff.mjs'), resolve(toDir, 'optical-handoff.mjs'));
   return to;
 }
 
