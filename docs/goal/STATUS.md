@@ -11,7 +11,7 @@ Phase 1 tooling is tested; whole-corpus measurement remains blocked on source ac
 - Actual indexed pages: **unknown**; Search Console access question is pending.
 - Sitemap capacity: one million synthetic URLs passed as 20 shards. Synthetic URLs do not enter content inventory.
 - Current local validation: 302 tests pass (6 preverify + 296 main), including archive source-date validation. Prior unchanged corpus and IndexNow suites pass. Release snapshot: 690 rendered pages, 327 indexable; metadata zero errors/warnings, indexability zero conflicts, all indexable pages within three clicks; numerical-source and all 14 retracted-claim rules pass. Thirty-two Chromium/WebKit viewport checks pass, including both new companies and Assets histories. Prior MCP package validation: 43 tests; MCP implementation has not changed.
-- PR 15 expanded CI at `78f914bd` passes on Linux/Node 22: build, full evidence/SEO verification, browser tests, corpus tests and notification tests. The initial shallow-history failure at `2acf8087` is fixed by fetching full history. Run: https://github.com/arhancanli/canlicapital/actions/runs/35437145441. No PR has been merged or deployed.
+- PR 15 expanded CI at `78f914bd` passes on Linux/Node 22: build, full evidence/SEO verification, browser tests, corpus tests and notification tests. The initial shallow-history failure at `2acf8087` is fixed by fetching full history. Run: https://github.com/arhancanli/canlicapital/actions/runs/35437145441. No PR has been merged to production; a preview is deployed.
 
 ## Current implementation (2acf8087 implementation; 78f914bd CI correction, both pushed)
 
@@ -37,7 +37,7 @@ Phase 1 tooling is tested; whole-corpus measurement remains blocked on source ac
 2. Review remaining 249 keyword-unassigned pages against their actual research/evidence, not arbitrary keyword variants. Search Console query evidence remains unavailable.
 3. Read this folder and ENGINE_ENVIRONMENT_REVIEW.md, then finish phase 7's security/reproducibility CI review. Historical archive resolver, explicit verification receipts and an enqueue-time active-file guard are implemented in 783ad0c. Forty-nine local tests, type/style checks and publication verification pass. Remote PostgreSQL/publication/mypy/Ruff/browser checks now pass; offline pytest remains running; no publication manifest or migration packet was rewritten.
 4. Collector v4 fix is local in /Users/arhancanli/alphac-source-quality-20260919, branch fix/sec-companyfacts-source-quality. Commit e0a257c is pushed in PR 70. Twenty-four tests and Ruff pass. Final-code read-only validation rejects 146 invalid payloads and accepts 374 valid retrievals; all original bytes are unchanged and all 520 individual capture times remain unknown. Fresh future downloads now receive hash-bound UTC capture receipts; legacy caches are never backdated. PR 70 publication, PostgreSQL, mypy, Ruff and browser CI pass; offline pytest is running (run 35438489448, job 105885124970). Plan phase 3 rendering/storage using measured source scale; no million-page serving capacity claimed.
-5. Complete release readiness and deploy only a passing reviewed result. Recheck production and indexing separately; no deployment has occurred.
+5. Complete release readiness and deploy only a passing reviewed result. Recheck production and indexing separately; no production deployment has occurred.
 
 ## Release snapshot checkpoint
 
@@ -64,3 +64,13 @@ Phase 1 tooling is tested; whole-corpus measurement remains blocked on source ac
 - Next concrete action: inspect the approved design branch/publisher integration,
   reconcile task changes without overwriting other work, and verify the integrated
   release. All corpus, indexing, API/MCP adoption and forward algorithm goals stay active.
+
+## Publishing integration
+
+- Website CI at 4b236bcd passes (run 35439160050).
+- Publishing branch 894ec07d is integrated into the task branch. Trial-accounting
+  source/tests are byte-identical to that branch; sitemap-aware verifier differences
+  preserve its substantive gates. Full build and 302 tests pass after reconciliation.
+- `/tmp/canli-integrated-build.log` and `/tmp/canli-integrated-verify.log` hold results.
+- Production activation still requires advancing the actual publishing source after
+  integrated review; original worktree and runtime pointer are unchanged.

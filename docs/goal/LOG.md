@@ -233,3 +233,18 @@ browser server stopped after validation. No production or shared-source mutation
 Next: reread goal folder and review approved design/publisher integration. Search
 Console evidence and algorithm forward outcomes remain unresolved. PR 69/70 offline
 jobs were still pending at the last check; their other checks pass.
+
+## 2026-09-19 — publishing branch integration
+
+Previous turn classified as progress (preview + pushed implementation). Revalidated
+website CI: run 35439160050 passes at 4b236bcd. Engine PR 69/70 offline jobs remain
+live/pending; other checks pass. Merged design/glassbox-website-20260908 into the
+isolated task branch to reconcile ancestry. The 648 conflicts were generated output
+plus four source/config files whose conflicts contained only expansion additions.
+Preserved the expansion additions and regenerated all outputs. Existing trial
+accounting JS, tests and generators match the publishing branch exactly; verifier
+differences are only the new sharded-sitemap reader. Full build and 302 tests pass,
+327 indexable pages, no metadata/indexability defects. No shared worktree changed.
+The integration merge records history already represented in the tested source;
+production pointer remains unchanged. Prepare a reviewable PR targeting the actual
+publishing branch before any activation.
