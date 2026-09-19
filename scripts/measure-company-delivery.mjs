@@ -61,8 +61,11 @@ try {
   const head = await fetch(base + first, { method: 'HEAD' }); assert.equal(head.status, 200); assert.equal(await head.text(), '');
   report.referencePages = report.companies + report.histories + report.directories;
   report.assets = assets.size; report.catalog = app.catalog.stats();
+  report.downloadIndex = app.downloadIndex.stats();
+  report.downloadRoot = app.delivery.download_index.root_hash;
+  report.catalogRoot = app.catalog.revision;
   durations.sort((a, b) => a - b); report.localHtmlMedianMs = durations[Math.floor(durations.length / 2)]; report.localHtmlP95Ms = durations[Math.floor(durations.length * .95)];
 } catch (error) { report.failures.push(error.stack); process.exitCode = 1; }
 finally { app.server.closeAllConnections(); await new Promise(resolve => app.server.close(resolve)); }
-report.code = Object.fromEntries(['scripts/measure-company-delivery.mjs', 'scripts/lib/company-preview-server.mjs', 'scripts/lib/company-page-renderer.mjs', 'api/_lib/company-html.js'].map(path => [path, catalogHash(readFileSync(path))]));
+report.code = Object.fromEntries(['scripts/measure-company-delivery.mjs', 'scripts/lib/company-preview-server.mjs', 'scripts/lib/company-page-renderer.mjs', 'api/_lib/company-html.js', 'api/_lib/company-download-index.js', 'api/_lib/company-download.js', 'scripts/lib/build-company-download-index.mjs'].map(path => [path, catalogHash(readFileSync(path))]));
 writeFileSync(resolve(output), JSON.stringify(report, null, 2) + '\n'); console.log(JSON.stringify(report, null, 2));

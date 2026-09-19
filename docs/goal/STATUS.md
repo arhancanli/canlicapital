@@ -1,7 +1,7 @@
 # Current state
 
 Updated: 2026-09-19. Overall goal: **ACTIVE, NOT ACHIEVED**.
-Current phase: **3 — staged catalog-backed HTML and source delivery verified**.
+Current phase: **3 — bounded download lookup and bound release verified locally**.
 Next implementation phase: **3 — bounded serving/discovery for the measured corpus**.
 All owner requirements remain in REQUIREMENTS.md and are unchanged.
 
@@ -28,7 +28,7 @@ All owner requirements remain in REQUIREMENTS.md and are unchanged.
 
 ## Current validation and changes
 
-- Full current local build/verification: **335 tests pass** (6 + 329), including the snapshot-isolation regression, zero metadata
+- Full current local build/verification: **339 tests pass** (6 + 333), including the snapshot-isolation regression, zero metadata
   errors/warnings, zero indexability conflicts, all indexable pages within three
   clicks. Numerical-source, publication and research/trial audits pass.
 - Coverage presentation exposes reporting start/end separately from capture dates,
@@ -40,7 +40,7 @@ All owner requirements remain in REQUIREMENTS.md and are unchanged.
 - Review tool independently rebuilds selected records from archived response bytes,
   checks receipt byte count/hash/identity/date and queue summaries. Tampering and
   partial/duplicate results are tested. Review is not automatic publication approval.
-- Last remote website CI verified: **f5ab6199 passes**, run 35441227025. Snapshot
+- Last remote website CI verified: **ef1061c4 passes**, run35442282673. Snapshot
   isolation helper passes its targeted regression and an actual cloned snapshot build.
 - Prior unchanged MCP implementation passed 43 tests. On-site repository/MCP/API-key
   entry points and contributor guidance implemented. No adoption/star-growth claim.
@@ -137,3 +137,26 @@ All owner requirements remain in REQUIREMENTS.md and are unchanged.
   is pending. Check it before starting the next phase. Default-branch Dependabot
   alert1 (esbuild, moderate, fixed0.25.0) is open; inspect actual dependency lineage
   before proposing a fix. No production mutation or dependency fix occurred.
+
+## Bounded download/release checkpoint
+
+- Previous goal turn classified as **progress**: committed delivery implementation,
+  full-cohort measurements and browser evidence. Current turn reread all continuity
+  records and verified ef1061c4 remote CI passes.
+- Preview now routes all source/selected downloads through a bounded immutable
+  index instead of a complete request lookup map. Real cohort:17 nodes,184,535
+  index bytes; largest node13,676 bytes, cache limit256KiB.
+- Full3,057-page/698-download HTTP replay passes with the new handler. Release
+  binding independently matches all selected records and original sources to the
+  catalog revision; both roots are in `artifacts/seo/company-release-staged.json`.
+- Four new download-index tests pass, including concurrent cache accounting,
+  corruption, path-prefix validation, HTTP byte caps and404/503 behavior. Release
+  regression preserves the old pointer on corrupt data. Full verification
+  session55417 passed:339 tests and all writing/SEO/evidence checks.
+- Dependabot alert1 traced to **design-system/package-lock.json** esbuild0.23.1.
+  Upgraded to0.25.12 (npm audit:zero vulnerabilities). Initial wrapper build failed
+  because the copied shell omitted optical-handoff.mjs; build now copies that input.
+  Wrapper build and60 tests pass; dedicated CI added. Default-branch alert is still
+  open until a reviewed fix lands there. No security-alert dismissal.
+- Production source wrappers/storage, directory discovery/sitemaps, packaging and
+  activation remain open. No production change, index count or adoption claim.

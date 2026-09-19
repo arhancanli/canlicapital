@@ -411,3 +411,29 @@ default-branch Dependabot alert1:esbuild moderate development-server exposure,
 fixed0.25.0. Read-only alert lookup confirms open; package-lock packages lookup
 found no matching esbuild entry, so dependency lineage/remediation remains to inspect.
 No security fix is claimed from that lookup.
+
+## 2026-09-19 — bounded download lookup, release binding and wrapper security
+
+Previous turn was progress. Reread continuity; verified ef1061c4 CI passes. Replaced
+local download request map with hash-trie lookup:64KiB nodes,128 descriptors/leaf,
+16 children/branch,256KiB cache and prefix/hash/byte checks. Added verified-byte HTTP
+adapter and GET/HEAD download handler, with real404 vs503 outcomes. All698 downloads
+and3,057 staged HTML pages pass HTTP replay. Measured17 index nodes/184,535 bytes,
+maximum node13,676 bytes. Added immutable release binding after selected-record and
+original-source replay across349 companies; corruption preserves the old pointer.
+
+GitHub alert1 is the design-system esbuild dependency, not the root Vite lock.
+Upgraded0.23.1 to0.25.12; npm audit returnszero vulnerabilities. Authoritative advisory:
+https://github.com/evanw/esbuild/security/advisories/GHSA-67mh-4wv8-2f99.
+First wrapper build failed on omitted optical-handoff.mjs; copied the shell dependency
+in the generator and ignored the generated copy. Wrapper build/60 tests pass.
+Added dedicated wrapper build/test/audit CI so this path stays checked.
+
+Full website verification running in session55417. Next work is bounded crawl
+discovery and production release/storage integration. Production/Search Console
+answers remain pending; all owner indexing/adoption/algorithm objectives stay active.
+
+Session55417 completed successfully:339 tests (6 +333) and all writing, metadata,
+indexability, link graph and numerical-source/evidence checks pass. No additional
+UI change required another browser pass. Existing28 staged browser checks remain
+the layout evidence; download behavior is covered by the new HTTP replay.

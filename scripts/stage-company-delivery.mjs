@@ -5,6 +5,7 @@ import { pathToFileURL } from 'node:url';
 import { reviewCandidates } from './review-company-candidates.mjs';
 import { verifyCompanyReference } from './lib/company-reference.mjs';
 import { catalogHash } from '../api/_lib/company-catalog.js';
+import { buildCompanyDownloadIndex } from './lib/build-company-download-index.mjs';
 export function stageCompanyDelivery(input, output, pilots) {
   input = resolve(input); output = resolve(output);
   if (output === resolve('/') || input === output || input.startsWith(output + '/') || output.startsWith(input + '/')) throw new Error('Delivery and capture directories must be separate');
@@ -37,7 +38,8 @@ export function stageCompanyDelivery(input, output, pilots) {
     publish(record, readFileSync(resolve(pilots, 'sources', record.source_sha256 + '.json.gz')), 'pilot');
   }
   if (new Set(files.map(file => file.cik)).size !== files.length) throw new Error('Duplicate delivery company');
-  const manifest = { schema: 'canli.company-delivery.v1', publication_approved: false, files };
+  const download_index = buildCompanyDownloadIndex(files.flatMap(item => [item.source, item.selected]), output);
+  const manifest = { schema: 'canli.company-delivery.v1', publication_approved: false, download_index, files };
   writeFileSync(resolve(output, 'delivery.json.pending'), JSON.stringify(manifest, null, 2) + '\n');
   renameSync(resolve(output, 'delivery.json.pending'), resolve(output, 'delivery.json'));
   return manifest;

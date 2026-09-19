@@ -1,4 +1,5 @@
 import test from 'node:test';
+import { buildCompanyRelease } from './build-company-release.mjs';
 import assert from 'node:assert/strict';
 import { mkdtempSync, readFileSync, writeFileSync, rmSync } from 'node:fs';
 import { resolve } from 'node:path';
@@ -31,10 +32,15 @@ test('source delivery preserves original bytes, fails closed on corruption, and 
   const descriptor = delivery.files[0].source;
   const original = readFileSync(resolve(input, selected.source_sha256 + '.json.gz'));
   assert.deepEqual(Buffer.from(await (await fetch(base + descriptor.path)).arrayBuffer()), original);
+  const release = await buildCompanyRelease(catalogDir, output);
+  assert.equal(release.companies, 1); assert.equal(release.publication_approved, false);
+  const priorRelease = readFileSync(resolve(output, 'company-release.json'));
   const manifest = readFileSync(resolve(output, 'delivery.json'));
   writeFileSync(resolve(output, descriptor.storage_path), 'corrupt');
   assert.equal((await fetch(base + descriptor.path)).status, 503);
   assert.throws(() => stageCompanyDelivery(input, output), /corrupt/);
+  await assert.rejects(buildCompanyRelease(catalogDir, output), /corruption/);
+  assert.deepEqual(readFileSync(resolve(output, 'company-release.json')), priorRelease);
   assert.deepEqual(readFileSync(resolve(output, 'delivery.json')), manifest);
   assert.equal((await fetch(base + '/companies/0000029534/overview')).status, 404);
   assert.equal((await fetch(base + '/companies/page/1', { redirect: 'manual' })).status, 308);

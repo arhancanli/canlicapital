@@ -123,10 +123,9 @@ node scripts/preview-company-delivery.mjs artifacts/seo/corpus-local/company-cat
 ```
 
 The preview binds localhost only. It serves 50 companies per directory page and
-seven linked pages for the measured 349-company corpus. Its complete download map
-and directory boundary list are local QA fixtures, not a production million-record
-architecture. Production requires a bounded download index and reviewed discovery
-manifest pinned to the same catalog revision. Shared non-company destinations are
+seven linked pages for the measured 349-company corpus. Download requests now use a bounded immutable index. The directory boundary
+list remains a local QA fixture; production still requires bounded discovery
+pinned to the same reviewed release. Shared non-company destinations are
 not mounted by this narrow QA server; browser checks verify their hrefs, not those
 flows. Existing developer flow checks remain separate.
 
@@ -136,3 +135,31 @@ compiled assets, directory completeness, real misses, HEAD and conditional reque
 The largest HTML is 28,902 bytes. Sequential local timings are not cloud load tests.
 The 28 browser checks exercise Chromium/WebKit at mobile/desktop widths. No content
 was activated, submitted or claimed indexed by these measurements.
+
+## Bounded download index and release binding
+
+`company-download-index.js` looks up a logical download path through an immutable
+SHA-256-keyed radix tree. Leaves hold at most128 descriptors and64KiB; branches
+have at most16 children. Prefix/ordering, descriptor paths, child sizes and object
+hashes are validated. Lookup depth is bounded by the64-character hash (at most65
+nodes); the actual698-download tree has17 nodes over two levels. Its largest read
+is13,676 bytes, total index184,535 bytes. Payload cache is capped at256KiB, which
+is not a bound on whole-process or concurrent request memory.
+
+The download handler returns verified original gzip or selected JSON bytes with
+noindex, attachment metadata and nosniff. Missing paths return404; storage/hash
+failures return503/no-store. The HTTP storage adapter accepts only a fixed HTTPS
+base, rejects redirects, applies a10-second timeout, caps objects at16MiB and
+checks byte counts and hashes before returning bytes. No public wrapper or storage
+configuration is activated yet. Local preview download traffic uses this same handler.
+
+`stage-company-delivery.mjs` now builds the immutable download index before updating
+its local manifest. `build-company-release.mjs CATALOG DELIVERY` traverses all
+catalog records, compares selected downloads, replays originals, and writes a
+small content-addressed release binding the two roots. Corruption leaves the prior
+release pointer untouched. `artifacts/seo/company-release-staged.json` records the
+349-company/2,701-history revision; publication_approved remainsfalse.
+
+The builders retain compact descriptor arrays; million-record build memory and
+cloud concurrency are not measured. Next: bounded directory and sitemap discovery
+from the bound release, production wrappers/storage, and deployment verification.
