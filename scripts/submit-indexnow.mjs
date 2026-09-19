@@ -1,3 +1,4 @@
+import { fetchSitemapUrls } from "./lib/sitemaps.mjs";
 // =============================================================================
 // CANLI CAPITAL / scripts/submit-indexnow.mjs
 // -----------------------------------------------------------------------------
@@ -117,11 +118,11 @@ async function main() {
     throw new Error(`could not read the live sitemap (${sitemapResponse.status})`);
   }
   const sitemapText = await sitemapResponse.text();
-  const urls = [...sitemapText.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
+  const urls = [...new Set(await fetchSitemapUrls(`${ORIGIN}/sitemap.xml`, { rootXml: sitemapText, requestOptions: { cache: "no-store", headers: { "user-agent": UA } } }))];
   if (urls.length === 0) {
     throw new Error("the live sitemap lists no URLs; refusing to submit an empty set");
   }
-  const offOrigin = urls.filter((u) => !u.startsWith(ORIGIN));
+  const offOrigin = urls.filter((u) => new URL(u).origin !== ORIGIN);
   if (offOrigin.length) {
     throw new Error(`sitemap contains off-origin URLs, which IndexNow rejects: ${offOrigin[0]}`);
   }
@@ -169,24 +170,24 @@ async function main() {
     return;
   }
 
-  const response = await fetch("https://api.indexnow.org/indexnow", {
-    method: "POST",
-    headers: { "content-type": "application/json; charset=utf-8", "user-agent": UA },
-    body: JSON.stringify({
-      host: new URL(ORIGIN).host,
-      key,
-      keyLocation: keyUrl,
-      urlList: urls,
-    }),
-  });
-
-  if (response.status !== 200 && response.status !== 202) {
-    throw new Error(`IndexNow rejected the submission (${response.status}): ${await response.text()}`);
+  receipt.batches = [];
+  for (let offset = 0; offset < urls.length; offset += 10_000) {
+    const batch = urls.slice(offset, offset + 10_000);
+    const response = await fetch("https://api.indexnow.org/indexnow", {
+      method: "POST",
+      headers: { "content-type": "application/json; charset=utf-8", "user-agent": UA },
+      body: JSON.stringify({ host: new URL(ORIGIN).host, key, keyLocation: keyUrl, urlList: batch }),
+    });
+    receipt.batches.push({ offset, count: batch.length, http_status: response.status });
+    if (response.status !== 200 && response.status !== 202) {
+      writeReceipt(receipt);
+      throw new Error(`IndexNow rejected batch at ${offset} (${response.status}): ${await response.text()}`);
+    }
+    receipt.http_status = response.status;
   }
-  receipt.http_status = response.status;
   receipt.accepted = true;
   writeReceipt(receipt);
-  console.log(`IndexNow accepted ${urls.length} canonical URLs (HTTP ${response.status}).`);
+  console.log(`IndexNow accepted ${urls.length} canonical URLs (HTTP ${receipt.http_status}).`);
 }
 
 if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {

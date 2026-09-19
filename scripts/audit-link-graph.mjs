@@ -1,3 +1,4 @@
+import { readSitemapXml } from "./lib/sitemaps.mjs";
 // =============================================================================
 // CANLI CAPITAL / scripts/audit-link-graph.mjs
 // -----------------------------------------------------------------------------
@@ -125,7 +126,7 @@ while (queue.length > 0) {
   }
 }
 
-const sitemap = readFileSync(resolve(DIST, "sitemap.xml"), "utf8");
+const sitemap = readSitemapXml(DIST);
 const indexable = new Set(
   [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) =>
     m[1].replace(ORIGIN, "").replace(/\/$/, "") || "/",

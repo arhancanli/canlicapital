@@ -69,7 +69,7 @@ hand. They are the machine-readable form of every claim the pages make. Current 
 derived during the build from `public/research-index.json`,
 `public/glassbox/trial_packet_manifest.json`, and the generated measurement directory; the sitemap
 is generated from the same files rather than maintained separately. The present build contains
-263 canonical URLs in the sitemap (all indexable), plus a public noindex evidence page for every incomplete registered
+312 canonical URLs in the sitemap (all indexable), plus a public noindex evidence page for every incomplete registered
 trial and one archival HTML paper per registered sleeve. It publishes
 identity-level packets for all 228 recorded hypotheses, while
 honestly marking 226 of those packets incomplete.
@@ -104,3 +104,16 @@ authoritative artifact.
 Nothing on this site or in this repo is investment advice, an offer, or a solicitation. The record
 published here is **paper trading**; the published ALPHAC strategy record includes no funded performance. Simulated and past
 performance do not indicate future results. See `LICENSE`: provided "as is", without warranty.
+
+## Glass-box platform expansion
+
+The [platform direction and quality contract](docs/GLASSBOX-PLATFORM-VISION-2026-09-19.md)
+connect the research engine, developer API/MCP and the company-reference collection. The local
+expansion candidate adds 49 SEC-backed reference pages; it is not a million-page deployment.
+`npm run seo:inventory` reports the actual built count and gap to the one-million-page target.
+`npm run seo:capacity` tests sitemap transport with synthetic URLs in a temporary directory.
+
+Refresh selected company records explicitly with `npm run companies:import -- CIK [CIK ...]`.
+Builds use captured public JSON and original compressed source snapshots, with no network ingestion
+during publication. The selected latest-filed histories may contain restatements and are not
+point-in-time backtest data. Public JSON downloads do not extend the validation API's capabilities.

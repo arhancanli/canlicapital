@@ -42,7 +42,10 @@
     {
       "source": "/assets/(.*)\\.(css|js)",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
       ]
     },
     {
@@ -177,6 +180,15 @@
     },
     {
       "source": "/(research|measurements|trials|notes|tools|standards)/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate, stale-while-revalidate=60"
+        }
+      ]
+    },
+    {
+      "source": "/companies/:path*",
       "headers": [
         {
           "key": "Cache-Control",

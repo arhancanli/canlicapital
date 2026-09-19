@@ -36,6 +36,7 @@ const SOURCE_REPOS = Object.freeze([
 ]);
 
 const SECONDARY_LINKS = Object.freeze([
+  { key: "companies", label: "Company reference", href: "/companies" },
   { key: "progress", label: "Corrections", href: "/progress" },
   { key: "performance", label: "Performance", href: "/performance" },
   { key: "founder", label: "Founder", href: "/founder" },

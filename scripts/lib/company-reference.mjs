@@ -1,0 +1,70 @@
+import { createHash } from 'node:crypto';
+
+// Deliberately selected concepts, not arbitrary ticker x keyword combinations.
+export const CONCEPTS = {
+  Assets: { label: 'Total assets', kind: 'instant', meaning: 'Resources recognized on the balance sheet. Book assets are not the market value of the business.' },
+  Liabilities: { label: 'Total liabilities', kind: 'instant', meaning: 'Recognized obligations at the reporting date. The definition and scope differ from interest-bearing debt.' },
+  StockholdersEquity: { label: 'Stockholders equity', kind: 'instant', meaning: 'The reported residual interest after liabilities. It is an accounting amount, not market capitalization.' },
+  CashAndCashEquivalentsAtCarryingValue: { label: 'Cash and cash equivalents', kind: 'instant', meaning: 'Cash and qualifying short-term liquid investments under the filer’s accounting policy. Restricted cash and longer-term investments may be reported separately.' },
+  NetIncomeLoss: { label: 'Net income or loss', kind: 'duration', meaning: 'Reported profit or loss for the period. Check the filing for attribution, exceptional items and discontinued operations before comparing companies.' },
+  NetCashProvidedByUsedInOperatingActivities: { label: 'Operating cash flow', kind: 'duration', meaning: 'Cash generated or used by operating activities. Working-capital timing can make this differ substantially from reported income.' },
+  PaymentsToAcquirePropertyPlantAndEquipment: { label: 'Capital expenditure payments', kind: 'duration', meaning: 'Cash payments to acquire property, plant and equipment. This taxonomy concept does not capture every form of investment or acquisition.' },
+  Revenues: { label: 'Revenue', kind: 'duration', meaning: 'Revenue under this specific accounting concept. A missing value is not zero; filers can use other revenue concepts.' },
+  RevenueFromContractWithCustomerExcludingAssessedTax: { label: 'Contract revenue excluding tax', kind: 'duration', meaning: 'Revenue from customer contracts excluding assessed taxes under this specific taxonomy concept. It is not automatically comparable to older revenue tags.' },
+};
+const date = (value) => typeof value === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(value) && new Date(value).toISOString().slice(0, 10) === value;
+
+export function selectObservations(fact, kind, asOf) {
+  const selected = [];
+  for (const [unit, observations] of Object.entries(fact.units ?? {})) {
+    const periods = new Map();
+    for (const row of observations) {
+      if (!Number.isFinite(row.val) || !date(row.end) || !date(row.filed) || row.filed > asOf || row.end > asOf || !/^\d{10}-\d{2}-\d{6}$/.test(row.accn ?? '') || !['10-K', '10-K/A', '20-F', '20-F/A', '40-F', '40-F/A'].includes(row.form)) continue;
+      if (kind === 'duration') {
+        if (!date(row.start)) continue;
+        const days = (Date.parse(row.end) - Date.parse(row.start)) / 86_400_000 + 1;
+        if (days < 300 || days > 400) continue;
+      } else if (row.start) continue;
+      const key = `${row.start ?? ''}/${row.end}`;
+      const previous = periods.get(key);
+      if (previous && previous.filed === row.filed && previous.accn === row.accn && previous.val !== row.val) throw new Error(`Conflicting ${unit} facts for ${key}`);
+      // Keep a deterministic latest-filed observation; retained facts expose when it was filed.
+      if (!previous || `${row.filed}/${row.accn}` > `${previous.filed}/${previous.accn}`) periods.set(key, { ...row, unit });
+    }
+    selected.push(...periods.values());
+  }
+  return selected.sort((a, b) => a.unit.localeCompare(b.unit) || b.end.localeCompare(a.end) || (b.start ?? '').localeCompare(a.start ?? ''));
+}
+
+export function companyReference(raw, { fetchedAt, expectedCik }) {
+  const source = JSON.parse(raw);
+  if (!Number.isSafeInteger(source.cik) || source.cik !== Number(expectedCik) || typeof source.entityName !== 'string' || !source.entityName.trim()) throw new Error('SEC entity identity mismatch');
+  const cik = String(source.cik).padStart(10, '0');
+  const asOf = fetchedAt.slice(0, 10);
+  if (!date(asOf)) throw new Error('Invalid capture date');
+  const concepts = [];
+  for (const [tag, definition] of Object.entries(CONCEPTS)) {
+    const fact = source.facts?.['us-gaap']?.[tag];
+    if (!fact) continue;
+    const observations = selectObservations(fact, definition.kind, asOf);
+    // A page must have a real multi-period history, not a single isolated number.
+    if (new Set(observations.map((row) => row.end)).size < 3) continue;
+    concepts.push({ tag, taxonomy: 'us-gaap', ...definition, observations });
+  }
+  if (concepts.length < 4) throw new Error(`Insufficient substantive coverage for CIK ${cik}`);
+  return {
+    schema: 'canli.company-reference.v1', cik, name: source.entityName,
+    source_url: `https://data.sec.gov/api/xbrl/companyfacts/CIK${cik}.json`,
+    source_sha256: createHash('sha256').update(raw).digest('hex'), fetched_at: fetchedAt,
+    policy: 'Latest-filed annual-report facts per unit and reporting period at capture time. Duration facts cover 300 to 400 days. This selection can include restatements and is not a point-in-time backtest dataset. Missing concepts are omitted, never zero-filled. Values retain original units and are not currency converted.',
+    claim_boundary: 'Public company accounting reference, not market prices, returns, an investment recommendation, or ALPHAC performance. Validate a separately constructed return series with the validation API; accounting values are not returns.',
+    concepts,
+  };
+}
+
+export function verifyCompanyReference(record, original) {
+  const reproduced = companyReference(original, { fetchedAt: record.fetched_at, expectedCik: record.cik });
+  for (const field of ['name', 'source_url', 'source_sha256', 'policy', 'claim_boundary', 'concepts']) {
+    if (JSON.stringify(record[field]) !== JSON.stringify(reproduced[field])) throw new Error(`Company ${record.cik} ${field} does not reproduce from its captured source`);
+  }
+}
