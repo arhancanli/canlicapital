@@ -1,7 +1,7 @@
 # Current state
 
 Updated: 2026-09-19. Overall goal: **ACTIVE, NOT ACHIEVED**.
-Current phase: **1 resumed — audit existing SEC source collection while phase 7 offline CI runs**.
+Current phase: **1 — harden future SEC collection against invalid entity responses**.
 Phase 1 tooling is tested; whole-corpus measurement remains blocked on source access.
 
 ## Verified baseline
@@ -28,13 +28,13 @@ Phase 1 tooling is tested; whole-corpus measurement remains blocked on source ac
 - SEC bulk archive HEAD request returned HTTP 403 from this environment on 19 September. No complete corpus was downloaded or counted. A local research collection contains 520 companyfacts gzip files; all 48 parts, issuer-manifest lineage and 520 file hashes/sizes verified. Selector accepts 344 companies and 2,657 histories (3,001 candidates), rejecting 146 invalid entities and 30 insufficient histories. Individual capture times are unknown, so candidates are not publication approved. This is a selected sample, not the full SEC corpus. Do not bypass access controls or extrapolate their eligibility to the market.
 - Search Console baseline unavailable. Asked owner which account/integration manages the property; answer pending.
 - PR 69's historical-environment fix is committed as 783ad0c and pushed: 49 local tests, strict mypy/Ruff and all 16 publication integrity checks pass. Original publication/migration files are unchanged. Remote publication integrity, PostgreSQL, mypy, Ruff and browser jobs pass at 783ad0c; the offline pytest job remains running. Keep draft until remaining checks finish.
-- PR 68 and 69 offline pytest jobs still pending at last check. Other PR 68 jobs passed; PR 69 mypy/ruff/browser passed.
+- PR 68 full CI passes, including the 23m19s offline suite. PR 69 offline pytest remains running; its other jobs pass. PR 70 newly opened for collector source quality; CI pending.
 - Engine baseline snapshot: four sleeves, four current-epoch daily returns; 248 more observations before Sharpe estimation and 752 before observation-count establishment gate. Modeled cost and tail-risk coverage incomplete. This is a dated snapshot, not a current live metric.
 
 ## Next actions (read and verify before proceeding)
 
-1. Source-audit follow-up passes 301 website tests and six catalog tests. Push the observed-by catalog/source-provenance checkpoint. Core website CI last passed at 0656b03c; the current source-audit follow-up is not yet pushed. Then refresh and semantically review eligible source candidates before publication.
+1. Source-audit checkpoint c3c5e3dc is pushed and passes 301 local website tests and six catalog tests. CI run 35438057534, job 105884006622, passed for c3c5e3dc. Then refresh and semantically review eligible source candidates before publication.
 2. Review remaining 249 keyword-unassigned pages against their actual research/evidence, not arbitrary keyword variants. Search Console query evidence remains unavailable.
 3. Read this folder and ENGINE_ENVIRONMENT_REVIEW.md, then finish phase 7's security/reproducibility CI review. Historical archive resolver, explicit verification receipts and an enqueue-time active-file guard are implemented in 783ad0c. Forty-nine local tests, type/style checks and publication verification pass. Remote PostgreSQL/publication/mypy/Ruff/browser checks now pass; offline pytest remains running; no publication manifest or migration packet was rewritten.
-4. Investigate why the historical SEC collector marked invalid entity responses as fetched; preserve original evidence and fix future collection gates in an isolated change. Plan phase 3 rendering/storage using measured source scale; no million-page serving capacity claimed.
+4. Collector v4 fix is local in /Users/arhancanli/alphac-source-quality-20260919, branch fix/sec-companyfacts-source-quality. Commit e0a257c is pushed in PR 70. Twenty-four tests and Ruff pass. Final-code read-only validation rejects 146 invalid payloads and accepts 374 valid retrievals; all original bytes are unchanged and all 520 individual capture times remain unknown. Fresh future downloads now receive hash-bound UTC capture receipts; legacy caches are never backdated. Await PR 70 CI. Plan phase 3 rendering/storage using measured source scale; no million-page serving capacity claimed.
 5. Complete release readiness and deploy only a passing reviewed result. Recheck production and indexing separately; no deployment has occurred.

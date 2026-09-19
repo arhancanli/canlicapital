@@ -146,3 +146,46 @@ and all publication/metadata/number/link/indexability audits pass. Six catalog t
 also pass. The existing five-company generator produces unchanged pages; no rendered
 HTML changed in this follow-up, so prior browser evidence still applies to those bytes.
 Preparing commit/push of source-audit code, source-provenance receipts and this ledger.
+
+## 2026-09-19 — checkpoints pushed; active handles recorded
+
+Website source-audit commit c3c5e3dc pushed to PR 15; PR description updated. Code
+hashes in the audit match current selector/worker/auditor; staging-script hash and
+archive hash reconcile with the provenance receipt. CI run 35438057534, job
+105884006622 is pending. Engine PR 69 commit 783ad0c has passing publication,
+PostgreSQL, mypy, Ruff and browser checks; offline job 105882846688 remains running.
+These handles must be re-polled, not treated as terminal from elapsed time alone.
+No merge, deployment or indexed-page claim. Next source work: correct future collector
+quality gates, refresh reviewed candidates with valid capture provenance, then test
+serving/discovery expansion. All other owner goals remain active.
+
+## 2026-09-19 — future collection gate correction
+
+Prior goal turn classified as progress. Reread phase records; website c3c5e3dc CI
+passes. Engine 783ad0c offline test job still running, other jobs pass.
+Created isolated source-quality worktree from origin/main cb59488. Collector v4 now
+checks company identity/name and fact-container shapes, records invalid_payload with
+source hashes, and preserves malformed caches instead of deleting/refetching them.
+Legacy/missing statuses cannot satisfy current completion; counts distinguish legacy
+parser records and invalid payloads. Valid entities with no relevant tags stay valid
+retrievals, without becoming claims of usable financial-history coverage.
+
+Twenty-three collector and downstream audit tests pass. Read-only evaluation of the
+520 real source files is running in session 59355; network is forbidden and original
+compressed hashes are checked before/after. No original part/receipt was rewritten.
+
+## 2026-09-19 — collector v4 checkpoint pushed
+
+Added atomic per-download capture receipts binding URL/CIK/raw hash/UTC retrieval time;
+legacy caches keep null times and mismatched receipts fail validation. Twenty-four
+collector/downstream-audit tests and Ruff pass. Final-code offline evaluation again
+checked 520 originals: 146 invalid_payload, 374 fetched, 520 unknown capture times;
+compressed bytes unchanged. The tracked revalidation receipt matches the committed
+collector SHA-256. No network or original-data mutation occurred.
+
+The first commit attempt failed because the scratch worktree had no Ruff on PATH.
+Used the existing verified environment for the hook; commit e0a257c then succeeded
+and was pushed in draft PR 70. Removed the temporary untracked .venv symlink afterward.
+PR 68 full CI now passes; PR 69 offline job remains running. Source refresh/editorial
+review and production release remain next implementation work; actual indexing and
+all algorithm outcome goals remain unestablished.
