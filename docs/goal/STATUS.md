@@ -1,13 +1,13 @@
 # Current state
 
 Updated: 2026-09-19. Overall goal: **ACTIVE, NOT ACHIEVED**.
-Current phase: **4 — validate the release snapshot and create a preview**.
+Current phase: **4 — preview ready; integrate with the approved production publisher**.
 Phase 1 tooling is tested; whole-corpus measurement remains blocked on source access.
 
 ## Verified baseline
 
 - Last verified production sitemap: **263 URLs**. This is not an indexed-page count.
-- Tested website draft: **327 indexable URLs**, including 64 new company-reference pages across seven companies and 56 financial histories. Two fresh SEC captures (Dollar General and Cousins Properties) add 15 pages. Production is unchanged; preview remote build is in progress.
+- Tested website draft: **327 indexable URLs**, including 64 new company-reference pages across seven companies and 56 financial histories. Two fresh SEC captures (Dollar General and Cousins Properties) add 15 pages. Production is unchanged; preview deployment is Ready per Vercel CLI.
 - Actual indexed pages: **unknown**; Search Console access question is pending.
 - Sitemap capacity: one million synthetic URLs passed as 20 shards. Synthetic URLs do not enter content inventory.
 - Current local validation: 302 tests pass (6 preverify + 296 main), including archive source-date validation. Prior unchanged corpus and IndexNow suites pass. Release snapshot: 690 rendered pages, 327 indexable; metadata zero errors/warnings, indexability zero conflicts, all indexable pages within three clicks; numerical-source and all 14 retracted-claim rules pass. Thirty-two Chromium/WebKit viewport checks pass, including both new companies and Assets histories. Prior MCP package validation: 43 tests; MCP implementation has not changed.
@@ -51,9 +51,16 @@ Phase 1 tooling is tested; whole-corpus measurement remains blocked on source ac
   `/tmp/canli-snapshot-date-check.log` and `/tmp/canli-final-verify.log`.
 - Initial Vercel preview upload failed with a TLS invalid-session-id error. Retrying
   with the installed Node 20 CLI and a single tgz archive succeeded. Deployment
-  `dpl_5ePSmH8KyqdsufFWnxxMiqKCMw1b` is Building per CLI inspect.
+  `dpl_5ePSmH8KyqdsufFWnxxMiqKCMw1b` is Ready per CLI inspect.
   Preview: https://meridian-mk8f63w5m-arhans-projects-ac470eaa.vercel.app.
   Local validation receipt: `artifacts/seo/release-preview.json`.
 - Production publisher still points to `canlicapital-website-20260908`; an isolated
   production push would be overwritten. Review integration with that approved design
   source before release. Do not silently redirect the live publisher.
+
+- Release implementation b02e8a2a is pushed to PR 15. Vercel inspect confirmed Ready
+  for the preview above. No preview HTTP/browser fetch, production deployment, merge,
+  or search submission occurred. Website CI for this commit must be checked next.
+- Next concrete action: inspect the approved design branch/publisher integration,
+  reconcile task changes without overwriting other work, and verify the integrated
+  release. All corpus, indexing, API/MCP adoption and forward algorithm goals stay active.
