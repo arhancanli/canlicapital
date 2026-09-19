@@ -1,4 +1,5 @@
 import test from 'node:test';
+import { createConfiguredCompanyReference } from '../api/_lib/company-reference-runtime.js';
 import assert from 'node:assert/strict';
 import { readFileSync, mkdtempSync, rmSync } from 'node:fs';
 import { resolve } from 'node:path';
@@ -42,4 +43,25 @@ test('corrupt release bytes and count mismatch fail rather than mixing roots', a
   await assert.rejects(createCompanyReleaseLoader({ ...options, readReleaseObject: async () => Buffer.from('{}') })(), /byte binding/);
   const altered = Buffer.from(JSON.stringify({ ...JSON.parse(release), companies: 2, histories: 8 }));
   await assert.rejects(createCompanyReleaseLoader({ ...options, releaseHash: catalogHash(altered), readReleaseObject: async () => altered })(), /count does not match/);
+});
+
+
+test('configured public wrapper uses bounded HTTP storage, compiled assets and a pinned release; missing config fails closed', async t => {
+  const { options, release, record } = fixture(t);
+  let requests = 0;
+  const environment = () => ({ COMPANY_RELEASE_HASH: options.releaseHash, COMPANY_CATALOG_BASE_URL: 'https://store.example/catalog', COMPANY_DELIVERY_BASE_URL: 'https://store.example/delivery' });
+  const handler = createConfiguredCompanyReference({ environment, readAssets: () => Buffer.from(JSON.stringify(options.assets)), fetcher: async (url, settings) => {
+    assert.equal(settings.redirect, 'error'); requests++;
+    const hash = url.pathname.split('/').at(-1).replace('.json', '');
+    if (hash === options.releaseHash) return new Response(release);
+    try { return new Response(await options.readCatalogObject(hash)); }
+    catch { return new Response(await options.readDownload()); }
+  } });
+  const response = () => ({ headers: {}, setHeader(k, v) { this.headers[k] = v; }, end(body) { this.body = body; } });
+  const res = response();
+  await handler({ method: 'GET', query: { path: '/companies/' + record.cik }, headers: {} }, res);
+  assert.equal(res.statusCode, 200); assert.equal(res.headers['X-Robots-Tag'], 'noindex'); assert.match(res.body, /assets\/company.css/); assert.ok(requests > 0);
+  const missing = createConfiguredCompanyReference({ environment: () => ({}), readAssets: () => { throw new Error('Should not load assets'); } });
+  const down = response(); await missing({ method: 'GET', query: { path: '/companies' } }, down);
+  assert.equal(down.statusCode, 503); assert.equal(down.headers['Cache-Control'], 'no-store');
 });

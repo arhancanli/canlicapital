@@ -243,5 +243,11 @@
       "source": "/api/v1/receipts/:id/badge.svg",
       "destination": "/api/v1/receipts/:id/badge"
     }
-  ]
+  ],
+  "functions": {
+    "api/v1/company-reference.js": {
+      "includeFiles": "dist/company-page-assets.json",
+      "maxDuration": 60
+    }
+  }
 }

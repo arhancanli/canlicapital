@@ -203,3 +203,19 @@ until a separate reviewed production activation path is implemented.
 The full staged HTTP replay passes through this assembly, including ETag/HEAD,
 source bytes, canonical pages and sitemap equality. Public Vercel wrappers, storage
 configuration and deployment bundling remain open; this module is not activation.
+
+## Public staging wrapper configuration
+
+`api/v1/company-reference.js` accepts a canonical logical `path` query and delegates
+to the shared release handler. It requires COMPANY_RELEASE_HASH, COMPANY_CATALOG_BASE_URL
+and COMPANY_DELIVERY_BASE_URL. Catalog objects are read under the catalog prefix;
+release/download-index/original/selected objects under the delivery prefix. These
+bases must be fixed HTTPS URLs. The deployment carries only the compiled asset
+manifest via functions.includeFiles, as documented by Vercel:
+https://vercel.com/docs/project-configuration/vercel-json#functions.
+
+The handler caches initialization per configured release/base tuple, retries failed
+release reads, and returns503 without configuration. Successful staging HTML remains
+noindex. No clean-url rewrite is activated; existing pilot routes are unaffected.
+Actual deployment packaging, hosted storage, sitemap aggregation and production
+indexability still need verification. The staging API is not advertised as live.

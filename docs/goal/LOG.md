@@ -490,3 +490,22 @@ release tests cover shared revision, corruption/count mismatch and outage retry.
 Full verification session85142 passed347 tests (6 +341) plus writing/SEO/evidence
 checks. Local HTTP session79385 completed. No production configuration or deployment.
 Next: real storage, public wrappers, asset/sitemap packaging, preview verification.
+
+## 2026-09-19 — staging API wrapper and storage discovery
+
+Previous goal turn classified as progress. Reread continuity and verified687d6e62
+passes both CI jobs (35447238812). Added environment-configured verified-release
+wrapper at /api/v1/company-reference, with compiled asset includeFiles configuration,
+HTTPS storage adapters, required release/base settings, noindex responses and503
+when unconfigured. Canonical site rewrites remain unchanged. Wrapper integration
+fixture passes; full verification session67317 passed348 tests (6 +342) and all
+writing/SEO/evidence checks. Vercel packaging has not yet been deployed/verified.
+
+Read-only Vercel env listing identified existing Supabase variable names. Asked
+owner for existing storage provider/bucket (no secrets requested) while continuing
+independent wrapper work. Two exports lacked usable Supabase URL/key values: first
+inspection raisedTypeError, second diagnosed missing exported values before any
+bucket request. Deleted both temporary export files; verified final absence. Do
+not infer the production credentials are absent or attempt to dismiss this as a
+storage-service outage. No bucket/storage/settings mutation. Storage answer remains
+pending; production and Search Console questions are unchanged.

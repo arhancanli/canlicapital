@@ -29,7 +29,7 @@ million-indexed-page vision and all other objectives after the sitemap discussio
 - The request loader verifies a small immutable release before assembling company,
   directory and download handlers from its two roots. The local host uses this same
   router. Initial validation is shared; temporary failures can retry. A release object
-  cannot enable indexing by claiming approval. No public wrapper/storage configured.
+  cannot enable indexing by claiming approval. A staging API wrapper is implemented; storage remains unconfigured.
 - Release binding replays source bytes and selected records before pinning catalog
   and download roots. Corrupt data fails and preserves the prior release pointer.
 - Directory lookup now seeks by rank through catalog counts, without a full CIK
@@ -42,9 +42,9 @@ million-indexed-page vision and all other objectives after the sitemap discussio
 - Synthetic navigation test: all 20,000 directory pages reached in at most four
   links. Initial three-link expectation failed and was corrected to the measured
   bound. This tests navigation, not content quality, live capacity or indexing.
-- Latest full local verification: **347 tests pass (6 + 341)**, clean writing,
+- Latest full local verification: **348 tests pass (6 + 342)**, clean writing,
   metadata, link, indexability and numerical-source/evidence audits. Log:
-  `/tmp/canli-release-runtime-verify.log`; session 85142 completed exit 0.
+  `/tmp/canli-public-wrapper-verify.log`; session 67317 completed exit 0.
 - Latest staged browser review: **28 Chromium/WebKit checks pass**, 390/1440 widths.
   Inspected mobile final-directory screenshot. Local test servers are stopped.
 - Prior unchanged MCP tests: 43 pass. Developer links/examples/contributor guidance
@@ -66,7 +66,7 @@ million-indexed-page vision and all other objectives after the sitemap discussio
 ## Release, CI and environment
 
 - Website worktree/PR 15 remain the isolated task branch. Prior pushed head
-  **de0df95f** passes both CI jobs, run **35447039133**. The new release-loader
+  **687d6e62** passes both CI jobs, run **35447238812**. The new public-wrapper
   checkpoint requires its own pushed-head CI check; do not confuse prior CI with later edits.
 - Preview Ready: https://meridian-c2lklakk2-arhans-projects-ac470eaa.vercel.app.
   It predates later delivery/discovery work; catalog inactive, no backend configured.
@@ -92,8 +92,8 @@ million-indexed-page vision and all other objectives after the sitemap discussio
 
 ## Next actions and evidence
 
-1. Verify current PR-head CI after the release-loader checkpoint push.
-2. Configure real storage and public wrappers for the verified-release handler; package
+1. Verify current PR-head CI after the public-wrapper checkpoint push.
+2. Resolve the pending storage-provider/access question, configure storage; verify
    assets and sitemap routing, retain genuine 404/503 and staged noindex behavior.
 3. Verify a preview, complete release review, then production activation only with
    the pending authorization. Establish Search Console measurements separately.
@@ -103,3 +103,22 @@ Evidence: `company-delivery-measurement.json`, `company-discovery-staged.json`,
 `company-release-staged.json`, `company-delivery-browser.json` under artifacts/seo.
 Raw source/storage objects remain ignored under artifacts/seo/corpus-local.
 See COMPANY_CATALOG.md for reproduction commands and remaining production limits.
+
+## Staging wrapper and storage inspection
+
+- Added `/api/v1/company-reference?path=/companies/...` backed by the verified-release
+  router and HTTPS readers. Required settings: COMPANY_RELEASE_HASH,
+  COMPANY_CATALOG_BASE_URL and COMPANY_DELIVERY_BASE_URL. Missing configuration
+  returns503/no-store; successful responses remain noindex. No canonical-site
+  rewrites added and no environment values changed.
+- Vercel configuration includes only dist/company-page-assets.json in this function.
+  Tests exercise the wrapper with HTTPS fetch fixtures and compiled asset mapping.
+  Actual cloud packaging/hosted-data behavior still needs verification.
+- Read-only Vercel environment listing shows Supabase names, but two CLI exports
+  did not provide usable SUPABASE_URL/SUPABASE_SERVICE_ROLE_KEY values. The first
+  bucket inspection failed during URL construction; the second confirmed absent
+  exported values. This is not proof production has missing credentials or no bucket.
+- Temporary credential export files were deleted and deletion verified. No secret
+  values printed, bucket created, storage objects uploaded or remote settings changed.
+- Async question asks which existing storage provider/bucket should be used; pending.
+  Production authorization and Search Console evidence are separately pending.
