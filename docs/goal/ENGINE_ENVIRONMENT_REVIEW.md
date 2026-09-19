@@ -1,6 +1,6 @@
 # Engine environment-binding review
 
-Status: investigated, not implemented or cleared for merge.
+Status: implemented and locally validated in engine commit 783ad0c; remote CI/review pending.
 
 PR 69 changes the active dependency lock to patch AnyIO, GitPython and pip advisories.
 All 16 publication manifests and the EIA legacy migration bind the old lock digest.
@@ -35,3 +35,21 @@ replay state); publication integrity and PostgreSQL contracts; dependency tests.
 
 No engine code, publication manifests, migration packets, runtime environment or
 broker operations were changed during this investigation. PR 69 remains a draft.
+
+## Implemented follow-up
+
+`src/alphaforge/environment_archive.py` verifies active root files or the exact
+historical uv.lock text archive. Receipts expose original/resolved paths and active
+versus bound digests. No fallback is available for source-code or project-definition
+drift. Publication checks bind the resolver hash and preserve all original bundle
+files. Foundry records `replay_environment_files_match` and rechecks files immediately
+before enqueueing; a mismatched active environment blocks before database access.
+
+The integration fixture copies real historical bound files into a temporary workspace
+for database lifecycle tests. It does not install archived dependencies or execute
+research. Matching files does not establish an installed environment or valid image.
+
+Local results: 49 tests pass, one private-workspace evidence test deselected; strict
+mypy and Ruff pass; all 16 publication bundles pass the integrity verifier; git diff
+confirms original publication files and migration packet unchanged. PR 69 retains
+the dependency patches. No production installation, replay or database mutation.

@@ -89,3 +89,60 @@ a correct fix. No engine files were changed. Phase 7 fix remains outstanding.
 Added a CanliCapital-scoped pointer to /Users/arhancanli/AGENTS.md so a continuation
 starting in the home directory also rereads this folder after compaction. Goal remains
 active. No PR merge, deployment, actual-indexing measurement or algorithm-goal claim.
+
+## 2026-09-19 — phase 7 implementation started
+
+Previous turn classified as progress: website state, CI and continuity artifacts changed.
+Reread goal folder and rechecked PRs. PR 69 still has the two known failures; prior
+pytest jobs remain pending. Implemented a narrow uv.lock archive resolver with
+explicit historical-only receipts, preserved exact old bytes, and added an active
+workspace recheck before replay enqueueing. Historical packet/manifests are unchanged.
+Seventeen targeted unit checks pass (one private-workspace evidence check deselected).
+Broader checks and remote CI pending. No dependency installation of archived versions,
+no replay, database mutation, deployment or broker operation performed.
+
+## 2026-09-19 — phase 7 fix committed, wider local checks pass
+
+Engine commit 783ad0c implements historical lock verification and an enqueue-time
+workspace-file guard. Forty-nine tests pass; one private-workspace test is explicitly
+deselected. Strict mypy and Ruff pass. Publication verifier passes all 16 bundles,
+402 checksum-bound files and 32 environment bindings; it still establishes zero new
+full reproductions. Original publication and migration files have no diff. PR 69 body
+updated with the final approach and limits; push and remote CI are pending handles.
+
+## 2026-09-19 — phase 7 failing jobs fixed; phase 1 source opportunity found
+
+Engine PR 69 commit 783ad0c passes publication integrity, PostgreSQL contracts, mypy,
+Ruff and browser CI. Offline pytest remains running (run 35437603714, job 105882846688).
+Found 520 local companyfacts gzip files under AlphaForge/data/raw/repurchase_issuance_flow.
+The August collection receipt reports 520 successes and 80 terminal 404s in a selected
+600-issuer research sample. Exact bytes, part lineage and per-file statuses still need
+verification. Capture timestamps are not recorded per file; do not invent them from
+filesystem dates. Resuming phase 1 to audit these inputs using an explicit observed-by
+boundary, while keeping individual fetch times unknown and publication unapproved.
+
+## 2026-09-19 — existing source cohort audited without inflating page counts
+
+Verified the collection receipt's semantic hash, all 48 part hashes/sizes, issuer-manifest
+hash/identities and all 520 raw snapshot hashes/sizes. Staging initially stopped at an
+empty-name/string-CIK response marked fetched. Kept source-byte verification distinct
+from eligibility: stage all receipt-bound bytes, then reject unusable entities with
+the production selector rather than silently drop them or treat fetched as valid.
+
+Results: 344 eligible companies, 2,657 histories, 3,001 candidate pages, zero overlap
+with the current five-company pilot; 146 invalid entities and 30 insufficient-coverage
+entities excluded. Eight company-reference tests and six catalog tests pass. Added
+observed-by support that leaves actual capture times null; publication explicitly
+rejects missing or malformed UTC capture timestamps. No candidate was published.
+
+Tracked evidence: artifacts/seo/research-collection-provenance.json and
+artifacts/seo/research-company-corpus.json. Local ZIP/SQLite remain ignored. Full-site
+verification is running in session 82535. Do not claim it passed until rechecked.
+
+## 2026-09-19 — source-audit checkpoint validation completed
+
+Session 82535 completed successfully: 301 website tests (6 preverify + 295 main)
+and all publication/metadata/number/link/indexability audits pass. Six catalog tests
+also pass. The existing five-company generator produces unchanged pages; no rendered
+HTML changed in this follow-up, so prior browser evidence still applies to those bytes.
+Preparing commit/push of source-audit code, source-provenance receipts and this ledger.

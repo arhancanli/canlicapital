@@ -45,6 +45,19 @@ class CorpusTest(unittest.TestCase):
         self.assertEqual(record['concepts'], self.record['concepts'])
         self.assertEqual(record['source_sha256'], self.record['source_sha256'])
 
+    def test_observed_by_boundary_does_not_invent_individual_capture_times(self):
+        self.write([('CIK0000320193.json', self.raw)])
+        result = corpus.audit(self.archive, self.catalog, observed_by=self.captured)
+        self.assertIsNone(result['captured_at'])
+        self.assertEqual(result['capture_time_basis'], 'COLLECTION_RECEIPT_UPPER_BOUND')
+        with sqlite3.connect(self.catalog) as db:
+            record = json.loads(db.execute('SELECT record_json FROM entities').fetchone()[0])
+        self.assertIsNone(record['fetched_at'])
+        self.assertEqual(record['observed_no_later_than'], self.captured)
+        self.assertEqual(record['concepts'], self.record['concepts'])
+        with self.assertRaisesRegex(ValueError, 'exactly one'):
+            corpus.audit(self.archive, self.catalog, self.captured, observed_by=self.captured)
+
     def test_limited_scan_is_explicit_and_never_extrapolated(self):
         self.write([('CIK0000320193.json', self.raw), ('CIK0000000001.json', '{}')])
         result = corpus.audit(self.archive, self.catalog, self.captured, limit=1)

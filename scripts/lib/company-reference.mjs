@@ -50,6 +50,7 @@ export function selectObservations(fact, kind, asOf, diagnostics = {}) {
 }
 
 export function companyReference(raw, { fetchedAt, expectedCik, diagnostics = {} }) {
+  if (typeof fetchedAt !== 'string' || !/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?(?:Z|\+00:00)$/.test(fetchedAt) || !Number.isFinite(Date.parse(fetchedAt))) throw new Error('A verified UTC capture timestamp is required before publication');
   const source = JSON.parse(raw);
   if (!source || !Number.isSafeInteger(source.cik) || source.cik < 1 || source.cik > 9999999999 || source.cik !== Number(expectedCik) || typeof source.entityName !== 'string' || !source.entityName.trim()) throw new CompanyReferenceError('INVALID_ENTITY', 'SEC entity identity mismatch');
   const cik = String(source.cik).padStart(10, '0');

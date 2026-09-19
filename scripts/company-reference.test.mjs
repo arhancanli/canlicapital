@@ -87,3 +87,12 @@ test('malformed fact collections and invalid entity identities fail closed', () 
     assert.throws(() => companyReference(JSON.stringify({ cik, entityName: 'Invalid' }), { fetchedAt: '2026-09-19T00:00:00Z', expectedCik: cik }), /identity/);
   }
 });
+
+
+test('unknown or malformed capture times cannot be promoted from the candidate catalog', () => {
+  const record = JSON.parse(readFileSync(new URL('../public/company-data/0000320193.json', import.meta.url)));
+  const raw = gunzipSync(readFileSync(new URL(`../public${record.source_snapshot}`, import.meta.url)));
+  for (const fetched_at of [null, '2026-09-19', '2026-09-19invalid', '2026-09-19T25:00:00Z']) {
+    assert.throws(() => verifyCompanyReference({ ...record, fetched_at }, raw), /capture timestamp/);
+  }
+});

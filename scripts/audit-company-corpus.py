@@ -28,8 +28,11 @@ def digest(path):
     return hashed.hexdigest()
 
 
-def audit(archive, output, captured_at, limit=None):
-    capture = datetime.fromisoformat(captured_at.replace('Z', '+00:00'))
+def audit(archive, output, captured_at=None, limit=None, *, observed_by=None):
+    if bool(captured_at) == bool(observed_by):
+        raise ValueError('Provide exactly one actual capture time or observed-by boundary')
+    boundary = captured_at or observed_by
+    capture = datetime.fromisoformat(boundary.replace('Z', '+00:00'))
     if capture.tzinfo is None or capture.utcoffset().total_seconds() != 0 or capture > datetime.now(timezone.utc):
         raise ValueError('Capture time must be a real, nonfuture UTC timestamp')
     if limit is not None and limit < 1:
@@ -82,7 +85,7 @@ def audit(archive, output, captured_at, limit=None):
                 if len(raw) > MAX_MEMBER_BYTES:
                     raise ValueError(f'Oversized source member: {member.filename}')
                 cik = member.filename[3:13]
-                request = dict(cik=cik, raw=raw.decode('utf-8'), fetchedAt=captured_at)
+                request = dict(cik=cik, raw=raw.decode('utf-8'), fetchedAt=captured_at, observedBy=observed_by)
                 worker.stdin.write(json.dumps(request) + '\n')
                 worker.stdin.flush()
                 response = worker.stdout.readline()
@@ -116,8 +119,11 @@ def audit(archive, output, captured_at, limit=None):
         reasons = dict(connection.execute("SELECT reason,count(*) FROM entities WHERE status='EXCLUDED' GROUP BY reason"))
         summary = {
             'schema': 'canli.company-corpus-audit.v1', 'captured_at': captured_at,
+            'observed_by': observed_by,
+            'capture_time_basis': 'ACTUAL_CAPTURE' if captured_at else 'COLLECTION_RECEIPT_UPPER_BOUND',
             'audited_at': datetime.now(timezone.utc).isoformat(), 'archive_sha256': source_digest,
-            'source_url': 'https://www.sec.gov/Archives/edgar/daily-index/xbrl/companyfacts.zip',
+            'archive_source_url': None,
+            'source_reference_url': 'https://www.sec.gov/search-filings/edgar-application-programming-interfaces',
             'source_authenticity': 'Caller-supplied capture; hash proves byte identity, not origin',
             'selector_sha256': digest(ROOT / 'scripts/lib/company-reference.mjs'),
             'worker_sha256': digest(ROOT / 'scripts/company-catalog-worker.mjs'),
@@ -155,7 +161,9 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--archive', type=Path, required=True)
     parser.add_argument('--output', type=Path, required=True)
-    parser.add_argument('--captured-at', required=True, help='UTC capture timestamp, not audit time')
+    boundary = parser.add_mutually_exclusive_group(required=True)
+    boundary.add_argument('--captured-at', help='Actual UTC capture timestamp, not audit time')
+    boundary.add_argument('--observed-by', help='Collection receipt UTC upper bound; individual capture times stay unknown')
     parser.add_argument('--limit', type=int, help='Optional bounded sample; report never extrapolates')
     args = parser.parse_args()
-    print(json.dumps(audit(args.archive, args.output, args.captured_at, args.limit), indent=2))
+    print(json.dumps(audit(args.archive, args.output, args.captured_at, args.limit, observed_by=args.observed_by), indent=2))

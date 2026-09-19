@@ -6,7 +6,12 @@ for await (const line of createInterface({ input: process.stdin, crlfDelay: Infi
   const diagnostics = {};
   let result;
   try {
-    const record = companyReference(input.raw, { expectedCik: input.cik, fetchedAt: input.fetchedAt, diagnostics });
+    const record = companyReference(input.raw, { expectedCik: input.cik, fetchedAt: input.fetchedAt ?? input.observedBy, diagnostics });
+    if (!input.fetchedAt) {
+      record.fetched_at = null;
+      record.observed_no_later_than = input.observedBy;
+      record.capture_time_basis = 'COLLECTION_RECEIPT_UPPER_BOUND';
+    }
     result = { status: 'ELIGIBLE_FOR_REVIEW', record, diagnostics };
   } catch (error) {
     if (!(error instanceof CompanyReferenceError) && !(error instanceof SyntaxError)) throw error;
