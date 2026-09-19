@@ -219,3 +219,21 @@ release reads, and returns503 without configuration. Successful staging HTML rem
 noindex. No clean-url rewrite is activated; existing pilot routes are unaffected.
 Actual deployment packaging, hosted storage, sitemap aggregation and production
 indexability still need verification. The staging API is not advertised as live.
+
+
+Wrapper packaging now passes Vercel preview build: see wrapper-preview.json and
+https://meridian-atulevugw-arhans-projects-ac470eaa.vercel.app. CLI inspect lists the
+company-reference function; hosted-data runtime remains unverified because storage
+is not configured. The deploy used reviewed task inputs, not refreshed engine exports.
+
+Source breadth can be reviewed without publishing additional concepts:
+
+```sh
+node scripts/audit-company-concept-breadth.mjs artifacts/seo/corpus-local/company-delivery artifacts/seo/company-concept-breadth.json
+```
+
+The inventory verifies bytes and reuses annual observation selection. It flags exact
+observation-vector duplicates and zero/constant histories. It infers potential kind
+from rows, which is not authoritative taxonomy periodType. Labels alone do not prove
+meaning, usefulness, distinct intent or comparability. No new tag enters the public
+selector through this audit; opportunity counts are not publishable page counts.

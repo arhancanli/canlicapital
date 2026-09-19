@@ -66,10 +66,11 @@ million-indexed-page vision and all other objectives after the sitemap discussio
 ## Release, CI and environment
 
 - Website worktree/PR 15 remain the isolated task branch. Prior pushed head
-  **687d6e62** passes both CI jobs, run **35447238812**. The new public-wrapper
-  checkpoint requires its own pushed-head CI check; do not confuse prior CI with later edits.
-- Preview Ready: https://meridian-c2lklakk2-arhans-projects-ac470eaa.vercel.app.
-  It predates later delivery/discovery work; catalog inactive, no backend configured.
+  **7ce4557c** passes both CI jobs, run **35447499909**. Later audit/docs changes
+  need their own pushed-head CI check; do not confuse prior CI with later edits.
+- Preview Ready: https://meridian-atulevugw-arhans-projects-ac470eaa.vercel.app.
+  Vercel lists the new company-reference function (36.84KB). Catalog inactive;
+  hosted-data runtime unverified. See artifacts/seo/wrapper-preview.json.
 - Publishing history integrated in bfca8f45; original design worktree and engine
   runtime publisher pointer remain unchanged. Production authorization question
   remains pending; generic continuation is not explicit production activation.
@@ -113,7 +114,7 @@ See COMPANY_CATALOG.md for reproduction commands and remaining production limits
   rewrites added and no environment values changed.
 - Vercel configuration includes only dist/company-page-assets.json in this function.
   Tests exercise the wrapper with HTTPS fetch fixtures and compiled asset mapping.
-  Actual cloud packaging/hosted-data behavior still needs verification.
+  Cloud packaging is Ready and the function is listed; hosted-data behavior still needs verification.
 - Read-only Vercel environment listing shows Supabase names, but two CLI exports
   did not provide usable SUPABASE_URL/SUPABASE_SERVICE_ROLE_KEY values. The first
   bucket inspection failed during URL construction; the second confirmed absent
@@ -122,3 +123,17 @@ See COMPANY_CATALOG.md for reproduction commands and remaining production limits
   values printed, bucket created, storage objects uploaded or remote settings changed.
 - Async question asks which existing storage provider/bucket should be used; pending.
   Production authorization and Search Console evidence are separately pending.
+
+## Source breadth review while storage is pending
+
+- Read-only audit of the same349 captures found102,282 company/concept histories
+  across5,910 US-GAAP tags, including99,581 outside the nine selected concepts.
+  This is a source opportunity inventory, not eligible/built/live/indexed pages.
+- Review flags:1,883 duplicate observation vectors,2,302 zero-only histories and
+  4,378 constant-per-unit histories. Flags overlap; do not subtract them as disjoint.
+- Existing annual selection and three-reporting-end rule were reused. Kind inferred
+  from observation shape is not authoritative taxonomy classification. Definition,
+  intent ownership, comparability, duplicate content and material usefulness require
+  review before any expansion. No records or published concept whitelist changed.
+- Evidence: artifacts/seo/company-concept-breadth.json and its executable audit.
+  Source growth review can proceed independently while storage/access is pending.

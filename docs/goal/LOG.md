@@ -509,3 +509,27 @@ bucket request. Deleted both temporary export files; verified final absence. Do
 not infer the production credentials are absent or attempt to dismiss this as a
 storage-service outage. No bucket/storage/settings mutation. Storage answer remains
 pending; production and Search Console questions are unchanged.
+
+## 2026-09-19 — wrapper packaging preview and source growth inventory
+
+Previous goal turn was progress. Reread continuity and deployment skill. Verified
+7ce4557c complete CI passes (35447499909). Created a Git-archived upload source at
+/tmp/canli-wrapper-preview.OR9LYO and validated an isolated clone successfully,
+including all five compiled company-page resource references. Uploaded the pristine
+source using Node20 Vercel CLI/tgz; no live engine exports overlaid for this packaging
+check. First inspect showed Building; next inspect verified **Ready** for
+**dpl_67SAYaPX9s9BGzQ9pn4ecdUb4frr**, listing company-reference at36.84KB:
+https://meridian-atulevugw-arhans-projects-ac470eaa.vercel.app.
+No remote preview fetch, corpus activation, production deploy or index claim.
+Evidence and source hashes saved in wrapper-preview.json.
+
+While storage answer remains pending, overlapped phase1 source-growth review with
+phase3 packaging. Read-only audit of349 original captures reuses selectObservations
+and verifies source/selected bytes. Found102,282 company/concept histories,99,581
+outside current selection. Follow-up flags1,883 exact duplicate observation vectors,
+2,302 zero-only and4,378 constant-per-unit histories (overlapping). Source labels
+and observation shapes are not reviewed taxonomy meanings or approved page intents.
+No page count increased. Audit makes the next editorial/taxonomy prioritization
+concrete instead of extrapolating the existing nine concepts to one million pages.
+Audit sessions41094/65485 completed exit0. Runtime/production code unchanged this
+turn; existing348-test evidence remains applicable to those unchanged paths.
