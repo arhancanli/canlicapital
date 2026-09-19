@@ -42,7 +42,10 @@
     {
       "source": "/assets/(.*)\\.(css|js)",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
       ]
     },
     {
@@ -183,6 +186,15 @@
           "value": "public, max-age=0, must-revalidate, stale-while-revalidate=60"
         }
       ]
+    },
+    {
+      "source": "/companies/:path*",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate, stale-while-revalidate=60"
+        }
+      ]
     }
   ],
   "redirects": [
@@ -231,5 +243,11 @@
       "source": "/api/v1/receipts/:id/badge.svg",
       "destination": "/api/v1/receipts/:id/badge"
     }
-  ]
+  ],
+  "functions": {
+    "api/v1/company-reference.js": {
+      "includeFiles": "dist/company-page-assets.json",
+      "maxDuration": 60
+    }
+  }
 }

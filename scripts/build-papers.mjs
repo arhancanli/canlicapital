@@ -1,3 +1,4 @@
+import { writeSitemaps } from "./lib/sitemaps.mjs";
 // =============================================================================
 // CANLI CAPITAL / scripts/build-papers.mjs
 // -----------------------------------------------------------------------------
@@ -36,7 +37,7 @@ import {
   renderProductShellStylesheet,
 } from "./product-shell.mjs";
 import { discover as discoverMeasurementArtifacts, rawArtifactUrl } from "./build-measurements.mjs";
-import { gitCommitDate, artifactDate, resolveLastmod } from "./lastmod.mjs";
+import { gitCommitDate, artifactDate, resolveLastmod, writeSourceDates } from "./lastmod.mjs";
 import { describeProvenanceUrl } from "./describe-provenance-url.mjs";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
@@ -1174,7 +1175,11 @@ function main() {
 
   const maxDate = (dates) => (dates.length ? dates.filter(Boolean).sort().at(-1) : undefined);
 
+  const companyRoutes = existsSync(resolve(ROOT, "public/company-reference-index.json"))
+    ? JSON.parse(readFileSync(resolve(ROOT, "public/company-reference-index.json"), "utf8")).routes : [];
+
   const urls = [
+    ...companyRoutes,
     ...STATIC_ROUTES.map((route) => {
       const loc = `${ORIGIN}${route.path}`;
       let lastmod;
@@ -1218,22 +1223,11 @@ function main() {
         `because git was unavailable (not because the content is undated):`,
     );
     for (const message of BUILD_DATE_FALLBACK_WARNINGS) console.warn(`  ${message}`);
+    if (process.env.VERCEL) throw new Error("Deployment cannot invent sitemap modification dates; rebuild source-date bindings first");
   }
 
-  writeFileSync(
-    resolve(ROOT, "public/sitemap.xml"),
-    `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${urls
-  .map(
-    (url) =>
-      `  <url>\n    <loc>${url.loc}</loc>\n    <lastmod>${url.lastmod ?? buildDate}</lastmod>\n` +
-      `    <changefreq>${url.changefreq}</changefreq>\n    <priority>${url.priority}</priority>\n  </url>`,
-  )
-  .join("\n")}
-</urlset>
-`,
-  );
+  writeSourceDates(ROOT);
+  writeSitemaps(urls, { directory: resolve(ROOT, "public"), origin: ORIGIN });
 
   console.log(`rendered ${papers.length} research pages -> research/*.html`);
   console.log(`rendered ${hubs.length} topic hubs -> research/topics/*.html`);

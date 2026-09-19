@@ -1,3 +1,5 @@
+import { fetchSitemapUrls } from "./lib/sitemaps.mjs";
+import { readSitemapXml } from "./lib/sitemaps.mjs";
 import { createHash } from "node:crypto";
 import {
   existsSync,
@@ -122,7 +124,7 @@ function localCandidateSummary() {
   const sitemapPath = resolve(ROOT, "public/sitemap.xml");
   const dist = resolve(ROOT, "dist");
   if (!existsSync(sitemapPath) || !existsSync(dist)) return null;
-  const sitemap = readFileSync(sitemapPath, "utf8");
+  const sitemap = readSitemapXml(resolve(ROOT, "public"));
   const files = walkHtml(dist);
   const noindex = files.filter((path) =>
     /<meta\s+name="robots"\s+content="[^"]*\bnoindex\b/i.test(readFileSync(path, "utf8")),
@@ -167,7 +169,7 @@ export async function runAudit({ fetchImpl = fetch, observedAt = new Date() } = 
     robotsResponse.text(),
     sitemapResponse.text(),
   ]);
-  const urls = [...sitemapText.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1]);
+  const urls = await fetchSitemapUrls(`${ORIGIN}/sitemap.xml`, { fetchImpl, rootXml: sitemapText });
   const pages = [];
   let cursor = 0;
   async function worker() {
@@ -252,7 +254,12 @@ export async function runAudit({ fetchImpl = fetch, observedAt = new Date() } = 
     (target) => !/\bnoindex\b/i.test(target.x_robots_tag ?? ""),
   );
   const offOriginUrls = urls.filter((url) => !url.startsWith(`${ORIGIN}/`) && url !== `${ORIGIN}/`);
-  const duplicateSitemapUrls = [...new Set(urls.filter((url, index) => urls.indexOf(url) !== index))];
+  const seenUrls = new Set();
+  const duplicateSitemapUrls = [...new Set(urls.filter((url) => {
+    if (seenUrls.has(url)) return true;
+    seenUrls.add(url);
+    return false;
+  }))];
   const strategicIssues = [];
   if (incompleteTrialsInLiveSitemap.length) {
     strategicIssues.push({

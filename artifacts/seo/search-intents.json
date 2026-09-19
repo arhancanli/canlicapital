@@ -1,0 +1,943 @@
+{
+  "schema": "canli.search-intent-audit.v1",
+  "measurement_status": "Editorial intent hypotheses; search volume, rankings and query coverage are not measured",
+  "canonical_owners": 78,
+  "query_hypotheses": 95,
+  "local_indexable_pages": 327,
+  "unassigned_canonicals": [
+    "https://canlicapital.com/",
+    "https://canlicapital.com/systems",
+    "https://canlicapital.com/performance",
+    "https://canlicapital.com/progress",
+    "https://canlicapital.com/open",
+    "https://canlicapital.com/measurements",
+    "https://canlicapital.com/trials",
+    "https://canlicapital.com/verify",
+    "https://canlicapital.com/review",
+    "https://canlicapital.com/foundry",
+    "https://canlicapital.com/founder",
+    "https://canlicapital.com/notes",
+    "https://canlicapital.com/tools",
+    "https://canlicapital.com/research/topics/killed-candidates",
+    "https://canlicapital.com/research/topics/literature-reviews",
+    "https://canlicapital.com/research/topics/feasibility-protocols",
+    "https://canlicapital.com/research/topics/engineering-foundations",
+    "https://canlicapital.com/research/topics/equities",
+    "https://canlicapital.com/research/topics/crypto",
+    "https://canlicapital.com/research/topics/options-and-volatility",
+    "https://canlicapital.com/research/topics/rates-and-treasuries",
+    "https://canlicapital.com/research/topics/credit",
+    "https://canlicapital.com/research/topics/commodities",
+    "https://canlicapital.com/research/topics/event-driven",
+    "https://canlicapital.com/research/topics/macro-surprise",
+    "https://canlicapital.com/research/topics/execution-and-market-structure",
+    "https://canlicapital.com/research/active-ownership-item4-v3-feasibility",
+    "https://canlicapital.com/research/alphamax-equity-momentum-lineage",
+    "https://canlicapital.com/research/alphatrend-managed-futures-lineage",
+    "https://canlicapital.com/research/alphavintage-macro-surprise-lineage",
+    "https://canlicapital.com/research/alphavintage-missing-release-correction",
+    "https://canlicapital.com/research/author-protocol-approval-protocol",
+    "https://canlicapital.com/research/bond-etf-nav-dislocation-feasibility",
+    "https://canlicapital.com/research/borrow-execution-foundation",
+    "https://canlicapital.com/research/cftc-hedging-pressure-feasibility",
+    "https://canlicapital.com/research/corporate-action-basis-reconstruction",
+    "https://canlicapital.com/research/corporate-action-lifecycle",
+    "https://canlicapital.com/research/crowding-risk-foundation",
+    "https://canlicapital.com/research/crypto-carry-lineage",
+    "https://canlicapital.com/research/crypto-carry-portable-v1",
+    "https://canlicapital.com/research/crypto-defensive-lineage",
+    "https://canlicapital.com/research/crypto-lab-carry-crash-incident",
+    "https://canlicapital.com/research/crypto-momentum-lineage",
+    "https://canlicapital.com/research/crypto-multifactor-engine-lineage",
+    "https://canlicapital.com/research/crypto-reversal-lineage",
+    "https://canlicapital.com/research/crypto-vrp-lineage",
+    "https://canlicapital.com/research/current-book-diversification-model",
+    "https://canlicapital.com/research/current-book-drawdown-model",
+    "https://canlicapital.com/research/customer-supplier-propagation-feasibility",
+    "https://canlicapital.com/research/electricity-load-weather-feasibility",
+    "https://canlicapital.com/research/energy-inventory-lineage",
+    "https://canlicapital.com/research/engineering-quality",
+    "https://canlicapital.com/research/equity-insider-activity-lineage",
+    "https://canlicapital.com/research/equity-low-beta-lineage",
+    "https://canlicapital.com/research/equity-narrative-change-lineage",
+    "https://canlicapital.com/research/equity-quality-lineage",
+    "https://canlicapital.com/research/equity-value-investment-lineage",
+    "https://canlicapital.com/research/execution-realism",
+    "https://canlicapital.com/research/financing-replay",
+    "https://canlicapital.com/research/forward-sharpe-evidence-standard",
+    "https://canlicapital.com/research/futures-execution-foundation",
+    "https://canlicapital.com/research/identity-redesign-notes",
+    "https://canlicapital.com/research/inflation-breakeven-relative-value-feasibility",
+    "https://canlicapital.com/research/kill-alphamax-betaneutral",
+    "https://canlicapital.com/research/kill-alphamax-short-margin-floor",
+    "https://canlicapital.com/research/kill-alphamax-shorttail",
+    "https://canlicapital.com/research/kill-alphamax-volscale",
+    "https://canlicapital.com/research/kill-alphamax-weightgrid",
+    "https://canlicapital.com/research/kill-cef-discount",
+    "https://canlicapital.com/research/kill-commodity-inventory-seasonal",
+    "https://canlicapital.com/research/kill-cot-positioning",
+    "https://canlicapital.com/research/kill-crypto-dated-basis",
+    "https://canlicapital.com/research/kill-crypto-lowvol-720",
+    "https://canlicapital.com/research/kill-crypto-short-tsmom",
+    "https://canlicapital.com/research/kill-crypto-vrp",
+    "https://canlicapital.com/research/kill-deephist-quality-top800",
+    "https://canlicapital.com/research/kill-econtrend",
+    "https://canlicapital.com/research/kill-eq-52whigh",
+    "https://canlicapital.com/research/kill-eq-mom-margin",
+    "https://canlicapital.com/research/kill-eq-net-issuance",
+    "https://canlicapital.com/research/kill-eq-quality-gp",
+    "https://canlicapital.com/research/kill-eq-value-btp",
+    "https://canlicapital.com/research/kill-equity-pead",
+    "https://canlicapital.com/research/kill-equity-short-interest-dtc",
+    "https://canlicapital.com/research/kill-equity-vrp",
+    "https://canlicapital.com/research/kill-funding-termstructure",
+    "https://canlicapital.com/research/kill-futcarry-xs",
+    "https://canlicapital.com/research/kill-fx-carry-ratediff",
+    "https://canlicapital.com/research/kill-fx-carry-trend-overlay",
+    "https://canlicapital.com/research/kill-fx-trend-cs",
+    "https://canlicapital.com/research/kill-insider-purchase-clusters",
+    "https://canlicapital.com/research/kill-intraday-mom",
+    "https://canlicapital.com/research/kill-letf-eod-flow",
+    "https://canlicapital.com/research/kill-mechflow-tom",
+    "https://canlicapital.com/research/kill-mf-realfutures-breadth",
+    "https://canlicapital.com/research/kill-mf-realfutures-fasttrend",
+    "https://canlicapital.com/research/kill-multivenue-funding",
+    "https://canlicapital.com/research/kill-onchain-carry-filter",
+    "https://canlicapital.com/research/kill-pm-odds-signal",
+    "https://canlicapital.com/research/kill-prereg-bab",
+    "https://canlicapital.com/research/kill-prereg-momentum",
+    "https://canlicapital.com/research/kill-prereg-quality",
+    "https://canlicapital.com/research/kill-prereg-value",
+    "https://canlicapital.com/research/kill-rates-curve-carry",
+    "https://canlicapital.com/research/kill-residual-momentum",
+    "https://canlicapital.com/research/kill-tail-overlay",
+    "https://canlicapital.com/research/kill-xasset-carry",
+    "https://canlicapital.com/research/kill-xasset-value",
+    "https://canlicapital.com/research/kill-xs-seasonality",
+    "https://canlicapital.com/research/legacy-dsr-restatement",
+    "https://canlicapital.com/research/literature-bond-etf-nav-dislocation",
+    "https://canlicapital.com/research/literature-customer-supplier-propagation",
+    "https://canlicapital.com/research/literature-electricity-load-weather",
+    "https://canlicapital.com/research/literature-frontier-2026-08-16",
+    "https://canlicapital.com/research/literature-inflation-breakeven-relative-value",
+    "https://canlicapital.com/research/literature-natural-gas-storage-weather",
+    "https://canlicapital.com/research/literature-options-dispersion",
+    "https://canlicapital.com/research/literature-repurchase-issuance-flow",
+    "https://canlicapital.com/research/literature-spin-off-dislocation",
+    "https://canlicapital.com/research/literature-stablecoin-dislocation",
+    "https://canlicapital.com/research/macro-economic-trend-lineage",
+    "https://canlicapital.com/research/market-status-replay",
+    "https://canlicapital.com/research/merger-announcement-identity-v2",
+    "https://canlicapital.com/research/natural-gas-storage-weather-feasibility",
+    "https://canlicapital.com/research/options-dispersion-feasibility",
+    "https://canlicapital.com/research/options-execution-foundation",
+    "https://canlicapital.com/research/pre-fomc-announcement-drift-feasibility",
+    "https://canlicapital.com/research/prereg-earnings-narrative-change",
+    "https://canlicapital.com/research/prereg-pre-fomc-announcement-drift",
+    "https://canlicapital.com/research/repurchase-issuance-flow-feasibility",
+    "https://canlicapital.com/research/sharadar-hdb-zero-dividend-quarantine",
+    "https://canlicapital.com/research/spin-off-dislocation-lineage",
+    "https://canlicapital.com/research/spin-off-document-schema",
+    "https://canlicapital.com/research/stablecoin-dislocation-feasibility",
+    "https://canlicapital.com/research/treasury-auction-concession-feasibility",
+    "https://canlicapital.com/research/treasury-auction-identity-timing",
+    "https://canlicapital.com/research/treasury-auction-state-machine",
+    "https://canlicapital.com/publication/crypto-carry/v0.1.0",
+    "https://canlicapital.com/publication/alphamax/v0.1.0",
+    "https://canlicapital.com/publication/alphatrend/v0.1.0",
+    "https://canlicapital.com/publication/alphavintage/v1.0.0",
+    "https://canlicapital.com/publication/crypto-defensive/v0.1.0",
+    "https://canlicapital.com/publication/crypto-momentum/v0.1.0",
+    "https://canlicapital.com/publication/crypto-multifactor-engine/v0.1.0",
+    "https://canlicapital.com/publication/crypto-reversal/v0.1.0",
+    "https://canlicapital.com/publication/crypto-vrp/v0.1.0",
+    "https://canlicapital.com/publication/energy-inventory/v0.1.0",
+    "https://canlicapital.com/publication/equity-insider-activity/v0.1.0",
+    "https://canlicapital.com/publication/equity-low-beta/v0.1.0",
+    "https://canlicapital.com/publication/equity-narrative-change/v0.1.0",
+    "https://canlicapital.com/publication/equity-quality/v0.1.0",
+    "https://canlicapital.com/publication/equity-value-investment/v0.1.0",
+    "https://canlicapital.com/publication/macro-economic-trend/v0.1.0",
+    "https://canlicapital.com/measurements/active-ownership-blind-handoff-receipt",
+    "https://canlicapital.com/measurements/active-ownership-confirmatory-design",
+    "https://canlicapital.com/measurements/active-ownership-human-gate-audit",
+    "https://canlicapital.com/measurements/admission-dry-run-result",
+    "https://canlicapital.com/measurements/admission-v7-promotion-receipt",
+    "https://canlicapital.com/measurements/alpaca-broker-reconciliation",
+    "https://canlicapital.com/measurements/alphavintage-sealed-outcome",
+    "https://canlicapital.com/measurements/atlas-reachability-screen",
+    "https://canlicapital.com/measurements/author-protocol-review-packets",
+    "https://canlicapital.com/measurements/bond-etf-nav-reachability",
+    "https://canlicapital.com/measurements/book-without-alphavintage",
+    "https://canlicapital.com/measurements/cftc-release-reachability",
+    "https://canlicapital.com/measurements/claim-coverage-map",
+    "https://canlicapital.com/measurements/contract-and-unit-audit",
+    "https://canlicapital.com/measurements/cost-model-realism",
+    "https://canlicapital.com/measurements/crypto-lab-carry-crash-incident",
+    "https://canlicapital.com/measurements/crypto-position-attribution-preflight-observation",
+    "https://canlicapital.com/measurements/crypto-position-attribution-rollout-verification",
+    "https://canlicapital.com/measurements/crypto-position-attribution",
+    "https://canlicapital.com/measurements/current-book-diversification",
+    "https://canlicapital.com/measurements/current-book-drawdown",
+    "https://canlicapital.com/measurements/data-gate-unblocks",
+    "https://canlicapital.com/measurements/data-lake-scale",
+    "https://canlicapital.com/measurements/drawdown-live-estimator",
+    "https://canlicapital.com/measurements/execution-gap-power",
+    "https://canlicapital.com/measurements/external-publication",
+    "https://canlicapital.com/measurements/external-validation-opportunities",
+    "https://canlicapital.com/measurements/feasibility-gate-reachability",
+    "https://canlicapital.com/measurements/forward-drawdown-evidence",
+    "https://canlicapital.com/measurements/forward-evidence-contract",
+    "https://canlicapital.com/measurements/forward-evidence-maturity",
+    "https://canlicapital.com/measurements/forward-sleeve-contribution",
+    "https://canlicapital.com/measurements/guards-that-cannot-fire",
+    "https://canlicapital.com/measurements/hdb-dividend-vendor-resolution",
+    "https://canlicapital.com/measurements/identity-redesign-spinoff-form-universe",
+    "https://canlicapital.com/measurements/ledoit-wolf-effective-sample",
+    "https://canlicapital.com/measurements/live-covariance-memory",
+    "https://canlicapital.com/measurements/merger-announcement-confirmatory-design",
+    "https://canlicapital.com/measurements/mutation-ledger",
+    "https://canlicapital.com/measurements/next-sleeve-selection",
+    "https://canlicapital.com/measurements/operating-margin-corrected-replay-authorization",
+    "https://canlicapital.com/measurements/operating-margin-corrected-reproduction",
+    "https://canlicapital.com/measurements/operating-margin-exposed-split-resolution",
+    "https://canlicapital.com/measurements/operating-margin-replay-infrastructure-failure",
+    "https://canlicapital.com/measurements/operating-margin-split-exposure",
+    "https://canlicapital.com/measurements/orthogonality-prior",
+    "https://canlicapital.com/measurements/polygon-split-crosscheck",
+    "https://canlicapital.com/measurements/portfolio-evidence",
+    "https://canlicapital.com/measurements/prereg-earnings-narrative-parameters",
+    "https://canlicapital.com/measurements/program-status",
+    "https://canlicapital.com/measurements/prospective-trial-record",
+    "https://canlicapital.com/measurements/reachability-harness",
+    "https://canlicapital.com/measurements/record-continuity",
+    "https://canlicapital.com/measurements/repurchase-issuance-feasibility-audits-repurchase-issuance-companyfacts-audit",
+    "https://canlicapital.com/measurements/repurchase-issuance-feasibility-audits-repurchase-issuance-identity-overlap-audit",
+    "https://canlicapital.com/measurements/repurchase-issuance-feasibility-audits-repurchase-issuance-semantics-audit",
+    "https://canlicapital.com/measurements/research-accessibility-audit",
+    "https://canlicapital.com/measurements/sharadar-corporate-action-corrected-lake",
+    "https://canlicapital.com/measurements/sharadar-corrected-corporate-action-validation",
+    "https://canlicapital.com/measurements/sharadar-dividend-basis-resolution",
+    "https://canlicapital.com/measurements/sharadar-dividend-price-consistency",
+    "https://canlicapital.com/measurements/sharadar-dividend-split-basis",
+    "https://canlicapital.com/measurements/sharadar-hdb-corrected-lake",
+    "https://canlicapital.com/measurements/sharadar-split-governance-policy",
+    "https://canlicapital.com/measurements/sharadar-split-lifecycle-scope",
+    "https://canlicapital.com/measurements/sharadar-zero-dividend-quarantine",
+    "https://canlicapital.com/measurements/sleeve-admission-contract-contract",
+    "https://canlicapital.com/measurements/sleeve-atlas-atlas",
+    "https://canlicapital.com/measurements/sleeve-atlas-audit",
+    "https://canlicapital.com/measurements/sleeve-atlas-sleeve-family-lineage-audit",
+    "https://canlicapital.com/measurements/sleeve-discovery",
+    "https://canlicapital.com/measurements/sleeve-quality-decomposition",
+    "https://canlicapital.com/measurements/spinoff-prorata-gate",
+    "https://canlicapital.com/measurements/split-exception-issuer-resolution",
+    "https://canlicapital.com/measurements/split-issuer-conflict-resolution-batch-v5",
+    "https://canlicapital.com/measurements/split-issuer-resolution-batch-v10",
+    "https://canlicapital.com/measurements/split-issuer-resolution-batch-v11",
+    "https://canlicapital.com/measurements/split-issuer-resolution-batch-v2",
+    "https://canlicapital.com/measurements/split-issuer-resolution-batch-v3",
+    "https://canlicapital.com/measurements/split-issuer-resolution-batch-v4",
+    "https://canlicapital.com/measurements/split-issuer-resolution-batch-v6",
+    "https://canlicapital.com/measurements/split-issuer-resolution-batch-v7",
+    "https://canlicapital.com/measurements/split-issuer-resolution-batch-v8",
+    "https://canlicapital.com/measurements/split-issuer-resolution-batch-v9",
+    "https://canlicapital.com/measurements/split-lifecycle-discontinuity-resolution",
+    "https://canlicapital.com/measurements/tender-offer-reachability",
+    "https://canlicapital.com/measurements/trial-accounting",
+    "https://canlicapital.com/measurements/unresolved-split-event-context",
+    "https://canlicapital.com/measurements/vate-2020-dividend-resolution",
+    "https://canlicapital.com/trials/8446702cb8dd1768",
+    "https://canlicapital.com/trials/e2b76a7604131f00",
+    "https://canlicapital.com/notes/deflating-a-sharpe-ratio",
+    "https://canlicapital.com/notes/one-symbol",
+    "https://canlicapital.com/notes/seventy-files",
+    "https://canlicapital.com/notes/the-trade-that-lost-99-percent",
+    "https://canlicapital.com/notes/what-competitive-programming-bought"
+  ],
+  "intents": [
+    {
+      "path": "/how-to-validate-a-backtest",
+      "intent": "Learn a complete backtest validation workflow",
+      "queries": [
+        "how to validate a backtest",
+        "backtest validation checklist"
+      ]
+    },
+    {
+      "path": "/tools/deflated-sharpe",
+      "intent": "Calculate selection-adjusted Sharpe evidence",
+      "queries": [
+        "deflated sharpe ratio calculator",
+        "deflated sharpe ratio"
+      ]
+    },
+    {
+      "path": "/tools/backtest-overfitting",
+      "intent": "Evaluate overfitting across a set of strategy trials",
+      "queries": [
+        "probability of backtest overfitting calculator",
+        "backtest overfitting calculator"
+      ]
+    },
+    {
+      "path": "/tools/selection-risk",
+      "intent": "Inspect strategy selection risk",
+      "queries": [
+        "strategy selection bias",
+        "multiple testing trading strategies"
+      ]
+    },
+    {
+      "path": "/tools/breadth",
+      "intent": "Inspect dependence and effective portfolio breadth",
+      "queries": [
+        "effective portfolio breadth",
+        "strategy correlation risk"
+      ]
+    },
+    {
+      "path": "/tools/execution",
+      "intent": "Inspect execution assumptions and break-even costs",
+      "queries": [
+        "backtest execution costs",
+        "trading slippage assumptions"
+      ]
+    },
+    {
+      "path": "/tools/trial-accounting",
+      "intent": "Account for every strategy trial including failures",
+      "queries": [
+        "backtest trial accounting",
+        "strategy trial ledger"
+      ]
+    },
+    {
+      "path": "/tools/evidence-chain",
+      "intent": "Verify a research evidence chain",
+      "queries": [
+        "research evidence chain verification",
+        "backtest evidence integrity"
+      ]
+    },
+    {
+      "path": "/developers",
+      "intent": "Integrate the validation API and MCP server",
+      "queries": [
+        "backtest validation api",
+        "quantitative finance mcp server",
+        "canli capital api key",
+        "canli capital mcp"
+      ]
+    },
+    {
+      "path": "/standards/paper-evidence",
+      "intent": "Implement the paper-evidence record standard",
+      "queries": [
+        "paper trading evidence standard",
+        "reproducible backtest evidence schema"
+      ]
+    },
+    {
+      "path": "/methodology",
+      "intent": "Understand research admission and evaluation rules",
+      "queries": [
+        "canli capital research methodology",
+        "algorithm research admission process"
+      ]
+    },
+    {
+      "path": "/costs",
+      "intent": "Inspect charged costs and current coverage omissions",
+      "queries": [
+        "canli capital cost model",
+        "alphac trading cost coverage"
+      ]
+    },
+    {
+      "path": "/companies",
+      "intent": "Find source-backed company financial histories",
+      "queries": [
+        "sec company financial history data",
+        "company filing data with provenance"
+      ]
+    },
+    {
+      "path": "/research",
+      "intent": "Explore reproducible research and failed hypotheses",
+      "queries": [
+        "canli capital research",
+        "open algorithm research failed experiments"
+      ]
+    },
+    {
+      "path": "/engineering",
+      "intent": "Inspect the open-source platform and engineering evidence",
+      "queries": [
+        "alphac open source",
+        "canli capital github"
+      ]
+    },
+    {
+      "path": "/companies/0000019617",
+      "intent": "Inspect JPMORGAN CHASE & CO accounting histories and source filings",
+      "queries": [
+        "JPMORGAN CHASE & CO financial history"
+      ],
+      "source": "/company-data/0000019617.json"
+    },
+    {
+      "path": "/companies/0000019617/Assets",
+      "intent": "Inspect JPMORGAN CHASE & CO total assets by reporting period and filing",
+      "queries": [
+        "JPMORGAN CHASE & CO total assets history"
+      ],
+      "source": "/company-data/0000019617.json",
+      "concept": "us-gaap:Assets"
+    },
+    {
+      "path": "/companies/0000019617/Liabilities",
+      "intent": "Inspect JPMORGAN CHASE & CO total liabilities by reporting period and filing",
+      "queries": [
+        "JPMORGAN CHASE & CO total liabilities history"
+      ],
+      "source": "/company-data/0000019617.json",
+      "concept": "us-gaap:Liabilities"
+    },
+    {
+      "path": "/companies/0000019617/StockholdersEquity",
+      "intent": "Inspect JPMORGAN CHASE & CO stockholders equity by reporting period and filing",
+      "queries": [
+        "JPMORGAN CHASE & CO stockholders equity history"
+      ],
+      "source": "/company-data/0000019617.json",
+      "concept": "us-gaap:StockholdersEquity"
+    },
+    {
+      "path": "/companies/0000019617/CashAndCashEquivalentsAtCarryingValue",
+      "intent": "Inspect JPMORGAN CHASE & CO cash and cash equivalents by reporting period and filing",
+      "queries": [
+        "JPMORGAN CHASE & CO cash and cash equivalents history"
+      ],
+      "source": "/company-data/0000019617.json",
+      "concept": "us-gaap:CashAndCashEquivalentsAtCarryingValue"
+    },
+    {
+      "path": "/companies/0000019617/NetIncomeLoss",
+      "intent": "Inspect JPMORGAN CHASE & CO net income or loss by reporting period and filing",
+      "queries": [
+        "JPMORGAN CHASE & CO net income or loss history"
+      ],
+      "source": "/company-data/0000019617.json",
+      "concept": "us-gaap:NetIncomeLoss"
+    },
+    {
+      "path": "/companies/0000019617/NetCashProvidedByUsedInOperatingActivities",
+      "intent": "Inspect JPMORGAN CHASE & CO operating cash flow by reporting period and filing",
+      "queries": [
+        "JPMORGAN CHASE & CO operating cash flow history"
+      ],
+      "source": "/company-data/0000019617.json",
+      "concept": "us-gaap:NetCashProvidedByUsedInOperatingActivities"
+    },
+    {
+      "path": "/companies/0000019617/Revenues",
+      "intent": "Inspect JPMORGAN CHASE & CO revenue by reporting period and filing",
+      "queries": [
+        "JPMORGAN CHASE & CO revenue history"
+      ],
+      "source": "/company-data/0000019617.json",
+      "concept": "us-gaap:Revenues"
+    },
+    {
+      "path": "/companies/0000025232",
+      "intent": "Inspect COUSINS PROPERTIES INC accounting histories and source filings",
+      "queries": [
+        "COUSINS PROPERTIES INC financial history"
+      ],
+      "source": "/company-data/0000025232.json"
+    },
+    {
+      "path": "/companies/0000025232/Assets",
+      "intent": "Inspect COUSINS PROPERTIES INC total assets by reporting period and filing",
+      "queries": [
+        "COUSINS PROPERTIES INC total assets history"
+      ],
+      "source": "/company-data/0000025232.json",
+      "concept": "us-gaap:Assets"
+    },
+    {
+      "path": "/companies/0000025232/Liabilities",
+      "intent": "Inspect COUSINS PROPERTIES INC total liabilities by reporting period and filing",
+      "queries": [
+        "COUSINS PROPERTIES INC total liabilities history"
+      ],
+      "source": "/company-data/0000025232.json",
+      "concept": "us-gaap:Liabilities"
+    },
+    {
+      "path": "/companies/0000025232/StockholdersEquity",
+      "intent": "Inspect COUSINS PROPERTIES INC stockholders equity by reporting period and filing",
+      "queries": [
+        "COUSINS PROPERTIES INC stockholders equity history"
+      ],
+      "source": "/company-data/0000025232.json",
+      "concept": "us-gaap:StockholdersEquity"
+    },
+    {
+      "path": "/companies/0000025232/CashAndCashEquivalentsAtCarryingValue",
+      "intent": "Inspect COUSINS PROPERTIES INC cash and cash equivalents by reporting period and filing",
+      "queries": [
+        "COUSINS PROPERTIES INC cash and cash equivalents history"
+      ],
+      "source": "/company-data/0000025232.json",
+      "concept": "us-gaap:CashAndCashEquivalentsAtCarryingValue"
+    },
+    {
+      "path": "/companies/0000025232/NetIncomeLoss",
+      "intent": "Inspect COUSINS PROPERTIES INC net income or loss by reporting period and filing",
+      "queries": [
+        "COUSINS PROPERTIES INC net income or loss history"
+      ],
+      "source": "/company-data/0000025232.json",
+      "concept": "us-gaap:NetIncomeLoss"
+    },
+    {
+      "path": "/companies/0000025232/NetCashProvidedByUsedInOperatingActivities",
+      "intent": "Inspect COUSINS PROPERTIES INC operating cash flow by reporting period and filing",
+      "queries": [
+        "COUSINS PROPERTIES INC operating cash flow history"
+      ],
+      "source": "/company-data/0000025232.json",
+      "concept": "us-gaap:NetCashProvidedByUsedInOperatingActivities"
+    },
+    {
+      "path": "/companies/0000025232/Revenues",
+      "intent": "Inspect COUSINS PROPERTIES INC revenue by reporting period and filing",
+      "queries": [
+        "COUSINS PROPERTIES INC revenue history"
+      ],
+      "source": "/company-data/0000025232.json",
+      "concept": "us-gaap:Revenues"
+    },
+    {
+      "path": "/companies/0000029534",
+      "intent": "Inspect DOLLAR GENERAL CORP accounting histories and source filings",
+      "queries": [
+        "DOLLAR GENERAL CORP financial history"
+      ],
+      "source": "/company-data/0000029534.json"
+    },
+    {
+      "path": "/companies/0000029534/Assets",
+      "intent": "Inspect DOLLAR GENERAL CORP total assets by reporting period and filing",
+      "queries": [
+        "DOLLAR GENERAL CORP total assets history"
+      ],
+      "source": "/company-data/0000029534.json",
+      "concept": "us-gaap:Assets"
+    },
+    {
+      "path": "/companies/0000029534/StockholdersEquity",
+      "intent": "Inspect DOLLAR GENERAL CORP stockholders equity by reporting period and filing",
+      "queries": [
+        "DOLLAR GENERAL CORP stockholders equity history"
+      ],
+      "source": "/company-data/0000029534.json",
+      "concept": "us-gaap:StockholdersEquity"
+    },
+    {
+      "path": "/companies/0000029534/CashAndCashEquivalentsAtCarryingValue",
+      "intent": "Inspect DOLLAR GENERAL CORP cash and cash equivalents by reporting period and filing",
+      "queries": [
+        "DOLLAR GENERAL CORP cash and cash equivalents history"
+      ],
+      "source": "/company-data/0000029534.json",
+      "concept": "us-gaap:CashAndCashEquivalentsAtCarryingValue"
+    },
+    {
+      "path": "/companies/0000029534/NetIncomeLoss",
+      "intent": "Inspect DOLLAR GENERAL CORP net income or loss by reporting period and filing",
+      "queries": [
+        "DOLLAR GENERAL CORP net income or loss history"
+      ],
+      "source": "/company-data/0000029534.json",
+      "concept": "us-gaap:NetIncomeLoss"
+    },
+    {
+      "path": "/companies/0000029534/NetCashProvidedByUsedInOperatingActivities",
+      "intent": "Inspect DOLLAR GENERAL CORP operating cash flow by reporting period and filing",
+      "queries": [
+        "DOLLAR GENERAL CORP operating cash flow history"
+      ],
+      "source": "/company-data/0000029534.json",
+      "concept": "us-gaap:NetCashProvidedByUsedInOperatingActivities"
+    },
+    {
+      "path": "/companies/0000029534/RevenueFromContractWithCustomerExcludingAssessedTax",
+      "intent": "Inspect DOLLAR GENERAL CORP contract revenue excluding tax by reporting period and filing",
+      "queries": [
+        "DOLLAR GENERAL CORP contract revenue excluding tax history"
+      ],
+      "source": "/company-data/0000029534.json",
+      "concept": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+    },
+    {
+      "path": "/companies/0000034088",
+      "intent": "Inspect Exxon Mobil Corporation accounting histories and source filings",
+      "queries": [
+        "Exxon Mobil Corporation financial history"
+      ],
+      "source": "/company-data/0000034088.json"
+    },
+    {
+      "path": "/companies/0000034088/Assets",
+      "intent": "Inspect Exxon Mobil Corporation total assets by reporting period and filing",
+      "queries": [
+        "Exxon Mobil Corporation total assets history"
+      ],
+      "source": "/company-data/0000034088.json",
+      "concept": "us-gaap:Assets"
+    },
+    {
+      "path": "/companies/0000034088/Liabilities",
+      "intent": "Inspect Exxon Mobil Corporation total liabilities by reporting period and filing",
+      "queries": [
+        "Exxon Mobil Corporation total liabilities history"
+      ],
+      "source": "/company-data/0000034088.json",
+      "concept": "us-gaap:Liabilities"
+    },
+    {
+      "path": "/companies/0000034088/StockholdersEquity",
+      "intent": "Inspect Exxon Mobil Corporation stockholders equity by reporting period and filing",
+      "queries": [
+        "Exxon Mobil Corporation stockholders equity history"
+      ],
+      "source": "/company-data/0000034088.json",
+      "concept": "us-gaap:StockholdersEquity"
+    },
+    {
+      "path": "/companies/0000034088/CashAndCashEquivalentsAtCarryingValue",
+      "intent": "Inspect Exxon Mobil Corporation cash and cash equivalents by reporting period and filing",
+      "queries": [
+        "Exxon Mobil Corporation cash and cash equivalents history"
+      ],
+      "source": "/company-data/0000034088.json",
+      "concept": "us-gaap:CashAndCashEquivalentsAtCarryingValue"
+    },
+    {
+      "path": "/companies/0000034088/NetIncomeLoss",
+      "intent": "Inspect Exxon Mobil Corporation net income or loss by reporting period and filing",
+      "queries": [
+        "Exxon Mobil Corporation net income or loss history"
+      ],
+      "source": "/company-data/0000034088.json",
+      "concept": "us-gaap:NetIncomeLoss"
+    },
+    {
+      "path": "/companies/0000034088/NetCashProvidedByUsedInOperatingActivities",
+      "intent": "Inspect Exxon Mobil Corporation operating cash flow by reporting period and filing",
+      "queries": [
+        "Exxon Mobil Corporation operating cash flow history"
+      ],
+      "source": "/company-data/0000034088.json",
+      "concept": "us-gaap:NetCashProvidedByUsedInOperatingActivities"
+    },
+    {
+      "path": "/companies/0000034088/PaymentsToAcquirePropertyPlantAndEquipment",
+      "intent": "Inspect Exxon Mobil Corporation capital expenditure payments by reporting period and filing",
+      "queries": [
+        "Exxon Mobil Corporation capital expenditure payments history"
+      ],
+      "source": "/company-data/0000034088.json",
+      "concept": "us-gaap:PaymentsToAcquirePropertyPlantAndEquipment"
+    },
+    {
+      "path": "/companies/0000034088/Revenues",
+      "intent": "Inspect Exxon Mobil Corporation revenue by reporting period and filing",
+      "queries": [
+        "Exxon Mobil Corporation revenue history"
+      ],
+      "source": "/company-data/0000034088.json",
+      "concept": "us-gaap:Revenues"
+    },
+    {
+      "path": "/companies/0000034088/RevenueFromContractWithCustomerExcludingAssessedTax",
+      "intent": "Inspect Exxon Mobil Corporation contract revenue excluding tax by reporting period and filing",
+      "queries": [
+        "Exxon Mobil Corporation contract revenue excluding tax history"
+      ],
+      "source": "/company-data/0000034088.json",
+      "concept": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+    },
+    {
+      "path": "/companies/0000320193",
+      "intent": "Inspect Apple Inc. accounting histories and source filings",
+      "queries": [
+        "Apple Inc. financial history"
+      ],
+      "source": "/company-data/0000320193.json"
+    },
+    {
+      "path": "/companies/0000320193/Assets",
+      "intent": "Inspect Apple Inc. total assets by reporting period and filing",
+      "queries": [
+        "Apple Inc. total assets history"
+      ],
+      "source": "/company-data/0000320193.json",
+      "concept": "us-gaap:Assets"
+    },
+    {
+      "path": "/companies/0000320193/Liabilities",
+      "intent": "Inspect Apple Inc. total liabilities by reporting period and filing",
+      "queries": [
+        "Apple Inc. total liabilities history"
+      ],
+      "source": "/company-data/0000320193.json",
+      "concept": "us-gaap:Liabilities"
+    },
+    {
+      "path": "/companies/0000320193/StockholdersEquity",
+      "intent": "Inspect Apple Inc. stockholders equity by reporting period and filing",
+      "queries": [
+        "Apple Inc. stockholders equity history"
+      ],
+      "source": "/company-data/0000320193.json",
+      "concept": "us-gaap:StockholdersEquity"
+    },
+    {
+      "path": "/companies/0000320193/CashAndCashEquivalentsAtCarryingValue",
+      "intent": "Inspect Apple Inc. cash and cash equivalents by reporting period and filing",
+      "queries": [
+        "Apple Inc. cash and cash equivalents history"
+      ],
+      "source": "/company-data/0000320193.json",
+      "concept": "us-gaap:CashAndCashEquivalentsAtCarryingValue"
+    },
+    {
+      "path": "/companies/0000320193/NetIncomeLoss",
+      "intent": "Inspect Apple Inc. net income or loss by reporting period and filing",
+      "queries": [
+        "Apple Inc. net income or loss history"
+      ],
+      "source": "/company-data/0000320193.json",
+      "concept": "us-gaap:NetIncomeLoss"
+    },
+    {
+      "path": "/companies/0000320193/NetCashProvidedByUsedInOperatingActivities",
+      "intent": "Inspect Apple Inc. operating cash flow by reporting period and filing",
+      "queries": [
+        "Apple Inc. operating cash flow history"
+      ],
+      "source": "/company-data/0000320193.json",
+      "concept": "us-gaap:NetCashProvidedByUsedInOperatingActivities"
+    },
+    {
+      "path": "/companies/0000320193/PaymentsToAcquirePropertyPlantAndEquipment",
+      "intent": "Inspect Apple Inc. capital expenditure payments by reporting period and filing",
+      "queries": [
+        "Apple Inc. capital expenditure payments history"
+      ],
+      "source": "/company-data/0000320193.json",
+      "concept": "us-gaap:PaymentsToAcquirePropertyPlantAndEquipment"
+    },
+    {
+      "path": "/companies/0000320193/Revenues",
+      "intent": "Inspect Apple Inc. revenue by reporting period and filing",
+      "queries": [
+        "Apple Inc. revenue history"
+      ],
+      "source": "/company-data/0000320193.json",
+      "concept": "us-gaap:Revenues"
+    },
+    {
+      "path": "/companies/0000320193/RevenueFromContractWithCustomerExcludingAssessedTax",
+      "intent": "Inspect Apple Inc. contract revenue excluding tax by reporting period and filing",
+      "queries": [
+        "Apple Inc. contract revenue excluding tax history"
+      ],
+      "source": "/company-data/0000320193.json",
+      "concept": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+    },
+    {
+      "path": "/companies/0000789019",
+      "intent": "Inspect MICROSOFT CORPORATION accounting histories and source filings",
+      "queries": [
+        "MICROSOFT CORPORATION financial history"
+      ],
+      "source": "/company-data/0000789019.json"
+    },
+    {
+      "path": "/companies/0000789019/Assets",
+      "intent": "Inspect MICROSOFT CORPORATION total assets by reporting period and filing",
+      "queries": [
+        "MICROSOFT CORPORATION total assets history"
+      ],
+      "source": "/company-data/0000789019.json",
+      "concept": "us-gaap:Assets"
+    },
+    {
+      "path": "/companies/0000789019/Liabilities",
+      "intent": "Inspect MICROSOFT CORPORATION total liabilities by reporting period and filing",
+      "queries": [
+        "MICROSOFT CORPORATION total liabilities history"
+      ],
+      "source": "/company-data/0000789019.json",
+      "concept": "us-gaap:Liabilities"
+    },
+    {
+      "path": "/companies/0000789019/StockholdersEquity",
+      "intent": "Inspect MICROSOFT CORPORATION stockholders equity by reporting period and filing",
+      "queries": [
+        "MICROSOFT CORPORATION stockholders equity history"
+      ],
+      "source": "/company-data/0000789019.json",
+      "concept": "us-gaap:StockholdersEquity"
+    },
+    {
+      "path": "/companies/0000789019/CashAndCashEquivalentsAtCarryingValue",
+      "intent": "Inspect MICROSOFT CORPORATION cash and cash equivalents by reporting period and filing",
+      "queries": [
+        "MICROSOFT CORPORATION cash and cash equivalents history"
+      ],
+      "source": "/company-data/0000789019.json",
+      "concept": "us-gaap:CashAndCashEquivalentsAtCarryingValue"
+    },
+    {
+      "path": "/companies/0000789019/NetIncomeLoss",
+      "intent": "Inspect MICROSOFT CORPORATION net income or loss by reporting period and filing",
+      "queries": [
+        "MICROSOFT CORPORATION net income or loss history"
+      ],
+      "source": "/company-data/0000789019.json",
+      "concept": "us-gaap:NetIncomeLoss"
+    },
+    {
+      "path": "/companies/0000789019/NetCashProvidedByUsedInOperatingActivities",
+      "intent": "Inspect MICROSOFT CORPORATION operating cash flow by reporting period and filing",
+      "queries": [
+        "MICROSOFT CORPORATION operating cash flow history"
+      ],
+      "source": "/company-data/0000789019.json",
+      "concept": "us-gaap:NetCashProvidedByUsedInOperatingActivities"
+    },
+    {
+      "path": "/companies/0000789019/PaymentsToAcquirePropertyPlantAndEquipment",
+      "intent": "Inspect MICROSOFT CORPORATION capital expenditure payments by reporting period and filing",
+      "queries": [
+        "MICROSOFT CORPORATION capital expenditure payments history"
+      ],
+      "source": "/company-data/0000789019.json",
+      "concept": "us-gaap:PaymentsToAcquirePropertyPlantAndEquipment"
+    },
+    {
+      "path": "/companies/0000789019/Revenues",
+      "intent": "Inspect MICROSOFT CORPORATION revenue by reporting period and filing",
+      "queries": [
+        "MICROSOFT CORPORATION revenue history"
+      ],
+      "source": "/company-data/0000789019.json",
+      "concept": "us-gaap:Revenues"
+    },
+    {
+      "path": "/companies/0000789019/RevenueFromContractWithCustomerExcludingAssessedTax",
+      "intent": "Inspect MICROSOFT CORPORATION contract revenue excluding tax by reporting period and filing",
+      "queries": [
+        "MICROSOFT CORPORATION contract revenue excluding tax history"
+      ],
+      "source": "/company-data/0000789019.json",
+      "concept": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+    },
+    {
+      "path": "/companies/0001045810",
+      "intent": "Inspect NVIDIA CORP accounting histories and source filings",
+      "queries": [
+        "NVIDIA CORP financial history"
+      ],
+      "source": "/company-data/0001045810.json"
+    },
+    {
+      "path": "/companies/0001045810/Assets",
+      "intent": "Inspect NVIDIA CORP total assets by reporting period and filing",
+      "queries": [
+        "NVIDIA CORP total assets history"
+      ],
+      "source": "/company-data/0001045810.json",
+      "concept": "us-gaap:Assets"
+    },
+    {
+      "path": "/companies/0001045810/Liabilities",
+      "intent": "Inspect NVIDIA CORP total liabilities by reporting period and filing",
+      "queries": [
+        "NVIDIA CORP total liabilities history"
+      ],
+      "source": "/company-data/0001045810.json",
+      "concept": "us-gaap:Liabilities"
+    },
+    {
+      "path": "/companies/0001045810/StockholdersEquity",
+      "intent": "Inspect NVIDIA CORP stockholders equity by reporting period and filing",
+      "queries": [
+        "NVIDIA CORP stockholders equity history"
+      ],
+      "source": "/company-data/0001045810.json",
+      "concept": "us-gaap:StockholdersEquity"
+    },
+    {
+      "path": "/companies/0001045810/CashAndCashEquivalentsAtCarryingValue",
+      "intent": "Inspect NVIDIA CORP cash and cash equivalents by reporting period and filing",
+      "queries": [
+        "NVIDIA CORP cash and cash equivalents history"
+      ],
+      "source": "/company-data/0001045810.json",
+      "concept": "us-gaap:CashAndCashEquivalentsAtCarryingValue"
+    },
+    {
+      "path": "/companies/0001045810/NetIncomeLoss",
+      "intent": "Inspect NVIDIA CORP net income or loss by reporting period and filing",
+      "queries": [
+        "NVIDIA CORP net income or loss history"
+      ],
+      "source": "/company-data/0001045810.json",
+      "concept": "us-gaap:NetIncomeLoss"
+    },
+    {
+      "path": "/companies/0001045810/NetCashProvidedByUsedInOperatingActivities",
+      "intent": "Inspect NVIDIA CORP operating cash flow by reporting period and filing",
+      "queries": [
+        "NVIDIA CORP operating cash flow history"
+      ],
+      "source": "/company-data/0001045810.json",
+      "concept": "us-gaap:NetCashProvidedByUsedInOperatingActivities"
+    },
+    {
+      "path": "/companies/0001045810/PaymentsToAcquirePropertyPlantAndEquipment",
+      "intent": "Inspect NVIDIA CORP capital expenditure payments by reporting period and filing",
+      "queries": [
+        "NVIDIA CORP capital expenditure payments history"
+      ],
+      "source": "/company-data/0001045810.json",
+      "concept": "us-gaap:PaymentsToAcquirePropertyPlantAndEquipment"
+    },
+    {
+      "path": "/companies/0001045810/Revenues",
+      "intent": "Inspect NVIDIA CORP revenue by reporting period and filing",
+      "queries": [
+        "NVIDIA CORP revenue history"
+      ],
+      "source": "/company-data/0001045810.json",
+      "concept": "us-gaap:Revenues"
+    },
+    {
+      "path": "/companies/0001045810/RevenueFromContractWithCustomerExcludingAssessedTax",
+      "intent": "Inspect NVIDIA CORP contract revenue excluding tax by reporting period and filing",
+      "queries": [
+        "NVIDIA CORP contract revenue excluding tax history"
+      ],
+      "source": "/company-data/0001045810.json",
+      "concept": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax"
+    }
+  ],
+  "claim_boundary": "Editorial keyword ownership, not measured demand, rankings, exhaustive topic coverage or indexed-page evidence. Unassigned pages require review; no automatic keyword pages are generated."
+}

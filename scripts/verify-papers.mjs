@@ -1,3 +1,4 @@
+import { readSitemapXml } from "./lib/sitemaps.mjs";
 // =============================================================================
 // CANLI CAPITAL / scripts/verify-papers.mjs
 // -----------------------------------------------------------------------------
@@ -75,7 +76,7 @@ for (const source of sources) {
 }
 
 // 2. Every page carries the metadata that makes it a document rather than a file.
-const sitemap = readFileSync(resolve(DIST, "sitemap.xml"), "utf8");
+const sitemap = readSitemapXml(DIST);
 const citationKeys = new Map();
 for (const page of pages) {
   const slug = basename(page, ".html");

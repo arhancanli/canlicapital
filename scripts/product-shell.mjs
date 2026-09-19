@@ -36,6 +36,7 @@ const SOURCE_REPOS = Object.freeze([
 ]);
 
 const SECONDARY_LINKS = Object.freeze([
+  { key: "companies", label: "Company reference", href: "/companies" },
   { key: "progress", label: "Corrections", href: "/progress" },
   { key: "performance", label: "Performance", href: "/performance" },
   { key: "founder", label: "Founder", href: "/founder" },
@@ -171,6 +172,8 @@ export function renderProductShellFooter() {
     <nav aria-label="Open source">
       <span>Source code</span>
       <a href="/developers">Developers</a>
+      <a href="/developers#quickstart">Get an API key</a>
+      <a href="/developers#ai-assistant">Connect the MCP server</a>
       <a href="/engineering">Engineering</a>
       <a href="/notes">Engineering notes</a>
       <a href="/standards/paper-evidence">Evidence standard</a>

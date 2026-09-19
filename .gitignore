@@ -45,3 +45,15 @@ ds-bundle/
 .design-sync/.cache/
 .design-sync/learnings/
 .design-sync/node_modules
+
+# SEC source responses are published as hash-addressed gzip snapshots.
+artifacts/seo/sec-source/
+
+# Local bulk archives and SQLite catalogs; summary evidence is tracked.
+artifacts/seo/corpus-local/
+
+# Local browser captures; compact validation receipts are tracked.
+artifacts/qa/company-reference/*.png
+
+# Generated dependency of the copied product shell.
+design-system/src/shell/optical-handoff.mjs

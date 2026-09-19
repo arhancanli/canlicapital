@@ -1,0 +1,894 @@
+{
+  "schema": "canli.companyfacts-v4-existing-source-review.v1",
+  "parser_version": "repurchase-issuance-companyfacts-v4",
+  "collector_sha256": "25c29be12b34381088df73f660224e6ea8c35875c8dfc1c2397d9a792bb404a8",
+  "scope": "Read-only revalidation of existing 520 raw files, not fresh capture or full 600-issuer recollection",
+  "files_checked": 520,
+  "statuses": {
+    "invalid_payload": 146,
+    "fetched": 374
+  },
+  "unknown_individual_capture_times": 520,
+  "invalid_records": [
+    {
+      "cik": "0000005094",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "091e98e9f464b2df6e545eda438af5f8f065542dfc4dfc9d4398b83ec9fdfc23"
+    },
+    {
+      "cik": "0000814083",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "10d7a4b86585ecd4e737b964580eb60e7b226c182ebd94aefed9802ebc64fff8"
+    },
+    {
+      "cik": "0000828803",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "ff16d40c990915acc6a782ea1b3f35f9e3755e4933cbf174bb28b40afb0d22ab"
+    },
+    {
+      "cik": "0000849997",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "75776216fdb8429745d27628a2a09ea1b40e4657d766933bb2d649f32d2ce884"
+    },
+    {
+      "cik": "0000891038",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "50a87e5938f1e56540af163707961ac2f1eaf7ab1195b5223f4f5e9b2dbd23ca"
+    },
+    {
+      "cik": "0000917100",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "9ca983f2386366dc0815a3e0fd1efed5d49115e8fc6526eda8bde9297029bb0c"
+    },
+    {
+      "cik": "0001070732",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "87924c7870626276fbec924738b30273cb590b929b9509550e762120da9af70f"
+    },
+    {
+      "cik": "0001195737",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "69dffca52bc86a0d4999456532f140724b41852c862948db3868ce138ab78a54"
+    },
+    {
+      "cik": "0001227862",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "0a298a383914058b892f498802f9e9653fda927a3c6bf0597b88d8bb0880c543"
+    },
+    {
+      "cik": "0001244183",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "327ee30dc1c0104511548a45e5aecae11a032e897cfad9029c98a44778f1185a"
+    },
+    {
+      "cik": "0001261166",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "baa89a0dc8e780633236236d3c13f5a56aa00e877e0cefeab518acd6fef2a867"
+    },
+    {
+      "cik": "0001296250",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "0298f547609ef8379a854cadd07184e5b469c9b9fb4a18087492574c70924008"
+    },
+    {
+      "cik": "0001317685",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "d15e9f272cb99d322087a6ffb81e03f08db30c26f955b4d40c4c4e604ee651ef"
+    },
+    {
+      "cik": "0001348952",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "18a1a286e467cd837b6e08a8b66db41f8cb7d5096480f7cff7bd0f17d328384d"
+    },
+    {
+      "cik": "0001467093",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "41280f3cff6ecc19c8f2f1d9e633f47a7301d9f003bce3097a3ff914a0ba6b26"
+    },
+    {
+      "cik": "0001468522",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "0ec080f9fe526f9cb6431de20e3c9af5428a2d87f11fb0b4d4a6f0efcdaa3739"
+    },
+    {
+      "cik": "0001472341",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "013c2dd9304c8f88bed0b0a28762ce72219235dc457625b29459b414244d9f1e"
+    },
+    {
+      "cik": "0001487918",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "b2f4a6482e3e3d4a90205e42104732bad1cc57c389d9ae2f09a8bebba11d5a39"
+    },
+    {
+      "cik": "0001501103",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "165272023d7cbb125a6d71f4a0e7a0ba4b89385fd7a44a7b443ccf194ed4da42"
+    },
+    {
+      "cik": "0001504619",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "2e0ba8d1bd6687091bfbf038bdabe58749ce1ef4017e9079d08594b8a989f79b"
+    },
+    {
+      "cik": "0001509470",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "595a42e535cd2e585e5cc40024b2d0e137fb5a28cdc436e4a2d3e8e941e21738"
+    },
+    {
+      "cik": "0001515964",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "1d22911fd4b46b6711678d15fc5316eb34a53a4f9d68e45181f91866e458a369"
+    },
+    {
+      "cik": "0001551901",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "baec2693502af16106726465c80af01008f4dd7a5887322a2e95080d486b7684"
+    },
+    {
+      "cik": "0001560293",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "e030187e811c9a930d1aaf03516e34bd9eb4649d8b87ad44729c84660d42abc6"
+    },
+    {
+      "cik": "0001638826",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "821bb92ce37c1836a7836b065cb62489d204b9cb07a5a0d8698cbd4fe1f65988"
+    },
+    {
+      "cik": "0001655099",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "46cb8d78ce97fe3da1c57755a87b71aeff751a7b4df24d29f61aaa26889a3479"
+    },
+    {
+      "cik": "0001673743",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "39b4bb57893110c6f91413b6e294c4a41fee26412c7578d6bdcc6133e31725b3"
+    },
+    {
+      "cik": "0001693736",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "6059b4c17c9651919008fcb48abf6a7bc600b0c626ce878a6a25ab07e3b29cae"
+    },
+    {
+      "cik": "0001723701",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "37ddb1e3cb07628a7d6bdaa97a781903b8c225460b12a1ab663b78470e0a5486"
+    },
+    {
+      "cik": "0001727255",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "d0d77fc115d44a4861b91bd70f7ba83f4c147f5bdf5cfbd972740ff267cc48e6"
+    },
+    {
+      "cik": "0001736510",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "804e52dd7e46f2e7d4fdf65508471dcc99fcb711dc630ff6a22ca7ec02738a23"
+    },
+    {
+      "cik": "0001737924",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "a33060234c0c27ca2123394adc6f34b05dd83acbd16b6e8c9b70e9c6d99fb79a"
+    },
+    {
+      "cik": "0001737995",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "b73b9e7970dc72271f871ba8ea8af40689d0ba9dfbe561eb518cca254d430fa5"
+    },
+    {
+      "cik": "0001748945",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "0f6ad8f3ebdfc10d96b9a274a12ecd4f00d0738bf7c660c4962339d2d36ed433"
+    },
+    {
+      "cik": "0001751912",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "eed6076892ccbfda54a7c4c10d273b0f08fa00bd99e11a1e2eb6da56c46436be"
+    },
+    {
+      "cik": "0001774342",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "0d575dd3a64c4982252d0bdf9872cdaea112e81931b355302dd38c556d722cff"
+    },
+    {
+      "cik": "0001775734",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "5c0d94b38aa7d239b0ec093ed82c1de94e570bad50db7d74e0f3021ac02b8dc6"
+    },
+    {
+      "cik": "0001785279",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "e2971a6ed820c74cfc841110358030f5903d096e601e9a267594f3cee93f323a"
+    },
+    {
+      "cik": "0001816319",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "212f229ba45be9a1f969c281896c21fc17547b3653af4102f957af49ef65946b"
+    },
+    {
+      "cik": "0001821534",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "b05c19dc107ed761cc6f95a277cd5751b824a1d08ec8a61a9ca380bb7382b5a3"
+    },
+    {
+      "cik": "0001825452",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "f56627d3cf6231a166b1f853764afcd4d85178d9c87d262567b215000bb1db28"
+    },
+    {
+      "cik": "0001833835",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "fd6ac3dd1eccd92f81ac585dfd22abbf8314908f04a28ad41a3a3e2028f78fe3"
+    },
+    {
+      "cik": "0001837821",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "70625320a791a163e98946808909a4dfef251eb013ce83ff85238b4f77a28a1e"
+    },
+    {
+      "cik": "0001842556",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "3d2fbc4c58bd6633b9e996af41fb4766ddbb69a525a9541b53671895ecaf90c2"
+    },
+    {
+      "cik": "0001844450",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "f71c5ed64ce08c2683fcff251b82589fbd1f2bd3b678af9ccd6cb8563ed97626"
+    },
+    {
+      "cik": "0001846839",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "72d289c5052e7ee82518afd254875d0e73e3a13ec2616dcb7bfe06fa7646b5b9"
+    },
+    {
+      "cik": "0001848416",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "087170f5115f3a1400c29ed9a989a91af88c63618e6c068c71fb3437aec6236a"
+    },
+    {
+      "cik": "0001851491",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "ebdc1279a67b602b8f1692d930937a2759d93b292786059797b1ae865d45395e"
+    },
+    {
+      "cik": "0001859007",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "8890247d1b9fcadbd2c681e41d5ce7668ebdd5539e9435caed14a73063d613ee"
+    },
+    {
+      "cik": "0001861107",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "76b59ccc2fb5422966b1d4fb010ef5ab584b840e43a766981a94a92bd95a6d2a"
+    },
+    {
+      "cik": "0001862461",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "6d59f3aaa13c58fb30c29767d70cd7a240c70c3599da1b7470724a4470be0b32"
+    },
+    {
+      "cik": "0001865782",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "30495e827f80ab46b14a08d94f0e43de2e8ed653419f7ab5f026bd03687eda9b"
+    },
+    {
+      "cik": "0001867102",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "d748a7510e62af6632b9b43948f5ab253c1d79aab66d62bf0ef22981d8746bd5"
+    },
+    {
+      "cik": "0001873454",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "2466604e7f8270772bb03ed14b292b6a6f633bf3127e70565b14290afc9c2bd8"
+    },
+    {
+      "cik": "0001874315",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "59ca31d134ee3aa4805310bfbfa9a2f88467d7efb6375ee4a470ed0f356a77c3"
+    },
+    {
+      "cik": "0001874875",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "32f8632ba18ddfd93ee7fb0ed2dbcdc9e272d1632d2b1adf9e312efb7e58e8c6"
+    },
+    {
+      "cik": "0001875016",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "c8443f5e1677d5ca72907671c44425b5a0a6163c175ae8fe65fe9e92b21de285"
+    },
+    {
+      "cik": "0001879726",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "609bc828bfe97f2d01f9a6654438300e16cfb6e8cb4181e16026c32a9063e1c7"
+    },
+    {
+      "cik": "0001880343",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "74e3efef56fc32946983dacb33ae93c39b617c5ddf6cd46ccd0803f1724f9915"
+    },
+    {
+      "cik": "0001883685",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "f0af1a405c3973b9cb29b0da08b42eefe44793da6eb16478ad9f9c670e0961c4"
+    },
+    {
+      "cik": "0001891027",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "955b512544abae2879955831d1059515ca48d3b03dcec25881e57f8d735b2a85"
+    },
+    {
+      "cik": "0001891101",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "0905e0a93309f062470c5976e0a5ba8ee7398f3cbb225155c0821659f2552f4a"
+    },
+    {
+      "cik": "0001892322",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "0447bbb82de4c120c2566a553b52729a470f469a779988f28eb80f14535b766a"
+    },
+    {
+      "cik": "0001896084",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "d985b0b70b5f1b540609952b9ef32e5d7631b6aee52025958a9329f93e5de3a8"
+    },
+    {
+      "cik": "0001898496",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "11d55d736e2e2c61c2f3cd0d67855468b142c31f214408010a9b4b4aa18215e4"
+    },
+    {
+      "cik": "0001900304",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "42f5eb0542d1243e5ba42032682e63f786199a00218dafb3cc0cad468b4676ca"
+    },
+    {
+      "cik": "0001903995",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "cc053f1a0fd71ddf1db3b1e25c4fbce80e32fb96fa236b1aacc83d1701635234"
+    },
+    {
+      "cik": "0001905956",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "6b621c39a49320090be1fb201e557631d251e2481fcdd6ae5f3bc3d4f912ac04"
+    },
+    {
+      "cik": "0001910975",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "281b4e3bcd59d54599fd629e85791e9f213da33c8af26fed405d17a9ec0c37f4"
+    },
+    {
+      "cik": "0001914605",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "31a97ff314801ab3cd80764b5f3005363b1b6426c9f4400a96e5daf50d15b274"
+    },
+    {
+      "cik": "0001930313",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "d2e04526300a3b67efdcb1f5fc577e59ca76f707b0f31b22533d6d8583629c6c"
+    },
+    {
+      "cik": "0001933951",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "9e993c39bdc959cd4488d13be215d2bae54b1bddda095d68a248a9718910ea8b"
+    },
+    {
+      "cik": "0001943421",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "982f930900387cd3be37b1a0eca110f41f979cbd56861aac3c1d0c4e4d713930"
+    },
+    {
+      "cik": "0001944902",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "d701f4229b17ad94c4d705cae77ddf7e886a4ba40331a022e690257f4f2f4277"
+    },
+    {
+      "cik": "0001948455",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "ac61306119a5d259c53b2c48816032b64c789873db28725ae400c347ec6cb9f6"
+    },
+    {
+      "cik": "0001951229",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "900307df6afd3c249c6e4250d62458ea7bfe84e8d194190ff85da02695163d3d"
+    },
+    {
+      "cik": "0001954488",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "77b64ac0db20de5143be594d98b4757e469635d3d760f72ee8188e62c4d47998"
+    },
+    {
+      "cik": "0001957413",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "163550f929b13950762e0b9223bfba545770b4b41b432ce107d3de5f2653ccbc"
+    },
+    {
+      "cik": "0001958133",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "d500dd2a03b89d4189c7cf2f9261078a86c2538958a56d53c4f21328cbd21f44"
+    },
+    {
+      "cik": "0001960847",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "18cf7ed25526d8854b92bf5eb61d95fb53ca8cdcd9121425d1d080ff454c34e9"
+    },
+    {
+      "cik": "0001963685",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "94c79989c16ca56303d7358fcbb7153abe726da2a2178183fa3fef1eace93b5e"
+    },
+    {
+      "cik": "0001964946",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "6c86c2ee6666b29ee4e1aaf3aec9bdba873dc64d0958d1e970d045f4ce8d763d"
+    },
+    {
+      "cik": "0001970622",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "724445c325af5fb7793769aaea8ac69219d04f7d116bf4760dd2a17e7126a806"
+    },
+    {
+      "cik": "0001973062",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "277e297f0537cae980f32b452014672fb1875ec0a90ee46ea125e51f7a3d905c"
+    },
+    {
+      "cik": "0001976908",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "4481292f584f76e0da0bc9ee6318992d3a1d47034b14e0110716b6fe08dca209"
+    },
+    {
+      "cik": "0001979610",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "675c9a9d72e0f7c53cbf66aacae87ddba9fa64041883259e1e5f2fe1e31fe3c3"
+    },
+    {
+      "cik": "0001986247",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "879d046d97e9b895fab949059e4acb8d9289360ce03003a8d737d368eb77face"
+    },
+    {
+      "cik": "0001987189",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "b7665689c54f053e7392644773c160f335ecd2b05814a6a639f77d6eda9e5761"
+    },
+    {
+      "cik": "0001987363",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "2864d4d61b1669e3f107b9160ae15b8dc7a5ca961de687bf58ca5aad3f4a7636"
+    },
+    {
+      "cik": "0001996810",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "415f0708adf7da6b46d636a2ee1ef3aae173800a4be1d2b5a493fdfa59b1a453"
+    },
+    {
+      "cik": "0001997711",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "8a5691fd1d78088bd52c84210bedc32e1caa94022a649aee0dfecf52db05869d"
+    },
+    {
+      "cik": "0001998056",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "849072b6894eead1617609e29328975f67cd2925cd9ed9852a38844f64da22a3"
+    },
+    {
+      "cik": "0002002660",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "ac571443352cd4564e68896685413160e29e7c373d85982380b220c829569ed8"
+    },
+    {
+      "cik": "0002007599",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "8cac5d4becf8af29ce75cb964b8c3f8ab15e4b834bdbba01ff54961777f1a561"
+    },
+    {
+      "cik": "0002007855",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "52934b7964587ecf87482fab27e3b871839b48b4b5faac864e9a883c4fb9b853"
+    },
+    {
+      "cik": "0002008007",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "1d53cd5ad8f7ad9ad9197b7c377ef476b3b844760101c45c4407b477ce4c0baa"
+    },
+    {
+      "cik": "0002014982",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "74b9cbda5b9488c3838bc9944959ff18d682c0f7c94968ea0a1436ca99e4361d"
+    },
+    {
+      "cik": "0002018462",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "5c953d8646a85b16f6bb30dcf42779bba546375934d11689704e90d08fc91c35"
+    },
+    {
+      "cik": "0002018529",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "c18f42e7cb0ee2830a9fc2418493c1ee2215c17d4d617b3ddc209bb5467445a6"
+    },
+    {
+      "cik": "0002020987",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "3b22799d2a7d52f20c8aa4600a480c05f7a7f84430d08ef0b8a33b4c3de6dbaa"
+    },
+    {
+      "cik": "0002022308",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "59d7b3041623581407f30a9e4c7f6bf69e65c565c60ef662772553ea9a4f95c5"
+    },
+    {
+      "cik": "0002023730",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "d19fd10d8b6b09f1b9fa601c17a1ddb733a0f91f55eaa5585a88c892a789d430"
+    },
+    {
+      "cik": "0002024306",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "a9b560a05842b45c36e64554cce345a667e231207cdf39ab5e378b0f6348b950"
+    },
+    {
+      "cik": "0002027360",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "685a384100a27c2c86139619c25b1f083f35328f834e3ac912adf874e417bd35"
+    },
+    {
+      "cik": "0002028293",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "2257f200e00cb3d3260956efea640415840e34cae8f57c211a5da94f3373e41c"
+    },
+    {
+      "cik": "0002028834",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "13a65972b4c8167d488c1b570f7dd85ed425dd874d13d97e0764ae3d144068c2"
+    },
+    {
+      "cik": "0002028835",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "9441470b88f95534f0dd07d79d45a965dfd2305bf927addceb57f8e38c510817"
+    },
+    {
+      "cik": "0002029471",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "4d4990313c5135e4261ddc95cc395e9cb027b274b78911164b16619a220a3442"
+    },
+    {
+      "cik": "0002034334",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "34f221802ca85670a2a3894d6d760e1c80218fdf9fa4edffaafe5641be136a4e"
+    },
+    {
+      "cik": "0002035053",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "d4fe8d5db551ba8f5c973e12c91df596a5a5d7860b27bc2460c937ea36a03c86"
+    },
+    {
+      "cik": "0002037427",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "9a878b8b4a572a58dfc4d35f628ea4c88737f8530295b7a11e7624a88140b108"
+    },
+    {
+      "cik": "0002041869",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "8a7382c7554fe538fb1e4f46165f9e7d5a1a3890c0fc64fd3e6032bb7dd30634"
+    },
+    {
+      "cik": "0002046117",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "6c19434acfcc661e40a4c5bb8616f2798eb5517c49fcb1987bf1c4d37bfad3fd"
+    },
+    {
+      "cik": "0002051587",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "d4dc89ca72fc8898ea64b2a47d7e0d682b645741726270b7e066b6f37c2d7452"
+    },
+    {
+      "cik": "0002054696",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "cd08820dd91e6776d065c13766d07a5cab00f402f5e6006d23043ad5e12f2fa0"
+    },
+    {
+      "cik": "0002060717",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "7444ca4622aba56f9e8325982fceffd0ff8280b6abc3fa2f074d5721d460e020"
+    },
+    {
+      "cik": "0002063380",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "55ac1ddf00a87176513567e8450ddae7932638d7f07d1dcb98ff150badae5731"
+    },
+    {
+      "cik": "0002063863",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "0ee28e54f308d95adf2cf539b8719ad74158b563ffc36a42d3c2d4f03f33851a"
+    },
+    {
+      "cik": "0002064947",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "3ead4383020148da826063ec0bceab3e1bd531a466efbe132188b0f4fc7e56b1"
+    },
+    {
+      "cik": "0002065661",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "f4b69f1c0068cd6b2abf370129c80cfed23ab7e770edbf0d896f33f362c26279"
+    },
+    {
+      "cik": "0002067129",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "ef785d89209d738f9c2c8a2b76d4c23b40c49ab9ef599f764c3c366507f9500c"
+    },
+    {
+      "cik": "0002070087",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "ddbc36c902d50552d0fe90be58e827e35379eee2c807218e7e7179a8dee2b4e9"
+    },
+    {
+      "cik": "0002071778",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "db7c788678a8b180c3d0492e72c9510131244e1dca51c5d9f968db57c7c4c477"
+    },
+    {
+      "cik": "0002073553",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "9fad15bd594ba165c5e11a91db836e0c83fd0570e984f61d79bb436b47fb608c"
+    },
+    {
+      "cik": "0002074409",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "4a556b6b02bb7d59b52ca3398ba629ea4497b120e5e6c589bb7b19f532c69a4e"
+    },
+    {
+      "cik": "0002075320",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "8275cd8feed4f90f03b2043da3dd8c879b1cbef04796b86089433340611bd5a2"
+    },
+    {
+      "cik": "0002078008",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "8642015bfd079de0c390cb527e6b941d46f17cab84a659a450d78b23dd652e5f"
+    },
+    {
+      "cik": "0002083945",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "e258fb3ac3f94ffec74976b7b2b2410609904a9fdfea487d9bf9311f7b0b664d"
+    },
+    {
+      "cik": "0002089271",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "ec4ab25b4219f40e64811d5d2aded693e11085aaa66b6475971d8b20f947c12b"
+    },
+    {
+      "cik": "0002091024",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "4aa4f712ebc65d4ea86993e0f72b63fc1c49547e2e053768f8231e06311754cc"
+    },
+    {
+      "cik": "0002092287",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "3c9dba125547b694cbe7800f07dc543f448c77bdd4e2a093d3234a47e639da6f"
+    },
+    {
+      "cik": "0002093507",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "0188e56b6d11b8ab41a885cd379192469222611ba0cf9713f7a8bf6e6720e831"
+    },
+    {
+      "cik": "0002094107",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "b082319422b24a4e5e34eba1b578871c9c686359787778e594a254b0190184d4"
+    },
+    {
+      "cik": "0002098712",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "ede733132ed0504a01b619ad9b236689ab637583c25d6c911ec7f55dde8ca12e"
+    },
+    {
+      "cik": "0002101135",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "9339416368123c44943eed94e557b3b57ce987d4cb9648a126a4dfd1e41fd351"
+    },
+    {
+      "cik": "0002104879",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "72215c10ad1f85ba9a47a8d1ccfcbda34489a958484e8a53f4e7e56a0d52ae89"
+    },
+    {
+      "cik": "0002110117",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "f517314887dd7b15ce01413605a9c2fd585d15f87e0946dde361a5b150b040ca"
+    },
+    {
+      "cik": "0002122505",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "02d9dde78c8b1ef16868157873617388298d4b9e7074331e373e6446b5eba990"
+    },
+    {
+      "cik": "0002123613",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "e56746dbeb70e069ab0810987a37b001f8ea53326b6f83118ff31dea157dbcf0"
+    },
+    {
+      "cik": "0002128462",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "4aa8b77e895cf7999f87b1830f6e0b8754fd07eabd4c04c18d8b38808c065f13"
+    },
+    {
+      "cik": "0002128739",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "a516dba137b309e2a67d726670581a7fe88c1c4180fef8fee57d9c209323e93c"
+    },
+    {
+      "cik": "0002129284",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "0e05a02a2728f06cd7509cdcc8a6c1ffdf38ddeb4e0615f2bd7c7a467751c6c3"
+    },
+    {
+      "cik": "0002129659",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "c01767e92addc45f578d0d083c591eb7fb585e2b250e67fd51ba51777b758b89"
+    },
+    {
+      "cik": "0002131853",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "13281818ea0afa941f2e11781796a5ddd16113464f1dd58f8b575a6bbfe717e8"
+    },
+    {
+      "cik": "0002133239",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "a4851033a5b1630fc0d9ea4bff925da2f10806e7da7dc7b3c3e883c7d6afc205"
+    },
+    {
+      "cik": "0002137965",
+      "status": "invalid_payload",
+      "reason": "companyfacts entity identity mismatch",
+      "raw_sha256": "0eb6ad1c9517f80942d0a105b2a79c418d636284ff7570040a92e47179c738f1"
+    }
+  ],
+  "original_files_unchanged": true,
+  "network_requests": 0,
+  "original_collection_receipts_rewritten": false,
+  "freshness_established": false
+}
