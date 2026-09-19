@@ -37,7 +37,7 @@ import {
   renderProductShellStylesheet,
 } from "./product-shell.mjs";
 import { discover as discoverMeasurementArtifacts, rawArtifactUrl } from "./build-measurements.mjs";
-import { gitCommitDate, artifactDate, resolveLastmod } from "./lastmod.mjs";
+import { gitCommitDate, artifactDate, resolveLastmod, writeSourceDates } from "./lastmod.mjs";
 import { describeProvenanceUrl } from "./describe-provenance-url.mjs";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
@@ -1223,8 +1223,10 @@ function main() {
         `because git was unavailable (not because the content is undated):`,
     );
     for (const message of BUILD_DATE_FALLBACK_WARNINGS) console.warn(`  ${message}`);
+    if (process.env.VERCEL) throw new Error("Deployment cannot invent sitemap modification dates; rebuild source-date bindings first");
   }
 
+  writeSourceDates(ROOT);
   writeSitemaps(urls, { directory: resolve(ROOT, "public"), origin: ORIGIN });
 
   console.log(`rendered ${papers.length} research pages -> research/*.html`);

@@ -13,7 +13,7 @@ for (const [engine, launcher] of Object.entries({ chromium, webkit })) {
       const page = await browser.newPage({ viewport: { width, height: 900 }, reducedMotion: 'reduce' });
       const errors = [];
       page.on('pageerror', error => errors.push(error.message));
-      for (const path of ['/companies', '/companies/0000320193', '/companies/0000320193/Assets', '/developers']) {
+      for (const path of ['/companies', '/companies/0000320193', '/companies/0000320193/Assets', '/companies/0000025232', '/companies/0000025232/Assets', '/companies/0000029534', '/companies/0000029534/Assets', '/developers']) {
         const response = await page.goto(origin + path, { waitUntil: 'networkidle' });
         assert.equal(response.status(), 200);
         assert.equal(await page.locator('h1').count(), 1);
@@ -28,13 +28,13 @@ for (const [engine, launcher] of Object.entries({ chromium, webkit })) {
           const bytes = Buffer.byteLength(await response.text());
           assert.ok(bytes < 256 * 1024, 'Pilot reference document exceeds 256 KiB review budget');
         }
-        if (path === '/developers' || path.includes('/0000320193')) {
+        if (path === '/developers' || path.startsWith('/companies/')) {
           const prefix = path === '/developers' ? '' : '/developers';
           assert.ok(await page.locator(`a[href="${prefix}#quickstart"]`).count());
           assert.ok(await page.locator(`a[href="${prefix}#ai-assistant"]`).count());
           assert.ok(await page.locator('a[href="https://github.com/arhancanli/alphac"]').count());
         }
-        if (engine === 'chromium') await page.screenshot({ path: `${output}/${width}-${path.split('/').at(-1)}.png`, fullPage: true });
+        if (engine === 'chromium') await page.screenshot({ path: `${output}/${width}-${path.slice(1).replaceAll('/', '-')}.png`, fullPage: true });
         report.push({ engine, width, path, status: 'PASS' });
       }
       assert.deepEqual(errors, []);

@@ -189,3 +189,37 @@ and was pushed in draft PR 70. Removed the temporary untracked .venv symlink aft
 PR 68 full CI now passes; PR 69 offline job remains running. Source refresh/editorial
 review and production release remain next implementation work; actual indexing and
 all algorithm outcome goals remain unestablished.
+
+## 2026-09-19 — collector CI checkpoint
+
+PR 70 at e0a257c passes publication integrity, PostgreSQL, strict mypy, Ruff and
+browser CI. Offline pytest is running: run 35438489448, job 105885124970. Website
+ledger/revalidation commit 68ebb16e pushed. No merge or deployment. Next phase should
+prioritize verified source refresh and production-release assessment so the tested
+website improvements can become a live corpus; do not repeat completed scaffolding.
+
+## 2026-09-19 — phase 4 source refresh and release snapshot
+
+Reread the continuity folder before moving to release work. Fresh official SEC
+captures for CIK 0000029534 and 0000025232 add 15 source-backed pages; local total
+327 indexable (seven companies, 56 histories, directory). Actual indexed count is
+still unknown, production last verified at 263. Source capture bytes and selected
+records are preserved. Keyword ownership grows to 78 with 95 query hypotheses.
+
+Found and fixed Git-free snapshot lastmod fallback: content-hashed source-date
+manifest preserves recorded dates, invalidates changed files/directories/symlinks,
+and deployment rejects missing-date fallback. Thirteen date tests pass, full
+verification passes 302 tests. Snapshot uses the approved helper with this task's
+design and current live exports: 690 rendered pages, 327 indexable, metadata and
+indexability clean, links within three clicks, visible numerals sourced, all 14
+retracted-claim rules pass. Thirty-two browser checks pass across Chromium/WebKit,
+390/1440 widths, including both new company/Assets pages and developer links.
+
+Initial preview upload failed at Vercel file upload with TLS invalid session id;
+retrying Node 20 plus tgz. The first copy command mistakenly addressed the snapshot
+as both source and destination; corrected absolute paths, then the actual strict
+snapshot build passed. No production release or runtime source change.
+
+Archive retry created preview deployment dpl_5ePSmH8KyqdsufFWnxxMiqKCMw1b;
+CLI inspect reports Building. Local snapshot checks and hashes recorded in
+artifacts/seo/release-preview.json. No deployed URL was fetched.
