@@ -585,3 +585,23 @@ gap: their overall newest date can obscure an old original unit. Next: improve
 per-unit coverage presentation, test the real case, then continue editorial and
 storage/release work. Runtime/selector code unchanged this turn; prior351 website
 and44 browser check results apply to those unchanged paths, not a new runtime test.
+
+## 2026-09-19 — per-unit coverage presentation fixed
+
+Previous turn was progress (6f8cf355). Reread continuity; both CI jobs for that
+head pass (35449094967). Implemented shared coverageByUnit and a range list on
+multi-unit history pages. Older units receive their own notice even when another
+unit has recent data. Source records/policy/release hashes remain unchanged.
+Focused regression and existing pilot HTML reproduction pass.
+
+Full verify24473 completes352 tests (6+346) and final audits; log at
+/tmp/canli-unit-coverage-verify.log. Browser63869 completes48 Chromium/WebKit
+checks, including actual CIK0001381074/Assets CNY2021/USD2025 range assertions.
+Mobile coverage screenshot visually inspected. HTTP77467 completes all9,386 pages
+and698 downloads with exact sitemap match, no failures and no orphans. Updated
+measurement/browser receipts. No generated-source churn or runtime deployment.
+
+The74 partially historical-unit flags are now displayed clearly, not removed or
+editorially approved. Other source/semantic review, storage, production activation,
+Search Console and all engine/developer objectives remain open. Next: pushed-head
+CI, editorial decisions and durable storage integration.

@@ -20,3 +20,9 @@ export function latestObservationsByUnit(observations) {
     return rows.filter(row => row.end === latestEnd).sort((a, b) => (a.start ?? '').localeCompare(b.start ?? ''));
   });
 }
+
+export function coverageByUnit(observations, fetchedAt) {
+  return [...new Set(observations.map(row => row.unit))].sort().map(unit => ({
+    unit, ...companyCoverage(observations.filter(row => row.unit === unit), fetchedAt),
+  }));
+}

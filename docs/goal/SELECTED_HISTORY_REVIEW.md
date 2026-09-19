@@ -17,7 +17,7 @@ publication approval.
 | --- | ---: | --- |
 | Last reporting end more than two years before capture | 989 | Preserve historical labeling; review filing/tag continuity before describing anything as current. |
 | Multiple original units | 223 | Keep units separate and review comparability; do not convert or splice silently. |
-| Recent overall coverage but an old individual unit | 74 | Add per-unit coverage presentation; the overall range alone can obscure old data. |
+| Recent overall coverage but an old individual unit | 74 | Per-unit coverage display implemented and locally verified; comparability review remains open. |
 | Constant/zero-only | 7 | All are legacy core concepts. Review usefulness before admitting standalone pages; do not silently revise old source policy. |
 | Identical full numerical vectors | 210 | 105 pairs, compared within company. Review meaning and intent before deciding whether separate canonical pages are useful. |
 
@@ -42,14 +42,14 @@ captured SEC companyfacts response. The 2024 annual accession is
 independent filing verification remains open. Do not change values, infer a
 reporting error or consolidate the concepts on this evidence alone.
 
-## First presentation fix
+## Implemented presentation fix
 
 CIK 0001381074 illustrates the per-unit issue: selected assets and several other
-concepts extend to 2025-06-30 in USD but only 2021-12-31 in CNY. The current overall
-range uses the newest end across units, so its historical-only notice does not
-trigger. The data table retains dates and units, but a per-unit coverage summary
-would make the distinction easier to see. Validate this real case and preserve
-original source records when implementing the display change.
+concepts extend to 2025-06-30 in USD but only 2021-12-31 in CNY. The overall
+range uses the newest end across units. The renderer now also lists each unit’s
+range and marks old coverage independently. This actual case passed48 combined
+mobile/desktop browser checks with the other staged routes; source records remain
+unchanged. This presentation improvement does not resolve economic comparability.
 
 This review does not remove records, approve publication or establish indexed
 counts. Resolve the queue with source evidence and explicit editorial decisions;

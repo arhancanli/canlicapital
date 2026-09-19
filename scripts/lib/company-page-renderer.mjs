@@ -1,4 +1,4 @@
-import { companyCoverage, latestObservationsByUnit } from './company-coverage.mjs';
+import { companyCoverage, coverageByUnit, latestObservationsByUnit } from './company-coverage.mjs';
 import { renderProductShellHeader, renderProductShellFooter, renderProductShellStylesheet } from '../product-shell.mjs';
 import { escapeXml as esc } from './sitemaps.mjs';
 const origin = 'https://canlicapital.com';
@@ -71,7 +71,8 @@ export function renderCompanyPages(company, { target = 'all' } = {}) {
   for (const concept of company.concepts) {
     if (target !== 'all' && target !== concept.tag) continue;
     const coverage = companyCoverage(concept.observations, company.fetched_at);
-    const coverageNote = `<section aria-labelledby="coverage"><h2 id="coverage">Coverage of this history</h2><p>Selected reporting periods run from ${esc(coverage.first)} to ${esc(coverage.last)}. The SEC response was captured on ${esc(company.fetched_at.slice(0, 10))}.</p>${coverage.historicalOnly ? '<p><strong>This selected history ends more than two years before capture.</strong> Do not treat its final value as a current balance or current annual result. More recent filings may use another accounting tag; inspect the filings before drawing conclusions about the company.</p>' : ''}</section>`;
+    const unitCoverage = coverage.units.length > 1 ? `<h3>Coverage by original unit</h3><ul class="company-reference__unit-coverage">${coverageByUnit(concept.observations, company.fetched_at).map(unit => `<li><strong>${esc(unit.unit)}</strong>: ${esc(unit.first)} to ${esc(unit.last)}.${unit.historicalOnly ? ' <strong>This unit’s selected history ends more than two years before capture.</strong>' : ''}</li>`).join('')}</ul><p>These are separate reported series. A newer period in one unit does not update another unit’s history or establish a currency conversion.</p>` : '';
+    const coverageNote = `<section aria-labelledby="coverage"><h2 id="coverage">Coverage of this history</h2><p>Selected reporting periods run from ${esc(coverage.first)} to ${esc(coverage.last)}. The SEC response was captured on ${esc(company.fetched_at.slice(0, 10))}.</p>${coverage.historicalOnly ? '<p><strong>This selected history ends more than two years before capture.</strong> Do not treat its final value as a current balance or current annual result. More recent filings may use another accounting tag; inspect the filings before drawing conclusions about the company.</p>' : ''}${unitCoverage}</section>`;
     const shortName = label(company);
     const title = `${shortName}: ${concept.label}`;
     const rows = concept.observations.map((row) => `<tr><td>${esc(row.start ?? 'At date')}</td><th scope="row">${esc(row.end)}</th><td>${number(row.val)}</td><td>${esc(row.unit)}</td><td>${esc(row.filed)}</td><td><a href="${accessionLink(company, row)}">${esc(row.form)} · ${esc(row.accn)}</a></td></tr>`).join('');

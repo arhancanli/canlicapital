@@ -7,7 +7,7 @@ from playwright.sync_api import sync_playwright
 paths = ['/companies', '/companies/page/7', '/companies/0001094517', '/companies/0001094517/Assets', '/companies/0001483994', '/companies/0001818874', '/companies/0000320193/Revenues']
 extended = '--extended' in sys.argv
 if extended:
-    paths += ['/companies/0000320193/EarningsPerShareBasic', '/companies/0000320193/EarningsPerShareDiluted', '/companies/0000320193/WeightedAverageNumberOfDilutedSharesOutstanding', '/companies/0000320193/ResearchAndDevelopmentExpense']
+    paths += ['/companies/0001381074/Assets', '/companies/0000320193/EarningsPerShareBasic', '/companies/0000320193/EarningsPerShareDiluted', '/companies/0000320193/WeightedAverageNumberOfDilutedSharesOutstanding', '/companies/0000320193/ResearchAndDevelopmentExpense']
 checks = []
 with sync_playwright() as p:
     for engine in ['chromium', 'webkit']:
@@ -22,6 +22,16 @@ with sync_playwright() as p:
                     assert response.status == 200, path
                     assert response.headers['x-robots-tag'] == 'noindex'
                     assert page.locator('h1').count() == 1
+                    if path == '/companies/0001381074/Assets':
+                        units = page.locator('.company-reference__unit-coverage')
+                        assert '2021-12-31' in units.inner_text()
+                        assert '2025-06-30' in units.inner_text()
+                        old = units.locator('li').filter(has_text='CNY')
+                        recent = units.locator('li').filter(has_text='USD')
+                        assert 'more than two years' in old.inner_text()
+                        assert 'more than two years' not in recent.inner_text()
+                        if engine == 'chromium':
+                            page.locator('section[aria-labelledby="coverage"]').screenshot(path=f'/tmp/canli-unit-coverage-{width}.png')
                     if 'EarningsPerShare' in path:
                         assert 'USD/shares' in page.locator('main').inner_text()
                     assert page.locator('link[rel=canonical]').get_attribute('href') == 'https://canlicapital.com' + path

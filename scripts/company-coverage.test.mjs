@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { companyCoverage, latestObservationsByUnit } from './lib/company-coverage.mjs';
+import { companyCoverage, coverageByUnit, latestObservationsByUnit } from './lib/company-coverage.mjs';
 
 test('coverage uses reporting intervals, separates units and flags old history', () => {
   const result = companyCoverage([{ start: '2010-01-01', end: '2010-12-31', unit: 'USD' }, { end: '2015-12-31', unit: 'EUR' }], '2026-09-19T12:00:00Z');
@@ -20,4 +20,12 @@ test('latest overview preserves currencies and same-end reporting intervals', ()
   ];
   assert.deepEqual(latestObservationsByUnit(rows).map(row => row.val), [4, 2, 3]);
   assert.equal(rows.length, 4);
+});
+
+test('recent overall coverage cannot hide an older original unit', () => {
+  const rows = [{ end: '2021-12-31', unit: 'CNY' }, { end: '2025-06-30', unit: 'USD' }];
+  assert.equal(companyCoverage(rows, '2026-09-19T12:00:00Z').historicalOnly, false);
+  assert.deepEqual(coverageByUnit(rows, '2026-09-19T12:00:00Z').map(({unit,last,historicalOnly}) => ({unit,last,historicalOnly})), [
+    {unit:'CNY',last:'2021-12-31',historicalOnly:true}, {unit:'USD',last:'2025-06-30',historicalOnly:false},
+  ]);
 });

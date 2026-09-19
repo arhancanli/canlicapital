@@ -2,7 +2,7 @@
 
 Updated: 2026-09-19. Overall goal: **ACTIVE, NOT ACHIEVED**.
 Current phase: **1/2/3 — extended concept policy and staged delivery quality verified locally**.
-Next: per-unit historical coverage presentation and editorial queue resolution; storage integration remains pending.
+Next: editorial queue resolution and storage integration; per-unit coverage display verified locally.
 All owner objectives in REQUIREMENTS.md remain active. The owner reconfirmed the
 million-indexed-page vision and all other objectives after the sitemap discussion.
 
@@ -47,10 +47,10 @@ million-indexed-page vision and all other objectives after the sitemap discussio
 - Synthetic navigation test: all 20,000 directory pages reached in at most four
   links. Initial three-link expectation failed and was corrected to the measured
   bound. This tests navigation, not content quality, live capacity or indexing.
-- Latest full local verification: **351 tests pass (6 + 345)**, clean writing,
+- Latest full local verification: **352 tests pass (6 + 346)**, clean writing,
   metadata, link, indexability and numerical-source/evidence audits. Log:
-  `/tmp/canli-extended-final-verify.log`; complete test and final audit output verified.
-- Latest extended staged browser review: **44 Chromium/WebKit checks pass**, 390/1440
+  `/tmp/canli-unit-coverage-verify.log`; complete test and final audit output verified.
+- Latest extended staged browser review: **48 Chromium/WebKit checks pass**, 390/1440
   widths. Fixed long accounting-identifier mobile overflow and inspected the EPS
   mobile screenshot. Core policy previously passed 28 checks.
 - Prior unchanged MCP tests: 43 pass. Developer links/examples/contributor guidance
@@ -72,7 +72,7 @@ million-indexed-page vision and all other objectives after the sitemap discussio
 ## Release, CI and environment
 
 - Website worktree/PR 15 remain the isolated task branch. Prior pushed head
-  **5f462c70** passes both CI jobs, run **35448841972**. Later audit/docs checkpoint
+  **6f8cf355** passes both CI jobs, run **35449094967**. Later coverage-display checkpoint
   needs its own CI check; do not confuse prior CI with later edits.
 - Preview Ready: https://meridian-atulevugw-arhans-projects-ac470eaa.vercel.app.
   Vercel lists the new company-reference function (36.84KB). Catalog inactive;
@@ -181,5 +181,22 @@ See COMPANY_CATALOG.md for reproduction commands and remaining production limits
 - The EVENTIKO pair reproduces from SEC companyfacts captures, but the underlying
   filing index was inaccessible through the web tool. Direct filing verification
   remains unresolved; do not call this issuer data wrong or independently verified.
-- Next quality fix: show per-unit coverage dates where overall recent coverage can
-  obscure old currency/unit histories. Publication and indexing remain unestablished.
+- Per-unit coverage display is implemented and verified: multi-unit histories list
+  each original unit’s range and identify old coverage independently. Actual
+  CNY/USD case passed mobile/desktop Chromium/WebKit checks. Flags remain review
+  items; the display change does not approve publication or establish indexing.
+
+## Per-unit coverage display validation
+
+- Shared renderer now adds a per-unit range list for multi-unit histories, with
+  independent historical notices and no currency conversion inference. Original
+  selected/source records and the staged release roots remain unchanged. Existing
+  pilot HTML remains byte-identical (the pilot histories have single-unit coverage).
+- Added regression for old CNY2021 versus recent USD2025 coverage and browser
+  assertions against actual CIK0001381074/Assets. All48 browser checks pass;
+  inspected /tmp/canli-unit-coverage-390.png. Local helper server stopped normally.
+- Full verify session24473 completed exit0:352 tests and all final audits pass.
+  HTTP session77467 completed exit0:9,386 pages/698 downloads, matching sitemap,
+  zero failures and unchanged maximum HTML31,652 bytes. Receipts updated.
+- Next: verify this pushed checkpoint CI; resolve outstanding semantic/editorial
+  decisions and storage access. Production and Search Console remain pending.
