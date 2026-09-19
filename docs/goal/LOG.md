@@ -562,3 +562,26 @@ Preview is older than these changes; no production activation or index claim.
 Storage/access, Search Console and production authorization questions remain
 pending. Next: pushed-head CI, per-company semantic/freshness review and storage
 integration; all developer and governed engine objectives remain active.
+
+## 2026-09-19 — selected-history quality queue
+
+Previous goal turn was progress (5f462c70). Reread goal records; verified both CI
+jobs pass for that exact checkpoint (35448841972). Added a read-only source-replay
+audit for selected histories, preserving production and immutable captures. It
+checks each unit's coverage separately and numerical-vector equality independent
+of filing/accession differences. Session72030 completed exit0. Independent Python
+reconciliation confirms counts, unique paths, flag totals and the seven zero-only
+core histories; no added-policy constant history slipped through.
+
+Found1,375 flagged histories with overlapping989 old-coverage,223 multiple-unit,
+74 partially historical-unit,7 zero-only and210 equal-vector-page flags.105 equal
+vector groups are pairs. The unusual EVENTIKO PPE/payables pair reproduces from
+captured companyfacts, including USD11,000 at2023-04-30 and zeros in adjacent years.
+This is not independent filing verification: SEC filing-index web open returned
+inaccessible. Preserve that uncertainty; no arbitrary correction or merge.
+
+Saved per-page queue and review priorities.74 histories reveal a concrete display
+gap: their overall newest date can obscure an old original unit. Next: improve
+per-unit coverage presentation, test the real case, then continue editorial and
+storage/release work. Runtime/selector code unchanged this turn; prior351 website
+and44 browser check results apply to those unchanged paths, not a new runtime test.

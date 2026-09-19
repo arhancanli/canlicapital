@@ -2,7 +2,7 @@
 
 Updated: 2026-09-19. Overall goal: **ACTIVE, NOT ACHIEVED**.
 Current phase: **1/2/3 — extended concept policy and staged delivery quality verified locally**.
-Next: production release/storage integration and deployment packaging.
+Next: per-unit historical coverage presentation and editorial queue resolution; storage integration remains pending.
 All owner objectives in REQUIREMENTS.md remain active. The owner reconfirmed the
 million-indexed-page vision and all other objectives after the sitemap discussion.
 
@@ -72,8 +72,8 @@ million-indexed-page vision and all other objectives after the sitemap discussio
 ## Release, CI and environment
 
 - Website worktree/PR 15 remain the isolated task branch. Prior pushed head
-  **5fae3c06** passes both CI jobs, run **35447926796**. Extended-policy checkpoint
-  needs its own pushed-head CI check; do not confuse prior CI with later edits.
+  **5f462c70** passes both CI jobs, run **35448841972**. Later audit/docs checkpoint
+  needs its own CI check; do not confuse prior CI with later edits.
 - Preview Ready: https://meridian-atulevugw-arhans-projects-ac470eaa.vercel.app.
   Vercel lists the new company-reference function (36.84KB). Catalog inactive;
   hosted-data runtime unverified. See artifacts/seo/wrapper-preview.json.
@@ -163,3 +163,23 @@ See COMPANY_CATALOG.md for reproduction commands and remaining production limits
 - Next: verify this checkpoint CI; review per-company freshness, duplicate-intent
   and comparability flags; continue storage/release integration once access is
   resolved. Search Console and production questions remain pending, unchanged.
+
+## Selected-history editorial queue
+
+- Replayed all349 extended selected records against original bytes. New audit
+  flags1,375 of9,030 histories:989 historical-only,223 multiple-unit,74 with an
+  old unit masked by a newer unit in the overall date range, seven zero-only core
+  histories, and210 pages in105 equal numerical-vector groups. Flags overlap.
+- Equality comparison includes kind/unit/start/end/value and deliberately excludes
+  filing/accession fields.61 pairs are basic/diluted EPS,40 weighted-share pairs,
+  two total/current liability pairs, one operating/SG&A pair and one PPE/payables
+  pair. Equality alone is not semantic duplication or evidence of a filing error.
+- Seven zero-only histories come from the legacy nine-concept policy; extended
+  additions do not introduce them. No records were removed or modified by audit.
+- Inspect docs/goal/SELECTED_HISTORY_REVIEW.md and the bound per-page queue in
+  artifacts/seo/company-selected-quality-extended.json before publication decisions.
+- The EVENTIKO pair reproduces from SEC companyfacts captures, but the underlying
+  filing index was inaccessible through the web tool. Direct filing verification
+  remains unresolved; do not call this issuer data wrong or independently verified.
+- Next quality fix: show per-unit coverage dates where overall recent coverage can
+  obscure old currency/unit histories. Publication and indexing remain unestablished.
