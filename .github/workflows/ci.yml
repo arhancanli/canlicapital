@@ -29,5 +29,13 @@ jobs:
         run: npm audit --audit-level=high
       - name: Build the production bundle
         run: npm run build
+      - name: Install browser for developer interaction checks
+        run: npx playwright install --with-deps chromium
+      - name: Verify source evidence, SEO and developer contracts
+        run: npm run verify
+      - name: Verify bulk source catalog integrity
+        run: npm run test:corpus
+      - name: Verify change-notification batching
+        run: npm run test:indexnow
       - name: Check patch hygiene
         run: git diff --check

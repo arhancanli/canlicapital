@@ -1,0 +1,24 @@
+{
+  "schema": "canli.search-intents.v1",
+  "measurement_status": "Editorial intent hypotheses; search volume, rankings and query coverage are not measured",
+  "scope": "Algorithm research, statistical validation, portfolio risk, source-backed company accounting and developer infrastructure",
+  "intents": [
+    {"path":"/how-to-validate-a-backtest","intent":"Learn a complete backtest validation workflow","queries":["how to validate a backtest","backtest validation checklist"]},
+    {"path":"/tools/deflated-sharpe","intent":"Calculate selection-adjusted Sharpe evidence","queries":["deflated sharpe ratio calculator","deflated sharpe ratio"]},
+    {"path":"/tools/backtest-overfitting","intent":"Evaluate overfitting across a set of strategy trials","queries":["probability of backtest overfitting calculator","backtest overfitting calculator"]},
+    {"path":"/tools/selection-risk","intent":"Inspect strategy selection risk","queries":["strategy selection bias","multiple testing trading strategies"]},
+    {"path":"/tools/breadth","intent":"Inspect dependence and effective portfolio breadth","queries":["effective portfolio breadth","strategy correlation risk"]},
+    {"path":"/tools/execution","intent":"Inspect execution assumptions and break-even costs","queries":["backtest execution costs","trading slippage assumptions"]},
+    {"path":"/tools/trial-accounting","intent":"Account for every strategy trial including failures","queries":["backtest trial accounting","strategy trial ledger"]},
+    {"path":"/tools/evidence-chain","intent":"Verify a research evidence chain","queries":["research evidence chain verification","backtest evidence integrity"]},
+    {"path":"/developers","intent":"Integrate the validation API and MCP server","queries":["backtest validation api","quantitative finance mcp server","canli capital api key","canli capital mcp"]},
+    {"path":"/standards/paper-evidence","intent":"Implement the paper-evidence record standard","queries":["paper trading evidence standard","reproducible backtest evidence schema"]},
+    {"path":"/methodology","intent":"Understand research admission and evaluation rules","queries":["canli capital research methodology","algorithm research admission process"]},
+    {"path":"/costs","intent":"Inspect charged costs and current coverage omissions","queries":["canli capital cost model","alphac trading cost coverage"]},
+    {"path":"/companies","intent":"Find source-backed company financial histories","queries":["sec company financial history data","company filing data with provenance"]},
+    {"path":"/research","intent":"Explore reproducible research and failed hypotheses","queries":["canli capital research","open algorithm research failed experiments"]},
+    {"path":"/engineering","intent":"Inspect the open-source platform and engineering evidence","queries":["alphac open source","canli capital github"]}
+  ],
+  "expansion_policy": "Add a distinct canonical owner only when its useful answer and source evidence exist. Synonyms stay on the same page. No arbitrary company-by-keyword permutations. Gaps remain explicit until addressed.",
+  "measurement_next_step": "Use Search Console query/page exports to validate intent hypotheses, find missing answers and review competing URLs. Impressions are not indexed-page counts."
+}

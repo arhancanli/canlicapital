@@ -21,3 +21,6 @@
 .company-reference__directory li { padding: 22px 0; border-top: 1px solid var(--line); display: flex; justify-content: space-between; gap: 16px; }
 .company-reference__directory span { font-family: var(--mono); font-size: .8rem; color: var(--muted); }
 @media(max-width: 650px) { .company-reference { padding: 112px 20px 56px; } .company-reference__directory li { flex-direction: column; } }
+
+.company-reference__breadcrumbs ol { display: flex; flex-wrap: wrap; gap: 8px; padding: 0; list-style: none; font-size: .8rem; color: var(--muted); }
+.company-reference__breadcrumbs li + li::before { content: "/"; margin-right: 8px; }

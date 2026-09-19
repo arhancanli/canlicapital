@@ -269,13 +269,14 @@ function mcpAssistantSection() {
   const claudeDesktopJson = extractReadmeFence(readme, "Claude Desktop", "json");
   const npmUrl = `https://www.npmjs.com/package/${mcpPkg.name}`;
   return `<section class="dev-section" id="ai-assistant">
-    <h2>From your AI assistant</h2>
+    <h2>Connect the MCP server</h2>
     <p class="dev-note">This API is also an MCP server, so a coding assistant can call the
       routes on this page as tools instead of writing requests by hand. Every tool it exposes
       returns the full envelope, the same way every route on this page does, so the assistant
       sees what a number cannot be used to claim, not only the number.</p>
     <div class="dev-snippet"><p class="dev-snippet-label">Claude Code</p><pre class="dev-code" tabindex="0" aria-label="Claude Code configuration"><code>${esc(claudeCodeInstall)}</code></pre></div>
     <div class="dev-snippet"><p class="dev-snippet-label">Claude Desktop</p><pre class="dev-code" tabindex="0" aria-label="Claude Desktop configuration"><code>${esc(claudeDesktopJson)}</code></pre></div>
+    <p class="dev-note"><a href="https://github.com/arhancanli/canlicapital/tree/main/mcp" rel="noreferrer">Inspect the MCP implementation and contribute an integration</a>. If the tools help your research, star the repository to help others discover it.</p>
     <p class="dev-note"><a href="${esc(npmUrl)}" rel="noreferrer">${esc(mcpPkg.name)} on npm</a>, with the full tool list and what each one does not establish.</p>
   </section>`;
 }
@@ -463,6 +464,8 @@ ${renderProductShellHeader({ active: "developers" })}
       Public record snapshots are also available without a key.</p>
     <div class="dev-downloads">
       <a class="dev-button dev-button--primary" href="#quickstart">Get a free API key ↘</a>
+      <a class="dev-button" href="#ai-assistant">Connect the MCP server</a>
+      <a class="dev-button" href="https://github.com/arhancanli/alphac" rel="noreferrer">Explore ALPHAC on GitHub</a>
       <a class="dev-button" href="#validation">Explore the validators</a>
       <a class="dev-button" href="/api/v1">Discovery document</a>
       <a class="dev-button" href="/api/v1/openapi">OpenAPI document</a>

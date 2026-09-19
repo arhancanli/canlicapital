@@ -63,3 +63,27 @@ test('published pilot has distinct identities, substantive sourced histories, no
     }
   }
 });
+
+test('malformed dates and impossible filing chronology cannot enter a published history', () => {
+  const diagnostics = {};
+  const selected = selectObservations({ units: { USD: [
+    row, { ...row, end: '2023-99-99' }, { ...row, end: '2023-02-30' },
+    { ...row, filed: '2022-12-01' }, null,
+  ] } }, 'duration', '2026-09-19', diagnostics);
+  assert.equal(selected.length, 1);
+  assert.equal(diagnostics.invalid_observation, 4);
+});
+test('same-filing conflicts are rejected even when a newer filing appears between them', () => {
+  const amended = { ...row, val: 26, filed: '2025-02-01', accn: '0000000001-25-000001' };
+  for (const observations of [[row, amended, { ...row, val: 99 }], [amended, row, { ...row, val: 99 }]]) {
+    assert.throws(() => selectObservations({ units: { USD: observations } }, 'duration', '2026-09-19'), /Conflicting/);
+  }
+});
+test('malformed fact collections and invalid entity identities fail closed', () => {
+  for (const units of [null, [], { USD: {} }]) {
+    assert.throws(() => selectObservations({ units }, 'instant', '2026-09-19'), /units|array/);
+  }
+  for (const cik of [0, -1, 10000000000]) {
+    assert.throws(() => companyReference(JSON.stringify({ cik, entityName: 'Invalid' }), { fetchedAt: '2026-09-19T00:00:00Z', expectedCik: cik }), /identity/);
+  }
+});

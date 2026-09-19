@@ -13,6 +13,13 @@ The engine that produces every number here is open too:
 
 Live: **[canlicapital.com](https://canlicapital.com)**
 
+Build with it: [get an API key](https://canlicapital.com/developers#quickstart),
+[connect the MCP server](https://canlicapital.com/developers#ai-assistant), or
+[contribute a reproducible improvement](CONTRIBUTING.md). If the project is useful,
+star the repository to help other developers find it.
+
+Current work and verified limitations: [persistent goal status](docs/goal/STATUS.md).
+
 ## Why this repo is public
 
 The site's whole claim is *"a quant fund proving itself in public before it asks you to trust
