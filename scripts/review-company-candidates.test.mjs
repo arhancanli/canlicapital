@@ -46,3 +46,39 @@ test('partial capture is reported as incomplete; duplicate results fail', async 
   mutate(directory, 'refresh.json', data => { data.results.push(data.results[0]); });
   assert.throws(() => reviewCandidates(directory), /Duplicate/);
 });
+
+test('a falsely excluded eligible capture cannot disappear from the review', async t => {
+  const { directory } = await fixture(t);
+  mutate(directory, 'refresh.json', data => { data.results[0] = { cik: data.results[0].cik, status: 'excluded', reason: 'INSUFFICIENT_COVERAGE' }; });
+  const review = reviewCandidates(directory);
+  assert.match(review.errors[0].reason, /Exclusion does not reproduce/);
+  assert.equal(review.exclusions.length, 0);
+});
+
+test('staging can retain source-reproduced exclusions but never HTTP failures or altered reasons', async t => {
+  const { stageCompanyDelivery } = await import('./stage-company-delivery.mjs');
+  const { directory, cik } = await fixture(t);
+  const output = mkdtempSync(resolve(tmpdir(), 'canli-reviewed-delivery-'));
+  t.after(() => rmSync(output, { recursive: true, force: true }));
+  const record = JSON.parse(readFileSync(resolve(directory, cik + '.record.json')));
+  const raw = gunzipSync(readFileSync(resolve(directory, record.source_sha256 + '.json.gz')));
+  const badCik = '0000000001';
+  const ciks = [cik, badCik];
+  writeFileSync(resolve(directory, 'ciks.json'), JSON.stringify(ciks));
+  await refreshCandidates({ ciks, output: directory, fetcher: async url => new Response(url.includes(badCik) ? JSON.stringify({ cik: 1, entityName: 'Coverage fixture', facts: {} }) : raw), now: () => '2026-09-19T12:00:00Z', pause: async () => {} });
+  const review = reviewCandidates(directory);
+  assert.equal(review.errors.length, 0);
+  assert.equal(review.exclusions[0].reason, 'INSUFFICIENT_COVERAGE');
+  assert.equal(review.exclusions[0].reproduced, true);
+  assert.throws(() => stageCompanyDelivery(directory, output), /Complete reproduced/);
+  const manifest = stageCompanyDelivery(directory, output, undefined, { allowReviewedExclusions: true });
+  assert.equal(manifest.files.length, 1);
+  assert.equal(manifest.capture_review.exclusions[0].cik, badCik);
+  assert.equal(manifest.capture_review.refresh_sha256, review.refresh_sha256);
+  const saved = readFileSync(resolve(output, 'delivery.json'));
+  mutate(directory, 'refresh.json', data => { data.results[1].reason = 'INVALID_ENTITY'; });
+  assert.throws(() => stageCompanyDelivery(directory, output, undefined, { allowReviewedExclusions: true }), /Complete reproduced/);
+  mutate(directory, 'refresh.json', data => { data.results[1] = { cik: badCik, status: 'http_error', http_status: 500 }; });
+  assert.throws(() => stageCompanyDelivery(directory, output, undefined, { allowReviewedExclusions: true }), /Complete reproduced/);
+  assert.deepEqual(readFileSync(resolve(output, 'delivery.json')), saved);
+});

@@ -244,3 +244,26 @@ See COMPANY_CATALOG.md for reproduction commands and remaining production limits
   delivery stager currently requires no exclusions. Create a bound accepted subset
   with explicit exclusion evidence before integration; never silently drop failures.
   Storage, production authorization, Search Console and all other goals unchanged.
+
+## Reproduced exclusions before delivery staging
+
+- reviewCandidates now replays source-based exclusions, verifying capture hashes,
+  byte counts, identity and matching selector error. Falsely excluding eligible
+  data or altering an exclusion reason produces a review error.
+- stageCompanyDelivery remains strict by default. Explicit reviewed-exclusions
+  mode permits only a complete cohort with reproduced source exclusions, at least
+  one eligible company and no review/HTTP errors. The delivery manifest retains
+  queue/refresh/selector hashes and every excluded identity/reason/source hash.
+- Focused tests cover altered reasons, eligible records falsely excluded, HTTP
+  errors, default rejection and unchanged prior delivery pointer after failure.
+  Full verify9578 passes354 tests (6+348) and final audits; log
+  /tmp/canli-reviewed-exclusion-verify.log. No source/runtime schema changed.
+- Partial real-batch review:137 eligible companies,1,197 core candidate pages,
+  112 flagged histories, no reproduction errors; complete=false. Exclusions are
+  preserved in company-next-batch-partial-review.json, never hidden. These are
+  not added to the9,386 verified extended delivery pages or indexed counts.
+- Capture59470 polled live after partial review. Continue same handle; no restart.
+  Websitebf84aa05 complete CI passes (35449671934); newer review checkpoint needs
+  its own CI. Engine529b0c7 offline tests were pending at last check.
+- Next: monitor final capture, rerun full review, stage with documented exclusions
+  only after completion, then combine and validate the expanded delivery.

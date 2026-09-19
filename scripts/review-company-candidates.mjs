@@ -5,7 +5,7 @@ import { createHash } from 'node:crypto';
 import { gunzipSync } from 'node:zlib';
 import { isDeepStrictEqual } from 'node:util';
 import { companyCoverage } from './lib/company-coverage.mjs';
-import { companyReference } from './lib/company-reference.mjs';
+import { companyReference, CompanyReferenceError } from './lib/company-reference.mjs';
 const sha256 = bytes => createHash('sha256').update(bytes).digest('hex');
 const read = path => JSON.parse(readFileSync(path, 'utf8'));
 
@@ -18,16 +18,31 @@ export function reviewCandidates(directory) {
   if (progress.schema !== 'canli.company-refresh.v1' || !Array.isArray(queue) || queue.some(cik => typeof cik !== 'string' || !/^\d{10}$/.test(cik)) || new Set(queue).size !== queue.length || progress.requested !== queue.length) throw new Error('Invalid review queue');
   const seen = new Set();
   const report = { schema: 'canli.company-candidate-review.v1', reviewed_at: new Date().toISOString(), refresh_sha256: sha256(progressBytes), queue_sha256: sha256(readFileSync(resolve(directory, 'ciks.json'))), selector_sha256: sha256(readFileSync(new URL('./lib/company-reference.mjs', import.meta.url))), complete: Boolean(progress.finished_at) && !progress.stopped && progress.results.length === queue.length, publication_approved: false, candidates: [], exclusions: [], errors: [] };
-  for (const result of progress.results) {
-    const cik = result.cik;
-    if (!queue.includes(cik) || seen.has(cik)) throw new Error('Duplicate or unrequested result');
-    seen.add(cik);
-    if (result.status !== 'eligible_for_review') { report.exclusions.push(result); continue; }
-    try {
+  function capture(cik) {
       const receipt = read(resolve(directory, cik + '.capture.json'));
       if (receipt.schema !== 'canli.sec-capture.v1' || receipt.cik !== cik || !/^[a-f0-9]{64}$/.test(receipt.sha256) || receipt.url !== `https://data.sec.gov/api/xbrl/companyfacts/CIK${cik}.json`) throw new Error('Invalid capture identity');
       const raw = gunzipSync(readFileSync(resolve(directory, receipt.sha256 + '.json.gz')), { maxOutputLength: 64 * 1024 * 1024 });
       if (sha256(raw) !== receipt.sha256 || raw.length !== receipt.bytes) throw new Error('Original capture bytes do not match receipt');
+      return { receipt, raw };
+  }
+  for (const result of progress.results) {
+    const cik = result.cik;
+    if (!queue.includes(cik) || seen.has(cik)) throw new Error('Duplicate or unrequested result');
+    seen.add(cik);
+    if (result.status !== 'eligible_for_review') {
+      if (result.status !== 'excluded') { report.exclusions.push(result); continue; }
+      try {
+        const { receipt, raw } = capture(cik);
+        let rejected;
+        try { companyReference(raw, { fetchedAt: receipt.fetched_at, expectedCik: cik }); }
+        catch (error) { rejected = error; }
+        if (!(rejected instanceof CompanyReferenceError) || rejected.code !== result.reason) throw new Error('Exclusion does not reproduce from source');
+        report.exclusions.push({ ...result, reproduced: true, source_sha256: receipt.sha256, fetched_at: receipt.fetched_at });
+      } catch (error) { report.errors.push({ cik, reason: error.message }); }
+      continue;
+    }
+    try {
+      const { receipt, raw } = capture(cik);
       const diagnostics = {};
       const reproduced = companyReference(raw, { fetchedAt: receipt.fetched_at, expectedCik: cik, diagnostics });
       const staged = read(resolve(directory, cik + '.record.json'));

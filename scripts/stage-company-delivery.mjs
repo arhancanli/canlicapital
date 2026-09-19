@@ -6,11 +6,12 @@ import { reviewCandidates } from './review-company-candidates.mjs';
 import { companyReference, verifyCompanyReference } from './lib/company-reference.mjs';
 import { catalogHash } from '../api/_lib/company-catalog.js';
 import { buildCompanyDownloadIndex } from './lib/build-company-download-index.mjs';
-export function stageCompanyDelivery(input, output, pilots, { selectionPolicy } = {}) {
+export function stageCompanyDelivery(input, output, pilots, { selectionPolicy, allowReviewedExclusions = false } = {}) {
   input = resolve(input); output = resolve(output);
   if (output === resolve('/') || input === output || input.startsWith(output + '/') || output.startsWith(input + '/')) throw new Error('Delivery and capture directories must be separate');
   const review = reviewCandidates(input);
-  if (!review.complete || review.errors.length || review.exclusions.length) throw new Error('Complete reproduced capture cohort required');
+  const excludedAccepted = allowReviewedExclusions && review.exclusions.every(row => row.status === 'excluded' && row.reproduced === true);
+  if (!review.complete || review.errors.length || (review.exclusions.length && !excludedAccepted) || !review.candidates.length) throw new Error('Complete reproduced capture cohort required');
   mkdirSync(resolve(output, 'objects'), { recursive: true });
   const files = [];
   const diagnostics = {};
@@ -41,14 +42,15 @@ export function stageCompanyDelivery(input, output, pilots, { selectionPolicy } 
   }
   if (new Set(files.map(file => file.cik)).size !== files.length) throw new Error('Duplicate delivery company');
   const download_index = buildCompanyDownloadIndex(files.flatMap(item => [item.source, item.selected]), output);
-  const manifest = { schema: 'canli.company-delivery.v1', publication_approved: false, ...(selectionPolicy ? { selection_policy: selectionPolicy, diagnostics } : {}), download_index, files };
+  const manifest = { schema: 'canli.company-delivery.v1', publication_approved: false, ...(allowReviewedExclusions ? { capture_review: { queue_sha256: review.queue_sha256, refresh_sha256: review.refresh_sha256, selector_sha256: review.selector_sha256, accepted_companies: review.candidates.length, exclusions: review.exclusions } } : {}), ...(selectionPolicy ? { selection_policy: selectionPolicy, diagnostics } : {}), download_index, files };
   writeFileSync(resolve(output, 'delivery.json.pending'), JSON.stringify(manifest, null, 2) + '\n');
   renameSync(resolve(output, 'delivery.json.pending'), resolve(output, 'delivery.json'));
   return manifest;
 }
 if (process.argv[1] && import.meta.url === pathToFileURL(resolve(process.argv[1])).href) {
-  const [input, output, pilots, selectionPolicy] = process.argv.slice(2);
-  if (!input || !output) throw new Error('Usage: node scripts/stage-company-delivery.mjs CAPTURES OUTPUT [PILOT_DIRECTORY] [SELECTION_POLICY]');
-  const manifest = stageCompanyDelivery(input, output, pilots, { selectionPolicy });
+  const [input, output, pilots, selectionPolicy, exclusionMode] = process.argv.slice(2);
+  if (!input || !output) throw new Error('Usage: node scripts/stage-company-delivery.mjs CAPTURES OUTPUT [PILOT_DIRECTORY] [SELECTION_POLICY] [reviewed-exclusions]');
+  if (exclusionMode !== undefined && exclusionMode !== 'reviewed-exclusions') throw new Error('Unknown exclusion mode');
+  const manifest = stageCompanyDelivery(input, output, pilots, { selectionPolicy, allowReviewedExclusions: exclusionMode === 'reviewed-exclusions' });
   console.log(`Staged original/selected downloads for ${manifest.files.length} companies; not published`);
 }

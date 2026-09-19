@@ -237,3 +237,15 @@ observation-vector duplicates and zero/constant histories. It infers potential k
 from rows, which is not authoritative taxonomy periodType. Labels alone do not prove
 meaning, usefulness, distinct intent or comparability. No new tag enters the public
 selector through this audit; opportunity counts are not publishable page counts.
+
+### Capture batches with reproduced exclusions
+
+After a capture finishes, review the entire original queue. A source rejection
+now reproduces from the stored receipt and original bytes; its reason must match
+the selector. Network failures and corrupt captures do not become valid exclusions.
+For a completed batch with documented source exclusions, pass the explicit final
+`reviewed-exclusions` argument to stage-company-delivery.mjs after SELECTION_POLICY
+(or set allowReviewedExclusions:true through its module API). The delivery manifest
+retains all exclusions plus original queue/refresh/selector hashes. A batch with
+no eligible companies, incomplete capture, HTTP errors or replay errors still fails.
+Do not modify a queue to hide rejected or failed captures.

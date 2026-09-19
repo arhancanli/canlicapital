@@ -641,3 +641,20 @@ code/receipts committed asd48bb968. Corrected to datetime.timezone.utc and saved
 this follow-up log and STATUS with exact running handle and current snapshot.
 Next: monitor same process, review all outcomes, preserve exclusions when preparing
 accepted cohort. No production/runtime mutation; all goals stay active.
+
+## 2026-09-19 — preserve source-reproduced exclusions in staging
+
+Previous turn was progress (source batch andbf84aa05). Reread continuity and
+polled59470 live; did not restart. Verified website checkpoint CI passes. Added
+source replay for excluded records and an explicit staging mode that retains
+exclusions and queue/refresh/selector bindings. Default stays strict; HTTP errors,
+changed exclusion reasons, falsely excluded valid records and partial cohorts
+cannot pass. Failure preserves prior delivery pointer. Eight focused checks pass;
+full verify9578 passes354 tests and final audits.
+
+Partial real-batch review captured137 eligible companies/1,197 core candidate
+pages and112 flagged histories; no reproduction errors, complete=false. Persisted
+partial review receipt for inspection; no delivery staging or page-count increase.
+Capture59470 remains live at final poll. Next: keep polling same process and review
+complete cohort before explicit exclusion-aware staging. All platform, indexing
+and engine goals remain open; storage/production/Search Console questions unchanged.
