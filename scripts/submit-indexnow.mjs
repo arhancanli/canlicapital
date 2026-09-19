@@ -36,6 +36,31 @@ function sha256(value) {
   return createHash("sha256").update(value).digest("hex");
 }
 
+export async function postIndexNowBatches({ urls, key, keyUrl, fetchImpl = fetch, onBatch = () => {} }) {
+  const batches = [];
+  for (let offset = 0; offset < urls.length; offset += 10_000) {
+    const batch = urls.slice(offset, offset + 10_000);
+    let response;
+    try {
+      response = await fetchImpl("https://api.indexnow.org/indexnow", {
+        method: "POST",
+        headers: { "content-type": "application/json; charset=utf-8", "user-agent": UA },
+        body: JSON.stringify({ host: new URL(ORIGIN).host, key, keyLocation: keyUrl, urlList: batch }),
+      });
+    } catch (error) {
+      onBatch({ offset, count: batch.length, http_status: null, error: String(error) });
+      throw error;
+    }
+    const result = { offset, count: batch.length, http_status: response.status };
+    batches.push(result);
+    onBatch(result);
+    if (response.status !== 200 && response.status !== 202) {
+      throw new Error(`IndexNow rejected batch at ${offset} (${response.status}): ${await response.text()}`);
+    }
+  }
+  return batches;
+}
+
 export function submissionPolicy({
   previous,
   urlListHash,
@@ -171,20 +196,15 @@ async function main() {
   }
 
   receipt.batches = [];
-  for (let offset = 0; offset < urls.length; offset += 10_000) {
-    const batch = urls.slice(offset, offset + 10_000);
-    const response = await fetch("https://api.indexnow.org/indexnow", {
-      method: "POST",
-      headers: { "content-type": "application/json; charset=utf-8", "user-agent": UA },
-      body: JSON.stringify({ host: new URL(ORIGIN).host, key, keyLocation: keyUrl, urlList: batch }),
-    });
-    receipt.batches.push({ offset, count: batch.length, http_status: response.status });
-    if (response.status !== 200 && response.status !== 202) {
+  await postIndexNowBatches({
+    urls, key, keyUrl,
+    onBatch: (batch) => {
+      receipt.batches.push(batch);
+      receipt.http_status = batch.http_status;
+      // Persist partial progress without claiming the complete URL set was accepted.
       writeReceipt(receipt);
-      throw new Error(`IndexNow rejected batch at ${offset} (${response.status}): ${await response.text()}`);
-    }
-    receipt.http_status = response.status;
-  }
+    },
+  });
   receipt.accepted = true;
   writeReceipt(receipt);
   console.log(`IndexNow accepted ${urls.length} canonical URLs (HTTP ${receipt.http_status}).`);
