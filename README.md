@@ -110,7 +110,10 @@ performance do not indicate future results. See `LICENSE`: provided "as is", wit
 The [platform direction and quality contract](docs/GLASSBOX-PLATFORM-VISION-2026-09-19.md)
 connect the research engine, developer API/MCP and the company-reference collection. The local
 expansion candidate adds 49 SEC-backed reference pages; it is not a million-page deployment.
-`npm run seo:inventory` reports the actual built count and gap to the one-million-page target.
+The search goal is **at least 800,000 indexed pages, targeting 1,000,000**, recorded in
+`config/search-growth-goal.json`. `npm run seo:inventory` reports built counts separately from
+actual indexing evidence; the indexed count remains unverified until Search Console evidence
+is available. `--require-indexed-minimum` fails while that evidence is missing.
 `npm run seo:capacity` tests sitemap transport with synthetic URLs in a temporary directory.
 
 Refresh selected company records explicitly with `npm run companies:import -- CIK [CIK ...]`.

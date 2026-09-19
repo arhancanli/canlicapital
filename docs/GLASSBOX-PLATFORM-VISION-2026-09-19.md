@@ -2,6 +2,8 @@
 
 The owner's direction is an open-source, glass-box algorithmic research platform that developers can inspect, reproduce and extend through API keys and MCP servers. The ambition is category leadership and, ultimately, a real fund. "First", "biggest" and "best" are ambitions, not verified public claims. Search growth must earn repeated developer use, not substitute for it.
 
+The owner clarified the search outcome on 19 September: **at least 800,000 indexed pages, with 1,000,000 indexed pages as the target**. This is recorded in `config/search-growth-goal.json`. The minimum applies to actual indexed canonical pages, not generated pages, live indexable URLs or submitted sitemaps. Track those stages separately. Do not lower the minimum or relax the quality requirements to declare success.
+
 ## Product contract
 
 One useful path connects the platform: inspect a source, formulate a hypothesis, register the experiment, reproduce the result net of costs, inspect failed tests, validate a return series, and retain its evidence. Website pages, the engine, the API and MCP must describe the same capabilities and evidence. A validation receipt does not establish the provenance of user data or certify a strategy.
@@ -21,6 +23,8 @@ The sitemap writer passes a one-million-URL synthetic test using 20 shards. This
 
 Run `npm run seo:inventory` after building. `node scripts/seo-inventory.mjs --require-target` deliberately fails while fewer than one million canonical pages exist. Never include test URLs in the content inventory.
 
+`node scripts/seo-inventory.mjs --require-indexed-minimum` also fails until actual indexing evidence is available. The current indexed count and indexed-page gaps remain unknown, not zero and not the local sitemap count. Establish a Search Console baseline, then measure progress at 10,000, 100,000, 300,000, 800,000 and 1,000,000 indexed canonical pages. Recheck freshness, duplication, exclusions and reader/developer usefulness at each stage.
+
 ## Quality required before a page enters search
 
 1. Answer a distinct, useful question with entity-specific or experiment-specific evidence. Renaming a template, splitting one observation into multiple pages, or multiplying ticker/keyword combinations is not new information.
@@ -32,7 +36,7 @@ Run `npm run seo:inventory` after building. `node scripts/seo-inventory.mjs --re
 
 The pilot requires at least four usable concepts per company and three distinct reporting dates per history. These are minimum integrity checks, not a complete editorial quality score. Current coverage is intentionally limited and US-GAAP-focused. IFRS, custom tags, other asset classes and genuinely point-in-time reconstruction require separate source and semantics work.
 
-## Path to approximately one million qualified pages
+## Path to at least 800,000 indexed pages and the one-million target
 
 | Stage | Work | Exit evidence |
 | --- | --- | --- |
@@ -41,9 +45,9 @@ The pilot requires at least four usable concepts per company and three distinct 
 | Serving scale | Move large collections off Vite's one-entry-per-page build into cached server rendering or incremental generation, backed by a durable catalog | Unknown routes return 404; missing sources do not emit empty indexable pages; measured cold/warm latency, concurrency, failure behavior and cost |
 | Discovery scale | Expose paginated entity/subject directories, bounded sitemap shards and change-based notifications | Every eligible canonical is discoverable; sampled and full-corpus integrity checks agree; no parameter crawl traps |
 | Research expansion | Publish reproducible, registered research and useful developer examples as evidence becomes available | Complete provenance, trial accounting, independent replication where required, and source-bound API/MCP examples |
-| Count target | Publish approximately one million independently useful documents only if the source collection supports them | Inventory meets the target; separate deployed, crawlable and Search Console indexed counts; monitor exclusions and quality by family |
+| Indexed minimum and target | Grow substantive content and search discovery toward at least 800,000 indexed pages, then 1,000,000 | Search Console evidence establishes the indexed count; independently track built, deployed and crawlable pages; monitor exclusions and quality by family |
 
-There is no evidence yet that the eligible corpus contains one million such documents. Measure it before promising a page allocation. If the quality-filtered count falls short, acquire additional useful sources or revise the count target; do not fabricate coverage.
+There is no evidence yet that the eligible corpus contains enough substantive documents to reach these indexed-page goals. Measure it before promising a page allocation. If the quality-filtered count falls short, acquire additional useful sources and develop additional substantive content; do not fabricate coverage or lower the owner's minimum.
 
 The current Vite/static publishing system is adequate for this pilot, not validated for a million pages. Vercel documents a 15,000 source-file upload limit and a 45-minute build limit, and recommends incremental generation for large outputs. A million checked-in HTML files is not the serving plan. Infrastructure selection needs actual storage, refresh-frequency, traffic and cost measurements.
 
