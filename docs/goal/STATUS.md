@@ -200,3 +200,23 @@ See COMPANY_CATALOG.md for reproduction commands and remaining production limits
   zero failures and unchanged maximum HTML31,652 bytes. Receipts updated.
 - Next: verify this pushed checkpoint CI; resolve outstanding semantic/editorial
   decisions and storage access. Production and Search Console remain pending.
+
+## Engine cost-disclosure correction
+
+- Read-only engine report dated2026-09-19T14:27:43.677129+00:00 still shows four
+  current sleeves and four daily forward returns; Sharpe estimate remains null.
+  These are report observations, not an independent replay of the live book.
+- Found crypto not_charged=[] despite the cost contract listing latency, financing
+  and idle-cash yield as uncharged. Equity summaries also omitted the contract’s
+  FX row (USD-only context remains in the contract).
+- PR68 evaluator correction unions declared omissions with state-reported omissions,
+  retains extra runtime gaps, marks absent summaries NOT_PUBLISHED, and binds the
+  cost contract by hash in evidence output. Does not charge costs or change returns.
+- Portable regression plus cost tests:5 pass; Ruff passes. Initial full module run
+  failed20 workspace-dependent checks because isolated data/paper/state.json is
+  absent; two tests passed. No full integration pass claimed. New regression is
+  in a separate portable test module so clean-checkout CI actually runs it.
+- Receipt: artifacts/seo/engine-cost-disclosure-review.json; preserves before/after
+  omission lists and source/code/contract hashes. No shared runtime writes.
+- Next: verify new PR68 CI and continue cost acquisition/measurement prerequisites,
+  qualified-sleeve research and the website release/editorial work. All goals open.

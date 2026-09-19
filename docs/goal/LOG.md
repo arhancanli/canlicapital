@@ -605,3 +605,24 @@ The74 partially historical-unit flags are now displayed clearly, not removed or
 editorially approved. Other source/semantic review, storage, production activation,
 Search Console and all engine/developer objectives remain open. Next: pushed-head
 CI, editorial decisions and durable storage integration.
+
+## 2026-09-19 — engine cost disclosure retains declared omissions
+
+Previous turn was progress (website4fce3854). Reread continuity and engine owner
+contracts; PR68 priorab75af0 complete CI passes. Read current shared maturity
+report without mutation: four forward returns/four sleeves, no Sharpe estimate.
+Found crypto omission list empty despite three declared NOT_CHARGED rows.
+Changed the isolated PR68 evaluator to union declared and state-reported omissions,
+retain extra gaps, label missing summaries NOT_PUBLISHED and hash-bind the cost
+contract. Equity’s declared FX row also becomes visible; its USD-only reason
+remains in the contract. This is a disclosure correction, not new cost charging.
+
+First broad test invocation failed20 checks for missing ignored paper state;
+retained log /tmp/canli-cost-disclosure-tests.log. Portable cost selection passed4,
+explicit new regression passed1. Moved regression to its own portable module
+(the original module is centrally classified workspace_evidence). Final focused
+run34973:5 passed; Ruff clean. Its trailing diff check failed on an accidental
+blank line in the old test module, which was then restored toHEAD. No integration
+pass or performance result claimed. Before/after read-only disclosure receipt
+saved to engine-cost-disclosure-review.json. Next: pushed-head CI, cost-data
+prerequisites, governed research and website release work.
