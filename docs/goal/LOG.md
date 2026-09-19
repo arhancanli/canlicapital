@@ -74,3 +74,18 @@ GitHub's shallow clone. Local full-history tests had passed. Set actions/checkou
 fetch-depth to zero so source-derived sitemap dates remain meaningful. No test was
 removed or relaxed. Engine phase 7 inspection started (historical lockfile bindings
 also govern migration/replay), then deferred to resolve this website CI failure.
+
+## 2026-09-19 — remote CI passes; next-phase evidence preserved
+
+PR 15 commit 78f914bd passes every expanded CI step on Linux/Node 22, including full
+verification, corpus integrity and notification batching. Run 35437145441. The
+implementation checkpoint is 2acf8087; 78f914bd fixes full-history checkout.
+
+Engine inspection recovered c57be7b^:uv.lock and verified its SHA-256 equals the
+historical publication/migration binding. ENGINE_ENVIRONMENT_REVIEW.md records why
+an archival fallback alone is insufficient for replay and the acceptance checks for
+a correct fix. No engine files were changed. Phase 7 fix remains outstanding.
+
+Added a CanliCapital-scoped pointer to /Users/arhancanli/AGENTS.md so a continuation
+starting in the home directory also rereads this folder after compaction. Goal remains
+active. No PR merge, deployment, actual-indexing measurement or algorithm-goal claim.
