@@ -190,3 +190,16 @@ The narrow local QA host can expose the staged XML at /company-sitemap.xml when 
 discovery directory is provided. All HTTP URLs are compared to rendered pages.
 This is not a live sitemap submission. Public wrappers/storage configuration,
 production sitemap aggregation and deployment packaging still require integration.
+
+## Verified request assembly
+
+`company-release.js` loads one <=4KiB SHA-bound release object, validates its schema
+and catalog company count, then assembles the company/directory/download handlers.
+The load can be shared across concurrent requests and retries after initial failure.
+The local preview uses this shared router and rejects mixed catalog/download/discovery
+inputs. Release approval metadata cannot enable indexing: these handlers stay noindex
+until a separate reviewed production activation path is implemented.
+
+The full staged HTTP replay passes through this assembly, including ETag/HEAD,
+source bytes, canonical pages and sitemap equality. Public Vercel wrappers, storage
+configuration and deployment bundling remain open; this module is not activation.

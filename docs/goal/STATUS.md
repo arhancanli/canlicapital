@@ -26,6 +26,10 @@ million-indexed-page vision and all other objectives after the sitemap discussio
 - Catalog reads bounded index nodes and records, with a 4 MiB payload cache.
   Download index uses 64 KiB nodes and a 256 KiB cache; actual cohort needs 17 nodes,
   184,535 bytes total, largest node 13,676 bytes. Process/concurrency memory is separate.
+- The request loader verifies a small immutable release before assembling company,
+  directory and download handlers from its two roots. The local host uses this same
+  router. Initial validation is shared; temporary failures can retry. A release object
+  cannot enable indexing by claiming approval. No public wrapper/storage configured.
 - Release binding replays source bytes and selected records before pinning catalog
   and download roots. Corrupt data fails and preserves the prior release pointer.
 - Directory lookup now seeks by rank through catalog counts, without a full CIK
@@ -38,9 +42,9 @@ million-indexed-page vision and all other objectives after the sitemap discussio
 - Synthetic navigation test: all 20,000 directory pages reached in at most four
   links. Initial three-link expectation failed and was corrected to the measured
   bound. This tests navigation, not content quality, live capacity or indexing.
-- Latest full local verification: **344 tests pass (6 + 338)**, clean writing,
+- Latest full local verification: **347 tests pass (6 + 341)**, clean writing,
   metadata, link, indexability and numerical-source/evidence audits. Log:
-  `/tmp/canli-discovery-final-verify.log`; session 91397 completed exit 0.
+  `/tmp/canli-release-runtime-verify.log`; session 85142 completed exit 0.
 - Latest staged browser review: **28 Chromium/WebKit checks pass**, 390/1440 widths.
   Inspected mobile final-directory screenshot. Local test servers are stopped.
 - Prior unchanged MCP tests: 43 pass. Developer links/examples/contributor guidance
@@ -62,8 +66,8 @@ million-indexed-page vision and all other objectives after the sitemap discussio
 ## Release, CI and environment
 
 - Website worktree/PR 15 remain the isolated task branch. Prior pushed head
-  **7bbfae30** passes both CI jobs, run **35442727719**. New discovery checkpoint
-  requires its own pushed-head CI check; do not confuse prior CI with later edits.
+  **de0df95f** passes both CI jobs, run **35447039133**. The new release-loader
+  checkpoint requires its own pushed-head CI check; do not confuse prior CI with later edits.
 - Preview Ready: https://meridian-c2lklakk2-arhans-projects-ac470eaa.vercel.app.
   It predates later delivery/discovery work; catalog inactive, no backend configured.
 - Publishing history integrated in bfca8f45; original design worktree and engine
@@ -88,8 +92,8 @@ million-indexed-page vision and all other objectives after the sitemap discussio
 
 ## Next actions and evidence
 
-1. Commit/push interrupted discovery checkpoint and verify current PR-head CI.
-2. Wire production-capable handlers to one verified release and real storage; package
+1. Verify current PR-head CI after the release-loader checkpoint push.
+2. Configure real storage and public wrappers for the verified-release handler; package
    assets and sitemap routing, retain genuine 404/503 and staged noindex behavior.
 3. Verify a preview, complete release review, then production activation only with
    the pending authorization. Establish Search Console measurements separately.

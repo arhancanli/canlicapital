@@ -9,7 +9,7 @@ import { catalogHash } from '../api/_lib/company-catalog.js';
 import { verifyCompanyReference } from './lib/company-reference.mjs';
 const [catalogDir, deliveryDir, distDir, output, discoveryDir] = process.argv.slice(2);
 if (!output) throw new Error('Usage: node scripts/measure-company-delivery.mjs CATALOG DELIVERY DIST REPORT [DISCOVERY]');
-const app = companyPreviewServer({ catalogDir, deliveryDir, distDir, discoveryDir });
+const app = await companyPreviewServer({ catalogDir, deliveryDir, distDir, discoveryDir });
 app.server.listen(0, '127.0.0.1'); await once(app.server, 'listening');
 const base = `http://127.0.0.1:${app.server.address().port}`;
 const report = { schema: 'canli.company-delivery-measurement.v1', publication_approved: false, environment: 'local Node HTTP, sequential; no cloud-load or indexing claim', companies: 0, histories: 0, directories: 0, downloads: 0, maxHtmlBytes: 0, failures: [] };

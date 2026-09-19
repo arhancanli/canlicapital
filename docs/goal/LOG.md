@@ -469,3 +469,24 @@ Session 44658 completed full HTTP measurement. Browser session 61303 completed a
 28 Chromium/WebKit mobile/desktop cases; inspected the mobile page-seven directory.
 Local servers stopped. Updated STATUS to one current snapshot, retaining history
 here instead of leaving contradictory stale pending states in the restart checklist.
+
+## 2026-09-19 — one verified release for serving
+
+Committed interrupted discovery work as de0df95f and pushed PR15. Both CI jobs pass
+(run35447039133). Owner's latest instruction reconfirms the million-indexed-page
+vision and every earlier platform/algorithm objective; no requirement was dropped.
+
+Added company-release.js to verify a <=4KiB immutable release, validate root/count
+bindings, and assemble company HTML, directory and download handlers together.
+Concurrent first requests share validation; an initial outage can recover on retry.
+The source object cannot switch on indexing through its approval field. Public
+indexing remains disabled until explicit production activation integration.
+
+Local QA now serves through the shared verified-release router, rather than wiring
+separate unchecked roots. Passed all3,057 pages,698 downloads and matching sitemap,
+zero orphan pages, maximum three clicks from /companies. Preserved request method
+and headers explicitly so native Node header getters survive dispatch. Three new
+release tests cover shared revision, corruption/count mismatch and outage retry.
+Full verification session85142 passed347 tests (6 +341) plus writing/SEO/evidence
+checks. Local HTTP session79385 completed. No production configuration or deployment.
+Next: real storage, public wrappers, asset/sitemap packaging, preview verification.

@@ -27,14 +27,14 @@ test('source delivery preserves original bytes, fails closed on corruption, and 
   buildCompanyCatalog([selected], catalogDir);
   const sourceHtml = readFileSync('companies/0000029534.html', 'utf8');
   writeFileSync(resolve(root, 'company-page-assets.json'), JSON.stringify(buildCompanyAssets(sourceHtml, '<link rel="stylesheet" href="/assets/company.css">')));
-  const { server } = companyPreviewServer({ catalogDir, deliveryDir: output, distDir: root });
+  const release = await buildCompanyRelease(catalogDir, output);
+  const { server } = await companyPreviewServer({ catalogDir, deliveryDir: output, distDir: root });
   server.listen(0, '127.0.0.1'); await once(server, 'listening');
   t.after(async () => { server.closeAllConnections(); await new Promise(resolve => server.close(resolve)); });
   const base = `http://127.0.0.1:${server.address().port}`;
   const descriptor = delivery.files[0].source;
   const original = readFileSync(resolve(input, selected.source_sha256 + '.json.gz'));
   assert.deepEqual(Buffer.from(await (await fetch(base + descriptor.path)).arrayBuffer()), original);
-  const release = await buildCompanyRelease(catalogDir, output);
   assert.equal(release.companies, 1); assert.equal(release.publication_approved, false);
   const discoveryDir = resolve(root, 'discovery');
   const discovery = await buildCompanyDiscovery(catalogDir, output, discoveryDir);
