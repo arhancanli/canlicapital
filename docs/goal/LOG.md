@@ -248,3 +248,27 @@ differences are only the new sharded-sitemap reader. Full build and 302 tests pa
 The integration merge records history already represented in the tested source;
 production pointer remains unchanged. Prepare a reviewable PR targeting the actual
 publishing branch before any activation.
+
+## 2026-09-19 — release approval pending; source refresh phase resumes
+
+Remote publishing branch was deleted (ls-remote confirms no head), so no PR against
+that branch was created. Integrated review stays in PR 15. Requested explicit
+production activation via asynchronous question, citing deploy-to-vercel's preview
+restriction. No activation until answer. Continuing phase 1 independently: refresh
+the measured eligible cohort into a resumable staged capture set, with source/identity
+validation and honest capture receipts, before any further page publishing.
+
+## 2026-09-19 — staged cohort refresh and complete security CI
+
+Added a bounded, resumable source-refresh queue. Captures retain exact source bytes,
+hashes and original capture times. Resume revalidates the archive, corrupt receipts
+stay available for inspection, wrong identity is excluded, responses stop at 64 MiB,
+and 403/429 stop the queue without retries. Six tests pass; added to full CI suite.
+First queue preparation used a lowercase status against the uppercase SQLite enum;
+assertion stopped with no requests. Corrected to ELIGIBLE_FOR_REVIEW and queued 342
+companies. Session 34744 is live, receipts update after each entity; no publication.
+
+Integrated website CI passes at bfca8f45. PR 69 full offline CI passes in 35m37s;
+PR 68 and PR 69 are now ready for review. PR 70's offline handle remains live.
+Production approval is still pending. Do not change the publisher source or deploy
+production without the requested answer. All outcome objectives remain active.

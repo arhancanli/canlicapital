@@ -27,8 +27,8 @@ Phase 1 tooling is tested; whole-corpus measurement remains blocked on source ac
 
 - SEC bulk archive HEAD request returned HTTP 403 from this environment on 19 September. No complete corpus was downloaded or counted. A local research collection contains 520 companyfacts gzip files; all 48 parts, issuer-manifest lineage and 520 file hashes/sizes verified. Selector accepts 344 companies and 2,657 histories (3,001 candidates), rejecting 146 invalid entities and 30 insufficient histories. Individual capture times are unknown, so candidates are not publication approved. This is a selected sample, not the full SEC corpus. Do not bypass access controls or extrapolate their eligibility to the market.
 - Search Console baseline unavailable. Asked owner which account/integration manages the property; answer pending.
-- PR 69's historical-environment fix is committed as 783ad0c and pushed: 49 local tests, strict mypy/Ruff and all 16 publication integrity checks pass. Original publication/migration files are unchanged. Remote publication integrity, PostgreSQL, mypy, Ruff and browser jobs pass at 783ad0c; the offline pytest job remains running. Keep draft until remaining checks finish.
-- PR 68 full CI passes, including the 23m19s offline suite. PR 69 offline pytest remains running; its other jobs pass. PR 70 collector-quality CI passes all jobs except the still-running offline pytest job.
+- PR 69's historical-environment fix is committed as 783ad0c and pushed: 49 local tests, strict mypy/Ruff and all 16 publication integrity checks pass. Original publication/migration files are unchanged. Remote publication integrity, PostgreSQL, mypy, Ruff and browser jobs pass at 783ad0c; the offline pytest job remains running. Full offline CI now passes; marked ready for review.
+- PR 68 full CI passes, including the 23m19s offline suite. PR 69 full CI passes, including its 35m37s offline suite; marked ready for review. PR 70 collector-quality CI passes all jobs except the still-running offline pytest job.
 - Engine baseline snapshot: four sleeves, four current-epoch daily returns; 248 more observations before Sharpe estimation and 752 before observation-count establishment gate. Modeled cost and tail-risk coverage incomplete. This is a dated snapshot, not a current live metric.
 
 ## Next actions (read and verify before proceeding)
@@ -74,3 +74,19 @@ Phase 1 tooling is tested; whole-corpus measurement remains blocked on source ac
 - `/tmp/canli-integrated-build.log` and `/tmp/canli-integrated-verify.log` hold results.
 - Production activation still requires advancing the actual publishing source after
   integrated review; original worktree and runtime pointer are unchanged.
+
+- Production approval question is pending. Remote design branch no longer exists;
+  local approved source is unchanged. PR 15 contains integrated history.
+- Independent current work: resumable, bounded refresh of the 344 eligible company
+  candidates into staged captures. This is not automatic publication or indexing.
+
+- Integrated website CI passes at bfca8f45: run 35439336771/job 105887325480.
+- Engine PR 69 at 783ad0c now passes its complete CI, offline job 105882846688
+  included (35m37s); PRs 68 and 69 marked ready for review. PR 70 offline job
+  105885124970 remains live/pending, other checks pass.
+- Fresh queue: 342 previously eligible companies after excluding two already
+  published fresh records. Running session 34744, `/tmp/canli-fresh-review.log`,
+  incremental receipt `artifacts/seo/corpus-local/fresh-review/refresh.json`.
+  Do not restart while this handle is live. Six refresh tests pass; queued identities,
+  catalog hash and code hashes are tracked in `artifacts/seo/fresh-review-input.json`.
+  No source files from this queue enter the public site automatically.
