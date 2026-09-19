@@ -626,3 +626,18 @@ blank line in the old test module, which was then restored toHEAD. No integratio
 pass or performance result claimed. Before/after read-only disclosure receipt
 saved to engine-cost-disclosure-review.json. Next: pushed-head CI, cost-data
 prerequisites, governed research and website release work.
+
+## 2026-09-19 — launch next source cohort
+
+Previous turn was progress (engine529b0c7/websiteeaebaa78). Reread continuity;
+website CI passes, engine offline tests still running while other five jobs pass.
+Captured official SEC ticker discovery with timestamp/hash and selected1,000 new
+CIKs outside existing cohort. Started original-byte capture session59470; polled
+live. Queue builder reproduces exact queue and rejects replacement. Four direct
+fixture checks pass. New source counts remain candidates, not pages.
+
+First continuity-write attempt failed because system Python lacks datetime.UTC;
+code/receipts committed asd48bb968. Corrected to datetime.timezone.utc and saved
+this follow-up log and STATUS with exact running handle and current snapshot.
+Next: monitor same process, review all outcomes, preserve exclusions when preparing
+accepted cohort. No production/runtime mutation; all goals stay active.

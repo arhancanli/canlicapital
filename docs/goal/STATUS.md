@@ -220,3 +220,27 @@ See COMPANY_CATALOG.md for reproduction commands and remaining production limits
   omission lists and source/code/contract hashes. No shared runtime writes.
 - Next: verify new PR68 CI and continue cost acquisition/measurement prerequisites,
   qualified-sleeve research and the website release/editorial work. All goals open.
+
+## Next 1,000-company capture batch — running
+
+- Phase1 source acquisition resumed. Captured official SEC ticker discovery at
+  2026-09-19T14:42:18.860Z:8,031 unique CIKs. Deterministic next1,000 queue excludes
+  existing349-company cohort. Receipts: company-next-batch.json and
+  company-next-batch-selection.json. Queue builder committed in d48bb968.
+- Active exec_command session **59470**, confirmed live this turn. Command:
+  `node scripts/refresh-company-candidates.mjs artifacts/seo/corpus-local/next-1000/ciks.json artifacts/seo/corpus-local/next-1000`.
+  stdout /tmp/canli-next-1000-refresh.log; progress next-1000/refresh.json.
+- Snapshot 2026-09-19T14:44:46.814471+00:00: 77/1,000 processed, {'eligible_for_review': 69, 'excluded': 8}.
+  Partial capture is not reviewed eligibility, deployed pages or indexing. Verified
+  staged count remains9,386; actual indexed count unknown.
+- Poll59470 before restart. If handle missing, inspect process and terminal refresh
+  state. Never restart on observation timeout. Retain source bytes and timestamps;
+  403/429 stops require inspection, not automatic retry.
+- Queue verification covered duplicate discovery IDs, existing exclusions, same-queue
+  resume and changed-queue rejection without overwrite.
+- Websiteeaebaa78 passes both CI jobs (35449468907). Engine529b0c7 passes five
+  jobs; offline pytest pending (35449467653), no complete-CI claim yet.
+- Next: monitor capture and independently review accepted records/exclusions. The
+  delivery stager currently requires no exclusions. Create a bound accepted subset
+  with explicit exclusion evidence before integration; never silently drop failures.
+  Storage, production authorization, Search Console and all other goals unchanged.
