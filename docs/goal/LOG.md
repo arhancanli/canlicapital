@@ -372,3 +372,34 @@ unchanged. Its mutating-prebuild regression passes, and actual snapshot clone bu
 passes. No remote preview URL was fetched. Updated proof in catalog-preview.json.
 No source catalog upload/activation, production change, indexed-page or cloud-load
 claim. Next: source-download backend mapping and catalog-backed HTML/discovery.
+
+## 2026-09-19 — staged HTML and immutable source downloads
+
+Continued phase 3 after rereading all continuity records. Prior checkpoint f5ab6199
+has passing remote CI. Extracted the existing company renderer and proved all pilot
+company/history documents byte-identical. Added compiled-resource mapping and an
+injected catalog HTML handler, retaining original-unit/coverage warnings, provenance,
+JSON-LD and GitHub/MCP/API-key links. Fixed reserved internal renderer targets being
+accepted as public history names; regression now rejects /all and /overview aliases.
+
+Combined 342 fresh and seven pilot records into a 349-company catalog. Staged 698
+immutable original/selected downloads; raw and compressed hashes remain distinct.
+Local HTTP measurement passed all 349 overviews, 2,701 histories and seven bounded
+directories (3,057 reference pages), five compiled assets, HEAD/304 and genuine404s.
+No new Vite entries or public catalog activation. Browser checks passed28 cases in
+Chromium/WebKit at390/1440; inspected the mobile Toyota screenshot. Local test servers
+stopped. Source corruption regression returns503 and preserves prior delivery pointer.
+
+Final full verification is running in session29894. No cloud-load/indexed-page claim.
+Next: pin production source lookup and crawl discovery to the catalog revision,
+then deployment packaging and release review; existing production/Search Console
+questions remain pending. Algorithm and developer adoption objectives remain active.
+
+Full verification first passed 335 tests (6 + 329), then failed the writing ratchet
+on two em dashes in the new directory titles. Replaced punctuation; no contract
+ceiling was changed. Re-running the complete verification after that correction.
+
+Session49160 completed successfully:335 tests and all writing, metadata, link,
+indexability, publication and numerical-source audits pass. Final full-cohort HTTP
+measurement also passes after routing/breadcrumb corrections. Restored only build-
+generated timestamp/hash churn; no engine records or shared files were changed.

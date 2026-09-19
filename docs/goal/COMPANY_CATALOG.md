@@ -98,3 +98,41 @@ It builds in a separate temporary clone and prints that clone's location. Deploy
 UPLOAD_SOURCE, not the generated clone. A regression fixture deliberately rewrites
 index.html and verifies the upload input remains byte-identical. The real snapshot
 also passes this isolated build. This command performs no deployment.
+
+## Staged HTML and source-delivery proof
+
+`company-page-renderer.mjs` is shared by the existing static generator and the
+injected HTML handler. All pilot company/history output remains byte-identical.
+`build-company-assets.mjs` runs after Vite and emits a resource manifest; dynamic
+HTML replaces the matching source imports with these compiled assets. A mismatched
+renderer/bundle fails closed. Runtime HTML is capped at 256 KiB and defaults to
+noindex/no-store until explicit activation. It only accepts actual concept tags.
+
+Optional PILOT_DIRECTORY merges the seven already-reviewed companies into the
+fresh cohort. Every pilot source is independently replayed as well. Source delivery
+stores the original compressed bytes and selected JSON as content-addressed objects;
+logical download paths retain the raw SEC-response hash. A corrupted existing object
+aborts staging without replacing delivery.json. No backend upload occurs.
+
+```sh
+node scripts/build-staged-company-catalog.mjs artifacts/seo/corpus-local/fresh-review artifacts/seo/corpus-local/company-catalog-combined public/company-data
+node scripts/stage-company-delivery.mjs artifacts/seo/corpus-local/fresh-review artifacts/seo/corpus-local/company-delivery public/company-data
+npm run build
+node scripts/measure-company-delivery.mjs artifacts/seo/corpus-local/company-catalog-combined artifacts/seo/corpus-local/company-delivery dist artifacts/seo/company-delivery-measurement.json
+node scripts/preview-company-delivery.mjs artifacts/seo/corpus-local/company-catalog-combined artifacts/seo/corpus-local/company-delivery dist
+```
+
+The preview binds localhost only. It serves 50 companies per directory page and
+seven linked pages for the measured 349-company corpus. Its complete download map
+and directory boundary list are local QA fixtures, not a production million-record
+architecture. Production requires a bounded download index and reviewed discovery
+manifest pinned to the same catalog revision. Shared non-company destinations are
+not mounted by this narrow QA server; browser checks verify their hrefs, not those
+flows. Existing developer flow checks remain separate.
+
+Measurement verifies all 3,057 reference pages, 698 original/selected downloads,
+source reproduction, canonical/structured-data identities, developer entry points,
+compiled assets, directory completeness, real misses, HEAD and conditional requests.
+The largest HTML is 28,902 bytes. Sequential local timings are not cloud load tests.
+The 28 browser checks exercise Chromium/WebKit at mobile/desktop widths. No content
+was activated, submitted or claimed indexed by these measurements.

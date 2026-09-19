@@ -1,7 +1,7 @@
 # Current state
 
 Updated: 2026-09-19. Overall goal: **ACTIVE, NOT ACHIEVED**.
-Current phase: **3 — build bounded company storage and serving lookup**.
+Current phase: **3 — staged catalog-backed HTML and source delivery verified**.
 Next implementation phase: **3 — bounded serving/discovery for the measured corpus**.
 All owner requirements remain in REQUIREMENTS.md and are unchanged.
 
@@ -19,15 +19,16 @@ All owner requirements remain in REQUIREMENTS.md and are unchanged.
 - Fresh refresh now **complete**: 342 candidates (excluding two already refreshed
   pilot companies), 2,645 histories, **2,987 candidate pages**, zero HTTP exclusions
   and zero source-reproduction errors. Compressed fresh originals: 57,540,391 bytes.
-  These are staged locally, not published. Together with the current draft they
-  could support 3,314 pages, subject to release review; this is not an indexed count.
+  These are staged locally, not published. The combined local delivery proof now serves 3,057 reference pages, including seven
+  paginated directories. With the 263-page baseline this could support 3,320 pages
+  after release review/integration; it is not a live or indexed count.
 - 322 histories need coverage interpretation: 258 end more than two years before
   capture, 76 use multiple units, with 12 in both groups. Neither old coverage nor
   an unusual currency is silently normalized or interpreted as delisting.
 
 ## Current validation and changes
 
-- Full current local build/verification: **328 tests pass** (6 + 322), plus the snapshot-isolation regression, zero metadata
+- Full current local build/verification: **335 tests pass** (6 + 329), including the snapshot-isolation regression, zero metadata
   errors/warnings, zero indexability conflicts, all indexable pages within three
   clicks. Numerical-source, publication and research/trial audits pass.
 - Coverage presentation exposes reporting start/end separately from capture dates,
@@ -39,7 +40,7 @@ All owner requirements remain in REQUIREMENTS.md and are unchanged.
 - Review tool independently rebuilds selected records from archived response bytes,
   checks receipt byte count/hash/identity/date and queue summaries. Tampering and
   partial/duplicate results are tested. Review is not automatic publication approval.
-- Last remote website CI verified: **5e57941a passes**, run 35440819352. Snapshot
+- Last remote website CI verified: **f5ab6199 passes**, run 35441227025. Snapshot
   isolation helper passes its targeted regression and an actual cloned snapshot build.
 - Prior unchanged MCP implementation passed 43 tests. On-site repository/MCP/API-key
   entry points and contributor guidance implemented. No adoption/star-growth claim.
@@ -112,3 +113,22 @@ All owner requirements remain in REQUIREMENTS.md and are unchanged.
   proves original homepage bytes remain unchanged; actual snapshot clone build passes.
 - Remaining phase 3 work: backend/source-download mapping, catalog-backed HTML and
   bounded crawlable discovery, then review/activation. API JSON alone is not SEO pages.
+
+## Catalog-backed HTML checkpoint
+
+- Shared pure renderer preserves all 63 existing company/history documents byte for
+  byte. Catalog-fed HTML uses the five compiled Vite resource tags, with no thousands
+  of new build entries. Invalid history aliases return 404; storage errors return 503.
+- Combined catalog: **349 companies, 2,701 histories, seven directories = 3,057
+  reference HTML pages**. Local HTTP measurement verifies every page and all **698
+  original/selected downloads**, including source replay. Largest HTML: 28,902 bytes.
+- Download staging preserves original gzip bytes in immutable content-addressed
+  objects. Raw-response hashes and compressed-object hashes remain distinct. Local
+  preview resolves a full manifest; a bounded production download index is still needed.
+- Browser review: **28 Chromium/WebKit checks pass** at 390/1440, including Toyota,
+  H World, SoFi, old Apple revenue coverage, and the final directory page.
+- Evidence: `artifacts/seo/company-delivery-measurement.json` and
+  `artifacts/seo/company-delivery-browser.json`. Local preview servers are stopped.
+- Production wrapper, storage upload, bounded production discovery/sitemaps and
+  deployment verification remain open. No new production routes activated. Full
+  final verification passed (session49160):335 tests, clean writing/SEO/evidence audits.
