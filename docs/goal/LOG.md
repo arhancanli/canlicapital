@@ -437,3 +437,9 @@ Session55417 completed successfully:339 tests (6 +333) and all writing, metadata
 indexability, link graph and numerical-source/evidence checks pass. No additional
 UI change required another browser pass. Existing28 staged browser checks remain
 the layout evidence; download behavior is covered by the new HTTP replay.
+
+Implementation commits093fb0fd/e6eb2ed7 pushed to PR15. Updated description includes
+source bounds, release binding, wrapper security and remaining discovery work.
+Remote CI35442672656: wrapper job passed; website job105896110867 verified live.
+Next turn should check the existing job/current PR head before new implementation.
+No uncommitted runtime or generated-data mutation remains from this checkpoint.

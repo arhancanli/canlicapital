@@ -160,3 +160,8 @@ All owner requirements remain in REQUIREMENTS.md and are unchanged.
   open until a reviewed fix lands there. No security-alert dismissal.
 - Production source wrappers/storage, directory discovery/sitemaps, packaging and
   activation remain open. No production change, index count or adoption claim.
+
+- Pushed **093fb0fd** (design-wrapper fix) and **e6eb2ed7** (bounded source lookup
+  and release binding) to PR15; PR description updated. CI run35442672656 is live:
+  design-wrapper job105896110723 passed, website job105896110867 was in progress
+  at last verification. Check this run and the current PR head after continuation.
