@@ -26,8 +26,8 @@ with sync_playwright() as p:
                     for target in ['/developers#quickstart', '/developers#ai-assistant', 'https://github.com/arhancanli/alphac']:
                         assert page.locator(f'a[href="{target}"]').count(), (path, target)
                     assert page.locator('h1').evaluate('(n) => getComputedStyle(n).fontSize') != '32px', 'Styles not applied'
-                    if engine == 'chromium' and path == '/companies/0001094517':
-                        page.screenshot(path=f'/tmp/canli-delivery-{width}.png', full_page=True)
+                    if engine == 'chromium' and path in ['/companies/0001094517', '/companies/page/7']:
+                        page.screenshot(path=f'/tmp/canli-delivery-{width}-{path.split("/")[-1]}.png', full_page=True)
                     checks.append({'engine': engine, 'width': width, 'path': path, 'status': 'PASS'})
                 assert not errors, errors
                 page.close()

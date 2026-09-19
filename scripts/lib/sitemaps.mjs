@@ -17,7 +17,7 @@ function sameOrigin(loc, origin) {
 }
 
 /** Stream records in deterministic source order; retain only one shard and the uniqueness set. */
-export function writeSitemaps(records, { directory, origin, maxUrls = MAX_URLS, maxBytes = MAX_BYTES }) {
+function sitemapWriter({ directory, origin, maxUrls = MAX_URLS, maxBytes = MAX_BYTES }) {
   origin = new URL(origin).origin;
   if (!Number.isInteger(maxUrls) || maxUrls < 1 || maxUrls > MAX_URLS || !Number.isInteger(maxBytes) || maxBytes <= Buffer.byteLength(open + close) || maxBytes > MAX_BYTES) throw new Error('Invalid sitemap limits');
   mkdirSync(directory, { recursive: true });
@@ -33,7 +33,7 @@ export function writeSitemaps(records, { directory, origin, maxUrls = MAX_URLS, 
     entries = []; bytes = Buffer.byteLength(open + close);
     return xml;
   };
-  for (const record of records) {
+  function add(record) {
     const url = sameOrigin(record.loc, origin);
     if (seen.has(url.href)) throw new Error(`Duplicate sitemap URL: ${record.loc}`);
     seen.add(url.href);
@@ -45,6 +45,7 @@ export function writeSitemaps(records, { directory, origin, maxUrls = MAX_URLS, 
     if (entries.length && (entries.length >= maxUrls || bytes + size > maxBytes)) flush();
     entries.push(entry); bytes += size; count++;
   }
+  function finish() {
   // Keep the small-site format; existing submitted /sitemap.xml remains the entry point.
   let xml;
   if (!shards.length) xml = open + entries.join('') + close;
@@ -59,6 +60,20 @@ export function writeSitemaps(records, { directory, origin, maxUrls = MAX_URLS, 
   writeFileSync(pending, xml);
   renameSync(pending, resolve(directory, 'sitemap.xml'));
   return { urls: count, shards: shards.length || 1, bytes: shards.length ? shards.reduce((sum, shard) => sum + shard.bytes, 0) : Buffer.byteLength(xml) };
+  }
+  return { add, finish };
+}
+
+export function writeSitemaps(records, options) {
+  const writer = sitemapWriter(options);
+  for (const record of records) writer.add(record);
+  return writer.finish();
+}
+
+export async function writeAsyncSitemaps(records, options) {
+  const writer = sitemapWriter(options);
+  for await (const record of records) writer.add(record);
+  return writer.finish();
 }
 
 export function parseSitemap(xml) {

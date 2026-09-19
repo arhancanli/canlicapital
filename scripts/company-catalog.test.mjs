@@ -132,3 +132,20 @@ test('public read endpoint supports browser CORS preflight without touching stor
   assert.equal(response.headers['Access-Control-Allow-Origin'], '*');
   assert.equal(response.headers['Access-Control-Allow-Headers'], 'If-None-Match');
 });
+
+test('ranked directory seeks directly to late pages without reading company objects or prior pages', async t => {
+  const { manifest, records, readObject } = fixture(t, 1001);
+  const catalog = createCompanyCatalog({ rootHash: manifest.root_hash, readObject: async hash => {
+    const bytes = await readObject(hash);
+    assert.equal(JSON.parse(bytes).schema, 'canli.company-catalog-node.v1'); return bytes;
+  } });
+  const last = await catalog.directoryPage(21);
+  assert.deepEqual(last.companies, records.slice(1000).map(({ cik, name }) => ({ cik, name })));
+  assert.equal(last.pages, 21); assert.equal(last.total, 1001);
+  assert.equal(catalog.stats().objectReads, manifest.index_levels);
+  assert.equal(await catalog.directoryPage(22), null);
+  await assert.rejects(catalog.directoryPage(0), /Invalid directory/);
+  const all = [];
+  for (let page = 1; page <= 21; page++) all.push(...(await catalog.directoryPage(page)).companies);
+  assert.deepEqual(all, records.map(({ cik, name }) => ({ cik, name })));
+});

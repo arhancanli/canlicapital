@@ -443,3 +443,29 @@ source bounds, release binding, wrapper security and remaining discovery work.
 Remote CI35442672656: wrapper job passed; website job105896110867 verified live.
 Next turn should check the existing job/current PR head before new implementation.
 No uncommitted runtime or generated-data mutation remains from this checkpoint.
+
+## 2026-09-19 — bounded directory and release-bound crawl discovery
+
+Previous goal turn made concrete progress; subsequent interruption was for the
+owner's status/sitemap questions. Owner reconfirmed all goals and asked to continue.
+Rechecked actual worktree and completed processes before resuming. Prior head
+7bbfae30 passes both CI jobs (35442727719); this does not cover unpushed changes.
+
+Implemented ranked catalog directories: skip whole counted branches, read no
+financial records, no complete CIK boundary list. Added range navigation bounded
+at 20 links/level on existing directory pages, with unique range descriptions,
+previous/next links and canonical breadcrumbs. Synthetic 20,000-page traversal
+passes at four links; the initial three-link expectation failed and was corrected.
+No synthetic pages were published or counted toward the owner target.
+
+Added asynchronous sitemap enumeration using the existing protocol writer, pinned
+to a verified release. Failure during enumeration/count checks preserves the prior
+discovery pointer. Staged sitemap contains 3,057 URLs/410,440 bytes. Local HTTP replay
+checks exact equality with served pages, all 698 downloads, zero orphan references
+and maximum three links from /companies. This is not homepage depth or indexing.
+
+Session 91397 completed: 344 tests (6 + 338), all writing/SEO/evidence audits pass.
+Session 44658 completed full HTTP measurement. Browser session 61303 completed all
+28 Chromium/WebKit mobile/desktop cases; inspected the mobile page-seven directory.
+Local servers stopped. Updated STATUS to one current snapshot, retaining history
+here instead of leaving contradictory stale pending states in the restart checklist.

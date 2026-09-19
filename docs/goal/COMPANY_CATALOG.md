@@ -163,3 +163,30 @@ release pointer untouched. `artifacts/seo/company-release-staged.json` records t
 The builders retain compact descriptor arrays; million-record build memory and
 cloud concurrency are not measured. Next: bounded directory and sitemap discovery
 from the bound release, production wrappers/storage, and deployment verification.
+
+## Ranked discovery checkpoint
+
+`catalog.directoryPage(page)` uses subtree counts to seek directly to the requested
+50-company window. Its late-page regression proves only the index path is read;
+company objects and preceding pages are not loaded. Range navigation uses at most
+20 links per level on actual directory pages, rather than generating empty hubs.
+The 20,000-page synthetic graph is fully connected within four links. The actual
+3,057-page reference graph has maximum depth three from /companies.
+
+`build-company-discovery.mjs CATALOG DELIVERY OUTPUT` loads the immutable verified
+release and asynchronously enumerates its companies/histories into sitemap shards.
+It verifies counts before switching discovery.json and takes a single-writer lock.
+Directory lastmod is omitted because source capture dates do not establish changes
+to directory membership/templates. Data page lastmod comes from the captured record.
+The writer still retains its URL uniqueness set, so build memory grows with count;
+no million-page build-memory measurement is claimed.
+
+```sh
+node scripts/build-company-discovery.mjs artifacts/seo/corpus-local/company-catalog-combined artifacts/seo/corpus-local/company-delivery artifacts/seo/corpus-local/company-discovery
+node scripts/measure-company-delivery.mjs artifacts/seo/corpus-local/company-catalog-combined artifacts/seo/corpus-local/company-delivery dist artifacts/seo/company-delivery-measurement.json artifacts/seo/corpus-local/company-discovery
+```
+
+The narrow local QA host can expose the staged XML at /company-sitemap.xml when a
+discovery directory is provided. All HTTP URLs are compared to rendered pages.
+This is not a live sitemap submission. Public wrappers/storage configuration,
+production sitemap aggregation and deployment packaging still require integration.

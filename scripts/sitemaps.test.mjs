@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
-import { writeSitemaps, localSitemapUrls, parseSitemap, fetchSitemapUrls, MAX_BYTES } from './lib/sitemaps.mjs';
+import { writeAsyncSitemaps, writeSitemaps, localSitemapUrls, parseSitemap, fetchSitemapUrls, MAX_BYTES } from './lib/sitemaps.mjs';
 const origin = 'https://canlicapital.com';
 function fixture(t) { const directory = mkdtempSync(join(tmpdir(), 'canli-sitemap-')); t.after(() => rmSync(directory, { recursive: true, force: true })); return directory; }
 function* records(n) { for (let i = 0; i < n; i++) yield { loc: `${origin}/fixture/${i}`, lastmod: '2026-09-19' }; }
@@ -55,4 +55,17 @@ test('index traversal rejects cycles, foreign origins and failed child responses
   assert.throws(() => localSitemapUrls(directory), /repeated/);
   await assert.rejects(fetchSitemapUrls(`${origin}/sitemap.xml`, { rootXml: index('https://evil.test/sitemap.xml') }), /Invalid sitemap URL/);
   await assert.rejects(fetchSitemapUrls(`${origin}/sitemap.xml`, { rootXml: index(`${origin}/leaf.xml`), fetchImpl: async () => ({ ok: false, status: 503 }) }), /503/);
+});
+
+
+test('async catalog routes share shard limits and preserve the prior root if enumeration fails', async t => {
+  const directory = fixture(t);
+  async function* input() { for (const record of records(7)) yield record; }
+  const result = await writeAsyncSitemaps(input(), { directory, origin, maxUrls: 3 });
+  assert.equal(result.urls, 7); assert.equal(result.shards, 3);
+  assert.equal(localSitemapUrls(directory, origin).length, 7);
+  const before = readFileSync(join(directory, 'sitemap.xml'));
+  async function* broken() { yield { loc: origin + '/new' }; throw new Error('catalog offline'); }
+  await assert.rejects(writeAsyncSitemaps(broken(), { directory, origin }), /catalog offline/);
+  assert.deepEqual(readFileSync(join(directory, 'sitemap.xml')), before);
 });

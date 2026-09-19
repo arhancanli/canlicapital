@@ -1,4 +1,6 @@
 import test from 'node:test';
+import { buildCompanyDiscovery } from './build-company-discovery.mjs';
+import { catalogHash } from '../api/_lib/company-catalog.js';
 import { buildCompanyRelease } from './build-company-release.mjs';
 import assert from 'node:assert/strict';
 import { mkdtempSync, readFileSync, writeFileSync, rmSync } from 'node:fs';
@@ -34,6 +36,17 @@ test('source delivery preserves original bytes, fails closed on corruption, and 
   assert.deepEqual(Buffer.from(await (await fetch(base + descriptor.path)).arrayBuffer()), original);
   const release = await buildCompanyRelease(catalogDir, output);
   assert.equal(release.companies, 1); assert.equal(release.publication_approved, false);
+  const discoveryDir = resolve(root, 'discovery');
+  const discovery = await buildCompanyDiscovery(catalogDir, output, discoveryDir);
+  assert.equal(discovery.urls, 2 + selected.concepts.length);
+  const beforeDiscovery = readFileSync(resolve(discoveryDir, 'discovery.json'));
+  const badRelease = { ...release, histories: release.histories + 1 }; delete badRelease.release_hash;
+  const badBytes = Buffer.from(JSON.stringify(badRelease)); const badHash = catalogHash(badBytes);
+  writeFileSync(resolve(output, 'objects', badHash + '.json'), badBytes);
+  writeFileSync(resolve(output, 'company-release.json'), JSON.stringify({ release_hash: badHash }));
+  await assert.rejects(buildCompanyDiscovery(catalogDir, output, discoveryDir), /counts do not match/);
+  assert.deepEqual(readFileSync(resolve(discoveryDir, 'discovery.json')), beforeDiscovery);
+  writeFileSync(resolve(output, 'company-release.json'), JSON.stringify(release));
   const priorRelease = readFileSync(resolve(output, 'company-release.json'));
   const manifest = readFileSync(resolve(output, 'delivery.json'));
   writeFileSync(resolve(output, descriptor.storage_path), 'corrupt');

@@ -55,6 +55,27 @@ export function createCompanyCatalog({ rootHash, readObject, cacheBytes = CATALO
   }
   return {
     revision: rootHash,
+    async directoryPage(page) {
+      check(Number.isSafeInteger(page) && page >= 1, 'Invalid directory page');
+      const root = await readNode(rootHash);
+      const total = root.entries.reduce((sum, entry) => sum + entry.count, 0);
+      check(Number.isSafeInteger(total) && total > 0 && total <= 9_999_999_999, 'Invalid catalog company count');
+      const pages = Math.ceil(total / 50);
+      if (page > pages) return null;
+      let skip = (page - 1) * 50;
+      const companies = [];
+      async function visit(node) {
+        for (const entry of node.entries) {
+          if (skip >= entry.count) { skip -= entry.count; continue; }
+          if (node.level) await visit(await readNode(entry.hash, entry, node.level - 1));
+          else companies.push({ cik: entry.first, name: entry.name });
+          if (companies.length === 50) break;
+        }
+      }
+      await visit(root);
+      check(companies.length === Math.min(50, total - (page - 1) * 50), 'Directory count does not match catalog');
+      return { revision: rootHash, page, pages, total, companies };
+    },
     async listCompanies({ after = '', limit = 50 } = {}) {
       check(after === '' || (typeof after === 'string' && cikPattern.test(after)), 'Invalid directory cursor');
       check(Number.isInteger(limit) && limit >= 1 && limit <= 50, 'Directory limit must be 1–50');
