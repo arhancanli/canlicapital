@@ -1,0 +1,29 @@
+{
+  "schema": "canli.catalog-preview.v1",
+  "preview_url": "https://meridian-c2lklakk2-arhans-projects-ac470eaa.vercel.app",
+  "deployment_id": "dpl_3xmLsji65LwWt1BmnxhSoBv4bytE",
+  "vercel_status": "Ready",
+  "verification": "Vercel CLI inspect; no remote HTTP fetch",
+  "packaged_functions": [
+    "api/v1/companies/index",
+    "api/v1/companies/[cik]"
+  ],
+  "catalog_activated": false,
+  "production_changed": false,
+  "local_snapshot_checks": {
+    "rendered_pages": 690,
+    "indexable_pages": 327,
+    "metadata_errors": 0,
+    "metadata_warnings": 0,
+    "indexability_conflicts": 0,
+    "numerical_source_audit": "PASS",
+    "retracted_claim_rules": 14
+  },
+  "source_index_sha256": "34afb8acd6d8fc276b051d6ab9ec99a6a6f1c1bc636b65b81b53c0d02401bf60",
+  "source_dates_sha256": "0b507b373c47ad95c20f8a32e570232ee8d965362e402a462b1a24a87d905b0b",
+  "failed_predecessor": {
+    "id": "dpl_D7J9MKioPjize4MsUN82r6R2peSM",
+    "reason": "Validation rewrote homepage before upload; source-date guard rejected mutated input"
+  },
+  "correction": "Restored original bound homepage input; new helper validates a separate clone"
+}

@@ -353,3 +353,22 @@ Full verification is running in session 66132. Re-poll before claiming completio
 Session 66132 completed successfully: 328 tests (6 + 322), all evidence/SEO/number
 audits pass. Building an updated preview snapshot in /tmp/canli-catalog-preview.pFGuSc
 to verify deployment packaging; staged data and catalog activation remain excluded.
+
+## 2026-09-19 — deployment packaging verified; validation isolation fixed
+
+Implementation 5e57941a pushed and complete CI passes (run 35440819352). Updated
+snapshot local audits pass: 690 pages, 327 indexable, zero metadata/indexability
+defects, numerical-source audit and all 14 retracted-claim rules pass.
+
+First cloud preview dpl_D7J9MKioPjize4MsUN82r6R2peSM failed the source-date guard:
+local validation had rewritten homepage figures from fresh exports, but its portable
+binding described the original input. The issue was the upload workflow; the guard
+was not weakened. Restored the bound homepage input and retry deployment
+**dpl_3xmLsji65LwWt1BmnxhSoBv4bytE is Ready**, both company API functions packaged:
+https://meridian-c2lklakk2-arhans-projects-ac470eaa.vercel.app.
+
+Added validate-deploy-snapshot.mjs: validate a separate clone, leave upload inputs
+unchanged. Its mutating-prebuild regression passes, and actual snapshot clone build
+passes. No remote preview URL was fetched. Updated proof in catalog-preview.json.
+No source catalog upload/activation, production change, indexed-page or cloud-load
+claim. Next: source-download backend mapping and catalog-backed HTML/discovery.

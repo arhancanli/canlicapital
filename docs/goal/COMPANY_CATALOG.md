@@ -58,7 +58,7 @@ until a reviewed catalog and backend are activated and verified.
 exist at `objects/{hash}.json`. `COMPANY_CATALOG_ROOT_HASH` pins the reviewed root.
 Neither is configured by this work. Without them the new endpoints return 503.
 Do not upload the corpus as a million-file Vercel source bundle. Backend selection,
-upload verification, backup/retention and deployment packaging checks remain open.
+upload verification, backup/retention and production activation remain open. Updated preview packaging passes; the catalog is inactive.
 
 The captured source gzip files remain separate immutable provenance inputs. Before
 HTML expansion, implement their download route/storage mapping and reuse the
@@ -84,3 +84,17 @@ See `artifacts/seo/company-catalog-measurement.json` for exact current results a
 code hashes. The first real catalog has 342 companies, four index nodes over two
 levels, and about 6.6 MB of selected records/indexes. Original captures are additional
 storage (57.5 MB compressed); they are not included in the 6.6 MB figure.
+
+## Validate upload inputs without mutating them
+
+Prebuild rewrites generated sections inside homepage HTML. Validating in the upload
+source and then deploying those changed bytes invalidates the saved source-date
+binding. The guard correctly rejected preview dpl_D7J9MKioPjize4MsUN82r6R2peSM.
+Restoring the original bound homepage input allowed dpl_3xmLsji65LwWt1BmnxhSoBv4bytE
+to build. Source-date rejection remains enabled.
+
+Use `node scripts/validate-deploy-snapshot.mjs UPLOAD_SOURCE` for subsequent checks.
+It builds in a separate temporary clone and prints that clone's location. Deploy
+UPLOAD_SOURCE, not the generated clone. A regression fixture deliberately rewrites
+index.html and verifies the upload input remains byte-identical. The real snapshot
+also passes this isolated build. This command performs no deployment.

@@ -27,7 +27,7 @@ All owner requirements remain in REQUIREMENTS.md and are unchanged.
 
 ## Current validation and changes
 
-- Full current local build/verification: **316 tests pass** (6 + 310), zero metadata
+- Full current local build/verification: **328 tests pass** (6 + 322), plus the snapshot-isolation regression, zero metadata
   errors/warnings, zero indexability conflicts, all indexable pages within three
   clicks. Numerical-source, publication and research/trial audits pass.
 - Coverage presentation exposes reporting start/end separately from capture dates,
@@ -39,8 +39,8 @@ All owner requirements remain in REQUIREMENTS.md and are unchanged.
 - Review tool independently rebuilds selected records from archived response bytes,
   checks receipt byte count/hash/identity/date and queue summaries. Tampering and
   partial/duplicate results are tested. Review is not automatic publication approval.
-- Last remote website CI verified: **07b0a3b8 passes**, run 35439588965. Coverage/review
-  checkpoint **ad83b53c is pushed**; its CI must be checked before release.
+- Last remote website CI verified: **5e57941a passes**, run 35440819352. Snapshot
+  isolation helper passes its targeted regression and an actual cloned snapshot build.
 - Prior unchanged MCP implementation passed 43 tests. On-site repository/MCP/API-key
   entry points and contributor guidance implemented. No adoption/star-growth claim.
 - Keyword map: 78 canonical owners, 95 editorial query hypotheses, 249 pages pending
@@ -48,8 +48,9 @@ All owner requirements remain in REQUIREMENTS.md and are unchanged.
 
 ## Release status
 
-- Prior preview Ready: https://meridian-mk8f63w5m-arhans-projects-ac470eaa.vercel.app
-  (`dpl_5ePSmH8KyqdsufFWnxxMiqKCMw1b`). It predates current coverage changes.
+- Updated preview Ready: https://meridian-c2lklakk2-arhans-projects-ac470eaa.vercel.app
+  (`dpl_3xmLsji65LwWt1BmnxhSoBv4bytE`). Includes coverage fixes and packages both
+  catalog read endpoints; no catalog data activated. See `artifacts/seo/catalog-preview.json`.
 - Publishing branch 894ec07d integrated in bfca8f45. Trial-accounting code/tests match
   the approved design branch; verifier differences are the sharded sitemap reader.
 - Original publishing worktree `/Users/arhancanli/canlicapital-website-20260908`
@@ -102,3 +103,12 @@ All owner requirements remain in REQUIREMENTS.md and are unchanged.
   storage mapping and deployment packaging verification remain necessary next work.
 - Prior website CI at 7a53c974 passes (run 35440123419). PR 70 full CI passes and is
   ready for review. No source collection/engine test process remains live from those jobs.
+
+- Updated preview packaging verified Ready by CLI. Initial attempt failed because
+  local validation rewrote the bound homepage input before upload. Restored its
+  original input and retried successfully; no date guard was weakened.
+- `scripts/validate-deploy-snapshot.mjs` now builds an isolated clone, excluding
+  secrets/cache metadata and retaining required inventory/dependencies. Regression
+  proves original homepage bytes remain unchanged; actual snapshot clone build passes.
+- Remaining phase 3 work: backend/source-download mapping, catalog-backed HTML and
+  bounded crawlable discovery, then review/activation. API JSON alone is not SEO pages.
