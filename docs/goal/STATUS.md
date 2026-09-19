@@ -11,9 +11,9 @@ Phase 1 tooling is tested; whole-corpus measurement remains blocked on source ac
 - Actual indexed pages: **unknown**; Search Console access question is pending.
 - Sitemap capacity: one million synthetic URLs passed as 20 shards. Synthetic URLs do not enter content inventory.
 - Current local validation: production build and 300 tests pass (6 preverify + 294 main); five corpus tests and seven IndexNow tests pass. Metadata: zero errors/warnings; indexability: zero conflicts; all 312 indexable pages within three clicks. Sixteen Chromium/WebKit viewport checks pass on the current local production build. Prior MCP package validation: 43 tests; MCP implementation has not changed.
-- PR 15 build passed for commit `b1c69aee`. No PR has been merged or deployed by this work.
+- PR 15 build passed for commit `b1c69aee`; expanded CI at `2acf8087` passed build but failed one modification-date test due to shallow Git history. A full-history checkout correction is being pushed. No PR has been merged or deployed.
 
-## Current implementation (local; preparing commit and CI)
+## Current implementation (checkpoint 2acf8087 pushed; CI correction in progress)
 
 - `scripts/lib/company-reference.mjs`: reject impossible date order, handle invalid calendar dates safely, detect conflicting facts regardless of input order, and expose exclusion diagnostics.
 - `scripts/company-catalog-worker.mjs`: reuse production selector for bounded per-entity audit requests.
@@ -33,7 +33,7 @@ Phase 1 tooling is tested; whole-corpus measurement remains blocked on source ac
 
 ## Next actions (read and verify before proceeding)
 
-1. Commit and push this validated website checkpoint, then inspect the expanded CI; do not assume it passes on Linux/Node 22 from a Mac/Node 24 run.
+1. Push the full-history CI correction and inspect expanded CI. Prior local validation remains valid, but remote CI is not yet passing.
 2. Review remaining 249 keyword-unassigned pages against their actual research/evidence, not arbitrary keyword variants. Search Console query evidence remains unavailable.
 3. Read this folder, then pursue phase 7's security/reproducibility blocker while full-corpus access and search measurement remain unavailable. Preserve historical environment truthfully.
 4. Plan phase 3 rendering/storage using measured source scale; no million-page serving capacity claimed.

@@ -65,3 +65,12 @@ Sixteen Chromium/WebKit checks at widths 390/1440 pass on a fresh production pre
 at localhost:4185. Browser evidence/screenshots are in artifacts/qa/company-reference.
 Reviewed the mobile assets-history screenshot. Five corpus and seven IndexNow tests
 also pass. No live keys issued or notifications sent. Preparing checkpoint commit.
+
+## 2026-09-19 — checkpoint pushed; expanded CI caught shallow history
+
+Commit 2acf8087 pushed to PR 15. Expanded CI passed build/browser install but failed
+one of 294 main tests: source modification dates collapsed to the checkout date in
+GitHub's shallow clone. Local full-history tests had passed. Set actions/checkout
+fetch-depth to zero so source-derived sitemap dates remain meaningful. No test was
+removed or relaxed. Engine phase 7 inspection started (historical lockfile bindings
+also govern migration/replay), then deferred to resolve this website CI failure.
