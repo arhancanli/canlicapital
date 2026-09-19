@@ -1,7 +1,7 @@
 # Current state
 
 Updated: 2026-09-19. Overall goal: **ACTIVE, NOT ACHIEVED**.
-Current phase: **1/2 — refreshed cohort reviewed; coverage presentation corrected**.
+Current phase: **3 — build bounded company storage and serving lookup**.
 Next implementation phase: **3 — bounded serving/discovery for the measured corpus**.
 All owner requirements remain in REQUIREMENTS.md and are unchanged.
 
@@ -67,8 +67,8 @@ All owner requirements remain in REQUIREMENTS.md and are unchanged.
 - PR 69 (783ad0c) complete CI passes, including 35m37s offline suite; ready for review.
   Historical lock archive preserves original receipts, with an active-file replay
   guard. No historical publication hashes were rewritten. See ENGINE_ENVIRONMENT_REVIEW.md.
-- PR 70 (e0a257c) collector-quality checks pass except offline job still running:
-  run 35438489448, job 105885124970. Re-poll this exact handle.
+- PR 70 (e0a257c) complete CI passes, including the 35m32s offline job
+  105885124970. Marked ready for review; no engine merge/deployment.
 - Dated engine baseline: four sleeves and four current-epoch daily observations;
   cost and tail-risk coverage incomplete. This is not a current live measurement.
   Sharpe >2, >=14 qualified distinct sleeves and realized max drawdown <=10% remain
@@ -87,3 +87,18 @@ All owner requirements remain in REQUIREMENTS.md and are unchanged.
   page Vite build or directory into production. Review flagged coverage before promotion.
 - Production activation and Search Console evidence are pending separate answers.
   All independent content, developer adoption and algorithm objectives remain active.
+
+## Phase 3 implementation checkpoint
+
+- Immutable catalog and staged API/company-directory handlers implemented. See
+  `COMPANY_CATALOG.md` for the data format, bounds, exact commands and remaining work.
+- Local HTTP measurement reproduces all 342 real records and all seven directory
+  pages. Four index nodes over two levels; 6,553,492 selected-data/index bytes.
+  Largest actual object read 41,977 bytes; cache payload stays below 4 MiB.
+- Twelve catalog tests and full verification pass: **328 total tests** (6 + 322).
+  `/tmp/canli-catalog-final-verify.log` records the completed result.
+- No backend configured or catalog activated. New endpoints fail 503 when unavailable;
+  no live onboarding claims have been added. HTML rendering/discovery, source-download
+  storage mapping and deployment packaging verification remain necessary next work.
+- Prior website CI at 7a53c974 passes (run 35440123419). PR 70 full CI passes and is
+  ready for review. No source collection/engine test process remains live from those jobs.

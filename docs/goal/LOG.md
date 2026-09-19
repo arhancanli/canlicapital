@@ -319,3 +319,37 @@ Coverage/review implementation ad83b53c pushed to PR 15. Capture job is terminal
 no source job needs polling. Remaining active CI is tracked on the PR. Production
 and Search Console answers remain pending. Saving final directory screenshots and
 browser report with this checkpoint.
+
+## 2026-09-19 — phase 3 begins
+
+Previous turn classified as progress. Reread requirements/status/phase records and
+verified current worktree. PR 70 complete CI passes (35m32s offline); ready for review.
+Starting immutable, bounded company catalog lookup using the measured fresh corpus.
+Company data must not grow the Vite entry graph or require reading all records for
+one request. Build hashed records plus bounded range-index nodes; validate bytes,
+CIK identity, misses and corruption, and measure actual cohort resource use before
+connecting a production storage backend. No production activation or index claim.
+
+## 2026-09-19 — real-corpus storage and HTTP lookup checkpoint
+
+Implemented immutable hashed company records with a bounded range-index tree,
+4 MiB byte cache, validated levels/ranges/identities, and directory cursors that
+read issuer names without loading financial histories. Nodes split at 128 entries
+or 64 KiB; 1 MiB record limit and eight-level maximum. Single-writer staging lock
+and pointer-last commit preserve the prior revision on a failed build.
+
+Added staged company GET/HEAD and directory API handlers with ETags, read-only CORS,
+correct 404-vs-503 handling and revision-aware pagination. Backend is not configured;
+endpoints are not promoted as live. Twelve tests pass, including concurrent cache
+accounting, Unicode byte boundaries, corrupt nodes, outage behavior and CORS.
+
+Local HTTP measurement reproduced all 342 captured records, traversed seven directory
+pages, and verified missing-company/HEAD/304 behavior. Four index nodes, two levels,
+6,553,492 selected-record/index bytes; largest object read 41,977 bytes. Original
+57.5 MB compressed source captures remain separate. No cloud/million-page/indexing
+claim. See COMPANY_CATALOG.md and artifacts/seo/company-catalog-measurement.json.
+Full verification is running in session 66132. Re-poll before claiming completion.
+
+Session 66132 completed successfully: 328 tests (6 + 322), all evidence/SEO/number
+audits pass. Building an updated preview snapshot in /tmp/canli-catalog-preview.pFGuSc
+to verify deployment packaging; staged data and catalog activation remain excluded.
