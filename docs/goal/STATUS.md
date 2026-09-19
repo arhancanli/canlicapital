@@ -1,92 +1,89 @@
 # Current state
 
 Updated: 2026-09-19. Overall goal: **ACTIVE, NOT ACHIEVED**.
-Current phase: **4 — preview ready; integrate with the approved production publisher**.
-Phase 1 tooling is tested; whole-corpus measurement remains blocked on source access.
+Current phase: **1/2 — refreshed cohort reviewed; coverage presentation corrected**.
+Next implementation phase: **3 — bounded serving/discovery for the measured corpus**.
+All owner requirements remain in REQUIREMENTS.md and are unchanged.
 
-## Verified baseline
+## Page and source measurements
 
-- Last verified production sitemap: **263 URLs**. This is not an indexed-page count.
-- Tested website draft: **327 indexable URLs**, including 64 new company-reference pages across seven companies and 56 financial histories. Two fresh SEC captures (Dollar General and Cousins Properties) add 15 pages. Production is unchanged; preview deployment is Ready per Vercel CLI.
-- Actual indexed pages: **unknown**; Search Console access question is pending.
-- Sitemap capacity: one million synthetic URLs passed as 20 shards. Synthetic URLs do not enter content inventory.
-- Current local validation: 302 tests pass (6 preverify + 296 main), including archive source-date validation. Prior unchanged corpus and IndexNow suites pass. Release snapshot: 690 rendered pages, 327 indexable; metadata zero errors/warnings, indexability zero conflicts, all indexable pages within three clicks; numerical-source and all 14 retracted-claim rules pass. Thirty-two Chromium/WebKit viewport checks pass, including both new companies and Assets histories. Prior MCP package validation: 43 tests; MCP implementation has not changed.
-- PR 15 expanded CI at `78f914bd` passes on Linux/Node 22: build, full evidence/SEO verification, browser tests, corpus tests and notification tests. The initial shallow-history failure at `2acf8087` is fixed by fetching full history. Run: https://github.com/arhancanli/canlicapital/actions/runs/35437145441. No PR has been merged to production; a preview is deployed.
+- Last verified production sitemap: **263 URLs**. Production is unchanged.
+- Current local draft: **327 indexable pages**, 688 total rendered pages. Seven
+  companies, 56 financial histories and their directory add 64 pages to the baseline.
+- Actual indexed pages: **unknown**. Search Console account/access question pending.
+  Minimum remains 800,000 actually indexed pages, target 1,000,000.
+- SEC bulk archive HEAD returned 403 earlier; no full SEC corpus was acquired.
+- Older research sample: 520 original gzip captures verified against 48 part hashes
+  and issuer lineage. 344 companies/2,657 histories supplied 3,001 candidates;
+  individual capture times were unknown. Original engine files remain unchanged.
+- Fresh refresh now **complete**: 342 candidates (excluding two already refreshed
+  pilot companies), 2,645 histories, **2,987 candidate pages**, zero HTTP exclusions
+  and zero source-reproduction errors. Compressed fresh originals: 57,540,391 bytes.
+  These are staged locally, not published. Together with the current draft they
+  could support 3,314 pages, subject to release review; this is not an indexed count.
+- 322 histories need coverage interpretation: 258 end more than two years before
+  capture, 76 use multiple units, with 12 in both groups. Neither old coverage nor
+  an unusual currency is silently normalized or interpreted as delisting.
 
-## Current implementation (2acf8087 implementation; 78f914bd CI correction, both pushed)
+## Current validation and changes
 
-- `scripts/lib/company-reference.mjs`: reject impossible date order, handle invalid calendar dates safely, detect conflicting facts regardless of input order, and expose exclusion diagnostics.
-- `scripts/company-catalog-worker.mjs`: reuse production selector for bounded per-entity audit requests.
-- `scripts/audit-company-corpus.py`: local ZIP-to-SQLite candidate catalog; source/member/code hashes; atomic replacement; exclusions; explicit sample scope; no publishing.
-- Seven company-reference tests and five Python bulk-catalog tests pass. Pilot catalog reproduces five entities and 43 histories (48 candidate entity/history pages, excluding the directory); see `artifacts/seo/company-corpus-pilot.json`. This is not a whole-market count.
-- Goal folder and AGENTS.md continuity instructions installed. Read these before each phase and after compaction.
-- Phase 2: 78 canonical keyword-intent owners and 95 editorial query hypotheses; 249 indexable pages remain unassigned for review. No demand/rank measurement claimed. Company titles preserve entity names; visible/schema breadcrumbs and sibling links added. CI now installs Chromium and runs full evidence/SEO, corpus and IndexNow checks.
-- Phase 6 overlap: company pages and shared footer promote API keys/MCP; developer hero promotes MCP/GitHub. CONTRIBUTING and an integration issue template support substantive contributions. No outreach, releases, npm publishing or star-count claims.
+- Full current local build/verification: **316 tests pass** (6 + 310), zero metadata
+  errors/warnings, zero indexability conflicts, all indexable pages within three
+  clicks. Numerical-source, publication and research/trial audits pass.
+- Coverage presentation exposes reporting start/end separately from capture dates,
+  flags old selected history, and supplies Dataset temporalCoverage. Company
+  overviews preserve each unit and distinct same-end interval; no currency conversion.
+- Final browser pass after the overview-column change: **36 Chromium/WebKit checks
+  pass** at 390/1440. Server 68463 stopped; evidence and renderer hashes are in
+  `artifacts/seo/coverage-browser-review.json`.
+- Review tool independently rebuilds selected records from archived response bytes,
+  checks receipt byte count/hash/identity/date and queue summaries. Tampering and
+  partial/duplicate results are tested. Review is not automatic publication approval.
+- Last remote website CI verified: **07b0a3b8 passes**, run 35439588965. Current
+  coverage/review edits are local until their next checkpoint is pushed and checked.
+- Prior unchanged MCP implementation passed 43 tests. On-site repository/MCP/API-key
+  entry points and contributor guidance implemented. No adoption/star-growth claim.
+- Keyword map: 78 canonical owners, 95 editorial query hypotheses, 249 pages pending
+  intent review. No query-volume or ranking evidence is claimed.
 
-## Blockers and unresolved evidence
+## Release status
 
-- SEC bulk archive HEAD request returned HTTP 403 from this environment on 19 September. No complete corpus was downloaded or counted. A local research collection contains 520 companyfacts gzip files; all 48 parts, issuer-manifest lineage and 520 file hashes/sizes verified. Selector accepts 344 companies and 2,657 histories (3,001 candidates), rejecting 146 invalid entities and 30 insufficient histories. Individual capture times are unknown, so candidates are not publication approved. This is a selected sample, not the full SEC corpus. Do not bypass access controls or extrapolate their eligibility to the market.
-- Search Console baseline unavailable. Asked owner which account/integration manages the property; answer pending.
-- PR 69's historical-environment fix is committed as 783ad0c and pushed: 49 local tests, strict mypy/Ruff and all 16 publication integrity checks pass. Original publication/migration files are unchanged. Remote publication integrity, PostgreSQL, mypy, Ruff and browser jobs pass at 783ad0c; the offline pytest job remains running. Full offline CI now passes; marked ready for review.
-- PR 68 full CI passes, including the 23m19s offline suite. PR 69 full CI passes, including its 35m37s offline suite; marked ready for review. PR 70 collector-quality CI passes all jobs except the still-running offline pytest job.
-- Engine baseline snapshot: four sleeves, four current-epoch daily returns; 248 more observations before Sharpe estimation and 752 before observation-count establishment gate. Modeled cost and tail-risk coverage incomplete. This is a dated snapshot, not a current live metric.
+- Prior preview Ready: https://meridian-mk8f63w5m-arhans-projects-ac470eaa.vercel.app
+  (`dpl_5ePSmH8KyqdsufFWnxxMiqKCMw1b`). It predates current coverage changes.
+- Publishing branch 894ec07d integrated in bfca8f45. Trial-accounting code/tests match
+  the approved design branch; verifier differences are the sharded sitemap reader.
+- Original publishing worktree `/Users/arhancanli/canlicapital-website-20260908`
+  and engine runtime pointer are unchanged. Remote design branch was deleted; no
+  integration PR against it was created. Review remains in website PR 15.
+- **Production activation approval pending** through the existing async question.
+  The deployment skill requires explicit production authorization. Do not redirect
+  the publisher or deploy production without the answer. Do not ask again routinely.
+- Source-date manifest hashes preserve dates in Git-free deployment snapshots;
+  changed source bytes invalidate bindings and missing-date fallback blocks Vercel.
 
-## Next actions (read and verify before proceeding)
+## Engine status
 
-1. Source-audit checkpoint c3c5e3dc is pushed and passes 301 local website tests and six catalog tests. CI run 35438057534, job 105884006622, passed for c3c5e3dc. Then refresh and semantically review eligible source candidates before publication.
-2. Review remaining 249 keyword-unassigned pages against their actual research/evidence, not arbitrary keyword variants. Search Console query evidence remains unavailable.
-3. Read this folder and ENGINE_ENVIRONMENT_REVIEW.md, then finish phase 7's security/reproducibility CI review. Historical archive resolver, explicit verification receipts and an enqueue-time active-file guard are implemented in 783ad0c. Forty-nine local tests, type/style checks and publication verification pass. Remote PostgreSQL/publication/mypy/Ruff/browser checks now pass; offline pytest remains running; no publication manifest or migration packet was rewritten.
-4. Collector v4 fix is local in /Users/arhancanli/alphac-source-quality-20260919, branch fix/sec-companyfacts-source-quality. Commit e0a257c is pushed in PR 70. Twenty-four tests and Ruff pass. Final-code read-only validation rejects 146 invalid payloads and accepts 374 valid retrievals; all original bytes are unchanged and all 520 individual capture times remain unknown. Fresh future downloads now receive hash-bound UTC capture receipts; legacy caches are never backdated. PR 70 publication, PostgreSQL, mypy, Ruff and browser CI pass; offline pytest is running (run 35438489448, job 105885124970). Plan phase 3 rendering/storage using measured source scale; no million-page serving capacity claimed.
-5. Complete release readiness and deploy only a passing reviewed result. Recheck production and indexing separately; no production deployment has occurred.
+- PR 68 (ab75af0) complete CI passes; ready for review.
+- PR 69 (783ad0c) complete CI passes, including 35m37s offline suite; ready for review.
+  Historical lock archive preserves original receipts, with an active-file replay
+  guard. No historical publication hashes were rewritten. See ENGINE_ENVIRONMENT_REVIEW.md.
+- PR 70 (e0a257c) collector-quality checks pass except offline job still running:
+  run 35438489448, job 105885124970. Re-poll this exact handle.
+- Dated engine baseline: four sleeves and four current-epoch daily observations;
+  cost and tail-risk coverage incomplete. This is not a current live measurement.
+  Sharpe >2, >=14 qualified distinct sleeves and realized max drawdown <=10% remain
+  unestablished. No broker orders, research replay or engine deployment performed.
 
-## Release snapshot checkpoint
+## Evidence and next steps
 
-- Snapshot: `/tmp/canli-preview.v8wzFm`, task design plus stable live exports using
-  the existing publisher's snapshot helper. No live source/runtime configuration changed.
-- Deployment snapshots omit Git. Added `config/source-dates.json` with SHA-256
-  bindings and archive recovery in `scripts/lastmod.mjs`. Missing source dates now
-  block Vercel builds instead of silently using deployment day. File mutation,
-  directory membership changes and symlinks reject stale portable dates.
-- `VERCEL=1 npm run build` passes in the Git-free snapshot. Build/audit logs under
-  `/tmp/canli-snapshot-date-check.log` and `/tmp/canli-final-verify.log`.
-- Initial Vercel preview upload failed with a TLS invalid-session-id error. Retrying
-  with the installed Node 20 CLI and a single tgz archive succeeded. Deployment
-  `dpl_5ePSmH8KyqdsufFWnxxMiqKCMw1b` is Ready per CLI inspect.
-  Preview: https://meridian-mk8f63w5m-arhans-projects-ac470eaa.vercel.app.
-  Local validation receipt: `artifacts/seo/release-preview.json`.
-- Production publisher still points to `canlicapital-website-20260908`; an isolated
-  production push would be overwritten. Review integration with that approved design
-  source before release. Do not silently redirect the live publisher.
-
-- Release implementation b02e8a2a is pushed to PR 15. Vercel inspect confirmed Ready
-  for the preview above. No preview HTTP/browser fetch, production deployment, merge,
-  or search submission occurred. Website CI for this commit must be checked next.
-- Next concrete action: inspect the approved design branch/publisher integration,
-  reconcile task changes without overwriting other work, and verify the integrated
-  release. All corpus, indexing, API/MCP adoption and forward algorithm goals stay active.
-
-## Publishing integration
-
-- Website CI at 4b236bcd passes (run 35439160050).
-- Publishing branch 894ec07d is integrated into the task branch. Trial-accounting
-  source/tests are byte-identical to that branch; sitemap-aware verifier differences
-  preserve its substantive gates. Full build and 302 tests pass after reconciliation.
-- `/tmp/canli-integrated-build.log` and `/tmp/canli-integrated-verify.log` hold results.
-- Production activation still requires advancing the actual publishing source after
-  integrated review; original worktree and runtime pointer are unchanged.
-
-- Production approval question is pending. Remote design branch no longer exists;
-  local approved source is unchanged. PR 15 contains integrated history.
-- Independent current work: resumable, bounded refresh of the 344 eligible company
-  candidates into staged captures. This is not automatic publication or indexing.
-
-- Integrated website CI passes at bfca8f45: run 35439336771/job 105887325480.
-- Engine PR 69 at 783ad0c now passes its complete CI, offline job 105882846688
-  included (35m37s); PRs 68 and 69 marked ready for review. PR 70 offline job
-  105885124970 remains live/pending, other checks pass.
-- Fresh queue: 342 previously eligible companies after excluding two already
-  published fresh records. Running session 34744, `/tmp/canli-fresh-review.log`,
-  incremental receipt `artifacts/seo/corpus-local/fresh-review/refresh.json`.
-  Do not restart while this handle is live. Six refresh tests pass; queued identities,
-  catalog hash and code hashes are tracked in `artifacts/seo/fresh-review-input.json`.
-  No source files from this queue enter the public site automatically.
+- `artifacts/seo/fresh-refresh-result.json`: completed capture summary.
+- `artifacts/seo/fresh-candidate-review.json`: final per-company/history review.
+- `artifacts/seo/fresh-review-input.json`: queued identities, catalog and collector hashes.
+- Captures/receipts/selected records: ignored `artifacts/seo/corpus-local/fresh-review`.
+  Capture session 34744 **completed with exit 0**; do not restart it as if still running.
+- `/tmp/canli-units-build.log`, `/tmp/canli-units-verify.log`: current build/316 tests.
+- Push this validated checkpoint and check CI. Then use real cohort
+  sizes to implement bounded catalog/serving/discovery; don't put an unbounded million
+  page Vite build or directory into production. Review flagged coverage before promotion.
+- Production activation and Search Console evidence are pending separate answers.
+  All independent content, developer adoption and algorithm objectives remain active.

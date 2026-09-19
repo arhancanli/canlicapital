@@ -272,3 +272,45 @@ Integrated website CI passes at bfca8f45. PR 69 full offline CI passes in 35m37s
 PR 68 and PR 69 are now ready for review. PR 70's offline handle remains live.
 Production approval is still pending. Do not change the publisher source or deploy
 production without the requested answer. All outcome objectives remain active.
+
+## 2026-09-19 — cohort review and reporting-coverage correction
+
+Previous turn classified as progress; session 34744 re-polled live, not restarted.
+Website CI passes at 07b0a3b8 (run 35439588965); PR 70 offline suite still pending.
+Independent review replays staged records from original gzip captures, validates
+receipt byte counts, identities, capture times and queue summaries, and flags old
+coverage/multiple units without automatically approving publication. Five tamper/
+partial-result tests pass. First partial review: 179 companies, 1,581 candidates,
+zero reproduction errors, 147 old histories under its initial year-based heuristic.
+
+That finding led to a content correction: explicit selected reporting coverage,
+visible warning when it ends more than two full years before capture, and Dataset
+temporalCoverage metadata. A recent retrieval date must not imply recent accounting
+coverage. Shared date-based helper and two boundary tests replace the year-only
+heuristic. Full build and 315 tests pass; SEO/number audits pass. Browser verification
+of the real Apple Revenues history (ends 2018-09-29) is running in session 20934,
+server 88784 on 4288. This changes the local draft; earlier ready preview is not
+being claimed as this newer version. Production approval remains pending.
+
+All 36 Chromium/WebKit checks pass, including visible old-coverage warning and
+matching Dataset temporalCoverage. Browser server stopped. Evidence and renderer
+hashes recorded in artifacts/seo/coverage-browser-review.json.
+
+## 2026-09-19 — refresh and complete cohort review finished
+
+Session 34744 exited 0. All 342 fresh entities eligible for review; independent
+full replay yields 2,645 histories / 2,987 candidate pages, zero errors/exclusions.
+Fresh gzip originals total 57,540,391 bytes. Current date-based review flags 258
+old histories and 76 multiple-unit histories (12 overlap, 322 total flagged).
+Toyota's JPY/USD and other foreign-filer currency sets remain distinct. The overview
+previously selected one latest row across currencies; corrected to keep each unit
+and every same-end interval, with visible start/end columns. A new helper test
+covers that loss scenario. Full verification now passes 316 tests. Final browser
+pass after the column change is running in 62016; source refresh itself is finished.
+
+Capture summary and final review are tracked. No staged company enters the public
+site. Rewrote STATUS to remove contradictory stale running-job statements and retain
+current goals, counts, approvals, evidence and next actions.
+
+Final session 62016 passes all 36 browser checks after the unit/interval overview
+change. Server 68463 stopped. Updated browser receipt binds final renderer bytes.
