@@ -39,8 +39,8 @@ All owner requirements remain in REQUIREMENTS.md and are unchanged.
 - Review tool independently rebuilds selected records from archived response bytes,
   checks receipt byte count/hash/identity/date and queue summaries. Tampering and
   partial/duplicate results are tested. Review is not automatic publication approval.
-- Last remote website CI verified: **07b0a3b8 passes**, run 35439588965. Current
-  coverage/review edits are local until their next checkpoint is pushed and checked.
+- Last remote website CI verified: **07b0a3b8 passes**, run 35439588965. Coverage/review
+  checkpoint **ad83b53c is pushed**; its CI must be checked before release.
 - Prior unchanged MCP implementation passed 43 tests. On-site repository/MCP/API-key
   entry points and contributor guidance implemented. No adoption/star-growth claim.
 - Keyword map: 78 canonical owners, 95 editorial query hypotheses, 249 pages pending
@@ -82,7 +82,7 @@ All owner requirements remain in REQUIREMENTS.md and are unchanged.
 - Captures/receipts/selected records: ignored `artifacts/seo/corpus-local/fresh-review`.
   Capture session 34744 **completed with exit 0**; do not restart it as if still running.
 - `/tmp/canli-units-build.log`, `/tmp/canli-units-verify.log`: current build/316 tests.
-- Push this validated checkpoint and check CI. Then use real cohort
+- Check CI for the pushed checkpoint. Then use real cohort
   sizes to implement bounded catalog/serving/discovery; don't put an unbounded million
   page Vite build or directory into production. Review flagged coverage before promotion.
 - Production activation and Search Console evidence are pending separate answers.
