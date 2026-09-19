@@ -132,3 +132,8 @@ All owner requirements remain in REQUIREMENTS.md and are unchanged.
 - Production wrapper, storage upload, bounded production discovery/sitemaps and
   deployment verification remain open. No new production routes activated. Full
   final verification passed (session49160):335 tests, clean writing/SEO/evidence audits.
+
+- Latest HTML checkpoint **7a398ff6** pushed to PR15; remote CI run35442251005
+  is pending. Check it before starting the next phase. Default-branch Dependabot
+  alert1 (esbuild, moderate, fixed0.25.0) is open; inspect actual dependency lineage
+  before proposing a fix. No production mutation or dependency fix occurred.

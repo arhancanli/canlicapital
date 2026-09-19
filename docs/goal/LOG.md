@@ -403,3 +403,11 @@ Session49160 completed successfully:335 tests and all writing, metadata, link,
 indexability, publication and numerical-source audits pass. Final full-cohort HTTP
 measurement also passes after routing/breadcrumb corrections. Restored only build-
 generated timestamp/hash churn; no engine records or shared files were changed.
+
+Checkpoint7a398ff6 pushed to websitePR15 and description updated. New remote CI
+run35442251005/job105894975571 is pending; verify it next rather than repeating
+local tests. Working tree was clean after push. GitHub's push message surfaced
+default-branch Dependabot alert1:esbuild moderate development-server exposure,
+fixed0.25.0. Read-only alert lookup confirms open; package-lock packages lookup
+found no matching esbuild entry, so dependency lineage/remediation remains to inspect.
+No security fix is claimed from that lookup.
