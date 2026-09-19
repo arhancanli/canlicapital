@@ -3,6 +3,7 @@
 .company-reference__intro { font-size: 1.2rem; max-width: 65ch; color: var(--paper-tone); }
 .company-reference section { margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--line); }
 .company-reference p { max-width: 78ch; line-height: 1.75; }
+.company-reference p code { overflow-wrap: anywhere; }
 .company-reference a { color: var(--oxide); text-underline-offset: .2em; }
 .company-reference :focus-visible { outline: 3px solid var(--signal-blue); outline-offset: 5px; }
 .company-reference__table { overflow-x: auto; margin: 24px 0; border: 1px solid var(--line); }

@@ -1,0 +1,162 @@
+{
+  "schema": "canli.company-concept-taxonomy-review.v1",
+  "source": {
+    "url": "https://xbrl.fasb.org/us-gaap/2026/elts/us-gaap-2026.xsd",
+    "sha256": "5df2d5054b8a37ef1a00bbbad621317833e7c2cb65a421a283128efbd707da7e"
+  },
+  "definitions_sha256": "30d2ccdd1bb1ccdb519377bd890b71c21ba3d996fdffc3846fc3b3607c00b74c",
+  "concepts": [
+    {
+      "tag": "NetCashProvidedByUsedInFinancingActivities",
+      "period_type": "duration",
+      "type": "xbrli:monetaryItemType",
+      "label": "Financing cash flow"
+    },
+    {
+      "tag": "NetCashProvidedByUsedInInvestingActivities",
+      "period_type": "duration",
+      "type": "xbrli:monetaryItemType",
+      "label": "Investing cash flow"
+    },
+    {
+      "tag": "RetainedEarningsAccumulatedDeficit",
+      "period_type": "instant",
+      "type": "xbrli:monetaryItemType",
+      "label": "Retained earnings or deficit"
+    },
+    {
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic",
+      "period_type": "duration",
+      "type": "xbrli:sharesItemType",
+      "label": "Basic weighted-average shares"
+    },
+    {
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+      "period_type": "duration",
+      "type": "xbrli:sharesItemType",
+      "label": "Diluted weighted-average shares"
+    },
+    {
+      "tag": "EarningsPerShareBasic",
+      "period_type": "duration",
+      "type": "dtr-types:perShareItemType",
+      "label": "Basic earnings per share"
+    },
+    {
+      "tag": "EarningsPerShareDiluted",
+      "period_type": "duration",
+      "type": "dtr-types:perShareItemType",
+      "label": "Diluted earnings per share"
+    },
+    {
+      "tag": "IncomeTaxExpenseBenefit",
+      "period_type": "duration",
+      "type": "xbrli:monetaryItemType",
+      "label": "Income tax expense or benefit"
+    },
+    {
+      "tag": "PropertyPlantAndEquipmentNet",
+      "period_type": "instant",
+      "type": "xbrli:monetaryItemType",
+      "label": "Net property, plant and equipment"
+    },
+    {
+      "tag": "ShareBasedCompensation",
+      "period_type": "duration",
+      "type": "xbrli:monetaryItemType",
+      "label": "Share-based compensation expense"
+    },
+    {
+      "tag": "OperatingIncomeLoss",
+      "period_type": "duration",
+      "type": "xbrli:monetaryItemType",
+      "label": "Operating income or loss"
+    },
+    {
+      "tag": "AssetsCurrent",
+      "period_type": "instant",
+      "type": "xbrli:monetaryItemType",
+      "label": "Current assets"
+    },
+    {
+      "tag": "InterestExpense",
+      "period_type": "duration",
+      "type": "xbrli:monetaryItemType",
+      "label": "Interest expense"
+    },
+    {
+      "tag": "LiabilitiesCurrent",
+      "period_type": "instant",
+      "type": "xbrli:monetaryItemType",
+      "label": "Current liabilities"
+    },
+    {
+      "tag": "AccountsPayableCurrent",
+      "period_type": "instant",
+      "type": "xbrli:monetaryItemType",
+      "label": "Current accounts payable"
+    },
+    {
+      "tag": "Goodwill",
+      "period_type": "instant",
+      "type": "xbrli:monetaryItemType",
+      "label": "Goodwill carrying amount"
+    },
+    {
+      "tag": "FiniteLivedIntangibleAssetsNet",
+      "period_type": "instant",
+      "type": "xbrli:monetaryItemType",
+      "label": "Net finite-lived intangible assets"
+    },
+    {
+      "tag": "AccountsReceivableNetCurrent",
+      "period_type": "instant",
+      "type": "xbrli:monetaryItemType",
+      "label": "Net current accounts receivable"
+    },
+    {
+      "tag": "PaymentsForRepurchaseOfCommonStock",
+      "period_type": "duration",
+      "type": "xbrli:monetaryItemType",
+      "label": "Common-stock repurchase payments"
+    },
+    {
+      "tag": "OperatingExpenses",
+      "period_type": "duration",
+      "type": "xbrli:monetaryItemType",
+      "label": "Operating expenses"
+    },
+    {
+      "tag": "InventoryNet",
+      "period_type": "instant",
+      "type": "xbrli:monetaryItemType",
+      "label": "Net inventory"
+    },
+    {
+      "tag": "GrossProfit",
+      "period_type": "duration",
+      "type": "xbrli:monetaryItemType",
+      "label": "Gross profit"
+    },
+    {
+      "tag": "CostOfRevenue",
+      "period_type": "duration",
+      "type": "xbrli:monetaryItemType",
+      "label": "Cost of revenue"
+    },
+    {
+      "tag": "SellingGeneralAndAdministrativeExpense",
+      "period_type": "duration",
+      "type": "xbrli:monetaryItemType",
+      "label": "Selling, general and administrative expense"
+    },
+    {
+      "tag": "ResearchAndDevelopmentExpense",
+      "period_type": "duration",
+      "type": "xbrli:monetaryItemType",
+      "label": "Research and development expense"
+    }
+  ],
+  "publication_approved": false,
+  "scope": "2026 period/type declarations; does not establish historical taxonomy equivalence or editorial publication approval"
+}

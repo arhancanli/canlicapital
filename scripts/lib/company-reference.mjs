@@ -1,4 +1,5 @@
 import { createHash } from 'node:crypto';
+import { EXTENDED_CONCEPTS, EXTENDED_POLICY, compatibleUnit } from './company-extended-concepts.mjs';
 
 // Deliberately selected concepts, not arbitrary ticker x keyword combinations.
 export const CONCEPTS = {
@@ -49,18 +50,31 @@ export function selectObservations(fact, kind, asOf, diagnostics = {}) {
   return selected.sort((a, b) => a.unit.localeCompare(b.unit) || b.end.localeCompare(a.end) || (b.start ?? '').localeCompare(a.start ?? ''));
 }
 
-export function companyReference(raw, { fetchedAt, expectedCik, diagnostics = {} }) {
+export function companyReference(raw, { fetchedAt, expectedCik, diagnostics = {}, selectionPolicy }) {
   if (typeof fetchedAt !== 'string' || !/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?(?:Z|\+00:00)$/.test(fetchedAt) || !Number.isFinite(Date.parse(fetchedAt))) throw new Error('A verified UTC capture timestamp is required before publication');
+  if (selectionPolicy !== undefined && selectionPolicy !== EXTENDED_POLICY) throw new Error('Unknown company selection policy');
   const source = JSON.parse(raw);
   if (!source || !Number.isSafeInteger(source.cik) || source.cik < 1 || source.cik > 9999999999 || source.cik !== Number(expectedCik) || typeof source.entityName !== 'string' || !source.entityName.trim()) throw new CompanyReferenceError('INVALID_ENTITY', 'SEC entity identity mismatch');
   const cik = String(source.cik).padStart(10, '0');
   const asOf = fetchedAt.slice(0, 10);
   if (!date(asOf)) throw new Error('Invalid capture date');
   const concepts = [];
-  for (const [tag, definition] of Object.entries(CONCEPTS)) {
+  const definitions = selectionPolicy === EXTENDED_POLICY ? { ...CONCEPTS, ...EXTENDED_CONCEPTS } : CONCEPTS;
+  for (const [tag, definition] of Object.entries(definitions)) {
     const fact = source.facts?.['us-gaap']?.[tag];
     if (!fact) continue;
-    const observations = selectObservations(fact, definition.kind, asOf, diagnostics);
+    let observations = selectObservations(fact, definition.kind, asOf, diagnostics);
+    if (Object.hasOwn(EXTENDED_CONCEPTS, tag)) {
+      observations = observations.filter(row => {
+        if (compatibleUnit(row.unit, definition.unitKind)) return true;
+        diagnostics.incompatible_unit = (diagnostics.incompatible_unit ?? 0) + 1; return false;
+      });
+      const units = new Map();
+      for (const row of observations) { if (!units.has(row.unit)) units.set(row.unit, []); units.get(row.unit).push(row); }
+      if (![...units.values()].some(rows => new Set(rows.map(row => row.end)).size >= 3 && new Set(rows.map(row => row.val)).size >= 2)) {
+        diagnostics.insufficient_varying_history = (diagnostics.insufficient_varying_history ?? 0) + 1; continue;
+      }
+    }
     // A page must have a real multi-period history, not a single isolated number.
     if (new Set(observations.map((row) => row.end)).size < 3) continue;
     concepts.push({ tag, taxonomy: 'us-gaap', ...definition, observations });
@@ -68,17 +82,18 @@ export function companyReference(raw, { fetchedAt, expectedCik, diagnostics = {}
   if (concepts.length < 4) throw new CompanyReferenceError('INSUFFICIENT_COVERAGE', `Insufficient substantive coverage for CIK ${cik}`);
   return {
     schema: 'canli.company-reference.v1', cik, name: source.entityName,
+    ...(selectionPolicy ? { selection_policy: selectionPolicy } : {}),
     source_url: `https://data.sec.gov/api/xbrl/companyfacts/CIK${cik}.json`,
     source_sha256: createHash('sha256').update(raw).digest('hex'), fetched_at: fetchedAt,
-    policy: 'Latest-filed annual-report facts per unit and reporting period at capture time. Duration facts cover 300 to 400 days. This selection can include restatements and is not a point-in-time backtest dataset. Missing concepts are omitted, never zero-filled. Values retain original units and are not currency converted.',
+    policy: 'Latest-filed annual-report facts per unit and reporting period at capture time. Duration facts cover 300 to 400 days. This selection can include restatements and is not a point-in-time backtest dataset. Missing concepts are omitted, never zero-filled. Values retain original units and are not currency converted.' + (selectionPolicy ? ' Extended concepts require compatible unit shapes and at least three reporting ends with changing values within one unit. Constant or incompatible added histories are omitted.' : ''),
     claim_boundary: 'Public company accounting reference, not market prices, returns, an investment recommendation, or ALPHAC performance. Validate a separately constructed return series with the validation API; accounting values are not returns.',
     concepts,
   };
 }
 
 export function verifyCompanyReference(record, original) {
-  const reproduced = companyReference(original, { fetchedAt: record.fetched_at, expectedCik: record.cik });
-  for (const field of ['name', 'source_url', 'source_sha256', 'policy', 'claim_boundary', 'concepts']) {
+  const reproduced = companyReference(original, { fetchedAt: record.fetched_at, expectedCik: record.cik, selectionPolicy: record.selection_policy });
+  for (const field of ['selection_policy', 'name', 'source_url', 'source_sha256', 'policy', 'claim_boundary', 'concepts']) {
     if (JSON.stringify(record[field]) !== JSON.stringify(reproduced[field])) throw new Error(`Company ${record.cik} ${field} does not reproduce from its captured source`);
   }
 }

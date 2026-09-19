@@ -96,3 +96,36 @@ test('unknown or malformed capture times cannot be promoted from the candidate c
     assert.throws(() => verifyCompanyReference({ ...record, fetched_at }, raw), /capture timestamp/);
   }
 });
+
+test('extended policy is explicit and reproduces without changing legacy selection', () => {
+  const record = JSON.parse(readFileSync(new URL('../public/company-data/0000320193.json', import.meta.url)));
+  const raw = gunzipSync(readFileSync(new URL('../public' + record.source_snapshot, import.meta.url)));
+  const legacy = companyReference(raw, { fetchedAt: record.fetched_at, expectedCik: record.cik });
+  const extended = companyReference(raw, { fetchedAt: record.fetched_at, expectedCik: record.cik, selectionPolicy: 'extended-v1' });
+  assert.equal(legacy.selection_policy, undefined);
+  assert.deepEqual(legacy.concepts, record.concepts);
+  assert.ok(extended.concepts.length > legacy.concepts.length);
+  verifyCompanyReference(extended, raw); verifyCompanyReference(record, raw);
+  assert.throws(() => verifyCompanyReference({ ...extended, selection_policy: undefined }, raw), /does not reproduce/);
+  assert.throws(() => companyReference(raw, { fetchedAt: record.fetched_at, expectedCik: record.cik, selectionPolicy: 'unknown' }), /Unknown/);
+});
+test('new concepts require compatible units and a varying three-period history within one unit', () => {
+  const record = JSON.parse(readFileSync(new URL('../public/company-data/0000320193.json', import.meta.url)));
+  const source = JSON.parse(gunzipSync(readFileSync(new URL('../public' + record.source_snapshot, import.meta.url))));
+  const rows = [2020, 2021, 2022].map((year, i) => ({ ...row, start: `${year}-01-01`, end: `${year}-12-31`, filed: `${year + 1}-02-01`, val: i + 1 }));
+  source.facts['us-gaap'].EarningsPerShareBasic = { units: { USD: rows, 'USD/shares': rows } };
+  source.facts['us-gaap'].ResearchAndDevelopmentExpense = { units: { USD: rows.map(row => ({ ...row, val: 0 })) } };
+  const diagnostics = {};
+  const result = companyReference(JSON.stringify(source), { fetchedAt: record.fetched_at, expectedCik: record.cik, selectionPolicy: 'extended-v1', diagnostics });
+  const eps = result.concepts.find(concept => concept.tag === 'EarningsPerShareBasic');
+  assert.deepEqual([...new Set(eps.observations.map(row => row.unit))], ['USD/shares']);
+  assert.ok(!result.concepts.some(concept => concept.tag === 'ResearchAndDevelopmentExpense'));
+  assert.ok(diagnostics.incompatible_unit >= 3);
+  assert.ok(diagnostics.insufficient_varying_history >= 1);
+});
+
+test('versioned extended definitions retain their reviewed byte binding', async () => {
+  const { EXTENDED_CONCEPTS } = await import('./lib/company-extended-concepts.mjs');
+  const review = JSON.parse(readFileSync(new URL('../artifacts/seo/company-extended-taxonomy-review.json', import.meta.url)));
+  assert.equal(createHash('sha256').update(JSON.stringify(EXTENDED_CONCEPTS)).digest('hex'), review.definitions_sha256, 'Create a new policy version for definition changes and retain the prior policy');
+});

@@ -533,3 +533,32 @@ No page count increased. Audit makes the next editorial/taxonomy prioritization
 concrete instead of extrapolating the existing nine concepts to one million pages.
 Audit sessions41094/65485 completed exit0. Runtime/production code unchanged this
 turn; existing348-test evidence remains applicable to those unchanged paths.
+
+## 2026-09-19 — extended accounting policy and mobile quality review
+
+Reread continuity after compaction; owner vision remains fully active. Verified
+5fae3c06 passes both CI jobs (35447926796). Captured official 2026 FASB taxonomy
+and checked 25 selected concepts against its period/type declarations. Introduced
+extended-v1 with explicit policy dispatch and frozen definition receipt; legacy
+selection and pilot reproduction stay unchanged. Added compatible unit shapes and
+within-unit varying-history gates for new concepts. Reviewed source meanings;
+excluded balance-sheet identity and arbitrary tag permutations from this expansion.
+
+Staged separate original/selected delivery and replayed it into a bounded catalog.
+349 companies, 9,030 histories, seven directories =9,386 candidate HTML pages;
+698 downloads. Release/discovery receipts are unapproved and local only. Full HTTP
+check confirms all pages, hashes, download replay, sitemap equality, no orphans
+and three-link maximum from /companies. Initial browser check failed because
+WeightedAverageNumberOfDilutedSharesOutstanding overflowed at390px. Inline-code
+wrapping fixed the cause; rerun passes44 Chromium/WebKit checks. EPSmobile screenshot
+visually inspected. Full verify completes351 tests (6+345) and writing/SEO/evidence
+audits. Retained failure description; restored only this build's timestamp/hash
+churn after JSON comparison and source-date diff review.
+
+New evidence: company-extended-taxonomy-review.json, taxonomy-source.json,
+company-release-extended-staged.json, company-discovery-extended-staged.json,
+company-delivery-extended-measurement.json and company-delivery-extended-browser.json.
+Preview is older than these changes; no production activation or index claim.
+Storage/access, Search Console and production authorization questions remain
+pending. Next: pushed-head CI, per-company semantic/freshness review and storage
+integration; all developer and governed engine objectives remain active.

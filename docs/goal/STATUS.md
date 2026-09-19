@@ -1,7 +1,7 @@
 # Current state
 
 Updated: 2026-09-19. Overall goal: **ACTIVE, NOT ACHIEVED**.
-Current phase: **3 — bounded serving and crawl discovery verified locally**.
+Current phase: **1/2/3 — extended concept policy and staged delivery quality verified locally**.
 Next: production release/storage integration and deployment packaging.
 All owner objectives in REQUIREMENTS.md remain active. The owner reconfirmed the
 million-indexed-page vision and all other objectives after the sitemap discussion.
@@ -14,6 +14,11 @@ million-indexed-page vision and all other objectives after the sitemap discussio
   = 3,057 HTML pages**, with **698 original/selected downloads**.
 - Combined with the 263 baseline pages, this could support **3,320 pages** after
   integration/release review. It is not a live or indexed count.
+- Extended-v1 candidate corpus: **349 companies + 9,030 histories + seven directories
+  = 9,386 reference pages**, with 698 downloads. This is an alternative policy over
+  the same captures, not an additional 9,386 pages on top of the core corpus. With
+  263 baseline pages it could support 9,649 after integration and release review.
+  Not published, approved or confirmed indexed.
 - Actual indexed count: **unknown**; Search Console access/evidence remains pending.
   Minimum remains **800,000 actually indexed**, target **1,000,000**.
 - User was told to keep the existing `https://canlicapital.com/sitemap.xml` submission.
@@ -42,11 +47,12 @@ million-indexed-page vision and all other objectives after the sitemap discussio
 - Synthetic navigation test: all 20,000 directory pages reached in at most four
   links. Initial three-link expectation failed and was corrected to the measured
   bound. This tests navigation, not content quality, live capacity or indexing.
-- Latest full local verification: **348 tests pass (6 + 342)**, clean writing,
+- Latest full local verification: **351 tests pass (6 + 345)**, clean writing,
   metadata, link, indexability and numerical-source/evidence audits. Log:
-  `/tmp/canli-public-wrapper-verify.log`; session 67317 completed exit 0.
-- Latest staged browser review: **28 Chromium/WebKit checks pass**, 390/1440 widths.
-  Inspected mobile final-directory screenshot. Local test servers are stopped.
+  `/tmp/canli-extended-final-verify.log`; complete test and final audit output verified.
+- Latest extended staged browser review: **44 Chromium/WebKit checks pass**, 390/1440
+  widths. Fixed long accounting-identifier mobile overflow and inspected the EPS
+  mobile screenshot. Core policy previously passed 28 checks.
 - Prior unchanged MCP tests: 43 pass. Developer links/examples/contributor guidance
   are implemented; no star-growth, usage, conversion or ranking claim.
 - Keyword map remains 78 canonical owners, 95 query hypotheses, 249 pending intent
@@ -66,8 +72,8 @@ million-indexed-page vision and all other objectives after the sitemap discussio
 ## Release, CI and environment
 
 - Website worktree/PR 15 remain the isolated task branch. Prior pushed head
-  **7ce4557c** passes both CI jobs, run **35447499909**. Later audit/docs changes
-  need their own pushed-head CI check; do not confuse prior CI with later edits.
+  **5fae3c06** passes both CI jobs, run **35447926796**. Extended-policy checkpoint
+  needs its own pushed-head CI check; do not confuse prior CI with later edits.
 - Preview Ready: https://meridian-atulevugw-arhans-projects-ac470eaa.vercel.app.
   Vercel lists the new company-reference function (36.84KB). Catalog inactive;
   hosted-data runtime unverified. See artifacts/seo/wrapper-preview.json.
@@ -134,6 +140,26 @@ See COMPANY_CATALOG.md for reproduction commands and remaining production limits
 - Existing annual selection and three-reporting-end rule were reused. Kind inferred
   from observation shape is not authoritative taxonomy classification. Definition,
   intent ownership, comparability, duplicate content and material usefulness require
-  review before any expansion. No records or published concept whitelist changed.
+  review before any expansion. That audit did not itself change records or the published concept whitelist.
 - Evidence: artifacts/seo/company-concept-breadth.json and its executable audit.
   Source growth review can proceed independently while storage/access is pending.
+
+## Extended policy quality checkpoint
+
+- Versioned extended-v1 adds 25 deliberately selected concepts to the original nine.
+  Original default selection and pilot HTML reproduction remain unchanged. Added
+  concepts require compatible unit shapes and three reporting ends with varying
+  values within one unit; missing or incompatible values are never zero-filled.
+- All 25 period/type declarations match a SHA-bound official 2026 FASB taxonomy.
+  This does not establish historical taxonomy consistency or editorial approval
+  for every company. Definitions are bound to a review receipt in regression tests.
+- Full local HTTP replay: 9,386 pages, 698 downloads, exact sitemap agreement, no
+  orphan pages, maximum three links from /companies. Maximum HTML 31,652 bytes.
+  Local sequential timing is not cloud capacity or real-user performance.
+- Initial extended browser run failed on a long weighted-share identifier at 390px.
+  Added natural inline-code wrapping; all 44 rerun checks pass. No data hidden.
+- See EXTENDED_COMPANY_POLICY.md and artifacts/seo/*extended*.json. Raw captures
+  and the captured XSD remain ignored. Preview receipt predates this policy.
+- Next: verify this checkpoint CI; review per-company freshness, duplicate-intent
+  and comparability flags; continue storage/release integration once access is
+  resolved. Search Console and production questions remain pending, unchanged.
