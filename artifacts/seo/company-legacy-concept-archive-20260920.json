@@ -1,0 +1,71 @@
+{
+  "schema": "canli.legacy-concept-archive.v1",
+  "archive_path": "artifacts/seo/corpus-local/legacy-concept-supplement-20260920.tar",
+  "bytes": 17643520,
+  "sha256": "6cbffae3de190dc699864453c92d092d2ac42cddb136cef861408357783ad687",
+  "files": [
+    {
+      "path": "artifacts/seo/company-constant-xbrl-capture-index.json",
+      "bytes": 31372,
+      "sha256": "75025ac4e803a92f951ced6ec997968610c61eb0d89cd5fd50a7bd7e1d8e5118"
+    },
+    {
+      "path": "artifacts/seo/company-legacy-concept-supplement-20260920.json",
+      "bytes": 15019,
+      "sha256": "aba1b76ef26079fdb6ae3b5a9ed2f42661eaee60cd5e35be9165f4a69668ea34"
+    },
+    {
+      "path": "artifacts/seo/company-retained-concept-review-20260920.json",
+      "bytes": 326965,
+      "sha256": "57142e68a205d6072165cde0b16fbdbd36977930c16b4dbc48489db30c7ab501"
+    },
+    {
+      "path": "artifacts/seo/company-retained-concept-targets-20260920.json",
+      "bytes": 139815,
+      "sha256": "6b28d87d0aa6d7f77e74e47f26ad7eff690d66ce626eeb07a3bf16c74993048a"
+    },
+    {
+      "path": "artifacts/seo/corpus-local/editorial-constant-filings/0000818479-0000818479-17-000007-primary.receipt.json",
+      "bytes": 278,
+      "sha256": "aaf9e22f2fdb69d03f75a6aaca9a788513605632b957c862723fc6378c33add1"
+    },
+    {
+      "path": "artifacts/seo/corpus-local/editorial-constant-filings/0000818479-0000818479-17-000007-primary.response",
+      "bytes": 4810150,
+      "sha256": "be9d756a0a104d311358df6b61df86d4bbbdec9c364a5ef26fb9ea501fe61e7a"
+    },
+    {
+      "path": "artifacts/seo/corpus-local/editorial-constant-filings/0000818479-EX-101.INS.response",
+      "bytes": 7617585,
+      "sha256": "69a8f8ea1f0ae38bbe193a4c33cd0e0266b3768a8e10ec1c01f1826b75f0f53c"
+    },
+    {
+      "path": "artifacts/seo/corpus-local/editorial-constant-filings/0001227654-0001140361-14-009227-primary.receipt.json",
+      "bytes": 264,
+      "sha256": "ef9d66edeafcf1c66986b4aa41e638b0ea9edd6d5c783709c6389ce879626acf"
+    },
+    {
+      "path": "artifacts/seo/corpus-local/editorial-constant-filings/0001227654-0001140361-14-009227-primary.response",
+      "bytes": 2151595,
+      "sha256": "c6a6ca46a326a67d60b0a39c025c9ef65b6654fbe3ce73f8fbb76522243f2406"
+    },
+    {
+      "path": "artifacts/seo/corpus-local/editorial-constant-filings/0001227654-EX-101.INS.response",
+      "bytes": 2520734,
+      "sha256": "5a6d320a8b76585fba21ec137a5feffda31b8ad011fc7f04e4da278773ca8aee"
+    },
+    {
+      "path": "scripts/review-company-editorial-xbrl.py",
+      "bytes": 7331,
+      "sha256": "9fe9596d43db7d050403c5ede9a0ff28c30c1b75245dcbe6a4ef8770e84443e2"
+    },
+    {
+      "path": "scripts/review-legacy-concept-filings.py",
+      "bytes": 4036,
+      "sha256": "45174c6bd510fd2eaadc6e95fb63ec0607a682afa560e5471d82f49e69229b0f"
+    }
+  ],
+  "isolated_replay_byte_identical": true,
+  "offsite": false,
+  "scope": "Supplement source recovery and replay. Python/BeautifulSoup dependencies are supplied by the existing locked parser environment; not packaged in this supplement."
+}

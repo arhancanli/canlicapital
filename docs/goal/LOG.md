@@ -195,3 +195,22 @@ and exactly replays reportSHA57142e68a205d6072165cde0b16fbdbd36977930c16b4dbc484
 ArchiveSHAc3a7d042aabc031923d4803abe7d71c6d1ba1b1caf39811da13d5f3c4a75dc49.
 Target regeneration still needs original companyfacts cohort archives; no offsite
 claim. No source admission, production deployment, new page or indexing gain.
+
+## 2026-09-20 — legacy capture reconciliation
+
+Prior turn made progress through retained-filing verification. PR18 passed all
+four CI jobs35509711510 and merged as ea4bc3ca. Both reviewed and merged trees
+are5a8648c523710a0fd13ae4c0150f428a410be303.
+
+Inspection of the older capture index corrected the prior assumption that two
+XML instances were missing: both were saved under EX-101.INS filenames. A
+separate offline supplement verifies primary source, accession and body hashes
+and reproduces all eight previously unmatched figures. Original report and
+archive remain intact. Primary table extracts preserve attribution, capitalized
+interest and mineral-property scope distinctions. Existing intersegment-revenue
+exclusions are unaffected.
+
+Isolated12file archive restore reruns the supplement and reproduces exact SHA
+aba1b76ef26079fdb6ae3b5a9ed2f42661eaee60cd5e35be9165f4a69668ea34.
+No acquisition, retry, definition change or production deployment. Numerical
+coverage198/198 is not all-history review, concept admission or new indexed pages.
