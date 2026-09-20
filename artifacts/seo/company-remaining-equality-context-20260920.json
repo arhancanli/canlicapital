@@ -1,0 +1,1451 @@
+{
+  "schema": "canli.remaining-equality-context.v1",
+  "publication_approved": false,
+  "closure_sha256": "e926629fe1e0ba693b74b1531b9a8ea5056ae92b64e758bac609a977145e9065",
+  "code_sha256": "1dac9e773bca203cf2bf64223655bcdaef094bbbd626a209c5c8a59c9027b031",
+  "cases": [
+    {
+      "cik": "0000894501",
+      "name": "GOLD ROCK HOLDINGS, INC.",
+      "tags": [
+        "Assets",
+        "AssetsCurrent"
+      ],
+      "evidence": [
+        {
+          "accession": "0001091818-26-000026",
+          "primary_sha256": "52c5bc0603054f38ae386a837bf637db417afeca680e6601501ab717960549f1",
+          "url": "https://www.sec.gov/Archives/edgar/data/894501/000109181826000026/grhi12312510k.htm",
+          "check": {
+            "selected": {
+              "tag": "Assets",
+              "end": "2025-12-31",
+              "val": 152121,
+              "accn": "0001091818-26-000026",
+              "fy": 2025,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2026-03-27",
+              "unit": "USD"
+            },
+            "matched": true,
+            "matches": [
+              {
+                "tag": "Assets",
+                "start": null,
+                "end": "2025-12-31",
+                "unit": "USD",
+                "value": "152121",
+                "fact_id": "Fact000062",
+                "context_id": "AsOf2025-12-31",
+                "table_row": "Total Assets $ 152,121 $ 253,614",
+                "preceding_rows": [
+                  "Total Current Assets 152,121 253,614",
+                  ""
+                ],
+                "table_header_rows": [
+                  "",
+                  "December 31, 2025 2024",
+                  "ASSETS",
+                  "Current Assets",
+                  "Cash $ 152,121 $ 209,614"
+                ],
+                "paragraph": null,
+                "preceding_heading": null
+              }
+            ],
+            "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING",
+            "match_method": "INLINE_PRIMARY"
+          }
+        },
+        {
+          "accession": "0001091818-26-000026",
+          "primary_sha256": "52c5bc0603054f38ae386a837bf637db417afeca680e6601501ab717960549f1",
+          "url": "https://www.sec.gov/Archives/edgar/data/894501/000109181826000026/grhi12312510k.htm",
+          "check": {
+            "selected": {
+              "tag": "AssetsCurrent",
+              "end": "2025-12-31",
+              "val": 152121,
+              "accn": "0001091818-26-000026",
+              "fy": 2025,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2026-03-27",
+              "frame": "CY2025Q4I",
+              "unit": "USD"
+            },
+            "matched": true,
+            "matches": [
+              {
+                "tag": "AssetsCurrent",
+                "start": null,
+                "end": "2025-12-31",
+                "unit": "USD",
+                "value": "152121",
+                "fact_id": "Fact000059",
+                "context_id": "AsOf2025-12-31",
+                "table_row": "Total Current Assets 152,121 253,614",
+                "preceding_rows": [
+                  "Accounts Receivable - 44,000",
+                  ""
+                ],
+                "table_header_rows": [
+                  "",
+                  "December 31, 2025 2024",
+                  "ASSETS",
+                  "Current Assets",
+                  "Cash $ 152,121 $ 209,614"
+                ],
+                "paragraph": null,
+                "preceding_heading": null
+              }
+            ],
+            "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING",
+            "match_method": "INLINE_PRIMARY"
+          }
+        }
+      ],
+      "legacy_tables": [],
+      "interpretation": "The reviewed balance sheet separately labels current assets and total assets with equal amounts at the selected date. Current assets are included in total assets; do not add the two totals. No all-history classification conclusion follows."
+    },
+    {
+      "cik": "0001062506",
+      "name": "ATLANTICA INC.",
+      "tags": [
+        "Assets",
+        "AssetsCurrent"
+      ],
+      "evidence": [
+        {
+          "accession": "0001062506-26-000010",
+          "primary_sha256": "c6cd6a01e821244936276203a5da114612c5313e9cf7202938fe0eb069b50421",
+          "url": "https://www.sec.gov/Archives/edgar/data/1062506/000106250626000010/alda10k123125.htm",
+          "check": {
+            "selected": {
+              "tag": "Assets",
+              "end": "2025-12-31",
+              "val": 0,
+              "accn": "0001062506-26-000010",
+              "fy": 2025,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2026-03-31",
+              "frame": "CY2025Q4I",
+              "unit": "USD"
+            },
+            "matched": true,
+            "matches": [
+              {
+                "tag": "Assets",
+                "start": null,
+                "end": "2025-12-31",
+                "unit": "USD",
+                "value": "-0",
+                "fact_id": "Fact000058",
+                "context_id": "AsOf2025-12-31",
+                "table_row": "Total Assets $ - $ -",
+                "preceding_rows": [
+                  "Cash $ - $ -",
+                  "Total Current Assets - -"
+                ],
+                "table_header_rows": [
+                  "December 31, 2025 December 31, 2024",
+                  "ASSETS",
+                  "CURRENT ASSETS",
+                  "",
+                  "Cash $ - $ -"
+                ],
+                "paragraph": null,
+                "preceding_heading": null
+              }
+            ],
+            "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING",
+            "match_method": "INLINE_PRIMARY"
+          }
+        },
+        {
+          "accession": "0001062506-26-000010",
+          "primary_sha256": "c6cd6a01e821244936276203a5da114612c5313e9cf7202938fe0eb069b50421",
+          "url": "https://www.sec.gov/Archives/edgar/data/1062506/000106250626000010/alda10k123125.htm",
+          "check": {
+            "selected": {
+              "tag": "AssetsCurrent",
+              "end": "2025-12-31",
+              "val": 0,
+              "accn": "0001062506-26-000010",
+              "fy": 2025,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2026-03-31",
+              "frame": "CY2025Q4I",
+              "unit": "USD"
+            },
+            "matched": true,
+            "matches": [
+              {
+                "tag": "AssetsCurrent",
+                "start": null,
+                "end": "2025-12-31",
+                "unit": "USD",
+                "value": "-0",
+                "fact_id": "Fact000055",
+                "context_id": "AsOf2025-12-31",
+                "table_row": "Total Current Assets - -",
+                "preceding_rows": [
+                  "",
+                  "Cash $ - $ -"
+                ],
+                "table_header_rows": [
+                  "December 31, 2025 December 31, 2024",
+                  "ASSETS",
+                  "CURRENT ASSETS",
+                  "",
+                  "Cash $ - $ -"
+                ],
+                "paragraph": null,
+                "preceding_heading": null
+              }
+            ],
+            "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING",
+            "match_method": "INLINE_PRIMARY"
+          }
+        }
+      ],
+      "legacy_tables": [],
+      "interpretation": "The reviewed balance sheet separately labels current assets and total assets with equal amounts at the selected date. Current assets are included in total assets; do not add the two totals. No all-history classification conclusion follows."
+    },
+    {
+      "cik": "0001082733",
+      "name": "VISIUM TECHNOLOGIES, INC.",
+      "tags": [
+        "Assets",
+        "AssetsCurrent"
+      ],
+      "evidence": [
+        {
+          "accession": "0001654954-25-011506",
+          "primary_sha256": "32996e9da4e5b759f8c1ad68bd9db345b7ab97cf14a71787b7040105c0a2b35c",
+          "url": "https://www.sec.gov/Archives/edgar/data/1082733/000165495425011506/vism_10k.htm",
+          "check": {
+            "selected": {
+              "tag": "Assets",
+              "end": "2025-06-30",
+              "val": 67644,
+              "accn": "0001654954-25-011506",
+              "fy": 2025,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2025-10-07",
+              "unit": "USD"
+            },
+            "matched": true,
+            "matches": [
+              {
+                "tag": "Assets",
+                "start": null,
+                "end": "2025-06-30",
+                "unit": "USD",
+                "value": "67644",
+                "fact_id": "fid_3305",
+                "context_id": "AsOf2025-06-30",
+                "table_row": "Total assets $ 67,644 $ 8,456",
+                "preceding_rows": [
+                  "Total current assets 67,644 8,456",
+                  ""
+                ],
+                "table_header_rows": [
+                  "June 30,",
+                  "2025 2024",
+                  "ASSETS",
+                  "Current assets:",
+                  "Cash $ 60,144 $ 8,456"
+                ],
+                "paragraph": null,
+                "preceding_heading": null
+              }
+            ],
+            "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING",
+            "match_method": "INLINE_PRIMARY"
+          }
+        },
+        {
+          "accession": "0001654954-25-011506",
+          "primary_sha256": "32996e9da4e5b759f8c1ad68bd9db345b7ab97cf14a71787b7040105c0a2b35c",
+          "url": "https://www.sec.gov/Archives/edgar/data/1082733/000165495425011506/vism_10k.htm",
+          "check": {
+            "selected": {
+              "tag": "AssetsCurrent",
+              "end": "2025-06-30",
+              "val": 67644,
+              "accn": "0001654954-25-011506",
+              "fy": 2025,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2025-10-07",
+              "unit": "USD"
+            },
+            "matched": true,
+            "matches": [
+              {
+                "tag": "AssetsCurrent",
+                "start": null,
+                "end": "2025-06-30",
+                "unit": "USD",
+                "value": "67644",
+                "fact_id": "fid_3303",
+                "context_id": "AsOf2025-06-30",
+                "table_row": "Total current assets 67,644 8,456",
+                "preceding_rows": [
+                  "Prepaid expenses 7,500 -",
+                  ""
+                ],
+                "table_header_rows": [
+                  "June 30,",
+                  "2025 2024",
+                  "ASSETS",
+                  "Current assets:",
+                  "Cash $ 60,144 $ 8,456"
+                ],
+                "paragraph": null,
+                "preceding_heading": null
+              }
+            ],
+            "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING",
+            "match_method": "INLINE_PRIMARY"
+          }
+        }
+      ],
+      "legacy_tables": [],
+      "interpretation": "The reviewed balance sheet separately labels current assets and total assets with equal amounts at the selected date. Current assets are included in total assets; do not add the two totals. No all-history classification conclusion follows."
+    },
+    {
+      "cik": "0001145604",
+      "name": "NIKA PHARMACEUTICALS,  INC.",
+      "tags": [
+        "Assets",
+        "AssetsCurrent"
+      ],
+      "evidence": [
+        {
+          "accession": "0001826466-26-000026",
+          "primary_sha256": "bc83493e0176b29d0d43fe94222efdb7c865dd7e730b75d1344fe5732821bfef",
+          "url": "https://www.sec.gov/Archives/edgar/data/1145604/000182646626000026/form-10k.htm",
+          "check": {
+            "selected": {
+              "tag": "Assets",
+              "end": "2025-12-31",
+              "val": 20996,
+              "accn": "0001826466-26-000026",
+              "fy": 2025,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2026-03-25",
+              "unit": "USD"
+            },
+            "matched": true,
+            "matches": [
+              {
+                "tag": "Assets",
+                "start": null,
+                "end": "2025-12-31",
+                "unit": "USD",
+                "value": "20996",
+                "fact_id": "Fact000069",
+                "context_id": "AsOf2025-12-31",
+                "table_row": "Total Assets $ 20,996 $ 17,934",
+                "preceding_rows": [
+                  "Prepaid expenses 19,107 15,851",
+                  "Total current assets 20,996 17,934"
+                ],
+                "table_header_rows": [
+                  "",
+                  "December 31, 2025 December 31, 2024",
+                  "ASSETS",
+                  "Current Assets:",
+                  "Cash $ 1,889 $ 2,083"
+                ],
+                "paragraph": null,
+                "preceding_heading": null
+              }
+            ],
+            "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING",
+            "match_method": "INLINE_PRIMARY"
+          }
+        },
+        {
+          "accession": "0001826466-26-000026",
+          "primary_sha256": "bc83493e0176b29d0d43fe94222efdb7c865dd7e730b75d1344fe5732821bfef",
+          "url": "https://www.sec.gov/Archives/edgar/data/1145604/000182646626000026/form-10k.htm",
+          "check": {
+            "selected": {
+              "tag": "AssetsCurrent",
+              "end": "2025-12-31",
+              "val": 20996,
+              "accn": "0001826466-26-000026",
+              "fy": 2025,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2026-03-25",
+              "unit": "USD"
+            },
+            "matched": true,
+            "matches": [
+              {
+                "tag": "AssetsCurrent",
+                "start": null,
+                "end": "2025-12-31",
+                "unit": "USD",
+                "value": "20996",
+                "fact_id": "Fact000066",
+                "context_id": "AsOf2025-12-31",
+                "table_row": "Total current assets 20,996 17,934",
+                "preceding_rows": [
+                  "Cash $ 1,889 $ 2,083",
+                  "Prepaid expenses 19,107 15,851"
+                ],
+                "table_header_rows": [
+                  "",
+                  "December 31, 2025 December 31, 2024",
+                  "ASSETS",
+                  "Current Assets:",
+                  "Cash $ 1,889 $ 2,083"
+                ],
+                "paragraph": null,
+                "preceding_heading": null
+              }
+            ],
+            "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING",
+            "match_method": "INLINE_PRIMARY"
+          }
+        }
+      ],
+      "legacy_tables": [],
+      "interpretation": "The reviewed balance sheet separately labels current assets and total assets with equal amounts at the selected date. Current assets are included in total assets; do not add the two totals. No all-history classification conclusion follows."
+    },
+    {
+      "cik": "0001145604",
+      "name": "NIKA PHARMACEUTICALS,  INC.",
+      "tags": [
+        "NetIncomeLoss",
+        "OperatingIncomeLoss"
+      ],
+      "evidence": [
+        {
+          "accession": "0001826466-26-000026",
+          "primary_sha256": "bc83493e0176b29d0d43fe94222efdb7c865dd7e730b75d1344fe5732821bfef",
+          "url": "https://www.sec.gov/Archives/edgar/data/1145604/000182646626000026/form-10k.htm",
+          "check": {
+            "selected": {
+              "tag": "NetIncomeLoss",
+              "start": "2025-01-01",
+              "end": "2025-12-31",
+              "val": -76398,
+              "accn": "0001826466-26-000026",
+              "fy": 2025,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2026-03-25",
+              "frame": "CY2025",
+              "unit": "USD"
+            },
+            "matched": true,
+            "matches": [
+              {
+                "tag": "NetIncomeLoss",
+                "start": "2025-01-01",
+                "end": "2025-12-31",
+                "unit": "USD",
+                "value": "-76398",
+                "fact_id": "Fact000145",
+                "context_id": "From2025-01-01to2025-12-31",
+                "table_row": "Net Loss $ ( 76,398 ) $ ( 95,792 )",
+                "preceding_rows": [
+                  "Provision for income taxes \u2014 \u2014",
+                  ""
+                ],
+                "table_header_rows": [
+                  "",
+                  "For the Years Ended",
+                  "December 31,",
+                  "2025 2024",
+                  "Operating Expenses:"
+                ],
+                "paragraph": null,
+                "preceding_heading": null
+              },
+              {
+                "tag": "NetIncomeLoss",
+                "start": "2025-01-01",
+                "end": "2025-12-31",
+                "unit": "USD",
+                "value": "-76398",
+                "fact_id": "Fact000212",
+                "context_id": "From2025-01-01to2025-12-31",
+                "table_row": "Net loss \u2014 \u2014 \u2014 \u2014 \u2014 ( 76,398 ) ( 76,398 )",
+                "preceding_rows": [
+                  "Balance, December 31, 2024 15,000,000 $ 1,500 1,021,674,500 $ 102,168 $ 8,602,714 $ ( 8,927,612 ) $ ( 221,230 )",
+                  "Common control merger \u2014 \u2014 25,874,724 2,588 ( 2588 ) \u2014 \u2014"
+                ],
+                "table_header_rows": [
+                  "",
+                  "Total",
+                  "Preferred Stock Common Stock Additional Paid Accumulated Stockholders\u2019",
+                  "Shares Amount Shares Amount in Capital Deficit Equity",
+                  "Balance, December 31, 2023 10,000,000 $ 1,000 876,090,000 $ 87,609 $ 3,229,489 $ ( 3,400,247 ) $ ( 82,149 )"
+                ],
+                "paragraph": null,
+                "preceding_heading": null
+              }
+            ],
+            "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING",
+            "match_method": "INLINE_PRIMARY"
+          }
+        },
+        {
+          "accession": "0001826466-26-000026",
+          "primary_sha256": "bc83493e0176b29d0d43fe94222efdb7c865dd7e730b75d1344fe5732821bfef",
+          "url": "https://www.sec.gov/Archives/edgar/data/1145604/000182646626000026/form-10k.htm",
+          "check": {
+            "selected": {
+              "tag": "OperatingIncomeLoss",
+              "start": "2025-01-01",
+              "end": "2025-12-31",
+              "val": -76398,
+              "accn": "0001826466-26-000026",
+              "fy": 2025,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2026-03-25",
+              "frame": "CY2025",
+              "unit": "USD"
+            },
+            "matched": true,
+            "matches": [
+              {
+                "tag": "OperatingIncomeLoss",
+                "start": "2025-01-01",
+                "end": "2025-12-31",
+                "unit": "USD",
+                "value": "-76398",
+                "fact_id": "Fact000136",
+                "context_id": "From2025-01-01to2025-12-31",
+                "table_row": "Loss from operations ( 76,398 ) ( 95,792 )",
+                "preceding_rows": [
+                  "Total operating expenses 76,398 95,792",
+                  ""
+                ],
+                "table_header_rows": [
+                  "",
+                  "For the Years Ended",
+                  "December 31,",
+                  "2025 2024",
+                  "Operating Expenses:"
+                ],
+                "paragraph": null,
+                "preceding_heading": null
+              }
+            ],
+            "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING",
+            "match_method": "INLINE_PRIMARY"
+          }
+        }
+      ],
+      "legacy_tables": [],
+      "interpretation": "The reviewed statement separately labels operating loss and net loss with equal selected amounts. They remain different accounting measures; this is not proof that all historical or future non-operating items are absent."
+    },
+    {
+      "cik": "0001162283",
+      "name": "Morgan Group Holding Co",
+      "tags": [
+        "AccountsPayableCurrent",
+        "LiabilitiesCurrent"
+      ],
+      "evidence": [
+        {
+          "accession": "0001206774-19-000585",
+          "primary_sha256": "2d49b7bc8676d177363a6300603e9d9aa0c23e6983f596a6ede75211c39ae9f3",
+          "url": "https://www.sec.gov/Archives/edgar/data/1162283/000120677419000585/morgan3424874-10k.htm",
+          "check": {
+            "selected": {
+              "tag": "AccountsPayableCurrent",
+              "end": "2018-12-31",
+              "val": 222,
+              "accn": "0001206774-19-000585",
+              "fy": 2018,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2019-02-26",
+              "frame": "CY2018Q4I",
+              "unit": "USD"
+            },
+            "matched": true,
+            "matches": [],
+            "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING",
+            "match_method": "RETAINED_XBRL_INSTANCE"
+          }
+        },
+        {
+          "accession": "0001206774-19-000585",
+          "primary_sha256": "2d49b7bc8676d177363a6300603e9d9aa0c23e6983f596a6ede75211c39ae9f3",
+          "url": "https://www.sec.gov/Archives/edgar/data/1162283/000120677419000585/morgan3424874-10k.htm",
+          "check": {
+            "selected": {
+              "tag": "LiabilitiesCurrent",
+              "end": "2018-12-31",
+              "val": 222,
+              "accn": "0001206774-19-000585",
+              "fy": 2018,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2019-02-26",
+              "unit": "USD"
+            },
+            "matched": true,
+            "matches": [],
+            "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING",
+            "match_method": "RETAINED_XBRL_INSTANCE"
+          }
+        }
+      ],
+      "legacy_tables": [
+        {
+          "primary_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001162283-0001206774-19-000585-primary.response",
+          "zero_based_table_index": 9,
+          "text": "December 31, 2018 2017 ASSETS Current assets: Cash and cash equivalents $129,635 $17,273 Prepaid expenses 7,454 329 Total current assets 137,089 17,602 Total assets $137,089 $17,602 LIABILITIES Current liabilities: Accounts payable $222 $4,995 Total current liabilities 222 4,995 COMMITMENTS AND CONTINGENCIES SHAREHOLDERS' EQUITY Preferred Stock, $0.01 par value, 1,000,000 shares authorized, none issued and outstanding -- -- Common Stock, $0.01 par value, 10,000,000 shares authorized, 4,859,055 and 3,359,055 issued and outstanding at December 31, 2018 and 2017, respectively 48,591 33,591 Additional paid-in-capital 5,937,368 5,772,368 Accumulated deficit (5,849,092) (5,793,352) Total shareholders' equity 136,867 12,602 Total liabilities and shareholders' equity $137,089 $17,602"
+        }
+      ],
+      "interpretation": "The December 31, 2018 balance sheet lists accounts payable of222USD as the sole displayed current-liability component and reports total current liabilities of222USD. This does not make accounts payable a universal substitute for current liabilities."
+    },
+    {
+      "cik": "0001310488",
+      "name": "BIOFORCE NANOSCIENCES HOLDINGS, INC.",
+      "tags": [
+        "Assets",
+        "AssetsCurrent"
+      ],
+      "evidence": [
+        {
+          "accession": "0001091818-26-000047",
+          "primary_sha256": "0275f1152619289b280743fe65059c98c64b7a7aafc6129ab9738ba901e3c27a",
+          "url": "https://www.sec.gov/Archives/edgar/data/1310488/000109181826000047/bfnh-123125_10k.htm",
+          "check": {
+            "selected": {
+              "tag": "Assets",
+              "end": "2025-12-31",
+              "val": 786,
+              "accn": "0001091818-26-000047",
+              "fy": 2025,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2026-04-15",
+              "unit": "USD"
+            },
+            "matched": true,
+            "matches": [
+              {
+                "tag": "Assets",
+                "start": null,
+                "end": "2025-12-31",
+                "unit": "USD",
+                "value": "786",
+                "fact_id": "Fact000059",
+                "context_id": "AsOf2025-12-31",
+                "table_row": "Total Assets $ 786 $ 862",
+                "preceding_rows": [
+                  "Total Current Assets 786 862",
+                  ""
+                ],
+                "table_header_rows": [
+                  "",
+                  "December 31, 2025 2024",
+                  "ASSETS",
+                  "Current Assets",
+                  "Cash $ 786 $ 862"
+                ],
+                "paragraph": null,
+                "preceding_heading": null
+              }
+            ],
+            "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING",
+            "match_method": "INLINE_PRIMARY"
+          }
+        },
+        {
+          "accession": "0001091818-26-000047",
+          "primary_sha256": "0275f1152619289b280743fe65059c98c64b7a7aafc6129ab9738ba901e3c27a",
+          "url": "https://www.sec.gov/Archives/edgar/data/1310488/000109181826000047/bfnh-123125_10k.htm",
+          "check": {
+            "selected": {
+              "tag": "AssetsCurrent",
+              "end": "2025-12-31",
+              "val": 786,
+              "accn": "0001091818-26-000047",
+              "fy": 2025,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2026-04-15",
+              "unit": "USD"
+            },
+            "matched": true,
+            "matches": [
+              {
+                "tag": "AssetsCurrent",
+                "start": null,
+                "end": "2025-12-31",
+                "unit": "USD",
+                "value": "786",
+                "fact_id": "Fact000056",
+                "context_id": "AsOf2025-12-31",
+                "table_row": "Total Current Assets 786 862",
+                "preceding_rows": [
+                  "Cash $ 786 $ 862",
+                  ""
+                ],
+                "table_header_rows": [
+                  "",
+                  "December 31, 2025 2024",
+                  "ASSETS",
+                  "Current Assets",
+                  "Cash $ 786 $ 862"
+                ],
+                "paragraph": null,
+                "preceding_heading": null
+              }
+            ],
+            "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING",
+            "match_method": "INLINE_PRIMARY"
+          }
+        }
+      ],
+      "legacy_tables": [],
+      "interpretation": "The reviewed balance sheet separately labels current assets and total assets with equal amounts at the selected date. Current assets are included in total assets; do not add the two totals. No all-history classification conclusion follows."
+    },
+    {
+      "cik": "0001342916",
+      "name": "HNO International, Inc.",
+      "tags": [
+        "NetIncomeLoss",
+        "OperatingIncomeLoss"
+      ],
+      "evidence": [
+        {
+          "accession": "0001342916-26-000008",
+          "primary_sha256": "13e87c8eb65089a81afb28ac8916505852fe332a1915af9d9c9b85ff2da50d83",
+          "url": "https://www.sec.gov/Archives/edgar/data/1342916/000134291626000008/hnoi10k.htm",
+          "check": {
+            "selected": {
+              "tag": "NetIncomeLoss",
+              "start": "2024-11-01",
+              "end": "2025-10-31",
+              "val": -6615496,
+              "accn": "0001342916-26-000008",
+              "fy": 2025,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2026-02-06",
+              "unit": "USD"
+            },
+            "matched": true,
+            "matches": [
+              {
+                "tag": "NetIncomeLoss",
+                "start": "2024-11-01",
+                "end": "2025-10-31",
+                "unit": "USD",
+                "value": "-6615496",
+                "fact_id": "Fact000279",
+                "context_id": "From2024-11-01to2025-10-31",
+                "table_row": "Net Loss $ ( 6,615,496 ) $ ( 3,338,590 )",
+                "preceding_rows": [
+                  "Total Other (Expenses) ( 153,814 ) ( 22,074 )",
+                  "Loss from Operations $ ( 6,615,496 ) $ ( 3,338,590 )"
+                ],
+                "table_header_rows": [
+                  "",
+                  "HNO INTERNATIONAL, INC. STATEMENTS OF OPERATIONS",
+                  "",
+                  "For the year Ended October 31,",
+                  "2025 2024"
+                ],
+                "paragraph": null,
+                "preceding_heading": null
+              },
+              {
+                "tag": "NetIncomeLoss",
+                "start": "2024-11-01",
+                "end": "2025-10-31",
+                "unit": "USD",
+                "value": "-6615496",
+                "fact_id": "Fact000450",
+                "context_id": "From2024-11-01to2025-10-31",
+                "table_row": "Net loss for the year ended October 31, 2025 \u2014 \u2014 \u2014 \u2014 \u2014 \u2014 \u2014 \u2014 \u2014 ( 6,615,496 ) ( 6,615,496 )",
+                "preceding_rows": [
+                  "Series B preferred stock issuances \u2014 \u2014 360,000 $ 360 \u2014 \u2014 \u2014 \u2014 359,640 \u2014 360,000",
+                  "Stock-based compensation \u2014 \u2014 \u2014 \u2014 18,705,000 18,705 \u2014 \u2014 5,315,232 \u2014 5,333,937"
+                ],
+                "table_header_rows": [
+                  "",
+                  "HNO INTERNATIONAL, INC. STATEMENTS OF STOCKHOLDERS' DEFICIT For the year ended October 31, 2024",
+                  "Series A Preferred Stock Series B Preferred Stock Common Stock Stock Share Subscription Additional Paid-in Accumulated Total Stockholders'",
+                  "Shares Amount Shares Amount Shares Amount Payable Receivable Capital Deficit Deficit",
+                  "For the year ended October 31, 2024"
+                ],
+                "paragraph": null,
+                "preceding_heading": null
+              }
+            ],
+            "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING",
+            "match_method": "INLINE_PRIMARY"
+          }
+        },
+        {
+          "accession": "0001342916-26-000008",
+          "primary_sha256": "13e87c8eb65089a81afb28ac8916505852fe332a1915af9d9c9b85ff2da50d83",
+          "url": "https://www.sec.gov/Archives/edgar/data/1342916/000134291626000008/hnoi10k.htm",
+          "check": {
+            "selected": {
+              "tag": "OperatingIncomeLoss",
+              "start": "2024-11-01",
+              "end": "2025-10-31",
+              "val": -6615496,
+              "accn": "0001342916-26-000008",
+              "fy": 2025,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2026-02-06",
+              "unit": "USD"
+            },
+            "matched": true,
+            "matches": [
+              {
+                "tag": "OperatingIncomeLoss",
+                "start": "2024-11-01",
+                "end": "2025-10-31",
+                "unit": "USD",
+                "value": "-6615496",
+                "fact_id": "Fact000276",
+                "context_id": "From2024-11-01to2025-10-31",
+                "table_row": "Loss from Operations $ ( 6,615,496 ) $ ( 3,338,590 )",
+                "preceding_rows": [
+                  "Loss on sale of asset ( 9,202 ) \u2014",
+                  "Total Other (Expenses) ( 153,814 ) ( 22,074 )"
+                ],
+                "table_header_rows": [
+                  "",
+                  "HNO INTERNATIONAL, INC. STATEMENTS OF OPERATIONS",
+                  "",
+                  "For the year Ended October 31,",
+                  "2025 2024"
+                ],
+                "paragraph": null,
+                "preceding_heading": null
+              }
+            ],
+            "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING",
+            "match_method": "INLINE_PRIMARY"
+          }
+        }
+      ],
+      "legacy_tables": [],
+      "interpretation": "The reviewed statement separately labels operating loss and net loss with equal selected amounts. They remain different accounting measures; this is not proof that all historical or future non-operating items are absent."
+    },
+    {
+      "cik": "0001410708",
+      "name": "Emo Capital Corp.",
+      "tags": [
+        "AssetsCurrent",
+        "CashAndCashEquivalentsAtCarryingValue"
+      ],
+      "evidence": [
+        {
+          "accession": "0001372167-14-000123",
+          "primary_sha256": "64b3a5d019eb35e27a40b8337fed2dd73469d899f56f106909769c7f5cebf543",
+          "url": "https://www.sec.gov/Archives/edgar/data/1410708/000137216714000123/emo10kjuly312013amend.htm",
+          "check": {
+            "selected": {
+              "tag": "AssetsCurrent",
+              "end": "2012-07-31",
+              "val": 584,
+              "accn": "0001372167-14-000123",
+              "fy": 2013,
+              "fp": "FY",
+              "form": "10-K/A",
+              "filed": "2014-05-16",
+              "frame": "CY2012Q2I",
+              "unit": "USD"
+            },
+            "matched": true,
+            "matches": [],
+            "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING",
+            "match_method": "RETAINED_XBRL_INSTANCE"
+          }
+        },
+        {
+          "accession": "0001372167-14-000123",
+          "primary_sha256": "64b3a5d019eb35e27a40b8337fed2dd73469d899f56f106909769c7f5cebf543",
+          "url": "https://www.sec.gov/Archives/edgar/data/1410708/000137216714000123/emo10kjuly312013amend.htm",
+          "check": {
+            "selected": {
+              "tag": "CashAndCashEquivalentsAtCarryingValue",
+              "end": "2012-07-31",
+              "val": 584,
+              "accn": "0001372167-14-000123",
+              "fy": 2013,
+              "fp": "FY",
+              "form": "10-K/A",
+              "filed": "2014-05-16",
+              "frame": "CY2012Q2I",
+              "unit": "USD"
+            },
+            "matched": true,
+            "matches": [],
+            "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING",
+            "match_method": "RETAINED_XBRL_INSTANCE"
+          }
+        }
+      ],
+      "legacy_tables": [
+        {
+          "primary_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001410708-0001372167-14-000123-primary.response",
+          "zero_based_table_index": 6,
+          "text": "Emo Capital Corp. (A Development Stage Company) Consolidated Balance Sheets July 31, 2013 July 31, 2012 (Audited) (Audited) ASSETS Current Assets Cash and cash equivalents $ - $ 584 TOTAL CURRENT ASSETS - 584 TOTAL ASSETS $ - $ 584 LIABILITIES AND STOCKHOLDERS' DEFICIT Current Liabilities Accounts payable and accrued liabilities $ 34,400 $ 15,455 Shareholder loan 13,425 13,425 TOTAL CURRENT LIABILITIES 47,825 28,880 Stockholders' Equity (Deficit) Common stock Authorized: $0.001 par value, 125,000,000 shares authorized Issued and Outstanding: 35,500,000 common shares as of July 31, 2013 and 35,000,000 July 31, 2012 5,000 5,000 Additional paid in capital 27,000 27,000 Stock Subscribed 100,000 100,000 Subscription receivable (100,000) (100,000) Deficit accumulated during the development stage (79,825) (60,296) TOTAL STOCKHOLDERS' DEFICIT (47,825) (28,296) TOTAL LIABILITIES AND STOCKHOLDERS' DEFICIT $ 0 $ 584 The accompanying notes are an integral part of these financial statements."
+        }
+      ],
+      "interpretation": "The2013 annual-report balance sheet presents584USD cash and total current assets in its July31,2012 comparative column. This is a historical comparative date, not proof of an independently captured2012filing or equivalence at every date."
+    },
+    {
+      "cik": "0001481443",
+      "name": "TECHCOM, INC.",
+      "tags": [
+        "Assets",
+        "AssetsCurrent"
+      ],
+      "evidence": [
+        {
+          "accession": "0001683168-26-002393",
+          "primary_sha256": "1d8ae4966547ef5f16d01c54d6c9656c45c59c9bfb4e5fe90c3cab5215f00bc5",
+          "url": "https://www.sec.gov/Archives/edgar/data/1481443/000168316826002393/techcom_i10k-123125.htm",
+          "check": {
+            "selected": {
+              "tag": "Assets",
+              "end": "2025-12-31",
+              "val": 939,
+              "accn": "0001683168-26-002393",
+              "fy": 2025,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2026-03-30",
+              "unit": "USD"
+            },
+            "matched": true,
+            "matches": [
+              {
+                "tag": "Assets",
+                "start": null,
+                "end": "2025-12-31",
+                "unit": "USD",
+                "value": "939",
+                "fact_id": "Fact000068",
+                "context_id": "AsOf2025-12-31",
+                "table_row": "Total assets $ 939 $ 1,296",
+                "preceding_rows": [
+                  "Cash $ 939 $ 1,296",
+                  "Total current assets 939 1,296"
+                ],
+                "table_header_rows": [
+                  "",
+                  "December 31, 2025 December 31, 2024",
+                  "Assets",
+                  "Current assets",
+                  "Cash $ 939 $ 1,296"
+                ],
+                "paragraph": null,
+                "preceding_heading": null
+              }
+            ],
+            "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING",
+            "match_method": "INLINE_PRIMARY"
+          }
+        },
+        {
+          "accession": "0001683168-26-002393",
+          "primary_sha256": "1d8ae4966547ef5f16d01c54d6c9656c45c59c9bfb4e5fe90c3cab5215f00bc5",
+          "url": "https://www.sec.gov/Archives/edgar/data/1481443/000168316826002393/techcom_i10k-123125.htm",
+          "check": {
+            "selected": {
+              "tag": "AssetsCurrent",
+              "end": "2025-12-31",
+              "val": 939,
+              "accn": "0001683168-26-002393",
+              "fy": 2025,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2026-03-30",
+              "unit": "USD"
+            },
+            "matched": true,
+            "matches": [
+              {
+                "tag": "AssetsCurrent",
+                "start": null,
+                "end": "2025-12-31",
+                "unit": "USD",
+                "value": "939",
+                "fact_id": "Fact000065",
+                "context_id": "AsOf2025-12-31",
+                "table_row": "Total current assets 939 1,296",
+                "preceding_rows": [
+                  "Current assets",
+                  "Cash $ 939 $ 1,296"
+                ],
+                "table_header_rows": [
+                  "",
+                  "December 31, 2025 December 31, 2024",
+                  "Assets",
+                  "Current assets",
+                  "Cash $ 939 $ 1,296"
+                ],
+                "paragraph": null,
+                "preceding_heading": null
+              }
+            ],
+            "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING",
+            "match_method": "INLINE_PRIMARY"
+          }
+        }
+      ],
+      "legacy_tables": [],
+      "interpretation": "The reviewed balance sheet separately labels current assets and total assets with equal amounts at the selected date. Current assets are included in total assets; do not add the two totals. No all-history classification conclusion follows."
+    },
+    {
+      "cik": "0001481443",
+      "name": "TECHCOM, INC.",
+      "tags": [
+        "NetIncomeLoss",
+        "OperatingIncomeLoss"
+      ],
+      "evidence": [
+        {
+          "accession": "0001683168-26-002393",
+          "primary_sha256": "1d8ae4966547ef5f16d01c54d6c9656c45c59c9bfb4e5fe90c3cab5215f00bc5",
+          "url": "https://www.sec.gov/Archives/edgar/data/1481443/000168316826002393/techcom_i10k-123125.htm",
+          "check": {
+            "selected": {
+              "tag": "NetIncomeLoss",
+              "start": "2025-01-01",
+              "end": "2025-12-31",
+              "val": -53488,
+              "accn": "0001683168-26-002393",
+              "fy": 2025,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2026-03-30",
+              "frame": "CY2025",
+              "unit": "USD"
+            },
+            "matched": true,
+            "matches": [
+              {
+                "tag": "NetIncomeLoss",
+                "start": "2025-01-01",
+                "end": "2025-12-31",
+                "unit": "USD",
+                "value": "-53488",
+                "fact_id": "Fact000162",
+                "context_id": "From2025-01-01to2025-12-31",
+                "table_row": "Net income (loss) $ ( 53,488 ) $ ( 52,494 )",
+                "preceding_rows": [
+                  "Total other income (expenses) \u2013 \u2013",
+                  ""
+                ],
+                "table_header_rows": [
+                  "",
+                  "2025 2024",
+                  "Revenue $ \u2013 $ \u2013",
+                  "Costs of Sales \u2013 \u2013",
+                  ""
+                ],
+                "paragraph": null,
+                "preceding_heading": null
+              },
+              {
+                "tag": "NetIncomeLoss",
+                "start": "2025-01-01",
+                "end": "2025-12-31",
+                "unit": "USD",
+                "value": "-53488",
+                "fact_id": "Fact000203",
+                "context_id": "From2025-01-01to2025-12-31",
+                "table_row": "Net income (loss) \u2013 \u2013 \u2013 \u2013 \u2013 ( 53,488 ) ( 53,488 )",
+                "preceding_rows": [
+                  "Net income (loss) \u2013 \u2013 \u2013 \u2013 \u2013 ( 52,494 ) ( 52,494 )",
+                  "Balance December 31, 2024 1,000,000 100 64,990,254 650 2,418,816 ( 2,673,991 ) ( 254,425 )"
+                ],
+                "table_header_rows": [
+                  "",
+                  "Preferred Stock Common Stock Additional Paid in Accumulated Total Stockholders\u2019",
+                  "Shares Amount Shares Amount Capital Deficit Deficit",
+                  "Balance December 31, 2023 1,000,000 $ 100 64,990,254 $ 650 $ 2,418,816 $ ( 2,621,497 ) $ ( 201,931 )",
+                  "Net income (loss) \u2013 \u2013 \u2013 \u2013 \u2013 ( 52,494 ) ( 52,494 )"
+                ],
+                "paragraph": null,
+                "preceding_heading": null
+              },
+              {
+                "tag": "NetIncomeLoss",
+                "start": "2025-01-01",
+                "end": "2025-12-31",
+                "unit": "USD",
+                "value": "-53488",
+                "fact_id": "Fact000218",
+                "context_id": "From2025-01-01to2025-12-31",
+                "table_row": "Net income (loss) $ ( 53,488 ) $ ( 52,494 )",
+                "preceding_rows": [
+                  "2025 2024",
+                  "Cash flows from operating activities"
+                ],
+                "table_header_rows": [
+                  "",
+                  "2025 2024",
+                  "Cash flows from operating activities",
+                  "Net income (loss) $ ( 53,488 ) $ ( 52,494 )",
+                  "Adjustments to reconcile net income (loss) to net cash provided by operating activities:"
+                ],
+                "paragraph": null,
+                "preceding_heading": null
+              }
+            ],
+            "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING",
+            "match_method": "INLINE_PRIMARY"
+          }
+        },
+        {
+          "accession": "0001683168-26-002393",
+          "primary_sha256": "1d8ae4966547ef5f16d01c54d6c9656c45c59c9bfb4e5fe90c3cab5215f00bc5",
+          "url": "https://www.sec.gov/Archives/edgar/data/1481443/000168316826002393/techcom_i10k-123125.htm",
+          "check": {
+            "selected": {
+              "tag": "OperatingIncomeLoss",
+              "start": "2025-01-01",
+              "end": "2025-12-31",
+              "val": -53488,
+              "accn": "0001683168-26-002393",
+              "fy": 2025,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2026-03-30",
+              "frame": "CY2025",
+              "unit": "USD"
+            },
+            "matched": true,
+            "matches": [
+              {
+                "tag": "OperatingIncomeLoss",
+                "start": "2025-01-01",
+                "end": "2025-12-31",
+                "unit": "USD",
+                "value": "-53488",
+                "fact_id": "Fact000147",
+                "context_id": "From2025-01-01to2025-12-31",
+                "table_row": "Loss from operations ( 53,488 ) ( 52,494 )",
+                "preceding_rows": [
+                  "Total operating expenses 53,488 52,494",
+                  ""
+                ],
+                "table_header_rows": [
+                  "",
+                  "2025 2024",
+                  "Revenue $ \u2013 $ \u2013",
+                  "Costs of Sales \u2013 \u2013",
+                  ""
+                ],
+                "paragraph": null,
+                "preceding_heading": null
+              }
+            ],
+            "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING",
+            "match_method": "INLINE_PRIMARY"
+          }
+        }
+      ],
+      "legacy_tables": [],
+      "interpretation": "The reviewed statement separately labels operating loss and net loss with equal selected amounts. They remain different accounting measures; this is not proof that all historical or future non-operating items are absent."
+    },
+    {
+      "cik": "0001481443",
+      "name": "TECHCOM, INC.",
+      "tags": [
+        "PaymentsToAcquirePropertyPlantAndEquipment",
+        "Revenues"
+      ],
+      "evidence": [
+        {
+          "accession": "0001683168-26-002393",
+          "primary_sha256": "1d8ae4966547ef5f16d01c54d6c9656c45c59c9bfb4e5fe90c3cab5215f00bc5",
+          "url": "https://www.sec.gov/Archives/edgar/data/1481443/000168316826002393/techcom_i10k-123125.htm",
+          "check": {
+            "selected": {
+              "tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+              "start": "2025-01-01",
+              "end": "2025-12-31",
+              "val": 0,
+              "accn": "0001683168-26-002393",
+              "fy": 2025,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2026-03-30",
+              "frame": "CY2025",
+              "unit": "USD"
+            },
+            "matched": true,
+            "matches": [
+              {
+                "tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+                "start": "2025-01-01",
+                "end": "2025-12-31",
+                "unit": "USD",
+                "value": "-0",
+                "fact_id": "Fact000248",
+                "context_id": "From2025-01-01to2025-12-31",
+                "table_row": "Purchase of fixed assets \u2013 \u2013",
+                "preceding_rows": [
+                  "",
+                  "Cash flows from investing activities"
+                ],
+                "table_header_rows": [
+                  "",
+                  "2025 2024",
+                  "Cash flows from operating activities",
+                  "Net income (loss) $ ( 53,488 ) $ ( 52,494 )",
+                  "Adjustments to reconcile net income (loss) to net cash provided by operating activities:"
+                ],
+                "paragraph": null,
+                "preceding_heading": null
+              }
+            ],
+            "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING",
+            "match_method": "INLINE_PRIMARY"
+          }
+        },
+        {
+          "accession": "0001683168-26-002393",
+          "primary_sha256": "1d8ae4966547ef5f16d01c54d6c9656c45c59c9bfb4e5fe90c3cab5215f00bc5",
+          "url": "https://www.sec.gov/Archives/edgar/data/1481443/000168316826002393/techcom_i10k-123125.htm",
+          "check": {
+            "selected": {
+              "tag": "Revenues",
+              "start": "2025-01-01",
+              "end": "2025-12-31",
+              "val": 0,
+              "accn": "0001683168-26-002393",
+              "fy": 2025,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2026-03-30",
+              "frame": "CY2025",
+              "unit": "USD"
+            },
+            "matched": true,
+            "matches": [
+              {
+                "tag": "Revenues",
+                "start": "2025-01-01",
+                "end": "2025-12-31",
+                "unit": "USD",
+                "value": "0",
+                "fact_id": "Fact000126",
+                "context_id": "From2025-01-01to2025-12-31",
+                "table_row": "Revenue $ \u2013 $ \u2013",
+                "preceding_rows": [
+                  "",
+                  "2025 2024"
+                ],
+                "table_header_rows": [
+                  "",
+                  "2025 2024",
+                  "Revenue $ \u2013 $ \u2013",
+                  "Costs of Sales \u2013 \u2013",
+                  ""
+                ],
+                "paragraph": null,
+                "preceding_heading": null
+              }
+            ],
+            "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING",
+            "match_method": "INLINE_PRIMARY"
+          }
+        }
+      ],
+      "legacy_tables": [],
+      "interpretation": "The2025statement of operations reports zero revenue while the cash-flow statement reports zero fixed-asset purchases. These are different flows in different statements. Equal zeros do not imply equivalence or establish that the business had no other activity."
+    },
+    {
+      "cik": "0001492448",
+      "name": "GRN Holding Corp",
+      "tags": [
+        "Assets",
+        "AssetsCurrent"
+      ],
+      "evidence": [
+        {
+          "accession": "0001079973-20-000675",
+          "primary_sha256": "8c116cc3a0534b04e0fff9425d62b6f09a02443201edb190e318be62d389cd52",
+          "url": "https://www.sec.gov/Archives/edgar/data/1492448/000107997320000675/grnholdings_10k-043020.htm",
+          "check": {
+            "selected": {
+              "tag": "Assets",
+              "end": "2020-04-30",
+              "val": 58265,
+              "accn": "0001079973-20-000675",
+              "fy": 2020,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2020-08-13",
+              "unit": "USD"
+            },
+            "matched": true,
+            "matches": [],
+            "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING",
+            "match_method": "RETAINED_XBRL_INSTANCE"
+          }
+        },
+        {
+          "accession": "0001079973-20-000675",
+          "primary_sha256": "8c116cc3a0534b04e0fff9425d62b6f09a02443201edb190e318be62d389cd52",
+          "url": "https://www.sec.gov/Archives/edgar/data/1492448/000107997320000675/grnholdings_10k-043020.htm",
+          "check": {
+            "selected": {
+              "tag": "AssetsCurrent",
+              "end": "2020-04-30",
+              "val": 58265,
+              "accn": "0001079973-20-000675",
+              "fy": 2020,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2020-08-13",
+              "unit": "USD"
+            },
+            "matched": true,
+            "matches": [],
+            "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING",
+            "match_method": "RETAINED_XBRL_INSTANCE"
+          }
+        }
+      ],
+      "legacy_tables": [
+        {
+          "primary_path": "artifacts/seo/corpus-local/fifth-editorial-filings/0001492448-0001079973-20-000675-primary.response",
+          "zero_based_table_index": 31,
+          "text": "APRIL 30, 2020 2019 ASSETS Current Assets Cash and Cash Equivalents $ \u2014 $ \u2014 Prepaid Expenses 58,265 \u2014 Total Current Assets 58,265 \u2014 Total Assets $ 58,265 $ \u2014 LIABILITIES AND SHAREHOLDERS' DEFICIT Current Liabilities Fees Drawn in Excess of Bank Balance $ \u2014 $ 11 Accounts Payable and Accruals 197,802 129,360 Accruals - Related Parties \u2014 77,218 Note Payable 72,090 \u2014 Loans - Related Parties 174,884 7,697 Total Current Liabilities 444,776 214,286 Total Liabilities 444,776 214,286 Shareholders' Deficit Preferred Stock, $0.001 par value, 10,000,000 authorized \u2014 \u2014 none issued and outstanding Common Stock, $0.001 par value, 250,000,000 authorized, 249,843,977 and 249,777,311 issued and outstanding, respectively 249,844 249,777 Additional Paid in Capital 8,446,691 8,183,033 Accumulated Deficit (9,083,046 ) (8,647,096 ) Total Shareholders' Deficit (386,511 ) (214,286 ) Total Liabilities and Shareholders' Deficit $ 58,265 $ \u2014"
+        }
+      ],
+      "interpretation": "The reviewed balance sheet separately labels current assets and total assets with equal amounts at the selected date. Current assets are included in total assets; do not add the two totals. No all-history classification conclusion follows."
+    },
+    {
+      "cik": "0001570132",
+      "name": "ANVI GLOBAL HOLDINGS, INC.",
+      "tags": [
+        "Assets",
+        "AssetsCurrent"
+      ],
+      "evidence": [
+        {
+          "accession": "0001079973-26-000779",
+          "primary_sha256": "a18551874efce1ab855af47ad7556260864994acd7e86afb997f13b5f83cfd0d",
+          "url": "https://www.sec.gov/Archives/edgar/data/1570132/000107997326000779/anvi_10k-022826.htm",
+          "check": {
+            "selected": {
+              "tag": "Assets",
+              "end": "2026-02-28",
+              "val": 14230,
+              "accn": "0001079973-26-000779",
+              "fy": 2026,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2026-06-03",
+              "unit": "USD"
+            },
+            "matched": true,
+            "matches": [
+              {
+                "tag": "Assets",
+                "start": null,
+                "end": "2026-02-28",
+                "unit": "USD",
+                "value": "14230",
+                "fact_id": "Fact000082",
+                "context_id": "AsOf2026-02-28",
+                "table_row": "Total Assets $ 14,230 $ 14,863",
+                "preceding_rows": [
+                  "Total Current Assets 14,230 14,863",
+                  ""
+                ],
+                "table_header_rows": [
+                  "",
+                  "February 28, 2026 February 28, 2025",
+                  "ASSETS",
+                  "Current Assets:",
+                  "Cash $ 1,855 $ 1,543"
+                ],
+                "paragraph": null,
+                "preceding_heading": null
+              }
+            ],
+            "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING",
+            "match_method": "INLINE_PRIMARY"
+          }
+        },
+        {
+          "accession": "0001079973-26-000779",
+          "primary_sha256": "a18551874efce1ab855af47ad7556260864994acd7e86afb997f13b5f83cfd0d",
+          "url": "https://www.sec.gov/Archives/edgar/data/1570132/000107997326000779/anvi_10k-022826.htm",
+          "check": {
+            "selected": {
+              "tag": "AssetsCurrent",
+              "end": "2026-02-28",
+              "val": 14230,
+              "accn": "0001079973-26-000779",
+              "fy": 2026,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2026-06-03",
+              "unit": "USD"
+            },
+            "matched": true,
+            "matches": [
+              {
+                "tag": "AssetsCurrent",
+                "start": null,
+                "end": "2026-02-28",
+                "unit": "USD",
+                "value": "14230",
+                "fact_id": "Fact000079",
+                "context_id": "AsOf2026-02-28",
+                "table_row": "Total Current Assets 14,230 14,863",
+                "preceding_rows": [
+                  "Prepaids 12,375 13,320",
+                  ""
+                ],
+                "table_header_rows": [
+                  "",
+                  "February 28, 2026 February 28, 2025",
+                  "ASSETS",
+                  "Current Assets:",
+                  "Cash $ 1,855 $ 1,543"
+                ],
+                "paragraph": null,
+                "preceding_heading": null
+              }
+            ],
+            "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING",
+            "match_method": "INLINE_PRIMARY"
+          }
+        }
+      ],
+      "legacy_tables": [],
+      "interpretation": "The reviewed balance sheet separately labels current assets and total assets with equal amounts at the selected date. Current assets are included in total assets; do not add the two totals. No all-history classification conclusion follows."
+    }
+  ],
+  "scope": "Limited latest-selected-period context for14priority pairs, preserving primary rows and three legacy tables. Manual interpretation is recorded, not machine-certified. No full-history admission, automatic deduplication or publication."
+}

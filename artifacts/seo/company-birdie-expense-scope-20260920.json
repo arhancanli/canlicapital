@@ -1,0 +1,74 @@
+{
+  "schema": "canli.birdie-expense-scope.v1",
+  "publication_approved": false,
+  "queue_sha256": "4ee064714f9a2bb354090ae2242059a810206d35087eea0dd6b3101d4fa6cc5c",
+  "code_sha256": "2abbb0eb0b3f85e5309f40648264adab6a2af6a0025f6421ad44e617cbb28a4d",
+  "cik": "0001873213",
+  "source_sha256": "5a80b98f6647292689a44fc77d6710d0cf6e139024389a056329f01c52b81c34",
+  "selected_sha256": "bd5a3fcc5657d5267957118b458a3733ea9571c38913e323e39f2204c763dab2",
+  "filings": [
+    {
+      "accession": "0001493152-25-017715",
+      "primary_sha256": "b4d7651d442edd9b7b01d26282b291172c82a5c67f059df1895b56b9fa540757",
+      "primary_path": "artifacts/seo/corpus-local/editorial-filings/0001873213-0001493152-25-017715-primary.response",
+      "url": "https://www.sec.gov/Archives/edgar/data/1873213/000149315225017715/form10-k.htm",
+      "tables": [
+        {
+          "zero_based_index": 51,
+          "text": "For the Years Ended July 31 2025 2024 Revenue $ 30,000 $ 25,000 Operating expenses General and administrative expenses (including $ 10,000 and $ nil of general and administrative expenses for the years ended July 31, 2025 and 2024 respectively ) 47,162 48,364 Depreciation 137 718 Total operating expenses 47,299 49,082 Loss from operations ( 17,299 ) ( 24,082 ) Net loss ( 17,299 ) ( 24,082 ) Earnings per share Net loss per common share \u2013 basic and diluted ( 0.00 ) ( 0.00 ) Weighted average number of ordinary shares Basic and diluted 6,162,411 5,325,464"
+        },
+        {
+          "zero_based_index": 74,
+          "text": "For the Year Ended July 31, 2025 By Business Unit Financial Services Business (Literacy Seminar) Total Revenue $ 30,000 $ 30,000 Cost of revenue - - General and administrative expenses ( 47,299 ) ( 47,299 ) Loss from operations ( 17,299 ) ( 17,299 ) Total assets $ 19,570 $ 19,570 Capital expenditure $ - $ -"
+        },
+        {
+          "zero_based_index": 76,
+          "text": "For the Year Ended July 31, 2025 By Country United States Hong Kong Total Revenue $ - $ 30,000 $ 30,000 Cost of revenue - - - General and administrative expenses - ( 47,299 ) ( 47,299 ) Loss from operations - ( 17,299 ) ( 17,299 ) Total assets $ - $ 19,570 $ 19,570 Capital expenditure $ - $ - $ -"
+        }
+      ]
+    },
+    {
+      "accession": "0001493152-24-039471",
+      "primary_sha256": "2947a8a1df94eaea6e39415e9f88e40ef0b466b97ef9933e910db0cfa6e990ab",
+      "primary_path": "artifacts/seo/corpus-local/equal-history-filings/0001873213-0001493152-24-039471-primary.response",
+      "url": "https://www.sec.gov/Archives/edgar/data/1873213/000149315224039471/form10-k.htm",
+      "tables": [
+        {
+          "zero_based_index": 59,
+          "text": "2024 2023 For the Years Ended July 31 2024 2023 Revenue $ 25,000 $ 20,000 Operating expenses General and administrative expenses 48,364 29,237 Depreciation 718 744 Total operating expenses 49,082 29,981 Loss from operations ( 24,082 ) ( 9,981 ) Other income - 2,088 Net loss ( 24,082 ) ( 7,893 ) Earnings per share Net loss per common share \u2013 basic and diluted ( 0 ) ( 0 ) Weighted average number of ordinary shares Basic and diluted 5,760,000 5,040,000"
+        },
+        {
+          "zero_based_index": 89,
+          "text": "By Business Unit Financial Services Business Total For the Year Ended July 31, 2023 By Business Unit Financial Services Business Total Revenue $ 20,000 $ 20,000 Cost of revenue - - General and administrative expenses ( 29,981 ) ( 29,981 ) Loss from operations ( 9,981 ) ( 9,981 ) Total assets $ 13,576 $ 13,576 Capital expenditure $ - $ -"
+        },
+        {
+          "zero_based_index": 91,
+          "text": "By Country United States Hong Kong Malaysia Total For the Year Ended July 31, 2023 By Country United States Hong Kong Malaysia Total Revenue $ - $ 5,000 $ 15,000 $ 20,000 Cost of revenue - - - - General and administrative expenses - ( 7,495 ) ( 22,486 ) ( 29,981 ) Loss from operations - ( 2,495 ) ( 7,486 ) ( 9,981 ) Total assets $ - $ - $ 13,576 $ 13,576 Capital expenditure $ - $ - $ - $ -"
+        }
+      ]
+    }
+  ],
+  "differences": [
+    {
+      "end": "2025-07-31",
+      "statement_general_administrative": 47162,
+      "depreciation": 137,
+      "selected_sga_and_operating_total": 47299
+    },
+    {
+      "end": "2024-07-31",
+      "statement_general_administrative": 48364,
+      "depreciation": 718,
+      "selected_sga_and_operating_total": 49082
+    },
+    {
+      "end": "2023-07-31",
+      "statement_general_administrative": 29237,
+      "depreciation": 744,
+      "selected_sga_and_operating_total": 29981
+    }
+  ],
+  "disposition": "WITHHOLD_SGA_HISTORY_PENDING_VERSIONED_POLICY",
+  "interpretation": "All three selected SG&A amounts come from segment presentations that aggregate statement general and administrative expenses with separately reported depreciation. Operating expense totals reproduce; the SG&A history is not the distinct consolidated statement line. Do not relabel or replace the source values. Withhold this SG&A history under a new source-bound policy before publication.",
+  "scope": "All three selected Birdie Win SG&A periods in the captured source; no assertion about future sources or every company."
+}

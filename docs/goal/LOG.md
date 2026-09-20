@@ -712,3 +712,63 @@ are retained; interpretation, inline numerical extraction and companyfacts queue
 selection are not independently rerun. No offsite backup or admission claim.
 PR36CI35519353726passed all four checks at5eeb43e6; archive additions need new CI.
 Paced transfer77617 remains confirmed live.
+
+## 2026-09-20 — Birdie Win SG&A scope discrepancy
+
+Previous turn completed liability archive replay. PR36merged4d091c1f with all four
+checks passing and exact tree equality. Review of the remaining15priority groups
+found Birdie Win segment SG&A includes separately presented depreciation in each
+of2023–2025. Three primary expense bridges and all selected values reproduce.
+Source-scope hold recorded; v9cannot be admitted unchanged. New versioned exclusion
+and downstream rebuild remain next. Source values/old manifests unchanged.
+Paced storage77617 remains active and does not confer publication approval.
+
+## 2026-09-20 — Birdie scope policy and full cohort replay
+
+Previous turn documented all three SG&A scope discrepancies. New extended-v10
+policy excludes only reviewed source-bound Birdie SG&A, preservesv9 and rejects
+changed source evidence.20selector tests and6delivery tests pass. Actual captured
+source reproduces both policies with every remaining concept unchanged.
+Five-cohort staging4701terminal0; progress output's histories0was a placeholder,
+not an inventory count. Independent full comparison61318terminal0 establishes
+3,323companies and87,347histories versus87,348before. Only selection-policy metadata
+and Birdie exclusion/notice differ; source descriptors and all other records match.
+Pinned five new manifests in company-five-cohort-v10-transition-20260920.json.
+Combined release/sitemap/storage rebuild remains next; oldv9transfer is staging
+only and does not authorize admitting the withdrawn SG&A history.
+
+## 2026-09-20 — combined v10 release and discovery verified
+
+Previous turn implemented source-bound SG&A exclusion and restaged all cohorts.
+Pipeline77545completed0: combined delivery, catalog, release, discovery and storage
+plan verified.3,323companies/87,347histories/67directories yield90,737unique URLs.
+Independent XML set comparison proves exactly the withdrawn SG&A URL removed.
+Storage10,360objects/1,280,300,997bytes;3,323sharedv9keys,7,037new keys. Full pins
+in company-five-cohort-v10-discovery-audit-20260920.json. Transfer77617deliberately
+stopped as superseded at2,412verified objects, terminal1; partial receipt retained
+without completion claim. No uploader active; v10transfer next. Oldv9artifacts
+preserved. PR37CI35519881211passed before new audit additions; new CI required.
+
+## 2026-09-20 — v10 transfer and archive preparation
+
+Previous turn built and audited combinedv10. Verified no uploader remained before
+starting82504 with one worker/500ms spacing, same bounded retries and hard stops.
+Fresh v10receipt pins the current uploader; no credentials written to disk.
+Added v10archive profile and isolated Birdie scope replay using locked offline
+wheels. Five archive-verifier tests pass; build/replay still pending.
+
+Archive build/replay39153started from committed3ddb2536. V10transfer82504also
+confirmed live; initial32objects verified with zero failures. Both jobs remain
+pending; do not treat an output archive's existence as successful replay.
+
+## 2026-09-20 — v10 archive closure and remaining equality context
+
+Previous turn started v10upload and archive.39153terminal0: archive23,119files/
+2,697,574,400bytes, SHA633cfbe1ccbbda383483cfb8cc4d40c3a9399b55b006072079b4ef779c81a62b.
+Isolated restore reproduces all five source queues/1,026exclusions,10,360runtime
+objects and exact Birdie scope report using offline locked wheels. No original
+capture/runtime reads or offsite-backup claim. Transfer82504continues independently.
+Recorded latest-period context for14remaining priority pairs/28observations,
+preserving three legacy primary tables and distinct concepts despite equality.
+A second offline output matches byte-for-byte. This later report is outside the
+just-completed archive; full-history review remains pending.

@@ -89,6 +89,23 @@ def restore_check(archive, summary_path):
             if file_hash(path) != expected:
                 raise ValueError('Restored editorial scope differs: ' + report)
             scope_replays[report] = expected
+        if profile == 'five-cohort-v10':
+            env = Path(temp) / 'editorial-venv'
+            subprocess.run([sys.executable, '-m', 'venv', str(env)], check=True, capture_output=True)
+            python = str(env / 'bin/python')
+            subprocess.run([python, '-m', 'pip', 'install', '--no-index', '--require-hashes',
+                            '--only-binary=:all:', '--find-links',
+                            'artifacts/seo/corpus-local/equal-history-replay-wheels',
+                            '-r', 'scripts/requirements-editorial.txt'], cwd=workspace, check=True,
+                           capture_output=True)
+            report = 'company-birdie-expense-scope-20260920.json'
+            output = Path(temp) / report
+            subprocess.run([python, 'scripts/review-birdie-expense-scope.py', str(output)],
+                           cwd=workspace, check=True, capture_output=True)
+            expected = file_hash(workspace / 'artifacts/seo' / report)
+            if file_hash(output) != expected:
+                raise ValueError('Restored Birdie scope differs')
+            scope_replays[report] = expected
         receipt = {'schema': 'canli.company-evidence-restore.v1', 'archive_sha256': summary['archive_sha256'],
                    'repository_revision': summary['metadata']['repository_revision'], 'restored_files': summary['files'],
                    'source_replays': reports, 'runtime_objects_replayed': replayed['objects'],
