@@ -722,3 +722,17 @@ of2023–2025. Three primary expense bridges and all selected values reproduce.
 Source-scope hold recorded; v9cannot be admitted unchanged. New versioned exclusion
 and downstream rebuild remain next. Source values/old manifests unchanged.
 Paced storage77617 remains active and does not confer publication approval.
+
+## 2026-09-20 — Birdie scope policy and full cohort replay
+
+Previous turn documented all three SG&A scope discrepancies. New extended-v10
+policy excludes only reviewed source-bound Birdie SG&A, preservesv9 and rejects
+changed source evidence.20selector tests and6delivery tests pass. Actual captured
+source reproduces both policies with every remaining concept unchanged.
+Five-cohort staging4701terminal0; progress output's histories0was a placeholder,
+not an inventory count. Independent full comparison61318terminal0 establishes
+3,323companies and87,347histories versus87,348before. Only selection-policy metadata
+and Birdie exclusion/notice differ; source descriptors and all other records match.
+Pinned five new manifests in company-five-cohort-v10-transition-20260920.json.
+Combined release/sitemap/storage rebuild remains next; oldv9transfer is staging
+only and does not authorize admitting the withdrawn SG&A history.

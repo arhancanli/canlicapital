@@ -117,9 +117,14 @@ expenses with separately presented depreciation in segment disclosures. Primary
 statements report47,162+137=47,299;48,364+718=49,082;29,237+744=29,981USD.
 Evidence company-birdie-expense-scope-20260920.json binds both filings and all
 selected periods. Withhold CIK0001873213/SellingGeneralAndAdministrativeExpense
-before publication; retain OperatingExpenses and original values. Implement a new
-source-bound policy (preservev9), test its exact exclusion, then rebuild affected
-candidate artifacts. The currentv9 candidate must not be admitted unchanged.
+before publication; retain OperatingExpenses and original values. Policy extended-v10
+now implements the source-bound exclusion while preservingv9.20selector and6delivery
+tests pass; real captured Birdie replay confirms only SG&A is removed. Five cohorts
+restaged in4701(terminal0); comparison61318(terminal0) verifies all3,323companies
+and exact source descriptors. Histories87,348→87,347; only policy metadata and
+Birdie SG&A removal/notice changed. Receipt company-five-cohort-v10-transition-
+20260920.json pins all five new manifests. Rebuild combined catalog/release/sitemaps
+and storage plan next; the oldv9candidate must not be admitted unchanged.
 Pacedv9 transfer remains useful immutable staging, not approval to publish it.
 
 PR36 merged4d091c1f0a34b31bed9002c728cc1ab84e04564f after four CI35519464225

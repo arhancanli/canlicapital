@@ -226,3 +226,18 @@ test('v9 requires renewed evidence for Nika revenue and preserves prior policy r
   verifyCompanyReference(companyReference(raw, { ...options, selectionPolicy: 'extended-v8' }), raw);
   assert.throws(() => companyReference(raw, { ...options, selectionPolicy: 'extended-v9' }), e => e.code === 'EDITORIAL_REVIEW_REQUIRED');
 });
+
+test('v10 requires renewed Birdie SG&A source review while v9 remains reproducible', () => {
+  const record = JSON.parse(readFileSync(new URL('../public/company-data/0000320193.json', import.meta.url)));
+  const source = JSON.parse(gunzipSync(readFileSync(new URL(`../public/company-data/sources/${record.source_sha256}.json.gz`, import.meta.url))));
+  source.cik = 1873213;
+  source.facts['us-gaap'].SellingGeneralAndAdministrativeExpense = { units: { USD: [2021, 2022, 2023].map((year, i) => ({ ...row, start: `${year}-01-01`, end: `${year}-12-31`, val: 100 + i })) } };
+  const raw = JSON.stringify(source), options = { fetchedAt: record.fetched_at, expectedCik: '0001873213' };
+  const prior = companyReference(raw, { ...options, selectionPolicy: 'extended-v9' });
+  assert.ok(prior.concepts.some(c => c.tag === 'SellingGeneralAndAdministrativeExpense'));
+  verifyCompanyReference(prior, raw);
+  assert.throws(() => companyReference(raw, { ...options, selectionPolicy: 'extended-v10' }), e => e.code === 'EDITORIAL_REVIEW_REQUIRED');
+  source.cik = 1873214;
+  const other = companyReference(JSON.stringify(source), { ...options, expectedCik: '0001873214', selectionPolicy: 'extended-v10' });
+  assert.ok(other.concepts.some(c => c.tag === 'SellingGeneralAndAdministrativeExpense'));
+});
