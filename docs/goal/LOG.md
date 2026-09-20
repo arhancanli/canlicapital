@@ -1323,3 +1323,22 @@ Asked owner for the final decision on publishing the exact tested0.1.2tarball;
 this is pending and no approval is inferred. Independent sourcecapture29020
 continues; latest checkpoint625/1000(403review candidates,146excluded,76HTTPerrors).
 No duplicate capture or production site change. Overall goal remains active.
+
+## 2026-09-20 — isolated combined engine candidate
+
+Previous packaged live-read verification was progress. Read continuity before
+phase7overlap. Refetched maincb59488 and verified all three PRheads/mergeability.
+Created a separate integration worktree and merged69(783ad0c),70(e0a257c),68(ce93d8c)
+without conflicts; combinedhead74c5461,24changed files. Original worktrees and
+running engine untouched; pre-existing .venv in goals worktree left alone.
+Frozen uv sync exits0 into this worktree's own environment. Ruff61425exit0,
+mypy54293exit0(184files),publication verifierexit0(16tracked bundles,402checksum
+files). This proves preparation integrity, not full result reproduction.
+
+Portable offline pytest89693 remainslive with4workers; log at
+/tmp/canli-engine-integration-pytest.log. Pushed integration branch, then explicitly
+dispatched completeCI35498286728 on exacthead; queued at checkpoint. No additional
+PR, production merge or runtime activation. Receipt records exact heads/lockhash,
+passing checks and unfinished jobs. Same websitecapture29020 remainslive; latest
+785/1000(519review candidates,175excluded,91HTTPerrors). Owner npm release decision
+remains pending; no approval inferred or publication performed.

@@ -129,6 +129,16 @@ artifacts/seo/dependency-audit-20260920.json.
 
 ## Platform and governed engine
 
+Combined engine candidate now exists in isolated worktree
+`/Users/arhancanli/alphac-integration-20260920`, branch
+`integration/owner-goals-20260920`, head74c5461. PR69,70and68 merge cleanly on
+maincb59488. Frozen dependency sync, Ruff, strict mypy(184files) and tracked
+publication-bundle integrity pass. Local portable offline tests are running in
+session89693; completeCI35498286728 was queued for this exact combined head.
+Poll these existing jobs; combined verification is not yet complete. Original
+PRs remain open; no running engine, broker, owner contract or production branch
+changed. Receipt: artifacts/platform/engine-integration-20260920.json.
+
 API/MCP onboarding, provenance, error handling and key revocation are implemented
 and tested. MCP has 48 passing tests at the last checkpoint; the PostgreSQL
 revocation race contract passes CI. Production migration is not applied. Correction:

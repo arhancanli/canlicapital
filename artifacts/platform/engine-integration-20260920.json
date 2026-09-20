@@ -1,0 +1,552 @@
+{
+  "schema": "canli.engine-integration-checkpoint.v1",
+  "checked_at": "2026-09-20T07:59:34.805348+00:00",
+  "base": "cb59488bcde4356fd9efca036473dde88eead915",
+  "heads": {
+    "69": "783ad0cd58b8c12083be8adaaf1b4d251d3aeea1",
+    "70": "e0a257cb6c812420a626a8900b28e5d7788c7f67",
+    "68": "ce93d8c74ccf19976d88a8d7c17f11262ce1caca"
+  },
+  "integration_head": "74c5461e7cf9cf4c8bd30b66a293d6cb4129865d",
+  "branch": "integration/owner-goals-20260920",
+  "worktree": "/Users/arhancanli/alphac-integration-20260920",
+  "merge_conflicts": 0,
+  "uv_lock_sha256": "115040738b6247d9fa10631c03dca6661b0662710097adfc852623c968fe30ec",
+  "checks": {
+    "frozen_environment_sync": "PASS",
+    "ruff": "All checks passed!",
+    "mypy": "Success: no issues found in 184 source files",
+    "publication": {
+      "author": "Arhan Canli",
+      "claim_boundary": "This standard-library verifier ran against files tracked by the named Git commit. It proves checksum-complete preparation bundles, current code and environment bindings, byte-bound released result copies, machine-validated PDFs, complete recorded-union extracts, authorship metadata, and the absence of high-confidence credential patterns or raw-row file formats in those bundles. It does not regenerate strategy returns, establish raw-input portability or data rights, constitute independent replication or peer review, authorize outreach, or claim an external submission. Every bundle remains BUNDLE_INCOMPLETE.",
+      "content_hash": "sha256:42820139f3d3a632d0bf69bfeb592e7c0d050e878c052d00aadc4779fa6414e6",
+      "counts": {
+        "bundles": 16,
+        "checksum_bound_files": 402,
+        "code_bindings": 39,
+        "data_license_reviews_complete": 0,
+        "environment_bindings": 32,
+        "external_submissions": 0,
+        "files_secret_scanned": 418,
+        "full_clean_result_reproductions": 0,
+        "independent_human_reproductions": 0,
+        "machine_validated_pdf_pages": 80,
+        "recorded_hypothesis_identities": 228,
+        "released_result_copies": 34
+      },
+      "failures": [],
+      "git_commit": "74c5461e7cf9cf4c8bd30b66a293d6cb4129865d",
+      "passes": true,
+      "records": [
+        {
+          "active_environment_replay_established": false,
+          "bundle": "publication/crypto-carry/v0.1.0",
+          "checksum_bound_files": 31,
+          "code_bindings": 10,
+          "environment_bindings": 2,
+          "environment_resolution": [
+            {
+              "active_sha256": "ddaf8b60999275f6d3fb93b3073f256d75d1383bfc8bab14263dc58645841006",
+              "original_path": "pyproject.toml",
+              "resolved_path": "pyproject.toml",
+              "sha256": "ddaf8b60999275f6d3fb93b3073f256d75d1383bfc8bab14263dc58645841006",
+              "status": "ACTIVE_FILE_MATCH"
+            },
+            {
+              "active_sha256": "115040738b6247d9fa10631c03dca6661b0662710097adfc852623c968fe30ec",
+              "original_path": "uv.lock",
+              "resolved_path": "research/environments/5caca664242722a3a3112663d7a19b7b5000583e30ade3753e1b8ffdecfd6f06/uv.lock.txt",
+              "sha256": "5caca664242722a3a3112663d7a19b7b5000583e30ade3753e1b8ffdecfd6f06",
+              "status": "HISTORICAL_ARCHIVE_ONLY"
+            }
+          ],
+          "passes": true,
+          "pdf_pages": 10,
+          "recorded_hypothesis_identities": 25,
+          "registry_key": "alphaforge_crypto_carry",
+          "released_result_copies": 9,
+          "status": "BUNDLE_INCOMPLETE",
+          "version": "0.1.0"
+        },
+        {
+          "active_environment_replay_established": false,
+          "bundle": "publication/alphamax/v0.1.0",
+          "checksum_bound_files": 29,
+          "code_bindings": 5,
+          "environment_bindings": 2,
+          "environment_resolution": [
+            {
+              "active_sha256": "ddaf8b60999275f6d3fb93b3073f256d75d1383bfc8bab14263dc58645841006",
+              "original_path": "pyproject.toml",
+              "resolved_path": "pyproject.toml",
+              "sha256": "ddaf8b60999275f6d3fb93b3073f256d75d1383bfc8bab14263dc58645841006",
+              "status": "ACTIVE_FILE_MATCH"
+            },
+            {
+              "active_sha256": "115040738b6247d9fa10631c03dca6661b0662710097adfc852623c968fe30ec",
+              "original_path": "uv.lock",
+              "resolved_path": "research/environments/5caca664242722a3a3112663d7a19b7b5000583e30ade3753e1b8ffdecfd6f06/uv.lock.txt",
+              "sha256": "5caca664242722a3a3112663d7a19b7b5000583e30ade3753e1b8ffdecfd6f06",
+              "status": "HISTORICAL_ARCHIVE_ONLY"
+            }
+          ],
+          "passes": true,
+          "pdf_pages": 8,
+          "recorded_hypothesis_identities": 115,
+          "registry_key": "alphamax_equity_momentum",
+          "released_result_copies": 7,
+          "status": "BUNDLE_INCOMPLETE",
+          "version": "0.1.0"
+        },
+        {
+          "active_environment_replay_established": false,
+          "bundle": "publication/alphatrend/v0.1.0",
+          "checksum_bound_files": 23,
+          "code_bindings": 1,
+          "environment_bindings": 2,
+          "environment_resolution": [
+            {
+              "active_sha256": "ddaf8b60999275f6d3fb93b3073f256d75d1383bfc8bab14263dc58645841006",
+              "original_path": "pyproject.toml",
+              "resolved_path": "pyproject.toml",
+              "sha256": "ddaf8b60999275f6d3fb93b3073f256d75d1383bfc8bab14263dc58645841006",
+              "status": "ACTIVE_FILE_MATCH"
+            },
+            {
+              "active_sha256": "115040738b6247d9fa10631c03dca6661b0662710097adfc852623c968fe30ec",
+              "original_path": "uv.lock",
+              "resolved_path": "research/environments/5caca664242722a3a3112663d7a19b7b5000583e30ade3753e1b8ffdecfd6f06/uv.lock.txt",
+              "sha256": "5caca664242722a3a3112663d7a19b7b5000583e30ade3753e1b8ffdecfd6f06",
+              "status": "HISTORICAL_ARCHIVE_ONLY"
+            }
+          ],
+          "passes": true,
+          "pdf_pages": 6,
+          "recorded_hypothesis_identities": 21,
+          "registry_key": "alphatrend_managed_futures",
+          "released_result_copies": 1,
+          "status": "BUNDLE_INCOMPLETE",
+          "version": "0.1.0"
+        },
+        {
+          "active_environment_replay_established": false,
+          "bundle": "publication/alphavintage/v1.0.0",
+          "checksum_bound_files": 38,
+          "code_bindings": 4,
+          "environment_bindings": 2,
+          "environment_resolution": [
+            {
+              "active_sha256": "ddaf8b60999275f6d3fb93b3073f256d75d1383bfc8bab14263dc58645841006",
+              "original_path": "pyproject.toml",
+              "resolved_path": "pyproject.toml",
+              "sha256": "ddaf8b60999275f6d3fb93b3073f256d75d1383bfc8bab14263dc58645841006",
+              "status": "ACTIVE_FILE_MATCH"
+            },
+            {
+              "active_sha256": "115040738b6247d9fa10631c03dca6661b0662710097adfc852623c968fe30ec",
+              "original_path": "uv.lock",
+              "resolved_path": "research/environments/5caca664242722a3a3112663d7a19b7b5000583e30ade3753e1b8ffdecfd6f06/uv.lock.txt",
+              "sha256": "5caca664242722a3a3112663d7a19b7b5000583e30ade3753e1b8ffdecfd6f06",
+              "status": "HISTORICAL_ARCHIVE_ONLY"
+            }
+          ],
+          "passes": true,
+          "pdf_pages": 8,
+          "recorded_hypothesis_identities": 0,
+          "registry_key": "alphavintage_macro_surprise",
+          "released_result_copies": 0,
+          "status": "BUNDLE_INCOMPLETE",
+          "version": "1.0.0"
+        },
+        {
+          "active_environment_replay_established": false,
+          "bundle": "publication/crypto-defensive/v0.1.0",
+          "checksum_bound_files": 23,
+          "code_bindings": 1,
+          "environment_bindings": 2,
+          "environment_resolution": [
+            {
+              "active_sha256": "ddaf8b60999275f6d3fb93b3073f256d75d1383bfc8bab14263dc58645841006",
+              "original_path": "pyproject.toml",
+              "resolved_path": "pyproject.toml",
+              "sha256": "ddaf8b60999275f6d3fb93b3073f256d75d1383bfc8bab14263dc58645841006",
+              "status": "ACTIVE_FILE_MATCH"
+            },
+            {
+              "active_sha256": "115040738b6247d9fa10631c03dca6661b0662710097adfc852623c968fe30ec",
+              "original_path": "uv.lock",
+              "resolved_path": "research/environments/5caca664242722a3a3112663d7a19b7b5000583e30ade3753e1b8ffdecfd6f06/uv.lock.txt",
+              "sha256": "5caca664242722a3a3112663d7a19b7b5000583e30ade3753e1b8ffdecfd6f06",
+              "status": "HISTORICAL_ARCHIVE_ONLY"
+            }
+          ],
+          "passes": true,
+          "pdf_pages": 4,
+          "recorded_hypothesis_identities": 2,
+          "registry_key": "crypto_defensive",
+          "released_result_copies": 1,
+          "status": "BUNDLE_INCOMPLETE",
+          "version": "0.1.0"
+        },
+        {
+          "active_environment_replay_established": false,
+          "bundle": "publication/crypto-momentum/v0.1.0",
+          "checksum_bound_files": 23,
+          "code_bindings": 2,
+          "environment_bindings": 2,
+          "environment_resolution": [
+            {
+              "active_sha256": "ddaf8b60999275f6d3fb93b3073f256d75d1383bfc8bab14263dc58645841006",
+              "original_path": "pyproject.toml",
+              "resolved_path": "pyproject.toml",
+              "sha256": "ddaf8b60999275f6d3fb93b3073f256d75d1383bfc8bab14263dc58645841006",
+              "status": "ACTIVE_FILE_MATCH"
+            },
+            {
+              "active_sha256": "115040738b6247d9fa10631c03dca6661b0662710097adfc852623c968fe30ec",
+              "original_path": "uv.lock",
+              "resolved_path": "research/environments/5caca664242722a3a3112663d7a19b7b5000583e30ade3753e1b8ffdecfd6f06/uv.lock.txt",
+              "sha256": "5caca664242722a3a3112663d7a19b7b5000583e30ade3753e1b8ffdecfd6f06",
+              "status": "HISTORICAL_ARCHIVE_ONLY"
+            }
+          ],
+          "passes": true,
+          "pdf_pages": 7,
+          "recorded_hypothesis_identities": 18,
+          "registry_key": "crypto_momentum",
+          "released_result_copies": 1,
+          "status": "BUNDLE_INCOMPLETE",
+          "version": "0.1.0"
+        },
+        {
+          "active_environment_replay_established": false,
+          "bundle": "publication/crypto-multifactor-engine/v0.1.0",
+          "checksum_bound_files": 24,
+          "code_bindings": 3,
+          "environment_bindings": 2,
+          "environment_resolution": [
+            {
+              "active_sha256": "ddaf8b60999275f6d3fb93b3073f256d75d1383bfc8bab14263dc58645841006",
+              "original_path": "pyproject.toml",
+              "resolved_path": "pyproject.toml",
+              "sha256": "ddaf8b60999275f6d3fb93b3073f256d75d1383bfc8bab14263dc58645841006",
+              "status": "ACTIVE_FILE_MATCH"
+            },
+            {
+              "active_sha256": "115040738b6247d9fa10631c03dca6661b0662710097adfc852623c968fe30ec",
+              "original_path": "uv.lock",
+              "resolved_path": "research/environments/5caca664242722a3a3112663d7a19b7b5000583e30ade3753e1b8ffdecfd6f06/uv.lock.txt",
+              "sha256": "5caca664242722a3a3112663d7a19b7b5000583e30ade3753e1b8ffdecfd6f06",
+              "status": "HISTORICAL_ARCHIVE_ONLY"
+            }
+          ],
+          "passes": true,
+          "pdf_pages": 5,
+          "recorded_hypothesis_identities": 7,
+          "registry_key": "crypto_multifactor_engine",
+          "released_result_copies": 2,
+          "status": "BUNDLE_INCOMPLETE",
+          "version": "0.1.0"
+        },
+        {
+          "active_environment_replay_established": false,
+          "bundle": "publication/crypto-reversal/v0.1.0",
+          "checksum_bound_files": 23,
+          "code_bindings": 1,
+          "environment_bindings": 2,
+          "environment_resolution": [
+            {
+              "active_sha256": "ddaf8b60999275f6d3fb93b3073f256d75d1383bfc8bab14263dc58645841006",
+              "original_path": "pyproject.toml",
+              "resolved_path": "pyproject.toml",
+              "sha256": "ddaf8b60999275f6d3fb93b3073f256d75d1383bfc8bab14263dc58645841006",
+              "status": "ACTIVE_FILE_MATCH"
+            },
+            {
+              "active_sha256": "115040738b6247d9fa10631c03dca6661b0662710097adfc852623c968fe30ec",
+              "original_path": "uv.lock",
+              "resolved_path": "research/environments/5caca664242722a3a3112663d7a19b7b5000583e30ade3753e1b8ffdecfd6f06/uv.lock.txt",
+              "sha256": "5caca664242722a3a3112663d7a19b7b5000583e30ade3753e1b8ffdecfd6f06",
+              "status": "HISTORICAL_ARCHIVE_ONLY"
+            }
+          ],
+          "passes": true,
+          "pdf_pages": 3,
+          "recorded_hypothesis_identities": 2,
+          "registry_key": "crypto_reversal",
+          "released_result_copies": 1,
+          "status": "BUNDLE_INCOMPLETE",
+          "version": "0.1.0"
+        },
+        {
+          "active_environment_replay_established": false,
+          "bundle": "publication/crypto-vrp/v0.1.0",
+          "checksum_bound_files": 24,
+          "code_bindings": 2,
+          "environment_bindings": 2,
+          "environment_resolution": [
+            {
+              "active_sha256": "ddaf8b60999275f6d3fb93b3073f256d75d1383bfc8bab14263dc58645841006",
+              "original_path": "pyproject.toml",
+              "resolved_path": "pyproject.toml",
+              "sha256": "ddaf8b60999275f6d3fb93b3073f256d75d1383bfc8bab14263dc58645841006",
+              "status": "ACTIVE_FILE_MATCH"
+            },
+            {
+              "active_sha256": "115040738b6247d9fa10631c03dca6661b0662710097adfc852623c968fe30ec",
+              "original_path": "uv.lock",
+              "resolved_path": "research/environments/5caca664242722a3a3112663d7a19b7b5000583e30ade3753e1b8ffdecfd6f06/uv.lock.txt",
+              "sha256": "5caca664242722a3a3112663d7a19b7b5000583e30ade3753e1b8ffdecfd6f06",
+              "status": "HISTORICAL_ARCHIVE_ONLY"
+            }
+          ],
+          "passes": true,
+          "pdf_pages": 4,
+          "recorded_hypothesis_identities": 1,
+          "registry_key": "crypto_vrp",
+          "released_result_copies": 2,
+          "status": "BUNDLE_INCOMPLETE",
+          "version": "0.1.0"
+        },
+        {
+          "active_environment_replay_established": false,
+          "bundle": "publication/energy-inventory/v0.1.0",
+          "checksum_bound_files": 24,
+          "code_bindings": 2,
+          "environment_bindings": 2,
+          "environment_resolution": [
+            {
+              "active_sha256": "ddaf8b60999275f6d3fb93b3073f256d75d1383bfc8bab14263dc58645841006",
+              "original_path": "pyproject.toml",
+              "resolved_path": "pyproject.toml",
+              "sha256": "ddaf8b60999275f6d3fb93b3073f256d75d1383bfc8bab14263dc58645841006",
+              "status": "ACTIVE_FILE_MATCH"
+            },
+            {
+              "active_sha256": "115040738b6247d9fa10631c03dca6661b0662710097adfc852623c968fe30ec",
+              "original_path": "uv.lock",
+              "resolved_path": "research/environments/5caca664242722a3a3112663d7a19b7b5000583e30ade3753e1b8ffdecfd6f06/uv.lock.txt",
+              "sha256": "5caca664242722a3a3112663d7a19b7b5000583e30ade3753e1b8ffdecfd6f06",
+              "status": "HISTORICAL_ARCHIVE_ONLY"
+            }
+          ],
+          "passes": true,
+          "pdf_pages": 4,
+          "recorded_hypothesis_identities": 1,
+          "registry_key": "energy_inventory",
+          "released_result_copies": 2,
+          "status": "BUNDLE_INCOMPLETE",
+          "version": "0.1.0"
+        },
+        {
+          "active_environment_replay_established": false,
+          "bundle": "publication/equity-insider-activity/v0.1.0",
+          "checksum_bound_files": 24,
+          "code_bindings": 2,
+          "environment_bindings": 2,
+          "environment_resolution": [
+            {
+              "active_sha256": "ddaf8b60999275f6d3fb93b3073f256d75d1383bfc8bab14263dc58645841006",
+              "original_path": "pyproject.toml",
+              "resolved_path": "pyproject.toml",
+              "sha256": "ddaf8b60999275f6d3fb93b3073f256d75d1383bfc8bab14263dc58645841006",
+              "status": "ACTIVE_FILE_MATCH"
+            },
+            {
+              "active_sha256": "115040738b6247d9fa10631c03dca6661b0662710097adfc852623c968fe30ec",
+              "original_path": "uv.lock",
+              "resolved_path": "research/environments/5caca664242722a3a3112663d7a19b7b5000583e30ade3753e1b8ffdecfd6f06/uv.lock.txt",
+              "sha256": "5caca664242722a3a3112663d7a19b7b5000583e30ade3753e1b8ffdecfd6f06",
+              "status": "HISTORICAL_ARCHIVE_ONLY"
+            }
+          ],
+          "passes": true,
+          "pdf_pages": 4,
+          "recorded_hypothesis_identities": 2,
+          "registry_key": "equity_insider_activity",
+          "released_result_copies": 2,
+          "status": "BUNDLE_INCOMPLETE",
+          "version": "0.1.0"
+        },
+        {
+          "active_environment_replay_established": false,
+          "bundle": "publication/equity-low-beta/v0.1.0",
+          "checksum_bound_files": 23,
+          "code_bindings": 1,
+          "environment_bindings": 2,
+          "environment_resolution": [
+            {
+              "active_sha256": "ddaf8b60999275f6d3fb93b3073f256d75d1383bfc8bab14263dc58645841006",
+              "original_path": "pyproject.toml",
+              "resolved_path": "pyproject.toml",
+              "sha256": "ddaf8b60999275f6d3fb93b3073f256d75d1383bfc8bab14263dc58645841006",
+              "status": "ACTIVE_FILE_MATCH"
+            },
+            {
+              "active_sha256": "115040738b6247d9fa10631c03dca6661b0662710097adfc852623c968fe30ec",
+              "original_path": "uv.lock",
+              "resolved_path": "research/environments/5caca664242722a3a3112663d7a19b7b5000583e30ade3753e1b8ffdecfd6f06/uv.lock.txt",
+              "sha256": "5caca664242722a3a3112663d7a19b7b5000583e30ade3753e1b8ffdecfd6f06",
+              "status": "HISTORICAL_ARCHIVE_ONLY"
+            }
+          ],
+          "passes": true,
+          "pdf_pages": 4,
+          "recorded_hypothesis_identities": 2,
+          "registry_key": "equity_low_beta",
+          "released_result_copies": 1,
+          "status": "BUNDLE_INCOMPLETE",
+          "version": "0.1.0"
+        },
+        {
+          "active_environment_replay_established": false,
+          "bundle": "publication/equity-narrative-change/v0.1.0",
+          "checksum_bound_files": 24,
+          "code_bindings": 2,
+          "environment_bindings": 2,
+          "environment_resolution": [
+            {
+              "active_sha256": "ddaf8b60999275f6d3fb93b3073f256d75d1383bfc8bab14263dc58645841006",
+              "original_path": "pyproject.toml",
+              "resolved_path": "pyproject.toml",
+              "sha256": "ddaf8b60999275f6d3fb93b3073f256d75d1383bfc8bab14263dc58645841006",
+              "status": "ACTIVE_FILE_MATCH"
+            },
+            {
+              "active_sha256": "115040738b6247d9fa10631c03dca6661b0662710097adfc852623c968fe30ec",
+              "original_path": "uv.lock",
+              "resolved_path": "research/environments/5caca664242722a3a3112663d7a19b7b5000583e30ade3753e1b8ffdecfd6f06/uv.lock.txt",
+              "sha256": "5caca664242722a3a3112663d7a19b7b5000583e30ade3753e1b8ffdecfd6f06",
+              "status": "HISTORICAL_ARCHIVE_ONLY"
+            }
+          ],
+          "passes": true,
+          "pdf_pages": 3,
+          "recorded_hypothesis_identities": 1,
+          "registry_key": "equity_narrative_change",
+          "released_result_copies": 2,
+          "status": "BUNDLE_INCOMPLETE",
+          "version": "0.1.0"
+        },
+        {
+          "active_environment_replay_established": false,
+          "bundle": "publication/equity-quality/v0.1.0",
+          "checksum_bound_files": 23,
+          "code_bindings": 1,
+          "environment_bindings": 2,
+          "environment_resolution": [
+            {
+              "active_sha256": "ddaf8b60999275f6d3fb93b3073f256d75d1383bfc8bab14263dc58645841006",
+              "original_path": "pyproject.toml",
+              "resolved_path": "pyproject.toml",
+              "sha256": "ddaf8b60999275f6d3fb93b3073f256d75d1383bfc8bab14263dc58645841006",
+              "status": "ACTIVE_FILE_MATCH"
+            },
+            {
+              "active_sha256": "115040738b6247d9fa10631c03dca6661b0662710097adfc852623c968fe30ec",
+              "original_path": "uv.lock",
+              "resolved_path": "research/environments/5caca664242722a3a3112663d7a19b7b5000583e30ade3753e1b8ffdecfd6f06/uv.lock.txt",
+              "sha256": "5caca664242722a3a3112663d7a19b7b5000583e30ade3753e1b8ffdecfd6f06",
+              "status": "HISTORICAL_ARCHIVE_ONLY"
+            }
+          ],
+          "passes": true,
+          "pdf_pages": 3,
+          "recorded_hypothesis_identities": 11,
+          "registry_key": "equity_quality",
+          "released_result_copies": 1,
+          "status": "BUNDLE_INCOMPLETE",
+          "version": "0.1.0"
+        },
+        {
+          "active_environment_replay_established": false,
+          "bundle": "publication/equity-value-investment/v0.1.0",
+          "checksum_bound_files": 23,
+          "code_bindings": 1,
+          "environment_bindings": 2,
+          "environment_resolution": [
+            {
+              "active_sha256": "ddaf8b60999275f6d3fb93b3073f256d75d1383bfc8bab14263dc58645841006",
+              "original_path": "pyproject.toml",
+              "resolved_path": "pyproject.toml",
+              "sha256": "ddaf8b60999275f6d3fb93b3073f256d75d1383bfc8bab14263dc58645841006",
+              "status": "ACTIVE_FILE_MATCH"
+            },
+            {
+              "active_sha256": "115040738b6247d9fa10631c03dca6661b0662710097adfc852623c968fe30ec",
+              "original_path": "uv.lock",
+              "resolved_path": "research/environments/5caca664242722a3a3112663d7a19b7b5000583e30ade3753e1b8ffdecfd6f06/uv.lock.txt",
+              "sha256": "5caca664242722a3a3112663d7a19b7b5000583e30ade3753e1b8ffdecfd6f06",
+              "status": "HISTORICAL_ARCHIVE_ONLY"
+            }
+          ],
+          "passes": true,
+          "pdf_pages": 4,
+          "recorded_hypothesis_identities": 13,
+          "registry_key": "equity_value_investment",
+          "released_result_copies": 1,
+          "status": "BUNDLE_INCOMPLETE",
+          "version": "0.1.0"
+        },
+        {
+          "active_environment_replay_established": false,
+          "bundle": "publication/macro-economic-trend/v0.1.0",
+          "checksum_bound_files": 23,
+          "code_bindings": 1,
+          "environment_bindings": 2,
+          "environment_resolution": [
+            {
+              "active_sha256": "ddaf8b60999275f6d3fb93b3073f256d75d1383bfc8bab14263dc58645841006",
+              "original_path": "pyproject.toml",
+              "resolved_path": "pyproject.toml",
+              "sha256": "ddaf8b60999275f6d3fb93b3073f256d75d1383bfc8bab14263dc58645841006",
+              "status": "ACTIVE_FILE_MATCH"
+            },
+            {
+              "active_sha256": "115040738b6247d9fa10631c03dca6661b0662710097adfc852623c968fe30ec",
+              "original_path": "uv.lock",
+              "resolved_path": "research/environments/5caca664242722a3a3112663d7a19b7b5000583e30ade3753e1b8ffdecfd6f06/uv.lock.txt",
+              "sha256": "5caca664242722a3a3112663d7a19b7b5000583e30ade3753e1b8ffdecfd6f06",
+              "status": "HISTORICAL_ARCHIVE_ONLY"
+            }
+          ],
+          "passes": true,
+          "pdf_pages": 3,
+          "recorded_hypothesis_identities": 7,
+          "registry_key": "macro_economic_trend",
+          "released_result_copies": 1,
+          "status": "BUNDLE_INCOMPLETE",
+          "version": "0.1.0"
+        }
+      ],
+      "schema": "canli.alphac-publication-clean-checkout-integrity.v1",
+      "source_bindings": {
+        "environment_resolver": {
+          "path": "src/alphaforge/environment_archive.py",
+          "sha256": "5abbadcd6ec443676636dce673509dee4a40f78fab0e72594cb8cb178b562509"
+        },
+        "registry": {
+          "path": "config/external_publication_registry.json",
+          "sha256": "9681fc65b66ad3ed1f4507f7321f022247c7ca7bc0af23501719cfd5c6ed63e6"
+        },
+        "verifier": {
+          "path": "scripts/verify_publication_clean_checkout.py",
+          "sha256": "8fd57f176083de6718b89443d216e9fef07971b9f7f62ef3f44157cd6cc656ce"
+        }
+      },
+      "status": "PASS_TRACKED_PREPARATION_BUNDLE_INTEGRITY_NOT_RESULT_REPRODUCTION"
+    },
+    "portable_offline_pytest": {
+      "state": "RUNNING_AT_CHECKPOINT",
+      "session_id": 89693,
+      "log": "/tmp/canli-engine-integration-pytest.log",
+      "workers": 4
+    },
+    "complete_ci": {
+      "state": "QUEUED_AT_CHECKPOINT",
+      "run_id": 35498286728,
+      "url": "https://github.com/arhancanli/alphac/actions/runs/35498286728"
+    }
+  },
+  "scope": "Isolated combined candidate; original PRs remain unmerged and running engine untouched. Test checks do not establish investment outcomes."
+}
