@@ -9,7 +9,7 @@ which links older records. Historical process states are not live telemetry.
 ## Current work and next action
 
 Worktree `/Users/arhancanli/canlicapital-expansion-20260919`, branch
-`evidence/runtime-v22-archive-20260921`. PR118 merged as
+`evidence/hosted-v22-transfer-20260921`. PR118 merged as
 `4371292467702019b988c65bf910cd66a80e19fc` after all four checks in CI35542487234
 passed at99993be0. Tested/merged tree1b57f7c9ab3e943d97ad8bdea2096e8bff937269 matches.
 
@@ -58,8 +58,24 @@ Isolated restore **14219 TERMINAL0**: all five original queues reproduce with
 all3,323selected companies/87,342histories regenerate from original snapshots;
 all3discovery files byte-identical;67saved reports reproduced, including nested
 61-output scope supplement. Restore receipt code hash matches actual verifier.
-PR121 draft atd95a5357 had all four CI35543496793checks pass; final receipt/docs
-will require checks at the updated head. No uploader running yet.
+PR121 merged asde35849d after all four CI35543678860checks passed at
+ ec88c0c83b811b4570963778f91469e4824130bb. Exact tested/merged tree
+0ac393f4d907b29b76edde2f70d491ceea39b2bf matches.
+
+V22 storage transfer **44227 RUNNING**, log /tmp/canli-v22-transfer.log; mutable
+receipt artifacts/seo/corpus-local/company-five-cohort-storage-transfer-v22-20260921.json.
+One worker,500ms minimum interval, read3/write2 attempts, shared200/50recovery
+budgets; hard stop on429, permissions or corruption. Correct project/service role
+and existing public16MiB staging bucket checked; preflight receipt retained. Current
+uploader code hash and plan pin verified against actual files. Initial9objects
+remotely verified with zero failures. Poll exact44227 handle and receipt; never
+restart on timeout. Keep uploader and plan stable while live. No production activation.
+
+Two Vercel configuration launchers87536/18800TERMINAL1 stopped before storage
+requests: exported URL unusable, no credential values logged; temporary files
+removed. Supabase CLI absent. Existing owner-provided Supabase credential then
+retrieved existing project key through documented Management API; project/role
+validated in memory. No new keys, policy/limits changes or credentials in records.
 
 Latest registered ledger:company-basic-diluted-registered-scope-v22-20260921.json.gz.
 Of1,176batch observations,1148reviewed/0pending/28withdrawn.130reviewed are explicitly
@@ -111,8 +127,9 @@ The storage plan contains10,360 immutable objects totaling1,280,333,696 bytes.
 Five stage jobs, combination68103, catalog90535, quality42445, release26878,
 discovery29316, storage18544 and app build51617 all finished with exit0.
 
-Next: merge archive PR121 after final-head CI; transfer and read-verify the current
-storage plan, then hosted delivery and broader release admission gates. Broader source/usefulness work remains open.
+Next: finish and inspect current transfer44227, then hosted read/render/discovery
+verification and broader release admission gates. Source/usefulness work can continue
+independently; new policy versions must not silently alter the active transfer. Broader source/usefulness work remains open.
 No production deployment or confirmed indexing gain.
 
 ## Editorial policy and evidence
