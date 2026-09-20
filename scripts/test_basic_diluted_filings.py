@@ -55,6 +55,7 @@ legacy = importlib.util.module_from_spec(legacy_spec)
 legacy_spec.loader.exec_module(legacy)
 
 class LegacyBasicDilutedTests(BasicDilutedTests):
+    comparator = legacy
     def matches(self, unit, row=None, extra=''):
         raw = f'''<x:xbrl xmlns:x="http://www.xbrl.org/2003/instance"
           xmlns:c="http://www.xbrl.org/2003/iso4217" xmlns:g="http://fasb.org/us-gaap/2016" {extra}>
@@ -63,12 +64,31 @@ class LegacyBasicDilutedTests(BasicDilutedTests):
           <x:unit id="u">{unit}</x:unit>
           <g:EarningsPerShareBasic contextRef="annual" unitRef="u">-1.25</g:EarningsPerShareBasic>
           </x:xbrl>'''.encode()
-        return legacy.compare(raw, '0000000001', [row or self.row])[0]['matched']
+        return self.comparator.compare(raw, '0000000001', [row or self.row])[0]['matched']
 
     def test_duplicate_unit_ids_fail_closed(self):
         raw = b'<x:xbrl xmlns:x="http://www.xbrl.org/2003/instance"><x:unit id="u"/><x:unit id="u"/></x:xbrl>'
         with self.assertRaisesRegex(ValueError, 'Duplicate context/unit id'):
-            legacy.compare(raw, '0000000001', [self.row])
+            self.comparator.compare(raw, '0000000001', [self.row])
+
+
+legacy_v2_spec = importlib.util.spec_from_file_location('legacy_v2', Path(__file__).with_name('review-basic-diluted-legacy-v2.py'))
+legacy_v2 = importlib.util.module_from_spec(legacy_v2_spec)
+legacy_v2_spec.loader.exec_module(legacy_v2)
+
+
+class LegacyV2BasicDilutedTests(LegacyBasicDilutedTests):
+    comparator = legacy_v2
+
+    def test_default_namespace_controls_unprefixed_share_qname(self):
+        correct = 'xmlns="http://www.xbrl.org/2003/instance"'
+        for unit, row in [(ratio(denominator='shares'), self.row),
+                          ('<x:measure>shares</x:measure>', {**self.row, 'unit': 'shares'})]:
+            self.assertTrue(self.matches(unit, row, correct))
+            self.assertFalse(self.matches(unit, row))
+            self.assertFalse(self.matches(unit, row, 'xmlns="https://invalid.example/shares"'))
+            shadowed = unit.replace('<x:measure>shares', '<x:measure xmlns="https://invalid.example/shares">shares')
+            self.assertFalse(self.matches(shadowed, row, correct))
 
 
 if __name__ == '__main__':

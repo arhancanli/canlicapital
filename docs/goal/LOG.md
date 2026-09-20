@@ -168,3 +168,16 @@ legacy filings. Full target/review lossless gzips and exact partition summary
 retained. Valhi2022capture34865terminal0; table251 confirms the same scale0
 vs in-millions presentation. Eight selected rows need exact holds; supplement
 and policy next. No collector/comparison active; no admission or publication.
+
+## 2026-09-20 — batch1 XML closure and v16 policy
+
+PR55merged4871aedd after four checks and exact tree equality. Six-instance
+capture9870terminal0. Original compound comparison64/78retained;14Phoenix gaps
+were default-namespace QName handling. Versioned comparator validates that scope
+and rejects absent/counterfeit/shadowed namespaces;15tests pass. Final78/78legacy
+matches complete1,176/1,176batch numerical closure, not semantic admission.
+Both supplemental versions replay byte-identically; frozen baseline unchanged.
+2022Valhi report also replays; v16holds all eight selected scale conflicts.
+Existing varying-history gate then omits both constant residual share histories.
+43targeted JS tests pass; actual source proves other concepts unchanged and
+notices present. Full transition/rebuild/archive and wider scope review pending.
