@@ -614,3 +614,15 @@ exact610observation queue union matches without duplicate credit. No original
 capture directories used by replay. Not manual-scope rerun, queue regeneration or
 offsite backup. Bulk26312polled live;5129objects/0failures at checkpoint. PR33
 CI35517263780passes at1a019807; packager additions pending their own checks.
+
+## 2026-09-20 — reviewed revenue context becomes source-bound page content
+
+Previous turn archived/replayed610observations. PR33mergedc9ac91c6 after all four
+CI35517514528checks passed at12dabec8; both treesb6581a1f54916285ba89b1e8d29204fb080e7732.
+Newbranchfeat/company-filing-context-20260920. Reviewed latest revenue statement/
+disaggregation rows for3M,CONMED,Digital Brand Media,Mosaic,AbbVie. Added short
+source-linked notes to both history pages per company, bound to exact sourceSHA,
+CIK and both reviewed observations. Changed evidence suppresses stale notes.
+Ten renderer tests pass; actual ten pages render from hash-verified selected records.
+Notes clarify matching totals without declaring every historical tag interchangeable
+or approving corpus publication. Production unchanged; broader scope review open.

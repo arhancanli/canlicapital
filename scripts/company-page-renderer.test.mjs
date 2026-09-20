@@ -2,11 +2,45 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync, readdirSync } from 'node:fs';
 import { renderCompanyPages } from './lib/company-page-renderer.mjs';
+import { FILING_NOTES, companyFilingNotes } from './lib/company-filing-notes.mjs';
 import { buildCompanyAssets, applyCompanyAssets } from './lib/company-assets.mjs';
 import { createCompanyHtmlHandler } from '../api/_lib/company-html.js';
 const company = JSON.parse(readFileSync(new URL('../public/company-data/0000320193.json', import.meta.url)));
 const source = readFileSync(new URL('../companies/0000320193/Assets.html', import.meta.url), 'utf8');
 const assets = buildCompanyAssets(source, '<script type="module" src="/assets/company.js"></script><link rel="stylesheet" href="/assets/company.css">');
+
+test('filing context requires the reviewed issuer, snapshot and both selected observations', () => {
+  for (const note of FILING_NOTES) {
+    const record = { cik: note.cik, source_sha256: note.source_sha256,
+      concepts: note.observations.map(row => ({ tag: row.tag, observations: [{ ...row }] })) };
+    assert.equal(companyFilingNotes(record, note.tags[0]).length, 1);
+    assert.equal(companyFilingNotes({ ...record, cik: '9999999999' }, note.tags[0]).length, 0);
+    assert.equal(companyFilingNotes({ ...record, source_sha256: '0'.repeat(64) }, note.tags[0]).length, 0);
+    assert.equal(companyFilingNotes(record, 'Assets').length, 0);
+    for (const key of ['start', 'end', 'unit', 'val', 'accn']) {
+      const changed = structuredClone(record);
+      changed.concepts[1].observations[0][key] = key === 'val' ? -1 : 'changed';
+      assert.equal(companyFilingNotes(changed, note.tags[0]).length, 0);
+    }
+  }
+});
+
+test('reviewed filing context renders a source link and disappears when evidence changes', () => {
+  const note = FILING_NOTES[0], record = structuredClone(company);
+  Object.assign(record, { cik: note.cik, source_sha256: note.source_sha256,
+    source_url: `https://data.sec.gov/api/xbrl/companyfacts/CIK${note.cik}.json`,
+    source_snapshot: `/company-data/sources/${note.source_sha256}.json.gz` });
+  record.concepts = record.concepts.filter(c => !note.tags.includes(c.tag)).concat(note.observations.map(row => ({
+    tag: row.tag, label: row.tag, kind: 'duration', meaning: 'Test measure',
+    observations: [{ ...row, filed: '2026-02-03', form: '10-K' }],
+  })));
+  const html = renderCompanyPages(record, { target: note.tags[0] })[0].html;
+  assert.match(html, /id="filing-context"/);
+  assert.ok(html.includes(`href="${note.filing_url}"`));
+  record.source_sha256 = '0'.repeat(64);
+  record.source_snapshot = `/company-data/sources/${record.source_sha256}.json.gz`;
+  assert.ok(!renderCompanyPages(record, { target: note.tags[0] })[0].html.includes('id="filing-context"'));
+});
 
 test('shared renderer preserves every current pilot company page byte-for-byte', () => {
   for (const name of readdirSync(new URL('../public/company-data/', import.meta.url)).filter(name => /^\d{10}\.json$/.test(name))) {
