@@ -1366,3 +1366,45 @@ CI. Deterministic rerun proven; pending baseline test uses an explicit empty rev
 registry so future valid decisions do not require weakening its assertions.
 No batch1 changes, policy holds, rendering changes or numeric rewriting.
 Transfer44227still live,677objects/zero failures at checkpoint. Full goals active.
+
+PR124 published at8fd874017aa54d07567edbe4a1639ef7e3ea41b9; CI35544908133
+confirmed live. Unpublished rebase preserved full tree119dee9548fef3d5e506751c9f8e1a8d0d09d116.
+Transfer44227last checkpoint759objects/zero failures; same live handle retained.
+
+
+## 2026-09-21 — owner comparison with previous progress checkpoint
+
+Compared with the previous owner checkpoint at PR119/full HTTP success: grouped
+source notices and40browser cases completed, full90,732page HTTP audit repeated
+with zero failures, and23,161file runtime archive restored independently. Batch2
+100filings/800numeric observations acquired and reconciled; all800accounting
+scope decisions still pending. PR124 remains OPEN at8fd874017aa54d07567edbe4a1639ef7e3ea41b9;
+all four CI35544908133checks now SUCCESS. Transfer44227 polled live; receipt
+954of10,360objects, zero failures, five read retries, complete=false. No new
+production expansion or confirmed indexing gain; latest known327live sitemap
+URLs and262indexed baseline remain unchanged. Next complete hosted transfer
+and verification, continue source-context reviews and release admission.
+
+
+## 2026-09-21 — first batch2 accounting-context decisions
+
+Previous turn was a verified wait on44227plus CI status evidence. Re-read goal
+records; merged PR124 asd1bd669d after four successful CI35544908133jobs; exact
+tested/merged tree119dee9548fef3d5e506751c9f8e1a8d0d09d116. Inspected original
+Aspira2024/25 note9/main statement and Sangamo2021/22,2024/25 statements and
+dilution notes.24facts have explicit context: Aspira participating warrants cannot
+share losses; Sangamo2021parent loss excludes11k noncontrolling loss; Sangamo share
+scale3 agrees with thousands headings; loss-period instrument exclusions explicit.
+Added v6 input-bound replay, preserving v5; full paragraphs and exact observations
+pinned in new spec. Initial source lookup wrongly assumed uncompressed object
+names and stopped before spec/report writes; actual delivery manifest led to hashed
+compressed snapshots, validated before fixture creation. Replay byte-identical.
+Registry now24reviewed/776pending/0withdrawn; exact comparison proves only24states
+and evidence links changed, all observation metadata unchanged. Theriva pending.
+Added source-bound reader notes,65renderer tests passed incl actual new fixtures
+and suppression on changed observations; five Python/seven ledger tests passed.
+New Python tests included in CI and use isolated synthetic receipt corruption so
+they do not depend on untracked local captures. New renderer requires fresh HTTP/
+browser evidence before publication; retained v22audit is not claimed for new code.
+Transfer44227polled live,1,131objects/zero failures, no uploader/plan mutation.
+No production activation or indexing gain; full goal remains active.

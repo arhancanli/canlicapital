@@ -1,6 +1,243 @@
 // Limited filing context, bound to the reviewed capture and selected observations.
 export const FILING_NOTES = [
 {
+  "cik": "0000926617",
+  "include_on_overview": true,
+  "source_sha256": "4aa7c80ecb27ea79b0d5b639913356a502fdcf1c28d7b8cfb49990c080ce3770",
+  "tags": [
+    "EarningsPerShareBasic",
+    "EarningsPerShareDiluted",
+    "WeightedAverageNumberOfDilutedSharesOutstanding",
+    "WeightedAverageNumberOfSharesOutstandingBasic"
+  ],
+  "text": "For Aspira Women's Health in 2024 and 2025, participating warrant holders have no contractual obligation to share losses, so losses are allocated entirely to common stockholders. The filing excludes anti-dilutive common equivalents and reports identical basic and diluted loss per share. Dollar losses are displayed in thousands; share counts and per-share amounts are unscaled. These reported historical values are retained.",
+  "filing_url": "https://www.sec.gov/Archives/edgar/data/926617/000092661726000020/awhl-20251231x10k.htm",
+  "observations": [
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": -0.93,
+      "accn": "0000926617-26-000020",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": -0.37,
+      "accn": "0000926617-26-000020",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": -0.93,
+      "accn": "0000926617-26-000020",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": -0.37,
+      "accn": "0000926617-26-000020",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 14134626,
+      "accn": "0000926617-26-000020",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 34102760,
+      "accn": "0000926617-26-000020",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 14134626,
+      "accn": "0000926617-26-000020",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 34102760,
+      "accn": "0000926617-26-000020",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    }
+  ]
+},
+{
+  "cik": "0001001233",
+  "include_on_overview": true,
+  "source_sha256": "f678a4cd3364c095e387026eb9f115ac294a4697b3c5aebe6c86663002f694af",
+  "tags": [
+    "EarningsPerShareBasic",
+    "EarningsPerShareDiluted",
+    "WeightedAverageNumberOfDilutedSharesOutstanding",
+    "WeightedAverageNumberOfSharesOutstandingBasic"
+  ],
+  "text": "For Sangamo Therapeutics in 2021 and 2022, diluted loss per share excludes anti-dilutive options, restricted stock units and employee purchase-plan shares. The 2021 numerator is loss attributable to Sangamo stockholders ($178.286 million), after excluding $11,000 of non-controlling-interest loss. The statement displays weighted-average shares in thousands; inline scale 3 supports the full share counts. Reported USD EPS and historical periods are retained.",
+  "filing_url": "https://www.sec.gov/Archives/edgar/data/1001233/000162828024010788/sgmo-20231231.htm",
+  "observations": [
+    {
+      "start": "2021-01-01",
+      "end": "2021-12-31",
+      "val": -1.23,
+      "accn": "0001628280-24-010788",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2022-01-01",
+      "end": "2022-12-31",
+      "val": -1.25,
+      "accn": "0001628280-24-010788",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2021-01-01",
+      "end": "2021-12-31",
+      "val": -1.23,
+      "accn": "0001628280-24-010788",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2022-01-01",
+      "end": "2022-12-31",
+      "val": -1.25,
+      "accn": "0001628280-24-010788",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2021-01-01",
+      "end": "2021-12-31",
+      "val": 144568000,
+      "accn": "0001628280-24-010788",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2022-01-01",
+      "end": "2022-12-31",
+      "val": 154345000,
+      "accn": "0001628280-24-010788",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2021-01-01",
+      "end": "2021-12-31",
+      "val": 144568000,
+      "accn": "0001628280-24-010788",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    },
+    {
+      "start": "2022-01-01",
+      "end": "2022-12-31",
+      "val": 154345000,
+      "accn": "0001628280-24-010788",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    }
+  ]
+},
+{
+  "cik": "0001001233",
+  "include_on_overview": true,
+  "source_sha256": "f678a4cd3364c095e387026eb9f115ac294a4697b3c5aebe6c86663002f694af",
+  "tags": [
+    "EarningsPerShareBasic",
+    "EarningsPerShareDiluted",
+    "WeightedAverageNumberOfDilutedSharesOutstanding",
+    "WeightedAverageNumberOfSharesOutstandingBasic"
+  ],
+  "text": "For Sangamo Therapeutics in 2024 and 2025, the filing excludes 50.5 million and 96.5 million potential shares, respectively, because their inclusion would be anti-dilutive during losses. Basic and diluted loss per share therefore use the same weighted-average shares. The statement displays share counts in thousands and inline tags use scale 3; full share counts and reported USD EPS are retained.",
+  "filing_url": "https://www.sec.gov/Archives/edgar/data/1001233/000162828026022029/sgmo-20251231.htm",
+  "observations": [
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": -0.49,
+      "accn": "0001628280-26-022029",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": -0.44,
+      "accn": "0001628280-26-022029",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": -0.49,
+      "accn": "0001628280-26-022029",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": -0.44,
+      "accn": "0001628280-26-022029",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 201699000,
+      "accn": "0001628280-26-022029",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 280193000,
+      "accn": "0001628280-26-022029",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 201699000,
+      "accn": "0001628280-26-022029",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 280193000,
+      "accn": "0001628280-26-022029",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    }
+  ]
+},
+{
   "cik": "0001417926",
   "include_on_overview": true,
   "source_sha256": "685ad9dc506bdfe829560566a030c772be69de24616cba6e2a255a48eadc071b",

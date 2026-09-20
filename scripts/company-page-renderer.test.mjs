@@ -1194,3 +1194,28 @@ test('INVO and Plastec retain disputed share holds and limited historical presen
     assert.equal(companyFilingNotes(changed, tags[0]).length, 0);
   }
 });
+
+test('batch2 Aspira and Sangamo notes preserve allocation, share units and exact reviewed periods', () => {
+  for (const [cik, phrases] of [
+    ['0000926617', [/no contractual obligation to share losses/, /share counts and per-share amounts are unscaled/]],
+    ['0001001233', [/178\.286 million/, /11,000 of non-controlling-interest loss/, /50\.5 million and 96\.5 million/, /inline tags use scale 3/]],
+  ]) {
+    const raw = gunzipSync(readFileSync(new URL(`./fixtures/editorial/batch2-${cik}-source.json.gz`, import.meta.url)));
+    const record = companyReference(raw, { expectedCik: cik, fetchedAt: '2026-09-21T00:00:00Z', selectionPolicy: 'extended-v22' });
+    verifyCompanyReference(record, raw);
+    const original = structuredClone(record.concepts);
+    record.source_snapshot = `/company-data/sources/${record.source_sha256}.json.gz`;
+    for (const target of ['overview', 'EarningsPerShareBasic', 'EarningsPerShareDiluted', 'WeightedAverageNumberOfSharesOutstandingBasic', 'WeightedAverageNumberOfDilutedSharesOutstanding']) {
+      const html = renderCompanyPages(record, { target })[0].html;
+      for (const phrase of phrases) assert.match(html, phrase);
+    }
+    assert.deepEqual(record.concepts, original);
+    const notes = companyFilingNotes(record, 'EarningsPerShareBasic');
+    assert.equal(notes.length, cik === '0000926617' ? 1 : 2);
+    for (const note of notes) {
+      const changed = structuredClone(record), row = note.observations[0];
+      changed.concepts.find(c => c.tag === row.tag).observations.find(o => o.accn === row.accn && o.end === row.end).val += 1;
+      assert(!companyFilingNotes(changed, row.tag).includes(note));
+    }
+  }
+});
