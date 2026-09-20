@@ -184,3 +184,27 @@ Requested local npm login renewal without asking for approval again. WebsitePR15
 86bbdfffhas all four CIjobs passing. EnginePR71same867d211has a further PR-event
 offline test job35502099188 still running; prior branch CIpassed. Release work
 continues with authentication/configuration and exact-candidate verification.
+
+## 2026-09-20 — npm publication verified
+
+Owner completed browser login and publication confirmation. Existing publish
+handle49484 exited0 for canli-validation-mcp0.1.2. Registry reports latest0.1.2;
+downloaded8822-byte tarball SHA256 matches the approved tested artifact exactly.
+Receipt: artifacts/platform/mcp-publication-20260920.json. Official MCP registry
+publication remains unverified. No website deployment or engine merge claimed.
+Goal tool unexpectedly reports paused; no attempt made to override that status.
+
+## 2026-09-20 — resumed goal and merged engine release
+
+Previous turn made progress: npm publication verified against tested bytes.
+Owner resumed; goal tool confirms active. Read continuity and rechecked both PRs.
+Website97b90b3b passes all four CIjobs. Engine867d211passes all six PR-event jobs.
+PR71 marked ready. Repository rejects merge commits and permits squash only;
+used its supported squash merge, without bypassing policy. Merged0aff241a at
+10:09:04UTC. Both trees equal c4f088e242b602325e58c9a1aa7a5b807ecec246.
+One GitHub read transiently failed; subsequent authoritative read succeeded.
+Post-merge runs35504256572/35504254363 in progress; local running engine untouched.
+
+Official registry returns active0.1.1. Downloaded official publisher1.8.1 and
+verified release checksum. Candidate manifest validates; publish returned401
+expired registry JWT. GitHub login handle66928 started; no duplicate npm publish.

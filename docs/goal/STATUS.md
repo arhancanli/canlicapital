@@ -1,6 +1,6 @@
 # Current state
 
-Updated 2026-09-20. Goal **ACTIVE, NOT ACHIEVED**. Codex implements directly;
+Updated 2026-09-20. Goal **ACTIVE, NOT ACHIEVED**. Owner resumed the goal. Codex implements directly;
 Hermes remains stopped. All owner objectives remain in REQUIREMENTS.md.
 Detailed prior status is preserved in history/STATUS-20260920-through-fourth-v6.md.
 
@@ -15,9 +15,10 @@ Detailed prior status is preserved in history/STATUS-20260920-through-fourth-v6.
   Last verified remoteCI35503151538 on c18132fb passed; d4256aa8run was cancelled.
 - Engine latest-head CI35499961114 passed all six jobs on867d211. Portable suite:
   4,366passed,55skipped; serial performance1passed; PostgreSQL contract11passed.
-  Draft integration PR71 is open at the tested head:
-  https://github.com/arhancanli/alphac/pull/71. Ready for merge/release review;
-  runtime activation remains pending.
+  Integration PR71 merged under owner publication approval as
+  0aff241a8dfac0b31de7ae5b4eee2755f501262c. Its tree exactly matches867d211.
+  PR-event CI35502099188 passed all six jobs before merge. Post-merge
+  CI35504256572 and35504254363 are running; runtime activation remains pending.
 - No source capture or pending CI establishes completion, deployment or indexing.
 
 ## Measured outcomes
@@ -122,7 +123,7 @@ All archives are local. Offsite retention and hosted preview remain unverified.
 
 ## Code and platform verification
 
-Websitec18132fb passed allCI35503151538jobs. Local v8verification passes6+395tests
+Website97b90b3b passed all four CI35503755856jobs. Local v8verification passes6+395tests
 and audits. Prior MCP test failure35500519399 is preserved; test-only deterministic
 deadline correction passed48MCP tests and complete remoteCI35500716863.
 Current source evidence:163hashes,2signatures and1,060transparency entries verify;
@@ -132,15 +133,16 @@ Engine PR68ce93d8c,69at783ad0c,70ate0a257c remain open with passing individual C
 Integration867d211 combines them in an isolated worktree. Ruff,strict mypy184files,
 publication preparation integrity and serial performance pass. Initial local
 suite4385pass33skip2fail exposed a launchd test worktree assumption; corrected test
-passes4focused cases. Latest complete CI passed as recorded above; platform/workspace skips remain disclosed. No runtime,
-broker,owner contract or production branch changed. Publication checks establish
+passes4focused cases. Latest complete CI passed as recorded above; platform/workspace skips remain disclosed. Main now contains the verified squash merge0aff241a. No runtime,
+broker or owner contract changed. Publication checks establish
 preparation integrity, not independent result reproduction or data-license approval.
 
-MCP0.1.1 was already publishedSeptember6. Exact candidate0.1.2 is unpublished;
-48tests,isolated install/stdio and two read-only live checks pass. Publication
-approval was received September20; npm whoami currently returns401, so owner
-login renewal was requested. The test-only fix changes no package
-contents. Real adoption remains unestablished;12observed validations are unattributed.
+MCP0.1.2 is now published on npm and is the latest version. Owner browser
+authorization completed; publish exited0. Downloaded registry tarball matches
+the exact tested SHA256 and integrity. Receipt: artifacts/platform/mcp-publication-20260920.json.
+48tests,isolated install/stdio and two read-only live checks passed before publication.
+Official MCP registry still lists0.1.1. The0.1.2manifest validates; publication
+returned401for an expired registry token. GitHub login handle66928 is pending. Real adoption remains unestablished;12observed validations are unattributed.
 API key revocation and PostgreSQL race tests pass, but production migration is not
 applied. Default-branch esbuild alert remains open; PR15contains the fix and npm
 audits found no candidate vulnerabilities. No alert dismissed.
@@ -148,8 +150,8 @@ audits found no candidate vulnerabilities. No alert dismissed.
 ## External decisions and remaining goals
 
 - Owner now explicitly approves publication of all tested releases, including
-  exact MCP0.1.2. Do not ask again. npm authentication currently returns401;
-  owner login renewal requested while website/engine release checks continue.
+  exact MCP0.1.2. Do not ask again. npm authentication and publication succeeded;
+  the exact reviewed package is verified on the public registry.
 - Approved object-storage destination/access is pending. Prepare hosted verification
   once available; no provider creation, upload or activation has occurred.
 - Google's3discovered/2crawled URLs need category exports. Browser tab/export access
@@ -160,4 +162,5 @@ audits found no candidate vulnerabilities. No alert dismissed.
   owner actions; synthetic Hermes prototypes remain UNAPPROVED. No broker orders.
 
 Continue independent source/editorial work while polling the exact active jobs.
-No production deployment, merge, npm publication or investment outcome is claimed.
+Npm0.1.2 publication and engine PR71merge are verified. No new website
+production deployment, running-engine activation or investment outcome is claimed.
