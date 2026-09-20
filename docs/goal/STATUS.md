@@ -24,9 +24,9 @@ integration. Prior releases remain unchanged; publication is not approved.
   pages, 676 flagged histories, 147 exclusions, 0 errors**. Exclusions: 51 invalid
   entities, 35 insufficient coverage, 61 captured 404 responses. No captures rewritten.
   Receipt: artifacts/seo/company-next-batch-codex-review.json.
-- Website PR15 OPEN at **77029551**, pushed on 2026-09-20. CI run
-  **35488994575** passed for this exact head. Current storage-planner additions
-  are local and not covered by that remote result. No production deployment.
+- Website PR15 OPEN at **e43a0a6f**, pushed on 2026-09-20. CI run
+  **35489349842** completed successfully for this exact head. Prior **77029551**
+  also passed **35488994575**. No production deployment claimed.
 
 ## Counts and boundaries
 
@@ -55,8 +55,9 @@ and company-delivery-extended-browser.json. It predates this takeover.
   and genuine developer/repository adoption remain active objectives.
 - Engine targets: combined NET FORWARD Sharpe > 2; at least 14 economically distinct
   qualified sleeves; realized combined maximum drawdown <= 10%; disclose costs/gaps.
-- Four sleeves/four forward daily observations is an old baseline, requiring fresh
-  verification. No current outcome established by this takeover.
+- Fresh read-only inspection: four sleeves and five current-epoch daily returns,
+  report dated2026-09-20T04:26:55Z. Embedded hash and all source bindings match.
+  Sharpe remains null/immature; no current outcome established by this takeover.
 - Hermes algorithm prototypes remain UNAPPROVED: synthetic data, P&L/drawdown
   defects and absent qualification evidence. See artifacts/algo/README.md.
 
@@ -134,3 +135,25 @@ explicitly superseded; their success claims are not acceptance evidence.
   bodies; separate verified capture backup remains required. No recovery claim.
 - Next independent work: editorial publication rules and fresh governed engine
   evidence while awaiting storage details. All owner objectives remain active.
+
+## Engine inspection — 2026-09-20
+
+- PR68 head529b0c7, PR69 head783ad0c and PR70 heade0a257c remain OPEN; all six
+  checks pass for each exact head. These passes exclude local uncommitted edits.
+- Found malformed uncommitted ERCAllocator addition in engine goals worktree:
+  invalid escaped quotes prevented Python parsing. Preserved full original and patch
+  under .bak/codex-takeover-20260920, hash27505a144839467f8c2a12ed7d7abf4e9f9664332449f5dcb7cf9924f8284780,
+  restored exact committed optimizer. Authorship not independently established.
+- Existing runtime report: five daily returns versus252 estimate/756 establishment
+  minima, four sleeves versus14 target; no Sharpe estimate. Realized drawdown
+  reported3.8964% to date, which does not establish a future10% bound.
+- Correction to stale mechanism wording: actual drawdown contract records live=true,
+  activation2026-09-15 and prior owner decision. owner_goals.json still contains
+  older not-live prose; reconcile this separately without changing sealed history.
+  This inspection changes no runtime, orders, risk settings or activation.
+- Receipt: artifacts/algo/engine-evidence-inspection-20260920.json. Existing report
+  embedded hash and every source binding verified; this is not an evaluator rerun
+  or independent replication. Cost omissions remain visible.
+
+Focused optimizer/cost-disclosure validation: **41 passed**, explicit imports from
+the repaired goals worktree. Earlier cross-worktree import run is not acceptance.

@@ -1,0 +1,307 @@
+{
+  "schema": "canli.engine-evidence-inspection.v1",
+  "inspected_at": "2026-09-20T04:35:26.053872+00:00",
+  "source_report": "/Users/arhancanli/alphaforge/artifacts/engineering/forward_evidence_maturity.json",
+  "source_report_sha256": "6b4e701eac64a10d8e6e382b2ec33728c30358da32376a3ec7f48b25d7305cca",
+  "generated_at": "2026-09-20T04:26:55.166960+00:00",
+  "embedded_content_hash_valid": true,
+  "source_bindings": [
+    {
+      "name": "contract",
+      "path": "/Users/arhancanli/alphaforge/config/forward_evidence_contract.json",
+      "exists": true,
+      "expected_sha256": "51396b2a1f4360520101c53ed7d128213f24fdc92bc45eb8955fa21bf8a70c6e",
+      "actual_sha256": "51396b2a1f4360520101c53ed7d128213f24fdc92bc45eb8955fa21bf8a70c6e",
+      "matches": true
+    },
+    {
+      "name": "paper_state",
+      "path": "/Users/arhancanli/alphaforge/data/paper/state.json",
+      "exists": true,
+      "expected_sha256": "2850391d4998a8e8c378565ccd54124b1c972b9c61b46251602eb0a2c963795b",
+      "actual_sha256": "2850391d4998a8e8c378565ccd54124b1c972b9c61b46251602eb0a2c963795b",
+      "matches": true
+    },
+    {
+      "name": "record_continuity",
+      "path": "/Users/arhancanli/alphaforge/artifacts/engineering/record_continuity.json",
+      "exists": true,
+      "expected_sha256": "f442b3bf02a03ed4da773a482c0da44097046e1a16ccb73e5f2603587f66c76c",
+      "actual_sha256": "f442b3bf02a03ed4da773a482c0da44097046e1a16ccb73e5f2603587f66c76c",
+      "matches": true
+    },
+    {
+      "name": "broker_reconciliation",
+      "path": "/Users/arhancanli/alphaforge/artifacts/engineering/alpaca_broker_reconciliation.json",
+      "exists": true,
+      "expected_sha256": "4a54a2f80498f93b2728d02b40423516758cee83e54899c4ffdddea9c559abb2",
+      "actual_sha256": "4a54a2f80498f93b2728d02b40423516758cee83e54899c4ffdddea9c559abb2",
+      "matches": true
+    },
+    {
+      "name": "drawdown_model",
+      "path": "/Users/arhancanli/alphaforge/artifacts/analysis/drawdown_live_estimator/result.json",
+      "exists": true,
+      "expected_sha256": "9671ed7551aab242dc3529510cf9105201835096f36bb971153c132081754324",
+      "actual_sha256": "9671ed7551aab242dc3529510cf9105201835096f36bb971153c132081754324",
+      "matches": true
+    },
+    {
+      "name": "current_book_drawdown",
+      "path": "/Users/arhancanli/alphaforge/artifacts/analysis/current_book_drawdown/result.json",
+      "exists": true,
+      "expected_sha256": "780643385635b3b3c6a907b5a22ae6636d2437b973859c376af49f4f619edc1f",
+      "actual_sha256": "780643385635b3b3c6a907b5a22ae6636d2437b973859c376af49f4f619edc1f",
+      "matches": true
+    },
+    {
+      "name": "current_book_diversification",
+      "path": "/Users/arhancanli/alphaforge/artifacts/analysis/current_book_diversification/result.json",
+      "exists": true,
+      "expected_sha256": "e84ab70ae4a60e459348640017512a940251c72ba55c63dfe97f168749900954",
+      "actual_sha256": "e84ab70ae4a60e459348640017512a940251c72ba55c63dfe97f168749900954",
+      "matches": true
+    },
+    {
+      "name": "drawdown_evidence",
+      "path": "/Users/arhancanli/alphaforge/artifacts/engineering/forward_drawdown_evidence.json",
+      "exists": true,
+      "expected_sha256": "d5aee426be3368bcdd8fd00cd98229bfb8eb21deb4b93c08071b693b6160d655",
+      "actual_sha256": "d5aee426be3368bcdd8fd00cd98229bfb8eb21deb4b93c08071b693b6160d655",
+      "matches": true
+    },
+    {
+      "name": "methodology_paper",
+      "path": "/Users/arhancanli/alphaforge/docs/research/FORWARD_SHARPE_EVIDENCE_STANDARD.md",
+      "exists": true,
+      "expected_sha256": "f16bff68f829309319c3671de4187f6a6ba8f83b4eaa65f3ffb705b4f4fa9325",
+      "actual_sha256": "f16bff68f829309319c3671de4187f6a6ba8f83b4eaa65f3ffb705b4f4fa9325",
+      "matches": true
+    },
+    {
+      "name": "transparency_chain",
+      "path": "/Users/arhancanli/meridian/public/glassbox/transparency_log.json",
+      "exists": true,
+      "expected_sha256": "5821e8c4d1fcb9a0514f48ec82326ff574f6e5dd42f5fd462dd07296d7d9c505",
+      "actual_sha256": "5821e8c4d1fcb9a0514f48ec82326ff574f6e5dd42f5fd462dd07296d7d9c505",
+      "matches": true
+    },
+    {
+      "name": "crypto_position_attribution",
+      "path": "/Users/arhancanli/alphaforge/artifacts/engineering/crypto_position_attribution.json",
+      "exists": true,
+      "expected_sha256": "d0551c9d3b8587cb9067f2820ee96e6a167d08ba22d7415f2262d29b215b4630",
+      "actual_sha256": "d0551c9d3b8587cb9067f2820ee96e6a167d08ba22d7415f2262d29b215b4630",
+      "matches": true
+    },
+    {
+      "name": "crypto_position_attribution_rollout",
+      "path": "/Users/arhancanli/alphaforge/artifacts/engineering/crypto_position_attribution_rollout_verification.json",
+      "exists": true,
+      "expected_sha256": "eadab7ba40dd86c2880ac913667a3fd32b69317a33b1338cd1475aeafd4e4863",
+      "actual_sha256": "eadab7ba40dd86c2880ac913667a3fd32b69317a33b1338cd1475aeafd4e4863",
+      "matches": true
+    }
+  ],
+  "all_source_bindings_match": true,
+  "record": {
+    "first_mark": "2026-09-15",
+    "last_mark": "2026-09-20",
+    "curve_points": 6,
+    "daily_return_observations": 5,
+    "cumulative_return": 0.0025123695350917075,
+    "return_frequency": "CONSECUTIVE_PUBLISHED_UTC_DAILY_MARKS_NO_SYNTHETIC_FILL",
+    "configuration_fingerprint": "sha256:553aff517efdc069c2ee80747ef9a9d750da817ceeab8dbc344cae050b814e09",
+    "evidence_epoch": {
+      "starts_on": "2026-09-15",
+      "declared_change": "drawdown control v1 ACTIVATED: config/drawdown_control_contract.json activation.live is true and configs/base.yaml risk.book_ladder.source is https. From this date every sleeve multiplies its target gross by the BOOK-level multiplier the publisher derives from the combined book's published marks: half gross at 5.0% below the high-water mark, flat at 10.0%, absorbing until an owner rearm in config/",
+      "rule": "the latest live_change_contract change_log entry with contaminates_forward_record true starts the current epoch; prior returns are published separately and never pooled"
+    },
+    "prior_epochs": [
+      {
+        "first_mark": "2026-08-07",
+        "last_mark": "2026-09-14",
+        "curve_points": 37,
+        "daily_return_observations": 36,
+        "cumulative_return": -0.026456799999999947,
+        "realized_max_drawdown": 0.03896378215437013,
+        "ended_by": "drawdown control v1 ACTIVATED: config/drawdown_control_contract.json activation.live is true and configs/base.yaml risk.book_ladder.source is https. From this date every sleeve multiplies its target g",
+        "pooled_with_current_epoch": false
+      }
+    ],
+    "whole_record": {
+      "first_mark": "2026-08-07",
+      "last_mark": "2026-09-20",
+      "curve_points": 43,
+      "daily_return_observations": 42,
+      "cumulative_return": -0.02648499999999998
+    }
+  },
+  "sharpe_evidence": {
+    "daily_return_observations": 5,
+    "estimate_minimum": 252,
+    "establishment_minimum": 756,
+    "observations_to_estimate": 247,
+    "observations_to_establishment": 751,
+    "annualization_days": 365.0,
+    "target": 2.0,
+    "target_source": "config/owner_goals.json",
+    "target_history": [
+      {
+        "target": 1.5,
+        "in_force_from": "2026-08-21",
+        "superseded_on": "2026-09-14",
+        "source": "config/sleeve_admission_contract.json objective.honest_forward_sharpe_target (contract v6, carried into v7)",
+        "record_status_when_superseded": "IMMATURE_RECORD_TOO_SHORT",
+        "daily_returns_when_superseded": 36,
+        "note": "No point estimate was ever published against this target; the record was 36 returns short of the 252 the estimate needs when the target moved."
+      },
+      {
+        "target": 2.0,
+        "in_force_from": "2026-09-14",
+        "source": "config/owner_goals.json (owner goals recorded 2026-09-12, confirmed 2026-09-14)",
+        "note": "The owner's combined-portfolio goal, net of costs. A target change is an evaluation change, not a trading change: it restarts no forward-evidence epoch and pools nothing."
+      }
+    ],
+    "target_exceedance_probability_min": 0.95,
+    "annualized_point_estimate": null,
+    "probability_true_sharpe_exceeds_target": null,
+    "target_observed": false,
+    "target_statistically_established": false,
+    "status": "IMMATURE_RECORD_TOO_SHORT"
+  },
+  "drawdown_evidence": {
+    "realized_live_max_drawdown": 0.03896378215437013,
+    "realized_status": "DESCRIPTIVE_TO_DATE_NOT_EXPECTED_MAX_DRAWDOWN",
+    "realized_max_drawdown_bound": 0.1,
+    "realized_max_drawdown_bound_statistic": "REALIZED_MAXIMUM_DRAWDOWN",
+    "realized_max_drawdown_bound_source": "config/owner_goals.json",
+    "realized_within_owner_bound": true,
+    "realized_within_owner_bound_note": "Descriptive: realized drawdown inside the bound to date establishes nothing about future drawdown; the mechanism that acts on the bound is config/drawdown_control_contract.json.",
+    "expected_max_drawdown_target": 0.11,
+    "study_production_labelled_expected_max_drawdown": 0.10251155801473733,
+    "study_production_labelled_p95_max_drawdown": 0.1876321103559252,
+    "current_composition_conservative_expected_max_drawdown": 0.093182451485886,
+    "current_composition_conservative_p95_max_drawdown": 0.16451438727248682,
+    "current_composition_study_status": "CURRENT_COMPOSITION_EXPECTED_WITHIN_OBJECTIVE_HISTORICAL_TAIL_COVERAGE_INCOMPLETE",
+    "current_composition_expected_within_objective": true,
+    "current_composition_p95_within_objective": false,
+    "current_composition_failed_establishment_dimensions": [
+      "COMMON_WINDOW_BEGINS_AFTER_COVID_AND_2022",
+      "ABSENT_CRISIS_CANNOT_APPEAR_IN_BLOCK_BOOTSTRAP",
+      "REGIME_MODEL_HAS_NO_STRESS_VOLATILITY_MULTIPLIER",
+      "CONSTITUENT_INSTRUMENT_AND_LADDER_STATE_NOT_REPLAYED",
+      "EXECUTION_GAPS_AND_LIQUIDITY_FEEDBACK_NOT_MODELED"
+    ],
+    "study_status": "CURRENT_COMPOSITION_EXPECTED_WITHIN_OBJECTIVE_LIVE_NOT_ESTABLISHED",
+    "production_equivalence_passes": false,
+    "production_equivalence_failed_checks": [
+      "sleeve_count_matches_live_book",
+      "book_level_volatility_target_matches_live_composite",
+      "book_level_risk_overlay_matches_live_composite",
+      "single_daily_timebase_matches_mixed_live_timebases",
+      "covariance_halflife_has_one_duration_across_live_sleeves",
+      "production_shrinkage_is_inside_simulation"
+    ],
+    "objective_status": "MODELED_CURRENT_COMPOSITION_WITHIN_OBJECTIVE_LIVE_EXPECTED_MAX_DRAWDOWN_NOT_ESTABLISHED"
+  },
+  "diversification_evidence": {
+    "study_status": "CURRENT_COMPOSITION_DIVERSIFICATION_OBJECTIVE_GAP_RESEARCH_ONLY",
+    "current_sleeves": 4,
+    "target_total_sleeves": 14,
+    "average_pairwise_correlation": 0.024827414293607856,
+    "average_pairwise_correlation_objective": -0.05116116239316238,
+    "active_v7_has_no_global_average_correlation_point_gate": true,
+    "active_v7_candidate_average_correlation_gate": 0.0,
+    "historical_v6_global_average_correlation_point_gate": 0.0,
+    "average_pairwise_upper_95": 0.04870778381377487,
+    "average_pairwise_upper_95_gate": 0.1,
+    "maximum_pairwise_correlation": 0.20975189522943685,
+    "maximum_pairwise_upper_95": 0.3025187934584474,
+    "stressed_pairwise_design_value_not_observed": 0.5,
+    "diversification_ratio_sleeves_only": 1.8153132626773805,
+    "effective_independent_sleeves_participation_ratio": 3.8988014966039604,
+    "marginal_book_sharpe_research_diagnostics": {
+      "alphavintage_live": {
+        "book_sharpe_with_sleeve": 1.7846280199706805,
+        "book_sharpe_with_sleeve_replaced_by_cash": 1.79088566790779,
+        "marginal_book_sharpe_delta": -0.006257647937109478
+      },
+      "crypto_carry_wk": {
+        "book_sharpe_with_sleeve": 1.7846280199706805,
+        "book_sharpe_with_sleeve_replaced_by_cash": 1.2520343707559247,
+        "marginal_book_sharpe_delta": 0.5325936492147558
+      },
+      "k30_dn_63": {
+        "book_sharpe_with_sleeve": 1.7846280199706805,
+        "book_sharpe_with_sleeve_replaced_by_cash": 1.6377955822692731,
+        "marginal_book_sharpe_delta": 0.14683243770140741
+      },
+      "managed_futures": {
+        "book_sharpe_with_sleeve": 1.7846280199706805,
+        "book_sharpe_with_sleeve_replaced_by_cash": 1.8754658694128399,
+        "marginal_book_sharpe_delta": -0.09083784944215934
+      }
+    },
+    "checks": {
+      "average_pairwise_upper_95": true,
+      "minimum_correlation_observations": true,
+      "ordinary_pairwise_point": true,
+      "ordinary_pairwise_upper_95": true,
+      "stressed_pairwise_design": true
+    },
+    "passes_all_active_v7_risk_comparisons": true,
+    "live_forward_diversification_established": false,
+    "failed_establishment_dimensions": [
+      "RESEARCH_CURVES_END_BEFORE_BROKER_RECONCILED_FORWARD_RECORD",
+      "RETURN_DATA_WERE_KNOWN_BEFORE_PROTOCOL",
+      "NO_HUMAN_INDEPENDENT_REPLICATION",
+      "NO_CRISIS_COMPLETE_FORWARD_CORRELATION_WINDOW"
+    ],
+    "objective_status": "CURRENT_COMPOSITION_AVERAGE_CORRELATION_OBJECTIVE_GAP_LIVE_FORWARD_NOT_ESTABLISHED"
+  },
+  "cost_realism": {
+    "contract": "config/cost_realism_contract.json",
+    "curve_basis": "cost_charged_curve",
+    "status": "CHARGED_BY_MODEL_ON_ALPACA_SLEEVES",
+    "sleeves": {
+      "alphamax": {
+        "status": "CHARGED_BY_MODEL",
+        "cumulative_drag_bps_of_base": 28.3,
+        "total_charged_usd": 2829.9,
+        "not_charged": [
+          "latency_slippage",
+          "financing_margin_interest",
+          "cash_yield_on_idle_capital"
+        ]
+      },
+      "managed_futures": {
+        "status": "CHARGED_BY_MODEL",
+        "cumulative_drag_bps_of_base": 8.81,
+        "total_charged_usd": 881.16,
+        "not_charged": [
+          "latency_slippage",
+          "financing_margin_interest",
+          "cash_yield_on_idle_capital"
+        ]
+      },
+      "alphavintage": {
+        "status": "CHARGED_BY_MODEL",
+        "cumulative_drag_bps_of_base": 12.91,
+        "total_charged_usd": 1288.9,
+        "not_charged": [
+          "latency_slippage",
+          "financing_margin_interest",
+          "cash_yield_on_idle_capital"
+        ]
+      },
+      "alphaforge": {
+        "status": "CHARGED_AT_SOURCE",
+        "cumulative_drag_bps_of_base": null,
+        "total_charged_usd": null,
+        "not_charged": []
+      }
+    }
+  },
+  "claim_boundary": "Read-only inspection of an existing report and source bindings, not a fresh evaluator run, independent replication, or establishment of owner outcomes."
+}

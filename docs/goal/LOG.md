@@ -835,3 +835,30 @@ Real inventory28097 exit0:3,927 objects/505,062,941 bytes; summary binds local p
 hash and code. No network writes. Documented separate capture-evidence backup gap
 instead of calling the runtime inventory a full backup. Storage access question
 pending; subsequent work can advance editorial policy and governed engine evidence.
+
+
+### Storage checkpoint pushed — e43a0a6f
+
+Verified PR15 heade43a0a6f; CI35489349842 has one running and one queued job.
+No remote storage mutations. Poll this exact run on continuation; do not reuse
+prior head results. Goal remains active across storage, editorial and engine work.
+
+
+## 2026-09-20 — current engine evidence and optimizer cleanup
+
+Website exact heade43a0a6f CI35489349842 passes. Engine PR68/69/70 each OPEN
+and all six checks pass. Uncommitted engine optimizer addition failed AST parsing
+at line284 (escaped quote); preserved original bytes and patch under engine
+.bak/codex-takeover-20260920, restored exact HEAD. No runtime state touched.
+Read-only existing forward report inspection verifies embedded content hash and
+every source binding. Five current-epoch returns/four sleeves, null Sharpe; full
+receipt retained. Fresh risk contract contradicts stale not-live prose: activation
+records September15 with prior owner decision. Recorded distinction; made no
+activation changes. Focused optimizer/cost-disclosure validation launched.
+
+Focused validation: initial41-test run passed but coverage paths exposed editable
+imports from security worktree, so that run is not acceptance for the repaired
+worktree. Re-ran with explicit PYTHONPATH=$PWD/src, serial execution and no
+coverage override effects:41 passed in2.49s, exit0. No new trading code accepted.
+Next: reconcile stale owner-goal mechanism prose against authoritative activation
+evidence, then governed research/admission gaps; storage question remains pending.
