@@ -862,3 +862,19 @@ worktree. Re-ran with explicit PYTHONPATH=$PWD/src, serial execution and no
 coverage override effects:41 passed in2.49s, exit0. No new trading code accepted.
 Next: reconcile stale owner-goal mechanism prose against authoritative activation
 evidence, then governed research/admission gaps; storage question remains pending.
+
+
+## 2026-09-20 — spin-off diagnostic integrity repair
+
+Prior turn classified progress: optimizer recovery plus verified source-bound report.
+Fresh inspection showed public activation projection already corrected in PR68;
+19 owner-goal tests pass, historical config prose intentionally retained. Website
+34a166c8 CI35489594591 passes. Research backlog retains sealed narrative kills and
+human/source gates; no automatic candidate promotion. Spin-off diagnostic found
+counting unverified cache entries and hardcoding verdict. Fixed exact98-hash closure,
+missing/extra/duplicate/corrupt rejection, measured verdict and removed inferred human
+review claim. Seven regressions pass;26 combined tests, Ruff and publication integrity
+pass. Real98-document replay gives11 token hits,5 nearby,16 shipped (6 no-token).
+Frozen30% gate stays failed. No prices/returns opened, trials spent or runtime writes.
+Engine commit61b587f pushed to PR68; new CI pending. Continue editorial/storage and
+research source quality; don't retune failed identities to manufacture14 sleeves.

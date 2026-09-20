@@ -24,9 +24,9 @@ integration. Prior releases remain unchanged; publication is not approved.
   pages, 676 flagged histories, 147 exclusions, 0 errors**. Exclusions: 51 invalid
   entities, 35 insufficient coverage, 61 captured 404 responses. No captures rewritten.
   Receipt: artifacts/seo/company-next-batch-codex-review.json.
-- Website PR15 OPEN at **e43a0a6f**, pushed on 2026-09-20. CI run
-  **35489349842** completed successfully for this exact head. Prior **77029551**
-  also passed **35488994575**. No production deployment claimed.
+- Website PR15 OPEN at **34a166c8**, pushed on 2026-09-20. CI run
+  **35489594591** completed successfully for this exact head. Prior **e43a0a6f**
+  also passed **35489349842**. No production deployment claimed.
 
 ## Counts and boundaries
 
@@ -157,3 +157,24 @@ explicitly superseded; their success claims are not acceptance evidence.
 
 Focused optimizer/cost-disclosure validation: **41 passed**, explicit imports from
 the repaired goals worktree. Earlier cross-worktree import run is not acceptance.
+
+## Governed research checkpoint — 2026-09-20
+
+- Activation wording resolution: PR68 already projects current status from the risk
+  contract and labels owner-goals status as historical. Verified19 owner-goal tests;
+  do not overwrite historical configuration prose. Prior "needs repair" note resolved.
+- Spin-off diagnostic previously counted unverified cache files and hardcoded its
+  verdict. It now requires the exact98 unique frozen hashes before measuring; failed
+  input validation leaves the existing output unchanged. Verdict follows token count.
+  Removed the automatic claim that unmatched-token documents had been human-reviewed.
+- Seven new integrity tests plus19 owner-goal tests pass (26 total); Ruff passes;
+  clean-checkout publication integrity passes for16 bundles/39 code bindings.
+- Real replay:98/98 hashes match; shipped detector16 hits, any-token11, nearby-token5,
+  six shipped hits without token. Frozen30% gate remains unreachable by token-detector
+  repair. DATA_GATED remains; no market data, returns or hypotheses opened.
+- Engine change61b587f pushed on PR68; exact-head CI must be checked separately.
+  Receipt artifacts/algo/spinoff-prorata-integrity-replay-20260920.json.
+- Registration inventory records204 initial candidates2016–2025, not204 confirmed
+  events and not756 daily out-of-sample observations. These units cannot be compared
+  directly to establish admission feasibility. Other research routes retain their
+  author, independent-label and source-timing gates.

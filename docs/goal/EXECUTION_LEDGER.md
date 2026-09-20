@@ -16,7 +16,7 @@ Authority: REQUIREMENTS.md (all goals), STATUS.md (current facts), PHASES.md
 |T05 Editorial/source/intent quality |Ongoing |Useful distinct pages, freshness/comparability flags resolved, no keyword permutations |
 |T06 Storage and release |Runtime plan verified; access pending |3,927 objects/505,062,941 bytes; separate capture backup and hosted/production evidence pending |
 |T07 Search indexing and adoption |Unestablished |Search-engine and genuine API/MCP/repository usage evidence |
-|T08 Governed engine outcomes |Evidence inspected; outcomes unestablished |Five returns/four sleeves; report hashes verified; three PRs pass; stale mechanism prose needs repair |
+|T08 Governed engine outcomes |Evidence inspected; outcomes unestablished |Five returns/four sleeves; report hashes verified; three PRs pass; activation projection verified; spin-off evidence integrity repaired |
 
 Each transition records changed files, exact validation, failures and remaining
 limits. Plans/local/staged/live/indexed/forward outcomes remain separate. Never
