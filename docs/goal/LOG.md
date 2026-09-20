@@ -805,3 +805,56 @@ uses2020while geographic prose and asset row say2019. Statement sales supports
 or assumption of a typo. Before admission resolve or withhold the observation.
 Supplement replays byte-identically. V3ledger adds exact disjoint coverage:
 169reviewed/3withdrawn/166active reviewed/441pending. No publication changes.
+
+## 2026-09-20 — exact Digital Brand Media period holdback
+
+Previous turn closed14legacy scope checks and retained the disclosure-date conflict.
+The earlier retained filing repeats the date problem; no resolution claimed.
+PR38mergedad8202ff after four checks and exact tree equality. Newv11policy
+withholds exactly the source-bound2020contract-revenue observation, keeps all
+other values and records the omitted row/reason. Affected history and overview
+explain the gap; statement revenue remains intact.31tests pass using exact captured
+fixture, old-policy replay and renderer checks. Existing v10release/transfer remains
+staging; v11rebuild required before publication. No source values overwritten.
+
+## 2026-09-20 — complete v11 cohort comparison
+
+Previous turn implemented and tested the exact-period holdback. Staging16829and
+full comparison7564both terminal0. All3,323companies/87,347histories retained;
+only policy metadata, one disputed observation and its explanation differ. All
+source descriptors and other values matchv10. Ten delivery/release tests pass.
+Combined v11pipeline90963active. Obsolete v10upload82504deliberately stopped
+terminal1; receipt preserved separately. No uploader active; no publication.
+PR39CI35521045721passed before these transition receipts; new CI required.
+
+## 2026-09-20 — v11 combined release and exact sitemap audit
+
+The owner-goal reminder turn made no implementation progress. Resumed by polling
+the existing90963handle: terminal0, all five build stages completed. PR39all four
+CI35521229364checks passed at1ca3697e. Independent versioned audit checks every
+sitemap's bytes/hash, uniqueness, exact unchanged v10/v11URL set and storage-plan
+counts/immutable shared metadata. Result90,737candidate URLs,10,360objects,
+1,280,301,890bytes. Full roots retained in the v11discovery-audit receipt and STATUS.
+No uploader started, no production or indexing gain. New audit/continuity additions
+require their own CI. V11archive and remaining scope review are next.
+
+## 2026-09-20 — v11 archive and isolated replay started
+
+Extended versioned packager/restore support forv11, keeping older profiles intact.
+Seven hash-bound legacy revenue primaries support reproducible DBMM date-conflict
+evidence; saved repository includes the exact source fixture. Five archive safety
+tests pass. Committedd67b680f and pushed. Build98640has sealed/verified23,126files,
+2,717,532,160bytes; independent isolated source/runtime/context replay is live and
+not yet claimed complete. Poll98640; log/tmp/canli-v11-archive-replay.log.
+
+## 2026-09-20 — v11 archive closure and withdrawal accounting
+
+98640completed exit0. Isolated restore reproduces all five queues with1,026
+exclusions/zero errors,10,360runtime objects/1,280,301,890bytes and exact release
+roots. Birdie and legacy revenue context reports reproduce byte-for-byte using
+locked offline dependencies. Receipt company-five-cohort-v11-evidence-restore-
+20260920.json. All four CI35521649206checks passed atd67b680f.
+New versioned ledger separately accounts for the one disputed period:166active
+reviewed,440pending,4withdrawn. Withholding earns no review credit. It binds prior
+reports and actual selected runtime bytes; offline replay byte-identical. This
+new ledger postdates the archive. No publication or indexing gain.

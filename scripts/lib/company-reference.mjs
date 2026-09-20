@@ -1,3 +1,4 @@
+import { EDITORIAL_POLICY_V11, EDITORIAL_EXCLUSIONS_V11, EDITORIAL_OBSERVATION_EXCLUSIONS_V11 } from './company-editorial-v11.mjs';
 import { EDITORIAL_POLICY_V10, EDITORIAL_EXCLUSIONS_V10 } from './company-editorial-v10.mjs';
 import { EDITORIAL_POLICY_V9, EDITORIAL_EXCLUSIONS_V9 } from './company-editorial-v9.mjs';
 import { EDITORIAL_POLICY_V8, EDITORIAL_EXCLUSIONS_V8 } from './company-editorial-v8.mjs';
@@ -61,7 +62,7 @@ export function selectObservations(fact, kind, asOf, diagnostics = {}) {
 
 export function companyReference(raw, { fetchedAt, expectedCik, diagnostics = {}, selectionPolicy }) {
   if (typeof fetchedAt !== 'string' || !/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?(?:Z|\+00:00)$/.test(fetchedAt) || !Number.isFinite(Date.parse(fetchedAt))) throw new Error('A verified UTC capture timestamp is required before publication');
-  if (selectionPolicy !== undefined && ![EXTENDED_POLICY, EDITORIAL_POLICY, EDITORIAL_POLICY_V3, EDITORIAL_POLICY_V4, EDITORIAL_POLICY_V5, EDITORIAL_POLICY_V6, EDITORIAL_POLICY_V7, EDITORIAL_POLICY_V8, EDITORIAL_POLICY_V9, EDITORIAL_POLICY_V10].includes(selectionPolicy)) throw new Error('Unknown company selection policy');
+  if (selectionPolicy !== undefined && ![EXTENDED_POLICY, EDITORIAL_POLICY, EDITORIAL_POLICY_V3, EDITORIAL_POLICY_V4, EDITORIAL_POLICY_V5, EDITORIAL_POLICY_V6, EDITORIAL_POLICY_V7, EDITORIAL_POLICY_V8, EDITORIAL_POLICY_V9, EDITORIAL_POLICY_V10, EDITORIAL_POLICY_V11].includes(selectionPolicy)) throw new Error('Unknown company selection policy');
   const source = JSON.parse(raw);
   if (!source || !Number.isSafeInteger(source.cik) || source.cik < 1 || source.cik > 9999999999 || source.cik !== Number(expectedCik) || typeof source.entityName !== 'string' || !source.entityName.trim()) throw new CompanyReferenceError('INVALID_ENTITY', 'SEC entity identity mismatch');
   const cik = String(source.cik).padStart(10, '0');
@@ -69,9 +70,10 @@ export function companyReference(raw, { fetchedAt, expectedCik, diagnostics = {}
   if (!date(asOf)) throw new Error('Invalid capture date');
   const concepts = [];
   const editorialExclusions = [];
-  const decisions = selectionPolicy === EDITORIAL_POLICY_V10 ? EDITORIAL_EXCLUSIONS_V10 : selectionPolicy === EDITORIAL_POLICY_V9 ? EDITORIAL_EXCLUSIONS_V9 : selectionPolicy === EDITORIAL_POLICY_V8 ? EDITORIAL_EXCLUSIONS_V8 : selectionPolicy === EDITORIAL_POLICY_V7 ? EDITORIAL_EXCLUSIONS_V7 : selectionPolicy === EDITORIAL_POLICY_V6 ? EDITORIAL_EXCLUSIONS_V6 : selectionPolicy === EDITORIAL_POLICY_V5 ? EDITORIAL_EXCLUSIONS_V5 : selectionPolicy === EDITORIAL_POLICY_V4 ? EDITORIAL_EXCLUSIONS_V4 : selectionPolicy === EDITORIAL_POLICY_V3 ? EDITORIAL_EXCLUSIONS_V3 : selectionPolicy === EDITORIAL_POLICY ? EDITORIAL_EXCLUSIONS : [];
+  const decisions = selectionPolicy === EDITORIAL_POLICY_V11 ? EDITORIAL_EXCLUSIONS_V11 : selectionPolicy === EDITORIAL_POLICY_V10 ? EDITORIAL_EXCLUSIONS_V10 : selectionPolicy === EDITORIAL_POLICY_V9 ? EDITORIAL_EXCLUSIONS_V9 : selectionPolicy === EDITORIAL_POLICY_V8 ? EDITORIAL_EXCLUSIONS_V8 : selectionPolicy === EDITORIAL_POLICY_V7 ? EDITORIAL_EXCLUSIONS_V7 : selectionPolicy === EDITORIAL_POLICY_V6 ? EDITORIAL_EXCLUSIONS_V6 : selectionPolicy === EDITORIAL_POLICY_V5 ? EDITORIAL_EXCLUSIONS_V5 : selectionPolicy === EDITORIAL_POLICY_V4 ? EDITORIAL_EXCLUSIONS_V4 : selectionPolicy === EDITORIAL_POLICY_V3 ? EDITORIAL_EXCLUSIONS_V3 : selectionPolicy === EDITORIAL_POLICY ? EDITORIAL_EXCLUSIONS : [];
+  const observationDecisions = selectionPolicy === EDITORIAL_POLICY_V11 ? EDITORIAL_OBSERVATION_EXCLUSIONS_V11 : [];
   const sourceHash = createHash('sha256').update(raw).digest('hex');
-  const definitions = [EXTENDED_POLICY, EDITORIAL_POLICY, EDITORIAL_POLICY_V3, EDITORIAL_POLICY_V4, EDITORIAL_POLICY_V5, EDITORIAL_POLICY_V6, EDITORIAL_POLICY_V7, EDITORIAL_POLICY_V8, EDITORIAL_POLICY_V9, EDITORIAL_POLICY_V10].includes(selectionPolicy) ? { ...CONCEPTS, ...EXTENDED_CONCEPTS } : CONCEPTS;
+  const definitions = [EXTENDED_POLICY, EDITORIAL_POLICY, EDITORIAL_POLICY_V3, EDITORIAL_POLICY_V4, EDITORIAL_POLICY_V5, EDITORIAL_POLICY_V6, EDITORIAL_POLICY_V7, EDITORIAL_POLICY_V8, EDITORIAL_POLICY_V9, EDITORIAL_POLICY_V10, EDITORIAL_POLICY_V11].includes(selectionPolicy) ? { ...CONCEPTS, ...EXTENDED_CONCEPTS } : CONCEPTS;
   for (const [tag, definition] of Object.entries(definitions)) {
     const fact = source.facts?.['us-gaap']?.[tag];
     if (!fact) continue;
@@ -83,6 +85,14 @@ export function companyReference(raw, { fetchedAt, expectedCik, diagnostics = {}
       continue;
     }
     let observations = selectObservations(fact, definition.kind, asOf, diagnostics);
+    for (const decision of observationDecisions.filter(row => row.cik === cik && row.tag === tag)) {
+      if (sourceHash !== decision.source_sha256) throw new CompanyReferenceError('EDITORIAL_REVIEW_REQUIRED', `Changed source requires renewed observation review for ${cik}/${tag}`);
+      const matches = row => Object.entries(decision.observation).every(([key, value]) => row[key] === value);
+      if (observations.filter(matches).length !== 1) throw new CompanyReferenceError('EDITORIAL_REVIEW_REQUIRED', `Reviewed observation no longer selected for ${cik}/${tag}`);
+      observations = observations.filter(row => !matches(row));
+      editorialExclusions.push({ tag, observation: { ...decision.observation }, reason: decision.reason, filing_url: decision.filing_url });
+      diagnostics.editorial_observation_excluded = (diagnostics.editorial_observation_excluded ?? 0) + 1;
+    }
     if (Object.hasOwn(EXTENDED_CONCEPTS, tag)) {
       observations = observations.filter(row => {
         if (compatibleUnit(row.unit, definition.unitKind)) return true;

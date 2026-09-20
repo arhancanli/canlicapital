@@ -7,7 +7,7 @@ status preserved in history/STATUS-20260920-through-equality-triage.md.
 ## Current execution
 
 Worktree /Users/arhancanli/canlicapital-expansion-20260919, branch
-research/company-historical-scope-20260920. PR34 merged as
+fix/dbmm-period-scope-20260920. PR34 merged as
 34f2b81e9dec93047c90c4185d1a59fe9ada3661 after four CI35517891088checks passed
 at2ca4f9fe; tested/merged tree67b8efb122bd96a625a6d7933a5312c9b8e31da3.
 PR33 merged as
@@ -68,7 +68,7 @@ addition; current additions require their own checks.
 
 
 Earlier v3upload sessions are terminal with failures retained. Do not resume the
-superseded v3plan. V10transfer82504 is active; v10pipeline77545 completed exit0. Archive/replay46444completed exit0.
+superseded v3plan. V10transfer82504 is terminal, deliberately superseded; v10pipeline77545 completed exit0. Archive/replay46444completed exit0.
 
 ## Latest liability presentation review
 
@@ -127,7 +127,7 @@ Birdie SG&A removal/notice changed. Receipt company-five-cohort-v10-transition-
 and storage plan next; the oldv9candidate must not be admitted unchanged.
 Pacedv9 transfer77617 was stopped as superseded after v10combined delivery built.
 Receipt company-v9-transfer-superseded-20260920.json records2412verified objects.
-Pipeline77545 completed exit0. V10transfer82504 is active with one worker/500ms
+Pipeline77545 completed exit0. V10transfer82504 is terminal, deliberately superseded with one worker/500ms
 spacing and existing3/2attempt limits,200/50shared retry budgets. Fresh receipt
 corpus-local/company-five-cohort-v10-transfer-20260920.json; no publication approval.
 
@@ -172,6 +172,30 @@ This counts recorded reviews, not machine-certified interpretation or admission.
 It excludes712basic/diluted groups and other corpus flags. Next: review historical
 primary context in this exact queue without double-crediting latest-period work.
 
+## Exact disputed-period exclusion implemented
+
+PR38mergedad8202ff851791358c7d13979948dfd3061cb215 after all four
+CI35520830847checks passed ateeeae0ba. Tested/merged trees match
+08544f70919bf54211d3341cc7da62304aa442fd.
+Policy extended-v11 now withholds only Digital Brand Media contract revenue
+for2019-09-01through2020-08-31,268,957USD,accession0001185185-21-001609,
+bound to reviewed sourceSHA1d83049f...a36021. Other periods and statement revenue
+remain unchanged. Record carries the exact omitted observation and reason;
+overview and affected history explain the gap with a filing link.31selector/
+renderer tests pass, including the actual104,479byte compressed capture fixture,
+changed-source/capture-date rejection and unchanged existing pilot HTML.
+Old policies remain reproducible. Five-cohort v11staging16829completed0;
+comparison7564completed0 verifies all3,323companies/87,347histories againstv10.
+Only selection-policy metadata, one DBMM observation and its explanation change.
+All source descriptors and other values are unchanged. Receipt company-five-cohort-
+v11-transition-20260920.json pins five new manifests. Combined catalog/release/
+discovery/storage pipeline90963 completed exit0; independent v11audit confirms
+90,737unique URLs, with no additions/removals versusv10. All four PR39checks
+CI35521229364passed at1ca3697e before the new audit/continuity additions.
+V10uploader82504was deliberately stopped as superseded; receipt company-v10-
+transfer-superseded-20260920.json retained. No uploader active. Full v11rebuild
+and later immutable reconciliation are required before publication.
+
 ## Immediate next work
 
 All610selected observations across38priority equality groups now numerically
@@ -188,7 +212,33 @@ delivery/load checks, editorial admission and production activation remain open.
 Owner publication approval persists; it does not substitute for these checks.
 Prior1–3day/tonight estimates were provisional, not measured completion forecasts.
 
-## Current v10 combined candidate
+## Current v11 combined candidate
+
+3,323companies +87,347histories +67directories =90,737unique candidate URLs.
+Full XML hash/byte/uniqueness checks and exact v10/v11set comparison pass.
+No added or removed URLs; shards40,737and50,000. Storage plan totals and
+unique keys checked:10,360objects/1,280,301,890bytes;3,323sharedv10keys.
+Shared keys are not remote verification. No uploader active or deployment.
+
+Release:a98105f2fe459ff3dd8aabc90c1ed3de442b931453fb68e9b0b48324c8f5fff4
+Catalog:ba8f0459156a84058a585e4538503e973ec9fd1d886d812f73ddfce3462ea8c1
+Downloads:5b3c0b57e86bec0a5857bc37a838428cf776c660af09bb343f8bb8f7bce56958
+Deliverymanifest:8900d4d3bcb0dec7b1356cddb3481bd69736a2832e95b6255ef4085152de4576
+Storageplan:4e179e74be346df6071e7a5429ce390d694f8aabfb43702d10728a1660e7d00c
+
+Evidence company-five-cohort-v11-discovery-audit-20260920.json. Remaining editorial scope and full hosted delivery/production checks remain open.
+
+V11archive build/replay98640completed exit0. Isolated restore verifies all member
+hashes, all five source queues/1,026exclusions, and10,360runtime objects with
+exact release roots. Birdie and legacy revenue reports reproduce byte-for-byte. Archive23,126files/
+2,717,532,160bytes, SHAabecda29825b69210095ad571cb31b86be6a6984ad718a5fca6a1b70beced893,
+saved repositoryd67b680f. Summary company-five-cohort-v11-evidence-archive-summary-
+20260920.json. Includes seven primary legacy revenue filings and the tracked
+DBMM source fixture, in addition to prior Birdie/queue/runtime evidence. Both reports replayed using locked offline wheels; recorded interpretations are
+not independently certified. Local portability only, no offsite backup.
+Five archive safety tests pass; all four CI35521649206checks passed atd67b680f. No uploader.
+
+## Previous v10 combined candidate (superseded)
 
 Pipeline77545completed exit0.3,323companies+87,347histories+67directories =
 90,737unique URLs. Independent XML/hash/uniqueness and full URL-set comparison
@@ -204,7 +254,7 @@ Paths corpus-local/company-five-cohort-{delivery,catalog,discovery}-v10 and
 company-five-cohort-storage-plan-v10.json. Plan10,360objects/1,280,300,997bytes;
 3,323keys shared withv9,7,037new keys. Shared keys are not remote verification.
 Audit company-five-cohort-v10-discovery-audit-20260920.json binds all roots.
-V10transfer82504 is active (fresh v10transfer receipt), one worker/500ms.
+V10transfer82504 is terminal, deliberately superseded (fresh v10transfer receipt), one worker/500ms.
 Archive build/replay39153 completed exit0 from repository3ddb2536; output
 corpus-local/five-cohort-v10-evidence-20260920.tar. Summary and restore receipts
 use prefix company-five-cohort-v10-evidence-.23,119files/2,697,574,400bytes,
@@ -316,3 +366,13 @@ Goals remain800kactually indexed canonical pages(target1m), exceptional quality/
 SEO/relevant intent, real developer adoption, governed combined NET FORWARD
 Sharpe>2,at least14economically distinct qualified sleeves and realized maxDD<=10%.
 No broker orders, fabricated evidence or unapproved research decisions.
+
+## V11 priority queue accounting
+
+Versioned company-priority-scope-v11-20260920.json binds the previous v3ledger,
+its input reports and the verified combinedv11manifest. It checks the exact
+source-bound policy against selected runtime bytes and exclusion metadata.
+166active reviewed +440pending +4withdrawn =610original priority observations.
+The additional withheld period is not counted as reviewed. Earlier ledger stays
+unchanged;169recorded reviews include the3previously withdrawn Birdie periods.
+Offline replay is byte-identical. New ledger is later than the sealedv11archive.
