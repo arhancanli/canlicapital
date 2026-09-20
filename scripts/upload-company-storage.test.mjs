@@ -138,6 +138,33 @@ test('DOM timeout errors retain safe subtype and can use an explicitly bounded r
   assert.ok(!JSON.stringify(events).includes('sensitive'));
 });
 
+test('interrupted successful response bodies retry from zero and never accept partial bytes', async t => {
+  const f = fixture(t), events = []; let calls = 0;
+  const broken = () => new ReadableStream({
+    start(controller) { controller.enqueue(f.data[0].subarray(0, 3)); },
+    pull(controller) { controller.error(new TypeError('terminated', { cause: { code: 'ECONNRESET' } })); },
+  });
+  const headers = { 'content-type': f.files[0].content_type, 'cache-control': f.files[0].cache_control };
+  const storage = createSupabaseStorage({ projectUrl: 'https://example.supabase.co', bucket: 'company-runtime',
+    serviceKey: 'unused', readAttempts: 2, pause: async () => {}, fetcher: async () =>
+      new Response(++calls === 1 ? broken() : f.data[0], { headers }) });
+  assert.deepEqual(await storage.read(f.files[0], { onRetry: e => events.push(e) }), f.data[0]);
+  assert.equal(calls, 2); assert.equal(events.length, 1); assert.match(events[0].error, /ECONNRESET/);
+});
+
+test('broken permission, rate-limit and ambiguous HTTP400 bodies cannot trigger retries', async t => {
+  const f = fixture(t);
+  for (const status of [400, 401, 403, 429]) {
+    let calls = 0;
+    const storage = createSupabaseStorage({ projectUrl: 'https://example.supabase.co', bucket: 'company-runtime',
+      serviceKey: 'unused', readAttempts: 3, pause: async () => {}, fetcher: async () => {
+        calls++;
+        return new Response(new ReadableStream({ pull(c) { c.error(new TypeError('terminated', { cause: { code: 'ECONNRESET' } })); } }), { status });
+      } });
+    await assert.rejects(storage.read(f.files[0])); assert.equal(calls, 1);
+  }
+});
+
 test('validates the entire local plan before network access', async t => {
   const f = fixture(t), s = server(f);
   await assert.rejects(uploadCompanyStorage({ ...f, planHash: '0'.repeat(64), storage: s.storage }), /plan hash/);

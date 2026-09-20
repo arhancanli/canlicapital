@@ -1,0 +1,25 @@
+{
+  "receipt_path": "artifacts/seo/corpus-local/company-three-cohort-remote-transfer-resume4-20260920.json",
+  "sha256": "a05e2dafbdf481078ebb1fc2f88fbff9cafcc15cd91041005a87d558095273d8",
+  "verified_objects": 695,
+  "verified_bytes": 50643043,
+  "failures": [
+    {
+      "key": "catalog/objects/4b325857d57660df522cb12beb51c21da6d4e397859b13814eb72469fe2514f5.json",
+      "error": "terminated"
+    }
+  ],
+  "read_retries": [
+    {
+      "key": "catalog/objects/4b325857d57660df522cb12beb51c21da6d4e397859b13814eb72469fe2514f5.json",
+      "attempt": 1,
+      "error": "Storage request failed (TimeoutError; TimeoutError)",
+      "delay_ms": 1000,
+      "global_retry_number": 1
+    }
+  ],
+  "write_recovery": [],
+  "exit_code": 1,
+  "session_id": 65658,
+  "transport_cause": "Response-body stream terminated with ECONNRESET; observed in terminal process output. No partial bytes were accepted."
+}
