@@ -336,3 +336,17 @@ blocks, leaving original helper untouched. Final report replays byte-identically
 23renderer/ledger tests pass; exact comparison permits only48intended transitions.
 Current154reviewed (36presentation-only),1,014pending,8withdrawn. No runtime rebuild,
 archival supplement, publication or indexing gain.
+
+## 2026-09-20 — basic warrant inclusion and historical no-dilution review
+
+PR67mergeddfb13726after four passing CI35531014492checks and exact tree equality
+754989a8ff8917dc6c4a6001ec48171af6912319. Reviewed36Freddie Mac2023–2025,
+Franklin Street and Eloxx observations. Distinguished warrants included in basic
+EPS, senior preferred numerator allocation, historical no-potential-dilution dates,
+scale6/scale3/scale0 counts, and rounded zero EPS. Broad source diagnostic output
+truncated; narrowed actual conclusions to directly inspected EPS passages. Freddie
+legacy filing remains pending.24renderer/ledger tests pass; only36intended rows
+change, report replays exactly.190reviewed (36presentation-only),978pending,
+8withdrawn. Condensed STATUS, preserving its prior bytes against committed HEAD
+under history/STATUS-20260920-through-share-context-batch3.md. No publication,
+updated archive or indexing gain.

@@ -1,0 +1,81 @@
+{
+  "schema": "canli.reviewed-share-context-spec.v1",
+  "decisions": [
+    {
+      "cik": "0001026214",
+      "accession": "0001026214-26-000021",
+      "source_sha256": "67fd5b3cf55c379343fd9ffb7271dc8d90538e78bcc7f7e0d592939e3a19939b",
+      "primary_sha256": "a91d26fb38c6c757f13a415b716de06a4646e5336e99ef3cf716a2bef39c4725",
+      "fixture": "scripts/fixtures/editorial/freddie-reviewed-source.json.gz",
+      "observations": 12,
+      "period_ends": [
+        "2023-12-31",
+        "2024-12-31",
+        "2025-12-31"
+      ],
+      "table_index": 419,
+      "share_scale": "6",
+      "table_requires": [
+        "Weighted average common shares (in millions)",
+        "Amounts attributable to senior preferred stock"
+      ],
+      "paragraph_requires": [
+        "These shares are included since the warrant is unconditionally exercisable by the holder at a minimal cost.",
+        "We deduct dividends or increases in liquidation preference attributable to the senior preferred stock",
+        "Our diluted earnings per common share is the same as our basic earnings per common share"
+      ],
+      "reader_note": "For 2023\u20132025, Freddie Mac\u2019s basic denominator includes shares associated with Treasury\u2019s warrant because the filing describes it as unconditionally exercisable at minimal cost. It is not simply the number of issued common shares. Senior preferred dividends or liquidation-preference increases affect the common-stockholder numerator. The filing states that no common-equivalent shares could have a dilutive or antidilutive effect during these periods. The denominator row is expressly in millions and tagged with scale six. The reported 2024 EPS of zero is rounded and does not mean that the common-stockholder numerator was zero.",
+      "disposition": "REVIEWED_BASIC_DENOMINATOR_AND_DILUTION_CONTEXT"
+    },
+    {
+      "cik": "0001031316",
+      "accession": "0001104659-26-025284",
+      "source_sha256": "059112ab76185b66b4ec40e68a1fd4afab633ef359b8a0f4ded795721b526a1d",
+      "primary_sha256": "4d082380629d0a9c85e77b66605b8181800021c00d7cb4779a32f182e61cc080",
+      "fixture": "scripts/fixtures/editorial/franklin-street-reviewed-source.json.gz",
+      "observations": 12,
+      "period_ends": [
+        "2023-12-31",
+        "2024-12-31",
+        "2025-12-31"
+      ],
+      "table_index": 127,
+      "share_scale": "3",
+      "table_requires": [
+        "Weighted average number of shares outstanding, basic and diluted",
+        "(in thousands, except per share amounts)"
+      ],
+      "paragraph_requires": [
+        "There were no potential dilutive shares outstanding at",
+        "The denominator used for calculating basic and diluted net income per share was"
+      ],
+      "reader_note": "For 2023\u20132025, Franklin Street reports no potentially dilutive shares outstanding at the respective year ends and identifies the same denominator for basic and diluted EPS. This is a historical disclosure, not a statement about shares outstanding today. Statement share counts are presented in thousands and tagged with scale three; the accompanying prose gives the full share counts. Per-share amounts use scale zero. The reported denominators are retained without adding basic and diluted counts.",
+      "disposition": "REVIEWED_BASIC_DENOMINATOR_AND_DILUTION_CONTEXT"
+    },
+    {
+      "cik": "0001035354",
+      "accession": "0001193125-26-108687",
+      "source_sha256": "b351a9ed06ee3e6f1d738bbdb3852b866526fe561e11a7ffd4a81bc43bb27195",
+      "primary_sha256": "678dc16b3f24cf7b1bf7e7e8a40c14ea3772953da1764fa2a703b4bd32dd4cfa",
+      "fixture": "scripts/fixtures/editorial/eloxx-reviewed-source.json.gz",
+      "observations": 12,
+      "period_ends": [
+        "2023-12-31",
+        "2024-12-31",
+        "2025-12-31"
+      ],
+      "table_index": 44,
+      "share_scale": "0",
+      "table_requires": [
+        "Weighted average number of shares of common stock and pre-funded warrants"
+      ],
+      "paragraph_requires": [
+        "The outstanding pre-funded warrants are exercisable for only a de minimis cash consideration with no substantive exercise contingencies",
+        "The following potentially dilutive securities have been excluded from the computation of diluted weighted average shares outstanding as their effect would be anti-dilutive:",
+        "(Amounts in thousands, except share and per share data)"
+      ],
+      "reader_note": "For 2023\u20132025, Eloxx\u2019s basic and diluted EPS denominators include both common shares and pre-funded warrants. The filing includes those warrants because their exercise requires only minimal cash and has no substantive contingencies. Other potentially dilutive securities are excluded as anti-dilutive. The denominator is therefore not simply issued common shares. Shares and per-share amounts are exempt from the thousands heading; the reported counts and EPS remain unchanged.",
+      "disposition": "REVIEWED_BASIC_DENOMINATOR_AND_DILUTION_CONTEXT"
+    }
+  ]
+}
