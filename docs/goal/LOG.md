@@ -950,3 +950,11 @@ observations across18Bioforce/ANVI primary tables; restatement/entity-history
 limits retained. Context and cumulative ledger reproduce byte-for-byte. Exact
 counts403reviewed/197pending/10withdrawn preserve all610original keys. No credit
 for the unresolved TECHCOMlatest rows; no publication or full corpus rebuild.
+
+## 2026-09-20 — Apple iSports/Lithium historical liabilities
+
+29retained primary tables support60additional observations with explicit limits
+for missing separate current subtotals, historical entity/fiscal changes and
+zero-net long-term debt presentations. Context and cumulative ledger replay
+byte-identically. Exact counts463reviewed/137pending/10withdrawn; earlier
+reports and unresolved cases preserved. No deployment or full corpus rebuild.

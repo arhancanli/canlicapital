@@ -523,3 +523,16 @@ Versioned v13-batch1ledger credits only exact pending keys from the bound v13
 snapshot:403active reviewed,197pending,10withdrawn; exact610key partition and
 offline replay pass. TECHCOM latest two rows remain reopened, not approved.
 No full corpus rebuild, uploader, deployment or indexed gain.
+
+## Apple iSports/Lithium historical liabilities
+
+60additional pending liability observations reviewed from29retained primary
+tables. Apple iSports historical Prevention Insurance naming/fiscal-date changes
+and zero net long-term convertible debt lines retained. Two older Lithiumtables
+have a sole current payable/accrual line followed by total liabilities, rather than
+a separate current subtotal; later allowance-for-optioned-properties classification
+retained. No additive totals or uniform entity-scope claim. Report
+company-apple-lithium-liability-20260920.json replays byte-identically.
+V13-batch2ledger combines exact pending-only supplements:463active reviewed,
+137pending,10withdrawn; original610key partition and offline replay pass. Two
+TECHCOMlatest rows still unresolved. No full corpus rebuild or publication.
