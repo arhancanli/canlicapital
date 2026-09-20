@@ -1,0 +1,629 @@
+# Current state
+
+Updated September20,2026. Goal ACTIVE, NOT ACHIEVED. Codex directly implements;
+Hermes stopped. All owner objectives remain in REQUIREMENTS.md. Prior detailed
+status preserved in history/STATUS-20260920-through-equality-triage.md.
+
+## Current execution
+
+Worktree /Users/arhancanli/canlicapital-expansion-20260919, branch
+review/techcom-precision-20260920. PR34 merged as
+34f2b81e9dec93047c90c4185d1a59fe9ada3661 after four CI35517891088checks passed
+at2ca4f9fe; tested/merged tree67b8efb122bd96a625a6d7933a5312c9b8e31da3.
+PR33 merged as
+c9ac91c67f490196a3efe5d8ea160ad76e937f67 after all four CI35517514528checks passed
+at12dabec8. Tested/merged trees bothb6581a1f54916285ba89b1e8d29204fb080e7732.
+PR32 merged as
+b5dc0ac266333dedb5e22b8a2a50ca9b59c262fb after all four CI35516768834checks pass
+at0dcfa6f73768fe6419a547012e87ad0952dc7ca6. Tested/merged tree both
+40d3071a73e02164a89fb58289696e8c08bcf537. PR31 previously merged59b10c83 with
+five checks and exact tree equality. Post-merge PR32 CI35516871919passed.
+
+Bulk storage26312 is TERMINAL exit1 at5625verified objects, incomplete.
+Create of delivery/objects/54f880cf171ac6dff01c2e394b1a4aea0d1b31cca2f482974a1b7845eb69f056.json.gz
+returned429 and stopped without retry.54read retries/4write recovery events preceded
+that stop. Receipt corpus-local/company-five-cohort-transfer-20260920.json remains
+unchanged; stop summary company-five-cohort-storage-stop-20260920.json.
+Original uploader26312 is terminal. Paced recovery77617 is TERMINAL exit1 after deliberate Ctrl-C supersession at2412objects; zero recorded failures. Do not poll/restart26312as live.
+Read-only provider logs show DatabaseError/429 at2026-09-20T14:53:06.280000, with
+pool/connection indicators. No raw headers/messages or credentials stored. Project
+ACTIVE_HEALTHY at15:00UTC, aggregate17connections/max60, not proof of storage pool
+capacity. See company-storage-429-log-diagnosis{-v2}-20260920.json and
+company-storage-health-20260920.json. Exact failed-key public inspection is recorded
+in company-storage-denied-key-inspection-20260920.json. No write attempted.
+Supabase documentation says storage429 can involve pooler max_clients; this is
+context, not conclusive diagnosis: https://supabase.com/docs/guides/storage/debugging/error-codes.
+PR35 now retains sanitized numeric/date Retry-After metadata on rejected reads
+and writes without changing429hard-stop behavior.21storage/planner tests pass,
+including one denied request without retry/write and omission of upstream bodies.
+The active recovery uses earlier e5177ec0: create diagnostics and pacing are
+present, but read-denial metadata was added afterward; do not claim it hot-reloaded.
+Paced recovery77617 launched from e5177ec0 after20storage/planner tests passed.
+One worker, minimum500ms between request starts, read/write bounds3/2 and shared
+retry budgets200/50. Fresh receipt corpus-local/company-five-cohort-transfer-
+resume1-20260920.json records code SHA4d9b812261243ed1421f45e1be981a4899417338b3a8a407f0a88a0f24207afc.
+Initial checkpoint36objects verified, zero failures, incomplete; these are
+reverified objects, not36new uploads. Existing objects are independently checked;
+only absent objects can be created. Any429/permission/corruption stops recovery.
+Original failure receipt unchanged; no limits/settings/billing changed.
+The previous credential-waiting launcher88342 had no recoverable session handle;
+it was explicitly terminated before launching77617, so no duplicate uploader exists.
+
+Primary acquisition43531 is terminal exit0: all159index/primary pairs verified,
+complete receipt company-equal-history-capture-complete-20260920.json. All200
+priority primary filings are now retained (41original+159new).
+First XBRL49534 terminal:39/51matches; whitespace-date fix offline replay now51/51.
+Second XBRL18988 is terminal exit0:116/126initial matches. Corrected date-whitespace
+offline replay now126/126. Original result preserved. No acquisition/comparison process remains active. PR33 evidence/tooling is merged.
+Archive/replay46444completed exit0. Archive corpus-local/equal-history-evidence-
+20260920.tar:941files/293,847,040bytes, SHA256
+cb89a5df08529157f6bc2e42f3d498b6b9d5b05fcfc2960c46e7f048adf436bc.
+Isolated restore verifies all member hashes, installs locked wheels offline and
+reproduces all five comparison reports byte-for-byte plus exact610/610observation
+closure. Receipt company-equal-history-archive-20260920.json. Prior/current helper
+versions preserved; later instances withheld during earlier primary replay.
+Does not regenerate companyfacts queue, rerun manual interpretation or establish
+offsite backup. PR33 CI35517263780passed all four checks at1a019807 before packager
+addition; current additions require their own checks.
+
+
+Earlier v3upload sessions are terminal with failures retained. Do not resume the
+superseded v3plan. V10transfer82504 is terminal, deliberately superseded; v10pipeline77545 completed exit0. Archive/replay46444completed exit0.
+
+## Latest liability presentation review
+
+PR35 merged as bcfcb37157b6a0bb16813a0eb4ae0ed9291d8624 after all four
+CI35518895959checks passed at9e7c2bba. Tested/merged trees match
+eeebaf502754ca3fbdd1836e215d06ac9f4f1b91. Recovery77617 is superseded; receipt preserved.
+New offline helper prepares all17liability/current-liability pairs using latest
+selected reporting date, avoiding accession-order errors. Twelve pairs have
+separate primary rows, reviewed as equal totals at the listed date; five XML-only
+pairs initially remained pending. Four now have reviewed retained balance-sheet
+tables in company-liability-legacy-context-20260920.json; Green Stream
+0001437476 was initially open because its primary is an XBRL-only amendment.
+Original accession0001683168-21-004121 now captured with index/primary hashes;
+its balance sheet supplies the matching927,297USD April30,2021totals. Separate
+company-greenstream-original-context-20260920.json binds the original and amendment
+without rewriting selected accessions. All17latest pairs now have limited
+statement context; all-history scope and publication remain open. Archive4857
+completed exit0:35files/4,997,120bytes, SHA256
+f16e4ac95ee698890faaca6663abece7c7882d86373401e7deee412c177b6345.
+Isolated restore installs locked dependencies offline and reproduces all three
+reports byte-for-byte. Receipt company-liability-evidence-archive-20260920.json.
+Manual interpretation is preserved, not independently rerun; no offsite-backup claim.
+All three context reports
+reproduce byte-for-byte offline. Evidence company-liability-presentation-{review,scope}-
+20260920.json. Atlantica correctly selects2025rather than2019. No all-history
+admission, new page notes or deployment follows from these limited checks.
+
+## Current filing-context improvement
+
+Six companies now have source-bound context. Five latest-period revenue presentations reviewed:3M,CONMED,Digital Brand Media,
+Mosaic andAbbVie. Source-linked notes explain consolidated totals versus geographic/
+segment breakdowns on both matched history pages. Notes require exact CIK,captured
+source hash and all reviewed observations (period/unit/value/accession); changed
+evidence suppresses them. No blanket tag equivalence or all-history admission.
+Ten renderer tests pass including stale-note guards and unchanged pilot output;
+twelve real selected history pages render notes locally. EVENTIKO adds the reviewed
+website-development/payable distinction, bound to all8selected observations and
+linked to its2024annual report. Evidence company-revenue-
+presentation-scope-20260920.json and company-filing-context-render-v2-20260920.json.
+Implementation scripts/lib/company-filing-notes.mjs; not yet deployed.
+
+## Birdie Win expense scope — publication hold
+
+All three selected2023–2025 SG&A values aggregate statement general/administrative
+expenses with separately presented depreciation in segment disclosures. Primary
+statements report47,162+137=47,299;48,364+718=49,082;29,237+744=29,981USD.
+Evidence company-birdie-expense-scope-20260920.json binds both filings and all
+selected periods. Withhold CIK0001873213/SellingGeneralAndAdministrativeExpense
+before publication; retain OperatingExpenses and original values. Policy extended-v10
+now implements the source-bound exclusion while preservingv9.20selector and6delivery
+tests pass; real captured Birdie replay confirms only SG&A is removed. Five cohorts
+restaged in4701(terminal0); comparison61318(terminal0) verifies all3,323companies
+and exact source descriptors. Histories87,348→87,347; only policy metadata and
+Birdie SG&A removal/notice changed. Receipt company-five-cohort-v10-transition-
+20260920.json pins all five new manifests. Rebuild combined catalog/release/sitemaps
+and storage plan next; the oldv9candidate must not be admitted unchanged.
+Pacedv9 transfer77617 was stopped as superseded after v10combined delivery built.
+Receipt company-v9-transfer-superseded-20260920.json records2412verified objects.
+Pipeline77545 completed exit0. V10transfer82504 is terminal, deliberately superseded with one worker/500ms
+spacing and existing3/2attempt limits,200/50shared retry budgets. Fresh receipt
+corpus-local/company-five-cohort-v10-transfer-20260920.json; no publication approval.
+
+PR36 merged4d091c1f0a34b31bed9002c728cc1ab84e04564f after four CI35519464225
+checks passed atf9038476; tested/merged treeba6a7e72f022befa3cd5b2d157b73ce618468252.
+
+## Remaining priority equality context
+
+Report company-remaining-equality-context-20260920.json records latest-period
+context for14other pairs/28observations. Eight asset/current-asset pairs, three
+operating/net-loss pairs, Morgan payable/current-liability, Emo comparative
+cash/current-assets and TECHCOM zero revenue/capex retain their distinct scope.
+Three legacy tables are source-hash checked. Offline replay is byte-identical;
+manual interpretations are recorded, not independently certified. This report was
+created after the v10archive and is not claimed archived there. Broader historical
+scope,712basic/diluted groups and other flags remain open.
+
+## Exact priority scope coverage
+
+PR37 mergedcf86ac95f4a0233138e253ee5ebe1997905513d9 after four CI35520397809
+checks passed at10b451cd; both treesdfad64d51e92d3adf227250eaff3857f5a9dbadc.
+company-priority-scope-coverage-20260920.json deduplicates the exact observation
+keys supported by all retained scope reports:610original priority observations,
+90with recorded context review, including3withdrawn Birdie SG&A observations.
+Baseline:87active observations have scope review;520still need it.
+Historical revenue review now adds65exact previously pending inline observations
+across3M,CONMED,Digital Brand Media,Mosaic andAbbVie;15legacy revenue observations
+still need primary context. Separate v2ledger records155reviewed including3withdrawn,
+152active reviewed and455pending at that checkpoint. Legacy primary review now
+closes14more; v3ledger records169reviewed including3withdrawn,166active reviewed
+and441pending. One Digital Brand Media contract-revenue observation for2020
+remains unresolved:268,957USD is assigned2020in XBRL but geographic disclosure
+prose and asset label say2019. Statement revenue supports2020 but does not settle
+the geographic date conflict. Resolve or explicitly withhold this observation
+before admission; do not silently correct it or approve the history unchanged.
+Report company-legacy-revenue-context-20260920.json preserves seven primary
+filings/tables and preceding prose; replay byte-identical. Reports company-historical-revenue-context-
+20260920.json and company-priority-scope-coverage-v2-20260920.json preserve
+the original ledger and bind the supplement to its hash. No newly admitted pages. The full pending queue
+retains issuer, exact selected row and accession. Report replays byte-for-byte.
+This counts recorded reviews, not machine-certified interpretation or admission.
+It excludes712basic/diluted groups and other corpus flags. Next: review historical
+primary context in this exact queue without double-crediting latest-period work.
+
+## Exact disputed-period exclusion implemented
+
+PR38mergedad8202ff851791358c7d13979948dfd3061cb215 after all four
+CI35520830847checks passed ateeeae0ba. Tested/merged trees match
+08544f70919bf54211d3341cc7da62304aa442fd.
+Policy extended-v11 now withholds only Digital Brand Media contract revenue
+for2019-09-01through2020-08-31,268,957USD,accession0001185185-21-001609,
+bound to reviewed sourceSHA1d83049f...a36021. Other periods and statement revenue
+remain unchanged. Record carries the exact omitted observation and reason;
+overview and affected history explain the gap with a filing link.31selector/
+renderer tests pass, including the actual104,479byte compressed capture fixture,
+changed-source/capture-date rejection and unchanged existing pilot HTML.
+Old policies remain reproducible. Five-cohort v11staging16829completed0;
+comparison7564completed0 verifies all3,323companies/87,347histories againstv10.
+Only selection-policy metadata, one DBMM observation and its explanation change.
+All source descriptors and other values are unchanged. Receipt company-five-cohort-
+v11-transition-20260920.json pins five new manifests. Combined catalog/release/
+discovery/storage pipeline90963 completed exit0; independent v11audit confirms
+90,737unique URLs, with no additions/removals versusv10. All four PR39checks
+CI35521229364passed at1ca3697e before the new audit/continuity additions.
+V10uploader82504was deliberately stopped as superseded; receipt company-v10-
+transfer-superseded-20260920.json retained. No uploader active. Full v11rebuild
+and later immutable reconciliation are required before publication.
+
+## Immediate next work
+
+All610selected observations across38priority equality groups now numerically
+reproduce:433primary matches+51first XBRL+126second XBRL. Summary
+company-equal-history-numerical-closure-20260920.json binds five comparison reports
+and verifies exact equality with the queue's610unique observations, without double
+credit. Both initial failed XBRL reports and corrected offline replays preserved.
+This does not close source-scope/usefulness review, the712basic/diluted groups,
+other corpus flags, or production admission.
+
+Preserve all unmatched cases and failed reports, finish primary scope/usefulness
+review and archive/replay new evidence. Full storage transfer, whole-release
+delivery/load checks, editorial admission and production activation remain open.
+Owner publication approval persists; it does not substitute for these checks.
+Prior1–3day/tonight estimates were provisional, not measured completion forecasts.
+
+## Current v11 combined candidate
+
+3,323companies +87,347histories +67directories =90,737unique candidate URLs.
+Full XML hash/byte/uniqueness checks and exact v10/v11set comparison pass.
+No added or removed URLs; shards40,737and50,000. Storage plan totals and
+unique keys checked:10,360objects/1,280,301,890bytes;3,323sharedv10keys.
+Shared keys are not remote verification. No uploader active or deployment.
+
+Release:a98105f2fe459ff3dd8aabc90c1ed3de442b931453fb68e9b0b48324c8f5fff4
+Catalog:ba8f0459156a84058a585e4538503e973ec9fd1d886d812f73ddfce3462ea8c1
+Downloads:5b3c0b57e86bec0a5857bc37a838428cf776c660af09bb343f8bb8f7bce56958
+Deliverymanifest:8900d4d3bcb0dec7b1356cddb3481bd69736a2832e95b6255ef4085152de4576
+Storageplan:4e179e74be346df6071e7a5429ce390d694f8aabfb43702d10728a1660e7d00c
+
+Evidence company-five-cohort-v11-discovery-audit-20260920.json. Remaining editorial scope and full hosted delivery/production checks remain open.
+
+V11archive build/replay98640completed exit0. Isolated restore verifies all member
+hashes, all five source queues/1,026exclusions, and10,360runtime objects with
+exact release roots. Birdie and legacy revenue reports reproduce byte-for-byte. Archive23,126files/
+2,717,532,160bytes, SHAabecda29825b69210095ad571cb31b86be6a6984ad718a5fca6a1b70beced893,
+saved repositoryd67b680f. Summary company-five-cohort-v11-evidence-archive-summary-
+20260920.json. Includes seven primary legacy revenue filings and the tracked
+DBMM source fixture, in addition to prior Birdie/queue/runtime evidence. Both reports replayed using locked offline wheels; recorded interpretations are
+not independently certified. Local portability only, no offsite backup.
+Five archive safety tests pass; all four CI35521649206checks passed atd67b680f. No uploader.
+
+## Previous v10 combined candidate (superseded)
+
+Pipeline77545completed exit0.3,323companies+87,347histories+67directories =
+90,737unique URLs. Independent XML/hash/uniqueness and full URL-set comparison
+shows exactly one removal: Birdie Win SG&A; no added or other removed URL.
+Two sitemap shards:50,000and40,737URLs. Oldv9artifacts remain preserved.
+
+Release:a72ba35e459570be3b8fd009c042eeddc2348eb966695e5960a71d08829f433b
+Catalog:88aaccb5340edf1f2a6b522b0e972065c79348344ca73c337c11dd970283f6d1
+Downloads:1404ffe09853d68c04f1ba0f350d121c77813f51ff0a8ccaa65fbdb8026bb72c
+Deliverymanifest:d92baf65e00228fe351a398035f8fd4f103b6a98a7c1bba00108f2569110a6d0
+Storageplan:2ef810f405e2182093288e11d1698df6cc93262f9df7ebdeae81284c691850ff
+Paths corpus-local/company-five-cohort-{delivery,catalog,discovery}-v10 and
+company-five-cohort-storage-plan-v10.json. Plan10,360objects/1,280,300,997bytes;
+3,323keys shared withv9,7,037new keys. Shared keys are not remote verification.
+Audit company-five-cohort-v10-discovery-audit-20260920.json binds all roots.
+V10transfer82504 is terminal, deliberately superseded (fresh v10transfer receipt), one worker/500ms.
+Archive build/replay39153 completed exit0 from repository3ddb2536; output
+corpus-local/five-cohort-v10-evidence-20260920.tar. Summary and restore receipts
+use prefix company-five-cohort-v10-evidence-.23,119files/2,697,574,400bytes,
+SHA633cfbe1ccbbda383483cfb8cc4d40c3a9399b55b006072079b4ef779c81a62b.
+Isolated restore replays all five queues with1,026exclusions/zero errors and
+all10,360runtime objects; Birdie scope report reproduces byte-for-byte with
+locked offline dependencies. Local portability only, no offsite backup.
+Remaining editorial and hosted verification stay open. No deployment or indexed gain. Production remains327sitemap URLs.
+
+## Previous v9 candidate (preserved; superseded)
+
+3,323companies +87,348histories +67directories =90,738unique candidate URLs.
+Local XML/hash/uniqueness audit verifies two shards (50,000and40,738URLs).
+Includes pilot overlaps; not net-new live or indexed pages. All five cohorts replay
+under existing cumulativev9 policy with values, sources and exclusions unchanged.
+Original mixed-policy rejection and every original manifest remain retained.
+
+Release:9b562e4b5a1095e6dadb330915060b8b320ba02fc9384e9c5aef72f8d0aee4a2
+Catalog:66305915c903391dfca9ad7a829f5fbbfea06c6d3b877daac2819e307e755d1e
+Downloads:a28baba4bdfc213e576c77e68b6f45245f1c3ab8c00caec7a42f540d2cd4d1c7
+Plan:6cafb5205963ea8187a8f014dfeb8342bdd487f2274c33603ff96d332a83750c
+Runtime10,360objects/1,280,295,450bytes. Ignored paths under corpus-local:
+company-five-cohort-{catalog,delivery,discovery}-v9 and
+company-five-cohort-storage-plan-v9.json. Tracked receipts:
+company-five-cohort-{policy-replay,discovery-audit,storage-plan-summary}-20260920.json.
+
+Archive five-cohort-v9-evidence-20260920.tar contains23,115files/2,691,512,320bytes.
+SHA256:b77ae93d4fe8c6935aa5569c81f8030ac19819d26ac2b4bf1b747b2f317ebd41.
+Build35755and isolated restore61898both terminal0. Restored source replay:
+342+853+766+683+672accepted captures and1,026exclusions, zero errors. Seven pilots
+are included separately in runtime. All10,360runtime keys/hashes/bytes and exact
+roots reproduce without reading original capture/runtime directories. Saved repo
+a98637c4 plus separate newer packager.py retained. Editorial captures preserved;
+this combined restore does not rerun every manual scope report. Earlier scope
+archives have their own replay receipts. This is local portability, not offsite backup.
+Receipts: company-five-cohort-evidence-{archive-summary,restore}-20260920.json.
+
+## Production and hosted preview
+
+Production remains application revision9608542c with327sitemap URLs; owner already
+submitted https://canlicapital.com/sitemap.xml (rechecked HTTP200/327URLs).
+Clean publisher /Users/arhancanli/canlicapital-production-20260920. Hourly publication
+can change deployment ID; inspect alias before asserting an exact live deployment.
+No expansion page activation or indexed gain. API-key revocation migration verified
+on Supabasebpnensyowfmdwhqmfdrg; correct-account credential held separately.
+
+Clean preview https://meridian-9zuz7qkhn-arhans-projects-ac470eaa.vercel.app
+is deployment dpl_C3NZMgurfcejtqhL1Pwuo57BMrE3, source1ab2ef029b4703624d4fcca848709ff7eaefb215.
+Opt-in preview postbuild removes generated pilot copies that shadow dynamic routes.
+Default production routing unchanged.23HTTP checks pass including exact directory
+membership;32representative browser cases have passing evidence across runs:
+27initial,4focused and1independent GitHub desktop flow. Not one fresh32case run.
+Local Chromium network failures retained; CI35515799025/35515925557 desktop flow
+passes without failed requests. These checks cover representative noindex pages,
+not all90,738URLs, cloud load, accessibility certification or actual indexing.
+
+Probe upload29objects/1,274,386bytes is complete, not full storage. Explicit API
+preview dpl_CL9YBfWudnroTVMroAGJruvmVH6A and all earlier failed HTTP/browser reports
+remain retained. Exact receipt paths/history in archived prior STATUS.
+
+## Editorial evidence and remaining gaps
+
+Combined selected-quality replay:3,323companies/87,348histories,13,148flagged pages
+with overlapping reasons.10,630historical-only,1,309multi-unit,402partially historic
+units,75constant,74zero-only,1,500pages in750equal-vector groups. Flags are not
+confirmed defects or admission of unflagged pages. Full local report/gzip hashes:
+company-five-cohort-selected-quality-summary-20260920.json.
+
+All750equality groups reproduced from selected records:712nonzero basic/diluted,
+37other nonzero,1zero-only. Priority38groups mapped to610selected observations
+across200filings. Initial41retained filings reproduce212/212. Incremental59filings
+cover134more observations:83match,51unresolved in25filings. Thus295/346compared
+match. At that snapshot100filings/264observations lacked captures; subsequent acquisition completed; see current610/610closure above. EVENTIKO4supplement overlaps incremental results, not extra.
+
+Limited primary interpretations:3M2023–2025 matching revenue totals; EVENTIKO all
+8selected observations for payable/property2022–2025 in3filings. Separate11,000
+asset/payable lines and nonzero related-party loans are explicit; fixed assets
+include website development. Equality does not make concepts interchangeable.
+No company-wide admission. Other source-scope/usefulness checks remain open.
+
+XML helper now resolves scoped currency QNames, rejects incorrect/undeclared/
+rebound prefixes and accepts valid aliases.17corpus+5XML tests pass and run in CI.
+Post-fix212observation replay has identical filing results with new helper hash;
+original reports/archives unchanged. New acquisition evidence now has verified archival closure and isolated replay.
+No offsite-backup claim.
+
+## Other owner objectives and remaining evidence
+
+- Google baseline262indexed as of Sep14(exportSep20),40not indexed. No new actual
+  indexing gain. URL-level exports needed for3discovered/2crawled exclusions.
+- Search intent104owners/147hypotheses/223unassigned pages; relevant coverage open.
+  Discovery8,031CIKs/34old concepts cannot reach800k; additional useful sources and
+  families required.3,467identities unqueued after fifth. Prior SEC bulk403 remains
+  an access stop; do not retry through alternate paths. SOURCE_CAPACITY.md.
+- Source/editorial review incomplete. Versioned scope exclusions retained; fourth
+  queue430observations/185filings incomplete. Six extra concept samples reproduce
+ 198/198figures across40filings, not admission. Historical cash scope18observations/
+ 17filings now reviewed as opening balances, with entity and reporting context.
+  Latest two filings separately reproduce7observations. CONCEPT_REVIEW.md.
+- MCP0.1.2published on npm/official MCP registry; exact package bytes and48tests
+  verified. Real API/MCP/repository adoption remains unproven; no artificial activity.
+- Engine PR71merged0aff241a from tested867d211; six CIchecks passed (4,366portable,
+ 55skipped; one serial performance;11PostgreSQL). PR68/69/70closed as incorporated.
+  Running engine not activated for trading; dirty original preserved. Only reviewed
+  website snapshot helper/presentation pointer activated. Five forward returns/four
+  sleeves remain immature. Owner-reserved blind labels/protocol decisions pending.
+
+Goals remain800kactually indexed canonical pages(target1m), exceptional quality/
+SEO/relevant intent, real developer adoption, governed combined NET FORWARD
+Sharpe>2,at least14economically distinct qualified sleeves and realized maxDD<=10%.
+No broker orders, fabricated evidence or unapproved research decisions.
+
+## V11 priority queue accounting
+
+Versioned company-priority-scope-v11-20260920.json binds the previous v3ledger,
+its input reports and the verified combinedv11manifest. It checks the exact
+source-bound policy against selected runtime bytes and exclusion metadata.
+166active reviewed +440pending +4withdrawn =610original priority observations.
+The additional withheld period is not counted as reviewed. Earlier ledger stays
+unchanged;169recorded reviews include the3previously withdrawn Birdie periods.
+Offline replay is byte-identical. New ledger is later than the sealedv11archive.
+
+## HNO operating-result publication hold
+
+PR39merged2f5e86d8a13e91eefce01c5264129b71598d3817 after all four
+CI35521807091checks passed atcf8c938c. Tested/merged tree equality verified:
+c51a2545074eeb274c64952e6e5886a232711085. No production activation.
+
+Historical review found all four selected HNO OperatingIncomeLoss periods include
+non-operating income/expense. Three retained primary statements and a restatement
+table show gross profit minus operating expenses plus separately displayed other
+result equals the tagged operating/net loss. This conflicts with our concept
+definition. Source04f062ef5e20caad0e3d8bf8913f2790f3550faf496fbcc8e4266d8eb14abe28.
+Report company-hno-operating-scope-20260920.json replays byte-for-byte. The earlier
+latest-period interpretation in company-remaining-equality-context is insufficient
+and superseded for HNO; original report preserved. No new review credit claimed.
+Next: implement source-bound whole OperatingIncomeLoss exclusion, retain net loss
+and all other values, test actual capture, then rebuild candidate before admission.
+Do not upload/admit v11unchanged. No uploader active. This finding is later than
+the sealed v11archive. No derived arithmetic may replace original observations.
+
+## Source-bound HNO exclusion implemented
+
+Policy extended-v12 inherits all v11whole-concept and exact-period holdbacks and
+withholds only HNO OperatingIncomeLoss for the reviewed source hash. Original
+policies remain reproducible. Actual45,095byte captured fixture tests all four
+removed observations, unchanged NetIncomeLoss/all other concepts, changed-source
+rejection, missing-notice rejection, absent history page and explanatory overview.
+DBMM source fixture confirms inherited exact-period holdback unchanged.32selector/
+renderer tests pass. V12cohort/release rebuild has not started; v11must not be
+admitted unchanged. Further historical scope review remains open.
+
+## Historical operating/net-loss follow-up
+
+PR40mergedf53c6980990b648ef12535bcc37f2865393e619f after four checks in
+CI35522059528passed at62591d51. Tested/merged trees match
+7e78ee8d90b4f210661d25e5a7ea41d1ca740d43. V12policy is merged, not rebuilt
+or deployed. No uploader active.
+
+Reviewed24previously pending Nika/TECHCOM loss observations across12retained
+primary statements. Nika separately presents operating, pretax and net loss with
+zero tax; TECHCOM separately presents zero other-income/expense rows. Their
+equality does not have the HNO non-operating-inclusive scope problem in these
+selected comparative periods. Exact tables/hashes and manual interpretations in
+company-nika-techcom-loss-context-20260920.json, offline replay byte-identical.
+No blanket equivalence, revenue approval or company admission. The published
+v11ledger remains a frozen prior snapshot; v12reconciliation below includes
+the new24reviews and HNO withdrawal. New evidence postdates v11archive.
+
+## Reconciled v12 priority scope queue
+
+company-priority-scope-v12-20260920.json accounts for all610original observations
+exactly once:189active reviewed,413pending,8withdrawn. The24new Nika/TECHCOM
+checks receive credit only if present in the previous pending queue. Four HNO
+operating-loss periods are withdrawn; one had an earlier insufficient review,
+three were pending. No withdrawal earns review credit. Actual captured HNO
+source replay confirms the merged v12exclusion; this is not a whole-corpus rebuild.
+Input reports and source fixture bound, exact original key-set equality checked,
+offline report replay byte-identical. Prior ledgers unchanged.712basic/diluted
+groups and remaining non-priority flags still need their own review.
+
+## First historical liability batch
+
+PR41merged27f947e2e9408651cd79dbd54c66d1ff0579c46c after four checks in
+CI35522272270passed atd51d8657; tested/merged tree
+1c68c46acd61ee7c6fe45e2d4ac470e6637f4645.
+Reviewed34previously pending liability observations across17Birdie/Vemanti/Caro
+primary balance sheets. Separate current and total rows agree at selected dates;
+related-party amounts, deposits, accruals and notes remain within displayed current
+sections. No blanket concept equivalence or other-history admission. Evidence
+company-historical-liability-batch1-20260920.json reproduces byte-for-byte.
+Versioned v12-batch1ledger partitions original610keys:223active reviewed,379pending,
+8withdrawn. Supplements must bind originalv12ledger and remove only previously
+pending exact keys; duplicate/out-of-queue credit rejected. Ledger replay identical.
+Prior snapshots preserved; no rebuild/upload/deployment or indexed gain.
+
+## Second historical balance-sheet batch
+
+PR42open for historical balance-sheet context.30additional previously pending
+Gold Rock/Nika observations reviewed against10retained primary tables. Gold Rock
+current/total asset and liability totals are separately displayed. Nika conclusion
+covers assets only; historical long-term related-party liabilities remain explicit,
+not erased or approved as current. Full source hashes/tables and selected periods
+in company-historical-balance-batch2-20260920.json. Report replay byte-identical.
+V12-batch2ledger combines only exact disjoint pending observations from both
+batches:253active reviewed,349pending,8withdrawn;610original keys preserved.
+Ledger replay byte-identical; prior snapshots unchanged. No release rebuild,
+uploader or deployment; broader flags and basic/diluted groups remain open.
+
+## Atlantica historical review and component-total contradiction
+
+15retained primary balance sheets reviewed;58additional observations have recorded
+context,2liability observations remain unresolved. In accession0001548123-25-000017,
+the2023comparative components total5,271,160USD but both total/current liabilities
+are5,253,160USD. Note payable is731,653USD versus713,653USD in the earlier
+0001548123-24-000018filing. No assumption of typo/restatement or source rewrite.
+Resolve or explicitly withhold the two selected2023liability observations before
+admission. The2023zero-asset observations are separate and retain context review.
+Report company-atlantica-historical-balance-20260920.json retains all15fulltables,
+hashes and both-column component arithmetic; offline replay byte-identical.
+Combined v12-batch3ledger:311active reviewed,291pending,8withdrawn. The two
+conflicting observations remain pending, not reviewed. Full610key partition passes.
+Initial helper rejected an ambiguous total-row prefix; narrowed matching to numeric
+columns so total liabilities/equity cannot be mistaken for total liabilities.
+No output report existed for that failed attempt; source evidence unchanged.
+
+## Atlantica exact-period holdbacks implemented
+
+PR42mergeddb3de119e6ad007bad1c2513e3d07deb3509f807 after four checks in
+CI35522601979passed atb291e035. Tested/merged tree
+cf7f2d12b6407fa691e80bb7f597477d0f21c465.
+Cumulative extended-v13policy now withholds only the two2023Atlantica liability
+observations bound to sourceb6982eca52afbce436eed50540a757170b57c33a9b39cd6eb182ff42d4f267d8.
+Same concept histories retained, other periods and2023assets unchanged. Affected
+pages explain component-total conflict; raw source retained, no replacement math.
+Actual58,867byte source fixture tests both exclusions, changed-source/capture-date
+rejection and inherited HNO/DBMM behavior.33selector/renderer and8delivery/release
+tests pass. Full corpus not rebuilt; v12-batch3ledger remains prior snapshot and
+still needs versioned accounting for these two policy withdrawals. No uploader
+or publication. Continue remaining review before rebuilding the final candidate.
+
+## TECHCOM historical closure and latest-period reopening
+
+PR43merged330593040446f77d0636cb90ac20013dd836a580 after four checks in
+CI35522737196passed at8a4c6e8e. Tested/merged tree
+edc4eb4d90df411cc3c574933aaa62effa9d29eb. V13policy merged, full corpus not rebuilt.
+42historical TECHCOM observations reviewed across21tables in7retained filings: current/total
+assets, current/total liabilities, zero revenue and fixed-asset purchases. Different
+flows remain separate; no zero-activity inference. Report
+company-techcom-historical-context-20260920.json replays byte-identically.
+Adjacent2025liability components23,648+285,204sum308,852USD versus reported
+308,851USD. Recorded1USDdiscrepancy, no assumed rounding/correction. Two earlier
+latest-period reviews reopened pending resolution/disposition; not newly credited.
+Versioned v13ledger incorporates42reviews, two source-replayed Atlantica withdrawals
+and two reopened TECHCOMrows:351reviewed/249pending/10withdrawn, exact610key
+partition. Ledger replay byte-identical. Prior reports unchanged. No deployment.
+
+## Bioforce/ANVI historical balance-sheet review
+
+PR44open for TECHCOM/history ledger work.52additional pending observations now
+reviewed from18Bioforce/ANVI primary tables. Bioforce separates current/total
+assets and liabilities; ANVI conclusion covers assets only, preserving historical
+VETRO naming and restatement labels without uniform-business-perimeter claims.
+company-bioforce-anvi-balance-20260920.json replays byte-identically.
+Versioned v13-batch1ledger credits only exact pending keys from the bound v13
+snapshot:403active reviewed,197pending,10withdrawn; exact610key partition and
+offline replay pass. TECHCOM latest two rows remain reopened, not approved.
+No full corpus rebuild, uploader, deployment or indexed gain.
+
+## Apple iSports/Lithium historical liabilities
+
+60additional pending liability observations reviewed from29retained primary
+tables. Apple iSports historical Prevention Insurance naming/fiscal-date changes
+and zero net long-term convertible debt lines retained. Two older Lithiumtables
+have a sole current payable/accrual line followed by total liabilities, rather than
+a separate current subtotal; later allowance-for-optioned-properties classification
+retained. No additive totals or uniform entity-scope claim. Report
+company-apple-lithium-liability-20260920.json replays byte-identically.
+V13-batch2ledger combines exact pending-only supplements:463active reviewed,
+137pending,10withdrawn; original610key partition and offline replay pass. Two
+TECHCOMlatest rows still unresolved. No full corpus rebuild or publication.
+
+## Visium/GRN review and remaining amendment gap
+
+PR44merged919b2f55754f512cfae4792f38e0175d1c6dcf7a after four checks in
+CI35523103496passed at69d1f656. Tested/merged tree
+4e379a8d7019a18363383da1fbc970f2e2157790.
+40additional observations reviewed from15Visium/GRN primary tables. GRNnotes
+preserve related-party liabilities and net-of-discount short-term debt. Two Visium
+2013asset observations selected from0001493152-16-007138remain pending: retained
+primary is a10-K/Awithout balance sheets; earlier2013filing does not close selected
+amendment context. Need original2014primary or explicit disposition.
+company-visium-grn-balance-20260920.json and cumulative v13-batch3ledger replay
+byte-identically. Exact counts503active reviewed/97pending/10withdrawn cover610
+original keys. Broader corpus flags, TECHCOMlatest discrepancy, v13rebuild and
+publication remain open. No uploader or deployment.
+
+## Four-issuer historical liability review
+
+PR45open.52additional observations reviewed from25Global Technologies,WEED,
+Glucose Health and Global Warming Solutions primary tables. Global Technologies
+selected2024liabilities are explicitly restated1,236,037USD rather than earlier
+6,830,211USD; retained without substitution. WEEDhistorical unaudited comparative
+labels, United Mines naming, leases and asset retirement classifications retained.
+Glucosehistorical Bio-Solutions/convertible debt context preserved. Report
+company-four-issuer-liability-20260920.json replays byte-identically.
+V13-batch4ledger:555active reviewed,45pending,10withdrawn; exact original610keys
+and byte-identical replay. Remaining amendment/TECHCOMdiscrepancy and smaller
+historical queues still open; broader corpus flags not covered by these counts.
+No full rebuild, uploader, deployment or indexing gain.
+
+## Remaining retained context narrowed to four observations
+
+36additional observations reviewed from17Morgan/North America Frac Sand/Emo/
+Green Stream/Atacama tables. Preserve sole-payable current totals, asset-only
+conclusions, reported preferred-stock/related-party classifications and period gaps.
+Report company-small-issuer-context-20260920.json replay byte-identical.
+Five more observations reviewed by rechecking retained HNO/Green Stream sources:
+three net losses preserve restated values without reinstating operating loss; two
+2020Green Stream liabilities use the original2021comparative table linked to the
+XBRL-only amendment with selected accession unchanged. Report company-retained-
+final-context-20260920.json replay identical. Initial helper stopped before output
+because it included a different Green Stream accession; exact amendment filter
+now restricts fixed review to the intended two rows. Original evidence unchanged.
+Cumulative v13-batch6ledger:596active reviewed,4pending,10withdrawn; exact610key
+partition and byte-identical replay. Pending:2Visium2013asset observations from
+2014amendment lacking balance sheets;2TECHCOM2025liabilities with1USDcomponent
+discrepancy. These must receive evidence-backed dispositions. Other corpus flags
+remain outside this queue; no full rebuild or deployment.
+
+## Visium amendment context resolved from original filing
+
+SEC search identified original accession0001493152-16-007114, filedFebruary3,2016.
+Capture77538completed0; original index/primary retained with exact hashes and
+NuState CIKidentity verified. Table87presents2014/2013cash/current assets/total
+assets65/471USD. Selected amendment0001493152-16-007138explicitly adds XBRL
+only with no other changes; selected accessions/values unchanged.
+company-visium-original-context-20260920.json replays byte-identically and binds
+original capture plus amendment bytes. Initial helper used all Visium pending
+rows; fixed exact accession filter before generating report, no evidence changed.
+V13-batch7ledger now598active reviewed/2pending/10withdrawn. Only TECHCOM2025
+liability discrepancy remains in priority queue. Raw inline totals have decimals0;
+precision implications still need evaluation, not an assumed rounding explanation.
+New original capture is not yet in a sealed archive; no full rebuild/deployment.
+
+## TECHCOM precision disposition and priority queue closure
+
+PR45merged5ef02030ebb7b57160547579b89844552e59fd6b at tested head9ce420fa;
+both trees d7ffd99f6f564f9cd8bf4d27dc95d367a719e3bf. CI35523645076 initially
+failed the MCP audit endpoint (HTTP400), before tests. The unchanged locked graph
+then audited locally with zero advisories; one failed-job rerun passed audit,
+MCP tests and package smoke. All four checks pass; no audit bypass or lockfile change.
+
+The two TECHCOM2025 liability rows now have a recorded scope disposition with
+source-bound visible notes on both histories and the overview. Reported308,851USD
+is retained; components total308,852USD and liabilities/equity have another1USD
+presentation difference. All inspected facts declare decimals0. A limited nearest-
+rounding interval diagnostic overlaps; positive truncation intervals do not.
+This permits a rounding explanation but does not establish its cause or certify
+report-wide Calculations1.1 compliance. No source correction or blanket admission.
+Report company-techcom-precision-context-20260920.json retains exact primary hash,
+attributes/context/table, conditional arithmetic and source-bound public note.
+
+V13-batch8ledger partitions610original observations:600active reviewed,0pending,
+10withdrawn. Batch7replay was also verified; final context and batch8ledger replay
+byte-identically.11renderer tests pass including actual captured TECHCOM source,
+unchanged reported values, visible notes and unchanged pilot HTML. New source
+fixture is tracked. This closes only the38priority groups' recorded scope queue;
+712basic/diluted groups and other corpus quality flags remain open. Latest reviews
+and Visium original capture still need sealed archival replay. Full v13release
+rebuild, hosted transfer, whole-release verification and deployment remain pending.
+No new live or indexed pages. Production publication authorization persists.
