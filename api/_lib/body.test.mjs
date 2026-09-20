@@ -42,3 +42,11 @@ test("a Vercel pre-parse failure (body getter throws on malformed JSON) is inval
   Object.defineProperty(throwing, "body", { get() { throw new Error("Invalid JSON"); } });
   await assert.rejects(readJsonBody(throwing, 1024, { allowEmpty: true }), (e) => e instanceof BodyError && e.status === 400 && e.code === "invalid_json");
 });
+
+
+test("pre-parsed string bodies obey the UTF-8 byte cap before empty-body admission", async () => {
+  for (const body of [' '.repeat(1025), '{"a":"' + 'é'.repeat(600) + '"}']) {
+    const request = Object.assign(Readable.from([]), { headers: {}, body });
+    await assert.rejects(readJsonBody(request, 1024, { allowEmpty: true }), e => e.status === 413);
+  }
+});

@@ -287,7 +287,7 @@ function buildDevelopers() {
   const summaries = Object.entries(openapi.paths)
     .filter(([path, def]) => def.get && !MANIFEST.some((m) => m.path === path))
     .map(([path, def]) => ({ path, summary: def.get.summary }));
-  const validators = MANIFEST.filter((m) => m.method === "POST" && m.keyed);
+  const validators = MANIFEST.filter((m) => m.method === "POST" && m.keyed && m.path.startsWith("/api/v1/validate/"));
   const keysRoute = MANIFEST.find((m) => m.path === "/api/v1/keys");
   const firstValidator = validators[0];
 
@@ -547,6 +547,9 @@ ${renderProductShellHeader({ active: "developers" })}
     <p class="dev-note">The key is returned once. Only its hash is kept.</p>
     <h3>Then validate</h3>
     ${validators.map((m) => `<article class="dev-endpoint" id="api-${esc(endpointSlug(m.path))}"><h4><code>${esc(m.method)} ${esc(m.path)}</code></h4><p>${esc(m.summary)}</p>${snippetsBlock(m)}${TOOL_PAGE_FOR[m.path] ? `<p class="dev-note"><a href="${esc(TOOL_PAGE_FOR[m.path])}">Try it in the browser, no key required</a></p>` : ""}</article>`).join("\n    ")}
+    <h3>Revoke a key you are finished with</h3>
+    <p class="dev-note">This disables the bearer key permanently. It does not issue a replacement or delete public receipts. Check that the response says <code>revoked: true</code>; an unavailable service does not confirm revocation.</p>
+    ${snippetsBlock(MANIFEST.find(m => m.path === "/api/v1/keys/revoke"))}
     <h3>Then cite the receipt</h3>
     <p class="dev-note">Every verdict carries <code>receipt.url</code>. <code>GET /api/v1/receipts/{id}</code>
       returns the stored output, the input hash, and the content hash of every core and contract that

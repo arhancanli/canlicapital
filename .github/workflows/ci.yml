@@ -71,3 +71,35 @@ jobs:
       - run: npm ci --prefix mcp
       - run: npm audit --prefix mcp --audit-level=high
       - run: npm test --prefix mcp
+
+  key-lifecycle:
+    name: Key revocation PostgreSQL contract
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_PASSWORD: postgres
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready --health-interval 5s --health-timeout 5s --health-retries 10
+    env:
+      PGHOST: localhost
+      PGPORT: 5432
+      PGUSER: postgres
+      PGPASSWORD: postgres
+      PGDATABASE: postgres
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Install PostgreSQL client
+        run: |
+          sudo apt-get update
+          sudo apt-get install --yes postgresql-client
+      - name: Apply migrations to disposable database and test lifecycle
+        run: |
+          psql -X -v ON_ERROR_STOP=1 -c 'CREATE ROLE anon; CREATE ROLE authenticated; CREATE ROLE service_role;'
+          psql -X -v ON_ERROR_STOP=1 -f supabase/migrations/20260905_validation_api.sql
+          psql -X -v ON_ERROR_STOP=1 -f supabase/migrations/20260920_key_revocation.sql
+          psql -X -v ON_ERROR_STOP=1 -f supabase/tests/key_revocation.sql
+          python3 scripts/test-key-revocation-race.py

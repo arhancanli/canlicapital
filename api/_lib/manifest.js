@@ -1,3 +1,4 @@
+import { LIMITS } from './limits.js';
 // api/_lib/manifest.js
 // The one list of routes this API serves. OpenAPI and /developers render FROM it, so neither can
 // describe a route that does not exist.
@@ -9,6 +10,12 @@
 // filesystem routes on Vercel, not rewrites, so the static-API rewrite guard in build-api.mjs does
 // not apply to them.
 export const MANIFEST = Object.freeze([
+  {
+    path: "/api/v1/keys/revoke", method: "POST", keyed: true, quota: false,
+    summary: "Permanently revoke the bearer key without consuming validation quota. Already admitted requests may finish; public receipts remain available.",
+    requestExample: {}, requestClosed: true, requestBodyRequired: false,
+    maxBodyBytes: LIMITS.max_key_revoke_body_bytes,
+  },
   {
     path: "/api/v1/keys", method: "POST", keyed: false,
     summary: "Issue a free key. Returned once; only its hash is stored.",

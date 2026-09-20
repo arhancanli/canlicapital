@@ -956,3 +956,18 @@ release roots. Wholearchivehash independently matched summary. Temporary restore
 removed; archive localonly. Documented instructions and partial-output semantics.
 Capture now299/1000(221eligible,55excluded,23HTTPerrors), unfinished. Websiteprior
 a2e557f3 CI35490624532 passes; engine35489715539 remains running.
+
+## 2026-09-20 — API key lifecycle candidate
+
+Previous checkpoint completed a verified local evidence archive. Added a bearer-only
+revocation endpoint and explicit migration, with shared key-row locking against
+stale quota admissions. Database role/idempotence/receipt/concurrency checks run
+in disposable PostgreSQL CI, never production. Added storage-response validation,
+handler regressions, manifest/OpenAPI/developer examples and deployment ordering.
+Review found and fixed pre-parsed string body byte-cap bypass; regression covers
+UTF-8 and oversized empty input. Initial tests caught stale manifest/limits/lifecycle
+expectations; updated to the new explicit contract. Full verification in progress.
+Engine61b587f full CI35489715539 and website1d9209a4 CI35490907923 now pass.
+Local build and final verify now pass381tests(6+375) and every final audit.
+Generated artifacts regenerated through the full build to preserve reader features
+and accurate source bindings. Capture73982 at823/1000, unfinished; no staging.

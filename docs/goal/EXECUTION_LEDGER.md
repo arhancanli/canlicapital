@@ -17,6 +17,7 @@ Authority: REQUIREMENTS.md (all goals), STATUS.md (current facts), PHASES.md
 |T05 Editorial/source/intent quality |Disclosures verified; editorial review ongoing |338 matching-history pages and24 constant-unit pages explained;six unusual matching pairs inspected against original filings;373tests,66browser checks,fullHTTP replay; no publication approval |
 |T06 Storage and release |Runtime plan and local restore verified; access pending |3,927 objects/505,062,941 bytes; 7,843-file local source archive restored/replayed; remote retention and hosted/production evidence pending |
 |T07 Search indexing and adoption |Outcomes unestablished; MCP reliability verified |48package tests and new CI job; public service reachable,12total validations un-attributed; Search Console and genuine adoption evidence pending |
+|T07b Key revocation |Local381tests+audits pass; database CI pending |Bearer-only, no quota charge, idempotent timestamp, shared row lock; production migration not applied |
 |T08 Governed engine outcomes |Evidence inspected; outcomes unestablished |Five returns/four sleeves; report hashes verified; three PRs pass; activation projection verified; spin-off evidence integrity repaired |
 
 Each transition records changed files, exact validation, failures and remaining

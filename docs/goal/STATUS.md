@@ -267,3 +267,19 @@ the repaired goals worktree. Earlier cross-worktree import run is not acceptance
   23HTTPerrors), no finished_at or stop reason. Poll the same handle on continuation.
 - Websitea2e557f3 CI35490624532 passed all three jobs. Engine35489715539 still running
   at last check. New archive changes have not yet completed remote CI.
+
+## API key lifecycle candidate — 2026-09-20
+
+- Added bearer-key revocation, hash-only backend call, idempotent timestamp,
+  no validation-quota charge and retained receipts. Migration coordinates key-row
+  locks with quota admissions; already admitted work may finish. Production unchanged.
+- Added generated API/developer contracts and explicit rollout instructions in
+  KEY_REVOCATION.md. Disposable PostgreSQL lifecycle/race CI added; remote run pending.
+- Review also fixed the shared parser's byte-cap bypass for pre-parsed string bodies,
+  including oversized whitespace with allowEmpty. Regression added.
+- Engine61b587f CI35489715539 now passes; website1d9209a4 CI35490907923 passes.
+  Current revocation revision still undergoing verification; do not infer its CI pass.
+- Local production build and verify complete:381 tests(6+375), all final audits
+  pass; logs/tmp/canli-revocation-build.log and/tmp/canli-revocation-final-verify.log.
+- Capture73982 still running at823/1000:625revieweligible,135excluded,63HTTPerrors;
+  no finished_at or stop reason. Keep polling the same capture before replay.

@@ -364,6 +364,7 @@ console.log(await response.json());</code></pre></div>
     <table class="dev-table" tabindex="0" aria-label="Validation endpoints">
       <thead><tr><th>Route</th><th>What it does</th></tr></thead>
       <tbody>
+        <tr><td><code>POST /api/v1/keys/revoke</code></td><td>Permanently revoke the bearer key without consuming validation quota. Already admitted requests may finish; public receipts remain available.</td></tr>
         <tr><td><code>POST /api/v1/keys</code></td><td>Issue a free key. Returned once; only its hash is stored.</td></tr>
         <tr><td><code>POST /api/v1/validate/deflated-sharpe</code></td><td>Probabilistic and deflated Sharpe from the seven contract inputs, or from a return series plus the trials behind it.</td></tr>
         <tr><td><code>POST /api/v1/validate/overfitting</code></td><td>Probability of backtest overfitting by CSCV over the returns of every variant tried.</td></tr>
@@ -513,6 +514,30 @@ const response = await fetch(&quot;https://canlicapital.com/api/v1/validate/brea
 });
 console.log(await response.json());</code></pre></div>
     </div><p class="dev-note"><a href="/tools/breadth">Try it in the browser, no key required</a></p></article>
+    <h3>Revoke a key you are finished with</h3>
+    <p class="dev-note">This disables the bearer key permanently. It does not issue a replacement or delete public receipts. Check that the response says <code>revoked: true</code>; an unavailable service does not confirm revocation.</p>
+    <div class="dev-snippets">
+      <div class="dev-snippet"><p class="dev-snippet-label">curl</p><pre class="dev-code" tabindex="0" aria-label="curl code example"><code>curl -X POST https://canlicapital.com/api/v1/keys/revoke \
+  -H &quot;Authorization: Bearer $CANLI_KEY&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -d &#39;{}&#39;</code></pre></div>
+      <div class="dev-snippet"><p class="dev-snippet-label">Python</p><pre class="dev-code" tabindex="0" aria-label="Python code example"><code>import json
+import urllib.request
+
+body = {}
+req = urllib.request.Request(&quot;https://canlicapital.com/api/v1/keys/revoke&quot;, data=json.dumps(body).encode(&quot;utf-8&quot;), method=&quot;POST&quot;)
+req.add_header(&quot;Content-Type&quot;, &quot;application/json&quot;)
+req.add_header(&quot;Authorization&quot;, &quot;Bearer $CANLI_KEY&quot;)
+with urllib.request.urlopen(req) as response:
+    print(response.read().decode(&quot;utf-8&quot;))</code></pre></div>
+      <div class="dev-snippet"><p class="dev-snippet-label">JavaScript</p><pre class="dev-code" tabindex="0" aria-label="JavaScript code example"><code>const body = {};
+const response = await fetch(&quot;https://canlicapital.com/api/v1/keys/revoke&quot;, {
+  method: &quot;POST&quot;,
+  headers: { &quot;Content-Type&quot;: &quot;application/json&quot;, &quot;Authorization&quot;: &quot;Bearer $CANLI_KEY&quot; },
+  body: JSON.stringify(body),
+});
+console.log(await response.json());</code></pre></div>
+    </div>
     <h3>Then cite the receipt</h3>
     <p class="dev-note">Every verdict carries <code>receipt.url</code>. <code>GET /api/v1/receipts/{id}</code>
       returns the stored output, the input hash, and the content hash of every core and contract that
@@ -539,7 +564,7 @@ console.log(await response.json());</code></pre></div>
     <h3>What happens to a key after you have it</h3>
     <ul class="dev-list">
       <li>Keys do not expire once issued.</li>
-      <li>There is no self-serve revoke or rotate endpoint in v1. If a key is compromised or simply unwanted, issue a new key and stop using the old one; the old one keeps working until someone revokes it by hand on the server side.</li>
+      <li>Revoke the bearer key with POST /api/v1/keys/revoke. Revocation does not use validation quota and is irreversible; repeating it leaves the original revocation time intact. Requests already admitted may finish. Confirm a successful response before assuming the key is disabled. Issue a replacement separately; there is no atomic rotate operation.</li>
       <li>&quot;Client&quot;, for the daily key-issuance quota, means the request&#39;s IP address hashed together with a salt that rotates every UTC day, not a stored account. A shared office or NAT IP address draws from the same pool of 5 keys a day as every other request behind it.</li>
     </ul>
   </section>
@@ -550,7 +575,7 @@ console.log(await response.json());</code></pre></div>
       <li>This verdict is about the series exactly as submitted. The service never saw the data source, its costs, survivorship, or any lookahead in how the series was built.</li>
       <li>A deflated Sharpe or overfitting probability above or below any threshold is not admission to anything and is not a forecast.</li>
       <li>The receipt is content-hashed and reproducible from the open-source core it names. It is not signed.</li>
-      <li>Quotas: 1000 validations per key per UTC day, 5 keys per client per UTC day, 1048576 bytes per request, 20000 observations per series, 200 variants per matrix.</li>
+      <li>Quotas: 1000 validations per key per UTC day, 5 keys per client per UTC day, 1048576 bytes per validation request, 1024 bytes per key revocation request, 20000 observations per series, 200 variants per matrix.</li>
     </ul>
   </section>
 

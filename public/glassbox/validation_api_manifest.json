@@ -3,6 +3,17 @@
   "source": "api/_lib/manifest.js",
   "routes": [
     {
+      "path": "/api/v1/keys/revoke",
+      "method": "POST",
+      "keyed": true,
+      "quota": false,
+      "summary": "Permanently revoke the bearer key without consuming validation quota. Already admitted requests may finish; public receipts remain available.",
+      "requestExample": {},
+      "requestClosed": true,
+      "requestBodyRequired": false,
+      "maxBodyBytes": 1024
+    },
+    {
       "path": "/api/v1/keys",
       "method": "POST",
       "keyed": false,
