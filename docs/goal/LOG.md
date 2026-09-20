@@ -782,3 +782,17 @@ replays byte-identically;47renderer/ledger tests pass; exactly24rows advance.
 722reviewed/434pending/20withdrawn,96presentation-only. Next new index71; earlier
 gaps remain. No runtime rebuild, archive supplement, deployment or indexing gain.
 All owner objectives remain active.
+
+## 2026-09-21 — positive loss amounts and ADS-only ratio adjustment
+
+Previous turn completed24Inland/Alkamireviews. PR93four CI35536892478checks passed
+atf0c50ab3; mergedf05565d4, identical treec1b6730662df629227e8c09d40b6106839988edb.
+Reviewed24Honest/Chemomabobservations. Honest retains net loss versus comprehensive
+loss and stated dilution policy. Chemomabpositive loss amounts remain as reported;
+ADSratio20→80inAugust2025does not change ordinary-share counts. Initialspec replay
+17632terminal2failed fact location: EPSfacts appear only in statement175, not
+note268. Inspected indexed locations, added explicit supporting table175without
+loosening comparator. Final report replays byte-identically.48renderer/ledger tests
+pass; exactly24rows advance.746reviewed/410pending/20withdrawn,96presentation-only.
+No value/sign/unit changes or runtime/deployment/indexing gain. Next index73;
+earlier gaps, archive supplement and hosted release remain. All goals active.
