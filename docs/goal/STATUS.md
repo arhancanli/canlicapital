@@ -17,7 +17,9 @@ replay and66browser checks pass. All candidate HTML remains noindex.
 The six exceptional pairs now have original-filing dispositions;24selected
 observations match. New three-cohort candidate has1,968companies/54,424URLs;
 complete HTTP verification1912passed. Browser66checks and storage
-plan6,249objects/828,366,117bytes pass. Next: updated source archive with isolated restore. Existing
+plan6,249objects/828,366,117bytes pass. Updated12,952-file archive and isolated restore now pass; next: remote retention
+and hosted verification when destination access is available, plus remaining
+editorial/usefulness and search-intent work. Existing
 1,202-company combined release and archive stay unchanged.
 
 Engine PR68 at61b587f passed full CI35489715539. Five current-epoch forward returns
@@ -329,3 +331,18 @@ the repaired goals worktree. Earlier cross-worktree import run is not acceptance
   company-three-cohort-storage-plan-summary.json binds ignored fullplan.
   No upload. Updated evidencearchive+isolatedrestore remain next work.
 - Priorwebsite4fd7ea82 CI35491855670 passed. New evidence revision CI pending.
+
+## Three-cohort portability — 2026-09-20
+
+- Explicit archive profiles retain the earlier default and support the completed
+  thirdcohort. Completion checks reject duplicated, omitted or substituted queue
+  IDs. Eleven Python archive/corpus tests pass; log/tmp/canli-three-archive-tests.log.
+- Build36615exit0:12,952files,1,581,578,240archivebytes; SHA103a3839… (fullhash in
+  company-three-cohort-evidence-archive-summary.json), repositorya901b9f8 and exact
+  newerpackager included. Allthree queues/exclusions andbothfilingdirectories.
+- Restore67775exit0:independent wholearchivehash check,allmembersverified,temporary
+  workspace replay of342+853+766eligible captures with381verifiedexclusions and
+  zeroerrors. All6,249runtimeobject keys/hashes/lengths androots reproduce exactly.
+  Verifier sourcehash checked; temporaryrestore removed; originalarchive retained.
+- No remote backup/upload. Priorwebsitea901b9f8 CI35492196422 passes; archiveupdate
+  needs its own CI. Overall owner goals remainactive/unachieved.

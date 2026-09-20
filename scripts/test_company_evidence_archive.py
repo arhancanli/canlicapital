@@ -12,6 +12,27 @@ spec.loader.exec_module(module)
 
 
 class EvidenceArchiveTests(unittest.TestCase):
+    def test_restore_rejects_untrusted_archive_before_extraction(self):
+        from verify_company_evidence_restore import restore_check
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp); archive = root / 'evidence.tar'; archive.write_bytes(b'not trusted')
+            summary = root / 'summary.json'; summary.write_text(json.dumps({'archive_sha256': '0' * 64}))
+            with self.assertRaisesRegex(ValueError, 'independently retained summary'):
+                restore_check(archive, summary)
+
+
+    def test_complete_cohort_requires_exact_original_queue(self):
+        queue = ['0000000001', '0000000002']
+        valid = {'requested': 2, 'finished_at': '2026-09-20T00:00:00Z', 'stopped': None,
+                 'results': [{'cik': queue[0]}, {'cik': queue[1]}]}
+        module.complete_cohort(valid, queue)
+        for changed in [dict(valid, finished_at=None), dict(valid, stopped='HTTP429'),
+                        dict(valid, requested=3), dict(valid, results=[{'cik': queue[0]}] * 2),
+                        dict(valid, results=[{'cik': queue[0]}, {'cik': '0000000003'}])]:
+            with self.subTest(report=changed), self.assertRaises(ValueError):
+                module.complete_cohort(changed, queue)
+        with self.assertRaises(ValueError): module.complete_cohort(valid, [queue[0]] * 2)
+
     def test_roundtrip_and_no_overwrite(self):
         with tempfile.TemporaryDirectory() as temp:
             root = Path(temp); source = root / 'source'; source.write_bytes(b'original evidence')

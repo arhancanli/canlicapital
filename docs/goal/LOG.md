@@ -1003,3 +1003,17 @@ exit0 retains6,713flags. HTTP1912exit0 verifies54,424URLs/3,936downloads and two
 sitemapshards;66browserchecks19274exit0. Storage75785exit0 verifies6,249objects/
 828,366,117bytes locally. No upload, productionchange or actualindexing claim.
 Priorcombinedrelease/archive preserved; largerarchive andisolatedrestore pending.
+
+## 2026-09-20 — three-cohort evidence portability
+
+Previous turn combinedsource/delivery work was progress; a901b9f8 CI35492196422
+passes. Added explicitthree-cohort archiveprofile preserving olddefault and sealed
+archive. Strengthened exactqueue completionchecks; added untrustedwholearchivehash
+regression. Eleven archive/corpus tests pass. Build36615exit0 creates12,952file/
+1,581,578,240byte localarchive SHA103a3839594086e211ef698232f2ed3011e94bae92de3fd27ecc59a5be8d23f4.
+New reusable restoreharness67775exit0 verifies wholeSHA andeverymember, extracts
+savedrepository in temporaryworkspace, replays allthreequeues(342+853+766eligible,
+381verifiedexclusions,zeroerrors), and rebuilds runtimeplan matching6,249object
+keys/hashes/lengths andallroots. Verifier sourcehash independentlymatches retained
+code. Temporaryrestore removed; olderarchive retained. No offsite durability or
+productionchange claimed. Documentation includes exact replaycommand andscope.

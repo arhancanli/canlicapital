@@ -124,3 +124,42 @@ plan and sealed archive remain valid for their earlier scope. They do not protec
 the third capture queue, its exclusions, the new editorial filings or the new
 combined runtime. An updated archive and isolated restore remain required before
 claiming equivalent portability for the three-cohort candidate.
+
+## Three-cohort archive and restore verified — 2026-09-20
+
+`artifacts/seo/corpus-local/three-cohort-evidence-20260920.tar` contains 12,952
+files, totaling 1,581,578,240 archive bytes. Its separately retained whole-file
+SHA-256 is `103a3839594086e211ef698232f2ed3011e94bae92de3fd27ecc59a5be8d23f4`.
+Summary and restore receipts are tracked as
+`company-three-cohort-evidence-archive-summary.json` and
+`company-three-cohort-evidence-restore.json` in `artifacts/seo/`.
+
+The archive includes all three completed capture queues and exclusions, both
+editorial-filing directories, the original third-cohort replay, all runtime objects
+reachable from the new release, its pointers and plan, and repository a901b9f8.
+The exact packager is also included separately as `packager.py`; that updated
+packager is newer than the saved repository snapshot. Earlier archives are retained.
+
+A separate temporary restore verified every member and replayed the saved
+repository's source checks:342+853+766 eligible captures,147+234 verified exclusions,
+zero errors. It reproduced all6,249 runtime keys, hashes and byte lengths and the
+exact release/catalog/download roots without reading original capture or runtime
+object directories. The temporary restore was removed after verification.
+
+The packager supports explicit `--profile three-cohort`; its default remains the
+older two-cohort bundle. It rejects unfinished queues, stopped captures, duplicate
+IDs and result sets that omit or replace requested IDs. Eleven archive/corpus tests
+pass. The restore harness first checks the entire archive against the separate
+summary and refuses to overwrite its output receipt.
+
+```sh
+# Replay an existing archive; choose a NEW output receipt path.
+python3 scripts/verify_company_evidence_restore.py \
+  artifacts/seo/corpus-local/three-cohort-evidence-20260920.tar \
+  artifacts/seo/company-three-cohort-evidence-archive-summary.json \
+  /tmp/canli-new-restore-receipt.json
+```
+
+This is verified local portability. No remote copy, upload, hosted configuration
+or disaster-recovery claim follows from it. Destination access and independent
+remote-byte verification remain open.

@@ -91,9 +91,26 @@ def verify(archive_path, destination=None):
     return manifest
 
 
-def build(root, output):
+def complete_cohort(report, queue):
+    if (not report.get('finished_at') or report.get('stopped')
+            or not isinstance(queue, list) or not queue
+            or any(not isinstance(cik, str) or len(cik) != 10 or not cik.isascii() or not cik.isdigit() for cik in queue)
+            or len(set(queue)) != len(queue)
+            or report.get('requested') != len(queue)):
+        raise ValueError('Cannot archive an unfinished or invalid cohort as complete')
+    results = report.get('results', [])
+    if len(results) != len(queue) or {row.get('cik') for row in results} != set(queue):
+        raise ValueError('Completed cohort must cover the exact original queue')
+
+
+def build(root, output, profile='two-cohort'):
+    if profile not in ('two-cohort', 'three-cohort'):
+        raise ValueError('Unknown evidence profile')
+    prefix = 'company-three-cohort' if profile == 'three-cohort' else 'company-combined'
+    cohorts = ['fresh-review', 'next-1000'] + (['third-1000'] if profile == 'three-cohort' else [])
+    editorial = ['editorial-filings'] + (['editorial-third-filings'] if profile == 'three-cohort' else [])
     local = root / 'artifacts/seo/corpus-local'
-    summary = json.loads((root / 'artifacts/seo/company-combined-storage-plan-summary.json').read_text())
+    summary = json.loads((root / f'artifacts/seo/{prefix}-storage-plan-summary.json').read_text())
     plan_path = root / summary['local_plan']
     if file_hash(plan_path) != summary['plan_sha256']:
         raise ValueError('Runtime plan binding changed')
@@ -110,16 +127,18 @@ def build(root, output):
         if path.stat().st_size != entry['bytes'] or file_hash(path) != entry['sha256']:
             raise ValueError('Runtime object binding changed')
         add(path)
-    for name in ['fresh-review', 'next-1000']:
+    for name in cohorts:
         report = json.loads((local / name / 'refresh.json').read_text())
         queue = json.loads((local / name / 'ciks.json').read_text())
-        if not report.get('finished_at') or report['stopped'] or len(report['results']) != len(queue):
-            raise ValueError('Cannot archive an unfinished cohort as complete')
+        complete_cohort(report, queue)
         for path in sorted((local / name).iterdir()):
             add(path)
-    for path in sorted((local / 'editorial-filings').iterdir()):
-        add(path)
-    for relative in ['company-combined-delivery-extended/delivery.json', 'company-combined-delivery-extended/company-release.json', 'company-combined-catalog-extended/catalog.json']:
+    for directory in editorial:
+        for path in sorted((local / directory).iterdir()):
+            add(path)
+    if profile == 'three-cohort':
+        add(local / 'third-1000-original-review.json')
+    for relative in [f'{prefix}-delivery-extended/delivery.json', f'{prefix}-delivery-extended/company-release.json', f'{prefix}-catalog-extended/catalog.json']:
         add(local / relative)
     add(plan_path)
     with tempfile.TemporaryDirectory() as temp:
@@ -128,7 +147,7 @@ def build(root, output):
         subprocess.run(['git', '-C', str(root), 'archive', '--format=tar', '-o', str(repository), revision], check=True)
         files['repository.tar'] = repository
         files['packager.py'] = Path(__file__).resolve()
-        metadata = {'repository_revision': revision, 'release_hash': plan['release_hash'], 'runtime_plan_sha256': summary['plan_sha256'], 'scope': 'Completed first and second source queues, runtime object closure, editorial captures and repository snapshot. Active third cohort excluded. Local portability only; no remote backup or publication approval.'}
+        metadata = {'repository_revision': revision, 'release_hash': plan['release_hash'], 'runtime_plan_sha256': summary['plan_sha256'], 'profile': profile, 'cohorts': cohorts, 'scope': 'Completed named source queues, runtime object closure, editorial captures and repository snapshot. Local portability only; no remote backup or publication approval.'}
         return pack(files, output, metadata)
 
 
@@ -138,8 +157,9 @@ if __name__ == '__main__':
     parser.add_argument('archive', type=Path)
     parser.add_argument('--root', type=Path, default=Path.cwd())
     parser.add_argument('--destination', type=Path)
+    parser.add_argument('--profile', choices=['two-cohort', 'three-cohort'], default='two-cohort')
     args = parser.parse_args()
     if args.mode == 'restore' and args.destination is None:
         parser.error('restore requires --destination (must not exist)')
-    result = build(args.root.resolve(), args.archive) if args.mode == 'build' else verify(args.archive, args.destination if args.mode == 'restore' else None)
+    result = build(args.root.resolve(), args.archive, args.profile) if args.mode == 'build' else verify(args.archive, args.destination if args.mode == 'restore' else None)
     print(json.dumps({'files': len(result['files']), 'source_bytes': sum(f['bytes'] for f in result['files']), 'archive_bytes': args.archive.stat().st_size, 'archive_sha256': file_hash(args.archive), 'metadata': result['metadata']}, indent=2))
