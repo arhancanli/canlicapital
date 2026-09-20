@@ -1221,3 +1221,23 @@ OPEN at e621c95d2b119ab8cb0f7c2d412f35cdb3c10a2c; all four CI35542763631jobs pas
 Earlier heap failure remains retained. No production deployment or new Google
 indexing evidence. Next merge reviewed PR, improve repetitive notices, retain current
 runtime archive and verify hosted delivery; broader source/usefulness still open.
+
+
+## 2026-09-21 — grouped source notices preserve exact withheld evidence
+
+Previous goal turn made progress: verified full HTTP terminal success and recorded
+the report. PR119 merged6a4ec3fc from e621c95d, four CI35542763631checks passed;
+full trees ae901df097c979e739de79e9b06c594b02d9548c identical. Initial rebase
+refused unstaged checkpoint docs; committed those explicit paths/report, rebased
+unpublished branch onto merged main. Owner attribution file untouched.
+Renderer groups exact concept/reason/scope, retains visible reason and expands
+original start/end/value/unit/accession/source per held row; no numeric rewriting.
+Iovance14paragraphs become4groups. Initial tests failed two whole-HTML date absence
+assertions; corrected scope to selected-history tables since excluded dates now
+appear explicitly in withheld evidence.101targeted tests then passed.
+Browser64204TERMINAL0:40cases pass, native keyboard expand/collapse, exact14
+held rows/source links equal selected JSON, no overflow expanded/collapsed.
+New script/report preserve prior evidence; mobile screenshot inspected.
+Fresh full HTTP91808RUNNING at /tmp/canli-v22-grouped-http.log, new report path
+company-five-cohort-v22-grouped-notices-http-20260921.json. Keep renderer stable
+until terminal. No production deployment/indexing gain; full owner goals remain.

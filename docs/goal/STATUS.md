@@ -9,7 +9,7 @@ which links older records. Historical process states are not live telemetry.
 ## Current work and next action
 
 Worktree `/Users/arhancanli/canlicapital-expansion-20260919`, branch
-`evidence/runtime-v22-browser-20260921`. PR118 merged as
+`fix/company-withholding-notices-20260921`. PR118 merged as
 `4371292467702019b988c65bf910cd66a80e19fc` after all four checks in CI35542487234
 passed at99993be0. Tested/merged tree1b57f7c9ab3e943d97ad8bdea2096e8bff937269 matches.
 
@@ -25,16 +25,26 @@ downloads and exact90,732 HTTP sitemap URLs passed with zero failures. All pages
 are reachable within four clicks from the company directory. Report
 company-five-cohort-v22-http-measurement-20260921.json source hashes were checked
 against the current files. This is local sequential HTTP evidence, not hosted load,
-publication or indexing. PR119 at e621c95d2b119ab8cb0f7c2d412f35cdb3c10a2c remains
-OPEN; all four CI35542763631 checks passed.
+publication or indexing. PR119 merged as6a4ec3fcf018e87e980be9a92958df05779d6e14 after all four
+CI35542763631checks passed at e621c95d. Exact tested/merged tree
+ ae901df097c979e739de79e9b06c594b02d9548c matches.
 
-Representative browser audit54972 TERMINAL0:40 Chromium/WebKit cases at390/1440px
-passed, including source notes, canonical/breadcrumb/developer links, layout and
-two absent Iovance-history404s per viewport/engine. Original report and script retained.
-Manual mobile screenshot review found excessive repetition of14Iovance withholding
-notices; group/reduce repetition while preserving exact facts/source links before
-release. Do not edit the renderer while the current audit is running, since its
-report hashes must refer to the code actually exercised.
+Withholding notices now group by exact concept/reason/scope. The reason stays
+visible; native keyboard-operable details show every original withheld period,
+value, unit, accession and filing URL. Iovance has four explanations instead of14.
+101selector/renderer/delivery/release tests pass. Initial test run failed two old
+whole-HTML absence assertions because withheld dates are now explicitly inspectable;
+assertions now verify absence from the selected-history table, preserving exclusion.
+Browser64204TERMINAL0:40 Chromium/WebKit cases at390/1440px passed. New report
+company-v22-grouped-notices-browser-20260921.json includes opening/closing all four
+Iovance groups with Enter, expanded no-overflow checks and exact all14row/source
+comparison against selected JSON. Mobile screenshot inspected. Earlier40case
+report preserved. No accessibility certification claim.
+
+Fresh full HTTP audit **91808 RUNNING**, output /tmp/canli-v22-grouped-http.log;
+expected report company-five-cohort-v22-grouped-notices-http-20260921.json. Poll
+exact handle, do not restart on timeout. Keep rendered/audit code stable during
+this run. Previous full pass covers the preceding renderer only.
 
 Latest registered ledger:company-basic-diluted-registered-scope-v22-20260921.json.gz.
 Of1,176batch observations,1148reviewed/0pending/28withdrawn.130reviewed are explicitly
@@ -81,8 +91,8 @@ The storage plan contains10,360 immutable objects totaling1,280,333,696 bytes.
 Five stage jobs, combination68103, catalog90535, quality42445, release26878,
 discovery29316, storage18544 and app build51617 all finished with exit0.
 
-Next: merge tested PR119, group repetitive withholding notices and revalidate affected
-pages, complete current runtime retention and hosted delivery gates. Broader source/usefulness work remains open.
+Next: finish grouped-notice HTTP audit91808 and merge after CI, complete current
+runtime retention and hosted delivery gates. Broader source/usefulness work remains open.
 No production deployment or confirmed indexing gain.
 
 ## Editorial policy and evidence
