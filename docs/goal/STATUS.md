@@ -8,7 +8,7 @@ pins are preserved in [history/STATUS-20260920-through-priority-scope-closure.md
 ## Current work and next actions
 
 Worktree `/Users/arhancanli/canlicapital-expansion-20260919`, branch
-`release/five-cohort-v14-20260920`. Archive helper committed at eb780f48.
+`evidence/five-cohort-v14-20260920`. V14archive helper committed at0e78d337.
 PR46 merged as087917ac31b50adbc9856f062e310d6b274ee811 after all four checks in
 CI35524243935 passed at a73932e1540e529483e01e628bc8c3f944cc067e.
 Tested/merged trees both3f9aa6d122d3be5a62974c31a52ff5ed1982b3a6.
@@ -17,9 +17,8 @@ rerun are preserved in company-pr45-ci-recovery-20260920.json. No audit bypass.
 
 Archive process44780 is TERMINAL exit0. Five-cohort staging51634 and transition
 comparison64980completed exit0. Combined v14pipeline16429 and current quality audit40310completed exit0; no uploader.
-Next: archive the new Varonis capture and legacy comparison evidence, address
-remaining basic/diluted source coverage and corpus scope/usefulness flags,
-finish combined v14catalog/release/discovery/storage verification, then complete hosted
+Next: review the three pinned currency-context targets, remaining basic/diluted
+source coverage and corpus scope/usefulness flags, then complete hosted
 transfer, whole-release delivery/load/browser checks and production activation.
 Owner authorization to publish tested releases persists; no repeat approval needed.
 Priority queue closure alone is not whole-corpus admission.
@@ -137,7 +136,7 @@ content/SEO/accessibility/relevant intent, real API/MCP/repository adoption, gov
 combined NET FORWARD Sharpe>2, at least14economically distinct qualified sleeves,
 realized maximum drawdown<=10%. No broker orders or fabricated outcome claims.
 
-## Deferred basic/diluted queue coverage
+## Deferred basic/diluted queue coverage (original baseline)
 
 PR47merged as7402c196 after all four CI35524542593checks passed atc0d31a73.
 Tested/merged tree4ad19e0068f5fa1d319e89ef82b35fff2d819067. Archive tooling merged.
@@ -214,7 +213,7 @@ HNOOperatingIncomeLoss URL is removed.3,323companies +87,346histories +67directo
 Storage10,360objects/1,280,306,303bytes;3,323sharedv11keys are metadata matches,
 not proof of remote presence. Receipt company-five-cohort-v14-discovery-audit-
 20260920.json; current plan summary company-five-cohort-v14-storage-plan-summary-
-20260920.json. Full v14evidence archive and hosted transfer remain pending.
+20260920.json. Full v14archive now restored; hosted transfer remains pending.
 
 Release: 10f90cd6849d5b0a358f2b9c7fed37ceaa8587561053cc490cd34072733a98e1
 Catalog: 47b873eb0eca248a396cb0c96002d86c9f038cdf4601cd8733ab35a0fe870ea8
@@ -232,3 +231,37 @@ pins complete JSON and lossless gzip under corpus-local; roundtrip bytes verifie
 Earlier v9summary and all source failures remain unchanged. Next: preserve latest
 source/runtime evidence with isolated restore and finish remaining editorial and
 hosted gates; no uploader active.
+
+## V14 archive and isolated restore complete
+
+PR50merged01a81792 after all four CI35525761609checks passed at576ef9fc;
+tested/merged tree4feee604218915f3debf1ae7a38bb41e336747a8. New archive profile
+committed0e78d337 preserves older profiles. Five archive safety tests pass.
+Build/restore39906completed exit0; log/tmp/canli-v14-archive-replay.log. It retains the
+full current runtime, five source queues, current quality JSON/gzip and sitemaps,
+plus original Varonis capture and baseline basic/diluted primary/XMLdependencies.
+Restore replayed the original31filing sample,14legacy rows, Varonis scope and
+full v14quality audit in addition to source/runtime checks. Exact receipts below.
+No uploader, production activation or indexing gain. Broader editorial coverage
+and hosted release gates remain open; every owner objective stays active.
+
+Archive corpus-local/five-cohort-v14-evidence-20260920.tar contains23,160files,
+2,760,540,160bytes, SHA256
+6a11792c73cf495d369ccb4093b253b7d67890e32f439834c4214bc9a3b54035.
+Saved repository0e78d3371145bc57d7b8fb96bb0eb531ce95fe05. All five source queues
+replay with1,026exclusions/zero errors. All10,360runtime objects/1,280,306,303bytes
+and exact release roots match. Six reports (Birdie, legacy revenue, basic/diluted
+primary, basic/diluted legacy, Varonis scope, full v14quality audit) reproduce
+byte-for-byte with locked offline Python wheels. Receipt prefixes
+company-five-cohort-v14-evidence-{archive-summary,restore}-20260920.json.
+Earlier priority archive independently covers its14reports and final610ledger;
+the v14restore does not claim to rerun those14manual context reports. No offsite
+backup or independent accounting-interpretation certification.
+
+A read-only currency distribution check of current flagged pages identified three
+specific follow-ups, pinned in company-currency-context-targets-20260920.json:
+Monolithic Power Revenues2012AFN,51Talk cash2025SAR,SoFi equity2020-07-09USN.
+Each target binds current manifest/selected/source hashes and exact accession/row.
+No new acquisition, currency conversion or error finding yet. Currency rarity alone
+is not invalidity; these require original statement and unit/context inspection.
+No collector, archive, rebuild or uploader remains active at this checkpoint.

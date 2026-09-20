@@ -1,0 +1,53 @@
+{
+  "schema": "canli.company-evidence-restore.v1",
+  "archive_sha256": "6a11792c73cf495d369ccb4093b253b7d67890e32f439834c4214bc9a3b54035",
+  "repository_revision": "0e78d3371145bc57d7b8fb96bb0eb531ce95fe05",
+  "restored_files": 23160,
+  "source_replays": {
+    "fresh-review": {
+      "complete": true,
+      "companies": 342,
+      "exclusions": 0,
+      "errors": 0
+    },
+    "next-1000": {
+      "complete": true,
+      "companies": 853,
+      "exclusions": 147,
+      "errors": 0
+    },
+    "third-1000": {
+      "complete": true,
+      "companies": 766,
+      "exclusions": 234,
+      "errors": 0
+    },
+    "fourth-1000": {
+      "complete": true,
+      "companies": 683,
+      "exclusions": 317,
+      "errors": 0
+    },
+    "fifth-1000": {
+      "complete": true,
+      "companies": 672,
+      "exclusions": 328,
+      "errors": 0
+    }
+  },
+  "runtime_objects_replayed": 10360,
+  "runtime_bytes": 1280306303,
+  "release_hash": "10f90cd6849d5b0a358f2b9c7fed37ceaa8587561053cc490cd34072733a98e1",
+  "objects_exactly_match_original_plan": true,
+  "editorial_scope_reports_reproduced": {
+    "company-birdie-expense-scope-20260920.json": "24b1250cdfaa60e4ddac8bb63fdbb7cd015b3d3d6f22b8370c084e03e9866ccc",
+    "company-legacy-revenue-context-20260920.json": "f5b932644c618e8a7567baab0c95b802c506e3bd5b531b81f0a356e672cfffb2",
+    "company-basic-diluted-primary-review-20260920.json": "f89cb24ae2abf9196bf26311beac11f4a6448b87244416413fc5429d537a3ebd",
+    "company-basic-diluted-legacy-review-20260920.json": "662099b18e78366025f869f05c888038a7da2f2c4823f9fb69582ccda28f24b2",
+    "company-varonis-unit-scope-20260920.json": "dbd43860bd8f7fb242d8c596cd5113da48698986478bd3bbb069473fd38af61a",
+    "company-five-cohort-selected-quality-v14-20260920.json": "bfea94efcedc89427360aa4beef299666b56cfc3b4355fd4f66ab216c5125678"
+  },
+  "remote_backup_verified": false,
+  "verification_code_sha256": "c54f4aaa7a2719e08ba53c8bc0f7d985b033fa5dd69f49a47df2e07fb2dba6bd",
+  "scope": "Whole archive SHA checked against separate summary; every member verified; isolated temporary restore; saved repository source replays all named cohorts and runtime objects. No reads of original runtime objects or capture directories. Temporary restore removed after verification; archive remains local."
+}

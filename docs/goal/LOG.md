@@ -75,3 +75,29 @@ recorded in v14discovery receipt and STATUS. Quality audit40310terminal0:
 13,142flagged histories,747equal-vector groups; exact current source/policy replay.
 Full quality JSON/gzip bound by versioned summary; old reports preserved. No uploader,
 production activation or indexing gain. Full v14archive and broader review pending.
+
+## 2026-09-20 — v14 archive support and restore started
+
+Previous goal turn completed all five v14build stages, exact URL-set audit and
+current quality inventory. PR50merged01a81792with all four checks and exact tree
+equality. New v14archive profile includes baseline basic/diluted dependencies,
+Varonis index/primary, current quality data and sitemaps; older profiles preserved.
+Five safety tests pass. Committed0e78d337; archive/restore39906started, not yet
+claimed complete. Existing original reports remain unchanged; no publication.
+
+## 2026-09-20 — v14 archive closure and next currency-context targets
+
+39906terminal0. Verified23,160archive members,2,760,540,160bytes,
+SHA6a11792c73cf495d369ccb4093b253b7d67890e32f439834c4214bc9a3b54035.
+Isolated five-queue replay preserves1,026exclusions with zero errors; all10,360
+runtime objects and exact roots match. Six reports reproduce byte-for-byte using
+locked offline wheels, including baseline136/150inline plus14/14legacy closure,
+Varonis scope and full current quality. Manual interpretation not independently
+certified; local portability only, no offsite backup. All four PR51checks passed
+at6227a8ab before these final receipts and continuity additions.
+
+Current unit distribution reveals three specific context checks (AFNrevenue,
+SARcash,USNequity). Pinned exact current observations and source/manifest hashes;
+no unit correction or defect claim. Initial broad diagnostic output included
+single-unit BRLhistories and was truncated; narrowed the actual target file to
+these three exact cases. No source request, upload, deployment or indexing gain.
