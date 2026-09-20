@@ -43,7 +43,7 @@ export function reconcileScope({ primary, targets, targetHash, reviews, holds })
         assert.equal(matches[0].source_sha256, sources.get(filing.cik), 'Hold source changed');
         assert(!decision, 'Held observation cannot be approved');
         state = matches[0].scope_state ?? 'WITHDRAWN_BY_V17_OBSERVATION_HOLD';
-        assert(['WITHDRAWN_BY_V17_OBSERVATION_HOLD', 'WITHDRAWN_BY_V18_OBSERVATION_HOLD', 'WITHDRAWN_BY_V19_OBSERVATION_HOLD', 'WITHDRAWN_BY_V20_OBSERVATION_HOLD', 'WITHDRAWN_BY_V21_OBSERVATION_HOLD'].includes(state), 'Unsupported hold state');
+        assert(['WITHDRAWN_BY_V17_OBSERVATION_HOLD', 'WITHDRAWN_BY_V18_OBSERVATION_HOLD', 'WITHDRAWN_BY_V19_OBSERVATION_HOLD', 'WITHDRAWN_BY_V20_OBSERVATION_HOLD', 'WITHDRAWN_BY_V21_OBSERVATION_HOLD', 'WITHDRAWN_BY_V22_OBSERVATION_HOLD'].includes(state), 'Unsupported hold state');
         evidence = matches[0].filing_url; withdrawn++;
       } else if (decision) {
         assert.deepEqual(observation, decision.observation, 'Reviewed metadata differs');

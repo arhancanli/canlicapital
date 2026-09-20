@@ -1111,3 +1111,31 @@ reconciled PR113 ancestry. Initial draft INVO/Plastec report saved before format
 replay script; final report code hash regenerated and independently replayed.
 Next older Iovance review, archive supplement, runtime/quality refresh and hosting.
 No deployment/indexing gain. Full owner goal remains active.
+
+
+## 2026-09-21 — older Iovance scale holds beyond batch1
+
+Previous turn closed batch1scope and submitted PR115. All four CI35541426749checks
+passed ata6d302fb; mergedc0fb88575eadf65860d3ccf449109184ad1de298. Tree
+a47049656861ef824a7f8113bb308c6d74d2f79b matches tested head. PR114closed because
+its complete Freddie/Rockwell work is contained in merged PR115.
+Capture31919TERMINAL0retained four older Iovance index/primary pairs with status200.
+Eight selected2019–2022share counts encode scale0 against in-thousands headings;
+2019–2021diluted facts reside in ix:hidden and map to the combined statement row.
+Initial exploratory table lookup stopped on a hidden fact; inspection identified
+that location rather than assuming a visible table. Replay explicitly checks
+hidden parent, context, unit, dates, numeric facts, headers and matching visible row.
+Report replays byte-identically. V22adds eight exact holds without rescaling; both
+share histories now empty and omitted, EPS/unrelated concepts unchanged.108tests
+pass including sourcehash rejection, retained INVOholds and absent-history rendering.
+Batch1unchanged1148reviewed/0pending/28withdrawn,130presentation-only; extra eight
+holds are outside that ledger. V22full-corpus comparison21300still running at this
+checkpoint; no completion claim until its terminal result. Archive supplement and
+runtime/quality rebuild next. No production or indexing gain; all owner goals active.
+
+
+V22comparison21300 subsequently TERMINAL0:3,323companies/87,342histories,
+40exact holds sincev14, four histories omitted (two prior Valhi constant histories,
+two Iovance histories now empty), policy/notices only. All other source/selected
+fields unchanged. Rebased unpublished policy commit onto verified PR115merge;
+full tree identical before/after, no force push. Full comparison report retained.

@@ -629,3 +629,30 @@ test('v21 withholds only conflicting INVO 2014 shares and retains EPS and other 
   assert.deepEqual(next.concepts, old.concepts);
   assert.deepEqual(next.editorial_exclusions, old.editorial_exclusions);
 });
+
+
+test('v22 removes only the eight older Iovance share facts and now-empty histories', async () => {
+  const raw = gunzipSync(readFileSync(new URL('./fixtures/editorial/iovance-reviewed-source.json.gz', import.meta.url)));
+  const options = { expectedCik: '0001425205', fetchedAt: '2026-09-20T00:00:00Z' };
+  const before = companyReference(raw, { ...options, selectionPolicy: 'extended-v21' });
+  const after = companyReference(raw, { ...options, selectionPolicy: 'extended-v22' });
+  const tags = ['WeightedAverageNumberOfSharesOutstandingBasic', 'WeightedAverageNumberOfDilutedSharesOutstanding'];
+  for (const tag of tags) {
+    assert.equal(before.concepts.find(c => c.tag === tag).observations.length, 4);
+    assert.ok(!after.concepts.some(c => c.tag === tag));
+  }
+  assert.deepEqual(after.concepts, before.concepts.filter(c => !tags.includes(c.tag)));
+  assert.equal(after.editorial_exclusions.length, 14);
+  verifyCompanyReference(after, raw);
+  assert.throws(() => companyReference(Buffer.concat([raw, Buffer.from('\n')]), { ...options, selectionPolicy: 'extended-v22' }), e => e.code === 'EDITORIAL_REVIEW_REQUIRED');
+  const { renderCompanyPages } = await import('./lib/company-page-renderer.mjs');
+  after.source_snapshot = `/company-data/sources/${after.source_sha256}.json.gz`;
+  assert.match(renderCompanyPages(after, { target: 'overview' })[0].html, /older Iovance weighted-average share observation/);
+  for (const tag of tags) assert.equal(renderCompanyPages(after, { target: tag }).length, 0);
+  const oldRaw = gunzipSync(readFileSync(new URL('./fixtures/editorial/invo-reviewed-source.json.gz', import.meta.url)));
+  const oldOptions = { expectedCik: '0001417926', fetchedAt: options.fetchedAt };
+  const old = companyReference(oldRaw, { ...oldOptions, selectionPolicy: 'extended-v21' });
+  const next = companyReference(oldRaw, { ...oldOptions, selectionPolicy: 'extended-v22' });
+  assert.deepEqual(next.concepts, old.concepts);
+  assert.deepEqual(next.editorial_exclusions, old.editorial_exclusions);
+});
