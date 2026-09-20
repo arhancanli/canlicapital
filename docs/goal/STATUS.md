@@ -10,10 +10,19 @@ which links the preceding historical record. Historical process states are not l
 ## Current work and immediate next action
 
 Worktree `/Users/arhancanli/canlicapital-expansion-20260919`, branch
-`evidence/basic-diluted-batch1-archive-20260920`. Tooling committed7a2dd535.
-PR56merged3e3b5ff99b95dc414de04f896ffec26805c62571 after all four checks in
-CI35528100897passed at7b189433fe38ab22ca2b4771112901f3f3ed6adf.
-Tested/merged tree1f99618f16d55b2d2b47d4f119ea2bdd0f990fa6.
+`evidence/basic-diluted-scope-20260920`. PR57merged
+477cd9e570ba33f25bf20b58acf5a3e70cf1de25 after all four checks in
+CI35528405207passed at4124a9866f0bb39451292c52423fcf3f15ff40bb.
+Tested/merged tree54f3a9ed72f21602562e5f966a98ddf66e7c539e.
+
+First batch1 scope closure:111, Inc., fourteen2023–2025observations. Original
+statement and EPS calculation explain anti-dilution, exempt shares/per-share data
+from thousands, identify the USD convenience translation and distinguish ordinary
+shares from ADS. Source-bound notes cover four histories and overview; no values
+changed. Actual-source regression and all13renderer tests pass. Context report
+and batch ledger reproduce byte-identically:14reviewed/1,156pending/6withdrawn.
+The six withdrawals are batch1 Valhi rows; other Valhi holds and the original
+baseline remain separate. New context evidence is not in the earlier batch archive.
 
 V16whole-corpus comparison63644 TERMINAL exit0: all3,323companies preserved,
 87,346→87,344histories. Exactly ten direct observation holds sincev14 (two v15,
