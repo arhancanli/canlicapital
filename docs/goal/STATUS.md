@@ -115,7 +115,8 @@ still need URL-level exports. See INDEXING_BASELINE.md. Browser tab/export acces
 works; assistive access is denied, Apple Events JavaScript disabled and screenshot
 capture unavailable. No settings were bypassed.
 
-Website8f3e992f passed CI35497522210; current local verification passes
+Website7298ea1d passed all CI35498051186 jobs, including the new installed MCP
+package test; current local verification passes
 6 + 390 tests and final audits. Engine PR68 ce93d8c fixes nested agent-state copying;
 13 focused tests and Ruff pass, and full CI35494803169 now passes all six jobs.
 PR69/70 rechecked: open at783ad0c/e0a257c, all six jobs pass respectively in
@@ -136,6 +137,13 @@ The candidate is now0.1.2, unpublished. Its48tests and isolated tarball install/
 test pass, including the installed executable symlink in a path with spaces.
 Fixed the entry-point check exposed by that test; shipped license and repository
 metadata added. Release evidence: artifacts/platform/mcp-release-readiness-20260920.json.
+The exact archived0.1.2tarball also passes two read-only live checks through its
+installed stdio executable: service_status preserves the success envelope, and
+an intentionally absent receipt preserves the not_found envelope with isError.
+Both retain all four limits sentences. Receipt:
+artifacts/platform/mcp-public-readonly-20260920.json. No key or validation issued.
+Owner decision to publish this exact immutable npm release was requested and is
+pending; do not infer approval from elapsed time or from the package checks.
 Real adoption remains unestablished. The 12 public validations
 previously observed are unattributed, not proof of independent use.
 

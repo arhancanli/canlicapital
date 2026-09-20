@@ -1306,3 +1306,20 @@ both0.1.1and0.1.2tarballs now retained with verified npm integrity and SHA256.
 Candidate pack matches tested integrity; temporary install removed. Receipt in
 artifacts/platform/mcp-release-readiness-20260920.json. No publication, registry
 submission, production key issuance or independent-adoption claim.
+
+## 2026-09-20 — packaged MCP read-only live verification
+
+Previous turn fixed actual installed executable startup and immutable-version
+confusion. All7298ea1dCI35498051186jobs now pass, including package install/stdio.
+Verified archived candidate SHA, installed exact tarball in a temporary consumer
+and exercised public service_status plus intentionally absent get_receipt through
+the real MCP transport.57655exit0; correct0.1.2handshake, full canli.api.v1envelopes,
+four limits sentences retained, success versus not_found isError preserved.
+Service reports reachable store,12total validations and0today; unattributed
+telemetry is not independent adoption. Temporary install removed; read-only
+receipt retained. No key, validation, revocation, npm publication or registry write.
+
+Asked owner for the final decision on publishing the exact tested0.1.2tarball;
+this is pending and no approval is inferred. Independent sourcecapture29020
+continues; latest checkpoint625/1000(403review candidates,146excluded,76HTTPerrors).
+No duplicate capture or production site change. Overall goal remains active.
