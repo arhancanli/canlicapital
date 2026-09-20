@@ -7,26 +7,27 @@ Read REQUIREMENTS.md for the complete owner objectives; none were removed.
 
 ## Current checkpoint
 
-Current checkpoint: combined delivery for 1,202 companies verified locally under
-extended-v1. Next: editorial release policy, durable storage and hosted preview
-integration. Prior releases remain unchanged; publication is not approved.
+Website PR15 at0cdd6ad7: revocation implementation,381 website tests,48 MCP tests
+and real PostgreSQL lifecycle/concurrency checks pass. Remote CI35491496322 completed successfully for that exact head. No production migration or deployment.
 
-- Restored the full package.json verification command after Hermes replaced it with
-  four tests, dropping the remaining tests/audits. Existing gates retained.
-- Replaced its broken source fixture with two real-source regressions: stale review
-  cannot override HTTP500 or omit a failed company; both preserve prior manifest bytes.
-- Staging always recomputes source review. Verified 404 exclusions require a bound
-  response receipt; a generic reproduced flag is insufficient.
-- Takeover focused tests 16/16; full `npm run verify` **362/362 (6+356)** and all final
-  writing, metadata, links, indexability and numerical-evidence audits pass.
-  Logs: /tmp/canli-takeover-focused.log and /tmp/canli-takeover-verify.log.
-- Fresh next 1,000 source replay: complete=true, **853 candidates, 7,449 candidate
-  pages, 676 flagged histories, 147 exclusions, 0 errors**. Exclusions: 51 invalid
-  entities, 35 insufficient coverage, 61 captured 404 responses. No captures rewritten.
-  Receipt: artifacts/seo/company-next-batch-codex-review.json.
-- Website PR15 OPEN at **fb0a05de**; CI **35489967924** completed successfully
-  for this exact head. New editorial evidence below has separate commit/CI state.
-  No production deployment claimed.
+Combined delivery for1,202 companies remains locally verified under extended-v1:
+32,954 staged pages and2,404 downloads. Third1,000 capture and replay are complete:766 companies and234 verified exclusions,
+zero errors. Separate extended candidate:21,471pages/1,532downloads, complete HTTP
+replay and66browser checks pass. All candidate HTML remains noindex.
+Next: original-filing review of six exceptional equal pairs, then a separately
+verified combined candidate and updated source archive/storage plan. Existing
+1,202-company combined release and archive stay unchanged.
+
+Engine PR68 at61b587f passed full CI35489715539. Five current-epoch forward returns
+and four sleeves remain insufficient to establish the owner performance goals.
+Storage destination/access and Search Console measurement remain pending. All owner
+objectives in REQUIREMENTS.md remain active. Later dated sections are historical
+checkpoints; this section and the execution ledger describe the current work.
+
+Takeover evidence: restored full verification after Hermes narrowed it to four
+tests; added real-source rejection regressions and source-bound404 review. Earlier
+cohort replay accepted853 candidates with147 retained exclusions and zero errors.
+See chronological LOG.md for exact earlier test counts and revision history.
 
 ## Counts and boundaries
 
@@ -286,3 +287,26 @@ the repaired goals worktree. Earlier cross-worktree import run is not acceptance
 - b9fcc63f real PostgreSQL lifecycle/concurrency CI passed(run35491443303).
   MCP CI exposed outdated duplicated quota text; corrected and48local tests pass.
   This does not establish production migration or current-head complete CI.
+
+## Third cohort verification — 2026-09-20
+
+- Capture73982 exited0; finished2026-09-20T05:24:46.394Z. Original1,000queue
+  preserved:766eligible,102insufficientcoverage,55invalididentity,77HTTP404.
+- Initial and final full selector replay pass with zero errors. All157content
+  exclusions reproduce; all77HTTP404responses separately captured and hash-bound.
+  Final review:company-third-batch-reviewed.json; original replay kept in ignored
+  corpus-local/third-1000-original-review.json and pinned by review-summary.json.
+- Separate extended-v1candidate:766companies+20,689histories+16directories=21,471
+  staged pages,1,532downloads; disjoint company IDs from prior1,202verified.
+  Release39cd0469…; exact hashes incompany-third-batch-release-extended.json.
+- Full HTTP replay and exact sitemap pass;66browser checks over11routes, Chromium
+  andWebKit at320/390/1440, zero failures. Matching-history mobile screenshot
+  inspected. No hosted-load, publication, actualindexing or cloudstorage claim.
+- Quality2,789flaggedhistories:2,508historical,96multiunit,39partiallyhistorical,
+  13constant/zero;196pages in98equalvectorgroups. Categories overlap. Six non-EPS/
+  share-count pairs need original-filing review: GoldRock assets/liabilities,
+  GlobalTechnologies liabilities, Atlantica assets/liabilities, Visium assets.
+- Existing combinedrelease/runtimeplan/sealedarchive intentionally do not include
+  this separate thirdcohort. Combined counts and retention must be reverified.
+- Website0cdd6ad7 CI35491496322 passed all4jobs, including revocationPostgreSQL
+  andMCP. No production migration/deployment performed.

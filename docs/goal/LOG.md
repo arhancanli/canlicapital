@@ -975,3 +975,17 @@ Revocation commitb9fcc63f CI35491443303 passed its real PostgreSQL lifecycle and
 concurrency job. MCP CI caught duplicated quota wording after the new body limit;
 updated the package's published sentence and fixture, keeping the drift test.
 All48MCP tests now pass locally. First CI failure retained; corrected head needs CI.
+
+## 2026-09-20 — completed third cohort and delivery verification
+
+Previous turn made progress on revocation; corrected0cdd6ad7 CI35491496322 passes
+all4jobs. Polled existing capture73982 until exit0, never restarted. Replayed entire
+queue:766eligible,157reproducible content exclusions,77HTTP404; independent404
+capture27608exit0, finalreplay zeroerrors and234verifiedexclusions. Stage21556exit0
+creates separate extended candidate with766companies and20,689histories. Quality
+9223exit0:2,789flaggedhistories andsix unusual equalpairs pendingfilinginspection.
+Full HTTP47993exit0:21,471URLs/1,532downloads, exactsitemap, nofailures. Browser73473
+exit0:66checks/11routes/twoengines/threewidths; matchinghistory mobile inspected.
+Updated topSTATUS to distinguish current evidence from historical checkpoints.
+Prior combinedrelease andarchive preserved; newcohort is not deployed, indexable,
+merged or backedupoffsite. All owner goals remainactive.
