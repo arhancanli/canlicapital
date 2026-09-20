@@ -1,0 +1,55 @@
+{
+  "schema": "canli.reviewed-share-context-spec.v1",
+  "decisions": [
+    {
+      "cik": "0001257640",
+      "accession": "0001104659-26-025219",
+      "source_sha256": "9a64360a874c1f38fef19607b066d5e798629f767d911115ea9014e11e06c68b",
+      "primary_sha256": "856c0ef8f3a03b80ce6f6f285d424a08dbce075881c3ebbabf67621637e010ad",
+      "fixture": "scripts/fixtures/editorial/kronos-reviewed-source.json.gz",
+      "observations": 12,
+      "period_ends": [
+        "2023-12-31",
+        "2024-12-31",
+        "2025-12-31"
+      ],
+      "table_index": 152,
+      "share_scale": "6",
+      "table_requires": [
+        "Net income (loss) per basic and diluted share"
+      ],
+      "paragraph_requires": [
+        "(In millions, except per share data)"
+      ],
+      "reader_note": "For 2023\u20132025, Kronos reports combined basic and diluted EPS and a common weighted-average denominator. Shares are in millions with scale-six tags; per-share amounts use scale zero. The filing supports the reported equal presentation, but this review does not establish why the measures match or prove the absence of potentially dilutive instruments. Basic and diluted denominators should not be added together.",
+      "disposition": "REVIEWED_REPORTED_PRESENTATION_CAUSE_NOT_ESTABLISHED"
+    },
+    {
+      "cik": "0001296774",
+      "accession": "0001104659-26-043910",
+      "source_sha256": "dc0f56af83ba55023a6c8902fc85568ebabaf9c74a74298574940eeccf760664",
+      "primary_sha256": "8463f7f06b8b843feff64b68e4931c87a2a510ed886c285aa7a3b44a17552ed6",
+      "fixture": "scripts/fixtures/editorial/the9-reviewed-source.json.gz",
+      "observations": 14,
+      "period_ends": [
+        "2023-12-31",
+        "2024-12-31",
+        "2025-12-31"
+      ],
+      "table_index": 334,
+      "share_scale": "3",
+      "table_requires": [
+        "Net (loss) income attributable to The9 Limited ordinary shareholders",
+        "Gain from discontinued operations, net"
+      ],
+      "paragraph_requires": [
+        "including number of shares, except for per share data",
+        "Potential ordinary shares, including warrants, convertible notes, unvested shares and contingently redeemable shares, were excluded from diluted net income (loss) per share for the years presented as their effect would have been antidilutive.",
+        "Currently, each ADS represents 300 Class A ordinary shares.",
+        "solely for the convenience of the readers at the rate of US$1.00 = RMB 6.9931"
+      ],
+      "reader_note": "For 2023\u20132025, The9 reports EPS per ordinary share, not per ADS. Weighted-average ordinary shares are in thousands with scale-three tags; EPS uses scale zero. Total EPS includes discontinued operations and noncontrolling-interest allocation: the 2023 positive total differs from the continuing-operations loss. The filing explicitly excludes potential ordinary shares as antidilutive for the years presented; equality alone is not the basis for that conclusion. The 2025 USD amounts are convenience translations at RMB6.9931 per USD, retained alongside CNY without recomputation. The disclosed ratio is 300 Class A ordinary shares per ADS following the October 2023 change; no ADS conversion or second share adjustment is applied here.",
+      "disposition": "REVIEWED_ALLOCATION_UNIT_AND_DILUTION_CONTEXT"
+    }
+  ]
+}

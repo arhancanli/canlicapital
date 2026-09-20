@@ -1,0 +1,54 @@
+{
+  "schema": "canli.reviewed-share-context-spec.v1",
+  "decisions": [
+    {
+      "cik": "0001356090",
+      "accession": "0001356090-26-000009",
+      "source_sha256": "8e11f8ce6bbfc0d40445cb1d09be483f17182cf17ac116b1d691220a339cea32",
+      "primary_sha256": "1a0d21cf6a02e342aad1e1f0b24b38d7b84970a7533d4e0d7db360c5a3dacf47",
+      "fixture": "scripts/fixtures/editorial/precigen-reviewed-source.json.gz",
+      "observations": 12,
+      "period_ends": [
+        "2023-12-31",
+        "2024-12-31",
+        "2025-12-31"
+      ],
+      "table_index": 27,
+      "share_scale": "0",
+      "table_requires": [
+        "Deemed dividend on preferred stock",
+        "Net loss attributable to common shareholders"
+      ],
+      "paragraph_requires": [
+        "basic and diluted net income (loss) per share were the same for all periods presented.",
+        "resulting in the recording of a $179.0 million non-cash deemed dividend"
+      ],
+      "reader_note": "For 2023\u20132025, Precigen reports loss attributable to common shareholders as the EPS numerator. In 2025 this includes a $179 million non-cash deemed dividend arising from the Series A preferred-stock conversion; consolidated net loss is not a substitute for this numerator. Stock options, restricted and performance stock units, and warrants are excluded as anti-dilutive for the reported periods. The statement exempts shares and per-share amounts from its thousands heading, and their tags use scale zero. Reported values are retained without adding excluded instruments or combining basic and diluted denominators.",
+      "disposition": "REVIEWED_ALLOCATION_UNIT_AND_DILUTION_CONTEXT"
+    },
+    {
+      "cik": "0001361113",
+      "accession": "0001628280-26-005450",
+      "source_sha256": "5c7576b0fa53ccb95eac41b4bb2859484614b21a670c8a3b610da2be91cacc8a",
+      "primary_sha256": "55fddf827ccbfb71b5124c2c386d25068a1aa612dc1adf0d3b4fba61966e87a6",
+      "fixture": "scripts/fixtures/editorial/varonis-loss-reviewed-source.json.gz",
+      "observations": 12,
+      "period_ends": [
+        "2023-12-31",
+        "2024-12-31",
+        "2025-12-31"
+      ],
+      "table_index": 41,
+      "share_scale": "0",
+      "table_requires": [
+        "Net loss per share of common stock, basic and diluted"
+      ],
+      "paragraph_requires": [
+        "(in thousands, except share and per share data)",
+        "Basic and diluted net loss per share were the same for each period presented as the inclusion of all potential shares of common stock outstanding would have been anti-dilutive."
+      ],
+      "reader_note": "For 2023\u20132025, Varonis excludes potential shares from stock options, restricted and performance stock units, and convertible-note conversion options because their inclusion would be anti-dilutive. Basic and diluted loss per share therefore use the same reported denominator. Shares and per-share amounts are exempt from the statement\u2019s thousands heading and use scale-zero tags. This review applies only to these USD periods; it does not reinstate the separately withheld historical AFN-per-share observations. Basic and diluted counts should not be added together.",
+      "disposition": "REVIEWED_ALLOCATION_UNIT_AND_DILUTION_CONTEXT"
+    }
+  ]
+}

@@ -378,3 +378,93 @@ leaf spans/continuations, leaving earlier replay helpers unchanged. Report repla
 exactly;26renderer/ledger tests pass and only48intended rows advance.274reviewed,
 894pending,8withdrawn;48reviews remain presentation-only. No runtime rebuild,
 new archive, production deployment or indexing gain.
+
+## 2026-09-20 — noncontrolling allocation and ambiguous EPS-note heading
+
+Previous status turn verified PR70's four successful CI checks, enabling merge.
+PR70merged8baa1bd829137844e9d0bc75887e972489b4fd9f; tested/merged tree
+9cfb5eb18799c5799e280681ec632f4951879e60 matches. Reviewed24Roblox/aTyr
+2023–2025observations against main statements, EPS reconciliations and loss-period
+anti-dilution disclosures. Roblox uses scale3shares; aTyr scale0is supported by
+main-statement share exemption and both sets of original tags. Its EPS-note heading
+exempts only per-share data despite repeating full share counts; retained explicit
+inconsistency rather than multiplying values. Broad keyword diagnostic truncated;
+follow-up inspected exact statement headings and note tables directly. No review
+was inferred from keyword presence alone.27renderer/ledger tests pass, report
+replays byte-identically, ledger permits only24new review transitions. Current
+298reviewed (48presentation-only)/870pending/8withdrawn. Kronos/The9 remain pending.
+Preserved unrelated untracked ATTRIBUTION-REVIEW-20260920.md without including it.
+No new runtime build, archive supplement, deployment or confirmed indexing gain.
+
+Batch7local commit81f3bda251a2985bd9d38fb8093646cd109fdb2a could not publish:
+repository pre-push hook reports attribution migration in progress and explicitly
+forbids bypass. Push exited1; PRcreation failed because remote branch is absent.
+Read hook dispatch path and verified remote main still8baa1bd8; no batch7remote
+branch. This is a publication dependency, not an overall goal blocker. Keep the
+local tested work, continue independent review, and inspect migration handoff/new
+ancestry before retrying. Do not represent an unobserved migration process as live
+solely from its hook. No history rewrite attempted in this goal thread.
+
+## 2026-09-20 — Kronos limited presentation and The9 ordinary-share context
+
+Previous turn made concrete progress: PR70merged,24reviews committed locally;
+publication rejected by attribution-migration hook. Read dispatch implementation:
+it refuses pushes while migration-active exists and also rejects old attribution
+history afterward. Do not bypass or assume marker proves a live process.
+Reviewed26additional observations:12Kronos presentation-only,14The9scope-context.
+Kronos statement/scale6supports reported equality but no cause established.
+The9table334and265retain total versus continuing/discontinued results, ordinary
+share scale3, noncontrolling allocation, explicit anti-dilution disclosure and
+USDconvenience translation atRMB6.9931. ADSratio300is not applied to these ordinary
+share figures. Broad source diagnostic truncated; exact note/ratio/currency text
+was subsequently inspected in bounded output before approval. Version4report
+replays byte-identically.28renderer/ledger tests pass, only26intended rows advance.
+324reviewed/844pending/8withdrawn,60presentation-only. Both batches remain local
+pending migration handoff/ancestry reconciliation, with no remote CI, deployment,
+new runtime archive or indexing gain claimed. All owner goals remain active.
+
+## 2026-09-20 — Precigen preferred dividend and Varonis loss-period context
+
+Previous turn progressed26reviews in local commit9da53bc5. Current migration marker
+still present; no assumption of live process and no repeated push/bypass attempted.
+Reviewed24Precigen/Varonis2023–2025observations. Precigen's2025preferred conversion
+creates179millionUSDnon-cash deemed dividend in the common-shareholder numerator;
+consolidated loss is not substituted. Varonis excludes stock awards and convertible-
+note options as anti-dilutive, while older six AFN/share holds remain in place.
+Both sources exempt shares/per-share amounts from thousands and use scale0.
+Version4report replays byte-identically;29renderer/ledger tests pass, with only24
+new review transitions and explicit regression preserving historical currency holds.
+Current348reviewed (60presentation-only)/820pending/8withdrawn. Batches7–9remain
+local pending attribution-migration handoff and ancestry reconciliation. No remote
+CI, runtime rebuild, archive supplement, deployment or indexing gain claimed.
+All broader indexing, quality, developer adoption and governed engine goals remain.
+
+## 2026-09-20 — migration handoff verified; resume publication
+
+Previous turn completed24reviews at463e2c70. Migration-active marker now absent;
+remote mainc80d3d6fhas exactly the prior8baa1bd8tree9cfb5eb18799c5799e280681ec632f4951879e60.
+Read meridian-local-sync-pass-0.json and push-guard-checks.json from the separate
+attribution migration. Current branch descends from migrated remote main.
+Independently compared old/new trees for81f3bda2→7834c24c,7aaffdca→8ca8f143,
+9da53bc5→75e9d044; all identical. Batch9commit463e2c70already has migrated parent.
+29targeted tests pass after migration. No hook bypass, force-push, evidence-hash
+rewriting or deployment. Resume combined publication of74new observations from
+batches7–9; counts remain348reviewed/820pending/8withdrawn,60presentation-only.
+Next source cases AnaptysBio/iRhythm inspected initially but not adjudicated yet.
+
+## 2026-09-20 — loss numerator/successor review and signature publication gate
+
+Reviewed24AnaptysBio/iRhythm2023–2025observations; retained net loss rather than
+operating/comprehensive income, scale3shares, anti-dilution and successor identity.
+30targeted tests pass; version4report replays byte-identically.372reviewed,
+796pending,8withdrawn;60presentation-only. PR71four CI35532577383checks passed,
+but ordinary squash merge rejected by branch policy. Read protection: signatures
+required, admins enforced, no force push. GitHub marks three migrated commits
+unsigned; later463e2c70/ed5106dfare valid. Auto-merge request accepted but still
+blocked. Next: preserve original branch; fresh signed squash on migrated main;
+no policy bypass, no evidence rewrite, no deployment or indexing claim.
+
+Created signed squash6cb4b786on migrated main from reviewed537ef1de. Full tree
+comparison is identical and local signature reports G. Original branches retained;
+no force-push or protection change. Disabled PR71auto-merge before replacement.
+Combined batches7–10contain98new reviews and require fresh remote CI.

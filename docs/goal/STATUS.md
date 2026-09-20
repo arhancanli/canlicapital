@@ -9,24 +9,32 @@ which links older records. Historical process states are not live telemetry.
 ## Current work and next action
 
 Worktree `/Users/arhancanli/canlicapital-expansion-20260919`, branch
-`evidence/share-context-batch6-20260920`. PR69merged0424a7e3after all four
-CI35531462481checks passed atea0132c8. Tested/merged tree
-e4a7e313c608f3da841cc89db52f1dfeeabdf751.
+`publication/share-context-batches7-10-20260920`. PR70merged8baa1bd8after all four
+CI35531739016checks passed at91a22a12. Tested/merged tree
+9cfb5eb18799c5799e280681ec632f4951879e60.
 
-Latest registered ledger:company-basic-diluted-registered-scope-batch6-20260920.json.gz.
-Of1,176batch observations,274reviewed/894pending/8withdrawn.48reviewed are explicitly
+Attribution migration hold cleared; migrated mainc80d3d6fretains prior8baa1bd8tree.
+Preserved original review branches. Fresh signed squash6cb4b786on migrated main
+has exactly the same full tree as reviewed537ef1de; local signature verified G.
+This removes unsigned migrated commits from the proposed PR range without changing
+files, historical evidence, branch protection or published history. PR71auto-merge
+disabled; replacement publication includes batches7–10(98new observations).
+
+Latest registered ledger:company-basic-diluted-registered-scope-batch10-20260920.json.gz.
+Of1,176batch observations,372reviewed/796pending/8withdrawn.60reviewed are explicitly
 presentation-only; dilution cause is not established for those rows. The registry
 pins exact reports/issuers/dispositions/counts/states. Numerical agreement alone
 never approves scope. Workflow in SCOPE_REVIEW.md; original ledgers preserved.
 
-Latest48reviews cover MacroGenics loss dilution, Standard BioTools preferred-stock
-induced-conversion numerator/total versus component EPS, South Dakota Soybean
-Processors LLC capital units and noncontrolling interests, and Neuronetics unvested-
-share exclusions. Values unchanged;26renderer/ledger tests pass with exactly48
-intended transitions. Source report replays byte-identically. Replay v4retains
-narrative in inline continuation/span nodes; MacroGenics text was verified directly
-there after block-only extraction missed it. Prior helpers remain frozen. Legacy
-filings still require separate statement mapping and accounting review.
+Latest24reviews cover AnaptysBio and iRhythm2023–2025EPS. AnaptysBio's2025
+operating income differs from net loss used for EPS. iRhythm statements concern
+Technologies and subsidiaries before theJanuary2026Holdings successor transaction.
+Both use scale3shares and explicit anti-dilution exclusions.30targeted tests pass;
+source report replays byte-identically. Next index38; earlier/legacy gaps remain.
+PR71passed all four CI35532577383checks but merge was policy-blocked. Three
+migration-rewritten commits are unsigned; current signing is enabled and two later
+commits are GitHub-verified. A fresh signed squash now preserves the full reviewed tree. PR71auto-merge was
+disabled; replacement publication needs fresh remote CI.
 
 Earlier reviewed context includes111ordinary-share/ADS distinction, Celldex loss
 periods, NLI/Weis combined/restated presentation, Blue Dolphin historical instruments,
