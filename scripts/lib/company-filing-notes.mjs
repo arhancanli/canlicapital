@@ -253,6 +253,133 @@ export const FILING_NOTES = [
       "accn": "0001104659-21-053909"
     }
   ]
+},
+{
+  "cik": "0001738906",
+  "include_on_overview": true,
+  "source_sha256": "6340f4e96f080d3e63322ef08a5cc9e213d2aad55c9e738fa433c56259567ea6",
+  "tags": [
+    "EarningsPerShareBasic",
+    "EarningsPerShareDiluted",
+    "WeightedAverageNumberOfDilutedSharesOutstanding",
+    "WeightedAverageNumberOfSharesOutstandingBasic"
+  ],
+  "text": "For 2023\u20132025, the filing reports equal basic and diluted loss per ordinary share and weighted-average share counts. It excludes options and restricted share units because including them would reduce the reported loss per share (an anti-dilutive effect). Basic and diluted measures retain distinct definitions; the matching denominators should not be added. Share and per-share figures are exempt from the statement\u2019s thousands heading. The 2025 USD figures are the filing\u2019s convenience translation of RMB amounts; these pages keep the reported currencies separate. These are ordinary-share measures, not ADS measures. The ADS ratio changed from two to 20 Class A ordinary shares per ADS on January 24, 2025. No ADS adjustment or currency conversion has been applied here.",
+  "filing_url": "https://www.sec.gov/Archives/edgar/data/1738906/000110465926052002/yi-20251231x20f.htm",
+  "observations": [
+    {
+      "tag": "EarningsPerShareBasic",
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "unit": "CNY/shares",
+      "val": -2.33,
+      "accn": "0001104659-26-052002"
+    },
+    {
+      "tag": "EarningsPerShareBasic",
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "unit": "CNY/shares",
+      "val": -0.38,
+      "accn": "0001104659-26-052002"
+    },
+    {
+      "tag": "EarningsPerShareBasic",
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "unit": "CNY/shares",
+      "val": -0.38,
+      "accn": "0001104659-26-052002"
+    },
+    {
+      "tag": "EarningsPerShareBasic",
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "unit": "USD/shares",
+      "val": -0.05,
+      "accn": "0001104659-26-052002"
+    },
+    {
+      "tag": "EarningsPerShareDiluted",
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "unit": "CNY/shares",
+      "val": -2.33,
+      "accn": "0001104659-26-052002"
+    },
+    {
+      "tag": "EarningsPerShareDiluted",
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "unit": "CNY/shares",
+      "val": -0.38,
+      "accn": "0001104659-26-052002"
+    },
+    {
+      "tag": "EarningsPerShareDiluted",
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "unit": "CNY/shares",
+      "val": -0.38,
+      "accn": "0001104659-26-052002"
+    },
+    {
+      "tag": "EarningsPerShareDiluted",
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "unit": "USD/shares",
+      "val": -0.05,
+      "accn": "0001104659-26-052002"
+    },
+    {
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "unit": "shares",
+      "val": 168609128,
+      "accn": "0001104659-26-052002"
+    },
+    {
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "unit": "shares",
+      "val": 171835632,
+      "accn": "0001104659-26-052002"
+    },
+    {
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "unit": "shares",
+      "val": 174026392,
+      "accn": "0001104659-26-052002"
+    },
+    {
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic",
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "unit": "shares",
+      "val": 168609128,
+      "accn": "0001104659-26-052002"
+    },
+    {
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic",
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "unit": "shares",
+      "val": 171835632,
+      "accn": "0001104659-26-052002"
+    },
+    {
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic",
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "unit": "shares",
+      "val": 174026392,
+      "accn": "0001104659-26-052002"
+    }
+  ]
 }
 ];
 

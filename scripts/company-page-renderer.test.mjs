@@ -11,6 +11,27 @@ const company = JSON.parse(readFileSync(new URL('../public/company-data/00003201
 const source = readFileSync(new URL('../companies/0000320193/Assets.html', import.meta.url), 'utf8');
 const assets = buildCompanyAssets(source, '<script type="module" src="/assets/company.js"></script><link rel="stylesheet" href="/assets/company.css">');
 
+test('111 ordinary-share histories explain dilution, scale and ADS distinction without changing facts', () => {
+  const raw = gunzipSync(readFileSync(new URL('./fixtures/editorial/111-reviewed-source.json.gz', import.meta.url)));
+  const record = companyReference(raw, { expectedCik: '0001738906', fetchedAt: '2026-09-19T11:20:52.392Z', selectionPolicy: 'extended-v16' });
+  verifyCompanyReference(record, raw);
+  const original = structuredClone(record.concepts);
+  record.source_snapshot = `/company-data/sources/${record.source_sha256}.json.gz`;
+  const tags = ['EarningsPerShareBasic', 'EarningsPerShareDiluted', 'WeightedAverageNumberOfSharesOutstandingBasic', 'WeightedAverageNumberOfDilutedSharesOutstanding'];
+  for (const target of [...tags, 'overview']) {
+    const html = renderCompanyPages(record, { target })[0].html;
+    assert.match(html, /anti-dilutive effect/);
+    assert.match(html, /ordinary-share measures, not ADS measures/);
+    assert.match(html, /convenience translation/);
+    assert.match(html, /yi-20251231x20f.htm/);
+  }
+  assert.deepEqual(record.concepts, original);
+  const eps = record.concepts.find(c => c.tag === 'EarningsPerShareBasic').observations;
+  assert.ok(eps.some(r => r.end === '2025-12-31' && r.unit === 'CNY/shares' && r.val === -0.38));
+  assert.ok(eps.some(r => r.end === '2025-12-31' && r.unit === 'USD/shares' && r.val === -0.05));
+  assert.equal(companyFilingNotes(record, 'Assets').length, 0);
+});
+
 test('predecessor opening balance keeps its original unit and date with precise context', () => {
   const raw = gunzipSync(readFileSync(new URL('./fixtures/editorial/sofi-predecessor-reviewed-source.json.gz', import.meta.url)));
   const record = companyReference(raw, { expectedCik: '0001818874', fetchedAt: '2026-09-19T11:21:38.728Z', selectionPolicy: 'extended-v15' });

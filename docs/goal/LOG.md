@@ -198,3 +198,17 @@ SHA4ea4bccf7ddfaddcbcc0246fa6a38c12c97476ec229c6ac2b175c349a8586416.
 All six reports reproduce byte-for-byte from saved7a2dd535code and locked offline
 wheels. Original failed comparisons retained. No offsite or accounting-scope
 certification. No collector, comparison, archive or uploader remains active.
+
+## 2026-09-20 — first batch1 accounting-context closure
+
+PR57merged477cd9e5after four passing checks and exact tested/merged tree equality.
+Reviewed111, Inc. fourteen observations against original annual statement and EPS
+calculation: anti-dilutive options/RSUs, share scale exemption, USD convenience
+translation and ordinary-share versus ADS distinction. Added source-bound notes
+on four histories/overview, preserving every selected value. Actual source regression
+and all13renderer tests pass. Context report and exact batch ledger replay
+byte-identically:14reviewed/1,156pending/6withdrawn. The six held rows are Valhi;
+no overlap with the separate baseline or remaining Valhi holds. This evidence is
+not yet sealed in an updated archive. No full-corpus admission, runtime rebuild,
+production deployment or new indexing evidence. Previous truncated tool output
+was resolved by fresh successful replays and byte comparisons, not assumed success.
