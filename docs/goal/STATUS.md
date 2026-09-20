@@ -463,3 +463,20 @@ V12-batch2ledger combines only exact disjoint pending observations from both
 batches:253active reviewed,349pending,8withdrawn;610original keys preserved.
 Ledger replay byte-identical; prior snapshots unchanged. No release rebuild,
 uploader or deployment; broader flags and basic/diluted groups remain open.
+
+## Atlantica historical review and component-total contradiction
+
+15retained primary balance sheets reviewed;58additional observations have recorded
+context,2liability observations remain unresolved. In accession0001548123-25-000017,
+the2023comparative components total5,271,160USD but both total/current liabilities
+are5,253,160USD. Note payable is731,653USD versus713,653USD in the earlier
+0001548123-24-000018filing. No assumption of typo/restatement or source rewrite.
+Resolve or explicitly withhold the two selected2023liability observations before
+admission. The2023zero-asset observations are separate and retain context review.
+Report company-atlantica-historical-balance-20260920.json retains all15fulltables,
+hashes and both-column component arithmetic; offline replay byte-identical.
+Combined v12-batch3ledger:311active reviewed,291pending,8withdrawn. The two
+conflicting observations remain pending, not reviewed. Full610key partition passes.
+Initial helper rejected an ambiguous total-row prefix; narrowed matching to numeric
+columns so total liabilities/equity cannot be mistaken for total liabilities.
+No output report existed for that failed attempt; source evidence unchanged.

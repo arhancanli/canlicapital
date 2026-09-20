@@ -913,3 +913,14 @@ Opened PR42for the first34liability reviews. Reviewed30more observations from
 as a boundary on the asset-only conclusion. Context and combined ledger each
 replay byte-identically. Updated exact counts253reviewed/349pending/8withdrawn.
 No value changes, blanket company admission, rebuild, upload or deployment.
+
+## 2026-09-20 — Atlantica review and explicit arithmetic conflict
+
+Reviewed15historical balance sheets and58additional observations. Two2023
+liability observations stay unresolved: displayed components exceed both totals
+by18,000USD; related-party note differs between filings. Preserved both without
+correction or assuming typo. Fulltables/arithmetic report replays identically.
+Initial ambiguous label extraction failed before output; numeric-column matching
+now distinguishes liabilities from liabilities/equity. Combined ledger311reviewed/
+291pending/8withdrawn retains all610keys and no credit for the conflicting pair.
+Resolve or withhold before admission. No publication or rebuild.
