@@ -34,7 +34,11 @@ def compare(raw, cik, rows):
     for row in rows:
         matches = []
         for node in root:
-            if not node.tag.startswith('{http://fasb.org/us-gaap/') or node.tag.split('}')[-1] != row['tag']:
+            # This exact legacy namespace occurs in the retained 2010 Holding
+            # instance. Do not accept arbitrary issuer or lookalike namespaces.
+            accepted_namespace = (node.tag.startswith('{http://fasb.org/us-gaap/') or
+                                  node.tag.startswith('{http://xbrl.us/us-gaap/2009-01-31}'))
+            if not accepted_namespace or node.tag.split('}')[-1] != row['tag']:
                 continue
             if node.get('{http://www.w3.org/2001/XMLSchema-instance}nil') in ('true', '1'):
                 continue
