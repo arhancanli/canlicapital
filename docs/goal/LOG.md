@@ -689,3 +689,14 @@ primary is an amendment solely furnishing XBRL, with no original financial
 statements. Preserve that explanatory note and keep original-statement review open.
 Supplement and byte-identical isolated-output replay complete without network.
 No all-history admission, publication or changed observations. Transfer77617live.
+
+## 2026-09-20 — Green Stream original statement context
+
+Previous turn closed four legacy contexts and preserved the amendment gap.
+SEC search located original accession0001683168-21-004121. Paced capture98800
+completed0 with index/primary200 and issuer identity verified. Original table74
+shows separate total/current liabilities927,297USD atApril30,2021. Bound to
+amendment0001683168-21-004126 and its XBRL-only explanatory note; no selected
+accessions changed. New context report replays byte-identically offline.
+All17latest liability pairs now have limited primary context; not all histories
+or corpus admission. Newly acquired primary bytes need archival packaging.

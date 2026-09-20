@@ -80,8 +80,13 @@ selected reporting date, avoiding accession-order errors. Twelve pairs have
 separate primary rows, reviewed as equal totals at the listed date; five XML-only
 pairs initially remained pending. Four now have reviewed retained balance-sheet
 tables in company-liability-legacy-context-20260920.json; Green Stream
-0001437476 remains open because the primary is an XBRL-only amendment.
-Original annual-report context must be located and bound. Both new reports
+0001437476 was initially open because its primary is an XBRL-only amendment.
+Original accession0001683168-21-004121 now captured with index/primary hashes;
+its balance sheet supplies the matching927,297USD April30,2021totals. Separate
+company-greenstream-original-context-20260920.json binds the original and amendment
+without rewriting selected accessions. All17latest pairs now have limited
+statement context; all-history scope and publication remain open. New evidence
+still needs archival packaging. All three context reports
 reproduce byte-for-byte offline. Evidence company-liability-presentation-{review,scope}-
 20260920.json. Atlantica correctly selects2025rather than2019. No all-history
 admission, new page notes or deployment follows from these limited checks.
