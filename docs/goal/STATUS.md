@@ -145,8 +145,9 @@ MCP0.1.2 is now published on npm and is the latest version. Owner browser
 authorization completed; publish exited0. Downloaded registry tarball matches
 the exact tested SHA256 and integrity. Receipt: artifacts/platform/mcp-publication-20260920.json.
 48tests,isolated install/stdio and two read-only live checks passed before publication.
-Official MCP registry still lists0.1.1. The0.1.2manifest validates; publication
-returned401for an expired registry token. GitHub login handle66928 is pending. Real adoption remains unestablished;12observed validations are unattributed.
+Official MCP registry0.1.2 is now published, active and latest. GitHub login66928
+and publish92286 completed successfully; the public registry response verifies
+matching server/package versions. Receipt: artifacts/platform/mcp-registry-publication-20260920.json. Real adoption remains unestablished;12observed validations are unattributed.
 API key revocation and PostgreSQL race tests pass, but production migration is not
 applied. Default-branch esbuild alert remains open; PR15contains the fix and npm
 audits found no candidate vulnerabilities. No alert dismissed.

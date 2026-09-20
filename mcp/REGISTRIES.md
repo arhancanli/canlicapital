@@ -4,8 +4,10 @@ Release checkpoint, September 20, 2026: `canli-validation-mcp@0.1.2` is publishe
 on npm and is the latest version. The downloaded registry tarball matches the
 exact tested release (SHA256 `7975bf2827b5a46cb6593ab2211cf2643c9d3dd4dba3e5bb42bfb1979b95acf0`).
 Publication evidence: `artifacts/platform/mcp-publication-20260920.json`.
-Official MCP registry, Smithery and Glama publication for this version remain
-unverified. Do not repeat the npm publication commands below for this version.
+Official MCP registry publication is also verified:0.1.2 is active and latest
+under io.github.arhancanli/canli-validation-mcp. Receipt:
+`artifacts/platform/mcp-registry-publication-20260920.json`.
+Smithery and Glama publication remain unverified. Do not repeat the npm publication commands below for this version.
 
 ## Official registry (registry.modelcontextprotocol.io)
 

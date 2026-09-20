@@ -223,3 +223,19 @@ not resolve it; no secrets printed and both temporary exports removed. This is
 not proof the deployed application's configuration is invalid. No environment
 mutation or database migration attempted. Registry login66928 remains live,
 waiting for owner GitHub device authentication.
+
+## 2026-09-20 — official MCP registry publication
+
+Previous turn made progress by identifying sensitive Vercel environment metadata
+and comparing the actual production deployment against the candidate. Sensitive
+exports cannot establish production URL validity; no configuration was changed.
+Production deploymentdpl_6xdeHvXKGwt9Nx5Bxsz8DAnyENdq reports source894ec07d
+from design/glassbox-website-20260908 with gitDirty1. Candidate includes that
+commit in its ancestry; uploaded dirty differences still need verification.
+Supabase CLI keychain access works; listed projects including preview are inactive.
+Preview private config exists in the original website worktree; no credentials exposed.
+
+Registry login66928 finished success before owner asked which GitHub account.
+Opened arhancanli's account page; completed device code was not copied for reuse.
+Publish92286 finished exit0. Public registry confirms exact server0.1.2 and npm
+package0.1.2, active/latest. Receipt retained; npm publication was not repeated.
