@@ -40,7 +40,11 @@ The existing three-cohort release remains separate and unchanged.
 Exact-source replay verifies each new exclusion removes only its reviewed concept.
 Full website verification passes6+392tests and audits; all15selector tests pass.
 V5 selected-quality/source audit passes; report company-fourth-selected-quality-v5.json.
-V5 catalog/release/discovery, HTTP/browser checks and archive remain outstanding.
+V5 catalog/release/discovery and full local HTTP/browser checks now pass:
+18,412 URLs,1,366 downloads,90browser checks across15routes. Release hash
+b40100cda2fd5a50297de8d433e72751c6561d1f5e58226c269ae879c578c597.
+Editorial supplement archive is verified; complete fourth-cohort delivery archive
+and hosted verification remain outstanding.
 Earlier v4's18,415URL/1,366download and72browser checks apply only to that revision.
 
 Priority review covered55pre-exclusion concepts across30companies and36filings.
@@ -200,3 +204,9 @@ issued by this work. The goal remains active. See EXECUTION_LEDGER.md.
 
 Latest separate fourth-cohort candidate is v5. Prior v4 release and measurements
 remain historical; do not reuse them as verification of v5.
+
+Fourth editorial supplement:275files,79,298,560bytes,SHA256
+62082472346b7bd0f6bed08ef480c3c85fee0e34248be93b8bfd432935814239.
+Isolated offline restore reproduces the priority targets,120inline/XBRL comparisons
+and all four scope exclusions byte-for-byte. It retains30source snapshots and
+filing evidence; it does not rebuild all683companies or establish offsite storage.

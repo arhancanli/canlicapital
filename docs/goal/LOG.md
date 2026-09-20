@@ -1490,3 +1490,28 @@ v4measurements are historical and v4is not publishable for this cohort.
 Remaining zero-series scope/usefulness reviews are not claimed complete.
 EngineCI35499961114 re-polled and remainsIN_PROGRESS; no duplicate run launched.
 No production deployment, package publication, broker or runtime change.
+
+## 2026-09-20 — corrected delivery replay and isolated editorial archive
+
+Previous turn corrected three further scope errors with exact-source replay and
+full verification. V5catalog56295,release83268 and discovery all exit0; release
+b40100cda2fd5a50297de8d433e72751c6561d1f5e58226c269ae879c578c597.
+HTTP72843/browser28075 exit0:18,412URLs,1,366downloads,zero failures,maximum3clicks
+from directory,31,467HTMLbytes;90browser checks across15routes include reviewed
+exclusion notices. All local/noindex; no hosted-capacity or actual-indexing claim.
+
+Built a dedicated editorial supplement with a strict regular-file allowlist,
+retaining30source snapshots and selected records, captured filings and hash-bound
+reports. Archive97253exit0:275files,79,298,560bytes,SHA256
+62082472346b7bd0f6bed08ef480c3c85fee0e34248be93b8bfd432935814239.
+Isolated restore regenerates targets,inline/XBRL comparisons and both scope
+reports byte-identically, accounting for120priority observations and four
+exclusions. Five archive safety tests pass. Temporary restore removed. Existing
+archives unchanged. This supplement does not rebuild all683companies or replay
+the full quality audit; complete cohort archive/offsite retention remains due.
+
+Continued zero-history review verified Opus's2013filing explicitly reports zero
+total revenue for2013/2012, despite mentioning earlier research-agreement income.
+NOVAGOLD's fact remains qualified by narrative context about its principal asset;
+no blanket approval of the remaining zero histories is claimed. Engine latest-head
+CI35499961114 still live at checkpoint; five other jobs pass. No deployment.
