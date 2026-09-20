@@ -9,9 +9,10 @@ which links older records. Historical process states are not live telemetry.
 ## Current work and next action
 
 Worktree `/Users/arhancanli/canlicapital-expansion-20260919`, branch
-`evidence/iovance-older-share-scope-20260921`. PR115mergedc0fb88575eadf65860d3ccf449109184ad1de298
-after four passing CI35541426749checks ata6d302fb. Merged tree matches tested head
-a47049656861ef824a7f8113bb308c6d74d2f79b. PR114closed as its full work is in PR115.
+`evidence/review-supplement-archive-20260921`. PR116mergedb926c38b45da076c1e8bd079e5b4728d5feaf36b
+with four passing CI35541784151checks at2389305a. Full merged/tested tree
+b2884f4788bf86c1524d1be84f87c8b6c0c95a21 matches. PR114closed as superseded.
+
 
 Latest registered ledger:company-basic-diluted-registered-scope-v22-20260921.json.gz.
 Of1,176batch observations,1148reviewed/0pending/28withdrawn.130reviewed are explicitly
@@ -32,17 +33,25 @@ its ledger remains1148reviewed/0pending/28withdrawn,130presentation-only.
 V21 INVO2014two conflicting denominators remain held. First100-filing scope batch
 is closed, but broader capture, accounting scope and usefulness remain open.
 Latest built runtime remainsv14at90,736candidate URLs; current runtime/quality
-rebuild, archive supplement and hosting remain pending. No publication admission.
+rebuild and hosting remain pending; scope-review archive supplement now verified. No publication admission.
 V22full-corpus comparison21300TERMINAL0verified3,323companies/87,342histories
 against frozenv14:40exact held observations sincev14, two prior Valhi constant
 history omissions and two now-empty Iovance histories, policy/notices only.
 All other fields and source bytes unchanged. Report company-five-cohort-v22-
 transition-20260921.json pins source/code hashes. No local comparison remains active.
 
-Next: integrate the policy, seal/replay the
-updated archival supplement, rebuild runtime/quality inventory and finish hosted
-delivery gates. No deployment or confirmed indexing gain. Current evidence is
-committed separately from sealed restore-tested archives.
+Scope-review supplement21451TERMINAL0sealed835files/373,032,960bytes and
+restored all61outputs byte-identically (52registered reports,8hold reports,1ledger).
+SHAda3b7b5980f4fe4c3f9e195f18d0e3b7e2e171cc3d87676bc24dba042c716c64.
+Hash-locked parser wheels installed offline in a fresh environment; saved scripts,
+source fixtures, original captures and registry retained. Five archive safety tests
+pass. Code base2389305a; the new packager itself is saved/hash-bound in the archive.
+This is local restoration of recorded interpretations, not independent certification,
+full-corpus/runtime replay or offsite backup. No local worker remains active.
+
+Next: rebuild runtime/catalog/discovery/storage plan under v22, refresh quality
+inventory and complete hosted delivery gates. Broader source/usefulness work remains.
+No deployment or confirmed indexing gain.
 
 ## Editorial policy and evidence
 
@@ -81,6 +90,9 @@ Current built-v14quality inventory:13,142flagged histories; overlapping reasons
 not automatically defects; unflagged pages are not automatically admitted.
 
 ## Retained archives
+
+- V22scope supplement:835files/373,032,960bytes;61outputs replay identically.
+  SHAda3b7b5980f4fe4c3f9e195f18d0e3b7e2e171cc3d87676bc24dba042c716c64.
 
 - Priority scope:700files/298,762,240bytes;14context reports plus610ledger replay.
 - V14full candidate:23,160files/2,760,540,160bytes; all five source queues with

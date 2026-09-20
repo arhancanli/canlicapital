@@ -17,3 +17,5 @@ in history/EXECUTION_LEDGER-20260920-through-five-cohort-archive-start.md.
 | Strategy outcomes | Five returns/four sleeves, immature evidence | NET FORWARD Sharpe>2,14qualified distinct sleeves,maxDD<=10% |
 | Source capacity | Current8,031issuer discovery insufficient for800k | Validate additional useful source/content families |
 | Continuity | Reusable source-bound scope registry reproduces1176rows; review workflow documented; current STATUS/ledger consolidated; historical records retained | Update at material transitions |
+
+V22 scope-review archive checkpoint:835files/373,032,960bytes,61outputs restored byte-identically; receipt company-scope-review-evidence-archive-v22-20260921.json. Local restore only; runtime rebuild/quality refresh and broader scope remain pending.
