@@ -1,6 +1,228 @@
 // Limited filing context, bound to the reviewed capture and selected observations.
 export const FILING_NOTES = [
 {
+  "cik": "0001503274",
+  "include_on_overview": true,
+  "source_sha256": "0567e5301d075e810075880fb0b6519976642adf250f705aefd7906134fbfc48",
+  "tags": [
+    "EarningsPerShareBasic",
+    "EarningsPerShareDiluted",
+    "WeightedAverageNumberOfDilutedSharesOutstanding",
+    "WeightedAverageNumberOfSharesOutstandingBasic"
+  ],
+  "text": "For 2023\u20132025, Quanterix excludes potential shares from unvested stock, restricted stock units, options and employee stock purchases as anti-dilutive in its loss periods. These excluded equivalents are not additions to the weighted-average denominator. The EPS numerator is net loss. The statement and EPS note report share counts in thousands with scale-three tags, while EPS uses scale zero; original values and units are retained.",
+  "filing_url": "https://www.sec.gov/Archives/edgar/data/1503274/000150327426000013/qtrx-20251231.htm",
+  "observations": [
+    {
+      "tag": "EarningsPerShareBasic",
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "unit": "USD/shares",
+      "val": -0.75,
+      "accn": "0001503274-26-000013"
+    },
+    {
+      "tag": "EarningsPerShareBasic",
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "unit": "USD/shares",
+      "val": -1,
+      "accn": "0001503274-26-000013"
+    },
+    {
+      "tag": "EarningsPerShareBasic",
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "unit": "USD/shares",
+      "val": -2.51,
+      "accn": "0001503274-26-000013"
+    },
+    {
+      "tag": "EarningsPerShareDiluted",
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "unit": "USD/shares",
+      "val": -0.75,
+      "accn": "0001503274-26-000013"
+    },
+    {
+      "tag": "EarningsPerShareDiluted",
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "unit": "USD/shares",
+      "val": -1,
+      "accn": "0001503274-26-000013"
+    },
+    {
+      "tag": "EarningsPerShareDiluted",
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "unit": "USD/shares",
+      "val": -2.51,
+      "accn": "0001503274-26-000013"
+    },
+    {
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "unit": "shares",
+      "val": 37594000,
+      "accn": "0001503274-26-000013"
+    },
+    {
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "unit": "shares",
+      "val": 38367000,
+      "accn": "0001503274-26-000013"
+    },
+    {
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "unit": "shares",
+      "val": 42639000,
+      "accn": "0001503274-26-000013"
+    },
+    {
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic",
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "unit": "shares",
+      "val": 37594000,
+      "accn": "0001503274-26-000013"
+    },
+    {
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic",
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "unit": "shares",
+      "val": 38367000,
+      "accn": "0001503274-26-000013"
+    },
+    {
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic",
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "unit": "shares",
+      "val": 42639000,
+      "accn": "0001503274-26-000013"
+    }
+  ]
+},
+{
+  "cik": "0001505155",
+  "include_on_overview": true,
+  "source_sha256": "c10c8cb7414254a52ec5a870a40d6cb158c788a14a47fae5ec37d1e0ebd7d6b1",
+  "tags": [
+    "EarningsPerShareBasic",
+    "EarningsPerShareDiluted",
+    "WeightedAverageNumberOfDilutedSharesOutstanding",
+    "WeightedAverageNumberOfSharesOutstandingBasic"
+  ],
+  "text": "For 2023\u20132025, Upland Software uses common-stockholder net loss after preferred dividends and accretion as its EPS numerator. Series A preferred stock participates under the two-class method. Potential dilution is assessed using if-converted treatment for preferred stock and the treasury-stock method for equity awards, but excluded in these loss periods. Contingently issuable performance units are also excluded from basic EPS because vesting conditions were not met. Shares and per-share amounts are exempt from the thousands heading and retain scale-zero tags; excluded instruments are not added to the denominator.",
+  "filing_url": "https://www.sec.gov/Archives/edgar/data/1505155/000150515526000007/upld-20251231.htm",
+  "observations": [
+    {
+      "tag": "EarningsPerShareBasic",
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "unit": "USD/shares",
+      "val": -5.77,
+      "accn": "0001505155-26-000007"
+    },
+    {
+      "tag": "EarningsPerShareBasic",
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "unit": "USD/shares",
+      "val": -4.26,
+      "accn": "0001505155-26-000007"
+    },
+    {
+      "tag": "EarningsPerShareBasic",
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "unit": "USD/shares",
+      "val": -1.56,
+      "accn": "0001505155-26-000007"
+    },
+    {
+      "tag": "EarningsPerShareDiluted",
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "unit": "USD/shares",
+      "val": -5.77,
+      "accn": "0001505155-26-000007"
+    },
+    {
+      "tag": "EarningsPerShareDiluted",
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "unit": "USD/shares",
+      "val": -4.26,
+      "accn": "0001505155-26-000007"
+    },
+    {
+      "tag": "EarningsPerShareDiluted",
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "unit": "USD/shares",
+      "val": -1.56,
+      "accn": "0001505155-26-000007"
+    },
+    {
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "unit": "shares",
+      "val": 32074906,
+      "accn": "0001505155-26-000007"
+    },
+    {
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "unit": "shares",
+      "val": 27789248,
+      "accn": "0001505155-26-000007"
+    },
+    {
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "unit": "shares",
+      "val": 28615649,
+      "accn": "0001505155-26-000007"
+    },
+    {
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic",
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "unit": "shares",
+      "val": 32074906,
+      "accn": "0001505155-26-000007"
+    },
+    {
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic",
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "unit": "shares",
+      "val": 27789248,
+      "accn": "0001505155-26-000007"
+    },
+    {
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic",
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "unit": "shares",
+      "val": 28615649,
+      "accn": "0001505155-26-000007"
+    }
+  ]
+},
+{
   "cik": "0001498547",
   "include_on_overview": true,
   "source_sha256": "51f1048520d01f703206a20df6920b501657b79d5c253b005236cee80e1bfaa1",
