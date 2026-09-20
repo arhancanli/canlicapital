@@ -1124,3 +1124,14 @@ sheet or changing browser JavaScript-security settings. Latest chartSeptember14:
 2crawled exclusions sum40. Raw workbookSHA5f90caa3d103cb180c3f190bc2566074f5bead67a1e9043371d4611dc03d77af;
 raw saved ignored, aggregate receipt retained. No excluded URL examples supplied
 in workbook. Further per-URL review needed before proposing indexability changes.
+
+## 2026-09-20 — verified live indexing checks, audit classification repair
+
+Committed refreshed evidence/indexbaseline aee1ff55; CI35495437077passes. Checked
+263live URLs. InitialrawHEAD26failures were falsely counted as indexability defects;
+corrected audit to separateunknown/non-successful responses and capconcurrency12.
+3tests pass; added toregularverify. Correctedpass1HTMLtimeout/5rawfailures retained;
+all6targetedGETs subsequently200, raw5noindex. No persistent technical blocker
+confirmed, nor any claim to identify Google's5excludedURLs from aggregatecounts.
+Laptop UI assistive access denied and JSautomationdisabled; two categoryGoogleSheets
+exports requested, not yet received. See INDEXING_BASELINE.md and threeHTTP receipts.

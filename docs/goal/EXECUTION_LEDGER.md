@@ -2,6 +2,8 @@
 
 Updated2026-09-20. Codex owns implementation, verification and continuity.
 Hermes is stopped by owner instruction. Overall goals remain active/unachieved.
+Website evidence refresh aee1ff55 passed CI35495437077. Google coverage export
+records262indexed/40notindexed asofSeptember14; staged corpus is still separate.
 
 Authority: REQUIREMENTS.md (all goals), STATUS.md (current facts), PHASES.md
 (exit evidence), LOG.md (historical transitions). This ledger tracks work only.
@@ -16,7 +18,7 @@ Authority: REQUIREMENTS.md (all goals), STATUS.md (current facts), PHASES.md
 |T04b Combined-cohort construction |Locally verified |Correctedv3:54,416pages/3,936downloads across1,968companies;fullHTTP+114browser checks;6,705qualityflags retained |
 |T05 Editorial/source/intent quality |Eight source-scope interpretations corrected in v3;fullHTTP+114browser checks pass |338 matching-history pages and24 constant-unit pages explained;six unusual matching pairs inspected against original filings;373tests,66browser checks,fullHTTP replay; no publication approval |
 |T06 Storage and release |Runtime plan and local restore verified; access pending |v3plan6,249objects/828,340,450bytes;new13,183-file archive independently restored/replayed;remote retention andhostedverification pending |
-|T07 Search indexing and adoption |Outcomes unestablished; MCP reliability verified |48package tests and new CI job; public service reachable,12total validations un-attributed; Search Console and genuine adoption evidence pending |
+|T07 Search indexing and adoption |Outcomes unestablished; MCP reliability verified |48package tests and new CI job; public service reachable,12total validations un-attributed; Search Console baseline262indexed asofSeptember14; genuine adoption evidence pending |
 |T07b Key revocation |381website+48MCP tests; complete CI35491496322 passes |Bearer-only, no quota charge, idempotent timestamp, shared row lock; production migration not applied |
 |T08 Governed engine outcomes |Evidence inspected; outcomes unestablished |Five returns/four sleeves; report hashes verified; three PRs pass; activation projection verified; spin-off evidence integrity repaired |
 

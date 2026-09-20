@@ -459,3 +459,14 @@ Receipt artifacts/seo/search-console-indexing-baseline-20260920.json pins raw
 workbook hash; original bytes retained in ignored corpus-local/search-console.
 This replaces unknown aggregate indexing with a dated Google-reported baseline;
 no evidence of the staged company corpus being live or indexed.
+
+## Indexing follow-up and audit repair — 2026-09-20
+
+Evidence refresh aee1ff55 passed CI35495437077. Live263-URL sitemap initial HTML
+pass clean. Audit wrongly called26failed raw HEAD fetches indexable; corrected
+unknown-response classification and bounded concurrency,3tests pass and inverify.
+Correctedfullpass had1homepage timeout/5rawfetch failures; targetedGETall6return200,
+raw5allnoindex. Reports preserved, initial falsefinding explicitly superseded in
+INDEXING_BASELINE.md. Per-URL Google exclusion exports requested; macOS denies
+assistive access, browser JS disabled, no securitysettings changed. PR68CI35494803169
+last observed running offline tests; five otherjobs passed. Overall goal active.
