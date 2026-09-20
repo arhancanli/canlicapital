@@ -22,21 +22,21 @@ After migration, inspect its handoff and new ancestry before carrying this local
 change forward; do not push old history or bypass the hook. Continue independent
 source review locally while publication is unavailable.
 
-Latest registered ledger:company-basic-diluted-registered-scope-batch8-20260920.json.gz.
-Of1,176batch observations,324reviewed/844pending/8withdrawn.60reviewed are explicitly
+Latest registered ledger:company-basic-diluted-registered-scope-batch9-20260920.json.gz.
+Of1,176batch observations,348reviewed/820pending/8withdrawn.60reviewed are explicitly
 presentation-only; dilution cause is not established for those rows. The registry
 pins exact reports/issuers/dispositions/counts/states. Numerical agreement alone
 never approves scope. Workflow in SCOPE_REVIEW.md; original ledgers preserved.
 
-Latest26reviews cover Kronos2023–2025combined presentation (12presentation-only)
-and The9ordinary-share EPS, total versus continuing-operations results, allocation
-after noncontrolling interests and explicit anti-dilution disclosure (14scope-reviewed).
-The9USD2025figures are convenience translations atRMB6.9931; the300ordinary-share
-ADSratio is distinct from its ordinary-share denominator. Kronos share tags scale6,
-The9scale3. No values, signs, units or dates changed.28renderer/ledger tests pass;
-source report replays byte-identically. Batch7's24Roblox/aTyr reviews are also local,
-including aTyr's ambiguous note heading. Neither local batch has remote CI yet.
-Next new index entries start34; earlier pending/legacy gaps remain open.
+Latest24reviews cover Precigen and Varonis2023–2025EPS. Precigen's2025common-
+shareholder numerator includes a179millionUSDnon-cash deemed preferred dividend.
+Varonis explicitly excludes potential shares including convertible-note options;
+its older six AFN/share holds remain enforced. Both statement share counts use
+scale0.29renderer/ledger tests pass, including preservation of Varonis historical
+holds; source report replays byte-identically. Batch8Kronos/The9 and batch7Roblox/
+aTyr are also local; none of these three batches has remote CI yet. Publication
+marker remains present; no migration-completion handoff observed. Next new index
+entries start36; earlier pending/legacy gaps remain open.
 
 Earlier reviewed context includes111ordinary-share/ADS distinction, Celldex loss
 periods, NLI/Weis combined/restated presentation, Blue Dolphin historical instruments,

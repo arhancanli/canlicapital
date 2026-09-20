@@ -36,6 +36,29 @@ test('combined presentation and ordinary-share notes preserve scale, currency an
   }
 });
 
+test('preferred-dividend and current-period loss notes preserve historical currency holds', () => {
+  for (const [fixture, cik, phrase, value] of [
+    ['precigen', '0001356090', /non-cash deemed dividend/, 312980562],
+    ['varonis-loss', '0001361113', /does not reinstate the separately withheld historical/, 114413076],
+  ]) {
+    const raw = gunzipSync(readFileSync(new URL(`./fixtures/editorial/${fixture}-reviewed-source.json.gz`, import.meta.url)));
+    const record = companyReference(raw, { expectedCik: cik, fetchedAt: '2026-09-20T00:00:00Z', selectionPolicy: 'extended-v17' });
+    verifyCompanyReference(record, raw);
+    const original = structuredClone(record.concepts);
+    record.source_snapshot = `/company-data/sources/${record.source_sha256}.json.gz`;
+    const tags = ['EarningsPerShareBasic', 'EarningsPerShareDiluted', 'WeightedAverageNumberOfSharesOutstandingBasic', 'WeightedAverageNumberOfDilutedSharesOutstanding'];
+    for (const target of [...tags, 'overview']) assert.match(renderCompanyPages(record, { target })[0].html, phrase);
+    assert.ok(record.concepts.find(c => c.tag === tags[2]).observations.some(r => r.end === '2025-12-31' && r.val === value));
+    if (fixture === 'varonis-loss') {
+      for (const tag of tags.slice(0, 2)) assert.ok(record.concepts.find(c => c.tag === tag).observations.every(r => r.unit !== 'AFN/shares'));
+      assert.match(renderCompanyPages(record, { target: 'overview' })[0].html, /AFN/);
+    }
+    assert.deepEqual(record.concepts, original);
+    const changed = structuredClone(record); changed.source_sha256 = '0'.repeat(64);
+    assert.equal(companyFilingNotes(changed, tags[0]).length, 0);
+  }
+});
+
 test('loss-context notes preserve noncontrolling allocation and explicit statement share units', () => {
   for (const [fixture, cik, phrase, value] of [
     ['roblox', '0001315098', /after noncontrolling interests as its EPS numerator/, 689612000],

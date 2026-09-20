@@ -422,3 +422,19 @@ replays byte-identically.28renderer/ledger tests pass, only26intended rows advan
 324reviewed/844pending/8withdrawn,60presentation-only. Both batches remain local
 pending migration handoff/ancestry reconciliation, with no remote CI, deployment,
 new runtime archive or indexing gain claimed. All owner goals remain active.
+
+## 2026-09-20 — Precigen preferred dividend and Varonis loss-period context
+
+Previous turn progressed26reviews in local commit9da53bc5. Current migration marker
+still present; no assumption of live process and no repeated push/bypass attempted.
+Reviewed24Precigen/Varonis2023–2025observations. Precigen's2025preferred conversion
+creates179millionUSDnon-cash deemed dividend in the common-shareholder numerator;
+consolidated loss is not substituted. Varonis excludes stock awards and convertible-
+note options as anti-dilutive, while older six AFN/share holds remain in place.
+Both sources exempt shares/per-share amounts from thousands and use scale0.
+Version4report replays byte-identically;29renderer/ledger tests pass, with only24
+new review transitions and explicit regression preserving historical currency holds.
+Current348reviewed (60presentation-only)/820pending/8withdrawn. Batches7–9remain
+local pending attribution-migration handoff and ancestry reconciliation. No remote
+CI, runtime rebuild, archive supplement, deployment or indexing gain claimed.
+All broader indexing, quality, developer adoption and governed engine goals remain.
