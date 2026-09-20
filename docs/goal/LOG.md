@@ -212,3 +212,16 @@ no overlap with the separate baseline or remaining Valhi holds. This evidence is
 not yet sealed in an updated archive. No full-corpus admission, runtime rebuild,
 production deployment or new indexing evidence. Previous truncated tool output
 was resolved by fresh successful replays and byte comparisons, not assumed success.
+
+## 2026-09-20 — batch-wide accounting context navigation
+
+PR58merged8f6c4d30after all four CI35528955777checks passed at86fa7e55;
+exact tested/merged tree2d9fba1d verified. Built an offline index over100retained
+primaries,1,176selected observations, full matched tables, preceding headings and
+candidate dilution paragraphs. Process71727terminal0. Reconciled every identity,
+primary hash, selected observation and matched-location count with the frozen
+comparison; independently checked111tables217/281and Valhi millions heading.
+83filings contain regex candidates,17do not; absence is not a scope verdict.
+78legacy observations need separate statement mapping. Extraction grants no
+accounting approval and makes no release/indexing claim. Scope remains14reviewed,
+1,156pending,6withdrawn. Compressed evidence and hash-bound summary retained.
