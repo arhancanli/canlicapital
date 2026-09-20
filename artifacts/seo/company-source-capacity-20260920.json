@@ -1,0 +1,75 @@
+{
+  "schema": "canli.company-source-capacity.v1",
+  "selection_policy": "extended-v3",
+  "bindings": [
+    {
+      "path": "artifacts/seo/corpus-local/next-1000/company_tickers.json",
+      "sha256": "23e6c511f3fc1a41413803dc77c50cf080f82ed79ab13a049127a8dccb1dd7de",
+      "bytes": 799073
+    },
+    {
+      "path": "artifacts/seo/company-third-batch-selection.json",
+      "sha256": "2c0b5d4ff3fd505deec50774ad7736c8475ce15219e73e22187ee674143a89c9",
+      "bytes": 945
+    },
+    {
+      "path": "artifacts/seo/corpus-local/company-three-cohort-delivery-v3/delivery.json",
+      "sha256": "f076234deaccbfa94ddb7d1c1faceffcc75e37d9db534591e74ea892f76eac2a",
+      "bytes": 1827537
+    },
+    {
+      "path": "artifacts/seo/company-three-cohort-release-v3.json",
+      "sha256": "1f833c4d82835c7e7046aec258a542b70c3c0df93298c4110788eae7ccb36cf0",
+      "bytes": 378
+    },
+    {
+      "path": "artifacts/seo/corpus-local/fresh-review/ciks.json",
+      "sha256": "0a7235fcef3af375158555254d218fcd42999f066a614538bcc4010433b9fbe4",
+      "bytes": 5475
+    },
+    {
+      "path": "artifacts/seo/corpus-local/next-1000/ciks.json",
+      "sha256": "05016e1cff78116f7ed984982effb28db7dbf49d5391fa3b87282f49a63ecf8f",
+      "bytes": 16003
+    },
+    {
+      "path": "artifacts/seo/corpus-local/third-1000/ciks.json",
+      "sha256": "540ac4c17b869ff9c9b0e32f52342c29da6582510c7189be4d949b4a8cf1055e",
+      "bytes": 16003
+    },
+    {
+      "path": "config/search-growth-goal.json",
+      "sha256": "ad13d3836be70e86eb9e1dd08660a3efcc12a7f74082cff1f0f88546ec1a22f1",
+      "bytes": 800
+    }
+  ],
+  "source_counts": {
+    "discovered": 8031,
+    "admitted": 1968,
+    "admitted_outside_discovery": 5,
+    "attempted_but_not_admitted": 381,
+    "unqueued": 5687
+  },
+  "current": {
+    "companies": 1968,
+    "histories": 52408,
+    "directories": 40,
+    "candidate_urls": 54416
+  },
+  "fixed_model": {
+    "concepts": 34,
+    "maximum_pages_per_company": 35,
+    "directory_page_size": 50
+  },
+  "upper_bounds": {
+    "all_known_entities_with_all_concepts": 281421,
+    "retaining_current_selected_histories_and_prior_nonadmissions": 253575
+  },
+  "minimum_goal": 800000,
+  "target_goal": 1000000,
+  "shortfall_before_other_content_families": {
+    "minimum": 546425,
+    "target": 746425
+  },
+  "claim_boundary": "Structural candidate-URL upper bounds, not forecast eligibility, useful pages, deployment, indexing or demand. Remaining entities are optimistically assigned every supported concept. Current rejected candidates stay excluded in the constrained bound. Other content families are not counted; no keyword, unit or year permutations are added."
+}

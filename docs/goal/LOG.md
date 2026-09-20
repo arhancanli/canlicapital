@@ -1146,3 +1146,16 @@ Full build/verify passes6+384tests andall audits; no newpages or manuscriptchang
 Restored unrelated generated churn. Priorhead772d60d2 CI35495690688passes.
 See SEARCH_INTENT_REVIEW.md; indexing remains262asofSeptember14, not increased
 by intent assignment. No production activation or algorithm outcome claim.
+
+## 2026-09-20 — source capacity reconciled and current status consolidated
+
+Replayed capacity frompinneddiscovery/queues/v3delivery and all1,968selectedhashes:
+8,031discovered,5outside-discoveryadmitted,381nonadmissions,5,687unqueued,34concepts.
+Current54,416candidateURLs matchrelease. Fixedmodelallentityceiling281,421;
+retainingcurrentselections/exclusions bounds253,575. This isnoteligibility/indexing
+forecast andcannot meet800,000. Broader sourcefamilies mustbevalidated. OfficialSEC
+bulkdocs consulted; onecompanyfacts.zip HEAD403,bodynotdownloaded,noretry.
+Archived entire previousSTATUS before rewritingcurrentfacts; oldunknown-indexing,
+oldcounts and oldCIclaims removed fromcurrentcheckpoint withoutdeletinghistory.
+Sourceaudit andreceipt: audit-company-source-capacity.mjs/company-source-capacity-20260920.json.
+Websitea8865e57 CI35495845450passes; enginece93d8c suite remainsliveatlastpoll.
