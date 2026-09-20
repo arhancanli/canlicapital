@@ -173,3 +173,14 @@ downloads; browser3980 passes90checks; storage23665 passes. All handles were
 re-polled terminal exit0 after the owner interrupted for a status update.
 V8archive/restore remains pending; prior v7archive is unchanged. RemoteCI on
 c18132fb passed; earlierd4256aa8run was cancelled by replacement. Nothing deployed.
+
+## 2026-09-20 — owner publication approval
+
+Owner asks whether another Google submission is needed and explicitly approves
+publishing everything including MCP. Authorization persists across turns; previous
+publication-decision blockers are superseded. Existing sitemap need not be
+resubmitted unchanged. Npm whoami returned401; registry latest is still0.1.1.
+Requested local npm login renewal without asking for approval again. WebsitePR15
+86bbdfffhas all four CIjobs passing. EnginePR71same867d211has a further PR-event
+offline test job35502099188 still running; prior branch CIpassed. Release work
+continues with authentication/configuration and exact-candidate verification.

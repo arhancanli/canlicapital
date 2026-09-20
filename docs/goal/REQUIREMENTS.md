@@ -26,3 +26,10 @@ Authoritative configuration: `config/search-growth-goal.json`; engine
 
 Execution preference (2026-09-20): Codex directly leads and implements; stop Hermes
 delegation. Maintain clear current records, evidence and full objective coverage.
+
+Publication authorization (2026-09-20): the owner explicitly approved publishing
+everything, including MCP0.1.2. Proceed with tested website/API/MCP and repository
+releases without asking again. Authentication, source/editorial quality, migration
+compatibility and deployment verification still apply. Approval is not evidence of
+indexing or strategy outcomes and does not authorize broker orders or bypass
+owner-reserved research decisions.

@@ -138,7 +138,8 @@ preparation integrity, not independent result reproduction or data-license appro
 
 MCP0.1.1 was already publishedSeptember6. Exact candidate0.1.2 is unpublished;
 48tests,isolated install/stdio and two read-only live checks pass. Publication
-approval was requested and remains pending. The test-only fix changes no package
+approval was received September20; npm whoami currently returns401, so owner
+login renewal was requested. The test-only fix changes no package
 contents. Real adoption remains unestablished;12observed validations are unattributed.
 API key revocation and PostgreSQL race tests pass, but production migration is not
 applied. Default-branch esbuild alert remains open; PR15contains the fix and npm
@@ -146,8 +147,9 @@ audits found no candidate vulnerabilities. No alert dismissed.
 
 ## External decisions and remaining goals
 
-- Owner decision on exact MCP0.1.2 publication remains pending. Notify when a
-  release is ready; do not infer publication approval from that request.
+- Owner now explicitly approves publication of all tested releases, including
+  exact MCP0.1.2. Do not ask again. npm authentication currently returns401;
+  owner login renewal requested while website/engine release checks continue.
 - Approved object-storage destination/access is pending. Prepare hosted verification
   once available; no provider creation, upload or activation has occurred.
 - Google's3discovered/2crawled URLs need category exports. Browser tab/export access
