@@ -869,3 +869,12 @@ Earlier limited latest review corrected explicitly, not erased. Publication hold
 required for OperatingIncomeLoss; no invented replacement figures or review credit.
 PR39merged2f5e86d8 after four CIchecks and exact tested/merged tree equality.
 New branchfix/hno-operating-scope-20260920; policy implementation next.
+
+## 2026-09-20 — HNO exclusion implementation and regression evidence
+
+Added cumulative extended-v12policy with source-bound whole operating-loss
+exclusion. Retained earlier policies and inherited DBMM exact-period decision.
+Real capture regression verifies only HNO operating history removed, net loss
+and other concepts unchanged, evidence-change rejection and rendered exclusion
+notice.32selector/renderer tests pass. No source values replaced, no release
+rebuild, upload or deployment. Remaining historical review still open.

@@ -395,3 +395,14 @@ Next: implement source-bound whole OperatingIncomeLoss exclusion, retain net los
 and all other values, test actual capture, then rebuild candidate before admission.
 Do not upload/admit v11unchanged. No uploader active. This finding is later than
 the sealed v11archive. No derived arithmetic may replace original observations.
+
+## Source-bound HNO exclusion implemented
+
+Policy extended-v12 inherits all v11whole-concept and exact-period holdbacks and
+withholds only HNO OperatingIncomeLoss for the reviewed source hash. Original
+policies remain reproducible. Actual45,095byte captured fixture tests all four
+removed observations, unchanged NetIncomeLoss/all other concepts, changed-source
+rejection, missing-notice rejection, absent history page and explanatory overview.
+DBMM source fixture confirms inherited exact-period holdback unchanged.32selector/
+renderer tests pass. V12cohort/release rebuild has not started; v11must not be
+admitted unchanged. Further historical scope review remains open.
