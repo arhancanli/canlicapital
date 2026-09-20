@@ -1,0 +1,49 @@
+{
+  "schema": "canli.company-evidence-restore.v1",
+  "archive_sha256": "abecda29825b69210095ad571cb31b86be6a6984ad718a5fca6a1b70beced893",
+  "repository_revision": "d67b680fba04fe698bcf47fac960899445a00410",
+  "restored_files": 23126,
+  "source_replays": {
+    "fresh-review": {
+      "complete": true,
+      "companies": 342,
+      "exclusions": 0,
+      "errors": 0
+    },
+    "next-1000": {
+      "complete": true,
+      "companies": 853,
+      "exclusions": 147,
+      "errors": 0
+    },
+    "third-1000": {
+      "complete": true,
+      "companies": 766,
+      "exclusions": 234,
+      "errors": 0
+    },
+    "fourth-1000": {
+      "complete": true,
+      "companies": 683,
+      "exclusions": 317,
+      "errors": 0
+    },
+    "fifth-1000": {
+      "complete": true,
+      "companies": 672,
+      "exclusions": 328,
+      "errors": 0
+    }
+  },
+  "runtime_objects_replayed": 10360,
+  "runtime_bytes": 1280301890,
+  "release_hash": "a98105f2fe459ff3dd8aabc90c1ed3de442b931453fb68e9b0b48324c8f5fff4",
+  "objects_exactly_match_original_plan": true,
+  "editorial_scope_reports_reproduced": {
+    "company-birdie-expense-scope-20260920.json": "24b1250cdfaa60e4ddac8bb63fdbb7cd015b3d3d6f22b8370c084e03e9866ccc",
+    "company-legacy-revenue-context-20260920.json": "f5b932644c618e8a7567baab0c95b802c506e3bd5b531b81f0a356e672cfffb2"
+  },
+  "remote_backup_verified": false,
+  "verification_code_sha256": "9a615687c60b650935701c35ec5b30c9c8be0fc1b7ee38ef7aeebe2a39f98b26",
+  "scope": "Whole archive SHA checked against separate summary; every member verified; isolated temporary restore; saved repository source replays all named cohorts and runtime objects. No reads of original runtime objects or capture directories. Temporary restore removed after verification; archive remains local."
+}

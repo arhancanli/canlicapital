@@ -89,7 +89,7 @@ def restore_check(archive, summary_path):
             if file_hash(path) != expected:
                 raise ValueError('Restored editorial scope differs: ' + report)
             scope_replays[report] = expected
-        if profile == 'five-cohort-v10':
+        if profile in ('five-cohort-v10', 'five-cohort-v11'):
             env = Path(temp) / 'editorial-venv'
             subprocess.run([sys.executable, '-m', 'venv', str(env)], check=True, capture_output=True)
             python = str(env / 'bin/python')
@@ -105,6 +105,15 @@ def restore_check(archive, summary_path):
             expected = file_hash(workspace / 'artifacts/seo' / report)
             if file_hash(output) != expected:
                 raise ValueError('Restored Birdie scope differs')
+            scope_replays[report] = expected
+        if profile == 'five-cohort-v11':
+            report = 'company-legacy-revenue-context-20260920.json'
+            output = Path(temp) / report
+            subprocess.run([python, 'scripts/review-legacy-revenue-context.py', str(output)],
+                           cwd=workspace, check=True, capture_output=True)
+            expected = file_hash(workspace / 'artifacts/seo' / report)
+            if file_hash(output) != expected:
+                raise ValueError('Restored legacy revenue context differs')
             scope_replays[report] = expected
         receipt = {'schema': 'canli.company-evidence-restore.v1', 'archive_sha256': summary['archive_sha256'],
                    'repository_revision': summary['metadata']['repository_revision'], 'restored_files': summary['files'],

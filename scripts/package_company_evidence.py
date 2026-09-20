@@ -104,10 +104,10 @@ def complete_cohort(report, queue):
 
 
 def evidence_profile(profile):
-    if profile in ('five-cohort-v9', 'five-cohort-v10'):
+    if profile in ('five-cohort-v9', 'five-cohort-v10', 'five-cohort-v11'):
         version = profile.removeprefix('five-cohort-')
         return {'prefix': 'company-five-cohort', 'suffix': version,
-                'summary': ('company-five-cohort-storage-plan-summary-20260920.json' if version == 'v9' else 'company-five-cohort-v10-storage-plan-summary-20260920.json'),
+                'summary': ('company-five-cohort-storage-plan-summary-20260920.json' if version == 'v9' else f'company-five-cohort-{version}-storage-plan-summary-20260920.json'),
                 'plan_name': f'company-five-cohort-storage-plan-{version}.json',
                 'cohorts': ['fresh-review', 'next-1000', 'third-1000', 'fourth-1000', 'fifth-1000'],
                 'editorial': ['editorial-filings', 'editorial-third-filings', 'editorial-constant-filings',
@@ -144,7 +144,7 @@ def build(root, output, profile='two-cohort'):
     cohorts, editorial = config['cohorts'], config['editorial']
     local = root / 'artifacts/seo/corpus-local'
     summary = json.loads((root / 'artifacts/seo' / config['summary']).read_text())
-    plan_path = root / (summary['plan_path'] if profile in ('five-cohort-v9', 'five-cohort-v10') else summary['local_plan'])
+    plan_path = root / (summary['plan_path'] if profile in ('five-cohort-v9', 'five-cohort-v10', 'five-cohort-v11') else summary['local_plan'])
     if file_hash(plan_path) != summary['plan_sha256']:
         raise ValueError('Runtime plan binding changed')
     plan = json.loads(plan_path.read_text())
@@ -169,7 +169,7 @@ def build(root, output, profile='two-cohort'):
     for directory in editorial:
         for path in sorted((local / directory).iterdir()):
             add(path)
-    if profile == 'five-cohort-v10':
+    if profile in ('five-cohort-v10', 'five-cohort-v11'):
         scope = json.loads((root / 'artifacts/seo/company-birdie-expense-scope-20260920.json').read_bytes())
         for filing in scope['filings']:
             primary = root / filing['primary_path']
@@ -181,6 +181,13 @@ def build(root, output, profile='two-cohort'):
             raise ValueError('Missing locked editorial wheels')
         for wheel in wheels:
             add(wheel)
+    if profile == 'five-cohort-v11':
+        legacy = json.loads((root / 'artifacts/seo/company-legacy-revenue-context-20260920.json').read_bytes())
+        for source in legacy['sources']:
+            primary = root / source['primary_path']
+            if file_hash(primary) != source['primary_sha256']:
+                raise ValueError('Legacy revenue primary binding changed')
+            add(primary)
     if 'third-1000' in cohorts:
         add(local / 'third-1000-original-review.json')
     for relative in [f'{prefix}-delivery-{suffix}/delivery.json', f'{prefix}-delivery-{suffix}/company-release.json', f'{prefix}-catalog-{suffix}/catalog.json']:
@@ -202,7 +209,7 @@ if __name__ == '__main__':
     parser.add_argument('archive', type=Path)
     parser.add_argument('--root', type=Path, default=Path.cwd())
     parser.add_argument('--destination', type=Path)
-    parser.add_argument('--profile', choices=['two-cohort', 'three-cohort', 'three-cohort-v3', 'fourth-cohort-v5', 'fourth-cohort-v6', 'fourth-cohort-v9', 'fifth-cohort-v7', 'fifth-cohort-v8', 'five-cohort-v9', 'five-cohort-v10'], default='two-cohort')
+    parser.add_argument('--profile', choices=['two-cohort', 'three-cohort', 'three-cohort-v3', 'fourth-cohort-v5', 'fourth-cohort-v6', 'fourth-cohort-v9', 'fifth-cohort-v7', 'fifth-cohort-v8', 'five-cohort-v9', 'five-cohort-v10', 'five-cohort-v11'], default='two-cohort')
     args = parser.parse_args()
     if args.mode == 'restore' and args.destination is None:
         parser.error('restore requires --destination (must not exist)')
