@@ -1,0 +1,2418 @@
+{
+  "schema": "canli.company-concept-coverage-summary.v1",
+  "publication_approved": false,
+  "local_full_report": "artifacts/seo/corpus-local/company-concept-coverage-inventory-20260920.json",
+  "full_report_sha256": "ea962be62f80f2237cafb216950286b0290da1c9fe5fd2c4fbdefb0fae375d28",
+  "full_report_bytes": 17460544,
+  "source_companies": 2651,
+  "unused_tags_seen": 9687,
+  "tags_with_structural_history": 8267,
+  "company_concept_pairs_with_structural_history": 754911,
+  "company_concept_pairs_with_recent_history": 430724,
+  "tags_with_recent_history_in_at_least_1000_companies": 94,
+  "top_30_by_recent_coverage": [
+    {
+      "tag": "LiabilitiesAndStockholdersEquity",
+      "labels": [
+        "Liabilities and Equity"
+      ],
+      "source_companies": 2651,
+      "companies_with_structural_history": 2618,
+      "current_history_companies": 2550,
+      "period_kind_companies": {
+        "instant": 2618,
+        "duration": 0
+      },
+      "unit_companies": {
+        "USD": 2618
+      },
+      "selector_error_companies": 0,
+      "examples": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "latest_reporting_end": "2026-05-31",
+          "groups": [
+            {
+              "kind": "instant",
+              "unit": "USD",
+              "reporting_ends": 17
+            }
+          ]
+        },
+        {
+          "cik": "0000001800",
+          "source_sha256": "5d751f73769f5c0a1f9bee0de16cb39d8961cf3f1ebb5558d555bb2678afb4ff",
+          "latest_reporting_end": "2025-12-31",
+          "groups": [
+            {
+              "kind": "instant",
+              "unit": "USD",
+              "reporting_ends": 19
+            }
+          ]
+        },
+        {
+          "cik": "0000002098",
+          "source_sha256": "06951158c151bcf8f37297593ceee4916d4d357dcfc6e8b24f66d74ba2a6b0e3",
+          "latest_reporting_end": "2025-12-31",
+          "groups": [
+            {
+              "kind": "instant",
+              "unit": "USD",
+              "reporting_ends": 16
+            }
+          ]
+        },
+        {
+          "cik": "0000002186",
+          "source_sha256": "985de7a83c63a6da305e780264a3f421492278fb110eac00a11e058ae262b1a4",
+          "latest_reporting_end": "2025-12-31",
+          "groups": [
+            {
+              "kind": "instant",
+              "unit": "USD",
+              "reporting_ends": 16
+            }
+          ]
+        },
+        {
+          "cik": "0000002488",
+          "source_sha256": "21a29c75076d90fced568785d855fc427a15c7458bc0bb153a9dedd88ad3349e",
+          "latest_reporting_end": "2025-12-27",
+          "groups": [
+            {
+              "kind": "instant",
+              "unit": "USD",
+              "reporting_ends": 17
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "tag": "OperatingLeaseRightOfUseAsset",
+      "labels": [
+        "Operating Lease, Right-of-Use Asset"
+      ],
+      "source_companies": 2364,
+      "companies_with_structural_history": 2237,
+      "current_history_companies": 2150,
+      "period_kind_companies": {
+        "instant": 2237,
+        "duration": 0
+      },
+      "unit_companies": {
+        "USD": 2237
+      },
+      "selector_error_companies": 0,
+      "examples": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "latest_reporting_end": "2026-05-31",
+          "groups": [
+            {
+              "kind": "instant",
+              "unit": "USD",
+              "reporting_ends": 8
+            }
+          ]
+        },
+        {
+          "cik": "0000001800",
+          "source_sha256": "5d751f73769f5c0a1f9bee0de16cb39d8961cf3f1ebb5558d555bb2678afb4ff",
+          "latest_reporting_end": "2025-12-31",
+          "groups": [
+            {
+              "kind": "instant",
+              "unit": "USD",
+              "reporting_ends": 7
+            }
+          ]
+        },
+        {
+          "cik": "0000002098",
+          "source_sha256": "06951158c151bcf8f37297593ceee4916d4d357dcfc6e8b24f66d74ba2a6b0e3",
+          "latest_reporting_end": "2025-12-31",
+          "groups": [
+            {
+              "kind": "instant",
+              "unit": "USD",
+              "reporting_ends": 8
+            }
+          ]
+        },
+        {
+          "cik": "0000002186",
+          "source_sha256": "985de7a83c63a6da305e780264a3f421492278fb110eac00a11e058ae262b1a4",
+          "latest_reporting_end": "2025-12-31",
+          "groups": [
+            {
+              "kind": "instant",
+              "unit": "USD",
+              "reporting_ends": 8
+            }
+          ]
+        },
+        {
+          "cik": "0000002488",
+          "source_sha256": "21a29c75076d90fced568785d855fc427a15c7458bc0bb153a9dedd88ad3349e",
+          "latest_reporting_end": "2024-12-28",
+          "groups": [
+            {
+              "kind": "instant",
+              "unit": "USD",
+              "reporting_ends": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "tag": "CommonStockSharesIssued",
+      "labels": [
+        "Common Stock, Shares, Issued"
+      ],
+      "source_companies": 2458,
+      "companies_with_structural_history": 2276,
+      "current_history_companies": 2130,
+      "period_kind_companies": {
+        "instant": 2276,
+        "duration": 0
+      },
+      "unit_companies": {
+        "shares": 2276
+      },
+      "selector_error_companies": 0,
+      "examples": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "latest_reporting_end": "2026-05-31",
+          "groups": [
+            {
+              "kind": "instant",
+              "unit": "shares",
+              "reporting_ends": 17
+            }
+          ]
+        },
+        {
+          "cik": "0000001800",
+          "source_sha256": "5d751f73769f5c0a1f9bee0de16cb39d8961cf3f1ebb5558d555bb2678afb4ff",
+          "latest_reporting_end": "2025-12-31",
+          "groups": [
+            {
+              "kind": "instant",
+              "unit": "shares",
+              "reporting_ends": 19
+            }
+          ]
+        },
+        {
+          "cik": "0000002098",
+          "source_sha256": "06951158c151bcf8f37297593ceee4916d4d357dcfc6e8b24f66d74ba2a6b0e3",
+          "latest_reporting_end": "2025-12-31",
+          "groups": [
+            {
+              "kind": "instant",
+              "unit": "shares",
+              "reporting_ends": 16
+            }
+          ]
+        },
+        {
+          "cik": "0000002186",
+          "source_sha256": "985de7a83c63a6da305e780264a3f421492278fb110eac00a11e058ae262b1a4",
+          "latest_reporting_end": "2025-12-31",
+          "groups": [
+            {
+              "kind": "instant",
+              "unit": "shares",
+              "reporting_ends": 22
+            }
+          ]
+        },
+        {
+          "cik": "0000002488",
+          "source_sha256": "21a29c75076d90fced568785d855fc427a15c7458bc0bb153a9dedd88ad3349e",
+          "latest_reporting_end": "2025-12-27",
+          "groups": [
+            {
+              "kind": "instant",
+              "unit": "shares",
+              "reporting_ends": 15
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "tag": "IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+      "labels": [
+        "Income (Loss) from Continuing Operations before Income Taxes, Noncontrolling Interest"
+      ],
+      "source_companies": 2383,
+      "companies_with_structural_history": 2257,
+      "current_history_companies": 2128,
+      "period_kind_companies": {
+        "instant": 0,
+        "duration": 2257
+      },
+      "unit_companies": {
+        "USD": 2257
+      },
+      "selector_error_companies": 0,
+      "examples": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "latest_reporting_end": "2026-05-31",
+          "groups": [
+            {
+              "kind": "duration",
+              "unit": "USD",
+              "reporting_ends": 4
+            }
+          ]
+        },
+        {
+          "cik": "0000001800",
+          "source_sha256": "5d751f73769f5c0a1f9bee0de16cb39d8961cf3f1ebb5558d555bb2678afb4ff",
+          "latest_reporting_end": "2025-12-31",
+          "groups": [
+            {
+              "kind": "duration",
+              "unit": "USD",
+              "reporting_ends": 17
+            }
+          ]
+        },
+        {
+          "cik": "0000002098",
+          "source_sha256": "06951158c151bcf8f37297593ceee4916d4d357dcfc6e8b24f66d74ba2a6b0e3",
+          "latest_reporting_end": "2025-12-31",
+          "groups": [
+            {
+              "kind": "duration",
+              "unit": "USD",
+              "reporting_ends": 16
+            }
+          ]
+        },
+        {
+          "cik": "0000002186",
+          "source_sha256": "985de7a83c63a6da305e780264a3f421492278fb110eac00a11e058ae262b1a4",
+          "latest_reporting_end": "2025-12-31",
+          "groups": [
+            {
+              "kind": "duration",
+              "unit": "USD",
+              "reporting_ends": 5
+            }
+          ]
+        },
+        {
+          "cik": "0000002488",
+          "source_sha256": "21a29c75076d90fced568785d855fc427a15c7458bc0bb153a9dedd88ad3349e",
+          "latest_reporting_end": "2025-12-27",
+          "groups": [
+            {
+              "kind": "duration",
+              "unit": "USD",
+              "reporting_ends": 17
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "tag": "OperatingLeaseLiability",
+      "labels": [
+        "Operating Lease, Liability"
+      ],
+      "source_companies": 2351,
+      "companies_with_structural_history": 2159,
+      "current_history_companies": 2073,
+      "period_kind_companies": {
+        "instant": 2159,
+        "duration": 0
+      },
+      "unit_companies": {
+        "USD": 2159
+      },
+      "selector_error_companies": 0,
+      "examples": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "latest_reporting_end": "2026-05-31",
+          "groups": [
+            {
+              "kind": "instant",
+              "unit": "USD",
+              "reporting_ends": 7
+            }
+          ]
+        },
+        {
+          "cik": "0000001800",
+          "source_sha256": "5d751f73769f5c0a1f9bee0de16cb39d8961cf3f1ebb5558d555bb2678afb4ff",
+          "latest_reporting_end": "2025-12-31",
+          "groups": [
+            {
+              "kind": "instant",
+              "unit": "USD",
+              "reporting_ends": 7
+            }
+          ]
+        },
+        {
+          "cik": "0000002186",
+          "source_sha256": "985de7a83c63a6da305e780264a3f421492278fb110eac00a11e058ae262b1a4",
+          "latest_reporting_end": "2025-12-31",
+          "groups": [
+            {
+              "kind": "instant",
+              "unit": "USD",
+              "reporting_ends": 4
+            }
+          ]
+        },
+        {
+          "cik": "0000002488",
+          "source_sha256": "21a29c75076d90fced568785d855fc427a15c7458bc0bb153a9dedd88ad3349e",
+          "latest_reporting_end": "2025-12-27",
+          "groups": [
+            {
+              "kind": "instant",
+              "unit": "USD",
+              "reporting_ends": 8
+            }
+          ]
+        },
+        {
+          "cik": "0000002969",
+          "source_sha256": "b950a51ccd6520b9874e8452b9be9d2a43736bf24b7ea2413c44d34cf72a623a",
+          "latest_reporting_end": "2025-09-30",
+          "groups": [
+            {
+              "kind": "instant",
+              "unit": "USD",
+              "reporting_ends": 6
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "tag": "CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents",
+      "labels": [
+        "Cash, Cash Equivalents, Restricted Cash and Restricted Cash Equivalents"
+      ],
+      "source_companies": 2301,
+      "companies_with_structural_history": 2197,
+      "current_history_companies": 2052,
+      "period_kind_companies": {
+        "instant": 2197,
+        "duration": 0
+      },
+      "unit_companies": {
+        "USD": 2197
+      },
+      "selector_error_companies": 0,
+      "examples": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "latest_reporting_end": "2026-05-31",
+          "groups": [
+            {
+              "kind": "instant",
+              "unit": "USD",
+              "reporting_ends": 7
+            }
+          ]
+        },
+        {
+          "cik": "0000001800",
+          "source_sha256": "5d751f73769f5c0a1f9bee0de16cb39d8961cf3f1ebb5558d555bb2678afb4ff",
+          "latest_reporting_end": "2025-12-31",
+          "groups": [
+            {
+              "kind": "instant",
+              "unit": "USD",
+              "reporting_ends": 11
+            }
+          ]
+        },
+        {
+          "cik": "0000002098",
+          "source_sha256": "06951158c151bcf8f37297593ceee4916d4d357dcfc6e8b24f66d74ba2a6b0e3",
+          "latest_reporting_end": "2025-12-31",
+          "groups": [
+            {
+              "kind": "instant",
+              "unit": "USD",
+              "reporting_ends": 6
+            }
+          ]
+        },
+        {
+          "cik": "0000002186",
+          "source_sha256": "985de7a83c63a6da305e780264a3f421492278fb110eac00a11e058ae262b1a4",
+          "latest_reporting_end": "2023-12-31",
+          "groups": [
+            {
+              "kind": "instant",
+              "unit": "USD",
+              "reporting_ends": 4
+            }
+          ]
+        },
+        {
+          "cik": "0000002488",
+          "source_sha256": "21a29c75076d90fced568785d855fc427a15c7458bc0bb153a9dedd88ad3349e",
+          "latest_reporting_end": "2025-12-27",
+          "groups": [
+            {
+              "kind": "instant",
+              "unit": "USD",
+              "reporting_ends": 11
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "tag": "LesseeOperatingLeaseLiabilityPaymentsDue",
+      "labels": [
+        "Lessee, Operating Lease, Liability, to be Paid"
+      ],
+      "source_companies": 2296,
+      "companies_with_structural_history": 2101,
+      "current_history_companies": 2009,
+      "period_kind_companies": {
+        "instant": 2101,
+        "duration": 0
+      },
+      "unit_companies": {
+        "USD": 2101
+      },
+      "selector_error_companies": 0,
+      "examples": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "latest_reporting_end": "2026-05-31",
+          "groups": [
+            {
+              "kind": "instant",
+              "unit": "USD",
+              "reporting_ends": 7
+            }
+          ]
+        },
+        {
+          "cik": "0000001800",
+          "source_sha256": "5d751f73769f5c0a1f9bee0de16cb39d8961cf3f1ebb5558d555bb2678afb4ff",
+          "latest_reporting_end": "2025-12-31",
+          "groups": [
+            {
+              "kind": "instant",
+              "unit": "USD",
+              "reporting_ends": 7
+            }
+          ]
+        },
+        {
+          "cik": "0000002098",
+          "source_sha256": "06951158c151bcf8f37297593ceee4916d4d357dcfc6e8b24f66d74ba2a6b0e3",
+          "latest_reporting_end": "2025-12-31",
+          "groups": [
+            {
+              "kind": "instant",
+              "unit": "USD",
+              "reporting_ends": 7
+            }
+          ]
+        },
+        {
+          "cik": "0000002186",
+          "source_sha256": "985de7a83c63a6da305e780264a3f421492278fb110eac00a11e058ae262b1a4",
+          "latest_reporting_end": "2025-12-31",
+          "groups": [
+            {
+              "kind": "instant",
+              "unit": "USD",
+              "reporting_ends": 7
+            }
+          ]
+        },
+        {
+          "cik": "0000002488",
+          "source_sha256": "21a29c75076d90fced568785d855fc427a15c7458bc0bb153a9dedd88ad3349e",
+          "latest_reporting_end": "2025-12-27",
+          "groups": [
+            {
+              "kind": "instant",
+              "unit": "USD",
+              "reporting_ends": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "tag": "DeferredTaxAssetsValuationAllowance",
+      "labels": [
+        "Deferred Tax Assets, Valuation Allowance"
+      ],
+      "source_companies": 2343,
+      "companies_with_structural_history": 2175,
+      "current_history_companies": 2003,
+      "period_kind_companies": {
+        "instant": 2175,
+        "duration": 0
+      },
+      "unit_companies": {
+        "USD": 2175
+      },
+      "selector_error_companies": 0,
+      "examples": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "latest_reporting_end": "2026-05-31",
+          "groups": [
+            {
+              "kind": "instant",
+              "unit": "USD",
+              "reporting_ends": 8
+            }
+          ]
+        },
+        {
+          "cik": "0000001800",
+          "source_sha256": "5d751f73769f5c0a1f9bee0de16cb39d8961cf3f1ebb5558d555bb2678afb4ff",
+          "latest_reporting_end": "2025-12-31",
+          "groups": [
+            {
+              "kind": "instant",
+              "unit": "USD",
+              "reporting_ends": 11
+            }
+          ]
+        },
+        {
+          "cik": "0000002098",
+          "source_sha256": "06951158c151bcf8f37297593ceee4916d4d357dcfc6e8b24f66d74ba2a6b0e3",
+          "latest_reporting_end": "2025-12-31",
+          "groups": [
+            {
+              "kind": "instant",
+              "unit": "USD",
+              "reporting_ends": 9
+            }
+          ]
+        },
+        {
+          "cik": "0000002186",
+          "source_sha256": "985de7a83c63a6da305e780264a3f421492278fb110eac00a11e058ae262b1a4",
+          "latest_reporting_end": "2025-12-31",
+          "groups": [
+            {
+              "kind": "instant",
+              "unit": "USD",
+              "reporting_ends": 11
+            }
+          ]
+        },
+        {
+          "cik": "0000002488",
+          "source_sha256": "21a29c75076d90fced568785d855fc427a15c7458bc0bb153a9dedd88ad3349e",
+          "latest_reporting_end": "2025-12-27",
+          "groups": [
+            {
+              "kind": "instant",
+              "unit": "USD",
+              "reporting_ends": 15
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "tag": "CommonStockValue",
+      "labels": [
+        "Common Stock, Value, Issued"
+      ],
+      "source_companies": 2438,
+      "companies_with_structural_history": 2170,
+      "current_history_companies": 1986,
+      "period_kind_companies": {
+        "instant": 2170,
+        "duration": 0
+      },
+      "unit_companies": {
+        "USD": 2170
+      },
+      "selector_error_companies": 0,
+      "examples": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "latest_reporting_end": "2026-05-31",
+          "groups": [
+            {
+              "kind": "instant",
+              "unit": "USD",
+              "reporting_ends": 17
+            }
+          ]
+        },
+        {
+          "cik": "0000001800",
+          "source_sha256": "5d751f73769f5c0a1f9bee0de16cb39d8961cf3f1ebb5558d555bb2678afb4ff",
+          "latest_reporting_end": "2025-12-31",
+          "groups": [
+            {
+              "kind": "instant",
+              "unit": "USD",
+              "reporting_ends": 18
+            }
+          ]
+        },
+        {
+          "cik": "0000002098",
+          "source_sha256": "06951158c151bcf8f37297593ceee4916d4d357dcfc6e8b24f66d74ba2a6b0e3",
+          "latest_reporting_end": "2025-12-31",
+          "groups": [
+            {
+              "kind": "instant",
+              "unit": "USD",
+              "reporting_ends": 16
+            }
+          ]
+        },
+        {
+          "cik": "0000002186",
+          "source_sha256": "985de7a83c63a6da305e780264a3f421492278fb110eac00a11e058ae262b1a4",
+          "latest_reporting_end": "2025-12-31",
+          "groups": [
+            {
+              "kind": "instant",
+              "unit": "USD",
+              "reporting_ends": 16
+            }
+          ]
+        },
+        {
+          "cik": "0000002488",
+          "source_sha256": "21a29c75076d90fced568785d855fc427a15c7458bc0bb153a9dedd88ad3349e",
+          "latest_reporting_end": "2025-12-27",
+          "groups": [
+            {
+              "kind": "instant",
+              "unit": "USD",
+              "reporting_ends": 17
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "tag": "CommonStockSharesOutstanding",
+      "labels": [
+        "Common Stock, Shares, Outstanding"
+      ],
+      "source_companies": 2266,
+      "companies_with_structural_history": 2146,
+      "current_history_companies": 1982,
+      "period_kind_companies": {
+        "instant": 2146,
+        "duration": 0
+      },
+      "unit_companies": {
+        "shares": 2146
+      },
+      "selector_error_companies": 0,
+      "examples": [
+        {
+          "cik": "0000002098",
+          "source_sha256": "06951158c151bcf8f37297593ceee4916d4d357dcfc6e8b24f66d74ba2a6b0e3",
+          "latest_reporting_end": "2025-12-31",
+          "groups": [
+            {
+              "kind": "instant",
+              "unit": "shares",
+              "reporting_ends": 5
+            }
+          ]
+        },
+        {
+          "cik": "0000002186",
+          "source_sha256": "985de7a83c63a6da305e780264a3f421492278fb110eac00a11e058ae262b1a4",
+          "latest_reporting_end": "2025-12-31",
+          "groups": [
+            {
+              "kind": "instant",
+              "unit": "shares",
+              "reporting_ends": 16
+            }
+          ]
+        },
+        {
+          "cik": "0000002488",
+          "source_sha256": "21a29c75076d90fced568785d855fc427a15c7458bc0bb153a9dedd88ad3349e",
+          "latest_reporting_end": "2025-12-27",
+          "groups": [
+            {
+              "kind": "instant",
+              "unit": "shares",
+              "reporting_ends": 15
+            }
+          ]
+        },
+        {
+          "cik": "0000002969",
+          "source_sha256": "b950a51ccd6520b9874e8452b9be9d2a43736bf24b7ea2413c44d34cf72a623a",
+          "latest_reporting_end": "2025-09-30",
+          "groups": [
+            {
+              "kind": "instant",
+              "unit": "shares",
+              "reporting_ends": 18
+            }
+          ]
+        },
+        {
+          "cik": "0000003197",
+          "source_sha256": "824632b2cee37c7e01d018d69301c7d3858a6c04b3f6d247269dfd16183adbd6",
+          "latest_reporting_end": "2025-12-31",
+          "groups": [
+            {
+              "kind": "instant",
+              "unit": "shares",
+              "reporting_ends": 11
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "tag": "InterestPaidNet",
+      "labels": [
+        "Interest Paid, Excluding Capitalized Interest, Operating Activities"
+      ],
+      "source_companies": 2317,
+      "companies_with_structural_history": 2151,
+      "current_history_companies": 1969,
+      "period_kind_companies": {
+        "instant": 0,
+        "duration": 2151
+      },
+      "unit_companies": {
+        "USD": 2151
+      },
+      "selector_error_companies": 0,
+      "examples": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "latest_reporting_end": "2026-05-31",
+          "groups": [
+            {
+              "kind": "duration",
+              "unit": "USD",
+              "reporting_ends": 11
+            }
+          ]
+        },
+        {
+          "cik": "0000001800",
+          "source_sha256": "5d751f73769f5c0a1f9bee0de16cb39d8961cf3f1ebb5558d555bb2678afb4ff",
+          "latest_reporting_end": "2025-12-31",
+          "groups": [
+            {
+              "kind": "duration",
+              "unit": "USD",
+              "reporting_ends": 11
+            }
+          ]
+        },
+        {
+          "cik": "0000002098",
+          "source_sha256": "06951158c151bcf8f37297593ceee4916d4d357dcfc6e8b24f66d74ba2a6b0e3",
+          "latest_reporting_end": "2025-12-31",
+          "groups": [
+            {
+              "kind": "duration",
+              "unit": "USD",
+              "reporting_ends": 10
+            }
+          ]
+        },
+        {
+          "cik": "0000002186",
+          "source_sha256": "985de7a83c63a6da305e780264a3f421492278fb110eac00a11e058ae262b1a4",
+          "latest_reporting_end": "2025-12-31",
+          "groups": [
+            {
+              "kind": "duration",
+              "unit": "USD",
+              "reporting_ends": 8
+            }
+          ]
+        },
+        {
+          "cik": "0000002488",
+          "source_sha256": "21a29c75076d90fced568785d855fc427a15c7458bc0bb153a9dedd88ad3349e",
+          "latest_reporting_end": "2025-12-27",
+          "groups": [
+            {
+              "kind": "duration",
+              "unit": "USD",
+              "reporting_ends": 18
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "tag": "LesseeOperatingLeaseLiabilityUndiscountedExcessAmount",
+      "labels": [
+        "Lessee, Operating Lease, Liability, Undiscounted Excess Amount"
+      ],
+      "source_companies": 2222,
+      "companies_with_structural_history": 2039,
+      "current_history_companies": 1964,
+      "period_kind_companies": {
+        "instant": 2039,
+        "duration": 0
+      },
+      "unit_companies": {
+        "USD": 2039
+      },
+      "selector_error_companies": 0,
+      "examples": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "latest_reporting_end": "2026-05-31",
+          "groups": [
+            {
+              "kind": "instant",
+              "unit": "USD",
+              "reporting_ends": 7
+            }
+          ]
+        },
+        {
+          "cik": "0000001800",
+          "source_sha256": "5d751f73769f5c0a1f9bee0de16cb39d8961cf3f1ebb5558d555bb2678afb4ff",
+          "latest_reporting_end": "2025-12-31",
+          "groups": [
+            {
+              "kind": "instant",
+              "unit": "USD",
+              "reporting_ends": 7
+            }
+          ]
+        },
+        {
+          "cik": "0000002098",
+          "source_sha256": "06951158c151bcf8f37297593ceee4916d4d357dcfc6e8b24f66d74ba2a6b0e3",
+          "latest_reporting_end": "2025-12-31",
+          "groups": [
+            {
+              "kind": "instant",
+              "unit": "USD",
+              "reporting_ends": 7
+            }
+          ]
+        },
+        {
+          "cik": "0000002488",
+          "source_sha256": "21a29c75076d90fced568785d855fc427a15c7458bc0bb153a9dedd88ad3349e",
+          "latest_reporting_end": "2025-12-27",
+          "groups": [
+            {
+              "kind": "instant",
+              "unit": "USD",
+              "reporting_ends": 7
+            }
+          ]
+        },
+        {
+          "cik": "0000002969",
+          "source_sha256": "b950a51ccd6520b9874e8452b9be9d2a43736bf24b7ea2413c44d34cf72a623a",
+          "latest_reporting_end": "2025-09-30",
+          "groups": [
+            {
+              "kind": "instant",
+              "unit": "USD",
+              "reporting_ends": 6
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "tag": "LesseeOperatingLeaseLiabilityPaymentsDueYearTwo",
+      "labels": [
+        "Lessee, Operating Lease, Liability, to be Paid, Year Two"
+      ],
+      "source_companies": 2271,
+      "companies_with_structural_history": 2051,
+      "current_history_companies": 1960,
+      "period_kind_companies": {
+        "instant": 2051,
+        "duration": 0
+      },
+      "unit_companies": {
+        "USD": 2051
+      },
+      "selector_error_companies": 0,
+      "examples": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "latest_reporting_end": "2026-05-31",
+          "groups": [
+            {
+              "kind": "instant",
+              "unit": "USD",
+              "reporting_ends": 7
+            }
+          ]
+        },
+        {
+          "cik": "0000001800",
+          "source_sha256": "5d751f73769f5c0a1f9bee0de16cb39d8961cf3f1ebb5558d555bb2678afb4ff",
+          "latest_reporting_end": "2025-12-31",
+          "groups": [
+            {
+              "kind": "instant",
+              "unit": "USD",
+              "reporting_ends": 7
+            }
+          ]
+        },
+        {
+          "cik": "0000002098",
+          "source_sha256": "06951158c151bcf8f37297593ceee4916d4d357dcfc6e8b24f66d74ba2a6b0e3",
+          "latest_reporting_end": "2025-12-31",
+          "groups": [
+            {
+              "kind": "instant",
+              "unit": "USD",
+              "reporting_ends": 7
+            }
+          ]
+        },
+        {
+          "cik": "0000002186",
+          "source_sha256": "985de7a83c63a6da305e780264a3f421492278fb110eac00a11e058ae262b1a4",
+          "latest_reporting_end": "2025-12-31",
+          "groups": [
+            {
+              "kind": "instant",
+              "unit": "USD",
+              "reporting_ends": 5
+            }
+          ]
+        },
+        {
+          "cik": "0000002488",
+          "source_sha256": "21a29c75076d90fced568785d855fc427a15c7458bc0bb153a9dedd88ad3349e",
+          "latest_reporting_end": "2025-12-27",
+          "groups": [
+            {
+              "kind": "instant",
+              "unit": "USD",
+              "reporting_ends": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "tag": "LesseeOperatingLeaseLiabilityPaymentsDueNextTwelveMonths",
+      "labels": [
+        "Lessee, Operating Lease, Liability, to be Paid, Year One"
+      ],
+      "source_companies": 2246,
+      "companies_with_structural_history": 2032,
+      "current_history_companies": 1955,
+      "period_kind_companies": {
+        "instant": 2032,
+        "duration": 0
+      },
+      "unit_companies": {
+        "USD": 2032
+      },
+      "selector_error_companies": 0,
+      "examples": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "latest_reporting_end": "2026-05-31",
+          "groups": [
+            {
+              "kind": "instant",
+              "unit": "USD",
+              "reporting_ends": 7
+            }
+          ]
+        },
+        {
+          "cik": "0000001800",
+          "source_sha256": "5d751f73769f5c0a1f9bee0de16cb39d8961cf3f1ebb5558d555bb2678afb4ff",
+          "latest_reporting_end": "2025-12-31",
+          "groups": [
+            {
+              "kind": "instant",
+              "unit": "USD",
+              "reporting_ends": 6
+            }
+          ]
+        },
+        {
+          "cik": "0000002098",
+          "source_sha256": "06951158c151bcf8f37297593ceee4916d4d357dcfc6e8b24f66d74ba2a6b0e3",
+          "latest_reporting_end": "2025-12-31",
+          "groups": [
+            {
+              "kind": "instant",
+              "unit": "USD",
+              "reporting_ends": 7
+            }
+          ]
+        },
+        {
+          "cik": "0000002186",
+          "source_sha256": "985de7a83c63a6da305e780264a3f421492278fb110eac00a11e058ae262b1a4",
+          "latest_reporting_end": "2025-12-31",
+          "groups": [
+            {
+              "kind": "instant",
+              "unit": "USD",
+              "reporting_ends": 4
+            }
+          ]
+        },
+        {
+          "cik": "0000002488",
+          "source_sha256": "21a29c75076d90fced568785d855fc427a15c7458bc0bb153a9dedd88ad3349e",
+          "latest_reporting_end": "2025-12-27",
+          "groups": [
+            {
+              "kind": "instant",
+              "unit": "USD",
+              "reporting_ends": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "tag": "DeferredTaxAssetsGross",
+      "labels": [
+        "Deferred Tax Assets, Gross"
+      ],
+      "source_companies": 2204,
+      "companies_with_structural_history": 2083,
+      "current_history_companies": 1933,
+      "period_kind_companies": {
+        "instant": 2083,
+        "duration": 0
+      },
+      "unit_companies": {
+        "USD": 2083
+      },
+      "selector_error_companies": 0,
+      "examples": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "latest_reporting_end": "2026-05-31",
+          "groups": [
+            {
+              "kind": "instant",
+              "unit": "USD",
+              "reporting_ends": 16
+            }
+          ]
+        },
+        {
+          "cik": "0000001800",
+          "source_sha256": "5d751f73769f5c0a1f9bee0de16cb39d8961cf3f1ebb5558d555bb2678afb4ff",
+          "latest_reporting_end": "2025-12-31",
+          "groups": [
+            {
+              "kind": "instant",
+              "unit": "USD",
+              "reporting_ends": 11
+            }
+          ]
+        },
+        {
+          "cik": "0000002098",
+          "source_sha256": "06951158c151bcf8f37297593ceee4916d4d357dcfc6e8b24f66d74ba2a6b0e3",
+          "latest_reporting_end": "2025-12-31",
+          "groups": [
+            {
+              "kind": "instant",
+              "unit": "USD",
+              "reporting_ends": 15
+            }
+          ]
+        },
+        {
+          "cik": "0000002186",
+          "source_sha256": "985de7a83c63a6da305e780264a3f421492278fb110eac00a11e058ae262b1a4",
+          "latest_reporting_end": "2025-12-31",
+          "groups": [
+            {
+              "kind": "instant",
+              "unit": "USD",
+              "reporting_ends": 3
+            }
+          ]
+        },
+        {
+          "cik": "0000002488",
+          "source_sha256": "21a29c75076d90fced568785d855fc427a15c7458bc0bb153a9dedd88ad3349e",
+          "latest_reporting_end": "2025-12-27",
+          "groups": [
+            {
+              "kind": "instant",
+              "unit": "USD",
+              "reporting_ends": 15
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "tag": "EffectiveIncomeTaxRateReconciliationAtFederalStatutoryIncomeTaxRate",
+      "labels": [
+        "Effective Income Tax Rate Reconciliation, at Federal Statutory Income Tax Rate, Percent"
+      ],
+      "source_companies": 2477,
+      "companies_with_structural_history": 2036,
+      "current_history_companies": 1917,
+      "period_kind_companies": {
+        "instant": 4,
+        "duration": 2036
+      },
+      "unit_companies": {
+        "pure": 2036
+      },
+      "selector_error_companies": 0,
+      "examples": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "latest_reporting_end": "2026-05-31",
+          "groups": [
+            {
+              "kind": "duration",
+              "unit": "pure",
+              "reporting_ends": 17
+            }
+          ]
+        },
+        {
+          "cik": "0000001800",
+          "source_sha256": "5d751f73769f5c0a1f9bee0de16cb39d8961cf3f1ebb5558d555bb2678afb4ff",
+          "latest_reporting_end": "2025-12-31",
+          "groups": [
+            {
+              "kind": "duration",
+              "unit": "pure",
+              "reporting_ends": 18
+            }
+          ]
+        },
+        {
+          "cik": "0000002186",
+          "source_sha256": "985de7a83c63a6da305e780264a3f421492278fb110eac00a11e058ae262b1a4",
+          "latest_reporting_end": "2025-12-31",
+          "groups": [
+            {
+              "kind": "duration",
+              "unit": "pure",
+              "reporting_ends": 16
+            }
+          ]
+        },
+        {
+          "cik": "0000002488",
+          "source_sha256": "21a29c75076d90fced568785d855fc427a15c7458bc0bb153a9dedd88ad3349e",
+          "latest_reporting_end": "2025-12-27",
+          "groups": [
+            {
+              "kind": "duration",
+              "unit": "pure",
+              "reporting_ends": 6
+            }
+          ]
+        },
+        {
+          "cik": "0000002969",
+          "source_sha256": "b950a51ccd6520b9874e8452b9be9d2a43736bf24b7ea2413c44d34cf72a623a",
+          "latest_reporting_end": "2025-09-30",
+          "groups": [
+            {
+              "kind": "duration",
+              "unit": "pure",
+              "reporting_ends": 18
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "tag": "LesseeOperatingLeaseLiabilityPaymentsDueYearThree",
+      "labels": [
+        "Lessee, Operating Lease, Liability, to be Paid, Year Three"
+      ],
+      "source_companies": 2247,
+      "companies_with_structural_history": 2003,
+      "current_history_companies": 1904,
+      "period_kind_companies": {
+        "instant": 2003,
+        "duration": 0
+      },
+      "unit_companies": {
+        "USD": 2003
+      },
+      "selector_error_companies": 0,
+      "examples": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "latest_reporting_end": "2026-05-31",
+          "groups": [
+            {
+              "kind": "instant",
+              "unit": "USD",
+              "reporting_ends": 7
+            }
+          ]
+        },
+        {
+          "cik": "0000001800",
+          "source_sha256": "5d751f73769f5c0a1f9bee0de16cb39d8961cf3f1ebb5558d555bb2678afb4ff",
+          "latest_reporting_end": "2025-12-31",
+          "groups": [
+            {
+              "kind": "instant",
+              "unit": "USD",
+              "reporting_ends": 7
+            }
+          ]
+        },
+        {
+          "cik": "0000002098",
+          "source_sha256": "06951158c151bcf8f37297593ceee4916d4d357dcfc6e8b24f66d74ba2a6b0e3",
+          "latest_reporting_end": "2025-12-31",
+          "groups": [
+            {
+              "kind": "instant",
+              "unit": "USD",
+              "reporting_ends": 7
+            }
+          ]
+        },
+        {
+          "cik": "0000002186",
+          "source_sha256": "985de7a83c63a6da305e780264a3f421492278fb110eac00a11e058ae262b1a4",
+          "latest_reporting_end": "2025-12-31",
+          "groups": [
+            {
+              "kind": "instant",
+              "unit": "USD",
+              "reporting_ends": 5
+            }
+          ]
+        },
+        {
+          "cik": "0000002488",
+          "source_sha256": "21a29c75076d90fced568785d855fc427a15c7458bc0bb153a9dedd88ad3349e",
+          "latest_reporting_end": "2025-12-27",
+          "groups": [
+            {
+              "kind": "instant",
+              "unit": "USD",
+              "reporting_ends": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "tag": "DeferredIncomeTaxExpenseBenefit",
+      "labels": [
+        "Deferred Income Tax Expense (Benefit)"
+      ],
+      "source_companies": 2230,
+      "companies_with_structural_history": 2071,
+      "current_history_companies": 1897,
+      "period_kind_companies": {
+        "instant": 0,
+        "duration": 2071
+      },
+      "unit_companies": {
+        "USD": 2071
+      },
+      "selector_error_companies": 0,
+      "examples": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "latest_reporting_end": "2026-05-31",
+          "groups": [
+            {
+              "kind": "duration",
+              "unit": "USD",
+              "reporting_ends": 18
+            }
+          ]
+        },
+        {
+          "cik": "0000001800",
+          "source_sha256": "5d751f73769f5c0a1f9bee0de16cb39d8961cf3f1ebb5558d555bb2678afb4ff",
+          "latest_reporting_end": "2025-12-31",
+          "groups": [
+            {
+              "kind": "duration",
+              "unit": "USD",
+              "reporting_ends": 18
+            }
+          ]
+        },
+        {
+          "cik": "0000002098",
+          "source_sha256": "06951158c151bcf8f37297593ceee4916d4d357dcfc6e8b24f66d74ba2a6b0e3",
+          "latest_reporting_end": "2025-12-31",
+          "groups": [
+            {
+              "kind": "duration",
+              "unit": "USD",
+              "reporting_ends": 15
+            }
+          ]
+        },
+        {
+          "cik": "0000002186",
+          "source_sha256": "985de7a83c63a6da305e780264a3f421492278fb110eac00a11e058ae262b1a4",
+          "latest_reporting_end": "2025-12-31",
+          "groups": [
+            {
+              "kind": "duration",
+              "unit": "USD",
+              "reporting_ends": 16
+            }
+          ]
+        },
+        {
+          "cik": "0000002488",
+          "source_sha256": "21a29c75076d90fced568785d855fc427a15c7458bc0bb153a9dedd88ad3349e",
+          "latest_reporting_end": "2025-12-27",
+          "groups": [
+            {
+              "kind": "duration",
+              "unit": "USD",
+              "reporting_ends": 18
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "tag": "AccumulatedOtherComprehensiveIncomeLossNetOfTax",
+      "labels": [
+        "Accumulated Other Comprehensive Income (Loss), Net of Tax"
+      ],
+      "source_companies": 2222,
+      "companies_with_structural_history": 2099,
+      "current_history_companies": 1873,
+      "period_kind_companies": {
+        "instant": 2099,
+        "duration": 0
+      },
+      "unit_companies": {
+        "USD": 2099
+      },
+      "selector_error_companies": 0,
+      "examples": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "latest_reporting_end": "2026-05-31",
+          "groups": [
+            {
+              "kind": "instant",
+              "unit": "USD",
+              "reporting_ends": 18
+            }
+          ]
+        },
+        {
+          "cik": "0000001800",
+          "source_sha256": "5d751f73769f5c0a1f9bee0de16cb39d8961cf3f1ebb5558d555bb2678afb4ff",
+          "latest_reporting_end": "2025-12-31",
+          "groups": [
+            {
+              "kind": "instant",
+              "unit": "USD",
+              "reporting_ends": 19
+            }
+          ]
+        },
+        {
+          "cik": "0000002098",
+          "source_sha256": "06951158c151bcf8f37297593ceee4916d4d357dcfc6e8b24f66d74ba2a6b0e3",
+          "latest_reporting_end": "2025-12-31",
+          "groups": [
+            {
+              "kind": "instant",
+              "unit": "USD",
+              "reporting_ends": 16
+            }
+          ]
+        },
+        {
+          "cik": "0000002186",
+          "source_sha256": "985de7a83c63a6da305e780264a3f421492278fb110eac00a11e058ae262b1a4",
+          "latest_reporting_end": "2018-12-31",
+          "groups": [
+            {
+              "kind": "instant",
+              "unit": "USD",
+              "reporting_ends": 5
+            }
+          ]
+        },
+        {
+          "cik": "0000002488",
+          "source_sha256": "21a29c75076d90fced568785d855fc427a15c7458bc0bb153a9dedd88ad3349e",
+          "latest_reporting_end": "2025-12-27",
+          "groups": [
+            {
+              "kind": "instant",
+              "unit": "USD",
+              "reporting_ends": 17
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "tag": "ComprehensiveIncomeNetOfTax",
+      "labels": [
+        "Comprehensive Income (Loss), Net of Tax, Attributable to Parent"
+      ],
+      "source_companies": 2266,
+      "companies_with_structural_history": 2162,
+      "current_history_companies": 1866,
+      "period_kind_companies": {
+        "instant": 0,
+        "duration": 2162
+      },
+      "unit_companies": {
+        "USD": 2162
+      },
+      "selector_error_companies": 0,
+      "examples": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "latest_reporting_end": "2026-05-31",
+          "groups": [
+            {
+              "kind": "duration",
+              "unit": "USD",
+              "reporting_ends": 16
+            }
+          ]
+        },
+        {
+          "cik": "0000001800",
+          "source_sha256": "5d751f73769f5c0a1f9bee0de16cb39d8961cf3f1ebb5558d555bb2678afb4ff",
+          "latest_reporting_end": "2025-12-31",
+          "groups": [
+            {
+              "kind": "duration",
+              "unit": "USD",
+              "reporting_ends": 16
+            }
+          ]
+        },
+        {
+          "cik": "0000002098",
+          "source_sha256": "06951158c151bcf8f37297593ceee4916d4d357dcfc6e8b24f66d74ba2a6b0e3",
+          "latest_reporting_end": "2025-12-31",
+          "groups": [
+            {
+              "kind": "duration",
+              "unit": "USD",
+              "reporting_ends": 15
+            }
+          ]
+        },
+        {
+          "cik": "0000002186",
+          "source_sha256": "985de7a83c63a6da305e780264a3f421492278fb110eac00a11e058ae262b1a4",
+          "latest_reporting_end": "2018-12-31",
+          "groups": [
+            {
+              "kind": "duration",
+              "unit": "USD",
+              "reporting_ends": 5
+            }
+          ]
+        },
+        {
+          "cik": "0000002488",
+          "source_sha256": "21a29c75076d90fced568785d855fc427a15c7458bc0bb153a9dedd88ad3349e",
+          "latest_reporting_end": "2025-12-27",
+          "groups": [
+            {
+              "kind": "duration",
+              "unit": "USD",
+              "reporting_ends": 18
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "tag": "OperatingLeaseWeightedAverageDiscountRatePercent",
+      "labels": [
+        "Operating Lease, Weighted Average Discount Rate, Percent"
+      ],
+      "source_companies": 2182,
+      "companies_with_structural_history": 1915,
+      "current_history_companies": 1865,
+      "period_kind_companies": {
+        "instant": 1915,
+        "duration": 0
+      },
+      "unit_companies": {
+        "pure": 1915
+      },
+      "selector_error_companies": 0,
+      "examples": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "latest_reporting_end": "2026-05-31",
+          "groups": [
+            {
+              "kind": "instant",
+              "unit": "pure",
+              "reporting_ends": 7
+            }
+          ]
+        },
+        {
+          "cik": "0000001800",
+          "source_sha256": "5d751f73769f5c0a1f9bee0de16cb39d8961cf3f1ebb5558d555bb2678afb4ff",
+          "latest_reporting_end": "2025-12-31",
+          "groups": [
+            {
+              "kind": "instant",
+              "unit": "pure",
+              "reporting_ends": 7
+            }
+          ]
+        },
+        {
+          "cik": "0000002098",
+          "source_sha256": "06951158c151bcf8f37297593ceee4916d4d357dcfc6e8b24f66d74ba2a6b0e3",
+          "latest_reporting_end": "2025-12-31",
+          "groups": [
+            {
+              "kind": "instant",
+              "unit": "pure",
+              "reporting_ends": 7
+            }
+          ]
+        },
+        {
+          "cik": "0000002488",
+          "source_sha256": "21a29c75076d90fced568785d855fc427a15c7458bc0bb153a9dedd88ad3349e",
+          "latest_reporting_end": "2025-12-27",
+          "groups": [
+            {
+              "kind": "instant",
+              "unit": "pure",
+              "reporting_ends": 7
+            }
+          ]
+        },
+        {
+          "cik": "0000002969",
+          "source_sha256": "b950a51ccd6520b9874e8452b9be9d2a43736bf24b7ea2413c44d34cf72a623a",
+          "latest_reporting_end": "2025-09-30",
+          "groups": [
+            {
+              "kind": "instant",
+              "unit": "pure",
+              "reporting_ends": 6
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "tag": "AccumulatedDepreciationDepletionAndAmortizationPropertyPlantAndEquipment",
+      "labels": [
+        "Accumulated Depreciation, Depletion and Amortization, Property, Plant, and Equipment"
+      ],
+      "source_companies": 2353,
+      "companies_with_structural_history": 2254,
+      "current_history_companies": 1860,
+      "period_kind_companies": {
+        "instant": 2254,
+        "duration": 0
+      },
+      "unit_companies": {
+        "USD": 2254
+      },
+      "selector_error_companies": 0,
+      "examples": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "latest_reporting_end": "2026-05-31",
+          "groups": [
+            {
+              "kind": "instant",
+              "unit": "USD",
+              "reporting_ends": 17
+            }
+          ]
+        },
+        {
+          "cik": "0000001800",
+          "source_sha256": "5d751f73769f5c0a1f9bee0de16cb39d8961cf3f1ebb5558d555bb2678afb4ff",
+          "latest_reporting_end": "2025-12-31",
+          "groups": [
+            {
+              "kind": "instant",
+              "unit": "USD",
+              "reporting_ends": 19
+            }
+          ]
+        },
+        {
+          "cik": "0000002098",
+          "source_sha256": "06951158c151bcf8f37297593ceee4916d4d357dcfc6e8b24f66d74ba2a6b0e3",
+          "latest_reporting_end": "2025-12-31",
+          "groups": [
+            {
+              "kind": "instant",
+              "unit": "USD",
+              "reporting_ends": 16
+            }
+          ]
+        },
+        {
+          "cik": "0000002186",
+          "source_sha256": "985de7a83c63a6da305e780264a3f421492278fb110eac00a11e058ae262b1a4",
+          "latest_reporting_end": "2025-12-31",
+          "groups": [
+            {
+              "kind": "instant",
+              "unit": "USD",
+              "reporting_ends": 15
+            }
+          ]
+        },
+        {
+          "cik": "0000002488",
+          "source_sha256": "21a29c75076d90fced568785d855fc427a15c7458bc0bb153a9dedd88ad3349e",
+          "latest_reporting_end": "2025-12-27",
+          "groups": [
+            {
+              "kind": "instant",
+              "unit": "USD",
+              "reporting_ends": 16
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "tag": "LesseeOperatingLeaseLiabilityPaymentsDueYearFour",
+      "labels": [
+        "Lessee, Operating Lease, Liability, to be Paid, Year Four"
+      ],
+      "source_companies": 2201,
+      "companies_with_structural_history": 1919,
+      "current_history_companies": 1811,
+      "period_kind_companies": {
+        "instant": 1919,
+        "duration": 0
+      },
+      "unit_companies": {
+        "USD": 1919
+      },
+      "selector_error_companies": 0,
+      "examples": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "latest_reporting_end": "2026-05-31",
+          "groups": [
+            {
+              "kind": "instant",
+              "unit": "USD",
+              "reporting_ends": 7
+            }
+          ]
+        },
+        {
+          "cik": "0000001800",
+          "source_sha256": "5d751f73769f5c0a1f9bee0de16cb39d8961cf3f1ebb5558d555bb2678afb4ff",
+          "latest_reporting_end": "2025-12-31",
+          "groups": [
+            {
+              "kind": "instant",
+              "unit": "USD",
+              "reporting_ends": 7
+            }
+          ]
+        },
+        {
+          "cik": "0000002098",
+          "source_sha256": "06951158c151bcf8f37297593ceee4916d4d357dcfc6e8b24f66d74ba2a6b0e3",
+          "latest_reporting_end": "2025-12-31",
+          "groups": [
+            {
+              "kind": "instant",
+              "unit": "USD",
+              "reporting_ends": 6
+            }
+          ]
+        },
+        {
+          "cik": "0000002186",
+          "source_sha256": "985de7a83c63a6da305e780264a3f421492278fb110eac00a11e058ae262b1a4",
+          "latest_reporting_end": "2025-12-31",
+          "groups": [
+            {
+              "kind": "instant",
+              "unit": "USD",
+              "reporting_ends": 5
+            }
+          ]
+        },
+        {
+          "cik": "0000002488",
+          "source_sha256": "21a29c75076d90fced568785d855fc427a15c7458bc0bb153a9dedd88ad3349e",
+          "latest_reporting_end": "2025-12-27",
+          "groups": [
+            {
+              "kind": "instant",
+              "unit": "USD",
+              "reporting_ends": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "tag": "OperatingLeaseLiabilityCurrent",
+      "labels": [
+        "Operating Lease, Liability, Current"
+      ],
+      "source_companies": 1925,
+      "companies_with_structural_history": 1800,
+      "current_history_companies": 1728,
+      "period_kind_companies": {
+        "instant": 1800,
+        "duration": 0
+      },
+      "unit_companies": {
+        "USD": 1800
+      },
+      "selector_error_companies": 0,
+      "examples": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "latest_reporting_end": "2026-05-31",
+          "groups": [
+            {
+              "kind": "instant",
+              "unit": "USD",
+              "reporting_ends": 5
+            }
+          ]
+        },
+        {
+          "cik": "0000001800",
+          "source_sha256": "5d751f73769f5c0a1f9bee0de16cb39d8961cf3f1ebb5558d555bb2678afb4ff",
+          "latest_reporting_end": "2025-12-31",
+          "groups": [
+            {
+              "kind": "instant",
+              "unit": "USD",
+              "reporting_ends": 7
+            }
+          ]
+        },
+        {
+          "cik": "0000002098",
+          "source_sha256": "06951158c151bcf8f37297593ceee4916d4d357dcfc6e8b24f66d74ba2a6b0e3",
+          "latest_reporting_end": "2025-12-31",
+          "groups": [
+            {
+              "kind": "instant",
+              "unit": "USD",
+              "reporting_ends": 7
+            }
+          ]
+        },
+        {
+          "cik": "0000002186",
+          "source_sha256": "985de7a83c63a6da305e780264a3f421492278fb110eac00a11e058ae262b1a4",
+          "latest_reporting_end": "2025-12-31",
+          "groups": [
+            {
+              "kind": "instant",
+              "unit": "USD",
+              "reporting_ends": 7
+            }
+          ]
+        },
+        {
+          "cik": "0000002488",
+          "source_sha256": "21a29c75076d90fced568785d855fc427a15c7458bc0bb153a9dedd88ad3349e",
+          "latest_reporting_end": "2025-12-27",
+          "groups": [
+            {
+              "kind": "instant",
+              "unit": "USD",
+              "reporting_ends": 8
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "tag": "OperatingLeaseLiabilityNoncurrent",
+      "labels": [
+        "Operating Lease, Liability, Noncurrent"
+      ],
+      "source_companies": 1933,
+      "companies_with_structural_history": 1798,
+      "current_history_companies": 1727,
+      "period_kind_companies": {
+        "instant": 1798,
+        "duration": 0
+      },
+      "unit_companies": {
+        "USD": 1798
+      },
+      "selector_error_companies": 0,
+      "examples": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "latest_reporting_end": "2026-05-31",
+          "groups": [
+            {
+              "kind": "instant",
+              "unit": "USD",
+              "reporting_ends": 8
+            }
+          ]
+        },
+        {
+          "cik": "0000001800",
+          "source_sha256": "5d751f73769f5c0a1f9bee0de16cb39d8961cf3f1ebb5558d555bb2678afb4ff",
+          "latest_reporting_end": "2025-12-31",
+          "groups": [
+            {
+              "kind": "instant",
+              "unit": "USD",
+              "reporting_ends": 7
+            }
+          ]
+        },
+        {
+          "cik": "0000002098",
+          "source_sha256": "06951158c151bcf8f37297593ceee4916d4d357dcfc6e8b24f66d74ba2a6b0e3",
+          "latest_reporting_end": "2025-12-31",
+          "groups": [
+            {
+              "kind": "instant",
+              "unit": "USD",
+              "reporting_ends": 7
+            }
+          ]
+        },
+        {
+          "cik": "0000002186",
+          "source_sha256": "985de7a83c63a6da305e780264a3f421492278fb110eac00a11e058ae262b1a4",
+          "latest_reporting_end": "2025-12-31",
+          "groups": [
+            {
+              "kind": "instant",
+              "unit": "USD",
+              "reporting_ends": 8
+            }
+          ]
+        },
+        {
+          "cik": "0000002488",
+          "source_sha256": "21a29c75076d90fced568785d855fc427a15c7458bc0bb153a9dedd88ad3349e",
+          "latest_reporting_end": "2025-12-27",
+          "groups": [
+            {
+              "kind": "instant",
+              "unit": "USD",
+              "reporting_ends": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "tag": "DeferredFederalIncomeTaxExpenseBenefit",
+      "labels": [
+        "Deferred Federal Income Tax Expense (Benefit)"
+      ],
+      "source_companies": 2014,
+      "companies_with_structural_history": 1845,
+      "current_history_companies": 1724,
+      "period_kind_companies": {
+        "instant": 0,
+        "duration": 1845
+      },
+      "unit_companies": {
+        "USD": 1845
+      },
+      "selector_error_companies": 0,
+      "examples": [
+        {
+          "cik": "0000002098",
+          "source_sha256": "06951158c151bcf8f37297593ceee4916d4d357dcfc6e8b24f66d74ba2a6b0e3",
+          "latest_reporting_end": "2025-12-31",
+          "groups": [
+            {
+              "kind": "duration",
+              "unit": "USD",
+              "reporting_ends": 15
+            }
+          ]
+        },
+        {
+          "cik": "0000002186",
+          "source_sha256": "985de7a83c63a6da305e780264a3f421492278fb110eac00a11e058ae262b1a4",
+          "latest_reporting_end": "2025-12-31",
+          "groups": [
+            {
+              "kind": "duration",
+              "unit": "USD",
+              "reporting_ends": 15
+            }
+          ]
+        },
+        {
+          "cik": "0000002488",
+          "source_sha256": "21a29c75076d90fced568785d855fc427a15c7458bc0bb153a9dedd88ad3349e",
+          "latest_reporting_end": "2025-12-27",
+          "groups": [
+            {
+              "kind": "duration",
+              "unit": "USD",
+              "reporting_ends": 16
+            }
+          ]
+        },
+        {
+          "cik": "0000002969",
+          "source_sha256": "b950a51ccd6520b9874e8452b9be9d2a43736bf24b7ea2413c44d34cf72a623a",
+          "latest_reporting_end": "2025-09-30",
+          "groups": [
+            {
+              "kind": "duration",
+              "unit": "USD",
+              "reporting_ends": 18
+            }
+          ]
+        },
+        {
+          "cik": "0000003197",
+          "source_sha256": "824632b2cee37c7e01d018d69301c7d3858a6c04b3f6d247269dfd16183adbd6",
+          "latest_reporting_end": "2025-12-31",
+          "groups": [
+            {
+              "kind": "duration",
+              "unit": "USD",
+              "reporting_ends": 15
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "tag": "CurrentStateAndLocalTaxExpenseBenefit",
+      "labels": [
+        "Current State and Local Tax Expense (Benefit)"
+      ],
+      "source_companies": 1981,
+      "companies_with_structural_history": 1805,
+      "current_history_companies": 1718,
+      "period_kind_companies": {
+        "instant": 0,
+        "duration": 1805
+      },
+      "unit_companies": {
+        "USD": 1805
+      },
+      "selector_error_companies": 0,
+      "examples": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "latest_reporting_end": "2026-05-31",
+          "groups": [
+            {
+              "kind": "duration",
+              "unit": "USD",
+              "reporting_ends": 17
+            }
+          ]
+        },
+        {
+          "cik": "0000001800",
+          "source_sha256": "5d751f73769f5c0a1f9bee0de16cb39d8961cf3f1ebb5558d555bb2678afb4ff",
+          "latest_reporting_end": "2025-12-31",
+          "groups": [
+            {
+              "kind": "duration",
+              "unit": "USD",
+              "reporting_ends": 3
+            }
+          ]
+        },
+        {
+          "cik": "0000002098",
+          "source_sha256": "06951158c151bcf8f37297593ceee4916d4d357dcfc6e8b24f66d74ba2a6b0e3",
+          "latest_reporting_end": "2025-12-31",
+          "groups": [
+            {
+              "kind": "duration",
+              "unit": "USD",
+              "reporting_ends": 15
+            }
+          ]
+        },
+        {
+          "cik": "0000002186",
+          "source_sha256": "985de7a83c63a6da305e780264a3f421492278fb110eac00a11e058ae262b1a4",
+          "latest_reporting_end": "2025-12-31",
+          "groups": [
+            {
+              "kind": "duration",
+              "unit": "USD",
+              "reporting_ends": 16
+            }
+          ]
+        },
+        {
+          "cik": "0000002488",
+          "source_sha256": "21a29c75076d90fced568785d855fc427a15c7458bc0bb153a9dedd88ad3349e",
+          "latest_reporting_end": "2025-12-27",
+          "groups": [
+            {
+              "kind": "duration",
+              "unit": "USD",
+              "reporting_ends": 17
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "tag": "PropertyPlantAndEquipmentGross",
+      "labels": [
+        "Property, Plant and Equipment, Gross"
+      ],
+      "source_companies": 2256,
+      "companies_with_structural_history": 2142,
+      "current_history_companies": 1714,
+      "period_kind_companies": {
+        "instant": 2142,
+        "duration": 0
+      },
+      "unit_companies": {
+        "USD": 2142
+      },
+      "selector_error_companies": 0,
+      "examples": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "latest_reporting_end": "2026-05-31",
+          "groups": [
+            {
+              "kind": "instant",
+              "unit": "USD",
+              "reporting_ends": 17
+            }
+          ]
+        },
+        {
+          "cik": "0000001800",
+          "source_sha256": "5d751f73769f5c0a1f9bee0de16cb39d8961cf3f1ebb5558d555bb2678afb4ff",
+          "latest_reporting_end": "2025-12-31",
+          "groups": [
+            {
+              "kind": "instant",
+              "unit": "USD",
+              "reporting_ends": 19
+            }
+          ]
+        },
+        {
+          "cik": "0000002098",
+          "source_sha256": "06951158c151bcf8f37297593ceee4916d4d357dcfc6e8b24f66d74ba2a6b0e3",
+          "latest_reporting_end": "2025-12-31",
+          "groups": [
+            {
+              "kind": "instant",
+              "unit": "USD",
+              "reporting_ends": 16
+            }
+          ]
+        },
+        {
+          "cik": "0000002186",
+          "source_sha256": "985de7a83c63a6da305e780264a3f421492278fb110eac00a11e058ae262b1a4",
+          "latest_reporting_end": "2025-12-31",
+          "groups": [
+            {
+              "kind": "instant",
+              "unit": "USD",
+              "reporting_ends": 7
+            }
+          ]
+        },
+        {
+          "cik": "0000002488",
+          "source_sha256": "21a29c75076d90fced568785d855fc427a15c7458bc0bb153a9dedd88ad3349e",
+          "latest_reporting_end": "2025-12-27",
+          "groups": [
+            {
+              "kind": "instant",
+              "unit": "USD",
+              "reporting_ends": 16
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "tag": "EffectiveIncomeTaxRateContinuingOperations",
+      "labels": [
+        "Effective Income Tax Rate Reconciliation, Percent"
+      ],
+      "source_companies": 2370,
+      "companies_with_structural_history": 1785,
+      "current_history_companies": 1702,
+      "period_kind_companies": {
+        "instant": 0,
+        "duration": 1785
+      },
+      "unit_companies": {
+        "pure": 1785,
+        "USD": 2
+      },
+      "selector_error_companies": 0,
+      "examples": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "latest_reporting_end": "2026-05-31",
+          "groups": [
+            {
+              "kind": "duration",
+              "unit": "pure",
+              "reporting_ends": 11
+            }
+          ]
+        },
+        {
+          "cik": "0000001800",
+          "source_sha256": "5d751f73769f5c0a1f9bee0de16cb39d8961cf3f1ebb5558d555bb2678afb4ff",
+          "latest_reporting_end": "2025-12-31",
+          "groups": [
+            {
+              "kind": "duration",
+              "unit": "pure",
+              "reporting_ends": 18
+            }
+          ]
+        },
+        {
+          "cik": "0000002186",
+          "source_sha256": "985de7a83c63a6da305e780264a3f421492278fb110eac00a11e058ae262b1a4",
+          "latest_reporting_end": "2025-12-31",
+          "groups": [
+            {
+              "kind": "duration",
+              "unit": "pure",
+              "reporting_ends": 16
+            }
+          ]
+        },
+        {
+          "cik": "0000002488",
+          "source_sha256": "21a29c75076d90fced568785d855fc427a15c7458bc0bb153a9dedd88ad3349e",
+          "latest_reporting_end": "2024-12-28",
+          "groups": [
+            {
+              "kind": "duration",
+              "unit": "pure",
+              "reporting_ends": 3
+            }
+          ]
+        },
+        {
+          "cik": "0000002809",
+          "source_sha256": "c6288c84e678448745ad053b98e8db7f0859efa2a0062b415208afb187690c8c",
+          "latest_reporting_end": "2013-12-31",
+          "groups": [
+            {
+              "kind": "duration",
+              "unit": "pure",
+              "reporting_ends": 6
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "tag": "CurrentFederalTaxExpenseBenefit",
+      "labels": [
+        "Current Federal Tax Expense (Benefit)"
+      ],
+      "source_companies": 2050,
+      "companies_with_structural_history": 1824,
+      "current_history_companies": 1700,
+      "period_kind_companies": {
+        "instant": 0,
+        "duration": 1824
+      },
+      "unit_companies": {
+        "USD": 1824
+      },
+      "selector_error_companies": 0,
+      "examples": [
+        {
+          "cik": "0000001750",
+          "source_sha256": "7746f487be3283f5c5a6e23b2cfb3a0f042bcd02848783f72d2420921e7cccba",
+          "latest_reporting_end": "2026-05-31",
+          "groups": [
+            {
+              "kind": "duration",
+              "unit": "USD",
+              "reporting_ends": 17
+            }
+          ]
+        },
+        {
+          "cik": "0000002098",
+          "source_sha256": "06951158c151bcf8f37297593ceee4916d4d357dcfc6e8b24f66d74ba2a6b0e3",
+          "latest_reporting_end": "2025-12-31",
+          "groups": [
+            {
+              "kind": "duration",
+              "unit": "USD",
+              "reporting_ends": 15
+            }
+          ]
+        },
+        {
+          "cik": "0000002186",
+          "source_sha256": "985de7a83c63a6da305e780264a3f421492278fb110eac00a11e058ae262b1a4",
+          "latest_reporting_end": "2025-12-31",
+          "groups": [
+            {
+              "kind": "duration",
+              "unit": "USD",
+              "reporting_ends": 16
+            }
+          ]
+        },
+        {
+          "cik": "0000002488",
+          "source_sha256": "21a29c75076d90fced568785d855fc427a15c7458bc0bb153a9dedd88ad3349e",
+          "latest_reporting_end": "2025-12-27",
+          "groups": [
+            {
+              "kind": "duration",
+              "unit": "USD",
+              "reporting_ends": 17
+            }
+          ]
+        },
+        {
+          "cik": "0000002969",
+          "source_sha256": "b950a51ccd6520b9874e8452b9be9d2a43736bf24b7ea2413c44d34cf72a623a",
+          "latest_reporting_end": "2025-09-30",
+          "groups": [
+            {
+              "kind": "duration",
+              "unit": "USD",
+              "reporting_ends": 18
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "rules": {
+    "annual_form_selector": true,
+    "minimum_reporting_ends_per_unit": 3,
+    "minimum_distinct_values_per_unit": 2,
+    "measured_units": [
+      "USD",
+      "shares",
+      "USD/shares",
+      "pure"
+    ],
+    "future_observations_excluded": true,
+    "concept_kind": "Both instant and annual-duration probes; taxonomy period type is NOT independently verified.",
+    "errors": "Any selector conflict/malformed fact removes that company/concept from structural coverage."
+  },
+  "bindings": [
+    {
+      "path": "/Users/arhancanli/canlicapital-expansion-20260919/artifacts/seo/corpus-local/company-three-cohort-delivery-v3/delivery.json",
+      "sha256": "f076234deaccbfa94ddb7d1c1faceffcc75e37d9db534591e74ea892f76eac2a",
+      "selection_policy": "extended-v3",
+      "companies": 1968
+    },
+    {
+      "path": "/Users/arhancanli/canlicapital-expansion-20260919/artifacts/seo/corpus-local/fourth-1000-delivery-v6/delivery.json",
+      "sha256": "b034d4eb3ac0bddb47d56ff98ece8fc0fb8de2ffcbb59445e6a84e56aba15131",
+      "selection_policy": "extended-v6",
+      "companies": 683
+    }
+  ],
+  "code_sha256": "ea90f610ec849083c35f22b5393871c3bbb5f2d10f472c4cc8d8ae9627237316",
+  "selector_sha256": "01c3575b35043c4f7a8e26d6a0bb87c1e9529f74cd9e93ce3794447cf110c3f3",
+  "scope": "Structural inventory of unused us-gaap tags in exact captured snapshots. Counts are company/concept coverage, not admitted pages, unique search intents, semantic correctness, forecast coverage or indexing. Alternative accounting tags can overlap; definitions, source scope and usefulness require review before any policy change.",
+  "retention": "Complete17.5MBinventory retained locally with2651source hashes; this summary does not establish offsite or isolated-restore coverage."
+}

@@ -98,3 +98,42 @@ Legacy partial reports lack the new queue binding and require explicit inspectio
 the running fourth capture predates the guard and was not restarted or rewritten.
 The fix changes future invocation behavior, not the code already loaded by that
 process. Network failures remain evidence of failed acquisition, not eligibility.
+
+
+## Unused-concept coverage inventory (September 20)
+
+An offline scan of the exact source snapshots behind the separate three-cohort-v3
+and fourth-cohort-v6 deliveries covers 2,651 unique companies. It reuses the annual
+form, period, chronology and conflict checks from the production observation
+selector, excluding the 34 already-supported concepts. Both instant and duration
+interpretations are probed only for triage; taxonomy period types are not approved
+by this scan. Each counted history needs at least three reporting ends and two
+distinct values within one measured unit. Any selector error excludes that
+company/concept from the structural count.
+
+| Measured quantity | Count |
+| --- | ---: |
+| Unused us-gaap tags observed | 9,687 |
+| Tags with at least one structurally qualifying history | 8,267 |
+| Company/concept pairs with structural coverage | 754,911 |
+| Pairs with a reporting end within two years of capture | 430,724 |
+| Concepts with recent histories in at least 1,000 companies | 94 |
+
+These pairs are not page counts or unique search intents. Tags can represent
+alternative definitions, overlapping totals, obsolete taxonomies, maturity
+schedules, or narrower accounting scopes. For example, the widely reported
+CashAndCashEquivalentsPeriodIncreaseDecrease tag has structural history in2,388
+companies but recent coverage in only1. LiabilitiesAndStockholdersEquity requires
+a redundancy review against Assets before any additional page is justified.
+Useful review candidates include operating lease assets/liabilities, gross property
+and equipment, accumulated depreciation, interest paid, and comprehensive income.
+Their exact definitions, units, source scope and intent must be reviewed first.
+
+Tracked summary: artifacts/seo/company-concept-coverage-summary-20260920.json.
+Complete17,460,544-byte inventory with2,651source bindings is retained under
+corpus-local and SHA-bound by that summary. It is not yet included in an isolated
+archive or offsite retention claim. Reproduce using
+scripts/inventory-company-concept-coverage.mjs with the two delivery directories.
+A focused regression verifies rejection of future-only, constant, incompatible-unit,
+conflicting and corrupted inputs, preservation of existing-policy boundaries and
+deterministic output. No selector, taxonomy policy or publication setting changed.

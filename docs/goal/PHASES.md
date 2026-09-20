@@ -9,7 +9,7 @@
 | 4 | Release verified initial expansion and establish search measurements | Earlier static preview exists; current company hosted verification and production integration pending | Passing release checks, verified production behavior, Search Console evidence, measured crawl/index exclusions |
 | 5 | Grow useful corpus toward 10k, 100k, 300k, 800k and 1m indexed pages | Baseline 262 indexed as of September 14; current discovery insufficient for goal | Source and editorial gates at each stage, actual indexed counts and quality monitoring by family |
 | 6 | Developer platform/API/MCP, on-site promotion and repository growth | On-site entry points and contributor guidance implemented; adoption measurement open | Open-source provenance, scoped key handling, consistent API/MCP contracts, tested examples, clear repository/MCP/key calls to action, contributor/release materials and evidence receipts |
-| 7 | Engine security/reproduction, cost completeness, risk and qualified sleeves | Environment-binding fix passes complete CI; collector offline suite/research pending | Honest preserved environments, CI, measured costs, governed trials, distinct admitted mechanisms and forward evidence |
+| 7 | Engine security/reproduction, cost completeness, risk and qualified sleeves | Combined candidate867d211passes all six CIjobs; research outcomes and runtime release pending | Honest preserved environments, CI, measured costs, governed trials, distinct admitted mechanisms and forward evidence |
 
 Phases can overlap when independent, but read STATUS before each transition and
 record why work moved. Long-lived indexing and forward-performance outcomes remain

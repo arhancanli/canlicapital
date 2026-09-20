@@ -7,11 +7,12 @@ Detailed prior status is preserved in history/STATUS-20260920-through-fourth-v6.
 ## Active work and exact handles
 
 - Fifth source capture: session49258, started09:02:13.251UTC, directory
-  artifacts/seo/corpus-local/fifth-1000. Last checkpoint224/1000:147review candidates,
-  31content exclusions,46HTTPerrors; no stop or finish. Poll this same handle.
+  artifacts/seo/corpus-local/fifth-1000. Last checkpoint521/1000:340review candidates,
+  90content exclusions,91HTTPerrors; no stop or finish. Poll this same handle.
   Do not restart because a poll times out or replace its queue.
-- Engine latest-head CI35499961114 is running on867d211. Five jobs pass; offline
-  pytest remains live. Earlier combined74c5461 passed all jobs in35498286728.
+- Engine latest-head CI35499961114 passed all six jobs on867d211. Portable suite:
+  4,366passed,55skipped; serial performance1passed; PostgreSQL contract11passed.
+  Candidate is ready for final merge/release review, not runtime activation.
 - No source capture or pending CI establishes completion, deployment or indexing.
 
 ## Measured outcomes
@@ -59,6 +60,10 @@ returned403 and was not retried. Do not use alternate paths to retry that archiv
 Pinned current discovery has8,031CIKs. The earlier capacity upper bound253,575URLs
 under34concepts shows that this discovery alone cannot reach800,000. Broader sources
 and useful content families remain necessary; no artificial variants.
+New offline inventory of2,651captured companies found94unused us-gaap concepts
+with recent varying histories in at least1,000companies. These are taxonomy-review
+candidates, not approved concepts or indexed pages. Full inventory retained locally
+with a tracked hash-bound summary; see SOURCE_CAPACITY.md.
 Retained discovery adds56unattempted identity candidates;37bindings verify.
 Identity review preserved106exclusions;137core values match13filings, but Princeton
 Revenues describes a portfolio company. No string-CIK admission policy is approved.
@@ -95,7 +100,7 @@ Engine PR68ce93d8c,69at783ad0c,70ate0a257c remain open with passing individual C
 Integration867d211 combines them in an isolated worktree. Ruff,strict mypy184files,
 publication preparation integrity and serial performance pass. Initial local
 suite4385pass33skip2fail exposed a launchd test worktree assumption; corrected test
-passes4focused cases. Latest complete CI still running as above. No runtime,
+passes4focused cases. Latest complete CI passed as recorded above; platform/workspace skips remain disclosed. No runtime,
 broker,owner contract or production branch changed. Publication checks establish
 preparation integrity, not independent result reproduction or data-license approval.
 

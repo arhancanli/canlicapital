@@ -46,3 +46,23 @@ Fifthcapture49258still running:224processed,147review candidates,31exclusions,
 46HTTPerrors; no stop/finish. EngineCI35499961114 remains live. Reconciled stale
 execution-ledger capture states and preserved its full prior version. All owner
 objectives remain active; no deployment, publication or investment outcome claim.
+
+## 2026-09-20 — measured concept capacity and final engine CI
+
+Previous turn recorded22retained-zero reviews. Nika's primary filing still has no
+explicit revenue-total statement resolving its income wording; left scope open.
+Read continuity before overlapping source-capacity work. Offline inventory51152
+completed over2,651unique companies, verifying selected/gzip/raw hash bindings.
+Production selector probes identified9,687unused tags,8,267with structural coverage;
+754,911company/concept pairs,430,724with recent ends,94concepts recent in>=1,000
+companies. These are not eligible pages or semantic approvals. Full17,460,544-byte
+report retained locally; tracked summary includes its hash, inputs and top30by
+recent coverage. Focused fixture test passes, including future/conflict/unit/zero
+and corruption boundaries plus deterministic replay. No live source request.
+
+Final engineCI35499961114 nowSUCCESS on exact867d211,all six jobs. Portable suite
+4,366passed55skipped in2,106.41seconds; serial guard1passed4,983deselected;
+PostgreSQL11passed. Saved metadata/log hashes and receipt; prior failed local run
+and correction remain retained. Candidate ready for merge/release review; no merge,
+runtime activation or forward-performance claim. Fifthcapture49258 remains live:
+latest521processed,340review candidates,90exclusions,91HTTPerrors,no stop/finish.
