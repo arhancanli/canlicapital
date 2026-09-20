@@ -1,0 +1,20 @@
+{
+  "schema": "canli.basic-diluted-batch1-archive.v1",
+  "result": "PASS",
+  "archive_sha256": "4ea4bccf7ddfaddcbcc0246fa6a38c12c97476ec229c6ac2b175c349a8586416",
+  "archive_bytes": 337367040,
+  "files": 446,
+  "repository_revision": "7a2dd53568f14828d182702e8e5868af6d39e99e",
+  "reproduced_reports": {
+    "corpus-local/company-basic-diluted-batch1-review-targets-20260920.json": "eda5ebe2e1c919ccefd59b6f66e37cd6deb9c8f4ec959842efb68982d9829419",
+    "corpus-local/company-basic-diluted-batch1-primary-review-20260920.json": "da38b98f3cf1387a6d0c4e7b05e8fa4f972a8e04d82e98f4fc843ea25dc1af83",
+    "company-basic-diluted-batch1-legacy-review-20260920.json": "39fe85d7fb62ca8f9405406784b8b818ccdad40ec08ced8b991956f446638a69",
+    "company-basic-diluted-batch1-legacy-review-v2-20260920.json": "c4b4b3c6df336488aeea214046d2db87c169e264af554d8075c4fa910a57971f",
+    "company-valhi-share-scale-20260920.json": "3bc7dfae06778ee4c0aa94aae10e692a576626ef89834abf1f1fdc279f6cab6c",
+    "company-valhi-2022-scale-20260920.json": "736e83b4ee0954a542ebe99545724e956ea8a2f4410dd427e77f3eb28996d279"
+  },
+  "offline_dependency_install": true,
+  "temporary_restore_removed": true,
+  "remote_backup_verified": false,
+  "scope": "One hundred batch1 primary filings, six legacy instances, the additional Valhi2022 primary, original and corrected numerical reports, and source-bound scale reviews. Six reports replay from locked offline dependencies. Numerical reproduction does not certify accounting scope. No full corpus/runtime regeneration, production activation or offsite backup."
+}
