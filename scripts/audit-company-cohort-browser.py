@@ -62,6 +62,10 @@ for record in records:
     if found:
         break
 
+for record in records:
+    if record.get('editorial_exclusions'):
+        samples[f"/companies/{record['cik']}"] = 'editorial scope exclusion'
+
 args.screenshots.mkdir(parents=True, exist_ok=True)
 report = {
     'schema': 'canli.company-cohort-browser.v1',
@@ -97,6 +101,14 @@ try:
                         if path.startswith('/companies/') and not path.startswith('/companies/page/'):
                             assert page.locator('a[href^="/company-data/sources/"]').count(), path
                             assert page.locator('a[href^="/company-data/"]').count(), path
+                        if reason == 'editorial scope exclusion':
+                            record = next(r for r in records if path == '/companies/' + r['cik'])
+                            assert page.locator('#editorial-scope').count() == 1
+                            for excluded in record['editorial_exclusions']:
+                                excluded_path = path + '/' + excluded['tag']
+                                assert page.locator(f'a[href="{excluded_path}"]').count() == 0
+                                assert page.request.get(args.base_url + excluded_path).status == 404
+                                assert page.locator(f'a[href="{excluded["filing_url"]}"]').count()
                         if reason == 'per-share units':
                             assert 'USD/shares' in page.locator('main').inner_text()
                         if reason == 'reported zero history':

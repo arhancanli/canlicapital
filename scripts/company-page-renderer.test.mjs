@@ -75,3 +75,12 @@ test('constant disclosures distinguish reported zeros, units and missing values'
   concept.observations[0].val = 1;
   assert.ok(!renderCompanyPages(record, { target: concept.tag })[0].html.includes('reported zeros, not values substituted'));
 });
+
+test('overview explains an editorial scope exclusion and escapes its explanation', () => {
+  const record = structuredClone(company);
+  record.editorial_exclusions = [{ tag: 'Revenues', reason: 'Intersegment <sales>, not company-wide revenue', filing_url: 'https://www.sec.gov/Archives/example' }];
+  const html = renderCompanyPages(record, { target: 'overview' })[0].html;
+  assert.match(html, /id="editorial-scope"/);
+  assert.match(html, /Intersegment &lt;sales&gt;/);
+  assert.match(html, /Inspect the filing/);
+});

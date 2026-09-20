@@ -62,3 +62,13 @@ have now been inspected against their latest selected original filings; all 24
 selected observations match distinct source rows. See COMPANY_PAIR_REVIEW.md and
 company-third-pairs-filing-evidence.json. Retain separate concepts and comparison
 links; the remaining historical, unit, constant-series and usefulness gates apply.
+
+## Scope overrides numerical agreement
+
+Constant-history review found three generic Revenues histories whose inspected
+filing rows are intersegment sales/revenue after eliminations. Exact numerical
+reproduction and undimensioned contexts did not make them company-wide revenue.
+The extended-v2 candidate excludes these source-bound histories and explains the
+omissions on company overviews. See COMPANY_REVENUE_SCOPE_REVIEW.md. Earlier
+extended-v1 candidates remain reproducible evidence but are not publishable as-is.
+Other constant and historical cases still require semantic/usefulness review.

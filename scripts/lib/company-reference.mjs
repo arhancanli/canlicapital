@@ -1,3 +1,4 @@
+import { EDITORIAL_POLICY, EDITORIAL_EXCLUSIONS } from './company-editorial-dispositions.mjs';
 import { createHash } from 'node:crypto';
 import { EXTENDED_CONCEPTS, EXTENDED_POLICY, compatibleUnit } from './company-extended-concepts.mjs';
 
@@ -52,17 +53,26 @@ export function selectObservations(fact, kind, asOf, diagnostics = {}) {
 
 export function companyReference(raw, { fetchedAt, expectedCik, diagnostics = {}, selectionPolicy }) {
   if (typeof fetchedAt !== 'string' || !/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?(?:Z|\+00:00)$/.test(fetchedAt) || !Number.isFinite(Date.parse(fetchedAt))) throw new Error('A verified UTC capture timestamp is required before publication');
-  if (selectionPolicy !== undefined && selectionPolicy !== EXTENDED_POLICY) throw new Error('Unknown company selection policy');
+  if (selectionPolicy !== undefined && ![EXTENDED_POLICY, EDITORIAL_POLICY].includes(selectionPolicy)) throw new Error('Unknown company selection policy');
   const source = JSON.parse(raw);
   if (!source || !Number.isSafeInteger(source.cik) || source.cik < 1 || source.cik > 9999999999 || source.cik !== Number(expectedCik) || typeof source.entityName !== 'string' || !source.entityName.trim()) throw new CompanyReferenceError('INVALID_ENTITY', 'SEC entity identity mismatch');
   const cik = String(source.cik).padStart(10, '0');
   const asOf = fetchedAt.slice(0, 10);
   if (!date(asOf)) throw new Error('Invalid capture date');
   const concepts = [];
-  const definitions = selectionPolicy === EXTENDED_POLICY ? { ...CONCEPTS, ...EXTENDED_CONCEPTS } : CONCEPTS;
+  const editorialExclusions = [];
+  const sourceHash = createHash('sha256').update(raw).digest('hex');
+  const definitions = [EXTENDED_POLICY, EDITORIAL_POLICY].includes(selectionPolicy) ? { ...CONCEPTS, ...EXTENDED_CONCEPTS } : CONCEPTS;
   for (const [tag, definition] of Object.entries(definitions)) {
     const fact = source.facts?.['us-gaap']?.[tag];
     if (!fact) continue;
+    const disposition = selectionPolicy === EDITORIAL_POLICY && EDITORIAL_EXCLUSIONS.find(row => row.cik === cik && row.tag === tag);
+    if (disposition) {
+      if (sourceHash !== disposition.source_sha256) throw new CompanyReferenceError('EDITORIAL_REVIEW_REQUIRED', `Changed source requires renewed scope review for ${cik}/${tag}`);
+      editorialExclusions.push({ tag, reason: disposition.reason, filing_url: disposition.filing_url });
+      diagnostics.editorial_scope_excluded = (diagnostics.editorial_scope_excluded ?? 0) + 1;
+      continue;
+    }
     let observations = selectObservations(fact, definition.kind, asOf, diagnostics);
     if (Object.hasOwn(EXTENDED_CONCEPTS, tag)) {
       observations = observations.filter(row => {
@@ -84,16 +94,17 @@ export function companyReference(raw, { fetchedAt, expectedCik, diagnostics = {}
     schema: 'canli.company-reference.v1', cik, name: source.entityName,
     ...(selectionPolicy ? { selection_policy: selectionPolicy } : {}),
     source_url: `https://data.sec.gov/api/xbrl/companyfacts/CIK${cik}.json`,
-    source_sha256: createHash('sha256').update(raw).digest('hex'), fetched_at: fetchedAt,
+    source_sha256: sourceHash, fetched_at: fetchedAt,
     policy: 'Latest-filed annual-report facts per unit and reporting period at capture time. Duration facts cover 300 to 400 days. This selection can include restatements and is not a point-in-time backtest dataset. Missing concepts are omitted, never zero-filled. Values retain original units and are not currency converted.' + (selectionPolicy ? ' Extended concepts require compatible unit shapes and at least three reporting ends with changing values within one unit. Constant or incompatible added histories are omitted.' : ''),
     claim_boundary: 'Public company accounting reference, not market prices, returns, an investment recommendation, or ALPHAC performance. Validate a separately constructed return series with the validation API; accounting values are not returns.',
+    ...(editorialExclusions.length ? { editorial_exclusions: editorialExclusions } : {}),
     concepts,
   };
 }
 
 export function verifyCompanyReference(record, original) {
   const reproduced = companyReference(original, { fetchedAt: record.fetched_at, expectedCik: record.cik, selectionPolicy: record.selection_policy });
-  for (const field of ['selection_policy', 'name', 'source_url', 'source_sha256', 'policy', 'claim_boundary', 'concepts']) {
+  for (const field of ['selection_policy', 'name', 'source_url', 'source_sha256', 'policy', 'claim_boundary', 'editorial_exclusions', 'concepts']) {
     if (JSON.stringify(record[field]) !== JSON.stringify(reproduced[field])) throw new Error(`Company ${record.cik} ${field} does not reproduce from its captured source`);
   }
 }

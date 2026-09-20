@@ -7,31 +7,28 @@ Read REQUIREMENTS.md for the complete owner objectives; none were removed.
 
 ## Current checkpoint
 
-Website PR15 at0cdd6ad7: revocation implementation,381 website tests,48 MCP tests
-and real PostgreSQL lifecycle/concurrency checks pass. Remote CI35491496322 completed successfully for that exact head. No production migration or deployment.
+Revenue-scope review found three misleading generic Revenues histories: Flowserve,
+Santander and OFG selected zeros from intersegment eliminations. Earlier extended-v1
+candidates are reproducible evidence but must not be published as-is.
 
-Combined delivery for1,202 companies remains locally verified under extended-v1:
-32,954 staged pages and2,404 downloads. Third1,000 capture and replay are complete:766 companies and234 verified exclusions,
-zero errors. Separate extended candidate:21,471pages/1,532downloads, complete HTTP
-replay and66browser checks pass. All candidate HTML remains noindex.
-The six exceptional pairs now have original-filing dispositions;24selected
-observations match. New three-cohort candidate has1,968companies/54,424URLs;
-complete HTTP verification1912passed. Browser66checks and storage
-plan6,249objects/828,366,117bytes pass. Updated12,952-file archive and isolated restore now pass; next: remote retention
-and hosted verification when destination access is available, plus remaining
-editorial/usefulness and search-intent work. Existing
-1,202-company combined release and archive stay unchanged.
+New extended-v2 policy applies exact-source-hash exclusions, explains them on the
+company overview, and keeps original SEC downloads. All1,968 staged records were
+compared: only the three reviewed concepts changed;52,413histories remain. Local
+build and383tests(6+377) pass. Corrected candidate catalog/release/discovery built;
+fullHTTP job19226 is running; poll that same handle before any restart. Browser
+job22919 passed84checks, including three overview explanations and excluded
+history404s. No complete v2HTTP result claimed yet.
 
-Engine PR68 at61b587f passed full CI35489715539. Five current-epoch forward returns
-and four sleeves remain insufficient to establish the owner performance goals.
-Storage destination/access and Search Console measurement remain pending. All owner
-objectives in REQUIREMENTS.md remain active. Later dated sections are historical
-checkpoints; this section and the execution ledger describe the current work.
+The prior three-cohort archive(12,952files) and isolatedrestore passed for its
+extended-v1scope. It excludes the new constant-history filing review and corrected
+v2runtime. Updated storage inventory/archive required after v2verification.
+Remote retention destination/access and Search Console measurement remain pending.
+Two older non-inline revenue filings remain unresolved; no broad zero-value filter.
 
-Takeover evidence: restored full verification after Hermes narrowed it to four
-tests; added real-source rejection regressions and source-bound404 review. Earlier
-cohort replay accepted853 candidates with147 retained exclusions and zero errors.
-See chronological LOG.md for exact earlier test counts and revision history.
+Latest completed website CI:7e111ee9/run35492406633 passes. New editorial correction
+needs its own CI. Engine PR68 at61b587f passed full CI35489715539; five current-epoch
+returns/four sleeves do not establish owner performance goals. All requirements
+remain active. No production migration, deployment or trading orders performed.
 
 ## Counts and boundaries
 
@@ -346,3 +343,22 @@ the repaired goals worktree. Earlier cross-worktree import run is not acceptance
   Verifier sourcehash checked; temporaryrestore removed; originalarchive retained.
 - No remote backup/upload. Priorwebsitea901b9f8 CI35492196422 passes; archiveupdate
   needs its own CI. Overall owner goals remainactive/unachieved.
+
+## Revenue scope correction — 2026-09-20
+
+- Inspected six constant-history cases via12SECindex/primary captures. Flowserve,
+  Santander andOFG matchednine selected zeros to intersegment-elimination rows.
+  Imunon2022USD500,000 matches licensingrevenue; retained. Dentsply2016/Compass2013
+  non-inline primaryfiles remain unresolved; no absence-of-inline proof claimed.
+- Newextended-v2 exactsource exclusions preserve legacyreproduction and reject
+  changedsource bytes pendingreview. Overview disclosure/sourcefilinglinks added.
+  Tests cover legitimatezeros, stale evidence and forgedexclusionmetadata.
+- Build94771exit0;383tests+finalaudits pass. Three v2cohorts3414exit0; all1,968
+  selectedrecords compared withv1, onlythreeconcepts removed andrawsourcesunchanged.
+  Combinedcatalog/release8990exit0. HTTP19226 andbrowser22919 are live;
+  browser harness now checks allthree overviews and404s for excludedhistories.
+- Rawcapture/inspection/migration scripts in ignorededitorial-constant-filings
+  require laterarchive. COMPANY_REVENUE_SCOPE_REVIEW.md recordsdecisions/limits.
+
+- Browser22919 nowexit0:84checks/14routes, allsix engine/width combinations;
+  allthree reviewed exclusions have overview notices, filinglinks and genuine404s.

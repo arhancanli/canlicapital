@@ -129,3 +129,18 @@ test('versioned extended definitions retain their reviewed byte binding', async 
   const review = JSON.parse(readFileSync(new URL('../artifacts/seo/company-extended-taxonomy-review.json', import.meta.url)));
   assert.equal(createHash('sha256').update(JSON.stringify(EXTENDED_CONCEPTS)).digest('hex'), review.definitions_sha256, 'Create a new policy version for definition changes and retain the prior policy');
 });
+
+test('editorial policy preserves legitimate zero series and rejects changed evidence for known scope errors', () => {
+  const record = JSON.parse(readFileSync(new URL('../public/company-data/0000320193.json', import.meta.url)));
+  const raw = gunzipSync(readFileSync(new URL(`../public/company-data/sources/${record.source_sha256}.json.gz`, import.meta.url))).toString();
+  const source = JSON.parse(raw);
+  source.facts['us-gaap'].Revenues = { units: { USD: [2021, 2022, 2023].map(year => ({ ...row, start: `${year}-01-01`, end: `${year}-12-31`, val: 0 })) } };
+  const result = companyReference(JSON.stringify(source), { fetchedAt: record.fetched_at, expectedCik: record.cik, selectionPolicy: 'extended-v2' });
+  assert.ok(result.concepts.some(c => c.tag === 'Revenues' && c.observations.every(o => o.val === 0)));
+  const tampered = structuredClone(result); tampered.editorial_exclusions = [{ tag: 'Revenues', reason: 'unreviewed' }];
+  assert.throws(() => verifyCompanyReference(tampered, JSON.stringify(source)), /editorial_exclusions/);
+  for (const cik of ['0000030625', '0000811830', '0001030469']) {
+    source.cik = Number(cik);
+    assert.throws(() => companyReference(JSON.stringify(source), { fetchedAt: record.fetched_at, expectedCik: cik, selectionPolicy: 'extended-v2' }), error => error.code === 'EDITORIAL_REVIEW_REQUIRED');
+  }
+});

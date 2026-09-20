@@ -1017,3 +1017,20 @@ savedrepository in temporaryworkspace, replays allthreequeues(342+853+766eligibl
 keys/hashes/lengths andallroots. Verifier sourcehash independentlymatches retained
 code. Temporaryrestore removed; olderarchive retained. No offsite durability or
 productionchange claimed. Documentation includes exact replaycommand andscope.
+
+## 2026-09-20 — semantic revenue error discovered and corrected in v2
+
+Previous archive turn made verifiedprogress;7e111ee9 CI35492406633 passes. Reviewing
+33constanthistories found implausiblegenericrevenuezeros atestablishedcompanies.
+Captured12filing/indexbodies for sixcases. Nine selectedzeros inFlowserve,Santander,
+OFG match intersegment-eliminationrows, demonstratingthat correctnumbers and
+undimensionedcontexts do not establishmeasure scope. Imunonlicensefact retained;
+twonon-inline cases unresolved. Allcapturesretained, no sourcefactrewritten.
+Implemented source-pinnedextended-v2 exclusions andoverview disclosure. Buildand
+383tests+audits pass. Restagedthreecohorts, comparedall1,968records:exactlythree
+conceptsremoved,rawsourcesunchanged. Combinedv2catalog/release/discoverybuilt.
+FullHTTP19226 andbrowser22919 running; do not reuse priorv1measurement forv2.
+Originalv1archive remains reproducible butno longer a publishablecandidateas-is.
+
+Browser22919exit0:84checks/14routes including allthree scopedexclusionoverviews
+and theirhistory404s. HTTP19226stillrunning; samehandle mustberesumed.
