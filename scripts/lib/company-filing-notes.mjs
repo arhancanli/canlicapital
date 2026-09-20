@@ -1,6 +1,117 @@
 // Limited filing context, bound to the reviewed capture and selected observations.
 export const FILING_NOTES = [
 {
+  "cik": "0001429764",
+  "include_on_overview": true,
+  "source_sha256": "41f13d6b5be1446ec3e5ba694dc376ec6584fcb845d1eccf02caf631ec0b7f9f",
+  "tags": [
+    "EarningsPerShareBasic",
+    "EarningsPerShareDiluted",
+    "WeightedAverageNumberOfDilutedSharesOutstanding",
+    "WeightedAverageNumberOfSharesOutstandingBasic"
+  ],
+  "text": "For 2023\u20132025, Blink reports equal basic and diluted loss per share and excludes the disclosed potential common-share equivalents as anti-dilutive. Its selected 2024 EPS is the revised loss of $2.00 per share, not the previously reported $1.96; the revision table retains the original and adjusted presentations. The additional 2024/2025 out-of-the-money warrants and options are excluded from the potential-share table itself because their exercise prices exceeded average market prices, regardless of the loss position. Neither set of excluded instruments is added to the weighted-average denominator. Shares and per-share amounts are exempt from the statement\u2019s thousands heading and use scale-zero tags.",
+  "filing_url": "https://www.sec.gov/Archives/edgar/data/1429764/000149315226014238/form10-k.htm",
+  "observations": [
+    {
+      "tag": "EarningsPerShareBasic",
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "unit": "USD/shares",
+      "val": -3.21,
+      "accn": "0001493152-26-014238"
+    },
+    {
+      "tag": "EarningsPerShareBasic",
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "unit": "USD/shares",
+      "val": -2,
+      "accn": "0001493152-26-014238"
+    },
+    {
+      "tag": "EarningsPerShareBasic",
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "unit": "USD/shares",
+      "val": -0.76,
+      "accn": "0001493152-26-014238"
+    },
+    {
+      "tag": "EarningsPerShareDiluted",
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "unit": "USD/shares",
+      "val": -3.21,
+      "accn": "0001493152-26-014238"
+    },
+    {
+      "tag": "EarningsPerShareDiluted",
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "unit": "USD/shares",
+      "val": -2,
+      "accn": "0001493152-26-014238"
+    },
+    {
+      "tag": "EarningsPerShareDiluted",
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "unit": "USD/shares",
+      "val": -0.76,
+      "accn": "0001493152-26-014238"
+    },
+    {
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "unit": "shares",
+      "val": 63466398,
+      "accn": "0001493152-26-014238"
+    },
+    {
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "unit": "shares",
+      "val": 100844970,
+      "accn": "0001493152-26-014238"
+    },
+    {
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "unit": "shares",
+      "val": 109107002,
+      "accn": "0001493152-26-014238"
+    },
+    {
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic",
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "unit": "shares",
+      "val": 63466398,
+      "accn": "0001493152-26-014238"
+    },
+    {
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic",
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "unit": "shares",
+      "val": 100844970,
+      "accn": "0001493152-26-014238"
+    },
+    {
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic",
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "unit": "shares",
+      "val": 109107002,
+      "accn": "0001493152-26-014238"
+    }
+  ]
+},
+{
   "cik": "0001418121",
   "include_on_overview": true,
   "source_sha256": "deb44a9b7fb3b45488aec71ec2350161b27c33ffb3be9c12859356e2509a25eb",

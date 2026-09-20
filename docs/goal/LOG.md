@@ -533,3 +533,15 @@ Every remaining field unchanged except policy metadata/notices. Report pins code
 selector,policy and frozenv14manifest. No runtime catalog/discovery/storageplan
 regeneration, upload, deployment or indexing gain. Goal remains active with source
 review, archive supplement and hosted quality gates still required.
+
+## 2026-09-20 — Blink revised EPS and separate out-of-money exclusions
+
+PR76passed four CI35533587809checks at201f2a61; mergedf49d6a85with exact tree
+5608257c85dbe3f4c5b4e353b13510e9f13d76a6. Reviewed12Blink2023–2025observations
+against statement138, excluded-equivalent table174and revision table250. Selected
+2024EPSis revised-2.00rather than earlier-1.96; unchanged weighted denominator.
+Additional2024/2025out-of-money options/warrants are excluded from the potential-
+share table itself, irrespective of net loss. Retain both distinctions; no value
+changes.33renderer/ledger tests pass and source report replays byte-identically.
+432reviewed/730pending/14withdrawn;72presentation-only. V18holds unchanged.
+No runtime rebuild, archival supplement, production deployment or indexing gain.

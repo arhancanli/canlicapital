@@ -9,12 +9,12 @@ which links older records. Historical process states are not live telemetry.
 ## Current work and next action
 
 Worktree `/Users/arhancanli/canlicapital-expansion-20260919`, branch
-`evidence/five-cohort-v18-transition-20260920`. PR75merged2a923011after four passing
-CI35533316936checks at786293d4. Tested/merged tree
-6f91a15bb8c4d3555d07f01f5b15f66f14a7b143 matches exactly.
+`evidence/blink-share-context-20260920`. PR76mergedf49d6a85after four passing
+CI35533587809checks at201f2a61. Tested/merged tree
+5608257c85dbe3f4c5b4e353b13510e9f13d76a6 matches exactly.
 
-Latest registered ledger:company-basic-diluted-registered-scope-v18-20260920.json.gz.
-Of1,176batch observations,420reviewed/742pending/14withdrawn.72reviewed are explicitly
+Latest registered ledger:company-basic-diluted-registered-scope-batch13-20260920.json.gz.
+Of1,176batch observations,432reviewed/730pending/14withdrawn.72reviewed are explicitly
 presentation-only; dilution cause is not established for those rows. The registry
 pins exact reports/issuers/dispositions/counts/states. Numerical agreement alone
 never approves scope. Workflow in SCOPE_REVIEW.md; original ledgers preserved.
@@ -25,8 +25,10 @@ Do not multiply or replace values. Hash-bound report retains facts/units/context
 and heading; replay is byte-identical.60selector/renderer/ledger tests pass,
 including exact six-only removal, EPS/older-period preservation and inherited holds.
 Earlier Iovance2019–2022share rows also need original-filing review; no admission
-inferred. Six EPSrows in this batch remain pending. Blink context review remains
-pending, including revised2024EPSand out-of-money exclusions. INVOlegacy mapping
+inferred. Six Iovance EPSrows in this batch remain pending. Blink12rows now reviewed,
+including revised2024EPS(-2.00versus prior-1.96) and separate out-of-money
+exclusions omitted from its potential-share table. All33renderer/ledger tests pass;
+report replays byte-identically. Next new index45; older pending gaps remain. INVOlegacy mapping
 also pending. V18full-corpus comparison passed; runtime rebuild/quality inventory
 and updated archival supplement remain undone. No deployment or indexing gain.
 
