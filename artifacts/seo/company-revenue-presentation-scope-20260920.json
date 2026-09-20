@@ -1,0 +1,705 @@
+{
+  "schema": "canli.revenue-presentation-scope.v1",
+  "comparison_sha256": "1c0dcaa9cd2f8bf54f1af1ddb592d34230839dbd80f9531466f1896ed31a560e",
+  "publication_approved": false,
+  "cases": [
+    {
+      "cik": "0000066740",
+      "accession": "0000066740-26-000014",
+      "primary_sha256": "104f35e670a2e3ff49c544914f4d46190ca217d366912204fd7377973ad593e1",
+      "interpretation": "In the 2025 annual report, consolidated net sales and the total-company and worldwide sales breakdowns report the same total. The two accounting tags identify those different presentations; adding them would count the same sales twice.",
+      "reviewed_checks": [
+        {
+          "selected": {
+            "tag": "Revenues",
+            "start": "2025-01-01",
+            "end": "2025-12-31",
+            "val": 24948000000,
+            "accn": "0000066740-26-000014",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-02-03",
+            "frame": "CY2025",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "Revenues",
+              "start": "2025-01-01",
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "24948000000",
+              "fact_id": "f-68",
+              "context_id": "c-1",
+              "table_row": "Net sales $ 24,948 $ 24,575 $ 24,610",
+              "preceding_rows": [
+                "Years ended December 31,",
+                "(Millions, except per share amounts) 2025 2024 2023"
+              ],
+              "table_header_rows": [
+                "",
+                "",
+                "Years ended December 31,",
+                "(Millions, except per share amounts) 2025 2024 2023",
+                "Net sales $ 24,948 $ 24,575 $ 24,610"
+              ],
+              "paragraph": null,
+              "preceding_heading": null
+            },
+            {
+              "tag": "Revenues",
+              "start": "2025-01-01",
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "24948000000",
+              "fact_id": "f-2536",
+              "context_id": "c-1",
+              "table_row": "Total Company $ 24,948 $ 24,575 $ 24,610",
+              "preceding_rows": [
+                "Total reportable business segment net sales 24,576 24,272 24,483",
+                "Corporate and Other 372 303 127"
+              ],
+              "table_header_rows": [
+                "",
+                "",
+                "",
+                "Net sales (millions) 2025 2024 2023",
+                "Safety and Industrial $ 11,384 $ 10,961 $ 10,956"
+              ],
+              "paragraph": null,
+              "preceding_heading": null
+            }
+          ],
+          "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING",
+          "match_method": "INLINE_PRIMARY"
+        },
+        {
+          "selected": {
+            "tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+            "start": "2025-01-01",
+            "end": "2025-12-31",
+            "val": 24948000000,
+            "accn": "0000066740-26-000014",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-02-03",
+            "frame": "CY2025",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+              "start": "2025-01-01",
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "24948000000",
+              "fact_id": "f-591",
+              "context_id": "c-1",
+              "table_row": "Total Company $ 24,948 $ 24,575 $ 24,610",
+              "preceding_rows": [
+                "",
+                ""
+              ],
+              "table_header_rows": [
+                "",
+                "",
+                "",
+                "Net sales (millions) 2025 2024 2023",
+                "Abrasives $ 1,340 $ 1,295 $ 1,327"
+              ],
+              "paragraph": null,
+              "preceding_heading": null
+            },
+            {
+              "tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+              "start": "2025-01-01",
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "24948000000",
+              "fact_id": "f-603",
+              "context_id": "c-1",
+              "table_row": "Worldwide $ 24,948 $ 24,575 $ 24,610",
+              "preceding_rows": [
+                "Europe, Middle East and Africa 4,274 4,176 4,274",
+                ""
+              ],
+              "table_header_rows": [
+                "",
+                "",
+                "",
+                "Net sales by geographic area (millions) 2025 2024 2023",
+                "Americas $ 13,579 $ 13,405 $ 13,268"
+              ],
+              "paragraph": null,
+              "preceding_heading": null
+            }
+          ],
+          "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING",
+          "match_method": "INLINE_PRIMARY"
+        }
+      ]
+    },
+    {
+      "cik": "0000816956",
+      "accession": "0000816956-26-000009",
+      "primary_sha256": "b8a76aa75648cd60fe033fb7c211b9be12306a1010ad593bf94d7010a140ba3b",
+      "interpretation": "In the 2025 annual report, consolidated net sales match total sales from contracts with customers in the revenue breakdowns. Those breakdowns distinguish surgical businesses, timing of recognition and geographic markets; their total is not additional revenue.",
+      "reviewed_checks": [
+        {
+          "selected": {
+            "tag": "Revenues",
+            "start": "2025-01-01",
+            "end": "2025-12-31",
+            "val": 1374724000,
+            "accn": "0000816956-26-000009",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-02-17",
+            "frame": "CY2025",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "Revenues",
+              "start": "2025-01-01",
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "1374724000",
+              "fact_id": "f-135",
+              "context_id": "c-1",
+              "table_row": "Net sales $ 1,374,724 $ 1,307,015 $ 1,244,744",
+              "preceding_rows": [
+                "2025 2024 2023",
+                ""
+              ],
+              "table_header_rows": [
+                "",
+                "2025 2024 2023",
+                "",
+                "Net sales $ 1,374,724 $ 1,307,015 $ 1,244,744",
+                ""
+              ],
+              "paragraph": null,
+              "preceding_heading": null
+            },
+            {
+              "tag": "Revenues",
+              "start": "2025-01-01",
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "1374724000",
+              "fact_id": "f-1136",
+              "context_id": "c-1",
+              "table_row": "Net sales $ 1,374,724 $ 1,307,015 $ 1,244,744",
+              "preceding_rows": [
+                "2025 2024 2023",
+                ""
+              ],
+              "table_header_rows": [
+                "",
+                "Years Ended December 31,",
+                "2025 2024 2023",
+                "",
+                "Net sales $ 1,374,724 $ 1,307,015 $ 1,244,744"
+              ],
+              "paragraph": null,
+              "preceding_heading": null
+            },
+            {
+              "tag": "Revenues",
+              "start": "2025-01-01",
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "1374724000",
+              "fact_id": "f-1328",
+              "context_id": "c-1",
+              "table_row": "Foreign exchange contracts $ ( 7,100 ) $ 10,928 $ 5,489 Net Sales $ 1,374,724 $ 1,307,015 $ 1,244,744 $ 229 $ 4,285 $ 3,790",
+              "preceding_rows": [
+                "Derivative Instrument 2025 2024 2023 Location of amount reclassified 2025 2024 2023 2025 2024 2023",
+                ""
+              ],
+              "table_header_rows": [
+                "",
+                "Amount of Gain/(Loss) Recognized in AOCI Consolidated Statements of Comprehensive Income Amount of Gain/(Loss) Reclassified from AOCI",
+                "Years Ended Total Amount of Line Item Presented Years Ended",
+                "Derivative Instrument 2025 2024 2023 Location of amount reclassified 2025 2024 2023 2025 2024 2023",
+                ""
+              ],
+              "paragraph": null,
+              "preceding_heading": null
+            }
+          ],
+          "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING",
+          "match_method": "INLINE_PRIMARY"
+        },
+        {
+          "selected": {
+            "tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+            "start": "2025-01-01",
+            "end": "2025-12-31",
+            "val": 1374724000,
+            "accn": "0000816956-26-000009",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-02-17",
+            "frame": "CY2025",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+              "start": "2025-01-01",
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "1374724000",
+              "fact_id": "f-1056",
+              "context_id": "c-1",
+              "table_row": "Total sales from contracts with customers $ 574,598 $ 800,126 $ 1,374,724",
+              "preceding_rows": [
+                "Goods transferred at a point in time $ 529,124 $ 789,735 $ 1,318,859",
+                "Services transferred over time 45,474 10,391 55,865"
+              ],
+              "table_header_rows": [
+                "",
+                "2025",
+                "Orthopedic Surgery General Surgery Total",
+                "Timing of Revenue Recognition",
+                "Goods transferred at a point in time $ 529,124 $ 789,735 $ 1,318,859"
+              ],
+              "paragraph": null,
+              "preceding_heading": null
+            },
+            {
+              "tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+              "start": "2025-01-01",
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "1374724000",
+              "fact_id": "f-1097",
+              "context_id": "c-1",
+              "table_row": "Total sales from contracts with customers $ 574,598 $ 800,126 $ 1,374,724",
+              "preceding_rows": [
+                "Asia Pacific 130,873 77,849 208,722",
+                "Americas (excluding the United States) 85,820 40,940 126,760"
+              ],
+              "table_header_rows": [
+                "",
+                "2025",
+                "Orthopedic Surgery General Surgery Total",
+                "Primary Geographic Markets",
+                "United States $ 215,440 $ 559,148 $ 774,588"
+              ],
+              "paragraph": null,
+              "preceding_heading": null
+            }
+          ],
+          "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING",
+          "match_method": "INLINE_PRIMARY"
+        }
+      ]
+    },
+    {
+      "cik": "0001127475",
+      "accession": "0001185185-25-001887",
+      "primary_sha256": "900d6d86778fe2dde695a2eaa92b9a1fe1568daeb527362da2dbb591003029a9",
+      "interpretation": "In the annual report for the year ended August 31, 2025, the statement of operations and the United States/Great Britain revenue breakdown report the same total. The geographic breakdown is a presentation of that revenue, not another revenue stream.",
+      "reviewed_checks": [
+        {
+          "selected": {
+            "tag": "Revenues",
+            "start": "2024-09-01",
+            "end": "2025-08-31",
+            "val": 137998,
+            "accn": "0001185185-25-001887",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2025-11-28",
+            "frame": "CY2025",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "Revenues",
+              "start": "2024-09-01",
+              "end": "2025-08-31",
+              "unit": "USD",
+              "value": "137998",
+              "fact_id": "ixv-8466",
+              "context_id": "c0",
+              "table_row": "Revenues $ 137,998 $ 237,868",
+              "preceding_rows": [
+                "For the year ended",
+                "August 31, 2025 August 31, 2024"
+              ],
+              "table_header_rows": [
+                "For the year ended",
+                "August 31, 2025 August 31, 2024",
+                "Revenues $ 137,998 $ 237,868",
+                "",
+                "Cost of revenues 112,619 234,601"
+              ],
+              "paragraph": null,
+              "preceding_heading": null
+            },
+            {
+              "tag": "Revenues",
+              "start": "2024-09-01",
+              "end": "2025-08-31",
+              "unit": "USD",
+              "value": "137998",
+              "fact_id": "ixv-8695",
+              "context_id": "c0",
+              "table_row": "Total revenues 18,095 119,903 137,998",
+              "preceding_rows": [
+                "United States Great Britain Total",
+                "Revenues $ 18,095 $ 119,903 $ 137,998"
+              ],
+              "table_header_rows": [
+                "United States Great Britain Total",
+                "Revenues $ 18,095 $ 119,903 $ 137,998",
+                "Total revenues 18,095 119,903 137,998",
+                "Identifiable assets at August 31, 2025 15,536 42,966 58,502"
+              ],
+              "paragraph": null,
+              "preceding_heading": null
+            }
+          ],
+          "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING",
+          "match_method": "INLINE_PRIMARY"
+        },
+        {
+          "selected": {
+            "tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+            "start": "2024-09-01",
+            "end": "2025-08-31",
+            "val": 137998,
+            "accn": "0001185185-25-001887",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2025-11-28",
+            "frame": "CY2025",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+              "start": "2024-09-01",
+              "end": "2025-08-31",
+              "unit": "USD",
+              "value": "137998",
+              "fact_id": "ixv-8692",
+              "context_id": "c0",
+              "table_row": "Revenues $ 18,095 $ 119,903 $ 137,998",
+              "preceding_rows": [
+                "United States Great Britain Total"
+              ],
+              "table_header_rows": [
+                "United States Great Britain Total",
+                "Revenues $ 18,095 $ 119,903 $ 137,998",
+                "Total revenues 18,095 119,903 137,998",
+                "Identifiable assets at August 31, 2025 15,536 42,966 58,502"
+              ],
+              "paragraph": null,
+              "preceding_heading": null
+            }
+          ],
+          "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING",
+          "match_method": "INLINE_PRIMARY"
+        }
+      ]
+    },
+    {
+      "cik": "0001285785",
+      "accession": "0001285785-26-000017",
+      "primary_sha256": "0643e91bc2ee988710bd4cffe2540df986fdb4d16b817b9a8b68bfd76d472393",
+      "interpretation": "In the 2025 annual report, consolidated net sales match the total in the segment sales reconciliation. That reconciliation includes intersegment sales and eliminations; the individual segment amounts should not be added without those adjustments.",
+      "reviewed_checks": [
+        {
+          "selected": {
+            "tag": "Revenues",
+            "start": "2025-01-01",
+            "end": "2025-12-31",
+            "val": 12052400000,
+            "accn": "0001285785-26-000017",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-02-27",
+            "frame": "CY2025",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "Revenues",
+              "start": "2025-01-01",
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "12052400000.0",
+              "fact_id": "f-1801",
+              "context_id": "c-1",
+              "table_row": "Net sales 4,576.5 2,661.7 4,847.3 ( 33.1 ) 12,052.4",
+              "preceding_rows": [
+                "Net sales to external customers $ 3,877.8 $ 2,658.7 $ 4,847.3 $ 668.6 $ 12,052.4",
+                "Intersegment net sales 698.7 3.0 \u2014 ( 701.7 ) \u2014"
+              ],
+              "table_header_rows": [
+                "",
+                "(in millions) Phosphate Potash Mosaic Fertilizantes Corporate, Eliminations and Other (a) Total",
+                "Year Ended December 31, 2025",
+                "Net sales to external customers $ 3,877.8 $ 2,658.7 $ 4,847.3 $ 668.6 $ 12,052.4",
+                "Intersegment net sales 698.7 3.0 \u2014 ( 701.7 ) \u2014"
+              ],
+              "paragraph": null,
+              "preceding_heading": null
+            }
+          ],
+          "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING",
+          "match_method": "INLINE_PRIMARY"
+        },
+        {
+          "selected": {
+            "tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+            "start": "2025-01-01",
+            "end": "2025-12-31",
+            "val": 12052400000,
+            "accn": "0001285785-26-000017",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-02-27",
+            "frame": "CY2025",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+              "start": "2025-01-01",
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "12052400000.0",
+              "fact_id": "f-58",
+              "context_id": "c-1",
+              "table_row": "Net sales $ 12,052.4 $ 11,122.8 $ 13,696.1",
+              "preceding_rows": [
+                "Years Ended December 31,",
+                "2025 2024 2023"
+              ],
+              "table_header_rows": [
+                "",
+                "Years Ended December 31,",
+                "2025 2024 2023",
+                "Net sales $ 12,052.4 $ 11,122.8 $ 13,696.1",
+                "Cost of goods sold 10,150.5 9,610.9 11,485.5"
+              ],
+              "paragraph": null,
+              "preceding_heading": null
+            },
+            {
+              "tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+              "start": "2025-01-01",
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "12052400000.0",
+              "fact_id": "f-1791",
+              "context_id": "c-1",
+              "table_row": "Net sales to external customers $ 3,877.8 $ 2,658.7 $ 4,847.3 $ 668.6 $ 12,052.4",
+              "preceding_rows": [
+                "(in millions) Phosphate Potash Mosaic Fertilizantes Corporate, Eliminations and Other (a) Total",
+                "Year Ended December 31, 2025"
+              ],
+              "table_header_rows": [
+                "",
+                "(in millions) Phosphate Potash Mosaic Fertilizantes Corporate, Eliminations and Other (a) Total",
+                "Year Ended December 31, 2025",
+                "Net sales to external customers $ 3,877.8 $ 2,658.7 $ 4,847.3 $ 668.6 $ 12,052.4",
+                "Intersegment net sales 698.7 3.0 \u2014 ( 701.7 ) \u2014"
+              ],
+              "paragraph": null,
+              "preceding_heading": null
+            },
+            {
+              "tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+              "start": "2025-01-01",
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "12052400000.0",
+              "fact_id": "f-2075",
+              "context_id": "c-1",
+              "table_row": "Consolidated $ 12,052.4 $ 11,122.8 $ 13,696.1",
+              "preceding_rows": [
+                "Total international countries 7,729.5 7,152.1 9,017.0",
+                "United States 4,322.9 3,970.7 4,679.1"
+              ],
+              "table_header_rows": [
+                "",
+                "Years Ended December 31,",
+                "(in millions) 2025 2024 2023",
+                "Net sales (a) :",
+                "Brazil $ 4,678.5 $ 4,296.2 $ 5,480.9"
+              ],
+              "paragraph": null,
+              "preceding_heading": null
+            },
+            {
+              "tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+              "start": "2025-01-01",
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "12052400000.0",
+              "fact_id": "f-2114",
+              "context_id": "c-1",
+              "table_row": "$ 12,052.4 $ 11,122.8 $ 13,696.1",
+              "preceding_rows": [
+                "Phosphate Rock 132.1 217.2 125.9",
+                "Other (b) 1,710.8 1,600.7 1,624.3"
+              ],
+              "table_header_rows": [
+                "",
+                "Years Ended December 31,",
+                "(in millions) 2025 2024 2023",
+                "Sales by product type:",
+                "Phosphate Crop Nutrients $ 3,273.4 $ 2,978.7 $ 3,277.5"
+              ],
+              "paragraph": null,
+              "preceding_heading": null
+            }
+          ],
+          "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING",
+          "match_method": "INLINE_PRIMARY"
+        }
+      ]
+    },
+    {
+      "cik": "0001551152",
+      "accession": "0001551152-26-000008",
+      "primary_sha256": "82ae488811186ce9ea6deef855b5a33eabd7c2d9aca5de82546683bf8900b5ed",
+      "interpretation": "In the 2025 annual report, consolidated net revenues match the total in the geographic revenue breakdown. The geographic total describes the same reported revenue, not revenue to add to the consolidated amount.",
+      "reviewed_checks": [
+        {
+          "selected": {
+            "tag": "Revenues",
+            "start": "2025-01-01",
+            "end": "2025-12-31",
+            "val": 61160000000,
+            "accn": "0001551152-26-000008",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-02-20",
+            "frame": "CY2025",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "Revenues",
+              "start": "2025-01-01",
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "61160000000",
+              "fact_id": "f-53",
+              "context_id": "c-1",
+              "table_row": "Net revenues $ 61,160 $ 56,334 $ 54,318",
+              "preceding_rows": [
+                "",
+                "years ended December\u00a031 (in millions, except per share data) 2025 2024 2023"
+              ],
+              "table_header_rows": [
+                "",
+                "years ended December\u00a031 (in millions, except per share data) 2025 2024 2023",
+                "Net revenues $ 61,160 $ 56,334 $ 54,318",
+                "",
+                "Cost of products sold 18,204 16,904 20,415"
+              ],
+              "paragraph": null,
+              "preceding_heading": null
+            },
+            {
+              "tag": "Revenues",
+              "start": "2025-01-01",
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "61160000000",
+              "fact_id": "f-2456",
+              "context_id": "c-1",
+              "table_row": "Total net revenues $ 61,160 $ 56,334 $ 54,318",
+              "preceding_rows": [
+                "Total $ 907 $ 954 $ 1,108",
+                "All other $ 2,627 $ 3,032 $ 3,035"
+              ],
+              "table_header_rows": [
+                "",
+                "years ended December\u00a031 (in millions) 2025 2024 2023",
+                "Other Neuroscience United States $ 192 $ 223 $ 254",
+                "International 15 16 19",
+                "Total $ 207 $ 239 $ 273"
+              ],
+              "paragraph": null,
+              "preceding_heading": null
+            }
+          ],
+          "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING",
+          "match_method": "INLINE_PRIMARY"
+        },
+        {
+          "selected": {
+            "tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+            "start": "2025-01-01",
+            "end": "2025-12-31",
+            "val": 61160000000,
+            "accn": "0001551152-26-000008",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-02-20",
+            "frame": "CY2025",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+              "start": "2025-01-01",
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "61160000000",
+              "fact_id": "f-2496",
+              "context_id": "c-1",
+              "table_row": "Total net revenues $ 61,160 $ 56,334 $ 54,318",
+              "preceding_rows": [
+                "Australia 459 463 472",
+                "All other countries 5,759 5,449 5,042"
+              ],
+              "table_header_rows": [
+                "",
+                "years ended December\u00a031 (in millions) 2025 2024 2023",
+                "United States $ 46,603 $ 43,029 $ 41,883",
+                "Germany 1,738 1,465 1,266",
+                "Japan 1,274 1,122 1,008"
+              ],
+              "paragraph": null,
+              "preceding_heading": null
+            }
+          ],
+          "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING",
+          "match_method": "INLINE_PRIMARY"
+        }
+      ]
+    }
+  ],
+  "scope": "Limited latest-period filing presentations only. Supports on-page explanation for reviewed snapshots; does not establish all-history tag interchangeability or publication admission."
+}
