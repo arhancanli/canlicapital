@@ -666,3 +666,14 @@ Review found the early401/403/429read branch omitted diagnostic metadata. Fixed
 it without enabling retries, with a receipt-level regression for all three codes.
 All21storage/planner tests pass. Active77617 remains pinned to e5177ec0 and has not
 hot-reloaded this later diagnostics-only change.
+
+## 2026-09-20 — storage merge and liability primary context
+
+Previous turn launched paced recovery and fixed hard-stop read diagnostics.
+All four PR35checks passed at9e7c2bba; squash merge bcfcb371 preserves exact
+tree eeebaf502754ca3fbdd1836e215d06ac9f4f1b91. Recovery77617polled live.
+New offline helper binds numerical closure, queue and three primary reports,
+then selects latest reporting date for all17liability pairs. Twelve have separate
+primary total/current rows with equal values; retained scope review covers those
+24rows only. Five XML-only cases remain pending. Atlantica accession-order mistake
+corrected: latest selected date is2025-12-31, not2019. No blanket admission.
