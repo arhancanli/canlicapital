@@ -124,3 +124,37 @@ Homepage/developers/founder/status/sitemap respond successfully without noindex
 headers; exact live sitemap bytes match the validated327URL build. Seven measurement
 URLs omit unprovable lastmod. Existing submitted sitemap URL is unchanged; Google
 indexing gain remains unestablished. All company cohorts remain local/noindex.
+
+## 2026-09-20 — taxonomy-constrained source capacity and repository closeout
+
+Prior goal turn is classified as progress: production migration and coordinated
+website/API activation completed with live evidence. PR16merged as6cc2c517 after
+all four checks passed at05e9fbf6; both trees match8ac027e2. Post-merge CI35508225593
+is successful. Engine PR68/69/70exact heads were rechecked as ancestors of tested
+integration867d211 and closed as incorporated into PR71; no branch was deleted.
+
+New offline audit verifies2,651retained source bodies and94FASB declarations.
+Correct period/type/unit constraints leave140,596recent company/concept pairs,
+unchanged from these concepts' earlier triage counts. Other currencies excluded
+from USD coverage are not called invalid. Numerical comparisons found2,013full
+liabilities-and-equity/assets matches,651issued/outstanding-share matches and no
+full operating-lease-liability/undiscounted-payment matches. Matching numbers do
+not prove semantic identity. Six next-review candidates have explicit source-scope
+boundaries in CONCEPT_REVIEW.md; no concepts or pages were admitted.
+
+Initial audit stopped because the selector module hash differed from the older
+inventory. Retrieved exact original module720c224e and verified its recorded SHA;
+complete observation function plus date/error dependencies are byte-identical to
+current code. That equivalence is checked on every run and recorded, rather than
+ignoring the mismatch. XML extraction first exceeded Node's default subprocess
+output buffer; a bounded16MiBbuffer handles the pinned4.97MBtaxonomy. No source
+network request or replacement capture was made.
+
+Five focused regressions cover types, units, periods, recency, conflicts, numerical
+alignment and corrupted inventory bytes. Added both inventory and typed-review
+tests to routine verification;6preliminary+404main tests pass with all audits.
+Independent second full run reproduces reportSHA9718793aab1c96da4c9d52cd265147ded07ecd20f77664288dda33ba9bdbd849
+exactly. Restored12audit inputs from a22,712,320byte local archive with exact hashes.
+The archive explicitly excludes raw company-body recovery and makes no offsite
+claim. Source-date/sitemap churn from tests was restored to the clean starting
+bytes; publication state and the production checkout were not changed.

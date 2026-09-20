@@ -131,9 +131,19 @@ Their exact definitions, units, source scope and intent must be reviewed first.
 
 Tracked summary: artifacts/seo/company-concept-coverage-summary-20260920.json.
 Complete17,460,544-byte inventory with2,651source bindings is retained under
-corpus-local and SHA-bound by that summary. It is not yet included in an isolated
-archive or offsite retention claim. Reproduce using
+corpus-local and SHA-bound by that summary. It is now included in the isolated
+audit-input archive recorded by company-typed-concept-input-archive-20260920.json;
+this does not include every company source body and is not offsite retention. Reproduce using
 scripts/inventory-company-concept-coverage.mjs with the two delivery directories.
 A focused regression verifies rejection of future-only, constant, incompatible-unit,
 conflicting and corrupted inputs, preservation of existing-policy boundaries and
 deterministic output. No selector, taxonomy policy or publication setting changed.
+
+## Taxonomy-constrained follow-up
+
+The94high-coverage concepts were rechecked across all2,651retained sources with
+the pinned taxonomy's period and unit types. Recent coverage remains140,596pairs;
+this is not page approval. Numerical overlap exposes a duplication risk:2,013
+companies have identical full values for liabilities-and-equity and assets.
+See CONCEPT_REVIEW.md for exact counts, scope constraints, six next-review
+candidates and the source-bound reproducible report. No source policy changed.
