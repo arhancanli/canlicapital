@@ -600,3 +600,17 @@ replay126/126. Original preserved. Exact observation-set union against all38prio
 groups verifies610/610with no omissions/double credit. Numerical closure only;
 primary-context/usefulness and other groups remain open. Only26312bulk remains
 known active. New evidence/date fix in draft PR33.
+
+## 2026-09-20 — isolated priority equality archive replay
+
+Previous turn closed610/610numerical observations and preserved failures. New
+archive/replay46444terminal0:941files/293,847,040bytes, checksum
+cb89a5df08529157f6bc2e42f3d498b6b9d5b05fcfc2960c46e7f048adf436bc.
+All member bytes verified in temporary restore; locked dependencies installed
+from bundled wheels with no index/network. Archived prior helper replays original
+primary reports while later supplemental instances are held outside scan scope;
+current helper then replays corrected XBRL reports. All five reports byte-identical;
+exact610observation queue union matches without duplicate credit. No original
+capture directories used by replay. Not manual-scope rerun, queue regeneration or
+offsite backup. Bulk26312polled live;5129objects/0failures at checkpoint. PR33
+CI35517263780passes at1a019807; packager additions pending their own checks.

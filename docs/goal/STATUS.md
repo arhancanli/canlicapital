@@ -13,7 +13,7 @@ at0dcfa6f73768fe6419a547012e87ad0952dc7ca6. Tested/merged tree both
 40d3071a73e02164a89fb58289696e8c08bcf537. PR31 previously merged59b10c83 with
 five checks and exact tree equality. Post-merge PR32 CI35516871919passed.
 
-Bulk storage26312 remains active, codea98637c4, last checkpoint4573verified
+Bulk storage26312 remains active, codea98637c4, last checkpoint5129verified
 objects/0failures. Receipt corpus-local/company-five-cohort-transfer-20260920.json.
 Concurrency4, read3/write2, global budgets200/50; immutable exact-byte checks.
 Primary acquisition43531 is terminal exit0: all159index/primary pairs verified,
@@ -21,12 +21,21 @@ complete receipt company-equal-history-capture-complete-20260920.json. All200
 priority primary filings are now retained (41original+159new).
 First XBRL49534 terminal:39/51matches; whitespace-date fix offline replay now51/51.
 Second XBRL18988 is terminal exit0:116/126initial matches. Corrected date-whitespace
-offline replay now126/126. Original result preserved. No acquisition/comparison
-process remains active; only bulk26312known active. PR33 reviews new evidence.
+offline replay now126/126. Original result preserved. No acquisition/comparison process remains active. PR33 reviews new evidence.
+Archive/replay46444completed exit0. Archive corpus-local/equal-history-evidence-
+20260920.tar:941files/293,847,040bytes, SHA256
+cb89a5df08529157f6bc2e42f3d498b6b9d5b05fcfc2960c46e7f048adf436bc.
+Isolated restore verifies all member hashes, installs locked wheels offline and
+reproduces all five comparison reports byte-for-byte plus exact610/610observation
+closure. Receipt company-equal-history-archive-20260920.json. Prior/current helper
+versions preserved; later instances withheld during earlier primary replay.
+Does not regenerate companyfacts queue, rerun manual interpretation or establish
+offsite backup. PR33 CI35517263780passed all four checks at1a019807 before packager
+addition; current additions require their own checks.
 
 
 Earlier v3upload sessions are terminal with failures retained. Do not resume the
-superseded v3plan. Only the two processes above are known active.
+superseded v3plan. Only bulk26312is currently known active. Archive/replay46444completed exit0.
 
 ## Immediate next work
 
@@ -107,8 +116,7 @@ All750equality groups reproduced from selected records:712nonzero basic/diluted,
 37other nonzero,1zero-only. Priority38groups mapped to610selected observations
 across200filings. Initial41retained filings reproduce212/212. Incremental59filings
 cover134more observations:83match,51unresolved in25filings. Thus295/346compared
-match. At that snapshot100filings/264observations lacked captures; active acquisition
-has since advanced. EVENTIKO4supplement overlaps incremental results, not extra.
+match. At that snapshot100filings/264observations lacked captures; subsequent acquisition completed; see current610/610closure above. EVENTIKO4supplement overlaps incremental results, not extra.
 
 Limited primary interpretations:3M2023–2025 matching revenue totals; EVENTIKO all
 8selected observations for payable/property2022–2025 in3filings. Separate11,000
@@ -117,10 +125,10 @@ include website development. Equality does not make concepts interchangeable.
 No company-wide admission. Other source-scope/usefulness checks remain open.
 
 XML helper now resolves scoped currency QNames, rejects incorrect/undeclared/
-rebound prefixes and accepts valid aliases.17corpus+4XML tests pass and run in CI.
+rebound prefixes and accepts valid aliases.17corpus+5XML tests pass and run in CI.
 Post-fix212observation replay has identical filing results with new helper hash;
-original reports/archives unchanged. New acquisition evidence still needs archival
-closure and replay. No offsite-backup claim.
+original reports/archives unchanged. New acquisition evidence now has verified archival closure and isolated replay.
+No offsite-backup claim.
 
 ## Other owner objectives and remaining evidence
 
