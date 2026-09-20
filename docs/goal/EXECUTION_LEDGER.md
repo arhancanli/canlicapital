@@ -14,7 +14,7 @@ Authority: REQUIREMENTS.md (all goals), STATUS.md (current facts), PHASES.md
 |T04 New-cohort staging |Locally verified |23,568 pages/1,706 downloads replayed;54 browser checks;147 exclusions retained |
 |T04b Combined-cohort construction |Locally verified |32,954 pages/2,404 downloads replayed;54 browser checks;368 full-suite tests;source evidence retained |
 |T05 Editorial/source/intent quality |Ongoing |Useful distinct pages, freshness/comparability flags resolved, no keyword permutations |
-|T06 Storage and release |Dependency pending |Actual storage, preview runtime, release decision and production evidence |
+|T06 Storage and release |Runtime plan verified; access pending |3,927 objects/505,062,941 bytes; separate capture backup and hosted/production evidence pending |
 |T07 Search indexing and adoption |Unestablished |Search-engine and genuine API/MCP/repository usage evidence |
 |T08 Governed engine outcomes |Unestablished |Fresh contracts/current evidence, qualified distinct sleeves, net forward outcomes |
 

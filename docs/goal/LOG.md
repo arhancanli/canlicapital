@@ -803,3 +803,35 @@ verified every file hash and saved path/hash inventory. No source capture remove
 CI35488566338 passed for prior60e27321; this new code requires its own pushed CI.
 Next: editorial publication rules and durable storage/hosted preview integration;
 all actual indexing, quality, platform/adoption and governed engine goals remain.
+
+
+### Combined checkpoint pushed — 77029551
+
+Pushed existing PR15; verified API head77029551 and queued CI35488994575. All
+implementation/evidence committed; subsequent continuity update records this push.
+Next turn should poll that exact run before carrying forward any CI claim.
+
+
+## 2026-09-20 — storage preparation and access recheck
+
+Prior turn progress: verified/pushed combined corpus. Read continuity; current
+77029551 CI35488994575 passes. Existing Vercel CLI59.19.0 found in npm cache;
+read-only env listing shows production-only Supabase settings. Initial export
+nonempty checks were too weak: parsed values do not yield a usable HTTPS Supabase
+URL, so no bucket request was sent. Temporary credential exports removed without
+printing values. Asked owner for target bucket/project and local credential path.
+No remote settings/buckets/objects changed. Preparing a verified reachable-object
+upload plan while access is pending; this is runtime/provenance inventory, not a
+complete capture-evidence backup or publication approval.
+
+
+## 2026-09-20 — runtime storage plan verified
+
+Planner validates release/catalog/download coherence, source replay and archived
+cohort mappings; collects only reachable hash-addressed objects and retains exact
+gzip bytes. Corrupt data, changed pointer or missing archived evidence fails.
+Three regressions pass. Full verify73497 exit0:371 tests(6+365) and final audits.
+Real inventory28097 exit0:3,927 objects/505,062,941 bytes; summary binds local plan
+hash and code. No network writes. Documented separate capture-evidence backup gap
+instead of calling the runtime inventory a full backup. Storage access question
+pending; subsequent work can advance editorial policy and governed engine evidence.

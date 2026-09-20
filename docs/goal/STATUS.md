@@ -24,9 +24,9 @@ integration. Prior releases remain unchanged; publication is not approved.
   pages, 676 flagged histories, 147 exclusions, 0 errors**. Exclusions: 51 invalid
   entities, 35 insufficient coverage, 61 captured 404 responses. No captures rewritten.
   Receipt: artifacts/seo/company-next-batch-codex-review.json.
-- Website PR15 OPEN at **60e27321**, pushed on 2026-09-20. CI run
-  **35488566338** passed for this exact head. New combined-delivery code remains
-  local and is not covered by that remote result. No production deployment performed.
+- Website PR15 OPEN at **77029551**, pushed on 2026-09-20. CI run
+  **35488994575** passed for this exact head. Current storage-planner additions
+  are local and not covered by that remote result. No production deployment.
 
 ## Counts and boundaries
 
@@ -120,3 +120,17 @@ explicitly superseded; their success claims are not acceptance evidence.
   preserves paths/hashes. Source captures and accepted implementation remain intact.
 - Logs: /tmp/canli-combine-final-verify.log, /tmp/canli-combined-http.log,
   /tmp/canli-combined-browser.log. Publication/indexing/forward outcomes remain open.
+
+## Storage preparation — 2026-09-20
+
+- Reachable runtime/provenance plan: **3,927 objects / 505,062,941 bytes**.
+  Full local plan and bound summary documented in STORAGE_READINESS.md.
+- Full `npm run verify`: **371 tests (6+365)** and final audits pass; log
+  /tmp/canli-storage-verify.log. Three storage-plan regressions pass separately.
+- No upload or remote mutation. Vercel lists production Supabase settings, but
+  parsed export did not yield a usable HTTPS project URL. Temporary files deleted;
+  no secret values printed and no bucket call attempted. Owner connection question pending.
+- Runtime upload planning excludes original acquisition queues and excluded-response
+  bodies; separate verified capture backup remains required. No recovery claim.
+- Next independent work: editorial publication rules and fresh governed engine
+  evidence while awaiting storage details. All owner objectives remain active.
