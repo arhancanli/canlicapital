@@ -889,3 +889,22 @@ test('Guardant and C3.ai preserve note hedges and April fiscal class allocation'
     assert.equal(companyFilingNotes(changed, tags[0]).length, 0);
   }
 });
+
+test('Axsome and Twist retain three-year exclusions and repurchase adjustments', () => {
+  for (const [fixture, cik, phrase, value, period] of [
+    ['axsome', '0001579428', /three-year exclusion table supplies the 2023 context/, 49747178, '2025-12-31'],
+    ['twist-bioscience', '0001581280', /basic denominator deducts shares subject to repurchase/, 59808000, '2025-09-30'],
+  ]) {
+    const raw = gunzipSync(readFileSync(new URL(`./fixtures/editorial/${fixture}-reviewed-source.json.gz`, import.meta.url)));
+    const record = companyReference(raw, { expectedCik: cik, fetchedAt: '2026-09-20T00:00:00Z', selectionPolicy: 'extended-v19' });
+    verifyCompanyReference(record, raw);
+    const original = structuredClone(record.concepts);
+    record.source_snapshot = `/company-data/sources/${record.source_sha256}.json.gz`;
+    const tags = ['EarningsPerShareBasic', 'EarningsPerShareDiluted', 'WeightedAverageNumberOfSharesOutstandingBasic', 'WeightedAverageNumberOfDilutedSharesOutstanding'];
+    for (const target of [...tags, 'overview']) assert.match(renderCompanyPages(record, { target })[0].html, phrase);
+    assert.ok(record.concepts.find(c => c.tag === tags[2]).observations.some(r => r.end === period && r.val === value));
+    assert.deepEqual(record.concepts, original);
+    const changed = structuredClone(record); changed.source_sha256 = '0'.repeat(64);
+    assert.equal(companyFilingNotes(changed, tags[0]).length, 0);
+  }
+});
