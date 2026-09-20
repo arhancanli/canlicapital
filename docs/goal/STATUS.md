@@ -7,7 +7,7 @@ status preserved in history/STATUS-20260920-through-equality-triage.md.
 ## Current execution
 
 Worktree /Users/arhancanli/canlicapital-expansion-20260919, branch
-fix/dbmm-period-scope-20260920. PR34 merged as
+fix/hno-operating-scope-20260920. PR34 merged as
 34f2b81e9dec93047c90c4185d1a59fe9ada3661 after four CI35517891088checks passed
 at2ca4f9fe; tested/merged tree67b8efb122bd96a625a6d7933a5312c9b8e31da3.
 PR33 merged as
@@ -376,3 +376,33 @@ source-bound policy against selected runtime bytes and exclusion metadata.
 The additional withheld period is not counted as reviewed. Earlier ledger stays
 unchanged;169recorded reviews include the3previously withdrawn Birdie periods.
 Offline replay is byte-identical. New ledger is later than the sealedv11archive.
+
+## HNO operating-result publication hold
+
+PR39merged2f5e86d8a13e91eefce01c5264129b71598d3817 after all four
+CI35521807091checks passed atcf8c938c. Tested/merged tree equality verified:
+c51a2545074eeb274c64952e6e5886a232711085. No production activation.
+
+Historical review found all four selected HNO OperatingIncomeLoss periods include
+non-operating income/expense. Three retained primary statements and a restatement
+table show gross profit minus operating expenses plus separately displayed other
+result equals the tagged operating/net loss. This conflicts with our concept
+definition. Source04f062ef5e20caad0e3d8bf8913f2790f3550faf496fbcc8e4266d8eb14abe28.
+Report company-hno-operating-scope-20260920.json replays byte-for-byte. The earlier
+latest-period interpretation in company-remaining-equality-context is insufficient
+and superseded for HNO; original report preserved. No new review credit claimed.
+Next: implement source-bound whole OperatingIncomeLoss exclusion, retain net loss
+and all other values, test actual capture, then rebuild candidate before admission.
+Do not upload/admit v11unchanged. No uploader active. This finding is later than
+the sealed v11archive. No derived arithmetic may replace original observations.
+
+## Source-bound HNO exclusion implemented
+
+Policy extended-v12 inherits all v11whole-concept and exact-period holdbacks and
+withholds only HNO OperatingIncomeLoss for the reviewed source hash. Original
+policies remain reproducible. Actual45,095byte captured fixture tests all four
+removed observations, unchanged NetIncomeLoss/all other concepts, changed-source
+rejection, missing-notice rejection, absent history page and explanatory overview.
+DBMM source fixture confirms inherited exact-period holdback unchanged.32selector/
+renderer tests pass. V12cohort/release rebuild has not started; v11must not be
+admitted unchanged. Further historical scope review remains open.

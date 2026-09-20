@@ -274,3 +274,31 @@ test('v11 withholds only the exact reviewed DBMM period and reproduces prior pol
   assert.match(revenue, /<th scope="row">2020-08-31<\/th>/);
   assert.match(renderCompanyPages(after, { target: 'overview' })[0].html, /XBRL period conflicts/);
 });
+
+test('v12 withholds HNO operating history while preserving net loss and inherited holdbacks', async () => {
+  const raw = gunzipSync(readFileSync(new URL('./fixtures/editorial/hno-reviewed-source.json.gz', import.meta.url)));
+  assert.equal(createHash('sha256').update(raw).digest('hex'), '04f062ef5e20caad0e3d8bf8913f2790f3550faf496fbcc8e4266d8eb14abe28');
+  const options = { fetchedAt: '2026-09-20T07:54:29.633Z', expectedCik: '0001342916' };
+  const before = companyReference(raw, { ...options, selectionPolicy: 'extended-v11' });
+  const after = companyReference(raw, { ...options, selectionPolicy: 'extended-v12' });
+  assert.equal(before.concepts.find(c => c.tag === 'OperatingIncomeLoss').observations.length, 4);
+  assert.deepEqual(after.concepts, before.concepts.filter(c => c.tag !== 'OperatingIncomeLoss'));
+  assert.deepEqual(after.concepts.find(c => c.tag === 'NetIncomeLoss'), before.concepts.find(c => c.tag === 'NetIncomeLoss'));
+  assert.equal(after.editorial_exclusions.filter(e => e.tag === 'OperatingIncomeLoss').length, 1);
+  verifyCompanyReference(before, raw); verifyCompanyReference(after, raw);
+  const changed = structuredClone(after); delete changed.editorial_exclusions;
+  assert.throws(() => verifyCompanyReference(changed, raw), /does not reproduce/);
+  assert.throws(() => companyReference(Buffer.concat([raw, Buffer.from('\n')]), { ...options, selectionPolicy: 'extended-v12' }), e => e.code === 'EDITORIAL_REVIEW_REQUIRED');
+  const { renderCompanyPages } = await import('./lib/company-page-renderer.mjs');
+  after.source_snapshot = `/company-data/sources/${after.source_sha256}.json.gz`;
+  const pages = renderCompanyPages(after);
+  assert(!pages.some(p => p.path.includes('OperatingIncomeLoss')));
+  assert.match(renderCompanyPages(after, { target: 'overview' })[0].html, /no calculated replacement has been substituted/);
+  const dbmm = gunzipSync(readFileSync(new URL('./fixtures/editorial/dbmm-reviewed-source.json.gz', import.meta.url)));
+  const dbOptions = { fetchedAt: options.fetchedAt, expectedCik: '0001127475' };
+  const previous = companyReference(dbmm, { ...dbOptions, selectionPolicy: 'extended-v11' });
+  const inherited = companyReference(dbmm, { ...dbOptions, selectionPolicy: 'extended-v12' });
+  assert.deepEqual(inherited.concepts, previous.concepts);
+  assert.deepEqual(inherited.editorial_exclusions, previous.editorial_exclusions);
+  verifyCompanyReference(inherited, dbmm);
+});
