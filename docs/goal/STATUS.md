@@ -9,21 +9,21 @@ which links older records. Historical process states are not live telemetry.
 ## Current work and next action
 
 Worktree `/Users/arhancanli/canlicapital-expansion-20260919`, branch
-`evidence/share-context-batch32-20260921`. PR99merged6b662d49after four passing
-CI35538224081checks at89a3c183. Tested and merged trees match exactly.
+`evidence/share-context-batch33-20260921`. PR100merged5101b3d6after four passing
+CI35538377946checks at5f8088e2. Tested and merged trees match exactly.
 
-Latest registered ledger:company-basic-diluted-registered-scope-batch32-20260921.json.gz.
-Of1,176batch observations,890reviewed/266pending/20withdrawn.96reviewed are explicitly
+Latest registered ledger:company-basic-diluted-registered-scope-batch33-20260921.json.gz.
+Of1,176batch observations,914reviewed/242pending/20withdrawn.96reviewed are explicitly
 presentation-only; dilution cause is not established for those rows. The registry
 pins exact reports/issuers/dispositions/counts/states. Numerical agreement alone
 never approves scope. Workflow in SCOPE_REVIEW.md; original ledgers preserved.
 
-Latest24reviews cover Axsome and Twist Bioscience. Axsome's exclusion table
-covers2023–2025even though the policy paragraph explicitly names2024/2025only.
-2024diluted EPSis tagged only in statement14; retained as explicit support for
-note40and exclusions41after initial replay failed. Twist's September fiscal dates
-and deduction of shares subject to repurchase remain intact. All values unchanged.
-54renderer/ledger tests pass; report replays byte-identically. Next new index85;
+Latest24reviews cover SentinelOne and Hines Global Income Trust. SentinelOne
+participating awards have no contractual loss-sharing obligation; January fiscal
+dates and combined ClassA/B denominator retained. Hines explicitly states no
+potentially dilutive common shares outstanding, including its positive2025earnings
+presentation; all common classes share the same per-share allocation rate.
+55renderer/ledger tests pass; report replays byte-identically. Next new index87;
 earlier gaps remain.96presentation-only reviews retain limits.
 V19six Outset2023–2025share-scale holds remain; no silent rescaling or second split
 conversion. EPS and older periods remain unapproved by the hold report.
