@@ -1,0 +1,59 @@
+{
+  "schema": "canli.reviewed-share-context-spec.v1",
+  "decisions": [
+    {
+      "cik": "0001610590",
+      "accession": "0001213900-26-048090",
+      "source_sha256": "35e89fe9ec2f780773f483d41211af830dd82aa934ad1d779a35906febaf2551",
+      "primary_sha256": "841b4945c6480144e3b084a932655c44ab06ac6da3b7f8140e2f34b9172cce6b",
+      "fixture": "scripts/fixtures/editorial/check-cap-reviewed-source.json.gz",
+      "observations": 12,
+      "period_ends": [
+        "2023-12-31",
+        "2024-12-31",
+        "2025-12-31"
+      ],
+      "table_index": 517,
+      "share_scale": "0",
+      "table_requires": [
+        "Net income",
+        "Weighted"
+      ],
+      "paragraph_requires": [
+        "For the year ended December 31, 2025, outstanding options and warrants are out of the money",
+        "All outstanding options and warrants were excluded from the 2024 and 2023",
+        "Effective November 23, 2022, the Company effected a 1-for-20 reverse share split. All share and per-share amounts"
+      ],
+      "reader_note": "For Check-Cap in 2023 and 2024, outstanding options and warrants are excluded as anti-dilutive during losses. For profitable 2025, the filing instead says those instruments are out of the money and therefore excluded from diluted EPS. The positive 2025 net result includes debt-extinguishment and conversion income despite an operating loss. The November 2022 one-for-twenty reverse split is already reflected retrospectively; no second adjustment is applied. Full share counts and reported EPS retain their scale-zero tags.",
+      "disposition": "REVIEWED_ALLOCATION_UNIT_AND_DILUTION_CONTEXT",
+      "supporting_table_indexes": [
+        421
+      ]
+    },
+    {
+      "cik": "0001660280",
+      "accession": "0001660280-26-000005",
+      "source_sha256": "25756b942a29567cbb25e024fb51cdee78bbd29e0b31498a50eb533c7e470b11",
+      "primary_sha256": "658c77357d27b1265a06b3774802418494ad7f606ccf6d439ae335fc28ed8fbe",
+      "fixture": "scripts/fixtures/editorial/tenable-reviewed-source.json.gz",
+      "observations": 12,
+      "period_ends": [
+        "2023-12-31",
+        "2024-12-31",
+        "2025-12-31"
+      ],
+      "table_index": 64,
+      "share_scale": "3",
+      "table_requires": [
+        "Net loss",
+        "Weighted"
+      ],
+      "paragraph_requires": [
+        "including unvested RSUs, PSUs, stock options, unvested restricted shares",
+        "As we have reported losses for all periods presented, all potentially dilutive securities have been excluded"
+      ],
+      "reader_note": "For Tenable in 2023\u20132025, basic and diluted loss per share use the same weighted-average denominator because potential dilution is anti-dilutive in all presented loss periods. The excluded instruments include RSUs, performance stock units, stock options, unvested restricted shares and ESPP shares. The EPS note\u2019s thousands heading applies to shares: scale-three share counts and scale-zero EPS remain unchanged.",
+      "disposition": "REVIEWED_ALLOCATION_UNIT_AND_DILUTION_CONTEXT"
+    }
+  ]
+}

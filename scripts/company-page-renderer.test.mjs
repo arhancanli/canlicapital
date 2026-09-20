@@ -1002,3 +1002,22 @@ test('Latest Lifeward and Weave retain retrospective splits and period-end exclu
     assert.equal(companyFilingNotes(changed, tags[0]).length, 0);
   }
 });
+
+test('Check-Cap and Tenable retain profitable-year and loss-period dilution context', () => {
+  for (const [fixture, cik, phrase, value, period] of [
+    ['check-cap', '0001610590', /instruments are out of the money/, 6232226, '2025-12-31'],
+    ['tenable', '0001660280', /performance stock units/, 120124000, '2025-12-31'],
+  ]) {
+    const raw = gunzipSync(readFileSync(new URL(`./fixtures/editorial/${fixture}-reviewed-source.json.gz`, import.meta.url)));
+    const record = companyReference(raw, { expectedCik: cik, fetchedAt: '2026-09-20T00:00:00Z', selectionPolicy: 'extended-v20' });
+    verifyCompanyReference(record, raw);
+    const original = structuredClone(record.concepts);
+    record.source_snapshot = `/company-data/sources/${record.source_sha256}.json.gz`;
+    const tags = ['EarningsPerShareBasic', 'EarningsPerShareDiluted', 'WeightedAverageNumberOfSharesOutstandingBasic', 'WeightedAverageNumberOfDilutedSharesOutstanding'];
+    for (const target of [...tags, 'overview']) assert.match(renderCompanyPages(record, { target })[0].html, phrase);
+    assert.ok(record.concepts.find(c => c.tag === tags[2]).observations.some(r => r.end === period && r.val === value));
+    assert.deepEqual(record.concepts, original);
+    const changed = structuredClone(record); changed.source_sha256 = '0'.repeat(64);
+    assert.equal(companyFilingNotes(changed, tags[0]).length, 0);
+  }
+});
