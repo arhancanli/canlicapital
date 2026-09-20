@@ -143,3 +143,19 @@ an exclusion for unsupported scope, not a claim that actual total revenue is
 nonzero. Source-bound replay removes only this concept and preserves all others;
 v5remains reproducible but is not publishable for this cohort. See
 company-fourth-novagold-disposition-20260920.json and review-novagold-revenue-scope.py.
+
+## Historical review queue for the corrected fourth cohort
+
+The v6priority queue contains50concepts across26companies and31latest filings.
+`prepare-company-history-review.py` expands those exact selected records into
+185distinct filings and430observations.154filings are additional to the latest
+queue;320observations use earlier accessions. Both latest and earlier entries
+remain pending numerical, scope and usefulness review in this new queue. Prior
+latest-filing findings remain separate evidence, not automatic all-history approval.
+
+The queue binds the delivery manifest, priority report, selected object hashes,
+source identities and generating code. Latest observations must reproduce before
+expansion. Deterministic replay, an independent observation count and rejection
+of altered manifest/source/observation bindings and duplicate concepts passed.
+See `artifacts/seo/company-fourth-history-review-targets-v6.json`. This queue
+covers priority concepts only; remaining concepts and flags still need review.

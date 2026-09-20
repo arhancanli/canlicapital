@@ -80,3 +80,19 @@ not constitute publication approval. MCP0.1.2 decision remains pending.
 Website05617bd9 now passes allCI35501859482jobs. Fifth capture49258 continues:
 804processed,528review candidates,130content exclusions,146HTTPerrors; no stop
 or finish. Same capture retained; no failed requests restarted.
+
+## 2026-09-20 — explicit all-history priority coverage
+
+Previous turn made progress by creating and verifying engine integration draftPR71.
+Read continuity, verified clean website state and polled live capture49258.
+Prepared a v6-bound priority queue excluding the five removed histories, then
+expanded its50concepts/26companies into every selected accession.430observations
+span185filings;154are additional to31latest filings and320observations use earlier
+accessions. These are pending review targets, not verified historical values.
+
+New generator verifies manifest, selected-object and source identities and requires
+latest priority observations to reproduce. Byte-identical replay, independent
+430-observation total, and four negative probes (manifest/source/observations/
+duplicate concept) passed. No network requests or admission from this work.
+Fifth capture remains live, latest930/1000:623review candidates,149content exclusions,
+158HTTP404outcomes. No stopped/finished marker and no retry or restart.

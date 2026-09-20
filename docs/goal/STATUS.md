@@ -50,7 +50,10 @@ groups have latest-filing context. This is not all-history or editorial approval
 V6still has3,146overlapping quality flags, including22zero histories. A new
 source-bound review supports21latest zero contexts; Nika remains unresolved
 because its tagged narrative says no income rather than an explicit revenue total.
-All-history, usefulness and unit reviews remain open. See COMPANY_EDITORIAL_POLICY.md.
+All-history, usefulness and unit reviews remain open. The corrected priority queue
+now enumerates430observations across185filings for50concepts/26companies;154filings
+are additional to its31latest filings. No new historical review approval.
+See COMPANY_EDITORIAL_POLICY.md.
 
 Fifth queue contains1,000new issuers, disjoint from all four website queues,
 both staged deliveries and600retained engine acquisition identities. Queue SHA
