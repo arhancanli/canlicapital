@@ -9,6 +9,7 @@ import http from "node:http";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import test from "node:test";
+import { readFileSync } from "node:fs";
 
 import { Client } from "@modelcontextprotocol/sdk/client/index.js";
 import { StdioClientTransport } from "@modelcontextprotocol/sdk/client/stdio.js";
@@ -37,7 +38,10 @@ function startStub() {
   return new Promise((resolve) => {
     const server = http.createServer((req, res) => {
       res.setHeader("Content-Type", "application/json");
-      res.end(JSON.stringify(STUB_ENVELOPE));
+      if (req.url.startsWith('/api/v1/receipts/')) {
+        res.statusCode = 404;
+        res.end(JSON.stringify({ ...STUB_ENVELOPE, error: { code: 'not_found' } }));
+      } else res.end(JSON.stringify(STUB_ENVELOPE));
     });
     server.listen(0, "127.0.0.1", () => resolve(server));
   });
@@ -57,6 +61,7 @@ test("stdio wiring: tools/list and a real tool call round-trip over the actual t
   const client = new Client({ name: "stdio-handshake-test", version: "0.0.1" });
   await client.connect(transport);
   t.after(() => client.close());
+  assert.equal(client.getServerVersion().version, JSON.parse(readFileSync(path.join(mcpRoot, "package.json"))).version);
 
   const { tools } = await client.listTools();
   const names = tools.map((tool) => tool.name).sort();
@@ -76,4 +81,8 @@ test("stdio wiring: tools/list and a real tool call round-trip over the actual t
   const result = await client.callTool({ name: "service_status", arguments: {} });
   const envelope = JSON.parse(result.content[0].text);
   assert.deepEqual(envelope, STUB_ENVELOPE);
+  assert.ok(!result.isError);
+  const failed = await client.callTool({ name: "get_receipt", arguments: { id: 'a'.repeat(24) } });
+  assert.equal(failed.isError, true);
+  assert.deepEqual(JSON.parse(failed.content[0].text), { ...STUB_ENVELOPE, error: { code: 'not_found' } });
 });

@@ -913,3 +913,19 @@ links; no automatic merge based on equal values. Review is Codex source inspecti
 not independent human replication or all-history/publication approval. Documents
 and bound receipt preserve scope. No application code changed in this turn.
 Websitefb0a05de CI35489967924 passes; engine61b587f run35489715539 still running.
+
+
+## 2026-09-20 — MCP reliability and continuous verification
+
+Previous turn progress: six source-bound editorial decisions. MCP review found
+HTTP errors returned as successful tool results, no deadline, and no package CI.
+Corrected result flags without stripping envelopes, bounded header/body fetches,
+rejected redirects, suppressed reflected nonJSON/network errors, and prevented
+failed key responses installing keys. No retry may duplicate validation/key writes.
+Handshake version now follows package.json. Added MCP CI job. Clean locked install,
+48 tests(realstdio included), audit0vulnerabilities pass. First pack dry-run with
+--prefix inspected root by mistake; correct mcp cwd dry-run verifies expected four
+package files. Neither command published or generated a tarball. Public status
+GET succeeded with no credential/keyissuance/validationmutation;12total validations
+are telemetry only. Source receipt and status contain limits; adoption remains open.
+Prior website CI35490262960 passes; engine35489715539 still running.

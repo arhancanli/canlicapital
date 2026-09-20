@@ -214,3 +214,22 @@ the repaired goals worktree. Earlier cross-worktree import run is not acceptance
   the separate durable evidence backup. Existing runtime upload inventory excludes
   them. Initial web-reader error and Python403 retained as failures, not evidence.
 - Websitefb0a05de CI35489967924 passed; engine61b587f CI35489715539 remains running.
+
+## Developer integration checkpoint — 2026-09-20
+
+- MCP HTTP/API failures now set isError while retaining full response envelopes;
+  negative validation verdicts remain normal results. Failed key issuance cannot
+  install a session key. Added30-second header/body deadline, redirect rejection,
+  no automatic retry and transport errors that omit reflected response bodies.
+- Runtime version now follows package.json(0.1.1) rather than hardcoded0.1.0.
+  Added missing MCP CI job: locked install, high-severity audit and package tests.
+- Clean npm ci and48 MCP tests pass, including real stdio success/error handshake,
+  stalled-body timeout, credential redirect prevention and secret-safe errors.
+  npm audit reports0vulnerabilities. Package dry-run contains README/package.json
+  and two source modules; no package published or version bumped.
+- Public read-only status check2026-09-20T04:55:53Z succeeds without credentials;
+  store_reachable=true,12 total validations,0today,0keys today. This is server
+  telemetry, not independent developer adoption, attribution or durable storage access.
+  Receipt artifacts/developer/mcp-status-check-20260920.json binds local handler.
+- Prior websitedfdae74a CI35490262960 passes. Engine61b587f run35489715539 still
+  running when checked; no current complete engine CI pass claimed.

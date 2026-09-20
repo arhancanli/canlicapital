@@ -6,6 +6,7 @@
 // sentences beside it that say what the number does not establish (see schemas.mjs, LIMITS_SENTENCES
 // and TOOL_DESCRIPTIONS). Reads CANLI_API_BASE (default https://canlicapital.com) and an optional
 // CANLI_KEY; when CANLI_KEY is set, get_key does not call the network.
+import { readFileSync } from "node:fs";
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import {
@@ -22,7 +23,8 @@ import {
 
 export const DEFAULT_BASE = "https://canlicapital.com";
 export const SERVER_NAME = "canlicapital-validation-mcp";
-export const SERVER_VERSION = "0.1.0";
+export const SERVER_VERSION = JSON.parse(readFileSync(new URL("../package.json", import.meta.url), "utf8")).version;
+export const REQUEST_TIMEOUT_MS = 30_000;
 
 // One place a value fails a zod schema turns into a short, readable message instead of a raw
 // ZodError, so a thrown error reads well inside an MCP isError result.
@@ -33,12 +35,14 @@ function parseOrThrow(schema, value, label) {
   throw new Error(`${label}: ${issues}`);
 }
 
-export function createSession({ base, fetchImpl, envKey } = {}) {
+export function createSession({ base, fetchImpl, envKey, timeoutMs = REQUEST_TIMEOUT_MS } = {}) {
+  if (!Number.isSafeInteger(timeoutMs) || timeoutMs <= 0) throw new Error("Request timeout must be a positive integer");
   return {
     base: base ?? process.env.CANLI_API_BASE ?? DEFAULT_BASE,
     fetchImpl: fetchImpl ?? fetch,
     envKey: envKey ?? process.env.CANLI_KEY ?? undefined,
     key: undefined,
+    timeoutMs,
   };
 }
 
@@ -46,18 +50,31 @@ async function callApi(session, { path, method = "GET", body }) {
   const headers = { "Content-Type": "application/json" };
   const key = session.key ?? session.envKey;
   if (key) headers.Authorization = `Bearer ${key}`;
-  const init = { method, headers };
+  const signal = AbortSignal.timeout(session.timeoutMs);
+  const init = { method, headers, signal, redirect: "error" };
   if (body !== undefined) init.body = JSON.stringify(body);
-  const res = await session.fetchImpl(`${session.base}${path}`, init);
-  const text = await res.text();
+  let res, text;
   try {
-    return JSON.parse(text);
+    res = await session.fetchImpl(`${session.base}${path}`, init);
+    text = await res.text();
   } catch {
-    throw new Error(`${path} returned a non-JSON body (status ${res.status}): ${text.slice(0, 300)}`);
+    throw new Error(signal.aborted
+      ? `${path} exceeded the request deadline. The server may have processed the request; no automatic retry was sent.`
+      : `${path} could not be reached or read. Check the API base and service status; no automatic retry was sent.`);
   }
+  let envelope;
+  try {
+    envelope = JSON.parse(text);
+  } catch {
+    throw new Error(`${path} returned a non-JSON body (status ${res.status}). Response body omitted.`);
+  }
+  return { envelope, failed: res.status >= 400 || Boolean(envelope?.error) };
 }
 
-const asText = (envelope) => ({ content: [{ type: "text", text: JSON.stringify(envelope, null, 2) }] });
+const asText = (envelope, failed = false) => ({
+  content: [{ type: "text", text: JSON.stringify(envelope, null, 2) }],
+  ...(failed ? { isError: true } : {}),
+});
 
 export async function toolGetKey(session, args) {
   const { label } = parseOrThrow(getKeyInput, args, "get_key");
@@ -68,9 +85,9 @@ export async function toolGetKey(session, args) {
       key_present: true,
     });
   }
-  const envelope = await callApi(session, { path: "/api/v1/keys", method: "POST", body: { label } });
-  if (envelope?.data?.key) session.key = envelope.data.key;
-  return asText(envelope);
+  const response = await callApi(session, { path: "/api/v1/keys", method: "POST", body: { label } });
+  if (!response.failed && response.envelope?.data?.key) session.key = response.envelope.data.key;
+  return asText(response.envelope, response.failed);
 }
 
 export async function toolValidateDeflatedSharpe(session, args) {
@@ -81,37 +98,37 @@ export async function toolValidateDeflatedSharpe(session, args) {
         "or a return series (returns, periods_per_year, effective_independent_trials, cross_trial_sharpe_sd_annualized), never a mix of both and never neither.",
     );
   }
-  const envelope = await callApi(session, { path: "/api/v1/validate/deflated-sharpe", method: "POST", body: parsed.data });
-  return asText(envelope);
+  const response = await callApi(session, { path: "/api/v1/validate/deflated-sharpe", method: "POST", body: parsed.data });
+  return asText(response.envelope, response.failed);
 }
 
 export async function toolValidateOverfitting(session, args) {
   const body = parseOrThrow(overfittingInput, args, "validate_overfitting");
-  const envelope = await callApi(session, { path: "/api/v1/validate/overfitting", method: "POST", body });
-  return asText(envelope);
+  const response = await callApi(session, { path: "/api/v1/validate/overfitting", method: "POST", body });
+  return asText(response.envelope, response.failed);
 }
 
 export async function toolValidatePaperEvidence(session, args) {
   const body = parseOrThrow(paperEvidenceInput, args, "validate_paper_evidence");
-  const envelope = await callApi(session, { path: "/api/v1/validate/paper-evidence", method: "POST", body });
-  return asText(envelope);
+  const response = await callApi(session, { path: "/api/v1/validate/paper-evidence", method: "POST", body });
+  return asText(response.envelope, response.failed);
 }
 
 export async function toolValidateBreadth(session, args) {
   const body = parseOrThrow(breadthInput, args, "validate_breadth");
-  const envelope = await callApi(session, { path: "/api/v1/validate/breadth", method: "POST", body });
-  return asText(envelope);
+  const response = await callApi(session, { path: "/api/v1/validate/breadth", method: "POST", body });
+  return asText(response.envelope, response.failed);
 }
 
 export async function toolGetReceipt(session, args) {
   const { id } = parseOrThrow(getReceiptInput, args, "get_receipt");
-  const envelope = await callApi(session, { path: `/api/v1/receipts/${id}` });
-  return asText(envelope);
+  const response = await callApi(session, { path: `/api/v1/receipts/${id}` });
+  return asText(response.envelope, response.failed);
 }
 
 export async function toolServiceStatus(session) {
-  const envelope = await callApi(session, { path: "/api/v1/validate/status" });
-  return asText(envelope);
+  const response = await callApi(session, { path: "/api/v1/validate/status" });
+  return asText(response.envelope, response.failed);
 }
 
 export function registerTools(server, session) {

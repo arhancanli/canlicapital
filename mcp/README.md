@@ -54,6 +54,13 @@ If `CANLI_KEY` is not set, call `get_key` once per session before the four valid
 returns lives only in this process's memory for the life of the session; it is not written to
 disk.
 
+HTTP failures and API error envelopes are marked as MCP tool errors while preserving
+the complete JSON envelope. A successful validation with a negative verdict remains
+a normal result. Requests have a 30-second deadline covering headers and body, reject
+redirects, and are never retried automatically. A timeout may occur after the service
+has processed a request; check service status before deciding to submit again.
+Non-JSON response bodies and raw network errors are omitted from tool errors.
+
 ## Install
 
 No install step. `npx` fetches the published package on first run, so every client config below
