@@ -614,3 +614,25 @@ exact610observation queue union matches without duplicate credit. No original
 capture directories used by replay. Not manual-scope rerun, queue regeneration or
 offsite backup. Bulk26312polled live;5129objects/0failures at checkpoint. PR33
 CI35517263780passes at1a019807; packager additions pending their own checks.
+
+## 2026-09-20 — reviewed revenue context becomes source-bound page content
+
+Previous turn archived/replayed610observations. PR33mergedc9ac91c6 after all four
+CI35517514528checks passed at12dabec8; both treesb6581a1f54916285ba89b1e8d29204fb080e7732.
+Newbranchfeat/company-filing-context-20260920. Reviewed latest revenue statement/
+disaggregation rows for3M,CONMED,Digital Brand Media,Mosaic,AbbVie. Added short
+source-linked notes to both history pages per company, bound to exact sourceSHA,
+CIK and both reviewed observations. Changed evidence suppresses stale notes.
+Ten renderer tests pass; actual ten pages render from hash-verified selected records.
+Notes clarify matching totals without declaring every historical tag interchangeable
+or approving corpus publication. Production unchanged; broader scope review open.
+
+## 2026-09-20 — source-bound EVENTIKO asset/payable explanation
+
+Previous turn added five revenue-presentation notes and opened PR34. Added the
+already reviewed EVENTIKO context to its payable/property histories: website
+development and accounts payable are separate11,000lines forApril30,2023, with
+related-party loans separately disclosed. Note binds exact source and all8selected
+observations; cites retained2024filing. Twelve actual history renders pass; all10
+renderer tests pass including changed evidence suppression. No deployment.
+Bulk26312polled live;5572objects/0failures at checkpoint.

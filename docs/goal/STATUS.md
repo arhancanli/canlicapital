@@ -7,13 +7,16 @@ status preserved in history/STATUS-20260920-through-equality-triage.md.
 ## Current execution
 
 Worktree /Users/arhancanli/canlicapital-expansion-20260919, branch
-research/company-legacy-evidence-20260920. PR32 merged as
+feat/company-filing-context-20260920. PR33 merged as
+c9ac91c67f490196a3efe5d8ea160ad76e937f67 after all four CI35517514528checks passed
+at12dabec8. Tested/merged trees bothb6581a1f54916285ba89b1e8d29204fb080e7732.
+PR32 merged as
 b5dc0ac266333dedb5e22b8a2a50ca9b59c262fb after all four CI35516768834checks pass
 at0dcfa6f73768fe6419a547012e87ad0952dc7ca6. Tested/merged tree both
 40d3071a73e02164a89fb58289696e8c08bcf537. PR31 previously merged59b10c83 with
 five checks and exact tree equality. Post-merge PR32 CI35516871919passed.
 
-Bulk storage26312 remains active, codea98637c4, last checkpoint5129verified
+Bulk storage26312 remains active, codea98637c4, last checkpoint5572verified
 objects/0failures. Receipt corpus-local/company-five-cohort-transfer-20260920.json.
 Concurrency4, read3/write2, global budgets200/50; immutable exact-byte checks.
 Primary acquisition43531 is terminal exit0: all159index/primary pairs verified,
@@ -21,7 +24,7 @@ complete receipt company-equal-history-capture-complete-20260920.json. All200
 priority primary filings are now retained (41original+159new).
 First XBRL49534 terminal:39/51matches; whitespace-date fix offline replay now51/51.
 Second XBRL18988 is terminal exit0:116/126initial matches. Corrected date-whitespace
-offline replay now126/126. Original result preserved. No acquisition/comparison process remains active. PR33 reviews new evidence.
+offline replay now126/126. Original result preserved. No acquisition/comparison process remains active. PR33 evidence/tooling is merged.
 Archive/replay46444completed exit0. Archive corpus-local/equal-history-evidence-
 20260920.tar:941files/293,847,040bytes, SHA256
 cb89a5df08529157f6bc2e42f3d498b6b9d5b05fcfc2960c46e7f048adf436bc.
@@ -36,6 +39,20 @@ addition; current additions require their own checks.
 
 Earlier v3upload sessions are terminal with failures retained. Do not resume the
 superseded v3plan. Only bulk26312is currently known active. Archive/replay46444completed exit0.
+
+## Current filing-context improvement
+
+Six companies now have source-bound context. Five latest-period revenue presentations reviewed:3M,CONMED,Digital Brand Media,
+Mosaic andAbbVie. Source-linked notes explain consolidated totals versus geographic/
+segment breakdowns on both matched history pages. Notes require exact CIK,captured
+source hash and all reviewed observations (period/unit/value/accession); changed
+evidence suppresses them. No blanket tag equivalence or all-history admission.
+Ten renderer tests pass including stale-note guards and unchanged pilot output;
+twelve real selected history pages render notes locally. EVENTIKO adds the reviewed
+website-development/payable distinction, bound to all8selected observations and
+linked to its2024annual report. Evidence company-revenue-
+presentation-scope-20260920.json and company-filing-context-render-v2-20260920.json.
+Implementation scripts/lib/company-filing-notes.mjs; not yet deployed.
 
 ## Immediate next work
 
