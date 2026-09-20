@@ -700,3 +700,15 @@ amendment0001683168-21-004126 and its XBRL-only explanatory note; no selected
 accessions changed. New context report replays byte-identically offline.
 All17latest liability pairs now have limited primary context; not all histories
 or corpus admission. Newly acquired primary bytes need archival packaging.
+
+## 2026-09-20 — liability context archive replay
+
+Previous turn captured and source-bound Green Stream original statement context.
+Archive/replay4857 completed0:35files/4,997,120bytes, checksum
+f16e4ac95ee698890faaca6663abece7c7882d86373401e7deee412c177b6345.
+Temporary isolated restore verifies every member and installs locked wheels with
+no index/network; all three context reports reproduce byte-for-byte. Scope notes
+are retained; interpretation, inline numerical extraction and companyfacts queue
+selection are not independently rerun. No offsite backup or admission claim.
+PR36CI35519353726passed all four checks at5eeb43e6; archive additions need new CI.
+Paced transfer77617 remains confirmed live.

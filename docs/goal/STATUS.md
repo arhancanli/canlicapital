@@ -85,8 +85,13 @@ Original accession0001683168-21-004121 now captured with index/primary hashes;
 its balance sheet supplies the matching927,297USD April30,2021totals. Separate
 company-greenstream-original-context-20260920.json binds the original and amendment
 without rewriting selected accessions. All17latest pairs now have limited
-statement context; all-history scope and publication remain open. New evidence
-still needs archival packaging. All three context reports
+statement context; all-history scope and publication remain open. Archive4857
+completed exit0:35files/4,997,120bytes, SHA256
+f16e4ac95ee698890faaca6663abece7c7882d86373401e7deee412c177b6345.
+Isolated restore installs locked dependencies offline and reproduces all three
+reports byte-for-byte. Receipt company-liability-evidence-archive-20260920.json.
+Manual interpretation is preserved, not independently rerun; no offsite-backup claim.
+All three context reports
 reproduce byte-for-byte offline. Evidence company-liability-presentation-{review,scope}-
 20260920.json. Atlantica correctly selects2025rather than2019. No all-history
 admission, new page notes or deployment follows from these limited checks.
