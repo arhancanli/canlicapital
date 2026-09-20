@@ -1,7 +1,9 @@
 # Storage readiness
 
-Status: runtime upload plan verified locally; no objects uploaded, bucket created,
-remote settings changed or production release activated.
+Current status: dedicated Supabase staging bucket created; two-object JSON/gzip
+transport canary passes exact public-byte verification. Full runtime transfer and
+hosted preview remain pending; production page configuration is unchanged.
+Earlier sections below preserve historical checkpoints and superseded access limits.
 
 ## Verified runtime bundle
 
@@ -214,3 +216,37 @@ The saved Supabase CLI identity can list four inactive projects including
 canlicapital-preview. The historical production reference bpnensyowfmdwhqmfdrg
 returns403; do not retry through alternate identities or guess the migration target.
 Owner was asked for the current production project/account. No migration applied.
+
+## Verified staging destination — 2026-09-20
+
+Owner production-account access and standing publication approval resolve the
+earlier access prerequisite. Project bpnensyowfmdwhqmfdrg initially contained no
+buckets. Created public company-reference-staging, limited to JSON/gzip and16MiB
+per object. No public write policies were added; trusted service credentials stay
+in memory and are never written to the repository or receipts.
+
+The transport canary uploaded the v3 release JSON and smallest compressed source:
+292+15,123bytes. Both were retrieved without credentials, with expected MIME
+types, no content-encoding transformation, and exact SHA256. Receipts:
+company-storage-bucket-20260920.json and company-storage-canary-20260920.json.
+This is two remote objects, not a complete hosted release or capture backup.
+
+`scripts/upload-company-storage.mjs` verifies the pinned plan and every local
+object before writes. It uses immutable create-only requests, verifies existing
+and newly created public bytes, rejects redirects, oversized responses and
+transformed representations, and persists progress after each verification.
+There are no automatic retries or overwrites. On failure, workers settle before
+returning; a subsequent explicitly initiated run rechecks existing remote bytes
+and requires a new receipt path. Concurrency is bounded to1–4.
+
+The corrected three-cohort plan preflight passes6,249objects/828,340,450bytes;
+planSHA981a12a1453f86784dfaae50e3dd9fccdb0f53427ed181399ec6ff52e2d701cd.
+No plan bytes or source objects were changed. Current tests cover preflight
+corruption, unsafe keys/metadata, permission errors, remote corruption, gzip
+transformation, resume without overwrite, and failure with in-flight workers.
+
+Implementation references: https://supabase.com/docs/guides/storage/uploads/standard-uploads
+and https://supabase.com/docs/guides/storage/security/access-control.
+Next: finish remote candidate transfer, verify complete retrieval and hosted
+noindex behavior, then separately decide page admission. Original capture and
+excluded-response archives still need private off-device retention.

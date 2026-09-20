@@ -222,3 +222,26 @@ so verification uses a clean3.12 environment. Historical locks, wheels and
 receipts remain unchanged. All17corpus tests pass under the patched dependency.
 Both the full40-filing report and eight-observation supplement reproduce
 byte-identically under the patched dependency.
+
+PR19 merged as514c092dfeab6c3d0aced9446d12ce56618c0aac after all four
+CI35510179271jobs passed at4c8e1557. Tested and merged trees both
+8a3b53001913a9224fb8ba880778c13e0a556ad6. Post-merge CI and Dependabot
+closure are pending; alerts2/3still reported open immediately after merge.
+Production remains unchanged.
+
+## 2026-09-20 — storage transfer implementation and live canary
+
+Previous turn is progress: PR19 merged source reconciliation and security patch.
+Post-merge CI35510323267/35510261053passes; no open Dependabot alerts remain.
+Read-only project inspection found no buckets. Under persistent publication
+authorization, created restricted-format public company-reference-staging in the
+verified production Supabase project. No existing policies or production page
+variables changed. Authenticated credentials remained in process memory.
+
+New immutable uploader validates complete pinned plans before writes, bounds
+concurrency, never overwrites/retries, verifies remote bytes and preserves partial
+receipts. Six uploader regressions and three planner tests pass. Full corrected
+v3preflight verifies6,249objects/828,340,450bytes. Live two-object transport
+canary verifies15,415bytes of JSON/gzip through unauthenticated retrieval.
+This establishes remote transport only; corpus transfer, hosted preview, page
+admission and separate capture backup remain unfinished.
