@@ -9,24 +9,23 @@ which links older records. Historical process states are not live telemetry.
 ## Current work and next action
 
 Worktree `/Users/arhancanli/canlicapital-expansion-20260919`, branch
-`evidence/share-context-batch24-20260921`. PR91merged0ee70276after four passing
-CI35536582789checks at6aae4690. Tested and merged trees match exactly.
+`evidence/share-context-batch25-20260921`. PR92merged5ed4e4f5after four passing
+CI35536734738checks at63b5da88. Tested and merged trees match exactly.
 
-Latest registered ledger:company-basic-diluted-registered-scope-batch24-20260921.json.gz.
-Of1,176batch observations,698reviewed/458pending/20withdrawn.96reviewed are explicitly
+Latest registered ledger:company-basic-diluted-registered-scope-batch25-20260921.json.gz.
+Of1,176batch observations,722reviewed/434pending/20withdrawn.96reviewed are explicitly
 presentation-only; dilution cause is not established for those rows. The registry
 pins exact reports/issuers/dispositions/counts/states. Numerical agreement alone
 never approves scope. Workflow in SCOPE_REVIEW.md; original ledgers preserved.
 
-Latest24reviews cover Akebia and Fastly2023–2025EPS. Akebiauses net loss even
-when2025operating income is positive; excluded equivalents are reported before
-treasury-stock adjustments. Dollar-thousands heading does not scale its full share
-counts. Fastlyretains if-converted treatment for convertible debt, loss-period
-exclusions and scale3shares. Values/units/dates unchanged.46renderer/ledger tests
-pass; source report replays byte-identically. Next new index69; earlier gaps remain.
-Phoenix14legacy reviews remain source-bound to original/amendment mapping; its
-oversized first report/publication failure retained locally.96presentation-only
-reviews retain their limits.
+Latest24reviews cover Inland Real Estate Income Trust and Alkami2023–2025EPS.
+Inlandexplicit restricted-share exclusions and net-versus-comprehensive loss
+retained. Alkamianti-dilution text spans a page break; both parts verified, with
+2025convertible-note exclusions distinct from share counts already included.
+Full scale0share counts and EPSvalues/dates unchanged.47renderer/ledger tests pass;
+source report replays byte-identically. Next new index71; earlier gaps remain.
+96presentation-only reviews retain limits. Phoenixoriginal/amendment mapping and
+oversized first report/publication failure remain preserved.
 V19six Outset2023–2025share-scale holds remain; no silent rescaling or second split
 conversion. EPS and older periods remain unapproved by the hold report.
 V19comparison61020TERMINAL0verified all3,323companies/87,344histories against

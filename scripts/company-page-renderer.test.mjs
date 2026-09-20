@@ -756,3 +756,22 @@ test('Akebia and Fastly retain denominator methods and share scales', () => {
     assert.equal(companyFilingNotes(changed, tags[0]).length, 0);
   }
 });
+
+test('Inland and Alkami preserve restricted-share and convertible-note exclusions', () => {
+  for (const [fixture, cik, phrase, value, period] of [
+    ['inland-income', '0001528985', /7,820 in 2023, 9,717 in 2024 and 12,087 in 2025/, 36104556, '2025-12-31'],
+    ['alkami', '0001529274', /in 2025, convertible notes/, 103895195, '2025-12-31'],
+  ]) {
+    const raw = gunzipSync(readFileSync(new URL(`./fixtures/editorial/${fixture}-reviewed-source.json.gz`, import.meta.url)));
+    const record = companyReference(raw, { expectedCik: cik, fetchedAt: '2026-09-20T00:00:00Z', selectionPolicy: 'extended-v19' });
+    verifyCompanyReference(record, raw);
+    const original = structuredClone(record.concepts);
+    record.source_snapshot = `/company-data/sources/${record.source_sha256}.json.gz`;
+    const tags = ['EarningsPerShareBasic', 'EarningsPerShareDiluted', 'WeightedAverageNumberOfSharesOutstandingBasic', 'WeightedAverageNumberOfDilutedSharesOutstanding'];
+    for (const target of [...tags, 'overview']) assert.match(renderCompanyPages(record, { target })[0].html, phrase);
+    assert.ok(record.concepts.find(c => c.tag === tags[2]).observations.some(r => r.end === period && r.val === value));
+    assert.deepEqual(record.concepts, original);
+    const changed = structuredClone(record); changed.source_sha256 = '0'.repeat(64);
+    assert.equal(companyFilingNotes(changed, tags[0]).length, 0);
+  }
+});
