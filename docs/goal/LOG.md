@@ -677,3 +677,15 @@ then selects latest reporting date for all17liability pairs. Twelve have separat
 primary total/current rows with equal values; retained scope review covers those
 24rows only. Five XML-only cases remain pending. Atlantica accession-order mistake
 corrected: latest selected date is2025-12-31, not2019. No blanket admission.
+
+## 2026-09-20 — legacy liability statement context
+
+Previous turn merged storage diagnostics and reviewed12latest liability pairs.
+Retained balance sheets close limited primary-context review for four of five
+XML-only pairs: North America Frac Sand, Glucose Health, GRN and Atacama.
+Each table preserves reporting columns, component liabilities and equal total/
+current amounts; source hashes match numerical comparison evidence. Green Stream
+primary is an amendment solely furnishing XBRL, with no original financial
+statements. Preserve that explanatory note and keep original-statement review open.
+Supplement and byte-identical isolated-output replay complete without network.
+No all-history admission, publication or changed observations. Transfer77617live.

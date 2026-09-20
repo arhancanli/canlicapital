@@ -78,7 +78,11 @@ eeebaf502754ca3fbdd1836e215d06ac9f4f1b91. Recovery77617 remains active.
 New offline helper prepares all17liability/current-liability pairs using latest
 selected reporting date, avoiding accession-order errors. Twelve pairs have
 separate primary rows, reviewed as equal totals at the listed date; five XML-only
-pairs remain pending. Evidence company-liability-presentation-{review,scope}-
+pairs initially remained pending. Four now have reviewed retained balance-sheet
+tables in company-liability-legacy-context-20260920.json; Green Stream
+0001437476 remains open because the primary is an XBRL-only amendment.
+Original annual-report context must be located and bound. Both new reports
+reproduce byte-for-byte offline. Evidence company-liability-presentation-{review,scope}-
 20260920.json. Atlantica correctly selects2025rather than2019. No all-history
 admission, new page notes or deployment follows from these limited checks.
 
