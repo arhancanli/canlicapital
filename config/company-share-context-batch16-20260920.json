@@ -1,0 +1,55 @@
+{
+  "schema": "canli.reviewed-share-context-spec.v1",
+  "decisions": [
+    {
+      "cik": "0001459839",
+      "accession": "0001459839-26-000036",
+      "source_sha256": "8865bc70ed417453df6fa46b21b2d21c09c8aa77e077e43b4108d080f7907bd4",
+      "primary_sha256": "011c338ebd5be0f4b6cf37c024bcab0c21d64db91e86057840fd226b7e1db8f5",
+      "fixture": "scripts/fixtures/editorial/si-bone-reviewed-source.json.gz",
+      "observations": 12,
+      "period_ends": [
+        "2023-12-31",
+        "2024-12-31",
+        "2025-12-31"
+      ],
+      "table_index": 40,
+      "share_scale": "0",
+      "table_requires": [
+        "Net loss",
+        "Weighted-average shares used to compute basic and diluted net loss per share"
+      ],
+      "paragraph_requires": [
+        "(in thousands, except share and per share data)",
+        "Because the Company has reported a net loss in all periods presented, common stock options, restricted stock units, ESPP purchase rights and warrants are anti-dilutive"
+      ],
+      "reader_note": "For 2023\u20132025, SI-BONE excludes stock options, restricted stock units, employee stock purchase rights and warrants because their effect is anti-dilutive in the loss periods. Basic and diluted EPS use the same reported net-loss numerator and weighted-average denominator. Comprehensive loss is a separate measure. Shares and per-share amounts are exempt from the thousands heading and use scale-zero tags; excluded potential shares are not added to the denominator.",
+      "disposition": "REVIEWED_ALLOCATION_UNIT_AND_DILUTION_CONTEXT"
+    },
+    {
+      "cik": "0001462056",
+      "accession": "0001628280-26-016395",
+      "source_sha256": "71ceb404fc7e1838db013d7d268dc72c22d335ba54f369ab2d782f6a84c1785d",
+      "primary_sha256": "30de724b174185fcc3a3b1766d588827edf412408b7b85b92442da25cd1a96d0",
+      "fixture": "scripts/fixtures/editorial/backblaze-reviewed-source.json.gz",
+      "observations": 12,
+      "period_ends": [
+        "2023-12-31",
+        "2024-12-31",
+        "2025-12-31"
+      ],
+      "table_index": 61,
+      "share_scale": "0",
+      "table_requires": [
+        "Weighted average Class A and Class B common shares outstanding"
+      ],
+      "paragraph_requires": [
+        "(in thousands, except share and per share data)",
+        "shares issuable under the Bonus Plan, and unvested RSUs are considered to be potential common stock equivalents, but have been excluded",
+        "On July 6, 2023, all shares of the Company\u2019s then outstanding Class B common stock were automatically converted into the same number of Class A common stock"
+      ],
+      "reader_note": "For 2023\u20132025, Backblaze retains a Class A and Class B label in its EPS presentation, but all outstanding Class B shares converted one-for-one into Class A on July 6, 2023; no additional Class B shares will be issued. The historical combined label does not mean two classes remained outstanding throughout the later periods. Potential shares from options, employee stock purchases, the Bonus Plan and unvested RSUs are excluded as antidilutive. Shares and per-share amounts are exempt from the thousands heading and use scale-zero tags. No extra shares are added for the conversion or excluded instruments.",
+      "disposition": "REVIEWED_ALLOCATION_UNIT_AND_DILUTION_CONTEXT"
+    }
+  ]
+}

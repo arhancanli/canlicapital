@@ -570,3 +570,15 @@ counts retained rather than a single-class denominator.35renderer/ledger tests
 pass; source report replays byte-identically; only24new transitions.480reviewed/
 682pending/14withdrawn,72presentation-only. No runtime rebuild, archive supplement,
 production deployment or indexing gain. All owner objectives remain active.
+
+## 2026-09-20 — converted share-class labels and loss-period dilution
+
+PR79passed four CI35533993326checks atc002a7de; mergedadb81e1ewith exact tree
+07561f09e095741365b75847a3cebbbbeea8e051. Reviewed24SI-BONE/Backblazeobservations.
+Backblaze combinedClassA/Blabel retained with July6,2023one-for-one conversion
+context; no claim both classes remained outstanding throughout later periods.
+BonusPlan/other equivalents excluded as antidilutive. SI-BONEuses net loss rather
+than comprehensive loss. Both share/per-share exceptions and scale0tags preserved.
+36renderer/ledger tests pass; report replays exactly; only24new transitions.
+504reviewed/658pending/14withdrawn,72presentation-only. No runtime rebuild, archive
+supplement, deployment or indexing gain. Entire owner objective remains active.
