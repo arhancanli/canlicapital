@@ -1,0 +1,36 @@
+{
+  "schema": "canli.company-editorial-filing-capture.v1",
+  "input_sha256": "2a7287f1a8ad3c8a8d829e17a30819acf19fbb778a2adea88c39be97b529832d",
+  "publication_approved": false,
+  "complete": false,
+  "filings": [
+    {
+      "cik": "0001509646",
+      "companyfacts_name": "Phoenix New Media Limited",
+      "discovery_names": [],
+      "accession": "0001193125-12-189597",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1509646/000119312512189597/0001193125-12-189597-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T20:39:16.744117+00:00",
+        "bytes": 12723,
+        "sha256": "4b9e55180cb5317ede4c6a7b8635f9e673157ed627e37cd143c482ae35f85644",
+        "body_path": "artifacts/seo/corpus-local/phoenix-original-2011/0001509646-0001193125-12-189597-index.response"
+      },
+      "index_filers": [
+        "Phoenix New Media Ltd (Filer) CIK : 0001509646 (see all company filings) EIN. : 000000000 Type: 20-F | Act: 34 | File No.: 001-35158 | Film No.: 12786934 SIC : 4833 Television Broadcasting Stations"
+      ],
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1509646/000119312512189597/d316760d20f.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T20:39:19.448836+00:00",
+        "bytes": 2308627,
+        "sha256": "8618fafbf7bcad4cadcadd0a35c37e6e5ed7cb409c15c3ec6d723f371ec72335",
+        "body_path": "artifacts/seo/corpus-local/phoenix-original-2011/0001509646-0001193125-12-189597-primary.response"
+      },
+      "dei_identity_facts": []
+    }
+  ],
+  "scope": "Primary filing capture for priority editorial targets; neither numeric verification nor editorial approval.",
+  "error": "'tag'"
+}
