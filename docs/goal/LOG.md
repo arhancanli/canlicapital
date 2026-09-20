@@ -597,3 +597,15 @@ policy does not establish cause of equality, so all12remain presentation-only.
 646pending/14withdrawn;84presentation-only. Kodiak52remains pending; next new54.
 No runtime rebuild, archive supplement, deployment or indexing gain. All owner
 objectives remain active; new artifact dates useSeptember21Dubai calendar.
+
+## 2026-09-21 — participating shares and vested unsettled RSUs
+
+PR81passed four CI35534364504checks atcc0d3ce4; mergedfa79beafwith exact tree
+d3e9d093225f7c3e22b91d236b5e8884df93b92f. Reviewed24Kodiak/Cloudflareobservations.
+Kodiaknet loss distinct from comprehensive loss; Cloudflareearly-exercise shares
+subject to repurchase do not participate in losses and are excluded from basic
+shares, whereas vested unsettled RSUs are included. ClassA/Bloss allocation and
+anti-dilution retained; scales0/3and values unchanged.38renderer/ledger tests pass;
+report replays byte-identically and only24new rows advance.540reviewed/622pending/
+14withdrawn;84presentation-only. Next new index55; earlier legacy/context gaps
+remain. No runtime rebuild, archive supplement, deployment or indexing gain.
