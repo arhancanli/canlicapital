@@ -71,3 +71,19 @@ acquisition, bind exact inputs with `prepare-captured-basic-diluted-review.py`,
 compare numerically with the existing offline reviewer, and preserve unresolved
 items. Context/scope decisions require inspected statement and disclosure evidence.
 Neither acquisition nor numerical agreement approves the company or full history.
+
+
+The batch2 registry is `config/company-basic-diluted-batch2-reviews.json`. Its
+input descriptors pin acquisition targets, completed capture, bound comparison
+targets, compressed primary comparison, legacy input/capture and final numerical
+comparison. Run `node scripts/reconcile-basic-diluted-batch.mjs REGISTRY NEW_OUTPUT.json.gz`
+to produce a separate ledger. The initial output is
+`artifacts/seo/company-basic-diluted-batch2-scope-initial-20260921.json.gz`.
+It has800pending observations and no reviewed/withdrawn rows. Preserve this baseline.
+
+The runner checks the exact observation partition including metadata and every
+link in the evidence hash chain. Subsequent reports must bind `target_sha256` to
+the original acquisition target and the exact source hash; registration uses the
+same explicit decision fields as batch1. Pending and hold-required dispositions
+cannot be registered as approved. A checked number is not a reviewed accounting
+interpretation. The Theriva pending report therefore cannot advance this ledger.
