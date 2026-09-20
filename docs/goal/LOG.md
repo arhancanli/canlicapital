@@ -560,3 +560,14 @@ Comparison69766 completed83matches/51unresolved across25legacy filings. Combined
 with prior212 yields295matched of346compared, not299:EVENTIKO4supplement overlaps.
 Unresolved queue preserved for separate XBRL/source comparison; no automatic source
 error or admission finding. Bulkcheckpoint4270objects; full capture still active.
+
+## 2026-09-20 — exact legacy XBRL inputs prepared
+
+Previous turn added83numerical matches and retained51unresolved observations.
+Capture43531and upload26312polled live. Prepared immutable subset inputs for all
+25unresolved filings/51observations from captured indexes. Every index has one
+unambiguous instance in the expected issuer/accession directory; primary hashes
+match comparison evidence. Parent capture completeness is explicitly separate from
+subset completeness. No new XML acquisition yet; start after primary capture
+terminates, with existing access-stop and pacing behavior. No numerical gap closed
+by URL selection alone and no production admission.

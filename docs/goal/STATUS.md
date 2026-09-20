@@ -181,7 +181,15 @@ Reports company-equal-history-{incremental-targets,incremental-review,unresolved
 20260920.json retain all outcomes. Full acquisition43531 remains active; snapshot
 counts are not current download telemetry. CI35516535342 passes atb68e4d43.
 
-Next: finish capture, compare unresolved legacy observations to XBRL, and review remaining primary contexts; complete bulk transfer and full-corpus
+Separate XBRL input prepared for25filings/51unresolved observations. Every captured
+index selects exactly one instance within the same issuer/accession directory.
+Frozen company-equal-history-xbrl-input-20260920-{capture,comparison}.json binds
+parent snapshot/comparison hashes and explicitly distinguishes subset completion
+from unfinished parent acquisition. No XML requests started yet; after43531is
+terminal, run review-company-editorial-xbrl.py with these two inputs, cache
+corpus-local/equal-history-xbrl and a new report. Preserve access-stop behavior.
+
+Next: finish capture, acquire/compare the selected XBRL instances, and review remaining primary contexts; complete bulk transfer and full-corpus
 checks plus remaining editorial/admission work before production activation.
 The owner's publication approval persists. The prior 1–3day estimate and possible
 first batch tonight were provisional, not measured forecasts or release promises.

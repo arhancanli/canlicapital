@@ -1,0 +1,959 @@
+{
+  "schema": "canli.equal-history-capture-subset.v1",
+  "complete": true,
+  "parent_capture_sha256": "6b396700b8047190b33bda574b0b4d51d31c03362fb5c27f39ee0224d7b3280c",
+  "parent_capture_complete": false,
+  "filings": [
+    {
+      "cik": "0000066740",
+      "companyfacts_name": "3M CO",
+      "discovery_names": [],
+      "accession": "0001558370-19-000470",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/66740/000155837019000470/0001558370-19-000470-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T14:24:21.782859+00:00",
+        "bytes": 13816,
+        "sha256": "4e70a5ee6ed69e4d260c6fb2e3004ae9f5ed159caccecf462275cb3106abc196",
+        "body_path": "artifacts/seo/corpus-local/equal-history-filings/0000066740-0001558370-19-000470-index.response"
+      },
+      "index_filers": [
+        "3M CO (Filer) CIK : 0000066740 (see all company filings) EIN. : 410417775 | State of Incorp.: DE | Fiscal Year End: 1231 Type: 10-K | Act: 34 | File No.: 001-03285 | Film No.: 19576031 SIC : 3841 Surgical & Medical Instruments & Apparatus"
+      ],
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/66740/000155837019000470/mmm-20181231x10k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T14:24:26.373893+00:00",
+        "bytes": 10021080,
+        "sha256": "85a439bc1d7247e3c1a1e459bc700182d3a3195d1bccf2909b6b761757ed8b96",
+        "body_path": "artifacts/seo/corpus-local/equal-history-filings/0000066740-0001558370-19-000470-primary.response"
+      },
+      "dei_identity_facts": [],
+      "core_fact_contexts": [
+        {
+          "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+          "contexts": []
+        },
+        {
+          "tag": "us-gaap:Revenues",
+          "contexts": []
+        }
+      ],
+      "contexts": {},
+      "state": "PRIMARY_CAPTURED_EDITORIAL_REVIEW_PENDING"
+    },
+    {
+      "cik": "0000816956",
+      "companyfacts_name": "CONMED CORPORATION",
+      "discovery_names": [],
+      "accession": "0000816956-19-000003",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/816956/000081695619000003/0000816956-19-000003-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T14:24:48.422672+00:00",
+        "bytes": 12180,
+        "sha256": "ec226f25dc176831edbeaaedd9e6b42014fefef0bfcfe9a94d35aa023e64385b",
+        "body_path": "artifacts/seo/corpus-local/equal-history-filings/0000816956-0000816956-19-000003-index.response"
+      },
+      "index_filers": [
+        "CONMED CORP (Filer) CIK : 0000816956 (see all company filings) EIN. : 160977505 | State of Incorp.: NY | Fiscal Year End: 1231 Type: 10-K | Act: 34 | File No.: 000-16093 | Film No.: 19628603 SIC : 3845 Electromedical & Electrotherapeutic Apparatus"
+      ],
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/816956/000081695619000003/cnmd10k2018.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T14:24:53.231800+00:00",
+        "bytes": 2471675,
+        "sha256": "cfdea03591606d3e6d0d9cf8c8b3fc3fbfa827782c242bf4d44a843ef8a6be89",
+        "body_path": "artifacts/seo/corpus-local/equal-history-filings/0000816956-0000816956-19-000003-primary.response"
+      },
+      "dei_identity_facts": [],
+      "core_fact_contexts": [
+        {
+          "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+          "contexts": []
+        },
+        {
+          "tag": "us-gaap:Revenues",
+          "contexts": []
+        }
+      ],
+      "contexts": {},
+      "state": "PRIMARY_CAPTURED_EDITORIAL_REVIEW_PENDING"
+    },
+    {
+      "cik": "0000932021",
+      "companyfacts_name": "GLOBAL TECHNOLOGIES, LTD",
+      "discovery_names": [],
+      "accession": "0001493152-20-023967",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/932021/000149315220023967/0001493152-20-023967-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T14:25:55.932257+00:00",
+        "bytes": 12292,
+        "sha256": "69a89355ae577826ee89a371b8a51ad64c27cecb6971adc133e7ffd08c08c1e8",
+        "body_path": "artifacts/seo/corpus-local/equal-history-filings/0000932021-0001493152-20-023967-index.response"
+      },
+      "index_filers": [
+        "GLOBAL TECHNOLOGIES LTD (Filer) CIK : 0000932021 (see all company filings) EIN. : 860970492 | State of Incorp.: DE | Fiscal Year End: 0630 Type: 10-K | Act: 34 | File No.: 000-25668 | Film No.: 201401948 SIC : 3663 Radio & Tv Broadcasting & Communications Equipment"
+      ],
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/932021/000149315220023967/form10-k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T14:25:58.104835+00:00",
+        "bytes": 1253573,
+        "sha256": "9be056eb932f76d75bf191a68a5a0f1952814054fdc7252db86216c338cb73d8",
+        "body_path": "artifacts/seo/corpus-local/equal-history-filings/0000932021-0001493152-20-023967-primary.response"
+      },
+      "dei_identity_facts": [],
+      "core_fact_contexts": [
+        {
+          "tag": "us-gaap:Liabilities",
+          "contexts": []
+        },
+        {
+          "tag": "us-gaap:LiabilitiesCurrent",
+          "contexts": []
+        }
+      ],
+      "contexts": {},
+      "state": "PRIMARY_CAPTURED_EDITORIAL_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001082733",
+      "companyfacts_name": "VISIUM TECHNOLOGIES, INC.",
+      "discovery_names": [],
+      "accession": "0001493152-15-004104",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1082733/000149315215004104/0001493152-15-004104-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T14:26:33.074256+00:00",
+        "bytes": 11696,
+        "sha256": "95e133fb16ae484c5683cc2b478f3412114e25a5a76697f72a866996411c1af9",
+        "body_path": "artifacts/seo/corpus-local/equal-history-filings/0001082733-0001493152-15-004104-index.response"
+      },
+      "index_filers": [
+        "NuSTATE ENERGY HOLDINGS, INC. (Filer) CIK : 0001082733 (see all company filings) EIN. : 870449667 | State of Incorp.: NV | Fiscal Year End: 1106 Type: 10-K | Act: 34 | File No.: 000-25753 | Film No.: 151086158 SIC : 4731 Arrangement of  Transportation of  Freight & Cargo"
+      ],
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1082733/000149315215004104/form10-k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T14:26:34.948522+00:00",
+        "bytes": 922133,
+        "sha256": "07aeeaabbbf8fbfe75e9c87be32627c51cf9d9325c0be8ab2413c415f86495ad",
+        "body_path": "artifacts/seo/corpus-local/equal-history-filings/0001082733-0001493152-15-004104-primary.response"
+      },
+      "dei_identity_facts": [],
+      "core_fact_contexts": [
+        {
+          "tag": "us-gaap:Assets",
+          "contexts": []
+        },
+        {
+          "tag": "us-gaap:AssetsCurrent",
+          "contexts": []
+        }
+      ],
+      "contexts": {},
+      "state": "PRIMARY_CAPTURED_EDITORIAL_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001082733",
+      "companyfacts_name": "VISIUM TECHNOLOGIES, INC.",
+      "discovery_names": [],
+      "accession": "0001493152-16-007138",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1082733/000149315216007138/0001493152-16-007138-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T14:26:36.927924+00:00",
+        "bytes": 11410,
+        "sha256": "e231a268bba1213eddb2bfc6ddd5794e4f22dd0ceb36428bf2e05f0dc3b665f6",
+        "body_path": "artifacts/seo/corpus-local/equal-history-filings/0001082733-0001493152-16-007138-index.response"
+      },
+      "index_filers": [
+        "NuSTATE ENERGY HOLDINGS, INC. (Filer) CIK : 0001082733 (see all company filings) EIN. : 870449667 | State of Incorp.: NV | Fiscal Year End: 0630 Type: 10-K/A | Act: 34 | File No.: 000-25753 | Film No.: 161386927 SIC : 4731 Arrangement of  Transportation of  Freight & Cargo"
+      ],
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1082733/000149315216007138/form10-ka.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T14:26:38.584734+00:00",
+        "bytes": 163521,
+        "sha256": "1df4c0b9891574daa9d9e057b7a3bcba6109398028ae47627b696b1c60fe18a5",
+        "body_path": "artifacts/seo/corpus-local/equal-history-filings/0001082733-0001493152-16-007138-primary.response"
+      },
+      "dei_identity_facts": [],
+      "core_fact_contexts": [
+        {
+          "tag": "us-gaap:Assets",
+          "contexts": []
+        },
+        {
+          "tag": "us-gaap:AssetsCurrent",
+          "contexts": []
+        }
+      ],
+      "contexts": {},
+      "state": "PRIMARY_CAPTURED_EDITORIAL_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001082733",
+      "companyfacts_name": "VISIUM TECHNOLOGIES, INC.",
+      "discovery_names": [],
+      "accession": "0001493152-16-008799",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1082733/000149315216008799/0001493152-16-008799-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T14:26:40.250074+00:00",
+        "bytes": 11689,
+        "sha256": "dd7f7a96b8a3ee7827a509e3868c8c25b22ec27e963e0274b96bc5b9ebaecb24",
+        "body_path": "artifacts/seo/corpus-local/equal-history-filings/0001082733-0001493152-16-008799-index.response"
+      },
+      "index_filers": [
+        "NuSTATE ENERGY HOLDINGS, INC. (Filer) CIK : 0001082733 (see all company filings) EIN. : 870449667 | State of Incorp.: NV | Fiscal Year End: 0630 Type: 10-K | Act: 34 | File No.: 000-25753 | Film No.: 161565394 SIC : 4731 Arrangement of  Transportation of  Freight & Cargo"
+      ],
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1082733/000149315216008799/form10-k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T14:26:42.243813+00:00",
+        "bytes": 889175,
+        "sha256": "6c2cc4c342d1dfd0da733eecca53771a1a296039a03ba080167f93ead5d18aea",
+        "body_path": "artifacts/seo/corpus-local/equal-history-filings/0001082733-0001493152-16-008799-primary.response"
+      },
+      "dei_identity_facts": [],
+      "core_fact_contexts": [
+        {
+          "tag": "us-gaap:Assets",
+          "contexts": []
+        },
+        {
+          "tag": "us-gaap:AssetsCurrent",
+          "contexts": []
+        }
+      ],
+      "contexts": {},
+      "state": "PRIMARY_CAPTURED_EDITORIAL_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001082733",
+      "companyfacts_name": "VISIUM TECHNOLOGIES, INC.",
+      "discovery_names": [],
+      "accession": "0001493152-16-014027",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1082733/000149315216014027/0001493152-16-014027-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T14:26:44.273962+00:00",
+        "bytes": 11601,
+        "sha256": "c8326c762fcb1f2cad898fe221d59a370baa98d242fa972ea575f8707c06bf82",
+        "body_path": "artifacts/seo/corpus-local/equal-history-filings/0001082733-0001493152-16-014027-index.response"
+      },
+      "index_filers": [
+        "NuSTATE ENERGY HOLDINGS, INC. (Filer) CIK : 0001082733 (see all company filings) EIN. : 870449667 | State of Incorp.: NV | Fiscal Year End: 0630 Type: 10-K/A | Act: 34 | File No.: 000-25753 | Film No.: 161936021 SIC : 4731 Arrangement of  Transportation of  Freight & Cargo"
+      ],
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1082733/000149315216014027/form10-ka.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T14:26:46.013255+00:00",
+        "bytes": 1460582,
+        "sha256": "fc8a732d4c280370bd1a305dd99177b57fa7b463c7a100ea2a7752e314fb2f91",
+        "body_path": "artifacts/seo/corpus-local/equal-history-filings/0001082733-0001493152-16-014027-primary.response"
+      },
+      "dei_identity_facts": [],
+      "core_fact_contexts": [
+        {
+          "tag": "us-gaap:Assets",
+          "contexts": []
+        },
+        {
+          "tag": "us-gaap:AssetsCurrent",
+          "contexts": []
+        }
+      ],
+      "contexts": {},
+      "state": "PRIMARY_CAPTURED_EDITORIAL_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001082733",
+      "companyfacts_name": "VISIUM TECHNOLOGIES, INC.",
+      "discovery_names": [],
+      "accession": "0001493152-17-011047",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1082733/000149315217011047/0001493152-17-011047-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T14:26:47.960750+00:00",
+        "bytes": 12000,
+        "sha256": "80668e80af88168fb9804c6d32e499d07f4364d464d0f29462dd7564a4df7396",
+        "body_path": "artifacts/seo/corpus-local/equal-history-filings/0001082733-0001493152-17-011047-index.response"
+      },
+      "index_filers": [
+        "NuSTATE ENERGY HOLDINGS, INC. (Filer) CIK : 0001082733 (see all company filings) EIN. : 870449667 | State of Incorp.: NV | Fiscal Year End: 0630 Type: 10-K | Act: 34 | File No.: 000-25753 | Film No.: 171108493 SIC : 4731 Arrangement of  Transportation of  Freight & Cargo"
+      ],
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1082733/000149315217011047/form10-k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T14:26:50.137768+00:00",
+        "bytes": 1532424,
+        "sha256": "f590b042b6dac70360cfb0ea4a5dc8f1313c33133bffca74bcf9bfe0844737ba",
+        "body_path": "artifacts/seo/corpus-local/equal-history-filings/0001082733-0001493152-17-011047-primary.response"
+      },
+      "dei_identity_facts": [],
+      "core_fact_contexts": [
+        {
+          "tag": "us-gaap:Assets",
+          "contexts": []
+        },
+        {
+          "tag": "us-gaap:AssetsCurrent",
+          "contexts": []
+        }
+      ],
+      "contexts": {},
+      "state": "PRIMARY_CAPTURED_EDITORIAL_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001082733",
+      "companyfacts_name": "VISIUM TECHNOLOGIES, INC.",
+      "discovery_names": [],
+      "accession": "0001493152-18-012383",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1082733/000149315218012383/0001493152-18-012383-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T14:26:51.988951+00:00",
+        "bytes": 11727,
+        "sha256": "d3d4b47d422ee0ab1dfd039fcab7afec215a8aa403510baac8f66bc8c427c497",
+        "body_path": "artifacts/seo/corpus-local/equal-history-filings/0001082733-0001493152-18-012383-index.response"
+      },
+      "index_filers": [
+        "VISIUM TECHNOLOGIES, INC. (Filer) CIK : 0001082733 (see all company filings) EIN. : 870449667 | State of Incorp.: FL | Fiscal Year End: 0630 Type: 10-K | Act: 34 | File No.: 000-25753 | Film No.: 181028950 SIC : 4731 Arrangement of  Transportation of  Freight & Cargo"
+      ],
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1082733/000149315218012383/form10-k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T14:26:54.026694+00:00",
+        "bytes": 1107540,
+        "sha256": "977f5375ebc98091f65c9d1de1e904bfcaedd664a91f6c5be5747d2ec71bd277",
+        "body_path": "artifacts/seo/corpus-local/equal-history-filings/0001082733-0001493152-18-012383-primary.response"
+      },
+      "dei_identity_facts": [],
+      "core_fact_contexts": [
+        {
+          "tag": "us-gaap:Assets",
+          "contexts": []
+        },
+        {
+          "tag": "us-gaap:AssetsCurrent",
+          "contexts": []
+        }
+      ],
+      "contexts": {},
+      "state": "PRIMARY_CAPTURED_EDITORIAL_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001082733",
+      "companyfacts_name": "VISIUM TECHNOLOGIES, INC.",
+      "discovery_names": [],
+      "accession": "0001493152-19-014676",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1082733/000149315219014676/0001493152-19-014676-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T14:26:55.888475+00:00",
+        "bytes": 11711,
+        "sha256": "ff019899e8154c7ca7974f1a6b5d715bc6e591ab607a40a2a84b6a869d9b7311",
+        "body_path": "artifacts/seo/corpus-local/equal-history-filings/0001082733-0001493152-19-014676-index.response"
+      },
+      "index_filers": [
+        "VISIUM TECHNOLOGIES, INC. (Filer) CIK : 0001082733 (see all company filings) EIN. : 870449667 | State of Incorp.: FL | Fiscal Year End: 0630 Type: 10-K | Act: 34 | File No.: 000-25753 | Film No.: 191122381 SIC : 7371 Services-Computer Programming Services"
+      ],
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1082733/000149315219014676/form10-k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T14:26:58.013511+00:00",
+        "bytes": 1009988,
+        "sha256": "0582b10778a8c5668b98a3221251ed294a0b47d37ba558dc25437e194a0dfc21",
+        "body_path": "artifacts/seo/corpus-local/equal-history-filings/0001082733-0001493152-19-014676-primary.response"
+      },
+      "dei_identity_facts": [],
+      "core_fact_contexts": [
+        {
+          "tag": "us-gaap:Assets",
+          "contexts": []
+        },
+        {
+          "tag": "us-gaap:AssetsCurrent",
+          "contexts": []
+        }
+      ],
+      "contexts": {},
+      "state": "PRIMARY_CAPTURED_EDITORIAL_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001082733",
+      "companyfacts_name": "VISIUM TECHNOLOGIES, INC.",
+      "discovery_names": [],
+      "accession": "0001654954-20-010986",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1082733/000165495420010986/0001654954-20-010986-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T14:27:00.049913+00:00",
+        "bytes": 12866,
+        "sha256": "071adb4f58ae29ebf610b3c45d90cf807c94e3706d2ba56144d18b929f366ea8",
+        "body_path": "artifacts/seo/corpus-local/equal-history-filings/0001082733-0001654954-20-010986-index.response"
+      },
+      "index_filers": [
+        "VISIUM TECHNOLOGIES, INC. (Filer) CIK : 0001082733 (see all company filings) EIN. : 870449667 | State of Incorp.: FL | Fiscal Year End: 0630 Type: 10-K | Act: 34 | File No.: 000-25753 | Film No.: 201233227 SIC : 7371 Services-Computer Programming Services"
+      ],
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1082733/000165495420010986/visium10-k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T14:27:02.068382+00:00",
+        "bytes": 1366790,
+        "sha256": "3f6724b21052d4281d73b1fffeae964811266f7f2c10b6461bf88bdf4c45fdda",
+        "body_path": "artifacts/seo/corpus-local/equal-history-filings/0001082733-0001654954-20-010986-primary.response"
+      },
+      "dei_identity_facts": [],
+      "core_fact_contexts": [
+        {
+          "tag": "us-gaap:Assets",
+          "contexts": []
+        },
+        {
+          "tag": "us-gaap:AssetsCurrent",
+          "contexts": []
+        }
+      ],
+      "contexts": {},
+      "state": "PRIMARY_CAPTURED_EDITORIAL_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001082733",
+      "companyfacts_name": "VISIUM TECHNOLOGIES, INC.",
+      "discovery_names": [],
+      "accession": "0001654954-21-011057",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1082733/000165495421011057/0001654954-21-011057-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T14:27:04.185234+00:00",
+        "bytes": 13205,
+        "sha256": "ac35c93efce8d0f9a64929280d157ff3fa29433ee278fb29d16d91b0a3927310",
+        "body_path": "artifacts/seo/corpus-local/equal-history-filings/0001082733-0001654954-21-011057-index.response"
+      },
+      "index_filers": [
+        "VISIUM TECHNOLOGIES, INC. (Filer) CIK : 0001082733 (see all company filings) EIN. : 870449667 | State of Incorp.: FL | Fiscal Year End: 0630 Type: 10-K | Act: 34 | File No.: 000-25753 | Film No.: 211321260 SIC : 7371 Services-Computer Programming Services"
+      ],
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1082733/000165495421011057/visium10-k2021v4.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T14:27:06.770484+00:00",
+        "bytes": 1490911,
+        "sha256": "e2434b678d6af9946f1e7251b54c9d6026f996b1211016956335032736d43c4f",
+        "body_path": "artifacts/seo/corpus-local/equal-history-filings/0001082733-0001654954-21-011057-primary.response"
+      },
+      "dei_identity_facts": [],
+      "core_fact_contexts": [
+        {
+          "tag": "us-gaap:Assets",
+          "contexts": []
+        },
+        {
+          "tag": "us-gaap:AssetsCurrent",
+          "contexts": []
+        }
+      ],
+      "contexts": {},
+      "state": "PRIMARY_CAPTURED_EDITORIAL_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001127475",
+      "companyfacts_name": "DIGITAL BRAND MEDIA & MARKETING GROUP, INC.",
+      "discovery_names": [],
+      "accession": "0001185185-18-002178",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1127475/000118518518002178/0001185185-18-002178-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T14:27:21.243314+00:00",
+        "bytes": 14896,
+        "sha256": "8bd886ef7b5021be83feb2126a481591459521bc903126f29dc5f87b1a83447e",
+        "body_path": "artifacts/seo/corpus-local/equal-history-filings/0001127475-0001185185-18-002178-index.response"
+      },
+      "index_filers": [
+        "Digital Brand Media & Marketing Group, Inc. (Filer) CIK : 0001127475 (see all company filings) EIN. : 593666743 | State of Incorp.: FL | Fiscal Year End: 0831 Type: 10-K | Act: 34 | File No.: 000-52838 | Film No.: 181235347 SIC : 7389 Services-Business Services, NEC"
+      ],
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1127475/000118518518002178/dbmm20180831_10k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T14:27:23.219489+00:00",
+        "bytes": 770657,
+        "sha256": "7f0469d09a3a13fe561b82bdaa8aecbb530b7a5a766a89f5972e4abd311889a3",
+        "body_path": "artifacts/seo/corpus-local/equal-history-filings/0001127475-0001185185-18-002178-primary.response"
+      },
+      "dei_identity_facts": [],
+      "core_fact_contexts": [
+        {
+          "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+          "contexts": []
+        },
+        {
+          "tag": "us-gaap:Revenues",
+          "contexts": []
+        }
+      ],
+      "contexts": {},
+      "state": "PRIMARY_CAPTURED_EDITORIAL_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001127475",
+      "companyfacts_name": "DIGITAL BRAND MEDIA & MARKETING GROUP, INC.",
+      "discovery_names": [],
+      "accession": "0001185185-19-001663",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1127475/000118518519001663/0001185185-19-001663-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T14:27:25.070218+00:00",
+        "bytes": 16243,
+        "sha256": "d5d2d4050aea359fe6fc3535a7d90a2372dd4099a0cfed0f8aa8a5994b423994",
+        "body_path": "artifacts/seo/corpus-local/equal-history-filings/0001127475-0001185185-19-001663-index.response"
+      },
+      "index_filers": [
+        "Digital Brand Media & Marketing Group, Inc. (Filer) CIK : 0001127475 (see all company filings) EIN. : 593666743 | State of Incorp.: FL | Fiscal Year End: 0831 Type: 10-K | Act: 34 | File No.: 000-52838 | Film No.: 191257566 SIC : 7389 Services-Business Services, NEC"
+      ],
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1127475/000118518519001663/dbmm20190831_10k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T14:27:27.190744+00:00",
+        "bytes": 684854,
+        "sha256": "ddf23d55affd851bc339961ecc636705a6296d647464248f6b67a01ae779a3e0",
+        "body_path": "artifacts/seo/corpus-local/equal-history-filings/0001127475-0001185185-19-001663-primary.response"
+      },
+      "dei_identity_facts": [],
+      "core_fact_contexts": [
+        {
+          "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+          "contexts": []
+        },
+        {
+          "tag": "us-gaap:Revenues",
+          "contexts": []
+        }
+      ],
+      "contexts": {},
+      "state": "PRIMARY_CAPTURED_EDITORIAL_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001127475",
+      "companyfacts_name": "DIGITAL BRAND MEDIA & MARKETING GROUP, INC.",
+      "discovery_names": [],
+      "accession": "0001185185-20-001749",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1127475/000118518520001749/0001185185-20-001749-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T14:27:29.248493+00:00",
+        "bytes": 14897,
+        "sha256": "57349a0e5acb4f1c3fe51f86a2832f2d130870aca253a4e3c1700dd3b4c405e5",
+        "body_path": "artifacts/seo/corpus-local/equal-history-filings/0001127475-0001185185-20-001749-index.response"
+      },
+      "index_filers": [
+        "Digital Brand Media & Marketing Group, Inc. (Filer) CIK : 0001127475 (see all company filings) EIN. : 593666743 | State of Incorp.: FL | Fiscal Year End: 0831 Type: 10-K | Act: 34 | File No.: 000-52838 | Film No.: 201389147 SIC : 7389 Services-Business Services, NEC"
+      ],
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1127475/000118518520001749/dbmm20200831_10k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T14:27:31.178662+00:00",
+        "bytes": 737141,
+        "sha256": "cccb9f457a4316ca0b1748ed433de31681aa83f0b9e10f74f71c66a1ed460e6b",
+        "body_path": "artifacts/seo/corpus-local/equal-history-filings/0001127475-0001185185-20-001749-primary.response"
+      },
+      "dei_identity_facts": [],
+      "core_fact_contexts": [
+        {
+          "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+          "contexts": []
+        },
+        {
+          "tag": "us-gaap:Revenues",
+          "contexts": []
+        }
+      ],
+      "contexts": {},
+      "state": "PRIMARY_CAPTURED_EDITORIAL_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001127475",
+      "companyfacts_name": "DIGITAL BRAND MEDIA & MARKETING GROUP, INC.",
+      "discovery_names": [],
+      "accession": "0001185185-21-001609",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1127475/000118518521001609/0001185185-21-001609-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T14:27:33.028494+00:00",
+        "bytes": 13175,
+        "sha256": "d48e16b08775cded8aa06a3307029ab666760cc9815a09ae008153b4ab8cac1d",
+        "body_path": "artifacts/seo/corpus-local/equal-history-filings/0001127475-0001185185-21-001609-index.response"
+      },
+      "index_filers": [
+        "Digital Brand Media & Marketing Group, Inc. (Filer) CIK : 0001127475 (see all company filings) EIN. : 593666743 | State of Incorp.: FL | Fiscal Year End: 0831 Type: 10-K | Act: 34 | File No.: 000-52838 | Film No.: 211383447 SIC : 7389 Services-Business Services, NEC"
+      ],
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1127475/000118518521001609/dbmm20210831_10k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T14:27:34.949381+00:00",
+        "bytes": 663007,
+        "sha256": "51dbcd9f3284ea54d7e4ccf1c902840ca78ba39ceb3d8a252f65011f04c88638",
+        "body_path": "artifacts/seo/corpus-local/equal-history-filings/0001127475-0001185185-21-001609-primary.response"
+      },
+      "dei_identity_facts": [],
+      "core_fact_contexts": [
+        {
+          "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+          "contexts": []
+        },
+        {
+          "tag": "us-gaap:Revenues",
+          "contexts": []
+        }
+      ],
+      "contexts": {},
+      "state": "PRIMARY_CAPTURED_EDITORIAL_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001134982",
+      "companyfacts_name": "APPLE iSPORTS GROUP, INC.",
+      "discovery_names": [],
+      "accession": "0001213900-12-004043",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1134982/000121390012004043/0001213900-12-004043-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T14:27:48.709912+00:00",
+        "bytes": 11850,
+        "sha256": "d6ca17cedaa6f42c6f2c3d478f7e232bee2a8020c999aadf7f8f286c939245b0",
+        "body_path": "artifacts/seo/corpus-local/equal-history-filings/0001134982-0001213900-12-004043-index.response"
+      },
+      "index_filers": [
+        "PREVENTION INSURANCE COM INC (Filer) CIK : 0001134982 (see all company filings) EIN. : 880126444 | Fiscal Year End: 0430 Type: 10-K | Act: 34 | File No.: 000-32389 | Film No.: 12989987 SIC : 6411 Insurance Agents, Brokers & Service"
+      ],
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1134982/000121390012004043/f10k2012_prevention.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T14:27:50.841656+00:00",
+        "bytes": 588190,
+        "sha256": "adbfba681b023fa5f5dcae616e134b2734ed3a7c16cea85ee26a7044843ae5f6",
+        "body_path": "artifacts/seo/corpus-local/equal-history-filings/0001134982-0001213900-12-004043-primary.response"
+      },
+      "dei_identity_facts": [],
+      "core_fact_contexts": [
+        {
+          "tag": "us-gaap:Liabilities",
+          "contexts": []
+        },
+        {
+          "tag": "us-gaap:LiabilitiesCurrent",
+          "contexts": []
+        }
+      ],
+      "contexts": {},
+      "state": "PRIMARY_CAPTURED_EDITORIAL_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001134982",
+      "companyfacts_name": "APPLE iSPORTS GROUP, INC.",
+      "discovery_names": [],
+      "accession": "0001213900-13-003911",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1134982/000121390013003911/0001213900-13-003911-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T14:27:52.703987+00:00",
+        "bytes": 12127,
+        "sha256": "96bd80d1391a7f8db00b60685519eb69dd8e5f5553963c19f007ba46f34fbe70",
+        "body_path": "artifacts/seo/corpus-local/equal-history-filings/0001134982-0001213900-13-003911-index.response"
+      },
+      "index_filers": [
+        "PREVENTION INSURANCE COM INC (Filer) CIK : 0001134982 (see all company filings) EIN. : 880126444 | Fiscal Year End: 0430 Type: 10-K | Act: 34 | File No.: 000-32389 | Film No.: 131004379 SIC : 6411 Insurance Agents, Brokers & Service"
+      ],
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1134982/000121390013003911/f10k2013_prevention.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T14:27:54.767937+00:00",
+        "bytes": 668282,
+        "sha256": "2c3c6aa5db6fce74953859173bd564420019af3181494cfba66179e609186055",
+        "body_path": "artifacts/seo/corpus-local/equal-history-filings/0001134982-0001213900-13-003911-primary.response"
+      },
+      "dei_identity_facts": [],
+      "core_fact_contexts": [
+        {
+          "tag": "us-gaap:Liabilities",
+          "contexts": []
+        },
+        {
+          "tag": "us-gaap:LiabilitiesCurrent",
+          "contexts": []
+        }
+      ],
+      "contexts": {},
+      "state": "PRIMARY_CAPTURED_EDITORIAL_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001134982",
+      "companyfacts_name": "APPLE iSPORTS GROUP, INC.",
+      "discovery_names": [],
+      "accession": "0001213900-14-005195",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1134982/000121390014005195/0001213900-14-005195-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T14:27:56.802668+00:00",
+        "bytes": 10931,
+        "sha256": "43607326c59c7a2bb74ae12f72a0e3738f0c95c5158d7851343b1728034b37c8",
+        "body_path": "artifacts/seo/corpus-local/equal-history-filings/0001134982-0001213900-14-005195-index.response"
+      },
+      "index_filers": [
+        "PREVENTION INSURANCE COM INC (Filer) CIK : 0001134982 (see all company filings) EIN. : 880126444 | Fiscal Year End: 0430 Type: 10-K | Act: 34 | File No.: 000-32389 | Film No.: 141000315 SIC : 6411 Insurance Agents, Brokers & Service"
+      ],
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1134982/000121390014005195/f10k2014_preventioninsurance.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T14:27:59.136198+00:00",
+        "bytes": 461450,
+        "sha256": "d3838a40207fabcd298ad7cb5a2c0c2e1a025cf136fe2a830be1938c9874d5a3",
+        "body_path": "artifacts/seo/corpus-local/equal-history-filings/0001134982-0001213900-14-005195-primary.response"
+      },
+      "dei_identity_facts": [],
+      "core_fact_contexts": [
+        {
+          "tag": "us-gaap:Liabilities",
+          "contexts": []
+        },
+        {
+          "tag": "us-gaap:LiabilitiesCurrent",
+          "contexts": []
+        }
+      ],
+      "contexts": {},
+      "state": "PRIMARY_CAPTURED_EDITORIAL_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001134982",
+      "companyfacts_name": "APPLE iSPORTS GROUP, INC.",
+      "discovery_names": [],
+      "accession": "0001213900-15-007901",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1134982/000121390015007901/0001213900-15-007901-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T14:28:01.107449+00:00",
+        "bytes": 11322,
+        "sha256": "29f0e3f56c26a00a609ca94c32a2c92da0e654afd4f4150a32d85956b5f72277",
+        "body_path": "artifacts/seo/corpus-local/equal-history-filings/0001134982-0001213900-15-007901-index.response"
+      },
+      "index_filers": [
+        "PREVENTION INSURANCE COM INC (Filer) CIK : 0001134982 (see all company filings) EIN. : 880126444 | Fiscal Year End: 0430 Type: 10-K | Act: 34 | File No.: 000-32389 | Film No.: 151173045 SIC : 6411 Insurance Agents, Brokers & Service"
+      ],
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1134982/000121390015007901/f10k2015_preventionins.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T14:28:02.810968+00:00",
+        "bytes": 377019,
+        "sha256": "e122132546cc5a59f809a7cc7a2f2d8e24a03f7b2d736d2b4156153078dd79af",
+        "body_path": "artifacts/seo/corpus-local/equal-history-filings/0001134982-0001213900-15-007901-primary.response"
+      },
+      "dei_identity_facts": [],
+      "core_fact_contexts": [
+        {
+          "tag": "us-gaap:Liabilities",
+          "contexts": []
+        },
+        {
+          "tag": "us-gaap:LiabilitiesCurrent",
+          "contexts": []
+        }
+      ],
+      "contexts": {},
+      "state": "PRIMARY_CAPTURED_EDITORIAL_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001134982",
+      "companyfacts_name": "APPLE iSPORTS GROUP, INC.",
+      "discovery_names": [],
+      "accession": "0001213900-16-015950",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1134982/000121390016015950/0001213900-16-015950-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T14:28:04.704235+00:00",
+        "bytes": 10954,
+        "sha256": "5294550f0ca89fd90859cfc6dbc3e45b7512f34724c8e7fbdd653ffb0b49bd25",
+        "body_path": "artifacts/seo/corpus-local/equal-history-filings/0001134982-0001213900-16-015950-index.response"
+      },
+      "index_filers": [
+        "PREVENTION INSURANCE COM INC (Filer) CIK : 0001134982 (see all company filings) EIN. : 880126444 | Fiscal Year End: 0430 Type: 10-K | Act: 34 | File No.: 000-32389 | Film No.: 161831412 SIC : 6411 Insurance Agents, Brokers & Service"
+      ],
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1134982/000121390016015950/f10k2016_preventioninsure.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T14:28:06.818361+00:00",
+        "bytes": 510900,
+        "sha256": "e065f80050346698544b06bef89719f8bd2558e7c00e16f273ed4088a46c5156",
+        "body_path": "artifacts/seo/corpus-local/equal-history-filings/0001134982-0001213900-16-015950-primary.response"
+      },
+      "dei_identity_facts": [],
+      "core_fact_contexts": [
+        {
+          "tag": "us-gaap:Liabilities",
+          "contexts": []
+        },
+        {
+          "tag": "us-gaap:LiabilitiesCurrent",
+          "contexts": []
+        }
+      ],
+      "contexts": {},
+      "state": "PRIMARY_CAPTURED_EDITORIAL_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001134982",
+      "companyfacts_name": "APPLE iSPORTS GROUP, INC.",
+      "discovery_names": [],
+      "accession": "0001213900-17-008611",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1134982/000121390017008611/0001213900-17-008611-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T14:28:08.753765+00:00",
+        "bytes": 11076,
+        "sha256": "bbd7afdee41caf55ec7e21cf8aa352799336febbe8418896215528c2ec950421",
+        "body_path": "artifacts/seo/corpus-local/equal-history-filings/0001134982-0001213900-17-008611-index.response"
+      },
+      "index_filers": [
+        "PREVENTION INSURANCE COM INC (Filer) CIK : 0001134982 (see all company filings) EIN. : 880126444 | Fiscal Year End: 0430 Type: 10-K | Act: 34 | File No.: 000-32389 | Film No.: 171029290 SIC : 6411 Insurance Agents, Brokers & Service"
+      ],
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1134982/000121390017008611/f10k2017_prevention.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T14:28:10.741673+00:00",
+        "bytes": 461566,
+        "sha256": "254a9918e442e727a4872338d48ceb1e4cc608212692ef4a27f482a0b9458ac3",
+        "body_path": "artifacts/seo/corpus-local/equal-history-filings/0001134982-0001213900-17-008611-primary.response"
+      },
+      "dei_identity_facts": [],
+      "core_fact_contexts": [
+        {
+          "tag": "us-gaap:Liabilities",
+          "contexts": []
+        },
+        {
+          "tag": "us-gaap:LiabilitiesCurrent",
+          "contexts": []
+        }
+      ],
+      "contexts": {},
+      "state": "PRIMARY_CAPTURED_EDITORIAL_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001134982",
+      "companyfacts_name": "APPLE iSPORTS GROUP, INC.",
+      "discovery_names": [],
+      "accession": "0001213900-18-009841",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1134982/000121390018009841/0001213900-18-009841-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T14:28:12.631646+00:00",
+        "bytes": 11104,
+        "sha256": "5a44863ce8da71f9579ba0bdbfd10bf545d518af2fe63a5b9d63af6825bab795",
+        "body_path": "artifacts/seo/corpus-local/equal-history-filings/0001134982-0001213900-18-009841-index.response"
+      },
+      "index_filers": [
+        "PREVENTION INSURANCE COM INC (Filer) CIK : 0001134982 (see all company filings) EIN. : 880126444 | Fiscal Year End: 0430 Type: 10-K | Act: 34 | File No.: 000-32389 | Film No.: 18977785 SIC : 6411 Insurance Agents, Brokers & Service"
+      ],
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1134982/000121390018009841/f10k2018_preventioninsu.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T14:28:14.781325+00:00",
+        "bytes": 459793,
+        "sha256": "4c68b77435b923a0c46546f15cff6dbc10d76cbfc6f8b14de82d0473091931be",
+        "body_path": "artifacts/seo/corpus-local/equal-history-filings/0001134982-0001213900-18-009841-primary.response"
+      },
+      "dei_identity_facts": [],
+      "core_fact_contexts": [
+        {
+          "tag": "us-gaap:Liabilities",
+          "contexts": []
+        },
+        {
+          "tag": "us-gaap:LiabilitiesCurrent",
+          "contexts": []
+        }
+      ],
+      "contexts": {},
+      "state": "PRIMARY_CAPTURED_EDITORIAL_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001134982",
+      "companyfacts_name": "APPLE iSPORTS GROUP, INC.",
+      "discovery_names": [],
+      "accession": "0001477932-20-004803",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1134982/000147793220004803/0001477932-20-004803-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T14:28:21.285943+00:00",
+        "bytes": 11107,
+        "sha256": "c19a77b5d5ab3e321cd9973dddd6526aad938f107381273d041bb6c830f6e1f9",
+        "body_path": "artifacts/seo/corpus-local/equal-history-filings/0001134982-0001477932-20-004803-index.response"
+      },
+      "index_filers": [
+        "PREVENTION INSURANCE COM INC (Filer) CIK : 0001134982 (see all company filings) EIN. : 880126444 | Fiscal Year End: 0430 Type: 10-K | Act: 34 | File No.: 000-32389 | Film No.: 201097404 SIC : 6411 Insurance Agents, Brokers & Service"
+      ],
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1134982/000147793220004803/pvnc_10k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T14:28:23.917265+00:00",
+        "bytes": 386949,
+        "sha256": "e1a82ab159af696c52932b7ec53540463042622df8bc61604b33564c0877750c",
+        "body_path": "artifacts/seo/corpus-local/equal-history-filings/0001134982-0001477932-20-004803-primary.response"
+      },
+      "dei_identity_facts": [],
+      "core_fact_contexts": [
+        {
+          "tag": "us-gaap:Liabilities",
+          "contexts": []
+        },
+        {
+          "tag": "us-gaap:LiabilitiesCurrent",
+          "contexts": []
+        }
+      ],
+      "contexts": {},
+      "state": "PRIMARY_CAPTURED_EDITORIAL_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001134982",
+      "companyfacts_name": "APPLE iSPORTS GROUP, INC.",
+      "discovery_names": [],
+      "accession": "0001477932-21-006527",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1134982/000147793221006527/0001477932-21-006527-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T14:28:26.081808+00:00",
+        "bytes": 11106,
+        "sha256": "2c6b2d95bf892a3d34e2d8b27a3a473be13c7d6b75ec0574cf41fe6b7fd17c45",
+        "body_path": "artifacts/seo/corpus-local/equal-history-filings/0001134982-0001477932-21-006527-index.response"
+      },
+      "index_filers": [
+        "PREVENTION INSURANCE COM INC (Filer) CIK : 0001134982 (see all company filings) EIN. : 880126444 | Fiscal Year End: 0430 Type: 10-K | Act: 34 | File No.: 000-32389 | Film No.: 211268333 SIC : 6411 Insurance Agents, Brokers & Service"
+      ],
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1134982/000147793221006527/pvnc_10k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T14:28:28.404421+00:00",
+        "bytes": 428547,
+        "sha256": "bfd0d2b45388eea2fafe75389add59195aadde548a4766dba7addce82e4217ef",
+        "body_path": "artifacts/seo/corpus-local/equal-history-filings/0001134982-0001477932-21-006527-primary.response"
+      },
+      "dei_identity_facts": [],
+      "core_fact_contexts": [
+        {
+          "tag": "us-gaap:Liabilities",
+          "contexts": []
+        },
+        {
+          "tag": "us-gaap:LiabilitiesCurrent",
+          "contexts": []
+        }
+      ],
+      "contexts": {},
+      "state": "PRIMARY_CAPTURED_EDITORIAL_REVIEW_PENDING"
+    }
+  ],
+  "scope": "Complete only for the explicitly selected captured subset; parent acquisition can remain incomplete."
+}
