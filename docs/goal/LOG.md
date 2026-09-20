@@ -772,3 +772,36 @@ Recorded latest-period context for14remaining priority pairs/28observations,
 preserving three legacy primary tables and distinct concepts despite equality.
 A second offline output matches byte-for-byte. This later report is outside the
 just-completed archive; full-history review remains pending.
+
+## 2026-09-20 — correction merged and historical scope accounting
+
+Previous turn completed v10archive and latest-context notes. PR37mergedcf86ac95
+after four checks passed at10b451cd; exact tested/merged tree equality verified.
+New exact observation ledger deduplicates scope reports against610priority rows:
+90reviewed,3withdrawn,87active reviewed and520pending. Original numeric closure
+remains610/610; this separate scope count does not equate numeric match with
+semantic admission. Full pending rows retained and offline replay byte-identical.
+Transfer82504 remains independently active.
+
+## 2026-09-20 — historical revenue presentation review
+
+Previous turn counted exact historical gaps and merged PR37. Reviewed65additional
+inline observations across five revenue pairs. Retained statement and disaggregation
+rows/headers, including Mosaic eliminations, CONMED derivative-disclosure repetitions,
+and3Mpaired tags using different accessions. No automatic time-series comparability
+or tag equivalence. Fifteen legacy revenue observations remain scope-pending despite
+verified XBRL numbers. New report replays identically offline. Separate v2ledger
+binds original baseline and supplement:155reviewed/3withdrawn/152active reviewed/
+455pending. Original reports unchanged; no publication or source-value changes.
+PR38CI35520536515passed before these additions; new CI required.
+
+## 2026-09-20 — legacy revenue context and explicit date contradiction
+
+Previous turn reviewed65inline revenue observations. Seven retained primary
+filings now provide14additional scope checks with table columns and preceding
+prose. Digital Brand Media2020contract revenue268,957USD remains pending: XBRL
+uses2020while geographic prose and asset row say2019. Statement sales supports
+2020but cannot resolve that disclosure date contradiction. No source correction
+or assumption of a typo. Before admission resolve or withhold the observation.
+Supplement replays byte-identically. V3ledger adds exact disjoint coverage:
+169reviewed/3withdrawn/166active reviewed/441pending. No publication changes.

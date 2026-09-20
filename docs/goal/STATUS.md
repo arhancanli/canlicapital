@@ -7,7 +7,7 @@ status preserved in history/STATUS-20260920-through-equality-triage.md.
 ## Current execution
 
 Worktree /Users/arhancanli/canlicapital-expansion-20260919, branch
-fix/birdie-expense-scope-20260920. PR34 merged as
+research/company-historical-scope-20260920. PR34 merged as
 34f2b81e9dec93047c90c4185d1a59fe9ada3661 after four CI35517891088checks passed
 at2ca4f9fe; tested/merged tree67b8efb122bd96a625a6d7933a5312c9b8e31da3.
 PR33 merged as
@@ -144,6 +144,33 @@ Three legacy tables are source-hash checked. Offline replay is byte-identical;
 manual interpretations are recorded, not independently certified. This report was
 created after the v10archive and is not claimed archived there. Broader historical
 scope,712basic/diluted groups and other flags remain open.
+
+## Exact priority scope coverage
+
+PR37 mergedcf86ac95f4a0233138e253ee5ebe1997905513d9 after four CI35520397809
+checks passed at10b451cd; both treesdfad64d51e92d3adf227250eaff3857f5a9dbadc.
+company-priority-scope-coverage-20260920.json deduplicates the exact observation
+keys supported by all retained scope reports:610original priority observations,
+90with recorded context review, including3withdrawn Birdie SG&A observations.
+Baseline:87active observations have scope review;520still need it.
+Historical revenue review now adds65exact previously pending inline observations
+across3M,CONMED,Digital Brand Media,Mosaic andAbbVie;15legacy revenue observations
+still need primary context. Separate v2ledger records155reviewed including3withdrawn,
+152active reviewed and455pending at that checkpoint. Legacy primary review now
+closes14more; v3ledger records169reviewed including3withdrawn,166active reviewed
+and441pending. One Digital Brand Media contract-revenue observation for2020
+remains unresolved:268,957USD is assigned2020in XBRL but geographic disclosure
+prose and asset label say2019. Statement revenue supports2020 but does not settle
+the geographic date conflict. Resolve or explicitly withhold this observation
+before admission; do not silently correct it or approve the history unchanged.
+Report company-legacy-revenue-context-20260920.json preserves seven primary
+filings/tables and preceding prose; replay byte-identical. Reports company-historical-revenue-context-
+20260920.json and company-priority-scope-coverage-v2-20260920.json preserve
+the original ledger and bind the supplement to its hash. No newly admitted pages. The full pending queue
+retains issuer, exact selected row and accession. Report replays byte-for-byte.
+This counts recorded reviews, not machine-certified interpretation or admission.
+It excludes712basic/diluted groups and other corpus flags. Next: review historical
+primary context in this exact queue without double-crediting latest-period work.
 
 ## Immediate next work
 
