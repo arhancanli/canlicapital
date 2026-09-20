@@ -1,0 +1,57 @@
+{
+  "schema": "canli.reviewed-share-context-spec.v1",
+  "decisions": [
+    {
+      "cik": "0001536196",
+      "accession": "0001213900-26-034447",
+      "source_sha256": "6b71e874ffdef15c19b99ed81e159a170e416c2d6e6f6f9c176c37a11b34034c",
+      "primary_sha256": "a7ecf1fa8bf9c11cf15991839233da81a828fb9518b3a8d83e5bf3bd92a021b3",
+      "fixture": "scripts/fixtures/editorial/can-fite-reviewed-source.json.gz",
+      "observations": 12,
+      "period_ends": [
+        "2023-12-31",
+        "2024-12-31",
+        "2025-12-31"
+      ],
+      "table_index": 430,
+      "share_scale": "0",
+      "table_requires": [
+        "Net loss",
+        "Weighted average number of ordinary shares"
+      ],
+      "paragraph_requires": [
+        "(U.S. dollars in thousands except for share and per share data)",
+        "For accounting purposes, all share and per share amounts",
+        "All outstanding share options and warrants for the years ended December 31, 2025, 2024 and 2023 have been excluded"
+      ],
+      "reader_note": "For 2023\u20132025, Can-Fite\u2019s filing already gives retrospective effect to its share splits in the presented ordinary-share and per-share figures. The January 2026 1-for-3,000 ordinary-share reverse split is distinct from the ADS ratio change from 300 to two ordinary shares per ADS. The selected figures remain ordinary-share measures; no second split adjustment or ADS conversion is applied. Outstanding options and warrants are excluded as anti-dilutive for all presented periods. Shares and EPS retain scale-zero tags under the share/per-share exception to the thousands heading.",
+      "disposition": "REVIEWED_ALLOCATION_UNIT_AND_DILUTION_CONTEXT"
+    },
+    {
+      "cik": "0001549595",
+      "accession": "0001549595-26-000016",
+      "source_sha256": "4cb046b66aed89a099e3971bfd46671a5b2c66ad3b5525d11ef8433039c0b364",
+      "primary_sha256": "febf19b03ac3163763ab072007f2429b66ba9ef8708c9bbd2143db9d170309fe",
+      "fixture": "scripts/fixtures/editorial/nurix-reviewed-source.json.gz",
+      "observations": 12,
+      "period_ends": [
+        "2023-11-30",
+        "2024-11-30",
+        "2025-11-30"
+      ],
+      "table_index": 41,
+      "share_scale": "0",
+      "table_requires": [
+        "Numerator: Net loss",
+        "Weighted-average number of shares outstanding"
+      ],
+      "paragraph_requires": [
+        "Basic net loss per share is calculated by dividing the net loss by the weighted-average number of shares of common stock (including pre-funded warrants)",
+        "The shares underlying the pre-funded warrants to purchase shares of the Company\u2019s common stock have been included",
+        "Diluted net loss per share is the same as basic net loss per share"
+      ],
+      "reader_note": "For Nurix\u2019s fiscal years ended November 30, 2023, 2024 and 2025, the basic denominator already includes shares underlying pre-funded warrants because they are fully vested, exercisable and issuable for little or no further consideration. Other potential common shares are excluded as anti-dilutive in these loss periods. The included pre-funded warrants should not be added again. Full scale-zero share counts, EPS values and November fiscal-year dates are retained.",
+      "disposition": "REVIEWED_ALLOCATION_UNIT_AND_DILUTION_CONTEXT"
+    }
+  ]
+}

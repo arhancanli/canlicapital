@@ -796,3 +796,17 @@ loosening comparator. Final report replays byte-identically.48renderer/ledger te
 pass; exactly24rows advance.746reviewed/410pending/20withdrawn,96presentation-only.
 No value/sign/unit changes or runtime/deployment/indexing gain. Next index73;
 earlier gaps, archive supplement and hosted release remain. All goals active.
+
+## 2026-09-21 — retrospective ordinary splits and November fiscal years
+
+Previous turn completed24Honest/Chemomabreviews. PR94four CI35537095758checks
+passed atd1376fea; merged62272132, identical tree584fd53fe864ea8b6d2fc66551fc8bf8cae39db9.
+Reviewed24Can-Fite/Nurixobservations. Can-Fitefinancial statements explicitly
+retrospectively adjust shares/per-share amounts for splits; January2026ordinary
+1-for-3,000split and ADS300→2ratiochange remain distinct. No second conversion.
+NurixNovember30fiscal dates retained; basic denominator already includes fully
+vested exercisable prefunded warrants. Other potential dilution excluded.
+Report replays byte-identically;49renderer/ledger tests pass; exactly24rows advance.
+770reviewed/386pending/20withdrawn,96presentation-only. Next index75; earlier gaps,
+archive supplement and runtime/hosting work remain. No deployment/indexing gain;
+all owner objectives active.
