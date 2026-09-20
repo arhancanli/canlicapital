@@ -1,0 +1,57 @@
+{
+  "schema": "canli.reviewed-share-context-spec.v1",
+  "decisions": [
+    {
+      "cik": "0001576280",
+      "accession": "0001576280-26-000013",
+      "source_sha256": "f344af4c5f2f6c29278b0c9d04ebbd2c2b5793cef502aef4923f009e9c41e629",
+      "primary_sha256": "f8d49ed4f23de9c6ae68c66a8eea69fe352690d9989c49cf827d3ed13c557640",
+      "fixture": "scripts/fixtures/editorial/guardant-health-reviewed-source.json.gz",
+      "observations": 12,
+      "period_ends": [
+        "2023-12-31",
+        "2024-12-31",
+        "2025-12-31"
+      ],
+      "table_index": 52,
+      "share_scale": "3",
+      "table_requires": [
+        "Net loss",
+        "Weighted"
+      ],
+      "paragraph_requires": [
+        "Since the Company was in a loss position for all periods presented",
+        "stock options, restricted stock units, shares issuable pursuant to the employee stock purchase plan, and contingently issuable shares under the convertible senior notes",
+        "The shares receivable related to the 2027 Note Hedges are excluded from the calculation of diluted earnings per share"
+      ],
+      "reader_note": "For Guardant Health in 2023\u20132025, potential shares from stock options, restricted stock units, the employee stock purchase plan and convertible senior notes are excluded from diluted loss per share as anti-dilutive. The filing applies treasury-stock or as-if-converted treatment as appropriate. Shares receivable under the separate 2027 note hedges are also excluded as anti-dilutive; the hedges are not part of the notes themselves. The selected scale-three share counts and scale-zero EPS remain unchanged under the thousands heading.",
+      "disposition": "REVIEWED_ALLOCATION_UNIT_AND_DILUTION_CONTEXT"
+    },
+    {
+      "cik": "0001577526",
+      "accession": "0001577526-26-000078",
+      "source_sha256": "c456ee49e0d66c093b29590a202b941c6d917b918515dc104dd419254b454871",
+      "primary_sha256": "7cd377d5015db36eb01b1e2121f9ae5b53d0ec0a3c09b523c77870854368ce57",
+      "fixture": "scripts/fixtures/editorial/c3-ai-reviewed-source.json.gz",
+      "observations": 12,
+      "period_ends": [
+        "2024-04-30",
+        "2025-04-30",
+        "2026-04-30"
+      ],
+      "table_index": 55,
+      "share_scale": "3",
+      "table_requires": [
+        "Net loss",
+        "Weighted"
+      ],
+      "paragraph_requires": [
+        "The rights, including the liquidation and dividend rights, of the holders of Class A and Class B common stock are identical",
+        "early exercised stock options subject to repurchase",
+        "(in thousands, except per share data)"
+      ],
+      "reader_note": "For C3.ai\u2019s fiscal years ended April 30, 2024, 2025 and 2026, the two-class calculation allocates results proportionately to Class A and Class B because their dividend and liquidation rights are identical, despite voting and conversion differences. The selected denominator combines those classes. Options, RSUs, ESPP shares and early-exercised options subject to repurchase are excluded from diluted loss per share as anti-dilutive. April fiscal dates, scale-three shares and scale-zero EPS are retained without calendar-year conversion.",
+      "disposition": "REVIEWED_ALLOCATION_UNIT_AND_DILUTION_CONTEXT"
+    }
+  ]
+}
