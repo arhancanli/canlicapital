@@ -17,7 +17,7 @@ rerun are preserved in company-pr45-ci-recovery-20260920.json. No audit bypass.
 
 Archive process44780 is TERMINAL exit0. Five-cohort staging51634 and transition
 comparison64980completed exit0. Combined v14pipeline16429 and current quality audit40310completed exit0; no uploader.
-Next: finish v15 whole-corpus policy comparison and exact-head CI; finish SoFi
+Next: verify updated PR52 exact-head CI; finish SoFi
 predecessor opening-balance interpretation,
 remaining basic/diluted source coverage and corpus scope/usefulness flags, then complete hosted
 transfer, whole-release delivery/load/browser checks and production activation.
@@ -304,8 +304,12 @@ or fabricated replacement; both actual captured sources committed as gzip fixtur
 unchanged, USD series preserved, changed-source/time rejection, missing-notice
 rejection and inherited Varonis/Atlantica/HNO/DBMM policies unchanged.
 
-Full current-v14source/selection replay under v15 process94354started; terminal
-result not yet claimed. This is a comparison, not a rebuilt hosted release.
+Full current-v14source/selection replay under v15 process94354completed exit0:
+all3,323companies/87,346histories preserved, exactly two observations removed;
+only policy metadata, those observations and notices differ. Receipt
+company-five-cohort-v15-transition-20260920.json. This is a comparison, not a
+rebuilt hosted release. Policy implementation committed195fb913; final receipt
+commit requires exact-head CI. No collector, replay or uploader remains active.
 PR52 original evidence-only head9d1f54e8 passed four checks in35526616925;
 updated policy head needs fresh CI. Currency reports remain historical evidence
 whose descriptions of pending implementation are superseded here. SoFi context,

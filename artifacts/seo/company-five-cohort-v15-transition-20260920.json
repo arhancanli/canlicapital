@@ -1,0 +1,37 @@
+{
+  "schema": "canli.five-cohort-v15-transition.v1",
+  "publication_approved": false,
+  "previous_manifest_sha256": "7f2540f7d8393615efff856479b41b5994aac1d258d0e4de1d116ca616c76472",
+  "code_sha256": "a3de6c2a5fbb8fc96fb6bd1231845f4050a0ecd9423cfb3e66e70bf58f494fb1",
+  "selector_sha256": "5ba30d557d81c0406c0a7ef93ef096d02b2c0949b6d5641b79af7e4a6ac94dc5",
+  "policy_sha256": "0b783a7a5c011055c29d20b56747b8e83c0ed1fe77b303e1d608bef5b81dbb49",
+  "companies": 3323,
+  "histories": 87346,
+  "removed_observations": 2,
+  "changes": [
+    {
+      "cik": "0001280452",
+      "tag": "Revenues",
+      "observation": {
+        "start": "2012-01-01",
+        "end": "2012-12-31",
+        "val": 213813000,
+        "unit": "AFN",
+        "accn": "0001437749-14-003761"
+      },
+      "removed_observations": 1
+    },
+    {
+      "cik": "0001659494",
+      "tag": "CashAndCashEquivalentsAtCarryingValue",
+      "observation": {
+        "end": "2025-12-31",
+        "val": 54062000,
+        "unit": "SAR",
+        "accn": "0001104659-26-047273"
+      },
+      "removed_observations": 1
+    }
+  ],
+  "scope": "Every v14 company source and selected record verified, then reselected under v15. Exact differences are policy metadata, two held observations and their notices. No new delivery/catalog/discovery build, hosted transfer, production or indexing claim."
+}

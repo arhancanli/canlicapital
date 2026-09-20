@@ -121,5 +121,8 @@ Previous goal turn captured/reviewed three currency observations and opened PR52
 Implemented exact MonolithicAFN unit-conflict and 51TalkSAR component-scope holds
 in cumulative v15, preserving all earlier policies. Two actual source fixtures
 verify no unrelated changes and source-linked notices;41targeted tests pass.
-Whole-corpus comparison94354started against all current v14sources/selections.
+Whole-corpus comparison94354completed exit0 against all current v14sources/
+selections:3,323companies/87,346histories preserved, exactly two observations
+removed. Every other selected field matches except policy metadata and notices.
+Receipt company-five-cohort-v15-transition-20260920.json retained.
 No source correction, production activation, or new indexing claim.
