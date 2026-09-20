@@ -10,9 +10,15 @@ which links the preceding historical record. Historical process states are not l
 ## Current work and immediate next action
 
 Worktree `/Users/arhancanli/canlicapital-expansion-20260919`, branch
-`evidence/cedar-participating-shares-20260920`. PR63merged0bc93807 after all
-four CI35530156535checks passed atb4341381. Tested/merged tree
-9ad19ad1d3b7eb95b0a5f905c7a5cdd6ff791cfc.
+`refactor/scope-review-registry-20260920`. PR64merged7289ee08 after all four
+CI35530344125checks passed at3eab8957. Tested/merged tree
+4ed9cab9178746777db64ca371042977d799058e.
+
+Reusable scope registry replaces future copied reconciliation scripts. The initial
+registered compressed ledger matches every v6row and count exactly; no new review
+approvals. Four tests cover full1176row equivalence, deterministic gzip, limited
+status retention and rejection of duplicate/stale/misattributed/held approvals.
+Routine verification includes these tests. See SCOPE_REVIEW.md for the workflow.
 
 Current v6batch ledger:74reviewed/1,094pending/8withdrawn;24reviewed retain
 presentation-only status. Eight selected Cedar2020/2021observations now carry
