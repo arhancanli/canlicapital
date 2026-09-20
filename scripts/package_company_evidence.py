@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import argparse
 import hashlib
+import gzip
 import io
 import json
 import shutil
@@ -104,7 +105,7 @@ def complete_cohort(report, queue):
 
 
 def evidence_profile(profile):
-    if profile in ('five-cohort-v9', 'five-cohort-v10', 'five-cohort-v11'):
+    if profile in ('five-cohort-v9', 'five-cohort-v10', 'five-cohort-v11', 'five-cohort-v14'):
         version = profile.removeprefix('five-cohort-')
         return {'prefix': 'company-five-cohort', 'suffix': version,
                 'summary': ('company-five-cohort-storage-plan-summary-20260920.json' if version == 'v9' else f'company-five-cohort-{version}-storage-plan-summary-20260920.json'),
@@ -144,7 +145,7 @@ def build(root, output, profile='two-cohort'):
     cohorts, editorial = config['cohorts'], config['editorial']
     local = root / 'artifacts/seo/corpus-local'
     summary = json.loads((root / 'artifacts/seo' / config['summary']).read_text())
-    plan_path = root / (summary['plan_path'] if profile in ('five-cohort-v9', 'five-cohort-v10', 'five-cohort-v11') else summary['local_plan'])
+    plan_path = root / (summary['plan_path'] if profile in ('five-cohort-v9', 'five-cohort-v10', 'five-cohort-v11', 'five-cohort-v14') else summary['local_plan'])
     if file_hash(plan_path) != summary['plan_sha256']:
         raise ValueError('Runtime plan binding changed')
     plan = json.loads(plan_path.read_text())
@@ -169,7 +170,7 @@ def build(root, output, profile='two-cohort'):
     for directory in editorial:
         for path in sorted((local / directory).iterdir()):
             add(path)
-    if profile in ('five-cohort-v10', 'five-cohort-v11'):
+    if profile in ('five-cohort-v10', 'five-cohort-v11', 'five-cohort-v14'):
         scope = json.loads((root / 'artifacts/seo/company-birdie-expense-scope-20260920.json').read_bytes())
         for filing in scope['filings']:
             primary = root / filing['primary_path']
@@ -181,13 +182,60 @@ def build(root, output, profile='two-cohort'):
             raise ValueError('Missing locked editorial wheels')
         for wheel in wheels:
             add(wheel)
-    if profile == 'five-cohort-v11':
+    if profile in ('five-cohort-v11', 'five-cohort-v14'):
         legacy = json.loads((root / 'artifacts/seo/company-legacy-revenue-context-20260920.json').read_bytes())
         for source in legacy['sources']:
             primary = root / source['primary_path']
             if file_hash(primary) != source['primary_sha256']:
                 raise ValueError('Legacy revenue primary binding changed')
             add(primary)
+    if profile == 'five-cohort-v14':
+        # Retain the exact original convenience-sample inputs; do not expand its
+        # coverage silently when newer captures are present in the workspace.
+        for stem in ['targets', 'primary-review']:
+            name = f'company-basic-diluted-{stem}-20260920.json'
+            saved = gzip.decompress((root / 'artifacts/seo' / (name + '.gz')).read_bytes())
+            path = local / name
+            if path.read_bytes() != saved:
+                raise ValueError('Baseline basic/diluted input changed')
+            add(path)
+        targets = json.loads((local / 'company-basic-diluted-targets-20260920.json').read_bytes())
+        for filing in targets['filings']:
+            for key in ['body_path', 'receipt_path']:
+                add(root / filing[key])
+            if file_hash(root / filing['body_path']) != filing['receipt']['sha256'] or file_hash(root / filing['receipt_path']) != filing['receipt_sha256']:
+                raise ValueError('Retained primary binding changed')
+        legacy = json.loads((root / 'artifacts/seo/company-basic-diluted-legacy-review-20260920.json').read_bytes())
+        for filing in legacy['filings']:
+            add(root / filing['receipt_path'])
+            receipt = filing['receipt']
+            body = root / receipt.get('body_path', filing['receipt_path'].replace('.receipt.json', '.response'))
+            if file_hash(body) != receipt['sha256'] or body.stat().st_size != receipt['bytes']:
+                raise ValueError('Legacy instance binding changed')
+            add(body)
+        capture = json.loads((root / 'artifacts/seo/company-varonis-unit-capture-20260920.json').read_bytes())
+        if not capture['complete']:
+            raise ValueError('Incomplete Varonis capture')
+        for filing in capture['filings']:
+            for key in ['index_capture', 'primary_capture']:
+                receipt = filing[key]; body = root / receipt['body_path']
+                if receipt['status'] != 200 or file_hash(body) != receipt['sha256'] or body.stat().st_size != receipt['bytes']:
+                    raise ValueError('Varonis capture binding changed')
+                add(body); add(root / receipt['body_path'].replace('.response', '.receipt.json'))
+        quality = json.loads((root / 'artifacts/seo/company-five-cohort-v14-selected-quality-summary-20260920.json').read_bytes())
+        for key in ['full_report', 'compressed_report']:
+            descriptor = quality[key]; path = root / descriptor['path']
+            if file_hash(path) != descriptor['sha256'] or path.stat().st_size != descriptor['bytes']:
+                raise ValueError('Quality evidence changed')
+            add(path)
+        discovery_dir = local / 'company-five-cohort-discovery-v14'
+        discovery = json.loads((discovery_dir / 'discovery.json').read_bytes())
+        add(discovery_dir / 'discovery.json')
+        for descriptor in discovery['files']:
+            path = discovery_dir / descriptor['storage_path']
+            if file_hash(path) != descriptor['sha256'] or path.stat().st_size != descriptor['bytes']:
+                raise ValueError('Discovery evidence changed')
+            add(path)
     if 'third-1000' in cohorts:
         add(local / 'third-1000-original-review.json')
     for relative in [f'{prefix}-delivery-{suffix}/delivery.json', f'{prefix}-delivery-{suffix}/company-release.json', f'{prefix}-catalog-{suffix}/catalog.json']:
@@ -209,7 +257,7 @@ if __name__ == '__main__':
     parser.add_argument('archive', type=Path)
     parser.add_argument('--root', type=Path, default=Path.cwd())
     parser.add_argument('--destination', type=Path)
-    parser.add_argument('--profile', choices=['two-cohort', 'three-cohort', 'three-cohort-v3', 'fourth-cohort-v5', 'fourth-cohort-v6', 'fourth-cohort-v9', 'fifth-cohort-v7', 'fifth-cohort-v8', 'five-cohort-v9', 'five-cohort-v10', 'five-cohort-v11'], default='two-cohort')
+    parser.add_argument('--profile', choices=['two-cohort', 'three-cohort', 'three-cohort-v3', 'fourth-cohort-v5', 'fourth-cohort-v6', 'fourth-cohort-v9', 'fifth-cohort-v7', 'fifth-cohort-v8', 'five-cohort-v9', 'five-cohort-v10', 'five-cohort-v11', 'five-cohort-v14'], default='two-cohort')
     args = parser.parse_args()
     if args.mode == 'restore' and args.destination is None:
         parser.error('restore requires --destination (must not exist)')
