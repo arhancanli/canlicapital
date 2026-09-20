@@ -1,0 +1,14 @@
+{
+  "schema": "canli.liability-evidence-archive.v1",
+  "result": "PASS",
+  "archive_sha256": "f16e4ac95ee698890faaca6663abece7c7882d86373401e7deee412c177b6345",
+  "archive_bytes": 4997120,
+  "files": 35,
+  "reproduced_reports": {
+    "company-liability-presentation-review-20260920.json": "645e92be4fea2d996c7d30ce4fed37c33a6cff5d1d2a978229f238ddfbaf5d8c",
+    "company-liability-legacy-context-20260920.json": "e57d017c8a52c9deb8aa4bbdfbdb7dd8530a6dda0eed65fecb02d9dbdec7d2d1",
+    "company-greenstream-original-context-20260920.json": "7bd738be0f99ceb5964d711bcf47651ada701aebff8c8f71d672857df093347e"
+  },
+  "offline_dependency_install": true,
+  "scope": "Replays three liability context reports from retained comparisons and legacy/original primary bytes. Preserves manual scope notes; does not independently rerun interpretation, numerical extraction for inline cases, companyfacts selection, all-history admission or offsite backup."
+}

@@ -666,3 +666,49 @@ Review found the early401/403/429read branch omitted diagnostic metadata. Fixed
 it without enabling retries, with a receipt-level regression for all three codes.
 All21storage/planner tests pass. Active77617 remains pinned to e5177ec0 and has not
 hot-reloaded this later diagnostics-only change.
+
+## 2026-09-20 — storage merge and liability primary context
+
+Previous turn launched paced recovery and fixed hard-stop read diagnostics.
+All four PR35checks passed at9e7c2bba; squash merge bcfcb371 preserves exact
+tree eeebaf502754ca3fbdd1836e215d06ac9f4f1b91. Recovery77617polled live.
+New offline helper binds numerical closure, queue and three primary reports,
+then selects latest reporting date for all17liability pairs. Twelve have separate
+primary total/current rows with equal values; retained scope review covers those
+24rows only. Five XML-only cases remain pending. Atlantica accession-order mistake
+corrected: latest selected date is2025-12-31, not2019. No blanket admission.
+
+## 2026-09-20 — legacy liability statement context
+
+Previous turn merged storage diagnostics and reviewed12latest liability pairs.
+Retained balance sheets close limited primary-context review for four of five
+XML-only pairs: North America Frac Sand, Glucose Health, GRN and Atacama.
+Each table preserves reporting columns, component liabilities and equal total/
+current amounts; source hashes match numerical comparison evidence. Green Stream
+primary is an amendment solely furnishing XBRL, with no original financial
+statements. Preserve that explanatory note and keep original-statement review open.
+Supplement and byte-identical isolated-output replay complete without network.
+No all-history admission, publication or changed observations. Transfer77617live.
+
+## 2026-09-20 — Green Stream original statement context
+
+Previous turn closed four legacy contexts and preserved the amendment gap.
+SEC search located original accession0001683168-21-004121. Paced capture98800
+completed0 with index/primary200 and issuer identity verified. Original table74
+shows separate total/current liabilities927,297USD atApril30,2021. Bound to
+amendment0001683168-21-004126 and its XBRL-only explanatory note; no selected
+accessions changed. New context report replays byte-identically offline.
+All17latest liability pairs now have limited primary context; not all histories
+or corpus admission. Newly acquired primary bytes need archival packaging.
+
+## 2026-09-20 — liability context archive replay
+
+Previous turn captured and source-bound Green Stream original statement context.
+Archive/replay4857 completed0:35files/4,997,120bytes, checksum
+f16e4ac95ee698890faaca6663abece7c7882d86373401e7deee412c177b6345.
+Temporary isolated restore verifies every member and installs locked wheels with
+no index/network; all three context reports reproduce byte-for-byte. Scope notes
+are retained; interpretation, inline numerical extraction and companyfacts queue
+selection are not independently rerun. No offsite backup or admission claim.
+PR36CI35519353726passed all four checks at5eeb43e6; archive additions need new CI.
+Paced transfer77617 remains confirmed live.
