@@ -1,0 +1,1471 @@
+{
+  "schema": "canli.liability-presentation-review.v1",
+  "publication_approved": false,
+  "closure_sha256": "e926629fe1e0ba693b74b1531b9a8ea5056ae92b64e758bac609a977145e9065",
+  "code_sha256": "eb5db3f04c571cee344a4e7bef91421f0a35bf53926f45a7f2b0684a3266c757",
+  "groups": 17,
+  "groups_with_primary_rows": 12,
+  "cases": [
+    {
+      "cik": "0000894501",
+      "name": "GOLD ROCK HOLDINGS, INC.",
+      "source_sha256": "60c6ccf3e00b325ac6b5d15b5df627c224be0ef7464cc65911e9c3b586fe81c7",
+      "selected_sha256": "47b73754cc49d13377780a6d9dbb58e83a5f4ec712bd43c51a2ae00f06b4e29f",
+      "latest_selected_end": "2025-12-31",
+      "primary_rows_available": true,
+      "evidence": [
+        {
+          "primary_sha256": "52c5bc0603054f38ae386a837bf637db417afeca680e6601501ab717960549f1",
+          "url": "https://www.sec.gov/Archives/edgar/data/894501/000109181826000026/grhi12312510k.htm",
+          "check": {
+            "selected": {
+              "tag": "Liabilities",
+              "end": "2025-12-31",
+              "val": 154431,
+              "accn": "0001091818-26-000026",
+              "fy": 2025,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2026-03-27",
+              "unit": "USD"
+            },
+            "matched": true,
+            "matches": [
+              {
+                "tag": "Liabilities",
+                "start": null,
+                "end": "2025-12-31",
+                "unit": "USD",
+                "value": "154431",
+                "fact_id": "Fact000080",
+                "context_id": "AsOf2025-12-31",
+                "table_row": "Total Liabilities 154,431 78,400",
+                "preceding_rows": [
+                  "Total Current Liabilities 154,431 78,400",
+                  ""
+                ],
+                "table_header_rows": [
+                  "",
+                  "December 31, 2025 2024",
+                  "ASSETS",
+                  "Current Assets",
+                  "Cash $ 152,121 $ 209,614"
+                ],
+                "paragraph": null,
+                "preceding_heading": null
+              }
+            ],
+            "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING",
+            "match_method": "INLINE_PRIMARY"
+          }
+        },
+        {
+          "primary_sha256": "52c5bc0603054f38ae386a837bf637db417afeca680e6601501ab717960549f1",
+          "url": "https://www.sec.gov/Archives/edgar/data/894501/000109181826000026/grhi12312510k.htm",
+          "check": {
+            "selected": {
+              "tag": "LiabilitiesCurrent",
+              "end": "2025-12-31",
+              "val": 154431,
+              "accn": "0001091818-26-000026",
+              "fy": 2025,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2026-03-27",
+              "unit": "USD"
+            },
+            "matched": true,
+            "matches": [
+              {
+                "tag": "LiabilitiesCurrent",
+                "start": null,
+                "end": "2025-12-31",
+                "unit": "USD",
+                "value": "154431",
+                "fact_id": "Fact000077",
+                "context_id": "AsOf2025-12-31",
+                "table_row": "Total Current Liabilities 154,431 78,400",
+                "preceding_rows": [
+                  "Accrued Board of Directors/Officer Compensation 137,800 77,000",
+                  ""
+                ],
+                "table_header_rows": [
+                  "",
+                  "December 31, 2025 2024",
+                  "ASSETS",
+                  "Current Assets",
+                  "Cash $ 152,121 $ 209,614"
+                ],
+                "paragraph": null,
+                "preceding_heading": null
+              }
+            ],
+            "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING",
+            "match_method": "INLINE_PRIMARY"
+          }
+        }
+      ]
+    },
+    {
+      "cik": "0000932021",
+      "name": "GLOBAL TECHNOLOGIES, LTD",
+      "source_sha256": "c34a86a7bf2001166b07684f5bc42c408cb465d70e0a48d9ac10508230f3d38b",
+      "selected_sha256": "16c1a7d5c0c727adad6ba6049bdc831ed0cc10faa54125b615a7759b74cb607a",
+      "latest_selected_end": "2025-06-30",
+      "primary_rows_available": true,
+      "evidence": [
+        {
+          "primary_sha256": "acdefeea947cfde10f7b5fc9d0bfd334605cef743c7542b4d23384ded365812a",
+          "url": "https://www.sec.gov/Archives/edgar/data/932021/000149315225029524/form10-k.htm",
+          "check": {
+            "selected": {
+              "tag": "Liabilities",
+              "end": "2025-06-30",
+              "val": 1221387,
+              "accn": "0001493152-25-029524",
+              "fy": 2025,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2025-12-30",
+              "unit": "USD"
+            },
+            "matched": true,
+            "matches": [
+              {
+                "tag": "Liabilities",
+                "start": null,
+                "end": "2025-06-30",
+                "unit": "USD",
+                "value": "1221387",
+                "fact_id": "Fact000105",
+                "context_id": "AsOf2025-06-30",
+                "table_row": "TOTAL LIABILITIES $ 1,221,387 $ 1,236,037",
+                "preceding_rows": [
+                  "Total current liabilities 1,221,387 1,236,037",
+                  ""
+                ],
+                "table_header_rows": [
+                  "June 30, 2025 June 30, 2024 (Restated \u2013 See Note N)",
+                  "",
+                  "ASSETS",
+                  "CURRENT ASSETS",
+                  "Cash and cash equivalents $ 68,108 $ 115,747"
+                ],
+                "paragraph": null,
+                "preceding_heading": null
+              }
+            ],
+            "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING",
+            "match_method": "INLINE_PRIMARY"
+          }
+        },
+        {
+          "primary_sha256": "acdefeea947cfde10f7b5fc9d0bfd334605cef743c7542b4d23384ded365812a",
+          "url": "https://www.sec.gov/Archives/edgar/data/932021/000149315225029524/form10-k.htm",
+          "check": {
+            "selected": {
+              "tag": "LiabilitiesCurrent",
+              "end": "2025-06-30",
+              "val": 1221387,
+              "accn": "0001493152-25-029524",
+              "fy": 2025,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2025-12-30",
+              "unit": "USD"
+            },
+            "matched": true,
+            "matches": [
+              {
+                "tag": "LiabilitiesCurrent",
+                "start": null,
+                "end": "2025-06-30",
+                "unit": "USD",
+                "value": "1221387",
+                "fact_id": "Fact000102",
+                "context_id": "AsOf2025-06-30",
+                "table_row": "Total current liabilities 1,221,387 1,236,037",
+                "preceding_rows": [
+                  "Loans payable, related party 100 68,269",
+                  "Derivative liability (as restated at June 30, 2024 \u2013 See Note N) 780,000 498,000"
+                ],
+                "table_header_rows": [
+                  "June 30, 2025 June 30, 2024 (Restated \u2013 See Note N)",
+                  "",
+                  "ASSETS",
+                  "CURRENT ASSETS",
+                  "Cash and cash equivalents $ 68,108 $ 115,747"
+                ],
+                "paragraph": null,
+                "preceding_heading": null
+              }
+            ],
+            "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING",
+            "match_method": "INLINE_PRIMARY"
+          }
+        }
+      ]
+    },
+    {
+      "cik": "0001062506",
+      "name": "ATLANTICA INC.",
+      "source_sha256": "b6982eca52afbce436eed50540a757170b57c33a9b39cd6eb182ff42d4f267d8",
+      "selected_sha256": "0eaae022b75b0f84eaef5266bbe614514445ec65c2808941d20f904804335f5c",
+      "latest_selected_end": "2025-12-31",
+      "primary_rows_available": true,
+      "evidence": [
+        {
+          "primary_sha256": "c6cd6a01e821244936276203a5da114612c5313e9cf7202938fe0eb069b50421",
+          "url": "https://www.sec.gov/Archives/edgar/data/1062506/000106250626000010/alda10k123125.htm",
+          "check": {
+            "selected": {
+              "tag": "Liabilities",
+              "end": "2025-12-31",
+              "val": 6072120,
+              "accn": "0001062506-26-000010",
+              "fy": 2025,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2026-03-31",
+              "unit": "USD"
+            },
+            "matched": true,
+            "matches": [
+              {
+                "tag": "Liabilities",
+                "start": null,
+                "end": "2025-12-31",
+                "unit": "USD",
+                "value": "6072120",
+                "fact_id": "Fact000079",
+                "context_id": "AsOf2025-12-31",
+                "table_row": "Total Liabilities 6,072,120 5,647,830",
+                "preceding_rows": [
+                  "Interest Payable \u2013 Related Parties 1,324,604 1,126,269",
+                  "Total Current Liabilities 6,072,120 5,647,830"
+                ],
+                "table_header_rows": [
+                  "December 31, 2025 December 31, 2024",
+                  "ASSETS",
+                  "CURRENT ASSETS",
+                  "",
+                  "Cash $ - $ -"
+                ],
+                "paragraph": null,
+                "preceding_heading": null
+              }
+            ],
+            "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING",
+            "match_method": "INLINE_PRIMARY"
+          }
+        },
+        {
+          "primary_sha256": "c6cd6a01e821244936276203a5da114612c5313e9cf7202938fe0eb069b50421",
+          "url": "https://www.sec.gov/Archives/edgar/data/1062506/000106250626000010/alda10k123125.htm",
+          "check": {
+            "selected": {
+              "tag": "LiabilitiesCurrent",
+              "end": "2025-12-31",
+              "val": 6072120,
+              "accn": "0001062506-26-000010",
+              "fy": 2025,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2026-03-31",
+              "unit": "USD"
+            },
+            "matched": true,
+            "matches": [
+              {
+                "tag": "LiabilitiesCurrent",
+                "start": null,
+                "end": "2025-12-31",
+                "unit": "USD",
+                "value": "6072120",
+                "fact_id": "Fact000076",
+                "context_id": "AsOf2025-12-31",
+                "table_row": "Total Current Liabilities 6,072,120 5,647,830",
+                "preceding_rows": [
+                  "Note Payable - Related Parties 812,197 762,407",
+                  "Interest Payable \u2013 Related Parties 1,324,604 1,126,269"
+                ],
+                "table_header_rows": [
+                  "December 31, 2025 December 31, 2024",
+                  "ASSETS",
+                  "CURRENT ASSETS",
+                  "",
+                  "Cash $ - $ -"
+                ],
+                "paragraph": null,
+                "preceding_heading": null
+              }
+            ],
+            "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING",
+            "match_method": "INLINE_PRIMARY"
+          }
+        }
+      ]
+    },
+    {
+      "cik": "0001134982",
+      "name": "APPLE iSPORTS GROUP, INC.",
+      "source_sha256": "f311f53f9f351f0afa70c7a117279ba0ad4f6f7a8a28f1807402e0a852919a0e",
+      "selected_sha256": "aab8e9224bf7025cb55217c408af7093aa3a8fc4228e2db5b6bae6128ae3bb21",
+      "latest_selected_end": "2025-12-31",
+      "primary_rows_available": true,
+      "evidence": [
+        {
+          "primary_sha256": "a80eca48fc1e634d8f5a8445ada5eb7c6834dd95b69bde4e9037987b5e6fe246",
+          "url": "https://www.sec.gov/Archives/edgar/data/1134982/000147793226002110/aapi_10k.htm",
+          "check": {
+            "selected": {
+              "tag": "Liabilities",
+              "end": "2025-12-31",
+              "val": 6529020,
+              "accn": "0001477932-26-002110",
+              "fy": 2025,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2026-04-10",
+              "unit": "USD"
+            },
+            "matched": true,
+            "matches": [
+              {
+                "tag": "Liabilities",
+                "start": null,
+                "end": "2025-12-31",
+                "unit": "USD",
+                "value": "6529020",
+                "fact_id": "fid_1634",
+                "context_id": "AsOf2025-12-31",
+                "table_row": "Total liabilities 6,529,020 6,641,364",
+                "preceding_rows": [
+                  "Total current liabilities 6,529,020 6,641,364",
+                  ""
+                ],
+                "table_header_rows": [
+                  "December 31, December 31,",
+                  "2025 2024",
+                  "Assets",
+                  "Current assets:",
+                  "Cash and cash equivalents $ 55,938 $ 42,167"
+                ],
+                "paragraph": null,
+                "preceding_heading": null
+              }
+            ],
+            "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING",
+            "match_method": "INLINE_PRIMARY"
+          }
+        },
+        {
+          "primary_sha256": "a80eca48fc1e634d8f5a8445ada5eb7c6834dd95b69bde4e9037987b5e6fe246",
+          "url": "https://www.sec.gov/Archives/edgar/data/1134982/000147793226002110/aapi_10k.htm",
+          "check": {
+            "selected": {
+              "tag": "LiabilitiesCurrent",
+              "end": "2025-12-31",
+              "val": 6529020,
+              "accn": "0001477932-26-002110",
+              "fy": 2025,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2026-04-10",
+              "unit": "USD"
+            },
+            "matched": true,
+            "matches": [
+              {
+                "tag": "LiabilitiesCurrent",
+                "start": null,
+                "end": "2025-12-31",
+                "unit": "USD",
+                "value": "6529020",
+                "fact_id": "fid_1632",
+                "context_id": "AsOf2025-12-31",
+                "table_row": "Total current liabilities 6,529,020 6,641,364",
+                "preceding_rows": [
+                  "Accrued payroll 131,308 402,130",
+                  "Accrued interest expense 2,997 -"
+                ],
+                "table_header_rows": [
+                  "December 31, December 31,",
+                  "2025 2024",
+                  "Assets",
+                  "Current assets:",
+                  "Cash and cash equivalents $ 55,938 $ 42,167"
+                ],
+                "paragraph": null,
+                "preceding_heading": null
+              }
+            ],
+            "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING",
+            "match_method": "INLINE_PRIMARY"
+          }
+        }
+      ]
+    },
+    {
+      "cik": "0001310488",
+      "name": "BIOFORCE NANOSCIENCES HOLDINGS, INC.",
+      "source_sha256": "47abfb2c04ee0f344918ad7471fc3215ff4f2adbc98eefaf8e29b533441d63bf",
+      "selected_sha256": "58057f8a8fcf94a9158a3878968c9fc602f3d981b6ea6b1e033b54b6823ee6d6",
+      "latest_selected_end": "2025-12-31",
+      "primary_rows_available": true,
+      "evidence": [
+        {
+          "primary_sha256": "0275f1152619289b280743fe65059c98c64b7a7aafc6129ab9738ba901e3c27a",
+          "url": "https://www.sec.gov/Archives/edgar/data/1310488/000109181826000047/bfnh-123125_10k.htm",
+          "check": {
+            "selected": {
+              "tag": "Liabilities",
+              "end": "2025-12-31",
+              "val": 619329,
+              "accn": "0001091818-26-000047",
+              "fy": 2025,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2026-04-15",
+              "unit": "USD"
+            },
+            "matched": true,
+            "matches": [
+              {
+                "tag": "Liabilities",
+                "start": null,
+                "end": "2025-12-31",
+                "unit": "USD",
+                "value": "619329",
+                "fact_id": "Fact000080",
+                "context_id": "AsOf2025-12-31",
+                "table_row": "Total Liabilities 619,329 2,302,454",
+                "preceding_rows": [
+                  "Total Current Liabilities 619,329 2,302,454",
+                  ""
+                ],
+                "table_header_rows": [
+                  "",
+                  "December 31, 2025 2024",
+                  "ASSETS",
+                  "Current Assets",
+                  "Cash $ 786 $ 862"
+                ],
+                "paragraph": null,
+                "preceding_heading": null
+              }
+            ],
+            "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING",
+            "match_method": "INLINE_PRIMARY"
+          }
+        },
+        {
+          "primary_sha256": "0275f1152619289b280743fe65059c98c64b7a7aafc6129ab9738ba901e3c27a",
+          "url": "https://www.sec.gov/Archives/edgar/data/1310488/000109181826000047/bfnh-123125_10k.htm",
+          "check": {
+            "selected": {
+              "tag": "LiabilitiesCurrent",
+              "end": "2025-12-31",
+              "val": 619329,
+              "accn": "0001091818-26-000047",
+              "fy": 2025,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2026-04-15",
+              "unit": "USD"
+            },
+            "matched": true,
+            "matches": [
+              {
+                "tag": "LiabilitiesCurrent",
+                "start": null,
+                "end": "2025-12-31",
+                "unit": "USD",
+                "value": "619329",
+                "fact_id": "Fact000077",
+                "context_id": "AsOf2025-12-31",
+                "table_row": "Total Current Liabilities 619,329 2,302,454",
+                "preceding_rows": [
+                  "Due to Related Parties 101,290 274,101",
+                  ""
+                ],
+                "table_header_rows": [
+                  "",
+                  "December 31, 2025 2024",
+                  "ASSETS",
+                  "Current Assets",
+                  "Cash $ 786 $ 862"
+                ],
+                "paragraph": null,
+                "preceding_heading": null
+              }
+            ],
+            "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING",
+            "match_method": "INLINE_PRIMARY"
+          }
+        }
+      ]
+    },
+    {
+      "cik": "0001393772",
+      "name": "WEED, INC.",
+      "source_sha256": "fca2422b85eacd638f1e0ffa65d888be9f309245bf17ac2d0cd15d7ecb43b8e6",
+      "selected_sha256": "91c9e3174c52954f493ae68b2323e9310cd6816e3767a0b2abd6e8847b4ab8e4",
+      "latest_selected_end": "2025-12-31",
+      "primary_rows_available": true,
+      "evidence": [
+        {
+          "primary_sha256": "ee29009d186f9a69d5113ab8ec3715dc3fc12d5be6fcb1a4f1ce1e76ea07bcdc",
+          "url": "https://www.sec.gov/Archives/edgar/data/1393772/000109690626000507/budz_10k.htm",
+          "check": {
+            "selected": {
+              "tag": "Liabilities",
+              "end": "2025-12-31",
+              "val": 1248267,
+              "accn": "0001096906-26-000507",
+              "fy": 2025,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2026-04-08",
+              "unit": "USD"
+            },
+            "matched": true,
+            "matches": [
+              {
+                "tag": "Liabilities",
+                "start": null,
+                "end": "2025-12-31",
+                "unit": "USD",
+                "value": "1248267",
+                "fact_id": "fid_706",
+                "context_id": "AsOf2025-12-31",
+                "table_row": "TOTAL LIABILITIES 1,248,267 959,372",
+                "preceding_rows": [
+                  "TOTAL CURRENT LIABILITIES 1,248,267 959,372",
+                  ""
+                ],
+                "table_header_rows": [
+                  "December 31, December 31,",
+                  "2025 2024",
+                  "ASSETS",
+                  "",
+                  "CURRENT ASSETS:"
+                ],
+                "paragraph": null,
+                "preceding_heading": null
+              }
+            ],
+            "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING",
+            "match_method": "INLINE_PRIMARY"
+          }
+        },
+        {
+          "primary_sha256": "ee29009d186f9a69d5113ab8ec3715dc3fc12d5be6fcb1a4f1ce1e76ea07bcdc",
+          "url": "https://www.sec.gov/Archives/edgar/data/1393772/000109690626000507/budz_10k.htm",
+          "check": {
+            "selected": {
+              "tag": "LiabilitiesCurrent",
+              "end": "2025-12-31",
+              "val": 1248267,
+              "accn": "0001096906-26-000507",
+              "fy": 2025,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2026-04-08",
+              "unit": "USD"
+            },
+            "matched": true,
+            "matches": [
+              {
+                "tag": "LiabilitiesCurrent",
+                "start": null,
+                "end": "2025-12-31",
+                "unit": "USD",
+                "value": "1248267",
+                "fact_id": "fid_704",
+                "context_id": "AsOf2025-12-31",
+                "table_row": "TOTAL CURRENT LIABILITIES 1,248,267 959,372",
+                "preceding_rows": [
+                  "Due to officer 10,353 9,653",
+                  ""
+                ],
+                "table_header_rows": [
+                  "December 31, December 31,",
+                  "2025 2024",
+                  "ASSETS",
+                  "",
+                  "CURRENT ASSETS:"
+                ],
+                "paragraph": null,
+                "preceding_heading": null
+              }
+            ],
+            "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING",
+            "match_method": "INLINE_PRIMARY"
+          }
+        }
+      ]
+    },
+    {
+      "cik": "0001409253",
+      "name": "North America Frac Sand, Inc.",
+      "source_sha256": "b48d0433b3b81e7a41c13bfa5eed6b90a4057637759212c0b869fceb9ae23014",
+      "selected_sha256": "a8932b7e8d87fa3ab367054ab6200bdfdd0a1a902888bed8e16f16806abc72d4",
+      "latest_selected_end": "2017-12-31",
+      "primary_rows_available": false,
+      "evidence": [
+        {
+          "primary_sha256": "0e40ef064e5378b77879cd2b67f47d852652c5128a78cd0cb442c0b58fc986ca",
+          "url": "https://www.sec.gov/Archives/edgar/data/1409253/000147793218001945/nafs_10k.htm",
+          "check": {
+            "selected": {
+              "tag": "Liabilities",
+              "end": "2017-12-31",
+              "val": 825444,
+              "accn": "0001477932-18-001945",
+              "fy": 2017,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2018-04-19",
+              "unit": "USD"
+            },
+            "matched": true,
+            "matches": [],
+            "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING",
+            "match_method": "RETAINED_XBRL_INSTANCE"
+          }
+        },
+        {
+          "primary_sha256": "0e40ef064e5378b77879cd2b67f47d852652c5128a78cd0cb442c0b58fc986ca",
+          "url": "https://www.sec.gov/Archives/edgar/data/1409253/000147793218001945/nafs_10k.htm",
+          "check": {
+            "selected": {
+              "tag": "LiabilitiesCurrent",
+              "end": "2017-12-31",
+              "val": 825444,
+              "accn": "0001477932-18-001945",
+              "fy": 2017,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2018-04-19",
+              "unit": "USD"
+            },
+            "matched": true,
+            "matches": [],
+            "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING",
+            "match_method": "RETAINED_XBRL_INSTANCE"
+          }
+        }
+      ]
+    },
+    {
+      "cik": "0001415332",
+      "name": "LITHIUM CORPORATION",
+      "source_sha256": "37dad290c8d6efa923db84211abb8089e8497f41cdf9654aed35bb5836a29f50",
+      "selected_sha256": "a9c011bb6b287fc4da1b4ac06c5b085d2990b402ad6e6f03f79191fb1bad6688",
+      "latest_selected_end": "2025-12-31",
+      "primary_rows_available": true,
+      "evidence": [
+        {
+          "primary_sha256": "5d134b2870921443d94d0c4e82ab2f0941d9b9c6e53c97c163c216f34c452fd4",
+          "url": "https://www.sec.gov/Archives/edgar/data/1415332/000164033426000606/ltum_10k.htm",
+          "check": {
+            "selected": {
+              "tag": "Liabilities",
+              "end": "2025-12-31",
+              "val": 2409302,
+              "accn": "0001640334-26-000606",
+              "fy": 2025,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2026-03-31",
+              "unit": "USD"
+            },
+            "matched": true,
+            "matches": [
+              {
+                "tag": "Liabilities",
+                "start": null,
+                "end": "2025-12-31",
+                "unit": "USD",
+                "value": "2409302",
+                "fact_id": "fid_809",
+                "context_id": "AsOf2025-12-31",
+                "table_row": "TOTAL LIABILITIES 2,409,302 2,406,676",
+                "preceding_rows": [
+                  "TOTAL CURRENT LIABILITIES 2,409,302 2,406,676",
+                  ""
+                ],
+                "table_header_rows": [
+                  "ASSETS",
+                  "December 31, 2025 December 31, 2024",
+                  "CURRENT ASSETS",
+                  "Cash $ 2,481,204 $ 3,065,858",
+                  "Marketable securities 316,571 217,017"
+                ],
+                "paragraph": null,
+                "preceding_heading": null
+              }
+            ],
+            "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING",
+            "match_method": "INLINE_PRIMARY"
+          }
+        },
+        {
+          "primary_sha256": "5d134b2870921443d94d0c4e82ab2f0941d9b9c6e53c97c163c216f34c452fd4",
+          "url": "https://www.sec.gov/Archives/edgar/data/1415332/000164033426000606/ltum_10k.htm",
+          "check": {
+            "selected": {
+              "tag": "LiabilitiesCurrent",
+              "end": "2025-12-31",
+              "val": 2409302,
+              "accn": "0001640334-26-000606",
+              "fy": 2025,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2026-03-31",
+              "unit": "USD"
+            },
+            "matched": true,
+            "matches": [
+              {
+                "tag": "LiabilitiesCurrent",
+                "start": null,
+                "end": "2025-12-31",
+                "unit": "USD",
+                "value": "2409302",
+                "fact_id": "fid_807",
+                "context_id": "AsOf2025-12-31",
+                "table_row": "TOTAL CURRENT LIABILITIES 2,409,302 2,406,676",
+                "preceding_rows": [
+                  "Allowance for optioned properties 2,361,990 2,361,990",
+                  ""
+                ],
+                "table_header_rows": [
+                  "ASSETS",
+                  "December 31, 2025 December 31, 2024",
+                  "CURRENT ASSETS",
+                  "Cash $ 2,481,204 $ 3,065,858",
+                  "Marketable securities 316,571 217,017"
+                ],
+                "paragraph": null,
+                "preceding_heading": null
+              }
+            ],
+            "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING",
+            "match_method": "INLINE_PRIMARY"
+          }
+        }
+      ]
+    },
+    {
+      "cik": "0001420108",
+      "name": "GLUCOSE HEALTH, INC.",
+      "source_sha256": "ef83fc563a3cad26f7c669ccda854bb2594ebf064cf3fcc8412c49070ba2bb26",
+      "selected_sha256": "16fcdd6640ac0ff8e2423c7982413cee8c7f89823b37e06cceb45240f4c4d642",
+      "latest_selected_end": "2016-12-31",
+      "primary_rows_available": false,
+      "evidence": [
+        {
+          "primary_sha256": "6d46164cc1c7469c5cb020dc432d41179fd682aaf9951edc9c2a88274a4c7360",
+          "url": "https://www.sec.gov/Archives/edgar/data/1420108/000147793217001354/gluc_10k.htm",
+          "check": {
+            "selected": {
+              "tag": "Liabilities",
+              "end": "2016-12-31",
+              "val": 528592,
+              "accn": "0001477932-17-001354",
+              "fy": 2016,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2017-03-29",
+              "unit": "USD"
+            },
+            "matched": true,
+            "matches": [],
+            "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING",
+            "match_method": "RETAINED_XBRL_INSTANCE"
+          }
+        },
+        {
+          "primary_sha256": "6d46164cc1c7469c5cb020dc432d41179fd682aaf9951edc9c2a88274a4c7360",
+          "url": "https://www.sec.gov/Archives/edgar/data/1420108/000147793217001354/gluc_10k.htm",
+          "check": {
+            "selected": {
+              "tag": "LiabilitiesCurrent",
+              "end": "2016-12-31",
+              "val": 528592,
+              "accn": "0001477932-17-001354",
+              "fy": 2016,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2017-03-29",
+              "unit": "USD"
+            },
+            "matched": true,
+            "matches": [],
+            "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING",
+            "match_method": "RETAINED_XBRL_INSTANCE"
+          }
+        }
+      ]
+    },
+    {
+      "cik": "0001430300",
+      "name": "GLOBAL WARMING SOLUTIONS, INC.",
+      "source_sha256": "d6d036a4f1f8bcf7e45bf42001f98376ca8e67e2de8b1477e073c9fd9b80f33f",
+      "selected_sha256": "aa67f0a165faa5bd208b3805f14c952826d70580ae7776387cccf5cfc3848f6d",
+      "latest_selected_end": "2023-12-31",
+      "primary_rows_available": true,
+      "evidence": [
+        {
+          "primary_sha256": "bc730df288de70888ace71f7c43e1e9ffc5314dbd313808f9619c5b5497c3d34",
+          "url": "https://www.sec.gov/Archives/edgar/data/1430300/000147793224003836/gwso_10k.htm",
+          "check": {
+            "selected": {
+              "tag": "Liabilities",
+              "end": "2023-12-31",
+              "val": 352901,
+              "accn": "0001477932-24-003836",
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-06-24",
+              "unit": "USD"
+            },
+            "matched": true,
+            "matches": [
+              {
+                "tag": "Liabilities",
+                "start": null,
+                "end": "2023-12-31",
+                "unit": "USD",
+                "value": "352901",
+                "fact_id": "fid_416",
+                "context_id": "AsOf2023-12-31",
+                "table_row": "Total liabilities 352,901 432,855",
+                "preceding_rows": [
+                  "Other current liabilities 46,001 113,729",
+                  "Total current liabilities 352,901 432,855"
+                ],
+                "table_header_rows": [
+                  "December 31, December 31,",
+                  "2023 2022",
+                  "ASSETS",
+                  "Current assets",
+                  "Cash and cash equivalents $ 28,610 $ 79"
+                ],
+                "paragraph": null,
+                "preceding_heading": null
+              }
+            ],
+            "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING",
+            "match_method": "INLINE_PRIMARY"
+          }
+        },
+        {
+          "primary_sha256": "bc730df288de70888ace71f7c43e1e9ffc5314dbd313808f9619c5b5497c3d34",
+          "url": "https://www.sec.gov/Archives/edgar/data/1430300/000147793224003836/gwso_10k.htm",
+          "check": {
+            "selected": {
+              "tag": "LiabilitiesCurrent",
+              "end": "2023-12-31",
+              "val": 352901,
+              "accn": "0001477932-24-003836",
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-06-24",
+              "unit": "USD"
+            },
+            "matched": true,
+            "matches": [
+              {
+                "tag": "LiabilitiesCurrent",
+                "start": null,
+                "end": "2023-12-31",
+                "unit": "USD",
+                "value": "352901",
+                "fact_id": "fid_414",
+                "context_id": "AsOf2023-12-31",
+                "table_row": "Total current liabilities 352,901 432,855",
+                "preceding_rows": [
+                  "Loan payable 305,305 300,000",
+                  "Other current liabilities 46,001 113,729"
+                ],
+                "table_header_rows": [
+                  "December 31, December 31,",
+                  "2023 2022",
+                  "ASSETS",
+                  "Current assets",
+                  "Cash and cash equivalents $ 28,610 $ 79"
+                ],
+                "paragraph": null,
+                "preceding_heading": null
+              }
+            ],
+            "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING",
+            "match_method": "INLINE_PRIMARY"
+          }
+        }
+      ]
+    },
+    {
+      "cik": "0001437476",
+      "name": "GREEN STREAM HOLDINGS, INC.",
+      "source_sha256": "f9d1303f141f41a7d5d9d225abf17435b0e9f4541214b9b6dc138192a7ea4870",
+      "selected_sha256": "dd640afade5d363102597b6d395b61c2a4d74fe3c50ed5f9babe6797ba63d490",
+      "latest_selected_end": "2021-04-30",
+      "primary_rows_available": false,
+      "evidence": [
+        {
+          "primary_sha256": "6eb0f7b5d6c955c686913e5040a1683516586145cb973f294c04a6f6075ba169",
+          "url": "https://www.sec.gov/Archives/edgar/data/1437476/000168316821004126/greenstream_10ka.htm",
+          "check": {
+            "selected": {
+              "tag": "Liabilities",
+              "end": "2021-04-30",
+              "val": 927297,
+              "accn": "0001683168-21-004126",
+              "fy": 2021,
+              "fp": "FY",
+              "form": "10-K/A",
+              "filed": "2021-09-07",
+              "unit": "USD"
+            },
+            "matched": true,
+            "matches": [],
+            "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING",
+            "match_method": "RETAINED_XBRL_INSTANCE"
+          }
+        },
+        {
+          "primary_sha256": "6eb0f7b5d6c955c686913e5040a1683516586145cb973f294c04a6f6075ba169",
+          "url": "https://www.sec.gov/Archives/edgar/data/1437476/000168316821004126/greenstream_10ka.htm",
+          "check": {
+            "selected": {
+              "tag": "LiabilitiesCurrent",
+              "end": "2021-04-30",
+              "val": 927297,
+              "accn": "0001683168-21-004126",
+              "fy": 2021,
+              "fp": "FY",
+              "form": "10-K/A",
+              "filed": "2021-09-07",
+              "unit": "USD"
+            },
+            "matched": true,
+            "matches": [],
+            "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING",
+            "match_method": "RETAINED_XBRL_INSTANCE"
+          }
+        }
+      ]
+    },
+    {
+      "cik": "0001481443",
+      "name": "TECHCOM, INC.",
+      "source_sha256": "a4aaec36525a4107ae73b7a04898c305f4fd1f347a78da73322f9276cb861fa3",
+      "selected_sha256": "0f4dfc76e338066b82c9dcd04dbd66c37d2512f011dea89ca38aa283aaddd897",
+      "latest_selected_end": "2025-12-31",
+      "primary_rows_available": true,
+      "evidence": [
+        {
+          "primary_sha256": "1d8ae4966547ef5f16d01c54d6c9656c45c59c9bfb4e5fe90c3cab5215f00bc5",
+          "url": "https://www.sec.gov/Archives/edgar/data/1481443/000168316826002393/techcom_i10k-123125.htm",
+          "check": {
+            "selected": {
+              "tag": "Liabilities",
+              "end": "2025-12-31",
+              "val": 308851,
+              "accn": "0001683168-26-002393",
+              "fy": 2025,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2026-03-30",
+              "unit": "USD"
+            },
+            "matched": true,
+            "matches": [
+              {
+                "tag": "Liabilities",
+                "start": null,
+                "end": "2025-12-31",
+                "unit": "USD",
+                "value": "308851",
+                "fact_id": "Fact000086",
+                "context_id": "AsOf2025-12-31",
+                "table_row": "Total liabilities 308,851 255,721",
+                "preceding_rows": [
+                  "Due to shareholders 285,204 227,252",
+                  "Total current liabilities 308,851 255,721"
+                ],
+                "table_header_rows": [
+                  "",
+                  "December 31, 2025 December 31, 2024",
+                  "Assets",
+                  "Current assets",
+                  "Cash $ 939 $ 1,296"
+                ],
+                "paragraph": null,
+                "preceding_heading": null
+              }
+            ],
+            "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING",
+            "match_method": "INLINE_PRIMARY"
+          }
+        },
+        {
+          "primary_sha256": "1d8ae4966547ef5f16d01c54d6c9656c45c59c9bfb4e5fe90c3cab5215f00bc5",
+          "url": "https://www.sec.gov/Archives/edgar/data/1481443/000168316826002393/techcom_i10k-123125.htm",
+          "check": {
+            "selected": {
+              "tag": "LiabilitiesCurrent",
+              "end": "2025-12-31",
+              "val": 308851,
+              "accn": "0001683168-26-002393",
+              "fy": 2025,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2026-03-30",
+              "unit": "USD"
+            },
+            "matched": true,
+            "matches": [
+              {
+                "tag": "LiabilitiesCurrent",
+                "start": null,
+                "end": "2025-12-31",
+                "unit": "USD",
+                "value": "308851",
+                "fact_id": "Fact000083",
+                "context_id": "AsOf2025-12-31",
+                "table_row": "Total current liabilities 308,851 255,721",
+                "preceding_rows": [
+                  "Accrued expenses $ 23,648 $ 28,469",
+                  "Due to shareholders 285,204 227,252"
+                ],
+                "table_header_rows": [
+                  "",
+                  "December 31, 2025 December 31, 2024",
+                  "Assets",
+                  "Current assets",
+                  "Cash $ 939 $ 1,296"
+                ],
+                "paragraph": null,
+                "preceding_heading": null
+              }
+            ],
+            "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING",
+            "match_method": "INLINE_PRIMARY"
+          }
+        }
+      ]
+    },
+    {
+      "cik": "0001492448",
+      "name": "GRN Holding Corp",
+      "source_sha256": "b2303090e6250c18a2a6f9cafb76513251e42f854697afe36ead049f8043fbf5",
+      "selected_sha256": "427b07397581e8812ceb5d9c6ae6c7f43342595b98be7bc1fa2e00901f977bcf",
+      "latest_selected_end": "2020-04-30",
+      "primary_rows_available": false,
+      "evidence": [
+        {
+          "primary_sha256": "8c116cc3a0534b04e0fff9425d62b6f09a02443201edb190e318be62d389cd52",
+          "url": "https://www.sec.gov/Archives/edgar/data/1492448/000107997320000675/grnholdings_10k-043020.htm",
+          "check": {
+            "selected": {
+              "tag": "Liabilities",
+              "end": "2020-04-30",
+              "val": 444776,
+              "accn": "0001079973-20-000675",
+              "fy": 2020,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2020-08-13",
+              "unit": "USD"
+            },
+            "matched": true,
+            "matches": [],
+            "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING",
+            "match_method": "RETAINED_XBRL_INSTANCE"
+          }
+        },
+        {
+          "primary_sha256": "8c116cc3a0534b04e0fff9425d62b6f09a02443201edb190e318be62d389cd52",
+          "url": "https://www.sec.gov/Archives/edgar/data/1492448/000107997320000675/grnholdings_10k-043020.htm",
+          "check": {
+            "selected": {
+              "tag": "LiabilitiesCurrent",
+              "end": "2020-04-30",
+              "val": 444776,
+              "accn": "0001079973-20-000675",
+              "fy": 2020,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2020-08-13",
+              "unit": "USD"
+            },
+            "matched": true,
+            "matches": [],
+            "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING",
+            "match_method": "RETAINED_XBRL_INSTANCE"
+          }
+        }
+      ]
+    },
+    {
+      "cik": "0001584618",
+      "name": "ATACAMA RESOURCES INTERNATIONAL, INC.",
+      "source_sha256": "5f364e471e11296db53edd5db692801fbcfec29c9fb1a986e4f53afd56c26309",
+      "selected_sha256": "de21695fbf46584e9f23b630ab45f9758857b41bf481d9151bbda2698e6448e9",
+      "latest_selected_end": "2016-12-31",
+      "primary_rows_available": false,
+      "evidence": [
+        {
+          "primary_sha256": "c2a27b459c69b047ea47a7601eb40d70f7d5fa6c4905cef1fcece696b22584d6",
+          "url": "https://www.sec.gov/Archives/edgar/data/1584618/000101489717000084/atacama10k16v3.htm",
+          "check": {
+            "selected": {
+              "tag": "Liabilities",
+              "end": "2016-12-31",
+              "val": 700839,
+              "accn": "0001014897-17-000084",
+              "fy": 2016,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2017-04-17",
+              "unit": "USD"
+            },
+            "matched": true,
+            "matches": [],
+            "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING",
+            "match_method": "RETAINED_XBRL_INSTANCE"
+          }
+        },
+        {
+          "primary_sha256": "c2a27b459c69b047ea47a7601eb40d70f7d5fa6c4905cef1fcece696b22584d6",
+          "url": "https://www.sec.gov/Archives/edgar/data/1584618/000101489717000084/atacama10k16v3.htm",
+          "check": {
+            "selected": {
+              "tag": "LiabilitiesCurrent",
+              "end": "2016-12-31",
+              "val": 700839,
+              "accn": "0001014897-17-000084",
+              "fy": 2016,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2017-04-17",
+              "unit": "USD"
+            },
+            "matched": true,
+            "matches": [],
+            "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING",
+            "match_method": "RETAINED_XBRL_INSTANCE"
+          }
+        }
+      ]
+    },
+    {
+      "cik": "0001605057",
+      "name": "VEMANTI GROUP, INC.",
+      "source_sha256": "49f30bbf4443a1e291ec2c3fddaf54096cafe226d06a7c5af3ed57335eafd0ab",
+      "selected_sha256": "7ec48488d4a5b01fd769d43ec1a1b115b592671f1d847b27f4b69b888b1d725d",
+      "latest_selected_end": "2023-12-31",
+      "primary_rows_available": true,
+      "evidence": [
+        {
+          "primary_sha256": "d201d945ee67cc847185e6e5b143da8b77ad719f06cd63411c2f96832be4446e",
+          "url": "https://www.sec.gov/Archives/edgar/data/1605057/000147793224001509/vmnt_10k.htm",
+          "check": {
+            "selected": {
+              "tag": "Liabilities",
+              "end": "2023-12-31",
+              "val": 317311,
+              "accn": "0001477932-24-001509",
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-03-28",
+              "unit": "USD"
+            },
+            "matched": true,
+            "matches": [
+              {
+                "tag": "Liabilities",
+                "start": null,
+                "end": "2023-12-31",
+                "unit": "USD",
+                "value": "317311",
+                "fact_id": "fid_476",
+                "context_id": "AsOf2023-12-31",
+                "table_row": "TOTAL LIABILITIES 317,311 323,982",
+                "preceding_rows": [
+                  "Total Current Liabilities 317,311 323,982",
+                  ""
+                ],
+                "table_header_rows": [
+                  "December 31, 2023 December 31, 2022",
+                  "ASSETS",
+                  "Current Assets:",
+                  "Cash $ 136,407 $ 257,512",
+                  "Accounts Receivable, net 8,534 889"
+                ],
+                "paragraph": null,
+                "preceding_heading": null
+              }
+            ],
+            "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING",
+            "match_method": "INLINE_PRIMARY"
+          }
+        },
+        {
+          "primary_sha256": "d201d945ee67cc847185e6e5b143da8b77ad719f06cd63411c2f96832be4446e",
+          "url": "https://www.sec.gov/Archives/edgar/data/1605057/000147793224001509/vmnt_10k.htm",
+          "check": {
+            "selected": {
+              "tag": "LiabilitiesCurrent",
+              "end": "2023-12-31",
+              "val": 317311,
+              "accn": "0001477932-24-001509",
+              "fy": 2023,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2024-03-28",
+              "unit": "USD"
+            },
+            "matched": true,
+            "matches": [
+              {
+                "tag": "LiabilitiesCurrent",
+                "start": null,
+                "end": "2023-12-31",
+                "unit": "USD",
+                "value": "317311",
+                "fact_id": "fid_474",
+                "context_id": "AsOf2023-12-31",
+                "table_row": "Total Current Liabilities 317,311 323,982",
+                "preceding_rows": [
+                  "Note Payable, net of discount 158,279 -",
+                  "Loan from Stockholder 125,000 125,000"
+                ],
+                "table_header_rows": [
+                  "December 31, 2023 December 31, 2022",
+                  "ASSETS",
+                  "Current Assets:",
+                  "Cash $ 136,407 $ 257,512",
+                  "Accounts Receivable, net 8,534 889"
+                ],
+                "paragraph": null,
+                "preceding_heading": null
+              }
+            ],
+            "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING",
+            "match_method": "INLINE_PRIMARY"
+          }
+        }
+      ]
+    },
+    {
+      "cik": "0001678105",
+      "name": "CARO HOLDINGS INC.",
+      "source_sha256": "c680aa63438de39ac9c278a6391d794c3ded69900fefcdb8e67fdbf280ccd1de",
+      "selected_sha256": "50f3ba67c569a3c84a8b2e31d6255ed142923378c5ed1147ae7c707f2e14fde2",
+      "latest_selected_end": "2026-03-31",
+      "primary_rows_available": true,
+      "evidence": [
+        {
+          "primary_sha256": "218b1daf3e165df058d9716930782858c2c94f0e59a4d632bdc98326b76de9ff",
+          "url": "https://www.sec.gov/Archives/edgar/data/1678105/000164033426001184/caro_10k.htm",
+          "check": {
+            "selected": {
+              "tag": "Liabilities",
+              "end": "2026-03-31",
+              "val": 1986308,
+              "accn": "0001640334-26-001184",
+              "fy": 2026,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2026-07-15",
+              "unit": "USD"
+            },
+            "matched": true,
+            "matches": [
+              {
+                "tag": "Liabilities",
+                "start": null,
+                "end": "2026-03-31",
+                "unit": "USD",
+                "value": "1986308",
+                "fact_id": "fid_36",
+                "context_id": "AsOf2026-03-31",
+                "table_row": "TOTAL LIABILITIES 1,986,308 1,600,408",
+                "preceding_rows": [
+                  "Total Current Liabilities 1,986,308 1,600,408",
+                  ""
+                ],
+                "table_header_rows": [
+                  "March 31, March 31,",
+                  "2026 2025",
+                  "ASSETS",
+                  "Current Assets",
+                  "Cash $ 1,023 $ 14,566"
+                ],
+                "paragraph": null,
+                "preceding_heading": null
+              }
+            ],
+            "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING",
+            "match_method": "INLINE_PRIMARY"
+          }
+        },
+        {
+          "primary_sha256": "218b1daf3e165df058d9716930782858c2c94f0e59a4d632bdc98326b76de9ff",
+          "url": "https://www.sec.gov/Archives/edgar/data/1678105/000164033426001184/caro_10k.htm",
+          "check": {
+            "selected": {
+              "tag": "LiabilitiesCurrent",
+              "end": "2026-03-31",
+              "val": 1986308,
+              "accn": "0001640334-26-001184",
+              "fy": 2026,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2026-07-15",
+              "unit": "USD"
+            },
+            "matched": true,
+            "matches": [
+              {
+                "tag": "LiabilitiesCurrent",
+                "start": null,
+                "end": "2026-03-31",
+                "unit": "USD",
+                "value": "1986308",
+                "fact_id": "fid_34",
+                "context_id": "AsOf2026-03-31",
+                "table_row": "Total Current Liabilities 1,986,308 1,600,408",
+                "preceding_rows": [
+                  "Promissory notes payable 28,900 28,900",
+                  "Convertible notes payable 1,501,000 1,365,500"
+                ],
+                "table_header_rows": [
+                  "March 31, March 31,",
+                  "2026 2025",
+                  "ASSETS",
+                  "Current Assets",
+                  "Cash $ 1,023 $ 14,566"
+                ],
+                "paragraph": null,
+                "preceding_heading": null
+              }
+            ],
+            "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING",
+            "match_method": "INLINE_PRIMARY"
+          }
+        }
+      ]
+    },
+    {
+      "cik": "0001873213",
+      "name": "BIRDIE WIN CORPORATION",
+      "source_sha256": "5a80b98f6647292689a44fc77d6710d0cf6e139024389a056329f01c52b81c34",
+      "selected_sha256": "bd5a3fcc5657d5267957118b458a3733ea9571c38913e323e39f2204c763dab2",
+      "latest_selected_end": "2025-07-31",
+      "primary_rows_available": true,
+      "evidence": [
+        {
+          "primary_sha256": "b4d7651d442edd9b7b01d26282b291172c82a5c67f059df1895b56b9fa540757",
+          "url": "https://www.sec.gov/Archives/edgar/data/1873213/000149315225017715/form10-k.htm",
+          "check": {
+            "selected": {
+              "tag": "Liabilities",
+              "end": "2025-07-31",
+              "val": 5200,
+              "accn": "0001493152-25-017715",
+              "fy": 2025,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2025-10-10",
+              "unit": "USD"
+            },
+            "matched": true,
+            "matches": [
+              {
+                "tag": "Liabilities",
+                "start": null,
+                "end": "2025-07-31",
+                "unit": "USD",
+                "value": "5200",
+                "fact_id": "Fact000108",
+                "context_id": "AsOf2025-07-31",
+                "table_row": "Total liabilities $ 5,200 $ 13,190",
+                "preceding_rows": [
+                  "Total current liabilities 5,200 13,190",
+                  ""
+                ],
+                "table_header_rows": [
+                  "As of As of",
+                  "July 31, 2025 July 31, 2024",
+                  "(Audited) (Audited)",
+                  "ASSETS",
+                  "Current assets"
+                ],
+                "paragraph": null,
+                "preceding_heading": null
+              }
+            ],
+            "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING",
+            "match_method": "INLINE_PRIMARY"
+          }
+        },
+        {
+          "primary_sha256": "b4d7651d442edd9b7b01d26282b291172c82a5c67f059df1895b56b9fa540757",
+          "url": "https://www.sec.gov/Archives/edgar/data/1873213/000149315225017715/form10-k.htm",
+          "check": {
+            "selected": {
+              "tag": "LiabilitiesCurrent",
+              "end": "2025-07-31",
+              "val": 5200,
+              "accn": "0001493152-25-017715",
+              "fy": 2025,
+              "fp": "FY",
+              "form": "10-K",
+              "filed": "2025-10-10",
+              "unit": "USD"
+            },
+            "matched": true,
+            "matches": [
+              {
+                "tag": "LiabilitiesCurrent",
+                "start": null,
+                "end": "2025-07-31",
+                "unit": "USD",
+                "value": "5200",
+                "fact_id": "Fact000105",
+                "context_id": "AsOf2025-07-31",
+                "table_row": "Total current liabilities 5,200 13,190",
+                "preceding_rows": [
+                  "Accrued liabilities $ 5,200 $ 5,410",
+                  "Other payable - 7,780"
+                ],
+                "table_header_rows": [
+                  "As of As of",
+                  "July 31, 2025 July 31, 2024",
+                  "(Audited) (Audited)",
+                  "ASSETS",
+                  "Current assets"
+                ],
+                "paragraph": null,
+                "preceding_heading": null
+              }
+            ],
+            "scope_disposition": "PRIMARY_CONTEXT_REVIEW_PENDING",
+            "match_method": "INLINE_PRIMARY"
+          }
+        }
+      ]
+    }
+  ],
+  "scope": "Latest selected reporting date per tag, not largest accession or latest available company filing. Primary rows are review evidence, not all-history admission or proof that concepts are interchangeable. XML-only cases still need primary context."
+}

@@ -1,0 +1,54 @@
+{
+  "schema": "canli.greenstream-original-context.v1",
+  "publication_approved": false,
+  "input_sha256": {
+    "company-greenstream-original-capture-20260920.json": "0c26676eb557df540c146f25e5f7a66b5c34be3347e1b91584538acbb12b5196",
+    "company-liability-legacy-context-20260920.json": "e57d017c8a52c9deb8aa4bbdfbdb7dd8530a6dda0eed65fecb02d9dbdec7d2d1",
+    "company-liability-presentation-review-20260920.json": "645e92be4fea2d996c7d30ce4fed37c33a6cff5d1d2a978229f238ddfbaf5d8c"
+  },
+  "code_sha256": "fc674f1c4fbdae5cce4c2d80677c79f62d44e40273de5273b6245958199ddf03",
+  "original_filing": {
+    "cik": "0001437476",
+    "companyfacts_name": "GREEN STREAM HOLDINGS INC.",
+    "discovery_names": [],
+    "accession": "0001683168-21-004121",
+    "index_capture": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1437476/000168316821004121/0001683168-21-004121-index.html",
+      "status": 200,
+      "captured_at": "2026-09-20T15:20:38.940309+00:00",
+      "bytes": 8502,
+      "sha256": "481a4fc3a15a01cca20a66c611ec07a45e458d27e29ad9c4de00bd93b72d291a",
+      "body_path": "artifacts/seo/corpus-local/greenstream-original-filings/0001437476-0001683168-21-004121-index.response"
+    },
+    "index_filers": [
+      "Green Stream Holdings Inc. (Filer) CIK : 0001437476 (see all company filings) EIN. : 201144153 | State of Incorp.: WY | Fiscal Year End: 0430 Type: 10-K | Act: 34 | File No.: 000-53279 | Film No.: 211237997 SIC : 6500 Real Estate"
+    ],
+    "primary_capture": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1437476/000168316821004121/greenstream_10k.htm",
+      "status": 200,
+      "captured_at": "2026-09-20T15:20:40.673673+00:00",
+      "bytes": 543418,
+      "sha256": "1ce3c44e5600eca19c11697b625cb07eb4f3eb24596fc6a21e8d98d39458916f",
+      "body_path": "artifacts/seo/corpus-local/greenstream-original-filings/0001437476-0001683168-21-004121-primary.response"
+    },
+    "dei_identity_facts": [],
+    "core_fact_contexts": [
+      {
+        "tag": "us-gaap:Liabilities",
+        "contexts": []
+      },
+      {
+        "tag": "us-gaap:LiabilitiesCurrent",
+        "contexts": []
+      }
+    ],
+    "contexts": {},
+    "state": "PRIMARY_CAPTURED_EDITORIAL_REVIEW_PENDING"
+  },
+  "amendment_accession": "0001683168-21-004126",
+  "amendment_explanatory_note": "EXPLANATORY NOTE This Amendment No. 1 to the Annual Report on Form 10-K is being filed solely to furnish the Interactive Data files as Exhibit 101, in accordance with Rule 405 of Regulation S-T. No other changes have been made to the Form 10-K, as originally filed on September 7, 2021. 2",
+  "zero_based_table_index": 74,
+  "primary_table": "April 30, 2021 April 30, 2020 ASSETS Current Assets Cash $ 25 $ 14,727 Total Current Assets 25 14,727 Fixed Assets Furniture and equipment net of depreciation (Note 3) 1,135,615 915,654 Other Assets Intangible asset, net of amortization (Note 4) \u2013 185,000 TOTAL ASSETS $ 1,135,640 $ 1,115,381 LIABILITIES AND STOCKHOLDERS\u2019 EQUITY (DEFICIT) LIABILITIES Current Liabilities Accounts Payable $ 89,448 $ 44,448 Other Current Liabilities \u2013 60,000 Accrued Interest Payable 10,872 4,872 Due to related party (Note 7) 225,077 141,569 Notes Payable (Note 8) 311,900 340,900 Convertible Notes Payable (Note 9) 290,000 Total Current Liabilities 927,297 591,789 TOTAL LIABILITIES 927,297 591,789 STOCKHOLDERS\u2019 EQUITY (DEFICIT) Preferred A Stock, $.001 par value 1,000,000 Authorized 53,000 Issued and Outstanding at April 30, 2021 and at April 30, 2020 respectively 53 53 Preferred B Stock, $.001 par value 1,000,000 Authorized 600,000 Issued and Outstanding at April 30, 2021 and at April 30, 2020 respectively 600 600 Preferred C Stock, $.001 par value 10,000,000 Authorized 760,000 Issued and Outstanding at April 30, 2021 and at April 30, 2020 respectively 760 760 Common Stock, $.001 par value 10,000,000,000 Authorized 152,459,140 Issued and Outstanding at April 30, 2021 and 26,700,665 at April 30, 2020. 159,959 26,701 Additional paid-in-capital 9,372,230 864,540 Accumulated deficit (9,325,259 ) (369,062 ) Total Stockholders\u2019 Equity (Deficit) 208,343 523,592 TOTAL LIABILITIES AND STOCKHOLDERS\u2019 EQUITY (DEFICIT) $ 1,135,640 $ 1,115,381",
+  "interpretation": "The original annual-report balance sheet presents total current liabilities and total liabilities separately, each 927,297 USD at April 30, 2021. The retained amendment says it furnishes XBRL only, without other changes. This supplies primary statement context for the two selected amendment observations without changing their accession or values.",
+  "scope": "Limited latest-selected-pair context closure. No all-history review, concept interchangeability, page admission or publication."
+}

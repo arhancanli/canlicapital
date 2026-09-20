@@ -7,7 +7,7 @@ status preserved in history/STATUS-20260920-through-equality-triage.md.
 ## Current execution
 
 Worktree /Users/arhancanli/canlicapital-expansion-20260919, branch
-fix/company-storage-rate-diagnostics-20260920. PR34 merged as
+research/company-liability-scope-20260920. PR34 merged as
 34f2b81e9dec93047c90c4185d1a59fe9ada3661 after four CI35517891088checks passed
 at2ca4f9fe; tested/merged tree67b8efb122bd96a625a6d7933a5312c9b8e31da3.
 PR33 merged as
@@ -69,6 +69,32 @@ addition; current additions require their own checks.
 
 Earlier v3upload sessions are terminal with failures retained. Do not resume the
 superseded v3plan. Paced uploader77617 is active at the checkpoint above. Archive/replay46444completed exit0.
+
+## Latest liability presentation review
+
+PR35 merged as bcfcb37157b6a0bb16813a0eb4ae0ed9291d8624 after all four
+CI35518895959checks passed at9e7c2bba. Tested/merged trees match
+eeebaf502754ca3fbdd1836e215d06ac9f4f1b91. Recovery77617 remains active.
+New offline helper prepares all17liability/current-liability pairs using latest
+selected reporting date, avoiding accession-order errors. Twelve pairs have
+separate primary rows, reviewed as equal totals at the listed date; five XML-only
+pairs initially remained pending. Four now have reviewed retained balance-sheet
+tables in company-liability-legacy-context-20260920.json; Green Stream
+0001437476 was initially open because its primary is an XBRL-only amendment.
+Original accession0001683168-21-004121 now captured with index/primary hashes;
+its balance sheet supplies the matching927,297USD April30,2021totals. Separate
+company-greenstream-original-context-20260920.json binds the original and amendment
+without rewriting selected accessions. All17latest pairs now have limited
+statement context; all-history scope and publication remain open. Archive4857
+completed exit0:35files/4,997,120bytes, SHA256
+f16e4ac95ee698890faaca6663abece7c7882d86373401e7deee412c177b6345.
+Isolated restore installs locked dependencies offline and reproduces all three
+reports byte-for-byte. Receipt company-liability-evidence-archive-20260920.json.
+Manual interpretation is preserved, not independently rerun; no offsite-backup claim.
+All three context reports
+reproduce byte-for-byte offline. Evidence company-liability-presentation-{review,scope}-
+20260920.json. Atlantica correctly selects2025rather than2019. No all-history
+admission, new page notes or deployment follows from these limited checks.
 
 ## Current filing-context improvement
 
