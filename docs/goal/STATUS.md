@@ -20,10 +20,13 @@ copied paths, stores deduplicated numeric edges, and reports progress every100
 companies. Two graph tests cover reachability, shortest paths, cycles, orphans,
 unrendered links and repeated-link storage; tests added to CI. No page checks removed.
 
-Active process: HTTP retry **13997**, output /tmp/canli-http-v22-retry.log. At the
-last progress check,200 companies/5,387 histories, heap60,694,368bytes. Poll exact
-handle; do not restart on timeout. Expected successful report remains
-company-five-cohort-v22-http-measurement-20260921.json. Audit is not yet passed.
+HTTP retry **13997 TERMINAL0**: all90,732 rendered reference pages,6,646
+downloads and exact90,732 HTTP sitemap URLs passed with zero failures. All pages
+are reachable within four clicks from the company directory. Report
+company-five-cohort-v22-http-measurement-20260921.json source hashes were checked
+against the current files. This is local sequential HTTP evidence, not hosted load,
+publication or indexing. PR119 at e621c95d2b119ab8cb0f7c2d412f35cdb3c10a2c remains
+OPEN; all four CI35542763631 checks passed.
 
 Representative browser audit54972 TERMINAL0:40 Chromium/WebKit cases at390/1440px
 passed, including source notes, canonical/breadcrumb/developer links, layout and
@@ -52,7 +55,7 @@ its ledger remains1148reviewed/0pending/28withdrawn,130presentation-only.
 V21 INVO2014two conflicting denominators remain held. First100-filing scope batch
 is closed, but broader capture, accounting scope and usefulness remain open.
 Latest built runtime is v22 with 90,732 candidate URLs. Runtime and quality inventory
-are rebuilt; HTTP audit, hosted delivery and release admission remain pending.
+are rebuilt; full local HTTP audit passed. Hosted delivery and release admission remain pending.
 V22full-corpus comparison21300TERMINAL0verified3,323companies/87,342histories
 against frozenv14:40exact held observations sincev14, two prior Valhi constant
 history omissions and two now-empty Iovance histories, policy/notices only.
@@ -78,8 +81,8 @@ The storage plan contains10,360 immutable objects totaling1,280,333,696 bytes.
 Five stage jobs, combination68103, catalog90535, quality42445, release26878,
 discovery29316, storage18544 and app build51617 all finished with exit0.
 
-Next: finish HTTP retry13997, investigate failures if any, complete current runtime
-retention and hosted delivery gates. Broader source/usefulness work remains open.
+Next: merge tested PR119, group repetitive withholding notices and revalidate affected
+pages, complete current runtime retention and hosted delivery gates. Broader source/usefulness work remains open.
 No production deployment or confirmed indexing gain.
 
 ## Editorial policy and evidence
