@@ -114,3 +114,12 @@ SoFi opening-balance USN/date semantics remain pending and predecessor identity
 retained. Review and legacy reports reproduce byte-identically offline. Initial
 51Talk table diagnostic failed because fact is narrative; corrected inspection
 retains full paragraph. No source corrections, archival claim or live/indexed gain.
+
+## 2026-09-20 — v15 currency and scope exclusions
+
+Previous goal turn captured/reviewed three currency observations and opened PR52.
+Implemented exact MonolithicAFN unit-conflict and 51TalkSAR component-scope holds
+in cumulative v15, preserving all earlier policies. Two actual source fixtures
+verify no unrelated changes and source-linked notices;41targeted tests pass.
+Whole-corpus comparison94354started against all current v14sources/selections.
+No source correction, production activation, or new indexing claim.

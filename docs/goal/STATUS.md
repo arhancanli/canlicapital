@@ -17,8 +17,8 @@ rerun are preserved in company-pr45-ci-recovery-20260920.json. No audit bypass.
 
 Archive process44780 is TERMINAL exit0. Five-cohort staging51634 and transition
 comparison64980completed exit0. Combined v14pipeline16429 and current quality audit40310completed exit0; no uploader.
-Next: implement exact source-bound holds for Monolithic Power AFN revenue and
-51Talk SAR cash component, finish SoFi predecessor opening-balance interpretation,
+Next: finish v15 whole-corpus policy comparison and exact-head CI; finish SoFi
+predecessor opening-balance interpretation,
 remaining basic/diluted source coverage and corpus scope/usefulness flags, then complete hosted
 transfer, whole-release delivery/load/browser checks and production activation.
 Owner authorization to publish tested releases persists; no repeat approval needed.
@@ -293,3 +293,20 @@ actual fact is in a narrative paragraph. Final review verifies that paragraph,
 namespace, scale, value, identifier, instant and no dimensions. Failure retained
 here; no source alteration. No collector/uploader running, no publication or
 indexed-page gain. V14candidate still requires the new holds before admission.
+
+## V15 targeted exclusions implemented
+
+PR52 now includes cumulative extended-v15: exact Monolithic2012AFN revenue
+and 51Talk2025SAR cash-component observations held, with original filing links
+and distinct explanations on each history and overview. No currency conversion
+or fabricated replacement; both actual captured sources committed as gzip fixtures.
+41selector/renderer/delivery/release tests pass: exact two removals, other facts
+unchanged, USD series preserved, changed-source/time rejection, missing-notice
+rejection and inherited Varonis/Atlantica/HNO/DBMM policies unchanged.
+
+Full current-v14source/selection replay under v15 process94354started; terminal
+result not yet claimed. This is a comparison, not a rebuilt hosted release.
+PR52 original evidence-only head9d1f54e8 passed four checks in35526616925;
+updated policy head needs fresh CI. Currency reports remain historical evidence
+whose descriptions of pending implementation are superseded here. SoFi context,
+broader editorial review, new runtime/archival build and hosted gates remain open.
