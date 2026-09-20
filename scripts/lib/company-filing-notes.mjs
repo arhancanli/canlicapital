@@ -1,6 +1,228 @@
 // Limited filing context, bound to the reviewed capture and selected observations.
 export const FILING_NOTES = [
 {
+  "cik": "0001478320",
+  "include_on_overview": true,
+  "source_sha256": "2deab3b0302b42f5bca7f049684da17a3e834dfbc3dbe128e51ed398b3d69a92",
+  "tags": [
+    "EarningsPerShareBasic",
+    "EarningsPerShareDiluted",
+    "WeightedAverageNumberOfDilutedSharesOutstanding",
+    "WeightedAverageNumberOfSharesOutstandingBasic"
+  ],
+  "text": "For 2023\u20132025, Adaptive Biotechnologies uses net loss attributable to the company after noncontrolling-interest allocation as its EPS numerator. Potential common-share equivalents from options and restricted-stock programs are excluded as anti-dilutive in these loss periods. The excluded equivalents are not added to the denominator. Shares and per-share amounts are exempt from the thousands heading and retain scale-zero tags.",
+  "filing_url": "https://www.sec.gov/Archives/edgar/data/1478320/000119312526076902/adpt-20251231.htm",
+  "observations": [
+    {
+      "tag": "EarningsPerShareBasic",
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "unit": "USD/shares",
+      "val": -1.56,
+      "accn": "0001193125-26-076902"
+    },
+    {
+      "tag": "EarningsPerShareBasic",
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "unit": "USD/shares",
+      "val": -1.08,
+      "accn": "0001193125-26-076902"
+    },
+    {
+      "tag": "EarningsPerShareBasic",
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "unit": "USD/shares",
+      "val": -0.39,
+      "accn": "0001193125-26-076902"
+    },
+    {
+      "tag": "EarningsPerShareDiluted",
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "unit": "USD/shares",
+      "val": -1.56,
+      "accn": "0001193125-26-076902"
+    },
+    {
+      "tag": "EarningsPerShareDiluted",
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "unit": "USD/shares",
+      "val": -1.08,
+      "accn": "0001193125-26-076902"
+    },
+    {
+      "tag": "EarningsPerShareDiluted",
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "unit": "USD/shares",
+      "val": -0.39,
+      "accn": "0001193125-26-076902"
+    },
+    {
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "unit": "shares",
+      "val": 144383294,
+      "accn": "0001193125-26-076902"
+    },
+    {
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "unit": "shares",
+      "val": 147101648,
+      "accn": "0001193125-26-076902"
+    },
+    {
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "unit": "shares",
+      "val": 151721939,
+      "accn": "0001193125-26-076902"
+    },
+    {
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic",
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "unit": "shares",
+      "val": 144383294,
+      "accn": "0001193125-26-076902"
+    },
+    {
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic",
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "unit": "shares",
+      "val": 147101648,
+      "accn": "0001193125-26-076902"
+    },
+    {
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic",
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "unit": "shares",
+      "val": 151721939,
+      "accn": "0001193125-26-076902"
+    }
+  ]
+},
+{
+  "cik": "0001482430",
+  "include_on_overview": true,
+  "source_sha256": "b877caa640ce8734f8ebdb9a6b7c6ce9767e821e907e83a538daea28d1fd455a",
+  "tags": [
+    "EarningsPerShareBasic",
+    "EarningsPerShareDiluted",
+    "WeightedAverageNumberOfDilutedSharesOutstanding",
+    "WeightedAverageNumberOfSharesOutstandingBasic"
+  ],
+  "text": "For 2023\u20132025, KBS Real Estate Investment Trust III reports no potentially dilutive securities outstanding during the presented years, so diluted EPS equals basic EPS. This annual EPS disclosure is separate from the December 18, 2025 estimated-share-value disclosure. The denominator is weighted-average common shares issued and outstanding, not a period-end count. Shares and per-share amounts are exempt from the thousands heading and retain scale-zero tags.",
+  "filing_url": "https://www.sec.gov/Archives/edgar/data/1482430/000148243026000014/kbsriii-20251231.htm",
+  "observations": [
+    {
+      "tag": "EarningsPerShareBasic",
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "unit": "USD/shares",
+      "val": -1.06,
+      "accn": "0001482430-26-000014"
+    },
+    {
+      "tag": "EarningsPerShareBasic",
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "unit": "USD/shares",
+      "val": -0.07,
+      "accn": "0001482430-26-000014"
+    },
+    {
+      "tag": "EarningsPerShareBasic",
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "unit": "USD/shares",
+      "val": -0.53,
+      "accn": "0001482430-26-000014"
+    },
+    {
+      "tag": "EarningsPerShareDiluted",
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "unit": "USD/shares",
+      "val": -1.06,
+      "accn": "0001482430-26-000014"
+    },
+    {
+      "tag": "EarningsPerShareDiluted",
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "unit": "USD/shares",
+      "val": -0.07,
+      "accn": "0001482430-26-000014"
+    },
+    {
+      "tag": "EarningsPerShareDiluted",
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "unit": "USD/shares",
+      "val": -0.53,
+      "accn": "0001482430-26-000014"
+    },
+    {
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "unit": "shares",
+      "val": 148738748,
+      "accn": "0001482430-26-000014"
+    },
+    {
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "unit": "shares",
+      "val": 148516246,
+      "accn": "0001482430-26-000014"
+    },
+    {
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "unit": "shares",
+      "val": 148516246,
+      "accn": "0001482430-26-000014"
+    },
+    {
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic",
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "unit": "shares",
+      "val": 148738748,
+      "accn": "0001482430-26-000014"
+    },
+    {
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic",
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "unit": "shares",
+      "val": 148516246,
+      "accn": "0001482430-26-000014"
+    },
+    {
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic",
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "unit": "shares",
+      "val": 148516246,
+      "accn": "0001482430-26-000014"
+    }
+  ]
+},
+{
   "cik": "0001477449",
   "include_on_overview": true,
   "source_sha256": "998019a803d0d7d50679f859e4228a55ab3953cba8d7d0d38070f01b56613faf",
