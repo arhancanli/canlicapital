@@ -133,3 +133,13 @@ company-fourth-zero-dispositions-20260920.json and review-fourth-zero-scope.py.
 Exact-source replay removes only these three histories and preserves all others.
 V4 remains reproducible but is not publishable for this cohort. V5 delivery
 contains683companies17,715histories; new delivery measurements remain due.
+
+
+Fourth-cohort v6 additionally excludes NOVAGOLD1173420 Revenues. The hidden inline
+zero fact c441 is directly referenced by visible CSS -sec-ix-hidden:c441 on the
+word "no" in the statement about no realized revenues from its principal asset,
+Donlin Gold. That narrower claim cannot establish a company-wide total. This is
+an exclusion for unsupported scope, not a claim that actual total revenue is
+nonzero. Source-bound replay removes only this concept and preserves all others;
+v5remains reproducible but is not publishable for this cohort. See
+company-fourth-novagold-disposition-20260920.json and review-novagold-revenue-scope.py.

@@ -1546,3 +1546,23 @@ coverage without depending on runner speed. Five-second test watchdog remains.
 All48MCP tests pass locally. No production source, package version or packed-file
 change; exact npm candidate remains unchanged. Fresh remote verification due.
 Engine latest-headCI35499961114 remains live at checkpoint. Goal active.
+
+## 2026-09-20 — hidden revenue fact scope and restored MCP CI
+
+Previous turn completed full archive restore and corrected the deadline test.
+AllCI35500716863jobs on05511c53 now pass, including MCP tarball/stdio verification.
+Prior failure35500519399 is retained. Candidate package contents are unchanged.
+
+NOVAGOLD's hidden us-gaap:Revenues zero fact c441 is visibly referenced by
+-sec-ix-hidden:c441 on "no" in its principal-asset revenue statement. Reproducible
+scope script checks the original body hash, unique fact, exact visible reference
+and qualified paragraph. This does not establish a company-wide revenue total.
+Added frozen v6inheritingv5 with exact-source concept exclusion; previous policies
+remain reproducible. Original-source replay removes only Revenues; every other
+concept matches.16selector tests pass. Full verify15656exit0:6+393tests and audits;
+restored only generated source-date/sitemap churn. Stage6784exit0:683companies,
+17,714histories. Quality75873running. V6delivery/archive checks remain due; v5
+archive stays retained but does not prove v6and is not publishable as-is.
+EngineCI35499961114 remains live; no duplicate run, deployment or activation.
+
+Quality75873completedexit0:683companies17,714histories,22constant/zero histories,3,146overlapping flags. Source reproduction passes; full editorial approval remains open.

@@ -30,17 +30,21 @@ HTTP404 outcomes. Full source replay has zero errors; all 117 error bodies and
 receipts were separately verified. Queue remains disjoint from prior website
 queues, the existing delivery and 600 retained engine acquisition identities.
 There are 4,467 remaining unqueued discovery identities after these holdbacks.
-Separate corrected extended-v5 staging contains 683 companies and 17,715 histories.
+Separate corrected extended-v6 staging contains 683 companies and 17,714 histories.
+V6also excludes NOVAGOLD Revenues: the hidden fact is visibly linked to no realized
+revenue from its principal asset, not a company-wide revenue total. Original
+markup and exact source hash are retained in the disposition report.
 V4's Liberty equipment-purchase exclusion is retained. V5 also excludes GHST's
 cash-equivalents-only zero and Nelnet/Cooper-Standard intersegment revenue zeros,
 with original filing labels, presentation roles and primary tables as evidence.
-V3/v4 remain reproducible but are not publishable for this fourth cohort.
+V3/v4/v5 remain reproducible but are not publishable for this fourth cohort.
 The existing three-cohort release remains separate and unchanged.
 
 Exact-source replay verifies each new exclusion removes only its reviewed concept.
-Full website verification passes6+392tests and audits; all15selector tests pass.
-V5 selected-quality/source audit passes; report company-fourth-selected-quality-v5.json.
-V5 catalog/release/discovery and full local HTTP/browser checks now pass:
+Full website verification passes6+393tests and audits; all16selector tests pass.
+V6 selected-quality/source audit75873 passed; see company-fourth-selected-quality-v6.json.
+Catalog,release,HTTP/browser and archive work for v6remains due.
+Historical V5 catalog/release/discovery and full local HTTP/browser checks passed:
 18,412 URLs,1,366 downloads,90browser checks across15routes. Release hash
 b40100cda2fd5a50297de8d433e72751c6561d1f5e58226c269ae879c578c597.
 Editorial supplement and complete fourth-cohort archives both pass isolated
@@ -140,8 +144,9 @@ Website7298ea1d passed all CI35498051186 jobs, including the new installed MCP
 package test; current local verification passes
 6 + 392 tests and final audits. Latest CI35500519399 onbbb5690e failed
 the MCP stalled-body test because its100ms wall-clock deadline fired before the
-loopback request arrived. Test-only deterministic deadline trigger now preserves
-real HTTP/body cancellation and passes all48MCP tests locally; remote recheck due. Engine PR68 ce93d8c fixes nested agent-state copying;
+loopback request arrived. Test-only deterministic deadline trigger preserves
+real HTTP/body cancellation. All48MCP tests pass locally and allCI35500716863
+jobs on05511c53 now pass, including installed-package verification. Engine PR68 ce93d8c fixes nested agent-state copying;
 13 focused tests and Ruff pass, and full CI35494803169 now passes all six jobs.
 PR69/70 rechecked: open at783ad0c/e0a257c, all six jobs pass respectively in
 CI35437603714/35438489448. They remain unmerged.
@@ -205,8 +210,8 @@ decisions cannot be automated away. No broker orders or unauthorized activation.
 No PR was merged, provider created, production migration applied or broker order
 issued by this work. The goal remains active. See EXECUTION_LEDGER.md.
 
-Latest separate fourth-cohort candidate is v5. Prior v4 release and measurements
-remain historical; do not reuse them as verification of v5.
+Latest separate fourth-cohort candidate is v6. Prior v5 release, archive and
+measurements remain historical; do not reuse them as verification of v6.
 
 Fourth editorial supplement:275files,79,298,560bytes,SHA256
 62082472346b7bd0f6bed08ef480c3c85fee0e34248be93b8bfd432935814239.

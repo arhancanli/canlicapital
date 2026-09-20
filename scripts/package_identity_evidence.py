@@ -27,6 +27,7 @@ SCRIPTS = [
     'lib/company-reference.mjs', 'lib/company-extended-concepts.mjs',
     'lib/company-editorial-dispositions.mjs', 'lib/company-editorial-v3.mjs',
     'lib/company-editorial-v4.mjs', 'lib/company-editorial-v5.mjs',
+    'lib/company-editorial-v6.mjs',
 ]
 
 
