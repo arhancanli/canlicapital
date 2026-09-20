@@ -971,3 +971,7 @@ Engine61b587f full CI35489715539 and website1d9209a4 CI35490907923 now pass.
 Local build and final verify now pass381tests(6+375) and every final audit.
 Generated artifacts regenerated through the full build to preserve reader features
 and accurate source bindings. Capture73982 at823/1000, unfinished; no staging.
+Revocation commitb9fcc63f CI35491443303 passed its real PostgreSQL lifecycle and
+concurrency job. MCP CI caught duplicated quota wording after the new body limit;
+updated the package's published sentence and fixture, keeping the drift test.
+All48MCP tests now pass locally. First CI failure retained; corrected head needs CI.

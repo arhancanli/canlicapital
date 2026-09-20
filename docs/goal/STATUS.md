@@ -283,3 +283,6 @@ the repaired goals worktree. Earlier cross-worktree import run is not acceptance
   pass; logs/tmp/canli-revocation-build.log and/tmp/canli-revocation-final-verify.log.
 - Capture73982 still running at823/1000:625revieweligible,135excluded,63HTTPerrors;
   no finished_at or stop reason. Keep polling the same capture before replay.
+- b9fcc63f real PostgreSQL lifecycle/concurrency CI passed(run35491443303).
+  MCP CI exposed outdated duplicated quota text; corrected and48local tests pass.
+  This does not establish production migration or current-head complete CI.
