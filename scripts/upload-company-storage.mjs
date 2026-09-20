@@ -39,7 +39,7 @@ export function validateStoragePlan(raw, expectedHash) {
 export function createSupabaseStorage({ projectUrl, bucket, serviceKey, fetcher = fetch,
   readAttempts = 1, retryBudget = 10, pause = ms => new Promise(resolve => setTimeout(resolve, ms)) }) {
   if (!Number.isInteger(readAttempts) || readAttempts < 1 || readAttempts > 3 ||
-      !Number.isInteger(retryBudget) || retryBudget < 0 || retryBudget > 10) throw new Error('Invalid bounded read retry policy');
+      !Number.isInteger(retryBudget) || retryBudget < 0 || retryBudget > 200) throw new Error('Invalid bounded read retry policy');
   let retries = 0;
   const base = new URL(projectUrl);
   if (base.protocol !== 'https:' || base.username || base.password || base.search || base.hash ||
@@ -62,6 +62,7 @@ export function createSupabaseStorage({ projectUrl, bucket, serviceKey, fetcher 
   }
   const adapter = {
     destination: publicBase,
+    readRetryPolicy: { attempts: readAttempts, budget: retryBudget },
     async readOnce(file) {
       if (!KEY.test(file.key)) throw new Error('Invalid object key');
       const response = await request(publicBase + file.key, { headers: { 'Accept-Encoding': 'identity' } });
@@ -139,13 +140,15 @@ export function createSupabaseStorage({ projectUrl, bucket, serviceKey, fetcher 
 }
 
 export async function uploadCompanyStorage({ planBytes, planHash, storage, record = () => {}, concurrency = 1,
-  writeAttempts = 1, pause = ms => new Promise(resolve => setTimeout(resolve, ms)) }) {
+  writeAttempts = 1, writeRetryBudget = 10, pause = ms => new Promise(resolve => setTimeout(resolve, ms)) }) {
   if (!Number.isInteger(concurrency) || concurrency < 1 || concurrency > 4) throw new Error('Concurrency must be between 1 and 4');
   if (!Number.isInteger(writeAttempts) || writeAttempts < 1 || writeAttempts > 2) throw new Error('Write attempts must be 1 or 2');
+  if (!Number.isInteger(writeRetryBudget) || writeRetryBudget < 0 || writeRetryBudget > 50) throw new Error('Invalid bounded write retry budget');
   const plan = validateStoragePlan(planBytes, planHash);
   const receipt = { schema: 'canli.company-storage-transfer.v1', plan_sha256: planHash,
     code_sha256: catalogHash(readFileSync(new URL(import.meta.url))),
     release_hash: plan.release_hash, destination: storage.destination, publication_approved: false,
+    retry_policy: { read: storage.readRetryPolicy, write: { attempts: writeAttempts, budget: writeRetryBudget }, concurrency },
     complete: false, files: [], failures: [], read_retries: [], write_recovery: [], scope: 'Runtime transfer only; not capture backup, editorial admission or production activation.' };
   record(receipt);
   const read = file => storage.read(file, { onRetry: event => {
@@ -162,7 +165,7 @@ export async function uploadCompanyStorage({ planBytes, planHash, storage, recor
         const found = await read(file);
         event.reconciliation = found === null ? 'absent' : 'verified_existing'; record(receipt);
         if (found !== null) return 'verified_after_create_error';
-        if (attempt >= writeAttempts || writeRetries >= 10) throw error;
+        if (attempt >= writeAttempts || writeRetries >= writeRetryBudget) throw error;
         event.retry_number = ++writeRetries; record(receipt);
         await pause(1000);
         continue; // Explicitly enabled, bounded create-only attempt after verified absence.
@@ -197,11 +200,11 @@ export async function uploadCompanyStorage({ planBytes, planHash, storage, recor
 }
 
 if (process.argv[1] && import.meta.url === pathToFileURL(resolve(process.argv[1])).href) {
-  const [planPath, planHash, projectUrl, bucket, output, concurrency = '1', readAttempts = '1', writeAttempts = '1'] = process.argv.slice(2);
-  if (!output) throw new Error('Usage: node scripts/upload-company-storage.mjs PLAN SHA256 PROJECT_URL BUCKET NEW_RECEIPT [CONCURRENCY_1_TO_4] [READ_ATTEMPTS_1_TO_3] [WRITE_ATTEMPTS_1_TO_2]');
+  const [planPath, planHash, projectUrl, bucket, output, concurrency = '1', readAttempts = '1', writeAttempts = '1', readRetryBudget = '10', writeRetryBudget = '10'] = process.argv.slice(2);
+  if (!output) throw new Error('Usage: node scripts/upload-company-storage.mjs PLAN SHA256 PROJECT_URL BUCKET NEW_RECEIPT [CONCURRENCY_1_TO_4] [READ_ATTEMPTS_1_TO_3] [WRITE_ATTEMPTS_1_TO_2] [READ_RETRY_BUDGET_0_TO_200] [WRITE_RETRY_BUDGET_0_TO_50]');
   if (existsSync(output) || existsSync(output + '.pending')) throw new Error('Receipt already exists; preserve it and use a new path');
-  const storage = createSupabaseStorage({ projectUrl, bucket, serviceKey: process.env.COMPANY_STORAGE_SERVICE_KEY, readAttempts: Number(readAttempts) });
-  await uploadCompanyStorage({ planBytes: readFileSync(planPath), planHash, storage, concurrency: Number(concurrency), writeAttempts: Number(writeAttempts), record: receipt => {
+  const storage = createSupabaseStorage({ projectUrl, bucket, serviceKey: process.env.COMPANY_STORAGE_SERVICE_KEY, readAttempts: Number(readAttempts), retryBudget: Number(readRetryBudget) });
+  await uploadCompanyStorage({ planBytes: readFileSync(planPath), planHash, storage, concurrency: Number(concurrency), writeAttempts: Number(writeAttempts), writeRetryBudget: Number(writeRetryBudget), record: receipt => {
     writeFileSync(output + '.pending', JSON.stringify(receipt, null, 2) + '\n', { mode: 0o600 });
     renameSync(output + '.pending', output);
   } });
