@@ -1,0 +1,551 @@
+{
+  "schema": "canli.reviewed-share-context-spec.v2",
+  "targets": {
+    "path": "artifacts/seo/company-basic-diluted-capture-batch2-targets-20260921.json",
+    "sha256": "a67ad91236326cefaad0c15c6a88bec62cab33b440db3f5d75af1b543f9243d8"
+  },
+  "capture_directory": "artifacts/seo/corpus-local/basic-diluted-batch2-filings",
+  "decisions": [
+    {
+      "cik": "0001042418",
+      "accession": "0001493152-26-012751",
+      "source_sha256": "4142a89736990e49cb86be8cc08735b878648c52aa079c470055b2d7cd387cb7",
+      "primary_sha256": "72ca71bdfc66880af72fff08cda766d4a09c55e52d091039ad3b303a860ef815",
+      "receipt_sha256": "96333e88abfb8526049400a89f642766e41565286463e4fb74ad67cf175ee582",
+      "fixture": "scripts/fixtures/editorial/batch2-0001042418-source.json.gz",
+      "observations": 8,
+      "selected_observations": [
+        {
+          "start": "2024-01-01",
+          "end": "2024-12-31",
+          "val": -0.02,
+          "accn": "0001493152-26-012751",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-03-26",
+          "frame": "CY2024",
+          "unit": "USD/shares",
+          "tag": "EarningsPerShareBasic"
+        },
+        {
+          "start": "2025-01-01",
+          "end": "2025-12-31",
+          "val": -0.02,
+          "accn": "0001493152-26-012751",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-03-26",
+          "frame": "CY2025",
+          "unit": "USD/shares",
+          "tag": "EarningsPerShareBasic"
+        },
+        {
+          "start": "2024-01-01",
+          "end": "2024-12-31",
+          "val": -0.02,
+          "accn": "0001493152-26-012751",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-03-26",
+          "frame": "CY2024",
+          "unit": "USD/shares",
+          "tag": "EarningsPerShareDiluted"
+        },
+        {
+          "start": "2025-01-01",
+          "end": "2025-12-31",
+          "val": -0.02,
+          "accn": "0001493152-26-012751",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-03-26",
+          "frame": "CY2025",
+          "unit": "USD/shares",
+          "tag": "EarningsPerShareDiluted"
+        },
+        {
+          "start": "2024-01-01",
+          "end": "2024-12-31",
+          "val": 172262889,
+          "accn": "0001493152-26-012751",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-03-26",
+          "frame": "CY2024",
+          "unit": "shares",
+          "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+        },
+        {
+          "start": "2025-01-01",
+          "end": "2025-12-31",
+          "val": 172511901,
+          "accn": "0001493152-26-012751",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-03-26",
+          "frame": "CY2025",
+          "unit": "shares",
+          "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+        },
+        {
+          "start": "2024-01-01",
+          "end": "2024-12-31",
+          "val": 172262889,
+          "accn": "0001493152-26-012751",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-03-26",
+          "frame": "CY2024",
+          "unit": "shares",
+          "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+        },
+        {
+          "start": "2025-01-01",
+          "end": "2025-12-31",
+          "val": 172511901,
+          "accn": "0001493152-26-012751",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-03-26",
+          "frame": "CY2025",
+          "unit": "shares",
+          "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+        }
+      ],
+      "period_ends": [
+        "2024-12-31",
+        "2025-12-31"
+      ],
+      "table_index": 120,
+      "share_scale": "0",
+      "table_requires": [
+        "3,300,337",
+        "3,339,201",
+        "172,511,901",
+        "172,262,889",
+        "0.02"
+      ],
+      "paragraph_requires": [
+        "YEARS ENDED DECEMBER 31, 2025 AND 2024"
+      ],
+      "reader_note": "Inhibitor Therapeutics reports identical basic and diluted weighted-average shares and USD loss per share for 2024 and 2025. Full share counts and the reported rounded EPS are retained. This review confirms the statement presentation only; it does not establish a specific reason for the equal denominators or assert that no potentially dilutive instruments existed.",
+      "disposition": "REPORTED_PRESENTATION_REVIEWED_CAUSE_NOT_ESTABLISHED"
+    },
+    {
+      "cik": "0001043961",
+      "accession": "0001104659-26-036878",
+      "source_sha256": "1ff056c98be287afed09afc7dc1d539766e2c46afe2d2a94e4de23fa3157db77",
+      "primary_sha256": "be5b1320bf8d9523008f9cc8528351a8f2bf46eb500b79407657ee8a319cb449",
+      "receipt_sha256": "0fb9bf46a9d46bcea0d62a2794593ec57535c5f230a51d89b040f31a620f02c2",
+      "fixture": "scripts/fixtures/editorial/batch2-0001043961-source.json.gz",
+      "observations": 8,
+      "selected_observations": [
+        {
+          "start": "2024-01-01",
+          "end": "2024-12-31",
+          "val": -2.93,
+          "accn": "0001104659-26-036878",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-03-30",
+          "frame": "CY2024",
+          "unit": "USD/shares",
+          "tag": "EarningsPerShareBasic"
+        },
+        {
+          "start": "2025-01-01",
+          "end": "2025-12-31",
+          "val": -0.23,
+          "accn": "0001104659-26-036878",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-03-30",
+          "frame": "CY2025",
+          "unit": "USD/shares",
+          "tag": "EarningsPerShareBasic"
+        },
+        {
+          "start": "2024-01-01",
+          "end": "2024-12-31",
+          "val": -2.93,
+          "accn": "0001104659-26-036878",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-03-30",
+          "frame": "CY2024",
+          "unit": "USD/shares",
+          "tag": "EarningsPerShareDiluted"
+        },
+        {
+          "start": "2025-01-01",
+          "end": "2025-12-31",
+          "val": -0.23,
+          "accn": "0001104659-26-036878",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-03-30",
+          "frame": "CY2025",
+          "unit": "USD/shares",
+          "tag": "EarningsPerShareDiluted"
+        },
+        {
+          "start": "2024-01-01",
+          "end": "2024-12-31",
+          "val": 1465518,
+          "accn": "0001104659-26-036878",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-03-30",
+          "frame": "CY2024",
+          "unit": "shares",
+          "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+        },
+        {
+          "start": "2025-01-01",
+          "end": "2025-12-31",
+          "val": 1605080,
+          "accn": "0001104659-26-036878",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-03-30",
+          "frame": "CY2025",
+          "unit": "shares",
+          "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+        },
+        {
+          "start": "2024-01-01",
+          "end": "2024-12-31",
+          "val": 1465518,
+          "accn": "0001104659-26-036878",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-03-30",
+          "frame": "CY2024",
+          "unit": "shares",
+          "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+        },
+        {
+          "start": "2025-01-01",
+          "end": "2025-12-31",
+          "val": 1605080,
+          "accn": "0001104659-26-036878",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-03-30",
+          "frame": "CY2025",
+          "unit": "shares",
+          "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+        }
+      ],
+      "period_ends": [
+        "2024-12-31",
+        "2025-12-31"
+      ],
+      "table_index": 153,
+      "share_scale": "0",
+      "table_requires": [
+        "363",
+        "4,290",
+        "1,605,080",
+        "1,465,518",
+        "0.23",
+        "2.93"
+      ],
+      "paragraph_requires": [
+        "Basic loss per share is calculated based on the weighted-average number of common shares outstanding during each period. Diluted loss per share includes shares issuable upon exercise of outstanding stock options, warrants or conversion rights that have exercise or conversion prices below the market value of our common stock. Options, warrants and conversion rights pertaining to 375,181 and 754,251 shares of our common stock have been excluded from the computation of diluted loss per share at December 31, 2025 and 2024, respectively, because the effect is anti-dilutive due to the net loss.",
+        "(Dollars in thousands, except per share data)"
+      ],
+      "reader_note": "For Precipio in 2024 and 2025, options, warrants and conversion rights were excluded from diluted loss per share because their effect was anti-dilutive during losses. The statement labels dollar amounts in thousands, while its weighted-average share tags use scale zero and report full share counts. Reported share counts and USD EPS are retained without multiplying shares by one thousand.",
+      "disposition": "REVIEWED_ALLOCATION_UNIT_AND_DILUTION_CONTEXT"
+    },
+    {
+      "cik": "0001070050",
+      "accession": "0001683168-26-002518",
+      "source_sha256": "70614b3383ecad9bb3fbe8640ced15449dd03f294cae86178bf9682e01d53953",
+      "primary_sha256": "3929e5c24de72bb03a8b1ede0ac0f3fe6cbb63307aeaddc73fed33f736c8a9cf",
+      "receipt_sha256": "8d321db4a8efd315b2d8cedc2f8ddfbc5125933904fcfbe74d45ef68870ca82b",
+      "fixture": "scripts/fixtures/editorial/batch2-0001070050-source.json.gz",
+      "observations": 8,
+      "selected_observations": [
+        {
+          "start": "2024-01-01",
+          "end": "2024-12-31",
+          "val": -0.35,
+          "accn": "0001683168-26-002518",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-03-31",
+          "frame": "CY2024",
+          "unit": "USD/shares",
+          "tag": "EarningsPerShareBasic"
+        },
+        {
+          "start": "2025-01-01",
+          "end": "2025-12-31",
+          "val": -0.23,
+          "accn": "0001683168-26-002518",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-03-31",
+          "frame": "CY2025",
+          "unit": "USD/shares",
+          "tag": "EarningsPerShareBasic"
+        },
+        {
+          "start": "2024-01-01",
+          "end": "2024-12-31",
+          "val": -0.35,
+          "accn": "0001683168-26-002518",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-03-31",
+          "frame": "CY2024",
+          "unit": "USD/shares",
+          "tag": "EarningsPerShareDiluted"
+        },
+        {
+          "start": "2025-01-01",
+          "end": "2025-12-31",
+          "val": -0.23,
+          "accn": "0001683168-26-002518",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-03-31",
+          "frame": "CY2025",
+          "unit": "USD/shares",
+          "tag": "EarningsPerShareDiluted"
+        },
+        {
+          "start": "2024-01-01",
+          "end": "2024-12-31",
+          "val": 25305837,
+          "accn": "0001683168-26-002518",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-03-31",
+          "frame": "CY2024",
+          "unit": "shares",
+          "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+        },
+        {
+          "start": "2025-01-01",
+          "end": "2025-12-31",
+          "val": 34872578,
+          "accn": "0001683168-26-002518",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-03-31",
+          "frame": "CY2025",
+          "unit": "shares",
+          "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+        },
+        {
+          "start": "2024-01-01",
+          "end": "2024-12-31",
+          "val": 25305837,
+          "accn": "0001683168-26-002518",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-03-31",
+          "frame": "CY2024",
+          "unit": "shares",
+          "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+        },
+        {
+          "start": "2025-01-01",
+          "end": "2025-12-31",
+          "val": 34872578,
+          "accn": "0001683168-26-002518",
+          "fy": 2025,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-03-31",
+          "frame": "CY2025",
+          "unit": "shares",
+          "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+        }
+      ],
+      "period_ends": [
+        "2024-12-31",
+        "2025-12-31"
+      ],
+      "table_index": 42,
+      "share_scale": "0",
+      "table_requires": [
+        "7,920",
+        "8,933",
+        "8,948",
+        "25,305,837",
+        "34,872,578",
+        "0.23",
+        "0.35"
+      ],
+      "paragraph_requires": [
+        "The number of common stock equivalents not included in diluted income per share for the years ended December 31, 2025 and 2024, respectively are presented below. The weighted average number of common stock equivalents is not included in diluted income (loss) per share, because the effects are anti-dilutive.",
+        "($ in thousands, except per share data)"
+      ],
+      "reader_note": "AppTech Payments' 2024 EPS numerator includes a $15,000 deemed dividend related to warrant resets, increasing loss attributable to common stockholders from $8.933 million to $8.948 million. The filing excludes anti-dilutive common-stock equivalents in 2024 and 2025. Its dollar amounts are displayed in thousands, while weighted-average share tags use scale zero for full share counts. Reported USD EPS and share counts are preserved.",
+      "disposition": "REVIEWED_ALLOCATION_UNIT_AND_DILUTION_CONTEXT"
+    },
+    {
+      "cik": "0001074871",
+      "accession": "0001213900-26-073223",
+      "source_sha256": "35d9c7a349fec6383baca56e8aa4820d6d19d2f4955371898b75285f3bf308e4",
+      "primary_sha256": "1b11f84ec6aac786d5711de1a8524e23f2382e385c6964545e2d89760605005e",
+      "receipt_sha256": "226b18ff2ac5ee24d14108d194901562dd2ebf89b0974886feeae90ee2ad7eb3",
+      "fixture": "scripts/fixtures/editorial/batch2-0001074871-source.json.gz",
+      "observations": 8,
+      "selected_observations": [
+        {
+          "start": "2024-04-01",
+          "end": "2025-03-31",
+          "val": -15.26,
+          "accn": "0001213900-26-073223",
+          "fy": 2026,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-06-29",
+          "frame": "CY2024",
+          "unit": "USD/shares",
+          "tag": "EarningsPerShareBasic"
+        },
+        {
+          "start": "2025-04-01",
+          "end": "2026-03-31",
+          "val": -12.36,
+          "accn": "0001213900-26-073223",
+          "fy": 2026,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-06-29",
+          "frame": "CY2025",
+          "unit": "USD/shares",
+          "tag": "EarningsPerShareBasic"
+        },
+        {
+          "start": "2024-04-01",
+          "end": "2025-03-31",
+          "val": -15.26,
+          "accn": "0001213900-26-073223",
+          "fy": 2026,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-06-29",
+          "frame": "CY2024",
+          "unit": "USD/shares",
+          "tag": "EarningsPerShareDiluted"
+        },
+        {
+          "start": "2025-04-01",
+          "end": "2026-03-31",
+          "val": -12.36,
+          "accn": "0001213900-26-073223",
+          "fy": 2026,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-06-29",
+          "frame": "CY2025",
+          "unit": "USD/shares",
+          "tag": "EarningsPerShareDiluted"
+        },
+        {
+          "start": "2024-04-01",
+          "end": "2025-03-31",
+          "val": 1233000,
+          "accn": "0001213900-26-073223",
+          "fy": 2026,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-06-29",
+          "frame": "CY2024",
+          "unit": "shares",
+          "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+        },
+        {
+          "start": "2025-04-01",
+          "end": "2026-03-31",
+          "val": 2285000,
+          "accn": "0001213900-26-073223",
+          "fy": 2026,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-06-29",
+          "frame": "CY2025",
+          "unit": "shares",
+          "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+        },
+        {
+          "start": "2024-04-01",
+          "end": "2025-03-31",
+          "val": 1233000,
+          "accn": "0001213900-26-073223",
+          "fy": 2026,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-06-29",
+          "frame": "CY2024",
+          "unit": "shares",
+          "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+        },
+        {
+          "start": "2025-04-01",
+          "end": "2026-03-31",
+          "val": 2285000,
+          "accn": "0001213900-26-073223",
+          "fy": 2026,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2026-06-29",
+          "frame": "CY2025",
+          "unit": "shares",
+          "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+        }
+      ],
+      "period_ends": [
+        "2025-03-31",
+        "2026-03-31"
+      ],
+      "table_index": 223,
+      "share_scale": "3",
+      "table_requires": [
+        "28,242",
+        "18,824",
+        "2,285",
+        "1,233",
+        "12.36",
+        "15.26"
+      ],
+      "paragraph_requires": [
+        "Basic net loss per share is computed by dividing loss for the period by the weighted-average number of shares of common stock outstanding (\u201cWASO\u201d) during the period. In addition, the Company includes the number of shares of common stock issuable under pre-funded warrants as outstanding for purposes of the WASO calculation. Diluted net loss per share gives effect to all potentially dilutive common shares outstanding during the period. Potentially dilutive common shares consist of incremental shares of common stock issuable upon the exercise of stock options and exercise of warrants.",
+        "The following table sets forth securities outstanding which were excluded from the computation of diluted net loss per share as their inclusion would be anti-dilutive (in thousands):",
+        "As a result of the reverse stock split, which was effective for trading purposes on March 31, 2026, every 30 shares of the Company\u2019s pre-reverse split outstanding common stock and exchangeable shares were combined and reclassified into one share of common stock. Proportionate voting rights and other rights of holders of common stock were not affected by the reverse stock split. Any fractional shares of common stock resulting from the reverse stock split were rounded up to the nearest whole share. All stock options and restricted stock units outstanding and common stock reserved for issuance under the Company\u2019s equity incentive plan and warrants outstanding immediately prior to the reverse stock split were adjusted by dividing the number of affected shares of common stock by 30 and, as applicable, multiplying the exercise price by 30, as a result of the reverse stock split. All share and per-share amounts in these consolidated financial statements have been restated to reflect the reverse stock split as if it had occurred at the beginning of the earliest period presented.",
+        "(In thousands, except per-share data)"
+      ],
+      "reader_note": "For Modular Medical's years ended March 31, 2025 and 2026, basic weighted-average shares already include shares issuable under pre-funded warrants; these must not be added again as dilution. The filing excludes anti-dilutive potential shares. Share and per-share amounts are retrospectively restated for the one-for-30 reverse split effective for trading March 31, 2026. Statement share counts are in thousands with inline scale 3. Full selected share counts, reported EPS and March fiscal dates are retained.",
+      "disposition": "REVIEWED_ALLOCATION_UNIT_AND_DILUTION_CONTEXT"
+    }
+  ]
+}
