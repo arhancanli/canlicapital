@@ -8,7 +8,7 @@ pins are preserved in [history/STATUS-20260920-through-priority-scope-closure.md
 ## Current work and next actions
 
 Worktree `/Users/arhancanli/canlicapital-expansion-20260919`, branch
-`release/five-cohort-v14-20260920`. Archive helper committed at eb780f48.
+`evidence/five-cohort-v14-20260920`. Archive helper committed at eb780f48.
 PR46 merged as087917ac31b50adbc9856f062e310d6b274ee811 after all four checks in
 CI35524243935 passed at a73932e1540e529483e01e628bc8c3f944cc067e.
 Tested/merged trees both3f9aa6d122d3be5a62974c31a52ff5ed1982b3a6.
@@ -232,3 +232,17 @@ pins complete JSON and lossless gzip under corpus-local; roundtrip bytes verifie
 Earlier v9summary and all source failures remain unchanged. Next: preserve latest
 source/runtime evidence with isolated restore and finish remaining editorial and
 hosted gates; no uploader active.
+
+## V14 archive and isolated restore running
+
+PR50merged01a81792 after all four CI35525761609checks passed at576ef9fc;
+tested/merged tree4feee604218915f3debf1ae7a38bb41e336747a8. New archive profile
+committed0e78d337 preserves older profiles. Five archive safety tests pass.
+Build/restore39906is active; log/tmp/canli-v14-archive-replay.log. It retains the
+full current runtime, five source queues, current quality JSON/gzip and sitemaps,
+plus original Varonis capture and baseline basic/diluted primary/XMLdependencies.
+Restore is intended to replay the original31filing sample,14legacy rows, Varonis
+scope and full v14quality audit in addition to source/runtime checks. Completion
+must be verified from39906and its receipts; archive existence alone is insufficient.
+No uploader, production activation or indexing gain. Broader editorial coverage
+and hosted release gates remain open; every owner objective stays active.

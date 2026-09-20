@@ -75,3 +75,12 @@ recorded in v14discovery receipt and STATUS. Quality audit40310terminal0:
 13,142flagged histories,747equal-vector groups; exact current source/policy replay.
 Full quality JSON/gzip bound by versioned summary; old reports preserved. No uploader,
 production activation or indexing gain. Full v14archive and broader review pending.
+
+## 2026-09-20 — v14 archive support and restore started
+
+Previous goal turn completed all five v14build stages, exact URL-set audit and
+current quality inventory. PR50merged01a81792with all four checks and exact tree
+equality. New v14archive profile includes baseline basic/diluted dependencies,
+Varonis index/primary, current quality data and sitemaps; older profiles preserved.
+Five safety tests pass. Committed0e78d337; archive/restore39906started, not yet
+claimed complete. Existing original reports remain unchanged; no publication.
