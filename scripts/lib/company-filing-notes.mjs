@@ -716,6 +716,165 @@ export const FILING_NOTES = [
     }
   ]
 }
+,
+{
+  "cik": "0000793306",
+  "include_on_overview": true,
+  "source_sha256": "62bd673fa03d384983bd2b9418eca01527fc4af9e2ecb90b946269d9e7f2ae73",
+  "tags": [
+    "EarningsPerShareBasic",
+    "EarningsPerShareDiluted",
+    "WeightedAverageNumberOfDilutedSharesOutstanding",
+    "WeightedAverageNumberOfSharesOutstandingBasic"
+  ],
+  "text": "For 2024\u20132025, Blue Dolphin reports equal basic and diluted loss per share and share counts. In this filing it states that it does not currently have issued options, warrants or similar instruments and describes excluding convertible shares when anti-dilutive. That disclosure is historical, not a claim about securities outstanding today. Shares and per-share amounts are exempt from the statement\u2019s thousands heading. Basic and diluted measures retain distinct definitions; do not add their matching denominators.",
+  "filing_url": "https://www.sec.gov/Archives/edgar/data/793306/000143774926010712/bdco20251231_10k.htm",
+  "observations": [
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": -0.58,
+      "accn": "0001437749-26-010712",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": -0.38,
+      "accn": "0001437749-26-010712",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": -0.58,
+      "accn": "0001437749-26-010712",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": -0.38,
+      "accn": "0001437749-26-010712",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 14921968,
+      "accn": "0001437749-26-010712",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 14921968,
+      "accn": "0001437749-26-010712",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 14921968,
+      "accn": "0001437749-26-010712",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 14921968,
+      "accn": "0001437749-26-010712",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    }
+  ]
+},
+{
+  "cik": "0000795800",
+  "include_on_overview": true,
+  "source_sha256": "722c25e7b472598d160c9e6ac435f0113c0fff6d40969bba02a2231656f9b0c2",
+  "tags": [
+    "EarningsPerShareBasic",
+    "EarningsPerShareDiluted",
+    "WeightedAverageNumberOfDilutedSharesOutstanding",
+    "WeightedAverageNumberOfSharesOutstandingBasic"
+  ],
+  "text": "For 2024\u20132025, NexMetals presents positive amounts labelled loss per share in Canadian dollars: 5.02 and 2.86, respectively. These are reported loss magnitudes, not profits; the original signs and units are retained here. Options, restricted share units and warrants are excluded from diluted loss per share because they would be anti-dilutive in the loss position. The filing applies the June 20, 2025 twenty-for-one share consolidation to both current and comparative share and loss-per-share information. No additional share-consolidation adjustment, sign change or currency conversion has been applied.",
+  "filing_url": "https://www.sec.gov/Archives/edgar/data/795800/000149315226022760/form10-ka.htm",
+  "observations": [
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 5.02,
+      "accn": "0001493152-26-022760",
+      "unit": "CAD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 2.86,
+      "accn": "0001493152-26-022760",
+      "unit": "CAD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 5.02,
+      "accn": "0001493152-26-022760",
+      "unit": "CAD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 2.86,
+      "accn": "0001493152-26-022760",
+      "unit": "CAD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 8446643,
+      "accn": "0001493152-26-022760",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 20650750,
+      "accn": "0001493152-26-022760",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 8446643,
+      "accn": "0001493152-26-022760",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 20650750,
+      "accn": "0001493152-26-022760",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    }
+  ]
+}
 ];
 
 export function companyFilingNotes(company, tag) {

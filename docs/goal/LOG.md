@@ -268,3 +268,18 @@ page notes retain this limitation.15renderer tests pass with captured sources,
 unchanged values and stale-source suppression. Report and v4ledger replay exactly:
 50reviewed (24presentation-only),1,118pending,8withdrawn. No runtime rebuild,
 archive supplement, production deployment or indexing gain.
+
+## 2026-09-20 — historical instruments and positive loss-magnitude context
+
+PR62merged3f69fbf8after four passing CI35529950080checks and exact tree equality
+ab03a794f2cf656d421aba79840033591227d255. Reviewed16Blue Dolphin/NexMetals
+observations against original statements, units and policies. Blue Dolphin reports
+no currently issued options/warrants/similar instruments in the historical filing;
+no claim about today. NexMetals presents positive CAD loss magnitudes, excludes
+potential shares as anti-dilutive, and retrospectively reflects June20,2025twenty-
+for-one consolidation. Original signs/units/values preserved; source-bound notes
+make the convention explicit.16renderer tests pass, including actual-source
+unchanged values and stale-source suppression. Report and v5ledger replay exactly:
+66reviewed (24presentation-only),1,102pending,8withdrawn. Cedar participating-share
+allocation context remains open. No rebuild, archival supplement, deployment or
+indexing gain; the complete owner objective remains active.

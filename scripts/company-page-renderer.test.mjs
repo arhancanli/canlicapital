@@ -11,6 +11,28 @@ const company = JSON.parse(readFileSync(new URL('../public/company-data/00003201
 const source = readFileSync(new URL('../companies/0000320193/Assets.html', import.meta.url), 'utf8');
 const assets = buildCompanyAssets(source, '<script type="module" src="/assets/company.js"></script><link rel="stylesheet" href="/assets/company.css">');
 
+test('loss-share conventions preserve positive CAD loss magnitudes and historical instrument disclosure', () => {
+  for (const [fixture, cik, phrase] of [
+    ['blue-dolphin', '0000793306', /historical, not a claim about securities outstanding today/],
+    ['nexmetals', '0000795800', /reported loss magnitudes, not profits/],
+  ]) {
+    const raw = gunzipSync(readFileSync(new URL(`./fixtures/editorial/${fixture}-reviewed-source.json.gz`, import.meta.url)));
+    const record = companyReference(raw, { expectedCik: cik, fetchedAt: '2026-09-20T00:00:00Z', selectionPolicy: 'extended-v17' });
+    verifyCompanyReference(record, raw);
+    const original = structuredClone(record.concepts);
+    record.source_snapshot = `/company-data/sources/${record.source_sha256}.json.gz`;
+    const tags = ['EarningsPerShareBasic', 'EarningsPerShareDiluted', 'WeightedAverageNumberOfSharesOutstandingBasic', 'WeightedAverageNumberOfDilutedSharesOutstanding'];
+    for (const target of [...tags, 'overview']) assert.match(renderCompanyPages(record, { target })[0].html, phrase);
+    assert.deepEqual(record.concepts, original);
+    if (fixture === 'nexmetals') {
+      assert.ok(record.concepts.find(c => c.tag === tags[0]).observations.some(r => r.end === '2025-12-31' && r.val === 2.86 && r.unit === 'CAD/shares'));
+      assert.match(renderCompanyPages(record, { target: tags[0] })[0].html, /twenty-for-one share consolidation/);
+    }
+    const changed = structuredClone(record); changed.source_sha256 = '0'.repeat(64);
+    assert.equal(companyFilingNotes(changed, tags[0]).length, 0);
+  }
+});
+
 test('combined presentations retain restatement and scale context without asserting dilution cause', () => {
   for (const [fixture, cik, phrase, expectedValue] of [
     ['nli', '0000072162', /does not establish why the measures match/, 48857000],
