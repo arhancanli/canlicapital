@@ -225,3 +225,18 @@ comparison; independently checked111tables217/281and Valhi millions heading.
 78legacy observations need separate statement mapping. Extraction grants no
 accounting approval and makes no release/indexing claim. Scope remains14reviewed,
 1,156pending,6withdrawn. Compressed evidence and hash-bound summary retained.
+
+## 2026-09-20 — Siebert denominator conflict and v17holds
+
+PR59mergedc7ce7ed7after four passing checks and exact tested/merged tree equality.
+Context index revealed Siebert main-statement basic/diluted combined denominators
+conflict with Note19, which adds314,360/223,170unvested shares to2025/2024basic
+counts40,362,780/39,951,510. Note totals40,677,140/40,174,680use an adjustment tag.
+Original primary confirms both presentations and exact dates/units; no inferred
+replacement. Source-bound report reproduced byte-identically. Implemented v17two
+exact diluted-share holds; actual source fixture proves every other concept and
+period preserved, changed-source guard and overview/history notices.40selector/
+renderer tests pass. Versioned batch ledger reproduces14reviewed/1,154pending/
+8withdrawn; old ledger unchanged. Full v17corpus comparison/build/archive remain
+open; no deployment or indexing claim. Other six Siebert batch observations are
+numerically reproduced but not newly scope-approved by this report.

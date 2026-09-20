@@ -10,10 +10,18 @@ which links the preceding historical record. Historical process states are not l
 ## Current work and immediate next action
 
 Worktree `/Users/arhancanli/canlicapital-expansion-20260919`, branch
-`evidence/basic-diluted-context-index-20260920`. PR58merged
-8f6c4d30d4726f6b7db8fa567c70ab6f63353a3b after all four checks in
-CI35528955777passed at86fa7e551f33d84e0c75d6edb348e175acb51825.
-Tested/merged tree2d9fba1d9dee914e737f63b760caa369a765cbd2.
+`fix/siebert-dilution-scope-20260920`. PR59mergedc7ce7ed7 after all four
+CI35529128490checks passed at1bc700eda1775915e04cd1b2c1001372a68f063e.
+Tested/merged tree5c6eea93dabbb7a6af52948b44cd184456793a8b.
+
+V17adds two exact Siebert diluted-denominator holds (2024/2025). Main statement
+combines basic/diluted counts, while Note19adds unvested-share dilution and reports
+higher diluted totals. Note totals use an adjustment tag; no substitution or tag
+correction. Source-bound report and v2ledger replay byte-identically. Actual-source
+regression verifies other concepts/periods unchanged and visible source-linked
+notices;40selector/renderer tests pass. Batch scope now14reviewed/1,154pending/
+8withdrawn. Frozen v1ledger preserved. Full v17corpus transition and runtime rebuild
+remain pending; v16comparison below is historical current coverage, not v17proof.
 
 Offline context index71727 TERMINAL exit0 covers all100primaries/1,176observations.
 All identities, source hashes, observations and matched-location counts reconcile
@@ -21,14 +29,14 @@ against the frozen primary comparison.83filings have candidate dilution text;
 17have no regex candidate, not proof of absent disclosure.78legacy observations
 lack inline locations and need separate statement mapping. Index includes full
 matched tables and five preceding non-table blocks; known111and Valhi context
-retained. No new scope approvals; next use this index to adjudicate pending rows.
+retained. No approvals are granted by the index; continue adjudicating pending rows.
 
 First batch1 scope closure:111, Inc., fourteen2023–2025observations. Original
 statement and EPS calculation explain anti-dilution, exempt shares/per-share data
 from thousands, identify the USD convenience translation and distinguish ordinary
 shares from ADS. Source-bound notes cover four histories and overview; no values
 changed. Actual-source regression and all13renderer tests pass. Context report
-and batch ledger reproduce byte-identically:14reviewed/1,156pending/6withdrawn.
+and batch ledger reproduce byte-identically:14reviewed/1,156pending/6withdrawn in frozen v1 (superseded above).
 The six withdrawals are batch1 Valhi rows; other Valhi holds and the original
 baseline remain separate. New context evidence is not in the earlier batch archive.
 
