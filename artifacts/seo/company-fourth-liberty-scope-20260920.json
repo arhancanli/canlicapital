@@ -1,0 +1,37 @@
+{
+  "schema": "canli.editorial-scope-review.v1",
+  "publication_approved": false,
+  "cik": "0001172178",
+  "accession": "0001493152-21-010343",
+  "concept": "PaymentsToAcquirePropertyPlantAndEquipment",
+  "primary_capture": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1172178/000149315221010343/form10-k.htm",
+    "status": 200,
+    "captured_at": "2026-09-20T08:23:36.428811+00:00",
+    "bytes": 1024400,
+    "sha256": "d0816e736aa9d2270c666091bd38ad52fb588b3de4b1cb39d6b8fe33758bef87",
+    "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001172178-0001493152-21-010343-primary.response"
+  },
+  "instance_capture": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1172178/000149315221010343/lbsr-20210131.xml",
+    "status": 200,
+    "captured_at": "2026-09-20T08:25:17.029210+00:00",
+    "bytes": 608932,
+    "sha256": "7be42acf9dc15043ed421351c70d73fc5b7171e27142896319e21a05f27ea491",
+    "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/liberty-2021-instance.response"
+  },
+  "instance_fact": {
+    "value": 500,
+    "unit": "USD",
+    "context_xml": "<ns0:context xmlns:ns0=\"http://www.xbrl.org/2003/instance\" id=\"From2020-02-01to2021-01-31\">\n      <ns0:entity>\n        <ns0:identifier scheme=\"http://www.sec.gov/CIK\">0001172178</ns0:identifier>\n      </ns0:entity>\n      <ns0:period>\n        <ns0:startDate>2020-02-01</ns0:startDate>\n        <ns0:endDate>2021-01-31</ns0:endDate>\n      </ns0:period>\n    </ns0:context>\n    "
+  },
+  "primary_cash_flow_statement_excerpt": "STATEMENTS OF CASH FLOWS For\n    the Years Ended January\n    31 2021 2020 Cash\n    flows from operating activities: Net\n    loss $ (749,745 ) $ (337,469 ) Adjustments\n    to reconcile net loss to net cash used in operating activities: Depreciation 6,336 2,684 Amortization\n    of debt discounts 159,222 134,821 (Gain)\n    on settlement of accounts payable - (177,000 ) (Gain) on change in fair value of derivative liabilities (205 ) (108,543 ) ( Gain) on forgiveness of SBA loan (30,578 ) - Stock-based\n    compensation - 80,421 Common\n    shares issued for third party services 50,000 - Changes\n    in assets and liabilities: Prepaid\n    expenses 3,496 (1,267 ) Accounts\n    payable and accrued expenses 154,484 (44,127 ) Accounts\n    payable to related parties - (1,213 ) Accrued\n    wages related parties - 36,137 Changes\n    in advances from related party - 60,794 Accrued\n    interest 26,111 20,396 Cash\n    flows used in operating activities: (380,879 ) (334,366 ) Cash\n    flows from financing activities: Proceeds\n    from notes payable 62,974 10,000 Cash\n    advance from related party 62,000 - Proceeds\n    from notes payable, related parties 120,000 48,500 Proceeds\n    from convertible promissory notes 82,000 240,000 Proceeds\n    from the issuance of common stock and warrants 35,599 60,000 Net\n    cash provided by financing activities 362,573 358,500 Increase\n    (decrease) in cash and cash equivalents (18,306 ) 24,134 Cash\n    and cash equivalents, beginning of period 25,024 890 Cash\n    and cash equivalents, end of period $ 6,718 $ 25,024 ",
+  "statement_reconciliation": {
+    "operating": -380879,
+    "financing": 362573,
+    "reported_net_cash_change": -18306,
+    "net_investing_implied": 0
+  },
+  "disposition": "HOLD_PENDING_SOURCE_RECONCILIATION",
+  "reason": "Companyfacts matches an undimensioned USD500 instance fact, but the rendered cash-flow statement omits investing activity and its operating plus financing totals equal net cash change. This does not by itself establish what the USD500 represents or prove that all historical observations are wrong. Do not approve this history until reconciled."
+}

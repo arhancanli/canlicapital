@@ -1,3 +1,4 @@
+import { readSitemapXml } from "./lib/sitemaps.mjs";
 import { createHash } from "node:crypto";
 import { existsSync, readFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
@@ -17,7 +18,7 @@ check(manifest.schema === "canli.publication-wrapper-manifest.v1", "publication 
 check(manifest.records.length === 16, `expected 16 publication wrappers, found ${manifest.records.length}`);
 
 const sitemapPath = resolve(ROOT, "dist/sitemap.xml");
-const sitemap = existsSync(sitemapPath) ? readFileSync(sitemapPath, "utf8") : "";
+const sitemap = existsSync(sitemapPath) ? readSitemapXml(resolve(ROOT, "dist")) : "";
 const vercelConfig = JSON.parse(readFileSync(resolve(ROOT, "vercel.json"), "utf8"));
 const archiveHeader = (vercelConfig.headers || []).find((entry) => entry.source === "/publication/(.*)/paper");
 check(Boolean(archiveHeader), "hosting policy for immutable paper routes is missing");

@@ -1,0 +1,214 @@
+{
+ "author": "Arhan Canli",
+ "claim_boundary": "A research decision under config/sleeve_admission_contract.json on one pre-registered out-of-sample record. ADMIT means every applicable gate passed on this evidence; it is not a forecast, not real-money performance, and does not itself change the live book, which changes only by a declared live-configuration change.",
+ "complete": true,
+ "completion_assessment": {
+  "status": "COMPLETE_V2_FULL_EVIDENCE_BATCH"
+ },
+ "config_hash": "e197f95f46166200",
+ "configuration": {
+  "allocator": "monthly_residual_quintile_beta_hedged",
+  "alpha_names": [
+   "sec_10k_item7_stability_jaccard5"
+  ],
+  "direction": "long_stable_short_changed",
+  "end": 1767139200000,
+  "hold_sessions": 63,
+  "lake_dir": "data/lake_sharadar_full",
+  "parser_version": "sec-filing-sections-v2",
+  "profile": "earnings_narrative_change_mdna_v1",
+  "section": "10-K Item 7",
+  "start": 1451606400000
+ },
+ "content_hash": "sha256:53ba0da7893dc6569236a8d54f0175fcceaa8980fa0c998ce9516524a5210c47",
+ "evidence_date": "2026-09-15",
+ "family_paper_public_path": "/research/equity-narrative-change-lineage.md",
+ "hypothesis_key": "2f6a5b3e8a7928e2",
+ "immutable_first_measurement": {
+  "config_hash": "e197f95f46166200",
+  "ledger": "var/experiments.jsonl"
+ },
+ "label": "earnings_narrative_change_mdna_v1",
+ "missing_sections": [],
+ "packet_status": "COMPLETE_ACCOUNTING_FINAL_KILL",
+ "partial_sections": [],
+ "required_sections": {
+  "admission_or_kill_decision": {
+   "evidence": [
+    {
+     "bytes": 6945,
+     "content_hash": "sha256:bf1be0563acc36028c2d4bfd9144c6e421e4a63b2246106fa86f45698b02acec",
+     "path": "artifacts/research/earnings_narrative_change_batch/earnings_narrative_change_mdna_v1_admission_closure.json",
+     "sha256": "b79abb2f4eee43b098e2416e1306d7f037c14fb9b405ea574e0cc4596ed034ad",
+     "type": "final_admission_closure"
+    }
+   ],
+   "statement": "FINAL_KILL",
+   "status": "VERIFIED_FINAL_KILL"
+  },
+  "code_environment_and_reproduction": {
+   "evidence": [
+    {
+     "path": "scripts/run_earnings_narrative_change_v1.py",
+     "sha256": "e427e075566e3dc58f1b9e9b5d1d7ca9b687a703c2d3af34ca12ce8b29f98c94",
+     "type": "runner_at_authorization"
+    },
+    {
+     "bytes": 36927,
+     "path": "scripts/run_earnings_narrative_change_v1.py",
+     "sha256": "e427e075566e3dc58f1b9e9b5d1d7ca9b687a703c2d3af34ca12ce8b29f98c94",
+     "type": "runner_at_seal"
+    },
+    {
+     "bytes": 3175,
+     "path": "pyproject.toml",
+     "sha256": "ddaf8b60999275f6d3fb93b3073f256d75d1383bfc8bab14263dc58645841006"
+    },
+    {
+     "bytes": 617550,
+     "path": "uv.lock",
+     "sha256": "5caca664242722a3a3112663d7a19b7b5000583e30ade3753e1b8ffdecfd6f06"
+    }
+   ],
+   "status": "VERIFIED_IDENTITY_LEVEL_EVIDENCE"
+  },
+  "economic_mechanism_and_falsifiable_hypothesis": {
+   "evidence": [
+    {
+     "bytes": 7516,
+     "path": "docs/design/PREREG_EARNINGS_NARRATIVE_CHANGE_MDNA.md",
+     "sha256": "449468589f6d665ae0a59bf2b2142a5b1737accfa187fa0ea9ac6b3fd8d3aaea"
+    }
+   ],
+   "status": "VERIFIED_IDENTITY_LEVEL_EVIDENCE"
+  },
+  "execution_and_cost_model": {
+   "evidence": [
+    {
+     "bytes": 11195,
+     "path": "artifacts/research/identity_batches/earnings_narrative_change_batch_1/execution_scenario_manifest.json",
+     "sha256": "36d5a757fa137a6151a758c1b439e3c2af97ba4e4a58c5e4e6dd1a14120f69d6"
+    },
+    {
+     "bytes": 73108,
+     "path": "artifacts/research/earnings_narrative_change_batch/earnings_narrative_change_mdna_v1_admission_evidence.json",
+     "sha256": "fb771575e5c53188972469b066b62c8caf08134cd3748a49c92c2df9cf905796"
+    }
+   ],
+   "status": "VERIFIED_IDENTITY_LEVEL_EVIDENCE"
+  },
+  "family_and_union_trial_accounting": {
+   "evidence": [
+    {
+     "config_hash": "e197f95f46166200",
+     "path": "var/experiments.jsonl"
+    },
+    {
+     "content_hash": "sha256:79f775f08c94f4977649ee2ed148e8e7e88ec6d559c59549828bf214abb59ca0",
+     "path": "artifacts/research/identity_batches/earnings_narrative_change_batch_1/matrix_receipt.json"
+    }
+   ],
+   "status": "VERIFIED_IDENTITY_LEVEL_EVIDENCE"
+  },
+  "identity_and_authorship": {
+   "evidence": [
+    {
+     "bytes": 14332,
+     "path": "artifacts/research/preregistrations/earnings_narrative_change_mdna_v1/return_identity_reservation.json",
+     "sha256": "b994bccbe4e4bc1326c483a280cb7dc7be2ace05dabb7f0ac0c40e6e8cca2548"
+    }
+   ],
+   "status": "VERIFIED_IDENTITY_LEVEL_EVIDENCE"
+  },
+  "literature_and_overlap_decision": {
+   "evidence": [
+    {
+     "bytes": 7516,
+     "path": "docs/design/PREREG_EARNINGS_NARRATIVE_CHANGE_MDNA.md",
+     "sha256": "449468589f6d665ae0a59bf2b2142a5b1737accfa187fa0ea9ac6b3fd8d3aaea"
+    }
+   ],
+   "status": "VERIFIED_IDENTITY_LEVEL_EVIDENCE"
+  },
+  "machine_readable_packet_and_stable_public_paper": {
+   "evidence": [
+    {
+     "packet_public_path": "/glassbox/trial-packets/earnings_narrative_change_mdna_v1.json",
+     "paper_public_path": "/research/earnings-narrative-change-mdna-v1"
+    }
+   ],
+   "status": "VERIFIED_IDENTITY_LEVEL_EVIDENCE"
+  },
+  "point_in_time_data_and_survivorship_controls": {
+   "evidence": [
+    {
+     "bytes": 1858,
+     "path": "artifacts/ingest/earnings_narrative_change/item7_pairs_result.json",
+     "sha256": "712ebc1aa8e24f7b91c3e021446a64621023001ebb00d3733ea52322220e63d5"
+    },
+    {
+     "bytes": 2100172,
+     "path": "artifacts/research/earnings_narrative_change_mdna_v1/oos/input_manifest.json",
+     "sha256": "6a617e8531248c9586889958482efdd59e814a00c02ed8b6c4f7de03b09bc9f2"
+    }
+   ],
+   "status": "VERIFIED_IDENTITY_LEVEL_EVIDENCE"
+  },
+  "preregistration_and_hashes": {
+   "evidence": [
+    {
+     "bytes": 7516,
+     "path": "docs/design/PREREG_EARNINGS_NARRATIVE_CHANGE_MDNA.md",
+     "sha256": "449468589f6d665ae0a59bf2b2142a5b1737accfa187fa0ea9ac6b3fd8d3aaea"
+    },
+    {
+     "bytes": 14332,
+     "path": "artifacts/research/preregistrations/earnings_narrative_change_mdna_v1/return_identity_reservation.json",
+     "sha256": "b994bccbe4e4bc1326c483a280cb7dc7be2ace05dabb7f0ac0c40e6e8cca2548"
+    }
+   ],
+   "status": "VERIFIED_IDENTITY_LEVEL_EVIDENCE"
+  },
+  "result_uncertainty_stress_capacity_and_diversification": {
+   "evidence": [
+    {
+     "bytes": 161727,
+     "content_hash": "sha256:599e62e20aecdabac50cffd5852f5cc81f865138a71a2c73a3c2637b47113a79",
+     "path": "artifacts/research/earnings_narrative_change_mdna_v1/oos/result.json",
+     "sha256": "ac05dc33b7be624d0f579e45d55ee06c44aa411aa94fadafbc6f3b382e64bf8a"
+    },
+    {
+     "bytes": 38661,
+     "path": "artifacts/research/earnings_narrative_change_batch/earnings_narrative_change_mdna_v1_diversification.json",
+     "sha256": "b7617306760786b204e4318a55171309e9bf2b56a9be636df361c72504aa20f5"
+    },
+    {
+     "bytes": 73108,
+     "path": "artifacts/research/earnings_narrative_change_batch/earnings_narrative_change_mdna_v1_admission_evidence.json",
+     "sha256": "fb771575e5c53188972469b066b62c8caf08134cd3748a49c92c2df9cf905796"
+    }
+   ],
+   "status": "VERIFIED_IDENTITY_LEVEL_EVIDENCE"
+  }
+ },
+ "research_family_key": "earnings_narrative_change",
+ "result_receipt": {
+  "content_hash": "sha256:599e62e20aecdabac50cffd5852f5cc81f865138a71a2c73a3c2637b47113a79",
+  "path": "artifacts/research/earnings_narrative_change_mdna_v1/oos/result.json"
+ },
+ "schema": "canli.alphac-identity-trial-packet.v2",
+ "trial_paper_public_path": "/research/earnings-narrative-change-mdna-v1",
+ "verified_sections": [
+  "identity_and_authorship",
+  "economic_mechanism_and_falsifiable_hypothesis",
+  "literature_and_overlap_decision",
+  "preregistration_and_hashes",
+  "point_in_time_data_and_survivorship_controls",
+  "execution_and_cost_model",
+  "code_environment_and_reproduction",
+  "result_uncertainty_stress_capacity_and_diversification",
+  "family_and_union_trial_accounting",
+  "admission_or_kill_decision",
+  "machine_readable_packet_and_stable_public_paper"
+ ]
+}

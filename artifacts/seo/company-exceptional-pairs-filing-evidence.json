@@ -1,0 +1,989 @@
+{
+  "schema": "canli.editorial-filing-inspection.v1",
+  "scope": "Six unusual equal-vector pairs; latest selected accession only. Original filing captures, not an assertion covering every historical filing or approval for publication. Comparison extraction excludes dimensional and nil facts, applies inline scale/sign, and recognizes only listed decimal/zero formats. Missing matches remain unresolved, not errors inferred in the issuer data.",
+  "publication_approved": false,
+  "groups": [
+    {
+      "cik": "0000066740",
+      "name": "3M CO",
+      "tags": [
+        "RevenueFromContractWithCustomerExcludingAssessedTax",
+        "Revenues"
+      ],
+      "selected_sha256": "61efef5f18257e9f0f42b844bc696e1879633f24e96acffbe50691f7fee5616f",
+      "source_sha256": "571391ded2a92e8cb1e7be5c22f3ac192f7fe9d4cada2dbdb985261297e6ecd4",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/66740/000006674026000014/0000066740-26-000014-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T04:49:34.210521+00:00",
+        "bytes": 14059,
+        "sha256": "c9de610ee48808d7398a6989cf8caeee5a83b520f78a78d08a6ea48e3b9716a7"
+      },
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/66740/000006674026000014/mmm-20251231.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T04:49:36.252081+00:00",
+        "bytes": 4114086,
+        "sha256": "104f35e670a2e3ff49c544914f4d46190ca217d366912204fd7377973ad593e1"
+      },
+      "selected_rows_in_inspected_accession": [
+        {
+          "tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+          "start": "2025-01-01",
+          "end": "2025-12-31",
+          "unit": "USD",
+          "value": 24948000000,
+          "matches": [
+            {
+              "tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+              "start": "2025-01-01",
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "24948000000",
+              "fact_id": "f-591",
+              "context_id": "c-1",
+              "table_row": "Total Company $ 24,948 $ 24,575 $ 24,610"
+            },
+            {
+              "tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+              "start": "2025-01-01",
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "24948000000",
+              "fact_id": "f-603",
+              "context_id": "c-1",
+              "table_row": "Worldwide $ 24,948 $ 24,575 $ 24,610"
+            }
+          ],
+          "matched": true
+        },
+        {
+          "tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+          "start": "2024-01-01",
+          "end": "2024-12-31",
+          "unit": "USD",
+          "value": 24575000000,
+          "matches": [
+            {
+              "tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+              "start": "2024-01-01",
+              "end": "2024-12-31",
+              "unit": "USD",
+              "value": "24575000000",
+              "fact_id": "f-592",
+              "context_id": "c-10",
+              "table_row": "Total Company $ 24,948 $ 24,575 $ 24,610"
+            },
+            {
+              "tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+              "start": "2024-01-01",
+              "end": "2024-12-31",
+              "unit": "USD",
+              "value": "24575000000",
+              "fact_id": "f-604",
+              "context_id": "c-10",
+              "table_row": "Worldwide $ 24,948 $ 24,575 $ 24,610"
+            }
+          ],
+          "matched": true
+        },
+        {
+          "tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+          "start": "2023-01-01",
+          "end": "2023-12-31",
+          "unit": "USD",
+          "value": 24610000000,
+          "matches": [
+            {
+              "tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+              "start": "2023-01-01",
+              "end": "2023-12-31",
+              "unit": "USD",
+              "value": "24610000000",
+              "fact_id": "f-593",
+              "context_id": "c-11",
+              "table_row": "Total Company $ 24,948 $ 24,575 $ 24,610"
+            },
+            {
+              "tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+              "start": "2023-01-01",
+              "end": "2023-12-31",
+              "unit": "USD",
+              "value": "24610000000",
+              "fact_id": "f-605",
+              "context_id": "c-11",
+              "table_row": "Worldwide $ 24,948 $ 24,575 $ 24,610"
+            }
+          ],
+          "matched": true
+        },
+        {
+          "tag": "Revenues",
+          "start": "2025-01-01",
+          "end": "2025-12-31",
+          "unit": "USD",
+          "value": 24948000000,
+          "matches": [
+            {
+              "tag": "Revenues",
+              "start": "2025-01-01",
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "24948000000",
+              "fact_id": "f-68",
+              "context_id": "c-1",
+              "table_row": "Net sales $ 24,948 $ 24,575 $ 24,610"
+            },
+            {
+              "tag": "Revenues",
+              "start": "2025-01-01",
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "24948000000",
+              "fact_id": "f-2536",
+              "context_id": "c-1",
+              "table_row": "Total Company $ 24,948 $ 24,575 $ 24,610"
+            }
+          ],
+          "matched": true
+        },
+        {
+          "tag": "Revenues",
+          "start": "2024-01-01",
+          "end": "2024-12-31",
+          "unit": "USD",
+          "value": 24575000000,
+          "matches": [
+            {
+              "tag": "Revenues",
+              "start": "2024-01-01",
+              "end": "2024-12-31",
+              "unit": "USD",
+              "value": "24575000000",
+              "fact_id": "f-69",
+              "context_id": "c-10",
+              "table_row": "Net sales $ 24,948 $ 24,575 $ 24,610"
+            },
+            {
+              "tag": "Revenues",
+              "start": "2024-01-01",
+              "end": "2024-12-31",
+              "unit": "USD",
+              "value": "24575000000",
+              "fact_id": "f-2537",
+              "context_id": "c-10",
+              "table_row": "Total Company $ 24,948 $ 24,575 $ 24,610"
+            }
+          ],
+          "matched": true
+        },
+        {
+          "tag": "Revenues",
+          "start": "2023-01-01",
+          "end": "2023-12-31",
+          "unit": "USD",
+          "value": 24610000000,
+          "matches": [
+            {
+              "tag": "Revenues",
+              "start": "2023-01-01",
+              "end": "2023-12-31",
+              "unit": "USD",
+              "value": "24610000000",
+              "fact_id": "f-70",
+              "context_id": "c-11",
+              "table_row": "Net sales $ 24,948 $ 24,575 $ 24,610"
+            },
+            {
+              "tag": "Revenues",
+              "start": "2023-01-01",
+              "end": "2023-12-31",
+              "unit": "USD",
+              "value": "24610000000",
+              "fact_id": "f-2538",
+              "context_id": "c-11",
+              "table_row": "Total Company $ 24,948 $ 24,575 $ 24,610"
+            }
+          ],
+          "matched": true
+        }
+      ],
+      "all_inspected_accession_rows_match": true,
+      "editorial_decision": "RETAIN_DISTINCT_CONCEPTS_WITH_COMPARISON_CONTEXT",
+      "reason": "Customer-contract revenue is presented in a total-company revenue table and Revenues in net sales. Matching selected amounts do not erase differences in definition or filing vintage; the 2021 and 2017 selected observations have different accessions between tags.",
+      "release_approved": false,
+      "remaining_scope": "This resolves numerical-equality deduplication only. Other quality flags, standalone usefulness, hosted release checks and publication approval remain separate."
+    },
+    {
+      "cik": "0000816956",
+      "name": "CONMED CORPORATION",
+      "tags": [
+        "RevenueFromContractWithCustomerExcludingAssessedTax",
+        "Revenues"
+      ],
+      "selected_sha256": "4eec95a1a541f571e22fb52c72e20b57e0ce6b22252e84ccf00f36d7215daae5",
+      "source_sha256": "361fc9bffac9e0f480696341efa84d520fc870dcf75b9c7eb7d649bfecb4b70b",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/816956/000081695626000009/0000816956-26-000009-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T04:49:37.933590+00:00",
+        "bytes": 13972,
+        "sha256": "5b00735563266c4c726d635d79c9374ef766d80cff1a04f05891592cb70a6c61"
+      },
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/816956/000081695626000009/cnmd-20251231.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T04:49:39.394301+00:00",
+        "bytes": 2122659,
+        "sha256": "b8a76aa75648cd60fe033fb7c211b9be12306a1010ad593bf94d7010a140ba3b"
+      },
+      "selected_rows_in_inspected_accession": [
+        {
+          "tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+          "start": "2025-01-01",
+          "end": "2025-12-31",
+          "unit": "USD",
+          "value": 1374724000,
+          "matches": [
+            {
+              "tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+              "start": "2025-01-01",
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "1374724000",
+              "fact_id": "f-1056",
+              "context_id": "c-1",
+              "table_row": "Total sales from contracts with customers $ 574,598 $ 800,126 $ 1,374,724"
+            },
+            {
+              "tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+              "start": "2025-01-01",
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "1374724000",
+              "fact_id": "f-1097",
+              "context_id": "c-1",
+              "table_row": "Total sales from contracts with customers $ 574,598 $ 800,126 $ 1,374,724"
+            }
+          ],
+          "matched": true
+        },
+        {
+          "tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+          "start": "2024-01-01",
+          "end": "2024-12-31",
+          "unit": "USD",
+          "value": 1307015000,
+          "matches": [
+            {
+              "tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+              "start": "2024-01-01",
+              "end": "2024-12-31",
+              "unit": "USD",
+              "value": "1307015000",
+              "fact_id": "f-1065",
+              "context_id": "c-7",
+              "table_row": "Total sales from contracts with customers $ 543,988 $ 763,027 $ 1,307,015"
+            },
+            {
+              "tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+              "start": "2024-01-01",
+              "end": "2024-12-31",
+              "unit": "USD",
+              "value": "1307015000",
+              "fact_id": "f-1112",
+              "context_id": "c-7",
+              "table_row": "Total sales from contracts with customers $ 543,988 $ 763,027 $ 1,307,015"
+            }
+          ],
+          "matched": true
+        },
+        {
+          "tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+          "start": "2023-01-01",
+          "end": "2023-12-31",
+          "unit": "USD",
+          "value": 1244744000,
+          "matches": [
+            {
+              "tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+              "start": "2023-01-01",
+              "end": "2023-12-31",
+              "unit": "USD",
+              "value": "1244744000",
+              "fact_id": "f-1074",
+              "context_id": "c-8",
+              "table_row": "Total sales from contracts with customers $ 533,158 $ 711,586 $ 1,244,744"
+            },
+            {
+              "tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+              "start": "2023-01-01",
+              "end": "2023-12-31",
+              "unit": "USD",
+              "value": "1244744000",
+              "fact_id": "f-1127",
+              "context_id": "c-8",
+              "table_row": "Total sales from contracts with customers $ 533,158 $ 711,586 $ 1,244,744"
+            }
+          ],
+          "matched": true
+        },
+        {
+          "tag": "Revenues",
+          "start": "2025-01-01",
+          "end": "2025-12-31",
+          "unit": "USD",
+          "value": 1374724000,
+          "matches": [
+            {
+              "tag": "Revenues",
+              "start": "2025-01-01",
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "1374724000",
+              "fact_id": "f-135",
+              "context_id": "c-1",
+              "table_row": "Net sales $ 1,374,724 $ 1,307,015 $ 1,244,744"
+            },
+            {
+              "tag": "Revenues",
+              "start": "2025-01-01",
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "1374724000",
+              "fact_id": "f-1136",
+              "context_id": "c-1",
+              "table_row": "Net sales $ 1,374,724 $ 1,307,015 $ 1,244,744"
+            },
+            {
+              "tag": "Revenues",
+              "start": "2025-01-01",
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "1374724000",
+              "fact_id": "f-1328",
+              "context_id": "c-1",
+              "table_row": "Foreign exchange contracts $ ( 7,100 ) $ 10,928 $ 5,489 Net Sales $ 1,374,724 $ 1,307,015 $ 1,244,744 $ 229 $ 4,285 $ 3,790"
+            }
+          ],
+          "matched": true
+        },
+        {
+          "tag": "Revenues",
+          "start": "2024-01-01",
+          "end": "2024-12-31",
+          "unit": "USD",
+          "value": 1307015000,
+          "matches": [
+            {
+              "tag": "Revenues",
+              "start": "2024-01-01",
+              "end": "2024-12-31",
+              "unit": "USD",
+              "value": "1307015000",
+              "fact_id": "f-136",
+              "context_id": "c-7",
+              "table_row": "Net sales $ 1,374,724 $ 1,307,015 $ 1,244,744"
+            },
+            {
+              "tag": "Revenues",
+              "start": "2024-01-01",
+              "end": "2024-12-31",
+              "unit": "USD",
+              "value": "1307015000",
+              "fact_id": "f-1137",
+              "context_id": "c-7",
+              "table_row": "Net sales $ 1,374,724 $ 1,307,015 $ 1,244,744"
+            },
+            {
+              "tag": "Revenues",
+              "start": "2024-01-01",
+              "end": "2024-12-31",
+              "unit": "USD",
+              "value": "1307015000",
+              "fact_id": "f-1329",
+              "context_id": "c-7",
+              "table_row": "Foreign exchange contracts $ ( 7,100 ) $ 10,928 $ 5,489 Net Sales $ 1,374,724 $ 1,307,015 $ 1,244,744 $ 229 $ 4,285 $ 3,790"
+            }
+          ],
+          "matched": true
+        },
+        {
+          "tag": "Revenues",
+          "start": "2023-01-01",
+          "end": "2023-12-31",
+          "unit": "USD",
+          "value": 1244744000,
+          "matches": [
+            {
+              "tag": "Revenues",
+              "start": "2023-01-01",
+              "end": "2023-12-31",
+              "unit": "USD",
+              "value": "1244744000",
+              "fact_id": "f-137",
+              "context_id": "c-8",
+              "table_row": "Net sales $ 1,374,724 $ 1,307,015 $ 1,244,744"
+            },
+            {
+              "tag": "Revenues",
+              "start": "2023-01-01",
+              "end": "2023-12-31",
+              "unit": "USD",
+              "value": "1244744000",
+              "fact_id": "f-1138",
+              "context_id": "c-8",
+              "table_row": "Net sales $ 1,374,724 $ 1,307,015 $ 1,244,744"
+            },
+            {
+              "tag": "Revenues",
+              "start": "2023-01-01",
+              "end": "2023-12-31",
+              "unit": "USD",
+              "value": "1244744000",
+              "fact_id": "f-1330",
+              "context_id": "c-8",
+              "table_row": "Foreign exchange contracts $ ( 7,100 ) $ 10,928 $ 5,489 Net Sales $ 1,374,724 $ 1,307,015 $ 1,244,744 $ 229 $ 4,285 $ 3,790"
+            }
+          ],
+          "matched": true
+        }
+      ],
+      "all_inspected_accession_rows_match": true,
+      "editorial_decision": "RETAIN_DISTINCT_CONCEPTS_WITH_COMPARISON_CONTEXT",
+      "reason": "Customer-contract revenue appears in the disaggregated sales note, and Revenues in net sales. Retain definition and presentation distinctions even where selected values match.",
+      "release_approved": false,
+      "remaining_scope": "This resolves numerical-equality deduplication only. Other quality flags, standalone usefulness, hosted release checks and publication approval remain separate."
+    },
+    {
+      "cik": "0001678105",
+      "name": "CARO HOLDINGS INC.",
+      "tags": [
+        "Liabilities",
+        "LiabilitiesCurrent"
+      ],
+      "selected_sha256": "0fa2c9565e65d4132591d7c67f67d53200aa2ff8c235f61b2bd6eefec8fadb7a",
+      "source_sha256": "c680aa63438de39ac9c278a6391d794c3ded69900fefcdb8e67fdbf280ccd1de",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1678105/000164033426001184/0001640334-26-001184-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T04:49:40.864919+00:00",
+        "bytes": 10931,
+        "sha256": "0b0ce4a8e9b4e09550932bfbc8e839ee4d7c22f0161ba93e5c3546028184b20a"
+      },
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1678105/000164033426001184/caro_10k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T04:49:42.014661+00:00",
+        "bytes": 673983,
+        "sha256": "218b1daf3e165df058d9716930782858c2c94f0e59a4d632bdc98326b76de9ff"
+      },
+      "selected_rows_in_inspected_accession": [
+        {
+          "tag": "Liabilities",
+          "start": null,
+          "end": "2026-03-31",
+          "unit": "USD",
+          "value": 1986308,
+          "matches": [
+            {
+              "tag": "Liabilities",
+              "start": null,
+              "end": "2026-03-31",
+              "unit": "USD",
+              "value": "1986308",
+              "fact_id": "fid_36",
+              "context_id": "AsOf2026-03-31",
+              "table_row": "TOTAL LIABILITIES 1,986,308 1,600,408"
+            }
+          ],
+          "matched": true
+        },
+        {
+          "tag": "Liabilities",
+          "start": null,
+          "end": "2025-03-31",
+          "unit": "USD",
+          "value": 1600408,
+          "matches": [
+            {
+              "tag": "Liabilities",
+              "start": null,
+              "end": "2025-03-31",
+              "unit": "USD",
+              "value": "1600408",
+              "fact_id": "fid_37",
+              "context_id": "AsOf2025-03-31",
+              "table_row": "TOTAL LIABILITIES 1,986,308 1,600,408"
+            }
+          ],
+          "matched": true
+        },
+        {
+          "tag": "LiabilitiesCurrent",
+          "start": null,
+          "end": "2026-03-31",
+          "unit": "USD",
+          "value": 1986308,
+          "matches": [
+            {
+              "tag": "LiabilitiesCurrent",
+              "start": null,
+              "end": "2026-03-31",
+              "unit": "USD",
+              "value": "1986308",
+              "fact_id": "fid_34",
+              "context_id": "AsOf2026-03-31",
+              "table_row": "Total Current Liabilities 1,986,308 1,600,408"
+            }
+          ],
+          "matched": true
+        },
+        {
+          "tag": "LiabilitiesCurrent",
+          "start": null,
+          "end": "2025-03-31",
+          "unit": "USD",
+          "value": 1600408,
+          "matches": [
+            {
+              "tag": "LiabilitiesCurrent",
+              "start": null,
+              "end": "2025-03-31",
+              "unit": "USD",
+              "value": "1600408",
+              "fact_id": "fid_35",
+              "context_id": "AsOf2025-03-31",
+              "table_row": "Total Current Liabilities 1,986,308 1,600,408"
+            }
+          ],
+          "matched": true
+        }
+      ],
+      "all_inspected_accession_rows_match": true,
+      "editorial_decision": "RETAIN_DISTINCT_CONCEPTS_WITH_COMPARISON_CONTEXT",
+      "reason": "The inspected balance sheet presents separate current-liability and total-liability rows with equal values. This does not make current and total liabilities interchangeable in other periods or companies.",
+      "release_approved": false,
+      "remaining_scope": "This resolves numerical-equality deduplication only. Other quality flags, standalone usefulness, hosted release checks and publication approval remain separate."
+    },
+    {
+      "cik": "0001816554",
+      "name": "EVENTIKO INC.",
+      "tags": [
+        "AccountsPayableCurrent",
+        "PropertyPlantAndEquipmentNet"
+      ],
+      "selected_sha256": "989723df411dea700b05e284a9bff712906eb34c363705007f16a63e0440bcaa",
+      "source_sha256": "e80c92ca1c907ecd4f04a4d459cfc89206a3865ca54415fe26a908748373738c",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1816554/000168316825005216/0001683168-25-005216-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T04:49:43.231965+00:00",
+        "bytes": 11239,
+        "sha256": "af904e56422c2fa0403421faa125a873c3045fc369ec1213a9f34549d1a686bf"
+      },
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1816554/000168316825005216/eventiko_i10k-043025.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T04:49:44.844878+00:00",
+        "bytes": 348488,
+        "sha256": "a323567dab1aa90d3780b968367c58dd07c8479204ee53ce0d53b3bf492ab319"
+      },
+      "selected_rows_in_inspected_accession": [
+        {
+          "tag": "AccountsPayableCurrent",
+          "start": null,
+          "end": "2025-04-30",
+          "unit": "USD",
+          "value": 0,
+          "matches": [
+            {
+              "tag": "AccountsPayableCurrent",
+              "start": null,
+              "end": "2025-04-30",
+              "unit": "USD",
+              "value": "0",
+              "fact_id": "Fact000099",
+              "context_id": "AsOf2025-04-30",
+              "table_row": "Accounts Payable \u2013 \u2013"
+            }
+          ],
+          "matched": true
+        },
+        {
+          "tag": "AccountsPayableCurrent",
+          "start": null,
+          "end": "2024-04-30",
+          "unit": "USD",
+          "value": 0,
+          "matches": [
+            {
+              "tag": "AccountsPayableCurrent",
+              "start": null,
+              "end": "2024-04-30",
+              "unit": "USD",
+              "value": "0",
+              "fact_id": "Fact000100",
+              "context_id": "AsOf2024-04-30",
+              "table_row": "Accounts Payable \u2013 \u2013"
+            }
+          ],
+          "matched": true
+        },
+        {
+          "tag": "PropertyPlantAndEquipmentNet",
+          "start": null,
+          "end": "2025-04-30",
+          "unit": "USD",
+          "value": 0,
+          "matches": [
+            {
+              "tag": "PropertyPlantAndEquipmentNet",
+              "start": null,
+              "end": "2025-04-30",
+              "unit": "USD",
+              "value": "0",
+              "fact_id": "Fact000078",
+              "context_id": "AsOf2025-04-30",
+              "table_row": "Total Fixed Assets \u2013 \u2013"
+            }
+          ],
+          "matched": true
+        },
+        {
+          "tag": "PropertyPlantAndEquipmentNet",
+          "start": null,
+          "end": "2024-04-30",
+          "unit": "USD",
+          "value": 0,
+          "matches": [
+            {
+              "tag": "PropertyPlantAndEquipmentNet",
+              "start": null,
+              "end": "2024-04-30",
+              "unit": "USD",
+              "value": "0",
+              "fact_id": "Fact000079",
+              "context_id": "AsOf2024-04-30",
+              "table_row": "Total Fixed Assets \u2013 \u2013"
+            }
+          ],
+          "matched": true
+        }
+      ],
+      "all_inspected_accession_rows_match": true,
+      "editorial_decision": "RETAIN_DISTINCT_CONCEPTS_WITH_COMPARISON_CONTEXT",
+      "reason": "The latest filing reports separate accounts-payable and total-fixed-assets rows at zero. The additionally inspected 2024 filing presents both at 11000 for 2023; fixed assets are described as website development. Preserve distinct liability and asset concepts; equality is present in the filing rather than introduced by selection.",
+      "release_approved": false,
+      "remaining_scope": "This resolves numerical-equality deduplication only. Other quality flags, standalone usefulness, hosted release checks and publication approval remain separate."
+    },
+    {
+      "cik": "0001873213",
+      "name": "BIRDIE WIN CORPORATION",
+      "tags": [
+        "Liabilities",
+        "LiabilitiesCurrent"
+      ],
+      "selected_sha256": "e4b842cc695aba9877e9a0485492b561f2f51c6da4deaddd23f1791accc7f3f9",
+      "source_sha256": "5a80b98f6647292689a44fc77d6710d0cf6e139024389a056329f01c52b81c34",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1873213/000149315225017715/0001493152-25-017715-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T04:49:46.091370+00:00",
+        "bytes": 11893,
+        "sha256": "dccd5a7043f5501636fb5a29eb4a123158b41c865f621c269e9f9b5976e4389a"
+      },
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1873213/000149315225017715/form10-k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T04:49:47.460077+00:00",
+        "bytes": 707596,
+        "sha256": "b4d7651d442edd9b7b01d26282b291172c82a5c67f059df1895b56b9fa540757"
+      },
+      "selected_rows_in_inspected_accession": [
+        {
+          "tag": "Liabilities",
+          "start": null,
+          "end": "2025-07-31",
+          "unit": "USD",
+          "value": 5200,
+          "matches": [
+            {
+              "tag": "Liabilities",
+              "start": null,
+              "end": "2025-07-31",
+              "unit": "USD",
+              "value": "5200",
+              "fact_id": "Fact000108",
+              "context_id": "AsOf2025-07-31",
+              "table_row": "Total liabilities $ 5,200 $ 13,190"
+            }
+          ],
+          "matched": true
+        },
+        {
+          "tag": "Liabilities",
+          "start": null,
+          "end": "2024-07-31",
+          "unit": "USD",
+          "value": 13190,
+          "matches": [
+            {
+              "tag": "Liabilities",
+              "start": null,
+              "end": "2024-07-31",
+              "unit": "USD",
+              "value": "13190",
+              "fact_id": "Fact000109",
+              "context_id": "AsOf2024-07-31",
+              "table_row": "Total liabilities $ 5,200 $ 13,190"
+            }
+          ],
+          "matched": true
+        },
+        {
+          "tag": "LiabilitiesCurrent",
+          "start": null,
+          "end": "2025-07-31",
+          "unit": "USD",
+          "value": 5200,
+          "matches": [
+            {
+              "tag": "LiabilitiesCurrent",
+              "start": null,
+              "end": "2025-07-31",
+              "unit": "USD",
+              "value": "5200",
+              "fact_id": "Fact000105",
+              "context_id": "AsOf2025-07-31",
+              "table_row": "Total current liabilities 5,200 13,190"
+            }
+          ],
+          "matched": true
+        },
+        {
+          "tag": "LiabilitiesCurrent",
+          "start": null,
+          "end": "2024-07-31",
+          "unit": "USD",
+          "value": 13190,
+          "matches": [
+            {
+              "tag": "LiabilitiesCurrent",
+              "start": null,
+              "end": "2024-07-31",
+              "unit": "USD",
+              "value": "13190",
+              "fact_id": "Fact000106",
+              "context_id": "AsOf2024-07-31",
+              "table_row": "Total current liabilities 5,200 13,190"
+            }
+          ],
+          "matched": true
+        }
+      ],
+      "all_inspected_accession_rows_match": true,
+      "editorial_decision": "RETAIN_DISTINCT_CONCEPTS_WITH_COMPARISON_CONTEXT",
+      "reason": "The inspected filing separately presents total/current liabilities and total operating/general-administrative expenses. Equal values in these selected periods do not collapse the accounting definitions.",
+      "release_approved": false,
+      "remaining_scope": "This resolves numerical-equality deduplication only. Other quality flags, standalone usefulness, hosted release checks and publication approval remain separate."
+    },
+    {
+      "cik": "0001873213",
+      "name": "BIRDIE WIN CORPORATION",
+      "tags": [
+        "OperatingExpenses",
+        "SellingGeneralAndAdministrativeExpense"
+      ],
+      "selected_sha256": "e4b842cc695aba9877e9a0485492b561f2f51c6da4deaddd23f1791accc7f3f9",
+      "source_sha256": "5a80b98f6647292689a44fc77d6710d0cf6e139024389a056329f01c52b81c34",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1873213/000149315225017715/0001493152-25-017715-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T04:49:46.091370+00:00",
+        "bytes": 11893,
+        "sha256": "dccd5a7043f5501636fb5a29eb4a123158b41c865f621c269e9f9b5976e4389a"
+      },
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1873213/000149315225017715/form10-k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T04:49:47.460077+00:00",
+        "bytes": 707596,
+        "sha256": "b4d7651d442edd9b7b01d26282b291172c82a5c67f059df1895b56b9fa540757"
+      },
+      "selected_rows_in_inspected_accession": [
+        {
+          "tag": "OperatingExpenses",
+          "start": "2024-08-01",
+          "end": "2025-07-31",
+          "unit": "USD",
+          "value": 47299,
+          "matches": [
+            {
+              "tag": "OperatingExpenses",
+              "start": "2024-08-01",
+              "end": "2025-07-31",
+              "unit": "USD",
+              "value": "47299",
+              "fact_id": "Fact000161",
+              "context_id": "From2024-08-01to2025-07-31",
+              "table_row": "Total operating expenses 47,299 49,082"
+            }
+          ],
+          "matched": true
+        },
+        {
+          "tag": "OperatingExpenses",
+          "start": "2023-08-01",
+          "end": "2024-07-31",
+          "unit": "USD",
+          "value": 49082,
+          "matches": [
+            {
+              "tag": "OperatingExpenses",
+              "start": "2023-08-01",
+              "end": "2024-07-31",
+              "unit": "USD",
+              "value": "49082",
+              "fact_id": "Fact000162",
+              "context_id": "From2023-08-012024-07-31",
+              "table_row": "Total operating expenses 47,299 49,082"
+            }
+          ],
+          "matched": true
+        },
+        {
+          "tag": "SellingGeneralAndAdministrativeExpense",
+          "start": "2024-08-01",
+          "end": "2025-07-31",
+          "unit": "USD",
+          "value": 47299,
+          "matches": [
+            {
+              "tag": "SellingGeneralAndAdministrativeExpense",
+              "start": "2024-08-01",
+              "end": "2025-07-31",
+              "unit": "USD",
+              "value": "47299",
+              "fact_id": "Fact000603",
+              "context_id": "From2024-08-01to2025-07-31",
+              "table_row": "General and administrative expenses ( 47,299 ) ( 47,299 )"
+            },
+            {
+              "tag": "SellingGeneralAndAdministrativeExpense",
+              "start": "2024-08-01",
+              "end": "2025-07-31",
+              "unit": "USD",
+              "value": "47299",
+              "fact_id": "Fact000644",
+              "context_id": "From2024-08-01to2025-07-31",
+              "table_row": "General and administrative expenses - ( 47,299 ) ( 47,299 )"
+            }
+          ],
+          "matched": true
+        },
+        {
+          "tag": "SellingGeneralAndAdministrativeExpense",
+          "start": "2023-08-01",
+          "end": "2024-07-31",
+          "unit": "USD",
+          "value": 49082,
+          "matches": [
+            {
+              "tag": "SellingGeneralAndAdministrativeExpense",
+              "start": "2023-08-01",
+              "end": "2024-07-31",
+              "unit": "USD",
+              "value": "49082",
+              "fact_id": "Fact000622",
+              "context_id": "From2023-08-012024-07-31",
+              "table_row": "General and administrative expenses ( 49,082 ) ( 49,082 )"
+            },
+            {
+              "tag": "SellingGeneralAndAdministrativeExpense",
+              "start": "2023-08-01",
+              "end": "2024-07-31",
+              "unit": "USD",
+              "value": "49082",
+              "fact_id": "Fact000670",
+              "context_id": "From2023-08-012024-07-31",
+              "table_row": "General and administrative expenses - ( 49,082 ) ( 49,082 )"
+            }
+          ],
+          "matched": true
+        }
+      ],
+      "all_inspected_accession_rows_match": true,
+      "editorial_decision": "RETAIN_DISTINCT_CONCEPTS_WITH_COMPARISON_CONTEXT",
+      "reason": "The inspected filing separately presents total/current liabilities and total operating/general-administrative expenses. Equal values in these selected periods do not collapse the accounting definitions.",
+      "release_approved": false,
+      "remaining_scope": "This resolves numerical-equality deduplication only. Other quality flags, standalone usefulness, hosted release checks and publication approval remain separate."
+    }
+  ],
+  "initial_fetch_failure": {
+    "client": "Python urllib",
+    "url": "https://www.sec.gov/Archives/edgar/data/66740/000006674026000014/0000066740-26-000014-index.html",
+    "status": 403,
+    "body_not_retained": true,
+    "subsequent_standard_node_fetch": "see index capture receipt"
+  },
+  "inspection_methods": [
+    {
+      "local_path": "artifacts/seo/corpus-local/editorial-filings/canli-capture-editorial.py",
+      "sha256": "ea9a844a074ca828253fa5663b307403448bad03dcfd73efcf6794bee7e86cc1"
+    },
+    {
+      "local_path": "artifacts/seo/corpus-local/editorial-filings/canli-review-pair-contexts.py",
+      "sha256": "cc4779917b170194684118e1f84d84b137325efafe81f893eb1514909abc3fa1"
+    }
+  ],
+  "reviewer": "Codex; source review, not independent human replication",
+  "reviewed_on": "2026-09-20",
+  "delivery_manifest_sha256": "ea0b8d7618ccec63ce33a4b49c906c64db5ca929cbd6e2d3167c3807c82181e7",
+  "additional_eventiko_2024_inspection": {
+    "index_capture": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1816554/000168316824005079/0001683168-24-005079-index.html",
+      "status": 200,
+      "captured_at": "2026-09-20T04:47:38.227Z",
+      "sha256": "87d3f2a9d753347fb8aa726c6fdc1e38800435fa3b368f723ccfd9541d2a5fb3",
+      "bytes": 11239
+    },
+    "primary_capture": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1816554/000168316824005079/eventiko_i10k-043024.htm",
+      "status": 200,
+      "captured_at": "2026-09-20T04:47:56.382Z",
+      "sha256": "4b71af752f76b5267d79e1da38554355ecad67112848cafff2aa18930e3e0587",
+      "bytes": 328586
+    },
+    "facts": [
+      {
+        "tag": "PropertyPlantAndEquipmentNet",
+        "context": "AsOf2024-04-30",
+        "value": 0,
+        "unit": "USD",
+        "fact_id": "Fact000065"
+      },
+      {
+        "tag": "PropertyPlantAndEquipmentNet",
+        "context": "AsOf2023-04-30",
+        "value": 11000,
+        "unit": "USD",
+        "fact_id": "Fact000066"
+      },
+      {
+        "tag": "AccountsPayableCurrent",
+        "context": "AsOf2024-04-30",
+        "value": 0,
+        "unit": "USD",
+        "fact_id": "Fact000086"
+      },
+      {
+        "tag": "AccountsPayableCurrent",
+        "context": "AsOf2023-04-30",
+        "value": 11000,
+        "unit": "USD",
+        "fact_id": "Fact000087"
+      }
+    ]
+  }
+}

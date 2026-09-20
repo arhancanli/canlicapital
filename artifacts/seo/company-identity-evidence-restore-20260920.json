@@ -1,0 +1,23 @@
+{
+  "schema": "canli.identity-evidence-restore.v1",
+  "archive_sha256": "b48b199b8d459e42641cd8e444e73d5d05f4aa4443a40855f81c287779e3a853",
+  "archive_bytes": 26521600,
+  "files": 77,
+  "metadata": {
+    "scope": "Identity-review supplement only: ten company-facts sources, 13 filings, diagnostic targets, numerical comparison and Princeton semantic disposition. Does not re-run all 106 original exclusions or replace the v3 archive. Local retention only; no publication approval.",
+    "repository_revision": "e9bb48293e5104bf1d7e24465f9bebf35b874ba6",
+    "python": "3.9.6 (default, Apr  7 2026, 02:38:40) \n[Clang 21.0.0 (clang-2100.0.123.102)]",
+    "beautifulsoup4": "4.15.0",
+    "node": "v24.19.0",
+    "runtime_note": "Runtime versions recorded; runtimes and third-party packages are not bundled."
+  },
+  "reproduced_report_sha256": {
+    "company-identity-filing-review-20260920.json": "13347f11493defaf96a2a6cec3c53819d8c1656fcbd81af76bd80237aaa5e969",
+    "company-identity-filing-targets-20260920.json": "c552b88f571ebc55133c353f49c6cd52c6a82992b8baba740151308ae0b22e2e",
+    "company-identity-inline-comparison-20260920.json": "15de26091d7c4ba881d841b9e61615085907b856f50f7a07034bc21048acdd18",
+    "princeton-revenue-scope-20260920.json": "04dfc40f4b563681f173441354d31c4085e7f371d2e738b2eca892e00dbbd753"
+  },
+  "result": "PASS",
+  "temporary_restore_removed": true,
+  "verification_note": "The capture report hash is preserved and verified; the targets, comparison and Princeton disposition are regenerated offline. The original 106-case exclusion audit is an input and is not rerun by this supplement."
+}

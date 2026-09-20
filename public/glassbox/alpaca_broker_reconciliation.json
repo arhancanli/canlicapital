@@ -2,8 +2,8 @@
   "author": "Arhan Canli",
   "cent_tolerance": 0.01,
   "claim_boundary": "Self-published read-only reconciliation against three dedicated Alpaca paper accounts. It is broker-derived but not an independent third-party attestation, does not imply real capital, and does not establish future performance.",
-  "content_hash": "sha256:26b4b30e202a03c48ecf667c5d3a029d592e3565001c5e3754d174208840bb50",
-  "generated_at": "2026-09-15T14:25:51.106056+00:00",
+  "content_hash": "sha256:13ae35d7625b881ba4fed59a0c7a0b1a086c96b6a56977783d60d16607b2d3f3",
+  "generated_at": "2026-09-20T09:25:46.699336+00:00",
   "method": "GET_ONLY_ACCOUNT_POSITIONS_PORTFOLIO_HISTORY_OPEN_ORDERS",
   "schema": "canli.alphac-alpaca-broker-reconciliation.v1",
   "sleeves": {
@@ -28,105 +28,103 @@
       },
       "comparison_after_refresh": {
         "all_overlapping_marks_match_to_cent": true,
-        "broker_marks": 28,
+        "broker_marks": 32,
         "broker_marks_missing_locally": 0,
-        "local_marks": 29,
+        "local_marks": 33,
         "max_absolute_equity_difference": 0.0,
         "missing_broker_mark_timestamps": [],
-        "overlapping_marks": 28
+        "overlapping_marks": 32
       },
       "comparison_before_refresh": {
         "all_overlapping_marks_match_to_cent": true,
-        "broker_marks": 28,
-        "broker_marks_missing_locally": 1,
-        "local_marks": 28,
+        "broker_marks": 32,
+        "broker_marks_missing_locally": 0,
+        "local_marks": 33,
         "max_absolute_equity_difference": 0.0,
-        "missing_broker_mark_timestamps": [
-          "2026-09-15T00:00:00+00:00"
-        ],
-        "overlapping_marks": 27
+        "missing_broker_mark_timestamps": [],
+        "overlapping_marks": 32
       },
-      "current_equity": 980133.69,
-      "current_equity_as_of": "2026-09-15T14:25:51.106000+00:00",
+      "current_equity": 995517.77,
+      "current_equity_as_of": "2026-09-20T09:25:46.699000+00:00",
       "fill_outcome_reconciliation": {
         "consecutive_fill_reconcile_failures": 0,
         "last_error": null,
         "last_failure_at": "2026-08-25T06:09:35.875000+00:00",
-        "last_success_at": "2026-09-15T05:03:06.157000+00:00"
+        "last_success_at": "2026-09-18T05:03:19.702000+00:00"
       },
       "holdings": {
-        "as_of": "2026-09-15",
+        "as_of": "2026-09-20",
         "broker_reconciled": true,
         "flat": false,
-        "gross_pct": 28.7,
+        "gross_pct": 29.5,
         "long": [
           {
-            "ticker": "MU",
-            "weight_pct": 0.97
+            "ticker": "STX",
+            "weight_pct": 1.03
           },
           {
-            "ticker": "STX",
-            "weight_pct": 0.92
+            "ticker": "MU",
+            "weight_pct": 0.99
           },
           {
             "ticker": "WDC",
-            "weight_pct": 0.49
-          },
-          {
-            "ticker": "CIEN",
-            "weight_pct": 0.43
+            "weight_pct": 0.52
           },
           {
             "ticker": "TER",
-            "weight_pct": 0.41
+            "weight_pct": 0.43
+          },
+          {
+            "ticker": "CIEN",
+            "weight_pct": 0.42
           },
           {
             "ticker": "REPL",
-            "weight_pct": 0.36
+            "weight_pct": 0.37
+          },
+          {
+            "ticker": "LRCX",
+            "weight_pct": 0.35
           },
           {
             "ticker": "COHR",
-            "weight_pct": 0.33
+            "weight_pct": 0.34
+          },
+          {
+            "ticker": "ONTO",
+            "weight_pct": 0.34
           },
           {
             "ticker": "GLW",
             "weight_pct": 0.33
           },
           {
-            "ticker": "LRCX",
-            "weight_pct": 0.32
-          },
-          {
-            "ticker": "ONTO",
-            "weight_pct": 0.32
-          },
-          {
             "ticker": "MKSI",
-            "weight_pct": 0.3
+            "weight_pct": 0.32
           },
           {
             "ticker": "TTMI",
-            "weight_pct": 0.27
-          },
-          {
-            "ticker": "NBIS",
-            "weight_pct": 0.27
-          },
-          {
-            "ticker": "APGE",
-            "weight_pct": 0.26
+            "weight_pct": 0.28
           },
           {
             "ticker": "SIMO",
-            "weight_pct": 0.26
+            "weight_pct": 0.28
+          },
+          {
+            "ticker": "NBIS",
+            "weight_pct": 0.28
+          },
+          {
+            "ticker": "FORM",
+            "weight_pct": 0.27
           }
         ],
-        "long_count": 83,
-        "net_pct": 3.81,
+        "long_count": 84,
+        "net_pct": 4.4,
         "short": [
           {
             "ticker": "IT",
-            "weight_pct": 0.34
+            "weight_pct": 0.32
           },
           {
             "ticker": "INTU",
@@ -134,7 +132,7 @@
           },
           {
             "ticker": "CHTR",
-            "weight_pct": 0.29
+            "weight_pct": 0.27
           },
           {
             "ticker": "CSGP",
@@ -146,53 +144,53 @@
           },
           {
             "ticker": "SMPL",
-            "weight_pct": 0.22
+            "weight_pct": 0.23
+          },
+          {
+            "ticker": "SHAK",
+            "weight_pct": 0.21
+          },
+          {
+            "ticker": "HDB",
+            "weight_pct": 0.21
           },
           {
             "ticker": "CBZ",
             "weight_pct": 0.21
           },
           {
+            "ticker": "PRGO",
+            "weight_pct": 0.2
+          },
+          {
             "ticker": "POWL",
-            "weight_pct": 0.21
+            "weight_pct": 0.2
+          },
+          {
+            "ticker": "BKNG",
+            "weight_pct": 0.2
           },
           {
             "ticker": "FISV",
             "weight_pct": 0.2
           },
           {
-            "ticker": "HDB",
-            "weight_pct": 0.2
-          },
-          {
-            "ticker": "SHAK",
+            "ticker": "KLAC",
             "weight_pct": 0.2
           },
           {
             "ticker": "HUBS",
             "weight_pct": 0.2
-          },
-          {
-            "ticker": "FLUT",
-            "weight_pct": 0.19
-          },
-          {
-            "ticker": "PRGO",
-            "weight_pct": 0.19
-          },
-          {
-            "ticker": "BKNG",
-            "weight_pct": 0.19
           }
         ],
-        "short_count": 91,
+        "short_count": 92,
         "source": "ALPACA_CURRENT_POSITIONS"
       },
-      "open_order_count": 24,
-      "open_position_count": 174,
+      "open_order_count": 0,
+      "open_position_count": 176,
       "passes": true,
       "portfolio_history_first_mark": "2026-08-06T00:00:00+00:00",
-      "portfolio_history_last_mark": "2026-09-15T00:00:00+00:00",
+      "portfolio_history_last_mark": "2026-09-19T00:00:00+00:00",
       "profile": "equity",
       "sleeve": "alphamax"
     },
@@ -217,49 +215,47 @@
       },
       "comparison_after_refresh": {
         "all_overlapping_marks_match_to_cent": true,
-        "broker_marks": 27,
+        "broker_marks": 31,
         "broker_marks_missing_locally": 0,
-        "local_marks": 28,
+        "local_marks": 32,
         "max_absolute_equity_difference": 0.0,
         "missing_broker_mark_timestamps": [],
-        "overlapping_marks": 27
+        "overlapping_marks": 31
       },
       "comparison_before_refresh": {
         "all_overlapping_marks_match_to_cent": true,
-        "broker_marks": 27,
-        "broker_marks_missing_locally": 1,
-        "local_marks": 27,
+        "broker_marks": 31,
+        "broker_marks_missing_locally": 0,
+        "local_marks": 32,
         "max_absolute_equity_difference": 0.0,
-        "missing_broker_mark_timestamps": [
-          "2026-09-15T00:00:00+00:00"
-        ],
-        "overlapping_marks": 26
+        "missing_broker_mark_timestamps": [],
+        "overlapping_marks": 31
       },
-      "current_equity": 995924.6,
-      "current_equity_as_of": "2026-09-15T14:25:51.106000+00:00",
+      "current_equity": 997248.59,
+      "current_equity_as_of": "2026-09-20T09:25:46.699000+00:00",
       "fill_outcome_reconciliation": {
         "consecutive_fill_reconcile_failures": 0,
         "last_error": null,
         "last_failure_at": null,
-        "last_success_at": "2026-09-15T06:01:23.512000+00:00"
+        "last_success_at": "2026-09-18T06:00:17.923000+00:00"
       },
       "holdings": {
-        "as_of": "2026-09-15",
+        "as_of": "2026-09-20",
         "broker_reconciled": true,
         "flat": false,
-        "gross_pct": 27.9,
+        "gross_pct": 28.0,
         "long": [
           {
             "ticker": "SPY",
-            "weight_pct": 14.01
+            "weight_pct": 14.02
           }
         ],
         "long_count": 1,
-        "net_pct": 0.12,
+        "net_pct": 0.06,
         "short": [
           {
             "ticker": "IWM",
-            "weight_pct": 13.89
+            "weight_pct": 13.96
           }
         ],
         "short_count": 1,
@@ -269,7 +265,7 @@
       "open_position_count": 2,
       "passes": true,
       "portfolio_history_first_mark": "2026-08-07T00:00:00+00:00",
-      "portfolio_history_last_mark": "2026-09-15T00:00:00+00:00",
+      "portfolio_history_last_mark": "2026-09-19T00:00:00+00:00",
       "profile": "alphavintage",
       "sleeve": "alphavintage"
     },
@@ -294,41 +290,39 @@
       },
       "comparison_after_refresh": {
         "all_overlapping_marks_match_to_cent": true,
-        "broker_marks": 28,
+        "broker_marks": 32,
         "broker_marks_missing_locally": 0,
-        "local_marks": 29,
+        "local_marks": 33,
         "max_absolute_equity_difference": 0.0,
         "missing_broker_mark_timestamps": [],
-        "overlapping_marks": 28
+        "overlapping_marks": 32
       },
       "comparison_before_refresh": {
         "all_overlapping_marks_match_to_cent": true,
-        "broker_marks": 28,
-        "broker_marks_missing_locally": 1,
-        "local_marks": 28,
+        "broker_marks": 32,
+        "broker_marks_missing_locally": 0,
+        "local_marks": 33,
         "max_absolute_equity_difference": 0.0,
-        "missing_broker_mark_timestamps": [
-          "2026-09-15T00:00:00+00:00"
-        ],
-        "overlapping_marks": 27
+        "missing_broker_mark_timestamps": [],
+        "overlapping_marks": 32
       },
-      "current_equity": 1008200.32,
-      "current_equity_as_of": "2026-09-15T14:25:51.106000+00:00",
+      "current_equity": 1005670.11,
+      "current_equity_as_of": "2026-09-20T09:25:46.699000+00:00",
       "fill_outcome_reconciliation": {
         "consecutive_fill_reconcile_failures": 0,
         "last_error": null,
         "last_failure_at": null,
-        "last_success_at": "2026-09-15T05:35:25.009000+00:00"
+        "last_success_at": "2026-09-18T05:31:06.833000+00:00"
       },
       "holdings": {
-        "as_of": "2026-09-15",
+        "as_of": "2026-09-20",
         "broker_reconciled": true,
         "flat": false,
         "gross_pct": 71.1,
         "long": [
           {
             "ticker": "SHY",
-            "weight_pct": 20.01
+            "weight_pct": 19.99
           },
           {
             "ticker": "UUP",
@@ -336,77 +330,77 @@
           },
           {
             "ticker": "DBA",
-            "weight_pct": 4.51
+            "weight_pct": 4.47
           },
           {
             "ticker": "EFA",
-            "weight_pct": 3.41
+            "weight_pct": 3.44
           },
           {
             "ticker": "DBC",
-            "weight_pct": 3.18
+            "weight_pct": 3.11
           },
           {
             "ticker": "SPY",
-            "weight_pct": 3.04
+            "weight_pct": 3.05
           },
           {
             "ticker": "IWM",
-            "weight_pct": 2.61
+            "weight_pct": 2.62
           },
           {
             "ticker": "EEM",
-            "weight_pct": 2.56
+            "weight_pct": 2.58
           },
           {
             "ticker": "QQQ",
-            "weight_pct": 2.26
+            "weight_pct": 2.29
           },
           {
             "ticker": "USO",
-            "weight_pct": 1.53
+            "weight_pct": 1.48
           }
         ],
         "long_count": 10,
-        "net_pct": 31.25,
+        "net_pct": 31.15,
         "short": [
           {
             "ticker": "IEF",
-            "weight_pct": 10.27
+            "weight_pct": 10.23
           },
           {
             "ticker": "TLT",
-            "weight_pct": 4.82
+            "weight_pct": 4.81
           },
           {
             "ticker": "GLD",
-            "weight_pct": 2.65
+            "weight_pct": 2.67
           },
           {
             "ticker": "SLV",
-            "weight_pct": 1.25
+            "weight_pct": 1.32
           },
           {
             "ticker": "UNG",
-            "weight_pct": 0.95
+            "weight_pct": 0.93
           }
         ],
         "short_count": 5,
         "source": "ALPACA_CURRENT_POSITIONS"
       },
-      "open_order_count": 2,
+      "open_order_count": 0,
       "open_position_count": 15,
       "passes": true,
       "portfolio_history_first_mark": "2026-08-06T00:00:00+00:00",
-      "portfolio_history_last_mark": "2026-09-15T00:00:00+00:00",
+      "portfolio_history_last_mark": "2026-09-19T00:00:00+00:00",
       "profile": "managed_futures",
       "sleeve": "managed_futures"
     }
   },
   "summary": {
     "expected_alpaca_sleeves": 3,
-    "open_orders": 26,
-    "open_positions": 191,
+    "open_orders": 0,
+    "open_positions": 193,
     "passes": true,
     "reconciled_alpaca_sleeves": 3,
     "status": "PASS",

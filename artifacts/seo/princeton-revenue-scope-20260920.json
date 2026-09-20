@@ -1,0 +1,71 @@
+{
+  "schema": "canli.company-concept-scope-disposition.v1",
+  "comparison_sha256": "15de26091d7c4ba881d841b9e61615085907b856f50f7a07034bc21048acdd18",
+  "cik": "0000845385",
+  "accession": "0001213900-23-024619",
+  "source_sha256": "2fd640d381fe94c711e1a297ae1dbfec8d4dc8e4e95bb65ea0ceba94f1bc0854",
+  "concept": "Revenues",
+  "primary_capture": {
+    "url": "https://www.sec.gov/Archives/edgar/data/845385/000121390023024619/f10k2022_princetoncap.htm",
+    "status": 200,
+    "captured_at": "2026-09-20T07:19:37.835881+00:00",
+    "bytes": 1935476,
+    "sha256": "31d7f56036aada6af1290d9b8dc833cc199c22e33b6fde49640ac68eb99954e9",
+    "body_path": "artifacts/seo/corpus-local/identity-filings/0000845385-0001213900-23-024619-primary.response"
+  },
+  "preceding_filing_text": "y investment\nvalue exceeds 10% of the Company\u2019s total investments at fair value, the income from the subsidiary investment exceeds 80% of the\nCompany\u2019s change in net assets resulting from operations, or the income from the subsidiary investment exceeds 10% of the Company\u2019s\nchange in net assets resulting from operations and the subsidiary investment value exceeds 5% of the Company\u2019s total investments\nat fair value. The Company has determined that Rockfish Seafood\nGrill, Inc., a majority owned or control investment, was considered a significant subsidiary at the 20 % level at December 31, 2022 as\nprescribed under Rule 3-09 of Regulation S-X. The Company has included the audited financial statements of Rockfish Seafood Grill, Inc.\nfor the year ended December 28, 2022. See \u201cItem 15. Exhibits And Financial Statement Schedules.\u201d F- 35 PRINCETON\n                                            CAPITAL CORPORATION NOTES\nTO FINANCIAL STATEMENTS December\n31, 2022 The\nCompany has determined that Advantis Certified Staffing Solutions, Inc., one of the Company\u2019s four majority owned or controlled\nportfolio companies, was considered a significant subsidiary at December 31, 2022 as prescribed under Rule 4-08(g) of Regulation S-X. The\nfollowing tables show the summarized financial information for Advantis Certified Staffing Solutions, Inc. (numbers in thousands): Advantis Certified Staffing\n    Solutions, Inc. As\n    of December 31, 2022 As\n    of December 31, 2021 Balance Sheet Current Assets $ 2,843 $ 3,682 Noncurrent Assets - - Current Liabilities 12,616 12,365 Noncurrent Liabilities - 1,156 ",
+  "table_text": "Year\n    Ended December 31, 2022 Year\n    Ended December 31, 2021 Year\n    Ended December 31, 2020 Income Statement Net Revenue (Loss) $ 8,757 $ 8,182 $ 6,935 Gross Profit 1,694 1,993 1,873 Net Income (Loss) 66 269 1,790",
+  "matched_observations": [
+    {
+      "cik": "0000845385",
+      "source_sha256": "2fd640d381fe94c711e1a297ae1dbfec8d4dc8e4e95bb65ea0ceba94f1bc0854",
+      "tag": "Revenues",
+      "start": "2022-01-01",
+      "end": "2022-12-31",
+      "val": 8757000,
+      "accn": "0001213900-23-024619",
+      "fy": 2022,
+      "fp": "FY",
+      "form": "10-K",
+      "filed": "2023-03-30",
+      "frame": "CY2022",
+      "unit": "USD"
+    },
+    {
+      "cik": "0000845385",
+      "source_sha256": "2fd640d381fe94c711e1a297ae1dbfec8d4dc8e4e95bb65ea0ceba94f1bc0854",
+      "tag": "Revenues",
+      "start": "2021-01-01",
+      "end": "2021-12-31",
+      "val": 8182000,
+      "accn": "0001213900-23-024619",
+      "fy": 2022,
+      "fp": "FY",
+      "form": "10-K",
+      "filed": "2023-03-30",
+      "frame": "CY2021",
+      "unit": "USD"
+    },
+    {
+      "cik": "0000845385",
+      "source_sha256": "2fd640d381fe94c711e1a297ae1dbfec8d4dc8e4e95bb65ea0ceba94f1bc0854",
+      "tag": "Revenues",
+      "start": "2020-01-01",
+      "end": "2020-12-31",
+      "val": 6935000,
+      "accn": "0001213900-23-024619",
+      "fy": 2022,
+      "fp": "FY",
+      "form": "10-K",
+      "filed": "2023-03-30",
+      "frame": "CY2020",
+      "unit": "USD"
+    }
+  ],
+  "reviewer": "Codex source inspection; not independent human replication",
+  "disposition": "EXCLUDE_CONCEPT_BEFORE_ANY_IDENTITY_ADMISSION",
+  "reason": "The filing identifies this table as summarized financial information for Advantis Certified Staffing Solutions, Inc., an unconsolidated controlled portfolio company. Matching Princeton CIK contexts do not make these values Princeton revenue.",
+  "publication_approved": false,
+  "policy_changed": false,
+  "limitations": "Three latest-selected revenue observations inspected. Other concepts, prior observations and other issuers remain subject to review. Existing INVALID_ENTITY exclusion already prevents publication; no release object changes."
+}

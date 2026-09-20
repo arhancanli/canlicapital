@@ -1,3 +1,4 @@
+import { readSitemapXml } from "./lib/sitemaps.mjs";
 // Keep repository-level publication claims bound to the same artifacts as the rendered site.
 import { existsSync, readFileSync, readdirSync } from "node:fs";
 import { dirname, resolve } from "node:path";
@@ -10,7 +11,7 @@ const researchIndex = JSON.parse(readFileSync(resolve(ROOT, "public/research-ind
 const packetManifest = JSON.parse(
   readFileSync(resolve(ROOT, "public/glassbox/trial_packet_manifest.json"), "utf8"),
 );
-const sitemap = readFileSync(resolve(ROOT, "public/sitemap.xml"), "utf8");
+const sitemap = readSitemapXml(resolve(ROOT, "public"));
 const measurementCount = readdirSync(resolve(ROOT, "measurements")).filter((name) =>
   name.endsWith(".html"),
 ).length;

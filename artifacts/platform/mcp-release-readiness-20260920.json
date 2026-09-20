@@ -1,0 +1,101 @@
+{
+  "schema": "canli.mcp-release-readiness.v1",
+  "checked_at": "2026-09-20T07:52:44.199889+00:00",
+  "published": {
+    "latest": "0.1.1",
+    "version": "0.1.1",
+    "published_at": "2026-09-06T18:21:14.293Z",
+    "registry": "https://registry.npmjs.org/canli-validation-mcp"
+  },
+  "candidate": {
+    "version": "0.1.2",
+    "published": false,
+    "pack": {
+      "id": "canli-validation-mcp@0.1.2",
+      "name": "canli-validation-mcp",
+      "version": "0.1.2",
+      "size": 8822,
+      "unpackedSize": 26895,
+      "shasum": "8e3444a8ba4d764d75977a60bed4bfd721ee2930",
+      "integrity": "sha512-yvqrl2HhtbgesPPT8ZhWmmHNXMPPDhSXNics2SXYc2G3tPKKlc1QXbC3mRzlWQPnqKWRBGV4lSb4ZKGkumTdWw==",
+      "filename": "canli-validation-mcp-0.1.2.tgz",
+      "files": [
+        {
+          "path": "LICENSE",
+          "size": 1084,
+          "mode": 420
+        },
+        {
+          "path": "README.md",
+          "size": 8492,
+          "mode": 420
+        },
+        {
+          "path": "package.json",
+          "size": 1034,
+          "mode": 420
+        },
+        {
+          "path": "src/schemas.mjs",
+          "size": 8070,
+          "mode": 420
+        },
+        {
+          "path": "src/server.mjs",
+          "size": 8215,
+          "mode": 493
+        }
+      ],
+      "entryCount": 5,
+      "bundled": []
+    },
+    "smoke": {
+      "package": "canli-validation-mcp",
+      "version": "0.1.2",
+      "files": 5,
+      "integrity": "sha512-yvqrl2HhtbgesPPT8ZhWmmHNXMPPDhSXNics2SXYc2G3tPKKlc1QXbC3mRzlWQPnqKWRBGV4lSb4ZKGkumTdWw==",
+      "result": "PASS",
+      "scope": "Isolated tarball install and local-stub stdio; not npm publication or production API verification"
+    }
+  },
+  "archives": {
+    "0.1.1": {
+      "path": "artifacts/seo/corpus-local/mcp-release-review/canli-validation-mcp-0.1.1.tgz",
+      "bytes": 6927,
+      "sha256": "ee84ec117647e8855a5eb0961e1b229dca0e4c13e22ba9b8ae612e00c9f15e04",
+      "npm_integrity": "sha512-6wGgOeZAGLzswpKRwlcB4fwQhDQ34PhNATiqzHOjYOFpY7TZ1PLNWnMDlVx967p4i8KrWU//PbuAARU70gkoFg==",
+      "files": {
+        "package/package.json": "22cb77764da15b734e934a8f69190a8cac62bbfa3ba78cb6b11f05f90bcd0a5a",
+        "package/README.md": "bb25ffb38669b920f370de1c4c49988337fcae74885457f9f90585130316213f",
+        "package/src/schemas.mjs": "a9b9d3f5ac69785aab81362270d7022a6fd55578df05f2bd9df643ea388ea073",
+        "package/src/server.mjs": "1753d753f845acd69d2982bd59b94476e516b6f78261f5bf14ef6aea0a83faae"
+      }
+    },
+    "0.1.2": {
+      "path": "artifacts/seo/corpus-local/mcp-release-review/canli-validation-mcp-0.1.2.tgz",
+      "bytes": 8822,
+      "sha256": "7975bf2827b5a46cb6593ab2211cf2643c9d3dd4dba3e5bb42bfb1979b95acf0",
+      "npm_integrity": "sha512-yvqrl2HhtbgesPPT8ZhWmmHNXMPPDhSXNics2SXYc2G3tPKKlc1QXbC3mRzlWQPnqKWRBGV4lSb4ZKGkumTdWw==",
+      "files": {
+        "package/LICENSE": "e679ca02271c3b6ff38e197098b9260900656c23f06b787383624681f425fa26",
+        "package/package.json": "3e0ac71f439a32736d1b407e93340d0185b11a7b80f8cd8a622e5049adecce36",
+        "package/README.md": "ed023e3b8b81a9ad2563e92a53ec5c9209ce1a45e9f2c535b8b20b90bb3267ed",
+        "package/src/schemas.mjs": "b8d20cc3e5122a95c8f4701d20ff9a7effd8af0faa4c4587c7d9cb319fa1883a",
+        "package/src/server.mjs": "441229f62375bc5e977729b6849e661ec87ace2c3316c9fd7da4a77e807a3ed0"
+      }
+    }
+  },
+  "validation": {
+    "source_tests_passed": 48,
+    "isolated_tarball_stdio_tests_passed": 1,
+    "backend": "Local HTTP stub only",
+    "install": "Temporary isolated npm consumer, lifecycle scripts disabled, actual executable symlink in a path containing spaces"
+  },
+  "limitations": [
+    "No npm or MCP registry publication performed.",
+    "Registry source inspection does not establish independent adoption.",
+    "Runtimes and third-party dependency tarballs are not archived.",
+    "Local tarball retention is not offsite backup."
+  ],
+  "correction": "Prior goal status incorrectly called version0.1.1 unpublished; registry shows it published September6. Candidate reliability changes require a new immutable version."
+}

@@ -1,0 +1,44 @@
+{
+  "schema": "canli.company-delivery-measurement.v1",
+  "publication_approved": false,
+  "environment": "local Node HTTP, sequential; no cloud-load or indexing claim",
+  "companies": 1968,
+  "histories": 52408,
+  "directories": 40,
+  "downloads": 3936,
+  "maxHtmlBytes": 36223,
+  "failures": [],
+  "sitemapHttpUrls": 54416,
+  "maxClicksFromCompanyDirectory": 4,
+  "referencePages": 54416,
+  "assets": 5,
+  "catalog": {
+    "objectReads": 2001,
+    "bytesRead": 145250650,
+    "cacheHits": 161238,
+    "cachedBytes": 4185196,
+    "cachedObjects": 109
+  },
+  "downloadIndex": {
+    "objectReads": 3252,
+    "bytesRead": 13654086,
+    "maxReadBytes": 7687,
+    "cachedBytes": 258496
+  },
+  "downloadRoot": "719341a68e70ac33499fc988f6109455dffe7aa044f45a48c1cc9ea80ad35d25",
+  "catalogRoot": "2889091ec6cae9df384beb7f41f9766e58b6172d2bee52b4ea37310a49a87799",
+  "localHtmlMedianMs": 2.4684159999997064,
+  "localHtmlP95Ms": 2.7997079999768175,
+  "code": {
+    "scripts/measure-company-delivery.mjs": "d2de8a3635cdcff5b822a513172c65b15dbfc8e3661b4360a04c485d4d1ab8e6",
+    "scripts/lib/company-preview-server.mjs": "7f50ffde90ba9b28287994bcc36baa9ee9726c5ec9866822a65cafed0806bb97",
+    "scripts/lib/company-page-renderer.mjs": "fddb939d9a6e5d1f99b388093a90787d82d1cfe77e7f8d9241643c9f1f152d9f",
+    "api/_lib/company-html.js": "f0983b308265ff3414fc3097a9c96f901a319d904d0c2bff05224689e740572a",
+    "api/_lib/company-download-index.js": "fb993f1d0ea2d681c5c51e1d0b1f81f7da7b34e809aac4ce692568f225bf66fe",
+    "api/_lib/company-download.js": "b8fb9d0339a7f9c2b3024d68081ff848e9521ba3a0545dc2f8ab28ddbd6a80bf",
+    "scripts/lib/build-company-download-index.mjs": "858385691d2607ea763bcff48a0492b54163ed197a82a5f7038bcec88377d4d1",
+    "api/_lib/company-directory-html.js": "2c3a9769f1d65397dbe4721dc951357d2fda1e3a9147acfab71131d630bf2a90",
+    "scripts/lib/company-directory.mjs": "f31e48e21c39661dd1c5a1c5b85d40176376477a280d7841a5c58483ce48ea39",
+    "api/_lib/company-catalog.js": "96cca98a63d7109d859c59bc08482ae0933ec010ccf2a6f85ac22ff78e7918b4"
+  }
+}

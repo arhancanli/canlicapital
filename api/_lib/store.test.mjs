@@ -75,3 +75,13 @@ test("usageSummary propagates a network failure without swallowing it", async ()
   const store = createStore({ url: "https://x.supabase.co", serviceKey: "svc", fetchImpl: f });
   await assert.rejects(store.usageSummary(), /fetch failed/);
 });
+
+test('revoke RPC receives only the key hash and rejects ambiguous responses', async () => {
+  let payload;
+  let response = { revoked: true, revoked_at: '2026-09-20T00:00:00Z' };
+  const f = fakeFetch([['/rpc/revoke_key', init => { payload = JSON.parse(init.body); return ok(response); }]]);
+  const store = createStore({ url: 'https://x.supabase.co', serviceKey: 'svc', fetchImpl: f });
+  assert.deepEqual(await store.revokeKey('hash-only'), response);
+  assert.deepEqual(payload, { p_key_hash: 'hash-only' });
+  for (response of [{}, { revoked: true }, { revoked: true, revoked_at: 'not-a-date' }, { revoked: 'true' }]) await assert.rejects(store.revokeKey('hash-only'));
+});

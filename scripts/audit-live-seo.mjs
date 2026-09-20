@@ -1,3 +1,5 @@
+import { fetchSitemapUrls } from "./lib/sitemaps.mjs";
+import { readSitemapXml } from "./lib/sitemaps.mjs";
 import { createHash } from "node:crypto";
 import {
   existsSync,
@@ -122,7 +124,7 @@ function localCandidateSummary() {
   const sitemapPath = resolve(ROOT, "public/sitemap.xml");
   const dist = resolve(ROOT, "dist");
   if (!existsSync(sitemapPath) || !existsSync(dist)) return null;
-  const sitemap = readFileSync(sitemapPath, "utf8");
+  const sitemap = readSitemapXml(resolve(ROOT, "public"));
   const files = walkHtml(dist);
   const noindex = files.filter((path) =>
     /<meta\s+name="robots"\s+content="[^"]*\bnoindex\b/i.test(readFileSync(path, "utf8")),
@@ -158,6 +160,13 @@ function localCandidateSummary() {
   };
 }
 
+export function classifyRawEvidenceHeaders(targets) {
+  const unknown = targets.filter(target => target.fetch_error || !(target.status >= 200 && target.status < 300));
+  const withoutNoindex = targets.filter(target => !unknown.includes(target) &&
+    !/\b(noindex|none)\b/i.test(target.x_robots_tag ?? ""));
+  return { unknown, withoutNoindex };
+}
+
 export async function runAudit({ fetchImpl = fetch, observedAt = new Date() } = {}) {
   const [robotsResponse, sitemapResponse] = await Promise.all([
     fetchImpl(`${ORIGIN}/robots.txt`),
@@ -167,7 +176,7 @@ export async function runAudit({ fetchImpl = fetch, observedAt = new Date() } = 
     robotsResponse.text(),
     sitemapResponse.text(),
   ]);
-  const urls = [...sitemapText.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1]);
+  const urls = await fetchSitemapUrls(`${ORIGIN}/sitemap.xml`, { fetchImpl, rootXml: sitemapText });
   const pages = [];
   let cursor = 0;
   async function worker() {
@@ -234,25 +243,32 @@ export async function runAudit({ fetchImpl = fetch, observedAt = new Date() } = 
     (link) => `${ORIGIN}${link.href.slice(0, -3)}` !== link.source_url,
   );
   const rawMarkdownTargets = [...new Set(rawMarkdownLinks.map((link) => `${ORIGIN}${link.href}`))];
-  const rawMarkdownTargetHeaders = await Promise.all(
-    rawMarkdownTargets.map(async (url) => {
-      try {
-        const response = await fetchImpl(url, { method: "HEAD", redirect: "follow" });
-        return {
-          url,
-          status: response.status,
-          x_robots_tag: response.headers?.get?.("x-robots-tag") ?? null,
-        };
-      } catch (error) {
-        return { url, status: null, x_robots_tag: null, fetch_error: String(error) };
-      }
-    }),
-  );
-  const rawMarkdownTargetsWithoutNoindex = rawMarkdownTargetHeaders.filter(
-    (target) => !/\bnoindex\b/i.test(target.x_robots_tag ?? ""),
-  );
+  const rawMarkdownTargetHeaders = [];
+  for (let offset = 0; offset < rawMarkdownTargets.length; offset += 12) {
+    rawMarkdownTargetHeaders.push(...await Promise.all(
+      rawMarkdownTargets.slice(offset, offset + 12).map(async (url) => {
+        try {
+          const response = await fetchImpl(url, { method: "HEAD", redirect: "follow" });
+          return {
+            url,
+            status: response.status,
+            x_robots_tag: response.headers?.get?.("x-robots-tag") ?? null,
+          };
+        } catch (error) {
+          return { url, status: null, x_robots_tag: null, fetch_error: String(error) };
+        }
+      }),
+    ));
+  }
+  const { unknown: rawMarkdownTargetsUnknown, withoutNoindex: rawMarkdownTargetsWithoutNoindex } =
+    classifyRawEvidenceHeaders(rawMarkdownTargetHeaders);
   const offOriginUrls = urls.filter((url) => !url.startsWith(`${ORIGIN}/`) && url !== `${ORIGIN}/`);
-  const duplicateSitemapUrls = [...new Set(urls.filter((url, index) => urls.indexOf(url) !== index))];
+  const seenUrls = new Set();
+  const duplicateSitemapUrls = [...new Set(urls.filter((url) => {
+    if (seenUrls.has(url)) return true;
+    seenUrls.add(url);
+    return false;
+  }))];
   const strategicIssues = [];
   if (incompleteTrialsInLiveSitemap.length) {
     strategicIssues.push({
@@ -268,6 +284,13 @@ export async function runAudit({ fetchImpl = fetch, observedAt = new Date() } = 
       count: rawMarkdownNavigationLinks.length,
       finding:
         "Normal paper navigation points to metadata-free markdown copies instead of consolidating authority on canonical HTML papers.",
+    });
+  }
+  if (rawMarkdownTargetsUnknown.length) {
+    strategicIssues.push({
+      code: "RAW_EVIDENCE_FETCH_UNRESOLVED",
+      count: rawMarkdownTargetsUnknown.length,
+      finding: "Raw download checks did not receive successful responses; their indexing directives are unknown.",
     });
   }
   if (rawMarkdownTargetsWithoutNoindex.length) {
@@ -325,6 +348,7 @@ export async function runAudit({ fetchImpl = fetch, observedAt = new Date() } = 
         raw_markdown_navigation_links: rawMarkdownNavigationLinks,
         raw_markdown_unique_target_count: rawMarkdownTargets.length,
         raw_markdown_targets_without_noindex_count: rawMarkdownTargetsWithoutNoindex.length,
+        raw_markdown_targets_unresolved_count: rawMarkdownTargetsUnknown.length,
         raw_markdown_target_headers: rawMarkdownTargetHeaders,
       },
       trial_indexing: {

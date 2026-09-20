@@ -1,0 +1,40 @@
+{
+  "schema": "canli.editorial-narrative-scope-hold.v1",
+  "publication_approved": false,
+  "cik": "0001593549",
+  "tag": "Revenues",
+  "source_sha256": "5fc0541d3c667e8542c70da83b7f948b0510c21c26e4337ace0bb00d828406b9",
+  "selected_sha256": "4d9b8dd2630398ed2c3baf99e4c71e10fe36d330bdf93a293d2c31663a76a1f0",
+  "primary_capture": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1593549/000149315226020899/form10-k.htm",
+    "status": 200,
+    "captured_at": "2026-09-20T09:34:19.722084+00:00",
+    "bytes": 1096359,
+    "sha256": "136e7ea33db83612f4a3a4d4cb75d96b555266a7379507b525876d02b715c25e",
+    "body_path": "artifacts/seo/corpus-local/fifth-editorial-filings/0001593549-0001493152-26-020899-primary.response"
+  },
+  "bindings": {
+    "artifacts/seo/company-fifth-editorial-targets-v6.json": "1a9c1a59af8bf9389c7b2967a599d0b74b6e8833fab57689f93f7f232266cebf",
+    "artifacts/seo/company-fifth-filing-capture-20260920.json": "b5e057cebbde6c1f26c636e4cb5592cedf7d8e18959295c1a549626122359721",
+    "artifacts/seo/company-fifth-inline-comparison-20260920.json": "0ffb8277515d602c3db068dd5fc612bb31fb19e7a3ec3983f1685be89b602533"
+  },
+  "facts": [
+    {
+      "id": "Fact000975",
+      "context_id": "From2023-01-012023-12-31",
+      "value": "2,000,000"
+    },
+    {
+      "id": "Fact000977",
+      "context_id": "From2021-01-012021-12-31",
+      "value": "2,000,000"
+    }
+  ],
+  "visible_paragraph": "Effective January 1, 2018, the Company adopted the guidance of ASC 610-20, Other Income - Gains and Losses from the Derecognition of Nonfinancial Assets (\u201cASC 610-20\u201d), which applies to sales or transfers to noncustomers of nonfinancial assets or in substance nonfinancial assets. Generally, the Company\u2019s sales of its real estate properties would be considered a sale of a nonfinancial asset as defined. Under ASC 610-20, the Company will derecognize the asset and recognize a gain or loss on the sale of the real estate when control of the underlying asset transfers to the buyer. During the twelve months ended December 31, 2023, and 2021, the Company has US$ 2,000,000 in revenue from the sale of real estate properties. As a result of the adoption of ASU 610-20, there was an impact to the Company\u2019s consolidated financial statements.",
+  "statement_table_context": "Dec 30, 2025 Dec 31, 2024 Dec 31, 2023 Ordinary Income/Expense Income Revenues 151,388 1 691 241 1,966,202 Sales Discounts 0 0 0 Total Income 151,388 1 691 241 2,005,789 Cost of Goods Sold Merchant Account Fees 0 0 0 Professional fees RTS 1,270,944 826 144 1,074,694 Amortization RTS 926,394 2 110 275 1,865,862 Total COGS 2,197,338 2 936 419 2,940,555 Gross Profit ( 2,045,950 ) ( 1 245 178 ) ( 934,767 ) Expense Advertising & marketing 5,213 39,025 339,230 Computer and Internet Expenses 0 0 0 Bank Charges 3,480 9,370 10,443 Commissions & fees 0 0 65,035 Contract labor 10,944 40,610 516,835 Contractors 0 18,501 5,475 General business expenses 22,955 21,745 32,815 Interest paid 11,136 135,381 0 Legal & accounting services 0 39,674 126,241 Professional Fees 3,500 46,108 209,563 Office expenses 14,730 9,532 6,896 Payroll expenses 2,549 46,012 191,000 Rent 0 4,271 5,544 Travel 3,923 504 19,238 Uncategorized Expense 0 500,882 4,081,376 Total Expense 11,790,894 911,556 5,611,673 Net Ordinary Income ( 13,922,859 ) ( 2,156,734 ) ( 6,546,440 ) Other Income/Expense Other Income 1,601,000 1,560,249 57 Other Expense ( 2,343 ) ( 92 ) ( 231 ) Net Other Income 1,603,343 1,560,341 288 Net Income ( 12,319,516 ) ( 596,394 ) ( 6,546,152 )",
+  "disposition": "HOLD_REVENUE_HISTORY_REAL_ESTATE_SALES_SCOPE",
+  "reason": "The two latest-selected facts describe revenue from real-estate sales. They do not establish the company-wide revenue history implied by the generic route. The same filing presents a different revenue row for 2023. Do not substitute that table value without a separate selection and provenance policy.",
+  "required_action": "Resolve scope and apply a source-bound editorial exclusion before publishing this cohort. V6 is a review candidate and is not editorially approved.",
+  "scope": "Latest selected filing only; the separate 2022 accession remains outside this scope review. No source facts or selected values were changed.",
+  "code_sha256": "d4eef94efc4ab2dc75983d491a2925b13324b04820af35a049b4f1b9ef193aec"
+}

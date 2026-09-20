@@ -1,0 +1,23 @@
+{
+  "schema": "canli.editorial-hidden-fact-scope.v1",
+  "publication_approved": false,
+  "cik": "0001173420",
+  "tag": "Revenues",
+  "source_sha256": "c6092072b21975cc099fba2207ffbab40fdcebcd5870eae67492e8b8dd860db0",
+  "primary_capture": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1173420/000117184326000374/ng20251130_10k.htm",
+    "status": 200,
+    "captured_at": "2026-09-20T08:23:39.913164+00:00",
+    "bytes": 2436413,
+    "sha256": "5e21480d9d53c72d87fe858955b3da5a70b3bfb6cde5adf1cce313579d005cee",
+    "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001173420-0001171843-26-000374-primary.response"
+  },
+  "fact_id": "c441",
+  "context_id": "d_2024-12-01_2025-11-30",
+  "visible_reference_style": "-sec-ix-hidden:c441",
+  "visible_paragraph": "NOVAGOLD RESOURCES INC. and its affiliates and subsidiaries (collectively, \u201cNOVAGOLD\u201d or the \u201cCompany\u201d) operate in the mining industry, focused on the exploration for and development of gold mineral properties. The Company\u2019s principal asset is a 60 % interest in the Donlin Gold project in Alaska, USA. The Company has no realized revenues from its principal asset. The Donlin Gold project is owned and operated by Donlin Gold LLC (\u201cDonlin Gold\u201d), a limited liability company that is owned by wholly-owned subsidiaries of NOVAGOLD and Donlin Gold Holdings LLC, a subsidiary of Paulson Advantage Plus Master Ltd. and Paulson Partners LP (together, \u201cPaulson\u201d). Prior to June 3, 2025, Donlin Gold was owned equally by wholly-owned subsidiaries of NOVAGOLD and Barrick Mining Corporation (\u201cBarrick\u201d). See Note 5 regarding changes to Donlin Gold ownership on June 3, 2025.",
+  "disposition": "EXCLUDE_CONCEPT_PRINCIPAL_ASSET_SCOPE_NOT_COMPANY_TOTAL",
+  "reason": "The inspected filing links this revenue-tagged zero to a statement about no realized revenue from its principal asset, Donlin Gold. It does not establish a company-wide revenue total. This generic revenue history is omitted; original source data remain available.",
+  "scope": "Latest selected original filing and exact source snapshot. Does not assert that actual total revenue is nonzero or that every historical filing was reviewed.",
+  "code_sha256": "294c8458355d4c46a7c3dcae0377d89ceba6aa42a9256204676ec0cc5f2b10df"
+}

@@ -1,3 +1,4 @@
+import { readSitemapXml } from "./lib/sitemaps.mjs";
 // =============================================================================
 // build-llms-txt.mjs
 // -----------------------------------------------------------------------------
@@ -31,7 +32,7 @@ const researchIndex = read("public/research-index.json");
 const paperState = read("public/paper-state.json");
 const engineering = read("public/glassbox/engineering_open_source.json");
 
-const sitemap = readFileSync(resolve(ROOT, "public/sitemap.xml"), "utf8");
+const sitemap = readSitemapXml(resolve(ROOT, "public"));
 const routes = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
 
 // Derive the measurement routes rather than counting them by hand.

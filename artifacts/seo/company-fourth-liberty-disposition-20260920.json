@@ -1,0 +1,58 @@
+{
+  "schema": "canli.editorial-scope-disposition.v1",
+  "publication_approved": false,
+  "cik": "0001172178",
+  "tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+  "source_sha256": "4915970839453514b4b5e641234178fd6f2c03d99ec5b6bdb74b786956db6290",
+  "filing_receipts": {
+    "primary": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1172178/000149315221010343/form10-k.htm",
+      "status": 200,
+      "captured_at": "2026-09-20T08:23:36.428811+00:00",
+      "bytes": 1024400,
+      "sha256": "d0816e736aa9d2270c666091bd38ad52fb588b3de4b1cb39d6b8fe33758bef87",
+      "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001172178-0001493152-21-010343-primary.response"
+    },
+    "instance": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1172178/000149315221010343/lbsr-20210131.xml",
+      "status": 200,
+      "captured_at": "2026-09-20T08:25:17.029210+00:00",
+      "bytes": 608932,
+      "sha256": "7be42acf9dc15043ed421351c70d73fc5b7171e27142896319e21a05f27ea491",
+      "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/liberty-2021-instance.response"
+    },
+    "pre": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1172178/000149315221010343/lbsr-20210131_pre.xml",
+      "status": 200,
+      "bytes": 343255,
+      "sha256": "220adec7faaaa7ee73bb311f6e1ae9107abcb191963241a01b3c7a54244f1013",
+      "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/liberty-2021-pre.xml.response",
+      "captured_at": "2026-09-20T08:31:45.737449+00:00"
+    },
+    "lab": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1172178/000149315221010343/lbsr-20210131_lab.xml",
+      "status": 200,
+      "bytes": 409740,
+      "sha256": "08dd1eaf6d1bec7f3ff71a97fd17850d8d12cd801bf1b8a8b4000bb403fd118e",
+      "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/liberty-2021-lab.xml.response",
+      "captured_at": "2026-09-20T08:31:47.690616+00:00"
+    },
+    "cal": {
+      "url": "https://www.sec.gov/Archives/edgar/data/1172178/000149315221010343/lbsr-20210131_cal.xml",
+      "status": 200,
+      "bytes": 49773,
+      "sha256": "d53d435d9acc7be2c699a7946be0bd4bcdb7b433c338e74cdf3c6becb8cf0da8",
+      "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/liberty-2021-cal.xml.response",
+      "captured_at": "2026-09-20T08:31:49.409210+00:00"
+    }
+  },
+  "primary_policy_passage": "We capitalize all purchased equipment over $500 with a useful life of more than one year.",
+  "presentation_roles": [
+    "http://libertystaruranium.com/role/SummaryOfSignificantAccountingPoliciesDetailsNarrative"
+  ],
+  "calculation_relationships": 0,
+  "disposition": "EXCLUDE_CONCEPT_CAPITALIZATION_THRESHOLD_NOT_ANNUAL_SPENDING",
+  "reason": "The USD500 fact appears only in the accounting-policy narrative presentation role. The primary note identifies USD500 as the capitalization threshold. Omit this generic spending history from this exact source snapshot; do not claim every historical filing was reviewed.",
+  "prior_hold_sha256": "d04b549d0dd3c2f255b94f712ee88357849688e0f129c68e74ecaa69eec8ce9a",
+  "code_sha256": "1bf804b53bcdce09c6b117b74976681dbf7926b7f1a6e25428fcd648cf5ffa99"
+}

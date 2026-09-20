@@ -1,0 +1,23 @@
+name: Developer integration
+description: Propose or troubleshoot an API, MCP or reproducible research integration
+title: "integration: "
+body:
+  - type: textarea
+    id: use-case
+    attributes:
+      label: What are you trying to build?
+      description: Describe the user task and which current capability is missing or failing.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Minimal example or proposed workflow
+      description: Include client/runtime versions and expected behavior. Never include real API keys or private data.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence and limitations
+      description: Include a public response example, error message, or source-backed research need. Distinguish a proposal from something already tested.

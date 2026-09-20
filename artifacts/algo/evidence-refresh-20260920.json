@@ -1,0 +1,687 @@
+{
+  "schema": "canli.evidence-refresh-candidate.v1",
+  "site_commit": "75615c3e13caf5ed2d1adf3063b95db569ab10c0",
+  "source": "/Users/arhancanli/meridian/public",
+  "files": 1585,
+  "bytes": 107925058,
+  "added": [
+    "glassbox/.claude-flow/neural/stats.json",
+    "glassbox/.claude-flow/policy/state.json",
+    "glassbox/ots/seq0960_b72a0592143d.head.txt",
+    "glassbox/ots/seq0960_b72a0592143d.head.txt.ots",
+    "glassbox/ots/seq0985_632fffcbee22.head.txt",
+    "glassbox/ots/seq0985_632fffcbee22.head.txt.ots",
+    "glassbox/ots/seq1010_21f4e65e9fd9.head.txt",
+    "glassbox/ots/seq1010_21f4e65e9fd9.head.txt.ots",
+    "glassbox/ots/seq1030_afa6a001efbc.head.txt",
+    "glassbox/ots/seq1030_afa6a001efbc.head.txt.ots",
+    "glassbox/ots/seq1050_2a08471e1777.head.txt",
+    "glassbox/ots/seq1050_2a08471e1777.head.txt.ots",
+    "glassbox/ruvector.db",
+    "glassbox/trial-packets/.claude-flow/neural/patterns.json",
+    "glassbox/trial-packets/.claude-flow/neural/stats.json",
+    "glassbox/trial-packets/.claude-flow/policy/state.json",
+    "glassbox/trial-packets/2f6a5b3e8a7928e2.json",
+    "glassbox/trial-packets/6ed52744e6c9510d.json",
+    "glassbox/trial-packets/ruvector.db"
+  ],
+  "removed": [],
+  "changed": [
+    "glassbox/alpaca_broker_reconciliation.json",
+    "glassbox/book_drawdown_ladder.json",
+    "glassbox/breadth_lab_contract.json",
+    "glassbox/capacity.json",
+    "glassbox/capacity_commitment.json",
+    "glassbox/cost_coverage.json",
+    "glassbox/crypto_lab_carry_crash_incident.json",
+    "glassbox/crypto_position_attribution.json",
+    "glassbox/current_book_diversification.json",
+    "glassbox/current_book_drawdown.json",
+    "glassbox/deflation.json",
+    "glassbox/drawdown_control_v1.json",
+    "glassbox/external_publication_readiness.json",
+    "glassbox/forward_drawdown_evidence.json",
+    "glassbox/forward_evidence_maturity.json",
+    "glassbox/forward_sleeve_contribution.json",
+    "glassbox/founder_commitment.json",
+    "glassbox/kill_log.json",
+    "glassbox/lint_debt_contract.json",
+    "glassbox/live_console_statistics.json",
+    "glassbox/ots/anchors.json",
+    "glassbox/ots/seq0943_c5caff554c47.head.txt.ots",
+    "glassbox/paper_evidence_conformance.json",
+    "glassbox/pre_registration.json",
+    "glassbox/program_status.json",
+    "glassbox/prospective_epoch_register.json",
+    "glassbox/prospective_trial_record.json",
+    "glassbox/record_continuity.json",
+    "glassbox/red_team.json",
+    "glassbox/reproducibility.json",
+    "glassbox/research.json",
+    "glassbox/sleeve_family_lineage_audit.json",
+    "glassbox/stanford_cs_evidence_map.json",
+    "glassbox/track_record.json",
+    "glassbox/transparency_log.json",
+    "glassbox/trial-packets/forward_index.json",
+    "glassbox/trial_ledger.json",
+    "glassbox/validation_api_limits.json",
+    "glassbox/validation_api_manifest.json",
+    "glassbox/wave1_data_rights_audit.json",
+    "paper-state.json"
+  ],
+  "source_stable_during_capture": true,
+  "excluded_nonpublication_paths": [
+    "glassbox/.claude-flow/neural/stats.json",
+    "glassbox/.claude-flow/policy/state.json",
+    "glassbox/ruvector.db",
+    "glassbox/trial-packets/.claude-flow/neural/patterns.json",
+    "glassbox/trial-packets/.claude-flow/neural/stats.json",
+    "glassbox/trial-packets/.claude-flow/policy/state.json",
+    "glassbox/trial-packets/ruvector.db"
+  ],
+  "validation": {
+    "build": "PASS",
+    "verify": "PASS",
+    "content_hashes": 163,
+    "signatures": 2,
+    "engine_determinism": "NOT_RUN",
+    "prohibited_built_paths": 0,
+    "main_site_build": "PASS",
+    "main_site_verify": "PASS",
+    "tests": 387,
+    "browser_checks": 6,
+    "transparency_chain_entries": 1060,
+    "preserved_prior_entries": 953,
+    "chain_signatures": "ALL_VALID",
+    "snapshot_filter_engine_commit": "ce93d8c"
+  },
+  "publication_state": "LOCAL_CANDIDATE_NOT_DEPLOYED",
+  "claim_boundary": "Evidence refresh does not establish mature Sharpe,14 qualified sleeves, indexing or adoption.",
+  "imported_before_site_build": [
+    {
+      "path": "public/glassbox/alpaca_broker_reconciliation.json",
+      "sha256": "897f56d34b4a900a7f4b0b337e35bda6c8af96c282a262444ecab84f17794623",
+      "bytes": 11738,
+      "matches_captured_export": true
+    },
+    {
+      "path": "public/glassbox/book_drawdown_ladder.json",
+      "sha256": "65feb123ad17e0af8eebf457b92692c0d9644e098bd40d341e087d33dd190f44",
+      "bytes": 13957,
+      "matches_captured_export": true
+    },
+    {
+      "path": "public/glassbox/breadth_lab_contract.json",
+      "sha256": "2eed9f7b4e24dfb2e8d230089837dd330380b7fb9563ba552de50390934e1986",
+      "bytes": 2343,
+      "matches_captured_export": false
+    },
+    {
+      "path": "public/glassbox/capacity.json",
+      "sha256": "4be27f28ba86d68ec7444659b3aa82576eab57f4057f0157b0c489e27106df08",
+      "bytes": 13762,
+      "matches_captured_export": true
+    },
+    {
+      "path": "public/glassbox/capacity_commitment.json",
+      "sha256": "038c08f9f7b4321352d88bab76e3eddd554c400d78c6e69712ef08a5f28243e0",
+      "bytes": 2608,
+      "matches_captured_export": true
+    },
+    {
+      "path": "public/glassbox/cost_coverage.json",
+      "sha256": "ffcccdb02c5dc70621b40dfafba575373315dfb1b3adc1e7915d84ea6c7b269c",
+      "bytes": 8756,
+      "matches_captured_export": false
+    },
+    {
+      "path": "public/glassbox/crypto_lab_carry_crash_incident.json",
+      "sha256": "d41a203e9affad960c1994605e1edf12a4cf4f968db0a94288248518c351964a",
+      "bytes": 4275,
+      "matches_captured_export": true
+    },
+    {
+      "path": "public/glassbox/crypto_position_attribution.json",
+      "sha256": "4190d9e25758d3bff1a8b6f29aba25f53a158175c8758a938c4b810507155401",
+      "bytes": 4804,
+      "matches_captured_export": true
+    },
+    {
+      "path": "public/glassbox/current_book_diversification.json",
+      "sha256": "037d70da5708932be21b4a5a9f4b85d8fc7bad2188971dd1b139bed0dc077b66",
+      "bytes": 18219,
+      "matches_captured_export": true
+    },
+    {
+      "path": "public/glassbox/current_book_drawdown.json",
+      "sha256": "94a4f534b6844e0df7eb1b8302e8c995255eb028cb0d4f3b006376f0bd6ec591",
+      "bytes": 8750,
+      "matches_captured_export": true
+    },
+    {
+      "path": "public/glassbox/deflation.json",
+      "sha256": "47e5eb2c7269e88164253409a7b879bbe008cf70899ff4066d30da93f70273c8",
+      "bytes": 2657,
+      "matches_captured_export": true
+    },
+    {
+      "path": "public/glassbox/drawdown_control_v1.json",
+      "sha256": "4389dc80424483a58a306a058d4de5ecb88b5fcd33e59fa06b4e3d42319654ca",
+      "bytes": 15264,
+      "matches_captured_export": true
+    },
+    {
+      "path": "public/glassbox/external_publication_readiness.json",
+      "sha256": "b31f314b482ebbfdf81c87b0ae46a23673157eea5d3136ae1fd0f7a5f124825c",
+      "bytes": 14007,
+      "matches_captured_export": true
+    },
+    {
+      "path": "public/glassbox/forward_drawdown_evidence.json",
+      "sha256": "21d17b3cbe4b2d7654c6a6595cfb07d9cc96fc0fc31178142a0164d2d8342af6",
+      "bytes": 8624,
+      "matches_captured_export": true
+    },
+    {
+      "path": "public/glassbox/forward_evidence_maturity.json",
+      "sha256": "8e7bad2ae40a1376dbe7a5ac7462689710d0597b7229134b16b3620ecf5e1276",
+      "bytes": 14554,
+      "matches_captured_export": true
+    },
+    {
+      "path": "public/glassbox/forward_sleeve_contribution.json",
+      "sha256": "1ddf0b2181f163d3004e20309e3f8528e07f635b1fdb0c068259423d2a3ce22c",
+      "bytes": 17015,
+      "matches_captured_export": true
+    },
+    {
+      "path": "public/glassbox/founder_commitment.json",
+      "sha256": "6d826f1dfdb960ffc8c49c61a8760256b75890e11460dea0397195d0b54cc811",
+      "bytes": 1905,
+      "matches_captured_export": true
+    },
+    {
+      "path": "public/glassbox/kill_log.json",
+      "sha256": "ed1ce13849fa8572138a52aefb0967af4fb445a0f8895085273b5c52afee455a",
+      "bytes": 46450,
+      "matches_captured_export": true
+    },
+    {
+      "path": "public/glassbox/lint_debt_contract.json",
+      "sha256": "d02e0894e42725ee0d9f36023a8ab33c3a79d50c3e87aff3a0b04a68f1dcd786",
+      "bytes": 18473,
+      "matches_captured_export": true
+    },
+    {
+      "path": "public/glassbox/live_console_statistics.json",
+      "sha256": "8a023f30af1909285e90165531a71c39187fdcfc6ccf30c7c83aac4f6bec07da",
+      "bytes": 609,
+      "matches_captured_export": false
+    },
+    {
+      "path": "public/glassbox/ots/anchors.json",
+      "sha256": "71c2f0c333f8840a3daad251b04dcf82e72a8fc6048183adc648bcb740a24431",
+      "bytes": 26257,
+      "matches_captured_export": true
+    },
+    {
+      "path": "public/glassbox/ots/seq0943_c5caff554c47.head.txt.ots",
+      "sha256": "8062ec2d204f6be0641c05187832cc136f22e95d6be45580b4b59b8587e2878f",
+      "bytes": 2515,
+      "matches_captured_export": true
+    },
+    {
+      "path": "public/glassbox/paper_evidence_conformance.json",
+      "sha256": "36095f73ac6fdf088acafa82204ddcde206085544d57bb3d5dffaa9ff33cd4b2",
+      "bytes": 5304,
+      "matches_captured_export": false
+    },
+    {
+      "path": "public/glassbox/pre_registration.json",
+      "sha256": "6bcf25c9c37b1e08b4468d76d642603d23ec375e6051782fbe977536cf1a5549",
+      "bytes": 3912,
+      "matches_captured_export": true
+    },
+    {
+      "path": "public/glassbox/program_status.json",
+      "sha256": "eb2765ecff689f8fcc840c6df43b416ca893c88e3a949629a78ad5a61db5d7ab",
+      "bytes": 47338,
+      "matches_captured_export": true
+    },
+    {
+      "path": "public/glassbox/prospective_epoch_register.json",
+      "sha256": "5b1e78457013d2f8784b6ec141131dcb4801e4c2b397dd3643f291e2a1d44693",
+      "bytes": 158995,
+      "matches_captured_export": true
+    },
+    {
+      "path": "public/glassbox/prospective_trial_record.json",
+      "sha256": "1a064888516e98a5d76dd55b2f1ab06eb2ecf809b9f7c43d1e7ca3d690d549e8",
+      "bytes": 11581,
+      "matches_captured_export": true
+    },
+    {
+      "path": "public/glassbox/record_continuity.json",
+      "sha256": "f442b3bf02a03ed4da773a482c0da44097046e1a16ccb73e5f2603587f66c76c",
+      "bytes": 5134,
+      "matches_captured_export": true
+    },
+    {
+      "path": "public/glassbox/red_team.json",
+      "sha256": "5cb811c02eff56747670f5bfc7e033cc93d7e58e466176e9182784861d8d56a0",
+      "bytes": 4780,
+      "matches_captured_export": true
+    },
+    {
+      "path": "public/glassbox/reproducibility.json",
+      "sha256": "99a495d5148dc7b7fb17c1c866617f8a8dc2e2111d3d2fd2672879c55e54fa28",
+      "bytes": 2529,
+      "matches_captured_export": true
+    },
+    {
+      "path": "public/glassbox/research.json",
+      "sha256": "8885a8dd37f3646b02a0799a2c4fffe4e0bdfba28d66430fc953a9b90d93bb84",
+      "bytes": 3930834,
+      "matches_captured_export": true
+    },
+    {
+      "path": "public/glassbox/sleeve_family_lineage_audit.json",
+      "sha256": "e6128360524a74e1bdd581e2292caa39c75309b9c384fd665a91e3f93554b6b5",
+      "bytes": 28667,
+      "matches_captured_export": true
+    },
+    {
+      "path": "public/glassbox/stanford_cs_evidence_map.json",
+      "sha256": "ce894821c2790c5cecdfbba59d51fa5cd3fdefb2e59ca05e9e0f4fdfa3274fba",
+      "bytes": 13160,
+      "matches_captured_export": true
+    },
+    {
+      "path": "public/glassbox/track_record.json",
+      "sha256": "e68ab3e828246aa4d5cd85905674da42a22d980acee68a17bf5001f432d2e60f",
+      "bytes": 68065,
+      "matches_captured_export": true
+    },
+    {
+      "path": "public/glassbox/transparency_log.json",
+      "sha256": "2ad91cb86e4952a63e64808e263bb05e708a8ad5a0a76a8938678a7a96b3eafe",
+      "bytes": 12855358,
+      "matches_captured_export": true
+    },
+    {
+      "path": "public/glassbox/trial-packets/forward_index.json",
+      "sha256": "9aeb0bf535d9fc1a0b3c245ca902848af3ae9d0e4579a9a518b0befb17080476",
+      "bytes": 127781,
+      "matches_captured_export": true
+    },
+    {
+      "path": "public/glassbox/trial_ledger.json",
+      "sha256": "7be6e164003c51e2b23e013b8acf58f10ea06a4b444e50b91249ef536306dabb",
+      "bytes": 56722,
+      "matches_captured_export": true
+    },
+    {
+      "path": "public/glassbox/validation_api_limits.json",
+      "sha256": "f5c33d4cb2235677b8826aa9a0f3759d8e292c5de13dc794ebfa63f760fde405",
+      "bytes": 2145,
+      "matches_captured_export": false
+    },
+    {
+      "path": "public/glassbox/validation_api_manifest.json",
+      "sha256": "aa32cdcd0c4a9cb99c7dafd2551d2521e4b51ebd431e5aa634503f0f0c3d3146",
+      "bytes": 5375,
+      "matches_captured_export": false
+    },
+    {
+      "path": "public/glassbox/wave1_data_rights_audit.json",
+      "sha256": "ec6707275a4175769bc7c605162727f1cef2a86b68378494e6f226ec1f3ea185",
+      "bytes": 19674,
+      "matches_captured_export": true
+    },
+    {
+      "path": "public/paper-state.json",
+      "sha256": "b9af85176477459e3b14dd71a30bdca40ede9b26c5216d3d9851456bae1873e5",
+      "bytes": 213539,
+      "matches_captured_export": true
+    },
+    {
+      "path": "public/glassbox/ots/seq0960_b72a0592143d.head.txt",
+      "sha256": "56f8c41692080404c7e71b78fe6b426ef6aaa389e11223b0c62a5a3954efbbf4",
+      "bytes": 147,
+      "matches_captured_export": true
+    },
+    {
+      "path": "public/glassbox/ots/seq0960_b72a0592143d.head.txt.ots",
+      "sha256": "fba72a8f7e34b92618e79e4abd418c5d24361126ef38b53234af4e0035ab54c4",
+      "bytes": 1512,
+      "matches_captured_export": true
+    },
+    {
+      "path": "public/glassbox/ots/seq0985_632fffcbee22.head.txt",
+      "sha256": "b52dc9eaf1dac392aadb1616e9617788834cd214f29fba9784afdf6ef4cf8d65",
+      "bytes": 147,
+      "matches_captured_export": true
+    },
+    {
+      "path": "public/glassbox/ots/seq0985_632fffcbee22.head.txt.ots",
+      "sha256": "16494a291bd36aa71cc8e53b0983b3a413c34ba6644343bbdebbd1cc81059a81",
+      "bytes": 1548,
+      "matches_captured_export": true
+    },
+    {
+      "path": "public/glassbox/ots/seq1010_21f4e65e9fd9.head.txt",
+      "sha256": "ba502703eb89806e1017b3e9d6ab6e020a38d02bd997d979f8d4622e16a899fe",
+      "bytes": 148,
+      "matches_captured_export": true
+    },
+    {
+      "path": "public/glassbox/ots/seq1010_21f4e65e9fd9.head.txt.ots",
+      "sha256": "a876d30afae983a54aa0296317d19e980430cdaf20ac714cad5a74128cb1c674",
+      "bytes": 1688,
+      "matches_captured_export": true
+    },
+    {
+      "path": "public/glassbox/ots/seq1030_afa6a001efbc.head.txt",
+      "sha256": "ad474cb04e3caedfca605aa29ced4acec0f47a290991bd063ae70439c191b794",
+      "bytes": 148,
+      "matches_captured_export": true
+    },
+    {
+      "path": "public/glassbox/ots/seq1030_afa6a001efbc.head.txt.ots",
+      "sha256": "ad53b813a299f36aa67711e73aae4358e35a1a7e0eb2c1b925383debffb63dec",
+      "bytes": 1618,
+      "matches_captured_export": true
+    },
+    {
+      "path": "public/glassbox/ots/seq1050_2a08471e1777.head.txt",
+      "sha256": "4a9d2bc9011bfa06c8c68445385897e264eedcb607e30c88d20295fdeaf349ac",
+      "bytes": 148,
+      "matches_captured_export": true
+    },
+    {
+      "path": "public/glassbox/ots/seq1050_2a08471e1777.head.txt.ots",
+      "sha256": "d9247e07afab6790f2be954440a40c1450463242bfae5b5599732cd21b683e58",
+      "bytes": 511,
+      "matches_captured_export": true
+    },
+    {
+      "path": "public/glassbox/trial-packets/2f6a5b3e8a7928e2.json",
+      "sha256": "2ec5ecd11bba951d84cd85bc935a06876b9f3cf648bc4a488739f06eb1a6dd9a",
+      "bytes": 7857,
+      "matches_captured_export": true
+    },
+    {
+      "path": "public/glassbox/trial-packets/6ed52744e6c9510d.json",
+      "sha256": "7cb746f07c64b86af2d00fa399ab1c6b7ee1f3a59907a92e0b40247229bc8c1e",
+      "bytes": 7771,
+      "matches_captured_export": true
+    }
+  ],
+  "final_source_files": [
+    {
+      "path": "public/glassbox/alpaca_broker_reconciliation.json",
+      "sha256": "897f56d34b4a900a7f4b0b337e35bda6c8af96c282a262444ecab84f17794623",
+      "bytes": 11738
+    },
+    {
+      "path": "public/glassbox/book_drawdown_ladder.json",
+      "sha256": "65feb123ad17e0af8eebf457b92692c0d9644e098bd40d341e087d33dd190f44",
+      "bytes": 13957
+    },
+    {
+      "path": "public/glassbox/breadth_lab_contract.json",
+      "sha256": "2eed9f7b4e24dfb2e8d230089837dd330380b7fb9563ba552de50390934e1986",
+      "bytes": 2343
+    },
+    {
+      "path": "public/glassbox/capacity.json",
+      "sha256": "4be27f28ba86d68ec7444659b3aa82576eab57f4057f0157b0c489e27106df08",
+      "bytes": 13762
+    },
+    {
+      "path": "public/glassbox/capacity_commitment.json",
+      "sha256": "038c08f9f7b4321352d88bab76e3eddd554c400d78c6e69712ef08a5f28243e0",
+      "bytes": 2608
+    },
+    {
+      "path": "public/glassbox/cost_coverage.json",
+      "sha256": "82f2f0697f90f082c900195741a352fd4bedb6e7bc7ef49277366ee5a71fcdb8",
+      "bytes": 8756
+    },
+    {
+      "path": "public/glassbox/crypto_lab_carry_crash_incident.json",
+      "sha256": "d41a203e9affad960c1994605e1edf12a4cf4f968db0a94288248518c351964a",
+      "bytes": 4275
+    },
+    {
+      "path": "public/glassbox/crypto_position_attribution.json",
+      "sha256": "4190d9e25758d3bff1a8b6f29aba25f53a158175c8758a938c4b810507155401",
+      "bytes": 4804
+    },
+    {
+      "path": "public/glassbox/current_book_diversification.json",
+      "sha256": "037d70da5708932be21b4a5a9f4b85d8fc7bad2188971dd1b139bed0dc077b66",
+      "bytes": 18219
+    },
+    {
+      "path": "public/glassbox/current_book_drawdown.json",
+      "sha256": "94a4f534b6844e0df7eb1b8302e8c995255eb028cb0d4f3b006376f0bd6ec591",
+      "bytes": 8750
+    },
+    {
+      "path": "public/glassbox/deflation.json",
+      "sha256": "47e5eb2c7269e88164253409a7b879bbe008cf70899ff4066d30da93f70273c8",
+      "bytes": 2657
+    },
+    {
+      "path": "public/glassbox/drawdown_control_v1.json",
+      "sha256": "4389dc80424483a58a306a058d4de5ecb88b5fcd33e59fa06b4e3d42319654ca",
+      "bytes": 15264
+    },
+    {
+      "path": "public/glassbox/external_publication_readiness.json",
+      "sha256": "b31f314b482ebbfdf81c87b0ae46a23673157eea5d3136ae1fd0f7a5f124825c",
+      "bytes": 14007
+    },
+    {
+      "path": "public/glassbox/forward_drawdown_evidence.json",
+      "sha256": "21d17b3cbe4b2d7654c6a6595cfb07d9cc96fc0fc31178142a0164d2d8342af6",
+      "bytes": 8624
+    },
+    {
+      "path": "public/glassbox/forward_evidence_maturity.json",
+      "sha256": "8e7bad2ae40a1376dbe7a5ac7462689710d0597b7229134b16b3620ecf5e1276",
+      "bytes": 14554
+    },
+    {
+      "path": "public/glassbox/forward_sleeve_contribution.json",
+      "sha256": "1ddf0b2181f163d3004e20309e3f8528e07f635b1fdb0c068259423d2a3ce22c",
+      "bytes": 17015
+    },
+    {
+      "path": "public/glassbox/founder_commitment.json",
+      "sha256": "6d826f1dfdb960ffc8c49c61a8760256b75890e11460dea0397195d0b54cc811",
+      "bytes": 1905
+    },
+    {
+      "path": "public/glassbox/kill_log.json",
+      "sha256": "ed1ce13849fa8572138a52aefb0967af4fb445a0f8895085273b5c52afee455a",
+      "bytes": 46450
+    },
+    {
+      "path": "public/glassbox/lint_debt_contract.json",
+      "sha256": "d02e0894e42725ee0d9f36023a8ab33c3a79d50c3e87aff3a0b04a68f1dcd786",
+      "bytes": 18473
+    },
+    {
+      "path": "public/glassbox/live_console_statistics.json",
+      "sha256": "8a023f30af1909285e90165531a71c39187fdcfc6ccf30c7c83aac4f6bec07da",
+      "bytes": 609
+    },
+    {
+      "path": "public/glassbox/ots/anchors.json",
+      "sha256": "71c2f0c333f8840a3daad251b04dcf82e72a8fc6048183adc648bcb740a24431",
+      "bytes": 26257
+    },
+    {
+      "path": "public/glassbox/ots/seq0943_c5caff554c47.head.txt.ots",
+      "sha256": "8062ec2d204f6be0641c05187832cc136f22e95d6be45580b4b59b8587e2878f",
+      "bytes": 2515
+    },
+    {
+      "path": "public/glassbox/paper_evidence_conformance.json",
+      "sha256": "3aaca47b8a70624647a2651e1c6be9a82958d235ed40d6104f93887d22455e8d",
+      "bytes": 5304
+    },
+    {
+      "path": "public/glassbox/pre_registration.json",
+      "sha256": "6bcf25c9c37b1e08b4468d76d642603d23ec375e6051782fbe977536cf1a5549",
+      "bytes": 3912
+    },
+    {
+      "path": "public/glassbox/program_status.json",
+      "sha256": "eb2765ecff689f8fcc840c6df43b416ca893c88e3a949629a78ad5a61db5d7ab",
+      "bytes": 47338
+    },
+    {
+      "path": "public/glassbox/prospective_epoch_register.json",
+      "sha256": "5b1e78457013d2f8784b6ec141131dcb4801e4c2b397dd3643f291e2a1d44693",
+      "bytes": 158995
+    },
+    {
+      "path": "public/glassbox/prospective_trial_record.json",
+      "sha256": "1a064888516e98a5d76dd55b2f1ab06eb2ecf809b9f7c43d1e7ca3d690d549e8",
+      "bytes": 11581
+    },
+    {
+      "path": "public/glassbox/record_continuity.json",
+      "sha256": "f442b3bf02a03ed4da773a482c0da44097046e1a16ccb73e5f2603587f66c76c",
+      "bytes": 5134
+    },
+    {
+      "path": "public/glassbox/red_team.json",
+      "sha256": "5cb811c02eff56747670f5bfc7e033cc93d7e58e466176e9182784861d8d56a0",
+      "bytes": 4780
+    },
+    {
+      "path": "public/glassbox/reproducibility.json",
+      "sha256": "99a495d5148dc7b7fb17c1c866617f8a8dc2e2111d3d2fd2672879c55e54fa28",
+      "bytes": 2529
+    },
+    {
+      "path": "public/glassbox/research.json",
+      "sha256": "8885a8dd37f3646b02a0799a2c4fffe4e0bdfba28d66430fc953a9b90d93bb84",
+      "bytes": 3930834
+    },
+    {
+      "path": "public/glassbox/sleeve_family_lineage_audit.json",
+      "sha256": "e6128360524a74e1bdd581e2292caa39c75309b9c384fd665a91e3f93554b6b5",
+      "bytes": 28667
+    },
+    {
+      "path": "public/glassbox/stanford_cs_evidence_map.json",
+      "sha256": "ce894821c2790c5cecdfbba59d51fa5cd3fdefb2e59ca05e9e0f4fdfa3274fba",
+      "bytes": 13160
+    },
+    {
+      "path": "public/glassbox/track_record.json",
+      "sha256": "e68ab3e828246aa4d5cd85905674da42a22d980acee68a17bf5001f432d2e60f",
+      "bytes": 68065
+    },
+    {
+      "path": "public/glassbox/transparency_log.json",
+      "sha256": "2ad91cb86e4952a63e64808e263bb05e708a8ad5a0a76a8938678a7a96b3eafe",
+      "bytes": 12855358
+    },
+    {
+      "path": "public/glassbox/trial-packets/forward_index.json",
+      "sha256": "9aeb0bf535d9fc1a0b3c245ca902848af3ae9d0e4579a9a518b0befb17080476",
+      "bytes": 127781
+    },
+    {
+      "path": "public/glassbox/trial_ledger.json",
+      "sha256": "7be6e164003c51e2b23e013b8acf58f10ea06a4b444e50b91249ef536306dabb",
+      "bytes": 56722
+    },
+    {
+      "path": "public/glassbox/validation_api_limits.json",
+      "sha256": "f5c33d4cb2235677b8826aa9a0f3759d8e292c5de13dc794ebfa63f760fde405",
+      "bytes": 2145
+    },
+    {
+      "path": "public/glassbox/validation_api_manifest.json",
+      "sha256": "aa32cdcd0c4a9cb99c7dafd2551d2521e4b51ebd431e5aa634503f0f0c3d3146",
+      "bytes": 5375
+    },
+    {
+      "path": "public/glassbox/wave1_data_rights_audit.json",
+      "sha256": "ec6707275a4175769bc7c605162727f1cef2a86b68378494e6f226ec1f3ea185",
+      "bytes": 19674
+    },
+    {
+      "path": "public/paper-state.json",
+      "sha256": "b9af85176477459e3b14dd71a30bdca40ede9b26c5216d3d9851456bae1873e5",
+      "bytes": 213539
+    },
+    {
+      "path": "public/glassbox/ots/seq0960_b72a0592143d.head.txt",
+      "sha256": "56f8c41692080404c7e71b78fe6b426ef6aaa389e11223b0c62a5a3954efbbf4",
+      "bytes": 147
+    },
+    {
+      "path": "public/glassbox/ots/seq0960_b72a0592143d.head.txt.ots",
+      "sha256": "fba72a8f7e34b92618e79e4abd418c5d24361126ef38b53234af4e0035ab54c4",
+      "bytes": 1512
+    },
+    {
+      "path": "public/glassbox/ots/seq0985_632fffcbee22.head.txt",
+      "sha256": "b52dc9eaf1dac392aadb1616e9617788834cd214f29fba9784afdf6ef4cf8d65",
+      "bytes": 147
+    },
+    {
+      "path": "public/glassbox/ots/seq0985_632fffcbee22.head.txt.ots",
+      "sha256": "16494a291bd36aa71cc8e53b0983b3a413c34ba6644343bbdebbd1cc81059a81",
+      "bytes": 1548
+    },
+    {
+      "path": "public/glassbox/ots/seq1010_21f4e65e9fd9.head.txt",
+      "sha256": "ba502703eb89806e1017b3e9d6ab6e020a38d02bd997d979f8d4622e16a899fe",
+      "bytes": 148
+    },
+    {
+      "path": "public/glassbox/ots/seq1010_21f4e65e9fd9.head.txt.ots",
+      "sha256": "a876d30afae983a54aa0296317d19e980430cdaf20ac714cad5a74128cb1c674",
+      "bytes": 1688
+    },
+    {
+      "path": "public/glassbox/ots/seq1030_afa6a001efbc.head.txt",
+      "sha256": "ad474cb04e3caedfca605aa29ced4acec0f47a290991bd063ae70439c191b794",
+      "bytes": 148
+    },
+    {
+      "path": "public/glassbox/ots/seq1030_afa6a001efbc.head.txt.ots",
+      "sha256": "ad53b813a299f36aa67711e73aae4358e35a1a7e0eb2c1b925383debffb63dec",
+      "bytes": 1618
+    },
+    {
+      "path": "public/glassbox/ots/seq1050_2a08471e1777.head.txt",
+      "sha256": "4a9d2bc9011bfa06c8c68445385897e264eedcb607e30c88d20295fdeaf349ac",
+      "bytes": 148
+    },
+    {
+      "path": "public/glassbox/ots/seq1050_2a08471e1777.head.txt.ots",
+      "sha256": "d9247e07afab6790f2be954440a40c1450463242bfae5b5599732cd21b683e58",
+      "bytes": 511
+    },
+    {
+      "path": "public/glassbox/trial-packets/2f6a5b3e8a7928e2.json",
+      "sha256": "2ec5ecd11bba951d84cd85bc935a06876b9f3cf648bc4a488739f06eb1a6dd9a",
+      "bytes": 7857
+    },
+    {
+      "path": "public/glassbox/trial-packets/6ed52744e6c9510d.json",
+      "sha256": "7cb746f07c64b86af2d00fa399ab1c6b7ee1f3a59907a92e0b40247229bc8c1e",
+      "bytes": 7771
+    }
+  ]
+}

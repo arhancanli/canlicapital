@@ -1,0 +1,3800 @@
+{
+  "schema": "canli.editorial-inline-comparison.v1",
+  "capture_report_sha256": "b6f501cd9a151f75a05ff77bf0851ce19dfb5085e27364d1d79c09567593996d",
+  "targets_sha256": "c156b59d5a3c1512d84053a5077cbfad0bca0e2af4bc16d2391deb74cd7c94cf",
+  "filings": [
+    {
+      "cik": "0001121795",
+      "accession": "0001553350-22-000798",
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1121795/000155335022000798/ghst_10k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T08:23:05.082378+00:00",
+        "bytes": 512400,
+        "sha256": "f2bee3b8f6aadd221a735eda00c6b898ced206f0444031800fb7119bd684da63",
+        "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001121795-0001553350-22-000798-primary.response"
+      },
+      "cover_cik_matches": true,
+      "checks": [
+        {
+          "selected": {
+            "end": "2022-06-30",
+            "val": 0,
+            "accn": "0001553350-22-000798",
+            "fy": 2022,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2022-09-28",
+            "frame": "CY2022Q2I",
+            "unit": "USD",
+            "cik": "0001121795",
+            "tag": "CashAndCashEquivalentsAtCarryingValue"
+          },
+          "matched": false,
+          "matches": []
+        },
+        {
+          "selected": {
+            "end": "2021-06-30",
+            "val": 0,
+            "accn": "0001553350-22-000798",
+            "fy": 2022,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2022-09-28",
+            "frame": "CY2021Q2I",
+            "unit": "USD",
+            "cik": "0001121795",
+            "tag": "CashAndCashEquivalentsAtCarryingValue"
+          },
+          "matched": false,
+          "matches": []
+        }
+      ],
+      "all_selected_rows_match": false
+    },
+    {
+      "cik": "0001127475",
+      "accession": "0001185185-25-001887",
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1127475/000118518525001887/dbmm10k083125.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T08:23:08.611926+00:00",
+        "bytes": 687783,
+        "sha256": "900d6d86778fe2dde695a2eaa92b9a1fe1568daeb527362da2dbb591003029a9",
+        "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001127475-0001185185-25-001887-primary.response"
+      },
+      "cover_cik_matches": true,
+      "checks": [
+        {
+          "selected": {
+            "start": "2024-09-01",
+            "end": "2025-08-31",
+            "val": 137998,
+            "accn": "0001185185-25-001887",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2025-11-28",
+            "frame": "CY2025",
+            "unit": "USD",
+            "cik": "0001127475",
+            "tag": "RevenueFromContractWithCustomerExcludingAssessedTax"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+              "entity_cik": "0001127475",
+              "start": "2024-09-01",
+              "end": "2025-08-31",
+              "unit": "USD",
+              "value": "137998",
+              "fact_id": "ixv-8692",
+              "context_id": "c0",
+              "table_row": "Revenues $ 18,095 $ 119,903 $ 137,998"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "start": "2023-09-01",
+            "end": "2024-08-31",
+            "val": 237868,
+            "accn": "0001185185-25-001887",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2025-11-28",
+            "frame": "CY2024",
+            "unit": "USD",
+            "cik": "0001127475",
+            "tag": "RevenueFromContractWithCustomerExcludingAssessedTax"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+              "entity_cik": "0001127475",
+              "start": "2023-09-01",
+              "end": "2024-08-31",
+              "unit": "USD",
+              "value": "237868",
+              "fact_id": "ixv-8701",
+              "context_id": "c9",
+              "table_row": "Revenues $ 115,684 $ 122,184 $ 237,868"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "start": "2024-09-01",
+            "end": "2025-08-31",
+            "val": 137998,
+            "accn": "0001185185-25-001887",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2025-11-28",
+            "frame": "CY2025",
+            "unit": "USD",
+            "cik": "0001127475",
+            "tag": "Revenues"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "Revenues",
+              "entity_cik": "0001127475",
+              "start": "2024-09-01",
+              "end": "2025-08-31",
+              "unit": "USD",
+              "value": "137998",
+              "fact_id": "ixv-8466",
+              "context_id": "c0",
+              "table_row": "Revenues $ 137,998 $ 237,868"
+            },
+            {
+              "tag": "Revenues",
+              "entity_cik": "0001127475",
+              "start": "2024-09-01",
+              "end": "2025-08-31",
+              "unit": "USD",
+              "value": "137998",
+              "fact_id": "ixv-8695",
+              "context_id": "c0",
+              "table_row": "Total revenues 18,095 119,903 137,998"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "start": "2023-09-01",
+            "end": "2024-08-31",
+            "val": 237868,
+            "accn": "0001185185-25-001887",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2025-11-28",
+            "frame": "CY2024",
+            "unit": "USD",
+            "cik": "0001127475",
+            "tag": "Revenues"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "Revenues",
+              "entity_cik": "0001127475",
+              "start": "2023-09-01",
+              "end": "2024-08-31",
+              "unit": "USD",
+              "value": "237868",
+              "fact_id": "ixv-8467",
+              "context_id": "c9",
+              "table_row": "Revenues $ 137,998 $ 237,868"
+            },
+            {
+              "tag": "Revenues",
+              "entity_cik": "0001127475",
+              "start": "2023-09-01",
+              "end": "2024-08-31",
+              "unit": "USD",
+              "value": "237868",
+              "fact_id": "ixv-8704",
+              "context_id": "c9",
+              "table_row": "Total revenues 115,684 122,184 237,868"
+            }
+          ]
+        }
+      ],
+      "all_selected_rows_match": true
+    },
+    {
+      "cik": "0001128189",
+      "accession": "0001079973-15-000278",
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1128189/000107997315000278/pktx_10k-123114.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T08:23:12.026437+00:00",
+        "bytes": 869313,
+        "sha256": "633eab44b1876ff903e8b4005fb893af586b2045f23cf5b93a4a6e8ab0ba88e3",
+        "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001128189-0001079973-15-000278-primary.response"
+      },
+      "cover_cik_matches": false,
+      "checks": [
+        {
+          "selected": {
+            "start": "2014-01-01",
+            "end": "2014-12-31",
+            "val": 0,
+            "accn": "0001079973-15-000278",
+            "fy": 2014,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2015-04-14",
+            "frame": "CY2014",
+            "unit": "USD",
+            "cik": "0001128189",
+            "tag": "Revenues"
+          },
+          "matched": false,
+          "matches": []
+        },
+        {
+          "selected": {
+            "start": "2013-01-01",
+            "end": "2013-12-31",
+            "val": 0,
+            "accn": "0001079973-15-000278",
+            "fy": 2014,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2015-04-14",
+            "frame": "CY2013",
+            "unit": "USD",
+            "cik": "0001128189",
+            "tag": "Revenues"
+          },
+          "matched": false,
+          "matches": []
+        }
+      ],
+      "all_selected_rows_match": false
+    },
+    {
+      "cik": "0001132509",
+      "accession": "0001010412-14-000067",
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1132509/000101041214000067/k13clean41014.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T08:23:15.496537+00:00",
+        "bytes": 376983,
+        "sha256": "f05863ee8d8666e13b67eacee9cebd5795e100912532239410faaeb44eed1f6e",
+        "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001132509-0001010412-14-000067-primary.response"
+      },
+      "cover_cik_matches": false,
+      "checks": [
+        {
+          "selected": {
+            "start": "2013-01-01",
+            "end": "2013-12-31",
+            "val": 0,
+            "accn": "0001010412-14-000067",
+            "fy": 2013,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2014-04-14",
+            "frame": "CY2013",
+            "unit": "USD",
+            "cik": "0001132509",
+            "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+          },
+          "matched": false,
+          "matches": []
+        },
+        {
+          "selected": {
+            "start": "2012-01-01",
+            "end": "2012-12-31",
+            "val": 0,
+            "accn": "0001010412-14-000067",
+            "fy": 2013,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2014-04-14",
+            "frame": "CY2012",
+            "unit": "USD",
+            "cik": "0001132509",
+            "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+          },
+          "matched": false,
+          "matches": []
+        }
+      ],
+      "all_selected_rows_match": false
+    },
+    {
+      "cik": "0001134982",
+      "accession": "0001477932-26-002110",
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1134982/000147793226002110/aapi_10k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T08:23:19.726947+00:00",
+        "bytes": 983131,
+        "sha256": "a80eca48fc1e634d8f5a8445ada5eb7c6834dd95b69bde4e9037987b5e6fe246",
+        "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001134982-0001477932-26-002110-primary.response"
+      },
+      "cover_cik_matches": true,
+      "checks": [
+        {
+          "selected": {
+            "end": "2025-12-31",
+            "val": 6529020,
+            "accn": "0001477932-26-002110",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-04-10",
+            "unit": "USD",
+            "cik": "0001134982",
+            "tag": "Liabilities"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "Liabilities",
+              "entity_cik": "0001134982",
+              "start": null,
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "6529020",
+              "fact_id": "fid_1634",
+              "context_id": "AsOf2025-12-31",
+              "table_row": "Total liabilities 6,529,020 6,641,364"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "end": "2024-12-31",
+            "val": 6641364,
+            "accn": "0001477932-26-002110",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-04-10",
+            "frame": "CY2024Q4I",
+            "unit": "USD",
+            "cik": "0001134982",
+            "tag": "Liabilities"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "Liabilities",
+              "entity_cik": "0001134982",
+              "start": null,
+              "end": "2024-12-31",
+              "unit": "USD",
+              "value": "6641364",
+              "fact_id": "fid_1635",
+              "context_id": "AsOf2024-12-31",
+              "table_row": "Total liabilities 6,529,020 6,641,364"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "end": "2025-12-31",
+            "val": 6529020,
+            "accn": "0001477932-26-002110",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-04-10",
+            "unit": "USD",
+            "cik": "0001134982",
+            "tag": "LiabilitiesCurrent"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "LiabilitiesCurrent",
+              "entity_cik": "0001134982",
+              "start": null,
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "6529020",
+              "fact_id": "fid_1632",
+              "context_id": "AsOf2025-12-31",
+              "table_row": "Total current liabilities 6,529,020 6,641,364"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "end": "2024-12-31",
+            "val": 6641364,
+            "accn": "0001477932-26-002110",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-04-10",
+            "frame": "CY2024Q4I",
+            "unit": "USD",
+            "cik": "0001134982",
+            "tag": "LiabilitiesCurrent"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "LiabilitiesCurrent",
+              "entity_cik": "0001134982",
+              "start": null,
+              "end": "2024-12-31",
+              "unit": "USD",
+              "value": "6641364",
+              "fact_id": "fid_1633",
+              "context_id": "AsOf2024-12-31",
+              "table_row": "Total current liabilities 6,529,020 6,641,364"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "start": "2025-01-01",
+            "end": "2025-12-31",
+            "val": 0,
+            "accn": "0001477932-26-002110",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-04-10",
+            "frame": "CY2025",
+            "unit": "USD",
+            "cik": "0001134982",
+            "tag": "Revenues"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "Revenues",
+              "entity_cik": "0001134982",
+              "start": "2025-01-01",
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "0",
+              "fact_id": "fid_1653",
+              "context_id": "From2025-01-01to2025-12-31",
+              "table_row": "Net revenues $ - $ -"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "start": "2024-01-01",
+            "end": "2024-12-31",
+            "val": 0,
+            "accn": "0001477932-26-002110",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-04-10",
+            "frame": "CY2024",
+            "unit": "USD",
+            "cik": "0001134982",
+            "tag": "Revenues"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "Revenues",
+              "entity_cik": "0001134982",
+              "start": "2024-01-01",
+              "end": "2024-12-31",
+              "unit": "USD",
+              "value": "0",
+              "fact_id": "fid_1654",
+              "context_id": "From2024-01-01to2024-12-31",
+              "table_row": "Net revenues $ - $ -"
+            }
+          ]
+        }
+      ],
+      "all_selected_rows_match": true
+    },
+    {
+      "cik": "0001145604",
+      "accession": "0001826466-25-000030",
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1145604/000182646625000030/form-10k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T08:23:23.126528+00:00",
+        "bytes": 394447,
+        "sha256": "dcc71b79e2db72456137bc7a6fde63c91eb0f9aa43ddb64604b47016debd576b",
+        "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001145604-0001826466-25-000030-primary.response"
+      },
+      "cover_cik_matches": true,
+      "checks": [
+        {
+          "selected": {
+            "start": "2024-01-01",
+            "end": "2024-12-31",
+            "val": 0,
+            "accn": "0001826466-25-000030",
+            "fy": 2024,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2025-03-31",
+            "frame": "CY2024",
+            "unit": "USD",
+            "cik": "0001145604",
+            "tag": "Revenues"
+          },
+          "matched": false,
+          "matches": []
+        }
+      ],
+      "all_selected_rows_match": false
+    },
+    {
+      "cik": "0001145604",
+      "accession": "0001826466-26-000026",
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1145604/000182646626000026/form-10k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T08:23:26.466372+00:00",
+        "bytes": 407157,
+        "sha256": "bc83493e0176b29d0d43fe94222efdb7c865dd7e730b75d1344fe5732821bfef",
+        "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001145604-0001826466-26-000026-primary.response"
+      },
+      "cover_cik_matches": true,
+      "checks": [
+        {
+          "selected": {
+            "end": "2025-12-31",
+            "val": 20996,
+            "accn": "0001826466-26-000026",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-03-25",
+            "unit": "USD",
+            "cik": "0001145604",
+            "tag": "Assets"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "Assets",
+              "entity_cik": "0001145604",
+              "start": null,
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "20996",
+              "fact_id": "Fact000069",
+              "context_id": "AsOf2025-12-31",
+              "table_row": "Total Assets $ 20,996 $ 17,934"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "end": "2024-12-31",
+            "val": 17934,
+            "accn": "0001826466-26-000026",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-03-25",
+            "frame": "CY2024Q4I",
+            "unit": "USD",
+            "cik": "0001145604",
+            "tag": "Assets"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "Assets",
+              "entity_cik": "0001145604",
+              "start": null,
+              "end": "2024-12-31",
+              "unit": "USD",
+              "value": "17934",
+              "fact_id": "Fact000070",
+              "context_id": "AsOf2024-12-31",
+              "table_row": "Total Assets $ 20,996 $ 17,934"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "end": "2025-12-31",
+            "val": 20996,
+            "accn": "0001826466-26-000026",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-03-25",
+            "unit": "USD",
+            "cik": "0001145604",
+            "tag": "AssetsCurrent"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "AssetsCurrent",
+              "entity_cik": "0001145604",
+              "start": null,
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "20996",
+              "fact_id": "Fact000066",
+              "context_id": "AsOf2025-12-31",
+              "table_row": "Total current assets 20,996 17,934"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "end": "2024-12-31",
+            "val": 17934,
+            "accn": "0001826466-26-000026",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-03-25",
+            "frame": "CY2024Q4I",
+            "unit": "USD",
+            "cik": "0001145604",
+            "tag": "AssetsCurrent"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "AssetsCurrent",
+              "entity_cik": "0001145604",
+              "start": null,
+              "end": "2024-12-31",
+              "unit": "USD",
+              "value": "17934",
+              "fact_id": "Fact000067",
+              "context_id": "AsOf2024-12-31",
+              "table_row": "Total current assets 20,996 17,934"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "start": "2025-01-01",
+            "end": "2025-12-31",
+            "val": -76398,
+            "accn": "0001826466-26-000026",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-03-25",
+            "frame": "CY2025",
+            "unit": "USD",
+            "cik": "0001145604",
+            "tag": "NetIncomeLoss"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "NetIncomeLoss",
+              "entity_cik": "0001145604",
+              "start": "2025-01-01",
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "-76398",
+              "fact_id": "Fact000145",
+              "context_id": "From2025-01-01to2025-12-31",
+              "table_row": "Net Loss $ ( 76,398 ) $ ( 95,792 )"
+            },
+            {
+              "tag": "NetIncomeLoss",
+              "entity_cik": "0001145604",
+              "start": "2025-01-01",
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "-76398",
+              "fact_id": "Fact000212",
+              "context_id": "From2025-01-01to2025-12-31",
+              "table_row": "Net loss \u2014 \u2014 \u2014 \u2014 \u2014 ( 76,398 ) ( 76,398 )"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "start": "2024-01-01",
+            "end": "2024-12-31",
+            "val": -95792,
+            "accn": "0001826466-26-000026",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-03-25",
+            "frame": "CY2024",
+            "unit": "USD",
+            "cik": "0001145604",
+            "tag": "NetIncomeLoss"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "NetIncomeLoss",
+              "entity_cik": "0001145604",
+              "start": "2024-01-01",
+              "end": "2024-12-31",
+              "unit": "USD",
+              "value": "-95792",
+              "fact_id": "Fact000146",
+              "context_id": "From2024-01-012024-12-31",
+              "table_row": "Net Loss $ ( 76,398 ) $ ( 95,792 )"
+            },
+            {
+              "tag": "NetIncomeLoss",
+              "entity_cik": "0001145604",
+              "start": "2024-01-01",
+              "end": "2024-12-31",
+              "unit": "USD",
+              "value": "-95792",
+              "fact_id": "Fact000188",
+              "context_id": "From2024-01-012024-12-31",
+              "table_row": "Net loss \u2014 \u2014 \u2014 \u2014 \u2014 ( 95,792 ) ( 95,792 )"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "start": "2025-01-01",
+            "end": "2025-12-31",
+            "val": -76398,
+            "accn": "0001826466-26-000026",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-03-25",
+            "frame": "CY2025",
+            "unit": "USD",
+            "cik": "0001145604",
+            "tag": "OperatingIncomeLoss"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "OperatingIncomeLoss",
+              "entity_cik": "0001145604",
+              "start": "2025-01-01",
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "-76398",
+              "fact_id": "Fact000136",
+              "context_id": "From2025-01-01to2025-12-31",
+              "table_row": "Loss from operations ( 76,398 ) ( 95,792 )"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "start": "2024-01-01",
+            "end": "2024-12-31",
+            "val": -95792,
+            "accn": "0001826466-26-000026",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-03-25",
+            "frame": "CY2024",
+            "unit": "USD",
+            "cik": "0001145604",
+            "tag": "OperatingIncomeLoss"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "OperatingIncomeLoss",
+              "entity_cik": "0001145604",
+              "start": "2024-01-01",
+              "end": "2024-12-31",
+              "unit": "USD",
+              "value": "-95792",
+              "fact_id": "Fact000137",
+              "context_id": "From2024-01-012024-12-31",
+              "table_row": "Loss from operations ( 76,398 ) ( 95,792 )"
+            }
+          ]
+        }
+      ],
+      "all_selected_rows_match": true
+    },
+    {
+      "cik": "0001162283",
+      "accession": "0001206774-19-000585",
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1162283/000120677419000585/morgan3424874-10k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T08:23:29.719099+00:00",
+        "bytes": 205556,
+        "sha256": "2d49b7bc8676d177363a6300603e9d9aa0c23e6983f596a6ede75211c39ae9f3",
+        "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001162283-0001206774-19-000585-primary.response"
+      },
+      "cover_cik_matches": false,
+      "checks": [
+        {
+          "selected": {
+            "end": "2018-12-31",
+            "val": 222,
+            "accn": "0001206774-19-000585",
+            "fy": 2018,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2019-02-26",
+            "frame": "CY2018Q4I",
+            "unit": "USD",
+            "cik": "0001162283",
+            "tag": "AccountsPayableCurrent"
+          },
+          "matched": false,
+          "matches": []
+        },
+        {
+          "selected": {
+            "end": "2017-12-31",
+            "val": 4995,
+            "accn": "0001206774-19-000585",
+            "fy": 2018,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2019-02-26",
+            "frame": "CY2017Q4I",
+            "unit": "USD",
+            "cik": "0001162283",
+            "tag": "AccountsPayableCurrent"
+          },
+          "matched": false,
+          "matches": []
+        },
+        {
+          "selected": {
+            "end": "2018-12-31",
+            "val": 222,
+            "accn": "0001206774-19-000585",
+            "fy": 2018,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2019-02-26",
+            "unit": "USD",
+            "cik": "0001162283",
+            "tag": "LiabilitiesCurrent"
+          },
+          "matched": false,
+          "matches": []
+        },
+        {
+          "selected": {
+            "end": "2017-12-31",
+            "val": 4995,
+            "accn": "0001206774-19-000585",
+            "fy": 2018,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2019-02-26",
+            "frame": "CY2017Q4I",
+            "unit": "USD",
+            "cik": "0001162283",
+            "tag": "LiabilitiesCurrent"
+          },
+          "matched": false,
+          "matches": []
+        }
+      ],
+      "all_selected_rows_match": false
+    },
+    {
+      "cik": "0001172178",
+      "accession": "0001062993-15-002327",
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1172178/000106299315002327/form10k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T08:23:33.044275+00:00",
+        "bytes": 443771,
+        "sha256": "3140cbb252ebbf5822c52a18989d3db33a50885ee595ff0b0dc42f160bd841f9",
+        "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001172178-0001062993-15-002327-primary.response"
+      },
+      "cover_cik_matches": false,
+      "checks": [
+        {
+          "selected": {
+            "start": "2014-02-01",
+            "end": "2015-01-31",
+            "val": 0,
+            "accn": "0001062993-15-002327",
+            "fy": 2015,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2015-05-01",
+            "frame": "CY2014",
+            "unit": "USD",
+            "cik": "0001172178",
+            "tag": "Revenues"
+          },
+          "matched": false,
+          "matches": []
+        },
+        {
+          "selected": {
+            "start": "2013-02-01",
+            "end": "2014-01-31",
+            "val": 0,
+            "accn": "0001062993-15-002327",
+            "fy": 2015,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2015-05-01",
+            "frame": "CY2013",
+            "unit": "USD",
+            "cik": "0001172178",
+            "tag": "Revenues"
+          },
+          "matched": false,
+          "matches": []
+        }
+      ],
+      "all_selected_rows_match": false
+    },
+    {
+      "cik": "0001172178",
+      "accession": "0001493152-21-010343",
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1172178/000149315221010343/form10-k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T08:23:36.428811+00:00",
+        "bytes": 1024400,
+        "sha256": "d0816e736aa9d2270c666091bd38ad52fb588b3de4b1cb39d6b8fe33758bef87",
+        "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001172178-0001493152-21-010343-primary.response"
+      },
+      "cover_cik_matches": false,
+      "checks": [
+        {
+          "selected": {
+            "start": "2020-02-01",
+            "end": "2021-01-31",
+            "val": 500,
+            "accn": "0001493152-21-010343",
+            "fy": 2021,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2021-05-03",
+            "frame": "CY2020",
+            "unit": "USD",
+            "cik": "0001172178",
+            "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+          },
+          "matched": false,
+          "matches": []
+        }
+      ],
+      "all_selected_rows_match": false
+    },
+    {
+      "cik": "0001173420",
+      "accession": "0001171843-26-000374",
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1173420/000117184326000374/ng20251130_10k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T08:23:39.913164+00:00",
+        "bytes": 2436413,
+        "sha256": "5e21480d9d53c72d87fe858955b3da5a70b3bfb6cde5adf1cce313579d005cee",
+        "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001173420-0001171843-26-000374-primary.response"
+      },
+      "cover_cik_matches": true,
+      "checks": [
+        {
+          "selected": {
+            "start": "2024-12-01",
+            "end": "2025-11-30",
+            "val": 0,
+            "accn": "0001171843-26-000374",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-01-22",
+            "frame": "CY2025",
+            "unit": "USD",
+            "cik": "0001173420",
+            "tag": "Revenues"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "Revenues",
+              "entity_cik": "0001173420",
+              "start": "2024-12-01",
+              "end": "2025-11-30",
+              "unit": "USD",
+              "value": "0",
+              "fact_id": "c441",
+              "context_id": "d_2024-12-01_2025-11-30",
+              "table_row": null
+            }
+          ]
+        }
+      ],
+      "all_selected_rows_match": true
+    },
+    {
+      "cik": "0001174891",
+      "accession": "0001387131-14-000132",
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1174891/000138713114000132/rsrt-10k_20130930.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T08:23:43.447686+00:00",
+        "bytes": 1236476,
+        "sha256": "2a3d2546ec219b5a2bfe24f65b6f7f3a3f508fb14eb46a9164f3d183000ff01c",
+        "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001174891-0001387131-14-000132-primary.response"
+      },
+      "cover_cik_matches": false,
+      "checks": [
+        {
+          "selected": {
+            "start": "2012-10-01",
+            "end": "2013-09-30",
+            "val": 0,
+            "accn": "0001387131-14-000132",
+            "fy": 2013,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2014-01-14",
+            "frame": "CY2013",
+            "unit": "USD",
+            "cik": "0001174891",
+            "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+          },
+          "matched": false,
+          "matches": []
+        },
+        {
+          "selected": {
+            "start": "2011-10-01",
+            "end": "2012-09-30",
+            "val": 0,
+            "accn": "0001387131-14-000132",
+            "fy": 2013,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2014-01-14",
+            "frame": "CY2012",
+            "unit": "USD",
+            "cik": "0001174891",
+            "tag": "PaymentsToAcquirePropertyPlantAndEquipment"
+          },
+          "matched": false,
+          "matches": []
+        }
+      ],
+      "all_selected_rows_match": false
+    },
+    {
+      "cik": "0001222333",
+      "accession": "0001193125-17-354077",
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1222333/000119312517354077/d458473d10k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T08:23:47.126657+00:00",
+        "bytes": 969344,
+        "sha256": "276ed924ea13f437011ff4239c5c28f141b958493e1cb6c7e7ea454b31e2ec9b",
+        "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001222333-0001193125-17-354077-primary.response"
+      },
+      "cover_cik_matches": false,
+      "checks": [
+        {
+          "selected": {
+            "end": "2017-09-30",
+            "val": 0,
+            "accn": "0001193125-17-354077",
+            "fy": 2017,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2017-11-28",
+            "unit": "USD",
+            "cik": "0001222333",
+            "tag": "CashAndCashEquivalentsAtCarryingValue"
+          },
+          "matched": false,
+          "matches": []
+        },
+        {
+          "selected": {
+            "end": "2016-09-30",
+            "val": 0,
+            "accn": "0001193125-17-354077",
+            "fy": 2017,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2017-11-28",
+            "unit": "USD",
+            "cik": "0001222333",
+            "tag": "CashAndCashEquivalentsAtCarryingValue"
+          },
+          "matched": false,
+          "matches": []
+        },
+        {
+          "selected": {
+            "end": "2015-09-30",
+            "val": 0,
+            "accn": "0001193125-17-354077",
+            "fy": 2017,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2017-11-28",
+            "frame": "CY2015Q3I",
+            "unit": "USD",
+            "cik": "0001222333",
+            "tag": "CashAndCashEquivalentsAtCarryingValue"
+          },
+          "matched": false,
+          "matches": []
+        },
+        {
+          "selected": {
+            "end": "2014-09-30",
+            "val": 0,
+            "accn": "0001193125-17-354077",
+            "fy": 2017,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2017-11-28",
+            "frame": "CY2014Q3I",
+            "unit": "USD",
+            "cik": "0001222333",
+            "tag": "CashAndCashEquivalentsAtCarryingValue"
+          },
+          "matched": false,
+          "matches": []
+        }
+      ],
+      "all_selected_rows_match": false
+    },
+    {
+      "cik": "0001222333",
+      "accession": "0001437749-25-036305",
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1222333/000143774925036305/gld20250930_10k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T08:23:50.737712+00:00",
+        "bytes": 1069827,
+        "sha256": "7fb75666fb5474430ce72cfa07bb5e6dd5615468fe9fcc910cb0df36d38f1f73",
+        "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001222333-0001437749-25-036305-primary.response"
+      },
+      "cover_cik_matches": true,
+      "checks": [
+        {
+          "selected": {
+            "start": "2024-10-01",
+            "end": "2025-09-30",
+            "val": 0,
+            "accn": "0001437749-25-036305",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2025-11-25",
+            "frame": "CY2025",
+            "unit": "USD",
+            "cik": "0001222333",
+            "tag": "NetCashProvidedByUsedInOperatingActivities"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "NetCashProvidedByUsedInOperatingActivities",
+              "entity_cik": "0001222333",
+              "start": "2024-10-01",
+              "end": "2025-09-30",
+              "unit": "USD",
+              "value": "0",
+              "fact_id": "c138532483",
+              "context_id": "d_2024-10-01_2025-09-30",
+              "table_row": "Net cash provided by operating activities $ \u2014 $ \u2014 $ \u2014"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "start": "2023-10-01",
+            "end": "2024-09-30",
+            "val": 0,
+            "accn": "0001437749-25-036305",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2025-11-25",
+            "frame": "CY2024",
+            "unit": "USD",
+            "cik": "0001222333",
+            "tag": "NetCashProvidedByUsedInOperatingActivities"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "NetCashProvidedByUsedInOperatingActivities",
+              "entity_cik": "0001222333",
+              "start": "2023-10-01",
+              "end": "2024-09-30",
+              "unit": "USD",
+              "value": "0",
+              "fact_id": "c138532484",
+              "context_id": "d_2023-10-01_2024-09-30",
+              "table_row": "Net cash provided by operating activities $ \u2014 $ \u2014 $ \u2014"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "start": "2022-10-01",
+            "end": "2023-09-30",
+            "val": 0,
+            "accn": "0001437749-25-036305",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2025-11-25",
+            "frame": "CY2023",
+            "unit": "USD",
+            "cik": "0001222333",
+            "tag": "NetCashProvidedByUsedInOperatingActivities"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "NetCashProvidedByUsedInOperatingActivities",
+              "entity_cik": "0001222333",
+              "start": "2022-10-01",
+              "end": "2023-09-30",
+              "unit": "USD",
+              "value": "0",
+              "fact_id": "c138532485",
+              "context_id": "d_2022-10-01_2023-09-30",
+              "table_row": "Net cash provided by operating activities $ \u2014 $ \u2014 $ \u2014"
+            }
+          ]
+        }
+      ],
+      "all_selected_rows_match": true
+    },
+    {
+      "cik": "0001228627",
+      "accession": "0001140361-14-013828",
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1228627/000114036114013828/form10k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T08:23:54.244916+00:00",
+        "bytes": 2127034,
+        "sha256": "2fa7bfcb5f19c1a0944a5d718c06836fd2f1bc5148d34cb2539a269dcd967f0c",
+        "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001228627-0001140361-14-013828-primary.response"
+      },
+      "cover_cik_matches": false,
+      "checks": [
+        {
+          "selected": {
+            "start": "2013-01-01",
+            "end": "2013-12-31",
+            "val": 0,
+            "accn": "0001140361-14-013828",
+            "fy": 2013,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2014-03-21",
+            "frame": "CY2013",
+            "unit": "USD",
+            "cik": "0001228627",
+            "tag": "Revenues"
+          },
+          "matched": false,
+          "matches": []
+        },
+        {
+          "selected": {
+            "start": "2012-01-01",
+            "end": "2012-12-31",
+            "val": 0,
+            "accn": "0001140361-14-013828",
+            "fy": 2013,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2014-03-21",
+            "frame": "CY2012",
+            "unit": "USD",
+            "cik": "0001228627",
+            "tag": "Revenues"
+          },
+          "matched": false,
+          "matches": []
+        }
+      ],
+      "all_selected_rows_match": false
+    },
+    {
+      "cik": "0001258602",
+      "accession": "0001258602-18-000021",
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1258602/000125860218000021/nni-123117x10k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T08:23:57.993890+00:00",
+        "bytes": 4708678,
+        "sha256": "87d52b6646e0d9b5279862c4a45b2d14e5f4eab61d3cb90ec6d2fb3f7de572fb",
+        "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001258602-0001258602-18-000021-primary.response"
+      },
+      "cover_cik_matches": false,
+      "checks": [
+        {
+          "selected": {
+            "start": "2017-01-01",
+            "end": "2017-12-31",
+            "val": 0,
+            "accn": "0001258602-18-000021",
+            "fy": 2017,
+            "fp": "Q4",
+            "form": "10-K",
+            "filed": "2018-02-27",
+            "frame": "CY2017",
+            "unit": "USD",
+            "cik": "0001258602",
+            "tag": "Revenues"
+          },
+          "matched": false,
+          "matches": []
+        },
+        {
+          "selected": {
+            "start": "2016-01-01",
+            "end": "2016-12-31",
+            "val": 0,
+            "accn": "0001258602-18-000021",
+            "fy": 2017,
+            "fp": "Q4",
+            "form": "10-K",
+            "filed": "2018-02-27",
+            "frame": "CY2016",
+            "unit": "USD",
+            "cik": "0001258602",
+            "tag": "Revenues"
+          },
+          "matched": false,
+          "matches": []
+        },
+        {
+          "selected": {
+            "start": "2015-01-01",
+            "end": "2015-12-31",
+            "val": 0,
+            "accn": "0001258602-18-000021",
+            "fy": 2017,
+            "fp": "Q4",
+            "form": "10-K",
+            "filed": "2018-02-27",
+            "frame": "CY2015",
+            "unit": "USD",
+            "cik": "0001258602",
+            "tag": "Revenues"
+          },
+          "matched": false,
+          "matches": []
+        }
+      ],
+      "all_selected_rows_match": false
+    },
+    {
+      "cik": "0001278680",
+      "accession": "0001437749-23-004329",
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1278680/000143774923004329/iau20221231_10k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T08:24:02.668310+00:00",
+        "bytes": 773612,
+        "sha256": "434320bf7dce93dbf3bb149dab30a3f0a9f331091e8a6137a128cea6f3fff307",
+        "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001278680-0001437749-23-004329-primary.response"
+      },
+      "cover_cik_matches": true,
+      "checks": [
+        {
+          "selected": {
+            "end": "2022-12-31",
+            "val": 0,
+            "accn": "0001437749-23-004329",
+            "fy": 2022,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2023-02-23",
+            "frame": "CY2022Q4I",
+            "unit": "USD",
+            "cik": "0001278680",
+            "tag": "CashAndCashEquivalentsAtCarryingValue"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "CashAndCashEquivalentsAtCarryingValue",
+              "entity_cik": "0001278680",
+              "start": null,
+              "end": "2022-12-31",
+              "unit": "USD",
+              "value": "0",
+              "fact_id": "c93094520",
+              "context_id": "i_2022-12-31",
+              "table_row": "Cash, end of year $ \u2014 $ \u2014 $ \u2014"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "end": "2021-12-31",
+            "val": 0,
+            "accn": "0001437749-23-004329",
+            "fy": 2022,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2023-02-23",
+            "frame": "CY2021Q4I",
+            "unit": "USD",
+            "cik": "0001278680",
+            "tag": "CashAndCashEquivalentsAtCarryingValue"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "CashAndCashEquivalentsAtCarryingValue",
+              "entity_cik": "0001278680",
+              "start": null,
+              "end": "2021-12-31",
+              "unit": "USD",
+              "value": "0",
+              "fact_id": "c93094517",
+              "context_id": "i_2021-12-31",
+              "table_row": "Cash, beginning of year \u2014 \u2014 \u2014"
+            },
+            {
+              "tag": "CashAndCashEquivalentsAtCarryingValue",
+              "entity_cik": "0001278680",
+              "start": null,
+              "end": "2021-12-31",
+              "unit": "USD",
+              "value": "0",
+              "fact_id": "c93094521",
+              "context_id": "i_2021-12-31",
+              "table_row": "Cash, end of year $ \u2014 $ \u2014 $ \u2014"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "end": "2020-12-31",
+            "val": 0,
+            "accn": "0001437749-23-004329",
+            "fy": 2022,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2023-02-23",
+            "frame": "CY2020Q4I",
+            "unit": "USD",
+            "cik": "0001278680",
+            "tag": "CashAndCashEquivalentsAtCarryingValue"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "CashAndCashEquivalentsAtCarryingValue",
+              "entity_cik": "0001278680",
+              "start": null,
+              "end": "2020-12-31",
+              "unit": "USD",
+              "value": "0",
+              "fact_id": "c93094518",
+              "context_id": "i_2020-12-31",
+              "table_row": "Cash, beginning of year \u2014 \u2014 \u2014"
+            },
+            {
+              "tag": "CashAndCashEquivalentsAtCarryingValue",
+              "entity_cik": "0001278680",
+              "start": null,
+              "end": "2020-12-31",
+              "unit": "USD",
+              "value": "0",
+              "fact_id": "c93094522",
+              "context_id": "i_2020-12-31",
+              "table_row": "Cash, end of year $ \u2014 $ \u2014 $ \u2014"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "end": "2019-12-31",
+            "val": 0,
+            "accn": "0001437749-23-004329",
+            "fy": 2022,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2023-02-23",
+            "frame": "CY2019Q4I",
+            "unit": "USD",
+            "cik": "0001278680",
+            "tag": "CashAndCashEquivalentsAtCarryingValue"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "CashAndCashEquivalentsAtCarryingValue",
+              "entity_cik": "0001278680",
+              "start": null,
+              "end": "2019-12-31",
+              "unit": "USD",
+              "value": "0",
+              "fact_id": "c93094519",
+              "context_id": "i_2019-12-31",
+              "table_row": "Cash, beginning of year \u2014 \u2014 \u2014"
+            }
+          ]
+        }
+      ],
+      "all_selected_rows_match": true
+    },
+    {
+      "cik": "0001278680",
+      "accession": "0001437749-26-006055",
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1278680/000143774926006055/iau20251231_10k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T08:24:06.019182+00:00",
+        "bytes": 844067,
+        "sha256": "ccb1a5ee856578c8dbcbcec755fd2c15fd757a3d86425aeb695af808c5088c0b",
+        "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001278680-0001437749-26-006055-primary.response"
+      },
+      "cover_cik_matches": true,
+      "checks": [
+        {
+          "selected": {
+            "start": "2025-01-01",
+            "end": "2025-12-31",
+            "val": 0,
+            "accn": "0001437749-26-006055",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-02-27",
+            "frame": "CY2025",
+            "unit": "USD",
+            "cik": "0001278680",
+            "tag": "NetCashProvidedByUsedInOperatingActivities"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "NetCashProvidedByUsedInOperatingActivities",
+              "entity_cik": "0001278680",
+              "start": "2025-01-01",
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "0",
+              "fact_id": "c140627405",
+              "context_id": "d_2025-01-01_2025-12-31",
+              "table_row": "Net cash provided by operating activities \u2014 \u2014 \u2014"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "start": "2024-01-01",
+            "end": "2024-12-31",
+            "val": 0,
+            "accn": "0001437749-26-006055",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-02-27",
+            "frame": "CY2024",
+            "unit": "USD",
+            "cik": "0001278680",
+            "tag": "NetCashProvidedByUsedInOperatingActivities"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "NetCashProvidedByUsedInOperatingActivities",
+              "entity_cik": "0001278680",
+              "start": "2024-01-01",
+              "end": "2024-12-31",
+              "unit": "USD",
+              "value": "0",
+              "fact_id": "c140627406",
+              "context_id": "d_2024-01-01_2024-12-31",
+              "table_row": "Net cash provided by operating activities \u2014 \u2014 \u2014"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "start": "2023-01-01",
+            "end": "2023-12-31",
+            "val": 0,
+            "accn": "0001437749-26-006055",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-02-27",
+            "frame": "CY2023",
+            "unit": "USD",
+            "cik": "0001278680",
+            "tag": "NetCashProvidedByUsedInOperatingActivities"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "NetCashProvidedByUsedInOperatingActivities",
+              "entity_cik": "0001278680",
+              "start": "2023-01-01",
+              "end": "2023-12-31",
+              "unit": "USD",
+              "value": "0",
+              "fact_id": "c140627407",
+              "context_id": "d_2023-01-01_2023-12-31",
+              "table_row": "Net cash provided by operating activities \u2014 \u2014 \u2014"
+            }
+          ]
+        }
+      ],
+      "all_selected_rows_match": true
+    },
+    {
+      "cik": "0001281895",
+      "accession": "0001193125-26-076551",
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1281895/000119312526076551/rckt-20251231.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T08:24:09.542768+00:00",
+        "bytes": 3042627,
+        "sha256": "7e27bf9620e03e6ea7cca056cb14df401e7a65b66fec1ab5b5965a12293d3709",
+        "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001281895-0001193125-26-076551-primary.response"
+      },
+      "cover_cik_matches": true,
+      "checks": [
+        {
+          "selected": {
+            "start": "2025-01-01",
+            "end": "2025-12-31",
+            "val": 0,
+            "accn": "0001193125-26-076551",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-02-26",
+            "frame": "CY2025",
+            "unit": "USD",
+            "cik": "0001281895",
+            "tag": "RevenueFromContractWithCustomerExcludingAssessedTax"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+              "entity_cik": "0001281895",
+              "start": "2025-01-01",
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "0",
+              "fact_id": "F_28d927d3-2e23-4b27-ae4f-50252df017fc",
+              "context_id": "C_6c70763d-7c9d-41d5-8f3b-b7c53b06e0f0",
+              "table_row": "Revenue $ - $ -"
+            },
+            {
+              "tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+              "entity_cik": "0001281895",
+              "start": "2025-01-01",
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "0",
+              "fact_id": "F_925f3df1-3b83-40f3-9c76-6e16947d5fc7",
+              "context_id": "C_6c70763d-7c9d-41d5-8f3b-b7c53b06e0f0",
+              "table_row": "Revenue $ - $ -"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "start": "2024-01-01",
+            "end": "2024-12-31",
+            "val": 0,
+            "accn": "0001193125-26-076551",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-02-26",
+            "frame": "CY2024",
+            "unit": "USD",
+            "cik": "0001281895",
+            "tag": "RevenueFromContractWithCustomerExcludingAssessedTax"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+              "entity_cik": "0001281895",
+              "start": "2024-01-01",
+              "end": "2024-12-31",
+              "unit": "USD",
+              "value": "0",
+              "fact_id": "F_82673664-ba74-4027-939e-65f24c1dbfdf",
+              "context_id": "C_28e6079a-03d7-415c-926e-12c278c57b17",
+              "table_row": "Revenue $ - $ -"
+            },
+            {
+              "tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+              "entity_cik": "0001281895",
+              "start": "2024-01-01",
+              "end": "2024-12-31",
+              "unit": "USD",
+              "value": "0",
+              "fact_id": "F_4a420f57-e8b4-4632-a688-81864b5a4ff8",
+              "context_id": "C_28e6079a-03d7-415c-926e-12c278c57b17",
+              "table_row": "Revenue $ - $ -"
+            }
+          ]
+        }
+      ],
+      "all_selected_rows_match": true
+    },
+    {
+      "cik": "0001285785",
+      "accession": "0001285785-26-000017",
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1285785/000128578526000017/mos-20251231.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T08:24:13.208524+00:00",
+        "bytes": 4038983,
+        "sha256": "0643e91bc2ee988710bd4cffe2540df986fdb4d16b817b9a8b68bfd76d472393",
+        "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001285785-0001285785-26-000017-primary.response"
+      },
+      "cover_cik_matches": true,
+      "checks": [
+        {
+          "selected": {
+            "start": "2025-01-01",
+            "end": "2025-12-31",
+            "val": 12052400000,
+            "accn": "0001285785-26-000017",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-02-27",
+            "frame": "CY2025",
+            "unit": "USD",
+            "cik": "0001285785",
+            "tag": "RevenueFromContractWithCustomerExcludingAssessedTax"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+              "entity_cik": "0001285785",
+              "start": "2025-01-01",
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "12052400000.0",
+              "fact_id": "f-58",
+              "context_id": "c-1",
+              "table_row": "Net sales $ 12,052.4 $ 11,122.8 $ 13,696.1"
+            },
+            {
+              "tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+              "entity_cik": "0001285785",
+              "start": "2025-01-01",
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "12052400000.0",
+              "fact_id": "f-1791",
+              "context_id": "c-1",
+              "table_row": "Net sales to external customers $ 3,877.8 $ 2,658.7 $ 4,847.3 $ 668.6 $ 12,052.4"
+            },
+            {
+              "tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+              "entity_cik": "0001285785",
+              "start": "2025-01-01",
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "12052400000.0",
+              "fact_id": "f-2075",
+              "context_id": "c-1",
+              "table_row": "Consolidated $ 12,052.4 $ 11,122.8 $ 13,696.1"
+            },
+            {
+              "tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+              "entity_cik": "0001285785",
+              "start": "2025-01-01",
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "12052400000.0",
+              "fact_id": "f-2114",
+              "context_id": "c-1",
+              "table_row": "$ 12,052.4 $ 11,122.8 $ 13,696.1"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "start": "2024-01-01",
+            "end": "2024-12-31",
+            "val": 11122800000,
+            "accn": "0001285785-26-000017",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-02-27",
+            "frame": "CY2024",
+            "unit": "USD",
+            "cik": "0001285785",
+            "tag": "RevenueFromContractWithCustomerExcludingAssessedTax"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+              "entity_cik": "0001285785",
+              "start": "2024-01-01",
+              "end": "2024-12-31",
+              "unit": "USD",
+              "value": "11122800000.0",
+              "fact_id": "f-59",
+              "context_id": "c-6",
+              "table_row": "Net sales $ 12,052.4 $ 11,122.8 $ 13,696.1"
+            },
+            {
+              "tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+              "entity_cik": "0001285785",
+              "start": "2024-01-01",
+              "end": "2024-12-31",
+              "unit": "USD",
+              "value": "11122800000.0",
+              "fact_id": "f-1866",
+              "context_id": "c-6",
+              "table_row": "Net sales to external customers $ 3,793.3 $ 2,371.0 $ 4,422.3 $ 536.2 $ 11,122.8"
+            },
+            {
+              "tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+              "entity_cik": "0001285785",
+              "start": "2024-01-01",
+              "end": "2024-12-31",
+              "unit": "USD",
+              "value": "11122800000.0",
+              "fact_id": "f-2076",
+              "context_id": "c-6",
+              "table_row": "Consolidated $ 12,052.4 $ 11,122.8 $ 13,696.1"
+            },
+            {
+              "tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+              "entity_cik": "0001285785",
+              "start": "2024-01-01",
+              "end": "2024-12-31",
+              "unit": "USD",
+              "value": "11122800000.0",
+              "fact_id": "f-2115",
+              "context_id": "c-6",
+              "table_row": "$ 12,052.4 $ 11,122.8 $ 13,696.1"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "start": "2023-01-01",
+            "end": "2023-12-31",
+            "val": 13696100000,
+            "accn": "0001285785-26-000017",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-02-27",
+            "frame": "CY2023",
+            "unit": "USD",
+            "cik": "0001285785",
+            "tag": "RevenueFromContractWithCustomerExcludingAssessedTax"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+              "entity_cik": "0001285785",
+              "start": "2023-01-01",
+              "end": "2023-12-31",
+              "unit": "USD",
+              "value": "13696100000.0",
+              "fact_id": "f-60",
+              "context_id": "c-7",
+              "table_row": "Net sales $ 12,052.4 $ 11,122.8 $ 13,696.1"
+            },
+            {
+              "tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+              "entity_cik": "0001285785",
+              "start": "2023-01-01",
+              "end": "2023-12-31",
+              "unit": "USD",
+              "value": "13696100000.0",
+              "fact_id": "f-1936",
+              "context_id": "c-7",
+              "table_row": "Net sales to external customers $ 3,894.5 $ 3,203.1 $ 5,684.7 $ 913.8 $ 13,696.1"
+            },
+            {
+              "tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+              "entity_cik": "0001285785",
+              "start": "2023-01-01",
+              "end": "2023-12-31",
+              "unit": "USD",
+              "value": "13696100000.0",
+              "fact_id": "f-2077",
+              "context_id": "c-7",
+              "table_row": "Consolidated $ 12,052.4 $ 11,122.8 $ 13,696.1"
+            },
+            {
+              "tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+              "entity_cik": "0001285785",
+              "start": "2023-01-01",
+              "end": "2023-12-31",
+              "unit": "USD",
+              "value": "13696100000.0",
+              "fact_id": "f-2116",
+              "context_id": "c-7",
+              "table_row": "$ 12,052.4 $ 11,122.8 $ 13,696.1"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "start": "2025-01-01",
+            "end": "2025-12-31",
+            "val": 12052400000,
+            "accn": "0001285785-26-000017",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-02-27",
+            "frame": "CY2025",
+            "unit": "USD",
+            "cik": "0001285785",
+            "tag": "Revenues"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "Revenues",
+              "entity_cik": "0001285785",
+              "start": "2025-01-01",
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "12052400000.0",
+              "fact_id": "f-1801",
+              "context_id": "c-1",
+              "table_row": "Net sales 4,576.5 2,661.7 4,847.3 ( 33.1 ) 12,052.4"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "start": "2024-01-01",
+            "end": "2024-12-31",
+            "val": 11122800000,
+            "accn": "0001285785-26-000017",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-02-27",
+            "frame": "CY2024",
+            "unit": "USD",
+            "cik": "0001285785",
+            "tag": "Revenues"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "Revenues",
+              "entity_cik": "0001285785",
+              "start": "2024-01-01",
+              "end": "2024-12-31",
+              "unit": "USD",
+              "value": "11122800000.0",
+              "fact_id": "f-1876",
+              "context_id": "c-6",
+              "table_row": "Net sales 4,518.8 2,388.7 4,422.3 ( 207.0 ) 11,122.8"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "start": "2023-01-01",
+            "end": "2023-12-31",
+            "val": 13696100000,
+            "accn": "0001285785-26-000017",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-02-27",
+            "frame": "CY2023",
+            "unit": "USD",
+            "cik": "0001285785",
+            "tag": "Revenues"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "Revenues",
+              "entity_cik": "0001285785",
+              "start": "2023-01-01",
+              "end": "2023-12-31",
+              "unit": "USD",
+              "value": "13696100000.0",
+              "fact_id": "f-1946",
+              "context_id": "c-7",
+              "table_row": "Net sales 4,724.3 3,233.6 5,684.7 53.5 13,696.1"
+            }
+          ]
+        }
+      ],
+      "all_selected_rows_match": true
+    },
+    {
+      "cik": "0001310488",
+      "accession": "0001091818-26-000047",
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1310488/000109181826000047/bfnh-123125_10k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T08:24:18.073539+00:00",
+        "bytes": 334455,
+        "sha256": "0275f1152619289b280743fe65059c98c64b7a7aafc6129ab9738ba901e3c27a",
+        "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001310488-0001091818-26-000047-primary.response"
+      },
+      "cover_cik_matches": true,
+      "checks": [
+        {
+          "selected": {
+            "end": "2025-12-31",
+            "val": 786,
+            "accn": "0001091818-26-000047",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-04-15",
+            "unit": "USD",
+            "cik": "0001310488",
+            "tag": "Assets"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "Assets",
+              "entity_cik": "0001310488",
+              "start": null,
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "786",
+              "fact_id": "Fact000059",
+              "context_id": "AsOf2025-12-31",
+              "table_row": "Total Assets $ 786 $ 862"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "end": "2024-12-31",
+            "val": 862,
+            "accn": "0001091818-26-000047",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-04-15",
+            "frame": "CY2024Q4I",
+            "unit": "USD",
+            "cik": "0001310488",
+            "tag": "Assets"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "Assets",
+              "entity_cik": "0001310488",
+              "start": null,
+              "end": "2024-12-31",
+              "unit": "USD",
+              "value": "862",
+              "fact_id": "Fact000060",
+              "context_id": "AsOf2024-12-31",
+              "table_row": "Total Assets $ 786 $ 862"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "end": "2025-12-31",
+            "val": 786,
+            "accn": "0001091818-26-000047",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-04-15",
+            "unit": "USD",
+            "cik": "0001310488",
+            "tag": "AssetsCurrent"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "AssetsCurrent",
+              "entity_cik": "0001310488",
+              "start": null,
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "786",
+              "fact_id": "Fact000056",
+              "context_id": "AsOf2025-12-31",
+              "table_row": "Total Current Assets 786 862"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "end": "2024-12-31",
+            "val": 862,
+            "accn": "0001091818-26-000047",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-04-15",
+            "frame": "CY2024Q4I",
+            "unit": "USD",
+            "cik": "0001310488",
+            "tag": "AssetsCurrent"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "AssetsCurrent",
+              "entity_cik": "0001310488",
+              "start": null,
+              "end": "2024-12-31",
+              "unit": "USD",
+              "value": "862",
+              "fact_id": "Fact000057",
+              "context_id": "AsOf2024-12-31",
+              "table_row": "Total Current Assets 786 862"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "end": "2025-12-31",
+            "val": 619329,
+            "accn": "0001091818-26-000047",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-04-15",
+            "unit": "USD",
+            "cik": "0001310488",
+            "tag": "Liabilities"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "Liabilities",
+              "entity_cik": "0001310488",
+              "start": null,
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "619329",
+              "fact_id": "Fact000080",
+              "context_id": "AsOf2025-12-31",
+              "table_row": "Total Liabilities 619,329 2,302,454"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "end": "2024-12-31",
+            "val": 2302454,
+            "accn": "0001091818-26-000047",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-04-15",
+            "frame": "CY2024Q4I",
+            "unit": "USD",
+            "cik": "0001310488",
+            "tag": "Liabilities"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "Liabilities",
+              "entity_cik": "0001310488",
+              "start": null,
+              "end": "2024-12-31",
+              "unit": "USD",
+              "value": "2302454",
+              "fact_id": "Fact000081",
+              "context_id": "AsOf2024-12-31",
+              "table_row": "Total Liabilities 619,329 2,302,454"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "end": "2025-12-31",
+            "val": 619329,
+            "accn": "0001091818-26-000047",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-04-15",
+            "unit": "USD",
+            "cik": "0001310488",
+            "tag": "LiabilitiesCurrent"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "LiabilitiesCurrent",
+              "entity_cik": "0001310488",
+              "start": null,
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "619329",
+              "fact_id": "Fact000077",
+              "context_id": "AsOf2025-12-31",
+              "table_row": "Total Current Liabilities 619,329 2,302,454"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "end": "2024-12-31",
+            "val": 2302454,
+            "accn": "0001091818-26-000047",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-04-15",
+            "frame": "CY2024Q4I",
+            "unit": "USD",
+            "cik": "0001310488",
+            "tag": "LiabilitiesCurrent"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "LiabilitiesCurrent",
+              "entity_cik": "0001310488",
+              "start": null,
+              "end": "2024-12-31",
+              "unit": "USD",
+              "value": "2302454",
+              "fact_id": "Fact000078",
+              "context_id": "AsOf2024-12-31",
+              "table_row": "Total Current Liabilities 619,329 2,302,454"
+            }
+          ]
+        }
+      ],
+      "all_selected_rows_match": true
+    },
+    {
+      "cik": "0001310630",
+      "accession": "0001548123-19-000112",
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1310630/000154812319000112/trafalgarresourcesinc-201893.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T08:24:21.416035+00:00",
+        "bytes": 327824,
+        "sha256": "95ac8f18680fe75b66df28b6ae31d51c7d79e519ecc4ec421a7e50ac0e6bfa8d",
+        "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001310630-0001548123-19-000112-primary.response"
+      },
+      "cover_cik_matches": false,
+      "checks": [
+        {
+          "selected": {
+            "start": "2017-10-01",
+            "end": "2018-09-30",
+            "val": 0,
+            "accn": "0001548123-19-000112",
+            "fy": 2018,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2019-05-24",
+            "frame": "CY2018",
+            "unit": "USD",
+            "cik": "0001310630",
+            "tag": "Revenues"
+          },
+          "matched": false,
+          "matches": []
+        },
+        {
+          "selected": {
+            "start": "2016-10-01",
+            "end": "2017-09-30",
+            "val": 0,
+            "accn": "0001548123-19-000112",
+            "fy": 2018,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2019-05-24",
+            "frame": "CY2017",
+            "unit": "USD",
+            "cik": "0001310630",
+            "tag": "Revenues"
+          },
+          "matched": false,
+          "matches": []
+        }
+      ],
+      "all_selected_rows_match": false
+    },
+    {
+      "cik": "0001320461",
+      "accession": "0001320461-24-000034",
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1320461/000132046124000034/cps-20231231.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T08:24:25.070748+00:00",
+        "bytes": 2780787,
+        "sha256": "a1b723aea03b37a4c1fb3cab73bb5ee7806754994ea85370308ebc38999b9861",
+        "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001320461-0001320461-24-000034-primary.response"
+      },
+      "cover_cik_matches": true,
+      "checks": [
+        {
+          "selected": {
+            "start": "2023-01-01",
+            "end": "2023-12-31",
+            "val": 0,
+            "accn": "0001320461-24-000034",
+            "fy": 2023,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2024-02-16",
+            "frame": "CY2023",
+            "unit": "USD",
+            "cik": "0001320461",
+            "tag": "Revenues"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "Revenues",
+              "entity_cik": "0001320461",
+              "start": "2023-01-01",
+              "end": "2023-12-31",
+              "unit": "USD",
+              "value": "0",
+              "fact_id": "f-1718",
+              "context_id": "c-1",
+              "table_row": "Consolidated $ \u2014 $ \u2014 $ \u2014"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "start": "2022-01-01",
+            "end": "2022-12-31",
+            "val": 0,
+            "accn": "0001320461-24-000034",
+            "fy": 2023,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2024-02-16",
+            "frame": "CY2022",
+            "unit": "USD",
+            "cik": "0001320461",
+            "tag": "Revenues"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "Revenues",
+              "entity_cik": "0001320461",
+              "start": "2022-01-01",
+              "end": "2022-12-31",
+              "unit": "USD",
+              "value": "0",
+              "fact_id": "f-1719",
+              "context_id": "c-6",
+              "table_row": "Consolidated $ \u2014 $ \u2014 $ \u2014"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "start": "2021-01-01",
+            "end": "2021-12-31",
+            "val": 0,
+            "accn": "0001320461-24-000034",
+            "fy": 2023,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2024-02-16",
+            "frame": "CY2021",
+            "unit": "USD",
+            "cik": "0001320461",
+            "tag": "Revenues"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "Revenues",
+              "entity_cik": "0001320461",
+              "start": "2021-01-01",
+              "end": "2021-12-31",
+              "unit": "USD",
+              "value": "0",
+              "fact_id": "f-1720",
+              "context_id": "c-7",
+              "table_row": "Consolidated $ \u2014 $ \u2014 $ \u2014"
+            }
+          ]
+        }
+      ],
+      "all_selected_rows_match": true
+    },
+    {
+      "cik": "0001330568",
+      "accession": "0001437749-23-004332",
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1330568/000143774923004332/slv20221231_10k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T08:24:29.146920+00:00",
+        "bytes": 776326,
+        "sha256": "92940a5e7bbf754973bd13e21037a27dd4f94e5340177b318bba1bdc0f73e749",
+        "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001330568-0001437749-23-004332-primary.response"
+      },
+      "cover_cik_matches": true,
+      "checks": [
+        {
+          "selected": {
+            "end": "2022-12-31",
+            "val": 0,
+            "accn": "0001437749-23-004332",
+            "fy": 2022,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2023-02-23",
+            "frame": "CY2022Q4I",
+            "unit": "USD",
+            "cik": "0001330568",
+            "tag": "CashAndCashEquivalentsAtCarryingValue"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "CashAndCashEquivalentsAtCarryingValue",
+              "entity_cik": "0001330568",
+              "start": null,
+              "end": "2022-12-31",
+              "unit": "USD",
+              "value": "0",
+              "fact_id": "c93095951",
+              "context_id": "i_2022-12-31",
+              "table_row": "Cash, end of year $ \u2014 $ \u2014 $ \u2014"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "end": "2021-12-31",
+            "val": 0,
+            "accn": "0001437749-23-004332",
+            "fy": 2022,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2023-02-23",
+            "frame": "CY2021Q4I",
+            "unit": "USD",
+            "cik": "0001330568",
+            "tag": "CashAndCashEquivalentsAtCarryingValue"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "CashAndCashEquivalentsAtCarryingValue",
+              "entity_cik": "0001330568",
+              "start": null,
+              "end": "2021-12-31",
+              "unit": "USD",
+              "value": "0",
+              "fact_id": "c93095948",
+              "context_id": "i_2021-12-31",
+              "table_row": "Cash, beginning of year \u2014 \u2014 \u2014"
+            },
+            {
+              "tag": "CashAndCashEquivalentsAtCarryingValue",
+              "entity_cik": "0001330568",
+              "start": null,
+              "end": "2021-12-31",
+              "unit": "USD",
+              "value": "0",
+              "fact_id": "c93095952",
+              "context_id": "i_2021-12-31",
+              "table_row": "Cash, end of year $ \u2014 $ \u2014 $ \u2014"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "end": "2020-12-31",
+            "val": 0,
+            "accn": "0001437749-23-004332",
+            "fy": 2022,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2023-02-23",
+            "frame": "CY2020Q4I",
+            "unit": "USD",
+            "cik": "0001330568",
+            "tag": "CashAndCashEquivalentsAtCarryingValue"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "CashAndCashEquivalentsAtCarryingValue",
+              "entity_cik": "0001330568",
+              "start": null,
+              "end": "2020-12-31",
+              "unit": "USD",
+              "value": "0",
+              "fact_id": "c93095949",
+              "context_id": "i_2020-12-31",
+              "table_row": "Cash, beginning of year \u2014 \u2014 \u2014"
+            },
+            {
+              "tag": "CashAndCashEquivalentsAtCarryingValue",
+              "entity_cik": "0001330568",
+              "start": null,
+              "end": "2020-12-31",
+              "unit": "USD",
+              "value": "0",
+              "fact_id": "c93095953",
+              "context_id": "i_2020-12-31",
+              "table_row": "Cash, end of year $ \u2014 $ \u2014 $ \u2014"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "end": "2019-12-31",
+            "val": 0,
+            "accn": "0001437749-23-004332",
+            "fy": 2022,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2023-02-23",
+            "frame": "CY2019Q4I",
+            "unit": "USD",
+            "cik": "0001330568",
+            "tag": "CashAndCashEquivalentsAtCarryingValue"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "CashAndCashEquivalentsAtCarryingValue",
+              "entity_cik": "0001330568",
+              "start": null,
+              "end": "2019-12-31",
+              "unit": "USD",
+              "value": "0",
+              "fact_id": "c93095950",
+              "context_id": "i_2019-12-31",
+              "table_row": "Cash, beginning of year \u2014 \u2014 \u2014"
+            }
+          ]
+        }
+      ],
+      "all_selected_rows_match": true
+    },
+    {
+      "cik": "0001330568",
+      "accession": "0001437749-26-006059",
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1330568/000143774926006059/slv20251231_10k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T08:24:32.577041+00:00",
+        "bytes": 824455,
+        "sha256": "35c619a163e15eb5b01375a4677b2e6ba43836f5787eb7e7ed4bb5e60f06548b",
+        "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001330568-0001437749-26-006059-primary.response"
+      },
+      "cover_cik_matches": true,
+      "checks": [
+        {
+          "selected": {
+            "start": "2025-01-01",
+            "end": "2025-12-31",
+            "val": 0,
+            "accn": "0001437749-26-006059",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-02-27",
+            "frame": "CY2025",
+            "unit": "USD",
+            "cik": "0001330568",
+            "tag": "NetCashProvidedByUsedInOperatingActivities"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "NetCashProvidedByUsedInOperatingActivities",
+              "entity_cik": "0001330568",
+              "start": "2025-01-01",
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "0",
+              "fact_id": "c140626318",
+              "context_id": "d_2025-01-01_2025-12-31",
+              "table_row": "Net cash provided by operating activities \u2014 \u2014 \u2014"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "start": "2024-01-01",
+            "end": "2024-12-31",
+            "val": 0,
+            "accn": "0001437749-26-006059",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-02-27",
+            "frame": "CY2024",
+            "unit": "USD",
+            "cik": "0001330568",
+            "tag": "NetCashProvidedByUsedInOperatingActivities"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "NetCashProvidedByUsedInOperatingActivities",
+              "entity_cik": "0001330568",
+              "start": "2024-01-01",
+              "end": "2024-12-31",
+              "unit": "USD",
+              "value": "0",
+              "fact_id": "c140626319",
+              "context_id": "d_2024-01-01_2024-12-31",
+              "table_row": "Net cash provided by operating activities \u2014 \u2014 \u2014"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "start": "2023-01-01",
+            "end": "2023-12-31",
+            "val": 0,
+            "accn": "0001437749-26-006059",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-02-27",
+            "frame": "CY2023",
+            "unit": "USD",
+            "cik": "0001330568",
+            "tag": "NetCashProvidedByUsedInOperatingActivities"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "NetCashProvidedByUsedInOperatingActivities",
+              "entity_cik": "0001330568",
+              "start": "2023-01-01",
+              "end": "2023-12-31",
+              "unit": "USD",
+              "value": "0",
+              "fact_id": "c140626320",
+              "context_id": "d_2023-01-01_2023-12-31",
+              "table_row": "Net cash provided by operating activities \u2014 \u2014 \u2014"
+            }
+          ]
+        }
+      ],
+      "all_selected_rows_match": true
+    },
+    {
+      "cik": "0001342916",
+      "accession": "0001342916-26-000008",
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1342916/000134291626000008/hnoi10k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T08:24:36.109966+00:00",
+        "bytes": 881450,
+        "sha256": "13e87c8eb65089a81afb28ac8916505852fe332a1915af9d9c9b85ff2da50d83",
+        "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001342916-0001342916-26-000008-primary.response"
+      },
+      "cover_cik_matches": true,
+      "checks": [
+        {
+          "selected": {
+            "start": "2024-11-01",
+            "end": "2025-10-31",
+            "val": -6615496,
+            "accn": "0001342916-26-000008",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-02-06",
+            "unit": "USD",
+            "cik": "0001342916",
+            "tag": "NetIncomeLoss"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "NetIncomeLoss",
+              "entity_cik": "0001342916",
+              "start": "2024-11-01",
+              "end": "2025-10-31",
+              "unit": "USD",
+              "value": "-6615496",
+              "fact_id": "Fact000279",
+              "context_id": "From2024-11-01to2025-10-31",
+              "table_row": "Net Loss $ ( 6,615,496 ) $ ( 3,338,590 )"
+            },
+            {
+              "tag": "NetIncomeLoss",
+              "entity_cik": "0001342916",
+              "start": "2024-11-01",
+              "end": "2025-10-31",
+              "unit": "USD",
+              "value": "-6615496",
+              "fact_id": "Fact000450",
+              "context_id": "From2024-11-01to2025-10-31",
+              "table_row": "Net loss for the year ended October 31, 2025 \u2014 \u2014 \u2014 \u2014 \u2014 \u2014 \u2014 \u2014 \u2014 ( 6,615,496 ) ( 6,615,496 )"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "start": "2023-11-01",
+            "end": "2024-10-31",
+            "val": -3338590,
+            "accn": "0001342916-26-000008",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-02-06",
+            "unit": "USD",
+            "cik": "0001342916",
+            "tag": "NetIncomeLoss"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "NetIncomeLoss",
+              "entity_cik": "0001342916",
+              "start": "2023-11-01",
+              "end": "2024-10-31",
+              "unit": "USD",
+              "value": "-3338590",
+              "fact_id": "Fact000280",
+              "context_id": "From2023-11-012024-10-31",
+              "table_row": "Net Loss $ ( 6,615,496 ) $ ( 3,338,590 )"
+            },
+            {
+              "tag": "NetIncomeLoss",
+              "entity_cik": "0001342916",
+              "start": "2023-11-01",
+              "end": "2024-10-31",
+              "unit": "USD",
+              "value": "-3338590",
+              "fact_id": "Fact000367",
+              "context_id": "From2023-11-012024-10-31",
+              "table_row": "Net loss for the year ended October 31, 2024 \u2014 \u2014 \u2014 \u2014 \u2014 \u2014 \u2014 \u2014 \u2014 ( 3,338,590 ) ( 3,338,590 )"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "start": "2024-11-01",
+            "end": "2025-10-31",
+            "val": -6615496,
+            "accn": "0001342916-26-000008",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-02-06",
+            "unit": "USD",
+            "cik": "0001342916",
+            "tag": "OperatingIncomeLoss"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "OperatingIncomeLoss",
+              "entity_cik": "0001342916",
+              "start": "2024-11-01",
+              "end": "2025-10-31",
+              "unit": "USD",
+              "value": "-6615496",
+              "fact_id": "Fact000276",
+              "context_id": "From2024-11-01to2025-10-31",
+              "table_row": "Loss from Operations $ ( 6,615,496 ) $ ( 3,338,590 )"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "start": "2023-11-01",
+            "end": "2024-10-31",
+            "val": -3338590,
+            "accn": "0001342916-26-000008",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-02-06",
+            "unit": "USD",
+            "cik": "0001342916",
+            "tag": "OperatingIncomeLoss"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "OperatingIncomeLoss",
+              "entity_cik": "0001342916",
+              "start": "2023-11-01",
+              "end": "2024-10-31",
+              "unit": "USD",
+              "value": "-3338590",
+              "fact_id": "Fact000277",
+              "context_id": "From2023-11-012024-10-31",
+              "table_row": "Loss from Operations $ ( 6,615,496 ) $ ( 3,338,590 )"
+            }
+          ]
+        }
+      ],
+      "all_selected_rows_match": true
+    },
+    {
+      "cik": "0001365388",
+      "accession": "0001548123-21-000041",
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1365388/000154812321000041/f13027hsti10-kcleancopy41321.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T08:24:39.829085+00:00",
+        "bytes": 539357,
+        "sha256": "4a7c30b295e508b687c13eb5fd0392cea57d2d3f61fb7f41d9302c4e38e526cd",
+        "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001365388-0001548123-21-000041-primary.response"
+      },
+      "cover_cik_matches": false,
+      "checks": [
+        {
+          "selected": {
+            "start": "2020-01-01",
+            "end": "2020-12-31",
+            "val": 0,
+            "accn": "0001548123-21-000041",
+            "fy": 2020,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2021-04-14",
+            "frame": "CY2020",
+            "unit": "USD",
+            "cik": "0001365388",
+            "tag": "Revenues"
+          },
+          "matched": false,
+          "matches": []
+        },
+        {
+          "selected": {
+            "start": "2019-01-01",
+            "end": "2019-12-31",
+            "val": 0,
+            "accn": "0001548123-21-000041",
+            "fy": 2020,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2021-04-14",
+            "frame": "CY2019",
+            "unit": "USD",
+            "cik": "0001365388",
+            "tag": "Revenues"
+          },
+          "matched": false,
+          "matches": []
+        }
+      ],
+      "all_selected_rows_match": false
+    },
+    {
+      "cik": "0001375348",
+      "accession": "0001199835-14-000481",
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1375348/000119983514000481/gnls_10k-16149.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T08:24:43.304402+00:00",
+        "bytes": 975546,
+        "sha256": "9c52a67ce93be30d818953ae5a0d6ecbfe512fa939199eb63a1638760a6888fd",
+        "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001375348-0001199835-14-000481-primary.response"
+      },
+      "cover_cik_matches": false,
+      "checks": [
+        {
+          "selected": {
+            "start": "2013-07-01",
+            "end": "2014-06-30",
+            "val": 0,
+            "accn": "0001199835-14-000481",
+            "fy": 2014,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2014-09-26",
+            "frame": "CY2014",
+            "unit": "USD",
+            "cik": "0001375348",
+            "tag": "Revenues"
+          },
+          "matched": false,
+          "matches": []
+        },
+        {
+          "selected": {
+            "start": "2012-07-01",
+            "end": "2013-06-30",
+            "val": 0,
+            "accn": "0001199835-14-000481",
+            "fy": 2014,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2014-09-26",
+            "frame": "CY2013",
+            "unit": "USD",
+            "cik": "0001375348",
+            "tag": "Revenues"
+          },
+          "matched": false,
+          "matches": []
+        }
+      ],
+      "all_selected_rows_match": false
+    },
+    {
+      "cik": "0001393772",
+      "accession": "0001096906-26-000507",
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1393772/000109690626000507/budz_10k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T08:24:46.812883+00:00",
+        "bytes": 1016760,
+        "sha256": "ee29009d186f9a69d5113ab8ec3715dc3fc12d5be6fcb1a4f1ce1e76ea07bcdc",
+        "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001393772-0001096906-26-000507-primary.response"
+      },
+      "cover_cik_matches": true,
+      "checks": [
+        {
+          "selected": {
+            "end": "2025-12-31",
+            "val": 1248267,
+            "accn": "0001096906-26-000507",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-04-08",
+            "unit": "USD",
+            "cik": "0001393772",
+            "tag": "Liabilities"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "Liabilities",
+              "entity_cik": "0001393772",
+              "start": null,
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "1248267",
+              "fact_id": "fid_706",
+              "context_id": "AsOf2025-12-31",
+              "table_row": "TOTAL LIABILITIES 1,248,267 959,372"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "end": "2024-12-31",
+            "val": 959372,
+            "accn": "0001096906-26-000507",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-04-08",
+            "frame": "CY2024Q4I",
+            "unit": "USD",
+            "cik": "0001393772",
+            "tag": "Liabilities"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "Liabilities",
+              "entity_cik": "0001393772",
+              "start": null,
+              "end": "2024-12-31",
+              "unit": "USD",
+              "value": "959372",
+              "fact_id": "fid_707",
+              "context_id": "AsOf2024-12-31",
+              "table_row": "TOTAL LIABILITIES 1,248,267 959,372"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "end": "2025-12-31",
+            "val": 1248267,
+            "accn": "0001096906-26-000507",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-04-08",
+            "unit": "USD",
+            "cik": "0001393772",
+            "tag": "LiabilitiesCurrent"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "LiabilitiesCurrent",
+              "entity_cik": "0001393772",
+              "start": null,
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "1248267",
+              "fact_id": "fid_704",
+              "context_id": "AsOf2025-12-31",
+              "table_row": "TOTAL CURRENT LIABILITIES 1,248,267 959,372"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "end": "2024-12-31",
+            "val": 959372,
+            "accn": "0001096906-26-000507",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-04-08",
+            "frame": "CY2024Q4I",
+            "unit": "USD",
+            "cik": "0001393772",
+            "tag": "LiabilitiesCurrent"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "LiabilitiesCurrent",
+              "entity_cik": "0001393772",
+              "start": null,
+              "end": "2024-12-31",
+              "unit": "USD",
+              "value": "959372",
+              "fact_id": "fid_705",
+              "context_id": "AsOf2024-12-31",
+              "table_row": "TOTAL CURRENT LIABILITIES 1,248,267 959,372"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "start": "2025-01-01",
+            "end": "2025-12-31",
+            "val": 0,
+            "accn": "0001096906-26-000507",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-04-08",
+            "frame": "CY2025",
+            "unit": "USD",
+            "cik": "0001393772",
+            "tag": "Revenues"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "Revenues",
+              "entity_cik": "0001393772",
+              "start": "2025-01-01",
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "0",
+              "fact_id": "fid_723",
+              "context_id": "From2025-01-01to2025-12-31",
+              "table_row": "REVENUE $ - $ -"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "start": "2024-01-01",
+            "end": "2024-12-31",
+            "val": 0,
+            "accn": "0001096906-26-000507",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-04-08",
+            "frame": "CY2024",
+            "unit": "USD",
+            "cik": "0001393772",
+            "tag": "Revenues"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "Revenues",
+              "entity_cik": "0001393772",
+              "start": "2024-01-01",
+              "end": "2024-12-31",
+              "unit": "USD",
+              "value": "0",
+              "fact_id": "fid_724",
+              "context_id": "From2024-01-01to2024-12-31",
+              "table_row": "REVENUE $ - $ -"
+            }
+          ]
+        }
+      ],
+      "all_selected_rows_match": true
+    },
+    {
+      "cik": "0001409253",
+      "accession": "0001477932-18-001945",
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1409253/000147793218001945/nafs_10k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T08:24:50.515713+00:00",
+        "bytes": 366039,
+        "sha256": "0e40ef064e5378b77879cd2b67f47d852652c5128a78cd0cb442c0b58fc986ca",
+        "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001409253-0001477932-18-001945-primary.response"
+      },
+      "cover_cik_matches": false,
+      "checks": [
+        {
+          "selected": {
+            "end": "2017-12-31",
+            "val": 825444,
+            "accn": "0001477932-18-001945",
+            "fy": 2017,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2018-04-19",
+            "unit": "USD",
+            "cik": "0001409253",
+            "tag": "Liabilities"
+          },
+          "matched": false,
+          "matches": []
+        },
+        {
+          "selected": {
+            "end": "2016-12-31",
+            "val": 573931,
+            "accn": "0001477932-18-001945",
+            "fy": 2017,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2018-04-19",
+            "frame": "CY2016Q4I",
+            "unit": "USD",
+            "cik": "0001409253",
+            "tag": "Liabilities"
+          },
+          "matched": false,
+          "matches": []
+        },
+        {
+          "selected": {
+            "end": "2017-12-31",
+            "val": 825444,
+            "accn": "0001477932-18-001945",
+            "fy": 2017,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2018-04-19",
+            "unit": "USD",
+            "cik": "0001409253",
+            "tag": "LiabilitiesCurrent"
+          },
+          "matched": false,
+          "matches": []
+        },
+        {
+          "selected": {
+            "end": "2016-12-31",
+            "val": 573931,
+            "accn": "0001477932-18-001945",
+            "fy": 2017,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2018-04-19",
+            "frame": "CY2016Q4I",
+            "unit": "USD",
+            "cik": "0001409253",
+            "tag": "LiabilitiesCurrent"
+          },
+          "matched": false,
+          "matches": []
+        }
+      ],
+      "all_selected_rows_match": false
+    },
+    {
+      "cik": "0001410708",
+      "accession": "0001372167-14-000123",
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1410708/000137216714000123/emo10kjuly312013amend.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T08:24:53.996064+00:00",
+        "bytes": 238374,
+        "sha256": "64b3a5d019eb35e27a40b8337fed2dd73469d899f56f106909769c7f5cebf543",
+        "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001410708-0001372167-14-000123-primary.response"
+      },
+      "cover_cik_matches": false,
+      "checks": [
+        {
+          "selected": {
+            "end": "2012-07-31",
+            "val": 584,
+            "accn": "0001372167-14-000123",
+            "fy": 2013,
+            "fp": "FY",
+            "form": "10-K/A",
+            "filed": "2014-05-16",
+            "frame": "CY2012Q2I",
+            "unit": "USD",
+            "cik": "0001410708",
+            "tag": "AssetsCurrent"
+          },
+          "matched": false,
+          "matches": []
+        },
+        {
+          "selected": {
+            "end": "2012-07-31",
+            "val": 584,
+            "accn": "0001372167-14-000123",
+            "fy": 2013,
+            "fp": "FY",
+            "form": "10-K/A",
+            "filed": "2014-05-16",
+            "frame": "CY2012Q2I",
+            "unit": "USD",
+            "cik": "0001410708",
+            "tag": "CashAndCashEquivalentsAtCarryingValue"
+          },
+          "matched": false,
+          "matches": []
+        }
+      ],
+      "all_selected_rows_match": false
+    },
+    {
+      "cik": "0001415332",
+      "accession": "0001640334-26-000606",
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1415332/000164033426000606/ltum_10k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T08:24:57.430584+00:00",
+        "bytes": 870107,
+        "sha256": "5d134b2870921443d94d0c4e82ab2f0941d9b9c6e53c97c163c216f34c452fd4",
+        "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001415332-0001640334-26-000606-primary.response"
+      },
+      "cover_cik_matches": true,
+      "checks": [
+        {
+          "selected": {
+            "end": "2025-12-31",
+            "val": 2409302,
+            "accn": "0001640334-26-000606",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-03-31",
+            "unit": "USD",
+            "cik": "0001415332",
+            "tag": "Liabilities"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "Liabilities",
+              "entity_cik": "0001415332",
+              "start": null,
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "2409302",
+              "fact_id": "fid_809",
+              "context_id": "AsOf2025-12-31",
+              "table_row": "TOTAL LIABILITIES 2,409,302 2,406,676"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "end": "2024-12-31",
+            "val": 2406676,
+            "accn": "0001640334-26-000606",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-03-31",
+            "frame": "CY2024Q4I",
+            "unit": "USD",
+            "cik": "0001415332",
+            "tag": "Liabilities"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "Liabilities",
+              "entity_cik": "0001415332",
+              "start": null,
+              "end": "2024-12-31",
+              "unit": "USD",
+              "value": "2406676",
+              "fact_id": "fid_810",
+              "context_id": "AsOf2024-12-31",
+              "table_row": "TOTAL LIABILITIES 2,409,302 2,406,676"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "end": "2025-12-31",
+            "val": 2409302,
+            "accn": "0001640334-26-000606",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-03-31",
+            "unit": "USD",
+            "cik": "0001415332",
+            "tag": "LiabilitiesCurrent"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "LiabilitiesCurrent",
+              "entity_cik": "0001415332",
+              "start": null,
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "2409302",
+              "fact_id": "fid_807",
+              "context_id": "AsOf2025-12-31",
+              "table_row": "TOTAL CURRENT LIABILITIES 2,409,302 2,406,676"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "end": "2024-12-31",
+            "val": 2406676,
+            "accn": "0001640334-26-000606",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-03-31",
+            "frame": "CY2024Q4I",
+            "unit": "USD",
+            "cik": "0001415332",
+            "tag": "LiabilitiesCurrent"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "LiabilitiesCurrent",
+              "entity_cik": "0001415332",
+              "start": null,
+              "end": "2024-12-31",
+              "unit": "USD",
+              "value": "2406676",
+              "fact_id": "fid_808",
+              "context_id": "AsOf2024-12-31",
+              "table_row": "TOTAL CURRENT LIABILITIES 2,409,302 2,406,676"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "start": "2025-01-01",
+            "end": "2025-12-31",
+            "val": 0,
+            "accn": "0001640334-26-000606",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-03-31",
+            "frame": "CY2025",
+            "unit": "USD",
+            "cik": "0001415332",
+            "tag": "Revenues"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "Revenues",
+              "entity_cik": "0001415332",
+              "start": "2025-01-01",
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "0",
+              "fact_id": "fid_829",
+              "context_id": "From2025-01-01to2025-12-31",
+              "table_row": "REVENUE $ - $ -"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "start": "2024-01-01",
+            "end": "2024-12-31",
+            "val": 0,
+            "accn": "0001640334-26-000606",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-03-31",
+            "frame": "CY2024",
+            "unit": "USD",
+            "cik": "0001415332",
+            "tag": "Revenues"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "Revenues",
+              "entity_cik": "0001415332",
+              "start": "2024-01-01",
+              "end": "2024-12-31",
+              "unit": "USD",
+              "value": "0",
+              "fact_id": "fid_830",
+              "context_id": "From2024-01-01to2024-12-31",
+              "table_row": "REVENUE $ - $ -"
+            }
+          ]
+        }
+      ],
+      "all_selected_rows_match": true
+    },
+    {
+      "cik": "0001420108",
+      "accession": "0001477932-17-001354",
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1420108/000147793217001354/gluc_10k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T08:25:00.829611+00:00",
+        "bytes": 421953,
+        "sha256": "6d46164cc1c7469c5cb020dc432d41179fd682aaf9951edc9c2a88274a4c7360",
+        "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001420108-0001477932-17-001354-primary.response"
+      },
+      "cover_cik_matches": false,
+      "checks": [
+        {
+          "selected": {
+            "end": "2016-12-31",
+            "val": 528592,
+            "accn": "0001477932-17-001354",
+            "fy": 2016,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2017-03-29",
+            "unit": "USD",
+            "cik": "0001420108",
+            "tag": "Liabilities"
+          },
+          "matched": false,
+          "matches": []
+        },
+        {
+          "selected": {
+            "end": "2015-12-31",
+            "val": 403226,
+            "accn": "0001477932-17-001354",
+            "fy": 2016,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2017-03-29",
+            "frame": "CY2015Q4I",
+            "unit": "USD",
+            "cik": "0001420108",
+            "tag": "Liabilities"
+          },
+          "matched": false,
+          "matches": []
+        },
+        {
+          "selected": {
+            "end": "2016-12-31",
+            "val": 528592,
+            "accn": "0001477932-17-001354",
+            "fy": 2016,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2017-03-29",
+            "unit": "USD",
+            "cik": "0001420108",
+            "tag": "LiabilitiesCurrent"
+          },
+          "matched": false,
+          "matches": []
+        },
+        {
+          "selected": {
+            "end": "2015-12-31",
+            "val": 403226,
+            "accn": "0001477932-17-001354",
+            "fy": 2016,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2017-03-29",
+            "frame": "CY2015Q4I",
+            "unit": "USD",
+            "cik": "0001420108",
+            "tag": "LiabilitiesCurrent"
+          },
+          "matched": false,
+          "matches": []
+        }
+      ],
+      "all_selected_rows_match": false
+    },
+    {
+      "cik": "0001420565",
+      "accession": "0001193125-26-126385",
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1420565/000119312526126385/rntx-20251231.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T08:25:04.455680+00:00",
+        "bytes": 3472379,
+        "sha256": "b22c23bd943764843ce2dd3f038124f96ecb3dac9cce93881ff2c9faad9369db",
+        "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001420565-0001193125-26-126385-primary.response"
+      },
+      "cover_cik_matches": true,
+      "checks": [
+        {
+          "selected": {
+            "start": "2025-01-01",
+            "end": "2025-12-31",
+            "val": 0,
+            "accn": "0001193125-26-126385",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-03-26",
+            "frame": "CY2025",
+            "unit": "USD",
+            "cik": "0001420565",
+            "tag": "RevenueFromContractWithCustomerExcludingAssessedTax"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+              "entity_cik": "0001420565",
+              "start": "2025-01-01",
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "0",
+              "fact_id": "F_15dca174-01c9-41f4-8411-d2c3420034d8",
+              "context_id": "C_cabecc26-f56c-481d-94fb-4b4f230def01",
+              "table_row": "Revenue $ \u2014 $ \u2014"
+            },
+            {
+              "tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+              "entity_cik": "0001420565",
+              "start": "2025-01-01",
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "0",
+              "fact_id": "F_ecdbb9ec-4351-49e0-83b3-36bd6af92103",
+              "context_id": "C_cabecc26-f56c-481d-94fb-4b4f230def01",
+              "table_row": "Revenues $ \u2014 $ \u2014"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "start": "2024-01-01",
+            "end": "2024-12-31",
+            "val": 0,
+            "accn": "0001193125-26-126385",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-03-26",
+            "frame": "CY2024",
+            "unit": "USD",
+            "cik": "0001420565",
+            "tag": "RevenueFromContractWithCustomerExcludingAssessedTax"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+              "entity_cik": "0001420565",
+              "start": "2024-01-01",
+              "end": "2024-12-31",
+              "unit": "USD",
+              "value": "0",
+              "fact_id": "F_0bae2831-0819-4a0e-8dfe-e36a34d451af",
+              "context_id": "C_097b1db4-18f8-4660-8985-01b9ff56af4a",
+              "table_row": "Revenue $ \u2014 $ \u2014"
+            },
+            {
+              "tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+              "entity_cik": "0001420565",
+              "start": "2024-01-01",
+              "end": "2024-12-31",
+              "unit": "USD",
+              "value": "0",
+              "fact_id": "F_ee95192f-e7e5-42bb-b84b-fc1157ec322a",
+              "context_id": "C_097b1db4-18f8-4660-8985-01b9ff56af4a",
+              "table_row": "Revenues $ \u2014 $ \u2014"
+            }
+          ]
+        }
+      ],
+      "all_selected_rows_match": true
+    },
+    {
+      "cik": "0001420565",
+      "accession": "0001564590-18-007403",
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1420565/000156459018007403/alrn-10k_20171231.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T08:25:08.284981+00:00",
+        "bytes": 3458871,
+        "sha256": "fcb6bbef963c85b5b8490739ea35ed90a3dffcee906cb301cf2322f03ca28dbc",
+        "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001420565-0001564590-18-007403-primary.response"
+      },
+      "cover_cik_matches": false,
+      "checks": [
+        {
+          "selected": {
+            "start": "2017-01-01",
+            "end": "2017-12-31",
+            "val": 0,
+            "accn": "0001564590-18-007403",
+            "fy": 2017,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2018-04-02",
+            "frame": "CY2017",
+            "unit": "USD",
+            "cik": "0001420565",
+            "tag": "Revenues"
+          },
+          "matched": false,
+          "matches": []
+        },
+        {
+          "selected": {
+            "start": "2016-01-01",
+            "end": "2016-12-31",
+            "val": 0,
+            "accn": "0001564590-18-007403",
+            "fy": 2017,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2018-04-02",
+            "frame": "CY2016",
+            "unit": "USD",
+            "cik": "0001420565",
+            "tag": "Revenues"
+          },
+          "matched": false,
+          "matches": []
+        },
+        {
+          "selected": {
+            "start": "2015-01-01",
+            "end": "2015-12-31",
+            "val": 0,
+            "accn": "0001564590-18-007403",
+            "fy": 2017,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2018-04-02",
+            "frame": "CY2015",
+            "unit": "USD",
+            "cik": "0001420565",
+            "tag": "Revenues"
+          },
+          "matched": false,
+          "matches": []
+        }
+      ],
+      "all_selected_rows_match": false
+    },
+    {
+      "cik": "0001425205",
+      "accession": "0001144204-19-010702",
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1425205/000114420419010702/tv513795_10k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T08:25:12.641385+00:00",
+        "bytes": 1423147,
+        "sha256": "ccc9c87ced9cbecf8fe49ca4a8e3032695f0f1c830a92f91bc08cdee6ef31091",
+        "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001425205-0001144204-19-010702-primary.response"
+      },
+      "cover_cik_matches": false,
+      "checks": [
+        {
+          "selected": {
+            "start": "2018-01-01",
+            "end": "2018-12-31",
+            "val": 0,
+            "accn": "0001144204-19-010702",
+            "fy": 2018,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2019-02-28",
+            "frame": "CY2018",
+            "unit": "USD",
+            "cik": "0001425205",
+            "tag": "Revenues"
+          },
+          "matched": false,
+          "matches": []
+        },
+        {
+          "selected": {
+            "start": "2017-01-01",
+            "end": "2017-12-31",
+            "val": 0,
+            "accn": "0001144204-19-010702",
+            "fy": 2018,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2019-02-28",
+            "frame": "CY2017",
+            "unit": "USD",
+            "cik": "0001425205",
+            "tag": "Revenues"
+          },
+          "matched": false,
+          "matches": []
+        },
+        {
+          "selected": {
+            "start": "2016-01-01",
+            "end": "2016-12-31",
+            "val": 0,
+            "accn": "0001144204-19-010702",
+            "fy": 2018,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2019-02-28",
+            "frame": "CY2016",
+            "unit": "USD",
+            "cik": "0001425205",
+            "tag": "Revenues"
+          },
+          "matched": false,
+          "matches": []
+        }
+      ],
+      "all_selected_rows_match": false
+    }
+  ],
+  "publication_approved": false,
+  "code_sha256": "ae34ca0a4d5f989896bf1155afa6e49f98580cf89178e584dcd97f74dc3f6a2f",
+  "claim_boundary": "Latest-selected priority editorial observations only. Matches enforce entity, period, unit, value, scale/sign, and exclude dimensional/nil contexts. Unsupported formats or unmatched rows remain unresolved; numerical equality alone does not establish concept scope or all-history accuracy."
+}

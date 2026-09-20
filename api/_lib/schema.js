@@ -28,6 +28,7 @@ export function requestSchemaFor(entry) {
   for (const [key, propertySchema] of Object.entries(entry.requestExtraProperties ?? {})) {
     if (!(key in schema.properties)) schema.properties[key] = propertySchema;
   }
+  if (entry.requestClosed) schema.additionalProperties = false;
   if (entry.requestDescription) schema.description = entry.requestDescription;
   return schema;
 }

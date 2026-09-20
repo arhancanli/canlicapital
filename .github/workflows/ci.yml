@@ -19,6 +19,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          # Sitemap lastmod derives from actual source history, not the checkout date.
+          fetch-depth: 0
       - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
           node-version: 22
@@ -29,5 +32,75 @@ jobs:
         run: npm audit --audit-level=high
       - name: Build the production bundle
         run: npm run build
+      - name: Install browser for developer interaction checks
+        run: npx playwright install --with-deps chromium
+      - name: Verify source evidence, SEO and developer contracts
+        run: npm run verify
+      - name: Verify bulk source catalog integrity
+        run: npm run test:corpus
+      - name: Verify change-notification batching
+        run: npm run test:indexnow
       - name: Check patch hygiene
         run: git diff --check
+
+  design-system:
+    name: design wrapper build and contracts
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: design-system/package-lock.json
+      - run: npm ci --prefix design-system
+      - run: npm audit --prefix design-system --audit-level=moderate
+      - run: npm run build --prefix design-system
+      - run: npm test --prefix design-system
+
+  mcp:
+    name: MCP package and stdio contracts
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: mcp/package-lock.json
+      - run: npm ci --prefix mcp
+      - run: npm audit --prefix mcp --audit-level=high
+      - run: npm test --prefix mcp
+      - run: npm run test:package --prefix mcp
+
+  key-lifecycle:
+    name: Key revocation PostgreSQL contract
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_PASSWORD: postgres
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready --health-interval 5s --health-timeout 5s --health-retries 10
+    env:
+      PGHOST: localhost
+      PGPORT: 5432
+      PGUSER: postgres
+      PGPASSWORD: postgres
+      PGDATABASE: postgres
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Install PostgreSQL client
+        run: |
+          sudo apt-get update
+          sudo apt-get install --yes postgresql-client
+      - name: Apply migrations to disposable database and test lifecycle
+        run: |
+          psql -X -v ON_ERROR_STOP=1 -c 'CREATE ROLE anon; CREATE ROLE authenticated; CREATE ROLE service_role;'
+          psql -X -v ON_ERROR_STOP=1 -f supabase/migrations/20260905_validation_api.sql
+          psql -X -v ON_ERROR_STOP=1 -f supabase/migrations/20260920_key_revocation.sql
+          psql -X -v ON_ERROR_STOP=1 -f supabase/tests/key_revocation.sql
+          python3 scripts/test-key-revocation-race.py

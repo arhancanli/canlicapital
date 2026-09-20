@@ -1,0 +1,26 @@
+{
+  "schema": "canli.company-evidence-restore.v1",
+  "archive_sha256": "22ef0f561462ef620aa277a4b8ec2050ca3ef6efd02a611677724dc59db49bfd",
+  "repository_revision": "a2e557f33586d664c29d774b0e48e1134d8d0b81",
+  "restored_files": 7843,
+  "source_replays": {
+    "fresh-review": {
+      "complete": true,
+      "companies": 342,
+      "exclusions": 0,
+      "errors": 0
+    },
+    "next-1000": {
+      "complete": true,
+      "companies": 853,
+      "exclusions": 147,
+      "errors": 0
+    }
+  },
+  "runtime_objects_replayed": 3927,
+  "runtime_bytes": 505062941,
+  "release_hash": "3f7a621bdb49d3131219daba07c9f7a842b26ba959f5c84dac2349d14b6e9cd6",
+  "objects_exactly_match_original_plan": true,
+  "remote_backup_verified": false,
+  "scope": "Full archive byte verification, separate temporary restore, repository snapshot extraction and offline source/runtime replay. Third active cohort excluded. Restore directory removed after verification; archive retained locally."
+}

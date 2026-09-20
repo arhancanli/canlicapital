@@ -1,0 +1,214 @@
+{
+ "author": "Arhan Canli",
+ "claim_boundary": "A research decision under config/sleeve_admission_contract.json on one pre-registered out-of-sample record. ADMIT means every applicable gate passed on this evidence; it is not a forecast, not real-money performance, and does not itself change the live book, which changes only by a declared live-configuration change.",
+ "complete": true,
+ "completion_assessment": {
+  "status": "COMPLETE_V2_FULL_EVIDENCE_BATCH"
+ },
+ "config_hash": "e2e12b241c794d2c",
+ "configuration": {
+  "allocator": "monthly_residual_quintile_beta_hedged",
+  "alpha_names": [
+   "sec_10k_item1a_stability_jaccard5"
+  ],
+  "direction": "long_stable_short_changed",
+  "end": 1767139200000,
+  "hold_sessions": 63,
+  "lake_dir": "data/lake_sharadar_full",
+  "parser_version": "sec-filing-sections-v2",
+  "profile": "earnings_narrative_change_v1",
+  "section": "10-K Item 1A",
+  "start": 1451606400000
+ },
+ "content_hash": "sha256:b4782a404fb7fb9adc5426ea323429380119eeee82f45a7a20f82d8fcdac26bb",
+ "evidence_date": "2026-09-15",
+ "family_paper_public_path": "/research/equity-narrative-change-lineage.md",
+ "hypothesis_key": "6ed52744e6c9510d",
+ "immutable_first_measurement": {
+  "config_hash": "e2e12b241c794d2c",
+  "ledger": "var/experiments.jsonl"
+ },
+ "label": "earnings_narrative_change_v1",
+ "missing_sections": [],
+ "packet_status": "COMPLETE_ACCOUNTING_FINAL_KILL",
+ "partial_sections": [],
+ "required_sections": {
+  "admission_or_kill_decision": {
+   "evidence": [
+    {
+     "bytes": 6883,
+     "content_hash": "sha256:1bdf317c0f284b11f8f74cded0600018a8af7a59f45f6827b7e7a78f25369eef",
+     "path": "artifacts/research/earnings_narrative_change_batch/earnings_narrative_change_v1_admission_closure.json",
+     "sha256": "eef05686e3b72e3d6f02b835fbafe62519ca544734a620a162cb0e90ceb3d35b",
+     "type": "final_admission_closure"
+    }
+   ],
+   "statement": "FINAL_KILL",
+   "status": "VERIFIED_FINAL_KILL"
+  },
+  "code_environment_and_reproduction": {
+   "evidence": [
+    {
+     "path": "scripts/run_earnings_narrative_change_v1.py",
+     "sha256": "e427e075566e3dc58f1b9e9b5d1d7ca9b687a703c2d3af34ca12ce8b29f98c94",
+     "type": "runner_at_authorization"
+    },
+    {
+     "bytes": 36927,
+     "path": "scripts/run_earnings_narrative_change_v1.py",
+     "sha256": "e427e075566e3dc58f1b9e9b5d1d7ca9b687a703c2d3af34ca12ce8b29f98c94",
+     "type": "runner_at_seal"
+    },
+    {
+     "bytes": 3175,
+     "path": "pyproject.toml",
+     "sha256": "ddaf8b60999275f6d3fb93b3073f256d75d1383bfc8bab14263dc58645841006"
+    },
+    {
+     "bytes": 617550,
+     "path": "uv.lock",
+     "sha256": "5caca664242722a3a3112663d7a19b7b5000583e30ade3753e1b8ffdecfd6f06"
+    }
+   ],
+   "status": "VERIFIED_IDENTITY_LEVEL_EVIDENCE"
+  },
+  "economic_mechanism_and_falsifiable_hypothesis": {
+   "evidence": [
+    {
+     "bytes": 12898,
+     "path": "docs/design/PREREG_EARNINGS_NARRATIVE_CHANGE.md",
+     "sha256": "60486da41f1e2c88e62b6e56d436d780f645420ffaeb13364540d0c4040cc3b9"
+    }
+   ],
+   "status": "VERIFIED_IDENTITY_LEVEL_EVIDENCE"
+  },
+  "execution_and_cost_model": {
+   "evidence": [
+    {
+     "bytes": 11195,
+     "path": "artifacts/research/identity_batches/earnings_narrative_change_batch_1/execution_scenario_manifest.json",
+     "sha256": "36d5a757fa137a6151a758c1b439e3c2af97ba4e4a58c5e4e6dd1a14120f69d6"
+    },
+    {
+     "bytes": 73053,
+     "path": "artifacts/research/earnings_narrative_change_batch/earnings_narrative_change_v1_admission_evidence.json",
+     "sha256": "f407fb17823b51530a61fa0e601e87758d8717c7ec3363fd958a09b886836250"
+    }
+   ],
+   "status": "VERIFIED_IDENTITY_LEVEL_EVIDENCE"
+  },
+  "family_and_union_trial_accounting": {
+   "evidence": [
+    {
+     "config_hash": "e2e12b241c794d2c",
+     "path": "var/experiments.jsonl"
+    },
+    {
+     "content_hash": "sha256:79f775f08c94f4977649ee2ed148e8e7e88ec6d559c59549828bf214abb59ca0",
+     "path": "artifacts/research/identity_batches/earnings_narrative_change_batch_1/matrix_receipt.json"
+    }
+   ],
+   "status": "VERIFIED_IDENTITY_LEVEL_EVIDENCE"
+  },
+  "identity_and_authorship": {
+   "evidence": [
+    {
+     "bytes": 14297,
+     "path": "artifacts/research/preregistrations/earnings_narrative_change_v1/return_identity_reservation.json",
+     "sha256": "b3e937374d1cc6d7d56162d198979316008ff6a5f8f8199858982f3d69838ce5"
+    }
+   ],
+   "status": "VERIFIED_IDENTITY_LEVEL_EVIDENCE"
+  },
+  "literature_and_overlap_decision": {
+   "evidence": [
+    {
+     "bytes": 12898,
+     "path": "docs/design/PREREG_EARNINGS_NARRATIVE_CHANGE.md",
+     "sha256": "60486da41f1e2c88e62b6e56d436d780f645420ffaeb13364540d0c4040cc3b9"
+    }
+   ],
+   "status": "VERIFIED_IDENTITY_LEVEL_EVIDENCE"
+  },
+  "machine_readable_packet_and_stable_public_paper": {
+   "evidence": [
+    {
+     "packet_public_path": "/glassbox/trial-packets/earnings_narrative_change_v1.json",
+     "paper_public_path": "/research/earnings-narrative-change-v1"
+    }
+   ],
+   "status": "VERIFIED_IDENTITY_LEVEL_EVIDENCE"
+  },
+  "point_in_time_data_and_survivorship_controls": {
+   "evidence": [
+    {
+     "bytes": 1850,
+     "path": "artifacts/ingest/earnings_narrative_change/pairs_result.json",
+     "sha256": "77e63f666c0ff2625757b6cef6636361c65ca6094e3874b1b9008c5e79c82b42"
+    },
+    {
+     "bytes": 2092654,
+     "path": "artifacts/research/earnings_narrative_change_v1/oos/input_manifest.json",
+     "sha256": "9867e7be7dafdeca6e9a21ccab697321dbeea2a4f8849449f3c604b291c0a393"
+    }
+   ],
+   "status": "VERIFIED_IDENTITY_LEVEL_EVIDENCE"
+  },
+  "preregistration_and_hashes": {
+   "evidence": [
+    {
+     "bytes": 12898,
+     "path": "docs/design/PREREG_EARNINGS_NARRATIVE_CHANGE.md",
+     "sha256": "60486da41f1e2c88e62b6e56d436d780f645420ffaeb13364540d0c4040cc3b9"
+    },
+    {
+     "bytes": 14297,
+     "path": "artifacts/research/preregistrations/earnings_narrative_change_v1/return_identity_reservation.json",
+     "sha256": "b3e937374d1cc6d7d56162d198979316008ff6a5f8f8199858982f3d69838ce5"
+    }
+   ],
+   "status": "VERIFIED_IDENTITY_LEVEL_EVIDENCE"
+  },
+  "result_uncertainty_stress_capacity_and_diversification": {
+   "evidence": [
+    {
+     "bytes": 161242,
+     "content_hash": "sha256:e8c3de7a8a02ed8527c9e4214b8c1abe6b4da9928ff7e945dea2b9d562fd7b58",
+     "path": "artifacts/research/earnings_narrative_change_v1/oos/result.json",
+     "sha256": "aeeb308df8663f09ebdf961ea3b501ee91259f2ad29aeed50f3d10b5bc7e1c08"
+    },
+    {
+     "bytes": 38338,
+     "path": "artifacts/research/earnings_narrative_change_batch/earnings_narrative_change_v1_diversification.json",
+     "sha256": "1da198a3554d68201ce6ddedfed978b4179722a00c19e3f4b7687cc35d21b690"
+    },
+    {
+     "bytes": 73053,
+     "path": "artifacts/research/earnings_narrative_change_batch/earnings_narrative_change_v1_admission_evidence.json",
+     "sha256": "f407fb17823b51530a61fa0e601e87758d8717c7ec3363fd958a09b886836250"
+    }
+   ],
+   "status": "VERIFIED_IDENTITY_LEVEL_EVIDENCE"
+  }
+ },
+ "research_family_key": "earnings_narrative_change",
+ "result_receipt": {
+  "content_hash": "sha256:e8c3de7a8a02ed8527c9e4214b8c1abe6b4da9928ff7e945dea2b9d562fd7b58",
+  "path": "artifacts/research/earnings_narrative_change_v1/oos/result.json"
+ },
+ "schema": "canli.alphac-identity-trial-packet.v2",
+ "trial_paper_public_path": "/research/earnings-narrative-change-v1",
+ "verified_sections": [
+  "identity_and_authorship",
+  "economic_mechanism_and_falsifiable_hypothesis",
+  "literature_and_overlap_decision",
+  "preregistration_and_hashes",
+  "point_in_time_data_and_survivorship_controls",
+  "execution_and_cost_model",
+  "code_environment_and_reproduction",
+  "result_uncertainty_stress_capacity_and_diversification",
+  "family_and_union_trial_accounting",
+  "admission_or_kill_decision",
+  "machine_readable_packet_and_stable_public_paper"
+ ]
+}

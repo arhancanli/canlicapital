@@ -1,0 +1,121 @@
+{
+  "schema": "canli.editorial-zero-scope.v1",
+  "publication_approved": false,
+  "code_sha256": "b29aceef2b61a70cafe854ccaa22e81eda7249e9346d37cb033cf5ad1209ccc7",
+  "cases": [
+    {
+      "cik": "0001121795",
+      "tag": "CashAndCashEquivalentsAtCarryingValue",
+      "source_sha256": "d0880d260b2cbd749eb3ddd3ec3e13e9b8c031ee499cd66405d7ad6a4a75b503",
+      "filing_url": "https://www.sec.gov/Archives/edgar/data/1121795/000155335022000798/ghst_10k.htm",
+      "reason": "The inspected filing labels these zeros as cash equivalents alone, while its balance sheet reports nonzero cash. This combined cash-and-equivalents history is omitted; original source data remain available.",
+      "receipts": {
+        "primary": {
+          "url": "https://www.sec.gov/Archives/edgar/data/1121795/000155335022000798/ghst_10k.htm",
+          "status": 200,
+          "captured_at": "2026-09-20T08:23:05.082378+00:00",
+          "bytes": 512400,
+          "sha256": "f2bee3b8f6aadd221a735eda00c6b898ced206f0444031800fb7119bd684da63",
+          "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001121795-0001553350-22-000798-primary.response"
+        },
+        "lab": {
+          "url": "https://www.sec.gov/Archives/edgar/data/1121795/000155335022000798/ghst-20220630_lab.xml",
+          "status": 200,
+          "bytes": 146528,
+          "sha256": "74a6b5ff926498c3ef421996b8a62d58c5ccae6713a3dc81c59ebc7c6166b778",
+          "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001121795-lab.response",
+          "captured_at": "2026-09-20T08:39:24.768765+00:00"
+        },
+        "pre": {
+          "url": "https://www.sec.gov/Archives/edgar/data/1121795/000155335022000798/ghst-20220630_pre.xml",
+          "status": 200,
+          "bytes": 113998,
+          "sha256": "cf83bd6b196f803ab3c49df42e60b4e4b8943d295d22d95629d44722614f9808",
+          "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001121795-pre.response",
+          "captured_at": "2026-09-20T08:39:26.553619+00:00"
+        }
+      },
+      "labels": [
+        "Cash equivalents"
+      ],
+      "presentation_roles": [
+        "http://ghstworld.com/role/SummaryOfSignificantAccountingPoliciesDetailsNarrative"
+      ],
+      "primary_excerpts": [
+        "The Company had no cash equivalents at June 30, 2022 or 2021.",
+        "Cash $ 206 $ 7,350"
+      ],
+      "disposition": "EXCLUDE_CONCEPT_SCOPE_MISMATCH"
+    },
+    {
+      "cik": "0001258602",
+      "tag": "Revenues",
+      "source_sha256": "b7808c49c80b34ceb4c93b8748e92c5873685487ebcbfca30fc34595b226ea6b",
+      "filing_url": "https://www.sec.gov/Archives/edgar/data/1258602/000125860218000021/nni-123117x10k.htm",
+      "reason": "The inspected filing labels these selected values as intersegment servicing revenue after eliminations, not company-wide revenue. This generic revenue history is omitted; original source data remain available.",
+      "receipts": {
+        "primary": {
+          "url": "https://www.sec.gov/Archives/edgar/data/1258602/000125860218000021/nni-123117x10k.htm",
+          "status": 200,
+          "captured_at": "2026-09-20T08:23:57.993890+00:00",
+          "bytes": 4708678,
+          "sha256": "87d52b6646e0d9b5279862c4a45b2d14e5f4eab61d3cb90ec6d2fb3f7de572fb",
+          "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001258602-0001258602-18-000021-primary.response"
+        },
+        "lab": {
+          "url": "https://www.sec.gov/Archives/edgar/data/1258602/000125860218000021/nni-20171231_lab.xml",
+          "status": 200,
+          "bytes": 1412368,
+          "sha256": "06cfddba4a41d8f6114ab03e05b4c0ab4245d59d3bca6e59e61e0344165115de",
+          "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001258602-lab.response",
+          "captured_at": "2026-09-20T08:39:28.624823+00:00"
+        },
+        "pre": {
+          "url": "https://www.sec.gov/Archives/edgar/data/1258602/000125860218000021/nni-20171231_pre.xml",
+          "status": 200,
+          "bytes": 928214,
+          "sha256": "e81ece1fb934f1a6374dbe4d3703bd15484ac590518db08add7aa2630d4c76dd",
+          "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001258602-pre.response",
+          "captured_at": "2026-09-20T08:39:30.822335+00:00"
+        }
+      },
+      "labels": [
+        "Intersegment servicing revenue",
+        "Revenues"
+      ],
+      "presentation_roles": [
+        "http://www.nelnet.com/role/SegmentReportingDetails"
+      ],
+      "primary_excerpts": [
+        "Intersegment servicing revenue 41,674 \u2014 \u2014 \u2014 \u2014 (41,674 ) \u2014",
+        "Intersegment servicing revenue 45,381 \u2014 \u2014 \u2014 \u2014 (45,381 ) \u2014",
+        "Intersegment servicing revenue 50,354 \u2014 \u2014 \u2014 \u2014 (50,354 ) \u2014"
+      ],
+      "disposition": "EXCLUDE_CONCEPT_SCOPE_MISMATCH"
+    },
+    {
+      "cik": "0001320461",
+      "tag": "Revenues",
+      "source_sha256": "718c8a9b9efed44de17680904cfb988108d9eceea729986d8339add372af4ffa",
+      "filing_url": "https://www.sec.gov/Archives/edgar/data/1320461/000132046124000034/cps-20231231.htm",
+      "reason": "The inspected filing labels these selected zeros as intersegment sales after eliminations, while consolidated external sales are nonzero. This generic revenue history is omitted; original source data remain available.",
+      "receipts": {
+        "primary": {
+          "url": "https://www.sec.gov/Archives/edgar/data/1320461/000132046124000034/cps-20231231.htm",
+          "status": 200,
+          "captured_at": "2026-09-20T08:24:25.070748+00:00",
+          "bytes": 2780787,
+          "sha256": "a1b723aea03b37a4c1fb3cab73bb5ee7806754994ea85370308ebc38999b9861",
+          "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001320461-0001320461-24-000034-primary.response"
+        }
+      },
+      "labels": [],
+      "presentation_roles": [],
+      "primary_excerpts": [
+        "Year Ended December 31, 2023 2022 2021 Sales to external customers North America $ 1,486,100 $ 1,341,099 $ 1,148,257 Europe 648,256 503,672 518,245 Asia Pacific 452,441 443,126 458,306 South America 125,629 100,420 61,713 Total Automotive 2,712,426 2,388,317 2,186,521 Corporate, eliminations and other 103,453 137,074 143,670 Consolidated $ 2,815,879 $ 2,525,391 $ 2,330,191 Intersegment sales North America $ 10,780 $ 11,979 $ 9,775 Europe 8,195 7,272 9,502 Asia Pacific 10,101 3,847 1,863 South America 12 54 15 Total Automotive 29,088 23,152 21,155 Corporate, eliminations and other ( 29,088 ) ( 23,152 ) ( 21,155 ) Consolidated $ \u2014 $ \u2014 $ \u2014 Adjusted EBITDA North America $ 125,580 $ 70,819 $ 54,616 Europe 25,258 ( 37,137 ) ( 49,599 ) Asia Pacific 26,429 1,556 ( 16,756 ) South America 10,692 97 ( 9,852 ) Total Automotive 187,959 35,335 ( 21,591 ) Corporate, eliminations and other ( 20,883 ) 2,533 13,557 Consolidated $ 167,076 $ 37,868 $ ( 8,034 )"
+      ],
+      "disposition": "EXCLUDE_CONCEPT_SCOPE_MISMATCH"
+    }
+  ],
+  "scope": "Latest selected filing evidence for three exact source snapshots; original values and earlier policy versions remain reproducible. Not an all-history or publication approval."
+}

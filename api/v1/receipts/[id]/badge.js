@@ -27,10 +27,9 @@ export function createBadgeHandler({ store } = {}) {
     }
     const id = String(req.query?.id ?? "");
     if (!/^[0-9a-f]{24}$/.test(id)) return sendSvg(res, 404, renderNotFoundBadge());
-    const activeStore = store ?? defaultStore();
     let row;
     try {
-      row = await activeStore.getReceipt(id);
+      row = await (store ?? defaultStore()).getReceipt(id);
     } catch (e) {
       console.error("[validation-api] badge receipt read failed", e.status ?? "", e.message);
       return sendSvg(res, 404, renderNotFoundBadge());

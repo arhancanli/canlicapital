@@ -1,0 +1,33 @@
+{
+  "schema": "canli.goal-validation.v1",
+  "date": "2026-09-19",
+  "scope": "Local website checkpoint; not deployment, actual indexing, field performance or achieved owner outcomes",
+  "commands": {
+    "npm run build": "PASS",
+    "npm run verify": "PASS: 6 preverify + 294 main tests and audits",
+    "npm run test:corpus": "PASS: 5 tests",
+    "npm run test:indexnow": "PASS: 7 tests",
+    "COMPANY_AUDIT_ORIGIN=http://127.0.0.1:4185 node scripts/audit-company-browser.mjs": "PASS: 16 browser/viewport/page checks",
+    "git diff --check": "PASS"
+  },
+  "local_indexable_pages": 312,
+  "actual_indexed_pages": null,
+  "seo": {
+    "metadata_errors": 0,
+    "metadata_warnings": 0,
+    "indexability_conflicts": 0,
+    "maximum_indexable_click_depth": 3,
+    "intent_owners": 63,
+    "query_hypotheses": 80,
+    "unassigned_pages": 249
+  },
+  "source_hashes": {
+    "scripts/lib/company-reference.mjs": "ba96c5214910d0b69268f663af6dfd33a91c3d57a91d5b68f04355df643f6415",
+    "scripts/build-company-reference.mjs": "c317112c71cb428a9b693ec99ec06519fc7380055f4e0d2ce7c48768644cc19c",
+    "scripts/audit-company-corpus.py": "defe9fabba8ad9dab396bc537240d6769c299c5f253ce0bfbeae826d12d11cd6",
+    "scripts/audit-search-intents.mjs": "1bde663a9d5e6c0b683742568e3546a409a63a6ada1e74cbf24a001c252a4beb",
+    "config/search-intents.json": "c6086202dffbadede3fe03c9a46e28c90720300d2f8f1073338ad0db45564d9d",
+    "scripts/build-standards-and-developers.mjs": "01153850c36679333a7b2631c100e32297a8db317a144446a3d6cc30e0f35a79",
+    "scripts/product-shell.mjs": "81d920a226d2e9bddae7aed3478eb761b2f723dc806ec8781d0e3db3d65435a1"
+  }
+}
