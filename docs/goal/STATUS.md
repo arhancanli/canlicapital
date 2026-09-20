@@ -9,29 +9,26 @@ which links older records. Historical process states are not live telemetry.
 ## Current work and next action
 
 Worktree `/Users/arhancanli/canlicapital-expansion-20260919`, branch
-`evidence/share-context-batch11-20260920`. PR70merged8baa1bd8after all four
-CI35531739016checks passed at91a22a12. Tested/merged tree
-9cfb5eb18799c5799e280681ec632f4951879e60.
+`evidence/share-context-batch12-20260920`. PR73merged741b0268after four passing
+CI35532940376checks ate71d702e. Tested/merged tree
+c66b3689bb243c08ff875027c4c31598588b2a7b matches exactly. Signed PR72previously
+resolved the attribution-migration publication gate; original branches and
+historical evidence hashes remain preserved. No production activation implied.
 
-PR72merged5bedaf19593fdc34bd1145e5b72462d54dda9549 after four passing
-CI35532774579checks. Merged/tested tree453b8374982290bb22cd95b26bc67f5803b00ca8
-matches exactly. PR71closed as superseded; its unsigned migrated history was
-replaced with signed commits without changing protection or force-pushing.
-Original branches and historical hashes remain preserved.
-
-Latest registered ledger:company-basic-diluted-registered-scope-batch11-20260920.json.gz.
-Of1,176batch observations,396reviewed/772pending/8withdrawn.60reviewed are explicitly
+Latest registered ledger:company-basic-diluted-registered-scope-batch12-20260920.json.gz.
+Of1,176batch observations,420reviewed/748pending/8withdrawn.72reviewed are explicitly
 presentation-only; dilution cause is not established for those rows. The registry
 pins exact reports/issuers/dispositions/counts/states. Numerical agreement alone
 never approves scope. Workflow in SCOPE_REVIEW.md; original ledgers preserved.
 
-Latest24reviews cover American Well and iHeartMedia2023–2025EPS after
-noncontrolling allocation. American Well potential-share table is period-end,
-not an additional weighted denominator. iHeartMedia includes all Special Warrants
-in basic and diluted shares but excludes specified other equity awards as
-antidilutive. Share scales0and3respectively retained.31targeted tests pass and
-source report replays byte-identically. Next index40; earlier/legacy gaps remain.
-Batch11needs remote CI; batches7–10are merged. No production activation.
+Latest24reviews cover Apple Hospitality and Kura2023–2025EPS. Apple Hospitality's
+explicit absence of dilutive potential shares is dated2025; the three-year review
+remains presentation-only rather than extending that cause to2023/2024. Kura
+includes pre-funded warrants in basic shares because of their fully vested,
+exercisable and minimal-consideration terms; other equivalents are excluded in
+loss periods. Shares use scale3, EPSscale0.32targeted tests pass; source report
+replays byte-identically. Legacy INVOindex40still needs statement mapping.
+Next new index43; earlier/legacy gaps remain. Batch12needs remote CI.
 
 
 Earlier reviewed context includes111ordinary-share/ADS distinction, Celldex loss

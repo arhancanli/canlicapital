@@ -481,3 +481,16 @@ denominators while excluding other equity awards. Scales0/3preserved.31targeted
 tests pass; report replays byte-identically, only24ledger rows advance.396reviewed,
 772pending,8withdrawn;60presentation-only. No runtime rebuild, archive supplement,
 production deployment or indexing gain. Full owner goals remain active.
+
+## 2026-09-20 — dated absence of dilution and basic pre-funded warrants
+
+PR73four CI35532940376checks passed ate71d702e; merged741b0268with identical
+treec66b3689bb243c08ff875027c4c31598588b2a7b. Reviewed24Apple Hospitality/Kura
+observations. Apple Hospitality's2025no-dilutive-potential statement is not extended
+to2023/2024; all12retain presentation-only state. Kura pre-funded warrants are
+already included in basic shares, distinct from anti-dilutive excluded equivalents.
+Scale3shares/scale0EPSunchanged. Version4report replays byte-identically;
+32targeted tests pass and only24ledger rows advance.420reviewed/748pending/
+8withdrawn;72presentation-only. INVOlegacy16rows remain pending explicit original
+statement mapping. No runtime rebuild, archive supplement, deployment or indexing
+gain. Full owner objectives preserved; continue from index43and older pending gaps.
