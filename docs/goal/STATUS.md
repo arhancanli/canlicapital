@@ -169,3 +169,11 @@ Production remains unchanged.
 Storage transfer: six uploader regressions and three planner tests pass; complete
 v3preflight6,249objects/828,340,450bytes passes. No production variables changed.
 See STORAGE_READINESS.md and company-storage-canary-20260920.json.
+
+Storage PR21: https://github.com/arhancanli/canlicapital/pull/21. Initial full
+transfer stopped with exit1 after69verified objects/5,105,149bytes on a transport
+read failure. Original receipt and failure remain preserved. Bounded read-only
+inspection confirms endpoint availability and one created-but-unrecorded object;
+no assumption that failure meant upload absence. Added failing-key/transport-type
+evidence, code hash and GET cache-control enforcement; nine storage tests pass.
+A separate controlled resume will reverify existing objects at concurrency2.

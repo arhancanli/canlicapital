@@ -245,3 +245,11 @@ v3preflight verifies6,249objects/828,340,450bytes. Live two-object transport
 canary verifies15,415bytes of JSON/gzip through unauthenticated retrieval.
 This establishes remote transport only; corpus transfer, hosted preview, page
 admission and separate capture backup remain unfinished.
+
+Storage PR21: https://github.com/arhancanli/canlicapital/pull/21. Initial full
+transfer stopped with exit1 after69verified objects/5,105,149bytes on a transport
+read failure. Original receipt and failure remain preserved. Bounded read-only
+inspection confirms endpoint availability and one created-but-unrecorded object;
+no assumption that failure meant upload absence. Added failing-key/transport-type
+evidence, code hash and GET cache-control enforcement; nine storage tests pass.
+A separate controlled resume will reverify existing objects at concurrency2.

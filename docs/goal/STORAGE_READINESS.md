@@ -250,3 +250,13 @@ and https://supabase.com/docs/guides/storage/security/access-control.
 Next: finish remote candidate transfer, verify complete retrieval and hosted
 noindex behavior, then separately decide page admission. Original capture and
 excluded-response archives still need private off-device retention.
+
+Initial full transfer stopped after69verified objects/5,105,149bytes with a
+transport error. company-storage-transfer-stop-20260920.json preserves the
+terminal outcome; original partial receipt is unchanged. A later read-only probe
+found the next object present, demonstrating why resume must verify stored bytes
+rather than infer absence. No automatic retry occurred. Updated receipts bind
+code hashes and failing keys; recognized transport subtypes are sanitized.
+GET checks now also enforce the immutable one-year cache policy. Actual HEAD
+responses report no-cache and are not used to infer GET caching. The separate
+canary GET-header receipt verifies both representations and X-Robots-Tag:none.

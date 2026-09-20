@@ -44,7 +44,11 @@ export function createSupabaseStorage({ projectUrl, bucket, serviceKey, fetcher 
   const auth = { apikey: serviceKey, Authorization: `Bearer ${serviceKey}` };
   async function request(url, options) {
     try { return await fetcher(url, { ...options, redirect: 'error', signal: AbortSignal.timeout(60_000) }); }
-    catch { throw new Error('Storage request failed; no automatic retry'); }
+    catch (error) {
+      const code = error?.cause?.code ?? error?.code ?? error?.name;
+      const safe = ['ECONNRESET', 'ECONNREFUSED', 'ETIMEDOUT', 'ENOTFOUND', 'UND_ERR_CONNECT_TIMEOUT', 'UND_ERR_SOCKET', 'TimeoutError', 'AbortError'].includes(code) ? code : 'UNKNOWN_TRANSPORT';
+      throw new Error(`Storage request failed (${safe}); no automatic retry`);
+    }
   }
   return {
     destination: publicBase,
@@ -67,8 +71,11 @@ export function createSupabaseStorage({ projectUrl, bucket, serviceKey, fetcher 
         throw new Error(`Storage read rejected (${response.status})`);
       }
       const encoding = response.headers.get('content-encoding');
+      const cache = (response.headers.get('cache-control') ?? '').toLowerCase().split(',').map(s => s.trim());
       if ((encoding && encoding !== 'identity') ||
-          response.headers.get('content-type')?.split(';')[0].trim() !== file.content_type) {
+          response.headers.get('content-type')?.split(';')[0].trim() !== file.content_type ||
+          !['public', 'max-age=31536000', 'immutable'].every(value => cache.includes(value)) ||
+          cache.some(value => ['private', 'no-store', 'no-cache'].includes(value))) {
         await response.body?.cancel(); throw new Error('Storage representation changed');
       }
       const chunks = []; let length = 0;
@@ -97,8 +104,9 @@ export async function uploadCompanyStorage({ planBytes, planHash, storage, recor
   if (!Number.isInteger(concurrency) || concurrency < 1 || concurrency > 4) throw new Error('Concurrency must be between 1 and 4');
   const plan = validateStoragePlan(planBytes, planHash);
   const receipt = { schema: 'canli.company-storage-transfer.v1', plan_sha256: planHash,
+    code_sha256: catalogHash(readFileSync(new URL(import.meta.url))),
     release_hash: plan.release_hash, destination: storage.destination, publication_approved: false,
-    complete: false, files: [], scope: 'Runtime transfer only; not capture backup, editorial admission or production activation.' };
+    complete: false, files: [], failures: [], scope: 'Runtime transfer only; not capture backup, editorial admission or production activation.' };
   record(receipt);
   let cursor = 0, failure;
   async function worker() {
@@ -114,7 +122,11 @@ export async function uploadCompanyStorage({ planBytes, planHash, storage, recor
         }
         receipt.files.push({ key: file.key, sha256: file.sha256, bytes: file.bytes, action });
         record(receipt);
-      } catch (error) { failure ??= error; }
+      } catch (error) {
+        failure ??= error;
+        receipt.failures.push({ key: file.key, error: error.message });
+        record(receipt);
+      }
     }
   }
   await Promise.all(Array.from({ length: concurrency }, worker));

@@ -38,6 +38,7 @@ function server(fixture, options = {}) {
       if (options.failRead) return new Response('{"statusCode":"403","error":"Unauthorized"}', { status: 400 });
       if (!objects.has(key)) return new Response('{"statusCode":"404","error":"not_found"}', { status: 400 });
       return new Response(objects.get(key), { headers: { 'content-type': fixture.files.find(f => f.key === key).content_type,
+        'cache-control': options.cache ?? 'public, max-age=31536000, immutable',
         ...(options.encoding ? { 'content-encoding': options.encoding } : {}) } });
     } });
   return { storage, calls, objects };
@@ -80,6 +81,9 @@ test('rejects authorization failures and transformed representations without upl
   encoded.objects.set(f.files[0].key, f.data[0]);
   await assert.rejects(uploadCompanyStorage({ ...f, storage: encoded.storage }), /representation changed/);
   assert.equal(encoded.calls.length, 1);
+  const uncached = server(f, { cache: 'no-store' });
+  uncached.objects.set(f.files[0].key, f.data[0]);
+  await assert.rejects(uploadCompanyStorage({ ...f, storage: uncached.storage }), /representation changed/);
 });
 
 test('rejects malformed keys, duplicates and metadata before storage access', async t => {
@@ -109,4 +113,5 @@ test('bounded workers settle before failure returns and retain completed in-flig
   assert.equal(active, 0); assert.equal(peak, 2);
   assert.equal(snapshots.at(-1).complete, false);
   assert.equal(snapshots.at(-1).files.length, 1);
+  assert.equal(snapshots.at(-1).failures[0].key, f.files[1].key);
 });
