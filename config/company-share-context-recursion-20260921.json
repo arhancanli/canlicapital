@@ -1,0 +1,31 @@
+{
+  "schema": "canli.reviewed-share-context-spec.v1",
+  "decisions": [
+    {
+      "cik": "0001601830",
+      "accession": "0001601830-26-000039",
+      "source_sha256": "238c834540b26747e7f8af5dc10e3b986fcfbc96383469c4a944c9a5b2844e04",
+      "primary_sha256": "7cf157547ac2b87933188eef645c3d4ff777b2b40db25231de678c25b065c0e9",
+      "fixture": "scripts/fixtures/editorial/recursion-reviewed-source.json.gz",
+      "observations": 12,
+      "period_ends": [
+        "2023-12-31",
+        "2024-12-31",
+        "2025-12-31"
+      ],
+      "table_index": 173,
+      "share_scale": "0",
+      "table_requires": [
+        "Net loss per share of Class A, B and Exchangeable",
+        "Weighted-average shares (Class A, B and Exchangeable)"
+      ],
+      "paragraph_requires": [
+        "(in thousands, except share and per share amounts)",
+        "The Company\u2019s calculation of weighted-average shares outstanding includes the exchangeable shares",
+        "For the years ended December 31, 2025, 2024 and 2023, the Company reported a net loss and therefore basic and diluted loss per share were the same"
+      ],
+      "reader_note": "For Recursion in 2023\u20132025, the selected weighted-average denominator combines Class A, Class B and Exchangeable common stock. The filing treats the subsidiary\u2019s exchangeable shares as substantially economically equivalent to Class A and already includes them in weighted-average shares; they should not be added again as potential dilution. Other potentially dilutive shares are excluded in these loss periods. Full scale-zero share counts and EPS retain the main statement\u2019s share/per-share exception to the thousands heading.",
+      "disposition": "REVIEWED_ALLOCATION_UNIT_AND_DILUTION_CONTEXT"
+    }
+  ]
+}
