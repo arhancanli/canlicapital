@@ -8,27 +8,26 @@ which links older records. Historical process states are not live telemetry.
 
 ## Latest verified transition
 
-Worktree branch `evidence/batch2-context-second-20260921`.
-PR125 merged as a853306c61cec1d69c450b0d00c145fa406656f4 after all four
-CI35545553440checks passed atae01af01. Tested/merged tree
-483300a9499a409b1a3476e8af93d1377fed0845 matches.
-Batch2 now56reviewed/744pending/0withdrawn; latest ledger
-company-basic-diluted-batch2-scope-v3-20260921.json.gz. Second context report adds
-32observations across two Kyntra filings, Crisp Momentum and LifeMD. Kyntra and
-LifeMD positive2025total EPS coexist with continuing-operation losses; actual
-notes explicitly establish loss-based dilution exclusions. Kyntra later filing
-retrospectively reflects1-for-25split; older filing basis retained, no rescaling.
-LifeMD common numerator deducts noncontrolling income/preferred dividends; vested
-unissued awards already included in basic shares. Crisp July fiscal/name context
-preserved. Report replays byte-identically; only32ledger states/evidence links
-changed; all800observation metadata and previous24decisions unchanged. Theriva pending.
-73renderer/ledger tests passed. Reader notes require exact source and all reviewed
-observations. New renderer code needs fresh HTTP/browser validation before deployment;
-earlier v22HTTP report is historical evidence for its pinned renderer.
-No policy/data/runtime-object changes. Transfer44227same live handle, latest receipt
-1329of10,360objects/zero failures; uploader/plan unchanged.
-Next publish second review change, continue context coverage and finish hosted transfer.
-No production expansion, additional Google submission or new indexing evidence.
+Worktree branch `evidence/batch2-context-third-20260921`.
+PR126 merged as d68dc574195d91fa4b454e7981ee47606ab08308 after all four
+CI35545762276checks passed at49710be9. Tested/merged tree
+2102ddf0d44541367c361d8ab7e47253510cf596 matches.
+Batch2 now88reviewed/712pending/0withdrawn; latest ledger
+company-basic-diluted-batch2-scope-v4-20260921.json.gz. Third context report adds
+32observations across Olenox, Silver Bull, Eloxx and Rockwell. Olenox multiple
+retrospective splits explain large historical EPS; deemed dividends enter its2024
+common-loss numerator. Silver Bull rounded zero remains a real loss. Eloxx1-for-40
+split basis and full shares preserved. Rockwell Series X accretion enters common
+loss, not share denominator. Statements/disclosures and exact source snapshots pinned.
+Report replays byte-identically; only32ledger states/evidence links changed;
+all800observation metadata and prior56decisions unchanged. Theriva still pending.
+74renderer/ledger tests passed. New reader notes require exact source and reviewed
+observations. Current renderer still needs fresh HTTP/browser checks before release;
+prior v22HTTP report covers its pinned historical renderer only.
+No policy/data/runtime-object changes. Transfer44227polled live, latest receipt
+1494of10,360objects/zero failures; uploader/plan unchanged.
+Next publish third review change, continue context coverage and finish hosted transfer.
+No production expansion, new Google submission or confirmed indexing gain.
 
 ## Earlier verified checkpoints (historical)
 
@@ -318,4 +317,9 @@ tested website/API/MCP/repository releases; authentication and evidence gates ap
 PR125 published atae01af01f0e5ebde1f4a1b12647345e57d82396f. Unpublished rebase
 preserved full tree483300a9499a409b1a3476e8af93d1377fed0845. Push terminal0;
 CI pending. Transfer44227same live handle, latest receipt1186objects/zero failures.
+Owner attribution file untouched.
+
+PR126 published at49710be91f2775d2af56456218dccfd31ed68b3b; CI pending.
+Unpublished rebase preserved tree2102ddf0d44541367c361d8ab7e47253510cf596; push
+terminal0. Transfer44227polled live, latest receipt1354objects/zero failures.
 Owner attribution file untouched.

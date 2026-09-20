@@ -1,6 +1,322 @@
 // Limited filing context, bound to the reviewed capture and selected observations.
 export const FILING_NOTES = [
 {
+  "cik": "0001023994",
+  "include_on_overview": true,
+  "source_sha256": "6c5eec85a9adb59c283a180c4dc4f9b101240fb9f33d6a6cb670ac8e8c640fbd",
+  "tags": [
+    "EarningsPerShareBasic",
+    "EarningsPerShareDiluted",
+    "WeightedAverageNumberOfDilutedSharesOutstanding",
+    "WeightedAverageNumberOfSharesOutstandingBasic"
+  ],
+  "text": "Olenox's 2024 and 2025 share and per-share amounts reflect the filing's retrospective reverse splits: one-for-20 in May 2024, one-for-64 in September 2025 and one-for-10 in May 2026. The unusually large 2024 loss per share is retained on that reported basis, not treated as a missing-thousands scale. Its 2024 common-stockholder loss includes two deemed dividends totaling $5,621,596. The filing excludes anti-dilutive potential shares and explicitly ties the equal 2025 basic/diluted denominator to its net loss. Full share counts and reported total EPS are preserved.",
+  "filing_url": "https://www.sec.gov/Archives/edgar/data/1023994/000121390026073749/ea0295463-10k_olenox.htm",
+  "observations": [
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": -6740.61,
+      "accn": "0001213900-26-073749",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": -165.22,
+      "accn": "0001213900-26-073749",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": -6740.61,
+      "accn": "0001213900-26-073749",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": -165.22,
+      "accn": "0001213900-26-073749",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 3353,
+      "accn": "0001213900-26-073749",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 113908,
+      "accn": "0001213900-26-073749",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 3353,
+      "accn": "0001213900-26-073749",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 113908,
+      "accn": "0001213900-26-073749",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    }
+  ]
+},
+{
+  "cik": "0001031093",
+  "include_on_overview": true,
+  "source_sha256": "eb41411f24890e1bfe88d5c81030e943c02f19388a22efa6a54f49d1e1d6b10c",
+  "tags": [
+    "EarningsPerShareBasic",
+    "EarningsPerShareDiluted",
+    "WeightedAverageNumberOfDilutedSharesOutstanding",
+    "WeightedAverageNumberOfSharesOutstandingBasic"
+  ],
+  "text": "For Silver Bull Resources' years ended October 31, 2024 and 2025, options and warrants are excluded because they are anti-dilutive. The reported 2024 EPS of $0.00 is a rounded loss, not a break-even result: the statement reports a $168,785 net loss. Full weighted-average share counts, the October fiscal year-end and reported USD EPS are retained.",
+  "filing_url": "https://www.sec.gov/Archives/edgar/data/1031093/000107997326000129/svbl-20251031.htm",
+  "observations": [
+    {
+      "start": "2023-11-01",
+      "end": "2024-10-31",
+      "val": 0,
+      "accn": "0001079973-26-000129",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2024-11-01",
+      "end": "2025-10-31",
+      "val": -0.28,
+      "accn": "0001079973-26-000129",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2023-11-01",
+      "end": "2024-10-31",
+      "val": 0,
+      "accn": "0001079973-26-000129",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2024-11-01",
+      "end": "2025-10-31",
+      "val": -0.28,
+      "accn": "0001079973-26-000129",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2023-11-01",
+      "end": "2024-10-31",
+      "val": 47365652,
+      "accn": "0001079973-26-000129",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2024-11-01",
+      "end": "2025-10-31",
+      "val": 47553935,
+      "accn": "0001079973-26-000129",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2023-11-01",
+      "end": "2024-10-31",
+      "val": 47365652,
+      "accn": "0001079973-26-000129",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    },
+    {
+      "start": "2024-11-01",
+      "end": "2025-10-31",
+      "val": 47553935,
+      "accn": "0001079973-26-000129",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    }
+  ]
+},
+{
+  "cik": "0001035354",
+  "include_on_overview": true,
+  "source_sha256": "b351a9ed06ee3e6f1d738bbdb3852b866526fe561e11a7ffd4a81bc43bb27195",
+  "tags": [
+    "EarningsPerShareBasic",
+    "EarningsPerShareDiluted",
+    "WeightedAverageNumberOfDilutedSharesOutstanding",
+    "WeightedAverageNumberOfSharesOutstandingBasic"
+  ],
+  "text": "Eloxx's 2021 and 2022 share and per-share amounts are retrospectively adjusted for the December 1, 2022 one-for-40 reverse split. The filing excludes potential preferred-stock, option, warrant and restricted-unit shares because they are anti-dilutive. Dollar losses are displayed in thousands, but share counts and per-share data are unscaled. The historical filing's full share counts and reported USD EPS are preserved.",
+  "filing_url": "https://www.sec.gov/Archives/edgar/data/1035354/000095017023011360/elox-20221231.htm",
+  "observations": [
+    {
+      "start": "2021-01-01",
+      "end": "2021-12-31",
+      "val": -38.15,
+      "accn": "0000950170-23-011360",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2022-01-01",
+      "end": "2022-12-31",
+      "val": -16.65,
+      "accn": "0000950170-23-011360",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2021-01-01",
+      "end": "2021-12-31",
+      "val": -38.15,
+      "accn": "0000950170-23-011360",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2022-01-01",
+      "end": "2022-12-31",
+      "val": -16.65,
+      "accn": "0000950170-23-011360",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2021-01-01",
+      "end": "2021-12-31",
+      "val": 1749071,
+      "accn": "0000950170-23-011360",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2022-01-01",
+      "end": "2022-12-31",
+      "val": 2166311,
+      "accn": "0000950170-23-011360",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2021-01-01",
+      "end": "2021-12-31",
+      "val": 1749071,
+      "accn": "0000950170-23-011360",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    },
+    {
+      "start": "2022-01-01",
+      "end": "2022-12-31",
+      "val": 2166311,
+      "accn": "0000950170-23-011360",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    }
+  ]
+},
+{
+  "cik": "0001041024",
+  "include_on_overview": true,
+  "source_sha256": "88e8b83e4e95fda016bcc9a5dced4522c975c40fff65ebdbda5ac42b28ba4fb6",
+  "tags": [
+    "EarningsPerShareBasic",
+    "EarningsPerShareDiluted",
+    "WeightedAverageNumberOfDilutedSharesOutstanding",
+    "WeightedAverageNumberOfSharesOutstandingBasic"
+  ],
+  "text": "Rockwell Medical's 2024 and 2025 EPS uses loss attributable to common stockholders after Series X preferred-stock accretion, not net loss alone. The accretion is $302,000 in 2024 and $153,000 in 2025, producing common losses of $782,000 and $5,467,000. Potential shares are excluded as anti-dilutive. Dollar losses are displayed in thousands; shares and per-share amounts are unscaled. Full reported share counts and USD EPS are preserved.",
+  "filing_url": "https://www.sec.gov/Archives/edgar/data/1041024/000162828026021186/rmti-20251231.htm",
+  "observations": [
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": -0.03,
+      "accn": "0001628280-26-021186",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": -0.15,
+      "accn": "0001628280-26-021186",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": -0.03,
+      "accn": "0001628280-26-021186",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": -0.15,
+      "accn": "0001628280-26-021186",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 31058539,
+      "accn": "0001628280-26-021186",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 35974231,
+      "accn": "0001628280-26-021186",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 31058539,
+      "accn": "0001628280-26-021186",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 35974231,
+      "accn": "0001628280-26-021186",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    }
+  ]
+},
+{
   "cik": "0000921299",
   "include_on_overview": true,
   "source_sha256": "60313741a614d381e73fc033725566bd06ee27593e71b4e95a10100fd7a817db",

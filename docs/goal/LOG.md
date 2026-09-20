@@ -1433,3 +1433,28 @@ tested/merged tree483300a9499a409b1a3476e8af93d1377fed0845 identical.
 Transfer latest receipt1329objects/zero failures; same live44227handle, uploader/plan
 unchanged. Renderer still needs fresh HTTP/browser evidence before release; no
 production activation or indexing gain. Full owner goal remains active.
+
+PR126 published at49710be91f2775d2af56456218dccfd31ed68b3b; CI pending.
+Unpublished rebase preserved tree2102ddf0d44541367c361d8ab7e47253510cf596; push
+terminal0. Transfer44227polled live, latest receipt1354objects/zero failures.
+Owner attribution file untouched.
+
+
+## 2026-09-21 — split basis, rounded losses and preferred accretion
+
+Previous turn progressed32reviews/PR126. Re-read goal records;44227polled live.
+Inspected original Olenox2024/25statement and three reverse-split disclosures;
+2024common loss22,601,278includes5,621,596deemed dividends; division by3,353
+reproduces-6,740.61EPS, not a missing-thousands correction. Silver Bull2024zeroEPS
+is rounded168,785loss on47,365,652shares, October fiscal dates preserved. Eloxx
+2021/22statement and exclusions reflect December1,2022one-for-40split, fullshares.
+Rockwell EPSnote reconciles480k/5,314knet losses plus302k/153kSeries X accretion
+to782k/5,467kcommon losses. Exact tags/scale/disclosure paragraphs bound in v6spec;
+32observations reviewed. Second replay byte-identical. Ledger88reviewed/712pending,
+all800row metadata preserved, prior56decisions unchanged; Theriva still pending.
+74renderer/ledger tests pass including changed-observation note suppression.
+PR126 four CI35545762276checks passed at49710be9; merged d68dc574195d91fa4b454e7981ee47606ab08308,
+tested/merged tree2102ddf0d44541367c361d8ab7e47253510cf596 identical.
+Transfer latest1494objects/zero failures, same live44227handle, no uploader/plan
+changes. Fresh HTTP/browser validation still required for updated notes. No
+production/indexing gain; all original owner goals remain active.
