@@ -62,3 +62,28 @@ three new snapshot regressions. Chromium and WebKit checks at320,390 and1440pixe
 confirm the labels/date and no horizontal overflow. The initial full verification
 caught missing date provenance in the page audit; fixed with exact-source tracing.
 Browser assertions were corrected to read DOM text rather than CSS-uppercased text.
+
+## Research-topic review — 2026-09-20
+
+Reviewed the13existing topic hubs: killed candidates, literature reviews,
+feasibility protocols, engineering foundations, equities, crypto, options and
+volatility, rates and treasuries, credit, commodities, event-driven, macro surprise,
+and execution/market structure. Each receives two editorial query hypotheses tied
+to its existing reader task. Engineering foundations owns infrastructure and
+publication contracts; execution owns borrow, financing, venue and fill assumptions.
+Asset-topic hubs organize mechanism studies; the three research-stage hubs organize
+rejections, literature and feasibility. Overlapping membership does not require
+identical query ownership or duplicate pages.
+
+Corrected the rejected-candidate introduction and essay: no unsupported assertion
+that others do not publish failures or that accessible research is exhausted.
+Readers are directed to distinguish return-test failures, costs/capacity constraints
+and source-coverage failures. Rejection of one specification does not reject every
+possible implementation. The equity essay now likewise limits conclusions to tested
+variants and describes survivorship bias as a risk rather than a guaranteed effect.
+No underlying manuscript or result was rewritten.
+
+Audit:104canonical owners/147query hypotheses/223unassigned (previously236).
+Static inventory remains327indexable pages. Full build/verify pass6+384tests and
+all final audits. Editorial ownership is not search-volume or ranking evidence,
+and this review does not certify every factual claim in all13hubs.

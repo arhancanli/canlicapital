@@ -1135,3 +1135,14 @@ all6targetedGETs subsequently200, raw5noindex. No persistent technical blocker
 confirmed, nor any claim to identify Google's5excludedURLs from aggregatecounts.
 Laptop UI assistive access denied and JSautomationdisabled; two categoryGoogleSheets
 exports requested, not yet received. See INDEXING_BASELINE.md and threeHTTP receipts.
+
+## 2026-09-20 — research-topic intent and editorial review
+
+Reviewed13existing hubs; assigned26distinct editorial query hypotheses. Auditnow
+104owners/147hypotheses/223unassigned;327indexable unchanged. Revised rejected-
+candidate and equity topic prose to scope failures to actual trials, distinguish
+sourcefeasibility from performance, and remove unsupported field-wide claims.
+Full build/verify passes6+384tests andall audits; no newpages or manuscriptchanges.
+Restored unrelated generated churn. Priorhead772d60d2 CI35495690688passes.
+See SEARCH_INTENT_REVIEW.md; indexing remains262asofSeptember14, not increased
+by intent assignment. No production activation or algorithm outcome claim.

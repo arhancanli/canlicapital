@@ -470,3 +470,12 @@ raw5allnoindex. Reports preserved, initial falsefinding explicitly superseded in
 INDEXING_BASELINE.md. Per-URL Google exclusion exports requested; macOS denies
 assistive access, browser JS disabled, no securitysettings changed. PR68CI35494803169
 last observed running offline tests; five otherjobs passed. Overall goal active.
+
+## Topic ownership and claim scope — 2026-09-20
+
+Reviewed13topic hubs and assigned distinct intents:104owners,147hypotheses,
+223unassigned,327static indexable pages unchanged. Corrected rejected-candidate
+and equity essays to avoid generalizing project failures to exhausted research
+areas or guaranteed survivorship effects. Underlying manuscripts unchanged.
+Full build/verify6+384tests/all audits pass. Website772d60d2 CI35495690688passed.
+Enginece93d8c CI35494803169stillrunning atlastpoll. GoogleURLexports stillpending.
