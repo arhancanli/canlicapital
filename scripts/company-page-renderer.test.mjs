@@ -1245,3 +1245,28 @@ test('batch2 profitable totals retain continuing-loss dilution and historical sp
     }
   }
 });
+
+test('batch2 split, rounded loss and preferred accretion notes retain reported facts', () => {
+  for (const [cik, phrases] of [
+    ['0001023994', [/one-for-64/, /one-for-10 in May 2026/, /5,621,596/, /not treated as a missing-thousands scale/]],
+    ['0001031093', [/168,785 net loss/, /rounded loss/, /October fiscal year-end/]],
+    ['0001035354', [/December 1, 2022 one-for-40/, /share counts and per-share data are unscaled/]],
+    ['0001041024', [/Series X preferred-stock accretion/, /782,000 and \$5,467,000/]],
+  ]) {
+    const raw = gunzipSync(readFileSync(new URL(`./fixtures/editorial/batch2-${cik}-source.json.gz`, import.meta.url)));
+    const record = companyReference(raw, { expectedCik: cik, fetchedAt: '2026-09-21T00:00:00Z', selectionPolicy: 'extended-v22' });
+    verifyCompanyReference(record, raw);
+    const original = structuredClone(record.concepts);
+    record.source_snapshot = `/company-data/sources/${record.source_sha256}.json.gz`;
+    for (const target of ['overview', 'EarningsPerShareBasic', 'EarningsPerShareDiluted', 'WeightedAverageNumberOfSharesOutstandingBasic', 'WeightedAverageNumberOfDilutedSharesOutstanding']) {
+      const html = renderCompanyPages(record, { target })[0].html;
+      for (const phrase of phrases) assert.match(html, phrase);
+    }
+    assert.deepEqual(record.concepts, original);
+    const notes = companyFilingNotes(record, 'EarningsPerShareBasic').filter(n => n.observations.some(r => r.end === (cik === '0001031093' ? '2025-10-31' : cik === '0001035354' ? '2022-12-31' : '2025-12-31')));
+    assert.equal(notes.length, 1);
+    const changed = structuredClone(record), row = notes[0].observations[0];
+    changed.concepts.find(c => c.tag === row.tag).observations.find(o => o.accn === row.accn && o.end === row.end).val += 1;
+    assert(!companyFilingNotes(changed, row.tag).includes(notes[0]));
+  }
+});

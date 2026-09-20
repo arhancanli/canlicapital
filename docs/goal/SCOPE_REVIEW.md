@@ -104,3 +104,9 @@ dilution; historical reverse-split basis, preferred dividends, noncontrolling
 interest and already-included vested awards are explicit. Crisp July fiscal/name
 context retained. Ledger scope-v3 preserves all800row metadata and previous24
 decisions; only32pending states/evidence links change. Reports replay exactly.
+
+Third batch2 report adds32observations,88reviewed/712pending overall. Olenox
+retrospective split basis and deemed dividends, Silver Bull rounded-zero loss,
+Eloxx split basis and Rockwell preferred accretion receive exact source-bound notes.
+Scope-v4 changes only32pending states/evidence links; all800numerical rows and
+prior56decisions unchanged. Original reports/ledgers retained.
