@@ -283,3 +283,16 @@ unchanged values and stale-source suppression. Report and v5ledger replay exactl
 66reviewed (24presentation-only),1,102pending,8withdrawn. Cedar participating-share
 allocation context remains open. No rebuild, archival supplement, deployment or
 indexing gain; the complete owner objective remains active.
+
+## 2026-09-20 — Cedar vested-share allocation context
+
+PR63merged0bc93807after four passing CI35530156535checks; tested/merged tree
+9ad19ad1d3b7eb95b0a5f905c7a5cdd6ff791cfc matches. Reviewed eight selected
+2020/2021Cedar observations against original EPS reconciliation, participating-
+share allocation, performance-award measurement, OP-unit exclusion and explicit
+FFO denominator distinction. Table also contains2022, but selected batch rows do
+not; no additional period approved. Later2024/2025filing remains pending.
+Source-bound notes preserve all values;17renderer tests pass, including changed-
+observation suppression. Report and v6ledger replay exactly:74reviewed,
+1,094pending,8withdrawn;24reviewed remain presentation-only. No runtime rebuild,
+new archive, production activation or indexing claim.

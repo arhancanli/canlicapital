@@ -875,6 +875,86 @@ export const FILING_NOTES = [
     }
   ]
 }
+,
+{
+  "cik": "0000761648",
+  "include_on_overview": true,
+  "source_sha256": "dbcce42a16a42a13e297263e7e6f4477ce22ddf0a881b5df29c7b785e0ed456f",
+  "tags": [
+    "EarningsPerShareBasic",
+    "EarningsPerShareDiluted",
+    "WeightedAverageNumberOfDilutedSharesOutstanding",
+    "WeightedAverageNumberOfSharesOutstandingBasic"
+  ],
+  "text": "For the selected 2020\u20132021 figures, Cedar\u2019s EPS reconciliation uses income or loss allocated to vested common shares after participating-share adjustments. The EPS numerator therefore differs from total income or loss attributable to common shareholders. The filing reports no issuable units under the specified performance award at the measurement dates and excludes operating-partnership units and their related numerator amounts because including them would have no dilutive effect. Its FFO diluted share count includes items excluded from EPS; these denominators are not interchangeable. The reported basic and diluted EPS values and vested-share counts are retained without substituting FFO shares.",
+  "filing_url": "https://www.sec.gov/Archives/edgar/data/761648/000095017023005812/cdr-20221231.htm",
+  "observations": [
+    {
+      "start": "2020-01-01",
+      "end": "2020-12-31",
+      "val": -0.92,
+      "accn": "0000950170-23-005812",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2021-01-01",
+      "end": "2021-12-31",
+      "val": -4.24,
+      "accn": "0000950170-23-005812",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2020-01-01",
+      "end": "2020-12-31",
+      "val": -0.92,
+      "accn": "0000950170-23-005812",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2021-01-01",
+      "end": "2021-12-31",
+      "val": -4.24,
+      "accn": "0000950170-23-005812",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2020-01-01",
+      "end": "2020-12-31",
+      "val": 13104000,
+      "accn": "0000950170-23-005812",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2021-01-01",
+      "end": "2021-12-31",
+      "val": 13213000,
+      "accn": "0000950170-23-005812",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2020-01-01",
+      "end": "2020-12-31",
+      "val": 13104000,
+      "accn": "0000950170-23-005812",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    },
+    {
+      "start": "2021-01-01",
+      "end": "2021-12-31",
+      "val": 13213000,
+      "accn": "0000950170-23-005812",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    }
+  ]
+}
 ];
 
 export function companyFilingNotes(company, tag) {

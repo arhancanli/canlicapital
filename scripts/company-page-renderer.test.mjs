@@ -11,6 +11,25 @@ const company = JSON.parse(readFileSync(new URL('../public/company-data/00003201
 const source = readFileSync(new URL('../companies/0000320193/Assets.html', import.meta.url), 'utf8');
 const assets = buildCompanyAssets(source, '<script type="module" src="/assets/company.js"></script><link rel="stylesheet" href="/assets/company.css">');
 
+test('Cedar vested-share context preserves facts and distinguishes EPS from FFO', () => {
+  const raw = gunzipSync(readFileSync(new URL('./fixtures/editorial/cedar-reviewed-source.json.gz', import.meta.url)));
+  const record = companyReference(raw, { expectedCik: '0000761648', fetchedAt: '2026-09-20T00:00:00Z', selectionPolicy: 'extended-v17' });
+  verifyCompanyReference(record, raw);
+  const original = structuredClone(record.concepts);
+  record.source_snapshot = `/company-data/sources/${record.source_sha256}.json.gz`;
+  const tags = ['EarningsPerShareBasic', 'EarningsPerShareDiluted', 'WeightedAverageNumberOfSharesOutstandingBasic', 'WeightedAverageNumberOfDilutedSharesOutstanding'];
+  for (const target of [...tags, 'overview']) {
+    const html = renderCompanyPages(record, { target })[0].html;
+    assert.match(html, /participating-share adjustments/);
+    assert.match(html, /FFO diluted share count includes items excluded from EPS/);
+    assert.match(html, /cdr-20221231.htm/);
+  }
+  assert.deepEqual(record.concepts, original);
+  const changed = structuredClone(record);
+  changed.concepts.find(c => c.tag === tags[0]).observations.find(r => r.end === '2020-12-31').val = 0;
+  assert.equal(companyFilingNotes(changed, tags[0]).length, 0);
+});
+
 test('loss-share conventions preserve positive CAD loss magnitudes and historical instrument disclosure', () => {
   for (const [fixture, cik, phrase] of [
     ['blue-dolphin', '0000793306', /historical, not a claim about securities outstanding today/],
