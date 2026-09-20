@@ -158,11 +158,13 @@ Eighteen storage/planner tests cover bounded read and create recovery, interrupt
 response bodies, rejection statuses and corruption. All prior partial receipts
 remain intact. Resume4 ended at695 verified objects on a response-body reset.
 
-Resume5 session23870 is active using the reviewed uploader, concurrency4,
+Resume5 session23870 is terminal exit1 using the reviewed uploader, concurrency4,
 readAttempts3/writeAttempts2. Fresh receipt:
 corpus-local/company-three-cohort-remote-transfer-resume5-20260920.json.
 Latest checkpoint: 1223 verified objects, 4 read retries, 0 failures.
-Poll this exact handle before restarting; receipt alone is not process liveness.
+Stopped after 1721 verified objects/126028025bytes on read timeout,
+with all10read retries consumed. No uploader is active. Preserve resume5 receipt;
+next transfer targets the larger verified plan after its checks complete.
 The complete three-cohort plan is6,249objects/828,340,450bytes. Public staging bucket
 company-reference-staging has no public write policy added. Exact-byte GET/cache
 canaries passed. No production page activation or complete transfer is claimed.
@@ -174,9 +176,9 @@ Four hosted unavailable-state checks passed (404/405/503 GET/HEAD and cache/robo
 Ready-data checks, canonical routes, corpus-wide HTTP/browser verification and
 production rollout remain pending. Production publisher checkout stays9608542c.
 
-Candidate inventory:3,323unique companies plus87,348history pages. A combined
-50-company directory would add67pages, yielding90,738candidate URLs. Combined
-catalog not yet built; pilot overlaps mean these are not net-new live pages.
+Candidate inventory:3,323unique companies plus87,348history pages. Verified combined
+catalog and discovery now include67directory pages, yielding90,738unique candidate
+URLs. Pilot overlaps mean these are not net-new live pages.
 Count receipt: company-expansion-candidate-counts-20260920.json.
 
 ## Historical cash review checkpoint
@@ -212,4 +214,38 @@ visible year-end columns. Broader review of other cash histories, metrics and
 remaining editorial flags continues; no whole-corpus approval follows.
 
 Overall goal remains active; actual indexing and governed forward outcomes remain
-unproven. Next serving action: finish transfer, then run hosted ready-state audit.
+unproven. Next serving action: upload the new five-cohort plan with bounded recovery,
+then configure a preview for its release and run hosted ready-state checks.
+
+## Five-cohort combination in progress
+
+PR26 merged as4b24bd5040dd3bb55a0806d478682d87e12bdf73 after all four
+CI35513004800 jobs passed at219b779dc67d8d07d0c900a3e75fda2716f857fc;
+reviewed and merged tree88e99ad5d4088b10076dfcf6cb8cc7669f066def. Post-merge CI
+is successful. Historical statement-scope evidence is merged.
+
+Combining the original batches correctly stopped on differing selection policies
+(v3/v9/v8). Original pins/failure receipt retained. Replayed first/second/third/fifth
+into fresh v9 directories using existing cumulative policy; fourth already usedv9.
+Session55226 exited0. All3,323selected records differ only in selection_policy;
+source descriptors, concept values and excluded capture lists are unchanged.
+First cohort now includes explicit capture-review metadata; selector hashes reflect
+current replay code. Original artifacts and ongoing v3upload are unchanged.
+New pins: company-five-cohort-v9-inputs-20260920.json. Combination24408and
+catalog/release/discovery/storage pipeline28956both completed exit0. Release:
+9b562e4b5a1095e6dadb330915060b8b320ba02fc9384e9c5aef72f8d0aee4a2
+Catalog:66305915c903391dfca9ad7a829f5fbbfea06c6d3b877daac2819e307e755d1e
+Downloads:a28baba4bdfc213e576c77e68b6f45245f1c3ab8c00caec7a42f540d2cd4d1c7
+Plan:6cafb5205963ea8187a8f014dfeb8342bdd487f2274c33603ff96d332a83750c
+Runtime10,360objects/1,280,295,450bytes. Source replay and archived-manifest/index
+binding checks pass for all3,323companies/87,348histories. Independent XML/hash/
+unique-URL audit verifies90,738URLs in two shards (50,000and40,738), including
+67directories. No production rollout, Google submission or indexing gain.
+
+No uploader is active. Resume5for earlier three-cohort plan ended at1,721verified
+objects/126,028,025bytes, with10read retries consumed. Next upload should use the
+new five-cohort plan; retain existing immutable objects and verify any reused keys.
+Review explicit bounded retry allowance for10,360objects, keeping per-object limits,
+permission/rate-limit failures and corruption terminal. Do not blindly rerun the
+old v3plan. Five-cohort runtime archive/isolated restore still needed; earlier
+cohort archives remain preserved. Source admission and offsite backup remain open.
