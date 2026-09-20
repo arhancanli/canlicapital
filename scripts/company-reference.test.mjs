@@ -382,3 +382,49 @@ test('v14 withholds only six conflicting Varonis AFN/share observations', async 
     verifyCompanyReference(next, source);
   }
 });
+
+test('v15 preserves unrelated facts and exposes two distinct currency-context holds', async () => {
+  const { EDITORIAL_OBSERVATION_EXCLUSIONS_V15 } = await import('./lib/company-editorial-v15.mjs');
+  const { renderCompanyPages } = await import('./lib/company-page-renderer.mjs');
+  const cases = [
+    ['monolithic', '0001280452', '2026-09-20T07:48:39.145Z', /conflicting currency unit/],
+    ['51talk', '0001659494', '2026-09-19T11:20:04.794Z', /disclosed currency is supported/],
+  ];
+  for (const [fixture, cik, fetchedAt, notice] of cases) {
+    const raw = gunzipSync(readFileSync(new URL(`./fixtures/editorial/${fixture}-reviewed-source.json.gz`, import.meta.url)));
+    const options = { expectedCik: cik, fetchedAt };
+    const before = companyReference(raw, { ...options, selectionPolicy: 'extended-v14' });
+    const after = companyReference(raw, { ...options, selectionPolicy: 'extended-v15' });
+    const decisions = EDITORIAL_OBSERVATION_EXCLUSIONS_V15.filter(d => d.cik === cik);
+    assert.equal(decisions.length, 1);
+    const decision = decisions[0];
+    const matches = row => Object.entries(decision.observation).every(([key, value]) => row[key] === value);
+    const expected = structuredClone(before.concepts);
+    const concept = expected.find(c => c.tag === decision.tag);
+    assert.equal(concept.observations.filter(matches).length, 1);
+    concept.observations = concept.observations.filter(row => !matches(row));
+    assert.ok(concept.observations.some(row => row.unit === 'USD'));
+    assert.deepEqual(after.concepts, expected);
+    assert.equal(after.editorial_exclusions.length, (before.editorial_exclusions?.length ?? 0) + 1);
+    verifyCompanyReference(before, raw); verifyCompanyReference(after, raw);
+    assert.throws(() => companyReference(Buffer.concat([raw, Buffer.from('\n')]), { ...options, selectionPolicy: 'extended-v15' }), e => e.code === 'EDITORIAL_REVIEW_REQUIRED');
+    assert.throws(() => companyReference(raw, { ...options, fetchedAt: '2010-01-01T00:00:00Z', selectionPolicy: 'extended-v15' }), e => e.code === 'EDITORIAL_REVIEW_REQUIRED');
+    const changed = structuredClone(after); changed.editorial_exclusions.pop();
+    assert.throws(() => verifyCompanyReference(changed, raw), /does not reproduce/);
+    after.source_snapshot = `/company-data/sources/${after.source_sha256}.json.gz`;
+    for (const target of [decision.tag, 'overview']) {
+      const html = renderCompanyPages(after, { target })[0].html;
+      assert.match(html, notice);
+      assert.ok(html.includes(decision.filing_url));
+    }
+  }
+  for (const [fixture, cik] of [['varonis', '0001361113'], ['atlantica', '0001062506'], ['hno', '0001342916'], ['dbmm', '0001127475']]) {
+    const raw = gunzipSync(readFileSync(new URL(`./fixtures/editorial/${fixture}-reviewed-source.json.gz`, import.meta.url)));
+    const options = { expectedCik: cik, fetchedAt: '2026-09-20T07:56:08.917Z' };
+    const before = companyReference(raw, { ...options, selectionPolicy: 'extended-v14' });
+    const after = companyReference(raw, { ...options, selectionPolicy: 'extended-v15' });
+    assert.deepEqual(after.concepts, before.concepts);
+    assert.deepEqual(after.editorial_exclusions, before.editorial_exclusions);
+    verifyCompanyReference(after, raw);
+  }
+});

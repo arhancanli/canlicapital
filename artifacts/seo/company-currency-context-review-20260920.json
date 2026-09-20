@@ -1,0 +1,226 @@
+{
+  "schema": "canli.currency-context-review.v1",
+  "publication_approved": false,
+  "input_sha256": {
+    "company-currency-context-targets-20260920.json": "5d6405d20bab2c3f6f7f1565d515f878ffdaa85cd456c484a39565cb8801acad",
+    "company-currency-context-capture-20260920.json": "7ebaf8d14d39c6426bb3856fa0327c8e233a157fed111fb4e859a7db972aeba1",
+    "company-currency-context-primary-20260920.json": "3f28c80fa5d39a92cc095aa972c7297fd92e8e0c097d57f2644f40ba9324122e",
+    "company-currency-context-legacy-20260920.json": "008bba77ca339adc39656e9c56d17ced1b267a9a1333731822e18fee6823f439",
+    "scripts/review-company-editorial-xbrl.py": "664071a805ed2bb2f1cd381a3632c14d996fb6f4a248b14b5b5f8b7dfb7a84f5",
+    "scripts/review-basic-diluted-filings.py": "fa813ca764dc4d62e17e84fe06dc8349c593417d49a2995aca2b4b8b70f9e1b7"
+  },
+  "code_sha256": "6f58115a19af25d31703a83b58aada9f0da0fc2d370a24a1563c5367b12d4921",
+  "filings": [
+    {
+      "cik": "0001280452",
+      "accession": "0001437749-14-003761",
+      "target": {
+        "cik": "0001280452",
+        "name": "Monolithic Power Systems, Inc.",
+        "tag": "Revenues",
+        "source_sha256": "d113f0b9ecf74dfae04a49933d00e71a4eafe0e40dfc94318f978ceace1d4e92",
+        "selected_sha256": "18cf8302d0c9b38e5c949c9c668bdce0829038b95c4d04ef7fb9952ec10289a4",
+        "latest_selected_accession": "0001437749-14-003761",
+        "latest_accession_observations": [
+          {
+            "start": "2012-01-01",
+            "end": "2012-12-31",
+            "val": 213813000,
+            "accn": "0001437749-14-003761",
+            "fy": 2013,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2014-03-10",
+            "frame": "CY2012",
+            "unit": "AFN"
+          }
+        ],
+        "review_reason": "Currency-unit context requires primary inspection; rarity alone does not establish an error."
+      },
+      "index_filers": [
+        "MONOLITHIC POWER SYSTEMS INC (Filer) CIK : 0001280452 (see all company filings) EIN. : 770466789 | State of Incorp.: CA | Fiscal Year End: 1231 Type: 10-K | Act: 34 | File No.: 000-51026 | Film No.: 14681068 SIC : 3674 Semiconductors & Related Devices"
+      ],
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1280452/000143774914003761/mpwr20131231_10k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T17:36:05.342739+00:00",
+        "bytes": 2421946,
+        "sha256": "b696277a46fbb1796aa9753fd5564f31ade31af76dcb16e1a21d23ce07b67b9a",
+        "body_path": "artifacts/seo/corpus-local/currency-context-filings/0001280452-0001437749-14-003761-primary.response"
+      },
+      "instance_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1280452/000143774914003761/mpwr-20131231.xml",
+        "status": 200,
+        "bytes": 2940518,
+        "sha256": "e3d9b37ba9cec1068553ff1e202c46b89cafb24755382faec192c513c3c4fe28",
+        "captured_at": "2026-09-20T17:37:46.905757+00:00",
+        "body_path": "artifacts/seo/corpus-local/currency-context-filings/0001280452-0001437749-14-003761-instance.response"
+      },
+      "checks": [
+        {
+          "selected": {
+            "start": "2012-01-01",
+            "end": "2012-12-31",
+            "val": 213813000,
+            "accn": "0001437749-14-003761",
+            "fy": 2013,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2014-03-10",
+            "frame": "CY2012",
+            "unit": "AFN",
+            "cik": "0001280452",
+            "tag": "Revenues"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "c3_From1Jan2012To31Dec2012",
+              "unit_id": "afn",
+              "value": "213813000"
+            }
+          ]
+        }
+      ],
+      "xml_evidence": [
+        {
+          "unit_xml": "<ns0:unit xmlns:ns0=\"http://www.xbrl.org/2003/instance\" id=\"afn\">\n    <ns0:measure>iso4217:AFN</ns0:measure>\n  </ns0:unit>\n  ",
+          "context_xml": "<ns0:context xmlns:ns0=\"http://www.xbrl.org/2003/instance\" id=\"c3_From1Jan2012To31Dec2012\">\n    <ns0:entity>\n      <ns0:identifier scheme=\"http://www.sec.gov/CIK\">0001280452</ns0:identifier>\n    </ns0:entity>\n    <ns0:period>\n      <ns0:startDate>2012-01-01</ns0:startDate>\n      <ns0:endDate>2012-12-31</ns0:endDate>\n    </ns0:period>\n  </ns0:context>\n  "
+        }
+      ],
+      "primary_table": "Year Ended December 31, 2013 2012 2011 Revenue $ 238,091 $ 213,813 $ 196,519 Cost of revenue 110,190 100,665 94,925 Gross profit 127,901 113,148 101,594 Operating expenses: Research and development 49,733 48,796 44,518 Selling, general and administrative 54,624 50,018 40,280 Litigation expense (benefit), net (371 ) (2,945 ) 3,379 Total operating expenses 103,986 95,869 88,177 Income from operations 23,915 17,279 13,417 Interest and other income, net 92 611 309 Income before income taxes 24,007 17,890 13,726 Income tax provision 1,109 2,134 425 Net income $ 22,898 $ 15,756 $ 13,301 Basic net income per share $ 0.61 $ 0.45 $ 0.39 Diluted net income per share $ 0.59 $ 0.43 $ 0.38 Weighted average common shares outstanding: Basic 37,387 34,871 34,050 Diluted 38,620 36,247 35,160",
+      "zero_based_table_index": 142,
+      "currency_disclosure": "Our sales outside the United States are transacted in U.S. dollars.",
+      "disposition": "SOURCE_UNIT_CONFLICT_REQUIRES_TARGETED_HOLD",
+      "reason": "The original XBRL labels 2012 revenue as AFN, whereas the primary revenue statement displays dollars and says foreign sales transact in U.S. dollars. Do not relabel or convert this observation."
+    },
+    {
+      "cik": "0001659494",
+      "accession": "0001104659-26-047273",
+      "target": {
+        "cik": "0001659494",
+        "name": "51Talk Online Education Group",
+        "tag": "CashAndCashEquivalentsAtCarryingValue",
+        "source_sha256": "300e06a2494a7386b302429ecbcaee1af90c378c99fdaaef846b0fecb90003e3",
+        "selected_sha256": "097e8a09cd28f5220f00cf9f1296b0c4f2dec4e25347a13ab611313adda894fd",
+        "latest_selected_accession": "0001104659-26-047273",
+        "latest_accession_observations": [
+          {
+            "end": "2025-12-31",
+            "val": 54062000,
+            "accn": "0001104659-26-047273",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "20-F",
+            "filed": "2026-04-23",
+            "frame": "CY2025Q4I",
+            "unit": "SAR"
+          }
+        ],
+        "review_reason": "Currency-unit context requires primary inspection; rarity alone does not establish an error."
+      },
+      "index_filers": [
+        "51Talk Online Education Group (Filer) CIK : 0001659494 (see all company filings) EIN. : 000000000 | State of Incorp.: E9 | Fiscal Year End: 1231 Type: 20-F | Act: 34 | File No.: 001-37790 | Film No.: 26885620 SIC : 8200 Services-Educational Services (CF Office: 07 Trade & Services)"
+      ],
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1659494/000110465926047273/coe-20251231x20f.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T17:36:09.315270+00:00",
+        "bytes": 3195516,
+        "sha256": "3595879591e692dd79d0fbf9abb271760c80454cee196577f08071c4f491ab33",
+        "body_path": "artifacts/seo/corpus-local/currency-context-filings/0001659494-0001104659-26-047273-primary.response"
+      },
+      "inline_evidence": [
+        {
+          "fact_xml": "<ix:nonfraction contextref=\"As_Of_12_31_2025_BPOeBjURl0a6FPlyvk_cbA\" decimals=\"-3\" format=\"ixt:num-dot-decimal\" id=\"Narr_hN0hL5SxpkaXFEs6M0a5vQ\" name=\"us-gaap:CashAndCashEquivalentsAtCarryingValue\" scale=\"3\" unitref=\"Unit_Standard_SAR_oMfyBoMyAUi32PCHla4inA\">54,062</ix:nonfraction>",
+          "unit_xml": "<xbrli:unit id=\"Unit_Standard_SAR_oMfyBoMyAUi32PCHla4inA\"><xbrli:measure>iso4217:SAR</xbrli:measure></xbrli:unit>",
+          "context_xml": "<xbrli:context id=\"As_Of_12_31_2025_BPOeBjURl0a6FPlyvk_cbA\"><xbrli:entity><xbrli:identifier scheme=\"http://www.sec.gov/CIK\">0001659494</xbrli:identifier></xbrli:entity><xbrli:period><xbrli:instant>2025-12-31</xbrli:instant></xbrli:period></xbrli:context>",
+          "paragraph": "The Company\u2019s reporting currency is USD. As a result of the Group\u2019s multinational sales and operations, the Group\u2019s cash and cash equivalents and time deposits are dominated in the respective functional currencies. As of December 31, 2025, the Group\u2019s cash and cash equivalents and time deposits denominated in SAR were SAR 54,062 , accounting for approximately 36.9 % of the Group\u2019s total cash and cash equivalents and time deposits."
+        }
+      ],
+      "disposition": "NARROWER_CURRENCY_COMPONENT_AND_TIME_DEPOSITS_REQUIRE_TARGETED_HOLD",
+      "reason": "SAR is expressly supported by the primary disclosure. The value covers SAR-denominated cash, cash equivalents and time deposits, approximately 36.9% of the total. It is not an alternative-currency presentation of consolidated cash and cash equivalents. Preserve the currency; withhold this observation from that total-history series."
+    },
+    {
+      "cik": "0001818874",
+      "accession": "0001104659-21-053909",
+      "target": {
+        "cik": "0001818874",
+        "name": "SoFi Technologies, Inc.",
+        "tag": "StockholdersEquity",
+        "source_sha256": "e2de0cfed1d347a12db62fae8e229db2371c401fae7b357985c4e1932a1d129a",
+        "selected_sha256": "0cb7440936235e9370b9331ce4af73097c706cf64c35014abe36be560deee3d8",
+        "latest_selected_accession": "0001104659-21-053909",
+        "latest_accession_observations": [
+          {
+            "end": "2020-07-09",
+            "val": 0,
+            "accn": "0001104659-21-053909",
+            "fy": 2020,
+            "fp": "FY",
+            "form": "10-K/A",
+            "filed": "2021-04-22",
+            "frame": "CY2020Q2I",
+            "unit": "USN"
+          }
+        ],
+        "review_reason": "Currency-unit context requires primary inspection; rarity alone does not establish an error."
+      },
+      "index_filers": [
+        "Social Capital Hedosophia Holdings Corp. V (Filer) CIK : 0001818874 (see all company filings) EIN. : 981547291 | State of Incorp.: E9 | Fiscal Year End: 1231 Type: 10-K/A | Act: 34 | File No.: 001-39606 | Film No.: 21845783 SIC : 6099 Functions Related To Depository Banking, NEC"
+      ],
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1818874/000110465921053909/tm2113577d1_10ka.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T17:36:13.017871+00:00",
+        "bytes": 859842,
+        "sha256": "c627c0ed8f3ff2e24282493832b54f6cd6734fcacaea5072796b34f42d79f9d8",
+        "body_path": "artifacts/seo/corpus-local/currency-context-filings/0001818874-0001104659-21-053909-primary.response"
+      },
+      "instance_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1818874/000110465921053909/ipoe-20201231.xml",
+        "status": 200,
+        "bytes": 827874,
+        "sha256": "76b733846ea9666ee72819f18329ee3db05e767bce3459dc88143e898e089517",
+        "captured_at": "2026-09-20T17:37:48.452568+00:00",
+        "body_path": "artifacts/seo/corpus-local/currency-context-filings/0001818874-0001104659-21-053909-instance.response"
+      },
+      "checks": [
+        {
+          "selected": {
+            "end": "2020-07-09",
+            "val": 0,
+            "accn": "0001104659-21-053909",
+            "fy": 2020,
+            "fp": "FY",
+            "form": "10-K/A",
+            "filed": "2021-04-22",
+            "frame": "CY2020Q2I",
+            "unit": "USN",
+            "cik": "0001818874",
+            "tag": "StockholdersEquity"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "As_Of_7_9_2020",
+              "unit_id": "Unit15",
+              "value": "0"
+            }
+          ]
+        }
+      ],
+      "xml_evidence": [
+        {
+          "unit_xml": "<ns0:unit xmlns:ns0=\"http://www.xbrl.org/2003/instance\" id=\"Unit15\">\n    <ns0:measure>iso4217:USN</ns0:measure>\n  </ns0:unit>\n  ",
+          "context_xml": "<ns0:context xmlns:ns0=\"http://www.xbrl.org/2003/instance\" id=\"As_Of_7_9_2020\">\n    <ns0:entity>\n      <ns0:identifier scheme=\"http://www.sec.gov/CIK\">0001818874</ns0:identifier>\n    </ns0:entity>\n    <ns0:period>\n      <ns0:instant>2020-07-09</ns0:instant>\n    </ns0:period>\n  </ns0:context>\n  "
+        }
+      ],
+      "primary_table": "Class A Ordinary Shares Class B Ordinary Shares Additional Paid-in Accumulated Total Permanent Temporary Equity Shares Amount Shares Amount Capital Deficit Equity Shares Amount Balance \u2013 July 10, 2020 (inception) \u2014 $ \u2014 \u2014 $ \u2014 $ \u2014 $ \u2014 $ \u2014 \u2014 $ \u2014 Issuance of Class B ordinary shares to Sponsor \u2014 \u2014 20,125,000 2,013 22,987 \u2014 25,000 \u2014 \u2014 Issuance of Class A Ordinary shares, net 80,500,000 8,050 \u2014 \u2014 734,176,638 \u2014 734,184,688 \u2014 \u2014 Class A Ordinary shares subject to possible redemption (67,342,389 ) (6,734 ) \u2014 \u2014 (673,431,560 ) \u2014 (673,438,294 ) 67,342,389 673,438,294 Net loss \u2014 \u2014 \u2014 \u2014 \u2014 (55,771,393 ) (55,771,393 ) \u2014 \u2014 Balance \u2013 December 31, 2020 13,157,611 $ 1,316 20,125,000 $ 2,013 $ 60,768,065 $ (55,771,393 ) $ 5,000,001 67,342,389 $ 673,438,294",
+      "zero_based_table_index": 96,
+      "disposition": "PREDECESSOR_OPENING_BALANCE_UNIT_CONTEXT_REVIEW_PENDING",
+      "reason": "Original XBRL reproduces zero equity with USN and instant 2020-07-09. The primary presents a zero opening balance at July 10 inception for Social Capital Hedosophia Holdings Corp. V. Date-boundary and unit interpretation remain pending; do not identify this as contemporary SoFi operating equity or infer a unit error merely from rarity."
+    }
+  ],
+  "scope": "Three fixed source-context reviews. Numerical reproduction is not admission. Two targeted holds required but not yet implemented; predecessor opening-balance interpretation remains pending. No conversions, replacement values, whole-corpus admission or deployment."
+}

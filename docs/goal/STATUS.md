@@ -8,7 +8,7 @@ pins are preserved in [history/STATUS-20260920-through-priority-scope-closure.md
 ## Current work and next actions
 
 Worktree `/Users/arhancanli/canlicapital-expansion-20260919`, branch
-`evidence/five-cohort-v14-20260920`. V14archive helper committed at0e78d337.
+`evidence/currency-context-20260920`. PR51 merged9ea2b5aa; currency review below.
 PR46 merged as087917ac31b50adbc9856f062e310d6b274ee811 after all four checks in
 CI35524243935 passed at a73932e1540e529483e01e628bc8c3f944cc067e.
 Tested/merged trees both3f9aa6d122d3be5a62974c31a52ff5ed1982b3a6.
@@ -17,8 +17,9 @@ rerun are preserved in company-pr45-ci-recovery-20260920.json. No audit bypass.
 
 Archive process44780 is TERMINAL exit0. Five-cohort staging51634 and transition
 comparison64980completed exit0. Combined v14pipeline16429 and current quality audit40310completed exit0; no uploader.
-Next: review the three pinned currency-context targets, remaining basic/diluted
-source coverage and corpus scope/usefulness flags, then complete hosted
+Next: verify updated PR52 exact-head CI; finish SoFi
+predecessor opening-balance interpretation,
+remaining basic/diluted source coverage and corpus scope/usefulness flags, then complete hosted
 transfer, whole-release delivery/load/browser checks and production activation.
 Owner authorization to publish tested releases persists; no repeat approval needed.
 Priority queue closure alone is not whole-corpus admission.
@@ -265,3 +266,51 @@ Each target binds current manifest/selected/source hashes and exact accession/ro
 No new acquisition, currency conversion or error finding yet. Currency rarity alone
 is not invalidity; these require original statement and unit/context inspection.
 No collector, archive, rebuild or uploader remains active at this checkpoint.
+
+## Three currency-context reviews
+
+PR51 merged9ea2b5aaaae565ce1c873cb277e209e4008bbebd after all four checks
+in CI35526111951passed at6a97e56ef08ecfa3d071e8af623fb90785283336.
+Tested/merged trees c60031d5bd38903e4dc0874cb59a7165fa01fce8.
+Primary capture81923 and legacy instance capture79635 both completed exit0.
+All three exact observations numerically reproduce (one inline, two legacy XML);
+all original index/primary/instance receipts retained under currency-context-filings.
+Source-context report company-currency-context-review-20260920.json and legacy
+report independently replay byte-for-byte offline. No sealed archive claim yet.
+
+Two source-bound holds required, NOT IMPLEMENTED yet:
+- Monolithic Power2012Revenues213813000AFN: original XML AFN disagrees with
+  dollar statement presentation and disclosed U.S.-dollar sales. No conversion.
+- 51Talk2025cash54062000SAR: original disclosure explicitly supports SAR, but
+  covers only SAR-denominated cash/equivalents AND time deposits, approximately
+  36.9% of the total. Scope mismatch, not an unsupported-currency finding.
+SoFi predecessor Social Capital Hedosophia Holdings Corp.V zero equity at XML
+instant2020-07-09USN matches source; primary opening balance July10inception.
+Date-boundary/unit interpretation remains pending; rarity does not establish error.
+
+Original diagnostic assumed 51Talk fact was in a table and raised ValueError;
+actual fact is in a narrative paragraph. Final review verifies that paragraph,
+namespace, scale, value, identifier, instant and no dimensions. Failure retained
+here; no source alteration. No collector/uploader running, no publication or
+indexed-page gain. V14candidate still requires the new holds before admission.
+
+## V15 targeted exclusions implemented
+
+PR52 now includes cumulative extended-v15: exact Monolithic2012AFN revenue
+and 51Talk2025SAR cash-component observations held, with original filing links
+and distinct explanations on each history and overview. No currency conversion
+or fabricated replacement; both actual captured sources committed as gzip fixtures.
+41selector/renderer/delivery/release tests pass: exact two removals, other facts
+unchanged, USD series preserved, changed-source/time rejection, missing-notice
+rejection and inherited Varonis/Atlantica/HNO/DBMM policies unchanged.
+
+Full current-v14source/selection replay under v15 process94354completed exit0:
+all3,323companies/87,346histories preserved, exactly two observations removed;
+only policy metadata, those observations and notices differ. Receipt
+company-five-cohort-v15-transition-20260920.json. This is a comparison, not a
+rebuilt hosted release. Policy implementation committed195fb913; final receipt
+commit requires exact-head CI. No collector, replay or uploader remains active.
+PR52 original evidence-only head9d1f54e8 passed four checks in35526616925;
+updated policy head needs fresh CI. Currency reports remain historical evidence
+whose descriptions of pending implementation are superseded here. SoFi context,
+broader editorial review, new runtime/archival build and hosted gates remain open.

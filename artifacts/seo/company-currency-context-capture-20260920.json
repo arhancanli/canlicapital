@@ -1,0 +1,131 @@
+{
+  "schema": "canli.company-editorial-filing-capture.v1",
+  "input_sha256": "5d6405d20bab2c3f6f7f1565d515f878ffdaa85cd456c484a39565cb8801acad",
+  "publication_approved": false,
+  "complete": true,
+  "filings": [
+    {
+      "cik": "0001280452",
+      "companyfacts_name": "Monolithic Power Systems, Inc.",
+      "discovery_names": [],
+      "accession": "0001437749-14-003761",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1280452/000143774914003761/0001437749-14-003761-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T17:36:03.483688+00:00",
+        "bytes": 12279,
+        "sha256": "409e89159a8fa4f92b88388476fa3b09f5dc1b3fb2cb63caacd264efd5ded0d7",
+        "body_path": "artifacts/seo/corpus-local/currency-context-filings/0001280452-0001437749-14-003761-index.response"
+      },
+      "index_filers": [
+        "MONOLITHIC POWER SYSTEMS INC (Filer) CIK : 0001280452 (see all company filings) EIN. : 770466789 | State of Incorp.: CA | Fiscal Year End: 1231 Type: 10-K | Act: 34 | File No.: 000-51026 | Film No.: 14681068 SIC : 3674 Semiconductors & Related Devices"
+      ],
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1280452/000143774914003761/mpwr20131231_10k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T17:36:05.342739+00:00",
+        "bytes": 2421946,
+        "sha256": "b696277a46fbb1796aa9753fd5564f31ade31af76dcb16e1a21d23ce07b67b9a",
+        "body_path": "artifacts/seo/corpus-local/currency-context-filings/0001280452-0001437749-14-003761-primary.response"
+      },
+      "dei_identity_facts": [],
+      "core_fact_contexts": [
+        {
+          "tag": "us-gaap:Revenues",
+          "contexts": []
+        }
+      ],
+      "contexts": {},
+      "state": "PRIMARY_CAPTURED_EDITORIAL_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001659494",
+      "companyfacts_name": "51Talk Online Education Group",
+      "discovery_names": [],
+      "accession": "0001104659-26-047273",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1659494/000110465926047273/0001104659-26-047273-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T17:36:07.208752+00:00",
+        "bytes": 15957,
+        "sha256": "0304aa9ec1f2349e95f2c2f85b2bc450958323155f85b1a4b14b1106cb751a34",
+        "body_path": "artifacts/seo/corpus-local/currency-context-filings/0001659494-0001104659-26-047273-index.response"
+      },
+      "index_filers": [
+        "51Talk Online Education Group (Filer) CIK : 0001659494 (see all company filings) EIN. : 000000000 | State of Incorp.: E9 | Fiscal Year End: 1231 Type: 20-F | Act: 34 | File No.: 001-37790 | Film No.: 26885620 SIC : 8200 Services-Educational Services (CF Office: 07 Trade & Services)"
+      ],
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1659494/000110465926047273/coe-20251231x20f.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T17:36:09.315270+00:00",
+        "bytes": 3195516,
+        "sha256": "3595879591e692dd79d0fbf9abb271760c80454cee196577f08071c4f491ab33",
+        "body_path": "artifacts/seo/corpus-local/currency-context-filings/0001659494-0001104659-26-047273-primary.response"
+      },
+      "dei_identity_facts": [
+        {
+          "name": "dei:EntityCentralIndexKey",
+          "context": "Duration_1_1_2025_To_12_31_2025_OJfsx2rezkSpaEg9yMZOpQ",
+          "text": "0001659494"
+        },
+        {
+          "name": "dei:EntityRegistrantName",
+          "context": "Duration_1_1_2025_To_12_31_2025_OJfsx2rezkSpaEg9yMZOpQ",
+          "text": "51Talk Online Education Group"
+        }
+      ],
+      "core_fact_contexts": [
+        {
+          "tag": "us-gaap:CashAndCashEquivalentsAtCarryingValue",
+          "contexts": [
+            "As_Of_12_31_2025_BPOeBjURl0a6FPlyvk_cbA"
+          ]
+        }
+      ],
+      "contexts": {
+        "As_Of_12_31_2025_BPOeBjURl0a6FPlyvk_cbA": {
+          "identifiers": [
+            "0001659494"
+          ],
+          "has_dimensions": false
+        }
+      },
+      "state": "PRIMARY_CAPTURED_EDITORIAL_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001818874",
+      "companyfacts_name": "SoFi Technologies, Inc.",
+      "discovery_names": [],
+      "accession": "0001104659-21-053909",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1818874/000110465921053909/0001104659-21-053909-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T17:36:11.358753+00:00",
+        "bytes": 11623,
+        "sha256": "8e8401aa75285861700bef2e8cb9de0c33d03bea5e3f5c0fab46d439053bb5d2",
+        "body_path": "artifacts/seo/corpus-local/currency-context-filings/0001818874-0001104659-21-053909-index.response"
+      },
+      "index_filers": [
+        "Social Capital Hedosophia Holdings Corp. V (Filer) CIK : 0001818874 (see all company filings) EIN. : 981547291 | State of Incorp.: E9 | Fiscal Year End: 1231 Type: 10-K/A | Act: 34 | File No.: 001-39606 | Film No.: 21845783 SIC : 6099 Functions Related To Depository Banking, NEC"
+      ],
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1818874/000110465921053909/tm2113577d1_10ka.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T17:36:13.017871+00:00",
+        "bytes": 859842,
+        "sha256": "c627c0ed8f3ff2e24282493832b54f6cd6734fcacaea5072796b34f42d79f9d8",
+        "body_path": "artifacts/seo/corpus-local/currency-context-filings/0001818874-0001104659-21-053909-primary.response"
+      },
+      "dei_identity_facts": [],
+      "core_fact_contexts": [
+        {
+          "tag": "us-gaap:StockholdersEquity",
+          "contexts": []
+        }
+      ],
+      "contexts": {},
+      "state": "PRIMARY_CAPTURED_EDITORIAL_REVIEW_PENDING"
+    }
+  ],
+  "scope": "Primary filing capture for priority editorial targets; neither numeric verification nor editorial approval."
+}
