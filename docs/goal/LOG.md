@@ -748,3 +748,11 @@ in company-five-cohort-v10-discovery-audit-20260920.json. Transfer77617deliberat
 stopped as superseded at2,412verified objects, terminal1; partial receipt retained
 without completion claim. No uploader active; v10transfer next. Oldv9artifacts
 preserved. PR37CI35519881211passed before new audit additions; new CI required.
+
+## 2026-09-20 — v10 transfer and archive preparation
+
+Previous turn built and audited combinedv10. Verified no uploader remained before
+starting82504 with one worker/500ms spacing, same bounded retries and hard stops.
+Fresh v10receipt pins the current uploader; no credentials written to disk.
+Added v10archive profile and isolated Birdie scope replay using locked offline
+wheels. Five archive-verifier tests pass; build/replay still pending.

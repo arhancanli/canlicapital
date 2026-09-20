@@ -68,7 +68,7 @@ addition; current additions require their own checks.
 
 
 Earlier v3upload sessions are terminal with failures retained. Do not resume the
-superseded v3plan. No uploader is active; v10pipeline77545 completed exit0. Archive/replay46444completed exit0.
+superseded v3plan. V10transfer82504 is active; v10pipeline77545 completed exit0. Archive/replay46444completed exit0.
 
 ## Latest liability presentation review
 
@@ -127,7 +127,9 @@ Birdie SG&A removal/notice changed. Receipt company-five-cohort-v10-transition-
 and storage plan next; the oldv9candidate must not be admitted unchanged.
 Pacedv9 transfer77617 was stopped as superseded after v10combined delivery built.
 Receipt company-v9-transfer-superseded-20260920.json records2412verified objects.
-Pipeline77545 completed exit0; no replacement upload yet.
+Pipeline77545 completed exit0. V10transfer82504 is active with one worker/500ms
+spacing and existing3/2attempt limits,200/50shared retry budgets. Fresh receipt
+corpus-local/company-five-cohort-v10-transfer-20260920.json; no publication approval.
 
 PR36 merged4d091c1f0a34b31bed9002c728cc1ab84e04564f after four CI35519464225
 checks passed atf9038476; tested/merged treeba6a7e72f022befa3cd5b2d157b73ce618468252.
