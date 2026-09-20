@@ -1,0 +1,85 @@
+{
+  "schema": "canli.company-editorial-filing-capture.v1",
+  "input_sha256": "033ee1311d0dd9b2437f1dcfbdf4d4755c1984d847446b704a82211f296ec7d7",
+  "publication_approved": false,
+  "complete": true,
+  "filings": [
+    {
+      "cik": "0000059255",
+      "companyfacts_name": "VALHI,\u00a0INC.",
+      "discovery_names": [],
+      "accession": "0001558370-25-002409",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/59255/000155837025002409/0001558370-25-002409-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T18:00:21.650057+00:00",
+        "bytes": 13271,
+        "sha256": "c8a17ba4d41ae3f4564f2bc1b48ed0f98ecea3accf7cdb111face84019c62dff",
+        "body_path": "artifacts/seo/corpus-local/valhi-2022-filings/0000059255-0001558370-25-002409-index.response"
+      },
+      "index_filers": [
+        "VALHI INC /DE/ (Filer) CIK : 0000059255 (see all company filings) EIN. : 870110150 | State of Incorp.: DE | Fiscal Year End: 1231 Type: 10-K | Act: 34 | File No.: 001-05467 | Film No.: 25716022 SIC : 2810 Industrial Inorganic Chemicals (CF Office: 08 Industrial Applications and Services)"
+      ],
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/59255/000155837025002409/vhl-20241231x10k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T18:00:23.347535+00:00",
+        "bytes": 4969535,
+        "sha256": "c80b47c58940a1990e7864dc14f3cab1d8d58be1a4301abf0d52781cde5082f2",
+        "body_path": "artifacts/seo/corpus-local/valhi-2022-filings/0000059255-0001558370-25-002409-primary.response"
+      },
+      "dei_identity_facts": [
+        {
+          "name": "dei:EntityCentralIndexKey",
+          "context": "Duration_1_1_2024_To_12_31_2024_W_61wYam30a2rbOeFtFNTg",
+          "text": "0000059255"
+        },
+        {
+          "name": "dei:EntityRegistrantName",
+          "context": "Duration_1_1_2024_To_12_31_2024_W_61wYam30a2rbOeFtFNTg",
+          "text": "VALHI,\u00a0INC."
+        }
+      ],
+      "core_fact_contexts": [
+        {
+          "tag": "us-gaap:WeightedAverageNumberOfDilutedSharesOutstanding",
+          "contexts": [
+            "Duration_1_1_2022_To_12_31_2022_e4la3085lEOG5AukmGq3Qw",
+            "Duration_1_1_2023_To_12_31_2023_Du_XFayYe0GRYY2XZB0BVQ",
+            "Duration_1_1_2024_To_12_31_2024_W_61wYam30a2rbOeFtFNTg"
+          ]
+        },
+        {
+          "tag": "us-gaap:WeightedAverageNumberOfSharesOutstandingBasic",
+          "contexts": [
+            "Duration_1_1_2022_To_12_31_2022_e4la3085lEOG5AukmGq3Qw",
+            "Duration_1_1_2023_To_12_31_2023_Du_XFayYe0GRYY2XZB0BVQ",
+            "Duration_1_1_2024_To_12_31_2024_W_61wYam30a2rbOeFtFNTg"
+          ]
+        }
+      ],
+      "contexts": {
+        "Duration_1_1_2022_To_12_31_2022_e4la3085lEOG5AukmGq3Qw": {
+          "identifiers": [
+            "0000059255"
+          ],
+          "has_dimensions": false
+        },
+        "Duration_1_1_2023_To_12_31_2023_Du_XFayYe0GRYY2XZB0BVQ": {
+          "identifiers": [
+            "0000059255"
+          ],
+          "has_dimensions": false
+        },
+        "Duration_1_1_2024_To_12_31_2024_W_61wYam30a2rbOeFtFNTg": {
+          "identifiers": [
+            "0000059255"
+          ],
+          "has_dimensions": false
+        }
+      },
+      "state": "PRIMARY_CAPTURED_EDITORIAL_REVIEW_PENDING"
+    }
+  ],
+  "scope": "Primary filing capture for priority editorial targets; neither numeric verification nor editorial approval."
+}
