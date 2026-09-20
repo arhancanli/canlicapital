@@ -25,9 +25,24 @@ The audit reproduces selected records from original captured SEC bytes before
 measuring them. Browser checks cover real equal-history and reported-zero pages,
 including the comparison link, as well as existing layout and provenance samples.
 
-## Current queue
+## Current release queue
 
-The combined corpus retains 3,924 flagged histories; flags overlap. Its 169
+The current extended-v3 delivery contains1,968companies and52,408histories, with
+6,705overlapping quality flags. This is the candidate described in STATUS.md;
+the older two-cohort and separate third-cohort figures below are checkpoints,
+not additional counts to sum or the current release inventory.
+
+The fourth acquisition queue is still running. A frozen278-outcome snapshot has
+177core-policy review candidates,70reproduced content exclusions and31HTTP404s.
+Its214flagged histories and1,569potential core pages are partial diagnostics only;
+they are neither extended-v3 staging nor editorial approval. The31HTTP404results
+are retained acquisition outcomes, not independently captured not-found bodies.
+See company-fourth-partial-review-20260920.json; remaining acquisition and review
+must complete before constructing a coherent new release candidate.
+
+## Earlier two-cohort checkpoint
+
+The earlier two-cohort corpus retained 3,924 flagged histories; flags overlap. Its 169
 matching-vector groups include 107 basic/diluted EPS pairs, 56 basic/diluted share
 count pairs and six other pairs. Those two common relationships explain why
 numeric equality is not sufficient evidence of duplicate meaning; they do not
@@ -40,7 +55,7 @@ COMPANY_PAIR_REVIEW.md and its bound receipt. Retain distinct concepts with comp
 context. This resolves equality-driven deduplication only; other review remains open.
 
 No histories were dropped, source values edited or flags cleared in this change.
-The unchanged quality queue is in company-combined-selected-quality-extended.json.
+That checkpoint's quality queue is in company-combined-selected-quality-extended.json.
 Useful archival histories may remain appropriate; thin standalone pages may need
 consolidation after semantic review. Any such change must update catalog, links,
 discovery and sitemap membership coherently and preserve downloadable evidence.
@@ -84,3 +99,14 @@ qualified earnings/revenue disclosures cannot support generic revenue totals,
 and one cash-equivalents-only disclosure cannot support combined cash balances.
 See COMPANY_REVENUE_SCOPE_REVIEW.md. All other selected concepts and original SEC
 bytes remain unchanged. The corrected quality queue still has6,705flags.
+
+## Issuer context is necessary but insufficient
+
+The later identity review matched137selected core values across13filings, yet
+surrounding narrative revealed three Princeton revenue values belong to an
+unconsolidated portfolio company. The filing uses Princeton's undimensioned
+entity contexts. Before any future admission of that currently excluded issuer,
+the affected concept must be omitted under a source-bound semantic disposition.
+See COMPANY_IDENTITY_REVIEW.md. Do not use a matching CIK, number, unit or table row
+in isolation as proof of company-wide measure scope. This applies to all review
+queues, including those with no automatic flags.

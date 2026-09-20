@@ -40,6 +40,14 @@ predates this fix and is not restarted; legacy partial reports without a queue
 binding require inspection. Latest observed193/1000processed,129review candidates,
 45exclusions,19HTTPerrors; capture still running.
 
+Independent frozen partial review now covers278outcomes:177core-policy candidates,
+70reproduced content exclusions,31HTTP404outcomes and zero reproduction errors.
+It retains214flagged histories. Snapshot refresh hash
+1eb052f450b745cdcb561d54f8def55a784970b76b1deb755e8660471d9d3750;
+the captured input is retained separately from the changing progress report.
+This partial snapshot is not a completed cohort, extended staging or publication
+approval. See company-fourth-partial-review-20260920.json.
+
 Extended-v3 corrects eight source-scope errors while preserving original SEC bytes
 and v1/v2 reproducibility. Earlier releases are not publishable as-is. Current
 release: 05cd9ff3582accff5277d49c1eb1eba7e55af8efe68fee1b2200219a88eb9f05.

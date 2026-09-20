@@ -1271,3 +1271,17 @@ Full verify21062 exits0:6+390tests and allfinalaudits. Restored only verificatio
 unrelated source-date/sitemap churn from the initially clean worktree. Current
 running capture loaded older code and was neither restarted nor modified.
 Website8f3e992fCI35497522210 passes. No production, source-policy or indexing change.
+
+## 2026-09-20 — independent partial source review
+
+Previous resume fix was implementation progress. Polled same capture29020; still
+live. Copied an atomic278-outcome progress snapshot, queue and its referenced
+original bodies/receipts/records into an isolated temporary directory. Offline
+review45144 exits0:177candidates,70reproduced content exclusions(33insufficient
+coverage,37identity),31HTTP404outcomes,214flagged histories,zeroerrors. Retained
+snapshot bytehash1eb052f450b745cdcb561d54f8def55a784970b76b1deb755e8660471d9d3750
+at corpus-local/fourth-partial-review-input-20260920.json; output binds this exact
+input. Temporary workspace removed. No second capture, failed-request retry or
+production change. Core-only potential pagecount1,569 is not extended delivery.
+Clarified current versus older editorial queue counts and incorporated the
+Princeton portfolio-company scope failure into the shared review requirement.
