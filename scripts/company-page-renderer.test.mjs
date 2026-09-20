@@ -11,6 +11,22 @@ const company = JSON.parse(readFileSync(new URL('../public/company-data/00003201
 const source = readFileSync(new URL('../companies/0000320193/Assets.html', import.meta.url), 'utf8');
 const assets = buildCompanyAssets(source, '<script type="module" src="/assets/company.js"></script><link rel="stylesheet" href="/assets/company.css">');
 
+test('loss-context batch preserves distinct scales and excludes potential-share additions', () => {
+  for (const [fixture, cik, value] of [['axogen', '0000805928', 46050266], ['heron', '0000818033', 166707000], ['westwater', '0000839470', 86023787]]) {
+    const raw = gunzipSync(readFileSync(new URL(`./fixtures/editorial/${fixture}-reviewed-source.json.gz`, import.meta.url)));
+    const record = companyReference(raw, { expectedCik: cik, fetchedAt: '2026-09-20T00:00:00Z', selectionPolicy: 'extended-v17' });
+    verifyCompanyReference(record, raw);
+    const original = structuredClone(record.concepts);
+    record.source_snapshot = `/company-data/sources/${record.source_sha256}.json.gz`;
+    const tags = ['EarningsPerShareBasic', 'EarningsPerShareDiluted', 'WeightedAverageNumberOfSharesOutstandingBasic', 'WeightedAverageNumberOfDilutedSharesOutstanding'];
+    for (const target of [...tags, 'overview']) assert.match(renderCompanyPages(record, { target })[0].html, /anti-dilutive/);
+    assert.ok(record.concepts.find(c => c.tag === tags[2]).observations.some(r => r.end === '2025-12-31' && r.val === value && r.unit === 'shares'));
+    assert.deepEqual(record.concepts, original);
+    const changed = structuredClone(record); changed.source_sha256 = '0'.repeat(64);
+    assert.equal(companyFilingNotes(changed, tags[0]).length, 0);
+  }
+});
+
 test('Cedar vested-share context preserves facts and distinguishes EPS from FFO', () => {
   const raw = gunzipSync(readFileSync(new URL('./fixtures/editorial/cedar-reviewed-source.json.gz', import.meta.url)));
   const record = companyReference(raw, { expectedCik: '0000761648', fetchedAt: '2026-09-20T00:00:00Z', selectionPolicy: 'extended-v17' });
