@@ -9,11 +9,11 @@ which links older records. Historical process states are not live telemetry.
 ## Current work and next action
 
 Worktree `/Users/arhancanli/canlicapital-expansion-20260919`, branch
-`evidence/held-share-eps-context-20260921`. PR110merged936691dfafter four passing
-CI35540107058checks at0699b194. Tested and merged trees match exactly.
+`evidence/rewalk-historical-context-20260921`. PR111mergedd336ff2bafter four passing
+CI35540402410checks at9bbe95a5. Tested and merged trees match exactly.
 
-Latest registered ledger:company-basic-diluted-registered-scope-held-eps-20260921.json.gz.
-Of1,176batch observations,1088reviewed/62pending/26withdrawn.118reviewed are explicitly
+Latest registered ledger:company-basic-diluted-registered-scope-rewalk2021-20260921.json.gz.
+Of1,176batch observations,1092reviewed/58pending/26withdrawn.118reviewed are explicitly
 presentation-only; dilution cause is not established for those rows. The registry
 pins exact reports/issuers/dispositions/counts/states. Numerical agreement alone
 never approves scope. Workflow in SCOPE_REVIEW.md; original ledgers preserved.
@@ -22,7 +22,7 @@ V20withholds six exact Lifeward/ReWalk2021–2023ILS/share EPSobservations. The
 historical ReWalk statement labels U.S. dollars; original tags encode ILS/share.
 Source/capture/unit/context evidence retained in company-lifeward-eps-currency-
 20260921.json. No relabeling, conversion or replacement values. USD EPS and shares
-remain unchanged; four other batch observations for this issuer remain pending.
+remain unchanged; four other batch observations for this issuer are now reviewed.
 V20whole-corpus comparison99298TERMINAL0verified3,323companies/87,344histories
 against frozenv14. Exactly30held observations sincev14(including six Lifeward),
 two prior Valhi history omissions, policy/notices; all other fields unchanged.
@@ -32,9 +32,12 @@ V5replay allows explicit exact target-row subsets, rejecting altered/duplicate r
 Valhi six EPS rows are presentation-only; Iovance/Outset retain disclosed loss
 anti-dilution. Notes explicitly do not recompute EPS from withheld share counts.
 Report replays byte-identically;94selector/renderer/ledger tests plus3subset tests
-pass, subset tests added to CI. Remaining62: Siebert6, Freddie Mac12, Rockwell12,
-INVO16, Plastec12, historical Lifeward4. Iovance older non-batch share review remains
+pass, subset tests added to CI. Remaining58: Siebert6, Freddie Mac12, Rockwell12,
+INVO16, Plastec12. Iovance older non-batch share review remains
 separate. Runtime/quality rebuild and archival supplement pending.
+Historical ReWalk2021 USD EPS and share counts now have exact-source context,
+separate from newer split-adjusted figures. Four rows advance; all six ILS holds
+remain. Replay byte-identical;95selector/renderer/ledger tests pass.
 118presentation-only reviews retain limits.
 V19six Outset2023–2025share-scale holds remain; no silent rescaling or second split
 conversion. EPS now reviewed separately; older periods remain outside the hold report.

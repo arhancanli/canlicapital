@@ -1107,3 +1107,25 @@ test('EPS-only context leaves Valhi, Iovance and Outset share holds intact', () 
     assert.equal(companyFilingNotes(changed, 'EarningsPerShareBasic').length, 0);
   }
 });
+
+
+test('historical ReWalk context preserves currency holds and independent newer split context', () => {
+  const raw = gunzipSync(readFileSync(new URL('./fixtures/editorial/lifeward-reviewed-source.json.gz', import.meta.url)));
+  const record = companyReference(raw, { expectedCik: '0001607962', fetchedAt: '2026-09-20T00:00:00Z', selectionPolicy: 'extended-v20' });
+  verifyCompanyReference(record, raw);
+  const original = structuredClone(record);
+  record.source_snapshot = `/company-data/sources/${record.source_sha256}.json.gz`;
+  const tags = ['EarningsPerShareBasic', 'EarningsPerShareDiluted', 'WeightedAverageNumberOfSharesOutstandingBasic', 'WeightedAverageNumberOfDilutedSharesOutstanding'];
+  for (const target of [...tags, 'overview']) assert.match(renderCompanyPages(record, { target })[0].html, /six separate ILS-tagged EPS observations remain withheld/);
+  assert.ok(record.concepts.find(c => c.tag === tags[0]).observations.some(r => r.end === '2021-12-31' && r.unit === 'USD/shares' && r.val === -0.27));
+  assert.equal(record.editorial_exclusions.filter(r => JSON.stringify(r).includes('ILS/shares')).length, 6);
+  assert.deepEqual(record.concepts, original.concepts);
+  assert.deepEqual(record.editorial_exclusions, original.editorial_exclusions);
+  const altered = structuredClone(record);
+  altered.concepts.find(c => c.tag === tags[0]).observations.find(r => r.end === '2021-12-31' && r.unit === 'USD/shares').val = -99;
+  const notes = companyFilingNotes(altered, tags[0]);
+  assert.ok(notes.length > 0, 'independent newer filing context survives');
+  assert.ok(!JSON.stringify(notes).includes('six separate ILS-tagged'));
+  altered.source_sha256 = '0'.repeat(64);
+  assert.equal(companyFilingNotes(altered, tags[0]).length, 0);
+});
