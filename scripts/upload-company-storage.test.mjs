@@ -285,3 +285,18 @@ test('rate-limited creates retain safe Retry-After metadata and never retry', as
     assert.ok(!JSON.stringify(last).includes('sensitive'));
   }
 });
+
+test('request pacing spaces concurrent reads and creates by actual starts', async t => {
+  const f = fixture(t, 1), starts = []; let clock = 0;
+  const storage = createSupabaseStorage({ projectUrl: 'https://example.supabase.co', bucket: 'company-runtime', serviceKey: 'secret-test', minIntervalMs: 250,
+    now: () => clock, pause: async ms => { clock += ms + 25; },
+    fetcher: async (url, init) => { starts.push(clock); return init.method === 'POST' ? new Response('', { status: 200 }) : Response.json({ statusCode: '404', error: 'not_found' }, { status: 404 }); } });
+  await Promise.all([storage.read(f.files[0]), storage.read(f.files[0]), storage.read(f.files[0])]);
+  await storage.create(f.files[0], f.data[0]);
+  assert.deepEqual(starts, [0, 275, 550, 825]);
+  assert.deepEqual(storage.requestPacingPolicy, { minimum_interval_ms: 250 });
+});
+
+test('invalid pacing fails before requests', () => {
+  for (const minIntervalMs of [-1, 0.5, 10001, NaN]) assert.throws(() => createSupabaseStorage({ projectUrl: 'https://example.supabase.co', bucket: 'company-runtime', serviceKey: 'secret-test', minIntervalMs }), /pacing/);
+});
