@@ -404,3 +404,21 @@ branch. This is a publication dependency, not an overall goal blocker. Keep the
 local tested work, continue independent review, and inspect migration handoff/new
 ancestry before retrying. Do not represent an unobserved migration process as live
 solely from its hook. No history rewrite attempted in this goal thread.
+
+## 2026-09-20 — Kronos limited presentation and The9 ordinary-share context
+
+Previous turn made concrete progress: PR70merged,24reviews committed locally;
+publication rejected by attribution-migration hook. Read dispatch implementation:
+it refuses pushes while migration-active exists and also rejects old attribution
+history afterward. Do not bypass or assume marker proves a live process.
+Reviewed26additional observations:12Kronos presentation-only,14The9scope-context.
+Kronos statement/scale6supports reported equality but no cause established.
+The9table334and265retain total versus continuing/discontinued results, ordinary
+share scale3, noncontrolling allocation, explicit anti-dilution disclosure and
+USDconvenience translation atRMB6.9931. ADSratio300is not applied to these ordinary
+share figures. Broad source diagnostic truncated; exact note/ratio/currency text
+was subsequently inspected in bounded output before approval. Version4report
+replays byte-identically.28renderer/ledger tests pass, only26intended rows advance.
+324reviewed/844pending/8withdrawn,60presentation-only. Both batches remain local
+pending migration handoff/ancestry reconciliation, with no remote CI, deployment,
+new runtime archive or indexing gain claimed. All owner goals remain active.

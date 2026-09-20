@@ -1,6 +1,244 @@
 // Limited filing context, bound to the reviewed capture and selected observations.
 export const FILING_NOTES = [
 {
+  "cik": "0001257640",
+  "include_on_overview": true,
+  "source_sha256": "9a64360a874c1f38fef19607b066d5e798629f767d911115ea9014e11e06c68b",
+  "tags": [
+    "EarningsPerShareBasic",
+    "EarningsPerShareDiluted",
+    "WeightedAverageNumberOfDilutedSharesOutstanding",
+    "WeightedAverageNumberOfSharesOutstandingBasic"
+  ],
+  "text": "For 2023\u20132025, Kronos reports combined basic and diluted EPS and a common weighted-average denominator. Shares are in millions with scale-six tags; per-share amounts use scale zero. The filing supports the reported equal presentation, but this review does not establish why the measures match or prove the absence of potentially dilutive instruments. Basic and diluted denominators should not be added together.",
+  "filing_url": "https://www.sec.gov/Archives/edgar/data/1257640/000110465926025219/kro-20251231x10k.htm",
+  "observations": [
+    {
+      "tag": "EarningsPerShareBasic",
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "unit": "USD/shares",
+      "val": -0.43,
+      "accn": "0001104659-26-025219"
+    },
+    {
+      "tag": "EarningsPerShareBasic",
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "unit": "USD/shares",
+      "val": 0.75,
+      "accn": "0001104659-26-025219"
+    },
+    {
+      "tag": "EarningsPerShareBasic",
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "unit": "USD/shares",
+      "val": -0.96,
+      "accn": "0001104659-26-025219"
+    },
+    {
+      "tag": "EarningsPerShareDiluted",
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "unit": "USD/shares",
+      "val": -0.43,
+      "accn": "0001104659-26-025219"
+    },
+    {
+      "tag": "EarningsPerShareDiluted",
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "unit": "USD/shares",
+      "val": 0.75,
+      "accn": "0001104659-26-025219"
+    },
+    {
+      "tag": "EarningsPerShareDiluted",
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "unit": "USD/shares",
+      "val": -0.96,
+      "accn": "0001104659-26-025219"
+    },
+    {
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "unit": "shares",
+      "val": 115100000,
+      "accn": "0001104659-26-025219"
+    },
+    {
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "unit": "shares",
+      "val": 115000000,
+      "accn": "0001104659-26-025219"
+    },
+    {
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "unit": "shares",
+      "val": 115000000,
+      "accn": "0001104659-26-025219"
+    },
+    {
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic",
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "unit": "shares",
+      "val": 115100000,
+      "accn": "0001104659-26-025219"
+    },
+    {
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic",
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "unit": "shares",
+      "val": 115000000,
+      "accn": "0001104659-26-025219"
+    },
+    {
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic",
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "unit": "shares",
+      "val": 115000000,
+      "accn": "0001104659-26-025219"
+    }
+  ]
+},
+{
+  "cik": "0001296774",
+  "include_on_overview": true,
+  "source_sha256": "dc0f56af83ba55023a6c8902fc85568ebabaf9c74a74298574940eeccf760664",
+  "tags": [
+    "EarningsPerShareBasic",
+    "EarningsPerShareDiluted",
+    "WeightedAverageNumberOfDilutedSharesOutstanding",
+    "WeightedAverageNumberOfSharesOutstandingBasic"
+  ],
+  "text": "For 2023\u20132025, The9 reports EPS per ordinary share, not per ADS. Weighted-average ordinary shares are in thousands with scale-three tags; EPS uses scale zero. Total EPS includes discontinued operations and noncontrolling-interest allocation: the 2023 positive total differs from the continuing-operations loss. The filing explicitly excludes potential ordinary shares as antidilutive for the years presented; equality alone is not the basis for that conclusion. The 2025 USD amounts are convenience translations at RMB6.9931 per USD, retained alongside CNY without recomputation. The disclosed ratio is 300 Class A ordinary shares per ADS following the October 2023 change; no ADS conversion or second share adjustment is applied here.",
+  "filing_url": "https://www.sec.gov/Archives/edgar/data/1296774/000110465926043910/ncty-20251231x20f.htm",
+  "observations": [
+    {
+      "tag": "EarningsPerShareBasic",
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "unit": "CNY/shares",
+      "val": 0.02,
+      "accn": "0001104659-26-043910"
+    },
+    {
+      "tag": "EarningsPerShareBasic",
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "unit": "CNY/shares",
+      "val": -0.05,
+      "accn": "0001104659-26-043910"
+    },
+    {
+      "tag": "EarningsPerShareBasic",
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "unit": "CNY/shares",
+      "val": -0.18,
+      "accn": "0001104659-26-043910"
+    },
+    {
+      "tag": "EarningsPerShareBasic",
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "unit": "USD/shares",
+      "val": -0.03,
+      "accn": "0001104659-26-043910"
+    },
+    {
+      "tag": "EarningsPerShareDiluted",
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "unit": "CNY/shares",
+      "val": 0.02,
+      "accn": "0001104659-26-043910"
+    },
+    {
+      "tag": "EarningsPerShareDiluted",
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "unit": "CNY/shares",
+      "val": -0.05,
+      "accn": "0001104659-26-043910"
+    },
+    {
+      "tag": "EarningsPerShareDiluted",
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "unit": "CNY/shares",
+      "val": -0.18,
+      "accn": "0001104659-26-043910"
+    },
+    {
+      "tag": "EarningsPerShareDiluted",
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "unit": "USD/shares",
+      "val": -0.03,
+      "accn": "0001104659-26-043910"
+    },
+    {
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "unit": "shares",
+      "val": 1010895000,
+      "accn": "0001104659-26-043910"
+    },
+    {
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "unit": "shares",
+      "val": 1403166000,
+      "accn": "0001104659-26-043910"
+    },
+    {
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "unit": "shares",
+      "val": 2273782000,
+      "accn": "0001104659-26-043910"
+    },
+    {
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic",
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "unit": "shares",
+      "val": 1010895000,
+      "accn": "0001104659-26-043910"
+    },
+    {
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic",
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "unit": "shares",
+      "val": 1403166000,
+      "accn": "0001104659-26-043910"
+    },
+    {
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic",
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "unit": "shares",
+      "val": 2273782000,
+      "accn": "0001104659-26-043910"
+    }
+  ]
+},
+{
   "cik": "0001315098",
   "include_on_overview": true,
   "source_sha256": "da93dfbe41ad0be3c80f12e25819e45a48e960678647dc8d7235efdfce5aa481",

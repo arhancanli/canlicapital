@@ -22,21 +22,21 @@ After migration, inspect its handoff and new ancestry before carrying this local
 change forward; do not push old history or bypass the hook. Continue independent
 source review locally while publication is unavailable.
 
-Latest registered ledger:company-basic-diluted-registered-scope-batch7-20260920.json.gz.
-Of1,176batch observations,298reviewed/870pending/8withdrawn.48reviewed are explicitly
+Latest registered ledger:company-basic-diluted-registered-scope-batch8-20260920.json.gz.
+Of1,176batch observations,324reviewed/844pending/8withdrawn.60reviewed are explicitly
 presentation-only; dilution cause is not established for those rows. The registry
 pins exact reports/issuers/dispositions/counts/states. Numerical agreement alone
 never approves scope. Workflow in SCOPE_REVIEW.md; original ledgers preserved.
 
-Latest24reviews cover Roblox and aTyr Pharma2023–2025loss allocation after
-noncontrolling interests and loss-period dilution exclusions. Roblox shares use
-scale3; aTyr's main statement explicitly exempts shares from thousands and tags
-scale0, while its EPS note repeats the full counts under a less precise heading.
-The reader note retains this inconsistency without rescaling.27renderer/ledger
-tests pass with exactly24intended transitions; source report replays byte-identically.
-Kronos and The9 entries30/31 remain pending, as do legacy statement mappings.
-Prior batch6reviewed48MacroGenics/Standard BioTools/South Dakota Soybean/Neuronetics
-observations with preferred conversion, LLC unit and unvested-share context.
+Latest26reviews cover Kronos2023–2025combined presentation (12presentation-only)
+and The9ordinary-share EPS, total versus continuing-operations results, allocation
+after noncontrolling interests and explicit anti-dilution disclosure (14scope-reviewed).
+The9USD2025figures are convenience translations atRMB6.9931; the300ordinary-share
+ADSratio is distinct from its ordinary-share denominator. Kronos share tags scale6,
+The9scale3. No values, signs, units or dates changed.28renderer/ledger tests pass;
+source report replays byte-identically. Batch7's24Roblox/aTyr reviews are also local,
+including aTyr's ambiguous note heading. Neither local batch has remote CI yet.
+Next new index entries start34; earlier pending/legacy gaps remain open.
 
 Earlier reviewed context includes111ordinary-share/ADS distinction, Celldex loss
 periods, NLI/Weis combined/restated presentation, Blue Dolphin historical instruments,
