@@ -511,3 +511,15 @@ latest-period reviews reopened pending resolution/disposition; not newly credite
 Versioned v13ledger incorporates42reviews, two source-replayed Atlantica withdrawals
 and two reopened TECHCOMrows:351reviewed/249pending/10withdrawn, exact610key
 partition. Ledger replay byte-identical. Prior reports unchanged. No deployment.
+
+## Bioforce/ANVI historical balance-sheet review
+
+PR44open for TECHCOM/history ledger work.52additional pending observations now
+reviewed from18Bioforce/ANVI primary tables. Bioforce separates current/total
+assets and liabilities; ANVI conclusion covers assets only, preserving historical
+VETRO naming and restatement labels without uniform-business-perimeter claims.
+company-bioforce-anvi-balance-20260920.json replays byte-identically.
+Versioned v13-batch1ledger credits only exact pending keys from the bound v13
+snapshot:403active reviewed,197pending,10withdrawn; exact610key partition and
+offline replay pass. TECHCOM latest two rows remain reopened, not approved.
+No full corpus rebuild, uploader, deployment or indexed gain.

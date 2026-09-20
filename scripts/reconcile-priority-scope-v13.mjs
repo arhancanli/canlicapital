@@ -37,13 +37,22 @@ for(const [k,row] of reviewed){
 }
 assert.equal(reopened.length,2);
 assert.equal(reviewed.size,351);assert.equal(pending.size,249);assert.equal(withdrawn.length,10);
+let newCredit=42;
+for(const name of process.argv.slice(3)){
+ const supplement=read(name);
+ assert.equal(supplement.v13_scope_ledger_sha256,hash(readFileSync(base+'company-priority-scope-v13-20260920.json')));
+ for(const row of supplement.reviewed){
+  const k=key(row);assert(pending.has(k));assert(!reviewed.has(k));
+  pending.delete(k);reviewed.set(k,{...row,scope_reports:[name]});newCredit++;
+ }
+}
 const before=[...prior.reviewed,...prior.pending,...prior.withdrawn].map(key).sort();
 const after=[...reviewed.keys(),...pending.keys(),...withdrawn.map(key)].sort();
 assert.equal(new Set(after).size,610);assert.deepEqual(after,before);
 const result={schema:'canli.priority-scope-v13.v1',publication_approved:false,input_sha256:inputs,
  code_sha256:hash(readFileSync(new URL(import.meta.url))),source_sha256:hash(raw),
  original_priority_observations:610,active_reviewed_observations:reviewed.size,active_observations_needing_scope_review:pending.size,withdrawn_observations:withdrawn.length,
- new_review_credit:42,reopened_observations:reopened,reviewed:[...reviewed.values()],pending:[...pending.values()],withdrawn,
- scope:'Exact original610key partition. Two Atlantica policy withdrawals verified using actual source replay; two previously reviewed TECHCOM2025liability rows reopened for1USDcomponent discrepancy without assuming rounding.42historical reviews credited. Full corpus not rebuilt; other flags remain open; no publication admission.'};
+ new_review_credit:newCredit,reopened_observations:reopened,reviewed:[...reviewed.values()],pending:[...pending.values()],withdrawn,
+ scope:'Exact original610key partition. Two Atlantica policy withdrawals verified using actual source replay; two previously reviewed TECHCOM2025liability rows reopened for1USDcomponent discrepancy without assuming rounding.Historical reviews credited only from exact pending keys. Full corpus not rebuilt; other flags remain open; no publication admission.'};
 writeFileSync(process.argv[2]??base+'company-priority-scope-v13-20260920.json',JSON.stringify(result,null,2)+'\n',{flag:'wx'});
 console.log(JSON.stringify({reviewed:reviewed.size,pending:pending.size,withdrawn:withdrawn.length,reopened:reopened.length}));

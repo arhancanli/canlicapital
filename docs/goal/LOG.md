@@ -942,3 +942,11 @@ V13ledger also applies two Atlantica withdrawals verified from actual source
 replay. Exact counts351reviewed/249pending/10withdrawn;610keys preserved and
 ledger replay identical. PR43merged33059304after four CIchecks and exact tree
 equality. Full corpus rebuild and remaining reviews stay open; no publication.
+
+## 2026-09-20 — Bioforce/ANVI historical review
+
+Opened PR44for TECHCOMreview and reopened latest liabilities. Reviewed52more
+observations across18Bioforce/ANVI primary tables; restatement/entity-history
+limits retained. Context and cumulative ledger reproduce byte-for-byte. Exact
+counts403reviewed/197pending/10withdrawn preserve all610original keys. No credit
+for the unresolved TECHCOMlatest rows; no publication or full corpus rebuild.
