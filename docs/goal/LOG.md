@@ -55,3 +55,13 @@ no relabeling/conversion or replacement values. Actual source regression verifie
 all other values unchanged, visible notices and inherited policy decisions.
 35selector/renderer,8delivery/release and31corpus/XML/unit tests pass. No collector,
 rebuild or uploader active; new evidence archive and remaining corpus review open.
+
+## 2026-09-20 — complete v14 cohort transition
+
+Previous turn verified150/150baseline observations and implemented Varonis holds.
+PR49mergeda2f32bf2with four checks and exact tree equality. Rebuilt all five cohorts
+under v14in51634(terminal0). Full comparison64980(terminal0) verifies all3,323
+companies, unchanged source descriptors and exact intended changes only.12selected
+observations removed in total, one whole history; current histories87,346. Combined
+catalog/release/discovery/storage pipeline16429active; poll its existing handle.
+Broader editorial, archival and hosted gates remain open; no publication/indexing gain.

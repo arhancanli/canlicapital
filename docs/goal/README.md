@@ -20,7 +20,7 @@ transitions, not continuous telemetry or proof that background work is running.
 
 Working locations:
 
-- Website: `/Users/arhancanli/canlicapital-expansion-20260919`, branch `fix/varonis-unit-scope-20260920`. PR46 merged; priority scope600reviewed/0pending/10withdrawn with isolated evidence replay. V14whole-corpus rebuild and broader quality review remain open; no uploader active. Production uses the clean canlicapital-production-20260920 checkout at9608542c. Read STATUS for exact current evidence and next action.
+- Website: `/Users/arhancanli/canlicapital-expansion-20260919`, branch `release/five-cohort-v14-20260920`. PR46 merged; priority scope600reviewed/0pending/10withdrawn with isolated evidence replay. V14whole-corpus rebuild and broader quality review remain open; no uploader active. Production uses the clean canlicapital-production-20260920 checkout at9608542c. Read STATUS for exact current evidence and next action.
 - Engine goal evidence: `/Users/arhancanli/alphac-goals-review-20260919`, branch `fix/owner-goal-evidence-20260919`, PR https://github.com/arhancanli/alphac/pull/68.
 - Engine dependency update: `/Users/arhancanli/alphac-security-20260919`, branch `fix/security-dependencies-20260919`, PR https://github.com/arhancanli/alphac/pull/69.
 - SEC collector quality: `/Users/arhancanli/alphac-source-quality-20260919`, branch `fix/sec-companyfacts-source-quality`; PR https://github.com/arhancanli/alphac/pull/70. Tests use the security worktree's existing Python environment; do not commit a .venv symlink.

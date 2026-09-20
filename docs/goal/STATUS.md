@@ -8,17 +8,18 @@ pins are preserved in [history/STATUS-20260920-through-priority-scope-closure.md
 ## Current work and next actions
 
 Worktree `/Users/arhancanli/canlicapital-expansion-20260919`, branch
-`fix/varonis-unit-scope-20260920`. Archive helper committed at eb780f48.
+`release/five-cohort-v14-20260920`. Archive helper committed at eb780f48.
 PR46 merged as087917ac31b50adbc9856f062e310d6b274ee811 after all four checks in
 CI35524243935 passed at a73932e1540e529483e01e628bc8c3f944cc067e.
 Tested/merged trees both3f9aa6d122d3be5a62974c31a52ff5ed1982b3a6.
 PR45 merged5ef02030; its original MCP audit HTTP400 and successful unchanged-head
 rerun are preserved in company-pr45-ci-recovery-20260920.json. No audit bypass.
 
-Archive process44780 is TERMINAL exit0. No collector, rebuild or uploader active.
+Archive process44780 is TERMINAL exit0. Five-cohort staging51634 and transition
+comparison64980completed exit0. Combined v14pipeline16429 is active; no uploader.
 Next: archive the new Varonis capture and legacy comparison evidence, address
 remaining basic/diluted source coverage and corpus scope/usefulness flags,
-then rebuild all five cohorts under v14, verify exact changes, and complete hosted
+finish combined v14catalog/release/discovery/storage verification, then complete hosted
 transfer, whole-release delivery/load/browser checks and production activation.
 Owner authorization to publish tested releases persists; no repeat approval needed.
 Priority queue closure alone is not whole-corpus admission.
@@ -62,7 +63,7 @@ Merged extended-v13 inherits all earlier source-bound exclusions:
 
 33selector/renderer tests passed for v13policy; subsequent note change passes
 11renderer tests and full PR46CI. Actual source fixtures reject changed evidence.
-**V14has not been rebuilt across all cohorts. Do not admit earlier candidates unchanged.**
+**All five cohorts restaged under v14; combined release verification is pending.**
 
 Last combinedv11:3,323companies +87,347histories +67directories =90,737unique
 candidate URLs. Local XML/hash/uniqueness and unchanged v10/v11URL-set checks pass.
@@ -190,3 +191,16 @@ HNO/DBMM/Atlantica holdbacks.35selector/renderer and8delivery/release tests pass
 Full v14rebuild, archival coverage of this new evidence and broad admission remain
 open. Original610priority ledger unchanged; these six holds belong to the separate
 10,206observation deferred queue. No deployment or indexed-page gain.
+
+## Full v14 cohort transition
+
+PR49mergeda2f32bf2f922d5e5cfb5885e32af50b996c1ba8f after four checks in
+CI35525344650passed atbb2dd667. Tested/merged treebb4bd55669a6e2a0fb9d76f8b4654653f8450bd0.
+Staging51634and full comparison64980completed0:3,323companies preserved, histories
+87,347→87,346. Exact comparison of every selected record against v11allows only
+policy metadata, HNOwhole operating-loss history/four observations, two Atlantica
+liability observations, six Varonis EPSobservations and the corresponding notices.
+All source descriptors and all other values remain unchanged. Versioned report
+company-five-cohort-v14-transition-20260920.json pins all five manifests. This is
+not broad editorial admission. Combined pipeline16429is active, log/tmp/canli-v14-pipeline.log;
+no uploader or production change. New discovery audit must pass before URL claims.
