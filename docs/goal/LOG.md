@@ -905,3 +905,11 @@ report replays identically. New ledger223reviewed/379pending/8withdrawn covers
 the original610keys exactly once and replays identically. Supplements are bound
 and cannot reuse credited rows. PR41merged27f947e2 after four checks and exact
 tested/merged tree equality. Remaining reviews and v12rebuild remain open.
+
+## 2026-09-20 — second historical balance-sheet batch
+
+Opened PR42for the first34liability reviews. Reviewed30more observations from
+10Gold Rock/Nika balance sheets; retained historical long-term Nika liabilities
+as a boundary on the asset-only conclusion. Context and combined ledger each
+replay byte-identically. Updated exact counts253reviewed/349pending/8withdrawn.
+No value changes, blanket company admission, rebuild, upload or deployment.

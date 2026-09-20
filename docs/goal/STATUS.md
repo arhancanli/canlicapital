@@ -450,3 +450,16 @@ Versioned v12-batch1ledger partitions original610keys:223active reviewed,379pend
 8withdrawn. Supplements must bind originalv12ledger and remove only previously
 pending exact keys; duplicate/out-of-queue credit rejected. Ledger replay identical.
 Prior snapshots preserved; no rebuild/upload/deployment or indexed gain.
+
+## Second historical balance-sheet batch
+
+PR42open for historical balance-sheet context.30additional previously pending
+Gold Rock/Nika observations reviewed against10retained primary tables. Gold Rock
+current/total asset and liability totals are separately displayed. Nika conclusion
+covers assets only; historical long-term related-party liabilities remain explicit,
+not erased or approved as current. Full source hashes/tables and selected periods
+in company-historical-balance-batch2-20260920.json. Report replay byte-identical.
+V12-batch2ledger combines only exact disjoint pending observations from both
+batches:253active reviewed,349pending,8withdrawn;610original keys preserved.
+Ledger replay byte-identical; prior snapshots unchanged. No release rebuild,
+uploader or deployment; broader flags and basic/diluted groups remain open.
