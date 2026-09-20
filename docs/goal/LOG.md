@@ -712,3 +712,13 @@ are retained; interpretation, inline numerical extraction and companyfacts queue
 selection are not independently rerun. No offsite backup or admission claim.
 PR36CI35519353726passed all four checks at5eeb43e6; archive additions need new CI.
 Paced transfer77617 remains confirmed live.
+
+## 2026-09-20 — Birdie Win SG&A scope discrepancy
+
+Previous turn completed liability archive replay. PR36merged4d091c1f with all four
+checks passing and exact tree equality. Review of the remaining15priority groups
+found Birdie Win segment SG&A includes separately presented depreciation in each
+of2023–2025. Three primary expense bridges and all selected values reproduce.
+Source-scope hold recorded; v9cannot be admitted unchanged. New versioned exclusion
+and downstream rebuild remain next. Source values/old manifests unchanged.
+Paced storage77617 remains active and does not confer publication approval.

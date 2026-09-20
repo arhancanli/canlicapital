@@ -7,7 +7,7 @@ status preserved in history/STATUS-20260920-through-equality-triage.md.
 ## Current execution
 
 Worktree /Users/arhancanli/canlicapital-expansion-20260919, branch
-research/company-liability-scope-20260920. PR34 merged as
+fix/birdie-expense-scope-20260920. PR34 merged as
 34f2b81e9dec93047c90c4185d1a59fe9ada3661 after four CI35517891088checks passed
 at2ca4f9fe; tested/merged tree67b8efb122bd96a625a6d7933a5312c9b8e31da3.
 PR33 merged as
@@ -109,6 +109,21 @@ website-development/payable distinction, bound to all8selected observations and
 linked to its2024annual report. Evidence company-revenue-
 presentation-scope-20260920.json and company-filing-context-render-v2-20260920.json.
 Implementation scripts/lib/company-filing-notes.mjs; not yet deployed.
+
+## Birdie Win expense scope — publication hold
+
+All three selected2023–2025 SG&A values aggregate statement general/administrative
+expenses with separately presented depreciation in segment disclosures. Primary
+statements report47,162+137=47,299;48,364+718=49,082;29,237+744=29,981USD.
+Evidence company-birdie-expense-scope-20260920.json binds both filings and all
+selected periods. Withhold CIK0001873213/SellingGeneralAndAdministrativeExpense
+before publication; retain OperatingExpenses and original values. Implement a new
+source-bound policy (preservev9), test its exact exclusion, then rebuild affected
+candidate artifacts. The currentv9 candidate must not be admitted unchanged.
+Pacedv9 transfer remains useful immutable staging, not approval to publish it.
+
+PR36 merged4d091c1f0a34b31bed9002c728cc1ab84e04564f after four CI35519464225
+checks passed atf9038476; tested/merged treeba6a7e72f022befa3cd5b2d157b73ce618468252.
 
 ## Immediate next work
 
