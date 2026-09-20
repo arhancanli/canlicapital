@@ -49,3 +49,8 @@ cells for narrative disclosure. The original helper remains unchanged for prior
 reproduction. FuelCell’s direct table-cell footnote required this extension;
 absence from the original helper’s paragraph-only extraction was not evidence
 that the filing lacked a dilution explanation.
+
+Batch5uses replay v3with an optional explicit `supporting_table_indexes` list.
+Plug Power’s2025diluted-share fact appears only in its EPSnote table, while other
+facts also appear in the main statement. Every allowed table is retained in the
+report; matching elsewhere in the filing is insufficient. V1/V2remain frozen.
