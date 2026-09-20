@@ -10,10 +10,18 @@ which links the preceding historical record. Historical process states are not l
 ## Current work and immediate next action
 
 Worktree `/Users/arhancanli/canlicapital-expansion-20260919`, branch
-`evidence/basic-diluted-scope-20260920`. PR57merged
-477cd9e570ba33f25bf20b58acf5a3e70cf1de25 after all four checks in
-CI35528405207passed at4124a9866f0bb39451292c52423fcf3f15ff40bb.
-Tested/merged tree54f3a9ed72f21602562e5f966a98ddf66e7c539e.
+`evidence/basic-diluted-context-index-20260920`. PR58merged
+8f6c4d30d4726f6b7db8fa567c70ab6f63353a3b after all four checks in
+CI35528955777passed at86fa7e551f33d84e0c75d6edb348e175acb51825.
+Tested/merged tree2d9fba1d9dee914e737f63b760caa369a765cbd2.
+
+Offline context index71727 TERMINAL exit0 covers all100primaries/1,176observations.
+All identities, source hashes, observations and matched-location counts reconcile
+against the frozen primary comparison.83filings have candidate dilution text;
+17have no regex candidate, not proof of absent disclosure.78legacy observations
+lack inline locations and need separate statement mapping. Index includes full
+matched tables and five preceding non-table blocks; known111and Valhi context
+retained. No new scope approvals; next use this index to adjudicate pending rows.
 
 First batch1 scope closure:111, Inc., fourteen2023–2025observations. Original
 statement and EPS calculation explain anti-dilution, exempt shares/per-share data
