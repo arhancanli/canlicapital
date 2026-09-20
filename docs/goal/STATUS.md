@@ -226,8 +226,17 @@ Downloads:5b3c0b57e86bec0a5857bc37a838428cf776c660af09bb343f8bb8f7bce56958
 Deliverymanifest:8900d4d3bcb0dec7b1356cddb3481bd69736a2832e95b6255ef4085152de4576
 Storageplan:4e179e74be346df6071e7a5429ce390d694f8aabfb43702d10728a1660e7d00c
 
-Evidence company-five-cohort-v11-discovery-audit-20260920.json. V11archive,
-remaining editorial scope and full hosted delivery/production checks remain open.
+Evidence company-five-cohort-v11-discovery-audit-20260920.json. Remaining editorial scope and full hosted delivery/production checks remain open.
+
+V11archive build/replay98640completed exit0. Isolated restore verifies all member
+hashes, all five source queues/1,026exclusions, and10,360runtime objects with
+exact release roots. Birdie and legacy revenue reports reproduce byte-for-byte. Archive23,126files/
+2,717,532,160bytes, SHAabecda29825b69210095ad571cb31b86be6a6984ad718a5fca6a1b70beced893,
+saved repositoryd67b680f. Summary company-five-cohort-v11-evidence-archive-summary-
+20260920.json. Includes seven primary legacy revenue filings and the tracked
+DBMM source fixture, in addition to prior Birdie/queue/runtime evidence. Both reports replayed using locked offline wheels; recorded interpretations are
+not independently certified. Local portability only, no offsite backup.
+Five archive safety tests pass; all four CI35521649206checks passed atd67b680f. No uploader.
 
 ## Previous v10 combined candidate (superseded)
 
@@ -357,3 +366,13 @@ Goals remain800kactually indexed canonical pages(target1m), exceptional quality/
 SEO/relevant intent, real developer adoption, governed combined NET FORWARD
 Sharpe>2,at least14economically distinct qualified sleeves and realized maxDD<=10%.
 No broker orders, fabricated evidence or unapproved research decisions.
+
+## V11 priority queue accounting
+
+Versioned company-priority-scope-v11-20260920.json binds the previous v3ledger,
+its input reports and the verified combinedv11manifest. It checks the exact
+source-bound policy against selected runtime bytes and exclusion metadata.
+166active reviewed +440pending +4withdrawn =610original priority observations.
+The additional withheld period is not counted as reviewed. Earlier ledger stays
+unchanged;169recorded reviews include the3previously withdrawn Birdie periods.
+Offline replay is byte-identical. New ledger is later than the sealedv11archive.

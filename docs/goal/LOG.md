@@ -837,3 +837,24 @@ counts/immutable shared metadata. Result90,737candidate URLs,10,360objects,
 1,280,301,890bytes. Full roots retained in the v11discovery-audit receipt and STATUS.
 No uploader started, no production or indexing gain. New audit/continuity additions
 require their own CI. V11archive and remaining scope review are next.
+
+## 2026-09-20 — v11 archive and isolated replay started
+
+Extended versioned packager/restore support forv11, keeping older profiles intact.
+Seven hash-bound legacy revenue primaries support reproducible DBMM date-conflict
+evidence; saved repository includes the exact source fixture. Five archive safety
+tests pass. Committedd67b680f and pushed. Build98640has sealed/verified23,126files,
+2,717,532,160bytes; independent isolated source/runtime/context replay is live and
+not yet claimed complete. Poll98640; log/tmp/canli-v11-archive-replay.log.
+
+## 2026-09-20 — v11 archive closure and withdrawal accounting
+
+98640completed exit0. Isolated restore reproduces all five queues with1,026
+exclusions/zero errors,10,360runtime objects/1,280,301,890bytes and exact release
+roots. Birdie and legacy revenue context reports reproduce byte-for-byte using
+locked offline dependencies. Receipt company-five-cohort-v11-evidence-restore-
+20260920.json. All four CI35521649206checks passed atd67b680f.
+New versioned ledger separately accounts for the one disputed period:166active
+reviewed,440pending,4withdrawn. Withholding earns no review credit. It binds prior
+reports and actual selected runtime bytes; offline replay byte-identical. This
+new ledger postdates the archive. No publication or indexing gain.
