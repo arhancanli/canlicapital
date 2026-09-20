@@ -302,3 +302,46 @@ test('v12 withholds HNO operating history while preserving net loss and inherite
   assert.deepEqual(inherited.editorial_exclusions, previous.editorial_exclusions);
   verifyCompanyReference(inherited, dbmm);
 });
+
+test('v13 withholds only disputed Atlantica liability periods and preserves prior exclusions', async () => {
+  const raw = gunzipSync(readFileSync(new URL('./fixtures/editorial/atlantica-reviewed-source.json.gz', import.meta.url)));
+  assert.equal(createHash('sha256').update(raw).digest('hex'), 'b6982eca52afbce436eed50540a757170b57c33a9b39cd6eb182ff42d4f267d8');
+  const options = { fetchedAt: '2026-09-20T05:18:35.368Z', expectedCik: '0001062506' };
+  const before = companyReference(raw, { ...options, selectionPolicy: 'extended-v12' });
+  const diagnostics = {};
+  const after = companyReference(raw, { ...options, selectionPolicy: 'extended-v13', diagnostics });
+  const expected = structuredClone(before.concepts);
+  for (const tag of ['Liabilities', 'LiabilitiesCurrent']) {
+    const concept = expected.find(c => c.tag === tag);
+    assert.equal(concept.observations.filter(row => row.end === '2023-12-31').length, 1);
+    concept.observations = concept.observations.filter(row => row.end !== '2023-12-31');
+  }
+  assert.deepEqual(after.concepts, expected);
+  assert.equal(diagnostics.editorial_observation_excluded, 2);
+  assert.equal(after.editorial_exclusions.filter(e => e.observation).length, 2);
+  verifyCompanyReference(before, raw); verifyCompanyReference(after, raw);
+  const changed = structuredClone(after); changed.editorial_exclusions.pop();
+  assert.throws(() => verifyCompanyReference(changed, raw), /does not reproduce/);
+  assert.throws(() => companyReference(Buffer.concat([raw, Buffer.from('\n')]), { ...options, selectionPolicy: 'extended-v13' }), e => e.code === 'EDITORIAL_REVIEW_REQUIRED');
+  assert.throws(() => companyReference(raw, { ...options, fetchedAt: '2024-01-01T00:00:00Z', selectionPolicy: 'extended-v13' }), e => e.code === 'EDITORIAL_REVIEW_REQUIRED');
+  const { renderCompanyPages } = await import('./lib/company-page-renderer.mjs');
+  after.source_snapshot = `/company-data/sources/${after.source_sha256}.json.gz`;
+  for (const tag of ['Liabilities', 'LiabilitiesCurrent']) {
+    const html = renderCompanyPages(after, { target: tag })[0].html;
+    assert.match(html, /Withheld reporting periods/);
+    assert.match(html, /inconsistency remains unresolved/);
+    assert.doesNotMatch(html, /<th scope="row">2023-12-31<\/th>/);
+  }
+  const assets = renderCompanyPages(after, { target: 'Assets' })[0].html;
+  assert.match(assets, /<th scope="row">2023-12-31<\/th>/);
+  assert.doesNotMatch(assets, /Withheld reporting periods/);
+  for (const [fixture,cik] of [['hno','0001342916'],['dbmm','0001127475']]) {
+    const source = gunzipSync(readFileSync(new URL(`./fixtures/editorial/${fixture}-reviewed-source.json.gz`, import.meta.url)));
+    const opts = { fetchedAt: '2026-09-20T07:54:29.633Z', expectedCik: cik };
+    const previous = companyReference(source, { ...opts, selectionPolicy: 'extended-v12' });
+    const inherited = companyReference(source, { ...opts, selectionPolicy: 'extended-v13' });
+    assert.deepEqual(inherited.concepts, previous.concepts);
+    assert.deepEqual(inherited.editorial_exclusions, previous.editorial_exclusions);
+    verifyCompanyReference(inherited, source);
+  }
+});

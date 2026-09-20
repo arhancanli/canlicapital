@@ -7,7 +7,7 @@ status preserved in history/STATUS-20260920-through-equality-triage.md.
 ## Current execution
 
 Worktree /Users/arhancanli/canlicapital-expansion-20260919, branch
-review/historical-liability-context-20260920. PR34 merged as
+fix/atlantica-liability-periods-20260920. PR34 merged as
 34f2b81e9dec93047c90c4185d1a59fe9ada3661 after four CI35517891088checks passed
 at2ca4f9fe; tested/merged tree67b8efb122bd96a625a6d7933a5312c9b8e31da3.
 PR33 merged as
@@ -480,3 +480,18 @@ conflicting observations remain pending, not reviewed. Full610key partition pass
 Initial helper rejected an ambiguous total-row prefix; narrowed matching to numeric
 columns so total liabilities/equity cannot be mistaken for total liabilities.
 No output report existed for that failed attempt; source evidence unchanged.
+
+## Atlantica exact-period holdbacks implemented
+
+PR42mergeddb3de119e6ad007bad1c2513e3d07deb3509f807 after four checks in
+CI35522601979passed atb291e035. Tested/merged tree
+cf7f2d12b6407fa691e80bb7f597477d0f21c465.
+Cumulative extended-v13policy now withholds only the two2023Atlantica liability
+observations bound to sourceb6982eca52afbce436eed50540a757170b57c33a9b39cd6eb182ff42d4f267d8.
+Same concept histories retained, other periods and2023assets unchanged. Affected
+pages explain component-total conflict; raw source retained, no replacement math.
+Actual58,867byte source fixture tests both exclusions, changed-source/capture-date
+rejection and inherited HNO/DBMM behavior.33selector/renderer and8delivery/release
+tests pass. Full corpus not rebuilt; v12-batch3ledger remains prior snapshot and
+still needs versioned accounting for these two policy withdrawals. No uploader
+or publication. Continue remaining review before rebuilding the final candidate.
