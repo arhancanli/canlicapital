@@ -1,0 +1,35 @@
+{
+  "schema": "canli.reviewed-share-context-spec.v1",
+  "decisions": [
+    {
+      "cik": "0001429764",
+      "accession": "0001493152-26-014238",
+      "source_sha256": "41f13d6b5be1446ec3e5ba694dc376ec6584fcb845d1eccf02caf631ec0b7f9f",
+      "primary_sha256": "e296d528c663236af324f809b5dfc4ae6dd624e0b1eaaef2c6386f4a4bc20692",
+      "fixture": "scripts/fixtures/editorial/blink-reviewed-source.json.gz",
+      "observations": 12,
+      "period_ends": [
+        "2023-12-31",
+        "2024-12-31",
+        "2025-12-31"
+      ],
+      "table_index": 138,
+      "supporting_table_indexes": [
+        174,
+        250
+      ],
+      "share_scale": "0",
+      "table_requires": [
+        "Net Loss Per Share:",
+        "Weighted Average Number of Common Shares Outstanding:"
+      ],
+      "paragraph_requires": [
+        "(in thousands except for share and per share amounts)",
+        "The following common share equivalents are excluded from the calculation of weighted average common shares outstanding because their inclusion would have been anti-dilutive:",
+        "were excluded from the above table because their exercise prices exceeded the average market price"
+      ],
+      "reader_note": "For 2023\u20132025, Blink reports equal basic and diluted loss per share and excludes the disclosed potential common-share equivalents as anti-dilutive. Its selected 2024 EPS is the revised loss of $2.00 per share, not the previously reported $1.96; the revision table retains the original and adjusted presentations. The additional 2024/2025 out-of-the-money warrants and options are excluded from the potential-share table itself because their exercise prices exceeded average market prices, regardless of the loss position. Neither set of excluded instruments is added to the weighted-average denominator. Shares and per-share amounts are exempt from the statement\u2019s thousands heading and use scale-zero tags.",
+      "disposition": "REVIEWED_ALLOCATION_UNIT_AND_DILUTION_CONTEXT"
+    }
+  ]
+}

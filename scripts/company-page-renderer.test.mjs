@@ -116,6 +116,25 @@ test('dated no-dilution statement and pre-funded warrants retain review boundari
   }
 });
 
+test('Blink retains revised EPS and out-of-money exclusions', () => {
+  for (const [fixture, cik, phrase, value] of [
+    ['blink', '0001429764', /revised loss of \$2.00 per share/, 109107002],
+  ]) {
+    const raw = gunzipSync(readFileSync(new URL(`./fixtures/editorial/${fixture}-reviewed-source.json.gz`, import.meta.url)));
+    const record = companyReference(raw, { expectedCik: cik, fetchedAt: '2026-09-20T00:00:00Z', selectionPolicy: 'extended-v18' });
+    verifyCompanyReference(record, raw);
+    const original = structuredClone(record.concepts);
+    record.source_snapshot = `/company-data/sources/${record.source_sha256}.json.gz`;
+    const tags = ['EarningsPerShareBasic', 'EarningsPerShareDiluted', 'WeightedAverageNumberOfSharesOutstandingBasic', 'WeightedAverageNumberOfDilutedSharesOutstanding'];
+    for (const target of [...tags, 'overview']) assert.match(renderCompanyPages(record, { target })[0].html, phrase);
+    assert.ok(record.concepts.find(c => c.tag === tags[2]).observations.some(r => r.end === '2025-12-31' && r.val === value));
+    for (const tag of tags.slice(0, 2)) assert.equal(record.concepts.find(c => c.tag === tag).observations.find(r => r.end === '2024-12-31').val, -2);
+    assert.deepEqual(record.concepts, original);
+    const changed = structuredClone(record); changed.source_sha256 = '0'.repeat(64);
+    assert.equal(companyFilingNotes(changed, tags[0]).length, 0);
+  }
+});
+
 test('loss-context notes preserve noncontrolling allocation and explicit statement share units', () => {
   for (const [fixture, cik, phrase, value] of [
     ['roblox', '0001315098', /after noncontrolling interests as its EPS numerator/, 689612000],
