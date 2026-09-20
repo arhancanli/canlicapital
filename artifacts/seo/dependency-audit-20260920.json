@@ -1,0 +1,94 @@
+{
+  "schema": "canli.dependency-audit-checkpoint.v1",
+  "checked_at": "2026-09-20T07:37:09.578575+00:00",
+  "head": "e9bb48293e5104bf1d7e24465f9bebf35b874ba6",
+  "packages": {
+    "root": {
+      "lock_sha256": "27277448ac8b080bafd82a82d8febeed0dbb8fe93949583d138e8a8fca624a3f",
+      "audit": {
+        "auditReportVersion": 2,
+        "vulnerabilities": {},
+        "metadata": {
+          "vulnerabilities": {
+            "info": 0,
+            "low": 0,
+            "moderate": 0,
+            "high": 0,
+            "critical": 0,
+            "total": 0
+          },
+          "dependencies": {
+            "prod": 4,
+            "dev": 70,
+            "optional": 34,
+            "peer": 0,
+            "peerOptional": 0,
+            "total": 73
+          }
+        }
+      }
+    },
+    "design": {
+      "lock_sha256": "df2d03154165b24c70c4d33a2c7f7d401f8b2c115c980707cf2a00c49cde62ba",
+      "audit": {
+        "auditReportVersion": 2,
+        "vulnerabilities": {},
+        "metadata": {
+          "vulnerabilities": {
+            "info": 0,
+            "low": 0,
+            "moderate": 0,
+            "high": 0,
+            "critical": 0,
+            "total": 0
+          },
+          "dependencies": {
+            "prod": 1,
+            "dev": 37,
+            "optional": 26,
+            "peer": 0,
+            "peerOptional": 0,
+            "total": 37
+          }
+        }
+      }
+    },
+    "mcp": {
+      "lock_sha256": "ddb7c4bd810fa7c9b2b4f14e266855fd317ea04c2228768c5240fe27ec238fce",
+      "audit": {
+        "auditReportVersion": 2,
+        "vulnerabilities": {},
+        "metadata": {
+          "vulnerabilities": {
+            "info": 0,
+            "low": 0,
+            "moderate": 0,
+            "high": 0,
+            "critical": 0,
+            "total": 0
+          },
+          "dependencies": {
+            "prod": 95,
+            "dev": 0,
+            "optional": 0,
+            "peer": 0,
+            "peerOptional": 0,
+            "total": 94
+          }
+        }
+      }
+    }
+  },
+  "default_branch_alert": {
+    "number": 1,
+    "package": "esbuild",
+    "version": "0.23.1",
+    "state": "open",
+    "url": "https://github.com/arhancanli/canlicapital/security/dependabot/1"
+  },
+  "candidate_fix": {
+    "commit": "093fb0fd",
+    "version": "0.25.12"
+  },
+  "scope": "Fresh npm registry audits; no guarantee of absence of unknown vulnerabilities. Candidate fix is not merged; alert not dismissed."
+}

@@ -18,7 +18,8 @@
 //      HTML page, the generator script whose own literal prose the page renders),
 //      the date its content last changed is the date it was last committed. This
 //      is computed AT BUILD TIME via `git log -1 --format=%cI -- <path>`, not
-//      cached, so it always reflects the tree actually being built.
+//      cached in Git builds. A content-hashed manifest carries these dates into
+//      deployment snapshots that omit Git; changed bytes invalidate the binding.
 //
 // A page can depend on several of these at once (a generated page reads a JSON
 // artifact AND is rendered by a script whose own template prose can change
@@ -27,12 +28,51 @@
 //
 // FALLBACK. If git is unavailable (no repository, no `git` binary) and no
 // artifact supplied a date, there is no real source date to derive, and the
-// only honest fallback left is the build date -- which is exactly the bug this
-// file exists to avoid everywhere else. Callers MUST report this via `onFallback`
-// so it is never a silent regression back to stamping-with-today.
+// development fallback is the build date. Callers MUST report it via
+// `onFallback`; the production builder rejects missing dates on Vercel.
 // =============================================================================
 
 import { execFileSync } from "node:child_process";
+import { createHash } from "node:crypto";
+import { readFileSync, writeFileSync, existsSync, lstatSync, readdirSync, mkdirSync } from "node:fs";
+import { resolve, relative, sep } from "node:path";
+
+const capturedDates = new Map();
+const manifests = new Map();
+function sourceHash(root, relPath) {
+  const path = resolve(root, relPath);
+  const rel = relative(root, path);
+  if (rel === '..' || rel.startsWith('..' + sep) || path === resolve(root)) return null;
+  const hash = createHash('sha256');
+  function visit(file) {
+    const stat = lstatSync(file);
+    if (stat.isSymbolicLink()) throw new Error('Source-date bindings cannot follow symlinks');
+    if (stat.isDirectory()) {
+      for (const name of readdirSync(file).sort()) visit(resolve(file, name));
+    } else if (stat.isFile()) {
+      hash.update(relative(path, file)); hash.update('\0'); hash.update(readFileSync(file)); hash.update('\0');
+    } else {
+      throw new Error('Source-date bindings require regular files');
+    }
+  }
+  try { visit(path); return hash.digest('hex'); } catch { return null; }
+}
+function portableDate(root, relPath) {
+  if (!manifests.has(root)) {
+    const file = resolve(root, 'config/source-dates.json');
+    manifests.set(root, existsSync(file) ? JSON.parse(readFileSync(file, 'utf8')) : null);
+  }
+  const manifest = manifests.get(root);
+  if (manifest?.schema !== 'canli.source-dates.v1') return null;
+  const record = manifest.files?.[relPath];
+  return record && /^\d{4}-\d{2}-\d{2}$/.test(record.date) && record.sha256 === sourceHash(root, relPath) ? record.date : null;
+}
+export function writeSourceDates(root) {
+  const files = capturedDates.get(root);
+  if (!files || !Object.keys(files).length) return;
+  mkdirSync(resolve(root, 'config'), { recursive: true });
+  writeFileSync(resolve(root, 'config/source-dates.json'), JSON.stringify({ schema: 'canli.source-dates.v1', files: Object.fromEntries(Object.entries(files).sort()) }, null, 2) + '\n');
+}
 
 const DATE_ONLY = /^\d{4}-\d{2}-\d{2}$/;
 
@@ -48,18 +88,28 @@ export function gitCommitDate(root, relPath, { run = defaultGitRun } = {}) {
   try {
     out = run(root, relPath);
   } catch {
-    return null;
+    return run === defaultGitRun ? portableDate(root, relPath) : null;
   }
   const iso = String(out ?? "").trim().split("\n")[0];
-  if (!iso) return null;
+  if (!iso) return run === defaultGitRun ? portableDate(root, relPath) : null;
   const dateOnly = iso.slice(0, 10);
-  return DATE_ONLY.test(dateOnly) ? dateOnly : null;
+  if (!DATE_ONLY.test(dateOnly)) return null;
+  if (run === defaultGitRun) {
+    const sha256 = sourceHash(root, relPath);
+    if (sha256) {
+      const files = capturedDates.get(root) ?? {};
+      files[relPath] = { date: dateOnly, sha256 };
+      capturedDates.set(root, files);
+    }
+  }
+  return dateOnly;
 }
 
 function defaultGitRun(root, relPath) {
   return execFileSync("git", ["log", "-1", "--format=%cI", "--", relPath], {
     cwd: root,
     encoding: "utf8",
+    stdio: ["ignore", "pipe", "ignore"],
   });
 }
 

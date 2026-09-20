@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
-import { artifactDate, gitCommitDate, resolveLastmod } from "./lastmod.mjs";
+import { artifactDate, gitCommitDate, resolveLastmod, writeSourceDates } from "./lastmod.mjs";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 
@@ -127,4 +127,35 @@ test("MOVEMENT: a page whose source date moves gets a moved lastmod, others do n
   assert.equal(after.a, "2026-09-01");
   assert.notEqual(after.a, before.a);
   assert.equal(after.b, before.b);
+});
+
+// Deployment archives have no Git metadata: bind dates to bytes, including
+// directory members, and reject changed content instead of recycling a date.
+test("portable source dates survive an archive and reject changed source bytes", async () => {
+  const { mkdtempSync, mkdirSync, writeFileSync, rmSync, symlinkSync } = await import("node:fs");
+  const { tmpdir } = await import("node:os");
+  const { execFileSync } = await import("node:child_process");
+  const root = mkdtempSync(resolve(tmpdir(), "canli-source-date-"));
+  const git = (...args) => execFileSync("git", args, { cwd: root, stdio: "pipe", env: { ...process.env, GIT_AUTHOR_DATE: "2026-08-01T12:00:00Z", GIT_COMMITTER_DATE: "2026-08-01T12:00:00Z" } });
+  try {
+    mkdirSync(resolve(root, "notes"));
+    writeFileSync(resolve(root, "notes/a.md"), "Original source");
+    git("init"); git("add", "notes");
+    git("-c", "user.name=Test", "-c", "user.email=test@example.invalid", "-c", "commit.gpgsign=false", "commit", "-m", "fixture");
+    assert.equal(gitCommitDate(root, "notes/a.md"), "2026-08-01");
+    assert.equal(gitCommitDate(root, "notes"), "2026-08-01");
+    writeSourceDates(root);
+    rmSync(resolve(root, ".git"), { recursive: true });
+    assert.equal(gitCommitDate(root, "notes/a.md"), "2026-08-01");
+    assert.equal(gitCommitDate(root, "notes"), "2026-08-01");
+    writeFileSync(resolve(root, "notes/b.md"), "New member");
+    assert.equal(gitCommitDate(root, "notes"), null);
+    assert.equal(gitCommitDate(root, "notes/a.md"), "2026-08-01");
+    writeFileSync(resolve(root, "notes/a.md"), "Changed source");
+    assert.equal(gitCommitDate(root, "notes/a.md"), null);
+    rmSync(resolve(root, "notes/a.md"));
+    symlinkSync("b.md", resolve(root, "notes/a.md"));
+    assert.equal(gitCommitDate(root, "notes/a.md"), null);
+    assert.equal(gitCommitDate(root, "missing.md"), null);
+  } finally { rmSync(root, { recursive: true, force: true }); }
 });

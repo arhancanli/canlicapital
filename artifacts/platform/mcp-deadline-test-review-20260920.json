@@ -1,0 +1,18 @@
+{
+  "schema": "canli.mcp-test-failure-review.v1",
+  "failed_run": 35500519399,
+  "head": "bbb5690e598997e7a70e0e30611ae698dea86e60",
+  "test": "deadline covers a stalled response body and sends no retry",
+  "observed": "Expected requests=1, actual=0 after 100ms deadline",
+  "failure_log_sha256": "48ded85d39015a2e9ae9b5cd8cacfdff569054d189c72ee1da159a2542dd9b7c",
+  "change": "Control only deadline trigger after real HTTP response body read starts; assert exactly one fetch, request and read. Retain five-second test watchdog.",
+  "production_code_changed": false,
+  "local_tests_passed": 48,
+  "local_log_sha256": "372c9644bd7f324638f049ef97b940b8e12fb289bf8316a4919942bb9d9427ab",
+  "remote_verification": {
+    "run_id": 35500716863,
+    "head": "05511c5353dbefde55b5a3c142f7acee6b604d42",
+    "conclusion": "SUCCESS",
+    "all_jobs_passed": true
+  }
+}

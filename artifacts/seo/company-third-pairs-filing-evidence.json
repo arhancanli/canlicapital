@@ -1,0 +1,739 @@
+{
+  "schema": "canli.editorial-filing-inspection.v1",
+  "scope": "Six unusual equal-vector pairs; latest selected accession only. Original filing captures, not an assertion covering every historical filing or approval for publication. Comparison extraction excludes dimensional and nil facts, applies inline scale/sign, and recognizes only listed decimal/zero formats. Missing matches remain unresolved, not errors inferred in the issuer data.",
+  "publication_approved": false,
+  "groups": [
+    {
+      "cik": "0000894501",
+      "name": "GOLD ROCK HOLDINGS, INC.",
+      "tags": [
+        "Assets",
+        "AssetsCurrent"
+      ],
+      "selected_sha256": "f7f7491dac5701c515ce0b50b43468235962cc8ddbf6ff67b4489845f0606b59",
+      "source_sha256": "60c6ccf3e00b325ac6b5d15b5df627c224be0ef7464cc65911e9c3b586fe81c7",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/894501/000109181826000026/0001091818-26-000026-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T05:32:00.090054+00:00",
+        "bytes": 11726,
+        "sha256": "4a4e3932dc19743f1d6e3dfe9e1406fd1cb0cc22dc9c74dda00691fb4f8c36ca"
+      },
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/894501/000109181826000026/grhi12312510k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T05:32:01.666361+00:00",
+        "bytes": 344728,
+        "sha256": "52c5bc0603054f38ae386a837bf637db417afeca680e6601501ab717960549f1"
+      },
+      "selected_rows_in_inspected_accession": [
+        {
+          "tag": "Assets",
+          "start": null,
+          "end": "2025-12-31",
+          "unit": "USD",
+          "value": 152121,
+          "matches": [
+            {
+              "tag": "Assets",
+              "start": null,
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "152121",
+              "fact_id": "Fact000062",
+              "context_id": "AsOf2025-12-31",
+              "table_row": "Total Assets $ 152,121 $ 253,614"
+            }
+          ],
+          "matched": true
+        },
+        {
+          "tag": "Assets",
+          "start": null,
+          "end": "2024-12-31",
+          "unit": "USD",
+          "value": 253614,
+          "matches": [
+            {
+              "tag": "Assets",
+              "start": null,
+              "end": "2024-12-31",
+              "unit": "USD",
+              "value": "253614",
+              "fact_id": "Fact000063",
+              "context_id": "AsOf2024-12-31",
+              "table_row": "Total Assets $ 152,121 $ 253,614"
+            }
+          ],
+          "matched": true
+        },
+        {
+          "tag": "AssetsCurrent",
+          "start": null,
+          "end": "2025-12-31",
+          "unit": "USD",
+          "value": 152121,
+          "matches": [
+            {
+              "tag": "AssetsCurrent",
+              "start": null,
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "152121",
+              "fact_id": "Fact000059",
+              "context_id": "AsOf2025-12-31",
+              "table_row": "Total Current Assets 152,121 253,614"
+            }
+          ],
+          "matched": true
+        },
+        {
+          "tag": "AssetsCurrent",
+          "start": null,
+          "end": "2024-12-31",
+          "unit": "USD",
+          "value": 253614,
+          "matches": [
+            {
+              "tag": "AssetsCurrent",
+              "start": null,
+              "end": "2024-12-31",
+              "unit": "USD",
+              "value": "253614",
+              "fact_id": "Fact000060",
+              "context_id": "AsOf2024-12-31",
+              "table_row": "Total Current Assets 152,121 253,614"
+            }
+          ],
+          "matched": true
+        }
+      ],
+      "all_inspected_accession_rows_match": true,
+      "decision": "Retain distinct total/current concepts and comparison links; selected values match separate original filing rows. No all-history or publication approval."
+    },
+    {
+      "cik": "0000894501",
+      "name": "GOLD ROCK HOLDINGS, INC.",
+      "tags": [
+        "Liabilities",
+        "LiabilitiesCurrent"
+      ],
+      "selected_sha256": "f7f7491dac5701c515ce0b50b43468235962cc8ddbf6ff67b4489845f0606b59",
+      "source_sha256": "60c6ccf3e00b325ac6b5d15b5df627c224be0ef7464cc65911e9c3b586fe81c7",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/894501/000109181826000026/0001091818-26-000026-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T05:32:00.090054+00:00",
+        "bytes": 11726,
+        "sha256": "4a4e3932dc19743f1d6e3dfe9e1406fd1cb0cc22dc9c74dda00691fb4f8c36ca"
+      },
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/894501/000109181826000026/grhi12312510k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T05:32:01.666361+00:00",
+        "bytes": 344728,
+        "sha256": "52c5bc0603054f38ae386a837bf637db417afeca680e6601501ab717960549f1"
+      },
+      "selected_rows_in_inspected_accession": [
+        {
+          "tag": "Liabilities",
+          "start": null,
+          "end": "2025-12-31",
+          "unit": "USD",
+          "value": 154431,
+          "matches": [
+            {
+              "tag": "Liabilities",
+              "start": null,
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "154431",
+              "fact_id": "Fact000080",
+              "context_id": "AsOf2025-12-31",
+              "table_row": "Total Liabilities 154,431 78,400"
+            }
+          ],
+          "matched": true
+        },
+        {
+          "tag": "Liabilities",
+          "start": null,
+          "end": "2024-12-31",
+          "unit": "USD",
+          "value": 78400,
+          "matches": [
+            {
+              "tag": "Liabilities",
+              "start": null,
+              "end": "2024-12-31",
+              "unit": "USD",
+              "value": "78400",
+              "fact_id": "Fact000081",
+              "context_id": "AsOf2024-12-31",
+              "table_row": "Total Liabilities 154,431 78,400"
+            }
+          ],
+          "matched": true
+        },
+        {
+          "tag": "LiabilitiesCurrent",
+          "start": null,
+          "end": "2025-12-31",
+          "unit": "USD",
+          "value": 154431,
+          "matches": [
+            {
+              "tag": "LiabilitiesCurrent",
+              "start": null,
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "154431",
+              "fact_id": "Fact000077",
+              "context_id": "AsOf2025-12-31",
+              "table_row": "Total Current Liabilities 154,431 78,400"
+            }
+          ],
+          "matched": true
+        },
+        {
+          "tag": "LiabilitiesCurrent",
+          "start": null,
+          "end": "2024-12-31",
+          "unit": "USD",
+          "value": 78400,
+          "matches": [
+            {
+              "tag": "LiabilitiesCurrent",
+              "start": null,
+              "end": "2024-12-31",
+              "unit": "USD",
+              "value": "78400",
+              "fact_id": "Fact000078",
+              "context_id": "AsOf2024-12-31",
+              "table_row": "Total Current Liabilities 154,431 78,400"
+            }
+          ],
+          "matched": true
+        }
+      ],
+      "all_inspected_accession_rows_match": true,
+      "decision": "Retain distinct total/current concepts and comparison links; selected values match separate original filing rows. No all-history or publication approval."
+    },
+    {
+      "cik": "0000932021",
+      "name": "GLOBAL TECHNOLOGIES, LTD",
+      "tags": [
+        "Liabilities",
+        "LiabilitiesCurrent"
+      ],
+      "selected_sha256": "b2e0a9c92bd79c046607bf735dcd1ecbb781fafcec7c04008c8a964f44175ca1",
+      "source_sha256": "c34a86a7bf2001166b07684f5bc42c408cb465d70e0a48d9ac10508230f3d38b",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/932021/000149315225029524/0001493152-25-029524-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T05:32:03.398012+00:00",
+        "bytes": 11218,
+        "sha256": "b83aec9f3c22fe69be06d3196b2c5bda2c21deaf8f0ab9d0d48201520a6a4d2a"
+      },
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/932021/000149315225029524/form10-k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T05:32:05.025670+00:00",
+        "bytes": 1618141,
+        "sha256": "acdefeea947cfde10f7b5fc9d0bfd334605cef743c7542b4d23384ded365812a"
+      },
+      "selected_rows_in_inspected_accession": [
+        {
+          "tag": "Liabilities",
+          "start": null,
+          "end": "2025-06-30",
+          "unit": "USD",
+          "value": 1221387,
+          "matches": [
+            {
+              "tag": "Liabilities",
+              "start": null,
+              "end": "2025-06-30",
+              "unit": "USD",
+              "value": "1221387",
+              "fact_id": "Fact000105",
+              "context_id": "AsOf2025-06-30",
+              "table_row": "TOTAL LIABILITIES $ 1,221,387 $ 1,236,037"
+            }
+          ],
+          "matched": true
+        },
+        {
+          "tag": "Liabilities",
+          "start": null,
+          "end": "2024-06-30",
+          "unit": "USD",
+          "value": 1236037,
+          "matches": [
+            {
+              "tag": "Liabilities",
+              "start": null,
+              "end": "2024-06-30",
+              "unit": "USD",
+              "value": "1236037",
+              "fact_id": "Fact000106",
+              "context_id": "AsOf2024-06-30",
+              "table_row": "TOTAL LIABILITIES $ 1,221,387 $ 1,236,037"
+            }
+          ],
+          "matched": true
+        },
+        {
+          "tag": "LiabilitiesCurrent",
+          "start": null,
+          "end": "2025-06-30",
+          "unit": "USD",
+          "value": 1221387,
+          "matches": [
+            {
+              "tag": "LiabilitiesCurrent",
+              "start": null,
+              "end": "2025-06-30",
+              "unit": "USD",
+              "value": "1221387",
+              "fact_id": "Fact000102",
+              "context_id": "AsOf2025-06-30",
+              "table_row": "Total current liabilities 1,221,387 1,236,037"
+            }
+          ],
+          "matched": true
+        },
+        {
+          "tag": "LiabilitiesCurrent",
+          "start": null,
+          "end": "2024-06-30",
+          "unit": "USD",
+          "value": 1236037,
+          "matches": [
+            {
+              "tag": "LiabilitiesCurrent",
+              "start": null,
+              "end": "2024-06-30",
+              "unit": "USD",
+              "value": "1236037",
+              "fact_id": "Fact000103",
+              "context_id": "AsOf2024-06-30",
+              "table_row": "Total current liabilities 1,221,387 1,236,037"
+            }
+          ],
+          "matched": true
+        }
+      ],
+      "all_inspected_accession_rows_match": true,
+      "decision": "Retain distinct total/current concepts and comparison links; selected values match separate original filing rows. No all-history or publication approval."
+    },
+    {
+      "cik": "0001062506",
+      "name": "ATLANTICA INC.",
+      "tags": [
+        "Assets",
+        "AssetsCurrent"
+      ],
+      "selected_sha256": "e714ca18884f6e4ad13782cabfb95c816acec0cea16f64f286c16bd30b2c3156",
+      "source_sha256": "b6982eca52afbce436eed50540a757170b57c33a9b39cd6eb182ff42d4f267d8",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1062506/000106250626000010/0001062506-26-000010-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T05:32:06.854122+00:00",
+        "bytes": 11715,
+        "sha256": "8b98a217f152195409805a2f28ae9236f460fbdd22b69154f0737bb011fb6a58"
+      },
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1062506/000106250626000010/alda10k123125.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T05:32:08.740911+00:00",
+        "bytes": 390392,
+        "sha256": "c6cd6a01e821244936276203a5da114612c5313e9cf7202938fe0eb069b50421"
+      },
+      "selected_rows_in_inspected_accession": [
+        {
+          "tag": "Assets",
+          "start": null,
+          "end": "2025-12-31",
+          "unit": "USD",
+          "value": 0,
+          "matches": [
+            {
+              "tag": "Assets",
+              "start": null,
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "-0",
+              "fact_id": "Fact000058",
+              "context_id": "AsOf2025-12-31",
+              "table_row": "Total Assets $ - $ -"
+            }
+          ],
+          "matched": true
+        },
+        {
+          "tag": "Assets",
+          "start": null,
+          "end": "2024-12-31",
+          "unit": "USD",
+          "value": 0,
+          "matches": [
+            {
+              "tag": "Assets",
+              "start": null,
+              "end": "2024-12-31",
+              "unit": "USD",
+              "value": "-0",
+              "fact_id": "Fact000059",
+              "context_id": "AsOf2024-12-31",
+              "table_row": "Total Assets $ - $ -"
+            }
+          ],
+          "matched": true
+        },
+        {
+          "tag": "AssetsCurrent",
+          "start": null,
+          "end": "2025-12-31",
+          "unit": "USD",
+          "value": 0,
+          "matches": [
+            {
+              "tag": "AssetsCurrent",
+              "start": null,
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "-0",
+              "fact_id": "Fact000055",
+              "context_id": "AsOf2025-12-31",
+              "table_row": "Total Current Assets - -"
+            }
+          ],
+          "matched": true
+        },
+        {
+          "tag": "AssetsCurrent",
+          "start": null,
+          "end": "2024-12-31",
+          "unit": "USD",
+          "value": 0,
+          "matches": [
+            {
+              "tag": "AssetsCurrent",
+              "start": null,
+              "end": "2024-12-31",
+              "unit": "USD",
+              "value": "-0",
+              "fact_id": "Fact000056",
+              "context_id": "AsOf2024-12-31",
+              "table_row": "Total Current Assets - -"
+            }
+          ],
+          "matched": true
+        }
+      ],
+      "all_inspected_accession_rows_match": true,
+      "decision": "Retain distinct total/current concepts and comparison links; selected values match separate original filing rows. No all-history or publication approval."
+    },
+    {
+      "cik": "0001062506",
+      "name": "ATLANTICA INC.",
+      "tags": [
+        "Liabilities",
+        "LiabilitiesCurrent"
+      ],
+      "selected_sha256": "e714ca18884f6e4ad13782cabfb95c816acec0cea16f64f286c16bd30b2c3156",
+      "source_sha256": "b6982eca52afbce436eed50540a757170b57c33a9b39cd6eb182ff42d4f267d8",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1062506/000106250626000010/0001062506-26-000010-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T05:32:06.854122+00:00",
+        "bytes": 11715,
+        "sha256": "8b98a217f152195409805a2f28ae9236f460fbdd22b69154f0737bb011fb6a58"
+      },
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1062506/000106250626000010/alda10k123125.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T05:32:08.740911+00:00",
+        "bytes": 390392,
+        "sha256": "c6cd6a01e821244936276203a5da114612c5313e9cf7202938fe0eb069b50421"
+      },
+      "selected_rows_in_inspected_accession": [
+        {
+          "tag": "Liabilities",
+          "start": null,
+          "end": "2025-12-31",
+          "unit": "USD",
+          "value": 6072120,
+          "matches": [
+            {
+              "tag": "Liabilities",
+              "start": null,
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "6072120",
+              "fact_id": "Fact000079",
+              "context_id": "AsOf2025-12-31",
+              "table_row": "Total Liabilities 6,072,120 5,647,830"
+            }
+          ],
+          "matched": true
+        },
+        {
+          "tag": "Liabilities",
+          "start": null,
+          "end": "2024-12-31",
+          "unit": "USD",
+          "value": 5647830,
+          "matches": [
+            {
+              "tag": "Liabilities",
+              "start": null,
+              "end": "2024-12-31",
+              "unit": "USD",
+              "value": "5647830",
+              "fact_id": "Fact000080",
+              "context_id": "AsOf2024-12-31",
+              "table_row": "Total Liabilities 6,072,120 5,647,830"
+            }
+          ],
+          "matched": true
+        },
+        {
+          "tag": "LiabilitiesCurrent",
+          "start": null,
+          "end": "2025-12-31",
+          "unit": "USD",
+          "value": 6072120,
+          "matches": [
+            {
+              "tag": "LiabilitiesCurrent",
+              "start": null,
+              "end": "2025-12-31",
+              "unit": "USD",
+              "value": "6072120",
+              "fact_id": "Fact000076",
+              "context_id": "AsOf2025-12-31",
+              "table_row": "Total Current Liabilities 6,072,120 5,647,830"
+            }
+          ],
+          "matched": true
+        },
+        {
+          "tag": "LiabilitiesCurrent",
+          "start": null,
+          "end": "2024-12-31",
+          "unit": "USD",
+          "value": 5647830,
+          "matches": [
+            {
+              "tag": "LiabilitiesCurrent",
+              "start": null,
+              "end": "2024-12-31",
+              "unit": "USD",
+              "value": "5647830",
+              "fact_id": "Fact000077",
+              "context_id": "AsOf2024-12-31",
+              "table_row": "Total Current Liabilities 6,072,120 5,647,830"
+            }
+          ],
+          "matched": true
+        }
+      ],
+      "all_inspected_accession_rows_match": true,
+      "decision": "Retain distinct total/current concepts and comparison links; selected values match separate original filing rows. No all-history or publication approval."
+    },
+    {
+      "cik": "0001082733",
+      "name": "VISIUM TECHNOLOGIES, INC.",
+      "tags": [
+        "Assets",
+        "AssetsCurrent"
+      ],
+      "selected_sha256": "b048e5661577907b81dfbbdd4a43a2c271d3da7f45b7a58a65ca131da5f6cbe0",
+      "source_sha256": "251e725d3fea86663694ee893db7d76a6baba7bfe2f9d7a6c5950fa9a1f9d907",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1082733/000165495425011506/0001654954-25-011506-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T05:32:10.490003+00:00",
+        "bytes": 12975,
+        "sha256": "30c06ada99990a8ed7065456e1d961f876a5941cdc7ec276459e96f31642ecb6"
+      },
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1082733/000165495425011506/vism_10k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T05:32:12.127173+00:00",
+        "bytes": 1344532,
+        "sha256": "32996e9da4e5b759f8c1ad68bd9db345b7ab97cf14a71787b7040105c0a2b35c"
+      },
+      "selected_rows_in_inspected_accession": [
+        {
+          "tag": "Assets",
+          "start": null,
+          "end": "2025-06-30",
+          "unit": "USD",
+          "value": 67644,
+          "matches": [
+            {
+              "tag": "Assets",
+              "start": null,
+              "end": "2025-06-30",
+              "unit": "USD",
+              "value": "67644",
+              "fact_id": "fid_3305",
+              "context_id": "AsOf2025-06-30",
+              "table_row": "Total assets $ 67,644 $ 8,456"
+            }
+          ],
+          "matched": true
+        },
+        {
+          "tag": "Assets",
+          "start": null,
+          "end": "2024-06-30",
+          "unit": "USD",
+          "value": 8456,
+          "matches": [
+            {
+              "tag": "Assets",
+              "start": null,
+              "end": "2024-06-30",
+              "unit": "USD",
+              "value": "8456",
+              "fact_id": "fid_3306",
+              "context_id": "AsOf2024-06-30",
+              "table_row": "Total assets $ 67,644 $ 8,456"
+            }
+          ],
+          "matched": true
+        },
+        {
+          "tag": "AssetsCurrent",
+          "start": null,
+          "end": "2025-06-30",
+          "unit": "USD",
+          "value": 67644,
+          "matches": [
+            {
+              "tag": "AssetsCurrent",
+              "start": null,
+              "end": "2025-06-30",
+              "unit": "USD",
+              "value": "67644",
+              "fact_id": "fid_3303",
+              "context_id": "AsOf2025-06-30",
+              "table_row": "Total current assets 67,644 8,456"
+            }
+          ],
+          "matched": true
+        },
+        {
+          "tag": "AssetsCurrent",
+          "start": null,
+          "end": "2024-06-30",
+          "unit": "USD",
+          "value": 8456,
+          "matches": [
+            {
+              "tag": "AssetsCurrent",
+              "start": null,
+              "end": "2024-06-30",
+              "unit": "USD",
+              "value": "8456",
+              "fact_id": "fid_3304",
+              "context_id": "AsOf2024-06-30",
+              "table_row": "Total current assets 67,644 8,456"
+            }
+          ],
+          "matched": true
+        }
+      ],
+      "all_inspected_accession_rows_match": true,
+      "decision": "Retain distinct total/current concepts and comparison links; selected values match separate original filing rows. No all-history or publication approval."
+    }
+  ],
+  "delivery_manifest_sha256": "56733fa3b7b745fefd0de75a6cff5b6e6991606591dc8cc1673bd4b19dd31784",
+  "reviewed_by": "Codex source inspection; not independent human replication",
+  "source_entity_identifiers_verified": true,
+  "matched_selected_observations": 24,
+  "captures": [
+    {
+      "path": "artifacts/seo/corpus-local/editorial-third-filings/0000894501-0001091818-26-000026-index.receipt.json",
+      "receipt_sha256": "12507bfae7b4dc0f96b243a4b5b7aa7e1bae576dda6e0323caa34eac371c8c1c",
+      "url": "https://www.sec.gov/Archives/edgar/data/894501/000109181826000026/0001091818-26-000026-index.html",
+      "status": 200,
+      "captured_at": "2026-09-20T05:32:00.090054+00:00",
+      "bytes": 11726,
+      "sha256": "4a4e3932dc19743f1d6e3dfe9e1406fd1cb0cc22dc9c74dda00691fb4f8c36ca"
+    },
+    {
+      "path": "artifacts/seo/corpus-local/editorial-third-filings/0000894501-0001091818-26-000026-primary.receipt.json",
+      "receipt_sha256": "462d307daa67d4de6bc1197763ae4517899d2827d8f8427b07bd9503c4f1cbc4",
+      "url": "https://www.sec.gov/Archives/edgar/data/894501/000109181826000026/grhi12312510k.htm",
+      "status": 200,
+      "captured_at": "2026-09-20T05:32:01.666361+00:00",
+      "bytes": 344728,
+      "sha256": "52c5bc0603054f38ae386a837bf637db417afeca680e6601501ab717960549f1"
+    },
+    {
+      "path": "artifacts/seo/corpus-local/editorial-third-filings/0000932021-0001493152-25-029524-index.receipt.json",
+      "receipt_sha256": "31be4a853171923ec6898cf204e35fe6a3dd0fb186d3920faef51b065f27d974",
+      "url": "https://www.sec.gov/Archives/edgar/data/932021/000149315225029524/0001493152-25-029524-index.html",
+      "status": 200,
+      "captured_at": "2026-09-20T05:32:03.398012+00:00",
+      "bytes": 11218,
+      "sha256": "b83aec9f3c22fe69be06d3196b2c5bda2c21deaf8f0ab9d0d48201520a6a4d2a"
+    },
+    {
+      "path": "artifacts/seo/corpus-local/editorial-third-filings/0000932021-0001493152-25-029524-primary.receipt.json",
+      "receipt_sha256": "8971fae5e7feff9d617b07913f8de58c49c6a3ac135bbd0a2485a70e04850747",
+      "url": "https://www.sec.gov/Archives/edgar/data/932021/000149315225029524/form10-k.htm",
+      "status": 200,
+      "captured_at": "2026-09-20T05:32:05.025670+00:00",
+      "bytes": 1618141,
+      "sha256": "acdefeea947cfde10f7b5fc9d0bfd334605cef743c7542b4d23384ded365812a"
+    },
+    {
+      "path": "artifacts/seo/corpus-local/editorial-third-filings/0001062506-0001062506-26-000010-index.receipt.json",
+      "receipt_sha256": "ab82af33819ceea643629d6f624d33c0048a0376bbf57101f9474f4fa0d4f674",
+      "url": "https://www.sec.gov/Archives/edgar/data/1062506/000106250626000010/0001062506-26-000010-index.html",
+      "status": 200,
+      "captured_at": "2026-09-20T05:32:06.854122+00:00",
+      "bytes": 11715,
+      "sha256": "8b98a217f152195409805a2f28ae9236f460fbdd22b69154f0737bb011fb6a58"
+    },
+    {
+      "path": "artifacts/seo/corpus-local/editorial-third-filings/0001062506-0001062506-26-000010-primary.receipt.json",
+      "receipt_sha256": "a8593b51b1c2f874869889926288d5e057b544d351db61e6150ceb192126dcf5",
+      "url": "https://www.sec.gov/Archives/edgar/data/1062506/000106250626000010/alda10k123125.htm",
+      "status": 200,
+      "captured_at": "2026-09-20T05:32:08.740911+00:00",
+      "bytes": 390392,
+      "sha256": "c6cd6a01e821244936276203a5da114612c5313e9cf7202938fe0eb069b50421"
+    },
+    {
+      "path": "artifacts/seo/corpus-local/editorial-third-filings/0001082733-0001654954-25-011506-index.receipt.json",
+      "receipt_sha256": "dbb283428d77906f361d07e2260114cfd0537e52fdb785d18990d4244c90e781",
+      "url": "https://www.sec.gov/Archives/edgar/data/1082733/000165495425011506/0001654954-25-011506-index.html",
+      "status": 200,
+      "captured_at": "2026-09-20T05:32:10.490003+00:00",
+      "bytes": 12975,
+      "sha256": "30c06ada99990a8ed7065456e1d961f876a5941cdc7ec276459e96f31642ecb6"
+    },
+    {
+      "path": "artifacts/seo/corpus-local/editorial-third-filings/0001082733-0001654954-25-011506-primary.receipt.json",
+      "receipt_sha256": "fd38356292ec937477bca10ff3a3bab4796a0835b5e65a27174fd67362e9a4fa",
+      "url": "https://www.sec.gov/Archives/edgar/data/1082733/000165495425011506/vism_10k.htm",
+      "status": 200,
+      "captured_at": "2026-09-20T05:32:12.127173+00:00",
+      "bytes": 1344532,
+      "sha256": "32996e9da4e5b759f8c1ad68bd9db345b7ab97cf14a71787b7040105c0a2b35c"
+    }
+  ],
+  "inspection_code": {
+    "artifacts/seo/corpus-local/editorial-third-filings/capture.py": "ecb572df2e26eac9429cb385cfb2e8df9e09d07c4f1c7e4a86fa8f7d21550848",
+    "artifacts/seo/corpus-local/editorial-third-filings/compare.py": "907c98bd01af52efffa5997ef9b9a6d96f300cc03ed6b98dbcdb15a4bedd7893"
+  },
+  "web_reader_access": "Visium index accessible; other three index requests returned tool accessibility errors. Ordinary Node captures returned200 for all eight index/primary bodies.",
+  "restatement_note": "Global Technologies filing contains three scenario/reclassification/restatement dimensional current-liability facts. These are excluded from the undimensioned comparison, not evidence of conflicting selected values."
+}

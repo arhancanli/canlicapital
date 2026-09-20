@@ -27,6 +27,7 @@ export async function readJsonBody(req, maxBytes, { allowEmpty = false } = {}) {
     chunks.push(chunk);
   }
   const raw = typeof preParsed === "string" ? preParsed : Buffer.concat(chunks).toString("utf8");
+  if (Buffer.byteLength(raw) > maxBytes) throw new BodyError(413, "payload_too_large", `Request body exceeds ${maxBytes} bytes`);
   if (allowEmpty && raw.trim() === "") return {};
   let parsed;
   try { parsed = JSON.parse(raw); } catch { throw new BodyError(400, "invalid_json", "Request body is not valid JSON"); }

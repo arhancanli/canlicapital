@@ -1,0 +1,3416 @@
+{
+  "schema": "canli.company-editorial-filing-capture.v1",
+  "input_sha256": "1a9c1a59af8bf9389c7b2967a599d0b74b6e8833fab57689f93f7f232266cebf",
+  "publication_approved": false,
+  "complete": true,
+  "filings": [
+    {
+      "cik": "0001430300",
+      "companyfacts_name": "GLOBAL WARMING SOLUTIONS, INC.",
+      "discovery_names": [],
+      "accession": "0001477932-24-003836",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1430300/000147793224003836/0001477932-24-003836-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T09:32:50.814004+00:00",
+        "bytes": 11347,
+        "sha256": "61b4b40e02290e25fe74b2e7824c07e8d9d160d8d89e8e6c86cd1c0e7dc11d68",
+        "body_path": "artifacts/seo/corpus-local/fifth-editorial-filings/0001430300-0001477932-24-003836-index.response"
+      },
+      "index_filers": [
+        "Global Warming Solutions, Inc. (Filer) CIK : 0001430300 (see all company filings) EIN. : 731561189 | State of Incorp.: OK | Fiscal Year End: 1231 Type: 10-K | Act: 34 | File No.: 000-53170 | Film No.: 241064786 SIC : 5960 Retail-Nonstore Retailers (CF Office: 07 Trade & Services)"
+      ],
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1430300/000147793224003836/gwso_10k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T09:32:52.548255+00:00",
+        "bytes": 537822,
+        "sha256": "bc730df288de70888ace71f7c43e1e9ffc5314dbd313808f9619c5b5497c3d34",
+        "body_path": "artifacts/seo/corpus-local/fifth-editorial-filings/0001430300-0001477932-24-003836-primary.response"
+      },
+      "dei_identity_facts": [
+        {
+          "name": "dei:EntityCentralIndexKey",
+          "context": "From2023-01-01to2023-12-31",
+          "text": "0001430300"
+        },
+        {
+          "name": "dei:EntityRegistrantName",
+          "context": "From2023-01-01to2023-12-31",
+          "text": "GLOBAL WARMING SOLUTIONS, INC."
+        }
+      ],
+      "core_fact_contexts": [
+        {
+          "tag": "us-gaap:Liabilities",
+          "contexts": [
+            "AsOf2022-12-31",
+            "AsOf2023-12-31"
+          ]
+        },
+        {
+          "tag": "us-gaap:LiabilitiesCurrent",
+          "contexts": [
+            "AsOf2022-12-31",
+            "AsOf2023-12-31"
+          ]
+        }
+      ],
+      "contexts": {
+        "AsOf2022-12-31": {
+          "identifiers": [
+            "0001430300"
+          ],
+          "has_dimensions": false
+        },
+        "AsOf2023-12-31": {
+          "identifiers": [
+            "0001430300"
+          ],
+          "has_dimensions": false
+        }
+      },
+      "state": "PRIMARY_CAPTURED_EDITORIAL_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001433309",
+      "companyfacts_name": "Plastec Technologies, Ltd.",
+      "discovery_names": [],
+      "accession": "0001104659-26-061965",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1433309/000110465926061965/0001104659-26-061965-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T09:32:54.222855+00:00",
+        "bytes": 12419,
+        "sha256": "f35168fcf64b07715893fa0fc57616c7a8a74a8817bb699986970ed76e68afef",
+        "body_path": "artifacts/seo/corpus-local/fifth-editorial-filings/0001433309-0001104659-26-061965-index.response"
+      },
+      "index_filers": [
+        "Plastec Technologies, Ltd. (Filer) CIK : 0001433309 (see all company filings) EIN. : 000000000 | State of Incorp.: E9 | Fiscal Year End: 1231 Type: 20-F | Act: 34 | File No.: 000-53826 | Film No.: 26983065 SIC : 3089 Plastics Products, NEC (CF Office: 08 Industrial Applications and Services)"
+      ],
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1433309/000110465926061965/pltyf-20251231x20f.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T09:32:56.004010+00:00",
+        "bytes": 1491803,
+        "sha256": "6120b1cfe3d538a03497c55f15234d9b109470d9440f669dc9744d66a611172e",
+        "body_path": "artifacts/seo/corpus-local/fifth-editorial-filings/0001433309-0001104659-26-061965-primary.response"
+      },
+      "dei_identity_facts": [
+        {
+          "name": "dei:EntityRegistrantName",
+          "context": "Duration_1_1_2025_To_12_31_2025_rRx6ws14kkSGgwiMv-uXGQ",
+          "text": "Plastec Technologies, Ltd."
+        },
+        {
+          "name": "dei:EntityCentralIndexKey",
+          "context": "Duration_1_1_2025_To_12_31_2025_rRx6ws14kkSGgwiMv-uXGQ",
+          "text": "0001433309"
+        }
+      ],
+      "core_fact_contexts": [
+        {
+          "tag": "us-gaap:Revenues",
+          "contexts": [
+            "Duration_1_1_2023_To_12_31_2023_AeGZEfTQJUqih81VzPJ9Dg",
+            "Duration_1_1_2024_To_12_31_2024_T2fRGU1mKk6cps6V4qVlqQ",
+            "Duration_1_1_2025_To_12_31_2025_rRx6ws14kkSGgwiMv-uXGQ"
+          ]
+        }
+      ],
+      "contexts": {
+        "Duration_1_1_2023_To_12_31_2023_AeGZEfTQJUqih81VzPJ9Dg": {
+          "identifiers": [
+            "0001433309"
+          ],
+          "has_dimensions": false
+        },
+        "Duration_1_1_2024_To_12_31_2024_T2fRGU1mKk6cps6V4qVlqQ": {
+          "identifiers": [
+            "0001433309"
+          ],
+          "has_dimensions": false
+        },
+        "Duration_1_1_2025_To_12_31_2025_rRx6ws14kkSGgwiMv-uXGQ": {
+          "identifiers": [
+            "0001433309"
+          ],
+          "has_dimensions": false
+        }
+      },
+      "state": "PRIMARY_CAPTURED_EDITORIAL_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001434740",
+      "companyfacts_name": "RANGER GOLD CORP.",
+      "discovery_names": [],
+      "accession": "0001477932-26-004299",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1434740/000147793226004299/0001477932-26-004299-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T09:32:57.701024+00:00",
+        "bytes": 11221,
+        "sha256": "57a4f3e75d53ed3493d1814688a865895e0adae0eec03e119479747943c52c35",
+        "body_path": "artifacts/seo/corpus-local/fifth-editorial-filings/0001434740-0001477932-26-004299-index.response"
+      },
+      "index_filers": [
+        "Ranger Gold Corp. (Filer) CIK : 0001434740 (see all company filings) EIN. : 743206736 | Fiscal Year End: 0331 Type: 10-K | Act: 34 | File No.: 000-53817 | Film No.: 261174122 SIC : 1040 Gold and Silver Ores (CF Office: 01 Energy & Transportation)"
+      ],
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1434740/000147793226004299/rngr_10k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T09:32:59.657108+00:00",
+        "bytes": 614306,
+        "sha256": "77b64ccd01c9ba04835edb1802588a76ccd0430804f13b63df69792ef8698e82",
+        "body_path": "artifacts/seo/corpus-local/fifth-editorial-filings/0001434740-0001477932-26-004299-primary.response"
+      },
+      "dei_identity_facts": [
+        {
+          "name": "dei:EntityCentralIndexKey",
+          "context": "From2025-04-01to2026-03-31",
+          "text": "0001434740"
+        },
+        {
+          "name": "dei:EntityRegistrantName",
+          "context": "From2025-04-01to2026-03-31",
+          "text": "RANGER GOLD CORP."
+        }
+      ],
+      "core_fact_contexts": [
+        {
+          "tag": "us-gaap:Revenues",
+          "contexts": [
+            "From2024-04-01to2025-03-31",
+            "From2025-04-01to2026-03-31"
+          ]
+        }
+      ],
+      "contexts": {
+        "From2024-04-01to2025-03-31": {
+          "identifiers": [
+            "0001434740"
+          ],
+          "has_dimensions": false
+        },
+        "From2025-04-01to2026-03-31": {
+          "identifiers": [
+            "0001434740"
+          ],
+          "has_dimensions": false
+        }
+      },
+      "state": "PRIMARY_CAPTURED_EDITORIAL_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001437476",
+      "companyfacts_name": "GREEN STREAM HOLDINGS, INC.",
+      "discovery_names": [],
+      "accession": "0001683168-21-004126",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1437476/000168316821004126/0001683168-21-004126-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T09:33:01.304607+00:00",
+        "bytes": 10194,
+        "sha256": "89f6574865dfb35f6572b537663916db79dfb0d20f07a9898407b023c50e1429",
+        "body_path": "artifacts/seo/corpus-local/fifth-editorial-filings/0001437476-0001683168-21-004126-index.response"
+      },
+      "index_filers": [
+        "Green Stream Holdings Inc. (Filer) CIK : 0001437476 (see all company filings) EIN. : 201144153 | State of Incorp.: WY | Fiscal Year End: 0430 Type: 10-K/A | Act: 34 | File No.: 000-53279 | Film No.: 211238285 SIC : 6500 Real Estate"
+      ],
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1437476/000168316821004126/greenstream_10ka.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T09:33:02.854431+00:00",
+        "bytes": 26347,
+        "sha256": "6eb0f7b5d6c955c686913e5040a1683516586145cb973f294c04a6f6075ba169",
+        "body_path": "artifacts/seo/corpus-local/fifth-editorial-filings/0001437476-0001683168-21-004126-primary.response"
+      },
+      "dei_identity_facts": [],
+      "core_fact_contexts": [
+        {
+          "tag": "us-gaap:Liabilities",
+          "contexts": []
+        },
+        {
+          "tag": "us-gaap:LiabilitiesCurrent",
+          "contexts": []
+        },
+        {
+          "tag": "us-gaap:Revenues",
+          "contexts": []
+        }
+      ],
+      "contexts": {},
+      "state": "PRIMARY_CAPTURED_EDITORIAL_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001440799",
+      "companyfacts_name": "MMEX RESOURCES Corporation",
+      "discovery_names": [],
+      "accession": "0001477932-26-004593",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1440799/000147793226004593/0001477932-26-004593-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T09:33:04.374384+00:00",
+        "bytes": 11247,
+        "sha256": "9d59bb70c99f8fbfc7d59752a72e012bfbbe13f044f6d164342aedd3b2e582a5",
+        "body_path": "artifacts/seo/corpus-local/fifth-editorial-filings/0001440799-0001477932-26-004593-index.response"
+      },
+      "index_filers": [
+        "MMEX Resources Corp (Filer) CIK : 0001440799 (see all company filings) EIN. : 261749145 | State of Incorp.: NV | Fiscal Year End: 0430 Type: 10-K | Act: 34 | File No.: 000-55831 | Film No.: 261217313 SIC : 7819 Services-Allied To Motion Picture Production (CF Office: 07 Trade & Services)"
+      ],
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1440799/000147793226004593/mmex_10k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T09:33:05.989403+00:00",
+        "bytes": 1112297,
+        "sha256": "93e23569f1cd9024b03a7fd61f1c4f8ab3e2d5e8855a393f09d2d5f9ba309858",
+        "body_path": "artifacts/seo/corpus-local/fifth-editorial-filings/0001440799-0001477932-26-004593-primary.response"
+      },
+      "dei_identity_facts": [
+        {
+          "name": "dei:EntityCentralIndexKey",
+          "context": "From2025-05-01to2026-04-30",
+          "text": "0001440799"
+        },
+        {
+          "name": "dei:EntityRegistrantName",
+          "context": "From2025-05-01to2026-04-30",
+          "text": "MMEX RESOURCES CORPORATION"
+        }
+      ],
+      "core_fact_contexts": [
+        {
+          "tag": "us-gaap:Revenues",
+          "contexts": [
+            "From2024-05-01to2025-04-30",
+            "From2025-05-01to2026-04-30"
+          ]
+        }
+      ],
+      "contexts": {
+        "From2024-05-01to2025-04-30": {
+          "identifiers": [
+            "0001440799"
+          ],
+          "has_dimensions": false
+        },
+        "From2025-05-01to2026-04-30": {
+          "identifiers": [
+            "0001440799"
+          ],
+          "has_dimensions": false
+        }
+      },
+      "state": "PRIMARY_CAPTURED_EDITORIAL_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001450922",
+      "companyfacts_name": "abrdn Silver ETF Trust",
+      "discovery_names": [],
+      "accession": "0001450922-16-000014",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1450922/000145092216000014/0001450922-16-000014-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T09:33:07.758112+00:00",
+        "bytes": 12878,
+        "sha256": "588408af0e920158dd482f40050c0dc1a97d2236e70beb44791249d42a63c0ff",
+        "body_path": "artifacts/seo/corpus-local/fifth-editorial-filings/0001450922-0001450922-16-000014-index.response"
+      },
+      "index_filers": [
+        "ETFS SILVER TRUST (Filer) CIK : 0001450922 (see all company filings) EIN. : 000000000 | State of Incorp.: DE | Fiscal Year End: 1231 Type: 10-K | Act: 34 | File No.: 001-34412 | Film No.: 161468193 SIC : 6221 Commodity Contracts Brokers & Dealers"
+      ],
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1450922/000145092216000014/sivr-20151231x10k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T09:33:09.465359+00:00",
+        "bytes": 1497689,
+        "sha256": "7274411eb4ff4e2fd7b587aaae906fb43fb60dc6668f95c32690a07584757678",
+        "body_path": "artifacts/seo/corpus-local/fifth-editorial-filings/0001450922-0001450922-16-000014-primary.response"
+      },
+      "dei_identity_facts": [],
+      "core_fact_contexts": [
+        {
+          "tag": "us-gaap:CashAndCashEquivalentsAtCarryingValue",
+          "contexts": []
+        },
+        {
+          "tag": "us-gaap:NetCashProvidedByUsedInOperatingActivities",
+          "contexts": []
+        }
+      ],
+      "contexts": {},
+      "state": "PRIMARY_CAPTURED_EDITORIAL_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001450923",
+      "companyfacts_name": "abrdn Gold ETF Trust",
+      "discovery_names": [],
+      "accession": "0001450923-16-000027",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1450923/000145092316000027/0001450923-16-000027-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T09:33:11.254373+00:00",
+        "bytes": 12875,
+        "sha256": "3e6d661a2da66ee7bf95ba4a0ceea0753b42caf45c0b7a66c37ceb8077412839",
+        "body_path": "artifacts/seo/corpus-local/fifth-editorial-filings/0001450923-0001450923-16-000027-index.response"
+      },
+      "index_filers": [
+        "ETFS Gold Trust (Filer) CIK : 0001450923 (see all company filings) EIN. : 000000000 | State of Incorp.: DE | Fiscal Year End: 1231 Type: 10-K | Act: 34 | File No.: 001-34441 | Film No.: 161467372 SIC : 6221 Commodity Contracts Brokers & Dealers"
+      ],
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1450923/000145092316000027/sgol-20151231x10k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T09:33:12.877844+00:00",
+        "bytes": 1521127,
+        "sha256": "d37833110377b6101b07afab4d533ef8ded94b5ce9fa0e374c91ac00bdaf112f",
+        "body_path": "artifacts/seo/corpus-local/fifth-editorial-filings/0001450923-0001450923-16-000027-primary.response"
+      },
+      "dei_identity_facts": [],
+      "core_fact_contexts": [
+        {
+          "tag": "us-gaap:CashAndCashEquivalentsAtCarryingValue",
+          "contexts": []
+        },
+        {
+          "tag": "us-gaap:NetCashProvidedByUsedInOperatingActivities",
+          "contexts": []
+        }
+      ],
+      "contexts": {},
+      "state": "PRIMARY_CAPTURED_EDITORIAL_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001451448",
+      "companyfacts_name": "ESPORTS ENTERTAINMENT GROUP, INC.",
+      "discovery_names": [],
+      "accession": "0001469709-17-000270",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1451448/000146970917000270/0001469709-17-000270-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T09:33:14.628071+00:00",
+        "bytes": 11502,
+        "sha256": "55c8da0378622b60bc33ac258b1d06e417ec7982a55491bfc1aeea11ded869c8",
+        "body_path": "artifacts/seo/corpus-local/fifth-editorial-filings/0001451448-0001469709-17-000270-index.response"
+      },
+      "index_filers": [
+        "ESPORTS ENTERTAINMENT GROUP, INC. (Filer) CIK : 0001451448 (see all company filings) EIN. : 263062752 | State of Incorp.: NV | Fiscal Year End: 0630 Type: 10-K | Act: 34 | File No.: 333-156302 | Film No.: 171149373 SIC : 7900 Services-Amusement & Recreation Services"
+      ],
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1451448/000146970917000270/gmbl10k_063017apg.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T09:33:16.377682+00:00",
+        "bytes": 385742,
+        "sha256": "ca3bb03082489cee53d29adab66e426b3be186c6e6beebb09a9ddf538f1355d5",
+        "body_path": "artifacts/seo/corpus-local/fifth-editorial-filings/0001451448-0001469709-17-000270-primary.response"
+      },
+      "dei_identity_facts": [],
+      "core_fact_contexts": [
+        {
+          "tag": "us-gaap:Revenues",
+          "contexts": []
+        }
+      ],
+      "contexts": {},
+      "state": "PRIMARY_CAPTURED_EDITORIAL_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001459862",
+      "companyfacts_name": "abrdn Palladium ETF Trust",
+      "discovery_names": [],
+      "accession": "0001459862-16-000015",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1459862/000145986216000015/0001459862-16-000015-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T09:33:18.001654+00:00",
+        "bytes": 12881,
+        "sha256": "64fd8a542b88a4f64c4ab2d038d7e4a5215c523f46d9d46289e7b3aae34dd611",
+        "body_path": "artifacts/seo/corpus-local/fifth-editorial-filings/0001459862-0001459862-16-000015-index.response"
+      },
+      "index_filers": [
+        "ETFS PALLADIUM TRUST (Filer) CIK : 0001459862 (see all company filings) EIN. : 000000000 | State of Incorp.: DE | Fiscal Year End: 1231 Type: 10-K | Act: 34 | File No.: 001-34589 | Film No.: 161467464 SIC : 6221 Commodity Contracts Brokers & Dealers"
+      ],
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1459862/000145986216000015/pall-20151231x10k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T09:33:19.622129+00:00",
+        "bytes": 1537931,
+        "sha256": "ce22174c949b4ff36fc1e33f286fb796be8fa3f4ddd99e9df0e5a7453abc0066",
+        "body_path": "artifacts/seo/corpus-local/fifth-editorial-filings/0001459862-0001459862-16-000015-primary.response"
+      },
+      "dei_identity_facts": [],
+      "core_fact_contexts": [
+        {
+          "tag": "us-gaap:CashAndCashEquivalentsAtCarryingValue",
+          "contexts": []
+        },
+        {
+          "tag": "us-gaap:NetCashProvidedByUsedInOperatingActivities",
+          "contexts": []
+        }
+      ],
+      "contexts": {},
+      "state": "PRIMARY_CAPTURED_EDITORIAL_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001460235",
+      "companyfacts_name": "abrdn Platinum ETF Trust",
+      "discovery_names": [],
+      "accession": "0001460235-16-000017",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1460235/000146023516000017/0001460235-16-000017-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T09:33:21.472934+00:00",
+        "bytes": 12880,
+        "sha256": "18409342e050bdaa5a843cf6f7ff66299aa0e846051645da263ad778e1a53367",
+        "body_path": "artifacts/seo/corpus-local/fifth-editorial-filings/0001460235-0001460235-16-000017-index.response"
+      },
+      "index_filers": [
+        "ETFS Platinum Trust (Filer) CIK : 0001460235 (see all company filings) EIN. : 000000000 | State of Incorp.: DE | Fiscal Year End: 1231 Type: 10-K | Act: 34 | File No.: 001-34590 | Film No.: 161467701 SIC : 6221 Commodity Contracts Brokers & Dealers"
+      ],
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1460235/000146023516000017/pplt-20151231x10k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T09:33:23.112869+00:00",
+        "bytes": 1508791,
+        "sha256": "faa49da7c0e7371b11f450e4d8b9080a28c3fef83e0609ef763502a48470b647",
+        "body_path": "artifacts/seo/corpus-local/fifth-editorial-filings/0001460235-0001460235-16-000017-primary.response"
+      },
+      "dei_identity_facts": [],
+      "core_fact_contexts": [
+        {
+          "tag": "us-gaap:CashAndCashEquivalentsAtCarryingValue",
+          "contexts": []
+        },
+        {
+          "tag": "us-gaap:NetCashProvidedByUsedInOperatingActivities",
+          "contexts": []
+        }
+      ],
+      "contexts": {},
+      "state": "PRIMARY_CAPTURED_EDITORIAL_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001474903",
+      "companyfacts_name": "BGSF, INC",
+      "discovery_names": [],
+      "accession": "0001474903-19-000010",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1474903/000147490319000010/0001474903-19-000010-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T09:33:24.898654+00:00",
+        "bytes": 13871,
+        "sha256": "7336596e086ed9ba37c86d246aba1e978d1e01dbe4101f3cf93b577b28c5a7ef",
+        "body_path": "artifacts/seo/corpus-local/fifth-editorial-filings/0001474903-0001474903-19-000010-index.response"
+      },
+      "index_filers": [
+        "BG Staffing, Inc. (Filer) CIK : 0001474903 (see all company filings) EIN. : 260656684 | Fiscal Year End: 1231 Type: 10-K | Act: 34 | File No.: 001-36704 | Film No.: 19674108 SIC : 7363 Services-Help Supply Services"
+      ],
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1474903/000147490319000010/a10k2018.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T09:33:26.547699+00:00",
+        "bytes": 2349603,
+        "sha256": "c0e63fc99544a4e23f5a61d019e7bb3ae21ded74d410a8c3855ae9960c2acf33",
+        "body_path": "artifacts/seo/corpus-local/fifth-editorial-filings/0001474903-0001474903-19-000010-primary.response"
+      },
+      "dei_identity_facts": [],
+      "core_fact_contexts": [
+        {
+          "tag": "us-gaap:CashAndCashEquivalentsAtCarryingValue",
+          "contexts": []
+        }
+      ],
+      "contexts": {},
+      "state": "PRIMARY_CAPTURED_EDITORIAL_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001477845",
+      "companyfacts_name": "Annovis Bio, Inc.",
+      "discovery_names": [],
+      "accession": "0001104659-26-027751",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1477845/000110465926027751/0001104659-26-027751-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T09:33:28.638842+00:00",
+        "bytes": 14232,
+        "sha256": "a1d7ef1d6d121b63c3d4daceeba5e8a1d188a734d369a5d32f182012f771d9a0",
+        "body_path": "artifacts/seo/corpus-local/fifth-editorial-filings/0001477845-0001104659-26-027751-index.response"
+      },
+      "index_filers": [
+        "Annovis Bio, Inc. (Filer) CIK : 0001477845 (see all company filings) EIN. : 262540421 | State of Incorp.: DE | Fiscal Year End: 1231 Type: 10-K | Act: 34 | File No.: 001-39202 | Film No.: 26753508 SIC : 2834 Pharmaceutical Preparations (CF Office: 03 Life Sciences)"
+      ],
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1477845/000110465926027751/anvs-20251231x10k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T09:33:30.403463+00:00",
+        "bytes": 1928022,
+        "sha256": "1e7b6f32fecdc0d13587899fae1c2f74f9bdd91ae2d349e26db105156aa47c0a",
+        "body_path": "artifacts/seo/corpus-local/fifth-editorial-filings/0001477845-0001104659-26-027751-primary.response"
+      },
+      "dei_identity_facts": [
+        {
+          "name": "dei:EntityCentralIndexKey",
+          "context": "Duration_1_1_2025_To_12_31_2025_BjGabG9vkkGZhqQgvGtlqg",
+          "text": "0001477845"
+        },
+        {
+          "name": "dei:EntityRegistrantName",
+          "context": "Duration_1_1_2025_To_12_31_2025_BjGabG9vkkGZhqQgvGtlqg",
+          "text": "ANNOVIS BIO,\u00a0INC."
+        }
+      ],
+      "core_fact_contexts": [
+        {
+          "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+          "contexts": [
+            "Duration_1_1_2025_To_12_31_2025_BjGabG9vkkGZhqQgvGtlqg"
+          ]
+        }
+      ],
+      "contexts": {
+        "Duration_1_1_2025_To_12_31_2025_BjGabG9vkkGZhqQgvGtlqg": {
+          "identifiers": [
+            "0001477845"
+          ],
+          "has_dimensions": false
+        }
+      },
+      "state": "PRIMARY_CAPTURED_EDITORIAL_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001481443",
+      "companyfacts_name": "TECHCOM, INC.",
+      "discovery_names": [],
+      "accession": "0001683168-21-001145",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1481443/000168316821001145/0001683168-21-001145-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T09:33:32.246161+00:00",
+        "bytes": 11437,
+        "sha256": "bcba0aa8b6aeecbcb9ca69400d350007c1d8fd5d91cead93e790c9ea7b01f6e3",
+        "body_path": "artifacts/seo/corpus-local/fifth-editorial-filings/0001481443-0001683168-21-001145-index.response"
+      },
+      "index_filers": [
+        "TechCom, Inc. (Filer) CIK : 0001481443 (see all company filings) EIN. : 061701678 | State of Incorp.: NV | Fiscal Year End: 1231 Type: 10-K | Act: 34 | File No.: 000-56041 | Film No.: 21792688 SIC : 6770 Blank Checks"
+      ],
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1481443/000168316821001145/techcom_10k-123120.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T09:33:33.876222+00:00",
+        "bytes": 293811,
+        "sha256": "8f1f8202ddff501818f1f460d0c3234a47b3a026058aa1b4215fc7aad4c4aec4",
+        "body_path": "artifacts/seo/corpus-local/fifth-editorial-filings/0001481443-0001683168-21-001145-primary.response"
+      },
+      "dei_identity_facts": [],
+      "core_fact_contexts": [
+        {
+          "tag": "us-gaap:CashAndCashEquivalentsAtCarryingValue",
+          "contexts": []
+        }
+      ],
+      "contexts": {},
+      "state": "PRIMARY_CAPTURED_EDITORIAL_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001481443",
+      "companyfacts_name": "TECHCOM, INC.",
+      "discovery_names": [],
+      "accession": "0001683168-26-002393",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1481443/000168316826002393/0001683168-26-002393-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T09:33:35.543821+00:00",
+        "bytes": 11717,
+        "sha256": "e185dc77e5d3aeffe431b37d6a1a2921fcef9b4c5b8eacff678f34ea3116615c",
+        "body_path": "artifacts/seo/corpus-local/fifth-editorial-filings/0001481443-0001683168-26-002393-index.response"
+      },
+      "index_filers": [
+        "TechCom, Inc. (Filer) CIK : 0001481443 (see all company filings) EIN. : 061701678 | State of Incorp.: NV | Fiscal Year End: 1231 Type: 10-K | Act: 34 | File No.: 000-56041 | Film No.: 26811249 SIC : 6770 Blank Checks (CF Office: 05 Real Estate & Construction)"
+      ],
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1481443/000168316826002393/techcom_i10k-123125.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T09:33:37.126915+00:00",
+        "bytes": 403570,
+        "sha256": "1d8ae4966547ef5f16d01c54d6c9656c45c59c9bfb4e5fe90c3cab5215f00bc5",
+        "body_path": "artifacts/seo/corpus-local/fifth-editorial-filings/0001481443-0001683168-26-002393-primary.response"
+      },
+      "dei_identity_facts": [
+        {
+          "name": "dei:EntityCentralIndexKey",
+          "context": "From2025-01-01to2025-12-31",
+          "text": "0001481443"
+        },
+        {
+          "name": "dei:EntityRegistrantName",
+          "context": "From2025-01-01to2025-12-31",
+          "text": "Techcom,\nInc."
+        }
+      ],
+      "core_fact_contexts": [
+        {
+          "tag": "us-gaap:Assets",
+          "contexts": [
+            "AsOf2024-12-31",
+            "AsOf2025-12-31"
+          ]
+        },
+        {
+          "tag": "us-gaap:AssetsCurrent",
+          "contexts": [
+            "AsOf2024-12-31",
+            "AsOf2025-12-31"
+          ]
+        },
+        {
+          "tag": "us-gaap:Liabilities",
+          "contexts": [
+            "AsOf2024-12-31",
+            "AsOf2025-12-31"
+          ]
+        },
+        {
+          "tag": "us-gaap:LiabilitiesCurrent",
+          "contexts": [
+            "AsOf2024-12-31",
+            "AsOf2025-12-31"
+          ]
+        },
+        {
+          "tag": "us-gaap:NetIncomeLoss",
+          "contexts": [
+            "From2024-01-012024-12-31",
+            "From2024-01-012024-12-31_us-gaap_AdditionalPaidInCapitalMember",
+            "From2024-01-012024-12-31_us-gaap_CommonStockMember",
+            "From2024-01-012024-12-31_us-gaap_PreferredStockMember",
+            "From2024-01-012024-12-31_us-gaap_RetainedEarningsMember",
+            "From2025-01-012025-12-31_us-gaap_AdditionalPaidInCapitalMember",
+            "From2025-01-012025-12-31_us-gaap_CommonStockMember",
+            "From2025-01-012025-12-31_us-gaap_PreferredStockMember",
+            "From2025-01-012025-12-31_us-gaap_RetainedEarningsMember",
+            "From2025-01-01to2025-12-31"
+          ]
+        },
+        {
+          "tag": "us-gaap:OperatingIncomeLoss",
+          "contexts": [
+            "From2024-01-012024-12-31",
+            "From2025-01-01to2025-12-31"
+          ]
+        },
+        {
+          "tag": "us-gaap:PaymentsToAcquirePropertyPlantAndEquipment",
+          "contexts": [
+            "From2024-01-012024-12-31",
+            "From2025-01-01to2025-12-31"
+          ]
+        },
+        {
+          "tag": "us-gaap:Revenues",
+          "contexts": [
+            "From2024-01-012024-12-31",
+            "From2025-01-01to2025-12-31"
+          ]
+        }
+      ],
+      "contexts": {
+        "AsOf2024-12-31": {
+          "identifiers": [
+            "0001481443"
+          ],
+          "has_dimensions": false
+        },
+        "AsOf2025-12-31": {
+          "identifiers": [
+            "0001481443"
+          ],
+          "has_dimensions": false
+        },
+        "From2024-01-012024-12-31": {
+          "identifiers": [
+            "0001481443"
+          ],
+          "has_dimensions": false
+        },
+        "From2024-01-012024-12-31_us-gaap_AdditionalPaidInCapitalMember": {
+          "identifiers": [
+            "0001481443"
+          ],
+          "has_dimensions": true
+        },
+        "From2024-01-012024-12-31_us-gaap_CommonStockMember": {
+          "identifiers": [
+            "0001481443"
+          ],
+          "has_dimensions": true
+        },
+        "From2024-01-012024-12-31_us-gaap_PreferredStockMember": {
+          "identifiers": [
+            "0001481443"
+          ],
+          "has_dimensions": true
+        },
+        "From2024-01-012024-12-31_us-gaap_RetainedEarningsMember": {
+          "identifiers": [
+            "0001481443"
+          ],
+          "has_dimensions": true
+        },
+        "From2025-01-012025-12-31_us-gaap_AdditionalPaidInCapitalMember": {
+          "identifiers": [
+            "0001481443"
+          ],
+          "has_dimensions": true
+        },
+        "From2025-01-012025-12-31_us-gaap_CommonStockMember": {
+          "identifiers": [
+            "0001481443"
+          ],
+          "has_dimensions": true
+        },
+        "From2025-01-012025-12-31_us-gaap_PreferredStockMember": {
+          "identifiers": [
+            "0001481443"
+          ],
+          "has_dimensions": true
+        },
+        "From2025-01-012025-12-31_us-gaap_RetainedEarningsMember": {
+          "identifiers": [
+            "0001481443"
+          ],
+          "has_dimensions": true
+        },
+        "From2025-01-01to2025-12-31": {
+          "identifiers": [
+            "0001481443"
+          ],
+          "has_dimensions": false
+        }
+      },
+      "state": "PRIMARY_CAPTURED_EDITORIAL_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001483386",
+      "companyfacts_name": "abrdn Precious Metals Basket ETF Trust",
+      "discovery_names": [],
+      "accession": "0001483386-16-000021",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1483386/000148338616000021/0001483386-16-000021-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T09:33:38.880998+00:00",
+        "bytes": 13910,
+        "sha256": "a8b23c3f83defedb6eb7a750487e6e7b9a1713f30cd07562d9ba209976fd3b65",
+        "body_path": "artifacts/seo/corpus-local/fifth-editorial-filings/0001483386-0001483386-16-000021-index.response"
+      },
+      "index_filers": [
+        "ETFS Precious Metals Basket Trust (Filer) CIK : 0001483386 (see all company filings) EIN. : 000000000 | State of Incorp.: DE | Fiscal Year End: 1231 Type: 10-K | Act: 34 | File No.: 001-34917 | Film No.: 161469683 SIC : 6221 Commodity Contracts Brokers & Dealers"
+      ],
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1483386/000148338616000021/c386-20151231x10k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T09:33:40.584175+00:00",
+        "bytes": 2224563,
+        "sha256": "e26917ef420d3d68212da7eb6a5f6d92902a4cde3ac0102ff3bd6de45c1c6c10",
+        "body_path": "artifacts/seo/corpus-local/fifth-editorial-filings/0001483386-0001483386-16-000021-primary.response"
+      },
+      "dei_identity_facts": [],
+      "core_fact_contexts": [
+        {
+          "tag": "us-gaap:CashAndCashEquivalentsAtCarryingValue",
+          "contexts": []
+        },
+        {
+          "tag": "us-gaap:NetCashProvidedByUsedInOperatingActivities",
+          "contexts": []
+        }
+      ],
+      "contexts": {},
+      "state": "PRIMARY_CAPTURED_EDITORIAL_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001492448",
+      "companyfacts_name": "GRN Holding Corp",
+      "discovery_names": [],
+      "accession": "0001079973-20-000675",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1492448/000107997320000675/0001079973-20-000675-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T09:33:42.423745+00:00",
+        "bytes": 11117,
+        "sha256": "8308b11b30454591d533de24d4e467e11983bb2ac84bc5d895cc15629448f668",
+        "body_path": "artifacts/seo/corpus-local/fifth-editorial-filings/0001492448-0001079973-20-000675-index.response"
+      },
+      "index_filers": [
+        "GRN Holding Corp (Filer) CIK : 0001492448 (see all company filings) EIN. : 272616571 | State of Incorp.: NV | Fiscal Year End: 0430 Type: 10-K | Act: 34 | File No.: 000-54709 | Film No.: 201099876 SIC : 4899 Communications Services, NEC"
+      ],
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1492448/000107997320000675/grnholdings_10k-043020.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T09:33:44.026444+00:00",
+        "bytes": 353123,
+        "sha256": "8c116cc3a0534b04e0fff9425d62b6f09a02443201edb190e318be62d389cd52",
+        "body_path": "artifacts/seo/corpus-local/fifth-editorial-filings/0001492448-0001079973-20-000675-primary.response"
+      },
+      "dei_identity_facts": [],
+      "core_fact_contexts": [
+        {
+          "tag": "us-gaap:Assets",
+          "contexts": []
+        },
+        {
+          "tag": "us-gaap:AssetsCurrent",
+          "contexts": []
+        },
+        {
+          "tag": "us-gaap:Liabilities",
+          "contexts": []
+        },
+        {
+          "tag": "us-gaap:LiabilitiesCurrent",
+          "contexts": []
+        },
+        {
+          "tag": "us-gaap:Revenues",
+          "contexts": []
+        }
+      ],
+      "contexts": {},
+      "state": "PRIMARY_CAPTURED_EDITORIAL_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001498382",
+      "companyfacts_name": "TuHURA BIOSCIENCES, INC./NV",
+      "discovery_names": [],
+      "accession": "0001193125-26-134950",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1498382/000119312526134950/0001193125-26-134950-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T09:33:45.704182+00:00",
+        "bytes": 13821,
+        "sha256": "8e041c3041692604c18fa91c0624907b0b7615df7e2637b0b115db9cd28a1b19",
+        "body_path": "artifacts/seo/corpus-local/fifth-editorial-filings/0001498382-0001193125-26-134950-index.response"
+      },
+      "index_filers": [
+        "TuHURA Biosciences, Inc./NV (Filer) CIK : 0001498382 (see all company filings) EIN. : 990360497 | State of Incorp.: NV | Fiscal Year End: 1231 Type: 10-K | Act: 34 | File No.: 001-37823 | Film No.: 26823398 SIC : 2834 Pharmaceutical Preparations (CF Office: 03 Life Sciences)"
+      ],
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1498382/000119312526134950/hura-20251231.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T09:33:47.486852+00:00",
+        "bytes": 3613341,
+        "sha256": "c02ea8825636d1521b0fac0511404591014e10ad89b1ed1dd71fa98bcd808ac4",
+        "body_path": "artifacts/seo/corpus-local/fifth-editorial-filings/0001498382-0001193125-26-134950-primary.response"
+      },
+      "dei_identity_facts": [
+        {
+          "name": "dei:EntityCentralIndexKey",
+          "context": "C_84ebdd6c-e16f-42d7-b156-2ffb30bc3b3b",
+          "text": "0001498382"
+        },
+        {
+          "name": "dei:EntityRegistrantName",
+          "context": "C_84ebdd6c-e16f-42d7-b156-2ffb30bc3b3b",
+          "text": "TuHURA Biosciences, Inc. NV,"
+        }
+      ],
+      "core_fact_contexts": [
+        {
+          "tag": "us-gaap:Revenues",
+          "contexts": [
+            "C_605f2d39-5e8c-40a6-b044-332a81683dc6",
+            "C_84ebdd6c-e16f-42d7-b156-2ffb30bc3b3b"
+          ]
+        }
+      ],
+      "contexts": {
+        "C_605f2d39-5e8c-40a6-b044-332a81683dc6": {
+          "identifiers": [
+            "0001498382"
+          ],
+          "has_dimensions": false
+        },
+        "C_84ebdd6c-e16f-42d7-b156-2ffb30bc3b3b": {
+          "identifiers": [
+            "0001498382"
+          ],
+          "has_dimensions": false
+        }
+      },
+      "state": "PRIMARY_CAPTURED_EDITORIAL_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001506251",
+      "companyfacts_name": "Citius Pharmaceuticals, Inc.",
+      "discovery_names": [],
+      "accession": "0001185185-14-000261",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1506251/000118518514000261/0001185185-14-000261-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T09:33:49.378788+00:00",
+        "bytes": 10965,
+        "sha256": "1ae5924c01c0d0ef618f62ca0c949c89e2f8b165b465452455818d9262c742db",
+        "body_path": "artifacts/seo/corpus-local/fifth-editorial-filings/0001506251-0001185185-14-000261-index.response"
+      },
+      "index_filers": [
+        "Trail One, Inc. (Filer) CIK : 0001506251 (see all company filings) EIN. : 273425913 | State of Incorp.: NV | Fiscal Year End: 0930 Type: 10-K | Act: 34 | File No.: 333-170781 | Film No.: 14579570 SIC : 3714 Motor Vehicle Parts & Accessories"
+      ],
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1506251/000118518514000261/trailone10k093013.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T09:33:51.143528+00:00",
+        "bytes": 741065,
+        "sha256": "6ef79b75475797b1f42d4a3dbb4f07d26368f111861039c73ada78fb9073b4d0",
+        "body_path": "artifacts/seo/corpus-local/fifth-editorial-filings/0001506251-0001185185-14-000261-primary.response"
+      },
+      "dei_identity_facts": [],
+      "core_fact_contexts": [
+        {
+          "tag": "us-gaap:Revenues",
+          "contexts": []
+        }
+      ],
+      "contexts": {},
+      "state": "PRIMARY_CAPTURED_EDITORIAL_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001543637",
+      "companyfacts_name": "NU-MED PLUS, INC.",
+      "discovery_names": [],
+      "accession": "0001548123-21-000029",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1543637/000154812321000029/0001548123-21-000029-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T09:33:52.844720+00:00",
+        "bytes": 11343,
+        "sha256": "bcd549691f80fc6f00de9e00169dad82b559d258607b79dafb806d9fed4dff8f",
+        "body_path": "artifacts/seo/corpus-local/fifth-editorial-filings/0001543637-0001548123-21-000029-index.response"
+      },
+      "index_filers": [
+        "Nu-Med Plus, Inc. (Filer) CIK : 0001543637 (see all company filings) EIN. : 453672530 | State of Incorp.: UT | Fiscal Year End: 1231 Type: 10-K | Act: 34 | File No.: 000-54808 | Film No.: 21792398 SIC : 3841 Surgical & Medical Instruments & Apparatus"
+      ],
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1543637/000154812321000029/f10-k-2020-nu-medv9clean.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T09:33:54.579792+00:00",
+        "bytes": 416138,
+        "sha256": "ff5c21299d72bdae8e7841a55e69f9a3cebd5d9db7a54db8065a3a105eccf3b3",
+        "body_path": "artifacts/seo/corpus-local/fifth-editorial-filings/0001543637-0001548123-21-000029-primary.response"
+      },
+      "dei_identity_facts": [],
+      "core_fact_contexts": [
+        {
+          "tag": "us-gaap:Revenues",
+          "contexts": []
+        }
+      ],
+      "contexts": {},
+      "state": "PRIMARY_CAPTURED_EDITORIAL_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001551152",
+      "companyfacts_name": "AbbVie Inc.",
+      "discovery_names": [],
+      "accession": "0001551152-26-000008",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1551152/000155115226000008/0001551152-26-000008-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T09:33:56.252239+00:00",
+        "bytes": 26005,
+        "sha256": "9fe9ad60cde79539ad33721d530a7f92babafd5836b992effac6b2742604b6b8",
+        "body_path": "artifacts/seo/corpus-local/fifth-editorial-filings/0001551152-0001551152-26-000008-index.response"
+      },
+      "index_filers": [
+        "AbbVie Inc. (Filer) CIK : 0001551152 (see all company filings) EIN. : 320375147 | State of Incorp.: DE | Fiscal Year End: 1231 Type: 10-K | Act: 34 | File No.: 001-35565 | Film No.: 26658769 SIC : 2834 Pharmaceutical Preparations (CF Office: 03 Life Sciences)"
+      ],
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1551152/000155115226000008/abbv-20251231.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T09:33:57.988191+00:00",
+        "bytes": 3795071,
+        "sha256": "82ae488811186ce9ea6deef855b5a33eabd7c2d9aca5de82546683bf8900b5ed",
+        "body_path": "artifacts/seo/corpus-local/fifth-editorial-filings/0001551152-0001551152-26-000008-primary.response"
+      },
+      "dei_identity_facts": [
+        {
+          "name": "dei:EntityCentralIndexKey",
+          "context": "c-1",
+          "text": "0001551152"
+        },
+        {
+          "name": "dei:EntityRegistrantName",
+          "context": "c-1",
+          "text": "AbbVie\u00a0Inc."
+        }
+      ],
+      "core_fact_contexts": [
+        {
+          "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+          "contexts": [
+            "c-1",
+            "c-10",
+            "c-11",
+            "c-598",
+            "c-599",
+            "c-600",
+            "c-601",
+            "c-602",
+            "c-603",
+            "c-604",
+            "c-605",
+            "c-606",
+            "c-607",
+            "c-608",
+            "c-609",
+            "c-610",
+            "c-611",
+            "c-612",
+            "c-613",
+            "c-614",
+            "c-615",
+            "c-616",
+            "c-617",
+            "c-618",
+            "c-619",
+            "c-620",
+            "c-621",
+            "c-622",
+            "c-623",
+            "c-624",
+            "c-625",
+            "c-626",
+            "c-627",
+            "c-628",
+            "c-629",
+            "c-630",
+            "c-631",
+            "c-632",
+            "c-633",
+            "c-634",
+            "c-635",
+            "c-636",
+            "c-637",
+            "c-638",
+            "c-639",
+            "c-640",
+            "c-641",
+            "c-642",
+            "c-643",
+            "c-644",
+            "c-645",
+            "c-646",
+            "c-647",
+            "c-648",
+            "c-649",
+            "c-650",
+            "c-651",
+            "c-652",
+            "c-653",
+            "c-654",
+            "c-655",
+            "c-656",
+            "c-657",
+            "c-658",
+            "c-659",
+            "c-660",
+            "c-661",
+            "c-662",
+            "c-663",
+            "c-664",
+            "c-665",
+            "c-666",
+            "c-667",
+            "c-668",
+            "c-669",
+            "c-670",
+            "c-671",
+            "c-672",
+            "c-673",
+            "c-674",
+            "c-675",
+            "c-676",
+            "c-677",
+            "c-678",
+            "c-679",
+            "c-680",
+            "c-681",
+            "c-682",
+            "c-683",
+            "c-684",
+            "c-685",
+            "c-686",
+            "c-687",
+            "c-688",
+            "c-689",
+            "c-690",
+            "c-694",
+            "c-695",
+            "c-696",
+            "c-697",
+            "c-698",
+            "c-699",
+            "c-700",
+            "c-701",
+            "c-702",
+            "c-703",
+            "c-704",
+            "c-705",
+            "c-706",
+            "c-707",
+            "c-708",
+            "c-709",
+            "c-710",
+            "c-711",
+            "c-712",
+            "c-713",
+            "c-714",
+            "c-715",
+            "c-716",
+            "c-717",
+            "c-718",
+            "c-719",
+            "c-720",
+            "c-721",
+            "c-722",
+            "c-723",
+            "c-724",
+            "c-725",
+            "c-726",
+            "c-727",
+            "c-728",
+            "c-729",
+            "c-730",
+            "c-731",
+            "c-732",
+            "c-733",
+            "c-734",
+            "c-735",
+            "c-736",
+            "c-737",
+            "c-738",
+            "c-739",
+            "c-740",
+            "c-741",
+            "c-742",
+            "c-743",
+            "c-744",
+            "c-745",
+            "c-746",
+            "c-747",
+            "c-748",
+            "c-749",
+            "c-750",
+            "c-751",
+            "c-752",
+            "c-753",
+            "c-754",
+            "c-755",
+            "c-756",
+            "c-757",
+            "c-758",
+            "c-759",
+            "c-760",
+            "c-761",
+            "c-762",
+            "c-763",
+            "c-764",
+            "c-765",
+            "c-766",
+            "c-767",
+            "c-768",
+            "c-769",
+            "c-770",
+            "c-771",
+            "c-772",
+            "c-773",
+            "c-774",
+            "c-775",
+            "c-776",
+            "c-777",
+            "c-778",
+            "c-779",
+            "c-780",
+            "c-781",
+            "c-782",
+            "c-783",
+            "c-784",
+            "c-785",
+            "c-786",
+            "c-787",
+            "c-788",
+            "c-789",
+            "c-790",
+            "c-791",
+            "c-792",
+            "c-793",
+            "c-794",
+            "c-795",
+            "c-796",
+            "c-797",
+            "c-798",
+            "c-799",
+            "c-800",
+            "c-801",
+            "c-802",
+            "c-803",
+            "c-804",
+            "c-805",
+            "c-806",
+            "c-807",
+            "c-808",
+            "c-809",
+            "c-810",
+            "c-811",
+            "c-812",
+            "c-813",
+            "c-814",
+            "c-815",
+            "c-816",
+            "c-817",
+            "c-818",
+            "c-819",
+            "c-820",
+            "c-821",
+            "c-822",
+            "c-823",
+            "c-824",
+            "c-825",
+            "c-826",
+            "c-827",
+            "c-828",
+            "c-829",
+            "c-830",
+            "c-831",
+            "c-832",
+            "c-833",
+            "c-834",
+            "c-835",
+            "c-836",
+            "c-837",
+            "c-838",
+            "c-839",
+            "c-840",
+            "c-841",
+            "c-842",
+            "c-843",
+            "c-844",
+            "c-845",
+            "c-846"
+          ]
+        },
+        {
+          "tag": "us-gaap:Revenues",
+          "contexts": [
+            "c-1",
+            "c-10",
+            "c-11",
+            "c-514"
+          ]
+        }
+      ],
+      "contexts": {
+        "c-1": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": false
+        },
+        "c-10": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": false
+        },
+        "c-11": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": false
+        },
+        "c-514": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": false
+        },
+        "c-598": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-599": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-600": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-601": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-602": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-603": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-604": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-605": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-606": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-607": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-608": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-609": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-610": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-611": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-612": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-613": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-614": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-615": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-616": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-617": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-618": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-619": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-620": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-621": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-622": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-623": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-624": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-625": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-626": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-627": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-628": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-629": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-630": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-631": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-632": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-633": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-634": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-635": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-636": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-637": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-638": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-639": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-640": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-641": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-642": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-643": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-644": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-645": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-646": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-647": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-648": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-649": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-650": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-651": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-652": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-653": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-654": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-655": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-656": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-657": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-658": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-659": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-660": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-661": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-662": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-663": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-664": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-665": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-666": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-667": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-668": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-669": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-670": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-671": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-672": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-673": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-674": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-675": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-676": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-677": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-678": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-679": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-680": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-681": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-682": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-683": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-684": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-685": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-686": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-687": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-688": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-689": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-690": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-694": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-695": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-696": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-697": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-698": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-699": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-700": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-701": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-702": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-703": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-704": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-705": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-706": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-707": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-708": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-709": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-710": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-711": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-712": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-713": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-714": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-715": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-716": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-717": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-718": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-719": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-720": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-721": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-722": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-723": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-724": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-725": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-726": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-727": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-728": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-729": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-730": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-731": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-732": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-733": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-734": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-735": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-736": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-737": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-738": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-739": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-740": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-741": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-742": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-743": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-744": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-745": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-746": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-747": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-748": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-749": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-750": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-751": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-752": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-753": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-754": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-755": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-756": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-757": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-758": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-759": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-760": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-761": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-762": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-763": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-764": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-765": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-766": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-767": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-768": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-769": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-770": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-771": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-772": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-773": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-774": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-775": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-776": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-777": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-778": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-779": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-780": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-781": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-782": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-783": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-784": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-785": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-786": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-787": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-788": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-789": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-790": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-791": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-792": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-793": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-794": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-795": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-796": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-797": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-798": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-799": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-800": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-801": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-802": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-803": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-804": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-805": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-806": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-807": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-808": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-809": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-810": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-811": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-812": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-813": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-814": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-815": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-816": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-817": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-818": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-819": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-820": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-821": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-822": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-823": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-824": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-825": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-826": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-827": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-828": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-829": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-830": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-831": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-832": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-833": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-834": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-835": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-836": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-837": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-838": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-839": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-840": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-841": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-842": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-843": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-844": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-845": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        },
+        "c-846": {
+          "identifiers": [
+            "0001551152"
+          ],
+          "has_dimensions": true
+        }
+      },
+      "state": "PRIMARY_CAPTURED_EDITORIAL_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001551182",
+      "companyfacts_name": "EATON CORPORATION plc",
+      "discovery_names": [],
+      "accession": "0001551182-17-000014",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1551182/000155118217000014/0001551182-17-000014-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T09:34:00.091810+00:00",
+        "bytes": 17069,
+        "sha256": "32f4f5e8e8c595e01f67f0465ba9ed2fc434179dec4767f47986f4350b594526",
+        "body_path": "artifacts/seo/corpus-local/fifth-editorial-filings/0001551182-0001551182-17-000014-index.response"
+      },
+      "index_filers": [
+        "Eaton Corp plc (Filer) CIK : 0001551182 (see all company filings) EIN. : 981059235 | Fiscal Year End: 1231 Type: 10-K | Act: 34 | File No.: 000-54863 | Film No.: 17628316 SIC : 3590 Misc Industrial & Commercial Machinery & Equipment"
+      ],
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1551182/000155118217000014/etn12312016form10-k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T09:34:01.830175+00:00",
+        "bytes": 4142654,
+        "sha256": "44370ce9ae5c5e905bb4ce009cb9d6c8954e6f23235c742d6b54c683505ca583",
+        "body_path": "artifacts/seo/corpus-local/fifth-editorial-filings/0001551182-0001551182-17-000014-primary.response"
+      },
+      "dei_identity_facts": [],
+      "core_fact_contexts": [
+        {
+          "tag": "us-gaap:Revenues",
+          "contexts": []
+        }
+      ],
+      "contexts": {},
+      "state": "PRIMARY_CAPTURED_EDITORIAL_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001570132",
+      "companyfacts_name": "ANVI GLOBAL HOLDINGS, INC.",
+      "discovery_names": [],
+      "accession": "0001079973-26-000779",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1570132/000107997326000779/0001079973-26-000779-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T09:34:04.535304+00:00",
+        "bytes": 11566,
+        "sha256": "3c213e74a44b7654eafcce69069b13751fc074009a6d424ab48ed977f4d7b6c0",
+        "body_path": "artifacts/seo/corpus-local/fifth-editorial-filings/0001570132-0001079973-26-000779-index.response"
+      },
+      "index_filers": [
+        "ANVI GLOBAL HOLDINGS, INC. (Filer) CIK : 0001570132 (see all company filings) EIN. : 331226144 | State of Incorp.: NV | Fiscal Year End: 0228 Type: 10-K | Act: 34 | File No.: 333-188648 | Film No.: 261062012 SIC : 5400 Retail-Food Stores (CF Office: 07 Trade & Services)"
+      ],
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1570132/000107997326000779/anvi_10k-022826.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T09:34:06.242615+00:00",
+        "bytes": 335694,
+        "sha256": "a18551874efce1ab855af47ad7556260864994acd7e86afb997f13b5f83cfd0d",
+        "body_path": "artifacts/seo/corpus-local/fifth-editorial-filings/0001570132-0001079973-26-000779-primary.response"
+      },
+      "dei_identity_facts": [
+        {
+          "name": "dei:EntityCentralIndexKey",
+          "context": "From2025-03-01to2026-02-28",
+          "text": "0001570132"
+        },
+        {
+          "name": "dei:EntityRegistrantName",
+          "context": "From2025-03-01to2026-02-28",
+          "text": "ANVI GLOBAL HOLDINGS, INC."
+        }
+      ],
+      "core_fact_contexts": [
+        {
+          "tag": "us-gaap:Assets",
+          "contexts": [
+            "AsOf2025-02-28",
+            "AsOf2026-02-28"
+          ]
+        },
+        {
+          "tag": "us-gaap:AssetsCurrent",
+          "contexts": [
+            "AsOf2025-02-28",
+            "AsOf2026-02-28"
+          ]
+        }
+      ],
+      "contexts": {
+        "AsOf2025-02-28": {
+          "identifiers": [
+            "0001570132"
+          ],
+          "has_dimensions": false
+        },
+        "AsOf2026-02-28": {
+          "identifiers": [
+            "0001570132"
+          ],
+          "has_dimensions": false
+        }
+      },
+      "state": "PRIMARY_CAPTURED_EDITORIAL_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001576873",
+      "companyfacts_name": "AMERICAN BATTERY TECHNOLOGY Co",
+      "discovery_names": [],
+      "accession": "0001078782-19-000954",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1576873/000107878219000954/0001078782-19-000954-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T09:34:07.896714+00:00",
+        "bytes": 21235,
+        "sha256": "346ee930c7111b4c6e69ffeb005535cfe91414dbd71d1eb6c607bbebeacf62cf",
+        "body_path": "artifacts/seo/corpus-local/fifth-editorial-filings/0001576873-0001078782-19-000954-index.response"
+      },
+      "index_filers": [
+        "AMERICAN BATTERY METALS CORP (Filer) CIK : 0001576873 (see all company filings) EIN. : 331227980 | State of Incorp.: NV | Fiscal Year End: 0930 Type: 10-K | Act: 34 | File No.: 000-55088 | Film No.: 191313843 SIC : 1000 Metal Mining"
+      ],
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1576873/000107878219000954/f10k093019_10k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T09:34:09.526894+00:00",
+        "bytes": 578039,
+        "sha256": "a942361fdb3e1b333d31d537331c4b8a378fed46fc5149c7e2c099715cb20da2",
+        "body_path": "artifacts/seo/corpus-local/fifth-editorial-filings/0001576873-0001078782-19-000954-primary.response"
+      },
+      "dei_identity_facts": [],
+      "core_fact_contexts": [
+        {
+          "tag": "us-gaap:Revenues",
+          "contexts": []
+        }
+      ],
+      "contexts": {},
+      "state": "PRIMARY_CAPTURED_EDITORIAL_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001583771",
+      "companyfacts_name": "HEPION PHARMACEUTICALS, INC.",
+      "discovery_names": [],
+      "accession": "0001583771-24-000003",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1583771/000158377124000003/0001583771-24-000003-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T09:34:11.290604+00:00",
+        "bytes": 13484,
+        "sha256": "3708ad432845b2dd9cf170ae458012eb2acd07fce8e5b1dfaeaa6e30fd9afb58",
+        "body_path": "artifacts/seo/corpus-local/fifth-editorial-filings/0001583771-0001583771-24-000003-index.response"
+      },
+      "index_filers": [
+        "Hepion Pharmaceuticals, Inc. (Filer) CIK : 0001583771 (see all company filings) EIN. : 462783806 | State of Incorp.: DE | Fiscal Year End: 1231 Type: 10-K | Act: 34 | File No.: 001-36856 | Film No.: 24848486 SIC : 2834 Pharmaceutical Preparations (CF Office: 03 Life Sciences)"
+      ],
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1583771/000158377124000003/hepa-20231231.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T09:34:12.992148+00:00",
+        "bytes": 1359555,
+        "sha256": "704378e84380b650e9c307300c04b9c785cadae622df661fcb19f35029ca3680",
+        "body_path": "artifacts/seo/corpus-local/fifth-editorial-filings/0001583771-0001583771-24-000003-primary.response"
+      },
+      "dei_identity_facts": [
+        {
+          "name": "dei:EntityCentralIndexKey",
+          "context": "c-1",
+          "text": "0001583771"
+        },
+        {
+          "name": "dei:EntityRegistrantName",
+          "context": "c-1",
+          "text": "HEPION PHARMACEUTICALS,\u00a0INC."
+        }
+      ],
+      "core_fact_contexts": [
+        {
+          "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+          "contexts": [
+            "c-1",
+            "c-10"
+          ]
+        }
+      ],
+      "contexts": {
+        "c-1": {
+          "identifiers": [
+            "0001583771"
+          ],
+          "has_dimensions": false
+        },
+        "c-10": {
+          "identifiers": [
+            "0001583771"
+          ],
+          "has_dimensions": false
+        }
+      },
+      "state": "PRIMARY_CAPTURED_EDITORIAL_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001584618",
+      "companyfacts_name": "ATACAMA RESOURCES INTERNATIONAL, INC.",
+      "discovery_names": [],
+      "accession": "0001014897-17-000084",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1584618/000101489717000084/0001014897-17-000084-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T09:34:14.737959+00:00",
+        "bytes": 10875,
+        "sha256": "e37d134ed016616282f3d4c5970f976e9f5d965423a2a86f93c40fd60bed47cd",
+        "body_path": "artifacts/seo/corpus-local/fifth-editorial-filings/0001584618-0001014897-17-000084-index.response"
+      },
+      "index_filers": [
+        "Atacama Resources International, Inc. (Filer) CIK : 0001584618 (see all company filings) EIN. : 463105245 | State of Incorp.: FL | Fiscal Year End: 1231 Type: 10-K | Act: 34 | File No.: 000-55743 | Film No.: 17764343 SIC : 8742 Services-Management Consulting Services"
+      ],
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1584618/000101489717000084/atacama10k16v3.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T09:34:16.394413+00:00",
+        "bytes": 344075,
+        "sha256": "c2a27b459c69b047ea47a7601eb40d70f7d5fa6c4905cef1fcece696b22584d6",
+        "body_path": "artifacts/seo/corpus-local/fifth-editorial-filings/0001584618-0001014897-17-000084-primary.response"
+      },
+      "dei_identity_facts": [],
+      "core_fact_contexts": [
+        {
+          "tag": "us-gaap:Liabilities",
+          "contexts": []
+        },
+        {
+          "tag": "us-gaap:LiabilitiesCurrent",
+          "contexts": []
+        },
+        {
+          "tag": "us-gaap:Revenues",
+          "contexts": []
+        }
+      ],
+      "contexts": {},
+      "state": "PRIMARY_CAPTURED_EDITORIAL_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001593549",
+      "companyfacts_name": "Livento Group, Inc.",
+      "discovery_names": [],
+      "accession": "0001493152-26-020899",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1593549/000149315226020899/0001493152-26-020899-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T09:34:18.049774+00:00",
+        "bytes": 10451,
+        "sha256": "53ed4f61bb83047f9c6144550dbd0ef68c4da401e03a511107c7b79549b18303",
+        "body_path": "artifacts/seo/corpus-local/fifth-editorial-filings/0001593549-0001493152-26-020899-index.response"
+      },
+      "index_filers": [
+        "Livento Group, Inc. (Filer) CIK : 0001593549 (see all company filings) EIN. : 493999052 | State of Incorp.: NV | Fiscal Year End: 1231 Type: 10-K | Act: 34 | File No.: 000-56457 | Film No.: 26933021 SIC : 7372 Services-Prepackaged Software (CF Office: 06 Technology)"
+      ],
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1593549/000149315226020899/form10-k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T09:34:19.722084+00:00",
+        "bytes": 1096359,
+        "sha256": "136e7ea33db83612f4a3a4d4cb75d96b555266a7379507b525876d02b715c25e",
+        "body_path": "artifacts/seo/corpus-local/fifth-editorial-filings/0001593549-0001493152-26-020899-primary.response"
+      },
+      "dei_identity_facts": [
+        {
+          "name": "dei:EntityCentralIndexKey",
+          "context": "From2025-01-01to2025-12-31",
+          "text": "0001593549"
+        },
+        {
+          "name": "dei:EntityRegistrantName",
+          "context": "From2025-01-01to2025-12-31",
+          "text": "LIVENTO\nGROUP, INC."
+        }
+      ],
+      "core_fact_contexts": [
+        {
+          "tag": "us-gaap:Revenues",
+          "contexts": [
+            "From2021-01-012021-12-31",
+            "From2023-01-012023-12-31"
+          ]
+        }
+      ],
+      "contexts": {
+        "From2021-01-012021-12-31": {
+          "identifiers": [
+            "0001593549"
+          ],
+          "has_dimensions": false
+        },
+        "From2023-01-012023-12-31": {
+          "identifiers": [
+            "0001593549"
+          ],
+          "has_dimensions": false
+        }
+      },
+      "state": "PRIMARY_CAPTURED_EDITORIAL_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001595248",
+      "companyfacts_name": "Genprex, Inc.",
+      "discovery_names": [],
+      "accession": "0001437749-25-010311",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1595248/000143774925010311/0001437749-25-010311-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T09:34:21.490939+00:00",
+        "bytes": 21461,
+        "sha256": "3d7dd99bf848382b522022cb1f162fd5ff4a8779987593fc07609ee369ab6147",
+        "body_path": "artifacts/seo/corpus-local/fifth-editorial-filings/0001595248-0001437749-25-010311-index.response"
+      },
+      "index_filers": [
+        "Genprex, Inc. (Filer) CIK : 0001595248 (see all company filings) EIN. : 900772347 | State of Incorp.: TX | Fiscal Year End: 1231 Type: 10-K | Act: 34 | File No.: 001-38244 | Film No.: 25795516 SIC : 2834 Pharmaceutical Preparations (CF Office: 03 Life Sciences)"
+      ],
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1595248/000143774925010311/gnpx20241231_10k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T09:34:23.239551+00:00",
+        "bytes": 2156083,
+        "sha256": "c7e0aeafb06e449ce9b1deb07a6ad4c135b2051f1ee0558d87a9b9e9ed4658e7",
+        "body_path": "artifacts/seo/corpus-local/fifth-editorial-filings/0001595248-0001437749-25-010311-primary.response"
+      },
+      "dei_identity_facts": [
+        {
+          "name": "dei:EntityCentralIndexKey",
+          "context": "d_2024-01-01_2024-12-31",
+          "text": "0001595248"
+        },
+        {
+          "name": "dei:EntityRegistrantName",
+          "context": "d_2024-01-01_2024-12-31",
+          "text": "Genprex, Inc."
+        }
+      ],
+      "core_fact_contexts": [
+        {
+          "tag": "us-gaap:Revenues",
+          "contexts": [
+            "d_2023-01-01_2023-12-31",
+            "d_2023-01-01_2023-12-31_ConsolidationItemsAxis-OperatingSegmentsMember",
+            "d_2024-01-01_2024-12-31",
+            "d_2024-01-01_2024-12-31_ConsolidationItemsAxis-OperatingSegmentsMember"
+          ]
+        }
+      ],
+      "contexts": {
+        "d_2023-01-01_2023-12-31": {
+          "identifiers": [
+            "0001595248"
+          ],
+          "has_dimensions": false
+        },
+        "d_2023-01-01_2023-12-31_ConsolidationItemsAxis-OperatingSegmentsMember": {
+          "identifiers": [
+            "0001595248"
+          ],
+          "has_dimensions": true
+        },
+        "d_2024-01-01_2024-12-31": {
+          "identifiers": [
+            "0001595248"
+          ],
+          "has_dimensions": false
+        },
+        "d_2024-01-01_2024-12-31_ConsolidationItemsAxis-OperatingSegmentsMember": {
+          "identifiers": [
+            "0001595248"
+          ],
+          "has_dimensions": true
+        }
+      },
+      "state": "PRIMARY_CAPTURED_EDITORIAL_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001598646",
+      "companyfacts_name": "Minerva Neurosciences, Inc.",
+      "discovery_names": [],
+      "accession": "0000950170-25-026055",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1598646/000095017025026055/0000950170-25-026055-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T09:34:25.056190+00:00",
+        "bytes": 10531,
+        "sha256": "151b51802c219a88021c86e8f66932849f257bbb8575ce983236b257a9e2461b",
+        "body_path": "artifacts/seo/corpus-local/fifth-editorial-filings/0001598646-0000950170-25-026055-index.response"
+      },
+      "index_filers": [
+        "Minerva Neurosciences, Inc. (Filer) CIK : 0001598646 (see all company filings) EIN. : 260784194 | State of Incorp.: DE | Fiscal Year End: 1231 Type: 10-K | Act: 34 | File No.: 001-36517 | Film No.: 25659221 SIC : 2834 Pharmaceutical Preparations (CF Office: 03 Life Sciences)"
+      ],
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1598646/000095017025026055/nerv-20241231.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T09:34:26.848368+00:00",
+        "bytes": 2447793,
+        "sha256": "b0a66d899185cd02ae0984ec0b461e3807a667c9d6c4d7530a29e5d0c0d7ccb1",
+        "body_path": "artifacts/seo/corpus-local/fifth-editorial-filings/0001598646-0000950170-25-026055-primary.response"
+      },
+      "dei_identity_facts": [
+        {
+          "name": "dei:EntityCentralIndexKey",
+          "context": "C_63c239a5-9be8-4ecd-9b54-7cf3ef705d5d",
+          "text": "0001598646"
+        },
+        {
+          "name": "dei:EntityRegistrantName",
+          "context": "C_63c239a5-9be8-4ecd-9b54-7cf3ef705d5d",
+          "text": "Minerva Neurosciences, Inc."
+        }
+      ],
+      "core_fact_contexts": [
+        {
+          "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+          "contexts": [
+            "C_63c239a5-9be8-4ecd-9b54-7cf3ef705d5d"
+          ]
+        }
+      ],
+      "contexts": {
+        "C_63c239a5-9be8-4ecd-9b54-7cf3ef705d5d": {
+          "identifiers": [
+            "0001598646"
+          ],
+          "has_dimensions": false
+        }
+      },
+      "state": "PRIMARY_CAPTURED_EDITORIAL_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001605057",
+      "companyfacts_name": "VEMANTI GROUP, INC.",
+      "discovery_names": [],
+      "accession": "0001477932-24-001509",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1605057/000147793224001509/0001477932-24-001509-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T09:34:28.701790+00:00",
+        "bytes": 12584,
+        "sha256": "994daa527f749b5d3c0732b9e7d40d0c1eaeec2667a1e43adb15baeb49f47fec",
+        "body_path": "artifacts/seo/corpus-local/fifth-editorial-filings/0001605057-0001477932-24-001509-index.response"
+      },
+      "index_filers": [
+        "Vemanti Group, Inc. (Filer) CIK : 0001605057 (see all company filings) EIN. : 465317552 | State of Incorp.: NV | Fiscal Year End: 1231 Type: 10-K | Act: 34 | File No.: 000-56266 | Film No.: 24792430 SIC : 6199 Finance Services (CF Office: 02 Finance)"
+      ],
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1605057/000147793224001509/vmnt_10k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T09:34:30.326853+00:00",
+        "bytes": 938787,
+        "sha256": "d201d945ee67cc847185e6e5b143da8b77ad719f06cd63411c2f96832be4446e",
+        "body_path": "artifacts/seo/corpus-local/fifth-editorial-filings/0001605057-0001477932-24-001509-primary.response"
+      },
+      "dei_identity_facts": [
+        {
+          "name": "dei:EntityCentralIndexKey",
+          "context": "From2023-01-01to2023-12-31",
+          "text": "0001605057"
+        },
+        {
+          "name": "dei:EntityRegistrantName",
+          "context": "From2023-01-01to2023-12-31",
+          "text": "VEMANTI GROUP, INC."
+        }
+      ],
+      "core_fact_contexts": [
+        {
+          "tag": "us-gaap:Liabilities",
+          "contexts": [
+            "AsOf2022-12-31",
+            "AsOf2023-12-31"
+          ]
+        },
+        {
+          "tag": "us-gaap:LiabilitiesCurrent",
+          "contexts": [
+            "AsOf2022-12-31",
+            "AsOf2023-12-31"
+          ]
+        }
+      ],
+      "contexts": {
+        "AsOf2022-12-31": {
+          "identifiers": [
+            "0001605057"
+          ],
+          "has_dimensions": false
+        },
+        "AsOf2023-12-31": {
+          "identifiers": [
+            "0001605057"
+          ],
+          "has_dimensions": false
+        }
+      },
+      "state": "PRIMARY_CAPTURED_EDITORIAL_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001607678",
+      "companyfacts_name": "Viking Therapeutics, Inc.",
+      "discovery_names": [],
+      "accession": "0001193125-26-046876",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1607678/000119312526046876/0001193125-26-046876-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T09:34:32.052011+00:00",
+        "bytes": 12421,
+        "sha256": "8f4d1118e87d7e44776c2ba4928973735ff7d4e9b901a809e9261565aae8475b",
+        "body_path": "artifacts/seo/corpus-local/fifth-editorial-filings/0001607678-0001193125-26-046876-index.response"
+      },
+      "index_filers": [
+        "Viking Therapeutics, Inc. (Filer) CIK : 0001607678 (see all company filings) EIN. : 461073877 | State of Incorp.: DE | Fiscal Year End: 1231 Type: 10-K | Act: 34 | File No.: 001-37355 | Film No.: 26622128 SIC : 2834 Pharmaceutical Preparations (CF Office: 03 Life Sciences)"
+      ],
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1607678/000119312526046876/vktx-20251231.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T09:34:33.731153+00:00",
+        "bytes": 3474734,
+        "sha256": "a6e6df80da8ed02033f9c6a1120fe4c351860c4760e0b9639b1507f553732ec4",
+        "body_path": "artifacts/seo/corpus-local/fifth-editorial-filings/0001607678-0001193125-26-046876-primary.response"
+      },
+      "dei_identity_facts": [
+        {
+          "name": "dei:EntityCentralIndexKey",
+          "context": "C_baf4dbc5-4837-42d6-aab2-513e6ffe06d7",
+          "text": "0001607678"
+        },
+        {
+          "name": "dei:EntityRegistrantName",
+          "context": "C_baf4dbc5-4837-42d6-aab2-513e6ffe06d7",
+          "text": "Viking Therapeutics, Inc."
+        }
+      ],
+      "core_fact_contexts": [
+        {
+          "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+          "contexts": [
+            "C_28d7c84e-ff48-4019-8387-3591cc994309",
+            "C_6aeb457f-4fe3-46cb-8dd8-3e2aee8431f6",
+            "C_baf4dbc5-4837-42d6-aab2-513e6ffe06d7"
+          ]
+        }
+      ],
+      "contexts": {
+        "C_28d7c84e-ff48-4019-8387-3591cc994309": {
+          "identifiers": [
+            "0001607678"
+          ],
+          "has_dimensions": false
+        },
+        "C_6aeb457f-4fe3-46cb-8dd8-3e2aee8431f6": {
+          "identifiers": [
+            "0001607678"
+          ],
+          "has_dimensions": false
+        },
+        "C_baf4dbc5-4837-42d6-aab2-513e6ffe06d7": {
+          "identifiers": [
+            "0001607678"
+          ],
+          "has_dimensions": false
+        }
+      },
+      "state": "PRIMARY_CAPTURED_EDITORIAL_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001607678",
+      "companyfacts_name": "Viking Therapeutics, Inc.",
+      "discovery_names": [],
+      "accession": "0001564590-18-004757",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1607678/000156459018004757/0001564590-18-004757-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T09:34:35.661962+00:00",
+        "bytes": 11838,
+        "sha256": "3fcd8483e75b82d83411185aa9e498c8e99e5a49ea933948f1f7eec47fccb4f1",
+        "body_path": "artifacts/seo/corpus-local/fifth-editorial-filings/0001607678-0001564590-18-004757-index.response"
+      },
+      "index_filers": [
+        "Viking Therapeutics, Inc. (Filer) CIK : 0001607678 (see all company filings) EIN. : 461073877 | State of Incorp.: DE | Fiscal Year End: 1231 Type: 10-K | Act: 34 | File No.: 001-37355 | Film No.: 18674118 SIC : 2834 Pharmaceutical Preparations"
+      ],
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1607678/000156459018004757/vktx-10k_20171231.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T09:34:37.404915+00:00",
+        "bytes": 3329343,
+        "sha256": "88b9e52012e3d8dba76aea382084aad78acc52ff704757be1ebf5a5ef0a8dcb8",
+        "body_path": "artifacts/seo/corpus-local/fifth-editorial-filings/0001607678-0001564590-18-004757-primary.response"
+      },
+      "dei_identity_facts": [],
+      "core_fact_contexts": [
+        {
+          "tag": "us-gaap:Revenues",
+          "contexts": []
+        }
+      ],
+      "contexts": {},
+      "state": "PRIMARY_CAPTURED_EDITORIAL_REVIEW_PENDING"
+    }
+  ],
+  "scope": "Primary filing capture for priority editorial targets; neither numeric verification nor editorial approval."
+}

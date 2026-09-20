@@ -59,6 +59,7 @@
       <div>
         <span class="cc-shell__panel-label">Evidence &amp; accountability</span>
         <nav aria-label="Institution routes"><a class="cc-shell__panel-link" href="/verify">Verify</a>
+<a class="cc-shell__panel-link" href="/companies">Company reference</a>
 <a class="cc-shell__panel-link" href="/progress">Corrections</a>
 <a class="cc-shell__panel-link" href="/founder">Founder</a>
 <a class="cc-shell__panel-link" href="/open">Open data</a>
@@ -103,8 +104,8 @@
     <aside class="dsr-union" aria-label="Current ALPHAC trial accounting preset">
       <div class="dsr-union__head"><span>What this preset loads (current union preset)</span><strong>Source-bound</strong></div>
       <dl>
-        <div><dt>Ideas tested (hypothesis identities)</dt><dd>347</dd></div>
-        <div><dt>Per-period V[SR]</dt><dd>0.001254021</dd></div>
+        <div><dt>Ideas tested (hypothesis identities)</dt><dd>349</dd></div>
+        <div><dt>Per-period V[SR]</dt><dd>0.001250580</dd></div>
         <div><dt>What counts as one try (selection unit)</dt><dd>First immutable record</dd></div>
         <div><dt>Claim status</dt><dd>Accounting, not performance</dd></div>
       </dl>
@@ -163,18 +164,18 @@
           <legend><span>Selection process</span><small>Preset from the public union</small></legend>
           <label class="dsr-field" for="effective_independent_trials">
     <span>Effective independent trials</span>
-    <input id="effective_independent_trials" name="effective_independent_trials" type="number" value="347" min="2" max="10000000" step="1" inputmode="decimal" />
+    <input id="effective_independent_trials" name="effective_independent_trials" type="number" value="349" min="2" max="10000000" step="1" inputmode="decimal" />
     <small>Do not shrink N after seeing outcomes.</small>
   </label>
           <label class="dsr-field" for="cross_trial_sharpe_sd_annualized">
     <span>Cross-trial Sharpe SD, annualized</span>
-    <input id="cross_trial_sharpe_sd_annualized" name="cross_trial_sharpe_sd_annualized" type="number" value="0.676548" min="0" max="10" step="0.000001" inputmode="decimal" />
+    <input id="cross_trial_sharpe_sd_annualized" name="cross_trial_sharpe_sd_annualized" type="number" value="0.675619" min="0" max="10" step="0.000001" inputmode="decimal" />
     <small>Derived from the identity-aligned per-period V[SR].</small>
   </label>
           <div class="dsr-selection-seal">
             <span>Published union context</span>
-            <strong>347 identities</strong>
-            <code>0363baf9886b82a9...</code>
+            <strong>349 identities</strong>
+            <code>6e7393aa13b6f09a...</code>
             <p>Reducing the trial count or dispersion after observing outcomes flatters DSR. The selection union must be defined independently of the selected result.</p>
           </div>
         </fieldset>
@@ -232,7 +233,7 @@
     <div><p class="dsr-label">Reproduce and inspect</p><h2 id="source-title">The interface is downstream of the evidence.</h2></div>
     <div class="dsr-source__ledger">
       <a href="/glassbox/deflated_sharpe_calculator_contract.json"><span>Formula contract</span><strong>4f0043376bff896f...</strong><small>Golden vectors and policy boundary</small></a>
-      <a href="/glassbox/trial_ledger.json"><span>Trial union</span><strong>0363baf9886b82a9...</strong><small>Current N and identity-aligned V[SR]</small></a>
+      <a href="/glassbox/trial_ledger.json"><span>Trial union</span><strong>6e7393aa13b6f09a...</strong><small>Current N and identity-aligned V[SR]</small></a>
       <a href="https://github.com/arhancanli/alphac/blob/9b92f5128acfdabbc9c3160348004c5b3eba6f05/src/alphaforge/validation/dsr.py" rel="noreferrer"><span>Python implementation</span><strong>ac2f18440e21b824...</strong><small>Production arithmetic in ALPHAC</small></a>
       <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2460551" rel="noreferrer"><span>Primary paper</span><strong>Bailey and López de Prado</strong><small>Journal of Portfolio Management 40(5), 94-107 (2014)</small></a>
     </div>
@@ -305,6 +306,8 @@
     <nav aria-label="Open source">
       <span>Source code</span>
       <a href="/developers">Developers</a>
+      <a href="/developers#quickstart">Get an API key</a>
+      <a href="/developers#ai-assistant">Connect the MCP server</a>
       <a href="/engineering">Engineering</a>
       <a href="/notes">Engineering notes</a>
       <a href="/standards/paper-evidence">Evidence standard</a>
@@ -322,7 +325,7 @@
   <div class="cc-footer__wordmark" aria-hidden="true">Canli Capital<span><svg viewBox="0 0 80 80" focusable="false" aria-hidden="true"><path d="M12 68 68 12M12 12h56v56" fill="none" stroke="currentColor" stroke-width="4" /></svg></span></div>
   <script type="module" src="/js/site-motion.js"></script>
 </footer>
-<script type="application/json" id="dsr-tool-config">{"schema":"canli.dsr-tool-client-config.v1","defaults":{"observed_sharpe_annualized":1.5,"observations":730,"periods_per_year":365,"skew":-0.5,"non_excess_kurtosis":5,"effective_independent_trials":347,"cross_trial_sharpe_sd_annualized":0.676548250839428},"current_union":{"n_hypotheses":347,"sharpe_variance_per_period":0.0012540206457914785,"generated_at":"2026-09-15T14:27:42.556584+00:00","source_content_hash":"sha256:ab9ebfa0c4b0986af8b3abd795893fa0e69a25983ee5087144d5129ffbf330d8","source_bytes_sha256":"sha256:0363baf9886b82a9e272cceedf7c525900fc7dad3415b4dd240a6e22582677a7"},"contract":{"content_hash":"sha256:4f0043376bff896f427e0314e7e29848751424863337fcf0bfd7ec9429502b8a","claim_boundary":"This contract reproduces ALPHAC's PSR and DSR arithmetic for supplied inputs. It does not validate a strategy, prove profitability, estimate current portfolio performance, or replace the complete admission contract.","policy":{"admission_schema":"canli.alphac-sleeve-admission-contract.v7","per_sleeve_dsr":"mandatory_measurement_not_a_universal_gate","incremental_admission":"not_decided_by_dsr_alone","full_union_book_maturity_threshold":0.95,"threshold_context":"The 0.95 threshold applies to a full-union portfolio-maturity claim. It is not a per-sleeve gate and a calculator result is not an admission verdict."},"selection_warning":"Reducing the trial count or dispersion after observing outcomes flatters DSR. The selection union must be defined independently of the selected result.","test_vectors":[{"id":"daily_long_sample_heavy_tail","inputs":{"observed_sharpe_annualized":1.5,"observations":730,"periods_per_year":365,"skew":-0.5,"non_excess_kurtosis":5,"effective_independent_trials":229,"cross_trial_sharpe_sd_annualized":0.57},"outputs":{"observed_sharpe_per_period":0.07851358838853206,"cross_trial_sharpe_variance_per_period":0.0008901369863013697,"expected_max_sharpe_per_period":0.08382167718470863,"expected_max_sharpe_annualized":1.6014108940590446,"psr_against_zero":0.9809279924681973,"deflated_sharpe_ratio":0.44426268122044366,"non_normality_variance_term":1.04542117775591}},{"id":"trading_days_short_search","inputs":{"observed_sharpe_annualized":1,"observations":252,"periods_per_year":252,"skew":0,"non_excess_kurtosis":3,"effective_independent_trials":10,"cross_trial_sharpe_sd_annualized":0.5},"outputs":{"observed_sharpe_per_period":0.0629940788348712,"cross_trial_sharpe_variance_per_period":0.0009920634920634918,"expected_max_sharpe_per_period":0.049595184764089716,"expected_max_sharpe_annualized":0.7872991506724859,"psr_against_zero":0.84062387995459,"deflated_sharpe_ratio":0.5839730560867282,"non_normality_variance_term":1.001984126984127}},{"id":"large_search_negative_skew","inputs":{"observed_sharpe_annualized":2.2,"observations":1260,"periods_per_year":252,"skew":-1,"non_excess_kurtosis":9,"effective_independent_trials":1000,"cross_trial_sharpe_sd_annualized":0.75},"outputs":{"observed_sharpe_per_period":0.13858697343671667,"cross_trial_sharpe_variance_per_period":0.0022321428571428566,"expected_max_sharpe_per_period":0.153790035936073,"expected_max_sharpe_annualized":2.4413411352392136,"psr_against_zero":0.9999970868543218,"deflated_sharpe_ratio":0.3095140591397488,"non_normality_variance_term":1.1769996718494151}}]}}</script>
+<script type="application/json" id="dsr-tool-config">{"schema":"canli.dsr-tool-client-config.v1","defaults":{"observed_sharpe_annualized":1.5,"observations":730,"periods_per_year":365,"skew":-0.5,"non_excess_kurtosis":5,"effective_independent_trials":349,"cross_trial_sharpe_sd_annualized":0.6756194655513185},"current_union":{"n_hypotheses":349,"sharpe_variance_per_period":0.001250579896525614,"generated_at":"2026-09-20T09:27:38.663214+00:00","source_content_hash":"sha256:a9a5528fa3e51e55d2b2fcfbb36b1c8f5a697280ba4e36a015958622fc995ea4","source_bytes_sha256":"sha256:6e7393aa13b6f09aec1de03b811a85066089d99e6c4b7b1b755a090091ac934b"},"contract":{"content_hash":"sha256:4f0043376bff896f427e0314e7e29848751424863337fcf0bfd7ec9429502b8a","claim_boundary":"This contract reproduces ALPHAC's PSR and DSR arithmetic for supplied inputs. It does not validate a strategy, prove profitability, estimate current portfolio performance, or replace the complete admission contract.","policy":{"admission_schema":"canli.alphac-sleeve-admission-contract.v7","per_sleeve_dsr":"mandatory_measurement_not_a_universal_gate","incremental_admission":"not_decided_by_dsr_alone","full_union_book_maturity_threshold":0.95,"threshold_context":"The 0.95 threshold applies to a full-union portfolio-maturity claim. It is not a per-sleeve gate and a calculator result is not an admission verdict."},"selection_warning":"Reducing the trial count or dispersion after observing outcomes flatters DSR. The selection union must be defined independently of the selected result.","test_vectors":[{"id":"daily_long_sample_heavy_tail","inputs":{"observed_sharpe_annualized":1.5,"observations":730,"periods_per_year":365,"skew":-0.5,"non_excess_kurtosis":5,"effective_independent_trials":229,"cross_trial_sharpe_sd_annualized":0.57},"outputs":{"observed_sharpe_per_period":0.07851358838853206,"cross_trial_sharpe_variance_per_period":0.0008901369863013697,"expected_max_sharpe_per_period":0.08382167718470863,"expected_max_sharpe_annualized":1.6014108940590446,"psr_against_zero":0.9809279924681973,"deflated_sharpe_ratio":0.44426268122044366,"non_normality_variance_term":1.04542117775591}},{"id":"trading_days_short_search","inputs":{"observed_sharpe_annualized":1,"observations":252,"periods_per_year":252,"skew":0,"non_excess_kurtosis":3,"effective_independent_trials":10,"cross_trial_sharpe_sd_annualized":0.5},"outputs":{"observed_sharpe_per_period":0.0629940788348712,"cross_trial_sharpe_variance_per_period":0.0009920634920634918,"expected_max_sharpe_per_period":0.049595184764089716,"expected_max_sharpe_annualized":0.7872991506724859,"psr_against_zero":0.84062387995459,"deflated_sharpe_ratio":0.5839730560867282,"non_normality_variance_term":1.001984126984127}},{"id":"large_search_negative_skew","inputs":{"observed_sharpe_annualized":2.2,"observations":1260,"periods_per_year":252,"skew":-1,"non_excess_kurtosis":9,"effective_independent_trials":1000,"cross_trial_sharpe_sd_annualized":0.75},"outputs":{"observed_sharpe_per_period":0.13858697343671667,"cross_trial_sharpe_variance_per_period":0.0022321428571428566,"expected_max_sharpe_per_period":0.153790035936073,"expected_max_sharpe_annualized":2.4413411352392136,"psr_against_zero":0.9999970868543218,"deflated_sharpe_ratio":0.3095140591397488,"non_normality_variance_term":1.1769996718494151}}]}}</script>
 <script type="module" src="/js/dsr-tool.js"></script>
 </body>
 </html>

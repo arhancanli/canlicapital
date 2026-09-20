@@ -1,0 +1,2661 @@
+{
+  "schema": "canli.canlicapital-live-seo-audit.v1",
+  "author": "Arhan Canli",
+  "observed_at_utc": "2026-09-20T06:57:31.497Z",
+  "status": "FAIL_TECHNICAL",
+  "claim_boundary": "This is a read-only direct-HTTP observation of the live domain plus an explicitly labeled local-build comparison. It does not prove search-engine indexing, rankings, traffic, deployment of local changes, content quality, or future search performance.",
+  "collection": {
+    "method": "direct HTTP fetch of robots.txt, sitemap.xml, and every sitemap URL",
+    "firecrawl_used": false,
+    "firecrawl_limitation": "Firecrawl was not configured for this run; no Firecrawl collection or result is claimed.",
+    "search_visibility_measured": false
+  },
+  "live": {
+    "robots": {
+      "status": 200,
+      "body_sha256": "741926b81043668f9f0af4e3d48ae181b29150063c5d6b060ec612e1e658f948",
+      "allows_root": true,
+      "declares_sitemap": true
+    },
+    "sitemap": {
+      "status": 200,
+      "body_sha256": "573e6a6ead5cb7053df72cdb28e9e93e55d0cd484952c42104fc1946f317a181",
+      "canonical_url_list_sha256": "5e5232606d61ab441dcef94b46ed75e66ec9c92841076b71db336a1e5fa1cda3",
+      "url_count": 263,
+      "duplicate_urls": [],
+      "off_origin_urls": []
+    },
+    "crawl": {
+      "pages_checked": 263,
+      "technical_failure_count": 1,
+      "technical_failures": [
+        {
+          "url": "https://canlicapital.com/",
+          "status": null,
+          "final_url": null,
+          "fetch_error": "TimeoutError: The operation was aborted due to timeout",
+          "title_present": false,
+          "description_present": false,
+          "canonical": null,
+          "h1_count": null,
+          "invalid_json_ld_blocks": null
+        }
+      ],
+      "duplicate_titles": [],
+      "duplicate_descriptions": [],
+      "raw_markdown_internal_link_count": 111,
+      "raw_markdown_internal_links": [
+        {
+          "source_url": "https://canlicapital.com/research/active-ownership-item4-v3-feasibility",
+          "href": "/research/active-ownership-item4-v3-feasibility.md"
+        },
+        {
+          "source_url": "https://canlicapital.com/research/alphamax-equity-momentum-lineage",
+          "href": "/research/alphamax-equity-momentum-lineage.md"
+        },
+        {
+          "source_url": "https://canlicapital.com/research/alphatrend-managed-futures-lineage",
+          "href": "/research/alphatrend-managed-futures-lineage.md"
+        },
+        {
+          "source_url": "https://canlicapital.com/research/alphavintage-macro-surprise-lineage",
+          "href": "/research/alphavintage-macro-surprise-lineage.md"
+        },
+        {
+          "source_url": "https://canlicapital.com/research/alphavintage-missing-release-correction",
+          "href": "/research/alphavintage-missing-release-correction.md"
+        },
+        {
+          "source_url": "https://canlicapital.com/research/author-protocol-approval-protocol",
+          "href": "/research/author-protocol-approval-protocol.md"
+        },
+        {
+          "source_url": "https://canlicapital.com/research/bond-etf-nav-dislocation-feasibility",
+          "href": "/research/bond-etf-nav-dislocation-feasibility.md"
+        },
+        {
+          "source_url": "https://canlicapital.com/research/borrow-execution-foundation",
+          "href": "/research/borrow-execution-foundation.md"
+        },
+        {
+          "source_url": "https://canlicapital.com/research/cftc-hedging-pressure-feasibility",
+          "href": "/research/cftc-hedging-pressure-feasibility.md"
+        },
+        {
+          "source_url": "https://canlicapital.com/research/corporate-action-basis-reconstruction",
+          "href": "/research/corporate-action-basis-reconstruction.md"
+        },
+        {
+          "source_url": "https://canlicapital.com/research/corporate-action-lifecycle",
+          "href": "/research/corporate-action-lifecycle.md"
+        },
+        {
+          "source_url": "https://canlicapital.com/research/crowding-risk-foundation",
+          "href": "/research/crowding-risk-foundation.md"
+        },
+        {
+          "source_url": "https://canlicapital.com/research/crypto-carry-lineage",
+          "href": "/research/crypto-carry-lineage.md"
+        },
+        {
+          "source_url": "https://canlicapital.com/research/crypto-carry-portable-v1",
+          "href": "/research/crypto-carry-portable-v1.md"
+        },
+        {
+          "source_url": "https://canlicapital.com/research/crypto-defensive-lineage",
+          "href": "/research/crypto-defensive-lineage.md"
+        },
+        {
+          "source_url": "https://canlicapital.com/research/crypto-lab-carry-crash-incident",
+          "href": "/research/crypto-lab-carry-crash-incident.md"
+        },
+        {
+          "source_url": "https://canlicapital.com/research/crypto-momentum-lineage",
+          "href": "/research/crypto-momentum-lineage.md"
+        },
+        {
+          "source_url": "https://canlicapital.com/research/crypto-multifactor-engine-lineage",
+          "href": "/research/crypto-multifactor-engine-lineage.md"
+        },
+        {
+          "source_url": "https://canlicapital.com/research/crypto-reversal-lineage",
+          "href": "/research/crypto-reversal-lineage.md"
+        },
+        {
+          "source_url": "https://canlicapital.com/research/crypto-vrp-lineage",
+          "href": "/research/crypto-vrp-lineage.md"
+        },
+        {
+          "source_url": "https://canlicapital.com/research/current-book-diversification-model",
+          "href": "/research/current-book-diversification-model.md"
+        },
+        {
+          "source_url": "https://canlicapital.com/research/current-book-drawdown-model",
+          "href": "/research/current-book-drawdown-model.md"
+        },
+        {
+          "source_url": "https://canlicapital.com/research/customer-supplier-propagation-feasibility",
+          "href": "/research/customer-supplier-propagation-feasibility.md"
+        },
+        {
+          "source_url": "https://canlicapital.com/research/electricity-load-weather-feasibility",
+          "href": "/research/electricity-load-weather-feasibility.md"
+        },
+        {
+          "source_url": "https://canlicapital.com/research/energy-inventory-lineage",
+          "href": "/research/energy-inventory-lineage.md"
+        },
+        {
+          "source_url": "https://canlicapital.com/research/engineering-quality",
+          "href": "/research/engineering-quality.md"
+        },
+        {
+          "source_url": "https://canlicapital.com/research/equity-insider-activity-lineage",
+          "href": "/research/equity-insider-activity-lineage.md"
+        },
+        {
+          "source_url": "https://canlicapital.com/research/equity-low-beta-lineage",
+          "href": "/research/equity-low-beta-lineage.md"
+        },
+        {
+          "source_url": "https://canlicapital.com/research/equity-narrative-change-lineage",
+          "href": "/research/equity-narrative-change-lineage.md"
+        },
+        {
+          "source_url": "https://canlicapital.com/research/equity-quality-lineage",
+          "href": "/research/equity-quality-lineage.md"
+        },
+        {
+          "source_url": "https://canlicapital.com/research/equity-value-investment-lineage",
+          "href": "/research/equity-value-investment-lineage.md"
+        },
+        {
+          "source_url": "https://canlicapital.com/research/execution-realism",
+          "href": "/research/execution-realism.md"
+        },
+        {
+          "source_url": "https://canlicapital.com/research/financing-replay",
+          "href": "/research/financing-replay.md"
+        },
+        {
+          "source_url": "https://canlicapital.com/research/forward-sharpe-evidence-standard",
+          "href": "/research/forward-sharpe-evidence-standard.md"
+        },
+        {
+          "source_url": "https://canlicapital.com/research/futures-execution-foundation",
+          "href": "/research/futures-execution-foundation.md"
+        },
+        {
+          "source_url": "https://canlicapital.com/research/identity-redesign-notes",
+          "href": "/research/identity-redesign-notes.md"
+        },
+        {
+          "source_url": "https://canlicapital.com/research/inflation-breakeven-relative-value-feasibility",
+          "href": "/research/inflation-breakeven-relative-value-feasibility.md"
+        },
+        {
+          "source_url": "https://canlicapital.com/research/kill-alphamax-betaneutral",
+          "href": "/research/kill-alphamax-betaneutral.md"
+        },
+        {
+          "source_url": "https://canlicapital.com/research/kill-alphamax-short-margin-floor",
+          "href": "/research/kill-alphamax-short-margin-floor.md"
+        },
+        {
+          "source_url": "https://canlicapital.com/research/kill-alphamax-shorttail",
+          "href": "/research/kill-alphamax-shorttail.md"
+        },
+        {
+          "source_url": "https://canlicapital.com/research/kill-alphamax-volscale",
+          "href": "/research/kill-alphamax-volscale.md"
+        },
+        {
+          "source_url": "https://canlicapital.com/research/kill-alphamax-weightgrid",
+          "href": "/research/kill-alphamax-weightgrid.md"
+        },
+        {
+          "source_url": "https://canlicapital.com/research/kill-cef-discount",
+          "href": "/research/kill-cef-discount.md"
+        },
+        {
+          "source_url": "https://canlicapital.com/research/kill-commodity-inventory-seasonal",
+          "href": "/research/kill-commodity-inventory-seasonal.md"
+        },
+        {
+          "source_url": "https://canlicapital.com/research/kill-cot-positioning",
+          "href": "/research/kill-cot-positioning.md"
+        },
+        {
+          "source_url": "https://canlicapital.com/research/kill-crypto-dated-basis",
+          "href": "/research/kill-crypto-dated-basis.md"
+        },
+        {
+          "source_url": "https://canlicapital.com/research/kill-crypto-lowvol-720",
+          "href": "/research/kill-crypto-lowvol-720.md"
+        },
+        {
+          "source_url": "https://canlicapital.com/research/kill-crypto-short-tsmom",
+          "href": "/research/kill-crypto-short-tsmom.md"
+        },
+        {
+          "source_url": "https://canlicapital.com/research/kill-crypto-vrp",
+          "href": "/research/kill-crypto-vrp.md"
+        },
+        {
+          "source_url": "https://canlicapital.com/research/kill-deephist-quality-top800",
+          "href": "/research/kill-deephist-quality-top800.md"
+        },
+        {
+          "source_url": "https://canlicapital.com/research/kill-econtrend",
+          "href": "/research/kill-econtrend.md"
+        },
+        {
+          "source_url": "https://canlicapital.com/research/kill-eq-52whigh",
+          "href": "/research/kill-eq-52whigh.md"
+        },
+        {
+          "source_url": "https://canlicapital.com/research/kill-eq-mom-margin",
+          "href": "/research/kill-eq-mom-margin.md"
+        },
+        {
+          "source_url": "https://canlicapital.com/research/kill-eq-net-issuance",
+          "href": "/research/kill-eq-net-issuance.md"
+        },
+        {
+          "source_url": "https://canlicapital.com/research/kill-eq-quality-gp",
+          "href": "/research/kill-eq-quality-gp.md"
+        },
+        {
+          "source_url": "https://canlicapital.com/research/kill-eq-value-btp",
+          "href": "/research/kill-eq-value-btp.md"
+        },
+        {
+          "source_url": "https://canlicapital.com/research/kill-equity-pead",
+          "href": "/research/kill-equity-pead.md"
+        },
+        {
+          "source_url": "https://canlicapital.com/research/kill-equity-short-interest-dtc",
+          "href": "/research/kill-equity-short-interest-dtc.md"
+        },
+        {
+          "source_url": "https://canlicapital.com/research/kill-equity-vrp",
+          "href": "/research/kill-equity-vrp.md"
+        },
+        {
+          "source_url": "https://canlicapital.com/research/kill-funding-termstructure",
+          "href": "/research/kill-funding-termstructure.md"
+        },
+        {
+          "source_url": "https://canlicapital.com/research/kill-futcarry-xs",
+          "href": "/research/kill-futcarry-xs.md"
+        },
+        {
+          "source_url": "https://canlicapital.com/research/kill-fx-carry-ratediff",
+          "href": "/research/kill-fx-carry-ratediff.md"
+        },
+        {
+          "source_url": "https://canlicapital.com/research/kill-fx-carry-trend-overlay",
+          "href": "/research/kill-fx-carry-trend-overlay.md"
+        },
+        {
+          "source_url": "https://canlicapital.com/research/kill-fx-trend-cs",
+          "href": "/research/kill-fx-trend-cs.md"
+        },
+        {
+          "source_url": "https://canlicapital.com/research/kill-insider-purchase-clusters",
+          "href": "/research/kill-insider-purchase-clusters.md"
+        },
+        {
+          "source_url": "https://canlicapital.com/research/kill-intraday-mom",
+          "href": "/research/kill-intraday-mom.md"
+        },
+        {
+          "source_url": "https://canlicapital.com/research/kill-letf-eod-flow",
+          "href": "/research/kill-letf-eod-flow.md"
+        },
+        {
+          "source_url": "https://canlicapital.com/research/kill-mechflow-tom",
+          "href": "/research/kill-mechflow-tom.md"
+        },
+        {
+          "source_url": "https://canlicapital.com/research/kill-mf-realfutures-breadth",
+          "href": "/research/kill-mf-realfutures-breadth.md"
+        },
+        {
+          "source_url": "https://canlicapital.com/research/kill-mf-realfutures-fasttrend",
+          "href": "/research/kill-mf-realfutures-fasttrend.md"
+        },
+        {
+          "source_url": "https://canlicapital.com/research/kill-multivenue-funding",
+          "href": "/research/kill-multivenue-funding.md"
+        },
+        {
+          "source_url": "https://canlicapital.com/research/kill-onchain-carry-filter",
+          "href": "/research/kill-onchain-carry-filter.md"
+        },
+        {
+          "source_url": "https://canlicapital.com/research/kill-pm-odds-signal",
+          "href": "/research/kill-pm-odds-signal.md"
+        },
+        {
+          "source_url": "https://canlicapital.com/research/kill-prereg-bab",
+          "href": "/research/kill-prereg-bab.md"
+        },
+        {
+          "source_url": "https://canlicapital.com/research/kill-prereg-momentum",
+          "href": "/research/kill-prereg-momentum.md"
+        },
+        {
+          "source_url": "https://canlicapital.com/research/kill-prereg-quality",
+          "href": "/research/kill-prereg-quality.md"
+        },
+        {
+          "source_url": "https://canlicapital.com/research/kill-prereg-value",
+          "href": "/research/kill-prereg-value.md"
+        },
+        {
+          "source_url": "https://canlicapital.com/research/kill-rates-curve-carry",
+          "href": "/research/kill-rates-curve-carry.md"
+        },
+        {
+          "source_url": "https://canlicapital.com/research/kill-residual-momentum",
+          "href": "/research/kill-residual-momentum.md"
+        },
+        {
+          "source_url": "https://canlicapital.com/research/kill-tail-overlay",
+          "href": "/research/kill-tail-overlay.md"
+        },
+        {
+          "source_url": "https://canlicapital.com/research/kill-xasset-carry",
+          "href": "/research/kill-xasset-carry.md"
+        },
+        {
+          "source_url": "https://canlicapital.com/research/kill-xasset-value",
+          "href": "/research/kill-xasset-value.md"
+        },
+        {
+          "source_url": "https://canlicapital.com/research/kill-xs-seasonality",
+          "href": "/research/kill-xs-seasonality.md"
+        },
+        {
+          "source_url": "https://canlicapital.com/research/legacy-dsr-restatement",
+          "href": "/research/legacy-dsr-restatement.md"
+        },
+        {
+          "source_url": "https://canlicapital.com/research/literature-bond-etf-nav-dislocation",
+          "href": "/research/literature-bond-etf-nav-dislocation.md"
+        },
+        {
+          "source_url": "https://canlicapital.com/research/literature-customer-supplier-propagation",
+          "href": "/research/literature-customer-supplier-propagation.md"
+        },
+        {
+          "source_url": "https://canlicapital.com/research/literature-electricity-load-weather",
+          "href": "/research/literature-electricity-load-weather.md"
+        },
+        {
+          "source_url": "https://canlicapital.com/research/literature-frontier-2026-08-16",
+          "href": "/research/literature-frontier-2026-08-16.md"
+        },
+        {
+          "source_url": "https://canlicapital.com/research/literature-inflation-breakeven-relative-value",
+          "href": "/research/literature-inflation-breakeven-relative-value.md"
+        },
+        {
+          "source_url": "https://canlicapital.com/research/literature-natural-gas-storage-weather",
+          "href": "/research/literature-natural-gas-storage-weather.md"
+        },
+        {
+          "source_url": "https://canlicapital.com/research/literature-options-dispersion",
+          "href": "/research/literature-options-dispersion.md"
+        },
+        {
+          "source_url": "https://canlicapital.com/research/literature-repurchase-issuance-flow",
+          "href": "/research/literature-repurchase-issuance-flow.md"
+        },
+        {
+          "source_url": "https://canlicapital.com/research/literature-spin-off-dislocation",
+          "href": "/research/literature-spin-off-dislocation.md"
+        },
+        {
+          "source_url": "https://canlicapital.com/research/literature-stablecoin-dislocation",
+          "href": "/research/literature-stablecoin-dislocation.md"
+        },
+        {
+          "source_url": "https://canlicapital.com/research/macro-economic-trend-lineage",
+          "href": "/research/macro-economic-trend-lineage.md"
+        },
+        {
+          "source_url": "https://canlicapital.com/research/market-status-replay",
+          "href": "/research/market-status-replay.md"
+        },
+        {
+          "source_url": "https://canlicapital.com/research/merger-announcement-identity-v2",
+          "href": "/research/merger-announcement-identity-v2.md"
+        },
+        {
+          "source_url": "https://canlicapital.com/research/natural-gas-storage-weather-feasibility",
+          "href": "/research/natural-gas-storage-weather-feasibility.md"
+        },
+        {
+          "source_url": "https://canlicapital.com/research/options-dispersion-feasibility",
+          "href": "/research/options-dispersion-feasibility.md"
+        },
+        {
+          "source_url": "https://canlicapital.com/research/options-execution-foundation",
+          "href": "/research/options-execution-foundation.md"
+        },
+        {
+          "source_url": "https://canlicapital.com/research/pre-fomc-announcement-drift-feasibility",
+          "href": "/research/pre-fomc-announcement-drift-feasibility.md"
+        },
+        {
+          "source_url": "https://canlicapital.com/research/prereg-earnings-narrative-change",
+          "href": "/research/prereg-earnings-narrative-change.md"
+        },
+        {
+          "source_url": "https://canlicapital.com/research/prereg-pre-fomc-announcement-drift",
+          "href": "/research/prereg-pre-fomc-announcement-drift.md"
+        },
+        {
+          "source_url": "https://canlicapital.com/research/repurchase-issuance-flow-feasibility",
+          "href": "/research/repurchase-issuance-flow-feasibility.md"
+        },
+        {
+          "source_url": "https://canlicapital.com/research/sharadar-hdb-zero-dividend-quarantine",
+          "href": "/research/sharadar-hdb-zero-dividend-quarantine.md"
+        },
+        {
+          "source_url": "https://canlicapital.com/research/spin-off-dislocation-lineage",
+          "href": "/research/spin-off-dislocation-lineage.md"
+        },
+        {
+          "source_url": "https://canlicapital.com/research/spin-off-document-schema",
+          "href": "/research/spin-off-document-schema.md"
+        },
+        {
+          "source_url": "https://canlicapital.com/research/stablecoin-dislocation-feasibility",
+          "href": "/research/stablecoin-dislocation-feasibility.md"
+        },
+        {
+          "source_url": "https://canlicapital.com/research/treasury-auction-concession-feasibility",
+          "href": "/research/treasury-auction-concession-feasibility.md"
+        },
+        {
+          "source_url": "https://canlicapital.com/research/treasury-auction-identity-timing",
+          "href": "/research/treasury-auction-identity-timing.md"
+        },
+        {
+          "source_url": "https://canlicapital.com/research/treasury-auction-state-machine",
+          "href": "/research/treasury-auction-state-machine.md"
+        }
+      ],
+      "raw_markdown_navigation_link_count": 0,
+      "raw_markdown_navigation_links": [],
+      "raw_markdown_unique_target_count": 111,
+      "raw_markdown_targets_without_noindex_count": 0,
+      "raw_markdown_targets_unresolved_count": 5,
+      "raw_markdown_target_headers": [
+        {
+          "url": "https://canlicapital.com/research/active-ownership-item4-v3-feasibility.md",
+          "status": 200,
+          "x_robots_tag": "noindex"
+        },
+        {
+          "url": "https://canlicapital.com/research/alphamax-equity-momentum-lineage.md",
+          "status": 200,
+          "x_robots_tag": "noindex"
+        },
+        {
+          "url": "https://canlicapital.com/research/alphatrend-managed-futures-lineage.md",
+          "status": 200,
+          "x_robots_tag": "noindex"
+        },
+        {
+          "url": "https://canlicapital.com/research/alphavintage-macro-surprise-lineage.md",
+          "status": 200,
+          "x_robots_tag": "noindex"
+        },
+        {
+          "url": "https://canlicapital.com/research/alphavintage-missing-release-correction.md",
+          "status": 200,
+          "x_robots_tag": "noindex"
+        },
+        {
+          "url": "https://canlicapital.com/research/author-protocol-approval-protocol.md",
+          "status": 200,
+          "x_robots_tag": "noindex"
+        },
+        {
+          "url": "https://canlicapital.com/research/bond-etf-nav-dislocation-feasibility.md",
+          "status": 200,
+          "x_robots_tag": "noindex"
+        },
+        {
+          "url": "https://canlicapital.com/research/borrow-execution-foundation.md",
+          "status": 200,
+          "x_robots_tag": "noindex"
+        },
+        {
+          "url": "https://canlicapital.com/research/cftc-hedging-pressure-feasibility.md",
+          "status": 200,
+          "x_robots_tag": "noindex"
+        },
+        {
+          "url": "https://canlicapital.com/research/corporate-action-basis-reconstruction.md",
+          "status": 200,
+          "x_robots_tag": "noindex"
+        },
+        {
+          "url": "https://canlicapital.com/research/corporate-action-lifecycle.md",
+          "status": 200,
+          "x_robots_tag": "noindex"
+        },
+        {
+          "url": "https://canlicapital.com/research/crowding-risk-foundation.md",
+          "status": 200,
+          "x_robots_tag": "noindex"
+        },
+        {
+          "url": "https://canlicapital.com/research/crypto-carry-lineage.md",
+          "status": 200,
+          "x_robots_tag": "noindex"
+        },
+        {
+          "url": "https://canlicapital.com/research/crypto-carry-portable-v1.md",
+          "status": 200,
+          "x_robots_tag": "noindex"
+        },
+        {
+          "url": "https://canlicapital.com/research/crypto-defensive-lineage.md",
+          "status": 200,
+          "x_robots_tag": "noindex"
+        },
+        {
+          "url": "https://canlicapital.com/research/crypto-lab-carry-crash-incident.md",
+          "status": 200,
+          "x_robots_tag": "noindex"
+        },
+        {
+          "url": "https://canlicapital.com/research/crypto-momentum-lineage.md",
+          "status": 200,
+          "x_robots_tag": "noindex"
+        },
+        {
+          "url": "https://canlicapital.com/research/crypto-multifactor-engine-lineage.md",
+          "status": 200,
+          "x_robots_tag": "noindex"
+        },
+        {
+          "url": "https://canlicapital.com/research/crypto-reversal-lineage.md",
+          "status": 200,
+          "x_robots_tag": "noindex"
+        },
+        {
+          "url": "https://canlicapital.com/research/crypto-vrp-lineage.md",
+          "status": 200,
+          "x_robots_tag": "noindex"
+        },
+        {
+          "url": "https://canlicapital.com/research/current-book-diversification-model.md",
+          "status": 200,
+          "x_robots_tag": "noindex"
+        },
+        {
+          "url": "https://canlicapital.com/research/current-book-drawdown-model.md",
+          "status": 200,
+          "x_robots_tag": "noindex"
+        },
+        {
+          "url": "https://canlicapital.com/research/customer-supplier-propagation-feasibility.md",
+          "status": 200,
+          "x_robots_tag": "noindex"
+        },
+        {
+          "url": "https://canlicapital.com/research/electricity-load-weather-feasibility.md",
+          "status": 200,
+          "x_robots_tag": "noindex"
+        },
+        {
+          "url": "https://canlicapital.com/research/energy-inventory-lineage.md",
+          "status": 200,
+          "x_robots_tag": "noindex"
+        },
+        {
+          "url": "https://canlicapital.com/research/engineering-quality.md",
+          "status": 200,
+          "x_robots_tag": "noindex"
+        },
+        {
+          "url": "https://canlicapital.com/research/equity-insider-activity-lineage.md",
+          "status": 200,
+          "x_robots_tag": "noindex"
+        },
+        {
+          "url": "https://canlicapital.com/research/equity-low-beta-lineage.md",
+          "status": 200,
+          "x_robots_tag": "noindex"
+        },
+        {
+          "url": "https://canlicapital.com/research/equity-narrative-change-lineage.md",
+          "status": 200,
+          "x_robots_tag": "noindex"
+        },
+        {
+          "url": "https://canlicapital.com/research/equity-quality-lineage.md",
+          "status": 200,
+          "x_robots_tag": "noindex"
+        },
+        {
+          "url": "https://canlicapital.com/research/equity-value-investment-lineage.md",
+          "status": 200,
+          "x_robots_tag": "noindex"
+        },
+        {
+          "url": "https://canlicapital.com/research/execution-realism.md",
+          "status": 200,
+          "x_robots_tag": "noindex"
+        },
+        {
+          "url": "https://canlicapital.com/research/financing-replay.md",
+          "status": null,
+          "x_robots_tag": null,
+          "fetch_error": "TypeError: fetch failed"
+        },
+        {
+          "url": "https://canlicapital.com/research/forward-sharpe-evidence-standard.md",
+          "status": 200,
+          "x_robots_tag": "noindex"
+        },
+        {
+          "url": "https://canlicapital.com/research/futures-execution-foundation.md",
+          "status": 200,
+          "x_robots_tag": "noindex"
+        },
+        {
+          "url": "https://canlicapital.com/research/identity-redesign-notes.md",
+          "status": 200,
+          "x_robots_tag": "noindex"
+        },
+        {
+          "url": "https://canlicapital.com/research/inflation-breakeven-relative-value-feasibility.md",
+          "status": 200,
+          "x_robots_tag": "noindex"
+        },
+        {
+          "url": "https://canlicapital.com/research/kill-alphamax-betaneutral.md",
+          "status": 200,
+          "x_robots_tag": "noindex"
+        },
+        {
+          "url": "https://canlicapital.com/research/kill-alphamax-short-margin-floor.md",
+          "status": 200,
+          "x_robots_tag": "noindex"
+        },
+        {
+          "url": "https://canlicapital.com/research/kill-alphamax-shorttail.md",
+          "status": 200,
+          "x_robots_tag": "noindex"
+        },
+        {
+          "url": "https://canlicapital.com/research/kill-alphamax-volscale.md",
+          "status": 200,
+          "x_robots_tag": "noindex"
+        },
+        {
+          "url": "https://canlicapital.com/research/kill-alphamax-weightgrid.md",
+          "status": 200,
+          "x_robots_tag": "noindex"
+        },
+        {
+          "url": "https://canlicapital.com/research/kill-cef-discount.md",
+          "status": 200,
+          "x_robots_tag": "noindex"
+        },
+        {
+          "url": "https://canlicapital.com/research/kill-commodity-inventory-seasonal.md",
+          "status": 200,
+          "x_robots_tag": "noindex"
+        },
+        {
+          "url": "https://canlicapital.com/research/kill-cot-positioning.md",
+          "status": 200,
+          "x_robots_tag": "noindex"
+        },
+        {
+          "url": "https://canlicapital.com/research/kill-crypto-dated-basis.md",
+          "status": 200,
+          "x_robots_tag": "noindex"
+        },
+        {
+          "url": "https://canlicapital.com/research/kill-crypto-lowvol-720.md",
+          "status": 200,
+          "x_robots_tag": "noindex"
+        },
+        {
+          "url": "https://canlicapital.com/research/kill-crypto-short-tsmom.md",
+          "status": 200,
+          "x_robots_tag": "noindex"
+        },
+        {
+          "url": "https://canlicapital.com/research/kill-crypto-vrp.md",
+          "status": 200,
+          "x_robots_tag": "noindex"
+        },
+        {
+          "url": "https://canlicapital.com/research/kill-deephist-quality-top800.md",
+          "status": 200,
+          "x_robots_tag": "noindex"
+        },
+        {
+          "url": "https://canlicapital.com/research/kill-econtrend.md",
+          "status": 200,
+          "x_robots_tag": "noindex"
+        },
+        {
+          "url": "https://canlicapital.com/research/kill-eq-52whigh.md",
+          "status": 200,
+          "x_robots_tag": "noindex"
+        },
+        {
+          "url": "https://canlicapital.com/research/kill-eq-mom-margin.md",
+          "status": 200,
+          "x_robots_tag": "noindex"
+        },
+        {
+          "url": "https://canlicapital.com/research/kill-eq-net-issuance.md",
+          "status": 200,
+          "x_robots_tag": "noindex"
+        },
+        {
+          "url": "https://canlicapital.com/research/kill-eq-quality-gp.md",
+          "status": 200,
+          "x_robots_tag": "noindex"
+        },
+        {
+          "url": "https://canlicapital.com/research/kill-eq-value-btp.md",
+          "status": 200,
+          "x_robots_tag": "noindex"
+        },
+        {
+          "url": "https://canlicapital.com/research/kill-equity-pead.md",
+          "status": 200,
+          "x_robots_tag": "noindex"
+        },
+        {
+          "url": "https://canlicapital.com/research/kill-equity-short-interest-dtc.md",
+          "status": null,
+          "x_robots_tag": null,
+          "fetch_error": "TypeError: fetch failed"
+        },
+        {
+          "url": "https://canlicapital.com/research/kill-equity-vrp.md",
+          "status": 200,
+          "x_robots_tag": "noindex"
+        },
+        {
+          "url": "https://canlicapital.com/research/kill-funding-termstructure.md",
+          "status": 200,
+          "x_robots_tag": "noindex"
+        },
+        {
+          "url": "https://canlicapital.com/research/kill-futcarry-xs.md",
+          "status": 200,
+          "x_robots_tag": "noindex"
+        },
+        {
+          "url": "https://canlicapital.com/research/kill-fx-carry-ratediff.md",
+          "status": 200,
+          "x_robots_tag": "noindex"
+        },
+        {
+          "url": "https://canlicapital.com/research/kill-fx-carry-trend-overlay.md",
+          "status": 200,
+          "x_robots_tag": "noindex"
+        },
+        {
+          "url": "https://canlicapital.com/research/kill-fx-trend-cs.md",
+          "status": 200,
+          "x_robots_tag": "noindex"
+        },
+        {
+          "url": "https://canlicapital.com/research/kill-insider-purchase-clusters.md",
+          "status": 200,
+          "x_robots_tag": "noindex"
+        },
+        {
+          "url": "https://canlicapital.com/research/kill-intraday-mom.md",
+          "status": 200,
+          "x_robots_tag": "noindex"
+        },
+        {
+          "url": "https://canlicapital.com/research/kill-letf-eod-flow.md",
+          "status": 200,
+          "x_robots_tag": "noindex"
+        },
+        {
+          "url": "https://canlicapital.com/research/kill-mechflow-tom.md",
+          "status": 200,
+          "x_robots_tag": "noindex"
+        },
+        {
+          "url": "https://canlicapital.com/research/kill-mf-realfutures-breadth.md",
+          "status": 200,
+          "x_robots_tag": "noindex"
+        },
+        {
+          "url": "https://canlicapital.com/research/kill-mf-realfutures-fasttrend.md",
+          "status": 200,
+          "x_robots_tag": "noindex"
+        },
+        {
+          "url": "https://canlicapital.com/research/kill-multivenue-funding.md",
+          "status": 200,
+          "x_robots_tag": "noindex"
+        },
+        {
+          "url": "https://canlicapital.com/research/kill-onchain-carry-filter.md",
+          "status": 200,
+          "x_robots_tag": "noindex"
+        },
+        {
+          "url": "https://canlicapital.com/research/kill-pm-odds-signal.md",
+          "status": 200,
+          "x_robots_tag": "noindex"
+        },
+        {
+          "url": "https://canlicapital.com/research/kill-prereg-bab.md",
+          "status": 200,
+          "x_robots_tag": "noindex"
+        },
+        {
+          "url": "https://canlicapital.com/research/kill-prereg-momentum.md",
+          "status": 200,
+          "x_robots_tag": "noindex"
+        },
+        {
+          "url": "https://canlicapital.com/research/kill-prereg-quality.md",
+          "status": 200,
+          "x_robots_tag": "noindex"
+        },
+        {
+          "url": "https://canlicapital.com/research/kill-prereg-value.md",
+          "status": 200,
+          "x_robots_tag": "noindex"
+        },
+        {
+          "url": "https://canlicapital.com/research/kill-rates-curve-carry.md",
+          "status": 200,
+          "x_robots_tag": "noindex"
+        },
+        {
+          "url": "https://canlicapital.com/research/kill-residual-momentum.md",
+          "status": 200,
+          "x_robots_tag": "noindex"
+        },
+        {
+          "url": "https://canlicapital.com/research/kill-tail-overlay.md",
+          "status": 200,
+          "x_robots_tag": "noindex"
+        },
+        {
+          "url": "https://canlicapital.com/research/kill-xasset-carry.md",
+          "status": 200,
+          "x_robots_tag": "noindex"
+        },
+        {
+          "url": "https://canlicapital.com/research/kill-xasset-value.md",
+          "status": 200,
+          "x_robots_tag": "noindex"
+        },
+        {
+          "url": "https://canlicapital.com/research/kill-xs-seasonality.md",
+          "status": 200,
+          "x_robots_tag": "noindex"
+        },
+        {
+          "url": "https://canlicapital.com/research/legacy-dsr-restatement.md",
+          "status": 200,
+          "x_robots_tag": "noindex"
+        },
+        {
+          "url": "https://canlicapital.com/research/literature-bond-etf-nav-dislocation.md",
+          "status": 200,
+          "x_robots_tag": "noindex"
+        },
+        {
+          "url": "https://canlicapital.com/research/literature-customer-supplier-propagation.md",
+          "status": 200,
+          "x_robots_tag": "noindex"
+        },
+        {
+          "url": "https://canlicapital.com/research/literature-electricity-load-weather.md",
+          "status": 200,
+          "x_robots_tag": "noindex"
+        },
+        {
+          "url": "https://canlicapital.com/research/literature-frontier-2026-08-16.md",
+          "status": 200,
+          "x_robots_tag": "noindex"
+        },
+        {
+          "url": "https://canlicapital.com/research/literature-inflation-breakeven-relative-value.md",
+          "status": 200,
+          "x_robots_tag": "noindex"
+        },
+        {
+          "url": "https://canlicapital.com/research/literature-natural-gas-storage-weather.md",
+          "status": null,
+          "x_robots_tag": null,
+          "fetch_error": "TypeError: fetch failed"
+        },
+        {
+          "url": "https://canlicapital.com/research/literature-options-dispersion.md",
+          "status": null,
+          "x_robots_tag": null,
+          "fetch_error": "TypeError: fetch failed"
+        },
+        {
+          "url": "https://canlicapital.com/research/literature-repurchase-issuance-flow.md",
+          "status": 200,
+          "x_robots_tag": "noindex"
+        },
+        {
+          "url": "https://canlicapital.com/research/literature-spin-off-dislocation.md",
+          "status": 200,
+          "x_robots_tag": "noindex"
+        },
+        {
+          "url": "https://canlicapital.com/research/literature-stablecoin-dislocation.md",
+          "status": null,
+          "x_robots_tag": null,
+          "fetch_error": "TypeError: fetch failed"
+        },
+        {
+          "url": "https://canlicapital.com/research/macro-economic-trend-lineage.md",
+          "status": 200,
+          "x_robots_tag": "noindex"
+        },
+        {
+          "url": "https://canlicapital.com/research/market-status-replay.md",
+          "status": 200,
+          "x_robots_tag": "noindex"
+        },
+        {
+          "url": "https://canlicapital.com/research/merger-announcement-identity-v2.md",
+          "status": 200,
+          "x_robots_tag": "noindex"
+        },
+        {
+          "url": "https://canlicapital.com/research/natural-gas-storage-weather-feasibility.md",
+          "status": 200,
+          "x_robots_tag": "noindex"
+        },
+        {
+          "url": "https://canlicapital.com/research/options-dispersion-feasibility.md",
+          "status": 200,
+          "x_robots_tag": "noindex"
+        },
+        {
+          "url": "https://canlicapital.com/research/options-execution-foundation.md",
+          "status": 200,
+          "x_robots_tag": "noindex"
+        },
+        {
+          "url": "https://canlicapital.com/research/pre-fomc-announcement-drift-feasibility.md",
+          "status": 200,
+          "x_robots_tag": "noindex"
+        },
+        {
+          "url": "https://canlicapital.com/research/prereg-earnings-narrative-change.md",
+          "status": 200,
+          "x_robots_tag": "noindex"
+        },
+        {
+          "url": "https://canlicapital.com/research/prereg-pre-fomc-announcement-drift.md",
+          "status": 200,
+          "x_robots_tag": "noindex"
+        },
+        {
+          "url": "https://canlicapital.com/research/repurchase-issuance-flow-feasibility.md",
+          "status": 200,
+          "x_robots_tag": "noindex"
+        },
+        {
+          "url": "https://canlicapital.com/research/sharadar-hdb-zero-dividend-quarantine.md",
+          "status": 200,
+          "x_robots_tag": "noindex"
+        },
+        {
+          "url": "https://canlicapital.com/research/spin-off-dislocation-lineage.md",
+          "status": 200,
+          "x_robots_tag": "noindex"
+        },
+        {
+          "url": "https://canlicapital.com/research/spin-off-document-schema.md",
+          "status": 200,
+          "x_robots_tag": "noindex"
+        },
+        {
+          "url": "https://canlicapital.com/research/stablecoin-dislocation-feasibility.md",
+          "status": 200,
+          "x_robots_tag": "noindex"
+        },
+        {
+          "url": "https://canlicapital.com/research/treasury-auction-concession-feasibility.md",
+          "status": 200,
+          "x_robots_tag": "noindex"
+        },
+        {
+          "url": "https://canlicapital.com/research/treasury-auction-identity-timing.md",
+          "status": 200,
+          "x_robots_tag": "noindex"
+        },
+        {
+          "url": "https://canlicapital.com/research/treasury-auction-state-machine.md",
+          "status": 200,
+          "x_robots_tag": "noindex"
+        }
+      ]
+    },
+    "trial_indexing": {
+      "local_packet_count_used_for_classification": 228,
+      "locally_classified_incomplete_packets": 226,
+      "incomplete_trial_detail_urls_in_live_sitemap": 0
+    },
+    "strategic_issues": [
+      {
+        "code": "RAW_EVIDENCE_FETCH_UNRESOLVED",
+        "count": 5,
+        "finding": "Raw download checks did not receive successful responses; their indexing directives are unknown."
+      }
+    ]
+  },
+  "local_candidate": {
+    "deployment_claimed": false,
+    "public_html_pages": 690,
+    "sitemap_urls": 327,
+    "linked_noindex_pages": 347,
+    "raw_markdown_navigation_link_count": 0,
+    "raw_evidence_x_robots_noindex_configured": true,
+    "sitemap_sha256": "76ce0a0083de707108a7808cf7ae1c79d43a013f469cc06614d0168e04fc44ba"
+  },
+  "sitemap_page_indexing_directives": {
+    "checked": 262,
+    "blocking": [],
+    "observations": [
+      {
+        "url": "https://canlicapital.com/systems",
+        "meta_robots": null,
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/research",
+        "meta_robots": null,
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/progress",
+        "meta_robots": null,
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/methodology",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/foundry",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/review",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/founder",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/measurements",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/performance",
+        "meta_robots": null,
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/open",
+        "meta_robots": null,
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/trials",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/notes",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/engineering",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/how-to-validate-a-backtest",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/standards/paper-evidence",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/developers",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/tools/deflated-sharpe",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/costs",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/tools/trial-accounting",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/tools/selection-risk",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/tools/execution",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/tools/breadth",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/tools/backtest-overfitting",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/research/topics/feasibility-protocols",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/research/topics/literature-reviews",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/tools",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/research/topics/equities",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/research/topics/engineering-foundations",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/tools/evidence-chain",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/verify",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/research/topics/options-and-volatility",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/research/topics/crypto",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/research/topics/commodities",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/research/topics/credit",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/research/topics/rates-and-treasuries",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/research/topics/event-driven",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/research/topics/macro-surprise",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/research/topics/execution-and-market-structure",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/research/topics/killed-candidates",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/research/alphatrend-managed-futures-lineage",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/research/alphavintage-macro-surprise-lineage",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/research/active-ownership-item4-v3-feasibility",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/research/alphamax-equity-momentum-lineage",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/research/alphavintage-missing-release-correction",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/research/bond-etf-nav-dislocation-feasibility",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/research/corporate-action-lifecycle",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/research/cftc-hedging-pressure-feasibility",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/research/corporate-action-basis-reconstruction",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/research/author-protocol-approval-protocol",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/research/borrow-execution-foundation",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/research/crowding-risk-foundation",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/research/crypto-carry-lineage",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/research/crypto-defensive-lineage",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/research/crypto-carry-portable-v1",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/research/crypto-lab-carry-crash-incident",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/research/crypto-momentum-lineage",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/research/crypto-vrp-lineage",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/research/crypto-reversal-lineage",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/research/crypto-multifactor-engine-lineage",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/research/current-book-drawdown-model",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/research/current-book-diversification-model",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/research/customer-supplier-propagation-feasibility",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/research/electricity-load-weather-feasibility",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/research/engineering-quality",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/research/energy-inventory-lineage",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/research/equity-narrative-change-lineage",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/research/equity-low-beta-lineage",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/research/equity-quality-lineage",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/research/execution-realism",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/research/forward-sharpe-evidence-standard",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/research/financing-replay",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/research/equity-value-investment-lineage",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/research/futures-execution-foundation",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/research/identity-redesign-notes",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/research/inflation-breakeven-relative-value-feasibility",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/research/kill-alphamax-betaneutral",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/research/kill-alphamax-short-margin-floor",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/research/kill-alphamax-shorttail",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/research/kill-cef-discount",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/research/kill-alphamax-volscale",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/research/kill-commodity-inventory-seasonal",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/research/kill-cot-positioning",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/research/equity-insider-activity-lineage",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/research/kill-crypto-dated-basis",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/research/kill-crypto-lowvol-720",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/research/kill-alphamax-weightgrid",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/research/kill-crypto-vrp",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/research/kill-eq-mom-margin",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/research/kill-eq-52whigh",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/research/kill-eq-quality-gp",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/research/kill-eq-net-issuance",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/research/kill-econtrend",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/research/kill-eq-value-btp",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/research/kill-equity-short-interest-dtc",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/research/kill-equity-pead",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/research/kill-equity-vrp",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/research/kill-funding-termstructure",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/research/kill-fx-carry-ratediff",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/research/kill-futcarry-xs",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/research/kill-fx-carry-trend-overlay",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/research/kill-crypto-short-tsmom",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/research/kill-fx-trend-cs",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/research/kill-insider-purchase-clusters",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/research/kill-intraday-mom",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/research/kill-letf-eod-flow",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/research/kill-mechflow-tom",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/research/kill-deephist-quality-top800",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/research/kill-mf-realfutures-breadth",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/research/kill-onchain-carry-filter",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/research/kill-multivenue-funding",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/research/kill-prereg-bab",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/research/kill-mf-realfutures-fasttrend",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/research/kill-pm-odds-signal",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/research/kill-prereg-quality",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/research/kill-prereg-value",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/research/kill-rates-curve-carry",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/research/kill-prereg-momentum",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/research/kill-tail-overlay",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/research/kill-xs-seasonality",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/research/kill-xasset-value",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/research/legacy-dsr-restatement",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/research/kill-xasset-carry",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/research/kill-residual-momentum",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/research/literature-bond-etf-nav-dislocation",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/research/literature-customer-supplier-propagation",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/research/literature-electricity-load-weather",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/research/literature-frontier-2026-08-16",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/research/literature-inflation-breakeven-relative-value",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/research/literature-natural-gas-storage-weather",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/research/literature-stablecoin-dislocation",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/research/literature-options-dispersion",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/research/macro-economic-trend-lineage",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/research/market-status-replay",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/research/literature-repurchase-issuance-flow",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/research/literature-spin-off-dislocation",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/research/merger-announcement-identity-v2",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/research/natural-gas-storage-weather-feasibility",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/research/options-dispersion-feasibility",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/research/options-execution-foundation",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/research/pre-fomc-announcement-drift-feasibility",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/research/prereg-earnings-narrative-change",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/research/spin-off-dislocation-lineage",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/research/sharadar-hdb-zero-dividend-quarantine",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/research/repurchase-issuance-flow-feasibility",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/research/stablecoin-dislocation-feasibility",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/research/prereg-pre-fomc-announcement-drift",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/research/treasury-auction-concession-feasibility",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/research/spin-off-document-schema",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/research/treasury-auction-identity-timing",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/research/treasury-auction-state-machine",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/publication/crypto-carry/v0.1.0",
+        "meta_robots": null,
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/publication/alphatrend/v0.1.0",
+        "meta_robots": null,
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/publication/crypto-defensive/v0.1.0",
+        "meta_robots": null,
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/publication/alphamax/v0.1.0",
+        "meta_robots": null,
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/publication/crypto-momentum/v0.1.0",
+        "meta_robots": null,
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/publication/alphavintage/v1.0.0",
+        "meta_robots": null,
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/publication/crypto-multifactor-engine/v0.1.0",
+        "meta_robots": null,
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/publication/crypto-reversal/v0.1.0",
+        "meta_robots": null,
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/publication/crypto-vrp/v0.1.0",
+        "meta_robots": null,
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/publication/energy-inventory/v0.1.0",
+        "meta_robots": null,
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/publication/equity-insider-activity/v0.1.0",
+        "meta_robots": null,
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/publication/equity-low-beta/v0.1.0",
+        "meta_robots": null,
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/publication/equity-value-investment/v0.1.0",
+        "meta_robots": null,
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/publication/macro-economic-trend/v0.1.0",
+        "meta_robots": null,
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/publication/equity-narrative-change/v0.1.0",
+        "meta_robots": null,
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/measurements/active-ownership-blind-handoff-receipt",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/publication/equity-quality/v0.1.0",
+        "meta_robots": null,
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/measurements/active-ownership-human-gate-audit",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/measurements/active-ownership-confirmatory-design",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/measurements/admission-dry-run-result",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/measurements/admission-v7-promotion-receipt",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/measurements/alphavintage-sealed-outcome",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/measurements/alpaca-broker-reconciliation",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/measurements/atlas-reachability-screen",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/measurements/author-protocol-review-packets",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/measurements/cftc-release-reachability",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/measurements/bond-etf-nav-reachability",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/measurements/contract-and-unit-audit",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/measurements/claim-coverage-map",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/measurements/crypto-lab-carry-crash-incident",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/measurements/cost-model-realism",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/measurements/book-without-alphavintage",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/measurements/crypto-position-attribution-rollout-verification",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/measurements/crypto-position-attribution",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/measurements/crypto-position-attribution-preflight-observation",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/measurements/current-book-diversification",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/measurements/data-lake-scale",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/measurements/drawdown-live-estimator",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/measurements/current-book-drawdown",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/measurements/data-gate-unblocks",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/measurements/execution-gap-power",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/measurements/external-validation-opportunities",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/measurements/feasibility-gate-reachability",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/measurements/external-publication",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/measurements/forward-drawdown-evidence",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/measurements/forward-sleeve-contribution",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/measurements/forward-evidence-contract",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/measurements/guards-that-cannot-fire",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/measurements/forward-evidence-maturity",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/measurements/identity-redesign-spinoff-form-universe",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/measurements/hdb-dividend-vendor-resolution",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/measurements/ledoit-wolf-effective-sample",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/measurements/live-covariance-memory",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/measurements/merger-announcement-confirmatory-design",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/measurements/mutation-ledger",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/measurements/operating-margin-corrected-replay-authorization",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/measurements/next-sleeve-selection",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/measurements/operating-margin-split-exposure",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/measurements/operating-margin-replay-infrastructure-failure",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/measurements/polygon-split-crosscheck",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/measurements/orthogonality-prior",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/measurements/operating-margin-exposed-split-resolution",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/measurements/portfolio-evidence",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/measurements/prereg-earnings-narrative-parameters",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/measurements/reachability-harness",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/measurements/prospective-trial-record",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/measurements/program-status",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/measurements/research-accessibility-audit",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/measurements/repurchase-issuance-feasibility-audits-repurchase-issuance-companyfacts-audit",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/measurements/repurchase-issuance-feasibility-audits-repurchase-issuance-identity-overlap-audit",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/measurements/record-continuity",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/measurements/sharadar-corporate-action-corrected-lake",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/measurements/repurchase-issuance-feasibility-audits-repurchase-issuance-semantics-audit",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/measurements/sharadar-corrected-corporate-action-validation",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/measurements/sharadar-dividend-basis-resolution",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/measurements/operating-margin-corrected-reproduction",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/measurements/sharadar-dividend-split-basis",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/measurements/sharadar-zero-dividend-quarantine",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/measurements/sharadar-hdb-corrected-lake",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/measurements/sleeve-admission-contract-contract",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/measurements/sharadar-split-lifecycle-scope",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/measurements/sharadar-split-governance-policy",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/measurements/sleeve-atlas-atlas",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/measurements/sleeve-atlas-audit",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/measurements/sleeve-atlas-sleeve-family-lineage-audit",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/measurements/sleeve-discovery",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/measurements/sleeve-quality-decomposition",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/measurements/spinoff-prorata-gate",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/measurements/split-exception-issuer-resolution",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/measurements/split-issuer-resolution-batch-v10",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/measurements/split-issuer-resolution-batch-v2",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/measurements/split-issuer-conflict-resolution-batch-v5",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/measurements/split-issuer-resolution-batch-v3",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/measurements/split-issuer-resolution-batch-v4",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/measurements/split-issuer-resolution-batch-v11",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/measurements/split-issuer-resolution-batch-v6",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/measurements/sharadar-dividend-price-consistency",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/measurements/split-issuer-resolution-batch-v7",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/measurements/split-issuer-resolution-batch-v9",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/measurements/split-issuer-resolution-batch-v8",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/measurements/split-lifecycle-discontinuity-resolution",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/measurements/trial-accounting",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/measurements/vate-2020-dividend-resolution",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/measurements/unresolved-split-event-context",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/trials/8446702cb8dd1768",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/notes/deflating-a-sharpe-ratio",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/notes/one-symbol",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/trials/e2b76a7604131f00",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/measurements/tender-offer-reachability",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/notes/what-competitive-programming-bought",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/notes/the-trade-that-lost-99-percent",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      },
+      {
+        "url": "https://canlicapital.com/notes/seventy-files",
+        "meta_robots": "index, follow, max-snippet:-1, max-image-preview:large",
+        "x_robots_tag": null,
+        "blocks_indexing": false
+      }
+    ]
+  }
+}

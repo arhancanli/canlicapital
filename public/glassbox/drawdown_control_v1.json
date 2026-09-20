@@ -1,8 +1,8 @@
 {
   "acceptance": {
     "accepted_as_bound_mechanism": true,
-    "conservative_p95_with_absorbing_ladder": 0.10067091639034838,
-    "conservative_p99_with_absorbing_ladder": 0.10196252172481021,
+    "conservative_p95_with_absorbing_ladder": 0.10067092248678097,
+    "conservative_p99_with_absorbing_ladder": 0.10196253217663818,
     "p95_within_rule": true,
     "p99_within_rule": true,
     "rule": {
@@ -19,22 +19,22 @@
   "baseline_reproduction": {
     "circular_moving_block_bootstrap_63": {
       "expected_max_drawdown": {
-        "published": 0.07833345519452796,
-        "regenerated": 0.07833345519452796
+        "published": 0.07833345797459178,
+        "regenerated": 0.07833345797459178
       },
       "p95_max_drawdown": {
-        "published": 0.13347000307185705,
-        "regenerated": 0.13347000307185705
+        "published": 0.1334699901631314,
+        "regenerated": 0.1334699901631314
       }
     },
     "correlation_regime": {
       "expected_max_drawdown": {
-        "published": 0.09318244555751289,
-        "regenerated": 0.09318244555751289
+        "published": 0.093182451485886,
+        "regenerated": 0.093182451485886
       },
       "p95_max_drawdown": {
-        "published": 0.16451438282127803,
-        "regenerated": 0.16451438282127803
+        "published": 0.16451438727248682,
+        "regenerated": 0.16451438727248682
       }
     }
   },
@@ -44,18 +44,18 @@
       "sha256": "sha256:b4700b1d6318d98767cef8344d868368ea3713778343d6f3181de3bab9c3a505"
     },
     "ladder_implementation_sha256": "sha256:8d7324d1af52cefc97efc298cebfa38309ce873236ac60bcb0638b6e539c66d1",
-    "live_fingerprint": "sha256:654432cc37acab969f8b70af80b0ef551f624098a59e030c0133006efded4a6a",
+    "live_fingerprint": "sha256:553aff517efdc069c2ee80747ef9a9d750da817ceeab8dbc344cae050b814e09",
     "protocol": {
       "path": "docs/design/DRAWDOWN_CONTROL_V1_PROTOCOL.md",
       "sha256": "sha256:27be139fa6fd79203c28d3a070188d14e22b49ced3175302b4d7ee605a3c6a9f"
     },
-    "published_study_content_hash": "sha256:511679a6b1845d89ff568ed5833de6b4501bb34130fc29d41f0388fbfdafd8bf"
+    "published_study_content_hash": "sha256:59c5def01d7ea037cbc0f36e688321abdfa32c1c59aed527b84c17997342f8ef"
   },
   "bound": 0.1,
   "calibration": {
-    "observed_book_max_drawdown_research_window": 0.04508708468741085,
-    "research_window_annualized_drift": 0.09304255112296778,
-    "research_window_daily_mean_return": 0.000254911098967035,
+    "observed_book_max_drawdown_research_window": 0.04508708364606029,
+    "research_window_annualized_drift": 0.09304254979985879,
+    "research_window_daily_mean_return": 0.0002549110953420789,
     "window": [
       "2023-07-07",
       "2026-06-01"
@@ -63,8 +63,8 @@
   },
   "capital_kind": "RESEARCH_SIMULATION_OVER_PAPER_SPECIFICATION",
   "claim_boundary": "A research simulation over the paper specification, on the published drawdown study's own paths. It establishes nothing about the live book, which runs no book-level ladder today; it measures what the declared ladder would do on those paths and what it would cost. The 11 percent bound holds per drawdown episode up to a one-day overshoot at half gross; it is a brake, not a guarantee.",
-  "content_hash": "sha256:c6917b6ed396706ceabc047cf0b25af2052c7814a97c77c68519b64ea80ab35c",
-  "generated_at": "2026-09-14T20:52:08.260383+00:00",
+  "content_hash": "sha256:cff68731d2ea58a23359b9456f98dfdef465277516ef85aad14248bdd63e71d1",
+  "generated_at": "2026-09-19T22:12:41.378468+00:00",
   "ladder": {
     "dd_flat_frac": 0.1,
     "dd_half_frac": 0.05,
@@ -77,13 +77,13 @@
     "secondary_scenario_flat_cooldown_days": 14
   },
   "published_measures_separately": {
-    "historical_scenario_max_drawdown": 0.04508708468741085,
-    "realized_forward_max_drawdown": 0.038708387200146466,
+    "historical_scenario_max_drawdown": 0.04508708364606029,
+    "realized_forward_max_drawdown": 0.03896378215437013,
     "realized_forward_source": "artifacts/engineering/forward_evidence_maturity.json drawdown_evidence.realized_live_max_drawdown",
-    "simulated_expected_no_ladder_conservative": 0.09318244555751289,
-    "simulated_expected_with_ladder_conservative": 0.07272046523176089,
-    "simulated_p95_no_ladder_conservative": 0.16451438282127803,
-    "simulated_p95_with_ladder_conservative": 0.10067091639034838
+    "simulated_expected_no_ladder_conservative": 0.093182451485886,
+    "simulated_expected_with_ladder_conservative": 0.07272046992973778,
+    "simulated_p95_no_ladder_conservative": 0.16451438727248682,
+    "simulated_p95_with_ladder_conservative": 0.10067092248678097
   },
   "results": {
     "circular_moving_block_bootstrap_63": {
@@ -91,52 +91,52 @@
         "absorbing": {
           "halt_probability": 0.0,
           "max_drawdown": {
-            "expected": 0.038770374101932153,
-            "max": 0.07696596978837777,
-            "median": 0.037548310397391926,
-            "p95": 0.05680893183376685,
-            "p99": 0.0642233459455759,
-            "stderr": 0.00010529766863893557
+            "expected": 0.03877037830994294,
+            "max": 0.0769659737416587,
+            "median": 0.03754832335101427,
+            "p95": 0.05680893223547468,
+            "p99": 0.0642233307670585,
+            "stderr": 0.00010529767453421344
           },
           "mean_auto_rearms_per_path": 0.0,
           "mean_first_halt_day_among_halted": null,
           "mean_fraction_of_days_reduced": 0.02610027397260274,
-          "mean_horizon_return": 0.20058851122800103,
-          "mean_horizon_return_cost_vs_no_ladder": 0.003208058120475199,
-          "mean_terminal_wealth": 1.200588511228001,
+          "mean_horizon_return": 0.2005885074314322,
+          "mean_horizon_return_cost_vs_no_ladder": 0.003208058250760537,
+          "mean_terminal_wealth": 1.2005885074314322,
           "overshoot_beyond_bound_on_halted_paths": null
         },
         "auto_rearm": {
           "halt_probability": 0.0,
           "max_drawdown": {
-            "expected": 0.038770374101932153,
-            "max": 0.07696596978837777,
-            "median": 0.037548310397391926,
-            "p95": 0.05680893183376685,
-            "p99": 0.0642233459455759,
-            "stderr": 0.00010529766863893557
+            "expected": 0.03877037830994294,
+            "max": 0.0769659737416587,
+            "median": 0.03754832335101427,
+            "p95": 0.05680893223547468,
+            "p99": 0.0642233307670585,
+            "stderr": 0.00010529767453421344
           },
           "mean_auto_rearms_per_path": 0.0,
           "mean_first_halt_day_among_halted": null,
           "mean_fraction_of_days_reduced": 0.02610027397260274,
-          "mean_horizon_return": 0.20058851122800103,
-          "mean_horizon_return_cost_vs_no_ladder": 0.003208058120475199,
-          "mean_terminal_wealth": 1.200588511228001,
+          "mean_horizon_return": 0.2005885074314322,
+          "mean_horizon_return_cost_vs_no_ladder": 0.003208058250760537,
+          "mean_terminal_wealth": 1.2005885074314322,
           "overshoot_beyond_bound_on_halted_paths": null
         },
-        "drift_per_day": 0.000254911098967035,
+        "drift_per_day": 0.0002549110953420789,
         "horizon_days": 730,
         "no_ladder": {
           "max_drawdown": {
-            "expected": 0.03911097961336509,
-            "max": 0.10256934090453373,
-            "median": 0.037548310397391926,
-            "p95": 0.0591108473855656,
-            "p99": 0.07178147245003931,
-            "stderr": 0.00011320183995660202
+            "expected": 0.03911098370757171,
+            "max": 0.10256934191143663,
+            "median": 0.03754832335101427,
+            "p95": 0.05911084299934545,
+            "p99": 0.07178145901972183,
+            "stderr": 0.00011320184397563778
           },
-          "mean_horizon_return": 0.20379656934847623,
-          "mean_terminal_wealth": 1.2037965693484762
+          "mean_horizon_return": 0.20379656568219273,
+          "mean_terminal_wealth": 1.2037965656821927
         },
         "paths": 10000
       },
@@ -144,66 +144,66 @@
         "absorbing": {
           "halt_probability": 0.0278,
           "max_drawdown": {
-            "expected": 0.0656819791578466,
-            "max": 0.10418368611470707,
-            "median": 0.06487619818058943,
-            "p95": 0.09441856993864993,
-            "p99": 0.10088018276930856,
-            "stderr": 0.00015692018628530108
+            "expected": 0.06568198240200643,
+            "max": 0.10418370982168523,
+            "median": 0.0648762011358574,
+            "p95": 0.09441856789523667,
+            "p99": 0.10088016126474118,
+            "stderr": 0.00015692019007175248
           },
           "mean_auto_rearms_per_path": 0.0,
           "mean_first_halt_day_among_halted": 609.3705035971223,
           "mean_fraction_of_days_reduced": 0.39109095890410955,
-          "mean_horizon_return": -0.0023039658585417566,
-          "mean_horizon_return_cost_vs_no_ladder": 0.0017228065455666686,
-          "mean_terminal_wealth": 0.9976960341414582,
+          "mean_horizon_return": -0.0023039671389204486,
+          "mean_horizon_return_cost_vs_no_ladder": 0.0017228074259019177,
+          "mean_terminal_wealth": 0.9976960328610796,
           "overshoot_beyond_bound_on_halted_paths": {
-            "expected": 0.0008431524555891874,
-            "max": 0.004183686114707069,
-            "median": 0.0006436977979234204,
-            "p95": 0.0023328963081050472,
-            "p99": 0.0037890342955764033,
-            "stderr": 4.641517327435053e-05
+            "expected": 0.0008431564924409655,
+            "max": 0.0041837098216852275,
+            "median": 0.0006437040828779772,
+            "p95": 0.0023329026834530524,
+            "p99": 0.0037890474390903637,
+            "stderr": 4.6415150463697805e-05
           }
         },
         "auto_rearm": {
           "halt_probability": 0.0278,
           "max_drawdown": {
-            "expected": 0.06605099559811872,
-            "max": 0.1648470534500044,
-            "median": 0.06487619818058943,
-            "p95": 0.09441856993864993,
-            "p99": 0.11497107642559933,
-            "stderr": 0.00016774541666875027
+            "expected": 0.06605099881948187,
+            "max": 0.16484706316615605,
+            "median": 0.0648762011358574,
+            "p95": 0.09441856789523667,
+            "p99": 0.11497105862942317,
+            "stderr": 0.00016774541996128646
           },
           "mean_auto_rearms_per_path": 0.0253,
           "mean_first_halt_day_among_halted": 609.3705035971223,
           "mean_fraction_of_days_reduced": 0.38732054794520554,
-          "mean_horizon_return": -0.002260732801897425,
-          "mean_horizon_return_cost_vs_no_ladder": 0.0016795734889223368,
-          "mean_terminal_wealth": 0.9977392671981026,
+          "mean_horizon_return": -0.0022607340517204477,
+          "mean_horizon_return_cost_vs_no_ladder": 0.0016795743387019169,
+          "mean_terminal_wealth": 0.9977392659482796,
           "overshoot_beyond_bound_on_halted_paths": {
-            "expected": 0.014117125127248166,
-            "max": 0.06484705345000438,
-            "median": 0.01151496781434988,
-            "p95": 0.038316822938083334,
-            "p99": 0.04962068368771019,
-            "stderr": 0.0007598945037710754
+            "expected": 0.014117128344075407,
+            "max": 0.06484706316615604,
+            "median": 0.011514974520660498,
+            "p95": 0.03831682643390259,
+            "p99": 0.04962069929645403,
+            "stderr": 0.0007598945681107181
           }
         },
         "drift_per_day": 0.0,
         "horizon_days": 730,
         "no_ladder": {
           "max_drawdown": {
-            "expected": 0.07833345519452796,
-            "max": 0.21971741206376194,
-            "median": 0.0734936238547309,
-            "p95": 0.13347000307185705,
-            "p99": 0.15975048612200501,
-            "stderr": 0.00028862845937699546
+            "expected": 0.07833345797459178,
+            "max": 0.2197174166791177,
+            "median": 0.07349361311310043,
+            "p95": 0.1334699901631314,
+            "p99": 0.15975047940316958,
+            "stderr": 0.0002886284625864871
           },
-          "mean_horizon_return": -0.000581159312975088,
-          "mean_terminal_wealth": 0.9994188406870249
+          "mean_horizon_return": -0.0005811597130185309,
+          "mean_terminal_wealth": 0.9994188402869815
         },
         "paths": 10000
       }
@@ -213,66 +213,66 @@
         "absorbing": {
           "halt_probability": 0.0012,
           "max_drawdown": {
-            "expected": 0.04844561017267748,
-            "max": 0.10438407166991515,
-            "median": 0.047629681513659594,
-            "p95": 0.07193957635602992,
-            "p99": 0.08420917067141659,
-            "stderr": 0.00013537338692022334
+            "expected": 0.048445634088988346,
+            "max": 0.10438408900283702,
+            "median": 0.0476296861417459,
+            "p95": 0.0719395856231596,
+            "p99": 0.0842091726347914,
+            "stderr": 0.00013537365884294848
           },
           "mean_auto_rearms_per_path": 0.0,
           "mean_first_halt_day_among_halted": 516.5833333333334,
-          "mean_fraction_of_days_reduced": 0.09362808219178083,
-          "mean_horizon_return": 0.1945876936823967,
-          "mean_horizon_return_cost_vs_no_ladder": 0.009601064154132422,
-          "mean_terminal_wealth": 1.1945876936823967,
+          "mean_fraction_of_days_reduced": 0.0936290410958904,
+          "mean_horizon_return": 0.19458766964091856,
+          "mean_horizon_return_cost_vs_no_ladder": 0.00960108505597601,
+          "mean_terminal_wealth": 1.1945876696409186,
           "overshoot_beyond_bound_on_halted_paths": {
-            "expected": 0.000854705101916949,
-            "max": 0.0043840716699151405,
-            "median": 0.0004761262019496171,
-            "p95": 0.0028241553124820273,
-            "p99": 0.00407208839842852,
-            "stderr": 0.00034460187105237936
+            "expected": 0.0008547139931653439,
+            "max": 0.004384089002837016,
+            "median": 0.0004761324948577006,
+            "p95": 0.0028241707743949388,
+            "p99": 0.004072105357148603,
+            "stderr": 0.00034460270663423074
           }
         },
         "auto_rearm": {
           "halt_probability": 0.0012,
           "max_drawdown": {
-            "expected": 0.048454427696079314,
-            "max": 0.12214916514836949,
-            "median": 0.047629681513659594,
-            "p95": 0.07193957635602992,
-            "p99": 0.08420917067141659,
-            "stderr": 0.00013575305525671453
+            "expected": 0.048454451612952275,
+            "max": 0.1221491673852736,
+            "median": 0.0476296861417459,
+            "p95": 0.0719395856231596,
+            "p99": 0.0842091726347914,
+            "stderr": 0.00013575332633218676
           },
           "mean_auto_rearms_per_path": 0.0012,
           "mean_first_halt_day_among_halted": 516.5833333333334,
-          "mean_fraction_of_days_reduced": 0.09330191780821917,
-          "mean_horizon_return": 0.19467140580398068,
-          "mean_horizon_return_cost_vs_no_ladder": 0.009517352032548443,
-          "mean_terminal_wealth": 1.1946714058039807,
+          "mean_fraction_of_days_reduced": 0.09330287671232876,
+          "mean_horizon_return": 0.1946713817610466,
+          "mean_horizon_return_cost_vs_no_ladder": 0.009517372935847979,
+          "mean_terminal_wealth": 1.1946713817610466,
           "overshoot_beyond_bound_on_halted_paths": {
-            "expected": 0.008202641270111935,
-            "max": 0.022149165148369482,
-            "median": 0.006842952300094657,
-            "p95": 0.018895203363890112,
-            "p99": 0.02149837279147361,
-            "stderr": 0.001781558055660654
+            "expected": 0.00820265062977458,
+            "max": 0.022149167385273588,
+            "median": 0.006842966966614489,
+            "p95": 0.018895213523486193,
+            "p99": 0.021498376612916113,
+            "stderr": 0.0017815574153753728
           }
         },
-        "drift_per_day": 0.000254911098967035,
+        "drift_per_day": 0.0002549110953420789,
         "horizon_days": 730,
         "no_ladder": {
           "max_drawdown": {
-            "expected": 0.05151834085571932,
-            "max": 0.16009050346034837,
-            "median": 0.047629681513659594,
-            "p95": 0.08868243458955175,
-            "p99": 0.11264205390662496,
-            "stderr": 0.0001898583294564245
+            "expected": 0.051518345612996085,
+            "max": 0.16009052828401082,
+            "median": 0.0476296861417459,
+            "p95": 0.08868243667069338,
+            "p99": 0.1126420672880684,
+            "stderr": 0.0001898583430778187
           },
-          "mean_horizon_return": 0.20418875783652912,
-          "mean_terminal_wealth": 1.2041887578365291
+          "mean_horizon_return": 0.20418875469689457,
+          "mean_terminal_wealth": 1.2041887546968946
         },
         "paths": 10000
       },
@@ -280,66 +280,66 @@
         "absorbing": {
           "halt_probability": 0.1109,
           "max_drawdown": {
-            "expected": 0.07272046523176089,
-            "max": 0.10565952466446393,
-            "median": 0.0712827867478919,
-            "p95": 0.10067091639034838,
-            "p99": 0.10196252172481021,
-            "stderr": 0.00017214956382788436
+            "expected": 0.07272046992973778,
+            "max": 0.10565953354832158,
+            "median": 0.07128279099873647,
+            "p95": 0.10067092248678097,
+            "p99": 0.10196253217663818,
+            "stderr": 0.00017214957296018724
           },
           "mean_auto_rearms_per_path": 0.0,
           "mean_first_halt_day_among_halted": 536.5816050495943,
           "mean_fraction_of_days_reduced": 0.4583610958904109,
-          "mean_horizon_return": -0.00026341198429402635,
-          "mean_horizon_return_cost_vs_no_ladder": 8.092173743423636e-06,
-          "mean_terminal_wealth": 0.999736588015706,
+          "mean_horizon_return": -0.00026341191329082303,
+          "mean_horizon_return_cost_vs_no_ladder": 8.092141024040878e-06,
+          "mean_terminal_wealth": 0.9997365880867092,
           "overshoot_beyond_bound_on_halted_paths": {
-            "expected": 0.0008254247737451877,
-            "max": 0.0056595246644639274,
-            "median": 0.0005873874945040158,
-            "p95": 0.0023575327144334133,
-            "p99": 0.0033294036818878104,
-            "stderr": 2.3367043207599772e-05
+            "expected": 0.0008254308396449333,
+            "max": 0.005659533548321577,
+            "median": 0.0005874018710533002,
+            "p95": 0.0023575369857570636,
+            "p99": 0.003329406739208851,
+            "stderr": 2.3367041210326498e-05
           }
         },
         "auto_rearm": {
           "halt_probability": 0.1109,
           "max_drawdown": {
-            "expected": 0.07499847472198305,
-            "max": 0.2002443797127622,
-            "median": 0.0712827867478919,
-            "p95": 0.11926035613381672,
-            "p99": 0.150240559054334,
-            "stderr": 0.00022486085311345186
+            "expected": 0.07499847955761388,
+            "max": 0.20024439723740672,
+            "median": 0.07128279099873647,
+            "p95": 0.1192603602247709,
+            "p99": 0.15024056612631398,
+            "stderr": 0.0002248608651825398
           },
           "mean_auto_rearms_per_path": 0.1062,
           "mean_first_halt_day_among_halted": 536.5816050495943,
           "mean_fraction_of_days_reduced": 0.43655479452054796,
-          "mean_horizon_return": -0.0001543837941091475,
-          "mean_horizon_return_cost_vs_no_ladder": -0.00010093601644145522,
-          "mean_terminal_wealth": 0.9998456162058909,
+          "mean_horizon_return": -0.000154383720815221,
+          "mean_horizon_return_cost_vs_no_ladder": -0.00010093605145156115,
+          "mean_terminal_wealth": 0.9998456162791848,
           "overshoot_beyond_bound_on_halted_paths": {
-            "expected": 0.02136653830144731,
-            "max": 0.1002443797127622,
-            "median": 0.01663462516967415,
-            "p95": 0.05986177729963131,
-            "p99": 0.07233103061759041,
-            "stderr": 0.0005681582179192844
+            "expected": 0.02136654560859084,
+            "max": 0.10024439723740672,
+            "median": 0.016634638275806995,
+            "p95": 0.059861788840162154,
+            "p99": 0.07233104147373638,
+            "stderr": 0.0005681582453017418
           }
         },
         "drift_per_day": 0.0,
         "horizon_days": 730,
         "no_ladder": {
           "max_drawdown": {
-            "expected": 0.09318244555751289,
-            "max": 0.28581398327550456,
-            "median": 0.08585056922869688,
-            "p95": 0.16451438282127803,
-            "p99": 0.20650746465435302,
-            "stderr": 0.00037836430853936854
+            "expected": 0.093182451485886,
+            "max": 0.2858139887333401,
+            "median": 0.08585058292429881,
+            "p95": 0.16451438727248682,
+            "p99": 0.2065074843392611,
+            "stderr": 0.0003783643288692922
           },
-          "mean_horizon_return": -0.0002553198105506027,
-          "mean_terminal_wealth": 0.9997446801894494
+          "mean_horizon_return": -0.00025531977226678215,
+          "mean_terminal_wealth": 0.9997446802277332
         },
         "paths": 10000
       }

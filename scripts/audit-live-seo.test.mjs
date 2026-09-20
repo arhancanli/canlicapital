@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 
-import { inspectHtml } from "./audit-live-seo.mjs";
+import { inspectHtml, classifyRawEvidenceHeaders } from "./audit-live-seo.mjs";
 
 test("inspectHtml binds canonical metadata, graph schema, and markdown leaks", () => {
   const url = "https://canlicapital.com/trials/example";
@@ -32,4 +32,16 @@ test("inspectHtml reports malformed JSON-LD without inventing a type", () => {
 
   assert.equal(result.invalid_json_ld_blocks, 1);
   assert.deepEqual(result.schema_types, []);
+});
+
+
+test("failed and non-successful fetches cannot establish indexability", () => {
+  const failed = { url: '/failed', status: null, fetch_error: 'timeout' };
+  const missing = { url: '/missing', status: 404, x_robots_tag: null };
+  const accessible = { url: '/accessible', status: 200, x_robots_tag: null };
+  const excluded = { url: '/excluded', status: 200, x_robots_tag: 'noindex, follow' };
+  const none = { url: '/none', status: 200, x_robots_tag: 'none' };
+  assert.deepEqual(classifyRawEvidenceHeaders([failed, missing, accessible, excluded, none]), {
+    unknown: [failed, missing], withoutNoindex: [accessible],
+  });
 });

@@ -1,0 +1,2953 @@
+{
+  "schema": "canli.company-identity-filing-review.v1",
+  "input_sha256": "2fd6495c1d6cee29d810f770971fc7300b88f371f5de221bacfb7fc4598575db",
+  "publication_approved": false,
+  "complete": true,
+  "filings": [
+    {
+      "cik": "0000081955",
+      "companyfacts_name": "RAND CAPITAL CORPORATION",
+      "discovery_names": [
+        "RAND CAPITAL CORP"
+      ],
+      "accession": "0001193125-26-133767",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/81955/000119312526133767/0001193125-26-133767-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T07:19:20.235981+00:00",
+        "bytes": 9567,
+        "sha256": "0d865c16f39c560f7abc9414cbf1537825128e90b485f767dca3fa9c5f36f064",
+        "body_path": "artifacts/seo/corpus-local/identity-filings/0000081955-0001193125-26-133767-index.response"
+      },
+      "index_filers": [
+        "RAND CAPITAL CORP (Filer) CIK : 0000081955 (see all company filings) EIN. : 160961359 | State of Incorp.: NY | Fiscal Year End: 1231 Type: 10-K/A | Act: 34 | File No.: 814-00235 | Film No.: 26819114"
+      ],
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/81955/000119312526133767/rand-20251231.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T07:19:22.681167+00:00",
+        "bytes": 7190852,
+        "sha256": "2ca53897d3a79513e87b23d39b16295e8e44f3a39c1dfa8f49e5f87b510af16a",
+        "body_path": "artifacts/seo/corpus-local/identity-filings/0000081955-0001193125-26-133767-primary.response"
+      },
+      "dei_identity_facts": [
+        {
+          "name": "dei:EntityCentralIndexKey",
+          "context": "C_dbe8a597-d4ce-4615-a58d-61f7cd331522",
+          "text": "0000081955"
+        },
+        {
+          "name": "dei:EntityRegistrantName",
+          "context": "C_dbe8a597-d4ce-4615-a58d-61f7cd331522",
+          "text": "Rand Capital Corporation"
+        }
+      ],
+      "core_fact_contexts": [
+        {
+          "tag": "us-gaap:Assets",
+          "contexts": [
+            "C_7b6085e2-cd99-41be-9b92-4a4e4961a335",
+            "C_cb030112-bef5-4154-842a-ed633e38fa07"
+          ]
+        },
+        {
+          "tag": "us-gaap:Liabilities",
+          "contexts": [
+            "C_7b6085e2-cd99-41be-9b92-4a4e4961a335",
+            "C_cb030112-bef5-4154-842a-ed633e38fa07"
+          ]
+        },
+        {
+          "tag": "us-gaap:NetCashProvidedByUsedInOperatingActivities",
+          "contexts": [
+            "C_4c7dcb0a-6a7d-492c-a282-46e67b6ed1ff",
+            "C_dbe8a597-d4ce-4615-a58d-61f7cd331522",
+            "C_eafaf64e-38df-4751-b4b5-2b534c893885"
+          ]
+        },
+        {
+          "tag": "us-gaap:NetIncomeLoss",
+          "contexts": [
+            "C_25690eb0-2d91-48ef-b5f1-fe095dd7f86a",
+            "C_4c7dcb0a-6a7d-492c-a282-46e67b6ed1ff",
+            "C_4ea3e9fe-6d48-420c-819e-9dc43d7cf8d7",
+            "C_52112d16-abb6-4621-ae63-18fff9caaa80",
+            "C_638d5ffc-6d40-4e29-812e-170230cda767",
+            "C_8149a240-4621-447e-82b7-62d09475883c",
+            "C_9fbb6c38-eacf-448d-9115-1893ee0b5dca",
+            "C_a6d4a109-6b57-4c95-85ea-ac27a589454c",
+            "C_af2bc7c7-3a0a-434f-a50d-95a0f4ebc655",
+            "C_b9d67f0e-e26d-46c5-870a-b5477ee137ba",
+            "C_bcdbd115-f047-4aac-8e2b-13ff31c7f899",
+            "C_dbe8a597-d4ce-4615-a58d-61f7cd331522",
+            "C_eafaf64e-38df-4751-b4b5-2b534c893885"
+          ]
+        },
+        {
+          "tag": "us-gaap:StockholdersEquity",
+          "contexts": [
+            "C_1b9638a6-44da-403d-af48-1dd5580aec87",
+            "C_2794a2fe-b10e-4dda-a2c0-0889fd94ebcc",
+            "C_390f0789-b87f-49eb-8c57-1b93cd335aa9",
+            "C_3e3acecb-b3d0-45af-b043-7a7fdbcf7aef",
+            "C_495d0db9-d973-4026-9b36-58fdb6a0e480",
+            "C_4a1a1468-4e7a-429e-9d06-6c07aefd9301",
+            "C_59a580fe-103f-4830-aa73-bc11123bef3e",
+            "C_60ac36f1-4063-44e4-8495-f3e8b8e6b31b",
+            "C_7b6085e2-cd99-41be-9b92-4a4e4961a335",
+            "C_8b40b6c7-444b-45b6-93ef-4259e27432e9",
+            "C_8f031e96-dd82-47c0-8801-df98613deacf",
+            "C_91a6a773-ab98-4dfb-9b4b-bed12e4911ca",
+            "C_ad39be6d-7638-4699-99b4-befc094c993a",
+            "C_b6093840-e0e8-4377-8bd9-cfda19b9838f",
+            "C_cb030112-bef5-4154-842a-ed633e38fa07",
+            "C_dc8abe46-e68a-4a08-aa3f-cd6c78cea347",
+            "C_e5ab103d-57ae-4950-a0c6-77af93142970"
+          ]
+        }
+      ],
+      "contexts": {
+        "C_1b9638a6-44da-403d-af48-1dd5580aec87": {
+          "identifiers": [
+            "0000081955"
+          ],
+          "has_dimensions": true
+        },
+        "C_25690eb0-2d91-48ef-b5f1-fe095dd7f86a": {
+          "identifiers": [
+            "0000081955"
+          ],
+          "has_dimensions": false
+        },
+        "C_2794a2fe-b10e-4dda-a2c0-0889fd94ebcc": {
+          "identifiers": [
+            "0000081955"
+          ],
+          "has_dimensions": true
+        },
+        "C_390f0789-b87f-49eb-8c57-1b93cd335aa9": {
+          "identifiers": [
+            "0000081955"
+          ],
+          "has_dimensions": true
+        },
+        "C_3e3acecb-b3d0-45af-b043-7a7fdbcf7aef": {
+          "identifiers": [
+            "0000081955"
+          ],
+          "has_dimensions": true
+        },
+        "C_495d0db9-d973-4026-9b36-58fdb6a0e480": {
+          "identifiers": [
+            "0000081955"
+          ],
+          "has_dimensions": true
+        },
+        "C_4a1a1468-4e7a-429e-9d06-6c07aefd9301": {
+          "identifiers": [
+            "0000081955"
+          ],
+          "has_dimensions": true
+        },
+        "C_4c7dcb0a-6a7d-492c-a282-46e67b6ed1ff": {
+          "identifiers": [
+            "0000081955"
+          ],
+          "has_dimensions": false
+        },
+        "C_4ea3e9fe-6d48-420c-819e-9dc43d7cf8d7": {
+          "identifiers": [
+            "0000081955"
+          ],
+          "has_dimensions": false
+        },
+        "C_52112d16-abb6-4621-ae63-18fff9caaa80": {
+          "identifiers": [
+            "0000081955"
+          ],
+          "has_dimensions": false
+        },
+        "C_59a580fe-103f-4830-aa73-bc11123bef3e": {
+          "identifiers": [
+            "0000081955"
+          ],
+          "has_dimensions": true
+        },
+        "C_60ac36f1-4063-44e4-8495-f3e8b8e6b31b": {
+          "identifiers": [
+            "0000081955"
+          ],
+          "has_dimensions": true
+        },
+        "C_638d5ffc-6d40-4e29-812e-170230cda767": {
+          "identifiers": [
+            "0000081955"
+          ],
+          "has_dimensions": false
+        },
+        "C_7b6085e2-cd99-41be-9b92-4a4e4961a335": {
+          "identifiers": [
+            "0000081955"
+          ],
+          "has_dimensions": false
+        },
+        "C_8149a240-4621-447e-82b7-62d09475883c": {
+          "identifiers": [
+            "0000081955"
+          ],
+          "has_dimensions": false
+        },
+        "C_8b40b6c7-444b-45b6-93ef-4259e27432e9": {
+          "identifiers": [
+            "0000081955"
+          ],
+          "has_dimensions": false
+        },
+        "C_8f031e96-dd82-47c0-8801-df98613deacf": {
+          "identifiers": [
+            "0000081955"
+          ],
+          "has_dimensions": true
+        },
+        "C_91a6a773-ab98-4dfb-9b4b-bed12e4911ca": {
+          "identifiers": [
+            "0000081955"
+          ],
+          "has_dimensions": true
+        },
+        "C_9fbb6c38-eacf-448d-9115-1893ee0b5dca": {
+          "identifiers": [
+            "0000081955"
+          ],
+          "has_dimensions": true
+        },
+        "C_a6d4a109-6b57-4c95-85ea-ac27a589454c": {
+          "identifiers": [
+            "0000081955"
+          ],
+          "has_dimensions": false
+        },
+        "C_ad39be6d-7638-4699-99b4-befc094c993a": {
+          "identifiers": [
+            "0000081955"
+          ],
+          "has_dimensions": false
+        },
+        "C_af2bc7c7-3a0a-434f-a50d-95a0f4ebc655": {
+          "identifiers": [
+            "0000081955"
+          ],
+          "has_dimensions": false
+        },
+        "C_b6093840-e0e8-4377-8bd9-cfda19b9838f": {
+          "identifiers": [
+            "0000081955"
+          ],
+          "has_dimensions": true
+        },
+        "C_b9d67f0e-e26d-46c5-870a-b5477ee137ba": {
+          "identifiers": [
+            "0000081955"
+          ],
+          "has_dimensions": false
+        },
+        "C_bcdbd115-f047-4aac-8e2b-13ff31c7f899": {
+          "identifiers": [
+            "0000081955"
+          ],
+          "has_dimensions": true
+        },
+        "C_cb030112-bef5-4154-842a-ed633e38fa07": {
+          "identifiers": [
+            "0000081955"
+          ],
+          "has_dimensions": false
+        },
+        "C_dbe8a597-d4ce-4615-a58d-61f7cd331522": {
+          "identifiers": [
+            "0000081955"
+          ],
+          "has_dimensions": false
+        },
+        "C_dc8abe46-e68a-4a08-aa3f-cd6c78cea347": {
+          "identifiers": [
+            "0000081955"
+          ],
+          "has_dimensions": true
+        },
+        "C_e5ab103d-57ae-4950-a0c6-77af93142970": {
+          "identifiers": [
+            "0000081955"
+          ],
+          "has_dimensions": true
+        },
+        "C_eafaf64e-38df-4751-b4b5-2b534c893885": {
+          "identifiers": [
+            "0000081955"
+          ],
+          "has_dimensions": false
+        }
+      },
+      "state": "IDENTITY_EVIDENCE_CAPTURED_REVIEW_PENDING"
+    },
+    {
+      "cik": "0000772263",
+      "companyfacts_name": "NITCHES INC.",
+      "discovery_names": [
+        "NITCHES INC"
+      ],
+      "accession": "0000772263-25-000003",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/772263/000077226325000003/0000772263-25-000003-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T07:19:25.218126+00:00",
+        "bytes": 10852,
+        "sha256": "23b4a49fef832ded868b7a2a40f75f156f5ab48dc3c287a01ece9df4fe32b884",
+        "body_path": "artifacts/seo/corpus-local/identity-filings/0000772263-0000772263-25-000003-index.response"
+      },
+      "index_filers": [
+        "NITCHES INC (Filer) CIK : 0000772263 (see all company filings) EIN. : 952848021 | State of Incorp.: NV | Fiscal Year End: 0831 Type: 10-K | Act: 34 | File No.: 000-13851 | Film No.: 251317583 SIC : 2330 Women's, Misses', and Juniors Outerwear (CF Office: 04 Manufacturing)"
+      ],
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/772263/000077226325000003/nich-20240831_10k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T07:19:27.213171+00:00",
+        "bytes": 1326260,
+        "sha256": "08ed540ffc6865373d40b57bde9e3ab69cd43d8bf77a7081cce592205b83c213",
+        "body_path": "artifacts/seo/corpus-local/identity-filings/0000772263-0000772263-25-000003-primary.response"
+      },
+      "dei_identity_facts": [
+        {
+          "name": "dei:EntityCentralIndexKey",
+          "context": "D230901_240831",
+          "text": "0000772263"
+        },
+        {
+          "name": "dei:EntityRegistrantName",
+          "context": "D230901_240831",
+          "text": "NITCHES INC."
+        }
+      ],
+      "core_fact_contexts": [
+        {
+          "tag": "us-gaap:Assets",
+          "contexts": [
+            "I230831",
+            "I240831"
+          ]
+        },
+        {
+          "tag": "us-gaap:CashAndCashEquivalentsAtCarryingValue",
+          "contexts": [
+            "I230831",
+            "I240831"
+          ]
+        },
+        {
+          "tag": "us-gaap:Liabilities",
+          "contexts": [
+            "I230831",
+            "I240831"
+          ]
+        },
+        {
+          "tag": "us-gaap:NetCashProvidedByUsedInOperatingActivities",
+          "contexts": [
+            "D220901_230831",
+            "D230901_240831"
+          ]
+        },
+        {
+          "tag": "us-gaap:NetIncomeLoss",
+          "contexts": [
+            "D220901_230831",
+            "D230901_240831"
+          ]
+        },
+        {
+          "tag": "us-gaap:Revenues",
+          "contexts": [
+            "D220901_230831",
+            "D230901_240831"
+          ]
+        }
+      ],
+      "contexts": {
+        "D220901_230831": {
+          "identifiers": [
+            "0000772263"
+          ],
+          "has_dimensions": false
+        },
+        "D230901_240831": {
+          "identifiers": [
+            "0000772263"
+          ],
+          "has_dimensions": false
+        },
+        "I230831": {
+          "identifiers": [
+            "0000772263"
+          ],
+          "has_dimensions": false
+        },
+        "I240831": {
+          "identifiers": [
+            "0000772263"
+          ],
+          "has_dimensions": false
+        }
+      },
+      "state": "IDENTITY_EVIDENCE_CAPTURED_REVIEW_PENDING"
+    },
+    {
+      "cik": "0000774415",
+      "companyfacts_name": "King Resources, Inc.",
+      "discovery_names": [
+        "King Resources, Inc."
+      ],
+      "accession": "0001683168-26-005722",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/774415/000168316826005722/0001683168-26-005722-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T07:19:29.129869+00:00",
+        "bytes": 12386,
+        "sha256": "cc603a27f2fc73db45f1bcb57b38b6bd8d410119334dd18bd1549d4cb1ba5ebf",
+        "body_path": "artifacts/seo/corpus-local/identity-filings/0000774415-0001683168-26-005722-index.response"
+      },
+      "index_filers": [
+        "King Resources, Inc. (Filer) CIK : 0000774415 (see all company filings) EIN. : 133784149 | State of Incorp.: DE | Fiscal Year End: 0331 Type: 10-K/A | Act: 34 | File No.: 000-56396 | Film No.: 261195271 SIC : 7380 Services-Miscellaneous Business Services (CF Office: 07 Trade & Services)"
+      ],
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/774415/000168316826005722/krfg_i10ka1-033126.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T07:19:30.865029+00:00",
+        "bytes": 1231613,
+        "sha256": "663f4e75ef61271c30cd42b4d0e35f3b375e0c2c665fab8fba44c682b4faa937",
+        "body_path": "artifacts/seo/corpus-local/identity-filings/0000774415-0001683168-26-005722-primary.response"
+      },
+      "dei_identity_facts": [
+        {
+          "name": "dei:EntityCentralIndexKey",
+          "context": "From2025-04-01to2026-03-31",
+          "text": "0000774415"
+        },
+        {
+          "name": "dei:EntityRegistrantName",
+          "context": "From2025-04-01to2026-03-31",
+          "text": "KING RESOURCES, INC."
+        }
+      ],
+      "core_fact_contexts": [
+        {
+          "tag": "us-gaap:Assets",
+          "contexts": [
+            "AsOf2025-03-31",
+            "AsOf2025-03-31_custom_ArtAndCollectiblesSegmentMember",
+            "AsOf2025-03-31_custom_TechnicalConsultancyServicesSegmentMember",
+            "AsOf2025-03-31_us-gaap_CorporateMember",
+            "AsOf2026-03-31",
+            "AsOf2026-03-31_custom_ArtAndCollectiblesSegmentMember",
+            "AsOf2026-03-31_custom_TechnicalConsultancyServicesSegmentMember",
+            "AsOf2026-03-31_us-gaap_CorporateMember"
+          ]
+        },
+        {
+          "tag": "us-gaap:CashAndCashEquivalentsAtCarryingValue",
+          "contexts": [
+            "AsOf2025-03-31",
+            "AsOf2026-03-31"
+          ]
+        },
+        {
+          "tag": "us-gaap:Liabilities",
+          "contexts": [
+            "AsOf2025-03-31",
+            "AsOf2026-03-31"
+          ]
+        },
+        {
+          "tag": "us-gaap:NetCashProvidedByUsedInOperatingActivities",
+          "contexts": [
+            "From2024-04-012025-03-31",
+            "From2025-04-01to2026-03-31"
+          ]
+        },
+        {
+          "tag": "us-gaap:NetIncomeLoss",
+          "contexts": [
+            "From2024-04-012025-03-31",
+            "From2024-04-012025-03-31_custom_ArtAndCollectiblesSegmentMember",
+            "From2024-04-012025-03-31_custom_CommonStockToBeIssuedMember",
+            "From2024-04-012025-03-31_custom_PreferredStockSeriesCMember",
+            "From2024-04-012025-03-31_custom_TechnicalConsultancyServicesSegmentMember",
+            "From2024-04-012025-03-31_us-gaap_AccumulatedOtherComprehensiveIncomeMember",
+            "From2024-04-012025-03-31_us-gaap_AdditionalPaidInCapitalMember",
+            "From2024-04-012025-03-31_us-gaap_CommonStockMember",
+            "From2024-04-012025-03-31_us-gaap_CorporateMember",
+            "From2024-04-012025-03-31_us-gaap_DeferredCompensationShareBasedPaymentsMember",
+            "From2024-04-012025-03-31_us-gaap_RetainedEarningsMember",
+            "From2025-04-012026-03-31_custom_ArtAndCollectiblesSegmentMember",
+            "From2025-04-012026-03-31_custom_CommonStockToBeIssuedMember",
+            "From2025-04-012026-03-31_custom_PreferredStockSeriesCMember",
+            "From2025-04-012026-03-31_custom_TechnicalConsultancyServicesSegmentMember",
+            "From2025-04-012026-03-31_us-gaap_AccumulatedOtherComprehensiveIncomeMember",
+            "From2025-04-012026-03-31_us-gaap_AdditionalPaidInCapitalMember",
+            "From2025-04-012026-03-31_us-gaap_CommonStockMember",
+            "From2025-04-012026-03-31_us-gaap_CorporateMember",
+            "From2025-04-012026-03-31_us-gaap_DeferredCompensationShareBasedPaymentsMember",
+            "From2025-04-012026-03-31_us-gaap_RetainedEarningsMember",
+            "From2025-04-01to2026-03-31"
+          ]
+        },
+        {
+          "tag": "us-gaap:PaymentsToAcquirePropertyPlantAndEquipment",
+          "contexts": [
+            "From2024-04-012025-03-31",
+            "From2025-04-01to2026-03-31"
+          ]
+        },
+        {
+          "tag": "us-gaap:Revenues",
+          "contexts": [
+            "From2024-04-012025-03-31",
+            "From2024-04-012025-03-31_custom_ArtAndCollectiblesSegmentMember",
+            "From2024-04-012025-03-31_custom_ManagementFeesMember",
+            "From2024-04-012025-03-31_custom_TechnicalConsultancyMember",
+            "From2024-04-012025-03-31_custom_TechnicalConsultancyServicesSegmentMember",
+            "From2024-04-012025-03-31_us-gaap_CorporateMember",
+            "From2025-04-012026-03-31_custom_ArtAndCollectiblesSegmentMember",
+            "From2025-04-012026-03-31_custom_ManagementFeesMember",
+            "From2025-04-012026-03-31_custom_TechnicalConsultancyMember",
+            "From2025-04-012026-03-31_custom_TechnicalConsultancyServicesSegmentMember",
+            "From2025-04-012026-03-31_us-gaap_CorporateMember",
+            "From2025-04-01to2026-03-31"
+          ]
+        },
+        {
+          "tag": "us-gaap:StockholdersEquity",
+          "contexts": [
+            "AsOf2024-03-31",
+            "AsOf2024-03-31_custom_CommonStockToBeIssuedMember",
+            "AsOf2024-03-31_custom_PreferredStockSeriesCMember",
+            "AsOf2024-03-31_us-gaap_AccumulatedOtherComprehensiveIncomeMember",
+            "AsOf2024-03-31_us-gaap_AdditionalPaidInCapitalMember",
+            "AsOf2024-03-31_us-gaap_CommonStockMember",
+            "AsOf2024-03-31_us-gaap_DeferredCompensationShareBasedPaymentsMember",
+            "AsOf2024-03-31_us-gaap_RetainedEarningsMember",
+            "AsOf2025-03-31",
+            "AsOf2025-03-31_custom_CommonStockToBeIssuedMember",
+            "AsOf2025-03-31_custom_PreferredStockSeriesCMember",
+            "AsOf2025-03-31_us-gaap_AccumulatedOtherComprehensiveIncomeMember",
+            "AsOf2025-03-31_us-gaap_AdditionalPaidInCapitalMember",
+            "AsOf2025-03-31_us-gaap_CommonStockMember",
+            "AsOf2025-03-31_us-gaap_DeferredCompensationShareBasedPaymentsMember",
+            "AsOf2025-03-31_us-gaap_RetainedEarningsMember",
+            "AsOf2026-03-31",
+            "AsOf2026-03-31_custom_CommonStockToBeIssuedMember",
+            "AsOf2026-03-31_custom_PreferredStockSeriesCMember",
+            "AsOf2026-03-31_us-gaap_AccumulatedOtherComprehensiveIncomeMember",
+            "AsOf2026-03-31_us-gaap_AdditionalPaidInCapitalMember",
+            "AsOf2026-03-31_us-gaap_CommonStockMember",
+            "AsOf2026-03-31_us-gaap_DeferredCompensationShareBasedPaymentsMember",
+            "AsOf2026-03-31_us-gaap_RetainedEarningsMember"
+          ]
+        }
+      ],
+      "contexts": {
+        "AsOf2024-03-31": {
+          "identifiers": [
+            "0000774415"
+          ],
+          "has_dimensions": false
+        },
+        "AsOf2024-03-31_custom_CommonStockToBeIssuedMember": {
+          "identifiers": [
+            "0000774415"
+          ],
+          "has_dimensions": true
+        },
+        "AsOf2024-03-31_custom_PreferredStockSeriesCMember": {
+          "identifiers": [
+            "0000774415"
+          ],
+          "has_dimensions": true
+        },
+        "AsOf2024-03-31_us-gaap_AccumulatedOtherComprehensiveIncomeMember": {
+          "identifiers": [
+            "0000774415"
+          ],
+          "has_dimensions": true
+        },
+        "AsOf2024-03-31_us-gaap_AdditionalPaidInCapitalMember": {
+          "identifiers": [
+            "0000774415"
+          ],
+          "has_dimensions": true
+        },
+        "AsOf2024-03-31_us-gaap_CommonStockMember": {
+          "identifiers": [
+            "0000774415"
+          ],
+          "has_dimensions": true
+        },
+        "AsOf2024-03-31_us-gaap_DeferredCompensationShareBasedPaymentsMember": {
+          "identifiers": [
+            "0000774415"
+          ],
+          "has_dimensions": true
+        },
+        "AsOf2024-03-31_us-gaap_RetainedEarningsMember": {
+          "identifiers": [
+            "0000774415"
+          ],
+          "has_dimensions": true
+        },
+        "AsOf2025-03-31": {
+          "identifiers": [
+            "0000774415"
+          ],
+          "has_dimensions": false
+        },
+        "AsOf2025-03-31_custom_ArtAndCollectiblesSegmentMember": {
+          "identifiers": [
+            "0000774415"
+          ],
+          "has_dimensions": true
+        },
+        "AsOf2025-03-31_custom_CommonStockToBeIssuedMember": {
+          "identifiers": [
+            "0000774415"
+          ],
+          "has_dimensions": true
+        },
+        "AsOf2025-03-31_custom_PreferredStockSeriesCMember": {
+          "identifiers": [
+            "0000774415"
+          ],
+          "has_dimensions": true
+        },
+        "AsOf2025-03-31_custom_TechnicalConsultancyServicesSegmentMember": {
+          "identifiers": [
+            "0000774415"
+          ],
+          "has_dimensions": true
+        },
+        "AsOf2025-03-31_us-gaap_AccumulatedOtherComprehensiveIncomeMember": {
+          "identifiers": [
+            "0000774415"
+          ],
+          "has_dimensions": true
+        },
+        "AsOf2025-03-31_us-gaap_AdditionalPaidInCapitalMember": {
+          "identifiers": [
+            "0000774415"
+          ],
+          "has_dimensions": true
+        },
+        "AsOf2025-03-31_us-gaap_CommonStockMember": {
+          "identifiers": [
+            "0000774415"
+          ],
+          "has_dimensions": true
+        },
+        "AsOf2025-03-31_us-gaap_CorporateMember": {
+          "identifiers": [
+            "0000774415"
+          ],
+          "has_dimensions": true
+        },
+        "AsOf2025-03-31_us-gaap_DeferredCompensationShareBasedPaymentsMember": {
+          "identifiers": [
+            "0000774415"
+          ],
+          "has_dimensions": true
+        },
+        "AsOf2025-03-31_us-gaap_RetainedEarningsMember": {
+          "identifiers": [
+            "0000774415"
+          ],
+          "has_dimensions": true
+        },
+        "AsOf2026-03-31": {
+          "identifiers": [
+            "0000774415"
+          ],
+          "has_dimensions": false
+        },
+        "AsOf2026-03-31_custom_ArtAndCollectiblesSegmentMember": {
+          "identifiers": [
+            "0000774415"
+          ],
+          "has_dimensions": true
+        },
+        "AsOf2026-03-31_custom_CommonStockToBeIssuedMember": {
+          "identifiers": [
+            "0000774415"
+          ],
+          "has_dimensions": true
+        },
+        "AsOf2026-03-31_custom_PreferredStockSeriesCMember": {
+          "identifiers": [
+            "0000774415"
+          ],
+          "has_dimensions": true
+        },
+        "AsOf2026-03-31_custom_TechnicalConsultancyServicesSegmentMember": {
+          "identifiers": [
+            "0000774415"
+          ],
+          "has_dimensions": true
+        },
+        "AsOf2026-03-31_us-gaap_AccumulatedOtherComprehensiveIncomeMember": {
+          "identifiers": [
+            "0000774415"
+          ],
+          "has_dimensions": true
+        },
+        "AsOf2026-03-31_us-gaap_AdditionalPaidInCapitalMember": {
+          "identifiers": [
+            "0000774415"
+          ],
+          "has_dimensions": true
+        },
+        "AsOf2026-03-31_us-gaap_CommonStockMember": {
+          "identifiers": [
+            "0000774415"
+          ],
+          "has_dimensions": true
+        },
+        "AsOf2026-03-31_us-gaap_CorporateMember": {
+          "identifiers": [
+            "0000774415"
+          ],
+          "has_dimensions": true
+        },
+        "AsOf2026-03-31_us-gaap_DeferredCompensationShareBasedPaymentsMember": {
+          "identifiers": [
+            "0000774415"
+          ],
+          "has_dimensions": true
+        },
+        "AsOf2026-03-31_us-gaap_RetainedEarningsMember": {
+          "identifiers": [
+            "0000774415"
+          ],
+          "has_dimensions": true
+        },
+        "From2024-04-012025-03-31": {
+          "identifiers": [
+            "0000774415"
+          ],
+          "has_dimensions": false
+        },
+        "From2024-04-012025-03-31_custom_ArtAndCollectiblesSegmentMember": {
+          "identifiers": [
+            "0000774415"
+          ],
+          "has_dimensions": true
+        },
+        "From2024-04-012025-03-31_custom_CommonStockToBeIssuedMember": {
+          "identifiers": [
+            "0000774415"
+          ],
+          "has_dimensions": true
+        },
+        "From2024-04-012025-03-31_custom_ManagementFeesMember": {
+          "identifiers": [
+            "0000774415"
+          ],
+          "has_dimensions": true
+        },
+        "From2024-04-012025-03-31_custom_PreferredStockSeriesCMember": {
+          "identifiers": [
+            "0000774415"
+          ],
+          "has_dimensions": true
+        },
+        "From2024-04-012025-03-31_custom_TechnicalConsultancyMember": {
+          "identifiers": [
+            "0000774415"
+          ],
+          "has_dimensions": true
+        },
+        "From2024-04-012025-03-31_custom_TechnicalConsultancyServicesSegmentMember": {
+          "identifiers": [
+            "0000774415"
+          ],
+          "has_dimensions": true
+        },
+        "From2024-04-012025-03-31_us-gaap_AccumulatedOtherComprehensiveIncomeMember": {
+          "identifiers": [
+            "0000774415"
+          ],
+          "has_dimensions": true
+        },
+        "From2024-04-012025-03-31_us-gaap_AdditionalPaidInCapitalMember": {
+          "identifiers": [
+            "0000774415"
+          ],
+          "has_dimensions": true
+        },
+        "From2024-04-012025-03-31_us-gaap_CommonStockMember": {
+          "identifiers": [
+            "0000774415"
+          ],
+          "has_dimensions": true
+        },
+        "From2024-04-012025-03-31_us-gaap_CorporateMember": {
+          "identifiers": [
+            "0000774415"
+          ],
+          "has_dimensions": true
+        },
+        "From2024-04-012025-03-31_us-gaap_DeferredCompensationShareBasedPaymentsMember": {
+          "identifiers": [
+            "0000774415"
+          ],
+          "has_dimensions": true
+        },
+        "From2024-04-012025-03-31_us-gaap_RetainedEarningsMember": {
+          "identifiers": [
+            "0000774415"
+          ],
+          "has_dimensions": true
+        },
+        "From2025-04-012026-03-31_custom_ArtAndCollectiblesSegmentMember": {
+          "identifiers": [
+            "0000774415"
+          ],
+          "has_dimensions": true
+        },
+        "From2025-04-012026-03-31_custom_CommonStockToBeIssuedMember": {
+          "identifiers": [
+            "0000774415"
+          ],
+          "has_dimensions": true
+        },
+        "From2025-04-012026-03-31_custom_ManagementFeesMember": {
+          "identifiers": [
+            "0000774415"
+          ],
+          "has_dimensions": true
+        },
+        "From2025-04-012026-03-31_custom_PreferredStockSeriesCMember": {
+          "identifiers": [
+            "0000774415"
+          ],
+          "has_dimensions": true
+        },
+        "From2025-04-012026-03-31_custom_TechnicalConsultancyMember": {
+          "identifiers": [
+            "0000774415"
+          ],
+          "has_dimensions": true
+        },
+        "From2025-04-012026-03-31_custom_TechnicalConsultancyServicesSegmentMember": {
+          "identifiers": [
+            "0000774415"
+          ],
+          "has_dimensions": true
+        },
+        "From2025-04-012026-03-31_us-gaap_AccumulatedOtherComprehensiveIncomeMember": {
+          "identifiers": [
+            "0000774415"
+          ],
+          "has_dimensions": true
+        },
+        "From2025-04-012026-03-31_us-gaap_AdditionalPaidInCapitalMember": {
+          "identifiers": [
+            "0000774415"
+          ],
+          "has_dimensions": true
+        },
+        "From2025-04-012026-03-31_us-gaap_CommonStockMember": {
+          "identifiers": [
+            "0000774415"
+          ],
+          "has_dimensions": true
+        },
+        "From2025-04-012026-03-31_us-gaap_CorporateMember": {
+          "identifiers": [
+            "0000774415"
+          ],
+          "has_dimensions": true
+        },
+        "From2025-04-012026-03-31_us-gaap_DeferredCompensationShareBasedPaymentsMember": {
+          "identifiers": [
+            "0000774415"
+          ],
+          "has_dimensions": true
+        },
+        "From2025-04-012026-03-31_us-gaap_RetainedEarningsMember": {
+          "identifiers": [
+            "0000774415"
+          ],
+          "has_dimensions": true
+        },
+        "From2025-04-01to2026-03-31": {
+          "identifiers": [
+            "0000774415"
+          ],
+          "has_dimensions": false
+        }
+      },
+      "state": "IDENTITY_EVIDENCE_CAPTURED_REVIEW_PENDING"
+    },
+    {
+      "cik": "0000787496",
+      "companyfacts_name": "LONGEVITY DIVERSIFIED HOLDINGS, INC.",
+      "discovery_names": [
+        "Longevity Diversified Holdings, Inc."
+      ],
+      "accession": "0001829126-26-010112",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/787496/000182912626010112/0001829126-26-010112-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T07:19:32.739168+00:00",
+        "bytes": 12027,
+        "sha256": "d754c54ba2ca398e0f5304ac7aae8a725adc8e70e8e0141eb0aed5adf64122ef",
+        "body_path": "artifacts/seo/corpus-local/identity-filings/0000787496-0001829126-26-010112-index.response"
+      },
+      "index_filers": [
+        "Longevity Diversified Holdings, Inc. (Filer) CIK : 0000787496 (see all company filings) EIN. : 870435741 | State of Incorp.: NV | Fiscal Year End: 0531 Type: 10-K | Act: 34 | File No.: 000-56836 | Film No.: 261380346 SIC : 6770 Blank Checks (CF Office: 05 Real Estate & Construction)"
+      ],
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/787496/000182912626010112/longevity_10k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T07:19:34.469631+00:00",
+        "bytes": 519372,
+        "sha256": "edb975762a3fe1e6e2c9c6be3f4a0fc571d6bbe82d751a0dfe8cf26443ff58a5",
+        "body_path": "artifacts/seo/corpus-local/identity-filings/0000787496-0001829126-26-010112-primary.response"
+      },
+      "dei_identity_facts": [
+        {
+          "name": "dei:EntityCentralIndexKey",
+          "context": "From2025-06-01to2026-05-31",
+          "text": "0000787496"
+        },
+        {
+          "name": "dei:EntityRegistrantName",
+          "context": "From2025-06-01to2026-05-31",
+          "text": "LONGEVITY DIVERSIFIED HOLDINGS, INC."
+        }
+      ],
+      "core_fact_contexts": [
+        {
+          "tag": "us-gaap:CashAndCashEquivalentsAtCarryingValue",
+          "contexts": [
+            "AsOf2026-05-31"
+          ]
+        },
+        {
+          "tag": "us-gaap:NetCashProvidedByUsedInOperatingActivities",
+          "contexts": [
+            "From2024-06-012025-05-31",
+            "From2025-06-01to2026-05-31"
+          ]
+        },
+        {
+          "tag": "us-gaap:NetIncomeLoss",
+          "contexts": [
+            "From2024-06-012025-05-31",
+            "From2025-06-01to2026-05-31"
+          ]
+        },
+        {
+          "tag": "us-gaap:StockholdersEquity",
+          "contexts": [
+            "AsOf2024-05-31",
+            "AsOf2024-05-31_custom_PreferredStockA1Member",
+            "AsOf2024-05-31_us-gaap_AdditionalPaidInCapitalMember",
+            "AsOf2024-05-31_us-gaap_CommonStockMember",
+            "AsOf2024-05-31_us-gaap_PreferredStockMember",
+            "AsOf2024-05-31_us-gaap_RetainedEarningsMember",
+            "AsOf2025-05-31",
+            "AsOf2025-05-31_custom_PreferredStockA1Member",
+            "AsOf2025-05-31_us-gaap_AdditionalPaidInCapitalMember",
+            "AsOf2025-05-31_us-gaap_CommonStockMember",
+            "AsOf2025-05-31_us-gaap_PreferredStockMember",
+            "AsOf2025-05-31_us-gaap_RetainedEarningsMember",
+            "AsOf2026-05-31",
+            "AsOf2026-05-31_custom_PreferredStockA1Member",
+            "AsOf2026-05-31_us-gaap_AdditionalPaidInCapitalMember",
+            "AsOf2026-05-31_us-gaap_CommonStockMember",
+            "AsOf2026-05-31_us-gaap_PreferredStockMember",
+            "AsOf2026-05-31_us-gaap_RetainedEarningsMember"
+          ]
+        }
+      ],
+      "contexts": {
+        "AsOf2024-05-31": {
+          "identifiers": [
+            "0000787496"
+          ],
+          "has_dimensions": false
+        },
+        "AsOf2024-05-31_custom_PreferredStockA1Member": {
+          "identifiers": [
+            "0000787496"
+          ],
+          "has_dimensions": true
+        },
+        "AsOf2024-05-31_us-gaap_AdditionalPaidInCapitalMember": {
+          "identifiers": [
+            "0000787496"
+          ],
+          "has_dimensions": true
+        },
+        "AsOf2024-05-31_us-gaap_CommonStockMember": {
+          "identifiers": [
+            "0000787496"
+          ],
+          "has_dimensions": true
+        },
+        "AsOf2024-05-31_us-gaap_PreferredStockMember": {
+          "identifiers": [
+            "0000787496"
+          ],
+          "has_dimensions": true
+        },
+        "AsOf2024-05-31_us-gaap_RetainedEarningsMember": {
+          "identifiers": [
+            "0000787496"
+          ],
+          "has_dimensions": true
+        },
+        "AsOf2025-05-31": {
+          "identifiers": [
+            "0000787496"
+          ],
+          "has_dimensions": false
+        },
+        "AsOf2025-05-31_custom_PreferredStockA1Member": {
+          "identifiers": [
+            "0000787496"
+          ],
+          "has_dimensions": true
+        },
+        "AsOf2025-05-31_us-gaap_AdditionalPaidInCapitalMember": {
+          "identifiers": [
+            "0000787496"
+          ],
+          "has_dimensions": true
+        },
+        "AsOf2025-05-31_us-gaap_CommonStockMember": {
+          "identifiers": [
+            "0000787496"
+          ],
+          "has_dimensions": true
+        },
+        "AsOf2025-05-31_us-gaap_PreferredStockMember": {
+          "identifiers": [
+            "0000787496"
+          ],
+          "has_dimensions": true
+        },
+        "AsOf2025-05-31_us-gaap_RetainedEarningsMember": {
+          "identifiers": [
+            "0000787496"
+          ],
+          "has_dimensions": true
+        },
+        "AsOf2026-05-31": {
+          "identifiers": [
+            "0000787496"
+          ],
+          "has_dimensions": false
+        },
+        "AsOf2026-05-31_custom_PreferredStockA1Member": {
+          "identifiers": [
+            "0000787496"
+          ],
+          "has_dimensions": true
+        },
+        "AsOf2026-05-31_us-gaap_AdditionalPaidInCapitalMember": {
+          "identifiers": [
+            "0000787496"
+          ],
+          "has_dimensions": true
+        },
+        "AsOf2026-05-31_us-gaap_CommonStockMember": {
+          "identifiers": [
+            "0000787496"
+          ],
+          "has_dimensions": true
+        },
+        "AsOf2026-05-31_us-gaap_PreferredStockMember": {
+          "identifiers": [
+            "0000787496"
+          ],
+          "has_dimensions": true
+        },
+        "AsOf2026-05-31_us-gaap_RetainedEarningsMember": {
+          "identifiers": [
+            "0000787496"
+          ],
+          "has_dimensions": true
+        },
+        "From2024-06-012025-05-31": {
+          "identifiers": [
+            "0000787496"
+          ],
+          "has_dimensions": false
+        },
+        "From2025-06-01to2026-05-31": {
+          "identifiers": [
+            "0000787496"
+          ],
+          "has_dimensions": false
+        }
+      },
+      "state": "IDENTITY_EVIDENCE_CAPTURED_REVIEW_PENDING"
+    },
+    {
+      "cik": "0000845385",
+      "companyfacts_name": "PRINCETON CAPITAL CORPORATION",
+      "discovery_names": [
+        "PRINCETON CAPITAL CORP"
+      ],
+      "accession": "0001213900-23-024619",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/845385/000121390023024619/0001213900-23-024619-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T07:19:36.190028+00:00",
+        "bytes": 13216,
+        "sha256": "bde4fb9858e4ff9e900b6bf19eadcbdda2812a11ba8dd8927165d64c8c0ef3d9",
+        "body_path": "artifacts/seo/corpus-local/identity-filings/0000845385-0001213900-23-024619-index.response"
+      },
+      "index_filers": [
+        "PRINCETON CAPITAL CORP (Filer) CIK : 0000845385 (see all company filings) EIN. : 463516073 | State of Incorp.: MD | Fiscal Year End: 1231 Type: 10-K | Act: 34 | File No.: 814-00710 | Film No.: 23780597"
+      ],
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/845385/000121390023024619/f10k2022_princetoncap.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T07:19:37.835881+00:00",
+        "bytes": 1935476,
+        "sha256": "31d7f56036aada6af1290d9b8dc833cc199c22e33b6fde49640ac68eb99954e9",
+        "body_path": "artifacts/seo/corpus-local/identity-filings/0000845385-0001213900-23-024619-primary.response"
+      },
+      "dei_identity_facts": [
+        {
+          "name": "dei:EntityRegistrantName",
+          "context": "c0",
+          "text": "PRINCETON CAPITAL CORP"
+        },
+        {
+          "name": "dei:EntityCentralIndexKey",
+          "context": "c0",
+          "text": "0000845385"
+        }
+      ],
+      "core_fact_contexts": [
+        {
+          "tag": "us-gaap:Revenues",
+          "contexts": [
+            "c0",
+            "c5",
+            "c6"
+          ]
+        }
+      ],
+      "contexts": {
+        "c0": {
+          "identifiers": [
+            "0000845385"
+          ],
+          "has_dimensions": false
+        },
+        "c5": {
+          "identifiers": [
+            "0000845385"
+          ],
+          "has_dimensions": false
+        },
+        "c6": {
+          "identifiers": [
+            "0000845385"
+          ],
+          "has_dimensions": false
+        }
+      },
+      "state": "IDENTITY_EVIDENCE_CAPTURED_REVIEW_PENDING"
+    },
+    {
+      "cik": "0000845385",
+      "companyfacts_name": "PRINCETON CAPITAL CORPORATION",
+      "discovery_names": [
+        "PRINCETON CAPITAL CORP"
+      ],
+      "accession": "0001213900-26-036469",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/845385/000121390026036469/0001213900-26-036469-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T07:19:40.303561+00:00",
+        "bytes": 14317,
+        "sha256": "bd741051b1bf350c697a3c1b5eb2e0f4bfd6a0ee62366755727f362f09ed9118",
+        "body_path": "artifacts/seo/corpus-local/identity-filings/0000845385-0001213900-26-036469-index.response"
+      },
+      "index_filers": [
+        "PRINCETON CAPITAL CORP (Filer) CIK : 0000845385 (see all company filings) EIN. : 463516073 | State of Incorp.: MD | Fiscal Year End: 1231 Type: 10-K | Act: 34 | File No.: 814-00710 | Film No.: 26813631"
+      ],
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/845385/000121390026036469/ea0283137-10k_princeton.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T07:19:41.953183+00:00",
+        "bytes": 1871978,
+        "sha256": "0fc638f4ee6423e94f52d337d4543ef24341ae5e21cf3bdca31f3d4cd80dea64",
+        "body_path": "artifacts/seo/corpus-local/identity-filings/0000845385-0001213900-26-036469-primary.response"
+      },
+      "dei_identity_facts": [
+        {
+          "name": "dei:EntityRegistrantName",
+          "context": "c0",
+          "text": "PRINCETON CAPITAL CORPORATION"
+        },
+        {
+          "name": "dei:EntityCentralIndexKey",
+          "context": "c0",
+          "text": "0000845385"
+        }
+      ],
+      "core_fact_contexts": [
+        {
+          "tag": "us-gaap:Assets",
+          "contexts": [
+            "c7",
+            "c8"
+          ]
+        },
+        {
+          "tag": "us-gaap:CashAndCashEquivalentsAtCarryingValue",
+          "contexts": [
+            "c7",
+            "c8"
+          ]
+        },
+        {
+          "tag": "us-gaap:Liabilities",
+          "contexts": [
+            "c7",
+            "c8"
+          ]
+        },
+        {
+          "tag": "us-gaap:NetCashProvidedByUsedInOperatingActivities",
+          "contexts": [
+            "c0",
+            "c10",
+            "c9"
+          ]
+        },
+        {
+          "tag": "us-gaap:NetIncomeLoss",
+          "contexts": [
+            "c0",
+            "c10",
+            "c9"
+          ]
+        },
+        {
+          "tag": "us-gaap:StockholdersEquity",
+          "contexts": [
+            "c17",
+            "c18",
+            "c7",
+            "c8"
+          ]
+        }
+      ],
+      "contexts": {
+        "c0": {
+          "identifiers": [
+            "0000845385"
+          ],
+          "has_dimensions": false
+        },
+        "c10": {
+          "identifiers": [
+            "0000845385"
+          ],
+          "has_dimensions": false
+        },
+        "c17": {
+          "identifiers": [
+            "0000845385"
+          ],
+          "has_dimensions": false
+        },
+        "c18": {
+          "identifiers": [
+            "0000845385"
+          ],
+          "has_dimensions": false
+        },
+        "c7": {
+          "identifiers": [
+            "0000845385"
+          ],
+          "has_dimensions": false
+        },
+        "c8": {
+          "identifiers": [
+            "0000845385"
+          ],
+          "has_dimensions": false
+        },
+        "c9": {
+          "identifiers": [
+            "0000845385"
+          ],
+          "has_dimensions": false
+        }
+      },
+      "state": "IDENTITY_EVIDENCE_CAPTURED_REVIEW_PENDING"
+    },
+    {
+      "cik": "0000878932",
+      "companyfacts_name": "EQUUS TOTAL RETURN, INC.",
+      "discovery_names": [
+        "EQUUS TOTAL RETURN, INC."
+      ],
+      "accession": "0001096906-26-000571",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/878932/000109690626000571/0001096906-26-000571-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T07:19:43.991710+00:00",
+        "bytes": 12491,
+        "sha256": "f2a6b9e4e2a75de221ba3dd1d1e22c9489661983bbd066b75775fab270bc340f",
+        "body_path": "artifacts/seo/corpus-local/identity-filings/0000878932-0001096906-26-000571-index.response"
+      },
+      "index_filers": [
+        "EQUUS TOTAL RETURN, INC. (Filer) CIK : 0000878932 (see all company filings) EIN. : 760345915 | State of Incorp.: DE | Fiscal Year End: 1231 Type: 10-K/A | Act: 34 | File No.: 814-00098 | Film No.: 26876119"
+      ],
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/878932/000109690626000571/equus_10ka.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T07:19:45.784007+00:00",
+        "bytes": 1815972,
+        "sha256": "cb305e870175c01cfd67f178e39b00a0f11f5fe456200933dc6574b23f519fa9",
+        "body_path": "artifacts/seo/corpus-local/identity-filings/0000878932-0001096906-26-000571-primary.response"
+      },
+      "dei_identity_facts": [
+        {
+          "name": "dei:EntityCentralIndexKey",
+          "context": "From2025-01-01to2025-12-31",
+          "text": "0000878932"
+        },
+        {
+          "name": "dei:EntityRegistrantName",
+          "context": "From2025-01-01to2025-12-31",
+          "text": "EQUUS TOTAL RETURN, INC."
+        }
+      ],
+      "core_fact_contexts": [
+        {
+          "tag": "us-gaap:Assets",
+          "contexts": [
+            "AsOf2024-12-31",
+            "AsOf2024-12-31_equus_MorganEpLlcMember",
+            "AsOf2025-12-31",
+            "AsOf2025-12-31_equus_MorganEpLlcMember"
+          ]
+        },
+        {
+          "tag": "us-gaap:CashAndCashEquivalentsAtCarryingValue",
+          "contexts": [
+            "AsOf2023-12-31",
+            "AsOf2024-12-31",
+            "AsOf2024-12-31_equus_CarryingReportedAmountFairValueMember",
+            "AsOf2024-12-31_equus_MorganEpLlcMember",
+            "AsOf2024-12-31_us-gaap_FairValueInputsLevel1Member",
+            "AsOf2024-12-31_us-gaap_FairValueInputsLevel2Member",
+            "AsOf2024-12-31_us-gaap_FairValueInputsLevel3Member",
+            "AsOf2025-12-31",
+            "AsOf2025-12-31_equus_CarryingReportedAmountFairValueMember",
+            "AsOf2025-12-31_equus_MorganEpLlcMember",
+            "AsOf2025-12-31_us-gaap_FairValueInputsLevel1Member",
+            "AsOf2025-12-31_us-gaap_FairValueInputsLevel2Member",
+            "AsOf2025-12-31_us-gaap_FairValueInputsLevel3Member"
+          ]
+        },
+        {
+          "tag": "us-gaap:Liabilities",
+          "contexts": [
+            "AsOf2024-12-31",
+            "AsOf2024-12-31_equus_MorganEpLlcMember",
+            "AsOf2025-12-31",
+            "AsOf2025-12-31_equus_MorganEpLlcMember"
+          ]
+        },
+        {
+          "tag": "us-gaap:NetCashProvidedByUsedInOperatingActivities",
+          "contexts": [
+            "From2023-01-01to2023-12-31",
+            "From2023-01-01to2023-12-31_equus_MorganEAndPIncMember",
+            "From2024-01-01to2024-12-31",
+            "From2024-01-01to2024-12-31_equus_MorganEAndPIncMember",
+            "From2025-01-01to2025-12-31",
+            "From2025-01-01to2025-12-31_equus_MorganEAndPIncMember"
+          ]
+        },
+        {
+          "tag": "us-gaap:NetIncomeLoss",
+          "contexts": [
+            "From2023-01-01to2023-12-31",
+            "From2023-01-01to2023-12-31_equus_MorganEAndPIncMember",
+            "From2023-01-01to2023-12-31_us-gaap_AdditionalPaidInCapitalMember",
+            "From2023-01-01to2023-12-31_us-gaap_CommonStockMember",
+            "From2023-01-01to2023-12-31_us-gaap_RetainedEarningsMember",
+            "From2024-01-01to2024-12-31",
+            "From2024-01-01to2024-12-31_equus_MorganEAndPIncMember",
+            "From2024-01-01to2024-12-31_us-gaap_AdditionalPaidInCapitalMember",
+            "From2024-01-01to2024-12-31_us-gaap_CommonStockMember",
+            "From2024-01-01to2024-12-31_us-gaap_RetainedEarningsMember",
+            "From2025-01-01to2025-12-31",
+            "From2025-01-01to2025-12-31_equus_MorganEAndPIncMember",
+            "From2025-01-01to2025-12-31_us-gaap_AdditionalPaidInCapitalMember",
+            "From2025-01-01to2025-12-31_us-gaap_CommonStockMember",
+            "From2025-01-01to2025-12-31_us-gaap_RetainedEarningsMember"
+          ]
+        },
+        {
+          "tag": "us-gaap:StockholdersEquity",
+          "contexts": [
+            "AsOf2022-12-31",
+            "AsOf2022-12-31_us-gaap_AdditionalPaidInCapitalMember",
+            "AsOf2022-12-31_us-gaap_CommonStockMember",
+            "AsOf2022-12-31_us-gaap_RetainedEarningsMember",
+            "AsOf2023-12-31",
+            "AsOf2023-12-31_us-gaap_AdditionalPaidInCapitalMember",
+            "AsOf2023-12-31_us-gaap_CommonStockMember",
+            "AsOf2023-12-31_us-gaap_RetainedEarningsMember",
+            "AsOf2024-12-31",
+            "AsOf2024-12-31_equus_MorganEpLlcMember",
+            "AsOf2024-12-31_us-gaap_AdditionalPaidInCapitalMember",
+            "AsOf2024-12-31_us-gaap_CommonStockMember",
+            "AsOf2024-12-31_us-gaap_RetainedEarningsMember",
+            "AsOf2025-12-31",
+            "AsOf2025-12-31_equus_MorganEpLlcMember",
+            "AsOf2025-12-31_us-gaap_AdditionalPaidInCapitalMember",
+            "AsOf2025-12-31_us-gaap_CommonStockMember",
+            "AsOf2025-12-31_us-gaap_RetainedEarningsMember"
+          ]
+        }
+      ],
+      "contexts": {
+        "AsOf2022-12-31": {
+          "identifiers": [
+            "0000878932"
+          ],
+          "has_dimensions": false
+        },
+        "AsOf2022-12-31_us-gaap_AdditionalPaidInCapitalMember": {
+          "identifiers": [
+            "0000878932"
+          ],
+          "has_dimensions": true
+        },
+        "AsOf2022-12-31_us-gaap_CommonStockMember": {
+          "identifiers": [
+            "0000878932"
+          ],
+          "has_dimensions": true
+        },
+        "AsOf2022-12-31_us-gaap_RetainedEarningsMember": {
+          "identifiers": [
+            "0000878932"
+          ],
+          "has_dimensions": true
+        },
+        "AsOf2023-12-31": {
+          "identifiers": [
+            "0000878932"
+          ],
+          "has_dimensions": false
+        },
+        "AsOf2023-12-31_us-gaap_AdditionalPaidInCapitalMember": {
+          "identifiers": [
+            "0000878932"
+          ],
+          "has_dimensions": true
+        },
+        "AsOf2023-12-31_us-gaap_CommonStockMember": {
+          "identifiers": [
+            "0000878932"
+          ],
+          "has_dimensions": true
+        },
+        "AsOf2023-12-31_us-gaap_RetainedEarningsMember": {
+          "identifiers": [
+            "0000878932"
+          ],
+          "has_dimensions": true
+        },
+        "AsOf2024-12-31": {
+          "identifiers": [
+            "0000878932"
+          ],
+          "has_dimensions": false
+        },
+        "AsOf2024-12-31_equus_CarryingReportedAmountFairValueMember": {
+          "identifiers": [
+            "0000878932"
+          ],
+          "has_dimensions": true
+        },
+        "AsOf2024-12-31_equus_MorganEpLlcMember": {
+          "identifiers": [
+            "0000878932"
+          ],
+          "has_dimensions": true
+        },
+        "AsOf2024-12-31_us-gaap_AdditionalPaidInCapitalMember": {
+          "identifiers": [
+            "0000878932"
+          ],
+          "has_dimensions": true
+        },
+        "AsOf2024-12-31_us-gaap_CommonStockMember": {
+          "identifiers": [
+            "0000878932"
+          ],
+          "has_dimensions": true
+        },
+        "AsOf2024-12-31_us-gaap_FairValueInputsLevel1Member": {
+          "identifiers": [
+            "0000878932"
+          ],
+          "has_dimensions": true
+        },
+        "AsOf2024-12-31_us-gaap_FairValueInputsLevel2Member": {
+          "identifiers": [
+            "0000878932"
+          ],
+          "has_dimensions": true
+        },
+        "AsOf2024-12-31_us-gaap_FairValueInputsLevel3Member": {
+          "identifiers": [
+            "0000878932"
+          ],
+          "has_dimensions": true
+        },
+        "AsOf2024-12-31_us-gaap_RetainedEarningsMember": {
+          "identifiers": [
+            "0000878932"
+          ],
+          "has_dimensions": true
+        },
+        "AsOf2025-12-31": {
+          "identifiers": [
+            "0000878932"
+          ],
+          "has_dimensions": false
+        },
+        "AsOf2025-12-31_equus_CarryingReportedAmountFairValueMember": {
+          "identifiers": [
+            "0000878932"
+          ],
+          "has_dimensions": true
+        },
+        "AsOf2025-12-31_equus_MorganEpLlcMember": {
+          "identifiers": [
+            "0000878932"
+          ],
+          "has_dimensions": true
+        },
+        "AsOf2025-12-31_us-gaap_AdditionalPaidInCapitalMember": {
+          "identifiers": [
+            "0000878932"
+          ],
+          "has_dimensions": true
+        },
+        "AsOf2025-12-31_us-gaap_CommonStockMember": {
+          "identifiers": [
+            "0000878932"
+          ],
+          "has_dimensions": true
+        },
+        "AsOf2025-12-31_us-gaap_FairValueInputsLevel1Member": {
+          "identifiers": [
+            "0000878932"
+          ],
+          "has_dimensions": true
+        },
+        "AsOf2025-12-31_us-gaap_FairValueInputsLevel2Member": {
+          "identifiers": [
+            "0000878932"
+          ],
+          "has_dimensions": true
+        },
+        "AsOf2025-12-31_us-gaap_FairValueInputsLevel3Member": {
+          "identifiers": [
+            "0000878932"
+          ],
+          "has_dimensions": true
+        },
+        "AsOf2025-12-31_us-gaap_RetainedEarningsMember": {
+          "identifiers": [
+            "0000878932"
+          ],
+          "has_dimensions": true
+        },
+        "From2023-01-01to2023-12-31": {
+          "identifiers": [
+            "0000878932"
+          ],
+          "has_dimensions": false
+        },
+        "From2023-01-01to2023-12-31_equus_MorganEAndPIncMember": {
+          "identifiers": [
+            "0000878932"
+          ],
+          "has_dimensions": true
+        },
+        "From2023-01-01to2023-12-31_us-gaap_AdditionalPaidInCapitalMember": {
+          "identifiers": [
+            "0000878932"
+          ],
+          "has_dimensions": true
+        },
+        "From2023-01-01to2023-12-31_us-gaap_CommonStockMember": {
+          "identifiers": [
+            "0000878932"
+          ],
+          "has_dimensions": true
+        },
+        "From2023-01-01to2023-12-31_us-gaap_RetainedEarningsMember": {
+          "identifiers": [
+            "0000878932"
+          ],
+          "has_dimensions": true
+        },
+        "From2024-01-01to2024-12-31": {
+          "identifiers": [
+            "0000878932"
+          ],
+          "has_dimensions": false
+        },
+        "From2024-01-01to2024-12-31_equus_MorganEAndPIncMember": {
+          "identifiers": [
+            "0000878932"
+          ],
+          "has_dimensions": true
+        },
+        "From2024-01-01to2024-12-31_us-gaap_AdditionalPaidInCapitalMember": {
+          "identifiers": [
+            "0000878932"
+          ],
+          "has_dimensions": true
+        },
+        "From2024-01-01to2024-12-31_us-gaap_CommonStockMember": {
+          "identifiers": [
+            "0000878932"
+          ],
+          "has_dimensions": true
+        },
+        "From2024-01-01to2024-12-31_us-gaap_RetainedEarningsMember": {
+          "identifiers": [
+            "0000878932"
+          ],
+          "has_dimensions": true
+        },
+        "From2025-01-01to2025-12-31": {
+          "identifiers": [
+            "0000878932"
+          ],
+          "has_dimensions": false
+        },
+        "From2025-01-01to2025-12-31_equus_MorganEAndPIncMember": {
+          "identifiers": [
+            "0000878932"
+          ],
+          "has_dimensions": true
+        },
+        "From2025-01-01to2025-12-31_us-gaap_AdditionalPaidInCapitalMember": {
+          "identifiers": [
+            "0000878932"
+          ],
+          "has_dimensions": true
+        },
+        "From2025-01-01to2025-12-31_us-gaap_CommonStockMember": {
+          "identifiers": [
+            "0000878932"
+          ],
+          "has_dimensions": true
+        },
+        "From2025-01-01to2025-12-31_us-gaap_RetainedEarningsMember": {
+          "identifiers": [
+            "0000878932"
+          ],
+          "has_dimensions": true
+        }
+      },
+      "state": "IDENTITY_EVIDENCE_CAPTURED_REVIEW_PENDING"
+    },
+    {
+      "cik": "0000889353",
+      "companyfacts_name": "SENTINEL HOLDINGS LTD",
+      "discovery_names": [
+        "Sentinel Holdings Ltd."
+      ],
+      "accession": "0001096906-26-000918",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/889353/000109690626000918/0001096906-26-000918-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T07:19:47.940665+00:00",
+        "bytes": 11580,
+        "sha256": "4ddb5ba0bd7798c8712c10d679d6e62e61775506fcd6238956cbe99b6c700a61",
+        "body_path": "artifacts/seo/corpus-local/identity-filings/0000889353-0001096906-26-000918-index.response"
+      },
+      "index_filers": [
+        "Sentinel Holdings Ltd. (Filer) CIK : 0000889353 (see all company filings) EIN. : 954363944 | State of Incorp.: NV | Fiscal Year End: 1231 Type: 10-K | Act: 34 | File No.: 001-43109 | Film No.: 261069925 SIC : 7200 Services-Personal Services (CF Office: 07 Trade & Services)"
+      ],
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/889353/000109690626000918/sntl_10k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T07:19:49.622024+00:00",
+        "bytes": 1681711,
+        "sha256": "5fef71595a7497c7aede16a5ef97b2ae79fe345d39d5562a91deb97d30e28dff",
+        "body_path": "artifacts/seo/corpus-local/identity-filings/0000889353-0001096906-26-000918-primary.response"
+      },
+      "dei_identity_facts": [
+        {
+          "name": "dei:EntityCentralIndexKey",
+          "context": "From2025-01-01to2025-12-31",
+          "text": "0000889353"
+        },
+        {
+          "name": "dei:EntityRegistrantName",
+          "context": "From2025-01-01to2025-12-31",
+          "text": "SENTINEL HOLDINGS LTD"
+        }
+      ],
+      "core_fact_contexts": [
+        {
+          "tag": "us-gaap:Assets",
+          "contexts": [
+            "AsOf2024-12-31",
+            "AsOf2025-12-31"
+          ]
+        },
+        {
+          "tag": "us-gaap:Liabilities",
+          "contexts": [
+            "AsOf2024-12-31",
+            "AsOf2025-12-31"
+          ]
+        },
+        {
+          "tag": "us-gaap:NetCashProvidedByUsedInOperatingActivities",
+          "contexts": [
+            "From2024-01-01to2024-12-31",
+            "From2025-01-01to2025-12-31"
+          ]
+        },
+        {
+          "tag": "us-gaap:NetIncomeLoss",
+          "contexts": [
+            "From2025-01-01to2025-12-31"
+          ]
+        },
+        {
+          "tag": "us-gaap:Revenues",
+          "contexts": [
+            "From2024-01-01to2024-12-31",
+            "From2024-01-01to2024-12-31_sntl_ConsolidatedMember",
+            "From2024-01-01to2024-12-31_us-gaap_SegmentContinuingOperationsMember",
+            "From2024-01-01to2024-12-31_us-gaap_SegmentDiscontinuedOperationsMember",
+            "From2025-01-01to2025-12-31",
+            "From2025-01-01to2025-12-31_sntl_ConsolidatedMember",
+            "From2025-01-01to2025-12-31_us-gaap_SegmentContinuingOperationsMember",
+            "From2025-01-01to2025-12-31_us-gaap_SegmentDiscontinuedOperationsMember"
+          ]
+        },
+        {
+          "tag": "us-gaap:StockholdersEquity",
+          "contexts": [
+            "AsOf2024-12-31",
+            "AsOf2025-12-31"
+          ]
+        }
+      ],
+      "contexts": {
+        "AsOf2024-12-31": {
+          "identifiers": [
+            "0000889353"
+          ],
+          "has_dimensions": false
+        },
+        "AsOf2025-12-31": {
+          "identifiers": [
+            "0000889353"
+          ],
+          "has_dimensions": false
+        },
+        "From2024-01-01to2024-12-31": {
+          "identifiers": [
+            "0000889353"
+          ],
+          "has_dimensions": false
+        },
+        "From2024-01-01to2024-12-31_sntl_ConsolidatedMember": {
+          "identifiers": [
+            "0000889353"
+          ],
+          "has_dimensions": true
+        },
+        "From2024-01-01to2024-12-31_us-gaap_SegmentContinuingOperationsMember": {
+          "identifiers": [
+            "0000889353"
+          ],
+          "has_dimensions": true
+        },
+        "From2024-01-01to2024-12-31_us-gaap_SegmentDiscontinuedOperationsMember": {
+          "identifiers": [
+            "0000889353"
+          ],
+          "has_dimensions": true
+        },
+        "From2025-01-01to2025-12-31": {
+          "identifiers": [
+            "0000889353"
+          ],
+          "has_dimensions": false
+        },
+        "From2025-01-01to2025-12-31_sntl_ConsolidatedMember": {
+          "identifiers": [
+            "0000889353"
+          ],
+          "has_dimensions": true
+        },
+        "From2025-01-01to2025-12-31_us-gaap_SegmentContinuingOperationsMember": {
+          "identifiers": [
+            "0000889353"
+          ],
+          "has_dimensions": true
+        },
+        "From2025-01-01to2025-12-31_us-gaap_SegmentDiscontinuedOperationsMember": {
+          "identifiers": [
+            "0000889353"
+          ],
+          "has_dimensions": true
+        }
+      },
+      "state": "IDENTITY_EVIDENCE_CAPTURED_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001009919",
+      "companyfacts_name": "INVECH HOLDINGS, INC.",
+      "discovery_names": [
+        "Invech Holdings, Inc."
+      ],
+      "accession": "0001683168-26-000412",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1009919/000168316826000412/0001683168-26-000412-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T07:19:51.601513+00:00",
+        "bytes": 11869,
+        "sha256": "6e466c52fbe25fa0eb4c0467e8413a728b91a99cda25e5dfce2ce328d4b524bd",
+        "body_path": "artifacts/seo/corpus-local/identity-filings/0001009919-0001683168-26-000412-index.response"
+      },
+      "index_filers": [
+        "Invech Holdings, Inc. (Filer) CIK : 0001009919 (see all company filings) EIN. : 880419476 | State of Incorp.: NV | Fiscal Year End: 1231 Type: 10-K | Act: 34 | File No.: 000-25553 | Film No.: 26541951 SIC : 8742 Services-Management Consulting Services (CF Office: 07 Trade & Services)"
+      ],
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1009919/000168316826000412/invech_10k-123125.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T07:19:53.192899+00:00",
+        "bytes": 457683,
+        "sha256": "b3b9d17d26e03ccca6811e3113532bc0c3524af03c8e8b13dd25ff11bc350983",
+        "body_path": "artifacts/seo/corpus-local/identity-filings/0001009919-0001683168-26-000412-primary.response"
+      },
+      "dei_identity_facts": [
+        {
+          "name": "dei:EntityCentralIndexKey",
+          "context": "From2025-01-01to2025-12-31",
+          "text": "0001009919"
+        },
+        {
+          "name": "dei:EntityRegistrantName",
+          "context": "From2025-01-01to2025-12-31",
+          "text": "INVECH HOLDINGS, INC."
+        }
+      ],
+      "core_fact_contexts": [
+        {
+          "tag": "us-gaap:Assets",
+          "contexts": [
+            "AsOf2024-12-31",
+            "AsOf2025-12-31"
+          ]
+        },
+        {
+          "tag": "us-gaap:Liabilities",
+          "contexts": [
+            "AsOf2024-12-31",
+            "AsOf2025-12-31"
+          ]
+        },
+        {
+          "tag": "us-gaap:NetCashProvidedByUsedInOperatingActivities",
+          "contexts": [
+            "From2024-01-012024-12-31",
+            "From2025-01-01to2025-12-31"
+          ]
+        },
+        {
+          "tag": "us-gaap:NetIncomeLoss",
+          "contexts": [
+            "From2024-01-012024-12-31",
+            "From2024-01-012024-12-31_custom_PreferredStockSeriesAMember",
+            "From2024-01-012024-12-31_us-gaap_AdditionalPaidInCapitalMember",
+            "From2024-01-012024-12-31_us-gaap_CommonStockMember",
+            "From2024-01-012024-12-31_us-gaap_RetainedEarningsMember",
+            "From2025-01-012025-12-31_custom_PreferredStockSeriesAMember",
+            "From2025-01-012025-12-31_us-gaap_AdditionalPaidInCapitalMember",
+            "From2025-01-012025-12-31_us-gaap_CommonStockMember",
+            "From2025-01-012025-12-31_us-gaap_RetainedEarningsMember",
+            "From2025-01-01to2025-12-31"
+          ]
+        },
+        {
+          "tag": "us-gaap:StockholdersEquity",
+          "contexts": [
+            "AsOf2023-12-31",
+            "AsOf2023-12-31_custom_PreferredStockSeriesAMember",
+            "AsOf2023-12-31_us-gaap_AdditionalPaidInCapitalMember",
+            "AsOf2023-12-31_us-gaap_CommonStockMember",
+            "AsOf2023-12-31_us-gaap_RetainedEarningsMember",
+            "AsOf2024-12-31",
+            "AsOf2024-12-31_custom_PreferredStockSeriesAMember",
+            "AsOf2024-12-31_us-gaap_AdditionalPaidInCapitalMember",
+            "AsOf2024-12-31_us-gaap_CommonStockMember",
+            "AsOf2024-12-31_us-gaap_RetainedEarningsMember",
+            "AsOf2025-12-31",
+            "AsOf2025-12-31_custom_PreferredStockSeriesAMember",
+            "AsOf2025-12-31_us-gaap_AdditionalPaidInCapitalMember",
+            "AsOf2025-12-31_us-gaap_CommonStockMember",
+            "AsOf2025-12-31_us-gaap_RetainedEarningsMember"
+          ]
+        }
+      ],
+      "contexts": {
+        "AsOf2023-12-31": {
+          "identifiers": [
+            "0001009919"
+          ],
+          "has_dimensions": false
+        },
+        "AsOf2023-12-31_custom_PreferredStockSeriesAMember": {
+          "identifiers": [
+            "0001009919"
+          ],
+          "has_dimensions": true
+        },
+        "AsOf2023-12-31_us-gaap_AdditionalPaidInCapitalMember": {
+          "identifiers": [
+            "0001009919"
+          ],
+          "has_dimensions": true
+        },
+        "AsOf2023-12-31_us-gaap_CommonStockMember": {
+          "identifiers": [
+            "0001009919"
+          ],
+          "has_dimensions": true
+        },
+        "AsOf2023-12-31_us-gaap_RetainedEarningsMember": {
+          "identifiers": [
+            "0001009919"
+          ],
+          "has_dimensions": true
+        },
+        "AsOf2024-12-31": {
+          "identifiers": [
+            "0001009919"
+          ],
+          "has_dimensions": false
+        },
+        "AsOf2024-12-31_custom_PreferredStockSeriesAMember": {
+          "identifiers": [
+            "0001009919"
+          ],
+          "has_dimensions": true
+        },
+        "AsOf2024-12-31_us-gaap_AdditionalPaidInCapitalMember": {
+          "identifiers": [
+            "0001009919"
+          ],
+          "has_dimensions": true
+        },
+        "AsOf2024-12-31_us-gaap_CommonStockMember": {
+          "identifiers": [
+            "0001009919"
+          ],
+          "has_dimensions": true
+        },
+        "AsOf2024-12-31_us-gaap_RetainedEarningsMember": {
+          "identifiers": [
+            "0001009919"
+          ],
+          "has_dimensions": true
+        },
+        "AsOf2025-12-31": {
+          "identifiers": [
+            "0001009919"
+          ],
+          "has_dimensions": false
+        },
+        "AsOf2025-12-31_custom_PreferredStockSeriesAMember": {
+          "identifiers": [
+            "0001009919"
+          ],
+          "has_dimensions": true
+        },
+        "AsOf2025-12-31_us-gaap_AdditionalPaidInCapitalMember": {
+          "identifiers": [
+            "0001009919"
+          ],
+          "has_dimensions": true
+        },
+        "AsOf2025-12-31_us-gaap_CommonStockMember": {
+          "identifiers": [
+            "0001009919"
+          ],
+          "has_dimensions": true
+        },
+        "AsOf2025-12-31_us-gaap_RetainedEarningsMember": {
+          "identifiers": [
+            "0001009919"
+          ],
+          "has_dimensions": true
+        },
+        "From2024-01-012024-12-31": {
+          "identifiers": [
+            "0001009919"
+          ],
+          "has_dimensions": false
+        },
+        "From2024-01-012024-12-31_custom_PreferredStockSeriesAMember": {
+          "identifiers": [
+            "0001009919"
+          ],
+          "has_dimensions": true
+        },
+        "From2024-01-012024-12-31_us-gaap_AdditionalPaidInCapitalMember": {
+          "identifiers": [
+            "0001009919"
+          ],
+          "has_dimensions": true
+        },
+        "From2024-01-012024-12-31_us-gaap_CommonStockMember": {
+          "identifiers": [
+            "0001009919"
+          ],
+          "has_dimensions": true
+        },
+        "From2024-01-012024-12-31_us-gaap_RetainedEarningsMember": {
+          "identifiers": [
+            "0001009919"
+          ],
+          "has_dimensions": true
+        },
+        "From2025-01-012025-12-31_custom_PreferredStockSeriesAMember": {
+          "identifiers": [
+            "0001009919"
+          ],
+          "has_dimensions": true
+        },
+        "From2025-01-012025-12-31_us-gaap_AdditionalPaidInCapitalMember": {
+          "identifiers": [
+            "0001009919"
+          ],
+          "has_dimensions": true
+        },
+        "From2025-01-012025-12-31_us-gaap_CommonStockMember": {
+          "identifiers": [
+            "0001009919"
+          ],
+          "has_dimensions": true
+        },
+        "From2025-01-012025-12-31_us-gaap_RetainedEarningsMember": {
+          "identifiers": [
+            "0001009919"
+          ],
+          "has_dimensions": true
+        },
+        "From2025-01-01to2025-12-31": {
+          "identifiers": [
+            "0001009919"
+          ],
+          "has_dimensions": false
+        }
+      },
+      "state": "IDENTITY_EVIDENCE_CAPTURED_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001043150",
+      "companyfacts_name": "ELINE ENTERTAINMENT GROUP, INC.",
+      "discovery_names": [
+        "Eline Entertainment Group, Inc."
+      ],
+      "accession": "0001683168-24-008957",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1043150/000168316824008957/0001683168-24-008957-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T07:19:54.854896+00:00",
+        "bytes": 11684,
+        "sha256": "5daf7ae79fdde683a59c644296ad173082e5e8c6ffd9456e6806af3dcf5f95a5",
+        "body_path": "artifacts/seo/corpus-local/identity-filings/0001043150-0001683168-24-008957-index.response"
+      },
+      "index_filers": [
+        "Eline Entertainment Group, Inc. (Filer) CIK : 0001043150 (see all company filings) EIN. : 880429856 | State of Incorp.: WY | Fiscal Year End: 1231 Type: 10-K | Act: 34 | File No.: 000-30451 | Film No.: 241574822 SIC : 1520 General Bldg Contractors - Residential Bldgs (CF Office: 05 Real Estate & Construction)"
+      ],
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1043150/000168316824008957/eline_i10k-123123.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T07:19:56.409963+00:00",
+        "bytes": 397798,
+        "sha256": "8d349c9ca64cfc0da50346c4867c8d2da297a0bc3e11fffe8aca0f506e1b8b01",
+        "body_path": "artifacts/seo/corpus-local/identity-filings/0001043150-0001683168-24-008957-primary.response"
+      },
+      "dei_identity_facts": [
+        {
+          "name": "dei:EntityCentralIndexKey",
+          "context": "From2023-01-01to2023-12-31",
+          "text": "0001043150"
+        },
+        {
+          "name": "dei:EntityRegistrantName",
+          "context": "From2023-01-01to2023-12-31",
+          "text": "Eline\n    Entertainment Group, Inc."
+        }
+      ],
+      "core_fact_contexts": [
+        {
+          "tag": "us-gaap:PaymentsToAcquirePropertyPlantAndEquipment",
+          "contexts": [
+            "From2022-01-012022-12-31",
+            "From2023-01-01to2023-12-31"
+          ]
+        }
+      ],
+      "contexts": {
+        "From2022-01-012022-12-31": {
+          "identifiers": [
+            "0001043150"
+          ],
+          "has_dimensions": false
+        },
+        "From2023-01-01to2023-12-31": {
+          "identifiers": [
+            "0001043150"
+          ],
+          "has_dimensions": false
+        }
+      },
+      "state": "IDENTITY_EVIDENCE_CAPTURED_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001043150",
+      "companyfacts_name": "ELINE ENTERTAINMENT GROUP, INC.",
+      "discovery_names": [
+        "Eline Entertainment Group, Inc."
+      ],
+      "accession": "0001683168-26-002993",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1043150/000168316826002993/0001683168-26-002993-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T07:19:58.095694+00:00",
+        "bytes": 12329,
+        "sha256": "8cea37379e52eb58baf248df4a90ab824bdfd53b46960d9cc80bfd10b02576c8",
+        "body_path": "artifacts/seo/corpus-local/identity-filings/0001043150-0001683168-26-002993-index.response"
+      },
+      "index_filers": [
+        "Eline Entertainment Group, Inc. (Filer) CIK : 0001043150 (see all company filings) EIN. : 880429856 | State of Incorp.: WY | Fiscal Year End: 1231 Type: 10-K | Act: 34 | File No.: 000-30451 | Film No.: 26864432 SIC : 1520 General Bldg Contractors - Residential Bldgs (CF Office: 05 Real Estate & Construction)"
+      ],
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1043150/000168316826002993/eegi_i10k-123125.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T07:19:59.787215+00:00",
+        "bytes": 504898,
+        "sha256": "0683b9a39b28ee00725dd69925af68e7422f373dc1f63bcca8a06266d4fa0375",
+        "body_path": "artifacts/seo/corpus-local/identity-filings/0001043150-0001683168-26-002993-primary.response"
+      },
+      "dei_identity_facts": [
+        {
+          "name": "dei:EntityCentralIndexKey",
+          "context": "From2025-01-01to2025-12-31",
+          "text": "0001043150"
+        },
+        {
+          "name": "dei:EntityRegistrantName",
+          "context": "From2025-01-01to2025-12-31",
+          "text": "Eline Entertainment Group, Inc."
+        }
+      ],
+      "core_fact_contexts": [
+        {
+          "tag": "us-gaap:Assets",
+          "contexts": [
+            "AsOf2024-12-31",
+            "AsOf2024-12-31_custom_CODMMember_us-gaap_OperatingSegmentsMember",
+            "AsOf2025-12-31",
+            "AsOf2025-12-31_custom_CODMMember_us-gaap_OperatingSegmentsMember"
+          ]
+        },
+        {
+          "tag": "us-gaap:Liabilities",
+          "contexts": [
+            "AsOf2024-12-31",
+            "AsOf2025-12-31"
+          ]
+        },
+        {
+          "tag": "us-gaap:NetCashProvidedByUsedInOperatingActivities",
+          "contexts": [
+            "From2024-01-012024-12-31",
+            "From2025-01-01to2025-12-31"
+          ]
+        },
+        {
+          "tag": "us-gaap:NetIncomeLoss",
+          "contexts": [
+            "From2024-01-012024-12-31",
+            "From2024-01-012024-12-31_custom_PreferredStockSeriesDMember",
+            "From2024-01-012024-12-31_us-gaap_AdditionalPaidInCapitalMember",
+            "From2024-01-012024-12-31_us-gaap_CommonStockMember",
+            "From2024-01-012024-12-31_us-gaap_RetainedEarningsMember",
+            "From2025-01-012025-12-31_custom_PreferredStockSeriesDMember",
+            "From2025-01-012025-12-31_us-gaap_AdditionalPaidInCapitalMember",
+            "From2025-01-012025-12-31_us-gaap_CommonStockMember",
+            "From2025-01-012025-12-31_us-gaap_RetainedEarningsMember",
+            "From2025-01-01to2025-12-31"
+          ]
+        },
+        {
+          "tag": "us-gaap:Revenues",
+          "contexts": [
+            "From2024-01-012024-12-31",
+            "From2024-01-012024-12-31_custom_CODMMember_us-gaap_OperatingSegmentsMember",
+            "From2025-01-012025-12-31_custom_CODMMember_us-gaap_OperatingSegmentsMember",
+            "From2025-01-01to2025-12-31"
+          ]
+        },
+        {
+          "tag": "us-gaap:StockholdersEquity",
+          "contexts": [
+            "AsOf2023-12-31",
+            "AsOf2023-12-31_custom_PreferredStockSeriesDMember",
+            "AsOf2023-12-31_us-gaap_AdditionalPaidInCapitalMember",
+            "AsOf2023-12-31_us-gaap_CommonStockMember",
+            "AsOf2023-12-31_us-gaap_RetainedEarningsMember",
+            "AsOf2024-12-31",
+            "AsOf2024-12-31_custom_PreferredStockSeriesDMember",
+            "AsOf2024-12-31_us-gaap_AdditionalPaidInCapitalMember",
+            "AsOf2024-12-31_us-gaap_CommonStockMember",
+            "AsOf2024-12-31_us-gaap_RetainedEarningsMember",
+            "AsOf2025-12-31",
+            "AsOf2025-12-31_custom_PreferredStockSeriesDMember",
+            "AsOf2025-12-31_us-gaap_AdditionalPaidInCapitalMember",
+            "AsOf2025-12-31_us-gaap_CommonStockMember",
+            "AsOf2025-12-31_us-gaap_RetainedEarningsMember"
+          ]
+        }
+      ],
+      "contexts": {
+        "AsOf2023-12-31": {
+          "identifiers": [
+            "0001043150"
+          ],
+          "has_dimensions": false
+        },
+        "AsOf2023-12-31_custom_PreferredStockSeriesDMember": {
+          "identifiers": [
+            "0001043150"
+          ],
+          "has_dimensions": true
+        },
+        "AsOf2023-12-31_us-gaap_AdditionalPaidInCapitalMember": {
+          "identifiers": [
+            "0001043150"
+          ],
+          "has_dimensions": true
+        },
+        "AsOf2023-12-31_us-gaap_CommonStockMember": {
+          "identifiers": [
+            "0001043150"
+          ],
+          "has_dimensions": true
+        },
+        "AsOf2023-12-31_us-gaap_RetainedEarningsMember": {
+          "identifiers": [
+            "0001043150"
+          ],
+          "has_dimensions": true
+        },
+        "AsOf2024-12-31": {
+          "identifiers": [
+            "0001043150"
+          ],
+          "has_dimensions": false
+        },
+        "AsOf2024-12-31_custom_CODMMember_us-gaap_OperatingSegmentsMember": {
+          "identifiers": [
+            "0001043150"
+          ],
+          "has_dimensions": true
+        },
+        "AsOf2024-12-31_custom_PreferredStockSeriesDMember": {
+          "identifiers": [
+            "0001043150"
+          ],
+          "has_dimensions": true
+        },
+        "AsOf2024-12-31_us-gaap_AdditionalPaidInCapitalMember": {
+          "identifiers": [
+            "0001043150"
+          ],
+          "has_dimensions": true
+        },
+        "AsOf2024-12-31_us-gaap_CommonStockMember": {
+          "identifiers": [
+            "0001043150"
+          ],
+          "has_dimensions": true
+        },
+        "AsOf2024-12-31_us-gaap_RetainedEarningsMember": {
+          "identifiers": [
+            "0001043150"
+          ],
+          "has_dimensions": true
+        },
+        "AsOf2025-12-31": {
+          "identifiers": [
+            "0001043150"
+          ],
+          "has_dimensions": false
+        },
+        "AsOf2025-12-31_custom_CODMMember_us-gaap_OperatingSegmentsMember": {
+          "identifiers": [
+            "0001043150"
+          ],
+          "has_dimensions": true
+        },
+        "AsOf2025-12-31_custom_PreferredStockSeriesDMember": {
+          "identifiers": [
+            "0001043150"
+          ],
+          "has_dimensions": true
+        },
+        "AsOf2025-12-31_us-gaap_AdditionalPaidInCapitalMember": {
+          "identifiers": [
+            "0001043150"
+          ],
+          "has_dimensions": true
+        },
+        "AsOf2025-12-31_us-gaap_CommonStockMember": {
+          "identifiers": [
+            "0001043150"
+          ],
+          "has_dimensions": true
+        },
+        "AsOf2025-12-31_us-gaap_RetainedEarningsMember": {
+          "identifiers": [
+            "0001043150"
+          ],
+          "has_dimensions": true
+        },
+        "From2024-01-012024-12-31": {
+          "identifiers": [
+            "0001043150"
+          ],
+          "has_dimensions": false
+        },
+        "From2024-01-012024-12-31_custom_CODMMember_us-gaap_OperatingSegmentsMember": {
+          "identifiers": [
+            "0001043150"
+          ],
+          "has_dimensions": true
+        },
+        "From2024-01-012024-12-31_custom_PreferredStockSeriesDMember": {
+          "identifiers": [
+            "0001043150"
+          ],
+          "has_dimensions": true
+        },
+        "From2024-01-012024-12-31_us-gaap_AdditionalPaidInCapitalMember": {
+          "identifiers": [
+            "0001043150"
+          ],
+          "has_dimensions": true
+        },
+        "From2024-01-012024-12-31_us-gaap_CommonStockMember": {
+          "identifiers": [
+            "0001043150"
+          ],
+          "has_dimensions": true
+        },
+        "From2024-01-012024-12-31_us-gaap_RetainedEarningsMember": {
+          "identifiers": [
+            "0001043150"
+          ],
+          "has_dimensions": true
+        },
+        "From2025-01-012025-12-31_custom_CODMMember_us-gaap_OperatingSegmentsMember": {
+          "identifiers": [
+            "0001043150"
+          ],
+          "has_dimensions": true
+        },
+        "From2025-01-012025-12-31_custom_PreferredStockSeriesDMember": {
+          "identifiers": [
+            "0001043150"
+          ],
+          "has_dimensions": true
+        },
+        "From2025-01-012025-12-31_us-gaap_AdditionalPaidInCapitalMember": {
+          "identifiers": [
+            "0001043150"
+          ],
+          "has_dimensions": true
+        },
+        "From2025-01-012025-12-31_us-gaap_CommonStockMember": {
+          "identifiers": [
+            "0001043150"
+          ],
+          "has_dimensions": true
+        },
+        "From2025-01-012025-12-31_us-gaap_RetainedEarningsMember": {
+          "identifiers": [
+            "0001043150"
+          ],
+          "has_dimensions": true
+        },
+        "From2025-01-01to2025-12-31": {
+          "identifiers": [
+            "0001043150"
+          ],
+          "has_dimensions": false
+        }
+      },
+      "state": "IDENTITY_EVIDENCE_CAPTURED_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001119190",
+      "companyfacts_name": "TAP REAL ESTATE TECHNOLOGIES, INC.",
+      "discovery_names": [
+        "TAP REAL ESTATE TECHNOLOGIES, INC."
+      ],
+      "accession": "0001493152-24-011766",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1119190/000149315224011766/0001493152-24-011766-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T07:20:01.603550+00:00",
+        "bytes": 11364,
+        "sha256": "2c4029e93b18b877b1d98990df30a947f857d93f53d6b96dda58e67de0686595",
+        "body_path": "artifacts/seo/corpus-local/identity-filings/0001119190-0001493152-24-011766-index.response"
+      },
+      "index_filers": [
+        "HUMBL, INC. (Filer) CIK : 0001119190 (see all company filings) EIN. : 271296318 | State of Incorp.: DE | Fiscal Year End: 1231 Type: 10-K | Act: 34 | File No.: 000-31267 | Film No.: 24799758 SIC : 5000 Wholesale-Durable Goods (CF Office: 07 Trade & Services)"
+      ],
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1119190/000149315224011766/form10-k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T07:20:03.351461+00:00",
+        "bytes": 4094711,
+        "sha256": "dd9cdd9944966e229bdb40383a2b54197c0c986626737918017de6e3b6732eef",
+        "body_path": "artifacts/seo/corpus-local/identity-filings/0001119190-0001493152-24-011766-primary.response"
+      },
+      "dei_identity_facts": [
+        {
+          "name": "dei:EntityCentralIndexKey",
+          "context": "From2023-01-01to2023-12-31",
+          "text": "0001119190"
+        },
+        {
+          "name": "dei:EntityRegistrantName",
+          "context": "From2023-01-01to2023-12-31",
+          "text": "HUMBL,\nINC."
+        }
+      ],
+      "core_fact_contexts": [
+        {
+          "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+          "contexts": [
+            "From2022-01-012022-12-31",
+            "From2022-01-012022-12-31_custom_CommercialMember",
+            "From2022-01-012022-12-31_custom_ConsumerMember",
+            "From2023-01-012023-12-31_custom_CommercialMember",
+            "From2023-01-012023-12-31_custom_ConsumerMember",
+            "From2023-01-01to2023-12-31"
+          ]
+        }
+      ],
+      "contexts": {
+        "From2022-01-012022-12-31": {
+          "identifiers": [
+            "0001119190"
+          ],
+          "has_dimensions": false
+        },
+        "From2022-01-012022-12-31_custom_CommercialMember": {
+          "identifiers": [
+            "0001119190"
+          ],
+          "has_dimensions": true
+        },
+        "From2022-01-012022-12-31_custom_ConsumerMember": {
+          "identifiers": [
+            "0001119190"
+          ],
+          "has_dimensions": true
+        },
+        "From2023-01-012023-12-31_custom_CommercialMember": {
+          "identifiers": [
+            "0001119190"
+          ],
+          "has_dimensions": true
+        },
+        "From2023-01-012023-12-31_custom_ConsumerMember": {
+          "identifiers": [
+            "0001119190"
+          ],
+          "has_dimensions": true
+        },
+        "From2023-01-01to2023-12-31": {
+          "identifiers": [
+            "0001119190"
+          ],
+          "has_dimensions": false
+        }
+      },
+      "state": "IDENTITY_EVIDENCE_CAPTURED_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001119190",
+      "companyfacts_name": "TAP REAL ESTATE TECHNOLOGIES, INC.",
+      "discovery_names": [
+        "TAP REAL ESTATE TECHNOLOGIES, INC."
+      ],
+      "accession": "0001493152-26-013966",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1119190/000149315226013966/0001493152-26-013966-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T07:20:05.445797+00:00",
+        "bytes": 12040,
+        "sha256": "84598fe367840b903fc0ec24ee1805b3c976a07f4895b084180759f3216ac08e",
+        "body_path": "artifacts/seo/corpus-local/identity-filings/0001119190-0001493152-26-013966-index.response"
+      },
+      "index_filers": [
+        "TAP REAL ESTATE TECHNOLOGIES, INC. (Filer) CIK : 0001119190 (see all company filings) EIN. : 271296318 | State of Incorp.: DE | Fiscal Year End: 1231 Type: 10-K | Act: 34 | File No.: 000-31267 | Film No.: 26819991 SIC : 5000 Wholesale-Durable Goods (CF Office: 07 Trade & Services)"
+      ],
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1119190/000149315226013966/form10-k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T07:20:07.341220+00:00",
+        "bytes": 2366728,
+        "sha256": "cd58f4a66a94a474c323ab559d617d25ab6f3ca75b8ceaae203f59c3f24c393b",
+        "body_path": "artifacts/seo/corpus-local/identity-filings/0001119190-0001493152-26-013966-primary.response"
+      },
+      "dei_identity_facts": [
+        {
+          "name": "dei:EntityCentralIndexKey",
+          "context": "From2025-01-01to2025-12-31",
+          "text": "0001119190"
+        },
+        {
+          "name": "dei:EntityRegistrantName",
+          "context": "From2025-01-01to2025-12-31",
+          "text": "TAP REAL ESTATE TECHNOLOGIES, INC."
+        }
+      ],
+      "core_fact_contexts": [
+        {
+          "tag": "us-gaap:Assets",
+          "contexts": [
+            "AsOf2024-12-31",
+            "AsOf2025-12-31"
+          ]
+        },
+        {
+          "tag": "us-gaap:Liabilities",
+          "contexts": [
+            "AsOf2024-12-31",
+            "AsOf2025-12-31"
+          ]
+        },
+        {
+          "tag": "us-gaap:NetCashProvidedByUsedInOperatingActivities",
+          "contexts": [
+            "From2024-01-012024-12-31",
+            "From2025-01-01to2025-12-31"
+          ]
+        },
+        {
+          "tag": "us-gaap:NetIncomeLoss",
+          "contexts": [
+            "From2024-01-012024-12-31",
+            "From2024-01-012024-12-31_custom_StockToBeIssuedMember",
+            "From2024-01-012024-12-31_us-gaap_AccumulatedOtherComprehensiveIncomeMember",
+            "From2024-01-012024-12-31_us-gaap_AdditionalPaidInCapitalMember",
+            "From2024-01-012024-12-31_us-gaap_CommonStockMember",
+            "From2024-01-012024-12-31_us-gaap_PreferredStockMember_us-gaap_SeriesAPreferredStockMember",
+            "From2024-01-012024-12-31_us-gaap_PreferredStockMember_us-gaap_SeriesBPreferredStockMember",
+            "From2024-01-012024-12-31_us-gaap_PreferredStockMember_us-gaap_SeriesCPreferredStockMember",
+            "From2024-01-012024-12-31_us-gaap_PreferredStockMember_us-gaap_SeriesDPreferredStockMember",
+            "From2024-01-012024-12-31_us-gaap_RetainedEarningsMember",
+            "From2025-01-012025-12-31_custom_StockToBeIssuedMember",
+            "From2025-01-012025-12-31_us-gaap_AccumulatedOtherComprehensiveIncomeMember",
+            "From2025-01-012025-12-31_us-gaap_AdditionalPaidInCapitalMember",
+            "From2025-01-012025-12-31_us-gaap_CommonStockMember",
+            "From2025-01-012025-12-31_us-gaap_PreferredStockMember_us-gaap_SeriesAPreferredStockMember",
+            "From2025-01-012025-12-31_us-gaap_PreferredStockMember_us-gaap_SeriesBPreferredStockMember",
+            "From2025-01-012025-12-31_us-gaap_PreferredStockMember_us-gaap_SeriesCPreferredStockMember",
+            "From2025-01-012025-12-31_us-gaap_PreferredStockMember_us-gaap_SeriesDPreferredStockMember",
+            "From2025-01-012025-12-31_us-gaap_RetainedEarningsMember",
+            "From2025-01-01to2025-12-31"
+          ]
+        },
+        {
+          "tag": "us-gaap:StockholdersEquity",
+          "contexts": [
+            "AsOf2023-12-31",
+            "AsOf2023-12-31_custom_StockToBeIssuedMember",
+            "AsOf2023-12-31_us-gaap_AccumulatedOtherComprehensiveIncomeMember",
+            "AsOf2023-12-31_us-gaap_AdditionalPaidInCapitalMember",
+            "AsOf2023-12-31_us-gaap_CommonStockMember",
+            "AsOf2023-12-31_us-gaap_PreferredStockMember_us-gaap_SeriesAPreferredStockMember",
+            "AsOf2023-12-31_us-gaap_PreferredStockMember_us-gaap_SeriesBPreferredStockMember",
+            "AsOf2023-12-31_us-gaap_PreferredStockMember_us-gaap_SeriesCPreferredStockMember",
+            "AsOf2023-12-31_us-gaap_PreferredStockMember_us-gaap_SeriesDPreferredStockMember",
+            "AsOf2023-12-31_us-gaap_RetainedEarningsMember",
+            "AsOf2024-12-31",
+            "AsOf2024-12-31_custom_StockToBeIssuedMember",
+            "AsOf2024-12-31_us-gaap_AccumulatedOtherComprehensiveIncomeMember",
+            "AsOf2024-12-31_us-gaap_AdditionalPaidInCapitalMember",
+            "AsOf2024-12-31_us-gaap_CommonStockMember",
+            "AsOf2024-12-31_us-gaap_PreferredStockMember_us-gaap_SeriesAPreferredStockMember",
+            "AsOf2024-12-31_us-gaap_PreferredStockMember_us-gaap_SeriesBPreferredStockMember",
+            "AsOf2024-12-31_us-gaap_PreferredStockMember_us-gaap_SeriesCPreferredStockMember",
+            "AsOf2024-12-31_us-gaap_PreferredStockMember_us-gaap_SeriesDPreferredStockMember",
+            "AsOf2024-12-31_us-gaap_RetainedEarningsMember",
+            "AsOf2025-12-31",
+            "AsOf2025-12-31_custom_StockToBeIssuedMember",
+            "AsOf2025-12-31_us-gaap_AccumulatedOtherComprehensiveIncomeMember",
+            "AsOf2025-12-31_us-gaap_AdditionalPaidInCapitalMember",
+            "AsOf2025-12-31_us-gaap_CommonStockMember",
+            "AsOf2025-12-31_us-gaap_PreferredStockMember_us-gaap_SeriesAPreferredStockMember",
+            "AsOf2025-12-31_us-gaap_PreferredStockMember_us-gaap_SeriesBPreferredStockMember",
+            "AsOf2025-12-31_us-gaap_PreferredStockMember_us-gaap_SeriesCPreferredStockMember",
+            "AsOf2025-12-31_us-gaap_PreferredStockMember_us-gaap_SeriesDPreferredStockMember",
+            "AsOf2025-12-31_us-gaap_RetainedEarningsMember"
+          ]
+        }
+      ],
+      "contexts": {
+        "AsOf2023-12-31": {
+          "identifiers": [
+            "0001119190"
+          ],
+          "has_dimensions": false
+        },
+        "AsOf2023-12-31_custom_StockToBeIssuedMember": {
+          "identifiers": [
+            "0001119190"
+          ],
+          "has_dimensions": true
+        },
+        "AsOf2023-12-31_us-gaap_AccumulatedOtherComprehensiveIncomeMember": {
+          "identifiers": [
+            "0001119190"
+          ],
+          "has_dimensions": true
+        },
+        "AsOf2023-12-31_us-gaap_AdditionalPaidInCapitalMember": {
+          "identifiers": [
+            "0001119190"
+          ],
+          "has_dimensions": true
+        },
+        "AsOf2023-12-31_us-gaap_CommonStockMember": {
+          "identifiers": [
+            "0001119190"
+          ],
+          "has_dimensions": true
+        },
+        "AsOf2023-12-31_us-gaap_PreferredStockMember_us-gaap_SeriesAPreferredStockMember": {
+          "identifiers": [
+            "0001119190"
+          ],
+          "has_dimensions": true
+        },
+        "AsOf2023-12-31_us-gaap_PreferredStockMember_us-gaap_SeriesBPreferredStockMember": {
+          "identifiers": [
+            "0001119190"
+          ],
+          "has_dimensions": true
+        },
+        "AsOf2023-12-31_us-gaap_PreferredStockMember_us-gaap_SeriesCPreferredStockMember": {
+          "identifiers": [
+            "0001119190"
+          ],
+          "has_dimensions": true
+        },
+        "AsOf2023-12-31_us-gaap_PreferredStockMember_us-gaap_SeriesDPreferredStockMember": {
+          "identifiers": [
+            "0001119190"
+          ],
+          "has_dimensions": true
+        },
+        "AsOf2023-12-31_us-gaap_RetainedEarningsMember": {
+          "identifiers": [
+            "0001119190"
+          ],
+          "has_dimensions": true
+        },
+        "AsOf2024-12-31": {
+          "identifiers": [
+            "0001119190"
+          ],
+          "has_dimensions": false
+        },
+        "AsOf2024-12-31_custom_StockToBeIssuedMember": {
+          "identifiers": [
+            "0001119190"
+          ],
+          "has_dimensions": true
+        },
+        "AsOf2024-12-31_us-gaap_AccumulatedOtherComprehensiveIncomeMember": {
+          "identifiers": [
+            "0001119190"
+          ],
+          "has_dimensions": true
+        },
+        "AsOf2024-12-31_us-gaap_AdditionalPaidInCapitalMember": {
+          "identifiers": [
+            "0001119190"
+          ],
+          "has_dimensions": true
+        },
+        "AsOf2024-12-31_us-gaap_CommonStockMember": {
+          "identifiers": [
+            "0001119190"
+          ],
+          "has_dimensions": true
+        },
+        "AsOf2024-12-31_us-gaap_PreferredStockMember_us-gaap_SeriesAPreferredStockMember": {
+          "identifiers": [
+            "0001119190"
+          ],
+          "has_dimensions": true
+        },
+        "AsOf2024-12-31_us-gaap_PreferredStockMember_us-gaap_SeriesBPreferredStockMember": {
+          "identifiers": [
+            "0001119190"
+          ],
+          "has_dimensions": true
+        },
+        "AsOf2024-12-31_us-gaap_PreferredStockMember_us-gaap_SeriesCPreferredStockMember": {
+          "identifiers": [
+            "0001119190"
+          ],
+          "has_dimensions": true
+        },
+        "AsOf2024-12-31_us-gaap_PreferredStockMember_us-gaap_SeriesDPreferredStockMember": {
+          "identifiers": [
+            "0001119190"
+          ],
+          "has_dimensions": true
+        },
+        "AsOf2024-12-31_us-gaap_RetainedEarningsMember": {
+          "identifiers": [
+            "0001119190"
+          ],
+          "has_dimensions": true
+        },
+        "AsOf2025-12-31": {
+          "identifiers": [
+            "0001119190"
+          ],
+          "has_dimensions": false
+        },
+        "AsOf2025-12-31_custom_StockToBeIssuedMember": {
+          "identifiers": [
+            "0001119190"
+          ],
+          "has_dimensions": true
+        },
+        "AsOf2025-12-31_us-gaap_AccumulatedOtherComprehensiveIncomeMember": {
+          "identifiers": [
+            "0001119190"
+          ],
+          "has_dimensions": true
+        },
+        "AsOf2025-12-31_us-gaap_AdditionalPaidInCapitalMember": {
+          "identifiers": [
+            "0001119190"
+          ],
+          "has_dimensions": true
+        },
+        "AsOf2025-12-31_us-gaap_CommonStockMember": {
+          "identifiers": [
+            "0001119190"
+          ],
+          "has_dimensions": true
+        },
+        "AsOf2025-12-31_us-gaap_PreferredStockMember_us-gaap_SeriesAPreferredStockMember": {
+          "identifiers": [
+            "0001119190"
+          ],
+          "has_dimensions": true
+        },
+        "AsOf2025-12-31_us-gaap_PreferredStockMember_us-gaap_SeriesBPreferredStockMember": {
+          "identifiers": [
+            "0001119190"
+          ],
+          "has_dimensions": true
+        },
+        "AsOf2025-12-31_us-gaap_PreferredStockMember_us-gaap_SeriesCPreferredStockMember": {
+          "identifiers": [
+            "0001119190"
+          ],
+          "has_dimensions": true
+        },
+        "AsOf2025-12-31_us-gaap_PreferredStockMember_us-gaap_SeriesDPreferredStockMember": {
+          "identifiers": [
+            "0001119190"
+          ],
+          "has_dimensions": true
+        },
+        "AsOf2025-12-31_us-gaap_RetainedEarningsMember": {
+          "identifiers": [
+            "0001119190"
+          ],
+          "has_dimensions": true
+        },
+        "From2024-01-012024-12-31": {
+          "identifiers": [
+            "0001119190"
+          ],
+          "has_dimensions": false
+        },
+        "From2024-01-012024-12-31_custom_StockToBeIssuedMember": {
+          "identifiers": [
+            "0001119190"
+          ],
+          "has_dimensions": true
+        },
+        "From2024-01-012024-12-31_us-gaap_AccumulatedOtherComprehensiveIncomeMember": {
+          "identifiers": [
+            "0001119190"
+          ],
+          "has_dimensions": true
+        },
+        "From2024-01-012024-12-31_us-gaap_AdditionalPaidInCapitalMember": {
+          "identifiers": [
+            "0001119190"
+          ],
+          "has_dimensions": true
+        },
+        "From2024-01-012024-12-31_us-gaap_CommonStockMember": {
+          "identifiers": [
+            "0001119190"
+          ],
+          "has_dimensions": true
+        },
+        "From2024-01-012024-12-31_us-gaap_PreferredStockMember_us-gaap_SeriesAPreferredStockMember": {
+          "identifiers": [
+            "0001119190"
+          ],
+          "has_dimensions": true
+        },
+        "From2024-01-012024-12-31_us-gaap_PreferredStockMember_us-gaap_SeriesBPreferredStockMember": {
+          "identifiers": [
+            "0001119190"
+          ],
+          "has_dimensions": true
+        },
+        "From2024-01-012024-12-31_us-gaap_PreferredStockMember_us-gaap_SeriesCPreferredStockMember": {
+          "identifiers": [
+            "0001119190"
+          ],
+          "has_dimensions": true
+        },
+        "From2024-01-012024-12-31_us-gaap_PreferredStockMember_us-gaap_SeriesDPreferredStockMember": {
+          "identifiers": [
+            "0001119190"
+          ],
+          "has_dimensions": true
+        },
+        "From2024-01-012024-12-31_us-gaap_RetainedEarningsMember": {
+          "identifiers": [
+            "0001119190"
+          ],
+          "has_dimensions": true
+        },
+        "From2025-01-012025-12-31_custom_StockToBeIssuedMember": {
+          "identifiers": [
+            "0001119190"
+          ],
+          "has_dimensions": true
+        },
+        "From2025-01-012025-12-31_us-gaap_AccumulatedOtherComprehensiveIncomeMember": {
+          "identifiers": [
+            "0001119190"
+          ],
+          "has_dimensions": true
+        },
+        "From2025-01-012025-12-31_us-gaap_AdditionalPaidInCapitalMember": {
+          "identifiers": [
+            "0001119190"
+          ],
+          "has_dimensions": true
+        },
+        "From2025-01-012025-12-31_us-gaap_CommonStockMember": {
+          "identifiers": [
+            "0001119190"
+          ],
+          "has_dimensions": true
+        },
+        "From2025-01-012025-12-31_us-gaap_PreferredStockMember_us-gaap_SeriesAPreferredStockMember": {
+          "identifiers": [
+            "0001119190"
+          ],
+          "has_dimensions": true
+        },
+        "From2025-01-012025-12-31_us-gaap_PreferredStockMember_us-gaap_SeriesBPreferredStockMember": {
+          "identifiers": [
+            "0001119190"
+          ],
+          "has_dimensions": true
+        },
+        "From2025-01-012025-12-31_us-gaap_PreferredStockMember_us-gaap_SeriesCPreferredStockMember": {
+          "identifiers": [
+            "0001119190"
+          ],
+          "has_dimensions": true
+        },
+        "From2025-01-012025-12-31_us-gaap_PreferredStockMember_us-gaap_SeriesDPreferredStockMember": {
+          "identifiers": [
+            "0001119190"
+          ],
+          "has_dimensions": true
+        },
+        "From2025-01-012025-12-31_us-gaap_RetainedEarningsMember": {
+          "identifiers": [
+            "0001119190"
+          ],
+          "has_dimensions": true
+        },
+        "From2025-01-01to2025-12-31": {
+          "identifiers": [
+            "0001119190"
+          ],
+          "has_dimensions": false
+        }
+      },
+      "state": "IDENTITY_EVIDENCE_CAPTURED_REVIEW_PENDING"
+    }
+  ],
+  "scope": "Filing identities and inline context identifiers for latest selected core accessions; not all-history numeric verification or admission."
+}

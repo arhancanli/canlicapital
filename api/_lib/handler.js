@@ -38,9 +38,9 @@ export function validatorHandler({ endpoint, sourcesPaths, compute, store, now =
     }
     const key = bearerKey(req);
     if (!key) return fail(res, 401, "unauthorized", "Send Authorization: Bearer ck_live_... from POST /api/v1/keys");
-    const activeStore = store ?? defaultStore();
+    let activeStore;
     let remaining;
-    try { ({ remaining } = await activeStore.consumeQuota(hashKey(key), LIMITS.validations_per_key_per_day)); } catch (e) {
+    try { activeStore = store ?? defaultStore(); ({ remaining } = await activeStore.consumeQuota(hashKey(key), LIMITS.validations_per_key_per_day)); } catch (e) {
       console.error("[validation-api] quota store failed", e.status ?? "", e.message);
       return fail(res, 503, "store_unavailable", "The quota store is unavailable; try again shortly");
     }

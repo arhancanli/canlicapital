@@ -1,3 +1,4 @@
+import { readSitemapXml } from "./lib/sitemaps.mjs";
 import { existsSync, readFileSync, readdirSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -6,7 +7,7 @@ const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const DIST = resolve(ROOT, "dist");
 const source = JSON.parse(readFileSync(resolve(ROOT, "public/glassbox/trial-packets/index.json"), "utf8"));
 const pages = readdirSync(resolve(DIST, "trials")).filter((name) => name.endsWith(".html"));
-const sitemap = readFileSync(resolve(DIST, "sitemap.xml"), "utf8");
+const sitemap = readSitemapXml(DIST);
 const failures = [];
 const check = (condition, message) => { if (!condition) failures.push(message); };
 

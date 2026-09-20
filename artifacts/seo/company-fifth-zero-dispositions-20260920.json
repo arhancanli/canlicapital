@@ -1,0 +1,256 @@
+{
+  "schema": "canli.editorial-zero-scope.v1",
+  "publication_approved": false,
+  "code_sha256": "ed25a1712e79f0f92a4fdd3dc51842502787b09c43ac0ab67acd8e2628a757cf",
+  "bindings": {
+    "artifacts/seo/company-fifth-editorial-targets-v6.json": "1a9c1a59af8bf9389c7b2967a599d0b74b6e8833fab57689f93f7f232266cebf",
+    "artifacts/seo/company-fifth-filing-capture-20260920.json": "b5e057cebbde6c1f26c636e4cb5592cedf7d8e18959295c1a549626122359721",
+    "artifacts/seo/company-fifth-xbrl-comparison-20260920.json": "61e900ed59e12e01320c06e54d8daeb54ca06820354b923b623a4e68c89594b5"
+  },
+  "cases": [
+    {
+      "cik": "0001551182",
+      "tag": "Revenues",
+      "source_sha256": "109482303c686ea9a3927143981559f7285115a0d15e7baa226d3c705c664e02",
+      "filing_url": "https://www.sec.gov/Archives/edgar/data/1551182/000155118217000014/etn12312016form10-k.htm",
+      "reason": "The inspected filing labels these zeros as revenue from major customers and states that no customer exceeded 10% of sales. They do not describe total company revenue; consolidated net sales are nonzero. This generic revenue history is omitted; original source data remain available.",
+      "receipts": {
+        "primary": {
+          "url": "https://www.sec.gov/Archives/edgar/data/1551182/000155118217000014/etn12312016form10-k.htm",
+          "status": 200,
+          "captured_at": "2026-09-20T09:34:01.830175+00:00",
+          "bytes": 4142654,
+          "sha256": "44370ce9ae5c5e905bb4ce009cb9d6c8954e6f23235c742d6b54c683505ca583",
+          "body_path": "artifacts/seo/corpus-local/fifth-editorial-filings/0001551182-0001551182-17-000014-primary.response"
+        },
+        "instance": {
+          "url": "https://www.sec.gov/Archives/edgar/data/1551182/000155118217000014/etn-20161231.xml",
+          "status": 200,
+          "bytes": 8241529,
+          "sha256": "d851831025e32848ee48411951cf2ea4db4c3d85ba63759373aee0b9cefccaac",
+          "captured_at": "2026-09-20T09:36:05.846916+00:00",
+          "body_path": "artifacts/seo/corpus-local/fifth-editorial-filings/0001551182-0001551182-17-000014-instance.response"
+        },
+        "lab": {
+          "url": "https://www.sec.gov/Archives/edgar/data/1551182/000155118217000014/etn-20161231_lab.xml",
+          "status": 200,
+          "captured_at": "2026-09-20T09:45:37.714Z",
+          "bytes": 1580827,
+          "sha256": "070d52503b94fac3c20cf88692dd7c9ae9d02b28c4b4c909ffb8d8f4a747403a",
+          "body_path": "artifacts/seo/corpus-local/fifth-editorial-filings/0001551182-lab.response"
+        },
+        "pre": {
+          "url": "https://www.sec.gov/Archives/edgar/data/1551182/000155118217000014/etn-20161231_pre.xml",
+          "status": 200,
+          "captured_at": "2026-09-20T09:45:39.056Z",
+          "bytes": 1028423,
+          "sha256": "2d9a838251cedb4523dabc91c1989c76c79c2039f68aa4c89fdc11df493b4e8e",
+          "body_path": "artifacts/seo/corpus-local/fifth-editorial-filings/0001551182-pre.response"
+        }
+      },
+      "evidence": {
+        "labels": [
+          "Entity-wide revenue, major customer, amount",
+          "Revenues"
+        ],
+        "presentation_roles": [
+          "http://www.eaton.com/role/BusinessSegmentAndGeographicRegionInformationBusinessSegmentInformationDetails"
+        ],
+        "primary_excerpts": [
+          "No single customer represented greater than 10% of net sales in 2016 , 2015 or 2014 , respectively.",
+          "Net sales $ 19,747 $ 20,855 $ 22,552"
+        ]
+      },
+      "numerical_checks": [
+        {
+          "selected": {
+            "start": "2016-01-01",
+            "end": "2016-12-31",
+            "val": 0,
+            "accn": "0001551182-17-000014",
+            "fy": 2016,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2017-02-22",
+            "frame": "CY2016",
+            "unit": "USD",
+            "cik": "0001551182",
+            "tag": "Revenues"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "FD2016Q4YTD",
+              "unit_id": "usd",
+              "value": "0"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "start": "2015-01-01",
+            "end": "2015-12-31",
+            "val": 0,
+            "accn": "0001551182-17-000014",
+            "fy": 2016,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2017-02-22",
+            "frame": "CY2015",
+            "unit": "USD",
+            "cik": "0001551182",
+            "tag": "Revenues"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "FD2015Q4YTD",
+              "unit_id": "usd",
+              "value": "0"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "start": "2014-01-01",
+            "end": "2014-12-31",
+            "val": 0,
+            "accn": "0001551182-17-000014",
+            "fy": 2016,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2017-02-22",
+            "frame": "CY2014",
+            "unit": "USD",
+            "cik": "0001551182",
+            "tag": "Revenues"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "FD2014Q4YTD",
+              "unit_id": "usd",
+              "value": "0"
+            }
+          ]
+        }
+      ],
+      "disposition": "EXCLUDE_CONCEPT_SCOPE_MISMATCH"
+    },
+    {
+      "cik": "0001477845",
+      "tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+      "source_sha256": "5f46431864276f3b86ddd5f520f0f0d740cabb76d1da6c6eaa47ff48ee863f51",
+      "filing_url": "https://www.sec.gov/Archives/edgar/data/1477845/000110465926027751/anvs-20251231x10k.htm",
+      "reason": "The inspected filing tags a statement that the company has not generated substantial revenues. That qualification does not establish a zero total. This revenue history is omitted; original source data remain available.",
+      "receipts": {
+        "primary": {
+          "url": "https://www.sec.gov/Archives/edgar/data/1477845/000110465926027751/anvs-20251231x10k.htm",
+          "status": 200,
+          "captured_at": "2026-09-20T09:33:30.403463+00:00",
+          "bytes": 1928022,
+          "sha256": "1e7b6f32fecdc0d13587899fae1c2f74f9bdd91ae2d349e26db105156aa47c0a",
+          "body_path": "artifacts/seo/corpus-local/fifth-editorial-filings/0001477845-0001104659-26-027751-primary.response"
+        },
+        "instance": {
+          "url": "https://www.sec.gov/Archives/edgar/data/1477845/000110465926027751/anvs-20251231x10k_htm.xml",
+          "status": 200,
+          "bytes": 1231271,
+          "sha256": "a949b8d9e9e7226994b35615f01983a51e414edd5384c703ab4e460763ce2321",
+          "captured_at": "2026-09-20T09:35:53.063061+00:00",
+          "body_path": "artifacts/seo/corpus-local/fifth-editorial-filings/0001477845-0001104659-26-027751-instance.response"
+        }
+      },
+      "evidence": {
+        "fact_id": "Narr_VMMZdwhRekGYPeMBSzOuqA",
+        "context_id": "Duration_1_1_2025_To_12_31_2025_BjGabG9vkkGZhqQgvGtlqg",
+        "visible_paragraph": "Since its founding, the Company has been engaged in organizational activities, including raising capital, and research and development activities. The Company has no t generated substantial revenues and has not yet achieved profitable operations, nor has it ever generated positive cash flows from operations. There is no assurance that profitable operations, if achieved, could be sustained on a continuing basis. The Company is subject to those risks associated with any clinical stage pharmaceutical company that has substantial expenditures for research and development. There can be no assurance that the Company\u2019s research and development projects will be successful, that products developed will obtain necessary regulatory approval, or that any approved product will become commercially viable. In addition, the Company operates in an environment of rapid technological change and is largely dependent on the services of its employees and consultants. Further, the Company\u2019s future operations are dependent on the success of its efforts to raise additional capital."
+      },
+      "numerical_checks": [
+        {
+          "selected": {
+            "start": "2025-01-01",
+            "end": "2025-12-31",
+            "val": 0,
+            "accn": "0001104659-26-027751",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2026-03-13",
+            "frame": "CY2025",
+            "unit": "USD",
+            "cik": "0001477845",
+            "tag": "RevenueFromContractWithCustomerExcludingAssessedTax"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "Duration_1_1_2025_To_12_31_2025_BjGabG9vkkGZhqQgvGtlqg",
+              "unit_id": "Unit_Standard_USD_Lf4K5im6Y0CyE-cI3RU1hA",
+              "value": "0"
+            }
+          ]
+        }
+      ],
+      "disposition": "EXCLUDE_CONCEPT_SCOPE_MISMATCH"
+    },
+    {
+      "cik": "0001598646",
+      "tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+      "source_sha256": "7b57da641574943cc8f7ca81f9c94ea1ff7a872915407c01165fb2137ec7efc4",
+      "filing_url": "https://www.sec.gov/Archives/edgar/data/1598646/000095017025026055/nerv-20241231.htm",
+      "reason": "The inspected filing tags a statement about no revenue from product sales. That narrower scope does not establish total revenue from contracts with customers. This revenue history is omitted; original source data remain available.",
+      "receipts": {
+        "primary": {
+          "url": "https://www.sec.gov/Archives/edgar/data/1598646/000095017025026055/nerv-20241231.htm",
+          "status": 200,
+          "captured_at": "2026-09-20T09:34:26.848368+00:00",
+          "bytes": 2447793,
+          "sha256": "b0a66d899185cd02ae0984ec0b461e3807a667c9d6c4d7530a29e5d0c0d7ccb1",
+          "body_path": "artifacts/seo/corpus-local/fifth-editorial-filings/0001598646-0000950170-25-026055-primary.response"
+        },
+        "instance": {
+          "url": "https://www.sec.gov/Archives/edgar/data/1598646/000095017025026055/nerv-20241231_htm.xml",
+          "status": 200,
+          "bytes": 1289069,
+          "sha256": "693fe31a4695a43d9c1690f5117af6ac9e9df90aa72c7ad21a8336656f753223",
+          "captured_at": "2026-09-20T09:36:11.228466+00:00",
+          "body_path": "artifacts/seo/corpus-local/fifth-editorial-filings/0001598646-0000950170-25-026055-instance.response"
+        }
+      },
+      "evidence": {
+        "fact_id": "F_0d56ea29-8dda-4723-80ab-d4423fe4eb3d",
+        "context_id": "C_63c239a5-9be8-4ecd-9b54-7cf3ef705d5d",
+        "visible_paragraph": "The Company applies the revenue recognition guidance in accordance with ASC 606, Revenue from Contracts with Customers . Revenue is recognized when persuasive evidence of an arrangement exists, delivery has occurred and title has passed, the price is fixed or determinable, and collectability is reasonably assured. The Company is a development stage company and has had no revenues from product sales to date."
+      },
+      "numerical_checks": [
+        {
+          "selected": {
+            "start": "2024-01-01",
+            "end": "2024-12-31",
+            "val": 0,
+            "accn": "0000950170-25-026055",
+            "fy": 2024,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2025-02-25",
+            "frame": "CY2024",
+            "unit": "USD",
+            "cik": "0001598646",
+            "tag": "RevenueFromContractWithCustomerExcludingAssessedTax"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "C_63c239a5-9be8-4ecd-9b54-7cf3ef705d5d",
+              "unit_id": "U_USD",
+              "value": "0"
+            }
+          ]
+        }
+      ],
+      "disposition": "EXCLUDE_CONCEPT_SCOPE_MISMATCH"
+    }
+  ],
+  "scope": "Latest selected original filings and exact companyfacts snapshots. Numerical equality does not prove concept scope; no replacement values, all-history approval or assertion that the two pharmaceutical companies have nonzero revenue."
+}

@@ -1,0 +1,2989 @@
+{
+  "schema": "canli.company-editorial-filing-capture.v1",
+  "input_sha256": "c156b59d5a3c1512d84053a5077cbfad0bca0e2af4bc16d2391deb74cd7c94cf",
+  "publication_approved": false,
+  "complete": true,
+  "filings": [
+    {
+      "cik": "0001121795",
+      "companyfacts_name": "GHST World Inc.",
+      "discovery_names": [],
+      "accession": "0001553350-22-000798",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1121795/000155335022000798/0001553350-22-000798-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T08:23:03.392242+00:00",
+        "bytes": 12520,
+        "sha256": "a31be9588b373ffdd19161d292c068df1779ea7f7098ce6b660420b101389ab8",
+        "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001121795-0001553350-22-000798-index.response"
+      },
+      "index_filers": [
+        "GHST World Inc. (Filer) CIK : 0001121795 (see all company filings) EIN. : 912007477 | State of Incorp.: DE | Fiscal Year End: 0630 Type: 10-K | Act: 34 | File No.: 000-31705 | Film No.: 221277109 SIC : 7372 Services-Prepackaged Software"
+      ],
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1121795/000155335022000798/ghst_10k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T08:23:05.082378+00:00",
+        "bytes": 512400,
+        "sha256": "f2bee3b8f6aadd221a735eda00c6b898ced206f0444031800fb7119bd684da63",
+        "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001121795-0001553350-22-000798-primary.response"
+      },
+      "dei_identity_facts": [
+        {
+          "name": "dei:EntityCentralIndexKey",
+          "context": "From2021-07-01to2022-06-30",
+          "text": "0001121795"
+        },
+        {
+          "name": "dei:EntityRegistrantName",
+          "context": "From2021-07-01to2022-06-30",
+          "text": "GHST World Inc."
+        }
+      ],
+      "core_fact_contexts": [
+        {
+          "tag": "us-gaap:CashAndCashEquivalentsAtCarryingValue",
+          "contexts": [
+            "AsOf2021-06-30",
+            "AsOf2022-06-30"
+          ]
+        }
+      ],
+      "contexts": {
+        "AsOf2021-06-30": {
+          "identifiers": [
+            "0001121795"
+          ],
+          "has_dimensions": false
+        },
+        "AsOf2022-06-30": {
+          "identifiers": [
+            "0001121795"
+          ],
+          "has_dimensions": false
+        }
+      },
+      "state": "PRIMARY_CAPTURED_EDITORIAL_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001127475",
+      "companyfacts_name": "DIGITAL BRAND MEDIA & MARKETING GROUP, INC.",
+      "discovery_names": [],
+      "accession": "0001185185-25-001887",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1127475/000118518525001887/0001185185-25-001887-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T08:23:06.877512+00:00",
+        "bytes": 12459,
+        "sha256": "71f22f7a1165595a5970e0fe1c65e307b94a132549047a3358d29e977505a53a",
+        "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001127475-0001185185-25-001887-index.response"
+      },
+      "index_filers": [
+        "Digital Brand Media & Marketing Group, Inc. (Filer) CIK : 0001127475 (see all company filings) EIN. : 593666743 | State of Incorp.: FL | Fiscal Year End: 0831 Type: 10-K | Act: 34 | File No.: 000-52838 | Film No.: 251536393 SIC : 7389 Services-Business Services, NEC (CF Office: 07 Trade & Services)"
+      ],
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1127475/000118518525001887/dbmm10k083125.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T08:23:08.611926+00:00",
+        "bytes": 687783,
+        "sha256": "900d6d86778fe2dde695a2eaa92b9a1fe1568daeb527362da2dbb591003029a9",
+        "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001127475-0001185185-25-001887-primary.response"
+      },
+      "dei_identity_facts": [
+        {
+          "name": "dei:EntityRegistrantName",
+          "context": "c0",
+          "text": "DIGITAL\nBRAND MEDIA & MARKETING GROUP, INC."
+        },
+        {
+          "name": "dei:EntityCentralIndexKey",
+          "context": "c0",
+          "text": "0001127475"
+        }
+      ],
+      "core_fact_contexts": [
+        {
+          "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+          "contexts": [
+            "c0",
+            "c60",
+            "c61",
+            "c64",
+            "c65",
+            "c9"
+          ]
+        },
+        {
+          "tag": "us-gaap:Revenues",
+          "contexts": [
+            "c0",
+            "c60",
+            "c61",
+            "c64",
+            "c65",
+            "c9"
+          ]
+        }
+      ],
+      "contexts": {
+        "c0": {
+          "identifiers": [
+            "0001127475"
+          ],
+          "has_dimensions": false
+        },
+        "c60": {
+          "identifiers": [
+            "0001127475"
+          ],
+          "has_dimensions": true
+        },
+        "c61": {
+          "identifiers": [
+            "0001127475"
+          ],
+          "has_dimensions": true
+        },
+        "c64": {
+          "identifiers": [
+            "0001127475"
+          ],
+          "has_dimensions": true
+        },
+        "c65": {
+          "identifiers": [
+            "0001127475"
+          ],
+          "has_dimensions": true
+        },
+        "c9": {
+          "identifiers": [
+            "0001127475"
+          ],
+          "has_dimensions": false
+        }
+      },
+      "state": "PRIMARY_CAPTURED_EDITORIAL_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001128189",
+      "companyfacts_name": "PROTOKINETIX, INCORPORATED",
+      "discovery_names": [],
+      "accession": "0001079973-15-000278",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1128189/000107997315000278/0001079973-15-000278-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T08:23:10.367787+00:00",
+        "bytes": 16786,
+        "sha256": "8bf38c919d91ed4d5351e3557bebccc5fb6f40a61e926788fd4794d2f98d5103",
+        "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001128189-0001079973-15-000278-index.response"
+      },
+      "index_filers": [
+        "ProtoKinetix, Inc. (Filer) CIK : 0001128189 (see all company filings) EIN. : 943355026 | State of Incorp.: NV | Fiscal Year End: 1231 Type: 10-K | Act: 34 | File No.: 000-32917 | Film No.: 15767659 SIC : 2834 Pharmaceutical Preparations"
+      ],
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1128189/000107997315000278/pktx_10k-123114.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T08:23:12.026437+00:00",
+        "bytes": 869313,
+        "sha256": "633eab44b1876ff903e8b4005fb893af586b2045f23cf5b93a4a6e8ab0ba88e3",
+        "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001128189-0001079973-15-000278-primary.response"
+      },
+      "dei_identity_facts": [],
+      "core_fact_contexts": [
+        {
+          "tag": "us-gaap:Revenues",
+          "contexts": []
+        }
+      ],
+      "contexts": {},
+      "state": "PRIMARY_CAPTURED_EDITORIAL_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001132509",
+      "companyfacts_name": "NEW MOMENTUM CORPORATION",
+      "discovery_names": [],
+      "accession": "0001010412-14-000067",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1132509/000101041214000067/0001010412-14-000067-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T08:23:13.811656+00:00",
+        "bytes": 10905,
+        "sha256": "9ac698f4920cfce9a7e81e759c00968a06ade363acd0f3080ccba29e43529b4a",
+        "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001132509-0001010412-14-000067-index.response"
+      },
+      "index_filers": [
+        "HAN LOGISTICS INC (Filer) CIK : 0001132509 (see all company filings) EIN. : 880435998 | State of Incorp.: NV | Fiscal Year End: 1231 Type: 10-K | Act: 34 | File No.: 000-52273 | Film No.: 14761949 SIC : 8741 Services-Management Services"
+      ],
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1132509/000101041214000067/k13clean41014.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T08:23:15.496537+00:00",
+        "bytes": 376983,
+        "sha256": "f05863ee8d8666e13b67eacee9cebd5795e100912532239410faaeb44eed1f6e",
+        "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001132509-0001010412-14-000067-primary.response"
+      },
+      "dei_identity_facts": [],
+      "core_fact_contexts": [
+        {
+          "tag": "us-gaap:PaymentsToAcquirePropertyPlantAndEquipment",
+          "contexts": []
+        }
+      ],
+      "contexts": {},
+      "state": "PRIMARY_CAPTURED_EDITORIAL_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001134982",
+      "companyfacts_name": "APPLE iSPORTS GROUP, INC.",
+      "discovery_names": [],
+      "accession": "0001477932-26-002110",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1134982/000147793226002110/0001477932-26-002110-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T08:23:17.832355+00:00",
+        "bytes": 12613,
+        "sha256": "65f157d167abe600718147df89b016461e301fba9a02034a3df0cce31af4a507",
+        "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001134982-0001477932-26-002110-index.response"
+      },
+      "index_filers": [
+        "Apple iSports Group, Inc. (Filer) CIK : 0001134982 (see all company filings) EIN. : 880126444 | State of Incorp.: NV | Fiscal Year End: 1231 Type: 10-K | Act: 34 | File No.: 000-32389 | Film No.: 26853988 SIC : 6411 Insurance Agents, Brokers & Service (CF Office: 02 Finance)"
+      ],
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1134982/000147793226002110/aapi_10k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T08:23:19.726947+00:00",
+        "bytes": 983131,
+        "sha256": "a80eca48fc1e634d8f5a8445ada5eb7c6834dd95b69bde4e9037987b5e6fe246",
+        "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001134982-0001477932-26-002110-primary.response"
+      },
+      "dei_identity_facts": [
+        {
+          "name": "dei:EntityCentralIndexKey",
+          "context": "From2025-01-01to2025-12-31",
+          "text": "0001134982"
+        },
+        {
+          "name": "dei:EntityRegistrantName",
+          "context": "From2025-01-01to2025-12-31",
+          "text": "APPLE iSPORTS GROUP, INC."
+        }
+      ],
+      "core_fact_contexts": [
+        {
+          "tag": "us-gaap:Liabilities",
+          "contexts": [
+            "AsOf2024-12-31",
+            "AsOf2025-12-31"
+          ]
+        },
+        {
+          "tag": "us-gaap:LiabilitiesCurrent",
+          "contexts": [
+            "AsOf2024-12-31",
+            "AsOf2025-12-31"
+          ]
+        },
+        {
+          "tag": "us-gaap:Revenues",
+          "contexts": [
+            "From2024-01-01to2024-12-31",
+            "From2025-01-01to2025-12-31"
+          ]
+        }
+      ],
+      "contexts": {
+        "AsOf2024-12-31": {
+          "identifiers": [
+            "0001134982"
+          ],
+          "has_dimensions": false
+        },
+        "AsOf2025-12-31": {
+          "identifiers": [
+            "0001134982"
+          ],
+          "has_dimensions": false
+        },
+        "From2024-01-01to2024-12-31": {
+          "identifiers": [
+            "0001134982"
+          ],
+          "has_dimensions": false
+        },
+        "From2025-01-01to2025-12-31": {
+          "identifiers": [
+            "0001134982"
+          ],
+          "has_dimensions": false
+        }
+      },
+      "state": "PRIMARY_CAPTURED_EDITORIAL_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001145604",
+      "companyfacts_name": "NIKA PHARMACEUTICALS,  INC.",
+      "discovery_names": [],
+      "accession": "0001826466-25-000030",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1145604/000182646625000030/0001826466-25-000030-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T08:23:21.469835+00:00",
+        "bytes": 11512,
+        "sha256": "b800b5e0a48d6e98e63fea809c3ff80c39b21936843c66d3bded44f557dd00fd",
+        "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001145604-0001826466-25-000030-index.response"
+      },
+      "index_filers": [
+        "NIKA PHARMACEUTICALS, INC (Filer) CIK : 0001145604 (see all company filings) EIN. : 900292940 | State of Incorp.: CO | Fiscal Year End: 1231 Type: 10-K | Act: 34 | File No.: 000-56234 | Film No.: 25791437 SIC : 2834 Pharmaceutical Preparations (CF Office: 03 Life Sciences)"
+      ],
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1145604/000182646625000030/form-10k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T08:23:23.126528+00:00",
+        "bytes": 394447,
+        "sha256": "dcc71b79e2db72456137bc7a6fde63c91eb0f9aa43ddb64604b47016debd576b",
+        "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001145604-0001826466-25-000030-primary.response"
+      },
+      "dei_identity_facts": [
+        {
+          "name": "dei:EntityCentralIndexKey",
+          "context": "From2024-01-01to2024-12-31",
+          "text": "0001145604"
+        },
+        {
+          "name": "dei:EntityRegistrantName",
+          "context": "From2024-01-01to2024-12-31",
+          "text": "NIKA PHARMACEUTICALS, INC."
+        }
+      ],
+      "core_fact_contexts": [
+        {
+          "tag": "us-gaap:Revenues",
+          "contexts": [
+            "From2024-01-01to2024-12-31"
+          ]
+        }
+      ],
+      "contexts": {
+        "From2024-01-01to2024-12-31": {
+          "identifiers": [
+            "0001145604"
+          ],
+          "has_dimensions": false
+        }
+      },
+      "state": "PRIMARY_CAPTURED_EDITORIAL_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001145604",
+      "companyfacts_name": "NIKA PHARMACEUTICALS,  INC.",
+      "discovery_names": [],
+      "accession": "0001826466-26-000026",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1145604/000182646626000026/0001826466-26-000026-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T08:23:24.839288+00:00",
+        "bytes": 10960,
+        "sha256": "0924d328d43e11776b6a72fdba371c2e1eb025f9b6f534e2084bfaf9fa19c716",
+        "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001145604-0001826466-26-000026-index.response"
+      },
+      "index_filers": [
+        "NIKA PHARMACEUTICALS, INC (Filer) CIK : 0001145604 (see all company filings) EIN. : 900292940 | State of Incorp.: CO | Fiscal Year End: 1231 Type: 10-K | Act: 34 | File No.: 000-56234 | Film No.: 26792205 SIC : 2834 Pharmaceutical Preparations (CF Office: 03 Life Sciences)"
+      ],
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1145604/000182646626000026/form-10k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T08:23:26.466372+00:00",
+        "bytes": 407157,
+        "sha256": "bc83493e0176b29d0d43fe94222efdb7c865dd7e730b75d1344fe5732821bfef",
+        "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001145604-0001826466-26-000026-primary.response"
+      },
+      "dei_identity_facts": [
+        {
+          "name": "dei:EntityCentralIndexKey",
+          "context": "From2025-01-01to2025-12-31",
+          "text": "0001145604"
+        },
+        {
+          "name": "dei:EntityRegistrantName",
+          "context": "From2025-01-01to2025-12-31",
+          "text": "NIKA PHARMACEUTICALS, INC."
+        }
+      ],
+      "core_fact_contexts": [
+        {
+          "tag": "us-gaap:Assets",
+          "contexts": [
+            "AsOf2024-12-31",
+            "AsOf2025-12-31"
+          ]
+        },
+        {
+          "tag": "us-gaap:AssetsCurrent",
+          "contexts": [
+            "AsOf2024-12-31",
+            "AsOf2025-12-31"
+          ]
+        },
+        {
+          "tag": "us-gaap:NetIncomeLoss",
+          "contexts": [
+            "From2024-01-012024-12-31",
+            "From2024-01-012024-12-31_us-gaap_AccumulatedTranslationAdjustmentMember",
+            "From2024-01-012024-12-31_us-gaap_CommonStockMember",
+            "From2024-01-012024-12-31_us-gaap_PreferredStockMember",
+            "From2024-01-012024-12-31_us-gaap_RetainedEarningsMember",
+            "From2025-01-012025-12-31_us-gaap_AccumulatedTranslationAdjustmentMember",
+            "From2025-01-012025-12-31_us-gaap_CommonStockMember",
+            "From2025-01-012025-12-31_us-gaap_PreferredStockMember",
+            "From2025-01-012025-12-31_us-gaap_RetainedEarningsMember",
+            "From2025-01-01to2025-12-31"
+          ]
+        },
+        {
+          "tag": "us-gaap:OperatingIncomeLoss",
+          "contexts": [
+            "From2024-01-012024-12-31",
+            "From2025-01-01to2025-12-31"
+          ]
+        }
+      ],
+      "contexts": {
+        "AsOf2024-12-31": {
+          "identifiers": [
+            "0001145604"
+          ],
+          "has_dimensions": false
+        },
+        "AsOf2025-12-31": {
+          "identifiers": [
+            "0001145604"
+          ],
+          "has_dimensions": false
+        },
+        "From2024-01-012024-12-31": {
+          "identifiers": [
+            "0001145604"
+          ],
+          "has_dimensions": false
+        },
+        "From2024-01-012024-12-31_us-gaap_AccumulatedTranslationAdjustmentMember": {
+          "identifiers": [
+            "0001145604"
+          ],
+          "has_dimensions": true
+        },
+        "From2024-01-012024-12-31_us-gaap_CommonStockMember": {
+          "identifiers": [
+            "0001145604"
+          ],
+          "has_dimensions": true
+        },
+        "From2024-01-012024-12-31_us-gaap_PreferredStockMember": {
+          "identifiers": [
+            "0001145604"
+          ],
+          "has_dimensions": true
+        },
+        "From2024-01-012024-12-31_us-gaap_RetainedEarningsMember": {
+          "identifiers": [
+            "0001145604"
+          ],
+          "has_dimensions": true
+        },
+        "From2025-01-012025-12-31_us-gaap_AccumulatedTranslationAdjustmentMember": {
+          "identifiers": [
+            "0001145604"
+          ],
+          "has_dimensions": true
+        },
+        "From2025-01-012025-12-31_us-gaap_CommonStockMember": {
+          "identifiers": [
+            "0001145604"
+          ],
+          "has_dimensions": true
+        },
+        "From2025-01-012025-12-31_us-gaap_PreferredStockMember": {
+          "identifiers": [
+            "0001145604"
+          ],
+          "has_dimensions": true
+        },
+        "From2025-01-012025-12-31_us-gaap_RetainedEarningsMember": {
+          "identifiers": [
+            "0001145604"
+          ],
+          "has_dimensions": true
+        },
+        "From2025-01-01to2025-12-31": {
+          "identifiers": [
+            "0001145604"
+          ],
+          "has_dimensions": false
+        }
+      },
+      "state": "PRIMARY_CAPTURED_EDITORIAL_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001162283",
+      "companyfacts_name": "Morgan Group Holding Co",
+      "discovery_names": [],
+      "accession": "0001206774-19-000585",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1162283/000120677419000585/0001206774-19-000585-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T08:23:28.075988+00:00",
+        "bytes": 11479,
+        "sha256": "d01edbf613e7d34be97eaf7bab783724ae203b111655b4053d5b8aeefd4f6198",
+        "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001162283-0001206774-19-000585-index.response"
+      },
+      "index_filers": [
+        "MORGAN GROUP HOLDING CO (Filer) CIK : 0001162283 (see all company filings) EIN. : 134196940 Type: 10-K | Act: 34 | File No.: 333-73996 | Film No.: 19633712 SIC : 6770 Blank Checks"
+      ],
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1162283/000120677419000585/morgan3424874-10k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T08:23:29.719099+00:00",
+        "bytes": 205556,
+        "sha256": "2d49b7bc8676d177363a6300603e9d9aa0c23e6983f596a6ede75211c39ae9f3",
+        "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001162283-0001206774-19-000585-primary.response"
+      },
+      "dei_identity_facts": [],
+      "core_fact_contexts": [
+        {
+          "tag": "us-gaap:AccountsPayableCurrent",
+          "contexts": []
+        },
+        {
+          "tag": "us-gaap:LiabilitiesCurrent",
+          "contexts": []
+        }
+      ],
+      "contexts": {},
+      "state": "PRIMARY_CAPTURED_EDITORIAL_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001172178",
+      "companyfacts_name": "LIBERTY STAR URANIUM & METALS CORP.",
+      "discovery_names": [],
+      "accession": "0001062993-15-002327",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1172178/000106299315002327/0001062993-15-002327-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T08:23:31.361092+00:00",
+        "bytes": 11993,
+        "sha256": "6643a01ab09884a013bd079b4f2fa71966e3916216fde2034885053c6ccc288a",
+        "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001172178-0001062993-15-002327-index.response"
+      },
+      "index_filers": [
+        "LIBERTY STAR URANIUM & METALS CORP. (Filer) CIK : 0001172178 (see all company filings) EIN. : 270019071 | State of Incorp.: NV | Fiscal Year End: 0131 Type: 10-K | Act: 34 | File No.: 000-50071 | Film No.: 15824683 SIC : 1000 Metal Mining"
+      ],
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1172178/000106299315002327/form10k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T08:23:33.044275+00:00",
+        "bytes": 443771,
+        "sha256": "3140cbb252ebbf5822c52a18989d3db33a50885ee595ff0b0dc42f160bd841f9",
+        "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001172178-0001062993-15-002327-primary.response"
+      },
+      "dei_identity_facts": [],
+      "core_fact_contexts": [
+        {
+          "tag": "us-gaap:Revenues",
+          "contexts": []
+        }
+      ],
+      "contexts": {},
+      "state": "PRIMARY_CAPTURED_EDITORIAL_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001172178",
+      "companyfacts_name": "LIBERTY STAR URANIUM & METALS CORP.",
+      "discovery_names": [],
+      "accession": "0001493152-21-010343",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1172178/000149315221010343/0001493152-21-010343-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T08:23:34.748444+00:00",
+        "bytes": 11677,
+        "sha256": "584ad9e071c3da1c9013a3e3af5078b13dbea72783b1427b9abde29d5383bc97",
+        "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001172178-0001493152-21-010343-index.response"
+      },
+      "index_filers": [
+        "LIBERTY STAR URANIUM & METALS CORP. (Filer) CIK : 0001172178 (see all company filings) EIN. : 270019071 | State of Incorp.: NV | Fiscal Year End: 0131 Type: 10-K | Act: 34 | File No.: 000-50071 | Film No.: 21884305 SIC : 1000 Metal Mining"
+      ],
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1172178/000149315221010343/form10-k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T08:23:36.428811+00:00",
+        "bytes": 1024400,
+        "sha256": "d0816e736aa9d2270c666091bd38ad52fb588b3de4b1cb39d6b8fe33758bef87",
+        "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001172178-0001493152-21-010343-primary.response"
+      },
+      "dei_identity_facts": [],
+      "core_fact_contexts": [
+        {
+          "tag": "us-gaap:PaymentsToAcquirePropertyPlantAndEquipment",
+          "contexts": []
+        }
+      ],
+      "contexts": {},
+      "state": "PRIMARY_CAPTURED_EDITORIAL_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001173420",
+      "companyfacts_name": "NOVAGOLD RESOURCES INC",
+      "discovery_names": [],
+      "accession": "0001171843-26-000374",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1173420/000117184326000374/0001171843-26-000374-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T08:23:38.127873+00:00",
+        "bytes": 37982,
+        "sha256": "1705f0713bf1e023be4bf5b6d51eff5dc45ec489fc69fcf380cfc46a137e63d8",
+        "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001173420-0001171843-26-000374-index.response"
+      },
+      "index_filers": [
+        "NOVAGOLD RESOURCES INC (Filer) CIK : 0001173420 (see all company filings) EIN. : 000000000 | State of Incorp.: A1 | Fiscal Year End: 1130 Type: 10-K | Act: 34 | File No.: 001-31913 | Film No.: 26549702 SIC : 1040 Gold and Silver Ores (CF Office: 01 Energy & Transportation)"
+      ],
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1173420/000117184326000374/ng20251130_10k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T08:23:39.913164+00:00",
+        "bytes": 2436413,
+        "sha256": "5e21480d9d53c72d87fe858955b3da5a70b3bfb6cde5adf1cce313579d005cee",
+        "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001173420-0001171843-26-000374-primary.response"
+      },
+      "dei_identity_facts": [
+        {
+          "name": "dei:EntityCentralIndexKey",
+          "context": "d_2024-12-01_2025-11-30",
+          "text": "0001173420"
+        },
+        {
+          "name": "dei:EntityRegistrantName",
+          "context": "d_2024-12-01_2025-11-30",
+          "text": "NOVAGOLD RESOURCES INC"
+        }
+      ],
+      "core_fact_contexts": [
+        {
+          "tag": "us-gaap:Revenues",
+          "contexts": [
+            "d_2024-12-01_2025-11-30"
+          ]
+        }
+      ],
+      "contexts": {
+        "d_2024-12-01_2025-11-30": {
+          "identifiers": [
+            "0001173420"
+          ],
+          "has_dimensions": false
+        }
+      },
+      "state": "PRIMARY_CAPTURED_EDITORIAL_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001174891",
+      "companyfacts_name": "TerraVolt Holdings, Inc.",
+      "discovery_names": [],
+      "accession": "0001387131-14-000132",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1174891/000138713114000132/0001387131-14-000132-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T08:23:41.808691+00:00",
+        "bytes": 11404,
+        "sha256": "ca3d6babeee344599085692cf401687a971034da80c8707e104c59786dfad372",
+        "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001174891-0001387131-14-000132-index.response"
+      },
+      "index_filers": [
+        "RealSource Residential, Inc (Filer) CIK : 0001174891 (see all company filings) EIN. : 000000000 | State of Incorp.: NV | Fiscal Year End: 1231 Type: 10-K | Act: 34 | File No.: 000-50331 | Film No.: 14528132 SIC : 2835 In Vitro & In Vivo Diagnostic Substances"
+      ],
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1174891/000138713114000132/rsrt-10k_20130930.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T08:23:43.447686+00:00",
+        "bytes": 1236476,
+        "sha256": "2a3d2546ec219b5a2bfe24f65b6f7f3a3f508fb14eb46a9164f3d183000ff01c",
+        "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001174891-0001387131-14-000132-primary.response"
+      },
+      "dei_identity_facts": [],
+      "core_fact_contexts": [
+        {
+          "tag": "us-gaap:PaymentsToAcquirePropertyPlantAndEquipment",
+          "contexts": []
+        }
+      ],
+      "contexts": {},
+      "state": "PRIMARY_CAPTURED_EDITORIAL_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001222333",
+      "companyfacts_name": "SPDR\u00ae GOLD TRUST",
+      "discovery_names": [],
+      "accession": "0001193125-17-354077",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1222333/000119312517354077/0001193125-17-354077-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T08:23:45.336055+00:00",
+        "bytes": 13505,
+        "sha256": "1f1003b2f55f29952acf5cbf2cfe645b037ddd2375e2a9190fe9ff764c70efec",
+        "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001222333-0001193125-17-354077-index.response"
+      },
+      "index_filers": [
+        "SPDR GOLD TRUST (Filer) CIK : 0001222333 (see all company filings) EIN. : 522369757 | Fiscal Year End: 0930 Type: 10-K | Act: 34 | File No.: 001-32356 | Film No.: 171225963 SIC : 6221 Commodity Contracts Brokers & Dealers"
+      ],
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1222333/000119312517354077/d458473d10k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T08:23:47.126657+00:00",
+        "bytes": 969344,
+        "sha256": "276ed924ea13f437011ff4239c5c28f141b958493e1cb6c7e7ea454b31e2ec9b",
+        "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001222333-0001193125-17-354077-primary.response"
+      },
+      "dei_identity_facts": [],
+      "core_fact_contexts": [
+        {
+          "tag": "us-gaap:CashAndCashEquivalentsAtCarryingValue",
+          "contexts": []
+        }
+      ],
+      "contexts": {},
+      "state": "PRIMARY_CAPTURED_EDITORIAL_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001222333",
+      "companyfacts_name": "SPDR\u00ae GOLD TRUST",
+      "discovery_names": [],
+      "accession": "0001437749-25-036305",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1222333/000143774925036305/0001437749-25-036305-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T08:23:49.021624+00:00",
+        "bytes": 13549,
+        "sha256": "932d98c3a9729d3b3a601a3d94c062013eb6e85884ca03cfc3bc4344a300fcbb",
+        "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001222333-0001437749-25-036305-index.response"
+      },
+      "index_filers": [
+        "SPDR GOLD TRUST (Filer) CIK : 0001222333 (see all company filings) EIN. : 522369757 | Fiscal Year End: 0930 Type: 10-K | Act: 34 | File No.: 001-32356 | Film No.: 251520206 SIC : 6221 Commodity Contracts Brokers & Dealers (CF Office: 09 Crypto Assets)"
+      ],
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1222333/000143774925036305/gld20250930_10k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T08:23:50.737712+00:00",
+        "bytes": 1069827,
+        "sha256": "7fb75666fb5474430ce72cfa07bb5e6dd5615468fe9fcc910cb0df36d38f1f73",
+        "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001222333-0001437749-25-036305-primary.response"
+      },
+      "dei_identity_facts": [
+        {
+          "name": "dei:EntityCentralIndexKey",
+          "context": "d_2024-10-01_2025-09-30",
+          "text": "0001222333"
+        },
+        {
+          "name": "dei:EntityRegistrantName",
+          "context": "d_2024-10-01_2025-09-30",
+          "text": "SPDR \u00ae GOLD TRUST"
+        }
+      ],
+      "core_fact_contexts": [
+        {
+          "tag": "us-gaap:NetCashProvidedByUsedInOperatingActivities",
+          "contexts": [
+            "d_2022-10-01_2023-09-30",
+            "d_2023-10-01_2024-09-30",
+            "d_2024-10-01_2025-09-30"
+          ]
+        }
+      ],
+      "contexts": {
+        "d_2022-10-01_2023-09-30": {
+          "identifiers": [
+            "0001222333"
+          ],
+          "has_dimensions": false
+        },
+        "d_2023-10-01_2024-09-30": {
+          "identifiers": [
+            "0001222333"
+          ],
+          "has_dimensions": false
+        },
+        "d_2024-10-01_2025-09-30": {
+          "identifiers": [
+            "0001222333"
+          ],
+          "has_dimensions": false
+        }
+      },
+      "state": "PRIMARY_CAPTURED_EDITORIAL_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001228627",
+      "companyfacts_name": "Opus Genetics, Inc.",
+      "discovery_names": [],
+      "accession": "0001140361-14-013828",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1228627/000114036114013828/0001140361-14-013828-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T08:23:52.551416+00:00",
+        "bytes": 12420,
+        "sha256": "5d5d6d95487c5ea9df4201443bac254b05c50f6f7cc4b06a56547a578116dbac",
+        "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001228627-0001140361-14-013828-index.response"
+      },
+      "index_filers": [
+        "REXAHN PHARMACEUTICALS, INC. (Filer) CIK : 0001228627 (see all company filings) EIN. : 113516358 | State of Incorp.: DE | Fiscal Year End: 1231 Type: 10-K | Act: 34 | File No.: 001-34079 | Film No.: 14710457 SIC : 2834 Pharmaceutical Preparations"
+      ],
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1228627/000114036114013828/form10k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T08:23:54.244916+00:00",
+        "bytes": 2127034,
+        "sha256": "2fa7bfcb5f19c1a0944a5d718c06836fd2f1bc5148d34cb2539a269dcd967f0c",
+        "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001228627-0001140361-14-013828-primary.response"
+      },
+      "dei_identity_facts": [],
+      "core_fact_contexts": [
+        {
+          "tag": "us-gaap:Revenues",
+          "contexts": []
+        }
+      ],
+      "contexts": {},
+      "state": "PRIMARY_CAPTURED_EDITORIAL_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001258602",
+      "companyfacts_name": "NELNET, INC.",
+      "discovery_names": [],
+      "accession": "0001258602-18-000021",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1258602/000125860218000021/0001258602-18-000021-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T08:23:56.212938+00:00",
+        "bytes": 46621,
+        "sha256": "9b3c574fcce3c03344da78ad39c32dca5b3fd1814248ff90c4ff535448d07491",
+        "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001258602-0001258602-18-000021-index.response"
+      },
+      "index_filers": [
+        "NELNET INC (Filer) CIK : 0001258602 (see all company filings) EIN. : 840748903 | State of Incorp.: NE | Fiscal Year End: 1231 Type: 10-K | Act: 34 | File No.: 001-31924 | Film No.: 18645581 SIC : 6141 Personal Credit Institutions"
+      ],
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1258602/000125860218000021/nni-123117x10k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T08:23:57.993890+00:00",
+        "bytes": 4708678,
+        "sha256": "87d52b6646e0d9b5279862c4a45b2d14e5f4eab61d3cb90ec6d2fb3f7de572fb",
+        "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001258602-0001258602-18-000021-primary.response"
+      },
+      "dei_identity_facts": [],
+      "core_fact_contexts": [
+        {
+          "tag": "us-gaap:Revenues",
+          "contexts": []
+        }
+      ],
+      "contexts": {},
+      "state": "PRIMARY_CAPTURED_EDITORIAL_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001278680",
+      "companyfacts_name": "ISHARES GOLD TRUST",
+      "discovery_names": [],
+      "accession": "0001437749-23-004329",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1278680/000143774923004329/0001437749-23-004329-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T08:24:00.992798+00:00",
+        "bytes": 12292,
+        "sha256": "083e8b61187f7b31835f49ab9ca20163127137c90f8e168a1c0ec80ea984fcc2",
+        "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001278680-0001437749-23-004329-index.response"
+      },
+      "index_filers": [
+        "ISHARES GOLD TRUST (Filer) CIK : 0001278680 (see all company filings) EIN. : 000000000 | State of Incorp.: NY | Fiscal Year End: 1231 Type: 10-K | Act: 34 | File No.: 001-32418 | Film No.: 23658785 SIC : 6221 Commodity Contracts Brokers & Dealers"
+      ],
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1278680/000143774923004329/iau20221231_10k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T08:24:02.668310+00:00",
+        "bytes": 773612,
+        "sha256": "434320bf7dce93dbf3bb149dab30a3f0a9f331091e8a6137a128cea6f3fff307",
+        "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001278680-0001437749-23-004329-primary.response"
+      },
+      "dei_identity_facts": [
+        {
+          "name": "dei:EntityCentralIndexKey",
+          "context": "d_2022-01-01_2022-12-31",
+          "text": "0001278680"
+        },
+        {
+          "name": "dei:EntityRegistrantName",
+          "context": "d_2022-01-01_2022-12-31",
+          "text": "ISHARES GOLD TRUST"
+        }
+      ],
+      "core_fact_contexts": [
+        {
+          "tag": "us-gaap:CashAndCashEquivalentsAtCarryingValue",
+          "contexts": [
+            "i_2019-12-31",
+            "i_2020-12-31",
+            "i_2021-12-31",
+            "i_2022-12-31"
+          ]
+        }
+      ],
+      "contexts": {
+        "i_2019-12-31": {
+          "identifiers": [
+            "0001278680"
+          ],
+          "has_dimensions": false
+        },
+        "i_2020-12-31": {
+          "identifiers": [
+            "0001278680"
+          ],
+          "has_dimensions": false
+        },
+        "i_2021-12-31": {
+          "identifiers": [
+            "0001278680"
+          ],
+          "has_dimensions": false
+        },
+        "i_2022-12-31": {
+          "identifiers": [
+            "0001278680"
+          ],
+          "has_dimensions": false
+        }
+      },
+      "state": "PRIMARY_CAPTURED_EDITORIAL_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001278680",
+      "companyfacts_name": "ISHARES GOLD TRUST",
+      "discovery_names": [],
+      "accession": "0001437749-26-006055",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1278680/000143774926006055/0001437749-26-006055-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T08:24:04.358445+00:00",
+        "bytes": 13595,
+        "sha256": "1345a2125d5bacf6bbb53a81f0e4fff44998a7bea7ac940650b5a3cec1e1a09b",
+        "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001278680-0001437749-26-006055-index.response"
+      },
+      "index_filers": [
+        "ISHARES GOLD TRUST (Filer) CIK : 0001278680 (see all company filings) EIN. : 000000000 | State of Incorp.: NY | Fiscal Year End: 1231 Type: 10-K | Act: 34 | File No.: 001-32418 | Film No.: 26696838 SIC : 6221 Commodity Contracts Brokers & Dealers (CF Office: 09 Crypto Assets)"
+      ],
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1278680/000143774926006055/iau20251231_10k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T08:24:06.019182+00:00",
+        "bytes": 844067,
+        "sha256": "ccb1a5ee856578c8dbcbcec755fd2c15fd757a3d86425aeb695af808c5088c0b",
+        "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001278680-0001437749-26-006055-primary.response"
+      },
+      "dei_identity_facts": [
+        {
+          "name": "dei:EntityCentralIndexKey",
+          "context": "d_2025-01-01_2025-12-31",
+          "text": "0001278680"
+        },
+        {
+          "name": "dei:EntityRegistrantName",
+          "context": "d_2025-01-01_2025-12-31",
+          "text": "ISHARES GOLD TRUST"
+        }
+      ],
+      "core_fact_contexts": [
+        {
+          "tag": "us-gaap:NetCashProvidedByUsedInOperatingActivities",
+          "contexts": [
+            "d_2023-01-01_2023-12-31",
+            "d_2024-01-01_2024-12-31",
+            "d_2025-01-01_2025-12-31"
+          ]
+        }
+      ],
+      "contexts": {
+        "d_2023-01-01_2023-12-31": {
+          "identifiers": [
+            "0001278680"
+          ],
+          "has_dimensions": false
+        },
+        "d_2024-01-01_2024-12-31": {
+          "identifiers": [
+            "0001278680"
+          ],
+          "has_dimensions": false
+        },
+        "d_2025-01-01_2025-12-31": {
+          "identifiers": [
+            "0001278680"
+          ],
+          "has_dimensions": false
+        }
+      },
+      "state": "PRIMARY_CAPTURED_EDITORIAL_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001281895",
+      "companyfacts_name": "Rocket Pharmaceuticals, Inc.",
+      "discovery_names": [],
+      "accession": "0001193125-26-076551",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1281895/000119312526076551/0001193125-26-076551-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T08:24:07.768595+00:00",
+        "bytes": 12162,
+        "sha256": "d297006d154de233fc364651d51c63027dd2c0caeff73d2f1f65f08a12832539",
+        "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001281895-0001193125-26-076551-index.response"
+      },
+      "index_filers": [
+        "ROCKET PHARMACEUTICALS, INC. (Filer) CIK : 0001281895 (see all company filings) EIN. : 000000000 | State of Incorp.: DE | Fiscal Year End: 1231 Type: 10-K | Act: 34 | File No.: 001-36829 | Film No.: 26687829 SIC : 2834 Pharmaceutical Preparations (CF Office: 03 Life Sciences)"
+      ],
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1281895/000119312526076551/rckt-20251231.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T08:24:09.542768+00:00",
+        "bytes": 3042627,
+        "sha256": "7e27bf9620e03e6ea7cca056cb14df401e7a65b66fec1ab5b5965a12293d3709",
+        "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001281895-0001193125-26-076551-primary.response"
+      },
+      "dei_identity_facts": [
+        {
+          "name": "dei:EntityCentralIndexKey",
+          "context": "C_6c70763d-7c9d-41d5-8f3b-b7c53b06e0f0",
+          "text": "0001281895"
+        },
+        {
+          "name": "dei:EntityRegistrantName",
+          "context": "C_6c70763d-7c9d-41d5-8f3b-b7c53b06e0f0",
+          "text": "Rocket Pharmaceuticals, Inc."
+        }
+      ],
+      "core_fact_contexts": [
+        {
+          "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+          "contexts": [
+            "C_28e6079a-03d7-415c-926e-12c278c57b17",
+            "C_6c70763d-7c9d-41d5-8f3b-b7c53b06e0f0"
+          ]
+        }
+      ],
+      "contexts": {
+        "C_28e6079a-03d7-415c-926e-12c278c57b17": {
+          "identifiers": [
+            "0001281895"
+          ],
+          "has_dimensions": false
+        },
+        "C_6c70763d-7c9d-41d5-8f3b-b7c53b06e0f0": {
+          "identifiers": [
+            "0001281895"
+          ],
+          "has_dimensions": false
+        }
+      },
+      "state": "PRIMARY_CAPTURED_EDITORIAL_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001285785",
+      "companyfacts_name": "MOSAIC CO",
+      "discovery_names": [],
+      "accession": "0001285785-26-000017",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1285785/000128578526000017/0001285785-26-000017-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T08:24:11.390897+00:00",
+        "bytes": 32794,
+        "sha256": "c0c1848a5e28a4ba20d03ea6ed93502ae84be4621e319c74da99752c7d6cc24d",
+        "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001285785-0001285785-26-000017-index.response"
+      },
+      "index_filers": [
+        "MOSAIC CO (Filer) CIK : 0001285785 (see all company filings) EIN. : 201026454 | Fiscal Year End: 1231 Type: 10-K | Act: 34 | File No.: 001-32327 | Film No.: 26699758 SIC : 2870 Agricultural Chemicals (CF Office: 08 Industrial Applications and Services)"
+      ],
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1285785/000128578526000017/mos-20251231.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T08:24:13.208524+00:00",
+        "bytes": 4038983,
+        "sha256": "0643e91bc2ee988710bd4cffe2540df986fdb4d16b817b9a8b68bfd76d472393",
+        "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001285785-0001285785-26-000017-primary.response"
+      },
+      "dei_identity_facts": [
+        {
+          "name": "dei:EntityCentralIndexKey",
+          "context": "c-1",
+          "text": "0001285785"
+        },
+        {
+          "name": "dei:EntityRegistrantName",
+          "context": "c-1",
+          "text": "Mosaic Co"
+        }
+      ],
+      "core_fact_contexts": [
+        {
+          "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+          "contexts": [
+            "c-1",
+            "c-321",
+            "c-322",
+            "c-323",
+            "c-324",
+            "c-325",
+            "c-326",
+            "c-330",
+            "c-331",
+            "c-332",
+            "c-333",
+            "c-334",
+            "c-335",
+            "c-336",
+            "c-337",
+            "c-338",
+            "c-339",
+            "c-340",
+            "c-341",
+            "c-342",
+            "c-343",
+            "c-344",
+            "c-345",
+            "c-346",
+            "c-347",
+            "c-348",
+            "c-349",
+            "c-350",
+            "c-351",
+            "c-352",
+            "c-353",
+            "c-354",
+            "c-355",
+            "c-356",
+            "c-357",
+            "c-358",
+            "c-359",
+            "c-360",
+            "c-361",
+            "c-362",
+            "c-363",
+            "c-364",
+            "c-365",
+            "c-366",
+            "c-367",
+            "c-368",
+            "c-369",
+            "c-370",
+            "c-371",
+            "c-372",
+            "c-373",
+            "c-374",
+            "c-375",
+            "c-376",
+            "c-377",
+            "c-378",
+            "c-379",
+            "c-380",
+            "c-381",
+            "c-382",
+            "c-383",
+            "c-394",
+            "c-395",
+            "c-396",
+            "c-397",
+            "c-398",
+            "c-399",
+            "c-400",
+            "c-401",
+            "c-402",
+            "c-403",
+            "c-404",
+            "c-405",
+            "c-406",
+            "c-407",
+            "c-408",
+            "c-409",
+            "c-410",
+            "c-411",
+            "c-53",
+            "c-54",
+            "c-55",
+            "c-6",
+            "c-7",
+            "c-89",
+            "c-90",
+            "c-91",
+            "c-95",
+            "c-96",
+            "c-97"
+          ]
+        },
+        {
+          "tag": "us-gaap:Revenues",
+          "contexts": [
+            "c-1",
+            "c-318",
+            "c-319",
+            "c-320",
+            "c-321",
+            "c-322",
+            "c-323",
+            "c-324",
+            "c-325",
+            "c-326",
+            "c-6",
+            "c-7",
+            "c-74",
+            "c-75",
+            "c-76",
+            "c-89",
+            "c-90",
+            "c-91",
+            "c-95",
+            "c-96",
+            "c-97"
+          ]
+        }
+      ],
+      "contexts": {
+        "c-1": {
+          "identifiers": [
+            "0001285785"
+          ],
+          "has_dimensions": false
+        },
+        "c-318": {
+          "identifiers": [
+            "0001285785"
+          ],
+          "has_dimensions": true
+        },
+        "c-319": {
+          "identifiers": [
+            "0001285785"
+          ],
+          "has_dimensions": true
+        },
+        "c-320": {
+          "identifiers": [
+            "0001285785"
+          ],
+          "has_dimensions": true
+        },
+        "c-321": {
+          "identifiers": [
+            "0001285785"
+          ],
+          "has_dimensions": true
+        },
+        "c-322": {
+          "identifiers": [
+            "0001285785"
+          ],
+          "has_dimensions": true
+        },
+        "c-323": {
+          "identifiers": [
+            "0001285785"
+          ],
+          "has_dimensions": true
+        },
+        "c-324": {
+          "identifiers": [
+            "0001285785"
+          ],
+          "has_dimensions": true
+        },
+        "c-325": {
+          "identifiers": [
+            "0001285785"
+          ],
+          "has_dimensions": true
+        },
+        "c-326": {
+          "identifiers": [
+            "0001285785"
+          ],
+          "has_dimensions": true
+        },
+        "c-330": {
+          "identifiers": [
+            "0001285785"
+          ],
+          "has_dimensions": true
+        },
+        "c-331": {
+          "identifiers": [
+            "0001285785"
+          ],
+          "has_dimensions": true
+        },
+        "c-332": {
+          "identifiers": [
+            "0001285785"
+          ],
+          "has_dimensions": true
+        },
+        "c-333": {
+          "identifiers": [
+            "0001285785"
+          ],
+          "has_dimensions": true
+        },
+        "c-334": {
+          "identifiers": [
+            "0001285785"
+          ],
+          "has_dimensions": true
+        },
+        "c-335": {
+          "identifiers": [
+            "0001285785"
+          ],
+          "has_dimensions": true
+        },
+        "c-336": {
+          "identifiers": [
+            "0001285785"
+          ],
+          "has_dimensions": true
+        },
+        "c-337": {
+          "identifiers": [
+            "0001285785"
+          ],
+          "has_dimensions": true
+        },
+        "c-338": {
+          "identifiers": [
+            "0001285785"
+          ],
+          "has_dimensions": true
+        },
+        "c-339": {
+          "identifiers": [
+            "0001285785"
+          ],
+          "has_dimensions": true
+        },
+        "c-340": {
+          "identifiers": [
+            "0001285785"
+          ],
+          "has_dimensions": true
+        },
+        "c-341": {
+          "identifiers": [
+            "0001285785"
+          ],
+          "has_dimensions": true
+        },
+        "c-342": {
+          "identifiers": [
+            "0001285785"
+          ],
+          "has_dimensions": true
+        },
+        "c-343": {
+          "identifiers": [
+            "0001285785"
+          ],
+          "has_dimensions": true
+        },
+        "c-344": {
+          "identifiers": [
+            "0001285785"
+          ],
+          "has_dimensions": true
+        },
+        "c-345": {
+          "identifiers": [
+            "0001285785"
+          ],
+          "has_dimensions": true
+        },
+        "c-346": {
+          "identifiers": [
+            "0001285785"
+          ],
+          "has_dimensions": true
+        },
+        "c-347": {
+          "identifiers": [
+            "0001285785"
+          ],
+          "has_dimensions": true
+        },
+        "c-348": {
+          "identifiers": [
+            "0001285785"
+          ],
+          "has_dimensions": true
+        },
+        "c-349": {
+          "identifiers": [
+            "0001285785"
+          ],
+          "has_dimensions": true
+        },
+        "c-350": {
+          "identifiers": [
+            "0001285785"
+          ],
+          "has_dimensions": true
+        },
+        "c-351": {
+          "identifiers": [
+            "0001285785"
+          ],
+          "has_dimensions": true
+        },
+        "c-352": {
+          "identifiers": [
+            "0001285785"
+          ],
+          "has_dimensions": true
+        },
+        "c-353": {
+          "identifiers": [
+            "0001285785"
+          ],
+          "has_dimensions": true
+        },
+        "c-354": {
+          "identifiers": [
+            "0001285785"
+          ],
+          "has_dimensions": true
+        },
+        "c-355": {
+          "identifiers": [
+            "0001285785"
+          ],
+          "has_dimensions": true
+        },
+        "c-356": {
+          "identifiers": [
+            "0001285785"
+          ],
+          "has_dimensions": true
+        },
+        "c-357": {
+          "identifiers": [
+            "0001285785"
+          ],
+          "has_dimensions": true
+        },
+        "c-358": {
+          "identifiers": [
+            "0001285785"
+          ],
+          "has_dimensions": true
+        },
+        "c-359": {
+          "identifiers": [
+            "0001285785"
+          ],
+          "has_dimensions": true
+        },
+        "c-360": {
+          "identifiers": [
+            "0001285785"
+          ],
+          "has_dimensions": true
+        },
+        "c-361": {
+          "identifiers": [
+            "0001285785"
+          ],
+          "has_dimensions": true
+        },
+        "c-362": {
+          "identifiers": [
+            "0001285785"
+          ],
+          "has_dimensions": true
+        },
+        "c-363": {
+          "identifiers": [
+            "0001285785"
+          ],
+          "has_dimensions": true
+        },
+        "c-364": {
+          "identifiers": [
+            "0001285785"
+          ],
+          "has_dimensions": true
+        },
+        "c-365": {
+          "identifiers": [
+            "0001285785"
+          ],
+          "has_dimensions": true
+        },
+        "c-366": {
+          "identifiers": [
+            "0001285785"
+          ],
+          "has_dimensions": true
+        },
+        "c-367": {
+          "identifiers": [
+            "0001285785"
+          ],
+          "has_dimensions": true
+        },
+        "c-368": {
+          "identifiers": [
+            "0001285785"
+          ],
+          "has_dimensions": true
+        },
+        "c-369": {
+          "identifiers": [
+            "0001285785"
+          ],
+          "has_dimensions": true
+        },
+        "c-370": {
+          "identifiers": [
+            "0001285785"
+          ],
+          "has_dimensions": true
+        },
+        "c-371": {
+          "identifiers": [
+            "0001285785"
+          ],
+          "has_dimensions": true
+        },
+        "c-372": {
+          "identifiers": [
+            "0001285785"
+          ],
+          "has_dimensions": true
+        },
+        "c-373": {
+          "identifiers": [
+            "0001285785"
+          ],
+          "has_dimensions": true
+        },
+        "c-374": {
+          "identifiers": [
+            "0001285785"
+          ],
+          "has_dimensions": true
+        },
+        "c-375": {
+          "identifiers": [
+            "0001285785"
+          ],
+          "has_dimensions": true
+        },
+        "c-376": {
+          "identifiers": [
+            "0001285785"
+          ],
+          "has_dimensions": true
+        },
+        "c-377": {
+          "identifiers": [
+            "0001285785"
+          ],
+          "has_dimensions": true
+        },
+        "c-378": {
+          "identifiers": [
+            "0001285785"
+          ],
+          "has_dimensions": true
+        },
+        "c-379": {
+          "identifiers": [
+            "0001285785"
+          ],
+          "has_dimensions": true
+        },
+        "c-380": {
+          "identifiers": [
+            "0001285785"
+          ],
+          "has_dimensions": true
+        },
+        "c-381": {
+          "identifiers": [
+            "0001285785"
+          ],
+          "has_dimensions": true
+        },
+        "c-382": {
+          "identifiers": [
+            "0001285785"
+          ],
+          "has_dimensions": true
+        },
+        "c-383": {
+          "identifiers": [
+            "0001285785"
+          ],
+          "has_dimensions": true
+        },
+        "c-394": {
+          "identifiers": [
+            "0001285785"
+          ],
+          "has_dimensions": true
+        },
+        "c-395": {
+          "identifiers": [
+            "0001285785"
+          ],
+          "has_dimensions": true
+        },
+        "c-396": {
+          "identifiers": [
+            "0001285785"
+          ],
+          "has_dimensions": true
+        },
+        "c-397": {
+          "identifiers": [
+            "0001285785"
+          ],
+          "has_dimensions": true
+        },
+        "c-398": {
+          "identifiers": [
+            "0001285785"
+          ],
+          "has_dimensions": true
+        },
+        "c-399": {
+          "identifiers": [
+            "0001285785"
+          ],
+          "has_dimensions": true
+        },
+        "c-400": {
+          "identifiers": [
+            "0001285785"
+          ],
+          "has_dimensions": true
+        },
+        "c-401": {
+          "identifiers": [
+            "0001285785"
+          ],
+          "has_dimensions": true
+        },
+        "c-402": {
+          "identifiers": [
+            "0001285785"
+          ],
+          "has_dimensions": true
+        },
+        "c-403": {
+          "identifiers": [
+            "0001285785"
+          ],
+          "has_dimensions": true
+        },
+        "c-404": {
+          "identifiers": [
+            "0001285785"
+          ],
+          "has_dimensions": true
+        },
+        "c-405": {
+          "identifiers": [
+            "0001285785"
+          ],
+          "has_dimensions": true
+        },
+        "c-406": {
+          "identifiers": [
+            "0001285785"
+          ],
+          "has_dimensions": true
+        },
+        "c-407": {
+          "identifiers": [
+            "0001285785"
+          ],
+          "has_dimensions": true
+        },
+        "c-408": {
+          "identifiers": [
+            "0001285785"
+          ],
+          "has_dimensions": true
+        },
+        "c-409": {
+          "identifiers": [
+            "0001285785"
+          ],
+          "has_dimensions": true
+        },
+        "c-410": {
+          "identifiers": [
+            "0001285785"
+          ],
+          "has_dimensions": true
+        },
+        "c-411": {
+          "identifiers": [
+            "0001285785"
+          ],
+          "has_dimensions": true
+        },
+        "c-53": {
+          "identifiers": [
+            "0001285785"
+          ],
+          "has_dimensions": true
+        },
+        "c-54": {
+          "identifiers": [
+            "0001285785"
+          ],
+          "has_dimensions": true
+        },
+        "c-55": {
+          "identifiers": [
+            "0001285785"
+          ],
+          "has_dimensions": true
+        },
+        "c-6": {
+          "identifiers": [
+            "0001285785"
+          ],
+          "has_dimensions": false
+        },
+        "c-7": {
+          "identifiers": [
+            "0001285785"
+          ],
+          "has_dimensions": false
+        },
+        "c-74": {
+          "identifiers": [
+            "0001285785"
+          ],
+          "has_dimensions": true
+        },
+        "c-75": {
+          "identifiers": [
+            "0001285785"
+          ],
+          "has_dimensions": true
+        },
+        "c-76": {
+          "identifiers": [
+            "0001285785"
+          ],
+          "has_dimensions": true
+        },
+        "c-89": {
+          "identifiers": [
+            "0001285785"
+          ],
+          "has_dimensions": true
+        },
+        "c-90": {
+          "identifiers": [
+            "0001285785"
+          ],
+          "has_dimensions": true
+        },
+        "c-91": {
+          "identifiers": [
+            "0001285785"
+          ],
+          "has_dimensions": true
+        },
+        "c-95": {
+          "identifiers": [
+            "0001285785"
+          ],
+          "has_dimensions": true
+        },
+        "c-96": {
+          "identifiers": [
+            "0001285785"
+          ],
+          "has_dimensions": true
+        },
+        "c-97": {
+          "identifiers": [
+            "0001285785"
+          ],
+          "has_dimensions": true
+        }
+      },
+      "state": "PRIMARY_CAPTURED_EDITORIAL_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001310488",
+      "companyfacts_name": "BIOFORCE NANOSCIENCES HOLDINGS, INC.",
+      "discovery_names": [],
+      "accession": "0001091818-26-000047",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1310488/000109181826000047/0001091818-26-000047-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T08:24:15.300715+00:00",
+        "bytes": 13071,
+        "sha256": "9a6d2c9044d9536ba2c369033368b703edd979047d00fb697056b86b98d9fec7",
+        "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001310488-0001091818-26-000047-index.response"
+      },
+      "index_filers": [
+        "BIOFORCE NANOSCIENCES HOLDINGS, INC. (Filer) CIK : 0001310488 (see all company filings) EIN. : 852138858 | Fiscal Year End: 1231 Type: 10-K | Act: 34 | File No.: 000-51074 | Film No.: 26863872 SIC : 3826 Laboratory Analytical Instruments (CF Office: 08 Industrial Applications and Services)"
+      ],
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1310488/000109181826000047/bfnh-123125_10k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T08:24:18.073539+00:00",
+        "bytes": 334455,
+        "sha256": "0275f1152619289b280743fe65059c98c64b7a7aafc6129ab9738ba901e3c27a",
+        "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001310488-0001091818-26-000047-primary.response"
+      },
+      "dei_identity_facts": [
+        {
+          "name": "dei:EntityCentralIndexKey",
+          "context": "From2025-01-01to2025-12-31",
+          "text": "0001310488"
+        },
+        {
+          "name": "dei:EntityRegistrantName",
+          "context": "From2025-01-01to2025-12-31",
+          "text": "BIOFORCE NANOSCIENCES HOLDINGS, INC."
+        }
+      ],
+      "core_fact_contexts": [
+        {
+          "tag": "us-gaap:Assets",
+          "contexts": [
+            "AsOf2024-12-31",
+            "AsOf2025-12-31"
+          ]
+        },
+        {
+          "tag": "us-gaap:AssetsCurrent",
+          "contexts": [
+            "AsOf2024-12-31",
+            "AsOf2025-12-31"
+          ]
+        },
+        {
+          "tag": "us-gaap:Liabilities",
+          "contexts": [
+            "AsOf2024-12-31",
+            "AsOf2025-12-31"
+          ]
+        },
+        {
+          "tag": "us-gaap:LiabilitiesCurrent",
+          "contexts": [
+            "AsOf2024-12-31",
+            "AsOf2025-12-31"
+          ]
+        }
+      ],
+      "contexts": {
+        "AsOf2024-12-31": {
+          "identifiers": [
+            "0001310488"
+          ],
+          "has_dimensions": false
+        },
+        "AsOf2025-12-31": {
+          "identifiers": [
+            "0001310488"
+          ],
+          "has_dimensions": false
+        }
+      },
+      "state": "PRIMARY_CAPTURED_EDITORIAL_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001310630",
+      "companyfacts_name": "China Foods Holdings Ltd.",
+      "discovery_names": [],
+      "accession": "0001548123-19-000112",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1310630/000154812319000112/0001548123-19-000112-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T08:24:19.790168+00:00",
+        "bytes": 11091,
+        "sha256": "381e8c9a69754274454a17b7f80ae43d6fb9988603a5cd3236d3f1884adce473",
+        "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001310630-0001548123-19-000112-index.response"
+      },
+      "index_filers": [
+        "China Foods Holdings Ltd. (Filer) CIK : 0001310630 (see all company filings) EIN. : 910974149 | State of Incorp.: DE | Fiscal Year End: 0930 Type: 10-K/A | Act: 34 | File No.: 001-32522 | Film No.: 19854333 SIC : 6770 Blank Checks"
+      ],
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1310630/000154812319000112/trafalgarresourcesinc-201893.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T08:24:21.416035+00:00",
+        "bytes": 327824,
+        "sha256": "95ac8f18680fe75b66df28b6ae31d51c7d79e519ecc4ec421a7e50ac0e6bfa8d",
+        "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001310630-0001548123-19-000112-primary.response"
+      },
+      "dei_identity_facts": [],
+      "core_fact_contexts": [
+        {
+          "tag": "us-gaap:Revenues",
+          "contexts": []
+        }
+      ],
+      "contexts": {},
+      "state": "PRIMARY_CAPTURED_EDITORIAL_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001320461",
+      "companyfacts_name": "COOPER-STANDARD HOLDINGS INC.",
+      "discovery_names": [],
+      "accession": "0001320461-24-000034",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1320461/000132046124000034/0001320461-24-000034-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T08:24:23.069479+00:00",
+        "bytes": 14622,
+        "sha256": "7d5c8aa78dc5cf81b2e220fc36b9acb8f9fb160d39ca18bbf8d25c6060e85ae9",
+        "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001320461-0001320461-24-000034-index.response"
+      },
+      "index_filers": [
+        "Cooper-Standard Holdings Inc. (Filer) CIK : 0001320461 (see all company filings) EIN. : 201945088 | State of Incorp.: DE | Fiscal Year End: 1231 Type: 10-K | Act: 34 | File No.: 001-36127 | Film No.: 24648448 SIC : 3714 Motor Vehicle Parts & Accessories (CF Office: 04 Manufacturing)"
+      ],
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1320461/000132046124000034/cps-20231231.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T08:24:25.070748+00:00",
+        "bytes": 2780787,
+        "sha256": "a1b723aea03b37a4c1fb3cab73bb5ee7806754994ea85370308ebc38999b9861",
+        "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001320461-0001320461-24-000034-primary.response"
+      },
+      "dei_identity_facts": [
+        {
+          "name": "dei:EntityCentralIndexKey",
+          "context": "c-1",
+          "text": "0001320461"
+        },
+        {
+          "name": "dei:EntityRegistrantName",
+          "context": "c-1",
+          "text": "COOPER-STANDARD HOLDINGS INC."
+        }
+      ],
+      "core_fact_contexts": [
+        {
+          "tag": "us-gaap:Revenues",
+          "contexts": [
+            "c-1",
+            "c-219",
+            "c-220",
+            "c-221",
+            "c-222",
+            "c-223",
+            "c-224",
+            "c-225",
+            "c-226",
+            "c-227",
+            "c-228",
+            "c-229",
+            "c-230",
+            "c-231",
+            "c-232",
+            "c-233",
+            "c-234",
+            "c-235",
+            "c-236",
+            "c-6",
+            "c-7"
+          ]
+        }
+      ],
+      "contexts": {
+        "c-1": {
+          "identifiers": [
+            "0001320461"
+          ],
+          "has_dimensions": false
+        },
+        "c-219": {
+          "identifiers": [
+            "0001320461"
+          ],
+          "has_dimensions": true
+        },
+        "c-220": {
+          "identifiers": [
+            "0001320461"
+          ],
+          "has_dimensions": true
+        },
+        "c-221": {
+          "identifiers": [
+            "0001320461"
+          ],
+          "has_dimensions": true
+        },
+        "c-222": {
+          "identifiers": [
+            "0001320461"
+          ],
+          "has_dimensions": true
+        },
+        "c-223": {
+          "identifiers": [
+            "0001320461"
+          ],
+          "has_dimensions": true
+        },
+        "c-224": {
+          "identifiers": [
+            "0001320461"
+          ],
+          "has_dimensions": true
+        },
+        "c-225": {
+          "identifiers": [
+            "0001320461"
+          ],
+          "has_dimensions": true
+        },
+        "c-226": {
+          "identifiers": [
+            "0001320461"
+          ],
+          "has_dimensions": true
+        },
+        "c-227": {
+          "identifiers": [
+            "0001320461"
+          ],
+          "has_dimensions": true
+        },
+        "c-228": {
+          "identifiers": [
+            "0001320461"
+          ],
+          "has_dimensions": true
+        },
+        "c-229": {
+          "identifiers": [
+            "0001320461"
+          ],
+          "has_dimensions": true
+        },
+        "c-230": {
+          "identifiers": [
+            "0001320461"
+          ],
+          "has_dimensions": true
+        },
+        "c-231": {
+          "identifiers": [
+            "0001320461"
+          ],
+          "has_dimensions": true
+        },
+        "c-232": {
+          "identifiers": [
+            "0001320461"
+          ],
+          "has_dimensions": true
+        },
+        "c-233": {
+          "identifiers": [
+            "0001320461"
+          ],
+          "has_dimensions": true
+        },
+        "c-234": {
+          "identifiers": [
+            "0001320461"
+          ],
+          "has_dimensions": true
+        },
+        "c-235": {
+          "identifiers": [
+            "0001320461"
+          ],
+          "has_dimensions": true
+        },
+        "c-236": {
+          "identifiers": [
+            "0001320461"
+          ],
+          "has_dimensions": true
+        },
+        "c-6": {
+          "identifiers": [
+            "0001320461"
+          ],
+          "has_dimensions": false
+        },
+        "c-7": {
+          "identifiers": [
+            "0001320461"
+          ],
+          "has_dimensions": false
+        }
+      },
+      "state": "PRIMARY_CAPTURED_EDITORIAL_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001330568",
+      "companyfacts_name": "iShares Silver Trust",
+      "discovery_names": [],
+      "accession": "0001437749-23-004332",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1330568/000143774923004332/0001437749-23-004332-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T08:24:27.060348+00:00",
+        "bytes": 12182,
+        "sha256": "9e3ebcf560528336631dc63507e48a24843fc4c8abb1c882e4ec2f5b3535b7c6",
+        "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001330568-0001437749-23-004332-index.response"
+      },
+      "index_filers": [
+        "iShares Silver Trust (Filer) CIK : 0001330568 (see all company filings) EIN. : 000000000 | State of Incorp.: NY | Fiscal Year End: 1231 Type: 10-K | Act: 34 | File No.: 001-32863 | Film No.: 23658788 SIC : 6221 Commodity Contracts Brokers & Dealers"
+      ],
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1330568/000143774923004332/slv20221231_10k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T08:24:29.146920+00:00",
+        "bytes": 776326,
+        "sha256": "92940a5e7bbf754973bd13e21037a27dd4f94e5340177b318bba1bdc0f73e749",
+        "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001330568-0001437749-23-004332-primary.response"
+      },
+      "dei_identity_facts": [
+        {
+          "name": "dei:EntityCentralIndexKey",
+          "context": "d_2022-01-01_2022-12-31",
+          "text": "0001330568"
+        },
+        {
+          "name": "dei:EntityRegistrantName",
+          "context": "d_2022-01-01_2022-12-31",
+          "text": "iShares Silver Trust"
+        }
+      ],
+      "core_fact_contexts": [
+        {
+          "tag": "us-gaap:CashAndCashEquivalentsAtCarryingValue",
+          "contexts": [
+            "i_2019-12-31",
+            "i_2020-12-31",
+            "i_2021-12-31",
+            "i_2022-12-31"
+          ]
+        }
+      ],
+      "contexts": {
+        "i_2019-12-31": {
+          "identifiers": [
+            "0001330568"
+          ],
+          "has_dimensions": false
+        },
+        "i_2020-12-31": {
+          "identifiers": [
+            "0001330568"
+          ],
+          "has_dimensions": false
+        },
+        "i_2021-12-31": {
+          "identifiers": [
+            "0001330568"
+          ],
+          "has_dimensions": false
+        },
+        "i_2022-12-31": {
+          "identifiers": [
+            "0001330568"
+          ],
+          "has_dimensions": false
+        }
+      },
+      "state": "PRIMARY_CAPTURED_EDITORIAL_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001330568",
+      "companyfacts_name": "iShares Silver Trust",
+      "discovery_names": [],
+      "accession": "0001437749-26-006059",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1330568/000143774926006059/0001437749-26-006059-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T08:24:30.867777+00:00",
+        "bytes": 13481,
+        "sha256": "f42af6536affc40b3701f04c9cdaece36fe7f8668b274b9e1e1885d5778e6b41",
+        "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001330568-0001437749-26-006059-index.response"
+      },
+      "index_filers": [
+        "iShares Silver Trust (Filer) CIK : 0001330568 (see all company filings) EIN. : 000000000 | State of Incorp.: NY | Fiscal Year End: 1231 Type: 10-K | Act: 34 | File No.: 001-32863 | Film No.: 26696915 SIC : 6221 Commodity Contracts Brokers & Dealers (CF Office: 09 Crypto Assets)"
+      ],
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1330568/000143774926006059/slv20251231_10k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T08:24:32.577041+00:00",
+        "bytes": 824455,
+        "sha256": "35c619a163e15eb5b01375a4677b2e6ba43836f5787eb7e7ed4bb5e60f06548b",
+        "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001330568-0001437749-26-006059-primary.response"
+      },
+      "dei_identity_facts": [
+        {
+          "name": "dei:EntityCentralIndexKey",
+          "context": "d_2025-01-01_2025-12-31",
+          "text": "0001330568"
+        },
+        {
+          "name": "dei:EntityRegistrantName",
+          "context": "d_2025-01-01_2025-12-31",
+          "text": "iShares Silver Trust"
+        }
+      ],
+      "core_fact_contexts": [
+        {
+          "tag": "us-gaap:NetCashProvidedByUsedInOperatingActivities",
+          "contexts": [
+            "d_2023-01-01_2023-12-31",
+            "d_2024-01-01_2024-12-31",
+            "d_2025-01-01_2025-12-31"
+          ]
+        }
+      ],
+      "contexts": {
+        "d_2023-01-01_2023-12-31": {
+          "identifiers": [
+            "0001330568"
+          ],
+          "has_dimensions": false
+        },
+        "d_2024-01-01_2024-12-31": {
+          "identifiers": [
+            "0001330568"
+          ],
+          "has_dimensions": false
+        },
+        "d_2025-01-01_2025-12-31": {
+          "identifiers": [
+            "0001330568"
+          ],
+          "has_dimensions": false
+        }
+      },
+      "state": "PRIMARY_CAPTURED_EDITORIAL_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001342916",
+      "companyfacts_name": "HNO International, Inc.",
+      "discovery_names": [],
+      "accession": "0001342916-26-000008",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1342916/000134291626000008/0001342916-26-000008-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T08:24:34.333932+00:00",
+        "bytes": 12362,
+        "sha256": "5b1be0f732188fab1e09f7d7fbf0dec625e6a4de679e54c4cf8e806dff672874",
+        "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001342916-0001342916-26-000008-index.response"
+      },
+      "index_filers": [
+        "HNO International, Inc. (Filer) CIK : 0001342916 (see all company filings) EIN. : 202781289 | State of Incorp.: NV | Fiscal Year End: 1031 Type: 10-K | Act: 34 | File No.: 000-56568 | Film No.: 26606835 SIC : 1000 Metal Mining (CF Office: 01 Energy & Transportation)"
+      ],
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1342916/000134291626000008/hnoi10k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T08:24:36.109966+00:00",
+        "bytes": 881450,
+        "sha256": "13e87c8eb65089a81afb28ac8916505852fe332a1915af9d9c9b85ff2da50d83",
+        "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001342916-0001342916-26-000008-primary.response"
+      },
+      "dei_identity_facts": [
+        {
+          "name": "dei:EntityCentralIndexKey",
+          "context": "From2024-11-01to2025-10-31",
+          "text": "0001342916"
+        },
+        {
+          "name": "dei:EntityRegistrantName",
+          "context": "From2024-11-01to2025-10-31",
+          "text": "HNO INTERNATIONAL, INC."
+        }
+      ],
+      "core_fact_contexts": [
+        {
+          "tag": "us-gaap:NetIncomeLoss",
+          "contexts": [
+            "From2023-11-012024-10-31",
+            "From2023-11-012024-10-31_custom_PreferredStockSeriesAMember",
+            "From2023-11-012024-10-31_custom_PreferredStockSeriesBMember",
+            "From2023-11-012024-10-31_custom_ShareSubscriptionReceivableMember",
+            "From2023-11-012024-10-31_custom_StockPayableMember",
+            "From2023-11-012024-10-31_us-gaap_AdditionalPaidInCapitalMember",
+            "From2023-11-012024-10-31_us-gaap_CommonStockMember",
+            "From2023-11-012024-10-31_us-gaap_RetainedEarningsMember",
+            "From2024-11-012025-10-31_custom_PreferredStockSeriesAMember",
+            "From2024-11-012025-10-31_custom_PreferredStockSeriesBMember",
+            "From2024-11-012025-10-31_custom_ShareSubscriptionReceivableMember",
+            "From2024-11-012025-10-31_custom_StockPayableMember",
+            "From2024-11-012025-10-31_us-gaap_AdditionalPaidInCapitalMember",
+            "From2024-11-012025-10-31_us-gaap_CommonStockMember",
+            "From2024-11-012025-10-31_us-gaap_RetainedEarningsMember",
+            "From2024-11-01to2025-10-31"
+          ]
+        },
+        {
+          "tag": "us-gaap:OperatingIncomeLoss",
+          "contexts": [
+            "From2023-11-012024-10-31",
+            "From2024-11-01to2025-10-31"
+          ]
+        }
+      ],
+      "contexts": {
+        "From2023-11-012024-10-31": {
+          "identifiers": [
+            "0001342916"
+          ],
+          "has_dimensions": false
+        },
+        "From2023-11-012024-10-31_custom_PreferredStockSeriesAMember": {
+          "identifiers": [
+            "0001342916"
+          ],
+          "has_dimensions": true
+        },
+        "From2023-11-012024-10-31_custom_PreferredStockSeriesBMember": {
+          "identifiers": [
+            "0001342916"
+          ],
+          "has_dimensions": true
+        },
+        "From2023-11-012024-10-31_custom_ShareSubscriptionReceivableMember": {
+          "identifiers": [
+            "0001342916"
+          ],
+          "has_dimensions": true
+        },
+        "From2023-11-012024-10-31_custom_StockPayableMember": {
+          "identifiers": [
+            "0001342916"
+          ],
+          "has_dimensions": true
+        },
+        "From2023-11-012024-10-31_us-gaap_AdditionalPaidInCapitalMember": {
+          "identifiers": [
+            "0001342916"
+          ],
+          "has_dimensions": true
+        },
+        "From2023-11-012024-10-31_us-gaap_CommonStockMember": {
+          "identifiers": [
+            "0001342916"
+          ],
+          "has_dimensions": true
+        },
+        "From2023-11-012024-10-31_us-gaap_RetainedEarningsMember": {
+          "identifiers": [
+            "0001342916"
+          ],
+          "has_dimensions": true
+        },
+        "From2024-11-012025-10-31_custom_PreferredStockSeriesAMember": {
+          "identifiers": [
+            "0001342916"
+          ],
+          "has_dimensions": true
+        },
+        "From2024-11-012025-10-31_custom_PreferredStockSeriesBMember": {
+          "identifiers": [
+            "0001342916"
+          ],
+          "has_dimensions": true
+        },
+        "From2024-11-012025-10-31_custom_ShareSubscriptionReceivableMember": {
+          "identifiers": [
+            "0001342916"
+          ],
+          "has_dimensions": true
+        },
+        "From2024-11-012025-10-31_custom_StockPayableMember": {
+          "identifiers": [
+            "0001342916"
+          ],
+          "has_dimensions": true
+        },
+        "From2024-11-012025-10-31_us-gaap_AdditionalPaidInCapitalMember": {
+          "identifiers": [
+            "0001342916"
+          ],
+          "has_dimensions": true
+        },
+        "From2024-11-012025-10-31_us-gaap_CommonStockMember": {
+          "identifiers": [
+            "0001342916"
+          ],
+          "has_dimensions": true
+        },
+        "From2024-11-012025-10-31_us-gaap_RetainedEarningsMember": {
+          "identifiers": [
+            "0001342916"
+          ],
+          "has_dimensions": true
+        },
+        "From2024-11-01to2025-10-31": {
+          "identifiers": [
+            "0001342916"
+          ],
+          "has_dimensions": false
+        }
+      },
+      "state": "PRIMARY_CAPTURED_EDITORIAL_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001365388",
+      "companyfacts_name": "HIGH SIERRA TECHNOLOGIES, INC.",
+      "discovery_names": [],
+      "accession": "0001548123-21-000041",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1365388/000154812321000041/0001548123-21-000041-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T08:24:37.826318+00:00",
+        "bytes": 13626,
+        "sha256": "9c970b747ec826374afd46218b69a33799bfa87c171878fa3b511e9880dc9570",
+        "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001365388-0001548123-21-000041-index.response"
+      },
+      "index_filers": [
+        "High Sierra Technologies, Inc. (Filer) CIK : 0001365388 (see all company filings) EIN. : 841344320 | State of Incorp.: CO | Fiscal Year End: 1231 Type: 10-K | Act: 34 | File No.: 000-52036 | Film No.: 21825592 SIC : 6770 Blank Checks"
+      ],
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1365388/000154812321000041/f13027hsti10-kcleancopy41321.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T08:24:39.829085+00:00",
+        "bytes": 539357,
+        "sha256": "4a7c30b295e508b687c13eb5fd0392cea57d2d3f61fb7f41d9302c4e38e526cd",
+        "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001365388-0001548123-21-000041-primary.response"
+      },
+      "dei_identity_facts": [],
+      "core_fact_contexts": [
+        {
+          "tag": "us-gaap:Revenues",
+          "contexts": []
+        }
+      ],
+      "contexts": {},
+      "state": "PRIMARY_CAPTURED_EDITORIAL_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001375348",
+      "companyfacts_name": "GOLDEN STAR RESOURCE CORP.",
+      "discovery_names": [],
+      "accession": "0001199835-14-000481",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1375348/000119983514000481/0001199835-14-000481-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T08:24:41.612178+00:00",
+        "bytes": 12444,
+        "sha256": "0703ff9bd69efb27bf877ab3163a4b0935200cd0117d22878d034746aebc8b86",
+        "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001375348-0001199835-14-000481-index.response"
+      },
+      "index_filers": [
+        "Golden Star Resource Corp. (Filer) CIK : 0001375348 (see all company filings) EIN. : 000000000 | State of Incorp.: NV | Fiscal Year End: 0630 Type: 10-K | Act: 34 | File No.: 000-52837 | Film No.: 141124167 SIC : 1090 Miscellaneous Metal Ores"
+      ],
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1375348/000119983514000481/gnls_10k-16149.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T08:24:43.304402+00:00",
+        "bytes": 975546,
+        "sha256": "9c52a67ce93be30d818953ae5a0d6ecbfe512fa939199eb63a1638760a6888fd",
+        "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001375348-0001199835-14-000481-primary.response"
+      },
+      "dei_identity_facts": [],
+      "core_fact_contexts": [
+        {
+          "tag": "us-gaap:Revenues",
+          "contexts": []
+        }
+      ],
+      "contexts": {},
+      "state": "PRIMARY_CAPTURED_EDITORIAL_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001393772",
+      "companyfacts_name": "WEED, INC.",
+      "discovery_names": [],
+      "accession": "0001096906-26-000507",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1393772/000109690626000507/0001096906-26-000507-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T08:24:45.111668+00:00",
+        "bytes": 11904,
+        "sha256": "5d8eb491bd8810f0cd41a9ef928a7f30e25dadd16ce30117c5055452f94203d7",
+        "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001393772-0001096906-26-000507-index.response"
+      },
+      "index_filers": [
+        "WEED, INC. (Filer) CIK : 0001393772 (see all company filings) EIN. : 830452269 | State of Incorp.: NV | Fiscal Year End: 1231 Type: 10-K | Act: 34 | File No.: 000-53727 | Film No.: 26847712 SIC : 8731 Services-Commercial Physical & Biological Research (CF Office: 08 Industrial Applications and Services)"
+      ],
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1393772/000109690626000507/budz_10k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T08:24:46.812883+00:00",
+        "bytes": 1016760,
+        "sha256": "ee29009d186f9a69d5113ab8ec3715dc3fc12d5be6fcb1a4f1ce1e76ea07bcdc",
+        "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001393772-0001096906-26-000507-primary.response"
+      },
+      "dei_identity_facts": [
+        {
+          "name": "dei:EntityCentralIndexKey",
+          "context": "From2025-01-01to2025-12-31",
+          "text": "0001393772"
+        },
+        {
+          "name": "dei:EntityRegistrantName",
+          "context": "From2025-01-01to2025-12-31",
+          "text": "WEED, INC."
+        }
+      ],
+      "core_fact_contexts": [
+        {
+          "tag": "us-gaap:Liabilities",
+          "contexts": [
+            "AsOf2024-12-31",
+            "AsOf2024-12-31_us-gaap_FairValueInputsLevel1Member_us-gaap_FairValueMeasurementsRecurringMember",
+            "AsOf2024-12-31_us-gaap_FairValueInputsLevel2Member_us-gaap_FairValueMeasurementsRecurringMember",
+            "AsOf2024-12-31_us-gaap_FairValueInputsLevel3Member_us-gaap_FairValueMeasurementsRecurringMember",
+            "AsOf2025-12-31",
+            "AsOf2025-12-31_us-gaap_FairValueInputsLevel1Member_us-gaap_FairValueMeasurementsRecurringMember",
+            "AsOf2025-12-31_us-gaap_FairValueInputsLevel2Member_us-gaap_FairValueMeasurementsRecurringMember",
+            "AsOf2025-12-31_us-gaap_FairValueInputsLevel3Member_us-gaap_FairValueMeasurementsRecurringMember"
+          ]
+        },
+        {
+          "tag": "us-gaap:LiabilitiesCurrent",
+          "contexts": [
+            "AsOf2024-12-31",
+            "AsOf2025-12-31"
+          ]
+        },
+        {
+          "tag": "us-gaap:Revenues",
+          "contexts": [
+            "From2024-01-01to2024-12-31",
+            "From2025-01-01to2025-12-31"
+          ]
+        }
+      ],
+      "contexts": {
+        "AsOf2024-12-31": {
+          "identifiers": [
+            "0001393772"
+          ],
+          "has_dimensions": false
+        },
+        "AsOf2024-12-31_us-gaap_FairValueInputsLevel1Member_us-gaap_FairValueMeasurementsRecurringMember": {
+          "identifiers": [
+            "0001393772"
+          ],
+          "has_dimensions": true
+        },
+        "AsOf2024-12-31_us-gaap_FairValueInputsLevel2Member_us-gaap_FairValueMeasurementsRecurringMember": {
+          "identifiers": [
+            "0001393772"
+          ],
+          "has_dimensions": true
+        },
+        "AsOf2024-12-31_us-gaap_FairValueInputsLevel3Member_us-gaap_FairValueMeasurementsRecurringMember": {
+          "identifiers": [
+            "0001393772"
+          ],
+          "has_dimensions": true
+        },
+        "AsOf2025-12-31": {
+          "identifiers": [
+            "0001393772"
+          ],
+          "has_dimensions": false
+        },
+        "AsOf2025-12-31_us-gaap_FairValueInputsLevel1Member_us-gaap_FairValueMeasurementsRecurringMember": {
+          "identifiers": [
+            "0001393772"
+          ],
+          "has_dimensions": true
+        },
+        "AsOf2025-12-31_us-gaap_FairValueInputsLevel2Member_us-gaap_FairValueMeasurementsRecurringMember": {
+          "identifiers": [
+            "0001393772"
+          ],
+          "has_dimensions": true
+        },
+        "AsOf2025-12-31_us-gaap_FairValueInputsLevel3Member_us-gaap_FairValueMeasurementsRecurringMember": {
+          "identifiers": [
+            "0001393772"
+          ],
+          "has_dimensions": true
+        },
+        "From2024-01-01to2024-12-31": {
+          "identifiers": [
+            "0001393772"
+          ],
+          "has_dimensions": false
+        },
+        "From2025-01-01to2025-12-31": {
+          "identifiers": [
+            "0001393772"
+          ],
+          "has_dimensions": false
+        }
+      },
+      "state": "PRIMARY_CAPTURED_EDITORIAL_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001409253",
+      "companyfacts_name": "North America Frac Sand, Inc.",
+      "discovery_names": [],
+      "accession": "0001477932-18-001945",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1409253/000147793218001945/0001477932-18-001945-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T08:24:48.774923+00:00",
+        "bytes": 10801,
+        "sha256": "8a6a764622ec58c6d0e13b202f2b87942e43545fc4e394527fe610b3d5996e0f",
+        "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001409253-0001477932-18-001945-index.response"
+      },
+      "index_filers": [
+        "North America Frac Sand, Inc. (Filer) CIK : 0001409253 (see all company filings) EIN. : 208926549 | Fiscal Year End: 1231 Type: 10-K | Act: 34 | File No.: 000-54757 | Film No.: 18762826 SIC : 8742 Services-Management Consulting Services"
+      ],
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1409253/000147793218001945/nafs_10k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T08:24:50.515713+00:00",
+        "bytes": 366039,
+        "sha256": "0e40ef064e5378b77879cd2b67f47d852652c5128a78cd0cb442c0b58fc986ca",
+        "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001409253-0001477932-18-001945-primary.response"
+      },
+      "dei_identity_facts": [],
+      "core_fact_contexts": [
+        {
+          "tag": "us-gaap:Liabilities",
+          "contexts": []
+        },
+        {
+          "tag": "us-gaap:LiabilitiesCurrent",
+          "contexts": []
+        }
+      ],
+      "contexts": {},
+      "state": "PRIMARY_CAPTURED_EDITORIAL_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001410708",
+      "companyfacts_name": "Emo Capital Corp.",
+      "discovery_names": [],
+      "accession": "0001372167-14-000123",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1410708/000137216714000123/0001372167-14-000123-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T08:24:52.254424+00:00",
+        "bytes": 10840,
+        "sha256": "31d0001f3bc0095ff2813969142885c87b14367f399e6cc5aa67783bc4fe8781",
+        "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001410708-0001372167-14-000123-index.response"
+      },
+      "index_filers": [
+        "Emo Capital Corp. (Filer) CIK : 0001410708 (see all company filings) EIN. : 000000000 | State of Incorp.: NV | Fiscal Year End: 0731 Type: 10-K/A | Act: 34 | File No.: 000-54291 | Film No.: 14849127 SIC : 7370 Services-Computer Programming, Data Processing, Etc."
+      ],
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1410708/000137216714000123/emo10kjuly312013amend.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T08:24:53.996064+00:00",
+        "bytes": 238374,
+        "sha256": "64b3a5d019eb35e27a40b8337fed2dd73469d899f56f106909769c7f5cebf543",
+        "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001410708-0001372167-14-000123-primary.response"
+      },
+      "dei_identity_facts": [],
+      "core_fact_contexts": [
+        {
+          "tag": "us-gaap:AssetsCurrent",
+          "contexts": []
+        },
+        {
+          "tag": "us-gaap:CashAndCashEquivalentsAtCarryingValue",
+          "contexts": []
+        }
+      ],
+      "contexts": {},
+      "state": "PRIMARY_CAPTURED_EDITORIAL_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001415332",
+      "companyfacts_name": "LITHIUM CORPORATION",
+      "discovery_names": [],
+      "accession": "0001640334-26-000606",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1415332/000164033426000606/0001640334-26-000606-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T08:24:55.731849+00:00",
+        "bytes": 11499,
+        "sha256": "9ae8f996df930f77ad877587b735f0b22946d28b9f9c9573264c2417a1cb927a",
+        "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001415332-0001640334-26-000606-index.response"
+      },
+      "index_filers": [
+        "Lithium Corp (Filer) CIK : 0001415332 (see all company filings) EIN. : 980530295 | Fiscal Year End: 1231 Type: 10-K | Act: 34 | File No.: 000-54332 | Film No.: 26822968 SIC : 1000 Metal Mining (CF Office: 01 Energy & Transportation)"
+      ],
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1415332/000164033426000606/ltum_10k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T08:24:57.430584+00:00",
+        "bytes": 870107,
+        "sha256": "5d134b2870921443d94d0c4e82ab2f0941d9b9c6e53c97c163c216f34c452fd4",
+        "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001415332-0001640334-26-000606-primary.response"
+      },
+      "dei_identity_facts": [
+        {
+          "name": "dei:EntityCentralIndexKey",
+          "context": "From2025-01-01to2025-12-31",
+          "text": "0001415332"
+        },
+        {
+          "name": "dei:EntityRegistrantName",
+          "context": "From2025-01-01to2025-12-31",
+          "text": "LITHIUM CORPORATION"
+        }
+      ],
+      "core_fact_contexts": [
+        {
+          "tag": "us-gaap:Liabilities",
+          "contexts": [
+            "AsOf2024-12-31",
+            "AsOf2025-12-31"
+          ]
+        },
+        {
+          "tag": "us-gaap:LiabilitiesCurrent",
+          "contexts": [
+            "AsOf2024-12-31",
+            "AsOf2025-12-31"
+          ]
+        },
+        {
+          "tag": "us-gaap:Revenues",
+          "contexts": [
+            "From2024-01-01to2024-12-31",
+            "From2025-01-01to2025-12-31",
+            "From2025-01-01to2025-12-31_ltum_ExplorationSegmentMember"
+          ]
+        }
+      ],
+      "contexts": {
+        "AsOf2024-12-31": {
+          "identifiers": [
+            "0001415332"
+          ],
+          "has_dimensions": false
+        },
+        "AsOf2025-12-31": {
+          "identifiers": [
+            "0001415332"
+          ],
+          "has_dimensions": false
+        },
+        "From2024-01-01to2024-12-31": {
+          "identifiers": [
+            "0001415332"
+          ],
+          "has_dimensions": false
+        },
+        "From2025-01-01to2025-12-31": {
+          "identifiers": [
+            "0001415332"
+          ],
+          "has_dimensions": false
+        },
+        "From2025-01-01to2025-12-31_ltum_ExplorationSegmentMember": {
+          "identifiers": [
+            "0001415332"
+          ],
+          "has_dimensions": true
+        }
+      },
+      "state": "PRIMARY_CAPTURED_EDITORIAL_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001420108",
+      "companyfacts_name": "GLUCOSE HEALTH, INC.",
+      "discovery_names": [],
+      "accession": "0001477932-17-001354",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1420108/000147793217001354/0001477932-17-001354-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T08:24:59.222835+00:00",
+        "bytes": 11240,
+        "sha256": "ba7c652d6835c4103c9ead0a9b253de58132e90d365a0b35c0471c7096de67c2",
+        "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001420108-0001477932-17-001354-index.response"
+      },
+      "index_filers": [
+        "Glucose Health, Inc. (Filer) CIK : 0001420108 (see all company filings) EIN. : 901117742 | State of Incorp.: NV | Fiscal Year End: 1231 Type: 10-K | Act: 34 | File No.: 000-55439 | Film No.: 17720063 SIC : 2833 Medicinal Chemicals & Botanical Products"
+      ],
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1420108/000147793217001354/gluc_10k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T08:25:00.829611+00:00",
+        "bytes": 421953,
+        "sha256": "6d46164cc1c7469c5cb020dc432d41179fd682aaf9951edc9c2a88274a4c7360",
+        "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001420108-0001477932-17-001354-primary.response"
+      },
+      "dei_identity_facts": [],
+      "core_fact_contexts": [
+        {
+          "tag": "us-gaap:Liabilities",
+          "contexts": []
+        },
+        {
+          "tag": "us-gaap:LiabilitiesCurrent",
+          "contexts": []
+        }
+      ],
+      "contexts": {},
+      "state": "PRIMARY_CAPTURED_EDITORIAL_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001420565",
+      "companyfacts_name": "Rein Therapeutics, Inc.",
+      "discovery_names": [],
+      "accession": "0001193125-26-126385",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1420565/000119312526126385/0001193125-26-126385-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T08:25:02.602848+00:00",
+        "bytes": 11136,
+        "sha256": "77ab72796dd6f015622f3a94dfd32a7bee1470566d58b717a1456752dee49eaf",
+        "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001420565-0001193125-26-126385-index.response"
+      },
+      "index_filers": [
+        "Rein Therapeutics, Inc. (Filer) CIK : 0001420565 (see all company filings) EIN. : 134196017 | Fiscal Year End: 1231 Type: 10-K | Act: 34 | File No.: 001-38130 | Film No.: 26798814 SIC : 2834 Pharmaceutical Preparations (CF Office: 03 Life Sciences)"
+      ],
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1420565/000119312526126385/rntx-20251231.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T08:25:04.455680+00:00",
+        "bytes": 3472379,
+        "sha256": "b22c23bd943764843ce2dd3f038124f96ecb3dac9cce93881ff2c9faad9369db",
+        "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001420565-0001193125-26-126385-primary.response"
+      },
+      "dei_identity_facts": [
+        {
+          "name": "dei:EntityCentralIndexKey",
+          "context": "C_cabecc26-f56c-481d-94fb-4b4f230def01",
+          "text": "0001420565"
+        },
+        {
+          "name": "dei:EntityRegistrantName",
+          "context": "C_cabecc26-f56c-481d-94fb-4b4f230def01",
+          "text": "Rein Therapeutics, Inc."
+        }
+      ],
+      "core_fact_contexts": [
+        {
+          "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+          "contexts": [
+            "C_097b1db4-18f8-4660-8985-01b9ff56af4a",
+            "C_cabecc26-f56c-481d-94fb-4b4f230def01"
+          ]
+        }
+      ],
+      "contexts": {
+        "C_097b1db4-18f8-4660-8985-01b9ff56af4a": {
+          "identifiers": [
+            "0001420565"
+          ],
+          "has_dimensions": false
+        },
+        "C_cabecc26-f56c-481d-94fb-4b4f230def01": {
+          "identifiers": [
+            "0001420565"
+          ],
+          "has_dimensions": false
+        }
+      },
+      "state": "PRIMARY_CAPTURED_EDITORIAL_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001420565",
+      "companyfacts_name": "Rein Therapeutics, Inc.",
+      "discovery_names": [],
+      "accession": "0001564590-18-007403",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1420565/000156459018007403/0001564590-18-007403-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T08:25:06.433382+00:00",
+        "bytes": 17960,
+        "sha256": "74981c30de0dccb10132b4b51bfe22927ef8d9ba9eee58b5af544ff806da95b6",
+        "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001420565-0001564590-18-007403-index.response"
+      },
+      "index_filers": [
+        "AILERON THERAPEUTICS INC (Filer) CIK : 0001420565 (see all company filings) EIN. : 000000000 | State of Incorp.: DE | Fiscal Year End: 1231 Type: 10-K | Act: 34 | File No.: 001-38130 | Film No.: 18728868 SIC : 2834 Pharmaceutical Preparations"
+      ],
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1420565/000156459018007403/alrn-10k_20171231.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T08:25:08.284981+00:00",
+        "bytes": 3458871,
+        "sha256": "fcb6bbef963c85b5b8490739ea35ed90a3dffcee906cb301cf2322f03ca28dbc",
+        "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001420565-0001564590-18-007403-primary.response"
+      },
+      "dei_identity_facts": [],
+      "core_fact_contexts": [
+        {
+          "tag": "us-gaap:Revenues",
+          "contexts": []
+        }
+      ],
+      "contexts": {},
+      "state": "PRIMARY_CAPTURED_EDITORIAL_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001425205",
+      "companyfacts_name": "IOVANCE BIOTHERAPEUTICS,\u00a0INC.",
+      "discovery_names": [],
+      "accession": "0001144204-19-010702",
+      "index_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1425205/000114420419010702/0001144204-19-010702-index.html",
+        "status": 200,
+        "captured_at": "2026-09-20T08:25:10.193769+00:00",
+        "bytes": 13918,
+        "sha256": "dd169022f05868b5593964ae91f151803c34fd94e355bb2bad0c2a403614d0be",
+        "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001425205-0001144204-19-010702-index.response"
+      },
+      "index_filers": [
+        "IOVANCE BIOTHERAPEUTICS, INC. (Filer) CIK : 0001425205 (see all company filings) EIN. : 753254381 | State of Incorp.: DE | Fiscal Year End: 1231 Type: 10-K | Act: 34 | File No.: 001-36860 | Film No.: 19640026 SIC : 2836 Biological Products, (No Diagnostic Substances)"
+      ],
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1425205/000114420419010702/tv513795_10k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T08:25:12.641385+00:00",
+        "bytes": 1423147,
+        "sha256": "ccc9c87ced9cbecf8fe49ca4a8e3032695f0f1c830a92f91bc08cdee6ef31091",
+        "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001425205-0001144204-19-010702-primary.response"
+      },
+      "dei_identity_facts": [],
+      "core_fact_contexts": [
+        {
+          "tag": "us-gaap:Revenues",
+          "contexts": []
+        }
+      ],
+      "contexts": {},
+      "state": "PRIMARY_CAPTURED_EDITORIAL_REVIEW_PENDING"
+    }
+  ],
+  "scope": "Primary filing capture for priority editorial targets; neither numeric verification nor editorial approval."
+}

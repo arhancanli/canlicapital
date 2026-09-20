@@ -1,3 +1,4 @@
+import { readSitemapXml } from "./lib/sitemaps.mjs";
 // =============================================================================
 // audit-indexability.mjs
 // -----------------------------------------------------------------------------
@@ -44,7 +45,7 @@ const routeOf = (file) => {
 };
 
 const sitemapUrls = new Set(
-  [...readFileSync(resolve(DIST, "sitemap.xml"), "utf8").matchAll(/<loc>([^<]+)<\/loc>/g)]
+  [...readSitemapXml(DIST).matchAll(/<loc>([^<]+)<\/loc>/g)]
     .map((match) => match[1].replace(/\/$/, "")),
 );
 

@@ -1,0 +1,33 @@
+{
+  "schema": "canli.company-evidence-restore.v1",
+  "archive_sha256": "103a3839594086e211ef698232f2ed3011e94bae92de3fd27ecc59a5be8d23f4",
+  "repository_revision": "a901b9f8ecc1d475454a24f6a0eb85c6538a6458",
+  "restored_files": 12952,
+  "source_replays": {
+    "fresh-review": {
+      "complete": true,
+      "companies": 342,
+      "exclusions": 0,
+      "errors": 0
+    },
+    "next-1000": {
+      "complete": true,
+      "companies": 853,
+      "exclusions": 147,
+      "errors": 0
+    },
+    "third-1000": {
+      "complete": true,
+      "companies": 766,
+      "exclusions": 234,
+      "errors": 0
+    }
+  },
+  "runtime_objects_replayed": 6249,
+  "runtime_bytes": 828366117,
+  "release_hash": "9dae2a4a62b647c96892f90d30a826f783de1a9f62eefff27adffc4d6d1c8a34",
+  "objects_exactly_match_original_plan": true,
+  "remote_backup_verified": false,
+  "verification_code_sha256": "be8c48266a7fcd355af8e7519b7ed97ddc3ef370aa3ddd3499b393d08014e27e",
+  "scope": "Whole archive SHA checked against separate summary; every member verified; isolated temporary restore; saved repository source replays all named cohorts and runtime objects. No reads of original runtime objects or capture directories. Temporary restore removed after verification; archive remains local."
+}

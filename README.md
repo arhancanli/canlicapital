@@ -13,6 +13,13 @@ The engine that produces every number here is open too:
 
 Live: **[canlicapital.com](https://canlicapital.com)**
 
+Build with it: [get an API key](https://canlicapital.com/developers#quickstart),
+[connect the MCP server](https://canlicapital.com/developers#ai-assistant), or
+[contribute a reproducible improvement](CONTRIBUTING.md). If the project is useful,
+star the repository to help other developers find it.
+
+Current work and verified limitations: [persistent goal status](docs/goal/STATUS.md).
+
 ## Why this repo is public
 
 The site's whole claim is *"a quant fund proving itself in public before it asks you to trust
@@ -69,7 +76,7 @@ hand. They are the machine-readable form of every claim the pages make. Current 
 derived during the build from `public/research-index.json`,
 `public/glassbox/trial_packet_manifest.json`, and the generated measurement directory; the sitemap
 is generated from the same files rather than maintained separately. The present build contains
-263 canonical URLs in the sitemap (all indexable), plus a public noindex evidence page for every incomplete registered
+327 canonical URLs in the sitemap (all indexable), plus a public noindex evidence page for every incomplete registered
 trial and one archival HTML paper per registered sleeve. It publishes
 identity-level packets for all 228 recorded hypotheses, while
 honestly marking 226 of those packets incomplete.
@@ -104,3 +111,19 @@ authoritative artifact.
 Nothing on this site or in this repo is investment advice, an offer, or a solicitation. The record
 published here is **paper trading**; the published ALPHAC strategy record includes no funded performance. Simulated and past
 performance do not indicate future results. See `LICENSE`: provided "as is", without warranty.
+
+## Glass-box platform expansion
+
+The [platform direction and quality contract](docs/GLASSBOX-PLATFORM-VISION-2026-09-19.md)
+connect the research engine, developer API/MCP and the company-reference collection. The local
+expansion candidate adds 49 SEC-backed reference pages; it is not a million-page deployment.
+The search goal is **at least 800,000 indexed pages, targeting 1,000,000**, recorded in
+`config/search-growth-goal.json`. `npm run seo:inventory` reports built counts separately from
+actual indexing evidence; the indexed count remains unverified until Search Console evidence
+is available. `--require-indexed-minimum` fails while that evidence is missing.
+`npm run seo:capacity` tests sitemap transport with synthetic URLs in a temporary directory.
+
+Refresh selected company records explicitly with `npm run companies:import -- CIK [CIK ...]`.
+Builds use captured public JSON and original compressed source snapshots, with no network ingestion
+during publication. The selected latest-filed histories may contain restatements and are not
+point-in-time backtest data. Public JSON downloads do not extend the validation API's capabilities.

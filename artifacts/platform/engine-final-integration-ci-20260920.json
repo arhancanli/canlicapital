@@ -1,0 +1,51 @@
+{
+  "schema": "canli.engine-final-integration-ci.v1",
+  "head": "867d2113698d41d9f697adad5aeb7006dddc23a1",
+  "run_id": 35499961114,
+  "conclusion": "SUCCESS",
+  "jobs": [
+    {
+      "name": "publication integrity (clean checkout)",
+      "conclusion": "success",
+      "url": "https://github.com/arhancanli/alphac/actions/runs/35499961114/job/106049850029"
+    },
+    {
+      "name": "mypy --strict",
+      "conclusion": "success",
+      "url": "https://github.com/arhancanli/alphac/actions/runs/35499961114/job/106049850141"
+    },
+    {
+      "name": "pytest (offline)",
+      "conclusion": "success",
+      "url": "https://github.com/arhancanli/alphac/actions/runs/35499961114/job/106049850173"
+    },
+    {
+      "name": "browser interface (synthetic clean-checkout fixture)",
+      "conclusion": "success",
+      "url": "https://github.com/arhancanli/alphac/actions/runs/35499961114/job/106049850203"
+    },
+    {
+      "name": "foundry PostgreSQL contract",
+      "conclusion": "success",
+      "url": "https://github.com/arhancanli/alphac/actions/runs/35499961114/job/106049850215"
+    },
+    {
+      "name": "ruff (governed scope + debt ledger)",
+      "conclusion": "success",
+      "url": "https://github.com/arhancanli/alphac/actions/runs/35499961114/job/106049850240"
+    }
+  ],
+  "portable_offline_suite": {
+    "passed": 4366,
+    "skipped": 55,
+    "seconds": 2106.41
+  },
+  "serial_performance": {
+    "passed": 1,
+    "deselected": 4983
+  },
+  "foundry_postgresql_tests_passed": 11,
+  "raw_ci_metadata_sha256": "daa68965e00203c9308297fb8ed47b6ac77b7754586bf9f29730afa27b43d491",
+  "log_sha256": "1ae70235d6ce99f57bab19f50a29f0bc5271ad7e4e6ceb473c8472ed2a433078",
+  "scope": "CI on exact combined candidate head. Platform/workspace-dependent skips remain disclosed. Does not activate the running engine, merge production, independently reproduce strategy results or establish forward performance."
+}

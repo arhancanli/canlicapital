@@ -1,0 +1,192 @@
+{
+  "schema": "canli.noninline-scope-review.v1",
+  "publication_approved": false,
+  "reviewed_by": "Codex; not independent human replication",
+  "groups": [
+    {
+      "cik": "0000818479",
+      "name": "DENTSPLY SIRONA Inc.",
+      "source_sha256": "f6c1bd37486e91a38a99cf9ec5d3b97006986f8446a04bec87caec0cbf411fb5",
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/818479/000081847917000007/dentsplysirona201610-k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T05:45:40.525639+00:00",
+        "bytes": 4810150,
+        "sha256": "be9d756a0a104d311358df6b61df86d4bbbdec9c364a5ef26fb9ea501fe61e7a"
+      },
+      "captures": [
+        {
+          "url": "https://www.sec.gov/Archives/edgar/data/818479/000081847917000007/xray-20161231.xml",
+          "status": 200,
+          "captured_at": "2026-09-20T05:56:43.146773+00:00",
+          "bytes": 7617585,
+          "sha256": "69a8f8ea1f0ae38bbe193a4c33cd0e0266b3768a8e10ec1c01f1826b75f0f53c"
+        },
+        {
+          "url": "https://www.sec.gov/Archives/edgar/data/818479/000081847917000007/xray-20161231_lab.xml",
+          "status": 200,
+          "captured_at": "2026-09-20T05:56:44.852878+00:00",
+          "bytes": 1677797,
+          "sha256": "2f268e95dcf60c9ca0232c674596378a590fce5cc627c994ae1a94e2530e0722"
+        },
+        {
+          "url": "https://www.sec.gov/Archives/edgar/data/818479/000081847917000007/xray-20161231_pre.xml",
+          "status": 200,
+          "captured_at": "2026-09-20T05:56:46.461273+00:00",
+          "bytes": 1110344,
+          "sha256": "1af532e180c0473aebdc8db9607a49721a3fa930b5b1a47d25c4bfaf789d4de7"
+        }
+      ],
+      "checks": [
+        {
+          "tag": "Revenues",
+          "start": "2016-01-01",
+          "end": "2016-12-31",
+          "unit": "USD",
+          "value": 0,
+          "matches": [
+            {
+              "context": "FD2016Q4YTD",
+              "fact_id": "Fact-29D275E9A1E36E38CD4CB6DB942D30AC",
+              "unit": "USD",
+              "value": "0"
+            }
+          ]
+        },
+        {
+          "tag": "Revenues",
+          "start": "2015-01-01",
+          "end": "2015-12-31",
+          "unit": "USD",
+          "value": 0,
+          "matches": [
+            {
+              "context": "FD2015Q4YTD",
+              "fact_id": "Fact-1E5B03BF3CB14A850A48B6DB949C1283",
+              "unit": "USD",
+              "value": "0"
+            }
+          ]
+        },
+        {
+          "tag": "Revenues",
+          "start": "2014-01-01",
+          "end": "2014-12-31",
+          "unit": "USD",
+          "value": 0,
+          "matches": [
+            {
+              "context": "FD2014Q4YTD",
+              "fact_id": "Fact-68EE82B21BD1A23DB2E5B6DB942EE1E2",
+              "unit": "USD",
+              "value": "0"
+            }
+          ]
+        }
+      ],
+      "labels": [
+        {
+          "role": "http://www.xbrl.org/2003/role/terseLabel",
+          "text": "Intersegment net sales"
+        },
+        {
+          "role": "http://www.xbrl.org/2003/role/label",
+          "text": "Revenues"
+        }
+      ],
+      "decision": "Exclude generic company revenue history in next reviewed policy; exact filing tag label is intersegment sales. No claim covering every historical filing."
+    },
+    {
+      "cik": "0001227654",
+      "name": "Compass Minerals International, Inc.",
+      "source_sha256": "e35c63d958ef9b086a4a3940b05df1180411e5e375b2a0bd4518328b58fcc764",
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1227654/000114036114009227/form10k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T05:45:51.381441+00:00",
+        "bytes": 2151595,
+        "sha256": "c6a6ca46a326a67d60b0a39c025c9ef65b6654fbe3ce73f8fbb76522243f2406"
+      },
+      "captures": [
+        {
+          "url": "https://www.sec.gov/Archives/edgar/data/1227654/000114036114009227/cmp-20131231.xml",
+          "status": 200,
+          "captured_at": "2026-09-20T05:56:48.282827+00:00",
+          "bytes": 2520734,
+          "sha256": "5a6d320a8b76585fba21ec137a5feffda31b8ad011fc7f04e4da278773ca8aee"
+        },
+        {
+          "url": "https://www.sec.gov/Archives/edgar/data/1227654/000114036114009227/cmp-20131231_lab.xml",
+          "status": 200,
+          "captured_at": "2026-09-20T05:56:50.140071+00:00",
+          "bytes": 1184446,
+          "sha256": "559edfb4397ccdf4ef7ac390e8cb5916b6ba6a3da825ae559b844af27a970679"
+        },
+        {
+          "url": "https://www.sec.gov/Archives/edgar/data/1227654/000114036114009227/cmp-20131231_pre.xml",
+          "status": 200,
+          "captured_at": "2026-09-20T05:56:51.814326+00:00",
+          "bytes": 646454,
+          "sha256": "7b5f18f19933c2a614c4be480733676e8e48add75676696f108b8eebc169c407"
+        }
+      ],
+      "checks": [
+        {
+          "tag": "Revenues",
+          "start": "2013-01-01",
+          "end": "2013-12-31",
+          "unit": "USD",
+          "value": 0,
+          "matches": [
+            {
+              "context": "c20130101to20131231",
+              "fact_id": null,
+              "unit": "USD",
+              "value": "0"
+            }
+          ]
+        },
+        {
+          "tag": "Revenues",
+          "start": "2012-01-01",
+          "end": "2012-12-31",
+          "unit": "USD",
+          "value": 0,
+          "matches": [
+            {
+              "context": "c20120101to20121231",
+              "fact_id": null,
+              "unit": "USD",
+              "value": "0"
+            }
+          ]
+        },
+        {
+          "tag": "Revenues",
+          "start": "2011-01-01",
+          "end": "2011-12-31",
+          "unit": "USD",
+          "value": 0,
+          "matches": [
+            {
+              "context": "c20110101to20111231",
+              "fact_id": null,
+              "unit": "USD",
+              "value": "0"
+            }
+          ]
+        }
+      ],
+      "labels": [
+        {
+          "role": "http://www.xbrl.org/2003/role/label",
+          "text": "Intersegment sales"
+        }
+      ],
+      "decision": "Exclude generic company revenue history in next reviewed policy; exact filing tag label is intersegment sales. No claim covering every historical filing."
+    }
+  ],
+  "matched_observations": 6,
+  "code_sha256": "3ba671d336cb7d26b71be66787b16e347e6cebc9a93cbc118b22b524fc395ac5",
+  "scope": "Latest selected accession. XBRL instance and label-linkbase checks, entity/period/unit/value matched, dimensional and nil facts excluded. Presentation linkbases captured but not interpreted. No source facts changed."
+}

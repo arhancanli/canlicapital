@@ -1,3 +1,4 @@
+import { readSitemapXml } from "./lib/sitemaps.mjs";
 // =============================================================================
 // CANLI CAPITAL / scripts/audit-published-numbers.mjs
 // -----------------------------------------------------------------------------
@@ -91,7 +92,7 @@ const ISO_DATE = /\b(19|20)\d\d-\d\d-\d\d\b/g;
 // ---------------------------------------------------------------------------
 // The published universe: every number inside every glassbox artifact.
 // ---------------------------------------------------------------------------
-const artifacts = walk(resolve(DIST, "glassbox"), ".json");
+const artifacts = [...walk(resolve(DIST, "glassbox"), ".json"), ...walk(resolve(DIST, "company-data"), ".json")];
 
 // The published data a page renders from is not all under glassbox/. The homepage
 // reads paper-state.json, the public-claims contract, the research index and the
@@ -241,7 +242,7 @@ function roundsScaled(scope, target, decimals, scale) {
 // Site-structural counts: claims ABOUT the site, recomputed from the site.
 // ---------------------------------------------------------------------------
 const htmlFiles = walk(DIST, ".html");
-const sitemap = readFileSync(resolve(DIST, "sitemap.xml"), "utf8");
+const sitemap = readSitemapXml(DIST);
 const countOf = (predicate) => htmlFiles.filter(predicate).length;
 const rel = (f) => relative(DIST, f);
 const structure = new Set(

@@ -269,13 +269,14 @@ function mcpAssistantSection() {
   const claudeDesktopJson = extractReadmeFence(readme, "Claude Desktop", "json");
   const npmUrl = `https://www.npmjs.com/package/${mcpPkg.name}`;
   return `<section class="dev-section" id="ai-assistant">
-    <h2>From your AI assistant</h2>
+    <h2>Connect the MCP server</h2>
     <p class="dev-note">This API is also an MCP server, so a coding assistant can call the
       routes on this page as tools instead of writing requests by hand. Every tool it exposes
       returns the full envelope, the same way every route on this page does, so the assistant
       sees what a number cannot be used to claim, not only the number.</p>
     <div class="dev-snippet"><p class="dev-snippet-label">Claude Code</p><pre class="dev-code" tabindex="0" aria-label="Claude Code configuration"><code>${esc(claudeCodeInstall)}</code></pre></div>
     <div class="dev-snippet"><p class="dev-snippet-label">Claude Desktop</p><pre class="dev-code" tabindex="0" aria-label="Claude Desktop configuration"><code>${esc(claudeDesktopJson)}</code></pre></div>
+    <p class="dev-note"><a href="https://github.com/arhancanli/canlicapital/tree/main/mcp" rel="noreferrer">Inspect the MCP implementation and contribute an integration</a>. If the tools help your research, star the repository to help others discover it.</p>
     <p class="dev-note"><a href="${esc(npmUrl)}" rel="noreferrer">${esc(mcpPkg.name)} on npm</a>, with the full tool list and what each one does not establish.</p>
   </section>`;
 }
@@ -286,7 +287,7 @@ function buildDevelopers() {
   const summaries = Object.entries(openapi.paths)
     .filter(([path, def]) => def.get && !MANIFEST.some((m) => m.path === path))
     .map(([path, def]) => ({ path, summary: def.get.summary }));
-  const validators = MANIFEST.filter((m) => m.method === "POST" && m.keyed);
+  const validators = MANIFEST.filter((m) => m.method === "POST" && m.keyed && m.path.startsWith("/api/v1/validate/"));
   const keysRoute = MANIFEST.find((m) => m.path === "/api/v1/keys");
   const firstValidator = validators[0];
 
@@ -463,6 +464,8 @@ ${renderProductShellHeader({ active: "developers" })}
       Public record snapshots are also available without a key.</p>
     <div class="dev-downloads">
       <a class="dev-button dev-button--primary" href="#quickstart">Get a free API key ↘</a>
+      <a class="dev-button" href="#ai-assistant">Connect the MCP server</a>
+      <a class="dev-button" href="https://github.com/arhancanli/alphac" rel="noreferrer">Explore ALPHAC on GitHub</a>
       <a class="dev-button" href="#validation">Explore the validators</a>
       <a class="dev-button" href="/api/v1">Discovery document</a>
       <a class="dev-button" href="/api/v1/openapi">OpenAPI document</a>
@@ -544,6 +547,9 @@ ${renderProductShellHeader({ active: "developers" })}
     <p class="dev-note">The key is returned once. Only its hash is kept.</p>
     <h3>Then validate</h3>
     ${validators.map((m) => `<article class="dev-endpoint" id="api-${esc(endpointSlug(m.path))}"><h4><code>${esc(m.method)} ${esc(m.path)}</code></h4><p>${esc(m.summary)}</p>${snippetsBlock(m)}${TOOL_PAGE_FOR[m.path] ? `<p class="dev-note"><a href="${esc(TOOL_PAGE_FOR[m.path])}">Try it in the browser, no key required</a></p>` : ""}</article>`).join("\n    ")}
+    <h3>Revoke a key you are finished with</h3>
+    <p class="dev-note">This disables the bearer key permanently. It does not issue a replacement or delete public receipts. Check that the response says <code>revoked: true</code>; an unavailable service does not confirm revocation.</p>
+    ${snippetsBlock(MANIFEST.find(m => m.path === "/api/v1/keys/revoke"))}
     <h3>Then cite the receipt</h3>
     <p class="dev-note">Every verdict carries <code>receipt.url</code>. <code>GET /api/v1/receipts/{id}</code>
       returns the stored output, the input hash, and the content hash of every core and contract that

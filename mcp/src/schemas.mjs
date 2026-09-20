@@ -120,7 +120,7 @@ export const LIMITS_SENTENCES = Object.freeze({
   scope: "This verdict is about the series exactly as submitted. The service never saw the data source, its costs, survivorship, or any lookahead in how the series was built.",
   notAdmission: "A deflated Sharpe or overfitting probability above or below any threshold is not admission to anything and is not a forecast.",
   unsigned: "The receipt is content-hashed and reproducible from the open-source core it names. It is not signed.",
-  quotas: "Quotas: 1000 validations per key per UTC day, 5 keys per client per UTC day, 1048576 bytes per request, 20000 observations per series, 200 variants per matrix.",
+  quotas: "Quotas: 1000 validations per key per UTC day, 5 keys per client per UTC day, 1048576 bytes per validation request, 1024 bytes per key revocation request, 20000 observations per series, 200 variants per matrix.",
 });
 
 // The MCP registry caps server.json's top-level description at 100 characters (its 422 reads

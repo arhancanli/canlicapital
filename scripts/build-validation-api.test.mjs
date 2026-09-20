@@ -14,6 +14,7 @@ const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 // The route's own body validator, one per POST path, so the round-trip test below proves the
 // OpenAPI example is accepted by the SAME function the live handler runs, not a stand-in for it.
 const BODY_VALIDATORS = {
+  "/api/v1/keys/revoke": async () => (await import("../api/v1/keys/revoke.js")).validateBody,
   "/api/v1/keys": async () => (await import("../api/v1/keys.js")).validateBody,
   "/api/v1/validate/deflated-sharpe": async () => (await import("../api/v1/validate/deflated-sharpe.js")).compute,
   "/api/v1/validate/overfitting": async () => (await import("../api/v1/validate/overfitting.js")).compute,
@@ -23,7 +24,7 @@ const BODY_VALIDATORS = {
 
 test("the quota constants are the documented values and every one has a sentence", () => {
   assert.deepEqual(LIMITS, {
-    validations_per_key_per_day: 1000, keys_per_client_per_day: 5, max_body_bytes: 1048576,
+    validations_per_key_per_day: 1000, keys_per_client_per_day: 5, max_key_revoke_body_bytes: 1024, max_body_bytes: 1048576,
     max_observations: 20000, max_variants: 200, max_cscv_combinations: 2000, wall_time_seconds: 10,
   });
   assert.ok(Object.isFrozen(LIMITS));
@@ -31,12 +32,12 @@ test("the quota constants are the documented values and every one has a sentence
   for (const line of LIMITS_TEXT) assert.ok(!line.includes("\u2014"), "no em dashes in published copy");
 });
 
-test("key-lifecycle facts are published: no expiry, no self-serve revoke or rotate, and what a client is", () => {
+test("key-lifecycle facts are published: no expiry, bearer revocation, and what a client is", () => {
   assert.ok(KEY_LIFECYCLE_TEXT.length >= 3);
   const joined = KEY_LIFECYCLE_TEXT.join(" ").toLowerCase();
   assert.match(joined, /do not expire|does not expire/);
-  assert.match(joined, /no self-serve revoke/);
-  assert.match(joined, /issue a new (key|one)/);
+  assert.match(joined, /post \/api\/v1\/keys\/revoke/);
+  assert.match(joined, /issue a replacement separately/);
   assert.match(joined, /client/);
   assert.match(joined, /ip address/);
   assert.match(joined, /salt/);
@@ -73,7 +74,7 @@ test("openapi documents every manifest route with the right method and a 429 for
     const entry = openapi.paths[m.path]?.[m.method.toLowerCase()];
     assert.ok(entry, `${m.method} ${m.path} missing from openapi`);
     assert.equal(entry.summary, m.summary);
-    if (m.keyed) { assert.ok(entry.responses["429"], `${m.path} lacks 429`); assert.deepEqual(entry.security, [{ bearerKey: [] }]); }
+    if (m.keyed) { if (m.quota !== false) assert.ok(entry.responses["429"], `${m.path} lacks 429`); else assert.equal(entry.responses["429"], undefined); assert.deepEqual(entry.security, [{ bearerKey: [] }]); }
   }
   assert.equal(openapi.components.securitySchemes.bearerKey.scheme, "bearer");
 });
@@ -101,7 +102,8 @@ test("every POST route's request schema has properties, and its example round-tr
       }
       continue;
     }
-    assert.ok(media.schema.properties && Object.keys(media.schema.properties).length > 0, `${m.path} schema has no properties`);
+    if (Object.keys(m.requestExample).length) assert.ok(media.schema.properties && Object.keys(media.schema.properties).length > 0, `${m.path} schema has no properties`);
+    else { assert.deepEqual(media.schema.properties, {}); assert.equal(media.schema.additionalProperties, false); assert.equal(body.required, false); }
     assert.ok(Array.isArray(media.schema.required), `${m.path} schema has no required array`);
     assert.deepEqual(media.example, m.requestExample, `${m.path} example is missing or has drifted from the manifest`);
     assert.doesNotThrow(() => validate(m.requestExample), `${m.path}: its own documented example does not pass its own validator`);

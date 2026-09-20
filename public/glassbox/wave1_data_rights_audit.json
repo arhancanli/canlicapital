@@ -1,15 +1,17 @@
 {
   "author": "Arhan Canli",
   "claim_boundary": "This audit proves that no raw tabular input file is inside a Wave 1 publication bundle and that a dated public-terms decision is recorded for each Wave 1 source class. It is not legal advice and does not establish account-specific permission, external-publication clearance, portable reproduction, or independent review.",
-  "content_hash": "sha256:cec7dc386397e09f4164a32add63c06d5d7c2c6d6913b29b3e03149c471e8b95",
+  "content_hash": "sha256:2d3e061768d7ffd91cfb8fc0dc80b7244a4565ecb31f6a6218713df03827f5c1",
   "external_publication_clearance_complete": false,
   "external_publication_clearances_recorded": 0,
-  "failures": [],
+  "failures": [
+    "WAVE1_PUBLIC_TERMS_REVIEW_INCOMPLETE"
+  ],
   "policy_binding": {
     "path": "config/data_source_rights_policy.json",
-    "sha256": "a96e7bb8441689e573b616304c013b1649d5fd83e15121aadacc9b429d460cd4"
+    "sha256": "b5720f61130fbbec37d3f6dc5669b63be076fd191fd53fb8a664b4bd943420df"
   },
-  "public_terms_reviews_complete": 6,
+  "public_terms_reviews_complete": 1,
   "raw_vendor_rows_released": false,
   "records": [
     {
@@ -121,17 +123,18 @@
       "release_decision": "RESULTS_AND_MANIFESTS_ONLY_RAW_ROWS_WITHHELD",
       "source_dependencies": [
         {
-          "access_kind": "exchange API accessed through CCXT",
+          "access_kind": "exchange API accessed through CCXT, and public USD-M futures websocket market streams (forced-liquidation orders)",
           "derived_result_publication": "NOT_EXPLICITLY_CLEARED_BY_PUBLIC_API_DOCUMENTATION",
           "external_publication_clearance_recorded": false,
           "official_terms": "https://www.binance.com/en/terms",
+          "official_terms_binance_fze": "https://bin.bnbstatic.com/static/cms/cg08ou2ak0tn7mcplvfg/file/b967d51a5756fccc1537ebd64f4c10cbacec36adcba5e000a6ad40291613ff87.pdf",
           "permitted_release": "code, query specification, symbols, timestamps, hashes and derived non-row-level results",
           "portable_reproduction_route": "fresh API acquisition under the reviewer's own access and then hash/coverage comparison",
           "public_terms_review_status": "COMPLETE_CONSERVATIVE_DECISION_RECORDED",
           "raw_redistribution": "WITHHELD_PENDING_EXPLICIT_RIGHTS_CONFIRMATION",
           "source_key": "BINANCE_EXCHANGE_MARKET_DATA",
-          "terms_evidence": "Binance's current official developer documentation authorizes supported API access to public market data and describes analytics and dashboard integrations, but the reviewed public documentation does not provide an explicit redistribution grant for historical rows or research-derived outputs. Raw rows remain withheld and external publication requires a final provider or qualified-rights confirmation.",
-          "terms_observed_on": "2026-08-26"
+          "terms_evidence": "Binance's current official developer documentation authorizes supported API access to public market data and describes analytics and dashboard integrations, but the reviewed public documentation does not provide an explicit redistribution grant for historical rows or research-derived outputs. Raw rows remain withheld and external publication requires a final provider or qualified-rights confirmation. Re-reviewed on 2026-09-15 for the liquidation stream: the Binance FZE Terms of Use (updated 5 January 2026; the VARA-licensed entity for Dubai residents) license Binance IP only as needed to use the services for non-commercial personal or internal business use (clause 25), and clause 27(m), paraphrased, bars copying, downloading, storing, publishing or creating derivative works of that intellectual property. The terms do not say whether public market data is Binance IP, so storage for internal research is recorded as unresolved, not cleared.",
+          "terms_observed_on": "2026-09-15"
         }
       ]
     },
@@ -277,17 +280,18 @@
       "release_decision": "RESULTS_AND_MANIFESTS_ONLY_RAW_ROWS_WITHHELD",
       "source_dependencies": [
         {
-          "access_kind": "exchange API accessed through CCXT",
+          "access_kind": "exchange API accessed through CCXT, and public USD-M futures websocket market streams (forced-liquidation orders)",
           "derived_result_publication": "NOT_EXPLICITLY_CLEARED_BY_PUBLIC_API_DOCUMENTATION",
           "external_publication_clearance_recorded": false,
           "official_terms": "https://www.binance.com/en/terms",
+          "official_terms_binance_fze": "https://bin.bnbstatic.com/static/cms/cg08ou2ak0tn7mcplvfg/file/b967d51a5756fccc1537ebd64f4c10cbacec36adcba5e000a6ad40291613ff87.pdf",
           "permitted_release": "code, query specification, symbols, timestamps, hashes and derived non-row-level results",
           "portable_reproduction_route": "fresh API acquisition under the reviewer's own access and then hash/coverage comparison",
           "public_terms_review_status": "COMPLETE_CONSERVATIVE_DECISION_RECORDED",
           "raw_redistribution": "WITHHELD_PENDING_EXPLICIT_RIGHTS_CONFIRMATION",
           "source_key": "BINANCE_EXCHANGE_MARKET_DATA",
-          "terms_evidence": "Binance's current official developer documentation authorizes supported API access to public market data and describes analytics and dashboard integrations, but the reviewed public documentation does not provide an explicit redistribution grant for historical rows or research-derived outputs. Raw rows remain withheld and external publication requires a final provider or qualified-rights confirmation.",
-          "terms_observed_on": "2026-08-26"
+          "terms_evidence": "Binance's current official developer documentation authorizes supported API access to public market data and describes analytics and dashboard integrations, but the reviewed public documentation does not provide an explicit redistribution grant for historical rows or research-derived outputs. Raw rows remain withheld and external publication requires a final provider or qualified-rights confirmation. Re-reviewed on 2026-09-15 for the liquidation stream: the Binance FZE Terms of Use (updated 5 January 2026; the VARA-licensed entity for Dubai residents) license Binance IP only as needed to use the services for non-commercial personal or internal business use (clause 25), and clause 27(m), paraphrased, bars copying, downloading, storing, publishing or creating derivative works of that intellectual property. The terms do not say whether public market data is Binance IP, so storage for internal research is recorded as unresolved, not cleared.",
+          "terms_observed_on": "2026-09-15"
         }
       ]
     }
@@ -302,11 +306,11 @@
     "PORTABLE_FETCH_RECIPES_AND_COVERAGE_MANIFESTS_NOT_COMPLETE",
     "FRESH_REVIEWER_ACQUISITION_NOT_EXECUTED"
   ],
-  "review_date": "2026-08-26",
+  "review_date": "2026-09-15",
   "schema": "canli.alphac-wave1-data-rights-audit.v2",
-  "source_classes": 10,
-  "source_public_terms_review_complete": true,
-  "status": "PASS_PUBLIC_TERMS_REVIEW_COMPLETE_CLEARANCE_REQUIRED",
+  "source_classes": 14,
+  "source_public_terms_review_complete": false,
+  "status": "FAIL",
   "submission_plan_binding": {
     "content_hash": "sha256:c5353762cc7ad0f216386f1a00e885438f4ad447e33a42778ba7c197c648cade",
     "path": "artifacts/publication/external_submission_plan.json",

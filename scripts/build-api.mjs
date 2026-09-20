@@ -357,8 +357,8 @@ function main() {
             description: mode.label ?? mode.name,
           })) }
         : requestSchemaFor(m);
-      op.requestBody = { required: true, content: { "application/json": { schema: requestSchema, ...(m.modes ? { examples: Object.fromEntries(m.modes.map((mode) => [mode.name, { summary: mode.label ?? mode.name, value: mode.example }])) } : { example: m.requestExample }) } } };
-      op.responses[413] = envelopeResponse(`Body over ${LIMITS.max_body_bytes} bytes`);
+      op.requestBody = { required: m.requestBodyRequired !== false, content: { "application/json": { schema: requestSchema, ...(m.modes ? { examples: Object.fromEntries(m.modes.map((mode) => [mode.name, { summary: mode.label ?? mode.name, value: mode.example }])) } : { example: m.requestExample }) } } };
+      op.responses[413] = envelopeResponse(`Body over ${m.maxBodyBytes ?? LIMITS.max_body_bytes} bytes`);
       op.responses[422] = envelopeResponse("Input the validator refuses, with the reason");
     }
     if (m.path === "/api/v1/validate/status") {
@@ -380,7 +380,11 @@ function main() {
     if (m.keyed) {
       op.security = [{ bearerKey: [] }];
       op.responses[401] = envelopeResponse("Missing, unknown or revoked key");
-      op.responses[429] = envelopeResponse(`Daily quota of ${LIMITS.validations_per_key_per_day} validations reached; see Retry-After`);
+      if (m.quota !== false) op.responses[429] = envelopeResponse(`Daily quota of ${LIMITS.validations_per_key_per_day} validations reached; see Retry-After`);
+    }
+    if (m.path === "/api/v1/keys/revoke") {
+      op.responses[401] = envelopeResponse("Missing or unknown bearer key");
+      op.responses[503] = envelopeResponse("Revocation unavailable; key state is not confirmed");
     }
     if (m.path === "/api/v1/keys") {
       op.responses[201] = envelopeResponse("The key, once");

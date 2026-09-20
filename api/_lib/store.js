@@ -26,6 +26,11 @@ export function createStore({ url, serviceKey, fetchImpl = globalThis.fetch }) {
       const out = await call("/rpc/issue_key", { method: "POST", body: JSON.stringify({ p_client_hash: clientHash, p_daily_limit: dailyLimit, p_key_hash: keyHash, p_label: label ?? null, p_source_host: sourceHost ?? null }) });
       return { issued: Boolean(out?.issued), remaining: Number(out?.remaining ?? 0) };
     },
+    async revokeKey(keyHash) {
+      const out = await call("/rpc/revoke_key", { method: "POST", body: JSON.stringify({ p_key_hash: keyHash }) });
+      if (!out || typeof out.revoked !== 'boolean' || (out.revoked && (typeof out.revoked_at !== 'string' || !Number.isFinite(Date.parse(out.revoked_at))))) throw new Error('Invalid revocation response');
+      return out;
+    },
     async saveReceipt(receipt) {
       await call("/receipts?on_conflict=id", { method: "POST", headers: { Prefer: "return=minimal,resolution=ignore-duplicates" }, body: JSON.stringify(receipt) });
     },

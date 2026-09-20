@@ -1,0 +1,55 @@
+{
+  "scope": "Read-only disclosure reproduction from the saved maturity report; no forward reevaluation or return mutation.",
+  "captured_at": "2026-09-19T14:40:01.763938+00:00",
+  "source_path": "/Users/arhancanli/AlphaForge/artifacts/engineering/forward_evidence_maturity.json",
+  "source_sha256": "33d43af190f580111f52f6fddfa46fa559071b916091713277febc6b890fb2e5",
+  "source_generated_at": "2026-09-19T14:27:43.677129+00:00",
+  "daily_return_observations": 4,
+  "current_sleeves": 4,
+  "before_omissions": {
+    "alphamax": [
+      "latency_slippage",
+      "financing_margin_interest",
+      "cash_yield_on_idle_capital"
+    ],
+    "managed_futures": [
+      "latency_slippage",
+      "financing_margin_interest",
+      "cash_yield_on_idle_capital"
+    ],
+    "alphavintage": [
+      "latency_slippage",
+      "financing_margin_interest",
+      "cash_yield_on_idle_capital"
+    ],
+    "alphaforge": []
+  },
+  "after_omissions": {
+    "alphamax": [
+      "cash_yield_on_idle_capital",
+      "financing_margin_interest",
+      "fx_conversion",
+      "latency_slippage"
+    ],
+    "managed_futures": [
+      "cash_yield_on_idle_capital",
+      "financing_margin_interest",
+      "fx_conversion",
+      "latency_slippage"
+    ],
+    "alphavintage": [
+      "cash_yield_on_idle_capital",
+      "financing_margin_interest",
+      "fx_conversion",
+      "latency_slippage"
+    ],
+    "alphaforge": [
+      "cash_yield_on_idle_capital",
+      "financing_margin_interest",
+      "latency_slippage"
+    ]
+  },
+  "contract_sha256": "387305dd4aaeb03548d4c3cf3e6bf4406d8e62dfae2134a1564afc14b418d74e",
+  "evaluator_sha256": "818dda4bbaddd063f459bff96d0a0238f366a35a4b6a7dfcd07fcb754f63fdc7",
+  "runtime_changed": false
+}

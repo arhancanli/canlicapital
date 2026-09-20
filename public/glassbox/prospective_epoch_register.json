@@ -1,8 +1,8 @@
 {
   "author": "Arhan Canli",
   "claim_boundary": "One row per hypothesis identity measured after the legacy epoch closed, with its reservation, first immutable measurement and evidence status. Listing an identity is not admission, validation or a performance claim; an unclosed identity has been measured and counted against the budget and nothing else. Legacy retired identities plus these rows equal selection N by construction, or this file is not written.",
-  "content_hash": "sha256:d24e33efbb841484656bd4038ec6f78379a4b22125ada794da05203e039aed99",
-  "generated_at": "2026-09-15T14:26:56.243438+00:00",
+  "content_hash": "sha256:d81b3d26d4264bea65592f30444cc7d7b087a769bd7a493362067daff87fea71",
+  "generated_at": "2026-09-20T09:26:49.777188+00:00",
   "identities": [
     {
       "admitted": false,
@@ -3335,6 +3335,62 @@
         "receipt": "artifacts/audit/external_ledger_import_20260914T095114Z.json"
       },
       "status": "DEVELOPMENT_CLOSURE_FINAL_NOT_ADMITTED"
+    },
+    {
+      "admitted": false,
+      "arm": null,
+      "closure_kind": "governed",
+      "closure_path": "artifacts/research/earnings_narrative_change_batch/earnings_narrative_change_v1_admission_closure.json",
+      "closure_schema": "canli.alphac-narrative-change-admission-closure.v1",
+      "config_hash": "e2e12b241c794d2c",
+      "family_trial_account": "earnings_narrative_change",
+      "final_disposition": "KILL",
+      "first_measurement": {
+        "n_obs": 2494,
+        "recorded_at": "2026-09-15T19:37:21.545000+00:00",
+        "sharpe_ann": 0.08671162972939908,
+        "sharpe_per_period": 0.0054623192390739275
+      },
+      "hypothesis_key": "6ed52744e6c9510d",
+      "ledger_path": "var/experiments.jsonl",
+      "packet_complete": true,
+      "reservation_ordinal": 348,
+      "reservation_path": "artifacts/research/preregistrations/earnings_narrative_change_v1/return_identity_reservation.json",
+      "reserved_at": "2026-09-15T14:58:58+00:00",
+      "return_identity_id": "earnings_narrative_change_v1",
+      "source": {
+        "kind": "canonical",
+        "receipt": null
+      },
+      "status": "GOVERNED_SERIAL_PACKET_CLOSED"
+    },
+    {
+      "admitted": false,
+      "arm": null,
+      "closure_kind": "governed",
+      "closure_path": "artifacts/research/earnings_narrative_change_batch/earnings_narrative_change_mdna_v1_admission_closure.json",
+      "closure_schema": "canli.alphac-narrative-change-admission-closure.v1",
+      "config_hash": "e197f95f46166200",
+      "family_trial_account": "earnings_narrative_change",
+      "final_disposition": "KILL",
+      "first_measurement": {
+        "n_obs": 2494,
+        "recorded_at": "2026-09-15T19:37:23.525000+00:00",
+        "sharpe_ann": -0.34461843185992247,
+        "sharpe_per_period": -0.021708920664533646
+      },
+      "hypothesis_key": "2f6a5b3e8a7928e2",
+      "ledger_path": "var/experiments.jsonl",
+      "packet_complete": true,
+      "reservation_ordinal": 349,
+      "reservation_path": "artifacts/research/preregistrations/earnings_narrative_change_mdna_v1/return_identity_reservation.json",
+      "reserved_at": "2026-09-15T14:58:58+00:00",
+      "return_identity_id": "earnings_narrative_change_mdna_v1",
+      "source": {
+        "kind": "canonical",
+        "receipt": null
+      },
+      "status": "GOVERNED_SERIAL_PACKET_CLOSED"
     }
   ],
   "schema": "canli.alphac-prospective-epoch-register.v1",
@@ -3351,17 +3407,17 @@
     "admitted_identities": 0,
     "by_final_disposition": {
       "INCOMPLETE": 1,
-      "KILL": 118
+      "KILL": 120
     },
     "by_status": {
       "DEVELOPMENT_CLOSURE_FINAL_NOT_ADMITTED": 118,
-      "GOVERNED_SERIAL_PACKET_CLOSED": 1,
+      "GOVERNED_SERIAL_PACKET_CLOSED": 3,
       "IMPORTED_RESERVED_MEASURED_UNCLOSED": 0,
       "MEASURED_WITHOUT_RESERVATION": 0,
       "RESERVED_MEASURED_UNCLOSED": 0
     },
-    "closed_identities": 119,
-    "distinct_families": 40,
+    "closed_identities": 121,
+    "distinct_families": 41,
     "duplicate_reservation_records": [
       {
         "hypothesis_key": "54a40cbe227c582f",
@@ -3406,18 +3462,19 @@
       "crypto_funded_reference": 1,
       "crypto_rank_retention": 2,
       "crypto_terminal_correction": 7,
+      "earnings_narrative_change": 2,
       "filing_seasonal_common_income_change": 1,
       "managed_futures_trend": 11,
       "trend_fixed_asset_group_risk": 2
     },
     "first_reservation_ordinal": 229,
     "identity_arithmetic_holds": true,
-    "latest_reservation_ordinal": 347,
+    "latest_reservation_ordinal": 349,
     "legacy_retired_identities": 228,
-    "observed_identities": 119,
+    "observed_identities": 121,
     "reservation_ordinal_gaps": [],
     "reservation_ordinals_contiguous": true,
     "unclosed_identities": 0,
-    "union_identities": 347
+    "union_identities": 349
   }
 }

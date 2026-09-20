@@ -11,6 +11,11 @@ This package is published to npm as [`canli-validation-mcp`](https://www.npmjs.c
 Run it with `npx`, no install step, as shown below. A local checkout is only needed to develop or
 test this package itself; see "Local checkout" near the bottom.
 
+Release checkpoint, September 20, 2026: npm's latest version is 0.1.1. This checkout
+prepares 0.1.2; its HTTP error flags, request deadlines and redirect handling described
+below are candidate changes until that version is published. Running unversioned
+`npx` uses npm's latest release, not this checkout.
+
 ## What the API is (and is not)
 
 The engine is the product. The service runs your submitted numbers through the same honesty
@@ -53,6 +58,13 @@ process; see `src/schemas.mjs`.
 If `CANLI_KEY` is not set, call `get_key` once per session before the four validators. The key it
 returns lives only in this process's memory for the life of the session; it is not written to
 disk.
+
+HTTP failures and API error envelopes are marked as MCP tool errors while preserving
+the complete JSON envelope. A successful validation with a negative verdict remains
+a normal result. Requests have a 30-second deadline covering headers and body, reject
+redirects, and are never retried automatically. A timeout may occur after the service
+has processed a request; check service status before deciding to submit again.
+Non-JSON response bodies and raw network errors are omitted from tool errors.
 
 ## Install
 
@@ -108,7 +120,8 @@ const { tools } = await client.listTools();
 console.log(tools.map((t) => t.name));
 
 const keyResult = await client.callTool({ name: "get_key", arguments: { label: "my-agent" } });
-console.log(keyResult.content[0].text); // the full envelope, key included
+if (keyResult.isError) throw new Error("Key setup failed; inspect the error privately.");
+// The session retains the issued key. Avoid printing its envelope into logs.
 
 const result = await client.callTool({
   name: "validate_deflated_sharpe",
@@ -159,6 +172,7 @@ in place of `npx -y canli-validation-mcp` in any config above.
 
 ```bash
 npm test
+npm run test:package
 ```
 
 Runs `node --test` over `test/*.test.mjs`: schema round-trips against the API's own OpenAPI and
@@ -168,6 +182,11 @@ check that those sentences have not drifted from `api/_lib/limits.js`, a check t
 file contains an em dash, and one test that spawns the actual server binary and performs a real
 MCP `tools/list` and `callTool` handshake over stdio against a local HTTP stub, so the wiring is
 proven rather than assumed.
+
+`test:package` creates the actual npm tarball, checks its exact file list and license,
+installs it in a temporary consumer directory, and runs the stdio test against that
+installed entry. Dependency installation contacts npm; tool calls use only the local
+HTTP stub. It neither publishes a package nor issues a production API key.
 
 ## Dependencies
 
