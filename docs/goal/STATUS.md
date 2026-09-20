@@ -10,9 +10,17 @@ which links the preceding historical record. Historical process states are not l
 ## Current work and immediate next action
 
 Worktree `/Users/arhancanli/canlicapital-expansion-20260919`, branch
-`evidence/five-cohort-v17-20260920`. PR60merged
-b1c3018eb6924500c06403f44c2a5a3ae33221ec after all four CI35529361367checks
-passed atdd60c613. Tested/merged tree93012bd2e5459894f77316fe2979e92b978111ea.
+`evidence/combined-share-context-20260920`. PR61merged6ca6d2de after all four
+CI35529747740checks passed at62fbdab8. Tested/merged tree
+b05d13eaee6cc22cc540ae0ad522e88bc205cb88.
+
+Current v4batch ledger:50reviewed/1,118pending/8withdrawn. Of the50reviewed,
+24NLI/Weis observations have the explicit state REPORTED_PRESENTATION_REVIEWED_
+CAUSE_NOT_ESTABLISHED; only combined presentation, units, dates and restatement
+context are established. No claim that equality proves absent dilution. NLIshares
+use scale3; Weis shares are exempt from thousands and2023/2024EPSare restated.
+Source-bound notes preserve all selected values; all15renderer tests pass. Report
+and ledger replay byte-identically. Prior ledgers and narrower claims preserved.
 
 Whole-corpus v17comparison29434 TERMINAL exit0:3,323companies/87,344histories,
 12exact observation holds sincev14plus the previous two Valhi constant-history
@@ -24,8 +32,8 @@ Celldex twelve2023–2025observations scope-reviewed: explicit loss-period
 anti-dilution, exclusion of issued unvested restricted stock from basic shares,
 statement thousands scale encoded as scale3 for shares and scale0 for EPS.
 Source-bound notes on four histories/overview preserve reported values.14renderer
-tests pass; context report and v3batch ledger replay byte-identically. Current
-batch26reviewed/1,142pending/8withdrawn. Earlier ledgers remain frozen.
+tests pass; context report and v3batch ledger replay byte-identically. Previous v3
+batch26reviewed/1,142pending/8withdrawn; superseded above. Earlier ledgers remain frozen.
 
 V17adds two exact Siebert diluted-denominator holds (2024/2025). Main statement
 combines basic/diluted counts, while Note19adds unvested-share dilution and reports
