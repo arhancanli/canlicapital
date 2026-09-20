@@ -1,0 +1,493 @@
+{
+  "schema": "canli.company-selected-quality.v1",
+  "publication_approved": false,
+  "scope": "Reproduced selected-record review queue, not publication decisions, live pages or indexed counts. Flags overlap. Equal numerical histories do not establish semantic equivalence; historical coverage does not establish issuer inactivity.",
+  "selection_policy": "extended-v9",
+  "delivery_manifest_sha256": "3a94eba20c6774f7aa9fde44900fccc601ce95dd80d020dfa25528ee16a68813",
+  "rules": {
+    "historical": "Latest reporting end is earlier than capture date minus two calendar years; independently checked for each unit.",
+    "equal_vector": "Same company; all selected kind/unit/start/end/value tuples match after sorting. Filing date and accession are intentionally excluded.",
+    "constant": "Every unit has one distinct numerical value across all selected observations.",
+    "unflagged": "No flags under these narrow checks; not editorial approval or complete quality assurance."
+  },
+  "totals": {
+    "companies": 3323,
+    "histories": 87348,
+    "historical_only": 10630,
+    "multiple_units": 1309,
+    "partially_historical_units": 402,
+    "constant_per_unit": 75,
+    "zero_only": 74,
+    "equal_vector_groups": 750,
+    "pages_in_equal_vector_groups": 1500,
+    "flagged_pages": 13148
+  },
+  "concepts": [
+    {
+      "tag": "InterestExpense",
+      "histories": 2688,
+      "historical_only": 1917,
+      "multiple_units": 37,
+      "partially_historical_units": 4,
+      "constant_per_unit": 0,
+      "zero_only": 0,
+      "equal_vector_pages": 0,
+      "flagged_pages": 1927
+    },
+    {
+      "tag": "Revenues",
+      "histories": 2231,
+      "historical_only": 948,
+      "multiple_units": 36,
+      "partially_historical_units": 10,
+      "constant_per_unit": 42,
+      "zero_only": 42,
+      "equal_vector_pages": 6,
+      "flagged_pages": 993
+    },
+    {
+      "tag": "CashAndCashEquivalentsAtCarryingValue",
+      "histories": 3223,
+      "historical_only": 576,
+      "multiple_units": 58,
+      "partially_historical_units": 18,
+      "constant_per_unit": 12,
+      "zero_only": 12,
+      "equal_vector_pages": 1,
+      "flagged_pages": 624
+    },
+    {
+      "tag": "EarningsPerShareBasic",
+      "histories": 3107,
+      "historical_only": 135,
+      "multiple_units": 45,
+      "partially_historical_units": 15,
+      "constant_per_unit": 0,
+      "zero_only": 0,
+      "equal_vector_pages": 440,
+      "flagged_pages": 594
+    },
+    {
+      "tag": "EarningsPerShareDiluted",
+      "histories": 3043,
+      "historical_only": 132,
+      "multiple_units": 45,
+      "partially_historical_units": 15,
+      "constant_per_unit": 0,
+      "zero_only": 0,
+      "equal_vector_pages": 440,
+      "flagged_pages": 591
+    },
+    {
+      "tag": "PropertyPlantAndEquipmentNet",
+      "histories": 2972,
+      "historical_only": 475,
+      "multiple_units": 50,
+      "partially_historical_units": 16,
+      "constant_per_unit": 0,
+      "zero_only": 0,
+      "equal_vector_pages": 1,
+      "flagged_pages": 519
+    },
+    {
+      "tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+      "histories": 2630,
+      "historical_only": 468,
+      "multiple_units": 48,
+      "partially_historical_units": 14,
+      "constant_per_unit": 5,
+      "zero_only": 5,
+      "equal_vector_pages": 1,
+      "flagged_pages": 504
+    },
+    {
+      "tag": "PaymentsForRepurchaseOfCommonStock",
+      "histories": 2094,
+      "historical_only": 462,
+      "multiple_units": 29,
+      "partially_historical_units": 4,
+      "constant_per_unit": 0,
+      "zero_only": 0,
+      "equal_vector_pages": 0,
+      "flagged_pages": 479
+    },
+    {
+      "tag": "OperatingExpenses",
+      "histories": 1844,
+      "historical_only": 442,
+      "multiple_units": 31,
+      "partially_historical_units": 12,
+      "constant_per_unit": 0,
+      "zero_only": 0,
+      "equal_vector_pages": 1,
+      "flagged_pages": 467
+    },
+    {
+      "tag": "FiniteLivedIntangibleAssetsNet",
+      "histories": 2026,
+      "historical_only": 414,
+      "multiple_units": 26,
+      "partially_historical_units": 11,
+      "constant_per_unit": 0,
+      "zero_only": 0,
+      "equal_vector_pages": 0,
+      "flagged_pages": 438
+    },
+    {
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic",
+      "histories": 3125,
+      "historical_only": 138,
+      "multiple_units": 0,
+      "partially_historical_units": 0,
+      "constant_per_unit": 0,
+      "zero_only": 0,
+      "equal_vector_pages": 272,
+      "flagged_pages": 400
+    },
+    {
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+      "histories": 3075,
+      "historical_only": 127,
+      "multiple_units": 0,
+      "partially_historical_units": 0,
+      "constant_per_unit": 0,
+      "zero_only": 0,
+      "equal_vector_pages": 272,
+      "flagged_pages": 389
+    },
+    {
+      "tag": "CostOfRevenue",
+      "histories": 1001,
+      "historical_only": 346,
+      "multiple_units": 24,
+      "partially_historical_units": 3,
+      "constant_per_unit": 0,
+      "zero_only": 0,
+      "equal_vector_pages": 0,
+      "flagged_pages": 363
+    },
+    {
+      "tag": "AccountsReceivableNetCurrent",
+      "histories": 2111,
+      "historical_only": 293,
+      "multiple_units": 39,
+      "partially_historical_units": 12,
+      "constant_per_unit": 0,
+      "zero_only": 0,
+      "equal_vector_pages": 0,
+      "flagged_pages": 326
+    },
+    {
+      "tag": "ShareBasedCompensation",
+      "histories": 2877,
+      "historical_only": 279,
+      "multiple_units": 44,
+      "partially_historical_units": 16,
+      "constant_per_unit": 0,
+      "zero_only": 0,
+      "equal_vector_pages": 0,
+      "flagged_pages": 318
+    },
+    {
+      "tag": "AccountsPayableCurrent",
+      "histories": 2261,
+      "historical_only": 264,
+      "multiple_units": 30,
+      "partially_historical_units": 6,
+      "constant_per_unit": 0,
+      "zero_only": 0,
+      "equal_vector_pages": 2,
+      "flagged_pages": 290
+    },
+    {
+      "tag": "Goodwill",
+      "histories": 2136,
+      "historical_only": 265,
+      "multiple_units": 35,
+      "partially_historical_units": 7,
+      "constant_per_unit": 0,
+      "zero_only": 0,
+      "equal_vector_pages": 0,
+      "flagged_pages": 286
+    },
+    {
+      "tag": "GrossProfit",
+      "histories": 1673,
+      "historical_only": 262,
+      "multiple_units": 27,
+      "partially_historical_units": 7,
+      "constant_per_unit": 0,
+      "zero_only": 0,
+      "equal_vector_pages": 0,
+      "flagged_pages": 286
+    },
+    {
+      "tag": "InventoryNet",
+      "histories": 1812,
+      "historical_only": 252,
+      "multiple_units": 23,
+      "partially_historical_units": 3,
+      "constant_per_unit": 0,
+      "zero_only": 0,
+      "equal_vector_pages": 0,
+      "flagged_pages": 268
+    },
+    {
+      "tag": "NetIncomeLoss",
+      "histories": 3289,
+      "historical_only": 220,
+      "multiple_units": 54,
+      "partially_historical_units": 18,
+      "constant_per_unit": 0,
+      "zero_only": 0,
+      "equal_vector_pages": 3,
+      "flagged_pages": 265
+    },
+    {
+      "tag": "OperatingIncomeLoss",
+      "histories": 2771,
+      "historical_only": 209,
+      "multiple_units": 47,
+      "partially_historical_units": 14,
+      "constant_per_unit": 0,
+      "zero_only": 0,
+      "equal_vector_pages": 3,
+      "flagged_pages": 253
+    },
+    {
+      "tag": "StockholdersEquity",
+      "histories": 3222,
+      "historical_only": 198,
+      "multiple_units": 56,
+      "partially_historical_units": 22,
+      "constant_per_unit": 0,
+      "zero_only": 0,
+      "equal_vector_pages": 0,
+      "flagged_pages": 248
+    },
+    {
+      "tag": "NetCashProvidedByUsedInInvestingActivities",
+      "histories": 3222,
+      "historical_only": 197,
+      "multiple_units": 54,
+      "partially_historical_units": 19,
+      "constant_per_unit": 0,
+      "zero_only": 0,
+      "equal_vector_pages": 0,
+      "flagged_pages": 245
+    },
+    {
+      "tag": "ResearchAndDevelopmentExpense",
+      "histories": 1480,
+      "historical_only": 207,
+      "multiple_units": 31,
+      "partially_historical_units": 12,
+      "constant_per_unit": 0,
+      "zero_only": 0,
+      "equal_vector_pages": 0,
+      "flagged_pages": 236
+    },
+    {
+      "tag": "NetCashProvidedByUsedInOperatingActivities",
+      "histories": 3311,
+      "historical_only": 156,
+      "multiple_units": 55,
+      "partially_historical_units": 19,
+      "constant_per_unit": 8,
+      "zero_only": 8,
+      "equal_vector_pages": 0,
+      "flagged_pages": 207
+    },
+    {
+      "tag": "NetCashProvidedByUsedInFinancingActivities",
+      "histories": 3304,
+      "historical_only": 154,
+      "multiple_units": 55,
+      "partially_historical_units": 19,
+      "constant_per_unit": 0,
+      "zero_only": 0,
+      "equal_vector_pages": 0,
+      "flagged_pages": 202
+    },
+    {
+      "tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+      "histories": 1816,
+      "historical_only": 160,
+      "multiple_units": 23,
+      "partially_historical_units": 4,
+      "constant_per_unit": 8,
+      "zero_only": 7,
+      "equal_vector_pages": 5,
+      "flagged_pages": 191
+    },
+    {
+      "tag": "LiabilitiesCurrent",
+      "histories": 2677,
+      "historical_only": 134,
+      "multiple_units": 47,
+      "partially_historical_units": 17,
+      "constant_per_unit": 0,
+      "zero_only": 0,
+      "equal_vector_pages": 18,
+      "flagged_pages": 188
+    },
+    {
+      "tag": "IncomeTaxExpenseBenefit",
+      "histories": 2881,
+      "historical_only": 144,
+      "multiple_units": 49,
+      "partially_historical_units": 13,
+      "constant_per_unit": 0,
+      "zero_only": 0,
+      "equal_vector_pages": 0,
+      "flagged_pages": 186
+    },
+    {
+      "tag": "Liabilities",
+      "histories": 2843,
+      "historical_only": 130,
+      "multiple_units": 50,
+      "partially_historical_units": 15,
+      "constant_per_unit": 0,
+      "zero_only": 0,
+      "equal_vector_pages": 17,
+      "flagged_pages": 183
+    },
+    {
+      "tag": "SellingGeneralAndAdministrativeExpense",
+      "histories": 1437,
+      "historical_only": 175,
+      "multiple_units": 11,
+      "partially_historical_units": 3,
+      "constant_per_unit": 0,
+      "zero_only": 0,
+      "equal_vector_pages": 1,
+      "flagged_pages": 182
+    },
+    {
+      "tag": "AssetsCurrent",
+      "histories": 2677,
+      "historical_only": 128,
+      "multiple_units": 47,
+      "partially_historical_units": 17,
+      "constant_per_unit": 0,
+      "zero_only": 0,
+      "equal_vector_pages": 9,
+      "flagged_pages": 179
+    },
+    {
+      "tag": "Assets",
+      "histories": 3311,
+      "historical_only": 106,
+      "multiple_units": 53,
+      "partially_historical_units": 19,
+      "constant_per_unit": 0,
+      "zero_only": 0,
+      "equal_vector_pages": 8,
+      "flagged_pages": 161
+    },
+    {
+      "tag": "RetainedEarningsAccumulatedDeficit",
+      "histories": 3178,
+      "historical_only": 117,
+      "multiple_units": 50,
+      "partially_historical_units": 18,
+      "constant_per_unit": 0,
+      "zero_only": 0,
+      "equal_vector_pages": 0,
+      "flagged_pages": 160
+    }
+  ],
+  "equal_vector_pairs": [
+    {
+      "tags": [
+        "EarningsPerShareBasic",
+        "EarningsPerShareDiluted"
+      ],
+      "companies": 440
+    },
+    {
+      "tags": [
+        "WeightedAverageNumberOfDilutedSharesOutstanding",
+        "WeightedAverageNumberOfSharesOutstandingBasic"
+      ],
+      "companies": 272
+    },
+    {
+      "tags": [
+        "Liabilities",
+        "LiabilitiesCurrent"
+      ],
+      "companies": 17
+    },
+    {
+      "tags": [
+        "Assets",
+        "AssetsCurrent"
+      ],
+      "companies": 8
+    },
+    {
+      "tags": [
+        "RevenueFromContractWithCustomerExcludingAssessedTax",
+        "Revenues"
+      ],
+      "companies": 5
+    },
+    {
+      "tags": [
+        "NetIncomeLoss",
+        "OperatingIncomeLoss"
+      ],
+      "companies": 3
+    },
+    {
+      "tags": [
+        "AccountsPayableCurrent",
+        "LiabilitiesCurrent"
+      ],
+      "companies": 1
+    },
+    {
+      "tags": [
+        "AccountsPayableCurrent",
+        "PropertyPlantAndEquipmentNet"
+      ],
+      "companies": 1
+    },
+    {
+      "tags": [
+        "AssetsCurrent",
+        "CashAndCashEquivalentsAtCarryingValue"
+      ],
+      "companies": 1
+    },
+    {
+      "tags": [
+        "OperatingExpenses",
+        "SellingGeneralAndAdministrativeExpense"
+      ],
+      "companies": 1
+    },
+    {
+      "tags": [
+        "PaymentsToAcquirePropertyPlantAndEquipment",
+        "Revenues"
+      ],
+      "companies": 1
+    }
+  ],
+  "code_sha256": "9255d33da547b126dfe0a3e1dc8a2734ca7677c25aa9e072229c102333d938a2",
+  "history_context_code_sha256": "08431919bf5a99c4dedcb447e66e63128c1df035827f067fb5da140d0bcd1bec",
+  "full_report": {
+    "path": "artifacts/seo/corpus-local/company-five-cohort-selected-quality-v9-20260920.json",
+    "sha256": "6e0d564d0d23b933c2fdb61f2a52fef0f013d023807a2460b0bb68234fa48534",
+    "bytes": 8572369
+  },
+  "compressed_report": {
+    "path": "artifacts/seo/corpus-local/company-five-cohort-selected-quality-v9-20260920.json.gz",
+    "sha256": "87a3a70155dad7e40fc5cbfb7c89915a44d3989a113845a38472017a8aa75f25",
+    "bytes": 374200,
+    "roundtrip_verified": true
+  }
+}

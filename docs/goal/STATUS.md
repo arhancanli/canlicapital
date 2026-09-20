@@ -104,18 +104,35 @@ Allow header. Browser report has27passes/5Chromium failures; all WebKit cases pa
 Targeted recheck84477 is terminal:4passes/1desktop-flow network failure.
 Report company-clean-route-browser-recheck-20260920.json. One bounded desktop
 recheck34514 also failed; company-clean-route-browser-desktop-recheck-20260920.json
-preserves the result. Browser gate remains incomplete; no further blind retries.
+preserves the result. Local Chromium failures remain retained; independent CI verification now passes (below).
 Prior reports remain unchanged. Source/audits committed through59ed2524; targeted recheck support and continuity
 are reviewed in draft PR31 https://github.com/arhancanli/canlicapital/pull/31.
 All four CI35515580577jobs passed at8b50bfc6. Six preview-config/HTTP regression
 tests pass. Subsequent diagnostics identify failed CSS/JS subrequests with
 ERR_NETWORK_CHANGED while opening the directory. All five exact failed assets
 return200 and correct CSS/JS MIME in independent urllib reads; hashes retained.
-This does not resolve browser reliability. Diagnosis11602 and asset94247 are
+This alone did not resolve browser reliability. Diagnosis11602 and asset94247 are
 terminal; reports company-clean-route-browser-desktop-diagnosis-20260920.json
 and company-clean-route-failed-assets-20260920.json. No CSS repair justified yet.
 
-Next: resolve remaining browser cases, complete bulk transfer and full-corpus
+Independent Chromium desktop flow passes with no request/page errors on GitHub
+run35515799025, sourceba510cd1 (PR merge checkout59354e22), Chromium151.0.7922.34.
+Downloaded receipt company-clean-route-browser-ci-20260920.json verified against
+local script/config hashes. Together with prior27+4passes, this covers the32
+representative cases across runs/platform versions, not a single full-suite pass.
+Local Chromium148 network failures remain unexplained and preserved. All four
+standard CI35515798960jobs also pass atba510cd1. Draft PR31 can now proceed through
+review; this is preview tooling, not production admission.
+
+Full combined selected-quality audit65287 completed exit0:3,323companies and
+87,348histories replayed;13,148pages flagged (overlapping reasons), including
+10,630historical-only,1,309multi-unit,402partially historical units,75constant,
+74zero-only and1,500pages in750equal-vector groups. Flags are review queues,
+not confirmed defects or publication decisions. Tracked summary pins full local
+report and losslessly roundtrip-verified gzip; no offsite-backup claim.
+company-five-cohort-selected-quality-summary-20260920.json.
+
+Next: complete bulk transfer and full-corpus
 checks plus remaining editorial/admission work before production activation.
 The owner's publication approval persists. The prior 1–3day estimate and possible
 first batch tonight were provisional, not measured forecasts or release promises.

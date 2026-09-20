@@ -477,3 +477,20 @@ Independent urllib checks94247 fetched all five exact URLs with200, expected MIM
 and recorded hashes. No assertion that this proves browser reliability or a fixed
 network environment. Browser gate remains open; no speculative CSS patch.
 Bulk26312 polled live; checkpoint3506verified objects/0failures, incomplete.
+
+## 2026-09-20 — independent hosted browser verification
+
+Previous turn produced request-level evidence. Added pinned public preview config
+and no-retry Chromium desktop-flow CI. Run35515799025 passed atba510cd1 using PR
+merge checkout59354e22/Chromium151.0.7922.34: directory→company→Assets→developer,
+zero failed requests or page errors. Downloaded receipt matches script/config
+hashes. Prior local failures retained; different platform/browser versions mean
+this does not isolate the underlying local network cause. Representative32cases
+have passing evidence across runs; no single fresh32case pass claimed. All four
+standard CI35515798960jobs pass. Combined selected-quality audit65287 started
+against fullv9delivery; pending. Bulk26312 still active when polled this turn.
+
+Audit65287 completed:3,323companies/87,348histories reproduce;13,148flagged pages
+with overlapping reasons, including10,630historical-only and1,500pages in750equal
+numerical-vector groups. Summary pins full local report and verified gzip. These
+are review flags, not automatic exclusions or approval of unflagged pages.
