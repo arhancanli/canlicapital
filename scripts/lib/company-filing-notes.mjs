@@ -207,7 +207,34 @@ export const FILING_NOTES = [
         "accn": "0001683168-23-003970"
       }
     ]
-  }
+  },
+  {
+  "cik": "0001481443",
+  "include_on_overview": true,
+  "source_sha256": "a4aaec36525a4107ae73b7a04898c305f4fd1f347a78da73322f9276cb861fa3",
+  "tags": [
+    "Liabilities",
+    "LiabilitiesCurrent"
+  ],
+  "text": "The December 31, 2025 balance sheet reports both current and total liabilities of $308,851. Its displayed components, $23,648 and $285,204, sum to $308,852. The reported liabilities plus stockholders\u2019 deficit also differ by $1 from the reported balance-sheet total. The facts declare whole-dollar precision; rounding could accommodate these differences, but the filing does not establish their cause. These pages preserve the reported totals without adjustment. Current liabilities are included in total liabilities; adding the two would double-count them.",
+  "filing_url": "https://www.sec.gov/Archives/edgar/data/1481443/000168316826002393/techcom_i10k-123125.htm",
+  "observations": [
+    {
+      "tag": "Liabilities",
+      "end": "2025-12-31",
+      "unit": "USD",
+      "val": 308851,
+      "accn": "0001683168-26-002393"
+    },
+    {
+      "tag": "LiabilitiesCurrent",
+      "end": "2025-12-31",
+      "unit": "USD",
+      "val": 308851,
+      "accn": "0001683168-26-002393"
+    }
+  ]
+}
 ];
 
 export function companyFilingNotes(company, tag) {

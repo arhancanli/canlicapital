@@ -1,0 +1,188 @@
+{
+  "schema": "canli.techcom-precision-context.v1",
+  "publication_approved": false,
+  "code_sha256": "8ba17d207091fb91600210580c2d873d140dbc5243be61ff124ab7296f653c85",
+  "v13_scope_ledger_sha256": "29720a952874aa8802352121a540ebd2bae6e72eb96cfe65588f1e601493bfa0",
+  "primary_capture": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1481443/000168316826002393/techcom_i10k-123125.htm",
+    "status": 200,
+    "captured_at": "2026-09-20T09:33:37.126915+00:00",
+    "bytes": 403570,
+    "sha256": "1d8ae4966547ef5f16d01c54d6c9656c45c59c9bfb4e5fe90c3cab5215f00bc5",
+    "body_path": "artifacts/seo/corpus-local/fifth-editorial-filings/0001481443-0001683168-26-002393-primary.response"
+  },
+  "company_source_sha256": "a4aaec36525a4107ae73b7a04898c305f4fd1f347a78da73322f9276cb861fa3",
+  "zero_based_table_index": 38,
+  "table": "December 31, 2025 December 31, 2024 Assets Current assets Cash $ 939 $ 1,296 Total current assets 939 1,296 Total assets $ 939 $ 1,296 Liabilities and Stockholders\u2019 Deficit Current liabilities Accrued expenses $ 23,648 $ 28,469 Due to shareholders 285,204 227,252 Total current liabilities 308,851 255,721 Total liabilities 308,851 255,721 Stockholders\u2019 deficit Convertible Preferred stock, $ 0.0001 par value, 5,000,000 shares authorized, 1,000,000 issued and outstanding 100 100 Common stock, $ 0.00001 par value; 9,888,000,000 shares authorized; 64,990,254 shares issued and outstanding as of December 31, 2025 and 2024 650 650 Additional paid-in capital 2,418,816 2,418,816 Accumulated deficit ( 2,727,479 ) ( 2,673,991 ) Total stockholders\u2019 deficit ( 307,913 ) ( 254,425 ) Total liabilities and stockholders\u2019 deficit $ 939 $ 1,296",
+  "context": "<xbrli:context id=\"AsOf2025-12-31\">\n<xbrli:entity>\n<xbrli:identifier scheme=\"http://www.sec.gov/CIK\">0001481443</xbrli:identifier>\n</xbrli:entity>\n<xbrli:period>\n<xbrli:instant>2025-12-31</xbrli:instant>\n</xbrli:period>\n</xbrli:context>",
+  "facts": [
+    {
+      "attributes": {
+        "name": "us-gaap:AccountsPayableAndOtherAccruedLiabilitiesCurrent",
+        "contextref": "AsOf2025-12-31",
+        "id": "Fact000077",
+        "format": "ixt:numdotdecimal",
+        "decimals": "0",
+        "unitref": "USD"
+      },
+      "value": 23648
+    },
+    {
+      "attributes": {
+        "name": "TCRI:DueToShareholders",
+        "contextref": "AsOf2025-12-31",
+        "id": "Fact000080",
+        "format": "ixt:numdotdecimal",
+        "decimals": "0",
+        "unitref": "USD"
+      },
+      "value": 285204
+    },
+    {
+      "attributes": {
+        "name": "us-gaap:LiabilitiesCurrent",
+        "contextref": "AsOf2025-12-31",
+        "id": "Fact000083",
+        "format": "ixt:numdotdecimal",
+        "decimals": "0",
+        "unitref": "USD"
+      },
+      "value": 308851
+    },
+    {
+      "attributes": {
+        "name": "us-gaap:Liabilities",
+        "contextref": "AsOf2025-12-31",
+        "id": "Fact000086",
+        "format": "ixt:numdotdecimal",
+        "decimals": "0",
+        "unitref": "USD"
+      },
+      "value": 308851
+    },
+    {
+      "attributes": {
+        "name": "us-gaap:StockholdersEquity",
+        "contextref": "AsOf2025-12-31",
+        "id": "Fact000120",
+        "format": "ixt:numdotdecimal",
+        "decimals": "0",
+        "sign": "-",
+        "unitref": "USD"
+      },
+      "value": -307913
+    },
+    {
+      "attributes": {
+        "name": "us-gaap:LiabilitiesAndStockholdersEquity",
+        "contextref": "AsOf2025-12-31",
+        "id": "Fact000123",
+        "format": "ixt:numdotdecimal",
+        "decimals": "0",
+        "unitref": "USD"
+      },
+      "value": 939
+    }
+  ],
+  "specification": "https://www.xbrl.org/Specification/calculation-1.1/REC-2023-02-22+corrected-errata-2024-02-14/calculation-1.1-REC-2023-02-22+corrected-errata-2024-02-14.html",
+  "sections": [
+    "5.2",
+    "5.2.3",
+    "5.2.4",
+    "5.7"
+  ],
+  "diagnostic": {
+    "displayed_component_sum": 308852,
+    "reported_total": 308851,
+    "difference_usd": 1,
+    "round_to_nearest_component_interval": [
+      "308851.0",
+      "308853.0"
+    ],
+    "round_to_nearest_total_interval": [
+      "308850.5",
+      "308851.5"
+    ],
+    "round_to_nearest_overlap": [
+      "308851.0",
+      "308851.5"
+    ],
+    "positive_truncation_component_interval": "[308852,308854)",
+    "positive_truncation_total_interval": "[308851,308852)",
+    "truncation_overlap": false,
+    "adjacent_balance_difference": "308851 + (-307913) = 938 versus reported 939"
+  },
+  "public_note": {
+    "cik": "0001481443",
+    "include_on_overview": true,
+    "source_sha256": "a4aaec36525a4107ae73b7a04898c305f4fd1f347a78da73322f9276cb861fa3",
+    "tags": [
+      "Liabilities",
+      "LiabilitiesCurrent"
+    ],
+    "text": "The December 31, 2025 balance sheet reports both current and total liabilities of $308,851. Its displayed components, $23,648 and $285,204, sum to $308,852. The reported liabilities plus stockholders\u2019 deficit also differ by $1 from the reported balance-sheet total. The facts declare whole-dollar precision; rounding could accommodate these differences, but the filing does not establish their cause. These pages preserve the reported totals without adjustment. Current liabilities are included in total liabilities; adding the two would double-count them.",
+    "filing_url": "https://www.sec.gov/Archives/edgar/data/1481443/000168316826002393/techcom_i10k-123125.htm",
+    "observations": [
+      {
+        "tag": "Liabilities",
+        "end": "2025-12-31",
+        "unit": "USD",
+        "val": 308851,
+        "accn": "0001683168-26-002393"
+      },
+      {
+        "tag": "LiabilitiesCurrent",
+        "end": "2025-12-31",
+        "unit": "USD",
+        "val": 308851,
+        "accn": "0001683168-26-002393"
+      }
+    ]
+  },
+  "public_note_module_sha256": "f02c3184eac0d3336c2cacd42aaa66a6e662cd2f1ad34a135eba799693699f2a",
+  "reviewed": [
+    {
+      "cik": "0001481443",
+      "name": "TECHCOM, INC.",
+      "selected": {
+        "end": "2025-12-31",
+        "val": 308851,
+        "accn": "0001683168-26-002393",
+        "fy": 2025,
+        "fp": "FY",
+        "form": "10-K",
+        "filed": "2026-03-30",
+        "unit": "USD",
+        "tag": "Liabilities"
+      },
+      "withdrawn_in_v10": false,
+      "reopened_reason": "The adjacent2025balance-sheet components23,648+285,204sum308,852USD versus reported current/total308,851USD. This1USDdiscrepancy is retained for review; no rounding explanation assumed and no source values altered. These latest-period rows are outside the42historical observations credited here.",
+      "prior_scope_reports": [
+        "company-liability-presentation-scope-20260920.json"
+      ],
+      "interpretation": "Retain both explicitly reported totals with a visible discrepancy note. Current liabilities are included in total liabilities, not additive. Components exceed the reported total by 1 USD; finite precision permits round-to-nearest compatibility but does not establish its cause. No corrected values, full calculation validation or company-wide admission."
+    },
+    {
+      "cik": "0001481443",
+      "name": "TECHCOM, INC.",
+      "selected": {
+        "end": "2025-12-31",
+        "val": 308851,
+        "accn": "0001683168-26-002393",
+        "fy": 2025,
+        "fp": "FY",
+        "form": "10-K",
+        "filed": "2026-03-30",
+        "unit": "USD",
+        "tag": "LiabilitiesCurrent"
+      },
+      "withdrawn_in_v10": false,
+      "reopened_reason": "The adjacent2025balance-sheet components23,648+285,204sum308,852USD versus reported current/total308,851USD. This1USDdiscrepancy is retained for review; no rounding explanation assumed and no source values altered. These latest-period rows are outside the42historical observations credited here.",
+      "prior_scope_reports": [
+        "company-liability-presentation-scope-20260920.json"
+      ],
+      "interpretation": "Retain both explicitly reported totals with a visible discrepancy note. Current liabilities are included in total liabilities, not additive. Components exceed the reported total by 1 USD; finite precision permits round-to-nearest compatibility but does not establish its cause. No corrected values, full calculation validation or company-wide admission."
+    }
+  ],
+  "scope": "Manual scope disposition for two reported observations with disclosure. Conditional precision arithmetic only: no taxonomy relationships, report-wide duplicates or issuer rounding method certified. Broader corpus admission remains open."
+}

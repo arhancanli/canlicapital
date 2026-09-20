@@ -1,0 +1,35 @@
+{
+  "schema": "canli.ci-recovery.v1",
+  "run_id": 35523645076,
+  "head": "9ce420fa90b50c53882be3c3f085bcdedecc3617",
+  "failed_job": 106111933821,
+  "recovered_job": 106112735530,
+  "failure": "npm audit endpoint HTTP400; no vulnerability result; tests not reached",
+  "failure_log_sha256": "38900bcb76d0964cfdc87a5531a45c28e8f7df7ee31690bdcb668d5de3212daf",
+  "failure_log": "MCP package and stdio contracts\tRun npm audit --prefix mcp --audit-level=high\t\ufeff2026-09-20T16:44:35.8329097Z ##[group]Run npm audit --prefix mcp --audit-level=high\nMCP package and stdio contracts\tRun npm audit --prefix mcp --audit-level=high\t2026-09-20T16:44:35.8329567Z ^[[36;1mnpm audit --prefix mcp --audit-level=high^[[0m\nMCP package and stdio contracts\tRun npm audit --prefix mcp --audit-level=high\t2026-09-20T16:44:35.8350034Z shell: /usr/bin/bash -e {0}\nMCP package and stdio contracts\tRun npm audit --prefix mcp --audit-level=high\t2026-09-20T16:44:35.8350330Z ##[endgroup]\nMCP package and stdio contracts\tRun npm audit --prefix mcp --audit-level=high\t2026-09-20T16:44:36.2084513Z npm notice This endpoint is being retired. Use the bulk advisory endpoint instead. See the following docs for more info: https://api-docs.npmjs.com/#tag/Audit\nMCP package and stdio contracts\tRun npm audit --prefix mcp --audit-level=high\t2026-09-20T16:44:36.2101177Z npm warn audit 400 Bad Request - POST https://registry.npmjs.org/-/npm/v1/security/audits/quick - Bad Request\nMCP package and stdio contracts\tRun npm audit --prefix mcp --audit-level=high\t2026-09-20T16:44:36.2101998Z {\nMCP package and stdio contracts\tRun npm audit --prefix mcp --audit-level=high\t2026-09-20T16:44:36.2108619Z npm error audit endpoint returned an error\nMCP package and stdio contracts\tRun npm audit --prefix mcp --audit-level=high\t2026-09-20T16:44:36.2113860Z npm error A complete log of this run can be found in: /home/runner/.npm/_logs/2026-09-20T16_44_35_871Z-debug-0.log\nMCP package and stdio contracts\tRun npm audit --prefix mcp --audit-level=high\t2026-09-20T16:44:36.2126025Z   statusCode: 400,\nMCP package and stdio contracts\tRun npm audit --prefix mcp --audit-level=high\t2026-09-20T16:44:36.2126811Z   error: 'Bad Request',\nMCP package and stdio contracts\tRun npm audit --prefix mcp --audit-level=high\t2026-09-20T16:44:36.2127750Z   message: 'Invalid package tree, run  npm install  to rebuild your package-lock.json'\nMCP package and stdio contracts\tRun npm audit --prefix mcp --audit-level=high\t2026-09-20T16:44:36.2128686Z }\nMCP package and stdio contracts\tRun npm audit --prefix mcp --audit-level=high\t2026-09-20T16:44:36.2164410Z ##[error]Process completed with exit code 1.\n",
+  "local_audit": {
+    "auditReportVersion": 2,
+    "vulnerabilities": {},
+    "metadata": {
+      "vulnerabilities": {
+        "info": 0,
+        "low": 0,
+        "moderate": 0,
+        "high": 0,
+        "critical": 0,
+        "total": 0
+      },
+      "dependencies": {
+        "prod": 95,
+        "dev": 0,
+        "optional": 0,
+        "peer": 0,
+        "peerOptional": 0,
+        "total": 94
+      }
+    }
+  },
+  "recovery": "One failed-job rerun; unchanged dependency graph and head; all four checks passed",
+  "merge_commit": "5ef02030ebb7b57160547579b89844552e59fd6b",
+  "tested_and_merged_tree": "d7ffd99f6f564f9cd8bf4d27dc95d367a719e3bf"
+}

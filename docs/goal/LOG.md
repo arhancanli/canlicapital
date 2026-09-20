@@ -995,3 +995,18 @@ identical; ledger598reviewed/2pending/10withdrawn. Initial broad issuer filter
 failed before output and was narrowed to the exact selected amendment accession.
 TECHCOMtotals tagged decimals0; no rounding conclusion yet. No sealed archive
 for new capture, full rebuild or deployment.
+
+## 2026-09-20 — precision disclosure and priority scope queue closure
+
+Reminder turn made no implementation progress. Diagnosed PR45audit endpoint failure;
+unchanged graph audited successfully locally and one failed-job rerun passed.
+Merged PR45with exact tree equality. No security gate disabled or dependency changed.
+New branchreview/techcom-precision-20260920 adds the explicit TECHCOMdiscrepancy note
+and conditional precision evidence. Retained reported values, rejected any claim
+that rounding is proven, and explained both1USDpresentation differences. Notes
+appear on both relevant histories and overview only for matched source/observations.
+Actual capture regression and10existing renderer tests pass. Final report/ledger
+replay byte-identically;600reviewed/0pending/10withdrawn preserves610keys. Unpublished
+intermediate drafts were retained in a temporary directory as the overview note
+was added; older committed evidence remains unchanged. Broader corpus gates and
+sealed archive/release work remain open. No production or indexing gain.
