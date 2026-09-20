@@ -285,3 +285,34 @@ DOM TimeoutError numeric codes now classify by name; a regression proves bounded
 retry and omission of sensitive upstream messages. Twelve storage tests pass.
 Status was consolidated with the prior version archived to reduce contradictory
 current-state statements. PR22remains the current review.
+
+## 2026-09-20 — failed-object reconciliation and reviewed recovery merge
+
+Previous turn made progress: hosted unavailable checks and read-recovery tests
+completed. Read-only inspection of both failed keys confirms one absent object
+and one stored object with exact bytes; company-storage-failed-read-diagnosis-20260920.json.
+Started explicit resume3 with new receipt and improved diagnostics at87acdbbd.
+Session75189is active; checkpoint352verified objects, beyond prior336, with no
+retries/failures at that observation. Earlier terminal receipts remain unchanged.
+
+PR22passed all four CI35511309210jobs and merged as4337d655; reviewed and merged
+trees both5e83e54c3e2b9c7ae26a226ffee88021a274aa15. Post-merge CI pending.
+No production page activation, complete corpus-transfer or indexing claim.
+
+## 2026-09-20 — create reconciliation and candidate inventory
+
+Previous goal turn made progress through read-retry recovery and source inspection;
+owner status questions clarified the distinction between potential and indexed
+pages. Verified selected-object hashes across all three candidate manifests:
+3,323unique companies/87,348histories. Projected merged directory67pages would
+produce90,738candidate URLs; this combined artifact is not yet built and includes
+existing pilot overlaps. No new live or indexed-page claim.
+
+Resume3session75189is terminal after557verified objects/40,312,854bytes. Two read
+resets recovered; a create reset stopped the process. A read-only check found the
+failed key absent. New recovery records ambiguous writes and checks exact public
+bytes before doing anything further. Matching bytes finish verification without
+another write. Explicit writeAttempts=2 permits one more immutable create after
+confirmed absence; global10retry bound. Defaults, permission errors, rate limits,
+corruption and unknown HTTP failures cannot trigger blind writes. Sixteen storage
+tests pass, including lost reply, absent-object retry, corruption and global budget.
