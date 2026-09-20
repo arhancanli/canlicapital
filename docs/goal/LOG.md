@@ -1264,3 +1264,22 @@ identical. Archive80580TERMINAL0:23,161files/3,158,446,080bytes, SHA
 09a9750647fcee8009cfdf661a67479517d9d5ad. Summary retained. Isolated restore14219
 RUNNING at /tmp/canli-v22-archive-restore.log. Unpublished branch rebased onto
 merged main with identical full treebc8158161e70242e0194f6ba76aee83fba8c5456.
+
+Draft PR121 published atd95a5357c13eb707fdd3d1e585e2d924142ca284; CI35543496793
+live. Restore14219 remains live: all five queues reproduced without errors;
+selected-record replay reached3,000companies/79,119histories. No success claim
+until terminal and full receipt. No new uploader or production activation.
+
+
+## 2026-09-21 — isolated v22 restore passed; hosted transfer preparation
+
+Previous turn made progress: current archive built, PR121published. Restore14219
+TERMINAL0 now proves all five queues/1,026exclusions/zero errors,10,360runtime
+objects/1,280,333,696bytes exactly matching plan,3,323companies/87,342histories
+regenerated from original snapshots, three discovery files byte-identical and67
+saved reports reproduced (six baseline/current quality plus61nested scope outputs).
+Verification code hash checked. Archive remains local, not offsite backup. PR121
+all four CI35543496793checks passed atd95a5357; receipt/docs update needs new CI.
+Re-read all goal documents before hosted-transfer phase. Existing authorization
+covers staging transfer. Prepare existing production Vercel configuration in memory
+without logging credentials; pin correct Supabase project. No transfer started yet.

@@ -53,9 +53,13 @@ Current archive build80580TERMINAL0:23,161files/3,158,446,080bytes, SHA
 Saved code09a9750647fcee8009cfdf661a67479517d9d5ad includes grouped renderer and
 new restoration scripts. Archive summary retained separately. Unpublished branch
 rebased onto merged PR120 with identical full treebc8158161e70242e0194f6ba76aee83fba8c5456.
-Isolated restore **14219 RUNNING**, output /tmp/canli-v22-archive-restore.log;
-expected report company-five-cohort-evidence-restore-v22-20260921.json.
-Poll exact handle; no restore success claim yet. No uploader running.
+Isolated restore **14219 TERMINAL0**: all five original queues reproduce with
+1,026exclusions/zero errors;10,360runtime objects exactly match the original plan;
+all3,323selected companies/87,342histories regenerate from original snapshots;
+all3discovery files byte-identical;67saved reports reproduced, including nested
+61-output scope supplement. Restore receipt code hash matches actual verifier.
+PR121 draft atd95a5357 had all four CI35543496793checks pass; final receipt/docs
+will require checks at the updated head. No uploader running yet.
 
 Latest registered ledger:company-basic-diluted-registered-scope-v22-20260921.json.gz.
 Of1,176batch observations,1148reviewed/0pending/28withdrawn.130reviewed are explicitly
@@ -90,13 +94,13 @@ Hash-locked parser wheels installed offline in a fresh environment; saved script
 source fixtures, original captures and registry retained. Five archive safety tests
 pass. Code base2389305a; the new packager itself is saved/hash-bound in the archive.
 This is local restoration of recorded interpretations, not independent certification,
-full-corpus/runtime replay or offsite backup. The current v22 full-runtime archive has been sealed; isolated replay is pending.
+full-corpus/runtime replay or offsite backup. The current v22 full-runtime archive has been sealed and isolated replay passed.
 Current archive phase extends
 the existing profiles without changing older inputs: current objects, all five
 source queues, current quality/discovery, and the pinned835-file scope supplement.
 Restore additionally regenerates every selected company record and sitemap, then
 replays the nested61-output supplement offline. Five archive safety tests pass;
-pack completed; isolated restore14219 is running.
+pack and isolated restore14219 completed successfully.
 
 V22 runtime verification31067 TERMINAL0 proves the exact 90,732 sitemap leaf URLs:
 3,323 company overviews, 87,342 histories and 67 directories. Shards contain40,732
@@ -107,7 +111,8 @@ The storage plan contains10,360 immutable objects totaling1,280,333,696 bytes.
 Five stage jobs, combination68103, catalog90535, quality42445, release26878,
 discovery29316, storage18544 and app build51617 all finished with exit0.
 
-Next: finish isolated archive restore14219, then current hosted delivery gates. Broader source/usefulness work remains open.
+Next: merge archive PR121 after final-head CI; transfer and read-verify the current
+storage plan, then hosted delivery and broader release admission gates. Broader source/usefulness work remains open.
 No production deployment or confirmed indexing gain.
 
 ## Editorial policy and evidence
