@@ -25,6 +25,11 @@ class ComparisonTest(unittest.TestCase):
     def test_explicit_zero_matches(self):
         self.assertTrue(self.matches(self.raw))
 
+    def test_period_whitespace_preserves_exact_date_comparison(self):
+        padded = self.raw.replace(b'>2020-01-01<', b'>\n 2020-01-01\n<').replace(b'>2020-12-31<', b'>\n2020-12-31\n<')
+        self.assertTrue(self.matches(padded))
+        self.assertFalse(self.matches(padded.replace(b'2020-12-31', b'2019-12-31')))
+
     def test_currency_qname_uses_actual_scoped_namespace(self):
         alternate = self.raw.replace(b'xmlns:iso4217=', b'xmlns:currency=').replace(b'iso4217:USD', b'currency:USD')
         self.assertTrue(self.matches(alternate))

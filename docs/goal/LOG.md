@@ -581,3 +581,16 @@ Both43531and26312polled live;129capture entries/4573storage objects at checkpoin
 Consolidated current STATUS and archived prior detail to remove obsolete draft,
 active-check and branch claims. All owner objectives and open gates preserved.
 No production release or source-admission claim.
+
+## 2026-09-20 — primary acquisition complete; legacy date parsing corrected
+
+Primary43531terminal0: all159index/primary pairs verified, immutable completed
+receipt retained. Union of disjoint prior targets excludes already-compared rows;
+final primary25429adds138/264matches, for433/610across all200primary filings.
+XBRL49534first25filings gives39/51;12unmatched values exist under whitespace-padded
+instant dates. Comparator now strips surrounding date whitespace while exact
+mismatches still fail; fiveXMLtests pass. Original report preserved; separate
+offline replay51/51. Thus484/610numerically reproduced, not semantic admission.
+SecondXBRL18988active for51filings/126observations using pre-fix helper; inspect and
+replay offline under corrected helper once terminal. No parallel primary collector.
+Postmerge PR32 CI35516871919passed. Scope/archival/production gates remain open.

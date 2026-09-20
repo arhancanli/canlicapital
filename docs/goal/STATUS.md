@@ -11,35 +11,34 @@ research/company-legacy-evidence-20260920. PR32 merged as
 b5dc0ac266333dedb5e22b8a2a50ca9b59c262fb after all four CI35516768834checks pass
 at0dcfa6f73768fe6419a547012e87ad0952dc7ca6. Tested/merged tree both
 40d3071a73e02164a89fb58289696e8c08bcf537. PR31 previously merged59b10c83 with
-five checks and exact tree equality. Post-merge PR32 checks not yet verified.
+five checks and exact tree equality. Post-merge PR32 CI35516871919passed.
 
-Two processes confirmed live this turn; poll exact handles before restarting:
-- Bulk storage session26312, codea98637c4, checkpoint4573verified objects/0failures.
-  Plan6cafb5205963ea8187a8f014dfeb8342bdd487f2274c33603ff96d332a83750c,
-  receipt corpus-local/company-five-cohort-transfer-20260920.json. Concurrency4,
-  per-object read3/write2, global retry budgets200/50. Create-only, exact public
-  bytes/hash/MIME/cache checks and access/corruption stops remain enforced.
-- Primary filing acquisition43531, targets company-equal-history-capture-targets-
-  20260920.json;159filings/398observations,385concept/accession targets. Receipt
-  corpus-local/company-equal-history-capture-20260920.json;129entries at checkpoint,
-  not a completion claim. Captures corpus-local/equal-history-filings. Existing
-  paced capture script stops on403/429; no bypass or blind retry.
+Bulk storage26312 remains active, codea98637c4, last checkpoint4573verified
+objects/0failures. Receipt corpus-local/company-five-cohort-transfer-20260920.json.
+Concurrency4, read3/write2, global budgets200/50; immutable exact-byte checks.
+Primary acquisition43531 is terminal exit0: all159index/primary pairs verified,
+complete receipt company-equal-history-capture-complete-20260920.json. All200
+priority primary filings are now retained (41original+159new).
+First XBRL49534 terminal:39/51matches; whitespace-date fix offline replay now51/51.
+Second XBRL18988 is active for51filings/126remaining observations; receipt
+corpus-local/company-equal-history-final-xbrl-review-20260920.json, cache
+corpus-local/equal-history-xbrl. This process loaded the pre-whitespace-fix helper;
+inspect its result and replay failures offline under the corrected helper after
+terminal completion. Do not restart or infer completion from a partial receipt.
 
 Earlier v3upload sessions are terminal with failures retained. Do not resume the
 superseded v3plan. Only the two processes above are known active.
 
 ## Immediate next work
 
-After43531terminates, inspect all filing states and preserve the complete/failed
-receipt. Run separate XBRL comparison for the already prepared25filings/51rows:
-inputs company-equal-history-xbrl-input-20260920-{capture,comparison}.json;
-script review-company-editorial-xbrl.py; new cache corpus-local/equal-history-xbrl
-and new output receipt. Each captured index selects one exact instance in the
-same issuer/accession directory. Inputs bind primary/index/comparison hashes;
-subset completion explicitly does not imply the parent capture is complete.
+Final primary comparison25429 completed138/264matches. Across three disjoint
+primary batches:433/610matched; first51XBRL gap now closes, yielding484/610
+numerically reproduced. Second126-row XBRL batch is pending; no full-coverage
+claim. Date whitespace was diagnosed in six historical files; original39/51
+report preserved and corrected51/51offline report separate. Five XML tests pass,
+including preserving rejection of genuinely different dates.
 
-Then compare remaining newly captured primary filings without double-counting
-previous snapshots. Preserve all unmatched cases, finish primary scope/usefulness
+Preserve all unmatched cases and failed reports, finish primary scope/usefulness
 review and archive/replay new evidence. Full storage transfer, whole-release
 delivery/load checks, editorial admission and production activation remain open.
 Owner publication approval persists; it does not substitute for these checks.
