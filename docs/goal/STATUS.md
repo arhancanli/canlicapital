@@ -9,54 +9,46 @@ which links older records. Historical process states are not live telemetry.
 ## Current work and next action
 
 Worktree `/Users/arhancanli/canlicapital-expansion-20260919`, branch
-`evidence/invo-denominator-hold-20260921`. PR113 merged46752f829f103753f8f7562ca7cb8d30713a3701
-after four passing CI35541174312 checks atd68ac77d. Tree matches tested head.
-PR114 remains open; this branch includes its exact legacy review commit.
+`evidence/iovance-older-share-scope-20260921`. PR115mergedc0fb88575eadf65860d3ccf449109184ad1de298
+after four passing CI35541426749checks ata6d302fb. Merged tree matches tested head
+a47049656861ef824a7f8113bb308c6d74d2f79b. PR114closed as its full work is in PR115.
 
-Latest registered ledger:company-basic-diluted-registered-scope-batch1-closed-20260921.json.gz.
-Of1,176batch observations,1148reviewed/0pending/28withdrawn.118reviewed are explicitly
+Latest registered ledger:company-basic-diluted-registered-scope-v22-20260921.json.gz.
+Of1,176batch observations,1148reviewed/0pending/28withdrawn.130reviewed are explicitly
 presentation-only; dilution cause is not established for those rows. The registry
 pins exact reports/issuers/dispositions/counts/states. Numerical agreement alone
 never approves scope. Workflow in SCOPE_REVIEW.md; original ledgers preserved.
 
-V21 adds two exact INVO2014 share holds: original statement30 reports112,672,160,
-while per-share note35 reports112,670,160. Legacy XML matches the main statement;
-no replacement or rounding correction. Capture/hash/XML/column evidence retained
-in company-invo-denominator-conflict-20260921.json. Other14INVOobservations now
-reviewed with explicit loss anti-dilution and preserved denominator conflict.
-Plastec12observations reviewed as presentation-only: HKD per ordinary share,
-full share counts and already-restated reverse-acquisition basis. Generic dilution
-policy does not establish equality cause across all three profitable years.
-Both reports replay byte-identically;107selector/renderer/ledger/delivery/release
-tests pass. Batch1 scope has no pending observations:1148reviewed/28withdrawn,
-130presentation-only. This is not whole-corpus admission or publication approval.
+V22 adds eight exact older Iovance share holds,2019–2022, from four newly captured
+original filings. All eight scale-zero share tags conflict with in-thousands
+statement headings;2019–2021diluted facts are hidden tags linked to the combined
+basic/diluted statement row. No multiplication or replacement. The two Iovance
+share histories now have no observations and are omitted; EPS and other concepts
+are unchanged. Report company-iovance-older-share-scale-20260921.json replays
+byte-identically;108selector/renderer/ledger/delivery/release tests pass. Capture
+31919TERMINAL0retained all four index/primary pairs. Eight holds are outside batch1;
+its ledger remains1148reviewed/0pending/28withdrawn,130presentation-only.
 
-V21whole-corpus comparison18090TERMINAL0verified3,323companies/87,344histories
-against frozenv14. Exactly32held observations sincev14, two prior Valhi constant
-history omissions and policy/notices; all other fields/source bytes unchanged.
-Report company-five-cohort-v21-transition-20260921.json pins code/source inputs.
-Latest built runtime remainsv14at90,736candidate URLs; runtime/quality rebuild,
-archive supplement and hosting remain pending. Older Iovance2019–2022shares need
-original-filing review separately; broader capture/scope/usefulness remain open.
+V21 INVO2014two conflicting denominators remain held. First100-filing scope batch
+is closed, but broader capture, accounting scope and usefulness remain open.
+Latest built runtime remainsv14at90,736candidate URLs; current runtime/quality
+rebuild, archive supplement and hosting remain pending. No publication admission.
+V22full-corpus comparison21300is running; poll that handle before claiming results.
+V21comparison verified3,323companies/87,344histories against frozenv14,32holds
+sincev14and prior two Valhi constant-history omissions. V22expected changes include
+eight additional holds and two empty Iovance histories, still awaiting full replay.
 
-PR113 initially could not merge after PR112squash. Verified main tree identical
-to its already-included parent8643dbf1, resolved eight conflicts preserving the
-entire tested tree3bc15b4bf7947ee210470ccbfc6c5efa83a00c32, normal signed merge
-commitd68ac77d, fresh four-check CIpassed, then exact-head squash merged.
-No force push or check bypass. PR114 may need the same ancestry reconciliation.
-
-No local collector/comparison/uploader remains active at this checkpoint.
-Next: integrate pending reviewed PRs, review older Iovance scope, seal/replay the
-updated archival supplement, rebuild current runtime/quality inventory and finish
-hosted delivery gates. No deployment or confirmed indexing gain. Current evidence
-is committed but not yet sealed in an updated restore-tested archive.
+Next: finish current full-corpus comparison, integrate the policy, seal/replay the
+updated archival supplement, rebuild runtime/quality inventory and finish hosted
+delivery gates. No deployment or confirmed indexing gain. Current evidence is
+committed separately from sealed restore-tested archives.
 
 ## Editorial policy and evidence
 
-Cumulative extended-v21 preserves frozen earlier versions and all reviewed holds:
+Cumulative extended-v22 preserves frozen earlier versions and all reviewed holds:
 Birdie SG&A, disputed DBMM revenue period, HNO operating-loss history, two Atlantica
 liability periods, six Varonis AFN/share facts, Monolithic AFN revenue, 51Talk SAR
-cash/time-deposit component, eight Valhi weighted-share scale conflicts, two Siebert denominator conflicts, six Iovance share-scale conflicts and six Outset share-scale conflicts.
+cash/time-deposit component, eight Valhi weighted-share scale conflicts, two Siebert denominator conflicts, fourteen Iovance share-scale conflicts and six Outset share-scale conflicts.
 No relabeling, rescaling, invented values or source alteration.
 
 Valhi original tags28.5shares/scale0 conflict with in-millions headings in two
@@ -84,7 +76,7 @@ coverage remains open; do not present either sample as full-corpus admission.
 
 Current built-v14quality inventory:13,142flagged histories; overlapping reasons
 10,630historical-only,1,307multi-unit,400partially historical units,75constant,
-74zero-only,1,494pages in747equal groups. V21needs refreshed inventory. Flags are
+74zero-only,1,494pages in747equal groups. V22needs refreshed inventory. Flags are
 not automatically defects; unflagged pages are not automatically admitted.
 
 ## Retained archives
@@ -108,7 +100,7 @@ artifacts/seo retain hashes, limitations and original failures.
 
 Latest built combined runtime remains v14:3,323companies +87,346histories
 +67directories =90,736candidate URLs. Two verified sitemap shards40,736/50,000.
-10,360objects/1,280,306,303bytes. V21selected changes are not yet that runtime.
+10,360objects/1,280,306,303bytes. V22selected changes are not yet that runtime.
 Release10f90cd6849d5b0a358f2b9c7fed37ceaa8587561053cc490cd34072733a98e1;
 other v14roots in historical STATUS and versioned discovery/plan receipts.
 

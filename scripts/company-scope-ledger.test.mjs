@@ -54,29 +54,15 @@ test('holds cannot be overridden by a registered review and require the same sou
   assert.throws(() => reconcileScope(input), /Hold source changed/);
 });
 
-test('registered corpus advances 26 exact legacy reviews and two INVO holds and produces deterministic gzip', () => {
+test('v22 preserves the closed batch1 ledger; older Iovance holds are outside that batch', () => {
   const dir = mkdtempSync(join(tmpdir(), 'canli-scope-'));
   try {
     const first = join(dir, 'first.json.gz'), second = join(dir, 'second.json.gz');
     for (const output of [first, second]) execFileSync(process.execPath, ['scripts/reconcile-basic-diluted-scope.mjs', output]);
     assert.deepEqual(readFileSync(first), readFileSync(second));
     const current = JSON.parse(gunzipSync(readFileSync(first)));
-    const frozen = JSON.parse(gunzipSync(readFileSync('artifacts/seo/company-basic-diluted-registered-scope-legacy24-20260921.json.gz')));
-    assert.equal(current.rows.length, frozen.rows.length);
-    let changed = 0;
-    for (let i = 0; i < frozen.rows.length; i++) {
-      const before = frozen.rows[i], after = current.rows[i];
-      if (before.cik === '0001417926' && before.observation.end === '2014-12-31' && before.observation.unit === 'shares') {
-        assert.equal(before.state, 'ACCOUNTING_SCOPE_REVIEW_PENDING');
-        assert.deepEqual(after, { ...before, state: 'WITHDRAWN_BY_V21_OBSERVATION_HOLD', evidence: 'https://www.sec.gov/Archives/edgar/data/1417926/000118518517000595/invobioscience10k123115.htm' });
-        changed++;
-      } else if (['0001417926', '0001433309'].includes(before.cik)) {
-        assert.equal(before.state, 'ACCOUNTING_SCOPE_REVIEW_PENDING');
-        assert.deepEqual(after, { ...before, state: before.cik === '0001433309' ? 'REPORTED_PRESENTATION_REVIEWED_CAUSE_NOT_ESTABLISHED' : 'SCOPE_REVIEWED_WITH_SOURCE_CONTEXT', evidence: 'company-invo-plastec-context-20260921.json' });
-        changed++;
-      } else assert.deepEqual(after, before);
-    }
-    assert.equal(changed, 28);
+    const frozen = JSON.parse(gunzipSync(readFileSync('artifacts/seo/company-basic-diluted-registered-scope-batch1-closed-20260921.json.gz')));
+    assert.deepEqual(current.rows, frozen.rows);
     assert.equal(current.active_reviewed_observations, 1148);
     assert.equal(current.active_observations_needing_scope_review, 0);
     assert.equal(current.presentation_only_reviewed_observations, 130);
