@@ -958,3 +958,40 @@ for missing separate current subtotals, historical entity/fiscal changes and
 zero-net long-term debt presentations. Context and cumulative ledger replay
 byte-identically. Exact counts463reviewed/137pending/10withdrawn; earlier
 reports and unresolved cases preserved. No deployment or full corpus rebuild.
+
+## 2026-09-20 — Visium/GRN historical scope and PR44 merge
+
+15primary tables support40additional observations. Two selected Visiumamendment
+observations remain pending because primary contains no balance sheet; no credit
+from an unrelated filing. Context/ledger replay identical;503reviewed/97pending/
+10withdrawn, exact610keys. PR44merged919b2f55 after four checks and exact tree
+equality. Remaining amendment/discrepancy review and full corpus gates remain.
+
+## 2026-09-20 — four-issuer liability batch
+
+Opened PR45for remaining review.25primary tables support52additional historical
+observations with explicit restatement, unaudited and reported-classification
+boundaries. Selected Global Technologies2024value confirmed1,236,037USD.
+Context and cumulative ledger replay identical;555reviewed/45pending/10withdrawn
+partition610keys. No source rewrite, whole-corpus admission or publication.
+
+## 2026-09-20 — remaining retained context reviewed
+
+17small-issuer tables support36additional observations, and reverified HNO/Green
+Stream evidence supports5more. All context reports and cumulative ledger replay
+identically. An initial overly broad Green Stream accession filter failed before
+output; exact amendment filter fixes scope without changing source values.
+V13-batch6counts596reviewed/4pending/10withdrawn preserve610keys. Four remaining
+cases are Visium amendment context and TECHCOM2025component discrepancy.
+Broader corpus review and release gates remain open; no publication or indexing gain.
+
+## 2026-09-20 — Visium original filing acquired and context closed
+
+Located original SEC2014annual report0001493152-16-007114. Capture77538terminal0;
+index and primary retained, identity/bytes/hashes verified. Original table87and
+amendment explanatory note establish2013comparative asset totals471USD. Two
+observations reviewed with selected accession/values unchanged. Context replay
+identical; ledger598reviewed/2pending/10withdrawn. Initial broad issuer filter
+failed before output and was narrowed to the exact selected amendment accession.
+TECHCOMtotals tagged decimals0; no rounding conclusion yet. No sealed archive
+for new capture, full rebuild or deployment.
