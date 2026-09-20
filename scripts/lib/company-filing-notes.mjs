@@ -1,6 +1,228 @@
 // Limited filing context, bound to the reviewed capture and selected observations.
 export const FILING_NOTES = [
 {
+  "cik": "0001459839",
+  "include_on_overview": true,
+  "source_sha256": "8865bc70ed417453df6fa46b21b2d21c09c8aa77e077e43b4108d080f7907bd4",
+  "tags": [
+    "EarningsPerShareBasic",
+    "EarningsPerShareDiluted",
+    "WeightedAverageNumberOfDilutedSharesOutstanding",
+    "WeightedAverageNumberOfSharesOutstandingBasic"
+  ],
+  "text": "For 2023\u20132025, SI-BONE excludes stock options, restricted stock units, employee stock purchase rights and warrants because their effect is anti-dilutive in the loss periods. Basic and diluted EPS use the same reported net-loss numerator and weighted-average denominator. Comprehensive loss is a separate measure. Shares and per-share amounts are exempt from the thousands heading and use scale-zero tags; excluded potential shares are not added to the denominator.",
+  "filing_url": "https://www.sec.gov/Archives/edgar/data/1459839/000145983926000036/sibn-20251231.htm",
+  "observations": [
+    {
+      "tag": "EarningsPerShareBasic",
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "unit": "USD/shares",
+      "val": -1.13,
+      "accn": "0001459839-26-000036"
+    },
+    {
+      "tag": "EarningsPerShareBasic",
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "unit": "USD/shares",
+      "val": -0.75,
+      "accn": "0001459839-26-000036"
+    },
+    {
+      "tag": "EarningsPerShareBasic",
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "unit": "USD/shares",
+      "val": -0.44,
+      "accn": "0001459839-26-000036"
+    },
+    {
+      "tag": "EarningsPerShareDiluted",
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "unit": "USD/shares",
+      "val": -1.13,
+      "accn": "0001459839-26-000036"
+    },
+    {
+      "tag": "EarningsPerShareDiluted",
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "unit": "USD/shares",
+      "val": -0.75,
+      "accn": "0001459839-26-000036"
+    },
+    {
+      "tag": "EarningsPerShareDiluted",
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "unit": "USD/shares",
+      "val": -0.44,
+      "accn": "0001459839-26-000036"
+    },
+    {
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "unit": "shares",
+      "val": 38427419,
+      "accn": "0001459839-26-000036"
+    },
+    {
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "unit": "shares",
+      "val": 41466564,
+      "accn": "0001459839-26-000036"
+    },
+    {
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "unit": "shares",
+      "val": 42959856,
+      "accn": "0001459839-26-000036"
+    },
+    {
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic",
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "unit": "shares",
+      "val": 38427419,
+      "accn": "0001459839-26-000036"
+    },
+    {
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic",
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "unit": "shares",
+      "val": 41466564,
+      "accn": "0001459839-26-000036"
+    },
+    {
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic",
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "unit": "shares",
+      "val": 42959856,
+      "accn": "0001459839-26-000036"
+    }
+  ]
+},
+{
+  "cik": "0001462056",
+  "include_on_overview": true,
+  "source_sha256": "71ceb404fc7e1838db013d7d268dc72c22d335ba54f369ab2d782f6a84c1785d",
+  "tags": [
+    "EarningsPerShareBasic",
+    "EarningsPerShareDiluted",
+    "WeightedAverageNumberOfDilutedSharesOutstanding",
+    "WeightedAverageNumberOfSharesOutstandingBasic"
+  ],
+  "text": "For 2023\u20132025, Backblaze retains a Class A and Class B label in its EPS presentation, but all outstanding Class B shares converted one-for-one into Class A on July 6, 2023; no additional Class B shares will be issued. The historical combined label does not mean two classes remained outstanding throughout the later periods. Potential shares from options, employee stock purchases, the Bonus Plan and unvested RSUs are excluded as antidilutive. Shares and per-share amounts are exempt from the thousands heading and use scale-zero tags. No extra shares are added for the conversion or excluded instruments.",
+  "filing_url": "https://www.sec.gov/Archives/edgar/data/1462056/000162828026016395/blze-20251231.htm",
+  "observations": [
+    {
+      "tag": "EarningsPerShareBasic",
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "unit": "USD/shares",
+      "val": -1.66,
+      "accn": "0001628280-26-016395"
+    },
+    {
+      "tag": "EarningsPerShareBasic",
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "unit": "USD/shares",
+      "val": -1.11,
+      "accn": "0001628280-26-016395"
+    },
+    {
+      "tag": "EarningsPerShareBasic",
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "unit": "USD/shares",
+      "val": -0.46,
+      "accn": "0001628280-26-016395"
+    },
+    {
+      "tag": "EarningsPerShareDiluted",
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "unit": "USD/shares",
+      "val": -1.66,
+      "accn": "0001628280-26-016395"
+    },
+    {
+      "tag": "EarningsPerShareDiluted",
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "unit": "USD/shares",
+      "val": -1.11,
+      "accn": "0001628280-26-016395"
+    },
+    {
+      "tag": "EarningsPerShareDiluted",
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "unit": "USD/shares",
+      "val": -0.46,
+      "accn": "0001628280-26-016395"
+    },
+    {
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "unit": "shares",
+      "val": 36011446,
+      "accn": "0001628280-26-016395"
+    },
+    {
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "unit": "shares",
+      "val": 43543023,
+      "accn": "0001628280-26-016395"
+    },
+    {
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "unit": "shares",
+      "val": 56209667,
+      "accn": "0001628280-26-016395"
+    },
+    {
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic",
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "unit": "shares",
+      "val": 36011446,
+      "accn": "0001628280-26-016395"
+    },
+    {
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic",
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "unit": "shares",
+      "val": 43543023,
+      "accn": "0001628280-26-016395"
+    },
+    {
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic",
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "unit": "shares",
+      "val": 56209667,
+      "accn": "0001628280-26-016395"
+    }
+  ]
+},
+{
   "cik": "0001441816",
   "include_on_overview": true,
   "source_sha256": "8947052d6912d9ac6b35470f5e331ef6fe1f4b4cf782fab20822c9cb66738997",
