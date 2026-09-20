@@ -4,6 +4,7 @@ import json
 from pathlib import Path
 import shutil
 import subprocess
+import sys
 import tarfile
 import tempfile
 
@@ -66,11 +67,25 @@ def restore_check(archive, summary_path):
                 raise ValueError('Restored runtime field differs: ' + key)
         if replayed['release_hash'] != summary['metadata']['release_hash']:
             raise ValueError('Restored release differs from summary')
+        scope_replays = {}
+        if profile == 'fourth-cohort-v6':
+            for script, report in [
+                ('review-liberty-equipment-scope.py', 'company-fourth-liberty-disposition-20260920.json'),
+                ('review-fourth-zero-scope.py', 'company-fourth-zero-dispositions-20260920.json'),
+                ('review-novagold-revenue-scope.py', 'company-fourth-novagold-disposition-20260920.json'),
+            ]:
+                path = workspace / 'artifacts/seo' / report
+                expected = file_hash(path)
+                subprocess.run([sys.executable, 'scripts/' + script], cwd=workspace,
+                               check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+                if file_hash(path) != expected:
+                    raise ValueError('Restored editorial scope differs: ' + report)
+                scope_replays[report] = expected
         receipt = {'schema': 'canli.company-evidence-restore.v1', 'archive_sha256': summary['archive_sha256'],
                    'repository_revision': summary['metadata']['repository_revision'], 'restored_files': summary['files'],
                    'source_replays': reports, 'runtime_objects_replayed': replayed['objects'],
                    'runtime_bytes': replayed['bytes'], 'release_hash': replayed['release_hash'],
-                   'objects_exactly_match_original_plan': True, 'remote_backup_verified': False,
+                   'objects_exactly_match_original_plan': True, 'editorial_scope_reports_reproduced': scope_replays, 'remote_backup_verified': False,
                    'verification_code_sha256': file_hash(Path(__file__)),
                    'scope': 'Whole archive SHA checked against separate summary; every member verified; isolated temporary restore; saved repository source replays all named cohorts and runtime objects. No reads of original runtime objects or capture directories. Temporary restore removed after verification; archive remains local.'}
     return receipt

@@ -1,0 +1,26 @@
+{
+  "schema": "canli.company-evidence-restore.v1",
+  "archive_sha256": "48b9e18a845f3ed4c7acd142e67d73d985012370cee8f42ea141cb34c6df2871",
+  "repository_revision": "fae7f9407a224150792b02f0a341d13491874fdf",
+  "restored_files": 4959,
+  "source_replays": {
+    "fourth-1000": {
+      "complete": true,
+      "companies": 683,
+      "exclusions": 317,
+      "errors": 0
+    }
+  },
+  "runtime_objects_replayed": 2074,
+  "runtime_bytes": 245823578,
+  "release_hash": "056a2826bbeb15bc019f99eb6a18e8e9b3c0550305398423e307236f2c30a338",
+  "objects_exactly_match_original_plan": true,
+  "editorial_scope_reports_reproduced": {
+    "company-fourth-liberty-disposition-20260920.json": "0d76a2a71431a52360b443ef390e19757dd06f94de19a98df857bdf5091841d5",
+    "company-fourth-zero-dispositions-20260920.json": "35a6a4b70c78153f6829eedef60eed7aab5b978549f672db285528cb911bcc19",
+    "company-fourth-novagold-disposition-20260920.json": "ef6a44c6249565b90f7f1644f4ef579f6e53235922f7f38a30c15fa6eaf0bf31"
+  },
+  "remote_backup_verified": false,
+  "verification_code_sha256": "566e2c50978c13ce445e6a66f626b3fcae2e0ea91f56e93295f567ecb0f5ea20",
+  "scope": "Whole archive SHA checked against separate summary; every member verified; isolated temporary restore; saved repository source replays all named cohorts and runtime objects. No reads of original runtime objects or capture directories. Temporary restore removed after verification; archive remains local."
+}

@@ -1577,3 +1577,18 @@ release91394,discovery and fullHTTP39962completed successfully:18,411URLs and
 Added v6archive profile without changing v5semantics; five archive tests pass.
 Committing profile and bound plan before packaging its saved repository revision.
 EngineCI35499961114still live at checkpoint; no production change.
+
+## 2026-09-20 — complete v6 delivery and semantic archive replay
+
+Browser14519completed0:96checks across16routes including the NOVAGOLD exclusion.
+All18,411URLs and1,366downloads passed HTTP39962; noindex/local only.
+V6archive90056completed0:4,959files709,232,640bytes,SHA256
+48b9e18a845f3ed4c7acd142e67d73d985012370cee8f42ea141cb34c6df2871.
+Initial isolated restore82097passed source/runtime checks. Extended the verifier's
+v6profile to execute all three saved scope scripts and compare report hashes;
+second restore90782passed all queue/runtime checks plus five editorial exclusions
+byte-for-byte. The second run was warranted by this new semantic coverage; both
+receipts preserved and temporary directories removed. Five archive safety tests
+pass. Runtime closure:2,074objects245,823,578bytes. No offsite backup or hosted
+publication claim. Current v6scope/current receipts distinguished from older v5.
+EngineCI35499961114 remains live; no duplicate run or production activation.

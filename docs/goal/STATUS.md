@@ -43,13 +43,17 @@ The existing three-cohort release remains separate and unchanged.
 Exact-source replay verifies each new exclusion removes only its reviewed concept.
 Full website verification passes6+393tests and audits; all16selector tests pass.
 V6 selected-quality/source audit75873 passed; see company-fourth-selected-quality-v6.json.
-Catalog,release,HTTP/browser and archive work for v6remains due.
-Historical V5 catalog/release/discovery and full local HTTP/browser checks passed:
-18,412 URLs,1,366 downloads,90browser checks across15routes. Release hash
-b40100cda2fd5a50297de8d433e72751c6561d1f5e58226c269ae879c578c597.
-Editorial supplement and complete fourth-cohort archives both pass isolated
-restore. Hosted verification and offsite retention remain outstanding.
-Earlier v4's18,415URL/1,366download and72browser checks apply only to that revision.
+Current v6catalog,release,discovery and local delivery checks pass:
+18,411URLs,1,366downloads,96browser checks across16routes. Release hash
+056a2826bbeb15bc019f99eb6a18e8e9b3c0550305398423e307236f2c30a338.
+Runtime plan:2,074objects245,823,578bytes,not uploaded.
+Complete v6archive:4,959files709,232,640bytes,SHA256
+48b9e18a845f3ed4c7acd142e67d73d985012370cee8f42ea141cb34c6df2871.
+Isolated restore reproduces683candidates317exclusions and exact runtime objects.
+Extended restore also reproduces all five editorial exclusions in three reports
+from saved source code and archived filings. Both temporary restores removed.
+Older v5/v4delivery and archive receipts remain historical. Hosted verification,
+offsite retention and editorial publication approval remain outstanding.
 
 Priority review covered55pre-exclusion concepts across30companies and36filings.
 All72index/primary responses verify.73inline plus47original-XBRL matches account
@@ -63,7 +67,7 @@ complete for the remaining cases. No editorial or publication approval.
 
 Resume safeguards passed 6+390 tests and audits. The completed capture had loaded
 the older collector; its full legacy report was replayed without restarting it.
-See company-fourth-reviewed-20260920.json and company-fourth-selected-quality-v4.json.
+See company-fourth-reviewed-20260920.json and company-fourth-selected-quality-v6.json.
 
 Independent frozen partial review now covers278outcomes:177core-policy candidates,
 70reproduced content exclusions,31HTTP404outcomes and zero reproduction errors.
@@ -210,8 +214,8 @@ decisions cannot be automated away. No broker orders or unauthorized activation.
 No PR was merged, provider created, production migration applied or broker order
 issued by this work. The goal remains active. See EXECUTION_LEDGER.md.
 
-Latest separate fourth-cohort candidate is v6. Prior v5 release, archive and
-measurements remain historical; do not reuse them as verification of v6.
+Latest separate fourth-cohort candidate is v6; current verification is recorded
+above. Prior v5release/archive/measurements remain historical.
 
 Fourth editorial supplement:275files,79,298,560bytes,SHA256
 62082472346b7bd0f6bed08ef480c3c85fee0e34248be93b8bfd432935814239.
