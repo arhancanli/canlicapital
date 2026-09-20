@@ -9,32 +9,30 @@ which links older records. Historical process states are not live telemetry.
 ## Current work and next action
 
 Worktree `/Users/arhancanli/canlicapital-expansion-20260919`, branch
-`publication/share-context-batches7-10-20260920`. PR70merged8baa1bd8after all four
+`evidence/share-context-batch11-20260920`. PR70merged8baa1bd8after all four
 CI35531739016checks passed at91a22a12. Tested/merged tree
 9cfb5eb18799c5799e280681ec632f4951879e60.
 
-Attribution migration hold cleared; migrated mainc80d3d6fretains prior8baa1bd8tree.
-Preserved original review branches. Fresh signed squash6cb4b786on migrated main
-has exactly the same full tree as reviewed537ef1de; local signature verified G.
-This removes unsigned migrated commits from the proposed PR range without changing
-files, historical evidence, branch protection or published history. PR71auto-merge
-disabled; replacement publication includes batches7–10(98new observations).
+PR72merged5bedaf19593fdc34bd1145e5b72462d54dda9549 after four passing
+CI35532774579checks. Merged/tested tree453b8374982290bb22cd95b26bc67f5803b00ca8
+matches exactly. PR71closed as superseded; its unsigned migrated history was
+replaced with signed commits without changing protection or force-pushing.
+Original branches and historical hashes remain preserved.
 
-Latest registered ledger:company-basic-diluted-registered-scope-batch10-20260920.json.gz.
-Of1,176batch observations,372reviewed/796pending/8withdrawn.60reviewed are explicitly
+Latest registered ledger:company-basic-diluted-registered-scope-batch11-20260920.json.gz.
+Of1,176batch observations,396reviewed/772pending/8withdrawn.60reviewed are explicitly
 presentation-only; dilution cause is not established for those rows. The registry
 pins exact reports/issuers/dispositions/counts/states. Numerical agreement alone
 never approves scope. Workflow in SCOPE_REVIEW.md; original ledgers preserved.
 
-Latest24reviews cover AnaptysBio and iRhythm2023–2025EPS. AnaptysBio's2025
-operating income differs from net loss used for EPS. iRhythm statements concern
-Technologies and subsidiaries before theJanuary2026Holdings successor transaction.
-Both use scale3shares and explicit anti-dilution exclusions.30targeted tests pass;
-source report replays byte-identically. Next index38; earlier/legacy gaps remain.
-PR71passed all four CI35532577383checks but merge was policy-blocked. Three
-migration-rewritten commits are unsigned; current signing is enabled and two later
-commits are GitHub-verified. A fresh signed squash now preserves the full reviewed tree. PR71auto-merge was
-disabled; replacement publication needs fresh remote CI.
+Latest24reviews cover American Well and iHeartMedia2023–2025EPS after
+noncontrolling allocation. American Well potential-share table is period-end,
+not an additional weighted denominator. iHeartMedia includes all Special Warrants
+in basic and diluted shares but excludes specified other equity awards as
+antidilutive. Share scales0and3respectively retained.31targeted tests pass and
+source report replays byte-identically. Next index40; earlier/legacy gaps remain.
+Batch11needs remote CI; batches7–10are merged. No production activation.
+
 
 Earlier reviewed context includes111ordinary-share/ADS distinction, Celldex loss
 periods, NLI/Weis combined/restated presentation, Blue Dolphin historical instruments,

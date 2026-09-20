@@ -1,6 +1,228 @@
 // Limited filing context, bound to the reviewed capture and selected observations.
 export const FILING_NOTES = [
 {
+  "cik": "0001393584",
+  "include_on_overview": true,
+  "source_sha256": "09cde755215725d8732c6e7e0049248301165f145670d099cf93f0180b98697a",
+  "tags": [
+    "EarningsPerShareBasic",
+    "EarningsPerShareDiluted",
+    "WeightedAverageNumberOfDilutedSharesOutstanding",
+    "WeightedAverageNumberOfSharesOutstandingBasic"
+  ],
+  "text": "For 2023\u20132025, American Well uses loss attributable to the company after noncontrolling interests as its EPS numerator, rather than consolidated net loss or comprehensive loss. Potentially dilutive securities are excluded because they would reduce the reported loss per share. Shares and per-share amounts are exempt from the statement\u2019s thousands heading and use scale-zero tags. The separate table of potential shares reports period-end amounts, not additional weighted-average denominator shares.",
+  "filing_url": "https://www.sec.gov/Archives/edgar/data/1393584/000119312526048776/amwl-20251231.htm",
+  "observations": [
+    {
+      "tag": "EarningsPerShareBasic",
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "unit": "USD/shares",
+      "val": -47.5,
+      "accn": "0001193125-26-048776"
+    },
+    {
+      "tag": "EarningsPerShareBasic",
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "unit": "USD/shares",
+      "val": -13.88,
+      "accn": "0001193125-26-048776"
+    },
+    {
+      "tag": "EarningsPerShareBasic",
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "unit": "USD/shares",
+      "val": -5.96,
+      "accn": "0001193125-26-048776"
+    },
+    {
+      "tag": "EarningsPerShareDiluted",
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "unit": "USD/shares",
+      "val": -47.5,
+      "accn": "0001193125-26-048776"
+    },
+    {
+      "tag": "EarningsPerShareDiluted",
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "unit": "USD/shares",
+      "val": -13.88,
+      "accn": "0001193125-26-048776"
+    },
+    {
+      "tag": "EarningsPerShareDiluted",
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "unit": "USD/shares",
+      "val": -5.96,
+      "accn": "0001193125-26-048776"
+    },
+    {
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "unit": "shares",
+      "val": 14212505,
+      "accn": "0001193125-26-048776"
+    },
+    {
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "unit": "shares",
+      "val": 14999590,
+      "accn": "0001193125-26-048776"
+    },
+    {
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "unit": "shares",
+      "val": 16047452,
+      "accn": "0001193125-26-048776"
+    },
+    {
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic",
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "unit": "shares",
+      "val": 14212505,
+      "accn": "0001193125-26-048776"
+    },
+    {
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic",
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "unit": "shares",
+      "val": 14999590,
+      "accn": "0001193125-26-048776"
+    },
+    {
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic",
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "unit": "shares",
+      "val": 16047452,
+      "accn": "0001193125-26-048776"
+    }
+  ]
+},
+{
+  "cik": "0001400891",
+  "include_on_overview": true,
+  "source_sha256": "f98fbb75efecd2d026b4e42747ba5cc12593c96e2fa6b33c3716c714e78ffca2",
+  "tags": [
+    "EarningsPerShareBasic",
+    "EarningsPerShareDiluted",
+    "WeightedAverageNumberOfDilutedSharesOutstanding",
+    "WeightedAverageNumberOfSharesOutstandingBasic"
+  ],
+  "text": "For 2023\u20132025, iHeartMedia uses loss attributable to the company after noncontrolling interests as its EPS numerator. All outstanding Special Warrants are already included in both basic and diluted weighted-average common shares. The separate equity awards disclosed as antidilutive are excluded; they must not be confused with the included Special Warrants. Share counts are in thousands with scale-three tags, while EPS uses scale zero. Basic and diluted denominators should not be added together.",
+  "filing_url": "https://www.sec.gov/Archives/edgar/data/1400891/000162828026013221/ihrt-20251231.htm",
+  "observations": [
+    {
+      "tag": "EarningsPerShareBasic",
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "unit": "USD/shares",
+      "val": -7.39,
+      "accn": "0001628280-26-013221"
+    },
+    {
+      "tag": "EarningsPerShareBasic",
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "unit": "USD/shares",
+      "val": -6.68,
+      "accn": "0001628280-26-013221"
+    },
+    {
+      "tag": "EarningsPerShareBasic",
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "unit": "USD/shares",
+      "val": -3.06,
+      "accn": "0001628280-26-013221"
+    },
+    {
+      "tag": "EarningsPerShareDiluted",
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "unit": "USD/shares",
+      "val": -7.39,
+      "accn": "0001628280-26-013221"
+    },
+    {
+      "tag": "EarningsPerShareDiluted",
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "unit": "USD/shares",
+      "val": -6.68,
+      "accn": "0001628280-26-013221"
+    },
+    {
+      "tag": "EarningsPerShareDiluted",
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "unit": "USD/shares",
+      "val": -3.06,
+      "accn": "0001628280-26-013221"
+    },
+    {
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "unit": "shares",
+      "val": 149255000,
+      "accn": "0001628280-26-013221"
+    },
+    {
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "unit": "shares",
+      "val": 151272000,
+      "accn": "0001628280-26-013221"
+    },
+    {
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "unit": "shares",
+      "val": 154295000,
+      "accn": "0001628280-26-013221"
+    },
+    {
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic",
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "unit": "shares",
+      "val": 149255000,
+      "accn": "0001628280-26-013221"
+    },
+    {
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic",
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "unit": "shares",
+      "val": 151272000,
+      "accn": "0001628280-26-013221"
+    },
+    {
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic",
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "unit": "shares",
+      "val": 154295000,
+      "accn": "0001628280-26-013221"
+    }
+  ]
+},
+{
   "cik": "0001370053",
   "include_on_overview": true,
   "source_sha256": "df16d7dcdb6e7ad00b2506a65cebc0ace52e1ddcecca87813671ca4b70c13c04",

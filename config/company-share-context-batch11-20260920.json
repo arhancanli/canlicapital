@@ -1,0 +1,55 @@
+{
+  "schema": "canli.reviewed-share-context-spec.v1",
+  "decisions": [
+    {
+      "cik": "0001393584",
+      "accession": "0001193125-26-048776",
+      "source_sha256": "09cde755215725d8732c6e7e0049248301165f145670d099cf93f0180b98697a",
+      "primary_sha256": "befac1372a597047fdeb6f46a36f8ba02d807f27057f69516adbb03dd90f2421",
+      "fixture": "scripts/fixtures/editorial/american-well-reviewed-source.json.gz",
+      "observations": 12,
+      "period_ends": [
+        "2023-12-31",
+        "2024-12-31",
+        "2025-12-31"
+      ],
+      "table_index": 56,
+      "share_scale": "0",
+      "table_requires": [
+        "Net loss attributable to American Well Corporation"
+      ],
+      "paragraph_requires": [
+        "(In thousands, except share and per share amounts)",
+        "Therefore, the weighted-average number of common shares outstanding used to calculate both basic and diluted net loss per share attributable to common stockholders is the same."
+      ],
+      "reader_note": "For 2023\u20132025, American Well uses loss attributable to the company after noncontrolling interests as its EPS numerator, rather than consolidated net loss or comprehensive loss. Potentially dilutive securities are excluded because they would reduce the reported loss per share. Shares and per-share amounts are exempt from the statement\u2019s thousands heading and use scale-zero tags. The separate table of potential shares reports period-end amounts, not additional weighted-average denominator shares.",
+      "disposition": "REVIEWED_ALLOCATION_UNIT_AND_DILUTION_CONTEXT"
+    },
+    {
+      "cik": "0001400891",
+      "accession": "0001628280-26-013221",
+      "source_sha256": "f98fbb75efecd2d026b4e42747ba5cc12593c96e2fa6b33c3716c714e78ffca2",
+      "primary_sha256": "c50eac95d0cf682bc4c5d958de36ee7976e628ddd6af7b009681495bc0c51f84",
+      "fixture": "scripts/fixtures/editorial/iheartmedia-reviewed-source.json.gz",
+      "observations": 12,
+      "period_ends": [
+        "2023-12-31",
+        "2024-12-31",
+        "2025-12-31"
+      ],
+      "table_index": 53,
+      "share_scale": "3",
+      "table_requires": [
+        "Net loss attributable to the Company \u2013 common shares",
+        "Stock options and restricted stock"
+      ],
+      "paragraph_requires": [
+        "(In thousands, except per share data)",
+        "All of the outstanding Special Warrants are included in both the basic and diluted weighted average common shares outstanding",
+        "were not included in the computation of diluted earnings per share because to do so would have been antidilutive."
+      ],
+      "reader_note": "For 2023\u20132025, iHeartMedia uses loss attributable to the company after noncontrolling interests as its EPS numerator. All outstanding Special Warrants are already included in both basic and diluted weighted-average common shares. The separate equity awards disclosed as antidilutive are excluded; they must not be confused with the included Special Warrants. Share counts are in thousands with scale-three tags, while EPS uses scale zero. Basic and diluted denominators should not be added together.",
+      "disposition": "REVIEWED_ALLOCATION_UNIT_AND_DILUTION_CONTEXT"
+    }
+  ]
+}
