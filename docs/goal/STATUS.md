@@ -10,11 +10,19 @@ which links the preceding historical record. Historical process states are not l
 ## Current work and immediate next action
 
 Worktree `/Users/arhancanli/canlicapital-expansion-20260919`, branch
-`evidence/combined-share-context-20260920`. PR61merged6ca6d2de after all four
-CI35529747740checks passed at62fbdab8. Tested/merged tree
-b05d13eaee6cc22cc540ae0ad522e88bc205cb88.
+`evidence/loss-share-context-20260920`. PR62merged3f69fbf8 after all four
+CI35529950080checks passed atf81b4623. Tested/merged tree
+ab03a794f2cf656d421aba79840033591227d255.
 
-Current v4batch ledger:50reviewed/1,118pending/8withdrawn. Of the50reviewed,
+Current v5batch ledger:66reviewed/1,102pending/8withdrawn;24reviewed remain
+presentation-only with dilution cause unestablished. Sixteen additional Blue Dolphin/
+NexMetals observations reviewed. Blue Dolphin instrument disclosure is historical.
+NexMetals positive CAD EPS amounts are expressly labelled loss magnitudes, with
+retrospective twenty-for-one consolidation already reflected; no sign, currency or
+split adjustment. Source-bound page notes and exact source fixtures preserve facts.
+All16renderer tests pass. Report and ledger reproduce byte-identically.
+
+Previous v4batch ledger:50reviewed/1,118pending/8withdrawn. Of the50reviewed,
 24NLI/Weis observations have the explicit state REPORTED_PRESENTATION_REVIEWED_
 CAUSE_NOT_ESTABLISHED; only combined presentation, units, dates and restatement
 context are established. No claim that equality proves absent dilution. NLIshares
