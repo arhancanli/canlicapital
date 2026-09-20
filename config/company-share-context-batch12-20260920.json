@@ -1,0 +1,55 @@
+{
+  "schema": "canli.reviewed-share-context-spec.v1",
+  "decisions": [
+    {
+      "cik": "0001418121",
+      "accession": "0001193125-26-064008",
+      "source_sha256": "deb44a9b7fb3b45488aec71ec2350161b27c33ffb3be9c12859356e2509a25eb",
+      "primary_sha256": "678f60a4c0a5056eee3c80983d09211a034f49133cf8a68d3f404c1bec7e2763",
+      "fixture": "scripts/fixtures/editorial/apple-hospitality-reviewed-source.json.gz",
+      "observations": 12,
+      "period_ends": [
+        "2023-12-31",
+        "2024-12-31",
+        "2025-12-31"
+      ],
+      "table_index": 27,
+      "share_scale": "3",
+      "table_requires": [
+        "Basic and diluted net income per common share"
+      ],
+      "paragraph_requires": [
+        "(in thousands, except per share data)",
+        "The Company does not have any potential common shares that were dilutive and outstanding for the year ended December 31, 2025.",
+        "Basic and diluted net income per common share were the same for each of the periods presented."
+      ],
+      "reader_note": "For 2023\u20132025, Apple Hospitality reports equal basic and diluted net income per common share and weighted-average share counts. Its explicit statement that no potential common shares were dilutive and outstanding applies to 2025; this review does not extend that cause to 2023 or 2024. The three-year review therefore remains presentation-only. Shares are reported in thousands with scale-three tags and EPS uses scale zero. The net-income numerator is distinct from comprehensive income, and basic and diluted counts should not be added together.",
+      "disposition": "REVIEWED_REPORTED_PRESENTATION_CAUSE_NOT_ESTABLISHED"
+    },
+    {
+      "cik": "0001422143",
+      "accession": "0001193125-26-092567",
+      "source_sha256": "99c25996d2b94a162f8d422ab44911c7e1eca886397d9f5849b0bd5c004a4e4f",
+      "primary_sha256": "c54b975d2d9fe77c0bfb4b875a38d7117e9914454aff03c18328fa38e6cb207d",
+      "fixture": "scripts/fixtures/editorial/kura-oncology-reviewed-source.json.gz",
+      "observations": 12,
+      "period_ends": [
+        "2023-12-31",
+        "2024-12-31",
+        "2025-12-31"
+      ],
+      "table_index": 21,
+      "share_scale": "3",
+      "table_requires": [
+        "Net loss per share, basic and diluted"
+      ],
+      "paragraph_requires": [
+        "(In thousands, except per share data)",
+        "Pre-funded warrants are considered outstanding for the purposes of computing basic and diluted net loss per share because shares may be issued for little additional consideration, and are fully vested and exercisable.",
+        "As we have reported net loss for the years ended December 31, 2025, 2024 and 2023, dilutive net loss per common share is the same as basic net loss per common share for those periods."
+      ],
+      "reader_note": "For 2023\u20132025, Kura includes outstanding pre-funded warrants in basic and diluted weighted-average shares because they are fully vested, exercisable and require little additional consideration. Other potential common-stock equivalents are excluded as anti-dilutive in the loss periods. The pre-funded warrants must not be added again or confused with the separately excluded equivalents. Shares are reported in thousands with scale-three tags; EPS uses scale zero and the net-loss numerator, not comprehensive loss.",
+      "disposition": "REVIEWED_ALLOCATION_UNIT_AND_DILUTION_CONTEXT"
+    }
+  ]
+}
