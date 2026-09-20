@@ -654,3 +654,20 @@ ledger regression used before.tag rather than before.observation.tag, corrected;
 84presentation-only. Gladstone inspection remains pending registration; no scope
 review count advance. Whole-corpusv19comparison, runtime, archive supplement and
 hosted release remain pending. No deployment/indexing gain; all goals active.
+
+## 2026-09-21 — v19full corpus verified; Gladstone limited review
+
+Previous turn implemented six exact Outset holds. PR85four CI35535403163checks
+passed at8d533371; merged9b6a39cc, identical tree3712e3cbec65df6dee0d3ceb823a54f24a4c3013.
+V19comparison61020TERMINAL0verified hashes/source bytes and all fields for
+3,323companies/87,344histories against frozenv14. Exactly24explicit holds sincev14,
+two prior Valhi constant-history omissions/six residual observations, policy/notices;
+no other changes. No runtime rebuild or hosted activation follows from comparison.
+Separately replayed Gladstone source report twice identically and registered12
+presentation-only observations. Net income differs from common-stockholder loss
+after preferred dividends/extinguishment adjustments; dilution-equality cause
+remains unestablished. Full share counts and all values unchanged.41renderer/ledger
+tests pass; exactly12rows advance.600reviewed/556pending/20withdrawn,96presentation-
+only. Rejected batch20draft remains failure evidence. Next new index61; earlier
+review gaps, archive supplement, runtime/quality refresh and hosted gates remain.
+All owner objectives active. No production or confirmed indexing gain.

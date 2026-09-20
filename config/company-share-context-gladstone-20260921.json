@@ -1,0 +1,33 @@
+{
+  "schema": "canli.reviewed-share-context-spec.v1",
+  "decisions": [
+    {
+      "cik": "0001495240",
+      "accession": "0001495240-26-000011",
+      "source_sha256": "aa4624e7ba0250d1465384b88efe179a8897d7a198ef50d96a6cfe36aab78416",
+      "primary_sha256": "0237b6e9c88c87dce9d73a5f5ed40224e8045e41437637d848149b9c1420c943",
+      "fixture": "scripts/fixtures/editorial/gladstone-land-reviewed-source.json.gz",
+      "observations": 12,
+      "period_ends": [
+        "2023-12-31",
+        "2024-12-31",
+        "2025-12-31"
+      ],
+      "table_index": 43,
+      "share_scale": "0",
+      "table_requires": [
+        "Net loss attributable to common stockholders",
+        "Weighted average shares of common stock outstanding"
+      ],
+      "paragraph_requires": [
+        "(Dollars in thousands, except per-share amounts):",
+        "computed using the weighted-average number of common shares outstanding during the respective periods."
+      ],
+      "reader_note": "For 2023\u20132025, Gladstone Land reports net income but a net loss attributable to common stockholders after cumulative redeemable preferred dividends and preferred-stock extinguishment adjustments. The common-stockholder loss is the EPS numerator; comprehensive income is a separate measure. The filing presents basic and diluted EPS and weighted-average common shares together. The reviewed disclosure establishes that presentation, not the cause of equal dilution measures. The heading scales dollars, not share counts: shares and EPS retain scale-zero tags.",
+      "disposition": "REVIEWED_REPORTED_PRESENTATION_CAUSE_NOT_ESTABLISHED",
+      "supporting_table_indexes": [
+        8
+      ]
+    }
+  ]
+}
