@@ -1,0 +1,67 @@
+{
+  "schema": "canli.hosted-company-browser.v1",
+  "origin": "https://meridian-9zuz7qkhn-arhans-projects-ac470eaa.vercel.app",
+  "manifest_sha256": "3a94eba20c6774f7aa9fde44900fccc601ce95dd80d020dfa25528ee16a68813",
+  "publication_approved": false,
+  "complete": true,
+  "checks": [
+    {
+      "engine": "chromium",
+      "width": 390,
+      "path": "/companies",
+      "status": "PASS"
+    },
+    {
+      "engine": "chromium",
+      "width": 390,
+      "path": "/companies/0000001750",
+      "status": "PASS"
+    },
+    {
+      "engine": "chromium",
+      "width": 390,
+      "flow": "directory-company-history-developer",
+      "status": "PASS"
+    },
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "path": "/companies/0000001750/Assets",
+      "status": "PASS"
+    }
+  ],
+  "failures": [
+    {
+      "engine": "chromium",
+      "width": 1440,
+      "flow": "directory-company-history-developer",
+      "error": "net::ERR_NETWORK_CHANGED"
+    }
+  ],
+  "navigation_retries": [
+    {
+      "engine": "chromium",
+      "width": 390,
+      "path": "/companies/0000001750",
+      "error": "Page.goto: net::ERR_NETWORK_CHANGED at https://meridian-9zuz7qkhn-arhans-projects-ac470eaa.vercel.app/companies/0000001750\nCall log:\n  - navigating to \"https://meridian-9zuz7qkhn-arhans-projects-ac470eaa.vercel.app/companies/0000001750\", waiting until \"networkidle\"\n",
+      "attempt": 1
+    },
+    {
+      "engine": "chromium",
+      "width": 390,
+      "path": "/companies",
+      "error": "Page.goto: net::ERR_NETWORK_CHANGED at https://meridian-9zuz7qkhn-arhans-projects-ac470eaa.vercel.app/companies\nCall log:\n  - navigating to \"https://meridian-9zuz7qkhn-arhans-projects-ac470eaa.vercel.app/companies\", waiting until \"networkidle\"\n",
+      "attempt": 1
+    }
+  ],
+  "code_sha256": "bd1b02b34b283ba849536994d0700b2a7fff2ab059534647ca4b8f61b9b2b22c",
+  "scope": "Only failed cases from the pinned prior report, against the same preview and manifest. Prior failures remain retained; not a new full-suite pass.",
+  "recheck_of": {
+    "path": "artifacts/seo/company-clean-route-browser-v2-20260920.json",
+    "sha256": "b20c4a7348924507dd1bce08f471026e15cbedc2b99291e00da7775c3e6f2b8c"
+  },
+  "browser_versions": {
+    "chromium": "148.0.7778.96"
+  },
+  "passed": false
+}

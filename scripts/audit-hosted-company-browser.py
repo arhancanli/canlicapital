@@ -6,7 +6,9 @@ from pathlib import Path
 from urllib.parse import urlsplit
 from playwright.sync_api import sync_playwright
 
-origin, manifest_path, manifest_hash, output = sys.argv[1:]
+origin, manifest_path, manifest_hash, output = sys.argv[1:5]
+prior_path = sys.argv[5] if len(sys.argv) == 6 else None
+assert len(sys.argv) in (5, 6)
 url = urlsplit(origin)
 assert url.scheme == 'https' and url.path in ('', '/') and not url.query and not url.fragment and not url.username
 origin = origin.rstrip('/')
@@ -18,6 +20,20 @@ report = {'schema': 'canli.hosted-company-browser.v1', 'origin': origin, 'manife
           'publication_approved': False, 'complete': False, 'checks': [], 'failures': [], 'navigation_retries': [],
           'code_sha256': hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
           'scope': 'Representative clean noindex preview pages and first-company navigation at two viewports in Chromium/WebKit. Not full corpus, production activation, accessibility certification or field-performance evidence.'}
+def case_key(case):
+    return (case['engine'], case['width'], case.get('path'), case.get('flow'))
+
+
+wanted = None
+if prior_path:
+    prior_raw = Path(prior_path).read_bytes()
+    prior = json.loads(prior_raw)
+    assert prior['complete'] and prior['origin'] == origin and prior['manifest_sha256'] == manifest_hash
+    wanted = {case_key(case) for case in prior['failures']}
+    assert wanted and len(wanted) == len(prior['failures'])
+    report['recheck_of'] = {'path': prior_path, 'sha256': hashlib.sha256(prior_raw).hexdigest()}
+    report['scope'] = 'Only failed cases from the pinned prior report, against the same preview and manifest. Prior failures remain retained; not a new full-suite pass.'
+report['browser_versions'] = {}
 out = Path(output)
 with out.open('x') as f:
     json.dump(report, f)
@@ -52,15 +68,22 @@ def navigate(page, path, engine, width):
 
 with sync_playwright() as p:
     for engine in ['chromium', 'webkit']:
+        if wanted is not None and not any(case[0] == engine for case in wanted):
+            continue
         browser = getattr(p, engine).launch(headless=True)
+        report['browser_versions'][engine] = browser.version
         try:
             for width in [390, 1440]:
+                if wanted is not None and not any(case[:2] == (engine, width) for case in wanted):
+                    continue
                 page = browser.new_page(viewport={'width': width, 'height': 900}, reduced_motion='reduce')
                 errors = []
                 page.on('pageerror', lambda e: errors.append(str(e)))
                 paths = ['/companies'] + [path for sample in samples for path in
                                          ['/companies/' + sample['cik'], '/companies/' + sample['cik'] + '/Assets']]
                 for path in paths:
+                    if wanted is not None and (engine, width, path, None) not in wanted:
+                        continue
                     try:
                         response = navigate(page, path, engine, width)
                         inspect(page, response, path)
@@ -73,6 +96,9 @@ with sync_playwright() as p:
                         page = browser.new_page(viewport={'width': width, 'height': 900}, reduced_motion='reduce')
                         page.on('pageerror', lambda e: errors.append(str(e)))
                     save()
+                if wanted is not None and (engine, width, None, 'directory-company-history-developer') not in wanted:
+                    page.close()
+                    continue
                 try:
                     response = navigate(page, '/companies', engine, width)
                     inspect(page, response, '/companies')
@@ -97,6 +123,8 @@ with sync_playwright() as p:
                 page.close()
         finally:
             browser.close()
+if wanted is not None:
+    assert {case_key(case) for case in report['checks'] + report['failures']} == wanted
 report['complete'] = True
 report['passed'] = not report['failures']
 save()

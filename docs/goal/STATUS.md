@@ -7,7 +7,7 @@ status is preserved in history/STATUS-20260920-through-five-cohort-archive-start
 ## Current execution
 
 Website worktree: /Users/arhancanli/canlicapital-expansion-20260919.
-Branch research/five-cohort-hosted-preview-20260920. PR27 merged as0c2b646e
+Branch feat/company-clean-route-preview-20260920. PR30 merged as70a66bde578f1658ac35dba6501d47165f14f8fb (GitHub state reverified). PR27 merged as0c2b646e
 with all four CI35513399510jobs passing; reviewed/merged tree
 def9e9101444404fde6d9c73240bd18d2ea672ba. PR28 merged as
 f54d26e793b815baea6a0d0a8d032ca6b3f0d79d after four CI35513563000jobs passed;
@@ -21,7 +21,7 @@ concurrency4, readAttempts3, writeAttempts2, total read budget200/write budget50
 Per-object limits, permission/rate-limit/corruption stops, exact-byte verification
 and create-only reconciliation remain enforced. Twenty storage/planner tests pass.
 Receipt: corpus-local/company-five-cohort-transfer-20260920.json.
-Latest observed checkpoint: 1364 verified objects, 13 read retries, 0 failures.
+Latest observed checkpoint: 3253 verified objects, 0 failures. Session26312 was polled live this turn.
 Poll exact handle before restarting. Prior v3resume5session23870 is terminal after
 1,721objects/126,028,025bytes; receipt and failures preserved. Do not restart oldv3.
 Full transfer and page activation remain incomplete. Separate representative
@@ -94,10 +94,27 @@ zero failures: company/history HTML, source/selected download hashes, assets,
 HEAD/ETag and genuine404responses. Receipt:
 company-five-cohort-preview-ready-recheck2-20260920.json.
 
-Next: complete bulk transfer, prepare clean canonical routing in a preview, then
-browser/user-journey and full-corpus checks plus remaining editorial/admission
-work. Explicit API sample is not canonical-route activation, all-page HTTP proof,
-cloud-load benchmark, production release or Google indexing evidence.
+Clean-route preview2 is READY at source1ab2ef029b4703624d4fcca848709ff7eaefb215:
+https://meridian-9zuz7qkhn-arhans-projects-ac470eaa.vercel.app
+Deployment dpl_C3NZMgurfcejtqhL1Pwuo57BMrE3. Preview-only build flag removes
+static company output after build so filesystem precedence cannot shadow dynamic
+routes. Production config unchanged. First preview failures and diagnosis retained.
+Second preview passes all23 HTTP checks including exact directory membership and
+Allow header. Browser report has27passes/5Chromium failures; all WebKit cases pass.
+Targeted recheck84477 is terminal:4passes/1desktop-flow network failure.
+Report company-clean-route-browser-recheck-20260920.json. One bounded desktop
+recheck34514 also failed; company-clean-route-browser-desktop-recheck-20260920.json
+preserves the result. Browser gate remains incomplete; no further blind retries.
+Prior reports remain unchanged. Source/audits committed through59ed2524; targeted recheck support and continuity
+are prepared for review. Six preview-config/HTTP regression tests pass.
+
+Next: resolve remaining browser cases, complete bulk transfer and full-corpus
+checks plus remaining editorial/admission work before production activation.
+The owner's publication approval persists. The prior 1–3day estimate and possible
+first batch tonight were provisional, not measured forecasts or release promises.
+Production sitemap was rechecked HTTP200 with327URLs during owner questions;
+no additional live sitemap is ready for Search Console. Candidate90,738 is neither
+net-new live pages nor indexing evidence. All broader objectives remain active.
 
 ## Other owner objectives and remaining evidence
 

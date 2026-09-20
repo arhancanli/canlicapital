@@ -444,3 +444,24 @@ tests pass. Standards: RFC9111sections3.2/4.3.4; RFC9110section13.1.2.
 Final audit64924passed23checks, zero failures. Failed receipts remain unchanged.
 This verifies representative explicit API delivery, not canonical routes/full
 corpus/publication/indexing. Bulk transfer remains active; no production changes.
+
+## 2026-09-20 — clean preview correction and focused browser verification
+
+Recent owner replies were status/planning only, not implementation progress.
+Reverified PR30 merged70a66bde, working branch and committed59ed2524 evidence.
+Bulk session26312 polled live; receipt3253objects/0failures at checkpoint.
+Clean preview1 exposed static directory shadowing and missing edge405Allow;
+preview2 source1ab2 adds opt-in preview postbuild cleanup and method header.
+Cloud cleanup log and23HTTP checks pass, including exact directory contents.
+Browser27passes/5failures retained; all WebKit passed, Chromium has network
+changes and one overflow finding. Added prior-report-hash-bound failed-case mode,
+recording browser versions and requiring every failed case to receive an outcome.
+Session84477 now checking exactly those five against the same immutable preview.
+Owner repeated all goals; REQUIREMENTS remains unchanged and fully active.
+No production expansion, new Google submission or indexed gain claimed.
+
+Focused84477 completed4passes/1desktop-flow failure. A single bounded desktop
+recheck34514 also failed. Preserve both receipts; stop blind retries and diagnose
+request-level behavior before treating the browser gate as complete. Mobile layout
+and mobile full navigation now pass, without a CSS change. Six configuration and
+conditional-HTTP regression tests pass. No production activation.
