@@ -1187,3 +1187,26 @@ handle; no restart on timeout. Audit exercises all pages/downloads, canonical/me
 assets, directory reachability, HTTP sitemap equality, conditional requests and404s.
 No hosted/load/browser or indexing claim. Next finish audit, updated runtime archive
 and hosted gates; broader source/usefulness remains open. All owner goals active.
+
+
+## 2026-09-21 — representative browser pass; full HTTP audit heap failure repaired
+
+Previous turn rebuilt v22 runtime and started full HTTP audit31666. PR118 all four
+CI35542487234checks passed at99993be0; merged4371292467702019b988c65bf910cd66a80e19fc,
+full tree1b57f7c9ab3e943d97ad8bdea2096e8bff937269 matches tested head.
+Browser54972TERMINAL0:40 Chromium/WebKit cases at390/1440px pass. Report covers
+eight representative pages and two withheld Iovance history404s in each configuration.
+Manual mobile screenshot review confirms readable layout but excessive14-note
+repetition; retain as a pre-release usability issue, not an accessibility certification.
+Full HTTP31666TERMINAL134 hit Node heap limit near4GB after259seconds, without a
+completed report. Original log retained in corpus-local with hashed failure receipt.
+Graph retained regex-derived HTML substrings. Replacement copies/interns paths and
+stores unique numeric edges, also copying asset paths. Same rendered-page membership,
+shortest-path reachability and orphan checks retained. Two meaningful graph tests
+pass and are added to normal CI. Progress logging every100companies added.
+Retry13997 now active with unchanged page/download/canonical/structured-data/sitemap
+coverage;200 companies/5,387 histories used about61MB heap at last check. Poll that
+handle, never restart merely for timeout. No full HTTP pass claimed yet. Do not change
+renderer code during this run; fix repetitive notices afterward and revalidate changed
+pages. Hosted release/current runtime archive and broader scope remain pending.
+No production activation or indexing gain; all owner objectives active.
