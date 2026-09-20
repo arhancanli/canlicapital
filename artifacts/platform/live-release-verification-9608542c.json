@@ -1,0 +1,65 @@
+{
+  "production_deployment": {
+    "id": "dpl_6jFma3DpVDWB5ZZWSgn5pALicLz2",
+    "url": "meridian-beas6ce22-arhans-projects-ac470eaa.vercel.app",
+    "readyState": "READY",
+    "meta": {
+      "gitCommitAuthorName": "Arhan Canli",
+      "gitCommitAuthorEmail": "315329124+arhancanli@users.noreply.github.com",
+      "gitCommitMessage": "Omit unproven measurement dates from refreshed deployment sitemaps",
+      "gitCommitRef": "HEAD",
+      "gitCommitSha": "9608542ce019307674269667c4aa16ebc69dd43e",
+      "gitDirty": "1",
+      "gitRootDirectory": "",
+      "candidateRevision": "9608542c",
+      "releasePurpose": "verified-key-revocation",
+      "actor": "codex",
+      "lambdaRuntimeStats": "{\"nodejs\":13}"
+    }
+  },
+  "aliases": [
+    {
+      "alias": "canlicapital.com",
+      "deployment_id": "dpl_6jFma3DpVDWB5ZZWSgn5pALicLz2"
+    },
+    {
+      "alias": "www.canlicapital.com",
+      "deployment_id": "dpl_6jFma3DpVDWB5ZZWSgn5pALicLz2"
+    },
+    {
+      "alias": "meridian-pearl-mu.vercel.app",
+      "deployment_id": "dpl_6jFma3DpVDWB5ZZWSgn5pALicLz2"
+    }
+  ],
+  "checks": [
+    {
+      "path": "/",
+      "passed": true,
+      "sha256": "73da5315e8fee70f46393d52ce314c13c6046a901b14373d81779ffddd7495ec"
+    },
+    {
+      "path": "/developers",
+      "passed": true,
+      "sha256": "9f04f936c731c6d3068ebf8c75ef535d0dc3e6c37c6a782e4426803eeadb0c37"
+    },
+    {
+      "path": "/founder",
+      "passed": true,
+      "sha256": "624edc9e2481dada5d80e803d0648335895e0497abc3f28ec19f4219be518cc5"
+    },
+    {
+      "path": "/api/v1/validate/status",
+      "passed": true,
+      "sha256": "5c47b4de28fd1ebb2eb1a79861dc5c6763bb70b49a94f7416444e6f1bb2affe3"
+    },
+    {
+      "path": "/sitemap.xml",
+      "passed": true,
+      "sha256": "70f52b4f4833463620e2f79f5d78ed63543ae04a244b55a4a2afe5ccbf15fc92"
+    }
+  ],
+  "sitemap_urls": 327,
+  "exact_sitemap_bytes_match": true,
+  "no_noindex_header": true,
+  "initial_check_failure": "Project target embedded alias list omitted custom domains; explicit alias API confirms all three."
+}

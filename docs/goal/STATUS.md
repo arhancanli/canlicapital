@@ -10,9 +10,17 @@ history/STATUS-20260920-through-fourth-v9.md; earlier history remains linked the
 Website worktree: /Users/arhancanli/canlicapital-expansion-20260919.
 Branch release/verified-checkpoints-20260920; draft PR16:
 https://github.com/arhancanli/canlicapital/pull/16.
-Code checkpoint99f16517includes source-bound Nika withholding, full cohort verification
-and archive support. All local jobs are terminal; no source capture is running.
-Remote CI at99f16517last checked: three jobs passed, production build running.
+Production application revision9608542ce019307674269667c4aa16ebc69dd43e is live
+on canlicapital.com. Dedicated clean publisher checkout:
+/Users/arhancanli/canlicapital-production-20260920.
+Deployment dpl_6jFma3DpVDWB5ZZWSgn5pALicLz2 is READY; explicit alias API confirms
+canlicapital.com, www.canlicapital.com and meridian-pearl-mu.vercel.app.
+All four CI jobs pass;403website tests, three sitemap integration tests and13shell
+snapshot tests pass. Staged/live disposable-key lifecycles pass. All327staged
+sitemap URLs verified:324first-pass and three bounded successful network rechecks.
+12Chromium/WebKit cases pass across390/1440 widths. Live sitemap bytes match the
+validated build. Seven undated measurements omit optional lastmod; no invented dates.
+Receipts: artifacts/platform/*9608542c.json and artifacts/qa/staged-production-*.
 
 Website PR15merged as4a1fcd16. Its tree equals tested6719ba52; all four CIjobs passed.
 Preview https://meridian-3e5mqtw82-arhans-projects-ac470eaa.vercel.app is READY.
@@ -29,7 +37,8 @@ remains unestablished. Smithery/Glama listings are unverified.
 Engine PR71merged as0aff241a; tree equals tested867d211. All six pre-merge and
 post-merge CI35504254363jobs passed. Portable baseline4,366passed55skipped;
 serial performance1passed; PostgreSQL11passed. Original dirty running engine
-was not reset or activated. Constituent PR68/69/70closure state needs checking.
+was not reset; trading activation remains pending. Only the reviewed website
+snapshot helper and presentation-source pointer were activated for this release. Constituent PR68/69/70closure state needs checking.
 Website Dependabot alert1was confirmed fixed at10:32:48UTC; no alert dismissed.
 
 ## Measured outcomes and limits
@@ -38,7 +47,7 @@ Website Dependabot alert1was confirmed fixed at10:32:48UTC; no alert dismissed.
 | --- | --- |
 | Indexed baseline | Google aggregate262indexed as of Sep14, exported Sep20; not a canonical URL-level count |
 | Not indexed | 40:32noindex,3redirects,3discovered,2crawled |
-| Production sitemap baseline | 263URLs checked Sep20; recheck after deployment |
+| Live production sitemap | 327URLs after Sep20activation; previously263; not an indexed count |
 | Static candidate | 690HTML:327indexable,363noindex |
 | Three-cohort v3 | 1,968companies,52,408histories,40directories:54,416URLs |
 | Fourth v9 | 683companies,17,713histories,14directories:18,410URLs |
@@ -84,15 +93,17 @@ See EVIDENCE_REFRESH.md and artifacts/algo/deployed-evidence-refresh-20260920.js
 
 ## Next work and external dependencies
 
-- Owner publication approval persists. Production Supabase project/account is
-  pending owner response: saved CLI sees four inactive projects and historical
-  production returns403. Vercel variables are sensitive/unreadable; export
-  placeholders do not prove invalid configuration. No migration attempted.
-- Apply and verify key-revocation migration against the confirmed project before
-  production API deployment; exercise a disposable synthetic key lifecycle.
-  Coordinate website activation with the running publisher's design-source pointer,
-  currently canlicapital-website-20260908. Both hourly and nightly paths use it.
-  Never reset the dirty engine or alter trading to deploy the website. KEY_REVOCATION.md.
+- Owner publication approval persists. New owner-provided account token successfully
+  lists the historical production project canlicapital, reference
+  bpnensyowfmdwhqmfdrg, ACTIVE_HEALTHY in eu-central-1, organization
+  qhbioocttcsfubsityha (arhancanli@icloud.com's Org). Production project access is
+  now verified. Disposable live key issuance confirmed the actual runtime binding.
+  Exact key-revocation migration applied and verified; existing keys unchanged.
+  Token not saved in repository. production-key-revocation-20260920.json.
+- Database migration is complete. Staged production API lifecycle passes.
+  Production API and live-domain lifecycle are verified. Publisher pointer now
+  selects the clean canlicapital-production-20260920 checkout; hourly/nightly
+  paths use the reviewed snapshot helper. No trading changes. KEY_REVOCATION.md.
 - Approved object storage/retention destination and access are pending. No bucket,
   upload or hosted company capacity claim. Verify remote bytes and hosted behavior.
 - Continue all-history scope/unit/usefulness review; latest-filing numerical equality
@@ -107,5 +118,5 @@ See EVIDENCE_REFRESH.md and artifacts/algo/deployed-evidence-refresh-20260920.js
 - Engine research needs owner-reserved blind labels and protocol decisions; no
   synthetic substitute or unapproved sleeve admission. No broker orders.
 
-No production migration, new website production activation, running-engine
-activation, actual indexing gain or investment outcome is claimed by these changes.
+Production database migration and website activation are verified. No
+running-engine trading activation, actual indexing gain or investment outcome is claimed.

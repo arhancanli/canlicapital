@@ -1,0 +1,59 @@
+{
+  "project_ref": "bpnensyowfmdwhqmfdrg",
+  "started_at": "2026-09-20T11:10:57.630935+00:00",
+  "checks": {
+    "live_api_database_binding": true,
+    "validation_before_revocation": true,
+    "rpc_revocation_and_idempotence": true,
+    "live_api_rejects_revoked_key_without_quota_charge": true,
+    "public_receipt_retained": true,
+    "existing_keys_revocation_state_unchanged": true,
+    "production_api_healthy": true
+  },
+  "migration_applied": true,
+  "public_revoke_endpoint_deployed": false,
+  "preflight": {
+    "consume_quota": "CREATE OR REPLACE FUNCTION public.consume_quota(p_key_hash text, p_daily_limit integer)\n RETURNS integer\n LANGUAGE plpgsql\n SECURITY DEFINER\n SET search_path TO 'public'\nAS $function$\ndeclare\n  v_key_id uuid;\n  v_calls integer;\nbegin\n  select id into v_key_id from public.api_keys where key_hash = p_key_hash and revoked_at is null;\n  if v_key_id is null then\n    return -2;\n  end if;\n  insert into public.api_usage_daily (key_id, day, calls)\n    values (v_key_id, (now() at time zone 'utc')::date, 1)\n    on conflict (key_id, day) do update set calls = public.api_usage_daily.calls + 1\n    returning calls into v_calls;\n  update public.api_keys set last_used_at = now() where id = v_key_id;\n  if v_calls > p_daily_limit then\n    return -1;\n  end if;\n  return p_daily_limit - v_calls;\nend;\n$function$\n",
+    "revoke_key": null,
+    "rls": [
+      {
+        "relname": "api_keys",
+        "relrowsecurity": true
+      },
+      {
+        "relname": "api_usage_daily",
+        "relrowsecurity": true
+      },
+      {
+        "relname": "receipts",
+        "relrowsecurity": true
+      }
+    ]
+  },
+  "synthetic_receipt_id": "697e042184ebc7ba22e9266a",
+  "migration_sha256": "8cb8fbb31cae6309ec911225d3616a64df51f14e763dd1caad7b7ff5b5c03fe1",
+  "revoked_at": "2026-09-20T11:11:10.338644+00:00",
+  "permissions": {
+    "anon_revoke": false,
+    "authenticated_revoke": false,
+    "service_revoke": true,
+    "anon_quota": false,
+    "authenticated_quota": false,
+    "service_quota": true,
+    "row_lock": true
+  },
+  "usage_after": {
+    "validations_today": 1,
+    "validations_total": 13,
+    "keys_issued_today": 1,
+    "as_of_utc_day": "2026-09-20",
+    "keys_by_source_host_today": {
+      "unknown": 1
+    },
+    "keys_by_label_today": {
+      "synthetic-revocation-release-check-20260920": 1
+    }
+  },
+  "complete": true,
+  "completed_at": "2026-09-20T11:11:22.313842+00:00"
+}
