@@ -1389,3 +1389,29 @@ Reports and queue are retained; source filing review and archive remain next.
 Engine CI35498286728 re-polled: five jobs pass, offline pytest remains live on
 74c5461. Latest867d211 still needs full remote verification. No duplicate job or
 production activation. MCP publication decision remains pending.
+
+## 2026-09-20 — fourth cohort primary filings and source discrepancy
+
+Previous turn made progress through complete local delivery checks and a bound
+editorial queue. Generalized capture/comparison into separate scripts, leaving
+historical identity evidence code untouched. Capture23675 completed:36filings,
+72index/primary responses. Comparison43634 exits0:120selected observations,
+73inline matches,47unresolved. Missing/unsupported inline facts are retained as
+unresolved, not silently counted as successful comparisons. Separate XBRL review
+is still required. Completed capture replay verifies bytes without rewriting the
+report; a prior403access-stop fixture rejects resume before network activity.
+
+Liberty Star1172178 equipment purchases is the only nonzero constant history.
+Its2021instance contains an undimensioned USD500fact matching Companyfacts.
+Captured separate instance608,932bytes SHA
+7be42acf9dc15043ed421351c70d73fc5b7171e27142896319e21a05f27ea491.
+Rendered statement lists operating cashflow-380,879 and financing362,573, exactly
+reconciling netchange-18,306 without investing activity. Preserved source-bound
+passage, context and HOLD_PENDING_SOURCE_RECONCILIATION; meaning of500 remains
+unproven. No automatic exclusion, admission, or all-history error claim. Web
+open of the already-captured index was unavailable; retained source bytes are
+authoritative for this review. All primary captures and instance returned200.
+
+EngineCI35498286728 still reports offline tests running; five other jobs pass.
+WebsiteCI35499369255 was running on195494cf at checkpoint. No deployment,
+publication or runtime activation; overall goal remains active.

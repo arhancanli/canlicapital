@@ -38,6 +38,14 @@ its evidence archive and editorial review remain outstanding. Full local HTTP
 checks pass for 18,416 URLs and 1,366 downloads; 66 browser checks across 11
 sampled routes, two engines and three viewport widths pass. Priority filing
 review covers 55 concepts across 30 companies and 36 latest selected filings.
+Priority filing capture now covers all 36 filings (72 verified index/primary
+responses). Inline comparison matches 73 of 120 observations; 47 remain unresolved,
+including older non-inline filings. Liberty Star's USD500 equipment-purchase fact
+matches its 2021 XBRL instance but is not reconciled to the rendered cash-flow
+statement; recorded HOLD_PENDING_SOURCE_RECONCILIATION. No concept admission or
+exclusion inferred solely from that discrepancy. See company-fourth-filing-capture,
+company-fourth-inline-comparison and company-fourth-liberty-scope dated receipts.
+
 Resume safeguards passed 6+390 tests and audits. The completed capture had loaded
 the older collector; its full legacy report was replayed without restarting it.
 See company-fourth-reviewed-20260920.json and company-fourth-selected-quality-v3.json.
