@@ -1031,3 +1031,21 @@ pass; report replays byte-identically.1088reviewed/62pending/26withdrawn,
 118presentation-only. RemainingSiebert6/Freddie12/Rockwell12/INVO16/Plastec12/
 historicalLifeward4. Older Iovance non-batch scope separate. No rebuild/deployment/
 indexing gain; all owner objectives remain active.
+
+
+## 2026-09-21 — historical ReWalk context without currency substitution
+
+Previous turn supplied a status comparison; it made no implementation change.
+Revalidated PR111: all four CI35540402410 checks passed at9bbe95a5. Merged as
+ d336ff2b60694a2d74b03bf0ab7c2501ca5e5a76; merged tree
+f7a6687ca941479d76cfbff72b8791004afc0a9f exactly matches tested head.
+Reviewed four historical ReWalk2021 observations against original note274:
+USD EPS -.27 and weighted-average shares47,935,652, basic and diluted. Filing
+explicitly excludes potential shares/warrants as anti-dilutive. Historical basis
+is distinguished from newer reverse-split figures; six ILS-tagged EPS holds stay.
+Report replays byte-identically;95selector/renderer/ledger tests pass, including
+independent historical-note suppression without suppressing newer filing context.
+Ledger1092reviewed/58pending/26withdrawn,118presentation-only. RemainingSiebert6,
+Freddie12,Rockwell12,INVO16,Plastec12; older Iovance review separate. Updated
+archive/runtime/quality and hosting remain pending. No deployment or indexing gain.
+All owner objectives remain active.

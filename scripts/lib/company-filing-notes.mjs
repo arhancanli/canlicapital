@@ -1,6 +1,53 @@
 // Limited filing context, bound to the reviewed capture and selected observations.
 export const FILING_NOTES = [
 {
+  "cik": "0001607962",
+  "include_on_overview": true,
+  "source_sha256": "65d510c294653d7f3865b561279f8eb53c45e516643e1812cfe6330a41480012",
+  "tags": [
+    "EarningsPerShareBasic",
+    "EarningsPerShareDiluted",
+    "WeightedAverageNumberOfDilutedSharesOutstanding",
+    "WeightedAverageNumberOfSharesOutstandingBasic"
+  ],
+  "text": "For ReWalk Robotics (now Lifeward), the 2023 annual filing reports 2021 basic and diluted EPS of USD -0.27 and weighted-average ordinary shares of 47,935,652. Potential ordinary shares and warrants were excluded as anti-dilutive during losses. These are historical 2021 figures from that filing, before the later 2024 and 2026 reverse splits; they are not on the same share basis as the newer filing. This review uses the USD-tagged EPS in the per-share note. The six separate ILS-tagged EPS observations remain withheld for their conflict with the statement currency; no conversion or relabeling is applied.",
+  "filing_url": "https://www.sec.gov/Archives/edgar/data/1607962/000117891324000730/zk2431037.htm",
+  "observations": [
+    {
+      "start": "2021-01-01",
+      "end": "2021-12-31",
+      "val": -0.27,
+      "accn": "0001178913-24-000730",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2021-01-01",
+      "end": "2021-12-31",
+      "val": -0.27,
+      "accn": "0001178913-24-000730",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2021-01-01",
+      "end": "2021-12-31",
+      "val": 47935652,
+      "accn": "0001178913-24-000730",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2021-01-01",
+      "end": "2021-12-31",
+      "val": 47935652,
+      "accn": "0001178913-24-000730",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    }
+  ]
+},
+{
   "cik": "0000059255",
   "include_on_overview": true,
   "source_sha256": "5a666016453d51aeb23f9f9129b08137b14135abcbd501441d79b5c477dd1f95",

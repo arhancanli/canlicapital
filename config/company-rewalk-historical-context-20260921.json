@@ -1,0 +1,83 @@
+{
+  "schema": "canli.reviewed-share-context-spec.v1",
+  "decisions": [
+    {
+      "cik": "0001607962",
+      "accession": "0001178913-24-000730",
+      "source_sha256": "65d510c294653d7f3865b561279f8eb53c45e516643e1812cfe6330a41480012",
+      "primary_sha256": "2891960fabc5236814430ff3639d55f35c47c8757c68fd4048732d4c3d4a1381",
+      "fixture": "scripts/fixtures/editorial/lifeward-reviewed-source.json.gz",
+      "selected_observations": [
+        {
+          "start": "2021-01-01",
+          "end": "2021-12-31",
+          "val": -0.27,
+          "accn": "0001178913-24-000730",
+          "fy": 2023,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2024-02-27",
+          "frame": "CY2021",
+          "unit": "USD/shares",
+          "tag": "EarningsPerShareBasic"
+        },
+        {
+          "start": "2021-01-01",
+          "end": "2021-12-31",
+          "val": -0.27,
+          "accn": "0001178913-24-000730",
+          "fy": 2023,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2024-02-27",
+          "frame": "CY2021",
+          "unit": "USD/shares",
+          "tag": "EarningsPerShareDiluted"
+        },
+        {
+          "start": "2021-01-01",
+          "end": "2021-12-31",
+          "val": 47935652,
+          "accn": "0001178913-24-000730",
+          "fy": 2023,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2024-02-27",
+          "frame": "CY2021",
+          "unit": "shares",
+          "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+        },
+        {
+          "start": "2021-01-01",
+          "end": "2021-12-31",
+          "val": 47935652,
+          "accn": "0001178913-24-000730",
+          "fy": 2023,
+          "fp": "FY",
+          "form": "10-K",
+          "filed": "2024-02-27",
+          "frame": "CY2021",
+          "unit": "shares",
+          "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+        }
+      ],
+      "observations": 4,
+      "period_ends": [
+        "2021-12-31"
+      ],
+      "table_index": 274,
+      "share_scale": "0",
+      "table_requires": [
+        "47,935,652",
+        "0.27",
+        "Net loss attributable to ordinary shares"
+      ],
+      "paragraph_requires": [
+        "Basic net loss per share is computed by dividing the net loss by the weighted-average number of shares of ordinary shares outstanding during the period.",
+        "Basic and diluted net loss per share was the same for each period presented as the inclusion of all potential shares of ordinary shares and warrants outstanding would have been anti-dilutive."
+      ],
+      "reader_note": "For ReWalk Robotics (now Lifeward), the 2023 annual filing reports 2021 basic and diluted EPS of USD -0.27 and weighted-average ordinary shares of 47,935,652. Potential ordinary shares and warrants were excluded as anti-dilutive during losses. These are historical 2021 figures from that filing, before the later 2024 and 2026 reverse splits; they are not on the same share basis as the newer filing. This review uses the USD-tagged EPS in the per-share note. The six separate ILS-tagged EPS observations remain withheld for their conflict with the statement currency; no conversion or relabeling is applied.",
+      "disposition": "REVIEWED_ALLOCATION_UNIT_AND_DILUTION_CONTEXT"
+    }
+  ]
+}
