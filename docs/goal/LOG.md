@@ -373,3 +373,29 @@ opening balances; Atlantica1996is inception-column opening cash, not evidence of
 retains matching contexts. New113file archive verified hashes and byte-identical
 isolated scope replay. No source values, production settings or admission policy
 changed. Transfer remains active; no new live/indexed-page claim.
+
+## 2026-09-20 — cumulative policy replay for combined expansion
+
+Merged PR26 with all checks and identical tree; post-merge checks pass. Began
+combining five cohorts, retaining the expected stop for mixed policy versions.
+Restaged four cohorts under existing cumulativev9 policy; unchanged fourth reused.
+Full selected-record comparison found no change beyond selection_policy for all
+3,323companies. Source objects and exclusions unchanged; metadata truthfully tracks
+current replay selector. Original artifacts preserved. Session24408 is combining
+pinnedv9 deliveries; no release or URL counts claimed until all builds verify.
+
+Resume5session23870 terminal exit1 at1721objects/126028025bytes.
+The tenth read recovery had been consumed; a later60second read timeout correctly
+stopped. All in-flight workers settled. Stop receipt retained. No active uploader.
+Combined delivery24408completed; catalog3,323companies verified; pipeline28956
+continues release/discovery/storage-plan checks. Next transfer should use larger
+verified release rather than continue uploading the superseded v3candidate.
+
+Five-cohort pipeline28956completed exit0. Release9b562e4b5a1095e6dadb330915060b8b320ba02fc9384e9c5aef72f8d0aee4a2
+binds3,323companies/87,348histories;67directories yield90,738unique candidate URLs.
+Independent sitemap XML/hash/uniqueness check passes. Storage plan10,360objects/
+1,280,295,450bytes; plan SHA6cafb5205963ea8187a8f014dfeb8342bdd487f2274c33603ff96d332a83750c.
+No uploader active. Previous v3resume5 stopped at1,721verified objects. Next transfer
+should target combinedv9release, with appropriate bounded recovery and later new
+preview binding. No live/indexed-page increase. Earlier projected count is now
+supported by a combined artifact; prior count receipt remains unchanged.

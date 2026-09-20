@@ -1,10 +1,10 @@
 # Storage readiness
 
-Current status: dedicated Supabase staging bucket created; two-object JSON/gzip
-transport canary passes exact public-byte verification. Resume5 full runtime
-transfer is active (session23870; poll before restarting). Hosted preview is READY
-and unavailable-state checks pass; successful-data checks await transfer completion.
-Production page configuration is unchanged. Current exact checkpoint: STATUS.md.
+Current status: staging bucket and transport canaries verified; older v3preview
+READY with unavailable-state checks passed. Resume5upload is terminal after1,721
+objects; no uploader active. New five-cohort release and10,360-object storage plan
+are verified locally. Next transfer targets that release, then a matching hosted
+preview. Production configuration is unchanged. Exact current pins: STATUS.md.
 Earlier sections below preserve historical checkpoints and superseded access limits.
 
 ## Verified runtime bundle

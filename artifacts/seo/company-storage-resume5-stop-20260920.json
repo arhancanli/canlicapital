@@ -1,0 +1,39 @@
+{
+  "schema": "canli.storage-transfer-stop.v1",
+  "session": 23870,
+  "exit_code": 1,
+  "receipt_path": "artifacts/seo/corpus-local/company-three-cohort-remote-transfer-resume5-20260920.json",
+  "receipt_sha256": "d63d6bfb3667b0619c29375ca248811b132f250de5acc700ae9a63b96f66b149",
+  "verified_objects": 1721,
+  "verified_bytes": 126028025,
+  "read_retries": 10,
+  "write_recovery": [
+    {
+      "key": "catalog/objects/63cea9b29eadbd2800686ecf92fda7bc6c0058fdcd5c763803ea1e163ceb47da.json",
+      "attempt": 1,
+      "error": "Storage request failed (TimeoutError; TimeoutError)",
+      "reconciliation": "absent",
+      "retry_number": 1
+    },
+    {
+      "key": "catalog/objects/8113b7de11d0066a77851b116ae4f2f21d7764c9cdf7f77bcb0c63eefe1ea375.json",
+      "attempt": 1,
+      "error": "Storage request failed (TimeoutError; TimeoutError)",
+      "reconciliation": "verified_existing"
+    },
+    {
+      "key": "catalog/objects/cc806446c6662d359739149713f1bb0982b2a010c79767140d14728d075d5634.json",
+      "attempt": 1,
+      "error": "Storage request failed (ECONNRESET; TypeError,Error,ECONNRESET)",
+      "reconciliation": "verified_existing"
+    }
+  ],
+  "failures": [
+    {
+      "key": "catalog/objects/d1b4e3cf33d33af844fd56c57ad7b292e07575ac13494f9643a5552988a0fdf2.json",
+      "error": "Storage request failed (TimeoutError; TimeoutError)"
+    }
+  ],
+  "complete": false,
+  "scope": "Terminal after read timeout with ten-retry budget consumed; completed objects remain verified. No active uploader at checkpoint. Next transfer should target the verified five-cohort plan once available, with bounded recovery suitable for that object count."
+}
