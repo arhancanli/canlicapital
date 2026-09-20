@@ -960,3 +960,16 @@ Weave exclusions are period-end securities, not additions to weighted averages.
 rows advance with all six older holds unchanged.998reviewed/152pending/26withdrawn,
 96presentation-only. Next95/96/98/99,97already reviewed; historical Lifeward four
 rows/earlier gaps remain. No rebuild/deployment/indexing gain. All goals active.
+
+## 2026-09-21 — profitable-year options distinct from loss anti-dilution
+
+Previous turn completed24latest Lifeward/Weave reviews. PR106four CI35539383682
+checks passed atce1684ac; mergedfdaa9723802c3a2ee450be27e354801e60275f75, full tree
+0e61f2df0c2ca8fdc3462bd027a5db5d8eac30a2matches tested head. Reviewed24Check-Cap/
+Tenable observations. Check-Cap profitable2025excludes out-of-money instruments,
+not the loss-only reason given for2023/2024; split already reflected. Tenable
+loss-period exclusions/scale-three shares retained.90selector/renderer/ledger
+tests pass; report replays byte-identically; exactly24rows advance.1022reviewed/
+128pending/26withdrawn,96presentation-only. Next98/99,97already reviewed; historical
+Lifeward four rows/earlier gaps remain. No rebuild/deployment/indexing gain.
+All owner objectives remain active.
