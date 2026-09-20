@@ -1,0 +1,61 @@
+{
+  "schema": "canli.reviewed-share-context-spec.v1",
+  "decisions": [
+    {
+      "cik": "0001563190",
+      "accession": "0001563190-26-000057",
+      "source_sha256": "770545ce47f01dcaddb2df911c9be750497bc947ea21b3b0e957219cedd5cb01",
+      "primary_sha256": "fc56989e3170f6f523ed0cbe9f412b3e3edbb56c1a55350e609f3a1f09a4953c",
+      "fixture": "scripts/fixtures/editorial/compass-reviewed-source.json.gz",
+      "observations": 12,
+      "period_ends": [
+        "2023-12-31",
+        "2024-12-31",
+        "2025-12-31"
+      ],
+      "table_index": 67,
+      "share_scale": "0",
+      "table_requires": [
+        "Net loss",
+        "Weighted"
+      ],
+      "paragraph_requires": [
+        "The Company computes net loss per share under the two-class method",
+        "For periods in which the Company reports net losses",
+        "includes 38.5 million shares related to the Share Consideration",
+        "the number of shares issuable to the Non-Accelerated Sellers was finalized and determined to be 10.5 million shares",
+        "(in millions, except share and per share amounts)"
+      ],
+      "reader_note": "For Compass in 2023\u20132025, the two-class method gives the same loss per share for Class A, B and C common stock because their economic rights are substantially identical apart from voting rights. Potential dilution is excluded in loss periods. The 2025 denominator already includes the filing\u2019s 38.5 million merger-consideration shares from the January 13 acquisition date, including 10.1 million minimum issuable shares; the January 2026 finalization to 10.5 million is not substituted into the selected 2025 figures. Full scale-zero shares remain under the share/per-share exception to the millions heading.",
+      "disposition": "REVIEWED_ALLOCATION_UNIT_AND_DILUTION_CONTEXT"
+    },
+    {
+      "cik": "0001564408",
+      "accession": "0001564408-26-000013",
+      "source_sha256": "8618cf9ed2d5a68488682be3e8184b74557ee6c3e218fb709c2f3705d5d783d8",
+      "primary_sha256": "fe574d1ba758f1ace25cc45a8bcc5cdac4505af7a9ab2695eae7ea1172db96bf",
+      "fixture": "scripts/fixtures/editorial/snap-reviewed-source.json.gz",
+      "observations": 12,
+      "period_ends": [
+        "2023-12-31",
+        "2024-12-31",
+        "2025-12-31"
+      ],
+      "table_index": 38,
+      "share_scale": "3",
+      "table_requires": [
+        "Net loss",
+        "Weighted"
+      ],
+      "paragraph_requires": [
+        "(in thousands, except per share amounts)",
+        "We compute net loss per share using the two-class method",
+        "adjusted for RSAs for which the risk of forfeiture has not yet lapsed",
+        "For the periods presented, our potentially dilutive shares relating to stock options, RSUs, RSAs, and the Convertible Notes were not included",
+        "We use the if-converted method"
+      ],
+      "reader_note": "For Snap in 2023\u20132025, the statement reports combined weighted-average shares for Class A, B and C, with class-specific loss-per-share accounting under the two-class method. Basic shares are adjusted for restricted stock awards whose forfeiture risk has not lapsed. Potential shares from options, RSUs, RSAs and convertible notes are excluded as anti-dilutive in these loss periods. The filing uses the if-converted method for potential dilution from its convertible notes. Scale-three share counts and scale-zero EPS remain unchanged under the statement\u2019s thousands heading.",
+      "disposition": "REVIEWED_ALLOCATION_UNIT_AND_DILUTION_CONTEXT"
+    }
+  ]
+}
