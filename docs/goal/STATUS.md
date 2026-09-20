@@ -9,8 +9,8 @@ which links older records. Historical process states are not live telemetry.
 ## Current work and next action
 
 Worktree `/Users/arhancanli/canlicapital-expansion-20260919`, branch
-`evidence/share-context-batch23-20260921`. PR88merged9c94f21aafter four passing
-CI35535981618checks at37f22377. Tested and merged trees match exactly.
+`evidence/phoenix-original-capture-20260921`. PR89merged6b40e120after four passing
+CI35536126952checks atc9238b59. Tested and merged trees match exactly.
 
 Latest registered ledger:company-basic-diluted-registered-scope-batch23-20260921.json.gz.
 Of1,176batch observations,660reviewed/496pending/20withdrawn.96reviewed are explicitly
@@ -25,6 +25,12 @@ loss sharing under the two-class method; potential dilution excluded in loss
 periods. Scale3shares/scale0EPSand fiscal dates unchanged.44renderer/ledger tests
 pass; source report replays byte-identically. Next index66Phoenix New Media needs
 legacy XML/statement mapping.96presentation-only reviews retain limits.
+PhoenixMay24amendment only furnishes XBRL; originalApril27annual report accession
+0001193125-12-189597is now captured with SECsubmission/index/primary receipts.
+Original statement358and EPSnote399located;14observations remain pending explicit
+cell/date/currency mapping. Initialcapture92984failed after saving documents due to
+missing target tag; version2target/capture completed using retained bytes. Failure
+preserved. Capture/retention reports under company-phoenix-original-2011*.
 V19six Outset2023–2025share-scale holds remain; no silent rescaling or second split
 conversion. EPS and older periods remain unapproved by the hold report.
 V19comparison61020TERMINAL0verified all3,323companies/87,344histories against

@@ -713,3 +713,21 @@ and original dates/values unchanged. Source report replays byte-identically;
 20withdrawn,96presentation-only. Next index66Phoenix legacy14requires original
 XML/statement mapping; earlier gaps remain. No runtime rebuild, archive supplement,
 deployment or indexing gain. All owner goals remain active.
+
+## 2026-09-21 — Phoenix amendment requires original annual report
+
+Previous turn completed12Domo reviews. PR89all four CI35536126952checks passed
+atc9238b59; merged6b40e120, identical tree7ee6521d5594911faaba48e287f18c49993f2fed.
+PhoenixMay24,2012amendment explicitly only furnishes XBRL and refers toApril27
+original annual report. Search results did not identify it reliably. Captured SEC
+submissions (200), which pins original0001193125-12-189597/d316760d20f.htm.
+Captured originalindex/primary (200); first process92984terminal1after saving
+responses because target omitted tag required by metadata extraction. Preserved
+failed target/report; version2adds fourtags and completes using original saved
+responses without redownload. Hash/length/status verified for all three receipts.
+Located originalstatement358and EPSnote399, RMB/USDconvenience translation6.2939,
+ordinary-share loss after preferred accretion/allocation and explicit anti-dilution.
+14XMLobservations remain pending cell/date/currency mapping and source-bound review;
+no approval/count advance. Counts660reviewed/496pending/20withdrawn,96presentation-only.
+Retention report captures receipts/navigation; not a sealed archive or publication.
+All goals active; no runtime/deployment/indexing gain.
