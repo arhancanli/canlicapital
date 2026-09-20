@@ -66,3 +66,17 @@ PostgreSQL11passed. Saved metadata/log hashes and receipt; prior failed local ru
 and correction remain retained. Candidate ready for merge/release review; no merge,
 runtime activation or forward-performance claim. Fifthcapture49258 remains live:
 latest521processed,340review candidates,90exclusions,91HTTPerrors,no stop/finish.
+
+## 2026-09-20 — combined engine release review prepared
+
+Verified clean integration867d211, unchanged remote maincb59488, and successful
+final six-job CI35499961114. Created draft PR71 combining PR68/69/70; its exact
+head and draft/open state verified. Constituent PRs remain open. Description
+records corrected behavior, archived-environment/replay distinction, exact tests,
+retained local failures, and outstanding outcome/release limits. No merge or
+runtime activation. Owner will be notified when deployment is needed; this does
+not constitute publication approval. MCP0.1.2 decision remains pending.
+
+Website05617bd9 now passes allCI35501859482jobs. Fifth capture49258 continues:
+804processed,528review candidates,130content exclusions,146HTTPerrors; no stop
+or finish. Same capture retained; no failed requests restarted.

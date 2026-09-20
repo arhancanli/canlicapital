@@ -7,12 +7,14 @@ Detailed prior status is preserved in history/STATUS-20260920-through-fourth-v6.
 ## Active work and exact handles
 
 - Fifth source capture: session49258, started09:02:13.251UTC, directory
-  artifacts/seo/corpus-local/fifth-1000. Last checkpoint521/1000:340review candidates,
-  90content exclusions,91HTTPerrors; no stop or finish. Poll this same handle.
+  artifacts/seo/corpus-local/fifth-1000. Last checkpoint804/1000:528review candidates,
+  130content exclusions,146HTTPerrors; no stop or finish. Poll this same handle.
   Do not restart because a poll times out or replace its queue.
 - Engine latest-head CI35499961114 passed all six jobs on867d211. Portable suite:
   4,366passed,55skipped; serial performance1passed; PostgreSQL contract11passed.
-  Candidate is ready for final merge/release review, not runtime activation.
+  Draft integration PR71 is open at the tested head:
+  https://github.com/arhancanli/alphac/pull/71. Ready for merge/release review;
+  runtime activation remains pending.
 - No source capture or pending CI establishes completion, deployment or indexing.
 
 ## Measured outcomes
@@ -90,7 +92,7 @@ All archives are local. Offsite retention and hosted preview remain unverified.
 
 ## Code and platform verification
 
-Website5ad85fb0 passed allCI35501098085jobs. Local v6verification passes6+393tests
+Website05617bd9 passed allCI35501859482jobs. Local v6verification passes6+393tests
 and audits. Prior MCP test failure35500519399 is preserved; test-only deterministic
 deadline correction passed48MCP tests and complete remoteCI35500716863.
 Current source evidence:163hashes,2signatures and1,060transparency entries verify;
