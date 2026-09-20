@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { catalogHash } from '../api/_lib/company-catalog.js';
+import { verifyStagedResponse } from './lib/hosted-company-http.mjs';
 
 // Audits the explicit staging wrapper. Clean canonical routing is a separate gate.
 const [originText, manifestPath, manifestHash, output, mode = 'ready'] = process.argv.slice(2);
@@ -17,9 +18,11 @@ assert.ok(manifest.files.length > 0);
 const report = { schema: 'canli.hosted-company-staging-audit.v1', origin: origin.origin,
   manifest_sha256: manifestHash, mode, publication_approved: false, complete: false,
   checks: [], failures: [], code_sha256: catalogHash(readFileSync(new URL(import.meta.url))),
+  http_contract_sha256: catalogHash(readFileSync(new URL('./lib/hosted-company-http.mjs', import.meta.url))),
   scope: 'Explicit staging API sample. Not canonical-route activation, complete corpus HTTP verification, indexing evidence or a cloud-load benchmark.' };
 const save = () => writeFileSync(output, JSON.stringify(report, null, 2) + '\n');
 save();
+const verifiedRepresentations = new Map();
 async function check(path, method, status, inspect = () => {}, headers = {}) {
   const url = new URL('/api/v1/company-reference', origin); url.searchParams.set('path', path);
   const start = performance.now();
@@ -32,11 +35,15 @@ async function check(path, method, status, inspect = () => {}, headers = {}) {
     const bytes = Buffer.concat(chunks);
     const result = { path, method, status: response.status, bytes: length,
       elapsed_ms: Math.round(performance.now() - start), sha256: catalogHash(bytes),
-      robots: response.headers.get('x-robots-tag'), cache_control: response.headers.get('cache-control') };
+      robots: response.headers.get('x-robots-tag'), cache_control: response.headers.get('cache-control'), etag: response.headers.get('etag') };
     report.checks.push(result);
     assert.equal(response.status, status, `${method} ${path}`);
-    assert.match(response.headers.get('x-robots-tag') ?? '', /\bnoindex\b/);
+    const prior = verifiedRepresentations.get(path);
+    verifyStagedResponse({ path, method, status: response.status, headers: response.headers,
+      bytes, requestETag: headers['If-None-Match'], prior });
+    if (response.status === 304) result.validation_of = { path: prior.path, etag: prior.etag, sha256: prior.sha256, robots: prior.robots };
     await inspect(response, bytes);
+    if (method === 'GET' && response.status === 200) verifiedRepresentations.set(path, result);
     save(); return response;
   } catch (error) {
     report.failures.push({ path, method, error: error.message }); save(); return null;

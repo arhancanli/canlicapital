@@ -7,22 +7,25 @@ status is preserved in history/STATUS-20260920-through-five-cohort-archive-start
 ## Current execution
 
 Website worktree: /Users/arhancanli/canlicapital-expansion-20260919.
-Branch research/five-cohort-evidence-archive-20260920. PR27 merged as0c2b646e
+Branch research/five-cohort-hosted-preview-20260920. PR27 merged as0c2b646e
 with all four CI35513399510jobs passing; reviewed/merged tree
 def9e9101444404fde6d9c73240bd18d2ea672ba. PR28 merged as
 f54d26e793b815baea6a0d0a8d032ca6b3f0d79d after four CI35513563000jobs passed;
 reviewed a98637c4 and merged trees equal6f5ccfffe21aa3e92d4ac4ee15e5bf49b8464f2f.
-Post-merge PR28 checks must be polled before claiming success.
+Post-merge PR28 checks passed. PR29 merged asb2b8c0354d5f712cbb2abfb150596112ee2c8834
+after all four CI35513797336jobs passed at1d6ad4cb. Both trees
+e84a0c176ef185056d212f8de951e06dc039cb8d; post-merge checks pass.
 
 Five-cohort uploader session26312 is active, using codea98637c4. Settings:
 concurrency4, readAttempts3, writeAttempts2, total read budget200/write budget50.
 Per-object limits, permission/rate-limit/corruption stops, exact-byte verification
 and create-only reconciliation remain enforced. Twenty storage/planner tests pass.
 Receipt: corpus-local/company-five-cohort-transfer-20260920.json.
-Latest observed checkpoint: 388 verified objects, 3 read retries, 0 failures.
+Latest observed checkpoint: 1364 verified objects, 13 read retries, 0 failures.
 Poll exact handle before restarting. Prior v3resume5session23870 is terminal after
 1,721objects/126,028,025bytes; receipt and failures preserved. Do not restart oldv3.
-No completed remote transfer, hosted ready-data check or page activation claimed.
+Full transfer and page activation remain incomplete. Separate representative
+hosted ready-data checks now pass; see the preview section below.
 
 ## Verified combined candidate
 
@@ -63,12 +66,38 @@ artifacts/platform/*9608542c.json and artifacts/qa/staged-production-*.
 Supabase production projectbpnensyowfmdwhqmfdrg and key-revocation migration verified.
 Correct-account credential is held separately; do not use wrong CLI preview identity.
 
-Existing preview dpl_Gw2aMA1cscjaGtV3c9JzF95voFai:
-https://meridian-omfw4yrid-arhans-projects-ac470eaa.vercel.app
-Source9f1e607c, oldv3release. Four unavailable-state checks passed. It does not bind
-the new five-cohort release. Next: finish upload; deploy matching preview, run
-ready-state API/download/HTML checks, canonical routes, full corpus HTTP/browser
-and remaining editorial/publication gates. Production settings unchanged.
+Five-cohort preview dpl_CL9YBfWudnroTVMroAGJruvmVH6A is READY:
+https://meridian-kd3tqy3yw-arhans-projects-ac470eaa.vercel.app
+Clean sourcef54d26e793b815baea6a0d0a8d032ca6b3f0d79d, checkout
+/Users/arhancanli/canlicapital-five-cohort-preview-20260920. Validation clone
+/var/folders/qk/0lc9wn8s1cjb65x50t0gn3km0000gn/T/canli-validation-rqoTGB;
+build log /tmp/canli-five-cohort-preview-build.log. Deployed original clean source;
+only deployment-local public storage settings bind the five-cohort release.
+Production settings unchanged. Earlier v3preview remains historical evidence.
+
+Four unavailable-state checks passed before the probe upload. Separate29-object/
+1,274,386byte probe transfer10532completed with exact public-byte verification,
+concurrency1 alongside bulk26312. It contains only dependencies for first/middle/
+last company and first-directory checks; completion does NOT mean full transfer.
+Probeplan8529568b6497739c4a75c70897696ada384917a637f1a4a01de792c989f37cba
+binds full plan6cafb520; source CIKs0000001750/0001090872/0001873213.
+
+Initial ready audit44329failed only on three304responses omitting X-Robots-Tag.
+Recheck31384retains one fetch failure and weak-versus-strong ETag mismatch findings.
+Corrected audit requires a prior verified200/noindex/no-store for the same path,
+matching If-None-Match opaque validator, empty304body and unchanged no-store.
+Full/error responses still directly require noindex/no-store. Three regression
+checks reject missing prior evidence, changed validators and conflicting robots.
+RFC9111sections3.2/4.3.4 and RFC9110section13.1.2 explain the conditional semantics.
+Neither failed receipt was replaced. Final audit64924completed exit0 with23checks,
+zero failures: company/history HTML, source/selected download hashes, assets,
+HEAD/ETag and genuine404responses. Receipt:
+company-five-cohort-preview-ready-recheck2-20260920.json.
+
+Next: complete bulk transfer, prepare clean canonical routing in a preview, then
+browser/user-journey and full-corpus checks plus remaining editorial/admission
+work. Explicit API sample is not canonical-route activation, all-page HTTP proof,
+cloud-load benchmark, production release or Google indexing evidence.
 
 ## Other owner objectives and remaining evidence
 

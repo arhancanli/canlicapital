@@ -9,7 +9,7 @@ in history/EXECUTION_LEDGER-20260920-through-five-cohort-archive-start.md.
 | Inherited repair/source integrity | Source-bound replay and exclusion safeguards implemented | Continue independent review; preserve failed evidence |
 | Five-cohort expansion | 3,323companies,87,348histories,67directories;90,738unique candidate URLs verified | Editorial admission, hosted verification and production release |
 | Retention | Combined23,115file archive restored; all5queues/1,026exclusions and10,360runtime objects replay | Offsite backup and ongoing maintenance |
-| Hosted delivery | Five-cohort upload26312active; earlier transfer receipts preserved | Complete remote byte checks; matching preview and production gates |
+| Hosted delivery | Five-cohort upload26312active; matching preview passes23sample checks | Complete bulk transfer, clean-route/browser/full-corpus and production gates |
 | Editorial quality | Versioned exclusions;198extra-concept sample matches;18historical cash scope checks | Remaining all-history/unit/usefulness review; no blanket admission |
 | Indexing/SEO | 327live sitemap URLs;262indexed baseline fromSep14;104intent owners | URL-level exclusions, relevant coverage and800kactual indexing |
 | Developer platform | MCP0.1.2published; key-revocation migration/API verified live | Measure and earn real API/MCP/repository adoption |
