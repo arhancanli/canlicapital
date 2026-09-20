@@ -43,3 +43,9 @@ primary/source hashes, exact periods, observation count, table, required text,
 share scale and reader explanation. It records a completed review, not a rule
 that automatically approves new filings with matching keywords. The first such
 spec is `config/company-loss-context-batch2-20260920.json`.
+
+Batch3uses `scripts/review-share-context-spec-v2.py`: it also checks leaf table
+cells for narrative disclosure. The original helper remains unchanged for prior
+reproduction. FuelCell’s direct table-cell footnote required this extension;
+absence from the original helper’s paragraph-only extraction was not evidence
+that the filing lacked a dilution explanation.

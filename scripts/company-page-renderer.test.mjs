@@ -11,6 +11,27 @@ const company = JSON.parse(readFileSync(new URL('../public/company-data/00003201
 const source = readFileSync(new URL('../companies/0000320193/Assets.html', import.meta.url), 'utf8');
 const assets = buildCompanyAssets(source, '<script type="module" src="/assets/company.js"></script><link rel="stylesheet" href="/assets/company.css">');
 
+test('issuer-specific context preserves split, dividend, narrative limitation and partnership conventions', () => {
+  for (const [fixture, cik, phrase, value] of [
+    ['fuelcell', '0000886128', /one-for-thirty reverse split/, 25743252],
+    ['achieve', '0000949858', /inconsistent million-shares wording/, 43594652],
+    ['southern-copper', '0001001838', /share tags encode scale six/, 826600000],
+    ['genesis', '0001022321', /common partnership units, not corporate common stock/, 122464000],
+  ]) {
+    const raw = gunzipSync(readFileSync(new URL(`./fixtures/editorial/${fixture}-reviewed-source.json.gz`, import.meta.url)));
+    const record = companyReference(raw, { expectedCik: cik, fetchedAt: '2026-09-20T00:00:00Z', selectionPolicy: 'extended-v17' });
+    verifyCompanyReference(record, raw);
+    const original = structuredClone(record.concepts);
+    record.source_snapshot = `/company-data/sources/${record.source_sha256}.json.gz`;
+    const tags = ['EarningsPerShareBasic', 'EarningsPerShareDiluted', 'WeightedAverageNumberOfSharesOutstandingBasic', 'WeightedAverageNumberOfDilutedSharesOutstanding'];
+    for (const target of [...tags, 'overview']) assert.match(renderCompanyPages(record, { target })[0].html, phrase);
+    assert.ok(record.concepts.find(c => c.tag === tags[2]).observations.some(r => r.end.startsWith('2025-') && r.val === value && r.unit === 'shares'));
+    assert.deepEqual(record.concepts, original);
+    const changed = structuredClone(record); changed.source_sha256 = '0'.repeat(64);
+    assert.equal(companyFilingNotes(changed, tags[0]).length, 0);
+  }
+});
+
 test('loss-context batch preserves distinct scales and excludes potential-share additions', () => {
   for (const [fixture, cik, value] of [['axogen', '0000805928', 46050266], ['heron', '0000818033', 166707000], ['westwater', '0000839470', 86023787]]) {
     const raw = gunzipSync(readFileSync(new URL(`./fixtures/editorial/${fixture}-reviewed-source.json.gz`, import.meta.url)));
