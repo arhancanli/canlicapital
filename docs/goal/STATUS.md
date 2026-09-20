@@ -9,22 +9,21 @@ which links older records. Historical process states are not live telemetry.
 ## Current work and next action
 
 Worktree `/Users/arhancanli/canlicapital-expansion-20260919`, branch
-`evidence/share-context-batch29-20260921`. PR96mergede4dc9e4dafter four passing
-CI35537754464checks at833bd38d. Tested and merged trees match exactly.
+`evidence/share-context-batch30-20260921`. PR97merged852947daafter four passing
+CI35537938332checks at5cdc4021. Tested and merged trees match exactly.
 
-Latest registered ledger:company-basic-diluted-registered-scope-batch29-20260921.json.gz.
-Of1,176batch observations,818reviewed/338pending/20withdrawn.96reviewed are explicitly
+Latest registered ledger:company-basic-diluted-registered-scope-batch30-20260921.json.gz.
+Of1,176batch observations,842reviewed/314pending/20withdrawn.96reviewed are explicitly
 presentation-only; dilution cause is not established for those rows. The registry
 pins exact reports/issuers/dispositions/counts/states. Numerical agreement alone
 never approves scope. Workflow in SCOPE_REVIEW.md; original ledgers preserved.
 
-Latest24reviews cover Compass and Snap. Compass's 2025 denominator includes
-38.5million merger-consideration shares, including10.1million minimum issuable
-shares; the January2026finalization is not substituted into2025. Its three classes
-have substantially identical economic rights. Snap's basic denominator accounts
-for unvested restricted awards; potential dilution is excluded in loss periods.
-Statement scale-zero Compass and scale-three Snap shares remain unchanged.
-51renderer/ledger tests pass; report replays byte-identically. Next new index79;
+Latest24reviews cover Intapp and Evolus. Intapp's June30,2024/2025/2026fiscal
+dates and scale-three shares remain intact; potential dilution is excluded in
+loss periods. Evolus's basic denominator already includes contingently issuable
+shares; options/nonvested RSUs are anti-dilutive. Its full scale-zero shares and
+net-loss numerator are retained, distinct from comprehensive loss.
+52renderer/ledger tests pass; report replays byte-identically. Next new index81;
 earlier gaps remain.96presentation-only reviews retain limits.
 V19six Outset2023–2025share-scale holds remain; no silent rescaling or second split
 conversion. EPS and older periods remain unapproved by the hold report.

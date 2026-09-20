@@ -839,3 +839,16 @@ Both retain two-class context and original units/values.51renderer/ledger tests
 pass; report replays byte-identically; exactly24rows advance.818reviewed/338pending/
 20withdrawn,96presentation-only. Next index79; no runtime rebuild, archival
 supplement, deployment or indexing gain. All owner objectives remain active.
+
+## 2026-09-21 — June fiscal dates and contingently issuable shares
+
+Previous turn completed24Compass/Snap reviews. PR97four CI35537938332checks
+passed at5cdc4021; merged852947da3365af26fe778e944ac4e27c5e14a16c, full tree
+66ac33e32fac2228e71e16b52da0eb979a563a36matches tested head. Reviewed24Intapp/
+Evolus observations. Intapp's June30,2024/2025/2026dates remain fiscal rather than
+calendar-year figures. Evolus basic shares already include contingently issuable
+shares; options/nonvested RSUs are excluded as anti-dilutive in loss periods.
+No date, scale or value changes.52renderer/ledger tests pass; report replays
+byte-identically; exactly24rows advance.842reviewed/314pending/20withdrawn,
+96presentation-only. Next index81; no runtime rebuild, archival supplement,
+deployment or indexing gain. All owner objectives remain active.
