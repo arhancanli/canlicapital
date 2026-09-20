@@ -947,3 +947,16 @@ tests pass.974reviewed/176pending/26withdrawn,96presentation-only. No runtime
 rebuild, archival supplement, deployment or indexing gain. Next Lifeward four
 historical rows and index93latest filing (split context inspected, not approved),
 then94and earlier gaps;97already reviewed. All owner objectives active.
+
+## 2026-09-21 — newer Lifeward split scope and Weave period-end exclusions
+
+Previous turn completed fullv20comparison/12Recursionreviews. PR105four
+CI35539249940checks passed atfcf05e57; merged2dd8f9e22f2146c45d248dda38e8575850b55fee,
+full tree369715aa5c150962315998b2c17346c7d351637dmatches tested head. Reviewed24
+latest Lifeward/Weave observations. New Lifeward2025filing reflects both2024and2026
+reverse splits; no second adjustment, no approval of older currency conflicts.
+Weave exclusions are period-end securities, not additions to weighted averages.
+89selector/renderer/ledger tests pass; report replays byte-identically; exactly24
+rows advance with all six older holds unchanged.998reviewed/152pending/26withdrawn,
+96presentation-only. Next95/96/98/99,97already reviewed; historical Lifeward four
+rows/earlier gaps remain. No rebuild/deployment/indexing gain. All goals active.

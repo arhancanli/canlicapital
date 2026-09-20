@@ -983,3 +983,22 @@ test('Recursion retains exchangeable shares already included in its denominator'
     assert.equal(companyFilingNotes(changed, tags[0]).length, 0);
   }
 });
+
+test('Latest Lifeward and Weave retain retrospective splits and period-end exclusions', () => {
+  for (const [fixture, cik, phrase, value, period] of [
+    ['lifeward', '0001607962', /does not resolve the separate currency conflicts/, 1160521, '2025-12-31'],
+    ['weave', '0001609151', /outstanding securities at period-end/, 76306740, '2025-12-31'],
+  ]) {
+    const raw = gunzipSync(readFileSync(new URL(`./fixtures/editorial/${fixture}-reviewed-source.json.gz`, import.meta.url)));
+    const record = companyReference(raw, { expectedCik: cik, fetchedAt: '2026-09-20T00:00:00Z', selectionPolicy: 'extended-v20' });
+    verifyCompanyReference(record, raw);
+    const original = structuredClone(record.concepts);
+    record.source_snapshot = `/company-data/sources/${record.source_sha256}.json.gz`;
+    const tags = ['EarningsPerShareBasic', 'EarningsPerShareDiluted', 'WeightedAverageNumberOfSharesOutstandingBasic', 'WeightedAverageNumberOfDilutedSharesOutstanding'];
+    for (const target of [...tags, 'overview']) assert.match(renderCompanyPages(record, { target })[0].html, phrase);
+    assert.ok(record.concepts.find(c => c.tag === tags[2]).observations.some(r => r.end === period && r.val === value));
+    assert.deepEqual(record.concepts, original);
+    const changed = structuredClone(record); changed.source_sha256 = '0'.repeat(64);
+    assert.equal(companyFilingNotes(changed, tags[0]).length, 0);
+  }
+});

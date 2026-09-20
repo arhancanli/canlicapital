@@ -9,11 +9,11 @@ which links older records. Historical process states are not live telemetry.
 ## Current work and next action
 
 Worktree `/Users/arhancanli/canlicapital-expansion-20260919`, branch
-`evidence/v20-corpus-and-recursion-20260921`. PR104merged78c216e7after four passing
-CI35539056945checks atbafcbb2b. Tested and merged trees match exactly.
+`evidence/share-context-batch36-20260921`. PR105merged2dd8f9e2after four passing
+CI35539249940checks atfcf05e57. Tested and merged trees match exactly.
 
-Latest registered ledger:company-basic-diluted-registered-scope-recursion-20260921.json.gz.
-Of1,176batch observations,974reviewed/176pending/26withdrawn.96reviewed are explicitly
+Latest registered ledger:company-basic-diluted-registered-scope-batch36-20260921.json.gz.
+Of1,176batch observations,998reviewed/152pending/26withdrawn.96reviewed are explicitly
 presentation-only; dilution cause is not established for those rows. The registry
 pins exact reports/issuers/dispositions/counts/states. Numerical agreement alone
 never approves scope. Workflow in SCOPE_REVIEW.md; original ledgers preserved.
@@ -27,11 +27,13 @@ V20whole-corpus comparison99298TERMINAL0verified3,323companies/87,344histories
 against frozenv14. Exactly30held observations sincev14(including six Lifeward),
 two prior Valhi history omissions, policy/notices; all other fields unchanged.
 Report company-five-cohort-v20-transition-20260921.json pins verified inputs/code.
-Recursion12observations now reviewed: ClassA/B/Exchangeable denominator already
-includes subsidiary exchangeable shares; no double addition. Report replay is
-byte-identical;88selector/renderer/ledger tests pass. Next remaining Lifeward four
-historical rows and index93latest filing, then94and earlier gaps; index97already
-reviewed. Runtime rebuild, quality inventory and archive supplement still pending.
+Latest24reviews cover Lifeward's2025filing and Weave. Lifeward's2023–2025USD
+figures already reflect2024one-for-seven and2026one-for-twelve splits; no second
+adjustment. This does not approve older currency conflicts or four pending2021
+observations. Weave's period-end exclusion counts differ from weighted averages.
+Report replays byte-identically;89selector/renderer/ledger tests pass. Next new
+index95, then96/98/99;97already reviewed. Four historical Lifeward rows and earlier
+gaps remain. Runtime rebuild, quality inventory and archive supplement pending.
 96presentation-only reviews retain limits.
 V19six Outset2023–2025share-scale holds remain; no silent rescaling or second split
 conversion. EPS and older periods remain unapproved by the hold report.
