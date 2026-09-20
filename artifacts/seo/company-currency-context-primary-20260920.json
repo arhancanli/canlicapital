@@ -1,0 +1,122 @@
+{
+  "schema": "canli.editorial-inline-comparison.v1",
+  "capture_report_sha256": "7ebaf8d14d39c6426bb3856fa0327c8e233a157fed111fb4e859a7db972aeba1",
+  "targets_sha256": "5d6405d20bab2c3f6f7f1565d515f878ffdaa85cd456c484a39565cb8801acad",
+  "filings": [
+    {
+      "cik": "0001280452",
+      "accession": "0001437749-14-003761",
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1280452/000143774914003761/mpwr20131231_10k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T17:36:05.342739+00:00",
+        "bytes": 2421946,
+        "sha256": "b696277a46fbb1796aa9753fd5564f31ade31af76dcb16e1a21d23ce07b67b9a",
+        "body_path": "artifacts/seo/corpus-local/currency-context-filings/0001280452-0001437749-14-003761-primary.response"
+      },
+      "cover_cik_matches": false,
+      "checks": [
+        {
+          "selected": {
+            "start": "2012-01-01",
+            "end": "2012-12-31",
+            "val": 213813000,
+            "accn": "0001437749-14-003761",
+            "fy": 2013,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2014-03-10",
+            "frame": "CY2012",
+            "unit": "AFN",
+            "cik": "0001280452",
+            "tag": "Revenues"
+          },
+          "matched": false,
+          "matches": []
+        }
+      ],
+      "all_selected_rows_match": false
+    },
+    {
+      "cik": "0001659494",
+      "accession": "0001104659-26-047273",
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1659494/000110465926047273/coe-20251231x20f.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T17:36:09.315270+00:00",
+        "bytes": 3195516,
+        "sha256": "3595879591e692dd79d0fbf9abb271760c80454cee196577f08071c4f491ab33",
+        "body_path": "artifacts/seo/corpus-local/currency-context-filings/0001659494-0001104659-26-047273-primary.response"
+      },
+      "cover_cik_matches": true,
+      "checks": [
+        {
+          "selected": {
+            "end": "2025-12-31",
+            "val": 54062000,
+            "accn": "0001104659-26-047273",
+            "fy": 2025,
+            "fp": "FY",
+            "form": "20-F",
+            "filed": "2026-04-23",
+            "frame": "CY2025Q4I",
+            "unit": "SAR",
+            "cik": "0001659494",
+            "tag": "CashAndCashEquivalentsAtCarryingValue"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "tag": "CashAndCashEquivalentsAtCarryingValue",
+              "entity_cik": "0001659494",
+              "start": null,
+              "end": "2025-12-31",
+              "unit": "SAR",
+              "value": "54062000",
+              "fact_id": "Narr_hN0hL5SxpkaXFEs6M0a5vQ",
+              "context_id": "As_Of_12_31_2025_BPOeBjURl0a6FPlyvk_cbA",
+              "table_row": null
+            }
+          ]
+        }
+      ],
+      "all_selected_rows_match": true
+    },
+    {
+      "cik": "0001818874",
+      "accession": "0001104659-21-053909",
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1818874/000110465921053909/tm2113577d1_10ka.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T17:36:13.017871+00:00",
+        "bytes": 859842,
+        "sha256": "c627c0ed8f3ff2e24282493832b54f6cd6734fcacaea5072796b34f42d79f9d8",
+        "body_path": "artifacts/seo/corpus-local/currency-context-filings/0001818874-0001104659-21-053909-primary.response"
+      },
+      "cover_cik_matches": false,
+      "checks": [
+        {
+          "selected": {
+            "end": "2020-07-09",
+            "val": 0,
+            "accn": "0001104659-21-053909",
+            "fy": 2020,
+            "fp": "FY",
+            "form": "10-K/A",
+            "filed": "2021-04-22",
+            "frame": "CY2020Q2I",
+            "unit": "USN",
+            "cik": "0001818874",
+            "tag": "StockholdersEquity"
+          },
+          "matched": false,
+          "matches": []
+        }
+      ],
+      "all_selected_rows_match": false
+    }
+  ],
+  "publication_approved": false,
+  "code_sha256": "ae34ca0a4d5f989896bf1155afa6e49f98580cf89178e584dcd97f74dc3f6a2f",
+  "claim_boundary": "Latest-selected priority editorial observations only. Matches enforce entity, period, unit, value, scale/sign, and exclude dimensional/nil contexts. Unsupported formats or unmatched rows remain unresolved; numerical equality alone does not establish concept scope or all-history accuracy."
+}

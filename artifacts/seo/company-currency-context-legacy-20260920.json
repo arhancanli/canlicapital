@@ -1,0 +1,90 @@
+{
+  "schema": "canli.editorial-xbrl-review.v1",
+  "publication_approved": false,
+  "capture_sha256": "7ebaf8d14d39c6426bb3856fa0327c8e233a157fed111fb4e859a7db972aeba1",
+  "comparison_sha256": "3f28c80fa5d39a92cc095aa972c7297fd92e8e0c097d57f2644f40ba9324122e",
+  "code_sha256": "664071a805ed2bb2f1cd381a3632c14d996fb6f4a248b14b5b5f8b7dfb7a84f5",
+  "filings": [
+    {
+      "cik": "0001280452",
+      "accession": "0001437749-14-003761",
+      "selected_rows": 1,
+      "instance_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1280452/000143774914003761/mpwr-20131231.xml",
+        "status": 200,
+        "bytes": 2940518,
+        "sha256": "e3d9b37ba9cec1068553ff1e202c46b89cafb24755382faec192c513c3c4fe28",
+        "captured_at": "2026-09-20T17:37:46.905757+00:00",
+        "body_path": "artifacts/seo/corpus-local/currency-context-filings/0001280452-0001437749-14-003761-instance.response"
+      },
+      "checks": [
+        {
+          "selected": {
+            "start": "2012-01-01",
+            "end": "2012-12-31",
+            "val": 213813000,
+            "accn": "0001437749-14-003761",
+            "fy": 2013,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2014-03-10",
+            "frame": "CY2012",
+            "unit": "AFN",
+            "cik": "0001280452",
+            "tag": "Revenues"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "c3_From1Jan2012To31Dec2012",
+              "unit_id": "afn",
+              "value": "213813000"
+            }
+          ]
+        }
+      ],
+      "state": "COMPARED_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001818874",
+      "accession": "0001104659-21-053909",
+      "selected_rows": 1,
+      "instance_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1818874/000110465921053909/ipoe-20201231.xml",
+        "status": 200,
+        "bytes": 827874,
+        "sha256": "76b733846ea9666ee72819f18329ee3db05e767bce3459dc88143e898e089517",
+        "captured_at": "2026-09-20T17:37:48.452568+00:00",
+        "body_path": "artifacts/seo/corpus-local/currency-context-filings/0001818874-0001104659-21-053909-instance.response"
+      },
+      "checks": [
+        {
+          "selected": {
+            "end": "2020-07-09",
+            "val": 0,
+            "accn": "0001104659-21-053909",
+            "fy": 2020,
+            "fp": "FY",
+            "form": "10-K/A",
+            "filed": "2021-04-22",
+            "frame": "CY2020Q2I",
+            "unit": "USN",
+            "cik": "0001818874",
+            "tag": "StockholdersEquity"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "As_Of_7_9_2020",
+              "unit_id": "Unit15",
+              "value": "0"
+            }
+          ]
+        }
+      ],
+      "state": "COMPARED_REVIEW_PENDING"
+    }
+  ],
+  "complete": true,
+  "scope": "Previously unmatched selected observations only. Numerical reproduction does not establish accounting scope or editorial approval."
+}

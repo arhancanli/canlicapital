@@ -101,3 +101,28 @@ SARcash,USNequity). Pinned exact current observations and source/manifest hashes
 no unit correction or defect claim. Initial broad diagnostic output included
 single-unit BRLhistories and was truncated; narrowed the actual target file to
 these three exact cases. No source request, upload, deployment or indexing gain.
+
+## 2026-09-20 — three currency-context captures and review
+
+Previous goal turn confirmed exact PR51head and four passing checks; this turn
+merged9ea2b5aa and verified exact tree equality. Captured three primary filings
+and two original legacy instances with paced requests;81923/79635terminal0.
+All three selected numbers match. Monolithic AFN conflicts with dollar disclosure;
+51Talk SAR is expressly supported but describes a narrower currency component
+including time deposits. Both require exact observation holds, pending code.
+SoFi opening-balance USN/date semantics remain pending and predecessor identity
+retained. Review and legacy reports reproduce byte-identically offline. Initial
+51Talk table diagnostic failed because fact is narrative; corrected inspection
+retains full paragraph. No source corrections, archival claim or live/indexed gain.
+
+## 2026-09-20 — v15 currency and scope exclusions
+
+Previous goal turn captured/reviewed three currency observations and opened PR52.
+Implemented exact MonolithicAFN unit-conflict and 51TalkSAR component-scope holds
+in cumulative v15, preserving all earlier policies. Two actual source fixtures
+verify no unrelated changes and source-linked notices;41targeted tests pass.
+Whole-corpus comparison94354completed exit0 against all current v14sources/
+selections:3,323companies/87,346histories preserved, exactly two observations
+removed. Every other selected field matches except policy metadata and notices.
+Receipt company-five-cohort-v15-transition-20260920.json retained.
+No source correction, production activation, or new indexing claim.
