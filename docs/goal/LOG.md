@@ -255,3 +255,16 @@ pass, including unchanged values and stale-observation suppression. Original-sou
 report and v3ledger reproduce byte-identically:26reviewed/1,142pending/8withdrawn.
 NLIscale3 and Weisrestatement context identified for follow-up, not yet scope-approved.
 No new combined runtime, archive, hosted transfer, production or indexing claim.
+
+## 2026-09-20 — combined NLI/Weis presentation review
+
+PR61merged6ca6d2deafter all four CI35529747740checks passed; tested/merged tree
+b05d13eaee6cc22cc540ae0ad522e88bc205cb88 matches. Reviewed24exact NLI/Weis
+observations against primary statement tables, inline scale and Weisrestatement
+comparisons. NLIshares encode thousands; Weis2023/2024EPSis explicitly restated.
+No cause of equal basic/diluted measures inferred, and no claim of absent potential
+shares. Ledger has a separate presentation-only state for these24rows. Source-bound
+page notes retain this limitation.15renderer tests pass with captured sources,
+unchanged values and stale-source suppression. Report and v4ledger replay exactly:
+50reviewed (24presentation-only),1,118pending,8withdrawn. No runtime rebuild,
+archive supplement, production deployment or indexing gain.
