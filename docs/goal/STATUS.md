@@ -43,8 +43,8 @@ V5 selected-quality/source audit passes; report company-fourth-selected-quality-
 V5 catalog/release/discovery and full local HTTP/browser checks now pass:
 18,412 URLs,1,366 downloads,90browser checks across15routes. Release hash
 b40100cda2fd5a50297de8d433e72751c6561d1f5e58226c269ae879c578c597.
-Editorial supplement archive is verified; complete fourth-cohort delivery archive
-and hosted verification remain outstanding.
+Editorial supplement and complete fourth-cohort archives both pass isolated
+restore. Hosted verification and offsite retention remain outstanding.
 Earlier v4's18,415URL/1,366download and72browser checks apply only to that revision.
 
 Priority review covered55pre-exclusion concepts across30companies and36filings.
@@ -138,7 +138,10 @@ capture unavailable. No settings were bypassed.
 
 Website7298ea1d passed all CI35498051186 jobs, including the new installed MCP
 package test; current local verification passes
-6 + 390 tests and final audits. Engine PR68 ce93d8c fixes nested agent-state copying;
+6 + 392 tests and final audits. Latest CI35500519399 onbbb5690e failed
+the MCP stalled-body test because its100ms wall-clock deadline fired before the
+loopback request arrived. Test-only deterministic deadline trigger now preserves
+real HTTP/body cancellation and passes all48MCP tests locally; remote recheck due. Engine PR68 ce93d8c fixes nested agent-state copying;
 13 focused tests and Ruff pass, and full CI35494803169 now passes all six jobs.
 PR69/70 rechecked: open at783ad0c/e0a257c, all six jobs pass respectively in
 CI35437603714/35438489448. They remain unmerged.
@@ -210,3 +213,9 @@ Fourth editorial supplement:275files,79,298,560bytes,SHA256
 Isolated offline restore reproduces the priority targets,120inline/XBRL comparisons
 and all four scope exclusions byte-for-byte. It retains30source snapshots and
 filing evidence; it does not rebuild all683companies or establish offsite storage.
+
+Complete fourth-v5 archive:4,959files707,082,240bytes,SHA256
+8b06aa68db9d297748020c13d22ed80416b8bb3cb46876a8e158cfb3f48b531c.
+Isolated saved-code restore reproduces683candidates,317exclusions and the exact
+2,074runtime objects245,827,884bytes. No reads from original capture/runtime
+directories; temporary restore removed. Archive remains local, not an offsite backup.

@@ -1525,3 +1525,24 @@ queue, its error bodies/editorial captures and v5runtime closure, independently
 of prior cohort archives. Five archive safety tests pass. Committing the profile
 and summary before packaging ensures the saved repository has the exact policy
 and restore code. Full packaging/isolated source-runtime replay is next.
+
+## 2026-09-20 — full archive restore and MCP test timing fix
+
+Archive97951 and isolated restore22721 exit0. Complete fourth-v5 archive has
+4,959files707,082,240bytes,SHA256
+8b06aa68db9d297748020c13d22ed80416b8bb3cb46876a8e158cfb3f48b531c.
+Saved repositorya7a5a1b3 replays all1,000queue outcomes:683candidates317exclusions,
+zero errors;2,074runtime objects245,827,884bytes exactly match the original plan.
+Temporary restore removed. No remote backup or hosted-production claim.
+
+PR15check inspection found CI35500519399 onbbb5690e failed its MCP deadline test
+(47pass1fail); other jobs passed. Failure log retained at
+/tmp/canli-mcp-ci-failure.log. Expected one backend request but observed zero:
+100ms timer fired before loopback connection under runner load. The test now
+controls only AbortSignal.timeout's returned deadline signal, starts a real fetch
+and unfinished body read, then aborts it. Explicitly asserts one fetch attempt,
+one server request and one body read. This retains body-cancellation/no-retry
+coverage without depending on runner speed. Five-second test watchdog remains.
+All48MCP tests pass locally. No production source, package version or packed-file
+change; exact npm candidate remains unchanged. Fresh remote verification due.
+Engine latest-headCI35499961114 remains live at checkpoint. Goal active.

@@ -31,12 +31,30 @@ test('failed key issuance cannot install a key in the session', async () => {
   assert.equal(session.key, undefined);
 });
 
-test('deadline covers a stalled response body and sends no retry', async t => {
-  let requests = 0;
+test('deadline covers a stalled response body and sends no retry', { timeout: 5000 }, async t => {
+  let requests = 0, attempts = 0, bodyReads = 0;
   const base = await backend(t, (_req, res) => { requests++; res.writeHead(200); res.write('{'); });
-  const session = createSession({ base, timeoutMs: 100 });
+  // A short real timer can fire before the loopback connection on a busy runner.
+  // Control only the deadline; retain the real fetch, socket and unfinished body.
+  const deadline = new AbortController();
+  t.mock.method(AbortSignal, 'timeout', milliseconds => {
+    assert.equal(milliseconds, 100);
+    return deadline.signal;
+  });
+  const session = createSession({ base, timeoutMs: 100, fetchImpl: async (...args) => {
+    attempts++;
+    const response = await fetch(...args);
+    return { status: response.status, text: () => {
+      bodyReads++;
+      const body = response.text();
+      deadline.abort(new DOMException('Test deadline', 'TimeoutError'));
+      return body;
+    } };
+  } });
   await assert.rejects(toolServiceStatus(session), /exceeded the request deadline/);
+  assert.equal(attempts, 1);
   assert.equal(requests, 1);
+  assert.equal(bodyReads, 1);
 });
 
 test('redirects are rejected before another endpoint receives credentials', async t => {
