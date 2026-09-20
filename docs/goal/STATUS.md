@@ -10,11 +10,17 @@ which links the preceding historical record. Historical process states are not l
 ## Current work and immediate next action
 
 Worktree `/Users/arhancanli/canlicapital-expansion-20260919`, branch
-`evidence/loss-share-context-20260920`. PR62merged3f69fbf8 after all four
-CI35529950080checks passed atf81b4623. Tested/merged tree
-ab03a794f2cf656d421aba79840033591227d255.
+`evidence/cedar-participating-shares-20260920`. PR63merged0bc93807 after all
+four CI35530156535checks passed atb4341381. Tested/merged tree
+9ad19ad1d3b7eb95b0a5f905c7a5cdd6ff791cfc.
 
-Current v5batch ledger:66reviewed/1,102pending/8withdrawn;24reviewed remain
+Current v6batch ledger:74reviewed/1,094pending/8withdrawn;24reviewed retain
+presentation-only status. Eight selected Cedar2020/2021observations now carry
+verified vested-share allocation, performance-award/OP-unit treatment and FFO
+versus EPS denominator context. Later Cedar filing remains pending. Original
+values preserved;17renderer tests pass. Report and ledger replay byte-identically.
+
+Previous v5batch ledger:66reviewed/1,102pending/8withdrawn;24reviewed remain
 presentation-only with dilution cause unestablished. Sixteen additional Blue Dolphin/
 NexMetals observations reviewed. Blue Dolphin instrument disclosure is historical.
 NexMetals positive CAD EPS amounts are expressly labelled loss magnitudes, with
