@@ -9,9 +9,9 @@ which links older records. Historical process states are not live telemetry.
 ## Current work and next action
 
 Worktree `/Users/arhancanli/canlicapital-expansion-20260919`, branch
-`fix/iovance-share-scale-v18-20260920`. PR74mergeded486593after four passing
-CI35533094451checks ate3af3707. Tested/merged tree
-8d98e39813bfc3bb1b790d3e7f376495dc68bb98 matches exactly.
+`evidence/five-cohort-v18-transition-20260920`. PR75merged2a923011after four passing
+CI35533316936checks at786293d4. Tested/merged tree
+6f91a15bb8c4d3555d07f01f5b15f66f14a7b143 matches exactly.
 
 Latest registered ledger:company-basic-diluted-registered-scope-v18-20260920.json.gz.
 Of1,176batch observations,420reviewed/742pending/14withdrawn.72reviewed are explicitly
@@ -27,8 +27,8 @@ including exact six-only removal, EPS/older-period preservation and inherited ho
 Earlier Iovance2019–2022share rows also need original-filing review; no admission
 inferred. Six EPSrows in this batch remain pending. Blink context review remains
 pending, including revised2024EPSand out-of-money exclusions. INVOlegacy mapping
-also pending. V18full-corpus comparison/runtime rebuild/quality inventory and
-updated archival supplement remain undone. No deployment or indexing gain.
+also pending. V18full-corpus comparison passed; runtime rebuild/quality inventory
+and updated archival supplement remain undone. No deployment or indexing gain.
 
 
 Earlier reviewed context includes111ordinary-share/ADS distinction, Celldex loss
@@ -37,10 +37,14 @@ NexMetals positive loss magnitudes/consolidation, Cedar vested-share/FFO distinc
 Axogen/Heron/Westwater loss dilution, and FuelCell/Achieve/Southern Copper/Genesis
 split/dividend, wording and partnership conventions. Scope remains observation-specific.
 
-V17whole-corpus comparison29434TERMINAL0:3,323companies/87,344histories. Exactly12
+V18whole-corpus comparison7090TERMINAL0:3,323companies/87,344histories. Exactly18
 holds sincev14, two prior Valhi constant-history omissions (six residual observations),
-metadata/notices; all other fields/source bytes unchanged. This is selector replay,
-not a new runtime. Latest built runtime remainsv14at90,736candidate URLs.
+metadata/notices; all other fields/source bytes unchanged. Frozenv14manifest SHA
+7f2540f7d8393615efff856479b41b5994aac1d258d0e4de1d116ca616c76472 verified.
+Initial42325TERMINAL1had expected notice-order mismatch; audit now follows selector
+concept order, full deep equality retained. Report company-five-cohort-v18-transition-
+20260920.json pins code/selector/policy. This is selector replay, not a new runtime.
+Latest built runtime remainsv14at90,736candidate URLs.
 
 No collector, comparison, archive or uploader active at this checkpoint. Next:
 continue remaining primary/legacy accounting-context review, retain updated archival
@@ -81,7 +85,7 @@ coverage remains open; do not present either sample as full-corpus admission.
 
 Current built-v14quality inventory:13,142flagged histories; overlapping reasons
 10,630historical-only,1,307multi-unit,400partially historical units,75constant,
-74zero-only,1,494pages in747equal groups. V17needs refreshed inventory. Flags are
+74zero-only,1,494pages in747equal groups. V18needs refreshed inventory. Flags are
 not automatically defects; unflagged pages are not automatically admitted.
 
 ## Retained archives

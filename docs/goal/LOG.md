@@ -512,3 +512,24 @@ pass; exactsix-only removal, unchangedEPS/olderfacts, stale-source rejection and
 inherited Siebert holds verified. Five delivery/release tests pass. Ledger420reviewed,
 742pending,14withdrawn,72presentation-only. Whole-corpusv18comparison, runtime,
 qualityinventory/archive updates and deployment remain open; no indexing claim.
+
+## 2026-09-20 — v18full-corpus comparison, first pass failure retained
+
+Previous turn implemented six exact Iovance holds. PR75passed all four
+CI35533316936checks at786293d4; merged2a923011with identical tested/merged tree
+6f91a15bb8c4d3555d07f01f5b15f66f14a7b143. Started v18comparison against frozenv14
+manifest and every saved source/selected hash. Process42325exited1on Iovance
+editorial notice order: selector iterates concept definitions basic then diluted;
+policy rows list diluted then basic. Assertion output truncated; inspected selector
+iteration directly. Corrected audit expected-notice construction to concept order,
+keeping stable policy order within each concept; no selector/data/policy changes.
+Bounded future failure diagnostics. Restarted only after terminal failure as7090;
+final outcome follows. Full deep equality remains required, not set-only comparison.
+
+Second comparison7090TERMINAL0. Every3,323source/selected record hash verified;
+87,344histories remain. Exactly18explicit observations held sincev14(12prior+6new),
+plus the two previously omitted Valhi histories/six residual constant observations.
+Every remaining field unchanged except policy metadata/notices. Report pins code,
+selector,policy and frozenv14manifest. No runtime catalog/discovery/storageplan
+regeneration, upload, deployment or indexing gain. Goal remains active with source
+review, archive supplement and hosted quality gates still required.
