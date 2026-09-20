@@ -7,7 +7,7 @@ status preserved in history/STATUS-20260920-through-equality-triage.md.
 ## Current execution
 
 Worktree /Users/arhancanli/canlicapital-expansion-20260919, branch
-research/company-historical-scope-20260920. PR34 merged as
+fix/dbmm-period-scope-20260920. PR34 merged as
 34f2b81e9dec93047c90c4185d1a59fe9ada3661 after four CI35517891088checks passed
 at2ca4f9fe; tested/merged tree67b8efb122bd96a625a6d7933a5312c9b8e31da3.
 PR33 merged as
@@ -171,6 +171,22 @@ retains issuer, exact selected row and accession. Report replays byte-for-byte.
 This counts recorded reviews, not machine-certified interpretation or admission.
 It excludes712basic/diluted groups and other corpus flags. Next: review historical
 primary context in this exact queue without double-crediting latest-period work.
+
+## Exact disputed-period exclusion implemented
+
+PR38mergedad8202ff851791358c7d13979948dfd3061cb215 after all four
+CI35520830847checks passed ateeeae0ba. Tested/merged trees match
+08544f70919bf54211d3341cc7da62304aa442fd.
+Policy extended-v11 now withholds only Digital Brand Media contract revenue
+for2019-09-01through2020-08-31,268,957USD,accession0001185185-21-001609,
+bound to reviewed sourceSHA1d83049f...a36021. Other periods and statement revenue
+remain unchanged. Record carries the exact omitted observation and reason;
+overview and affected history explain the gap with a filing link.31selector/
+renderer tests pass, including the actual104,479byte compressed capture fixture,
+changed-source/capture-date rejection and unchanged existing pilot HTML.
+Old policies remain reproducible. Combined runtime is stillv10: v11cohort/release
+replay remains required before publication. This correction withdraws one value,
+not a whole history; no new release/URL count asserted yet.
 
 ## Immediate next work
 

@@ -805,3 +805,14 @@ uses2020while geographic prose and asset row say2019. Statement sales supports
 or assumption of a typo. Before admission resolve or withhold the observation.
 Supplement replays byte-identically. V3ledger adds exact disjoint coverage:
 169reviewed/3withdrawn/166active reviewed/441pending. No publication changes.
+
+## 2026-09-20 — exact Digital Brand Media period holdback
+
+Previous turn closed14legacy scope checks and retained the disclosure-date conflict.
+The earlier retained filing repeats the date problem; no resolution claimed.
+PR38mergedad8202ff after four checks and exact tree equality. Newv11policy
+withholds exactly the source-bound2020contract-revenue observation, keeps all
+other values and records the omitted row/reason. Affected history and overview
+explain the gap; statement revenue remains intact.31tests pass using exact captured
+fixture, old-policy replay and renderer checks. Existing v10release/transfer remains
+staging; v11rebuild required before publication. No source values overwritten.

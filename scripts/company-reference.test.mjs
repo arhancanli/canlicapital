@@ -241,3 +241,36 @@ test('v10 requires renewed Birdie SG&A source review while v9 remains reproducib
   const other = companyReference(JSON.stringify(source), { ...options, expectedCik: '0001873214', selectionPolicy: 'extended-v10' });
   assert.ok(other.concepts.some(c => c.tag === 'SellingGeneralAndAdministrativeExpense'));
 });
+
+test('v11 withholds only the exact reviewed DBMM period and reproduces prior policies', async () => {
+  const raw = gunzipSync(readFileSync(new URL('./fixtures/editorial/dbmm-reviewed-source.json.gz', import.meta.url)));
+  assert.equal(createHash('sha256').update(raw).digest('hex'), '1d83049f899cbff9a062f8d19500599a1f079e18e925526b11f1306ca7a36021');
+  const options = { fetchedAt: '2026-09-20T00:00:00Z', expectedCik: '0001127475' };
+  const before = companyReference(raw, { ...options, selectionPolicy: 'extended-v10' });
+  const diagnostics = {};
+  const after = companyReference(raw, { ...options, selectionPolicy: 'extended-v11', diagnostics });
+  const tag = 'RevenueFromContractWithCustomerExcludingAssessedTax';
+  assert.equal(before.concepts.length, after.concepts.length);
+  const expected = structuredClone(before.concepts);
+  const target = expected.find(c => c.tag === tag);
+  assert.equal(target.observations.filter(row => row.end === '2020-08-31').length, 1);
+  target.observations = target.observations.filter(row => row.end !== '2020-08-31');
+  assert.deepEqual(after.concepts, expected);
+  assert.equal(diagnostics.editorial_observation_excluded, 1);
+  assert.equal(after.editorial_exclusions.filter(row => row.observation).length, 1);
+  verifyCompanyReference(before, raw); verifyCompanyReference(after, raw);
+  const changed = structuredClone(after); delete changed.editorial_exclusions;
+  assert.throws(() => verifyCompanyReference(changed, raw), /does not reproduce/);
+  assert.throws(() => companyReference(Buffer.concat([raw, Buffer.from('\n')]), { ...options, selectionPolicy: 'extended-v11' }), e => e.code === 'EDITORIAL_REVIEW_REQUIRED');
+  assert.throws(() => companyReference(raw, { ...options, fetchedAt: '2020-09-01T00:00:00Z', selectionPolicy: 'extended-v11' }), e => e.code === 'EDITORIAL_REVIEW_REQUIRED');
+  const { renderCompanyPages } = await import('./lib/company-page-renderer.mjs');
+  after.source_snapshot = `/company-data/sources/${after.source_sha256}.json.gz`;
+  const metric = renderCompanyPages(after, { target: tag })[0].html;
+  assert.match(metric, /Withheld reporting periods/);
+  assert.match(metric, /XBRL period conflicts/);
+  assert.doesNotMatch(metric, /<th scope="row">2020-08-31<\/th>/);
+  const revenue = renderCompanyPages(after, { target: 'Revenues' })[0].html;
+  assert.doesNotMatch(revenue, /Withheld reporting periods/);
+  assert.match(revenue, /<th scope="row">2020-08-31<\/th>/);
+  assert.match(renderCompanyPages(after, { target: 'overview' })[0].html, /XBRL period conflicts/);
+});
