@@ -1,4 +1,5 @@
-import { readFileSync, writeFileSync, renameSync } from 'node:fs';
+import { readNotFoundReceipt } from './capture-company-not-found.mjs';
+import { readFileSync, writeFileSync, renameSync, existsSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { createHash } from 'node:crypto';
@@ -30,6 +31,13 @@ export function reviewCandidates(directory) {
     if (!queue.includes(cik) || seen.has(cik)) throw new Error('Duplicate or unrequested result');
     seen.add(cik);
     if (result.status !== 'eligible_for_review') {
+      if (result.status === 'http_error' && result.http_status === 404 && existsSync(resolve(directory, cik + '.not-found.json'))) {
+        try {
+          const receipt = readNotFoundReceipt(directory, cik, { refreshHash: report.refresh_sha256, queueHash: report.queue_sha256, finishedAt: progress.finished_at });
+          report.exclusions.push({ ...result, status: 'source_not_found', original_status: result.status, response_verified: true, receipt });
+        } catch (error) { report.errors.push({ cik, reason: error.message }); }
+        continue;
+      }
       if (result.status !== 'excluded') { report.exclusions.push(result); continue; }
       try {
         const { receipt, raw } = capture(cik);

@@ -10,7 +10,9 @@ export function stageCompanyDelivery(input, output, pilots, { selectionPolicy, a
   input = resolve(input); output = resolve(output);
   if (output === resolve('/') || input === output || input.startsWith(output + '/') || output.startsWith(input + '/')) throw new Error('Delivery and capture directories must be separate');
   const review = reviewCandidates(input);
-  const excludedAccepted = allowReviewedExclusions && review.exclusions.every(row => row.status === 'excluded' && row.reproduced === true);
+  const excludedAccepted = allowReviewedExclusions && review.exclusions.every(row =>
+    (row.status === 'excluded' && row.reproduced === true) ||
+    (row.status === 'source_not_found' && row.response_verified === true));
   if (!review.complete || review.errors.length || (review.exclusions.length && !excludedAccepted) || !review.candidates.length) throw new Error('Complete reproduced capture cohort required');
   mkdirSync(resolve(output, 'objects'), { recursive: true });
   const files = [];

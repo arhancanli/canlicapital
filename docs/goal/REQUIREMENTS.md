@@ -23,3 +23,6 @@ Measurement rules:
 
 Authoritative configuration: `config/search-growth-goal.json`; engine
 `config/owner_goals.json` and associated cost, drawdown and forward-evidence contracts.
+
+Execution preference (2026-09-20): Codex directly leads and implements; stop Hermes
+delegation. Maintain clear current records, evidence and full objective coverage.

@@ -1,7 +1,9 @@
 # Persistent CanliCapital goal
 
 This folder is the continuity record requested by the owner on 19 September 2026.
-The session goal is active. This folder does not claim the goal has been achieved.
+The session goal is active. On20 September2026 the owner assigned all implementation
+and review to Codex directly; Hermes delegation is stopped. Current task ledger:
+`EXECUTION_LEDGER.md`. This folder does not claim the goal has been achieved.
 
 Read in order before each phase and after every chat compaction:
 

@@ -1,7 +1,8 @@
 # Company catalog storage and serving checkpoint
 
-This is a staged read model, not an activated production catalog. The 327-page
-website remains separate; the 2,987 fresh candidate pages are not published.
+This is a staged read model, not an activated production catalog. The327-page
+static website remains separate. Dated checkpoints below describe development
+history; STATUS.md and the latest section here contain current verified counts.
 
 ## Objects and activation
 
@@ -249,3 +250,35 @@ For a completed batch with documented source exclusions, pass the explicit final
 retains all exclusions plus original queue/refresh/selector hashes. A batch with
 no eligible companies, incomplete capture, HTTP errors or replay errors still fails.
 Do not modify a queue to hide rejected or failed captures.
+
+
+## 2026-09-20 — verified second extended cohort
+
+A separate next1,000 source batch reproduces853 eligible companies and147
+exclusions (51 invalid entities,35 insufficient coverage,61 captured HTTP404s).
+404 confirmation retains actual response bytes and binds receipt identity, URL,
+capture time and original queue/refresh hashes. Missing/corrupt receipts,403/429,
+other errors or incomplete queues still fail staging. All modes recompute source
+review internally; external review JSON cannot authorize staging.
+
+Reproduce from the existing local captures (no new network requests):
+
+```sh
+node scripts/stage-company-delivery.mjs artifacts/seo/corpus-local/next-1000 artifacts/seo/corpus-local/next-1000-delivery-extended '' extended-v1 reviewed-exclusions
+node scripts/build-company-catalog-from-delivery.mjs artifacts/seo/corpus-local/next-1000-delivery-extended artifacts/seo/corpus-local/next-1000-catalog-extended
+node scripts/build-company-release.mjs artifacts/seo/corpus-local/next-1000-catalog-extended artifacts/seo/corpus-local/next-1000-delivery-extended
+node scripts/build-company-discovery.mjs artifacts/seo/corpus-local/next-1000-catalog-extended artifacts/seo/corpus-local/next-1000-delivery-extended artifacts/seo/corpus-local/next-1000-discovery-extended
+node scripts/measure-company-delivery.mjs artifacts/seo/corpus-local/next-1000-catalog-extended artifacts/seo/corpus-local/next-1000-delivery-extended dist artifacts/seo/company-next1000-delivery-extended-measurement.json artifacts/seo/corpus-local/next-1000-discovery-extended
+```
+
+Verified local output:853 companies,22,697 histories,18 directory pages =23,568
+pages;1,706 original/selected downloads. Sitemap matches every served page; no
+orphan pages; maximum3 links from /companies. Staging remains noindex. Deterministic
+browser sampling via audit-company-cohort-browser.py passes54 checks across
+Chromium/WebKit and320/390/1440 widths. See scripts' --help for browser invocation.
+Quality audit retains2,549 flagged histories for editorial review. Neither no flags
+nor successful rendering grants publication approval.
+
+The original349-company extended release stays unchanged. Combining deliveries
+must validate sources and rebuild both indexes, retaining capture/exclusion
+provenance. The delivery download_index is an object root, not an appendable list.

@@ -658,3 +658,102 @@ partial review receipt for inspection; no delivery staging or page-count increas
 Capture59470 remains live at final poll. Next: keep polling same process and review
 complete cohort before explicit exclusion-aware staging. All platform, indexing
 and engine goals remain open; storage/production/Search Console questions unchanged.
+
+
+## 2026-09-20 — owner-requested Codex supervision
+
+Codex inspected live Hermes session 20260919_204019_ff927b and local changes.
+PR15 remains OPEN at 6cdc9f0e; both CI jobs pass for that head, not dirty work.
+Review is recorded in CODEX_SUPERVISION.md. Confirmed staging integrity regression:
+reviewReportPath accepts stale external review JSON and bypasses a current HTTP500
+capture failure (independent temporary fixture). Existing focused tests pass14/14
+but do not cover this bypass. Hermes was sent corrective guidance through its CLI.
+Macro-rate artifacts use synthetic inputs and report negative Sharpes; they do not
+establish two additional qualified sleeves. P&L sign and drawdown defects require
+correction. Pipeline presence/syntax does not establish operational readiness.
+Hermes has two event/commodity research children; requested source-backed research
+and no promotion or manual manifest concatenation. Prior corpus/indexing and
+engine performance claims remain unestablished; all owner objectives remain active.
+No release or trading authorization is added by supervision.
+
+
+### Supervision follow-up — confirmed local correction
+
+Hermes read CODEX_SUPERVISION.md and queued steering for both child agents; the
+event-driven child log confirms delivery. Hermes removed the reviewReportPath
+execution bypass. Codex independently reran the stale-review/HTTP500 fixture:
+rejection now passes and the previous delivery manifest remains byte-identical.
+All14 focused tests pass again (/tmp/codex-hermes-review-tests-after.log).
+This verifies that specific local fix only. Macro P&L/drawdown, synthetic evidence,
+pipeline readiness and full delivery integration remain unapproved/open. No
+continuous unattended Codex monitoring service was installed by this review.
+
+
+## 2026-09-20 — persistent supervisor goal and owner steering
+
+Owner explicitly requested active continued supervision with Hermes implementing
+code and Codex leading scope and independent quality review, using concise handoffs
+to conserve tokens. Goal is active in Codex. Owner clarified to obtain goals from
+Hermes directly; do not spend effort mining past Codex sessions.
+Hermes supplied HERMES_GOALS_HANDOFF.md. Review found missing content/SEO/keyword/
+API/MCP/adoption objectives, downloads mislabeled as pages and stale child status.
+S02 in CODEX_SUPERVISION.md requests corrections plus a permanent source-integrity
+regression. Two claimed test passes/completions were rejected: nested-directory
+guard and wrong-cwd ENOENT never exercise intended behavior; attempted tool writes
+were not present on disk. Directed explicit patch tools, existing valid fixture,
+retaining original tests and exact expected-error/unchanged-pointer assertions.
+Hermes remains engineer; Codex has not accepted S02 or new algorithm artifacts.
+
+
+## 2026-09-20 — direct Codex takeover and verified repair
+
+Owner ended Hermes delegation and requested direct implementation/leadership.
+Hermes notified through its CLI; acknowledged idle. Its referenced child batches
+were already not live. New direct-execution goal active; all objectives preserved.
+Restored full verify command after Hermes truncated it to four tests. Replaced
+invalid zero-byte fixture with real-source stale-review/omitted-failure regressions.
+Focused16 tests pass. Full verify3690 exit0:362 tests (6+356) and all final audits.
+Initial apply_patch replacement failed before changes; replacement then applied
+through explicit file write. No failure was counted as a passing test.
+
+Fresh source replay1721 exit0:853 companies,7449 core candidate pages,676 flagged
+histories;51 invalid entities,35 insufficient coverage,61 bound404 exclusions,
+zero replay errors. Hermes's asserted reproduction blocker was unsupported.
+Saved independent review; original captures unchanged. Local candidates, not live
+or indexed pages. PR15 verified OPEN at6cdc9f0e with both CI jobs green; dirty
+local takeover work not covered by those checks.
+
+Consolidated current STATUS and EXECUTION_LEDGER; archived preceding status/ledger;
+marked historical Hermes reports superseded. Unapproved algorithm artifacts kept
+with explicit defect/claim boundaries. Previous failed fixture/package preserved
+under /tmp/canli-codex-takeover-20260920. Next:T04 verified cohort staging, continuing
+all editorial, storage/release, indexing, platform adoption and engine goals.
+
+
+## 2026-09-20 — T04 extended new-cohort staging started
+
+Prior turn classified progress (verified takeover repairs and source review). Read
+continuity, verified local files and PR15 still OPEN at6cdc9f0e. Starting extended-v1
+staging for853 eligible companies in next-1000-delivery-extended, with original
+147 reproduced/captured exclusions retained. Prior delivery roots untouched.
+Then catalog/release/discovery and real local HTTP replay; no index/release claim.
+
+
+## 2026-09-20 — new extended cohort verified end to end
+
+Staging10459, catalog39284, quality58143, release75628 all exit0. New release
+contains853 companies/22,697 histories;147 exclusions retained. Discovery23,568
+URLs. Full HTTP85222 exit0:all23,568 pages and1,706 downloads reproduce, sitemap
+exact, zero failures/orphans,3-link company-directory bound, max HTML36,223 bytes.
+Browser25866 exit0:54 Chromium/WebKit checks at320/390/1440 on9 deterministic
+risk samples. Two390px screenshots visually inspected; no overflow found. Local
+helper server stopped. Prior extended release pointer equals recorded8a35a0fc….
+
+Audit flags2,549 histories with overlapping2,416 historical-only,3 multi-unit and
+partially historical,13 constant including12 zero-only,128 equal-vector pages in64
+groups. These are unresolved editorial flags, not removed values or approved pages.
+Added a real-fixture valid/404 staging regression; confirms response retention and
+unchanged prior pointer after corruption. Focused17 tests pass. No runtime code
+changes since full362-test takeover validation; only the extra test/browser harness
+and staged data/receipts. Next:checkpoint changes and build a verified combined
+cohort, then editorial/storage/release work. All indexing/developer/engine goals open.
