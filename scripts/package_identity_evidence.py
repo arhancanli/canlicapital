@@ -26,7 +26,7 @@ SCRIPTS = [
     'compare-company-identity-filings.py', 'review-princeton-revenue-scope.py',
     'lib/company-reference.mjs', 'lib/company-extended-concepts.mjs',
     'lib/company-editorial-dispositions.mjs', 'lib/company-editorial-v3.mjs',
-    'lib/company-editorial-v4.mjs',
+    'lib/company-editorial-v4.mjs', 'lib/company-editorial-v5.mjs',
 ]
 
 

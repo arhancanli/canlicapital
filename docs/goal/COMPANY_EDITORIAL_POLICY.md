@@ -122,3 +122,14 @@ The prior held discrepancy and v3 remain reproducible; v3 is not publishable for
 this cohort. Corrected v4 has683companies17,718histories and3,150overlapping flags.
 The remaining26constant histories are zero-valued; numerical equality does not
 establish their accounting scope or usefulness. Those reviews remain open.
+
+
+Fourth-cohort v5 adds three source-bound exclusions: GHST1121795 combined cash
+(the selected zero describes cash equivalents only, despite nonzero cash),
+Nelnet1258602 Revenues (intersegment servicing eliminations), and Cooper-Standard
+1320461 Revenues (intersegment sales eliminations). Original primary tables and
+Nelnet/GHST label/presentation files establish the narrower meanings. See
+company-fourth-zero-dispositions-20260920.json and review-fourth-zero-scope.py.
+Exact-source replay removes only these three histories and preserves all others.
+V4 remains reproducible but is not publishable for this cohort. V5 delivery
+contains683companies17,715histories; new delivery measurements remain due.

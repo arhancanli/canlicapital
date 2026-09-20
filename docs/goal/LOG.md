@@ -1467,3 +1467,26 @@ Fourth-v4 verification completed: HTTP61346/browser14837 both exit0. All18,415UR
 and1,366downloads pass, exact sitemap membership, maximum3clicks and31,467HTMLbytes.
 72browser checks over12sampled routes include the new exclusion notice. Servers
 closed by their harnesses. No hosted capacity, publication or indexing claim.
+
+## 2026-09-20 — three further zero-history scope corrections
+
+Previous turn corrected Liberty's capitalization threshold and completed v4
+verification. Continued semantic review found GHST1121795 zero cash-equivalents
+facts despite primary cash206/7,350; original label says Cash equivalents and
+presentation role is accounting-policy narrative. Nelnet1258602 label identifies
+intersegment servicing revenue with eliminating consolidated zeros. Cooper-Standard
+1320461 table explicitly contrasts positive external consolidated sales with zero
+intersegment sales after eliminations. Four additional label/presentation captures
+44105exit0, all200. Reproducible zero-scope report verifies every referenced body.
+
+Added frozen extended-v5 inheriting v4 and these three exclusions. Historical
+policies remain unchanged; identity archive module closure extended.15selector
+tests pass including changed-source holds; exact original-source replay confirms
+only the three identified concepts are removed. Full verify19952exit0:6+392tests
+and audits. Restored only generated source-date/sitemap churn. Stage4764exit0:
+683companies17,715histories. Quality64615exit0; current report retained.
+V5catalog/release/discovery,HTTP/browser and archive work remains outstanding;
+v4measurements are historical and v4is not publishable for this cohort.
+Remaining zero-series scope/usefulness reviews are not claimed complete.
+EngineCI35499961114 re-polled and remainsIN_PROGRESS; no duplicate run launched.
+No production deployment, package publication, broker or runtime change.

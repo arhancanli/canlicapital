@@ -1,3 +1,4 @@
+import { EDITORIAL_POLICY_V5, EDITORIAL_EXCLUSIONS_V5 } from './company-editorial-v5.mjs';
 import { EDITORIAL_POLICY_V4, EDITORIAL_EXCLUSIONS_V4 } from './company-editorial-v4.mjs';
 import { EDITORIAL_POLICY_V3, EDITORIAL_EXCLUSIONS_V3 } from './company-editorial-v3.mjs';
 import { EDITORIAL_POLICY, EDITORIAL_EXCLUSIONS } from './company-editorial-dispositions.mjs';
@@ -55,7 +56,7 @@ export function selectObservations(fact, kind, asOf, diagnostics = {}) {
 
 export function companyReference(raw, { fetchedAt, expectedCik, diagnostics = {}, selectionPolicy }) {
   if (typeof fetchedAt !== 'string' || !/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?(?:Z|\+00:00)$/.test(fetchedAt) || !Number.isFinite(Date.parse(fetchedAt))) throw new Error('A verified UTC capture timestamp is required before publication');
-  if (selectionPolicy !== undefined && ![EXTENDED_POLICY, EDITORIAL_POLICY, EDITORIAL_POLICY_V3, EDITORIAL_POLICY_V4].includes(selectionPolicy)) throw new Error('Unknown company selection policy');
+  if (selectionPolicy !== undefined && ![EXTENDED_POLICY, EDITORIAL_POLICY, EDITORIAL_POLICY_V3, EDITORIAL_POLICY_V4, EDITORIAL_POLICY_V5].includes(selectionPolicy)) throw new Error('Unknown company selection policy');
   const source = JSON.parse(raw);
   if (!source || !Number.isSafeInteger(source.cik) || source.cik < 1 || source.cik > 9999999999 || source.cik !== Number(expectedCik) || typeof source.entityName !== 'string' || !source.entityName.trim()) throw new CompanyReferenceError('INVALID_ENTITY', 'SEC entity identity mismatch');
   const cik = String(source.cik).padStart(10, '0');
@@ -63,9 +64,9 @@ export function companyReference(raw, { fetchedAt, expectedCik, diagnostics = {}
   if (!date(asOf)) throw new Error('Invalid capture date');
   const concepts = [];
   const editorialExclusions = [];
-  const decisions = selectionPolicy === EDITORIAL_POLICY_V4 ? EDITORIAL_EXCLUSIONS_V4 : selectionPolicy === EDITORIAL_POLICY_V3 ? EDITORIAL_EXCLUSIONS_V3 : selectionPolicy === EDITORIAL_POLICY ? EDITORIAL_EXCLUSIONS : [];
+  const decisions = selectionPolicy === EDITORIAL_POLICY_V5 ? EDITORIAL_EXCLUSIONS_V5 : selectionPolicy === EDITORIAL_POLICY_V4 ? EDITORIAL_EXCLUSIONS_V4 : selectionPolicy === EDITORIAL_POLICY_V3 ? EDITORIAL_EXCLUSIONS_V3 : selectionPolicy === EDITORIAL_POLICY ? EDITORIAL_EXCLUSIONS : [];
   const sourceHash = createHash('sha256').update(raw).digest('hex');
-  const definitions = [EXTENDED_POLICY, EDITORIAL_POLICY, EDITORIAL_POLICY_V3, EDITORIAL_POLICY_V4].includes(selectionPolicy) ? { ...CONCEPTS, ...EXTENDED_CONCEPTS } : CONCEPTS;
+  const definitions = [EXTENDED_POLICY, EDITORIAL_POLICY, EDITORIAL_POLICY_V3, EDITORIAL_POLICY_V4, EDITORIAL_POLICY_V5].includes(selectionPolicy) ? { ...CONCEPTS, ...EXTENDED_CONCEPTS } : CONCEPTS;
   for (const [tag, definition] of Object.entries(definitions)) {
     const fact = source.facts?.['us-gaap']?.[tag];
     if (!fact) continue;

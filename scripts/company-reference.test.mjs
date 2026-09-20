@@ -168,3 +168,16 @@ test('v4 holds changed Liberty source without altering v3 selection', () => {
   verifyCompanyReference(previous, raw);
   assert.throws(() => companyReference(raw, { ...options, selectionPolicy: 'extended-v4' }), e => e.code === 'EDITORIAL_REVIEW_REQUIRED');
 });
+
+test('v5 scope holds require new evidence without changing v4 policy', () => {
+  const record = JSON.parse(readFileSync(new URL('../public/company-data/0000320193.json', import.meta.url)));
+  const source = JSON.parse(gunzipSync(readFileSync(new URL(`../public/company-data/sources/${record.source_sha256}.json.gz`, import.meta.url))));
+  source.facts['us-gaap'].Revenues = { units: { USD: [2021, 2022, 2023].map(year => ({ ...row, start: `${year}-01-01`, end: `${year}-12-31`, val: 0 })) } };
+  for (const cik of ['0001121795', '0001258602', '0001320461']) {
+    source.cik = Number(cik);
+    const raw = JSON.stringify(source), options = { fetchedAt: record.fetched_at, expectedCik: cik };
+    const previous = companyReference(raw, { ...options, selectionPolicy: 'extended-v4' });
+    verifyCompanyReference(previous, raw);
+    assert.throws(() => companyReference(raw, { ...options, selectionPolicy: 'extended-v5' }), e => e.code === 'EDITORIAL_REVIEW_REQUIRED');
+  }
+});

@@ -30,26 +30,28 @@ HTTP404 outcomes. Full source replay has zero errors; all 117 error bodies and
 receipts were separately verified. Queue remains disjoint from prior website
 queues, the existing delivery and 600 retained engine acquisition identities.
 There are 4,467 remaining unqueued discovery identities after these holdbacks.
-Separate corrected extended-v4 staging contains 683 companies and 17,718 histories,
-with 3,150 overlapping quality flags. The prior fourth-cohort v3 is retained for
-reproduction but includes a newly identified scope error and is not publishable. Catalog construction passed (root
-4f85487987819064ebdf62d4f1b37a7ea058d1582dfecced38f16e20defa8880).
-This cohort is not combined with the existing release or editorially approved;
-its evidence archive and editorial review remain outstanding. Full local HTTP
-checks pass for 18,415 URLs and 1,366 downloads; 72 browser checks across 12
-sampled routes, two engines and three viewport widths pass. Priority filing
-review covers 55 concepts across 30 companies and 36 latest selected filings.
-Priority filing capture now covers all 36 filings (72 verified index/primary
-responses). Inline comparison matched 73 of 120 observations. Original XBRL review now
-reproduces the other 47 across 19 instances; offline replay is byte-identical.
-All 120 pre-exclusion priority observations reproduce numerically. The 14 unusual equal-vector
-groups have latest-filing table evidence supporting equal totals while retaining
-distinct concepts; this does not clear every historical observation or other flags. Liberty Star's USD500 equipment-purchase fact is now resolved as an equipment
-capitalization threshold: its sole presentation role is the accounting-policy
-narrative, and the primary note states the threshold explicitly. Source-bound v4
-excludes this concept; all other selected concepts reproduce unchanged. The prior
-hold is retained as historical evidence. See company-fourth-filing-capture,
-company-fourth-inline-comparison and company-fourth-liberty-scope dated receipts.
+Separate corrected extended-v5 staging contains 683 companies and 17,715 histories.
+V4's Liberty equipment-purchase exclusion is retained. V5 also excludes GHST's
+cash-equivalents-only zero and Nelnet/Cooper-Standard intersegment revenue zeros,
+with original filing labels, presentation roles and primary tables as evidence.
+V3/v4 remain reproducible but are not publishable for this fourth cohort.
+The existing three-cohort release remains separate and unchanged.
+
+Exact-source replay verifies each new exclusion removes only its reviewed concept.
+Full website verification passes6+392tests and audits; all15selector tests pass.
+V5 selected-quality/source audit passes; report company-fourth-selected-quality-v5.json.
+V5 catalog/release/discovery, HTTP/browser checks and archive remain outstanding.
+Earlier v4's18,415URL/1,366download and72browser checks apply only to that revision.
+
+Priority review covered55pre-exclusion concepts across30companies and36filings.
+All72index/primary responses verify.73inline plus47original-XBRL matches account
+for120selected observations; matching numbers alone did not establish scope.
+All14unusual equal-vector groups have latest-filing table context supporting
+matching totals, preserving distinct concepts. Liberty's USD500is a capitalization
+threshold; GHST reports nonzero cash despite zero cash equivalents; Nelnet and
+Cooper-Standard revenue zeros are intersegment eliminations. Original holds and
+policy versions remain retained. Zero-history scope/usefulness review is not yet
+complete for the remaining cases. No editorial or publication approval.
 
 Resume safeguards passed 6+390 tests and audits. The completed capture had loaded
 the older collector; its full legacy report was replayed without restarting it.
@@ -196,7 +198,5 @@ decisions cannot be automated away. No broker orders or unauthorized activation.
 No PR was merged, provider created, production migration applied or broker order
 issued by this work. The goal remains active. See EXECUTION_LEDGER.md.
 
-Current fourth-v4 delivery verification: HTTP61346 and browser14837 completed
-successfully, with zero failures. Prior v3 measurements remain historical.
-New release hash:2e940b8a07ca63566486da9ed169051772a699e35570bf385bf044d5fee3650d.
-Full website verification passed6+391tests and audits after the v4 change.
+Latest separate fourth-cohort candidate is v5. Prior v4 release and measurements
+remain historical; do not reuse them as verification of v5.
