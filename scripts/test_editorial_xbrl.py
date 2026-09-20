@@ -11,6 +11,7 @@ class ComparisonTest(unittest.TestCase):
         self.row = {'tag': 'Revenues', 'start': '2020-01-01', 'end': '2020-12-31', 'unit': 'USD', 'val': 0}
         self.raw = b'''<x:xbrl xmlns:x="http://www.xbrl.org/2003/instance"
           xmlns:g="http://fasb.org/us-gaap/2020-01-31"
+          xmlns:iso4217="http://www.xbrl.org/2003/iso4217"
           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
           xmlns:d="http://xbrl.org/2006/xbrldi">
           <x:context id="ctx"><x:entity><x:identifier scheme="http://www.sec.gov/CIK">123</x:identifier></x:entity>
@@ -23,6 +24,17 @@ class ComparisonTest(unittest.TestCase):
 
     def test_explicit_zero_matches(self):
         self.assertTrue(self.matches(self.raw))
+
+    def test_currency_qname_uses_actual_scoped_namespace(self):
+        alternate = self.raw.replace(b'xmlns:iso4217=', b'xmlns:currency=').replace(b'iso4217:USD', b'currency:USD')
+        self.assertTrue(self.matches(alternate))
+        for raw in [
+            self.raw.replace(b'xmlns:iso4217="http://www.xbrl.org/2003/iso4217"', b''),
+            self.raw.replace(b'http://www.xbrl.org/2003/iso4217', b'https://issuer.invalid/currency'),
+            self.raw.replace(b'<x:measure>', b'<x:measure xmlns:iso4217="https://issuer.invalid/currency">'),
+        ]:
+            with self.subTest(raw=raw):
+                self.assertFalse(self.matches(raw))
 
     def test_retained_legacy_namespace_is_exact_and_preserves_context_checks(self):
         legacy = self.raw.replace(b'http://fasb.org/us-gaap/2020-01-31', b'http://xbrl.us/us-gaap/2009-01-31')

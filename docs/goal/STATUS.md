@@ -7,7 +7,7 @@ status is preserved in history/STATUS-20260920-through-five-cohort-archive-start
 ## Current execution
 
 Website worktree: /Users/arhancanli/canlicapital-expansion-20260919.
-Branch feat/company-clean-route-preview-20260920. PR30 merged as70a66bde578f1658ac35dba6501d47165f14f8fb (GitHub state reverified). PR27 merged as0c2b646e
+Branch research/company-quality-triage-20260920. PR31 merged as59b10c83cd206606e6efaaef684f69c22d5380bf after all five checks passed atcb2f6f02; tested and merged trees equal35eb23d444e47f1d05a5b1bf2b6ad9a20645baa2. PR30 merged as70a66bde578f1658ac35dba6501d47165f14f8fb (GitHub state reverified). PR27 merged as0c2b646e
 with all four CI35513399510jobs passing; reviewed/merged tree
 def9e9101444404fde6d9c73240bd18d2ea672ba. PR28 merged as
 f54d26e793b815baea6a0d0a8d032ca6b3f0d79d after four CI35513563000jobs passed;
@@ -21,7 +21,7 @@ concurrency4, readAttempts3, writeAttempts2, total read budget200/write budget50
 Per-object limits, permission/rate-limit/corruption stops, exact-byte verification
 and create-only reconciliation remain enforced. Twenty storage/planner tests pass.
 Receipt: corpus-local/company-five-cohort-transfer-20260920.json.
-Latest observed checkpoint: 3506 verified objects, 0 failures. Session26312 was polled live this turn.
+Latest observed checkpoint: 4270 verified objects, 0 failures. Session26312 was polled live this turn.
 Poll exact handle before restarting. Prior v3resume5session23870 is terminal after
 1,721objects/126,028,025bytes; receipt and failures preserved. Do not restart oldv3.
 Full transfer and page activation remain incomplete. Separate representative
@@ -121,8 +121,8 @@ Downloaded receipt company-clean-route-browser-ci-20260920.json verified against
 local script/config hashes. Together with prior27+4passes, this covers the32
 representative cases across runs/platform versions, not a single full-suite pass.
 Local Chromium148 network failures remain unexplained and preserved. All four
-standard CI35515798960jobs also pass atba510cd1. Draft PR31 can now proceed through
-review; this is preview tooling, not production admission.
+standard CI35515798960jobs also pass atba510cd1. PR31 is merged; this is preview tooling, not production admission. Latest reviewed
+headcb2f6f02 passed CI35515925562 and hosted browser35515925557.
 
 Full combined selected-quality audit65287 completed exit0:3,323companies and
 87,348histories replayed;13,148pages flagged (overlapping reasons), including
@@ -132,7 +132,64 @@ not confirmed defects or publication decisions. Tracked summary pins full local
 report and losslessly roundtrip-verified gzip; no offsite-backup claim.
 company-five-cohort-selected-quality-summary-20260920.json.
 
-Next: complete bulk transfer and full-corpus
+Equal-history triage now reproduces all750groups from hash-verified selected
+records:712nonzero basic/diluted pairs,37other nonzero pairs and1zero-only pair.
+Every group remains pending primary-source scope and reader-usefulness review.
+Receipt company-five-cohort-equal-history-review-20260920.json binds750groups,
+records and source hashes; non-basic/diluted groups include selected observations.
+TECHCOM capex/revenue equality is all-zero; EVENTIKO payable/property equality
+includes11,000 and zero. Neither finding alone establishes an error or admission.
+
+PR32 https://github.com/arhancanli/canlicapital/pull/32 reviews equality triage.
+Retained-file target mapping covers38non-basic/diluted groups:41filings contain
+212selected observations;159filings/398observations lack primary captures.
+Offline comparison38554 completed212/212numerical matches. First invocation
+stopped on the new target schema; reviewer now explicitly accepts that schema
+with unchanged comparison rules. Six inline and three XML regressions pass.
+Two limited primary-table interpretations retained for3M2023–2025and
+EVENTIKO2024–2025; no all-history source/admission claim. See company-equal-history-
+{retained-targets,retained-review,scope-notes}-20260920.json.
+
+Missing historical capture session43531 is active, using existing paced
+capture-company-editorial-filings.py with unchanged403/429stop/no-retry behavior.
+Targets company-equal-history-capture-targets-20260920.json bind all159filings/
+398observations (385concept/accession targets). Partial receipt in corpus-local/
+company-equal-history-capture-20260920.json; exact handle must be polled.
+EVENTIKO first two historical captures complete and4additional observations match.
+Together with prior4, all8selected observations across4reporting dates/3filings
+are numerically and context reviewed for this pair. Separate11,000asset and payable
+lines are explicit; fixed assets list website development. Not interchangeable
+concepts or evidence of zero total liabilities. Scope receipt company-eventiko-
+history-scope-20260920.json; reader usefulness/copy and admission still pending.
+PR32 CI35516294193 passed all four checks at144cd463 before current additions.
+
+XML numerical helper now resolves currency QName namespace at the measure element,
+rejecting undeclared/wrong/rebound prefixes and accepting correctly bound aliases.
+New regression plus prior XML tests pass (4), as do17corpus tests. XML tests were
+outside the existing test_company_*.py glob and are now explicitly included in
+npm test:corpus. Replay44938 still matches212/212 with identical filing comparison
+results; fresh company-equal-history-retained-review-qname-20260920.json preserves
+new helper hash, original unchanged. Captures43531 and bulk26312 remain active.
+
+Incremental target snapshot includes59newly retained filings/134observations;
+100filings/264observations were still missing at that snapshot. Prior41filings/
+212observations are excluded only after exact observations/body hashes recheck.
+Comparison69766 completed83/134matches;51unresolved observations across25filings
+need separate XBRL/source review. Combined matched count is295/346compared;
+the EVENTIKO4supplement overlaps this incremental batch and must not be added again.
+Reports company-equal-history-{incremental-targets,incremental-review,unresolved}-
+20260920.json retain all outcomes. Full acquisition43531 remains active; snapshot
+counts are not current download telemetry. CI35516535342 passes atb68e4d43.
+
+Separate XBRL input prepared for25filings/51unresolved observations. Every captured
+index selects exactly one instance within the same issuer/accession directory.
+Frozen company-equal-history-xbrl-input-20260920-{capture,comparison}.json binds
+parent snapshot/comparison hashes and explicitly distinguishes subset completion
+from unfinished parent acquisition. No XML requests started yet; after43531is
+terminal, run review-company-editorial-xbrl.py with these two inputs, cache
+corpus-local/equal-history-xbrl and a new report. Preserve access-stop behavior.
+
+Next: finish capture, acquire/compare the selected XBRL instances, and review remaining primary contexts; complete bulk transfer and full-corpus
 checks plus remaining editorial/admission work before production activation.
 The owner's publication approval persists. The prior 1–3day estimate and possible
 first batch tonight were provisional, not measured forecasts or release promises.
