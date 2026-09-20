@@ -7,7 +7,7 @@ status preserved in history/STATUS-20260920-through-equality-triage.md.
 ## Current execution
 
 Worktree /Users/arhancanli/canlicapital-expansion-20260919, branch
-review/techcom-historical-context-20260920. PR34 merged as
+review/remaining-priority-context-20260920. PR34 merged as
 34f2b81e9dec93047c90c4185d1a59fe9ada3661 after four CI35517891088checks passed
 at2ca4f9fe; tested/merged tree67b8efb122bd96a625a6d7933a5312c9b8e31da3.
 PR33 merged as
@@ -536,3 +536,18 @@ company-apple-lithium-liability-20260920.json replays byte-identically.
 V13-batch2ledger combines exact pending-only supplements:463active reviewed,
 137pending,10withdrawn; original610key partition and offline replay pass. Two
 TECHCOMlatest rows still unresolved. No full corpus rebuild or publication.
+
+## Visium/GRN review and remaining amendment gap
+
+PR44merged919b2f55754f512cfae4792f38e0175d1c6dcf7a after four checks in
+CI35523103496passed at69d1f656. Tested/merged tree
+4e379a8d7019a18363383da1fbc970f2e2157790.
+40additional observations reviewed from15Visium/GRN primary tables. GRNnotes
+preserve related-party liabilities and net-of-discount short-term debt. Two Visium
+2013asset observations selected from0001493152-16-007138remain pending: retained
+primary is a10-K/Awithout balance sheets; earlier2013filing does not close selected
+amendment context. Need original2014primary or explicit disposition.
+company-visium-grn-balance-20260920.json and cumulative v13-batch3ledger replay
+byte-identically. Exact counts503active reviewed/97pending/10withdrawn cover610
+original keys. Broader corpus flags, TECHCOMlatest discrepancy, v13rebuild and
+publication remain open. No uploader or deployment.

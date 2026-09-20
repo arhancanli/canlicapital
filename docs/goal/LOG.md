@@ -958,3 +958,11 @@ for missing separate current subtotals, historical entity/fiscal changes and
 zero-net long-term debt presentations. Context and cumulative ledger replay
 byte-identically. Exact counts463reviewed/137pending/10withdrawn; earlier
 reports and unresolved cases preserved. No deployment or full corpus rebuild.
+
+## 2026-09-20 — Visium/GRN historical scope and PR44 merge
+
+15primary tables support40additional observations. Two selected Visiumamendment
+observations remain pending because primary contains no balance sheet; no credit
+from an unrelated filing. Context/ledger replay identical;503reviewed/97pending/
+10withdrawn, exact610keys. PR44merged919b2f55 after four checks and exact tree
+equality. Remaining amendment/discrepancy review and full corpus gates remain.
