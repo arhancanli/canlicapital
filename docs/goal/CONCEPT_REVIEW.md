@@ -119,3 +119,35 @@ separate cohort archives. It is local retention, not offsite backup.
 No new concept policy, company page, publication approval or indexing gain follows
 from this sample. Resolve the eight gaps and complete broader historical scope and
 identity review before admission.
+
+## Legacy capture supplement
+
+PR18 merged as ea4bc3ca after all four checks passed; its tree equals tested
+e19cedca. The eight unresolved observations came from two retained XML files
+whose legacy EX-101.INS filenames were outside the newer receipt glob. The
+original report remains unchanged. No new SEC request was needed.
+
+Run `python3 scripts/review-legacy-concept-filings.py` to verify the legacy index,
+primary source hash, accession, instance bytes and selected observations. The
+supplement reproduces all eight, bringing numerical coverage to198/198 for this
+convenience sample. Extracted primary tables allow independent scope inspection:
+
+- Dentsply2015 gross property1,342.7million and accumulated depreciation783.9million
+  appear in the cost table. Its2014 comprehensive loss49.1million is attributable
+  to Dentsply Sirona; total comprehensive loss is49.8million. Interest paid47.8million
+  explicitly excludes capitalized amounts.
+- Compass2012 gross property1,213.7million includes mineral interests and
+  construction in progress;568.5million is accumulated depreciation and depletion.
+  Its2011 comprehensive income is143.8million; the cash-flow table labels20million
+  simply interest paid. Do not infer a capitalized-interest exclusion from that
+  visible label alone.
+
+These observations support only the listed filing periods. No definitions or
+editorial admission policy changed. Prior revenue exclusions for both companies
+remain valid: those facts represented intersegment sales.
+
+Supplement SHA aba1b76ef26079fdb6ae3b5a9ed2f42661eaee60cd5e35be9165f4a69668ea34.
+Local archive12files/17,643,520bytes restores and independently reproduces exact
+report bytes; SHA6cbffae3de190dc699864453c92d092d2ac42cddb136cef861408357783ad687.
+Its dependency environment is provided by the existing locked parser package;
+this is not an offsite backup or a complete companyfacts regeneration archive.

@@ -8,9 +8,9 @@ history/STATUS-20260920-through-fourth-v9.md; earlier history remains linked the
 ## Current checkout and releases
 
 Website worktree: /Users/arhancanli/canlicapital-expansion-20260919.
-Branch research/retained-concept-filings-20260920. PR17 merged ascacdf594; its
-tree matches tested2c4e8c4d and post-merge CI35508990999passed. Current work is
-retained primary-filing scope review, not a website deployment.
+Branch research/legacy-filing-evidence-20260920. PR18 merged asea4bc3ca after
+all four CI jobs passed at e19cedca; both trees match5a8648c5. Current work is
+a legacy capture supplement, not a website deployment.
 Production application revision9608542ce019307674269667c4aa16ebc69dd43e is live
 on canlicapital.com. Dedicated clean publisher checkout:
 /Users/arhancanli/canlicapital-production-20260920.
@@ -129,7 +129,8 @@ companyfacts target regeneration or offsite recovery. No new pages admitted.
   is insufficient. Fourth priority queue430observations/185filings remains incomplete.
   Taxonomy/coverage audit of94high-coverage concepts is complete:140,596recent
   pairs, not approved pages. Six candidates now have a retained-filing sample:
-  190of198figures reproduced across40filings; eight remain unresolved.14scope
+  190of198figures reproduced in the original report; a separate verified legacy
+  XML supplement reproduces the other eight, for198of198across40filings.14scope
   cases/27observations have bounded manual notes. Broader historical/identity
   review and admission decisions remain open; CONCEPT_REVIEW.md. No policy changed.
 - Discovery8,031CIKs and34old concepts cannot alone reach800k; prior upper bound
@@ -143,3 +144,17 @@ companyfacts target regeneration or offsite recovery. No new pages admitted.
 
 Production database migration and website activation are verified. No
 running-engine trading activation, actual indexing gain or investment outcome is claimed.
+
+Legacy supplement: the two XML files were retained under EX-101.INS filenames,
+not absent. Exact legacy index, primary source and accession bindings verify.
+Eight additional numerical matches and primary table extracts are retained in
+company-legacy-concept-supplement-20260920.json; original report unchanged.
+Local12file/17,643,520byte archive restores and replays exact supplement bytes.
+No new source request, concept admission, publication or indexing gain.
+
+PR19: https://github.com/arhancanli/canlicapital/pull/19. Includes the legacy
+supplement and patched Soup Sieve2.9.0 current lock (Python>=3.10) for moderate
+Dependabot alerts2/3. Historical parser archive remains intact; current corpus
+tests17/17pass under a clean Python3.12 environment.
+Both the full40-filing report and eight-observation supplement reproduce
+byte-identically under the patched dependency.
