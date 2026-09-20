@@ -224,7 +224,7 @@ test('bounded workers settle before failure returns and retain completed in-flig
   assert.equal(snapshots.at(-1).failures[0].key, f.files[1].key);
 });
 
- test('write retry budget is shared across objects and stops after ten second attempts', async t => {
+test('write retry budget is shared across objects and stops after ten second attempts', async t => {
   const f = fixture(t, 12), s = server(f, { failFirstPerKey: true }), snapshots = [];
   await assert.rejects(uploadCompanyStorage({ ...f, storage: s.storage, writeAttempts: 2, pause: async () => {},
     record: r => snapshots.push(structuredClone(r)) }), /create rejected/);
@@ -232,4 +232,39 @@ test('bounded workers settle before failure returns and retain completed in-flig
   assert.equal(last.complete, false); assert.equal(last.files.length, 10);
   assert.equal(last.write_recovery.filter(r => r.retry_number).length, 10);
   assert.equal(s.calls.filter(c => c.method === 'POST').length, 21);
+});
+
+test('explicit larger budgets recover dispersed failures but still stop at their exact bound', async t => {
+  const f = fixture(t, 13);
+  const s = server(f, { failFirstPerKey: true });
+  const result = await uploadCompanyStorage({ ...f, storage: s.storage, writeAttempts: 2,
+    writeRetryBudget: 13, pause: async () => {} });
+  assert.equal(result.files.length, 13);
+  assert.equal(result.retry_policy.write.budget, 13);
+  assert.equal(result.write_recovery.filter(r => r.retry_number).length, 13);
+  const limited = server(f, { failFirstPerKey: true }), receipts = [];
+  await assert.rejects(uploadCompanyStorage({ ...f, storage: limited.storage, writeAttempts: 2,
+    writeRetryBudget: 11, pause: async () => {}, record: r => receipts.push(structuredClone(r)) }), /create rejected/);
+  assert.equal(receipts.at(-1).files.length, 11);
+  let calls = 0, retries = 0;
+  const storage = createSupabaseStorage({ projectUrl: 'https://example.supabase.co', bucket: 'company-runtime',
+    serviceKey: 'unused', readAttempts: 3, retryBudget: 11, pause: async () => {}, fetcher: async () => {
+      if (++calls % 2) return new Response('', { status: 502 });
+      return new Response(JSON.stringify({ statusCode: '404', error: 'not_found' }), { status: 400 });
+    } });
+  for (let i = 0; i < 11; i++) assert.equal(await storage.read(f.files[0], { onRetry: () => retries++ }), null);
+  await assert.rejects(storage.read(f.files[0]), /read rejected/);
+  assert.equal(retries, 11); assert.equal(calls, 23);
+});
+
+test('retry budgets reject invalid or unbounded values before requests', async t => {
+  const f = fixture(t), s = server(f);
+  for (const retryBudget of [-1, 201, 1.5, Infinity, NaN]) {
+    assert.throws(() => createSupabaseStorage({ projectUrl: 'https://example.supabase.co', bucket: 'company-runtime',
+      serviceKey: 'unused', retryBudget }), /bounded read retry policy/);
+  }
+  for (const writeRetryBudget of [-1, 51, 1.5, Infinity, NaN]) {
+    await assert.rejects(uploadCompanyStorage({ ...f, storage: s.storage, writeRetryBudget }), /bounded write retry budget/);
+  }
+  assert.equal(s.calls.length, 0);
 });
