@@ -1,6 +1,117 @@
 // Limited filing context, bound to the reviewed capture and selected observations.
 export const FILING_NOTES = [
 {
+  "cik": "0001470129",
+  "include_on_overview": true,
+  "source_sha256": "01950acba447b82b7b44f1f15b43d38d4d36d713a72efbec54a89ccef55fa5ab",
+  "tags": [
+    "EarningsPerShareBasic",
+    "EarningsPerShareDiluted",
+    "WeightedAverageNumberOfDilutedSharesOutstanding",
+    "WeightedAverageNumberOfSharesOutstandingBasic"
+  ],
+  "text": "These 2010\u20132012 figures come from China Bilingual Technology & Education Group Inc., the historical issuer in this filing, rather than current VisitIQ operations. The selected annual periods end December 31, 2010 and August 31, 2011 and 2012. The separate eight-month 2011 column is not selected: its EPS is $0.31 rather than the annual $0.45, and its denominator differs. Original XML periods and statement columns are retained without annualizing or relabeling dates. The tables report equal basic and diluted figures, but this review does not establish the cause of equality for these profitable periods; the filing\u2019s generic loss-period policy does not prove that cause.",
+  "filing_url": "https://www.sec.gov/Archives/edgar/data/1470129/000101376212002250/form10k.htm",
+  "observations": [
+    {
+      "tag": "EarningsPerShareBasic",
+      "start": "2010-01-01",
+      "end": "2010-12-31",
+      "unit": "USD/shares",
+      "val": 0.43,
+      "accn": "0001013762-12-002250"
+    },
+    {
+      "tag": "EarningsPerShareBasic",
+      "start": "2010-09-01",
+      "end": "2011-08-31",
+      "unit": "USD/shares",
+      "val": 0.45,
+      "accn": "0001013762-12-002250"
+    },
+    {
+      "tag": "EarningsPerShareBasic",
+      "start": "2011-09-01",
+      "end": "2012-08-31",
+      "unit": "USD/shares",
+      "val": 0.32,
+      "accn": "0001013762-12-002250"
+    },
+    {
+      "tag": "EarningsPerShareDiluted",
+      "start": "2010-01-01",
+      "end": "2010-12-31",
+      "unit": "USD/shares",
+      "val": 0.43,
+      "accn": "0001013762-12-002250"
+    },
+    {
+      "tag": "EarningsPerShareDiluted",
+      "start": "2010-09-01",
+      "end": "2011-08-31",
+      "unit": "USD/shares",
+      "val": 0.45,
+      "accn": "0001013762-12-002250"
+    },
+    {
+      "tag": "EarningsPerShareDiluted",
+      "start": "2011-09-01",
+      "end": "2012-08-31",
+      "unit": "USD/shares",
+      "val": 0.32,
+      "accn": "0001013762-12-002250"
+    },
+    {
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+      "start": "2010-01-01",
+      "end": "2010-12-31",
+      "unit": "shares",
+      "val": 28044698,
+      "accn": "0001013762-12-002250"
+    },
+    {
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+      "start": "2010-09-01",
+      "end": "2011-08-31",
+      "unit": "shares",
+      "val": 30010932,
+      "accn": "0001013762-12-002250"
+    },
+    {
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+      "start": "2011-09-01",
+      "end": "2012-08-31",
+      "unit": "shares",
+      "val": 30094205,
+      "accn": "0001013762-12-002250"
+    },
+    {
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic",
+      "start": "2010-01-01",
+      "end": "2010-12-31",
+      "unit": "shares",
+      "val": 28044698,
+      "accn": "0001013762-12-002250"
+    },
+    {
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic",
+      "start": "2010-09-01",
+      "end": "2011-08-31",
+      "unit": "shares",
+      "val": 30010932,
+      "accn": "0001013762-12-002250"
+    },
+    {
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic",
+      "start": "2011-09-01",
+      "end": "2012-08-31",
+      "unit": "shares",
+      "val": 30094205,
+      "accn": "0001013762-12-002250"
+    }
+  ]
+},
+{
   "cik": "0001459839",
   "include_on_overview": true,
   "source_sha256": "8865bc70ed417453df6fa46b21b2d21c09c8aa77e077e43b4108d080f7907bd4",

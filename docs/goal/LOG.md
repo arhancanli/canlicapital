@@ -582,3 +582,18 @@ than comprehensive loss. Both share/per-share exceptions and scale0tags preserve
 36renderer/ledger tests pass; report replays exactly; only24new transitions.
 504reviewed/658pending/14withdrawn,72presentation-only. No runtime rebuild, archive
 supplement, deployment or indexing gain. Entire owner objective remains active.
+
+## 2026-09-21 — legacy annual/transition mapping and historical issuer
+
+PR80passed four CI35534133763checks ata5828902; mergedeb94eb91with exact tree
+e82d80d6545c77a931f7f224fd4ac18f900d9c81. Reviewed12legacy China Bilingual
+Technology & Education Group observations under currentVisitIQCIK0001470129.
+Replayed original XMLcomparison with exact source/instance/primary hashes, mapped
+each fact to explicit cell/row/period in tables72/73.2011annual0.45and30,010,932
+shares are not eight-month0.31and30,008,014. Retained all dates, including2010
+December year and2011/2012August years. Profitable periods: general loss exclusion
+policy does not establish cause of equality, so all12remain presentation-only.
+37renderer/ledger tests pass; report replays byte-identically.516reviewed/
+646pending/14withdrawn;84presentation-only. Kodiak52remains pending; next new54.
+No runtime rebuild, archive supplement, deployment or indexing gain. All owner
+objectives remain active; new artifact dates useSeptember21Dubai calendar.
