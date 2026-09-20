@@ -11,6 +11,29 @@ const company = JSON.parse(readFileSync(new URL('../public/company-data/00003201
 const source = readFileSync(new URL('../companies/0000320193/Assets.html', import.meta.url), 'utf8');
 const assets = buildCompanyAssets(source, '<script type="module" src="/assets/company.js"></script><link rel="stylesheet" href="/assets/company.css">');
 
+test('combined presentations retain restatement and scale context without asserting dilution cause', () => {
+  for (const [fixture, cik, phrase, expectedValue] of [
+    ['nli', '0000072162', /does not establish why the measures match/, 48857000],
+    ['weis', '0000105418', /EPS figures are explicitly restated/, 25685425],
+  ]) {
+    const raw = gunzipSync(readFileSync(new URL(`./fixtures/editorial/${fixture}-reviewed-source.json.gz`, import.meta.url)));
+    const record = companyReference(raw, { expectedCik: cik, fetchedAt: '2026-09-20T00:00:00Z', selectionPolicy: 'extended-v17' });
+    verifyCompanyReference(record, raw);
+    const original = structuredClone(record.concepts);
+    record.source_snapshot = `/company-data/sources/${record.source_sha256}.json.gz`;
+    const tags = ['EarningsPerShareBasic', 'EarningsPerShareDiluted', 'WeightedAverageNumberOfSharesOutstandingBasic', 'WeightedAverageNumberOfDilutedSharesOutstanding'];
+    for (const target of [...tags, 'overview']) {
+      const html = renderCompanyPages(record, { target })[0].html;
+      assert.match(html, phrase);
+      assert.match(html, /potentially dilutive securities exist/);
+    }
+    assert.deepEqual(record.concepts, original);
+    assert.ok(record.concepts.find(c => c.tag === tags[2]).observations.some(r => r.val === expectedValue && r.unit === 'shares'));
+    const changed = structuredClone(record); changed.source_sha256 = '0'.repeat(64);
+    assert.equal(companyFilingNotes(changed, tags[0]).length, 0);
+  }
+});
+
 test('Celldex loss-period context preserves correctly scaled source observations', () => {
   const raw = gunzipSync(readFileSync(new URL('./fixtures/editorial/celldex-reviewed-source.json.gz', import.meta.url)));
   const record = companyReference(raw, { expectedCik: '0000744218', fetchedAt: '2026-09-20T00:00:00Z', selectionPolicy: 'extended-v17' });

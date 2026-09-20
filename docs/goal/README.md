@@ -20,7 +20,7 @@ transitions, not continuous telemetry or proof that background work is running.
 
 Working locations:
 
-- Website: `/Users/arhancanli/canlicapital-expansion-20260919`, branch `evidence/five-cohort-v17-20260920`. PR60 merged; v17selector comparison preserves3,323companies/87,344histories. Latest built runtime remainsv14at90,736candidate URLs. Batch1archive446files/six reports restored; v17two Siebert holds added; batch1 scope26reviewed/1,142pending/8withdrawn; no uploader. Production uses the clean canlicapital-production-20260920 checkout at9608542c. Read STATUS for exact current evidence and next action.
+- Website: `/Users/arhancanli/canlicapital-expansion-20260919`, branch `evidence/combined-share-context-20260920`. PR61 merged; v17selector comparison preserves3,323companies/87,344histories. Latest built runtime remainsv14at90,736candidate URLs. Batch1archive446files/six reports restored; v17two Siebert holds added; batch1 scope50reviewed (24presentation-only)/1,118pending/8withdrawn; no uploader. Production uses the clean canlicapital-production-20260920 checkout at9608542c. Read STATUS for exact current evidence and next action.
 - Engine goal evidence: `/Users/arhancanli/alphac-goals-review-20260919`, branch `fix/owner-goal-evidence-20260919`, PR https://github.com/arhancanli/alphac/pull/68.
 - Engine dependency update: `/Users/arhancanli/alphac-security-20260919`, branch `fix/security-dependencies-20260919`, PR https://github.com/arhancanli/alphac/pull/69.
 - SEC collector quality: `/Users/arhancanli/alphac-source-quality-20260919`, branch `fix/sec-companyfacts-source-quality`; PR https://github.com/arhancanli/alphac/pull/70. Tests use the security worktree's existing Python environment; do not commit a .venv symlink.
