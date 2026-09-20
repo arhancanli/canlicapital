@@ -1,0 +1,61 @@
+{
+  "schema": "canli.reviewed-share-context-spec.v1",
+  "decisions": [
+    {
+      "cik": "0001579428",
+      "accession": "0001193125-26-064267",
+      "source_sha256": "bb534249e79901f14ef56a7cde4d7cfc00d4e7cc31cc09f237146d8a497ea5fc",
+      "primary_sha256": "7e9c2e20a926eb35fcdfe0866c450c3c4d45dd051c3b80d4ea9b576d0251f95a",
+      "fixture": "scripts/fixtures/editorial/axsome-reviewed-source.json.gz",
+      "observations": 12,
+      "period_ends": [
+        "2023-12-31",
+        "2024-12-31",
+        "2025-12-31"
+      ],
+      "table_index": 40,
+      "share_scale": "0",
+      "table_requires": [
+        "Net loss",
+        "Weighted"
+      ],
+      "paragraph_requires": [
+        "(In thousands, except share and per share amounts)",
+        "there was no difference between basic and diluted net loss per share of common stock for the years ended December 31, 2025 and 2024",
+        "The following potentially dilutive securities have been excluded"
+      ],
+      "reader_note": "For Axsome in 2023\u20132025, the EPS note presents the same basic and diluted loss denominator and separately lists excluded anti-dilutive securities for all three years. The general accounting-policy paragraph explicitly names only 2025 and 2024; the three-year exclusion table supplies the 2023 context. The 2025 table includes performance stock units, while that row is zero for 2024 and 2023. Options, restricted stock units, warrants and ESPP shares are also listed. Full scale-zero share counts and EPS are retained under the share/per-share exception to the thousands heading.",
+      "disposition": "REVIEWED_ALLOCATION_UNIT_AND_DILUTION_CONTEXT",
+      "supporting_table_indexes": [
+        14,
+        41
+      ]
+    },
+    {
+      "cik": "0001581280",
+      "accession": "0001581280-25-000025",
+      "source_sha256": "ab4d6e344a91d7c2894dc8c0601b52f05230299434ff75bf5209b39897d81702",
+      "primary_sha256": "17eac11c511046537e1b932e73e6f21b8062e5258ebcbd1faaf0f48c70092f8d",
+      "fixture": "scripts/fixtures/editorial/twist-bioscience-reviewed-source.json.gz",
+      "observations": 12,
+      "period_ends": [
+        "2023-09-30",
+        "2024-09-30",
+        "2025-09-30"
+      ],
+      "table_index": 70,
+      "share_scale": "3",
+      "table_requires": [
+        "Net loss",
+        "Weighted"
+      ],
+      "paragraph_requires": [
+        "less shares subject to repurchase",
+        "in conformity with the two-class method required for companies with participating securities",
+        "Because the Company has reported a net loss for the years ended September 30, 2025, 2024 and 2023"
+      ],
+      "reader_note": "For Twist Bioscience\u2019s years ended September 30, 2023, 2024 and 2025, the basic denominator deducts shares subject to repurchase. The filing applies the two-class method for participating securities and excludes potential dilution from employee awards, early-exercised unvested shares, ESPP contributions and warrants in these loss periods. EPS uses net loss attributable to common stockholders rather than comprehensive loss. September fiscal dates, scale-three shares and scale-zero EPS are preserved.",
+      "disposition": "REVIEWED_ALLOCATION_UNIT_AND_DILUTION_CONTEXT"
+    }
+  ]
+}

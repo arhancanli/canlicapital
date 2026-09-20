@@ -865,3 +865,17 @@ No date, unit or value changes.53renderer/ledger tests pass; report replays
 byte-identically; exactly24rows advance.866reviewed/290pending/20withdrawn,
 96presentation-only. Next index83; no runtime rebuild, archival supplement,
 deployment or indexing gain. All owner objectives remain active.
+
+## 2026-09-21 — three-year exclusion evidence and repurchase adjustments
+
+Previous turn completed24Guardant/C3.ai reviews. PR99four CI35538224081checks
+passed at89a3c183; merged6b662d497c503c045c5ada223037df43662a6ddc, full tree
+ab7246a9a78b2c4dd26dbb20a19d174f42d2e51ematches tested head. Reviewed24Axsome/
+Twist observations. Axsome policy explicitly names only2024/2025; exclusions41
+supplies2023context. Initial replay terminal1failed table membership for2024diluted
+EPS: tagged only in statement14. Rejected spec retained; explicit table14added
+without weakening comparator. Twist basic denominator deducts repurchasable shares
+and retains September fiscal dates.54renderer/ledger tests pass; report replays
+byte-identically; exactly24rows advance.890reviewed/266pending/20withdrawn,
+96presentation-only. Next index85; no runtime rebuild, archival supplement,
+deployment or indexing gain. All owner objectives remain active.
