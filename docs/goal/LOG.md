@@ -358,3 +358,18 @@ inline/XML replay. Receipt company-cash-history-archive-20260920.json.
 Statement-level review remains open; no publication approval, all-history scope
 claim, production-page expansion or indexing gain. Consolidated current STATUS
 to remove obsolete active-session statements; historical receipts/logs preserved.
+
+## 2026-09-20 — historical statement interpretation verified
+
+Previous turn made progress: storage recovery merged, numerical source evidence
+archived/replayed and PR25opened. This turn confirmed resume5 session23870 still
+active and merged PR25after all four CI35512759597jobs passed. Tested194688b0 and
+merged757b4625 share treef58eacca6e39aeaeb58591164cac7377ebee0ff7.
+
+Inspected all17historical cash-flow tables with exact entity headings, annual
+columns and opening/closing rows. Eighteen selected zero instants correspond to
+opening balances; Atlantica1996is inception-column opening cash, not evidence of a
+1996published annual report. Reproducible report binds primary/XML receipts and
+retains matching contexts. New113file archive verified hashes and byte-identical
+isolated scope replay. No source values, production settings or admission policy
+changed. Transfer remains active; no new live/indexed-page claim.
