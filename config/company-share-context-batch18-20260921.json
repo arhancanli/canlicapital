@@ -1,0 +1,57 @@
+{
+  "schema": "canli.reviewed-share-context-spec.v1",
+  "decisions": [
+    {
+      "cik": "0001477449",
+      "accession": "0001477449-26-000012",
+      "source_sha256": "998019a803d0d7d50679f859e4228a55ab3953cba8d7d0d38070f01b56613faf",
+      "primary_sha256": "6ded2696cbc6bd614c668c69df5ae66cdafd0042d80e94a11c609d60e68e03ed",
+      "fixture": "scripts/fixtures/editorial/teladoc-reviewed-source.json.gz",
+      "observations": 12,
+      "period_ends": [
+        "2023-12-31",
+        "2024-12-31",
+        "2025-12-31"
+      ],
+      "table_index": 63,
+      "share_scale": "0",
+      "table_requires": [
+        "Net loss",
+        "Weighted-average shares used to compute basic and diluted net loss per share"
+      ],
+      "paragraph_requires": [
+        "(in thousands, except share and per share data)",
+        "Basic and diluted net loss per share was the same for each period presented as the inclusion of all potential shares of common stock outstanding would have been anti-dilutive."
+      ],
+      "reader_note": "For 2023\u20132025, Teladoc uses net loss rather than comprehensive loss as its EPS numerator. Potential common shares, including stock options and convertible notes, are excluded as anti-dilutive. The filing\u2019s outstanding award counts are not additional weighted-average shares to add to the denominator. Shares and per-share data are exempt from the thousands heading and use scale-zero tags; basic and diluted counts should not be added together.",
+      "disposition": "REVIEWED_ALLOCATION_UNIT_AND_DILUTION_CONTEXT"
+    },
+    {
+      "cik": "0001477720",
+      "accession": "0001477720-26-000021",
+      "source_sha256": "322d50af3631c81cf7b0aab89c348ec0915f713fb0afc2ccc6e159c7f6835ac3",
+      "primary_sha256": "4ef4c4ad6eb54e30414874c81559aca81b0b9b7654b4cc6b96bc54f161bc0970",
+      "fixture": "scripts/fixtures/editorial/asana-reviewed-source.json.gz",
+      "observations": 12,
+      "period_ends": [
+        "2024-01-31",
+        "2025-01-31",
+        "2026-01-31"
+      ],
+      "table_index": 53,
+      "share_scale": "3",
+      "table_requires": [
+        "Numerator: Net loss",
+        "Denominator: Weighted-average shares"
+      ],
+      "paragraph_requires": [
+        "(in thousands, except per share amounts)",
+        "As the liquidation and dividend rights are identical, the undistributed earnings are allocated on a proportionate basis",
+        "As the Company has reported losses for all",
+        "periods presented, all potentially dilutive securities are anti-dilutive"
+      ],
+      "reader_note": "For Asana\u2019s fiscal years ended January 31, 2024, 2025 and 2026, the two-class method allocates results proportionately to Class A and Class B because their liquidation and dividend rights are identical. EPS is the same on an individual-class or combined basis; the selected denominator is the combined common-share count. Potential stock awards and employee purchase shares are excluded as anti-dilutive in the loss periods. Shares are reported in thousands with scale-three tags and EPS uses scale zero. January fiscal dates and original counts are retained without adding excluded instruments.",
+      "disposition": "REVIEWED_ALLOCATION_UNIT_AND_DILUTION_CONTEXT"
+    }
+  ]
+}

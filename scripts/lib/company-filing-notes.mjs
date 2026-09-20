@@ -1,6 +1,228 @@
 // Limited filing context, bound to the reviewed capture and selected observations.
 export const FILING_NOTES = [
 {
+  "cik": "0001477449",
+  "include_on_overview": true,
+  "source_sha256": "998019a803d0d7d50679f859e4228a55ab3953cba8d7d0d38070f01b56613faf",
+  "tags": [
+    "EarningsPerShareBasic",
+    "EarningsPerShareDiluted",
+    "WeightedAverageNumberOfDilutedSharesOutstanding",
+    "WeightedAverageNumberOfSharesOutstandingBasic"
+  ],
+  "text": "For 2023\u20132025, Teladoc uses net loss rather than comprehensive loss as its EPS numerator. Potential common shares, including stock options and convertible notes, are excluded as anti-dilutive. The filing\u2019s outstanding award counts are not additional weighted-average shares to add to the denominator. Shares and per-share data are exempt from the thousands heading and use scale-zero tags; basic and diluted counts should not be added together.",
+  "filing_url": "https://www.sec.gov/Archives/edgar/data/1477449/000147744926000012/tdoc-20251231.htm",
+  "observations": [
+    {
+      "tag": "EarningsPerShareBasic",
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "unit": "USD/shares",
+      "val": -1.34,
+      "accn": "0001477449-26-000012"
+    },
+    {
+      "tag": "EarningsPerShareBasic",
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "unit": "USD/shares",
+      "val": -5.87,
+      "accn": "0001477449-26-000012"
+    },
+    {
+      "tag": "EarningsPerShareBasic",
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "unit": "USD/shares",
+      "val": -1.14,
+      "accn": "0001477449-26-000012"
+    },
+    {
+      "tag": "EarningsPerShareDiluted",
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "unit": "USD/shares",
+      "val": -1.34,
+      "accn": "0001477449-26-000012"
+    },
+    {
+      "tag": "EarningsPerShareDiluted",
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "unit": "USD/shares",
+      "val": -5.87,
+      "accn": "0001477449-26-000012"
+    },
+    {
+      "tag": "EarningsPerShareDiluted",
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "unit": "USD/shares",
+      "val": -1.14,
+      "accn": "0001477449-26-000012"
+    },
+    {
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "unit": "shares",
+      "val": 164578219,
+      "accn": "0001477449-26-000012"
+    },
+    {
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "unit": "shares",
+      "val": 170564088,
+      "accn": "0001477449-26-000012"
+    },
+    {
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "unit": "shares",
+      "val": 176221530,
+      "accn": "0001477449-26-000012"
+    },
+    {
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic",
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "unit": "shares",
+      "val": 164578219,
+      "accn": "0001477449-26-000012"
+    },
+    {
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic",
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "unit": "shares",
+      "val": 170564088,
+      "accn": "0001477449-26-000012"
+    },
+    {
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic",
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "unit": "shares",
+      "val": 176221530,
+      "accn": "0001477449-26-000012"
+    }
+  ]
+},
+{
+  "cik": "0001477720",
+  "include_on_overview": true,
+  "source_sha256": "322d50af3631c81cf7b0aab89c348ec0915f713fb0afc2ccc6e159c7f6835ac3",
+  "tags": [
+    "EarningsPerShareBasic",
+    "EarningsPerShareDiluted",
+    "WeightedAverageNumberOfDilutedSharesOutstanding",
+    "WeightedAverageNumberOfSharesOutstandingBasic"
+  ],
+  "text": "For Asana\u2019s fiscal years ended January 31, 2024, 2025 and 2026, the two-class method allocates results proportionately to Class A and Class B because their liquidation and dividend rights are identical. EPS is the same on an individual-class or combined basis; the selected denominator is the combined common-share count. Potential stock awards and employee purchase shares are excluded as anti-dilutive in the loss periods. Shares are reported in thousands with scale-three tags and EPS uses scale zero. January fiscal dates and original counts are retained without adding excluded instruments.",
+  "filing_url": "https://www.sec.gov/Archives/edgar/data/1477720/000147772026000021/asan-20260131.htm",
+  "observations": [
+    {
+      "tag": "EarningsPerShareBasic",
+      "start": "2023-02-01",
+      "end": "2024-01-31",
+      "unit": "USD/shares",
+      "val": -1.17,
+      "accn": "0001477720-26-000021"
+    },
+    {
+      "tag": "EarningsPerShareBasic",
+      "start": "2024-02-01",
+      "end": "2025-01-31",
+      "unit": "USD/shares",
+      "val": -1.11,
+      "accn": "0001477720-26-000021"
+    },
+    {
+      "tag": "EarningsPerShareBasic",
+      "start": "2025-02-01",
+      "end": "2026-01-31",
+      "unit": "USD/shares",
+      "val": -0.8,
+      "accn": "0001477720-26-000021"
+    },
+    {
+      "tag": "EarningsPerShareDiluted",
+      "start": "2023-02-01",
+      "end": "2024-01-31",
+      "unit": "USD/shares",
+      "val": -1.17,
+      "accn": "0001477720-26-000021"
+    },
+    {
+      "tag": "EarningsPerShareDiluted",
+      "start": "2024-02-01",
+      "end": "2025-01-31",
+      "unit": "USD/shares",
+      "val": -1.11,
+      "accn": "0001477720-26-000021"
+    },
+    {
+      "tag": "EarningsPerShareDiluted",
+      "start": "2025-02-01",
+      "end": "2026-01-31",
+      "unit": "USD/shares",
+      "val": -0.8,
+      "accn": "0001477720-26-000021"
+    },
+    {
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+      "start": "2023-02-01",
+      "end": "2024-01-31",
+      "unit": "shares",
+      "val": 220406000,
+      "accn": "0001477720-26-000021"
+    },
+    {
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+      "start": "2024-02-01",
+      "end": "2025-01-31",
+      "unit": "shares",
+      "val": 229472000,
+      "accn": "0001477720-26-000021"
+    },
+    {
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+      "start": "2025-02-01",
+      "end": "2026-01-31",
+      "unit": "shares",
+      "val": 236823000,
+      "accn": "0001477720-26-000021"
+    },
+    {
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic",
+      "start": "2023-02-01",
+      "end": "2024-01-31",
+      "unit": "shares",
+      "val": 220406000,
+      "accn": "0001477720-26-000021"
+    },
+    {
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic",
+      "start": "2024-02-01",
+      "end": "2025-01-31",
+      "unit": "shares",
+      "val": 229472000,
+      "accn": "0001477720-26-000021"
+    },
+    {
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic",
+      "start": "2025-02-01",
+      "end": "2026-01-31",
+      "unit": "shares",
+      "val": 236823000,
+      "accn": "0001477720-26-000021"
+    }
+  ]
+},
+{
   "cik": "0001468748",
   "include_on_overview": true,
   "source_sha256": "fa937f3241c45706b9bd1bff3d57d7c6bde0b88302772aa7c62bc4ffe51766d7",

@@ -609,3 +609,15 @@ anti-dilution retained; scales0/3and values unchanged.38renderer/ledger tests pa
 report replays byte-identically and only24new rows advance.540reviewed/622pending/
 14withdrawn;84presentation-only. Next new index55; earlier legacy/context gaps
 remain. No runtime rebuild, archive supplement, deployment or indexing gain.
+
+## 2026-09-21 — share units and fiscal-year context integrated
+
+Previous status check verified PR82four CI35534504127checks passed and batch18
+source report replay matched. PR82now merged4bc86333fromf1161c9c; fetched main
+and independently compared identical trees. Integrated24Teladoc/Asana reviews.
+Teladoc full share counts remain distinct from outstanding award counts. Asana
+January31fiscal2024–2026dates, two-class allocation and combined scale3denominator
+retained.39renderer/ledger tests pass; only24ledger rows advance.564reviewed/
+598pending/14withdrawn,84presentation-only. Source report replays byte-identically.
+No runtime rebuild, archive supplement, production deployment or indexing gain.
+All owner goals remain active; next new index57 and earlier gaps remain open.
