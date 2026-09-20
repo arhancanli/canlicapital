@@ -268,3 +268,54 @@ test('retry budgets reject invalid or unbounded values before requests', async t
   }
   assert.equal(s.calls.length, 0);
 });
+
+test('rate-limited creates retain safe Retry-After metadata and never retry', async t => {
+  for (const [header, expected] of [['180', { seconds: 180 }], ['Sun, 20 Sep 2026 16:00:00 GMT', { at: '2026-09-20T16:00:00.000Z' }], ['sensitive-invalid-header', undefined]]) {
+    const f = fixture(t, 1); let writes = 0, last;
+    const storage = createSupabaseStorage({ projectUrl: 'https://example.supabase.co', bucket: 'company-runtime', serviceKey: 'secret-test', readAttempts: 3,
+      fetcher: async (url, init) => {
+        if (init.method === 'POST') { writes++; return new Response('sensitive upstream body', { status: 429, headers: { 'Retry-After': header } }); }
+        return Response.json({ statusCode: '404', error: 'not_found' }, { status: 404 });
+      } });
+    await assert.rejects(uploadCompanyStorage({ ...f, storage, concurrency: 1, writeAttempts: 2, record: receipt => { last = structuredClone(receipt); } }), /429/);
+    assert.equal(writes, 1);
+    assert.equal(last.complete, false);
+    assert.equal(last.failures[0].http_status, 429);
+    assert.deepEqual(last.failures[0].retry_after, expected);
+    assert.ok(!JSON.stringify(last).includes('sensitive'));
+  }
+});
+
+test('denied reads retain safe status and retry metadata without retrying or writing', async t => {
+  for (const status of [401, 403, 429]) {
+    const f = fixture(t, 1); let calls = 0, last;
+    const storage = createSupabaseStorage({ projectUrl: 'https://example.supabase.co', bucket: 'company-runtime', serviceKey: 'secret-test', readAttempts: 3,
+      fetcher: async (url, init) => {
+        calls++; assert.notEqual(init.method, 'POST');
+        return new Response('sensitive upstream body', { status, headers: { 'Retry-After': '180' } });
+      } });
+    await assert.rejects(uploadCompanyStorage({ ...f, storage, writeAttempts: 2, record: receipt => { last = structuredClone(receipt); } }), /Storage read rejected/);
+    assert.equal(calls, 1);
+    assert.equal(last.complete, false);
+    assert.equal(last.failures[0].http_status, status);
+    assert.deepEqual(last.failures[0].retry_after, { seconds: 180 });
+    assert.equal(last.read_retries.length, 0);
+    assert.equal(last.write_recovery.length, 0);
+    assert.ok(!JSON.stringify(last).includes('sensitive'));
+  }
+});
+
+test('request pacing spaces concurrent reads and creates by actual starts', async t => {
+  const f = fixture(t, 1), starts = []; let clock = 0;
+  const storage = createSupabaseStorage({ projectUrl: 'https://example.supabase.co', bucket: 'company-runtime', serviceKey: 'secret-test', minIntervalMs: 250,
+    now: () => clock, pause: async ms => { clock += ms + 25; },
+    fetcher: async (url, init) => { starts.push(clock); return init.method === 'POST' ? new Response('', { status: 200 }) : Response.json({ statusCode: '404', error: 'not_found' }, { status: 404 }); } });
+  await Promise.all([storage.read(f.files[0]), storage.read(f.files[0]), storage.read(f.files[0])]);
+  await storage.create(f.files[0], f.data[0]);
+  assert.deepEqual(starts, [0, 275, 550, 825]);
+  assert.deepEqual(storage.requestPacingPolicy, { minimum_interval_ms: 250 });
+});
+
+test('invalid pacing fails before requests', () => {
+  for (const minIntervalMs of [-1, 0.5, 10001, NaN]) assert.throws(() => createSupabaseStorage({ projectUrl: 'https://example.supabase.co', bucket: 'company-runtime', serviceKey: 'secret-test', minIntervalMs }), /pacing/);
+});

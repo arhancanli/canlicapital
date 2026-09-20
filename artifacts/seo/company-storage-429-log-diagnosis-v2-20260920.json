@@ -1,0 +1,22 @@
+{
+  "schema": "canli.storage-429-log-diagnosis.v1",
+  "project": "bpnensyowfmdwhqmfdrg",
+  "query": "select timestamp, log_attributes['res.statusCode'] as status, log_attributes['error.errorCode'] as error_code, log_attributes['error.name'] as error_name, log_attributes['error.message'] as message, log_attributes['error.raw'] as raw_error, log_attributes['error.stack'] as stack from logs where source = 'storage_logs' and log_attributes['res.statusCode'] = '429' order by timestamp desc limit 5",
+  "data": {
+    "result": [
+      {
+        "error_code": "DatabaseError",
+        "error_name": "Error",
+        "status": "429",
+        "timestamp": "2026-09-20T14:53:06.280000",
+        "message_indicators": [
+          "pool",
+          "connection",
+          "request",
+          "databaseerror"
+        ]
+      }
+    ]
+  },
+  "scope": "Read-only provider log diagnosis; message indicators only, no headers or raw messages retained. No recovery or restart implied."
+}

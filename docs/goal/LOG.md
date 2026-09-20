@@ -636,3 +636,33 @@ related-party loans separately disclosed. Note binds exact source and all8select
 observations; cites retained2024filing. Twelve actual history renders pass; all10
 renderer tests pass including changed evidence suppression. No deployment.
 Bulk26312polled live;5572objects/0failures at checkpoint.
+
+## 2026-09-20 — storage429 stop and provider diagnosis
+
+Previous turn added reviewed EVENTIKO copy. PR34merged34f2b81e after four checks;
+tested2ca4f9fe and merged trees67b8efb122bd96a625a6d7933a5312c9b8e31da3.
+Bulk26312terminal1 at5625objects on create429; no retry. Failure retained with
+54read recoveries/4write reconciliation events. Provider log query first rejected
+noncanonical ISO dates; corrected query succeeded.429record shows DatabaseError
+and pool/connection indicators, not a proven quota exhaustion. Read-only health:
+ACTIVE_HEALTHY,17connections/max60; not a storage pool capacity guarantee.
+No uploader restarted or limits changed. Added sanitized Retry-After retention;
+18tests pass including no retry for429and omission of arbitrary upstream content.
+Fresh failed-key public inspection retained; next step is paced/concurrency1
+recovery design with all current fail-closed reconciliation rules intact.
+
+## 2026-09-20 — paced immutable storage recovery
+
+Previous goal turn only reaffirmed objectives; no implementation progress. Verified
+local e5177ec0 pacing commit and PR35 still at52031799. All20storage/planner tests
+pass. Credential-waiting launcher88342 was terminated before replacement77617;
+no uploader had started in the old launcher. New transfer is confirmed live with
+36reverified objects/zero failures at the initial checkpoint. One worker and500ms
+minimum between request starts, same bounded reconciliation and hard stops.
+Fresh resume1receipt preserves original5625-object429failure without overwriting.
+No provider settings changed; no production expansion or indexing gain.
+
+Review found the early401/403/429read branch omitted diagnostic metadata. Fixed
+it without enabling retries, with a receipt-level regression for all three codes.
+All21storage/planner tests pass. Active77617 remains pinned to e5177ec0 and has not
+hot-reloaded this later diagnostics-only change.

@@ -1,0 +1,19 @@
+{
+  "schema": "canli.storage-transfer-stop.v1",
+  "observed_at": "2026-09-20T14:57:25.117970+00:00",
+  "receipt_sha256": "ba87c3c6a13429ddc64d5105ecd6a5936c70698159fd36a04ff0a157772adc7d",
+  "session": 26312,
+  "terminal_exit_code": 1,
+  "verified_objects": 5625,
+  "complete": false,
+  "failures": [
+    {
+      "key": "delivery/objects/54f880cf171ac6dff01c2e394b1a4aea0d1b31cca2f482974a1b7845eb69f056.json.gz",
+      "error": "Storage create rejected (429); no overwrite"
+    }
+  ],
+  "read_retries": 54,
+  "write_recovery_events": 4,
+  "decision": "HTTP429 respected; no restart or retry of denied create. Diagnose provider limit before a paced recovery.",
+  "scope": "Partial transfer only. Existing immutable objects retained; no production activation."
+}

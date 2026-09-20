@@ -7,7 +7,10 @@ status preserved in history/STATUS-20260920-through-equality-triage.md.
 ## Current execution
 
 Worktree /Users/arhancanli/canlicapital-expansion-20260919, branch
-feat/company-filing-context-20260920. PR33 merged as
+fix/company-storage-rate-diagnostics-20260920. PR34 merged as
+34f2b81e9dec93047c90c4185d1a59fe9ada3661 after four CI35517891088checks passed
+at2ca4f9fe; tested/merged tree67b8efb122bd96a625a6d7933a5312c9b8e31da3.
+PR33 merged as
 c9ac91c67f490196a3efe5d8ea160ad76e937f67 after all four CI35517514528checks passed
 at12dabec8. Tested/merged trees bothb6581a1f54916285ba89b1e8d29204fb080e7732.
 PR32 merged as
@@ -16,9 +19,36 @@ at0dcfa6f73768fe6419a547012e87ad0952dc7ca6. Tested/merged tree both
 40d3071a73e02164a89fb58289696e8c08bcf537. PR31 previously merged59b10c83 with
 five checks and exact tree equality. Post-merge PR32 CI35516871919passed.
 
-Bulk storage26312 remains active, codea98637c4, last checkpoint5572verified
-objects/0failures. Receipt corpus-local/company-five-cohort-transfer-20260920.json.
-Concurrency4, read3/write2, global budgets200/50; immutable exact-byte checks.
+Bulk storage26312 is TERMINAL exit1 at5625verified objects, incomplete.
+Create of delivery/objects/54f880cf171ac6dff01c2e394b1a4aea0d1b31cca2f482974a1b7845eb69f056.json.gz
+returned429 and stopped without retry.54read retries/4write recovery events preceded
+that stop. Receipt corpus-local/company-five-cohort-transfer-20260920.json remains
+unchanged; stop summary company-five-cohort-storage-stop-20260920.json.
+Original uploader26312 is terminal. Paced recovery77617 is active, confirmed by a live handle and fresh receipt. Do not poll/restart26312as live.
+Read-only provider logs show DatabaseError/429 at2026-09-20T14:53:06.280000, with
+pool/connection indicators. No raw headers/messages or credentials stored. Project
+ACTIVE_HEALTHY at15:00UTC, aggregate17connections/max60, not proof of storage pool
+capacity. See company-storage-429-log-diagnosis{-v2}-20260920.json and
+company-storage-health-20260920.json. Exact failed-key public inspection is recorded
+in company-storage-denied-key-inspection-20260920.json. No write attempted.
+Supabase documentation says storage429 can involve pooler max_clients; this is
+context, not conclusive diagnosis: https://supabase.com/docs/guides/storage/debugging/error-codes.
+PR35 now retains sanitized numeric/date Retry-After metadata on rejected reads
+and writes without changing429hard-stop behavior.21storage/planner tests pass,
+including one denied request without retry/write and omission of upstream bodies.
+The active recovery uses earlier e5177ec0: create diagnostics and pacing are
+present, but read-denial metadata was added afterward; do not claim it hot-reloaded.
+Paced recovery77617 launched from e5177ec0 after20storage/planner tests passed.
+One worker, minimum500ms between request starts, read/write bounds3/2 and shared
+retry budgets200/50. Fresh receipt corpus-local/company-five-cohort-transfer-
+resume1-20260920.json records code SHA4d9b812261243ed1421f45e1be981a4899417338b3a8a407f0a88a0f24207afc.
+Initial checkpoint36objects verified, zero failures, incomplete; these are
+reverified objects, not36new uploads. Existing objects are independently checked;
+only absent objects can be created. Any429/permission/corruption stops recovery.
+Original failure receipt unchanged; no limits/settings/billing changed.
+The previous credential-waiting launcher88342 had no recoverable session handle;
+it was explicitly terminated before launching77617, so no duplicate uploader exists.
+
 Primary acquisition43531 is terminal exit0: all159index/primary pairs verified,
 complete receipt company-equal-history-capture-complete-20260920.json. All200
 priority primary filings are now retained (41original+159new).
@@ -38,7 +68,7 @@ addition; current additions require their own checks.
 
 
 Earlier v3upload sessions are terminal with failures retained. Do not resume the
-superseded v3plan. Only bulk26312is currently known active. Archive/replay46444completed exit0.
+superseded v3plan. Paced uploader77617 is active at the checkpoint above. Archive/replay46444completed exit0.
 
 ## Current filing-context improvement
 
