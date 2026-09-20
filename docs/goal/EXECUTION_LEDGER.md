@@ -16,4 +16,4 @@ in history/EXECUTION_LEDGER-20260920-through-five-cohort-archive-start.md.
 | Engine integration | PR71merged with six passing CIchecks; original runtime preserved | Governed research/activation; no broker actions |
 | Strategy outcomes | Five returns/four sleeves, immature evidence | NET FORWARD Sharpe>2,14qualified distinct sleeves,maxDD<=10% |
 | Source capacity | Current8,031issuer discovery insufficient for800k | Validate additional useful source/content families |
-| Continuity | Current STATUS/ledger consolidated; historical records retained | Update at material transitions |
+| Continuity | Reusable source-bound scope registry reproduces1176rows; review workflow documented; current STATUS/ledger consolidated; historical records retained | Update at material transitions |

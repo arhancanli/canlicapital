@@ -296,3 +296,15 @@ Source-bound notes preserve all values;17renderer tests pass, including changed-
 observation suppression. Report and v6ledger replay exactly:74reviewed,
 1,094pending,8withdrawn;24reviewed remain presentation-only. No runtime rebuild,
 new archive, production activation or indexing claim.
+
+## 2026-09-20 — reusable review registry with exact ledger preservation
+
+PR64merged7289ee08after four passing CI35530344125checks and exact tested/merged
+tree4ed9cab9178746777db64ca371042977d799058e. Replaced future manual copies of
+ledger scripts with one reconciler and explicit report-hash/issuer/disposition/state
+registrations. Frozen historical reports/scripts remain unchanged. The new compressed
+ledger reads tracked inputs and reproduces every1176v6row, evidence link and count:
+74reviewed (24presentation-only),1,094pending,8withdrawn. No new accounting approval.
+Four tests cover exact corpus equivalence, deterministic gzip, limited status retention,
+duplicate/stale/misattributed evidence and hold conflicts; added to routine verification.
+Documented source-review workflow in SCOPE_REVIEW.md. No deployment/indexing claim.
