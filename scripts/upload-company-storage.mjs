@@ -7,6 +7,16 @@ const HASH = /^[a-f0-9]{64}$/;
 const KEY = /^(catalog|delivery)\/objects\/([a-f0-9]{64})\.json(?:\.gz)?$/;
 const LIMIT = 16 * 1024 * 1024;
 
+function responseFailureMetadata(response) {
+  const raw = response.headers.get('retry-after') ?? '';
+  let retryAfter;
+  if (/^\d{1,10}$/.test(raw)) retryAfter = { seconds: Number(raw) };
+  else if (/^(Mon|Tue|Wed|Thu|Fri|Sat|Sun), \d{2} [A-Z][a-z]{2} \d{4} \d{2}:\d{2}:\d{2} GMT$/.test(raw) && Number.isFinite(Date.parse(raw))) {
+    retryAfter = { at: new Date(raw).toISOString() };
+  }
+  return { httpStatus: response.status, ...(retryAfter ? { retryAfter } : {}) };
+}
+
 function localBytes(file) {
   const raw = readFileSync(file.local_path);
   if (raw.length !== file.bytes || catalogHash(raw) !== file.sha256) throw new Error('Local object binding mismatch');
@@ -89,6 +99,7 @@ export function createSupabaseStorage({ projectUrl, bucket, serviceKey, fetcher 
         if ((response.status === 400 || response.status === 404) &&
             String(error?.statusCode) === '404' && error?.error === 'not_found') return null;
         const failure = new Error(`Storage read rejected (${response.status})`);
+        Object.assign(failure, responseFailureMetadata(response));
         failure.retryableRead = [502, 503, 504].includes(response.status);
         throw failure;
       }
@@ -120,6 +131,7 @@ export function createSupabaseStorage({ projectUrl, bucket, serviceKey, fetcher 
       await response.body?.cancel().catch(() => {});
       if (!response.ok) {
         const error = new Error(`Storage create rejected (${response.status}); no overwrite`);
+        Object.assign(error, responseFailureMetadata(response));
         error.ambiguousWrite = [409, 502, 503, 504].includes(response.status);
         throw error;
       }
@@ -187,7 +199,9 @@ export async function uploadCompanyStorage({ planBytes, planHash, storage, recor
         record(receipt);
       } catch (error) {
         failure ??= error;
-        receipt.failures.push({ key: file.key, error: error.message });
+        receipt.failures.push({ key: file.key, error: error.message,
+          ...(Number.isInteger(error.httpStatus) ? { http_status: error.httpStatus } : {}),
+          ...(error.retryAfter ? { retry_after: error.retryAfter } : {}) });
         record(receipt);
       }
     }

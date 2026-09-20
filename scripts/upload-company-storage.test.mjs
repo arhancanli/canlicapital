@@ -268,3 +268,20 @@ test('retry budgets reject invalid or unbounded values before requests', async t
   }
   assert.equal(s.calls.length, 0);
 });
+
+test('rate-limited creates retain safe Retry-After metadata and never retry', async t => {
+  for (const [header, expected] of [['180', { seconds: 180 }], ['Sun, 20 Sep 2026 16:00:00 GMT', { at: '2026-09-20T16:00:00.000Z' }], ['sensitive-invalid-header', undefined]]) {
+    const f = fixture(t, 1); let writes = 0, last;
+    const storage = createSupabaseStorage({ projectUrl: 'https://example.supabase.co', bucket: 'company-runtime', serviceKey: 'secret-test', readAttempts: 3,
+      fetcher: async (url, init) => {
+        if (init.method === 'POST') { writes++; return new Response('sensitive upstream body', { status: 429, headers: { 'Retry-After': header } }); }
+        return Response.json({ statusCode: '404', error: 'not_found' }, { status: 404 });
+      } });
+    await assert.rejects(uploadCompanyStorage({ ...f, storage, concurrency: 1, writeAttempts: 2, record: receipt => { last = structuredClone(receipt); } }), /429/);
+    assert.equal(writes, 1);
+    assert.equal(last.complete, false);
+    assert.equal(last.failures[0].http_status, 429);
+    assert.deepEqual(last.failures[0].retry_after, expected);
+    assert.ok(!JSON.stringify(last).includes('sensitive'));
+  }
+});

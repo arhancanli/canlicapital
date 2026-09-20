@@ -636,3 +636,17 @@ related-party loans separately disclosed. Note binds exact source and all8select
 observations; cites retained2024filing. Twelve actual history renders pass; all10
 renderer tests pass including changed evidence suppression. No deployment.
 Bulk26312polled live;5572objects/0failures at checkpoint.
+
+## 2026-09-20 — storage429 stop and provider diagnosis
+
+Previous turn added reviewed EVENTIKO copy. PR34merged34f2b81e after four checks;
+tested2ca4f9fe and merged trees67b8efb122bd96a625a6d7933a5312c9b8e31da3.
+Bulk26312terminal1 at5625objects on create429; no retry. Failure retained with
+54read recoveries/4write reconciliation events. Provider log query first rejected
+noncanonical ISO dates; corrected query succeeded.429record shows DatabaseError
+and pool/connection indicators, not a proven quota exhaustion. Read-only health:
+ACTIVE_HEALTHY,17connections/max60; not a storage pool capacity guarantee.
+No uploader restarted or limits changed. Added sanitized Retry-After retention;
+18tests pass including no retry for429and omission of arbitrary upstream content.
+Fresh failed-key public inspection retained; next step is paced/concurrency1
+recovery design with all current fail-closed reconciliation rules intact.
