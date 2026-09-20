@@ -7,6 +7,16 @@ const HASH = /^[a-f0-9]{64}$/;
 const KEY = /^(catalog|delivery)\/objects\/([a-f0-9]{64})\.json(?:\.gz)?$/;
 const LIMIT = 16 * 1024 * 1024;
 
+function responseFailureMetadata(response) {
+  const raw = response.headers.get('retry-after') ?? '';
+  let retryAfter;
+  if (/^\d{1,10}$/.test(raw)) retryAfter = { seconds: Number(raw) };
+  else if (/^(Mon|Tue|Wed|Thu|Fri|Sat|Sun), \d{2} [A-Z][a-z]{2} \d{4} \d{2}:\d{2}:\d{2} GMT$/.test(raw) && Number.isFinite(Date.parse(raw))) {
+    retryAfter = { at: new Date(raw).toISOString() };
+  }
+  return { httpStatus: response.status, ...(retryAfter ? { retryAfter } : {}) };
+}
+
 function localBytes(file) {
   const raw = readFileSync(file.local_path);
   if (raw.length !== file.bytes || catalogHash(raw) !== file.sha256) throw new Error('Local object binding mismatch');
@@ -37,10 +47,13 @@ export function validateStoragePlan(raw, expectedHash) {
 }
 
 export function createSupabaseStorage({ projectUrl, bucket, serviceKey, fetcher = fetch,
-  readAttempts = 1, retryBudget = 10, pause = ms => new Promise(resolve => setTimeout(resolve, ms)) }) {
+  readAttempts = 1, retryBudget = 10, minIntervalMs = 0, now = () => Date.now(),
+  pause = ms => new Promise(resolve => setTimeout(resolve, ms)) }) {
   if (!Number.isInteger(readAttempts) || readAttempts < 1 || readAttempts > 3 ||
       !Number.isInteger(retryBudget) || retryBudget < 0 || retryBudget > 200) throw new Error('Invalid bounded read retry policy');
+  if (!Number.isInteger(minIntervalMs) || minIntervalMs < 0 || minIntervalMs > 10000) throw new Error('Invalid request pacing');
   let retries = 0;
+  let gate = Promise.resolve(), lastStarted = -Infinity;
   const base = new URL(projectUrl);
   if (base.protocol !== 'https:' || base.username || base.password || base.search || base.hash ||
       base.pathname !== '/' || !/^[a-z0-9][a-z0-9-]{0,62}$/.test(bucket) || !serviceKey) throw new Error('Invalid storage destination');
@@ -57,19 +70,29 @@ export function createSupabaseStorage({ projectUrl, bucket, serviceKey, fetcher 
       return failure;
   }
   async function request(url, options) {
+    // Serialize permission to start, not the response body. Spacing is based on
+    // actual starts so delayed timers cannot release a burst of reserved slots.
+    const start = gate.then(async () => {
+      const wait = Math.max(0, lastStarted + minIntervalMs - now());
+      if (wait) await pause(wait);
+      lastStarted = now();
+    });
+    gate = start.catch(() => {});
+    await start;
     try { return await fetcher(url, { ...options, redirect: 'error', signal: AbortSignal.timeout(60_000) }); }
     catch (error) { throw transportFailure(error); }
   }
   const adapter = {
     destination: publicBase,
     readRetryPolicy: { attempts: readAttempts, budget: retryBudget },
+    requestPacingPolicy: { minimum_interval_ms: minIntervalMs },
     async readOnce(file) {
       if (!KEY.test(file.key)) throw new Error('Invalid object key');
       const response = await request(publicBase + file.key, { headers: { 'Accept-Encoding': 'identity' } });
       if (!response.ok) {
         if ([401, 403, 429].includes(response.status)) {
           await response.body?.cancel().catch(() => {});
-          throw new Error(`Storage read rejected (${response.status})`);
+          throw Object.assign(new Error(`Storage read rejected (${response.status})`), responseFailureMetadata(response));
         }
         // Supabase returns HTTP400 with an embedded404 for absent objects. Never
         // treat authorization, throttling or arbitrary HTTP400 as absence.
@@ -89,6 +112,7 @@ export function createSupabaseStorage({ projectUrl, bucket, serviceKey, fetcher 
         if ((response.status === 400 || response.status === 404) &&
             String(error?.statusCode) === '404' && error?.error === 'not_found') return null;
         const failure = new Error(`Storage read rejected (${response.status})`);
+        Object.assign(failure, responseFailureMetadata(response));
         failure.retryableRead = [502, 503, 504].includes(response.status);
         throw failure;
       }
@@ -120,6 +144,7 @@ export function createSupabaseStorage({ projectUrl, bucket, serviceKey, fetcher 
       await response.body?.cancel().catch(() => {});
       if (!response.ok) {
         const error = new Error(`Storage create rejected (${response.status}); no overwrite`);
+        Object.assign(error, responseFailureMetadata(response));
         error.ambiguousWrite = [409, 502, 503, 504].includes(response.status);
         throw error;
       }
@@ -148,7 +173,8 @@ export async function uploadCompanyStorage({ planBytes, planHash, storage, recor
   const receipt = { schema: 'canli.company-storage-transfer.v1', plan_sha256: planHash,
     code_sha256: catalogHash(readFileSync(new URL(import.meta.url))),
     release_hash: plan.release_hash, destination: storage.destination, publication_approved: false,
-    retry_policy: { read: storage.readRetryPolicy, write: { attempts: writeAttempts, budget: writeRetryBudget }, concurrency },
+    retry_policy: { read: storage.readRetryPolicy, write: { attempts: writeAttempts, budget: writeRetryBudget }, concurrency,
+      request_pacing: storage.requestPacingPolicy },
     complete: false, files: [], failures: [], read_retries: [], write_recovery: [], scope: 'Runtime transfer only; not capture backup, editorial admission or production activation.' };
   record(receipt);
   const read = file => storage.read(file, { onRetry: event => {
@@ -187,7 +213,9 @@ export async function uploadCompanyStorage({ planBytes, planHash, storage, recor
         record(receipt);
       } catch (error) {
         failure ??= error;
-        receipt.failures.push({ key: file.key, error: error.message });
+        receipt.failures.push({ key: file.key, error: error.message,
+          ...(Number.isInteger(error.httpStatus) ? { http_status: error.httpStatus } : {}),
+          ...(error.retryAfter ? { retry_after: error.retryAfter } : {}) });
         record(receipt);
       }
     }
@@ -200,10 +228,10 @@ export async function uploadCompanyStorage({ planBytes, planHash, storage, recor
 }
 
 if (process.argv[1] && import.meta.url === pathToFileURL(resolve(process.argv[1])).href) {
-  const [planPath, planHash, projectUrl, bucket, output, concurrency = '1', readAttempts = '1', writeAttempts = '1', readRetryBudget = '10', writeRetryBudget = '10'] = process.argv.slice(2);
-  if (!output) throw new Error('Usage: node scripts/upload-company-storage.mjs PLAN SHA256 PROJECT_URL BUCKET NEW_RECEIPT [CONCURRENCY_1_TO_4] [READ_ATTEMPTS_1_TO_3] [WRITE_ATTEMPTS_1_TO_2] [READ_RETRY_BUDGET_0_TO_200] [WRITE_RETRY_BUDGET_0_TO_50]');
+  const [planPath, planHash, projectUrl, bucket, output, concurrency = '1', readAttempts = '1', writeAttempts = '1', readRetryBudget = '10', writeRetryBudget = '10', minIntervalMs = '0'] = process.argv.slice(2);
+  if (!output) throw new Error('Usage: node scripts/upload-company-storage.mjs PLAN SHA256 PROJECT_URL BUCKET NEW_RECEIPT [CONCURRENCY_1_TO_4] [READ_ATTEMPTS_1_TO_3] [WRITE_ATTEMPTS_1_TO_2] [READ_RETRY_BUDGET_0_TO_200] [WRITE_RETRY_BUDGET_0_TO_50] [MIN_REQUEST_INTERVAL_MS_0_TO_10000]');
   if (existsSync(output) || existsSync(output + '.pending')) throw new Error('Receipt already exists; preserve it and use a new path');
-  const storage = createSupabaseStorage({ projectUrl, bucket, serviceKey: process.env.COMPANY_STORAGE_SERVICE_KEY, readAttempts: Number(readAttempts), retryBudget: Number(readRetryBudget) });
+  const storage = createSupabaseStorage({ projectUrl, bucket, serviceKey: process.env.COMPANY_STORAGE_SERVICE_KEY, readAttempts: Number(readAttempts), retryBudget: Number(readRetryBudget), minIntervalMs: Number(minIntervalMs) });
   await uploadCompanyStorage({ planBytes: readFileSync(planPath), planHash, storage, concurrency: Number(concurrency), writeAttempts: Number(writeAttempts), writeRetryBudget: Number(writeRetryBudget), record: receipt => {
     writeFileSync(output + '.pending', JSON.stringify(receipt, null, 2) + '\n', { mode: 0o600 });
     renameSync(output + '.pending', output);
