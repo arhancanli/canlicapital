@@ -1,0 +1,254 @@
+{
+  "schema": "canli.retained-cash-scope.v1",
+  "publication_approved": false,
+  "manifest_sha256": "f076234deaccbfa94ddb7d1c1faceffcc75e37d9db534591e74ea892f76eac2a",
+  "prior_comparison_sha256": "3ea4ac541e7a2d7515d933d91fe4136677f930b5532a12719b37abb89708d39a",
+  "helper_sha256": "9fe9596d43db7d050403c5ede9a0ff28c30c1b75245dcbe6a4ef8770e84443e2",
+  "code_sha256": "485a88b03260a874f40a10de1a735a22aae58167688ae19289ba228a8ca96631",
+  "cases": [
+    {
+      "cik": "0000825313",
+      "name": "ALLIANCEBERNSTEIN HOLDING L.P.",
+      "tag": "CashAndCashEquivalentsAtCarryingValue",
+      "source_sha256": "61eaab92369728899d02e53094312395ae65e15d19305845c19764d0801b7975",
+      "selected_sha256": "24ca6e6813188937b160e64831319be3f300bf09837b1c025b1b2d07ad0cd065",
+      "primary_path": "artifacts/seo/corpus-local/editorial-constant-filings/0000825313-0000825313-19-000006-primary.response",
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/825313/000082531319000006/ab-20181231x10k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T05:59:02.603438+00:00",
+        "bytes": 5527160,
+        "sha256": "c9e2c6216d3f779d51672dd5433e05bbc80d05db8b1476006d4327cb9f9570c3"
+      },
+      "instance_capture": {
+        "path": "artifacts/seo/corpus-local/editorial-constant-filings/0000825313-0000825313-19-000006-instance.response",
+        "url": "https://www.sec.gov/Archives/edgar/data/825313/000082531319000006/ab-20181231.xml",
+        "status": 200,
+        "captured_at": "2026-09-20T06:02:20.901370+00:00",
+        "bytes": 695221,
+        "sha256": "766738c48d74d34dc716b38af1e3b76da16c9c5216a7c3cd3912d1387f27da01"
+      },
+      "checks": [
+        {
+          "selected": {
+            "end": "2018-12-31",
+            "val": 0,
+            "accn": "0000825313-19-000006",
+            "fy": 2018,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2019-02-13",
+            "frame": "CY2018Q4I",
+            "unit": "USD",
+            "tag": "CashAndCashEquivalentsAtCarryingValue"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "FI2018Q4",
+              "unit_id": "usd",
+              "value": "0"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "end": "2017-12-31",
+            "val": 0,
+            "accn": "0000825313-19-000006",
+            "fy": 2018,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2019-02-13",
+            "frame": "CY2017Q4I",
+            "unit": "USD",
+            "tag": "CashAndCashEquivalentsAtCarryingValue"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "FI2017Q4",
+              "unit_id": "usd",
+              "value": "0"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "end": "2016-12-31",
+            "val": 0,
+            "accn": "0000825313-19-000006",
+            "fy": 2018,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2019-02-13",
+            "frame": "CY2016Q4I",
+            "unit": "USD",
+            "tag": "CashAndCashEquivalentsAtCarryingValue"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "FI2016Q4",
+              "unit_id": "usd",
+              "value": "0"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "end": "2015-12-31",
+            "val": 0,
+            "accn": "0000825313-19-000006",
+            "fy": 2018,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2019-02-13",
+            "frame": "CY2015Q4I",
+            "unit": "USD",
+            "tag": "CashAndCashEquivalentsAtCarryingValue"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "FI2015Q4",
+              "unit_id": "usd",
+              "value": "0"
+            }
+          ]
+        }
+      ],
+      "tables": [
+        {
+          "zero_based_table_index": 99,
+          "text": "Years Ended December 31, 2018 2017 2016 (in thousands) Cash flows from operating activities: Net income $ 242,397 $ 207,422 $ 216,586 Adjustments to reconcile net income to net cash provided by operating activities: Equity in net income attributable to AB Unitholders (270,647 ) (232,393 ) (239,389 ) Cash distributions received from AB 308,042 226,846 191,989 Changes in assets and liabilities: (Decrease) increase in other liabilities (510 ) 535 345 Net cash provided by operating activities 279,282 202,410 169,531 Cash flows from investing activities: Investments in AB with proceeds from exercises of compensatory options to buy AB Holding Units (16,589 ) (20,110 ) (6,108 ) Net cash used in investing activities (16,589 ) (20,110 ) (6,108 ) Cash flows from financing activities: Cash distributions to Unitholders (280,722 ) (202,388 ) (169,731 ) Capital contributions from (to) AB 1,440 (22 ) 200 Proceeds from exercise of compensatory options to buy AB Holding Units 16,589 20,110 6,108 Net cash used in financing activities (262,693 ) (182,300 ) (163,423 ) Change in cash and cash equivalents \u2014 \u2014 \u2014 Cash and cash equivalents as of beginning of the year \u2014 \u2014 \u2014 Cash and cash equivalents as of end of the year $ \u2014 $ \u2014 $ \u2014 Cash paid: Income taxes $ 28,766 $ 24,436 $ 22,456 Non-cash investing activities: Issuance of AB Holding Units to fund long-term incentive compensation plan awards 168,955 135,604 103,820 Retirement of AB Holding Units (194,544 ) (162,206 ) (184,336 )",
+          "preceding_text": "Balance, beginning of year (33,463 ) \u00a0 (42,025 ) \u00a0 (34,683 ) Unrealized gain on investments, net of tax \u2014 \u00a0 4 \u00a0 6 Foreign currency translation adjustment, net of tax (6,631 ) \u00a0 9,674 \u00a0 (6,639 ) Changes in employee benefit related items, net of tax 500 \u00a0 (1,116 ) \u00a0 (709 ) Other 133 \u00a0 \u2014 \u00a0 \u2014 Balance, end of year (39,461 ) \u00a0 (33,463 ) \u00a0 (42,025 ) Total Partners\u2019 Capital $ 1,490,057 \u00a0 $ 1,543,550 \u00a0 $ 1,539,889 See Accompanying Notes to Financial Statements. 68 Table of Contents AllianceBernstein Holding L.P. Statements of Cash Flows"
+        },
+        {
+          "zero_based_table_index": 125,
+          "text": "Years Ended December 31, 2018 2017 2016 (in thousands) Cash flows from operating activities: Net income $ 779,498 $ 720,800 $ 694,846 Adjustments to reconcile net income to net cash provided by operating activities: Amortization of deferred sales commissions 21,343 31,886 41,066 Non-cash long-term incentive compensation expense 187,514 185,234 152,162 Depreciation and other amortization 70,000 66,999 59,026 Unrealized losses (gains) on investments 23,164 3,554 (28,204 ) Unrealized (gains) on investments of consolidated company-sponsored investment funds (14,217 ) (36,340 ) (29,121 ) Losses on real estate asset write-offs 38 8,161 5,456 Other, net (6,484 ) 5,028 3,629 Changes in assets and liabilities: Consolidation of cash and cash equivalents of consolidated company-sponsored investment funds \u2014 \u2014 358,534 (Increase) decrease in securities, segregated (353,204 ) 129,747 (380,823 ) (Increase) decrease in receivables (207,000 ) 67,539 (296,233 ) (Increase) decrease in investments (294,383 ) 293 187,752 Decrease (increase) in investments of consolidated company-sponsored investment funds 908,804 (639,067 ) (342,938 ) (Increase) decrease in deferred sales commissions (8,365 ) 1,878 (5,886 ) (Increase) decrease in other assets (152,726 ) (2,255 ) 13,517 (Decrease) increase in other assets and liabilities of consolidated company-sponsored investment funds (662,934 ) 417,674 229,524 Increase (decrease) in payables 1,024,317 (338,523 ) 886,520 (Decrease) increase in accounts payable and accrued expenses (11,225 ) 10,657 2,459 Increase (decrease) in accrued compensation and benefits 4,341 12,187 (3,238 ) Net cash provided by operating activities 1,308,481 645,452 1,548,048",
+          "preceding_text": "69 \u00a0 9,632 \u00a0 11,398 Foreign currency translation adjustment (46 ) \u00a0 983 \u00a0 (63 ) Purchase of non-controlling interest \u2014 \u00a0 (2,006 ) \u00a0 \u2014 Distributions (to) from non-controlling interests of our consolidated venture capital fund activities (638 ) \u00a0 (43,217 ) \u00a0 364 Balance, end of year 949 \u00a0 1,564 \u00a0 36,172 Total Capital $ 3,916,209 \u00a0 $ 4,063,304 \u00a0 $ 4,068,189 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 See Accompanying Notes to Consolidated Financial Statements. 84 Table of Contents AllianceBernstein L.P. and Subsidiaries Consolidated Statements of Cash Flows"
+        },
+        {
+          "zero_based_table_index": 126,
+          "text": "Years Ended December 31, 2018 2017 2016 Cash flows from investing activities: Purchases of investments \u2014 (12 ) \u2014 Proceeds from sales of investments \u2014 11 372 Purchases of furniture, equipment and leasehold improvements (32,789 ) (39,417 ) (36,728 ) Proceeds from sales of furniture, equipment and leasehold improvements \u2014 75 15 Purchase of intangible asset \u2014 \u2014 (2,500 ) Purchase of businesses, net of cash acquired \u2014 \u2014 (20,541 ) Net cash used in investing activities (32,789 ) (39,343 ) (59,382 ) Cash flows from financing activities: Issuance (repayment) of commercial paper, net 24,546 (28,553 ) (72,003 ) (Repayment) proceeds from bank loans (50,000 ) 75,000 \u2014 Increase (decrease) in overdrafts payable 3,273 63,393 (84,512 ) Distributions to General Partner and Unitholders (858,193 ) (644,139 ) (537,564 ) Capital contributions (to) from non-controlling interests in consolidated entities (638 ) (43,217 ) 364 (Redemptions) purchases of non-controlling interests of consolidated company-sponsored investment funds, net (472,143 ) 163,164 (132,837 ) Capital contributions (to) from affiliates (1,421 ) 366 1,000 Payments of contingent payment arrangements/purchase of shares (1,093 ) (7,592 ) (5,545 ) Additional investments by AB Holding with proceeds from exercise of compensatory options to buy AB Holding Units 16,589 20,110 6,108 Purchases of AB Holding Units to fund long-term incentive compensation plan awards, net (267,427 ) (219,627 ) (235,893 ) Purchases of AB Units (153 ) (1,003 ) (374 ) Other (1,998 ) (1,833 ) (22 ) Net cash used in financing activities (1,608,658 ) (623,931 ) (1,061,278 ) Effect of exchange rate changes on cash and cash equivalents (12,158 ) 21,760 (10,178 ) Net (decrease) increase in cash and cash equivalents (345,124 ) 3,938 417,210 Cash and cash equivalents as of beginning of the period 998,448 994,510 577,300 Cash and cash equivalents as of end of the period $ 653,324 $ 998,448 $ 994,510 Cash paid: Interest paid $ 60,286 $ 30,975 $ 11,148 Income taxes paid 41,946 67,421 27,387 Non-cash investing activities: Fair value of assets acquired \u2014 \u2014 33,583 Fair value of liabilities assumed \u2014 \u2014 1,149 Non-cash financing activities: Payables recorded under contingent payment arrangements \u2014 \u2014 11,893",
+          "preceding_text": "(342,938 ) (Increase) decrease in deferred sales commissions (8,365 ) \u00a0 1,878 \u00a0 (5,886 ) (Increase) decrease in other assets (152,726 ) \u00a0 (2,255 ) \u00a0 13,517 (Decrease) increase in other assets and liabilities of consolidated company-sponsored investment funds (662,934 ) \u00a0 417,674 \u00a0 229,524 Increase (decrease) in payables 1,024,317 \u00a0 (338,523 ) \u00a0 886,520 (Decrease) increase in accounts payable and accrued expenses (11,225 ) \u00a0 10,657 \u00a0 2,459 Increase (decrease) in accrued compensation and benefits 4,341 \u00a0 12,187 \u00a0 (3,238 ) Net cash provided by operating activities 1,308,481 \u00a0 645,452 \u00a0 1,548,048 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 85 Table of Contents"
+        }
+      ],
+      "selected_history_observations": 12,
+      "observations_outside_inspected_accession": 8,
+      "visible_year_ends": [
+        "2016-12-31",
+        "2017-12-31",
+        "2018-12-31"
+      ],
+      "scope_note": "The zero-cash statement is headed AllianceBernstein Holding L.P. The separate statement headed AllianceBernstein L.P. and Subsidiaries reports nonzero consolidated cash. Those balances belong to different statement entities; do not replace the holding partnership facts with the operating partnership amounts. Earlier historical periods remain unreviewed here.",
+      "disposition": "SUPPORTED_IN_LISTED_STATEMENTS_ONLY"
+    },
+    {
+      "cik": "0001062506",
+      "name": "ATLANTICA INC.",
+      "tag": "CashAndCashEquivalentsAtCarryingValue",
+      "source_sha256": "b6982eca52afbce436eed50540a757170b57c33a9b39cd6eb182ff42d4f267d8",
+      "selected_sha256": "b119bae36be389fc8fed1be3885023371f0cb329c1b80c6f1c87055446a58400",
+      "primary_path": "artifacts/seo/corpus-local/editorial-constant-filings/0001062506-0001548123-21-000030-primary.response",
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1062506/000154812321000030/k20.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T05:59:29.899974+00:00",
+        "bytes": 333117,
+        "sha256": "3b339e66a6efc5f34dea6ed503f2d314493205e5b5f29378795a7004862b0743"
+      },
+      "instance_capture": {
+        "path": "artifacts/seo/corpus-local/editorial-constant-filings/0001062506-0001548123-21-000030-instance.response",
+        "url": "https://www.sec.gov/Archives/edgar/data/1062506/000154812321000030/alda-20201231.xml",
+        "status": 200,
+        "captured_at": "2026-09-20T06:03:46.852103+00:00",
+        "bytes": 105460,
+        "sha256": "e8a10651a331084d252d1a9028104d09577be05a85879768b51b7cc47d68c943"
+      },
+      "checks": [
+        {
+          "selected": {
+            "end": "2020-12-31",
+            "val": 0,
+            "accn": "0001548123-21-000030",
+            "fy": 2020,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2021-03-31",
+            "unit": "USD",
+            "tag": "CashAndCashEquivalentsAtCarryingValue"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "E20",
+              "unit_id": "USD",
+              "value": "0"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "end": "2019-12-31",
+            "val": 0,
+            "accn": "0001548123-21-000030",
+            "fy": 2020,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2021-03-31",
+            "unit": "USD",
+            "tag": "CashAndCashEquivalentsAtCarryingValue"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "E19",
+              "unit_id": "USD",
+              "value": "0"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "end": "2018-12-31",
+            "val": 0,
+            "accn": "0001548123-21-000030",
+            "fy": 2020,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2021-03-31",
+            "frame": "CY2018Q4I",
+            "unit": "USD",
+            "tag": "CashAndCashEquivalentsAtCarryingValue"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "E18",
+              "unit_id": "USD",
+              "value": "0"
+            }
+          ]
+        }
+      ],
+      "tables": [
+        {
+          "zero_based_table_index": 8,
+          "text": "For the year ended December 31, 2020 For the year ended December 31, 2019 CASH FLOWS FROM OPERATING ACTIVITIES Net Loss $ (324,471) $ (394,866) Adjustments to reconcile net (loss) to net cash used by operating activities: Changes in operating assets and liabilities: Increase in accounts payable and accounts payable related party 183,018 251,402 Increase in accrued interest 104,419 90,062 Net Cash Used By Operating Activities (37,034) (53,402) CASH FLOWS FROM INVESTING ACTIVITIES - - CASH FLOWS FROM FINANCING ACTIVITIES Proceeds from note payable - related party 37,034 53,402 Net Cash Provided by Financing Activities 37,034 53,402 NET INCREASE (DECREASE) IN CASH - - CASH AT BEGINNING OF YEAR - - CASH AT END OF YEAR $ - $ - CASH PAID FOR: Interest $ - $ - Taxes $ - $ -",
+          "preceding_text": "    (324,471)       Balance, December 31, 2020     2,458,590     \u00a0     $     246     \u00a0     $     125,456     \u00a0     $     (3,216,200)     \u00a0     $     (3,090,498)     The accompanying notes are an integral part of these financial statements.     18       ATLANTICA, INC.   Statements of Cash Flows    "
+        }
+      ],
+      "selected_history_observations": 13,
+      "observations_outside_inspected_accession": 10,
+      "visible_year_ends": [
+        "2019-12-31",
+        "2020-12-31"
+      ],
+      "scope_note": "Atlantica cash-flow statement reports zero closing cash for 2019 and 2020, while financing proceeds offset operating cash use. Zero closing cash does not mean no cash flows or expenses. No conclusion about other years or revenue scope follows.",
+      "disposition": "SUPPORTED_IN_LISTED_STATEMENTS_ONLY"
+    }
+  ],
+  "scope": "Two historical cash scope cases only. Five visible year-end columns plus XBRL comparisons for all selected rows in those accessions. No new capture, all-history approval, policy change, or inference that zero closing cash means no activity."
+}

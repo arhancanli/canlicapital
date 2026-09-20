@@ -341,3 +341,20 @@ While storage ran, captured17older primary cash filings for18remaining observati
 Latest two retained statements provide seven numerical matches and five visible
 year-end columns, with18earlier observations explicitly outstanding. Separate
 source review continues; no editorial policy or production page was changed.
+
+## 2026-09-20 — stream recovery merged and cash evidence replayed
+
+Previous user-facing turn was status only (no progress); this continuation verified
+push completion, created PR24 and merged after all four CI checks passed. Tested
+b5925447 and mergef99d6606 have identical tree8cdf966e6f1908aeeb247578d4183838907f665b.
+Started fresh resume5 session23870; earlier receipts preserved, no concurrent
+uploader. Active transfer passed the previous695-object boundary.
+
+Historical17filing XML comparison matched17/18; the unmatched Holding2007instant
+was present under exact http://xbrl.us/us-gaap/2009-01-31 namespace. Added narrowly
+scoped legacy recognition and regression coverage. Revised18/18 report is separate
+from the original. Archived111files/54,312,960bytes and verified isolated offline
+inline/XML replay. Receipt company-cash-history-archive-20260920.json.
+Statement-level review remains open; no publication approval, all-history scope
+claim, production-page expansion or indexing gain. Consolidated current STATUS
+to remove obsolete active-session statements; historical receipts/logs preserved.

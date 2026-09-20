@@ -24,6 +24,17 @@ class ComparisonTest(unittest.TestCase):
     def test_explicit_zero_matches(self):
         self.assertTrue(self.matches(self.raw))
 
+    def test_retained_legacy_namespace_is_exact_and_preserves_context_checks(self):
+        legacy = self.raw.replace(b'http://fasb.org/us-gaap/2020-01-31', b'http://xbrl.us/us-gaap/2009-01-31')
+        self.assertTrue(self.matches(legacy))
+        for raw in [legacy.replace(b'>123<', b'>456<'),
+                    legacy.replace(b'2020-12-31', b'2019-12-31'),
+                    legacy.replace(b'iso4217:USD', b'iso4217:EUR'),
+                    legacy.replace(b'2009-01-31', b'2009-01-31/issuer'),
+                    legacy.replace(b'xbrl.us/', b'xbrl.us.invalid/')]:
+            with self.subTest(raw=raw):
+                self.assertFalse(self.matches(raw))
+
     def test_context_and_fact_mismatches_remain_unresolved(self):
         variants = [
             self.raw.replace(b'>123<', b'>456<'),
