@@ -1,6 +1,117 @@
 // Limited filing context, bound to the reviewed capture and selected observations.
 export const FILING_NOTES = [
 {
+  "cik": "0001495240",
+  "include_on_overview": true,
+  "source_sha256": "aa4624e7ba0250d1465384b88efe179a8897d7a198ef50d96a6cfe36aab78416",
+  "tags": [
+    "EarningsPerShareBasic",
+    "EarningsPerShareDiluted",
+    "WeightedAverageNumberOfDilutedSharesOutstanding",
+    "WeightedAverageNumberOfSharesOutstandingBasic"
+  ],
+  "text": "For 2023\u20132025, Gladstone Land reports net income but a net loss attributable to common stockholders after cumulative redeemable preferred dividends and preferred-stock extinguishment adjustments. The common-stockholder loss is the EPS numerator; comprehensive income is a separate measure. The filing presents basic and diluted EPS and weighted-average common shares together. The reviewed disclosure establishes that presentation, not the cause of equal dilution measures. The heading scales dollars, not share counts: shares and EPS retain scale-zero tags.",
+  "filing_url": "https://www.sec.gov/Archives/edgar/data/1495240/000149524026000011/land-20251231.htm",
+  "observations": [
+    {
+      "tag": "EarningsPerShareBasic",
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "unit": "USD/shares",
+      "val": -0.28,
+      "accn": "0001495240-26-000011"
+    },
+    {
+      "tag": "EarningsPerShareBasic",
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "unit": "USD/shares",
+      "val": -0.29,
+      "accn": "0001495240-26-000011"
+    },
+    {
+      "tag": "EarningsPerShareBasic",
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "unit": "USD/shares",
+      "val": -0.29,
+      "accn": "0001495240-26-000011"
+    },
+    {
+      "tag": "EarningsPerShareDiluted",
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "unit": "USD/shares",
+      "val": -0.28,
+      "accn": "0001495240-26-000011"
+    },
+    {
+      "tag": "EarningsPerShareDiluted",
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "unit": "USD/shares",
+      "val": -0.29,
+      "accn": "0001495240-26-000011"
+    },
+    {
+      "tag": "EarningsPerShareDiluted",
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "unit": "USD/shares",
+      "val": -0.29,
+      "accn": "0001495240-26-000011"
+    },
+    {
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "unit": "shares",
+      "val": 35733742,
+      "accn": "0001495240-26-000011"
+    },
+    {
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "unit": "shares",
+      "val": 35909956,
+      "accn": "0001495240-26-000011"
+    },
+    {
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "unit": "shares",
+      "val": 36506720,
+      "accn": "0001495240-26-000011"
+    },
+    {
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic",
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "unit": "shares",
+      "val": 35733742,
+      "accn": "0001495240-26-000011"
+    },
+    {
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic",
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "unit": "shares",
+      "val": 35909956,
+      "accn": "0001495240-26-000011"
+    },
+    {
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic",
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "unit": "shares",
+      "val": 36506720,
+      "accn": "0001495240-26-000011"
+    }
+  ]
+},
+{
   "cik": "0001478320",
   "include_on_overview": true,
   "source_sha256": "2deab3b0302b42f5bca7f049684da17a3e834dfbc3dbe128e51ed398b3d69a92",
