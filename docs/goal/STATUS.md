@@ -9,7 +9,7 @@ which links older records. Historical process states are not live telemetry.
 ## Current work and next action
 
 Worktree `/Users/arhancanli/canlicapital-expansion-20260919`, branch
-`evidence/batch2-primary-review-20260921`. PR118 merged as
+`evidence/batch2-scope-ledger-20260921`. PR118 merged as
 `4371292467702019b988c65bf910cd66a80e19fc` after all four checks in CI35542487234
 passed at99993be0. Tested/merged tree1b57f7c9ab3e943d97ad8bdea2096e8bff937269 matches.
 
@@ -101,8 +101,24 @@ disposition ACCOUNTING_SCOPE_REVIEW_PENDING, no holds/notes/policy changed.
 Next inspect statement/disclosure context, retain unresolved conflicts and implement
 batch-specific review registration without changing batch1 evidence.
 
-Storage44227remains live,426objects/zero failures at last checkpoint. No source
-capture/comparison jobs remain active. Uploader/plan unchanged; no production activation.
+PR123 merged as0fae871f2245b316774555ff77d0349e910ed7c0 after all four
+CI35544599244checks passed at8f2ee0c6. Tested/merged full tree
+7f17e7dc9760175244eb3ed45937eb4db2176311 matches.
+
+Batch2 now has a separate hash-bound registry and deterministic initial ledger:
+config/company-basic-diluted-batch2-reviews.json and
+company-basic-diluted-batch2-scope-initial-20260921.json.gz.800pending/0reviewed/
+0withdrawn; no automatic approval. New generic runner validates the target/capture/
+primary/legacy hash chain and exact full-metadata target partition, not only counts.
+Registered pending or hold-required reports cannot advance observations. It reuses
+the existing explicit-decision reconciler; batch1 runner/registry unchanged.
+Seven ledger tests pass, including missing/duplicate/altered metadata, false numeric
+closure, deterministic output, changed input hash and attempted Theriva pending
+promotion. New tests included in normal CI. Next inspect actual context and register
+only completed source-bound decisions; Theriva remains pending.
+
+Storage44227remains live,677objects/zero failures at last checkpoint. No source
+capture/comparison jobs active. Uploader/plan unchanged; no production activation.
 
 Latest registered ledger:company-basic-diluted-registered-scope-v22-20260921.json.gz.
 Of1,176batch observations,1148reviewed/0pending/28withdrawn.130reviewed are explicitly

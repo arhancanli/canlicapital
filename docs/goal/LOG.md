@@ -1345,3 +1345,24 @@ shows$23.739mnet loss,$1.510mdeemed dividend,$25.249mcommon loss; latter reprodu
 replay. No source rewriting or automatic admission. All800batch2scope pending.
 Uploader44227still live,426objects/zero failures at last checkpoint; uploader and
 plan unchanged. No new production release or indexing evidence.
+
+PR123 published at8f2ee0c65981a00bdd58cb1d7e923a93c7841f4c; CI35544599244
+confirmed live. Unpublished rebase onto merged PR122 preserved exact tree
+7f17e7dc9760175244eb3ed45937eb4db2176311. Transfer44227polled live,527objects/
+zero failures. No other acquisition/comparison job running.
+
+
+## 2026-09-21 — separate batch2 scope ledger and exact numerical admission gate
+
+Previous turn made progress:100primaries/800numeric closure plus pending Theriva
+report. Re-read continuity. PR123 merged0fae871f2245b316774555ff77d0349e910ed7c0 after four
+CI35544599244checks passed at8f2ee0c6; tree7f17e7dc9760175244eb3ed45937eb4db2176311
+identical. Added separate batch2registry and initial800pending/0reviewed/0withdrawn
+ledger. Generic runner pins input hashes and verifies all target/capture/primary/
+legacy relationships, exact rows including filing metadata, supplements only the
+unmatched partition, and rejects pending/hold-required report registration.
+Seven tests pass (including existing batch1unchanged), new tests added to normal
+CI. Deterministic rerun proven; pending baseline test uses an explicit empty review
+registry so future valid decisions do not require weakening its assertions.
+No batch1 changes, policy holds, rendering changes or numeric rewriting.
+Transfer44227still live,677objects/zero failures at checkpoint. Full goals active.
