@@ -8,23 +8,29 @@ which links older records. Historical process states are not live telemetry.
 
 ## Latest verified transition
 
-PR124 merged as d1bd669d1fcb06fdcfac816f1db0dab68ac2e684 after all four checks
-passed; exact tested/merged tree119dee9548fef3d5e506751c9f8e1a8d0d09d116 matches.
-Batch2 first context review:24reviewed/776pending/0withdrawn. Three decisions cover
-Aspira2024/25 and Sangamo2021/22,2024/25. Full captured paragraphs establish loss
-allocation, anti-dilution and share units. Report company-share-context-batch2-first-
-20260921.json replays byte-identically; new scope-v2 ledger changes only24states
-and their evidence links, all800observations unchanged. Theriva remains pending.
-V6 review runner adds pinned target and receipt inputs with confined capture paths;
-v5 remains unchanged. Five Python tests, seven ledger tests and65renderer tests pass.
-Reader notes require exact source and all reviewed observations. New renderer code
-needs fresh HTTP/browser validation before deployment; earlier v22HTTP report is
-historical evidence for its pinned renderer. No policy/data/runtime-object changes.
-Transfer44227polled live,1,131of10,360objects/zero failures; uploader/plan unchanged.
-Next publish this review change, continue context coverage and finish hosted transfer.
+Worktree branch `evidence/batch2-context-second-20260921`.
+PR125 merged as a853306c61cec1d69c450b0d00c145fa406656f4 after all four
+CI35545553440checks passed atae01af01. Tested/merged tree
+483300a9499a409b1a3476e8af93d1377fed0845 matches.
+Batch2 now56reviewed/744pending/0withdrawn; latest ledger
+company-basic-diluted-batch2-scope-v3-20260921.json.gz. Second context report adds
+32observations across two Kyntra filings, Crisp Momentum and LifeMD. Kyntra and
+LifeMD positive2025total EPS coexist with continuing-operation losses; actual
+notes explicitly establish loss-based dilution exclusions. Kyntra later filing
+retrospectively reflects1-for-25split; older filing basis retained, no rescaling.
+LifeMD common numerator deducts noncontrolling income/preferred dividends; vested
+unissued awards already included in basic shares. Crisp July fiscal/name context
+preserved. Report replays byte-identically; only32ledger states/evidence links
+changed; all800observation metadata and previous24decisions unchanged. Theriva pending.
+73renderer/ledger tests passed. Reader notes require exact source and all reviewed
+observations. New renderer code needs fresh HTTP/browser validation before deployment;
+earlier v22HTTP report is historical evidence for its pinned renderer.
+No policy/data/runtime-object changes. Transfer44227same live handle, latest receipt
+1329of10,360objects/zero failures; uploader/plan unchanged.
+Next publish second review change, continue context coverage and finish hosted transfer.
 No production expansion, additional Google submission or new indexing evidence.
 
-## Current work and next action
+## Earlier verified checkpoints (historical)
 
 Worktree `/Users/arhancanli/canlicapital-expansion-20260919`, branch
 `evidence/batch2-context-first-20260921`. PR118 merged as
@@ -308,3 +314,8 @@ inspectable open-source API/MCP/repository adoption, governed combined NET FORWA
 Sharpe>2, at least14economically distinct qualified sleeves, realized maxDD<=10%.
 No outcome guarantees or completion claim. Publication authorization persists for
 tested website/API/MCP/repository releases; authentication and evidence gates apply.
+
+PR125 published atae01af01f0e5ebde1f4a1b12647345e57d82396f. Unpublished rebase
+preserved full tree483300a9499a409b1a3476e8af93d1377fed0845. Push terminal0;
+CI pending. Transfer44227same live handle, latest receipt1186objects/zero failures.
+Owner attribution file untouched.

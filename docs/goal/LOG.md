@@ -1408,3 +1408,28 @@ they do not depend on untracked local captures. New renderer requires fresh HTTP
 browser evidence before publication; retained v22audit is not claimed for new code.
 Transfer44227polled live,1,131objects/zero failures, no uploader/plan mutation.
 No production activation or indexing gain; full goal remains active.
+
+PR125 published atae01af01f0e5ebde1f4a1b12647345e57d82396f. Unpublished rebase
+preserved full tree483300a9499a409b1a3476e8af93d1377fed0845. Push terminal0;
+CI pending. Transfer44227same live handle, latest receipt1186objects/zero failures.
+Owner attribution file untouched.
+
+
+## 2026-09-21 — continuing losses with positive total EPS, batch2 second review
+
+Previous goal turn made progress:24context reviews, notes, PR125. Re-read continuity;
+44227polled live. Inspected four captured statements/disclosure contexts: two Kyntra
+(former FibroGen), Crisp Momentum and LifeMD. Kyntra/LifeMD2025total profit does not
+imply potential shares included: notes explicitly base exclusions on continuing
+losses. Kyntra2024/25retrospective1-for-25split is distinct from older2021/22filing
+basis. LifeMDcommon income deducts noncontrolling income/preferred dividends;
+unissued vested awards already included. Crisp July year-end and later name change
+retained. Exactstatement scale3Kyntra/scale0others, rows, full paragraphs, receipts
+and source snapshots pinned via v6; report replay byte-identical. Added32reviews
+and reader notes; ledger56reviewed/744pending/0withdrawn, all800row metadata unchanged,
+previous24decisions unchanged. Theriva remains pending.73renderer/ledger tests pass.
+PR125 four CI35545553440checks passed atae01af01; merged a853306c61cec1d69c450b0d00c145fa406656f4,
+tested/merged tree483300a9499a409b1a3476e8af93d1377fed0845 identical.
+Transfer latest receipt1329objects/zero failures; same live44227handle, uploader/plan
+unchanged. Renderer still needs fresh HTTP/browser evidence before release; no
+production activation or indexing gain. Full owner goal remains active.
