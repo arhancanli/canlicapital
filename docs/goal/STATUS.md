@@ -152,7 +152,13 @@ checks passed at10b451cd; both treesdfad64d51e92d3adf227250eaff3857f5a9dbadc.
 company-priority-scope-coverage-20260920.json deduplicates the exact observation
 keys supported by all retained scope reports:610original priority observations,
 90with recorded context review, including3withdrawn Birdie SG&A observations.
-87active observations have scope review;520still need it. The full pending queue
+Baseline:87active observations have scope review;520still need it.
+Historical revenue review now adds65exact previously pending inline observations
+across3M,CONMED,Digital Brand Media,Mosaic andAbbVie;15legacy revenue observations
+still need primary context. Separate v2ledger records155reviewed including3withdrawn,
+152active reviewed and455pending. Reports company-historical-revenue-context-
+20260920.json and company-priority-scope-coverage-v2-20260920.json preserve
+the original ledger and bind the supplement to its hash. No newly admitted pages. The full pending queue
 retains issuer, exact selected row and accession. Report replays byte-for-byte.
 This counts recorded reviews, not machine-certified interpretation or admission.
 It excludes712basic/diluted groups and other corpus flags. Next: review historical

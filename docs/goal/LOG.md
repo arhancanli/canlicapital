@@ -782,3 +782,15 @@ New exact observation ledger deduplicates scope reports against610priority rows:
 remains610/610; this separate scope count does not equate numeric match with
 semantic admission. Full pending rows retained and offline replay byte-identical.
 Transfer82504 remains independently active.
+
+## 2026-09-20 — historical revenue presentation review
+
+Previous turn counted exact historical gaps and merged PR37. Reviewed65additional
+inline observations across five revenue pairs. Retained statement and disaggregation
+rows/headers, including Mosaic eliminations, CONMED derivative-disclosure repetitions,
+and3Mpaired tags using different accessions. No automatic time-series comparability
+or tag equivalence. Fifteen legacy revenue observations remain scope-pending despite
+verified XBRL numbers. New report replays identically offline. Separate v2ledger
+binds original baseline and supplement:155reviewed/3withdrawn/152active reviewed/
+455pending. Original reports unchanged; no publication or source-value changes.
+PR38CI35520536515passed before these additions; new CI required.

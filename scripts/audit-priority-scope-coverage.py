@@ -80,6 +80,14 @@ def main():
             add(row['cik'], selected, name)
             if selected['tag'] == 'SellingGeneralAndAdministrativeExpense':
                 withdrawn.add(key(row['cik'], selected))
+    if len(sys.argv) > 2:
+        name = sys.argv[2]
+        supplement = read(name)
+        baseline_raw = (A / 'company-priority-scope-coverage-20260920.json').read_bytes()
+        if supplement['baseline_scope_ledger_sha256'] != hashlib.sha256(baseline_raw).hexdigest():
+            raise ValueError('Supplement baseline changed')
+        for item in supplement['reviewed']:
+            add(item['cik'], item['selected'], name)
     missing = [row for k, row in rows.items() if k not in support]
     if len(rows) != 610 or len(withdrawn) != 3:
         raise ValueError('Priority scope changed')
