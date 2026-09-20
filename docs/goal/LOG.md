@@ -736,3 +736,15 @@ and Birdie exclusion/notice differ; source descriptors and all other records mat
 Pinned five new manifests in company-five-cohort-v10-transition-20260920.json.
 Combined release/sitemap/storage rebuild remains next; oldv9transfer is staging
 only and does not authorize admitting the withdrawn SG&A history.
+
+## 2026-09-20 — combined v10 release and discovery verified
+
+Previous turn implemented source-bound SG&A exclusion and restaged all cohorts.
+Pipeline77545completed0: combined delivery, catalog, release, discovery and storage
+plan verified.3,323companies/87,347histories/67directories yield90,737unique URLs.
+Independent XML set comparison proves exactly the withdrawn SG&A URL removed.
+Storage10,360objects/1,280,300,997bytes;3,323sharedv9keys,7,037new keys. Full pins
+in company-five-cohort-v10-discovery-audit-20260920.json. Transfer77617deliberately
+stopped as superseded at2,412verified objects, terminal1; partial receipt retained
+without completion claim. No uploader active; v10transfer next. Oldv9artifacts
+preserved. PR37CI35519881211passed before new audit additions; new CI required.

@@ -24,7 +24,7 @@ Create of delivery/objects/54f880cf171ac6dff01c2e394b1a4aea0d1b31cca2f482974a1b7
 returned429 and stopped without retry.54read retries/4write recovery events preceded
 that stop. Receipt corpus-local/company-five-cohort-transfer-20260920.json remains
 unchanged; stop summary company-five-cohort-storage-stop-20260920.json.
-Original uploader26312 is terminal. Paced recovery77617 is active, confirmed by a live handle and fresh receipt. Do not poll/restart26312as live.
+Original uploader26312 is terminal. Paced recovery77617 is TERMINAL exit1 after deliberate Ctrl-C supersession at2412objects; zero recorded failures. Do not poll/restart26312as live.
 Read-only provider logs show DatabaseError/429 at2026-09-20T14:53:06.280000, with
 pool/connection indicators. No raw headers/messages or credentials stored. Project
 ACTIVE_HEALTHY at15:00UTC, aggregate17connections/max60, not proof of storage pool
@@ -68,13 +68,13 @@ addition; current additions require their own checks.
 
 
 Earlier v3upload sessions are terminal with failures retained. Do not resume the
-superseded v3plan. Paced uploader77617 is active at the checkpoint above. Archive/replay46444completed exit0.
+superseded v3plan. No uploader is active; v10pipeline77545 completed exit0. Archive/replay46444completed exit0.
 
 ## Latest liability presentation review
 
 PR35 merged as bcfcb37157b6a0bb16813a0eb4ae0ed9291d8624 after all four
 CI35518895959checks passed at9e7c2bba. Tested/merged trees match
-eeebaf502754ca3fbdd1836e215d06ac9f4f1b91. Recovery77617 remains active.
+eeebaf502754ca3fbdd1836e215d06ac9f4f1b91. Recovery77617 is superseded; receipt preserved.
 New offline helper prepares all17liability/current-liability pairs using latest
 selected reporting date, avoiding accession-order errors. Twelve pairs have
 separate primary rows, reviewed as equal totals at the listed date; five XML-only
@@ -125,7 +125,9 @@ and exact source descriptors. Histories87,348→87,347; only policy metadata and
 Birdie SG&A removal/notice changed. Receipt company-five-cohort-v10-transition-
 20260920.json pins all five new manifests. Rebuild combined catalog/release/sitemaps
 and storage plan next; the oldv9candidate must not be admitted unchanged.
-Pacedv9 transfer remains useful immutable staging, not approval to publish it.
+Pacedv9 transfer77617 was stopped as superseded after v10combined delivery built.
+Receipt company-v9-transfer-superseded-20260920.json records2412verified objects.
+Pipeline77545 completed exit0; no replacement upload yet.
 
 PR36 merged4d091c1f0a34b31bed9002c728cc1ab84e04564f after four CI35519464225
 checks passed atf9038476; tested/merged treeba6a7e72f022befa3cd5b2d157b73ce618468252.
@@ -146,7 +148,26 @@ delivery/load checks, editorial admission and production activation remain open.
 Owner publication approval persists; it does not substitute for these checks.
 Prior1–3day/tonight estimates were provisional, not measured completion forecasts.
 
-## Verified combined candidate
+## Current v10 combined candidate
+
+Pipeline77545completed exit0.3,323companies+87,347histories+67directories =
+90,737unique URLs. Independent XML/hash/uniqueness and full URL-set comparison
+shows exactly one removal: Birdie Win SG&A; no added or other removed URL.
+Two sitemap shards:50,000and40,737URLs. Oldv9artifacts remain preserved.
+
+Release:a72ba35e459570be3b8fd009c042eeddc2348eb966695e5960a71d08829f433b
+Catalog:88aaccb5340edf1f2a6b522b0e972065c79348344ca73c337c11dd970283f6d1
+Downloads:1404ffe09853d68c04f1ba0f350d121c77813f51ff0a8ccaa65fbdb8026bb72c
+Deliverymanifest:d92baf65e00228fe351a398035f8fd4f103b6a98a7c1bba00108f2569110a6d0
+Storageplan:2ef810f405e2182093288e11d1698df6cc93262f9df7ebdeae81284c691850ff
+Paths corpus-local/company-five-cohort-{delivery,catalog,discovery}-v10 and
+company-five-cohort-storage-plan-v10.json. Plan10,360objects/1,280,300,997bytes;
+3,323keys shared withv9,7,037new keys. Shared keys are not remote verification.
+Audit company-five-cohort-v10-discovery-audit-20260920.json binds all roots.
+Next: immutable v10transfer, archival replay, remaining editorial and hosted
+verification. No deployment or indexed gain. Production remains327sitemap URLs.
+
+## Previous v9 candidate (preserved; superseded)
 
 3,323companies +87,348histories +67directories =90,738unique candidate URLs.
 Local XML/hash/uniqueness audit verifies two shards (50,000and40,738URLs).
