@@ -421,5 +421,17 @@ equality does not have the HNO non-operating-inclusive scope problem in these
 selected comparative periods. Exact tables/hashes and manual interpretations in
 company-nika-techcom-loss-context-20260920.json, offline replay byte-identical.
 No blanket equivalence, revenue approval or company admission. The published
-v11ledger remains a frozen prior snapshot; new24reviews and HNO withdrawal still
-require versioned ledger reconciliation. New evidence postdates v11archive.
+v11ledger remains a frozen prior snapshot; v12reconciliation below includes
+the new24reviews and HNO withdrawal. New evidence postdates v11archive.
+
+## Reconciled v12 priority scope queue
+
+company-priority-scope-v12-20260920.json accounts for all610original observations
+exactly once:189active reviewed,413pending,8withdrawn. The24new Nika/TECHCOM
+checks receive credit only if present in the previous pending queue. Four HNO
+operating-loss periods are withdrawn; one had an earlier insufficient review,
+three were pending. No withdrawal earns review credit. Actual captured HNO
+source replay confirms the merged v12exclusion; this is not a whole-corpus rebuild.
+Input reports and source fixture bound, exact original key-set equality checked,
+offline report replay byte-identical. Prior ledgers unchanged.712basic/diluted
+groups and remaining non-priority flags still need their own review.

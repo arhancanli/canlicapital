@@ -887,3 +887,12 @@ without an intervening nonzero other result;12primary tables retained and report
 replayed byte-identically. No source values changed or new exclusions inferred.
 PR40mergedf53c6980 after four CIchecks, tested/merged tree equality verified.
 V12runtime rebuild, ledger reconciliation and remaining scope review are open.
+
+## 2026-09-20 — exact v12 priority ledger reconciliation
+
+New ledger partitions every original priority key once:189active reviewed,
+413pending,8withdrawn.24new historical reviews credited only from prior pending
+rows. HNOwithdrawal removes one earlier reviewed and three pending observations;
+actual captured source replays v12and verifies exclusion. No double credit, source
+rewrites or old ledger changes. Two generated outputs are byte-identical. This is
+policy accounting, not a claim that the full corpus has been rebuilt or admitted.
