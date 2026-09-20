@@ -8,7 +8,7 @@ pins are preserved in [history/STATUS-20260920-through-priority-scope-closure.md
 ## Current work and next actions
 
 Worktree `/Users/arhancanli/canlicapital-expansion-20260919`, branch
-`evidence/basic-diluted-batch1-20260920`. PR52 mergeda7ffd485; predecessor context below.
+`fix/valhi-share-scale-20260920`. PR52 mergeda7ffd485; predecessor context below.
 PR46 merged as087917ac31b50adbc9856f062e310d6b274ee811 after all four checks in
 CI35524243935 passed at a73932e1540e529483e01e628bc8c3f944cc067e.
 Tested/merged trees both3f9aa6d122d3be5a62974c31a52ff5ed1982b3a6.
@@ -17,9 +17,9 @@ rerun are preserved in company-pr45-ci-recovery-20260920.json. No audit bypass.
 
 Archive process44780 is TERMINAL exit0. Five-cohort staging51634 and transition
 comparison64980completed exit0. Combined v14pipeline16429 and current quality audit40310completed exit0; no uploader.
-Next: capture/compare six legacy instances for batch1 and implement eight exact
-Valhi share-scale holds with a source-bound2022supplement; continue accounting
-scope/usefulness review. Currency archive closure is recorded below,
+Next: verify v16 exact-head CI, seal batch1primary/XML/Valhi evidence and
+continue accounting scope/usefulness review. Rebuild/current-quality inventory
+and full-corpus transition remain required before hosted release. Currency archive closure is recorded below,
 then rebuild the v15runtime and complete hosted
 transfer, whole-release delivery/load/browser checks and production activation.
 Owner authorization to publish tested releases persists; no repeat approval needed.
@@ -401,3 +401,32 @@ retains every unresolved key. Six affected accessions are listed there; XML
 acquisition not started.1,098tag matches do not admit those values, as the Valhi
 scale conflict demonstrates. This batch is separate from original150/150retained
 numerical closure; earlier reports and their hashes remain unchanged.
+
+## Batch1 numerical closure and v16 share-scale holds
+
+PR55 merged4871aedd250944067dfc60cc20226fb2e9e76b23 after four checks
+in35527756823passed ate4cc3448bc68659e185ad53a02f045e7d693d0c4.
+Tested/merged treef20acb443d81ecae9157bbcd86514d0f40aa3842. Previous goal
+turn captured100primaries, compared1,176observations and found Valhi scale conflicts.
+
+Legacy capture9870completed0 for all six original instances. The acquisition
+helper only supports currency units; its unmatched output is retained and is not
+the share-unit verdict. Compound-unit replay initially matched64/78; Phoenix New
+Media14remaining rows use unprefixed shares with the correct default XBRL namespace.
+A versioned v2comparator resolves that namespace rather than guessing a prefix;
+15tests pass including absent/counterfeit/shadowed-default rejection. Original
+helper and64/78report unchanged. V2matches78/78, exact combined batch1closure
+1,176/1,176. Both initial/final supplemental reports independently byte-identical.
+Original31filing150/150baseline remains separate; numerical closure is not scope
+approval and does not override the Valhi conflict.
+
+2022Valhi report company-valhi-2022-scale-20260920.json replays byte-identically.
+Cumulative extended-v16holds eight exact2022–2025basic/diluted weighted-share
+observations, with source-bound reasons and links. It does not multiply values.
+The remaining2019–2021rows are constant28,500,000, so the existing varying-history
+requirement omits BOTH share concepts; raw source retains all original rows.
+All unrelated concepts (including EPS) remain unchanged in actual source fixture.
+43selector/renderer/delivery/release tests pass, including missing notices, changed
+source rejection, absent history routes, overview notices and inherited v15holds.
+Full combined delivery/sitemap counts have NOT yet been rebuilt under v16.
+No active collector, comparison or uploader; no production/indexing gain.

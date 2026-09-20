@@ -1,0 +1,1433 @@
+{
+  "schema": "canli.editorial-xbrl-review.v1",
+  "publication_approved": false,
+  "capture_sha256": "4a6fb0e05014dc015ffe3681d5b898d128a68f5ca0d9b3a55a2eb7d41bfd6117",
+  "comparison_sha256": "e90ad8a85f5f961d48d1c7ea3e9b9953b7346abe4fdd5cb4546344b28ac98b26",
+  "code_sha256": "664071a805ed2bb2f1cd381a3632c14d996fb6f4a248b14b5b5f8b7dfb7a84f5",
+  "filings": [
+    {
+      "cik": "0001026214",
+      "accession": "0001026214-12-000039",
+      "selected_rows": 12,
+      "instance_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1026214/000102621412000039/fmcc-20111231.xml",
+        "status": 200,
+        "bytes": 6123892,
+        "sha256": "0da4357b240945a17c3b3f233e389db24faddd2081e1ef7eeb6d699aae15361b",
+        "captured_at": "2026-09-20T18:03:08.404631+00:00",
+        "body_path": "artifacts/seo/corpus-local/basic-diluted-batch1-filings/0001026214-0001026214-12-000039-instance.response"
+      },
+      "checks": [
+        {
+          "selected": {
+            "start": "2009-01-01",
+            "end": "2009-12-31",
+            "val": -7.89,
+            "accn": "0001026214-12-000039",
+            "fy": 2011,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2012-03-09",
+            "frame": "CY2009",
+            "unit": "USD/shares",
+            "tag": "EarningsPerShareBasic"
+          },
+          "matched": false,
+          "matches": []
+        },
+        {
+          "selected": {
+            "start": "2010-01-01",
+            "end": "2010-12-31",
+            "val": -6.09,
+            "accn": "0001026214-12-000039",
+            "fy": 2011,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2012-03-09",
+            "frame": "CY2010",
+            "unit": "USD/shares",
+            "tag": "EarningsPerShareBasic"
+          },
+          "matched": false,
+          "matches": []
+        },
+        {
+          "selected": {
+            "start": "2011-01-01",
+            "end": "2011-12-31",
+            "val": -3.63,
+            "accn": "0001026214-12-000039",
+            "fy": 2011,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2012-03-09",
+            "frame": "CY2011",
+            "unit": "USD/shares",
+            "tag": "EarningsPerShareBasic"
+          },
+          "matched": false,
+          "matches": []
+        },
+        {
+          "selected": {
+            "start": "2009-01-01",
+            "end": "2009-12-31",
+            "val": -7.89,
+            "accn": "0001026214-12-000039",
+            "fy": 2011,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2012-03-09",
+            "frame": "CY2009",
+            "unit": "USD/shares",
+            "tag": "EarningsPerShareDiluted"
+          },
+          "matched": false,
+          "matches": []
+        },
+        {
+          "selected": {
+            "start": "2010-01-01",
+            "end": "2010-12-31",
+            "val": -6.09,
+            "accn": "0001026214-12-000039",
+            "fy": 2011,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2012-03-09",
+            "frame": "CY2010",
+            "unit": "USD/shares",
+            "tag": "EarningsPerShareDiluted"
+          },
+          "matched": false,
+          "matches": []
+        },
+        {
+          "selected": {
+            "start": "2011-01-01",
+            "end": "2011-12-31",
+            "val": -3.63,
+            "accn": "0001026214-12-000039",
+            "fy": 2011,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2012-03-09",
+            "frame": "CY2011",
+            "unit": "USD/shares",
+            "tag": "EarningsPerShareDiluted"
+          },
+          "matched": false,
+          "matches": []
+        },
+        {
+          "selected": {
+            "start": "2009-01-01",
+            "end": "2009-12-31",
+            "val": 3253836000,
+            "accn": "0001026214-12-000039",
+            "fy": 2011,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2012-03-09",
+            "frame": "CY2009",
+            "unit": "shares",
+            "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+          },
+          "matched": false,
+          "matches": []
+        },
+        {
+          "selected": {
+            "start": "2010-01-01",
+            "end": "2010-12-31",
+            "val": 3249369000,
+            "accn": "0001026214-12-000039",
+            "fy": 2011,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2012-03-09",
+            "frame": "CY2010",
+            "unit": "shares",
+            "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+          },
+          "matched": false,
+          "matches": []
+        },
+        {
+          "selected": {
+            "start": "2011-01-01",
+            "end": "2011-12-31",
+            "val": 3244896000,
+            "accn": "0001026214-12-000039",
+            "fy": 2011,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2012-03-09",
+            "frame": "CY2011",
+            "unit": "shares",
+            "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+          },
+          "matched": false,
+          "matches": []
+        },
+        {
+          "selected": {
+            "start": "2009-01-01",
+            "end": "2009-12-31",
+            "val": 3253836000,
+            "accn": "0001026214-12-000039",
+            "fy": 2011,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2012-03-09",
+            "frame": "CY2009",
+            "unit": "shares",
+            "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+          },
+          "matched": false,
+          "matches": []
+        },
+        {
+          "selected": {
+            "start": "2010-01-01",
+            "end": "2010-12-31",
+            "val": 3249369000,
+            "accn": "0001026214-12-000039",
+            "fy": 2011,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2012-03-09",
+            "frame": "CY2010",
+            "unit": "shares",
+            "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+          },
+          "matched": false,
+          "matches": []
+        },
+        {
+          "selected": {
+            "start": "2011-01-01",
+            "end": "2011-12-31",
+            "val": 3244896000,
+            "accn": "0001026214-12-000039",
+            "fy": 2011,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2012-03-09",
+            "frame": "CY2011",
+            "unit": "shares",
+            "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+          },
+          "matched": false,
+          "matches": []
+        }
+      ],
+      "state": "COMPARED_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001041024",
+      "accession": "0001558370-18-002142",
+      "selected_rows": 12,
+      "instance_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1041024/000155837018002142/rmti-20171231.xml",
+        "status": 200,
+        "bytes": 1883224,
+        "sha256": "ff4e164a0b2ad0b0051570ee1c9097bc6f26bc918c5d7eb2b2c3dc177d33335f",
+        "captured_at": "2026-09-20T18:03:10.082299+00:00",
+        "body_path": "artifacts/seo/corpus-local/basic-diluted-batch1-filings/0001041024-0001558370-18-002142-instance.response"
+      },
+      "checks": [
+        {
+          "selected": {
+            "start": "2015-01-01",
+            "end": "2015-12-31",
+            "val": -0.29,
+            "accn": "0001558370-18-002142",
+            "fy": 2017,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2018-03-15",
+            "frame": "CY2015",
+            "unit": "USD/shares",
+            "tag": "EarningsPerShareBasic"
+          },
+          "matched": false,
+          "matches": []
+        },
+        {
+          "selected": {
+            "start": "2016-01-01",
+            "end": "2016-12-31",
+            "val": -0.39,
+            "accn": "0001558370-18-002142",
+            "fy": 2017,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2018-03-15",
+            "frame": "CY2016",
+            "unit": "USD/shares",
+            "tag": "EarningsPerShareBasic"
+          },
+          "matched": false,
+          "matches": []
+        },
+        {
+          "selected": {
+            "start": "2017-01-01",
+            "end": "2017-12-31",
+            "val": -0.51,
+            "accn": "0001558370-18-002142",
+            "fy": 2017,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2018-03-15",
+            "frame": "CY2017",
+            "unit": "USD/shares",
+            "tag": "EarningsPerShareBasic"
+          },
+          "matched": false,
+          "matches": []
+        },
+        {
+          "selected": {
+            "start": "2015-01-01",
+            "end": "2015-12-31",
+            "val": -0.29,
+            "accn": "0001558370-18-002142",
+            "fy": 2017,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2018-03-15",
+            "frame": "CY2015",
+            "unit": "USD/shares",
+            "tag": "EarningsPerShareDiluted"
+          },
+          "matched": false,
+          "matches": []
+        },
+        {
+          "selected": {
+            "start": "2016-01-01",
+            "end": "2016-12-31",
+            "val": -0.39,
+            "accn": "0001558370-18-002142",
+            "fy": 2017,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2018-03-15",
+            "frame": "CY2016",
+            "unit": "USD/shares",
+            "tag": "EarningsPerShareDiluted"
+          },
+          "matched": false,
+          "matches": []
+        },
+        {
+          "selected": {
+            "start": "2017-01-01",
+            "end": "2017-12-31",
+            "val": -0.51,
+            "accn": "0001558370-18-002142",
+            "fy": 2017,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2018-03-15",
+            "frame": "CY2017",
+            "unit": "USD/shares",
+            "tag": "EarningsPerShareDiluted"
+          },
+          "matched": false,
+          "matches": []
+        },
+        {
+          "selected": {
+            "start": "2015-01-01",
+            "end": "2015-12-31",
+            "val": 50068129,
+            "accn": "0001558370-18-002142",
+            "fy": 2017,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2018-03-15",
+            "frame": "CY2015",
+            "unit": "shares",
+            "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+          },
+          "matched": false,
+          "matches": []
+        },
+        {
+          "selected": {
+            "start": "2016-01-01",
+            "end": "2016-12-31",
+            "val": 50676180,
+            "accn": "0001558370-18-002142",
+            "fy": 2017,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2018-03-15",
+            "frame": "CY2016",
+            "unit": "shares",
+            "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+          },
+          "matched": false,
+          "matches": []
+        },
+        {
+          "selected": {
+            "start": "2017-01-01",
+            "end": "2017-12-31",
+            "val": 51067412,
+            "accn": "0001558370-18-002142",
+            "fy": 2017,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2018-03-15",
+            "frame": "CY2017",
+            "unit": "shares",
+            "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+          },
+          "matched": false,
+          "matches": []
+        },
+        {
+          "selected": {
+            "start": "2015-01-01",
+            "end": "2015-12-31",
+            "val": 50068129,
+            "accn": "0001558370-18-002142",
+            "fy": 2017,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2018-03-15",
+            "frame": "CY2015",
+            "unit": "shares",
+            "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+          },
+          "matched": false,
+          "matches": []
+        },
+        {
+          "selected": {
+            "start": "2016-01-01",
+            "end": "2016-12-31",
+            "val": 50676180,
+            "accn": "0001558370-18-002142",
+            "fy": 2017,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2018-03-15",
+            "frame": "CY2016",
+            "unit": "shares",
+            "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+          },
+          "matched": false,
+          "matches": []
+        },
+        {
+          "selected": {
+            "start": "2017-01-01",
+            "end": "2017-12-31",
+            "val": 51067412,
+            "accn": "0001558370-18-002142",
+            "fy": 2017,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2018-03-15",
+            "frame": "CY2017",
+            "unit": "shares",
+            "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+          },
+          "matched": false,
+          "matches": []
+        }
+      ],
+      "state": "COMPARED_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001417926",
+      "accession": "0001185185-17-000595",
+      "selected_rows": 16,
+      "instance_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1417926/000118518517000595/ivob-20151231.xml",
+        "status": 200,
+        "bytes": 5393071,
+        "sha256": "9bd79588b17bea2bdbc75939f8c07ddd7554c4b242f0ecf224307c76d290fd01",
+        "captured_at": "2026-09-20T18:03:12.109942+00:00",
+        "body_path": "artifacts/seo/corpus-local/basic-diluted-batch1-filings/0001417926-0001185185-17-000595-instance.response"
+      },
+      "checks": [
+        {
+          "selected": {
+            "start": "2011-01-01",
+            "end": "2011-12-31",
+            "val": -0.01,
+            "accn": "0001185185-17-000595",
+            "fy": 2015,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2017-03-17",
+            "frame": "CY2011",
+            "unit": "USD/shares",
+            "tag": "EarningsPerShareBasic"
+          },
+          "matched": false,
+          "matches": []
+        },
+        {
+          "selected": {
+            "start": "2012-01-01",
+            "end": "2012-12-31",
+            "val": -0.01,
+            "accn": "0001185185-17-000595",
+            "fy": 2015,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2017-03-17",
+            "frame": "CY2012",
+            "unit": "USD/shares",
+            "tag": "EarningsPerShareBasic"
+          },
+          "matched": false,
+          "matches": []
+        },
+        {
+          "selected": {
+            "start": "2013-01-01",
+            "end": "2013-12-31",
+            "val": -0.01,
+            "accn": "0001185185-17-000595",
+            "fy": 2015,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2017-03-17",
+            "frame": "CY2013",
+            "unit": "USD/shares",
+            "tag": "EarningsPerShareBasic"
+          },
+          "matched": false,
+          "matches": []
+        },
+        {
+          "selected": {
+            "start": "2014-01-01",
+            "end": "2014-12-31",
+            "val": -0.02,
+            "accn": "0001185185-17-000595",
+            "fy": 2015,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2017-03-17",
+            "frame": "CY2014",
+            "unit": "USD/shares",
+            "tag": "EarningsPerShareBasic"
+          },
+          "matched": false,
+          "matches": []
+        },
+        {
+          "selected": {
+            "start": "2011-01-01",
+            "end": "2011-12-31",
+            "val": -0.01,
+            "accn": "0001185185-17-000595",
+            "fy": 2015,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2017-03-17",
+            "frame": "CY2011",
+            "unit": "USD/shares",
+            "tag": "EarningsPerShareDiluted"
+          },
+          "matched": false,
+          "matches": []
+        },
+        {
+          "selected": {
+            "start": "2012-01-01",
+            "end": "2012-12-31",
+            "val": -0.01,
+            "accn": "0001185185-17-000595",
+            "fy": 2015,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2017-03-17",
+            "frame": "CY2012",
+            "unit": "USD/shares",
+            "tag": "EarningsPerShareDiluted"
+          },
+          "matched": false,
+          "matches": []
+        },
+        {
+          "selected": {
+            "start": "2013-01-01",
+            "end": "2013-12-31",
+            "val": -0.01,
+            "accn": "0001185185-17-000595",
+            "fy": 2015,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2017-03-17",
+            "frame": "CY2013",
+            "unit": "USD/shares",
+            "tag": "EarningsPerShareDiluted"
+          },
+          "matched": false,
+          "matches": []
+        },
+        {
+          "selected": {
+            "start": "2014-01-01",
+            "end": "2014-12-31",
+            "val": -0.02,
+            "accn": "0001185185-17-000595",
+            "fy": 2015,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2017-03-17",
+            "frame": "CY2014",
+            "unit": "USD/shares",
+            "tag": "EarningsPerShareDiluted"
+          },
+          "matched": false,
+          "matches": []
+        },
+        {
+          "selected": {
+            "start": "2011-01-01",
+            "end": "2011-12-31",
+            "val": 78656439,
+            "accn": "0001185185-17-000595",
+            "fy": 2015,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2017-03-17",
+            "frame": "CY2011",
+            "unit": "shares",
+            "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+          },
+          "matched": false,
+          "matches": []
+        },
+        {
+          "selected": {
+            "start": "2012-01-01",
+            "end": "2012-12-31",
+            "val": 89061776,
+            "accn": "0001185185-17-000595",
+            "fy": 2015,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2017-03-17",
+            "frame": "CY2012",
+            "unit": "shares",
+            "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+          },
+          "matched": false,
+          "matches": []
+        },
+        {
+          "selected": {
+            "start": "2013-01-01",
+            "end": "2013-12-31",
+            "val": 107055085,
+            "accn": "0001185185-17-000595",
+            "fy": 2015,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2017-03-17",
+            "frame": "CY2013",
+            "unit": "shares",
+            "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+          },
+          "matched": false,
+          "matches": []
+        },
+        {
+          "selected": {
+            "start": "2014-01-01",
+            "end": "2014-12-31",
+            "val": 112672160,
+            "accn": "0001185185-17-000595",
+            "fy": 2015,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2017-03-17",
+            "frame": "CY2014",
+            "unit": "shares",
+            "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+          },
+          "matched": false,
+          "matches": []
+        },
+        {
+          "selected": {
+            "start": "2011-01-01",
+            "end": "2011-12-31",
+            "val": 78656439,
+            "accn": "0001185185-17-000595",
+            "fy": 2015,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2017-03-17",
+            "frame": "CY2011",
+            "unit": "shares",
+            "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+          },
+          "matched": false,
+          "matches": []
+        },
+        {
+          "selected": {
+            "start": "2012-01-01",
+            "end": "2012-12-31",
+            "val": 89061776,
+            "accn": "0001185185-17-000595",
+            "fy": 2015,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2017-03-17",
+            "frame": "CY2012",
+            "unit": "shares",
+            "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+          },
+          "matched": false,
+          "matches": []
+        },
+        {
+          "selected": {
+            "start": "2013-01-01",
+            "end": "2013-12-31",
+            "val": 107055085,
+            "accn": "0001185185-17-000595",
+            "fy": 2015,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2017-03-17",
+            "frame": "CY2013",
+            "unit": "shares",
+            "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+          },
+          "matched": false,
+          "matches": []
+        },
+        {
+          "selected": {
+            "start": "2014-01-01",
+            "end": "2014-12-31",
+            "val": 112672160,
+            "accn": "0001185185-17-000595",
+            "fy": 2015,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2017-03-17",
+            "frame": "CY2014",
+            "unit": "shares",
+            "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+          },
+          "matched": false,
+          "matches": []
+        }
+      ],
+      "state": "COMPARED_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001433309",
+      "accession": "0001144204-16-092975",
+      "selected_rows": 12,
+      "instance_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1433309/000114420416092975/pltyf-20151231.xml",
+        "status": 200,
+        "bytes": 1922407,
+        "sha256": "fb53ba30ca4f6c92abb1a819cb02882229069b5cf7c6be7076593e3247d000f1",
+        "captured_at": "2026-09-20T18:03:13.835096+00:00",
+        "body_path": "artifacts/seo/corpus-local/basic-diluted-batch1-filings/0001433309-0001144204-16-092975-instance.response"
+      },
+      "checks": [
+        {
+          "selected": {
+            "start": "2013-01-01",
+            "end": "2013-12-31",
+            "val": 6,
+            "accn": "0001144204-16-092975",
+            "fy": 2015,
+            "fp": "FY",
+            "form": "20-F",
+            "filed": "2016-04-06",
+            "frame": "CY2013",
+            "unit": "HKD/shares",
+            "tag": "EarningsPerShareBasic"
+          },
+          "matched": false,
+          "matches": []
+        },
+        {
+          "selected": {
+            "start": "2014-01-01",
+            "end": "2014-12-31",
+            "val": 13,
+            "accn": "0001144204-16-092975",
+            "fy": 2015,
+            "fp": "FY",
+            "form": "20-F",
+            "filed": "2016-04-06",
+            "frame": "CY2014",
+            "unit": "HKD/shares",
+            "tag": "EarningsPerShareBasic"
+          },
+          "matched": false,
+          "matches": []
+        },
+        {
+          "selected": {
+            "start": "2015-01-01",
+            "end": "2015-12-31",
+            "val": 10.2,
+            "accn": "0001144204-16-092975",
+            "fy": 2015,
+            "fp": "FY",
+            "form": "20-F",
+            "filed": "2016-04-06",
+            "frame": "CY2015",
+            "unit": "HKD/shares",
+            "tag": "EarningsPerShareBasic"
+          },
+          "matched": false,
+          "matches": []
+        },
+        {
+          "selected": {
+            "start": "2013-01-01",
+            "end": "2013-12-31",
+            "val": 6,
+            "accn": "0001144204-16-092975",
+            "fy": 2015,
+            "fp": "FY",
+            "form": "20-F",
+            "filed": "2016-04-06",
+            "frame": "CY2013",
+            "unit": "HKD/shares",
+            "tag": "EarningsPerShareDiluted"
+          },
+          "matched": false,
+          "matches": []
+        },
+        {
+          "selected": {
+            "start": "2014-01-01",
+            "end": "2014-12-31",
+            "val": 13,
+            "accn": "0001144204-16-092975",
+            "fy": 2015,
+            "fp": "FY",
+            "form": "20-F",
+            "filed": "2016-04-06",
+            "frame": "CY2014",
+            "unit": "HKD/shares",
+            "tag": "EarningsPerShareDiluted"
+          },
+          "matched": false,
+          "matches": []
+        },
+        {
+          "selected": {
+            "start": "2015-01-01",
+            "end": "2015-12-31",
+            "val": 10.2,
+            "accn": "0001144204-16-092975",
+            "fy": 2015,
+            "fp": "FY",
+            "form": "20-F",
+            "filed": "2016-04-06",
+            "frame": "CY2015",
+            "unit": "HKD/shares",
+            "tag": "EarningsPerShareDiluted"
+          },
+          "matched": false,
+          "matches": []
+        },
+        {
+          "selected": {
+            "start": "2013-01-01",
+            "end": "2013-12-31",
+            "val": 13503623,
+            "accn": "0001144204-16-092975",
+            "fy": 2015,
+            "fp": "FY",
+            "form": "20-F",
+            "filed": "2016-04-06",
+            "frame": "CY2013",
+            "unit": "shares",
+            "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+          },
+          "matched": false,
+          "matches": []
+        },
+        {
+          "selected": {
+            "start": "2014-01-01",
+            "end": "2014-12-31",
+            "val": 12938128,
+            "accn": "0001144204-16-092975",
+            "fy": 2015,
+            "fp": "FY",
+            "form": "20-F",
+            "filed": "2016-04-06",
+            "frame": "CY2014",
+            "unit": "shares",
+            "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+          },
+          "matched": false,
+          "matches": []
+        },
+        {
+          "selected": {
+            "start": "2015-01-01",
+            "end": "2015-12-31",
+            "val": 12938128,
+            "accn": "0001144204-16-092975",
+            "fy": 2015,
+            "fp": "FY",
+            "form": "20-F",
+            "filed": "2016-04-06",
+            "frame": "CY2015",
+            "unit": "shares",
+            "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+          },
+          "matched": false,
+          "matches": []
+        },
+        {
+          "selected": {
+            "start": "2013-01-01",
+            "end": "2013-12-31",
+            "val": 13503623,
+            "accn": "0001144204-16-092975",
+            "fy": 2015,
+            "fp": "FY",
+            "form": "20-F",
+            "filed": "2016-04-06",
+            "frame": "CY2013",
+            "unit": "shares",
+            "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+          },
+          "matched": false,
+          "matches": []
+        },
+        {
+          "selected": {
+            "start": "2014-01-01",
+            "end": "2014-12-31",
+            "val": 12938128,
+            "accn": "0001144204-16-092975",
+            "fy": 2015,
+            "fp": "FY",
+            "form": "20-F",
+            "filed": "2016-04-06",
+            "frame": "CY2014",
+            "unit": "shares",
+            "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+          },
+          "matched": false,
+          "matches": []
+        },
+        {
+          "selected": {
+            "start": "2015-01-01",
+            "end": "2015-12-31",
+            "val": 12938128,
+            "accn": "0001144204-16-092975",
+            "fy": 2015,
+            "fp": "FY",
+            "form": "20-F",
+            "filed": "2016-04-06",
+            "frame": "CY2015",
+            "unit": "shares",
+            "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+          },
+          "matched": false,
+          "matches": []
+        }
+      ],
+      "state": "COMPARED_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001470129",
+      "accession": "0001013762-12-002250",
+      "selected_rows": 12,
+      "instance_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1470129/000101376212002250/cbly-20120831.xml",
+        "status": 200,
+        "bytes": 1137914,
+        "sha256": "4adb2617afe20aaf77ff805dc860d7c0567b943cf576ba73cfe567276939fe3c",
+        "captured_at": "2026-09-20T18:03:15.598822+00:00",
+        "body_path": "artifacts/seo/corpus-local/basic-diluted-batch1-filings/0001470129-0001013762-12-002250-instance.response"
+      },
+      "checks": [
+        {
+          "selected": {
+            "start": "2010-01-01",
+            "end": "2010-12-31",
+            "val": 0.43,
+            "accn": "0001013762-12-002250",
+            "fy": 2012,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2012-11-29",
+            "frame": "CY2010",
+            "unit": "USD/shares",
+            "tag": "EarningsPerShareBasic"
+          },
+          "matched": false,
+          "matches": []
+        },
+        {
+          "selected": {
+            "start": "2010-09-01",
+            "end": "2011-08-31",
+            "val": 0.45,
+            "accn": "0001013762-12-002250",
+            "fy": 2012,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2012-11-29",
+            "frame": "CY2011",
+            "unit": "USD/shares",
+            "tag": "EarningsPerShareBasic"
+          },
+          "matched": false,
+          "matches": []
+        },
+        {
+          "selected": {
+            "start": "2011-09-01",
+            "end": "2012-08-31",
+            "val": 0.32,
+            "accn": "0001013762-12-002250",
+            "fy": 2012,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2012-11-29",
+            "frame": "CY2012",
+            "unit": "USD/shares",
+            "tag": "EarningsPerShareBasic"
+          },
+          "matched": false,
+          "matches": []
+        },
+        {
+          "selected": {
+            "start": "2010-01-01",
+            "end": "2010-12-31",
+            "val": 0.43,
+            "accn": "0001013762-12-002250",
+            "fy": 2012,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2012-11-29",
+            "frame": "CY2010",
+            "unit": "USD/shares",
+            "tag": "EarningsPerShareDiluted"
+          },
+          "matched": false,
+          "matches": []
+        },
+        {
+          "selected": {
+            "start": "2010-09-01",
+            "end": "2011-08-31",
+            "val": 0.45,
+            "accn": "0001013762-12-002250",
+            "fy": 2012,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2012-11-29",
+            "frame": "CY2011",
+            "unit": "USD/shares",
+            "tag": "EarningsPerShareDiluted"
+          },
+          "matched": false,
+          "matches": []
+        },
+        {
+          "selected": {
+            "start": "2011-09-01",
+            "end": "2012-08-31",
+            "val": 0.32,
+            "accn": "0001013762-12-002250",
+            "fy": 2012,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2012-11-29",
+            "frame": "CY2012",
+            "unit": "USD/shares",
+            "tag": "EarningsPerShareDiluted"
+          },
+          "matched": false,
+          "matches": []
+        },
+        {
+          "selected": {
+            "start": "2010-01-01",
+            "end": "2010-12-31",
+            "val": 28044698,
+            "accn": "0001013762-12-002250",
+            "fy": 2012,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2012-11-29",
+            "frame": "CY2010",
+            "unit": "shares",
+            "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+          },
+          "matched": false,
+          "matches": []
+        },
+        {
+          "selected": {
+            "start": "2010-09-01",
+            "end": "2011-08-31",
+            "val": 30010932,
+            "accn": "0001013762-12-002250",
+            "fy": 2012,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2012-11-29",
+            "frame": "CY2011",
+            "unit": "shares",
+            "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+          },
+          "matched": false,
+          "matches": []
+        },
+        {
+          "selected": {
+            "start": "2011-09-01",
+            "end": "2012-08-31",
+            "val": 30094205,
+            "accn": "0001013762-12-002250",
+            "fy": 2012,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2012-11-29",
+            "frame": "CY2012",
+            "unit": "shares",
+            "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+          },
+          "matched": false,
+          "matches": []
+        },
+        {
+          "selected": {
+            "start": "2010-01-01",
+            "end": "2010-12-31",
+            "val": 28044698,
+            "accn": "0001013762-12-002250",
+            "fy": 2012,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2012-11-29",
+            "frame": "CY2010",
+            "unit": "shares",
+            "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+          },
+          "matched": false,
+          "matches": []
+        },
+        {
+          "selected": {
+            "start": "2010-09-01",
+            "end": "2011-08-31",
+            "val": 30010932,
+            "accn": "0001013762-12-002250",
+            "fy": 2012,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2012-11-29",
+            "frame": "CY2011",
+            "unit": "shares",
+            "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+          },
+          "matched": false,
+          "matches": []
+        },
+        {
+          "selected": {
+            "start": "2011-09-01",
+            "end": "2012-08-31",
+            "val": 30094205,
+            "accn": "0001013762-12-002250",
+            "fy": 2012,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2012-11-29",
+            "frame": "CY2012",
+            "unit": "shares",
+            "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+          },
+          "matched": false,
+          "matches": []
+        }
+      ],
+      "state": "COMPARED_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001509646",
+      "accession": "0001193125-12-245998",
+      "selected_rows": 14,
+      "instance_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1509646/000119312512245998/feng-20111231.xml",
+        "status": 200,
+        "bytes": 924315,
+        "sha256": "4e74826c13ce2687c4e4f8eaf27a205b893d456ef07bce5a532b5cc7e4a64c4b",
+        "captured_at": "2026-09-20T18:03:17.263614+00:00",
+        "body_path": "artifacts/seo/corpus-local/basic-diluted-batch1-filings/0001509646-0001193125-12-245998-instance.response"
+      },
+      "checks": [
+        {
+          "selected": {
+            "start": "2009-01-01",
+            "end": "2009-12-31",
+            "val": -0.1,
+            "accn": "0001193125-12-245998",
+            "fy": 2011,
+            "fp": "FY",
+            "form": "20-F/A",
+            "filed": "2012-05-24",
+            "frame": "CY2009",
+            "unit": "CNY/shares",
+            "tag": "EarningsPerShareBasic"
+          },
+          "matched": false,
+          "matches": []
+        },
+        {
+          "selected": {
+            "start": "2010-01-01",
+            "end": "2010-12-31",
+            "val": -0.51,
+            "accn": "0001193125-12-245998",
+            "fy": 2011,
+            "fp": "FY",
+            "form": "20-F/A",
+            "filed": "2012-05-24",
+            "frame": "CY2010",
+            "unit": "CNY/shares",
+            "tag": "EarningsPerShareBasic"
+          },
+          "matched": false,
+          "matches": []
+        },
+        {
+          "selected": {
+            "start": "2011-01-01",
+            "end": "2011-12-31",
+            "val": -1.3,
+            "accn": "0001193125-12-245998",
+            "fy": 2011,
+            "fp": "FY",
+            "form": "20-F/A",
+            "filed": "2012-05-24",
+            "frame": "CY2011",
+            "unit": "CNY/shares",
+            "tag": "EarningsPerShareBasic"
+          },
+          "matched": false,
+          "matches": []
+        },
+        {
+          "selected": {
+            "start": "2011-01-01",
+            "end": "2011-12-31",
+            "val": -0.21,
+            "accn": "0001193125-12-245998",
+            "fy": 2011,
+            "fp": "FY",
+            "form": "20-F/A",
+            "filed": "2012-05-24",
+            "frame": "CY2011",
+            "unit": "USD/shares",
+            "tag": "EarningsPerShareBasic"
+          },
+          "matched": false,
+          "matches": []
+        },
+        {
+          "selected": {
+            "start": "2009-01-01",
+            "end": "2009-12-31",
+            "val": -0.1,
+            "accn": "0001193125-12-245998",
+            "fy": 2011,
+            "fp": "FY",
+            "form": "20-F/A",
+            "filed": "2012-05-24",
+            "frame": "CY2009",
+            "unit": "CNY/shares",
+            "tag": "EarningsPerShareDiluted"
+          },
+          "matched": false,
+          "matches": []
+        },
+        {
+          "selected": {
+            "start": "2010-01-01",
+            "end": "2010-12-31",
+            "val": -0.51,
+            "accn": "0001193125-12-245998",
+            "fy": 2011,
+            "fp": "FY",
+            "form": "20-F/A",
+            "filed": "2012-05-24",
+            "frame": "CY2010",
+            "unit": "CNY/shares",
+            "tag": "EarningsPerShareDiluted"
+          },
+          "matched": false,
+          "matches": []
+        },
+        {
+          "selected": {
+            "start": "2011-01-01",
+            "end": "2011-12-31",
+            "val": -1.3,
+            "accn": "0001193125-12-245998",
+            "fy": 2011,
+            "fp": "FY",
+            "form": "20-F/A",
+            "filed": "2012-05-24",
+            "frame": "CY2011",
+            "unit": "CNY/shares",
+            "tag": "EarningsPerShareDiluted"
+          },
+          "matched": false,
+          "matches": []
+        },
+        {
+          "selected": {
+            "start": "2011-01-01",
+            "end": "2011-12-31",
+            "val": -0.21,
+            "accn": "0001193125-12-245998",
+            "fy": 2011,
+            "fp": "FY",
+            "form": "20-F/A",
+            "filed": "2012-05-24",
+            "frame": "CY2011",
+            "unit": "USD/shares",
+            "tag": "EarningsPerShareDiluted"
+          },
+          "matched": false,
+          "matches": []
+        },
+        {
+          "selected": {
+            "start": "2009-01-01",
+            "end": "2009-12-31",
+            "val": 321387913,
+            "accn": "0001193125-12-245998",
+            "fy": 2011,
+            "fp": "FY",
+            "form": "20-F/A",
+            "filed": "2012-05-24",
+            "frame": "CY2009",
+            "unit": "shares",
+            "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+          },
+          "matched": false,
+          "matches": []
+        },
+        {
+          "selected": {
+            "start": "2010-01-01",
+            "end": "2010-12-31",
+            "val": 327045493,
+            "accn": "0001193125-12-245998",
+            "fy": 2011,
+            "fp": "FY",
+            "form": "20-F/A",
+            "filed": "2012-05-24",
+            "frame": "CY2010",
+            "unit": "shares",
+            "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+          },
+          "matched": false,
+          "matches": []
+        },
+        {
+          "selected": {
+            "start": "2011-01-01",
+            "end": "2011-12-31",
+            "val": 519227660,
+            "accn": "0001193125-12-245998",
+            "fy": 2011,
+            "fp": "FY",
+            "form": "20-F/A",
+            "filed": "2012-05-24",
+            "frame": "CY2011",
+            "unit": "shares",
+            "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+          },
+          "matched": false,
+          "matches": []
+        },
+        {
+          "selected": {
+            "start": "2009-01-01",
+            "end": "2009-12-31",
+            "val": 321387913,
+            "accn": "0001193125-12-245998",
+            "fy": 2011,
+            "fp": "FY",
+            "form": "20-F/A",
+            "filed": "2012-05-24",
+            "frame": "CY2009",
+            "unit": "shares",
+            "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+          },
+          "matched": false,
+          "matches": []
+        },
+        {
+          "selected": {
+            "start": "2010-01-01",
+            "end": "2010-12-31",
+            "val": 327045493,
+            "accn": "0001193125-12-245998",
+            "fy": 2011,
+            "fp": "FY",
+            "form": "20-F/A",
+            "filed": "2012-05-24",
+            "frame": "CY2010",
+            "unit": "shares",
+            "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+          },
+          "matched": false,
+          "matches": []
+        },
+        {
+          "selected": {
+            "start": "2011-01-01",
+            "end": "2011-12-31",
+            "val": 519227660,
+            "accn": "0001193125-12-245998",
+            "fy": 2011,
+            "fp": "FY",
+            "form": "20-F/A",
+            "filed": "2012-05-24",
+            "frame": "CY2011",
+            "unit": "shares",
+            "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+          },
+          "matched": false,
+          "matches": []
+        }
+      ],
+      "state": "COMPARED_REVIEW_PENDING"
+    }
+  ],
+  "complete": true,
+  "scope": "Previously unmatched selected observations only. Numerical reproduction does not establish accounting scope or editorial approval."
+}
