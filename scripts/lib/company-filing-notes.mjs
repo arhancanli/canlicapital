@@ -381,6 +381,118 @@ export const FILING_NOTES = [
     }
   ]
 }
+,
+{
+  "cik": "0000744218",
+  "include_on_overview": true,
+  "source_sha256": "a253f724b1319f3eeec0fb678b43576159c8fa993fc97e4268adfafa9963e2f2",
+  "tags": [
+    "EarningsPerShareBasic",
+    "EarningsPerShareDiluted",
+    "WeightedAverageNumberOfDilutedSharesOutstanding",
+    "WeightedAverageNumberOfSharesOutstandingBasic"
+  ],
+  "text": "For 2023\u20132025, Celldex reports equal basic and diluted net loss per common share. Its policy excludes potential common shares in loss periods because their effect would be anti-dilutive. Basic weighted-average shares exclude issued restricted stock that has not vested. The statement presents share counts in thousands; its inline tags encode that scale, and these pages show the reported counts in shares. Per-share amounts are not scaled by thousands. Basic and diluted measures retain distinct definitions, and their matching denominators should not be added.",
+  "filing_url": "https://www.sec.gov/Archives/edgar/data/744218/000110465926019652/cldx-20251231x10k.htm",
+  "observations": [
+    {
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "val": -2.92,
+      "accn": "0001104659-26-019652",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": -2.45,
+      "accn": "0001104659-26-019652",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": -3.9,
+      "accn": "0001104659-26-019652",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareBasic"
+    },
+    {
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "val": -2.92,
+      "accn": "0001104659-26-019652",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": -2.45,
+      "accn": "0001104659-26-019652",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": -3.9,
+      "accn": "0001104659-26-019652",
+      "unit": "USD/shares",
+      "tag": "EarningsPerShareDiluted"
+    },
+    {
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "val": 48449000,
+      "accn": "0001104659-26-019652",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 64395000,
+      "accn": "0001104659-26-019652",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 66422000,
+      "accn": "0001104659-26-019652",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfDilutedSharesOutstanding"
+    },
+    {
+      "start": "2023-01-01",
+      "end": "2023-12-31",
+      "val": 48449000,
+      "accn": "0001104659-26-019652",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    },
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 64395000,
+      "accn": "0001104659-26-019652",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    },
+    {
+      "start": "2025-01-01",
+      "end": "2025-12-31",
+      "val": 66422000,
+      "accn": "0001104659-26-019652",
+      "unit": "shares",
+      "tag": "WeightedAverageNumberOfSharesOutstandingBasic"
+    }
+  ]
+}
 ];
 
 export function companyFilingNotes(company, tag) {
