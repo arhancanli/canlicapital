@@ -161,7 +161,7 @@ remain intact. Resume4 ended at695 verified objects on a response-body reset.
 Resume5 session23870 is active using the reviewed uploader, concurrency4,
 readAttempts3/writeAttempts2. Fresh receipt:
 corpus-local/company-three-cohort-remote-transfer-resume5-20260920.json.
-Latest checkpoint: 852 verified objects, 0 read retries, 0 failures.
+Latest checkpoint: 1223 verified objects, 4 read retries, 0 failures.
 Poll this exact handle before restarting; receipt alone is not process liveness.
 The complete three-cohort plan is6,249objects/828,340,450bytes. Public staging bucket
 company-reference-staging has no public write policy added. Exact-byte GET/cache
@@ -181,7 +181,10 @@ Count receipt: company-expansion-candidate-counts-20260920.json.
 
 ## Historical cash review checkpoint
 
-Branch research/cash-history-legacy-review-20260920 preserves17older primary
+PR25 merged as757b46257b1ac8b6fe9f299a4fa3d8851369335f after all four
+CI35512759597 jobs passed at194688b041f745dc4e99457a3d0892f40e0167e5;
+both trees f58eacca6e39aeaeb58591164cac7377ebee0ff7.
+Branch research/cash-statement-scope-20260920 preserves17older primary
 filings and17XMLinstances for18selected observations across Holding and Atlantica.
 Original comparison matched17/18. Exact retained legacy namespace support resolves
 the remaining observation; revised offline comparison matches18/18. Three XML
@@ -191,13 +194,22 @@ e0329e7bf4a5084152c53762e656a41e82633a2862f2979e732cdfc01ad20f37
 restored every hash and reproduced inline/XML reports byte-for-byte offline.
 This is local evidence preservation, not offsite backup or source admission.
 
-Next source work: inspect statement scope for all17historical filings. Atlantica's
-1996-12-31 zero is an explicit E96 XML instant; its2013cash-flow statement has an
-inception1997 column with zero opening cash. Opening-balance interpretation needs
-further presentation/statement review; do not call it a1996annual report.
-Two latest retained filings separately support seven numerical matches and five
-visible year-end columns. Holding and operating-partnership cash are distinct
-entities. No all-history editorial approval or data-policy change was made.
+Statement scope review now covers all18older observations across17filings.
+Each is visible as an opening zero in the earliest annual cash-flow column, except
+Atlantica1996-12-31, corresponding to opening cash in the inception1997column.
+XML instant dates, entity, units and numeric zeros support the interpretation;
+it does not prove a separate annual report was published for each instant year.
+Holding statements belong to the holding partnership; separate operating LP cash
+must not replace them. Atlantica zero balances coexist with financing/operating
+cash flows. No selected data values or admission policy changed.
+Report company-cash-history-statement-scope-20260920.json SHA256
+367303c7300e0e0ea613a861e532fd6e8c285f89130bb2272ee7d72b9cec220b.
+Separate scope archive113files/54,394,880bytes SHA256
+c8836ee076a85c914e55f3aa5f732cdca0c5bbc781bdd0eadce0ef5172d422a1
+verified every restored hash and reproduced scope report byte-for-byte offline.
+Two latest retained filings separately support seven numerical matches/five
+visible year-end columns. Broader review of other cash histories, metrics and
+remaining editorial flags continues; no whole-corpus approval follows.
 
 Overall goal remains active; actual indexing and governed forward outcomes remain
 unproven. Next serving action: finish transfer, then run hosted ready-state audit.

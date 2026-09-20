@@ -1,0 +1,1081 @@
+{
+  "schema": "canli.cash-history-statement-scope.v1",
+  "publication_approved": false,
+  "capture_sha256": "7dae6f65b4f610102fb67c4e8321bd2e8d781e941b59193d4bbea110dbb29a48",
+  "comparison_sha256": "1d0da7e46a133ec5c5f74af02936a2a5969ca6604e64d61c0c6107a969fb1d7b",
+  "code_sha256": "43a7c46b3632b056a00676007064e100111bf3a0b2203812f79b97525565a57c",
+  "filings": [
+    {
+      "cik": "0000825313",
+      "accession": "0000825313-16-000046",
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/825313/000082531316000046/ab-20151231x10k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T12:58:00.379980+00:00",
+        "bytes": 5056787,
+        "sha256": "c47d2d49768c8cf974b66cc49e0243677e62d2b53bc92b08024917be2687c007",
+        "body_path": "artifacts/seo/corpus-local/cash-history-filings-20260920/0000825313-0000825313-16-000046-primary.response"
+      },
+      "instance_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/825313/000082531316000046/ab-20151231.xml",
+        "status": 200,
+        "bytes": 673382,
+        "sha256": "ed4664d58ce625abf4f2551595ba4a422849646348e0e46b50b8b315df467952",
+        "captured_at": "2026-09-20T13:01:46.028720+00:00",
+        "body_path": "artifacts/seo/corpus-local/cash-history-filings-20260920/0000825313-0000825313-16-000046-instance.response"
+      },
+      "zero_based_table_index": 90,
+      "statement_entity": "AllianceBernstein Holding L.P.",
+      "annual_columns": [
+        2015,
+        2014,
+        2013
+      ],
+      "preceding_text": "Changes in employee benefit related items, net of tax 877 (9,214 ) 11,030 Balance, end of year (34,683 ) (29,169 ) (12,534 ) Total Partners\u2019 Capital $ 1,589,691 $ 1,627,510 $ 1,532,878 See Accompanying Notes to Financial Statements. 61 Table of Contents AllianceBernstein Holding L.P. Statements of Cash Flows",
+      "statement_text": "Years Ended December 31, 2015 2014 2013 (in thousands) Cash flows from operating activities: Net income $ 188,178 $ 180,814 $ 165,502 Adjustments to reconcile net income to net cash provided by operating activities: Equity in net income attributable to AB Unitholders (212,498 ) (203,277 ) (185,912 ) Cash distributions received from AB 217,065 203,919 166,324 Changes in assets and liabilities: Decrease (increase) in other assets 152 (152 ) 5,957 Increase in due to AB \u2014 \u2014 3,173 (Decrease) increase in other liabilities (108 ) (394 ) 418 Net cash provided by operating activities 192,789 180,910 155,462 Cash flows from investing activities: Investments in AB from cash distributions paid to AB consolidated rabbi trust \u2014 \u2014 (14,076 ) Investments in AB with proceeds from exercises of compensatory options to buy AB Holding Units (9,233 ) (18,955 ) (15,138 ) Net cash used in investing activities (9,233 ) (18,955 ) (29,214 ) Cash flows from financing activities: Cash distributions to Unitholders (192,299 ) (182,724 ) (142,952 ) Capital contributions (to) from AB (490 ) 1,814 1,566 Proceeds from exercise of compensatory options to buy AB Holding Units 9,233 18,955 15,138 Net cash used in financing activities (183,556 ) (161,955 ) (126,248 ) Change in cash and cash equivalents \u2014 \u2014 \u2014 Cash and cash equivalents as of beginning of the year \u2014 \u2014 \u2014 Cash and cash equivalents as of end of the year $ \u2014 $ \u2014 $ \u2014 Cash paid: Income taxes $ 24,276 $ 23,009 $ 19,981 Non-cash investing activities: Issuance of AB Holding Units to fund long-term incentive compensation plan awards 115,045 108,034 84,531 Retirement of AB Holding Units (155,073 ) (14,577 ) (287,303 )",
+      "opening_row": "Cash and cash equivalents as of beginning of the year \u2014 \u2014 \u2014",
+      "closing_row": "Cash and cash equivalents as of end of the year $ \u2014 $ \u2014 $ \u2014",
+      "observations": [
+        {
+          "selected": {
+            "end": "2012-12-31",
+            "val": 0,
+            "accn": "0000825313-16-000046",
+            "fy": 2015,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2016-02-11",
+            "frame": "CY2012Q4I",
+            "unit": "USD",
+            "tag": "CashAndCashEquivalentsAtCarryingValue"
+          },
+          "numeric_matches": [
+            {
+              "context_id": "FI2012Q4",
+              "unit_id": "usd",
+              "value": "0"
+            }
+          ],
+          "matching_contexts_xml": [
+            "<ns0:context xmlns:ns0=\"http://www.xbrl.org/2003/instance\" id=\"FI2012Q4\">\n\t\t<ns0:entity>\n\t\t\t<ns0:identifier scheme=\"http://www.sec.gov/CIK\">0000825313</ns0:identifier>\n\t\t</ns0:entity>\n\t\t<ns0:period>\n\t\t\t<ns0:instant>2012-12-31</ns0:instant>\n\t\t</ns0:period>\n\t</ns0:context>\n\t"
+          ],
+          "statement_position": "earliest_annual_column_opening_balance",
+          "opening_period_start": "2013-01-01",
+          "interpretation": "The explicit year-end XML instant corresponds to the opening cash row for the following period. This does not establish a separately published annual report for that instant year."
+        }
+      ],
+      "scope_note": "Holding partnership cash must not be replaced with operating-partnership cash.",
+      "disposition": "SUPPORTED_OPENING_BALANCE_WITH_REPORTING_CONTEXT"
+    },
+    {
+      "cik": "0000825313",
+      "accession": "0000825313-17-000008",
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/825313/000082531317000008/ab-20161231x10k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T12:58:05.273792+00:00",
+        "bytes": 5230407,
+        "sha256": "7f2be1576e67f1c108a3e35aa8c66661580abd7df34272096099457910471828",
+        "body_path": "artifacts/seo/corpus-local/cash-history-filings-20260920/0000825313-0000825313-17-000008-primary.response"
+      },
+      "instance_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/825313/000082531317000008/ab-20161231.xml",
+        "status": 200,
+        "bytes": 767407,
+        "sha256": "0c8cae2b01b88cd57b5b4dfdb1683d71e659727685c4ad08e11d002afe703e90",
+        "captured_at": "2026-09-20T13:01:48.104005+00:00",
+        "body_path": "artifacts/seo/corpus-local/cash-history-filings-20260920/0000825313-0000825313-17-000008-instance.response"
+      },
+      "zero_based_table_index": 93,
+      "statement_entity": "AllianceBernstein Holding L.P.",
+      "annual_columns": [
+        2016,
+        2015,
+        2014
+      ],
+      "preceding_text": "(709 ) 877 (9,214 ) Balance, end of year (42,025 ) (34,683 ) (29,169 ) Total Partners\u2019 Capital $ 1,539,889 $ 1,575,846 $ 1,616,079 See Accompanying Notes to Financial Statements. 64 Table of Contents AllianceBernstein Holding L.P. Statements of Cash Flows",
+      "statement_text": "Years Ended December 31, 2016 2015 2014 (in thousands) Cash flows from operating activities: Net income $ 216,586 $ 185,764 $ 178,468 Adjustments to reconcile net income to net cash provided by operating activities: Equity in net income attributable to AB Unitholders (239,389 ) (210,084 ) (200,931 ) Cash distributions received from AB 191,989 217,065 203,919 Changes in assets and liabilities: Decrease (increase) in other assets \u2014 152 (152 ) Increase (decrease) in other liabilities 345 (108 ) (394 ) Net cash provided by operating activities 169,531 192,789 180,910 Cash flows from investing activities: Investments in AB with proceeds from exercises of compensatory options to buy AB Holding Units (6,108 ) (9,233 ) (18,955 ) Net cash used in investing activities (6,108 ) (9,233 ) (18,955 ) Cash flows from financing activities: Cash distributions to Unitholders (169,731 ) (192,299 ) (182,724 ) Capital contributions from (to) AB 200 (490 ) 1,814 Proceeds from exercise of compensatory options to buy AB Holding Units 6,108 9,233 18,955 Net cash used in financing activities (163,423 ) (183,556 ) (161,955 ) Change in cash and cash equivalents \u2014 \u2014 \u2014 Cash and cash equivalents as of beginning of the year \u2014 \u2014 \u2014 Cash and cash equivalents as of end of the year $ \u2014 $ \u2014 $ \u2014 Cash paid: Income taxes $ 22,456 $ 24,276 $ 23,009 Non-cash investing activities: Issuance of AB Holding Units to fund long-term incentive compensation plan awards 103,820 115,045 108,034 Retirement of AB Holding Units (184,336 ) (155,073 ) (14,577 )",
+      "opening_row": "Cash and cash equivalents as of beginning of the year \u2014 \u2014 \u2014",
+      "closing_row": "Cash and cash equivalents as of end of the year $ \u2014 $ \u2014 $ \u2014",
+      "observations": [
+        {
+          "selected": {
+            "end": "2013-12-31",
+            "val": 0,
+            "accn": "0000825313-17-000008",
+            "fy": 2016,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2017-02-14",
+            "frame": "CY2013Q4I",
+            "unit": "USD",
+            "tag": "CashAndCashEquivalentsAtCarryingValue"
+          },
+          "numeric_matches": [
+            {
+              "context_id": "FI2013Q4",
+              "unit_id": "usd",
+              "value": "0"
+            }
+          ],
+          "matching_contexts_xml": [
+            "<ns0:context xmlns:ns0=\"http://www.xbrl.org/2003/instance\" id=\"FI2013Q4\">\n\t\t<ns0:entity>\n\t\t\t<ns0:identifier scheme=\"http://www.sec.gov/CIK\">0000825313</ns0:identifier>\n\t\t</ns0:entity>\n\t\t<ns0:period>\n\t\t\t<ns0:instant>2013-12-31</ns0:instant>\n\t\t</ns0:period>\n\t</ns0:context>\n\t"
+          ],
+          "statement_position": "earliest_annual_column_opening_balance",
+          "opening_period_start": "2014-01-01",
+          "interpretation": "The explicit year-end XML instant corresponds to the opening cash row for the following period. This does not establish a separately published annual report for that instant year."
+        }
+      ],
+      "scope_note": "Holding partnership cash must not be replaced with operating-partnership cash.",
+      "disposition": "SUPPORTED_OPENING_BALANCE_WITH_REPORTING_CONTEXT"
+    },
+    {
+      "cik": "0000825313",
+      "accession": "0000825313-18-000011",
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/825313/000082531318000011/ab-20171231x10k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T12:58:10.527299+00:00",
+        "bytes": 5498934,
+        "sha256": "52d6cadba61f39b38320b77f6be98b97c42bff34ce8e384b316c0d591ea47801",
+        "body_path": "artifacts/seo/corpus-local/cash-history-filings-20260920/0000825313-0000825313-18-000011-primary.response"
+      },
+      "instance_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/825313/000082531318000011/ab-20171231.xml",
+        "status": 200,
+        "bytes": 657403,
+        "sha256": "9cb7e50784c813f446e2204f7d0ebd72a1b4cc01870533b69d28f54c7e0de0da",
+        "captured_at": "2026-09-20T13:01:50.051098+00:00",
+        "body_path": "artifacts/seo/corpus-local/cash-history-filings-20260920/0000825313-0000825313-18-000011-instance.response"
+      },
+      "zero_based_table_index": 99,
+      "statement_entity": "AllianceBernstein Holding L.P.",
+      "annual_columns": [
+        2017,
+        2016,
+        2015
+      ],
+      "preceding_text": "(1,116 ) (709 ) 877 Balance, end of year (33,463 ) (42,025 ) (34,683 ) Total Partners\u2019 Capital $ 1,543,550 $ 1,539,889 $ 1,575,846 See Accompanying Notes to Financial Statements. 69 Table of Contents AllianceBernstein Holding L.P. Statements of Cash Flows",
+      "statement_text": "Years Ended December 31, 2017 2016 2015 (in thousands) Cash flows from operating activities: Net income $ 207,422 $ 216,586 $ 185,764 Adjustments to reconcile net income to net cash provided by operating activities: Equity in net income attributable to AB Unitholders (232,393 ) (239,389 ) (210,084 ) Cash distributions received from AB 226,846 191,989 217,065 Changes in assets and liabilities: Decrease in other assets \u2014 \u2014 152 Increase (decrease) in other liabilities 535 345 (108 ) Net cash provided by operating activities 202,410 169,531 192,789 Cash flows from investing activities: Investments in AB with proceeds from exercises of compensatory options to buy AB Holding Units (20,110 ) (6,108 ) (9,233 ) Net cash used in investing activities (20,110 ) (6,108 ) (9,233 ) Cash flows from financing activities: Cash distributions to Unitholders (202,388 ) (169,731 ) (192,299 ) Capital contributions (to) from AB (22 ) 200 (490 ) Proceeds from exercise of compensatory options to buy AB Holding Units 20,110 6,108 9,233 Net cash used in financing activities (182,300 ) (163,423 ) (183,556 ) Change in cash and cash equivalents \u2014 \u2014 \u2014 Cash and cash equivalents as of beginning of the year \u2014 \u2014 \u2014 Cash and cash equivalents as of end of the year $ \u2014 $ \u2014 $ \u2014 Cash paid: Income taxes $ 24,436 $ 22,456 $ 24,276 Non-cash investing activities: Issuance of AB Holding Units to fund long-term incentive compensation plan awards 135,604 103,820 115,045 Retirement of AB Holding Units (162,206 ) (184,336 ) (155,073 )",
+      "opening_row": "Cash and cash equivalents as of beginning of the year \u2014 \u2014 \u2014",
+      "closing_row": "Cash and cash equivalents as of end of the year $ \u2014 $ \u2014 $ \u2014",
+      "observations": [
+        {
+          "selected": {
+            "end": "2014-12-31",
+            "val": 0,
+            "accn": "0000825313-18-000011",
+            "fy": 2017,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2018-02-13",
+            "frame": "CY2014Q4I",
+            "unit": "USD",
+            "tag": "CashAndCashEquivalentsAtCarryingValue"
+          },
+          "numeric_matches": [
+            {
+              "context_id": "FI2014Q4",
+              "unit_id": "usd",
+              "value": "0"
+            }
+          ],
+          "matching_contexts_xml": [
+            "<ns0:context xmlns:ns0=\"http://www.xbrl.org/2003/instance\" id=\"FI2014Q4\">\n\t\t<ns0:entity>\n\t\t\t<ns0:identifier scheme=\"http://www.sec.gov/CIK\">0000825313</ns0:identifier>\n\t\t</ns0:entity>\n\t\t<ns0:period>\n\t\t\t<ns0:instant>2014-12-31</ns0:instant>\n\t\t</ns0:period>\n\t</ns0:context>\n\t"
+          ],
+          "statement_position": "earliest_annual_column_opening_balance",
+          "opening_period_start": "2015-01-01",
+          "interpretation": "The explicit year-end XML instant corresponds to the opening cash row for the following period. This does not establish a separately published annual report for that instant year."
+        }
+      ],
+      "scope_note": "Holding partnership cash must not be replaced with operating-partnership cash.",
+      "disposition": "SUPPORTED_OPENING_BALANCE_WITH_REPORTING_CONTEXT"
+    },
+    {
+      "cik": "0000825313",
+      "accession": "0001140361-11-007854",
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/825313/000114036111007854/form10k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T12:58:15.878577+00:00",
+        "bytes": 5343682,
+        "sha256": "f28cf66fd541c05fb36595bc11b2b445ee641ae5b8ba88ca79c9fc38702ad88f",
+        "body_path": "artifacts/seo/corpus-local/cash-history-filings-20260920/0000825313-0001140361-11-007854-primary.response"
+      },
+      "instance_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/825313/000114036111007854/ab-20101231.xml",
+        "status": 200,
+        "bytes": 264166,
+        "sha256": "b9c30f724665af5dfe657b98a73c7d1121eb5d9551ad115aa7adf1ae9f476baf",
+        "captured_at": "2026-09-20T13:01:51.893906+00:00",
+        "body_path": "artifacts/seo/corpus-local/cash-history-filings-20260920/0000825313-0001140361-11-007854-instance.response"
+      },
+      "zero_based_table_index": 137,
+      "statement_entity": "AllianceBernstein Holding L.P.",
+      "annual_columns": [
+        2010,
+        2009,
+        2008
+      ],
+      "preceding_text": "60 Table of Contents AllianceBernstein Holding L.P. Statements of Cash Flows",
+      "statement_text": "Years\u00a0Ended\u00a0December\u00a031, 2010 2009 2008 (in thousands) Cash flows from operating activities: Net income $ 134,158 $ 167,189 $ 244,726 Adjustments to reconcile net income to net cash used in operating activities: Equity in net income attributable to AllianceBernstein Unitholders (162,217 ) (192,513 ) (278,636 ) Cash distributions received from AllianceBernstein 182,410 160,114 338,448 Changes in assets and liabilities: (Increase) in due from AllianceBernstein (1,277 ) \u2014 \u2014 Decrease (increase) in other assets 10 1,387 (675 ) (Decrease) in payable to AllianceBernstein (1,484 ) (3,341 ) (2,635 ) (Decrease) increase in other liabilities (241 ) 237 148 Net cash provided by operating activities 151,359 133,073 301,376 Cash flows from investing activities: Investments in AllianceBernstein with proceeds from exercises of compensatory options to buy Holding Units (8,287 ) \u2014 (13,525 ) Net cash used in investing activities (8,287 ) \u2014 (13,525 ) Cash flows from financing activities: Cash distributions to unitholders (151,359 ) (133,073 ) (301,376 ) Proceeds from exercise of compensatory options to buy Holding Units 8,287 \u2014 13,525 Net cash used in financing activities (143,072 ) (133,073 ) (287,851 ) Change in cash and cash equivalents \u2014 \u2014 \u2014 Cash and cash equivalents as of beginning of the year \u2014 \u2014 \u2014 Cash and cash equivalents as of end of the year $ \u2014 $ \u2014 $ \u2014 Cash paid: Income taxes $ 28,305 $ 24,749 $ 34,410 Non-cash investing activities: Changes in accumulated other comprehensive income (loss) (3,912 ) 16,479 (42,013 ) Issuance of Holding Units to fund deferred compensation plan awards 78,545 272,167 70,867",
+      "opening_row": "Cash and cash equivalents as of beginning of the year \u2014 \u2014 \u2014",
+      "closing_row": "Cash and cash equivalents as of end of the year $ \u2014 $ \u2014 $ \u2014",
+      "observations": [
+        {
+          "selected": {
+            "end": "2007-12-31",
+            "val": 0,
+            "accn": "0001140361-11-007854",
+            "fy": 2010,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2011-02-10",
+            "frame": "CY2007Q4I",
+            "unit": "USD",
+            "tag": "CashAndCashEquivalentsAtCarryingValue"
+          },
+          "numeric_matches": [
+            {
+              "context_id": "c00009",
+              "unit_id": "u000",
+              "value": "0"
+            }
+          ],
+          "matching_contexts_xml": [
+            "<ns0:context xmlns:ns0=\"http://www.xbrl.org/2003/instance\" id=\"c00009\">\n    <ns0:entity>\n      <ns0:identifier scheme=\"http://www.sec.gov/CIK\">0000825313</ns0:identifier>\n    </ns0:entity>\n    <ns0:period>\n      <ns0:instant>2007-12-31</ns0:instant>\n    </ns0:period>\n  </ns0:context>\n  "
+          ],
+          "statement_position": "earliest_annual_column_opening_balance",
+          "opening_period_start": "2008-01-01",
+          "interpretation": "The explicit year-end XML instant corresponds to the opening cash row for the following period. This does not establish a separately published annual report for that instant year."
+        }
+      ],
+      "scope_note": "Holding partnership cash must not be replaced with operating-partnership cash.",
+      "disposition": "SUPPORTED_OPENING_BALANCE_WITH_REPORTING_CONTEXT"
+    },
+    {
+      "cik": "0000825313",
+      "accession": "0001140361-12-006703",
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/825313/000114036112006703/form10k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T12:58:22.701280+00:00",
+        "bytes": 5494921,
+        "sha256": "f1fc39be66de2d76e9fb518092a6c776593d2fff3172b08301ac2e557b4c20b3",
+        "body_path": "artifacts/seo/corpus-local/cash-history-filings-20260920/0000825313-0001140361-12-006703-primary.response"
+      },
+      "instance_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/825313/000114036112006703/ab-20111231.xml",
+        "status": 200,
+        "bytes": 516585,
+        "sha256": "564510a92998c5471af322725f0e3c50dd6ed682e38213e0967b376e3ca81d4a",
+        "captured_at": "2026-09-20T13:01:53.834589+00:00",
+        "body_path": "artifacts/seo/corpus-local/cash-history-filings-20260920/0000825313-0001140361-12-006703-instance.response"
+      },
+      "zero_based_table_index": 126,
+      "statement_entity": "AllianceBernstein Holding L.P.",
+      "annual_columns": [
+        2011,
+        2010,
+        2009
+      ],
+      "preceding_text": "See Accompanying Notes to Financial Statements. 65 Table of Contents AllianceBernstein Holding L.P. Statements of Cash Flows",
+      "statement_text": "Years\u00a0Ended\u00a0December\u00a031, 2011 2010 2009 (in\u00a0thousands) Cash flows from operating activities: Net (loss) income $ (93,268 ) $ 134,158 $ 167,189 Adjustments to reconcile net (loss) income to net cash provided by operating activities: Equity in net loss (income) attributable to AllianceBernstein Unitholders 65,581 (162,217 ) (192,513 ) Cash distributions received from AllianceBernstein 178,757 182,410 160,114 Changes in assets and liabilities: (Increase) in due from AllianceBernstein (4,202 ) (1,277 ) \u2014 (Increase) decrease in other assets (1,072 ) 10 1,387 (Decrease) in payable to AllianceBernstein \u2014 (1,484 ) (3,341 ) (Decrease) increase in other liabilities (100 ) (241 ) 237 Net cash provided by operating activities 145,696 151,359 133,073 Cash flows from investing activities: Investments in AllianceBernstein with proceeds from exercises of compensatory options to buy Holding Units (1,478 ) (8,287 ) \u2014 Net cash used in investing activities (1,478 ) (8,287 ) \u2014 Cash flows from financing activities: Cash distributions to unitholders (145,696 ) (151,359 ) (133,073 ) Proceeds from exercise of compensatory options to buy Holding Units 1,478 8,287 \u2014 Net cash used in financing activities (144,218 ) (143,072 ) (133,073 ) Change in cash and cash equivalents \u2014 \u2014 \u2014 Cash and cash equivalents as of beginning of the year \u2014 \u2014 \u2014 Cash and cash equivalents as of end of the year $ \u2014 $ \u2014 $ \u2014 Cash paid: Income taxes $ 28,854 $ 28,305 $ 24,749 Non-cash investing activities: Changes in accumulated other comprehensive income (loss) (2,549 ) (3,912 ) 16,479 Issuance of Holding Units to fund deferred compensation plan awards \u2014 78,545 272,167",
+      "opening_row": "Cash and cash equivalents as of beginning of the year \u2014 \u2014 \u2014",
+      "closing_row": "Cash and cash equivalents as of end of the year $ \u2014 $ \u2014 $ \u2014",
+      "observations": [
+        {
+          "selected": {
+            "end": "2008-12-31",
+            "val": 0,
+            "accn": "0001140361-12-006703",
+            "fy": 2011,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2012-02-10",
+            "frame": "CY2008Q4I",
+            "unit": "USD",
+            "tag": "CashAndCashEquivalentsAtCarryingValue"
+          },
+          "numeric_matches": [
+            {
+              "context_id": "c20081231",
+              "unit_id": "U001",
+              "value": "0"
+            }
+          ],
+          "matching_contexts_xml": [
+            "<ns0:context xmlns:ns0=\"http://www.xbrl.org/2003/instance\" id=\"c20081231\">\n    <ns0:entity>\n      <ns0:identifier scheme=\"http://www.sec.gov/CIK\">0000825313</ns0:identifier>\n    </ns0:entity>\n    <ns0:period>\n      <ns0:instant>2008-12-31</ns0:instant>\n    </ns0:period>\n  </ns0:context>\n  "
+          ],
+          "statement_position": "earliest_annual_column_opening_balance",
+          "opening_period_start": "2009-01-01",
+          "interpretation": "The explicit year-end XML instant corresponds to the opening cash row for the following period. This does not establish a separately published annual report for that instant year."
+        }
+      ],
+      "scope_note": "Holding partnership cash must not be replaced with operating-partnership cash.",
+      "disposition": "SUPPORTED_OPENING_BALANCE_WITH_REPORTING_CONTEXT"
+    },
+    {
+      "cik": "0000825313",
+      "accession": "0001140361-13-005892",
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/825313/000114036113005892/form10k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T12:58:27.803646+00:00",
+        "bytes": 7783282,
+        "sha256": "8e4401ebdc972abb3c5a62dd1454afc533370ff1132e3234b8e7ce51939ee8fb",
+        "body_path": "artifacts/seo/corpus-local/cash-history-filings-20260920/0000825313-0001140361-13-005892-primary.response"
+      },
+      "instance_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/825313/000114036113005892/ab-20121231.xml",
+        "status": 200,
+        "bytes": 673452,
+        "sha256": "f0da587a924510fb273e8d46740b14c3ed5da50821377357e45840e78c2ad3a5",
+        "captured_at": "2026-09-20T13:01:55.796923+00:00",
+        "body_path": "artifacts/seo/corpus-local/cash-history-filings-20260920/0000825313-0001140361-13-005892-instance.response"
+      },
+      "zero_based_table_index": 128,
+      "statement_entity": "AllianceBernstein Holding L.P.",
+      "annual_columns": [
+        2012,
+        2011,
+        2010
+      ],
+      "preceding_text": "66 Table of Contents AllianceBernstein Holding L.P. Statements of Cash Flows",
+      "statement_text": "Years Ended December 31, 2012 2011 2010 (in thousands) Cash flows from operating activities: Net income (loss) $ 51,085 $ (93,268 ) $ 134,158 Adjustments to reconcile net income (loss) to net cash provided by operating activities: Equity in net (income) loss attributable to AllianceBernstein Unitholders (70,807 ) 65,581 (162,217 ) Cash distributions received from AllianceBernstein 120,950 178,757 182,410 Changes in assets and liabilities: (Increase) decrease in other assets (4,885 ) (1,072 ) 10 Increase (decrease) in due to AllianceBernstein 3,600 1,525 (556 ) (Decrease) in other liabilities \u2014 (100 ) (241 ) Net cash provided by operating activities 99,943 151,423 153,564 Cash flows from investing activities: Investments in AllianceBernstein from cash distributions paid to AllianceBernstein consolidated rabbi trust (11,595 ) (5,727 ) (2,205 ) Investments in AllianceBernstein with proceeds from exercises of compensatory options to buy Holding Units \u2014 (1,478 ) (8,287 ) Net cash used in investing activities (11,595 ) (7,205 ) (10,492 ) Cash flows from financing activities: Cash distributions to unitholders (88,348 ) (145,696 ) (151,359 ) Proceeds from exercise of compensatory options to buy Holding Units \u2014 1,478 8,287 Net cash used in financing activities (88,348 ) (144,218 ) (143,072 ) Change in cash and cash equivalents \u2014 \u2014 \u2014 Cash and cash equivalents as of beginning of the year \u2014 \u2014 \u2014 Cash and cash equivalents as of end of the year $ \u2014 $ \u2014 $ \u2014 Cash paid: Income taxes $ 24,606 $ 28,854 $ 28,305 Non-cash investing activities: Issuance of Holding Units to fund long-term incentive compensation plan awards \u2014 \u2014 78,545",
+      "opening_row": "Cash and cash equivalents as of beginning of the year \u2014 \u2014 \u2014",
+      "closing_row": "Cash and cash equivalents as of end of the year $ \u2014 $ \u2014 $ \u2014",
+      "observations": [
+        {
+          "selected": {
+            "end": "2009-12-31",
+            "val": 0,
+            "accn": "0001140361-13-005892",
+            "fy": 2012,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2013-02-12",
+            "frame": "CY2009Q4I",
+            "unit": "USD",
+            "tag": "CashAndCashEquivalentsAtCarryingValue"
+          },
+          "numeric_matches": [
+            {
+              "context_id": "c20091231",
+              "unit_id": "U001",
+              "value": "0"
+            }
+          ],
+          "matching_contexts_xml": [
+            "<ns0:context xmlns:ns0=\"http://www.xbrl.org/2003/instance\" id=\"c20091231\">\n    <ns0:entity>\n      <ns0:identifier scheme=\"http://www.sec.gov/CIK\">0000825313</ns0:identifier>\n    </ns0:entity>\n    <ns0:period>\n      <ns0:instant>2009-12-31</ns0:instant>\n    </ns0:period>\n  </ns0:context>\n  "
+          ],
+          "statement_position": "earliest_annual_column_opening_balance",
+          "opening_period_start": "2010-01-01",
+          "interpretation": "The explicit year-end XML instant corresponds to the opening cash row for the following period. This does not establish a separately published annual report for that instant year."
+        }
+      ],
+      "scope_note": "Holding partnership cash must not be replaced with operating-partnership cash.",
+      "disposition": "SUPPORTED_OPENING_BALANCE_WITH_REPORTING_CONTEXT"
+    },
+    {
+      "cik": "0000825313",
+      "accession": "0001140361-14-006056",
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/825313/000114036114006056/form10k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T12:58:33.294923+00:00",
+        "bytes": 5051343,
+        "sha256": "53cb72312ef3d5553b3097b1721885d61e83b84a64615ed57353870aa2414294",
+        "body_path": "artifacts/seo/corpus-local/cash-history-filings-20260920/0000825313-0001140361-14-006056-primary.response"
+      },
+      "instance_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/825313/000114036114006056/ab-20131231.xml",
+        "status": 200,
+        "bytes": 587026,
+        "sha256": "d2089858dd8d31e8c8eb977e612b85db91d31d7adc26cf7c5fa56e402c0e0723",
+        "captured_at": "2026-09-20T13:01:58.039379+00:00",
+        "body_path": "artifacts/seo/corpus-local/cash-history-filings-20260920/0000825313-0001140361-14-006056-instance.response"
+      },
+      "zero_based_table_index": 113,
+      "statement_entity": "AllianceBernstein Holding L.P.",
+      "annual_columns": [
+        2013,
+        2012,
+        2011
+      ],
+      "preceding_text": "1,626,173 See Accompanying Notes to Financial Statements. 57 Table of Contents Anchor AllianceBernstein Holding L.P. Statements of Cash Flows",
+      "statement_text": "Years Ended December 31, 2013 2012 2011 (in thousands) Cash flows from operating activities: Net income (loss) $ 165,502 $ 51,085 $ (93,268 ) Adjustments to reconcile net income (loss) to net cash provided by operating activities: Equity in net (income) loss attributable to AllianceBernstein Unitholders (185,912 ) (70,807 ) 65,581 Cash distributions received from AllianceBernstein 166,324 120,950 178,757 Changes in assets and liabilities: Decrease (increase) in other assets 5,957 (4,885 ) (1,072 ) Increase in due to AllianceBernstein 3,173 3,600 1,525 Increase (decrease) in other liabilities 418 \u2014 (100 ) Net cash provided by operating activities 155,462 99,943 151,423 Cash flows from investing activities: Investments in AllianceBernstein from cash distributions paid to AllianceBernstein consolidated rabbi trust (14,076 ) (11,595 ) (5,727 ) Investments in AllianceBernstein with proceeds from exercises of compensatory options to buy Holding Units (15,138 ) \u2014 (1,478 ) Net cash used in investing activities (29,214 ) (11,595 ) (7,205 ) Cash flows from financing activities: Cash distributions to unitholders (142,952 ) (88,348 ) (145,696 ) Capital contributions from AllianceBernstein 1,566 \u2014 \u2014 Proceeds from exercise of compensatory options to buy Holding Units 15,138 \u2014 1,478 Net cash used in financing activities (126,248 ) (88,348 ) (144,218 ) Change in cash and cash equivalents \u2014 \u2014 \u2014 Cash and cash equivalents as of beginning of the year \u2014 \u2014 \u2014 Cash and cash equivalents as of end of the year $ \u2014 $ \u2014 $ \u2014 Cash paid: Income taxes $ 19,981 $ 24,606 $ 28,854 Non-cash investing activities: Issuance of Holding Units to fund long-term incentive compensation plan awards 84,531 \u2014 \u2014 Retirement of Holding Units (287,303 ) \u2014 \u2014",
+      "opening_row": "Cash and cash equivalents as of beginning of the year \u2014 \u2014 \u2014",
+      "closing_row": "Cash and cash equivalents as of end of the year $ \u2014 $ \u2014 $ \u2014",
+      "observations": [
+        {
+          "selected": {
+            "end": "2010-12-31",
+            "val": 0,
+            "accn": "0001140361-14-006056",
+            "fy": 2013,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2014-02-12",
+            "frame": "CY2010Q4I",
+            "unit": "USD",
+            "tag": "CashAndCashEquivalentsAtCarryingValue"
+          },
+          "numeric_matches": [
+            {
+              "context_id": "c20101231",
+              "unit_id": "U001",
+              "value": "0"
+            }
+          ],
+          "matching_contexts_xml": [
+            "<ns0:context xmlns:ns0=\"http://www.xbrl.org/2003/instance\" id=\"c20101231\">\n    <ns0:entity>\n      <ns0:identifier scheme=\"http://www.sec.gov/CIK\">0000825313</ns0:identifier>\n    </ns0:entity>\n    <ns0:period>\n      <ns0:instant>2010-12-31</ns0:instant>\n    </ns0:period>\n  </ns0:context>\n  "
+          ],
+          "statement_position": "earliest_annual_column_opening_balance",
+          "opening_period_start": "2011-01-01",
+          "interpretation": "The explicit year-end XML instant corresponds to the opening cash row for the following period. This does not establish a separately published annual report for that instant year."
+        }
+      ],
+      "scope_note": "Holding partnership cash must not be replaced with operating-partnership cash.",
+      "disposition": "SUPPORTED_OPENING_BALANCE_WITH_REPORTING_CONTEXT"
+    },
+    {
+      "cik": "0000825313",
+      "accession": "0001140361-15-005663",
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/825313/000114036115005663/form10k.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T12:58:38.172468+00:00",
+        "bytes": 4954747,
+        "sha256": "b2ecc6e555611f37e2afec32f168c19603500120975061725532df42eed06ac8",
+        "body_path": "artifacts/seo/corpus-local/cash-history-filings-20260920/0000825313-0001140361-15-005663-primary.response"
+      },
+      "instance_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/825313/000114036115005663/ab-20141231.xml",
+        "status": 200,
+        "bytes": 558161,
+        "sha256": "011256cc8b482c11d3ae4a5d348ea64f2b169eacab858bbb7b3ba3b759c10e8b",
+        "captured_at": "2026-09-20T13:02:03.239514+00:00",
+        "body_path": "artifacts/seo/corpus-local/cash-history-filings-20260920/0000825313-0001140361-15-005663-instance.response"
+      },
+      "zero_based_table_index": 115,
+      "statement_entity": "AllianceBernstein Holding L.P.",
+      "annual_columns": [
+        2014,
+        2013,
+        2012
+      ],
+      "preceding_text": "1,560,082 See Accompanying Notes to Financial Statements. 56 Table of Contents AllianceBernstein Holding L.P. Statements of Cash Flows",
+      "statement_text": "Years Ended December 31, 2014 2013 2012 (in thousands) Cash flows from operating activities: Net income $ 180,814 $ 165,502 $ 51,085 Adjustments to reconcile net income to net cash provided by operating activities: Equity in net income attributable to AB Unitholders (203,277 ) (185,912 ) (70,807 ) Cash distributions received from AB 203,919 166,324 120,950 Changes in assets and liabilities: (Increase) decrease in other assets (152 ) 5,957 (4,885 ) Increase in due to AB \u2014 3,173 3,600 (Decrease) increase in other liabilities (394 ) 418 \u2014 Net cash provided by operating activities 180,910 155,462 99,943 Cash flows from investing activities: Investments in AB from cash distributions paid to AB consolidated rabbi trust \u2014 (14,076 ) (11,595 ) Investments in AB with proceeds from exercises of compensatory options to buy AB Holding Units (18,955 ) (15,138 ) \u2014 Net cash used in investing activities (18,955 ) (29,214 ) (11,595 ) Cash flows from financing activities: Cash distributions to Unitholders (182,724 ) (142,952 ) (88,348 ) Capital contributions from AB 1,814 1,566 \u2014 Proceeds from exercise of compensatory options to buy AB Holding Units 18,955 15,138 \u2014 Net cash used in financing activities (161,955 ) (126,248 ) (88,348 ) Change in cash and cash equivalents \u2014 \u2014 \u2014 Cash and cash equivalents as of beginning of the year \u2014 \u2014 \u2014 Cash and cash equivalents as of end of the year $ \u2014 $ \u2014 $ \u2014 Cash paid: Income taxes $ 23,009 $ 19,981 $ 24,606 Non-cash investing activities: Issuance of AB Holding Units to fund long-term incentive compensation plan awards 108,034 84,531 \u2014 Retirement of AB Holding Units (14,577 ) (287,303 ) \u2014",
+      "opening_row": "Cash and cash equivalents as of beginning of the year \u2014 \u2014 \u2014",
+      "closing_row": "Cash and cash equivalents as of end of the year $ \u2014 $ \u2014 $ \u2014",
+      "observations": [
+        {
+          "selected": {
+            "end": "2011-12-31",
+            "val": 0,
+            "accn": "0001140361-15-005663",
+            "fy": 2014,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2015-02-12",
+            "frame": "CY2011Q4I",
+            "unit": "USD",
+            "tag": "CashAndCashEquivalentsAtCarryingValue"
+          },
+          "numeric_matches": [
+            {
+              "context_id": "c20111231",
+              "unit_id": "U001",
+              "value": "0"
+            }
+          ],
+          "matching_contexts_xml": [
+            "<ns0:context xmlns:ns0=\"http://www.xbrl.org/2003/instance\" id=\"c20111231\">\n    <ns0:entity>\n      <ns0:identifier scheme=\"http://www.sec.gov/CIK\">0000825313</ns0:identifier>\n    </ns0:entity>\n    <ns0:period>\n      <ns0:instant>2011-12-31</ns0:instant>\n    </ns0:period>\n  </ns0:context>\n  "
+          ],
+          "statement_position": "earliest_annual_column_opening_balance",
+          "opening_period_start": "2012-01-01",
+          "interpretation": "The explicit year-end XML instant corresponds to the opening cash row for the following period. This does not establish a separately published annual report for that instant year."
+        }
+      ],
+      "scope_note": "Holding partnership cash must not be replaced with operating-partnership cash.",
+      "disposition": "SUPPORTED_OPENING_BALANCE_WITH_REPORTING_CONTEXT"
+    },
+    {
+      "cik": "0001062506",
+      "accession": "0001010412-12-000126",
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1062506/000101041212000126/k11.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T12:58:43.122551+00:00",
+        "bytes": 385654,
+        "sha256": "d25c1c646efcb9c4bf69e845ccb5ea338ce274add717bae97474e241a5a6f95d",
+        "body_path": "artifacts/seo/corpus-local/cash-history-filings-20260920/0001062506-0001010412-12-000126-primary.response"
+      },
+      "instance_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1062506/000101041212000126/attc-20111231.xml",
+        "status": 200,
+        "bytes": 170347,
+        "sha256": "4036967c5ffa6a38a4e0d110825a8d8c396019fc1bb49d71736ca3c2b0e78e3f",
+        "captured_at": "2026-09-20T13:02:05.220756+00:00",
+        "body_path": "artifacts/seo/corpus-local/cash-history-filings-20260920/0001062506-0001010412-12-000126-instance.response"
+      },
+      "zero_based_table_index": 9,
+      "statement_entity": "ATLANTICA, INC.",
+      "annual_columns": [
+        2011,
+        2010
+      ],
+      "preceding_text": "$ (918,004) The accompanying notes are an integral part of these financial statements. 17 ATLANTICA, INC. (A Development Stage Company) Statements of Cash Flows",
+      "statement_text": "For the year ended December 31, 2011 For the year ended December 31, 2010 From Inception of Development Stage on January 1, 1997 through December 31, 2011 CASH FLOWS FROM OPERATING ACTIVITIES Net Income (Loss) $ (163,030) $ (163,093) $ 338,696 Adjustments to reconcile net income (loss) to net cash used by operating activities Common stock issued for services 0 0 2,405 Extinguishment of debt 0 0 (1,352,887) Changes in operating assets and liabilities: Increase in accounts payable 141,529 131,275 755,275 Increase in accrued interest 8,776 6,134 138,488 Net Cash Used For Operating Activities (12,725) (25,684) (118,023) CASH FLOWS FROM INVESTING ACTIVITIES 0 0 CASH FLOWS FROM FINANCING ACTIVITIES Proceeds from Note payable - related party 12,725 25,684 61,197 Capital contributed by shareholder 0 0 56,826 Net Cash Provided by Financing Activities 12,725 25,684 118,023 NET INCREASE (DECREASE) IN CASH 0 0 0 CASH AT BEGINNING OF PERIOD 0 0 0 CASH AT END OF PERIOD $ 0 $ 0 $ 0 CASH PAID FOR: Interest $ 0 $ 0 $ 0 Taxes $ 0 $ 0 $ 0 SCHEDULE OF NON-CASH FINANCING AND INVESTING ACTIVITIES Contributions of related party payable to equity $ 0 $ 0 $ 66,471",
+      "opening_row": "CASH AT BEGINNING OF PERIOD 0 0 0",
+      "closing_row": "CASH AT END OF PERIOD $ 0 $ 0 $ 0",
+      "observations": [
+        {
+          "selected": {
+            "end": "2009-12-31",
+            "val": 0,
+            "accn": "0001010412-12-000126",
+            "fy": 2011,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2012-03-29",
+            "frame": "CY2009Q4I",
+            "unit": "USD",
+            "tag": "CashAndCashEquivalentsAtCarryingValue"
+          },
+          "numeric_matches": [
+            {
+              "context_id": "E09",
+              "unit_id": "USD",
+              "value": "0"
+            }
+          ],
+          "matching_contexts_xml": [
+            "<ns0:context xmlns:ns0=\"http://www.xbrl.org/2003/instance\" id=\"E09\">\n\t\t<ns0:entity>\n\t\t\t<ns0:identifier scheme=\"http://www.sec.gov/CIK\">0001062506</ns0:identifier>\n\t\t</ns0:entity>\n\t\t<ns0:period>\n\t\t\t<ns0:instant>2009-12-31</ns0:instant>\n\t\t</ns0:period>\n\t</ns0:context>\n\t"
+          ],
+          "statement_position": "earliest_annual_column_opening_balance",
+          "opening_period_start": "2010-01-01",
+          "interpretation": "The explicit year-end XML instant corresponds to the opening cash row for the following period. This does not establish a separately published annual report for that instant year."
+        }
+      ],
+      "scope_note": "Zero balances coexist with financing and operating cash flows; no inactivity claim follows.",
+      "disposition": "SUPPORTED_OPENING_BALANCE_WITH_REPORTING_CONTEXT"
+    },
+    {
+      "cik": "0001062506",
+      "accession": "0001548123-13-000117",
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1062506/000154812313000117/k12.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T12:58:47.056610+00:00",
+        "bytes": 390984,
+        "sha256": "19298fcfa0ec8a73b7244e0d139f1ec16f4a57190defd835348ef74262e0a8a4",
+        "body_path": "artifacts/seo/corpus-local/cash-history-filings-20260920/0001062506-0001548123-13-000117-primary.response"
+      },
+      "instance_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1062506/000154812313000117/attc-20121231.xml",
+        "status": 200,
+        "bytes": 212357,
+        "sha256": "53497e3bfab35ff3d16d2968194bdf86d0440ccd12deed2a6c1b9e4e5303aaef",
+        "captured_at": "2026-09-20T13:02:07.285251+00:00",
+        "body_path": "artifacts/seo/corpus-local/cash-history-filings-20260920/0001062506-0001548123-13-000117-instance.response"
+      },
+      "zero_based_table_index": 9,
+      "statement_entity": "ATLANTICA, INC.",
+      "annual_columns": [
+        2012,
+        2011
+      ],
+      "preceding_text": "Accumulated deficit $ (1,010,594) The accompanying notes are an integral part of these financial statements. 19 ATLANTICA, INC. (A Development Stage Company) Statements of Cash Flows",
+      "statement_text": "For the year ended December 31, 2012 For the year ended December 31, 2011 From Inception of Development Stage on January 1, 1997 through December 31, 2012 CASH FLOWS FROM OPERATING ACTIVITIES Net Income (Loss) $ (92,590) $ (163,030) $ 246,106 Adjustments to reconcile net income (loss) to net cash used by operating activities Common stock issued for services - - 2,405 Extinguishment of debt - - (1,352,887) Gain on forgiveness of debt (65,436) - (65,436) Changes in operating assets and liabilities: Increase (decrease) in accounts payable 9,446 141,529 764,721 Increase in accrued interest 11,637 8,776 150,125 Net Cash Used For Operating Activities (136,943) (12,725) (254,966) CASH FLOWS FROM INVESTING ACTIVITIES - - - CASH FLOWS FROM FINANCING ACTIVITIES Proceeds from note payable - related party 136,943 12,725 198,140 Capital contributed by shareholder - - 56,826 Net Cash Provided by Financing Activities 136,943 12,725 254,966 NET INCREASE (DECREASE) IN CASH - - - CASH AT BEGINNING OF PERIOD - - - CASH AT END OF PERIOD $ - $ - $ - CASH PAID FOR: Interest $ - $ - $ - Taxes $ - $ - $ - SCHEDULE OF NON-CASH FINANCING AND INVESTING ACTIVITIES Contributions of related party payable to equity $ - $ - $ 66,471",
+      "opening_row": "CASH AT BEGINNING OF PERIOD - - -",
+      "closing_row": "CASH AT END OF PERIOD $ - $ - $ -",
+      "observations": [
+        {
+          "selected": {
+            "end": "2010-12-31",
+            "val": 0,
+            "accn": "0001548123-13-000117",
+            "fy": 2012,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2013-04-01",
+            "frame": "CY2010Q4I",
+            "unit": "USD",
+            "tag": "CashAndCashEquivalentsAtCarryingValue"
+          },
+          "numeric_matches": [
+            {
+              "context_id": "E10",
+              "unit_id": "USD",
+              "value": "0"
+            }
+          ],
+          "matching_contexts_xml": [
+            "<ns0:context xmlns:ns0=\"http://www.xbrl.org/2003/instance\" id=\"E10\">\n\t\t<ns0:entity>\n\t\t\t<ns0:identifier scheme=\"http://www.sec.gov/CIK\">0001062506</ns0:identifier>\n\t\t</ns0:entity>\n\t\t<ns0:period>\n\t\t\t<ns0:instant>2010-12-31</ns0:instant>\n\t\t</ns0:period>\n\t</ns0:context>\n\t"
+          ],
+          "statement_position": "earliest_annual_column_opening_balance",
+          "opening_period_start": "2011-01-01",
+          "interpretation": "The explicit year-end XML instant corresponds to the opening cash row for the following period. This does not establish a separately published annual report for that instant year."
+        }
+      ],
+      "scope_note": "Zero balances coexist with financing and operating cash flows; no inactivity claim follows.",
+      "disposition": "SUPPORTED_OPENING_BALANCE_WITH_REPORTING_CONTEXT"
+    },
+    {
+      "cik": "0001062506",
+      "accession": "0001548123-14-000047",
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1062506/000154812314000047/k13clean.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T12:58:50.843040+00:00",
+        "bytes": 380942,
+        "sha256": "0495576a80ff1fd3697beb4e1990195797620620cc30ed22b3a3aa12088a40d2",
+        "body_path": "artifacts/seo/corpus-local/cash-history-filings-20260920/0001062506-0001548123-14-000047-primary.response"
+      },
+      "instance_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1062506/000154812314000047/attc-20131231.xml",
+        "status": 200,
+        "bytes": 218766,
+        "sha256": "9ff1154bfbaa1e1f820519b65dbe79441acf6756dd0f540578dfcb340c595795",
+        "captured_at": "2026-09-20T13:02:09.315159+00:00",
+        "body_path": "artifacts/seo/corpus-local/cash-history-filings-20260920/0001062506-0001548123-14-000047-instance.response"
+      },
+      "zero_based_table_index": 9,
+      "statement_entity": "ATLANTICA, INC.",
+      "annual_columns": [
+        2013,
+        2012
+      ],
+      "preceding_text": "Accumulated deficit $ (1,221,262) The accompanying notes are an integral part of these financial statements. 19 ATLANTICA, INC. (A Development Stage Company) Statements of Cash Flows",
+      "statement_text": "For the year ended December 31, 2013 For the year ended December 31, 2012 From Inception of Development Stage on January 1, 1997 through December 31, 2013 CASH FLOWS FROM OPERATING ACTIVITIES Net Income (Loss) $ (210,668) $ (92,590) $ 35,438 Adjustments to reconcile net income (loss) to net cash used by operating activities: Common stock issued for services - - 2,405 Extinguishment of debt - - (1,352,887) Gain on forgiveness of debt - (65,436) (65,436) Changes in operating assets and liabilities: (Increase) decrease in prepaid expenses (5,000) - (5,000) Increase in accounts payable 96,558 9,446 861,279 Increase in accrued interest 32,066 11,637 182,191 Net Cash Used For Operating Activities (87,044) (136,943) (342,010) CASH FLOWS FROM INVESTING ACTIVITIES - - - CASH FLOWS FROM FINANCING ACTIVITIES Proceeds from note payable - related party 87,044 136,943 285,184 Capital contributed by shareholder - - 56,826 Net Cash Provided by Financing Activities 87,044 136,943 342,010 NET INCREASE (DECREASE) IN CASH - - - CASH AT BEGINNING OF PERIOD - - - CASH AT END OF PERIOD $ - $ - $ - CASH PAID FOR: Interest $ - $ - $ - Taxes $ - $ - $ - SCHEDULE OF NON-CASH FINANCING AND INVESTING ACTIVITIES Contributions of related party payable to equity $ - $ - $ 66,471",
+      "opening_row": "CASH AT BEGINNING OF PERIOD - - -",
+      "closing_row": "CASH AT END OF PERIOD $ - $ - $ -",
+      "observations": [
+        {
+          "selected": {
+            "end": "2011-12-31",
+            "val": 0,
+            "accn": "0001548123-14-000047",
+            "fy": 2013,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2014-03-12",
+            "frame": "CY2011Q4I",
+            "unit": "USD",
+            "tag": "CashAndCashEquivalentsAtCarryingValue"
+          },
+          "numeric_matches": [
+            {
+              "context_id": "E11",
+              "unit_id": "USD",
+              "value": "0"
+            }
+          ],
+          "matching_contexts_xml": [
+            "<ns0:context xmlns:ns0=\"http://www.xbrl.org/2003/instance\" id=\"E11\">\n\t\t<ns0:entity>\n\t\t\t<ns0:identifier scheme=\"http://www.sec.gov/CIK\">0001062506</ns0:identifier>\n\t\t</ns0:entity>\n\t\t<ns0:period>\n\t\t\t<ns0:instant>2011-12-31</ns0:instant>\n\t\t</ns0:period>\n\t</ns0:context>\n\t"
+          ],
+          "statement_position": "earliest_annual_column_opening_balance",
+          "opening_period_start": "2012-01-01",
+          "interpretation": "The explicit year-end XML instant corresponds to the opening cash row for the following period. This does not establish a separately published annual report for that instant year."
+        },
+        {
+          "selected": {
+            "end": "1996-12-31",
+            "val": 0,
+            "accn": "0001548123-14-000047",
+            "fy": 2013,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2014-03-12",
+            "unit": "USD",
+            "tag": "CashAndCashEquivalentsAtCarryingValue"
+          },
+          "numeric_matches": [
+            {
+              "context_id": "E96",
+              "unit_id": "USD",
+              "value": "0"
+            }
+          ],
+          "matching_contexts_xml": [
+            "<ns0:context xmlns:ns0=\"http://www.xbrl.org/2003/instance\" id=\"E96\">\n\t\t<ns0:entity>\n\t\t\t<ns0:identifier scheme=\"http://www.sec.gov/CIK\">0001062506</ns0:identifier>\n\t\t</ns0:entity>\n\t\t<ns0:period>\n\t\t\t<ns0:instant>1996-12-31</ns0:instant>\n\t\t</ns0:period>\n\t</ns0:context>\n\t"
+          ],
+          "statement_position": "inception_column_opening_balance",
+          "opening_period_start": "1997-01-01",
+          "interpretation": "The explicit year-end XML instant corresponds to the opening cash row for the following period. This does not establish a separately published annual report for that instant year."
+        }
+      ],
+      "scope_note": "Zero balances coexist with financing and operating cash flows; no inactivity claim follows.",
+      "disposition": "SUPPORTED_OPENING_BALANCE_WITH_REPORTING_CONTEXT"
+    },
+    {
+      "cik": "0001062506",
+      "accession": "0001548123-15-000042",
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1062506/000154812315000042/k14.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T12:58:54.908222+00:00",
+        "bytes": 296446,
+        "sha256": "527a2bc33f88b484bdff2d11a40c8b52a9eb4385735338eb608714e4361cdbd6",
+        "body_path": "artifacts/seo/corpus-local/cash-history-filings-20260920/0001062506-0001548123-15-000042-primary.response"
+      },
+      "instance_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1062506/000154812315000042/alda-20141231.xml",
+        "status": 200,
+        "bytes": 154347,
+        "sha256": "164e0c986b1d1312aa67c1bfec35118263f3c97fd9d8bbb4e19e3a37587dd920",
+        "captured_at": "2026-09-20T13:02:11.172377+00:00",
+        "body_path": "artifacts/seo/corpus-local/cash-history-filings-20260920/0001062506-0001548123-15-000042-instance.response"
+      },
+      "zero_based_table_index": 9,
+      "statement_entity": "ATLANTICA, INC.",
+      "annual_columns": [
+        2014,
+        2013
+      ],
+      "preceding_text": "$ 125,456 $ (1,436,020) The accompanying notes are an integral part of these financial statements. 19 ATLANTICA, INC. Statements of Cash Flows",
+      "statement_text": "For the year ended December 31, 2014 For the year ended December 31, 2013 CASH FLOWS FROM OPERATING ACTIVITIES Net Loss $ (214,758) $ (210,668) Adjustments to reconcile net (loss) to net cash used by operating activities: Common stock issued for services - - Changes in operating assets and liabilities: (Increase) decrease in prepaid expenses 5,000 (5,000) Increase in accounts payable 143,147 96,558 Increase in accrued interest 38,318 32,066 Net Cash Used By Operating Activities (28,293) (87,044) CASH FLOWS FROM INVESTING ACTIVITIES - - CASH FLOWS FROM FINANCING ACTIVITIES Proceeds from note payable - related party 28,293 87,044 Net Cash Provided by Financing Activities 28,293 87,044 NET INCREASE (DECREASE) IN CASH - - CASH AT BEGINNING OF YEAR - - CASH AT END OF YEAR $ - $ - CASH PAID FOR: Interest $ - $ - Taxes $ - $ -",
+      "opening_row": "CASH AT BEGINNING OF YEAR - -",
+      "closing_row": "CASH AT END OF YEAR $ - $ -",
+      "observations": [
+        {
+          "selected": {
+            "end": "2012-12-31",
+            "val": 0,
+            "accn": "0001548123-15-000042",
+            "fy": 2014,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2015-02-23",
+            "frame": "CY2012Q4I",
+            "unit": "USD",
+            "tag": "CashAndCashEquivalentsAtCarryingValue"
+          },
+          "numeric_matches": [
+            {
+              "context_id": "E12",
+              "unit_id": "USD",
+              "value": "0"
+            }
+          ],
+          "matching_contexts_xml": [
+            "<ns0:context xmlns:ns0=\"http://www.xbrl.org/2003/instance\" id=\"E12\">\n\t\t<ns0:entity>\n\t\t\t<ns0:identifier scheme=\"http://www.sec.gov/CIK\">0001062506</ns0:identifier>\n\t\t</ns0:entity>\n\t\t<ns0:period>\n\t\t\t<ns0:instant>2012-12-31</ns0:instant>\n\t\t</ns0:period>\n\t</ns0:context>\n\t"
+          ],
+          "statement_position": "earliest_annual_column_opening_balance",
+          "opening_period_start": "2013-01-01",
+          "interpretation": "The explicit year-end XML instant corresponds to the opening cash row for the following period. This does not establish a separately published annual report for that instant year."
+        }
+      ],
+      "scope_note": "Zero balances coexist with financing and operating cash flows; no inactivity claim follows.",
+      "disposition": "SUPPORTED_OPENING_BALANCE_WITH_REPORTING_CONTEXT"
+    },
+    {
+      "cik": "0001062506",
+      "accession": "0001548123-16-000510",
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1062506/000154812316000510/k15.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T12:58:58.868922+00:00",
+        "bytes": 350540,
+        "sha256": "26b498bd6e9a537315f7703b72ce92f786d9c2e47976f140735e04b38c018e87",
+        "body_path": "artifacts/seo/corpus-local/cash-history-filings-20260920/0001062506-0001548123-16-000510-primary.response"
+      },
+      "instance_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1062506/000154812316000510/alda-20151231.xml",
+        "status": 200,
+        "bytes": 136297,
+        "sha256": "47b041dc10ea8154843376289e672b82f4b08f6045c0dd9fff94cc55fc50793d",
+        "captured_at": "2026-09-20T13:02:13.287954+00:00",
+        "body_path": "artifacts/seo/corpus-local/cash-history-filings-20260920/0001062506-0001548123-16-000510-instance.response"
+      },
+      "zero_based_table_index": 9,
+      "statement_entity": "ATLANTICA, INC.",
+      "annual_columns": [
+        2015,
+        2014
+      ],
+      "preceding_text": "$ 125,456 $ (1,629,406) The accompanying notes are an integral part of these financial statements. 20 ATLANTICA, INC. Statements of Cash Flows",
+      "statement_text": "For the year ended December 31, 2015 For the year ended December 31, 2014 CASH FLOWS FROM OPERATING ACTIVITIES Net Loss $ (193,386) $ (214,758) Adjustments to reconcile net (loss) to net cash used by operating activities: Gain on release from debt (29,389) - Changes in operating assets and liabilities: (Increase) decrease in prepaid expenses - 5,000 Increase in accounts payable and accounts payable related party 123,462 143,147 Increase in accrued interest 47,152 38,318 Net Cash Used By Operating Activities (52,161) (28,293) CASH FLOWS FROM INVESTING ACTIVITIES - - CASH FLOWS FROM FINANCING ACTIVITIES Proceeds from note payable - related party 52,161 28,293 Net Cash Provided by Financing Activities 52,161 28,293 NET INCREASE (DECREASE) IN CASH - - CASH AT BEGINNING OF YEAR - - CASH AT END OF YEAR $ - $ - CASH PAID FOR: Interest $ - $ - Taxes $ - $ -",
+      "opening_row": "CASH AT BEGINNING OF YEAR - -",
+      "closing_row": "CASH AT END OF YEAR $ - $ -",
+      "observations": [
+        {
+          "selected": {
+            "end": "2013-12-31",
+            "val": 0,
+            "accn": "0001548123-16-000510",
+            "fy": 2015,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2016-03-30",
+            "frame": "CY2013Q4I",
+            "unit": "USD",
+            "tag": "CashAndCashEquivalentsAtCarryingValue"
+          },
+          "numeric_matches": [
+            {
+              "context_id": "E13",
+              "unit_id": "USD",
+              "value": "0"
+            }
+          ],
+          "matching_contexts_xml": [
+            "<ns0:context xmlns:ns0=\"http://www.xbrl.org/2003/instance\" id=\"E13\">\n\t\t<ns0:entity>\n\t\t\t<ns0:identifier scheme=\"http://www.sec.gov/CIK\">0001062506</ns0:identifier>\n\t\t</ns0:entity>\n\t\t<ns0:period>\n\t\t\t<ns0:instant>2013-12-31</ns0:instant>\n\t\t</ns0:period>\n\t</ns0:context>\n\t"
+          ],
+          "statement_position": "earliest_annual_column_opening_balance",
+          "opening_period_start": "2014-01-01",
+          "interpretation": "The explicit year-end XML instant corresponds to the opening cash row for the following period. This does not establish a separately published annual report for that instant year."
+        }
+      ],
+      "scope_note": "Zero balances coexist with financing and operating cash flows; no inactivity claim follows.",
+      "disposition": "SUPPORTED_OPENING_BALANCE_WITH_REPORTING_CONTEXT"
+    },
+    {
+      "cik": "0001062506",
+      "accession": "0001548123-17-000047",
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1062506/000154812317000047/k16clean32717.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T12:59:02.638189+00:00",
+        "bytes": 342302,
+        "sha256": "a32143c47561c7a978a41edf87f7452b4b1aeab2850ab72d6f73e9550c644f60",
+        "body_path": "artifacts/seo/corpus-local/cash-history-filings-20260920/0001062506-0001548123-17-000047-primary.response"
+      },
+      "instance_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1062506/000154812317000047/alda-20161231.xml",
+        "status": 200,
+        "bytes": 130491,
+        "sha256": "d5635168202623e8a92b013f7ffadb3b2ef324d6200667a7fa5c9ae9b8203180",
+        "captured_at": "2026-09-20T13:02:15.389150+00:00",
+        "body_path": "artifacts/seo/corpus-local/cash-history-filings-20260920/0001062506-0001548123-17-000047-instance.response"
+      },
+      "zero_based_table_index": 9,
+      "statement_entity": "ATLANTICA, INC.",
+      "annual_columns": [
+        2016,
+        2015
+      ],
+      "preceding_text": "$ (1,859,025) $ (1,733,323) The accompanying notes are an integral part of these financial statements. F-4 ATLANTICA, INC. Statements of Cash Flows",
+      "statement_text": "For the year ended December 31, 2016 For the year ended December 31, 2015 CASH FLOWS FROM OPERATING ACTIVITIES Net Loss $ (229,619) $ (193,386) Adjustments to reconcile net (loss) to net cash used by operating activities: Gain on release from debt (2,890) (29,389) Changes in operating assets and liabilities: (Increase) decrease in prepaid expenses - - Increase in accounts payable and accounts payable related party 127,714 123,462 Increase in accrued interest 56,662 47,152 Net Cash Used By Operating Activities (48,133) (52,161) CASH FLOWS FROM INVESTING ACTIVITIES - - CASH FLOWS FROM FINANCING ACTIVITIES Proceeds from note payable - related party 48,133 52,161 Net Cash Provided by Financing Activities 48,133 52,161 NET INCREASE (DECREASE) IN CASH - - CASH AT BEGINNING OF YEAR - - CASH AT END OF YEAR $ - $ - CASH PAID FOR: Interest $ - $ - Taxes $ - $ -",
+      "opening_row": "CASH AT BEGINNING OF YEAR - -",
+      "closing_row": "CASH AT END OF YEAR $ - $ -",
+      "observations": [
+        {
+          "selected": {
+            "end": "2014-12-31",
+            "val": 0,
+            "accn": "0001548123-17-000047",
+            "fy": 2016,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2017-03-30",
+            "frame": "CY2014Q4I",
+            "unit": "USD",
+            "tag": "CashAndCashEquivalentsAtCarryingValue"
+          },
+          "numeric_matches": [
+            {
+              "context_id": "E14",
+              "unit_id": "USD",
+              "value": "0"
+            }
+          ],
+          "matching_contexts_xml": [
+            "<ns0:context xmlns:ns0=\"http://www.xbrl.org/2003/instance\" id=\"E14\">\n\t\t<ns0:entity>\n\t\t\t<ns0:identifier scheme=\"http://www.sec.gov/CIK\">0001062506</ns0:identifier>\n\t\t</ns0:entity>\n\t\t<ns0:period>\n\t\t\t<ns0:instant>2014-12-31</ns0:instant>\n\t\t</ns0:period>\n\t</ns0:context>\n\t"
+          ],
+          "statement_position": "earliest_annual_column_opening_balance",
+          "opening_period_start": "2015-01-01",
+          "interpretation": "The explicit year-end XML instant corresponds to the opening cash row for the following period. This does not establish a separately published annual report for that instant year."
+        }
+      ],
+      "scope_note": "Zero balances coexist with financing and operating cash flows; no inactivity claim follows.",
+      "disposition": "SUPPORTED_OPENING_BALANCE_WITH_REPORTING_CONTEXT"
+    },
+    {
+      "cik": "0001062506",
+      "accession": "0001548123-18-000063",
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1062506/000154812318000063/k17clean32918.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T12:59:06.682503+00:00",
+        "bytes": 350268,
+        "sha256": "751be2e89625c56e6d3e20f67b1390f90579babc9084b1e6748ad29e1e46c515",
+        "body_path": "artifacts/seo/corpus-local/cash-history-filings-20260920/0001062506-0001548123-18-000063-primary.response"
+      },
+      "instance_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1062506/000154812318000063/alda-20171231.xml",
+        "status": 200,
+        "bytes": 129536,
+        "sha256": "4503ee8c2be12245a0c1bfdd94683193bd2c4c574433909bc412c75c7ce02cfe",
+        "captured_at": "2026-09-20T13:02:17.621460+00:00",
+        "body_path": "artifacts/seo/corpus-local/cash-history-filings-20260920/0001062506-0001548123-18-000063-instance.response"
+      },
+      "zero_based_table_index": 10,
+      "statement_entity": "ATLANTICA, INC.",
+      "annual_columns": [
+        2017,
+        2016
+      ],
+      "preceding_text": "$ (1,956,801) The accompanying notes are an integral part of these financial statements. F-4 ATLANTICA, INC. Statements of Cash Flows",
+      "statement_text": "For the year ended December 31, 2017 For the year ended December 31, 2016 CASH FLOWS FROM OPERATING ACTIVITIES Net Loss $ (223,478) $ (229,619) Adjustments to reconcile net (loss) to net cash used by operating activities: Gain on release from debt - (2,890) Changes in operating assets and liabilities: (Increase) decrease in prepaid expenses - - Increase in accounts payable and accounts payable related party 110,870 127,714 Increase in accrued interest 67,418 56,662 Net Cash Used By Operating Activities (45,190) (48,133) CASH FLOWS FROM INVESTING ACTIVITIES - - CASH FLOWS FROM FINANCING ACTIVITIES Proceeds from note payable - related party 45,190 48,133 Net Cash Provided by Financing Activities 45,190 48,133 NET INCREASE (DECREASE) IN CASH - - CASH AT BEGINNING OF YEAR - - CASH AT END OF YEAR $ - $ - CASH PAID FOR: Interest $ - $ - Taxes $ - $ -",
+      "opening_row": "CASH AT BEGINNING OF YEAR - -",
+      "closing_row": "CASH AT END OF YEAR $ - $ -",
+      "observations": [
+        {
+          "selected": {
+            "end": "2015-12-31",
+            "val": 0,
+            "accn": "0001548123-18-000063",
+            "fy": 2017,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2018-04-02",
+            "frame": "CY2015Q4I",
+            "unit": "USD",
+            "tag": "CashAndCashEquivalentsAtCarryingValue"
+          },
+          "numeric_matches": [
+            {
+              "context_id": "E15",
+              "unit_id": "USD",
+              "value": "0"
+            }
+          ],
+          "matching_contexts_xml": [
+            "<ns0:context xmlns:ns0=\"http://www.xbrl.org/2003/instance\" id=\"E15\">\n\t\t<ns0:entity>\n\t\t\t<ns0:identifier scheme=\"http://www.sec.gov/CIK\">0001062506</ns0:identifier>\n\t\t</ns0:entity>\n\t\t<ns0:period>\n\t\t\t<ns0:instant>2015-12-31</ns0:instant>\n\t\t</ns0:period>\n\t</ns0:context>\n\t"
+          ],
+          "statement_position": "earliest_annual_column_opening_balance",
+          "opening_period_start": "2016-01-01",
+          "interpretation": "The explicit year-end XML instant corresponds to the opening cash row for the following period. This does not establish a separately published annual report for that instant year."
+        }
+      ],
+      "scope_note": "Zero balances coexist with financing and operating cash flows; no inactivity claim follows.",
+      "disposition": "SUPPORTED_OPENING_BALANCE_WITH_REPORTING_CONTEXT"
+    },
+    {
+      "cik": "0001062506",
+      "accession": "0001548123-19-000054",
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1062506/000154812319000054/k18.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T12:59:10.619190+00:00",
+        "bytes": 337409,
+        "sha256": "8454eaef146955b9ded3b8ddeec102ed8855d32619bbe0163040228a81465d3c",
+        "body_path": "artifacts/seo/corpus-local/cash-history-filings-20260920/0001062506-0001548123-19-000054-primary.response"
+      },
+      "instance_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1062506/000154812319000054/alda-20181231.xml",
+        "status": 200,
+        "bytes": 128082,
+        "sha256": "8a5935b45cd5cfe69a8b53abbaec229f4e66f824f16fdc2c1c1b284319f1f1df",
+        "captured_at": "2026-09-20T13:02:19.511173+00:00",
+        "body_path": "artifacts/seo/corpus-local/cash-history-filings-20260920/0001062506-0001548123-19-000054-instance.response"
+      },
+      "zero_based_table_index": 8,
+      "statement_entity": "ATLANTICA, INC.",
+      "annual_columns": [
+        2018,
+        2017
+      ],
+      "preceding_text": "$ (2,496,863) $ (2,371,161) The accompanying notes are an integral part of these financial statements. 18 ATLANTICA, INC. Statements of Cash Flows",
+      "statement_text": "For the year ended December 31, 2018 For the year ended December 31, 2017 CASH FLOWS FROM OPERATING ACTIVITIES Net Loss $ (414,360) $ (223,478) Adjustments to reconcile net (loss) to net cash used by operating activities: Gain on release from debt - - Changes in operating assets and liabilities: (Increase) decrease in prepaid expenses - - Increase in accounts payable and accounts payable related party 303,006 110,870 Increase in accrued interest 77,856 67,418 Net Cash Used By Operating Activities (33,498) (45,190) CASH FLOWS FROM INVESTING ACTIVITIES - - CASH FLOWS FROM FINANCING ACTIVITIES Proceeds from note payable - related party 33,498 45,190 Net Cash Provided by Financing Activities 33,498 45,190 NET INCREASE (DECREASE) IN CASH - - CASH AT BEGINNING OF YEAR - - CASH AT END OF YEAR $ - $ - CASH PAID FOR: Interest $ - $ - Taxes $ - $ -",
+      "opening_row": "CASH AT BEGINNING OF YEAR - -",
+      "closing_row": "CASH AT END OF YEAR $ - $ -",
+      "observations": [
+        {
+          "selected": {
+            "end": "2016-12-31",
+            "val": 0,
+            "accn": "0001548123-19-000054",
+            "fy": 2018,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2019-04-01",
+            "frame": "CY2016Q4I",
+            "unit": "USD",
+            "tag": "CashAndCashEquivalentsAtCarryingValue"
+          },
+          "numeric_matches": [
+            {
+              "context_id": "E16",
+              "unit_id": "USD",
+              "value": "0"
+            }
+          ],
+          "matching_contexts_xml": [
+            "<ns0:context xmlns:ns0=\"http://www.xbrl.org/2003/instance\" id=\"E16\">\n\t\t<ns0:entity>\n\t\t\t<ns0:identifier scheme=\"http://www.sec.gov/CIK\">0001062506</ns0:identifier>\n\t\t</ns0:entity>\n\t\t<ns0:period>\n\t\t\t<ns0:instant>2016-12-31</ns0:instant>\n\t\t</ns0:period>\n\t</ns0:context>\n\t"
+          ],
+          "statement_position": "earliest_annual_column_opening_balance",
+          "opening_period_start": "2017-01-01",
+          "interpretation": "The explicit year-end XML instant corresponds to the opening cash row for the following period. This does not establish a separately published annual report for that instant year."
+        }
+      ],
+      "scope_note": "Zero balances coexist with financing and operating cash flows; no inactivity claim follows.",
+      "disposition": "SUPPORTED_OPENING_BALANCE_WITH_REPORTING_CONTEXT"
+    },
+    {
+      "cik": "0001062506",
+      "accession": "0001548123-20-000042",
+      "primary_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1062506/000154812320000042/k19.htm",
+        "status": 200,
+        "captured_at": "2026-09-20T12:59:14.600461+00:00",
+        "bytes": 347279,
+        "sha256": "65b7413e608010ad18371d40bc3236e2d1f29114b7ef7aaf2799b4dafc377a98",
+        "body_path": "artifacts/seo/corpus-local/cash-history-filings-20260920/0001062506-0001548123-20-000042-primary.response"
+      },
+      "instance_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1062506/000154812320000042/alda-20191231.xml",
+        "status": 200,
+        "bytes": 130706,
+        "sha256": "c7426542507cd10a0e41cc65311316436e340da125e0ff78d175e25e763f129e",
+        "captured_at": "2026-09-20T13:02:21.768782+00:00",
+        "body_path": "artifacts/seo/corpus-local/cash-history-filings-20260920/0001062506-0001548123-20-000042-instance.response"
+      },
+      "zero_based_table_index": 8,
+      "statement_entity": "ATLANTICA, INC.",
+      "annual_columns": [
+        2019,
+        2018
+      ],
+      "preceding_text": "$ 125,456 $ (2,891,729) $ (2,766,027) The accompanying notes are an integral part of these financial statements. 19 ATLANTICA, INC. Statements of Cash Flows",
+      "statement_text": "For the year ended December 31, 2019 For the year ended December 31, 2018 CASH FLOWS FROM OPERATING ACTIVITIES Net Loss $ (394,866) $ (414,360) Adjustments to reconcile net (loss) to net cash used by operating activities: Gain on release from debt - - Changes in operating assets and liabilities: (Increase) decrease in prepaid expenses - - Increase in accounts payable and accounts payable related party 251,402 303,006 Increase in accrued interest 90,062 77,856 Net Cash Used By Operating Activities (53,402) (33,498) CASH FLOWS FROM INVESTING ACTIVITIES - - CASH FLOWS FROM FINANCING ACTIVITIES Proceeds from note payable - related party 53,402 33,498 Net Cash Provided by Financing Activities 53,402 33,498 NET INCREASE (DECREASE) IN CASH - - CASH AT BEGINNING OF YEAR - - CASH AT END OF YEAR $ - $ - CASH PAID FOR: Interest $ - $ - Taxes $ - $ -",
+      "opening_row": "CASH AT BEGINNING OF YEAR - -",
+      "closing_row": "CASH AT END OF YEAR $ - $ -",
+      "observations": [
+        {
+          "selected": {
+            "end": "2017-12-31",
+            "val": 0,
+            "accn": "0001548123-20-000042",
+            "fy": 2019,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2020-03-30",
+            "frame": "CY2017Q4I",
+            "unit": "USD",
+            "tag": "CashAndCashEquivalentsAtCarryingValue"
+          },
+          "numeric_matches": [
+            {
+              "context_id": "E17",
+              "unit_id": "USD",
+              "value": "0"
+            }
+          ],
+          "matching_contexts_xml": [
+            "<ns0:context xmlns:ns0=\"http://www.xbrl.org/2003/instance\" id=\"E17\">\n\t\t<ns0:entity>\n\t\t\t<ns0:identifier scheme=\"http://www.sec.gov/CIK\">0001062506</ns0:identifier>\n\t\t</ns0:entity>\n\t\t<ns0:period>\n\t\t\t<ns0:instant>2017-12-31</ns0:instant>\n\t\t</ns0:period>\n\t</ns0:context>\n\t"
+          ],
+          "statement_position": "earliest_annual_column_opening_balance",
+          "opening_period_start": "2018-01-01",
+          "interpretation": "The explicit year-end XML instant corresponds to the opening cash row for the following period. This does not establish a separately published annual report for that instant year."
+        }
+      ],
+      "scope_note": "Zero balances coexist with financing and operating cash flows; no inactivity claim follows.",
+      "disposition": "SUPPORTED_OPENING_BALANCE_WITH_REPORTING_CONTEXT"
+    }
+  ],
+  "scope": "Manual table selections and interpretations reproduced from retained bytes. Covers these 18 historical observations only, not other metrics or general publication admission. No data values altered."
+}
