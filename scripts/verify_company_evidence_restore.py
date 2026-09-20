@@ -69,7 +69,7 @@ def restore_check(archive, summary_path):
             raise ValueError('Restored release differs from summary')
         scope_replays = {}
         scope_checks = []
-        if profile == 'fourth-cohort-v6':
+        if profile in ('fourth-cohort-v6', 'fourth-cohort-v9'):
             scope_checks = [
                 ('review-liberty-equipment-scope.py', 'company-fourth-liberty-disposition-20260920.json'),
                 ('review-fourth-zero-scope.py', 'company-fourth-zero-dispositions-20260920.json'),
@@ -79,6 +79,8 @@ def restore_check(archive, summary_path):
             scope_checks = [('review-livento-revenue-scope.py', 'company-fifth-livento-scope-hold-20260920.json')]
             if profile == 'fifth-cohort-v8':
                 scope_checks.append(('review-fifth-zero-scope.py', 'company-fifth-zero-dispositions-20260920.json'))
+        if profile == 'fourth-cohort-v9':
+            scope_checks.append(('review-nika-revenue-scope.py', 'company-nika-revenue-scope-20260920.json'))
         for script, report in scope_checks:
             path = workspace / 'artifacts/seo' / report
             expected = file_hash(path)

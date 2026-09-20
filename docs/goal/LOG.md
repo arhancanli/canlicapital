@@ -307,3 +307,25 @@ Squash4a1fcd16 tree70d2e7fa24aa9f8a482ed7b3329caa7f3a390120exactly matches
 the tested candidate. No production activation/migration/publisher-pointer change.
 Fetched main and continued on isolated release/verified-checkpoints-20260920
 branch to preserve hosted receipts and coordinate remaining release work.
+
+## 2026-09-20 — fourth cohort unresolved revenue withholding
+
+Previous turn completed website merge, hosted preview and API configuration fix.
+Read continuity and moved to independent editorial work while production Supabase
+access remains pending. Nika's retained tagged no-income paragraph and qualified
+revenue-to-cover-costs statement do not unambiguously support a total-revenue
+history. Bound reproducible scope report to prior review, targets and primary
+bytes; replay SHA29cc9a87221b2ec41d6ee7e24409cdb784a8420a74bb8bc8417d71e3857d3246.
+
+Added immutable v9policy inheriting v8. Changed-source guard passes; prior policies
+remain reproducible. Full683company transition removes only Nika Revenues and
+preserves every other selected field and original descriptor except policy.
+403tests60847pass; staging49194/catalog37887complete. HTTP7472verifies all
+18,410URLs/1,366downloads, browser67031passes102checks across17routes including
+omission notices/removed routes; inspected mobile screenshot. Runtime74366verifies
+2,074objects245,821,972bytes.3,145quality flags remain; no broad approval.
+Extended archive profile/restore to v9with Nika scope replay; five safety tests pass.
+Sealing code before new archive; no upload/indexing or production activation.
+
+Engine post-merge CI35504254363now all six jobs SUCCESS. Website Dependabot
+alert1was confirmed fixed at10:32:48UTC without dismissal.

@@ -6,6 +6,13 @@ Detailed prior status is preserved in history/STATUS-20260920-through-fourth-v6.
 
 ## Active work and exact handles
 
+- Fourth v9 withholds Nika's unresolved no-income-as-revenue history at exact
+  source72455d4e. Full683company comparison proves only that history removed;
+  all other selected fields/source descriptors unchanged except policy.
+  Verify60847passes403tests; staging49194, catalog/release37887, HTTP7472,
+  browser67031and storage74366terminal success.18,410URLs/1,366downloads and
+  102browser checks pass. Archive/restore v9pending; older v6archive retained.
+
 - Fifth v8 now excludes three further unsupported revenue histories: Eaton major
   customers, Annovis substantial-revenue wording, Minerva product-sales revenue.
   Full672company transition preserves every other selected field and source.
@@ -18,7 +25,7 @@ Detailed prior status is preserved in history/STATUS-20260920-through-fourth-v6.
   Integration PR71 merged under owner publication approval as
   0aff241a8dfac0b31de7ae5b4eee2755f501262c. Its tree exactly matches867d211.
   PR-event CI35502099188 passed all six jobs before merge. Post-merge
-  Dependency Graph35504256572 passed; CI35504254363 remains running; runtime activation remains pending.
+  Dependency Graph35504256572 and all six CI35504254363jobs passed; runtime activation remains pending.
 - Deployed-source refresh imported28newer public evidence files, rebuilt dependent
   pages, and passed build59437/verify49746. Original1,060chain entries preserved.
   Supabase production identity/access remains pending; saved login returns403
@@ -44,7 +51,7 @@ Detailed prior status is preserved in history/STATUS-20260920-through-fourth-v6.
 | Live sitemap | 263URLs, checkedSeptember20 |
 | Local static build | 690HTML:327indexable,363noindex |
 | Three-cohort candidate | 1,968companies,52,408histories,40directories:54,416URLs |
-| Separate fourth candidate v6 | 683companies,17,714histories,14directories:18,411URLs |
+| Separate fourth candidate v9 | 683companies,17,713histories,14directories:18,410URLs |
 | Separate fifth review candidate v8 | 672companies,17,227histories,14directories:17,913URLs |
 | Indexed minimum / target | 800,000 / 1,000,000 actually indexed canonical pages |
 | Search intent | 104owners,147query hypotheses,223unassigned static pages |
@@ -69,6 +76,8 @@ groups have latest-filing context. This is not all-history or editorial approval
 V6still has3,146overlapping quality flags, including22zero histories. A new
 source-bound review supports21latest zero contexts; Nika remains unresolved
 because its tagged narrative says no income rather than an explicit revenue total.
+The new v9policy withholds this exact history pending an unambiguous source;
+this is not an assertion of nonzero revenue. V6remains reproducible historical evidence.
 All-history, usefulness and unit reviews remain open. The corrected priority queue
 now enumerates430observations across185filings for50concepts/26companies;154filings
 are additional to its31latest filings. No new historical review approval.
@@ -94,6 +103,12 @@ Revenues describes a portfolio company. No string-CIK admission policy is approv
 See SOURCE_CAPACITY.md and COMPANY_IDENTITY_REVIEW.md.
 
 ## Verified delivery and retention
+
+Current fourth-v9releasee932c19db7bdcee76a56f01ec65a7da3bbd7f9a0b2ea2a4d76ba712902d36dce:
+683companies17,713histories14directories18,410URLs;1,366downloads.
+AllHTTPchecks and102browser checks pass, maximum3clicks. Runtime plan
+2,074objects245,821,972bytes verified.3,145overlapping quality flags remain,
+including21zero histories. No full editorial approval. New v9archive pending.
 
 Current fifth v8release548419b07d725f975d36e6c6a80f907d1b29009cdb5ae99e058c5456c7728e4f:
 17,913URLs/1,344downloads pass HTTP;90browser checks pass, including all four
@@ -164,7 +179,7 @@ and publish92286 completed successfully; the public registry response verifies
 matching server/package versions. Receipt: artifacts/platform/mcp-registry-publication-20260920.json. Real adoption remains unestablished;12observed validations are unattributed.
 API key revocation and PostgreSQL race tests pass, but production migration is not
 applied. The default branch now includes the dependency fix from PR15; alert state
-requires a fresh platform check. Candidate audits passed; no alert dismissed.
+was confirmed fixed by GitHub at2026-09-20T10:32:48Z. Candidate audits passed; no alert dismissed.
 
 ## External decisions and remaining goals
 
