@@ -565,3 +565,22 @@ V13-batch4ledger:555active reviewed,45pending,10withdrawn; exact original610keys
 and byte-identical replay. Remaining amendment/TECHCOMdiscrepancy and smaller
 historical queues still open; broader corpus flags not covered by these counts.
 No full rebuild, uploader, deployment or indexing gain.
+
+## Remaining retained context narrowed to four observations
+
+36additional observations reviewed from17Morgan/North America Frac Sand/Emo/
+Green Stream/Atacama tables. Preserve sole-payable current totals, asset-only
+conclusions, reported preferred-stock/related-party classifications and period gaps.
+Report company-small-issuer-context-20260920.json replay byte-identical.
+Five more observations reviewed by rechecking retained HNO/Green Stream sources:
+three net losses preserve restated values without reinstating operating loss; two
+2020Green Stream liabilities use the original2021comparative table linked to the
+XBRL-only amendment with selected accession unchanged. Report company-retained-
+final-context-20260920.json replay identical. Initial helper stopped before output
+because it included a different Green Stream accession; exact amendment filter
+now restricts fixed review to the intended two rows. Original evidence unchanged.
+Cumulative v13-batch6ledger:596active reviewed,4pending,10withdrawn; exact610key
+partition and byte-identical replay. Pending:2Visium2013asset observations from
+2014amendment lacking balance sheets;2TECHCOM2025liabilities with1USDcomponent
+discrepancy. These must receive evidence-backed dispositions. Other corpus flags
+remain outside this queue; no full rebuild or deployment.

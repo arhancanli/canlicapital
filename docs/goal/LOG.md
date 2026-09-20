@@ -974,3 +974,13 @@ observations with explicit restatement, unaudited and reported-classification
 boundaries. Selected Global Technologies2024value confirmed1,236,037USD.
 Context and cumulative ledger replay identical;555reviewed/45pending/10withdrawn
 partition610keys. No source rewrite, whole-corpus admission or publication.
+
+## 2026-09-20 — remaining retained context reviewed
+
+17small-issuer tables support36additional observations, and reverified HNO/Green
+Stream evidence supports5more. All context reports and cumulative ledger replay
+identically. An initial overly broad Green Stream accession filter failed before
+output; exact amendment filter fixes scope without changing source values.
+V13-batch6counts596reviewed/4pending/10withdrawn preserve610keys. Four remaining
+cases are Visium amendment context and TECHCOM2025component discrepancy.
+Broader corpus review and release gates remain open; no publication or indexing gain.
