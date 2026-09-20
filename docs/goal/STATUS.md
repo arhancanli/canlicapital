@@ -13,14 +13,14 @@ Worktree `/Users/arhancanli/canlicapital-expansion-20260919`, branch
 CI35531739016checks passed at91a22a12. Tested/merged tree
 9cfb5eb18799c5799e280681ec632f4951879e60.
 
-Batch7implementation is committed locally at81f3bda251a2985bd9d38fb8093646cd109fdb2a.
-Publication attempt was rejected by the repository pre-push attribution-migration
-hook: “Repository attribution migration is in progress. Retry after completion;
-do not bypass the hook.” No batch7remote branch or PR was created; subsequent PR
-creation failed because the branch was absent. Remote main still8baa1bd8at inspection.
-After migration, inspect its handoff and new ancestry before carrying this local
-change forward; do not push old history or bypass the hook. Continue independent
-source review locally while publication is unavailable.
+Attribution migration publication hold cleared. Remote main is nowc80d3d6f,
+with the same tree as prior8baa1bd8. Local ancestry was migrated by the separate
+migration task:81f3bda2→7834c24c,7aaffdca→8ca8f143,9da53bc5→75e9d044.
+Each old/new tree was independently verified identical;463e2c70is the subsequent
+batch9commit already based on migrated ancestry. Historical hashes in archived
+evidence remain historical; do not rewrite report hashes or claim a production
+change.29targeted tests pass after migration. Publishing combined batches7–9for
+remote CI is the next action; no hook bypass or force-push is needed.
 
 Latest registered ledger:company-basic-diluted-registered-scope-batch9-20260920.json.gz.
 Of1,176batch observations,348reviewed/820pending/8withdrawn.60reviewed are explicitly
@@ -34,8 +34,8 @@ Varonis explicitly excludes potential shares including convertible-note options;
 its older six AFN/share holds remain enforced. Both statement share counts use
 scale0.29renderer/ledger tests pass, including preservation of Varonis historical
 holds; source report replays byte-identically. Batch8Kronos/The9 and batch7Roblox/
-aTyr are also local; none of these three batches has remote CI yet. Publication
-marker remains present; no migration-completion handoff observed. Next new index
+aTyr are also local; none of these three batches has remote CI yet. Migration
+publication hold has cleared and ancestry/tree preservation are verified. Next new index
 entries start36; earlier pending/legacy gaps remain open.
 
 Earlier reviewed context includes111ordinary-share/ADS distinction, Celldex loss

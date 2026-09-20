@@ -438,3 +438,16 @@ Current348reviewed (60presentation-only)/820pending/8withdrawn. Batches7–9rema
 local pending attribution-migration handoff and ancestry reconciliation. No remote
 CI, runtime rebuild, archive supplement, deployment or indexing gain claimed.
 All broader indexing, quality, developer adoption and governed engine goals remain.
+
+## 2026-09-20 — migration handoff verified; resume publication
+
+Previous turn completed24reviews at463e2c70. Migration-active marker now absent;
+remote mainc80d3d6fhas exactly the prior8baa1bd8tree9cfb5eb18799c5799e280681ec632f4951879e60.
+Read meridian-local-sync-pass-0.json and push-guard-checks.json from the separate
+attribution migration. Current branch descends from migrated remote main.
+Independently compared old/new trees for81f3bda2→7834c24c,7aaffdca→8ca8f143,
+9da53bc5→75e9d044; all identical. Batch9commit463e2c70already has migrated parent.
+29targeted tests pass after migration. No hook bypass, force-push, evidence-hash
+rewriting or deployment. Resume combined publication of74new observations from
+batches7–9; counts remain348reviewed/820pending/8withdrawn,60presentation-only.
+Next source cases AnaptysBio/iRhythm inspected initially but not adjudicated yet.
