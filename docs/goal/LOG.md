@@ -1159,3 +1159,18 @@ Archived entire previousSTATUS before rewritingcurrentfacts; oldunknown-indexing
 oldcounts and oldCIclaims removed fromcurrentcheckpoint withoutdeletinghistory.
 Sourceaudit andreceipt: audit-company-source-capacity.mjs/company-source-capacity-20260920.json.
 Websitea8865e57 CI35495845450passes; enginece93d8c suite remainsliveatlastpoll.
+
+## 2026-09-20 — retained issuer discovery, without duplicate acquisition
+
+Compared the retained 7,992-CIK ticker snapshot with the current 8,031-CIK source:
+65 additional identities, four already staged, five held back because a retained
+acquisition exists, leaving 56 new unattempted candidates. No eligibility claim.
+Seven available cached bodies match raw hash/length; four valid integer identities
+are already staged, three string CIKs require schema/provenance review. Two other
+bodies absent. No normalization, retry, publication, return-data read or engine edit.
+Retained 37 source/body bindings; independent hash/length check and exact report
+replay pass. New receipt/script documented in SOURCE_CAPACITY.md. Material is not
+in the old sealed archive. It does not materially close the 800,000-page gap.
+Engine ce93d8c CI35494803169 now passes all six jobs. Website 0e911990 CI35496075672
+passes. Current status and phases corrected to reflect measured indexing and the
+remaining hosted-release work. Owner goal stays active.

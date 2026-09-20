@@ -39,6 +39,12 @@ discovery alone cannot reach 800,000. Broader sources and useful content familie
 must be validated; the goal is unchanged. See SOURCE_CAPACITY.md. A SEC bulk archive
 HEAD request returned 403; no retry or body download occurred.
 
+Retained issuer discovery adds 56 unattempted identity candidates after removing
+four already-staged CIKs and holding back five prior acquisitions. No new pages
+or eligibility claims. Seven cached bodies match recorded hashes; three use a
+string CIK and need schema review. All 37 retained bindings verify, and replay is
+identical. This new material is outside the earlier v3 archive. See SOURCE_CAPACITY.md.
+
 ## Delivery and retention
 
 Local v3 HTTP replay checks all 54,416 pages and 3,936 downloads with exact sitemaps,
@@ -66,10 +72,9 @@ still need URL-level exports. See INDEXING_BASELINE.md. Browser tab/export acces
 works; assistive access is denied, Apple Events JavaScript disabled and screenshot
 capture unavailable. No settings were bypassed.
 
-Website a8865e57 passed build/verify (6 + 384 tests and final audits) and CI35495845450.
-This capacity/status revision is a separate change. Engine PR68 ce93d8c fixes nested
-agent-state copying; 13 focused tests and Ruff pass. CI35494803169 was last observed
-running its offline suite; five other jobs passed. Do not restart a live job.
+Website 0e911990 passed CI35496075672; the prior full local build/verify passed
+6 + 384 tests and final audits. Engine PR68 ce93d8c fixes nested agent-state copying;
+13 focused tests and Ruff pass, and full CI35494803169 now passes all six jobs.
 PR69/70 previously passed; verify their current state before release.
 
 ## Platform and governed engine

@@ -52,3 +52,34 @@ updates; it does not establish our eligible count or indexing potential.
 A single HEAD request for companyfacts.zip returned403; no archive body was
 fetched and no retry was made. Receipt: sec-bulk-source-metadata-20260920.json.
 Access through an approved supported acquisition path remains unresolved.
+
+## Retained issuer discovery review
+
+The engine retained another ticker snapshot with 7,992 unique CIKs. Its union
+with the current snapshot contains 8,096 CIKs: 65 are outside the current list.
+Four are already in the v3 delivery. Of the remaining 61, five have retained
+acquisition attempts and are held back from a new queue. This leaves **56 new,
+unattempted identity candidates**, not 56 eligible companies or approved pages.
+
+The nine outside-current-list identities in the retained acquisition ledger have
+seven cached bodies and two absent bodies. All seven available bodies match their
+recorded raw hashes and lengths. Four also have integer CIKs matching the current
+schema; those four are already staged. The other three encode CIK as a string,
+which the current production selector rejects. Their bytes are retained for schema
+and provenance review; no silent conversion or admission was performed. No
+per-response capture timestamp was verified for these cached bodies.
+
+Reproduce with the engine Python environment (requires pyarrow):
+
+```sh
+/Users/arhancanli/alphac-security-20260919/.venv/bin/python \
+  scripts/audit-retained-issuer-discovery.py /Users/arhancanli/alphaforge
+```
+
+`artifacts/seo/retained-issuer-discovery-20260920.json` records the 56 CIKs,
+all holdbacks, cache outcomes and 37 input/body bindings. Copies are preserved
+under ignored `corpus-local/retained-issuer-discovery`; all hashes and lengths
+verify and a second run reproduces the report exactly. This material is not in the
+previous sealed v3 archive. No network request, return-data read, trial identity
+spend, source-runtime edit or new page generation occurred. This small discovery
+increment does not materially close the source-capacity gap.
