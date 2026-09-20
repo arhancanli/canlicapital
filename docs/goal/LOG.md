@@ -240,3 +240,18 @@ renderer tests pass. Versioned batch ledger reproduces14reviewed/1,154pending/
 8withdrawn; old ledger unchanged. Full v17corpus comparison/build/archive remain
 open; no deployment or indexing claim. Other six Siebert batch observations are
 numerically reproduced but not newly scope-approved by this report.
+
+## 2026-09-20 — full v17comparison and Celldex scope closure
+
+PR60mergedb1c3018eafter all four CI35529361367checks passed; tested/merged tree
+93012bd2e5459894f77316fe2979e92b978111ea matches. Interrupted turn left comparison
+29434running; repolled the same handle, now terminal0. All3,323companies and
+87,344histories verified; exactly12direct holds sincev14, two prior Valhi constant
+histories omitted, no unrelated changes. No restart based on interrupted observation.
+
+Celldex twelve observations have explicit anti-dilution in loss periods and correctly
+tagged thousands-scale shares. Added source-bound page notes; all14renderer tests
+pass, including unchanged values and stale-observation suppression. Original-source
+report and v3ledger reproduce byte-identically:26reviewed/1,142pending/8withdrawn.
+NLIscale3 and Weisrestatement context identified for follow-up, not yet scope-approved.
+No new combined runtime, archive, hosted transfer, production or indexing claim.
