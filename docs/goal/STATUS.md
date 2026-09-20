@@ -10,11 +10,19 @@ which links the preceding historical record. Historical process states are not l
 ## Current work and immediate next action
 
 Worktree `/Users/arhancanli/canlicapital-expansion-20260919`, branch
-`evidence/loss-context-batch2-20260920`. PR65merged3bba67c9 after all four
-CI35530559713checks passed at367badeb. Tested/merged tree
-e441f944b3d3073544c75e7ba1d9e8a0a14d6a0c.
+`evidence/share-context-batch3-20260920`. PR66mergede277cd85 after all four
+CI35530764425checks passed atf4aed4a7. Tested/merged tree
+2337d15aed5c71e3b1778ccee39c4aa662a83503.
 
-Current registered batch2ledger:106reviewed/1,062pending/8withdrawn;24reviewed
+Current registered batch3ledger:154reviewed/1,014pending/8withdrawn;36reviewed
+are presentation-only. Added48FuelCell/Achieve/Southern Copper/Genesis observations.
+Context includes already-adjusted reverse split/stock dividends, Achieve excluded-
+instrument wording limitation, and Genesis partnership units with preferred-unit
+allocations and total versus continuing-operations distinction. Southern Copper’s
+12rows are presentation-only; dilution cause not inferred.23renderer/ledger tests
+pass and only48intended ledger rows change. Source report replays byte-identically.
+
+Previous registered batch2ledger:106reviewed/1,062pending/8withdrawn;24reviewed
 remain presentation-only. Added32Axogen/Heron/Westwater observations with explicit
 loss-period anti-dilution and verified scale0/scale3 share treatment. Declarative
 source-review requirements replay against original captures; no inference from

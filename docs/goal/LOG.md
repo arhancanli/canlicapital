@@ -321,3 +321,18 @@ review specifications and reusable replay helper; source-bound notes retain valu
 comparison to frozen v6proves only32new review states/evidence links change.
 Current106reviewed (24presentation-only),1,062pending,8withdrawn. No new runtime,
 archive, deployment or indexing gain. Entire owner objective remains active.
+
+## 2026-09-20 — split/dividend and partnership context batch
+
+PR66mergede277cd85after four passing CI35530764425checks; tested/merged tree
+2337d15aed5c71e3b1778ccee39c4aa662a83503 matches. Reviewed48FuelCell/Achieve/
+Southern Copper/Genesis observations. Source notes distinguish retrospective split/
+stock-dividend adjustments, Achieve’s inconsistent excluded-total million-shares
+wording, and Genesis common partnership units, preferred allocations and total
+versus continuing operations. Southern Copper12rows retain presentation-only state.
+Original generic replay failed to locate FuelCell’s dilution text because it is
+in a leaf table cell. Direct source inspection verified it; version2adds table-cell
+blocks, leaving original helper untouched. Final report replays byte-identically.
+23renderer/ledger tests pass; exact comparison permits only48intended transitions.
+Current154reviewed (36presentation-only),1,014pending,8withdrawn. No runtime rebuild,
+archival supplement, publication or indexing gain.
