@@ -274,3 +274,14 @@ confirmed no new deployment. A bounded second preview attempt is underway.
 Deployment-local public storage settings only; no production environment changes.
 The scheduled publisher has since created READY deployment dpl_C1LAYUEx6VtXiiUxi3ZatwXqfRTu
 using production application revision9608542c; no claim that preview changed production.
+
+Preview dpl_Gw2aMA1cscjaGtV3c9JzF95voFai is READY at9f1e607c; all four hosted
+unavailable checks pass. Successful data serving still awaits complete storage.
+Resume2session58999terminated exit1 after336verified objects with UNKNOWN_TRANSPORT,
+zero read retries. Do not infer subtype from this old generic error. Added sanitized
+machine-category details for subsequent diagnosis; unknown failures still stop.
+All uploader sessions are terminal. Preserved every partial receipt and failure.
+DOM TimeoutError numeric codes now classify by name; a regression proves bounded
+retry and omission of sensitive upstream messages. Twelve storage tests pass.
+Status was consolidated with the prior version archived to reduce contradictory
+current-state statements. PR22remains the current review.

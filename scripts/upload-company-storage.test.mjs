@@ -83,6 +83,18 @@ test('read retries stop at the global budget and never retry permission or rate-
   }
 });
 
+test('DOM timeout errors retain safe subtype and can use an explicitly bounded read retry', async t => {
+  const f = fixture(t), events = []; let calls = 0;
+  const storage = createSupabaseStorage({ projectUrl: 'https://example.supabase.co', bucket: 'company-runtime',
+    serviceKey: 'secret-test', readAttempts: 2, pause: async () => {}, fetcher: async () => {
+      if (++calls === 1) throw new DOMException('sensitive upstream detail', 'TimeoutError');
+      return new Response('{"statusCode":"404","error":"not_found"}', { status: 400 });
+    } });
+  assert.equal(await storage.read(f.files[0], { onRetry: event => events.push(event) }), null);
+  assert.equal(calls, 2); assert.match(events[0].error, /TimeoutError/);
+  assert.ok(!JSON.stringify(events).includes('sensitive'));
+});
+
 test('validates the entire local plan before network access', async t => {
   const f = fixture(t), s = server(f);
   await assert.rejects(uploadCompanyStorage({ ...f, planHash: '0'.repeat(64), storage: s.storage }), /plan hash/);

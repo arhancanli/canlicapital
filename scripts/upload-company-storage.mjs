@@ -49,9 +49,12 @@ export function createSupabaseStorage({ projectUrl, bucket, serviceKey, fetcher 
   async function request(url, options) {
     try { return await fetcher(url, { ...options, redirect: 'error', signal: AbortSignal.timeout(60_000) }); }
     catch (error) {
-      const code = error?.cause?.code ?? error?.code ?? error?.name;
+      const code = ['TimeoutError', 'AbortError'].includes(error?.name) ? error.name : (error?.cause?.code ?? error?.code ?? error?.name);
       const safe = ['ECONNRESET', 'ECONNREFUSED', 'ETIMEDOUT', 'ENOTFOUND', 'UND_ERR_CONNECT_TIMEOUT', 'UND_ERR_SOCKET', 'TimeoutError', 'AbortError'].includes(code) ? code : 'UNKNOWN_TRANSPORT';
-      const failure = new Error(`Storage request failed (${safe})`);
+      // Preserve machine error categories, never upstream messages, URLs or stacks.
+      const labels = [error?.name, error?.cause?.name, error?.cause?.code, error?.code]
+        .filter(value => typeof value === 'string' && /^[A-Za-z][A-Za-z0-9_]{0,63}$/.test(value));
+      const failure = new Error(`Storage request failed (${safe}; ${[...new Set(labels)].join(',')})`);
       failure.retryableRead = safe !== 'UNKNOWN_TRANSPORT';
       throw failure;
     }
