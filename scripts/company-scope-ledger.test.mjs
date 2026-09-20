@@ -54,29 +54,29 @@ test('holds cannot be overridden by a registered review and require the same sou
   assert.throws(() => reconcileScope(input), /Hold source changed/);
 });
 
-test('registered corpus changes only the 32 newly reviewed batch2 rows and produces deterministic gzip', () => {
+test('registered corpus changes only the 48 newly reviewed batch3 rows and produces deterministic gzip', () => {
   const dir = mkdtempSync(join(tmpdir(), 'canli-scope-'));
   try {
     const first = join(dir, 'first.json.gz'), second = join(dir, 'second.json.gz');
     for (const output of [first, second]) execFileSync(process.execPath, ['scripts/reconcile-basic-diluted-scope.mjs', output]);
     assert.deepEqual(readFileSync(first), readFileSync(second));
     const current = JSON.parse(gunzipSync(readFileSync(first)));
-    const frozen = JSON.parse(readFileSync('artifacts/seo/company-basic-diluted-batch1-scope-v6-20260920.json'));
+    const frozen = JSON.parse(gunzipSync(readFileSync('artifacts/seo/company-basic-diluted-registered-scope-batch2-20260920.json.gz')));
     assert.equal(current.rows.length, frozen.rows.length);
-    const newCiks = new Set(['0000805928', '0000818033', '0000839470']);
+    const newCiks = new Set(['0000886128', '0000949858', '0001001838', '0001022321']);
     let changed = 0;
     for (let i = 0; i < frozen.rows.length; i++) {
       const before = frozen.rows[i], after = current.rows[i];
       if (newCiks.has(before.cik)) {
         assert.equal(before.state, 'ACCOUNTING_SCOPE_REVIEW_PENDING');
-        assert.deepEqual(after, { ...before, state: 'SCOPE_REVIEWED_WITH_SOURCE_CONTEXT', evidence: 'company-loss-context-batch2-20260920.json' });
+        assert.deepEqual(after, { ...before, state: before.cik === '0001001838' ? 'REPORTED_PRESENTATION_REVIEWED_CAUSE_NOT_ESTABLISHED' : 'SCOPE_REVIEWED_WITH_SOURCE_CONTEXT', evidence: 'company-share-context-batch3-20260920.json' });
         changed++;
       } else assert.deepEqual(after, before);
     }
-    assert.equal(changed, 32);
-    assert.equal(current.active_reviewed_observations, 106);
-    assert.equal(current.active_observations_needing_scope_review, 1062);
-    assert.equal(current.presentation_only_reviewed_observations, 24);
+    assert.equal(changed, 48);
+    assert.equal(current.active_reviewed_observations, 154);
+    assert.equal(current.active_observations_needing_scope_review, 1014);
+    assert.equal(current.presentation_only_reviewed_observations, 36);
     assert.equal(current.withdrawn_observations, 8);
   } finally { rmSync(dir, { recursive: true, force: true }); }
 });

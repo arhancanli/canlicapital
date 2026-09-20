@@ -1,0 +1,105 @@
+{
+  "schema": "canli.reviewed-share-context-spec.v1",
+  "decisions": [
+    {
+      "cik": "0000886128",
+      "accession": "0001104659-25-122302",
+      "source_sha256": "fd3997da1474791e9787ed8a6e99cc33d09f4089fbd0e55abe3d46e75f679896",
+      "primary_sha256": "0a3c636192ef4d0ff2914dfac15ffdbd38f081aaa90b9063404199e61b1de62b",
+      "fixture": "scripts/fixtures/editorial/fuelcell-reviewed-source.json.gz",
+      "observations": 12,
+      "period_ends": [
+        "2023-10-31",
+        "2024-10-31",
+        "2025-10-31"
+      ],
+      "table_index": 291,
+      "share_scale": "0",
+      "table_requires": [
+        "Series B preferred stock dividends",
+        "Weighted average common shares outstanding \u2013 diluted"
+      ],
+      "paragraph_requires": [
+        "(Amounts in thousands, except share and per share amounts)",
+        "their inclusion would have been antidilutive",
+        "All share and per share amounts, exercise prices, conversion rates and conversion prices presented herein"
+      ],
+      "reader_note": "For fiscal 2023\u20132025, ending October 31, FuelCell calculates EPS using loss attributable to common stockholders after Series B preferred dividends. Potentially dilutive instruments are excluded because their inclusion would be antidilutive. Shares and per-share amounts are exempt from the thousands heading. The filing already adjusts historical share and per-share amounts for the November 8, 2024 one-for-thirty reverse split. No additional split adjustment or preferred-dividend adjustment is applied here.",
+      "disposition": "REVIEWED_ISSUER_SPECIFIC_EPS_CONTEXT"
+    },
+    {
+      "cik": "0000949858",
+      "accession": "0001193125-26-120690",
+      "source_sha256": "99bc74bd7159630b925b01f21dc60b0899467b369bb5a1524cbbfa411e86b911",
+      "primary_sha256": "7dff412a00b91104396997bd40b763f4dee8fed920e5c3fc2f3d8ef5accdb6f4",
+      "fixture": "scripts/fixtures/editorial/achieve-reviewed-source.json.gz",
+      "observations": 12,
+      "period_ends": [
+        "2023-12-31",
+        "2024-12-31",
+        "2025-12-31"
+      ],
+      "table_index": 43,
+      "share_scale": "0",
+      "table_requires": [
+        "Weighted average number of common shares outstanding"
+      ],
+      "paragraph_requires": [
+        "(In thousands, except per share and share amounts)",
+        "The effect of potentially issuable common shares from outstanding stock options, restricted stock unit awards and warrants are anti-dilutive for all periods presented.",
+        "a total of 24,355,705 million shares"
+      ],
+      "reader_note": "For 2023\u20132025, Achieve reports equal basic and diluted net loss per share and describes excluding potentially issuable shares because they are anti-dilutive. Shares and per-share amounts are exempt from the thousands heading. The note\u2019s excluded-instrument total uses inconsistent million-shares wording alongside individual counts; that narrative total is not the weighted-average denominator and is not substituted here. The selected EPS and weighted-average figures remain as reported.",
+      "disposition": "REVIEWED_ISSUER_SPECIFIC_EPS_CONTEXT"
+    },
+    {
+      "cik": "0001001838",
+      "accession": "0001104659-26-021492",
+      "source_sha256": "bf9ab0f125f067fed8780461c2fcc2364e03d08ca32b598c380969308a378be0",
+      "primary_sha256": "21b4b6b76cf716800d4a148028f39f2a5aa53dec0a859e862b5fd901938378e8",
+      "fixture": "scripts/fixtures/editorial/southern-copper-reviewed-source.json.gz",
+      "observations": 12,
+      "period_ends": [
+        "2023-12-31",
+        "2024-12-31",
+        "2025-12-31"
+      ],
+      "table_index": 385,
+      "share_scale": "6",
+      "table_requires": [
+        "Weighted average common shares outstanding-basic and diluted"
+      ],
+      "paragraph_requires": [
+        "dollars and shares in millions except per share data",
+        "Earnings per share have been adjusted retroactively to reflect these changes in capital structure"
+      ],
+      "reader_note": "For 2023\u20132025, Southern Copper reports combined basic and diluted EPS and weighted-average common shares. The note presents dollars and shares in millions; the share tags encode scale six, while per-share amounts use scale zero. EPS is already retroactively adjusted for the stock dividends described in the 2025 filing. No additional dividend adjustment is applied. The combined presentation does not establish why basic and diluted measures match or prove that no potentially dilutive securities exist.",
+      "disposition": "REVIEWED_COMBINED_PRESENTATION_CAUSE_NOT_ESTABLISHED"
+    },
+    {
+      "cik": "0001022321",
+      "accession": "0001022321-26-000008",
+      "source_sha256": "4a1c207aca6ec769369fa5a9d29118e7410390c76b2fa4cb0c777437618b67ab",
+      "primary_sha256": "ca485ffcc1f05e5ed31f74c3387c813bfe817c483ee8c9e35afbae75d0a25198",
+      "fixture": "scripts/fixtures/editorial/genesis-reviewed-source.json.gz",
+      "observations": 12,
+      "period_ends": [
+        "2023-12-31",
+        "2024-12-31",
+        "2025-12-31"
+      ],
+      "table_index": 82,
+      "share_scale": "3",
+      "table_requires": [
+        "Net income (loss) attributable to common unitholders",
+        "Weighted average outstanding units"
+      ],
+      "paragraph_requires": [
+        "(In thousands)",
+        "For the years ended December 31, 2025, 2024, and 2023, the effect of the assumed conversion of our Class A Convertible Preferred Units was anti-dilutive"
+      ],
+      "reader_note": "For 2023\u20132025, Genesis Energy reports earnings and weighted-average denominators for common partnership units, not corporate common stock. The source taxonomy uses share concepts for these units. The EPS numerator reflects noncontrolling interests and accumulated distributions and returns attributable to preferred units. Assumed conversion of Class A Convertible Preferred Units is excluded because it would be anti-dilutive. Unit counts are tagged in thousands and retained as encoded counts; per-unit amounts use scale zero. Continuing-operations per-unit figures are separate from the selected total, which includes discontinued operations.",
+      "disposition": "REVIEWED_ISSUER_SPECIFIC_EPS_CONTEXT"
+    }
+  ]
+}
