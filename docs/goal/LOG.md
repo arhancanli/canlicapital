@@ -634,3 +634,23 @@ December18estimated-value disclosure remains distinct. Both use scale0shares.
 Report replays byte-identically;40renderer/ledger tests pass; exactly24rows advance.
 588reviewed/574pending/14withdrawn,84presentation-only. No runtime rebuild,
 archive supplement, deployment or indexing gain. Next new index59; all goals active.
+
+## 2026-09-21 — Outset source scale conflict, v19exact holds
+
+Previous turn completed24Adaptive/KBSreviews. PR84four CI35535129098checks passed
+at254badb1; merged0003b7ba, tree7bea0aa8645f5276e20e134ef855fde120236bce identical.
+Initial batch20Outset/Gladstone draft replay failed scale assertion (both attempts,
+process63834terminal2including missing-output cmp). Direct fact inspection found
+Outset share facts omit scale entirely, effective zero, under a thousands heading.
+Preserved rejected draft; no report or registry approval was created. Initial
+specialized hold replay expected explicit scale0and failed; inspected original
+fact, now assert absent scale on all six. Report replays byte-identically.
+V19holds six exact2023–2025shares3305/3463/15211without multiplying or applying a
+second split adjustment. March20,2025reverse split is already reflected by filing.
+Actual source test confirms only six removed, EPS/older facts unchanged, source
+changes rejected, linked notices rendered and inherited holds retained. Initial
+ledger regression used before.tag rather than before.observation.tag, corrected;
+77selector/renderer/ledger/delivery tests now pass.588reviewed/568pending/20withdrawn,
+84presentation-only. Gladstone inspection remains pending registration; no scope
+review count advance. Whole-corpusv19comparison, runtime, archive supplement and
+hosted release remain pending. No deployment/indexing gain; all goals active.

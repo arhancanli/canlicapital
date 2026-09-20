@@ -528,3 +528,36 @@ test('v18 holds six Iovance scale conflicts without altering EPS or older facts'
   assert.deepEqual(next.concepts, old.concepts);
   assert.deepEqual(next.editorial_exclusions, old.editorial_exclusions);
 });
+
+test('v19 holds six Outset scale conflicts without altering EPS or older facts', async () => {
+  const raw = gunzipSync(readFileSync(new URL('./fixtures/editorial/outset-medical-reviewed-source.json.gz', import.meta.url)));
+  const options = { expectedCik: '0001484612', fetchedAt: '2026-09-20T00:00:00Z' };
+  const before = companyReference(raw, { ...options, selectionPolicy: 'extended-v18' });
+  const diagnostics = {};
+  const after = companyReference(raw, { ...options, diagnostics, selectionPolicy: 'extended-v19' });
+  const expected = structuredClone(before.concepts);
+  for (const tag of ['WeightedAverageNumberOfSharesOutstandingBasic', 'WeightedAverageNumberOfDilutedSharesOutstanding']) {
+    const concept = expected.find(c => c.tag === tag);
+    assert.equal(concept.observations.filter(r => r.accn === '0001193125-26-051278').length, 3);
+    concept.observations = concept.observations.filter(r => r.accn !== '0001193125-26-051278');
+    assert.ok(concept.observations.length >= 3);
+  }
+  assert.deepEqual(after.concepts, expected);
+  assert.equal(diagnostics.editorial_observation_excluded, 6);
+  assert.equal(after.editorial_exclusions.length, 6);
+  verifyCompanyReference(after, raw);
+  assert.throws(() => companyReference(Buffer.concat([raw, Buffer.from('\n')]), { ...options, selectionPolicy: 'extended-v19' }), e => e.code === 'EDITORIAL_REVIEW_REQUIRED');
+  const { renderCompanyPages } = await import('./lib/company-page-renderer.mjs');
+  after.source_snapshot = `/company-data/sources/${after.source_sha256}.json.gz`;
+  for (const target of ['overview', 'WeightedAverageNumberOfSharesOutstandingBasic', 'WeightedAverageNumberOfDilutedSharesOutstanding']) {
+    const html = renderCompanyPages(after, { target })[0].html;
+    assert.match(html, /statement labels share counts in thousands/);
+    assert.match(html, /om-20251231/);
+  }
+  const oldRaw = gunzipSync(readFileSync(new URL('./fixtures/editorial/siebert-reviewed-source.json.gz', import.meta.url)));
+  const oldOptions = { expectedCik: '0000065596', fetchedAt: options.fetchedAt };
+  const old = companyReference(oldRaw, { ...oldOptions, selectionPolicy: 'extended-v18' });
+  const next = companyReference(oldRaw, { ...oldOptions, selectionPolicy: 'extended-v19' });
+  assert.deepEqual(next.concepts, old.concepts);
+  assert.deepEqual(next.editorial_exclusions, old.editorial_exclusions);
+});
