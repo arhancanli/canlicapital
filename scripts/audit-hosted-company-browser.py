@@ -17,7 +17,7 @@ assert hashlib.sha256(raw).hexdigest() == manifest_hash
 manifest = json.loads(raw)
 samples = [manifest['files'][i] for i in sorted({0, len(manifest['files']) // 2, len(manifest['files']) - 1})]
 report = {'schema': 'canli.hosted-company-browser.v1', 'origin': origin, 'manifest_sha256': manifest_hash,
-          'publication_approved': False, 'complete': False, 'checks': [], 'failures': [], 'navigation_retries': [],
+          'publication_approved': False, 'complete': False, 'checks': [], 'failures': [], 'navigation_retries': [], 'request_failures': [], 'flow_steps': [],
           'code_sha256': hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
           'scope': 'Representative clean noindex preview pages and first-company navigation at two viewports in Chromium/WebKit. Not full corpus, production activation, accessibility certification or field-performance evidence.'}
 def case_key(case):
@@ -54,6 +54,24 @@ def inspect(page, response, path):
         assert page.locator('a[href="' + href + '"]').count(), (path, href)
 
 
+def attach_diagnostics(page, engine, width, errors):
+    page.on('pageerror', lambda e: errors.append(str(e)))
+    def failed(request):
+        # These are public preview paths; omit query strings and fragments.
+        parsed = urlsplit(request.url)
+        report['request_failures'].append({
+            'engine': engine, 'width': width, 'origin': parsed.hostname,
+            'path': parsed.path, 'resource_type': request.resource_type,
+            'navigation': request.is_navigation_request(), 'error': request.failure})
+        save()
+    page.on('requestfailed', failed)
+
+
+def step(engine, width, action):
+    report['flow_steps'].append({'engine': engine, 'width': width, 'action': action})
+    save()
+
+
 def navigate(page, path, engine, width):
     try:
         return page.goto(origin + path, wait_until='networkidle', timeout=45000)
@@ -78,7 +96,7 @@ with sync_playwright() as p:
                     continue
                 page = browser.new_page(viewport={'width': width, 'height': 900}, reduced_motion='reduce')
                 errors = []
-                page.on('pageerror', lambda e: errors.append(str(e)))
+                attach_diagnostics(page, engine, width, errors)
                 paths = ['/companies'] + [path for sample in samples for path in
                                          ['/companies/' + sample['cik'], '/companies/' + sample['cik'] + '/Assets']]
                 for path in paths:
@@ -94,24 +112,28 @@ with sync_playwright() as p:
                         report['failures'].append({'engine': engine, 'width': width, 'path': path, 'error': str(e)})
                         page.close()
                         page = browser.new_page(viewport={'width': width, 'height': 900}, reduced_motion='reduce')
-                        page.on('pageerror', lambda e: errors.append(str(e)))
+                        attach_diagnostics(page, engine, width, errors)
                     save()
                 if wanted is not None and (engine, width, None, 'directory-company-history-developer') not in wanted:
                     page.close()
                     continue
                 try:
+                    step(engine, width, 'open directory')
                     response = navigate(page, '/companies', engine, width)
                     inspect(page, response, '/companies')
                     first = '/companies/' + samples[0]['cik']
                     # Select visible links from the rendered DOM, then exercise
                     # the same clean paths a visitor follows.
+                    step(engine, width, 'click company')
                     with page.expect_navigation(wait_until='networkidle') as navigation:
                         page.locator('main a[href="' + first + '"]').first.click()
                     inspect(page, navigation.value, first)
+                    step(engine, width, 'click Assets history')
                     with page.expect_navigation(wait_until='networkidle') as navigation:
                         page.locator('main a[href="' + first + '/Assets"]').first.click()
                     inspect(page, navigation.value, first + '/Assets')
                     assert page.locator('main a[href="' + samples[0]['selected']['path'] + '"]').count()
+                    step(engine, width, 'click developer quickstart')
                     with page.expect_navigation(wait_until='networkidle') as navigation:
                         page.locator('main a[href="/developers#quickstart"]').first.click()
                     assert navigation.value.status == 200 and page.locator('#quickstart').count()

@@ -465,3 +465,15 @@ recheck34514 also failed. Preserve both receipts; stop blind retries and diagnos
 request-level behavior before treating the browser gate as complete. Mobile layout
 and mobile full navigation now pass, without a CSS change. Six configuration and
 conditional-HTTP regression tests pass. No production activation.
+
+## 2026-09-20 — request-level Chromium diagnosis
+
+Previous turn made progress: four failed browser cases passed focused verification,
+remaining desktop failure preserved and draft PR31 opened. All four CI35515580577
+jobs pass at8b50bfc6. Added failed-request and flow-step instrumentation, omitting
+query strings/fragments. Diagnostic11602 failed while opening the directory:
+five CSS/JS requests aborted with ERR_NETWORK_CHANGED, including company CSS.
+Independent urllib checks94247 fetched all five exact URLs with200, expected MIME
+and recorded hashes. No assertion that this proves browser reliability or a fixed
+network environment. Browser gate remains open; no speculative CSS patch.
+Bulk26312 polled live; checkpoint3506verified objects/0failures, incomplete.

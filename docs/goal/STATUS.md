@@ -21,7 +21,7 @@ concurrency4, readAttempts3, writeAttempts2, total read budget200/write budget50
 Per-object limits, permission/rate-limit/corruption stops, exact-byte verification
 and create-only reconciliation remain enforced. Twenty storage/planner tests pass.
 Receipt: corpus-local/company-five-cohort-transfer-20260920.json.
-Latest observed checkpoint: 3253 verified objects, 0 failures. Session26312 was polled live this turn.
+Latest observed checkpoint: 3506 verified objects, 0 failures. Session26312 was polled live this turn.
 Poll exact handle before restarting. Prior v3resume5session23870 is terminal after
 1,721objects/126,028,025bytes; receipt and failures preserved. Do not restart oldv3.
 Full transfer and page activation remain incomplete. Separate representative
@@ -106,7 +106,14 @@ Report company-clean-route-browser-recheck-20260920.json. One bounded desktop
 recheck34514 also failed; company-clean-route-browser-desktop-recheck-20260920.json
 preserves the result. Browser gate remains incomplete; no further blind retries.
 Prior reports remain unchanged. Source/audits committed through59ed2524; targeted recheck support and continuity
-are prepared for review. Six preview-config/HTTP regression tests pass.
+are reviewed in draft PR31 https://github.com/arhancanli/canlicapital/pull/31.
+All four CI35515580577jobs passed at8b50bfc6. Six preview-config/HTTP regression
+tests pass. Subsequent diagnostics identify failed CSS/JS subrequests with
+ERR_NETWORK_CHANGED while opening the directory. All five exact failed assets
+return200 and correct CSS/JS MIME in independent urllib reads; hashes retained.
+This does not resolve browser reliability. Diagnosis11602 and asset94247 are
+terminal; reports company-clean-route-browser-desktop-diagnosis-20260920.json
+and company-clean-route-failed-assets-20260920.json. No CSS repair justified yet.
 
 Next: resolve remaining browser cases, complete bulk transfer and full-corpus
 checks plus remaining editorial/admission work before production activation.
