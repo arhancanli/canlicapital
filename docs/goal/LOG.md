@@ -852,3 +852,16 @@ No date, scale or value changes.52renderer/ledger tests pass; report replays
 byte-identically; exactly24rows advance.842reviewed/314pending/20withdrawn,
 96presentation-only. Next index81; no runtime rebuild, archival supplement,
 deployment or indexing gain. All owner objectives remain active.
+
+## 2026-09-21 — separate note hedges and April fiscal allocation
+
+Previous turn completed24Intapp/Evolus reviews. PR98four CI35538084328checks
+passed at68fa6b2d; merged7cbcdd90c1ce53df5595d1039c5af463276191c7, full tree
+1d34f3018ecb80c7c3477b8d222a6573b70909e8matches tested head. Reviewed24Guardant/
+C3.ai observations. Guardant note hedges remain separate from convertible notes;
+both stated exclusion treatments preserved. C3.ai April fiscal dates and combined
+ClassA/B allocation reflect equal economic rights; potential dilution excluded.
+No date, unit or value changes.53renderer/ledger tests pass; report replays
+byte-identically; exactly24rows advance.866reviewed/290pending/20withdrawn,
+96presentation-only. Next index83; no runtime rebuild, archival supplement,
+deployment or indexing gain. All owner objectives remain active.

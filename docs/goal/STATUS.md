@@ -9,21 +9,21 @@ which links older records. Historical process states are not live telemetry.
 ## Current work and next action
 
 Worktree `/Users/arhancanli/canlicapital-expansion-20260919`, branch
-`evidence/share-context-batch30-20260921`. PR97merged852947daafter four passing
-CI35537938332checks at5cdc4021. Tested and merged trees match exactly.
+`evidence/share-context-batch31-20260921`. PR98merged7cbcdd90after four passing
+CI35538084328checks at68fa6b2d. Tested and merged trees match exactly.
 
-Latest registered ledger:company-basic-diluted-registered-scope-batch30-20260921.json.gz.
-Of1,176batch observations,842reviewed/314pending/20withdrawn.96reviewed are explicitly
+Latest registered ledger:company-basic-diluted-registered-scope-batch31-20260921.json.gz.
+Of1,176batch observations,866reviewed/290pending/20withdrawn.96reviewed are explicitly
 presentation-only; dilution cause is not established for those rows. The registry
 pins exact reports/issuers/dispositions/counts/states. Numerical agreement alone
 never approves scope. Workflow in SCOPE_REVIEW.md; original ledgers preserved.
 
-Latest24reviews cover Intapp and Evolus. Intapp's June30,2024/2025/2026fiscal
-dates and scale-three shares remain intact; potential dilution is excluded in
-loss periods. Evolus's basic denominator already includes contingently issuable
-shares; options/nonvested RSUs are anti-dilutive. Its full scale-zero shares and
-net-loss numerator are retained, distinct from comprehensive loss.
-52renderer/ledger tests pass; report replays byte-identically. Next new index81;
+Latest24reviews cover Guardant Health and C3.ai. Guardant's separate note hedges
+and convertible notes retain their stated anti-dilution treatment. C3.ai's April30,
+2024/2025/2026fiscal dates and combined ClassA/B denominator remain intact, with
+equal economic rights and excluded potential dilution. Scale-three shares and
+scale-zero EPS remain unchanged for both issuers.
+53renderer/ledger tests pass; report replays byte-identically. Next new index83;
 earlier gaps remain.96presentation-only reviews retain limits.
 V19six Outset2023–2025share-scale holds remain; no silent rescaling or second split
 conversion. EPS and older periods remain unapproved by the hold report.
