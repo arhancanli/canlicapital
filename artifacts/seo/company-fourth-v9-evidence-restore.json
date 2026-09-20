@@ -1,0 +1,27 @@
+{
+  "schema": "canli.company-evidence-restore.v1",
+  "archive_sha256": "570ee00d7ee6f8510dbb839cd4452f5400da3635f01960bda0a182499a826f97",
+  "repository_revision": "99f16517ccfb7482919d4019fe01d62b6cf2284a",
+  "restored_files": 4959,
+  "source_replays": {
+    "fourth-1000": {
+      "complete": true,
+      "companies": 683,
+      "exclusions": 317,
+      "errors": 0
+    }
+  },
+  "runtime_objects_replayed": 2074,
+  "runtime_bytes": 245821972,
+  "release_hash": "e932c19db7bdcee76a56f01ec65a7da3bbd7f9a0b2ea2a4d76ba712902d36dce",
+  "objects_exactly_match_original_plan": true,
+  "editorial_scope_reports_reproduced": {
+    "company-fourth-liberty-disposition-20260920.json": "0d76a2a71431a52360b443ef390e19757dd06f94de19a98df857bdf5091841d5",
+    "company-fourth-zero-dispositions-20260920.json": "35a6a4b70c78153f6829eedef60eed7aab5b978549f672db285528cb911bcc19",
+    "company-fourth-novagold-disposition-20260920.json": "ef6a44c6249565b90f7f1644f4ef579f6e53235922f7f38a30c15fa6eaf0bf31",
+    "company-nika-revenue-scope-20260920.json": "29cc9a87221b2ec41d6ee7e24409cdb784a8420a74bb8bc8417d71e3857d3246"
+  },
+  "remote_backup_verified": false,
+  "verification_code_sha256": "c5a58c13a5942cc7d236de0d86dd08d481fa88062d18afa1b795ec7456088002",
+  "scope": "Whole archive SHA checked against separate summary; every member verified; isolated temporary restore; saved repository source replays all named cohorts and runtime objects. No reads of original runtime objects or capture directories. Temporary restore removed after verification; archive remains local."
+}

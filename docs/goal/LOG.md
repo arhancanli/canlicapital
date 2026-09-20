@@ -1,292 +1,126 @@
 # Goal work log
 
-The complete chronological log through the fourth-cohort v6restore is preserved
-byte-for-byte in [history/LOG-20260920-through-fourth-v6.md](history/LOG-20260920-through-fourth-v6.md).
-Use that archive for earlier decisions and failures. Current work continues here;
-REQUIREMENTS.md retains every owner objective and STATUS.md records active state.
+Full chronology through the fourth-v9restore is preserved unchanged in
+[history/LOG-20260920-through-fourth-v9.md](history/LOG-20260920-through-fourth-v9.md).
+That archive links earlier logs; no prior evidence or failure was removed.
+All owner requirements remain in REQUIREMENTS.md. Current state is in STATUS.md.
 
-## 2026-09-20 — fifth capture and concise continuity
+## 2026-09-20 — concise post-release/editorial checkpoint
 
-Previous turn verified the corrected v6delivery and its isolated archive, including
-all five scope exclusions. Website5ad85fb0 now passes allCI35501098085jobs.
-Read continuity and moved back to source expansion alongside remaining editorial
-work. Fourth queue is authoritatively finished; no previous capture restarted.
-Pinned a fifth prior-queue ledger covering all four website queues and600retained
-engine acquisition identities. Prepared1,000new CIKs with independent disjointness
-checks against every queue and both current deliveries.3,467remain after this
-reservation. Queue SHAfd201365f9ddc9f84aee360a88dd7a67cb11cdc7d27b3572ef18dff186a3b75c.
+Previous turn merged the tested website release and verified hosted unavailable-store
+API behavior. Current turn withheld Nika's exact ambiguous revenue history, verified
+all683company differences, passed403tests/fullHTTP/102browser checks and completed
+an isolated archive restore. Detailed receipts and preserved failures are linked
+from STATUS and the archived log. Engine post-merge CIpassed all six jobs; website
+Dependabot alert1is fixed. Owner production-database question remains pending.
 
-Capture49258 started09:02:13.251UTC in fifth-1000. Latest checkpoint23processed:
-18review candidates,3content exclusions,2HTTPerrors. No stop or finish; poll the
-same handle. Resume safeguards bind the whole queue and preserve prior outcomes.
-No newly staged or indexed page count claimed. EngineCI35499961114 remains live.
+Condensed active status and log to reduce repeated context without discarding any
+objective, source evidence, historical failure or owner-reserved decision. No
+production activation, indexing or financial outcome established. Continue source
+quality/capacity work while release prerequisites are resolved.
 
-Archived prior STATUS and LOG without changing their bytes, then condensed active
-STATUS to distinguish current candidates, historical evidence, pending external
-inputs and every remaining owner objective. This reduces repeated context reads
-without discarding decisions, failures or evidence. No deployment or activation.
+## 2026-09-20 — Supabase login and database identity check
 
-Archived STATUS SHA256:1ec5d69fb0898ce77579783f5cc610d38316937e8a5ed50ee7ede45792116629.
-Archived LOG SHA256:2eaca6000d130f54428b09aaf0841b7610e3120108a917692b5aaa47e69c2748.
-Fifth selection receipt replay is byte-identical.
-Capture49258re-polled live; latest98/1000:71review candidates,10content exclusions,17HTTPerrors,no stop/finish.
+Owner requested direct laptop inspection because they do not know the project.
+Safari DOM access confirmed a signed-in dashboard; organization switcher and CLI
+list only arhancanli's Org. canlicapital-preview changed from restoring to
+ACTIVE_HEALTHY. Its read-only usage_summary reports six validations; the live
+canlicapital.com validation status reports twelve with store_reachable and
+usage_available true. Phase10/14 records explicitly identify the visible database
+as isolated preview, with production credentials unchanged. Historical production
+reference bpnensyowfmdwhqmfdrg is not accessible to the current account; exact current
+production identity remains unconfirmed. No migration, credential replacement or
+production switch performed. Need access to the production-owning account or
+organization; owner need not guess a project. Session goal tool currently reports
+paused; this explicit inspection request was completed without resuming broad work.
 
-## 2026-09-20 — retained zero histories and ledger reconciliation
+## 2026-09-20 — account recovery inspection
 
-Previous turn started the fifth capture with verified disjointness and preserved
-concise continuity. Reviewed all22retained zero histories against original
-latest-selected filings and prior numerical comparisons. New reproducible report
-binds quality,targets,capture,inline/XBRL comparison hashes and primary bodies.
-21latest contexts are supported by statement rows or explicit zero-total narratives.
-Nika1145604 remains open: tagged wording says no income, which does not explicitly
-establish revenue. This is not an all-history or publication approval. Report
-replay is byte-identical; statements' containing tables retain period context.
+Owner authorized laptop inspection and help signing in. Safari profile menu confirms
+GitHub identity arhancanli (owner Gmail displayed); this account exposes only the
+preview organization. Chrome opens Supabase sign-in with no existing session.
+Chrome explicitly disables JavaScript through Apple Events; setting was not changed
+or bypassed. Left the Chrome Supabase sign-in page foregrounded for the owner to
+check saved login suggestions. No sign-out, password reset, new account, permission
+grant, credential export or production database change was performed. Historical
+Phase10 notes confirm Safari previously used a different organization, but do not
+establish which other login owns current production.
 
-Fifthcapture49258still running:224processed,147review candidates,31exclusions,
-46HTTPerrors; no stop/finish. EngineCI35499961114 remains live. Reconciled stale
-execution-ledger capture states and preserved its full prior version. All owner
-objectives remain active; no deployment, publication or investment outcome claim.
+## 2026-09-20 — production account located
 
-## 2026-09-20 — measured concept capacity and final engine CI
+Owner supplied a different Supabase personal access token. Read-only management
+organization/project listings succeeded and identified canlicapital, reference
+bpnensyowfmdwhqmfdrg, ACTIVE_HEALTHY, eu-central-1, in organization
+qhbioocttcsfubsityha (arhancanli@icloud.com's Org). This matches the historical
+production configuration reference; current runtime binding and schema remain to
+verify before migration. Opened that project's dashboard in Chrome. No database
+writes, project changes or credential persistence performed. Token excluded from
+these records and repository.
 
-Previous turn recorded22retained-zero reviews. Nika's primary filing still has no
-explicit revenue-total statement resolving its income wording; left scope open.
-Read continuity before overlapping source-capacity work. Offline inventory51152
-completed over2,651unique companies, verifying selected/gzip/raw hash bindings.
-Production selector probes identified9,687unused tags,8,267with structural coverage;
-754,911company/concept pairs,430,724with recent ends,94concepts recent in>=1,000
-companies. These are not eligible pages or semantic approvals. Full17,460,544-byte
-report retained locally; tracked summary includes its hash, inputs and top30by
-recent coverage. Focused fixture test passes, including future/conflict/unit/zero
-and corruption boundaries plus deterministic replay. No live source request.
+## 2026-09-20 — production key-revocation database migration
 
-Final engineCI35499961114 nowSUCCESS on exact867d211,all six jobs. Portable suite
-4,366passed55skipped in2,106.41seconds; serial guard1passed4,983deselected;
-PostgreSQL11passed. Saved metadata/log hashes and receipt; prior failed local run
-and correction remain retained. Candidate ready for merge/release review; no merge,
-runtime activation or forward-performance claim. Fifthcapture49258 remains live:
-latest521processed,340review candidates,90exclusions,91HTTPerrors,no stop/finish.
+Confirmed live API binding by issuing one labeled disposable synthetic key through
+canlicapital.com and locating its hash in the intended database. RLS is enabled on
+all three validation tables. Applied exact migration SHA256
+8cb8fbb31cae6309ec911225d3616a64df51f14e763dd1caad7b7ff5b5c03fe1.
+Validation succeeded before revocation; RPC revocation and repeated timestamp
+matched; later public validation returned401 without charging quota. Receipt
+697e042184ebc7ba22e9266a remains public. Existing keys' revocation-state fingerprint
+is unchanged; backend-only function grants and quota row lock verified. Healthy
+production usage now includes one explicitly synthetic validation (13total).
 
-## 2026-09-20 — combined engine release review prepared
+Initial read-only probe attempted restricted usage_summary and correctly failed;
+changed to a permitted table aggregate, without widening grants. A local HTTP
+success check initially expected200 rather than the query endpoint's201; fixed
+before mutations. Neither preflight failure applied a migration or issued a key.
+Production application deployment is being prepared from tested305b2f0b in a
+dedicated checkout; publisher pointer not yet changed.
 
-Verified clean integration867d211, unchanged remote maincb59488, and successful
-final six-job CI35499961114. Created draft PR71 combining PR68/69/70; its exact
-head and draft/open state verified. Constituent PRs remain open. Description
-records corrected behavior, archived-environment/replay distinction, exact tests,
-retained local failures, and outstanding outcome/release limits. No merge or
-runtime activation. Owner will be notified when deployment is needed; this does
-not constitute publication approval. MCP0.1.2 decision remains pending.
+## 2026-09-20 — production candidate9608542c
 
-Website05617bd9 now passes allCI35501859482jobs. Fifth capture49258 continues:
-804processed,528review candidates,130content exclusions,146HTTPerrors; no stop
-or finish. Same capture retained; no failed requests restarted.
+The first fresh-export snapshot failed the sitemap date guard for seven measurement
+routes: hourly JSON changed its bytes, invalidating archived Git-date bindings,
+and these embedded artifacts did not supply a content date. The fix omits the
+optional lastmod for undated measurements while retaining discovery and known
+dates; it does not reuse invalid bindings or stamp the deployment date. Full
+403website tests pass, along with three sitemap integration tests including an
+archive without Git and without glassbox bindings. Initial regression fixture
+lacked installed dependencies; adding an explicit shared dependency symlink
+resolved that fixture-only failure. Build and all four remote CI jobs pass.
 
-## 2026-09-20 — explicit all-history priority coverage
+Dedicated clean release checkout is canlicapital-production-20260920. Fresh export
+snapshot4268e36640a5fa20a72e9a00e5b9ee22f3b1c0b432d3afca2f08829e1a7e80ed
+passes the isolated Vercel-mode build. The reviewed merged snapshot helper passes
+13local shell tests; pytest reports no Python coverage for these shell tests.
+Production-environment deployment was staged with --skip-domain as
+meridian-beas6ce22-arhans-projects-ac470eaa.vercel.app. Hosted issue/validate/revoke/
+repeat/reject/retained-receipt checks pass; synthetic key confirmed revoked.
+12browser cases pass across Chromium/WebKit and390/1440 widths. Full sitemap scan
+and domain activation remain pending at this checkpoint.
 
-Previous turn made progress by creating and verifying engine integration draftPR71.
-Read continuity, verified clean website state and polled live capture49258.
-Prepared a v6-bound priority queue excluding the five removed histories, then
-expanded its50concepts/26companies into every selected accession.430observations
-span185filings;154are additional to31latest filings and320observations use earlier
-accessions. These are pending review targets, not verified historical values.
+## 2026-09-20 — production activation and live verification complete
 
-New generator verifies manifest, selected-object and source identities and requires
-latest priority observations to reproduce. Byte-identical replay, independent
-430-observation total, and four negative probes (manifest/source/observations/
-duplicate concept) passed. No network requests or admission from this work.
-Fifth capture remains live, latest930/1000:623review candidates,149content exclusions,
-158HTTP404outcomes. No stopped/finished marker and no retry or restart.
+All327staged sitemap routes verified:324passed initially; two connection resets
+and one timeout passed a single targeted recheck with matching canonical URLs.
+Original failures remain in staged-production-routes-9608542c.json and successful
+rechecks in the separate receipt.12browser checks and full staged key lifecycle pass.
+Fresh chain verifies1,064entries/signatures (628disclosed,436opaque), with the entire
+previous1,063entry prefix unchanged. This is evidence verification, not new returns.
 
-## 2026-09-20 — fifth capture complete and identity exclusions reviewed
+Promoted dpl_6jFma3DpVDWB5ZZWSgn5pALicLz2 at11:24:49UTC. Under the shared publisher
+lock, installed the exact reviewed/tested merged snapshot helper and atomically
+selected the clean production checkout at9608542c. The trading loop, broker
+configuration and engine state were not changed. Previous source/helper are backed
+up; hashes are recorded in production-activation-9608542c.json.
 
-Previous turn made progress by enumerating the full historical priority queue.
-Capture49258 now terminal exit0, finished09:27:00.106UTC:672review candidates,
-163content exclusions(102identity/61coverage),165HTTP404s. Preliminary source replay
-12704 completed:672records and all content exclusions reproduce, zero errors.
-The5,886core candidate routes are not the extended delivery or indexed pages.
-
-404body confirmation25502 is running separately against the completed queue; no
-403/429 retry, source replacement or capture restart. Do not stage until all
-exclusion evidence is complete. Explicit-cohort identity audit preserves all102
-exclusions:12missing names,47below four core histories,43requiring identity/scope
-review.101have matching string CIKs; no conversion or admission. Original default
-three-cohort audit replay is byte-identical; traversal and duplicate cohorts reject.
-WebsiteCI35502289213 on a1a0e1ad passed. No deployment or publication.
-
-## 2026-09-20 — fifth delivery verification and first semantic hold
-
-Previous turn progressed through completed capture and identity exclusions. Read
-continuity and verified404confirmation25502 terminal success. Full replay has
-672candidates,328exclusions and zero errors. Staged a separate extended-v6review
-delivery:17,231histories,14directories,17,917URLs,1,344downloads. FullHTTP31051 and
-66sampled browser checks7483 pass; inspected mobile screenshot. Storage25202
-verifies2,041objects203,948,852bytes. No upload or full fifth evidence archive.
-
-Priority55concepts/29companies required31filings; capture32651 finished,62index/
-primary bodies retained.111observations reproduce:50inline1260 and61from19XBRL
-instances72869. Offline XBRL replay is byte-identical. Livento Revenues is narrower
-real-estate sales scope despite numerical matches. Bound hold report and generating
-script reproduce byte-identically. Currentv6not publishable as-is; no changed
-source numbers or exclusion policy yet. Continue scope dispositions and correct
-the candidate before publication. All handles from this checkpoint are terminal.
-Website5cd1051eCI35502460335passed. No deployment, indexing or investment outcome.
-
-## 2026-09-20 — source-bound Livento exclusion and corrected fifth delivery
-
-Previous turn verified fifth delivery and documented a semantic hold. Read all
-continuity files and confirmed clean worktree/open PR15. Added immutable v7policy
-inheriting v6and excluding only the exact Livento Revenues source. Changed-source
-rejection and old-policy reproduction tests pass; real-source replay removes one
-concept and full672company transition proves every other field unchanged except
-policy identity. Original source descriptors match exactly.
-
-Full npm verification11557 passes6+394tests and audits. Generated date/sitemap
-churn restored after verification. Staging50859 gives17,230histories/17,916URLs.
-CompleteHTTP65731 passes all URLs/1,344downloads, browser67875 passes72checks
-including excluded-route404, and storage8820 verifies2,041objects203,947,632bytes.
-Archive profile extended for fifth-v7with saved-code Livento scope replay; five
-archive safety tests pass. Sealing this candidate before archive/restore work.
-No publication, upload or wider editorial approval.
-
-Fifth-v7archive74368 completed:4,883files655,052,800bytes, SHA
-6292b6cd39da912360ac47e59cc60c6f9e4f55a8fb05bb1b1ea8da2f3f974766.
-Snapshotd4256aa81973fc2cff73d47e0fa4695118a29911. Isolated restore41363 finished
-exit0:672candidates/328exclusions reproduce, exact2,041runtime objects and
-203,947,632bytes match, Livento scope report byte-identical. Temporary restore
-removed. No offsite or publication claim. RemoteCI35503101079 is running on
-the sealed candidate; previous563ca9b1CI35502859034passed.
-
-## 2026-09-20 — three further scope corrections, v8 checkpoint
-
-Previous turn progressed through Livento v7and isolated restore. Read continuity
-and inspected remaining zero histories. Eaton label/presentation capture48560
-finished200/200; evidence establishes major-customer revenue scope, while primary
-net sales are nonzero. Annovis materiality-qualified narrative and Minerva product
-sales narrative do not establish zero totals. Reproducible source-bound report
-retains original bodies, numerical comparisons and limitations; replay byte-identical.
-
-Added v8with three exact exclusions; older policies remain reproducible. Changed
-source guard passes. Full verification97848 passes6+395tests/audits; five archive
-safety tests pass. Staging89411 yields17,227histories/17,913URLs. Full-cohort
-transition changes only the three histories. HTTP83393 passes17,913URLs and1,344
-downloads; browser3980 passes90checks; storage23665 passes. All handles were
-re-polled terminal exit0 after the owner interrupted for a status update.
-V8archive/restore remains pending; prior v7archive is unchanged. RemoteCI on
-c18132fb passed; earlierd4256aa8run was cancelled by replacement. Nothing deployed.
-
-## 2026-09-20 — owner publication approval
-
-Owner asks whether another Google submission is needed and explicitly approves
-publishing everything including MCP. Authorization persists across turns; previous
-publication-decision blockers are superseded. Existing sitemap need not be
-resubmitted unchanged. Npm whoami returned401; registry latest is still0.1.1.
-Requested local npm login renewal without asking for approval again. WebsitePR15
-86bbdfffhas all four CIjobs passing. EnginePR71same867d211has a further PR-event
-offline test job35502099188 still running; prior branch CIpassed. Release work
-continues with authentication/configuration and exact-candidate verification.
-
-## 2026-09-20 — npm publication verified
-
-Owner completed browser login and publication confirmation. Existing publish
-handle49484 exited0 for canli-validation-mcp0.1.2. Registry reports latest0.1.2;
-downloaded8822-byte tarball SHA256 matches the approved tested artifact exactly.
-Receipt: artifacts/platform/mcp-publication-20260920.json. Official MCP registry
-publication remains unverified. No website deployment or engine merge claimed.
-Goal tool unexpectedly reports paused; no attempt made to override that status.
-
-## 2026-09-20 — resumed goal and merged engine release
-
-Previous turn made progress: npm publication verified against tested bytes.
-Owner resumed; goal tool confirms active. Read continuity and rechecked both PRs.
-Website97b90b3b passes all four CIjobs. Engine867d211passes all six PR-event jobs.
-PR71 marked ready. Repository rejects merge commits and permits squash only;
-used its supported squash merge, without bypassing policy. Merged0aff241a at
-10:09:04UTC. Both trees equal c4f088e242b602325e58c9a1aa7a5b807ecec246.
-One GitHub read transiently failed; subsequent authoritative read succeeded.
-Post-merge runs35504256572/35504254363 in progress; local running engine untouched.
-
-Official registry returns active0.1.1. Downloaded official publisher1.8.1 and
-verified release checksum. Candidate manifest validates; publish returned401
-expired registry JWT. GitHub login handle66928 started; no duplicate npm publish.
-
-## 2026-09-20 — fifth v8 archive and isolated recovery
-
-Archive46171 finished exit0:4,887files662,538,240bytes at snapshot71766c06,
-SHA25634284ad7d17398ffbfc2356e3db0fbb0ba669f9f2807ea6019c98dfa2202cf00.
-Isolated restore40905 finished exit0:672companies328exclusions, zero errors,
-all2,041runtime objects203,939,518bytes exactly match. Livento and three-zero
-scope reports reproduce; temporary restore removed. No remote backup claim.
-
-Production Vercel env export34969 completed; native Node env parsing still yields
-a nonempty invalid HTTPS URL. Diagnostic38592 confirms trimming/unquoting does
-not resolve it; no secrets printed and both temporary exports removed. This is
-not proof the deployed application's configuration is invalid. No environment
-mutation or database migration attempted. Registry login66928 remains live,
-waiting for owner GitHub device authentication.
-
-## 2026-09-20 — official MCP registry publication
-
-Previous turn made progress by identifying sensitive Vercel environment metadata
-and comparing the actual production deployment against the candidate. Sensitive
-exports cannot establish production URL validity; no configuration was changed.
-Production deploymentdpl_6xdeHvXKGwt9Nx5Bxsz8DAnyENdq reports source894ec07d
-from design/glassbox-website-20260908 with gitDirty1. Candidate includes that
-commit in its ancestry; uploaded dirty differences still need verification.
-Supabase CLI keychain access works; listed projects including preview are inactive.
-Preview private config exists in the original website worktree; no credentials exposed.
-
-Registry login66928 finished success before owner asked which GitHub account.
-Opened arhancanli's account page; completed device code was not copied for reuse.
-Publish92286 finished exit0. Public registry confirms exact server0.1.2 and npm
-package0.1.2, active/latest. Receipt retained; npm publication was not repeated.
-
-## 2026-09-20 — deployed source audit and evidence refresh
-
-Previous goal turn completed official registry publication. Read continuity;
-production deployment source was captured and compared against commit894ec07d.
-All differences are52public data files; no application-code divergence. Source
-archive has2,851files. Candidate included25of those changes; newer public evidence
-needed refresh. Imported28glassbox/paper-state files with exact source hashes and
-regenerated dependent outputs. Build59437 and verify49746 terminal exit0.
-163hashes,2signatures and1,063chain entries verify, prior1,060prefix unchanged.
-Receipt binds deployed archive and before/source/final hashes. No engine outcome.
-
-Earlier isolated snapshot91707 passed build but predates this evidence refresh;
-do not deploy it as the latest candidate. Supabase saved identity sees four inactive
-projects and returns403for historical production; asked owner for current project.
-Vercel variables are sensitive and unreadable, not proven malformed. No mutation.
-Engine post-merge CI35504254363 still live; Dependency Graph35504256572 passed.
-
-Refresh verification totals6+395tests, zero failures. Browser probe initially
-failed inner_text for an offscreen count; diagnostic confirmed the expected
-timestamp and no overflow. Scrolling and checking DOM text passed all six
-Chromium/WebKit320/390/1440checks. Receipt preserves that probe limitation.
-Previous d8102f19websiteCI now all four jobs pass; new refresh CI follows push.
-
-## 2026-09-20 — hosted preview and publisher path
-
-Previous turn refreshed deployed evidence and passed401tests/six browser checks.
-Read continuity and created an isolated upload snapshot of45987764; a separate
-clone passed the Vercel build. First upload86129 failed fetch/upload before any
-deployment existed; authenticated project list confirmed no candidate deployment.
-Retried the same snapshot with compressed upload42450, exit0. Preview
-dpl_2z8EMqrB4ZKrqfcFo3ZJhzZT5sLa is READY and binds candidateRevision45987764.
-URL:https://meridian-30lt4iikd-arhans-projects-ac470eaa.vercel.app.
-All four GitHub checks on45987764 pass. Hosted327-page verification83074 and
-API/error probe23739 are in progress; no production promotion.
-
-Read actual launchd/source configuration: minute25 live tick calls the change-gated
-hourly publisher; nightly publisher also shares site_snapshot.sh. Current design
-source points to canlicapital-website-20260908. Documented coordinated rollout
-requirement; neither that pointer nor the running engine was changed.
-PR15description now reflects all corrected cohorts, current verification and
-separately completed MCP publication. Database access question remains pending.
-
-Hosted API probe23739 finished: keys/revokeGET405,no-store; absent route404;
-validate/status unexpectedly500/non-JSON with unconfigured preview database.
-Traced construction outside catch in status, shared validators and receipt/badge
-handlers. Moved store initialization inside existing failure boundaries; no
-change to success, quota, persistence or badge-not-found semantics. Added a
-missing-configuration regression covering all four paths, no secret response
-leakage and no validator compute.28focused tests pass. Full83502verify passes.
-Hosted static327-page check83074 still running; no restart.
+Live canlicapital.com issue/validate/revoke/repeat/reject/retained-receipt/health
+checks pass; all release-test keys are confirmed revoked. Identical synthetic
+validation input reuses its content-hashed receipt. Explicit Vercel alias API
+confirms the primary, www and legacy meridian aliases point at this deployment.
+Initial verification expected custom aliases in the project's embedded target
+list; that incomplete list caused a local assertion, resolved by checking the
+authoritative alias endpoints. No repromotion or domain mutation was needed.
+Homepage/developers/founder/status/sitemap respond successfully without noindex
+headers; exact live sitemap bytes match the validated327URL build. Seven measurement
+URLs omit unprovable lastmod. Existing submitted sitemap URL is unchanged; Google
+indexing gain remains unestablished. All company cohorts remain local/noindex.

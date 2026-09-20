@@ -19,8 +19,9 @@
 import test, { before } from "node:test";
 import assert from "node:assert/strict";
 import { execFileSync } from "node:child_process";
-import { readFileSync } from "node:fs";
-import { dirname, resolve } from "node:path";
+import { readFileSync, cpSync, mkdtempSync, rmSync, writeFileSync, symlinkSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { dirname, resolve, basename } from "node:path";
 import { fileURLToPath } from "node:url";
 
 import { gitCommitDate } from "./lastmod.mjs";
@@ -101,3 +102,24 @@ test(
     assert.notEqual(actualOlder, actualNewer, "the two pages must carry different lastmod values");
   },
 );
+
+// Hourly exports change JSON bytes outside Git. A portable date bound to the old
+// bytes must not be reused, and deploying must not invent a replacement date.
+test("production archive omits undated measurement lastmod after fresh exports", t => {
+  const archive = mkdtempSync(resolve(tmpdir(), "canli-sitemap-export-"));
+  t.after(() => rmSync(archive, { recursive: true, force: true }));
+  cpSync(ROOT, archive, { recursive: true, filter: path => ![".git", "node_modules", "dist", "artifacts", ".vercel", ".claude", ".firecrawl"].includes(basename(path)) && !basename(path).startsWith(".env") });
+  symlinkSync(resolve(ROOT, "node_modules"), resolve(archive, "node_modules"));
+  const manifestPath = resolve(archive, "config/source-dates.json");
+  const dates = JSON.parse(readFileSync(manifestPath, "utf8"));
+  for (const name of Object.keys(dates.files)) {
+    if (name.startsWith("public/glassbox/")) delete dates.files[name];
+  }
+  writeFileSync(manifestPath, JSON.stringify(dates));
+  execFileSync("node", ["scripts/build-papers.mjs"], { cwd: archive, env: { ...process.env, VERCEL: "1" }, stdio: "pipe" });
+  const xml = readFileSync(resolve(archive, "public/sitemap.xml"), "utf8");
+  const entry = xml.match(/<url>\s*<loc>https:\/\/canlicapital\.com\/measurements\/forward-sleeve-contribution<\/loc>[\s\S]*?<\/url>/)?.[0];
+  assert.ok(entry, "undated measurement remains discoverable");
+  assert.ok(!entry.includes("<lastmod>"), "must omit unproven date");
+  assert.match(xml, /<lastmod>\d{4}-\d{2}-\d{2}<\/lastmod>/, "retain known dates elsewhere");
+});

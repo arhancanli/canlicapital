@@ -1,0 +1,42 @@
+{
+  "schema": "canli.editorial-unresolved-scope.v1",
+  "publication_approved": false,
+  "prior_review_sha256": "d487b47eb0fe278d201fbc0d7b22e114d3a5984a78380af9d095a7f7868b9afe",
+  "code_sha256": "f6ea42a16a15c5a32852f9c9b1b2b6145d1a3e09e15c39f84dc98862eb49a6c2",
+  "cik": "0001145604",
+  "tag": "Revenues",
+  "source_sha256": "72455d4e19d0f82286a99d0fa349659ab1ab793431c0cac82c5fb18286c89242",
+  "accession": "0001826466-25-000030",
+  "primary_capture": {
+    "url": "https://www.sec.gov/Archives/edgar/data/1145604/000182646625000030/form-10k.htm",
+    "status": 200,
+    "captured_at": "2026-09-20T08:23:23.126528+00:00",
+    "bytes": 394447,
+    "sha256": "dcc71b79e2db72456137bc7a6fde63c91eb0f9aa43ddb64604b47016debd576b",
+    "body_path": "artifacts/seo/corpus-local/fourth-editorial-filings/0001145604-0001826466-25-000030-primary.response"
+  },
+  "selected_observations": [
+    {
+      "start": "2024-01-01",
+      "end": "2024-12-31",
+      "val": 0,
+      "accn": "0001826466-25-000030",
+      "fy": 2024,
+      "fp": "FY",
+      "form": "10-K",
+      "filed": "2025-03-31",
+      "frame": "CY2024",
+      "unit": "USD"
+    }
+  ],
+  "evidence": {
+    "fact_id": "Fact000308",
+    "context_id": "From2024-01-01to2024-12-31",
+    "tagged_text": "no",
+    "paragraph": "As reflected in the consolidated financial statements, the Company has an accumulated deficit of $ 8,927,612 as of December 31, 2024, has no current operations and has generated no income to date. These factors raise substantial doubt about its ability to continue as a going concern . The consolidated financial statements have been prepared assuming that the Company will continue as a going concern. The Company may raise additional capital through the sale of its equity securities, through offerings of debt securities, or through borrowings from financial institutions . These consolidated financial statements do not include any adjustments relating to the recoverability and classification of recorded asset amounts or amounts and classification of liabilities that might be necessary should the Company be unable to continue as a going concern.",
+    "qualified_revenue_statement": "Furthermore, the company have not generated revenue to cover operating cost."
+  },
+  "disposition": "WITHHOLD_UNRESOLVED_REVENUE_SCOPE",
+  "reason": "The inspected filing tags a statement about no income as revenue. That wording does not clearly establish total revenue. This history is withheld pending an unambiguous source; original source data remain available.",
+  "scope": "Exact captured source only. No assertion of nonzero revenue, replacement value, all-history review, or approval of remaining concepts."
+}

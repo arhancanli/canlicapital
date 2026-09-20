@@ -1,0 +1,23 @@
+{
+  "schema": "canli.company-storage-plan-summary.v1",
+  "publication_approved": false,
+  "release_hash": "e932c19db7bdcee76a56f01ec65a7da3bbd7f9a0b2ea2a4d76ba712902d36dce",
+  "catalog_root": "723974b755f656539a52cdf7667192064c9546bbef1c6804c0cdd4053716d33a",
+  "download_root": "869aec84219f9305b0e42e5a3e9f634e05016cc1928930289866fb87f73e2e14",
+  "delivery_manifest_sha256": "563cbcc91a1a54a9c371be3e32532b7c0c358bba196563800765b255ea218ce5",
+  "companies": 683,
+  "histories": 17713,
+  "objects": 2074,
+  "bytes": 245821972,
+  "scope": "Verified runtime objects plus archived cohort manifests/indexes. Excludes original capture queues/HTTP-exclusion bodies, which require separate evidence backup; no upload, deployment or editorial approval.",
+  "requirements": [
+    "Use fixed HTTPS catalog/ and delivery/ bases under a dedicated object prefix.",
+    "Upload immutable keys without overwrite; verify existing and uploaded object bytes against SHA-256.",
+    "Serve gzip snapshots as application/gzip without Content-Encoding transformation.",
+    "Do not activate the release until remote retrieval and hosted preview verification pass."
+  ],
+  "code_sha256": "df861cf4dd1c9df16340ef5a9447ea350557ac5745d1a8d79fe255b86620e37e",
+  "plan_sha256": "ef800bb2d288baba6d323834cc60985a9378c8ac1d349e7fee56ec4f1454a927",
+  "local_plan": "artifacts/seo/corpus-local/fourth-1000-storage-plan-v9.json",
+  "uploaded": false
+}

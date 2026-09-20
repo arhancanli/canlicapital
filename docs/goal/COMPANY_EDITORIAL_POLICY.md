@@ -203,3 +203,19 @@ Immutable v8inherits v7and excludes only these three exact source/tag bindings.
 Changed sources require renewed review. Full672company transition proves every
 other selected value and original source descriptor unchanged. Corrected candidate
 has17,227histories; broader quality review remains open.
+
+## Nika unresolved revenue scope — extended-v9
+
+CIK0001145604, us-gaap Revenues, exact source
+72455d4e19d0f82286a99d0fa349659ab1ab793431c0cac82c5fb18286c89242:
+the latest selected filing tags “no” in a no-income narrative. Its other revenue
+statement is qualified by covering operating costs. The source does not
+unambiguously establish the intended total-revenue interpretation. V9withholds
+this history and explains the omission while retaining the raw data. No replacement
+value or nonzero-revenue assertion is made.
+
+Review script/report: review-nika-revenue-scope.py and
+company-nika-revenue-scope-20260920.json. Exact source changes require renewed
+review. Earlier policies remain reproducible; the fourth cohort v9transition
+changes only this concept across all683companies. Remaining histories still
+require their outstanding editorial/usefulness checks.

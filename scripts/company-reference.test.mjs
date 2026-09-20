@@ -215,3 +215,14 @@ test('v8 requires new source reviews for narrower zero-revenue claims and preser
     assert.throws(() => companyReference(raw, { ...options, selectionPolicy: 'extended-v8' }), e => e.code === 'EDITORIAL_REVIEW_REQUIRED');
   }
 });
+
+
+test('v9 requires renewed evidence for Nika revenue and preserves prior policy reproduction', () => {
+  const record = JSON.parse(readFileSync(new URL('../public/company-data/0000320193.json', import.meta.url)));
+  const source = JSON.parse(gunzipSync(readFileSync(new URL(`../public/company-data/sources/${record.source_sha256}.json.gz`, import.meta.url))));
+  source.cik = 1145604;
+  source.facts['us-gaap'].Revenues = { units: { USD: [2021, 2022, 2023].map(year => ({ ...row, start: `${year}-01-01`, end: `${year}-12-31`, val: 0 })) } };
+  const raw = JSON.stringify(source), options = { fetchedAt: record.fetched_at, expectedCik: '0001145604' };
+  verifyCompanyReference(companyReference(raw, { ...options, selectionPolicy: 'extended-v8' }), raw);
+  assert.throws(() => companyReference(raw, { ...options, selectionPolicy: 'extended-v9' }), e => e.code === 'EDITORIAL_REVIEW_REQUIRED');
+});

@@ -110,7 +110,7 @@ def evidence_profile(profile):
                 'summary': f'company-fifth-storage-plan-{version}-summary.json',
                 'plan_name': f'fifth-1000-storage-plan-{version}.json',
                 'cohorts': ['fifth-1000'], 'editorial': ['fifth-editorial-filings']}
-    if profile in ('fourth-cohort-v5', 'fourth-cohort-v6'):
+    if profile in ('fourth-cohort-v5', 'fourth-cohort-v6', 'fourth-cohort-v9'):
         version = profile.rsplit('-', 1)[1]
         return {'prefix': 'fourth-1000', 'suffix': version,
                 'summary': f'company-fourth-storage-plan-{version}-summary.json',
@@ -182,7 +182,7 @@ if __name__ == '__main__':
     parser.add_argument('archive', type=Path)
     parser.add_argument('--root', type=Path, default=Path.cwd())
     parser.add_argument('--destination', type=Path)
-    parser.add_argument('--profile', choices=['two-cohort', 'three-cohort', 'three-cohort-v3', 'fourth-cohort-v5', 'fourth-cohort-v6', 'fifth-cohort-v7', 'fifth-cohort-v8'], default='two-cohort')
+    parser.add_argument('--profile', choices=['two-cohort', 'three-cohort', 'three-cohort-v3', 'fourth-cohort-v5', 'fourth-cohort-v6', 'fourth-cohort-v9', 'fifth-cohort-v7', 'fifth-cohort-v8'], default='two-cohort')
     args = parser.parse_args()
     if args.mode == 'restore' and args.destination is None:
         parser.error('restore requires --destination (must not exist)')

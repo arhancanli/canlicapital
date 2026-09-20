@@ -1,0 +1,66 @@
+{
+  "checked_at": "2026-09-20T10:31:35.510341+00:00",
+  "origin": "https://meridian-3e5mqtw82-arhans-projects-ac470eaa.vercel.app",
+  "deployment_id": "dpl_3cj6fPreMKMFwwTAdNJG7tXssW7c",
+  "revision": "6719ba52340a1ab57e0353df03734b80f5c8ea95",
+  "rows": [
+    {
+      "path": "/api/v1/validate/status",
+      "method": "GET",
+      "status": 503,
+      "expected": 503,
+      "content_type": "application/json; charset=utf-8",
+      "cache_control": "no-store",
+      "envelope_schema": "canli.api.v1",
+      "passed": true,
+      "data": {
+        "service": "validation-api",
+        "store_reachable": false,
+        "quotas": {
+          "validations_per_key_per_day": 1000,
+          "keys_per_client_per_day": 5,
+          "max_key_revoke_body_bytes": 1024,
+          "max_body_bytes": 1048576,
+          "max_observations": 20000,
+          "max_variants": 200,
+          "max_cscv_combinations": 2000,
+          "wall_time_seconds": 10
+        },
+        "usage": null,
+        "usage_available": false
+      }
+    },
+    {
+      "path": "/api/v1/receipts/000000000000000000000000",
+      "method": "GET",
+      "status": 503,
+      "expected": 503,
+      "content_type": "application/json; charset=utf-8",
+      "cache_control": "no-store",
+      "envelope_schema": "canli.api.v1",
+      "passed": true,
+      "error_code": "store_unavailable"
+    },
+    {
+      "path": "/api/v1/receipts/000000000000000000000000/badge.svg",
+      "method": "GET",
+      "status": 404,
+      "expected": 404,
+      "content_type": "image/svg+xml; charset=utf-8",
+      "cache_control": "public, max-age=86400",
+      "passed": true
+    },
+    {
+      "path": "/api/v1/validate/breadth",
+      "method": "POST",
+      "status": 503,
+      "expected": 503,
+      "content_type": "application/json; charset=utf-8",
+      "cache_control": "no-store",
+      "envelope_schema": "canli.api.v1",
+      "passed": true,
+      "error_code": "store_unavailable"
+    }
+  ],
+  "scope": "Unconfigured preview failure contracts only; no production migration or key issuance."
+}
