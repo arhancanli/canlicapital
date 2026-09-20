@@ -424,3 +424,14 @@ main navigation pages and assigned distinct editorial intent ownership: 91 owner
 pages unchanged. Audit and three validator tests pass. See SEARCH_INTENT_REVIEW.md.
 Founder snapshot still reports0 forward observations versus5 in newer engine
 inspection; freshness review remains open. No indexing or factual sign-off implied.
+
+## Founder evidence freshness — 2026-09-20
+
+Navigation commit bbec4dd9 passed CI35494409052. Founder zero-observation count
+matches the hash-bound September15 snapshot; it was mislabeled as current.
+Page now shows its exact generated time and reporting window, links the report,
+and marks walkthrough narration as snapshot content. Source JSON unchanged.
+Build rejects mismatched report bytes/count/status/dates; built-page audit checks
+source binding and date disclosure. Full build/verify pass:6+381tests; six browser
+checks across Chromium/WebKit and320/390/1440widths pass. Complete publication
+bundle refresh to newer engine evidence remains open; no production change.

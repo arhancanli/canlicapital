@@ -1,5 +1,6 @@
 // Build the source-bound founder case study at /founder.
 
+import { createHash } from "node:crypto";
 import { existsSync, readFileSync, readdirSync, writeFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -43,6 +44,28 @@ function assertPositiveFacts(facts) {
       throw new Error(`founder page: derived fact "${key}" is empty`);
     }
   }
+}
+
+export function forwardSnapshot(evidenceMap, bytes) {
+  const binding = evidenceMap.source_bindings?.forward;
+  if (binding?.path !== "artifacts/engineering/forward_evidence_maturity.json" ||
+      binding.sha256 !== createHash("sha256").update(bytes).digest("hex")) {
+    throw new Error("founder page: forward snapshot source binding mismatch");
+  }
+  const report = JSON.parse(bytes);
+  const facts = evidenceMap.evidence?.forward_truth?.facts;
+  const record = report.record;
+  if (!Number.isSafeInteger(record?.daily_return_observations) || record.daily_return_observations < 0 ||
+      facts?.daily_return_observations !== record.daily_return_observations ||
+      facts?.sharpe_status !== report.sharpe_evidence?.status) {
+    throw new Error("founder page: forward snapshot facts mismatch");
+  }
+  if (typeof report.generated_at !== "string" || !Number.isFinite(Date.parse(report.generated_at)) ||
+      !/^\d{4}-\d{2}-\d{2}$/.test(record.first_mark) || !/^\d{4}-\d{2}-\d{2}$/.test(record.last_mark) ||
+      record.first_mark > record.last_mark) {
+    throw new Error("founder page: forward snapshot dates missing or invalid");
+  }
+  return { generatedAt: report.generated_at, firstMark: record.first_mark, lastMark: record.last_mark };
 }
 
 function assertEvidenceMap(evidenceMap) {
@@ -89,6 +112,7 @@ function main() {
   const track = readJson("track_record.json");
   const evidenceMap = readJson("stanford_cs_evidence_map.json");
   assertEvidenceMap(evidenceMap);
+  const snapshot = forwardSnapshot(evidenceMap, readFileSync(resolve(GLASSBOX, "forward_evidence_maturity.json")));
 
   const contribution = evidenceMap.contribution_map;
   const walkthrough = evidenceMap.ninety_second_walkthrough;
@@ -161,7 +185,7 @@ function main() {
 <meta name="description" content="${escapeHtml(description)}" />
 <link rel="canonical" href="${ORIGIN}/founder" />
 <meta name="author" content="${AUTHOR}" />
-<meta name="canli:sources" content="stanford_cs_evidence_map.json kill_log.json trial_ledger.json transparency_log.json founder_commitment.json track_record.json" />
+<meta name="canli:sources" content="stanford_cs_evidence_map.json forward_evidence_maturity.json kill_log.json trial_ledger.json transparency_log.json founder_commitment.json track_record.json" />
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
 <meta property="og:type" content="profile" />
 <meta property="og:site_name" content="${PUBLISHER}" />
@@ -202,15 +226,16 @@ ${renderProductShellHeader({ active: "founder" })}
         <a class="founder-button" href="#contribution">Inspect who did what</a>
       </div>
     </div>
-    <aside class="founder-status" aria-label="Current evidence status">
-      <div class="founder-status__head"><span>Current record</span><strong>Source-bound</strong></div>
+    <aside class="founder-status" aria-label="Published evidence snapshot">
+      <div class="founder-status__head"><span>Published snapshot</span><strong>Source-bound</strong></div>
       <dl>
         <div><dt>Paper record since</dt><dd>${escapeHtml(facts.goLive)}</dd></div>
-        <div><dt>Forward observations</dt><dd>${forward.daily_return_observations}</dd></div>
+        <div><dt>Forward observations in snapshot</dt><dd>${forward.daily_return_observations}</dd></div>
         <div><dt>Sleeves</dt><dd>${forward.current_sleeves} / ${forward.target_sleeves}</dd></div>
         <div><dt>External reviews</dt><dd>${external.completed_reviews}</dd></div>
         <div><dt>Foundry</dt><dd>${escapeHtml(foundryStatus)}</dd></div>
       </dl>
+      <p>Forward evidence generated <time datetime="${escapeHtml(snapshot.generatedAt)}">${escapeHtml(new Date(snapshot.generatedAt).toISOString().slice(0, 16).replace("T", " "))} UTC</time>, covering the current configuration from ${escapeHtml(snapshot.firstMark)} through ${escapeHtml(snapshot.lastMark)}. This is a published snapshot, not a live count. <a href="/glassbox/forward_evidence_maturity.json">Inspect the source report.</a></p>
       <p>These are project facts, not an admissions claim or a performance claim.</p>
     </aside>
   </section>
@@ -221,6 +246,7 @@ ${renderProductShellHeader({ active: "founder" })}
       <h2 id="walkthrough-title">Follow the decision, not the pitch.</h2>
       <p>Six evidence stops tell the story in order. The script is ready. The video has not been recorded.</p>
     </header>
+    <p class="founder-boundary">The narration preserves the published evidence-map snapshot. Its forward count covers marks through ${escapeHtml(snapshot.lastMark)}; it is not a current observation count.</p>
     <ol class="founder-spine">${walkthrough.chapters.map(renderChapter).join("\n")}</ol>
     <p class="founder-boundary">${escapeHtml(walkthrough.claim_boundary)}</p>
   </section>
@@ -258,7 +284,7 @@ ${renderProductShellHeader({ active: "founder" })}
   <section class="founder-section founder-burden" id="open-burden" aria-labelledby="burden-title">
     <div class="founder-burden__intro"><p class="founder-label">Open burden</p><h2 id="burden-title">The unfinished work belongs in the result.</h2><p>I do not have a mature forward Sharpe, independent review, a deployed research Foundry or funded performance. Those are not footnotes. They define what the next evidence must establish.</p></div>
     <dl class="founder-burden__grid">
-      <div><dt>Forward record</dt><dd>${forward.daily_return_observations} observations</dd><small>${escapeHtml(humanizeStatus(forward.sharpe_status))}</small></div>
+      <div><dt>Forward snapshot through ${escapeHtml(snapshot.lastMark)}</dt><dd>${forward.daily_return_observations} observations</dd><small>${escapeHtml(humanizeStatus(forward.sharpe_status))}</small></div>
       <div><dt>Sleeve objective</dt><dd>${forward.current_sleeves} of ${forward.target_sleeves}</dd><small>Target not achieved</small></div>
       <div><dt>Independent review</dt><dd>${external.completed_reviews} completed</dd><small>${external.independent_replications} replications</small></div>
       <div><dt>Foundry deployment</dt><dd>Planned</dd><small>Not applied to DigitalOcean. <a href="/foundry">Inspect the design status.</a></small></div>
@@ -298,4 +324,4 @@ ${renderProductShellFooter()}
   );
 }
 
-main();
+if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) main();

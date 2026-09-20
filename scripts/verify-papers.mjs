@@ -555,6 +555,14 @@ if (existsSync(founderFile)) {
     );
     process.exit(1);
   }
+  const forwardBytes = readFileSync(resolve(DIST, "glassbox", "forward_evidence_maturity.json"));
+  const forwardReport = JSON.parse(forwardBytes);
+  check(createHash("sha256").update(forwardBytes).digest("hex") === stanfordEvidence.source_bindings.forward.sha256,
+    "/founder forward snapshot does not match the evidence-map source binding");
+  const snapshotTimestamp = new Date(forwardReport.generated_at).toISOString().slice(0, 16).replace("T", " ") + " UTC";
+  check(founderHtml.includes(`datetime="${forwardReport.generated_at}"`) && founderHtml.includes(snapshotTimestamp) &&
+    founderHtml.includes("not a live count") && !founderHtml.includes("<span>Current record</span>"),
+    "/founder does not disclose the dated snapshot boundary");
   const forwardFacts = stanfordEvidence.evidence.forward_truth.facts;
   const systemsFacts = stanfordEvidence.evidence.systems_and_provenance.facts;
   const governanceFacts = stanfordEvidence.evidence.research_governance.facts;
@@ -610,7 +618,7 @@ if (existsSync(founderFile)) {
     renderings.add(value.toLocaleString("en-US"));
   }
   walkthrough.chapters.forEach((_, index) => renderings.add(String(index + 1).padStart(2, "0")));
-  for (const date of [chainLog.entries[0].date, trackRecord.go_live_date]) renderings.add(date);
+  for (const date of [chainLog.entries[0].date, trackRecord.go_live_date, forwardReport.record.first_mark, forwardReport.record.last_mark]) renderings.add(date);
   // The inception year is a published claim like any other, so it is traced to its
   // source in config/brand.js rather than exempted.
   const founded = (readFileSync(resolve(ROOT, "config/brand.js"), "utf8")
@@ -627,6 +635,8 @@ if (existsSync(founderFile)) {
   // 47 "untraceable" numbers, all of them path data. Stripped for the same reason
   // <script> and <pre> already are.
   const prose = imageProse(founderHtml)
+    .replaceAll(forwardReport.generated_at, " ")
+    .replaceAll(snapshotTimestamp, " ")
     .replace(/<script[\s\S]*?<\/script>/g, " ")
     .replace(/<head>[\s\S]*?<\/head>/g, " ")
     .replace(/<svg[\s\S]*?<\/svg>/g, " ")

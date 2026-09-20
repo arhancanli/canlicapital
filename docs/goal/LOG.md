@@ -1089,3 +1089,17 @@ query hypotheses, and documented overlapping tool/directory boundaries. Audit no
 Three intent tests pass. Recorded founder-page zero-observation snapshot conflict
 with newer five-observation engine evidence for a separate freshness review.
 No content generation, production publication, search demand or indexing claim.
+
+## 2026-09-20 — dated founder evidence snapshot
+
+Traced founder count0 to public forward report generated September15, byteSHA
+7d1752b43526d6e2f042fa980d1f2e80295d445422fa349eaf4314049dd53739 matching evidence-map
+binding. Replaced current-record labeling with dated snapshot, source link and
+window; preserved narration with historical boundary. Added source-binding and
+fact/date rejection, three regressions and independent built-page provenance check.
+Initial audit failed on newly introduced dates; exact source tracing fixed it.
+Full build/verify passes6+381tests; six Chromium/WebKit widthchecks pass. Browser
+probe initially compared uppercased rendered text; corrected DOM-text assertion.
+No historical source changed. Restored unrelated generated churn from clean start.
+Newer engine evidence still requires complete publication refresh. Prior head
+bbec4dd9 CI35494409052 passes. All owner outcomes remain active/unestablished.
