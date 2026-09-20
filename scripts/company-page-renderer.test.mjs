@@ -946,3 +946,22 @@ test('PROCEPT and Viridian retain loss measures and historical review scope', ()
     assert.equal(companyFilingNotes(changed, tags[0]).length, 0);
   }
 });
+
+test('American Strategic and 1stdibs retain split and exclusion context', () => {
+  for (const [fixture, cik, phrase, value, period] of [
+    ['american-strategic', '0001595527', /zero numerator adjustments for all three years/, 2546562, '2025-12-31'],
+    ['1stdibs', '0001600641', /treasury-stock method for potential dilution/, 36096469, '2025-12-31'],
+  ]) {
+    const raw = gunzipSync(readFileSync(new URL(`./fixtures/editorial/${fixture}-reviewed-source.json.gz`, import.meta.url)));
+    const record = companyReference(raw, { expectedCik: cik, fetchedAt: '2026-09-20T00:00:00Z', selectionPolicy: 'extended-v19' });
+    verifyCompanyReference(record, raw);
+    const original = structuredClone(record.concepts);
+    record.source_snapshot = `/company-data/sources/${record.source_sha256}.json.gz`;
+    const tags = ['EarningsPerShareBasic', 'EarningsPerShareDiluted', 'WeightedAverageNumberOfSharesOutstandingBasic', 'WeightedAverageNumberOfDilutedSharesOutstanding'];
+    for (const target of [...tags, 'overview']) assert.match(renderCompanyPages(record, { target })[0].html, phrase);
+    assert.ok(record.concepts.find(c => c.tag === tags[2]).observations.some(r => r.end === period && r.val === value));
+    assert.deepEqual(record.concepts, original);
+    const changed = structuredClone(record); changed.source_sha256 = '0'.repeat(64);
+    assert.equal(companyFilingNotes(changed, tags[0]).length, 0);
+  }
+});

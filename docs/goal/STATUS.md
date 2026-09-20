@@ -9,20 +9,20 @@ which links older records. Historical process states are not live telemetry.
 ## Current work and next action
 
 Worktree `/Users/arhancanli/canlicapital-expansion-20260919`, branch
-`evidence/share-context-batch34-20260921`. PR101merged54af7f9bafter four passing
-CI35538520056checks at94fd73e8. Tested and merged trees match exactly.
+`evidence/share-context-batch35-20260921`. PR102merged402b2a87after four passing
+CI35538664527checks atcb126c8a. Tested and merged trees match exactly.
 
-Latest registered ledger:company-basic-diluted-registered-scope-batch34-20260921.json.gz.
-Of1,176batch observations,938reviewed/218pending/20withdrawn.96reviewed are explicitly
+Latest registered ledger:company-basic-diluted-registered-scope-batch35-20260921.json.gz.
+Of1,176batch observations,962reviewed/194pending/20withdrawn.96reviewed are explicitly
 presentation-only; dilution cause is not established for those rows. The registry
 pins exact reports/issuers/dispositions/counts/states. Numerical agreement alone
 never approves scope. Workflow in SCOPE_REVIEW.md; original ledgers preserved.
 
-Latest24reviews cover PROCEPT BioRobotics and Viridian. PROCEPT uses net loss
-rather than comprehensive loss and retains scale-three shares. Viridian's review
-is explicitly limited to selected2021–2023observations from its2023annual filing;
-it does not approve later periods. Both retain loss-period anti-dilution context.
-56renderer/ledger tests pass; report replays byte-identically. Next new index89;
+Latest24reviews cover American Strategic Investment and1stdibs. American
+Strategic retains two-class allocation, zero numerator adjustments, the stated
+LTIP exclusion alternatives and already-reflected January2023one-for-eight split.
+1stdibs retains treasury-stock and options/RSU loss-period exclusion context.
+57renderer/ledger tests pass; report replays byte-identically. Next new index91;
 earlier gaps remain.96presentation-only reviews retain limits.
 V19six Outset2023–2025share-scale holds remain; no silent rescaling or second split
 conversion. EPS and older periods remain unapproved by the hold report.

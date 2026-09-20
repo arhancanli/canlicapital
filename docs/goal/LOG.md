@@ -904,3 +904,15 @@ not approval of later filings. Both state loss-period anti-dilution.56renderer/
 ledger tests pass; report replays byte-identically; exactly24rows advance.
 938reviewed/218pending/20withdrawn,96presentation-only. Next index89; no runtime
 rebuild, archival supplement, deployment or indexing gain. All objectives active.
+
+## 2026-09-21 — zero allocation adjustments and retrospective split context
+
+Previous turn completed24PROCEPT/Viridian reviews. PR102four CI35538664527checks
+passed atcb126c8a; merged402b2a87e2ad070075fb8e21d2750025b7e68856, full tree
+5f21775e89ad5d9c1d4f673cc5b366e0373b5bfamatches tested head. Reviewed24American
+Strategic/1stdibs observations. American Strategic two-class allocation has zero
+numerator adjustments; LTIP exclusion alternatives preserved, no second split
+adjustment.1stdibs options/RSUs excluded in all presented loss periods.57renderer/
+ledger tests pass; report replays byte-identically; exactly24rows advance.
+962reviewed/194pending/20withdrawn,96presentation-only. Next index91; no runtime
+rebuild, archival supplement, deployment or indexing gain. All objectives active.
