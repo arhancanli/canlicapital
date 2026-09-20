@@ -101,3 +101,16 @@ SARcash,USNequity). Pinned exact current observations and source/manifest hashes
 no unit correction or defect claim. Initial broad diagnostic output included
 single-unit BRLhistories and was truncated; narrowed the actual target file to
 these three exact cases. No source request, upload, deployment or indexing gain.
+
+## 2026-09-20 — three currency-context captures and review
+
+Previous goal turn confirmed exact PR51head and four passing checks; this turn
+merged9ea2b5aa and verified exact tree equality. Captured three primary filings
+and two original legacy instances with paced requests;81923/79635terminal0.
+All three selected numbers match. Monolithic AFN conflicts with dollar disclosure;
+51Talk SAR is expressly supported but describes a narrower currency component
+including time deposits. Both require exact observation holds, pending code.
+SoFi opening-balance USN/date semantics remain pending and predecessor identity
+retained. Review and legacy reports reproduce byte-identically offline. Initial
+51Talk table diagnostic failed because fact is narrative; corrected inspection
+retains full paragraph. No source corrections, archival claim or live/indexed gain.
