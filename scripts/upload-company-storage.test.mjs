@@ -24,17 +24,21 @@ function fixture(t) {
 function server(fixture, options = {}) {
   const objects = new Map(), calls = [];
   const storage = createSupabaseStorage({ projectUrl: 'https://example.supabase.co', bucket: 'company-runtime', serviceKey: 'secret-test',
+    readAttempts: options.readAttempts ?? 1, retryBudget: options.retryBudget ?? 10, pause: async () => {},
     fetcher: async (url, init) => {
       calls.push({ url, ...init });
       assert.equal(init.redirect, 'error');
       const key = url.split('/company-runtime/')[1];
       if (init.method === 'POST') {
         assert.equal(init.headers['x-upsert'], 'false'); assert.equal(init.headers.apikey, 'secret-test');
+        if (options.failCreate) return new Response('', { status: 503 });
         if (objects.has(key)) return new Response('', { status: 409 });
         objects.set(key, Buffer.from(init.body));
         return new Response('{}');
       }
       assert.equal(init.headers.Authorization, undefined); assert.equal(init.headers.apikey, undefined);
+      const status = options.readStatuses?.shift();
+      if (status) return new Response('{}', { status });
       if (options.failRead) return new Response('{"statusCode":"403","error":"Unauthorized"}', { status: 400 });
       if (!objects.has(key)) return new Response('{"statusCode":"404","error":"not_found"}', { status: 400 });
       return new Response(objects.get(key), { headers: { 'content-type': fixture.files.find(f => f.key === key).content_type,
@@ -55,6 +59,28 @@ test('creates immutable objects, verifies public bytes, and resumes by independe
   assert.ok(resumed.files.every(f => f.action === 'verified_existing'));
   assert.equal(s.calls.filter(c => c.method === 'POST').length, 2);
   assert.ok(!JSON.stringify(result).includes('secret-test'));
+});
+
+test('explicit read retry policy preserves failed attempts and never repeats create requests', async t => {
+  const f = fixture(t), s = server(f, { readAttempts: 3, readStatuses: [502, 504] });
+  const receipt = await uploadCompanyStorage({ ...f, storage: s.storage });
+  assert.equal(receipt.complete, true); assert.equal(receipt.read_retries.length, 2);
+  assert.deepEqual(receipt.read_retries.map(r => r.attempt), [1, 2]);
+  assert.equal(s.calls.filter(c => c.method === 'POST').length, 2);
+  const failed = server(f, { readAttempts: 3, failCreate: true });
+  await assert.rejects(uploadCompanyStorage({ ...f, storage: failed.storage }), /create rejected/);
+  assert.equal(failed.calls.filter(c => c.method === 'POST').length, 1);
+});
+
+test('read retries stop at the global budget and never retry permission or rate-limit responses', async t => {
+  const f = fixture(t), s = server(f, { readAttempts: 3, retryBudget: 1, readStatuses: [502, 502, 502] });
+  await assert.rejects(uploadCompanyStorage({ ...f, storage: s.storage }), /read rejected/);
+  assert.equal(s.calls.length, 2);
+  for (const status of [401, 403, 429]) {
+    const rejected = server(f, { readAttempts: 3, readStatuses: [status] });
+    await assert.rejects(uploadCompanyStorage({ ...f, storage: rejected.storage }), /read rejected/);
+    assert.equal(rejected.calls.length, 1);
+  }
 });
 
 test('validates the entire local plan before network access', async t => {

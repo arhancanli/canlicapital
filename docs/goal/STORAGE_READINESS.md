@@ -260,3 +260,15 @@ code hashes and failing keys; recognized transport subtypes are sanitized.
 GET checks now also enforce the immutable one-year cache policy. Actual HEAD
 responses report no-cache and are not used to infer GET caching. The separate
 canary GET-header receipt verifies both representations and X-Robots-Tag:none.
+
+Second transfer stopped at240objects/18,275,734bytes with recorded HTTP502.
+Current uploader adds opt-in readAttempts (default1, maximum3) and at most10
+read retries across a run, with1s/2sdelay. Every attempted retry is preserved in
+the receipt. This supersedes the original no-read-retry policy only when explicitly
+selected; writes still never retry automatically or overwrite. Corruption,401,
+403and429fail immediately. Eleven uploader/planner tests pass.
+
+Prepared audit-hosted-company-staging.mjs for explicit wrapper checks: unavailable
+mode checks404/405and no-store/noindex503GET/HEAD; ready mode samples first/middle/
+last companies, exact downloads, canonical HTML/assets, HEAD/ETag and true404s.
+It does not establish clean canonical routing or complete corpus HTTP coverage.

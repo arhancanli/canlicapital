@@ -36,7 +36,11 @@ export function validateStoragePlan(raw, expectedHash) {
   return plan;
 }
 
-export function createSupabaseStorage({ projectUrl, bucket, serviceKey, fetcher = fetch }) {
+export function createSupabaseStorage({ projectUrl, bucket, serviceKey, fetcher = fetch,
+  readAttempts = 1, retryBudget = 10, pause = ms => new Promise(resolve => setTimeout(resolve, ms)) }) {
+  if (!Number.isInteger(readAttempts) || readAttempts < 1 || readAttempts > 3 ||
+      !Number.isInteger(retryBudget) || retryBudget < 0 || retryBudget > 10) throw new Error('Invalid bounded read retry policy');
+  let retries = 0;
   const base = new URL(projectUrl);
   if (base.protocol !== 'https:' || base.username || base.password || base.search || base.hash ||
       base.pathname !== '/' || !/^[a-z0-9][a-z0-9-]{0,62}$/.test(bucket) || !serviceKey) throw new Error('Invalid storage destination');
@@ -47,12 +51,14 @@ export function createSupabaseStorage({ projectUrl, bucket, serviceKey, fetcher 
     catch (error) {
       const code = error?.cause?.code ?? error?.code ?? error?.name;
       const safe = ['ECONNRESET', 'ECONNREFUSED', 'ETIMEDOUT', 'ENOTFOUND', 'UND_ERR_CONNECT_TIMEOUT', 'UND_ERR_SOCKET', 'TimeoutError', 'AbortError'].includes(code) ? code : 'UNKNOWN_TRANSPORT';
-      throw new Error(`Storage request failed (${safe}); no automatic retry`);
+      const failure = new Error(`Storage request failed (${safe})`);
+      failure.retryableRead = safe !== 'UNKNOWN_TRANSPORT';
+      throw failure;
     }
   }
-  return {
+  const adapter = {
     destination: publicBase,
-    async read(file) {
+    async readOnce(file) {
       if (!KEY.test(file.key)) throw new Error('Invalid object key');
       const response = await request(publicBase + file.key, { headers: { 'Accept-Encoding': 'identity' } });
       if (!response.ok) {
@@ -68,7 +74,9 @@ export function createSupabaseStorage({ projectUrl, bucket, serviceKey, fetcher 
         let error; try { error = JSON.parse(body); } catch { /* fail closed */ }
         if ((response.status === 400 || response.status === 404) &&
             String(error?.statusCode) === '404' && error?.error === 'not_found') return null;
-        throw new Error(`Storage read rejected (${response.status})`);
+        const failure = new Error(`Storage read rejected (${response.status})`);
+        failure.retryableRead = [502, 503, 504].includes(response.status);
+        throw failure;
       }
       const encoding = response.headers.get('content-encoding');
       const cache = (response.headers.get('cache-control') ?? '').toLowerCase().split(',').map(s => s.trim());
@@ -98,6 +106,17 @@ export function createSupabaseStorage({ projectUrl, bucket, serviceKey, fetcher 
       if (!response.ok) throw new Error(`Storage create rejected (${response.status}); no overwrite or retry`);
     },
   };
+  return { ...adapter, async read(file, { onRetry = () => {} } = {}) {
+    for (let attempt = 1; ; attempt++) {
+      try { return await adapter.readOnce(file); }
+      catch (error) {
+        if (!error.retryableRead || attempt >= readAttempts || retries >= retryBudget) throw error;
+        retries++;
+        onRetry({ attempt, error: error.message, delay_ms: attempt * 1000, global_retry_number: retries });
+        await pause(attempt * 1000);
+      }
+    }
+  } };
 }
 
 export async function uploadCompanyStorage({ planBytes, planHash, storage, record = () => {}, concurrency = 1 }) {
@@ -106,8 +125,11 @@ export async function uploadCompanyStorage({ planBytes, planHash, storage, recor
   const receipt = { schema: 'canli.company-storage-transfer.v1', plan_sha256: planHash,
     code_sha256: catalogHash(readFileSync(new URL(import.meta.url))),
     release_hash: plan.release_hash, destination: storage.destination, publication_approved: false,
-    complete: false, files: [], failures: [], scope: 'Runtime transfer only; not capture backup, editorial admission or production activation.' };
+    complete: false, files: [], failures: [], read_retries: [], scope: 'Runtime transfer only; not capture backup, editorial admission or production activation.' };
   record(receipt);
+  const read = file => storage.read(file, { onRetry: event => {
+    receipt.read_retries.push({ key: file.key, ...event }); record(receipt);
+  } });
   let cursor = 0, failure;
   async function worker() {
     while (!failure && cursor < plan.files.length) {
@@ -115,9 +137,9 @@ export async function uploadCompanyStorage({ planBytes, planHash, storage, recor
       try {
         const raw = localBytes(file);
         let action = 'verified_existing';
-        if (await storage.read(file) === null) {
+        if (await read(file) === null) {
           await storage.create(file, raw);
-          if (await storage.read(file) === null) throw new Error('Created object is not publicly retrievable');
+          if (await read(file) === null) throw new Error('Created object is not publicly retrievable');
           action = 'created_and_verified';
         }
         receipt.files.push({ key: file.key, sha256: file.sha256, bytes: file.bytes, action });
@@ -137,10 +159,10 @@ export async function uploadCompanyStorage({ planBytes, planHash, storage, recor
 }
 
 if (process.argv[1] && import.meta.url === pathToFileURL(resolve(process.argv[1])).href) {
-  const [planPath, planHash, projectUrl, bucket, output, concurrency = '1'] = process.argv.slice(2);
-  if (!output) throw new Error('Usage: node scripts/upload-company-storage.mjs PLAN SHA256 PROJECT_URL BUCKET NEW_RECEIPT [CONCURRENCY_1_TO_4]');
+  const [planPath, planHash, projectUrl, bucket, output, concurrency = '1', readAttempts = '1'] = process.argv.slice(2);
+  if (!output) throw new Error('Usage: node scripts/upload-company-storage.mjs PLAN SHA256 PROJECT_URL BUCKET NEW_RECEIPT [CONCURRENCY_1_TO_4] [READ_ATTEMPTS_1_TO_3]');
   if (existsSync(output) || existsSync(output + '.pending')) throw new Error('Receipt already exists; preserve it and use a new path');
-  const storage = createSupabaseStorage({ projectUrl, bucket, serviceKey: process.env.COMPANY_STORAGE_SERVICE_KEY });
+  const storage = createSupabaseStorage({ projectUrl, bucket, serviceKey: process.env.COMPANY_STORAGE_SERVICE_KEY, readAttempts: Number(readAttempts) });
   await uploadCompanyStorage({ planBytes: readFileSync(planPath), planHash, storage, concurrency: Number(concurrency), record: receipt => {
     writeFileSync(output + '.pending', JSON.stringify(receipt, null, 2) + '\n', { mode: 0o600 });
     renameSync(output + '.pending', output);
