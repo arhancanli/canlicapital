@@ -406,7 +406,15 @@ test('Cedar vested-share context preserves facts and distinguishes EPS from FFO'
   assert.deepEqual(record.concepts, original);
   const changed = structuredClone(record);
   changed.concepts.find(c => c.tag === tags[0]).observations.find(r => r.end === '2020-12-31').val = 0;
-  assert.equal(companyFilingNotes(changed, tags[0]).length, 0);
+  const oldChangedNotes = companyFilingNotes(changed, tags[0]);
+  assert.equal(oldChangedNotes.some(n => n.filing_url.includes('cdr-20221231')), false);
+  assert.equal(oldChangedNotes.length, 1);
+  assert.match(oldChangedNotes[0].text, /does not establish a reason/);
+  const newerChanged = structuredClone(record);
+  newerChanged.concepts.find(c => c.tag === tags[0]).observations.find(r => r.end === '2025-12-31').val = 0;
+  const newerChangedNotes = companyFilingNotes(newerChanged, tags[0]);
+  assert.equal(newerChangedNotes.length, 1);
+  assert.match(newerChangedNotes[0].filing_url, /cdr-20221231/);
 });
 
 test('loss-share conventions preserve positive CAD loss magnitudes and historical instrument disclosure', () => {
@@ -1045,6 +1053,24 @@ test('Emerson and Reliability retain absent instruments and limited zero-EPS pre
   for (const [fixture, cik, phrase, value, period] of [
     ['emerson-radio', '0000032621', /no outstanding potentially dilutive instruments/, 21042652, '2026-03-31'],
     ['reliability', '0000034285', /do not mean the company broke even/, 300000000, '2025-12-31'],
+  ]) {
+    const raw = gunzipSync(readFileSync(new URL(`./fixtures/editorial/${fixture}-reviewed-source.json.gz`, import.meta.url)));
+    const record = companyReference(raw, { expectedCik: cik, fetchedAt: '2026-09-20T00:00:00Z', selectionPolicy: 'extended-v20' });
+    verifyCompanyReference(record, raw);
+    const original = structuredClone(record.concepts);
+    record.source_snapshot = `/company-data/sources/${record.source_sha256}.json.gz`;
+    const tags = ['EarningsPerShareBasic', 'EarningsPerShareDiluted', 'WeightedAverageNumberOfSharesOutstandingBasic', 'WeightedAverageNumberOfDilutedSharesOutstanding'];
+    for (const target of [...tags, 'overview']) assert.match(renderCompanyPages(record, { target })[0].html, phrase);
+    assert.ok(record.concepts.find(c => c.tag === tags[2]).observations.some(r => r.end === period && r.val === value));
+    assert.deepEqual(record.concepts, original);
+    const changed = structuredClone(record); changed.source_sha256 = '0'.repeat(64);
+    assert.equal(companyFilingNotes(changed, tags[0]).length, 0);
+  }
+});
+
+test('Cedar retains positive common income and unestablished diluted treatment', () => {
+  for (const [fixture, cik, phrase, value, period] of [
+    ['cedar-2025', '0000761648', /positive common-shareholder income despite a consolidated net loss/, 13718169, '2025-12-31'],
   ]) {
     const raw = gunzipSync(readFileSync(new URL(`./fixtures/editorial/${fixture}-reviewed-source.json.gz`, import.meta.url)));
     const record = companyReference(raw, { expectedCik: cik, fetchedAt: '2026-09-20T00:00:00Z', selectionPolicy: 'extended-v20' });

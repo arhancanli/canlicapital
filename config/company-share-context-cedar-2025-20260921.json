@@ -1,0 +1,30 @@
+{
+  "schema": "canli.reviewed-share-context-spec.v1",
+  "decisions": [
+    {
+      "cik": "0000761648",
+      "accession": "0000761648-26-000008",
+      "source_sha256": "dbcce42a16a42a13e297263e7e6f4477ce22ddf0a881b5df29c7b785e0ed456f",
+      "primary_sha256": "b1cb242293c7c83d9d80baa1d98a65a78c2d216ed6ab62c09b545fb860da2efa",
+      "fixture": "scripts/fixtures/editorial/cedar-2025-reviewed-source.json.gz",
+      "observations": 8,
+      "period_ends": [
+        "2024-12-31",
+        "2025-12-31"
+      ],
+      "table_index": 38,
+      "share_scale": "0",
+      "table_requires": [
+        "Preferred stock dividends",
+        "Deemed contributions on preferred stock",
+        "Net income attributable to common shares",
+        "13,718,169"
+      ],
+      "paragraph_requires": [
+        "Basic earnings per share (\"EPS\") is calculated by dividing net income attributable to the Company"
+      ],
+      "reader_note": "For Cedar\u2019s 2024\u20132025 figures, EPS uses income attributable to common shareholders after preferred dividends and deemed contributions on preferred stock. In 2025, these allocations produce positive common-shareholder income despite a consolidated net loss; that loss alone cannot explain dilution treatment. The filing labels its EPS policy as basic, while the retained inline facts report equal basic and diluted EPS and share counts. This review confirms that presentation and numerator reconciliation only; it does not establish a reason for the equal diluted figures or carry forward a prior filing\u2019s dilution explanation. All values remain as reported.",
+      "disposition": "REPORTED_PRESENTATION_REVIEWED_CAUSE_NOT_ESTABLISHED"
+    }
+  ]
+}
