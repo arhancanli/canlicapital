@@ -9,10 +9,14 @@ which links older records. Historical process states are not live telemetry.
 ## Current work and next action
 
 Worktree `/Users/arhancanli/canlicapital-expansion-20260919`, branch
-`evidence/review-supplement-archive-20260921`. PR116mergedb926c38b45da076c1e8bd079e5b4728d5feaf36b
-with four passing CI35541784151checks at2389305a. Full merged/tested tree
-b2884f4788bf86c1524d1be84f87c8b6c0c95a21 matches. PR114closed as superseded.
+`evidence/runtime-v22-20260921`. PR117 merged as
+`bd211f950ab1c317ea8a23915e338302f871d0ea` after all four checks in CI35542042146
+passed at0c216a1f. Tested and merged tree053545bbabd9cd80865e700ce159f2d9c2aa762d
+match. The local v22 runtime build and inventory verification are complete.
 
+Active process: full local HTTP measurement **31666** (PID22415 at the last check).
+Poll that handle. It is not a completed audit and must not be restarted on timeout.
+Expected report: company-five-cohort-v22-http-measurement-20260921.json.
 
 Latest registered ledger:company-basic-diluted-registered-scope-v22-20260921.json.gz.
 Of1,176batch observations,1148reviewed/0pending/28withdrawn.130reviewed are explicitly
@@ -32,8 +36,8 @@ its ledger remains1148reviewed/0pending/28withdrawn,130presentation-only.
 
 V21 INVO2014two conflicting denominators remain held. First100-filing scope batch
 is closed, but broader capture, accounting scope and usefulness remain open.
-Latest built runtime remainsv14at90,736candidate URLs; current runtime/quality
-rebuild and hosting remain pending; scope-review archive supplement now verified. No publication admission.
+Latest built runtime is v22 with 90,732 candidate URLs. Runtime and quality inventory
+are rebuilt; HTTP audit, hosted delivery and release admission remain pending.
 V22full-corpus comparison21300TERMINAL0verified3,323companies/87,342histories
 against frozenv14:40exact held observations sincev14, two prior Valhi constant
 history omissions and two now-empty Iovance histories, policy/notices only.
@@ -47,11 +51,21 @@ Hash-locked parser wheels installed offline in a fresh environment; saved script
 source fixtures, original captures and registry retained. Five archive safety tests
 pass. Code base2389305a; the new packager itself is saved/hash-bound in the archive.
 This is local restoration of recorded interpretations, not independent certification,
-full-corpus/runtime replay or offsite backup. No local worker remains active.
+full-corpus/runtime replay or offsite backup. The newer v22 runtime has not yet
+been sealed in a refreshed full-runtime archive.
 
-Next: rebuild runtime/catalog/discovery/storage plan under v22, refresh quality
-inventory and complete hosted delivery gates. Broader source/usefulness work remains.
-No deployment or confirmed indexing gain.
+V22 runtime verification31067 TERMINAL0 proves the exact 90,732 sitemap leaf URLs:
+3,323 company overviews, 87,342 histories and 67 directories. Shards contain40,732
+and50,000 URLs. Original source descriptors, company membership and capture dates
+match frozen v14. All five original queue/exclusion records match apart from the
+explicitly verified newer selector code hash;1,026 exclusions remain unchanged.
+The storage plan contains10,360 immutable objects totaling1,280,333,696 bytes.
+Five stage jobs, combination68103, catalog90535, quality42445, release26878,
+discovery29316, storage18544 and app build51617 all finished with exit0.
+
+Next: finish HTTP audit31666, investigate failures if any, complete current runtime
+retention and hosted delivery gates. Broader source/usefulness work remains open.
+No production deployment or confirmed indexing gain.
 
 ## Editorial policy and evidence
 
@@ -84,10 +98,12 @@ comparison92502, Valhi2022capture34865and six-instance capture9870 all TERMINAL0
 Numerical closure is not dilution/context/usefulness approval. Further primary
 coverage remains open; do not present either sample as full-corpus admission.
 
-Current built-v14quality inventory:13,142flagged histories; overlapping reasons
-10,630historical-only,1,307multi-unit,400partially historical units,75constant,
-74zero-only,1,494pages in747equal groups. V22needs refreshed inventory. Flags are
-not automatically defects; unflagged pages are not automatically admitted.
+Current v22 quality inventory flags13,137 histories (overlapping reasons):
+10,634 historical-only,1,304 multiple-unit,397 partially historical-unit,75 constant,
+74 zero-only;1,488 pages occur in744 equal-vector groups. Full report and compressed
+copy are retained with hashes and verified roundtrip. Flags do not establish defects;
+unflagged histories are not automatically admitted. Compared with v14, four histories
+are omitted and five fewer histories are flagged; this is not growth or publication.
 
 ## Retained archives
 
@@ -111,11 +127,13 @@ artifacts/seo retain hashes, limitations and original failures.
 
 ## Hosted delivery and production
 
-Latest built combined runtime remains v14:3,323companies +87,346histories
-+67directories =90,736candidate URLs. Two verified sitemap shards40,736/50,000.
-10,360objects/1,280,306,303bytes. V22selected changes are not yet that runtime.
-Release10f90cd6849d5b0a358f2b9c7fed37ceaa8587561053cc490cd34072733a98e1;
-other v14roots in historical STATUS and versioned discovery/plan receipts.
+Latest built runtime v22:3,323 companies +87,342 histories +67 directories =90,732
+candidate URLs. This is staged inventory, not live pages. Exact roots:
+- Release: 7573eb42d7966d70a45d12513f7a5b2ef75195ffa25d5b30f39ba9a5c3f4c5fc
+- Catalog: 9bb0a722eeac2035849cc892eaf222bd6a7047d56f466bffa1e17312cf370f6d
+- Download index: ee38265e5ae708ea6ba1c5af518b05d15c4261af05b78ed6aef9529e0bd2bda5
+- Delivery manifest: 16a18cdc8d0bb19e6363599a0b491a8bb9e06aeebadb9c33b5e34f69e9110271
+- Storage plan: 7518e20430da19af1ddbd1217c5e5b447fb5f41ad757156cf15c4a3060353aab
 
 Uploader26312 TERMINAL429at5,625objects; recovery77617 deliberately superseded
 at2,412reverified objects; v10uploader82504 deliberately superseded at477objects.

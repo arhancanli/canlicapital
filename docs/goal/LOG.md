@@ -1160,3 +1160,30 @@ Packager branch rebased unpublished onto verified main; full tree before/after
 Next runtime/catalog/discovery/storage rebuild underv22and quality refresh, then
 hosted gates; broader source/usefulness remains open. No deployment/indexing gain.
 All owner objectives remain active.
+
+
+## 2026-09-21 — v22 runtime rebuilt; full HTTP audit running
+
+Previous turn sealed/restored scope supplement. PR117 all four CI35542042146
+checks passed at0c216a1f; mergedbd211f950ab1c317ea8a23915e338302f871d0ea, exact
+full tree053545bbabd9cd80865e700ce159f2d9c2aa762d matches. Staged all five original
+cohorts under v22:42802/9382/76873/29425/75269 all TERMINAL0. Seven pilot source
+hashes match frozen v14. First comparison failed because capture_review includes
+the selector code hash; inspected all five deltas, only that hash differs. Corrected
+comparison pins it to the actual current selector; company membership, compressed
+source descriptors, queues, refresh bindings and1,026 exclusions unchanged.
+Combination68103/catalog90535/quality42445/release26878/discovery29316/storage18544
+all TERMINAL0. Inventory verifier31067 TERMINAL0 checks exact90,732 sitemap leaves,
+3,323 companies/87,342 histories/67 directories, shards40,732/50,000, consistent
+release/catalog/download/storage roots.10,360 objects/1,280,333,696 bytes.
+Quality now13,137 flagged histories;10,634 historical-only/1,304 multi-unit/397
+partially historical-unit/75 constant/74 zero-only,744 equal groups/1,488 pages.
+Flags overlap and do not grant or reject publication. Full/ compressed report
+hashes retained with verified roundtrip. Build51617TERMINAL0 generated161 unrelated
+tracked research/API/vector/date files; preserved /tmp/canli-build-generated-v22.patch
+and restored only those build-generated tracked paths. Owner untracked file untouched.
+Full local HTTP measurement31666 remains live (PID22415), report pending. Poll exact
+handle; no restart on timeout. Audit exercises all pages/downloads, canonical/metadata,
+assets, directory reachability, HTTP sitemap equality, conditional requests and404s.
+No hosted/load/browser or indexing claim. Next finish audit, updated runtime archive
+and hosted gates; broader source/usefulness remains open. All owner goals active.
