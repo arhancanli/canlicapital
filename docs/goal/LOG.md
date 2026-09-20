@@ -463,3 +463,8 @@ required, admins enforced, no force push. GitHub marks three migrated commits
 unsigned; later463e2c70/ed5106dfare valid. Auto-merge request accepted but still
 blocked. Next: preserve original branch; fresh signed squash on migrated main;
 no policy bypass, no evidence rewrite, no deployment or indexing claim.
+
+Created signed squash6cb4b786on migrated main from reviewed537ef1de. Full tree
+comparison is identical and local signature reports G. Original branches retained;
+no force-push or protection change. Disabled PR71auto-merge before replacement.
+Combined batches7–10contain98new reviews and require fresh remote CI.

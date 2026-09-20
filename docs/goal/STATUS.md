@@ -9,18 +9,16 @@ which links older records. Historical process states are not live telemetry.
 ## Current work and next action
 
 Worktree `/Users/arhancanli/canlicapital-expansion-20260919`, branch
-`evidence/share-context-batch10-20260920`. PR70merged8baa1bd8after all four
+`publication/share-context-batches7-10-20260920`. PR70merged8baa1bd8after all four
 CI35531739016checks passed at91a22a12. Tested/merged tree
 9cfb5eb18799c5799e280681ec632f4951879e60.
 
-Attribution migration publication hold cleared. Remote main is nowc80d3d6f,
-with the same tree as prior8baa1bd8. Local ancestry was migrated by the separate
-migration task:81f3bda2→7834c24c,7aaffdca→8ca8f143,9da53bc5→75e9d044.
-Each old/new tree was independently verified identical;463e2c70is the subsequent
-batch9commit already based on migrated ancestry. Historical hashes in archived
-evidence remain historical; do not rewrite report hashes or claim a production
-change.29targeted tests pass after migration. Publishing combined batches7–9for
-remote CI is the next action; no hook bypass or force-push is needed.
+Attribution migration hold cleared; migrated mainc80d3d6fretains prior8baa1bd8tree.
+Preserved original review branches. Fresh signed squash6cb4b786on migrated main
+has exactly the same full tree as reviewed537ef1de; local signature verified G.
+This removes unsigned migrated commits from the proposed PR range without changing
+files, historical evidence, branch protection or published history. PR71auto-merge
+disabled; replacement publication includes batches7–10(98new observations).
 
 Latest registered ledger:company-basic-diluted-registered-scope-batch10-20260920.json.gz.
 Of1,176batch observations,372reviewed/796pending/8withdrawn.60reviewed are explicitly
@@ -35,9 +33,8 @@ Both use scale3shares and explicit anti-dilution exclusions.30targeted tests pas
 source report replays byte-identically. Next index38; earlier/legacy gaps remain.
 PR71passed all four CI35532577383checks but merge was policy-blocked. Three
 migration-rewritten commits are unsigned; current signing is enabled and two later
-commits are GitHub-verified. Preserve old branch and create a fresh signed squash
-on current main containing batches7–10, without changing branch protections or
-force-pushing. Auto-merge was requested but PR71remains open/unmerged.
+commits are GitHub-verified. A fresh signed squash now preserves the full reviewed tree. PR71auto-merge was
+disabled; replacement publication needs fresh remote CI.
 
 Earlier reviewed context includes111ordinary-share/ADS distinction, Celldex loss
 periods, NLI/Weis combined/restated presentation, Blue Dolphin historical instruments,
