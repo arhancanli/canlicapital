@@ -1,8 +1,8 @@
 {
   "author": "Arhan Canli",
   "claim_boundary": "One row per identity measured after the legacy epoch closed, bound by hash to its published packet and its final closure. A packet being complete means every required accounting section is evidenced; it does not mean the trial passed, was admitted, or predicts returns. A PACKET_PENDING_SEAL row is an identity whose packet the seal has not yet written; it is listed so the debt is visible.",
-  "content_hash": "sha256:67f704d2f85e279f68ac0728dc8d87547f88e0581d63e6100387eeb16a696a6e",
-  "generated_at": "2026-09-15T14:26:58.922574+00:00",
+  "content_hash": "sha256:e52f0cb00365dc6d63fc8d9d69c91a1b730b14cb476d05da47193877f6e44ca7",
+  "generated_at": "2026-09-20T06:26:40.756189+00:00",
   "packets": [
     {
       "closure": {
@@ -2621,6 +2621,50 @@
       "reservation_ordinal": 347,
       "return_identity_id": "bil_cash_stress_20260913",
       "source": "imported"
+    },
+    {
+      "closure": {
+        "admitted": false,
+        "final_disposition": "KILL",
+        "kind": "governed",
+        "path": "artifacts/research/earnings_narrative_change_batch/earnings_narrative_change_v1_admission_closure.json",
+        "schema": "canli.alphac-narrative-change-admission-closure.v1"
+      },
+      "complete": true,
+      "config_hash": "e2e12b241c794d2c",
+      "hypothesis_key": "6ed52744e6c9510d",
+      "label": "earnings_narrative_change_v1",
+      "packet_content_hash": "sha256:b4782a404fb7fb9adc5426ea323429380119eeee82f45a7a20f82d8fcdac26bb",
+      "packet_file_sha256": "7cb746f07c64b86af2d00fa399ab1c6b7ee1f3a59907a92e0b40247229bc8c1e",
+      "packet_status": "COMPLETE_ACCOUNTING_FINAL_KILL",
+      "public_path": "/glassbox/trial-packets/6ed52744e6c9510d.json",
+      "register_status": "GOVERNED_SERIAL_PACKET_CLOSED",
+      "research_family_key": "earnings_narrative_change",
+      "reservation_ordinal": 348,
+      "return_identity_id": "earnings_narrative_change_v1",
+      "source": "canonical"
+    },
+    {
+      "closure": {
+        "admitted": false,
+        "final_disposition": "KILL",
+        "kind": "governed",
+        "path": "artifacts/research/earnings_narrative_change_batch/earnings_narrative_change_mdna_v1_admission_closure.json",
+        "schema": "canli.alphac-narrative-change-admission-closure.v1"
+      },
+      "complete": true,
+      "config_hash": "e197f95f46166200",
+      "hypothesis_key": "2f6a5b3e8a7928e2",
+      "label": "earnings_narrative_change_mdna_v1",
+      "packet_content_hash": "sha256:53ba0da7893dc6569236a8d54f0175fcceaa8980fa0c998ce9516524a5210c47",
+      "packet_file_sha256": "2ec5ecd11bba951d84cd85bc935a06876b9f3cf648bc4a488739f06eb1a6dd9a",
+      "packet_status": "COMPLETE_ACCOUNTING_FINAL_KILL",
+      "public_path": "/glassbox/trial-packets/2f6a5b3e8a7928e2.json",
+      "register_status": "GOVERNED_SERIAL_PACKET_CLOSED",
+      "research_family_key": "earnings_narrative_change",
+      "reservation_ordinal": 349,
+      "return_identity_id": "earnings_narrative_change_mdna_v1",
+      "source": "canonical"
     }
   ],
   "schema": "canli.alphac-forward-identity-packet-index.v1",
@@ -2631,7 +2675,7 @@
       "path": "artifacts/research/trial_packets/index.json"
     },
     "prospective_epoch_register": {
-      "content_hash": "sha256:d24e33efbb841484656bd4038ec6f78379a4b22125ada794da05203e039aed99",
+      "content_hash": "sha256:3ad4db2cbfdd0e07b27c16b3ed474d69375f0cae3c97ce1c0c57f7d10a62c56d",
       "path": "artifacts/research/prospective_epoch_register.json"
     }
   },
@@ -2639,18 +2683,19 @@
     "admitted_identities": 0,
     "by_final_disposition": {
       "INCOMPLETE": 1,
-      "KILL": 118
+      "KILL": 120
     },
     "by_packet_status": {
+      "COMPLETE_ACCOUNTING_FINAL_KILL": 2,
       "COMPLETE_ACCOUNTING_FINAL_KILLED_NOT_ADMITTED": 118,
       "COMPLETE_EVIDENCED_FINAL_INCOMPLETE_NOT_ADMITTED": 1
     },
-    "closed_identities": 119,
-    "complete_packets": 119,
-    "forward_identities": 119,
+    "closed_identities": 121,
+    "complete_packets": 121,
+    "forward_identities": 121,
     "identities_in_both_epochs": 0,
     "legacy_identities": 228,
     "pending_packets": 0,
-    "published_packets": 119
+    "published_packets": 121
   }
 }

@@ -7,7 +7,7 @@ import { forwardSnapshot } from './build-founder.mjs';
 const evidence = JSON.parse(readFileSync(new URL('../public/glassbox/stanford_cs_evidence_map.json', import.meta.url)));
 const bytes = readFileSync(new URL('../public/glassbox/forward_evidence_maturity.json', import.meta.url));
 
-test('published zero-observation snapshot keeps its actual evidence dates', () => {
+test('published snapshot keeps its actual evidence dates', () => {
   const result = forwardSnapshot(evidence, bytes);
   const report = JSON.parse(bytes);
   assert.equal(result.generatedAt, report.generated_at);

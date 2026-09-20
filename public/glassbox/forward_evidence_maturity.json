@@ -8,8 +8,8 @@
     "sleeves": {
       "alphamax": {
         "status": "CHARGED_BY_MODEL",
-        "cumulative_drag_bps_of_base": 27.97,
-        "total_charged_usd": 2796.98,
+        "cumulative_drag_bps_of_base": 28.3,
+        "total_charged_usd": 2829.9,
         "not_charged": [
           "latency_slippage",
           "financing_margin_interest",
@@ -18,8 +18,8 @@
       },
       "managed_futures": {
         "status": "CHARGED_BY_MODEL",
-        "cumulative_drag_bps_of_base": 8.63,
-        "total_charged_usd": 863.14,
+        "cumulative_drag_bps_of_base": 8.81,
+        "total_charged_usd": 881.16,
         "not_charged": [
           "latency_slippage",
           "financing_margin_interest",
@@ -28,8 +28,8 @@
       },
       "alphavintage": {
         "status": "CHARGED_BY_MODEL",
-        "cumulative_drag_bps_of_base": 12.8,
-        "total_charged_usd": 1277.71,
+        "cumulative_drag_bps_of_base": 12.91,
+        "total_charged_usd": 1288.9,
         "not_charged": [
           "latency_slippage",
           "financing_margin_interest",
@@ -44,7 +44,7 @@
       }
     }
   },
-  "generated_at": "2026-09-15T14:27:29.083022+00:00",
+  "generated_at": "2026-09-20T06:27:06.093802+00:00",
   "author": "Arhan Canli",
   "capital_kind": "PAPER_ONLY",
   "status": "IMMATURE_RECORD_TOO_SHORT",
@@ -102,10 +102,10 @@
   },
   "record": {
     "first_mark": "2026-09-15",
-    "last_mark": "2026-09-15",
-    "curve_points": 1,
-    "daily_return_observations": 0,
-    "cumulative_return": 0.0,
+    "last_mark": "2026-09-20",
+    "curve_points": 6,
+    "daily_return_observations": 5,
+    "cumulative_return": 0.002320417376489692,
     "return_frequency": "CONSECUTIVE_PUBLISHED_UTC_DAILY_MARKS_NO_SYNTHETIC_FILL",
     "configuration_fingerprint": "sha256:553aff517efdc069c2ee80747ef9a9d750da817ceeab8dbc344cae050b814e09",
     "evidence_epoch": {
@@ -127,18 +127,18 @@
     ],
     "whole_record": {
       "first_mark": "2026-08-07",
-      "last_mark": "2026-09-15",
-      "curve_points": 38,
-      "daily_return_observations": 37,
-      "cumulative_return": -0.028357999999999994
+      "last_mark": "2026-09-20",
+      "curve_points": 43,
+      "daily_return_observations": 42,
+      "cumulative_return": -0.026671400000000012
     }
   },
   "sharpe_evidence": {
-    "daily_return_observations": 0,
+    "daily_return_observations": 5,
     "estimate_minimum": 252,
     "establishment_minimum": 756,
-    "observations_to_estimate": 252,
-    "observations_to_establishment": 756,
+    "observations_to_estimate": 247,
+    "observations_to_establishment": 751,
     "annualization_days": 365.0,
     "target": 2.0,
     "target_source": "config/owner_goals.json",
@@ -177,8 +177,8 @@
     "expected_max_drawdown_target": 0.11,
     "study_production_labelled_expected_max_drawdown": 0.10251155801473733,
     "study_production_labelled_p95_max_drawdown": 0.1876321103559252,
-    "current_composition_conservative_expected_max_drawdown": 0.09318244911641102,
-    "current_composition_conservative_p95_max_drawdown": 0.16451439178221056,
+    "current_composition_conservative_expected_max_drawdown": 0.09318244553424106,
+    "current_composition_conservative_p95_max_drawdown": 0.1645143802143803,
     "current_composition_study_status": "CURRENT_COMPOSITION_EXPECTED_WITHIN_OBJECTIVE_HISTORICAL_TAIL_COVERAGE_INCOMPLETE",
     "current_composition_expected_within_objective": true,
     "current_composition_p95_within_objective": false,
@@ -219,24 +219,24 @@
     "effective_independent_sleeves_participation_ratio": 3.8988014966039604,
     "marginal_book_sharpe_research_diagnostics": {
       "alphavintage_live": {
-        "book_sharpe_with_sleeve": 1.7846280932113476,
-        "book_sharpe_with_sleeve_replaced_by_cash": 1.7908856987600663,
-        "marginal_book_sharpe_delta": -0.006257605548718681
+        "book_sharpe_with_sleeve": 1.784628228792431,
+        "book_sharpe_with_sleeve_replaced_by_cash": 1.7908858146048257,
+        "marginal_book_sharpe_delta": -0.0062575858123945505
       },
       "crypto_carry_wk": {
-        "book_sharpe_with_sleeve": 1.7846280932113476,
-        "book_sharpe_with_sleeve_replaced_by_cash": 1.2520344519823685,
-        "marginal_book_sharpe_delta": 0.5325936412289791
+        "book_sharpe_with_sleeve": 1.784628228792431,
+        "book_sharpe_with_sleeve_replaced_by_cash": 1.252034539767779,
+        "marginal_book_sharpe_delta": 0.5325936890246521
       },
       "k30_dn_63": {
-        "book_sharpe_with_sleeve": 1.7846280932113476,
-        "book_sharpe_with_sleeve_replaced_by_cash": 1.637795624376064,
-        "marginal_book_sharpe_delta": 0.14683246883528356
+        "book_sharpe_with_sleeve": 1.784628228792431,
+        "book_sharpe_with_sleeve_replaced_by_cash": 1.6377958457700919,
+        "marginal_book_sharpe_delta": 0.14683238302233925
       },
       "managed_futures": {
-        "book_sharpe_with_sleeve": 1.7846280932113476,
-        "book_sharpe_with_sleeve_replaced_by_cash": 1.8754659368350433,
-        "marginal_book_sharpe_delta": -0.09083784362369562
+        "book_sharpe_with_sleeve": 1.784628228792431,
+        "book_sharpe_with_sleeve_replaced_by_cash": 1.8754660993266974,
+        "marginal_book_sharpe_delta": -0.09083787053426629
       }
     },
     "checks": {
@@ -263,15 +263,15 @@
     },
     "paper_state": {
       "path": "data/paper/state.json",
-      "sha256": "ebb6b1225d7b3081c68c5bd1dafcaea279efc9b099dd34cc42c517ab0e09dabf"
+      "sha256": "b9af85176477459e3b14dd71a30bdca40ede9b26c5216d3d9851456bae1873e5"
     },
     "record_continuity": {
       "path": "artifacts/engineering/record_continuity.json",
-      "sha256": "495cf7aee2576cdd47a9862c7fa66ca35c4c08787b5db89390d48c1964c26170"
+      "sha256": "f442b3bf02a03ed4da773a482c0da44097046e1a16ccb73e5f2603587f66c76c"
     },
     "broker_reconciliation": {
       "path": "artifacts/engineering/alpaca_broker_reconciliation.json",
-      "sha256": "373d3854d1ae6bbdd3ef54397fcf63ffd5f6f9c99085eddaa0469b2321ac4af7"
+      "sha256": "897f56d34b4a900a7f4b0b337e35bda6c8af96c282a262444ecab84f17794623"
     },
     "drawdown_model": {
       "path": "artifacts/analysis/drawdown_live_estimator/result.json",
@@ -279,15 +279,15 @@
     },
     "current_book_drawdown": {
       "path": "artifacts/analysis/current_book_drawdown/result.json",
-      "sha256": "bb9a5642699202686fae42fd8a9dd95922f1e376caa2c9a9497c13499081b763"
+      "sha256": "94a4f534b6844e0df7eb1b8302e8c995255eb028cb0d4f3b006376f0bd6ec591"
     },
     "current_book_diversification": {
       "path": "artifacts/analysis/current_book_diversification/result.json",
-      "sha256": "f96455df98a8a68c0481f4e568bd572627ba06585659bbd45740c5c932409c8f"
+      "sha256": "037d70da5708932be21b4a5a9f4b85d8fc7bad2188971dd1b139bed0dc077b66"
     },
     "drawdown_evidence": {
       "path": "artifacts/engineering/forward_drawdown_evidence.json",
-      "sha256": "4b8632d6bd187a34ff425c4dfb6bb4a652fbdde80a2691190d9e6ce9f8b0b7fa"
+      "sha256": "21d17b3cbe4b2d7654c6a6595cfb07d9cc96fc0fc31178142a0164d2d8342af6"
     },
     "methodology_paper": {
       "path": "docs/research/FORWARD_SHARPE_EVIDENCE_STANDARD.md",
@@ -295,11 +295,11 @@
     },
     "transparency_chain": {
       "path": "meridian/public/glassbox/transparency_log.json",
-      "sha256": "351451cc8da178d6c734bfd98d859d4c2fd3202f5a6eb3a2baefedbf64c565e7"
+      "sha256": "2ad91cb86e4952a63e64808e263bb05e708a8ad5a0a76a8938678a7a96b3eafe"
     },
     "crypto_position_attribution": {
       "path": "artifacts/engineering/crypto_position_attribution.json",
-      "sha256": "9a329e7f90f799614f4541f705189823f3c6d9ce13bb69de6caafda0434b39bc"
+      "sha256": "4190d9e25758d3bff1a8b6f29aba25f53a158175c8758a938c4b810507155401"
     },
     "crypto_position_attribution_rollout": {
       "path": "artifacts/engineering/crypto_position_attribution_rollout_verification.json",
@@ -307,5 +307,5 @@
     }
   },
   "claim_boundary": "Paper-only, self-published evidence. An immature or observed Sharpe is not an established Sharpe. Realized maximum drawdown is not expected maximum drawdown, and the modeled expectation is not a live guarantee.",
-  "content_hash": "sha256:17cfc1705204526042d3c558049d3849d54917b115fc42d7c0bb7d187f51b4c2"
+  "content_hash": "sha256:e0bdec8322e5901c6de70c2e8cd536fef3d52846fe7e8fc543a2bc1a82b04f8d"
 }

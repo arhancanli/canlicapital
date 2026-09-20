@@ -2,21 +2,21 @@
   "schema": "glassbox.trial-ledger/2",
   "claim_boundary": "This ledger proves what was measured and how selection N is counted. It does not prove that any identity is profitable, independent, or admissible.",
   "accounting_equation": "immutable execution records - window-only remeasurements - cross-profile duplicate identities = distinct union hypothesis identities",
-  "immutable_execution_records": 419,
-  "distinct_config_hashes": 419,
+  "immutable_execution_records": 421,
+  "distinct_config_hashes": 421,
   "window_only_remeasurements": 72,
   "cross_profile_duplicate_identities": 0,
-  "distinct_hypothesis_identities": 347,
+  "distinct_hypothesis_identities": 349,
   "selection_statistics": {
     "unit": "first_immutable_record_per_hypothesis",
-    "n_hypotheses": 347,
-    "sharpe_variance": 0.0012540206457914785,
-    "audit_raw_record_sharpe_variance": 0.0010727105051428205,
+    "n_hypotheses": 349,
+    "sharpe_variance": 0.001250579896525614,
+    "audit_raw_record_sharpe_variance": 0.001070537749794761,
     "interpretation": "Operational window remeasurements remain public but cannot alter selection N or selection V[SR]."
   },
   "ledger_profiles": 126,
   "hypothesis_identity_budget": 400,
-  "budget_remaining": 53,
+  "budget_remaining": 51,
   "budget_status": "PASS",
   "research_status": "ACTIVE_STAGED_PROSPECTIVE_BUDGET",
   "definitions": {
@@ -1187,11 +1187,11 @@
     {
       "profile": "var",
       "source_path": "var/experiments.jsonl",
-      "immutable_execution_records": 227,
-      "distinct_config_hashes": 227,
-      "hypothesis_identities": 191,
+      "immutable_execution_records": 229,
+      "distinct_config_hashes": 229,
+      "hypothesis_identities": 193,
       "window_only_remeasurements": 36,
-      "latest_recorded_at": "2026-08-23T22:29:16.391000+00:00"
+      "latest_recorded_at": "2026-09-15T19:37:23.525000+00:00"
     },
     {
       "profile": "var_fut_real",
@@ -1222,6 +1222,24 @@
     }
   ],
   "recent_hypothesis_identities": [
+    {
+      "hypothesis_key": "2f6a5b3e8a7928e2",
+      "config_hash": "e197f95f46166200",
+      "label": "sec_10k_item7_stability_jaccard5",
+      "ledger_profile": "var",
+      "first_recorded_at": "2026-09-15T19:37:23.525000+00:00",
+      "observations": 2494,
+      "annualized_sharpe_observed": -0.344618
+    },
+    {
+      "hypothesis_key": "6ed52744e6c9510d",
+      "config_hash": "e2e12b241c794d2c",
+      "label": "sec_10k_item1a_stability_jaccard5",
+      "ledger_profile": "var",
+      "first_recorded_at": "2026-09-15T19:37:21.545000+00:00",
+      "observations": 2494,
+      "annualized_sharpe_observed": 0.086712
+    },
     {
       "hypothesis_key": "f2a1b9e302db7a53",
       "config_hash": "258aa5864203acc2",
@@ -1293,24 +1311,6 @@
       "first_recorded_at": "2026-09-13T16:10:42.407000+00:00",
       "observations": 1248,
       "annualized_sharpe_observed": 0.744115
-    },
-    {
-      "hypothesis_key": "db3d6b1de6c7efd4",
-      "config_hash": "8d7ca3403ba91e2c",
-      "label": "eq_mom_252_21",
-      "ledger_profile": "candidate",
-      "first_recorded_at": "2026-09-13T15:58:05.010000+00:00",
-      "observations": 856,
-      "annualized_sharpe_observed": 0.685406
-    },
-    {
-      "hypothesis_key": "2aec4c4ff0073e13",
-      "config_hash": "be14a2185fd5d9c3",
-      "label": "unlabelled registered identity",
-      "ledger_profile": "normal",
-      "first_recorded_at": "2026-09-13T15:47:29.485000+00:00",
-      "observations": 1248,
-      "annualized_sharpe_observed": 0.596442
     }
   ],
   "policy_source_path": "config/trial_accounting.json",
@@ -1339,6 +1339,6 @@
       }
     }
   },
-  "generated_at": "2026-09-15T14:27:42.556584+00:00",
-  "content_hash": "sha256:ab9ebfa0c4b0986af8b3abd795893fa0e69a25983ee5087144d5129ffbf330d8"
+  "generated_at": "2026-09-20T06:27:22.464127+00:00",
+  "content_hash": "sha256:1060a4cacd0de207eb0fbe02b1024b7fd16efcf7a8c8a88b49bd66832687167b"
 }

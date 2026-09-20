@@ -1,7 +1,7 @@
 {
   "schema": "canli.api.v1",
   "endpoint": "/api/v1/sleeves",
-  "generated_at": "2026-09-20T06:09:36Z",
+  "generated_at": "2026-09-20T06:40:23Z",
   "claim_class": "OBSERVED",
   "capital_kind": "PAPER_ONLY",
   "canonical_human_page": "https://canlicapital.com/systems",
@@ -12,12 +12,12 @@
   "sources": [
     {
       "path": "public/paper-state.json",
-      "sha256": "sha256:eb8dfdd7500035a4f70d185f7c0a5d42202b2ba21b3824c6ef3f4cd8ac41c635",
+      "sha256": "sha256:b9af85176477459e3b14dd71a30bdca40ede9b26c5216d3d9851456bae1873e5",
       "url": "https://canlicapital.com/paper-state.json"
     },
     {
       "path": "public/glassbox/alpaca_broker_reconciliation.json",
-      "sha256": "sha256:373d3854d1ae6bbdd3ef54397fcf63ffd5f6f9c99085eddaa0469b2321ac4af7",
+      "sha256": "sha256:897f56d34b4a900a7f4b0b337e35bda6c8af96c282a262444ecab84f17794623",
       "url": "https://canlicapital.com/glassbox/alpaca_broker_reconciliation.json"
     }
   ],
@@ -34,40 +34,40 @@
         "research_curve_points": 213,
         "research_curve_first": "2023-07-07",
         "research_curve_last": "2026-06-01",
-        "live_curve_points": 37
+        "live_curve_points": 43
       },
       {
         "key": "alphamax",
         "is_composite": false,
         "broker_reconciled": true,
-        "open_positions": 174,
-        "current_equity": 980133.69,
+        "open_positions": 176,
+        "current_equity": 995517.77,
         "research_curve_points": 183,
         "research_curve_first": "2023-07-06",
         "research_curve_last": "2026-06-01",
-        "live_curve_points": 27
+        "live_curve_points": 32
       },
       {
         "key": "managed_futures",
         "is_composite": false,
         "broker_reconciled": true,
         "open_positions": 15,
-        "current_equity": 1008200.32,
+        "current_equity": 1005670.11,
         "research_curve_points": 185,
         "research_curve_first": "2006-01-04",
         "research_curve_last": "2026-06-01",
-        "live_curve_points": 27
+        "live_curve_points": 32
       },
       {
         "key": "alphavintage",
         "is_composite": false,
         "broker_reconciled": true,
         "open_positions": 2,
-        "current_equity": 995924.6,
+        "current_equity": 997248.59,
         "research_curve_points": 187,
         "research_curve_first": "2001-06-29",
         "research_curve_last": "2026-07-15",
-        "live_curve_points": 25
+        "live_curve_points": 30
       },
       {
         "key": "alphaforge",
@@ -78,7 +78,7 @@
         "research_curve_points": 182,
         "research_curve_first": "2022-02-08",
         "research_curve_last": "2026-06-01",
-        "live_curve_points": 36
+        "live_curve_points": 42
       }
     ]
   }

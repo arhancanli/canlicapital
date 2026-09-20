@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-09-14T10:26:19.414969+00:00",
+  "generated_at": "2026-09-20T06:26:15.824201+00:00",
   "go_live_date": "2026-08-07",
   "live_config": {
-    "fingerprint": "sha256:fe82c4eeed742289bfcfee5d39856ee2bb8ca9cfe209bcc7e34abff98553706d",
-    "declared_fingerprint": "sha256:fe82c4eeed742289bfcfee5d39856ee2bb8ca9cfe209bcc7e34abff98553706d",
+    "fingerprint": "sha256:553aff517efdc069c2ee80747ef9a9d750da817ceeab8dbc344cae050b814e09",
+    "declared_fingerprint": "sha256:553aff517efdc069c2ee80747ef9a9d750da817ceeab8dbc344cae050b814e09",
     "matches_declaration": true,
     "declared_in": "config/live_change_contract.json",
     "what_it_covers": "Every setting that decides how the live book trades: the BlendStrategy defaults that reach production because no call site overrides them; the constituent overlay, drawdown ladder and per-name clip read from Settings; and the flagship's sleeve composition, weights, disclosed tilt and separate aggregation policy. Derived from inspect.signature, Settings and the published state, never from a hand-maintained list.",
@@ -50,11 +50,11 @@
         "external_attestation": false
       },
       "go_live": "2026-08-07",
-      "live_days": 38,
+      "live_days": 44,
       "research_curve": [
         {
           "date": "2023-07-07",
-          "equity": 100138.45
+          "equity": 100138.46
         },
         {
           "date": "2023-07-12",
@@ -94,7 +94,7 @@
         },
         {
           "date": "2023-08-26",
-          "equity": 99131.71
+          "equity": 99131.72
         },
         {
           "date": "2023-08-31",
@@ -118,7 +118,7 @@
         },
         {
           "date": "2023-09-25",
-          "equity": 100179.76
+          "equity": 100179.77
         },
         {
           "date": "2023-09-30",
@@ -238,7 +238,7 @@
         },
         {
           "date": "2024-02-22",
-          "equity": 106880.52
+          "equity": 106880.53
         },
         {
           "date": "2024-02-27",
@@ -354,7 +354,7 @@
         },
         {
           "date": "2024-07-16",
-          "equity": 114695.55
+          "equity": 114695.56
         },
         {
           "date": "2024-07-21",
@@ -406,7 +406,7 @@
         },
         {
           "date": "2024-09-19",
-          "equity": 112107.93
+          "equity": 112107.92
         },
         {
           "date": "2024-09-24",
@@ -414,7 +414,7 @@
         },
         {
           "date": "2024-09-29",
-          "equity": 113202.86
+          "equity": 113202.85
         },
         {
           "date": "2024-10-04",
@@ -486,7 +486,7 @@
         },
         {
           "date": "2024-12-28",
-          "equity": 119415.39
+          "equity": 119415.38
         },
         {
           "date": "2025-01-02",
@@ -634,7 +634,7 @@
         },
         {
           "date": "2025-07-01",
-          "equity": 120982.41
+          "equity": 120982.4
         },
         {
           "date": "2025-07-06",
@@ -646,7 +646,7 @@
         },
         {
           "date": "2025-07-16",
-          "equity": 120804.33
+          "equity": 120804.32
         },
         {
           "date": "2025-07-21",
@@ -742,7 +742,7 @@
         },
         {
           "date": "2025-11-13",
-          "equity": 121848.16
+          "equity": 121848.17
         },
         {
           "date": "2025-11-18",
@@ -798,7 +798,7 @@
         },
         {
           "date": "2026-01-22",
-          "equity": 124509.95
+          "equity": 124509.96
         },
         {
           "date": "2026-01-27",
@@ -818,7 +818,7 @@
         },
         {
           "date": "2026-02-16",
-          "equity": 123705.12
+          "equity": 123705.13
         },
         {
           "date": "2026-02-21",
@@ -1052,9 +1052,212 @@
         },
         {
           "date": "2026-09-14",
-          "equity": 97293.83
+          "equity": 97408.87
+        },
+        {
+          "date": "2026-09-15",
+          "equity": 97163.78
+        },
+        {
+          "date": "2026-09-16",
+          "equity": 97207.63
+        },
+        {
+          "date": "2026-09-17",
+          "equity": 97188.68
+        },
+        {
+          "date": "2026-09-18",
+          "equity": 97224.52
+        },
+        {
+          "date": "2026-09-19",
+          "equity": 97264.51
+        },
+        {
+          "date": "2026-09-20",
+          "equity": 97389.22
         }
       ],
+      "cost_charged_curve": [
+        {
+          "date": "2026-08-07",
+          "equity": 100000.0
+        },
+        {
+          "date": "2026-08-08",
+          "equity": 99999.93
+        },
+        {
+          "date": "2026-08-11",
+          "equity": 100005.88
+        },
+        {
+          "date": "2026-08-12",
+          "equity": 99899.72
+        },
+        {
+          "date": "2026-08-13",
+          "equity": 100080.71
+        },
+        {
+          "date": "2026-08-14",
+          "equity": 99907.43
+        },
+        {
+          "date": "2026-08-15",
+          "equity": 99940.45
+        },
+        {
+          "date": "2026-08-16",
+          "equity": 99952.13
+        },
+        {
+          "date": "2026-08-17",
+          "equity": 99900.48
+        },
+        {
+          "date": "2026-08-18",
+          "equity": 100082.43
+        },
+        {
+          "date": "2026-08-19",
+          "equity": 99138.39
+        },
+        {
+          "date": "2026-08-20",
+          "equity": 98990.32
+        },
+        {
+          "date": "2026-08-21",
+          "equity": 98754.76
+        },
+        {
+          "date": "2026-08-22",
+          "equity": 98467.43
+        },
+        {
+          "date": "2026-08-23",
+          "equity": 98272.51
+        },
+        {
+          "date": "2026-08-24",
+          "equity": 98151.38
+        },
+        {
+          "date": "2026-08-25",
+          "equity": 97618.34
+        },
+        {
+          "date": "2026-08-26",
+          "equity": 97477.38
+        },
+        {
+          "date": "2026-08-27",
+          "equity": 97582.82
+        },
+        {
+          "date": "2026-08-28",
+          "equity": 97610.22
+        },
+        {
+          "date": "2026-08-29",
+          "equity": 97092.22
+        },
+        {
+          "date": "2026-08-30",
+          "equity": 97169.58
+        },
+        {
+          "date": "2026-08-31",
+          "equity": 97172.07
+        },
+        {
+          "date": "2026-09-01",
+          "equity": 97498.11
+        },
+        {
+          "date": "2026-09-02",
+          "equity": 97814.59
+        },
+        {
+          "date": "2026-09-03",
+          "equity": 97426.29
+        },
+        {
+          "date": "2026-09-04",
+          "equity": 97053.9
+        },
+        {
+          "date": "2026-09-05",
+          "equity": 97309.98
+        },
+        {
+          "date": "2026-09-06",
+          "equity": 96182.84
+        },
+        {
+          "date": "2026-09-07",
+          "equity": 96811.36
+        },
+        {
+          "date": "2026-09-08",
+          "equity": 96855.31
+        },
+        {
+          "date": "2026-09-09",
+          "equity": 97114.27
+        },
+        {
+          "date": "2026-09-10",
+          "equity": 97406.29
+        },
+        {
+          "date": "2026-09-11",
+          "equity": 97137.36
+        },
+        {
+          "date": "2026-09-12",
+          "equity": 97158.04
+        },
+        {
+          "date": "2026-09-13",
+          "equity": 97295.09
+        },
+        {
+          "date": "2026-09-14",
+          "equity": 97354.32
+        },
+        {
+          "date": "2026-09-15",
+          "equity": 97107.53
+        },
+        {
+          "date": "2026-09-16",
+          "equity": 97151.12
+        },
+        {
+          "date": "2026-09-17",
+          "equity": 97132.09
+        },
+        {
+          "date": "2026-09-18",
+          "equity": 97168.1
+        },
+        {
+          "date": "2026-09-19",
+          "equity": 97208.25
+        },
+        {
+          "date": "2026-09-20",
+          "equity": 97332.86
+        }
+      ],
+      "cost_charges": {
+        "status": "NOT_CHARGED",
+        "contract": "config/cost_realism_contract.json",
+        "note": "no cost derivation on file for this sleeve; the charged curve equals the broker curve"
+      },
       "holdings": null
     },
     {
@@ -1077,7 +1280,7 @@
         "external_attestation": false
       },
       "go_live": "2026-08-07",
-      "live_days": 38,
+      "live_days": 44,
       "research_curve": [
         {
           "date": "2023-07-06",
@@ -1918,139 +2121,322 @@
           "equity": 99058.44
         },
         {
-          "date": "2026-09-14",
-          "equity": 98662.42
+          "date": "2026-09-15",
+          "equity": 97767.05
+        },
+        {
+          "date": "2026-09-16",
+          "equity": 97847.77
+        },
+        {
+          "date": "2026-09-17",
+          "equity": 98202.8
+        },
+        {
+          "date": "2026-09-18",
+          "equity": 98743.67
+        },
+        {
+          "date": "2026-09-19",
+          "equity": 99294.11
+        },
+        {
+          "date": "2026-09-20",
+          "equity": 99551.78
         }
       ],
+      "cost_charged_curve": [
+        {
+          "date": "2026-08-07",
+          "equity": 99787.65
+        },
+        {
+          "date": "2026-08-08",
+          "equity": 99787.47
+        },
+        {
+          "date": "2026-08-11",
+          "equity": 99209.4
+        },
+        {
+          "date": "2026-08-12",
+          "equity": 99178.46
+        },
+        {
+          "date": "2026-08-13",
+          "equity": 100020.35
+        },
+        {
+          "date": "2026-08-14",
+          "equity": 99418.35
+        },
+        {
+          "date": "2026-08-15",
+          "equity": 99977.73
+        },
+        {
+          "date": "2026-08-18",
+          "equity": 100684.17
+        },
+        {
+          "date": "2026-08-19",
+          "equity": 99696.93
+        },
+        {
+          "date": "2026-08-20",
+          "equity": 98799.35
+        },
+        {
+          "date": "2026-08-21",
+          "equity": 98813.14
+        },
+        {
+          "date": "2026-08-22",
+          "equity": 98676.69
+        },
+        {
+          "date": "2026-08-25",
+          "equity": 98130.96
+        },
+        {
+          "date": "2026-08-26",
+          "equity": 98533.48
+        },
+        {
+          "date": "2026-08-27",
+          "equity": 98748.53
+        },
+        {
+          "date": "2026-08-28",
+          "equity": 98800.51
+        },
+        {
+          "date": "2026-08-29",
+          "equity": 97983.1
+        },
+        {
+          "date": "2026-09-01",
+          "equity": 97838.56
+        },
+        {
+          "date": "2026-09-02",
+          "equity": 97736.86
+        },
+        {
+          "date": "2026-09-03",
+          "equity": 97737.76
+        },
+        {
+          "date": "2026-09-04",
+          "equity": 97665.23
+        },
+        {
+          "date": "2026-09-05",
+          "equity": 98020.43
+        },
+        {
+          "date": "2026-09-09",
+          "equity": 98893.21
+        },
+        {
+          "date": "2026-09-10",
+          "equity": 99146.3
+        },
+        {
+          "date": "2026-09-11",
+          "equity": 98750.16
+        },
+        {
+          "date": "2026-09-12",
+          "equity": 98779.79
+        },
+        {
+          "date": "2026-09-15",
+          "equity": 97486.4
+        },
+        {
+          "date": "2026-09-16",
+          "equity": 97566.5
+        },
+        {
+          "date": "2026-09-17",
+          "equity": 97920.82
+        },
+        {
+          "date": "2026-09-18",
+          "equity": 98461.36
+        },
+        {
+          "date": "2026-09-19",
+          "equity": 99011.45
+        },
+        {
+          "date": "2026-09-20",
+          "equity": 99268.79
+        }
+      ],
+      "cost_charges": {
+        "status": "CHARGED_BY_MODEL",
+        "contract": "config/cost_realism_contract.json",
+        "totals_usd": {
+          "borrow": 241.7,
+          "commission": 246.47,
+          "impact": 1602.33,
+          "spread": 739.4,
+          "total": 2829.9
+        },
+        "cumulative_drag_bps_of_base": 28.3,
+        "fills_total": 4926,
+        "fills_priced_for_impact": 4926,
+        "fills_unpriced_for_impact": 0,
+        "fills_impact_floored_at_tripwire": 0,
+        "short_calendar_days_charged": 84,
+        "traded_notional_usd": 2464666.74,
+        "model": {
+          "adv_sessions_median": 30,
+          "equity_borrow_bps_annual": 50.0,
+          "equity_commission_bps": 1.0,
+          "equity_half_spread_bps": 3.0,
+          "impact_coef": 1.0,
+          "latency_addon_bps_not_charged": 2.0,
+          "participation_tripwire": 0.05,
+          "sigma_ewm_halflife_sessions": 240
+        },
+        "not_charged": [
+          "latency_slippage",
+          "financing_margin_interest",
+          "cash_yield_on_idle_capital"
+        ]
+      },
       "holdings": {
-        "as_of": "2026-09-14",
+        "as_of": "2026-09-20",
         "broker_reconciled": true,
         "flat": false,
         "gross_pct": 29.5,
         "long": [
           {
-            "ticker": "MU",
-            "weight_pct": 0.9
-          },
-          {
             "ticker": "STX",
-            "weight_pct": 0.88
+            "weight_pct": 1.03
           },
           {
-            "ticker": "COHR",
-            "weight_pct": 0.61
+            "ticker": "MU",
+            "weight_pct": 0.99
           },
           {
             "ticker": "WDC",
-            "weight_pct": 0.46
-          },
-          {
-            "ticker": "CIEN",
-            "weight_pct": 0.41
+            "weight_pct": 0.52
           },
           {
             "ticker": "TER",
-            "weight_pct": 0.39
+            "weight_pct": 0.43
+          },
+          {
+            "ticker": "CIEN",
+            "weight_pct": 0.42
           },
           {
             "ticker": "REPL",
-            "weight_pct": 0.36
+            "weight_pct": 0.37
+          },
+          {
+            "ticker": "LRCX",
+            "weight_pct": 0.35
+          },
+          {
+            "ticker": "COHR",
+            "weight_pct": 0.34
           },
           {
             "ticker": "ONTO",
+            "weight_pct": 0.34
+          },
+          {
+            "ticker": "GLW",
             "weight_pct": 0.33
           },
           {
             "ticker": "MKSI",
-            "weight_pct": 0.31
-          },
-          {
-            "ticker": "LRCX",
-            "weight_pct": 0.31
-          },
-          {
-            "ticker": "GLW",
-            "weight_pct": 0.3
-          },
-          {
-            "ticker": "SIMO",
-            "weight_pct": 0.26
+            "weight_pct": 0.32
           },
           {
             "ticker": "TTMI",
-            "weight_pct": 0.26
+            "weight_pct": 0.28
           },
           {
-            "ticker": "APGE",
-            "weight_pct": 0.26
+            "ticker": "SIMO",
+            "weight_pct": 0.28
           },
           {
-            "ticker": "TSEM",
-            "weight_pct": 0.25
+            "ticker": "NBIS",
+            "weight_pct": 0.28
+          },
+          {
+            "ticker": "FORM",
+            "weight_pct": 0.27
           }
         ],
         "long_count": 84,
-        "net_pct": 3.35,
+        "net_pct": 4.4,
         "short": [
           {
             "ticker": "IT",
-            "weight_pct": 0.36
+            "weight_pct": 0.32
           },
           {
             "ticker": "INTU",
-            "weight_pct": 0.33
-          },
-          {
-            "ticker": "CHTR",
-            "weight_pct": 0.31
-          },
-          {
-            "ticker": "KD",
             "weight_pct": 0.3
           },
           {
-            "ticker": "CSGP",
-            "weight_pct": 0.26
+            "ticker": "CHTR",
+            "weight_pct": 0.27
           },
           {
-            "ticker": "DUOL",
+            "ticker": "CSGP",
             "weight_pct": 0.25
           },
           {
+            "ticker": "DUOL",
+            "weight_pct": 0.24
+          },
+          {
             "ticker": "SMPL",
-            "weight_pct": 0.22
-          },
-          {
-            "ticker": "HDB",
-            "weight_pct": 0.22
-          },
-          {
-            "ticker": "FISV",
-            "weight_pct": 0.22
+            "weight_pct": 0.23
           },
           {
             "ticker": "SHAK",
-            "weight_pct": 0.22
-          },
-          {
-            "ticker": "CBZ",
-            "weight_pct": 0.22
-          },
-          {
-            "ticker": "HUBS",
             "weight_pct": 0.21
           },
           {
-            "ticker": "WHR",
+            "ticker": "HDB",
+            "weight_pct": 0.21
+          },
+          {
+            "ticker": "CBZ",
+            "weight_pct": 0.21
+          },
+          {
+            "ticker": "PRGO",
+            "weight_pct": 0.2
+          },
+          {
+            "ticker": "POWL",
             "weight_pct": 0.2
           },
           {
             "ticker": "BKNG",
-            "weight_pct": 0.19
+            "weight_pct": 0.2
           },
           {
-            "ticker": "POWL",
-            "weight_pct": 0.19
+            "ticker": "FISV",
+            "weight_pct": 0.2
+          },
+          {
+            "ticker": "KLAC",
+            "weight_pct": 0.2
+          },
+          {
+            "ticker": "HUBS",
+            "weight_pct": 0.2
           }
         ],
         "short_count": 92,
@@ -2077,7 +2463,7 @@
         "external_attestation": false
       },
       "go_live": "2026-08-07",
-      "live_days": 38,
+      "live_days": 44,
       "research_curve": [
         {
           "date": "2006-01-04",
@@ -2926,23 +3312,206 @@
           "equity": 100856.35
         },
         {
-          "date": "2026-09-14",
-          "equity": 100815.79
+          "date": "2026-09-15",
+          "equity": 100821.34
+        },
+        {
+          "date": "2026-09-16",
+          "equity": 100821.67
+        },
+        {
+          "date": "2026-09-17",
+          "equity": 100747.4
+        },
+        {
+          "date": "2026-09-18",
+          "equity": 100659.63
+        },
+        {
+          "date": "2026-09-19",
+          "equity": 100567.01
+        },
+        {
+          "date": "2026-09-20",
+          "equity": 100567.01
         }
       ],
+      "cost_charged_curve": [
+        {
+          "date": "2026-08-07",
+          "equity": 99992.32
+        },
+        {
+          "date": "2026-08-08",
+          "equity": 99992.29
+        },
+        {
+          "date": "2026-08-11",
+          "equity": 99916.96
+        },
+        {
+          "date": "2026-08-12",
+          "equity": 99956.27
+        },
+        {
+          "date": "2026-08-13",
+          "equity": 100084.16
+        },
+        {
+          "date": "2026-08-14",
+          "equity": 100085.84
+        },
+        {
+          "date": "2026-08-15",
+          "equity": 100166.0
+        },
+        {
+          "date": "2026-08-18",
+          "equity": 100338.37
+        },
+        {
+          "date": "2026-08-19",
+          "equity": 100159.05
+        },
+        {
+          "date": "2026-08-20",
+          "equity": 99948.26
+        },
+        {
+          "date": "2026-08-21",
+          "equity": 100004.87
+        },
+        {
+          "date": "2026-08-22",
+          "equity": 100055.03
+        },
+        {
+          "date": "2026-08-25",
+          "equity": 99835.88
+        },
+        {
+          "date": "2026-08-26",
+          "equity": 99704.11
+        },
+        {
+          "date": "2026-08-27",
+          "equity": 99841.98
+        },
+        {
+          "date": "2026-08-28",
+          "equity": 99995.91
+        },
+        {
+          "date": "2026-08-29",
+          "equity": 100174.58
+        },
+        {
+          "date": "2026-09-01",
+          "equity": 100242.6
+        },
+        {
+          "date": "2026-09-02",
+          "equity": 100490.54
+        },
+        {
+          "date": "2026-09-03",
+          "equity": 100398.91
+        },
+        {
+          "date": "2026-09-04",
+          "equity": 100396.54
+        },
+        {
+          "date": "2026-09-05",
+          "equity": 100446.26
+        },
+        {
+          "date": "2026-09-09",
+          "equity": 100580.51
+        },
+        {
+          "date": "2026-09-10",
+          "equity": 100549.99
+        },
+        {
+          "date": "2026-09-11",
+          "equity": 100836.77
+        },
+        {
+          "date": "2026-09-12",
+          "equity": 100771.08
+        },
+        {
+          "date": "2026-09-15",
+          "equity": 100734.93
+        },
+        {
+          "date": "2026-09-16",
+          "equity": 100734.85
+        },
+        {
+          "date": "2026-09-17",
+          "equity": 100660.2
+        },
+        {
+          "date": "2026-09-18",
+          "equity": 100572.12
+        },
+        {
+          "date": "2026-09-19",
+          "equity": 100479.2
+        },
+        {
+          "date": "2026-09-20",
+          "equity": 100478.89
+        }
+      ],
+      "cost_charges": {
+        "status": "CHARGED_BY_MODEL",
+        "contract": "config/cost_realism_contract.json",
+        "totals_usd": {
+          "borrow": 144.36,
+          "commission": 128.53,
+          "impact": 222.69,
+          "spread": 385.58,
+          "total": 881.16
+        },
+        "cumulative_drag_bps_of_base": 8.81,
+        "fills_total": 552,
+        "fills_priced_for_impact": 552,
+        "fills_unpriced_for_impact": 0,
+        "fills_impact_floored_at_tripwire": 0,
+        "short_calendar_days_charged": 84,
+        "traded_notional_usd": 1285274.87,
+        "model": {
+          "adv_sessions_median": 30,
+          "equity_borrow_bps_annual": 50.0,
+          "equity_commission_bps": 1.0,
+          "equity_half_spread_bps": 3.0,
+          "impact_coef": 1.0,
+          "latency_addon_bps_not_charged": 2.0,
+          "participation_tripwire": 0.05,
+          "sigma_ewm_halflife_sessions": 240
+        },
+        "not_charged": [
+          "latency_slippage",
+          "financing_margin_interest",
+          "cash_yield_on_idle_capital"
+        ]
+      },
       "holdings": {
-        "as_of": "2026-09-14",
+        "as_of": "2026-09-20",
         "broker_reconciled": true,
         "flat": false,
         "gross_pct": 71.1,
         "long": [
           {
             "ticker": "SHY",
-            "weight_pct": 20.02
+            "weight_pct": 19.99
           },
           {
             "ticker": "UUP",
-            "weight_pct": 8.1
+            "weight_pct": 8.08
           },
           {
             "ticker": "DBA",
@@ -2950,55 +3519,55 @@
           },
           {
             "ticker": "EFA",
-            "weight_pct": 3.39
+            "weight_pct": 3.44
           },
           {
             "ticker": "DBC",
-            "weight_pct": 3.19
+            "weight_pct": 3.11
           },
           {
             "ticker": "SPY",
-            "weight_pct": 3.03
+            "weight_pct": 3.05
           },
           {
             "ticker": "IWM",
-            "weight_pct": 2.64
+            "weight_pct": 2.62
           },
           {
             "ticker": "EEM",
-            "weight_pct": 2.48
+            "weight_pct": 2.58
           },
           {
             "ticker": "QQQ",
-            "weight_pct": 2.26
+            "weight_pct": 2.29
           },
           {
             "ticker": "USO",
-            "weight_pct": 1.59
+            "weight_pct": 1.48
           }
         ],
         "long_count": 10,
-        "net_pct": 31.2,
+        "net_pct": 31.15,
         "short": [
           {
             "ticker": "IEF",
-            "weight_pct": 10.28
+            "weight_pct": 10.23
           },
           {
             "ticker": "TLT",
-            "weight_pct": 4.86
+            "weight_pct": 4.81
           },
           {
             "ticker": "GLD",
-            "weight_pct": 2.65
+            "weight_pct": 2.67
           },
           {
             "ticker": "SLV",
-            "weight_pct": 1.23
+            "weight_pct": 1.32
           },
           {
             "ticker": "UNG",
-            "weight_pct": 0.94
+            "weight_pct": 0.93
           }
         ],
         "short_count": 5,
@@ -3025,7 +3594,7 @@
         "external_attestation": false
       },
       "go_live": "2026-08-07",
-      "live_days": 38,
+      "live_days": 44,
       "research_curve": [
         {
           "date": "2001-06-29",
@@ -3874,27 +4443,202 @@
           "equity": 99682.15
         },
         {
-          "date": "2026-09-14",
-          "equity": 99614.25
+          "date": "2026-09-15",
+          "equity": 99667.19
+        },
+        {
+          "date": "2026-09-16",
+          "equity": 99737.18
+        },
+        {
+          "date": "2026-09-17",
+          "equity": 99735.68
+        },
+        {
+          "date": "2026-09-18",
+          "equity": 99820.13
+        },
+        {
+          "date": "2026-09-19",
+          "equity": 99868.65
+        },
+        {
+          "date": "2026-09-20",
+          "equity": 99868.65
         }
       ],
+      "cost_charged_curve": [
+        {
+          "date": "2026-08-11",
+          "equity": 99950.55
+        },
+        {
+          "date": "2026-08-12",
+          "equity": 100277.34
+        },
+        {
+          "date": "2026-08-13",
+          "equity": 100438.86
+        },
+        {
+          "date": "2026-08-14",
+          "equity": 100219.75
+        },
+        {
+          "date": "2026-08-15",
+          "equity": 100580.43
+        },
+        {
+          "date": "2026-08-18",
+          "equity": 100645.24
+        },
+        {
+          "date": "2026-08-19",
+          "equity": 100349.25
+        },
+        {
+          "date": "2026-08-20",
+          "equity": 100490.54
+        },
+        {
+          "date": "2026-08-21",
+          "equity": 100237.77
+        },
+        {
+          "date": "2026-08-22",
+          "equity": 100415.72
+        },
+        {
+          "date": "2026-08-25",
+          "equity": 100226.8
+        },
+        {
+          "date": "2026-08-26",
+          "equity": 100277.25
+        },
+        {
+          "date": "2026-08-27",
+          "equity": 100215.16
+        },
+        {
+          "date": "2026-08-28",
+          "equity": 100033.52
+        },
+        {
+          "date": "2026-08-29",
+          "equity": 99467.92
+        },
+        {
+          "date": "2026-09-01",
+          "equity": 99357.28
+        },
+        {
+          "date": "2026-09-02",
+          "equity": 99430.35
+        },
+        {
+          "date": "2026-09-03",
+          "equity": 99327.54
+        },
+        {
+          "date": "2026-09-04",
+          "equity": 99417.36
+        },
+        {
+          "date": "2026-09-05",
+          "equity": 99324.85
+        },
+        {
+          "date": "2026-09-09",
+          "equity": 99310.82
+        },
+        {
+          "date": "2026-09-10",
+          "equity": 99436.47
+        },
+        {
+          "date": "2026-09-11",
+          "equity": 99492.69
+        },
+        {
+          "date": "2026-09-12",
+          "equity": 99554.8
+        },
+        {
+          "date": "2026-09-15",
+          "equity": 99539.17
+        },
+        {
+          "date": "2026-09-16",
+          "equity": 99608.9
+        },
+        {
+          "date": "2026-09-17",
+          "equity": 99607.18
+        },
+        {
+          "date": "2026-09-18",
+          "equity": 99691.44
+        },
+        {
+          "date": "2026-09-19",
+          "equity": 99739.76
+        },
+        {
+          "date": "2026-09-20",
+          "equity": 99739.57
+        }
+      ],
+      "cost_charges": {
+        "status": "CHARGED_BY_MODEL",
+        "contract": "config/cost_realism_contract.json",
+        "totals_usd": {
+          "borrow": 182.23,
+          "commission": 233.36,
+          "impact": 173.22,
+          "spread": 700.09,
+          "total": 1288.9
+        },
+        "cumulative_drag_bps_of_base": 12.91,
+        "fills_total": 47,
+        "fills_priced_for_impact": 47,
+        "fills_unpriced_for_impact": 0,
+        "fills_impact_floored_at_tripwire": 0,
+        "short_calendar_days_charged": 41,
+        "traded_notional_usd": 2333630.52,
+        "model": {
+          "adv_sessions_median": 30,
+          "equity_borrow_bps_annual": 50.0,
+          "equity_commission_bps": 1.0,
+          "equity_half_spread_bps": 3.0,
+          "impact_coef": 1.0,
+          "latency_addon_bps_not_charged": 2.0,
+          "participation_tripwire": 0.05,
+          "sigma_ewm_halflife_sessions": 240
+        },
+        "not_charged": [
+          "latency_slippage",
+          "financing_margin_interest",
+          "cash_yield_on_idle_capital"
+        ]
+      },
       "holdings": {
-        "as_of": "2026-09-14",
+        "as_of": "2026-09-20",
         "broker_reconciled": true,
         "flat": false,
         "gross_pct": 28.0,
         "long": [
           {
             "ticker": "SPY",
-            "weight_pct": 13.97
+            "weight_pct": 14.02
           }
         ],
         "long_count": 1,
-        "net_pct": -0.08,
+        "net_pct": 0.06,
         "short": [
           {
             "ticker": "IWM",
-            "weight_pct": 14.05
+            "weight_pct": 13.96
           }
         ],
         "short_count": 1,
@@ -3921,7 +4665,7 @@
         "external_attestation": false
       },
       "go_live": "2026-08-07",
-      "live_days": 38,
+      "live_days": 44,
       "research_curve": [
         {
           "date": "2022-02-08",
@@ -4795,13 +5539,212 @@
         },
         {
           "date": "2026-09-14",
-          "equity": 90428.45
+          "equity": 90476.95
+        },
+        {
+          "date": "2026-09-15",
+          "equity": 90873.87
+        },
+        {
+          "date": "2026-09-16",
+          "equity": 90978.92
+        },
+        {
+          "date": "2026-09-17",
+          "equity": 90439.93
+        },
+        {
+          "date": "2026-09-18",
+          "equity": 90054.15
+        },
+        {
+          "date": "2026-09-19",
+          "equity": 89739.4
+        },
+        {
+          "date": "2026-09-20",
+          "equity": 89966.77
         }
       ],
+      "cost_charged_curve": [
+        {
+          "date": "2026-08-08",
+          "equity": 100000.0
+        },
+        {
+          "date": "2026-08-11",
+          "equity": 100742.33
+        },
+        {
+          "date": "2026-08-12",
+          "equity": 99926.52
+        },
+        {
+          "date": "2026-08-13",
+          "equity": 99374.17
+        },
+        {
+          "date": "2026-08-14",
+          "equity": 99538.54
+        },
+        {
+          "date": "2026-08-15",
+          "equity": 98672.13
+        },
+        {
+          "date": "2026-08-16",
+          "equity": 98718.24
+        },
+        {
+          "date": "2026-08-17",
+          "equity": 98607.51
+        },
+        {
+          "date": "2026-08-18",
+          "equity": 98529.14
+        },
+        {
+          "date": "2026-08-19",
+          "equity": 96202.23
+        },
+        {
+          "date": "2026-08-20",
+          "equity": 96722.24
+        },
+        {
+          "date": "2026-08-21",
+          "equity": 95897.46
+        },
+        {
+          "date": "2026-08-22",
+          "equity": 94695.46
+        },
+        {
+          "date": "2026-08-23",
+          "equity": 93945.65
+        },
+        {
+          "date": "2026-08-24",
+          "equity": 93537.68
+        },
+        {
+          "date": "2026-08-25",
+          "equity": 92344.12
+        },
+        {
+          "date": "2026-08-26",
+          "equity": 91503.25
+        },
+        {
+          "date": "2026-08-27",
+          "equity": 91509.67
+        },
+        {
+          "date": "2026-08-28",
+          "equity": 91630.58
+        },
+        {
+          "date": "2026-08-29",
+          "equity": 90797.96
+        },
+        {
+          "date": "2026-08-30",
+          "equity": 91087.36
+        },
+        {
+          "date": "2026-08-31",
+          "equity": 91151.16
+        },
+        {
+          "date": "2026-09-01",
+          "equity": 92673.69
+        },
+        {
+          "date": "2026-09-02",
+          "equity": 93593.71
+        },
+        {
+          "date": "2026-09-03",
+          "equity": 92092.84
+        },
+        {
+          "date": "2026-09-04",
+          "equity": 90743.05
+        },
+        {
+          "date": "2026-09-05",
+          "equity": 91410.24
+        },
+        {
+          "date": "2026-09-06",
+          "equity": 87175.02
+        },
+        {
+          "date": "2026-09-07",
+          "equity": 89453.64
+        },
+        {
+          "date": "2026-09-08",
+          "equity": 89714.35
+        },
+        {
+          "date": "2026-09-09",
+          "equity": 89851.16
+        },
+        {
+          "date": "2026-09-10",
+          "equity": 90723.22
+        },
+        {
+          "date": "2026-09-11",
+          "equity": 89619.09
+        },
+        {
+          "date": "2026-09-12",
+          "equity": 89670.93
+        },
+        {
+          "date": "2026-09-13",
+          "equity": 90176.9
+        },
+        {
+          "date": "2026-09-14",
+          "equity": 90476.95
+        },
+        {
+          "date": "2026-09-15",
+          "equity": 90873.87
+        },
+        {
+          "date": "2026-09-16",
+          "equity": 90978.92
+        },
+        {
+          "date": "2026-09-17",
+          "equity": 90439.93
+        },
+        {
+          "date": "2026-09-18",
+          "equity": 90054.15
+        },
+        {
+          "date": "2026-09-19",
+          "equity": 89739.4
+        },
+        {
+          "date": "2026-09-20",
+          "equity": 89966.77
+        }
+      ],
+      "cost_charges": {
+        "status": "CHARGED_AT_SOURCE",
+        "contract": "config/cost_realism_contract.json",
+        "note": "commission, spread, impact and funding are debited by the paper engine per fill"
+      },
       "holdings": {
-        "as_of": "2026-09-14",
-        "long_count": 5,
-        "short_count": 4,
+        "as_of": "2026-09-20",
+        "long_count": 4,
+        "short_count": 5,
         "long": [
           {
             "ticker": "BZ"
@@ -4810,10 +5753,7 @@
             "ticker": "CL"
           },
           {
-            "ticker": "HYPE"
-          },
-          {
-            "ticker": "SOL"
+            "ticker": "XRP"
           },
           {
             "ticker": "ZEC"
@@ -4821,30 +5761,33 @@
         ],
         "short": [
           {
-            "ticker": "1000PEPE"
-          },
-          {
-            "ticker": "DOGE"
+            "ticker": "HYPE"
           },
           {
             "ticker": "LAB"
           },
           {
             "ticker": "TAO"
+          },
+          {
+            "ticker": "XAG"
+          },
+          {
+            "ticker": "XAU"
           }
         ],
         "flat": false
       },
       "cycle_uptime": {
-        "cycles_completed": 1080,
-        "cycles_expected": 1851,
-        "uptime_pct": 58.3,
+        "cycles_completed": 1220,
+        "cycles_expected": 1991,
+        "uptime_pct": 61.3,
         "dark_hours": 772,
-        "record_days": 77.1,
+        "record_days": 83.0,
         "longest_outage_hours": 165,
         "outages_over_24h": 8,
         "dark_since_hours": 0,
-        "last_cycle_utc": "2026-09-14 10:00"
+        "last_cycle_utc": "2026-09-20 06:00"
       }
     }
   ],
@@ -4861,7 +5804,7 @@
     "correlation": "Measured +0.0274 average pairwise correlation across the four live sleeves \u2014 POSITIVE. The prior three-sleeve book measured +0.0723; AlphaVintage lowered it without improving any standalone edge claim. In risk-off the pairwise correlations can spike, so the diversification benefit may shrink exactly in the left tail. We size on the stressed matrix.",
     "gauntlet_grade": "C+",
     "gauntlet_pass": "real but modest; no sleeve clears the multiple-testing deflation gate in-sample, so the only credible next evidence is a live record where the full book transacts through a risk-off episode",
-    "live_days": 38
+    "live_days": 44
   },
   "transparency": [
     "Research curves are simulations. No funded performance is included in the published ALPHAC strategy record.",
@@ -4879,7 +5822,7 @@
     "CORRECTION 2026-07-05 \u2014 the crypto sleeve was signal-dead, not 'carry compressed'. From go-live (06-23) to 07-05 AlphaForge held cash and we published that funding carry was compressed. An internal audit found the true cause: a wiring bug blended equity-fundamental alphas (undefined on crypto) into the live signal, invalidating it every cycle \u2014 the validated carry-only configuration was never what ran live. Fixed same day (the loop now runs the exact blessed walk-forward config: carry_fund_21, weekly rebalance, with per-cycle signal-health logging so a dead signal can never masquerade as a quiet hold again). The $100k cash equity curve was genuine; the published EXPLANATION was wrong. Per our append-only posture this correction is added to the record, not swapped into it.",
     "We red-team our own record. On 2026-06-27 our publishing pipeline emitted a future-dated (2026-06-29) paper mark that briefly reached the public sites and was anchored into seq 0 of the signed transparency chain. We caught it the same day, added a fail-closed guard, and appended the corrected seq 1. The signed chain retains BOTH opaque commitments; their underlying historical payloads were not published and cannot now be reconstructed from the chain. We preserve that limitation instead of deleting or fabricating a backfill.",
     "AlphaTrend (managed-futures trend) was the FIRST sleeve we took genuinely live: its 17-ETF book transacts on Alpaca paper, not in a simulator. We published DSR 0.83 for it and called it the first sleeve to CLEAR multiple-testing deflation, statistically real rather than a backtest fluke. RE-DERIVED 2026-08-07 at honest N=133 and pooled V[SR]=7.96e-04, its DSR is 0.000: the LOWEST of the six sleeves we have measured, not the highest. The old 0.83 rested on a variance input roughly 80x too small and a trial count of 5 while its siblings were graded at N=101, so it was marked on an easier exam and then called the soundest. Net Sharpe 0.25 over its full 5,179-day history. It is folded into ALPHAC at equal quarters for MEASURED drawdown reduction, not for a demonstrated edge. The screen suggested 0.73; the honest engine says 0.33 on the live window. We published every one of those numbers.",
-    "STRUCTURAL VERDICT 2026-08-05 \u2014 the crypto sleeve's venue unreachability is STRUCTURAL, and we said we would say so. The 2026-07-20 note above promised: 'if it proves persistent it is a STRUCTURAL problem for a sleeve built on a single venue, and we will say that too.' It has proved persistent, so here is the number we had not put on the record until now: across its entire live history the hourly loop has completed 1080 of 1851 expected cycles \u2014 an uptime of 58.3%. It has been dark for roughly 772 hours of a 77.1-day record, with 8 separate outages longer than a day and a longest single outage of 165 hours. As of this publish it has been dark 0 hours; its last observed cycle was 2026-09-14 10:00 UTC. WHAT THIS MEANS, stated plainly rather than buried: this sleeve carries 40% of the flagship's weight, so for most of the forward record our largest single position has not been managed. The published curve is not wrong \u2014 we never roll forward a mark we did not observe, so the sleeve's line simply stops when the venue does \u2014 but a 40%-weight sleeve that is dark most of the time is not meaningfully 'live', and describing it as live without this number attached would have been a half-truth. The forward track record is the whole basis on which this book asks to be believed, and it is being accrued on a book whose biggest sleeve is mostly absent. WHAT WE ARE DOING: the diagnosis is unchanged and venue-specific (the general internet and our equity broker respond normally from the same machine while the exchange endpoint fails on connect). Two fixes are real \u2014 hosting the loop somewhere with unobstructed access, and removing the single-venue dependency altogether by adding a second exchange. We flag the first honestly: our own deploy runbook records that reaching a venue from a different region is a COMPLIANCE decision and not merely an operations one, so it will not be done as a silent infrastructure tweak. Until one of those lands, read this sleeve's contribution to the live record as what it is \u2014 58.3% of the intended trading.",
+    "STRUCTURAL VERDICT 2026-08-05 \u2014 the crypto sleeve's venue unreachability is STRUCTURAL, and we said we would say so. The 2026-07-20 note above promised: 'if it proves persistent it is a STRUCTURAL problem for a sleeve built on a single venue, and we will say that too.' It has proved persistent, so here is the number we had not put on the record until now: across its entire live history the hourly loop has completed 1220 of 1991 expected cycles \u2014 an uptime of 61.3%. It has been dark for roughly 772 hours of a 83.0-day record, with 8 separate outages longer than a day and a longest single outage of 165 hours. As of this publish it has been dark 0 hours; its last observed cycle was 2026-09-20 06:00 UTC. WHAT THIS MEANS, stated plainly rather than buried: this sleeve carries 40% of the flagship's weight, so for most of the forward record our largest single position has not been managed. The published curve is not wrong \u2014 we never roll forward a mark we did not observe, so the sleeve's line simply stops when the venue does \u2014 but a 40%-weight sleeve that is dark most of the time is not meaningfully 'live', and describing it as live without this number attached would have been a half-truth. The forward track record is the whole basis on which this book asks to be believed, and it is being accrued on a book whose biggest sleeve is mostly absent. WHAT WE ARE DOING: the diagnosis is unchanged and venue-specific (the general internet and our equity broker respond normally from the same machine while the exchange endpoint fails on connect). Two fixes are real \u2014 hosting the loop somewhere with unobstructed access, and removing the single-venue dependency altogether by adding a second exchange. We flag the first honestly: our own deploy runbook records that reaching a venue from a different region is a COMPLIANCE decision and not merely an operations one, so it will not be done as a silent infrastructure tweak. Until one of those lands, read this sleeve's contribution to the live record as what it is \u2014 61.3% of the intended trading.",
     "CORRECTION 2026-08-06 \u2014 our crypto carry sleeve is a strategy that earns funding, and its LIVE paper account has never once booked funding. We found this ourselves and are publishing it before the fix rather than after. The mechanism, stated plainly so anyone can check it: funding is applied in exactly one place in this codebase, Ledger.apply_funding, and it is called from exactly one call site, the BACKTEST engine. The live paper broker's cash moves on one line and only one line, a fill: cash - qty*price - fee. No funding cashflow can reach the live account by any path. The size of what is missing is not marginal. Our committed walk-forward artifact for this sleeve reports funding_net of $19,500 against a total return of $38,236 on a $100k book over 2022-02 to 2026-06: about HALF of everything this strategy has ever earned is the funding it is designed to harvest. Removing it takes the sleeve's backtested Sharpe from 0.653 to roughly 0.30. So AlphaForge's live record has been running against a hard ceiling of about half its validated Sharpe, and every live number we have published for this sleeve should be read in that light. What we are NOT doing: we are not restating the historical live curve. The marks we published were the marks we observed, and this record is append-only, so the fix applies FORWARD from the day it ships and the understated period stays visible in the chain. One number we are deliberately NOT putting on the record yet: our internal estimate of what funding would have added over the live window is dominated by a single name that redenominated roughly 100x inside the window, which makes the naive figure meaningless. We would rather publish no number than a number we cannot stand behind, so that one waits for the corrected accounting. This is the fourth time a defect in our plumbing, not our strategy, has moved a published number, and the lesson we wrote down in July holds: a fix is not done until a test pins the path that actually runs.",
     "CORRECTION 2026-08-06 \u2014 a factual claim in our 2026-07-20 incident note above is now false and we are marking it rather than editing it. That note said 'Bybit responds' as evidence the Binance failure was venue-specific. Re-measured from the same network on 2026-08-06: Bybit does NOT respond, and neither do Kraken or Deribit. Binance, Bybit and Kraken all fail on connection reset in under a tenth of a second and Deribit times out. The conclusion the original note drew is unchanged and if anything strengthened, since the block is clearly broader than one venue, but the supporting fact it cited is no longer true and a reader checking our work today would find it wrong. One venue does answer: OKX responds normally and serves funding rates, 436 perpetual instruments and hourly candles. We are evaluating it, and we note in advance that moving venue is not a configuration change: the same carry signal computed on OKX has a cross-sectional rank correlation of only about 0.64 with the Binance one, so it would be a materially different strategy wearing the same name, and we will not splice the two curves together and call it one continuous record.",
     "FIXED 2026-08-06 \u2014 the funding gap disclosed above is now closed in the live path, forward only. Earlier today we published that our crypto carry sleeve had never once booked funding in live paper, which is roughly half of everything that strategy has ever earned. That is fixed: the live broker gained a funding path with the identical sign convention the backtest ledger uses (payment = -position * mark * rate, longs pay shorts on a positive rate), and the live loop now settles every stored funding event for the window just closed, before the strategy re-decides, so a settlement is charged against the position that was actually held through it. It is point-in-time by construction: the reader filters on each event's stored publication time, never on the settlement time, so a rate not yet knowable at the moment of the cycle stays invisible. Nine tests pin the running path rather than the intention, including one that asserts the live broker and the backtest ledger return identical figures for the same event, because two conventions would be worse than none. Three things we are deliberately NOT doing. We are not restating the historical curve: the marks we published are the marks we observed, the understated period stays in the signed chain, and the fix applies from today. We are not claiming an improvement yet: the sleeve has been dark on venue unreachability since 2026-08-03, so this books nothing until it trades again, and any future gain will show up in the forward record or not at all. And we are not putting a number on what it would have earned over the live window, because our own measurement of that is dominated by a single instrument that redenominated roughly 100x inside the window, which makes the figure meaningless. We would rather publish no number than one we cannot stand behind.",
@@ -4905,143 +5848,143 @@
   ],
   "holdings": {
     "alphamax": {
-      "as_of": "2026-09-14",
+      "as_of": "2026-09-20",
       "broker_reconciled": true,
       "flat": false,
       "gross_pct": 29.5,
       "long": [
         {
-          "ticker": "MU",
-          "weight_pct": 0.9
-        },
-        {
           "ticker": "STX",
-          "weight_pct": 0.88
+          "weight_pct": 1.03
         },
         {
-          "ticker": "COHR",
-          "weight_pct": 0.61
+          "ticker": "MU",
+          "weight_pct": 0.99
         },
         {
           "ticker": "WDC",
-          "weight_pct": 0.46
-        },
-        {
-          "ticker": "CIEN",
-          "weight_pct": 0.41
+          "weight_pct": 0.52
         },
         {
           "ticker": "TER",
-          "weight_pct": 0.39
+          "weight_pct": 0.43
+        },
+        {
+          "ticker": "CIEN",
+          "weight_pct": 0.42
         },
         {
           "ticker": "REPL",
-          "weight_pct": 0.36
+          "weight_pct": 0.37
+        },
+        {
+          "ticker": "LRCX",
+          "weight_pct": 0.35
+        },
+        {
+          "ticker": "COHR",
+          "weight_pct": 0.34
         },
         {
           "ticker": "ONTO",
+          "weight_pct": 0.34
+        },
+        {
+          "ticker": "GLW",
           "weight_pct": 0.33
         },
         {
           "ticker": "MKSI",
-          "weight_pct": 0.31
-        },
-        {
-          "ticker": "LRCX",
-          "weight_pct": 0.31
-        },
-        {
-          "ticker": "GLW",
-          "weight_pct": 0.3
-        },
-        {
-          "ticker": "SIMO",
-          "weight_pct": 0.26
+          "weight_pct": 0.32
         },
         {
           "ticker": "TTMI",
-          "weight_pct": 0.26
+          "weight_pct": 0.28
         },
         {
-          "ticker": "APGE",
-          "weight_pct": 0.26
+          "ticker": "SIMO",
+          "weight_pct": 0.28
         },
         {
-          "ticker": "TSEM",
-          "weight_pct": 0.25
+          "ticker": "NBIS",
+          "weight_pct": 0.28
+        },
+        {
+          "ticker": "FORM",
+          "weight_pct": 0.27
         }
       ],
       "long_count": 84,
-      "net_pct": 3.35,
+      "net_pct": 4.4,
       "short": [
         {
           "ticker": "IT",
-          "weight_pct": 0.36
+          "weight_pct": 0.32
         },
         {
           "ticker": "INTU",
-          "weight_pct": 0.33
-        },
-        {
-          "ticker": "CHTR",
-          "weight_pct": 0.31
-        },
-        {
-          "ticker": "KD",
           "weight_pct": 0.3
         },
         {
-          "ticker": "CSGP",
-          "weight_pct": 0.26
+          "ticker": "CHTR",
+          "weight_pct": 0.27
         },
         {
-          "ticker": "DUOL",
+          "ticker": "CSGP",
           "weight_pct": 0.25
         },
         {
+          "ticker": "DUOL",
+          "weight_pct": 0.24
+        },
+        {
           "ticker": "SMPL",
-          "weight_pct": 0.22
-        },
-        {
-          "ticker": "HDB",
-          "weight_pct": 0.22
-        },
-        {
-          "ticker": "FISV",
-          "weight_pct": 0.22
+          "weight_pct": 0.23
         },
         {
           "ticker": "SHAK",
-          "weight_pct": 0.22
-        },
-        {
-          "ticker": "CBZ",
-          "weight_pct": 0.22
-        },
-        {
-          "ticker": "HUBS",
           "weight_pct": 0.21
         },
         {
-          "ticker": "WHR",
+          "ticker": "HDB",
+          "weight_pct": 0.21
+        },
+        {
+          "ticker": "CBZ",
+          "weight_pct": 0.21
+        },
+        {
+          "ticker": "PRGO",
+          "weight_pct": 0.2
+        },
+        {
+          "ticker": "POWL",
           "weight_pct": 0.2
         },
         {
           "ticker": "BKNG",
-          "weight_pct": 0.19
+          "weight_pct": 0.2
         },
         {
-          "ticker": "POWL",
-          "weight_pct": 0.19
+          "ticker": "FISV",
+          "weight_pct": 0.2
+        },
+        {
+          "ticker": "KLAC",
+          "weight_pct": 0.2
+        },
+        {
+          "ticker": "HUBS",
+          "weight_pct": 0.2
         }
       ],
       "short_count": 92,
       "source": "ALPACA_CURRENT_POSITIONS"
     },
     "alphaforge": {
-      "as_of": "2026-09-14",
-      "long_count": 5,
-      "short_count": 4,
+      "as_of": "2026-09-20",
+      "long_count": 4,
+      "short_count": 5,
       "long": [
         {
           "ticker": "BZ"
@@ -5050,10 +5993,7 @@
           "ticker": "CL"
         },
         {
-          "ticker": "HYPE"
-        },
-        {
-          "ticker": "SOL"
+          "ticker": "XRP"
         },
         {
           "ticker": "ZEC"
@@ -5061,16 +6001,19 @@
       ],
       "short": [
         {
-          "ticker": "1000PEPE"
-        },
-        {
-          "ticker": "DOGE"
+          "ticker": "HYPE"
         },
         {
           "ticker": "LAB"
         },
         {
           "ticker": "TAO"
+        },
+        {
+          "ticker": "XAG"
+        },
+        {
+          "ticker": "XAU"
         }
       ],
       "flat": false
@@ -5081,10 +6024,18 @@
     "aggregation": {
       "scheme": "fixed",
       "book_level_vol_target_ann": null,
-      "book_level_drawdown_ladder": null,
+      "book_level_drawdown_ladder": {
+        "dd_half_frac": 0.05,
+        "dd_flat_frac": 0.1,
+        "release_frac_of_half": 0.75,
+        "flat_state": "ABSORBING_UNTIL_OWNER_REARM",
+        "applied_by": "every sleeve multiplies its target gross by the published book multiplier",
+        "source": "config/drawdown_control_contract.json",
+        "activated_on": "2026-09-15"
+      },
       "missing_mark_policy": "ZERO_CONTRIBUTION_ON_MISSING_DAILY_SLEEVE_MARK",
       "strategic_overlay_is_book_vol_scaled": false,
-      "claim_boundary": "Constituent strategies own their internal sizing. ALPHAC combines their realized returns at the committed fixed-weight schedule and adds the separately disclosed strategic overlay. It does not apply a second book-level volatility target or drawdown ladder."
+      "claim_boundary": "Constituent strategies own their internal sizing. ALPHAC combines their realized returns at the committed fixed-weight schedule and adds the separately disclosed strategic overlay. It applies no second book-level volatility target. It does apply the declared book-level drawdown ladder (half gross at 5.0% below the high-water mark, flat at 10.0%, absorbing until an owner rearm), which every sleeve reads before sizing."
     },
     "style": "Market-neutral core (equity momentum + crypto funding carry + managed-futures trend + PIT macro surprise, four near-uncorrelated sleeves at equal quarters, measured average pairwise correlation +0.0274) PLUS a disclosed +10% strategic net-long overlay",
     "strategic_tilt": {
@@ -5130,7 +6081,7 @@
   "research_curve": [
     {
       "date": "2023-07-07",
-      "equity": 100138.45
+      "equity": 100138.46
     },
     {
       "date": "2023-07-12",
@@ -5170,7 +6121,7 @@
     },
     {
       "date": "2023-08-26",
-      "equity": 99131.71
+      "equity": 99131.72
     },
     {
       "date": "2023-08-31",
@@ -5194,7 +6145,7 @@
     },
     {
       "date": "2023-09-25",
-      "equity": 100179.76
+      "equity": 100179.77
     },
     {
       "date": "2023-09-30",
@@ -5314,7 +6265,7 @@
     },
     {
       "date": "2024-02-22",
-      "equity": 106880.52
+      "equity": 106880.53
     },
     {
       "date": "2024-02-27",
@@ -5430,7 +6381,7 @@
     },
     {
       "date": "2024-07-16",
-      "equity": 114695.55
+      "equity": 114695.56
     },
     {
       "date": "2024-07-21",
@@ -5482,7 +6433,7 @@
     },
     {
       "date": "2024-09-19",
-      "equity": 112107.93
+      "equity": 112107.92
     },
     {
       "date": "2024-09-24",
@@ -5490,7 +6441,7 @@
     },
     {
       "date": "2024-09-29",
-      "equity": 113202.86
+      "equity": 113202.85
     },
     {
       "date": "2024-10-04",
@@ -5562,7 +6513,7 @@
     },
     {
       "date": "2024-12-28",
-      "equity": 119415.39
+      "equity": 119415.38
     },
     {
       "date": "2025-01-02",
@@ -5710,7 +6661,7 @@
     },
     {
       "date": "2025-07-01",
-      "equity": 120982.41
+      "equity": 120982.4
     },
     {
       "date": "2025-07-06",
@@ -5722,7 +6673,7 @@
     },
     {
       "date": "2025-07-16",
-      "equity": 120804.33
+      "equity": 120804.32
     },
     {
       "date": "2025-07-21",
@@ -5818,7 +6769,7 @@
     },
     {
       "date": "2025-11-13",
-      "equity": 121848.16
+      "equity": 121848.17
     },
     {
       "date": "2025-11-18",
@@ -5874,7 +6825,7 @@
     },
     {
       "date": "2026-01-22",
-      "equity": 124509.95
+      "equity": 124509.96
     },
     {
       "date": "2026-01-27",
@@ -5894,7 +6845,7 @@
     },
     {
       "date": "2026-02-16",
-      "equity": 123705.12
+      "equity": 123705.13
     },
     {
       "date": "2026-02-21",
@@ -6128,7 +7079,315 @@
     },
     {
       "date": "2026-09-14",
-      "equity": 97293.83
+      "equity": 97408.87
+    },
+    {
+      "date": "2026-09-15",
+      "equity": 97163.78
+    },
+    {
+      "date": "2026-09-16",
+      "equity": 97207.63
+    },
+    {
+      "date": "2026-09-17",
+      "equity": 97188.68
+    },
+    {
+      "date": "2026-09-18",
+      "equity": 97224.52
+    },
+    {
+      "date": "2026-09-19",
+      "equity": 97264.51
+    },
+    {
+      "date": "2026-09-20",
+      "equity": 97389.22
     }
-  ]
+  ],
+  "cost_charged_curve": [
+    {
+      "date": "2026-08-07",
+      "equity": 100000.0
+    },
+    {
+      "date": "2026-08-08",
+      "equity": 99999.93
+    },
+    {
+      "date": "2026-08-11",
+      "equity": 100005.88
+    },
+    {
+      "date": "2026-08-12",
+      "equity": 99899.72
+    },
+    {
+      "date": "2026-08-13",
+      "equity": 100080.71
+    },
+    {
+      "date": "2026-08-14",
+      "equity": 99907.43
+    },
+    {
+      "date": "2026-08-15",
+      "equity": 99940.45
+    },
+    {
+      "date": "2026-08-16",
+      "equity": 99952.13
+    },
+    {
+      "date": "2026-08-17",
+      "equity": 99900.48
+    },
+    {
+      "date": "2026-08-18",
+      "equity": 100082.43
+    },
+    {
+      "date": "2026-08-19",
+      "equity": 99138.39
+    },
+    {
+      "date": "2026-08-20",
+      "equity": 98990.32
+    },
+    {
+      "date": "2026-08-21",
+      "equity": 98754.76
+    },
+    {
+      "date": "2026-08-22",
+      "equity": 98467.43
+    },
+    {
+      "date": "2026-08-23",
+      "equity": 98272.51
+    },
+    {
+      "date": "2026-08-24",
+      "equity": 98151.38
+    },
+    {
+      "date": "2026-08-25",
+      "equity": 97618.34
+    },
+    {
+      "date": "2026-08-26",
+      "equity": 97477.38
+    },
+    {
+      "date": "2026-08-27",
+      "equity": 97582.82
+    },
+    {
+      "date": "2026-08-28",
+      "equity": 97610.22
+    },
+    {
+      "date": "2026-08-29",
+      "equity": 97092.22
+    },
+    {
+      "date": "2026-08-30",
+      "equity": 97169.58
+    },
+    {
+      "date": "2026-08-31",
+      "equity": 97172.07
+    },
+    {
+      "date": "2026-09-01",
+      "equity": 97498.11
+    },
+    {
+      "date": "2026-09-02",
+      "equity": 97814.59
+    },
+    {
+      "date": "2026-09-03",
+      "equity": 97426.29
+    },
+    {
+      "date": "2026-09-04",
+      "equity": 97053.9
+    },
+    {
+      "date": "2026-09-05",
+      "equity": 97309.98
+    },
+    {
+      "date": "2026-09-06",
+      "equity": 96182.84
+    },
+    {
+      "date": "2026-09-07",
+      "equity": 96811.36
+    },
+    {
+      "date": "2026-09-08",
+      "equity": 96855.31
+    },
+    {
+      "date": "2026-09-09",
+      "equity": 97114.27
+    },
+    {
+      "date": "2026-09-10",
+      "equity": 97406.29
+    },
+    {
+      "date": "2026-09-11",
+      "equity": 97137.36
+    },
+    {
+      "date": "2026-09-12",
+      "equity": 97158.04
+    },
+    {
+      "date": "2026-09-13",
+      "equity": 97295.09
+    },
+    {
+      "date": "2026-09-14",
+      "equity": 97354.32
+    },
+    {
+      "date": "2026-09-15",
+      "equity": 97107.53
+    },
+    {
+      "date": "2026-09-16",
+      "equity": 97151.12
+    },
+    {
+      "date": "2026-09-17",
+      "equity": 97132.09
+    },
+    {
+      "date": "2026-09-18",
+      "equity": 97168.1
+    },
+    {
+      "date": "2026-09-19",
+      "equity": 97208.25
+    },
+    {
+      "date": "2026-09-20",
+      "equity": 97332.86
+    }
+  ],
+  "cost_charges": {
+    "status": "CHARGED_BY_MODEL_ON_ALPACA_SLEEVES",
+    "contract": "config/cost_realism_contract.json",
+    "sleeves": {
+      "alphamax": {
+        "status": "CHARGED_BY_MODEL",
+        "contract": "config/cost_realism_contract.json",
+        "totals_usd": {
+          "borrow": 241.7,
+          "commission": 246.47,
+          "impact": 1602.33,
+          "spread": 739.4,
+          "total": 2829.9
+        },
+        "cumulative_drag_bps_of_base": 28.3,
+        "fills_total": 4926,
+        "fills_priced_for_impact": 4926,
+        "fills_unpriced_for_impact": 0,
+        "fills_impact_floored_at_tripwire": 0,
+        "short_calendar_days_charged": 84,
+        "traded_notional_usd": 2464666.74,
+        "model": {
+          "adv_sessions_median": 30,
+          "equity_borrow_bps_annual": 50.0,
+          "equity_commission_bps": 1.0,
+          "equity_half_spread_bps": 3.0,
+          "impact_coef": 1.0,
+          "latency_addon_bps_not_charged": 2.0,
+          "participation_tripwire": 0.05,
+          "sigma_ewm_halflife_sessions": 240
+        },
+        "not_charged": [
+          "latency_slippage",
+          "financing_margin_interest",
+          "cash_yield_on_idle_capital"
+        ]
+      },
+      "managed_futures": {
+        "status": "CHARGED_BY_MODEL",
+        "contract": "config/cost_realism_contract.json",
+        "totals_usd": {
+          "borrow": 144.36,
+          "commission": 128.53,
+          "impact": 222.69,
+          "spread": 385.58,
+          "total": 881.16
+        },
+        "cumulative_drag_bps_of_base": 8.81,
+        "fills_total": 552,
+        "fills_priced_for_impact": 552,
+        "fills_unpriced_for_impact": 0,
+        "fills_impact_floored_at_tripwire": 0,
+        "short_calendar_days_charged": 84,
+        "traded_notional_usd": 1285274.87,
+        "model": {
+          "adv_sessions_median": 30,
+          "equity_borrow_bps_annual": 50.0,
+          "equity_commission_bps": 1.0,
+          "equity_half_spread_bps": 3.0,
+          "impact_coef": 1.0,
+          "latency_addon_bps_not_charged": 2.0,
+          "participation_tripwire": 0.05,
+          "sigma_ewm_halflife_sessions": 240
+        },
+        "not_charged": [
+          "latency_slippage",
+          "financing_margin_interest",
+          "cash_yield_on_idle_capital"
+        ]
+      },
+      "alphavintage": {
+        "status": "CHARGED_BY_MODEL",
+        "contract": "config/cost_realism_contract.json",
+        "totals_usd": {
+          "borrow": 182.23,
+          "commission": 233.36,
+          "impact": 173.22,
+          "spread": 700.09,
+          "total": 1288.9
+        },
+        "cumulative_drag_bps_of_base": 12.91,
+        "fills_total": 47,
+        "fills_priced_for_impact": 47,
+        "fills_unpriced_for_impact": 0,
+        "fills_impact_floored_at_tripwire": 0,
+        "short_calendar_days_charged": 41,
+        "traded_notional_usd": 2333630.52,
+        "model": {
+          "adv_sessions_median": 30,
+          "equity_borrow_bps_annual": 50.0,
+          "equity_commission_bps": 1.0,
+          "equity_half_spread_bps": 3.0,
+          "impact_coef": 1.0,
+          "latency_addon_bps_not_charged": 2.0,
+          "participation_tripwire": 0.05,
+          "sigma_ewm_halflife_sessions": 240
+        },
+        "not_charged": [
+          "latency_slippage",
+          "financing_margin_interest",
+          "cash_yield_on_idle_capital"
+        ]
+      },
+      "alphaforge": {
+        "status": "CHARGED_AT_SOURCE",
+        "contract": "config/cost_realism_contract.json",
+        "note": "commission, spread, impact and funding are debited by the paper engine per fill"
+      }
+    }
+  }
 }

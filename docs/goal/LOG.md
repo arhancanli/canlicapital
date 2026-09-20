@@ -1103,3 +1103,24 @@ probe initially compared uppercased rendered text; corrected DOM-text assertion.
 No historical source changed. Restored unrelated generated churn from clean start.
 Newer engine evidence still requires complete publication refresh. Prior head
 bbec4dd9 CI35494409052 passes. All owner outcomes remain active/unestablished.
+
+## 2026-09-20 — stable export refresh and nested-state exclusion
+
+Captured full newer public export with stable hashes. Found7nested agent files
+in public export; excluded them from candidate and fixed engine snapshot copy and
+overlay in PR68 ce93d8c.13tests/Ruffpass. Initial candidate verification required
+actual full Git history for sitemap tests; after retaining it, build/verify pass.
+Imported53files and rebuilt dependencies. Main6+381tests/all audits and six browser
+checks pass;163content hashes/2signatures reproduce.1,060-entry chain allsignatures
+valid,953prior entries unchanged. Five forward returns/four sleeves stillIMMATURE.
+No source runtime changes, broker orders, production publication or goal completion.
+Detailed receipts and limits: EVIDENCE_REFRESH.md. Former websitehead75615c3e CIpasses.
+
+## 2026-09-20 — first observed Search Console indexing baseline
+
+Read owner's open coverage Google Sheet via local XLSX export, without editing
+sheet or changing browser JavaScript-security settings. Latest chartSeptember14:
+262indexed/40notindexed, all-known-pages scope.32noindex+3redirect+3discovered+
+2crawled exclusions sum40. Raw workbookSHA5f90caa3d103cb180c3f190bc2566074f5bead67a1e9043371d4611dc03d77af;
+raw saved ignored, aggregate receipt retained. No excluded URL examples supplied
+in workbook. Further per-URL review needed before proposing indexability changes.

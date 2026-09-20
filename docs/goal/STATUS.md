@@ -435,3 +435,27 @@ Build rejects mismatched report bytes/count/status/dates; built-page audit check
 source binding and date disclosure. Full build/verify pass:6+381tests; six browser
 checks across Chromium/WebKit and320/390/1440widths pass. Complete publication
 bundle refresh to newer engine evidence remains open; no production change.
+
+## Complete local evidence refresh — 2026-09-20
+
+Website now uses the stable September20 public export, with seven nested agent
+state files excluded.53changed/added inputs plus dependent generated outputs
+refreshed; no manuscript changed. Forward snapshot is five returns/four sleeves,
+IMMATURE. Full build/verify6+381tests, six browser checks,163content hashes and
+2signatures pass. Transparency verifier passes1,060entries; previous953preserved.
+See EVIDENCE_REFRESH.md and artifacts/algo/evidence-refresh-20260920.json.
+Engine PR68 ce93d8c fixes nested agent-state copying,13tests/Ruff pass; newCIpending.
+Previous website75615c3e CI35494654116passes. No production publication or outcome
+completion. Remote corpus storage/access and actual indexing remain open.
+
+## Search Console baseline obtained — 2026-09-20
+
+Owner authorized inspection of the open Google Sheet. Coverage workbook export
+September20 has latest chart data September14:262indexed and40notindexed,
+scope All known pages. Exclusions:32noindex,3redirects,3discovered-notindexed,
+2crawled-notindexed. No per-URL examples in workbook; do not assume intentional
+exclusions are defects or that the indexed set equals the263-URL sitemap.
+Receipt artifacts/seo/search-console-indexing-baseline-20260920.json pins raw
+workbook hash; original bytes retained in ignored corpus-local/search-console.
+This replaces unknown aggregate indexing with a dated Google-reported baseline;
+no evidence of the staged company corpus being live or indexed.

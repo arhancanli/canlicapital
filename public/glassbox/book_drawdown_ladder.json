@@ -33,7 +33,7 @@
     ],
     "status_after_activation": "MECHANISM_LIVE_BOUND_ENFORCED_UP_TO_ONE_DAY_OVERSHOOT"
   },
-  "as_of": "2026-09-15",
+  "as_of": "2026-09-20",
   "author": "Arhan Canli",
   "bindings": {
     "contract": {
@@ -42,9 +42,9 @@
       "status": "MECHANISM_LIVE_BOUND_ENFORCED_UP_TO_ONE_DAY_OVERSHOOT"
     },
     "live_curve_source": {
-      "generated_at": "2026-09-15T14:26:38.169169+00:00",
+      "generated_at": "2026-09-20T06:26:15.824201+00:00",
       "path": "data/paper/state.json",
-      "sha256": "sha256:ebb6b1225d7b3081c68c5bd1dafcaea279efc9b099dd34cc42c517ab0e09dabf"
+      "sha256": "sha256:b9af85176477459e3b14dd71a30bdca40ede9b26c5216d3d9851456bae1873e5"
     },
     "rearms_register": {
       "entries": 0,
@@ -53,7 +53,7 @@
   },
   "capital_kind": "PAPER_ONLY",
   "claim_boundary": "The declared book-level drawdown ladder replayed over the combined book's published daily paper marks. It reports the multiplier the contract would have in force today. Whether any live cycle applies it is recorded in config/live_change_contract.json and config/drawdown_control_contract.json activation; a multiplier of 1.0 means the brake is not engaged, not that it is absent. A brake bounds each drawdown episode up to a one-day overshoot; it does not make losses impossible.",
-  "content_hash": "sha256:9658c37c570b1318ca3504f0e645476e265b68101b0882983d8fb3ffa311c004",
+  "content_hash": "sha256:19629dbe08af7c54cde007ef7119ba317d9303d2212e163c3d87f0181c94ada7",
   "daily": [
     {
       "date": "2026-08-08",
@@ -309,16 +309,51 @@
     },
     {
       "date": "2026-09-15",
-      "drawdown": 0.028848937377844552,
+      "drawdown": 0.029410630636786173,
+      "high_water_mark": 100108.02,
+      "multiplier_applied_to_this_day": 1.0,
+      "state_after_close": "NORMAL"
+    },
+    {
+      "date": "2026-09-16",
+      "drawdown": 0.0289726037933824,
+      "high_water_mark": 100108.02,
+      "multiplier_applied_to_this_day": 1.0,
+      "state_after_close": "NORMAL"
+    },
+    {
+      "date": "2026-09-17",
+      "drawdown": 0.029161899316358597,
+      "high_water_mark": 100108.02,
+      "multiplier_applied_to_this_day": 1.0,
+      "state_after_close": "NORMAL"
+    },
+    {
+      "date": "2026-09-18",
+      "drawdown": 0.02880388604229711,
+      "high_water_mark": 100108.02,
+      "multiplier_applied_to_this_day": 1.0,
+      "state_after_close": "NORMAL"
+    },
+    {
+      "date": "2026-09-19",
+      "drawdown": 0.028404417548164584,
+      "high_water_mark": 100108.02,
+      "multiplier_applied_to_this_day": 1.0,
+      "state_after_close": "NORMAL"
+    },
+    {
+      "date": "2026-09-20",
+      "drawdown": 0.027158663211998446,
       "high_water_mark": 100108.02,
       "multiplier_applied_to_this_day": 1.0,
       "state_after_close": "NORMAL"
     }
   ],
   "days_at_reduced_gross": 0,
-  "drawdown": 0.028848937377844552,
-  "equity": 97220.01,
-  "generated_at": "2026-09-15T14:26:38.760134+00:00",
+  "drawdown": 0.027158663211998446,
+  "equity": 97389.22,
+  "generated_at": "2026-09-20T06:26:16.445803+00:00",
   "gross_multiplier": 1.0,
   "halts": [],
   "high_water_mark": 100108.02,
@@ -328,7 +363,7 @@
     "flat_state": "ABSORBING_UNTIL_OWNER_REARM",
     "release_frac_of_half": 0.75
   },
-  "marks": 38,
+  "marks": 43,
   "max_drawdown_all_time_peak": 0.038708387200146466,
   "rearms_applied": [],
   "rearms_unused": [],
