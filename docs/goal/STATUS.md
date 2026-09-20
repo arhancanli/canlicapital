@@ -20,23 +20,23 @@ Primary acquisition43531 is terminal exit0: all159index/primary pairs verified,
 complete receipt company-equal-history-capture-complete-20260920.json. All200
 priority primary filings are now retained (41original+159new).
 First XBRL49534 terminal:39/51matches; whitespace-date fix offline replay now51/51.
-Second XBRL18988 is active for51filings/126remaining observations; receipt
-corpus-local/company-equal-history-final-xbrl-review-20260920.json, cache
-corpus-local/equal-history-xbrl. This process loaded the pre-whitespace-fix helper;
-inspect its result and replay failures offline under the corrected helper after
-terminal completion. Do not restart or infer completion from a partial receipt.
+Second XBRL18988 is terminal exit0:116/126initial matches. Corrected date-whitespace
+offline replay now126/126. Original result preserved. No acquisition/comparison
+process remains active; only bulk26312known active. PR33 reviews new evidence.
+
 
 Earlier v3upload sessions are terminal with failures retained. Do not resume the
 superseded v3plan. Only the two processes above are known active.
 
 ## Immediate next work
 
-Final primary comparison25429 completed138/264matches. Across three disjoint
-primary batches:433/610matched; first51XBRL gap now closes, yielding484/610
-numerically reproduced. Second126-row XBRL batch is pending; no full-coverage
-claim. Date whitespace was diagnosed in six historical files; original39/51
-report preserved and corrected51/51offline report separate. Five XML tests pass,
-including preserving rejection of genuinely different dates.
+All610selected observations across38priority equality groups now numerically
+reproduce:433primary matches+51first XBRL+126second XBRL. Summary
+company-equal-history-numerical-closure-20260920.json binds five comparison reports
+and verifies exact equality with the queue's610unique observations, without double
+credit. Both initial failed XBRL reports and corrected offline replays preserved.
+This does not close source-scope/usefulness review, the712basic/diluted groups,
+other corpus flags, or production admission.
 
 Preserve all unmatched cases and failed reports, finish primary scope/usefulness
 review and archive/replay new evidence. Full storage transfer, whole-release

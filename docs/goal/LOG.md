@@ -594,3 +594,9 @@ offline replay51/51. Thus484/610numerically reproduced, not semantic admission.
 SecondXBRL18988active for51filings/126observations using pre-fix helper; inspect and
 replay offline under corrected helper once terminal. No parallel primary collector.
 Postmerge PR32 CI35516871919passed. Scope/archival/production gates remain open.
+
+SecondXBRL18988terminal0:116/126initial matches; corrected offline date-whitespace
+replay126/126. Original preserved. Exact observation-set union against all38priority
+groups verifies610/610with no omissions/double credit. Numerical closure only;
+primary-context/usefulness and other groups remain open. Only26312bulk remains
+known active. New evidence/date fix in draft PR33.

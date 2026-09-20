@@ -1,0 +1,32 @@
+{
+  "schema": "canli.equal-history-numerical-closure.v1",
+  "publication_approved": false,
+  "queue_sha256": "4ee064714f9a2bb354090ae2242059a810206d35087eea0dd6b3101d4fa6cc5c",
+  "inputs": [
+    {
+      "path": "artifacts/seo/company-equal-history-retained-review-qname-20260920.json",
+      "sha256": "1c0dcaa9cd2f8bf54f1af1ddb592d34230839dbd80f9531466f1896ed31a560e"
+    },
+    {
+      "path": "artifacts/seo/company-equal-history-incremental-review-20260920.json",
+      "sha256": "37afada62e6539cfd8083c41c0a21c20701768f477b8ce7925d50fbf0abbd3bf"
+    },
+    {
+      "path": "artifacts/seo/company-equal-history-final-primary-review-20260920.json",
+      "sha256": "2a8a431a2cb26c1983615195366fb29aa90c2ce4d402c9857fce821d8095d4a8"
+    },
+    {
+      "path": "artifacts/seo/company-equal-history-xbrl-recheck-20260920.json",
+      "sha256": "d73fdebcdeefd5a4cc5048a3901122045d93d8c24813ac1a6303a9d668d63731"
+    },
+    {
+      "path": "artifacts/seo/company-equal-history-final-xbrl-recheck-20260920.json",
+      "sha256": "32672c5908cb506503efe9013982c61e0acd1804aafdcd61ebf30a8b866c5732"
+    }
+  ],
+  "priority_groups": 38,
+  "unique_selected_observations": 610,
+  "matched_observations": 610,
+  "unresolved_observations": 0,
+  "scope": "Exact observation-set equality checked against all38non-basic/diluted groups; combines disjoint primary rows with their XBRL supplements without double credit. Numerical closure only, not all750groups, all87,348histories, source-scope admission, content usefulness or publication."
+}
