@@ -879,3 +879,16 @@ and retains September fiscal dates.54renderer/ledger tests pass; report replays
 byte-identically; exactly24rows advance.890reviewed/266pending/20withdrawn,
 96presentation-only. Next index85; no runtime rebuild, archival supplement,
 deployment or indexing gain. All owner objectives remain active.
+
+## 2026-09-21 — participating loss allocation and positive-year equality
+
+Previous turn completed24Axsome/Twist reviews. PR100four CI35538377946checks
+passed at5f8088e2; merged5101b3d6d6787d394b6df35b24d4cdc17d4dbf6e, full tree
+5cc95692cb67620d0ef3397d31d07f95646430c7matches tested head. Reviewed24SentinelOne/
+Hines observations. SentinelOne participating restricted awards/early exercises
+have no contractual obligation to share losses. Hines explicitly has no potentially
+dilutive common shares, supporting equality even in positive2025; common classes
+receive the same allocation rate. No values/units/dates changed.55renderer/ledger
+tests pass; report replays byte-identically; exactly24rows advance.914reviewed/
+242pending/20withdrawn,96presentation-only. Next index87; no runtime rebuild,
+archival supplement, deployment or indexing gain. All owner objectives active.
