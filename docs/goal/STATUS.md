@@ -10,8 +10,8 @@ Detailed prior status is preserved in history/STATUS-20260920-through-fourth-v6.
   customers, Annovis substantial-revenue wording, Minerva product-sales revenue.
   Full672company transition preserves every other selected field and source.
   Verification97848, staging89411, HTTP83393, browser3980, storage23665 are all
-  terminal exit0, re-polled after owner interruption. Archive/restore for v8 is
-  still pending; v7archive remains retained. Broader editorial review is open.
+  terminal exit0, re-polled after owner interruption. Archive46171 and isolated restore40905 completed successfully for v8;
+  all4,887members verified and2,041runtime objects reproduce. V7archive remains retained. Broader editorial review is open.
   Last verified remoteCI35503151538 on c18132fb passed; d4256aa8run was cancelled.
 - Engine latest-head CI35499961114 passed all six jobs on867d211. Portable suite:
   4,366passed,55skipped; serial performance1passed; PostgreSQL contract11passed.
@@ -85,7 +85,11 @@ Current fifth v8release548419b07d725f975d36e6c6a80f907d1b29009cdb5ae99e058c5456c
 17,913URLs/1,344downloads pass HTTP;90browser checks pass, including all four
 excluded-history notices/routes. Remaining3,298flagged histories include29zeros.
 Three new scope dispositions replay from captured originals; Eaton label and
-presentation files returned200. No replacement source values. New archive pending.
+presentation files returned200. No replacement source values. V8archive662,538,240bytes,4,887files:
+SHA25634284ad7d17398ffbfc2356e3db0fbb0ba669f9f2807ea6019c98dfa2202cf00.
+Isolated restore reproduces672companies/328exclusions, all2,041runtime objects
+and both scope reports. Archive/restore receipts tracked under artifacts/seo/.
+This is local portability, not offsite backup or editorial approval.
 
 Historical v7checkpoint below remains reproducible; its archive does not include
 the latest v8corrections and must not be treated as the current release.

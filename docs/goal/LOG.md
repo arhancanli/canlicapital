@@ -208,3 +208,18 @@ Post-merge runs35504256572/35504254363 in progress; local running engine untouch
 Official registry returns active0.1.1. Downloaded official publisher1.8.1 and
 verified release checksum. Candidate manifest validates; publish returned401
 expired registry JWT. GitHub login handle66928 started; no duplicate npm publish.
+
+## 2026-09-20 — fifth v8 archive and isolated recovery
+
+Archive46171 finished exit0:4,887files662,538,240bytes at snapshot71766c06,
+SHA25634284ad7d17398ffbfc2356e3db0fbb0ba669f9f2807ea6019c98dfa2202cf00.
+Isolated restore40905 finished exit0:672companies328exclusions, zero errors,
+all2,041runtime objects203,939,518bytes exactly match. Livento and three-zero
+scope reports reproduce; temporary restore removed. No remote backup claim.
+
+Production Vercel env export34969 completed; native Node env parsing still yields
+a nonempty invalid HTTPS URL. Diagnostic38592 confirms trimming/unquoting does
+not resolve it; no secrets printed and both temporary exports removed. This is
+not proof the deployed application's configuration is invalid. No environment
+mutation or database migration attempted. Registry login66928 remains live,
+waiting for owner GitHub device authentication.
