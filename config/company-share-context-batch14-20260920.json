@@ -1,0 +1,61 @@
+{
+  "schema": "canli.reviewed-share-context-spec.v1",
+  "decisions": [
+    {
+      "cik": "0001434754",
+      "accession": "0001628280-26-014408",
+      "source_sha256": "278a2421a6bb30a6c3484ab0a9f496fa03dc20c32757b75360e1a96fd491994c",
+      "primary_sha256": "c333f83bc1c1566f0814f4d2468d7b21d0f5352d4b5fed44a0378deab76c4406",
+      "fixture": "scripts/fixtures/editorial/safe-bulkers-reviewed-source.json.gz",
+      "observations": 12,
+      "period_ends": [
+        "2023-12-31",
+        "2024-12-31",
+        "2025-12-31"
+      ],
+      "table_index": 55,
+      "supporting_table_indexes": [
+        83
+      ],
+      "share_scale": "0",
+      "table_requires": [
+        "Less preferred dividend attributable to preferred shareholders",
+        "Net income available to common shareholders"
+      ],
+      "paragraph_requires": [
+        "(In thousands of U.S. Dollars, except for share and per share data)",
+        "Diluted earnings per share are the same as basic earnings per share. There are no potentially dilutive shares."
+      ],
+      "reader_note": "For 2023\u20132025, Safe Bulkers uses net income available to common shareholders after preferred dividends as its EPS numerator. The filing states that there are no potentially dilutive shares and reports equal basic and diluted EPS. Shares and per-share amounts are exempt from the statement\u2019s thousands-of-dollars heading and use scale-zero tags. Reported common-share EPS is not recalculated from net income before the preferred dividend, and basic and diluted counts should not be added together.",
+      "disposition": "REVIEWED_ALLOCATION_UNIT_AND_DILUTION_CONTEXT"
+    },
+    {
+      "cik": "0001437402",
+      "accession": "0001437402-26-000013",
+      "source_sha256": "9812c3c67c5dfe37889222650598d838e2d0f59e0b0eed1eafa8faa938ade4ec",
+      "primary_sha256": "0ce11d8dfb8d0d9fe6b1d65c9e47edc4f7530d7b7a8b191eeb2c0a84b582dce3",
+      "fixture": "scripts/fixtures/editorial/ardelyx-reviewed-source.json.gz",
+      "observations": 12,
+      "period_ends": [
+        "2023-12-31",
+        "2024-12-31",
+        "2025-12-31"
+      ],
+      "table_index": 22,
+      "supporting_table_indexes": [
+        56
+      ],
+      "share_scale": "0",
+      "table_requires": [
+        "Net loss per share of common stock - basic and diluted"
+      ],
+      "paragraph_requires": [
+        "(in thousands, except share and per share amounts)",
+        "As we had net losses for the years ended December 31, 2025, 2024 and 2023, all potential common shares were determined to be anti-dilutive.",
+        "The number of potential common shares that would have been included in diluted income per share had it not been for the anti-dilutive effect caused by the net loss"
+      ],
+      "reader_note": "For 2023\u20132025, Ardelyx excludes potential common shares from stock awards and employee stock purchases because their effect is anti-dilutive in the loss periods. The selected main statement reports full share counts with scale-zero tags; its EPS note displays rounded counts in thousands. Those rounded note counts do not replace the full statement values. The separate hypothetical treasury-stock-method share additions are excluded, not added to the reported denominator. EPS uses net loss, distinct from comprehensive loss.",
+      "disposition": "REVIEWED_ALLOCATION_UNIT_AND_DILUTION_CONTEXT"
+    }
+  ]
+}

@@ -9,12 +9,12 @@ which links older records. Historical process states are not live telemetry.
 ## Current work and next action
 
 Worktree `/Users/arhancanli/canlicapital-expansion-20260919`, branch
-`evidence/blink-share-context-20260920`. PR76mergedf49d6a85after four passing
-CI35533587809checks at201f2a61. Tested/merged tree
-5608257c85dbe3f4c5b4e353b13510e9f13d76a6 matches exactly.
+`evidence/share-context-batch14-20260920`. PR77mergedccde4c02after four passing
+CI35533717524checks atd0d060bd. Tested/merged tree
+6081e3734a2005459b5abb03c64095ba5ffba6db matches exactly.
 
-Latest registered ledger:company-basic-diluted-registered-scope-batch13-20260920.json.gz.
-Of1,176batch observations,432reviewed/730pending/14withdrawn.72reviewed are explicitly
+Latest registered ledger:company-basic-diluted-registered-scope-batch14-20260920.json.gz.
+Of1,176batch observations,456reviewed/706pending/14withdrawn.72reviewed are explicitly
 presentation-only; dilution cause is not established for those rows. The registry
 pins exact reports/issuers/dispositions/counts/states. Numerical agreement alone
 never approves scope. Workflow in SCOPE_REVIEW.md; original ledgers preserved.
@@ -28,7 +28,10 @@ Earlier Iovance2019–2022share rows also need original-filing review; no admiss
 inferred. Six Iovance EPSrows in this batch remain pending. Blink12rows now reviewed,
 including revised2024EPS(-2.00versus prior-1.96) and separate out-of-money
 exclusions omitted from its potential-share table. All33renderer/ledger tests pass;
-report replays byte-identically. Next new index45; older pending gaps remain. INVOlegacy mapping
+report replays byte-identically. Latest24reviews cover Safe Bulkers preferred-dividend numerator and Ardelyx
+full share counts versus rounded-thousands EPSnote. Source report replays exactly;
+34renderer/ledger tests pass. Next new index48; Plastec legacyindex45and
+older pending gaps remain. INVOlegacy mapping
 also pending. V18full-corpus comparison passed; runtime rebuild/quality inventory
 and updated archival supplement remain undone. No deployment or indexing gain.
 
