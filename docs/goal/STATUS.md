@@ -8,9 +8,9 @@ history/STATUS-20260920-through-fourth-v9.md; earlier history remains linked the
 ## Current checkout and releases
 
 Website worktree: /Users/arhancanli/canlicapital-expansion-20260919.
-Branch research/legacy-filing-evidence-20260920. PR18 merged asea4bc3ca after
-all four CI jobs passed at e19cedca; both trees match5a8648c5. Current work is
-a legacy capture supplement, not a website deployment.
+Branch feat/company-storage-transfer-20260920. PR19 merged as514c092d;
+post-merge CI35510323267/35510261053passes and Dependabot reports no open alerts.
+Current work is verified candidate storage transfer, not page activation.
 Production application revision9608542ce019307674269667c4aa16ebc69dd43e is live
 on canlicapital.com. Dedicated clean publisher checkout:
 /Users/arhancanli/canlicapital-production-20260920.
@@ -123,8 +123,9 @@ companyfacts target regeneration or offsite recovery. No new pages admitted.
   Production API and live-domain lifecycle are verified. Publisher pointer now
   selects the clean canlicapital-production-20260920 checkout; hourly/nightly
   paths use the reviewed snapshot helper. No trading changes. KEY_REVOCATION.md.
-- Approved object storage/retention destination and access are pending. No bucket,
-  upload or hosted company capacity claim. Verify remote bytes and hosted behavior.
+- Supabase company-reference-staging bucket now exists. Two-object JSON/gzip
+  canary passes exact public-byte verification. Full candidate transfer and
+  hosted preview remain pending; private capture backup remains separate.
 - Continue all-history scope/unit/usefulness review; latest-filing numerical equality
   is insufficient. Fourth priority queue430observations/185filings remains incomplete.
   Taxonomy/coverage audit of94high-coverage concepts is complete:140,596recent
@@ -158,3 +159,21 @@ Dependabot alerts2/3. Historical parser archive remains intact; current corpus
 tests17/17pass under a clean Python3.12 environment.
 Both the full40-filing report and eight-observation supplement reproduce
 byte-identically under the patched dependency.
+
+PR19 merged as514c092dfeab6c3d0aced9446d12ce56618c0aac after all four
+CI35510179271jobs passed at4c8e1557. Tested and merged trees both
+8a3b53001913a9224fb8ba880778c13e0a556ad6. Post-merge CI and Dependabot
+closure are pending; alerts2/3still reported open immediately after merge.
+Production remains unchanged.
+
+Storage transfer: six uploader regressions and three planner tests pass; complete
+v3preflight6,249objects/828,340,450bytes passes. No production variables changed.
+See STORAGE_READINESS.md and company-storage-canary-20260920.json.
+
+Storage PR21: https://github.com/arhancanli/canlicapital/pull/21. Initial full
+transfer stopped with exit1 after69verified objects/5,105,149bytes on a transport
+read failure. Original receipt and failure remain preserved. Bounded read-only
+inspection confirms endpoint availability and one created-but-unrecorded object;
+no assumption that failure meant upload absence. Added failing-key/transport-type
+evidence, code hash and GET cache-control enforcement; nine storage tests pass.
+A separate controlled resume will reverify existing objects at concurrency2.
