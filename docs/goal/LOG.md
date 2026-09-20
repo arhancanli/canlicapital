@@ -494,3 +494,80 @@ Audit65287 completed:3,323companies/87,348histories reproduce;13,148flagged page
 with overlapping reasons, including10,630historical-only and1,500pages in750equal
 numerical-vector groups. Summary pins full local report and verified gzip. These
 are review flags, not automatic exclusions or approval of unflagged pages.
+
+## 2026-09-20 — preview merge and equality review queue
+
+Previous turn completed independent browser evidence and combined quality audit.
+PR31 latestcb2f6f02 passed all five checks (CI35515925562/browser35515925557).
+Repository disallows merge commits; first merge-mode request rejected without a
+merge. Squash merge59b10c83 succeeded; tested and merged trees exactly equal
+35eb23d444e47f1d05a5b1bf2b6ad9a20645baa2. New isolated work branch
+research/company-quality-triage-20260920 starts from that merge.
+Reproduced750equal-vector groups from pinned quality report and selected records:
+712nonzero basic/diluted,37other nonzero,1zero-only. All remain review-pending.
+TECHCOM capex/revenue history is all zero; EVENTIKO payable/property includes
+11,000 and zero. Need primary scope/usefulness, not automatic deduplication.
+Source-linked queue preserves all groups and non-basic/diluted observations.
+No production release or indexed gain. Bulk26312 confirmed live this turn.
+
+## 2026-09-20 — retained equality filing comparisons
+
+Previous turn merged PR31 and opened PR32 with750group triage. New target mapping
+retains all priority observations:41primary filings/212observations available,
+159filings/398observations missing. Initial reviewer invocation rejected the new
+schema before reading filings; added explicit support for the compatible equality
+target schema without changing comparison rules. Run38554 completed212/212matches;
+six inline and three XML tests pass. Source matches are not semantic admission.
+Reviewed3M2023–2025 net sales versus disaggregated total-company revenue, and
+EVENTIKO2024–2025 separate zero payable/fixed-asset lines with nonzero related-party
+loans. Website Development appears in fixed assets; earlier11,000values remain
+outside this primary comparison. Limited scope notes retained, no broad approval.
+Bulk26312 polled live;3914objects/0failures at checkpoint.
+
+## 2026-09-20 — historical acquisition and EVENTIKO scope completion
+
+Previous turn reproduced212retained observations and documented gaps. PR32 checks
+pass at144cd463. Prepared full159missing-filing acquisition queue without dropping
+observations; legacy latest_selected_accession field explicitly means exact target,
+not latest company filing. Paced session43531 active; unchanged403/429stop rules.
+First EVENTIKO captures close4additional selected observations. All8selected values
+across2022–2025 now reproduce in3primary filings:2023Website Development/Total Fixed
+Assets11,000 and separateAccounts Payable11,000, other selected instants zero.
+Nonzero related-party liabilities are separately disclosed. Scope notes preserve
+these distinctions; no automatic deduplication, company-wide admission or release.
+Bulk26312live;4074objects/0failures at checkpoint. Full historical capture unfinished.
+
+## 2026-09-20 — enforce currency namespaces in historical comparisons
+
+Previous turn captured missing EVENTIKO evidence and source-reviewed all8selected
+observations for its equal pair. Both43531capture and26312upload polled live.
+Review found XML helper trusted literal iso4217:USD without resolving the namespace.
+It now resolves scoped QName bindings, rejecting undefined/incorrect/rebound
+prefixes and accepting valid aliases. Updated formerly undeclared test fixture;
+four XML regressions pass. All17corpus tests pass. XML tests were outside prior
+CIglob; npm test:corpus now explicitly runs them too. Replay44938 retains212/212
+matches and identical per-filing results with new helper hash in a separate report.
+Original evidence remains unchanged. No source admission or production release.
+
+## 2026-09-20 — incremental source comparison without duplicate credit
+
+Previous turn strengthened currency QName verification and preserved exact replay.
+Both43531capture and26312upload polled live. CI35516535342passes atb68e4d43.
+Added optional prior-target binding to target preparation: prior body hashes and
+observations must remain identical before excluding them from new comparison.
+New snapshot59filings/134observations;100filings/264observations missing at capture.
+Comparison69766 completed83matches/51unresolved across25legacy filings. Combined
+with prior212 yields295matched of346compared, not299:EVENTIKO4supplement overlaps.
+Unresolved queue preserved for separate XBRL/source comparison; no automatic source
+error or admission finding. Bulkcheckpoint4270objects; full capture still active.
+
+## 2026-09-20 — exact legacy XBRL inputs prepared
+
+Previous turn added83numerical matches and retained51unresolved observations.
+Capture43531and upload26312polled live. Prepared immutable subset inputs for all
+25unresolved filings/51observations from captured indexes. Every index has one
+unambiguous instance in the expected issuer/accession directory; primary hashes
+match comparison evidence. Parent capture completeness is explicitly separate from
+subset completeness. No new XML acquisition yet; start after primary capture
+terminates, with existing access-stop and pacing behavior. No numerical gap closed
+by URL selection alone and no production admission.
