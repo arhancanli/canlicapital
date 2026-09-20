@@ -399,3 +399,28 @@ No uploader active. Previous v3resume5 stopped at1,721verified objects. Next tra
 should target combinedv9release, with appropriate bounded recovery and later new
 preview binding. No live/indexed-page increase. Earlier projected count is now
 supported by a combined artifact; prior count receipt remains unchanged.
+
+## 2026-09-20 — bounded large-transfer recovery and five-cohort archive
+
+Previous goal turn made progress: all five cohorts combined under cumulativev9,
+90,738unique sitemap URLs and full storage plan verified, PR27opened. This turn
+merged PR27after all four checks passed, exact tree preserved. Added explicit
+read/write retry budgets with unchanged defaults and per-object bounds; all20
+storage/planner tests pass. PR28reviews a98637c4. Five-cohort transfer26312active
+with recorded4/3/2/200/50policy; no concurrent older uploader.
+
+Added five-cohort-v9 archive profile preserving all five acquisition queues and
+six editorial capture directories alongside runtime closure. Five archive tests
+pass. Build35755completed with23,115files/2,691,512,320bytes. Separate summary pins
+b77ae93d4fe8c6935aa5569c81f8030ac19819d26ac2b4bf1b747b2f317ebd41.
+Repository snapshot a98637c4 plus separate current packager.py are retained.
+Isolated restore61898is active; no replay completion or remote-backup claim yet.
+
+PR28 merged asf54d26e793b815baea6a0d0a8d032ca6b3f0d79d after all four
+CI35513563000jobs passed; reviewed/merged tree6f5ccfffe21aa3e92d4ac4ee15e5bf49b8464f2f.
+Archive restore61898completed exit0: all23,115member hashes verified, all five
+capture queues replay with1,026exclusions/zero errors, all10,360runtime objects and
+roots exactly reproduced. No original capture/runtime directory reads. Manual
+scope reports were preserved but not all rerun by this combined restore; no offsite
+backup claim. Updated current STATUS/ledger and preserved previous versions to
+remove stale pending/active claims. Transfer26312continues independently.

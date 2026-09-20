@@ -1,10 +1,10 @@
 # Storage readiness
 
-Current status: staging bucket and transport canaries verified; older v3preview
-READY with unavailable-state checks passed. Resume5upload is terminal after1,721
-objects; no uploader active. New five-cohort release and10,360-object storage plan
-are verified locally. Next transfer targets that release, then a matching hosted
-preview. Production configuration is unchanged. Exact current pins: STATUS.md.
+Current status: five-cohort10,360-object transfer26312active with explicit bounded
+recovery. Combined archive/isolated restore verified all queues and runtime objects.
+Earlier v3upload is terminal. Existing preview tests unavailable state for oldv3;
+new release requires matching preview and ready-state checks. Production unchanged.
+Exact current pins and process handle: STATUS.md.
 Earlier sections below preserve historical checkpoints and superseded access limits.
 
 ## Verified runtime bundle
