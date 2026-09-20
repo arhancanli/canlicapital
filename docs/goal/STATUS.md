@@ -7,7 +7,7 @@ status preserved in history/STATUS-20260920-through-equality-triage.md.
 ## Current execution
 
 Worktree /Users/arhancanli/canlicapital-expansion-20260919, branch
-review/remaining-priority-context-20260920. PR34 merged as
+review/techcom-precision-20260920. PR34 merged as
 34f2b81e9dec93047c90c4185d1a59fe9ada3661 after four CI35517891088checks passed
 at2ca4f9fe; tested/merged tree67b8efb122bd96a625a6d7933a5312c9b8e31da3.
 PR33 merged as
@@ -599,3 +599,31 @@ V13-batch7ledger now598active reviewed/2pending/10withdrawn. Only TECHCOM2025
 liability discrepancy remains in priority queue. Raw inline totals have decimals0;
 precision implications still need evaluation, not an assumed rounding explanation.
 New original capture is not yet in a sealed archive; no full rebuild/deployment.
+
+## TECHCOM precision disposition and priority queue closure
+
+PR45merged5ef02030ebb7b57160547579b89844552e59fd6b at tested head9ce420fa;
+both trees d7ffd99f6f564f9cd8bf4d27dc95d367a719e3bf. CI35523645076 initially
+failed the MCP audit endpoint (HTTP400), before tests. The unchanged locked graph
+then audited locally with zero advisories; one failed-job rerun passed audit,
+MCP tests and package smoke. All four checks pass; no audit bypass or lockfile change.
+
+The two TECHCOM2025 liability rows now have a recorded scope disposition with
+source-bound visible notes on both histories and the overview. Reported308,851USD
+is retained; components total308,852USD and liabilities/equity have another1USD
+presentation difference. All inspected facts declare decimals0. A limited nearest-
+rounding interval diagnostic overlaps; positive truncation intervals do not.
+This permits a rounding explanation but does not establish its cause or certify
+report-wide Calculations1.1 compliance. No source correction or blanket admission.
+Report company-techcom-precision-context-20260920.json retains exact primary hash,
+attributes/context/table, conditional arithmetic and source-bound public note.
+
+V13-batch8ledger partitions610original observations:600active reviewed,0pending,
+10withdrawn. Batch7replay was also verified; final context and batch8ledger replay
+byte-identically.11renderer tests pass including actual captured TECHCOM source,
+unchanged reported values, visible notes and unchanged pilot HTML. New source
+fixture is tracked. This closes only the38priority groups' recorded scope queue;
+712basic/diluted groups and other corpus quality flags remain open. Latest reviews
+and Visium original capture still need sealed archival replay. Full v13release
+rebuild, hosted transfer, whole-release verification and deployment remain pending.
+No new live or indexed pages. Production publication authorization persists.

@@ -3,11 +3,31 @@ import assert from 'node:assert/strict';
 import { readFileSync, readdirSync } from 'node:fs';
 import { renderCompanyPages } from './lib/company-page-renderer.mjs';
 import { FILING_NOTES, companyFilingNotes } from './lib/company-filing-notes.mjs';
+import { gunzipSync } from 'node:zlib';
+import { companyReference, verifyCompanyReference } from './lib/company-reference.mjs';
 import { buildCompanyAssets, applyCompanyAssets } from './lib/company-assets.mjs';
 import { createCompanyHtmlHandler } from '../api/_lib/company-html.js';
 const company = JSON.parse(readFileSync(new URL('../public/company-data/0000320193.json', import.meta.url)));
 const source = readFileSync(new URL('../companies/0000320193/Assets.html', import.meta.url), 'utf8');
 const assets = buildCompanyAssets(source, '<script type="module" src="/assets/company.js"></script><link rel="stylesheet" href="/assets/company.css">');
+
+test('TECHCOM retains reported totals and renders the precision caveat against actual captured facts', () => {
+  const raw = gunzipSync(readFileSync(new URL('./fixtures/editorial/techcom-reviewed-source.json.gz', import.meta.url)));
+  const record = companyReference(raw, { expectedCik: '0001481443', fetchedAt: '2026-09-20T09:08:57.187Z', selectionPolicy: 'extended-v13' });
+  verifyCompanyReference(record, raw);
+  record.source_snapshot = `/company-data/sources/${record.source_sha256}.json.gz`;
+  for (const tag of ['Liabilities', 'LiabilitiesCurrent']) {
+    const row = record.concepts.find(c => c.tag === tag).observations.find(r => r.end === '2025-12-31');
+    assert.equal(row.val, 308851);
+    const html = renderCompanyPages(record, { target: tag })[0].html;
+    assert.match(html, /sum to \$308,852/);
+    assert.match(html, /does not establish their cause/);
+    assert.match(html, /techcom_i10k-123125.htm/);
+  }
+  const overview = renderCompanyPages(record, { target: 'overview' })[0].html;
+  assert.equal(overview.split('sum to $308,852').length - 1, 1);
+  assert.equal(companyFilingNotes(record, 'Revenues').length, 0);
+});
 
 test('filing context requires the reviewed issuer, snapshot and all reviewed observations', () => {
   for (const note of FILING_NOTES) {
