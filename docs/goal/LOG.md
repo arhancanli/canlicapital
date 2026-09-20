@@ -916,3 +916,19 @@ adjustment.1stdibs options/RSUs excluded in all presented loss periods.57rendere
 ledger tests pass; report replays byte-identically; exactly24rows advance.
 962reviewed/194pending/20withdrawn,96presentation-only. Next index91; no runtime
 rebuild, archival supplement, deployment or indexing gain. All objectives active.
+
+## 2026-09-21 — historical ReWalk EPS currency conflict held under v20
+
+Previous turn completed24American Strategic/1stdibs reviews. PR103four
+CI35538806947checks passed atf1c922b1; mergedc9b6ec99af4c3495fc9f5e199ef203bcf695027a,
+full tree3ef6c591ea701b6b0a89f25201fe76da6119307cmatches tested head. Inspection
+of next indices91/92found Lifeward's historical ReWalk2023annual statement has six
+2021–2023EPSfacts tagged ILS/share despite a U.S.dollar statement heading. Exact
+unit/context/receipt/source evidence replayed; six holds implemented asv20without
+conversion or relabeling. USD EPS/share counts and inherited holds unchanged.
+No new accounting approvals:962reviewed/188pending/26withdrawn,96presentation-only.
+87selector/renderer/ledger and8delivery/release/integrity tests pass; report replay
+byte-identical. Full-corpus v20comparison, runtime, archival supplement and hosted
+release remain pending. Recursionindex91only inspected; resume there, then four
+remaining Lifeward batch rows/index93/earlier gaps. No deployment/indexing gain.
+All owner objectives remain active.

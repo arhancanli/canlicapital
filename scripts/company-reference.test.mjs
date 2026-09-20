@@ -561,3 +561,37 @@ test('v19 holds six Outset scale conflicts without altering EPS or older facts',
   assert.deepEqual(next.concepts, old.concepts);
   assert.deepEqual(next.editorial_exclusions, old.editorial_exclusions);
 });
+
+test('v20 holds only six historical ReWalk ILS EPS facts and preserves USD and share counts', async () => {
+  const raw = gunzipSync(readFileSync(new URL('./fixtures/editorial/lifeward-reviewed-source.json.gz', import.meta.url)));
+  const options = { expectedCik: '0001607962', fetchedAt: '2026-09-20T00:00:00Z' };
+  const before = companyReference(raw, { ...options, selectionPolicy: 'extended-v19' });
+  const diagnostics = {};
+  const after = companyReference(raw, { ...options, diagnostics, selectionPolicy: 'extended-v20' });
+  const expected = structuredClone(before.concepts);
+  for (const tag of ['EarningsPerShareBasic', 'EarningsPerShareDiluted']) {
+    const concept = expected.find(c => c.tag === tag);
+    const held = r => r.accn === '0001178913-24-000730' && r.unit === 'ILS/shares';
+    assert.equal(concept.observations.filter(held).length, 3);
+    concept.observations = concept.observations.filter(r => !held(r));
+    assert.ok(concept.observations.some(r => r.unit === 'USD/shares' && r.end === '2021-12-31' && r.val === -0.27));
+  }
+  assert.deepEqual(after.concepts, expected);
+  assert.equal(diagnostics.editorial_observation_excluded, 6);
+  assert.equal(after.editorial_exclusions.length, 6);
+  verifyCompanyReference(after, raw);
+  assert.throws(() => companyReference(Buffer.concat([raw, Buffer.from('\n')]), { ...options, selectionPolicy: 'extended-v20' }), e => e.code === 'EDITORIAL_REVIEW_REQUIRED');
+  const { renderCompanyPages } = await import('./lib/company-page-renderer.mjs');
+  after.source_snapshot = `/company-data/sources/${after.source_sha256}.json.gz`;
+  for (const target of ['overview', 'EarningsPerShareBasic', 'EarningsPerShareDiluted']) {
+    const html = renderCompanyPages(after, { target })[0].html;
+    assert.match(html, /historical ReWalk statement/);
+    assert.match(html, /zk2431037/);
+  }
+  const oldRaw = gunzipSync(readFileSync(new URL('./fixtures/editorial/outset-medical-reviewed-source.json.gz', import.meta.url)));
+  const oldOptions = { expectedCik: '0001484612', fetchedAt: options.fetchedAt };
+  const old = companyReference(oldRaw, { ...oldOptions, selectionPolicy: 'extended-v19' });
+  const next = companyReference(oldRaw, { ...oldOptions, selectionPolicy: 'extended-v20' });
+  assert.deepEqual(next.concepts, old.concepts);
+  assert.deepEqual(next.editorial_exclusions, old.editorial_exclusions);
+});

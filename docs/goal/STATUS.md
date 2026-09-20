@@ -9,21 +9,25 @@ which links older records. Historical process states are not live telemetry.
 ## Current work and next action
 
 Worktree `/Users/arhancanli/canlicapital-expansion-20260919`, branch
-`evidence/share-context-batch35-20260921`. PR102merged402b2a87after four passing
-CI35538664527checks atcb126c8a. Tested and merged trees match exactly.
+`fix/lifeward-eps-currency-v20-20260921`. PR103mergedc9b6ec99after four passing
+CI35538806947checks atf1c922b1. Tested and merged trees match exactly.
 
-Latest registered ledger:company-basic-diluted-registered-scope-batch35-20260921.json.gz.
-Of1,176batch observations,962reviewed/194pending/20withdrawn.96reviewed are explicitly
+Latest registered ledger:company-basic-diluted-registered-scope-v20-20260921.json.gz.
+Of1,176batch observations,962reviewed/188pending/26withdrawn.96reviewed are explicitly
 presentation-only; dilution cause is not established for those rows. The registry
 pins exact reports/issuers/dispositions/counts/states. Numerical agreement alone
 never approves scope. Workflow in SCOPE_REVIEW.md; original ledgers preserved.
 
-Latest24reviews cover American Strategic Investment and1stdibs. American
-Strategic retains two-class allocation, zero numerator adjustments, the stated
-LTIP exclusion alternatives and already-reflected January2023one-for-eight split.
-1stdibs retains treasury-stock and options/RSU loss-period exclusion context.
-57renderer/ledger tests pass; report replays byte-identically. Next new index91;
-earlier gaps remain.96presentation-only reviews retain limits.
+V20withholds six exact Lifeward/ReWalk2021–2023ILS/share EPSobservations. The
+historical ReWalk statement labels U.S. dollars; original tags encode ILS/share.
+Source/capture/unit/context evidence retained in company-lifeward-eps-currency-
+20260921.json. No relabeling, conversion or replacement values. USD EPS and shares
+remain unchanged; four other batch observations for this issuer remain pending.
+87selector/renderer/ledger plus8delivery/release/integrity tests pass. Report
+replays byte-identically. V20whole-corpus replay, runtime rebuild and archival
+supplement remain pending. Next resume index91Recursion (inspected, not approved),
+then remaining Lifeward scope/index93and earlier gaps.96presentation-only reviews
+retain limits. Latest full-corpus replay below is still V19, not V20.
 V19six Outset2023–2025share-scale holds remain; no silent rescaling or second split
 conversion. EPS and older periods remain unapproved by the hold report.
 V19comparison61020TERMINAL0verified all3,323companies/87,344histories against
@@ -61,7 +65,7 @@ are committed evidence but not yet sealed in an updated restore-tested archive.
 
 ## Editorial policy and evidence
 
-Cumulative extended-v19 preserves frozen earlier versions and all reviewed holds:
+Cumulative extended-v20 preserves frozen earlier versions and all reviewed holds:
 Birdie SG&A, disputed DBMM revenue period, HNO operating-loss history, two Atlantica
 liability periods, six Varonis AFN/share facts, Monolithic AFN revenue, 51Talk SAR
 cash/time-deposit component, eight Valhi weighted-share scale conflicts, two Siebert denominator conflicts, six Iovance share-scale conflicts and six Outset share-scale conflicts.
