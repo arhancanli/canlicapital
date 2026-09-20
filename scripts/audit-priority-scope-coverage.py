@@ -80,8 +80,7 @@ def main():
             add(row['cik'], selected, name)
             if selected['tag'] == 'SellingGeneralAndAdministrativeExpense':
                 withdrawn.add(key(row['cik'], selected))
-    if len(sys.argv) > 2:
-        name = sys.argv[2]
+    for name in sys.argv[2:]:
         supplement = read(name)
         baseline_raw = (A / 'company-priority-scope-coverage-20260920.json').read_bytes()
         if supplement['baseline_scope_ledger_sha256'] != hashlib.sha256(baseline_raw).hexdigest():

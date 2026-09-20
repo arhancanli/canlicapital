@@ -156,7 +156,15 @@ Baseline:87active observations have scope review;520still need it.
 Historical revenue review now adds65exact previously pending inline observations
 across3M,CONMED,Digital Brand Media,Mosaic andAbbVie;15legacy revenue observations
 still need primary context. Separate v2ledger records155reviewed including3withdrawn,
-152active reviewed and455pending. Reports company-historical-revenue-context-
+152active reviewed and455pending at that checkpoint. Legacy primary review now
+closes14more; v3ledger records169reviewed including3withdrawn,166active reviewed
+and441pending. One Digital Brand Media contract-revenue observation for2020
+remains unresolved:268,957USD is assigned2020in XBRL but geographic disclosure
+prose and asset label say2019. Statement revenue supports2020 but does not settle
+the geographic date conflict. Resolve or explicitly withhold this observation
+before admission; do not silently correct it or approve the history unchanged.
+Report company-legacy-revenue-context-20260920.json preserves seven primary
+filings/tables and preceding prose; replay byte-identical. Reports company-historical-revenue-context-
 20260920.json and company-priority-scope-coverage-v2-20260920.json preserve
 the original ledger and bind the supplement to its hash. No newly admitted pages. The full pending queue
 retains issuer, exact selected row and accession. Report replays byte-for-byte.

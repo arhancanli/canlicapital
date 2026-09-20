@@ -794,3 +794,14 @@ verified XBRL numbers. New report replays identically offline. Separate v2ledger
 binds original baseline and supplement:155reviewed/3withdrawn/152active reviewed/
 455pending. Original reports unchanged; no publication or source-value changes.
 PR38CI35520536515passed before these additions; new CI required.
+
+## 2026-09-20 — legacy revenue context and explicit date contradiction
+
+Previous turn reviewed65inline revenue observations. Seven retained primary
+filings now provide14additional scope checks with table columns and preceding
+prose. Digital Brand Media2020contract revenue268,957USD remains pending: XBRL
+uses2020while geographic prose and asset row say2019. Statement sales supports
+2020but cannot resolve that disclosure date contradiction. No source correction
+or assumption of a typo. Before admission resolve or withhold the observation.
+Supplement replays byte-identically. V3ledger adds exact disjoint coverage:
+169reviewed/3withdrawn/166active reviewed/441pending. No publication changes.
