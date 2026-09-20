@@ -1,0 +1,3534 @@
+{
+  "schema": "canli.editorial-xbrl-review.v1",
+  "publication_approved": false,
+  "capture_sha256": "4ce5dc9acf817e3f29dade14f2e374c5e7313a8a0a4fc4d1dcc3cd2ff68389b1",
+  "comparison_sha256": "3af109c03c51ea36845649b2e3557c6f9062057181710e8459de56d595acc83e",
+  "code_sha256": "f4d418b4b1f1069106c5c9c41910dd0aaa3344e8b702cf9b9b0efc8d0e1662b4",
+  "filings": [
+    {
+      "cik": "0001162283",
+      "accession": "0001206774-12-001216",
+      "selected_rows": 2,
+      "instance_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1162283/000120677412001216/mghl-20111231.xml",
+        "status": 200,
+        "bytes": 81857,
+        "sha256": "dd8d0c6d9fb9e03d06f878a924358ce0cb6c566daddfc5aba56aae3cfca8d057",
+        "captured_at": "2026-09-20T14:37:57.110862+00:00",
+        "body_path": "artifacts/seo/corpus-local/equal-history-xbrl/0001162283-0001206774-12-001216-instance.response"
+      },
+      "checks": [
+        {
+          "selected": {
+            "tag": "AccountsPayableCurrent",
+            "end": "2010-12-31",
+            "val": 0,
+            "accn": "0001206774-12-001216",
+            "fy": 2011,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2012-03-27",
+            "frame": "CY2010Q4I",
+            "unit": "USD"
+          },
+          "matched": false,
+          "matches": []
+        },
+        {
+          "selected": {
+            "tag": "LiabilitiesCurrent",
+            "end": "2010-12-31",
+            "val": 0,
+            "accn": "0001206774-12-001216",
+            "fy": 2011,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2012-03-27",
+            "frame": "CY2010Q4I",
+            "unit": "USD"
+          },
+          "matched": false,
+          "matches": []
+        }
+      ],
+      "state": "COMPARED_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001162283",
+      "accession": "0001206774-13-000995",
+      "selected_rows": 2,
+      "instance_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1162283/000120677413000995/mghl-20121231.xml",
+        "status": 200,
+        "bytes": 156636,
+        "sha256": "1baaa7d9b83960755dd33508ef97ddd46465e1feec261e696a8aedc545b086ed",
+        "captured_at": "2026-09-20T14:37:58.998387+00:00",
+        "body_path": "artifacts/seo/corpus-local/equal-history-xbrl/0001162283-0001206774-13-000995-instance.response"
+      },
+      "checks": [
+        {
+          "selected": {
+            "tag": "AccountsPayableCurrent",
+            "end": "2011-12-31",
+            "val": 4108,
+            "accn": "0001206774-13-000995",
+            "fy": 2012,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2013-03-08",
+            "frame": "CY2011Q4I",
+            "unit": "USD"
+          },
+          "matched": false,
+          "matches": []
+        },
+        {
+          "selected": {
+            "tag": "LiabilitiesCurrent",
+            "end": "2011-12-31",
+            "val": 4108,
+            "accn": "0001206774-13-000995",
+            "fy": 2012,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2013-03-08",
+            "frame": "CY2011Q4I",
+            "unit": "USD"
+          },
+          "matched": false,
+          "matches": []
+        }
+      ],
+      "state": "COMPARED_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001162283",
+      "accession": "0001206774-14-000629",
+      "selected_rows": 2,
+      "instance_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1162283/000120677414000629/mghl-20131231.xml",
+        "status": 200,
+        "bytes": 177118,
+        "sha256": "3dfa6e6284f81c63127292e94535f5cb108dd4ac67e59495d2bbd81e0689f70c",
+        "captured_at": "2026-09-20T14:38:00.741521+00:00",
+        "body_path": "artifacts/seo/corpus-local/equal-history-xbrl/0001162283-0001206774-14-000629-instance.response"
+      },
+      "checks": [
+        {
+          "selected": {
+            "tag": "AccountsPayableCurrent",
+            "end": "2012-12-31",
+            "val": 16374,
+            "accn": "0001206774-14-000629",
+            "fy": 2013,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2014-02-27",
+            "frame": "CY2012Q4I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "as-of-2012-12-31.8996.0.0.0.0.0.0.0",
+              "unit_id": "USD",
+              "value": "16374"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "tag": "LiabilitiesCurrent",
+            "end": "2012-12-31",
+            "val": 16374,
+            "accn": "0001206774-14-000629",
+            "fy": 2013,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2014-02-27",
+            "frame": "CY2012Q4I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "as-of-2012-12-31.8996.0.0.0.0.0.0.0",
+              "unit_id": "USD",
+              "value": "16374"
+            }
+          ]
+        }
+      ],
+      "state": "COMPARED_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001162283",
+      "accession": "0001206774-16-004539",
+      "selected_rows": 2,
+      "instance_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1162283/000120677416004539/mghl-20151231.xml",
+        "status": 200,
+        "bytes": 164958,
+        "sha256": "5691679dc7e87df4f1cc4e2895aadb79db67bb96e3b25b2b1f908ce53c0d71ce",
+        "captured_at": "2026-09-20T14:38:02.791411+00:00",
+        "body_path": "artifacts/seo/corpus-local/equal-history-xbrl/0001162283-0001206774-16-004539-instance.response"
+      },
+      "checks": [
+        {
+          "selected": {
+            "tag": "AccountsPayableCurrent",
+            "end": "2014-12-31",
+            "val": 8257,
+            "accn": "0001206774-16-004539",
+            "fy": 2015,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2016-02-19",
+            "frame": "CY2014Q4I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "I2014-12-31",
+              "unit_id": "USD",
+              "value": "8257"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "tag": "LiabilitiesCurrent",
+            "end": "2014-12-31",
+            "val": 8257,
+            "accn": "0001206774-16-004539",
+            "fy": 2015,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2016-02-19",
+            "frame": "CY2014Q4I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "I2014-12-31",
+              "unit_id": "USD",
+              "value": "8257"
+            }
+          ]
+        }
+      ],
+      "state": "COMPARED_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001162283",
+      "accession": "0001206774-18-000929",
+      "selected_rows": 2,
+      "instance_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1162283/000120677418000929/mghl-20171231.xml",
+        "status": 200,
+        "bytes": 123145,
+        "sha256": "ea01818e9c6f0d08c2f9d6dd84e614447b67b5bb3d0d71a1ce2dd9175cdfa3f0",
+        "captured_at": "2026-09-20T14:38:04.829465+00:00",
+        "body_path": "artifacts/seo/corpus-local/equal-history-xbrl/0001162283-0001206774-18-000929-instance.response"
+      },
+      "checks": [
+        {
+          "selected": {
+            "tag": "AccountsPayableCurrent",
+            "end": "2016-12-31",
+            "val": 850,
+            "accn": "0001206774-18-000929",
+            "fy": 2017,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2018-03-23",
+            "frame": "CY2016Q4I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "I2016-12-31",
+              "unit_id": "USD",
+              "value": "850"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "tag": "LiabilitiesCurrent",
+            "end": "2016-12-31",
+            "val": 850,
+            "accn": "0001206774-18-000929",
+            "fy": 2017,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2018-03-23",
+            "frame": "CY2016Q4I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "I2016-12-31",
+              "unit_id": "USD",
+              "value": "850"
+            }
+          ]
+        }
+      ],
+      "state": "COMPARED_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001310488",
+      "accession": "0001091818-19-000088",
+      "selected_rows": 4,
+      "instance_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1310488/000109181819000088/bfnh-20181231.xml",
+        "status": 200,
+        "bytes": 89430,
+        "sha256": "68301c5dfefb461ea25a92a29e371adb86fa3bdc8274bc5e0d9f6395dbec869c",
+        "captured_at": "2026-09-20T14:38:06.480327+00:00",
+        "body_path": "artifacts/seo/corpus-local/equal-history-xbrl/0001310488-0001091818-19-000088-instance.response"
+      },
+      "checks": [
+        {
+          "selected": {
+            "tag": "Assets",
+            "end": "2017-12-31",
+            "val": 20908,
+            "accn": "0001091818-19-000088",
+            "fy": 2018,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2019-03-29",
+            "frame": "CY2017Q4I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "AsOf2017-12-31",
+              "unit_id": "USD",
+              "value": "20908"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "tag": "AssetsCurrent",
+            "end": "2017-12-31",
+            "val": 20908,
+            "accn": "0001091818-19-000088",
+            "fy": 2018,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2019-03-29",
+            "frame": "CY2017Q4I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "AsOf2017-12-31",
+              "unit_id": "USD",
+              "value": "20908"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "tag": "Liabilities",
+            "end": "2017-12-31",
+            "val": 12706,
+            "accn": "0001091818-19-000088",
+            "fy": 2018,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2019-03-29",
+            "frame": "CY2017Q4I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "AsOf2017-12-31",
+              "unit_id": "USD",
+              "value": "12706"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "tag": "LiabilitiesCurrent",
+            "end": "2017-12-31",
+            "val": 12706,
+            "accn": "0001091818-19-000088",
+            "fy": 2018,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2019-03-29",
+            "frame": "CY2017Q4I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "AsOf2017-12-31",
+              "unit_id": "USD",
+              "value": "12706"
+            }
+          ]
+        }
+      ],
+      "state": "COMPARED_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001310488",
+      "accession": "0001091818-20-000039",
+      "selected_rows": 4,
+      "instance_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1310488/000109181820000039/bfnh-20191231.xml",
+        "status": 200,
+        "bytes": 89956,
+        "sha256": "e33677a9e3593b20616f2840c0f00884a8a912ec1289ed1c68594fc560e13d85",
+        "captured_at": "2026-09-20T14:38:08.373702+00:00",
+        "body_path": "artifacts/seo/corpus-local/equal-history-xbrl/0001310488-0001091818-20-000039-instance.response"
+      },
+      "checks": [
+        {
+          "selected": {
+            "tag": "Assets",
+            "end": "2018-12-31",
+            "val": 35127,
+            "accn": "0001091818-20-000039",
+            "fy": 2019,
+            "fp": "FY",
+            "form": "10-K/A",
+            "filed": "2020-03-09",
+            "frame": "CY2018Q4I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "AsOf2018-12-31",
+              "unit_id": "USD",
+              "value": "35127"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "tag": "AssetsCurrent",
+            "end": "2018-12-31",
+            "val": 35127,
+            "accn": "0001091818-20-000039",
+            "fy": 2019,
+            "fp": "FY",
+            "form": "10-K/A",
+            "filed": "2020-03-09",
+            "frame": "CY2018Q4I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "AsOf2018-12-31",
+              "unit_id": "USD",
+              "value": "35127"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "tag": "Liabilities",
+            "end": "2018-12-31",
+            "val": 5323,
+            "accn": "0001091818-20-000039",
+            "fy": 2019,
+            "fp": "FY",
+            "form": "10-K/A",
+            "filed": "2020-03-09",
+            "frame": "CY2018Q4I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "AsOf2018-12-31",
+              "unit_id": "USD",
+              "value": "5323"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "tag": "LiabilitiesCurrent",
+            "end": "2018-12-31",
+            "val": 5323,
+            "accn": "0001091818-20-000039",
+            "fy": 2019,
+            "fp": "FY",
+            "form": "10-K/A",
+            "filed": "2020-03-09",
+            "frame": "CY2018Q4I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "AsOf2018-12-31",
+              "unit_id": "USD",
+              "value": "5323"
+            }
+          ]
+        }
+      ],
+      "state": "COMPARED_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001310488",
+      "accession": "0001091818-21-000016",
+      "selected_rows": 4,
+      "instance_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1310488/000109181821000016/bfnh-20201231.xml",
+        "status": 200,
+        "bytes": 72197,
+        "sha256": "75c04efdeb2bed9d0574987ce0f162adfdf22d559fc0abf721f8c472d32b58b2",
+        "captured_at": "2026-09-20T14:38:10.108325+00:00",
+        "body_path": "artifacts/seo/corpus-local/equal-history-xbrl/0001310488-0001091818-21-000016-instance.response"
+      },
+      "checks": [
+        {
+          "selected": {
+            "tag": "Assets",
+            "end": "2019-12-31",
+            "val": 58895,
+            "accn": "0001091818-21-000016",
+            "fy": 2020,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2021-02-16",
+            "frame": "CY2019Q4I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "AsOf2019-12-31",
+              "unit_id": "USD",
+              "value": "58895"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "tag": "AssetsCurrent",
+            "end": "2019-12-31",
+            "val": 58895,
+            "accn": "0001091818-21-000016",
+            "fy": 2020,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2021-02-16",
+            "frame": "CY2019Q4I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "AsOf2019-12-31",
+              "unit_id": "USD",
+              "value": "58895"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "tag": "Liabilities",
+            "end": "2019-12-31",
+            "val": 11587,
+            "accn": "0001091818-21-000016",
+            "fy": 2020,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2021-02-16",
+            "frame": "CY2019Q4I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "AsOf2019-12-31",
+              "unit_id": "USD",
+              "value": "11587"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "tag": "LiabilitiesCurrent",
+            "end": "2019-12-31",
+            "val": 11587,
+            "accn": "0001091818-21-000016",
+            "fy": 2020,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2021-02-16",
+            "frame": "CY2019Q4I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "AsOf2019-12-31",
+              "unit_id": "USD",
+              "value": "11587"
+            }
+          ]
+        }
+      ],
+      "state": "COMPARED_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001393772",
+      "accession": "0001199835-12-000236",
+      "selected_rows": 4,
+      "instance_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1393772/000119983512000236/unmn-20111231.xml",
+        "status": 200,
+        "bytes": 104033,
+        "sha256": "e3a68c2ddda540bcf5d55ac2c4bdec223e012b8ac312120cddf6f446c52f2c53",
+        "captured_at": "2026-09-20T14:38:11.660418+00:00",
+        "body_path": "artifacts/seo/corpus-local/equal-history-xbrl/0001393772-0001199835-12-000236-instance.response"
+      },
+      "checks": [
+        {
+          "selected": {
+            "tag": "Liabilities",
+            "end": "2010-12-31",
+            "val": 190575,
+            "accn": "0001199835-12-000236",
+            "fy": 2011,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2012-04-16",
+            "frame": "CY2010Q4I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "AsOf2010-12-31",
+              "unit_id": "USD",
+              "value": "190575"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "tag": "Liabilities",
+            "end": "2011-12-31",
+            "val": 243116,
+            "accn": "0001199835-12-000236",
+            "fy": 2011,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2012-04-16",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "AsOf2011-12-31",
+              "unit_id": "USD",
+              "value": "243116"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "tag": "LiabilitiesCurrent",
+            "end": "2010-12-31",
+            "val": 190575,
+            "accn": "0001199835-12-000236",
+            "fy": 2011,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2012-04-16",
+            "frame": "CY2010Q4I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "AsOf2010-12-31",
+              "unit_id": "USD",
+              "value": "190575"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "tag": "LiabilitiesCurrent",
+            "end": "2011-12-31",
+            "val": 243116,
+            "accn": "0001199835-12-000236",
+            "fy": 2011,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2012-04-16",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "AsOf2011-12-31",
+              "unit_id": "USD",
+              "value": "243116"
+            }
+          ]
+        }
+      ],
+      "state": "COMPARED_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001393772",
+      "accession": "0001199835-20-000096",
+      "selected_rows": 2,
+      "instance_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1393772/000119983520000096/budz-20191231.xml",
+        "status": 200,
+        "bytes": 598417,
+        "sha256": "619404141955ea5a21d523a4253e2f721e04f8cd5d3999c9c310826a2633fe7e",
+        "captured_at": "2026-09-20T14:38:13.527598+00:00",
+        "body_path": "artifacts/seo/corpus-local/equal-history-xbrl/0001393772-0001199835-20-000096-instance.response"
+      },
+      "checks": [
+        {
+          "selected": {
+            "tag": "Liabilities",
+            "end": "2018-12-31",
+            "val": 259362,
+            "accn": "0001199835-20-000096",
+            "fy": 2019,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2020-03-30",
+            "frame": "CY2018Q4I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "AsOf2018-12-31",
+              "unit_id": "USD",
+              "value": "259362"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "tag": "LiabilitiesCurrent",
+            "end": "2018-12-31",
+            "val": 259362,
+            "accn": "0001199835-20-000096",
+            "fy": 2019,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2020-03-30",
+            "frame": "CY2018Q4I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "AsOf2018-12-31",
+              "unit_id": "USD",
+              "value": "259362"
+            }
+          ]
+        }
+      ],
+      "state": "COMPARED_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001393772",
+      "accession": "0001199835-21-000170",
+      "selected_rows": 2,
+      "instance_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1393772/000119983521000170/budz-20201231.xml",
+        "status": 200,
+        "bytes": 368625,
+        "sha256": "d1c632823bb2030241f195da719218e2f1a31461b0abbc2d165d41c7d5cc45d1",
+        "captured_at": "2026-09-20T14:38:15.632489+00:00",
+        "body_path": "artifacts/seo/corpus-local/equal-history-xbrl/0001393772-0001199835-21-000170-instance.response"
+      },
+      "checks": [
+        {
+          "selected": {
+            "tag": "Liabilities",
+            "end": "2019-12-31",
+            "val": 752970,
+            "accn": "0001199835-21-000170",
+            "fy": 2020,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2021-03-31",
+            "frame": "CY2019Q4I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "AsOf2019-12-31",
+              "unit_id": "USD",
+              "value": "752970"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "tag": "LiabilitiesCurrent",
+            "end": "2019-12-31",
+            "val": 752970,
+            "accn": "0001199835-21-000170",
+            "fy": 2020,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2021-03-31",
+            "frame": "CY2019Q4I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "AsOf2019-12-31",
+              "unit_id": "USD",
+              "value": "752970"
+            }
+          ]
+        }
+      ],
+      "state": "COMPARED_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001393772",
+      "accession": "0001654954-19-004420",
+      "selected_rows": 2,
+      "instance_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1393772/000165495419004420/budz-20181231.xml",
+        "status": 200,
+        "bytes": 588579,
+        "sha256": "791bc106ae9e6c925ac7bfd97d4c63b9c08901b8159e7465f68eda9baefde1d1",
+        "captured_at": "2026-09-20T14:38:17.385153+00:00",
+        "body_path": "artifacts/seo/corpus-local/equal-history-xbrl/0001393772-0001654954-19-004420-instance.response"
+      },
+      "checks": [
+        {
+          "selected": {
+            "tag": "Liabilities",
+            "end": "2017-12-31",
+            "val": 948128,
+            "accn": "0001654954-19-004420",
+            "fy": 2018,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2019-04-16",
+            "frame": "CY2017Q4I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "AsOf2017-12-31",
+              "unit_id": "USD",
+              "value": "948128"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "tag": "LiabilitiesCurrent",
+            "end": "2017-12-31",
+            "val": 948128,
+            "accn": "0001654954-19-004420",
+            "fy": 2018,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2019-04-16",
+            "frame": "CY2017Q4I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "AsOf2017-12-31",
+              "unit_id": "USD",
+              "value": "948128"
+            }
+          ]
+        }
+      ],
+      "state": "COMPARED_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001409253",
+      "accession": "0001477932-13-001791",
+      "selected_rows": 2,
+      "instance_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1409253/000147793213001791/nfds-20121231.xml",
+        "status": 200,
+        "bytes": 153121,
+        "sha256": "84c3c8eaff606ea2449030edb56537d1bc56249a89356568ea8aa6951ca0756f",
+        "captured_at": "2026-09-20T14:38:19.456210+00:00",
+        "body_path": "artifacts/seo/corpus-local/equal-history-xbrl/0001409253-0001477932-13-001791-instance.response"
+      },
+      "checks": [
+        {
+          "selected": {
+            "tag": "Liabilities",
+            "end": "2011-12-31",
+            "val": 2100,
+            "accn": "0001477932-13-001791",
+            "fy": 2012,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2013-04-15",
+            "frame": "CY2011Q4I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "AsOf2011-12-31",
+              "unit_id": "USD",
+              "value": "2100"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "tag": "LiabilitiesCurrent",
+            "end": "2011-12-31",
+            "val": 2100,
+            "accn": "0001477932-13-001791",
+            "fy": 2012,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2013-04-15",
+            "frame": "CY2011Q4I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "AsOf2011-12-31",
+              "unit_id": "USD",
+              "value": "2100"
+            }
+          ]
+        }
+      ],
+      "state": "COMPARED_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001409253",
+      "accession": "0001477932-14-001398",
+      "selected_rows": 2,
+      "instance_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1409253/000147793214001398/nfds-20131231.xml",
+        "status": 200,
+        "bytes": 186718,
+        "sha256": "88be4db6d78088ef49097c7fcf249e90008f118b53700da75166bbd6413b3b33",
+        "captured_at": "2026-09-20T14:38:21.161737+00:00",
+        "body_path": "artifacts/seo/corpus-local/equal-history-xbrl/0001409253-0001477932-14-001398-instance.response"
+      },
+      "checks": [
+        {
+          "selected": {
+            "tag": "Liabilities",
+            "end": "2012-12-31",
+            "val": 7365,
+            "accn": "0001477932-14-001398",
+            "fy": 2013,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2014-03-31",
+            "frame": "CY2012Q4I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "AsOf2012-12-31",
+              "unit_id": "USD",
+              "value": "7365"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "tag": "LiabilitiesCurrent",
+            "end": "2012-12-31",
+            "val": 7365,
+            "accn": "0001477932-14-001398",
+            "fy": 2013,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2014-03-31",
+            "frame": "CY2012Q4I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "AsOf2012-12-31",
+              "unit_id": "USD",
+              "value": "7365"
+            }
+          ]
+        }
+      ],
+      "state": "COMPARED_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001409253",
+      "accession": "0001477932-15-002260",
+      "selected_rows": 2,
+      "instance_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1409253/000147793215002260/xtrr-20141231.xml",
+        "status": 200,
+        "bytes": 149993,
+        "sha256": "4da1596baaa083e43c5c163e2b83964187f703f10fa2ae1c72b6bef3b727927f",
+        "captured_at": "2026-09-20T14:38:23.151432+00:00",
+        "body_path": "artifacts/seo/corpus-local/equal-history-xbrl/0001409253-0001477932-15-002260-instance.response"
+      },
+      "checks": [
+        {
+          "selected": {
+            "tag": "Liabilities",
+            "end": "2013-12-31",
+            "val": 16013,
+            "accn": "0001477932-15-002260",
+            "fy": 2014,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2015-04-06",
+            "frame": "CY2013Q4I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "AsOf2013-12-31",
+              "unit_id": "USD",
+              "value": "16013"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "tag": "LiabilitiesCurrent",
+            "end": "2013-12-31",
+            "val": 16013,
+            "accn": "0001477932-15-002260",
+            "fy": 2014,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2015-04-06",
+            "frame": "CY2013Q4I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "AsOf2013-12-31",
+              "unit_id": "USD",
+              "value": "16013"
+            }
+          ]
+        }
+      ],
+      "state": "COMPARED_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001409253",
+      "accession": "0001477932-16-009764",
+      "selected_rows": 2,
+      "instance_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1409253/000147793216009764/nafs-20151231.xml",
+        "status": 200,
+        "bytes": 138792,
+        "sha256": "681f9821e4577b73697a16418e710ade0a6bdcc995671199aa1d4c99978ff409",
+        "captured_at": "2026-09-20T14:38:25.131626+00:00",
+        "body_path": "artifacts/seo/corpus-local/equal-history-xbrl/0001409253-0001477932-16-009764-instance.response"
+      },
+      "checks": [
+        {
+          "selected": {
+            "tag": "Liabilities",
+            "end": "2014-12-31",
+            "val": 26468,
+            "accn": "0001477932-16-009764",
+            "fy": 2015,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2016-04-14",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "AsOf2014-12-31",
+              "unit_id": "USD",
+              "value": "26468"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "tag": "LiabilitiesCurrent",
+            "end": "2014-12-31",
+            "val": 26468,
+            "accn": "0001477932-16-009764",
+            "fy": 2015,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2016-04-14",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "AsOf2014-12-31",
+              "unit_id": "USD",
+              "value": "26468"
+            }
+          ]
+        }
+      ],
+      "state": "COMPARED_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001409253",
+      "accession": "0001477932-17-001940",
+      "selected_rows": 2,
+      "instance_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1409253/000147793217001940/nafs-20161231.xml",
+        "status": 200,
+        "bytes": 267333,
+        "sha256": "41bce4bc72f26083b7cf06df07573885ea532a488efb2033f0aefb52de1d90fc",
+        "captured_at": "2026-09-20T14:38:26.981168+00:00",
+        "body_path": "artifacts/seo/corpus-local/equal-history-xbrl/0001409253-0001477932-17-001940-instance.response"
+      },
+      "checks": [
+        {
+          "selected": {
+            "tag": "Liabilities",
+            "end": "2015-12-31",
+            "val": 91884,
+            "accn": "0001477932-17-001940",
+            "fy": 2016,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2017-04-27",
+            "frame": "CY2015Q4I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "AsOf2015-12-31",
+              "unit_id": "USD",
+              "value": "91884"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "tag": "LiabilitiesCurrent",
+            "end": "2015-12-31",
+            "val": 91884,
+            "accn": "0001477932-17-001940",
+            "fy": 2016,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2017-04-27",
+            "frame": "CY2015Q4I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "AsOf2015-12-31",
+              "unit_id": "USD",
+              "value": "91884"
+            }
+          ]
+        }
+      ],
+      "state": "COMPARED_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001410708",
+      "accession": "0001372167-12-000044",
+      "selected_rows": 4,
+      "instance_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1410708/000137216712000044/emoe-20110731.xml",
+        "status": 200,
+        "bytes": 58270,
+        "sha256": "fbfa0f5a8c96d7286d6684ffd63b0273d6f130f94a496f513060d623c9b8966f",
+        "captured_at": "2026-09-20T14:38:28.758658+00:00",
+        "body_path": "artifacts/seo/corpus-local/equal-history-xbrl/0001410708-0001372167-12-000044-instance.response"
+      },
+      "checks": [
+        {
+          "selected": {
+            "tag": "AssetsCurrent",
+            "end": "2010-07-31",
+            "val": 41,
+            "accn": "0001372167-12-000044",
+            "fy": 2011,
+            "fp": "FY",
+            "form": "10-K/A",
+            "filed": "2012-04-12",
+            "frame": "CY2010Q2I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "AsOf2010-07-31",
+              "unit_id": "USD",
+              "value": "41"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "tag": "AssetsCurrent",
+            "end": "2011-07-31",
+            "val": 0,
+            "accn": "0001372167-12-000044",
+            "fy": 2011,
+            "fp": "FY",
+            "form": "10-K/A",
+            "filed": "2012-04-12",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "AsOf2011-07-31",
+              "unit_id": "USD",
+              "value": "0"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "tag": "CashAndCashEquivalentsAtCarryingValue",
+            "end": "2010-07-31",
+            "val": 41,
+            "accn": "0001372167-12-000044",
+            "fy": 2011,
+            "fp": "FY",
+            "form": "10-K/A",
+            "filed": "2012-04-12",
+            "frame": "CY2010Q2I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "AsOf2010-07-31",
+              "unit_id": "USD",
+              "value": "41"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "tag": "CashAndCashEquivalentsAtCarryingValue",
+            "end": "2011-07-31",
+            "val": 0,
+            "accn": "0001372167-12-000044",
+            "fy": 2011,
+            "fp": "FY",
+            "form": "10-K/A",
+            "filed": "2012-04-12",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "AsOf2011-07-31",
+              "unit_id": "USD",
+              "value": "0"
+            }
+          ]
+        }
+      ],
+      "state": "COMPARED_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001415332",
+      "accession": "0001165527-12-000289",
+      "selected_rows": 3,
+      "instance_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1415332/000116552712000289/ltum-20111231.xml",
+        "status": 200,
+        "bytes": 135432,
+        "sha256": "b750e772abf2a9a1ee1886be0d488a8c4b1b968186d66219bb5417473ad91ca2",
+        "captured_at": "2026-09-20T14:38:30.796323+00:00",
+        "body_path": "artifacts/seo/corpus-local/equal-history-xbrl/0001415332-0001165527-12-000289-instance.response"
+      },
+      "checks": [
+        {
+          "selected": {
+            "tag": "Liabilities",
+            "end": "2010-12-31",
+            "val": 47237,
+            "accn": "0001165527-12-000289",
+            "fy": 2011,
+            "fp": "FY",
+            "form": "10-K/A",
+            "filed": "2012-04-10",
+            "frame": "CY2010Q4I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "E10",
+              "unit_id": "USD",
+              "value": "47237"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "tag": "LiabilitiesCurrent",
+            "end": "2010-12-31",
+            "val": 47237,
+            "accn": "0001165527-12-000289",
+            "fy": 2011,
+            "fp": "FY",
+            "form": "10-K/A",
+            "filed": "2012-04-10",
+            "frame": "CY2010Q4I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "E10",
+              "unit_id": "USD",
+              "value": "47237"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "tag": "LiabilitiesCurrent",
+            "end": "2011-12-31",
+            "val": 21730,
+            "accn": "0001165527-12-000289",
+            "fy": 2011,
+            "fp": "FY",
+            "form": "10-K/A",
+            "filed": "2012-04-10",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "E11",
+              "unit_id": "USD",
+              "value": "21730"
+            }
+          ]
+        }
+      ],
+      "state": "COMPARED_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001415332",
+      "accession": "0001165527-13-000366",
+      "selected_rows": 1,
+      "instance_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1415332/000116552713000366/ltum-20121231.xml",
+        "status": 200,
+        "bytes": 205590,
+        "sha256": "25288a294154c62751d9b69544b5d3832b0281a6dbc5a98efe63fa95f6a9f96a",
+        "captured_at": "2026-09-20T14:38:32.675089+00:00",
+        "body_path": "artifacts/seo/corpus-local/equal-history-xbrl/0001415332-0001165527-13-000366-instance.response"
+      },
+      "checks": [
+        {
+          "selected": {
+            "tag": "Liabilities",
+            "end": "2011-12-31",
+            "val": 21730,
+            "accn": "0001165527-13-000366",
+            "fy": 2012,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2013-04-15",
+            "frame": "CY2011Q4I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "E11",
+              "unit_id": "USD",
+              "value": "21730"
+            }
+          ]
+        }
+      ],
+      "state": "COMPARED_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001415332",
+      "accession": "0001165527-14-000191",
+      "selected_rows": 2,
+      "instance_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1415332/000116552714000191/ltum-20131231.xml",
+        "status": 200,
+        "bytes": 233466,
+        "sha256": "22731a365beafff3f7d29d21b09345695d6cbd052ac3c5e3cb7a5a4e95bc91ad",
+        "captured_at": "2026-09-20T14:38:34.408742+00:00",
+        "body_path": "artifacts/seo/corpus-local/equal-history-xbrl/0001415332-0001165527-14-000191-instance.response"
+      },
+      "checks": [
+        {
+          "selected": {
+            "tag": "Liabilities",
+            "end": "2012-12-31",
+            "val": 53201,
+            "accn": "0001165527-14-000191",
+            "fy": 2013,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2014-04-01",
+            "frame": "CY2012Q4I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "E12",
+              "unit_id": "USD",
+              "value": "53201"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "tag": "LiabilitiesCurrent",
+            "end": "2012-12-31",
+            "val": 53201,
+            "accn": "0001165527-14-000191",
+            "fy": 2013,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2014-04-01",
+            "frame": "CY2012Q4I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "E12",
+              "unit_id": "USD",
+              "value": "53201"
+            }
+          ]
+        }
+      ],
+      "state": "COMPARED_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001415332",
+      "accession": "0001165527-15-000111",
+      "selected_rows": 2,
+      "instance_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1415332/000116552715000111/ltum-20141231.xml",
+        "status": 200,
+        "bytes": 385544,
+        "sha256": "50ac06b34875dcacb54e3c60375bc172f2f21a0aca2d88709c2ae7a1be478c0b",
+        "captured_at": "2026-09-20T14:38:36.362042+00:00",
+        "body_path": "artifacts/seo/corpus-local/equal-history-xbrl/0001415332-0001165527-15-000111-instance.response"
+      },
+      "checks": [
+        {
+          "selected": {
+            "tag": "Liabilities",
+            "end": "2013-12-31",
+            "val": 12982,
+            "accn": "0001165527-15-000111",
+            "fy": 2014,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2015-03-13",
+            "frame": "CY2013Q4I",
+            "unit": "USD"
+          },
+          "matched": false,
+          "matches": []
+        },
+        {
+          "selected": {
+            "tag": "LiabilitiesCurrent",
+            "end": "2013-12-31",
+            "val": 12982,
+            "accn": "0001165527-15-000111",
+            "fy": 2014,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2015-03-13",
+            "frame": "CY2013Q4I",
+            "unit": "USD"
+          },
+          "matched": false,
+          "matches": []
+        }
+      ],
+      "state": "COMPARED_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001415332",
+      "accession": "0001165527-16-000711",
+      "selected_rows": 2,
+      "instance_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1415332/000116552716000711/ltum-20151231.xml",
+        "status": 200,
+        "bytes": 263133,
+        "sha256": "a367b86b6c28e901e7decd493f6ea12543c30f11428e31b746099cd66e0f7a9a",
+        "captured_at": "2026-09-20T14:38:38.433317+00:00",
+        "body_path": "artifacts/seo/corpus-local/equal-history-xbrl/0001415332-0001165527-16-000711-instance.response"
+      },
+      "checks": [
+        {
+          "selected": {
+            "tag": "Liabilities",
+            "end": "2014-12-31",
+            "val": 15720,
+            "accn": "0001165527-16-000711",
+            "fy": 2015,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2016-03-30",
+            "frame": "CY2014Q4I",
+            "unit": "USD"
+          },
+          "matched": false,
+          "matches": []
+        },
+        {
+          "selected": {
+            "tag": "LiabilitiesCurrent",
+            "end": "2014-12-31",
+            "val": 15720,
+            "accn": "0001165527-16-000711",
+            "fy": 2015,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2016-03-30",
+            "frame": "CY2014Q4I",
+            "unit": "USD"
+          },
+          "matched": false,
+          "matches": []
+        }
+      ],
+      "state": "COMPARED_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001415332",
+      "accession": "0001165527-17-000087",
+      "selected_rows": 2,
+      "instance_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1415332/000116552717000087/ltum-20161231.xml",
+        "status": 200,
+        "bytes": 553476,
+        "sha256": "5fb82b1828fdcefcb8218abcaff572de58f0d5220bbb3436c1bb78ed13eb12ea",
+        "captured_at": "2026-09-20T14:38:42.012225+00:00",
+        "body_path": "artifacts/seo/corpus-local/equal-history-xbrl/0001415332-0001165527-17-000087-instance.response"
+      },
+      "checks": [
+        {
+          "selected": {
+            "tag": "Liabilities",
+            "end": "2015-12-31",
+            "val": 7500,
+            "accn": "0001165527-17-000087",
+            "fy": 2016,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2017-04-12",
+            "frame": "CY2015Q4I",
+            "unit": "USD"
+          },
+          "matched": false,
+          "matches": []
+        },
+        {
+          "selected": {
+            "tag": "LiabilitiesCurrent",
+            "end": "2015-12-31",
+            "val": 7500,
+            "accn": "0001165527-17-000087",
+            "fy": 2016,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2017-04-12",
+            "frame": "CY2015Q4I",
+            "unit": "USD"
+          },
+          "matched": false,
+          "matches": []
+        }
+      ],
+      "state": "COMPARED_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001415332",
+      "accession": "0001165527-18-000055",
+      "selected_rows": 2,
+      "instance_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1415332/000116552718000055/ltum-20171231.xml",
+        "status": 200,
+        "bytes": 489567,
+        "sha256": "e7457794e320fae98ce1cd108914772a2d9ac469a8480f0a1686f82147aae7d7",
+        "captured_at": "2026-09-20T14:38:43.830634+00:00",
+        "body_path": "artifacts/seo/corpus-local/equal-history-xbrl/0001415332-0001165527-18-000055-instance.response"
+      },
+      "checks": [
+        {
+          "selected": {
+            "tag": "Liabilities",
+            "end": "2016-12-31",
+            "val": 412914,
+            "accn": "0001165527-18-000055",
+            "fy": 2017,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2018-04-05",
+            "frame": "CY2016Q4I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "AsOf2016-12-31",
+              "unit_id": "USD",
+              "value": "412914"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "tag": "LiabilitiesCurrent",
+            "end": "2016-12-31",
+            "val": 412914,
+            "accn": "0001165527-18-000055",
+            "fy": 2017,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2018-04-05",
+            "frame": "CY2016Q4I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "AsOf2016-12-31",
+              "unit_id": "USD",
+              "value": "412914"
+            }
+          ]
+        }
+      ],
+      "state": "COMPARED_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001415332",
+      "accession": "0001165527-19-000030",
+      "selected_rows": 2,
+      "instance_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1415332/000116552719000030/ltum-20181231.xml",
+        "status": 200,
+        "bytes": 411361,
+        "sha256": "8bbf1e2596b8842bd762b16ac4017ea0b828161c241401249e23de2554059448",
+        "captured_at": "2026-09-20T14:38:45.614662+00:00",
+        "body_path": "artifacts/seo/corpus-local/equal-history-xbrl/0001415332-0001165527-19-000030-instance.response"
+      },
+      "checks": [
+        {
+          "selected": {
+            "tag": "Liabilities",
+            "end": "2017-12-31",
+            "val": 526031,
+            "accn": "0001165527-19-000030",
+            "fy": 2018,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2019-03-26",
+            "frame": "CY2017Q4I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "AsOf2017-12-31",
+              "unit_id": "USD",
+              "value": "526031"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "tag": "LiabilitiesCurrent",
+            "end": "2017-12-31",
+            "val": 526031,
+            "accn": "0001165527-19-000030",
+            "fy": 2018,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2019-03-26",
+            "frame": "CY2017Q4I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "AsOf2017-12-31",
+              "unit_id": "USD",
+              "value": "526031"
+            }
+          ]
+        }
+      ],
+      "state": "COMPARED_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001415332",
+      "accession": "0001640334-20-000540",
+      "selected_rows": 2,
+      "instance_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1415332/000164033420000540/ltum-20191231.xml",
+        "status": 200,
+        "bytes": 321600,
+        "sha256": "9f5b1899a5f2b4c96f8d78a74e757af0285747da6f5fd28c38451db6cc02738e",
+        "captured_at": "2026-09-20T14:38:47.673513+00:00",
+        "body_path": "artifacts/seo/corpus-local/equal-history-xbrl/0001415332-0001640334-20-000540-instance.response"
+      },
+      "checks": [
+        {
+          "selected": {
+            "tag": "Liabilities",
+            "end": "2018-12-31",
+            "val": 456194,
+            "accn": "0001640334-20-000540",
+            "fy": 2019,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2020-03-18",
+            "frame": "CY2018Q4I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "AsOf2018-12-31",
+              "unit_id": "USD",
+              "value": "456194"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "tag": "LiabilitiesCurrent",
+            "end": "2018-12-31",
+            "val": 456194,
+            "accn": "0001640334-20-000540",
+            "fy": 2019,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2020-03-18",
+            "frame": "CY2018Q4I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "AsOf2018-12-31",
+              "unit_id": "USD",
+              "value": "456194"
+            }
+          ]
+        }
+      ],
+      "state": "COMPARED_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001415332",
+      "accession": "0001640334-21-000592",
+      "selected_rows": 2,
+      "instance_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1415332/000164033421000592/ltum-20201231.xml",
+        "status": 200,
+        "bytes": 208303,
+        "sha256": "e26f62bd2987daaa97b425e0807b69875435330e15d4c85b83301a6b41922285",
+        "captured_at": "2026-09-20T14:38:49.546004+00:00",
+        "body_path": "artifacts/seo/corpus-local/equal-history-xbrl/0001415332-0001640334-21-000592-instance.response"
+      },
+      "checks": [
+        {
+          "selected": {
+            "tag": "Liabilities",
+            "end": "2019-12-31",
+            "val": 16909,
+            "accn": "0001640334-21-000592",
+            "fy": 2020,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2021-03-16",
+            "frame": "CY2019Q4I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "AsOf2019-12-31",
+              "unit_id": "USD",
+              "value": "16909"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "tag": "LiabilitiesCurrent",
+            "end": "2019-12-31",
+            "val": 16909,
+            "accn": "0001640334-21-000592",
+            "fy": 2020,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2021-03-16",
+            "frame": "CY2019Q4I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "AsOf2019-12-31",
+              "unit_id": "USD",
+              "value": "16909"
+            }
+          ]
+        }
+      ],
+      "state": "COMPARED_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001420108",
+      "accession": "0001214782-12-000044",
+      "selected_rows": 2,
+      "instance_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1420108/000121478212000044/bisu-20111231.xml",
+        "status": 200,
+        "bytes": 159387,
+        "sha256": "64663f2d21461153390fa8c364b7a7be4811622cb30a79715bf7d02524184f57",
+        "captured_at": "2026-09-20T14:38:51.117104+00:00",
+        "body_path": "artifacts/seo/corpus-local/equal-history-xbrl/0001420108-0001214782-12-000044-instance.response"
+      },
+      "checks": [
+        {
+          "selected": {
+            "tag": "Liabilities",
+            "end": "2010-12-31",
+            "val": 682364,
+            "accn": "0001214782-12-000044",
+            "fy": 2011,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2012-05-31",
+            "frame": "CY2010Q4I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "AsOf2010-12-31",
+              "unit_id": "USD",
+              "value": "682364"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "tag": "LiabilitiesCurrent",
+            "end": "2010-12-31",
+            "val": 682364,
+            "accn": "0001214782-12-000044",
+            "fy": 2011,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2012-05-31",
+            "frame": "CY2010Q4I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "AsOf2010-12-31",
+              "unit_id": "USD",
+              "value": "682364"
+            }
+          ]
+        }
+      ],
+      "state": "COMPARED_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001420108",
+      "accession": "0001477932-14-002329",
+      "selected_rows": 2,
+      "instance_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1420108/000147793214002329/bisu-20121231.xml",
+        "status": 200,
+        "bytes": 204164,
+        "sha256": "5cdace1ded76e394bdb42241c3575c553926030a51e38a77a40eef3419947600",
+        "captured_at": "2026-09-20T14:38:53.174237+00:00",
+        "body_path": "artifacts/seo/corpus-local/equal-history-xbrl/0001420108-0001477932-14-002329-instance.response"
+      },
+      "checks": [
+        {
+          "selected": {
+            "tag": "Liabilities",
+            "end": "2011-12-31",
+            "val": 419704,
+            "accn": "0001477932-14-002329",
+            "fy": 2012,
+            "fp": "FY",
+            "form": "10-K/A",
+            "filed": "2014-05-05",
+            "frame": "CY2011Q4I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "AsOf2011-12-31",
+              "unit_id": "USD",
+              "value": "419704"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "tag": "LiabilitiesCurrent",
+            "end": "2011-12-31",
+            "val": 419704,
+            "accn": "0001477932-14-002329",
+            "fy": 2012,
+            "fp": "FY",
+            "form": "10-K/A",
+            "filed": "2014-05-05",
+            "frame": "CY2011Q4I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "AsOf2011-12-31",
+              "unit_id": "USD",
+              "value": "419704"
+            }
+          ]
+        }
+      ],
+      "state": "COMPARED_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001420108",
+      "accession": "0001477932-14-003318",
+      "selected_rows": 2,
+      "instance_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1420108/000147793214003318/bisu-20131231.xml",
+        "status": 200,
+        "bytes": 559086,
+        "sha256": "f41baa5c9303121a8324e1940bd2890cf983a46320b44c3085ac1f2c8efe47b4",
+        "captured_at": "2026-09-20T14:38:55.601374+00:00",
+        "body_path": "artifacts/seo/corpus-local/equal-history-xbrl/0001420108-0001477932-14-003318-instance.response"
+      },
+      "checks": [
+        {
+          "selected": {
+            "tag": "Liabilities",
+            "end": "2012-12-31",
+            "val": 185476,
+            "accn": "0001477932-14-003318",
+            "fy": 2013,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2014-06-25",
+            "frame": "CY2012Q4I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "AsOf2012-12-31",
+              "unit_id": "USD",
+              "value": "185476"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "tag": "LiabilitiesCurrent",
+            "end": "2012-12-31",
+            "val": 185476,
+            "accn": "0001477932-14-003318",
+            "fy": 2013,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2014-06-25",
+            "frame": "CY2012Q4I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "AsOf2012-12-31",
+              "unit_id": "USD",
+              "value": "185476"
+            }
+          ]
+        }
+      ],
+      "state": "COMPARED_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001420108",
+      "accession": "0001477932-15-001981",
+      "selected_rows": 2,
+      "instance_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1420108/000147793215001981/bisu-20141231.xml",
+        "status": 200,
+        "bytes": 365631,
+        "sha256": "2862c9856d2d88113d2db8531dbb0925179ad3afffdc55fda70962f75d9244b7",
+        "captured_at": "2026-09-20T14:38:57.431788+00:00",
+        "body_path": "artifacts/seo/corpus-local/equal-history-xbrl/0001420108-0001477932-15-001981-instance.response"
+      },
+      "checks": [
+        {
+          "selected": {
+            "tag": "Liabilities",
+            "end": "2013-12-31",
+            "val": 223348,
+            "accn": "0001477932-15-001981",
+            "fy": 2014,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2015-03-30",
+            "frame": "CY2013Q4I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "AsOf2013-12-31",
+              "unit_id": "USD",
+              "value": "223348"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "tag": "LiabilitiesCurrent",
+            "end": "2013-12-31",
+            "val": 223348,
+            "accn": "0001477932-15-001981",
+            "fy": 2014,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2015-03-30",
+            "frame": "CY2013Q4I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "AsOf2013-12-31",
+              "unit_id": "USD",
+              "value": "223348"
+            }
+          ]
+        }
+      ],
+      "state": "COMPARED_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001420108",
+      "accession": "0001477932-16-009786",
+      "selected_rows": 2,
+      "instance_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1420108/000147793216009786/gluc-20151231.xml",
+        "status": 200,
+        "bytes": 278811,
+        "sha256": "9999d400f07d14356997a5f0d2f336dbb33b93964481c6fd2b20ef6d7019cc89",
+        "captured_at": "2026-09-20T14:38:59.300017+00:00",
+        "body_path": "artifacts/seo/corpus-local/equal-history-xbrl/0001420108-0001477932-16-009786-instance.response"
+      },
+      "checks": [
+        {
+          "selected": {
+            "tag": "Liabilities",
+            "end": "2014-12-31",
+            "val": 324582,
+            "accn": "0001477932-16-009786",
+            "fy": 2015,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2016-04-14",
+            "frame": "CY2014Q4I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "AsOf2014-12-31",
+              "unit_id": "USD",
+              "value": "324582"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "tag": "LiabilitiesCurrent",
+            "end": "2014-12-31",
+            "val": 324582,
+            "accn": "0001477932-16-009786",
+            "fy": 2015,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2016-04-14",
+            "frame": "CY2014Q4I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "AsOf2014-12-31",
+              "unit_id": "USD",
+              "value": "324582"
+            }
+          ]
+        }
+      ],
+      "state": "COMPARED_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001430300",
+      "accession": "0001477932-21-001405",
+      "selected_rows": 2,
+      "instance_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1430300/000147793221001405/gwso-20201231.xml",
+        "status": 200,
+        "bytes": 163667,
+        "sha256": "96041cff53be634218e8dc4c627d879b8e2eaed2f8e2a1a3f63a82fff84046e4",
+        "captured_at": "2026-09-20T14:39:01.354042+00:00",
+        "body_path": "artifacts/seo/corpus-local/equal-history-xbrl/0001430300-0001477932-21-001405-instance.response"
+      },
+      "checks": [
+        {
+          "selected": {
+            "tag": "Liabilities",
+            "end": "2019-12-31",
+            "val": 555432,
+            "accn": "0001477932-21-001405",
+            "fy": 2020,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2021-03-12",
+            "frame": "CY2019Q4I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "AsOf2019-12-31",
+              "unit_id": "USD",
+              "value": "555432"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "tag": "LiabilitiesCurrent",
+            "end": "2019-12-31",
+            "val": 555432,
+            "accn": "0001477932-21-001405",
+            "fy": 2020,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2021-03-12",
+            "frame": "CY2019Q4I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "AsOf2019-12-31",
+              "unit_id": "USD",
+              "value": "555432"
+            }
+          ]
+        }
+      ],
+      "state": "COMPARED_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001437476",
+      "accession": "0001683168-20-003399",
+      "selected_rows": 2,
+      "instance_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1437476/000168316820003399/gsfi-20200430.xml",
+        "status": 200,
+        "bytes": 212452,
+        "sha256": "dcf8607a784fb50264de31ec890417acd8e53ae34cf961f04596f9612871fc98",
+        "captured_at": "2026-09-20T14:39:03.157965+00:00",
+        "body_path": "artifacts/seo/corpus-local/equal-history-xbrl/0001437476-0001683168-20-003399-instance.response"
+      },
+      "checks": [
+        {
+          "selected": {
+            "tag": "Liabilities",
+            "end": "2019-04-30",
+            "val": 112714,
+            "accn": "0001683168-20-003399",
+            "fy": 2019,
+            "fp": "FY",
+            "form": "10-K/A",
+            "filed": "2020-10-08",
+            "frame": "CY2019Q1I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "AsOf2019-04-30",
+              "unit_id": "USD",
+              "value": "112714"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "tag": "LiabilitiesCurrent",
+            "end": "2019-04-30",
+            "val": 112714,
+            "accn": "0001683168-20-003399",
+            "fy": 2019,
+            "fp": "FY",
+            "form": "10-K/A",
+            "filed": "2020-10-08",
+            "frame": "CY2019Q1I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "AsOf2019-04-30",
+              "unit_id": "USD",
+              "value": "112714"
+            }
+          ]
+        }
+      ],
+      "state": "COMPARED_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001481443",
+      "accession": "0001683168-20-001264",
+      "selected_rows": 8,
+      "instance_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1481443/000168316820001264/rmdm-20191231.xml",
+        "status": 200,
+        "bytes": 118938,
+        "sha256": "c9ee592d8b4c9ae85654e1e38655f4c358a1d7580d18b2917b3787701e03ba65",
+        "captured_at": "2026-09-20T14:39:05.059156+00:00",
+        "body_path": "artifacts/seo/corpus-local/equal-history-xbrl/0001481443-0001683168-20-001264-instance.response"
+      },
+      "checks": [
+        {
+          "selected": {
+            "tag": "Assets",
+            "end": "2018-12-31",
+            "val": 833,
+            "accn": "0001683168-20-001264",
+            "fy": 2019,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2020-04-23",
+            "frame": "CY2018Q4I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "AsOf2018-12-31",
+              "unit_id": "USD",
+              "value": "833"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "tag": "AssetsCurrent",
+            "end": "2018-12-31",
+            "val": 833,
+            "accn": "0001683168-20-001264",
+            "fy": 2019,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2020-04-23",
+            "frame": "CY2018Q4I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "AsOf2018-12-31",
+              "unit_id": "USD",
+              "value": "833"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "tag": "Liabilities",
+            "end": "2018-12-31",
+            "val": 96982,
+            "accn": "0001683168-20-001264",
+            "fy": 2019,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2020-04-23",
+            "frame": "CY2018Q4I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "AsOf2018-12-31",
+              "unit_id": "USD",
+              "value": "96982"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "tag": "LiabilitiesCurrent",
+            "end": "2018-12-31",
+            "val": 96982,
+            "accn": "0001683168-20-001264",
+            "fy": 2019,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2020-04-23",
+            "frame": "CY2018Q4I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "AsOf2018-12-31",
+              "unit_id": "USD",
+              "value": "96982"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "tag": "NetIncomeLoss",
+            "start": "2018-01-01",
+            "end": "2018-12-31",
+            "val": -39149,
+            "accn": "0001683168-20-001264",
+            "fy": 2019,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2020-04-23",
+            "frame": "CY2018",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "From2018-01-01to2018-12-31",
+              "unit_id": "USD",
+              "value": "-39149"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "tag": "OperatingIncomeLoss",
+            "start": "2018-01-01",
+            "end": "2018-12-31",
+            "val": -39149,
+            "accn": "0001683168-20-001264",
+            "fy": 2019,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2020-04-23",
+            "frame": "CY2018",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "From2018-01-01to2018-12-31",
+              "unit_id": "USD",
+              "value": "-39149"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+            "start": "2018-01-01",
+            "end": "2018-12-31",
+            "val": 0,
+            "accn": "0001683168-20-001264",
+            "fy": 2019,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2020-04-23",
+            "frame": "CY2018",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "From2018-01-01to2018-12-31",
+              "unit_id": "USD",
+              "value": "0"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "tag": "Revenues",
+            "start": "2018-01-01",
+            "end": "2018-12-31",
+            "val": 0,
+            "accn": "0001683168-20-001264",
+            "fy": 2019,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2020-04-23",
+            "frame": "CY2018",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "From2018-01-01to2018-12-31",
+              "unit_id": "USD",
+              "value": "0"
+            }
+          ]
+        }
+      ],
+      "state": "COMPARED_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001492448",
+      "accession": "0001079973-19-000471",
+      "selected_rows": 4,
+      "instance_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1492448/000107997319000471/dcgd-20190430.xml",
+        "status": 200,
+        "bytes": 151719,
+        "sha256": "ea9a539831cac1ae6bfda5d2f16293fd98a67ee34a264609f5258467a83987f8",
+        "captured_at": "2026-09-20T14:39:06.927192+00:00",
+        "body_path": "artifacts/seo/corpus-local/equal-history-xbrl/0001492448-0001079973-19-000471-instance.response"
+      },
+      "checks": [
+        {
+          "selected": {
+            "tag": "Assets",
+            "end": "2018-04-30",
+            "val": 1589,
+            "accn": "0001079973-19-000471",
+            "fy": 2019,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2019-08-14",
+            "frame": "CY2018Q1I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "AsOf2018-04-30",
+              "unit_id": "USD",
+              "value": "1589"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "tag": "AssetsCurrent",
+            "end": "2018-04-30",
+            "val": 1589,
+            "accn": "0001079973-19-000471",
+            "fy": 2019,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2019-08-14",
+            "frame": "CY2018Q1I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "AsOf2018-04-30",
+              "unit_id": "USD",
+              "value": "1589"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "tag": "Liabilities",
+            "end": "2018-04-30",
+            "val": 90711,
+            "accn": "0001079973-19-000471",
+            "fy": 2019,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2019-08-14",
+            "frame": "CY2018Q1I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "AsOf2018-04-30",
+              "unit_id": "USD",
+              "value": "90711"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "tag": "LiabilitiesCurrent",
+            "end": "2018-04-30",
+            "val": 90711,
+            "accn": "0001079973-19-000471",
+            "fy": 2019,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2019-08-14",
+            "frame": "CY2018Q1I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "AsOf2018-04-30",
+              "unit_id": "USD",
+              "value": "90711"
+            }
+          ]
+        }
+      ],
+      "state": "COMPARED_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001492448",
+      "accession": "0001185185-12-001649",
+      "selected_rows": 8,
+      "instance_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1492448/000118518512001649/dcgd-20120430.xml",
+        "status": 200,
+        "bytes": 241880,
+        "sha256": "8ea9ffa231c07856a4d0a847063e6c4b6674d688ce6041d6f3028d52de472e70",
+        "captured_at": "2026-09-20T14:39:08.778924+00:00",
+        "body_path": "artifacts/seo/corpus-local/equal-history-xbrl/0001492448-0001185185-12-001649-instance.response"
+      },
+      "checks": [
+        {
+          "selected": {
+            "tag": "Assets",
+            "end": "2011-04-30",
+            "val": 71160,
+            "accn": "0001185185-12-001649",
+            "fy": 2012,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2012-08-07",
+            "frame": "CY2011Q1I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "c1_AsOf30Apr2011",
+              "unit_id": "usd",
+              "value": "71160"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "tag": "Assets",
+            "end": "2012-04-30",
+            "val": 5865,
+            "accn": "0001185185-12-001649",
+            "fy": 2012,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2012-08-07",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "c0_AsOf30Apr2012",
+              "unit_id": "usd",
+              "value": "5865"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "tag": "AssetsCurrent",
+            "end": "2011-04-30",
+            "val": 71160,
+            "accn": "0001185185-12-001649",
+            "fy": 2012,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2012-08-07",
+            "frame": "CY2011Q1I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "c1_AsOf30Apr2011",
+              "unit_id": "usd",
+              "value": "71160"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "tag": "AssetsCurrent",
+            "end": "2012-04-30",
+            "val": 5865,
+            "accn": "0001185185-12-001649",
+            "fy": 2012,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2012-08-07",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "c0_AsOf30Apr2012",
+              "unit_id": "usd",
+              "value": "5865"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "tag": "Liabilities",
+            "end": "2011-04-30",
+            "val": 102479,
+            "accn": "0001185185-12-001649",
+            "fy": 2012,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2012-08-07",
+            "frame": "CY2011Q1I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "c1_AsOf30Apr2011",
+              "unit_id": "usd",
+              "value": "102479"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "tag": "Liabilities",
+            "end": "2012-04-30",
+            "val": 280311,
+            "accn": "0001185185-12-001649",
+            "fy": 2012,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2012-08-07",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "c0_AsOf30Apr2012",
+              "unit_id": "usd",
+              "value": "280311"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "tag": "LiabilitiesCurrent",
+            "end": "2011-04-30",
+            "val": 102479,
+            "accn": "0001185185-12-001649",
+            "fy": 2012,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2012-08-07",
+            "frame": "CY2011Q1I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "c1_AsOf30Apr2011",
+              "unit_id": "usd",
+              "value": "102479"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "tag": "LiabilitiesCurrent",
+            "end": "2012-04-30",
+            "val": 280311,
+            "accn": "0001185185-12-001649",
+            "fy": 2012,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2012-08-07",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "c0_AsOf30Apr2012",
+              "unit_id": "usd",
+              "value": "280311"
+            }
+          ]
+        }
+      ],
+      "state": "COMPARED_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001551152",
+      "accession": "0001551152-19-000008",
+      "selected_rows": 2,
+      "instance_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1551152/000155115219000008/abbv-20181231.xml",
+        "status": 200,
+        "bytes": 4837538,
+        "sha256": "1cb4bed017573a8fca1a3e7bdb24cd3b65f55709f75597ac95d02a48bd55fa1e",
+        "captured_at": "2026-09-20T14:39:11.195944+00:00",
+        "body_path": "artifacts/seo/corpus-local/equal-history-xbrl/0001551152-0001551152-19-000008-instance.response"
+      },
+      "checks": [
+        {
+          "selected": {
+            "tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+            "start": "2016-01-01",
+            "end": "2016-12-31",
+            "val": 25638000000,
+            "accn": "0001551152-19-000008",
+            "fy": 2018,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2019-02-27",
+            "frame": "CY2016",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "FD2016Q4YTD",
+              "unit_id": "usd",
+              "value": "25638000000"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "tag": "Revenues",
+            "start": "2016-01-01",
+            "end": "2016-12-31",
+            "val": 25638000000,
+            "accn": "0001551152-19-000008",
+            "fy": 2018,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2019-02-27",
+            "frame": "CY2016",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "FD2016Q4YTD",
+              "unit_id": "usd",
+              "value": "25638000000"
+            }
+          ]
+        }
+      ],
+      "state": "COMPARED_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001570132",
+      "accession": "0001553350-17-000507",
+      "selected_rows": 2,
+      "instance_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1570132/000155335017000507/vtrq-20150228.xml",
+        "status": 200,
+        "bytes": 83065,
+        "sha256": "b44387f4f58dbeff3ef2374d6da57535671ca11c48d2ab0d0888716399bfef93",
+        "captured_at": "2026-09-20T14:39:13.148707+00:00",
+        "body_path": "artifacts/seo/corpus-local/equal-history-xbrl/0001570132-0001553350-17-000507-instance.response"
+      },
+      "checks": [
+        {
+          "selected": {
+            "tag": "Assets",
+            "end": "2014-02-28",
+            "val": 5882,
+            "accn": "0001553350-17-000507",
+            "fy": 2015,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2017-05-09",
+            "frame": "CY2014Q1I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "I140228",
+              "unit_id": "USD",
+              "value": "5882"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "tag": "AssetsCurrent",
+            "end": "2014-02-28",
+            "val": 5882,
+            "accn": "0001553350-17-000507",
+            "fy": 2015,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2017-05-09",
+            "frame": "CY2014Q1I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "I140228",
+              "unit_id": "USD",
+              "value": "5882"
+            }
+          ]
+        }
+      ],
+      "state": "COMPARED_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001570132",
+      "accession": "0001553350-19-000666",
+      "selected_rows": 2,
+      "instance_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1570132/000155335019000666/anvi-20190228.xml",
+        "status": 200,
+        "bytes": 151389,
+        "sha256": "ae230ff1a4ad183db6dfe0543bf2ed688fb3c6f0139829243193efb042c0db6a",
+        "captured_at": "2026-09-20T14:39:15.125409+00:00",
+        "body_path": "artifacts/seo/corpus-local/equal-history-xbrl/0001570132-0001553350-19-000666-instance.response"
+      },
+      "checks": [
+        {
+          "selected": {
+            "tag": "Assets",
+            "end": "2018-02-28",
+            "val": 14063,
+            "accn": "0001553350-19-000666",
+            "fy": 2019,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2019-06-24",
+            "frame": "CY2018Q1I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "AsOf2018-02-28",
+              "unit_id": "USD",
+              "value": "14063"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "tag": "AssetsCurrent",
+            "end": "2018-02-28",
+            "val": 14063,
+            "accn": "0001553350-19-000666",
+            "fy": 2019,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2019-06-24",
+            "frame": "CY2018Q1I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "AsOf2018-02-28",
+              "unit_id": "USD",
+              "value": "14063"
+            }
+          ]
+        }
+      ],
+      "state": "COMPARED_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001570132",
+      "accession": "0001553350-20-000640",
+      "selected_rows": 2,
+      "instance_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1570132/000155335020000640/anvi-20200229.xml",
+        "status": 200,
+        "bytes": 225234,
+        "sha256": "da7a19157d4ecbac8d83f59601ae9bcdd2d37514e6c5dbf2a6f1c6399d31a9da",
+        "captured_at": "2026-09-20T14:39:17.099117+00:00",
+        "body_path": "artifacts/seo/corpus-local/equal-history-xbrl/0001570132-0001553350-20-000640-instance.response"
+      },
+      "checks": [
+        {
+          "selected": {
+            "tag": "Assets",
+            "end": "2019-02-28",
+            "val": 23053,
+            "accn": "0001553350-20-000640",
+            "fy": 2020,
+            "fp": "FY",
+            "form": "10-K/A",
+            "filed": "2020-07-20",
+            "frame": "CY2019Q1I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "AsOf2019-02-28_us-gaap_SubsequentEventMember",
+              "unit_id": "USD",
+              "value": "23053"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "tag": "AssetsCurrent",
+            "end": "2019-02-28",
+            "val": 23053,
+            "accn": "0001553350-20-000640",
+            "fy": 2020,
+            "fp": "FY",
+            "form": "10-K/A",
+            "filed": "2020-07-20",
+            "frame": "CY2019Q1I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "AsOf2019-02-28_us-gaap_SubsequentEventMember",
+              "unit_id": "USD",
+              "value": "23053"
+            }
+          ]
+        }
+      ],
+      "state": "COMPARED_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001570132",
+      "accession": "0001553350-21-000499",
+      "selected_rows": 2,
+      "instance_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1570132/000155335021000499/anvi-20210228.xml",
+        "status": 200,
+        "bytes": 184046,
+        "sha256": "cccb0642bc26021354efddf476dfc26a8edb9ad3d654c698e88b4e77a5031504",
+        "captured_at": "2026-09-20T14:39:18.624690+00:00",
+        "body_path": "artifacts/seo/corpus-local/equal-history-xbrl/0001570132-0001553350-21-000499-instance.response"
+      },
+      "checks": [
+        {
+          "selected": {
+            "tag": "Assets",
+            "end": "2020-02-29",
+            "val": 10493,
+            "accn": "0001553350-21-000499",
+            "fy": 2021,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2021-06-08",
+            "frame": "CY2020Q1I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "AsOf2020-02-29",
+              "unit_id": "USD",
+              "value": "10493"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "tag": "AssetsCurrent",
+            "end": "2020-02-29",
+            "val": 10493,
+            "accn": "0001553350-21-000499",
+            "fy": 2021,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2021-06-08",
+            "frame": "CY2020Q1I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "AsOf2020-02-29",
+              "unit_id": "USD",
+              "value": "10493"
+            }
+          ]
+        }
+      ],
+      "state": "COMPARED_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001570132",
+      "accession": "0001570132-14-000003",
+      "selected_rows": 2,
+      "instance_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1570132/000157013214000003/vtrq-20140228.xml",
+        "status": 200,
+        "bytes": 35142,
+        "sha256": "623875351431d6cecbaaae66fe8a925b4f17ad9bb61308943dcd1d627ab6ff79",
+        "captured_at": "2026-09-20T14:39:20.511398+00:00",
+        "body_path": "artifacts/seo/corpus-local/equal-history-xbrl/0001570132-0001570132-14-000003-instance.response"
+      },
+      "checks": [
+        {
+          "selected": {
+            "tag": "Assets",
+            "end": "2013-02-28",
+            "val": 8136,
+            "accn": "0001570132-14-000003",
+            "fy": 2013,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2014-03-28",
+            "frame": "CY2013Q1I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "I130228",
+              "unit_id": "USD",
+              "value": "8136"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "tag": "AssetsCurrent",
+            "end": "2013-02-28",
+            "val": 8136,
+            "accn": "0001570132-14-000003",
+            "fy": 2013,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2014-03-28",
+            "frame": "CY2013Q1I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "I130228",
+              "unit_id": "USD",
+              "value": "8136"
+            }
+          ]
+        }
+      ],
+      "state": "COMPARED_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001584618",
+      "accession": "0001014897-16-000534",
+      "selected_rows": 2,
+      "instance_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1584618/000101489716000534/acrl-20151231.xml",
+        "status": 200,
+        "bytes": 230932,
+        "sha256": "9a26305e1285640b8679db9578ba1d86672164684eba6c74c80d27dd3c5e02f0",
+        "captured_at": "2026-09-20T14:39:22.465176+00:00",
+        "body_path": "artifacts/seo/corpus-local/equal-history-xbrl/0001584618-0001014897-16-000534-instance.response"
+      },
+      "checks": [
+        {
+          "selected": {
+            "tag": "Liabilities",
+            "end": "2014-12-31",
+            "val": 269799,
+            "accn": "0001014897-16-000534",
+            "fy": 2015,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2016-04-21",
+            "frame": "CY2014Q4I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "E14",
+              "unit_id": "USD",
+              "value": "269799"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "tag": "LiabilitiesCurrent",
+            "end": "2014-12-31",
+            "val": 269799,
+            "accn": "0001014897-16-000534",
+            "fy": 2015,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2016-04-21",
+            "frame": "CY2014Q4I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "E14",
+              "unit_id": "USD",
+              "value": "269799"
+            }
+          ]
+        }
+      ],
+      "state": "COMPARED_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001584618",
+      "accession": "0001617819-15-000011",
+      "selected_rows": 2,
+      "instance_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1584618/000161781915000011/arii-20141231.xml",
+        "status": 200,
+        "bytes": 179751,
+        "sha256": "5081aa9e538c72c06dae4a1467cecb438af3e1a8185880b5844e7d4dfd41043f",
+        "captured_at": "2026-09-20T14:39:24.340495+00:00",
+        "body_path": "artifacts/seo/corpus-local/equal-history-xbrl/0001584618-0001617819-15-000011-instance.response"
+      },
+      "checks": [
+        {
+          "selected": {
+            "tag": "Liabilities",
+            "end": "2013-12-31",
+            "val": 217523,
+            "accn": "0001617819-15-000011",
+            "fy": 2014,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2015-04-15",
+            "frame": "CY2013Q4I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "E13",
+              "unit_id": "USD",
+              "value": "217523"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "tag": "LiabilitiesCurrent",
+            "end": "2013-12-31",
+            "val": 217523,
+            "accn": "0001617819-15-000011",
+            "fy": 2014,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2015-04-15",
+            "frame": "CY2013Q4I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "E13",
+              "unit_id": "USD",
+              "value": "217523"
+            }
+          ]
+        }
+      ],
+      "state": "COMPARED_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001678105",
+      "accession": "0001640334-17-001309",
+      "selected_rows": 2,
+      "instance_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1678105/000164033417001309/caro-20170331.xml",
+        "status": 200,
+        "bytes": 84331,
+        "sha256": "a98045605babc1ba01d2754e24d212ab4f7b9223ac9ecb9425ea17c64100f8d9",
+        "captured_at": "2026-09-20T14:39:26.053693+00:00",
+        "body_path": "artifacts/seo/corpus-local/equal-history-xbrl/0001678105-0001640334-17-001309-instance.response"
+      },
+      "checks": [
+        {
+          "selected": {
+            "tag": "Liabilities",
+            "end": "2016-03-31",
+            "val": 7075,
+            "accn": "0001640334-17-001309",
+            "fy": 2017,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2017-06-23",
+            "frame": "CY2016Q1I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "AsOf2016-03-31",
+              "unit_id": "USD",
+              "value": "7075"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "tag": "LiabilitiesCurrent",
+            "end": "2016-03-31",
+            "val": 7075,
+            "accn": "0001640334-17-001309",
+            "fy": 2017,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2017-06-23",
+            "frame": "CY2016Q1I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "AsOf2016-03-31",
+              "unit_id": "USD",
+              "value": "7075"
+            }
+          ]
+        }
+      ],
+      "state": "COMPARED_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001678105",
+      "accession": "0001640334-18-001554",
+      "selected_rows": 2,
+      "instance_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1678105/000164033418001554/caro-20180331.xml",
+        "status": 200,
+        "bytes": 90132,
+        "sha256": "549dbf1c76f96a73f4086d7ac279c664887a8b8037936ad09585b8130c1e596b",
+        "captured_at": "2026-09-20T14:39:28.059899+00:00",
+        "body_path": "artifacts/seo/corpus-local/equal-history-xbrl/0001678105-0001640334-18-001554-instance.response"
+      },
+      "checks": [
+        {
+          "selected": {
+            "tag": "Liabilities",
+            "end": "2017-03-31",
+            "val": 4500,
+            "accn": "0001640334-18-001554",
+            "fy": 2018,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2018-08-14",
+            "frame": "CY2017Q1I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "AsOf2017-03-31",
+              "unit_id": "USD",
+              "value": "4500"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "tag": "LiabilitiesCurrent",
+            "end": "2017-03-31",
+            "val": 4500,
+            "accn": "0001640334-18-001554",
+            "fy": 2018,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2018-08-14",
+            "frame": "CY2017Q1I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "AsOf2017-03-31",
+              "unit_id": "USD",
+              "value": "4500"
+            }
+          ]
+        }
+      ],
+      "state": "COMPARED_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001678105",
+      "accession": "0001640334-19-001506",
+      "selected_rows": 2,
+      "instance_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1678105/000164033419001506/caro-20190331.xml",
+        "status": 200,
+        "bytes": 84170,
+        "sha256": "2acbb5d47f8e0275e6fd7ba9c6f542cd8166432a14998f6b3b8eb5c3417b3459",
+        "captured_at": "2026-09-20T14:39:30.010220+00:00",
+        "body_path": "artifacts/seo/corpus-local/equal-history-xbrl/0001678105-0001640334-19-001506-instance.response"
+      },
+      "checks": [
+        {
+          "selected": {
+            "tag": "Liabilities",
+            "end": "2018-03-31",
+            "val": 14100,
+            "accn": "0001640334-19-001506",
+            "fy": 2019,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2019-08-01",
+            "frame": "CY2018Q1I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "AsOf2018-03-31",
+              "unit_id": "USD",
+              "value": "14100"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "tag": "LiabilitiesCurrent",
+            "end": "2018-03-31",
+            "val": 14100,
+            "accn": "0001640334-19-001506",
+            "fy": 2019,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2019-08-01",
+            "frame": "CY2018Q1I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "AsOf2018-03-31",
+              "unit_id": "USD",
+              "value": "14100"
+            }
+          ]
+        }
+      ],
+      "state": "COMPARED_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001678105",
+      "accession": "0001640334-20-002258",
+      "selected_rows": 2,
+      "instance_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1678105/000164033420002258/caro-20200331.xml",
+        "status": 200,
+        "bytes": 81469,
+        "sha256": "d27d0b467344c3fccb08147ff545ce1bf4a18db69a25fa2a6310da27696029d7",
+        "captured_at": "2026-09-20T14:39:31.937371+00:00",
+        "body_path": "artifacts/seo/corpus-local/equal-history-xbrl/0001678105-0001640334-20-002258-instance.response"
+      },
+      "checks": [
+        {
+          "selected": {
+            "tag": "Liabilities",
+            "end": "2019-03-31",
+            "val": 43213,
+            "accn": "0001640334-20-002258",
+            "fy": 2020,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2020-08-27",
+            "frame": "CY2019Q1I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "AsOf2019-03-31",
+              "unit_id": "USD",
+              "value": "43213"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "tag": "LiabilitiesCurrent",
+            "end": "2019-03-31",
+            "val": 43213,
+            "accn": "0001640334-20-002258",
+            "fy": 2020,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2020-08-27",
+            "frame": "CY2019Q1I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "AsOf2019-03-31",
+              "unit_id": "USD",
+              "value": "43213"
+            }
+          ]
+        }
+      ],
+      "state": "COMPARED_REVIEW_PENDING"
+    },
+    {
+      "cik": "0001678105",
+      "accession": "0001640334-21-001401",
+      "selected_rows": 2,
+      "instance_capture": {
+        "url": "https://www.sec.gov/Archives/edgar/data/1678105/000164033421001401/caro-20210331.xml",
+        "status": 200,
+        "bytes": 100104,
+        "sha256": "c396e4492a047609c0f7556fab142cfe37dd8d121e08d334c73a34d7fbf90053",
+        "captured_at": "2026-09-20T14:39:33.715140+00:00",
+        "body_path": "artifacts/seo/corpus-local/equal-history-xbrl/0001678105-0001640334-21-001401-instance.response"
+      },
+      "checks": [
+        {
+          "selected": {
+            "tag": "Liabilities",
+            "end": "2020-03-31",
+            "val": 68976,
+            "accn": "0001640334-21-001401",
+            "fy": 2021,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2021-06-23",
+            "frame": "CY2020Q1I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "AsOf2020-03-31",
+              "unit_id": "USD",
+              "value": "68976"
+            }
+          ]
+        },
+        {
+          "selected": {
+            "tag": "LiabilitiesCurrent",
+            "end": "2020-03-31",
+            "val": 68976,
+            "accn": "0001640334-21-001401",
+            "fy": 2021,
+            "fp": "FY",
+            "form": "10-K",
+            "filed": "2021-06-23",
+            "frame": "CY2020Q1I",
+            "unit": "USD"
+          },
+          "matched": true,
+          "matches": [
+            {
+              "context_id": "AsOf2020-03-31",
+              "unit_id": "USD",
+              "value": "68976"
+            }
+          ]
+        }
+      ],
+      "state": "COMPARED_REVIEW_PENDING"
+    }
+  ],
+  "complete": true,
+  "scope": "Previously unmatched selected observations only. Numerical reproduction does not establish accounting scope or editorial approval."
+}

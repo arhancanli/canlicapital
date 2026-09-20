@@ -1,0 +1,19 @@
+{
+  "schema": "canli.equal-history-archive-restore.v1",
+  "result": "PASS",
+  "archive_sha256": "cb89a5df08529157f6bc2e42f3d498b6b9d5b05fcfc2960c46e7f048adf436bc",
+  "archive_bytes": 293847040,
+  "files": 941,
+  "reproduced_reports": {
+    "company-equal-history-retained-review-qname-20260920.json": "1c0dcaa9cd2f8bf54f1af1ddb592d34230839dbd80f9531466f1896ed31a560e",
+    "company-equal-history-incremental-review-20260920.json": "37afada62e6539cfd8083c41c0a21c20701768f477b8ce7925d50fbf0abbd3bf",
+    "company-equal-history-final-primary-review-20260920.json": "2a8a431a2cb26c1983615195366fb29aa90c2ce4d402c9857fce821d8095d4a8",
+    "company-equal-history-xbrl-recheck-20260920.json": "d73fdebcdeefd5a4cc5048a3901122045d93d8c24813ac1a6303a9d668d63731",
+    "company-equal-history-final-xbrl-recheck-20260920.json": "32672c5908cb506503efe9013982c61e0acd1804aafdcd61ebf30a8b866c5732"
+  },
+  "unique_observations": 610,
+  "matched_observations": 610,
+  "offline_dependency_install": true,
+  "temporary_restore_removed": true,
+  "scope": "Primary/XBRL numerical comparison closure for 610 selected observations. Includes failed reports and parser versions, primary/index/instance bytes, locked Python wheels. Does not regenerate the source companyfacts queue, rerun manual scope interpretation, confer admission or establish offsite backup."
+}
